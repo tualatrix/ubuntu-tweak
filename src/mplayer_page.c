@@ -1,5 +1,7 @@
 #include "ubuntu-tweak.h"
 
+gchar *key_vo_driver="/apps/ubuntu-tweak/apps/mplayer/vo_driver";
+
 GtkWidget *create_mplayer_page()
 {
 	GtkWidget *main_vbox;
@@ -28,7 +30,9 @@ GtkWidget *create_mplayer_page()
 	gtk_widget_show(vbox);
 	gtk_box_pack_start(GTK_BOX(hbox),vbox,FALSE,FALSE,0);
 
-	checkbutton=
+	checkbutton=create_text_checkbutton("使用X11驱动",key_vo_driver,"scripts/ubuntu-tweak-script mplayer",NULL);
+	gtk_widget_show(checkbutton);
+	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
 	return main_vbox; 
 }

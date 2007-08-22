@@ -75,6 +75,48 @@ GtkWidget *create_gconf_checkbutton(gchar *label,gchar *key,gchar *dir,gpointer 
 
 	return checkbutton;
 }
+/*核心API之一，创建用于修改配置文件基于文本的按钮，其中shell是创建时执行的命令,虽然它是基于文本的，但是还是通过监视自创的键值，以方便调用*/
+GtkWidget *create_text_checkbutton(gchar *label,gchar *key,gchar *shell,gpointer enterdata)
+{
+	GError *error;
+	GtkWidget *checkbutton;
+	GConfValue *value;
+	GConfClient *client;
+	gboolean bool;
+
+	gchar *newshell=g_strconcat("bash ",shell,NULL);
+	if(g_spawn_command_line_async(newshell,&error)){
+		client=gconf_client_get_default();
+		value=gconf_client_get(client,key,NULL);
+	}
+	sleep(1);
+	checkbutton=gtk_check_button_new_with_mnemonic(label);
+	gtk_widget_show(checkbutton);
+
+	client=gconf_client_get_default();
+	value=gconf_client_get(client,key,NULL);
+
+	if(value==NULL){
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(checkbutton),FALSE);
+	}else{
+		if(value->type==GCONF_VALUE_STRING){
+			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(checkbutton),TRUE);
+		}
+		else if(value->type==GCONF_VALUE_INT){
+			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(checkbutton),FALSE);
+		}
+		else if(value->type==GCONF_VALUE_BOOL){
+			bool=gconf_client_get_bool(client,key,NULL);
+			if(bool==TRUE){
+				gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(checkbutton),TRUE);
+			}else{
+				gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(checkbutton),FALSE);
+			}
+		}
+	}
+	return checkbutton;
+}
+
 GtkWidget *create_gconf_entry(gchar *key,gchar *dir,gpointer data)
 {
 /*定义键值监视事件*/
