@@ -8,7 +8,8 @@ int main(int argc,char **argv)
 {
 	GtkWidget *window;
 	GError *err=NULL;
-	g_spawn_command_line_async("scripts/ubuntu-tweak-script",NULL);
+	/*g_spawn_command_line_async("scripts/ubuntu-tweak-script",NULL);
+	sleep(1);*/
 
 	bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
