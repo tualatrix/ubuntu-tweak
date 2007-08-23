@@ -15,7 +15,7 @@ gchar *security_image="pixmaps/security.png";
 gchar *applications_image="pixmaps/applications.png";
 gchar *banner_left="pixmaps/uo-banner-left.png";
 gchar *banner_right="pixmaps/uo-banner-right.png";
-gchar *icon="pixmaps/ubuntu-optimizer-icon.png";
+gchar *icon="pixmaps/ubuntu-tweak-icon.png";
 
 GtkWidget *startup_notebook;
 GtkWidget *personality_notebook;
