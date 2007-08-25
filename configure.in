@@ -1,0 +1,104 @@
+dnl Process this file with autoconf to produce a configure script.
+dnl Created by Anjuta - will be overwritten
+dnl If you don't want it to overwrite it,
+dnl 	Please disable it in the Anjuta project configuration
+
+AC_INIT(configure.in)
+AM_INIT_AUTOMAKE(ubuntu-tweak, 0.1.1)
+AM_CONFIG_HEADER(config.h)
+AM_MAINTAINER_MODE
+
+AC_ISC_POSIX
+AC_PROG_CC
+AM_PROG_CC_STDC
+AC_HEADER_STDC
+
+GETTEXT_PACKAGE=ubuntu-tweak
+AC_SUBST(GETTEXT_PACKAGE)
+AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Package name for gettext])
+
+dnl Languages which your application supports
+ALL_LINGUAS=""
+AM_GLIB_GNU_GETTEXT
+
+AM_PROG_LIBTOOL
+
+PKG_CHECK_MODULES(PACKAGE, [gconf-2.0 gtk+-2.0])
+AC_SUBST(PACKAGE_CFLAGS)
+AC_SUBST(PACKAGE_LIBS)
+
+
+dnl Set PACKAGE_LOCALE_DIR in config.h.
+if test "x${prefix}" = "xNONE"; then
+  AC_DEFINE_UNQUOTED(PACKAGE_LOCALE_DIR, "${ac_default_prefix}/${DATADIRNAME}/locale", [Package local directory])
+else
+  AC_DEFINE_UNQUOTED(PACKAGE_LOCALE_DIR, "${prefix}/${DATADIRNAME}/locale", [Package local directory])
+fi
+
+dnl Set PACKAGE SOURCE DIR in config.h.
+packagesrcdir=`cd $srcdir && pwd`
+
+dnl Set PACKAGE PREFIX
+if test "x${prefix}" = "xNONE"; then
+  packageprefix=${ac_default_prefix}
+else
+  packageprefix=${prefix}
+fi
+
+dnl Set PACKAGE DATA & DOC DIR
+packagedatadir=share/${PACKAGE}
+packagedocdir=share/doc/${PACKAGE}
+
+dnl Set PACKAGE DIRs in config.h.
+packagepixmapsdir=share/${PACKAGE}/pixmaps
+packagemenudir=share/applications
+packagescriptsdir=share/${PACKAGE}/scripts
+
+dnl Subst PACKAGE_DATA_DIR.
+NO_PREFIX_PACKAGE_DATA_DIR="${packagedatadir}"
+AC_SUBST(NO_PREFIX_PACKAGE_DATA_DIR)
+PACKAGE_DATA_DIR="${packageprefix}/${packagedatadir}"
+AC_SUBST(PACKAGE_DATA_DIR)
+
+dnl Subst PACKAGE_DOC_DIR.
+NO_PREFIX_PACKAGE_DOC_DIR="${packagedocdir}"
+AC_SUBST(NO_PREFIX_PACKAGE_DOC_DIR)
+PACKAGE_DOC_DIR="${packageprefix}/${packagedocdir}"
+AC_SUBST(PACKAGE_DOC_DIR)
+
+dnl Subst PACKAGE_PIXMAPS_DIR.
+NO_PREFIX_PACKAGE_PIXMAPS_DIR="${packagepixmapsdir}"
+AC_SUBST(NO_PREFIX_PACKAGE_PIXMAPS_DIR)
+PACKAGE_PIXMAPS_DIR="${packageprefix}/${packagepixmapsdir}"
+AC_SUBST(PACKAGE_PIXMAPS_DIR)
+
+dnl Subst PACKAGE_MENU_DIR.
+NO_PREFIX_PACKAGE_MENU_DIR="${packagemenudir}"
+AC_SUBST(NO_PREFIX_PACKAGE_MENU_DIR)
+PACKAGE_MENU_DIR="${packageprefix}/${packagemenudir}"
+AC_SUBST(PACKAGE_MENU_DIR)
+
+dnl Subst PACKAGE_SCRIPTS_DIR.
+NO_PREFIX_PACKAGE_SCRIPTS_DIR="${packagescriptsdir}"
+AC_SUBST(NO_PREFIX_PACKAGE_SCRIPTS_DIR)
+PACKAGE_SCRIPTS_DIR="${packageprefix}/${packagescriptsdir}"
+AC_SUBST(PACKAGE_SCRIPTS_DIR)
+
+AC_DEFINE_UNQUOTED(PACKAGE_DATA_DIR, "${packageprefix}/${packagedatadir}")
+AC_DEFINE_UNQUOTED(PACKAGE_DOC_DIR, "${packageprefix}/${packagedocdir}")
+AC_DEFINE_UNQUOTED(PACKAGE_PIXMAPS_DIR, "${packageprefix}/${packagepixmapsdir}")
+AC_DEFINE_UNQUOTED(PACKAGE_MENU_DIR, "${packageprefix}/${packagemenudir}")
+AC_DEFINE_UNQUOTED(PACKAGE_SOURCE_DIR, "${packagesrcdir}")
+AC_DEFINE_UNQUOTED(PACKAGE_NAME, "${PACKAGE}")
+AC_DEFINE_UNQUOTED(PACKAGE_VERSION, "${VERSION}")
+AC_DEFINE_UNQUOTED(PACKAGE_SCRIPTS_DIR, "${packageprefix}/${packagescriptsdir}")
+
+AC_OUTPUT([
+Makefile
+po/Makefile.in
+src/Makefile
+pixmaps/Makefile
+scripts/Makefile
+ubuntu-tweak.desktop
+])
+
