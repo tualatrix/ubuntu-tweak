@@ -16,6 +16,7 @@ GtkWidget *splash_image_button;
 GdkPixbuf *new_preview;
 GtkWidget *splash_image_preview;
 gchar *filename;
+gchar *filedir;
 GdkPixbuf *original_preview;
 
 void enter_expect(GtkWidget *widget,gpointer expanderdata)
@@ -34,6 +35,8 @@ void splash_select(GtkWidget *widget,gpointer data)
 		NULL,
 		GTK_FILE_CHOOSER_ACTION_OPEN,
 		GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT, GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL, NULL);
+	/*在打开文件的对话框中，将当前目前设定为原文件所在目录*/
+	gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(dialog),filedir);
 
 	if(gtk_dialog_run(GTK_DIALOG(dialog))==GTK_RESPONSE_ACCEPT){
 		filename=gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(dialog));
@@ -60,22 +63,20 @@ void checkbutton_toggled_splash(GtkWidget *checkbutton,
 GtkWidget *change_splash()
 {
 	GtkWidget *splash_image_hbox;
-
 	GtkWidget *splash_image_alignment;
 	GtkWidget *splash_image_button_vbox;
-
 	GtkWidget *splash_label_filename;
-
 
 	gboolean bool;
 	GConfClient *client;
 	client=gconf_client_get_default();
+
 	filename=gconf_client_get_string(client,splash_image,NULL);
+	filedir=g_dirname(filename);
+
 	bool=gconf_client_get_bool(client,show_splash_screen,NULL);
 	
 /*预览图所在位置*/
-
-
 	gint x,y;
 
 	original_preview=gdk_pixbuf_new_from_file(filename,NULL);
