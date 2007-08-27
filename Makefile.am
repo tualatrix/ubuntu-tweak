@@ -13,7 +13,7 @@ ubuntu_tweakdoc_DATA = \
 	ChangeLog\
 	INSTALL\
 	NEWS\
-	TODO\
+	TODO
 
 EXTRA_DIST = $(ubuntu_tweakdoc_DATA)
 

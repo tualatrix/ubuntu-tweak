@@ -8,6 +8,8 @@
 int main(int argc,char **argv)
 {
 	GtkWidget *window;
+	gchar *initialization_script=PACKAGE_SCRIPTS_DIR"/ubuntu-tweak-initialization";
+	GError *error;
 
 #ifdef ENABLE_NLS
   bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
@@ -15,6 +17,12 @@ int main(int argc,char **argv)
   textdomain (GETTEXT_PACKAGE);
 #endif
 	gtk_init(&argc,&argv);
+
+        g_spawn_command_line_sync(g_strconcat("bash ",initialization_script,NULL),
+                                NULL,
+                                NULL,
+                                NULL,
+                                &error);
 
 	g_print("GETTEXT_PACKAGE: %s\n",GETTEXT_PACKAGE);
 	g_print("PACKAGE_LOCALE_DIR: %s\n",PACKAGE_LOCALE_DIR);

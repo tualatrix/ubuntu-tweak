@@ -5,7 +5,7 @@
 #include "ubuntu-tweak.h"
 
 gchar *key_vo_driver="/apps/ubuntu-tweak/apps/mplayer/vo_driver";
-gchar *script_mplayer=PACKAGE_SCRIPTS_DIR"/ubuntu-tweak-script mplayer";
+gchar *script_mplayer=PACKAGE_SCRIPTS_DIR"/ubuntu-tweak-mplayer vo_driver";
 
 GtkWidget *create_mplayer_page()
 {

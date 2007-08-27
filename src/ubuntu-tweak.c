@@ -87,7 +87,6 @@ GtkWidget *create_text_checkbutton(gchar *label,gchar *key,gchar *shell,gpointer
 	gchar *newshell=g_strconcat("bash ",shell,NULL);
 
 	checkbutton=gtk_check_button_new_with_mnemonic(label);
-	g_signal_connect(G_OBJECT(checkbutton),"toggled",G_CALLBACK(text_checkbutton_toggled),newshell);
 	gtk_widget_show(checkbutton);
 
 	client=gconf_client_get_default();
@@ -112,22 +111,30 @@ GtkWidget *create_text_checkbutton(gchar *label,gchar *key,gchar *shell,gpointer
 		}
 	}
 
+	g_signal_connect(G_OBJECT(checkbutton),"toggled",G_CALLBACK(text_checkbutton_toggled),newshell);
+
 	return checkbutton;
 }
 
 void text_checkbutton_toggled(GtkWidget *checkbutton,gpointer data)
 {
 	GError *error;
-	/*gboolean bool;
+	gchar *newshell;
+	gboolean bool;
 
-	g_print("OK?");
 	bool=gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(checkbutton));
-	if(bool==TRUE){
+	if(bool==FALSE){
+		newshell=g_strconcat(data," off",NULL);
+		g_print("%s\n",newshell);		
+		g_spawn_command_line_async(newshell,&error);
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(checkbutton),FALSE);
 	}else{
+		newshell=g_strconcat(data," on",NULL);
+		g_print("%s\n",newshell);	
+		g_spawn_command_line_async(newshell,&error);
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(checkbutton),TRUE);
-	}*/
-	g_spawn_command_line_async(data,&error);
+	}
+	g_free(newshell);
 }
 
 GtkWidget *create_gconf_entry(gchar *key,gchar *dir,gpointer data)
