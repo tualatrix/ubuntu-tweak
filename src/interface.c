@@ -160,7 +160,7 @@ GtkWidget *create_main_window(void)
 
 /*正文默认的欢迎字样*/
 
-	label_welcome=gtk_label_new("test only");
+	label_welcome=gtk_label_new(g_get_user_data_dir());
 	gtk_label_set_justify(GTK_LABEL(label_welcome),GTK_JUSTIFY_LEFT);
 	gtk_widget_show(label_welcome);
 	gtk_container_set_border_width(GTK_CONTAINER(vbox_content_right),10);

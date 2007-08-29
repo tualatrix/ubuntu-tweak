@@ -4,19 +4,50 @@
 MPLAYER_GUI_CONF=`echo ~/.mplayer/gui.conf`
 MPLAYER_CONFIG=`echo ~/.mplayer/config`
 
-VO_DRIVER=`grep "vo_driver" $MPLAYER_GUI_CONF |awk -F"\"" '{print $2}'`
-ZOOM=`grep "zoom" $MPLAYER_CONFIG | awk -F"=" '{print $2}'`
+VO_DRIVER=`grep "vo_driver" $MPLAYER_GUI_CONF 2>/dev/null`
+VO_DRIVER_VALUE=`grep "vo_driver" $MPLAYER_GUI_CONF 2>/dev/null | awk -F"\"" '{print $2}' `
+ZOOM=`grep "zoom" $MPLAYER_CONFIG 2>/dev/null`
+ZOOM_VALUE=`grep "zoom" $MPLAYER_CONFIG 2>/dev/null | sed -n '/[ytru]/p'`
 
+#echo "VO_DRIVER= "$VO_DRIVER
+#echo "VO_DRIVER_VALUE= "$VO_DRIVER_VALUE
 #初始化Mplayer的设置
-if [ -z $VO_DRIVER ]; then
+if [ ! -f $MPLAYER_GUI_CONF ]; then
+	echo "vo_driver = \"xv\"" > $MPLAYER_GUI_CONF
 	gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/vo_driver false
-	echo "初始化完成"
-elif [ $VO_DRIVER = "x11" ]; then
-	gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/vo_driver true
-	echo "初始化完成"
+	echo -e "配置文件不存在！建立$MPLAYER_GUI_CONF...\n设定VO_DRIVER为FALSE..."
 else
-	gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/vo_driver false
-	echo "初始化完成"
+	if [ ! -z "$VO_DRIVER" ]; then
+		if [ "$VO_DRIVER_VALUE" = "x11" ]; then
+			gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/vo_driver true
+			echo "设定VO_DRIVER为TRUE..."
+		else
+			gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/vo_driver false
+			echo "设定VO_DRIVER为FALSE..."
+		fi
+	else
+		echo "vo_driver = \"xv\"" >> $MPLAYER_GUI_CONF
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/vo_driver false
+		echo "相关字段不存在！初始化...设定VO_DRIVER为FALSE"
+	fi
 fi
 
-
+if [ ! -f $MPLAYER_CONFIG ]; then
+	echo "zoom = \"no\"" > $MPLAYER_CONFIG
+	gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/zoom false
+	echo -e "配置文件不存在！建立$MPLAYER_CONFIG...\n设定ZOOM为FALSE..."
+else
+	if [ ! -z "$ZOOM" ]; then
+		if [ ! -z "$ZOOM_VALUE"  ]; then
+			gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/zoom true
+			echo "设定ZOOM为TRUE..."
+		else
+			gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/zoom false
+			echo "设定ZOOM为FALSE..."
+		fi
+	else
+		echo "zoom = \"no\"" >> $MPLAYER_CONFIG
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/zoom false
+		echo "相关字段不存在！初始化...设定ZOOM为FALSE"
+	fi
+fi

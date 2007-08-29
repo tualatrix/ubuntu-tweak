@@ -22,3 +22,19 @@ if [ $1 = "vo_driver" ]; then
 		echo "选择x11"
 	fi
 fi
+
+if [ $1 = "zoom" ]; then
+	MPLAYER_BOOL=`gconftool-2 -g /apps/ubuntu-tweak/apps/mplayer/zoom`
+	if [ "$2" = "off" ]; then
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/zoom flase
+		sed -e 's/zoom.*/zoom=no/' $MPLAYER_CONFIG> $MPLAYER_CONFIG.tmp
+		mv $MPLAYER_CONFIG.tmp $MPLAYER_CONFIG
+		echo "关闭ZOOM"
+	else
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/zoom true
+		sed -e 's/zoom.*/zoom=yes/' $MPLAYER_CONFIG> $MPLAYER_CONFIG.tmp
+		mv $MPLAYER_CONFIG.tmp $MPLAYER_CONFIG
+		echo "打开ZOOM"
+	fi
+fi
+	
