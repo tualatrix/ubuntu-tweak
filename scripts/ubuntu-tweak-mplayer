@@ -37,4 +37,18 @@ if [ $1 = "zoom" ]; then
 		echo "打开ZOOM"
 	fi
 fi
-	
+
+if [ $1 = "sub-fuzziness" ]; then
+	MPLAYER_BOOL=`gconftool-2 -g /apps/ubuntu-tweak/apps/mplayer/sub-fuzziness`
+	if [ "$2" = "off" ]; then
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/sub-fuzziness flase
+		sed -e 's/sub-fuzziness.*/sub-fuzziness=0/' $MPLAYER_CONFIG> $MPLAYER_CONFIG.tmp
+		mv $MPLAYER_CONFIG.tmp $MPLAYER_CONFIG
+		echo "关闭sub-fuzziness"
+	else
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/sub-fuzziness true
+		sed -e 's/sub-fuzziness.*/sub-fuzziness=1/' $MPLAYER_CONFIG> $MPLAYER_CONFIG.tmp
+		mv $MPLAYER_CONFIG.tmp $MPLAYER_CONFIG
+		echo "打开sub-fuzziness"
+	fi
+fi	

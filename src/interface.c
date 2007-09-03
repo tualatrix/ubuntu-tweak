@@ -109,7 +109,7 @@ GtkWidget *create_main_window(void)
 	window=gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title(GTK_WINDOW(window),"Ubuntu Tweak");
 	gtk_container_set_border_width(GTK_CONTAINER(window),10);
-//	gtk_window_set_default_size(GTK_WINDOW(window),660,490);
+	gtk_window_set_default_size(GTK_WINDOW(window),660,490);
 	gtk_window_set_position(GTK_WINDOW(window),GTK_WIN_POS_CENTER);
 	g_signal_connect(G_OBJECT(window),"delete_event",G_CALLBACK(gtk_main_quit),NULL);
 	
@@ -160,7 +160,7 @@ GtkWidget *create_main_window(void)
 
 /*正文默认的欢迎字样*/
 
-	label_welcome=gtk_label_new(g_get_user_data_dir());
+	label_welcome=gtk_label_new("Welcome to use Ubunu Tweak(alpha), if you have any problem, tell me please");
 	gtk_label_set_justify(GTK_LABEL(label_welcome),GTK_JUSTIFY_LEFT);
 	gtk_widget_show(label_welcome);
 	gtk_container_set_border_width(GTK_CONTAINER(vbox_content_right),10);

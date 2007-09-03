@@ -29,13 +29,13 @@ GtkWidget *create_startup_notebook()
 	checkbutton1=gtk_check_button_new_with_mnemonic("checkbutton1");
 	gtk_widget_show(checkbutton1);
 
-	frame2=gtk_frame_new("frame 2");
+	frame2=gtk_frame_new("Wait to be added");
 	GtkWidget *service_page_label;
 	gtk_widget_show(frame2);
 	service_page_label=gtk_label_new(_("Services"));
 	gtk_widget_show(service_page_label);
 
-	frame3=gtk_frame_new("frame 3");
+	frame3=gtk_frame_new("Wait to be added");
 	gtk_widget_show(frame3);
 	frame_label3=gtk_label_new(_("Grub"));
 	gtk_widget_show(frame_label3);

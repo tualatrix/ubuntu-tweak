@@ -6,6 +6,7 @@
 
 gchar *key_vo_driver="/apps/ubuntu-tweak/apps/mplayer/vo_driver";
 gchar *key_zoom="/apps/ubuntu-tweak/apps/mplayer/zoom";
+gchar *key_sub_fuzziness="/apps/ubuntu-tweak/apps/mplayer/sub-fuzziness";
 gchar *script_mplayer=PACKAGE_SCRIPTS_DIR"/ubuntu-tweak-mplayer";
 
 GtkWidget *create_mplayer_page()
@@ -41,6 +42,10 @@ GtkWidget *create_mplayer_page()
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
 	checkbutton=create_text_checkbutton("Use hardware zoom for X11",key_zoom,g_strconcat(script_mplayer," zoom",NULL),NULL);
+	gtk_widget_show(checkbutton);
+	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
+
+	checkbutton=create_text_checkbutton("Use Smart Subtitles Files Match",key_sub_fuzziness,g_strconcat(script_mplayer," sub-fuzziness",NULL),NULL);
 	gtk_widget_show(checkbutton);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 

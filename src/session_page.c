@@ -74,15 +74,26 @@ GtkWidget *change_splash()
 	filename=gconf_client_get_string(client,splash_image,NULL);
 	filedir=g_dirname(filename);
 
+/*初次修改Splash的用户需要这段来判断位于GConf的值是否是无路径的默认Splash*/
+	if(!g_ascii_strcasecmp(filedir,"splash")){
+		filedir=g_strconcat("/usr/share/pixmaps/",filedir,NULL);
+		filename=g_strconcat("/usr/share/pixmaps/",filename,NULL);
+	}
 	bool=gconf_client_get_bool(client,show_splash_screen,NULL);
-	
 /*预览图所在位置*/
 	gint x,y;
 
 	original_preview=gdk_pixbuf_new_from_file(filename,NULL);
 	x=gdk_pixbuf_get_width(original_preview);
 	y=gdk_pixbuf_get_height(original_preview);
-	new_preview=gdk_pixbuf_scale_simple(original_preview,x/2,y/2,GDK_INTERP_NEAREST);
+	if ((x * 180 / y) > 240) {
+		y = y * 240 / x;
+		x = 240;
+	} else {
+		x = x * 180 / y;
+		y = 180;
+	}
+	new_preview=gdk_pixbuf_scale_simple(original_preview,x,y,GDK_INTERP_NEAREST);
 
 	splash_image_hbox=gtk_hbox_new(FALSE,0);
 	gtk_widget_show(splash_image_hbox);

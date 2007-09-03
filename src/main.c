@@ -8,6 +8,7 @@
 int main(int argc,char **argv)
 {
 	GtkWidget *window;
+
 	gchar *initialization_script=PACKAGE_SCRIPTS_DIR"/ubuntu-tweak-initialization";
 	GError *error;
 
@@ -23,21 +24,17 @@ int main(int argc,char **argv)
                                 NULL,
                                 NULL,
                                 &error);
-
-	g_print("GETTEXT_PACKAGE: %s\n",GETTEXT_PACKAGE);
-	g_print("PACKAGE_LOCALE_DIR: %s\n",PACKAGE_LOCALE_DIR);
-	g_print("PACKAGE_DOC_DIR: %s\n",PACKAGE_DOC_DIR);
-	g_print("PACKAGE_DATA_DIR: %s\n",PACKAGE_DATA_DIR);
-	g_print("PACKAGE_PIXMAPS_DIR: %s\n",PACKAGE_PIXMAPS_DIR);
-	g_print("PACKAGE_MENU_DIR: %s\n",PACKAGE_MENU_DIR);
-	g_print("PACKAGE_SOURCE_DIR: %s\n",PACKAGE_SOURCE_DIR);
-	g_print("PACKAGE_NAME: %s\n",PACKAGE_NAME);
-	g_print("PACKAGE: %s\n",PACKAGE);
-	g_print("PACKAGE_TARNAME: %s\n",PACKAGE_TARNAME);
-	g_print("PACKAGE_VERSION: %s\n",PACKAGE_VERSION);
-	g_print("STDC_HEADERS: %d\n",STDC_HEADERS);
+/*
+	g_print("Application name: %s\n",str);
+	g_print("Program name: %s\n",g_get_prgname());
+	g_print("User name: %s\n",g_get_user_name());
+	g_print("Real name: %s\n",g_get_real_name());
+	g_print("System data dir: %s\n",g_get_system_data_dirs());
+	g_print("Host name: %s\n",g_get_host_name());
+	g_print("Home dir: %s\n",g_get_home_dir());
+	g_print("Tmp dir: %d\n",g_get_tmp_dir());
 	g_print("VERSION: %s\n",VERSION);
-
+*/
 	window=create_main_window();
 
 	gtk_widget_show(window);

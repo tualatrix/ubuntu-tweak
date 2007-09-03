@@ -1,5 +1,9 @@
 #!/bin/bash
 
+MPLAYER_DIR=`echo ~/.mplayer`
+if [ ! -f $MPLAYER_DIR ]; then
+	mkdir ~/.mplayer
+fi
 #首先取出gui.conf文件中有vo-driver字段的行，然后交给awk处理，取出由"分隔的第二个字段
 MPLAYER_GUI_CONF=`echo ~/.mplayer/gui.conf`
 MPLAYER_CONFIG=`echo ~/.mplayer/config`
@@ -8,10 +12,13 @@ VO_DRIVER=`grep "vo_driver" $MPLAYER_GUI_CONF 2>/dev/null`
 VO_DRIVER_VALUE=`grep "vo_driver" $MPLAYER_GUI_CONF 2>/dev/null | awk -F"\"" '{print $2}' `
 ZOOM=`grep "zoom" $MPLAYER_CONFIG 2>/dev/null`
 ZOOM_VALUE=`grep "zoom" $MPLAYER_CONFIG 2>/dev/null | sed -n '/[ytru]/p'`
+SUB_FUZZINESS=`grep  "sub-fuzziness" $MPLAYER_CONFIG 2>/dev/null`
+SUB_FUZZINESS_VALUE=`grep  "sub-fuzziness" $MPLAYER_CONFIG 2>/dev/null | sed -n '/1/p'`
 
 #echo "VO_DRIVER= "$VO_DRIVER
 #echo "VO_DRIVER_VALUE= "$VO_DRIVER_VALUE
-#初始化Mplayer的设置
+
+#初始化Mplayer vo_driver的设置
 if [ ! -f $MPLAYER_GUI_CONF ]; then
 	echo "vo_driver = \"xv\"" > $MPLAYER_GUI_CONF
 	gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/vo_driver false
@@ -31,7 +38,7 @@ else
 		echo "相关字段不存在！初始化...设定VO_DRIVER为FALSE"
 	fi
 fi
-
+#初始化Mplayer zoom的设置
 if [ ! -f $MPLAYER_CONFIG ]; then
 	echo "zoom = \"no\"" > $MPLAYER_CONFIG
 	gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/zoom false
@@ -49,5 +56,26 @@ else
 		echo "zoom = \"no\"" >> $MPLAYER_CONFIG
 		gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/zoom false
 		echo "相关字段不存在！初始化...设定ZOOM为FALSE"
+	fi
+fi
+
+#初始化Mplayer sub-fuzziness的设置
+if [ ! -f $MPLAYER_CONFIG ]; then
+	echo "sub-fuzziness = 0" > $MPLAYER_CONFIG
+	gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/sub-fuzziness false
+	echo -e "配置文件不存在！建立$MPLAYER_CONFIG...\n设定SUB_FUZZINESS为FALSE..."
+else
+	if [ ! -z "$SUB_FUZZINESS" ]; then
+		if [ ! -z "$SUB_FUZZINESS_VALUE"  ]; then
+			gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/sub-fuzziness true
+			echo "设定SUB_FUZZINESS为TRUE..."
+		else
+			gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/sub-fuzziness false
+			echo "设定SUB_FUZZINESS为FALSE..."
+		fi
+	else
+		echo "sub-fuzziness = 0" >> $MPLAYER_CONFIG
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/sub-fuzziness false
+		echo "相关字段不存在！初始化...设定SUB_FUZZINESS为FALSE"
 	fi
 fi
