@@ -38,7 +38,9 @@ ubuntu_tweak_SOURCES = \
 	startup.c\
 	startup.h\
 	system_page.c\
-	system_page.h
+	system_page.h\
+	awn_page.c\
+	awn_page.h
 
 ubuntu_tweak_LDFLAGS = 
 

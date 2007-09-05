@@ -13,7 +13,7 @@ void show_about(GtkWidget widget,gpointer data)
 	"authors", authors,
 	"website", "http://ubuntu-tweak.com",
 	"copyright", "Copyright © 2007 TualatriX",
-	"comments", "最优秀的Ubuntu系统下的设置优化工具",
+	"comments", _("专为Ubuntu系统开发的设置优化工具"),
 	"version", PACKAGE_VERSION,
 	NULL);
 }

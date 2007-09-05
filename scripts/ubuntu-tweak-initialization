@@ -1,9 +1,11 @@
 #!/bin/bash
 
 MPLAYER_DIR=`echo ~/.mplayer`
-if [ ! -f $MPLAYER_DIR ]; then
+
+if [ ! -d $MPLAYER_DIR ]; then
 	mkdir ~/.mplayer
 fi
+
 #首先取出gui.conf文件中有vo-driver字段的行，然后交给awk处理，取出由"分隔的第二个字段
 MPLAYER_GUI_CONF=`echo ~/.mplayer/gui.conf`
 MPLAYER_CONFIG=`echo ~/.mplayer/config`
@@ -19,63 +21,86 @@ SUB_FUZZINESS_VALUE=`grep  "sub-fuzziness" $MPLAYER_CONFIG 2>/dev/null | sed -n 
 #echo "VO_DRIVER_VALUE= "$VO_DRIVER_VALUE
 
 #初始化Mplayer vo_driver的设置
-if [ ! -f $MPLAYER_GUI_CONF ]; then
-	echo "vo_driver = \"xv\"" > $MPLAYER_GUI_CONF
-	gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/vo_driver false
-	echo -e "配置文件不存在！建立$MPLAYER_GUI_CONF...\n设定VO_DRIVER为FALSE..."
-else
-	if [ ! -z "$VO_DRIVER" ]; then
-		if [ "$VO_DRIVER_VALUE" = "x11" ]; then
-			gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/vo_driver true
-			echo "设定VO_DRIVER为TRUE..."
-		else
-			gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/vo_driver false
-			echo "设定VO_DRIVER为FALSE..."
-		fi
-	else
-		echo "vo_driver = \"xv\"" >> $MPLAYER_GUI_CONF
+init_vo_driver(){
+	if [ ! -f $MPLAYER_GUI_CONF ]; then
+		echo "vo_driver = \"xv\"" > $MPLAYER_GUI_CONF
 		gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/vo_driver false
-		echo "相关字段不存在！初始化...设定VO_DRIVER为FALSE"
-	fi
-fi
-#初始化Mplayer zoom的设置
-if [ ! -f $MPLAYER_CONFIG ]; then
-	echo "zoom = \"no\"" > $MPLAYER_CONFIG
-	gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/zoom false
-	echo -e "配置文件不存在！建立$MPLAYER_CONFIG...\n设定ZOOM为FALSE..."
-else
-	if [ ! -z "$ZOOM" ]; then
-		if [ ! -z "$ZOOM_VALUE"  ]; then
-			gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/zoom true
-			echo "设定ZOOM为TRUE..."
-		else
-			gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/zoom false
-			echo "设定ZOOM为FALSE..."
-		fi
+		echo -e "配置文件不存在！建立$MPLAYER_GUI_CONF...\n设定VO_DRIVER为FALSE..."
 	else
-		echo "zoom = \"no\"" >> $MPLAYER_CONFIG
-		gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/zoom false
-		echo "相关字段不存在！初始化...设定ZOOM为FALSE"
+		if [ ! -z "$VO_DRIVER" ]; then
+			if [ "$VO_DRIVER_VALUE" = "x11" ]; then
+				gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/vo_driver true
+				echo "设定VO_DRIVER为TRUE..."
+			else
+				gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/vo_driver false
+				echo "设定VO_DRIVER为FALSE..."
+			fi
+		else
+			echo "vo_driver = \"xv\"" >> $MPLAYER_GUI_CONF
+			gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/vo_driver false
+			echo "相关字段不存在！初始化...设定VO_DRIVER为FALSE"
+		fi
 	fi
-fi
+}
+#初始化Mplayer zoom的设置
+init_zoom(){
+	if [ ! -f $MPLAYER_CONFIG ]; then
+		echo "zoom = \"no\"" > $MPLAYER_CONFIG
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/zoom false
+		echo -e "配置文件不存在！建立$MPLAYER_CONFIG...\n设定ZOOM为FALSE..."
+	else
+		if [ ! -z "$ZOOM" ]; then
+			if [ ! -z "$ZOOM_VALUE"  ]; then
+				gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/zoom true
+				echo "设定ZOOM为TRUE..."
+			else
+				gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/zoom false
+				echo "设定ZOOM为FALSE..."
+			fi
+		else
+			echo "zoom = \"no\"" >> $MPLAYER_CONFIG
+			gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/zoom false
+			echo "相关字段不存在！初始化...设定ZOOM为FALSE"
+		fi
+	fi
+}
 
 #初始化Mplayer sub-fuzziness的设置
-if [ ! -f $MPLAYER_CONFIG ]; then
-	echo "sub-fuzziness = 0" > $MPLAYER_CONFIG
-	gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/sub-fuzziness false
-	echo -e "配置文件不存在！建立$MPLAYER_CONFIG...\n设定SUB_FUZZINESS为FALSE..."
-else
-	if [ ! -z "$SUB_FUZZINESS" ]; then
-		if [ ! -z "$SUB_FUZZINESS_VALUE"  ]; then
-			gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/sub-fuzziness true
-			echo "设定SUB_FUZZINESS为TRUE..."
-		else
-			gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/sub-fuzziness false
-			echo "设定SUB_FUZZINESS为FALSE..."
-		fi
-	else
-		echo "sub-fuzziness = 0" >> $MPLAYER_CONFIG
+init_sub_fuzziness(){
+	if [ ! -f $MPLAYER_CONFIG ]; then
+		echo "sub-fuzziness = 0" > $MPLAYER_CONFIG
 		gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/sub-fuzziness false
-		echo "相关字段不存在！初始化...设定SUB_FUZZINESS为FALSE"
+		echo -e "配置文件不存在！建立$MPLAYER_CONFIG...\n设定SUB_FUZZINESS为FALSE..."
+	else
+		if [ ! -z "$SUB_FUZZINESS" ]; then
+			if [ ! -z "$SUB_FUZZINESS_VALUE"  ]; then
+				gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/sub-fuzziness true
+				echo "设定SUB_FUZZINESS为TRUE..."
+			else
+				gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/sub-fuzziness false
+				echo "设定SUB_FUZZINESS为FALSE..."
+			fi
+		else
+			echo "sub-fuzziness = 0" >> $MPLAYER_CONFIG
+			gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/sub-fuzziness false
+			echo "相关字段不存在！初始化...设定SUB_FUZZINESS为FALSE"
+		fi
 	fi
+}
+echo "=======================进行初始化================"
+if [ -f /usr/bin/mplayer ]; then
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/installed true
+		init_vo_driver
+		init_zoom
+		init_sub_fuzziness
+	else
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/installed false
+		echo "注意：mplayer未安装"
 fi
+if [ -f /usr/bin/avant-window-navigator ]; then
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/awn/installed true
+	else
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/awn/installed false
+		echo "注意：Avant Window Navigator未安装"
+fi
+echo "=======================初始化结束================"

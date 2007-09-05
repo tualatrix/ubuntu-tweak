@@ -159,8 +159,7 @@ GtkWidget *create_main_window(void)
 	gtk_box_pack_end(GTK_BOX(hbox_head),headline_2,FALSE,FALSE,0);
 
 /*正文默认的欢迎字样*/
-
-	label_welcome=gtk_label_new("Welcome to use Ubunu Tweak(alpha), if you have any problem, tell me please");
+	label_welcome=gtk_label_new(_("欢迎使用Ubuntu Tweak！\n软件目前还是内部测试版，功能还在不断扩充当中。\n如果有什么意见和建议，请在http://ubuntu-tweak.googlecode.com留言告之"));
 	gtk_label_set_justify(GTK_LABEL(label_welcome),GTK_JUSTIFY_LEFT);
 	gtk_widget_show(label_welcome);
 	gtk_container_set_border_width(GTK_CONTAINER(vbox_content_right),10);
@@ -196,40 +195,40 @@ GtkWidget *create_main_window(void)
 	applications_item_image=gtk_image_new_from_file(applications_image);
 
 	gnome_item=gtk_toolbar_append_item(GTK_TOOLBAR(toolbar),
-			_("Startup"),
-			"有关系统启动的选项",
+			_("启动相关"),
+			_("在这里设置会话模式或更改Splash启动画面"),
 			"Private",
 			gnome_item_image,
 			GTK_SIGNAL_FUNC(show_startup_notebook),
 			NULL);
 
 	ubuntu_item=gtk_toolbar_append_item(GTK_TOOLBAR(toolbar),
-			_("Personalization"),
-			"哈哈哈哈",
+			_("个性设置"),
+			_("设置你的桌面图标或者为他们定义新的名称，还有GNOME相关的一些设置"),
 			"Private",
 			ubuntu_item_image,
 			GTK_SIGNAL_FUNC(show_personality_notebook),
 			NULL);
 
 	system_item=gtk_toolbar_append_item(GTK_TOOLBAR(toolbar),
-			_("Appearance"),
-			"wow~~~",
+			_("外观控制"),
+			_("设置你喜欢的主题，或更改他们的行为方式"),
 			"Private",
 			system_item_image,
 			GTK_SIGNAL_FUNC(NULL),
 			NULL);
 
 	security_item=gtk_toolbar_append_item(GTK_TOOLBAR(toolbar),
-			_("Security"),
-			"安全第一啊！",
+			_("安全相关"),
+			_("出于安全因素，禁用系统默认提供的一些功能"),
 			"Private",
 			security_item_image,
 			GTK_SIGNAL_FUNC(show_security_notebook),
 			NULL);
 
 	applications_item=gtk_toolbar_append_item(GTK_TOOLBAR(toolbar),
-			_("Softwares"),
-			"设置应用软件吧！",
+			_("软件设置"),
+			_("方便地通过这里设置一些常用的软件"),
 			"Private",
 			applications_item_image,
 			GTK_SIGNAL_FUNC(show_applications_notebook),
@@ -248,16 +247,16 @@ GtkWidget *create_main_window(void)
 	gtk_widget_show(hbutton);
 	gtk_box_pack_end(GTK_BOX(hbox_footer),hbutton,FALSE,FALSE,0);
 
-	button_ok=gtk_button_new_with_mnemonic(_("OK"));
+	button_ok=gtk_button_new_with_mnemonic(_("确定"));
 	gtk_widget_show(button_ok);
 	gtk_container_add(GTK_CONTAINER(hbutton),button_ok);
 
-	button_exit=gtk_button_new_with_mnemonic(_("Exit"));
+	button_exit=gtk_button_new_with_mnemonic(_("退出"));
 	g_signal_connect(GTK_OBJECT(button_exit),"clicked",G_CALLBACK(gtk_main_quit),NULL);
 	gtk_widget_show(button_exit);
 	gtk_container_add(GTK_CONTAINER(hbutton),button_exit);
 
-	button_about=gtk_button_new_with_mnemonic(_("About"));
+	button_about=gtk_button_new_with_mnemonic(_("关于"));
 	g_signal_connect(GTK_OBJECT(button_about),"clicked",G_CALLBACK(show_about),NULL);
 	gtk_widget_show(button_about);
 	gtk_container_add(GTK_CONTAINER(vbutton),button_about);
