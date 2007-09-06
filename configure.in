@@ -1,5 +1,5 @@
 AC_INIT(configure.in)
-AM_INIT_AUTOMAKE(ubuntu-tweak, 0.1.18)
+AM_INIT_AUTOMAKE(ubuntu-tweak, 0.1.20)
 AM_CONFIG_HEADER(config.h)
 AM_MAINTAINER_MODE
 
@@ -13,7 +13,7 @@ AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Package name for gettext])
 
 dnl Languages which your application supports
-ALL_LINGUAS=""
+ALL_LINGUAS="zh_CN"
 AM_GLIB_GNU_GETTEXT
 
 AM_PROG_LIBTOOL
