@@ -9,6 +9,7 @@
 #include "personality.h"
 #include "security.h"
 #include "applications.h"
+#include "system.h"
 
 gchar *startup_image=PACKAGE_PIXMAPS_DIR"/startup.png";
 gchar *personality_image=PACKAGE_PIXMAPS_DIR"/desktop.png";
@@ -24,38 +25,65 @@ GtkWidget *personality_notebook;
 GtkWidget *security_notebook;
 GtkWidget *applications_notebook;
 GtkWidget *label_welcome;
+GtkWidget *system_notebook;
+
+gpointer *present;
+GtkWidget *vbox_content_right;
 
 void show_startup_notebook(GtkWidget *widget,gpointer data)
 {
-	gtk_widget_hide(label_welcome);
-	gtk_widget_hide(personality_notebook);
-	gtk_widget_hide(security_notebook);
-	gtk_widget_hide(applications_notebook);
-	gtk_widget_show(startup_notebook);
+	if(present!=startup_notebook){
+		gtk_widget_hide(GTK_WIDGET(present));
+		startup_notebook=create_startup_notebook();
+		gtk_widget_show(startup_notebook);
+		gtk_box_pack_start(GTK_BOX(vbox_content_right),startup_notebook,TRUE,TRUE,0);
+		gtk_widget_show(startup_notebook);
+		present=startup_notebook;
+	}
 }
 void show_personality_notebook(GtkWidget *widget,gpointer data)
 {
-	gtk_widget_hide(label_welcome);
-	gtk_widget_hide(startup_notebook);
-	gtk_widget_hide(security_notebook);
-	gtk_widget_hide(applications_notebook);
-	gtk_widget_show(personality_notebook);
+	if(present!=personality_notebook){
+		gtk_widget_hide(GTK_WIDGET(present));
+		personality_notebook=create_personality_notebook();
+		gtk_widget_show(personality_notebook);
+		gtk_box_pack_start(GTK_BOX(vbox_content_right),personality_notebook,TRUE,TRUE,0);
+		gtk_widget_show(personality_notebook);
+		present=personality_notebook;
+	}
 }
 void show_security_notebook(GtkWidget *widget,gpointer data)
 {
-	gtk_widget_hide(label_welcome);
-	gtk_widget_hide(startup_notebook);
-	gtk_widget_hide(personality_notebook);
-	gtk_widget_hide(applications_notebook);
-	gtk_widget_show(security_notebook);
+	if(present!=security_notebook){
+		gtk_widget_hide(GTK_WIDGET(present));
+		security_notebook=create_security_notebook();
+		gtk_widget_show(security_notebook);
+		gtk_box_pack_start(GTK_BOX(vbox_content_right),security_notebook,TRUE,TRUE,0);
+		gtk_widget_show(security_notebook);
+		present=security_notebook;
+	}
 }
 void show_applications_notebook(GtkWidget *widget,gpointer data)
 {
-	gtk_widget_hide(label_welcome);
-	gtk_widget_hide(startup_notebook);
-	gtk_widget_hide(personality_notebook);
-	gtk_widget_hide(security_notebook);
-	gtk_widget_show(applications_notebook);
+	if(present!=applications_notebook){
+		gtk_widget_hide(GTK_WIDGET(present));
+		applications_notebook=create_applications_notebook();
+		gtk_widget_show(applications_notebook);
+		gtk_box_pack_start(GTK_BOX(vbox_content_right),applications_notebook,TRUE,TRUE,0);
+		gtk_widget_show(applications_notebook);
+		present=applications_notebook;
+	}
+}
+void show_system_notebook(GtkWidget *widget,gpointer data)
+{
+	if(present!=system_notebook){
+		gtk_widget_hide(GTK_WIDGET(present));
+		system_notebook=create_system_notebook();
+		gtk_widget_show(system_notebook);
+		gtk_box_pack_start(GTK_BOX(vbox_content_right),system_notebook,TRUE,TRUE,0);
+		gtk_widget_show(system_notebook);
+		present=system_notebook;
+	}
 }
 GtkWidget *create_main_window(void)
 {
@@ -68,7 +96,6 @@ GtkWidget *create_main_window(void)
 	GtkWidget *hbox_content;
 	GtkWidget *hbox_footer;
 	GtkWidget *vbox_content_left;
-	GtkWidget *vbox_content_right;
 	GtkWidget *hbox;
 	GtkWidget *label_temp;
 	GtkWidget *label_now;
@@ -165,22 +192,7 @@ GtkWidget *create_main_window(void)
 	gtk_container_set_border_width(GTK_CONTAINER(vbox_content_right),10);
 	gtk_box_pack_start(GTK_BOX(vbox_content_right),label_welcome,FALSE,FALSE,0);
 
-
-	startup_notebook=create_startup_notebook();
-	gtk_box_pack_start(GTK_BOX(vbox_content_right),startup_notebook,TRUE,TRUE,0);
-	
-
-	personality_notebook=create_personality_notebook();
-
-	gtk_box_pack_start(GTK_BOX(vbox_content_right),personality_notebook,TRUE,TRUE,0);
-
-	security_notebook=create_security_notebook();
-
-	gtk_box_pack_start(GTK_BOX(vbox_content_right),security_notebook,TRUE,TRUE,0);
-
-	applications_notebook=create_applications_notebook();
-
-	gtk_box_pack_start(GTK_BOX(vbox_content_right),applications_notebook,TRUE,TRUE,0);
+	present=label_welcome;
 
 /*创建左侧工具条*/
 	toolbar=gtk_toolbar_new();
@@ -211,11 +223,11 @@ GtkWidget *create_main_window(void)
 			NULL);
 
 	system_item=gtk_toolbar_append_item(GTK_TOOLBAR(toolbar),
-			_("Appearance"),
-			_("change to your favourite themes"),
+			_("System"),
+			_("Tweak your system"),
 			"Private",
 			system_item_image,
-			GTK_SIGNAL_FUNC(NULL),
+			GTK_SIGNAL_FUNC(show_system_notebook),
 			NULL);
 
 	security_item=gtk_toolbar_append_item(GTK_TOOLBAR(toolbar),

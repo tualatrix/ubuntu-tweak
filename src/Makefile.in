@@ -55,7 +55,8 @@ am_ubuntu_tweak_OBJECTS = main.$(OBJEXT) interface.$(OBJEXT) \
 	desktop_page.$(OBJEXT) history.$(OBJEXT) \
 	mplayer_page.$(OBJEXT) personality.$(OBJEXT) \
 	security.$(OBJEXT) session_page.$(OBJEXT) startup.$(OBJEXT) \
-	system_page.$(OBJEXT) awn_page.$(OBJEXT)
+	system_page.$(OBJEXT) awn_page.$(OBJEXT) \
+	powermanager_page.$(OBJEXT) system.$(OBJEXT)
 ubuntu_tweak_OBJECTS = $(am_ubuntu_tweak_OBJECTS)
 am__DEPENDENCIES_1 =
 ubuntu_tweak_DEPENDENCIES = $(am__DEPENDENCIES_1)
@@ -243,7 +244,11 @@ ubuntu_tweak_SOURCES = \
 	system_page.c\
 	system_page.h\
 	awn_page.c\
-	awn_page.h
+	awn_page.h\
+	powermanager_page.c\
+	powermanager_page.h\
+	system.c\
+	system.h
 
 ubuntu_tweak_LDFLAGS = 
 ubuntu_tweak_LDADD = \
@@ -329,9 +334,11 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mplayer_page.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/personality.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/powermanager_page.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/security.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/session_page.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/startup.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/system.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/system_page.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ubuntu-tweak.Po@am__quote@
 

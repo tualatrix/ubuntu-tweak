@@ -40,7 +40,11 @@ ubuntu_tweak_SOURCES = \
 	system_page.c\
 	system_page.h\
 	awn_page.c\
-	awn_page.h
+	awn_page.h\
+	powermanager_page.c\
+	powermanager_page.h\
+	system.c\
+	system.h
 
 ubuntu_tweak_LDFLAGS = 
 
