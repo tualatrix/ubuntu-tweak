@@ -32,7 +32,7 @@ GtkWidget *vbox_content_right;
 
 void show_startup_notebook(GtkWidget *widget,gpointer data)
 {
-	if(present!=startup_notebook){
+	if(GTK_WIDGET(present)!=startup_notebook){
 		gtk_widget_hide(GTK_WIDGET(present));
 		startup_notebook=create_startup_notebook();
 		gtk_widget_show(startup_notebook);
@@ -43,7 +43,7 @@ void show_startup_notebook(GtkWidget *widget,gpointer data)
 }
 void show_personality_notebook(GtkWidget *widget,gpointer data)
 {
-	if(present!=personality_notebook){
+	if(GTK_WIDGET(present)!=personality_notebook){
 		gtk_widget_hide(GTK_WIDGET(present));
 		personality_notebook=create_personality_notebook();
 		gtk_widget_show(personality_notebook);
@@ -54,7 +54,7 @@ void show_personality_notebook(GtkWidget *widget,gpointer data)
 }
 void show_security_notebook(GtkWidget *widget,gpointer data)
 {
-	if(present!=security_notebook){
+	if(GTK_WIDGET(present)!=security_notebook){
 		gtk_widget_hide(GTK_WIDGET(present));
 		security_notebook=create_security_notebook();
 		gtk_widget_show(security_notebook);
@@ -65,7 +65,7 @@ void show_security_notebook(GtkWidget *widget,gpointer data)
 }
 void show_applications_notebook(GtkWidget *widget,gpointer data)
 {
-	if(present!=applications_notebook){
+	if(GTK_WIDGET(present)!=applications_notebook){
 		gtk_widget_hide(GTK_WIDGET(present));
 		applications_notebook=create_applications_notebook();
 		gtk_widget_show(applications_notebook);
@@ -76,7 +76,7 @@ void show_applications_notebook(GtkWidget *widget,gpointer data)
 }
 void show_system_notebook(GtkWidget *widget,gpointer data)
 {
-	if(present!=system_notebook){
+	if(GTK_WIDGET(present)!=system_notebook){
 		gtk_widget_hide(GTK_WIDGET(present));
 		system_notebook=create_system_notebook();
 		gtk_widget_show(system_notebook);
@@ -96,15 +96,7 @@ GtkWidget *create_main_window(void)
 	GtkWidget *hbox_content;
 	GtkWidget *hbox_footer;
 	GtkWidget *vbox_content_left;
-	GtkWidget *hbox;
-	GtkWidget *label_temp;
-	GtkWidget *label_now;
-	GtkWidget *label_want;
-	GtkWidget *sitting_now;
-	GtkWidget *input;
-
 	GtkWidget *separator;
-	gchar *str=NULL;
 
 /*定义底部的按钮盒按钮*/
 	GtkWidget *vbutton;

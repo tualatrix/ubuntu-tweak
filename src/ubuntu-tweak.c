@@ -78,7 +78,6 @@ GtkWidget *create_gconf_checkbutton(gchar *label,gchar *key,gchar *dir,gpointer 
 /*核心API之一，创建用于修改配置文件基于文本的按钮，其中shell是创建时执行的命令,虽然它是基于文本的，但是还是通过监视自创的键值，以方便调用*/
 GtkWidget *create_text_checkbutton(gchar *label,gchar *key,gchar *shell,gpointer enterdata)
 {
-	GError *error;
 	GtkWidget *checkbutton;
 	GConfValue *value;
 	GConfClient *client;
@@ -142,7 +141,6 @@ GtkWidget *create_gconf_entry(gchar *key,gchar *dir,gpointer data)
 /*定义键值监视事件*/
 	GtkWidget *entry;
 	GConfClient *client;
-	gboolean bool;
 	gchar *str;
 
 	client=gconf_client_get_default();

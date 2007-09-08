@@ -56,7 +56,7 @@ void set_to_leopard()
 
 	gconf_client_set_int(client,ubuntu_tweak_awn,1,NULL);
 }
-void combobox_changed(GtkWidget *widget,gpointer data)
+void awnstyle_changed(GtkWidget *widget,gpointer data)
 {
 	gchar *str;
 	str=gtk_combo_box_get_active_text(GTK_COMBO_BOX(widget));
@@ -105,7 +105,7 @@ GtkWidget *create_awn_page()
 
 		combobox=gtk_combo_box_new_text();
 		gtk_widget_show(combobox);
-		g_signal_connect(G_OBJECT(combobox),"changed",G_CALLBACK(combobox_changed),NULL);
+		g_signal_connect(G_OBJECT(combobox),"changed",G_CALLBACK(awnstyle_changed),NULL);
 		gtk_box_pack_start(GTK_BOX(hbox),combobox,FALSE,FALSE,0);
 
 		gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),style[0]);
