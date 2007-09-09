@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-07 20:22+0800\n"
+"POT-Creation-Date: 2007-09-08 23:44+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,48 +17,314 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. Welcome screen
-#: src/interface.c:189
+#: src/interface.c:181
 msgid ""
-"Welcome to use Ubuntu Tweak.\n"
-"Now it's version is aplha, test only"
+"     Welcome to Ubuntu Tweak!\n"
+"\n"
+"This is a tool for Ubuntu that makes it easy to config your system and "
+"desktop.\n"
+"It's only for GNOME desktop environment.\n"
+"Now it isn't a good enough software, and only few options provided to "
+"tweak. \n"
+"But I will make it to more powerful, It's only a start."
 msgstr ""
 
-#: src/interface.c:210
+#: src/interface.c:202
 msgid "Startup"
 msgstr ""
 
-#: src/interface.c:211
+#: src/interface.c:203
 msgid "Here you can set the session or change the splash screen"
 msgstr ""
 
-#: src/interface.c:218
+#: src/interface.c:210
 msgid "Persionalization"
 msgstr ""
 
-#: src/interface.c:219
-msgid "set your desktop icons or define the new name of them"
+#: src/interface.c:211
+msgid "Set your desktop icons or define the new name of them"
 msgstr ""
 
-#: src/interface.c:226
+#: src/interface.c:218
 msgid "System"
 msgstr ""
 
-#: src/interface.c:227
-msgid "Tweak your system"
+#: src/interface.c:219
+msgid "Config your system"
 msgstr ""
 
-#: src/interface.c:234
+#: src/interface.c:226
 msgid "Security"
 msgstr ""
 
-#: src/interface.c:235
-msgid "turn off some functions for system security"
+#: src/interface.c:227
+msgid "Turn off some functions for system security"
 msgstr ""
 
-#: src/interface.c:242
+#: src/interface.c:234
 msgid "Applications"
 msgstr ""
 
-#: src/interface.c:243
-msgid "easily to config often-used applications"
+#: src/interface.c:235
+msgid "Easily to config often-used applications"
+msgstr ""
+
+#: src/ubuntu-tweak.c:156 src/ubuntu-tweak.c:210
+msgid "Unset"
+msgstr ""
+
+#: src/about.c:17
+msgid ""
+"Ubuntu Tweak is tool for Ubuntu that makes it easy to config your system and "
+"desktop."
+msgstr ""
+
+#: src/desktop_page.c:118
+msgid "Desktop"
+msgstr ""
+
+#: src/desktop_page.c:123
+msgid "Show desktop icons"
+msgstr ""
+
+#. Show computer icon
+#: src/desktop_page.c:143
+msgid "Show \"Computer\" icon on desktop"
+msgstr ""
+
+#: src/desktop_page.c:160
+msgid "Use self-determined \"Computer\" name: "
+msgstr ""
+
+#. Show HOME
+#: src/desktop_page.c:179
+msgid "Show \"Home\" icon on desktop"
+msgstr ""
+
+#: src/desktop_page.c:196
+msgid "Use self-determined \"Home\" name: "
+msgstr ""
+
+#. Show Trash
+#: src/desktop_page.c:213
+msgid "Show \"Trash\" icon on desktop"
+msgstr ""
+
+#: src/desktop_page.c:230
+msgid "Use self-determined \"Trash\" name: "
+msgstr ""
+
+#. Other
+#: src/desktop_page.c:247
+msgid "Use Home directory as Desktop"
+msgstr ""
+
+#: src/desktop_page.c:251
+msgid "Show \"Network\" icon on desktop"
+msgstr ""
+
+#: src/desktop_page.c:255
+msgid "Show Volumes on Desktop"
+msgstr ""
+
+#: src/history.c:20
+msgid "Clean history"
+msgstr ""
+
+#: src/mplayer_page.c:30
+msgid "Here you can set mplayer"
+msgstr ""
+
+#: src/mplayer_page.c:47
+msgid "Use X11 video driver(Recommend)"
+msgstr ""
+
+#: src/mplayer_page.c:51
+msgid "Enable X11 Zoom mode"
+msgstr ""
+
+#: src/mplayer_page.c:55
+msgid "Use smart sub-fuzziness"
+msgstr ""
+
+#: src/mplayer_page.c:60
+msgid "Sorry, You haven't installed Mplayer yet, Please install first."
+msgstr ""
+
+#. Desktop label
+#: src/personality.c:25
+msgid "Desktop Icon"
+msgstr ""
+
+#: src/personality.c:38
+msgid "GNOME Options"
+msgstr ""
+
+#: src/personality.c:42 src/session_page.c:218 src/startup.c:32
+#: src/startup.c:38
+msgid "Not complete yet"
+msgstr ""
+
+#: src/personality.c:45
+msgid "History"
+msgstr ""
+
+#: src/security.c:30
+msgid "Turn off some funtion of Security"
+msgstr ""
+
+#: src/security.c:47
+msgid "Disable command line"
+msgstr ""
+
+#: src/security.c:51
+msgid "Disable lock screen"
+msgstr ""
+
+#: src/security.c:54
+msgid "Disable printing"
+msgstr ""
+
+#: src/security.c:57
+msgid "Disable run print setup"
+msgstr ""
+
+#: src/security.c:60
+msgid "Disable save to disk"
+msgstr ""
+
+#: src/security.c:63
+msgid "Disable user switching"
+msgstr ""
+
+#: src/security.c:81
+msgid "Some Security function"
+msgstr ""
+
+#: src/session_page.c:34
+msgid "Choose a Splash file"
+msgstr ""
+
+#. Session label
+#: src/session_page.c:161 src/startup.c:21
+msgid "Session"
+msgstr ""
+
+#: src/session_page.c:178
+msgid "Auto save session"
+msgstr ""
+
+#: src/session_page.c:186
+msgid "Show logout prompt"
+msgstr ""
+
+#: src/session_page.c:194
+msgid "Show splash screen"
+msgstr ""
+
+#: src/session_page.c:202
+msgid "Here to change splash screen"
+msgstr ""
+
+#. expander
+#: src/session_page.c:214
+msgid "Export Mode"
+msgstr ""
+
+#: src/startup.c:35
+msgid "Services"
+msgstr ""
+
+#: src/system_page.c:25
+msgid "GNOME Animations"
+msgstr ""
+
+#: src/system_page.c:42
+msgid "Enable GNOME Animations Panel"
+msgstr ""
+
+#: src/system_page.c:45
+msgid "Enable GNOME Animations Effect"
+msgstr ""
+
+#: src/awn_page.c:90
+msgid "Here you can change the style of Avant Window Navigator easily"
+msgstr ""
+
+#: src/awn_page.c:99
+msgid "Choose AWN Style"
+msgstr ""
+
+#: src/awn_page.c:108
+msgid "Self-determined"
+msgstr ""
+
+#: src/awn_page.c:109
+msgid "3D style(Leopard like)"
+msgstr ""
+
+#: src/awn_page.c:110
+msgid "Classical style(Tiger like)"
+msgstr ""
+
+#: src/awn_page.c:125
+msgid ""
+"Sorry, You haven't installed Avant Window Navigator yet, Please install "
+"first."
+msgstr ""
+
+#: src/powermanager_page.c:76
+msgid "Sitting Advance Power Managerment"
+msgstr ""
+
+#: src/powermanager_page.c:93
+msgid "Enable Hibernate"
+msgstr ""
+
+#: src/powermanager_page.c:97
+msgid "Enable Suspend"
+msgstr ""
+
+#: src/powermanager_page.c:101
+msgid "Show CPU frequency tweak on\"Power Managerment\""
+msgstr ""
+
+#: src/powermanager_page.c:111
+msgid "\"Notification Area\" Power Managerment icon"
+msgstr ""
+
+#: src/powermanager_page.c:121
+msgid "Never display"
+msgstr ""
+
+#: src/powermanager_page.c:122
+msgid "Only when charge"
+msgstr ""
+
+#: src/powermanager_page.c:123
+msgid "Always display"
+msgstr ""
+
+#: src/powermanager_page.c:140
+msgid "When use AC, CPU frequency policy"
+msgstr ""
+
+#: src/powermanager_page.c:150 src/powermanager_page.c:179
+msgid "Ondemand"
+msgstr ""
+
+#: src/powermanager_page.c:151 src/powermanager_page.c:180
+msgid "PowerSave"
+msgstr ""
+
+#: src/powermanager_page.c:152 src/powermanager_page.c:181
+msgid "Performance"
+msgstr ""
+
+#: src/powermanager_page.c:169
+msgid "When use Battery, CPU frequency policy"
+msgstr ""
+
+#: src/system.c:17
+msgid "Advance Power Manager"
 msgstr ""

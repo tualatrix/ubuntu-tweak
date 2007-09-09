@@ -153,7 +153,7 @@ GtkWidget *create_gconf_entry(gchar *key,gchar *dir,gpointer data)
 	if(str!=NULL){
 		gtk_entry_set_text(GTK_ENTRY(entry),str);
 	}else{
-		gtk_entry_set_text(GTK_ENTRY(entry),"未设置");
+		gtk_entry_set_text(GTK_ENTRY(entry),_("Unset"));
 	}
 	gconf_client_add_dir(client,
 		dir,
@@ -207,7 +207,7 @@ void _checkbutton_toggled_entry(GtkWidget *checkbutton,
 		}
 	}else{
 		if(sensitive!=NULL){
-			gtk_entry_set_text(GTK_ENTRY(sensitive),"未设置");
+			gtk_entry_set_text(GTK_ENTRY(sensitive),_("Unset"));
 			gconf_client_unset(client,data,NULL);
 			gtk_widget_set_sensitive(sensitive,FALSE);
 		}

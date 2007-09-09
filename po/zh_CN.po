@@ -6,74 +6,331 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Ubuntu Tweak 0.1.21\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-07 20:22+0800\n"
+"POT-Creation-Date: 2007-09-08 23:44+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: TualatriX <tualatrix@gmail.com>\n"
+"Language-Team: TualatriX <tualatrix@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #. Welcome screen
-#: src/interface.c:189
+#: src/interface.c:181
 msgid ""
-"Welcome to use Ubuntu Tweak.\n"
-"Now it's version is aplha, test only"
+"     Welcome to Ubuntu Tweak!\n"
+"\n"
+"This is a tool for Ubuntu that makes it easy to config your system and "
+"desktop.\n"
+"It's only for GNOME desktop environment.\n"
+"Now it isn't a good enough software, and only few options provided to "
+"tweak. \n"
+"But I will make it to more powerful, It's only a start."
 msgstr ""
+"     欢迎使用Ubuntu Tweak！\n"
+"\n"
+"这是一个为简单设置Ubuntu系统和桌面的而准备的软件。\n"
+"目前为止只应用于GNOME桌面环境。\n"
+"而且现在也不尽完善，只提供较少的选项供配置。\n"
+"但是我会努力使它更加强大，因为一切才刚刚开始。"
+
+#: src/interface.c:202
+msgid "Startup"
+msgstr "启动控制"
+
+#: src/interface.c:203
+msgid "Here you can set the session or change the splash screen"
+msgstr "这里你可以更改会话和Splash闪屏"
 
 #: src/interface.c:210
-msgid "Startup"
-msgstr "启动"
-
-#: src/interface.c:211
-msgid "Here you can set the session or change the splash screen"
-msgstr "在这里你可以设置会话和更改Splash画面"
-
-#: src/interface.c:218
 msgid "Persionalization"
 msgstr "个性设置"
 
+#: src/interface.c:211
+msgid "Set your desktop icons or define the new name of them"
+msgstr "设置你的桌面图标或者为它们定义新的名称"
+
+#: src/interface.c:218
+msgid "System"
+msgstr "系统选项"
+
 #: src/interface.c:219
-msgid "set your desktop icons or define the new name of them"
-msgstr "设置你的桌面图标或为他们定义新的名字"
+msgid "Config your system"
+msgstr "配置你自己的系统"
 
 #: src/interface.c:226
-msgid "System"
-msgstr ""
-
-#: src/interface.c:227
-msgid "Tweak your system"
-msgstr ""
-
-#: src/interface.c:234
 msgid "Security"
 msgstr "安全相关"
 
-#: src/interface.c:235
-msgid "turn off some functions for system security"
-msgstr "关掉一些有关系统安全的功能"
+#: src/interface.c:227
+msgid "Turn off some functions for system security"
+msgstr "开关一些与系统安全相关的功能"
 
-#: src/interface.c:242
+#: src/interface.c:234
 msgid "Applications"
-msgstr "应用程序"
+msgstr "应用软件"
 
-#: src/interface.c:243
-msgid "easily to config often-used applications"
-msgstr "简单地配置一些经常使用的软件"
+#: src/interface.c:235
+msgid "Easily to config often-used applications"
+msgstr "通过这里简单地配置一些常用软件"
 
-#~ msgid "Appearance"
-#~ msgstr "外观设置"
+#: src/ubuntu-tweak.c:156 src/ubuntu-tweak.c:210
+msgid "Unset"
+msgstr "未设置"
 
-#~ msgid "change to your favourite themes"
-#~ msgstr "选择你最爱的主题"
+#: src/about.c:17
+msgid ""
+"Ubuntu Tweak is tool for Ubuntu that makes it easy to config your system and "
+"desktop."
+msgstr "Ubuntu Tweak是一个专门为简易配置系统和桌面而准备的工具。"
 
-#~ msgid "OK"
-#~ msgstr "确定"
+#: src/desktop_page.c:118
+msgid "Desktop"
+msgstr "桌面图标"
 
-#~ msgid "Exit"
-#~ msgstr "退出"
+#: src/desktop_page.c:123
+msgid "Show desktop icons"
+msgstr "显示桌面图标"
 
-#~ msgid "About"
-#~ msgstr "关于"
+#. Show computer icon
+#: src/desktop_page.c:143
+msgid "Show \"Computer\" icon on desktop"
+msgstr "在桌面上显示\"计算机\"图标"
+
+#: src/desktop_page.c:160
+msgid "Use self-determined \"Computer\" name: "
+msgstr "使用自定义的\"计算机\"名称："
+
+#. Show HOME
+#: src/desktop_page.c:179
+msgid "Show \"Home\" icon on desktop"
+msgstr "在桌面上显示\"主目录\"图标"
+
+#: src/desktop_page.c:196
+msgid "Use self-determined \"Home\" name: "
+msgstr "使用自定义的\"主目录\"名称："
+
+#. Show Trash
+#: src/desktop_page.c:213
+msgid "Show \"Trash\" icon on desktop"
+msgstr "在桌面上显示\"回收站\"图标"
+
+#: src/desktop_page.c:230
+msgid "Use self-determined \"Trash\" name: "
+msgstr "使用自定义的\"回收站\"名称："
+
+#. Other
+#: src/desktop_page.c:247
+msgid "Use Home directory as Desktop"
+msgstr "以主目录的内容作为桌面项"
+
+#: src/desktop_page.c:251
+msgid "Show \"Network\" icon on desktop"
+msgstr "在桌面上显示\"网络服务器\"图标"
+
+#: src/desktop_page.c:255
+msgid "Show Volumes on Desktop"
+msgstr "在桌面上显示已挂载的设备"
+
+#: src/history.c:20
+msgid "Clean history"
+msgstr "清理历史记录"
+
+#: src/mplayer_page.c:30
+msgid "Here you can set mplayer"
+msgstr "这里你可以设置Mplayer"
+
+#: src/mplayer_page.c:47
+msgid "Use X11 video driver(Recommend)"
+msgstr "使用X11视频驱动（强烈推荐）"
+
+#: src/mplayer_page.c:51
+msgid "Enable X11 Zoom mode"
+msgstr "打开X11硬缩放功能"
+
+#: src/mplayer_page.c:55
+msgid "Use smart sub-fuzziness"
+msgstr "使用智能型字幕文件匹配"
+
+#: src/mplayer_page.c:60
+msgid "Sorry, You haven't installed Mplayer yet, Please install first."
+msgstr "对不起，你还没有安装Mplayer，请先安装。"
+
+#. Desktop label
+#: src/personality.c:25
+msgid "Desktop Icon"
+msgstr "桌面图标"
+
+#: src/personality.c:38
+msgid "GNOME Options"
+msgstr "GNOME选项"
+
+#: src/personality.c:42 src/session_page.c:218 src/startup.c:32
+#: src/startup.c:38
+msgid "Not complete yet"
+msgstr "还没有完成"
+
+#: src/personality.c:45
+msgid "History"
+msgstr "历史记录"
+
+#: src/security.c:30
+msgid "Turn off some funtion of Security"
+msgstr "开关一些安全相关的功能"
+
+#: src/security.c:47
+msgid "Disable command line"
+msgstr "禁用命令行（将不能运行Alt+F2)"
+
+#: src/security.c:51
+msgid "Disable lock screen"
+msgstr "禁用锁定屏幕"
+
+#: src/security.c:54
+msgid "Disable printing"
+msgstr "禁用打印功能"
+
+#: src/security.c:57
+msgid "Disable run print setup"
+msgstr "禁止运行打印设置向导"
+
+#: src/security.c:60
+msgid "Disable save to disk"
+msgstr "禁止使用文件另存为"
+
+#: src/security.c:63
+msgid "Disable user switching"
+msgstr "禁止使用用户切换"
+
+#: src/security.c:81
+msgid "Some Security function"
+msgstr "一些安全相关的功能"
+
+#: src/session_page.c:34
+msgid "Choose a Splash file"
+msgstr "选择一个Splash文件"
+
+#. Session label
+#: src/session_page.c:161 src/startup.c:21
+msgid "Session"
+msgstr "会话"
+
+#: src/session_page.c:178
+msgid "Auto save session"
+msgstr "自动保存会话"
+
+#: src/session_page.c:186
+msgid "Show logout prompt"
+msgstr "显示注销菜单"
+
+#: src/session_page.c:194
+msgid "Show splash screen"
+msgstr "显示Splash屏幕"
+
+#: src/session_page.c:202
+msgid "Here to change splash screen"
+msgstr "这里更改Splash屏幕"
+
+#. expander
+#: src/session_page.c:214
+msgid "Export Mode"
+msgstr "专家模式"
+
+#: src/startup.c:35
+msgid "Services"
+msgstr "服务"
+
+#: src/system_page.c:25
+msgid "GNOME Animations"
+msgstr "GNOME动画控制"
+
+#: src/system_page.c:42
+msgid "Enable GNOME Animations Panel"
+msgstr "打开GNOME面版动画"
+
+#: src/system_page.c:45
+msgid "Enable GNOME Animations Effect"
+msgstr "打开GNOME动画效果"
+
+#: src/awn_page.c:90
+msgid "Here you can change the style of Avant Window Navigator easily"
+msgstr "这里你可以方便地更改Avant WIndow Navigator"
+
+#: src/awn_page.c:99
+msgid "Choose AWN Style"
+msgstr "选择AWN样式"
+
+#: src/awn_page.c:108
+msgid "Self-determined"
+msgstr "自定义"
+
+#: src/awn_page.c:109
+msgid "3D style(Leopard like)"
+msgstr "3D样式（类似于Leopard）"
+
+#: src/awn_page.c:110
+msgid "Classical style(Tiger like)"
+msgstr "经典样式（类似于TIger）"
+
+#: src/awn_page.c:125
+msgid ""
+"Sorry, You haven't installed Avant Window Navigator yet, Please install "
+"first."
+msgstr "对不起，你还没有安装Avant Window Navigator，请先安装"
+
+#: src/powermanager_page.c:76
+msgid "Sitting Advance Power Managerment"
+msgstr "设置高级电源管理"
+
+#: src/powermanager_page.c:93
+msgid "Enable Hibernate"
+msgstr "启用休眠支持"
+
+#: src/powermanager_page.c:97
+msgid "Enable Suspend"
+msgstr "启用挂起功能"
+
+#: src/powermanager_page.c:101
+msgid "Show CPU frequency tweak on\"Power Managerment\""
+msgstr "在\"电源管理器\"里显示CPU频率控制"
+
+#: src/powermanager_page.c:111
+msgid "\"Notification Area\" Power Managerment icon"
+msgstr "\"通知区域\"电源管理图标行为："
+
+#: src/powermanager_page.c:121
+msgid "Never display"
+msgstr "从不显示"
+
+#: src/powermanager_page.c:122
+msgid "Only when charge"
+msgstr "只在充电时显示"
+
+#: src/powermanager_page.c:123
+msgid "Always display"
+msgstr "始终显示"
+
+#: src/powermanager_page.c:140
+msgid "When use AC, CPU frequency policy"
+msgstr "当使用交流电时，CPU频率使用策略"
+
+#: src/powermanager_page.c:150 src/powermanager_page.c:179
+msgid "Ondemand"
+msgstr "根据处理器负载"
+
+#: src/powermanager_page.c:151 src/powermanager_page.c:180
+msgid "PowerSave"
+msgstr "最节电"
+
+#: src/powermanager_page.c:152 src/powermanager_page.c:181
+msgid "Performance"
+msgstr "总是全速"
+
+#: src/powermanager_page.c:169
+msgid "When use Battery, CPU frequency policy"
+msgstr "当使用电池时，CPU频率使用策略"
+
+#: src/system.c:17
+msgid "Advance Power Manager"
+msgstr "高级电源管理"

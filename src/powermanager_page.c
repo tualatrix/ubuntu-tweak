@@ -19,37 +19,37 @@ void powermanager_changed(GtkWidget *widget,gpointer data)
 
 	client=gconf_client_get_default();
 	str=gtk_combo_box_get_active_text(GTK_COMBO_BOX(widget));
-	if(!strcmp(str,"根据处理器负载")){
+	if(!strcmp(str,"Ondemand")){
 		gconf_client_set_string(client,
 					data,
 					"ondemand",
 					NULL);
 	}
-	else if(!strcmp(str,"最节电")){
+	else if(!strcmp(str,"PowerSave")){
 		gconf_client_set_string(client,
 				data,
 				"powersave",
 				NULL);
 	}
-	else if(!strcmp(str,"总是全速")){
+	else if(!strcmp(str,"Performance")){
 		gconf_client_set_string(client,
 				data,
 				"performance",
 				NULL);
 	}
-	else if(!strcmp(str,"从不显示")){
+	else if(!strcmp(str,"Never display")){
 		gconf_client_set_string(client,
 				data,
 				"never",
 				NULL);
 	}
-	else if(!strcmp(str,"只在充电时显示")){
+	else if(!strcmp(str,"Only when charge")){
 		gconf_client_set_string(client,
 				data,
 				"charge",
 				NULL);
 	}
-	else if(!strcmp(str,"总是显示")){
+	else if(!strcmp(str,"Always display")){
 		gconf_client_set_string(client,
 				data,
 				"always",
@@ -73,7 +73,8 @@ GtkWidget *create_powermanager_page()
 	gtk_widget_show(main_vbox);
 	gtk_container_set_border_width(GTK_CONTAINER(main_vbox),5);
 
-	label=gtk_label_new("设置高级电脑管理");
+	label=gtk_label_new(_("Sitting Advance Power Managerment"));
+	gtk_misc_set_alignment(GTK_MISC(label),0,0);
 	gtk_widget_show(label);
 	gtk_box_pack_start(GTK_BOX(main_vbox),label,FALSE,FALSE,0);
 
@@ -89,15 +90,15 @@ GtkWidget *create_powermanager_page()
 	gtk_widget_show(vbox);
 	gtk_box_pack_start(GTK_BOX(hbox),vbox,FALSE,FALSE,0);
 
-	checkbutton=create_gconf_checkbutton(_("启用休眠功能"),key_can_hibernate,powermanager_dir,checkbutton_toggled,NULL);
+	checkbutton=create_gconf_checkbutton(_("Enable Hibernate"),key_can_hibernate,powermanager_dir,checkbutton_toggled,NULL);
 	gtk_widget_show(checkbutton);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
-	checkbutton=create_gconf_checkbutton(_("启用挂起功能"),key_can_suspend,powermanager_dir,checkbutton_toggled,NULL);
+	checkbutton=create_gconf_checkbutton(_("Enable Suspend"),key_can_suspend,powermanager_dir,checkbutton_toggled,NULL);
 	gtk_widget_show(checkbutton);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
-	checkbutton=create_gconf_checkbutton(_("在\"电源管理\"中显示CPU频率调节功能"),key_show_cpufreq_ui,powermanager_dir,checkbutton_toggled,NULL);
+	checkbutton=create_gconf_checkbutton(_("Show CPU frequency tweak on\"Power Managerment\""),key_show_cpufreq_ui,powermanager_dir,checkbutton_toggled,NULL);
 	gtk_widget_show(checkbutton);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
@@ -107,7 +108,7 @@ GtkWidget *create_powermanager_page()
 	gtk_widget_show(hbox);
 	gtk_box_pack_start(GTK_BOX(vbox),hbox,FALSE,FALSE,0);
 
-	label=gtk_label_new(_("\"通知区域\"如何显示电源管理图标"));
+	label=gtk_label_new(_("\"Notification Area\" Power Managerment icon"));
 	gtk_widget_show(label);
 	gtk_box_pack_start(GTK_BOX(hbox),label,TRUE,TRUE,0);
 
@@ -117,9 +118,9 @@ GtkWidget *create_powermanager_page()
 
 	g_signal_connect(G_OBJECT(combobox),"changed",G_CALLBACK(powermanager_changed),key_display_icon_policy);
 
-	gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("从不显示"));
-	gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("只在充电时显示"));
-	gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("总是显示"));
+	gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("Never display"));
+	gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("Only when charge"));
+	gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("Always display"));
 
 	if(!g_ascii_strncasecmp(gconf_client_get_string(client,key_display_icon_policy,NULL),"never",5)){
 		gtk_combo_box_set_active(GTK_COMBO_BOX(combobox),0);
@@ -136,7 +137,7 @@ GtkWidget *create_powermanager_page()
 	gtk_widget_show(hbox);
 	gtk_box_pack_start(GTK_BOX(vbox),hbox,FALSE,FALSE,0);
 
-	label=gtk_label_new(_("当使用交流电时，CPU使用策略"));
+	label=gtk_label_new(_("When use AC, CPU frequency policy"));
 	gtk_widget_show(label);
 	gtk_box_pack_start(GTK_BOX(hbox),label,TRUE,TRUE,0);
 
@@ -146,9 +147,9 @@ GtkWidget *create_powermanager_page()
 
 	g_signal_connect(G_OBJECT(combobox),"changed",G_CALLBACK(powermanager_changed),key_cpufreq_ac_policy);
 
-	gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("根据处理器负载"));
-	gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("最节电"));
-	gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("总是全速"));
+	gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("Ondemand"));
+	gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("PowerSave"));
+	gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("Performance"));
 
 	if(!g_ascii_strncasecmp(gconf_client_get_string(client,key_cpufreq_ac_policy,NULL),"ondemand",8)){
 		gtk_combo_box_set_active(GTK_COMBO_BOX(combobox),0);
@@ -165,7 +166,7 @@ GtkWidget *create_powermanager_page()
 	gtk_widget_show(hbox);
 	gtk_box_pack_start(GTK_BOX(vbox),hbox,FALSE,FALSE,0);
 
-	label=gtk_label_new(_("当使用电池时，CPU使用策略"));
+	label=gtk_label_new(_("When use Battery, CPU frequency policy"));
 	gtk_widget_show(label);
 	gtk_box_pack_start(GTK_BOX(hbox),label,FALSE,FALSE,0);
 
@@ -175,9 +176,9 @@ GtkWidget *create_powermanager_page()
 
 	g_signal_connect(G_OBJECT(combobox),"changed",G_CALLBACK(powermanager_changed),key_cpufreq_battery_policy);
 
-	gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("根据处理器负载"));
-	gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("最节电"));
-	gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("总是全速"));
+	gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("Ondemand"));
+	gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("PowerSave"));
+	gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("Performance"));
 
 	if(!g_ascii_strncasecmp(gconf_client_get_string(client,key_cpufreq_battery_policy,NULL),"ondemand",8)){
 		gtk_combo_box_set_active(GTK_COMBO_BOX(combobox),0);

@@ -6,9 +6,6 @@
 #include <stdio.h>
 
 gchar *ubuntu_tweak_awn="/apps/ubuntu-tweak/apps/awn";
-gchar *style[]={"自定义设置",
-			"Leopard 3D样式",
-			"Mac OS X经典样式"};
 
 gchar *glass_step_1="/apps/avant-window-navigator/bar/glass_step_1";
 gchar *glass_step_2="/apps/avant-window-navigator/bar/glass_step_2";
@@ -60,10 +57,10 @@ void awnstyle_changed(GtkWidget *widget,gpointer data)
 {
 	gchar *str;
 	str=gtk_combo_box_get_active_text(GTK_COMBO_BOX(widget));
-	if(!strcmp(str,style[2])){
+	if(!strcmp(str,"Classical style(Tiger like)")){
 		set_to_classic();
 	}
-	else if(!strcmp(str,style[1])){
+	else if(!strcmp(str,"3D style(Leopard like)")){
 		set_to_leopard();
 	}
 	else{
@@ -90,7 +87,7 @@ GtkWidget *create_awn_page()
 	gtk_container_set_border_width(GTK_CONTAINER(main_vbox),10);
 	
 	if(bool==TRUE){
-		label=gtk_label_new(_("在这里你可以方便地将Avant Window Navigator更改成你所喜欢的样式"));
+		label=gtk_label_new(_("Here you can change the style of Avant Window Navigator easily"));
 		gtk_misc_set_alignment(GTK_MISC(label),0,0);
 		gtk_widget_show(label);
 		gtk_box_pack_start(GTK_BOX(main_vbox),label,FALSE,FALSE,0);
@@ -99,7 +96,7 @@ GtkWidget *create_awn_page()
 		gtk_widget_show(hbox);
 		gtk_box_pack_start(GTK_BOX(main_vbox),hbox,FALSE,FALSE,0);
 
-		label=gtk_label_new(_("选择AWN样式"));
+		label=gtk_label_new(_("Choose AWN Style"));
 		gtk_widget_show(label);
 		gtk_box_pack_start(GTK_BOX(hbox),label,FALSE,FALSE,0);
 
@@ -108,9 +105,9 @@ GtkWidget *create_awn_page()
 		g_signal_connect(G_OBJECT(combobox),"changed",G_CALLBACK(awnstyle_changed),NULL);
 		gtk_box_pack_start(GTK_BOX(hbox),combobox,FALSE,FALSE,0);
 
-		gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),style[0]);
-		gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),style[1]);
-		gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),style[2]);
+		gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("Self-determined"));
+		gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("3D style(Leopard like)"));
+		gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("Classical style(Tiger like)"));
 		
 		client=gconf_client_get_default();
 		if(gconf_client_get_int(client,ubuntu_tweak_awn,NULL)==1){
@@ -123,8 +120,9 @@ GtkWidget *create_awn_page()
 		vbox=gtk_vbox_new(FALSE,0);
 		gtk_widget_show(vbox);
 		gtk_box_pack_start(GTK_BOX(main_vbox),vbox,FALSE,FALSE,0);
-	}else{
-		label=gtk_label_new(_("对不起，你并没有在本机上安装Avant Window Navigator，请先安装他"));
+	}
+	else{
+		label=gtk_label_new(_("Sorry, You haven't installed Avant Window Navigator yet, Please install first."));
 		gtk_misc_set_alignment(GTK_MISC(label),0,0);
 		gtk_widget_show(label);
 		gtk_box_pack_start(GTK_BOX(main_vbox),label,FALSE,FALSE,0);

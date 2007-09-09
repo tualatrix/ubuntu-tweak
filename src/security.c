@@ -27,7 +27,7 @@ GtkWidget *create_disable_page()
 	gtk_widget_show(main_vbox);
 	gtk_container_set_border_width(GTK_CONTAINER(main_vbox),5);
 
-	label=gtk_label_new("禁用系统某些安全方面的功能");
+	label=gtk_label_new(_("Turn off some funtion of Security"));
 	gtk_misc_set_alignment(GTK_MISC(label),0,0);
 	gtk_widget_show(label);
 	gtk_box_pack_start(GTK_BOX(main_vbox),label,FALSE,FALSE,0);
@@ -44,23 +44,23 @@ GtkWidget *create_disable_page()
 	gtk_widget_show(vbox);
 	gtk_box_pack_start(GTK_BOX(hbox),vbox,FALSE,FALSE,0);
 
-	checkbutton=create_gconf_checkbutton("禁止使用命令行",lockdown_keys[0],disable_dir,checkbutton_toggled,NULL);
+	checkbutton=create_gconf_checkbutton(_("Disable command line"),lockdown_keys[0],disable_dir,checkbutton_toggled,NULL);
 	gtk_widget_show(checkbutton);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
-	checkbutton=create_gconf_checkbutton("禁止锁定屏幕",lockdown_keys[1],disable_dir,checkbutton_toggled,NULL);
+	checkbutton=create_gconf_checkbutton(_("Disable lock screen"),lockdown_keys[1],disable_dir,checkbutton_toggled,NULL);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
-	checkbutton=create_gconf_checkbutton("禁止使用打印功能",lockdown_keys[2],disable_dir,checkbutton_toggled,NULL);
+	checkbutton=create_gconf_checkbutton(_("Disable printing"),lockdown_keys[2],disable_dir,checkbutton_toggled,NULL);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
-	checkbutton=create_gconf_checkbutton("禁止运行打印设置",lockdown_keys[3],disable_dir,checkbutton_toggled,NULL);
+	checkbutton=create_gconf_checkbutton(_("Disable run print setup"),lockdown_keys[3],disable_dir,checkbutton_toggled,NULL);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
-	checkbutton=create_gconf_checkbutton("禁止将文件保存到磁盘",lockdown_keys[4],disable_dir,checkbutton_toggled,NULL);
+	checkbutton=create_gconf_checkbutton(_("Disable save to disk"),lockdown_keys[4],disable_dir,checkbutton_toggled,NULL);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
-	checkbutton=create_gconf_checkbutton("禁止使用用户切换",lockdown_keys[5],disable_dir,checkbutton_toggled,NULL);
+	checkbutton=create_gconf_checkbutton(_("Disable user switching"),lockdown_keys[5],disable_dir,checkbutton_toggled,NULL);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
 	return main_vbox; 
@@ -78,7 +78,7 @@ GtkWidget *create_security_notebook()
 
 	main_vbox=create_disable_page();
 	gtk_widget_show(main_vbox);
-	page_label=gtk_label_new("禁用功能");
+	page_label=gtk_label_new(_("Some Security function"));
 	gtk_widget_show(page_label);
 
 	gtk_notebook_append_page(GTK_NOTEBOOK(notebook),main_vbox,page_label);		

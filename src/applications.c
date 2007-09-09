@@ -25,7 +25,7 @@ GtkWidget *create_applications_notebook()
 	
 	main_vbox=create_mplayer_page();
 	gtk_widget_show(main_vbox);
-	page_label=gtk_label_new("mplayer");
+	page_label=gtk_label_new("Mplayer");
 	gtk_widget_show(page_label);
 	gtk_notebook_append_page(GTK_NOTEBOOK(notebook),main_vbox,page_label);	
 	

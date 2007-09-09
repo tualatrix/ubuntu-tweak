@@ -128,7 +128,7 @@ GtkWidget *create_main_window(void)
 	window=gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title(GTK_WINDOW(window),"Ubuntu Tweak");
 	gtk_container_set_border_width(GTK_CONTAINER(window),10);
-	gtk_window_set_default_size(GTK_WINDOW(window),660,490);
+	gtk_window_set_default_size(GTK_WINDOW(window),710,630);
 	gtk_window_set_position(GTK_WINDOW(window),GTK_WIN_POS_CENTER);
 	g_signal_connect(G_OBJECT(window),"delete_event",G_CALLBACK(gtk_main_quit),NULL);
 	
@@ -168,7 +168,7 @@ GtkWidget *create_main_window(void)
 	gtk_widget_show(hbox_footer);
 	gtk_box_pack_end(GTK_BOX(vbox_main),hbox_footer,FALSE,FALSE,0);
 
-/*将LOGO插入head区域*/
+/*insert LOGO to head area*/
 	headline=gtk_image_new_from_file(header_left);
 	gtk_widget_show(headline);
 	gtk_box_pack_start(GTK_BOX(hbox_head),headline,FALSE,FALSE,0);
@@ -178,8 +178,8 @@ GtkWidget *create_main_window(void)
 	gtk_box_pack_end(GTK_BOX(hbox_head),headline_2,FALSE,FALSE,0);
 
 /*Welcome screen*/
-	label_welcome=gtk_label_new(_("Welcome to use Ubuntu Tweak.\nNow it's version is aplha, test only"));
-	gtk_label_set_justify(GTK_LABEL(label_welcome),GTK_JUSTIFY_LEFT);
+	label_welcome=gtk_label_new(_("     Welcome to Ubuntu Tweak!\n\nThis is a tool for Ubuntu that makes it easy to config your system and desktop.\nIt's only for GNOME desktop environment.\nNow it isn't a good enough software, and only few options provided to tweak. \nBut I will make it to more powerful, It's only a start."));
+	gtk_label_set_justify(GTK_LABEL(label_welcome),GTK_JUSTIFY_FILL);
 	gtk_widget_show(label_welcome);
 	gtk_container_set_border_width(GTK_CONTAINER(vbox_content_right),10);
 	gtk_box_pack_start(GTK_BOX(vbox_content_right),label_welcome,FALSE,FALSE,0);
@@ -208,7 +208,7 @@ GtkWidget *create_main_window(void)
 
 	ubuntu_item=gtk_toolbar_append_item(GTK_TOOLBAR(toolbar),
 			_("Persionalization"),
-			_("set your desktop icons or define the new name of them"),
+			_("Set your desktop icons or define the new name of them"),
 			"Private",
 			ubuntu_item_image,
 			GTK_SIGNAL_FUNC(show_personality_notebook),
@@ -216,7 +216,7 @@ GtkWidget *create_main_window(void)
 
 	system_item=gtk_toolbar_append_item(GTK_TOOLBAR(toolbar),
 			_("System"),
-			_("Tweak your system"),
+			_("Config your system"),
 			"Private",
 			system_item_image,
 			GTK_SIGNAL_FUNC(show_system_notebook),
@@ -224,7 +224,7 @@ GtkWidget *create_main_window(void)
 
 	security_item=gtk_toolbar_append_item(GTK_TOOLBAR(toolbar),
 			_("Security"),
-			_("turn off some functions for system security"),
+			_("Turn off some functions for system security"),
 			"Private",
 			security_item_image,
 			GTK_SIGNAL_FUNC(show_security_notebook),
@@ -232,7 +232,7 @@ GtkWidget *create_main_window(void)
 
 	applications_item=gtk_toolbar_append_item(GTK_TOOLBAR(toolbar),
 			_("Applications"),
-			_("easily to config often-used applications"),
+			_("Easily to config often-used applications"),
 			"Private",
 			applications_item_image,
 			GTK_SIGNAL_FUNC(show_applications_notebook),

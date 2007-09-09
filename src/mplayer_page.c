@@ -27,7 +27,7 @@ GtkWidget *create_mplayer_page()
 	gtk_container_set_border_width(GTK_CONTAINER(main_vbox),10);
 
 	if(bool==TRUE){
-		label=gtk_label_new(_("在这里设置mplayer"));
+		label=gtk_label_new(_("Here you can set mplayer"));
 		gtk_misc_set_alignment(GTK_MISC(label),0,0);
 		gtk_widget_show(label);
 		gtk_box_pack_start(GTK_BOX(main_vbox),label,FALSE,FALSE,0);
@@ -44,20 +44,20 @@ GtkWidget *create_mplayer_page()
 		gtk_widget_show(vbox);
 		gtk_box_pack_start(GTK_BOX(hbox),vbox,FALSE,FALSE,0);
 
-		checkbutton=create_text_checkbutton(_("使用X11视频驱动（强烈推荐）"),key_vo_driver,g_strconcat(script_mplayer," vo_driver",NULL),NULL);
+		checkbutton=create_text_checkbutton(_("Use X11 video driver(Recommend)"),key_vo_driver,g_strconcat(script_mplayer," vo_driver",NULL),NULL);
 		gtk_widget_show(checkbutton);
 		gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
-		checkbutton=create_text_checkbutton(_("为X11启用硬缩放模式"),key_zoom,g_strconcat(script_mplayer," zoom",NULL),NULL);
+		checkbutton=create_text_checkbutton(_("Enable X11 Zoom mode"),key_zoom,g_strconcat(script_mplayer," zoom",NULL),NULL);
 		gtk_widget_show(checkbutton);
 		gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
-		checkbutton=create_text_checkbutton(_("使用智能型字幕文件匹配"),key_sub_fuzziness,g_strconcat(script_mplayer," sub-fuzziness",NULL),NULL);
+		checkbutton=create_text_checkbutton(_("Use smart sub-fuzziness"),key_sub_fuzziness,g_strconcat(script_mplayer," sub-fuzziness",NULL),NULL);
 		gtk_widget_show(checkbutton);
 		gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 	}
 	else{
-		label=gtk_label_new(_("对不起，你并没有在本机上安装Mplayer，请先安装他"));
+		label=gtk_label_new(_("Sorry, You haven't installed Mplayer yet, Please install first."));
 		gtk_misc_set_alignment(GTK_MISC(label),0,0);
 		gtk_widget_show(label);
 		gtk_box_pack_start(GTK_BOX(main_vbox),label,FALSE,FALSE,0);

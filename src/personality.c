@@ -21,8 +21,8 @@ GtkWidget *create_personality_notebook()
 	desktop_main_vbox=create_desktop_page();
 	system_main_vbox=create_system_page();
 
-/*桌面的大标签*/
-	desktop_page_label=gtk_label_new("桌面图标");
+/*Desktop label*/
+	desktop_page_label=gtk_label_new(_("Desktop Icon"));
 	gtk_widget_show(desktop_page_label);
 
 	GtkWidget *frame2;
@@ -35,14 +35,14 @@ GtkWidget *create_personality_notebook()
 
 
 	GtkWidget *system_page_label;
-	system_page_label=gtk_label_new("系统选项");
+	system_page_label=gtk_label_new(_("GNOME Options"));
 	gtk_widget_show(system_page_label);
 
 
-	frame3=gtk_frame_new("frame 3");
+	frame3=gtk_frame_new(_("Not complete yet"));
 	gtk_widget_show(frame3);
 
-	history_page_label=gtk_label_new("历史记录");
+	history_page_label=gtk_label_new(_("History"));
 	gtk_widget_show(history_page_label);
 
 	gtk_notebook_append_page(GTK_NOTEBOOK(notebook),desktop_main_vbox,desktop_page_label);

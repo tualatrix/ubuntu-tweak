@@ -115,12 +115,12 @@ GtkWidget *create_desktop_page()
 	gtk_widget_show(desktop_main_vbox);
 	gtk_container_set_border_width(GTK_CONTAINER(desktop_main_vbox),10);
 
-	desktop_label=gtk_label_new(_("桌面"));
+	desktop_label=gtk_label_new(_("Desktop"));
 	gtk_misc_set_alignment(GTK_MISC(desktop_label),0,0);
 	gtk_widget_show(desktop_label);
 	gtk_box_pack_start(GTK_BOX(desktop_main_vbox),desktop_label,FALSE,FALSE,0);
 
-	use_nautilus_checkbutton=create_gconf_checkbutton(_("显示桌面图标"),show_desktop,nautilus_preferences_dir,checkbutton_toggled_hbox1,NULL);
+	use_nautilus_checkbutton=create_gconf_checkbutton(_("Show desktop icons"),show_desktop,nautilus_preferences_dir,checkbutton_toggled_hbox1,NULL);
 	gtk_widget_show(use_nautilus_checkbutton);
 	gtk_box_pack_start(GTK_BOX(desktop_main_vbox),use_nautilus_checkbutton,FALSE,FALSE,0);
 
@@ -139,8 +139,8 @@ GtkWidget *create_desktop_page()
 	if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(use_nautilus_checkbutton))==FALSE){
 		gtk_widget_set_sensitive(desktop_hbox1,FALSE);
 	}
-/*显示计算机图标*/
-	show_computer_checkbutton=create_gconf_checkbutton(_("在桌面上显示\"计算机\"图标"),computer_icon_visible,nautilus_desktop_dir,checkbutton_toggled_hbox2,NULL);
+/*Show computer icon*/
+	show_computer_checkbutton=create_gconf_checkbutton(_("Show \"Computer\" icon on desktop"),computer_icon_visible,nautilus_desktop_dir,checkbutton_toggled_hbox2,NULL);
 	gtk_widget_show(show_computer_checkbutton);
 	gtk_box_pack_start(GTK_BOX(desktop_vbox1),show_computer_checkbutton,FALSE,FALSE,0);
 	
@@ -157,7 +157,7 @@ GtkWidget *create_desktop_page()
 	gtk_widget_show(desktop_vbox2);
 	gtk_box_pack_start(GTK_BOX(desktop_hbox2),desktop_vbox2,FALSE,FALSE,0);
 
-	use_personality_computer_name_label=create_gconf_checkbutton(_("使用自定义的\"计算机\"名称:"),computer_icon_name,nautilus_desktop_dir,checkbutton_toggled_computer,NULL);
+	use_personality_computer_name_label=create_gconf_checkbutton(_("Use self-determined \"Computer\" name: "),computer_icon_name,nautilus_desktop_dir,checkbutton_toggled_computer,NULL);
 	gtk_widget_show(use_personality_computer_name_label);
 	gtk_box_pack_start(GTK_BOX(desktop_vbox2),use_personality_computer_name_label,FALSE,FALSE,0);
 	
@@ -174,9 +174,9 @@ GtkWidget *create_desktop_page()
 	if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(show_computer_checkbutton))==FALSE){
 		gtk_widget_set_sensitive(desktop_hbox2,FALSE);
 	}
-/*显示主目录和它下面*/
 
-	show_home_checkbutton=create_gconf_checkbutton(_("在桌面上显示\"主目录\"图标"),home_icon_visible,nautilus_desktop_dir,checkbutton_toggled_hbox3,NULL);
+/*Show HOME*/
+	show_home_checkbutton=create_gconf_checkbutton(_("Show \"Home\" icon on desktop"),home_icon_visible,nautilus_desktop_dir,checkbutton_toggled_hbox3,NULL);
 	gtk_widget_show(show_home_checkbutton);
 	gtk_box_pack_start(GTK_BOX(desktop_vbox1),show_home_checkbutton,FALSE,FALSE,0);
 	
@@ -193,7 +193,7 @@ GtkWidget *create_desktop_page()
 	gtk_widget_show(desktop_vbox3);
 	gtk_box_pack_start(GTK_BOX(desktop_hbox3),desktop_vbox3,FALSE,FALSE,0);
 
-	use_personality_home_name_label=create_gconf_checkbutton(_("使用自定义的\"主文件夹\"名称:"),home_icon_name,nautilus_desktop_dir,checkbutton_toggled_home,NULL);
+	use_personality_home_name_label=create_gconf_checkbutton(_("Use self-determined \"Home\" name: "),home_icon_name,nautilus_desktop_dir,checkbutton_toggled_home,NULL);
 	gtk_widget_show(use_personality_home_name_label);
 	gtk_box_pack_start(GTK_BOX(desktop_vbox3),use_personality_home_name_label,FALSE,FALSE,0);
 
@@ -209,8 +209,8 @@ GtkWidget *create_desktop_page()
 		gtk_widget_set_sensitive(desktop_hbox3,FALSE);
 	}
 
-/*显示回收站图标*/
-	show_trash_checkbutton=create_gconf_checkbutton(_("在桌面上显示\"回收站\"图标"),trash_icon_visible,nautilus_desktop_dir,checkbutton_toggled_hbox4,NULL);
+/*Show Trash*/
+	show_trash_checkbutton=create_gconf_checkbutton(_("Show \"Trash\" icon on desktop"),trash_icon_visible,nautilus_desktop_dir,checkbutton_toggled_hbox4,NULL);
 	gtk_widget_show(show_trash_checkbutton);
 	gtk_box_pack_start(GTK_BOX(desktop_vbox1),show_trash_checkbutton,FALSE,FALSE,0);
 	
@@ -227,7 +227,7 @@ GtkWidget *create_desktop_page()
 	gtk_widget_show(desktop_vbox4);
 	gtk_box_pack_start(GTK_BOX(desktop_hbox4),desktop_vbox4,FALSE,FALSE,0);
 
-	use_personality_trash_name_checkbutton=create_gconf_checkbutton(_("使用自定义的\"回收站\"名称:"),trash_icon_name,nautilus_desktop_dir,checkbutton_toggled_trash,NULL);
+	use_personality_trash_name_checkbutton=create_gconf_checkbutton(_("Use self-determined \"Trash\" name: "),trash_icon_name,nautilus_desktop_dir,checkbutton_toggled_trash,NULL);
 	gtk_widget_show(use_personality_trash_name_checkbutton);
 	gtk_box_pack_start(GTK_BOX(desktop_vbox4),use_personality_trash_name_checkbutton,FALSE,FALSE,0);
 
@@ -242,17 +242,17 @@ GtkWidget *create_desktop_page()
 	if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(show_trash_checkbutton))==FALSE){
 		gtk_widget_set_sensitive(desktop_hbox4,FALSE);
 	}
-/*其他*/
 
-	use_home_as_desktop_checkbutton=create_gconf_checkbutton(_("使用主目录内容作为桌面图标"),use_home_as_desktop,nautilus_preferences_dir,checkbutton_toggled,NULL);
+/*Other*/
+	use_home_as_desktop_checkbutton=create_gconf_checkbutton(_("Use Home directory as Desktop"),use_home_as_desktop,nautilus_preferences_dir,checkbutton_toggled,NULL);
 	gtk_widget_show(use_home_as_desktop_checkbutton);
 	gtk_box_pack_start(GTK_BOX(desktop_vbox1),use_home_as_desktop_checkbutton,FALSE,FALSE,0);
 
-	show_network_checkbutton=create_gconf_checkbutton(_("显示\"网络服务器\"图标"),network_icon_visible,nautilus_desktop_dir,checkbutton_toggled,NULL);
+	show_network_checkbutton=create_gconf_checkbutton(_("Show \"Network\" icon on desktop"),network_icon_visible,nautilus_desktop_dir,checkbutton_toggled,NULL);
 	gtk_widget_show(show_network_checkbutton);
 	gtk_box_pack_start(GTK_BOX(desktop_vbox1),show_network_checkbutton,FALSE,FALSE,0);
 
-	show_volumes_checkbutton=create_gconf_checkbutton(_("在桌面上显示已挂载设备"),volumes_visible,nautilus_desktop_dir,checkbutton_toggled,NULL);
+	show_volumes_checkbutton=create_gconf_checkbutton(_("Show Volumes on Desktop"),volumes_visible,nautilus_desktop_dir,checkbutton_toggled,NULL);
 	gtk_widget_show(show_volumes_checkbutton);
 	gtk_box_pack_start(GTK_BOX(desktop_vbox1),show_volumes_checkbutton,FALSE,FALSE,0);
 

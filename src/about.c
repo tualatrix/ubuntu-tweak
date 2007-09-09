@@ -4,16 +4,18 @@
 
 #include "ubuntu-tweak.h"
 
-void show_about(GtkWidget widget,gpointer data)
+
+void show_about(GtkWidget *widget,gpointer data)
 {
 	gchar*  authors[] = {"TualatriX <tualatrix@gmail.com>",NULL}; 
 
-	gtk_show_about_dialog (NULL,
+	gtk_show_about_dialog(NULL,
 	"name","Ubuntu Tweak",
 	"authors", authors,
 	"website", "http://ubuntu-tweak.com",
 	"copyright", "Copyright © 2007 TualatriX",
-	"comments", _("专为Ubuntu系统开发的设置优化工具"),
+	"comments", _("Ubuntu Tweak is tool for Ubuntu that makes it easy to config your system and desktop."),
 	"version", PACKAGE_VERSION,
 	NULL);
 }
+

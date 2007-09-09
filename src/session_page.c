@@ -31,7 +31,7 @@ void splash_select(GtkWidget *widget,gpointer data)
 
 	gint x,y;
 
-	dialog=gtk_file_chooser_dialog_new(_("请选择一个Splash动画文件"),
+	dialog=gtk_file_chooser_dialog_new(_("Choose a Splash file"),
 		NULL,
 		GTK_FILE_CHOOSER_ACTION_OPEN,
 		GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT, GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL, NULL);
@@ -158,7 +158,7 @@ GtkWidget *create_session_page()
 	gtk_box_pack_start(GTK_BOX(session_main_vbox),session_vbox,FALSE,FALSE,0);
 	gtk_container_set_border_width(GTK_CONTAINER(session_vbox),5);
 
-	sitting_label=gtk_label_new(_("会话"));
+	sitting_label=gtk_label_new(_("Session"));
 	gtk_misc_set_alignment(GTK_MISC(sitting_label),0,0);
 	gtk_widget_show(sitting_label);
 	gtk_box_pack_start(GTK_BOX(session_vbox),sitting_label,FALSE,FALSE,0);
@@ -175,7 +175,7 @@ GtkWidget *create_session_page()
 	gtk_widget_show(session_vbox_right);
 	gtk_box_pack_start(GTK_BOX(session_hbox),session_vbox_right,FALSE,FALSE,0);
 
-	save_session_checkbutton=create_gconf_checkbutton(_("自动保存会话"),
+	save_session_checkbutton=create_gconf_checkbutton(_("Auto save session"),
 		auto_save_session_char,
 		session_dir,
 		checkbutton_toggled,
@@ -183,7 +183,7 @@ GtkWidget *create_session_page()
 	gtk_widget_show(save_session_checkbutton);
 	gtk_box_pack_start(GTK_BOX(session_vbox_right),save_session_checkbutton,FALSE,FALSE,0);
 
-	display_menu_checkbutton=create_gconf_checkbutton(_("显示注销菜单"),
+	display_menu_checkbutton=create_gconf_checkbutton(_("Show logout prompt"),
 		logout_prompt,
 		session_dir,
 		checkbutton_toggled,
@@ -191,7 +191,7 @@ GtkWidget *create_session_page()
 	gtk_widget_show(display_menu_checkbutton);
 	gtk_box_pack_start(GTK_BOX(session_vbox_right),display_menu_checkbutton,FALSE,FALSE,0);
 
-	display_splash_checkbutton=create_gconf_checkbutton(_("显示Splash启动屏幕"),
+	display_splash_checkbutton=create_gconf_checkbutton(_("Show splash screen"),
 		show_splash_screen,
 		session_dir,
 		checkbutton_toggled_splash,
@@ -199,7 +199,7 @@ GtkWidget *create_session_page()
 	gtk_widget_show(display_splash_checkbutton);
 	gtk_box_pack_start(GTK_BOX(session_vbox_right),display_splash_checkbutton,FALSE,FALSE,0);
 
-	display_splash_label=gtk_label_new(_("在这里更改Splash启动屏幕"));
+	display_splash_label=gtk_label_new(_("Here to change splash screen"));
 	gtk_misc_set_alignment(GTK_MISC(display_splash_label),0,0);
 	gtk_widget_show(display_splash_label);
 	gtk_box_pack_start(GTK_BOX(session_vbox),display_splash_label,FALSE,FALSE,0);
@@ -211,11 +211,11 @@ GtkWidget *create_session_page()
 	gtk_widget_set_size_request(splash_image_hbox,256,-1);
 
 /*expander*/
-	expander=gtk_expander_new_with_mnemonic(_("专家模式"));
+	expander=gtk_expander_new_with_mnemonic(_("Export Mode"));
 	gtk_widget_show(expander);
 	gtk_box_pack_start(GTK_BOX(session_vbox),expander,FALSE,FALSE,0);
 
-	expander_label=gtk_label_new(_("这里是专家模式，详细说明某选项的对系统进行了哪些更改"));
+	expander_label=gtk_label_new(_("Not complete yet"));
 	gtk_widget_show(expander_label);
 	gtk_container_add(GTK_CONTAINER(expander),expander_label);
 	
