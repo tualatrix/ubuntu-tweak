@@ -115,7 +115,7 @@ GtkWidget *create_desktop_page()
 	gtk_widget_show(desktop_main_vbox);
 	gtk_container_set_border_width(GTK_CONTAINER(desktop_main_vbox),10);
 
-	desktop_label=gtk_label_new(_("Desktop"));
+	desktop_label=gtk_label_new(_("Sitting your Desktop icons"));
 	gtk_misc_set_alignment(GTK_MISC(desktop_label),0,0);
 	gtk_widget_show(desktop_label);
 	gtk_box_pack_start(GTK_BOX(desktop_main_vbox),desktop_label,FALSE,FALSE,0);
@@ -244,7 +244,7 @@ GtkWidget *create_desktop_page()
 	}
 
 /*Other*/
-	use_home_as_desktop_checkbutton=create_gconf_checkbutton(_("Use Home directory as Desktop"),use_home_as_desktop,nautilus_preferences_dir,checkbutton_toggled,NULL);
+	use_home_as_desktop_checkbutton=create_gconf_checkbutton(_("Use Home directory as Desktop entries"),use_home_as_desktop,nautilus_preferences_dir,checkbutton_toggled,NULL);
 	gtk_widget_show(use_home_as_desktop_checkbutton);
 	gtk_box_pack_start(GTK_BOX(desktop_vbox1),use_home_as_desktop_checkbutton,FALSE,FALSE,0);
 

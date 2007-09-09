@@ -158,7 +158,7 @@ GtkWidget *create_session_page()
 	gtk_box_pack_start(GTK_BOX(session_main_vbox),session_vbox,FALSE,FALSE,0);
 	gtk_container_set_border_width(GTK_CONTAINER(session_vbox),5);
 
-	sitting_label=gtk_label_new(_("Session"));
+	sitting_label=gtk_label_new(_("Session Control"));
 	gtk_misc_set_alignment(GTK_MISC(sitting_label),0,0);
 	gtk_widget_show(sitting_label);
 	gtk_box_pack_start(GTK_BOX(session_vbox),sitting_label,FALSE,FALSE,0);
@@ -199,7 +199,7 @@ GtkWidget *create_session_page()
 	gtk_widget_show(display_splash_checkbutton);
 	gtk_box_pack_start(GTK_BOX(session_vbox_right),display_splash_checkbutton,FALSE,FALSE,0);
 
-	display_splash_label=gtk_label_new(_("Here to change splash screen"));
+	display_splash_label=gtk_label_new(_("Click the big button to change splash screen"));
 	gtk_misc_set_alignment(GTK_MISC(display_splash_label),0,0);
 	gtk_widget_show(display_splash_label);
 	gtk_box_pack_start(GTK_BOX(session_vbox),display_splash_label,FALSE,FALSE,0);
@@ -211,7 +211,7 @@ GtkWidget *create_session_page()
 	gtk_widget_set_size_request(splash_image_hbox,256,-1);
 
 /*expander*/
-	expander=gtk_expander_new_with_mnemonic(_("Export Mode"));
+	expander=gtk_expander_new_with_mnemonic(_("Export Mode(Not complete yet)"));
 	gtk_widget_show(expander);
 	gtk_box_pack_start(GTK_BOX(session_vbox),expander,FALSE,FALSE,0);
 

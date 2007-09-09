@@ -48,7 +48,7 @@ GtkWidget *create_mplayer_page()
 		gtk_widget_show(checkbutton);
 		gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
-		checkbutton=create_text_checkbutton(_("Enable X11 Zoom mode"),key_zoom,g_strconcat(script_mplayer," zoom",NULL),NULL);
+		checkbutton=create_text_checkbutton(_("Enable X11 Zoom mode(Recommend)"),key_zoom,g_strconcat(script_mplayer," zoom",NULL),NULL);
 		gtk_widget_show(checkbutton);
 		gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
