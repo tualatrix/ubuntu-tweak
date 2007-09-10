@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-09 11:08+0800\n"
+"POT-Creation-Date: 2007-09-10 21:28+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,12 +21,12 @@ msgstr ""
 msgid ""
 "     Welcome to Ubuntu Tweak!\n"
 "\n"
-"This is a tool for Ubuntu that makes it easy to config your system and "
+"This is a tool for Ubuntu which makes it easy to config your your system and "
 "desktop.\n"
-"It's only for GNOME desktop environment.\n"
-"Now it isn't a good enough software, and only few options provided to "
+"By now, It's only for GNOME desktop environment.\n"
+"This software is not good enough now, and few options are provided to "
 "tweak. \n"
-"But I will make it to more powerful, It's only a start."
+"However, I will make it more powerful, It's just a beginning."
 msgstr ""
 
 #: src/interface.c:202
@@ -38,7 +38,7 @@ msgid "Here you can set the session or change the splash screen"
 msgstr ""
 
 #: src/interface.c:210
-msgid "Persionalization"
+msgid "Personalization"
 msgstr ""
 
 #: src/interface.c:211
@@ -57,8 +57,8 @@ msgstr ""
 msgid "Security"
 msgstr ""
 
-#: src/interface.c:227
-msgid "Turn off some functions for system security"
+#: src/interface.c:227 src/security.c:30
+msgid "Some options for system security"
 msgstr ""
 
 #: src/interface.c:234
@@ -66,21 +66,21 @@ msgid "Applications"
 msgstr ""
 
 #: src/interface.c:235
-msgid "Easily to config often-used applications"
+msgid "Easy to config often-used applications"
 msgstr ""
 
 #: src/ubuntu-tweak.c:156 src/ubuntu-tweak.c:210
 msgid "Unset"
 msgstr ""
 
-#: src/about.c:17
+#: src/about.c:19
 msgid ""
 "Ubuntu Tweak is tool for Ubuntu that makes it easy to config your system and "
 "desktop."
 msgstr ""
 
 #: src/desktop_page.c:118
-msgid "Sitting your Desktop icons"
+msgid "Setting your Desktop icons"
 msgstr ""
 
 #: src/desktop_page.c:123
@@ -93,7 +93,7 @@ msgid "Show \"Computer\" icon on desktop"
 msgstr ""
 
 #: src/desktop_page.c:160
-msgid "Use self-determined \"Computer\" name: "
+msgid "Rename the \"Computer\" icon: "
 msgstr ""
 
 #. Show HOME
@@ -102,7 +102,7 @@ msgid "Show \"Home\" icon on desktop"
 msgstr ""
 
 #: src/desktop_page.c:196
-msgid "Use self-determined \"Home\" name: "
+msgid "Rename the \"Home\" icon: "
 msgstr ""
 
 #. Show Trash
@@ -111,7 +111,7 @@ msgid "Show \"Trash\" icon on desktop"
 msgstr ""
 
 #: src/desktop_page.c:230
-msgid "Use self-determined \"Trash\" name: "
+msgid "Rename the \"Trash\" icon: "
 msgstr ""
 
 #. Other
@@ -131,46 +131,41 @@ msgstr ""
 msgid "Clean history"
 msgstr ""
 
-#: src/mplayer_page.c:30
+#: src/mplayer_page.c:25
 msgid "Here you can set mplayer"
 msgstr ""
 
-#: src/mplayer_page.c:47
+#: src/mplayer_page.c:42
 msgid "Use X11 video driver(Recommend)"
 msgstr ""
 
-#: src/mplayer_page.c:51
+#: src/mplayer_page.c:46
 msgid "Enable X11 Zoom mode(Recommend)"
 msgstr ""
 
-#: src/mplayer_page.c:55
+#: src/mplayer_page.c:50
 msgid "Use smart sub-fuzziness"
 msgstr ""
 
-#: src/mplayer_page.c:60
+#: src/mplayer_page.c:55
 msgid "Sorry, You haven't installed Mplayer yet, Please install first."
 msgstr ""
 
-#. Desktop label
-#: src/personality.c:25
+#: src/personality.c:26
 msgid "Desktop Icon"
 msgstr ""
 
-#: src/personality.c:38
+#: src/personality.c:31
 msgid "GNOME Options"
 msgstr ""
 
-#: src/personality.c:42 src/session_page.c:218 src/startup.c:32
+#: src/personality.c:35 src/session_page.c:218 src/startup.c:32
 #: src/startup.c:38
 msgid "Not complete yet"
 msgstr ""
 
-#: src/personality.c:45
+#: src/personality.c:37
 msgid "History"
-msgstr ""
-
-#: src/security.c:30
-msgid "Turn off some funtion of Security"
 msgstr ""
 
 #: src/security.c:47
@@ -227,7 +222,7 @@ msgstr ""
 
 #. expander
 #: src/session_page.c:214
-msgid "Export Mode(Not complete yet)"
+msgid "Expert Mode(Not complete yet)"
 msgstr ""
 
 #. Session label
@@ -239,58 +234,66 @@ msgstr ""
 msgid "Services"
 msgstr ""
 
-#: src/system_page.c:25
+#: src/system_page.c:29
 msgid "GNOME Animations"
 msgstr ""
 
-#: src/system_page.c:42
+#: src/system_page.c:46
 msgid "Enable GNOME Animations Panel"
 msgstr ""
 
-#: src/system_page.c:45
+#: src/system_page.c:49
 msgid "Enable GNOME Animations Effect"
 msgstr ""
 
-#: src/awn_page.c:90
+#: src/system_page.c:56
+msgid "Setting your nautilus behavior"
+msgstr ""
+
+#: src/system_page.c:73
+msgid "Show advanced permissions at file property"
+msgstr ""
+
+#: src/awn_page.c:89
 msgid "Here you can change the style of Avant Window Navigator easily"
 msgstr ""
 
-#: src/awn_page.c:99
+#: src/awn_page.c:98
 msgid "Choose AWN Style"
 msgstr ""
 
-#: src/awn_page.c:108
+#: src/awn_page.c:107
 msgid "Self-determined"
 msgstr ""
 
-#: src/awn_page.c:109
+#: src/awn_page.c:108
 msgid "3D style(Leopard like)"
 msgstr ""
 
-#: src/awn_page.c:110
+#: src/awn_page.c:109
 msgid "Classical style(Tiger like)"
 msgstr ""
 
-#: src/awn_page.c:125
+#: src/awn_page.c:124
 msgid ""
 "Sorry, You haven't installed Avant Window Navigator yet, Please install "
 "first."
 msgstr ""
 
 #: src/powermanager_page.c:76
-msgid "Sitting Advance Power Managerment"
+msgid "Advanced Power Managerment Settings"
 msgstr ""
 
 #: src/powermanager_page.c:93
-msgid "Enable Hibernate"
+msgid "Enable Hibernation"
 msgstr ""
 
 #: src/powermanager_page.c:97
-msgid "Enable Suspend"
+msgid "Enable Suspension"
 msgstr ""
 
 #: src/powermanager_page.c:101
-msgid "Show CPU frequency tweak on\"Power Managerment\""
+msgid "Show CPU frequency tweak in\"Power Managerment\""
 msgstr ""
 
 #: src/powermanager_page.c:111
@@ -310,11 +313,11 @@ msgid "Always display"
 msgstr ""
 
 #: src/powermanager_page.c:140
-msgid "When use AC, CPU frequency policy"
+msgid "When using AC, CPU frequency policy"
 msgstr ""
 
 #: src/powermanager_page.c:150 src/powermanager_page.c:179
-msgid "Ondemand"
+msgid "On demand"
 msgstr ""
 
 #: src/powermanager_page.c:151 src/powermanager_page.c:180
@@ -326,7 +329,7 @@ msgid "Performance"
 msgstr ""
 
 #: src/powermanager_page.c:169
-msgid "When use Battery, CPU frequency policy"
+msgid "When using Battery, CPU frequency policy"
 msgstr ""
 
 #: src/system.c:17

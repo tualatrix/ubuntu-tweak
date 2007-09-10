@@ -19,7 +19,7 @@ void powermanager_changed(GtkWidget *widget,gpointer data)
 
 	client=gconf_client_get_default();
 	str=gtk_combo_box_get_active_text(GTK_COMBO_BOX(widget));
-	if(!strcmp(str,"Ondemand")){
+	if(!strcmp(str,"On demand")){
 		gconf_client_set_string(client,
 					data,
 					"ondemand",
@@ -73,7 +73,7 @@ GtkWidget *create_powermanager_page()
 	gtk_widget_show(main_vbox);
 	gtk_container_set_border_width(GTK_CONTAINER(main_vbox),5);
 
-	label=gtk_label_new(_("Sitting Advance Power Managerment"));
+	label=gtk_label_new(_("Advanced Power Managerment Settings"));
 	gtk_misc_set_alignment(GTK_MISC(label),0,0);
 	gtk_widget_show(label);
 	gtk_box_pack_start(GTK_BOX(main_vbox),label,FALSE,FALSE,0);
@@ -90,15 +90,15 @@ GtkWidget *create_powermanager_page()
 	gtk_widget_show(vbox);
 	gtk_box_pack_start(GTK_BOX(hbox),vbox,FALSE,FALSE,0);
 
-	checkbutton=create_gconf_checkbutton(_("Enable Hibernate"),key_can_hibernate,powermanager_dir,checkbutton_toggled,NULL);
+	checkbutton=create_gconf_checkbutton(_("Enable Hibernation"),key_can_hibernate,powermanager_dir,checkbutton_toggled,NULL);
 	gtk_widget_show(checkbutton);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
-	checkbutton=create_gconf_checkbutton(_("Enable Suspend"),key_can_suspend,powermanager_dir,checkbutton_toggled,NULL);
+	checkbutton=create_gconf_checkbutton(_("Enable Suspension"),key_can_suspend,powermanager_dir,checkbutton_toggled,NULL);
 	gtk_widget_show(checkbutton);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
-	checkbutton=create_gconf_checkbutton(_("Show CPU frequency tweak on\"Power Managerment\""),key_show_cpufreq_ui,powermanager_dir,checkbutton_toggled,NULL);
+	checkbutton=create_gconf_checkbutton(_("Show CPU frequency tweak in\"Power Managerment\""),key_show_cpufreq_ui,powermanager_dir,checkbutton_toggled,NULL);
 	gtk_widget_show(checkbutton);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
@@ -137,7 +137,7 @@ GtkWidget *create_powermanager_page()
 	gtk_widget_show(hbox);
 	gtk_box_pack_start(GTK_BOX(vbox),hbox,FALSE,FALSE,0);
 
-	label=gtk_label_new(_("When use AC, CPU frequency policy"));
+	label=gtk_label_new(_("When using AC, CPU frequency policy"));
 	gtk_widget_show(label);
 	gtk_box_pack_start(GTK_BOX(hbox),label,TRUE,TRUE,0);
 
@@ -147,7 +147,7 @@ GtkWidget *create_powermanager_page()
 
 	g_signal_connect(G_OBJECT(combobox),"changed",G_CALLBACK(powermanager_changed),key_cpufreq_ac_policy);
 
-	gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("Ondemand"));
+	gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("On demand"));
 	gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("PowerSave"));
 	gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("Performance"));
 
@@ -166,7 +166,7 @@ GtkWidget *create_powermanager_page()
 	gtk_widget_show(hbox);
 	gtk_box_pack_start(GTK_BOX(vbox),hbox,FALSE,FALSE,0);
 
-	label=gtk_label_new(_("When use Battery, CPU frequency policy"));
+	label=gtk_label_new(_("When using Battery, CPU frequency policy"));
 	gtk_widget_show(label);
 	gtk_box_pack_start(GTK_BOX(hbox),label,FALSE,FALSE,0);
 
@@ -176,7 +176,7 @@ GtkWidget *create_powermanager_page()
 
 	g_signal_connect(G_OBJECT(combobox),"changed",G_CALLBACK(powermanager_changed),key_cpufreq_battery_policy);
 
-	gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("Ondemand"));
+	gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("On demand"));
 	gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("PowerSave"));
 	gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("Performance"));
 

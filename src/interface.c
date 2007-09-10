@@ -178,7 +178,7 @@ GtkWidget *create_main_window(void)
 	gtk_box_pack_end(GTK_BOX(hbox_head),headline_2,FALSE,FALSE,0);
 
 /*Welcome screen*/
-	label_welcome=gtk_label_new(_("     Welcome to Ubuntu Tweak!\n\nThis is a tool for Ubuntu that makes it easy to config your system and desktop.\nIt's only for GNOME desktop environment.\nNow it isn't a good enough software, and only few options provided to tweak. \nBut I will make it to more powerful, It's only a start."));
+	label_welcome=gtk_label_new(_("     Welcome to Ubuntu Tweak!\n\nThis is a tool for Ubuntu which makes it easy to config your your system and desktop.\nBy now, It's only for GNOME desktop environment.\nThis software is not good enough now, and few options are provided to tweak. \nHowever, I will make it more powerful, It's just a beginning."));
 	gtk_label_set_justify(GTK_LABEL(label_welcome),GTK_JUSTIFY_FILL);
 	gtk_widget_show(label_welcome);
 	gtk_container_set_border_width(GTK_CONTAINER(vbox_content_right),10);
@@ -207,7 +207,7 @@ GtkWidget *create_main_window(void)
 			NULL);
 
 	ubuntu_item=gtk_toolbar_append_item(GTK_TOOLBAR(toolbar),
-			_("Persionalization"),
+			_("Personalization"),
 			_("Set your desktop icons or define the new name of them"),
 			"Private",
 			ubuntu_item_image,
@@ -224,7 +224,7 @@ GtkWidget *create_main_window(void)
 
 	security_item=gtk_toolbar_append_item(GTK_TOOLBAR(toolbar),
 			_("Security"),
-			_("Turn off some functions for system security"),
+			_("Some options for system security"),
 			"Private",
 			security_item_image,
 			GTK_SIGNAL_FUNC(show_security_notebook),
@@ -232,7 +232,7 @@ GtkWidget *create_main_window(void)
 
 	applications_item=gtk_toolbar_append_item(GTK_TOOLBAR(toolbar),
 			_("Applications"),
-			_("Easily to config often-used applications"),
+			_("Easy to config often-used applications"),
 			"Private",
 			applications_item_image,
 			GTK_SIGNAL_FUNC(show_applications_notebook),

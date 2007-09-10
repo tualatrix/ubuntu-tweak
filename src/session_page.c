@@ -211,7 +211,7 @@ GtkWidget *create_session_page()
 	gtk_widget_set_size_request(splash_image_hbox,256,-1);
 
 /*expander*/
-	expander=gtk_expander_new_with_mnemonic(_("Export Mode(Not complete yet)"));
+	expander=gtk_expander_new_with_mnemonic(_("Expert Mode(Not complete yet)"));
 	gtk_widget_show(expander);
 	gtk_box_pack_start(GTK_BOX(session_vbox),expander,FALSE,FALSE,0);
 

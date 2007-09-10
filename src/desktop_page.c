@@ -115,7 +115,7 @@ GtkWidget *create_desktop_page()
 	gtk_widget_show(desktop_main_vbox);
 	gtk_container_set_border_width(GTK_CONTAINER(desktop_main_vbox),10);
 
-	desktop_label=gtk_label_new(_("Sitting your Desktop icons"));
+	desktop_label=gtk_label_new(_("Setting your Desktop icons"));
 	gtk_misc_set_alignment(GTK_MISC(desktop_label),0,0);
 	gtk_widget_show(desktop_label);
 	gtk_box_pack_start(GTK_BOX(desktop_main_vbox),desktop_label,FALSE,FALSE,0);
@@ -157,7 +157,7 @@ GtkWidget *create_desktop_page()
 	gtk_widget_show(desktop_vbox2);
 	gtk_box_pack_start(GTK_BOX(desktop_hbox2),desktop_vbox2,FALSE,FALSE,0);
 
-	use_personality_computer_name_label=create_gconf_checkbutton(_("Use self-determined \"Computer\" name: "),computer_icon_name,nautilus_desktop_dir,checkbutton_toggled_computer,NULL);
+	use_personality_computer_name_label=create_gconf_checkbutton(_("Rename the \"Computer\" icon: "),computer_icon_name,nautilus_desktop_dir,checkbutton_toggled_computer,NULL);
 	gtk_widget_show(use_personality_computer_name_label);
 	gtk_box_pack_start(GTK_BOX(desktop_vbox2),use_personality_computer_name_label,FALSE,FALSE,0);
 	
@@ -193,7 +193,7 @@ GtkWidget *create_desktop_page()
 	gtk_widget_show(desktop_vbox3);
 	gtk_box_pack_start(GTK_BOX(desktop_hbox3),desktop_vbox3,FALSE,FALSE,0);
 
-	use_personality_home_name_label=create_gconf_checkbutton(_("Use self-determined \"Home\" name: "),home_icon_name,nautilus_desktop_dir,checkbutton_toggled_home,NULL);
+	use_personality_home_name_label=create_gconf_checkbutton(_("Rename the \"Home\" icon: "),home_icon_name,nautilus_desktop_dir,checkbutton_toggled_home,NULL);
 	gtk_widget_show(use_personality_home_name_label);
 	gtk_box_pack_start(GTK_BOX(desktop_vbox3),use_personality_home_name_label,FALSE,FALSE,0);
 
@@ -227,7 +227,7 @@ GtkWidget *create_desktop_page()
 	gtk_widget_show(desktop_vbox4);
 	gtk_box_pack_start(GTK_BOX(desktop_hbox4),desktop_vbox4,FALSE,FALSE,0);
 
-	use_personality_trash_name_checkbutton=create_gconf_checkbutton(_("Use self-determined \"Trash\" name: "),trash_icon_name,nautilus_desktop_dir,checkbutton_toggled_trash,NULL);
+	use_personality_trash_name_checkbutton=create_gconf_checkbutton(_("Rename the \"Trash\" icon: "),trash_icon_name,nautilus_desktop_dir,checkbutton_toggled_trash,NULL);
 	gtk_widget_show(use_personality_trash_name_checkbutton);
 	gtk_box_pack_start(GTK_BOX(desktop_vbox4),use_personality_trash_name_checkbutton,FALSE,FALSE,0);
 

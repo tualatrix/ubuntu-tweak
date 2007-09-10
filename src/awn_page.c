@@ -80,13 +80,12 @@ GtkWidget *create_awn_page()
 	GConfClient *client;
 
 	client=gconf_client_get_default();
-	bool=gconf_client_get_bool(client,"/apps/ubuntu-tweak/apps/awn/installed",NULL);
 
 	main_vbox=gtk_vbox_new(FALSE,5);
 	gtk_widget_show(main_vbox);
 	gtk_container_set_border_width(GTK_CONTAINER(main_vbox),10);
 	
-	if(bool==TRUE){
+	if(g_find_program_in_path("avant-window-navigator")!=NULL){
 		label=gtk_label_new(_("Here you can change the style of Avant Window Navigator easily"));
 		gtk_misc_set_alignment(GTK_MISC(label),0,0);
 		gtk_widget_show(label);

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.1.21\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-09 11:08+0800\n"
-"PO-Revision-Date: 2007-09-09 11:09+0800\n"
+"POT-Creation-Date: 2007-09-10 21:28+0800\n"
+"PO-Revision-Date: 2007-09-10 18:07+0800\n"
 "Last-Translator: TualatriX <tualatrix@gmail.com>\n"
 "Language-Team: TualatriX <tualatrix@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -21,12 +21,12 @@ msgstr ""
 msgid ""
 "     Welcome to Ubuntu Tweak!\n"
 "\n"
-"This is a tool for Ubuntu that makes it easy to config your system and "
+"This is a tool for Ubuntu which makes it easy to config your your system and "
 "desktop.\n"
-"It's only for GNOME desktop environment.\n"
-"Now it isn't a good enough software, and only few options provided to "
+"By now, It's only for GNOME desktop environment.\n"
+"This software is not good enough now, and few options are provided to "
 "tweak. \n"
-"But I will make it to more powerful, It's only a start."
+"However, I will make it more powerful, It's just a beginning."
 msgstr ""
 "     欢迎使用Ubuntu Tweak！\n"
 "\n"
@@ -44,7 +44,7 @@ msgid "Here you can set the session or change the splash screen"
 msgstr "这里你可以更改会话和Splash闪屏"
 
 #: src/interface.c:210
-msgid "Persionalization"
+msgid "Personalization"
 msgstr "个性设置"
 
 #: src/interface.c:211
@@ -63,30 +63,30 @@ msgstr "配置你自己的系统"
 msgid "Security"
 msgstr "安全相关"
 
-#: src/interface.c:227
-msgid "Turn off some functions for system security"
-msgstr "开关一些与系统安全相关的功能"
+#: src/interface.c:227 src/security.c:30
+msgid "Some options for system security"
+msgstr "一些与系统安全相关的选项"
 
 #: src/interface.c:234
 msgid "Applications"
 msgstr "应用软件"
 
 #: src/interface.c:235
-msgid "Easily to config often-used applications"
+msgid "Easy to config often-used applications"
 msgstr "通过这里简单地配置一些常用软件"
 
 #: src/ubuntu-tweak.c:156 src/ubuntu-tweak.c:210
 msgid "Unset"
 msgstr "未设置"
 
-#: src/about.c:17
+#: src/about.c:19
 msgid ""
 "Ubuntu Tweak is tool for Ubuntu that makes it easy to config your system and "
 "desktop."
 msgstr "Ubuntu Tweak是一个专门为简易配置系统和桌面而准备的工具。"
 
 #: src/desktop_page.c:118
-msgid "Sitting your Desktop icons"
+msgid "Setting your Desktop icons"
 msgstr "设置你的桌面图标"
 
 #: src/desktop_page.c:123
@@ -99,8 +99,8 @@ msgid "Show \"Computer\" icon on desktop"
 msgstr "在桌面上显示\"计算机\"图标"
 
 #: src/desktop_page.c:160
-msgid "Use self-determined \"Computer\" name: "
-msgstr "使用自定义的\"计算机\"名称："
+msgid "Rename the \"Computer\" icon: "
+msgstr "使用自定义的\"计算机\"名称"
 
 #. Show HOME
 #: src/desktop_page.c:179
@@ -108,8 +108,8 @@ msgid "Show \"Home\" icon on desktop"
 msgstr "在桌面上显示\"主目录\"图标"
 
 #: src/desktop_page.c:196
-msgid "Use self-determined \"Home\" name: "
-msgstr "使用自定义的\"主目录\"名称："
+msgid "Rename the \"Home\" icon: "
+msgstr "使用自定义的\"主目录\"名称"
 
 #. Show Trash
 #: src/desktop_page.c:213
@@ -117,8 +117,8 @@ msgid "Show \"Trash\" icon on desktop"
 msgstr "在桌面上显示\"回收站\"图标"
 
 #: src/desktop_page.c:230
-msgid "Use self-determined \"Trash\" name: "
-msgstr "使用自定义的\"回收站\"名称："
+msgid "Rename the \"Trash\" icon: "
+msgstr "使用自定义的\"回收站\"名称"
 
 #. Other
 #: src/desktop_page.c:247
@@ -137,47 +137,42 @@ msgstr "在桌面上显示已挂载的设备"
 msgid "Clean history"
 msgstr "清理历史记录"
 
-#: src/mplayer_page.c:30
+#: src/mplayer_page.c:25
 msgid "Here you can set mplayer"
 msgstr "这里你可以设置Mplayer"
 
-#: src/mplayer_page.c:47
+#: src/mplayer_page.c:42
 msgid "Use X11 video driver(Recommend)"
 msgstr "使用X11视频驱动（强烈推荐）"
 
-#: src/mplayer_page.c:51
+#: src/mplayer_page.c:46
 msgid "Enable X11 Zoom mode(Recommend)"
 msgstr "打开X11硬缩放功能（强烈推荐）"
 
-#: src/mplayer_page.c:55
+#: src/mplayer_page.c:50
 msgid "Use smart sub-fuzziness"
 msgstr "使用智能型字幕文件匹配"
 
-#: src/mplayer_page.c:60
+#: src/mplayer_page.c:55
 msgid "Sorry, You haven't installed Mplayer yet, Please install first."
 msgstr "对不起，你还没有安装Mplayer，请先安装。"
 
-#. Desktop label
-#: src/personality.c:25
+#: src/personality.c:26
 msgid "Desktop Icon"
 msgstr "桌面图标"
 
-#: src/personality.c:38
+#: src/personality.c:31
 msgid "GNOME Options"
 msgstr "GNOME选项"
 
-#: src/personality.c:42 src/session_page.c:218 src/startup.c:32
+#: src/personality.c:35 src/session_page.c:218 src/startup.c:32
 #: src/startup.c:38
 msgid "Not complete yet"
 msgstr "还没有完成"
 
-#: src/personality.c:45
+#: src/personality.c:37
 msgid "History"
 msgstr "历史记录"
-
-#: src/security.c:30
-msgid "Turn off some funtion of Security"
-msgstr "开关一些安全相关的功能"
 
 #: src/security.c:47
 msgid "Disable command line"
@@ -233,7 +228,7 @@ msgstr "点击大按钮来更改Splash屏幕"
 
 #. expander
 #: src/session_page.c:214
-msgid "Export Mode(Not complete yet)"
+msgid "Expert Mode(Not complete yet)"
 msgstr "专家模式（还没有完成）"
 
 #. Session label
@@ -245,58 +240,66 @@ msgstr "会话"
 msgid "Services"
 msgstr "服务"
 
-#: src/system_page.c:25
+#: src/system_page.c:29
 msgid "GNOME Animations"
 msgstr "GNOME动画控制"
 
-#: src/system_page.c:42
+#: src/system_page.c:46
 msgid "Enable GNOME Animations Panel"
 msgstr "打开GNOME面版动画"
 
-#: src/system_page.c:45
+#: src/system_page.c:49
 msgid "Enable GNOME Animations Effect"
 msgstr "打开GNOME动画效果"
 
-#: src/awn_page.c:90
+#: src/system_page.c:56
+msgid "Setting your nautilus behavior"
+msgstr "设置你的文件管理器"
+
+#: src/system_page.c:73
+msgid "Show advanced permissions at file property"
+msgstr "在文件属性里显示高级权限控制"
+
+#: src/awn_page.c:89
 msgid "Here you can change the style of Avant Window Navigator easily"
 msgstr "这里你可以方便地更改Avant WIndow Navigator"
 
-#: src/awn_page.c:99
+#: src/awn_page.c:98
 msgid "Choose AWN Style"
 msgstr "选择AWN样式"
 
-#: src/awn_page.c:108
+#: src/awn_page.c:107
 msgid "Self-determined"
 msgstr "自定义"
 
-#: src/awn_page.c:109
+#: src/awn_page.c:108
 msgid "3D style(Leopard like)"
 msgstr "3D样式（类似于Leopard）"
 
-#: src/awn_page.c:110
+#: src/awn_page.c:109
 msgid "Classical style(Tiger like)"
 msgstr "经典样式（类似于TIger）"
 
-#: src/awn_page.c:125
+#: src/awn_page.c:124
 msgid ""
 "Sorry, You haven't installed Avant Window Navigator yet, Please install "
 "first."
 msgstr "对不起，你还没有安装Avant Window Navigator，请先安装"
 
 #: src/powermanager_page.c:76
-msgid "Sitting Advance Power Managerment"
-msgstr "设置高级电源管理"
+msgid "Advanced Power Managerment Settings"
+msgstr "高级电源管理"
 
 #: src/powermanager_page.c:93
-msgid "Enable Hibernate"
+msgid "Enable Hibernation"
 msgstr "启用休眠支持"
 
 #: src/powermanager_page.c:97
-msgid "Enable Suspend"
+msgid "Enable Suspension"
 msgstr "启用挂起功能"
 
 #: src/powermanager_page.c:101
-msgid "Show CPU frequency tweak on\"Power Managerment\""
+msgid "Show CPU frequency tweak in\"Power Managerment\""
 msgstr "在\"电源管理器\"里显示CPU频率控制"
 
 #: src/powermanager_page.c:111
@@ -316,11 +319,11 @@ msgid "Always display"
 msgstr "始终显示"
 
 #: src/powermanager_page.c:140
-msgid "When use AC, CPU frequency policy"
+msgid "When using AC, CPU frequency policy"
 msgstr "当使用交流电时，CPU频率使用策略"
 
 #: src/powermanager_page.c:150 src/powermanager_page.c:179
-msgid "Ondemand"
+msgid "On demand"
 msgstr "根据处理器负载"
 
 #: src/powermanager_page.c:151 src/powermanager_page.c:180
@@ -332,7 +335,7 @@ msgid "Performance"
 msgstr "总是全速"
 
 #: src/powermanager_page.c:169
-msgid "When use Battery, CPU frequency policy"
+msgid "When using Battery, CPU frequency policy"
 msgstr "当使用电池时，CPU频率使用策略"
 
 #: src/system.c:17
