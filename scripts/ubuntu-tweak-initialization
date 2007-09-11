@@ -6,6 +6,7 @@ if [ ! -d $MPLAYER_DIR ]; then
 	mkdir ~/.mplayer
 fi
 
+
 #首先取出gui.conf文件中有vo-driver字段的行，然后交给awk处理，取出由"分隔的第二个字段
 MPLAYER_GUI_CONF=`echo ~/.mplayer/gui.conf`
 MPLAYER_CONFIG=`echo ~/.mplayer/config`
@@ -17,8 +18,8 @@ ZOOM_VALUE=`grep "zoom" $MPLAYER_CONFIG 2>/dev/null | sed -n '/[ytru]/p'`
 SUB_FUZZINESS=`grep  "sub-fuzziness" $MPLAYER_CONFIG 2>/dev/null`
 SUB_FUZZINESS_VALUE=`grep  "sub-fuzziness" $MPLAYER_CONFIG 2>/dev/null | sed -n '/1/p'`
 
-#echo "VO_DRIVER= "$VO_DRIVER
-#echo "VO_DRIVER_VALUE= "$VO_DRIVER_VALUE
+INPUT_METHOD=`env | grep XMODIFIERS | awk -F"=" '{print $3}'`
+FCITX_SHARE=`whereis fcitx | awk '{print $5}'`
 
 #初始化Mplayer vo_driver的设置
 init_vo_driver(){
@@ -87,7 +88,9 @@ init_sub_fuzziness(){
 		fi
 	fi
 }
-echo "=======================进行初始化================"
+
+echo "=====================Initializing================"
+
 if [ -f /usr/bin/mplayer ]; then
 		gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/installed true
 		init_vo_driver
@@ -97,10 +100,19 @@ if [ -f /usr/bin/mplayer ]; then
 		gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/installed false
 		echo "注意：mplayer未安装"
 fi
+
 if [ -f /usr/bin/avant-window-navigator ]; then
 		gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/awn/installed true
 	else
 		gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/awn/installed false
 		echo "注意：Avant Window Navigator未安装"
 fi
-echo "=======================初始化结束================"
+
+if [ $INPUT_METHOD = "fcitx" ]; then
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/system/fcitx true
+		
+	else	
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/system/fcitx false
+fi
+
+echo "=====================Finished================"

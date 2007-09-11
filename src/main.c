@@ -7,8 +7,6 @@
 
 int main(int argc,char **argv)
 {
-	GtkWidget *window;
-
 	gchar *initialization_script=PACKAGE_SCRIPTS_DIR"/ubuntu-tweak-initialization";
 	GError *error;
 

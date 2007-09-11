@@ -10,8 +10,13 @@ gchar *show_splash_screen="/apps/gnome-session/options/show_splash_screen";
 gchar *session_dir="/apps/gnome-session/options";
 gchar *splash_image="/apps/gnome-session/options/splash_image";
 
+/*expert mode*/
 GtkWidget *expander;
-GtkWidget *expander_label;
+GtkWidget *expert_box;
+GtkWidget *label;
+GtkWidget *expert_autosavesession;
+gpointer present_expert;
+
 GtkWidget *splash_image_button;
 GdkPixbuf *new_preview;
 GtkWidget *splash_image_preview;
@@ -19,9 +24,44 @@ gchar *filename;
 gchar *filedir;
 GdkPixbuf *original_preview;
 
-void enter_expect(GtkWidget *widget,gpointer expanderdata)
+void expander_change(GtkWidget *widget,gpointer data)
 {
-	gtk_label_set_text(GTK_LABEL(expander_label),expanderdata);
+	gboolean bool;
+	bool=gtk_expander_get_expanded(GTK_EXPANDER(widget));	
+	if(bool==TRUE){
+		g_print("TRUE\n");
+		present_expert=label;
+		
+	}else{
+		g_print("FALSE\n");
+
+	}
+}
+
+GtkWidget *create_expert_autosavesession()
+{
+	GtkWidget *vbox;
+	GtkWidget *label;
+	
+	vbox=gtk_vbox_new(FALSE,0);
+	gtk_widget_show(vbox);
+	
+	label=gtk_label_new("Select thisoption if you want the session manager to save the current state of your session.The session manager saves the session-managed applications that are open,and the settings associated with the session-managed applications. The next time that you start a session, the applications start automatically, with the saved settings.If you do not select this option, when you end your session the Logout Confirmation dialog displays a Save current setup option.");
+	gtk_widget_show(label);
+	gtk_box_pack_start(GTK_BOX(vbox),label,FALSE,FALSE,0);
+
+	return vbox;	
+}
+
+void show_expert_autosavesession(GtkWidget *widget,gpointer data)
+{
+	if(present_expert!=expert_autosavesession){
+		gtk_widget_hide(present_expert);
+		expert_autosavesession=create_expert_autosavesession();
+		gtk_widget_show(expert_autosavesession);
+		present_expert=expert_autosavesession;
+		gtk_box_pack_start(GTK_BOX(expert_box),present_expert,FALSE,FALSE,0);
+	}
 }
 
 void splash_select(GtkWidget *widget,gpointer data)
@@ -134,8 +174,7 @@ GtkWidget *change_splash()
 
 GtkWidget *create_session_page()
 {
-
-/*会话子页面*/
+/*Session Page*/
 	GtkWidget *session_main_vbox;
 	GtkWidget *session_vbox;
 	GtkWidget *session_hbox;
@@ -179,7 +218,7 @@ GtkWidget *create_session_page()
 		auto_save_session_char,
 		session_dir,
 		checkbutton_toggled,
-		enter_expect);
+		show_expert_autosavesession);
 	gtk_widget_show(save_session_checkbutton);
 	gtk_box_pack_start(GTK_BOX(session_vbox_right),save_session_checkbutton,FALSE,FALSE,0);
 
@@ -187,7 +226,7 @@ GtkWidget *create_session_page()
 		logout_prompt,
 		session_dir,
 		checkbutton_toggled,
-		enter_expect);
+		NULL);
 	gtk_widget_show(display_menu_checkbutton);
 	gtk_box_pack_start(GTK_BOX(session_vbox_right),display_menu_checkbutton,FALSE,FALSE,0);
 
@@ -195,7 +234,7 @@ GtkWidget *create_session_page()
 		show_splash_screen,
 		session_dir,
 		checkbutton_toggled_splash,
-		enter_expect);
+		NULL);
 	gtk_widget_show(display_splash_checkbutton);
 	gtk_box_pack_start(GTK_BOX(session_vbox_right),display_splash_checkbutton,FALSE,FALSE,0);
 
@@ -213,11 +252,18 @@ GtkWidget *create_session_page()
 /*expander*/
 	expander=gtk_expander_new_with_mnemonic(_("Expert Mode(Not complete yet)"));
 	gtk_widget_show(expander);
+	g_signal_connect(G_OBJECT(expander),"activate",G_CALLBACK(expander_change),NULL);
 	gtk_box_pack_start(GTK_BOX(session_vbox),expander,FALSE,FALSE,0);
 
-	expander_label=gtk_label_new(_("Not complete yet"));
-	gtk_widget_show(expander_label);
-	gtk_container_add(GTK_CONTAINER(expander),expander_label);
-	
+	expert_box=gtk_vbox_new(FALSE,0);
+	gtk_widget_set_size_request(GTK_WIDGET(expert_box),200,100);
+	gtk_widget_show(expert_box);
+
+	label=gtk_label_new(_("Not complete yet"));
+	present_expert=label;
+	gtk_widget_show(label);
+	gtk_box_pack_start(GTK_BOX(expert_box),label,FALSE,FALSE,0);
+	gtk_container_add(GTK_CONTAINER(expander),expert_box);
+
 	return session_main_vbox;
 }

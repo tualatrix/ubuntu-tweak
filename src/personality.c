@@ -5,7 +5,6 @@
 #include "ubuntu-tweak.h"
 #include "desktop_page.h"
 #include "system_page.h"
-#include "nautilus_page.h"
 
 GtkWidget *create_personality_notebook()
 {

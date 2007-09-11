@@ -5,6 +5,11 @@
 #include <gconf/gconf-client.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
+/*Screen size*/
+gint resolution_x,resolution_y;
+
+GtkWidget *window;
+
 GtkWidget *create_gconf_checkbutton(gchar *label,gchar *key,gchar *dir,gpointer toggledata,gpointer enterdata);
 
 GtkWidget *create_text_checkbutton(gchar *label,gchar *key,gchar *shell,gpointer enterdata);

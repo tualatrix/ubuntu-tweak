@@ -119,16 +119,15 @@ GtkWidget *create_main_window(void)
 	GtkWidget *applications_item;
 	GtkWidget *applications_item_image;
 
-
 /*设定程序的图标，主要用于任务栏、dock上的显示*/
-
 	gtk_window_set_default_icon_from_file(icon,NULL);
 
 /*创建程序主窗体，分别设定好窗口标题，窗口默认大小，窗口默认打开位置（屏幕中心）*/
 	window=gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title(GTK_WINDOW(window),"Ubuntu Tweak");
-	gtk_container_set_border_width(GTK_CONTAINER(window),10);
 	gtk_window_set_default_size(GTK_WINDOW(window),710,630);
+	gtk_window_set_resizable(GTK_WINDOW(window),FALSE);
+	gtk_container_set_border_width(GTK_CONTAINER(window),10);
 	gtk_window_set_position(GTK_WINDOW(window),GTK_WIN_POS_CENTER);
 	g_signal_connect(G_OBJECT(window),"delete_event",G_CALLBACK(gtk_main_quit),NULL);
 	

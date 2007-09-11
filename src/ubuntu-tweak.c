@@ -41,7 +41,7 @@ GtkWidget *create_gconf_checkbutton(gchar *label,gchar *key,gchar *dir,gpointer 
 	gtk_widget_show(checkbutton);
 	g_signal_connect(G_OBJECT(checkbutton),"toggled",G_CALLBACK(toggledata),key);
 	if(enterdata!=NULL){
-		g_signal_connect(G_OBJECT(checkbutton),"enter",G_CALLBACK(enterdata),key);
+		g_signal_connect(G_OBJECT(checkbutton),"enter",G_CALLBACK(enterdata),NULL);
 	}
 
 	if(value==NULL){
@@ -188,6 +188,12 @@ void _checkbutton_toggled_base(GtkWidget *checkbutton,
 			gtk_widget_set_sensitive(sensitive,FALSE);
 		}
 	}
+}
+void _expert_mode_base(GtkWidget *widget,
+			gpointer data,
+			GtkWidget *main)
+{
+	
 }
 
 /*下面的指针data是经第三方传入的key*/
