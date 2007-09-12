@@ -16,6 +16,8 @@ GtkWidget *create_text_checkbutton(gchar *label,gchar *key,gchar *shell,gpointer
 
 GtkWidget *create_gconf_entry(gchar *key,gchar *dir,gpointer data);
 
+void button_test(GtkWidget *widget,gpointer);
+
 void text_checkbutton_toggled(GtkWidget *checkbutton,gpointer data);
 
 void checkbutton_toggled(GtkWidget *checkbutton,

@@ -126,7 +126,7 @@ GtkWidget *create_main_window(void)
 	window=gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title(GTK_WINDOW(window),"Ubuntu Tweak");
 	gtk_window_set_default_size(GTK_WINDOW(window),710,630);
-	gtk_window_set_resizable(GTK_WINDOW(window),FALSE);
+	gtk_window_set_resizable(GTK_WINDOW(window),TRUE);
 	gtk_container_set_border_width(GTK_CONTAINER(window),10);
 	gtk_window_set_position(GTK_WINDOW(window),GTK_WIN_POS_CENTER);
 	g_signal_connect(G_OBJECT(window),"delete_event",G_CALLBACK(gtk_main_quit),NULL);
@@ -251,6 +251,7 @@ GtkWidget *create_main_window(void)
 	gtk_box_pack_end(GTK_BOX(hbox_footer),hbutton,FALSE,FALSE,0);
 
 	button_ok=gtk_button_new_from_stock(GTK_STOCK_OK);
+	g_signal_connect(GTK_OBJECT(button_ok),"clicked",G_CALLBACK(button_test),NULL);
 	gtk_widget_show(button_ok);
 	gtk_container_add(GTK_CONTAINER(hbutton),button_ok);
 

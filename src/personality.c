@@ -31,6 +31,11 @@ GtkWidget *create_personality_notebook()
 	gtk_widget_show(page_label);
 	gtk_notebook_append_page(GTK_NOTEBOOK(notebook),main_vbox,page_label);
 
+	main_vbox=create_fcitx_page();
+	page_label=gtk_label_new(_("Fcitx"));
+	gtk_widget_show(page_label);
+	gtk_notebook_append_page(GTK_NOTEBOOK(notebook),main_vbox,page_label);
+
 	main_vbox=gtk_frame_new(_("Not complete yet"));
 	gtk_widget_show(main_vbox);
 	page_label=gtk_label_new(_("History"));

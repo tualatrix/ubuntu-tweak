@@ -30,11 +30,13 @@ void expander_change(GtkWidget *widget,gpointer data)
 	bool=gtk_expander_get_expanded(GTK_EXPANDER(widget));	
 	if(bool==TRUE){
 		g_print("TRUE\n");
-		present_expert=label;
-		
+
 	}else{
 		g_print("FALSE\n");
-
+		gtk_widget_hide(present_expert);
+		present_expert=label;
+		gtk_widget_show(label);
+		gtk_box_pack_start(GTK_BOX(expert_box),label,FALSE,FALSE,0);
 	}
 }
 
@@ -48,7 +50,7 @@ GtkWidget *create_expert_autosavesession()
 	
 	label=gtk_label_new("Select thisoption if you want the session manager to save the current state of your session.The session manager saves the session-managed applications that are open,and the settings associated with the session-managed applications. The next time that you start a session, the applications start automatically, with the saved settings.If you do not select this option, when you end your session the Logout Confirmation dialog displays a Save current setup option.");
 	gtk_widget_show(label);
-	gtk_box_pack_start(GTK_BOX(vbox),label,FALSE,FALSE,0);
+	gtk_box_pack_start(GTK_BOX(vbox),label,TRUE,TRUE,0);
 
 	return vbox;	
 }
@@ -57,10 +59,12 @@ void show_expert_autosavesession(GtkWidget *widget,gpointer data)
 {
 	if(present_expert!=expert_autosavesession){
 		gtk_widget_hide(present_expert);
-		expert_autosavesession=create_expert_autosavesession();
+		if(expert_autosavesession==NULL){
+			expert_autosavesession=create_expert_autosavesession();
+		}
 		gtk_widget_show(expert_autosavesession);
 		present_expert=expert_autosavesession;
-		gtk_box_pack_start(GTK_BOX(expert_box),present_expert,FALSE,FALSE,0);
+		gtk_box_pack_start(GTK_BOX(expert_box),expert_autosavesession,FALSE,FALSE,0);
 	}
 }
 
