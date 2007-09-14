@@ -118,7 +118,7 @@ if [ $INPUT_METHOD = "fcitx" ]; then
 		if [ ! -f $FCITX_USER_TABLE ]; then
 			cp -v $FCITX_TABLE $FCITX_USER_TABLE
 		fi
-		iconv -f GB2312 -t UTF-8 $FCITX_USER_TABLE>$FCITX_USER_TABLE_TEMP
+		iconv -f GB2312 -t UTF-8 $FCITX_USER_TABLE | sed '$!N; /^\(.*\)\n\1$/!P; D' >$FCITX_USER_TABLE_TEMP
 		iconv -f GB2312 -t UTF-8 $FCITX_CONFIG>$FCITX_CONFIG_TEMP
 		TABLE_WBX=`grep wbx.mb $FCITX_USER_TABLE_TEMP`
 		if [ -z "$TABLE_WBX" ]; then 
@@ -174,11 +174,15 @@ if [ $INPUT_METHOD = "fcitx" ]; then
 		else
 			gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/qw true
 		fi
-
+		TABLE_BANNER_MODE=`grep 主窗口隐藏模式 $FCITX_CONFIG_TEMP|awk -F"=" '{print $2}'|grep 1`
+		if [ -z "$TABLE_MAIN_WINDOW" ]; then 
+			gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/banner_mode false
+		else
+			gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/banner_mode true
+		fi
 		iconv -f UTF-8 -t GB2312 $FCITX_USER_TABLE_TEMP>$FCITX_USER_TABLE
 		iconv -f UTF-8 -t GB2312 $FCITX_CONFIG_TEMP>$FCITX_CONFIG
-
-		
+		rm $FCITX_CONFIG_TEMP $FCITX_USER_TABLE_TEMP
 	else	
 		gconftool-2 --set --type boolean /apps/ubuntu-tweak/system/fcitx false
 fi

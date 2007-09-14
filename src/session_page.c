@@ -180,6 +180,8 @@ GtkWidget *create_session_page()
 {
 /*Session Page*/
 	GtkWidget *session_main_vbox;
+	GtkWidget *frame;
+	GtkWidget *label;
 	GtkWidget *session_vbox;
 	GtkWidget *session_hbox;
 	GtkWidget *session_vbox_right;
@@ -201,14 +203,18 @@ GtkWidget *create_session_page()
 	gtk_box_pack_start(GTK_BOX(session_main_vbox),session_vbox,FALSE,FALSE,0);
 	gtk_container_set_border_width(GTK_CONTAINER(session_vbox),5);
 
-	sitting_label=gtk_label_new(_("Session Control"));
+/*	sitting_label=gtk_label_new(_("Session Control"));
 	gtk_misc_set_alignment(GTK_MISC(sitting_label),0,0);
 	gtk_widget_show(sitting_label);
-	gtk_box_pack_start(GTK_BOX(session_vbox),sitting_label,FALSE,FALSE,0);
+	gtk_box_pack_start(GTK_BOX(session_vbox),sitting_label,FALSE,FALSE,0);*/
+
+	frame=gtk_frame_new("会话控制");
+	gtk_widget_show(frame);
+	gtk_box_pack_start(GTK_BOX(session_vbox),frame,FALSE,FALSE,0);
 
 	session_hbox=gtk_hbox_new(FALSE,10);
 	gtk_widget_show(session_hbox);
-	gtk_box_pack_start(GTK_BOX(session_vbox),session_hbox,FALSE,FALSE,0);
+	gtk_container_add(GTK_CONTAINER(frame),session_hbox);
 
 	blank_label=gtk_label_new(" ");
 	gtk_widget_show(blank_label);

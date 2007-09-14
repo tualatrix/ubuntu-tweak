@@ -9,6 +9,24 @@ FCITX_USER_TABLE_TEMP=${FCITX_USER_TABLE}.tmp
 FCITX_CONFIG=`echo ~/.fcitx/config`
 FCITX_CONFIG_TEMP=${FCITX_CONFIG}.tmp
 
+if [ $1 = "banner_mode" ]; then
+	if [ "$2" = "off" ]; then
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/banner_mode flase
+		iconv -f GB2312 -t UTF-8 $FCITX_CONFIG>$FCITX_CONFIG_TEMP
+		sed -e 's/主窗口隐藏模式.*/主窗口隐藏模式=0/' $FCITX_CONFIG_TEMP> $FCITX_CONFIG_TEMP.tmp
+		iconv -f UTF-8 -t GB2312 $FCITX_CONFIG_TEMP.tmp>$FCITX_CONFIG
+		rm $FCITX_CONFIG_TEMP.tmp $FCITX_CONFIG_TEMP
+		echo "Fcitx: turn off banner_mode "
+	else
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/banner_mode true
+		iconv -f GB2312 -t UTF-8 $FCITX_CONFIG>$FCITX_CONFIG_TEMP
+		sed -e 's/主窗口隐藏模式.*/主窗口隐藏模式=1/' $FCITX_CONFIG_TEMP> $FCITX_CONFIG_TEMP.tmp
+		iconv -f UTF-8 -t GB2312 $FCITX_CONFIG_TEMP.tmp>$FCITX_CONFIG
+		rm $FCITX_CONFIG_TEMP.tmp $FCITX_CONFIG_TEMP
+		echo "Fcitx: turn on banner_mode "
+	fi
+fi
+
 if [ $1 = "cj" ]; then
 	if [ "$2" = "off" ]; then
 		gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/cj flase
