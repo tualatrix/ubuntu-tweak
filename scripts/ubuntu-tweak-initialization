@@ -157,7 +157,6 @@ if [ $INPUT_METHOD = "fcitx" ]; then
 			gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/qxm true
 		fi	
 		TABLE_PY=`grep 使用拼音 $FCITX_CONFIG_TEMP|awk -F"=" '{print $2}'|grep 1`
-		echo $TABLE_PY
 		if [ -z "$TABLE_PY" ]; then 
 			gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/py false
 		else
@@ -174,7 +173,12 @@ if [ $INPUT_METHOD = "fcitx" ]; then
 			gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/qw false
 		else
 			gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/qw true
-		fi	
+		fi
+
+		iconv -f UTF-8 -t GB2312 $FCITX_USER_TABLE_TEMP>$FCITX_USER_TABLE
+		iconv -f UTF-8 -t GB2312 $FCITX_CONFIG_TEMP>$FCITX_CONFIG
+
+		
 	else	
 		gconftool-2 --set --type boolean /apps/ubuntu-tweak/system/fcitx false
 fi

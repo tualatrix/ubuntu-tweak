@@ -153,7 +153,7 @@ GtkWidget *create_main_window(void)
 
 /*创建工具条与内容区域的一条分隔线*/
 	separator=gtk_vseparator_new();
-	gtk_widget_set_size_request(separator,10,400);
+	gtk_widget_set_size_request(separator,20,450);
 	gtk_box_pack_start(GTK_BOX(hbox_content),separator,FALSE,FALSE,0);
 	gtk_widget_show(separator);
 

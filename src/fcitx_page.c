@@ -15,12 +15,14 @@ gchar *key_fcitx_table[9]={
 	"/apps/ubuntu-tweak/user/fcitx/wbx",
 	"/apps/ubuntu-tweak/user/fcitx/wf",	
 };
+gchar *script_fcitx=PACKAGE_SCRIPTS_DIR"/ubuntu-tweak-fcitx";
 
 GtkWidget *create_fcitx_page()
 {
 	GtkWidget *main_vbox;
 	GtkWidget *vbox;
 	GtkWidget *hbox;
+	GtkWidget *frame;
 	GtkWidget *label;
 	GtkWidget *separator;
 	GtkWidget *checkbutton;
@@ -29,50 +31,52 @@ GtkWidget *create_fcitx_page()
 	gtk_widget_show(main_vbox);
 	gtk_container_set_border_width(GTK_CONTAINER(main_vbox),10);
 
-
 	label=gtk_label_new(_("Fcitx"));
 	gtk_misc_set_alignment(GTK_MISC(label),0,0);
 	gtk_widget_show(label);
 	gtk_box_pack_start(GTK_BOX(main_vbox),label,FALSE,FALSE,0);
 
+	frame=gtk_frame_new("输入法");
+	gtk_widget_show(frame);
+	gtk_box_pack_start(GTK_BOX(main_vbox),frame,FALSE,FALSE,0);
+
+	vbox=gtk_vbox_new(FALSE,10);
+	gtk_widget_show(vbox);
+	gtk_container_add(GTK_CONTAINER(frame),vbox);
+
+	hbox=gtk_hbox_new(FALSE,10);
+	gtk_widget_show(hbox);
+	gtk_box_pack_start(GTK_BOX(vbox),hbox,FALSE,FALSE,10);
+	
+	checkbutton=create_text_checkbutton("启用仓颉",key_fcitx_table[0],g_strconcat(script_fcitx," cj",NULL),NULL);
+	gtk_box_pack_start(GTK_BOX(hbox),checkbutton,FALSE,FALSE,0);
+
+	checkbutton=create_text_checkbutton("启用二笔",key_fcitx_table[1],g_strconcat(script_fcitx," erbi",NULL),NULL);
+	gtk_box_pack_start(GTK_BOX(hbox),checkbutton,FALSE,FALSE,0);
+
+	checkbutton=create_text_checkbutton("启用拼音",key_fcitx_table[2],g_strconcat(script_fcitx," py",NULL),NULL);
+	gtk_box_pack_start(GTK_BOX(hbox),checkbutton,FALSE,FALSE,0);
+
+	checkbutton=create_text_checkbutton("启用区位",key_fcitx_table[3],g_strconcat(script_fcitx," qw",NULL),NULL);
+	gtk_box_pack_start(GTK_BOX(hbox),checkbutton,FALSE,FALSE,0);
+
 	hbox=gtk_hbox_new(FALSE,5);
 	gtk_widget_show(hbox);
-	gtk_box_pack_start(GTK_BOX(main_vbox),hbox,FALSE,FALSE,0);
+	gtk_box_pack_start(GTK_BOX(vbox),hbox,FALSE,FALSE,0);
 
-	label=gtk_label_new(" ");
-	gtk_widget_show(label);
-	gtk_box_pack_start(GTK_BOX(hbox),label,FALSE,FALSE,0);
-
-
-	checkbutton=create_text_checkbutton("启用仓颉",key_fcitx_table[0],NULL,NULL);
+	checkbutton=create_text_checkbutton("启用冰蟾全息",key_fcitx_table[4],g_strconcat(script_fcitx," qxm",NULL),NULL);
 	gtk_box_pack_start(GTK_BOX(hbox),checkbutton,FALSE,FALSE,0);
 
-	checkbutton=create_text_checkbutton("启用二笔",key_fcitx_table[1],NULL,NULL);
+	checkbutton=create_text_checkbutton("启用双拼",key_fcitx_table[5],g_strconcat(script_fcitx," sp",NULL),NULL);
 	gtk_box_pack_start(GTK_BOX(hbox),checkbutton,FALSE,FALSE,0);
 
-	checkbutton=create_text_checkbutton("启用拼音",key_fcitx_table[2],NULL,NULL);
+	checkbutton=create_text_checkbutton("启用五笔拼音",key_fcitx_table[6],g_strconcat(script_fcitx," wbpy",NULL),NULL);
 	gtk_box_pack_start(GTK_BOX(hbox),checkbutton,FALSE,FALSE,0);
 
-	checkbutton=create_text_checkbutton("启用区位",key_fcitx_table[3],NULL,NULL);
+	checkbutton=create_text_checkbutton("启用五笔",key_fcitx_table[7],g_strconcat(script_fcitx," wbx",NULL),NULL);
 	gtk_box_pack_start(GTK_BOX(hbox),checkbutton,FALSE,FALSE,0);
 
-	hbox=gtk_hbox_new(FALSE,5);
-	gtk_widget_show(hbox);
-	gtk_box_pack_start(GTK_BOX(main_vbox),hbox,FALSE,FALSE,0);
-
-	checkbutton=create_text_checkbutton("启用冰蟾全息",key_fcitx_table[4],NULL,NULL);
-	gtk_box_pack_start(GTK_BOX(hbox),checkbutton,FALSE,FALSE,0);
-
-	checkbutton=create_text_checkbutton("启用双拼",key_fcitx_table[5],NULL,NULL);
-	gtk_box_pack_start(GTK_BOX(hbox),checkbutton,FALSE,FALSE,0);
-
-	checkbutton=create_text_checkbutton("启用五笔拼音",key_fcitx_table[6],NULL,NULL);
-	gtk_box_pack_start(GTK_BOX(hbox),checkbutton,FALSE,FALSE,0);
-
-	checkbutton=create_text_checkbutton("启用五笔",key_fcitx_table[7],NULL,NULL);
-	gtk_box_pack_start(GTK_BOX(hbox),checkbutton,FALSE,FALSE,0);
-
-	checkbutton=create_text_checkbutton("启用晚风",key_fcitx_table[8],NULL,NULL);
+	checkbutton=create_text_checkbutton("启用晚风",key_fcitx_table[8],g_strconcat(script_fcitx," wf",NULL),NULL);
 	gtk_box_pack_start(GTK_BOX(hbox),checkbutton,FALSE,FALSE,0);
 
 	vbox=gtk_vbox_new(FALSE,10);

@@ -1,0 +1,304 @@
+#!/bin/bash
+
+#FCITX Settings
+INPUT_METHOD=`env | grep XMODIFIERS | awk -F"=" '{print $3}'`
+FCITX_SHARE=`whereis fcitx | awk '{print $5}'`
+FCITX_TABLE=${FCITX_SHARE}/data/tables.conf
+FCITX_USER_TABLE=`echo ~/.fcitx/tables.conf`
+FCITX_USER_TABLE_TEMP=${FCITX_USER_TABLE}.tmp
+FCITX_CONFIG=`echo ~/.fcitx/config`
+FCITX_CONFIG_TEMP=${FCITX_CONFIG}.tmp
+
+if [ $1 = "cj" ]; then
+	if [ "$2" = "off" ]; then
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/cj flase
+		iconv -f GB2312 -t UTF-8 $FCITX_USER_TABLE>$FCITX_USER_TABLE_TEMP
+		line="$(tail -1 $FCITX_USER_TABLE_TEMP)"
+		[[ $line != "" ]] && echo "" >>$FCITX_USER_TABLE_TEMP
+
+		sed '
+		/名称=仓颉/,/^$/d
+		' $FCITX_USER_TABLE_TEMP |sed '
+		/\[码表\]/{
+		N
+		s/\[码表\]\n\[码表\]/\[码表\]/
+		}' |sed '$d' >$FCITX_USER_TABLE_TEMP.tmp
+		iconv -f UTF-8 -t GB2312 $FCITX_USER_TABLE_TEMP.tmp>$FCITX_USER_TABLE
+		rm $FCITX_USER_TABLE_TEMP.tmp $FCITX_USER_TABLE_TEMP
+		echo "Fcitx: turn off cj "
+	else
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/cj true
+		iconv -f GB2312 -t UTF-8 $FCITX_USER_TABLE>$FCITX_USER_TABLE_TEMP
+		echo -e "\n[码表]
+名称=仓颉
+码表=cj.mb
+调频=0
+拼音=1
+拼音键=[
+自动上屏=-1
+空码自动上屏=0
+模糊=1
+模糊键=?
+自动词组=0
+精确匹配=0
+提示编码=0" >> $FCITX_USER_TABLE_TEMP
+		iconv -f UTF-8 -t GB2312 $FCITX_USER_TABLE_TEMP>$FCITX_USER_TABLE
+		rm $FCITX_USER_TABLE_TEMP
+		echo "Fcitx: turn on cj "
+	fi
+fi
+
+if [ $1 = "erbi" ]; then
+	if [ "$2" = "off" ]; then
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/erbi flase
+		iconv -f GB2312 -t UTF-8 $FCITX_USER_TABLE>$FCITX_USER_TABLE_TEMP
+		line="$(tail -1 $FCITX_USER_TABLE_TEMP)"
+		[[ $line != "" ]] && echo "" >>$FCITX_USER_TABLE_TEMP
+
+		sed '
+		/名称=二笔/,/^$/d
+		' $FCITX_USER_TABLE_TEMP |sed '
+		/\[码表\]/{
+		N
+		s/\[码表\]\n\[码表\]/\[码表\]/
+		}' |sed '$d' >$FCITX_USER_TABLE_TEMP.tmp
+		iconv -f UTF-8 -t GB2312 $FCITX_USER_TABLE_TEMP.tmp>$FCITX_USER_TABLE
+		rm $FCITX_USER_TABLE_TEMP.tmp $FCITX_USER_TABLE_TEMP
+		echo "Fcitx: turn off erbi "
+	else
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/erbi true
+		iconv -f GB2312 -t UTF-8 $FCITX_USER_TABLE>$FCITX_USER_TABLE_TEMP
+		echo -e "\n[码表]
+名称=二笔
+码表=erbi.mb
+调频=0
+拼音=1
+拼音键=[
+自动上屏=-1
+空码自动上屏=0
+模糊=1
+模糊键=?
+自动词组=1
+自动词组长度=4
+词组参与自动造词=0
+保存自动词组=0
+精确匹配=0
+提示编码=0" >> $FCITX_USER_TABLE_TEMP
+		iconv -f UTF-8 -t GB2312 $FCITX_USER_TABLE_TEMP>$FCITX_USER_TABLE
+		rm $FCITX_USER_TABLE_TEMP
+		echo "Fcitx: turn on erbi "
+	fi
+fi
+
+if [ $1 = "wbpy" ]; then
+	if [ "$2" = "off" ]; then
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/wbpy flase
+		iconv -f GB2312 -t UTF-8 $FCITX_USER_TABLE>$FCITX_USER_TABLE_TEMP
+		line="$(tail -1 $FCITX_USER_TABLE_TEMP)"
+		[[ $line != "" ]] && echo "" >>$FCITX_USER_TABLE_TEMP
+
+		sed '
+		/名称=五笔拼音/,/^$/d
+		' $FCITX_USER_TABLE_TEMP |sed '
+		/\[码表\]/{
+		N
+		s/\[码表\]\n\[码表\]/\[码表\]/
+		}' |sed '$d' >$FCITX_USER_TABLE_TEMP.tmp
+		iconv -f UTF-8 -t GB2312 $FCITX_USER_TABLE_TEMP.tmp>$FCITX_USER_TABLE
+		rm $FCITX_USER_TABLE_TEMP.tmp $FCITX_USER_TABLE_TEMP
+		echo "Fcitx: turn off wbpy "
+	else
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/wbpy true
+		iconv -f GB2312 -t UTF-8 $FCITX_USER_TABLE>$FCITX_USER_TABLE_TEMP
+		echo -e "\n[码表]
+名称=五笔拼音
+码表=wbpy.mb
+调频=2
+拼音=0
+自动上屏=-1
+空码自动上屏=-1
+自动词组=0
+精确匹配=0
+提示编码=0" >> $FCITX_USER_TABLE_TEMP
+		iconv -f UTF-8 -t GB2312 $FCITX_USER_TABLE_TEMP>$FCITX_USER_TABLE
+		rm $FCITX_USER_TABLE_TEMP
+		echo "Fcitx: turn on wbpy "
+	fi
+fi
+
+if [ $1 = "qxm" ]; then
+	if [ "$2" = "off" ]; then
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/qxm flase
+		iconv -f GB2312 -t UTF-8 $FCITX_USER_TABLE>$FCITX_USER_TABLE_TEMP
+		line="$(tail -1 $FCITX_USER_TABLE_TEMP)"
+		[[ $line != "" ]] && echo "" >>$FCITX_USER_TABLE_TEMP
+
+		sed '
+		/名称=冰蟾全息/,/^$/d
+		' $FCITX_USER_TABLE_TEMP |sed '
+		/\[码表\]/{
+		N
+		s/\[码表\]\n\[码表\]/\[码表\]/
+		}' |sed '$d' >$FCITX_USER_TABLE_TEMP.tmp
+		iconv -f UTF-8 -t GB2312 $FCITX_USER_TABLE_TEMP.tmp>$FCITX_USER_TABLE
+		rm $FCITX_USER_TABLE_TEMP.tmp $FCITX_USER_TABLE_TEMP
+		echo "Fcitx: turn off qxm "
+	else
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/qxm true
+		iconv -f GB2312 -t UTF-8 $FCITX_USER_TABLE>$FCITX_USER_TABLE_TEMP
+		echo -e "\n[码表]
+名称=冰蟾全息
+码表=qxm.mb
+调频=1
+拼音=0
+#拼音键=z
+自动上屏=-1
+模糊=1
+模糊键=#
+自动词组=1
+自动词组长度=4
+词组参与自动造词=1
+保存自动词组=1
+精确匹配=0
+提示编码=1
+#符号=zzzz" >> $FCITX_USER_TABLE_TEMP
+		iconv -f UTF-8 -t GB2312 $FCITX_USER_TABLE_TEMP>$FCITX_USER_TABLE
+		rm $FCITX_USER_TABLE_TEMP
+		echo "Fcitx: turn on qxm "
+	fi
+fi
+
+if [ $1 = "wf" ]; then
+	if [ "$2" = "off" ]; then
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/wf flase
+		iconv -f GB2312 -t UTF-8 $FCITX_USER_TABLE>$FCITX_USER_TABLE_TEMP
+		line="$(tail -1 $FCITX_USER_TABLE_TEMP)"
+		[[ $line != "" ]] && echo "" >>$FCITX_USER_TABLE_TEMP
+
+		sed '
+		/名称=晚风/,/^$/d
+		' $FCITX_USER_TABLE_TEMP |sed '
+		/\[码表\]/{
+		N
+		s/\[码表\]\n\[码表\]/\[码表\]/
+		}' |sed '$d' >$FCITX_USER_TABLE_TEMP.tmp
+		iconv -f UTF-8 -t GB2312 $FCITX_USER_TABLE_TEMP.tmp>$FCITX_USER_TABLE
+		rm $FCITX_USER_TABLE_TEMP.tmp $FCITX_USER_TABLE_TEMP
+		echo "Fcitx: turn off wf "
+	else
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/wf true
+		iconv -f GB2312 -t UTF-8 $FCITX_USER_TABLE>$FCITX_USER_TABLE_TEMP
+		echo -e "\n[码表]
+名称=晚风
+码表=wanfeng.mb
+中止键=,;/.
+调频=0
+拼音=0
+自动上屏=-1
+空码自动上屏=1
+模糊=0
+自动词组=0
+精确匹配=0
+提示编码=1" >> $FCITX_USER_TABLE_TEMP
+		iconv -f UTF-8 -t GB2312 $FCITX_USER_TABLE_TEMP>$FCITX_USER_TABLE
+		rm $FCITX_USER_TABLE_TEMP
+		echo "Fcitx: turn on wf "
+	fi
+fi
+
+if [ $1 = "wbx" ]; then
+	if [ "$2" = "off" ]; then
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/wbx flase
+		iconv -f GB2312 -t UTF-8 $FCITX_USER_TABLE>$FCITX_USER_TABLE_TEMP
+		line="$(tail -1 $FCITX_USER_TABLE_TEMP)"
+		[[ $line != "" ]] && echo "" >>$FCITX_USER_TABLE_TEMP
+
+		sed '
+		/名称=五笔字型/,/^$/d
+		' $FCITX_USER_TABLE_TEMP |sed '
+		/\[码表\]/{
+		N
+		s/\[码表\]\n\[码表\]/\[码表\]/
+		}' |sed '$d' >$FCITX_USER_TABLE_TEMP.tmp
+		iconv -f UTF-8 -t GB2312 $FCITX_USER_TABLE_TEMP.tmp>$FCITX_USER_TABLE
+		rm $FCITX_USER_TABLE_TEMP.tmp $FCITX_USER_TABLE_TEMP
+		echo "Fcitx: turn off wbx "
+	else
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/wbx true
+		iconv -f GB2312 -t UTF-8 $FCITX_USER_TABLE>$FCITX_USER_TABLE_TEMP
+		echo -e "\n[码表]
+名称=五笔字型
+码表=wbx.mb
+调频=0
+拼音=1
+拼音键=z
+自动上屏=-1
+空码自动上屏=0
+模糊=1
+模糊键=z
+自动词组=1
+自动词组长度=4
+词组参与自动造词=1
+保存自动词组=0
+精确匹配=0
+提示编码=0
+符号=zzzz" >> $FCITX_USER_TABLE_TEMP
+		iconv -f UTF-8 -t GB2312 $FCITX_USER_TABLE_TEMP>$FCITX_USER_TABLE
+		rm $FCITX_USER_TABLE_TEMP
+		echo "Fcitx: turn on wbx "
+	fi
+fi
+
+if [ $1 = "sp" ]; then
+	if [ "$2" = "off" ]; then
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/sp flase
+		iconv -f GB2312 -t UTF-8 $FCITX_CONFIG>$FCITX_CONFIG_TEMP
+		sed -e 's/使用双拼.*/使用双拼=0/' $FCITX_CONFIG_TEMP> $FCITX_CONFIG_TEMP.tmp
+		iconv -f UTF-8 -t GB2312 $FCITX_CONFIG_TEMP.tmp>$FCITX_CONFIG
+		rm $FCITX_CONFIG_TEMP.tmp $FCITX_CONFIG_TEMP
+		echo "Fcitx: turn off sp "
+	else
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/sp true
+		iconv -f GB2312 -t UTF-8 $FCITX_CONFIG>$FCITX_CONFIG_TEMP
+		sed -e 's/使用双拼.*/使用双拼=1/' $FCITX_CONFIG_TEMP> $FCITX_CONFIG_TEMP.tmp
+		iconv -f UTF-8 -t GB2312 $FCITX_CONFIG_TEMP.tmp>$FCITX_CONFIG
+		rm $FCITX_CONFIG_TEMP.tmp $FCITX_CONFIG_TEMP
+		echo "Fcitx: turn on sp "
+	fi
+fi
+
+if [ $1 = "py" ]; then
+	if [ "$2" = "off" ]; then
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/py flase
+		iconv -f GB2312 -t UTF-8 $FCITX_CONFIG>$FCITX_CONFIG_TEMP
+		sed -e 's/使用拼音.*/使用拼音=0/' $FCITX_CONFIG_TEMP> $FCITX_CONFIG_TEMP.tmp
+		iconv -f UTF-8 -t GB2312 $FCITX_CONFIG_TEMP.tmp>$FCITX_CONFIG
+		rm $FCITX_CONFIG_TEMP.tmp $FCITX_CONFIG_TEMP
+		echo "Fcitx: turn off py "
+	else
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/py true
+		iconv -f GB2312 -t UTF-8 $FCITX_CONFIG>$FCITX_CONFIG_TEMP
+		sed -e 's/使用拼音.*/使用拼音=1/' $FCITX_CONFIG_TEMP> $FCITX_CONFIG_TEMP.tmp
+		iconv -f UTF-8 -t GB2312 $FCITX_CONFIG_TEMP.tmp>$FCITX_CONFIG
+		rm $FCITX_CONFIG_TEMP.tmp $FCITX_CONFIG_TEMP
+		echo "Fcitx: turn on py "
+	fi
+fi
+
+if [ $1 = "qw" ]; then
+	if [ "$2" = "off" ]; then
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/qw flase
+		iconv -f GB2312 -t UTF-8 $FCITX_CONFIG>$FCITX_CONFIG_TEMP
+		sed -e 's/使用区位.*/使用区位=0/' $FCITX_CONFIG_TEMP> $FCITX_CONFIG_TEMP.tmp
+		iconv -f UTF-8 -t GB2312 $FCITX_CONFIG_TEMP.tmp>$FCITX_CONFIG
+		rm $FCITX_CONFIG_TEMP.tmp $FCITX_CONFIG_TEMP
+		echo "Fcitx: turn off qw "
+	else
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/qw true
+		iconv -f GB2312 -t UTF-8 $FCITX_CONFIG>$FCITX_CONFIG_TEMP
+		sed -e 's/使用区位.*/使用区位=1/' $FCITX_CONFIG_TEMP> $FCITX_CONFIG_TEMP.tmp
+		iconv -f UTF-8 -t GB2312 $FCITX_CONFIG_TEMP.tmp>$FCITX_CONFIG
+		rm $FCITX_CONFIG_TEMP.tmp $FCITX_CONFIG_TEMP
+		echo "Fcitx: turn on qw "
+	fi
+fi
