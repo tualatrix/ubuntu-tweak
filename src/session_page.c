@@ -13,8 +13,9 @@ gchar *splash_image="/apps/gnome-session/options/splash_image";
 /*expert mode*/
 GtkWidget *expander;
 GtkWidget *expert_box;
-GtkWidget *label;
+GtkWidget *expert_label;
 GtkWidget *expert_autosavesession;
+GtkWidget *expert_showlogoutprompt;
 gpointer present_expert;
 
 GtkWidget *splash_image_button;
@@ -23,6 +24,31 @@ GtkWidget *splash_image_preview;
 gchar *filename;
 gchar *filedir;
 GdkPixbuf *original_preview;
+
+GtkWidget *create_expert_label()
+{
+	GtkWidget *vbox;
+	GtkWidget *label;
+	
+	vbox=gtk_vbox_new(FALSE,0);
+	gtk_widget_show(vbox);
+	
+	label=gtk_label_new("Welcome to expert.");
+	gtk_widget_show(label);
+	gtk_box_pack_start(GTK_BOX(vbox),label,TRUE,TRUE,0);
+
+	return vbox;	
+}
+void show_expert_label()
+{
+	if(present_expert!=NULL){
+		gtk_widget_hide(present_expert);
+	}
+	expert_label=create_expert_label();
+	gtk_widget_show(expert_label);
+	present_expert=expert_label;
+	gtk_box_pack_start(GTK_BOX(expert_box),expert_label,TRUE,TRUE,0);
+}
 
 void expander_change(GtkWidget *widget,gpointer data)
 {
@@ -33,10 +59,7 @@ void expander_change(GtkWidget *widget,gpointer data)
 
 	}else{
 		g_print("FALSE\n");
-		gtk_widget_hide(present_expert);
-		present_expert=label;
-		gtk_widget_show(label);
-		gtk_box_pack_start(GTK_BOX(expert_box),label,FALSE,FALSE,0);
+		show_expert_label();
 	}
 }
 
@@ -48,7 +71,22 @@ GtkWidget *create_expert_autosavesession()
 	vbox=gtk_vbox_new(FALSE,0);
 	gtk_widget_show(vbox);
 	
-	label=gtk_label_new("Select thisoption if you want the session manager to save the current state of your session.The session manager saves the session-managed applications that are open,and the settings associated with the session-managed applications. The next time that you start a session, the applications start automatically, with the saved settings.If you do not select this option, when you end your session the Logout Confirmation dialog displays a Save current setup option.");
+	label=gtk_label_new("Select thisoption if you want the session manager...");
+	gtk_widget_show(label);
+	gtk_box_pack_start(GTK_BOX(vbox),label,TRUE,TRUE,0);
+
+	return vbox;	
+}
+
+GtkWidget *create_expert_showlogoutprompt()
+{
+	GtkWidget *vbox;
+	GtkWidget *label;
+	
+	vbox=gtk_vbox_new(FALSE,0);
+	gtk_widget_show(vbox);
+	
+	label=gtk_label_new("Log out?kwg kwg kwg ...");
 	gtk_widget_show(label);
 	gtk_box_pack_start(GTK_BOX(vbox),label,TRUE,TRUE,0);
 
@@ -59,12 +97,21 @@ void show_expert_autosavesession(GtkWidget *widget,gpointer data)
 {
 	if(present_expert!=expert_autosavesession){
 		gtk_widget_hide(present_expert);
-		if(expert_autosavesession==NULL){
-			expert_autosavesession=create_expert_autosavesession();
-		}
+		expert_autosavesession=create_expert_autosavesession();
 		gtk_widget_show(expert_autosavesession);
 		present_expert=expert_autosavesession;
 		gtk_box_pack_start(GTK_BOX(expert_box),expert_autosavesession,FALSE,FALSE,0);
+	}
+}
+
+void show_expert_showlogoutprompt(GtkWidget *widget,gpointer data)
+{
+	if(present_expert!=expert_showlogoutprompt){
+		gtk_widget_hide(present_expert);
+		expert_showlogoutprompt=create_expert_showlogoutprompt();
+		gtk_widget_show(expert_showlogoutprompt);
+		present_expert=expert_showlogoutprompt;
+		gtk_box_pack_start(GTK_BOX(expert_box),expert_showlogoutprompt,FALSE,FALSE,0);
 	}
 }
 
@@ -203,18 +250,18 @@ GtkWidget *create_session_page()
 	gtk_box_pack_start(GTK_BOX(session_main_vbox),session_vbox,FALSE,FALSE,0);
 	gtk_container_set_border_width(GTK_CONTAINER(session_vbox),5);
 
-/*	sitting_label=gtk_label_new(_("Session Control"));
+	sitting_label=gtk_label_new(_("Session Control"));
 	gtk_misc_set_alignment(GTK_MISC(sitting_label),0,0);
 	gtk_widget_show(sitting_label);
-	gtk_box_pack_start(GTK_BOX(session_vbox),sitting_label,FALSE,FALSE,0);*/
+	gtk_box_pack_start(GTK_BOX(session_vbox),sitting_label,FALSE,FALSE,0);
 
-	frame=gtk_frame_new("会话控制");
+/*	frame=gtk_frame_new("会话控制");
 	gtk_widget_show(frame);
-	gtk_box_pack_start(GTK_BOX(session_vbox),frame,FALSE,FALSE,0);
+	gtk_box_pack_start(GTK_BOX(session_vbox),frame,FALSE,FALSE,0);*/
 
 	session_hbox=gtk_hbox_new(FALSE,10);
 	gtk_widget_show(session_hbox);
-	gtk_container_add(GTK_CONTAINER(frame),session_hbox);
+	gtk_box_pack_start(GTK_BOX(session_vbox),session_hbox,FALSE,FALSE,0);
 
 	blank_label=gtk_label_new(" ");
 	gtk_widget_show(blank_label);
@@ -236,7 +283,7 @@ GtkWidget *create_session_page()
 		logout_prompt,
 		session_dir,
 		checkbutton_toggled,
-		NULL);
+		show_expert_showlogoutprompt);
 	gtk_widget_show(display_menu_checkbutton);
 	gtk_box_pack_start(GTK_BOX(session_vbox_right),display_menu_checkbutton,FALSE,FALSE,0);
 
@@ -268,11 +315,6 @@ GtkWidget *create_session_page()
 	expert_box=gtk_vbox_new(FALSE,0);
 	gtk_widget_set_size_request(GTK_WIDGET(expert_box),200,100);
 	gtk_widget_show(expert_box);
-
-	label=gtk_label_new(_("Not complete yet"));
-	present_expert=label;
-	gtk_widget_show(label);
-	gtk_box_pack_start(GTK_BOX(expert_box),label,FALSE,FALSE,0);
 	gtk_container_add(GTK_CONTAINER(expander),expert_box);
 
 	return session_main_vbox;
