@@ -29,45 +29,30 @@ GtkWidget *create_expert_label()
 {
 	GtkWidget *vbox;
 	GtkWidget *label;
-  GtkWidget *view;
-  GtkTextBuffer *buffer;
-  GtkTextIter start, end;
-  PangoFontDescription *font_desc;
-  GdkColor color;
-  GtkTextTag *tag;
-  GtkWidget *sw;
-
-sw = gtk_scrolled_window_new (NULL, NULL);
-gtk_widget_show(sw);
-gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
+	GtkWidget *sw;
+	gchar *welcome;
+	
+	welcome=_("Welcome! \nHere is \"Expert Mode\".If you have any question with the options, or you want to know more information about what operation will be done by the options, Just move your cursor to the cursor.");
+	sw=gtk_scrolled_window_new (NULL, NULL);
+	gtk_widget_show(sw);
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
 			      GTK_POLICY_AUTOMATIC,
 			      GTK_POLICY_AUTOMATIC);
 
-  view = gtk_text_view_new ();
-gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (view), GTK_WRAP_WORD);
-  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+	GtkWidget *view;
+	GtkTextIter iter,start,end;
+	GtkTextBuffer *buffer;
+	GdkPixbuf *pixbuf;
+	view=gtk_text_view_new ();
+	gtk_widget_show(view);
+	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+//	pixbuf=gdk_pixbuf_new_from_file("/home/tualatrix/Desktop/opera-logo.png",NULL);
+	gtk_text_buffer_set_text (buffer,welcome, -1);
+//	gtk_text_buffer_get_bounds(GTK_TEXT_BUFFER(buffer),&start,&end);
+//	gtk_text_buffer_insert_pixbuf(buffer,&end,pixbuf);
+//	gtk_text_buffer_insert(GTK_TEXT_BUFFER(buffer),&end,"\nNew word",-1);
 
-  gtk_text_buffer_set_text (buffer, "Select this option if you want the session manager to save the current state of your session.The session manager saves the session-managed applications that are open,and the settings associated with the session-managed applications. The next time that you start a session, the applications start automatically, with the saved settings. \nIf you do not select this option, when you end your session the Logout Confirmation dialog displays a Save current setup option.", -1);
-
-  /* Change default font throughout the widget */
-  font_desc = pango_font_description_from_string ("Serif 15");
-  gtk_widget_modify_font (view, font_desc);
-  pango_font_description_free (font_desc);
-
-  /* Change default color throughout the widget */
-  gdk_color_parse ("green", &color);
-  gtk_widget_modify_text (view, GTK_STATE_NORMAL, &color);
-
-  /* Change left margin throughout the widget */
-  gtk_text_view_set_left_margin (GTK_TEXT_VIEW (view), 30);
-
-  /* Use a tag to change the color for just one part of the widget */
-  tag = gtk_text_buffer_create_tag (buffer, "blue_foreground",
-	   		            "foreground", "blue", NULL);  
-  gtk_text_buffer_get_iter_at_offset (buffer, &start, 7);
-  gtk_text_buffer_get_iter_at_offset (buffer, &end, 12);
-  gtk_text_buffer_apply_tag (buffer, tag, &start, &end);
-  gtk_container_add (GTK_CONTAINER (sw),view);
+	gtk_container_add(GTK_CONTAINER(sw),view);
 	
 	vbox=gtk_vbox_new(FALSE,0);
 	gtk_widget_show(vbox);
@@ -97,10 +82,10 @@ void expander_change(GtkWidget *widget,gpointer data)
 	gboolean bool;
 	bool=gtk_expander_get_expanded(GTK_EXPANDER(widget));	
 	if(bool==TRUE){
-		g_print("TRUE\n");
+		//g_print("TRUE\n");
 
 	}else{
-		g_print("FALSE\n");
+		//g_print("FALSE\n");
 		show_expert_label();
 	}
 }
@@ -349,7 +334,7 @@ GtkWidget *create_session_page()
 	gtk_widget_set_size_request(splash_image_hbox,256,-1);
 
 /*expander*/
-	expander=gtk_expander_new_with_mnemonic(_("Expert Mode(Not complete yet)"));
+	expander=gtk_expander_new_with_mnemonic(_("Some Options confused you? Need more information? Click here!"));
 	gtk_widget_show(expander);
 	g_signal_connect(G_OBJECT(expander),"activate",G_CALLBACK(expander_change),NULL);
 	gtk_box_pack_start(GTK_BOX(session_vbox),expander,FALSE,FALSE,0);

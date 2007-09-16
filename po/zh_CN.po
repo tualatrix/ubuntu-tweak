@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.1.21\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-10 21:28+0800\n"
-"PO-Revision-Date: 2007-09-10 18:07+0800\n"
+"POT-Creation-Date: 2007-09-16 21:58+0800\n"
+"PO-Revision-Date: 2007-09-16 22:07+0800\n"
 "Last-Translator: TualatriX <tualatrix@gmail.com>\n"
 "Language-Team: TualatriX <tualatrix@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. Welcome screen
-#: src/interface.c:181
+#: src/interface.c:180
 msgid ""
 "     Welcome to Ubuntu Tweak!\n"
 "\n"
@@ -35,47 +35,47 @@ msgstr ""
 "而且现在也不尽完善，只提供较少的选项供配置。\n"
 "但是我会努力使它更加强大，因为一切才刚刚开始。"
 
-#: src/interface.c:202
+#: src/interface.c:201
 msgid "Startup"
 msgstr "启动控制"
 
-#: src/interface.c:203
+#: src/interface.c:202
 msgid "Here you can set the session or change the splash screen"
 msgstr "这里你可以更改会话和Splash闪屏"
 
-#: src/interface.c:210
+#: src/interface.c:209
 msgid "Personalization"
 msgstr "个性设置"
 
-#: src/interface.c:211
+#: src/interface.c:210
 msgid "Set your desktop icons or define the new name of them"
 msgstr "设置你的桌面图标或者为它们定义新的名称"
 
-#: src/interface.c:218
+#: src/interface.c:217
 msgid "System"
 msgstr "系统选项"
 
-#: src/interface.c:219
+#: src/interface.c:218
 msgid "Config your system"
 msgstr "配置你自己的系统"
 
-#: src/interface.c:226
+#: src/interface.c:225
 msgid "Security"
 msgstr "安全相关"
 
-#: src/interface.c:227 src/security.c:30
+#: src/interface.c:226 src/security.c:30
 msgid "Some options for system security"
 msgstr "一些与系统安全相关的选项"
 
-#: src/interface.c:234
+#: src/interface.c:233
 msgid "Applications"
 msgstr "应用软件"
 
-#: src/interface.c:235
+#: src/interface.c:234
 msgid "Easy to config often-used applications"
 msgstr "通过这里简单地配置一些常用软件"
 
-#: src/ubuntu-tweak.c:156 src/ubuntu-tweak.c:210
+#: src/ubuntu-tweak.c:160 src/ubuntu-tweak.c:220
 msgid "Unset"
 msgstr "未设置"
 
@@ -157,20 +157,23 @@ msgstr "使用智能型字幕文件匹配"
 msgid "Sorry, You haven't installed Mplayer yet, Please install first."
 msgstr "对不起，你还没有安装Mplayer，请先安装。"
 
-#: src/personality.c:26
+#: src/personality.c:25
 msgid "Desktop Icon"
 msgstr "桌面图标"
 
-#: src/personality.c:31
+#: src/personality.c:30
 msgid "GNOME Options"
 msgstr "GNOME选项"
 
-#: src/personality.c:35 src/session_page.c:218 src/startup.c:32
-#: src/startup.c:38
+#: src/personality.c:35
+msgid "Fcitx"
+msgstr ""
+
+#: src/personality.c:39 src/startup.c:32 src/startup.c:38
 msgid "Not complete yet"
 msgstr "还没有完成"
 
-#: src/personality.c:37
+#: src/personality.c:41
 msgid "History"
 msgstr "历史记录"
 
@@ -202,34 +205,46 @@ msgstr "禁止使用用户切换"
 msgid "Some Security function"
 msgstr "一些安全相关的功能"
 
-#: src/session_page.c:34
+#: src/session_page.c:35
+msgid ""
+"Welcome! \n"
+"Here is \"Expert Mode\".If you have any question with the options, or you "
+"want to know more information about what operation will be done by the "
+"options, Just move your cursor to the cursor."
+msgstr ""
+"欢迎! \n"
+"这里是\"专家模式\".如果你对一些选项有些困惑，或者你 "
+"想知道那些选项到底动了哪些手脚， "
+"那么把你的光标移到某个选项上即可！"
+
+#: src/session_page.c:152
 msgid "Choose a Splash file"
 msgstr "选择一个Splash文件"
 
-#: src/session_page.c:161
+#: src/session_page.c:280
 msgid "Session Control"
 msgstr "会话控制"
 
-#: src/session_page.c:178
+#: src/session_page.c:301
 msgid "Auto save session"
 msgstr "自动保存会话"
 
-#: src/session_page.c:186
+#: src/session_page.c:309
 msgid "Show logout prompt"
 msgstr "显示注销菜单"
 
-#: src/session_page.c:194
+#: src/session_page.c:317
 msgid "Show splash screen"
 msgstr "显示Splash屏幕"
 
-#: src/session_page.c:202
+#: src/session_page.c:325
 msgid "Click the big button to change splash screen"
 msgstr "点击大按钮来更改Splash屏幕"
 
 #. expander
-#: src/session_page.c:214
-msgid "Expert Mode(Not complete yet)"
-msgstr "专家模式（还没有完成）"
+#: src/session_page.c:337
+msgid "Some Options confused you? Need more information? Click here!"
+msgstr "一些选项让你困惑吗？需要更多的信息？点击这里吧！"
 
 #. Session label
 #: src/startup.c:21
