@@ -29,13 +29,55 @@ GtkWidget *create_expert_label()
 {
 	GtkWidget *vbox;
 	GtkWidget *label;
+  GtkWidget *view;
+  GtkTextBuffer *buffer;
+  GtkTextIter start, end;
+  PangoFontDescription *font_desc;
+  GdkColor color;
+  GtkTextTag *tag;
+  GtkWidget *sw;
+
+sw = gtk_scrolled_window_new (NULL, NULL);
+gtk_widget_show(sw);
+gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
+			      GTK_POLICY_AUTOMATIC,
+			      GTK_POLICY_AUTOMATIC);
+
+  view = gtk_text_view_new ();
+gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (view), GTK_WRAP_WORD);
+  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+
+  gtk_text_buffer_set_text (buffer, "Select this option if you want the session manager to save the current state of your session.The session manager saves the session-managed applications that are open,and the settings associated with the session-managed applications. The next time that you start a session, the applications start automatically, with the saved settings. \nIf you do not select this option, when you end your session the Logout Confirmation dialog displays a Save current setup option.", -1);
+
+  /* Change default font throughout the widget */
+  font_desc = pango_font_description_from_string ("Serif 15");
+  gtk_widget_modify_font (view, font_desc);
+  pango_font_description_free (font_desc);
+
+  /* Change default color throughout the widget */
+  gdk_color_parse ("green", &color);
+  gtk_widget_modify_text (view, GTK_STATE_NORMAL, &color);
+
+  /* Change left margin throughout the widget */
+  gtk_text_view_set_left_margin (GTK_TEXT_VIEW (view), 30);
+
+  /* Use a tag to change the color for just one part of the widget */
+  tag = gtk_text_buffer_create_tag (buffer, "blue_foreground",
+	   		            "foreground", "blue", NULL);  
+  gtk_text_buffer_get_iter_at_offset (buffer, &start, 7);
+  gtk_text_buffer_get_iter_at_offset (buffer, &end, 12);
+  gtk_text_buffer_apply_tag (buffer, tag, &start, &end);
+  gtk_container_add (GTK_CONTAINER (sw),view);
 	
 	vbox=gtk_vbox_new(FALSE,0);
 	gtk_widget_show(vbox);
 	
-	label=gtk_label_new("Welcome to expert.");
+	/*label=gtk_label_new("Welcome to expert.");
 	gtk_widget_show(label);
-	gtk_box_pack_start(GTK_BOX(vbox),label,TRUE,TRUE,0);
+	gtk_box_pack_start(GTK_BOX(vbox),label,TRUE,TRUE,0);*/
+
+	gtk_widget_show(view);
+	gtk_box_pack_start(GTK_BOX(vbox),sw,TRUE,TRUE,0);
 
 	return vbox;	
 }
