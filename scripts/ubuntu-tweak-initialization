@@ -175,10 +175,22 @@ if [ $INPUT_METHOD = "fcitx" ]; then
 			gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/qw true
 		fi
 		TABLE_BANNER_MODE=`grep 主窗口隐藏模式 $FCITX_CONFIG_TEMP|awk -F"=" '{print $2}'|grep 1`
-		if [ -z "$TABLE_MAIN_WINDOW" ]; then 
+		if [ -z "$TABLE_BANNER_MODE" ]; then 
 			gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/banner_mode false
 		else
 			gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/banner_mode true
+		fi
+		SHOW_TYPE_SPEED=`grep 显示打字速度 $FCITX_CONFIG_TEMP|awk -F"=" '{print $2}'|grep 1`
+		if [ -z "$SHOW_TYPE_SPEED" ]; then 
+			gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/show_type_speed false
+		else
+			gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/show_type_speed true
+		fi
+		SHOW_VERSION=`grep 显示版本 $FCITX_CONFIG_TEMP|awk -F"=" '{print $2}'|grep 1`
+		if [ -z "$SHOW_VERSION" ]; then 
+			gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/show_version false
+		else
+			gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/show_version true
 		fi
 		iconv -f UTF-8 -t GB2312 $FCITX_USER_TABLE_TEMP>$FCITX_USER_TABLE
 		iconv -f UTF-8 -t GB2312 $FCITX_CONFIG_TEMP>$FCITX_CONFIG

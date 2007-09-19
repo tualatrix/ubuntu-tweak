@@ -8,7 +8,7 @@ ubuntu_tweak_pixmapsdir = $(prefix)/@NO_PREFIX_PACKAGE_PIXMAPS_DIR@
 
 ubuntu_tweak_pixmaps_DATA = \
 	ubuntu-tweak-icon.png\
-	apperance.png\
+	system.png\
 	applications.png\
 	desktop.png\
 	security.png\

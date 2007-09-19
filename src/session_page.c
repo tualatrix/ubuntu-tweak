@@ -28,7 +28,6 @@ GdkPixbuf *original_preview;
 GtkWidget *create_expert_label()
 {
 	GtkWidget *vbox;
-	GtkWidget *label;
 	GtkWidget *sw;
 	gchar *welcome;
 	
@@ -40,9 +39,9 @@ GtkWidget *create_expert_label()
 			      GTK_POLICY_AUTOMATIC);
 
 	GtkWidget *view;
-	GtkTextIter iter,start,end;
+	//GtkTextIter iter,start,end;
 	GtkTextBuffer *buffer;
-	GdkPixbuf *pixbuf;
+	//GdkPixbuf *pixbuf;
 	view=gtk_text_view_new ();
 	gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(view),GTK_WRAP_WORD);
 	gtk_text_view_set_editable(GTK_TEXT_VIEW(view),FALSE);
@@ -96,7 +95,6 @@ void expander_change(GtkWidget *widget,gpointer data)
 GtkWidget *create_expert_autosavesession()
 {
 	GtkWidget *vbox;
-	GtkWidget *label;
 	GtkWidget *sw;
 	gchar *welcome;
 	
@@ -108,9 +106,9 @@ GtkWidget *create_expert_autosavesession()
 			      GTK_POLICY_AUTOMATIC);
 
 	GtkWidget *view;
-	GtkTextIter iter,start,end;
+	//GtkTextIter iter,start,end;
 	GtkTextBuffer *buffer;
-	GdkPixbuf *pixbuf;
+	//GdkPixbuf *pixbuf;
 	view=gtk_text_view_new ();
 	gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(view),GTK_WRAP_WORD);
 	gtk_text_view_set_editable(GTK_TEXT_VIEW(view),FALSE);
@@ -286,15 +284,11 @@ GtkWidget *create_session_page()
 {
 /*Session Page*/
 	GtkWidget *session_main_vbox;
-	GtkWidget *frame;
-	GtkWidget *label;
 	GtkWidget *session_vbox;
 	GtkWidget *session_hbox;
 	GtkWidget *session_vbox_right;
 	GtkWidget *sitting_label;
-	GtkWidget *splash_label;
 	GtkWidget *blank_label;
-	GtkWidget *blank_vbox;
 	GtkWidget *save_session_checkbutton;
 	GtkWidget *display_menu_checkbutton;
 	GtkWidget *display_splash_checkbutton;

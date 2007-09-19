@@ -87,7 +87,6 @@ void entry_activated_trash(GtkWidget *entry,
 GtkWidget *create_desktop_page()
 {
 	GtkWidget *desktop_main_vbox;
-	GtkWidget *desktop_vbox;
 	GtkWidget *desktop_label;
 	GtkWidget *use_nautilus_checkbutton;
 	GtkWidget *show_computer_checkbutton;
@@ -96,9 +95,6 @@ GtkWidget *create_desktop_page()
 	GtkWidget *desktop_vbox3;
 	GtkWidget *desktop_vbox4;
 	GtkWidget *desktop_hbox1_blank;
-	GtkWidget *desktop_hbox2_blank;
-	GtkWidget *desktop_hbox3_blank;
-	GtkWidget *desktop_hbox4_blank;
 	GtkWidget *use_personality_computer_name_label;
 
 	GtkWidget *show_home_checkbutton;

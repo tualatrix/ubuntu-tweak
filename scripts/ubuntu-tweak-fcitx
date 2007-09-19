@@ -26,6 +26,41 @@ if [ $1 = "banner_mode" ]; then
 		echo "Fcitx: turn on banner_mode "
 	fi
 fi
+if [ $1 = "show_type_speed" ]; then
+	if [ "$2" = "off" ]; then
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/show_type_speed flase
+		iconv -f GB2312 -t UTF-8 $FCITX_CONFIG>$FCITX_CONFIG_TEMP
+		sed -e 's/显示打字速度.*/显示打字速度=0/' $FCITX_CONFIG_TEMP> $FCITX_CONFIG_TEMP.tmp
+		iconv -f UTF-8 -t GB2312 $FCITX_CONFIG_TEMP.tmp>$FCITX_CONFIG
+		rm $FCITX_CONFIG_TEMP.tmp $FCITX_CONFIG_TEMP
+		echo "Fcitx: turn off show_type_speed "
+	else
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/show_type_speed true
+		iconv -f GB2312 -t UTF-8 $FCITX_CONFIG>$FCITX_CONFIG_TEMP
+		sed -e 's/显示打字速度.*/显示打字速度=1/' $FCITX_CONFIG_TEMP> $FCITX_CONFIG_TEMP.tmp
+		iconv -f UTF-8 -t GB2312 $FCITX_CONFIG_TEMP.tmp>$FCITX_CONFIG
+		rm $FCITX_CONFIG_TEMP.tmp $FCITX_CONFIG_TEMP
+		echo "Fcitx: turn on show_type_speed "
+	fi
+fi
+
+if [ $1 = "show_version" ]; then
+	if [ "$2" = "off" ]; then
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/show_version flase
+		iconv -f GB2312 -t UTF-8 $FCITX_CONFIG>$FCITX_CONFIG_TEMP
+		sed -e 's/显示版本.*/显示版本=0/' $FCITX_CONFIG_TEMP> $FCITX_CONFIG_TEMP.tmp
+		iconv -f UTF-8 -t GB2312 $FCITX_CONFIG_TEMP.tmp>$FCITX_CONFIG
+		rm $FCITX_CONFIG_TEMP.tmp $FCITX_CONFIG_TEMP
+		echo "Fcitx: turn off show_version "
+	else
+		gconftool-2 --set --type boolean /apps/ubuntu-tweak/user/fcitx/show_version true
+		iconv -f GB2312 -t UTF-8 $FCITX_CONFIG>$FCITX_CONFIG_TEMP
+		sed -e 's/显示版本.*/显示版本=1/' $FCITX_CONFIG_TEMP> $FCITX_CONFIG_TEMP.tmp
+		iconv -f UTF-8 -t GB2312 $FCITX_CONFIG_TEMP.tmp>$FCITX_CONFIG
+		rm $FCITX_CONFIG_TEMP.tmp $FCITX_CONFIG_TEMP
+		echo "Fcitx: turn on show_version "
+	fi
+fi
 
 if [ $1 = "cj" ]; then
 	if [ "$2" = "off" ]; then

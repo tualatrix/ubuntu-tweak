@@ -10,7 +10,6 @@ GtkWidget *create_history_page()
 	GtkWidget *vbox;
 	GtkWidget *hbox;
 	GtkWidget *label;
-	GtkWidget *checkbutton;
 
 	main_vbox=gtk_vbox_new(FALSE,10);
 	gtk_widget_show(main_vbox);

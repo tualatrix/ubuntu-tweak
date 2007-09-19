@@ -11,8 +11,6 @@ GtkWidget *create_personality_notebook()
 /*定义笔记本*/
 	GtkWidget *notebook;
 	GtkWidget *main_vbox;
-	GtkWidget *system_main_vbox;
-	GtkWidget *history_main_vbox;
 	GtkWidget *page_label;
 
 	notebook=gtk_notebook_new();

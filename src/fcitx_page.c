@@ -14,7 +14,11 @@ gchar *key_fcitx_table[9]={
 	"/apps/ubuntu-tweak/user/fcitx/wbpy",
 	"/apps/ubuntu-tweak/user/fcitx/wbx",
 	"/apps/ubuntu-tweak/user/fcitx/wf",
+};
+gchar *key_fcitx_apperance[3]={
 	"/apps/ubuntu-tweak/user/fcitx/banner_mode",
+	"/apps/ubuntu-tweak/user/fcitx/show_type_speed",
+	"/apps/ubuntu-tweak/user/fcitx/show_version",
 };
 gchar *script_fcitx=PACKAGE_SCRIPTS_DIR"/ubuntu-tweak-fcitx";
 
@@ -25,7 +29,6 @@ GtkWidget *create_fcitx_page()
 	GtkWidget *hbox;
 	GtkWidget *frame;
 	GtkWidget *label;
-	GtkWidget *separator;
 	GtkWidget *checkbutton;
 
 	main_vbox=gtk_vbox_new(FALSE,10);
@@ -96,7 +99,13 @@ GtkWidget *create_fcitx_page()
 	gtk_widget_show(hbox);
 	gtk_box_pack_start(GTK_BOX(vbox),hbox,FALSE,FALSE,10);
 
-	checkbutton=create_text_checkbutton("不使用时隐藏输入条",key_fcitx_table[8],g_strconcat(script_fcitx," banner_mode",NULL),NULL);
+	checkbutton=create_text_checkbutton("不使用时隐藏输入条",key_fcitx_apperance[0],g_strconcat(script_fcitx," banner_mode",NULL),NULL);
+	gtk_box_pack_start(GTK_BOX(hbox),checkbutton,FALSE,FALSE,0);
+
+	checkbutton=create_text_checkbutton("显示打字速度",key_fcitx_apperance[1],g_strconcat(script_fcitx," show_type_speed",NULL),NULL);
+	gtk_box_pack_start(GTK_BOX(hbox),checkbutton,FALSE,FALSE,0);
+
+	checkbutton=create_text_checkbutton("显示版本",key_fcitx_apperance[2],g_strconcat(script_fcitx," show_version",NULL),NULL);
 	gtk_box_pack_start(GTK_BOX(hbox),checkbutton,FALSE,FALSE,0);
 
 	return main_vbox; 

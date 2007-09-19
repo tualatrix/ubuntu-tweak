@@ -73,10 +73,7 @@ GtkWidget *create_awn_page()
 	GtkWidget *vbox;
 	GtkWidget *hbox;
 	GtkWidget *label;
-	GtkWidget *checkbutton;
-	GtkWidget *button;
 	GtkWidget *combobox;
-	gboolean *bool;
 	GConfClient *client;
 
 	client=gconf_client_get_default();

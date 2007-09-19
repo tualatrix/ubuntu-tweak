@@ -13,7 +13,7 @@
 
 gchar *startup_image=PACKAGE_PIXMAPS_DIR"/startup.png";
 gchar *personality_image=PACKAGE_PIXMAPS_DIR"/desktop.png";
-gchar *other_image=PACKAGE_PIXMAPS_DIR"/apperance.png";
+gchar *system_image=PACKAGE_PIXMAPS_DIR"/system.png";
 gchar *security_image=PACKAGE_PIXMAPS_DIR"/security.png";
 gchar *applications_image=PACKAGE_PIXMAPS_DIR"/applications.png";
 gchar *header_left=PACKAGE_PIXMAPS_DIR"/ut_header_left.png";
@@ -193,7 +193,7 @@ GtkWidget *create_main_window(void)
 
 	gnome_item_image=gtk_image_new_from_file(startup_image);
 	ubuntu_item_image=gtk_image_new_from_file(personality_image);
-	system_item_image=gtk_image_new_from_file(other_image);
+	system_item_image=gtk_image_new_from_file(system_image);
 	security_item_image=gtk_image_new_from_file(security_image);
 	applications_item_image=gtk_image_new_from_file(applications_image);
 

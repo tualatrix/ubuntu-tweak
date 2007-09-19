@@ -5,9 +5,11 @@
 #include "ubuntu-tweak.h"
 #include "session_page.h"
 
+/*
+create the startup notebook for related options
+*/
 GtkWidget *create_startup_notebook()
 {
-/*定义笔记本*/
 	GtkWidget *notebook;
 	GtkWidget *session_main_vbox;
 	GtkWidget *session_page_label;
@@ -23,7 +25,6 @@ GtkWidget *create_startup_notebook()
 
 	GtkWidget *frame2;
 	GtkWidget *frame3;
-	GtkWidget *frame_label3;
 	GtkWidget *checkbutton1;
 
 	checkbutton1=gtk_check_button_new_with_mnemonic("checkbutton1");

@@ -18,7 +18,6 @@ GtkWidget *create_nautilus_page()
 	GtkWidget *vbox;
 	GtkWidget *hbox;
 	GtkWidget *label;
-	GtkWidget *separator;
 	GtkWidget *checkbutton;
 
 	main_vbox=gtk_vbox_new(FALSE,10);
