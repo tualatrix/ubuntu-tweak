@@ -2,7 +2,7 @@
 
 void button_test(GtkWidget *widget,gpointer data)
 {
-	gtk_window_resize(GTK_WINDOW(window),710,630);
+
 }
 void key_changed_callback(GConfClient *client,guint id,GConfEntry *entry,gpointer data)
 {

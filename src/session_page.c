@@ -44,6 +44,8 @@ GtkWidget *create_expert_label()
 	GtkTextBuffer *buffer;
 	GdkPixbuf *pixbuf;
 	view=gtk_text_view_new ();
+	gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(view),GTK_WRAP_WORD);
+	gtk_text_view_set_editable(GTK_TEXT_VIEW(view),FALSE);
 	gtk_widget_show(view);
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
 //	pixbuf=gdk_pixbuf_new_from_file("/home/tualatrix/Desktop/opera-logo.png",NULL);
@@ -82,8 +84,9 @@ void expander_change(GtkWidget *widget,gpointer data)
 	gboolean bool;
 	bool=gtk_expander_get_expanded(GTK_EXPANDER(widget));	
 	if(bool==TRUE){
-		//g_print("TRUE\n");
-
+		//g_print("缩回去喽！\n");
+		//g_print("当前分辨率:%dx%d\n",resolution_x,resolution_y);
+		//gtk_window_resize(GTK_WINDOW(window),resolution_x,resolution_y);
 	}else{
 		//g_print("FALSE\n");
 		show_expert_label();
@@ -94,15 +97,44 @@ GtkWidget *create_expert_autosavesession()
 {
 	GtkWidget *vbox;
 	GtkWidget *label;
+	GtkWidget *sw;
+	gchar *welcome;
+	
+	welcome=_("Session,Do you know what is session?");
+	sw=gtk_scrolled_window_new (NULL, NULL);
+	gtk_widget_show(sw);
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
+			      GTK_POLICY_AUTOMATIC,
+			      GTK_POLICY_AUTOMATIC);
+
+	GtkWidget *view;
+	GtkTextIter iter,start,end;
+	GtkTextBuffer *buffer;
+	GdkPixbuf *pixbuf;
+	view=gtk_text_view_new ();
+	gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(view),GTK_WRAP_WORD);
+	gtk_text_view_set_editable(GTK_TEXT_VIEW(view),FALSE);
+	gtk_widget_show(view);
+	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+//	pixbuf=gdk_pixbuf_new_from_file("/home/tualatrix/Desktop/opera-logo.png",NULL);
+	gtk_text_buffer_set_text (buffer,welcome, -1);
+//	gtk_text_buffer_get_bounds(GTK_TEXT_BUFFER(buffer),&start,&end);
+//	gtk_text_buffer_insert_pixbuf(buffer,&end,pixbuf);
+//	gtk_text_buffer_insert(GTK_TEXT_BUFFER(buffer),&end,"\nNew word",-1);
+
+	gtk_container_add(GTK_CONTAINER(sw),view);
 	
 	vbox=gtk_vbox_new(FALSE,0);
 	gtk_widget_show(vbox);
 	
-	label=gtk_label_new("Select thisoption if you want the session manager...");
+	/*label=gtk_label_new("Welcome to expert.");
 	gtk_widget_show(label);
-	gtk_box_pack_start(GTK_BOX(vbox),label,TRUE,TRUE,0);
+	gtk_box_pack_start(GTK_BOX(vbox),label,TRUE,TRUE,0);*/
 
-	return vbox;	
+	gtk_widget_show(view);
+	gtk_box_pack_start(GTK_BOX(vbox),sw,TRUE,TRUE,0);
+
+	return vbox;
 }
 
 GtkWidget *create_expert_showlogoutprompt()
@@ -343,6 +375,9 @@ GtkWidget *create_session_page()
 	gtk_widget_set_size_request(GTK_WIDGET(expert_box),200,100);
 	gtk_widget_show(expert_box);
 	gtk_container_add(GTK_CONTAINER(expander),expert_box);
+
+	gtk_window_get_size(GTK_WINDOW(window),&resolution_x,&resolution_y);
+	//g_print("当前分辨率:%dx%d\n",resolution_x,resolution_y);
 
 	return session_main_vbox;
 }

@@ -57,7 +57,7 @@ am_ubuntu_tweak_OBJECTS = main.$(OBJEXT) interface.$(OBJEXT) \
 	security.$(OBJEXT) session_page.$(OBJEXT) startup.$(OBJEXT) \
 	system_page.$(OBJEXT) awn_page.$(OBJEXT) \
 	powermanager_page.$(OBJEXT) system.$(OBJEXT) \
-	fcitx_page.$(OBJEXT)
+	fcitx_page.$(OBJEXT) nautilus_page.$(OBJEXT)
 ubuntu_tweak_OBJECTS = $(am_ubuntu_tweak_OBJECTS)
 am__DEPENDENCIES_1 =
 ubuntu_tweak_DEPENDENCIES = $(am__DEPENDENCIES_1)
@@ -251,7 +251,9 @@ ubuntu_tweak_SOURCES = \
 	system.c\
 	system.h\
 	fcitx_page.c\
-	fcitx_page.h
+	fcitx_page.h\
+	nautilus_page.c\
+	nautilus_page.h
 
 ubuntu_tweak_LDFLAGS = 
 ubuntu_tweak_LDADD = \
@@ -337,6 +339,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/interface.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mplayer_page.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/nautilus_page.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/personality.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/powermanager_page.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/security.Po@am__quote@

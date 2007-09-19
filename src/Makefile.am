@@ -46,7 +46,9 @@ ubuntu_tweak_SOURCES = \
 	system.c\
 	system.h\
 	fcitx_page.c\
-	fcitx_page.h
+	fcitx_page.h\
+	nautilus_page.c\
+	nautilus_page.h
 
 
 ubuntu_tweak_LDFLAGS = 

@@ -17,6 +17,11 @@ GtkWidget *create_applications_notebook()
 	notebook=gtk_notebook_new();
 	gtk_notebook_set_tab_pos(GTK_NOTEBOOK(notebook),GTK_POS_TOP);
 
+	main_vbox=create_fcitx_page();
+	page_label=gtk_label_new(_("Fcitx"));
+	gtk_widget_show(page_label);
+	gtk_notebook_append_page(GTK_NOTEBOOK(notebook),main_vbox,page_label);
+
 	main_vbox=create_awn_page();
 	gtk_widget_show(main_vbox);
 	page_label=gtk_label_new("Avant Window Navigator");
