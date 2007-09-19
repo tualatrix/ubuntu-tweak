@@ -37,8 +37,8 @@ ubuntu_tweak_SOURCES = \
 	session_page.h\
 	startup.c\
 	startup.h\
-	system_page.c\
-	system_page.h\
+	gnome_page.c\
+	gnome_page.h\
 	awn_page.c\
 	awn_page.h\
 	powermanager_page.c\
@@ -49,7 +49,6 @@ ubuntu_tweak_SOURCES = \
 	fcitx_page.h\
 	nautilus_page.c\
 	nautilus_page.h
-
 
 ubuntu_tweak_LDFLAGS = 
 

@@ -55,7 +55,7 @@ am_ubuntu_tweak_OBJECTS = main.$(OBJEXT) interface.$(OBJEXT) \
 	desktop_page.$(OBJEXT) history.$(OBJEXT) \
 	mplayer_page.$(OBJEXT) personality.$(OBJEXT) \
 	security.$(OBJEXT) session_page.$(OBJEXT) startup.$(OBJEXT) \
-	system_page.$(OBJEXT) awn_page.$(OBJEXT) \
+	gnome_page.$(OBJEXT) awn_page.$(OBJEXT) \
 	powermanager_page.$(OBJEXT) system.$(OBJEXT) \
 	fcitx_page.$(OBJEXT) nautilus_page.$(OBJEXT)
 ubuntu_tweak_OBJECTS = $(am_ubuntu_tweak_OBJECTS)
@@ -242,8 +242,8 @@ ubuntu_tweak_SOURCES = \
 	session_page.h\
 	startup.c\
 	startup.h\
-	system_page.c\
-	system_page.h\
+	gnome_page.c\
+	gnome_page.h\
 	awn_page.c\
 	awn_page.h\
 	powermanager_page.c\
@@ -335,6 +335,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/awn_page.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/desktop_page.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/fcitx_page.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_page.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/history.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/interface.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@
@@ -346,7 +347,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/session_page.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/startup.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/system.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/system_page.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ubuntu-tweak.Po@am__quote@
 
 .c.o:

@@ -18,8 +18,6 @@ GtkWidget *create_personality_notebook()
 	notebook=gtk_notebook_new();
 	gtk_notebook_set_tab_pos(GTK_NOTEBOOK(notebook),GTK_POS_TOP);
 
-	system_main_vbox=create_system_page();
-
 /*Desktop label*/
 	main_vbox=create_desktop_page();
 	page_label=gtk_label_new(_("Desktop Icon"));
