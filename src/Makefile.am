@@ -25,8 +25,8 @@ ubuntu_tweak_SOURCES = \
 	applications.h\
 	desktop_page.c\
 	desktop_page.h\
-	history.c\
-	history.h\
+	history_page.c\
+	history_page.h\
 	mplayer_page.c\
 	mplayer_page.h\
 	personality.c\

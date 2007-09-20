@@ -11,7 +11,6 @@ gchar *key_overburn="/apps/nautilus-cd-burner/overburn";
 gchar *key_nautilus_dir="/apps/nautilus/preferences";
 gchar *key_cd_burner_dir="/apps/nautilus-cd-burner";
 
-
 GtkWidget *create_nautilus_page()
 {
 	GtkWidget *main_vbox;

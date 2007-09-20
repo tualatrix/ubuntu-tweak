@@ -5,6 +5,7 @@
 #include "ubuntu-tweak.h"
 #include "desktop_page.h"
 #include "nautilus_page.h"
+#include "history_page.h"
 
 GtkWidget *create_personality_notebook()
 {
@@ -25,7 +26,7 @@ GtkWidget *create_personality_notebook()
 	page_label=gtk_label_new(_("Nautilus"));
 	gtk_notebook_append_page(GTK_NOTEBOOK(notebook),main_vbox,page_label);
 
-	main_vbox=gtk_frame_new(_("Not complete yet"));
+	main_vbox=create_history_page();
 	gtk_widget_show(main_vbox);
 	page_label=gtk_label_new(_("History"));
 	gtk_notebook_append_page(GTK_NOTEBOOK(notebook),main_vbox,page_label);

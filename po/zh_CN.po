@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.1.21\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-16 22:21+0800\n"
+"POT-Creation-Date: 2007-09-19 23:13+0800\n"
 "PO-Revision-Date: 2007-09-16 22:07+0800\n"
 "Last-Translator: TualatriX <tualatrix@gmail.com>\n"
 "Language-Team: TualatriX <tualatrix@gmail.com>\n"
@@ -85,55 +85,59 @@ msgid ""
 "desktop."
 msgstr "Ubuntu Tweak是一个专门为简易配置系统和桌面而准备的工具。"
 
-#: src/desktop_page.c:118
+#: src/applications.c:21
+msgid "Fcitx"
+msgstr ""
+
+#: src/desktop_page.c:114
 msgid "Setting your Desktop icons"
 msgstr "设置你的桌面图标"
 
-#: src/desktop_page.c:123
+#: src/desktop_page.c:119
 msgid "Show desktop icons"
 msgstr "显示桌面图标"
 
 #. Show computer icon
-#: src/desktop_page.c:143
+#: src/desktop_page.c:139
 msgid "Show \"Computer\" icon on desktop"
 msgstr "在桌面上显示\"计算机\"图标"
 
-#: src/desktop_page.c:160
+#: src/desktop_page.c:156
 msgid "Rename the \"Computer\" icon: "
 msgstr "使用自定义的\"计算机\"名称"
 
 #. Show HOME
-#: src/desktop_page.c:179
+#: src/desktop_page.c:175
 msgid "Show \"Home\" icon on desktop"
 msgstr "在桌面上显示\"主目录\"图标"
 
-#: src/desktop_page.c:196
+#: src/desktop_page.c:192
 msgid "Rename the \"Home\" icon: "
 msgstr "使用自定义的\"主目录\"名称"
 
 #. Show Trash
-#: src/desktop_page.c:213
+#: src/desktop_page.c:209
 msgid "Show \"Trash\" icon on desktop"
 msgstr "在桌面上显示\"回收站\"图标"
 
-#: src/desktop_page.c:230
+#: src/desktop_page.c:226
 msgid "Rename the \"Trash\" icon: "
 msgstr "使用自定义的\"回收站\"名称"
 
 #. Other
-#: src/desktop_page.c:247
+#: src/desktop_page.c:243
 msgid "Use Home directory as Desktop entries"
 msgstr "以主目录的内容作为桌面项"
 
-#: src/desktop_page.c:251
+#: src/desktop_page.c:247
 msgid "Show \"Network\" icon on desktop"
 msgstr "在桌面上显示\"网络服务器\"图标"
 
-#: src/desktop_page.c:255
+#: src/desktop_page.c:251
 msgid "Show Volumes on Desktop"
 msgstr "在桌面上显示已挂载的设备"
 
-#: src/history.c:20
+#: src/history.c:19
 msgid "Clean history"
 msgstr "清理历史记录"
 
@@ -157,23 +161,19 @@ msgstr "使用智能型字幕文件匹配"
 msgid "Sorry, You haven't installed Mplayer yet, Please install first."
 msgstr "对不起，你还没有安装Mplayer，请先安装。"
 
-#: src/personality.c:25
+#: src/personality.c:21
 msgid "Desktop Icon"
 msgstr "桌面图标"
 
-#: src/personality.c:30
-msgid "GNOME Options"
-msgstr "GNOME选项"
-
-#: src/personality.c:35
-msgid "Fcitx"
+#: src/personality.c:25
+msgid "Nautilus"
 msgstr ""
 
-#: src/personality.c:39 src/startup.c:32 src/startup.c:38
+#: src/personality.c:28 src/startup.c:33 src/startup.c:39
 msgid "Not complete yet"
 msgstr "还没有完成"
 
-#: src/personality.c:41
+#: src/personality.c:30
 msgid "History"
 msgstr "历史记录"
 
@@ -205,7 +205,7 @@ msgstr "禁止使用用户切换"
 msgid "Some Security function"
 msgstr "一些安全相关的功能"
 
-#: src/session_page.c:35
+#: src/session_page.c:34
 msgid ""
 "Welcome! \n"
 "Here is \"Expert Mode\".If you have any question with the options, or you "
@@ -216,85 +216,89 @@ msgstr ""
 "这里是\"专家模式\".如果你对一些选项有些困惑，或者你 想知道那些选项到底动了哪"
 "些手脚， 那么把你的光标移到某个选项上即可！"
 
-#: src/session_page.c:152
+#: src/session_page.c:101
+msgid "Session,Do you know what is session?"
+msgstr ""
+
+#: src/session_page.c:182
 msgid "Choose a Splash file"
 msgstr "选择一个Splash文件"
 
-#: src/session_page.c:280
+#: src/session_page.c:306
 msgid "Session Control"
 msgstr "会话控制"
 
-#: src/session_page.c:301
+#: src/session_page.c:327
 msgid "Auto save session"
 msgstr "自动保存会话"
 
-#: src/session_page.c:309
+#: src/session_page.c:335
 msgid "Show logout prompt"
 msgstr "显示注销菜单"
 
-#: src/session_page.c:317
+#: src/session_page.c:343
 msgid "Show splash screen"
 msgstr "显示Splash屏幕"
 
-#: src/session_page.c:325
+#: src/session_page.c:351
 msgid "Click the big button to change splash screen"
 msgstr "点击大按钮来更改Splash屏幕"
 
 #. expander
-#: src/session_page.c:337
+#: src/session_page.c:363
 msgid "Some Options confused you? Need more information? Click here!"
 msgstr "一些选项让你困惑吗？需要更多的信息？点击这里吧！"
 
 #. Session label
-#: src/startup.c:21
+#: src/startup.c:23
 msgid "Session"
 msgstr "会话"
 
-#: src/startup.c:35
+#: src/startup.c:36
 msgid "Services"
 msgstr "服务"
 
-#: src/system_page.c:29
+#: src/gnome_page.c:26
 msgid "GNOME Animations"
 msgstr "GNOME动画控制"
 
-#: src/system_page.c:46
+#: src/gnome_page.c:43
 msgid "Enable GNOME Animations Panel"
 msgstr "打开GNOME面版动画"
 
-#: src/system_page.c:49
+#: src/gnome_page.c:46
 msgid "Enable GNOME Animations Effect"
 msgstr "打开GNOME动画效果"
 
-#: src/system_page.c:56
-msgid "Setting your nautilus behavior"
-msgstr "设置你的文件管理器"
+#: src/gnome_page.c:49
+msgid "Show input method menu in the right-click"
+msgstr ""
 
-#: src/system_page.c:73
-msgid "Show advanced permissions at file property"
-msgstr "在文件属性里显示高级权限控制"
+#: src/gnome_page.c:52
+msgid "Show unicode method menu in the right-click"
+msgstr ""
 
-#: src/awn_page.c:89
+#: src/awn_page.c:86
 msgid "Here you can change the style of Avant Window Navigator easily"
 msgstr "这里你可以方便地更改Avant WIndow Navigator"
 
-#: src/awn_page.c:98
+#: src/awn_page.c:95
 msgid "Choose AWN Style"
 msgstr "选择AWN样式"
 
-#: src/awn_page.c:107
+#: src/awn_page.c:104
 msgid "Self-determined"
 msgstr "自定义"
 
-#: src/awn_page.c:108
+#: src/awn_page.c:105
 msgid "3D style(Leopard like)"
 msgstr "3D样式（类似于Leopard）"
 
-#: src/awn_page.c:109
+#: src/awn_page.c:106
 msgid "Classical style(Tiger like)"
 msgstr "经典样式（类似于TIger）"
 
-#: src/awn_page.c:124
+#: src/awn_page.c:121
 msgid ""
 "Sorry, You haven't installed Avant Window Navigator yet, Please install "
 "first."
@@ -352,6 +356,16 @@ msgstr "总是全速"
 msgid "When using Battery, CPU frequency policy"
 msgstr "当使用电池时，CPU频率使用策略"
 
-#: src/system.c:17
+#: src/system.c:19
+msgid "GNOME Options"
+msgstr "GNOME选项"
+
+#: src/system.c:22
 msgid "Advance Power Manager"
 msgstr "高级电源管理"
+
+#~ msgid "Setting your nautilus behavior"
+#~ msgstr "设置你的文件管理器"
+
+#~ msgid "Show advanced permissions at file property"
+#~ msgstr "在文件属性里显示高级权限控制"

@@ -52,7 +52,7 @@ binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
 am_ubuntu_tweak_OBJECTS = main.$(OBJEXT) interface.$(OBJEXT) \
 	ubuntu-tweak.$(OBJEXT) about.$(OBJEXT) applications.$(OBJEXT) \
-	desktop_page.$(OBJEXT) history.$(OBJEXT) \
+	desktop_page.$(OBJEXT) history_page.$(OBJEXT) \
 	mplayer_page.$(OBJEXT) personality.$(OBJEXT) \
 	security.$(OBJEXT) session_page.$(OBJEXT) startup.$(OBJEXT) \
 	gnome_page.$(OBJEXT) awn_page.$(OBJEXT) \
@@ -230,8 +230,8 @@ ubuntu_tweak_SOURCES = \
 	applications.h\
 	desktop_page.c\
 	desktop_page.h\
-	history.c\
-	history.h\
+	history_page.c\
+	history_page.h\
 	mplayer_page.c\
 	mplayer_page.h\
 	personality.c\
@@ -336,7 +336,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/desktop_page.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/fcitx_page.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_page.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/history.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/history_page.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/interface.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mplayer_page.Po@am__quote@
