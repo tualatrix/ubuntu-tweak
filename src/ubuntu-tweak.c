@@ -14,6 +14,17 @@ void expander_change(GtkWidget *widget,gpointer data)
 	}
 }
 
+void show_expert_label()
+{
+	if(present_expert!=NULL){
+		gtk_widget_hide(present_expert);
+	}
+	expert_label=create_expert_label();
+	gtk_widget_show(expert_label);
+	present_expert=expert_label;
+	gtk_box_pack_start(GTK_BOX(expert_box),expert_label,TRUE,TRUE,0);
+}
+
 GtkWidget *create_expert_label()
 {
 	GtkWidget *vbox;

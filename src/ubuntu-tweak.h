@@ -5,10 +5,11 @@
 #include <gconf/gconf-client.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
-/*Screen size*/
-gint resolution_x,resolution_y;
-
-GtkWidget *window;
+	GtkWidget *window;
+GtkWidget *expander;
+GtkWidget *expert_label;
+GtkWidget *expert_box;
+gpointer present_expert;
 
 GtkWidget *create_gconf_checkbutton(gchar *label,gchar *key,gchar *dir,gpointer toggledata,gpointer enterdata);
 

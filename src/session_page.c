@@ -27,17 +27,6 @@ gchar *filename;
 gchar *filedir;
 GdkPixbuf *original_preview;
 
-void show_expert_label()
-{
-	if(present_expert!=NULL){
-		gtk_widget_hide(present_expert);
-	}
-	expert_label=create_expert_label();
-	gtk_widget_show(expert_label);
-	present_expert=expert_label;
-	gtk_box_pack_start(GTK_BOX(expert_box),expert_label,TRUE,TRUE,0);
-}
-
 GtkWidget *create_expert_autosavesession()
 {
 	GtkWidget *vbox;
@@ -330,12 +319,10 @@ GtkWidget *create_session_page()
 	GtkWidget *session_vbox;
 	GtkWidget *session_hbox;
 	GtkWidget *session_vbox_right;
-	GtkWidget *sitting_label;
 	GtkWidget *blank_label;
 	GtkWidget *save_session_checkbutton;
 	GtkWidget *display_menu_checkbutton;
 	GtkWidget *display_splash_checkbutton;
-	GtkWidget *display_splash_label;
 	GtkWidget *splash_image_hbox;
 
 	session_main_vbox=gtk_vbox_new(FALSE,0);

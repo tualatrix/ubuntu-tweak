@@ -6,6 +6,7 @@
 
 /*expert mode*/
 GtkWidget *expander;
+GtkWidget *expert_label;
 GtkWidget *expert_box;
 GtkWidget *expert_showadvancedpermissions;
 GtkWidget *expert_burnproof;
@@ -123,7 +124,6 @@ GtkWidget *create_nautilus_page()
 	checkbutton=create_gconf_checkbutton(_("Show advanced permissions at file property"),key_show_advanced_permissions,key_nautilus_dir,checkbutton_toggled,show_expert_showadvancedpermissions);
 	gtk_widget_show(checkbutton);
 	gtk_container_add(GTK_CONTAINER(frame),checkbutton);
-	//gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
 	frame=gtk_frame_new(_("CD Burner"));
 	gtk_widget_show(frame);

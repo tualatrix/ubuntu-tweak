@@ -27,7 +27,8 @@ GtkWidget *create_disable_page()
 	gtk_widget_show(main_vbox);
 	gtk_container_set_border_width(GTK_CONTAINER(main_vbox),5);
 
-	label=gtk_label_new(_("Some options for system security"));
+	label=gtk_label_new(NULL);
+	gtk_label_set_markup(GTK_LABEL(label),_("<b>Some options for system security</b>"));
 	gtk_misc_set_alignment(GTK_MISC(label),0,0);
 	gtk_widget_show(label);
 	gtk_box_pack_start(GTK_BOX(main_vbox),label,FALSE,FALSE,0);
