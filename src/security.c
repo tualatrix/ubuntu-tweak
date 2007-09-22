@@ -45,7 +45,7 @@ GtkWidget *create_disable_page()
 	gtk_widget_show(vbox);
 	gtk_box_pack_start(GTK_BOX(hbox),vbox,FALSE,FALSE,0);
 
-	checkbutton=create_gconf_checkbutton(_("Disable command line"),lockdown_keys[0],disable_dir,checkbutton_toggled,NULL);
+	checkbutton=create_gconf_checkbutton(_("Disable \"Run Application\"(Alt+F2)"),lockdown_keys[0],disable_dir,checkbutton_toggled,NULL);
 	gtk_widget_show(checkbutton);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
@@ -79,7 +79,7 @@ GtkWidget *create_security_notebook()
 
 	main_vbox=create_disable_page();
 	gtk_widget_show(main_vbox);
-	page_label=gtk_label_new(_("Some Security function"));
+	page_label=gtk_label_new(_("Security Options"));
 	gtk_widget_show(page_label);
 
 	gtk_notebook_append_page(GTK_NOTEBOOK(notebook),main_vbox,page_label);		

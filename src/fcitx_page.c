@@ -35,7 +35,8 @@ GtkWidget *create_fcitx_page()
 	gtk_widget_show(main_vbox);
 	gtk_container_set_border_width(GTK_CONTAINER(main_vbox),10);
 
-	label=gtk_label_new("欢迎使用Fcitx输入法设置！\n在这里，你可以禁用掉一些你并不使用的码表；\n或进行一些有关输入法行为的设置。\n未来会提供更棒的设置。");
+	label=gtk_label_new(NULL);
+	gtk_label_set_markup(GTK_LABEL(label),_("<b>欢迎使用Fcitx输入法设置！</b>\n在这里，你可以禁用掉一些你并不使用的码表；\n或进行一些有关输入法行为的设置。\n未来会提供更棒的设置。"));
 	gtk_misc_set_alignment(GTK_MISC(label),0,0);
 	gtk_widget_show(label);
 	gtk_box_pack_start(GTK_BOX(main_vbox),label,FALSE,FALSE,0);
