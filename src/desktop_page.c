@@ -109,9 +109,10 @@ GtkWidget *create_desktop_page()
 
 	desktop_main_vbox=gtk_vbox_new(FALSE,5);
 	gtk_widget_show(desktop_main_vbox);
-	gtk_container_set_border_width(GTK_CONTAINER(desktop_main_vbox),10);
+	gtk_container_set_border_width(GTK_CONTAINER(desktop_main_vbox),5);
 
-	desktop_label=gtk_label_new(_("Setting your Desktop icons"));
+	desktop_label=gtk_label_new(NULL);
+	gtk_label_set_markup(GTK_LABEL(desktop_label),_("<b>Setting your Desktop icons</b>"));
 	gtk_misc_set_alignment(GTK_MISC(desktop_label),0,0);
 	gtk_widget_show(desktop_label);
 	gtk_box_pack_start(GTK_BOX(desktop_main_vbox),desktop_label,FALSE,FALSE,0);

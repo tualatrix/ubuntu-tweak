@@ -69,16 +69,17 @@ GtkWidget *create_powermanager_page()
 	GConfClient *client;
 	client=gconf_client_get_default();
 
-	main_vbox=gtk_vbox_new(FALSE,10);
+	main_vbox=gtk_vbox_new(FALSE,5);
 	gtk_widget_show(main_vbox);
 	gtk_container_set_border_width(GTK_CONTAINER(main_vbox),5);
 
-	label=gtk_label_new(_("Advanced Power Managerment Settings"));
+	label=gtk_label_new(NULL);
+	gtk_label_set_markup(GTK_LABEL(label),_("<b>Advanced Power Managerment Settings</b>"));
 	gtk_misc_set_alignment(GTK_MISC(label),0,0);
 	gtk_widget_show(label);
 	gtk_box_pack_start(GTK_BOX(main_vbox),label,FALSE,FALSE,0);
 
-	hbox=gtk_hbox_new(FALSE,10);
+	hbox=gtk_hbox_new(FALSE,5);
 	gtk_widget_show(hbox);
 	gtk_box_pack_start(GTK_BOX(main_vbox),hbox,FALSE,FALSE,0);
 
@@ -86,7 +87,7 @@ GtkWidget *create_powermanager_page()
 	gtk_widget_show(label);
 	gtk_box_pack_start(GTK_BOX(hbox),label,FALSE,FALSE,0);
 
-	vbox=gtk_vbox_new(FALSE,10);
+	vbox=gtk_vbox_new(FALSE,5);
 	gtk_widget_show(vbox);
 	gtk_box_pack_start(GTK_BOX(hbox),vbox,FALSE,FALSE,0);
 
@@ -110,11 +111,11 @@ GtkWidget *create_powermanager_page()
 
 	label=gtk_label_new(_("\"Notification Area\" Power Managerment icon"));
 	gtk_widget_show(label);
-	gtk_box_pack_start(GTK_BOX(hbox),label,TRUE,TRUE,0);
+	gtk_box_pack_start(GTK_BOX(hbox),label,FALSE,FALSE,0);
 
 	combobox=gtk_combo_box_new_text();
 	gtk_widget_show(combobox);
-	gtk_box_pack_end(GTK_BOX(hbox),combobox,TRUE,TRUE,0);
+	gtk_box_pack_end(GTK_BOX(hbox),combobox,FALSE,FALSE,0);
 
 	g_signal_connect(G_OBJECT(combobox),"changed",G_CALLBACK(powermanager_changed),key_display_icon_policy);
 
@@ -139,11 +140,11 @@ GtkWidget *create_powermanager_page()
 
 	label=gtk_label_new(_("When using AC, CPU frequency policy"));
 	gtk_widget_show(label);
-	gtk_box_pack_start(GTK_BOX(hbox),label,TRUE,TRUE,0);
+	gtk_box_pack_start(GTK_BOX(hbox),label,FALSE,FALSE,0);
 
 	combobox=gtk_combo_box_new_text();
 	gtk_widget_show(combobox);
-	gtk_box_pack_end(GTK_BOX(hbox),combobox,TRUE,TRUE,0);
+	gtk_box_pack_end(GTK_BOX(hbox),combobox,FALSE,FALSE,0);
 
 	g_signal_connect(G_OBJECT(combobox),"changed",G_CALLBACK(powermanager_changed),key_cpufreq_ac_policy);
 
@@ -172,7 +173,7 @@ GtkWidget *create_powermanager_page()
 
 	combobox=gtk_combo_box_new_text();
 	gtk_widget_show(combobox);
-	gtk_box_pack_end(GTK_BOX(hbox),combobox,TRUE,TRUE,0);
+	gtk_box_pack_end(GTK_BOX(hbox),combobox,FALSE,FALSE,0);
 
 	g_signal_connect(G_OBJECT(combobox),"changed",G_CALLBACK(powermanager_changed),key_cpufreq_battery_policy);
 

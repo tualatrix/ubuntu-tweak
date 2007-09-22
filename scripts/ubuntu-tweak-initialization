@@ -103,17 +103,17 @@ if [ -f /usr/bin/mplayer ]; then
 		init_sub_fuzziness
 	else
 		gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/mplayer/installed false
-		echo "注意：mplayer未安装"
+		echo "Notice：Mplayer isn't installed"
 fi
 
 if [ -f /usr/bin/avant-window-navigator ]; then
 		gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/awn/installed true
 	else
 		gconftool-2 --set --type boolean /apps/ubuntu-tweak/apps/awn/installed false
-		echo "注意：Avant Window Navigator未安装"
+		echo "Notice：Avant Window Navigator isn't installed"
 fi
 
-if [ $INPUT_METHOD = "fcitx" ]; then
+if [ "$INPUT_METHOD" = "fcitx" ]; then
 		gconftool-2 --set --type boolean /apps/ubuntu-tweak/system/fcitx true
 		if [ ! -f $FCITX_USER_TABLE ]; then
 			cp -v $FCITX_TABLE $FCITX_USER_TABLE

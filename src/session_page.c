@@ -16,6 +16,8 @@ GtkWidget *expert_box;
 GtkWidget *expert_label;
 GtkWidget *expert_autosavesession;
 GtkWidget *expert_showlogoutprompt;
+GtkWidget *expert_showsplash;
+GtkWidget *expert_changesplash;
 gpointer present_expert;
 
 GtkWidget *splash_image_button;
@@ -36,27 +38,13 @@ void show_expert_label()
 	gtk_box_pack_start(GTK_BOX(expert_box),expert_label,TRUE,TRUE,0);
 }
 
-void expander_change(GtkWidget *widget,gpointer data)
-{
-	gboolean bool;
-	bool=gtk_expander_get_expanded(GTK_EXPANDER(widget));	
-	if(bool==TRUE){
-		//g_print("缩回去喽！\n");
-		//g_print("当前分辨率:%dx%d\n",resolution_x,resolution_y);
-		//gtk_window_resize(GTK_WINDOW(window),resolution_x,resolution_y);
-	}else{
-		//g_print("FALSE\n");
-		show_expert_label();
-	}
-}
-
 GtkWidget *create_expert_autosavesession()
 {
 	GtkWidget *vbox;
 	GtkWidget *sw;
 	gchar *welcome;
 	
-	welcome=_("Session,Do you know what is session?");
+	welcome=_("When you log in your Ubuntu, you have started a session.\nSession is the current state of your all started applications.\nSelect this option if you want the session manager to save the current state of your session.The session manager saves the session-managed applications that are open,and the settings associated with the session-managed applications. The next time that you start a session, the applications start automatically, with the saved settings.");
 	sw=gtk_scrolled_window_new (NULL, NULL);
 	gtk_widget_show(sw);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
@@ -64,28 +52,19 @@ GtkWidget *create_expert_autosavesession()
 			      GTK_POLICY_AUTOMATIC);
 
 	GtkWidget *view;
-	//GtkTextIter iter,start,end;
 	GtkTextBuffer *buffer;
-	//GdkPixbuf *pixbuf;
+
 	view=gtk_text_view_new ();
 	gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(view),GTK_WRAP_WORD);
 	gtk_text_view_set_editable(GTK_TEXT_VIEW(view),FALSE);
 	gtk_widget_show(view);
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
-//	pixbuf=gdk_pixbuf_new_from_file("/home/tualatrix/Desktop/opera-logo.png",NULL);
-	gtk_text_buffer_set_text (buffer,welcome, -1);
-//	gtk_text_buffer_get_bounds(GTK_TEXT_BUFFER(buffer),&start,&end);
-//	gtk_text_buffer_insert_pixbuf(buffer,&end,pixbuf);
-//	gtk_text_buffer_insert(GTK_TEXT_BUFFER(buffer),&end,"\nNew word",-1);
 
+	gtk_text_buffer_set_text (buffer,welcome, -1);
 	gtk_container_add(GTK_CONTAINER(sw),view);
 	
 	vbox=gtk_vbox_new(FALSE,0);
 	gtk_widget_show(vbox);
-	
-	/*label=gtk_label_new("Welcome to expert.");
-	gtk_widget_show(label);
-	gtk_box_pack_start(GTK_BOX(vbox),label,TRUE,TRUE,0);*/
 
 	gtk_widget_show(view);
 	gtk_box_pack_start(GTK_BOX(vbox),sw,TRUE,TRUE,0);
@@ -96,16 +75,100 @@ GtkWidget *create_expert_autosavesession()
 GtkWidget *create_expert_showlogoutprompt()
 {
 	GtkWidget *vbox;
-	GtkWidget *label;
+	GtkWidget *sw;
+	gchar *welcome;
+	
+	welcome=_("Select this option to display a confirmation dialog when you end a session.\nIf you don't select this option, you will without a confirmation dialog when you click the \"System\"-\"Quit\".");
+	sw=gtk_scrolled_window_new (NULL, NULL);
+	gtk_widget_show(sw);
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
+			      GTK_POLICY_AUTOMATIC,
+			      GTK_POLICY_AUTOMATIC);
+
+	GtkWidget *view;
+	GtkTextBuffer *buffer;
+	view=gtk_text_view_new ();
+	gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(view),GTK_WRAP_WORD);
+	gtk_text_view_set_editable(GTK_TEXT_VIEW(view),FALSE);
+	gtk_widget_show(view);
+	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+	gtk_text_buffer_set_text (buffer,welcome, -1);
+
+	gtk_container_add(GTK_CONTAINER(sw),view);
 	
 	vbox=gtk_vbox_new(FALSE,0);
 	gtk_widget_show(vbox);
-	
-	label=gtk_label_new("Log out?kwg kwg kwg ...");
-	gtk_widget_show(label);
-	gtk_box_pack_start(GTK_BOX(vbox),label,TRUE,TRUE,0);
 
-	return vbox;	
+	gtk_widget_show(view);
+	gtk_box_pack_start(GTK_BOX(vbox),sw,TRUE,TRUE,0);
+
+	return vbox;
+}
+
+GtkWidget *create_expert_showsplash()
+{
+	GtkWidget *vbox;
+	GtkWidget *sw;
+	gchar *welcome;
+	
+	welcome=_("Select this option to display a splash screen when you start a session.");
+	sw=gtk_scrolled_window_new (NULL, NULL);
+	gtk_widget_show(sw);
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
+			      GTK_POLICY_AUTOMATIC,
+			      GTK_POLICY_AUTOMATIC);
+
+	GtkWidget *view;
+	GtkTextBuffer *buffer;
+	view=gtk_text_view_new ();
+	gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(view),GTK_WRAP_WORD);
+	gtk_text_view_set_editable(GTK_TEXT_VIEW(view),FALSE);
+	gtk_widget_show(view);
+	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+	gtk_text_buffer_set_text (buffer,welcome, -1);
+
+	gtk_container_add(GTK_CONTAINER(sw),view);
+	
+	vbox=gtk_vbox_new(FALSE,0);
+	gtk_widget_show(vbox);
+
+	gtk_widget_show(view);
+	gtk_box_pack_start(GTK_BOX(vbox),sw,TRUE,TRUE,0);
+
+	return vbox;
+}
+
+GtkWidget *create_expert_changesplash()
+{
+	GtkWidget *vbox;
+	GtkWidget *sw;
+	gchar *welcome;
+	
+	welcome=_("Have you prepared your own splash images?\nNot yet?\n\nIt doesn't matter, Visit the http://www.gnome-look.org, and download the splash images what you like. Then click this button to choose it!");
+	sw=gtk_scrolled_window_new (NULL, NULL);
+	gtk_widget_show(sw);
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
+			      GTK_POLICY_AUTOMATIC,
+			      GTK_POLICY_AUTOMATIC);
+
+	GtkWidget *view;
+	GtkTextBuffer *buffer;
+	view=gtk_text_view_new ();
+	gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(view),GTK_WRAP_WORD);
+	gtk_text_view_set_editable(GTK_TEXT_VIEW(view),FALSE);
+	gtk_widget_show(view);
+	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+	gtk_text_buffer_set_text (buffer,welcome, -1);
+
+	gtk_container_add(GTK_CONTAINER(sw),view);
+	
+	vbox=gtk_vbox_new(FALSE,0);
+	gtk_widget_show(vbox);
+
+	gtk_widget_show(view);
+	gtk_box_pack_start(GTK_BOX(vbox),sw,TRUE,TRUE,0);
+
+	return vbox;
 }
 
 void show_expert_autosavesession(GtkWidget *widget,gpointer data)
@@ -127,6 +190,28 @@ void show_expert_showlogoutprompt(GtkWidget *widget,gpointer data)
 		gtk_widget_show(expert_showlogoutprompt);
 		present_expert=expert_showlogoutprompt;
 		gtk_box_pack_start(GTK_BOX(expert_box),expert_showlogoutprompt,FALSE,FALSE,0);
+	}
+}
+
+void show_expert_showsplash(GtkWidget *widget,gpointer data)
+{
+	if(present_expert!=expert_showsplash){
+		gtk_widget_hide(present_expert);
+		expert_showsplash=create_expert_showsplash();
+		gtk_widget_show(expert_showsplash);
+		present_expert=expert_showsplash;
+		gtk_box_pack_start(GTK_BOX(expert_box),expert_showsplash,FALSE,FALSE,0);
+	}
+}
+
+void show_expert_changesplash(GtkWidget *widget,gpointer data)
+{
+	if(present_expert!=expert_changesplash){
+		gtk_widget_hide(present_expert);
+		expert_changesplash=create_expert_changesplash();
+		gtk_widget_show(expert_changesplash);
+		present_expert=expert_changesplash;
+		gtk_box_pack_start(GTK_BOX(expert_box),expert_changesplash,FALSE,FALSE,0);
 	}
 }
 
@@ -206,7 +291,7 @@ GtkWidget *change_splash()
 
 	splash_image_button=gtk_button_new();
 	gtk_widget_show(splash_image_button);
-
+	g_signal_connect(G_OBJECT(splash_image_button),"enter",G_CALLBACK(show_expert_changesplash),NULL);
 	gtk_box_pack_start(GTK_BOX(splash_image_hbox),splash_image_button,TRUE,FALSE,20);
 
 	if(bool==FALSE){
@@ -259,20 +344,16 @@ GtkWidget *create_session_page()
 	session_vbox=gtk_vbox_new(FALSE,10);
 	gtk_widget_show(session_vbox);
 	gtk_box_pack_start(GTK_BOX(session_main_vbox),session_vbox,FALSE,FALSE,0);
-	gtk_container_set_border_width(GTK_CONTAINER(session_vbox),5);
+	gtk_container_set_border_width(GTK_CONTAINER(session_vbox),10);
 
-	sitting_label=gtk_label_new(_("Session Control"));
-	gtk_misc_set_alignment(GTK_MISC(sitting_label),0,0);
-	gtk_widget_show(sitting_label);
-	gtk_box_pack_start(GTK_BOX(session_vbox),sitting_label,FALSE,FALSE,0);
-
-/*	frame=gtk_frame_new("会话控制");
+	GtkWidget *frame;
+	frame=gtk_frame_new(_("Session Control"));
 	gtk_widget_show(frame);
-	gtk_box_pack_start(GTK_BOX(session_vbox),frame,FALSE,FALSE,0);*/
+	gtk_box_pack_start(GTK_BOX(session_vbox),frame,FALSE,FALSE,0);
 
-	session_hbox=gtk_hbox_new(FALSE,10);
+	session_hbox=gtk_hbox_new(FALSE,5);
 	gtk_widget_show(session_hbox);
-	gtk_box_pack_start(GTK_BOX(session_vbox),session_hbox,FALSE,FALSE,0);
+	gtk_container_add(GTK_CONTAINER(frame),session_hbox);
 
 	blank_label=gtk_label_new(" ");
 	gtk_widget_show(blank_label);
@@ -302,19 +383,18 @@ GtkWidget *create_session_page()
 		show_splash_screen,
 		session_dir,
 		checkbutton_toggled_splash,
-		NULL);
+		show_expert_showsplash);
 	gtk_widget_show(display_splash_checkbutton);
 	gtk_box_pack_start(GTK_BOX(session_vbox_right),display_splash_checkbutton,FALSE,FALSE,0);
 
-	display_splash_label=gtk_label_new(_("Click the big button to change splash screen"));
-	gtk_misc_set_alignment(GTK_MISC(display_splash_label),0,0);
-	gtk_widget_show(display_splash_label);
-	gtk_box_pack_start(GTK_BOX(session_vbox),display_splash_label,FALSE,FALSE,0);
+	frame=gtk_frame_new(_("Click the big button to change splash screen"));
+	gtk_widget_show(frame);
+	gtk_box_pack_start(GTK_BOX(session_vbox),frame,FALSE,FALSE,0);
 
 /*splash*/
 	splash_image_hbox=change_splash();
 	gtk_widget_show(splash_image_hbox);
-	gtk_box_pack_start(GTK_BOX(session_vbox),splash_image_hbox,FALSE,FALSE,0);
+	gtk_container_add(GTK_CONTAINER(frame),splash_image_hbox);
 	gtk_widget_set_size_request(splash_image_hbox,256,-1);
 
 /*expander*/
@@ -327,8 +407,6 @@ GtkWidget *create_session_page()
 	gtk_widget_set_size_request(GTK_WIDGET(expert_box),200,100);
 	gtk_widget_show(expert_box);
 	gtk_container_add(GTK_CONTAINER(expander),expert_box);
-
-	gtk_window_get_size(GTK_WINDOW(window),&resolution_x,&resolution_y);
 
 	return session_main_vbox;
 }

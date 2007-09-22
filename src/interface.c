@@ -6,13 +6,13 @@
 #include "about.h"
 #include "startup.h"
 #include "session_page.h"
-#include "personality.h"
+#include "desktop.h"
 #include "security.h"
 #include "applications.h"
 #include "system.h"
 
 gchar *startup_image=PACKAGE_PIXMAPS_DIR"/startup.png";
-gchar *personality_image=PACKAGE_PIXMAPS_DIR"/desktop.png";
+gchar *desktop_image=PACKAGE_PIXMAPS_DIR"/desktop.png";
 gchar *system_image=PACKAGE_PIXMAPS_DIR"/system.png";
 gchar *security_image=PACKAGE_PIXMAPS_DIR"/security.png";
 gchar *applications_image=PACKAGE_PIXMAPS_DIR"/applications.png";
@@ -21,7 +21,7 @@ gchar *header_right=PACKAGE_PIXMAPS_DIR"/ut_header_right.png";
 gchar *icon=PACKAGE_PIXMAPS_DIR"/ubuntu-tweak-icon.png";
 
 GtkWidget *startup_notebook;
-GtkWidget *personality_notebook;
+GtkWidget *desktop_notebook;
 GtkWidget *security_notebook;
 GtkWidget *applications_notebook;
 GtkWidget *label_welcome;
@@ -41,15 +41,15 @@ void show_startup_notebook(GtkWidget *widget,gpointer data)
 		present=startup_notebook;
 	}
 }
-void show_personality_notebook(GtkWidget *widget,gpointer data)
+void show_desktop_notebook(GtkWidget *widget,gpointer data)
 {
-	if(GTK_WIDGET(present)!=personality_notebook){
+	if(GTK_WIDGET(present)!=desktop_notebook){
 		gtk_widget_hide(GTK_WIDGET(present));
-		personality_notebook=create_personality_notebook();
-		gtk_widget_show(personality_notebook);
-		gtk_box_pack_start(GTK_BOX(vbox_content_right),personality_notebook,TRUE,TRUE,0);
-		gtk_widget_show(personality_notebook);
-		present=personality_notebook;
+		desktop_notebook=create_desktop_notebook();
+		gtk_widget_show(desktop_notebook);
+		gtk_box_pack_start(GTK_BOX(vbox_content_right),desktop_notebook,TRUE,TRUE,0);
+		gtk_widget_show(desktop_notebook);
+		present=desktop_notebook;
 	}
 }
 void show_security_notebook(GtkWidget *widget,gpointer data)
@@ -105,13 +105,12 @@ GtkWidget *create_main_window(void)
 	GtkWidget *button_exit;
 	GtkWidget *button_about;
 
-	
 /*定义左侧工具栏的一些项目*/
 	GtkWidget *toolbar;
-	GtkWidget *gnome_item;
-	GtkWidget *gnome_item_image;
-	GtkWidget *ubuntu_item;
-	GtkWidget *ubuntu_item_image;
+	GtkWidget *startup_item;
+	GtkWidget *startup_item_image;
+	GtkWidget *desktop_item;
+	GtkWidget *desktop_item_image;
 	GtkWidget *system_item;
 	GtkWidget *system_item_image;
 	GtkWidget *security_item;
@@ -177,7 +176,8 @@ GtkWidget *create_main_window(void)
 	gtk_box_pack_end(GTK_BOX(hbox_head),headline_2,FALSE,FALSE,0);
 
 /*Welcome screen*/
-	label_welcome=gtk_label_new(_("     Welcome to Ubuntu Tweak!\n\nThis is a tool for Ubuntu which makes it easy to config your your system and desktop.\nBy now, It's only for GNOME desktop environment.\nThis software is not good enough now, and few options are provided to tweak. \nHowever, I will make it more powerful, It's just a beginning."));
+	label_welcome=gtk_label_new(NULL);
+	gtk_label_set_markup (GTK_LABEL (label_welcome),_("<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak 0.1.4!</b></span>\n\n\nThis is a tool for Ubuntu which makes it easy to config your system \nand desktop.\nBy now, It's only for GNOME desktop environment.\nAlthough this application is not good enough,I will keep it developing.\nIf you have some suggestions,e-mail me please."));
 	gtk_label_set_justify(GTK_LABEL(label_welcome),GTK_JUSTIFY_FILL);
 	gtk_widget_show(label_welcome);
 	gtk_container_set_border_width(GTK_CONTAINER(vbox_content_right),10);
@@ -191,26 +191,26 @@ GtkWidget *create_main_window(void)
 	gtk_toolbar_set_orientation(GTK_TOOLBAR(toolbar),GTK_ORIENTATION_VERTICAL);
 	gtk_toolbar_set_style(GTK_TOOLBAR(toolbar),GTK_TOOLBAR_BOTH_HORIZ);
 
-	gnome_item_image=gtk_image_new_from_file(startup_image);
-	ubuntu_item_image=gtk_image_new_from_file(personality_image);
+	startup_item_image=gtk_image_new_from_file(startup_image);
+	desktop_item_image=gtk_image_new_from_file(desktop_image);
 	system_item_image=gtk_image_new_from_file(system_image);
 	security_item_image=gtk_image_new_from_file(security_image);
 	applications_item_image=gtk_image_new_from_file(applications_image);
 
-	gnome_item=gtk_toolbar_append_item(GTK_TOOLBAR(toolbar),
+	startup_item=gtk_toolbar_append_item(GTK_TOOLBAR(toolbar),
 			_("Startup"),
-			_("Here you can set the session or change the splash screen"),
+			_("Setting the session, change the splash screen or change the services(future)"),
 			"Private",
-			gnome_item_image,
+			startup_item_image,
 			GTK_SIGNAL_FUNC(show_startup_notebook),
 			NULL);
 
-	ubuntu_item=gtk_toolbar_append_item(GTK_TOOLBAR(toolbar),
-			_("Personalization"),
-			_("Set your desktop icons or define the new name of them"),
+	desktop_item=gtk_toolbar_append_item(GTK_TOOLBAR(toolbar),
+			_("Desktop"),
+			_("Setting your desktop icons or other options about desktop"),
 			"Private",
-			ubuntu_item_image,
-			GTK_SIGNAL_FUNC(show_personality_notebook),
+			desktop_item_image,
+			GTK_SIGNAL_FUNC(show_desktop_notebook),
 			NULL);
 
 	system_item=gtk_toolbar_append_item(GTK_TOOLBAR(toolbar),
@@ -223,7 +223,7 @@ GtkWidget *create_main_window(void)
 
 	security_item=gtk_toolbar_append_item(GTK_TOOLBAR(toolbar),
 			_("Security"),
-			_("Some options for system security"),
+			_("Some options about security of your system"),
 			"Private",
 			security_item_image,
 			GTK_SIGNAL_FUNC(show_security_notebook),
@@ -240,7 +240,6 @@ GtkWidget *create_main_window(void)
 	gtk_box_pack_start(GTK_BOX(vbox_content_left),toolbar,FALSE,FALSE,0);
 
 /*主窗体最底部的几个按钮*/
-
 	vbutton=gtk_vbutton_box_new();
 	gtk_widget_show(vbutton);
 	gtk_box_pack_start(GTK_BOX(hbox_footer),vbutton,FALSE,FALSE,0);

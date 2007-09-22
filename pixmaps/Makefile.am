@@ -14,6 +14,8 @@ ubuntu_tweak_pixmaps_DATA = \
 	security.png\
 	startup.png\
 	ut_header_left.png\
-	ut_header_right.png
+	ut_header_right.png\
+	nautilus-file-advanced-permissions.png\
+	nautilus-file-permissions.png
 
 EXTRA_DIST = $(ubuntu_tweak_pixmaps_DATA)

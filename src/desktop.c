@@ -7,7 +7,7 @@
 #include "nautilus_page.h"
 #include "history_page.h"
 
-GtkWidget *create_personality_notebook()
+GtkWidget *create_desktop_notebook()
 {
 /*定义笔记本*/
 	GtkWidget *notebook;

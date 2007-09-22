@@ -14,11 +14,17 @@ GtkWidget *create_gconf_checkbutton(gchar *label,gchar *key,gchar *dir,gpointer 
 
 GtkWidget *create_expert_label();
 
+GtkWidget *create_expert_with_string(gchar *string);
+
 GtkWidget *create_text_checkbutton(gchar *label,gchar *key,gchar *shell,gpointer enterdata);
 
 GtkWidget *create_gconf_entry(gchar *key,gchar *dir,gpointer data);
 
 void button_test(GtkWidget *widget,gpointer);
+
+void show_expert_label();
+
+void expander_change(GtkWidget *widget,gpointer data);
 
 void text_checkbutton_toggled(GtkWidget *checkbutton,gpointer data);
 

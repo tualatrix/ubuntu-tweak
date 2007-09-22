@@ -5,6 +5,15 @@ void button_test(GtkWidget *widget,gpointer data)
 
 }
 
+void expander_change(GtkWidget *widget,gpointer data)
+{
+	gboolean bool;
+	bool=gtk_expander_get_expanded(GTK_EXPANDER(widget));	
+	if(bool==FALSE){
+		show_expert_label();
+	}
+}
+
 GtkWidget *create_expert_label()
 {
 	GtkWidget *vbox;
@@ -19,28 +28,51 @@ GtkWidget *create_expert_label()
 			      GTK_POLICY_AUTOMATIC);
 
 	GtkWidget *view;
-	//GtkTextIter iter,start,end;
 	GtkTextBuffer *buffer;
-	//GdkPixbuf *pixbuf;
 	view=gtk_text_view_new ();
 	gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(view),GTK_WRAP_WORD);
 	gtk_text_view_set_editable(GTK_TEXT_VIEW(view),FALSE);
 	gtk_widget_show(view);
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
-//	pixbuf=gdk_pixbuf_new_from_file("/home/tualatrix/Desktop/opera-logo.png",NULL);
 	gtk_text_buffer_set_text (buffer,welcome, -1);
-//	gtk_text_buffer_get_bounds(GTK_TEXT_BUFFER(buffer),&start,&end);
-//	gtk_text_buffer_insert_pixbuf(buffer,&end,pixbuf);
-//	gtk_text_buffer_insert(GTK_TEXT_BUFFER(buffer),&end,"\nNew word",-1);
 
 	gtk_container_add(GTK_CONTAINER(sw),view);
 	
 	vbox=gtk_vbox_new(FALSE,0);
 	gtk_widget_show(vbox);
 	
-	/*label=gtk_label_new("Welcome to expert.");
-	gtk_widget_show(label);
-	gtk_box_pack_start(GTK_BOX(vbox),label,TRUE,TRUE,0);*/
+	gtk_widget_show(view);
+	gtk_box_pack_start(GTK_BOX(vbox),sw,TRUE,TRUE,0);
+
+	return vbox;	
+}
+
+GtkWidget *create_expert_with_string(gchar *string)
+{
+	GtkWidget *vbox;
+	GtkWidget *sw;
+
+	sw=gtk_scrolled_window_new (NULL, NULL);
+	gtk_widget_show(sw);
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
+			      GTK_POLICY_AUTOMATIC,
+			      GTK_POLICY_AUTOMATIC);
+
+	GtkWidget *view;
+	GtkTextBuffer *buffer;
+
+	view=gtk_text_view_new ();
+	gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(view),GTK_WRAP_WORD);
+	gtk_text_view_set_editable(GTK_TEXT_VIEW(view),FALSE);
+	gtk_widget_show(view);
+	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+
+	gtk_text_buffer_set_text (buffer,string, -1);
+
+	gtk_container_add(GTK_CONTAINER(sw),view);
+	
+	vbox=gtk_vbox_new(FALSE,0);
+	gtk_widget_show(vbox);
 
 	gtk_widget_show(view);
 	gtk_box_pack_start(GTK_BOX(vbox),sw,TRUE,TRUE,0);
