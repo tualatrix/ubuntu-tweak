@@ -13,14 +13,21 @@ GtkWidget *create_applications_notebook()
 	GtkWidget *notebook;
 	GtkWidget *main_vbox;
 	GtkWidget *page_label;
+	GConfClient *client;
+	gboolean *bool;
+
+	client=gconf_client_get_default();
 
 	notebook=gtk_notebook_new();
 	gtk_notebook_set_tab_pos(GTK_NOTEBOOK(notebook),GTK_POS_TOP);
 
-	main_vbox=create_fcitx_page();
-	page_label=gtk_label_new(_("Fcitx"));
-	gtk_widget_show(page_label);
-	gtk_notebook_append_page(GTK_NOTEBOOK(notebook),main_vbox,page_label);
+	bool=gconf_client_get_bool(client,"/apps/ubuntu-tweak/system/fcitx",NULL);
+	if(bool==TRUE){
+		main_vbox=create_fcitx_page();
+		page_label=gtk_label_new("Fcitx输入法");
+		gtk_widget_show(page_label);
+		gtk_notebook_append_page(GTK_NOTEBOOK(notebook),main_vbox,page_label);
+	}
 
 	main_vbox=create_awn_page();
 	gtk_widget_show(main_vbox);

@@ -12,6 +12,8 @@ GtkWidget *window;
 
 GtkWidget *create_gconf_checkbutton(gchar *label,gchar *key,gchar *dir,gpointer toggledata,gpointer enterdata);
 
+GtkWidget *create_expert_label();
+
 GtkWidget *create_text_checkbutton(gchar *label,gchar *key,gchar *shell,gpointer enterdata);
 
 GtkWidget *create_gconf_entry(gchar *key,gchar *dir,gpointer data);

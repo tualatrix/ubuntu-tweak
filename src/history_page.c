@@ -20,7 +20,7 @@ void sweep_history(GtkWidget *widget,gpointer data)
 						GTK_DIALOG_DESTROY_WITH_PARENT,
 						GTK_MESSAGE_INFO,
 						GTK_BUTTONS_OK,
-						"Hello,You are fool",
+						"Hello,You are fool","haha"
 						);
 			gtk_dialog_run(GTK_MESSAGE_DIALOG(dialog));
 			gtk_widget_destroy(dialog);
