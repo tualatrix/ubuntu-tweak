@@ -5,15 +5,9 @@
 #include <gconf/gconf-client.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
-	GtkWidget *window;
-GtkWidget *expander;
-GtkWidget *expert_label;
-GtkWidget *expert_box;
-gpointer present_expert;
+GtkWidget *window;
 
 GtkWidget *create_gconf_checkbutton(gchar *label,gchar *key,gchar *dir,gpointer toggledata,gpointer enterdata);
-
-GtkWidget *create_expert_label();
 
 GtkWidget *create_expert_with_string(gchar *string);
 
@@ -22,10 +16,6 @@ GtkWidget *create_text_checkbutton(gchar *label,gchar *key,gchar *shell,gpointer
 GtkWidget *create_gconf_entry(gchar *key,gchar *dir,gpointer data);
 
 void button_test(GtkWidget *widget,gpointer);
-
-void show_expert_label();
-
-void expander_change(GtkWidget *widget,gpointer data);
 
 void text_checkbutton_toggled(GtkWidget *checkbutton,gpointer data);
 

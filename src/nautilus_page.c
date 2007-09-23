@@ -5,13 +5,13 @@
 #include "ubuntu-tweak.h"
 
 /*expert mode*/
-GtkWidget *expander;
-GtkWidget *expert_label;
-GtkWidget *expert_box;
+GtkWidget *expander_nautilus;
+GtkWidget *expert_label_nautilus;
+GtkWidget *expert_box_nautilus;
 GtkWidget *expert_showadvancedpermissions;
 GtkWidget *expert_burnproof;
 GtkWidget *expert_overburn;
-gpointer present_expert;
+gpointer present_expert_nautilus;
 
 gchar *key_show_advanced_permissions="/apps/nautilus/preferences/show_advanced_permissions";
 gchar *key_burnproof="/apps/nautilus-cd-burner/burnproof";
@@ -21,6 +21,26 @@ gchar *key_cd_burner_dir="/apps/nautilus-cd-burner";
 
 gchar *image_nautilus_file_permissions=PACKAGE_PIXMAPS_DIR"/nautilus-file-permissions.png";
 gchar *image_nautilus_file_advanced_permissions=PACKAGE_PIXMAPS_DIR"/nautilus-file-advanced-permissions.png";
+
+void show_expert_label_nautilus()
+{
+	if(present_expert_nautilus!=NULL){
+		gtk_widget_hide(present_expert_nautilus);
+	}
+	expert_label_nautilus=create_expert_with_string(_("Welcome! \nHere is \"Expert Mode\".If you have any question with the options, or you want to know more information about what operation will be done by the options, Just move your cursor to the cursor."));
+	gtk_widget_show(expert_label_nautilus);
+	present_expert_nautilus=expert_label_nautilus;
+	gtk_box_pack_start(GTK_BOX(expert_box_nautilus),expert_label_nautilus,TRUE,TRUE,0);
+}
+
+void expander_change_nautilus(GtkWidget *widget,gpointer data)
+{
+	gboolean bool;
+	bool=gtk_expander_get_expanded(GTK_EXPANDER(widget));	
+	if(bool==FALSE){
+		show_expert_label_nautilus();
+	}
+}
 
 GtkWidget *create_expert_showadvancedpermissions()
 {
@@ -68,34 +88,34 @@ GtkWidget *create_expert_showadvancedpermissions()
 
 void show_expert_showadvancedpermissions(GtkWidget *widget,gpointer data)
 {
-	if(present_expert!=expert_showadvancedpermissions){
-		gtk_widget_hide(present_expert);
+	if(present_expert_nautilus!=expert_showadvancedpermissions){
+		gtk_widget_hide(present_expert_nautilus);
 		expert_showadvancedpermissions=create_expert_showadvancedpermissions();
 		gtk_widget_show(expert_showadvancedpermissions);
-		present_expert=expert_showadvancedpermissions;
-		gtk_box_pack_start(GTK_BOX(expert_box),expert_showadvancedpermissions,FALSE,FALSE,0);
+		present_expert_nautilus=expert_showadvancedpermissions;
+		gtk_box_pack_start(GTK_BOX(expert_box_nautilus),expert_showadvancedpermissions,FALSE,FALSE,0);
 	}
 }
 
 void show_expert_burnproof(GtkWidget *widget,gpointer data)
 {
-	if(present_expert!=expert_burnproof){
-		gtk_widget_hide(present_expert);
+	if(present_expert_nautilus!=expert_burnproof){
+		gtk_widget_hide(present_expert_nautilus);
 		expert_burnproof=create_expert_with_string(_("Do you want it more safe when you are buring CD?\nCheck this button if you confirm that your burner has the function."));
 		gtk_widget_show(expert_burnproof);
-		present_expert=expert_burnproof;
-		gtk_box_pack_start(GTK_BOX(expert_box),expert_burnproof,FALSE,FALSE,0);
+		present_expert_nautilus=expert_burnproof;
+		gtk_box_pack_start(GTK_BOX(expert_box_nautilus),expert_burnproof,FALSE,FALSE,0);
 	}
 }
 
 void show_expert_overburn(GtkWidget *widget,gpointer data)
 {
-	if(present_expert!=expert_overburn){
-		gtk_widget_hide(present_expert);
+	if(present_expert_nautilus!=expert_overburn){
+		gtk_widget_hide(present_expert_nautilus);
 		expert_overburn=create_expert_with_string(_("If your archivers' size is over the disc, you may want to enable this function.\nBut it's not recommend to enable."));
 		gtk_widget_show(expert_overburn);
-		present_expert=expert_overburn;
-		gtk_box_pack_start(GTK_BOX(expert_box),expert_overburn,FALSE,FALSE,0);
+		present_expert_nautilus=expert_overburn;
+		gtk_box_pack_start(GTK_BOX(expert_box_nautilus),expert_overburn,FALSE,FALSE,0);
 	}
 }
 
@@ -142,15 +162,15 @@ GtkWidget *create_nautilus_page()
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
 /*expander*/
-	expander=gtk_expander_new_with_mnemonic(_("Need some help? Click here!"));
-	gtk_widget_show(expander);
-	g_signal_connect(G_OBJECT(expander),"activate",G_CALLBACK(expander_change),NULL);
-	gtk_box_pack_end(GTK_BOX(main_vbox),expander,FALSE,FALSE,0);
+	expander_nautilus=gtk_expander_new_with_mnemonic(_("Need some help? Click here!"));
+	gtk_widget_show(expander_nautilus);
+	g_signal_connect(G_OBJECT(expander_nautilus),"activate",G_CALLBACK(expander_change_nautilus),NULL);
+	gtk_box_pack_end(GTK_BOX(main_vbox),expander_nautilus,FALSE,FALSE,0);
 
-	expert_box=gtk_vbox_new(FALSE,0);
-	gtk_widget_set_size_request(GTK_WIDGET(expert_box),200,100);
-	gtk_widget_show(expert_box);
-	gtk_container_add(GTK_CONTAINER(expander),expert_box);
+	expert_box_nautilus=gtk_vbox_new(FALSE,0);
+	gtk_widget_set_size_request(GTK_WIDGET(expert_box_nautilus),200,100);
+	gtk_widget_show(expert_box_nautilus);
+	gtk_container_add(GTK_CONTAINER(expander_nautilus),expert_box_nautilus);
 
 	return main_vbox; 
 }

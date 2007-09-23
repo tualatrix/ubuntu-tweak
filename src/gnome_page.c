@@ -3,6 +3,7 @@
 #endif
 
 #include "ubuntu-tweak.h"
+
 /*expert mode*/
 GtkWidget *expander_gnome;
 GtkWidget *expert_label_gnome;

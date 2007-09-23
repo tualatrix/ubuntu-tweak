@@ -11,14 +11,14 @@ gchar *session_dir="/apps/gnome-session/options";
 gchar *splash_image="/apps/gnome-session/options/splash_image";
 
 /*expert mode*/
-GtkWidget *expander;
-GtkWidget *expert_box;
-GtkWidget *expert_label;
+GtkWidget *expander_session;
+GtkWidget *expert_box_session;
+GtkWidget *expert_label_session;
 GtkWidget *expert_autosavesession;
 GtkWidget *expert_showlogoutprompt;
 GtkWidget *expert_showsplash;
 GtkWidget *expert_changesplash;
-gpointer present_expert;
+gpointer present_expert_session;
 
 GtkWidget *splash_image_button;
 GdkPixbuf *new_preview;
@@ -26,6 +26,26 @@ GtkWidget *splash_image_preview;
 gchar *filename;
 gchar *filedir;
 GdkPixbuf *original_preview;
+
+void show_expert_label_session()
+{
+	if(present_expert_session!=NULL){
+		gtk_widget_hide(present_expert_session);
+	}
+	expert_label_session=create_expert_with_string(_("Welcome! \nHere is \"Expert Mode\".If you have any question with the options, or you want to know more information about what operation will be done by the options, Just move your cursor to the cursor."));
+	gtk_widget_show(expert_label_session);
+	present_expert_session=expert_label_session;
+	gtk_box_pack_start(GTK_BOX(expert_box_session),expert_label_session,TRUE,TRUE,0);
+}
+
+void expander_change_session(GtkWidget *widget,gpointer data)
+{
+	gboolean bool;
+	bool=gtk_expander_get_expanded(GTK_EXPANDER(widget));	
+	if(bool==FALSE){
+		show_expert_label_session();
+	}
+}
 
 GtkWidget *create_expert_autosavesession()
 {
@@ -162,45 +182,45 @@ GtkWidget *create_expert_changesplash()
 
 void show_expert_autosavesession(GtkWidget *widget,gpointer data)
 {
-	if(present_expert!=expert_autosavesession){
-		gtk_widget_hide(present_expert);
+	if(present_expert_session!=expert_autosavesession){
+		gtk_widget_hide(present_expert_session);
 		expert_autosavesession=create_expert_autosavesession();
 		gtk_widget_show(expert_autosavesession);
-		present_expert=expert_autosavesession;
-		gtk_box_pack_start(GTK_BOX(expert_box),expert_autosavesession,FALSE,FALSE,0);
+		present_expert_session=expert_autosavesession;
+		gtk_box_pack_start(GTK_BOX(expert_box_session),expert_autosavesession,FALSE,FALSE,0);
 	}
 }
 
 void show_expert_showlogoutprompt(GtkWidget *widget,gpointer data)
 {
-	if(present_expert!=expert_showlogoutprompt){
-		gtk_widget_hide(present_expert);
+	if(present_expert_session!=expert_showlogoutprompt){
+		gtk_widget_hide(present_expert_session);
 		expert_showlogoutprompt=create_expert_showlogoutprompt();
 		gtk_widget_show(expert_showlogoutprompt);
-		present_expert=expert_showlogoutprompt;
-		gtk_box_pack_start(GTK_BOX(expert_box),expert_showlogoutprompt,FALSE,FALSE,0);
+		present_expert_session=expert_showlogoutprompt;
+		gtk_box_pack_start(GTK_BOX(expert_box_session),expert_showlogoutprompt,FALSE,FALSE,0);
 	}
 }
 
 void show_expert_showsplash(GtkWidget *widget,gpointer data)
 {
-	if(present_expert!=expert_showsplash){
-		gtk_widget_hide(present_expert);
+	if(present_expert_session!=expert_showsplash){
+		gtk_widget_hide(present_expert_session);
 		expert_showsplash=create_expert_showsplash();
 		gtk_widget_show(expert_showsplash);
-		present_expert=expert_showsplash;
-		gtk_box_pack_start(GTK_BOX(expert_box),expert_showsplash,FALSE,FALSE,0);
+		present_expert_session=expert_showsplash;
+		gtk_box_pack_start(GTK_BOX(expert_box_session),expert_showsplash,FALSE,FALSE,0);
 	}
 }
 
 void show_expert_changesplash(GtkWidget *widget,gpointer data)
 {
-	if(present_expert!=expert_changesplash){
-		gtk_widget_hide(present_expert);
+	if(present_expert_session!=expert_changesplash){
+		gtk_widget_hide(present_expert_session);
 		expert_changesplash=create_expert_changesplash();
 		gtk_widget_show(expert_changesplash);
-		present_expert=expert_changesplash;
-		gtk_box_pack_start(GTK_BOX(expert_box),expert_changesplash,FALSE,FALSE,0);
+		present_expert_session=expert_changesplash;
+		gtk_box_pack_start(GTK_BOX(expert_box_session),expert_changesplash,FALSE,FALSE,0);
 	}
 }
 
@@ -385,15 +405,15 @@ GtkWidget *create_session_page()
 	gtk_widget_set_size_request(splash_image_hbox,256,-1);
 
 /*expander*/
-	expander=gtk_expander_new_with_mnemonic(_("Need some help? Click here!"));
-	gtk_widget_show(expander);
-	g_signal_connect(G_OBJECT(expander),"activate",G_CALLBACK(expander_change),NULL);
-	gtk_box_pack_start(GTK_BOX(session_vbox),expander,FALSE,FALSE,0);
+	expander_session=gtk_expander_new_with_mnemonic(_("Need some help? Click here!"));
+	gtk_widget_show(expander_session);
+	g_signal_connect(G_OBJECT(expander_session),"activate",G_CALLBACK(expander_change_session),NULL);
+	gtk_box_pack_start(GTK_BOX(session_vbox),expander_session,FALSE,FALSE,0);
 
-	expert_box=gtk_vbox_new(FALSE,0);
-	gtk_widget_set_size_request(GTK_WIDGET(expert_box),200,100);
-	gtk_widget_show(expert_box);
-	gtk_container_add(GTK_CONTAINER(expander),expert_box);
+	expert_box_session=gtk_vbox_new(FALSE,0);
+	gtk_widget_set_size_request(GTK_WIDGET(expert_box_session),200,100);
+	gtk_widget_show(expert_box_session);
+	gtk_container_add(GTK_CONTAINER(expander_session),expert_box_session);
 
 	return session_main_vbox;
 }
