@@ -4,13 +4,13 @@
 
 #include "ubuntu-tweak.h"
 /*expert mode*/
-GtkWidget *expander;
-GtkWidget *expert_label;
-GtkWidget *expert_box;
+GtkWidget *expander_gnome;
+GtkWidget *expert_label_gnome;
+GtkWidget *expert_box_gnome;
 GtkWidget *expert_animations;
 GtkWidget *expert_lockdownpanel;
 GtkWidget *expert_inputunicode;
-gpointer present_expert;
+gpointer present_expert_gnome;
 
 gchar *enable_animations_panel="/apps/panel/global/enable_animations";
 gchar *enable_animations_gnome="/desktop/gnome/interface/enable_animations";
@@ -21,36 +21,56 @@ gchar *key_show_unicode_menu="/desktop/gnome/interface/show_unicode_menu";
 gchar *dir_gnome_interface="/desktop/gnome/interface";
 gchar *dir_panel_global="/apps/panel/global";
 
+void show_expert_label_gnome()
+{
+	if(present_expert_gnome!=NULL){
+		gtk_widget_hide(present_expert_gnome);
+	}
+	expert_label_gnome=create_expert_with_string(_("Welcome! \nHere is \"Expert Mode\".If you have any question with the options, or you want to know more information about what operation will be done by the options, Just move your cursor to the cursor."));
+	gtk_widget_show(expert_label_gnome);
+	present_expert_gnome=expert_label_gnome;
+	gtk_box_pack_start(GTK_BOX(expert_box_gnome),expert_label_gnome,TRUE,TRUE,0);
+}
+
+void expander_change_gnome(GtkWidget *widget,gpointer data)
+{
+	gboolean bool;
+	bool=gtk_expander_get_expanded(GTK_EXPANDER(widget));	
+	if(bool==FALSE){
+		show_expert_label_gnome();
+	}
+}
+
 void show_expert_animations(GtkWidget *widget,gpointer data)
 {
-	if(present_expert!=expert_animations){
-		gtk_widget_hide(present_expert);
+	if(present_expert_gnome!=expert_animations){
+		gtk_widget_hide(present_expert_gnome);
 		expert_animations=create_expert_with_string(_("It seems that if you disable this option, GNOME will more faster"));
 		gtk_widget_show(expert_animations);
-		present_expert=expert_animations;
-		gtk_box_pack_start(GTK_BOX(expert_box),expert_animations,FALSE,FALSE,0);
+		present_expert_gnome=expert_animations;
+		gtk_box_pack_start(GTK_BOX(expert_box_gnome),expert_animations,FALSE,FALSE,0);
 	}
 }
 
 void show_expert_lockdownpanel(GtkWidget *widget,gpointer data)
 {
-	if(present_expert!=expert_lockdownpanel){
-		gtk_widget_hide(present_expert);
+	if(present_expert_gnome!=expert_lockdownpanel){
+		gtk_widget_hide(present_expert_gnome);
 		expert_lockdownpanel=create_expert_with_string(_("Check this button if you don't want your gnome-panel to be changed."));
 		gtk_widget_show(expert_lockdownpanel);
-		present_expert=expert_lockdownpanel;
-		gtk_box_pack_start(GTK_BOX(expert_box),expert_lockdownpanel,FALSE,FALSE,0);
+		present_expert_gnome=expert_lockdownpanel;
+		gtk_box_pack_start(GTK_BOX(expert_box_gnome),expert_lockdownpanel,FALSE,FALSE,0);
 	}
 }
 
 void show_expert_inputunicode(GtkWidget *widget,gpointer data)
 {
-	if(present_expert!=expert_inputunicode){
-		gtk_widget_hide(present_expert);
+	if(present_expert_gnome!=expert_inputunicode){
+		gtk_widget_hide(present_expert_gnome);
 		expert_inputunicode=create_expert_with_string(_("Right click menu in the editable area you will find this."));
 		gtk_widget_show(expert_inputunicode);
-		present_expert=expert_inputunicode;
-		gtk_box_pack_start(GTK_BOX(expert_box),expert_inputunicode,FALSE,FALSE,0);
+		present_expert_gnome=expert_inputunicode;
+		gtk_box_pack_start(GTK_BOX(expert_box_gnome),expert_inputunicode,FALSE,FALSE,0);
 	}
 }
 
@@ -100,15 +120,15 @@ GtkWidget *create_gnome_page()
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);	
 
 /*expander*/
-	expander=gtk_expander_new_with_mnemonic(_("Need some help? Click here!"));
-	gtk_widget_show(expander);
-	g_signal_connect(G_OBJECT(expander),"activate",G_CALLBACK(expander_change),NULL);
-	gtk_box_pack_end(GTK_BOX(main_vbox),expander,FALSE,FALSE,0);
+	expander_gnome=gtk_expander_new_with_mnemonic(_("Need some help? Click here!"));
+	gtk_widget_show(expander_gnome);
+	g_signal_connect(G_OBJECT(expander_gnome),"activate",G_CALLBACK(expander_change_gnome),NULL);
+	gtk_box_pack_end(GTK_BOX(main_vbox),expander_gnome,FALSE,FALSE,0);
 
-	expert_box=gtk_vbox_new(FALSE,0);
-	gtk_widget_set_size_request(GTK_WIDGET(expert_box),200,100);
-	gtk_widget_show(expert_box);
-	gtk_container_add(GTK_CONTAINER(expander),expert_box);
+	expert_box_gnome=gtk_vbox_new(FALSE,0);
+	gtk_widget_set_size_request(GTK_WIDGET(expert_box_gnome),200,100);
+	gtk_widget_show(expert_box_gnome);
+	gtk_container_add(GTK_CONTAINER(expander_gnome),expert_box_gnome);
 
 	return main_vbox; 
 }
