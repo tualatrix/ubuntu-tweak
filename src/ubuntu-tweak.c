@@ -1,8 +1,16 @@
 #include "ubuntu-tweak.h"
 
 void button_test(GtkWidget *widget,gpointer data)
-{
-
+{	
+	GtkMessageDialog *dialog;
+	dialog=gtk_message_dialog_new(window,
+				GTK_DIALOG_DESTROY_WITH_PARENT,
+				GTK_MESSAGE_QUESTION,
+				GTK_BUTTONS_OK,
+				_("OK?\nThere is noting for this OK Button,haha!"),NULL
+				);
+	gtk_dialog_run(GTK_MESSAGE_DIALOG(dialog));
+	gtk_widget_destroy(dialog);
 }
 
 GtkWidget *create_expert_with_string(gchar *string)

@@ -14,7 +14,7 @@ void show_about(GtkWidget *widget,gpointer data)
 	"name","Ubuntu Tweak",
 	"authors", authors,
 	"artists", artists,
-	"website", "http://ubuntu-tweak.cn",
+	"website", "http://ubuntu-tweak.com",
 	"copyright", "Copyright © 2007 TualatriX",
 	"comments", _("Ubuntu Tweak is tool for Ubuntu that makes it easy to config your system and desktop."),
 	"version", PACKAGE_VERSION,

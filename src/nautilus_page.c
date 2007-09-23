@@ -4,15 +4,6 @@
 
 #include "ubuntu-tweak.h"
 
-/*expert mode*/
-GtkWidget *expander_nautilus;
-GtkWidget *expert_label_nautilus;
-GtkWidget *expert_box_nautilus;
-GtkWidget *expert_showadvancedpermissions;
-GtkWidget *expert_burnproof;
-GtkWidget *expert_overburn;
-gpointer present_expert_nautilus;
-
 gchar *key_show_advanced_permissions="/apps/nautilus/preferences/show_advanced_permissions";
 gchar *key_burnproof="/apps/nautilus-cd-burner/burnproof";
 gchar *key_overburn="/apps/nautilus-cd-burner/overburn";
@@ -22,12 +13,21 @@ gchar *key_cd_burner_dir="/apps/nautilus-cd-burner";
 gchar *image_nautilus_file_permissions=PACKAGE_PIXMAPS_DIR"/nautilus-file-permissions.png";
 gchar *image_nautilus_file_advanced_permissions=PACKAGE_PIXMAPS_DIR"/nautilus-file-advanced-permissions.png";
 
+/*expert mode*/
+GtkWidget *expander_nautilus;
+GtkWidget *expert_label_nautilus;
+GtkWidget *expert_box_nautilus;
+GtkWidget *expert_showadvancedpermissions;
+GtkWidget *expert_burnproof;
+GtkWidget *expert_overburn;
+gpointer present_expert_nautilus;
+
 void show_expert_label_nautilus()
 {
 	if(present_expert_nautilus!=NULL){
 		gtk_widget_hide(present_expert_nautilus);
 	}
-	expert_label_nautilus=create_expert_with_string(_("Welcome! \nHere is \"Expert Mode\".If you have any question with the options, or you want to know more information about what operation will be done by the options, Just move your cursor to the cursor."));
+	expert_label_nautilus=create_expert_with_string(_("Welcome! \nHere is \"Expert Mode\".If you have any question with the options, or you want to know more information about what operation will be done by the options, Just move your cursor to the option."));
 	gtk_widget_show(expert_label_nautilus);
 	present_expert_nautilus=expert_label_nautilus;
 	gtk_box_pack_start(GTK_BOX(expert_box_nautilus),expert_label_nautilus,TRUE,TRUE,0);
@@ -57,7 +57,7 @@ GtkWidget *create_expert_showadvancedpermissions()
 			      GTK_POLICY_AUTOMATIC);
 
 	GtkWidget *view;
-	GtkTextIter iter,start,end;
+	GtkTextIter start,end;
 	GtkTextBuffer *buffer;
 	GdkPixbuf *pixbuf;
 	view=gtk_text_view_new ();
@@ -101,7 +101,7 @@ void show_expert_burnproof(GtkWidget *widget,gpointer data)
 {
 	if(present_expert_nautilus!=expert_burnproof){
 		gtk_widget_hide(present_expert_nautilus);
-		expert_burnproof=create_expert_with_string(_("Do you want it more safe when you are buring CD?\nCheck this button if you confirm that your burner has the function."));
+		expert_burnproof=create_expert_with_string(_("Do you want it safer when you are buring discs?\nCheck this button if you confirm that your burner support the function."));
 		gtk_widget_show(expert_burnproof);
 		present_expert_nautilus=expert_burnproof;
 		gtk_box_pack_start(GTK_BOX(expert_box_nautilus),expert_burnproof,FALSE,FALSE,0);

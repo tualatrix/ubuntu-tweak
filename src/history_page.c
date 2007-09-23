@@ -66,7 +66,7 @@ GtkWidget *create_history_page()
 	gtk_box_pack_start(GTK_BOX(main_vbox),label,FALSE,FALSE,0);
 
 	GtkWidget *frame;
-	frame=gtk_frame_new(_("CD Burner"));
+	frame=gtk_frame_new(_("Some history record"));
 	gtk_widget_show(frame);
 	gtk_box_pack_start(GTK_BOX(main_vbox),frame,FALSE,FALSE,0);
 

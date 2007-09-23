@@ -12,6 +12,44 @@ gchar *key_cpufreq_ac_policy="/apps/gnome-power-manager/cpufreq_ac_policy";
 gchar *key_cpufreq_battery_policy="/apps/gnome-power-manager/cpufreq_battery_policy";
 gchar *key_display_icon_policy="/apps/gnome-power-manager/display_icon_policy";
 
+/*expert mode
+GtkWidget *expander_powermanager;
+GtkWidget *expert_label_powermanager;
+GtkWidget *expert_box_powermanager;
+GtkWidget *expert_pmicon;
+gpointer present_expert_powermanager;
+
+void show_expert_label_powermanager()
+{
+	if(present_expert_powermanager!=NULL){
+		gtk_widget_hide(present_expert_powermanager);
+	}
+	expert_label_powermanager=create_expert_with_string(_("Welcome! \nHere is \"Expert Mode\".If you have any question with the options, or you want to know more information about what operation will be done by the options, Just move your cursor to the cursor."));
+	gtk_widget_show(expert_label_powermanager);
+	present_expert_powermanager=expert_label_powermanager;
+	gtk_box_pack_start(GTK_BOX(expert_box_powermanager),expert_label_powermanager,TRUE,TRUE,0);
+}
+
+void show_expert_pmicon(GtkWidget *widget,gpointer data)
+{
+	if(present_expert_powermanager!=expert_pmicon){
+		gtk_widget_hide(present_expert_powermanager);
+		expert_pmicon=create_expert_with_string(_("Do you want it safer when you are buring discs?\nCheck this button if you confirm that your burner support the function."));
+		gtk_widget_show(expert_pmicon);
+		present_expert_powermanager=expert_pmicon;
+		gtk_box_pack_start(GTK_BOX(expert_box_powermanager),expert_pmicon,FALSE,FALSE,0);
+	}
+}
+
+void expander_change_powermanager(GtkWidget *widget,gpointer data)
+{
+	gboolean bool;
+	bool=gtk_expander_get_expanded(GTK_EXPANDER(widget));	
+	if(bool==FALSE){
+		show_expert_label_powermanager();
+	}
+}*/
+
 void powermanager_changed(GtkWidget *widget,gpointer data)
 {
 	gchar *str;
@@ -190,6 +228,16 @@ GtkWidget *create_powermanager_page()
 	else if(!g_ascii_strncasecmp(gconf_client_get_string(client,key_cpufreq_battery_policy,NULL),"performance",9)){
 		gtk_combo_box_set_active(GTK_COMBO_BOX(combobox),2);
 	}
+/*expander
+	expander_powermanager=gtk_expander_new_with_mnemonic(_("Need some help? Click here!"));
+	gtk_widget_show(expander_powermanager);
+	g_signal_connect(G_OBJECT(expander_powermanager),"activate",G_CALLBACK(expander_change_powermanager),NULL);
+	gtk_box_pack_end(GTK_BOX(main_vbox),expander_powermanager,FALSE,FALSE,0);
+
+	expert_box_powermanager=gtk_vbox_new(FALSE,0);
+	gtk_widget_set_size_request(GTK_WIDGET(expert_box_powermanager),200,100);
+	gtk_widget_show(expert_box_powermanager);
+	gtk_container_add(GTK_CONTAINER(expander_powermanager),expert_box_powermanager);*/
 
 	return main_vbox; 
 }

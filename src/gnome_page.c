@@ -27,7 +27,7 @@ void show_expert_label_gnome()
 	if(present_expert_gnome!=NULL){
 		gtk_widget_hide(present_expert_gnome);
 	}
-	expert_label_gnome=create_expert_with_string(_("Welcome! \nHere is \"Expert Mode\".If you have any question with the options, or you want to know more information about what operation will be done by the options, Just move your cursor to the cursor."));
+	expert_label_gnome=create_expert_with_string(_("Welcome! \nHere is \"Expert Mode\".If you have any question with the options, or you want to know more information about what operation will be done by the options, Just move your cursor to the option."));
 	gtk_widget_show(expert_label_gnome);
 	present_expert_gnome=expert_label_gnome;
 	gtk_box_pack_start(GTK_BOX(expert_box_gnome),expert_label_gnome,TRUE,TRUE,0);

@@ -32,7 +32,7 @@ void show_expert_label_session()
 	if(present_expert_session!=NULL){
 		gtk_widget_hide(present_expert_session);
 	}
-	expert_label_session=create_expert_with_string(_("Welcome! \nHere is \"Expert Mode\".If you have any question with the options, or you want to know more information about what operation will be done by the options, Just move your cursor to the cursor."));
+	expert_label_session=create_expert_with_string(_("Welcome! \nHere is \"Expert Mode\".If you have any question with the options, or you want to know more information about what operation will be done by the options, Just move your cursor to the option."));
 	gtk_widget_show(expert_label_session);
 	present_expert_session=expert_label_session;
 	gtk_box_pack_start(GTK_BOX(expert_box_session),expert_label_session,TRUE,TRUE,0);
