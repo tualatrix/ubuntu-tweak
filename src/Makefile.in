@@ -36,7 +36,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-bin_PROGRAMS = ubuntu-tweak$(EXEEXT)
+bin_PROGRAMS = ubuntu-tweak$(EXEEXT) service-child$(EXEEXT)
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -50,15 +50,19 @@ CONFIG_CLEAN_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
+am_service_child_OBJECTS = service_child.$(OBJEXT)
+service_child_OBJECTS = $(am_service_child_OBJECTS)
+am__DEPENDENCIES_1 =
+service_child_DEPENDENCIES = $(am__DEPENDENCIES_1)
 am_ubuntu_tweak_OBJECTS = main.$(OBJEXT) interface.$(OBJEXT) \
 	ubuntu-tweak.$(OBJEXT) about.$(OBJEXT) applications.$(OBJEXT) \
 	desktop_page.$(OBJEXT) history_page.$(OBJEXT) \
 	mplayer_page.$(OBJEXT) desktop.$(OBJEXT) security.$(OBJEXT) \
-	session_page.$(OBJEXT) startup.$(OBJEXT) gnome_page.$(OBJEXT) \
-	awn_page.$(OBJEXT) powermanager_page.$(OBJEXT) \
-	system.$(OBJEXT) fcitx_page.$(OBJEXT) nautilus_page.$(OBJEXT)
+	service_page.$(OBJEXT) session_page.$(OBJEXT) \
+	startup.$(OBJEXT) gnome_page.$(OBJEXT) awn_page.$(OBJEXT) \
+	powermanager_page.$(OBJEXT) system.$(OBJEXT) \
+	fcitx_page.$(OBJEXT) nautilus_page.$(OBJEXT)
 ubuntu_tweak_OBJECTS = $(am_ubuntu_tweak_OBJECTS)
-am__DEPENDENCIES_1 =
 ubuntu_tweak_DEPENDENCIES = $(am__DEPENDENCIES_1)
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
@@ -71,8 +75,8 @@ LTCOMPILE = $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) \
 CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(AM_LDFLAGS) $(LDFLAGS) -o $@
-SOURCES = $(ubuntu_tweak_SOURCES)
-DIST_SOURCES = $(ubuntu_tweak_SOURCES)
+SOURCES = $(service_child_SOURCES) $(ubuntu_tweak_SOURCES)
+DIST_SOURCES = $(service_child_SOURCES) $(ubuntu_tweak_SOURCES)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -237,6 +241,8 @@ ubuntu_tweak_SOURCES = \
 	desktop.h\
 	security.c\
 	security.h\
+	service_page.c\
+	service_page.h\
 	session_page.c\
 	session_page.h\
 	startup.c\
@@ -256,6 +262,13 @@ ubuntu_tweak_SOURCES = \
 
 ubuntu_tweak_LDFLAGS = 
 ubuntu_tweak_LDADD = \
+	$(PACKAGE_LIBS)
+
+service_child_SOURCES = \
+	service_child.c
+
+service_child_LDFLAGS = 
+service_child_LDADD = \
 	$(PACKAGE_LIBS)
 
 all: all-am
@@ -319,6 +332,9 @@ clean-binPROGRAMS:
 	  echo " rm -f $$p $$f"; \
 	  rm -f $$p $$f ; \
 	done
+service-child$(EXEEXT): $(service_child_OBJECTS) $(service_child_DEPENDENCIES) 
+	@rm -f service-child$(EXEEXT)
+	$(LINK) $(service_child_LDFLAGS) $(service_child_OBJECTS) $(service_child_LDADD) $(LIBS)
 ubuntu-tweak$(EXEEXT): $(ubuntu_tweak_OBJECTS) $(ubuntu_tweak_DEPENDENCIES) 
 	@rm -f ubuntu-tweak$(EXEEXT)
 	$(LINK) $(ubuntu_tweak_LDFLAGS) $(ubuntu_tweak_OBJECTS) $(ubuntu_tweak_LDADD) $(LIBS)
@@ -343,6 +359,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/nautilus_page.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/powermanager_page.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/security.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/service_child.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/service_page.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/session_page.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/startup.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/system.Po@am__quote@

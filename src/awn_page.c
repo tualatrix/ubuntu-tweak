@@ -123,5 +123,6 @@ GtkWidget *create_awn_page()
 		gtk_widget_show(label);
 		gtk_box_pack_start(GTK_BOX(main_vbox),label,FALSE,FALSE,0);
 	}
+
 	return main_vbox;
 }

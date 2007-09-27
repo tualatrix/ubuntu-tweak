@@ -11,7 +11,7 @@ AM_CFLAGS =\
 	 -Wall\
 	 -g
 
-bin_PROGRAMS = ubuntu-tweak
+bin_PROGRAMS = ubuntu-tweak service-child
 
 ubuntu_tweak_SOURCES = \
 	main.c\
@@ -33,6 +33,8 @@ ubuntu_tweak_SOURCES = \
 	desktop.h\
 	security.c\
 	security.h\
+	service_page.c\
+	service_page.h\
 	session_page.c\
 	session_page.h\
 	startup.c\
@@ -55,3 +57,10 @@ ubuntu_tweak_LDFLAGS =
 ubuntu_tweak_LDADD =  \
 	$(PACKAGE_LIBS)
 
+service_child_SOURCES= \
+	service_child.c
+
+service_child_LDFLAGS =
+
+service_child_LDADD = \
+	$(PACKAGE_LIBS)
