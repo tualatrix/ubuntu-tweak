@@ -4,7 +4,7 @@
 
 #include "ubuntu-tweak.h"
 
-gchar *key_fcitx_table[9]={
+static gchar *key_fcitx_table[9]={
 	"/apps/ubuntu-tweak/user/fcitx/cj",
 	"/apps/ubuntu-tweak/user/fcitx/erbi",
 	"/apps/ubuntu-tweak/user/fcitx/py",
@@ -15,12 +15,12 @@ gchar *key_fcitx_table[9]={
 	"/apps/ubuntu-tweak/user/fcitx/wbx",
 	"/apps/ubuntu-tweak/user/fcitx/wf",
 };
-gchar *key_fcitx_apperance[3]={
+static gchar *key_fcitx_apperance[3]={
 	"/apps/ubuntu-tweak/user/fcitx/banner_mode",
 	"/apps/ubuntu-tweak/user/fcitx/show_type_speed",
 	"/apps/ubuntu-tweak/user/fcitx/show_version",
 };
-gchar *script_fcitx=PACKAGE_SCRIPTS_DIR"/ubuntu-tweak-fcitx";
+static gchar *script_fcitx=PACKAGE_SCRIPTS_DIR"/ubuntu-tweak-fcitx";
 
 GtkWidget *create_fcitx_page()
 {

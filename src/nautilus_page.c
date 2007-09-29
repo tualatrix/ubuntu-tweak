@@ -4,14 +4,14 @@
 
 #include "ubuntu-tweak.h"
 
-gchar *key_show_advanced_permissions="/apps/nautilus/preferences/show_advanced_permissions";
-gchar *key_burnproof="/apps/nautilus-cd-burner/burnproof";
-gchar *key_overburn="/apps/nautilus-cd-burner/overburn";
-gchar *key_nautilus_dir="/apps/nautilus/preferences";
-gchar *key_cd_burner_dir="/apps/nautilus-cd-burner";
+static gchar *key_show_advanced_permissions="/apps/nautilus/preferences/show_advanced_permissions";
+static gchar *key_burnproof="/apps/nautilus-cd-burner/burnproof";
+static gchar *key_overburn="/apps/nautilus-cd-burner/overburn";
+static gchar *key_nautilus_dir="/apps/nautilus/preferences";
+static gchar *key_cd_burner_dir="/apps/nautilus-cd-burner";
 
-gchar *image_nautilus_file_permissions=PACKAGE_PIXMAPS_DIR"/nautilus-file-permissions.png";
-gchar *image_nautilus_file_advanced_permissions=PACKAGE_PIXMAPS_DIR"/nautilus-file-advanced-permissions.png";
+static gchar *image_nautilus_file_permissions=PACKAGE_PIXMAPS_DIR"/nautilus-file-permissions.png";
+static gchar *image_nautilus_file_advanced_permissions=PACKAGE_PIXMAPS_DIR"/nautilus-file-advanced-permissions.png";
 
 /*expert mode*/
 GtkWidget *expander_nautilus;

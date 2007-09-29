@@ -13,14 +13,14 @@ GtkWidget *expert_lockdownpanel;
 GtkWidget *expert_inputunicode;
 gpointer present_expert_gnome;
 
-gchar *enable_animations_panel="/apps/panel/global/enable_animations";
-gchar *enable_animations_gnome="/desktop/gnome/interface/enable_animations";
-gchar *key_locked_down_panel="/apps/panel/global/locked_down";
-gchar *key_show_input_method_menu="/desktop/gnome/interface/show_input_method_menu";
-gchar *key_show_unicode_menu="/desktop/gnome/interface/show_unicode_menu";
+static gchar *enable_animations_panel="/apps/panel/global/enable_animations";
+static gchar *enable_animations_gnome="/desktop/gnome/interface/enable_animations";
+static gchar *key_locked_down_panel="/apps/panel/global/locked_down";
+static gchar *key_show_input_method_menu="/desktop/gnome/interface/show_input_method_menu";
+static gchar *key_show_unicode_menu="/desktop/gnome/interface/show_unicode_menu";
 
-gchar *dir_gnome_interface="/desktop/gnome/interface";
-gchar *dir_panel_global="/apps/panel/global";
+static gchar *dir_gnome_interface="/desktop/gnome/interface";
+static gchar *dir_panel_global="/apps/panel/global";
 
 void show_expert_label_gnome()
 {

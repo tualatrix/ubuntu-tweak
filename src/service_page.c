@@ -5,14 +5,15 @@
 #include "stdlib.h"
 #include "ubuntu-tweak.h"
 #include <gdk/gdkx.h>
-#include <stdio.h>
-#include <sys/types.h>
-#include <unistd.h>
+
+static gchar *insert_shell[3];
+GPid pid;
+GPid *pid_pointer=&pid;
 
 GtkWidget *socket = 0;
 GtkWidget *main_vbox;
 
-void insert_service_child(GtkWidget *widget, gpointer data);
+static void insert_service_child(GtkWidget *widget, gpointer data);
 
 GtkWidget *create_service_page()
 {
@@ -55,9 +56,6 @@ GtkWidget *create_service_page()
 
 void insert_service_child(GtkWidget *widget,gpointer data)
 {
-	GdkScreen *ServerScreen;
-	ServerScreen=gdk_screen_get_default();
-
 	gchar xid[20];
 
 	if (socket)
@@ -70,6 +68,19 @@ void insert_service_child(GtkWidget *widget,gpointer data)
 	gdk_flush();
 
 	g_sprintf(xid, "%#lx", GDK_WINDOW_XWINDOW(socket->window));
-	gdk_spawn_command_line_on_screen(ServerScreen,g_strconcat("gksu service-child ",xid,NULL),NULL);
-}
 
+	insert_shell[0]="gksu";
+	insert_shell[1]="service-child",
+	insert_shell[2]=xid;
+
+//	g_print("the shell is: %s %s %s\n",insert_shell[0],insert_shell[1],insert_shell[2]);
+
+	g_spawn_async	(NULL,
+			insert_shell,
+			NULL,
+			G_SPAWN_SEARCH_PATH,
+			NULL,
+			NULL,
+			pid_pointer,
+			NULL);
+}

@@ -4,11 +4,11 @@
 
 #include "ubuntu-tweak.h"
 
-gchar *auto_save_session_char="/apps/gnome-session/options/auto_save_session";
-gchar *logout_prompt="/apps/gnome-session/options/logout_prompt";
-gchar *show_splash_screen="/apps/gnome-session/options/show_splash_screen";
-gchar *session_dir="/apps/gnome-session/options";
-gchar *splash_image="/apps/gnome-session/options/splash_image";
+static gchar *auto_save_session_char="/apps/gnome-session/options/auto_save_session";
+static gchar *logout_prompt="/apps/gnome-session/options/logout_prompt";
+static gchar *show_splash_screen="/apps/gnome-session/options/show_splash_screen";
+static gchar *session_dir="/apps/gnome-session/options";
+static gchar *splash_image="/apps/gnome-session/options/splash_image";
 
 /*expert mode*/
 GtkWidget *expander_session;

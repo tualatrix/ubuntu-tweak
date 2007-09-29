@@ -5,18 +5,18 @@
 #include "ubuntu-tweak.h"
 #include <stdio.h>
 
-gchar *ubuntu_tweak_awn="/apps/ubuntu-tweak/apps/awn";
+static gchar *ubuntu_tweak_awn="/apps/ubuntu-tweak/apps/awn";
 
-gchar *glass_step_1="/apps/avant-window-navigator/bar/glass_step_1";
-gchar *glass_step_2="/apps/avant-window-navigator/bar/glass_step_2";
-gchar *icon_offset="/apps/avant-window-navigator/bar/icon_offset";
-gchar *tasks_have_arrows="/apps/avant-window-navigator/app/tasks_have_arrows";
-gchar *arrow_color="/apps/avant-window-navigator/app/arrow_color";
-gchar *rounded_corners="/apps/avant-window-navigator/bar/rounded_corners";
-gchar *hilight_color="/apps/avant-window-navigator/bar/hilight_color";
-gchar *border_color="/apps/avant-window-navigator/bar/border_color";
+static gchar *glass_step_1="/apps/avant-window-navigator/bar/glass_step_1";
+static gchar *glass_step_2="/apps/avant-window-navigator/bar/glass_step_2";
+static gchar *icon_offset="/apps/avant-window-navigator/bar/icon_offset";
+static gchar *tasks_have_arrows="/apps/avant-window-navigator/app/tasks_have_arrows";
+static gchar *arrow_color="/apps/avant-window-navigator/app/arrow_color";
+static gchar *rounded_corners="/apps/avant-window-navigator/bar/rounded_corners";
+static gchar *hilight_color="/apps/avant-window-navigator/bar/hilight_color";
+static gchar *border_color="/apps/avant-window-navigator/bar/border_color";
 
-gchar *bar_angle="/apps/avant-window-navigator/bar/bar_angle";
+static gchar *bar_angle="/apps/avant-window-navigator/bar/bar_angle";
 
 void set_to_classic()
 {
@@ -65,6 +65,7 @@ void awnstyle_changed(GtkWidget *widget,gpointer data)
 	}
 	else{
 	}
+	g_free(str);
 }
 
 GtkWidget *create_awn_page()

@@ -4,7 +4,7 @@
 
 #include "ubuntu-tweak.h"
 
-gchar *lockdown_keys[6]={
+static gchar *lockdown_keys[6]={
 	"/desktop/gnome/lockdown/disable_command_line",
 	"/desktop/gnome/lockdown/disable_lock_screen",
 	"/desktop/gnome/lockdown/disable_printing",
@@ -13,7 +13,7 @@ gchar *lockdown_keys[6]={
 	"/desktop/gnome/lockdown/disable_user_switching",
 };
 
-gchar *disable_dir="/desktop/gnome/lockdown";
+static gchar *disable_dir="/desktop/gnome/lockdown";
 
 /*expert mode*/
 GtkWidget *expander_security;

@@ -4,13 +4,13 @@
 
 #include "ubuntu-tweak.h"
 
-gchar *powermanager_dir="/apps/gnome-power-manager";
-gchar *key_can_hibernate="/apps/gnome-power-manager/can_hibernate";
-gchar *key_can_suspend="/apps/gnome-power-manager/can_suspend";
-gchar *key_show_cpufreq_ui="/apps/gnome-power-manager/show_cpufreq_ui";
-gchar *key_cpufreq_ac_policy="/apps/gnome-power-manager/cpufreq_ac_policy";
-gchar *key_cpufreq_battery_policy="/apps/gnome-power-manager/cpufreq_battery_policy";
-gchar *key_display_icon_policy="/apps/gnome-power-manager/display_icon_policy";
+static gchar *powermanager_dir="/apps/gnome-power-manager";
+static gchar *key_can_hibernate="/apps/gnome-power-manager/can_hibernate";
+static gchar *key_can_suspend="/apps/gnome-power-manager/can_suspend";
+static gchar *key_show_cpufreq_ui="/apps/gnome-power-manager/show_cpufreq_ui";
+static gchar *key_cpufreq_ac_policy="/apps/gnome-power-manager/cpufreq_ac_policy";
+static gchar *key_cpufreq_battery_policy="/apps/gnome-power-manager/cpufreq_battery_policy";
+static gchar *key_display_icon_policy="/apps/gnome-power-manager/display_icon_policy";
 
 /*expert mode
 GtkWidget *expander_powermanager;
@@ -93,6 +93,7 @@ void powermanager_changed(GtkWidget *widget,gpointer data)
 				"always",
 				NULL);
 	}
+	g_free(str);
 }
 
 GtkWidget *create_powermanager_page()
