@@ -6,7 +6,7 @@
 #include "ubuntu-tweak.h"
 #include <gdk/gdkx.h>
 
-static gchar *insert_shell[3];
+gchar *insert_shell[3];
 GPid pid;
 GPid *pid_pointer=&pid;
 
