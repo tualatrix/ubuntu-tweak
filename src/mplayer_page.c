@@ -4,10 +4,10 @@
 
 #include "ubuntu-tweak.h"
 
-gchar *key_vo_driver="/apps/ubuntu-tweak/apps/mplayer/vo_driver";
-gchar *key_zoom="/apps/ubuntu-tweak/apps/mplayer/zoom";
-gchar *key_sub_fuzziness="/apps/ubuntu-tweak/apps/mplayer/sub-fuzziness";
-gchar *script_mplayer=PACKAGE_SCRIPTS_DIR"/ubuntu-tweak-mplayer";
+static gchar *key_vo_driver="/apps/ubuntu-tweak/apps/mplayer/vo_driver";
+static gchar *key_zoom="/apps/ubuntu-tweak/apps/mplayer/zoom";
+static gchar *key_sub_fuzziness="/apps/ubuntu-tweak/apps/mplayer/sub-fuzziness";
+static gchar *script_mplayer=PACKAGE_SCRIPTS_DIR"/ubuntu-tweak-mplayer";
 
 GtkWidget *create_mplayer_page()
 {
@@ -57,5 +57,6 @@ GtkWidget *create_mplayer_page()
 		gtk_widget_show(label);
 		gtk_box_pack_start(GTK_BOX(main_vbox),label,FALSE,FALSE,0);
 	}
+
 	return main_vbox; 
 }

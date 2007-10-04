@@ -7,8 +7,14 @@
 
 void show_about(GtkWidget *widget,gpointer data)
 {
-	gchar* authors[] = {"TualatriX <tualatrix@gmail.com>",NULL}; 
-	gchar* artists[] = {"Medical-Wei <a790407@hotmail.com> 3D Ubuntu Logo",NULL};
+	const gchar* authors[] = {
+		"TualatriX <tualatrix@gmail.com>",
+		NULL
+	}; 
+	const gchar* artists[] = {
+		"Medical-Wei <a790407@hotmail.com> 3D Ubuntu Logo",
+		NULL
+	};
 
 	gtk_show_about_dialog(NULL,
 	"name","Ubuntu Tweak",

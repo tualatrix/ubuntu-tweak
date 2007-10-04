@@ -11,14 +11,14 @@
 #include "applications.h"
 #include "system.h"
 
-gchar *startup_image=PACKAGE_PIXMAPS_DIR"/startup.png";
-gchar *desktop_image=PACKAGE_PIXMAPS_DIR"/desktop.png";
-gchar *system_image=PACKAGE_PIXMAPS_DIR"/system.png";
-gchar *security_image=PACKAGE_PIXMAPS_DIR"/security.png";
-gchar *applications_image=PACKAGE_PIXMAPS_DIR"/applications.png";
-gchar *header_left=PACKAGE_PIXMAPS_DIR"/ut_header_left.png";
-gchar *header_right=PACKAGE_PIXMAPS_DIR"/ut_header_right.png";
-gchar *icon=PACKAGE_PIXMAPS_DIR"/ubuntu-tweak-icon.png";
+const gchar *startup_image=PACKAGE_PIXMAPS_DIR"/startup.png";
+const gchar *desktop_image=PACKAGE_PIXMAPS_DIR"/desktop.png";
+const gchar *system_image=PACKAGE_PIXMAPS_DIR"/system.png";
+const gchar *security_image=PACKAGE_PIXMAPS_DIR"/security.png";
+const gchar *applications_image=PACKAGE_PIXMAPS_DIR"/applications.png";
+const gchar *header_left=PACKAGE_PIXMAPS_DIR"/ut_header_left.png";
+const gchar *header_right=PACKAGE_PIXMAPS_DIR"/ut_header_right.png";
+const gchar *icon=PACKAGE_PIXMAPS_DIR"/ubuntu-tweak-icon.png";
 
 GtkWidget *startup_notebook;
 GtkWidget *desktop_notebook;

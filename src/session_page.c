@@ -23,9 +23,10 @@ gpointer present_expert_session;
 GtkWidget *splash_image_button;
 GdkPixbuf *new_preview;
 GtkWidget *splash_image_preview;
+GdkPixbuf *original_preview;
+
 gchar *filename;
 gchar *filedir;
-GdkPixbuf *original_preview;
 
 void show_expert_label_session()
 {
@@ -78,6 +79,8 @@ GtkWidget *create_expert_autosavesession()
 	gtk_widget_show(view);
 	gtk_box_pack_start(GTK_BOX(vbox),sw,TRUE,TRUE,0);
 
+	g_free(welcome);
+
 	return vbox;
 }
 
@@ -110,6 +113,8 @@ GtkWidget *create_expert_showlogoutprompt()
 
 	gtk_widget_show(view);
 	gtk_box_pack_start(GTK_BOX(vbox),sw,TRUE,TRUE,0);
+
+	g_free(welcome);
 
 	return vbox;
 }
@@ -144,6 +149,8 @@ GtkWidget *create_expert_showsplash()
 	gtk_widget_show(view);
 	gtk_box_pack_start(GTK_BOX(vbox),sw,TRUE,TRUE,0);
 
+	g_free(welcome);
+
 	return vbox;
 }
 
@@ -176,6 +183,8 @@ GtkWidget *create_expert_changesplash()
 
 	gtk_widget_show(view);
 	gtk_box_pack_start(GTK_BOX(vbox),sw,TRUE,TRUE,0);
+
+	g_free(welcome);
 
 	return vbox;
 }

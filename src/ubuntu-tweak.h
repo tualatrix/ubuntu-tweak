@@ -1,4 +1,5 @@
 #ifndef _UBUNTU_TWEAK_H
+#define _UBUNTU_TWEAK_H
 
 #include <gtk/gtk.h>
 #include <glib/gi18n.h>
@@ -38,5 +39,5 @@ void _checkbutton_toggled_base(GtkWidget *checkbutton,
 		gpointer data,
 		GtkWidget *sensitive);
 
-#define _UBUNTU_TWEAK_H
+
 #endif

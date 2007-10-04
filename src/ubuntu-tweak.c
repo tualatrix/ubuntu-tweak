@@ -158,6 +158,8 @@ GtkWidget *create_text_checkbutton(gchar *label,gchar *key,gchar *shell,gpointer
 
 	g_signal_connect(G_OBJECT(checkbutton),"toggled",G_CALLBACK(text_checkbutton_toggled),newshell);
 
+	g_free(newshell);
+
 	return checkbutton;
 }
 
@@ -211,6 +213,9 @@ GtkWidget *create_gconf_entry(gchar *key,gchar *dir,gpointer data)
 		entry,
 		NULL,NULL);
 */
+
+	g_free(str);
+
 	return entry;
 }
 void _checkbutton_toggled_base(GtkWidget *checkbutton,
@@ -234,12 +239,6 @@ void _checkbutton_toggled_base(GtkWidget *checkbutton,
 			gtk_widget_set_sensitive(sensitive,FALSE);
 		}
 	}
-}
-void _expert_mode_base(GtkWidget *widget,
-			gpointer data,
-			GtkWidget *main)
-{
-	
 }
 
 /*下面的指针data是经第三方传入的key*/
@@ -284,5 +283,7 @@ void _entry_activated(GtkWidget *entry,
 
 	gconf_client_set_string(client,key,
 	                str, NULL);
+
+	g_free(key);
 
 }

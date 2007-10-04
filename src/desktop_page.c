@@ -4,20 +4,20 @@
 
 #include "ubuntu-tweak.h"
 
-gchar *show_desktop="/apps/nautilus/preferences/show_desktop";
-gchar *computer_icon_name="/apps/nautilus/desktop/computer_icon_name";
-gchar *computer_icon_visible="/apps/nautilus/desktop/computer_icon_visible";
-gchar *documents_icon_name="/apps/nautilus/desktop/documents_icon_name";
-gchar *documents_icon_visible="/apps/nautilus/desktop/documents_icon_visible";
-gchar *home_icon_name="/apps/nautilus/desktop/home_icon_name";
-gchar *home_icon_visible="/apps/nautilus/desktop/home_icon_visible";
-gchar *network_icon_visible="/apps/nautilus/desktop/network_icon_visible";
-gchar *trash_icon_name="/apps/nautilus/desktop/trash_icon_name";
-gchar *trash_icon_visible="/apps/nautilus/desktop/trash_icon_visible";
-gchar *volumes_visible="/apps/nautilus/desktop/volumes_visible";
-gchar *use_home_as_desktop="/apps/nautilus/preferences/desktop_is_home_dir";
-gchar *nautilus_desktop_dir="/apps/nautilus/desktop";
-gchar *nautilus_preferences_dir="/apps/nautilus/preferences";
+static gchar *show_desktop="/apps/nautilus/preferences/show_desktop";
+static gchar *computer_icon_name="/apps/nautilus/desktop/computer_icon_name";
+static gchar *computer_icon_visible="/apps/nautilus/desktop/computer_icon_visible";
+static gchar *documents_icon_name="/apps/nautilus/desktop/documents_icon_name";
+static gchar *documents_icon_visible="/apps/nautilus/desktop/documents_icon_visible";
+static gchar *home_icon_name="/apps/nautilus/desktop/home_icon_name";
+static gchar *home_icon_visible="/apps/nautilus/desktop/home_icon_visible";
+static gchar *network_icon_visible="/apps/nautilus/desktop/network_icon_visible";
+static gchar *trash_icon_name="/apps/nautilus/desktop/trash_icon_name";
+static gchar *trash_icon_visible="/apps/nautilus/desktop/trash_icon_visible";
+static gchar *volumes_visible="/apps/nautilus/desktop/volumes_visible";
+static gchar *use_home_as_desktop="/apps/nautilus/preferences/desktop_is_home_dir";
+static gchar *nautilus_desktop_dir="/apps/nautilus/desktop";
+static gchar *nautilus_preferences_dir="/apps/nautilus/preferences";
 
 GtkWidget *expander;
 GtkWidget *expander_label;
@@ -252,9 +252,6 @@ GtkWidget *create_desktop_page()
 	show_volumes_checkbutton=create_gconf_checkbutton(_("Show Volumes on Desktop"),volumes_visible,nautilus_desktop_dir,checkbutton_toggled,NULL);
 	gtk_widget_show(show_volumes_checkbutton);
 	gtk_box_pack_start(GTK_BOX(desktop_vbox1),show_volumes_checkbutton,FALSE,FALSE,0);
-
-/*expander*/
-
 
 	return desktop_main_vbox;
 }
