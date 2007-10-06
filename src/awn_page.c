@@ -103,8 +103,8 @@ GtkWidget *create_awn_page()
 		gtk_box_pack_start(GTK_BOX(hbox),combobox,FALSE,FALSE,0);
 
 		gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("Self-determined"));
-		gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("3D style(Leopard like)"));
-		gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("Classical style(Tiger like)"));
+		gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("3D Style (Leopard-like)"));
+		gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("Classical Style (Tiger-like)"));
 		
 		client=gconf_client_get_default();
 		if(gconf_client_get_int(client,ubuntu_tweak_awn,NULL)==1){

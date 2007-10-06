@@ -33,7 +33,7 @@ void show_expert_label_session()
 	if(present_expert_session!=NULL){
 		gtk_widget_hide(present_expert_session);
 	}
-	expert_label_session=create_expert_with_string(_("Within this menu are advanced GNOME settings. If you require more information about a specific option, move your cursor over that option, and a description will appear here."));
+	expert_label_session=create_expert_with_string(_("Within this menu are advanced session settings. If you require more information about a specific option, move your cursor over that option, and a description will appear here."));
 	gtk_widget_show(expert_label_session);
 	present_expert_session=expert_label_session;
 	gtk_box_pack_start(GTK_BOX(expert_box_session),expert_label_session,TRUE,TRUE,0);
@@ -90,7 +90,7 @@ GtkWidget *create_expert_showlogoutprompt()
 	GtkWidget *sw;
 	gchar *welcome;
 	
-	welcome=_("This option enables and disables the Logout, Lock Screen, Switch User, etc prompt when a user clicks \"System - Quit\". With this disabled, you'll go straight back to the Gnome Display Manager login screen.\n\nNote: You can select Shut Down, Restard, etc from the GDM screen.");
+	welcome=_("This option enables and disables the Logout, Lock Screen, Switch User, etc prompt when a user clicks \"System - Quit\". With this disabled, you'll go straight back to the Gnome Display Manager login screen.\n\nNote: You can select Shut Down, Restart, etc from the GDM screen.");
 	sw=gtk_scrolled_window_new (NULL, NULL);
 	gtk_widget_show(sw);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
@@ -160,7 +160,7 @@ GtkWidget *create_expert_changesplash()
 	GtkWidget *sw;
 	gchar *welcome;
 	
-	welcome=_("Visit the http://art.gnome.org or http://www.gnome-look.org to view a selection of Splash images. Click the large button above to choose your Splash screen");
+	welcome=_("Visit the http://art.gnome.org or http://www.gnome-look.org sites to view a selection of Splash images. Click the large button above to choose your Splash screen.");
 	sw=gtk_scrolled_window_new (NULL, NULL);
 	gtk_widget_show(sw);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
@@ -379,7 +379,7 @@ GtkWidget *create_session_page()
 	gtk_widget_show(session_vbox_right);
 	gtk_box_pack_start(GTK_BOX(session_hbox),session_vbox_right,FALSE,FALSE,0);
 
-	save_session_checkbutton=create_gconf_checkbutton(_("Auto save session"),
+	save_session_checkbutton=create_gconf_checkbutton(_("Automatically save changes to session"),
 		auto_save_session_char,
 		session_dir,
 		checkbutton_toggled,
@@ -387,7 +387,7 @@ GtkWidget *create_session_page()
 	gtk_widget_show(save_session_checkbutton);
 	gtk_box_pack_start(GTK_BOX(session_vbox_right),save_session_checkbutton,FALSE,FALSE,0);
 
-	display_menu_checkbutton=create_gconf_checkbutton(_("Show logout prompt"),
+	display_menu_checkbutton=create_gconf_checkbutton(_("Show Logout prompt"),
 		logout_prompt,
 		session_dir,
 		checkbutton_toggled,
@@ -395,7 +395,7 @@ GtkWidget *create_session_page()
 	gtk_widget_show(display_menu_checkbutton);
 	gtk_box_pack_start(GTK_BOX(session_vbox_right),display_menu_checkbutton,FALSE,FALSE,0);
 
-	display_splash_checkbutton=create_gconf_checkbutton(_("Show splash screen"),
+	display_splash_checkbutton=create_gconf_checkbutton(_("Show Splash screen"),
 		show_splash_screen,
 		session_dir,
 		checkbutton_toggled_splash,

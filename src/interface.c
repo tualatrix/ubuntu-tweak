@@ -171,7 +171,7 @@ GtkWidget *create_main_window(void)
 
 /*Welcome screen*/
 	label_welcome=gtk_label_new(NULL);
-	gtk_label_set_markup (GTK_LABEL (label_welcome),_("<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak!</b></span>\n\n\nThis is a tool for Ubuntu which makes it easy to change hidden \n system and desktop settings.\n\nUbuntu Tweak is currently only for the GNOME Desktop Environment.\n\nAlthough this application is only in early stages, I will keep developing it.\n\nIf you have any suggestions, please e-mail me. \n\nThankyou,\nTualatriX"));
+	gtk_label_set_markup (GTK_LABEL (label_welcome),_("<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak!</b></span>\n\n\nThis is a tool for Ubuntu which makes it easy to change hidden \n system and desktop settings.\n\nUbuntu Tweak is currently only for the GNOME Desktop Environment.\n\nAlthough this application is only in early stages, I will keep developing it.\n\nIf you have any suggestions, please e-mail me. \n\nThankyou,\n- TualatriX"));
 	gtk_label_set_justify(GTK_LABEL(label_welcome),GTK_JUSTIFY_FILL);
 	gtk_widget_show(label_welcome);
 	gtk_container_set_border_width(GTK_CONTAINER(vbox_content_right),10);

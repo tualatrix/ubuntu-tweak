@@ -9,6 +9,7 @@ void show_about(GtkWidget *widget,gpointer data)
 {
 	const gchar* authors[] = {
 		"TualatriX <tualatrix@gmail.com>",
+		"Super Jamie <jamie@superjamie.net>",
 		NULL
 	}; 
 	const gchar* artists[] = {

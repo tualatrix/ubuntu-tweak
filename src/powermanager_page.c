@@ -57,13 +57,13 @@ void powermanager_changed(GtkWidget *widget,gpointer data)
 
 	client=gconf_client_get_default();
 	str=gtk_combo_box_get_active_text(GTK_COMBO_BOX(widget));
-	if(!strcmp(str,"On demand")){
+	if(!strcmp(str,"On Demand")){
 		gconf_client_set_string(client,
 					data,
 					"ondemand",
 					NULL);
 	}
-	else if(!strcmp(str,"PowerSave")){
+	else if(!strcmp(str,"Power Save")){
 		gconf_client_set_string(client,
 				data,
 				"powersave",
@@ -81,7 +81,7 @@ void powermanager_changed(GtkWidget *widget,gpointer data)
 				"never",
 				NULL);
 	}
-	else if(!strcmp(str,"Only when charge")){
+	else if(!strcmp(str,"Only when using battery charge")){
 		gconf_client_set_string(client,
 				data,
 				"charge",
@@ -138,7 +138,7 @@ GtkWidget *create_powermanager_page()
 	gtk_widget_show(checkbutton);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
-	checkbutton=create_gconf_checkbutton(_("Show CPU frequency option in\"System - Preferences - Power Management\""),key_show_cpufreq_ui,powermanager_dir,checkbutton_toggled,NULL);
+	checkbutton=create_gconf_checkbutton(_("Show CPU frequency option in \"System - Preferences - Power Management\""),key_show_cpufreq_ui,powermanager_dir,checkbutton_toggled,NULL);
 	gtk_widget_show(checkbutton);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
