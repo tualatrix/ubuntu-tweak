@@ -7,7 +7,7 @@ void button_test(GtkWidget *widget,gpointer data)
 				GTK_DIALOG_DESTROY_WITH_PARENT,
 				GTK_MESSAGE_QUESTION,
 				GTK_BUTTONS_OK,
-				_("OK?\nThere is noting for this OK Button,haha!"),NULL
+				_("OK?\nThis OK button does nothing, haha!"),NULL
 				);
 	gtk_dialog_run(GTK_MESSAGE_DIALOG(dialog));
 	gtk_widget_destroy(dialog);

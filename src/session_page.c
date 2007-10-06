@@ -33,7 +33,7 @@ void show_expert_label_session()
 	if(present_expert_session!=NULL){
 		gtk_widget_hide(present_expert_session);
 	}
-	expert_label_session=create_expert_with_string(_("Welcome! \nHere is \"Expert Mode\".If you have any question with the options, or you want to know more information about what operation will be done by the options, Just move your cursor to the option."));
+	expert_label_session=create_expert_with_string(_("Within this menu are advanced GNOME settings. If you require more information about a specific option, move your cursor over that option, and a description will appear here."));
 	gtk_widget_show(expert_label_session);
 	present_expert_session=expert_label_session;
 	gtk_box_pack_start(GTK_BOX(expert_box_session),expert_label_session,TRUE,TRUE,0);
@@ -54,7 +54,7 @@ GtkWidget *create_expert_autosavesession()
 	GtkWidget *sw;
 	gchar *welcome;
 	
-	welcome=_("When you log in your Ubuntu, you have started a session.\nSession is the current state of your all started applications.\nSelect this option if you want the session manager to save the current state of your session.The session manager saves the session-managed applications that are open,and the settings associated with the session-managed applications. The next time that you start a session, the applications start automatically, with the saved settings.");
+	welcome=_("When you log into Ubuntu, you have started a \"Session\", within which you run applicatons and change settings.\nThis option automatically saves your Session when you log out. The next time you log into your saved Session, any open applications will be run again, with the any settings they had at the time of logoff.");
 	sw=gtk_scrolled_window_new (NULL, NULL);
 	gtk_widget_show(sw);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
@@ -90,7 +90,7 @@ GtkWidget *create_expert_showlogoutprompt()
 	GtkWidget *sw;
 	gchar *welcome;
 	
-	welcome=_("Select this option to display a confirmation dialog when you end a session.\nIf you don't select this option, you will without a confirmation dialog when you click the \"System\"-\"Quit\".");
+	welcome=_("This option enables and disables the Logout, Lock Screen, Switch User, etc prompt when a user clicks \"System - Quit\". With this disabled, you'll go straight back to the Gnome Display Manager login screen.\n\nNote: You can select Shut Down, Restard, etc from the GDM screen.");
 	sw=gtk_scrolled_window_new (NULL, NULL);
 	gtk_widget_show(sw);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
@@ -125,7 +125,7 @@ GtkWidget *create_expert_showsplash()
 	GtkWidget *sw;
 	gchar *welcome;
 	
-	welcome=_("Select this option to display a splash screen when you start a session.");
+	welcome=_("The splash screen displays the progress of services and applications as they are starting up after logon.\nSelect this option to display a splash screen when you start a session.");
 	sw=gtk_scrolled_window_new (NULL, NULL);
 	gtk_widget_show(sw);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
@@ -160,7 +160,7 @@ GtkWidget *create_expert_changesplash()
 	GtkWidget *sw;
 	gchar *welcome;
 	
-	welcome=_("Have you prepared your own splash images?\nNot yet?\n\nIt doesn't matter, Visit the http://www.gnome-look.org, and download the splash images what you like. Then click this button to choose it!");
+	welcome=_("Visit the http://art.gnome.org or http://www.gnome-look.org to view a selection of Splash images. Click the large button above to choose your Splash screen");
 	sw=gtk_scrolled_window_new (NULL, NULL);
 	gtk_widget_show(sw);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
@@ -240,7 +240,7 @@ void splash_select(GtkWidget *widget,gpointer data)
 
 	gint x,y;
 
-	dialog=gtk_file_chooser_dialog_new(_("Choose a Splash file"),
+	dialog=gtk_file_chooser_dialog_new(_("Choose a Splash image"),
 		NULL,
 		GTK_FILE_CHOOSER_ACTION_OPEN,
 		GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT, GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL, NULL);
@@ -403,7 +403,7 @@ GtkWidget *create_session_page()
 	gtk_widget_show(display_splash_checkbutton);
 	gtk_box_pack_start(GTK_BOX(session_vbox_right),display_splash_checkbutton,FALSE,FALSE,0);
 
-	frame=gtk_frame_new(_("Click the big button to change splash screen"));
+	frame=gtk_frame_new(_("Click the large button to change Splash screen"));
 	gtk_widget_show(frame);
 	gtk_box_pack_start(GTK_BOX(session_vbox),frame,FALSE,FALSE,0);
 

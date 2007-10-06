@@ -22,7 +22,7 @@ GtkWidget *create_mplayer_page()
 	gtk_container_set_border_width(GTK_CONTAINER(main_vbox),10);
 
 	if(g_find_program_in_path("mplayer")!=NULL){
-		label=gtk_label_new(_("Here you can set mplayer"));
+		label=gtk_label_new(_("Options relating to MPlayer"));
 		gtk_misc_set_alignment(GTK_MISC(label),0,0);
 		gtk_widget_show(label);
 		gtk_box_pack_start(GTK_BOX(main_vbox),label,FALSE,FALSE,0);
@@ -39,11 +39,11 @@ GtkWidget *create_mplayer_page()
 		gtk_widget_show(vbox);
 		gtk_box_pack_start(GTK_BOX(hbox),vbox,FALSE,FALSE,0);
 
-		checkbutton=create_text_checkbutton(_("Use X11 video driver(Recommend)"),key_vo_driver,g_strconcat(script_mplayer," vo_driver",NULL),NULL);
+		checkbutton=create_text_checkbutton(_("Use X11 video driver (recommended)"),key_vo_driver,g_strconcat(script_mplayer," vo_driver",NULL),NULL);
 		gtk_widget_show(checkbutton);
 		gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
-		checkbutton=create_text_checkbutton(_("Enable X11 Zoom mode(Recommend)"),key_zoom,g_strconcat(script_mplayer," zoom",NULL),NULL);
+		checkbutton=create_text_checkbutton(_("Enable X11 Zoom mode (recommended)"),key_zoom,g_strconcat(script_mplayer," zoom",NULL),NULL);
 		gtk_widget_show(checkbutton);
 		gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
@@ -52,7 +52,7 @@ GtkWidget *create_mplayer_page()
 		gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 	}
 	else{
-		label=gtk_label_new(_("Sorry, You haven't installed Mplayer yet, Please install first."));
+		label=gtk_label_new(_("This page requires MPlayer to be installed. Please install MPlayer first."));
 		gtk_misc_set_alignment(GTK_MISC(label),0,0);
 		gtk_widget_show(label);
 		gtk_box_pack_start(GTK_BOX(main_vbox),label,FALSE,FALSE,0);

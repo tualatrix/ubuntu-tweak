@@ -27,7 +27,7 @@ void show_expert_label_nautilus()
 	if(present_expert_nautilus!=NULL){
 		gtk_widget_hide(present_expert_nautilus);
 	}
-	expert_label_nautilus=create_expert_with_string(_("Welcome! \nHere is \"Expert Mode\".If you have any question with the options, or you want to know more information about what operation will be done by the options, Just move your cursor to the option."));
+	expert_label_nautilus=create_expert_with_string(_("Within this menu are advanced Nautilus settings. If you require more information about a specific option, move your cursor over that option, and a description will appear here."));
 	gtk_widget_show(expert_label_nautilus);
 	present_expert_nautilus=expert_label_nautilus;
 	gtk_box_pack_start(GTK_BOX(expert_box_nautilus),expert_label_nautilus,TRUE,TRUE,0);
@@ -48,8 +48,8 @@ GtkWidget *create_expert_showadvancedpermissions()
 	GtkWidget *sw;
 	gchar *p1,*p2;
 	
-	p1=_("Before you choose the advanced permissions, the \"Permission\" at file property is like this:\n");
-	p2=_("\nAfter you choose the advanced permissions, the \"Permission\" at file property is like this:\n");
+	p1=_("With default Permissions (this option unticked), the \"Permission\" tab of File or Folder Properties is like this:\n");
+	p2=_("\nWith advanced Permissions (this option ticked), the \"Permission\" tab of File or Folder Properties is like this:\n");
 	sw=gtk_scrolled_window_new (NULL, NULL);
 	gtk_widget_show(sw);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
@@ -101,7 +101,7 @@ void show_expert_burnproof(GtkWidget *widget,gpointer data)
 {
 	if(present_expert_nautilus!=expert_burnproof){
 		gtk_widget_hide(present_expert_nautilus);
-		expert_burnproof=create_expert_with_string(_("Do you want it safer when you are buring discs?\nCheck this button if you confirm that your burner support the function."));
+		expert_burnproof=create_expert_with_string(_("BurnProof is a technology to prevent Buffer Under Run errors when writing CDs and DVDs.\nSelect this option to enable BurnProof when writing CDs and DVDs.\nYour burner must support the BurnProof function for this to have an effect."));
 		gtk_widget_show(expert_burnproof);
 		present_expert_nautilus=expert_burnproof;
 		gtk_box_pack_start(GTK_BOX(expert_box_nautilus),expert_burnproof,FALSE,FALSE,0);
@@ -112,7 +112,7 @@ void show_expert_overburn(GtkWidget *widget,gpointer data)
 {
 	if(present_expert_nautilus!=expert_overburn){
 		gtk_widget_hide(present_expert_nautilus);
-		expert_overburn=create_expert_with_string(_("If your archivers' size is over the disc, you may want to enable this function.\nBut it's not recommend to enable."));
+		expert_overburn=create_expert_with_string(_("WARNING: You can damage your CDRW by using this incorrectly. This option is NOT recommended!\n\nOverBurn is a method of fitting more data onto a CD-R than is ordinarily permitted.\nThe maximum amount of data any given CD can hold depends on the brand and type of media, as well as your model of CD drive.\nSelect this option to enable OverBurn."));
 		gtk_widget_show(expert_overburn);
 		present_expert_nautilus=expert_overburn;
 		gtk_box_pack_start(GTK_BOX(expert_box_nautilus),expert_overburn,FALSE,FALSE,0);
@@ -131,7 +131,7 @@ GtkWidget *create_nautilus_page()
 	gtk_container_set_border_width(GTK_CONTAINER(main_vbox),5);
 
 	label=gtk_label_new(NULL);
-	gtk_label_set_markup(GTK_LABEL(label),_("<b>Setting your nautilus behavior</b>"));
+	gtk_label_set_markup(GTK_LABEL(label),_("<b>Setting for Nautilus behavior</b>"));
 	gtk_misc_set_alignment(GTK_MISC(label),0,0);
 	gtk_widget_show(label);
 	gtk_box_pack_start(GTK_BOX(main_vbox),label,FALSE,FALSE,0);
@@ -141,7 +141,7 @@ GtkWidget *create_nautilus_page()
 	gtk_widget_show(frame);
 	gtk_box_pack_start(GTK_BOX(main_vbox),frame,FALSE,FALSE,0);
 
-	checkbutton=create_gconf_checkbutton(_("Show advanced permissions at file property"),key_show_advanced_permissions,key_nautilus_dir,checkbutton_toggled,show_expert_showadvancedpermissions);
+	checkbutton=create_gconf_checkbutton(_("Show advanced Permissions on File and Folder Property pages"),key_show_advanced_permissions,key_nautilus_dir,checkbutton_toggled,show_expert_showadvancedpermissions);
 	gtk_widget_show(checkbutton);
 	gtk_container_add(GTK_CONTAINER(frame),checkbutton);
 
@@ -153,11 +153,11 @@ GtkWidget *create_nautilus_page()
 	gtk_widget_show(vbox);
 	gtk_container_add(GTK_CONTAINER(frame),vbox);
 
-	checkbutton=create_gconf_checkbutton(_("Enable Burnproof option"),key_burnproof,key_cd_burner_dir,checkbutton_toggled,show_expert_burnproof);
+	checkbutton=create_gconf_checkbutton(_("Enable BurnProof technology"),key_burnproof,key_cd_burner_dir,checkbutton_toggled,show_expert_burnproof);
 	gtk_widget_show(checkbutton);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
-	checkbutton=create_gconf_checkbutton(_("Enable overburn"),key_overburn,key_cd_burner_dir,checkbutton_toggled,show_expert_overburn);
+	checkbutton=create_gconf_checkbutton(_("Enable OverBurn"),key_overburn,key_cd_burner_dir,checkbutton_toggled,show_expert_overburn);
 	gtk_widget_show(checkbutton);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 

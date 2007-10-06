@@ -112,7 +112,7 @@ GtkWidget *create_desktop_page()
 	gtk_container_set_border_width(GTK_CONTAINER(desktop_main_vbox),5);
 
 	desktop_label=gtk_label_new(NULL);
-	gtk_label_set_markup(GTK_LABEL(desktop_label),_("<b>Setting your Desktop icons</b>"));
+	gtk_label_set_markup(GTK_LABEL(desktop_label),_("<b>Desktop Icon settings</b>"));
 	gtk_misc_set_alignment(GTK_MISC(desktop_label),0,0);
 	gtk_widget_show(desktop_label);
 	gtk_box_pack_start(GTK_BOX(desktop_main_vbox),desktop_label,FALSE,FALSE,0);
@@ -241,7 +241,7 @@ GtkWidget *create_desktop_page()
 	}
 
 /*Other*/
-	use_home_as_desktop_checkbutton=create_gconf_checkbutton(_("Use Home directory as Desktop entries"),use_home_as_desktop,nautilus_preferences_dir,checkbutton_toggled,NULL);
+	use_home_as_desktop_checkbutton=create_gconf_checkbutton(_("Use Home Directory as Desktop"),use_home_as_desktop,nautilus_preferences_dir,checkbutton_toggled,NULL);
 	gtk_widget_show(use_home_as_desktop_checkbutton);
 	gtk_box_pack_start(GTK_BOX(desktop_vbox1),use_home_as_desktop_checkbutton,FALSE,FALSE,0);
 
@@ -249,7 +249,7 @@ GtkWidget *create_desktop_page()
 	gtk_widget_show(show_network_checkbutton);
 	gtk_box_pack_start(GTK_BOX(desktop_vbox1),show_network_checkbutton,FALSE,FALSE,0);
 
-	show_volumes_checkbutton=create_gconf_checkbutton(_("Show Volumes on Desktop"),volumes_visible,nautilus_desktop_dir,checkbutton_toggled,NULL);
+	show_volumes_checkbutton=create_gconf_checkbutton(_("Show Mounted Volumes on desktop"),volumes_visible,nautilus_desktop_dir,checkbutton_toggled,NULL);
 	gtk_widget_show(show_volumes_checkbutton);
 	gtk_box_pack_start(GTK_BOX(desktop_vbox1),show_volumes_checkbutton,FALSE,FALSE,0);
 

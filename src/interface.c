@@ -171,7 +171,7 @@ GtkWidget *create_main_window(void)
 
 /*Welcome screen*/
 	label_welcome=gtk_label_new(NULL);
-	gtk_label_set_markup (GTK_LABEL (label_welcome),_("<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak!</b></span>\n\n\nThis is a tool for Ubuntu which makes it easy to config your system \nand desktop.\nBy now, It's only for GNOME desktop environment.\nAlthough this application is not good enough,I will keep it developing.\nIf you have some suggestions,e-mail me please."));
+	gtk_label_set_markup (GTK_LABEL (label_welcome),_("<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak!</b></span>\n\n\nThis is a tool for Ubuntu which makes it easy to change hidden \n system and desktop settings.\n\nUbuntu Tweak is currently only for the GNOME Desktop Environment.\n\nAlthough this application is only in early stages, I will keep developing it.\n\nIf you have any suggestions, please e-mail me. \n\nThankyou,\nTualatriX"));
 	gtk_label_set_justify(GTK_LABEL(label_welcome),GTK_JUSTIFY_FILL);
 	gtk_widget_show(label_welcome);
 	gtk_container_set_border_width(GTK_CONTAINER(vbox_content_right),10);
@@ -193,7 +193,7 @@ GtkWidget *create_main_window(void)
 
 	startup_item=gtk_toolbar_append_item(GTK_TOOLBAR(toolbar),
 			_("Startup"),
-			_("Setting the session, change the splash screen or change the services(future)"),
+			_("Session settings, change the Splash Screen, or change Services (to be implemented)"),
 			"Private",
 			startup_item_image,
 			GTK_SIGNAL_FUNC(show_startup_notebook),
@@ -201,7 +201,7 @@ GtkWidget *create_main_window(void)
 
 	desktop_item=gtk_toolbar_append_item(GTK_TOOLBAR(toolbar),
 			_("Desktop"),
-			_("Setting your desktop icons or other options about desktop"),
+			_("Change the Desktop Icons, and other options relating to the Desktop"),
 			"Private",
 			desktop_item_image,
 			GTK_SIGNAL_FUNC(show_desktop_notebook),
@@ -209,7 +209,7 @@ GtkWidget *create_main_window(void)
 
 	system_item=gtk_toolbar_append_item(GTK_TOOLBAR(toolbar),
 			_("System"),
-			_("Config your system"),
+			_("Configuration of Power Management, and other hardware settings"),
 			"Private",
 			system_item_image,
 			GTK_SIGNAL_FUNC(show_system_notebook),
@@ -217,7 +217,7 @@ GtkWidget *create_main_window(void)
 
 	security_item=gtk_toolbar_append_item(GTK_TOOLBAR(toolbar),
 			_("Security"),
-			_("Some options about security of your system"),
+			_("Options relating to security of the system"),
 			"Private",
 			security_item_image,
 			GTK_SIGNAL_FUNC(show_security_notebook),
@@ -225,7 +225,7 @@ GtkWidget *create_main_window(void)
 
 	applications_item=gtk_toolbar_append_item(GTK_TOOLBAR(toolbar),
 			_("Applications"),
-			_("Easy to config often-used applications"),
+			_("Configuration options for commonly-used applications"),
 			"Private",
 			applications_item_image,
 			GTK_SIGNAL_FUNC(show_applications_notebook),

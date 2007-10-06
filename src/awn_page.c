@@ -84,7 +84,7 @@ GtkWidget *create_awn_page()
 	gtk_container_set_border_width(GTK_CONTAINER(main_vbox),10);
 	
 	if(g_find_program_in_path("avant-window-navigator")!=NULL){
-		label=gtk_label_new(_("Here you can change the style of Avant Window Navigator easily"));
+		label=gtk_label_new(_("This page contains settings for Avant Window Navigator."));
 		gtk_misc_set_alignment(GTK_MISC(label),0,0);
 		gtk_widget_show(label);
 		gtk_box_pack_start(GTK_BOX(main_vbox),label,FALSE,FALSE,0);
@@ -119,7 +119,7 @@ GtkWidget *create_awn_page()
 		gtk_box_pack_start(GTK_BOX(main_vbox),vbox,FALSE,FALSE,0);
 	}
 	else{
-		label=gtk_label_new(_("Sorry, You haven't installed Avant Window Navigator yet, Please install first."));
+		label=gtk_label_new(_("This page requires Avant Window Navigator to be installed. Please install AWN first."));
 		gtk_misc_set_alignment(GTK_MISC(label),0,0);
 		gtk_widget_show(label);
 		gtk_box_pack_start(GTK_BOX(main_vbox),label,FALSE,FALSE,0);

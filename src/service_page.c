@@ -28,7 +28,7 @@ GtkWidget *create_service_page()
 	gtk_container_set_border_width(GTK_CONTAINER(main_vbox),5);
 
 	label=gtk_label_new(NULL);
-	gtk_label_set_markup(GTK_LABEL(label),_("<b>Manager the service</b>"));
+	gtk_label_set_markup(GTK_LABEL(label),_("<b>Manage Services in your system</b>"));
 	gtk_misc_set_alignment(GTK_MISC(label),0,0);
 	gtk_widget_show(label);
 	gtk_box_pack_start(GTK_BOX(main_vbox),label,FALSE,FALSE,0);
@@ -38,7 +38,7 @@ GtkWidget *create_service_page()
 	gtk_box_pack_start(GTK_BOX(main_vbox),hbox,FALSE,FALSE,0);
 	
 	label=gtk_label_new(NULL);
-	gtk_label_set_markup(GTK_LABEL(label),_("<b>Warning:</b>\nDo the following operation you need a root permission.\nIf you aren't the Administrator, Please leave away this page."));
+	gtk_label_set_markup(GTK_LABEL(label),_("<b>WARNING:</b> To change the following settings you need root permission.\nIf you are not the Administrator of this system, please log in with those creditials.\nAlternatively, you can run <b>gksudo ubuntu-tweak</b> from the Application Run dialog (Alt+F2)."));
 	gtk_widget_show(label);
 	gtk_box_pack_start(GTK_BOX(hbox),label,FALSE,FALSE,0);
 

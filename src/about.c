@@ -23,7 +23,7 @@ void show_about(GtkWidget *widget,gpointer data)
 	"artists", artists,
 	"website", "http://ubuntu-tweak.com",
 	"copyright", "Copyright © 2007 TualatriX",
-	"comments", _("Ubuntu Tweak is tool for Ubuntu that makes it easy to config your system and desktop."),
+	"comments", _("Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your system and desktop settings."),
 	"version", PACKAGE_VERSION,
 	NULL);
 }

@@ -32,7 +32,7 @@ void sweep_history(GtkWidget *widget,gpointer data)
 					GTK_DIALOG_DESTROY_WITH_PARENT,
 					GTK_MESSAGE_INFO,
 					GTK_BUTTONS_OK,
-					_("Yeah!\nThe history that you selected is cleaned up!"),NULL
+					_("The selected History options have been cleared."),NULL
 					);
 		gtk_dialog_run(GTK_MESSAGE_DIALOG(dialog));
 		gtk_widget_destroy(dialog);
@@ -41,7 +41,7 @@ void sweep_history(GtkWidget *widget,gpointer data)
 					GTK_DIALOG_DESTROY_WITH_PARENT,
 					GTK_MESSAGE_QUESTION,
 					GTK_BUTTONS_OK,
-					_("It seems that you don't select anything, why you clicked me?"),NULL
+					_("You have not selected any History options to clear. Please select at least one option, and try again."),NULL
 					);
 		gtk_dialog_run(GTK_MESSAGE_DIALOG(dialog));
 		gtk_widget_destroy(dialog);
@@ -60,13 +60,13 @@ GtkWidget *create_history_page()
 	gtk_container_set_border_width(GTK_CONTAINER(main_vbox),5);
 
 	label=gtk_label_new(NULL);
-	gtk_label_set_markup(GTK_LABEL(label),_("<b>Cleaning history</b>"));
+	gtk_label_set_markup(GTK_LABEL(label),_("<b>Clear GNOME History</b>"));
 	gtk_misc_set_alignment(GTK_MISC(label),0,0);
 	gtk_widget_show(label);
 	gtk_box_pack_start(GTK_BOX(main_vbox),label,FALSE,FALSE,0);
 
 	GtkWidget *frame;
-	frame=gtk_frame_new(_("Some history record"));
+	frame=gtk_frame_new(_("Select History to clear"));
 	gtk_widget_show(frame);
 	gtk_box_pack_start(GTK_BOX(main_vbox),frame,FALSE,FALSE,0);
 
@@ -74,15 +74,15 @@ GtkWidget *create_history_page()
 	gtk_widget_show(vbox);
 	gtk_container_add(GTK_CONTAINER(frame),vbox);
 
-	checkbutton_runapplication=gtk_check_button_new_with_label(_("Clean \"Run Application\" history"));
+	checkbutton_runapplication=gtk_check_button_new_with_label(_("Clear \"Run Application\" history"));
 	gtk_widget_show(checkbutton_runapplication);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton_runapplication,FALSE,FALSE,0);
 
-	checkbutton_searchfiles=gtk_check_button_new_with_label(_("Clean \"Search Files\" history"));
+	checkbutton_searchfiles=gtk_check_button_new_with_label(_("Clear \"Search Files\" history"));
 	gtk_widget_show(checkbutton_searchfiles);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton_searchfiles,FALSE,FALSE,0);
 
-	checkbutton_gconfeditor=gtk_check_button_new_with_label(_("Clean \"Gconf-editor\" history"));
+	checkbutton_gconfeditor=gtk_check_button_new_with_label(_("Clear \"Gconf-editor\" history"));
 	gtk_widget_show(checkbutton_gconfeditor);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton_gconfeditor,FALSE,FALSE,0);
 
@@ -91,7 +91,7 @@ GtkWidget *create_history_page()
 	gtk_box_pack_start(GTK_BOX(main_vbox),hbox,FALSE,FALSE,0);
 
 	GtkWidget *button;
-	button=gtk_button_new_with_label(_("Clean Now"));
+	button=gtk_button_new_with_label(_("Clear Now"));
 	g_signal_connect(G_OBJECT(button),"clicked",G_CALLBACK(sweep_history),NULL);
 	gtk_widget_show(button);
 	gtk_box_pack_end(GTK_BOX(hbox),button,FALSE,FALSE,0);

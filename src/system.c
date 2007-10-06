@@ -14,7 +14,7 @@ GtkWidget *create_system_notebook()
 	notebook=gtk_notebook_new();
 	gtk_notebook_set_tab_pos(GTK_NOTEBOOK(notebook),GTK_POS_TOP);
 
-	label=gtk_label_new(_("Advance Power Manager"));
+	label=gtk_label_new(_("Advanced Power Management"));
 	main_vbox=create_powermanager_page();
 	gtk_notebook_append_page(GTK_NOTEBOOK(notebook),main_vbox,label);
 
