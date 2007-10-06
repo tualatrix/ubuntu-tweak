@@ -14,15 +14,16 @@ GtkWidget *create_applications_notebook()
 	GtkWidget *main_vbox;
 	GtkWidget *page_label;
 	GConfClient *client;
-	gboolean *bool;
+	gchar *input_method;
 
 	client=gconf_client_get_default();
 
 	notebook=gtk_notebook_new();
 	gtk_notebook_set_tab_pos(GTK_NOTEBOOK(notebook),GTK_POS_TOP);
 
-	bool=gconf_client_get_bool(client,"/apps/ubuntu-tweak/system/fcitx",NULL);
-	if(bool==TRUE){
+	input_method=g_getenv("XMODIFIERS=@im");
+
+	if(!g_ascii_strcasecmp(input_method,"fcitx")){
 		main_vbox=create_fcitx_page();
 		page_label=gtk_label_new("Fcitx输入法");
 		gtk_widget_show(page_label);
