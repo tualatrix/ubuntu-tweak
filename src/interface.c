@@ -16,8 +16,7 @@ const gchar *desktop_image=PACKAGE_PIXMAPS_DIR"/desktop.png";
 const gchar *system_image=PACKAGE_PIXMAPS_DIR"/system.png";
 const gchar *security_image=PACKAGE_PIXMAPS_DIR"/security.png";
 const gchar *applications_image=PACKAGE_PIXMAPS_DIR"/applications.png";
-const gchar *header_left=PACKAGE_PIXMAPS_DIR"/ut_header_left.png";
-const gchar *header_right=PACKAGE_PIXMAPS_DIR"/ut_header_right.png";
+const gchar *banner_pic=PACKAGE_PIXMAPS_DIR"/ut_banner_pic.png";
 const gchar *icon=PACKAGE_PIXMAPS_DIR"/ubuntu-tweak-icon.png";
 
 GtkWidget *startup_notebook;
@@ -89,8 +88,7 @@ GtkWidget *create_main_window(void)
 {
 /*定义主窗体和窗体上的一些盒子、按钮等*/
 	GtkWidget *window;
-	GtkWidget *headline;
-	GtkWidget *headline_2;
+	GtkWidget *headbanner;
 	GtkWidget *vbox_main;
 	GtkWidget *hbox_head;
 	GtkWidget *hbox_content;
@@ -138,7 +136,7 @@ GtkWidget *create_main_window(void)
 /*创建主窗体最上面的头部盒子，用于放置程序的LOGO等图片,定义为横盒是为了插入两张图片时，最大化不会影响布局*/
 	hbox_head=gtk_hbox_new(FALSE,0);
 	gtk_widget_show(hbox_head);
-	gtk_box_pack_start(GTK_BOX(vbox_main),hbox_head,FALSE,FALSE,0);
+	gtk_box_pack_start(GTK_BOX(vbox_main),hbox_head,FALSE,FALSE,20);
 
 /*创建主窗体内容盒子，为横盒，因为内容还将有左侧工具条和右侧主内容*/
 	hbox_content=gtk_hbox_new(FALSE,0);
@@ -167,17 +165,13 @@ GtkWidget *create_main_window(void)
 	gtk_box_pack_end(GTK_BOX(vbox_main),hbox_footer,FALSE,FALSE,0);
 
 /*insert LOGO to head area*/
-	headline=gtk_image_new_from_file(header_left);
-	gtk_widget_show(headline);
-	gtk_box_pack_start(GTK_BOX(hbox_head),headline,FALSE,FALSE,0);
-
-	headline_2=gtk_image_new_from_file(header_right);
-	gtk_widget_show(headline_2);
-	gtk_box_pack_end(GTK_BOX(hbox_head),headline_2,FALSE,FALSE,0);
+	headbanner=gtk_image_new_from_file(banner_pic);
+	gtk_widget_show(headbanner);
+	gtk_box_pack_start(GTK_BOX(hbox_head),headbanner,FALSE,FALSE,0);
 
 /*Welcome screen*/
 	label_welcome=gtk_label_new(NULL);
-	gtk_label_set_markup (GTK_LABEL (label_welcome),_("<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak 0.1.4!</b></span>\n\n\nThis is a tool for Ubuntu which makes it easy to config your system \nand desktop.\nBy now, It's only for GNOME desktop environment.\nAlthough this application is not good enough,I will keep it developing.\nIf you have some suggestions,e-mail me please."));
+	gtk_label_set_markup (GTK_LABEL (label_welcome),_("<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak!</b></span>\n\n\nThis is a tool for Ubuntu which makes it easy to config your system \nand desktop.\nBy now, It's only for GNOME desktop environment.\nAlthough this application is not good enough,I will keep it developing.\nIf you have some suggestions,e-mail me please."));
 	gtk_label_set_justify(GTK_LABEL(label_welcome),GTK_JUSTIFY_FILL);
 	gtk_widget_show(label_welcome);
 	gtk_container_set_border_width(GTK_CONTAINER(vbox_content_right),10);

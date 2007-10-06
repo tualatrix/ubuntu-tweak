@@ -12,7 +12,8 @@ void show_about(GtkWidget *widget,gpointer data)
 		NULL
 	}; 
 	const gchar* artists[] = {
-		"Medical-Wei <a790407@hotmail.com> 3D Ubuntu Logo",
+		"Medical-Wei <a790407@hotmail.com>",
+		"m.Sharp <mac.sharp@gmail.com>",
 		NULL
 	};
 
