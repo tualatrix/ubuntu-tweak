@@ -27,7 +27,7 @@ void show_expert_label_gnome()
 	if(present_expert_gnome!=NULL){
 		gtk_widget_hide(present_expert_gnome);
 	}
-	expert_label_gnome=create_expert_with_string(_("Within this menu are advanced GNOME settings. If you require more information about a specific option, move your cursor over that option, and a description will appear here."));
+	expert_label_gnome=nt_expert_content_new_with_string(_("Within this menu are advanced GNOME settings. If you require more information about a specific option, move your cursor over that option, and a description will appear here."));
 	gtk_widget_show(expert_label_gnome);
 	present_expert_gnome=expert_label_gnome;
 	gtk_box_pack_start(GTK_BOX(expert_box_gnome),expert_label_gnome,TRUE,TRUE,0);
@@ -46,7 +46,7 @@ void show_expert_animations(GtkWidget *widget,gpointer data)
 {
 	if(present_expert_gnome!=expert_animations){
 		gtk_widget_hide(present_expert_gnome);
-		expert_animations=create_expert_with_string(_("It seems that if you disable this option, GNOME will appear quicker."));
+		expert_animations=nt_expert_content_new_with_string(_("It seems that if you disable this option, GNOME will appear quicker."));
 		gtk_widget_show(expert_animations);
 		present_expert_gnome=expert_animations;
 		gtk_box_pack_start(GTK_BOX(expert_box_gnome),expert_animations,FALSE,FALSE,0);
@@ -57,7 +57,7 @@ void show_expert_lockdownpanel(GtkWidget *widget,gpointer data)
 {
 	if(present_expert_gnome!=expert_lockdownpanel){
 		gtk_widget_hide(present_expert_gnome);
-		expert_lockdownpanel=create_expert_with_string(_("Check this button if you do not wish your gnome-panel to be changed."));
+		expert_lockdownpanel=nt_expert_content_new_with_string(_("Check this button if you do not wish your gnome-panel to be changed."));
 		gtk_widget_show(expert_lockdownpanel);
 		present_expert_gnome=expert_lockdownpanel;
 		gtk_box_pack_start(GTK_BOX(expert_box_gnome),expert_lockdownpanel,FALSE,FALSE,0);
@@ -68,7 +68,7 @@ void show_expert_inputunicode(GtkWidget *widget,gpointer data)
 {
 	if(present_expert_gnome!=expert_inputunicode){
 		gtk_widget_hide(present_expert_gnome);
-		expert_inputunicode=create_expert_with_string(_("Right-clicking in an editable area (such as Text Editor) will allow you to select your Input Method. This option is useful if you need to type in a different language, such as Cyrillic or Thai-Lao. This option enables or disables the Input Method selection."));
+		expert_inputunicode=nt_expert_content_new_with_string(_("Right-clicking in an editable area (such as Text Editor) will allow you to select your Input Method. This option is useful if you need to type in a different language, such as Cyrillic or Thai-Lao. This option enables or disables the Input Method selection."));
 		gtk_widget_show(expert_inputunicode);
 		present_expert_gnome=expert_inputunicode;
 		gtk_box_pack_start(GTK_BOX(expert_box_gnome),expert_inputunicode,FALSE,FALSE,0);
@@ -105,19 +105,19 @@ GtkWidget *create_gnome_page()
 	gtk_widget_show(vbox);
 	gtk_box_pack_start(GTK_BOX(hbox),vbox,FALSE,FALSE,0);
 
-	checkbutton=create_gconf_checkbutton(_("Enable GNOME Animations Panel"),enable_animations_panel,dir_panel_global,checkbutton_toggled,show_expert_animations);
+	checkbutton=ut_checkbutton_new_with_gconf(_("Enable GNOME Animations Panel"),enable_animations_panel,dir_panel_global,ut_checkbutton_toggled,show_expert_animations);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
-	checkbutton=create_gconf_checkbutton(_("Enable GNOME Animations Effect"),enable_animations_gnome,dir_gnome_interface,checkbutton_toggled,show_expert_animations);
+	checkbutton=ut_checkbutton_new_with_gconf(_("Enable GNOME Animations Effect"),enable_animations_gnome,dir_gnome_interface,ut_checkbutton_toggled,show_expert_animations);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
-	checkbutton=create_gconf_checkbutton(_("Complete lockdown of the Panel "),key_locked_down_panel,dir_panel_global,checkbutton_toggled,show_expert_lockdownpanel);
+	checkbutton=ut_checkbutton_new_with_gconf(_("Complete lockdown of the Panel "),key_locked_down_panel,dir_panel_global,ut_checkbutton_toggled,show_expert_lockdownpanel);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
-	checkbutton=create_gconf_checkbutton(_("Show Input Method menu in the right-click"),key_show_input_method_menu,dir_gnome_interface,checkbutton_toggled,show_expert_inputunicode);
+	checkbutton=ut_checkbutton_new_with_gconf(_("Show Input Method menu in the right-click"),key_show_input_method_menu,dir_gnome_interface,ut_checkbutton_toggled,show_expert_inputunicode);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);	
 
-	checkbutton=create_gconf_checkbutton(_("Show Unicode Method menu in the right-click"),key_show_unicode_menu,dir_gnome_interface,checkbutton_toggled,show_expert_inputunicode);
+	checkbutton=ut_checkbutton_new_with_gconf(_("Show Unicode Method menu in the right-click"),key_show_unicode_menu,dir_gnome_interface,ut_checkbutton_toggled,show_expert_inputunicode);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);	
 
 /*expander*/

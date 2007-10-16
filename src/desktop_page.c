@@ -31,58 +31,58 @@ GtkWidget *use_personality_computer_name_entry;
 GtkWidget *use_personality_home_name_entry;
 GtkWidget *use_personality_trash_name_entry;
 
-void checkbutton_toggled_hbox1(GtkWidget *checkbutton,
+void ut_checkbutton_toggled_hbox1(GtkWidget *checkbutton,
 		gpointer data)
 {
-	_checkbutton_toggled_base(checkbutton,data,desktop_hbox1);
+	_ut_ut_checkbutton_toggled_base(checkbutton,data,desktop_hbox1);
 }
 
-void checkbutton_toggled_hbox2(GtkWidget *checkbutton,
+void ut_checkbutton_toggled_hbox2(GtkWidget *checkbutton,
 		gpointer data)
 {
-	_checkbutton_toggled_base(checkbutton,data,desktop_hbox2);
+	_ut_ut_checkbutton_toggled_base(checkbutton,data,desktop_hbox2);
 }
-void checkbutton_toggled_hbox3(GtkWidget *checkbutton,
+void ut_checkbutton_toggled_hbox3(GtkWidget *checkbutton,
 		gpointer data)
 {
-	_checkbutton_toggled_base(checkbutton,data,desktop_hbox3);
+	_ut_ut_checkbutton_toggled_base(checkbutton,data,desktop_hbox3);
 }
-void checkbutton_toggled_hbox4(GtkWidget *checkbutton,
+void ut_checkbutton_toggled_hbox4(GtkWidget *checkbutton,
 		gpointer data)
 {
-	_checkbutton_toggled_base(checkbutton,data,desktop_hbox4);
-}
-
-void checkbutton_toggled_computer(GtkWidget *checkbutton,
-		gpointer data)
-{
-	_checkbutton_toggled_entry(checkbutton,data,use_personality_computer_name_entry);
+	_ut_ut_checkbutton_toggled_base(checkbutton,data,desktop_hbox4);
 }
 
-void checkbutton_toggled_home(GtkWidget *checkbutton,
+void ut_checkbutton_toggled_computer(GtkWidget *checkbutton,
 		gpointer data)
 {
-	_checkbutton_toggled_entry(checkbutton,data,use_personality_home_name_entry);
+	_ut_ut_checkbutton_toggled_to_entry(checkbutton,data,use_personality_computer_name_entry);
 }
-void checkbutton_toggled_trash(GtkWidget *checkbutton,
+
+void ut_checkbutton_toggled_home(GtkWidget *checkbutton,
 		gpointer data)
 {
-	_checkbutton_toggled_entry(checkbutton,data,use_personality_trash_name_entry);
+	_ut_ut_checkbutton_toggled_to_entry(checkbutton,data,use_personality_home_name_entry);
 }
-void entry_activated_computer(GtkWidget *entry,
+void ut_checkbutton_toggled_trash(GtkWidget *checkbutton,
 		gpointer data)
 {
-	_entry_activated(entry,data,computer_icon_name);
+	_ut_ut_checkbutton_toggled_to_entry(checkbutton,data,use_personality_trash_name_entry);
 }
-void entry_activated_home(GtkWidget *entry,
+void ut_entry_activated_computer(GtkWidget *entry,
 		gpointer data)
 {
-	_entry_activated(entry,data,home_icon_name);
+	_ut_entry_activated(entry,data,computer_icon_name);
 }
-void entry_activated_trash(GtkWidget *entry,
+void ut_entry_activated_home(GtkWidget *entry,
 		gpointer data)
 {
-	_entry_activated(entry,data,trash_icon_name);
+	_ut_entry_activated(entry,data,home_icon_name);
+}
+void ut_entry_activated_trash(GtkWidget *entry,
+		gpointer data)
+{
+	_ut_entry_activated(entry,data,trash_icon_name);
 }
 GtkWidget *create_desktop_page()
 {
@@ -117,7 +117,7 @@ GtkWidget *create_desktop_page()
 	gtk_widget_show(desktop_label);
 	gtk_box_pack_start(GTK_BOX(desktop_main_vbox),desktop_label,FALSE,FALSE,0);
 
-	use_nautilus_checkbutton=create_gconf_checkbutton(_("Show desktop icons"),show_desktop,nautilus_preferences_dir,checkbutton_toggled_hbox1,NULL);
+	use_nautilus_checkbutton=ut_checkbutton_new_with_gconf(_("Show desktop icons"),show_desktop,nautilus_preferences_dir,ut_checkbutton_toggled_hbox1,NULL);
 	gtk_widget_show(use_nautilus_checkbutton);
 	gtk_box_pack_start(GTK_BOX(desktop_main_vbox),use_nautilus_checkbutton,FALSE,FALSE,0);
 
@@ -137,7 +137,7 @@ GtkWidget *create_desktop_page()
 		gtk_widget_set_sensitive(desktop_hbox1,FALSE);
 	}
 /*Show computer icon*/
-	show_computer_checkbutton=create_gconf_checkbutton(_("Show \"Computer\" icon on desktop"),computer_icon_visible,nautilus_desktop_dir,checkbutton_toggled_hbox2,NULL);
+	show_computer_checkbutton=ut_checkbutton_new_with_gconf(_("Show \"Computer\" icon on desktop"),computer_icon_visible,nautilus_desktop_dir,ut_checkbutton_toggled_hbox2,NULL);
 	gtk_widget_show(show_computer_checkbutton);
 	gtk_box_pack_start(GTK_BOX(desktop_vbox1),show_computer_checkbutton,FALSE,FALSE,0);
 	
@@ -154,11 +154,11 @@ GtkWidget *create_desktop_page()
 	gtk_widget_show(desktop_vbox2);
 	gtk_box_pack_start(GTK_BOX(desktop_hbox2),desktop_vbox2,FALSE,FALSE,0);
 
-	use_personality_computer_name_label=create_gconf_checkbutton(_("Rename the \"Computer\" icon: "),computer_icon_name,nautilus_desktop_dir,checkbutton_toggled_computer,NULL);
+	use_personality_computer_name_label=ut_checkbutton_new_with_gconf(_("Rename the \"Computer\" icon: "),computer_icon_name,nautilus_desktop_dir,ut_checkbutton_toggled_computer,NULL);
 	gtk_widget_show(use_personality_computer_name_label);
 	gtk_box_pack_start(GTK_BOX(desktop_vbox2),use_personality_computer_name_label,FALSE,FALSE,0);
 	
-	use_personality_computer_name_entry=create_gconf_entry(computer_icon_name,nautilus_desktop_dir,entry_activated_computer);
+	use_personality_computer_name_entry=ut_entry_new_with_gconf(computer_icon_name,nautilus_desktop_dir,ut_entry_activated_computer);
 
 	gtk_widget_show(use_personality_computer_name_entry);
 	gtk_box_pack_start(GTK_BOX(desktop_vbox2),use_personality_computer_name_entry,FALSE,FALSE,0);
@@ -173,7 +173,7 @@ GtkWidget *create_desktop_page()
 	}
 
 /*Show HOME*/
-	show_home_checkbutton=create_gconf_checkbutton(_("Show \"Home\" icon on desktop"),home_icon_visible,nautilus_desktop_dir,checkbutton_toggled_hbox3,NULL);
+	show_home_checkbutton=ut_checkbutton_new_with_gconf(_("Show \"Home\" icon on desktop"),home_icon_visible,nautilus_desktop_dir,ut_checkbutton_toggled_hbox3,NULL);
 	gtk_widget_show(show_home_checkbutton);
 	gtk_box_pack_start(GTK_BOX(desktop_vbox1),show_home_checkbutton,FALSE,FALSE,0);
 	
@@ -190,11 +190,11 @@ GtkWidget *create_desktop_page()
 	gtk_widget_show(desktop_vbox3);
 	gtk_box_pack_start(GTK_BOX(desktop_hbox3),desktop_vbox3,FALSE,FALSE,0);
 
-	use_personality_home_name_label=create_gconf_checkbutton(_("Rename the \"Home\" icon: "),home_icon_name,nautilus_desktop_dir,checkbutton_toggled_home,NULL);
+	use_personality_home_name_label=ut_checkbutton_new_with_gconf(_("Rename the \"Home\" icon: "),home_icon_name,nautilus_desktop_dir,ut_checkbutton_toggled_home,NULL);
 	gtk_widget_show(use_personality_home_name_label);
 	gtk_box_pack_start(GTK_BOX(desktop_vbox3),use_personality_home_name_label,FALSE,FALSE,0);
 
-	use_personality_home_name_entry=create_gconf_entry(home_icon_name,nautilus_desktop_dir,entry_activated_home);
+	use_personality_home_name_entry=ut_entry_new_with_gconf(home_icon_name,nautilus_desktop_dir,ut_entry_activated_home);
 	gtk_widget_show(use_personality_home_name_entry);
 	gtk_box_pack_start(GTK_BOX(desktop_vbox3),use_personality_home_name_entry,FALSE,FALSE,0);
 
@@ -207,7 +207,7 @@ GtkWidget *create_desktop_page()
 	}
 
 /*Show Trash*/
-	show_trash_checkbutton=create_gconf_checkbutton(_("Show \"Trash\" icon on desktop"),trash_icon_visible,nautilus_desktop_dir,checkbutton_toggled_hbox4,NULL);
+	show_trash_checkbutton=ut_checkbutton_new_with_gconf(_("Show \"Trash\" icon on desktop"),trash_icon_visible,nautilus_desktop_dir,ut_checkbutton_toggled_hbox4,NULL);
 	gtk_widget_show(show_trash_checkbutton);
 	gtk_box_pack_start(GTK_BOX(desktop_vbox1),show_trash_checkbutton,FALSE,FALSE,0);
 	
@@ -224,11 +224,11 @@ GtkWidget *create_desktop_page()
 	gtk_widget_show(desktop_vbox4);
 	gtk_box_pack_start(GTK_BOX(desktop_hbox4),desktop_vbox4,FALSE,FALSE,0);
 
-	use_personality_trash_name_checkbutton=create_gconf_checkbutton(_("Rename the \"Trash\" icon: "),trash_icon_name,nautilus_desktop_dir,checkbutton_toggled_trash,NULL);
+	use_personality_trash_name_checkbutton=ut_checkbutton_new_with_gconf(_("Rename the \"Trash\" icon: "),trash_icon_name,nautilus_desktop_dir,ut_checkbutton_toggled_trash,NULL);
 	gtk_widget_show(use_personality_trash_name_checkbutton);
 	gtk_box_pack_start(GTK_BOX(desktop_vbox4),use_personality_trash_name_checkbutton,FALSE,FALSE,0);
 
-	use_personality_trash_name_entry=create_gconf_entry(trash_icon_name,nautilus_desktop_dir,entry_activated_trash);
+	use_personality_trash_name_entry=ut_entry_new_with_gconf(trash_icon_name,nautilus_desktop_dir,ut_entry_activated_trash);
 	gtk_widget_show(use_personality_trash_name_entry);
 	gtk_box_pack_start(GTK_BOX(desktop_vbox4),use_personality_trash_name_entry,FALSE,FALSE,0);
 
@@ -241,15 +241,15 @@ GtkWidget *create_desktop_page()
 	}
 
 /*Other*/
-	use_home_as_desktop_checkbutton=create_gconf_checkbutton(_("Use Home Directory as Desktop"),use_home_as_desktop,nautilus_preferences_dir,checkbutton_toggled,NULL);
+	use_home_as_desktop_checkbutton=ut_checkbutton_new_with_gconf(_("Use Home Directory as Desktop"),use_home_as_desktop,nautilus_preferences_dir,ut_checkbutton_toggled,NULL);
 	gtk_widget_show(use_home_as_desktop_checkbutton);
 	gtk_box_pack_start(GTK_BOX(desktop_vbox1),use_home_as_desktop_checkbutton,FALSE,FALSE,0);
 
-	show_network_checkbutton=create_gconf_checkbutton(_("Show \"Network\" icon on desktop"),network_icon_visible,nautilus_desktop_dir,checkbutton_toggled,NULL);
+	show_network_checkbutton=ut_checkbutton_new_with_gconf(_("Show \"Network\" icon on desktop"),network_icon_visible,nautilus_desktop_dir,ut_checkbutton_toggled,NULL);
 	gtk_widget_show(show_network_checkbutton);
 	gtk_box_pack_start(GTK_BOX(desktop_vbox1),show_network_checkbutton,FALSE,FALSE,0);
 
-	show_volumes_checkbutton=create_gconf_checkbutton(_("Show Mounted Volumes on desktop"),volumes_visible,nautilus_desktop_dir,checkbutton_toggled,NULL);
+	show_volumes_checkbutton=ut_checkbutton_new_with_gconf(_("Show Mounted Volumes on desktop"),volumes_visible,nautilus_desktop_dir,ut_checkbutton_toggled,NULL);
 	gtk_widget_show(show_volumes_checkbutton);
 	gtk_box_pack_start(GTK_BOX(desktop_vbox1),show_volumes_checkbutton,FALSE,FALSE,0);
 

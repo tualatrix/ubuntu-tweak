@@ -27,7 +27,7 @@ void show_expert_label_nautilus()
 	if(present_expert_nautilus!=NULL){
 		gtk_widget_hide(present_expert_nautilus);
 	}
-	expert_label_nautilus=create_expert_with_string(_("Within this menu are advanced Nautilus settings. If you require more information about a specific option, move your cursor over that option, and a description will appear here."));
+	expert_label_nautilus=nt_expert_content_new_with_string(_("Within this menu are advanced Nautilus settings. If you require more information about a specific option, move your cursor over that option, and a description will appear here."));
 	gtk_widget_show(expert_label_nautilus);
 	present_expert_nautilus=expert_label_nautilus;
 	gtk_box_pack_start(GTK_BOX(expert_box_nautilus),expert_label_nautilus,TRUE,TRUE,0);
@@ -101,7 +101,7 @@ void show_expert_burnproof(GtkWidget *widget,gpointer data)
 {
 	if(present_expert_nautilus!=expert_burnproof){
 		gtk_widget_hide(present_expert_nautilus);
-		expert_burnproof=create_expert_with_string(_("BurnProof is a technology to prevent Buffer Under Run errors when writing CDs and DVDs.\nSelect this option to enable BurnProof when writing CDs and DVDs.\nYour burner must support the BurnProof function for this to have an effect."));
+		expert_burnproof=nt_expert_content_new_with_string(_("BurnProof is a technology to prevent Buffer Under Run errors when writing CDs and DVDs.\nSelect this option to enable BurnProof when writing CDs and DVDs.\nYour burner must support the BurnProof function for this to have an effect."));
 		gtk_widget_show(expert_burnproof);
 		present_expert_nautilus=expert_burnproof;
 		gtk_box_pack_start(GTK_BOX(expert_box_nautilus),expert_burnproof,FALSE,FALSE,0);
@@ -112,7 +112,7 @@ void show_expert_overburn(GtkWidget *widget,gpointer data)
 {
 	if(present_expert_nautilus!=expert_overburn){
 		gtk_widget_hide(present_expert_nautilus);
-		expert_overburn=create_expert_with_string(_("WARNING: You can damage your CDRW by using this incorrectly. This option is NOT recommended!\n\nOverBurn is a method of fitting more data onto a CD-R than is ordinarily permitted.\nThe maximum amount of data any given CD can hold depends on the brand and type of media, as well as your model of CD drive.\nSelect this option to enable OverBurn."));
+		expert_overburn=nt_expert_content_new_with_string(_("WARNING: You can damage your CDRW by using this incorrectly. This option is NOT recommended!\n\nOverBurn is a method of fitting more data onto a CD-R than is ordinarily permitted.\nThe maximum amount of data any given CD can hold depends on the brand and type of media, as well as your model of CD drive.\nSelect this option to enable OverBurn."));
 		gtk_widget_show(expert_overburn);
 		present_expert_nautilus=expert_overburn;
 		gtk_box_pack_start(GTK_BOX(expert_box_nautilus),expert_overburn,FALSE,FALSE,0);
@@ -141,7 +141,7 @@ GtkWidget *create_nautilus_page()
 	gtk_widget_show(frame);
 	gtk_box_pack_start(GTK_BOX(main_vbox),frame,FALSE,FALSE,0);
 
-	checkbutton=create_gconf_checkbutton(_("Show advanced Permissions on File and Folder Property pages"),key_show_advanced_permissions,key_nautilus_dir,checkbutton_toggled,show_expert_showadvancedpermissions);
+	checkbutton=ut_checkbutton_new_with_gconf(_("Show advanced Permissions on File and Folder Property pages"),key_show_advanced_permissions,key_nautilus_dir,ut_checkbutton_toggled,show_expert_showadvancedpermissions);
 	gtk_widget_show(checkbutton);
 	gtk_container_add(GTK_CONTAINER(frame),checkbutton);
 
@@ -153,11 +153,11 @@ GtkWidget *create_nautilus_page()
 	gtk_widget_show(vbox);
 	gtk_container_add(GTK_CONTAINER(frame),vbox);
 
-	checkbutton=create_gconf_checkbutton(_("Enable BurnProof technology"),key_burnproof,key_cd_burner_dir,checkbutton_toggled,show_expert_burnproof);
+	checkbutton=ut_checkbutton_new_with_gconf(_("Enable BurnProof technology"),key_burnproof,key_cd_burner_dir,ut_checkbutton_toggled,show_expert_burnproof);
 	gtk_widget_show(checkbutton);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
-	checkbutton=create_gconf_checkbutton(_("Enable OverBurn"),key_overburn,key_cd_burner_dir,checkbutton_toggled,show_expert_overburn);
+	checkbutton=ut_checkbutton_new_with_gconf(_("Enable OverBurn"),key_overburn,key_cd_burner_dir,ut_checkbutton_toggled,show_expert_overburn);
 	gtk_widget_show(checkbutton);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 

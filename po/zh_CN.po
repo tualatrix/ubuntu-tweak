@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-10-06 14:34+0800\n"
+"POT-Creation-Date: 2007-10-06 20:34+0800\n"
 "PO-Revision-Date: 2007-09-23 15:09+0800\n"
 "Last-Translator: TualatriX <tualatrix@gmail.com>\n"
 "Language-Team: TualatriX <tualatrix@gmail.com>\n"
@@ -16,15 +16,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/about.c:26
+#: src/about.c:33
 msgid ""
-"Ubuntu Tweak is tool for Ubuntu that makes it easy to config your system and "
-"desktop."
+"Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
+"system and desktop settings."
 msgstr "Ubuntu Tweak是一个专门为简易配置系统和桌面而准备的工具。"
 
 #: src/awn_page.c:87
-msgid "Here you can change the style of Avant Window Navigator easily"
-msgstr "这里你可以方便地更改Avant WIndow Navigator"
+msgid "This page contains settings for Avant Window Navigator."
+msgstr ""
 
 #: src/awn_page.c:96
 msgid "Choose AWN Style"
@@ -35,17 +35,17 @@ msgid "Self-determined"
 msgstr "自定义"
 
 #: src/awn_page.c:106
-msgid "3D style(Leopard like)"
+msgid "3D Style (Leopard-like)"
 msgstr "3D样式（类似于Leopard）"
 
 #: src/awn_page.c:107
-msgid "Classical style(Tiger like)"
+msgid "Classical Style (Tiger-like)"
 msgstr "经典样式（类似于TIger）"
 
 #: src/awn_page.c:122
 msgid ""
-"Sorry, You haven't installed Avant Window Navigator yet, Please install "
-"first."
+"This page requires Avant Window Navigator to be installed. Please install "
+"AWN first."
 msgstr "对不起，你还没有安装Avant Window Navigator，请先安装"
 
 #: src/desktop.c:23
@@ -65,7 +65,7 @@ msgid "History"
 msgstr "历史记录"
 
 #: src/desktop_page.c:115
-msgid "<b>Setting your Desktop icons</b>"
+msgid "<b>Desktop Icon settings</b>"
 msgstr "<b>设置你的桌面图标</b>"
 
 #: src/desktop_page.c:120
@@ -101,7 +101,7 @@ msgstr "使用自定义的\"回收站\"名称"
 
 #. Other
 #: src/desktop_page.c:244
-msgid "Use Home directory as Desktop entries"
+msgid "Use Home Directory as Desktop"
 msgstr "以主目录的内容作为桌面项"
 
 #: src/desktop_page.c:248
@@ -109,32 +109,31 @@ msgid "Show \"Network\" icon on desktop"
 msgstr "在桌面上显示\"网络服务器\"图标"
 
 #: src/desktop_page.c:252
-msgid "Show Volumes on Desktop"
+msgid "Show Mounted Volumes on desktop"
 msgstr "在桌面上显示已挂载的设备"
 
-#: src/gnome_page.c:30 src/nautilus_page.c:30 src/security.c:35
-#: src/session_page.c:36
+#: src/gnome_page.c:30
 msgid ""
-"Welcome! \n"
-"Here is \"Expert Mode\".If you have any question with the options, or you "
-"want to know more information about what operation will be done by the "
-"options, Just move your cursor to the option."
+"Within this menu are advanced GNOME settings. If you require more "
+"information about a specific option, move your cursor over that option, and "
+"a description will appear here."
 msgstr ""
-"欢迎! \n"
-"这里是\"专家模式\".如果你对一些选项有些困惑，或者你想知道那些选项到底动了哪些"
-"手脚， 那么把你的光标移到某个选项上即可！"
 
 #: src/gnome_page.c:49
-msgid "It seems that if you disable this option, GNOME will more faster"
+msgid "It seems that if you disable this option, GNOME will appear quicker."
 msgstr "据说禁用这个选项，GNOME反应会更快？！"
 
 #: src/gnome_page.c:60
-msgid "Check this button if you don't want your gnome-panel to be changed."
+msgid "Check this button if you do not wish your gnome-panel to be changed."
 msgstr "选中这个选项，如果你不想再让面版有任何改变"
 
 #: src/gnome_page.c:71
-msgid "Right click menu in the editable area you will find this."
-msgstr "在文本编辑模式点击右键，你就知道你需不需要这个了。"
+msgid ""
+"Right-clicking in an editable area (such as Text Editor) will allow you to "
+"select your Input Method. This option is useful if you need to type in a "
+"different language, such as Cyrillic or Thai-Lao. This option enables or "
+"disables the Input Method selection."
+msgstr ""
 
 #: src/gnome_page.c:91
 msgid "<b>GNOME Animations</b>"
@@ -149,15 +148,15 @@ msgid "Enable GNOME Animations Effect"
 msgstr "打开GNOME动画效果"
 
 #: src/gnome_page.c:114
-msgid "Complete lockdown the panel "
+msgid "Complete lockdown of the Panel "
 msgstr "完全锁定GNOME面版"
 
 #: src/gnome_page.c:117
-msgid "Show input method menu in the right-click"
+msgid "Show Input Method menu in the right-click"
 msgstr "在右键显示输入法菜单"
 
 #: src/gnome_page.c:120
-msgid "Show unicode method menu in the right-click"
+msgid "Show Unicode Method menu in the right-click"
 msgstr "在右建显示Unicode控制字符选项"
 
 #. expander
@@ -167,39 +166,37 @@ msgid "Need some help? Click here!"
 msgstr "需要什么帮助？点击这里！"
 
 #: src/history_page.c:35
-msgid ""
-"Yeah!\n"
-"The history that you selected is cleaned up!"
+msgid "The selected History options have been cleared."
 msgstr ""
-"太棒了!\n"
-"你选择的所有历史记录已被清除！"
 
 #: src/history_page.c:44
-msgid "It seems that you don't select anything, why you clicked me?"
-msgstr "你好像没有选择任何选项，为啥点我？"
+msgid ""
+"You have not selected any History options to clear. Please select at least "
+"one option, and try again."
+msgstr ""
 
 #: src/history_page.c:63
-msgid "<b>Cleaning history</b>"
+msgid "<b>Clear GNOME History</b>"
 msgstr "<b>清理历史记录</b>"
 
 #: src/history_page.c:69
-msgid "Some history record"
-msgstr "一些历史记录"
+msgid "Select History to clear"
+msgstr ""
 
 #: src/history_page.c:77
-msgid "Clean \"Run Application\" history"
+msgid "Clear \"Run Application\" history"
 msgstr "清除\"运行应用程序\"的历史"
 
 #: src/history_page.c:81
-msgid "Clean \"Search Files\" history"
+msgid "Clear \"Search Files\" history"
 msgstr "清除\"搜索文件\"的历史"
 
 #: src/history_page.c:85
-msgid "Clean \"Gconf-editor\" history"
+msgid "Clear \"Gconf-editor\" history"
 msgstr "清除\"配置编辑器\"的历史"
 
 #: src/history_page.c:94
-msgid "Clean Now"
+msgid "Clear Now"
 msgstr "开始清理"
 
 #: src/interface.c:174
@@ -207,11 +204,18 @@ msgid ""
 "<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak!</b></span>\n"
 "\n"
 "\n"
-"This is a tool for Ubuntu which makes it easy to config your system \n"
-"and desktop.\n"
-"By now, It's only for GNOME desktop environment.\n"
-"Although this application is not good enough,I will keep it developing.\n"
-"If you have some suggestions,e-mail me please."
+"This is a tool for Ubuntu which makes it easy to change hidden \n"
+" system and desktop settings.\n"
+"\n"
+"Ubuntu Tweak is currently only for the GNOME Desktop Environment.\n"
+"\n"
+"Although this application is only in early stages, I will keep developing "
+"it.\n"
+"\n"
+"If you have any suggestions, please e-mail me. \n"
+"\n"
+"Thankyou,\n"
+"- TualatriX"
 msgstr ""
 "<span size=\"xx-large\">欢迎使用<b>Ubuntu Tweak!</b></span>\n"
 "\n"
@@ -219,7 +223,7 @@ msgstr ""
 "这是一个为简单设置Ubuntu系统和桌面的而准备的软件。\n"
 "目前为止只应用于GNOME桌面环境。\n"
 "现在软件还不是很棒，但是我会不断保持开发。\n"
-"如果你有什么意见或意义，请给我发电邮。"
+"如果你有什么意见或建议，请给我发电邮。"
 
 #: src/interface.c:195
 msgid "Startup"
@@ -227,7 +231,8 @@ msgstr "启动控制"
 
 #: src/interface.c:196
 msgid ""
-"Setting the session, change the splash screen or change the services(future)"
+"Session settings, change the Splash Screen, or change Services (to be "
+"implemented)"
 msgstr "设置会话，更改splash画面，未来还可以更改服务"
 
 #: src/interface.c:203
@@ -235,7 +240,7 @@ msgid "Desktop"
 msgstr "桌面设置"
 
 #: src/interface.c:204
-msgid "Setting your desktop icons or other options about desktop"
+msgid "Change the Desktop Icons, and other options relating to the Desktop"
 msgstr "设置你的桌面图标或者其他有关桌面的选项"
 
 #: src/interface.c:211
@@ -243,15 +248,15 @@ msgid "System"
 msgstr "系统选项"
 
 #: src/interface.c:212
-msgid "Config your system"
-msgstr "配置你自己的系统"
+msgid "Configuration of Power Management, and other hardware settings"
+msgstr ""
 
 #: src/interface.c:219
 msgid "Security"
 msgstr "安全相关"
 
 #: src/interface.c:220
-msgid "Some options about security of your system"
+msgid "Options relating to security of the system"
 msgstr "一些与系统安全相关的选项"
 
 #: src/interface.c:227
@@ -259,19 +264,19 @@ msgid "Applications"
 msgstr "应用软件"
 
 #: src/interface.c:228
-msgid "Easy to config often-used applications"
+msgid "Configuration options for commonly-used applications"
 msgstr "通过这里简单地配置一些常用软件"
 
 #: src/mplayer_page.c:25
-msgid "Here you can set mplayer"
-msgstr "这里你可以设置Mplayer"
+msgid "Options relating to MPlayer"
+msgstr ""
 
 #: src/mplayer_page.c:42
-msgid "Use X11 video driver(Recommend)"
+msgid "Use X11 video driver (recommended)"
 msgstr "使用X11视频驱动（强烈推荐）"
 
 #: src/mplayer_page.c:46
-msgid "Enable X11 Zoom mode(Recommend)"
+msgid "Enable X11 Zoom mode (recommended)"
 msgstr "打开X11硬缩放功能（强烈推荐）"
 
 #: src/mplayer_page.c:50
@@ -279,43 +284,55 @@ msgid "Use smart sub-fuzziness"
 msgstr "使用智能型字幕文件匹配"
 
 #: src/mplayer_page.c:55
-msgid "Sorry, You haven't installed Mplayer yet, Please install first."
-msgstr "对不起，你还没有安装Mplayer，请先安装。"
+msgid ""
+"This page requires MPlayer to be installed. Please install MPlayer first."
+msgstr ""
+
+#: src/nautilus_page.c:30
+msgid ""
+"Within this menu are advanced Nautilus settings. If you require more "
+"information about a specific option, move your cursor over that option, and "
+"a description will appear here."
+msgstr ""
 
 #: src/nautilus_page.c:51
 msgid ""
-"Before you choose the advanced permissions, the \"Permission\" at file "
-"property is like this:\n"
+"With default Permissions (this option unticked), the \"Permission\" tab of "
+"File or Folder Properties is like this:\n"
 msgstr "在你选择高级权限之前，文件属性的权限标签是这样的：\n"
 
 #: src/nautilus_page.c:52
 msgid ""
 "\n"
-"After you choose the advanced permissions, the \"Permission\" at file "
-"property is like this:\n"
+"With advanced Permissions (this option ticked), the \"Permission\" tab of "
+"File or Folder Properties is like this:\n"
 msgstr ""
 "\n"
 "在你选择了高级权限之后，文件属性的权限标签将是这样的：\n"
 
 #: src/nautilus_page.c:104
 msgid ""
-"Do you want it safer when you are buring discs?\n"
-"Check this button if you confirm that your burner support the function."
+"BurnProof is a technology to prevent Buffer Under Run errors when writing "
+"CDs and DVDs.\n"
+"Select this option to enable BurnProof when writing CDs and DVDs.\n"
+"Your burner must support the BurnProof function for this to have an effect."
 msgstr ""
-"你想在刻录CD时更加安全吗？\n"
-"如果你的刻录机有\"防刻死\"功能请打上勾吧"
 
 #: src/nautilus_page.c:115
 msgid ""
-"If your archivers' size is over the disc, you may want to enable this "
-"function.\n"
-"But it's not recommend to enable."
+"WARNING: You can damage your CDRW by using this incorrectly. This option is "
+"NOT recommended!\n"
+"\n"
+"OverBurn is a method of fitting more data onto a CD-R than is ordinarily "
+"permitted.\n"
+"The maximum amount of data any given CD can hold depends on the brand and "
+"type of media, as well as your model of CD drive.\n"
+"Select this option to enable OverBurn."
 msgstr ""
-"如果你的档案文件超出了光盘的容量，你可以需要打开这项功能\n"
-"但是并不推荐打开它，因为并不保证成功"
 
 #: src/nautilus_page.c:134
-msgid "<b>Setting your nautilus behavior</b>"
+#, fuzzy
+msgid "<b>Settings for Nautilus behavior</b>"
 msgstr "<b>设置你的文件管理器</b>"
 
 #: src/nautilus_page.c:140
@@ -323,7 +340,8 @@ msgid "File Browser"
 msgstr "文件浏览"
 
 #: src/nautilus_page.c:144
-msgid "Show advanced permissions at file property"
+#, fuzzy
+msgid "Show advanced Permissions on File and Folder Property pages"
 msgstr "在文件属性里显示高级权限控制"
 
 #: src/nautilus_page.c:148
@@ -331,15 +349,18 @@ msgid "CD Burner"
 msgstr "光盘刻录"
 
 #: src/nautilus_page.c:156
-msgid "Enable Burnproof option"
+#, fuzzy
+msgid "Enable BurnProof technology"
 msgstr "启用防刻死技术"
 
 #: src/nautilus_page.c:160
-msgid "Enable overburn"
+#, fuzzy
+msgid "Enable OverBurn"
 msgstr "启用超刻技术"
 
 #: src/powermanager_page.c:116
-msgid "<b>Advanced Power Managerment Settings</b>"
+#, fuzzy
+msgid "<b>Advanced Power Management Settings</b>"
 msgstr "<b>高级电源管理</b>"
 
 #: src/powermanager_page.c:133
@@ -347,15 +368,19 @@ msgid "Enable Hibernation"
 msgstr "启用休眠支持"
 
 #: src/powermanager_page.c:137
-msgid "Enable Suspension"
+#, fuzzy
+msgid "Enable Suspend"
 msgstr "启用挂起功能"
 
 #: src/powermanager_page.c:141
-msgid "Show CPU frequency tweak in\"Power Managerment\""
+#, fuzzy
+msgid ""
+"Show CPU frequency option in \"System - Preferences - Power Management\""
 msgstr "在\"电源管理器\"里显示CPU频率控制"
 
 #: src/powermanager_page.c:151
-msgid "\"Notification Area\" Power Managerment icon"
+#, fuzzy
+msgid "\"Notification Area\" Power Management icon"
 msgstr "\"通知区域\"电源管理图标行为："
 
 #: src/powermanager_page.c:161
@@ -363,7 +388,8 @@ msgid "Never display"
 msgstr "从不显示"
 
 #: src/powermanager_page.c:162
-msgid "Only when charge"
+#, fuzzy
+msgid "Only when using battery charge"
 msgstr "只在充电时显示"
 
 #: src/powermanager_page.c:163
@@ -371,15 +397,18 @@ msgid "Always display"
 msgstr "始终显示"
 
 #: src/powermanager_page.c:180
-msgid "When using AC, CPU frequency policy"
+#, fuzzy
+msgid "When using AC power, CPU frequency policy is:"
 msgstr "当使用交流电时，CPU频率使用策略"
 
 #: src/powermanager_page.c:190 src/powermanager_page.c:219
-msgid "On demand"
+#, fuzzy
+msgid "On Demand"
 msgstr "根据处理器负载"
 
 #: src/powermanager_page.c:191 src/powermanager_page.c:220
-msgid "PowerSave"
+#, fuzzy
+msgid "Power Save"
 msgstr "最节电"
 
 #: src/powermanager_page.c:192 src/powermanager_page.c:221
@@ -387,120 +416,138 @@ msgid "Performance"
 msgstr "总是全速"
 
 #: src/powermanager_page.c:209
-msgid "When using Battery, CPU frequency policy"
+#, fuzzy
+msgid "When using Battery power, CPU frequency policy is:"
 msgstr "当使用电池时，CPU频率使用策略"
+
+#: src/security.c:35
+msgid ""
+"Within this menu are advanced security settings. If you require more "
+"information about a specific option, move your cursor over that option, and "
+"a description will appear here."
+msgstr ""
 
 #: src/security.c:54
 msgid ""
-"If your check this button, you may won't be able to use \"Alt+F2\" to run "
-"application"
-msgstr "如果你禁用了这个功能，你将不能使用\"Alt+F2\"来快速运行应用程序。"
+"This option enables and disables the Run Application dialog.\n"
+"The default key combination for Run is \"Alt+F2\".\n"
+"This is one way of preventing users from running commands you don't want "
+"them to."
+msgstr ""
 
 #: src/security.c:65
-msgid "If your check this button, you may won't be able to lock the screen."
-msgstr "如果你禁用了这个功能，你将不能锁定屏幕。"
+msgid ""
+"This option enables and disables locking of the screen.\n"
+"You are required to enter your password when unlocking a locked screen.\n"
+"This could be useful on a public terminal, such as at a school or web cafe."
+msgstr ""
 
 #: src/security.c:76
-msgid ""
-"If your check this button, the printing function in all applications will be "
-"disabled."
+msgid "This option enables and disables Printing in all applications."
 msgstr ""
-"如果你禁用了这个功能，所有应用程序的打印功能将失效。对于防止别人偷偷用你的电"
-"脑进行打印这是个很好的办法。哈哈"
 
 #: src/security.c:87
 msgid ""
-"If your check this button, the print setup function in all applications will "
-"be disabled."
-msgstr "如果你禁用了这个功能，所有应用程序的打印设置功能将失效。"
+"This option enables and disables Print Setup in all applications.\n"
+"This could be useful to restrict printing options such as installed "
+"printers, drivers, and printer sharing."
+msgstr ""
 
 #: src/security.c:98
 msgid ""
-"If your check this button, you won't be able to use the \"Save As\" function "
-"in all applications."
-msgstr "如果你禁用了这个功能，你将不能在应用程序中使用\"另存为\"功能。"
+"This option enables and disables the \"Save\" and \"Save As\" function in "
+"all applications.\n"
+"This option could be used to restrict file write access on a system."
+msgstr ""
 
 #: src/security.c:108
-msgid "If your check this button, you won't be able to use the User Switching."
-msgstr "如果你禁用了这个功能，你将不能使用快速用户切换"
+msgid ""
+"This option enables and disables User Switching.\n"
+"This could be useful on a public terminal, such as at a school or web cafe, "
+"or to provide security to other logged-in users."
+msgstr ""
 
 #: src/security.c:127
-msgid "<b>Some options for system security</b>"
-msgstr "<b>一些与系统安全相关的选项</b>"
+#, fuzzy
+msgid "<b>System Security options</b>"
+msgstr "安全相关选项"
 
 #: src/security.c:144
-msgid "Disable \"Run Application\"(Alt+F2)"
+#, fuzzy
+msgid "Disable \"Run Application\" dialog (Alt+F2)"
 msgstr "禁用\"运行应用程序\"(Alt+F2)"
 
 #: src/security.c:148
-msgid "Disable lock screen"
+#, fuzzy
+msgid "Disable Lock Screen (Ctrl+Alt+L)"
 msgstr "禁用锁定屏幕"
 
 #: src/security.c:151
-msgid "Disable printing"
+#, fuzzy
+msgid "Disable Printing"
 msgstr "禁用打印功能"
 
 #: src/security.c:154
-msgid "Disable run print setup"
+#, fuzzy
+msgid "Disable Print Setup"
 msgstr "禁止运行打印设置向导"
 
 #: src/security.c:157
-msgid "Disable save to disk"
+#, fuzzy
+msgid "Disable Save To Disk"
 msgstr "禁止使用文件另存为"
 
 #: src/security.c:160
-msgid "Disable user switching"
+#, fuzzy
+msgid "Disable User Switching"
 msgstr "禁止使用用户切换"
 
 #: src/security.c:189
 msgid "Security Options"
 msgstr "安全相关选项"
 
+#: src/session_page.c:36
+msgid ""
+"Within this menu are advanced session settings. If you require more "
+"information about a specific option, move your cursor over that option, and "
+"a description will appear here."
+msgstr ""
+
 #: src/session_page.c:57
 msgid ""
-"When you log in your Ubuntu, you have started a session.\n"
-"Session is the current state of your all started applications.\n"
-"Select this option if you want the session manager to save the current state "
-"of your session.The session manager saves the session-managed applications "
-"that are open,and the settings associated with the session-managed "
-"applications. The next time that you start a session, the applications start "
-"automatically, with the saved settings."
+"When you log into Ubuntu, you have started a \"Session\", within which you "
+"run applicatons and change settings.\n"
+"This option automatically saves your Session when you log out. The next time "
+"you log into your saved Session, any open applications will be run again, "
+"with the any settings they had at the time of logoff."
 msgstr ""
-"当你登陆Ubuntu时，你就开始了一个会话。\n"
-"会话是当前所有运行的应用程序的一个状态。\n"
-"选择这个选择如果你想让会话管理器保存当前的状态，一旦你选择了这个选项，你可以"
-"在工作完成后不必关闭有关应用程序而直接关机或重启。这样下次启动登陆时，会自动"
-"打开所有上次会话结束时活动的应用程序。"
 
 #: src/session_page.c:93
 msgid ""
-"Select this option to display a confirmation dialog when you end a session.\n"
-"If you don't select this option, you will without a confirmation dialog when "
-"you click the \"System\"-\"Quit\"."
+"This option enables and disables the Logout, Lock Screen, Switch User, etc "
+"prompt when a user clicks \"System - Quit\". With this disabled, you'll go "
+"straight back to the Gnome Display Manager login screen.\n"
+"\n"
+"Note: You can select Shut Down, Restart, etc from the GDM screen."
 msgstr ""
-"选择这个选项如果你想在退出当前登陆时显示一个确认框。\n"
-"如果你不选择它，当你点击\"系统\"-\"退出\"时将会立刻退出而不会显示任何确认."
 
 #: src/session_page.c:128
-msgid "Select this option to display a splash screen when you start a session."
-msgstr "如果你想登陆时显示splash画面的话就选择这个，否则勾掉它。"
+msgid ""
+"The splash screen displays the progress of services and applications as they "
+"are starting up after logon.\n"
+"Select this option to display a splash screen when you start a session."
+msgstr ""
 
 #: src/session_page.c:163
 msgid ""
-"Have you prepared your own splash images?\n"
-"Not yet?\n"
-"\n"
-"It doesn't matter, Visit the http://www.gnome-look.org, and download the "
-"splash images what you like. Then click this button to choose it!"
+"Visit the http://art.gnome.org or http://www.gnome-look.org sites to view a "
+"selection of Splash images. Click the large button above to choose your "
+"Splash screen."
 msgstr ""
-"你准备好自己的splash图像了吗？\n"
-"还没有？\n"
-"\n"
-"没关系，访问http://www.gnome-look.org，并下载你喜欢的splash画面，点击这个按钮"
-"并选择它即可。"
 
 #: src/session_page.c:243
-msgid "Choose a Splash file"
+#, fuzzy
+msgid "Choose a Splash image"
 msgstr "选择一个Splash文件"
 
 #: src/session_page.c:366
@@ -508,30 +555,36 @@ msgid "Session Control"
 msgstr "会话控制"
 
 #: src/session_page.c:382
-msgid "Auto save session"
+#, fuzzy
+msgid "Automatically save changes to session"
 msgstr "自动保存会话"
 
 #: src/session_page.c:390
-msgid "Show logout prompt"
+#, fuzzy
+msgid "Show Logout prompt"
 msgstr "显示注销菜单"
 
 #: src/session_page.c:398
-msgid "Show splash screen"
+#, fuzzy
+msgid "Show Splash screen"
 msgstr "显示Splash屏幕"
 
 #: src/session_page.c:406
-msgid "Click the big button to change splash screen"
+#, fuzzy
+msgid "Click the large button to change Splash screen"
 msgstr "点击大按钮来更改Splash屏幕"
 
 #: src/service_page.c:31
-msgid "<b>Manager the service</b>"
+msgid "<b>Manage Services in your system</b>"
 msgstr ""
 
 #: src/service_page.c:41
 msgid ""
-"<b>Warning:</b>\n"
-"Do the following operation you need a root permission.\n"
-"If you aren't the Administrator, Please leave away this page."
+"<b>WARNING:</b> To change the following settings you need root permission.\n"
+"If you are not the Administrator of this system, please log in with those "
+"creditials.\n"
+"Alternatively, you can run <b>gksudo ubuntu-tweak</b> from the Application "
+"Run dialog (Alt+F2)."
 msgstr ""
 
 #: src/service_page.c:45
@@ -548,17 +601,149 @@ msgid "Service"
 msgstr ""
 
 #: src/system.c:17
-msgid "Advance Power Manager"
+#, fuzzy
+msgid "Advanced Power Management"
 msgstr "高级电源管理"
 
 #: src/ubuntu-tweak.c:10
 msgid ""
 "OK?\n"
-"There is noting for this OK Button,haha!"
+"This OK button does nothing, haha!"
 msgstr ""
-"什么?\n"
-"这个确定按钮什么东西也没有，哈哈!"
 
 #: src/ubuntu-tweak.c:204 src/ubuntu-tweak.c:261
 msgid "Unset"
 msgstr "未设置"
+
+#~ msgid "Here you can change the style of Avant Window Navigator easily"
+#~ msgstr "这里你可以方便地更改Avant WIndow Navigator"
+
+#~ msgid ""
+#~ "Welcome! \n"
+#~ "Here is \"Expert Mode\".If you have any question with the options, or you "
+#~ "want to know more information about what operation will be done by the "
+#~ "options, Just move your cursor to the option."
+#~ msgstr ""
+#~ "欢迎! \n"
+#~ "这里是\"专家模式\".如果你对一些选项有些困惑，或者你想知道那些选项到底动了"
+#~ "哪些手脚， 那么把你的光标移到某个选项上即可！"
+
+#~ msgid "Right click menu in the editable area you will find this."
+#~ msgstr "在文本编辑模式点击右键，你就知道你需不需要这个了。"
+
+#~ msgid ""
+#~ "Yeah!\n"
+#~ "The history that you selected is cleaned up!"
+#~ msgstr ""
+#~ "太棒了!\n"
+#~ "你选择的所有历史记录已被清除！"
+
+#~ msgid "It seems that you don't select anything, why you clicked me?"
+#~ msgstr "你好像没有选择任何选项，为啥点我？"
+
+#~ msgid "Some history record"
+#~ msgstr "一些历史记录"
+
+#~ msgid "Config your system"
+#~ msgstr "配置你自己的系统"
+
+#~ msgid "Here you can set mplayer"
+#~ msgstr "这里你可以设置Mplayer"
+
+#~ msgid "Sorry, You haven't installed Mplayer yet, Please install first."
+#~ msgstr "对不起，你还没有安装Mplayer，请先安装。"
+
+#~ msgid ""
+#~ "Do you want it safer when you are buring discs?\n"
+#~ "Check this button if you confirm that your burner support the function."
+#~ msgstr ""
+#~ "你想在刻录CD时更加安全吗？\n"
+#~ "如果你的刻录机有\"防刻死\"功能请打上勾吧"
+
+#~ msgid ""
+#~ "If your archivers' size is over the disc, you may want to enable this "
+#~ "function.\n"
+#~ "But it's not recommend to enable."
+#~ msgstr ""
+#~ "如果你的档案文件超出了光盘的容量，你可以需要打开这项功能\n"
+#~ "但是并不推荐打开它，因为并不保证成功"
+
+#~ msgid ""
+#~ "If your check this button, you may won't be able to use \"Alt+F2\" to run "
+#~ "application"
+#~ msgstr "如果你禁用了这个功能，你将不能使用\"Alt+F2\"来快速运行应用程序。"
+
+#~ msgid "If your check this button, you may won't be able to lock the screen."
+#~ msgstr "如果你禁用了这个功能，你将不能锁定屏幕。"
+
+#~ msgid ""
+#~ "If your check this button, the printing function in all applications will "
+#~ "be disabled."
+#~ msgstr ""
+#~ "如果你禁用了这个功能，所有应用程序的打印功能将失效。对于防止别人偷偷用你的"
+#~ "电脑进行打印这是个很好的办法。哈哈"
+
+#~ msgid ""
+#~ "If your check this button, the print setup function in all applications "
+#~ "will be disabled."
+#~ msgstr "如果你禁用了这个功能，所有应用程序的打印设置功能将失效。"
+
+#~ msgid ""
+#~ "If your check this button, you won't be able to use the \"Save As\" "
+#~ "function in all applications."
+#~ msgstr "如果你禁用了这个功能，你将不能在应用程序中使用\"另存为\"功能。"
+
+#~ msgid ""
+#~ "If your check this button, you won't be able to use the User Switching."
+#~ msgstr "如果你禁用了这个功能，你将不能使用快速用户切换"
+
+#~ msgid "<b>Some options for system security</b>"
+#~ msgstr "<b>一些与系统安全相关的选项</b>"
+
+#~ msgid ""
+#~ "When you log in your Ubuntu, you have started a session.\n"
+#~ "Session is the current state of your all started applications.\n"
+#~ "Select this option if you want the session manager to save the current "
+#~ "state of your session.The session manager saves the session-managed "
+#~ "applications that are open,and the settings associated with the session-"
+#~ "managed applications. The next time that you start a session, the "
+#~ "applications start automatically, with the saved settings."
+#~ msgstr ""
+#~ "当你登陆Ubuntu时，你就开始了一个会话。\n"
+#~ "会话是当前所有运行的应用程序的一个状态。\n"
+#~ "选择这个选择如果你想让会话管理器保存当前的状态，一旦你选择了这个选项，你可"
+#~ "以在工作完成后不必关闭有关应用程序而直接关机或重启。这样下次启动登陆时，会"
+#~ "自动打开所有上次会话结束时活动的应用程序。"
+
+#~ msgid ""
+#~ "Select this option to display a confirmation dialog when you end a "
+#~ "session.\n"
+#~ "If you don't select this option, you will without a confirmation dialog "
+#~ "when you click the \"System\"-\"Quit\"."
+#~ msgstr ""
+#~ "选择这个选项如果你想在退出当前登陆时显示一个确认框。\n"
+#~ "如果你不选择它，当你点击\"系统\"-\"退出\"时将会立刻退出而不会显示任何确认."
+
+#~ msgid ""
+#~ "Select this option to display a splash screen when you start a session."
+#~ msgstr "如果你想登陆时显示splash画面的话就选择这个，否则勾掉它。"
+
+#~ msgid ""
+#~ "Have you prepared your own splash images?\n"
+#~ "Not yet?\n"
+#~ "\n"
+#~ "It doesn't matter, Visit the http://www.gnome-look.org, and download the "
+#~ "splash images what you like. Then click this button to choose it!"
+#~ msgstr ""
+#~ "你准备好自己的splash图像了吗？\n"
+#~ "还没有？\n"
+#~ "\n"
+#~ "没关系，访问http://www.gnome-look.org，并下载你喜欢的splash画面，点击这个"
+#~ "按钮并选择它即可。"
+
+#~ msgid ""
+#~ "OK?\n"
+#~ "There is noting for this OK Button,haha!"
+#~ msgstr ""
+#~ "什么?\n"
+#~ "这个确定按钮什么东西也没有，哈哈!"

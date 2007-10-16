@@ -24,7 +24,7 @@ void show_expert_label_powermanager()
 	if(present_expert_powermanager!=NULL){
 		gtk_widget_hide(present_expert_powermanager);
 	}
-	expert_label_powermanager=create_expert_with_string(_("Welcome! \nHere is \"Expert Mode\".If you have any question with the options, or you want to know more information about what operation will be done by the options, Just move your cursor to the cursor."));
+	expert_label_powermanager=nt_expert_content_new_with_string(_("Welcome! \nHere is \"Expert Mode\".If you have any question with the options, or you want to know more information about what operation will be done by the options, Just move your cursor to the cursor."));
 	gtk_widget_show(expert_label_powermanager);
 	present_expert_powermanager=expert_label_powermanager;
 	gtk_box_pack_start(GTK_BOX(expert_box_powermanager),expert_label_powermanager,TRUE,TRUE,0);
@@ -34,7 +34,7 @@ void show_expert_pmicon(GtkWidget *widget,gpointer data)
 {
 	if(present_expert_powermanager!=expert_pmicon){
 		gtk_widget_hide(present_expert_powermanager);
-		expert_pmicon=create_expert_with_string(_("Do you want it safer when you are buring discs?\nCheck this button if you confirm that your burner support the function."));
+		expert_pmicon=nt_expert_content_new_with_string(_("Do you want it safer when you are buring discs?\nCheck this button if you confirm that your burner support the function."));
 		gtk_widget_show(expert_pmicon);
 		present_expert_powermanager=expert_pmicon;
 		gtk_box_pack_start(GTK_BOX(expert_box_powermanager),expert_pmicon,FALSE,FALSE,0);
@@ -130,15 +130,15 @@ GtkWidget *create_powermanager_page()
 	gtk_widget_show(vbox);
 	gtk_box_pack_start(GTK_BOX(hbox),vbox,FALSE,FALSE,0);
 
-	checkbutton=create_gconf_checkbutton(_("Enable Hibernation"),key_can_hibernate,powermanager_dir,checkbutton_toggled,NULL);
+	checkbutton=ut_checkbutton_new_with_gconf(_("Enable Hibernation"),key_can_hibernate,powermanager_dir,ut_checkbutton_toggled,NULL);
 	gtk_widget_show(checkbutton);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
-	checkbutton=create_gconf_checkbutton(_("Enable Suspend"),key_can_suspend,powermanager_dir,checkbutton_toggled,NULL);
+	checkbutton=ut_checkbutton_new_with_gconf(_("Enable Suspend"),key_can_suspend,powermanager_dir,ut_checkbutton_toggled,NULL);
 	gtk_widget_show(checkbutton);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
-	checkbutton=create_gconf_checkbutton(_("Show CPU frequency option in \"System - Preferences - Power Management\""),key_show_cpufreq_ui,powermanager_dir,checkbutton_toggled,NULL);
+	checkbutton=ut_checkbutton_new_with_gconf(_("Show CPU frequency option in \"System - Preferences - Power Management\""),key_show_cpufreq_ui,powermanager_dir,ut_checkbutton_toggled,NULL);
 	gtk_widget_show(checkbutton);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 

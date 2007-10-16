@@ -32,7 +32,7 @@ void show_expert_label_security()
 	if(present_expert_security!=NULL){
 		gtk_widget_hide(present_expert_security);
 	}
-	expert_label_security=create_expert_with_string(_("Within this menu are advanced security settings. If you require more information about a specific option, move your cursor over that option, and a description will appear here."));
+	expert_label_security=nt_expert_content_new_with_string(_("Within this menu are advanced security settings. If you require more information about a specific option, move your cursor over that option, and a description will appear here."));
 	gtk_widget_show(expert_label_security);
 	present_expert_security=expert_label_security;
 	gtk_box_pack_start(GTK_BOX(expert_box_security),expert_label_security,TRUE,TRUE,0);
@@ -51,7 +51,7 @@ void show_expert_runapplication(GtkWidget *widget,gpointer data)
 {
 	if(present_expert_security!=expert_runapplication){
 		gtk_widget_hide(present_expert_security);
-		expert_runapplication=create_expert_with_string(_("This option enables and disables the Run Application dialog.\nThe default key combination for Run is \"Alt+F2\".\nThis is one way of preventing users from running commands you don't want them to."));
+		expert_runapplication=nt_expert_content_new_with_string(_("This option enables and disables the Run Application dialog.\nThe default key combination for Run is \"Alt+F2\".\nThis is one way of preventing users from running commands you don't want them to."));
 		gtk_widget_show(expert_runapplication);
 		present_expert_security=expert_runapplication;
 		gtk_box_pack_start(GTK_BOX(expert_box_security),expert_runapplication,FALSE,FALSE,0);
@@ -62,7 +62,7 @@ void show_expert_lockscreen(GtkWidget *widget,gpointer data)
 {
 	if(present_expert_security!=expert_lockscreen){
 		gtk_widget_hide(present_expert_security);
-		expert_lockscreen=create_expert_with_string(_("This option enables and disables locking of the screen.\nYou are required to enter your password when unlocking a locked screen.\nThis could be useful on a public terminal, such as at a school or web cafe."));
+		expert_lockscreen=nt_expert_content_new_with_string(_("This option enables and disables locking of the screen.\nYou are required to enter your password when unlocking a locked screen.\nThis could be useful on a public terminal, such as at a school or web cafe."));
 		gtk_widget_show(expert_lockscreen);
 		present_expert_security=expert_lockscreen;
 		gtk_box_pack_start(GTK_BOX(expert_box_security),expert_lockscreen,FALSE,FALSE,0);
@@ -73,7 +73,7 @@ void show_expert_printing(GtkWidget *widget,gpointer data)
 {
 	if(present_expert_security!=expert_printing){
 		gtk_widget_hide(present_expert_security);
-		expert_printing=create_expert_with_string(_("This option enables and disables Printing in all applications."));
+		expert_printing=nt_expert_content_new_with_string(_("This option enables and disables Printing in all applications."));
 		gtk_widget_show(expert_printing);
 		present_expert_security=expert_printing;
 		gtk_box_pack_start(GTK_BOX(expert_box_security),expert_printing,FALSE,FALSE,0);
@@ -84,7 +84,7 @@ void show_expert_printsetup(GtkWidget *widget,gpointer data)
 {
 	if(present_expert_security!=expert_printsetup){
 		gtk_widget_hide(present_expert_security);
-		expert_printsetup=create_expert_with_string(_("This option enables and disables Print Setup in all applications.\nThis could be useful to restrict printing options such as installed printers, drivers, and printer sharing."));
+		expert_printsetup=nt_expert_content_new_with_string(_("This option enables and disables Print Setup in all applications.\nThis could be useful to restrict printing options such as installed printers, drivers, and printer sharing."));
 		gtk_widget_show(expert_printsetup);
 		present_expert_security=expert_printsetup;
 		gtk_box_pack_start(GTK_BOX(expert_box_security),expert_printsetup,FALSE,FALSE,0);
@@ -95,7 +95,7 @@ void show_expert_savetodisk(GtkWidget *widget,gpointer data)
 {
 	if(present_expert_security!=expert_savetodisk){
 		gtk_widget_hide(present_expert_security);
-		expert_savetodisk=create_expert_with_string(_("This option enables and disables the \"Save\" and \"Save As\" function in all applications.\nThis option could be used to restrict file write access on a system."));
+		expert_savetodisk=nt_expert_content_new_with_string(_("This option enables and disables the \"Save\" and \"Save As\" function in all applications.\nThis option could be used to restrict file write access on a system."));
 		gtk_widget_show(expert_savetodisk);
 		present_expert_security=expert_savetodisk;
 		gtk_box_pack_start(GTK_BOX(expert_box_security),expert_savetodisk,FALSE,FALSE,0);
@@ -105,7 +105,7 @@ void show_expert_userswitching(GtkWidget *widget,gpointer data)
 {
 	if(present_expert_security!=expert_userswitching){
 		gtk_widget_hide(present_expert_security);
-		expert_userswitching=create_expert_with_string(_("This option enables and disables User Switching.\nThis could be useful on a public terminal, such as at a school or web cafe, or to provide security to other logged-in users."));
+		expert_userswitching=nt_expert_content_new_with_string(_("This option enables and disables User Switching.\nThis could be useful on a public terminal, such as at a school or web cafe, or to provide security to other logged-in users."));
 		gtk_widget_show(expert_userswitching);
 		present_expert_security=expert_userswitching;
 		gtk_box_pack_start(GTK_BOX(expert_box_security),expert_userswitching,FALSE,FALSE,0);
@@ -141,23 +141,23 @@ GtkWidget *create_disable_page()
 	gtk_widget_show(vbox);
 	gtk_box_pack_start(GTK_BOX(hbox),vbox,FALSE,FALSE,0);
 
-	checkbutton=create_gconf_checkbutton(_("Disable \"Run Application\" dialog (Alt+F2)"),lockdown_keys[0],disable_dir,checkbutton_toggled,show_expert_runapplication);
+	checkbutton=ut_checkbutton_new_with_gconf(_("Disable \"Run Application\" dialog (Alt+F2)"),lockdown_keys[0],disable_dir,ut_checkbutton_toggled,show_expert_runapplication);
 	gtk_widget_show(checkbutton);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
-	checkbutton=create_gconf_checkbutton(_("Disable Lock Screen (Ctrl+Alt+L)"),lockdown_keys[1],disable_dir,checkbutton_toggled,show_expert_lockscreen);
+	checkbutton=ut_checkbutton_new_with_gconf(_("Disable Lock Screen (Ctrl+Alt+L)"),lockdown_keys[1],disable_dir,ut_checkbutton_toggled,show_expert_lockscreen);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
-	checkbutton=create_gconf_checkbutton(_("Disable Printing"),lockdown_keys[2],disable_dir,checkbutton_toggled,show_expert_printing);
+	checkbutton=ut_checkbutton_new_with_gconf(_("Disable Printing"),lockdown_keys[2],disable_dir,ut_checkbutton_toggled,show_expert_printing);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
-	checkbutton=create_gconf_checkbutton(_("Disable Print Setup"),lockdown_keys[3],disable_dir,checkbutton_toggled,show_expert_printsetup);
+	checkbutton=ut_checkbutton_new_with_gconf(_("Disable Print Setup"),lockdown_keys[3],disable_dir,ut_checkbutton_toggled,show_expert_printsetup);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
-	checkbutton=create_gconf_checkbutton(_("Disable Save To Disk"),lockdown_keys[4],disable_dir,checkbutton_toggled,show_expert_savetodisk);
+	checkbutton=ut_checkbutton_new_with_gconf(_("Disable Save To Disk"),lockdown_keys[4],disable_dir,ut_checkbutton_toggled,show_expert_savetodisk);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
-	checkbutton=create_gconf_checkbutton(_("Disable User Switching"),lockdown_keys[5],disable_dir,checkbutton_toggled,show_expert_userswitching);
+	checkbutton=ut_checkbutton_new_with_gconf(_("Disable User Switching"),lockdown_keys[5],disable_dir,ut_checkbutton_toggled,show_expert_userswitching);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
 /*expander*/

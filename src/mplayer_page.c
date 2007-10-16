@@ -39,15 +39,15 @@ GtkWidget *create_mplayer_page()
 		gtk_widget_show(vbox);
 		gtk_box_pack_start(GTK_BOX(hbox),vbox,FALSE,FALSE,0);
 
-		checkbutton=create_text_checkbutton(_("Use X11 video driver (recommended)"),key_vo_driver,g_strconcat(script_mplayer," vo_driver",NULL),NULL);
+		checkbutton=ut_checkbutton_new_with_string(_("Use X11 video driver (recommended)"),key_vo_driver,g_strconcat(script_mplayer," vo_driver",NULL),NULL);
 		gtk_widget_show(checkbutton);
 		gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
-		checkbutton=create_text_checkbutton(_("Enable X11 Zoom mode (recommended)"),key_zoom,g_strconcat(script_mplayer," zoom",NULL),NULL);
+		checkbutton=ut_checkbutton_new_with_string(_("Enable X11 Zoom mode (recommended)"),key_zoom,g_strconcat(script_mplayer," zoom",NULL),NULL);
 		gtk_widget_show(checkbutton);
 		gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
-		checkbutton=create_text_checkbutton(_("Use smart sub-fuzziness"),key_sub_fuzziness,g_strconcat(script_mplayer," sub-fuzziness",NULL),NULL);
+		checkbutton=ut_checkbutton_new_with_string(_("Use smart sub-fuzziness"),key_sub_fuzziness,g_strconcat(script_mplayer," sub-fuzziness",NULL),NULL);
 		gtk_widget_show(checkbutton);
 		gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 	}

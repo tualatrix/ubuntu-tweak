@@ -4,7 +4,6 @@
 
 #include "ubuntu-tweak.h"
 
-
 void show_about(GtkWidget *widget,gpointer data)
 {
 	const gchar* authors[] = {
@@ -12,6 +11,11 @@ void show_about(GtkWidget *widget,gpointer data)
 		"Super Jamie <jamie@superjamie.net>",
 		NULL
 	}; 
+
+	const gchar *translator_credits[] = {
+		NULL
+	};
+		
 	const gchar* artists[] = {
 		"Medical-Wei <a790407@hotmail.com>",
 		"m.Sharp <mac.sharp@gmail.com>",
@@ -22,10 +26,10 @@ void show_about(GtkWidget *widget,gpointer data)
 	"name","Ubuntu Tweak",
 	"authors", authors,
 	"artists", artists,
+	"translator-credits", translator_credits,
 	"website", "http://ubuntu-tweak.com",
 	"copyright", "Copyright © 2007 TualatriX",
 	"comments", _("Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your system and desktop settings."),
 	"version", PACKAGE_VERSION,
 	NULL);
 }
-

@@ -13,7 +13,7 @@ void button_test(GtkWidget *widget,gpointer data)
 	gtk_widget_destroy(dialog);
 }
 
-GtkWidget *create_expert_with_string(gchar *string)
+GtkWidget *nt_expert_content_new_with_string(gchar *string)
 {
 	GtkWidget *vbox;
 	GtkWidget *sw;
@@ -46,7 +46,7 @@ GtkWidget *create_expert_with_string(gchar *string)
 	return vbox;	
 }
 
-void key_changed_callback(GConfClient *client,guint id,GConfEntry *entry,gpointer data)
+void ut_gconf_key_changed(GConfClient *client,guint id,GConfEntry *entry,gpointer data)
 {
 	GtkWidget *checkbutton;
 	GConfValue *value;
@@ -73,7 +73,7 @@ void key_changed_callback(GConfClient *client,guint id,GConfEntry *entry,gpointe
 /*核心API之一，创建带gconf监视功能的checkbutton按钮，传入参数为，label──按钮的标签，key──要求监视的键值
 	dir──监视的key目录，toggledata──这个指针在开关按钮时启用，enterdata──用于开起专家模式，或者用于其他功能
 */
-GtkWidget *create_gconf_checkbutton(gchar *label,gchar *key,gchar *dir,gpointer toggledata,gpointer enterdata)
+GtkWidget *ut_checkbutton_new_with_gconf(gchar *label,gchar *key,gchar *dir,gpointer toggledata,gpointer enterdata)
 {
 	GtkWidget *checkbutton;
 	GConfValue *value;
@@ -115,14 +115,14 @@ GtkWidget *create_gconf_checkbutton(gchar *label,gchar *key,gchar *dir,gpointer 
 		NULL);
 	gconf_client_notify_add(client,
 		key,
-		key_changed_callback,
+		ut_gconf_key_changed,
 		checkbutton,
 		NULL,NULL);
 
 	return checkbutton;
 }
 /*核心API之一，创建用于修改配置文件基于文本的按钮，其中shell是创建时执行的命令,虽然它是基于文本的，但是还是通过监视自创的键值，以方便调用*/
-GtkWidget *create_text_checkbutton(gchar *label,gchar *key,gchar *shell,gpointer enterdata)
+GtkWidget *ut_checkbutton_new_with_string(gchar *label,gchar *key,gchar *shell,gpointer enterdata)
 {
 	GtkWidget *checkbutton;
 	GConfValue *value;
@@ -156,14 +156,14 @@ GtkWidget *create_text_checkbutton(gchar *label,gchar *key,gchar *shell,gpointer
 		}
 	}
 
-	g_signal_connect(G_OBJECT(checkbutton),"toggled",G_CALLBACK(text_checkbutton_toggled),newshell);
+	g_signal_connect(G_OBJECT(checkbutton),"toggled",G_CALLBACK(ut_checkbutton_with_string_toggled),newshell);
 
 	g_free(newshell);
 
 	return checkbutton;
 }
 
-void text_checkbutton_toggled(GtkWidget *checkbutton,gpointer data)
+void ut_checkbutton_with_string_toggled(GtkWidget *checkbutton,gpointer data)
 {
 	GError *error;
 	gchar *newshell;
@@ -184,7 +184,7 @@ void text_checkbutton_toggled(GtkWidget *checkbutton,gpointer data)
 	g_free(newshell);
 }
 
-GtkWidget *create_gconf_entry(gchar *key,gchar *dir,gpointer data)
+GtkWidget *ut_entry_new_with_gconf(gchar *key,gchar *dir,gpointer data)
 {
 /*定义键值监视事件*/
 	GtkWidget *entry;
@@ -209,7 +209,7 @@ GtkWidget *create_gconf_entry(gchar *key,gchar *dir,gpointer data)
 		NULL);
 /*	gconf_client_notify_add(client,
 		key,
-		key_changed_callback_str,
+		ut_gconf_key_changed_str,
 		entry,
 		NULL,NULL);
 */
@@ -218,7 +218,7 @@ GtkWidget *create_gconf_entry(gchar *key,gchar *dir,gpointer data)
 
 	return entry;
 }
-void _checkbutton_toggled_base(GtkWidget *checkbutton,
+void _ut_ut_checkbutton_toggled_base(GtkWidget *checkbutton,
 		gpointer data,
 		GtkWidget *sensitive)
 {
@@ -242,7 +242,7 @@ void _checkbutton_toggled_base(GtkWidget *checkbutton,
 }
 
 /*下面的指针data是经第三方传入的key*/
-void _checkbutton_toggled_entry(GtkWidget *checkbutton,
+void _ut_ut_checkbutton_toggled_to_entry(GtkWidget *checkbutton,
 		gpointer data,
 		GtkWidget *sensitive)
 {
@@ -264,12 +264,12 @@ void _checkbutton_toggled_entry(GtkWidget *checkbutton,
 		}
 	}
 }
-void checkbutton_toggled(GtkWidget *checkbutton,
+void ut_checkbutton_toggled(GtkWidget *checkbutton,
 		gpointer data)
 {
-	_checkbutton_toggled_base(checkbutton,data,NULL);
+	_ut_ut_checkbutton_toggled_base(checkbutton,data,NULL);
 }
-void _entry_activated(GtkWidget *entry,
+void _ut_entry_activated(GtkWidget *entry,
 		gpointer data,
 		gchar *str)
 {

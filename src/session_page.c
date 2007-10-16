@@ -33,7 +33,7 @@ void show_expert_label_session()
 	if(present_expert_session!=NULL){
 		gtk_widget_hide(present_expert_session);
 	}
-	expert_label_session=create_expert_with_string(_("Within this menu are advanced session settings. If you require more information about a specific option, move your cursor over that option, and a description will appear here."));
+	expert_label_session=nt_expert_content_new_with_string(_("Within this menu are advanced session settings. If you require more information about a specific option, move your cursor over that option, and a description will appear here."));
 	gtk_widget_show(expert_label_session);
 	present_expert_session=expert_label_session;
 	gtk_box_pack_start(GTK_BOX(expert_box_session),expert_label_session,TRUE,TRUE,0);
@@ -262,10 +262,10 @@ void splash_select(GtkWidget *widget,gpointer data)
 	gtk_widget_destroy(dialog);
 }
 
-void checkbutton_toggled_splash(GtkWidget *checkbutton,
+void ut_checkbutton_toggled_splash(GtkWidget *checkbutton,
 		gpointer data)
 {
-	_checkbutton_toggled_base(checkbutton,data,splash_image_button);
+	_ut_ut_checkbutton_toggled_base(checkbutton,data,splash_image_button);
 }
 
 
@@ -379,26 +379,26 @@ GtkWidget *create_session_page()
 	gtk_widget_show(session_vbox_right);
 	gtk_box_pack_start(GTK_BOX(session_hbox),session_vbox_right,FALSE,FALSE,0);
 
-	save_session_checkbutton=create_gconf_checkbutton(_("Automatically save changes to session"),
+	save_session_checkbutton=ut_checkbutton_new_with_gconf(_("Automatically save changes to session"),
 		auto_save_session_char,
 		session_dir,
-		checkbutton_toggled,
+		ut_checkbutton_toggled,
 		show_expert_autosavesession);
 	gtk_widget_show(save_session_checkbutton);
 	gtk_box_pack_start(GTK_BOX(session_vbox_right),save_session_checkbutton,FALSE,FALSE,0);
 
-	display_menu_checkbutton=create_gconf_checkbutton(_("Show Logout prompt"),
+	display_menu_checkbutton=ut_checkbutton_new_with_gconf(_("Show Logout prompt"),
 		logout_prompt,
 		session_dir,
-		checkbutton_toggled,
+		ut_checkbutton_toggled,
 		show_expert_showlogoutprompt);
 	gtk_widget_show(display_menu_checkbutton);
 	gtk_box_pack_start(GTK_BOX(session_vbox_right),display_menu_checkbutton,FALSE,FALSE,0);
 
-	display_splash_checkbutton=create_gconf_checkbutton(_("Show Splash screen"),
+	display_splash_checkbutton=ut_checkbutton_new_with_gconf(_("Show Splash screen"),
 		show_splash_screen,
 		session_dir,
-		checkbutton_toggled_splash,
+		ut_checkbutton_toggled_splash,
 		show_expert_showsplash);
 	gtk_widget_show(display_splash_checkbutton);
 	gtk_box_pack_start(GTK_BOX(session_vbox_right),display_splash_checkbutton,FALSE,FALSE,0);
