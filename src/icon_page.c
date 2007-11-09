@@ -4,86 +4,84 @@
 
 #include "ubuntu-tweak.h"
 
-static gchar *show_desktop="/apps/nautilus/preferences/show_desktop";
-static gchar *computer_icon_name="/apps/nautilus/desktop/computer_icon_name";
-static gchar *computer_icon_visible="/apps/nautilus/desktop/computer_icon_visible";
-static gchar *documents_icon_name="/apps/nautilus/desktop/documents_icon_name";
-static gchar *documents_icon_visible="/apps/nautilus/desktop/documents_icon_visible";
-static gchar *home_icon_name="/apps/nautilus/desktop/home_icon_name";
-static gchar *home_icon_visible="/apps/nautilus/desktop/home_icon_visible";
-static gchar *network_icon_visible="/apps/nautilus/desktop/network_icon_visible";
-static gchar *trash_icon_name="/apps/nautilus/desktop/trash_icon_name";
-static gchar *trash_icon_visible="/apps/nautilus/desktop/trash_icon_visible";
-static gchar *volumes_visible="/apps/nautilus/desktop/volumes_visible";
-static gchar *use_home_as_desktop="/apps/nautilus/preferences/desktop_is_home_dir";
-static gchar *nautilus_desktop_dir="/apps/nautilus/desktop";
-static gchar *nautilus_preferences_dir="/apps/nautilus/preferences";
+#define show_desktop		"/apps/nautilus/preferences/show_desktop"
+#define computer_icon_name	"/apps/nautilus/desktop/computer_icon_name"
+#define computer_icon_visible	"/apps/nautilus/desktop/computer_icon_visible"
+#define documents_icon_name	"/apps/nautilus/desktop/documents_icon_name"
+#define documents_icon_visible	"/apps/nautilus/desktop/documents_icon_visible"
+#define home_icon_name		"/apps/nautilus/desktop/home_icon_name"
+#define home_icon_visible	"/apps/nautilus/desktop/home_icon_visible"
+#define network_icon_visible	"/apps/nautilus/desktop/network_icon_visible"
+#define trash_icon_name		"/apps/nautilus/desktop/trash_icon_name"
+#define trash_icon_visible	"/apps/nautilus/desktop/trash_icon_visible"
+#define volumes_visible		"/apps/nautilus/desktop/volumes_visible"
+#define use_home_as_desktop	"/apps/nautilus/preferences/desktop_is_home_dir"
+#define nautilus_desktop_dir	"/apps/nautilus/desktop"
+#define nautilus_preferences_dir	"/apps/nautilus/preferences"
 
-GtkWidget *expander;
-GtkWidget *expander_label;
+static GtkWidget *desktop_hbox1;
+static GtkWidget *desktop_hbox2;
+static GtkWidget *desktop_hbox3;
+static GtkWidget *desktop_hbox4;
 
-GtkWidget *desktop_hbox1;
-GtkWidget *desktop_hbox2;
-GtkWidget *desktop_hbox3;
-GtkWidget *desktop_hbox4;
+static GtkWidget *use_personality_computer_name_entry;
+static GtkWidget *use_personality_home_name_entry;
+static GtkWidget *use_personality_trash_name_entry;
 
-GtkWidget *use_personality_computer_name_entry;
-GtkWidget *use_personality_home_name_entry;
-GtkWidget *use_personality_trash_name_entry;
-
-void ut_checkbutton_toggled_hbox1(GtkWidget *checkbutton,
+static void ut_checkbutton_toggled_hbox1(GtkWidget *checkbutton,
 		gpointer data)
 {
 	_ut_ut_checkbutton_toggled_base(checkbutton,data,desktop_hbox1);
 }
 
-void ut_checkbutton_toggled_hbox2(GtkWidget *checkbutton,
+static void ut_checkbutton_toggled_hbox2(GtkWidget *checkbutton,
 		gpointer data)
 {
 	_ut_ut_checkbutton_toggled_base(checkbutton,data,desktop_hbox2);
 }
-void ut_checkbutton_toggled_hbox3(GtkWidget *checkbutton,
+static void ut_checkbutton_toggled_hbox3(GtkWidget *checkbutton,
 		gpointer data)
 {
 	_ut_ut_checkbutton_toggled_base(checkbutton,data,desktop_hbox3);
 }
-void ut_checkbutton_toggled_hbox4(GtkWidget *checkbutton,
+static void ut_checkbutton_toggled_hbox4(GtkWidget *checkbutton,
 		gpointer data)
 {
 	_ut_ut_checkbutton_toggled_base(checkbutton,data,desktop_hbox4);
 }
 
-void ut_checkbutton_toggled_computer(GtkWidget *checkbutton,
+static void ut_checkbutton_toggled_computer(GtkWidget *checkbutton,
 		gpointer data)
 {
 	_ut_ut_checkbutton_toggled_to_entry(checkbutton,data,use_personality_computer_name_entry);
 }
 
-void ut_checkbutton_toggled_home(GtkWidget *checkbutton,
+static void ut_checkbutton_toggled_home(GtkWidget *checkbutton,
 		gpointer data)
 {
 	_ut_ut_checkbutton_toggled_to_entry(checkbutton,data,use_personality_home_name_entry);
 }
-void ut_checkbutton_toggled_trash(GtkWidget *checkbutton,
+static void ut_checkbutton_toggled_trash(GtkWidget *checkbutton,
 		gpointer data)
 {
 	_ut_ut_checkbutton_toggled_to_entry(checkbutton,data,use_personality_trash_name_entry);
 }
-void ut_entry_activated_computer(GtkWidget *entry,
+static void ut_entry_activated_computer(GtkWidget *entry,
 		gpointer data)
 {
 	_ut_entry_activated(entry,data,computer_icon_name);
 }
-void ut_entry_activated_home(GtkWidget *entry,
+static void ut_entry_activated_home(GtkWidget *entry,
 		gpointer data)
 {
 	_ut_entry_activated(entry,data,home_icon_name);
 }
-void ut_entry_activated_trash(GtkWidget *entry,
+static void ut_entry_activated_trash(GtkWidget *entry,
 		gpointer data)
 {
 	_ut_entry_activated(entry,data,trash_icon_name);
 }
+
 GtkWidget *create_icon_page()
 {
 	GtkWidget *desktop_main_vbox;
@@ -136,7 +134,8 @@ GtkWidget *create_icon_page()
 	if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(use_nautilus_checkbutton))==FALSE){
 		gtk_widget_set_sensitive(desktop_hbox1,FALSE);
 	}
-/*Show computer icon*/
+
+	/*Show computer icon*/
 	show_computer_checkbutton=ut_checkbutton_new_with_gconf(_("Show \"Computer\" icon on desktop"),computer_icon_visible,nautilus_desktop_dir,ut_checkbutton_toggled_hbox2,NULL);
 	gtk_widget_show(show_computer_checkbutton);
 	gtk_box_pack_start(GTK_BOX(desktop_vbox1),show_computer_checkbutton,FALSE,FALSE,0);
@@ -163,7 +162,6 @@ GtkWidget *create_icon_page()
 	gtk_widget_show(use_personality_computer_name_entry);
 	gtk_box_pack_start(GTK_BOX(desktop_vbox2),use_personality_computer_name_entry,FALSE,FALSE,0);
 
-	
 	if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(use_personality_computer_name_label))==FALSE){
 		gtk_widget_set_sensitive(use_personality_computer_name_entry,FALSE);
 	}
@@ -172,7 +170,7 @@ GtkWidget *create_icon_page()
 		gtk_widget_set_sensitive(desktop_hbox2,FALSE);
 	}
 
-/*Show HOME*/
+	/*Show HOME*/
 	show_home_checkbutton=ut_checkbutton_new_with_gconf(_("Show \"Home\" icon on desktop"),home_icon_visible,nautilus_desktop_dir,ut_checkbutton_toggled_hbox3,NULL);
 	gtk_widget_show(show_home_checkbutton);
 	gtk_box_pack_start(GTK_BOX(desktop_vbox1),show_home_checkbutton,FALSE,FALSE,0);
@@ -206,7 +204,7 @@ GtkWidget *create_icon_page()
 		gtk_widget_set_sensitive(desktop_hbox3,FALSE);
 	}
 
-/*Show Trash*/
+	/*Show Trash*/
 	show_trash_checkbutton=ut_checkbutton_new_with_gconf(_("Show \"Trash\" icon on desktop"),trash_icon_visible,nautilus_desktop_dir,ut_checkbutton_toggled_hbox4,NULL);
 	gtk_widget_show(show_trash_checkbutton);
 	gtk_box_pack_start(GTK_BOX(desktop_vbox1),show_trash_checkbutton,FALSE,FALSE,0);
@@ -240,7 +238,7 @@ GtkWidget *create_icon_page()
 		gtk_widget_set_sensitive(desktop_hbox4,FALSE);
 	}
 
-/*Other*/
+	/*Other*/
 	use_home_as_desktop_checkbutton=ut_checkbutton_new_with_gconf(_("Use Home Directory as Desktop"),use_home_as_desktop,nautilus_preferences_dir,ut_checkbutton_toggled,NULL);
 	gtk_widget_show(use_home_as_desktop_checkbutton);
 	gtk_box_pack_start(GTK_BOX(desktop_vbox1),use_home_as_desktop_checkbutton,FALSE,FALSE,0);

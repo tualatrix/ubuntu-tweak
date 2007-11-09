@@ -20,6 +20,7 @@ void show_about(GtkWidget *widget,gpointer data)
 	const gchar* artists[] = {
 		"Medical-Wei <a790407@hotmail.com>",
 		"m.Sharp <mac.sharp@gmail.com>",
+		"taiwan ock ting <a2d8a4v@gmail.com>",
 		NULL
 	};
 
@@ -43,7 +44,7 @@ void show_about(GtkWidget *widget,gpointer data)
 
 	gtk_about_dialog_set_artists(GTK_ABOUT_DIALOG(dialog),artists);
 
-	gtk_about_dialog_set_translator_credits(GTK_ABOUT_DIALOG(dialog),"Super Jamie <jamie@superjamie.net>");
+	gtk_about_dialog_set_translator_credits(GTK_ABOUT_DIALOG(dialog),"Super Jamie <jamie@superjamie.net>\nThree-leg-cat <threelegcat@gmail.com>");
 
 	gtk_dialog_run(GTK_DIALOG(dialog));
 

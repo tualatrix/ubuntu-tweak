@@ -16,18 +16,18 @@ static gchar *lockdown_keys[6]={
 static gchar *disable_dir="/desktop/gnome/lockdown";
 
 /*expert mode*/
-GtkWidget *expander_security;
-GtkWidget *expert_label_security;
-GtkWidget *expert_box_security;
-GtkWidget *expert_runapplication;
-GtkWidget *expert_lockscreen;
-GtkWidget *expert_printing;
-GtkWidget *expert_printsetup;
-GtkWidget *expert_savetodisk;
-GtkWidget *expert_userswitching;
-gpointer present_expert_security;
+static GtkWidget *expander_security;
+static GtkWidget *expert_label_security;
+static GtkWidget *expert_box_security;
+static GtkWidget *expert_runapplication;
+static GtkWidget *expert_lockscreen;
+static GtkWidget *expert_printing;
+static GtkWidget *expert_printsetup;
+static GtkWidget *expert_savetodisk;
+static GtkWidget *expert_userswitching;
+static gpointer present_expert_security;
 
-void show_expert_label_security()
+static void show_expert_label_security()
 {
 	if(present_expert_security!=NULL){
 		gtk_widget_hide(present_expert_security);
@@ -38,7 +38,7 @@ void show_expert_label_security()
 	gtk_box_pack_start(GTK_BOX(expert_box_security),expert_label_security,TRUE,TRUE,0);
 }
 
-void expander_change_security(GtkWidget *widget,gpointer data)
+static void expander_change_security(GtkWidget *widget,gpointer data)
 {
 	gboolean bool;
 	bool=gtk_expander_get_expanded(GTK_EXPANDER(widget));	
@@ -47,7 +47,7 @@ void expander_change_security(GtkWidget *widget,gpointer data)
 	}
 }
 
-void show_expert_runapplication(GtkWidget *widget,gpointer data)
+static void show_expert_runapplication(GtkWidget *widget,gpointer data)
 {
 	if(present_expert_security!=expert_runapplication){
 		gtk_widget_hide(present_expert_security);
@@ -58,7 +58,7 @@ void show_expert_runapplication(GtkWidget *widget,gpointer data)
 	}
 }
 
-void show_expert_lockscreen(GtkWidget *widget,gpointer data)
+static void show_expert_lockscreen(GtkWidget *widget,gpointer data)
 {
 	if(present_expert_security!=expert_lockscreen){
 		gtk_widget_hide(present_expert_security);
@@ -69,7 +69,7 @@ void show_expert_lockscreen(GtkWidget *widget,gpointer data)
 	}
 }
 
-void show_expert_printing(GtkWidget *widget,gpointer data)
+static void show_expert_printing(GtkWidget *widget,gpointer data)
 {
 	if(present_expert_security!=expert_printing){
 		gtk_widget_hide(present_expert_security);
@@ -80,7 +80,7 @@ void show_expert_printing(GtkWidget *widget,gpointer data)
 	}
 }
 
-void show_expert_printsetup(GtkWidget *widget,gpointer data)
+static void show_expert_printsetup(GtkWidget *widget,gpointer data)
 {
 	if(present_expert_security!=expert_printsetup){
 		gtk_widget_hide(present_expert_security);
@@ -91,7 +91,7 @@ void show_expert_printsetup(GtkWidget *widget,gpointer data)
 	}
 }
 
-void show_expert_savetodisk(GtkWidget *widget,gpointer data)
+static void show_expert_savetodisk(GtkWidget *widget,gpointer data)
 {
 	if(present_expert_security!=expert_savetodisk){
 		gtk_widget_hide(present_expert_security);
@@ -101,7 +101,7 @@ void show_expert_savetodisk(GtkWidget *widget,gpointer data)
 		gtk_box_pack_start(GTK_BOX(expert_box_security),expert_savetodisk,FALSE,FALSE,0);
 	}
 }
-void show_expert_userswitching(GtkWidget *widget,gpointer data)
+static void show_expert_userswitching(GtkWidget *widget,gpointer data)
 {
 	if(present_expert_security!=expert_userswitching){
 		gtk_widget_hide(present_expert_security);
@@ -111,6 +111,7 @@ void show_expert_userswitching(GtkWidget *widget,gpointer data)
 		gtk_box_pack_start(GTK_BOX(expert_box_security),expert_userswitching,FALSE,FALSE,0);
 	}
 }
+
 GtkWidget *create_disable_page()
 {
 	GtkWidget *main_vbox;

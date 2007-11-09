@@ -5,24 +5,23 @@
 #include "ubuntu-tweak.h"
 
 /*expert mode*/
-GtkWidget *expander_gnome;
-GtkWidget *expert_label_gnome;
-GtkWidget *expert_box_gnome;
-GtkWidget *expert_animations;
-GtkWidget *expert_lockdownpanel;
-GtkWidget *expert_inputunicode;
-gpointer present_expert_gnome;
+static GtkWidget *expander_gnome;
+static GtkWidget *expert_label_gnome;
+static GtkWidget *expert_box_gnome;
+static GtkWidget *expert_animations;
+static GtkWidget *expert_lockdownpanel;
+static GtkWidget *expert_inputunicode;
+static gpointer present_expert_gnome;
 
-static gchar *enable_animations_panel="/apps/panel/global/enable_animations";
-static gchar *enable_animations_gnome="/desktop/gnome/interface/enable_animations";
-static gchar *key_locked_down_panel="/apps/panel/global/locked_down";
-static gchar *key_show_input_method_menu="/desktop/gnome/interface/show_input_method_menu";
-static gchar *key_show_unicode_menu="/desktop/gnome/interface/show_unicode_menu";
+#define enable_animations_panel		"/apps/panel/global/enable_animations"
+#define enable_animations_gnome		"/desktop/gnome/interface/enable_animations"
+#define key_locked_down_panel		"/apps/panel/global/locked_down"
+#define key_show_input_method_menu	"/desktop/gnome/interface/show_input_method_menu"
+#define key_show_unicode_menu		"/desktop/gnome/interface/show_unicode_menu"
+#define dir_gnome_interface		"/desktop/gnome/interface"
+#define dir_panel_global		"/apps/panel/global"
 
-static gchar *dir_gnome_interface="/desktop/gnome/interface";
-static gchar *dir_panel_global="/apps/panel/global";
-
-void show_expert_label_gnome()
+static void show_expert_label_gnome()
 {
 	if(present_expert_gnome!=NULL){
 		gtk_widget_hide(present_expert_gnome);
@@ -33,7 +32,7 @@ void show_expert_label_gnome()
 	gtk_box_pack_start(GTK_BOX(expert_box_gnome),expert_label_gnome,TRUE,TRUE,0);
 }
 
-void expander_change_gnome(GtkWidget *widget,gpointer data)
+static void expander_change_gnome(GtkWidget *widget,gpointer data)
 {
 	gboolean bool;
 	bool=gtk_expander_get_expanded(GTK_EXPANDER(widget));	
@@ -42,7 +41,7 @@ void expander_change_gnome(GtkWidget *widget,gpointer data)
 	}
 }
 
-void show_expert_animations(GtkWidget *widget,gpointer data)
+static void show_expert_animations(GtkWidget *widget,gpointer data)
 {
 	if(present_expert_gnome!=expert_animations){
 		gtk_widget_hide(present_expert_gnome);
@@ -53,7 +52,7 @@ void show_expert_animations(GtkWidget *widget,gpointer data)
 	}
 }
 
-void show_expert_lockdownpanel(GtkWidget *widget,gpointer data)
+static void show_expert_lockdownpanel(GtkWidget *widget,gpointer data)
 {
 	if(present_expert_gnome!=expert_lockdownpanel){
 		gtk_widget_hide(present_expert_gnome);
@@ -64,7 +63,7 @@ void show_expert_lockdownpanel(GtkWidget *widget,gpointer data)
 	}
 }
 
-void show_expert_inputunicode(GtkWidget *widget,gpointer data)
+static void show_expert_inputunicode(GtkWidget *widget,gpointer data)
 {
 	if(present_expert_gnome!=expert_inputunicode){
 		gtk_widget_hide(present_expert_gnome);

@@ -4,19 +4,19 @@
 
 #include "ubuntu-tweak.h"
 
-static gchar *auto_save_session_char="/apps/gnome-session/options/auto_save_session";
-static gchar *logout_prompt="/apps/gnome-session/options/logout_prompt";
-static gchar *show_splash_screen="/apps/gnome-session/options/show_splash_screen";
-static gchar *session_dir="/apps/gnome-session/options";
-static gchar *splash_image="/apps/gnome-session/options/splash_image";
+#define auto_save_session_char	"/apps/gnome-session/options/auto_save_session"
+#define logout_prompt		"/apps/gnome-session/options/logout_prompt"
+#define show_splash_screen	"/apps/gnome-session/options/show_splash_screen"
+#define session_dir		"/apps/gnome-session/options"
+#define splash_image		"/apps/gnome-session/options/splash_image"
 
-GtkWidget *splash_image_button;
-GdkPixbuf *new_preview;
-GtkWidget *splash_image_preview;
-GdkPixbuf *original_preview;
+static GtkWidget *splash_image_button;
+static GdkPixbuf *new_preview;
+static GtkWidget *splash_image_preview;
+static GdkPixbuf *original_preview;
 
-gchar *filename;
-gchar *filedir;
+static gchar *filename;
+static gchar *filedir;
 
 static void splash_select(GtkWidget *widget,gpointer data)
 {
@@ -25,10 +25,13 @@ static void splash_select(GtkWidget *widget,gpointer data)
 
 	gint x,y;
 
+	client=gconf_client_get_default();
+
 	dialog=gtk_file_chooser_dialog_new(_("Choose a Splash image"),
 		NULL,
 		GTK_FILE_CHOOSER_ACTION_OPEN,
 		GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT, GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL, NULL);
+
 	/*在打开文件的对话框中，将当前目前设定为原文件所在目录*/
 	gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(dialog),filedir);
 
@@ -41,10 +44,12 @@ static void splash_select(GtkWidget *widget,gpointer data)
 
 		new_preview=gdk_pixbuf_scale_simple(original_preview,x/2,y/2,GDK_INTERP_NEAREST);
 		gtk_image_set_from_pixbuf(GTK_IMAGE(splash_image_preview),new_preview);
-		client=gconf_client_get_default();
 		gconf_client_set_string(client,splash_image,filename,NULL);
 	}
+
 	gtk_widget_destroy(dialog);
+
+	g_object_unref(client);
 }
 
 static void ut_checkbutton_toggled_splash(GtkWidget *checkbutton,
@@ -52,7 +57,6 @@ static void ut_checkbutton_toggled_splash(GtkWidget *checkbutton,
 {
 	_ut_ut_checkbutton_toggled_base(checkbutton,data,splash_image_button);
 }
-
 
 static GtkWidget *change_splash()
 {
@@ -68,13 +72,14 @@ static GtkWidget *change_splash()
 	filename=gconf_client_get_string(client,splash_image,NULL);
 	filedir=g_dirname(filename);
 
-/*初次修改Splash的用户需要这段来判断位于GConf的值是否是无路径的默认Splash*/
+	/*初次修改Splash的用户需要这段来判断位于GConf的值是否是无路径的默认Splash*/
 	if(!g_ascii_strcasecmp(filedir,"splash")){
 		filedir=g_strconcat("/usr/share/pixmaps/",filedir,NULL);
 		filename=g_strconcat("/usr/share/pixmaps/",filename,NULL);
 	}
 	bool=gconf_client_get_bool(client,show_splash_screen,NULL);
-/*预览图所在位置*/
+
+	/*预览图所在位置*/
 	gint x,y;
 
 	original_preview=gdk_pixbuf_new_from_file(filename,NULL);
@@ -122,17 +127,20 @@ static GtkWidget *change_splash()
 	
 	g_signal_connect(G_OBJECT(splash_image_button),"clicked",G_CALLBACK(splash_select),splash_label_filename);
 
+	g_object_unref(client);
+
 	return splash_image_hbox;
 }
 
 GtkWidget *create_session_page()
 {
-/*Session Page*/
+	/*Session Page*/
 	GtkWidget *session_main_vbox;
 	GtkWidget *session_vbox;
 	GtkWidget *session_hbox;
 	GtkWidget *session_vbox_right;
 	GtkWidget *blank_label;
+	GtkWidget *frame;
 	GtkWidget *save_session_checkbutton;
 	GtkWidget *display_menu_checkbutton;
 	GtkWidget *display_splash_checkbutton;
@@ -146,7 +154,6 @@ GtkWidget *create_session_page()
 	gtk_box_pack_start(GTK_BOX(session_main_vbox),session_vbox,FALSE,FALSE,0);
 	gtk_container_set_border_width(GTK_CONTAINER(session_vbox),10);
 
-	GtkWidget *frame;
 	frame=gtk_frame_new(_("Session Control"));
 	gtk_widget_show(frame);
 	gtk_box_pack_start(GTK_BOX(session_vbox),frame,FALSE,FALSE,0);
@@ -191,7 +198,7 @@ GtkWidget *create_session_page()
 	gtk_widget_show(frame);
 	gtk_box_pack_start(GTK_BOX(session_vbox),frame,FALSE,FALSE,0);
 
-/*splash*/
+	/*splash*/
 	splash_image_hbox=change_splash();
 	gtk_widget_show(splash_image_hbox);
 	gtk_container_add(GTK_CONTAINER(frame),splash_image_hbox);

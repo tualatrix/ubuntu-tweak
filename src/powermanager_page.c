@@ -4,15 +4,15 @@
 
 #include "ubuntu-tweak.h"
 
-static gchar *powermanager_dir="/apps/gnome-power-manager";
-static gchar *key_can_hibernate="/apps/gnome-power-manager/can_hibernate";
-static gchar *key_can_suspend="/apps/gnome-power-manager/can_suspend";
-static gchar *key_show_cpufreq_ui="/apps/gnome-power-manager/show_cpufreq_ui";
-static gchar *key_cpufreq_ac_policy="/apps/gnome-power-manager/cpufreq_ac_policy";
-static gchar *key_cpufreq_battery_policy="/apps/gnome-power-manager/cpufreq_battery_policy";
-static gchar *key_display_icon_policy="/apps/gnome-power-manager/display_icon_policy";
+#define powermanager_dir	"/apps/gnome-power-manager"
+#define key_can_hibernate	"/apps/gnome-power-manager/can_hibernate"
+#define key_can_suspend		"/apps/gnome-power-manager/can_suspend"
+#define key_show_cpufreq_ui	"/apps/gnome-power-manager/show_cpufreq_ui"
+#define key_cpufreq_ac_policy	"/apps/gnome-power-manager/cpufreq_ac_policy"
+#define key_cpufreq_battery_policy	"/apps/gnome-power-manager/cpufreq_battery_policy"
+#define key_display_icon_policy	"/apps/gnome-power-manager/display_icon_policy"
 
-void powermanager_changed(GtkWidget *widget,gpointer data)
+static void powermanager_changed(GtkWidget *widget,gpointer data)
 {
 	gchar *str;
 	GConfClient *client;
@@ -43,7 +43,7 @@ void powermanager_changed(GtkWidget *widget,gpointer data)
 				"never",
 				NULL);
 	}
-	else if(!strcmp(str,"Only when using battery charge")){
+	else if(!strcmp(str,"When charging")){
 		gconf_client_set_string(client,
 				data,
 				"charge",
@@ -55,7 +55,9 @@ void powermanager_changed(GtkWidget *widget,gpointer data)
 				"always",
 				NULL);
 	}
+
 	g_free(str);
+	g_object_unref(client);
 }
 
 GtkWidget *create_powermanager_page()
@@ -100,17 +102,16 @@ GtkWidget *create_powermanager_page()
 	gtk_widget_show(checkbutton);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
-	checkbutton=ut_checkbutton_new_with_gconf(_("Show CPU frequency option in \"System - Preferences - Power Management\""),key_show_cpufreq_ui,powermanager_dir,ut_checkbutton_toggled,NULL);
+	checkbutton=ut_checkbutton_new_with_gconf(_("Show CPU frequency option in \"Power Management\""),key_show_cpufreq_ui,powermanager_dir,ut_checkbutton_toggled,NULL);
 	gtk_widget_show(checkbutton);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
 /*通知区域图标的显示行为*/
-
 	hbox=gtk_hbox_new(FALSE,10);
 	gtk_widget_show(hbox);
 	gtk_box_pack_start(GTK_BOX(vbox),hbox,FALSE,FALSE,0);
 
-	label=gtk_label_new(_("\"Notification Area\" Power Management icon"));
+	label=gtk_label_new(_("\"GNOME Panel\" Power Management icon"));
 	gtk_widget_show(label);
 	gtk_box_pack_start(GTK_BOX(hbox),label,FALSE,FALSE,0);
 
@@ -121,7 +122,7 @@ GtkWidget *create_powermanager_page()
 	g_signal_connect(G_OBJECT(combobox),"changed",G_CALLBACK(powermanager_changed),key_display_icon_policy);
 
 	gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("Never display"));
-	gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("Only when using battery charge"));
+	gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("When charging"));
 	gtk_combo_box_append_text(GTK_COMBO_BOX(combobox),_("Always display"));
 
 	if(!g_ascii_strncasecmp(gconf_client_get_string(client,key_display_icon_policy,NULL),"never",5)){
@@ -134,12 +135,12 @@ GtkWidget *create_powermanager_page()
 		gtk_combo_box_set_active(GTK_COMBO_BOX(combobox),2);
 	}
 
-/*当使用交流电时，CPU的使用策略*/
+	/*当使用交流电时，CPU的使用策略*/
 	hbox=gtk_hbox_new(FALSE,10);
 	gtk_widget_show(hbox);
 	gtk_box_pack_start(GTK_BOX(vbox),hbox,FALSE,FALSE,0);
 
-	label=gtk_label_new(_("When using AC power, CPU frequency policy is:"));
+	label=gtk_label_new(_("When using AC power, CPU frequency policy"));
 	gtk_widget_show(label);
 	gtk_box_pack_start(GTK_BOX(hbox),label,FALSE,FALSE,0);
 
@@ -163,12 +164,12 @@ GtkWidget *create_powermanager_page()
 		gtk_combo_box_set_active(GTK_COMBO_BOX(combobox),2);
 	}
 
-/*当使用电池时，CPU的使用策略*/
+	/*当使用电池时，CPU的使用策略*/
 	hbox=gtk_hbox_new(FALSE,10);
 	gtk_widget_show(hbox);
 	gtk_box_pack_start(GTK_BOX(vbox),hbox,FALSE,FALSE,0);
 
-	label=gtk_label_new(_("When using Battery power, CPU frequency policy is:"));
+	label=gtk_label_new(_("When using Battery power, CPU frequency policy"));
 	gtk_widget_show(label);
 	gtk_box_pack_start(GTK_BOX(hbox),label,FALSE,FALSE,0);
 
@@ -191,6 +192,8 @@ GtkWidget *create_powermanager_page()
 	else if(!g_ascii_strncasecmp(gconf_client_get_string(client,key_cpufreq_battery_policy,NULL),"performance",9)){
 		gtk_combo_box_set_active(GTK_COMBO_BOX(combobox),2);
 	}
+
+	g_object_unref(client);
 /*expander
 	expander_powermanager=gtk_expander_new_with_mnemonic(_("Need some help? Click here!"));
 	gtk_widget_show(expander_powermanager);
