@@ -34,7 +34,9 @@ ubuntu_tweak_SOURCES = \
 	powermanager_page.c\
 	powermanager_page.h\
 	security_page.c\
-	security_page.h
+	security_page.h\
+	fcitx_page.c\
+	fcitx_page.h
 
 ubuntu_tweak_LDFLAGS = 
 

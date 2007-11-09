@@ -10,6 +10,7 @@
 #include "nautilus_page.h"
 #include "powermanager_page.h"
 #include "security_page.h"
+#include "fcitx_page.h"
 #include "about.h"
 
 #define	UT_LOGO		PACKAGE_PIXMAPS_DIR"/ubuntu-tweak.png"
@@ -57,6 +58,7 @@ enum
 	PAGE_SECUTIRY,
 		PAGE_SECU_OPTTIONS,
 	PAGE_APPLICATION,
+		PAGE_FCITX,
 	NUM_PAGE
 };
 
@@ -83,6 +85,7 @@ TweakItem list[]=
 	{ITEM_FATHER,PAGE_SECUTIRY,UT_SECURITY,"安全相关"},
 		{ITEM_CHILD,PAGE_SECU_OPTTIONS,UT_SECU_OPTIONS,"安全设置"},
 	{ITEM_FATHER,PAGE_APPLICATION,UT_APPLICATION,"应用程序"},
+		{ITEM_CHILD,PAGE_FCITX,UT_SECU_OPTIONS,"FCITX"},
 	{ITEM_FATHER,NUM_PAGE,NULL,NULL}
 };
 
@@ -153,6 +156,14 @@ GtkWidget *create_notebook(void)
 
 	vbox=create_disable_page();
 	page_label=gtk_label_new("security");
+	gtk_notebook_append_page(GTK_NOTEBOOK(notebook),vbox,page_label);
+
+	label=gtk_label_new("Application");
+	page_label=gtk_label_new("欢迎进入Application设置");
+	gtk_notebook_append_page(GTK_NOTEBOOK(notebook),label,page_label);
+
+	vbox=create_fcitx_page();
+	page_label=gtk_label_new("fcitx");
 	gtk_notebook_append_page(GTK_NOTEBOOK(notebook),vbox,page_label);
 
 	return notebook;

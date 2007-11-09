@@ -4,32 +4,49 @@
 
 #include "ubuntu-tweak.h"
 
+#define UT_LOGO         PACKAGE_PIXMAPS_DIR"/ubuntu-tweak.png"
+
 void show_about(GtkWidget *widget,gpointer data)
 {
+	GtkWidget *dialog;
+
+	GdkPixbuf *logo;
+
 	const gchar* authors[] = {
 		"TualatriX <tualatrix@gmail.com>",
-		"Super Jamie <jamie@superjamie.net>",
 		NULL
 	}; 
 
-	const gchar *translator_credits[] = {
-		NULL
-	};
-		
 	const gchar* artists[] = {
 		"Medical-Wei <a790407@hotmail.com>",
 		"m.Sharp <mac.sharp@gmail.com>",
 		NULL
 	};
 
-	gtk_show_about_dialog(NULL,
-	"name","Ubuntu Tweak",
-	"authors", authors,
-	"artists", artists,
-	"translator-credits", translator_credits,
-	"website", "http://ubuntu-tweak.com",
-	"copyright", "Copyright © 2007 TualatriX",
-	"comments", _("Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your system and desktop settings."),
-	"version", PACKAGE_VERSION,
-	NULL);
+	dialog = gtk_about_dialog_new();
+
+	logo = gdk_pixbuf_new_from_file(UT_LOGO,NULL);
+
+	gtk_about_dialog_set_logo(GTK_ABOUT_DIALOG(dialog),logo);
+
+	gtk_about_dialog_set_name(GTK_ABOUT_DIALOG(dialog),"Ubuntu Tweak");
+
+	gtk_about_dialog_set_version(GTK_ABOUT_DIALOG(dialog),PACKAGE_VERSION);
+
+	gtk_about_dialog_set_copyright(GTK_ABOUT_DIALOG(dialog),"Copyright © 2007 TualatriX");
+
+	gtk_about_dialog_set_comments(GTK_ABOUT_DIALOG(dialog),_("Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your system and desktop settings."));
+
+	gtk_about_dialog_set_website(GTK_ABOUT_DIALOG(dialog),"http://ubuntu-tweak.com");
+
+	gtk_about_dialog_set_authors(GTK_ABOUT_DIALOG(dialog),authors);
+
+	gtk_about_dialog_set_artists(GTK_ABOUT_DIALOG(dialog),artists);
+
+	gtk_about_dialog_set_translator_credits(GTK_ABOUT_DIALOG(dialog),"Super Jamie <jamie@superjamie.net>");
+
+	gtk_dialog_run(GTK_DIALOG(dialog));
+
+	gtk_widget_destroy(dialog);
+
 }
