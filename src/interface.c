@@ -99,39 +99,40 @@ GtkWidget *create_notebook(void)
 	
 	notebook=gtk_notebook_new();
 	gtk_notebook_set_tab_pos(GTK_NOTEBOOK(notebook),GTK_POS_TOP);
-	gtk_notebook_set_show_tabs(GTK_NOTEBOOK(notebook),FALSE);
+	gtk_notebook_set_scrollable (GTK_NOTEBOOK(notebook),TRUE);
+//	gtk_notebook_set_show_tabs(GTK_NOTEBOOK(notebook),FALSE);
 
 	/*no.1 page-welcome*/
-	label=gtk_label_new(NULL);
-	gtk_label_set_markup (GTK_LABEL (label),_("<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak!</b></span>\n\n\nThis is a tool for Ubuntu which makes it easy to change hidden \n system and desktop settings.\n\nUbuntu Tweak is currently only for the GNOME Desktop Environment.\n\nAlthough this application is only in early stages, I will keep developing it.\n\nIf you have any suggestions, please e-mail me. \n\nThankyou,\n- TualatriX"));
-	gtk_label_set_justify(GTK_LABEL(label),GTK_JUSTIFY_FILL);
-	page_label=gtk_label_new("欢迎使用");
-	gtk_notebook_append_page(GTK_NOTEBOOK(notebook),label,page_label);
+	vbox=gtk_vbox_new(FALSE,0);
 
-//	label=gtk_label_new("欢迎进入启动控制");
-	hbox=gtk_hbox_new(FALSE,0);
-	label=gtk_tool_button_new_from_stock(GTK_STOCK_OK);
-	gtk_box_pack_start(GTK_BOX(hbox),label,FALSE,FALSE,0);
-	gtk_tool_button_set_label(GTK_TOOL_BUTTON(label),"hello");
-	label=gtk_tool_button_new_from_stock(GTK_STOCK_ABOUT);
-	gtk_box_pack_start(GTK_BOX(hbox),label,FALSE,FALSE,0);
-	page_label=gtk_label_new("启动控制");
-	gtk_notebook_append_page(GTK_NOTEBOOK(notebook),hbox,page_label);
-	
-	vbox=create_session_page();
-	page_label=gtk_label_new("会话设置");
+	label=gtk_label_new(NULL);
+	gtk_label_set_markup (GTK_LABEL (label),_("<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak!</b></span>\n\n\nThis is a tool for Ubuntu which makes it easy to change hidden\n system and desktop settings.\n\nUbuntu Tweak is currently only for the GNOME Desktop Environment.\n\nAlthough this application is only in early stages, I will keep developing it.\n\nIf you have any suggestions, please e-mail me. \n\nThankyou,\n- TualatriX"));
+	gtk_label_set_justify(GTK_LABEL(label),GTK_JUSTIFY_FILL);
+	gtk_box_pack_start(GTK_BOX(vbox),label,FALSE,FALSE,20);
+
+	page_label=gtk_label_new(_("Welcome"));
 	gtk_notebook_append_page(GTK_NOTEBOOK(notebook),vbox,page_label);
 
-	label=gtk_label_new("欢迎进入桌面设置");
-	page_label=gtk_label_new("桌面设置");
+	label=gtk_label_new(NULL);
+	gtk_label_set_markup(GTK_LABEL(label),_("<span size=\"large\">Welcome to Startup Page.</span>\n\n\nHere, You can set session settings, change the Splash Screen, \nor change Services (to be implemented)"));
+	page_label=gtk_label_new("Startup");
+	gtk_notebook_append_page(GTK_NOTEBOOK(notebook),label,page_label);
+	
+	vbox=create_session_page();
+	page_label=gtk_label_new("Session Control");
+	gtk_notebook_append_page(GTK_NOTEBOOK(notebook),vbox,page_label);
+
+	label=gtk_label_new(NULL);
+	gtk_label_set_markup(GTK_LABEL(label),_("<span size=\"large\">Welcome to Desktop Page.</span>\n\n\nHere, You can change the desktop icons, and other options relating to the Desktop"));
+	page_label=gtk_label_new("Desktop");
 	gtk_notebook_append_page(GTK_NOTEBOOK(notebook),label,page_label);
 
 	vbox=create_icon_page();
-	page_label=gtk_label_new("桌面图标");
+	page_label=gtk_label_new("Desktop Icon");
 	gtk_notebook_append_page(GTK_NOTEBOOK(notebook),vbox,page_label);
 
 	vbox=create_compiz_page();
-	page_label=gtk_label_new("Compiz设置");
+	page_label=gtk_label_new("Compiz Fusion");
 	gtk_notebook_append_page(GTK_NOTEBOOK(notebook),vbox,page_label);
 
 	vbox=create_gnome_page();
@@ -139,31 +140,34 @@ GtkWidget *create_notebook(void)
 	gtk_notebook_append_page(GTK_NOTEBOOK(notebook),vbox,page_label);
 
 	vbox=create_nautilus_page();
-	page_label=gtk_label_new("nautilus");
+	page_label=gtk_label_new("Nautilus");
 	gtk_notebook_append_page(GTK_NOTEBOOK(notebook),vbox,page_label);
 
-	label=gtk_label_new("系统设置");
-	page_label=gtk_label_new("欢迎进入系统设置");
+	label=gtk_label_new(NULL);
+	gtk_label_set_markup(GTK_LABEL(label),_("<span size=\"large\">Welcome to System Page.</span>\n\n\nHere, You can configuration of Power Management, and other hardware settings"));
+	page_label=gtk_label_new("System");
 	gtk_notebook_append_page(GTK_NOTEBOOK(notebook),label,page_label);
 
 	vbox=create_powermanager_page();
-	page_label=gtk_label_new("powermanager");
+	page_label=gtk_label_new("Powermanager");
 	gtk_notebook_append_page(GTK_NOTEBOOK(notebook),vbox,page_label);
 
-	label=gtk_label_new("安全设置");
-	page_label=gtk_label_new("欢迎进入安全设置");
+	label=gtk_label_new(NULL);
+	gtk_label_set_markup(GTK_LABEL(label),_("<span size=\"large\">Welcome to Security Page.</span>\n\n\nHere are some options relating to security of the system"));
+	page_label=gtk_label_new("Security");
 	gtk_notebook_append_page(GTK_NOTEBOOK(notebook),label,page_label);
 
 	vbox=create_disable_page();
-	page_label=gtk_label_new("security");
+	page_label=gtk_label_new("Disable");
 	gtk_notebook_append_page(GTK_NOTEBOOK(notebook),vbox,page_label);
 
-	label=gtk_label_new("Application");
-	page_label=gtk_label_new("欢迎进入Application设置");
+	label=gtk_label_new(NULL);
+	gtk_label_set_markup(GTK_LABEL(label),_("<span size=\"large\">Welcome to Applications Page.</span>\n\n\nConfiguration options for commonly-used applications"));
+	page_label=gtk_label_new("Applications");
 	gtk_notebook_append_page(GTK_NOTEBOOK(notebook),label,page_label);
 
 	vbox=create_fcitx_page();
-	page_label=gtk_label_new("fcitx");
+	page_label=gtk_label_new("Fcitx");
 	gtk_notebook_append_page(GTK_NOTEBOOK(notebook),vbox,page_label);
 
 	return notebook;
@@ -207,11 +211,37 @@ create_liststore(void)
 			j=i+1;
 
 			gtk_tree_store_append(store,&iter,NULL);
+
 			gtk_tree_store_set(store,&iter,
 					COL_NUM,list[i].page_num,
 					COL_ICON,icon,
 					COL_TEXT,list[i].name,
 					-1);
+
+			/*
+			if(i==0){
+				gtk_tree_store_set(store,&iter,
+						COL_NUM,list[i].page_num,
+						COL_ICON,icon,
+						COL_TEXT,listname[i],
+						-1);
+			}
+			else if(i==1){
+
+			}
+			else if(i==1){
+
+			}
+			else if(i==1){
+
+			}
+			else if(i==1){
+
+			}
+			else if(i==1){
+
+			}
+			*/
 		}
 		else
 		{
