@@ -16,8 +16,6 @@ static void fcitx_config_set_interface(GtkWidget *checkbutton,gchar *key);
 
 GtkWidget *create_fcitx_page()
 {
-
-
 	GtkWidget *main_vbox;
 	GtkWidget *vbox;
 	GtkWidget *hbox;
@@ -32,7 +30,7 @@ GtkWidget *create_fcitx_page()
 
 	if(g_ascii_strcasecmp("@im=fcitx",g_getenv("XMODIFIERS"))){
 		label=gtk_label_new(NULL);
-		gtk_label_set_markup(GTK_LABEL(label),_("<b>Fcitx Input Method Settings！</b>\nFor Fcitx User only."));
+		gtk_label_set_markup(GTK_LABEL(label),_("<b>Fcitx Input Method Settings</b>\nFor Fcitx User only."));
 		gtk_misc_set_alignment(GTK_MISC(label),0,0);
 		gtk_widget_show(label);
 		gtk_box_pack_start(GTK_BOX(main_vbox),label,FALSE,FALSE,0);

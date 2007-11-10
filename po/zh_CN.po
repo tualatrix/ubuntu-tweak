@@ -8,19 +8,530 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-11-09 17:24+0800\n"
-"PO-Revision-Date: 2007-09-23 15:09+0800\n"
+"POT-Creation-Date: 2007-11-10 10:56+0800\n"
+"PO-Revision-Date: 2007-11-10 11:09+0800\n"
 "Last-Translator: TualatriX <tualatrix@gmail.com>\n"
 "Language-Team: TualatriX <tualatrix@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/about.c:38
+#: src/about.c:39
 msgid ""
 "Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
 "system and desktop settings."
 msgstr "Ubuntu Tweak是一个专门为简易配置系统和桌面而准备的工具。"
+
+#: src/compiz_page.c:45
+msgid "Expo"
+msgstr "展示桌面"
+
+#: src/compiz_page.c:46
+msgid "Pick Windows"
+msgstr "拾取窗口"
+
+#: src/compiz_page.c:47
+msgid "Pick All Windows"
+msgstr "拾取所有窗口"
+
+#: src/compiz_page.c:113
+msgid "<b>Virsual Efforts</b>"
+msgstr "<b>视觉特效</b>"
+
+#: src/compiz_page.c:159
+msgid "Window Effects"
+msgstr "窗口特效"
+
+#: src/compiz_page.c:166
+msgid "Snapping Windows(DON'T USE with Wobbly Windows)"
+msgstr "粘性窗口（请不要与\"弹性窗口\"一起使用)"
+
+#: src/compiz_page.c:169
+msgid "Wobbly Menu"
+msgstr "弹性菜单"
+
+#: src/compiz_page.c:172
+msgid "Maximize Effect"
+msgstr "最大化特效"
+
+#: src/compiz_page.c:175
+msgid "Wobbly Windows"
+msgstr "弹性窗口"
+
+#: src/fcitx_page.c:33
+msgid ""
+"<b>Fcitx Input Method Settings</b>\n"
+"For Fcitx User only."
+msgstr ""
+"<b>Fcitx输入法设置</b>\n"
+"只为Fcitx用户提供."
+
+#: src/gnome_page.c:29
+msgid ""
+"Within this menu are advanced GNOME settings. If you require more "
+"information about a specific option, move your cursor over that option, and "
+"a description will appear here."
+msgstr ""
+"这里是一些高级GNOME设置。如果你需要关于这些选项的更多信息，请把鼠标指针指向那些选项，将会有一个描述出现。 "
+
+#: src/gnome_page.c:48
+msgid "It seems that if you disable this option, GNOME will appear quicker."
+msgstr "如果禁用这个选项，GNOME反应会更快，适合低配置电脑。"
+
+#: src/gnome_page.c:59
+msgid "Check this button if you do not wish your gnome-panel to be changed."
+msgstr "选中这个选项，如果你不想再让面版有任何改变"
+
+#: src/gnome_page.c:70
+msgid ""
+"Right-clicking in an editable area (such as Text Editor) will allow you to "
+"select your Input Method. This option is useful if you need to type in a "
+"different language, such as Cyrillic or Thai-Lao. This option enables or "
+"disables the Input Method selection."
+msgstr ""
+"在文本编辑区域点击右键，你将可以选择你的输入法。如果你不需要这个选项，则可以将其禁用。"
+
+#: src/gnome_page.c:90
+msgid "<b>GNOME Animations</b>"
+msgstr "<b>GNOME动画控制</b>"
+
+#: src/gnome_page.c:107
+msgid "Enable GNOME Animations Panel"
+msgstr "打开GNOME面版动画"
+
+#: src/gnome_page.c:110
+msgid "Enable GNOME Animations Effect"
+msgstr "打开GNOME动画效果"
+
+#: src/gnome_page.c:113
+msgid "Complete lockdown of the Panel "
+msgstr "完全锁定GNOME面版"
+
+#: src/gnome_page.c:116
+msgid "Show Input Method menu in the right-click"
+msgstr "在右键显示输入法菜单"
+
+#: src/gnome_page.c:119
+msgid "Show Unicode Method menu in the right-click"
+msgstr "在右建显示Unicode控制字符选项"
+
+#. expander
+#: src/gnome_page.c:123 src/nautilus_page.c:165 src/security_page.c:165
+msgid "Need some help? Click here!"
+msgstr "需要什么帮助？点击这里！"
+
+#: src/icon_page.c:113
+msgid "<b>Desktop Icon settings</b>"
+msgstr "<b>设置你的桌面图标</b>"
+
+#: src/icon_page.c:118
+msgid "Show desktop icons"
+msgstr "显示桌面图标"
+
+#. Show computer icon
+#: src/icon_page.c:139
+msgid "Show \"Computer\" icon on desktop"
+msgstr "在桌面上显示\"计算机\"图标"
+
+#: src/icon_page.c:156
+msgid "Rename the \"Computer\" icon: "
+msgstr "使用自定义的\"计算机\"名称"
+
+#. Show HOME
+#: src/icon_page.c:174
+msgid "Show \"Home\" icon on desktop"
+msgstr "在桌面上显示\"主目录\"图标"
+
+#: src/icon_page.c:191
+msgid "Rename the \"Home\" icon: "
+msgstr "使用自定义的\"主目录\"名称"
+
+#. Show Trash
+#: src/icon_page.c:208
+msgid "Show \"Trash\" icon on desktop"
+msgstr "在桌面上显示\"回收站\"图标"
+
+#: src/icon_page.c:225
+msgid "Rename the \"Trash\" icon: "
+msgstr "使用自定义的\"回收站\"名称"
+
+#. Other
+#: src/icon_page.c:242
+msgid "Use Home Directory as Desktop"
+msgstr "以主目录的内容作为桌面项"
+
+#: src/icon_page.c:246
+msgid "Show \"Network\" icon on desktop"
+msgstr "在桌面上显示\"网络服务器\"图标"
+
+#: src/icon_page.c:250
+msgid "Show Mounted Volumes on desktop"
+msgstr "在桌面上显示已挂载的设备"
+
+#: src/interface.c:108
+msgid ""
+"<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak!</b></span>\n"
+"\n"
+"\n"
+"This is a tool for Ubuntu which makes it easy to change hidden \n"
+"system and desktop settings.\n"
+"\n"
+"Ubuntu Tweak is currently only for the GNOME Desktop Environment.\n"
+"\n"
+"Although this application is only in early stages, I'll keep developing it.\n"
+"\n"
+"If you have any suggestions, Please E-mail me. \n"
+"\n"
+"Thank You!"
+msgstr ""
+"<span size=\"xx-large\">欢迎使用<b>Ubuntu Tweak!</b></span>\n"
+"\n"
+"\n"
+"这是一个为简单设置Ubuntu系统和桌面的而准备的软件。\n"
+"目前为止只应用于GNOME桌面环境。\n"
+"现在软件还不是很棒，但是我会不断保持开发。\n"
+"如果你有什么意见或建议，请给我发电邮。\n"
+"\n"
+"谢谢！"
+
+#: src/interface.c:112 src/interface.c:223
+msgid "Welcome"
+msgstr "欢迎使用"
+
+#: src/interface.c:116
+msgid ""
+"<span size=\"large\">Welcome to Startup Page.</span>\n"
+"\n"
+"\n"
+"Here, You can set Session Settings, change the Splash Screen, \n"
+"or change Services (to be implemented)"
+msgstr ""
+"<span size=\"large\">欢迎来到\"启动控制\"页</span>\n"
+"\n"
+"\n"
+"设置会话，更改splash画面，未来还可以更改服务。"
+
+#: src/interface.c:126
+msgid ""
+"<span size=\"large\">Welcome to Desktop Page.</span>\n"
+"\n"
+"\n"
+"Here, You can change the desktop icons, and other options\n"
+" relating to the Desktop"
+msgstr ""
+"<span size=\"large\">欢迎来到\"桌面设置\"页</span>\n"
+"\n"
+"\n"
+"设置你的桌面图标或者其他有关桌面的选项。"
+
+#: src/interface.c:148
+msgid ""
+"<span size=\"large\">Welcome to System Page.</span>\n"
+"\n"
+"\n"
+"Here, You can configuration of Power Management, and\n"
+" other hardware settings"
+msgstr ""
+"<span size=\"large\">欢迎来到\"系统选项\"页</span>\n"
+"\n"
+"\n"
+"在这里，你可以设置高级电源管理，或其他硬件设定（未来）。"
+
+#: src/interface.c:158
+msgid ""
+"<span size=\"large\">Welcome to Security Page.</span>\n"
+"\n"
+"\n"
+"Here are some options relating to security of the system"
+msgstr ""
+"<span size=\"large\">欢迎来到\"安全设置\"页</span>\n"
+"\n"
+"\n"
+"这里是一些有关系统安全方面的设定。"
+
+#: src/interface.c:168
+msgid ""
+"<span size=\"large\">Welcome to Applications Page.</span>\n"
+"\n"
+"\n"
+"Configuration options for commonly-used applications"
+msgstr ""
+"<span size=\"large\">欢迎来到\"应用软件\"页</span>\n"
+"\n"
+"\n"
+"通过这里简单地配置一些常用软件"
+
+#: src/interface.c:230
+msgid "Startup"
+msgstr "启动控制"
+
+#: src/interface.c:237
+msgid "Desktop"
+msgstr "桌面设置"
+
+#: src/interface.c:244
+msgid "System"
+msgstr "系统选项"
+
+#: src/interface.c:251
+msgid "Security"
+msgstr "安全相关"
+
+#: src/interface.c:258
+msgid "Applications"
+msgstr "应用软件"
+
+#: src/interface.c:273 src/session_page.c:157
+msgid "Session Control"
+msgstr "会话控制"
+
+#: src/interface.c:280
+msgid "Desktop Icon"
+msgstr "桌面图标"
+
+#: src/interface.c:294
+msgid "GNOME"
+msgstr "GNOME设置"
+
+#: src/interface.c:301
+msgid "Nautilus"
+msgstr "文件浏览器"
+
+#: src/interface.c:308
+msgid "Power Manager"
+msgstr "高级电源管理"
+
+#: src/interface.c:315
+msgid "Security Options"
+msgstr "安全相关选项"
+
+#: src/interface.c:322
+msgid "Fcitx"
+msgstr "Fcitx输入法"
+
+#: src/nautilus_page.c:30
+msgid ""
+"Within this menu are advanced Nautilus settings. If you require more "
+"information about a specific option, move your cursor over that option, and "
+"a description will appear here."
+msgstr ""
+"这里是一些高级文件管理器的设置。如果你需要关于这些选项的更多信息，请把鼠标指针指向那些选项，将会有一个描述出现。 "
+
+#: src/nautilus_page.c:51
+msgid ""
+"With default Permissions (this option unticked), the \"Permission\" tab of "
+"File or Folder Properties is like this:\n"
+msgstr "在你选择高级权限之前，文件属性的权限标签是这样的：\n"
+
+#: src/nautilus_page.c:52
+msgid ""
+"\n"
+"With advanced Permissions (this option ticked), the \"Permission\" tab of "
+"File or Folder Properties is like this:\n"
+msgstr ""
+"\n"
+"在你选择了高级权限之后，文件属性的权限标签将是这样的：\n"
+
+#: src/nautilus_page.c:104
+msgid ""
+"BurnProof is a technology to prevent Buffer Under Run errors when writing "
+"CDs and DVDs.\n"
+"Select this option to enable BurnProof when writing CDs and DVDs.\n"
+"Your burner must support the BurnProof function for this to have an effect."
+msgstr ""
+"你想在刻录CD时更加安全吗？\n"
+"如果你的刻录机有\"防刻死\"功能请打上勾吧"
+
+#: src/nautilus_page.c:115
+msgid ""
+"WARNING: You can damage your CDRW by using this incorrectly. This option is "
+"NOT recommended!\n"
+"\n"
+"OverBurn is a method of fitting more data onto a CD-R than is ordinarily "
+"permitted.\n"
+"The maximum amount of data any given CD can hold depends on the brand and "
+"type of media, as well as your model of CD drive.\n"
+"Select this option to enable OverBurn."
+msgstr ""
+"如果你的档案文件超出了光盘的容量，你可以需要打开这项功能\n"
+"但是并不推荐打开它，因为并不保证成功"
+
+#: src/nautilus_page.c:134
+msgid "<b>Settings for Nautilus behavior</b>"
+msgstr "<b>设置文件管理器行为</b>"
+
+#: src/nautilus_page.c:140
+msgid "File Browser"
+msgstr "文件浏览"
+
+#: src/nautilus_page.c:144
+msgid "Show advanced Permissions on File and Folder Property pages"
+msgstr "在文件属性里显示高级权限控制"
+
+#: src/nautilus_page.c:148
+msgid "CD Burner"
+msgstr "光盘刻录"
+
+#: src/nautilus_page.c:156
+msgid "Enable BurnProof technology"
+msgstr "启用防刻死技术"
+
+#: src/nautilus_page.c:160
+msgid "Enable OverBurn"
+msgstr "启用超刻技术"
+
+#: src/powermanager_page.c:80
+msgid "<b>Advanced Power Management Settings</b>"
+msgstr "<b>高级电源管理</b>"
+
+#: src/powermanager_page.c:97
+msgid "Enable Hibernation"
+msgstr "启用休眠支持"
+
+#: src/powermanager_page.c:101
+msgid "Enable Suspend"
+msgstr "启用挂起功能"
+
+#: src/powermanager_page.c:105
+msgid "Show CPU frequency option in \"Power Management\""
+msgstr "在\"电源管理器\"里显示CPU频率控制"
+
+#: src/powermanager_page.c:114
+msgid "\"GNOME Panel\" Power Management icon"
+msgstr "\"通知区域\"电源管理图标行为："
+
+#: src/powermanager_page.c:124
+msgid "Never display"
+msgstr "从不显示"
+
+#: src/powermanager_page.c:125
+msgid "When charging"
+msgstr "仅在充电时显示"
+
+#: src/powermanager_page.c:126
+msgid "Always display"
+msgstr "始终显示"
+
+#: src/powermanager_page.c:143
+msgid "When using AC power, CPU frequency policy"
+msgstr "当使用交流电时，CPU频率使用策略"
+
+#: src/powermanager_page.c:153 src/powermanager_page.c:182
+msgid "On Demand"
+msgstr "根据处理器负载"
+
+#: src/powermanager_page.c:154 src/powermanager_page.c:183
+msgid "Power Save"
+msgstr "最节电"
+
+#: src/powermanager_page.c:155 src/powermanager_page.c:184
+msgid "Performance"
+msgstr "总是全速"
+
+#: src/powermanager_page.c:172
+msgid "When using Battery power, CPU frequency policy"
+msgstr "当使用电池时，CPU频率使用策略"
+
+#: src/security_page.c:35
+msgid ""
+"Within this menu are advanced security settings. If you require more "
+"information about a specific option, move your cursor over that option, and "
+"a description will appear here."
+msgstr ""
+"这里是一些关于系统安全方面的设置。如果你需要关于这些选项的更多信息，请把鼠标指针指向那些选项，将会有一个描述出现。 "
+
+#: src/security_page.c:54
+msgid ""
+"This option enables and disables the Run Application dialog.\n"
+"The default key combination for Run is \"Alt+F2\".\n"
+"This is one way of preventing users from running commands you don't want "
+"them to."
+msgstr ""
+"如果你禁用了这个功能，你将不能使用\"Alt+F2\"来快速运行应用程序。"
+
+#: src/security_page.c:65
+msgid ""
+"This option enables and disables locking of the screen.\n"
+"You are required to enter your password when unlocking a locked screen.\n"
+"This could be useful on a public terminal, such as at a school or web cafe."
+msgstr ""
+"如果你禁用了这个功能，你将不能锁定屏幕。"
+
+#: src/security_page.c:76
+msgid "This option enables and disables Printing in all applications."
+msgstr "如果你禁用了这个功能，所有应用程序的打印功能将失效。"
+
+#: src/security_page.c:87
+msgid ""
+"This option enables and disables Print Setup in all applications.\n"
+"This could be useful to restrict printing options such as installed "
+"printers, drivers, and printer sharing."
+msgstr ""
+"如果你禁用了这个功能，所有应用程序的打印设置功能将失效。"
+
+#: src/security_page.c:98
+msgid ""
+"This option enables and disables the \"Save\" and \"Save As\" function in "
+"all applications.\n"
+"This option could be used to restrict file write access on a system."
+msgstr ""
+"如果你禁用了这个功能，你将不能在应用程序中使用\"另存为\"功能。"
+
+#: src/security_page.c:108
+msgid ""
+"This option enables and disables User Switching.\n"
+"This could be useful on a public terminal, such as at a school or web cafe, "
+"or to provide security to other logged-in users."
+msgstr ""
+"如果你禁用了这个功能，你将不能使用快速用户切换"
+
+#: src/security_page.c:128
+msgid "<b>System Security options</b>"
+msgstr "安全相关选项"
+
+#: src/security_page.c:145
+msgid "Disable \"Run Application\" dialog (Alt+F2)"
+msgstr "禁用\"运行应用程序\"(Alt+F2)"
+
+#: src/security_page.c:149
+msgid "Disable Lock Screen (Ctrl+Alt+L)"
+msgstr "禁用锁定屏幕"
+
+#: src/security_page.c:152
+msgid "Disable Printing"
+msgstr "禁用打印功能"
+
+#: src/security_page.c:155
+msgid "Disable Print Setup"
+msgstr "禁止运行打印设置向导"
+
+#: src/security_page.c:158
+msgid "Disable Save To Disk"
+msgstr "禁止使用文件另存为"
+
+#: src/security_page.c:161
+msgid "Disable User Switching"
+msgstr "禁止使用用户切换"
+
+#: src/session_page.c:30
+msgid "Choose a Splash image"
+msgstr "选择一个Splash文件"
+
+#: src/session_page.c:173
+msgid "Automatically save changes to session"
+msgstr "自动保存会话"
+
+#: src/session_page.c:181
+msgid "Show Logout prompt"
+msgstr "显示注销菜单"
+
+#: src/session_page.c:189
+msgid "Show Splash screen"
+msgstr "显示Splash屏幕"
+
+#: src/session_page.c:197
+msgid "Click the large button to change Splash screen"
+msgstr "点击大按钮来更改Splash屏幕"
 
 #: src/ubuntu-tweak.c:10
 msgid ""
@@ -28,7 +539,7 @@ msgid ""
 "This OK button does nothing, haha!"
 msgstr ""
 
-#: src/ubuntu-tweak.c:204 src/ubuntu-tweak.c:261
+#: src/ubuntu-tweak.c:209 src/ubuntu-tweak.c:270
 msgid "Unset"
 msgstr "未设置"
 
@@ -49,77 +560,11 @@ msgstr "未设置"
 #~ "AWN first."
 #~ msgstr "对不起，你还没有安装Avant Window Navigator，请先安装"
 
-#~ msgid "Desktop Icon"
-#~ msgstr "桌面图标"
-
 #~ msgid "GNOME Options"
 #~ msgstr "GNOME选项"
 
-#~ msgid "Nautilus"
-#~ msgstr "文件浏览器"
-
 #~ msgid "History"
 #~ msgstr "历史记录"
-
-#~ msgid "<b>Desktop Icon settings</b>"
-#~ msgstr "<b>设置你的桌面图标</b>"
-
-#~ msgid "Show desktop icons"
-#~ msgstr "显示桌面图标"
-
-#~ msgid "Show \"Computer\" icon on desktop"
-#~ msgstr "在桌面上显示\"计算机\"图标"
-
-#~ msgid "Rename the \"Computer\" icon: "
-#~ msgstr "使用自定义的\"计算机\"名称"
-
-#~ msgid "Show \"Home\" icon on desktop"
-#~ msgstr "在桌面上显示\"主目录\"图标"
-
-#~ msgid "Rename the \"Home\" icon: "
-#~ msgstr "使用自定义的\"主目录\"名称"
-
-#~ msgid "Show \"Trash\" icon on desktop"
-#~ msgstr "在桌面上显示\"回收站\"图标"
-
-#~ msgid "Rename the \"Trash\" icon: "
-#~ msgstr "使用自定义的\"回收站\"名称"
-
-#~ msgid "Use Home Directory as Desktop"
-#~ msgstr "以主目录的内容作为桌面项"
-
-#~ msgid "Show \"Network\" icon on desktop"
-#~ msgstr "在桌面上显示\"网络服务器\"图标"
-
-#~ msgid "Show Mounted Volumes on desktop"
-#~ msgstr "在桌面上显示已挂载的设备"
-
-#~ msgid "It seems that if you disable this option, GNOME will appear quicker."
-#~ msgstr "据说禁用这个选项，GNOME反应会更快？！"
-
-#~ msgid "Check this button if you do not wish your gnome-panel to be changed."
-#~ msgstr "选中这个选项，如果你不想再让面版有任何改变"
-
-#~ msgid "<b>GNOME Animations</b>"
-#~ msgstr "<b>GNOME动画控制</b>"
-
-#~ msgid "Enable GNOME Animations Panel"
-#~ msgstr "打开GNOME面版动画"
-
-#~ msgid "Enable GNOME Animations Effect"
-#~ msgstr "打开GNOME动画效果"
-
-#~ msgid "Complete lockdown of the Panel "
-#~ msgstr "完全锁定GNOME面版"
-
-#~ msgid "Show Input Method menu in the right-click"
-#~ msgstr "在右键显示输入法菜单"
-
-#~ msgid "Show Unicode Method menu in the right-click"
-#~ msgstr "在右建显示Unicode控制字符选项"
-
-#~ msgid "Need some help? Click here!"
-#~ msgstr "需要什么帮助？点击这里！"
 
 #~ msgid "<b>Clear GNOME History</b>"
 #~ msgstr "<b>清理历史记录</b>"
@@ -136,59 +581,8 @@ msgstr "未设置"
 #~ msgid "Clear Now"
 #~ msgstr "开始清理"
 
-#~ msgid ""
-#~ "<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak!</b></span>\n"
-#~ "\n"
-#~ "\n"
-#~ "This is a tool for Ubuntu which makes it easy to change hidden \n"
-#~ " system and desktop settings.\n"
-#~ "\n"
-#~ "Ubuntu Tweak is currently only for the GNOME Desktop Environment.\n"
-#~ "\n"
-#~ "Although this application is only in early stages, I will keep developing "
-#~ "it.\n"
-#~ "\n"
-#~ "If you have any suggestions, please e-mail me. \n"
-#~ "\n"
-#~ "Thankyou,\n"
-#~ "- TualatriX"
-#~ msgstr ""
-#~ "<span size=\"xx-large\">欢迎使用<b>Ubuntu Tweak!</b></span>\n"
-#~ "\n"
-#~ "\n"
-#~ "这是一个为简单设置Ubuntu系统和桌面的而准备的软件。\n"
-#~ "目前为止只应用于GNOME桌面环境。\n"
-#~ "现在软件还不是很棒，但是我会不断保持开发。\n"
-#~ "如果你有什么意见或建议，请给我发电邮。"
-
-#~ msgid "Startup"
-#~ msgstr "启动控制"
-
-#~ msgid ""
-#~ "Session settings, change the Splash Screen, or change Services (to be "
-#~ "implemented)"
-#~ msgstr "设置会话，更改splash画面，未来还可以更改服务"
-
-#~ msgid "Desktop"
-#~ msgstr "桌面设置"
-
-#~ msgid "Change the Desktop Icons, and other options relating to the Desktop"
-#~ msgstr "设置你的桌面图标或者其他有关桌面的选项"
-
-#~ msgid "System"
-#~ msgstr "系统选项"
-
-#~ msgid "Security"
-#~ msgstr "安全相关"
-
 #~ msgid "Options relating to security of the system"
 #~ msgstr "一些与系统安全相关的选项"
-
-#~ msgid "Applications"
-#~ msgstr "应用软件"
-
-#~ msgid "Configuration options for commonly-used applications"
-#~ msgstr "通过这里简单地配置一些常用软件"
 
 #~ msgid "Use X11 video driver (recommended)"
 #~ msgstr "使用X11视频驱动（强烈推荐）"
@@ -199,143 +593,9 @@ msgstr "未设置"
 #~ msgid "Use smart sub-fuzziness"
 #~ msgstr "使用智能型字幕文件匹配"
 
-#~ msgid ""
-#~ "With default Permissions (this option unticked), the \"Permission\" tab "
-#~ "of File or Folder Properties is like this:\n"
-#~ msgstr "在你选择高级权限之前，文件属性的权限标签是这样的：\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "With advanced Permissions (this option ticked), the \"Permission\" tab of "
-#~ "File or Folder Properties is like this:\n"
-#~ msgstr ""
-#~ "\n"
-#~ "在你选择了高级权限之后，文件属性的权限标签将是这样的：\n"
-
-#, fuzzy
-#~ msgid "<b>Settings for Nautilus behavior</b>"
-#~ msgstr "<b>设置你的文件管理器</b>"
-
-#~ msgid "File Browser"
-#~ msgstr "文件浏览"
-
-#, fuzzy
-#~ msgid "Show advanced Permissions on File and Folder Property pages"
-#~ msgstr "在文件属性里显示高级权限控制"
-
-#~ msgid "CD Burner"
-#~ msgstr "光盘刻录"
-
-#, fuzzy
-#~ msgid "Enable BurnProof technology"
-#~ msgstr "启用防刻死技术"
-
-#, fuzzy
-#~ msgid "Enable OverBurn"
-#~ msgstr "启用超刻技术"
-
-#, fuzzy
-#~ msgid "<b>Advanced Power Management Settings</b>"
-#~ msgstr "<b>高级电源管理</b>"
-
-#~ msgid "Enable Hibernation"
-#~ msgstr "启用休眠支持"
-
-#, fuzzy
-#~ msgid "Enable Suspend"
-#~ msgstr "启用挂起功能"
-
-#, fuzzy
-#~ msgid ""
-#~ "Show CPU frequency option in \"System - Preferences - Power Management\""
-#~ msgstr "在\"电源管理器\"里显示CPU频率控制"
-
-#, fuzzy
-#~ msgid "\"Notification Area\" Power Management icon"
-#~ msgstr "\"通知区域\"电源管理图标行为："
-
-#~ msgid "Never display"
-#~ msgstr "从不显示"
-
 #, fuzzy
 #~ msgid "Only when using battery charge"
 #~ msgstr "只在充电时显示"
-
-#~ msgid "Always display"
-#~ msgstr "始终显示"
-
-#, fuzzy
-#~ msgid "When using AC power, CPU frequency policy is:"
-#~ msgstr "当使用交流电时，CPU频率使用策略"
-
-#, fuzzy
-#~ msgid "On Demand"
-#~ msgstr "根据处理器负载"
-
-#, fuzzy
-#~ msgid "Power Save"
-#~ msgstr "最节电"
-
-#~ msgid "Performance"
-#~ msgstr "总是全速"
-
-#, fuzzy
-#~ msgid "When using Battery power, CPU frequency policy is:"
-#~ msgstr "当使用电池时，CPU频率使用策略"
-
-#, fuzzy
-#~ msgid "<b>System Security options</b>"
-#~ msgstr "安全相关选项"
-
-#, fuzzy
-#~ msgid "Disable \"Run Application\" dialog (Alt+F2)"
-#~ msgstr "禁用\"运行应用程序\"(Alt+F2)"
-
-#, fuzzy
-#~ msgid "Disable Lock Screen (Ctrl+Alt+L)"
-#~ msgstr "禁用锁定屏幕"
-
-#, fuzzy
-#~ msgid "Disable Printing"
-#~ msgstr "禁用打印功能"
-
-#, fuzzy
-#~ msgid "Disable Print Setup"
-#~ msgstr "禁止运行打印设置向导"
-
-#, fuzzy
-#~ msgid "Disable Save To Disk"
-#~ msgstr "禁止使用文件另存为"
-
-#, fuzzy
-#~ msgid "Disable User Switching"
-#~ msgstr "禁止使用用户切换"
-
-#~ msgid "Security Options"
-#~ msgstr "安全相关选项"
-
-#, fuzzy
-#~ msgid "Choose a Splash image"
-#~ msgstr "选择一个Splash文件"
-
-#~ msgid "Session Control"
-#~ msgstr "会话控制"
-
-#, fuzzy
-#~ msgid "Automatically save changes to session"
-#~ msgstr "自动保存会话"
-
-#, fuzzy
-#~ msgid "Show Logout prompt"
-#~ msgstr "显示注销菜单"
-
-#, fuzzy
-#~ msgid "Show Splash screen"
-#~ msgstr "显示Splash屏幕"
-
-#, fuzzy
-#~ msgid "Click the large button to change Splash screen"
-#~ msgstr "点击大按钮来更改Splash屏幕"
 
 #, fuzzy
 #~ msgid "Start"

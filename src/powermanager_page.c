@@ -5,12 +5,12 @@
 #include "ubuntu-tweak.h"
 
 #define powermanager_dir	"/apps/gnome-power-manager"
-#define key_can_hibernate	"/apps/gnome-power-manager/can_hibernate"
-#define key_can_suspend		"/apps/gnome-power-manager/can_suspend"
-#define key_show_cpufreq_ui	"/apps/gnome-power-manager/show_cpufreq_ui"
-#define key_cpufreq_ac_policy	"/apps/gnome-power-manager/cpufreq_ac_policy"
-#define key_cpufreq_battery_policy	"/apps/gnome-power-manager/cpufreq_battery_policy"
-#define key_display_icon_policy	"/apps/gnome-power-manager/display_icon_policy"
+#define key_can_hibernate	"/apps/gnome-power-manager/general/can_hibernate"
+#define key_can_suspend		"/apps/gnome-power-manager/general/can_suspend"
+#define key_show_cpufreq_ui	"/apps/gnome-power-manager/ui/cpufreq_show"
+#define key_cpufreq_ac_policy	"/apps/gnome-power-manager/cpufreq/policy_ac"
+#define key_cpufreq_battery_policy	"/apps/gnome-power-manager/cpufreq/policy_battery"
+#define key_display_icon_policy	"/apps/gnome-power-manager/ui/icon_policy"
 
 static void powermanager_changed(GtkWidget *widget,gpointer data)
 {
@@ -94,15 +94,15 @@ GtkWidget *create_powermanager_page()
 	gtk_widget_show(vbox);
 	gtk_box_pack_start(GTK_BOX(hbox),vbox,FALSE,FALSE,0);
 
-	checkbutton=ut_checkbutton_new_with_gconf(_("Enable Hibernation"),key_can_hibernate,powermanager_dir,ut_checkbutton_toggled,NULL);
+	checkbutton=ut_checkbutton_new_with_gconf(_("Enable Hibernation"),key_can_hibernate,"/apps/gnome-power-manager/general",ut_checkbutton_toggled,NULL);
 	gtk_widget_show(checkbutton);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
-	checkbutton=ut_checkbutton_new_with_gconf(_("Enable Suspend"),key_can_suspend,powermanager_dir,ut_checkbutton_toggled,NULL);
+	checkbutton=ut_checkbutton_new_with_gconf(_("Enable Suspend"),key_can_suspend,"/apps/gnome-power-manager/general",ut_checkbutton_toggled,NULL);
 	gtk_widget_show(checkbutton);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
-	checkbutton=ut_checkbutton_new_with_gconf(_("Show CPU frequency option in \"Power Management\""),key_show_cpufreq_ui,powermanager_dir,ut_checkbutton_toggled,NULL);
+	checkbutton=ut_checkbutton_new_with_gconf(_("Show CPU frequency option in \"Power Management\""),key_show_cpufreq_ui,"/apps/gnome-power-manager/ui",ut_checkbutton_toggled,NULL);
 	gtk_widget_show(checkbutton);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 

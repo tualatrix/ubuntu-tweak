@@ -119,6 +119,8 @@ GtkWidget *ut_checkbutton_new_with_gconf(gchar *label,gchar *key,gchar *dir,gpoi
 		checkbutton,
 		NULL,NULL);
 
+	g_object_unref(client);
+
 	return checkbutton;
 }
 /*核心API之一，创建用于修改配置文件基于文本的按钮，其中shell是创建时执行的命令,虽然它是基于文本的，但是还是通过监视自创的键值，以方便调用*/
@@ -160,6 +162,8 @@ GtkWidget *ut_checkbutton_new_with_string(gchar *label,gchar *key,gchar *shell,g
 
 	g_free(newshell);
 
+	g_object_unref(client);
+
 	return checkbutton;
 }
 
@@ -181,6 +185,7 @@ void ut_checkbutton_with_string_toggled(GtkWidget *checkbutton,gpointer data)
 		g_spawn_command_line_async(newshell,&error);
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(checkbutton),TRUE);
 	}
+
 	g_free(newshell);
 }
 
@@ -214,6 +219,8 @@ GtkWidget *ut_entry_new_with_gconf(gchar *key,gchar *dir,gpointer data)
 		NULL,NULL);
 */
 
+	g_object_unref(client);
+
 	g_free(str);
 
 	return entry;
@@ -239,6 +246,8 @@ void _ut_ut_checkbutton_toggled_base(GtkWidget *checkbutton,
 			gtk_widget_set_sensitive(sensitive,FALSE);
 		}
 	}
+
+	g_object_unref(client);
 }
 
 /*下面的指针data是经第三方传入的key*/
@@ -263,7 +272,11 @@ void _ut_ut_checkbutton_toggled_to_entry(GtkWidget *checkbutton,
 			gtk_widget_set_sensitive(sensitive,FALSE);
 		}
 	}
+
+	g_object_unref(client);
+
 }
+
 void ut_checkbutton_toggled(GtkWidget *checkbutton,
 		gpointer data)
 {
@@ -285,5 +298,6 @@ void _ut_entry_activated(GtkWidget *entry,
 	                str, NULL);
 
 	g_free(key);
-
+	
+	g_object_unref(client);
 }
