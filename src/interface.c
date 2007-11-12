@@ -373,6 +373,7 @@ GtkWidget *create_main_window(void)
 	GtkWidget *scrolled_window;
 	GtkWidget *banner;
 	GtkWidget *vbox,*hbox;
+	GtkWidget *hpaned;
 	GtkWidget *button;
 
 	gtk_window_set_default_icon_from_file(UT_LOGO,NULL);
@@ -396,8 +397,8 @@ GtkWidget *create_main_window(void)
 	gtk_box_pack_start(GTK_BOX(vbox),banner,FALSE,FALSE,0);
 
 /*创建一个hbox，用于包装Tree View和Notebook*/
-	hbox=gtk_hbox_new(FALSE,5);
-	gtk_box_pack_start(GTK_BOX(vbox),hbox,TRUE,TRUE,0);
+	hpaned=gtk_hpaned_new();
+	gtk_box_pack_start(GTK_BOX(vbox),hpaned,TRUE,TRUE,0);
 
 /*创建Tree View，将其包装进scrolled_window里，再装进hbox里*/
 	tree_view = create_treeview();
@@ -406,12 +407,12 @@ GtkWidget *create_main_window(void)
 					GTK_POLICY_AUTOMATIC,
 					GTK_POLICY_AUTOMATIC);
 	gtk_widget_set_size_request (GTK_WIDGET(scrolled_window),150,-1);
-	gtk_box_pack_start(GTK_BOX(hbox),scrolled_window,FALSE,FALSE,0);
+	gtk_paned_pack1(GTK_PANED(hpaned),scrolled_window,TRUE,TRUE);
 	gtk_container_add(GTK_CONTAINER(scrolled_window),tree_view);
 
 /*创建notebook，包装进hbox里*/
 	notebook=create_notebook();
-	gtk_box_pack_start(GTK_BOX(hbox),notebook,TRUE,TRUE,0);
+	gtk_paned_pack2(GTK_PANED(hpaned),notebook,TRUE,FALSE);
 
 /*窗体下部的hbox，用于放置几个按钮*/
 	hbox=gtk_hbox_new(FALSE,5);
