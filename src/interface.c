@@ -2,32 +2,7 @@
 #  include <config.h>
 #endif
 
-#include "ubuntu-tweak.h"
-#include "session_page.h"
-#include "icon_page.h"
-#include "compiz_page.h"
-#include "gnome_page.h"
-#include "nautilus_page.h"
-#include "powermanager_page.h"
-#include "security_page.h"
-#include "fcitx_page.h"
-#include "about.h"
-
-#define	UT_LOGO		PACKAGE_PIXMAPS_DIR"/ubuntu-tweak.png"
-#define UT_BANNER	PACKAGE_PIXMAPS_DIR"/banner.png"
-#define UT_WELCOME	PACKAGE_PIXMAPS_DIR"/welcome.png"
-#define UT_STARTUP	PACKAGE_PIXMAPS_DIR"/startup.png"
-#define UT_DESKTOP	PACKAGE_PIXMAPS_DIR"/desktop.png"
-#define UT_ICON		PACKAGE_PIXMAPS_DIR"/icon.png"
-#define UT_COMPIZ	PACKAGE_PIXMAPS_DIR"/compiz-fusion.png"
-#define UT_GNOME	PACKAGE_PIXMAPS_DIR"/gnome.png"
-#define UT_NAUTILUS	PACKAGE_PIXMAPS_DIR"/nautilus.png"
-#define UT_SYSTEM	PACKAGE_PIXMAPS_DIR"/system.png"
-#define UT_POWER	PACKAGE_PIXMAPS_DIR"/power-manager.png"
-#define UT_SECURITY	PACKAGE_PIXMAPS_DIR"/security.png"
-#define UT_SECU_OPTIONS	PACKAGE_PIXMAPS_DIR"/security-options.png"
-#define UT_APPLICATION	PACKAGE_PIXMAPS_DIR"/applications.png"
-#define UT_SESSION	PACKAGE_PIXMAPS_DIR"/session-properties.png"
+#include "interface.h"
 
 enum
 {
@@ -177,24 +152,6 @@ GtkWidget *create_notebook(void)
 	return notebook;
 }
 
-static void
-selection_cb(GtkTreeSelection *selection,
-		GtkTreeModel *model)
-{
-	GtkTreeIter iter;
-	GValue value={0,};
-	
-	if(!gtk_tree_selection_get_selected(selection,NULL,&iter))
-		return;
-
-	gtk_tree_model_get_value(model,&iter,
-			COL_NUM,&value);
-
-	gtk_notebook_set_current_page(GTK_NOTEBOOK(notebook),g_value_get_int(&value));
-
-	g_value_unset(&value);
-}
-
 GtkTreeStore *
 create_liststore(void)
 {
@@ -208,6 +165,7 @@ create_liststore(void)
 
 	while(list[i].icon != NULL)
 	{
+		/*通过判断是否有ITEM_FATHER值来创建相应的父树，否则创建子树*/
 		if(list[i].tree_type == ITEM_FATHER)
 		{
 			icon = gdk_pixbuf_new_from_file(list[i].icon, &error);
@@ -331,6 +289,32 @@ create_liststore(void)
 	return store;
 }
 
+
+static void
+selection_cb(GtkTreeSelection *selection,
+		GtkTreeModel *model)
+{
+	GtkTreeIter iter;
+	GtkTreePath *path;
+	GValue value={0,};
+	
+	if(!gtk_tree_selection_get_selected(selection,NULL,&iter))
+		return;
+
+	/*从 model中的COL_NUM属性得到当前选中的序号，并将值传入GValue类型的value*/
+	gtk_tree_model_get_value(model,&iter,
+			COL_NUM,&value);
+
+	/*得到当前model的tree_path，再将包装进model的tree_view根据path来展开*/
+	path=gtk_tree_model_get_path(model,&iter);
+	gtk_tree_view_expand_row (GTK_TREE_VIEW (g_object_get_data(model,"tree_view")),path,TRUE);
+
+	/*用get_int的方法得到value结构中的序号，并将notebook设置为指定序号的页*/
+	gtk_notebook_set_current_page(GTK_NOTEBOOK(notebook),g_value_get_int(&value));
+
+	g_value_unset(&value);
+}
+
 GtkWidget *
 create_treeview(void)
 {
@@ -372,6 +356,8 @@ create_treeview(void)
 
 	gtk_tree_model_get_iter_first(GTK_TREE_MODEL(model),&iter);
 	gtk_tree_selection_select_iter(GTK_TREE_SELECTION(selection),&iter);
+
+	g_object_set_data(model,"tree_view",tree_view);
 	
 	g_signal_connect(selection,"changed",G_CALLBACK(selection_cb),model);
 
@@ -439,8 +425,10 @@ GtkWidget *create_main_window(void)
 	g_signal_connect(button,"clicked",G_CALLBACK(gtk_main_quit),NULL);
 	gtk_box_pack_end(GTK_BOX(hbox),button,FALSE,FALSE,0);
 	
+	/*
 	button=gtk_button_new_from_stock(GTK_STOCK_OK);
 	gtk_box_pack_end(GTK_BOX(hbox),button,FALSE,FALSE,0);
+	*/
 
 	return window;
 }

@@ -3,8 +3,7 @@
 #endif
 
 #include "ubuntu-tweak.h"
-
-#define UT_LOGO         PACKAGE_PIXMAPS_DIR"/ubuntu-tweak.png"
+#include "interface.h"
 
 void show_about(GtkWidget *widget,gpointer data)
 {
