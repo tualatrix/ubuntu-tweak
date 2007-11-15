@@ -161,6 +161,12 @@ GtkWidget *create_disable_page()
 	checkbutton=ut_checkbutton_new_with_gconf(_("Disable User Switching"),lockdown_keys[5],disable_dir,ut_checkbutton_toggled,show_expert_userswitching);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
+	checkbutton=ut_checkbutton_new_with_gconf(_("Display information message when no password is needed"),
+		"/apps/gksu/display-no-pass-info",
+		"/apps/gksu",
+		ut_checkbutton_toggled,NULL);
+	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
+
 /*expander*/
 	expander_security=gtk_expander_new_with_mnemonic(_("Need some help? Click here!"));
 	gtk_widget_show(expander_security);

@@ -50,7 +50,8 @@ am_ubuntu_tweak_OBJECTS = main.$(OBJEXT) interface.$(OBJEXT) \
 	ubuntu-tweak.$(OBJEXT) about.$(OBJEXT) session_page.$(OBJEXT) \
 	icon_page.$(OBJEXT) compiz_page.$(OBJEXT) gnome_page.$(OBJEXT) \
 	nautilus_page.$(OBJEXT) powermanager_page.$(OBJEXT) \
-	security_page.$(OBJEXT) fcitx_page.$(OBJEXT)
+	security_page.$(OBJEXT) system_page.$(OBJEXT) \
+	fcitx_page.$(OBJEXT)
 ubuntu_tweak_OBJECTS = $(am_ubuntu_tweak_OBJECTS)
 am__DEPENDENCIES_1 =
 ubuntu_tweak_DEPENDENCIES = $(am__DEPENDENCIES_1)
@@ -238,6 +239,8 @@ ubuntu_tweak_SOURCES = \
 	powermanager_page.h\
 	security_page.c\
 	security_page.h\
+	system_page.c\
+	system_page.h\
 	fcitx_page.c\
 	fcitx_page.h
 
@@ -327,6 +330,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/powermanager_page.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/security_page.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/session_page.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/system_page.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ubuntu-tweak.Po@am__quote@
 
 .c.o:

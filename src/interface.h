@@ -11,6 +11,7 @@
 #include "gnome_page.h"
 #include "nautilus_page.h"
 #include "powermanager_page.h"
+#include "system_page.h"
 #include "security_page.h"
 #include "fcitx_page.h"
 #include "about.h"

@@ -4,11 +4,11 @@
 
 #include "ubuntu-tweak.h"
 
-static gchar *key_show_advanced_permissions="/apps/nautilus/preferences/show_advanced_permissions";
-static gchar *key_burnproof="/apps/nautilus-cd-burner/burnproof";
-static gchar *key_overburn="/apps/nautilus-cd-burner/overburn";
-static gchar *key_nautilus_dir="/apps/nautilus/preferences";
-static gchar *key_cd_burner_dir="/apps/nautilus-cd-burner";
+#define SHOW_ADVANCED_PERMISSIONS "/apps/nautilus/preferences/show_advanced_permissions"
+#define BURNPROOF		"/apps/nautilus-cd-burner/burnproof"
+#define OVERBURN		"/apps/nautilus-cd-burner/overburn"
+#define NAUTILUS_DIR	"/apps/nautilus/preferences"
+#define CD_BURNER_DIR	"/apps/nautilus-cd-burner"
 
 static gchar *image_nautilus_file_permissions=PACKAGE_PIXMAPS_DIR"/nautilus-file-permissions.png";
 static gchar *image_nautilus_file_advanced_permissions=PACKAGE_PIXMAPS_DIR"/nautilus-file-advanced-permissions.png";
@@ -141,7 +141,7 @@ GtkWidget *create_nautilus_page()
 	gtk_widget_show(frame);
 	gtk_box_pack_start(GTK_BOX(main_vbox),frame,FALSE,FALSE,0);
 
-	checkbutton=ut_checkbutton_new_with_gconf(_("Show advanced Permissions on File and Folder Property pages"),key_show_advanced_permissions,key_nautilus_dir,ut_checkbutton_toggled,show_expert_showadvancedpermissions);
+	checkbutton=ut_checkbutton_new_with_gconf(_("Show advanced Permissions on File and Folder Property pages"),SHOW_ADVANCED_PERMISSIONS,NAUTILUS_DIR,ut_checkbutton_toggled,show_expert_showadvancedpermissions);
 	gtk_widget_show(checkbutton);
 	gtk_container_add(GTK_CONTAINER(frame),checkbutton);
 
@@ -153,11 +153,11 @@ GtkWidget *create_nautilus_page()
 	gtk_widget_show(vbox);
 	gtk_container_add(GTK_CONTAINER(frame),vbox);
 
-	checkbutton=ut_checkbutton_new_with_gconf(_("Enable BurnProof technology"),key_burnproof,key_cd_burner_dir,ut_checkbutton_toggled,show_expert_burnproof);
+	checkbutton=ut_checkbutton_new_with_gconf(_("Enable BurnProof technology"),BURNPROOF,CD_BURNER_DIR,ut_checkbutton_toggled,show_expert_burnproof);
 	gtk_widget_show(checkbutton);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 
-	checkbutton=ut_checkbutton_new_with_gconf(_("Enable OverBurn"),key_overburn,key_cd_burner_dir,ut_checkbutton_toggled,show_expert_overburn);
+	checkbutton=ut_checkbutton_new_with_gconf(_("Enable OverBurn"),OVERBURN,CD_BURNER_DIR,ut_checkbutton_toggled,show_expert_overburn);
 	gtk_widget_show(checkbutton);
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,FALSE,FALSE,0);
 

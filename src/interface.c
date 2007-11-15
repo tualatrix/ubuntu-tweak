@@ -30,6 +30,7 @@ enum
 		PAGE_NAUTILUS,
 	PAGE_SYSTEM,
 		PAGE_POWER,
+		PAGE_LINUX,
 	PAGE_SECUTIRY,
 		PAGE_SECU_OPTTIONS,
 	PAGE_APPLICATION,
@@ -56,6 +57,7 @@ TweakItem list[]=
 		{ITEM_CHILD,PAGE_NAUTILUS,UT_NAUTILUS},
 	{ITEM_FATHER,PAGE_SYSTEM,UT_SYSTEM},
 		{ITEM_CHILD,PAGE_POWER,UT_POWER},
+		{ITEM_CHILD,PAGE_LINUX,UT_POWER},
 	{ITEM_FATHER,PAGE_SECUTIRY,UT_SECURITY},
 		{ITEM_CHILD,PAGE_SECU_OPTTIONS,UT_SECU_OPTIONS},
 	{ITEM_FATHER,PAGE_APPLICATION,UT_APPLICATION},
@@ -127,6 +129,10 @@ GtkWidget *create_notebook(void)
 
 	vbox=create_powermanager_page();
 	page_label=gtk_label_new("Powermanager");
+	gtk_notebook_append_page(GTK_NOTEBOOK(notebook),vbox,page_label);
+
+	vbox=create_system_page();
+	page_label=gtk_label_new("System Options");
 	gtk_notebook_append_page(GTK_NOTEBOOK(notebook),vbox,page_label);
 
 	label=gtk_label_new(NULL);
@@ -264,6 +270,13 @@ create_liststore(void)
 						COL_NUM,list[i].page_num,
 						COL_ICON,icon,
 						COL_TEXT,_("Power Manager"),
+						-1);
+			}
+			else if(i==PAGE_LINUX){
+				gtk_tree_store_set(store,&child,
+						COL_NUM,list[i].page_num,
+						COL_ICON,icon,
+						COL_TEXT,_("System Options"),
 						-1);
 			}
 			else if(i==PAGE_SECU_OPTTIONS){

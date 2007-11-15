@@ -6,6 +6,32 @@
 #include <gconf/gconf-client.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
+typedef struct
+{
+	gchar *key;
+	gchar *value;
+}IniLine;
+
+typedef struct
+{
+	gchar *filename;
+	GList *lines;
+	gboolean changed;
+}IniFile;
+
+IniFile *ini_file_new();
+
+IniFile *ini_file_open_file(gchar *filename);
+
+gboolean ini_file_write_file(IniFile *ini, gchar *filename);
+
+void ini_file_free(IniFile *ini);
+
+/*获取值*/
+gchar *ini_file_get_value(IniFile *ini, gchar *key);
+
+void ini_file_write_value(IniFile *ini, gchar *key, gchar *value);
+
 GtkWidget *window;
 
 GtkWidget *ut_checkbutton_new_with_gconf(gchar *label,gchar *key,gchar *dir,gpointer toggledata,gpointer enterdata);

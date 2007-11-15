@@ -14,7 +14,6 @@ int main(int argc,char **argv)
 	textdomain (GETTEXT_PACKAGE);
 #endif
 	gtk_init(&argc,&argv);
-
 /*
 	g_print("Application name: %s\n",str);
 	g_print("Program name: %s\n",g_get_prgname());
@@ -26,11 +25,8 @@ int main(int argc,char **argv)
 	g_print("Tmp dir: %d\n",g_get_tmp_dir());
 	g_print("VERSION: %s\n",VERSION);
 */
-
 	window=create_main_window();
-
 	gtk_widget_show_all(window);
-	
 	gtk_main();
 
 	return 0;

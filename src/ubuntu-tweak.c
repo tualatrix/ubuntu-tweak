@@ -301,3 +301,193 @@ void _ut_entry_activated(GtkWidget *entry,
 	
 	g_object_unref(client);
 }
+
+/*创建键值对应的行*/
+static IniLine
+*ini_file_create_key_line (IniFile *ini, gchar *key, gchar *value)
+{
+	IniLine *line;
+	line  = g_malloc0 (sizeof (IniLine));
+	line->key = g_strstrip (g_strdup (key));
+	line->value = g_strstrip (g_strdup (value));
+	ini->lines = g_list_append (ini->lines, line);
+
+	return line;
+}
+
+/*创建空行或注释行*/
+static IniLine
+*ini_file_create_comment_line (IniFile *ini, gchar *key)
+{
+	IniLine *line;
+	line  = g_malloc0 (sizeof (IniLine));
+	line->key = key;
+	line->value = NULL;
+	ini->lines = g_list_append (ini->lines, line);
+
+	return line;
+}
+
+/*以Key来查找行，并返回行*/
+static IniLine
+*ini_file_find_key(IniFile *ini, gchar *key)
+{
+	IniLine *line;
+	GList *list;
+	list=ini->lines;
+	while (list)
+	{
+		line = (IniLine *) list->data;
+		if (!g_ascii_strcasecmp (line->key, key))
+		{
+			return line;
+		}		
+		list = g_list_next (list);
+	}
+
+	return NULL;
+}
+
+/*以Key来查找行，并返回值*/
+gchar *ini_file_get_value(IniFile *ini, gchar *key)
+{
+	IniLine *line;
+	GList *list;
+	list=ini->lines;
+	while (list)
+	{
+		line = (IniLine *) list->data;
+		if (!g_ascii_strcasecmp (line->key, key))
+		{
+			return line->value;
+		}		
+		list = g_list_next (list);
+	}
+
+	return NULL;
+}
+
+void ini_file_write_value(IniFile *ini, gchar *key, gchar *value)
+{
+	IniLine *real_line;
+	ini->changed = TRUE;
+	real_line = ini_file_find_key (ini, key);
+	real_line->value = g_strdup(value);
+}
+
+/*创建一个ini文件类型*/
+IniFile *ini_file_new()
+{
+	IniFile *ini;
+	ini = g_malloc0(sizeof(IniFile));
+	
+	return ini;
+}
+
+/*创建并打开一个ini文件类型*/
+IniFile *ini_file_open_file(gchar *filename)
+{
+	IniFile *ini;
+	gchar *buffer,**lines,**key_and_value,*tmp;
+	gint length,i,j;
+	IniLine *line = NULL;
+
+	g_file_get_contents (filename,
+			&buffer,
+			&length,
+			NULL);
+			
+	ini = g_malloc0(sizeof (IniFile));
+	ini->filename = g_strdup (filename);
+	ini->changed = FALSE;
+	lines = g_strsplit (buffer, "\n", 0);
+	g_free(buffer);
+	i = 0;
+
+	while (lines[i])
+	{
+		j=i+1;
+
+		if (lines[i][0] != '#' && lines[i][0] != '\0')
+		{
+			key_and_value = g_strsplit (lines[i], "=", 0);
+			ini_file_create_key_line (ini, key_and_value[0], key_and_value[1]);
+	//		g_print("key is %s, value is %s\n",key_and_value[0],key_and_value[1]);
+		}
+		else if (lines[i][0] == '#' || lines[i][0] == '\0')
+		{
+	//		g_print("comment is %s\n", g_strdup (lines[i]));
+			ini_file_create_comment_line (ini, g_strdup (lines[i]));
+		}	
+
+		i++;
+	}
+
+	g_strfreev(lines);
+	return ini;
+}
+
+/*将ini文件类型写入硬盘上指定文件名的文件中去*/
+gboolean ini_file_write_file(IniFile *ini, gchar *filename)
+{
+	GIOChannel *gio;
+	GList *line_list;
+	gchar *buf;
+	IniLine *line;
+	line_list = ini->lines;
+
+	gio=g_io_channel_unix_new(0);
+	g_io_channel_init(gio);
+	gio=g_io_channel_new_file(filename,"w",NULL);
+	
+	while (line_list)
+	{
+		line = (IniLine *) line_list->data;
+		if (line)
+		{
+			if (line->value)
+			{
+				g_sprintf(buf, "%s=%s\n", line->key, line->value);
+			}
+			else
+			{
+				g_sprintf(buf, "%s\n", line->key);
+			}	
+
+			g_io_channel_write_chars (gio,
+						buf,
+						-1,
+						NULL,
+						NULL);
+		}
+		line_list = g_list_next (line_list);
+	}
+
+	g_io_channel_shutdown(gio,TRUE,NULL);
+	g_io_channel_unref(gio);
+//	g_free(buf);
+	return TRUE;
+}
+			
+/*释放ini文件类型占用的内存空间*/
+void ini_file_free(IniFile *ini)
+{
+	IniLine *line;
+	GList *line_list;
+	g_free (ini->filename);
+	line_list=ini->lines;
+
+	while (line_list)
+	{
+		line=(IniLine *) line_list->data;
+		g_free (line->key);
+		g_free (line->value);
+		g_free (line);
+		line_list = g_list_next (line_list);
+	}
+
+	g_list_free(ini->lines);
+	ini->lines=NULL;
+	ini->filename=NULL;
+}
+

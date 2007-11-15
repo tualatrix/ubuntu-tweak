@@ -35,6 +35,8 @@ ubuntu_tweak_SOURCES = \
 	powermanager_page.h\
 	security_page.c\
 	security_page.h\
+	system_page.c\
+	system_page.h\
 	fcitx_page.c\
 	fcitx_page.h
 

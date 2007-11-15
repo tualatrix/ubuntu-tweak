@@ -204,5 +204,9 @@ GtkWidget *create_session_page()
 	gtk_container_add(GTK_CONTAINER(frame),splash_image_hbox);
 	gtk_widget_set_size_request(splash_image_hbox,256,-1);
 
+	GtkWidget *button;
+	button=gtk_button_new_with_label(_("Restore System Default Settings"));
+	gtk_box_pack_start(GTK_BOX(session_vbox),button,FALSE,FALSE,0);
+
 	return session_main_vbox;
 }

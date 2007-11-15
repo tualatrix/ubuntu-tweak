@@ -98,13 +98,13 @@ GtkWidget *create_fcitx_page()
 			gtk_widget_show(frame);
 			gtk_box_pack_start(GTK_BOX(main_vbox),frame,FALSE,FALSE,0);
 
-			vbox=gtk_vbox_new(FALSE,10);
+			vbox=gtk_vbox_new(FALSE,5);
 			gtk_widget_show(vbox);
 			gtk_container_add(GTK_CONTAINER(frame),vbox);
 
 			hbox=gtk_hbox_new(FALSE,10);
 			gtk_widget_show(hbox);
-			gtk_box_pack_start(GTK_BOX(vbox),hbox,FALSE,FALSE,10);
+			gtk_box_pack_start(GTK_BOX(vbox),hbox,FALSE,FALSE,0);
 
 			checkbutton=ut_checkbutton_keyfile_based_new("不使用时隐藏输入条",fcitx_config_set_interface,"界面","主窗口隐藏模式");
 			gtk_box_pack_start(GTK_BOX(hbox),checkbutton,FALSE,FALSE,0);
@@ -114,6 +114,10 @@ GtkWidget *create_fcitx_page()
 
 			checkbutton=ut_checkbutton_keyfile_based_new("显示版本",fcitx_config_set_interface,"界面","显示版本");
 			gtk_box_pack_start(GTK_BOX(hbox),checkbutton,FALSE,FALSE,0);
+
+			hbox=gtk_hbox_new(FALSE,10);
+			gtk_widget_show(hbox);
+			gtk_box_pack_start(GTK_BOX(vbox),hbox,FALSE,FALSE,0);
 
 			checkbutton=ut_checkbutton_keyfile_based_new("输入条居中",fcitx_config_set_interface,"界面","输入条居中");
 			gtk_box_pack_start(GTK_BOX(hbox),checkbutton,FALSE,FALSE,0);
