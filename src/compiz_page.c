@@ -16,19 +16,22 @@ static const gchar *names_of_plugins_with_edge[]={
 	"initiate_all",
 };
 	
-static GtkWidget *create_checkbutton_wobby_menu(gchar *label,gchar *key);
-static GtkWidget *create_checkbutton_snap_windows(gchar *label);
-static GSList	*get_active_plugins(GConfClient *client);
-static gboolean cf_plugins_get_active(gchar *plugin_name);
+static GtkWidget *create_checkbutton_wobby_menu		(gchar *label,gchar *key);
+static GtkWidget *create_checkbutton_snap_windows	(gchar *label);
+static GtkWidget *create_checkbutton_opacity_menu();
+static GSList	*get_active_plugins			(GConfClient *client);
+static GSList	*get_active_opacity			(GConfClient *client, gchar *type);
+static gboolean cf_plugins_get_active			(gchar *plugin_name);
 
-static void	wobby_checkbutton_toggeled(GtkWidget *checkbutton,gchar *key);
-static void	snap_checkbutton_toggeled(GtkWidget *checkbutton, gpointer data);
-static void	cb_combo_box_changed(GtkWidget *combobox,gchar *edge);
-static void	remove_edge(gchar *keys_of_plugins_with_edge,gchar *edge);
-static void	add_edge_base(gchar *keys_of_plugins_with_edge,gchar *edge);
-static void	change_edge(GtkWidget *combobox,gchar *edge);
-static void	add_edge(GtkWidget *combobox,gchar *edge);
-static void	cf_plugins_set_active(gchar *plugin_name,gboolean bool);
+static void	wobby_checkbutton_toggeled	(GtkWidget *checkbutton, gchar *key);
+static void	opacity_checkbutton_toggeled	(GtkWidget *checkbutton, gpointer data);
+static void	snap_checkbutton_toggeled	(GtkWidget *checkbutton, gpointer data);
+static void	cb_combo_box_changed		(GtkWidget *combobox,gchar *edge);
+static void	remove_edge			(gchar *keys_of_plugins_with_edge, gchar *edge);
+static void	add_edge_base			(gchar *keys_of_plugins_with_edge, gchar *edge);
+static void	change_edge			(GtkWidget *combobox, gchar *edge);
+static void	add_edge			(GtkWidget *combobox, gchar *edge);
+static void	cf_plugins_set_active		(gchar *plugin_name, gboolean bool);
 
 GtkWidget *create_edge_combo_box(gchar *edge)
 {
@@ -70,7 +73,7 @@ GtkWidget *create_edge_combo_box(gchar *edge)
 
 				gtk_combo_box_set_active(GTK_COMBO_BOX(combobox),i);
 
-				g_object_set_data(G_OBJECT(combobox),"previous",names_of_plugins_with_edge[i]);
+				g_object_set_data(G_OBJECT(combobox),"previous",(gchar *)names_of_plugins_with_edge[i]);
 
 				g_free(temp);
 				
@@ -166,9 +169,6 @@ GtkWidget *create_compiz_page()
 	snapping_checkbutton=create_checkbutton_snap_windows(_("Snapping Windows(DON'T USE with Wobbly Windows)"));
 	gtk_box_pack_start(GTK_BOX(vbox),snapping_checkbutton,TRUE,TRUE,0);
 
-	checkbutton=create_checkbutton_wobby_menu(_("Wobbly Menu"),"/apps/compiz/plugins/wobbly/screen0/options/map_effect");
-	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,TRUE,TRUE,0);
-
 	checkbutton=create_checkbutton_wobby_menu(_("Maximize Effect"),"/apps/compiz/plugins/wobbly/screen0/options/maximize_effect");
 	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,TRUE,TRUE,0);
 
@@ -176,6 +176,18 @@ GtkWidget *create_compiz_page()
 	//g_object_set_data(G_OBJECT(movewobby_checkbutton),"disable",snapping_checkbutton);
 	gtk_box_pack_start(GTK_BOX(vbox),movewobby_checkbutton,TRUE,TRUE,0);
 
+	frame=gtk_frame_new(_("Menu Effects"));
+	gtk_container_set_border_width(GTK_CONTAINER(frame),5);
+	gtk_box_pack_start(GTK_BOX(main_vbox),frame,FALSE,FALSE,5);
+
+	vbox=gtk_vbox_new(FALSE,5);
+	gtk_container_add(GTK_CONTAINER(frame),vbox);
+
+	checkbutton=create_checkbutton_wobby_menu(_("Wobbly Menu"),"/apps/compiz/plugins/wobbly/screen0/options/map_effect");
+	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,TRUE,TRUE,0);
+
+	checkbutton=create_checkbutton_opacity_menu();
+	gtk_box_pack_start(GTK_BOX(vbox),checkbutton,TRUE,TRUE,0);
 /*	vbox=gtk_vbox_new(FALSE,0);
 	gtk_box_pack_start(GTK_BOX(main_vbox),vbox,FALSE,FALSE,0);
 
@@ -197,6 +209,107 @@ GtkWidget *create_compiz_page()
 	g_object_unref(client);
 
 	return main_vbox; 
+}
+
+GtkWidget *create_checkbutton_opacity_menu()
+{
+	GtkWidget	*checkbutton;
+	GSList		*match_list, *value_list;
+	gchar		*temp=NULL;
+	guint 		length,j;
+	gint		value;
+	GConfClient	*client;
+	
+	checkbutton=gtk_check_button_new_with_label(_("Opacity Menu"));
+
+	client=gconf_client_get_default();
+	match_list=get_active_opacity(client, "matches");
+	value_list=get_active_opacity(client, "values");
+	length=g_slist_length(match_list);
+
+	for (j=0;j<length;j++)
+	{
+		temp=g_slist_nth_data(match_list, j);
+		value=(gint)g_slist_nth_data(value_list, j);
+		
+		if (g_str_has_suffix(temp, "Menu")&& value<100)
+		{
+			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(checkbutton), TRUE);
+		}
+
+	}
+
+	g_signal_connect(G_OBJECT(checkbutton),"toggled",G_CALLBACK(opacity_checkbutton_toggeled),NULL);
+
+	g_free(temp);
+	g_object_unref(client);
+	g_slist_free(match_list);
+	g_slist_free(value_list);
+
+	return checkbutton;
+}
+
+void opacity_checkbutton_toggeled(GtkWidget *checkbutton,
+				gpointer data)
+{
+	GConfClient *client;
+	GSList *match_list=NULL;
+	GSList *value_list=NULL;
+	guint length,j;
+	gboolean bool;
+	
+	bool=gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(checkbutton));
+	client=gconf_client_get_default();
+	match_list=get_active_opacity(client, "matches");
+	value_list=get_active_opacity(client, "values");
+
+	if(bool==TRUE){
+		match_list=g_slist_append(match_list, "Tooltip | Menu | PopupMenu | DropdownMenu");
+		gconf_client_set_list(client,
+			"/apps/compiz/general/screen0/options/opacity_matches",
+			GCONF_VALUE_STRING,
+			match_list,
+			NULL);
+
+		value_list=g_slist_append(value_list, (gpointer)90);
+		gconf_client_set_list(client,
+			"/apps/compiz/general/screen0/options/opacity_values",
+			GCONF_VALUE_INT,
+			value_list,
+			NULL);
+	}else
+	{
+		length=g_slist_length (match_list);
+		for(j=0;j<length;j++)
+		{
+			gconstpointer temp=g_slist_nth_data(match_list,j);
+
+			if (!g_ascii_strcasecmp("Tooltip | Menu | PopupMenu | DropdownMenu", temp)){
+				match_list=g_slist_remove(match_list,temp);
+
+				gconf_client_set_list(client,
+					"/apps/compiz/general/screen0/options/opacity_matches",
+					GCONF_VALUE_STRING,
+					match_list,
+					NULL);
+
+				break;
+			}
+
+			temp=NULL;
+		}
+
+		value_list=g_slist_remove(value_list, (gpointer)90);
+		gconf_client_set_list(client,
+			"/apps/compiz/general/screen0/options/opacity_values",
+			GCONF_VALUE_INT,
+			value_list,
+			NULL);
+	}
+
+	g_slist_free(match_list);
+	g_slist_free(value_list);
+	g_object_unref(client);
 }
 
 GtkWidget *create_checkbutton_wobby_menu(gchar *label,gchar *key)
@@ -386,7 +499,7 @@ void snap_checkbutton_toggeled(GtkWidget *checkbutton,gpointer data)
 
 void cb_combo_box_changed(GtkWidget *combobox,gchar *edge)
 {
-	if(g_object_get_data(combobox,"previous")){
+	if(g_object_get_data(G_OBJECT(combobox),"previous")){
 
 		change_edge(combobox,edge);
 
@@ -400,27 +513,27 @@ void cb_combo_box_changed(GtkWidget *combobox,gchar *edge)
 /*根据combobox的先前属性，来去掉先前的值，加入现在的值*/
 void change_edge(GtkWidget *combobox,gchar *edge)
 {
-	gchar *previous=g_object_get_data(combobox,"previous");
+	gchar *previous=g_object_get_data(G_OBJECT(combobox),"previous");
 
 	if(!g_ascii_strcasecmp("expo",previous)){
 		if(!cf_plugins_get_active("expo")){
 			cf_plugins_set_active("expo",TRUE);
 		}
-		remove_edge(keys_of_plugins_with_edge[0],edge);
+		remove_edge((gchar *)keys_of_plugins_with_edge[0],edge);
 		add_edge(combobox,edge);
 	}
 	else if(!g_ascii_strcasecmp("initiate",previous)){
 		if(!cf_plugins_get_active("scale")){
 			cf_plugins_set_active("scale",TRUE);
 		}
-		remove_edge(keys_of_plugins_with_edge[1],edge);
+		remove_edge((gchar *)keys_of_plugins_with_edge[1],edge);
 		add_edge(combobox,edge);
 	}
 	else if(!g_ascii_strcasecmp("initiate_all",previous)){
 		if(!cf_plugins_get_active("scale")){
 			cf_plugins_set_active("scale",TRUE);
 		}
-		remove_edge(keys_of_plugins_with_edge[2],edge);
+		remove_edge((gchar *)keys_of_plugins_with_edge[2],edge);
 		add_edge(combobox,edge);
 	}
 }
@@ -473,16 +586,16 @@ void add_edge(GtkWidget *combobox,gchar *edge)
 	i=gtk_combo_box_get_active(GTK_COMBO_BOX(combobox));
 
 	if(i==0){
-		add_edge_base(keys_of_plugins_with_edge[0],edge);
-		g_object_set_data(G_OBJECT(combobox),"previous",names_of_plugins_with_edge[0]);
+		add_edge_base((gchar *)keys_of_plugins_with_edge[0],edge);
+		g_object_set_data(G_OBJECT(combobox),"previous",(gchar *)names_of_plugins_with_edge[0]);
 	}
 	else if(i==1){
-		add_edge_base(keys_of_plugins_with_edge[1],edge);
-		g_object_set_data(G_OBJECT(combobox),"previous",names_of_plugins_with_edge[1]);
+		add_edge_base((gchar *)keys_of_plugins_with_edge[1],edge);
+		g_object_set_data(G_OBJECT(combobox),"previous",(gchar *)names_of_plugins_with_edge[1]);
 	}
 	else if(i==2){
-		add_edge_base(keys_of_plugins_with_edge[2],edge);
-		g_object_set_data(G_OBJECT(combobox),"previous",names_of_plugins_with_edge[2]);
+		add_edge_base((gchar *)keys_of_plugins_with_edge[2],edge);
+		g_object_set_data(G_OBJECT(combobox),"previous",(gchar *)names_of_plugins_with_edge[2]);
 	}
 	else if(i==3){
 		g_object_set_data(G_OBJECT(combobox),"previous",NULL);
@@ -527,6 +640,29 @@ GSList *get_active_plugins(GConfClient *client)
 	return list;
 }
 
+/*取得当前的透明列表*/
+GSList *get_active_opacity(GConfClient *client, gchar *type)
+{
+	GSList *list=NULL;
+
+	if (!g_ascii_strcasecmp("matches", type))
+	{
+		list=gconf_client_get_list(client,
+				"/apps/compiz/general/screen0/options/opacity_matches",
+				GCONF_VALUE_STRING,
+				NULL);	
+	}
+	else if (!g_ascii_strcasecmp("values", type))
+	{
+		list=gconf_client_get_list(client,
+				"/apps/compiz/general/screen0/options/opacity_values",
+				GCONF_VALUE_INT,
+				NULL);	
+	}
+
+	return list;
+}
+
 /*返回指定的插件是否被激活*/
 gboolean cf_plugins_get_active(gchar *plugin_name)
 {
@@ -545,8 +681,8 @@ gboolean cf_plugins_get_active(gchar *plugin_name)
 	{
 		gchar *temp=g_slist_nth_data(list,j);
 
-		if(!g_ascii_strcasecmp(plugin_name,temp)){
-
+		if(!g_ascii_strcasecmp(plugin_name,temp))
+		{
 			bool = TRUE;
 
 			break;

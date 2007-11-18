@@ -30,7 +30,6 @@ enum
 		PAGE_NAUTILUS,
 	PAGE_SYSTEM,
 		PAGE_POWER,
-		PAGE_LINUX,
 	PAGE_SECUTIRY,
 		PAGE_SECU_OPTTIONS,
 	PAGE_APPLICATION,
@@ -57,7 +56,6 @@ TweakItem list[]=
 		{ITEM_CHILD,PAGE_NAUTILUS,UT_NAUTILUS},
 	{ITEM_FATHER,PAGE_SYSTEM,UT_SYSTEM},
 		{ITEM_CHILD,PAGE_POWER,UT_POWER},
-		{ITEM_CHILD,PAGE_LINUX,UT_POWER},
 	{ITEM_FATHER,PAGE_SECUTIRY,UT_SECURITY},
 		{ITEM_CHILD,PAGE_SECU_OPTTIONS,UT_SECU_OPTIONS},
 	{ITEM_FATHER,PAGE_APPLICATION,UT_APPLICATION},
@@ -129,10 +127,6 @@ GtkWidget *create_notebook(void)
 
 	vbox=create_powermanager_page();
 	page_label=gtk_label_new("Powermanager");
-	gtk_notebook_append_page(GTK_NOTEBOOK(notebook),vbox,page_label);
-
-	vbox=create_system_page();
-	page_label=gtk_label_new("System Options");
 	gtk_notebook_append_page(GTK_NOTEBOOK(notebook),vbox,page_label);
 
 	label=gtk_label_new(NULL);
@@ -272,13 +266,6 @@ create_liststore(void)
 						COL_TEXT,_("Power Manager"),
 						-1);
 			}
-			else if(i==PAGE_LINUX){
-				gtk_tree_store_set(store,&child,
-						COL_NUM,list[i].page_num,
-						COL_ICON,icon,
-						COL_TEXT,_("System Options"),
-						-1);
-			}
 			else if(i==PAGE_SECU_OPTTIONS){
 				gtk_tree_store_set(store,&child,
 						COL_NUM,list[i].page_num,
@@ -320,7 +307,7 @@ selection_cb(GtkTreeSelection *selection,
 
 	/*得到当前model的tree_path，再将包装进model的tree_view根据path来展开*/
 	path=gtk_tree_model_get_path(model,&iter);
-	gtk_tree_view_expand_row (GTK_TREE_VIEW (g_object_get_data(model,"tree_view")),path,TRUE);
+	gtk_tree_view_expand_row (GTK_TREE_VIEW (g_object_get_data(G_OBJECT(model),"tree_view")),path,TRUE);
 
 	/*用get_int的方法得到value结构中的序号，并将notebook设置为指定序号的页*/
 	gtk_notebook_set_current_page(GTK_NOTEBOOK(notebook),g_value_get_int(&value));
@@ -370,7 +357,7 @@ create_treeview(void)
 	gtk_tree_model_get_iter_first(GTK_TREE_MODEL(model),&iter);
 	gtk_tree_selection_select_iter(GTK_TREE_SELECTION(selection),&iter);
 
-	g_object_set_data(model,"tree_view",tree_view);
+	g_object_set_data(G_OBJECT(model),"tree_view",tree_view);
 	
 	g_signal_connect(selection,"changed",G_CALLBACK(selection_cb),model);
 
@@ -396,7 +383,7 @@ GtkWidget *create_main_window(void)
 	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title(GTK_WINDOW(window),"Ubuntu Tweak!");
 	gtk_widget_set_size_request(GTK_WIDGET(window),650,680);
-	gtk_window_set_resizable(GTK_WINDOW(window),FALSE);
+	gtk_window_set_resizable(GTK_WINDOW(window),TRUE);
 	gtk_container_set_border_width(GTK_CONTAINER(window),10);
 	gtk_window_set_position(GTK_WINDOW(window),GTK_WIN_POS_CENTER);
 	g_signal_connect(window, "delete_event", gtk_main_quit, NULL); 

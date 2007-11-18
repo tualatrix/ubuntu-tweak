@@ -11,12 +11,12 @@ void show_about(GtkWidget *widget,gpointer data)
 
 	GdkPixbuf *logo;
 
-	const gchar* authors[] = {
+	static const gchar* authors[] = {
 		"TualatriX <tualatrix@gmail.com>",
 		NULL
 	}; 
 
-	const gchar* artists[] = {
+	static const gchar* artists[] = {
 		"Medical-Wei <a790407@hotmail.com>",
 		"m.Sharp <mac.sharp@gmail.com>",
 		"taiwan ock ting <a2d8a4v@gmail.com>",
@@ -37,7 +37,8 @@ void show_about(GtkWidget *widget,gpointer data)
 
 	gtk_about_dialog_set_comments(GTK_ABOUT_DIALOG(dialog),_("Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your system and desktop settings."));
 
-	gtk_about_dialog_set_website(GTK_ABOUT_DIALOG(dialog),"http://ubuntu-tweak.com");
+	gtk_about_dialog_set_website_label(GTK_ABOUT_DIALOG(dialog),"http://ubuntu-tweak.com");
+	gtk_about_dialog_set_website(GTK_ABOUT_DIALOG(dialog),_("Nautilus Web Site"));
 
 	gtk_about_dialog_set_authors(GTK_ABOUT_DIALOG(dialog),authors);
 

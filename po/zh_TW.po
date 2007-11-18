@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-11-14 22:26+0800\n"
+"POT-Creation-Date: 2007-11-16 21:22+0800\n"
 "PO-Revision-Date: 2007-11-10 11:09+0800\n"
 "Last-Translator: TualatriX <tualatrix@gmail.com>\n"
 "Language-Team: TualatriX <tualatrix@gmail.com>\n"
@@ -21,6 +21,11 @@ msgid ""
 "Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
 "system and desktop settings."
 msgstr "Ubuntu Tweak是一個專門為簡易配置系統和桌面而準備的工具。"
+
+#: src/about.c:41
+#, fuzzy
+msgid "Nautilus Web Site"
+msgstr "檔案瀏覽器"
 
 #: src/compiz_page.c:45
 msgid "Expo"
@@ -47,16 +52,21 @@ msgid "Snapping Windows(DON'T USE with Wobbly Windows)"
 msgstr "粘性窗口（請不要與\"彈性窗口\"一起使用)"
 
 #: src/compiz_page.c:169
-msgid "Wobbly Menu"
-msgstr "彈性選單"
-
-#: src/compiz_page.c:172
 msgid "Maximize Effect"
 msgstr "最大化特效"
 
-#: src/compiz_page.c:175
+#: src/compiz_page.c:172
 msgid "Wobbly Windows"
 msgstr "彈性窗口"
+
+#: src/compiz_page.c:176
+#, fuzzy
+msgid "Menu Effects"
+msgstr "窗口特效"
+
+#: src/compiz_page.c:183
+msgid "Wobbly Menu"
+msgstr "彈性選單"
 
 #: src/fcitx_page.c:34 src/fcitx_page.c:136
 msgid ""
@@ -170,7 +180,7 @@ msgstr "在桌面上顯示\"網絡伺服器\"圖示"
 msgid "Show Mounted Volumes on desktop"
 msgstr "在桌面上顯示已掛載的設備"
 
-#: src/interface.c:83
+#: src/interface.c:85
 msgid ""
 "<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak!</b></span>\n"
 "\n"
@@ -196,11 +206,11 @@ msgstr ""
 "\n"
 "謝謝！"
 
-#: src/interface.c:87 src/interface.c:181
+#: src/interface.c:89 src/interface.c:187
 msgid "Welcome"
 msgstr "歡迎使用"
 
-#: src/interface.c:91
+#: src/interface.c:93
 msgid ""
 "<span size=\"large\">Welcome to Startup Page.</span>\n"
 "\n"
@@ -213,7 +223,7 @@ msgstr ""
 "\n"
 "設定作業階段，更改啟動畫面，未來還可以更改服務。"
 
-#: src/interface.c:101
+#: src/interface.c:103
 msgid ""
 "<span size=\"large\">Welcome to Desktop Page.</span>\n"
 "\n"
@@ -226,7 +236,7 @@ msgstr ""
 "\n"
 "設定你的桌面圖示或者其他有關桌面的選項。"
 
-#: src/interface.c:123
+#: src/interface.c:125
 msgid ""
 "<span size=\"large\">Welcome to System Page.</span>\n"
 "\n"
@@ -239,7 +249,7 @@ msgstr ""
 "\n"
 "在這裡，你可以設定高級電源管理，或其他硬件設定（未來）。"
 
-#: src/interface.c:133
+#: src/interface.c:139
 msgid ""
 "<span size=\"large\">Welcome to Security Page.</span>\n"
 "\n"
@@ -251,7 +261,7 @@ msgstr ""
 "\n"
 "這裡是一些有關系統安全方面的設定。"
 
-#: src/interface.c:143
+#: src/interface.c:149
 msgid ""
 "<span size=\"large\">Welcome to Applications Page.</span>\n"
 "\n"
@@ -263,51 +273,56 @@ msgstr ""
 "\n"
 "通過這裡簡單地配置一些常用軟體"
 
-#: src/interface.c:188
+#: src/interface.c:194
 msgid "Startup"
 msgstr "啟動控制"
 
-#: src/interface.c:195
+#: src/interface.c:201
 msgid "Desktop"
 msgstr "桌面設定"
 
-#: src/interface.c:202
+#: src/interface.c:208
 msgid "System"
 msgstr "系統選項"
 
-#: src/interface.c:209
+#: src/interface.c:215
 msgid "Security"
 msgstr "安全相關"
 
-#: src/interface.c:216
+#: src/interface.c:222
 msgid "Applications"
 msgstr "應用軟體"
 
-#: src/interface.c:231 src/session_page.c:157
+#: src/interface.c:237 src/session_page.c:157
 msgid "Session Control"
 msgstr "作業階段"
 
-#: src/interface.c:238
+#: src/interface.c:244
 msgid "Desktop Icon"
 msgstr "桌面圖示"
 
-#: src/interface.c:252
+#: src/interface.c:258
 msgid "GNOME"
 msgstr "GNOME設定"
 
-#: src/interface.c:259
+#: src/interface.c:265
 msgid "Nautilus"
 msgstr "檔案瀏覽器"
 
-#: src/interface.c:266
+#: src/interface.c:272
 msgid "Power Manager"
 msgstr "高級電源管理"
 
-#: src/interface.c:273
+#: src/interface.c:279
+#, fuzzy
+msgid "System Options"
+msgstr "安全相關選項"
+
+#: src/interface.c:286
 msgid "Security Options"
 msgstr "安全相關選項"
 
-#: src/interface.c:280
+#: src/interface.c:293
 msgid "Fcitx"
 msgstr "Fcitx輸入法"
 
@@ -535,10 +550,6 @@ msgstr "顯示啟動螢幕"
 #: src/session_page.c:197
 msgid "Click the large button to change Splash screen"
 msgstr "點擊大按鈕來更改啟動螢幕"
-
-#: src/session_page.c:208
-msgid "Restore System Default Settings"
-msgstr ""
 
 #: src/ubuntu-tweak.c:10
 msgid ""
