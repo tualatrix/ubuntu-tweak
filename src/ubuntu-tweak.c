@@ -1,18 +1,5 @@
 #include "ubuntu-tweak.h"
 
-void button_test(GtkWidget *widget,gpointer data)
-{	
-	GtkMessageDialog *dialog;
-	dialog=gtk_message_dialog_new(window,
-				GTK_DIALOG_DESTROY_WITH_PARENT,
-				GTK_MESSAGE_QUESTION,
-				GTK_BUTTONS_OK,
-				_("OK?\nThis OK button does nothing, haha!"),NULL
-				);
-	gtk_dialog_run(GTK_MESSAGE_DIALOG(dialog));
-	gtk_widget_destroy(dialog);
-}
-
 GtkWidget *nt_expert_content_new_with_string(gchar *string)
 {
 	GtkWidget *vbox;
@@ -70,8 +57,12 @@ void ut_gconf_key_changed(GConfClient *client,guint id,GConfEntry *entry,gpointe
 	}
 }
 
-/*核心API之一，创建带gconf监视功能的checkbutton按钮，传入参数为，label──按钮的标签，key──要求监视的键值
-	dir──监视的key目录，toggledata──这个指针在开关按钮时启用，enterdata──用于开起专家模式，或者用于其他功能
+/*核心API之一，创建带gconf监视功能的checkbutton按钮
+ * 传入参数为，label──按钮的标签
+ * 		key──要求监视的键值
+ * 		dir──监视的key目录
+ * 		toggledata──这个指针在开关按钮时启用
+ * 		enterdata──用于开起专家模式，或者用于其他功能
 */
 GtkWidget *ut_checkbutton_new_with_gconf(gchar *label,gchar *key,gchar *dir,gpointer toggledata,gpointer enterdata)
 {
@@ -302,6 +293,14 @@ void _ut_entry_activated(GtkWidget *entry,
 	g_object_unref(client);
 }
 
+/* 从这行开始是全新的配置文件读取API
+ * 用于未来的的有关系统选项的读取和写入
+ * 目前为止还在测试阶段
+ * 只有读取和写入功能
+ * 没有新增和删除功能
+ * 
+*/
+
 /*创建键值对应的行*/
 static IniLine
 *ini_file_create_key_line (IniFile *ini, gchar *key, gchar *value)
@@ -388,9 +387,9 @@ IniFile *ini_file_new()
 IniFile *ini_file_open_file(gchar *filename)
 {
 	IniFile *ini;
-	gchar *buffer,**lines,**key_and_value,*tmp;
-	gint length,i,j;
-	IniLine *line = NULL;
+	gchar *buffer,**lines,**key_and_value;
+	gint i,j;
+	gsize length;
 
 	g_file_get_contents (filename,
 			&buffer,
@@ -432,7 +431,7 @@ gboolean ini_file_write_file(IniFile *ini, gchar *filename)
 {
 	GIOChannel *gio;
 	GList *line_list;
-	gchar *buf;
+	gchar *buf=NULL;
 	IniLine *line;
 	line_list = ini->lines;
 
@@ -465,7 +464,7 @@ gboolean ini_file_write_file(IniFile *ini, gchar *filename)
 
 	g_io_channel_shutdown(gio,TRUE,NULL);
 	g_io_channel_unref(gio);
-//	g_free(buf);
+	g_free(buf);
 	return TRUE;
 }
 			

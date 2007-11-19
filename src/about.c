@@ -37,14 +37,14 @@ void show_about(GtkWidget *widget,gpointer data)
 
 	gtk_about_dialog_set_comments(GTK_ABOUT_DIALOG(dialog),_("Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your system and desktop settings."));
 
-	gtk_about_dialog_set_website_label(GTK_ABOUT_DIALOG(dialog),"http://ubuntu-tweak.com");
-	gtk_about_dialog_set_website(GTK_ABOUT_DIALOG(dialog),_("Nautilus Web Site"));
+	gtk_about_dialog_set_website(GTK_ABOUT_DIALOG(dialog),"http://ubuntu-tweak.com");
+	gtk_about_dialog_set_website_label(GTK_ABOUT_DIALOG(dialog),"Ubuntu Tweak");
 
 	gtk_about_dialog_set_authors(GTK_ABOUT_DIALOG(dialog),authors);
 
 	gtk_about_dialog_set_artists(GTK_ABOUT_DIALOG(dialog),artists);
 
-	gtk_about_dialog_set_translator_credits(GTK_ABOUT_DIALOG(dialog),"Super Jamie <jamie@superjamie.net>\nThree-leg-cat <threelegcat@gmail.com>");
+	gtk_about_dialog_set_translator_credits(GTK_ABOUT_DIALOG(dialog),"Super Jamie <jamie@superjamie.net>\nThree-leg-cat <threelegcat@gmail.com>\nWilliams <ff9will@gmail.com>");
 
 	gtk_dialog_run(GTK_DIALOG(dialog));
 

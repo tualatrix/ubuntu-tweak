@@ -19,37 +19,37 @@ static void powermanager_changed(GtkWidget *widget,gpointer data)
 
 	client=gconf_client_get_default();
 	str=gtk_combo_box_get_active_text(GTK_COMBO_BOX(widget));
-	if(!strcmp(str,"On Demand")){
+	if(!g_ascii_strcasecmp(str,"On Demand")){
 		gconf_client_set_string(client,
 					data,
 					"ondemand",
 					NULL);
 	}
-	else if(!strcmp(str,"Power Save")){
+	else if(!g_ascii_strcasecmp(str,"Power Save")){
 		gconf_client_set_string(client,
 				data,
 				"powersave",
 				NULL);
 	}
-	else if(!strcmp(str,"Performance")){
+	else if(!g_ascii_strcasecmp(str,"Performance")){
 		gconf_client_set_string(client,
 				data,
 				"performance",
 				NULL);
 	}
-	else if(!strcmp(str,"Never display")){
+	else if(!g_ascii_strcasecmp(str,"Never display")){
 		gconf_client_set_string(client,
 				data,
 				"never",
 				NULL);
 	}
-	else if(!strcmp(str,"When charging")){
+	else if(!g_ascii_strcasecmp(str,"When charging")){
 		gconf_client_set_string(client,
 				data,
 				"charge",
 				NULL);
 	}
-	else if(!strcmp(str,"Always display")){
+	else if(!g_ascii_strcasecmp(str,"Always display")){
 		gconf_client_set_string(client,
 				data,
 				"always",
