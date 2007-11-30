@@ -5,6 +5,7 @@ import gettext
 import gconf
 
 from gconfcheckbutton import GConfCheckButton
+from framebox import VFrameWithButton
 
 gettext.install("ubuntu-tweak", unicode = True)
 
@@ -56,7 +57,7 @@ class CompizPage(gtk.VBox):
 		client = gconf.client_get_default()
 		edge_list = client.get_list(element, gconf.VALUE_STRING)
 		edge_list.append(edge)
-		client.set_list(element, gconf.VALUE_STRING, edge_list,)
+		client.set_list(element, gconf.VALUE_STRING, edge_list)
 			
 	def __remove_edge(self, element, edge):
 		client = gconf.client_get_default()
@@ -85,7 +86,87 @@ class CompizPage(gtk.VBox):
 		combobox.connect("changed", self.__combo_box_changed_cb, edge)
 
 		return combobox
+	def __create_wobbly_effect_checkbutton(self, label, key):
+		button = gtk.CheckButton(label) 
+		button.connect("toggled", self.__wobbly_checkbutton_toggled_cb, key)
+		client = gconf.client_get_default()
 
+		if self.__get_active_plugin_with_name("wobbly"):
+			value = client.get(key)
+
+			if value.type == gconf.VALUE_INT:
+				map_effect = value.get_int()
+				match = client.get_string("/apps/compiz/plugins/wobbly/screen0/options/map_window_match")
+
+				if map_effect == 1 and match.__len__() >= 4:
+					button.set_active(True)
+
+			elif value.type == gconf.VALUE_BOOL:
+				if value.get_bool():
+					button.set_active(True)
+
+			elif value.type == gconf.VALUE_STRING:
+				match = value.get_string()
+
+				if match.__len__() >= 4:
+					button.set_active(True)
+
+		return button
+	def __wobbly_checkbutton_toggled_cb(self, widget, data = None):
+		client = gconf.client_get_default()
+
+		if widget.get_active():
+			self.__set_active("wobbly", True)
+			value = client.get(data)
+
+			if value.type == gconf.VALUE_INT:
+				client.set_int(data, 1)
+				client.set_string("/apps/compiz/plugins/wobbly/screen0/options/map_window_match","Splash | DropdownMenu | PopupMenu | Tooltip | Notification | Combo | Dnd | Unknown")
+			elif value.type == gconf.VALUE_BOOL:
+				client.set_bool(data, True)
+			elif value.type == gconf.VALUE_STRING:
+				client.set_string(data, "Toolbar | Menu | Utility | Dialog | Normal | Unknown")
+		else:
+			self.__set_active("wobbly", False)
+			value = client.get(data)
+
+			if value.type == gconf.VALUE_INT:
+				client.set_int(data, 0)
+			elif value.type == gconf.VALUE_BOOL:
+				client.set_bool(data, False)
+			elif value.type == gconf.VALUE_STRING:
+				client.set_string(data, "")
+
+	def __create_opacity_menu_checkbutton(self):
+		button = gtk.CheckButton(_("Opacity Menu"))
+		client = gconf.client_get_default()
+		match_list = self.__get_active_opacity("matches")
+		value_list = self.__get_active_opacity("values")
+
+		for element in match_list:
+			for value in value_list:
+				if element.find("Menu") and value < 100:
+					button.set_active(True)
+		button.connect("toggled", self.__opacity_checkbutton_toggled_cb)
+		return button
+
+	def __opacity_checkbutton_toggled_cb(self, widget, data = None):
+		client = gconf.client_get_default()
+		bool = widget.get_active()
+		match_list = self.__get_active_opacity("matches")
+		value_list = self.__get_active_opacity("values")
+
+		if bool:
+			match_list.append("Tooltip | Menu | PopupMenu | DropdownMenu")
+			client.set_list("/apps/compiz/general/screen0/options/opacity_matches", gconf.VALUE_STRING, match_list)
+			value_list.append(90)
+			client.set_list("/apps/compiz/general/screen0/options/opacity_values", gconf.VALUE_INT, value_list)
+		else:
+			match_list.remove("Tooltip | Menu | PopupMenu | DropdownMenu")
+			client.set_list("/apps/compiz/general/screen0/options/opacity_matches", gconf.VALUE_STRING, match_list)
+			value_list.remove(90)
+			client.set_list("/apps/compiz/general/screen0/options/opacity_values", gconf.VALUE_INT, value_list)
+			
 	def __create_edge_setting(self):
 		frame = gtk.Frame(_("Edge Setting"))
 		frame.set_border_width(5)
@@ -128,7 +209,7 @@ class CompizPage(gtk.VBox):
 
 		return frame
 
-	def __create_checkbutton_snap_window(self, label):
+	def __create_snap_window_checkbutton(self, label):
 		checkbutton = gtk.CheckButton(label)
 		checkbutton.set_active(self.__get_active_plugin_with_name("snap"))
 		checkbutton.connect("toggled", self.__snap_checkbutton_toggled_cb)
@@ -167,5 +248,15 @@ class CompizPage(gtk.VBox):
 
 		self.pack_start(self.__create_edge_setting(), False, False, 0)
 
-		button = self.__create_checkbutton_snap_window(_("Snapping Windows(DON'T USE with Wobbly Windows)"))
-		self.pack_start(button, False, False, 0)
+		button1 = self.__create_snap_window_checkbutton(_("Snapping Windows(DON'T USE with Wobbly Windows)"))
+		button2 = self.__create_wobbly_effect_checkbutton(_("Maximize Effect"), "/apps/compiz/plugins/wobbly/screen0/options/maximize_effect")
+		button3 = self.__create_wobbly_effect_checkbutton(_("Wobbly Windows"),"/apps/compiz/plugins/wobbly/screen0/options/move_window_match")
+
+		frame = VFrameWithButton(_("Window Effects"), (button1, button2, button3))
+		self.pack_start(frame, False, False, 0)
+
+		button1 = self.__create_opacity_menu_checkbutton()
+		button2 = self.__create_wobbly_effect_checkbutton(_("Wobbly Menu"), "/apps/compiz/plugins/wobbly/screen0/options/map_effect")
+
+		frame = VFrameWithButton(_("Menu Effects"), (button1, button2))
+		self.pack_start(frame, False, False, 0)
