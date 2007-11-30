@@ -243,13 +243,6 @@ class UbuntuTweak(gtk.Window):
 		button.connect("clicked", lambda *w: gtk.main_quit())
 		hbox.pack_end(button, False, False, 0)
 		
-#		self.button = gtk.CheckButton("Hello")
-#		self.button = gconfbutton.GConfButton("禁用命令行","/desktop/gnome/lockdown/disable_command_line","/desktop/gnome/lockdown")
-#		buttons = (self.button,self.button2,self.button3)
-#		self.frame = framebox.VFrameWithButton("安全选项", buttons)
-
-	
-#		self.add(self.frame)
 		self.show_all()
 
 	def main(self):

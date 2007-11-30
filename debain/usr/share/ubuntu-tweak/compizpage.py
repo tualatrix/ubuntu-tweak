@@ -6,6 +6,7 @@ import gconf
 
 from gconfcheckbutton import GConfCheckButton
 from framebox import VFrameWithButton
+from itembox import ItemBox
 
 gettext.install("ubuntu-tweak", unicode = True)
 
@@ -168,19 +169,7 @@ class CompizPage(gtk.VBox):
 			client.set_list("/apps/compiz/general/screen0/options/opacity_values", gconf.VALUE_INT, value_list)
 			
 	def __create_edge_setting(self):
-		frame = gtk.Frame(_("Edge Setting"))
-		frame.set_border_width(5)
-		
-		vbox = gtk.VBox(False, 5)
-		vbox.set_border_width(5)
-		frame.add(vbox)
-		
-		label = gtk.Label(_("Setting the action when you put your cursor in the screen edge"))
-		label.set_alignment(0, 0)
-		vbox.pack_start(label, False, False, 0)
-
 		hbox = gtk.HBox(False, 0)
-		vbox.pack_start(hbox, False, False, 0)
 
 		vbox = gtk.VBox(False, 0)
 		hbox.pack_start(vbox, False, False, 0)
@@ -207,7 +196,7 @@ class CompizPage(gtk.VBox):
 		combobox = self.__create_edge_combo_box("BottomRight")
 		vbox.pack_end(combobox, False, False, 0)
 
-		return frame
+		return hbox
 
 	def __create_snap_window_checkbutton(self, label):
 		checkbutton = gtk.CheckButton(label)
@@ -244,19 +233,28 @@ class CompizPage(gtk.VBox):
 
 	def __init__(self):
 		gtk.VBox.__init__(self)
-		self.set_border_width(5)
 
-		self.pack_start(self.__create_edge_setting(), False, False, 0)
+		vbox = gtk.VBox(False, 0)
+		vbox.set_border_width(5)
+		label = gtk.Label()
+		label.set_markup(_("<b>Edge Setting</b>"))
+		label.set_alignment(0, 0)
+		vbox.pack_start(label, False, False, 0)
+		self.pack_start(vbox, False, False, 0)
+
+		hbox = gtk.HBox(False, 0)
+		self.pack_start(hbox, False, False, 0)
+		hbox.pack_start(self.__create_edge_setting(), True, False, 0)
 
 		button1 = self.__create_snap_window_checkbutton(_("Snapping Windows(DON'T USE with Wobbly Windows)"))
 		button2 = self.__create_wobbly_effect_checkbutton(_("Maximize Effect"), "/apps/compiz/plugins/wobbly/screen0/options/maximize_effect")
 		button3 = self.__create_wobbly_effect_checkbutton(_("Wobbly Windows"),"/apps/compiz/plugins/wobbly/screen0/options/move_window_match")
 
-		frame = VFrameWithButton(_("Window Effects"), (button1, button2, button3))
-		self.pack_start(frame, False, False, 0)
+		box = ItemBox(_("<b>Window Effects</b>"), (button1, button2, button3))
+		self.pack_start(box, False, False, 0)
 
 		button1 = self.__create_opacity_menu_checkbutton()
 		button2 = self.__create_wobbly_effect_checkbutton(_("Wobbly Menu"), "/apps/compiz/plugins/wobbly/screen0/options/map_effect")
 
-		frame = VFrameWithButton(_("Menu Effects"), (button1, button2))
-		self.pack_start(frame, False, False, 0)
+		box = ItemBox(_("<b>Menu Effects</b>"), (button1, button2))
+		self.pack_start(box, False, False, 0)

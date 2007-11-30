@@ -7,6 +7,7 @@ import gettext
 
 from gconfcheckbutton import GConfCheckButton
 from framebox import VFrameWithButton
+from itembox import ItemBox
 
 gettext.install("ubuntu-tweak", unicode = True)
 
@@ -83,23 +84,22 @@ class SessionPage(gtk.VBox):
 
 		return hbox
 
-	def __session_control_frame(self):
+	def __session_control_box(self):
 		button = GConfCheckButton(_("Automatically save changes to session"), "/apps/gnome-session/options/auto_save_session", "/apps/gnome-session/options")
 		button2 = GConfCheckButton(_("Show Logout prompt"), "/apps/gnome-session/options/logout_prompt", "/apps/gnome-session/options") 
 		button3 = GConfCheckButton(_("Show Splash screen"), "/apps/gnome-session/options/show_splash_screen", "/apps/gnome-session/options", extra = self.__show_splash_toggled)
 		button4 = GConfCheckButton(_("Allow TCP Connections(Remote Connect)"), "/apps/gnome-session/options/allow_tcp_connections", "/apps/gnome-session/options")
-		frame = VFrameWithButton(_("Session Control"), (button, button2, button3, button4))
-		return frame
+		box = ItemBox(_("<b>Session Control</b>"), (button, button2, button3, button4))
+		return box
 
 	def __init__(self):
 		gtk.VBox.__init__(self)
 
-		main_vbox = gtk.VBox(False, 5)
-		main_vbox.set_border_width(5)
-		self.pack_start(main_vbox, False, False, 0)
+#		main_vbox = gtk.VBox(False, 5)
+#		main_vbox.set_border_width(5)
+#		self.pack_start(main_vbox, False, False, 0)
 
-		main_vbox.pack_start(self.__session_control_frame(), False, False, 0)
+		self.pack_start(self.__session_control_box(), False, False, 0)
 
-		frame = gtk.Frame(_("Click the large button to change Splash screen"))
-		frame.add(self.__splash_hbox())
-		main_vbox.pack_start(frame, False, False, 0)
+		box = ItemBox(_("<b>Click the large button to change Splash screen</b>"), (self.__splash_hbox(),))
+		self.pack_start(box, False, False, 0)
