@@ -46,21 +46,27 @@ class SessionPage(gtk.VBox):
 		client = gconf.client_get_default()
 		filename = client.get_string("/apps/gnome-session/options/splash_image")
 		self.filedir = os.path.dirname(filename)
+		try:
+			f = open(filename)
+		except IOError:
+			filename = "/usr/share/pixmaps/splash/gnome-splash.png"
+			client.set_string("/apps/gnome-session/options/splash_image", "/usr/share/pixmaps/splash/gnome-splash.png")
+
 		original_preview = gtk.gdk.pixbuf_new_from_file(filename)
 		x = original_preview.get_width()
 		y = original_preview.get_height()
 
-		if x * 180 / y > 240:
-			y = y * 240 / x
-			x = 240
+		if x * 150 / y > 200:
+			y = y * 200 / x
+			x = 200
 		else:
-			x = x * 180 / y
-			y = 180
+			x = x * 150 / y
+			y = 150
 
 		new_preview = original_preview.scale_simple(x, y, gtk.gdk.INTERP_NEAREST)
 		hbox = gtk.HBox(False, 0)
 		self.button = gtk.Button()
-		hbox.pack_start(self.button,True, False, 0)
+		hbox.pack_start(self.button, True, False, 0)
 
 		if client.get_bool("/apps/gnome-session/options/show_splash_screen"):
 			self.button.set_sensitive(True)
@@ -71,8 +77,8 @@ class SessionPage(gtk.VBox):
 		self.button.add(vbox)
 
 		alignment = gtk.Alignment(0.5, 0.5, 1, 1)
-		alignment.set_size_request(240, 180)
-		vbox.pack_start(alignment, True, True, 0)
+		alignment.set_size_request(200, 150)
+		vbox.pack_start(alignment, False, False, 0)
 
 		image = gtk.image_new_from_pixbuf(new_preview)
 		alignment.add(image)

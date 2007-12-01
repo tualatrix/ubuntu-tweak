@@ -10,6 +10,8 @@ import gettext
 from sessionpage import SessionPage
 from iconpage import IconPage
 from compizpage import CompizPage
+from gnomepage import GnomePage
+from nautiluspage import NautilusPage
 
 gettext.install("ubuntu-tweak", unicode = True)
 
@@ -158,6 +160,7 @@ class UbuntuTweak(gtk.Window):
 
 	def __create_notebook(self):
 		notebook = gtk.Notebook()
+		notebook.set_scrollable(True)
 
 		vbox = gtk.VBox(False, 0)
 
@@ -176,6 +179,12 @@ class UbuntuTweak(gtk.Window):
 
 		page_label = gtk.Label(_("Virsual Efforts"));
 		notebook.append_page(CompizPage(), page_label)
+
+		page_label = gtk.Label(_("GNOME Settings"));
+		notebook.append_page(GnomePage(), page_label)
+
+		page_label = gtk.Label(_("Nautilus Settings"));
+		notebook.append_page(NautilusPage(), page_label)
 
 		return notebook
 	
