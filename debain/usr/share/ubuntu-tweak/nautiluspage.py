@@ -31,9 +31,10 @@ class NautilusPage(gtk.VBox):
 
         __key_nautilus_dir = "/apps/nautilus/preferences"
 	__key_cd_burner_dir = "/apps/nautilus-cd-burner"
-	def __spinbutton_change_value_cb(self, widget, data = None):
+	def __spinbutton_value_changed_cb(self, widget, data = None):
 		widget.set_increments(widget.get_value(), widget.get_value())
-		print widget.get_value()
+		client = gconf.client_get_default()
+		client.set_int("/apps/nautilus/icon_view/thumbnail_size", widget.get_value())
 
         def __init__(self):
                 gtk.VBox.__init__(self)
@@ -42,17 +43,18 @@ class NautilusPage(gtk.VBox):
 
 		hbox = gtk.HBox(False, 5)
 		label = gtk.Label(_("Default Thumbnail Icon Size"))
-		hbox.pack_start(label, True, False, 0)
+		hbox.pack_start(label, False, False, 0)
 
-		spinbutton = gtk.SpinButton(gtk.Adjustment(16, 16, 512, 16, 16, 16))
-		spinbutton.connect("value-changed", self.__spinbutton_change_value_cb)
-		hbox.pack_start(spinbutton, True, False, 0)
+		client = gconf.client_get_default()
+		spinbutton = gtk.SpinButton(gtk.Adjustment(client.get_int("/apps/nautilus/icon_view/thumbnail_size"), 16, 512, 16, 16, 16))
+		spinbutton.connect("value-changed", self.__spinbutton_value_changed_cb)
+		hbox.pack_end(spinbutton, False, False, 0)
 
-                box = ItemBox(_("<b>Settings for Nautilus behavior</b>"), (button, hbox)) 
+                box = ItemBox(_("<b>Settings for Nautilus behavior</b>"), (button, )) 
+		box.vbox.pack_start(hbox, False, False, 0)
                 self.pack_start(box, False, False, 0)
 
                 button1 = GConfCheckButton(nautilus_names[1], nautilus_keys[1], self.__key_cd_burner_dir)
                 button2 = GConfCheckButton(nautilus_names[2], nautilus_keys[2], self.__key_cd_burner_dir)
                 box = ItemBox(_("<b>CD Burner</b>"), (button1, button2)) 
                 self.pack_start(box, False, False, 0)
-

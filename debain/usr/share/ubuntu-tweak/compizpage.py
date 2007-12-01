@@ -35,22 +35,20 @@ class CompizPage(gtk.VBox):
 		previous = widget.previous
 		i = names_of_plugins_with_edge.index(previous)
 
-		if i == 0:
-			if not self.__get_active_plugin_with_name("expo"):
-				self.__set_active("expo", True)
-			self.__remove_edge(keys_of_plugins_with_edge[0], edge)
-			self.__add_edge(widget, edge)
-		else:
-			if not self.__get_active_plugin_with_name("scale"):
-				self.__set_active("scale", True)
-			self.__remove_edge(keys_of_plugins_with_edge[i], edge)
-			self.__add_edge(widget, edge)	
+		self.__remove_edge(keys_of_plugins_with_edge[i], edge)
+		self.__add_edge(widget, edge)	
 
 	def __add_edge(self, widget, edge):
 		i = widget.get_active()
 		if i == 3:
 			widget.previous = None
 		else:
+			if i == 0:
+				if not self.__get_active_plugin_with_name("expo"):
+					self.__set_active("expo", True)
+			if i == 1 or i == 2:
+				if not self.__get_active_plugin_with_name("scale"):
+					self.__set_active("scale", True)
 			self.__add_edge_base(keys_of_plugins_with_edge[i], edge)
 			widget.previous = names_of_plugins_with_edge[i]
 
@@ -77,6 +75,12 @@ class CompizPage(gtk.VBox):
 
 		list = self.__get_active_plugins()
 		client = gconf.client_get_default()
+
+		if not client.get_string("/apps/compiz/plugins/expo/allscreens/options/expo_key"):
+			client.set_string("/apps/compiz/plugins/expo/allscreens/options/expo_button", "Button0")
+			client.set_int("/apps/compiz/plugins/expo/allscreens/options/expo_edgebutton", 0)
+			client.set_string("/apps/compiz/plugins/expo/allscreens/options/expo_key", "<Super>e")
+
 		for element in keys_of_plugins_with_edge:
 			edge_list = client.get_list(element, gconf.VALUE_STRING)
 
@@ -85,8 +89,8 @@ class CompizPage(gtk.VBox):
 				combobox.previous = names_of_plugins_with_edge[keys_of_plugins_with_edge.index(element)]
 
 		combobox.connect("changed", self.__combo_box_changed_cb, edge)
-
 		return combobox
+
 	def __create_wobbly_effect_checkbutton(self, label, key):
 		button = gtk.CheckButton(label) 
 		button.connect("toggled", self.__wobbly_checkbutton_toggled_cb, key)
