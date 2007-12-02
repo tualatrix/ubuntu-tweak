@@ -12,6 +12,8 @@ from iconpage import IconPage
 from compizpage import CompizPage
 from gnomepage import GnomePage
 from nautiluspage import NautilusPage
+from powermanagerpage import PowermanagerPage
+from lockdownpage import LockdownPage
 
 gettext.install("ubuntu-tweak", unicode = True)
 
@@ -170,6 +172,12 @@ class UbuntuTweak(gtk.Window):
 
 		page_label = gtk.Label(_("Welcome"));
 		notebook.append_page(vbox, page_label)
+
+		page_label = gtk.Label(_("Lock down Options"));
+		notebook.append_page(LockdownPage(), page_label)
+
+		page_label = gtk.Label(_("PowerManager"));
+		notebook.append_page(PowermanagerPage(), page_label)
 
 		page_label = gtk.Label(_("Session Control"));
 		notebook.append_page(SessionPage(), page_label)
