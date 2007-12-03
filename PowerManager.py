@@ -81,7 +81,7 @@ class PowerManager(gtk.VBox):
                 button1 = GConfCheckButton(powermanager_names[0], powermanager_keys[0])
                 button2 = GConfCheckButton(powermanager_names[1], powermanager_keys[1])
                 button3 = GConfCheckButton(powermanager_names[2], powermanager_keys[2])
-		button4 = GConfCheckButton(_("disconnected NetworkManager on sleep"), "/apps/gnome-power-manager/general/network_sleep")
+		button4 = GConfCheckButton(_("Disconnected NetworkManager on sleep"), "/apps/gnome-power-manager/general/network_sleep")
 		button5 = GConfCheckButton(_("Lock screen when blanked"), "/apps/gnome-power-manager/lock/blank_screen")
 
 		comboboxitem1 = self.combobox_item(_("\"GNOME Panel\" Power Management icon"), [_("Never display"), _("When charging"), _("Always display")], ["never", "charge", "always"], powermanager_keys[5])

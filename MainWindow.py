@@ -16,7 +16,7 @@ from LockDown import LockDown
 
 gettext.install("ubuntu-tweak", unicode = True)
 
-VERSION = "0.3.0"
+VERSION = "0.2.4"
 
 (
         NUM_COLUMN,
@@ -67,14 +67,16 @@ def Welcome():
 
 	label = gtk.Label()
 	label.set_markup(_("<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak!</b></span>\n\n\nThis is a tool for Ubuntu which makes it easy to change hidden \nsystem and desktop settings.\n\nUbuntu Tweak is currently only for the GNOME Desktop Environment.\n\nAlthough this application is only in early stages, I'll keep developing it.\n\nIf you have any suggestions, Please E-mail me. \n\nThank You!"))
-	vbox.pack_start(label, False, False, 0)
+	label.set_justify(gtk.JUSTIFY_FILL)
+	vbox.pack_start(label, False, False, 50)
 
 	return vbox
 
 def Blank():
-	vbox = gtk.VBox(False, 0)
+	vbox = gtk.VBox(True, 0)
 
-	label = gtk.Label(_("Please select the child item"))
+	label = gtk.Label()
+	label.set_markup(_("<span size=\"xx-large\">Please select the child item</span>"))
 	vbox.pack_start(label, False, False, 0)
 
 	return vbox
