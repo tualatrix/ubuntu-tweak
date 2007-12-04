@@ -6,6 +6,7 @@ import gtk
 import gobject
 import gettext
 
+from gnome import url_show
 from Session import Session
 from Icon import Icon
 from Compiz import Compiz
@@ -200,12 +201,17 @@ class MainWindow(gtk.Window):
 					notebook.append_page(page, None)
 
 		return notebook
+
+	def click_website(self, dialog, link, data = None):
+		url_show(link)
 	
 	def show_about(self, data = None):
+		gtk.about_dialog_set_url_hook(self.click_website)
 		about = gtk.AboutDialog()
 		about.set_name("Ubuntu Tweak")
 		about.set_version(VERSION)
 		about.set_website("http://ubuntu-tweak.com")
+		about.set_website_label("ubuntu-tweak.com")
 		about.set_logo(self.get_icon())
 		about.set_comments(_("Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your system and desktop settings."))
 		about.set_authors(["TualatriX <tualatrix@gmail.com>"])
