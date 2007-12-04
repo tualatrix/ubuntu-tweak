@@ -42,10 +42,10 @@ VERSION = "0.2.4"
 		ROOT_PAGE,
 	SECURITY_PAGE,
 		SECU_OPTIONS_PAGE,
-	APPLICATION_PAGE,
-		FCITX_PAGE,
+#	APPLICATION_PAGE,
+#		FCITX_PAGE,
 	TOTAL_PAGE
-) = range(16)
+) = range(14)
 
 icons = \
 [
@@ -122,7 +122,7 @@ itemlist = \
 	[DESKTOP_PAGE, icons[DESKTOP_PAGE], _("Desktop"), Blank(), desktop],
 	[SYSTEM_PAGE, icons[SYSTEM_PAGE], _("System"), Blank(), system],
 	[SECURITY_PAGE, icons[SECURITY_PAGE], _("Security"), Blank(), security],
-	[APPLICATION_PAGE, icons[APPLICATION_PAGE], _("Application"),Blank(), None]
+#	[APPLICATION_PAGE, icons[APPLICATION_PAGE], _("Application"),Blank(), None]
 ]
 
 class MainWindow(gtk.Window):

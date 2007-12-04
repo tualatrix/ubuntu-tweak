@@ -130,9 +130,6 @@ class Icon(gtk.VBox):
 				button_rename.entry.set_sensitive(False)
 			vbox.pack_start(button_rename.entry, False, False, 0)
 
-		button = GConfCheckButton(_("Use Home Directory as Desktop"), "/apps/nautilus/preferences/desktop_is_home_dir")
-		main_button.vbox.pack_start(button, False, False, 0)
-
 		button = GConfCheckButton(_("Show \"Network\" icon on desktop"), "/apps/nautilus/desktop/network_icon_visible")
 		main_button.vbox.pack_start(button, False, False, 0)
 

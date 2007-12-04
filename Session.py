@@ -23,11 +23,12 @@ class Session(gtk.VBox):
 			client = gconf.client_get_default()
 			filename = dialog.get_filename()
 			data.set_text(filename)
-			original_preview = gtk.gdk.pixbuf_new_from_file(filename)
-			x = original_preview.get_width()
-			y = original_preview.get_height()
+			self.original_preview = gtk.gdk.pixbuf_new_from_file(filename)
+			x = self.original_preview.get_width()
+			y = self.original_preview.get_height()
 
-			new_preview = original_preview.scale_simple(x / 2, y / 2, gtk.gdk.INTERP_NEAREST)
+			self.new_preview = self.original_preview.scale_simple(x / 2, y / 2, gtk.gdk.INTERP_NEAREST)
+			self.image.set_from_pixbuf(self.new_preview)
 			client.set_string("/apps/gnome-session/options/splash_image", filename)
 		dialog.destroy()
 
@@ -50,9 +51,9 @@ class Session(gtk.VBox):
 			filename = "/usr/share/pixmaps/splash/gnome-splash.png"
 			client.set_string("/apps/gnome-session/options/splash_image", "/usr/share/pixmaps/splash/gnome-splash.png")
 
-		original_preview = gtk.gdk.pixbuf_new_from_file(filename)
-		x = original_preview.get_width()
-		y = original_preview.get_height()
+		self.original_preview = gtk.gdk.pixbuf_new_from_file(filename)
+		x = self.original_preview.get_width()
+		y = self.original_preview.get_height()
 
 		if x * 150 / y > 200:
 			y = y * 200 / x
@@ -61,7 +62,7 @@ class Session(gtk.VBox):
 			x = x * 150 / y
 			y = 150
 
-		new_preview = original_preview.scale_simple(x, y, gtk.gdk.INTERP_NEAREST)
+		self.new_preview = self.original_preview.scale_simple(x, y, gtk.gdk.INTERP_NEAREST)
 		hbox = gtk.HBox(False, 0)
 		self.button = gtk.Button()
 		hbox.pack_start(self.button, True, False, 0)
@@ -78,8 +79,8 @@ class Session(gtk.VBox):
 		alignment.set_size_request(200, 150)
 		vbox.pack_start(alignment, False, False, 0)
 
-		image = gtk.image_new_from_pixbuf(new_preview)
-		alignment.add(image)
+		self.image = gtk.image_new_from_pixbuf(self.new_preview)
+		alignment.add(self.image)
 
 		label = gtk.Label(filename)
 		vbox.pack_end(label, False, False, 0)
