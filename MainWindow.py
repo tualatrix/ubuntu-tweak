@@ -15,6 +15,7 @@ from Nautilus import Nautilus
 from PowerManager import PowerManager
 from LockDown import LockDown
 from Root import Root
+from Computer import Computer
 
 gettext.install("ubuntu-tweak", unicode = True)
 
@@ -30,6 +31,7 @@ VERSION = "0.2.4"
 
 (
         WELCOME_PAGE,
+	COMPUTER_PAGE,
 	STARTUP_PAGE,
 		SESSION_PAGE,
 	DESKTOP_PAGE,
@@ -45,11 +47,12 @@ VERSION = "0.2.4"
 #	APPLICATION_PAGE,
 #		FCITX_PAGE,
 	TOTAL_PAGE
-) = range(14)
+) = range(15)
 
 icons = \
 [
 	"pixmaps/welcome.png",
+	"pixmaps/computer.png",
 	"pixmaps/startup.png",
 	"pixmaps/session.png",
 	"pixmaps/desktop.png",
@@ -63,7 +66,6 @@ icons = \
 	"pixmaps/security.png",
 	"pixmaps/lockdown.png",
 	"pixmaps/applications.png",
-	"pixmaps/lockdown.png",
 ]
 
 def Welcome():
@@ -118,6 +120,7 @@ security = \
 itemlist = \
 [
 	[WELCOME_PAGE, icons[WELCOME_PAGE], _("Welcome"), Welcome(), None],
+	[COMPUTER_PAGE, icons[COMPUTER_PAGE], _("Computer"), Computer(), None],
 	[STARTUP_PAGE, icons[SESSION_PAGE], _("Startup"), Blank(), startup],
 	[DESKTOP_PAGE, icons[DESKTOP_PAGE], _("Desktop"), Blank(), desktop],
 	[SYSTEM_PAGE, icons[SYSTEM_PAGE], _("System"), Blank(), system],

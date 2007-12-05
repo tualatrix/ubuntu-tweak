@@ -87,3 +87,14 @@ class ItemBox(gtk.VBox):
 			else:
 				for widget in widgets:
 					self.vbox.pack_start(widget, False, False, 0)
+
+class EntryBox(gtk.HBox):
+	def __init__(self, label, text):
+		gtk.HBox.__init__(self)
+
+		label = gtk.Label(label)
+                self.pack_start(label, False, False ,10)
+                entry = gtk.Entry()
+                entry.set_text(text)
+                entry.set_editable(False)
+                self.pack_end(entry, True, True, 0)
