@@ -130,3 +130,26 @@ class HScaleBox(gtk.HBox):
 			hscale.set_value(client.get_int(key))
 		elif value.type == gconf.VALUE_FLOAT:
 			hscale.set_value(client.get_float(key))
+
+
+class ComboboxItem(gtk.HBox):
+
+	def value_changed_cb(self, widget, data = None):
+		client = gconf.client_get_default()
+		text = widget.get_active_text()
+		client.set_string(data, widget.values[widget.texts.index(text)]) 
+	def __init__(self, label, texts, values, key):
+		gtk.HBox.__init__(self)
+		self.pack_start(gtk.Label(label), False, False, 0)	
+
+		combobox = gtk.combo_box_new_text()
+		combobox.texts = texts
+		combobox.values = values
+		combobox.connect("changed", self.value_changed_cb, key)
+		self.pack_end(combobox, False, False, 0)
+
+		for element in texts:
+			combobox.append_text(element)
+
+		client = gconf.client_get_default()
+		combobox.set_active(values.index(client.get_string(key)))

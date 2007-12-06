@@ -258,7 +258,7 @@ class MainWindow(gtk.Window):
 		hpaned.pack2(self.notebook)
 
 		hbox = gtk.HBox(False,5)
-		vbox.pack_start(hbox, False, False,0)
+		vbox.pack_start(hbox, False, False, 5)
 		button = gtk.Button(stock = gtk.STOCK_ABOUT)
 		button.connect("clicked", self.show_about)
 		hbox.pack_start(button, False, False, 0)
