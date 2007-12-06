@@ -12,13 +12,19 @@ class Metacity(gtk.VBox):
 	def __init__(self):
 		gtk.VBox.__init__(self)
 
-		box = ItemBox(_("<b>Metacity Window Decorate Options</b>"), (
+		box = ItemBox(_("<b>Metacity Window Decorate Effect</b>"), (
 			GConfCheckButton(_("Use metacity theme"), "/apps/gwd/use_metacity_theme"),
 			GConfCheckButton(_("Metacity theme active window opacity shade"), "/apps/gwd/metacity_theme_active_shade_opacity"),
 			HScaleBox(_("Metacity active opacity"), 0, 1, "/apps/gwd/metacity_theme_active_opacity", digits = 2),
 			GConfCheckButton(_("Metacity theme opacity shade"), "/apps/gwd/metacity_theme_shade_opacity"),
 			HScaleBox(_("Metacity theme opacity"), 0, 1, "/apps/gwd/metacity_theme_opacity", digits = 2),
-			ComboboxItem(_("Title bar mouse wheel action"), [_("No action"), _("Shade")], ["none", "shade"], "/apps/gwd/mouse_wheel_action")
 			))
+		self.pack_start(box, False, False, 0)
 
+		box = ItemBox(_("<b>Window Titlebar Action</b>"),(
+			ComboboxItem(_("Title bar mouse wheel action"), [_("None"), _("Roll up")], ["none", "shade"], "/apps/gwd/mouse_wheel_action"),
+			ComboboxItem(_("Double-click titlebar to perform this action:"), [_("None"), _("Maximize"), _("Minimize"), _("Roll up"), _("Lower"), _("Menu")], ["none", "toggle_maximize", "minimize", "toggle_shade", "lower", "menu"], "/apps/metacity/general/action_double_click_titlebar"),
+			ComboboxItem(_("Action on title bar middle-click"), [_("None"), _("Maximize"), _("Minimize"), _("Roll up"), _("Lower"), _("Menu")], ["none", "toggle_maximize", "minimize", "toggle_shade", "lower", "menu"], "/apps/metacity/general/action_middle_click_titlebar"),
+			ComboboxItem(_("Action on title bar right-click"), [_("None"), _("Maximize"), _("Minimize"), _("Roll up"), _("Lower"), _("Menu")], ["none", "toggle_maximize", "minimize", "toggle_shade", "lower", "menu"], "/apps/metacity/general/action_right_click_titlebar"),
+			))
 		self.pack_start(box, False, False, 0)

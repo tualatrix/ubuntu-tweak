@@ -152,4 +152,6 @@ class ComboboxItem(gtk.HBox):
 			combobox.append_text(element)
 
 		client = gconf.client_get_default()
-		combobox.set_active(values.index(client.get_string(key)))
+
+		if client.get_string(key) in values:
+			combobox.set_active(values.index(client.get_string(key)))
