@@ -93,8 +93,9 @@ class EntryBox(gtk.HBox):
 		gtk.HBox.__init__(self)
 
 		label = gtk.Label(label)
-                self.pack_start(label, False, False ,10)
+                self.pack_start(label, False, False,10)
                 entry = gtk.Entry()
                 entry.set_text(text)
                 entry.set_editable(False)
-                self.pack_end(entry, True, True, 0)
+		entry.set_size_request(300, -1)
+                self.pack_end(entry, False, False, 0)

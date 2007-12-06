@@ -14,7 +14,6 @@ from Gnome import Gnome
 from Nautilus import Nautilus
 from PowerManager import PowerManager
 from LockDown import LockDown
-from Root import Root
 from Computer import Computer
 
 gettext.install("ubuntu-tweak", unicode = True)
@@ -41,13 +40,12 @@ VERSION = "0.2.4"
 		NAUTILUS_PAGE,
 	SYSTEM_PAGE,
 		POWER_PAGE,
-		ROOT_PAGE,
 	SECURITY_PAGE,
 		SECU_OPTIONS_PAGE,
 #	APPLICATION_PAGE,
 #		FCITX_PAGE,
 	TOTAL_PAGE
-) = range(15)
+) = range(14)
 
 icons = \
 [
@@ -62,7 +60,6 @@ icons = \
 	"pixmaps/nautilus.png",
 	"pixmaps/system.png",
 	"pixmaps/powermanager.png",
-	"pixmaps/root.png",
 	"pixmaps/security.png",
 	"pixmaps/lockdown.png",
 	"pixmaps/applications.png",
@@ -104,7 +101,6 @@ desktop = \
 system = \
 [
 	[POWER_PAGE, icons[POWER_PAGE], _("Power Manager"), PowerManager()],
-	[ROOT_PAGE, icons[ROOT_PAGE], _("Root Options"), Root()]
 ]
 
 security = \
