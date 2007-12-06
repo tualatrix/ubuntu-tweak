@@ -5,7 +5,7 @@ import os
 import gconf
 import gettext
 
-from Widgets import GConfCheckButton, ItemBox
+from Widgets import GConfCheckButton, ItemBox, HScaleBox
 
 gettext.install("ubuntu-tweak", unicode = True)
 
@@ -55,26 +55,6 @@ class PowerManager(gtk.VBox):
 
 		return hbox 
 
-	def hscale_item(self, label, key):
-		hbox = gtk.HBox(False, 10)
-		hbox.pack_start(gtk.Label(label), False, False, 0)
-		
-		hscale = gtk.HScale()
-		hscale.set_size_request(150, -1)
-		hscale.set_range(25, 100)
-		hscale.set_digits(0)
-		hscale.set_value_pos(gtk.POS_RIGHT)
-		hbox.pack_end(hscale, False, False, 0)
-		hscale.connect("value-changed", self.hscale_value_changed_cb, key)
-
-		client = gconf.client_get_default()
-		hscale.set_value(client.get_int(key))
-		return hbox
-
-	def hscale_value_changed_cb(self, widget, data = None):
-		client = gconf.client_get_default()
-		client.set_int(data, int(widget.get_value()))
-
         def __init__(self):
                 gtk.VBox.__init__(self)
 
@@ -88,8 +68,8 @@ class PowerManager(gtk.VBox):
 		comboboxitem2 = self.combobox_item(_("When using AC power, CPU frequency policy"), [_("On Demand"), _("Power Save"), _("Performance")], ["ondemand", "powersave", "performance"], powermanager_keys[3])
 		comboboxitem3 = self.combobox_item(_("When using Battery power, CPU frequency policy"), [_("On Demand"), _("Power Save"), _("Performance")], ["ondemand", "powersave", "performance"], powermanager_keys[4])
 		
-		hscaleitem1 = self.hscale_item("performance_ac", "/apps/gnome-power-manager/cpufreq/performance_ac")
-		hscaleitem2 = self.hscale_item("performance_battery", "/apps/gnome-power-manager/cpufreq/performance_battery")
+		hscaleitem1 = HScaleBox("performance_ac", 25, 85, "/apps/gnome-power-manager/cpufreq/performance_ac")
+		hscaleitem2 = HScaleBox("performance_battery", 25, 85, "/apps/gnome-power-manager/cpufreq/performance_battery")
                 box = ItemBox(_("<b>Advanced Power Management Settings</b>"), (button1, button2, button3, button4, button5, comboboxitem1)) 
                 self.pack_start(box, False, False, 0)
 

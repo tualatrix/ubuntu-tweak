@@ -63,10 +63,11 @@ class ItemBox(gtk.VBox):
 		gtk.VBox.__init__(self)
 		self.set_border_width(5)
 		
-		label = gtk.Label()
-		label.set_markup(title)
-		label.set_alignment(0, 0)
-		self.pack_start(label, False, False, 0)
+		if title:
+			label = gtk.Label()
+			label.set_markup(title)
+			label.set_alignment(0, 0)
+			self.pack_start(label, False, False, 0)
 
 		hbox = gtk.HBox(False, 5)
 		hbox.set_border_width(5)
@@ -99,3 +100,33 @@ class EntryBox(gtk.HBox):
                 entry.set_editable(False)
 		entry.set_size_request(300, -1)
                 self.pack_end(entry, False, False, 0)
+
+class HScaleBox(gtk.HBox):
+
+	def hscale_value_changed_cb(self, widget, data = None):
+		client = gconf.client_get_default()
+		value = client.get(data)
+		if value.type == gconf.VALUE_INT:
+			client.set_int(data, int(widget.get_value()))
+		elif value.type == gconf.VALUE_FLOAT:
+			client.set_float(data, widget.get_value())
+
+	def __init__(self, label, min, max, key, digits = 0):
+		gtk.HBox.__init__(self)
+		self.pack_start(gtk.Label(label), False, False, 0)
+		
+		hscale = gtk.HScale()
+		hscale.set_size_request(150, -1)
+		hscale.set_range(min, max)
+		hscale.set_digits(digits)
+		hscale.set_value_pos(gtk.POS_RIGHT)
+		self.pack_end(hscale, False, False, 0)
+		hscale.connect("value-changed", self.hscale_value_changed_cb, key)
+
+		client = gconf.client_get_default()
+		value = client.get(key)
+
+		if value.type == gconf.VALUE_INT:
+			hscale.set_value(client.get_int(key))
+		elif value.type == gconf.VALUE_FLOAT:
+			hscale.set_value(client.get_float(key))

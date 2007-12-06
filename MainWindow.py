@@ -15,6 +15,7 @@ from Nautilus import Nautilus
 from PowerManager import PowerManager
 from LockDown import LockDown
 from Computer import Computer
+from Metacity import Metacity
 
 gettext.install("ubuntu-tweak", unicode = True)
 
@@ -35,6 +36,7 @@ VERSION = "0.2.4"
 		SESSION_PAGE,
 	DESKTOP_PAGE,
 		ICON_PAGE,
+		METACITY_PAGE,
 		COMPIZ_PAGE,
 		GNOME_PAGE,
 		NAUTILUS_PAGE,
@@ -45,7 +47,7 @@ VERSION = "0.2.4"
 #	APPLICATION_PAGE,
 #		FCITX_PAGE,
 	TOTAL_PAGE
-) = range(14)
+) = range(15)
 
 icons = \
 [
@@ -55,6 +57,7 @@ icons = \
 	"pixmaps/session.png",
 	"pixmaps/desktop.png",
 	"pixmaps/icon.png",
+	"pixmaps/metacity.png",
 	"pixmaps/compiz-fusion.png",
 	"pixmaps/gnome.png",
 	"pixmaps/nautilus.png",
@@ -93,6 +96,7 @@ startup = \
 desktop = \
 [
 	[ICON_PAGE, icons[ICON_PAGE], _("Desktop Icon"), Icon()],
+	[METACITY_PAGE, icons[METACITY_PAGE], _("Metacity"), Metacity()],
 	[COMPIZ_PAGE, icons[COMPIZ_PAGE], _("Compiz Fusion"), Compiz()],
 	[GNOME_PAGE, icons[GNOME_PAGE], _("GNOME"), Gnome()],
 	[NAUTILUS_PAGE, icons[NAUTILUS_PAGE], _("Nautilus"), Nautilus()]
@@ -117,7 +121,7 @@ itemlist = \
 [
 	[WELCOME_PAGE, icons[WELCOME_PAGE], _("Welcome"), Welcome(), None],
 	[COMPUTER_PAGE, icons[COMPUTER_PAGE], _("Computer"), Computer(), None],
-	[STARTUP_PAGE, icons[SESSION_PAGE], _("Startup"), Blank(), startup],
+	[STARTUP_PAGE, icons[STARTUP_PAGE], _("Startup"), Blank(), startup],
 	[DESKTOP_PAGE, icons[DESKTOP_PAGE], _("Desktop"), Blank(), desktop],
 	[SYSTEM_PAGE, icons[SYSTEM_PAGE], _("System"), Blank(), system],
 	[SECURITY_PAGE, icons[SECURITY_PAGE], _("Security"), Blank(), security],
