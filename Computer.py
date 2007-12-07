@@ -22,22 +22,25 @@ class Computer(gtk.VBox):
 				distribinfo = distribinfo + " " + element.split("=")[1][0:-1]
 			if element.split("=")[0] == "DISTRIB_CODENAME":
 				distribinfo = distribinfo + "(" + element.split("=")[1][0:-1] + ")"
+		distrib.close()
 
 		cpu = open("/proc/cpuinfo")
 		cpuinfo = cpu.readlines()
 		for element in cpuinfo:
 			if element.split(":")[0] == "model name\t":
 				cpumodel = element.split(":")[1]
+		cpu.close()
 
 		ram = open("/proc/meminfo")
 		ramlines = ram.readlines()
 		for element in ramlines:
 			if element.split(" ")[0] == "MemTotal:":
 				raminfo = element.split(" ")[6]
+		ram.close()
 
 		box = ItemBox(_("<b>System information</b>"),(
 			EntryBox(_("Hostname"),os.uname()[1]),
-			EntryBox(_("Distubute"), distribinfo),
+			EntryBox(_("Distribution"), distribinfo),
 			EntryBox(_("Kernel"), os.uname()[0]+" "+os.uname()[2]),
 			EntryBox(_("Platform"), os.uname()[-1]),
 			EntryBox(_("CPU"), cpumodel[0:-1]),

@@ -101,10 +101,6 @@ class Session(gtk.VBox):
 	def __init__(self):
 		gtk.VBox.__init__(self)
 
-#		main_vbox = gtk.VBox(False, 5)
-#		main_vbox.set_border_width(5)
-#		self.pack_start(main_vbox, False, False, 0)
-
 		self.pack_start(self.session_control_box(), False, False, 0)
 
 		box = ItemBox(_("<b>Click the large button to change Splash screen</b>"), (self.splash_hbox(),))

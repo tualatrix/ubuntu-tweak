@@ -72,7 +72,7 @@ def Welcome():
 	vbox = gtk.VBox(False, 0)
 
 	label = gtk.Label()
-	label.set_markup(_("<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak!</b></span>\n\n\nThis is a tool for Ubuntu which makes it easy to change hidden \nsystem and desktop settings.\n\nUbuntu Tweak is currently only for the GNOME Desktop Environment.\n\nAlthough this application is only in early stages, I'll keep developing it.\n\nIf you have any suggestions, Please E-mail me. \n\nThank You!"))
+	label.set_markup(_("<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak!</b></span>\n\n\nThis is a tool for Ubuntu which makes it easy to change hidden \nsystem and desktop settings.\n\nUbuntu Tweak is currently only for the GNOME Desktop Environment.\n\nAlthough this application is only in early stages, I'll keep developing it.\n\nIf you have any suggestions, Please visit the website in \"About\" and \nshare ideas with me. \n\nThank You!"))
 	label.set_justify(gtk.JUSTIFY_FILL)
 	vbox.pack_start(label, False, False, 50)
 
@@ -210,6 +210,7 @@ class MainWindow(gtk.Window):
 	
 	def show_about(self, data = None):
 		gtk.about_dialog_set_url_hook(self.click_website)
+		gtk.about_dialog_set_email_hook(self.click_website)
 		about = gtk.AboutDialog()
 		about.set_name("Ubuntu Tweak")
 		about.set_version(VERSION)

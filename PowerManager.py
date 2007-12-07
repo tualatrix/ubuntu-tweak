@@ -26,10 +26,10 @@ class PowerManager(gtk.VBox):
                 self.pack_start(box, False, False, 0)
 
 		box = ItemBox(_("<b>CPU Policy</b>"), (
-			HScaleBox("performance_ac", 0, 100, "/apps/gnome-power-manager/cpufreq/performance_ac"),
-			HScaleBox("performance_battery", 0, 100, "/apps/gnome-power-manager/cpufreq/performance_battery"),
-			ComboboxItem(_("When using AC power, CPU frequency policy"), [_("On Demand"), _("Power Save"), _("Performance")], ["ondemand", "powersave", "performance"], "/apps/gnome-power-manager/cpufreq/policy_ac"),
-			ComboboxItem(_("When using Battery power, CPU frequency policy"), [_("On Demand"), _("Power Save"), _("Performance")], ["ondemand", "powersave", "performance"], "/apps/gnome-power-manager/cpufreq/policy_battery")
+			HScaleBox("The Performance value when on AC power", 0, 100, "/apps/gnome-power-manager/cpufreq/performance_ac"),
+			HScaleBox("The Performance value when on battery power", 0, 100, "/apps/gnome-power-manager/cpufreq/performance_battery"),
+			ComboboxItem(_("The CPU frequency policy when on AC power"), [_("On Demand"), _("Power Save"), _("Performance")], ["ondemand", "powersave", "performance"], "/apps/gnome-power-manager/cpufreq/policy_ac"),
+			ComboboxItem(_("The CPU frequency policy when on battery power"), [_("On Demand"), _("Power Save"), _("Performance")], ["ondemand", "powersave", "performance"], "/apps/gnome-power-manager/cpufreq/policy_battery")
 		))
 			
                 self.pack_start(box, False, False, 0)

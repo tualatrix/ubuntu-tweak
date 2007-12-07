@@ -20,7 +20,7 @@ class Gnome(gtk.VBox):
 			GConfCheckButton(_("Complete lockdown of the Panel "), "/apps/panel/global/locked_down"),
 			GConfCheckButton(_("Show Input Method menu in the right-click"), "/desktop/gnome/interface/show_input_method_menu"),
 			GConfCheckButton(_("Show Unicode Method menu in the right-click"), "/desktop/gnome/interface/show_unicode_menu"),
-			ComboboxItem(_("notification-daemon Popup location"), [_("Top Left"), _("Top Right"), _("Bottom Left"), _("Bottom Right")], ["top_left", "top_right", "bottom_left", "bottom_right"], "/apps/notification-daemon/popup_location")
+			ComboboxItem(_("Notification-daemon popup location"), [_("Top Left"), _("Top Right"), _("Bottom Left"), _("Bottom Right")], ["top_left", "top_right", "bottom_left", "bottom_right"], "/apps/notification-daemon/popup_location")
 			))
 		self.pack_start(box, False, False, 0)
 
