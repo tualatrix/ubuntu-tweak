@@ -44,7 +44,7 @@ class Computer(gtk.VBox):
 			EntryBox(_("Kernel"), os.uname()[0]+" "+os.uname()[2]),
 			EntryBox(_("Platform"), os.uname()[-1]),
 			EntryBox(_("CPU"), cpumodel[0:-1]),
-			EntryBox(_("Memery"), raminfo+" KB"),
+			EntryBox(_("Memory"), raminfo+" KB"),
 				))
 		self.pack_start(box, False, False, 0)
 
