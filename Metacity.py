@@ -6,6 +6,7 @@ import gobject
 import gettext
 
 from Widgets import GConfCheckButton, ItemBox, EntryBox, HScaleBox, ComboboxItem
+from Computer import DISTRIB
 
 class Metacity(gtk.VBox):
 	"""Some options about Metacity Window Manager"""
@@ -21,10 +22,11 @@ class Metacity(gtk.VBox):
 			))
 		self.pack_start(box, False, False, 0)
 
-		box = ItemBox(_("<b>Window Titlebar Action</b>"),(
-			ComboboxItem(_("Title bar mouse wheel action"), [_("None"), _("Roll up")], ["none", "shade"], "/apps/gwd/mouse_wheel_action"),
-			ComboboxItem(_("Title bar Double-click action"), [_("None"), _("Maximize"), _("Minimize"), _("Roll up"), _("Lower"), _("Menu")], ["none", "toggle_maximize", "minimize", "toggle_shade", "lower", "menu"], "/apps/metacity/general/action_double_click_titlebar"),
-			ComboboxItem(_("Title bar Middle-click action"), [_("None"), _("Maximize"), _("Minimize"), _("Roll up"), _("Lower"), _("Menu")], ["none", "toggle_maximize", "minimize", "toggle_shade", "lower", "menu"], "/apps/metacity/general/action_middle_click_titlebar"),
-			ComboboxItem(_("Title bar Right-click action"), [_("None"), _("Maximize"), _("Minimize"), _("Roll up"), _("Lower"), _("Menu")], ["none", "toggle_maximize", "minimize", "toggle_shade", "lower", "menu"], "/apps/metacity/general/action_right_click_titlebar"),
-			))
-		self.pack_start(box, False, False, 0)
+		if DISTRIB != "feisty":
+			box = ItemBox(_("<b>Window Titlebar Action</b>"),(
+				ComboboxItem(_("Title bar mouse wheel action"), [_("None"), _("Roll up")], ["none", "shade"], "/apps/gwd/mouse_wheel_action"),
+				ComboboxItem(_("Title bar Double-click action"), [_("None"), _("Maximize"), _("Minimize"), _("Roll up"), _("Lower"), _("Menu")], ["none", "toggle_maximize", "minimize", "toggle_shade", "lower", "menu"], "/apps/metacity/general/action_double_click_titlebar"),
+				ComboboxItem(_("Title bar Middle-click action"), [_("None"), _("Maximize"), _("Minimize"), _("Roll up"), _("Lower"), _("Menu")], ["none", "toggle_maximize", "minimize", "toggle_shade", "lower", "menu"], "/apps/metacity/general/action_middle_click_titlebar"),
+				ComboboxItem(_("Title bar Right-click action"), [_("None"), _("Maximize"), _("Minimize"), _("Roll up"), _("Lower"), _("Menu")], ["none", "toggle_maximize", "minimize", "toggle_shade", "lower", "menu"], "/apps/metacity/general/action_right_click_titlebar"),
+				))
+			self.pack_start(box, False, False, 0)

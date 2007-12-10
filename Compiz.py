@@ -238,25 +238,34 @@ class Compiz(gtk.VBox):
 
 		vbox = gtk.VBox(False, 0)
 		vbox.set_border_width(5)
-		label = gtk.Label()
-		label.set_markup(_("<b>Edge Setting</b>"))
-		label.set_alignment(0, 0)
-		vbox.pack_start(label, False, False, 0)
-		self.pack_start(vbox, False, False, 0)
 
-		hbox = gtk.HBox(False, 0)
-		self.pack_start(hbox, False, False, 0)
-		hbox.pack_start(self.create_edge_setting(), True, False, 0)
+		client = gconf.client_get_default()
+		wm = client.get_string("/desktop/gnome/applications/window_manager/current")
+		if wm == "/usr/bin/compiz":
+			label = gtk.Label()
+			label.set_markup(_("<b>Edge Setting</b>"))
+			label.set_alignment(0, 0)
+			vbox.pack_start(label, False, False, 0)
+			self.pack_start(vbox, False, False, 0)
 
-		button1 = self.create_snap_window_checkbutton(_("Snapping Windows(DON'T USE with Wobbly Windows)"))
-		button2 = self.create_wobbly_effect_checkbutton(_("Maximize Effect"), "/apps/compiz/plugins/wobbly/screen0/options/maximize_effect")
-		button3 = self.create_wobbly_effect_checkbutton(_("Wobbly Windows"),"/apps/compiz/plugins/wobbly/screen0/options/move_window_match")
+			hbox = gtk.HBox(False, 0)
+			self.pack_start(hbox, False, False, 0)
+			hbox.pack_start(self.create_edge_setting(), True, False, 0)
 
-		box = ItemBox(_("<b>Window Effects</b>"), (button1, button2, button3))
-		self.pack_start(box, False, False, 0)
+			button1 = self.create_snap_window_checkbutton(_("Snapping Windows(DON'T USE with Wobbly Windows)"))
+			button2 = self.create_wobbly_effect_checkbutton(_("Maximize Effect"), "/apps/compiz/plugins/wobbly/screen0/options/maximize_effect")
+			button3 = self.create_wobbly_effect_checkbutton(_("Wobbly Windows"),"/apps/compiz/plugins/wobbly/screen0/options/move_window_match")
 
-		button1 = self.create_opacity_menu_checkbutton()
-		button2 = self.create_wobbly_effect_checkbutton(_("Wobbly Menu"), "/apps/compiz/plugins/wobbly/screen0/options/map_effect")
+			box = ItemBox(_("<b>Window Effects</b>"), (button1, button2, button3))
+			self.pack_start(box, False, False, 0)
 
-		box = ItemBox(_("<b>Menu Effects</b>"), (button1, button2))
-		self.pack_start(box, False, False, 0)
+			button1 = self.create_opacity_menu_checkbutton()
+			button2 = self.create_wobbly_effect_checkbutton(_("Wobbly Menu"), "/apps/compiz/plugins/wobbly/screen0/options/map_effect")
+
+			box = ItemBox(_("<b>Menu Effects</b>"), (button1, button2))
+			self.pack_start(box, False, False, 0)
+		else:
+			
+			label = gtk.Label()
+			label.set_markup(_("<b>Compiz isn't your current Window Manager</b>"))
+			self.pack_start(label, True, True, 0)

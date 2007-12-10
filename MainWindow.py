@@ -17,8 +17,6 @@ from LockDown import LockDown
 from Computer import Computer
 from Metacity import Metacity
 
-gettext.install("ubuntu-tweak", unicode = True)
-
 VERSION = "0.2.4"
 
 (

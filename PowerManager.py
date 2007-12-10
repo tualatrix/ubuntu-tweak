@@ -6,6 +6,7 @@ import gconf
 import gettext
 
 from Widgets import GConfCheckButton, ItemBox, HScaleBox, ComboboxItem
+from Computer import DISTRIB
 
 gettext.install("ubuntu-tweak", unicode = True)
 
@@ -15,21 +16,39 @@ class PowerManager(gtk.VBox):
         def __init__(self):
                 gtk.VBox.__init__(self)
 
-                box = ItemBox(_("<b>Advanced Power Management Settings</b>"), (
-			GConfCheckButton(_("Enable Hibernation"), "/apps/gnome-power-manager/general/can_hibernate"),
-			GConfCheckButton(_("Enable Suspend"), "/apps/gnome-power-manager/general/can_suspend"),
-			GConfCheckButton(_("Show CPU frequency option in \"Power Management\""), "/apps/gnome-power-manager/ui/cpufreq_show"),
-			GConfCheckButton(_("Disconnected NetworkManager on sleep"), "/apps/gnome-power-manager/general/network_sleep"),
-			GConfCheckButton(_("Lock screen when blanked"), "/apps/gnome-power-manager/lock/blank_screen"),
-			ComboboxItem(_("\"GNOME Panel\" Power Management icon"), [_("Never display"), _("When charging"), _("Always display")], ["never", "charge", "always"], "/apps/gnome-power-manager/ui/icon_policy"),
-			)) 
+		if DISTRIB == "feisty":
+			box = ItemBox(_("<b>Advanced Power Management Settings</b>"), (
+				GConfCheckButton(_("Enable Hibernation"), "/apps/gnome-power-manager/can_hibernate"),
+				GConfCheckButton(_("Enable Suspend"), "/apps/gnome-power-manager/can_suspend"),
+				GConfCheckButton(_("Show CPU frequency option in \"Power Management\""), "/apps/gnome-power-manager/show_cpufreq_ui"),
+				GConfCheckButton(_("Lock screen when blanked"), "/apps/gnome-power-manager/lock_on_blank_screen"),
+				ComboboxItem(_("\"GNOME Panel\" Power Management icon"), [_("Never display"), _("When charging"), _("Always display")], ["never", "charge", "always"], "/apps/gnome-power-manager/display_icon_policy"),
+				)) 
+			
+		else:
+			box = ItemBox(_("<b>Advanced Power Management Settings</b>"), (
+				GConfCheckButton(_("Enable Hibernation"), "/apps/gnome-power-manager/general/can_hibernate"),
+				GConfCheckButton(_("Enable Suspend"), "/apps/gnome-power-manager/general/can_suspend"),
+				GConfCheckButton(_("Show CPU frequency option in \"Power Management\""), "/apps/gnome-power-manager/ui/cpufreq_show"),
+				GConfCheckButton(_("Disconnected NetworkManager on sleep"), "/apps/gnome-power-manager/general/network_sleep"),
+				GConfCheckButton(_("Lock screen when blanked"), "/apps/gnome-power-manager/lock/blank_screen"),
+				ComboboxItem(_("\"GNOME Panel\" Power Management icon"), [_("Never display"), _("When charging"), _("Always display")], ["never", "charge", "always"], "/apps/gnome-power-manager/ui/icon_policy"),
+				)) 
                 self.pack_start(box, False, False, 0)
 
-		box = ItemBox(_("<b>CPU Policy</b>"), (
-			HScaleBox(_("The Performance value when on AC power"), 0, 100, "/apps/gnome-power-manager/cpufreq/performance_ac"),
-			HScaleBox(_("The Performance value when on battery power"), 0, 100, "/apps/gnome-power-manager/cpufreq/performance_battery"),
-			ComboboxItem(_("The CPU frequency policy when on AC power"), [_("On Demand"), _("Power Save"), _("Performance")], ["ondemand", "powersave", "performance"], "/apps/gnome-power-manager/cpufreq/policy_ac"),
-			ComboboxItem(_("The CPU frequency policy when on battery power"), [_("On Demand"), _("Power Save"), _("Performance")], ["ondemand", "powersave", "performance"], "/apps/gnome-power-manager/cpufreq/policy_battery")
-		))
+		if DISTRIB == "feisty":
+			box = ItemBox(_("<b>CPU Policy</b>"), (
+				HScaleBox(_("The Performance value when on AC power"), 0, 100, "/apps/gnome-power-manager/cpufreq_ac_performance"),
+				HScaleBox(_("The Performance value when on battery power"), 0, 100, "/apps/gnome-power-manager/cpufreq_battery_performance"),
+				ComboboxItem(_("The CPU frequency policy when on AC power"), [_("On Demand"), _("Power Save"), _("Performance")], ["ondemand", "powersave", "performance"], "/apps/gnome-power-manager/cpufreq_ac_policy"),
+				ComboboxItem(_("The CPU frequency policy when on battery power"), [_("On Demand"), _("Power Save"), _("Performance")], ["ondemand", "powersave", "performance"], "/apps/gnome-power-manager/cpufreq_battery_policy")
+			))
+		else:
+			box = ItemBox(_("<b>CPU Policy</b>"), (
+				HScaleBox(_("The Performance value when on AC power"), 0, 100, "/apps/gnome-power-manager/cpufreq/performance_ac"),
+				HScaleBox(_("The Performance value when on battery power"), 0, 100, "/apps/gnome-power-manager/cpufreq/performance_battery"),
+				ComboboxItem(_("The CPU frequency policy when on AC power"), [_("On Demand"), _("Power Save"), _("Performance")], ["ondemand", "powersave", "performance"], "/apps/gnome-power-manager/cpufreq/policy_ac"),
+				ComboboxItem(_("The CPU frequency policy when on battery power"), [_("On Demand"), _("Power Save"), _("Performance")], ["ondemand", "powersave", "performance"], "/apps/gnome-power-manager/cpufreq/policy_battery")
+			))
 			
                 self.pack_start(box, False, False, 0)

@@ -126,10 +126,11 @@ class HScaleBox(gtk.HBox):
 		client = gconf.client_get_default()
 		value = client.get(key)
 
-		if value.type == gconf.VALUE_INT:
-			hscale.set_value(client.get_int(key))
-		elif value.type == gconf.VALUE_FLOAT:
-			hscale.set_value(client.get_float(key))
+		if value:
+			if value.type == gconf.VALUE_INT:
+				hscale.set_value(client.get_int(key))
+			elif value.type == gconf.VALUE_FLOAT:
+				hscale.set_value(client.get_float(key))
 
 
 class ComboboxItem(gtk.HBox):

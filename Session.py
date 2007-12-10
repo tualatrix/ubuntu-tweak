@@ -79,7 +79,8 @@ class Session(gtk.VBox):
 		alignment.set_size_request(200, 150)
 		vbox.pack_start(alignment, False, False, 0)
 
-		self.image = gtk.image_new_from_pixbuf(self.new_preview)
+		self.image = gtk.Image()
+		self.image.set_from_pixbuf(self.new_preview)
 		alignment.add(self.image)
 
 		label = gtk.Label(filename)
