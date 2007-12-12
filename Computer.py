@@ -57,7 +57,7 @@ class Computer(gtk.VBox):
 				))
 		self.pack_start(box, False, False, 0)
 
-		box = ItemBox(_("<b>User infomation</b>"),(
+		box = ItemBox(_("<b>User information</b>"),(
 			EntryBox(_("Current User"), os.getenv("USER")),
 			EntryBox(_("Home Directory"), os.getenv("HOME")),
 			EntryBox(_("Shell"), os.getenv("SHELL")),
