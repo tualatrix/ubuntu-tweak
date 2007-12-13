@@ -22,7 +22,7 @@ lockdown_keys = \
 lockdown_names = \
 [
 	_("Disable \"Run Application\" dialog (Alt+F2)"),
-	_("Disable Lock Screen (Ctrl+Alt+L)"),
+	_("Disable Lock Screen"),
 	_("Disable Printing"),
 	_("Disable Print Setup"),
 	_("Disable Save To Disk"),
