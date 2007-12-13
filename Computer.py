@@ -5,28 +5,11 @@ import os
 import gobject
 import gettext
 
+from aptsources import distro
 from Widgets import GConfCheckButton, ItemBox, EntryBox
 
-def get_distrib(codename = False):
-	distrib = open("/etc/lsb-release")
-	distriblines = distrib.readlines()
-	if codename:
-		for element in distriblines:
-			if element.split("=")[0] == "DISTRIB_CODENAME":
-				distribinfo = element.split("=")[1][0:-1]
-	else:
-		for element in distriblines:
-			if element.split("=")[0] == "DISTRIB_ID":
-				distribinfo = element.split("=")[1][0:-1]
-			if element.split("=")[0] == "DISTRIB_RELEASE":
-				distribinfo = distribinfo + " " + element.split("=")[1][0:-1]
-			if element.split("=")[0] == "DISTRIB_CODENAME":
-				distribinfo = distribinfo + "(" + element.split("=")[1][0:-1] + ")"
-
-	distrib.close()
-	return distribinfo
-
-DISTRIB = get_distrib(codename = True)
+UBUNTU = distro.get_distro()
+DISTRIB = UBUNTU.codename
 
 class Computer(gtk.VBox):
 	"""Some options about root user"""
@@ -49,11 +32,11 @@ class Computer(gtk.VBox):
 
 		box = ItemBox(_("<b>System information</b>"),(
 			EntryBox(_("Hostname"),os.uname()[1]),
-			EntryBox(_("Distribution"), get_distrib()),
+			EntryBox(_("Distribution"), UBUNTU.description),
 			EntryBox(_("Kernel"), os.uname()[0]+" "+os.uname()[2]),
 			EntryBox(_("Platform"), os.uname()[-1]),
 			EntryBox(_("CPU"), cpumodel[0:-1]),
-			EntryBox(_("Memory"), raminfo+" KB"),
+			EntryBox(_("Memory"), str(int(raminfo)/1024)+" MB"),
 				))
 		self.pack_start(box, False, False, 0)
 

@@ -240,8 +240,8 @@ class Compiz(gtk.VBox):
 		vbox.set_border_width(5)
 
 		client = gconf.client_get_default()
-		wm = client.get_string("/desktop/gnome/applications/window_manager/current")
-		if wm == "/usr/bin/compiz":
+		cf_installed = client.dir_exists("/apps/compiz")
+		if cf_installed:
 			label = gtk.Label()
 			label.set_markup(_("<b>Edge Setting</b>"))
 			label.set_alignment(0, 0)
@@ -267,5 +267,5 @@ class Compiz(gtk.VBox):
 		else:
 			
 			label = gtk.Label()
-			label.set_markup(_("<b>Compiz isn't your current Window Manager</b>"))
+			label.set_markup(_("<b>Compiz Fusion has not installed or not installed completely.</b>\n\nCheck if the <b>libcompizconfig-backend-gconf</b> has installed."))
 			self.pack_start(label, True, True, 0)

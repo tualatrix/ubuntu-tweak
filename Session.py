@@ -22,12 +22,19 @@ class Session(gtk.VBox):
 		if dialog.run() == gtk.RESPONSE_ACCEPT:
 			client = gconf.client_get_default()
 			filename = dialog.get_filename()
-			data.set_text(filename)
+			data.set_text(os.path.basename(filename))
+			self.filedir = os.path.dirname(filename)
 			self.original_preview = gtk.gdk.pixbuf_new_from_file(filename)
 			x = self.original_preview.get_width()
 			y = self.original_preview.get_height()
+			if x * 180 / y > 240:
+				y = y * 240 / x
+				x = 240
+			else:
+				x = x * 180 / y
+				y = 180
 
-			self.new_preview = self.original_preview.scale_simple(x / 2, y / 2, gtk.gdk.INTERP_NEAREST)
+			self.new_preview = self.original_preview.scale_simple(x , y, gtk.gdk.INTERP_NEAREST)
 			self.image.set_from_pixbuf(self.new_preview)
 			client.set_string("/apps/gnome-session/options/splash_image", filename)
 		dialog.destroy()
@@ -48,24 +55,25 @@ class Session(gtk.VBox):
 		try:
 			f = open(filename)
 		except IOError:
-			filename = "/usr/share/pixmaps/splash/gnome-splash.png"
-			client.set_string("/apps/gnome-session/options/splash_image", "/usr/share/pixmaps/splash/gnome-splash.png")
-
-		self.original_preview = gtk.gdk.pixbuf_new_from_file(filename)
-		x = self.original_preview.get_width()
-		y = self.original_preview.get_height()
-
-		if x * 150 / y > 200:
-			y = y * 200 / x
-			x = 200
+			print "Failed to open file '%s': No such file or directory" % filename
 		else:
-			x = x * 150 / y
-			y = 150
+			self.original_preview = gtk.gdk.pixbuf_new_from_file(filename)
+			x = self.original_preview.get_width()
+			y = self.original_preview.get_height()
 
-		self.new_preview = self.original_preview.scale_simple(x, y, gtk.gdk.INTERP_NEAREST)
+			if x * 180 / y > 240:
+				y = y * 240 / x
+				x = 240
+			else:
+				x = x * 180 / y
+				y = 180
+
+			self.new_preview = self.original_preview.scale_simple(x, y, gtk.gdk.INTERP_NEAREST)
+
 		hbox = gtk.HBox(False, 0)
 		self.button = gtk.Button()
 		hbox.pack_start(self.button, True, False, 0)
+		hbox.set_size_request(256, -1)
 
 		if client.get_bool("/apps/gnome-session/options/show_splash_screen"):
 			self.button.set_sensitive(True)
@@ -76,14 +84,15 @@ class Session(gtk.VBox):
 		self.button.add(vbox)
 
 		alignment = gtk.Alignment(0.5, 0.5, 1, 1)
-		alignment.set_size_request(200, 150)
+		alignment.set_size_request(240, 180)
 		vbox.pack_start(alignment, False, False, 0)
 
 		self.image = gtk.Image()
-		self.image.set_from_pixbuf(self.new_preview)
+		if getattr(self, "new_preview", False):
+			self.image.set_from_pixbuf(self.new_preview)
 		alignment.add(self.image)
 
-		label = gtk.Label(filename)
+		label = gtk.Label(os.path.basename(filename))
 		vbox.pack_end(label, False, False, 0)
 
 		self.button.connect("clicked", self.change_splash_cb, label)
