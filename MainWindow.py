@@ -236,9 +236,18 @@ class MainWindow(gtk.Window):
 		vbox = gtk.VBox(False, 0)
 		self.add(vbox)
 
-		banner = gtk.Image()
-		banner.set_from_file("pixmaps/banner.png")
-		vbox.pack_start(banner, False, False, 0)
+		eventbox = gtk.EventBox()
+		hbox = gtk.HBox(False, 0)
+		eventbox.add(hbox)
+		eventbox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.Color(8448, 8448, 8448))
+		vbox.pack_start(eventbox, False, False, 0)
+
+		banner_left = gtk.Image()
+		banner_left.set_from_file("pixmaps/banner_left.png")
+		hbox.pack_start(banner_left, False, False, 0)
+		banner_right = gtk.Image()
+		banner_right.set_from_file("pixmaps/banner_right.png")
+		hbox.pack_end(banner_right, False, False, 0)
 
 		hpaned = gtk.HPaned()
 		vbox.pack_start(hpaned, True, True, 0)
