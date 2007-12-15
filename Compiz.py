@@ -3,7 +3,8 @@ pygtk.require("2.0")
 import gtk
 import gettext
 import gconf
-
+import apt_pkg
+from apt import package
 from Widgets import GConfCheckButton, ItemBox
 
 gettext.install("ubuntu-tweak", unicode = True)
@@ -239,9 +240,29 @@ class Compiz(gtk.VBox):
 		vbox = gtk.VBox(False, 0)
 		vbox.set_border_width(5)
 
-		client = gconf.client_get_default()
-		cf_installed = client.dir_exists("/apps/compiz")
-		if cf_installed:
+		apt_pkg.init()
+		cache = apt_pkg.GetCache()
+		depcache = apt_pkg.GetDepCache(cache)
+		records = apt_pkg.GetPkgRecords(cache)
+		sourcelist = apt_pkg.GetPkgSourceList()
+
+		try:
+			pkgiter = cache["compiz"]
+		except KeyError:
+			cf_version = False
+		else:
+			pkg = package.Package(cache, depcache, records, sourcelist, None, pkgiter)
+			if pkg.isInstalled:
+				if pkg.installedVersion.split("+")[0] == "1:0.6.2":
+					cf_version = True
+				else:
+					print "Don't Support the current verison of Compiz Fusion"
+					cf_version = False
+			else:
+				print "Compiz Fusion isn't installed."
+				cf_version = False
+
+		if cf_version:
 			label = gtk.Label()
 			label.set_markup(_("<b>Edge Setting</b>"))
 			label.set_alignment(0, 0)
