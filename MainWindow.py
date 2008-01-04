@@ -3,6 +3,11 @@
 import pygtk
 pygtk.require('2.0')
 import gtk
+import urllib2
+import sys
+import signal
+import thread
+import os
 import gobject
 import gettext
 
@@ -227,9 +232,13 @@ You should have received a copy of the GNU General Public License along with Ubu
 		about.run()
 		about.destroy()
 
+	def destroy(self, widget, data = None):
+		gtk.main_quit()
+
 	def __init__(self):
 		gtk.Window.__init__(self)
-		self.connect("destroy", lambda *w: gtk.main_quit())
+		self.cvpid = None
+		self.connect("destroy", self.destroy)
 		self.set_title("Ubuntu Tweak")
 		self.set_default_size(650,680)
 		self.set_position(gtk.WIN_POS_CENTER)
@@ -274,7 +283,7 @@ You should have received a copy of the GNU General Public License along with Ubu
 		button.connect("clicked", self.show_about)
 		hbox.pack_start(button, False, False, 0)
 		button = gtk.Button(stock = gtk.STOCK_QUIT)
-		button.connect("clicked", lambda *w: gtk.main_quit())
+		button.connect("clicked", self.destroy);
 		hbox.pack_end(button, False, False, 0)
 		
 		self.show_all()
