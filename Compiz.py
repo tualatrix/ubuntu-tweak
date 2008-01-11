@@ -186,7 +186,10 @@ class Compiz(gtk.VBox):
 		client = gconf.client_get_default()
 		wallpaper = client.get_string("/desktop/gnome/background/picture_filename")
 
-		pixbuf = gtk.gdk.pixbuf_new_from_file_at_size(wallpaper, 160, 100)
+		if wallpaper:
+			pixbuf = gtk.gdk.pixbuf_new_from_file_at_size(wallpaper, 160, 100)
+		else:
+			pixbuf = gtk.gdk.pixbuf_new_from_file_at_size("/usr/share/backgrounds/warty-final-ubuntu.png", 160, 100)
 		image = gtk.image_new_from_pixbuf(pixbuf)
 		hbox.pack_start(image, False, False, 0)
 		
