@@ -1,9 +1,31 @@
+#!/usr/bin/env python
+
+# Ubuntu Tweak - PyGTK based desktop configure tool
+#
+# Copyright (C) 2007-2008 TualatriX <tualatrix@gmail.com>
+#
+# Ubuntu Tweak is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# Ubuntu Tweak is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+
 import pygtk
 pygtk.require("2.0")
 import gtk
 import gettext
 import gconf
-import apt_pkg
+import os
+import gobject
+#import apt_pkg
 from apt import package
 from Widgets import GConfCheckButton, ItemBox
 
@@ -81,7 +103,11 @@ class Compiz(gtk.VBox):
 			client.set_string("/apps/compiz/plugins/expo/allscreens/options/expo_key", "<Super>e")
 
 		for element in keys_of_plugins_with_edge:
-			edge_list = client.get_list(element, gconf.VALUE_STRING)
+			try:
+				edge_list = client.get_list(element, gconf.VALUE_STRING)
+			except gobject.GError:
+				client.set_list(element, gconf.VALUE_STRING, [])
+				edge_list = client.get_list(element, gconf.VALUE_STRING)
 
 			if edge in edge_list:
 				combobox.set_active(keys_of_plugins_with_edge.index(element))
@@ -243,27 +269,16 @@ class Compiz(gtk.VBox):
 		vbox = gtk.VBox(False, 0)
 		vbox.set_border_width(5)
 
-		apt_pkg.init()
-		cache = apt_pkg.GetCache()
-		depcache = apt_pkg.GetDepCache(cache)
-		records = apt_pkg.GetPkgRecords(cache)
-		sourcelist = apt_pkg.GetPkgSourceList()
-
-		try:
-			pkgiter = cache["compiz"]
-		except KeyError:
-			cf_version = False
-		else:
-			pkg = package.Package(cache, depcache, records, sourcelist, None, pkgiter)
-			if pkg.isInstalled:
-				if pkg.installedVersion.split("+")[0] == "1:0.6.2":
-					cf_version = True
-				else:
-					print "Don't Support the current verison of Compiz Fusion"
-					cf_version = False
+		cmd = os.popen("apt-cache policy compiz")
+		if cmd.readline() == "compiz:\n":
+			if cmd.readline().split(":")[1][0:5] == "0.6.2":
+				cf_version = True
 			else:
-				print "Compiz Fusion isn't installed."
+				cf_message = _("Sorry!\nUbuntu Tweak can only support the <b>Compiz Fusion 0.6.2</b>")
 				cf_version = False
+		else:
+			cf_version = False
+			cf_message = _("Compiz Fusion is currently not installed or some of it's additional components are missing.")
 
 		if cf_version:
 			label = gtk.Label()
@@ -291,5 +306,5 @@ class Compiz(gtk.VBox):
 		else:
 			
 			label = gtk.Label()
-			label.set_markup(_("<b>Compiz Fusion has not installed or not installed completely.</b>\n\nCheck if the <b>libcompizconfig-backend-gconf</b> has installed."))
+			label.set_markup(cf_message)
 			self.pack_start(label, True, True, 0)
