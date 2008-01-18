@@ -246,7 +246,7 @@ class MainWindow(gtk.Window):
 		about.set_license("Ubuntu Tweak is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n\
 Ubuntu Tweak is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\
 You should have received a copy of the GNU General Public License along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA")
-		about.set_translator_credits("Super Jamie <jamie@superjamie.net>\nThree-leg-cat <threelegcat@gmail.com>\nWilliams <ff9will@gmail.com>\nValentin Steinwandter <valentin.steinwandter@rolmail.net>\nŁukasz <lukaszsk@gmail.com>")
+		about.set_translator_credits(_("translator-credits"))
 		about.set_artists(["Medical-Wei <a790407@hotmail.com>", "m.Sharp <mac.sharp@gmail.com>", "taiwan ock ting <a2d8a4v@gmail.com>"])
 		about.run()
 		about.destroy()
