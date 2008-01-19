@@ -30,24 +30,6 @@ import gconf
 
 class GConfCheckButton(gtk.CheckButton):
 
-	def value_changed(self, client, id, entry, data = None):
-		client = gconf.client_get_default()
-		value = client.get_value(data)
-
-		if type(value) == bool:
-			if value:
-				self.set_active(True)
-			else:
-				self.set_active(False)
-
-	def button_toggled(self, widget, data = None):
-		client = gconf.client_get_default()
-
-		if self.get_active():
-			client.set_bool(data, True)
-		else:
-			client.set_bool(data, False)
-
 	def __init__(self, label, key, extra = None):
 		gtk.CheckButton.__init__(self)
 		self.set_label(label)
@@ -76,6 +58,24 @@ class GConfCheckButton(gtk.CheckButton):
 			self.connect("toggled", extra, key)
 		else:
 			self.connect("toggled", self.button_toggled, key)
+
+	def value_changed(self, client, id, entry, data = None):
+		client = gconf.client_get_default()
+		value = client.get_value(data)
+
+		if type(value) == bool:
+			if value:
+				self.set_active(True)
+			else:
+				self.set_active(False)
+
+	def button_toggled(self, widget, data = None):
+		client = gconf.client_get_default()
+
+		if self.get_active():
+			client.set_bool(data, True)
+		else:
+			client.set_bool(data, False)
 
 class ItemBox(gtk.VBox):
 
@@ -155,10 +155,6 @@ class HScaleBox(gtk.HBox):
 
 class ComboboxItem(gtk.HBox):
 
-	def value_changed_cb(self, widget, data = None):
-		client = gconf.client_get_default()
-		text = widget.get_active_text()
-		client.set_string(data, widget.values[widget.texts.index(text)]) 
 	def __init__(self, label, texts, values, key):
 		gtk.HBox.__init__(self)
 		self.pack_start(gtk.Label(label), False, False, 0)	
@@ -176,3 +172,7 @@ class ComboboxItem(gtk.HBox):
 
 		if client.get_string(key) in values:
 			combobox.set_active(values.index(client.get_string(key)))
+	def value_changed_cb(self, widget, data = None):
+		client = gconf.client_get_default()
+		text = widget.get_active_text()
+		client.set_string(data, widget.values[widget.texts.index(text)]) 

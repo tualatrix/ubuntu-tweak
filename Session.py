@@ -31,6 +31,15 @@ gettext.install("ubuntu-tweak", unicode = True)
 
 class Session(gtk.VBox):
 	"""GNOME Session control"""
+
+	def __init__(self):
+		gtk.VBox.__init__(self)
+
+		self.pack_start(self.session_control_box(), False, False, 0)
+
+		box = ItemBox(_("<b>Click the large button to change Splash screen</b>"), (self.splash_hbox(),))
+		self.pack_start(box, False, False, 0)
+
 	def change_splash_cb(self, widget, data = None):
 		dialog = gtk.FileChooserDialog(_("Choose a Splash image"),action = gtk.FILE_CHOOSER_ACTION_OPEN, buttons = (gtk.STOCK_OPEN, gtk.RESPONSE_ACCEPT, gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL))
 		filter = gtk.FileFilter()
@@ -127,11 +136,3 @@ class Session(gtk.VBox):
 
 		box = ItemBox(_("<b>Session Control</b>"), (button, button2, button3, button4))
 		return box
-
-	def __init__(self):
-		gtk.VBox.__init__(self)
-
-		self.pack_start(self.session_control_box(), False, False, 0)
-
-		box = ItemBox(_("<b>Click the large button to change Splash screen</b>"), (self.splash_hbox(),))
-		self.pack_start(box, False, False, 0)

@@ -22,10 +22,7 @@
 import pygtk
 pygtk.require('2.0')
 import gtk
-import urllib2
 import sys
-import signal
-import thread
 import os
 import gobject
 import gettext
@@ -41,7 +38,7 @@ from LockDown import LockDown
 from Computer import Computer
 from Metacity import Metacity
 
-VERSION = "0.2.4"
+VERSION = "0.2.5"
 
 (
         NUM_COLUMN,
@@ -66,8 +63,6 @@ VERSION = "0.2.4"
 		POWER_PAGE,
 	SECURITY_PAGE,
 		SECU_OPTIONS_PAGE,
-#	APPLICATION_PAGE,
-#		FCITX_PAGE,
 	TOTAL_PAGE
 ) = range(15)
 
@@ -87,7 +82,6 @@ icons = \
 	"pixmaps/powermanager.png",
 	"pixmaps/security.png",
 	"pixmaps/lockdown.png",
-	"pixmaps/applications.png",
 ]
 
 def Welcome():
@@ -108,7 +102,6 @@ def Blank():
 	vbox.pack_start(label, False, False, 0)
 
 	return vbox
-
 
 startup = \
 [
@@ -134,11 +127,6 @@ security = \
 	[SECU_OPTIONS_PAGE, icons[SECU_OPTIONS_PAGE], _("Security Options"), LockDown()]
 ]
 
-#application = \
-#[
-#	[FCITX_PAGE, icons[FCITX_PAGE], _("Fcitx")]
-#]
-
 itemlist = \
 [
 	[WELCOME_PAGE, icons[WELCOME_PAGE], _("Welcome"), Welcome(), None],
@@ -147,13 +135,67 @@ itemlist = \
 	[DESKTOP_PAGE, icons[DESKTOP_PAGE], _("Desktop"), Blank(), desktop],
 	[SYSTEM_PAGE, icons[SYSTEM_PAGE], _("System"), Blank(), system],
 	[SECURITY_PAGE, icons[SECURITY_PAGE], _("Security"), Blank(), security],
-#	[APPLICATION_PAGE, icons[APPLICATION_PAGE], _("Application"),Blank(), None]
 ]
 
 class MainWindow(gtk.Window):
 	"""the main Window of Ubuntu Tweak"""
 
-	def create_model(self):
+	def __init__(self):
+		gtk.Window.__init__(self)
+		self.connect("destroy", self.destroy)
+		self.set_title("Ubuntu Tweak")
+		self.set_default_size(650, 680)
+		self.set_position(gtk.WIN_POS_CENTER)
+		self.set_border_width(10)
+		self.set_icon_from_file("pixmaps/ubuntu-tweak.png")
+
+		vbox = gtk.VBox(False, 0)
+		self.add(vbox)
+
+		eventbox = gtk.EventBox()
+		hbox = gtk.HBox(False, 0)
+		eventbox.add(hbox)
+		eventbox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.Color(8448, 8448, 8448))
+		vbox.pack_start(eventbox, False, False, 0)
+
+		banner_left = gtk.Image()
+		banner_left.set_from_file("pixmaps/banner_left.png")
+		hbox.pack_start(banner_left, False, False, 0)
+		banner_right = gtk.Image()
+		banner_right.set_from_file("pixmaps/banner_right.png")
+		hbox.pack_end(banner_right, False, False, 0)
+
+		hpaned = gtk.HPaned()
+		vbox.pack_start(hpaned, True, True, 0)
+
+		sw = gtk.ScrolledWindow()
+		sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+		sw.set_size_request(150, -1)
+		hpaned.pack1(sw)
+
+		model = self.__create_model()
+		self.treeview = gtk.TreeView(model)
+		self.__add_columns(self.treeview)
+		selection = self.treeview.get_selection()
+		selection.connect("changed", self.selection_cb)
+
+		sw.add(self.treeview)
+
+		self.notebook = self.create_notebook()
+		hpaned.pack2(self.notebook)
+
+		hbox = gtk.HBox(False,5)
+		vbox.pack_start(hbox, False, False, 5)
+		button = gtk.Button(stock = gtk.STOCK_ABOUT)
+		button.connect("clicked", self.show_about)
+		hbox.pack_start(button, False, False, 0)
+		button = gtk.Button(stock = gtk.STOCK_QUIT)
+		button.connect("clicked", self.destroy);
+		hbox.pack_end(button, False, False, 0)
+		
+		self.show_all()
+
+	def __create_model(self):
 		model = gtk.TreeStore(
 				gobject.TYPE_INT,
 				gtk.gdk.Pixbuf,
@@ -179,19 +221,21 @@ class MainWindow(gtk.Window):
 
 		return model
 
-	def selection_cb(self, widget, data=None):
+	def selection_cb(self, widget, data = None):
 		if not widget.get_selected():
 			return
-		iter = widget.get_selected()[1]
-		path = data.get_path(iter)
+		model, iter = widget.get_selected()
+		path = model.get_path(iter)
 		self.treeview.expand_row(path, True)
-		self.notebook.set_current_page(data.get_value(iter, NUM_COLUMN))
 
-	def add_columns(self, treeview):
-		model = treeview.get_model()
-		selection = treeview.get_selection()
-		selection.connect("changed", self.selection_cb, model)
+		if model.iter_has_child(iter):
+			child_iter = model.iter_children(iter)
+			self.notebook.set_current_page(model.get_value(child_iter, NUM_COLUMN))
+			widget.select_iter(child_iter)
+		else:
+			self.notebook.set_current_page(model.get_value(iter, NUM_COLUMN))
 
+	def __add_columns(self, treeview):
 		renderer = gtk.CellRendererText()
 
 		column = gtk.TreeViewColumn("Num",renderer,text = NUM_COLUMN)
@@ -233,7 +277,9 @@ class MainWindow(gtk.Window):
 	def show_about(self, data = None):
 		gtk.about_dialog_set_url_hook(self.click_website)
 		gtk.about_dialog_set_email_hook(self.click_website)
+
 		about = gtk.AboutDialog()
+		about.set_icon_from_file("pixmaps/ubuntu-tweak.png")
 		about.set_name("Ubuntu Tweak")
 		about.set_version(VERSION)
 		about.set_website("http://ubuntu-tweak.com")
@@ -253,59 +299,6 @@ You should have received a copy of the GNU General Public License along with Ubu
 
 	def destroy(self, widget, data = None):
 		gtk.main_quit()
-
-	def __init__(self):
-		gtk.Window.__init__(self)
-		self.cvpid = None
-		self.connect("destroy", self.destroy)
-		self.set_title("Ubuntu Tweak")
-		self.set_default_size(650,680)
-		self.set_position(gtk.WIN_POS_CENTER)
-		self.set_border_width(10)
-		self.set_icon_from_file("pixmaps/ubuntu-tweak.png")
-
-		vbox = gtk.VBox(False, 0)
-		self.add(vbox)
-
-		eventbox = gtk.EventBox()
-		hbox = gtk.HBox(False, 0)
-		eventbox.add(hbox)
-		eventbox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.Color(8448, 8448, 8448))
-		vbox.pack_start(eventbox, False, False, 0)
-
-		banner_left = gtk.Image()
-		banner_left.set_from_file("pixmaps/banner_left.png")
-		hbox.pack_start(banner_left, False, False, 0)
-		banner_right = gtk.Image()
-		banner_right.set_from_file("pixmaps/banner_right.png")
-		hbox.pack_end(banner_right, False, False, 0)
-
-		hpaned = gtk.HPaned()
-		vbox.pack_start(hpaned, True, True, 0)
-
-		sw = gtk.ScrolledWindow()
-		sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-		sw.set_size_request(150, -1)
-		hpaned.pack1(sw)
-
-		model = self.create_model()
-		self.treeview = gtk.TreeView(model)
-		self.add_columns(self.treeview)
-		sw.add(self.treeview)
-
-		self.notebook = self.create_notebook()
-		hpaned.pack2(self.notebook)
-
-		hbox = gtk.HBox(False,5)
-		vbox.pack_start(hbox, False, False, 5)
-		button = gtk.Button(stock = gtk.STOCK_ABOUT)
-		button.connect("clicked", self.show_about)
-		hbox.pack_start(button, False, False, 0)
-		button = gtk.Button(stock = gtk.STOCK_QUIT)
-		button.connect("clicked", self.destroy);
-		hbox.pack_end(button, False, False, 0)
-		
-		self.show_all()
 
 	def main(self):
 		gtk.main()

@@ -46,6 +46,54 @@ names_of_plugins_with_edge = \
 ]
 
 class Compiz(gtk.VBox):
+	"""Compiz Fusion tweak"""
+
+	def __init__(self):
+		gtk.VBox.__init__(self)
+
+		vbox = gtk.VBox(False, 0)
+		vbox.set_border_width(5)
+
+		cmd = os.popen("apt-cache policy compiz")
+		if cmd.readline() == "compiz:\n":
+			if cmd.readline().split(":")[1][0:5] == "0.6.2":
+				cf_version = True
+			else:
+				cf_message = _("Sorry!\nUbuntu Tweak can only support the <b>Compiz Fusion 0.6.2</b>")
+				cf_version = False
+		else:
+			cf_version = False
+			cf_message = _("Compiz Fusion is currently not installed or some of it's additional components are missing.")
+
+		if cf_version:
+			label = gtk.Label()
+			label.set_markup(_("<b>Edge Setting</b>"))
+			label.set_alignment(0, 0)
+			vbox.pack_start(label, False, False, 0)
+			self.pack_start(vbox, False, False, 0)
+
+			hbox = gtk.HBox(False, 0)
+			self.pack_start(hbox, False, False, 0)
+			hbox.pack_start(self.create_edge_setting(), True, False, 0)
+
+			button1 = self.create_snap_window_checkbutton(_("Snapping Windows(DON'T USE with Wobbly Windows)"))
+			button2 = self.create_wobbly_effect_checkbutton(_("Maximize Effect"), "/apps/compiz/plugins/wobbly/screen0/options/maximize_effect")
+			button3 = self.create_wobbly_effect_checkbutton(_("Wobbly Windows"),"/apps/compiz/plugins/wobbly/screen0/options/move_window_match")
+
+			box = ItemBox(_("<b>Window Effects</b>"), (button1, button2, button3))
+			self.pack_start(box, False, False, 0)
+
+			button1 = self.create_opacity_menu_checkbutton()
+			button2 = self.create_wobbly_effect_checkbutton(_("Wobbly Menu"), "/apps/compiz/plugins/wobbly/screen0/options/map_effect")
+
+			box = ItemBox(_("<b>Menu Effects</b>"), (button1, button2))
+			self.pack_start(box, False, False, 0)
+		else:
+			
+			label = gtk.Label()
+			label.set_markup(cf_message)
+			self.pack_start(label, True, True, 0)
+
 	def combo_box_changed_cb(self, widget, edge):
 		if widget.previous:
 			self.change_edge(widget, edge)
@@ -262,49 +310,3 @@ class Compiz(gtk.VBox):
 			return client.get_list("/apps/compiz/general/screen0/options/opacity_matches", gconf.VALUE_STRING)
 		if type == "values":
 			return client.get_list("/apps/compiz/general/screen0/options/opacity_values", gconf.VALUE_INT)
-
-	def __init__(self):
-		gtk.VBox.__init__(self)
-
-		vbox = gtk.VBox(False, 0)
-		vbox.set_border_width(5)
-
-		cmd = os.popen("apt-cache policy compiz")
-		if cmd.readline() == "compiz:\n":
-			if cmd.readline().split(":")[1][0:5] == "0.6.2":
-				cf_version = True
-			else:
-				cf_message = _("Sorry!\nUbuntu Tweak can only support the <b>Compiz Fusion 0.6.2</b>")
-				cf_version = False
-		else:
-			cf_version = False
-			cf_message = _("Compiz Fusion is currently not installed or some of it's additional components are missing.")
-
-		if cf_version:
-			label = gtk.Label()
-			label.set_markup(_("<b>Edge Setting</b>"))
-			label.set_alignment(0, 0)
-			vbox.pack_start(label, False, False, 0)
-			self.pack_start(vbox, False, False, 0)
-
-			hbox = gtk.HBox(False, 0)
-			self.pack_start(hbox, False, False, 0)
-			hbox.pack_start(self.create_edge_setting(), True, False, 0)
-
-			button1 = self.create_snap_window_checkbutton(_("Snapping Windows(DON'T USE with Wobbly Windows)"))
-			button2 = self.create_wobbly_effect_checkbutton(_("Maximize Effect"), "/apps/compiz/plugins/wobbly/screen0/options/maximize_effect")
-			button3 = self.create_wobbly_effect_checkbutton(_("Wobbly Windows"),"/apps/compiz/plugins/wobbly/screen0/options/move_window_match")
-
-			box = ItemBox(_("<b>Window Effects</b>"), (button1, button2, button3))
-			self.pack_start(box, False, False, 0)
-
-			button1 = self.create_opacity_menu_checkbutton()
-			button2 = self.create_wobbly_effect_checkbutton(_("Wobbly Menu"), "/apps/compiz/plugins/wobbly/screen0/options/map_effect")
-
-			box = ItemBox(_("<b>Menu Effects</b>"), (button1, button2))
-			self.pack_start(box, False, False, 0)
-		else:
-			
-			label = gtk.Label()
-			label.set_markup(cf_message)
-			self.pack_start(label, True, True, 0)

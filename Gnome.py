@@ -43,4 +43,3 @@ class Gnome(gtk.VBox):
 			ComboboxItem(_("Notification-daemon popup location"), [_("Top Left"), _("Top Right"), _("Bottom Left"), _("Bottom Right")], ["top_left", "top_right", "bottom_left", "bottom_right"], "/apps/notification-daemon/popup_location")
 			))
 		self.pack_start(box, False, False, 0)
-

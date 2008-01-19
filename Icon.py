@@ -76,26 +76,6 @@ class GConfEntry(gtk.Entry):
 
 class Icon(gtk.VBox):
 	"""Desktop Icon settings"""
-	def button_toggled(self, widget ,data = None):
-		client = gconf.client_get_default()
-		value = client.get(data)
-
-		if value.type == gconf.VALUE_BOOL:
-			if widget.get_active():
-				client.set_bool(data, True)
-				widget.box.set_sensitive(True)
-			else:
-				client.set_bool(data, False)
-				widget.box.set_sensitive(False)
-
-	def button_toggled_to_entry(self, widget ,data = None):
-		if widget.get_active():
-			widget.entry.set_sensitive(True)
-		else:
-			client = gconf.client_get_default()
-			client.unset(data)
-			widget.entry.set_text(_("Unset"))
-			widget.entry.set_sensitive(False)
 
 	def __init__(self):
 		gtk.VBox.__init__(self)
@@ -155,3 +135,24 @@ class Icon(gtk.VBox):
 
 		button = GConfCheckButton(_("Show Mounted Volumes on desktop"), "/apps/nautilus/desktop/volumes_visible")
 		main_button.vbox.pack_start(button, False, False, 0)
+
+	def button_toggled(self, widget ,data = None):
+		client = gconf.client_get_default()
+		value = client.get(data)
+
+		if value.type == gconf.VALUE_BOOL:
+			if widget.get_active():
+				client.set_bool(data, True)
+				widget.box.set_sensitive(True)
+			else:
+				client.set_bool(data, False)
+				widget.box.set_sensitive(False)
+
+	def button_toggled_to_entry(self, widget ,data = None):
+		if widget.get_active():
+			widget.entry.set_sensitive(True)
+		else:
+			client = gconf.client_get_default()
+			client.unset(data)
+			widget.entry.set_text(_("Unset"))
+			widget.entry.set_sensitive(False)

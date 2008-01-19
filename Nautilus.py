@@ -49,11 +49,6 @@ nautilus_names = \
 class Nautilus(gtk.VBox):
         """Nautilus Settings"""
 
-	def spinbutton_value_changed_cb(self, widget, data = None):
-		widget.set_increments(widget.get_value(), widget.get_value())
-		client = gconf.client_get_default()
-		client.set_int("/apps/nautilus/icon_view/thumbnail_size", int(widget.get_value()))
-
         def __init__(self):
                 gtk.VBox.__init__(self)
 
@@ -77,3 +72,8 @@ class Nautilus(gtk.VBox):
                 button2 = GConfCheckButton(nautilus_names[2], nautilus_keys[2])
                 box = ItemBox(_("<b>CD Burner</b>"), (button1, button2)) 
                 self.pack_start(box, False, False, 0)
+
+	def spinbutton_value_changed_cb(self, widget, data = None):
+		widget.set_increments(widget.get_value(), widget.get_value())
+		client = gconf.client_get_default()
+		client.set_int("/apps/nautilus/icon_view/thumbnail_size", int(widget.get_value()))
