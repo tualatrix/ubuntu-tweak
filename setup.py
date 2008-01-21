@@ -2,8 +2,10 @@
 
 import os
 import sys
+from stat import *
 from distutils.core import setup
 from distutils.command.install import install as _install
+from distutils.command.install_data import install_data as _install_data
 
 INSTALLED_FILES = "installed_files"
 
@@ -29,17 +31,16 @@ class install (_install):
         file.write (data)
         file.close ()
 
-#class install_data (_install_data):
-#
-#    def run (self):
-#        def chmod_data_file (file):
-#            try:
-#                os.chmod (file, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)
-#            except:
-#                self.warn ("Could not chmod data file %s" % file)
-#        _install_data.run (self)
-#        map (chmod_data_file, self.get_outputs ())
-#
+class install_data (_install_data):
+    def run (self):
+        def chmod_data_file (file):
+            try:
+                os.chmod (file, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)
+            except:
+                self.warn ("Could not chmod data file %s" % file)
+        _install_data.run (self)
+        map (chmod_data_file, self.get_outputs ())
+
 class uninstall (_install):
 
     def run (self):
@@ -87,17 +88,15 @@ data_files = [
 
 podir = os.path.join (os.path.realpath ("."), "po")
 if os.path.isdir (podir):
-    buildcmd = "msgfmt -o build/locale/%s/ubuntu-tweak.mo po/%s.po"
-    mopath = "build/locale/%s/ubuntu-tweak.mo"
+    buildcmd = "msgfmt -o build/locale/%s/LC_MESSAGES/ubuntu-tweak.mo po/%s.po"
+    mopath = "build/locale/%s/LC_MESSAGES/ubuntu-tweak.mo"
     destpath = "share/locale/%s/LC_MESSAGES"
     for name in os.listdir (podir):
         if name[-2:] == "po":
             name = name[:-3]
-            if sys.argv[1] == "build" \
-               or (sys.argv[1] == "install" and \
-                   not os.path.exists (mopath % name)):
-                if not os.path.isdir ("build/locale/" + name):
-                    os.makedirs ("build/locale/" + name)
+            if sys.argv[1] == "build" or (sys.argv[1] == "install" and not os.path.exists (mopath % name)):
+                if not os.path.isdir ("build/locale/%s/LC_MESSAGES" % name):
+                    os.makedirs ("build/locale/%s/LC_MESSAGES" % name)
                 os.system (buildcmd % (name, name))
             data_files.append ((destpath % name, [mopath % name]))
 
@@ -111,5 +110,6 @@ setup(
 	license		= "GPL",
 	data_files	= data_files,
         cmdclass         = {"uninstall" : uninstall,
-                            "install" : install}
+                            "install" : install,
+                            "install_data" : install_data}
 )
