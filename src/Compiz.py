@@ -55,8 +55,10 @@ class Compiz(gtk.VBox):
 		vbox.set_border_width(5)
 
 		cmd = os.popen("apt-cache policy compiz")
-		if cmd.readline() == "compiz:\n":
-			if cmd.readline().split(":")[1][0:5] == "0.6.2":
+		cf_title = cmd.readline()
+		cf_installed = cmd.readline()
+		if cf_title == "compiz:\n":
+			if "0.6.2" in cf_installed:
 				cf_version = True
 			else:
 				cf_message = _("Sorry!\nUbuntu Tweak can only support the <b>Compiz Fusion 0.6.2</b>")
