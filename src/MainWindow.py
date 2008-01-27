@@ -29,6 +29,7 @@ import gettext
 
 from gnome import url_show
 from Session import Session
+from AutoStart import AutoStart
 from Icon import Icon
 from Compiz import Compiz
 from Gnome import Gnome
@@ -38,7 +39,7 @@ from LockDown import LockDown
 from Computer import Computer
 from Metacity import Metacity
 
-VERSION = "0.2.5"
+VERSION = "0.2.6"
 
 (
         NUM_COLUMN,
@@ -53,6 +54,7 @@ VERSION = "0.2.5"
 	COMPUTER_PAGE,
 	STARTUP_PAGE,
 		SESSION_PAGE,
+		AUTOSTART_PAGE,
 	DESKTOP_PAGE,
 		ICON_PAGE,
 		METACITY_PAGE,
@@ -64,7 +66,7 @@ VERSION = "0.2.5"
 	SECURITY_PAGE,
 		SECU_OPTIONS_PAGE,
 	TOTAL_PAGE
-) = range(15)
+) = range(16)
 
 icons = \
 [
@@ -72,6 +74,7 @@ icons = \
 	"pixmaps/computer.png",
 	"pixmaps/startup.png",
 	"pixmaps/session.png",
+	"pixmaps/autostart.png",
 	"pixmaps/desktop.png",
 	"pixmaps/icon.png",
 	"pixmaps/metacity.png",
@@ -105,7 +108,8 @@ def Blank():
 
 startup = \
 [
-	[SESSION_PAGE, icons[SESSION_PAGE], _("Session Control"), Session()]
+	[SESSION_PAGE, icons[SESSION_PAGE], _("Session Control"), Session()],
+	[AUTOSTART_PAGE, icons[AUTOSTART_PAGE], _("AutoStart"), AutoStart()],
 ]
 
 desktop = \

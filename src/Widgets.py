@@ -78,7 +78,7 @@ class GConfCheckButton(gtk.CheckButton):
 			client.set_bool(data, False)
 
 class ItemBox(gtk.VBox):
-
+	"""The itembox used to pack a set of widgets with a markup title"""
 	def __init__(self, title, widgets = None):
 		gtk.VBox.__init__(self)
 		self.set_border_width(5)
@@ -100,7 +100,7 @@ class ItemBox(gtk.VBox):
 		hbox.pack_start(self.vbox, True, True, 0)
 
 		if widgets:
-			if widgets.__len__() < 2:
+			if len(widgets) < 2:
 				if type(widgets[0]) == GConfCheckButton:
 					self.vbox.pack_start(widgets[0], False, False, 0)
 				else:
