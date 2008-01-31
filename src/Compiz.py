@@ -25,7 +25,6 @@ import gettext
 import gconf
 import os
 import gobject
-#import apt_pkg
 from apt import package
 from Widgets import GConfCheckButton, ItemBox
 

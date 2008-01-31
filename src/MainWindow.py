@@ -95,6 +95,9 @@ def Welcome():
 	label.set_justify(gtk.JUSTIFY_FILL)
 	vbox.pack_start(label, False, False, 50)
 
+	hbox = gtk.HBox(False, 0)
+	vbox.pack_start(hbox, False, False, 0)
+		
 	return vbox
 
 def Blank():
@@ -109,7 +112,7 @@ def Blank():
 startup = \
 [
 	[SESSION_PAGE, icons[SESSION_PAGE], _("Session Control"), Session()],
-	[AUTOSTART_PAGE, icons[AUTOSTART_PAGE], _("AutoStart"), AutoStart()],
+	[AUTOSTART_PAGE, icons[AUTOSTART_PAGE], _("Auto Start"), AutoStart()],
 ]
 
 desktop = \

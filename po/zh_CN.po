@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2008-01-18 12:06+0800\n"
+"PO-Revision-Date: 2008-01-31 19:57+0800\n"
 "Last-Translator: TualatriX <tualatrix@gmail.com>\n"
 "Language-Team: TualatriX <tualatrix@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -12,23 +12,85 @@ msgstr ""
 "X-Poedit-Country: CHINA\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: Compiz.py:90
-msgid "Expo"
-msgstr "展示桌面"
+#: AutoStart.py:29
+msgid "<b>Name:</b>"
+msgstr "<b>名称：</b>"
 
-#: Compiz.py:91
-msgid "Pick Windows"
-msgstr "选取窗口"
+#: AutoStart.py:31
+msgid "<b>Command:</b>"
+msgstr "<b>命令：</b>"
 
-#: Compiz.py:92
-msgid "Pick All Windows"
-msgstr "选取所有窗口"
+#: AutoStart.py:33
+msgid "<b>Comment:</b>"
+msgstr "<b>注释：</b>"
 
-#: Compiz.py:171
-msgid "Opacity Menu"
-msgstr "透明菜单"
+#: AutoStart.py:43
+msgid "Edit Startup Program"
+msgstr "编辑自启动程序"
 
-#: Compiz.py:277
+#: AutoStart.py:48
+msgid "New Startup Program"
+msgstr "新的自启动程序"
+
+#: AutoStart.py:50
+msgid "_Browse..."
+msgstr "浏览(_B)"
+
+#: AutoStart.py:79
+msgid "Choose a Program"
+msgstr "选择一个程序"
+
+#: AutoStart.py:136
+msgid "Delete from Disk"
+msgstr "从硬盘上删除"
+
+#: AutoStart.py:150
+msgid "Can't delete the system item from disk."
+msgstr "不能从硬盘上删除系统项"
+
+#: AutoStart.py:187
+msgid "None description"
+msgstr "没有描述"
+
+#: AutoStart.py:201
+msgid "Enabled"
+msgstr "启用"
+
+#: AutoStart.py:206
+msgid "Program"
+msgstr "程序"
+
+#: AutoStart.py:254
+msgid "<b>Enable or Disable the AutoStart Program</b>"
+msgstr "<b>启用或禁用自动运行的程序</b>"
+
+#: AutoStart.py:258
+msgid ""
+"You can safely delete the item, it will only been marked as hidden.\n"
+"If you want to delete it from disk, right-click the item."
+msgstr ""
+"你可以安全地删除这些项目，它只会被标记为隐藏。\n"
+"如果你想从硬盘上删除它，请右击它。"
+
+#: AutoStart.py:266
+msgid "Show program comments"
+msgstr "显示程序注释"
+
+#: AutoStart.py:268
+msgid "Show all runnable programs"
+msgstr "显示所有可运行的程序"
+
+#: AutoStart.py:330
+#: AutoStart.py:377
+msgid "The name of the startup program cannot be empty"
+msgstr "自启动程序的名称不能为空"
+
+#: AutoStart.py:332
+#: AutoStart.py:379
+msgid "Text was empty (or contained only whitespace)"
+msgstr "文本不能为空"
+
+#: Compiz.py:63
 msgid ""
 "Sorry!\n"
 "Ubuntu Tweak can only support the <b>Compiz Fusion 0.6.2</b>"
@@ -37,83 +99,99 @@ msgstr ""
 "\n"
 "Ubuntu Tweak只支持 <b>Compiz Fusion 0.6.2</b>"
 
-#: Compiz.py:281
+#: Compiz.py:67
 msgid "Compiz Fusion is currently not installed or some of it's additional components are missing."
 msgstr "Compiz Fusion未安装或者相关组件未安装完整"
 
-#: Compiz.py:285
+#: Compiz.py:71
 msgid "<b>Edge Setting</b>"
 msgstr "<b>屏幕边角设置</b>"
 
-#: Compiz.py:294
+#: Compiz.py:80
 msgid "Snapping Windows(DON'T USE with Wobbly Windows)"
 msgstr "粘性窗口(不要与弹性窗口一起使用)"
 
-#: Compiz.py:295
+#: Compiz.py:81
 msgid "Maximize Effect"
 msgstr "最大化效果"
 
-#: Compiz.py:296
+#: Compiz.py:82
 msgid "Wobbly Windows"
 msgstr "弹性窗口"
 
-#: Compiz.py:298
+#: Compiz.py:84
 msgid "<b>Window Effects</b>"
 msgstr "<b>窗口特效</b>"
 
-#: Compiz.py:302
+#: Compiz.py:88
 msgid "Wobbly Menu"
 msgstr "弹性菜单"
 
-#: Compiz.py:304
+#: Compiz.py:90
 msgid "<b>Menu Effects</b>"
 msgstr "<b>菜单特效</b>"
 
-#: Computer.py:53
+#: Compiz.py:139
+msgid "Expo"
+msgstr "展示桌面"
+
+#: Compiz.py:140
+msgid "Pick Windows"
+msgstr "选取窗口"
+
+#: Compiz.py:141
+msgid "Pick All Windows"
+msgstr "选取所有窗口"
+
+#: Compiz.py:220
+msgid "Opacity Menu"
+msgstr "透明菜单"
+
+#: Computer.py:52
 msgid "<b>System information</b>"
 msgstr "<b>系统信息</b>"
 
-#: Computer.py:54
+#: Computer.py:53
 msgid "Hostname"
 msgstr "主机名"
 
-#: Computer.py:55
+#: Computer.py:54
 msgid "Distribution"
 msgstr "发行版"
 
-#: Computer.py:56
+#: Computer.py:55
 msgid "Kernel"
 msgstr "内核"
 
-#: Computer.py:57
+#: Computer.py:56
 msgid "Platform"
 msgstr "平台"
 
-#: Computer.py:58
+#: Computer.py:57
 msgid "CPU"
 msgstr "CPU"
 
-#: Computer.py:59
+#: Computer.py:58
 msgid "Memory"
 msgstr "内存"
 
-#: Computer.py:63
+#: Computer.py:62
 msgid "<b>User information</b>"
 msgstr "<b>用户信息</b>"
 
-#: Computer.py:64
+#: Computer.py:63
 msgid "Current User"
 msgstr "当前用户"
 
-#: Computer.py:65
+#: Computer.py:64
 msgid "Home Directory"
 msgstr "主目录"
 
-#: Computer.py:66
+#: Computer.py:65
 msgid "Shell"
 msgstr "Shell"
 
-#: Computer.py:67
+#: Computer.py:66
 msgid "Language"
 msgstr "语言"
 
@@ -182,25 +260,29 @@ msgid "Rename the \"Trash\" icon: "
 msgstr "重命名\"回收站\"图标:"
 
 #: Icon.py:75
-#: Icon.py:97
+#: Icon.py:160
 msgid "Unset"
 msgstr "未设置"
 
-#: Icon.py:108
+#: Icon.py:88
 msgid "<b>Desktop Icon settings</b>"
 msgstr "<b>桌面图标设置</b>"
 
-#: Icon.py:112
+#: Icon.py:92
 msgid "Show desktop icons"
 msgstr "显示桌面图标"
 
-#: Icon.py:153
+#: Icon.py:133
 msgid "Show \"Network\" icon on desktop"
 msgstr "在桌面上显示\"网络服务器\"图标"
 
-#: Icon.py:156
+#: Icon.py:136
 msgid "Show Mounted Volumes on desktop"
 msgstr "显示已挂载的分区"
+
+#: Icon.py:139
+msgid "Use Home Folder as the desktop"
+msgstr "使用主目录作为桌面"
 
 #: LockDown.py:44
 msgid "Disable \"Run Application\" dialog (Alt+F2)"
@@ -230,7 +312,7 @@ msgstr "禁止使用用户切换"
 msgid "<b>System Security options</b>"
 msgstr "<b>系统安全选项</b>"
 
-#: MainWindow.py:97
+#: MainWindow.py:94
 msgid ""
 "<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak!</b></span>\n"
 "\n"
@@ -264,9 +346,13 @@ msgstr ""
 msgid "<span size=\"xx-large\">Please select the child item</span>"
 msgstr "<span size=\"xx-large\">请选择子选项</span>"
 
-#: MainWindow.py:115
+#: MainWindow.py:114
 msgid "Session Control"
 msgstr "会话控制"
+
+#: MainWindow.py:115
+msgid "Auto Start"
+msgstr "自动启动"
 
 #: MainWindow.py:120
 msgid "Desktop Icon"
@@ -296,35 +382,35 @@ msgstr "电源管理"
 msgid "Security Options"
 msgstr "安全选项"
 
-#: MainWindow.py:144
+#: MainWindow.py:139
 msgid "Welcome"
 msgstr "欢迎使用"
 
-#: MainWindow.py:145
+#: MainWindow.py:140
 msgid "Computer"
 msgstr "本机信息"
 
-#: MainWindow.py:146
+#: MainWindow.py:141
 msgid "Startup"
 msgstr "启动控制"
 
-#: MainWindow.py:147
+#: MainWindow.py:142
 msgid "Desktop"
 msgstr "桌面设置"
 
-#: MainWindow.py:148
+#: MainWindow.py:143
 msgid "System"
 msgstr "系统设置"
 
-#: MainWindow.py:149
+#: MainWindow.py:144
 msgid "Security"
 msgstr "安全相关"
 
-#: MainWindow.py:242
+#: MainWindow.py:295
 msgid "Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your system and desktop settings."
 msgstr "Ubuntu Tweak是一个专门为简易配置系统和桌面而准备的工具。"
 
-#: MainWindow.py:249
+#: MainWindow.py:302
 msgid "translator-credits"
 msgstr "TualatriX <tualatrix@gmail.com>"
 
@@ -422,15 +508,15 @@ msgstr "打开防刻死技术"
 msgid "Enable OverBurn"
 msgstr "打开超刻功能"
 
-#: Nautilus.py:62
+#: Nautilus.py:57
 msgid "<b>Settings for Nautilus behavior</b>"
 msgstr "<b>设置文件管理器的行为</b>"
 
-#: Nautilus.py:67
+#: Nautilus.py:62
 msgid "Default Thumbnail Icon Size"
 msgstr "默认预览图尺寸"
 
-#: Nautilus.py:78
+#: Nautilus.py:73
 msgid "<b>CD Burner</b>"
 msgstr "<b>CD刻录机</b>"
 
@@ -529,37 +615,37 @@ msgstr "当使用交流电时CPU频率使用策略"
 msgid "The CPU frequency policy when on battery power"
 msgstr "当使用电池时CPU频率使用策略"
 
-#: Session.py:35
+#: Session.py:40
+msgid "<b>Click the large button to change Splash screen</b>"
+msgstr "<b>点击大按钮来更改启动画面</b>"
+
+#: Session.py:44
 msgid "Choose a Splash image"
 msgstr "选择一张启动画面"
 
-#: Session.py:37
+#: Session.py:46
 msgid "PNG image (*.png)"
 msgstr "PNG图像格式(*.png)"
 
-#: Session.py:123
+#: Session.py:132
 msgid "Automatically save changes to session"
 msgstr "自动保存当前会话"
 
-#: Session.py:124
+#: Session.py:133
 msgid "Show Logout prompt"
 msgstr "显示注销菜单"
 
-#: Session.py:125
+#: Session.py:134
 msgid "Allow TCP Connections(Remote Connect)"
 msgstr "允许远程TCP连接"
 
-#: Session.py:126
+#: Session.py:135
 msgid "Show Splash screen"
 msgstr "显示Splash启动画面"
 
-#: Session.py:128
+#: Session.py:137
 msgid "<b>Session Control</b>"
 msgstr "<b>会话控制</b>"
-
-#: Session.py:136
-msgid "<b>Click the large button to change Splash screen</b>"
-msgstr "<b>点击大按钮来更改启动画面</b>"
 
 #: ubuntu-tweak.py:30
 msgid "Error"

@@ -8,6 +8,7 @@ import gettext
 import gobject
 from xdg.DesktopEntry import DesktopEntry
 from Widgets import ItemBox
+from Widgets import show_info
 
 gettext.install("ubuntu-tweak", unicode = True)
 
@@ -18,8 +19,9 @@ gettext.install("ubuntu-tweak", unicode = True)
 ) = range(3)
 
 class AutoStartDialog(gtk.Dialog):
-	"""The dialog used to add or edit the startup item"""
+	"""The dialog used to add or edit the autostart program"""
 	def __init__(self, desktopentry = None):
+		"""Init the dialog, if use to edit, pass the desktopentry parameter"""
 		gtk.Dialog.__init__(self)
 		self.set_icon_from_file("pixmaps/ubuntu-tweak.png")
 
@@ -31,8 +33,11 @@ class AutoStartDialog(gtk.Dialog):
 		lbl3.set_markup(_("<b>Comment:</b>"));
 
 		self.pm_name = gtk.Entry ();
+		self.pm_name.connect("activate", self.on_entry_activate)
 		self.pm_cmd = gtk.Entry ();
+		self.pm_cmd.connect("activate", self.on_entry_activate)
 		self.pm_comment = gtk.Entry ();
+		self.pm_comment.connect("activate", self.on_entry_activate)
 
 		if desktopentry:
 			self.set_title(_("Edit Startup Program"))
@@ -59,14 +64,18 @@ class AutoStartDialog(gtk.Dialog):
 
 		self.vbox.pack_start(table)
 
-		self.add_button(gtk.STOCK_OK, gtk.RESPONSE_OK)
 		self.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
+		self.add_button(gtk.STOCK_OK, gtk.RESPONSE_OK)
 
 		self.set_default_response(gtk.RESPONSE_OK)
 
 		self.show_all()
 
+	def on_entry_activate(self, widget, data = None):
+		self.response(gtk.RESPONSE_OK)
+
 	def on_choose_program(self, widget, data = None):
+		"""The action taken by clicked the browse button"""
 		dialog = gtk.FileChooserDialog(_("Choose a Program"), action = gtk.FILE_CHOOSER_ACTION_OPEN, buttons = (gtk.STOCK_OPEN, gtk.RESPONSE_ACCEPT, gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL))
 
 		if dialog.run() == gtk.RESPONSE_ACCEPT:
@@ -74,13 +83,14 @@ class AutoStartDialog(gtk.Dialog):
 		dialog.destroy()
 
 class AutoStartItem(gtk.TreeView):
-	"""The autostart item list, loading from userdir and systemdir"""
+	"""The autostart program list, loading from userdir and systemdir"""
 	userdir = os.path.join(os.path.expanduser("~"), ".config/autostart")
 	systemdir = "/etc/xdg/autostart"
 
-	def __init__(self, list = None):
+	def __init__(self):
 		gtk.TreeView.__init__(self)
 
+		#get the item with full-path from the dirs
 		self.useritems = map(lambda path: "%s/%s" % (self.userdir, path), os.listdir(self.userdir))
 		self.systemitems = map(lambda path: "%s/%s" % (self.systemdir, path), filter(lambda i: i not in os.listdir(self.userdir), os.listdir(self.systemdir)))
 
@@ -94,15 +104,62 @@ class AutoStartItem(gtk.TreeView):
 
 		self.__add_columns()
 		self.set_rules_hint(True)
-		self.set_size_request(180, -1)
 
-	def update_items(self, all = None):
-		"""The 'all' parameter used to show the hide item"""
+		selection = self.get_selection()
+		selection.connect("changed", self.selection_cb)
+
+		menu = self.create_popup_menu()
+		menu.show_all()
+		self.connect("button_press_event", self.button_press_event, menu)	
+
+	def selection_cb(self, widget, data = None):
+		"""If selected an item, it should set the sensitive of the remove and edit button"""
+		model, iter = widget.get_selected()
+		remove = self.get_data("remove")
+		edit = self.get_data("edit")
+		if iter:
+			remove.set_sensitive(True)
+			edit.set_sensitive(True)
+		else:
+			remove.set_sensitive(False)
+			edit.set_sensitive(False)
+
+	def button_press_event(self, widget, event, menu):
+		"""If right-click taken, show the popup menu"""
+		if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+			menu.popup(None, None, None, event.button, event.time)
+		return False
+
+	def create_popup_menu(self):
+		menu = gtk.Menu()
+
+		remove = gtk.MenuItem(_("Delete from Disk"))
+		remove.connect("activate", self.on_delete_from_disk)
+		
+		menu.append(remove)
+		menu.attach_to_widget(self, None)
+
+		return menu
+
+	def on_delete_from_disk(self, widget, data = None):
+		model, iter = self.get_selection().get_selected()
+
+		if iter:
+			path = model.get_value(iter, COLUMN_PATH)
+			if os.path.basename(path) in os.listdir(self.systemdir):
+				show_info(_("Can't delete the system item from disk."))
+			else:
+				os.remove(path)
+				model.remove(iter)
+
+	def update_items(self, all = False, comment = False):
+		"""'all' parameter used to show the hide item,
+		'comment' parameter used to show the comment of program"""
 		self.useritems = map(lambda path: "%s/%s" % (self.userdir, path), os.listdir(self.userdir))
 		self.systemitems = map(lambda path: "%s/%s" % (self.systemdir, path), filter(lambda i: i not in os.listdir(self.userdir), os.listdir(self.systemdir)))
-		self.__create_model(all)
+		self.__create_model(all, comment)
 
-	def __create_model(self, all = None):
+	def __create_model(self, all = False, comment = False):
 		model = self.get_model()
 		model.clear()
 
@@ -124,10 +181,13 @@ class AutoStartItem(gtk.TreeView):
 				enable = True
 			
 			name = desktopentry.getName()
-			comment = desktopentry.getComment()
-			if not comment:
-				comment = _("None description")
-			description = "<b>%s</b>\n%s" % (name, comment)
+			if comment:
+				comment = desktopentry.getComment()
+				if not comment:
+					comment = _("None description")
+				description = "<b>%s</b>\n%s" % (name, comment)
+			else:
+				description = "<b>%s</b>" % name
 			model.set(iter,
 				COLUMN_ACTIVE, enable,
 				COLUMN_PROGRAM, description,
@@ -139,12 +199,14 @@ class AutoStartItem(gtk.TreeView):
 		renderer = gtk.CellRendererToggle()
 		renderer.connect("toggled", self.enabled_toggled, model)
 		column = gtk.TreeViewColumn(_("Enabled"), renderer, active = COLUMN_ACTIVE)
+		column.set_sort_column_id(COLUMN_ACTIVE)
 		self.append_column(column)
 
 		renderer = gtk.CellRendererText()
 		column = gtk.TreeViewColumn(_("Program"))
 		column.pack_start(renderer, True)
 		column.add_attribute(renderer, "markup", COLUMN_PROGRAM)
+		column.set_sort_column_id(COLUMN_ACTIVE)
 		self.append_column(column)
 
 	def enabled_toggled(self, cell, path, model):
@@ -189,16 +251,25 @@ class AutoStart(gtk.VBox):
 		self.pack_start(vbox)
 
 		label = gtk.Label()
-		label.set_markup(_("<b>Enable or Disable the autostart program.</b>"))
+		label.set_markup(_("<b>Enable or Disable the AutoStart Program</b>"))
 		label.set_alignment(0, 0)
 		vbox.pack_start(label, False, False, 0)
+
+		label = gtk.Label(_("You can safely delete the item, it will only been marked as hidden.\nIf you want to delete it from disk, right-click the item."))
+		label.set_alignment(0, 0)
+		vbox.pack_start(label, False, False, 5)
 
 		hbox = gtk.HBox(False, 10)
 		vbox.pack_start(hbox, True, True, 10)
 
-		checkbutton = gtk.CheckButton(_("Show all runable program"))
-		checkbutton.connect("toggled", self.show_all_program)
-		vbox.pack_start(checkbutton, False, False, 0)
+		#create the two checkbutton for extra options of auto run list
+		self.show_comment_button = gtk.CheckButton(_("Show program comments"))
+		vbox.pack_start(self.show_comment_button, False, False, 0)
+		self.show_all_button = gtk.CheckButton(_("Show all runnable programs"))
+		vbox.pack_start(self.show_all_button, False, False, 0)
+
+		self.show_all_button.connect("toggled", self.on_show_all, self.show_comment_button)
+		self.show_comment_button.connect("toggled", self.on_show_comment, self.show_all_button)
 
 		sw = gtk.ScrolledWindow()
 		sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
@@ -215,67 +286,107 @@ class AutoStart(gtk.VBox):
 		vbox.pack_start(button, False, False, 0)
 
 		button = gtk.Button(stock = gtk.STOCK_REMOVE)
+		button.set_sensitive(False)
 		button.connect("clicked", self.on_remove_item, self.treeview)
 		vbox.pack_start(button, False, False, 0)
+		self.treeview.set_data("remove", button)
 
 		button = gtk.Button(stock = gtk.STOCK_EDIT)
+		button.set_sensitive(False)
 		button.connect("clicked", self.on_edit_item, self.treeview)
 		vbox.pack_start(button, False, False, 0)
+		self.treeview.set_data("edit", button)
 
-	def show_all_program(self, widget, data = None):
+	def on_show_all(self, widget, another):
 		if widget.get_active():
-			self.treeview.update_items(all = True)
+			if another.get_active():
+				self.treeview.update_items(all = True, comment = True)
+			else:
+				self.treeview.update_items(all = True)
 		else:
-			self.treeview.update_items()
+			if another.get_active():
+				self.treeview.update_items(comment = True)
+			else:
+				self.treeview.update_items()
+
+	def on_show_comment(self, widget, another):
+		if widget.get_active():
+			if another.get_active():
+				self.treeview.update_items(all = True, comment = True)
+			else:
+				self.treeview.update_items(comment = True)
+		else:
+			if another.get_active():
+				self.treeview.update_items(all = True)
+			else:
+				self.treeview.update_items()
 
 	def on_add_item(self, widget, treeview):
 		dialog = AutoStartDialog()
-		response = dialog.run()
-		if response == gtk.RESPONSE_OK:
-			path = os.path.join(treeview.userdir, os.path.basename(dialog.pm_cmd.get_text()) + ".desktop")
-			desktopentry = DesktopEntry(path)
-			desktopentry.set("Name", dialog.pm_name.get_text())
-			desktopentry.set("Exec", dialog.pm_cmd.get_text())
-			desktopentry.set("Comment", dialog.pm_comment.get_text())
-			desktopentry.set("Type", "Application")
-			desktopentry.set("Version", "1.0")
-			desktopentry.set("X-GNOME-Autostart-enabled", "true")
-			desktopentry.write()
-			treeview.update_items()
+		while dialog.run() == gtk.RESPONSE_OK:
+			name = dialog.pm_name.get_text()
+			cmd = dialog.pm_cmd.get_text()
+			if not name:
+				show_info(_("The name of the startup program cannot be empty"))	
+			elif not cmd:
+				show_info(_("Text was empty (or contained only whitespace)"))
+			else:
+				path = os.path.join(treeview.userdir, os.path.basename(cmd) + ".desktop")
+				desktopentry = DesktopEntry(path)
+				desktopentry.set("Name", dialog.pm_name.get_text())
+				desktopentry.set("Exec", dialog.pm_cmd.get_text())
+				desktopentry.set("Comment", dialog.pm_comment.get_text())
+				desktopentry.set("Type", "Application")
+				desktopentry.set("Version", "1.0")
+				desktopentry.set("X-GNOME-Autostart-enabled", "true")
+				desktopentry.write()
+				treeview.update_items(all = self.show_all_button.get_active(), comment = self.show_comment_button.get_active())
+				dialog.destroy()
+				return
 		dialog.destroy()
 
 	def on_remove_item(self, widget, treeview):
 		model, iter = treeview.get_selection().get_selected()
 
-		path = model.get_value(iter, COLUMN_PATH)
-		if path[1:4] == "etc":
-			shutil.copy(path, treeview.userdir)
-			desktopentry = DesktopEntry(os.path.join(treeview.userdir, os.path.basename(path)))
-		else:
-			desktopentry = DesktopEntry(path)
-		desktopentry.set("Hidden", "true")
-		desktopentry.set("X-GNOME-Autostart-enabled", "false")
-		desktopentry.write()
+		if iter:
+			path = model.get_value(iter, COLUMN_PATH)
+			if path[1:4] == "etc":
+				shutil.copy(path, treeview.userdir)
+				desktopentry = DesktopEntry(os.path.join(treeview.userdir, os.path.basename(path)))
+			else:
+				desktopentry = DesktopEntry(path)
+			desktopentry.set("Hidden", "true")
+			desktopentry.set("X-GNOME-Autostart-enabled", "false")
+			desktopentry.write()
 
-		treeview.update_items()
+			treeview.update_items(all = self.show_all_button.get_active(), comment = self.show_comment_button.get_active())
 
 	def on_edit_item(self, widget, treeview):
 		model, iter = treeview.get_selection().get_selected()
 
-		path = model.get_value(iter, COLUMN_PATH)
-		if path[1:4] == "etc":
-			shutil.copy(path, treeview.userdir)
-			path = os.path.join(treeview.userdir, os.path.basename(path))
-		dialog = AutoStartDialog(DesktopEntry(path))
-		response =  dialog.run()
-		if response == gtk.RESPONSE_OK:
-			desktopentry = DesktopEntry(path)
-			desktopentry.set("Name", dialog.pm_name.get_text(), locale = True)
-			desktopentry.set("Exec", dialog.pm_cmd.get_text(), locale = True)
-			desktopentry.set("Comment", dialog.pm_comment.get_text(), locale = True)
-			desktopentry.write()
-			treeview.update_items()
-		dialog.destroy()
+		if iter:
+			path = model.get_value(iter, COLUMN_PATH)
+			if path[1:4] == "etc":
+				shutil.copy(path, treeview.userdir)
+				path = os.path.join(treeview.userdir, os.path.basename(path))
+			dialog = AutoStartDialog(DesktopEntry(path))
+			while dialog.run() == gtk.RESPONSE_OK:
+				name = dialog.pm_name.get_text()
+				cmd = dialog.pm_cmd.get_text()
+				if not name:
+					show_info(_("The name of the startup program cannot be empty"))	
+				elif not cmd:
+					show_info(_("Text was empty (or contained only whitespace)"))
+				else:
+					desktopentry = DesktopEntry(path)
+					desktopentry.set("Name", name, locale = True)
+					desktopentry.set("Exec", cmd, locale = True)
+					desktopentry.set("Comment", dialog.pm_comment.get_text(), locale = True)
+					desktopentry.write()
+					treeview.update_items(all = self.show_all_button.get_active(), comment = self.show_comment_button.get_active())
+					dialog.destroy()
+					return
+			dialog.destroy()
 
 if __name__ == "__main__":
 	win = gtk.Window()

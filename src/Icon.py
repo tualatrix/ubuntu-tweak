@@ -136,6 +136,9 @@ class Icon(gtk.VBox):
 		button = GConfCheckButton(_("Show Mounted Volumes on desktop"), "/apps/nautilus/desktop/volumes_visible")
 		main_button.vbox.pack_start(button, False, False, 0)
 
+		button = GConfCheckButton(_("Use Home Folder as the desktop(Need Logout)"), "/apps/nautilus/preferences/desktop_is_home_dir")
+		main_button.vbox.pack_start(button, False, False, 0)
+
 	def button_toggled(self, widget ,data = None):
 		client = gconf.client_get_default()
 		value = client.get(data)

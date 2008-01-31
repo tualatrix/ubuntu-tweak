@@ -23,10 +23,14 @@ pygtk.require("2.0")
 import gtk
 import gconf
 
-import pygtk
-pygtk.require("2.0")
-import gtk
-import gconf
+def show_info(message, title = None, buttons = gtk.BUTTONS_OK, type = gtk.MESSAGE_ERROR, parent = None):
+        dialog = gtk.MessageDialog(parent, gtk.DIALOG_DESTROY_WITH_PARENT, type, buttons)
+        dialog.set_icon_from_file("pixmaps/ubuntu-tweak.png")
+	if title:
+		dialog.set_title(title)
+        dialog.set_markup(message)
+        dialog.run()
+        dialog.destroy()
 
 class GConfCheckButton(gtk.CheckButton):
 
