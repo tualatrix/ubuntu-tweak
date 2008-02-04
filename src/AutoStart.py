@@ -90,6 +90,8 @@ class AutoStartItem(gtk.TreeView):
 	def __init__(self):
 		gtk.TreeView.__init__(self)
 
+		if not os.path.exists(self.userdir): os.mkdir(self.userdir)
+
 		#get the item with full-path from the dirs
 		self.useritems = map(lambda path: "%s/%s" % (self.userdir, path), os.listdir(self.userdir))
 		self.systemitems = map(lambda path: "%s/%s" % (self.systemdir, path), filter(lambda i: i not in os.listdir(self.userdir), os.listdir(self.systemdir)))

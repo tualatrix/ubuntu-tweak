@@ -35,7 +35,7 @@ def show_error(message, title = _("Error"), parent = None):
 	dialog.destroy()
 
 if __name__ == "__main__":
-	if DISTRIB != "feisty" and DISTRIB != "gutsy":
+	if DISTRIB != "feisty" and DISTRIB != "gutsy" and DISTRIB != "hardy":
 		show_error(_("Sorry!\n\nUbuntu Tweak can only run on <b>Ubuntu 7.04 or 7.10.</b>\n"))
 	else:
 		#determine whether the gnome is the default desktop

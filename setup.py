@@ -88,17 +88,18 @@ data_files = [
 
 podir = os.path.join (os.path.realpath ("."), "po")
 if os.path.isdir (podir):
-    buildcmd = "msgfmt -o build/locale/%s/LC_MESSAGES/ubuntu-tweak.mo po/%s.po"
-    mopath = "build/locale/%s/LC_MESSAGES/ubuntu-tweak.mo"
-    destpath = "share/locale/%s/LC_MESSAGES"
-    for name in os.listdir (podir):
-        if name[-2:] == "po":
-            name = name[:-3]
-            if sys.argv[1] == "build" or (sys.argv[1] == "install" and not os.path.exists (mopath % name)):
-                if not os.path.isdir ("build/locale/%s/LC_MESSAGES" % name):
-                    os.makedirs ("build/locale/%s/LC_MESSAGES" % name)
-                os.system (buildcmd % (name, name))
-            data_files.append ((destpath % name, [mopath % name]))
+	buildcmd = "msgfmt -o build/locale/%s/LC_MESSAGES/ubuntu-tweak.mo po/%s.po"
+	mopath = "build/locale/%s/LC_MESSAGES/ubuntu-tweak.mo"
+	destpath = "share/locale/%s/LC_MESSAGES"
+	for name in os.listdir (podir):
+		if name[-2:] == "po":
+			dname = name.split('-')[2].split('.')[0]
+			name = name[:-3]
+			if sys.argv[1] == "build" or (sys.argv[1] == "install" and not os.path.exists (mopath % dname)):
+				if not os.path.isdir ("build/locale/%s/LC_MESSAGES" % dname):
+					os.makedirs ("build/locale/%s/LC_MESSAGES" % dname)
+				os.system (buildcmd % (dname, name))
+				data_files.append ((destpath % dname, [mopath % dname]))
 
 setup(
 	name		= "ubuntu-tweak",
