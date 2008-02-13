@@ -39,7 +39,7 @@ from LockDown import LockDown
 from Computer import Computer
 from Metacity import Metacity
 
-VERSION = "0.2.6"
+VERSION = "0.2.7"
 
 (
         NUM_COLUMN,

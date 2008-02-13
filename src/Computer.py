@@ -24,12 +24,26 @@ import gtk
 import os
 import gobject
 import gettext
+import gtop
+import time
 
 from aptsources import distro
 from Widgets import GConfCheckButton, ItemBox, EntryBox
 
 UBUNTU = distro.get_distro()
 DISTRIB = UBUNTU.codename
+
+gettext.install("ubuntu-tweak", unicode = True)
+
+def system_time():
+	uptime = gtop.uptime().dict()['uptime']
+	boot_time = gtop.uptime().dict()['boot_time']
+
+	day = time.gmtime(int(uptime))[2] - 1
+	new_uptime = str(day) + " day " + time.strftime("%H h %M m", time.gmtime(int(uptime)))
+	new_boot_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(int(boot_time)))
+
+	return (new_uptime, new_boot_time)
 
 class Computer(gtk.VBox):
 	"""Some options about current user"""
@@ -59,11 +73,27 @@ class Computer(gtk.VBox):
 				))
 		self.pack_start(box, False, False, 0)
 
+		uptime, boot_time = system_time()
 		box = ItemBox(_("<b>User information</b>"),(
 			EntryBox(_("Current User"), 	os.getenv("USER")),
 			EntryBox(_("Home Directory"), 	os.getenv("HOME")),
 			EntryBox(_("Shell"), 		os.getenv("SHELL")),
 			EntryBox(_("Language"), 	os.getenv("LANG")),
+			EntryBox(_("Boot time"), 	boot_time),
+			EntryBox(_("Uptime"), 		uptime),
 				))
 			
 		self.pack_start(box, False, False, 0)
+
+if __name__ == "__main__":
+        win = gtk.Window()
+        win.connect('destroy', lambda *w: gtk.main_quit())
+        win.set_title("Computer")
+        win.set_default_size(450, 400)
+        win.set_border_width(8)
+
+        computer = Computer()
+        win.add(computer)
+
+        win.show_all()
+        gtk.main()
