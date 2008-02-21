@@ -32,6 +32,31 @@ def show_info(message, title = None, buttons = gtk.BUTTONS_OK, type = gtk.MESSAG
         dialog.run()
         dialog.destroy()
 
+class TweakPage(gtk.VBox):
+	"""The standard page of tweak"""
+	def __init__(self, title = None, des = None):
+		gtk.VBox.__init__(self)
+
+		self.set_border_width(5)
+
+		self.title = gtk.Label()
+		if title:
+			self.set_title(title)
+		self.title.set_alignment(0, 0)
+		self.pack_start(self.title, False, False, 0)
+
+		self.description = gtk.Label()
+		if des:
+			self.set_description
+		self.description.set_alignment(0, 0)
+		self.pack_start(self.description, False, False, 5)
+
+	def set_title(self, title):
+		self.title.set_markup("<b>%s</b>" % title)
+
+	def set_description(self, des):
+		self.description.set_label(des)
+
 class GConfCheckButton(gtk.CheckButton):
 
 	def __init__(self, label, key, extra = None):
@@ -120,7 +145,7 @@ class EntryBox(gtk.HBox):
 		label = gtk.Label(label)
                 self.pack_start(label, False, False,10)
                 entry = gtk.Entry()
-                entry.set_text(text)
+		if text: entry.set_text(text)
                 entry.set_editable(False)
 		entry.set_size_request(300, -1)
                 self.pack_end(entry, False, False, 0)

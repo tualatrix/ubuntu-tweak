@@ -32,9 +32,11 @@ from Session import Session
 from AutoStart import AutoStart
 from Icon import Icon
 from Compiz import Compiz
+from UserDir import UserDir
+from Template import Template
+from PowerManager import PowerManager
 from Gnome import Gnome
 from Nautilus import Nautilus
-from PowerManager import PowerManager
 from LockDown import LockDown
 from Computer import Computer
 from Metacity import Metacity
@@ -59,14 +61,17 @@ VERSION = "0.2.7"
 		ICON_PAGE,
 		METACITY_PAGE,
 		COMPIZ_PAGE,
+	PERSONAL_PAGE,
+		USERDIR_PAGE,
+		TEMPLATE_PAGE,
+	SYSTEM_PAGE,
 		GNOME_PAGE,
 		NAUTILUS_PAGE,
-	SYSTEM_PAGE,
 		POWER_PAGE,
 	SECURITY_PAGE,
 		SECU_OPTIONS_PAGE,
 	TOTAL_PAGE
-) = range(16)
+) = range(19)
 
 icons = \
 [
@@ -79,9 +84,12 @@ icons = \
 	"pixmaps/icon.png",
 	"pixmaps/metacity.png",
 	"pixmaps/compiz-fusion.png",
+	"pixmaps/personal.png",
+	"pixmaps/userdir.png",
+	"pixmaps/template.png",
+	"pixmaps/system.png",
 	"pixmaps/gnome.png",
 	"pixmaps/nautilus.png",
-	"pixmaps/system.png",
 	"pixmaps/powermanager.png",
 	"pixmaps/security.png",
 	"pixmaps/lockdown.png",
@@ -120,12 +128,18 @@ desktop = \
 	[ICON_PAGE, icons[ICON_PAGE], _("Desktop Icon"), Icon()],
 	[METACITY_PAGE, icons[METACITY_PAGE], _("Metacity"), Metacity()],
 	[COMPIZ_PAGE, icons[COMPIZ_PAGE], _("Compiz Fusion"), Compiz()],
-	[GNOME_PAGE, icons[GNOME_PAGE], _("GNOME"), Gnome()],
-	[NAUTILUS_PAGE, icons[NAUTILUS_PAGE], _("Nautilus"), Nautilus()]
+]
+
+personal = \
+[
+	[USERDIR_PAGE, icons[USERDIR_PAGE], _("User Folder"), UserDir()],
+	[TEMPLATE_PAGE, icons[TEMPLATE_PAGE], _("Template"), Template()],
 ]
 
 system = \
 [
+	[GNOME_PAGE, icons[GNOME_PAGE], _("GNOME"), Gnome()],
+	[NAUTILUS_PAGE, icons[NAUTILUS_PAGE], _("Nautilus"), Nautilus()],
 	[POWER_PAGE, icons[POWER_PAGE], _("Power Manager"), PowerManager()],
 ]
 
@@ -140,6 +154,7 @@ itemlist = \
 	[COMPUTER_PAGE, icons[COMPUTER_PAGE], _("Computer"), Computer(), None],
 	[STARTUP_PAGE, icons[STARTUP_PAGE], _("Startup"), Blank(), startup],
 	[DESKTOP_PAGE, icons[DESKTOP_PAGE], _("Desktop"), Blank(), desktop],
+	[PERSONAL_PAGE, icons[PERSONAL_PAGE], _("Personal"), Blank(), personal],
 	[SYSTEM_PAGE, icons[SYSTEM_PAGE], _("System"), Blank(), system],
 	[SECURITY_PAGE, icons[SECURITY_PAGE], _("Security"), Blank(), security],
 ]
