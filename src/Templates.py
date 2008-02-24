@@ -22,6 +22,7 @@ import pygtk
 pygtk.require("2.0")
 import gtk
 import os
+import shutil
 import gobject
 import gettext
 import gnomevfs
@@ -39,10 +40,11 @@ gettext.install("ubuntu-tweak", unicode = True)
 
 class TemplateList(gtk.TreeView):
 	"""The basic treeview to display the Template"""
-	systemdir = "templates"
-	userdir = os.path.join(os.path.expanduser("~"), "Templates")
+	type = ''
+	systemdir = os.path.join(os.path.expanduser("~"), ".ubuntu-tweak/templates")
+	userdir = os.getenv("HOME") + "/"  + "/".join([dir for dir in UserdirEntry().get('XDG_TEMPLATES_DIR').strip('"').split("/")[1:]])
+
 	TARGETS = [
-		('MY_TREE_MODEL_ROW', gtk.TARGET_SAME_WIDGET, 0),
 		('text/plain', 0, 1),
 		('TEXT', 0, 2),
 		('STRING', 0, 3),
@@ -50,6 +52,8 @@ class TemplateList(gtk.TreeView):
 
 	def __init__(self):
 		gtk.TreeView.__init__(self)
+
+		self.set_rules_hint(True)
 
                 model = gtk.ListStore(
                                 gtk.gdk.Pixbuf,
@@ -60,6 +64,10 @@ class TemplateList(gtk.TreeView):
 
 		self.__add_columns()
 
+		menu = self.create_popup_menu()
+		menu.show_all()
+		self.connect("button_press_event", self.button_press_event, menu)
+
 		self.enable_model_drag_source( gtk.gdk.BUTTON1_MASK,
 						self.TARGETS,
 						gtk.gdk.ACTION_DEFAULT|
@@ -69,30 +77,80 @@ class TemplateList(gtk.TreeView):
 
 		self.connect("drag_data_get", self.on_drag_data_get_data)
 		self.connect("drag_data_received", self.on_drag_data_received_data)
+
+	def create_popup_menu(self):
+		menu = gtk.Menu()
+
+		delete = gtk.MenuItem(_("Delete this template"))
+		delete.connect("activate", self.on_delete_template)
+		
+		menu.append(delete)
+		menu.attach_to_widget(self, None)
+
+		return menu
+
+	def on_delete_template(self, widget, data = None):
+		model, iter = self.get_selection().get_selected()
+		if iter:
+			filepath = model.get_value(iter, COLUMN_FILE)
+			os.remove(filepath)
+			model.remove(iter)
+
+	def button_press_event(self, widget, event, data = None):
+		if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+			data.popup(None, None, None, event.button, event.time)
+		return False
+
 	def on_drag_data_get_data(self, treeview, context, selection, target_id, etime):
-		print "===============get"
+		"""will implement in subclass"""
+		pass
+
+	def on_drag_data_received_data(self, treeview, context, x, y, selection, info, etime):
+		"""will implement in subclass"""
+		pass
+
+	def __add_columns(self):
+		column = gtk.TreeViewColumn(self.type)
+
+		renderer = gtk.CellRendererPixbuf()
+		column.pack_start(renderer, True)
+		column.set_attributes(renderer, pixbuf = COLUMN_ICON)
+
+		renderer = gtk.CellRendererText()
+		column.pack_start(renderer, True)
+		column.set_attributes(renderer, text = COLUMN_TEMPINFO)
+
+		self.append_column(column)
+
+class EnableTemplate(TemplateList):
+	"""The treeview to display the enable templates"""
+	type = _("Enabled Templates")
+
+	def __init__(self):
+		TemplateList.__init__(self)
+		self.create_model()
+
+	def on_drag_data_get_data(self, treeview, context, selection, target_id, etime):
 		treeselection = self.get_selection()
 		model, iter = treeselection.get_selected()
 		data = model.get_value(iter, COLUMN_FILE)
-		print data
 		selection.set(selection.target, 8, data)
-		print "===============get============="
 
 	def on_drag_data_received_data(self, treeview, context, x, y, selection, info, etime):
-		print "==================receive "
 		model = treeview.get_model()
 		data = gnomevfs.format_uri_for_display(selection.data.strip())
 
-		print data
+		if os.path.basename(data) not in os.listdir(self.userdir):
+			shutil.copy(data, self.userdir)
+			data = os.path.join(self.userdir, os.path.basename(data))
+		
 		drop_info = treeview.get_dest_row_at_pos(x, y)
-		print drop_info
 
 		icontheme = gtk.icon_theme_get_default()
 		icon = ui.icon_lookup(icontheme, 
 				None,
 				data)
 
-		print icon
 		pixbuf = icontheme.load_icon(icon[0], 32, 0)
 		descr = os.path.splitext(os.path.basename(data))[0]
 
@@ -109,32 +167,10 @@ class TemplateList(gtk.TreeView):
 		if context.action == gtk.gdk.ACTION_MOVE:
 			context.finish(True, True, etime)
 		return
-		print "==================receive========== "
 
-	def __add_columns(self):
-		column = gtk.TreeViewColumn(self.type)
-
-		renderer = gtk.CellRendererPixbuf()
-		column.pack_start(renderer, True)
-		column.set_attributes(renderer, pixbuf = COLUMN_ICON)
-
-		renderer = gtk.CellRendererText()
-		column.pack_start(renderer, True)
-		column.set_attributes(renderer, text = COLUMN_TEMPINFO)
-
-		self.append_column(column)
-
-
-class EnableTemplate(TemplateList):
-	"""The treeview to display the enable templates"""
-	type = "Enable Template"
-
-	def __init__(self):
-		TemplateList.__init__(self)
-		self.__create_model()
-
-	def __create_model(self):
+	def create_model(self):
 		model = self.get_model()
+		model.clear()
 
 		icontheme = gtk.icon_theme_get_default()
 
@@ -152,21 +188,70 @@ class EnableTemplate(TemplateList):
 				COLUMN_TEMPINFO, os.path.splitext(file)[0],
 				COLUMN_FILE, filename)
 
-class SystemTemplate(TemplateList):
+class DisableTemplate(TemplateList):
 	"""The treeview to display the system template"""
-	type = "System Template"
+	type = _("Disabled Templates")
 
 	def __init__(self):
 		TemplateList.__init__(self)
-		self.__create_model()
+		self.create_model()
 
-	def __create_model(self):
+	def on_drag_data_get_data(self, treeview, context, selection, target_id, etime):
+		treeselection = self.get_selection()
+		model, iter = treeselection.get_selected()
+		data = model.get_value(iter, COLUMN_FILE)
+		selection.set(selection.target, 8, data)
+
+	def on_drag_data_received_data(self, treeview, context, x, y, selection, info, etime):
+		model = treeview.get_model()
+		data = gnomevfs.format_uri_for_display(selection.data.strip())
+
+		#if the item comes form userdir, delete or move it
+		if '/'.join([dir for dir in data.split('/')[:4]]) == self.userdir:
+			if os.path.basename(data) in os.listdir(self.systemdir):
+				os.remove(data)
+			else:
+				shutil.move(data, self.systemdir)
+			data = os.path.join(self.systemdir, os.path.basename(data))
+
+
+		if os.path.basename(data) not in os.listdir(self.systemdir):
+			shutil.copy(data, self.systemdir)
+			data = os.path.join(self.systemdir, os.path.basename(data))
+			
+		drop_info = treeview.get_dest_row_at_pos(x, y)
+
+		icontheme = gtk.icon_theme_get_default()
+		icon = ui.icon_lookup(icontheme, 
+				None,
+				data)
+
+		pixbuf = icontheme.load_icon(icon[0], 32, 0)
+		descr = os.path.splitext(os.path.basename(data))[0]
+
+		if drop_info:
+			path, position = drop_info
+			iter = model.get_iter(path)
+
+			if (position == gtk.TREE_VIEW_DROP_BEFORE or position == gtk.TREE_VIEW_DROP_INTO_OR_BEFORE):
+				model.insert_before(iter, [pixbuf, descr, data])
+			else:
+				model.insert_after(iter, [pixbuf, descr, data])
+		else:
+			model.append([pixbuf, descr, data])
+
+		if context.action == gtk.gdk.ACTION_MOVE:
+			context.finish(True, True, etime)
+		return
+
+	def create_model(self):
 		model = self.get_model()
+		model.clear()
 
 		icontheme = gtk.icon_theme_get_default()
 
 		for file in filter(lambda i: i not in os.listdir(self.userdir), os.listdir(self.systemdir)):
-			filename = os.path.join(os.path.abspath(self.systemdir), file)
+			filename = os.path.join(self.systemdir, file)
 			icon = ui.icon_lookup(icontheme, 
 					None,
 					filename)
@@ -179,16 +264,18 @@ class SystemTemplate(TemplateList):
 				COLUMN_TEMPINFO, os.path.splitext(file)[0],
 				COLUMN_FILE, filename)
 
-class Template(TweakPage):
-        """Freedom added your docmuent template"""
+class Templates(TweakPage):
+        """Freedom added your docmuent templates"""
         def __init__(self):
                 TweakPage.__init__(self)
 
-		self.set_title(_("Create your templates"))
-		self.set_description(_("You can freely create your document template.\nIt will be added to your righ-click menu: Create Document."))
+		self.config_test()
+
+		self.set_title(_("Manage your templates"))
+		self.set_description(_("You can freely manage your document templates.\nDrag and Drop from external is support.\nIt will be added to your righ-click menu: Create Document.\n"))
 
 		hbox = gtk.HBox(False, 10)
-		self.pack_start(hbox, True, True, 10)
+		self.pack_start(hbox)
 
 		sw = gtk.ScrolledWindow()
 		sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
@@ -201,23 +288,22 @@ class Template(TweakPage):
 		sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
 		hbox.pack_start(sw)
 
-		tl = SystemTemplate()
+		tl = DisableTemplate()
 		sw.add(tl)
 
-		hbox = gtk.HBox(False, 10)
-		self.pack_start(hbox, False, False, 5)
-
-		button = gtk.Button("Add more templates")
-		hbox.pack_end(button, False, False, 5)
+	def config_test(self):
+		config_dir = os.path.join(os.path.expanduser("~"), ".ubuntu-tweak/templates")
+		if not os.path.exists(config_dir):
+			shutil.copytree("templates", config_dir)
 
 if __name__ == "__main__":
 	win = gtk.Window()
 	win.connect('destroy', lambda *w: gtk.main_quit())
-        win.set_title("Document Template")
+        win.set_title("Document Templates")
         win.set_default_size(650, 400)
         win.set_border_width(8)
 
-        win.add(Template())
+        win.add(Templates())
 
         win.show_all()
 	gtk.main()	

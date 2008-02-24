@@ -27,18 +27,22 @@ import os
 import gobject
 import gettext
 
+from Computer import Computer, DISTRIB
 from gnome import url_show
 from Session import Session
 from AutoStart import AutoStart
 from Icon import Icon
 from Compiz import Compiz
-from UserDir import UserDir
-from Template import Template
+if DISTRIB != "feisty":
+	from UserDir import UserDir
+	from Templates import Templates
+else:
+	from Widgets import AboutBlank as UserDir
+	from Widgets import AboutBlank as Templates
 from PowerManager import PowerManager
 from Gnome import Gnome
 from Nautilus import Nautilus
 from LockDown import LockDown
-from Computer import Computer
 from Metacity import Metacity
 
 VERSION = "0.2.7"
@@ -63,7 +67,7 @@ VERSION = "0.2.7"
 		COMPIZ_PAGE,
 	PERSONAL_PAGE,
 		USERDIR_PAGE,
-		TEMPLATE_PAGE,
+		TEMPLATES_PAGE,
 	SYSTEM_PAGE,
 		GNOME_PAGE,
 		NAUTILUS_PAGE,
@@ -133,7 +137,7 @@ desktop = \
 personal = \
 [
 	[USERDIR_PAGE, icons[USERDIR_PAGE], _("User Folder"), UserDir()],
-	[TEMPLATE_PAGE, icons[TEMPLATE_PAGE], _("Template"), Template()],
+	[TEMPLATES_PAGE, icons[TEMPLATES_PAGE], _("Templates"), Templates()],
 ]
 
 system = \
@@ -224,6 +228,8 @@ class MainWindow(gtk.Window):
 				gobject.TYPE_STRING)
 
 		for item in itemlist:
+			if DISTRIB == "feisty" and item[0] == PERSONAL_PAGE:
+				continue
 			icon = gtk.gdk.pixbuf_new_from_file(item[ICON_COLUMN])
 			iter = model.append(None)
 			model.set(iter,
@@ -283,6 +289,8 @@ class MainWindow(gtk.Window):
 		notebook.set_show_tabs(False)
 
 		for item in itemlist:
+			if DISTRIB == "feisty" and item[0] == PERSONAL_PAGE:
+				continue
 			page = item[PAGE_COLUMN]
 			notebook.append_page(page, None)
 

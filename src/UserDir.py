@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 
 # Ubuntu Tweak - PyGTK based desktop configure tool
 #
@@ -25,40 +25,88 @@ import os
 import gconf
 import gettext
 from IniFile import IniFile
-from Widgets import GConfCheckButton, ItemBox, TweakPage, EntryBox
+from Widgets import GConfCheckButton, ItemBox, TweakPage, EntryBox, show_info
 
 gettext.install("ubuntu-tweak", unicode = True)
 
 class UserdirEntry(IniFile):
-	"""Class to parse userdir"""
+	"""Class to parse userdir file"""
 	filename = os.path.join(os.path.expanduser("~"), ".config/user-dirs.dirs")
 	def __init__(self):
 		IniFile.__init__(self, self.filename)
 
-class UserdirEdit():
-	def __init__(self, label, text):
-		EntryBox.__init__(self, label, text)
-
-		button = gtk.Button(stock = gtk.STOCK_DIRECTORY)
-		self.pack_end(button)
-
 class UserDir(TweakPage):
         """Setting the user default dictories"""
+	diritems = {	"XDG_DESKTOP_DIR": _("Desktop Folder"),
+			"XDG_DOWNLOAD_DIR": _("Download Folder"),
+			"XDG_TEMPLATES_DIR": _("Templates Folder"),
+			"XDG_PUBLICSHARE_DIR": _("Public Folder"),
+			"XDG_DOCUMENTS_DIR": _("Document Folder"),
+			"XDG_MUSIC_DIR": _("Music Folder"),
+			"XDG_PICTURES_DIR": _("Pictures Folder"),
+			"XDG_VIDEOS_DIR": _("Videos Folder")}
         def __init__(self):
 		TweakPage.__init__(self)
 
-		self.set_title(_("Change your document diectory"))
-		self.set_description(_("Setting the default user directory, so that it can be more freely"))
+		self.set_title(_("Set your document folders"))
+		self.set_description(_("You can change the default document folders.\nDon't change the Desktop folder in normal case."))
 
-		hbox = gtk.HBox(False, 5)
-		self.pack_start(hbox, False, False, 0)
+		table = self.create_table()
+		self.pack_start(table, False, False, 5)
 
-		label = gtk.Label("Desktop")
-		hbox.pack_start(label, False, False, 5)
-		entry = gtk.Entry()
-		hbox.pack_start(entry)
-		button = gtk.Button("Change")
-		hbox.pack_end(button, False, False, 5)
+		hbox = gtk.HBox(False, 0)
+		self.pack_start(hbox, False, False, 5)
+
+		button = gtk.Button(stock = gtk.STOCK_APPLY)
+		button.connect("clicked", self.on_apply_clicked)
+		hbox.pack_end(button, False, False, 0)
+
+	def on_apply_clicked(self, widget, data = None):
+		os.system('xdg-user-dirs-gtk-update')
+		show_info(_("Update successfully!"), type = gtk.MESSAGE_INFO)
+
+	def create_table(self):
+		table = gtk.Table(8, 3)
+
+		ue = UserdirEntry()
+		length = len(ue.content.keys())
+
+		for item, value in self.diritems.items():
+			label = gtk.Label()
+			label.set_markup("<b>%s</b>" % value)
+
+			entry = gtk.Entry()
+			dirpath = os.getenv("HOME") + "/"  + "/".join([dir for dir in ue.get(item).strip('"').split("/")[1:]])
+
+			entry.set_text(dirpath)
+			entry.set_editable(False)
+
+			button = gtk.Button(_("_Browse"))
+			button.connect("clicked", self.on_browser_clicked, (item, entry))
+
+			offset = self.diritems.keys().index(item)
+
+			table.attach(label, 0, 1, offset, offset + 1, xoptions = gtk.FILL, xpadding = 5, ypadding = 5)
+			table.attach(entry, 1, 2, offset, offset + 1, xpadding = 5, ypadding = 5)
+			table.attach(button, 2, 3, offset, offset + 1, xoptions = gtk.FILL, xpadding = 5, ypadding = 5)
+
+		return table
+
+	def on_browser_clicked(self, widget, data = None):
+		item, entry = data
+		dialog = gtk.FileChooserDialog(_("Select a new folder"),
+				action = gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER,
+				buttons = (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, gtk.STOCK_OPEN, gtk.RESPONSE_ACCEPT))
+		dialog.set_current_folder(os.getenv("HOME"))
+		if dialog.run() == gtk.RESPONSE_ACCEPT:
+			ue = UserdirEntry()
+			realpath = dialog.get_filename()
+			folder = '"$HOME/' + "/".join([dir for dir in realpath.split('/')[3:]]) + '"'
+			ue.set(item, folder)
+			ue.write()
+			folder = os.getenv("HOME") + "/" +  "/".join([dir for dir in realpath.split('/')[3:]])
+			entry.set_text(folder)
+		dialog.destroy()
 
 if __name__ == "__main__":
 	win = gtk.Window()

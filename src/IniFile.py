@@ -47,10 +47,9 @@ class IniFile:
 		self.filename = filename
 
 	def get(self, key):
-		if key in self.content.keys():
-			return self.content[key]
-		else:
-			return
+		if key not in self.content.keys():
+			self.set(key, "")
+		return self.content[key]
 
 	def write(self, filename = None):
 		if not filename and not self.filename:

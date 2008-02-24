@@ -47,7 +47,7 @@ class AutoStartDialog(gtk.Dialog):
 		else:
 			self.set_title(_("New Startup Program"))
 
-		button = gtk.Button(_("_Browse..."))
+		button = gtk.Button(_("_Browse"))
 		button.connect("clicked", self.on_choose_program)
 		
 		hbox = gtk.HBox(False, 5)

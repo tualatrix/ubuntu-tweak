@@ -205,3 +205,6 @@ class ComboboxItem(gtk.HBox):
 		client = gconf.client_get_default()
 		text = widget.get_active_text()
 		client.set_string(data, widget.values[widget.texts.index(text)]) 
+
+class AboutBlank:
+	pass
