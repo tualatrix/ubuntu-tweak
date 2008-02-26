@@ -3,14 +3,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-31 12:45+0000\n"
-"PO-Revision-Date: 2008-02-04 12:56+0000\n"
-"Last-Translator: TualatriX <tualatrix@gmail.com>\n"
+"POT-Creation-Date: 2008-02-24 13:36+0000\n"
+"PO-Revision-Date: 2008-02-25 16:52+0000\n"
+"Last-Translator: simpson-fan <Unknown>\n"
 "Language-Team: LL <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-02-11 07:32+0000\n"
+"X-Launchpad-Export-Date: 2008-02-26 05:08+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: GERMANY\n"
 "X-Poedit-Language: German\n"
@@ -37,60 +37,60 @@ msgstr "Startprogramm bearbeiten"
 msgid "New Startup Program"
 msgstr "Neues Startprogramm"
 
-#: AutoStart.py:50
-msgid "_Browse..."
-msgstr "_Durchsuchen..."
+#: AutoStart.py:50 UserDir.py:84
+msgid "_Browse"
+msgstr "_Durchsuchen"
 
 #: AutoStart.py:79
 msgid "Choose a Program"
 msgstr "Programm auswählen"
 
-#: AutoStart.py:136
+#: AutoStart.py:138
 msgid "Delete from Disk"
-msgstr "Von Festplatte löschen"
+msgstr "Endgültig entfernen"
 
-#: AutoStart.py:150
+#: AutoStart.py:152
 msgid "Can't delete the system item from disk."
-msgstr "Löschen der Datei von Festplatte ist nicht möglich."
+msgstr "Endgültiges entfernen nicht möglich"
 
-#: AutoStart.py:187
+#: AutoStart.py:189
 msgid "None description"
 msgstr "Keine Beschreibung"
 
-#: AutoStart.py:201
+#: AutoStart.py:203
 msgid "Enabled"
 msgstr "Aktiviert"
 
-#: AutoStart.py:206
+#: AutoStart.py:208
 msgid "Program"
 msgstr "Programm"
 
-#: AutoStart.py:254
+#: AutoStart.py:256
 msgid "<b>Enable or Disable the AutoStart Program</b>"
 msgstr "<b>Automatischen Start aktivieren oder deaktivieren</b>"
 
-#: AutoStart.py:258
+#: AutoStart.py:260
 msgid ""
 "You can safely delete the item, it will only been marked as hidden.\n"
 "If you want to delete it from disk, right-click the item."
 msgstr ""
 "Sie können den Eintrag ohne Risiko entfernen, er wird dadurch nur "
 "deaktiviert.\n"
-"Klicken sie mit rechts auf den Eintrag um ihn vollständig zu entfernen."
+"Klicken Sie mit rechts auf den Eintrag um ihn jedoch endgültig zu entfernen."
 
-#: AutoStart.py:266
+#: AutoStart.py:268
 msgid "Show program comments"
 msgstr "Kommentare zum Programm anzeigen"
 
-#: AutoStart.py:268
+#: AutoStart.py:270
 msgid "Show all runnable programs"
 msgstr "Alle ausführbaren Programme anzeigen"
 
-#: AutoStart.py:330 AutoStart.py:377
+#: AutoStart.py:332 AutoStart.py:379
 msgid "The name of the startup program cannot be empty"
 msgstr "Bitte geben sie einen Namen für das Autostart-Programm an"
 
-#: AutoStart.py:332 AutoStart.py:379
+#: AutoStart.py:334 AutoStart.py:381
 msgid "Text was empty (or contained only whitespace)"
 msgstr "Das Eingabefeld war leer (oder enthielt nur Leerzeichen)"
 
@@ -154,53 +154,61 @@ msgstr "Alle Fenster auswählen"
 msgid "Opacity Menu"
 msgstr "Transparente Menüs"
 
-#: Computer.py:52
+#: Computer.py:66
 msgid "<b>System information</b>"
 msgstr "<b>Systeminformationen</b>"
 
-#: Computer.py:53
+#: Computer.py:67
 msgid "Hostname"
 msgstr "Rechnername"
 
-#: Computer.py:54
+#: Computer.py:68
 msgid "Distribution"
 msgstr "Distribution"
 
-#: Computer.py:55
+#: Computer.py:69
 msgid "Kernel"
 msgstr "Kernel"
 
-#: Computer.py:56
+#: Computer.py:70
 msgid "Platform"
 msgstr "Architektur"
 
-#: Computer.py:57
+#: Computer.py:71
 msgid "CPU"
 msgstr "CPU"
 
-#: Computer.py:58
+#: Computer.py:72
 msgid "Memory"
 msgstr "Arbeitsspeicher"
 
-#: Computer.py:62
+#: Computer.py:77
 msgid "<b>User information</b>"
 msgstr "<b>Benutzerinformationen</b>"
 
-#: Computer.py:63
+#: Computer.py:78
 msgid "Current User"
 msgstr "Aktueller Benutzer"
 
-#: Computer.py:64
+#: Computer.py:79
 msgid "Home Directory"
 msgstr "Persönlicher Ordner"
 
-#: Computer.py:65
+#: Computer.py:80
 msgid "Shell"
 msgstr "Befehlszeile"
 
-#: Computer.py:66
+#: Computer.py:81
 msgid "Language"
 msgstr "Sprache"
+
+#: Computer.py:82
+msgid "Boot time"
+msgstr "Startzeit"
+
+#: Computer.py:83
+msgid "Uptime"
+msgstr "Laufzeit"
 
 #: Gnome.py:38
 msgid "<b>GNOME Panel and Menu</b>"
@@ -319,7 +327,7 @@ msgstr "Benutzerwechsel deaktivieren"
 msgid "<b>System Security options</b>"
 msgstr "<b>Optionen für Systemsicherheit</b>"
 
-#: MainWindow.py:94
+#: MainWindow.py:106
 msgid ""
 "<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak!</b></span>\n"
 "\n"
@@ -352,71 +360,83 @@ msgstr ""
 "\n"
 "Vielen Dank!"
 
-#: MainWindow.py:107
+#: MainWindow.py:119
 msgid "<span size=\"xx-large\">Please select the child item</span>"
 msgstr "<span size=\"xx-large\">Bitte einen Unterpunkt auswählen</span>"
 
-#: MainWindow.py:114
+#: MainWindow.py:126
 msgid "Session Control"
 msgstr "Sitzungseinstellungen"
 
-#: MainWindow.py:115
+#: MainWindow.py:127
 msgid "Auto Start"
 msgstr "Autostart"
 
-#: MainWindow.py:120
+#: MainWindow.py:132
 msgid "Desktop Icon"
 msgstr "Desktop-Symbole"
 
-#: MainWindow.py:121
+#: MainWindow.py:133
 msgid "Metacity"
 msgstr "Metacity"
 
-#: MainWindow.py:122
+#: MainWindow.py:134
 msgid "Compiz Fusion"
 msgstr "Compiz Fusion"
 
-#: MainWindow.py:123
+#: MainWindow.py:139
+msgid "User Folder"
+msgstr "Ordner benutzen"
+
+#: MainWindow.py:140
+msgid "Templates"
+msgstr "Dokumentvorlage"
+
+#: MainWindow.py:145
 msgid "GNOME"
 msgstr "GNOME"
 
-#: MainWindow.py:124
+#: MainWindow.py:146
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: MainWindow.py:129
+#: MainWindow.py:147
 msgid "Power Manager"
 msgstr "Energieverwaltung"
 
-#: MainWindow.py:134
+#: MainWindow.py:152
 msgid "Security Options"
 msgstr "Sicherheitseinstellungen"
 
-#: MainWindow.py:139
+#: MainWindow.py:157
 msgid "Welcome"
 msgstr "Willkommen"
 
-#: MainWindow.py:140
+#: MainWindow.py:158
 msgid "Computer"
 msgstr "Computer"
 
-#: MainWindow.py:141
+#: MainWindow.py:159
 msgid "Startup"
 msgstr "Systemstart"
 
-#: MainWindow.py:142
+#: MainWindow.py:160
 msgid "Desktop"
 msgstr "Desktop"
 
-#: MainWindow.py:143
+#: MainWindow.py:161
+msgid "Personal"
+msgstr "Persönlich"
+
+#: MainWindow.py:162
 msgid "System"
 msgstr "System"
 
-#: MainWindow.py:144
+#: MainWindow.py:163
 msgid "Security"
 msgstr "Sicherheit"
 
-#: MainWindow.py:295
+#: MainWindow.py:318
 msgid ""
 "Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
 "system and desktop settings."
@@ -424,7 +444,7 @@ msgstr ""
 "Ubuntu Tweak erlaubt Ihnen Ihr Ubuntu-System und den Desktop einfach "
 "anzupassen."
 
-#: MainWindow.py:302
+#: MainWindow.py:325
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
@@ -631,6 +651,84 @@ msgstr "Begrüßungsbildschirm anzeigen"
 msgid "<b>Session Control</b>"
 msgstr "<b>Sitzungseinstellung</b>"
 
+#: Templates.py:84
+msgid "Delete this template"
+msgstr "Vorlage löschen"
+
+#: Templates.py:127
+msgid "Enabled Templates"
+msgstr "Aktivierte Vorlagen"
+
+#: Templates.py:193
+msgid "Disabled Templates"
+msgstr "Deaktivierte Vorlagen"
+
+#: Templates.py:274
+msgid "Manage your templates"
+msgstr "Vorlagen verwalten"
+
+#: Templates.py:275
+msgid ""
+"You can freely manage your document templates.\n"
+"Drag and Drop from external is support.\n"
+"It will be added to your righ-click menu: Create Document.\n"
+msgstr ""
+"Hier können Sie Ihre Dokumentvorlagen verwalten.\n"
+"Drag & Drop wird unterstützt.\n"
+"Die Vorlage wird zu Ihrem Rechtsklick-Menü hinzugefügt: Dokument anlegen.\n"
+
+#: UserDir.py:40
+msgid "Desktop Folder"
+msgstr "Desktop-Ordner"
+
+#: UserDir.py:41
+msgid "Download Folder"
+msgstr "Download-Ordner"
+
+#: UserDir.py:42
+msgid "Templates Folder"
+msgstr "Vorlagen-Ordner"
+
+#: UserDir.py:43
+msgid "Public Folder"
+msgstr "Öffentlicher Ordner"
+
+#: UserDir.py:44
+msgid "Document Folder"
+msgstr "Dokumente-Ordner"
+
+#: UserDir.py:45
+msgid "Music Folder"
+msgstr "Musik-Ordner"
+
+#: UserDir.py:46
+msgid "Pictures Folder"
+msgstr "Bilder-Ordner"
+
+#: UserDir.py:47
+msgid "Videos Folder"
+msgstr "Video-Ordner"
+
+#: UserDir.py:51
+msgid "Set your document folders"
+msgstr "Wählen Sie Ihren Dokumente-Ordner"
+
+#: UserDir.py:52
+msgid ""
+"You can change the default document folders.\n"
+"Don't change the Desktop folder in normal case."
+msgstr ""
+"Sie können den vorgegebenen Dokumente-Ordner ändern.\n"
+"Den Desktop-Ordner sollten Sie normalerweise nicht ändern."
+
+#: UserDir.py:66
+msgid "Update successfully!"
+msgstr "Aktualisierung war erfolgreich!"
+
+#: UserDir.py:97
+msgid "Select a new folder"
+msgstr "Einen neuen Ordner auswählen"
+
 #: ubuntu-tweak.py:30
 msgid "Error"
 msgstr "Fehler"
@@ -651,6 +749,6 @@ msgid ""
 "\n"
 "Ubuntu Tweak can only run in <b>GNOME Desktop.</b>\n"
 msgstr ""
-"Tut uns leid!\n"
+"Fehler!\n"
 "\n"
-"Ubuntu Tweakläuft nur unter <b>GNOME Desktop.</b>\n"
+"Ubuntu Tweak läuft nur mit dem <b>GNOME Desktop</b>.\n"

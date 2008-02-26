@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-01-31 12:45+0000\n"
-"PO-Revision-Date: 2008-02-01 15:25+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2008-02-24 13:36+0000\n"
+"PO-Revision-Date: 2008-02-25 14:41+0000\n"
+"Last-Translator: royto <royto@free.fr>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-02-11 07:32+0000\n"
+"X-Launchpad-Export-Date: 2008-02-26 05:08+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: AutoStart.py:29
@@ -37,39 +37,39 @@ msgstr "Éditer le programme de démarrage"
 msgid "New Startup Program"
 msgstr "Nouveau programme de démarrage"
 
-#: AutoStart.py:50
-msgid "_Browse..."
-msgstr "_Parcourir..."
+#: AutoStart.py:50 UserDir.py:84
+msgid "_Browse"
+msgstr "_Parcourir"
 
 #: AutoStart.py:79
 msgid "Choose a Program"
-msgstr "Choisir un programme"
+msgstr "Choisissez un programme"
 
-#: AutoStart.py:136
+#: AutoStart.py:138
 msgid "Delete from Disk"
 msgstr "Supprimer du disque"
 
-#: AutoStart.py:150
+#: AutoStart.py:152
 msgid "Can't delete the system item from disk."
 msgstr "Impossible de supprimer l'élément système du disque."
 
-#: AutoStart.py:187
+#: AutoStart.py:189
 msgid "None description"
 msgstr "Pas de description"
 
-#: AutoStart.py:201
+#: AutoStart.py:203
 msgid "Enabled"
 msgstr "Activé"
 
-#: AutoStart.py:206
+#: AutoStart.py:208
 msgid "Program"
 msgstr "Programme"
 
-#: AutoStart.py:254
+#: AutoStart.py:256
 msgid "<b>Enable or Disable the AutoStart Program</b>"
 msgstr "<b>Activer ou désactiver l'auto-démarrage de programme</b>"
 
-#: AutoStart.py:258
+#: AutoStart.py:260
 msgid ""
 "You can safely delete the item, it will only been marked as hidden.\n"
 "If you want to delete it from disk, right-click the item."
@@ -78,19 +78,19 @@ msgstr ""
 "Si vous voulez le supprimer définitivement, cliquer dessus avec le bouton "
 "droit."
 
-#: AutoStart.py:266
+#: AutoStart.py:268
 msgid "Show program comments"
 msgstr "Afficher les commentaires du programme"
 
-#: AutoStart.py:268
+#: AutoStart.py:270
 msgid "Show all runnable programs"
 msgstr "Afficher tous les programmes exécutables"
 
-#: AutoStart.py:330 AutoStart.py:377
+#: AutoStart.py:332 AutoStart.py:379
 msgid "The name of the startup program cannot be empty"
 msgstr "Le nom du programme de démarrage ne peut pas être vide"
 
-#: AutoStart.py:332 AutoStart.py:379
+#: AutoStart.py:334 AutoStart.py:381
 msgid "Text was empty (or contained only whitespace)"
 msgstr "Le texte était vide (ou ne contenait que des espaces)"
 
@@ -154,53 +154,61 @@ msgstr "Sélectionner tous les fenêtres"
 msgid "Opacity Menu"
 msgstr "Menu Opacité"
 
-#: Computer.py:52
+#: Computer.py:66
 msgid "<b>System information</b>"
 msgstr "<b>Informations sur le système</b>"
 
-#: Computer.py:53
+#: Computer.py:67
 msgid "Hostname"
 msgstr "Nom d'hôte"
 
-#: Computer.py:54
+#: Computer.py:68
 msgid "Distribution"
 msgstr "Distribution"
 
-#: Computer.py:55
+#: Computer.py:69
 msgid "Kernel"
 msgstr "Noyau"
 
-#: Computer.py:56
+#: Computer.py:70
 msgid "Platform"
 msgstr "Plateforme"
 
-#: Computer.py:57
+#: Computer.py:71
 msgid "CPU"
 msgstr "Processeur"
 
-#: Computer.py:58
+#: Computer.py:72
 msgid "Memory"
 msgstr "Mémoire"
 
-#: Computer.py:62
+#: Computer.py:77
 msgid "<b>User information</b>"
 msgstr "<b>Information utilisateur</b>"
 
-#: Computer.py:63
+#: Computer.py:78
 msgid "Current User"
 msgstr "Utilisateur courant"
 
-#: Computer.py:64
+#: Computer.py:79
 msgid "Home Directory"
 msgstr "Dossier personnel"
 
-#: Computer.py:65
+#: Computer.py:80
 msgid "Shell"
 msgstr "Shell"
 
-#: Computer.py:66
+#: Computer.py:81
 msgid "Language"
 msgstr "Langue"
+
+#: Computer.py:82
+msgid "Boot time"
+msgstr "Temps démarrage"
+
+#: Computer.py:83
+msgid "Uptime"
+msgstr "Temps d'utilisation"
 
 #: Gnome.py:38
 msgid "<b>GNOME Panel and Menu</b>"
@@ -216,11 +224,11 @@ msgstr "Verrouillage complet du panneau "
 
 #: Gnome.py:41
 msgid "Show Input Method menu in the right-click"
-msgstr ""
+msgstr "Montrer le menu de  la méthode d'entrée"
 
 #: Gnome.py:42
 msgid "Show Unicode Method menu in the right-click"
-msgstr ""
+msgstr "montrer le menu de la méthode Unicode"
 
 #: Gnome.py:43
 msgid "Bottom Left"
@@ -319,7 +327,7 @@ msgstr "Désactiver le changement d'utilisateur"
 msgid "<b>System Security options</b>"
 msgstr "<b>Options de la Sécurité dy Système</b>"
 
-#: MainWindow.py:94
+#: MainWindow.py:106
 msgid ""
 "<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak!</b></span>\n"
 "\n"
@@ -354,80 +362,91 @@ msgstr ""
 "\n"
 "Merci!"
 
-#: MainWindow.py:107
+#: MainWindow.py:119
 msgid "<span size=\"xx-large\">Please select the child item</span>"
 msgstr "<span size=\"xx-large\">Merci de sélectionner un objet enfant</span>"
 
-#: MainWindow.py:114
+#: MainWindow.py:126
 msgid "Session Control"
 msgstr "Session de contrôle"
 
-#: MainWindow.py:115
+#: MainWindow.py:127
 msgid "Auto Start"
 msgstr "Démarrage Automatique"
 
-#: MainWindow.py:120
+#: MainWindow.py:132
 msgid "Desktop Icon"
 msgstr "Icône du bureau"
 
-#: MainWindow.py:121
+#: MainWindow.py:133
 msgid "Metacity"
 msgstr "Metacity"
 
-#: MainWindow.py:122
+#: MainWindow.py:134
 msgid "Compiz Fusion"
 msgstr "Compiz Fusion"
 
-#: MainWindow.py:123
+#: MainWindow.py:139
+msgid "User Folder"
+msgstr "Dossier utilisateur"
+
+#: MainWindow.py:140
+msgid "Templates"
+msgstr "Modèles"
+
+#: MainWindow.py:145
 msgid "GNOME"
 msgstr "GNOME"
 
-#: MainWindow.py:124
+#: MainWindow.py:146
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: MainWindow.py:129
+#: MainWindow.py:147
 msgid "Power Manager"
 msgstr "Gestionnaire d'énergie"
 
-#: MainWindow.py:134
+#: MainWindow.py:152
 msgid "Security Options"
 msgstr "Options de sécurité"
 
-#: MainWindow.py:139
+#: MainWindow.py:157
 msgid "Welcome"
 msgstr "Bienvenue"
 
-#: MainWindow.py:140
+#: MainWindow.py:158
 msgid "Computer"
 msgstr "Poste de travail"
 
-#: MainWindow.py:141
+#: MainWindow.py:159
 msgid "Startup"
 msgstr "Démarrage"
 
-#: MainWindow.py:142
+#: MainWindow.py:160
 msgid "Desktop"
 msgstr "Bureau"
 
-#: MainWindow.py:143
+#: MainWindow.py:161
+msgid "Personal"
+msgstr "Personnel"
+
+#: MainWindow.py:162
 msgid "System"
 msgstr "Système"
 
-#: MainWindow.py:144
+#: MainWindow.py:163
 msgid "Security"
 msgstr "Sécurité"
 
-#: MainWindow.py:295
-#, fuzzy
+#: MainWindow.py:318
 msgid ""
 "Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
 "system and desktop settings."
 msgstr ""
-"Ubuntu Tweak est un outil qui facilite la configuration des paramètres "
-"cachès du système et du bureau d'Ubuntu."
+"Ubuntu Tweak est un outil pour Ubuntu qui facilite la configuration des "
+"paramètres cachés du système et du bureau."
 
-#: MainWindow.py:302
+#: MainWindow.py:325
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
@@ -435,6 +454,7 @@ msgstr ""
 "  Pierre DORBAIS https://launchpad.net/~chdorb\n"
 "  chaoswizard https://launchpad.net/~chaoswizard\n"
 "  royto https://launchpad.net/~royto\n"
+"  sedra https://launchpad.net/~sedra12\n"
 "  waxzce https://launchpad.net/~waxzce"
 
 #: Metacity.py:36
@@ -447,7 +467,7 @@ msgstr "Utiliser le thème Metacity"
 
 #: Metacity.py:38
 msgid "Metacity theme active window opacity shade"
-msgstr "Opacité de l'ombre de la fenêtre active avec un thème Metacity"
+msgstr "Nuance de l'opacité de la fenêtre active du thème Metacity"
 
 #: Metacity.py:39
 msgid "Active window opacity level"
@@ -483,11 +503,11 @@ msgstr "Action sur le double clic de la barre de titre"
 
 #: Metacity.py:48 Metacity.py:49 Metacity.py:50
 msgid "Lower"
-msgstr "Inférieur"
+msgstr "Abaisser"
 
 #: Metacity.py:48 Metacity.py:49 Metacity.py:50
 msgid "Maximize"
-msgstr "Maximiser"
+msgstr "Agrandir"
 
 #: Metacity.py:48 Metacity.py:49 Metacity.py:50
 msgid "Menu"
@@ -495,7 +515,7 @@ msgstr "Menu"
 
 #: Metacity.py:48 Metacity.py:49 Metacity.py:50
 msgid "Minimize"
-msgstr "Minimiser"
+msgstr "Réduire"
 
 #: Metacity.py:49
 msgid "Title bar Middle-click action"
@@ -552,9 +572,8 @@ msgid "Lock screen when blanked"
 msgstr "Verrouiller l'écran lors de son extinction"
 
 #: PowerManager.py:45 PowerManager.py:55
-#, fuzzy
 msgid "\"GNOME Panel\" Power Management icon"
-msgstr "Icône Gestionnaire d'énergie \"Panneau GNOME\""
+msgstr "Icône Gestionnaire d'énergie du \"Panneau GNOME\""
 
 #: PowerManager.py:45 PowerManager.py:55
 msgid "Always display"
@@ -569,7 +588,6 @@ msgid "When charging"
 msgstr "Lors du chargement"
 
 #: PowerManager.py:53
-#, fuzzy
 msgid "Disconnected NetworkManager on sleep"
 msgstr "Déconnecter NetworkManager en veille"
 
@@ -638,6 +656,82 @@ msgstr "Afficher le Splash"
 #: Session.py:137
 msgid "<b>Session Control</b>"
 msgstr "<b>Paramètres de Session</b>"
+
+#: Templates.py:84
+msgid "Delete this template"
+msgstr "Supprimer ce modèle"
+
+#: Templates.py:127
+msgid "Enabled Templates"
+msgstr "Activer les modèles"
+
+#: Templates.py:193
+msgid "Disabled Templates"
+msgstr "Désactiver les modèles"
+
+#: Templates.py:274
+msgid "Manage your templates"
+msgstr "Gérer vos modèles"
+
+#: Templates.py:275
+msgid ""
+"You can freely manage your document templates.\n"
+"Drag and Drop from external is support.\n"
+"It will be added to your righ-click menu: Create Document.\n"
+msgstr ""
+"Vous pouvez librement gérer vos modèles de documents.\n"
+"Le glisser-déposer depuis l'extérieur est supporté.\n"
+"Il sera ajouté à votre menu clic droit : Créer un document.\n"
+
+#: UserDir.py:40
+msgid "Desktop Folder"
+msgstr "Dossier Bureau"
+
+#: UserDir.py:41
+msgid "Download Folder"
+msgstr "Dossier Téléchargement"
+
+#: UserDir.py:42
+msgid "Templates Folder"
+msgstr "Dossier Modèles"
+
+#: UserDir.py:43
+msgid "Public Folder"
+msgstr "Dossier Public"
+
+#: UserDir.py:44
+msgid "Document Folder"
+msgstr "Dossier Documents"
+
+#: UserDir.py:45
+msgid "Music Folder"
+msgstr "Dossier Musique"
+
+#: UserDir.py:46
+msgid "Pictures Folder"
+msgstr "Dossier Images"
+
+#: UserDir.py:47
+msgid "Videos Folder"
+msgstr "Dossier Vidéos"
+
+#: UserDir.py:51
+msgid "Set your document folders"
+msgstr "Définir vos dossiers document"
+
+#: UserDir.py:52
+msgid ""
+"You can change the default document folders.\n"
+"Don't change the Desktop folder in normal case."
+msgstr ""
+
+#: UserDir.py:66
+msgid "Update successfully!"
+msgstr "Mise à jour avec succès !"
+
+#: UserDir.py:97
+msgid "Select a new folder"
+msgstr "Sélectionner un nouveau dossier"
 
 #: ubuntu-tweak.py:30
 msgid "Error"
