@@ -31,7 +31,6 @@ gettext.install("ubuntu-tweak", unicode = True)
 
 class Session(gtk.VBox):
 	"""GNOME Session control"""
-
 	def __init__(self):
 		gtk.VBox.__init__(self)
 

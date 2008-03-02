@@ -32,6 +32,21 @@ def show_info(message, title = None, buttons = gtk.BUTTONS_OK, type = gtk.MESSAG
         dialog.run()
         dialog.destroy()
 
+class MessageDialog(gtk.MessageDialog):
+
+	def __init__(self, 
+			message,
+			title = None,
+			parent = None, 
+			flags = 0, 
+			type = gtk.MESSAGE_INFO,
+			buttons = gtk.BUTTONS_YES_NO):
+		gtk.MessageDialog.__init__(self, parent, flags, type, buttons)
+		self.set_markup(message)
+		if title:
+			self.set_title(title)
+		self.set_icon_from_file("pixmaps/ubuntu-tweak.png")
+
 class TweakPage(gtk.VBox):
 	"""The standard page of tweak"""
 	def __init__(self, title = None, des = None):

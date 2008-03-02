@@ -273,7 +273,7 @@ class MainWindow(gtk.Window):
 		column = gtk.TreeViewColumn("Title")
 
 		renderer = gtk.CellRendererPixbuf()
-		column.pack_start(renderer, True)
+		column.pack_start(renderer, False)
 		column.set_attributes(renderer, pixbuf = ICON_COLUMN)
 
 		renderer = gtk.CellRendererText()

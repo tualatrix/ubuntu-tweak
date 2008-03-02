@@ -28,21 +28,58 @@ import gettext
 import gnomevfs
 from gnome import ui
 from UserDir import UserdirEntry
-from Widgets import TweakPage
+from Widgets import TweakPage, MessageDialog
 
 gettext.install("ubuntu-tweak", unicode = True)
 
 (
 	COLUMN_ICON,
 	COLUMN_TEMPINFO,
-	COLUMN_FILE
+	COLUMN_FILE,
 ) = range(3)
 
-class TemplateList(gtk.TreeView):
-	"""The basic treeview to display the Template"""
-	type = ''
+class AbstractTempates:
 	systemdir = os.path.join(os.path.expanduser("~"), ".ubuntu-tweak/templates")
 	userdir = os.getenv("HOME") + "/"  + "/".join([dir for dir in UserdirEntry().get('XDG_TEMPLATES_DIR').strip('"').split("/")[1:]])
+
+class DefaultTemplates(AbstractTempates):
+	"""This class use to create the default templates"""
+	templates = {
+			"HTML document.html": _("HTML document"),
+			"ODB Database.odb": _("ODB Database"),
+			"ODS Spreadsheet.ods": _("ODS Spreadsheet"),
+			"ODT Document.dot": _("ODT Document"),
+			"Plain text document.txt": _("Plain text document"),
+			"ODP Presentation.odp": _("ODP Presentation"),
+			"Python script.py": _("Python script"),
+			"Shell script.sh": _("Shell script")
+			}
+
+	def create(self):
+		if not os.path.exists(self.systemdir):
+			os.makedirs(self.systemdir)
+		for file, des in self.templates.items():
+			realname = "%s.%s" % (des, file.split('.')[1])
+			if not os.path.exists(self.systemdir + realname):
+				shutil.copy("templates/%s" % file, self.systemdir + "/" + realname)
+
+	def remove(self):
+		if not os.path.exists(self.systemdir):
+			return 
+		if os.path.isdir(self.systemdir): 
+			for root, dirs, files in os.walk(self.systemdir, topdown=False):
+				for name in files:
+					os.remove(os.path.join(root, name))
+				for name in dirs:
+					os.rmdir(os.path.join(root, name))
+					os.rmdir(self.systemdir)
+		else:
+			os.unlink(self.systemdir)
+		return
+
+class TemplateList(gtk.TreeView, AbstractTempates):
+	"""The basic treeview to display the Template"""
+	type = ''
 
 	TARGETS = [
 		('text/plain', 0, 1),
@@ -113,7 +150,7 @@ class TemplateList(gtk.TreeView):
 		column = gtk.TreeViewColumn(self.type)
 
 		renderer = gtk.CellRendererPixbuf()
-		column.pack_start(renderer, True)
+		column.pack_start(renderer, False)
 		column.set_attributes(renderer, pixbuf = COLUMN_ICON)
 
 		renderer = gtk.CellRendererText()
@@ -264,15 +301,16 @@ class DisableTemplate(TemplateList):
 				COLUMN_TEMPINFO, os.path.splitext(file)[0],
 				COLUMN_FILE, filename)
 
-class Templates(TweakPage):
+class Templates(TweakPage, AbstractTempates):
         """Freedom added your docmuent templates"""
         def __init__(self):
                 TweakPage.__init__(self)
 
+		self.default = DefaultTemplates()
 		self.config_test()
 
 		self.set_title(_("Manage your templates"))
-		self.set_description(_("You can freely manage your document templates.\nDrag and Drop from external is support.\nIt will be added to your righ-click menu: Create Document.\n"))
+		self.set_description(_("You can freely manage your document templates.\nDrag and Drop from file manager is supported.\nIt will be added to your righ-click menu: Create Document.\n"))
 
 		hbox = gtk.HBox(False, 10)
 		self.pack_start(hbox)
@@ -291,10 +329,24 @@ class Templates(TweakPage):
 		tl = DisableTemplate()
 		sw.add(tl)
 
+		hbox = gtk.HBox(False, 0)
+		self.pack_start(hbox, False, False, 10)
+
+		button = gtk.Button(_("Rebuild the system templates"))
+		button.connect("clicked", self.on_rebuild_clicked, tl)
+		hbox.pack_end(button, False, False, 5)
+
+	def on_rebuild_clicked(self, widget, tl):
+		dialog = MessageDialog(_("This will delete all the disabled templates, continue?"), title = _("Warning"), type = gtk.MESSAGE_WARNING)
+		if dialog.run() == gtk.RESPONSE_YES:
+			self.default.remove()
+			self.default.create()
+			tl.create_model()
+		dialog.destroy()
+
 	def config_test(self):
-		config_dir = os.path.join(os.path.expanduser("~"), ".ubuntu-tweak/templates")
-		if not os.path.exists(config_dir):
-			shutil.copytree("templates", config_dir)
+		if not os.path.exists(self.systemdir):
+			self.default.copy()
 
 if __name__ == "__main__":
 	win = gtk.Window()
