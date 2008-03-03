@@ -148,6 +148,7 @@ class TemplateList(gtk.TreeView, AbstractTempates):
 
 	def __add_columns(self):
 		column = gtk.TreeViewColumn(self.type)
+		column.set_spacing(5)
 
 		renderer = gtk.CellRendererPixbuf()
 		column.pack_start(renderer, False)

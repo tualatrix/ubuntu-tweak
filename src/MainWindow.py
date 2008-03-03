@@ -45,7 +45,7 @@ from Nautilus import Nautilus
 from LockDown import LockDown
 from Metacity import Metacity
 
-VERSION = "0.2.7"
+VERSION = "0.2.8"
 
 (
         NUM_COLUMN,
@@ -271,6 +271,7 @@ class MainWindow(gtk.Window):
 		treeview.append_column(column)
 
 		column = gtk.TreeViewColumn("Title")
+		column.set_spacing(5)
 
 		renderer = gtk.CellRendererPixbuf()
 		column.pack_start(renderer, False)
