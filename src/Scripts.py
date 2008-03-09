@@ -234,7 +234,7 @@ class EnableScripts(ScriptList):
 			iter = model.append()
 			model.set(iter,
 				COLUMN_ICON, pixbuf,
-				COLUMN_SCRIPTINFO, os.path.splitext(file)[0],
+				COLUMN_SCRIPTINFO, file,
 				COLUMN_FILE, filename)
 
 class DisableScripts(ScriptList):
@@ -313,7 +313,7 @@ class DisableScripts(ScriptList):
 			iter = model.append()
 			model.set(iter,
 				COLUMN_ICON, pixbuf,
-				COLUMN_SCRIPTINFO, os.path.splitext(file)[0],
+				COLUMN_SCRIPTINFO, file,
 				COLUMN_FILE, filename)
 
 class Scripts(TweakPage, AbstractScripts):

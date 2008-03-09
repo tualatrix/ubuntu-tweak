@@ -40,7 +40,7 @@ class Session(gtk.VBox):
 		self.pack_start(box, False, False, 0)
 
 	def change_splash_cb(self, widget, data = None):
-		dialog = gtk.FileChooserDialog(_("Choose a Splash image"),action = gtk.FILE_CHOOSER_ACTION_OPEN, buttons = (gtk.STOCK_OPEN, gtk.RESPONSE_ACCEPT, gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL))
+		dialog = gtk.FileChooserDialog(_("Choose a Splash image"),action = gtk.FILE_CHOOSER_ACTION_OPEN, buttons = (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, gtk.STOCK_OPEN, gtk.RESPONSE_ACCEPT))
 		filter = gtk.FileFilter()
 		filter.set_name(_("PNG image (*.png)"))
 		filter.add_mime_type("image/png")
