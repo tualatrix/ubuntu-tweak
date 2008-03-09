@@ -85,14 +85,15 @@ class Worker:
 		dialog = FileChooserDialog(_("Select a folder"))
 		if dialog.run() == gtk.RESPONSE_ACCEPT:
 			folder = dialog.get_filename()
-		dialog.destroy()
 
-		operation = FileOperation()
-		work = getattr(operation, command)
-		for file in paras:
-			if file[0:4] == "file":
-				file = operation.get_local_path(file)
-			work(file, folder)
+			dialog.destroy()
+
+			operation = FileOperation()
+			work = getattr(operation, command)
+			for file in paras:
+				if file[0:4] == "file":
+					file = operation.get_local_path(file)
+				work(file, folder)
 
 if __name__ == "__main__":
 #	show_info(' '.join([i for i in sys.argv]))
