@@ -39,13 +39,14 @@ if DISTRIB != "feisty":
 else:
 	from Widgets import AboutBlank as UserDir
 	from Widgets import AboutBlank as Templates
+from Scripts import Scripts
 from PowerManager import PowerManager
 from Gnome import Gnome
 from Nautilus import Nautilus
 from LockDown import LockDown
 from Metacity import Metacity
 
-VERSION = "0.2.8"
+VERSION = "0.2.10"
 
 (
         NUM_COLUMN,
@@ -68,6 +69,7 @@ VERSION = "0.2.8"
 	PERSONAL_PAGE,
 		USERDIR_PAGE,
 		TEMPLATES_PAGE,
+		SCRIPTS_PAGE,
 	SYSTEM_PAGE,
 		GNOME_PAGE,
 		NAUTILUS_PAGE,
@@ -75,7 +77,7 @@ VERSION = "0.2.8"
 	SECURITY_PAGE,
 		SECU_OPTIONS_PAGE,
 	TOTAL_PAGE
-) = range(19)
+) = range(20)
 
 icons = \
 [
@@ -91,6 +93,7 @@ icons = \
 	"pixmaps/personal.png",
 	"pixmaps/userdir.png",
 	"pixmaps/template.png",
+	"pixmaps/scripts.png",
 	"pixmaps/system.png",
 	"pixmaps/gnome.png",
 	"pixmaps/nautilus.png",
@@ -138,6 +141,7 @@ personal = \
 [
 	[USERDIR_PAGE, icons[USERDIR_PAGE], _("User Folder"), UserDir()],
 	[TEMPLATES_PAGE, icons[TEMPLATES_PAGE], _("Templates"), Templates()],
+	[SCRIPTS_PAGE, icons[SCRIPTS_PAGE], _("Scripts"), Scripts()],
 ]
 
 system = \
@@ -318,7 +322,7 @@ class MainWindow(gtk.Window):
 		about.set_logo(self.get_icon())
 		about.set_comments(_("Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your system and desktop settings."))
 		about.set_authors(["TualatriX <tualatrix@gmail.com>"])
-		about.set_copyright("Copyright © 2007 TualatriX")
+		about.set_copyright("Copyright © 2008 TualatriX")
 		about.set_wrap_license(True)
 		about.set_license("Ubuntu Tweak is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n\
 Ubuntu Tweak is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\

@@ -27,41 +27,37 @@ import gobject
 import gettext
 import gnomevfs
 from gnome import ui
-from UserDir import UserdirEntry
 from Widgets import TweakPage, MessageDialog
 
 gettext.install("ubuntu-tweak", unicode = True)
 
 (
 	COLUMN_ICON,
-	COLUMN_TEMPINFO,
+	COLUMN_SCRIPTINFO,
 	COLUMN_FILE,
 ) = range(3)
 
-class AbstractTempates:
-	systemdir = os.path.join(os.path.expanduser("~"), ".ubuntu-tweak/templates")
-	userdir = os.getenv("HOME") + "/"  + "/".join([dir for dir in UserdirEntry().get('XDG_TEMPLATES_DIR').strip('"').split("/")[1:]])
+class AbstractScripts:
+	systemdir = os.path.join(os.path.expanduser("~"), ".ubuntu-tweak/scripts")
+	userdir = os.path.join(os.getenv("HOME"), ".gnome2", "nautilus-scripts")
 
-class DefaultTemplates(AbstractTempates):
-	"""This class use to create the default templates"""
-	templates = {
-			"HTML document.html": _("HTML document"),
-			"ODB Database.odb": _("ODB Database"),
-			"ODS Spreadsheet.ods": _("ODS Spreadsheet"),
-			"ODT Document.dot": _("ODT Document"),
-			"Plain text document.txt": _("Plain text document"),
-			"ODP Presentation.odp": _("ODP Presentation"),
-			"Python script.py": _("Python script"),
-			"Shell script.sh": _("Shell script")
+class DefaultScripts(AbstractScripts):
+	"""This class use to create the default scripts"""
+	scripts = {
+			"Copy to ...": _("Copy to ..."),
+			"Move to ...": _("Move to ..."),
+			"Link to ...": _("Link to ..."),
+			"Open with gedit": _("Open with gedit"),
+			"Search in current folder": _("Search in current folder"),
 			}
 
 	def create(self):
 		if not os.path.exists(self.systemdir):
 			os.makedirs(self.systemdir)
-		for file, des in self.templates.items():
-			realname = "%s.%s" % (des, file.split('.')[1])
+		for file, des in self.scripts.items():
+			realname = "%s" % des
 			if not os.path.exists(self.systemdir + realname):
-				shutil.copy("templates/%s" % file, self.systemdir + "/" + realname)
+				shutil.copy("scripts/%s" % file, self.systemdir + "/" + realname)
 
 	def remove(self):
 		if not os.path.exists(self.systemdir):
@@ -77,8 +73,8 @@ class DefaultTemplates(AbstractTempates):
 			os.unlink(self.systemdir)
 		return
 
-class TemplateList(gtk.TreeView, AbstractTempates):
-	"""The basic treeview to display the Template"""
+class ScriptList(gtk.TreeView, AbstractScripts):
+	"""The basic treeview to display the scripts"""
 	type = ''
 
 	TARGETS = [
@@ -118,15 +114,15 @@ class TemplateList(gtk.TreeView, AbstractTempates):
 	def create_popup_menu(self):
 		menu = gtk.Menu()
 
-		delete = gtk.MenuItem(_("Delete this template"))
-		delete.connect("activate", self.on_delete_template)
+		delete = gtk.MenuItem(_("Delete this script"))
+		delete.connect("activate", self.on_delete_script)
 		
 		menu.append(delete)
 		menu.attach_to_widget(self, None)
 
 		return menu
 
-	def on_delete_template(self, widget, data = None):
+	def on_delete_script(self, widget, data = None):
 		model, iter = self.get_selection().get_selected()
 		if iter:
 			filepath = model.get_value(iter, COLUMN_FILE)
@@ -156,16 +152,27 @@ class TemplateList(gtk.TreeView, AbstractTempates):
 
 		renderer = gtk.CellRendererText()
 		column.pack_start(renderer, True)
-		column.set_attributes(renderer, text = COLUMN_TEMPINFO)
+		column.set_attributes(renderer, text = COLUMN_SCRIPTINFO)
 
 		self.append_column(column)
 
-class EnableTemplate(TemplateList):
-	"""The treeview to display the enable templates"""
-	type = _("Enabled Templates")
+	def show_error_dialog(self):
+		dialog = MessageDialog(_("Sorry! This isn't a script file."), title = _("Error"), buttons = gtk.BUTTONS_OK, type = gtk.MESSAGE_ERROR)
+		dialog.run()
+		dialog.destroy()
+
+	def check_script_type(self, data):
+		if file(data).readline()[0:6] == "#!/bin":
+			return True
+		else:
+			return False
+
+class EnableScripts(ScriptList):
+	"""The treeview to display the enable scripts"""
+	type = _("Enabled Scripts")
 
 	def __init__(self):
-		TemplateList.__init__(self)
+		ScriptList.__init__(self)
 		self.create_model()
 
 	def on_drag_data_get_data(self, treeview, context, selection, target_id, etime):
@@ -179,8 +186,12 @@ class EnableTemplate(TemplateList):
 		data = gnomevfs.format_uri_for_display(selection.data.strip())
 
 		if os.path.basename(data) not in os.listdir(self.userdir):
-			shutil.copy(data, self.userdir)
-			data = os.path.join(self.userdir, os.path.basename(data))
+			if self.check_script_type(data):
+				shutil.copy(data, self.userdir)
+				data = os.path.join(self.userdir, os.path.basename(data))
+			else:
+				self.show_error_dialog()
+				return
 		
 		drop_info = treeview.get_dest_row_at_pos(x, y)
 
@@ -223,15 +234,15 @@ class EnableTemplate(TemplateList):
 			iter = model.append()
 			model.set(iter,
 				COLUMN_ICON, pixbuf,
-				COLUMN_TEMPINFO, os.path.splitext(file)[0],
+				COLUMN_SCRIPTINFO, os.path.splitext(file)[0],
 				COLUMN_FILE, filename)
 
-class DisableTemplate(TemplateList):
+class DisableScripts(ScriptList):
 	"""The treeview to display the system template"""
-	type = _("Disabled Templates")
+	type = _("Disabled Scripts")
 
 	def __init__(self):
-		TemplateList.__init__(self)
+		ScriptList.__init__(self)
 		self.create_model()
 
 	def on_drag_data_get_data(self, treeview, context, selection, target_id, etime):
@@ -245,18 +256,21 @@ class DisableTemplate(TemplateList):
 		data = gnomevfs.format_uri_for_display(selection.data.strip())
 
 		#if the item comes form userdir, delete or move it
-		if '/'.join([dir for dir in data.split('/')[:4]]) == self.userdir:
+		if '/'.join([dir for dir in data.split('/')[:5]]) == self.userdir:
 			if os.path.basename(data) in os.listdir(self.systemdir):
 				os.remove(data)
 			else:
 				shutil.move(data, self.systemdir)
 			data = os.path.join(self.systemdir, os.path.basename(data))
 
-
 		if os.path.basename(data) not in os.listdir(self.systemdir):
-			shutil.copy(data, self.systemdir)
-			data = os.path.join(self.systemdir, os.path.basename(data))
-			
+			if self.check_script_type(data):
+				shutil.copy(data, self.systemdir)
+				data = os.path.join(self.systemdir, os.path.basename(data))
+			else:
+				self.show_error_dialog()
+				return
+
 		drop_info = treeview.get_dest_row_at_pos(x, y)
 
 		icontheme = gtk.icon_theme_get_default()
@@ -299,19 +313,19 @@ class DisableTemplate(TemplateList):
 			iter = model.append()
 			model.set(iter,
 				COLUMN_ICON, pixbuf,
-				COLUMN_TEMPINFO, os.path.splitext(file)[0],
+				COLUMN_SCRIPTINFO, os.path.splitext(file)[0],
 				COLUMN_FILE, filename)
 
-class Templates(TweakPage, AbstractTempates):
-        """Freedom added your docmuent templates"""
+class Scripts(TweakPage, AbstractScripts):
+        """Freedom added your docmuent scripts"""
         def __init__(self):
                 TweakPage.__init__(self)
 
-		self.default = DefaultTemplates()
+		self.default = DefaultScripts()
 		self.config_test()
 
-		self.set_title(_("Manage your templates"))
-		self.set_description(_("You can freely manage your document templates.\nDrag and Drop from file manager is supported.\nIt will be added to your righ-click menu: Create Document.\n"))
+		self.set_title(_("Manage your scripts"))
+		self.set_description(_("You can done many kinds of work with scripts.\nDrag and Drop from file manager is supported.\nIt will be added to your righ-click menu: Scripts.\n"))
 
 		hbox = gtk.HBox(False, 10)
 		self.pack_start(hbox)
@@ -320,25 +334,25 @@ class Templates(TweakPage, AbstractTempates):
 		sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
 		hbox.pack_start(sw)
 
-		tl = EnableTemplate()
+		tl = EnableScripts()
 		sw.add(tl)
 
 		sw = gtk.ScrolledWindow()
 		sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
 		hbox.pack_start(sw)
 
-		tl = DisableTemplate()
+		tl = DisableScripts()
 		sw.add(tl)
 
 		hbox = gtk.HBox(False, 0)
 		self.pack_start(hbox, False, False, 10)
 
-		button = gtk.Button(_("Rebuild the system templates"))
+		button = gtk.Button(_("Rebuild the system scripts"))
 		button.connect("clicked", self.on_rebuild_clicked, tl)
 		hbox.pack_end(button, False, False, 5)
 
 	def on_rebuild_clicked(self, widget, tl):
-		dialog = MessageDialog(_("This will delete all the disabled templates, continue?"), title = _("Warning"), type = gtk.MESSAGE_WARNING)
+		dialog = MessageDialog(_("This will delete all the disabled scripts, continue?"), title = _("Warning"), type = gtk.MESSAGE_WARNING)
 		if dialog.run() == gtk.RESPONSE_YES:
 			self.default.remove()
 			self.default.create()
@@ -352,11 +366,11 @@ class Templates(TweakPage, AbstractTempates):
 if __name__ == "__main__":
 	win = gtk.Window()
 	win.connect('destroy', lambda *w: gtk.main_quit())
-        win.set_title("Document Templates")
+        win.set_title("Scripts")
         win.set_default_size(650, 400)
         win.set_border_width(8)
 
-        win.add(Templates())
+        win.add(Scripts())
 
         win.show_all()
 	gtk.main()	
