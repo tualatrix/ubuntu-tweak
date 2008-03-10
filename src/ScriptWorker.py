@@ -25,6 +25,7 @@ import gobject
 import gnomevfs
 import gettext
 import shutil
+import subprocess
 from Widgets import show_info
 
 gettext.install("ubuntu-tweak", unicode = True)
@@ -72,6 +73,28 @@ class FileOperation:
 		else:
 			show_info(_('The target "%s" is exists!') % dest)
 
+	def open(self, source):
+		"""Open the file with gedit"""
+		if source[-1] == "root":
+			cmd = ["gksu", "-m", _("Enter your password to perform the administrative tasks") , "gedit"]
+			cmd.extend(source[:-1])
+			subprocess.call(cmd)
+		else:
+			cmd = ["gedit"]
+			cmd.extend(source)
+			subprocess.call(cmd)
+
+	def browse(self, source):
+		"""Browser the folder as root"""
+		if source[-1] == "root":
+			cmd = ["gksu", "-m", _("Enter your password to perform the administrative tasks") , "nautilus"]
+			cmd.extend(source[:-1])
+			subprocess.call(cmd)
+		else:
+			cmd = ["nautilus"]
+			cmd.extend(source)
+			subprocess.call(cmd)
+
 	def get_local_path(self, uri):
 		"""Convert the URI to local path"""
 		return gnomevfs.get_local_path_from_uri(uri)
@@ -82,18 +105,22 @@ class Worker:
 		command = argv[1]
 		paras = argv[2:]
 
-		dialog = FileChooserDialog(_("Select a folder"))
-		if dialog.run() == gtk.RESPONSE_ACCEPT:
-			folder = dialog.get_filename()
+		if command in ('copy', 'move', 'link'):
+			dialog = FileChooserDialog(_("Select a folder"))
+			if dialog.run() == gtk.RESPONSE_ACCEPT:
+				folder = dialog.get_filename()
 
-			dialog.destroy()
+				dialog.destroy()
 
+				operation = FileOperation()
+				work = getattr(operation, command)
+				for file in paras:
+					if file[0:4] == "file":
+						file = operation.get_local_path(file)
+					work(file, folder)
+		else:
 			operation = FileOperation()
-			work = getattr(operation, command)
-			for file in paras:
-				if file[0:4] == "file":
-					file = operation.get_local_path(file)
-				work(file, folder)
+			getattr(operation, command)(paras)
 
 if __name__ == "__main__":
 #	show_info(' '.join([i for i in sys.argv]))

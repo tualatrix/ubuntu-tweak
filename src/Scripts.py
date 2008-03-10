@@ -48,6 +48,8 @@ class DefaultScripts(AbstractScripts):
 			"Move to ...": _("Move to ..."),
 			"Link to ...": _("Link to ..."),
 			"Open with gedit": _("Open with gedit"),
+			"Open with gedit(as root)": _("Open with gedit(as root)"),
+			"Browse as root": _("Browse as root"),
 			"Search in current folder": _("Search in current folder"),
 			}
 
