@@ -36,10 +36,11 @@ from Compiz import Compiz
 if DISTRIB != "feisty":
 	from UserDir import UserDir
 	from Templates import Templates
+	from Scripts import Scripts
 else:
 	from Widgets import AboutBlank as UserDir
 	from Widgets import AboutBlank as Templates
-from Scripts import Scripts
+	from Widgets import AboutBlank as Scripts
 from PowerManager import PowerManager
 from Gnome import Gnome
 from Nautilus import Nautilus
