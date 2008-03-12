@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-03 05:36+0000\n"
-"PO-Revision-Date: 2008-03-03 09:29+0000\n"
+"POT-Creation-Date: 2008-03-10 12:27+0000\n"
+"PO-Revision-Date: 2008-03-09 13:54+0000\n"
 "Last-Translator: Szczepek <Unknown>\n"
 "Language-Team: Łukasz <lukaszsk@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-03-06 02:08+0000\n"
+"X-Launchpad-Export-Date: 2008-03-12 05:20+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: POLAND\n"
 "X-Poedit-Language: Polish\n"
@@ -328,7 +328,7 @@ msgstr "Wyłącz przełączanie użytkowników"
 msgid "<b>System Security options</b>"
 msgstr "<b>Opcje zabezpieczeń systemu</b>"
 
-#: MainWindow.py:106
+#: MainWindow.py:109
 msgid ""
 "<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak!</b></span>\n"
 "\n"
@@ -361,90 +361,94 @@ msgstr ""
 "\n"
 "Dziękuję!"
 
-#: MainWindow.py:119
+#: MainWindow.py:122
 msgid "<span size=\"xx-large\">Please select the child item</span>"
 msgstr "<span size=\"xx-large\">Proszę wybrać element podmenu</span>"
 
-#: MainWindow.py:126
+#: MainWindow.py:129
 msgid "Session Control"
 msgstr "Kontrola sesji"
 
-#: MainWindow.py:127
+#: MainWindow.py:130
 msgid "Auto Start"
 msgstr "Autostart"
 
-#: MainWindow.py:132
+#: MainWindow.py:135
 msgid "Desktop Icon"
 msgstr "Ikony pulpitu"
 
-#: MainWindow.py:133
+#: MainWindow.py:136
 msgid "Metacity"
 msgstr "Metacity"
 
-#: MainWindow.py:134
+#: MainWindow.py:137
 msgid "Compiz Fusion"
 msgstr "Compiz Fusion"
 
-#: MainWindow.py:139
+#: MainWindow.py:142
 msgid "User Folder"
 msgstr "Foldery użytkownika"
 
-#: MainWindow.py:140
+#: MainWindow.py:143
 msgid "Templates"
 msgstr "Szablony"
 
-#: MainWindow.py:145
+#: MainWindow.py:144
+msgid "Scripts"
+msgstr "Skrypty"
+
+#: MainWindow.py:149
 msgid "GNOME"
 msgstr "GNOME"
 
-#: MainWindow.py:146
+#: MainWindow.py:150
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: MainWindow.py:147
+#: MainWindow.py:151
 msgid "Power Manager"
 msgstr "Zarządzanie zasilaniem"
 
-#: MainWindow.py:152
+#: MainWindow.py:156
 msgid "Security Options"
 msgstr "Opcje zabezpieczeń"
 
-#: MainWindow.py:157
+#: MainWindow.py:161
 msgid "Welcome"
 msgstr "Witamy"
 
-#: MainWindow.py:158
+#: MainWindow.py:162
 msgid "Computer"
 msgstr "Komputer"
 
-#: MainWindow.py:159
+#: MainWindow.py:163
 msgid "Startup"
 msgstr "Uruchamianie"
 
-#: MainWindow.py:160
+#: MainWindow.py:164
 msgid "Desktop"
 msgstr "Pulpit"
 
-#: MainWindow.py:161
+#: MainWindow.py:165
 msgid "Personal"
 msgstr "Ustawienia osobiste"
 
-#: MainWindow.py:162
+#: MainWindow.py:166
 msgid "System"
 msgstr "System"
 
-#: MainWindow.py:163
+#: MainWindow.py:167
 msgid "Security"
 msgstr "Zabezpieczenia"
 
-#: MainWindow.py:319
+#: MainWindow.py:323
 msgid ""
 "Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
 "system and desktop settings."
 msgstr ""
 "Narzędzie Ubuntu Tweak umożliwia łatwą zmianę ukrytych ustawień w Ubuntu."
 
-#: MainWindow.py:326
+#: MainWindow.py:330
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
@@ -618,6 +622,101 @@ msgstr "Reguła częstotliwości procesora podczas zasilania z sieci"
 msgid "The CPU frequency policy when on battery power"
 msgstr "Reguła częstotliwości procesora podczas zasilania na baterii"
 
+#: ScriptWorker.py:53
+msgid "The file \"%s\" is exists!"
+msgstr "Plik \"%s\" istnieje!"
+
+#: ScriptWorker.py:58
+msgid "The folder \"%s\" is exists!"
+msgstr "Katalog \"%s\" istnieje!"
+
+#: ScriptWorker.py:66 ScriptWorker.py:74
+msgid "The target \"%s\" is exists!"
+msgstr "Cel \"%s\" istnieje!"
+
+#: ScriptWorker.py:79 ScriptWorker.py:90
+msgid "Enter your password to perform the administrative tasks"
+msgstr ""
+
+#: ScriptWorker.py:109
+msgid "Select a folder"
+msgstr "Wybierz katalog"
+
+#: ScriptWorker.py:128
+msgid "Please select a target(files or folders)."
+msgstr "Proszę wybierz cel (pliki, lub katalogi)"
+
+#: Scripts.py:47
+msgid "Copy to ..."
+msgstr "Kopiuj do..."
+
+#: Scripts.py:48
+msgid "Move to ..."
+msgstr "Przenieś do..."
+
+#: Scripts.py:49
+msgid "Link to ..."
+msgstr "Linkuj do..."
+
+#: Scripts.py:50
+msgid "Open with gedit"
+msgstr "Otwórz gedit'em"
+
+#: Scripts.py:51
+msgid "Open with gedit(as root)"
+msgstr ""
+
+#: Scripts.py:52
+msgid "Browse as root"
+msgstr ""
+
+#: Scripts.py:53
+msgid "Search in current folder"
+msgstr "Szukaj w bierzącym folderze"
+
+#: Scripts.py:119
+msgid "Delete this script"
+msgstr "Usuń ten skrypt"
+
+#: Scripts.py:162
+msgid "Sorry! This isn't a script file."
+msgstr "Przepraszam! To nie jest plik ze skryptem."
+
+#: Scripts.py:162 ubuntu-tweak.py:30
+msgid "Error"
+msgstr "Błąd"
+
+#: Scripts.py:174
+msgid "Enabled Scripts"
+msgstr "Włącz skrypty"
+
+#: Scripts.py:244
+msgid "Disabled Scripts"
+msgstr "Wyłącz skrypty"
+
+#: Scripts.py:329
+msgid "Manage your scripts"
+msgstr "Zarządzaj swoimi skryptami"
+
+#: Scripts.py:330
+msgid ""
+"You can done many kinds of work with scripts.\n"
+"Drag and Drop from file manager is supported.\n"
+"It will be added to your righ-click menu: Scripts.\n"
+msgstr ""
+
+#: Scripts.py:352
+msgid "Rebuild the system scripts"
+msgstr "Przebuduj system skryptów"
+
+#: Scripts.py:357
+msgid "This will delete all the disabled scripts, continue?"
+msgstr "To usunie wszystkie wyłaczone skrypty, kontynuować?"
+
+#: Scripts.py:357 Templates.py:341
+msgid "Warning"
+msgstr "Ostrzeżenie"
+
 #: Session.py:39
 msgid "<b>Click the large button to change Splash screen</b>"
 msgstr "<b>W celu zmiany obrazka kliknij na duży przycisk</b>"
@@ -704,6 +803,9 @@ msgid ""
 "Drag and Drop from file manager is supported.\n"
 "It will be added to your righ-click menu: Create Document.\n"
 msgstr ""
+"Możesz dowolnie zarządzać twoimi szablonami dokumentów.\n"
+"Obsługiwana jest technika przeciągnij i upuść z twojego menedżera plików.\n"
+"Zostanie to dodane do menu pod prawym przyciskiem myszki: Utwórz dokument.\n"
 
 #: Templates.py:336
 msgid "Rebuild the system templates"
@@ -712,10 +814,6 @@ msgstr "Przebuduj szablony systemowe"
 #: Templates.py:341
 msgid "This will delete all the disabled templates, continue?"
 msgstr "To usunie wszystkie wyłączone szablony, kontynuować?"
-
-#: Templates.py:341
-msgid "Warning"
-msgstr "Ostrzeżenie"
 
 #: UserDir.py:40
 msgid "Desktop Folder"
@@ -768,10 +866,6 @@ msgstr "Aktualizacja zakończyła się sukcesem!"
 #: UserDir.py:97
 msgid "Select a new folder"
 msgstr "Wybierz nowy nolder"
-
-#: ubuntu-tweak.py:30
-msgid "Error"
-msgstr "Błąd"
 
 #: ubuntu-tweak.py:39
 msgid ""

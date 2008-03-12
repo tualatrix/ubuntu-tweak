@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-03 05:36+0000\n"
-"PO-Revision-Date: 2008-03-06 02:03+0000\n"
+"POT-Creation-Date: 2008-03-10 12:27+0000\n"
+"PO-Revision-Date: 2008-03-12 05:14+0000\n"
 "Last-Translator: TualatriX <Unknown>\n"
 "Language-Team: TualatriX <tualatrix@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-03-06 02:08+0000\n"
+"X-Launchpad-Export-Date: 2008-03-12 05:20+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: TAIWAN\n"
 "X-Poedit-Language: Chinese\n"
@@ -325,7 +325,7 @@ msgstr "禁止切換使用者"
 msgid "<b>System Security options</b>"
 msgstr "<b>系統安全選項</b>"
 
-#: MainWindow.py:106
+#: MainWindow.py:109
 msgid ""
 "<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak!</b></span>\n"
 "\n"
@@ -355,89 +355,93 @@ msgstr ""
 "\n"
 "謝謝！"
 
-#: MainWindow.py:119
+#: MainWindow.py:122
 msgid "<span size=\"xx-large\">Please select the child item</span>"
 msgstr "<span size=\"xx-large\">請選擇子選項</span>"
 
-#: MainWindow.py:126
+#: MainWindow.py:129
 msgid "Session Control"
 msgstr "作業階段"
 
-#: MainWindow.py:127
+#: MainWindow.py:130
 msgid "Auto Start"
 msgstr "自動啟動"
 
-#: MainWindow.py:132
+#: MainWindow.py:135
 msgid "Desktop Icon"
 msgstr "桌面圖示"
 
-#: MainWindow.py:133
+#: MainWindow.py:136
 msgid "Metacity"
 msgstr "Metacity"
 
-#: MainWindow.py:134
+#: MainWindow.py:137
 msgid "Compiz Fusion"
 msgstr "Compiz Fusion"
 
-#: MainWindow.py:139
+#: MainWindow.py:142
 msgid "User Folder"
 msgstr "用戶目錄"
 
-#: MainWindow.py:140
+#: MainWindow.py:143
 msgid "Templates"
 msgstr "樣本"
 
-#: MainWindow.py:145
+#: MainWindow.py:144
+msgid "Scripts"
+msgstr "指令稿"
+
+#: MainWindow.py:149
 msgid "GNOME"
 msgstr "GNOME"
 
-#: MainWindow.py:146
+#: MainWindow.py:150
 msgid "Nautilus"
 msgstr "檔案管理器"
 
-#: MainWindow.py:147
+#: MainWindow.py:151
 msgid "Power Manager"
 msgstr "電源管理"
 
-#: MainWindow.py:152
+#: MainWindow.py:156
 msgid "Security Options"
 msgstr "安全選項"
 
-#: MainWindow.py:157
+#: MainWindow.py:161
 msgid "Welcome"
 msgstr "歡迎使用"
 
-#: MainWindow.py:158
+#: MainWindow.py:162
 msgid "Computer"
 msgstr "本機資訊"
 
-#: MainWindow.py:159
+#: MainWindow.py:163
 msgid "Startup"
 msgstr "啟動控制"
 
-#: MainWindow.py:160
+#: MainWindow.py:164
 msgid "Desktop"
 msgstr "桌面設定"
 
-#: MainWindow.py:161
+#: MainWindow.py:165
 msgid "Personal"
 msgstr "個人設定"
 
-#: MainWindow.py:162
+#: MainWindow.py:166
 msgid "System"
 msgstr "系統設定"
 
-#: MainWindow.py:163
+#: MainWindow.py:167
 msgid "Security"
 msgstr "安全相關"
 
-#: MainWindow.py:319
+#: MainWindow.py:323
 msgid ""
 "Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
 "system and desktop settings."
 msgstr "Ubuntu Tweak是一個專門為簡易配置系統和桌面而準備的工具。"
 
-#: MainWindow.py:326
+#: MainWindow.py:330
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
@@ -607,6 +611,104 @@ msgstr "當使用交流電時CPU頻率使用策略"
 msgid "The CPU frequency policy when on battery power"
 msgstr "當使用電池時CPU頻率使用策略"
 
+#: ScriptWorker.py:53
+msgid "The file \"%s\" is exists!"
+msgstr "檔案“%s”不存在！"
+
+#: ScriptWorker.py:58
+msgid "The folder \"%s\" is exists!"
+msgstr "資料夾“%s”不存在！"
+
+#: ScriptWorker.py:66 ScriptWorker.py:74
+msgid "The target \"%s\" is exists!"
+msgstr "目標“%s”不存在！"
+
+#: ScriptWorker.py:79 ScriptWorker.py:90
+msgid "Enter your password to perform the administrative tasks"
+msgstr "輸入你的密碼來執行管理權限的任務"
+
+#: ScriptWorker.py:109
+msgid "Select a folder"
+msgstr "選擇資料夾"
+
+#: ScriptWorker.py:128
+msgid "Please select a target(files or folders)."
+msgstr "請選擇一個目標（檔案或資料夾）。"
+
+#: Scripts.py:47
+msgid "Copy to ..."
+msgstr "復制到..."
+
+#: Scripts.py:48
+msgid "Move to ..."
+msgstr "移動到..."
+
+#: Scripts.py:49
+msgid "Link to ..."
+msgstr "連結到..."
+
+#: Scripts.py:50
+msgid "Open with gedit"
+msgstr "使用gedit打開"
+
+#: Scripts.py:51
+msgid "Open with gedit(as root)"
+msgstr "使用gedit打開（作為root）"
+
+#: Scripts.py:52
+msgid "Browse as root"
+msgstr "作為root瀏覽"
+
+#: Scripts.py:53
+msgid "Search in current folder"
+msgstr "在當前目錄檢索"
+
+#: Scripts.py:119
+msgid "Delete this script"
+msgstr "刪除這個指令稿"
+
+#: Scripts.py:162
+msgid "Sorry! This isn't a script file."
+msgstr "對不起！這不是一個指令稿。"
+
+#: Scripts.py:162 ubuntu-tweak.py:30
+msgid "Error"
+msgstr "錯誤"
+
+#: Scripts.py:174
+msgid "Enabled Scripts"
+msgstr "已啟用的指令稿"
+
+#: Scripts.py:244
+msgid "Disabled Scripts"
+msgstr "已禁用的指令稿"
+
+#: Scripts.py:329
+msgid "Manage your scripts"
+msgstr "管理你的指令稿"
+
+#: Scripts.py:330
+msgid ""
+"You can done many kinds of work with scripts.\n"
+"Drag and Drop from file manager is supported.\n"
+"It will be added to your righ-click menu: Scripts.\n"
+msgstr ""
+"你可以用指令搞來完成很多種工作。\n"
+"支持從文件管理器拖拽自己的指令稿。\n"
+"它將被加到你的右鍵選單：指令稿。\n"
+
+#: Scripts.py:352
+msgid "Rebuild the system scripts"
+msgstr "重建系統指令稿"
+
+#: Scripts.py:357
+msgid "This will delete all the disabled scripts, continue?"
+msgstr "這將會刪除掉所有已禁用的指令稿，繼續？"
+
+#: Scripts.py:357 Templates.py:341
+msgid "Warning"
+msgstr "警告"
+
 #: Session.py:39
 msgid "<b>Click the large button to change Splash screen</b>"
 msgstr "<b>點擊大按鈕來更改啟動畫面</b>"
@@ -705,10 +807,6 @@ msgstr "重建系統樣本"
 msgid "This will delete all the disabled templates, continue?"
 msgstr "這將會刪除掉所有已禁用的樣本，繼續？"
 
-#: Templates.py:341
-msgid "Warning"
-msgstr "警告"
-
 #: UserDir.py:40
 msgid "Desktop Folder"
 msgstr "桌面資料夾"
@@ -760,10 +858,6 @@ msgstr "更新成功！"
 #: UserDir.py:97
 msgid "Select a new folder"
 msgstr "選擇一個新的資料夾"
-
-#: ubuntu-tweak.py:30
-msgid "Error"
-msgstr "錯誤"
 
 #: ubuntu-tweak.py:39
 msgid ""
