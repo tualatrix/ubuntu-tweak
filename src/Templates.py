@@ -15,8 +15,8 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+# along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import pygtk
 pygtk.require("2.0")
@@ -26,11 +26,12 @@ import shutil
 import gobject
 import gettext
 import gnomevfs
+from Constants import *
 from gnome import ui
-from UserDir import UserdirEntry
+from UserDir import UserdirFile
 from Widgets import TweakPage, MessageDialog
 
-gettext.install("ubuntu-tweak", unicode = True)
+gettext.install(App, unicode = True)
 
 (
 	COLUMN_ICON,
@@ -40,7 +41,7 @@ gettext.install("ubuntu-tweak", unicode = True)
 
 class AbstractTempates:
 	systemdir = os.path.join(os.path.expanduser("~"), ".ubuntu-tweak/templates")
-	userdir = os.getenv("HOME") + "/"  + "/".join([dir for dir in UserdirEntry().get('XDG_TEMPLATES_DIR').strip('"').split("/")[1:]])
+	userdir = os.getenv("HOME") + "/"  + "/".join([dir for dir in UserdirFile().get('XDG_TEMPLATES_DIR').strip('"').split("/")[1:]])
 
 class DefaultTemplates(AbstractTempates):
 	"""This class use to create the default templates"""
@@ -304,7 +305,7 @@ class DisableTemplate(TemplateList):
 
 class Templates(TweakPage, AbstractTempates):
         """Freedom added your docmuent templates"""
-        def __init__(self):
+        def __init__(self, parent = None):
                 TweakPage.__init__(self)
 
 		self.default = DefaultTemplates()

@@ -15,8 +15,8 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+# along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import pygtk
 pygtk.require("2.0")
@@ -26,10 +26,11 @@ import shutil
 import gobject
 import gettext
 import gnomevfs
+from Constants import *
 from gnome import ui
 from Widgets import TweakPage, MessageDialog
 
-gettext.install("ubuntu-tweak", unicode = True)
+gettext.install(App, unicode = True)
 
 (
 	COLUMN_ICON,
@@ -305,9 +306,10 @@ class DisableScripts(ScriptList):
 		icontheme = gtk.icon_theme_get_default()
 
 		for file in filter(lambda i: i not in os.listdir(self.userdir), os.listdir(self.systemdir)):
+			factory = ui.ThumbnailFactory(32)
 			filename = os.path.join(self.systemdir, file)
 			icon = ui.icon_lookup(icontheme, 
-					None,
+					factory,
 					filename)
 
 			pixbuf = icontheme.load_icon(icon[0], 32, 0)
@@ -320,7 +322,7 @@ class DisableScripts(ScriptList):
 
 class Scripts(TweakPage, AbstractScripts):
         """Freedom added your docmuent scripts"""
-        def __init__(self):
+        def __init__(self, parent = None):
                 TweakPage.__init__(self)
 
 		self.default = DefaultScripts()

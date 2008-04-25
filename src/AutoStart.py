@@ -1,16 +1,33 @@
 #!/usr/bin/env python
-# coding: utf-8
+
+# Ubuntu Tweak - PyGTK based desktop configure tool
+#
+# Copyright (C) 2007-2008 TualatriX <tualatrix@gmail.com>
+#
+# Ubuntu Tweak is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# Ubuntu Tweak is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import os
 import gtk
 import shutil
 import gettext
 import gobject
+from Constants import *
 from xdg.DesktopEntry import DesktopEntry
-from Widgets import ItemBox
 from Widgets import show_info
 
-gettext.install("ubuntu-tweak", unicode = True)
+gettext.install(App, unicode = True)
 
 (
 	COLUMN_ACTIVE,
@@ -20,9 +37,9 @@ gettext.install("ubuntu-tweak", unicode = True)
 
 class AutoStartDialog(gtk.Dialog):
 	"""The dialog used to add or edit the autostart program"""
-	def __init__(self, desktopentry = None):
+	def __init__(self, desktopentry = None, parent = None):
 		"""Init the dialog, if use to edit, pass the desktopentry parameter"""
-		gtk.Dialog.__init__(self)
+		gtk.Dialog.__init__(self, parent = parent)
 		self.set_icon_from_file("pixmaps/ubuntu-tweak.png")
 
 		lbl1 = gtk.Label()
@@ -245,8 +262,10 @@ class AutoStartItem(gtk.TreeView):
 
 class AutoStart(gtk.VBox):
 	"""The box pack the autostart list"""
-	def __init__(self):
+	def __init__(self, parent = None):
 		gtk.VBox.__init__(self)
+
+		self.main_window = parent
 
 		vbox = gtk.VBox(False, 0)
 		vbox.set_border_width(5)
@@ -324,7 +343,7 @@ class AutoStart(gtk.VBox):
 				self.treeview.update_items()
 
 	def on_add_item(self, widget, treeview):
-		dialog = AutoStartDialog()
+		dialog = AutoStartDialog(parent = self.main_window)
 		while dialog.run() == gtk.RESPONSE_OK:
 			name = dialog.pm_name.get_text()
 			cmd = dialog.pm_cmd.get_text()
@@ -371,7 +390,7 @@ class AutoStart(gtk.VBox):
 			if path[1:4] == "etc":
 				shutil.copy(path, treeview.userdir)
 				path = os.path.join(treeview.userdir, os.path.basename(path))
-			dialog = AutoStartDialog(DesktopEntry(path))
+			dialog = AutoStartDialog(DesktopEntry(path), self.main_window)
 			while dialog.run() == gtk.RESPONSE_OK:
 				name = dialog.pm_name.get_text()
 				cmd = dialog.pm_cmd.get_text()

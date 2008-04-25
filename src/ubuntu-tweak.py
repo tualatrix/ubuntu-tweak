@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# coding: utf-8
 
 # Ubuntu Tweak - PyGTK based desktop configure tool
 #
@@ -16,16 +15,17 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+# along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import gtk
 import gettext
 import os
 
-from Computer import DISTRIB
+from Constants import *
+from SystemInfo import GnomeVersion
 
-gettext.install("ubuntu-tweak", unicode = True)
+gettext.install(App, unicode = True)
 
 def show_error(message, title = _("Error"), parent = None):
 	dialog = gtk.MessageDialog(None, gtk.DIALOG_MODAL, gtk.MESSAGE_ERROR, gtk.BUTTONS_OK)
@@ -35,8 +35,8 @@ def show_error(message, title = _("Error"), parent = None):
 	dialog.destroy()
 
 if __name__ == "__main__":
-	if DISTRIB != "feisty" and DISTRIB != "gutsy" and DISTRIB != "hardy":
-		show_error(_("Sorry!\n\nUbuntu Tweak can only run on <b>Ubuntu 7.04 or 7.10.</b>\n"))
+	if GnomeVersion.minor < 18:
+		show_error(_("Sorry!\n\nUbuntu Tweak can only run under <b>GNOME 2.18 or above.</b>\n"))
 	else:
 		#determine whether the gnome is the default desktop
 		if os.getenv("GNOME_DESKTOP_SESSION_ID"):

@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# coding: utf-8
+# -*- coding: utf-8 -*-
 
 # Ubuntu Tweak - PyGTK based desktop configure tool
 #
@@ -16,8 +16,8 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+# along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import pygtk
 pygtk.require('2.0')
@@ -27,35 +27,40 @@ import os
 import gobject
 import gettext
 
-from Computer import Computer, DISTRIB
+from Constants import *
 from gnome import url_show
+from SystemInfo import GnomeVersion
+
+GNOME = int(GnomeVersion.minor)
+
+from Computer import Computer
 from Session import Session
 from AutoStart import AutoStart
 from Icon import Icon
-from Compiz import Compiz
-if DISTRIB != "feisty":
+if GNOME >= 20:
+	from Compiz import Compiz
 	from UserDir import UserDir
 	from Templates import Templates
-	from Scripts import Scripts
 else:
-	from Widgets import AboutBlank as UserDir
-	from Widgets import AboutBlank as Templates
-	from Widgets import AboutBlank as Scripts
+	Compiz = None
+	UserDir = None
+	Templates = None
+from Scripts import Scripts
+from Keybinding import Keybinding
 from PowerManager import PowerManager
 from Gnome import Gnome
 from Nautilus import Nautilus
 from LockDown import LockDown
 from Metacity import Metacity
 
-VERSION = "0.2.10"
-
 (
         NUM_COLUMN,
         ICON_COLUMN,
         NAME_COLUMN,
 	PAGE_COLUMN,
-        TOTAL_COLUMN
-) = range(5)
+	Version_COLUMN,
+        TOTAL_COLUMN,
+) = range(6)
 
 (
         WELCOME_PAGE,
@@ -71,6 +76,7 @@ VERSION = "0.2.10"
 		USERDIR_PAGE,
 		TEMPLATES_PAGE,
 		SCRIPTS_PAGE,
+		KEYBINDING_PAGE,
 	SYSTEM_PAGE,
 		GNOME_PAGE,
 		NAUTILUS_PAGE,
@@ -78,7 +84,7 @@ VERSION = "0.2.10"
 	SECURITY_PAGE,
 		SECU_OPTIONS_PAGE,
 	TOTAL_PAGE
-) = range(20)
+) = range(21)
 
 icons = \
 [
@@ -95,6 +101,7 @@ icons = \
 	"pixmaps/userdir.png",
 	"pixmaps/template.png",
 	"pixmaps/scripts.png",
+	"pixmaps/keybinding.png",
 	"pixmaps/system.png",
 	"pixmaps/gnome.png",
 	"pixmaps/nautilus.png",
@@ -107,7 +114,7 @@ def Welcome():
 	vbox = gtk.VBox(False, 0)
 
 	label = gtk.Label()
-	label.set_markup(_("<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak!</b></span>\n\n\nThis is a tool for Ubuntu which makes it easy to change hidden \nsystem and desktop settings.\n\nUbuntu Tweak is currently only for the GNOME Desktop Environment.\n\nAlthough this application is only in early stages, I'll keep developing it.\n\nIf you have any suggestions, Please visit the website in \"About\" and \nshare ideas with me. \n\nThank You!"))
+	label.set_markup(_("<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak!</b></span>\n\n\nThis is a tool for Ubuntu which makes it easy to change hidden \nsystem and desktop settings.\n\nAnd it is usable on other distributions.\n\nYou can redistribute it under GPL license.\n\nIf you have any suggestions, Please visit the website in \"About\" and \nshare ideas with me. \n\nEnjoy!"))
 	label.set_justify(gtk.JUSTIFY_FILL)
 	vbox.pack_start(label, False, False, 50)
 
@@ -127,45 +134,46 @@ def Blank():
 
 startup = \
 [
-	[SESSION_PAGE, icons[SESSION_PAGE], _("Session Control"), Session()],
-	[AUTOSTART_PAGE, icons[AUTOSTART_PAGE], _("Auto Start"), AutoStart()],
+	[SESSION_PAGE, icons[SESSION_PAGE], _("Session Control"), Session, 0],
+	[AUTOSTART_PAGE, icons[AUTOSTART_PAGE], _("Auto Start"), AutoStart, 0],
 ]
 
 desktop = \
 [
-	[ICON_PAGE, icons[ICON_PAGE], _("Desktop Icon"), Icon()],
-	[METACITY_PAGE, icons[METACITY_PAGE], _("Metacity"), Metacity()],
-	[COMPIZ_PAGE, icons[COMPIZ_PAGE], _("Compiz Fusion"), Compiz()],
+	[ICON_PAGE, icons[ICON_PAGE], _("Desktop Icon"), Icon, 0],
+	[METACITY_PAGE, icons[METACITY_PAGE], _("Metacity"), Metacity, 0],
+	[COMPIZ_PAGE, icons[COMPIZ_PAGE], _("Compiz Fusion"), Compiz, 20],
 ]
 
 personal = \
 [
-	[USERDIR_PAGE, icons[USERDIR_PAGE], _("User Folder"), UserDir()],
-	[TEMPLATES_PAGE, icons[TEMPLATES_PAGE], _("Templates"), Templates()],
-	[SCRIPTS_PAGE, icons[SCRIPTS_PAGE], _("Scripts"), Scripts()],
+	[USERDIR_PAGE, icons[USERDIR_PAGE], _("User Folder"), UserDir, 20],
+	[TEMPLATES_PAGE, icons[TEMPLATES_PAGE], _("Templates"), Templates, 20],
+	[SCRIPTS_PAGE, icons[SCRIPTS_PAGE], _("Scripts"), Scripts, 0],
+	[KEYBINDING_PAGE, icons[KEYBINDING_PAGE], _("Keybinding"), Keybinding, 0],
 ]
 
 system = \
 [
-	[GNOME_PAGE, icons[GNOME_PAGE], _("GNOME"), Gnome()],
-	[NAUTILUS_PAGE, icons[NAUTILUS_PAGE], _("Nautilus"), Nautilus()],
-	[POWER_PAGE, icons[POWER_PAGE], _("Power Manager"), PowerManager()],
+	[GNOME_PAGE, icons[GNOME_PAGE], _("GNOME"), Gnome, 0],
+	[NAUTILUS_PAGE, icons[NAUTILUS_PAGE], _("Nautilus"), Nautilus, 0],
+	[POWER_PAGE, icons[POWER_PAGE], _("Power Manager"), PowerManager, 0],
 ]
 
 security = \
 [
-	[SECU_OPTIONS_PAGE, icons[SECU_OPTIONS_PAGE], _("Security Options"), LockDown()]
+	[SECU_OPTIONS_PAGE, icons[SECU_OPTIONS_PAGE], _("Security Options"), LockDown, 0]
 ]
 
 itemlist = \
 [
-	[WELCOME_PAGE, icons[WELCOME_PAGE], _("Welcome"), Welcome(), None],
-	[COMPUTER_PAGE, icons[COMPUTER_PAGE], _("Computer"), Computer(), None],
-	[STARTUP_PAGE, icons[STARTUP_PAGE], _("Startup"), Blank(), startup],
-	[DESKTOP_PAGE, icons[DESKTOP_PAGE], _("Desktop"), Blank(), desktop],
-	[PERSONAL_PAGE, icons[PERSONAL_PAGE], _("Personal"), Blank(), personal],
-	[SYSTEM_PAGE, icons[SYSTEM_PAGE], _("System"), Blank(), system],
-	[SECURITY_PAGE, icons[SECURITY_PAGE], _("Security"), Blank(), security],
+	[WELCOME_PAGE, icons[WELCOME_PAGE], _("Welcome"), Welcome, None],
+	[COMPUTER_PAGE, icons[COMPUTER_PAGE], _("Computer"), Computer, None],
+	[STARTUP_PAGE, icons[STARTUP_PAGE], _("Startup"), Blank, startup],
+	[DESKTOP_PAGE, icons[DESKTOP_PAGE], _("Desktop"), Blank, desktop],
+	[PERSONAL_PAGE, icons[PERSONAL_PAGE], _("Personal"), Blank, personal],
+	[SYSTEM_PAGE, icons[SYSTEM_PAGE], _("System"), Blank, system],
+	[SECURITY_PAGE, icons[SECURITY_PAGE], _("Security"), Blank, security],
 ]
 
 class MainWindow(gtk.Window):
@@ -231,26 +239,31 @@ class MainWindow(gtk.Window):
 				gobject.TYPE_INT,
 				gtk.gdk.Pixbuf,
 				gobject.TYPE_STRING)
+		i = 0
 
 		for item in itemlist:
-			if DISTRIB == "feisty" and item[0] == PERSONAL_PAGE:
-				continue
 			icon = gtk.gdk.pixbuf_new_from_file(item[ICON_COLUMN])
 			iter = model.append(None)
 			model.set(iter,
-				NUM_COLUMN, item[NUM_COLUMN],
+				NUM_COLUMN, i,
 				ICON_COLUMN, icon,
 				NAME_COLUMN, item[NAME_COLUMN]
 			)
 			if item[-1]:
 				for child_item in item[-1]:
-					icon = gtk.gdk.pixbuf_new_from_file(child_item[ICON_COLUMN])
-					child_iter = model.append(iter)
-					model.set(child_iter,
-						NUM_COLUMN, child_item[NUM_COLUMN],
-						ICON_COLUMN, icon,
-						NAME_COLUMN, child_item[NAME_COLUMN]
-					)
+					if  GNOME >= child_item[Version_COLUMN]:
+						i = i + 1
+						icon = gtk.gdk.pixbuf_new_from_file(child_item[ICON_COLUMN])
+						child_iter = model.append(iter)
+						model.set(child_iter,
+							NUM_COLUMN, i,
+							ICON_COLUMN, icon,
+							NAME_COLUMN, child_item[NAME_COLUMN]
+						)
+					else:
+						continue
+
+			i = i + 1
 
 		return model
 
@@ -258,15 +271,17 @@ class MainWindow(gtk.Window):
 		if not widget.get_selected():
 			return
 		model, iter = widget.get_selected()
-		path = model.get_path(iter)
-		self.treeview.expand_row(path, True)
 
-		if model.iter_has_child(iter):
-			child_iter = model.iter_children(iter)
-			self.notebook.set_current_page(model.get_value(child_iter, NUM_COLUMN))
-			widget.select_iter(child_iter)
-		else:
-			self.notebook.set_current_page(model.get_value(iter, NUM_COLUMN))
+		if iter:
+			path = model.get_path(iter)
+			self.treeview.expand_row(path, True)
+
+			if model.iter_has_child(iter):
+				child_iter = model.iter_children(iter)
+				self.notebook.set_current_page(model.get_value(child_iter, NUM_COLUMN))
+				widget.select_iter(child_iter)
+			else:
+				self.notebook.set_current_page(model.get_value(iter, NUM_COLUMN))
 
 	def __add_columns(self, treeview):
 		renderer = gtk.CellRendererText()
@@ -295,15 +310,16 @@ class MainWindow(gtk.Window):
 		notebook.set_show_tabs(False)
 
 		for item in itemlist:
-			if DISTRIB == "feisty" and item[0] == PERSONAL_PAGE:
-				continue
 			page = item[PAGE_COLUMN]
-			notebook.append_page(page, None)
+			notebook.append_page(page(), None)
 
 			if item[-1]:
 				for child_item in item[-1]:
-					page = child_item[PAGE_COLUMN]
-					notebook.append_page(page, None)
+					if GNOME >= child_item[Version_COLUMN]:
+						page = child_item[PAGE_COLUMN]
+						notebook.append_page(page(self), None)
+					else:
+						continue
 
 		return notebook
 
@@ -315,9 +331,10 @@ class MainWindow(gtk.Window):
 		gtk.about_dialog_set_email_hook(self.click_website)
 
 		about = gtk.AboutDialog()
+		about.set_transient_for(self)
 		about.set_icon_from_file("pixmaps/ubuntu-tweak.png")
 		about.set_name("Ubuntu Tweak")
-		about.set_version(VERSION)
+		about.set_version(Version)
 		about.set_website("http://ubuntu-tweak.com")
 		about.set_website_label("ubuntu-tweak.com")
 		about.set_logo(self.get_icon())
@@ -327,7 +344,7 @@ class MainWindow(gtk.Window):
 		about.set_wrap_license(True)
 		about.set_license("Ubuntu Tweak is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n\
 Ubuntu Tweak is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\
-You should have received a copy of the GNU General Public License along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA")
+You should have received a copy of the GNU General Public License along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA")
 		about.set_translator_credits(_("translator-credits"))
 		about.set_artists(["Medical-Wei <a790407@hotmail.com>", "m.Sharp <mac.sharp@gmail.com>", "taiwan ock ting <a2d8a4v@gmail.com>"])
 		about.run()

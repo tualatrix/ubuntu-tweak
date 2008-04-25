@@ -15,8 +15,8 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+# along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import pygtk
 pygtk.require('2.0')
@@ -25,28 +25,35 @@ import os
 import gobject
 import gettext
 
-from Widgets import GConfCheckButton, ItemBox, EntryBox, HScaleBox, ComboboxItem
-from Computer import DISTRIB
+from Constants import *
+from Factory import Factory
+from Widgets import TablePack
+
+gettext.install(App, unicode = True)
 
 class Metacity(gtk.VBox):
 	"""Some options about Metacity Window Manager"""
-	def __init__(self):
+	def __init__(self, parent = None):
 		gtk.VBox.__init__(self)
 
-		box = ItemBox(_("<b>Window Decorate Effect</b>"), (
-			GConfCheckButton(_("Use metacity theme"), "/apps/gwd/use_metacity_theme"),
-			GConfCheckButton(_("Metacity theme active window opacity shade"), "/apps/gwd/metacity_theme_active_shade_opacity"),
-			HScaleBox(_("Active window opacity level"), 0, 1, "/apps/gwd/metacity_theme_active_opacity", digits = 2),
-			GConfCheckButton(_("Metacity theme opacity shade"), "/apps/gwd/metacity_theme_shade_opacity"),
-			HScaleBox(_("Window shade opacity level"), 0, 1, "/apps/gwd/metacity_theme_opacity", digits = 2),
-			))
+		box = TablePack(_("<b>Window Decorate Effect</b>"), [
+			[Factory.create("gconfcheckbutton", _("Use metacity theme"), "use_metacity_theme")],
+			[Factory.create("gconfcheckbutton", _("Active window opacity shade"), "metacity_theme_active_shade_opacity")],
+			[gtk.Label(_("Active window opacity level")), Factory.create("gconfscale", 0, 1, "metacity_theme_active_opacity", 2)],
+			[Factory.create("gconfcheckbutton", _("Inactive window opacity shade"), "metacity_theme_shade_opacity")],
+			[gtk.Label(_("Inactive window shade opacity level")), Factory.create("gconfscale", 0, 1, "metacity_theme_opacity", 2)],
+			])
 		self.pack_start(box, False, False, 0)
 
-		if DISTRIB != "feisty":
-			box = ItemBox(_("<b>Window Titlebar Action</b>"),(
-				ComboboxItem(_("Title bar mouse wheel action"), [_("None"), _("Roll up")], ["none", "shade"], "/apps/gwd/mouse_wheel_action"),
-				ComboboxItem(_("Title bar Double-click action"), [_("None"), _("Maximize"), _("Minimize"), _("Roll up"), _("Lower"), _("Menu")], ["none", "toggle_maximize", "minimize", "toggle_shade", "lower", "menu"], "/apps/metacity/general/action_double_click_titlebar"),
-				ComboboxItem(_("Title bar Middle-click action"), [_("None"), _("Maximize"), _("Minimize"), _("Roll up"), _("Lower"), _("Menu")], ["none", "toggle_maximize", "minimize", "toggle_shade", "lower", "menu"], "/apps/metacity/general/action_middle_click_titlebar"),
-				ComboboxItem(_("Title bar Right-click action"), [_("None"), _("Maximize"), _("Minimize"), _("Roll up"), _("Lower"), _("Menu")], ["none", "toggle_maximize", "minimize", "toggle_shade", "lower", "menu"], "/apps/metacity/general/action_right_click_titlebar"),
-				))
-			self.pack_start(box, False, False, 0)
+		table = TablePack(_("<b>Window Titlebar Action</b>"), [
+			[gtk.Label(_("Title bar mouse wheel action")), Factory.create("gconfcombobox", "mouse_wheel_action", [_("None"), _("Roll up")], ["none", "shade"])],
+			[gtk.Label(_("Title bar Double-click action")), Factory.create("gconfcombobox", "action_double_click_titlebar", [_("None"), _("Maximize"), _("Minimize"), _("Roll up"), _("Lower"), _("Menu")], ["none", "toggle_maximize", "minimize", "toggle_shade", "lower", "menu"])],
+			[gtk.Label(_("Title bar Middle-click action")), Factory.create("gconfcombobox", "action_middle_click_titlebar", [_("None"), _("Maximize"), _("Minimize"), _("Roll up"), _("Lower"), _("Menu")], ["none", "toggle_maximize", "minimize", "toggle_shade", "lower", "menu"])],
+			[gtk.Label(_("Title bar Right-click action")), Factory.create("gconfcombobox", "action_right_click_titlebar", [_("None"), _("Maximize"), _("Minimize"), _("Roll up"), _("Lower"), _("Menu")], ["none", "toggle_maximize", "minimize", "toggle_shade", "lower", "menu"])],
+				])
+
+		self.pack_start(table, False, False, 0)
+
+if __name__ == "__main__":
+	from Utility import Test
+	Test(Metacity)

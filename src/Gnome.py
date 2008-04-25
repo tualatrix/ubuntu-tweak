@@ -25,21 +25,28 @@ import os
 import gconf
 import gettext
 
-from Widgets import GConfCheckButton, ItemBox, ComboboxItem
+from Constants import *
+from Widgets import  TablePack
+from Factory import Factory
 
-gettext.install("ubuntu-tweak", unicode = True)
+gettext.install(App, unicode = True)
 
 class Gnome(gtk.VBox):
 	"""GNOME Settings"""
 
-	def __init__(self):
+	def __init__(self, parent = None):
 		gtk.VBox.__init__(self)
 
-		box = ItemBox(_("<b>GNOME Panel and Menu</b>"), (
-			GConfCheckButton(_("Confirm before remove panel"), "/apps/panel/global/confirm_panel_remove"),
-			GConfCheckButton(_("Complete lockdown of the Panel "), "/apps/panel/global/locked_down"),
-			GConfCheckButton(_("Show Input Method menu in the right-click"), "/desktop/gnome/interface/show_input_method_menu"),
-			GConfCheckButton(_("Show Unicode Method menu in the right-click"), "/desktop/gnome/interface/show_unicode_menu"),
-			ComboboxItem(_("Notification-daemon popup location"), [_("Top Left"), _("Top Right"), _("Bottom Left"), _("Bottom Right")], ["top_left", "top_right", "bottom_left", "bottom_right"], "/apps/notification-daemon/popup_location")
-			))
+		box = TablePack(_("<b>GNOME Panel and Menu</b>"), [
+			[Factory.create("gconfcheckbutton", _("Confirm before remove panel"), "confirm_panel_remove")],
+			[Factory.create("gconfcheckbutton", _("Complete lockdown of the Panel "), "locked_down")],
+			[Factory.create("gconfcheckbutton", _("Enable panel animations"), "enable_animations")],
+			[Factory.create("gconfcheckbutton", _("Show Input Method menu in the right-click"), "show_input_method_menu")],
+			[Factory.create("gconfcheckbutton", _("Show Unicode Method menu in the right-click"), "show_unicode_menu")],
+			[gtk.Label(_("Notification-daemon popup location")), Factory.create("gconfcombobox", "popup_location", [_("Top Left"), _("Top Right"), _("Bottom Left"), _("Bottom Right")], ["top_left", "top_right", "bottom_left", "bottom_right"])]
+			])
 		self.pack_start(box, False, False, 0)
+
+if __name__ == "__main__":
+	from Utility import Test
+	Test(Gnome)

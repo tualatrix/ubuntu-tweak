@@ -25,18 +25,21 @@ import os
 import gconf
 import gettext
 
-from Widgets import GConfCheckButton, ItemBox
+from Constants import *
+from Widgets import ListPack, SinglePack
+from Widgets import Mediator
+from Factory import Factory
 
-gettext.install("ubuntu-tweak", unicode = True)
+gettext.install(App, unicode = True)
 
-class Session(gtk.VBox):
+class Session(gtk.VBox, Mediator):
 	"""GNOME Session control"""
-	def __init__(self):
+	def __init__(self, parent = None):
 		gtk.VBox.__init__(self)
 
 		self.pack_start(self.session_control_box(), False, False, 0)
 
-		box = ItemBox(_("<b>Click the large button to change Splash screen</b>"), (self.splash_hbox(),))
+		box = SinglePack(_("<b>Click the large button to change Splash screen</b>"), self.splash_hbox())
 		self.pack_start(box, False, False, 0)
 
 	def change_splash_cb(self, widget, data = None):
@@ -67,19 +70,14 @@ class Session(gtk.VBox):
 			client.set_string("/apps/gnome-session/options/splash_image", filename)
 		dialog.destroy()
 
-	def show_splash_toggled(self, widget, data = None):
-                client = gconf.client_get_default()
-                if widget.get_active():
-                        client.set_bool("/apps/gnome-session/options/show_splash_screen", True)
-			self.button.set_sensitive(True)
-                else:
-                        client.set_bool("/apps/gnome-session/options/show_splash_screen", False)
-			self.button.set_sensitive(False)
-
 	def splash_hbox(self):
 		client = gconf.client_get_default()
 		filename = client.get_string("/apps/gnome-session/options/splash_image")
+		if filename[0] != "/":
+			filename = "/usr/share/pixmaps/" + filename
+
 		self.filedir = os.path.dirname(filename)
+
 		try:
 			f = open(filename)
 		except IOError:
@@ -128,10 +126,20 @@ class Session(gtk.VBox):
 		return hbox
 
 	def session_control_box(self):
-		button = GConfCheckButton(_("Automatically save changes to session"), "/apps/gnome-session/options/auto_save_session") 
-		button2 = GConfCheckButton(_("Show Logout prompt"), "/apps/gnome-session/options/logout_prompt")
-		button3 = GConfCheckButton(_("Allow TCP Connections(Remote Connect)"), "/apps/gnome-session/options/allow_tcp_connections")
-		button4 = GConfCheckButton(_("Show Splash screen"), "/apps/gnome-session/options/show_splash_screen", extra = self.show_splash_toggled)
+		button = Factory.create("gconfcheckbutton", _("Automatically save changes to session"), "auto_save_session")
+		button2 = Factory.create("gconfcheckbutton", _("Show Logout prompt"), "logout_prompt")
+		button3 = Factory.create("gconfcheckbutton", _("Allow TCP Connections(Remote Connect)"), "allow_tcp_connections")
+		self.show_splash_button = Factory.create("cgconfcheckbutton", _("Show Splash screen"), "show_splash_screen", self)
 
-		box = ItemBox(_("<b>Session Control</b>"), (button, button2, button3, button4))
+		box = ListPack(_("<b>Session Control</b>"), (button, button2, button3, self.show_splash_button))
 		return box
+
+	def colleague_changed(self):
+		if self.show_splash_button.get_active():
+			self.button.set_sensitive(True)
+		else:
+			self.button.set_sensitive(False)
+
+if __name__ == "__main__":
+	from Utility import Test
+	Test(Session)
