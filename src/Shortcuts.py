@@ -41,7 +41,7 @@ gettext.install(App, unicode = True)
 		COLUMN_EDITABLE,
 ) = range(6)
 
-class Keybinding(TweakPage):
+class Shortcuts(TweakPage):
 	"""Setting the command of keybinding"""
 
 	def __init__(self, parent = None):
@@ -49,8 +49,8 @@ class Keybinding(TweakPage):
 		gtk.VBox.__init__(self)
 
 		self.main_window = parent
-		self.set_title(_("Set your keybinding of commands"))
-		self.set_description(_("With the keybinding of commands, you can run applications more quickly.\nInput the command and grap your key, it's easy to set a keybinding.\nUse <b>Delete</b> or <b>BackSpace</b> to clean the key."))
+		self.set_title(_("Set the shortcut of your commands"))
+		self.set_description(_("With the shortcuts, you can run applications more quickly.\nInput the command and grap your key, it's easy to set a shortcut.\nUse <b>Delete</b> or <b>BackSpace</b> to clean the key."))
 
 		treeview = self.create_treeview()
 
@@ -105,7 +105,7 @@ class Keybinding(TweakPage):
 	def __add_columns(self, treeview):
 		model = treeview.get_model()
 
-		column = gtk.TreeViewColumn(_("Title"), gtk.CellRendererText(), text = COLUMN_TITLE)
+		column = gtk.TreeViewColumn(_("ID"), gtk.CellRendererText(), text = COLUMN_TITLE)
 		treeview.append_column(column)
 
 		column = gtk.TreeViewColumn(_("Command"))
@@ -116,21 +116,17 @@ class Keybinding(TweakPage):
 
 		renderer = gtk.CellRendererText()
 		renderer.connect("edited", self.on_cell_edited, model)
-		renderer.set_data("type", "command")
 		column.pack_start(renderer, True)
-		#column.set_attributes(renderer, text = COLUMN_COMMAND)
 		column.set_attributes(renderer, text = COLUMN_COMMAND, editable = COLUMN_EDITABLE)
-#		column = gtk.TreeViewColumn(_("Command"), renderer, text = COLUMN_COMMAND, editable = COLUMN_EDITABLE)
 		treeview.append_column(column)
 	
 		renderer = gtk.CellRendererText()
 		renderer.connect("editing-started", self.on_editing_started)
 		renderer.connect("edited", self.on_cell_edited, model)
-		renderer.set_data("type", "key")
 		column = gtk.TreeViewColumn(_("Key"), renderer, text = COLUMN_KEY, editable = COLUMN_EDITABLE)
 		treeview.append_column(column)
 
-	def GotKey(self, widget, key, mods, cell):
+	def on_got_key(self, widget, key, mods, cell):
 		new = gtk.accelerator_name (key, mods)
 		for mod in KeyModifier:
 			if "%s_L" % mod in new:
@@ -154,11 +150,11 @@ class Keybinding(TweakPage):
 			self.model.set_value(iter, COLUMN_KEY, new)
 
 	def on_editing_started(self, cell, editable, path):
-		grabber = KeyGrabber(self.main_window, label = _("Grab key combination"))
+		grabber = KeyGrabber(self.main_window, label = "Grab key combination")
 		cell.set_data("path_string", path)
 		grabber.hide()
 		grabber.set_no_show_all(True)
-		grabber.connect('changed', self.GotKey, cell)
+		grabber.connect('changed', self.on_got_key, cell)
 		grabber.begin_key_grab(None)
 
 	def on_cell_edited(self, cell, path_string, new_text, model):
@@ -167,34 +163,22 @@ class Keybinding(TweakPage):
 		client = gconf.client_get_default()
 		column = cell.get_data("id")
 
-		type = cell.get_data("type")
 		id = model.get_value(iter, COLUMN_ID)
+		old = model.get_value(iter, COLUMN_COMMAND)
 
-		if type == "command":
-			old = model.get_value(iter, COLUMN_COMMAND)
-			if old != new_text:
-				client.set_string("/apps/metacity/keybinding_commands/command_%d" % id, new_text)
-				if new_text:
-					icontheme = gtk.icon_theme_get_default()
-					icon = icontheme.lookup_icon(new_text, 32, gtk.ICON_LOOKUP_NO_SVG)
-					if icon: icon = icon.load_icon()
+		if old != new_text:
+			client.set_string("/apps/metacity/keybinding_commands/command_%d" % id, new_text)
+			if new_text:
+				icontheme = gtk.icon_theme_get_default()
+				icon = icontheme.lookup_icon(new_text, 32, gtk.ICON_LOOKUP_NO_SVG)
+				if icon: icon = icon.load_icon()
 
-					model.set_value(iter, COLUMN_ICON, icon)
-					model.set_value(iter, COLUMN_COMMAND, new_text)
-				else:
-					model.set_value(iter, COLUMN_ICON, None)
-					model.set_value(iter, COLUMN_COMMAND, _("None"))
-		else:
-			old = model.get_value(iter, COLUMN_KEY)
-
-			if old != new_text:
-				if new_text:
-					client.set_string("/apps/metacity/global_keybindings/run_command_%d" % id, new_text)
-					model.set_value(iter, COLUMN_KEY, new_text)
-				else:
-					client.set_string("/apps/metacity/global_keybindings/run_command_%d" % id, "disabled")
-					model.set_value(iter, COLUMN_KEY, _("disabled"))
+				model.set_value(iter, COLUMN_ICON, icon)
+				model.set_value(iter, COLUMN_COMMAND, new_text)
+			else:
+				model.set_value(iter, COLUMN_ICON, None)
+				model.set_value(iter, COLUMN_COMMAND, _("None"))
 
 if __name__ == "__main__":
 	from Utility import Test
-	Test(Keybinding)
+	Test(Shortcuts)

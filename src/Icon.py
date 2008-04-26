@@ -127,7 +127,7 @@ class Icon(gtk.VBox, Mediator):
 		button = Factory.create("gconfcheckbutton", _("Show Mounted Volumes on desktop"), "volumes_visible")
 		vbox.pack_start(button, False, False, 0)
 
-		button = Factory.create("gconfcheckbutton", _("Use Home Folder as the desktop(Need Logout)"), "desktop_is_home_dir")
+		button = Factory.create("gconfcheckbutton", _("Use Home Folder as the desktop(Logout for changes to take effect)"), "desktop_is_home_dir")
 		vbox.pack_start(button, False, False, 0)
 
 	def colleague_changed(self):

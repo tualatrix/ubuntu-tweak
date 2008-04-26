@@ -300,7 +300,6 @@ def show_info(message, title = None, buttons = gtk.BUTTONS_OK, type = gtk.MESSAG
         dialog.run()
         dialog.destroy()
 
-
 class MessageDialog(gtk.MessageDialog):
 
 	def __init__(self, 

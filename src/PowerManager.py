@@ -39,10 +39,10 @@ class PowerManager(gtk.VBox):
                 gtk.VBox.__init__(self)
 
 		box = TablePack(_("<b>Advanced Power Management Settings</b>"), [
-			[Factory.create("gconfcheckbutton", _("Enable Hibernation"), "can_hibernate", _("If you disable this option, hibernation option will disappear in the exit dialog"))],
-			[Factory.create("gconfcheckbutton", _("Enable Suspend"), "can_suspend", _("If you disable this option, suspend option will disappear in the exit dialog"))],
-			[Factory.create("gconfcheckbutton", _("Show CPU frequency control option"), "cpufreq_show", _("If you enable this option, the Power Management will display the CPU frequency option"))],
-			[Factory.create("gconfcheckbutton", _("Disconnected NetworkManager on sleep"), "network_sleep", _("Whether NetworkManager should disconnect before suspending or hibernating and connect on resume."))],
+			[Factory.create("gconfcheckbutton", _("Enable Hibernation"), "can_hibernate")],
+			[Factory.create("gconfcheckbutton", _("Enable Suspend"), "can_suspend")],
+			[Factory.create("gconfcheckbutton", _("Show CPU frequency control option"), "cpufreq_show")],
+			[Factory.create("gconfcheckbutton", _("Disable the Network Manager on sleep"), "network_sleep")],
 			[Factory.create("gconfcheckbutton", _("Lock screen when blanked"), "blank_screen")],
 			[gtk.Label(_("\"GNOME Panel\" Power Management icon")), Factory.create("gconfcombobox", "icon_policy", [_("Never display"), _("When charging"), _("Always display")], ["never", "charge", "always"])],
 				]) 

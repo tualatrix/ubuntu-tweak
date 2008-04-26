@@ -37,16 +37,21 @@ from Computer import Computer
 from Session import Session
 from AutoStart import AutoStart
 from Icon import Icon
-if GNOME >= 20:
+from Compiz import DISABLE
+if DISABLE:
+	Compiz = None
+	UNKOWN = 99
+else:
 	from Compiz import Compiz
+	UNKOWN = 0
+if GNOME >= 20:
 	from UserDir import UserDir
 	from Templates import Templates
 else:
-	Compiz = None
 	UserDir = None
 	Templates = None
 from Scripts import Scripts
-from Keybinding import Keybinding
+from Shortcuts import Shortcuts
 from PowerManager import PowerManager
 from Gnome import Gnome
 from Nautilus import Nautilus
@@ -76,7 +81,7 @@ from Metacity import Metacity
 		USERDIR_PAGE,
 		TEMPLATES_PAGE,
 		SCRIPTS_PAGE,
-		KEYBINDING_PAGE,
+		SHORTCUTS_PAGE,
 	SYSTEM_PAGE,
 		GNOME_PAGE,
 		NAUTILUS_PAGE,
@@ -101,7 +106,7 @@ icons = \
 	"pixmaps/userdir.png",
 	"pixmaps/template.png",
 	"pixmaps/scripts.png",
-	"pixmaps/keybinding.png",
+	"pixmaps/shortcuts.png",
 	"pixmaps/system.png",
 	"pixmaps/gnome.png",
 	"pixmaps/nautilus.png",
@@ -114,7 +119,7 @@ def Welcome():
 	vbox = gtk.VBox(False, 0)
 
 	label = gtk.Label()
-	label.set_markup(_("<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak!</b></span>\n\n\nThis is a tool for Ubuntu which makes it easy to change hidden \nsystem and desktop settings.\n\nAnd it is usable on other distributions.\n\nYou can redistribute it under GPL license.\n\nIf you have any suggestions, Please visit the website in \"About\" and \nshare ideas with me. \n\nEnjoy!"))
+	label.set_markup(_("<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak!</b></span>\n\n\nThis is a tool for Ubuntu which makes it easy to change hidden \nsystem and desktop settings.\n\nIt is also usable on other distributions.\n\nIf you have any suggestions, Please visit the website in \"About\" and \nshare ideas with me. \n\nEnjoy!"))
 	label.set_justify(gtk.JUSTIFY_FILL)
 	vbox.pack_start(label, False, False, 50)
 
@@ -142,7 +147,7 @@ desktop = \
 [
 	[ICON_PAGE, icons[ICON_PAGE], _("Desktop Icon"), Icon, 0],
 	[METACITY_PAGE, icons[METACITY_PAGE], _("Metacity"), Metacity, 0],
-	[COMPIZ_PAGE, icons[COMPIZ_PAGE], _("Compiz Fusion"), Compiz, 20],
+	[COMPIZ_PAGE, icons[COMPIZ_PAGE], _("Compiz Fusion"), Compiz, UNKOWN],
 ]
 
 personal = \
@@ -150,7 +155,7 @@ personal = \
 	[USERDIR_PAGE, icons[USERDIR_PAGE], _("User Folder"), UserDir, 20],
 	[TEMPLATES_PAGE, icons[TEMPLATES_PAGE], _("Templates"), Templates, 20],
 	[SCRIPTS_PAGE, icons[SCRIPTS_PAGE], _("Scripts"), Scripts, 0],
-	[KEYBINDING_PAGE, icons[KEYBINDING_PAGE], _("Keybinding"), Keybinding, 0],
+	[SHORTCUTS_PAGE, icons[SHORTCUTS_PAGE], _("Shortcuts"), Shortcuts, 0],
 ]
 
 system = \
@@ -328,7 +333,6 @@ class MainWindow(gtk.Window):
 	
 	def show_about(self, data = None):
 		gtk.about_dialog_set_url_hook(self.click_website)
-		gtk.about_dialog_set_email_hook(self.click_website)
 
 		about = gtk.AboutDialog()
 		about.set_transient_for(self)
@@ -339,14 +343,14 @@ class MainWindow(gtk.Window):
 		about.set_website_label("ubuntu-tweak.com")
 		about.set_logo(self.get_icon())
 		about.set_comments(_("Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your system and desktop settings."))
-		about.set_authors(["TualatriX <tualatrix@gmail.com>"])
-		about.set_copyright("Copyright © 2008 TualatriX")
+		about.set_authors(["TualatriX <tualatrix@gmail.com>", "Lee Jarratt <lee.jarratt@live.co.uk> English consultants"])
+		about.set_copyright("Copyright © 2007-2008 TualatriX")
 		about.set_wrap_license(True)
 		about.set_license("Ubuntu Tweak is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n\
 Ubuntu Tweak is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\
 You should have received a copy of the GNU General Public License along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA")
 		about.set_translator_credits(_("translator-credits"))
-		about.set_artists(["Medical-Wei <a790407@hotmail.com>", "m.Sharp <mac.sharp@gmail.com>", "taiwan ock ting <a2d8a4v@gmail.com>"])
+		about.set_artists(["m.Sharp <mac.sharp@gmail.com> Logo and Banner", "Medical-Wei <a790407@hotmail.com> ArtWork of 0.1 version"])
 		about.run()
 		about.destroy()
 

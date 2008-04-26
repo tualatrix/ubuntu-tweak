@@ -197,7 +197,7 @@ class Compiz(gtk.VBox, CompizSetting):
 		box = ListPack(_("<b>Window Effects</b>"), (self.snap, self.wobbly_w))
 		self.pack_start(box, False, False, 0)
 
-		button1 = OpacityMenu(_("Opacity Menu"))
+		button1 = OpacityMenu(_("Opaque Menu"))
 		self.wobbly_m = WobblyMenu(_("Wobbly Menu"), self)
 
 		box = ListPack(_("<b>Menu Effects</b>"), (button1, self.wobbly_m))
