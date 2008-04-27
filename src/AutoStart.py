@@ -41,13 +41,17 @@ class AutoStartDialog(gtk.Dialog):
 		"""Init the dialog, if use to edit, pass the desktopentry parameter"""
 		gtk.Dialog.__init__(self, parent = parent)
 		self.set_icon_from_file("pixmaps/ubuntu-tweak.png")
+		self.set_default_size(400, -1)
 
 		lbl1 = gtk.Label()
-		lbl1.set_markup(_("<b>Name:</b>"));
+		lbl1.set_text_with_mnemonic(_("_Name:"))
+		lbl1.set_alignment(0, 0)
 		lbl2 = gtk.Label()
-		lbl2.set_markup(_("<b>Command:</b>"));
+		lbl2.set_text_with_mnemonic(_("Co_mmand:"))
+		lbl2.set_alignment(0, 0)
 		lbl3 = gtk.Label()
-		lbl3.set_markup(_("<b>Comment:</b>"));
+		lbl3.set_text_with_mnemonic(_("Comm_ent:"))
+		lbl3.set_alignment(0, 0)
 
 		self.pm_name = gtk.Entry ();
 		self.pm_name.connect("activate", self.on_entry_activate)
@@ -72,11 +76,11 @@ class AutoStartDialog(gtk.Dialog):
 		hbox.pack_start(button, False, False, 0)
 
 		table = gtk.Table(3, 2)
-		table.attach(lbl1, 0, 1, 0, 1, ypadding = 10)
-		table.attach(lbl2, 0, 1, 1, 2, ypadding = 10)
-		table.attach(lbl3, 0, 1, 2, 3, ypadding = 10)
+		table.attach(lbl1, 0, 1, 0, 1, xoptions = gtk.FILL, xpadding = 10, ypadding = 10)
+		table.attach(lbl2, 0, 1, 1, 2, xoptions = gtk.FILL, xpadding = 10, ypadding = 10)
+		table.attach(lbl3, 0, 1, 2, 3, xoptions = gtk.FILL, xpadding = 10, ypadding = 10)
 		table.attach(self.pm_name, 1, 2, 0, 1)
-		table.attach(hbox, 1, 2, 1, 2)
+		table.attach(hbox, 1, 2, 1, 2, yoptions = gtk.EXPAND)
 		table.attach(self.pm_comment, 1, 2, 2, 3)
 
 		self.vbox.pack_start(table)
@@ -93,7 +97,7 @@ class AutoStartDialog(gtk.Dialog):
 
 	def on_choose_program(self, widget, data = None):
 		"""The action taken by clicked the browse button"""
-		dialog = gtk.FileChooserDialog(_("Choose a Program"), action = gtk.FILE_CHOOSER_ACTION_OPEN, buttons = (gtk.STOCK_OPEN, gtk.RESPONSE_ACCEPT, gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL))
+		dialog = gtk.FileChooserDialog(_("Choose a Program"), action = gtk.FILE_CHOOSER_ACTION_OPEN, buttons = (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, gtk.STOCK_OPEN, gtk.RESPONSE_ACCEPT))
 
 		if dialog.run() == gtk.RESPONSE_ACCEPT:
 			self.pm_cmd.set_text(dialog.get_filename())
@@ -410,14 +414,5 @@ class AutoStart(gtk.VBox):
 			dialog.destroy()
 
 if __name__ == "__main__":
-	win = gtk.Window()
-	win.connect('destroy', lambda *w: gtk.main_quit())
-        win.set_title("AutoStart")
-        win.set_default_size(650, 400)
-        win.set_border_width(8)
-
-	startup = AutoStart()
-        win.add(startup)
-
-        win.show_all()
-	gtk.main()
+	from Utility import Test
+	Test(AutoStart)

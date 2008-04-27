@@ -50,7 +50,7 @@ class Shortcuts(TweakPage):
 
 		self.main_window = parent
 		self.set_title(_("Set the shortcut of your commands"))
-		self.set_description(_("With the shortcuts, you can run applications more quickly.\nInput the command and grap your key, it's easy to set a shortcut.\nUse <b>Delete</b> or <b>BackSpace</b> to clean the key."))
+		self.set_description(_("By configuring keyboard shortcuts, you have faster access to the \napplications you need.\nInput the command and set any desired key, it's easy to set a shortcut.\nUse <b>Delete</b> or <b>BackSpace</b> to clean the key."))
 
 		treeview = self.create_treeview()
 

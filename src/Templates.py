@@ -315,7 +315,7 @@ class Templates(TweakPage, AbstractTempates):
 		self.config_test()
 
 		self.set_title(_("Manage your templates"))
-		self.set_description(_('You can freely manage your document templates.\nYou can Drag and Drop from File Manager.\n"Create Document" will be added to the Context Menu.\n'))
+		self.set_description(_('You can freely manage your document templates.\nYou can drag and drop from File Manager.\n"Create Document" will be added to the Context Menu.\n'))
 
 		hbox = gtk.HBox(False, 10)
 		self.pack_start(hbox)

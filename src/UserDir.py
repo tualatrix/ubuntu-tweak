@@ -74,7 +74,8 @@ class UserDir(TweakPage):
 
 		for item, value in self.diritems.items():
 			label = gtk.Label()
-			label.set_markup("<b>%s</b>" % value)
+			label.set_markup("%s" % value)
+			label.set_alignment(0, 0.5)
 
 			entry = gtk.Entry()
 

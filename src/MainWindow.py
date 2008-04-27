@@ -119,7 +119,7 @@ def Welcome():
 	vbox = gtk.VBox(False, 0)
 
 	label = gtk.Label()
-	label.set_markup(_("<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak!</b></span>\n\n\nThis is a tool for Ubuntu which makes it easy to change hidden \nsystem and desktop settings.\n\nIt is also usable on other distributions.\n\nIf you have any suggestions, Please visit the website in \"About\" and \nshare ideas with me. \n\nEnjoy!"))
+	label.set_markup(_("<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak!</b></span>\n\n\nThis is a tool for Ubuntu which makes it easy to change hidden \nsystem and desktop settings.\n\nUbuntu Tweak can also be run in other distributions.\n\nIf you have any suggestions, please visit the website in \"About\" and \nshare ideas with me. \n\nEnjoy!"))
 	label.set_justify(gtk.JUSTIFY_FILL)
 	vbox.pack_start(label, False, False, 50)
 

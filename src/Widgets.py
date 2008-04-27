@@ -189,7 +189,7 @@ class TablePack(BaseListPack):
 						table.attach(widget, left_attch, left_attch + 1, top_attach, top_attach + 1, xpadding = 10, ypadding = 5)
 					else:
 #						if type(widget) == "gtk.Label":
-						widget.set_alignment(0, 0)
+						widget.set_alignment(0, 0.5)
 						table.attach(widget, left_attch, left_attch + 1, top_attach, top_attach + 1, gtk.FILL, ypadding = 5)
 
 		self.vbox.pack_start(table)
