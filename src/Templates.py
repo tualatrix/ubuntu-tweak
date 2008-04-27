@@ -295,7 +295,10 @@ class DisableTemplate(TemplateList):
 					None,
 					filename)
 
-			pixbuf = icontheme.load_icon(icon[0], 32, 0)
+			try:
+				pixbuf = icontheme.load_icon(icon[0], 32, 0)
+			except gobject.GError:
+				pixbuf = icontheme.load_icon("gnome-fs-regular", 32, 0)
 
 			iter = model.append()
 			model.set(iter,
