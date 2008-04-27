@@ -329,7 +329,7 @@ class Scripts(TweakPage, AbstractScripts):
 		self.config_test()
 
 		self.set_title(_("Manage your scripts"))
-		self.set_description(_("You can do all kinds of tasks with scripts.\nYou can Drag and Drop from File Manager.\n'Scripts' will be added to the Context Menu.\n"))
+		self.set_description(_('You can do all kinds of tasks with scripts.\nYou can Drag and Drop from File Manager.\n"Scripts" will be added to the Context Menu.\n'))
 
 		hbox = gtk.HBox(False, 10)
 		self.pack_start(hbox)

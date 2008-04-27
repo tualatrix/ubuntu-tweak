@@ -43,7 +43,6 @@ class LockDown(gtk.VBox):
 			Factory.create("gconfcheckbutton", _("Disable Print Setup"), "disable_print_setup"),
 			Factory.create("gconfcheckbutton", _("Disable Save To Disk"), "disable_save_to_disk"),
 			Factory.create("gconfcheckbutton", _("Disable User Switching"), "disable_user_switching"),
-			Factory.create("gconfcheckbutton", _("Disable User Switchingg"), "disable_user_switchingg"),
 			))
 
 		self.pack_start(box, False, False, 0)
