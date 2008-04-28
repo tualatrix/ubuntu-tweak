@@ -73,28 +73,32 @@ class Session(gtk.VBox, Mediator):
 	def splash_hbox(self):
 		client = gconf.client_get_default()
 		filename = client.get_string("/apps/gnome-session/options/splash_image")
-		if filename[0] != "/":
-			filename = "/usr/share/pixmaps/" + filename
 
-		self.filedir = os.path.dirname(filename)
+		self.filedir = "/usr/share/pixmaps/splash"
 
-		try:
-			f = open(filename)
-		except IOError:
-			print "Failed to open file '%s': No such file or directory" % filename
-		else:
-			self.original_preview = gtk.gdk.pixbuf_new_from_file(filename)
-			x = self.original_preview.get_width()
-			y = self.original_preview.get_height()
+		if filename:
+			if filename[0] != "/":
+				filename = "/usr/share/pixmaps/" + filename
 
-			if x * 180 / y > 240:
-				y = y * 240 / x
-				x = 240
+			self.filedir = os.path.dirname(filename)
+
+			try:
+				f = open(filename)
+			except IOError:
+				print "Failed to open file '%s': No such file or directory" % filename
 			else:
-				x = x * 180 / y
-				y = 180
+				self.original_preview = gtk.gdk.pixbuf_new_from_file(filename)
+				x = self.original_preview.get_width()
+				y = self.original_preview.get_height()
 
-			self.new_preview = self.original_preview.scale_simple(x, y, gtk.gdk.INTERP_NEAREST)
+				if x * 180 / y > 240:
+					y = y * 240 / x
+					x = 240
+				else:
+					x = x * 180 / y
+					y = 180
+
+				self.new_preview = self.original_preview.scale_simple(x, y, gtk.gdk.INTERP_NEAREST)
 
 		hbox = gtk.HBox(False, 0)
 		self.button = gtk.Button()
