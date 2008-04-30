@@ -52,8 +52,10 @@ class BoolSetting(Setting):
 		if self.value:
 			if self.value.type == gconf.VALUE_BOOL:
 				return self.value.get_bool()
-			elif self.value.type == gcon.VALUE_STRING:
+			elif self.value.type == gconf.VALUE_STRING:
 				return bool(self.value.get_string())
+			elif self.value.type == gconf.VALUE_INT:
+				return bool(self.value.get_int())
 		else:
 			return False
 

@@ -82,8 +82,12 @@ class GconfEntry(gtk.Entry, StringSetting):
 		self.connect("activate", self.on_edit_finished_cb)
 	
 	def on_edit_finished_cb(self, widget, data = None):
-		self.client.set_string(self.key, self.get_text())
-
+		string = self.get_text()
+		if string:
+			self.client.set_string(self.key, self.get_text())
+		else:
+			self.client.unset(self.key)
+			self.set_text(_("Unset"))
 
 class CGconfCheckButton(GconfCheckButton, Colleague):
 	def __init__(self, label, key, mediator):

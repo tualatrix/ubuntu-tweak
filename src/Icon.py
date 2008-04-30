@@ -87,7 +87,13 @@ class DesktopIcon(gtk.VBox, Mediator):
 
 	def colleague_changed(self):
 		self.show_hbox.set_sensitive(self.show_button.get_active())
-		self.entry.set_sensitive(self.rename_button.get_active())
+		active = self.rename_button.get_active()
+		if active:
+			self.entry.set_sensitive(True)
+		else:
+			self.entry.set_sensitive(False)
+			self.entry.client.unset(self.entry.key)
+			self.entry.set_text(_("Unset"))
 
 class Icon(gtk.VBox, Mediator):
 	"""Desktop Icon settings"""
