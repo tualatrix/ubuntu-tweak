@@ -34,7 +34,6 @@ class Setting:
 		self.client.add_dir(dir, gconf.CLIENT_PRELOAD_NONE)
 #		self.client.notify_add(key, self.value_changed, key)
 
-
 	def value_changed(self, client, id, entry, data = None):
 		pass
 
@@ -72,25 +71,31 @@ class StringSetting(Setting):
 		else:
 			return None
 
-class IntSetting(Setting):
+class NumSetting(Setting):
 	def __init__(self, key):
 		Setting.__init__(self, key)
 
-		self.int = self.get_int()
+		self.num = self.get_num()
 
-	def get_int(self):
+	def get_num(self):
 		self.value = self.client.get(self.key)
-		return self.value.get_int()
+		if self.value:
+			if self.value.type == gconf.VALUE_INT:
+				return self.value.get_int()
+			elif self.value.type == gconf.VALUE_FLOAT:
+				return self.value.get_float()
+		else:
+			return 0
 
-class FloatSetting(Setting):
-	def __init__(self, key):
-		Setting.__init__(self, key)
-
-		self.int = self.get_float()
-
-	def get_float(self):
+	def set_num(self, num):
 		self.value = self.client.get(self.key)
-		return self.value.get_float()
+		if self.value:
+			if self.value.type == gconf.VALUE_INT:
+				self.client.set_int(self.key, int(num))
+			elif self.value.type == gconf.VALUE_FLOAT:
+				self.client.set_float(self.key, num)
+		else:
+			self.client.set_float(self.key, num)
 
 class ConstStringSetting(StringSetting):
 	def __init__(self, key, values):

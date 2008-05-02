@@ -2,115 +2,101 @@
 
 import os
 import sys
-from stat import *
-from distutils.core import setup
-from distutils.command.install import install as _install
-from distutils.command.install_data import install_data as _install_data
+import shutil
 
 INSTALLED_FILES = "installed_files"
+PREFIX = '/usr'
+APP_DIR = os.path.join(PREFIX, 'share', 'ubuntu-tweak')
+BIN_DIR = os.path.join(PREFIX, 'bin')
+BIN_FILEs = ['script-worker', 'ubuntu-tweak']
+DESKTOP_FILE = os.path.join(PREFIX, 'share', 'applications', 'ubuntu-tweak.desktop')
+LOCALES = []
+MOFILES = []
 
-class install (_install):
-    def run (self):
-        _install.run (self)
-        outputs = self.get_outputs ()
-        length = 0
-        if self.root:
-            length += len (self.root)
-        if self.prefix:
-            length += len (self.prefix)
-        if length:
-            for counter in xrange (len (outputs)):
-                outputs[counter] = outputs[counter][length:]
-        data = "\n".join (outputs)
-        try:
-            file = open (INSTALLED_FILES, "w")
-        except:
-            self.warn ("Could not write installed files list %s" % \
-                       INSTALLED_FILES)
-            return 
-        file.write (data)
-        file.close ()
+def removeall(dir_file):
+	if not os.path.exists(dir_file): return
+	if os.path.isdir(dir_file):
+		for root, dirs, files in os.walk(dir_file, topdown=False):
+			for name in files:
+				filepath = os.path.join(root, name)
+				os.remove(filepath)
+			for name in dirs:
+				filepath = os.path.join(root, name)
+				removeall(filepath)
+		os.rmdir(dir_file)
+	else:
+		os.unlink(dir_file)
+	return
 
-class install_data (_install_data):
-    def run (self):
-        def chmod_data_file (file):
-            try:
-                os.chmod (file, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)
-            except:
-                self.warn ("Could not chmod data file %s" % file)
-        _install_data.run (self)
-        map (chmod_data_file, self.get_outputs ())
+def install():
+	if os.path.exists(APP_DIR):
+		removeall(APP_DIR)
+	for file in BIN_FILEs:
+		fullpath = os.path.join(BIN_DIR, file)
+		if os.path.exists(fullpath):
+			os.remove(fullpath)
+		shutil.copy(file, fullpath)
 
-class uninstall (_install):
+	shutil.copytree('src', APP_DIR)
+	if os.path.exists(DESKTOP_FILE):
+		os.remove(DESKTOP_FILE)
+	shutil.copy('ubuntu-tweak.desktop', os.path.join(PREFIX, 'share', 'applications'))
 
-    def run (self):
-        try:
-            file = open (INSTALLED_FILES, "r")
-        except:
-            self.warn ("Could not read installed files list %s" % \
-                       INSTALLED_FILES)
-            return 
-        files = file.readlines ()
-        file.close ()
-        prepend = ""
-        if self.root:
-            prepend += self.root
-        if self.prefix:
-            prepend += self.prefix
-        if len (prepend):
-            for counter in xrange (len (files)):
-                files[counter] = prepend + files[counter].rstrip ()
-        for file in files:
-            print "Uninstalling %s" % file
-            try:
-                os.unlink (file)
-            except:
-                self.warn ("Could not remove file %s" % file)
+	build()
+	for file in MOFILES:
+		dest = '/usr/share/' + '/'.join([i for i in file.split('/')[1:4]])
+		shutil.copy(file, dest)
 
-ops = ("install", "build", "sdist", "uninstall", "clean")
+	print "Installed Successfully"
 
-if len (sys.argv) < 2 or sys.argv[1] not in ops:
-    print "Please specify operation : %s" % " | ".join (ops)
-    raise SystemExit
 
-srcdir = os.path.join (os.path.realpath ("."), "src")
-src = map(lambda i: "src/%s" % i, filter(lambda i: i[-2:] == "py", os.listdir (srcdir)))
+def uninstall():
+	removeall(APP_DIR)
+	for file in BIN_FILEs:
+		fullpath = os.path.join(BIN_DIR, file)
+		if os.path.exists(fullpath):
+			os.remove(fullpath)
 
-pixmapsdir = os.path.join (os.path.realpath ("."), "src/pixmaps")
-images = map(lambda i: "src/pixmaps/%s" % i, filter(lambda i: i[-3:] == "png", os.listdir(pixmapsdir)))
+	for file in BIN_FILEs:
+		fullpath = os.path.join(BIN_DIR, file)
+		if os.path.exists(fullpath):
+			os.remove(fullpath)
 
-data_files = [
-                ("/usr/share/applications", ["ubuntu-tweak.desktop"]),
-		("/usr/share/ubuntu-tweak", src),
-                ("/usr/share/ubuntu-tweak/pixmaps", images),
-                ("/usr/bin", ["ubuntu-tweak"]),
-             ]
+	if os.path.exists(DESKTOP_FILE):
+		os.remove(DESKTOP_FILE)
+	
+	build(True)
+	for file in LOCALES:
+		if os.path.exists(file):
+			os.remove(file)
+	print "Uninstalled Successfully"
 
-podir = os.path.join (os.path.realpath ("."), "po")
-if os.path.isdir (podir):
+def build(NOBUILD = False):
+	podir = os.path.join (os.path.realpath ("."), "po")
 	buildcmd = "msgfmt -o build/locale/%s/LC_MESSAGES/ubuntu-tweak.mo po/%s.po"
 	mopath = "build/locale/%s/LC_MESSAGES/ubuntu-tweak.mo"
-	destpath = "share/locale/%s/LC_MESSAGES"
+	destpath = "/usr/share/locale/%s/LC_MESSAGES"
 	for name in os.listdir (podir):
 		if name[-2:] == "po":
 			dname = name.split('-')[2].split('.')[0]
 			name = name[:-3]
-			if sys.argv[1] == "build" or (sys.argv[1] == "install" and not os.path.exists (mopath % dname)):
-				if not os.path.isdir ("build/locale/%s/LC_MESSAGES" % dname):
-					os.makedirs ("build/locale/%s/LC_MESSAGES" % dname)
+			if not os.path.isdir("build/locale/%s/LC_MESSAGES" % dname):
+				os.makedirs("build/locale/%s/LC_MESSAGES" % dname)
+			if not NOBUILD:
 				os.system (buildcmd % (dname, name))
-				data_files.append ((destpath % dname, [mopath % dname]))
+			LOCALES.append(os.path.join(destpath % dname, "ubuntu-tweak.mo"))
+			MOFILES.append(mopath % dname)
 
-setup(
-	name		= "ubuntu-tweak",
-	version		= "0.2.5",
-	description	= "Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your system and desktop settings.",
-	author		= "TualatriX",
-	author_email	= "tualatrix@gmail.com",
-	url		= "http://ubuntu-tweak.com",
-	license		= "GPL",
-	data_files	= data_files,
-        cmdclass         = {"uninstall" : uninstall,
-                            "install" : install,
-                            "install_data" : install_data}
-)
+ops = ("install", "uninstall", "build")
+
+if len(sys.argv) < 2 or sys.argv[1] not in ops:
+	print "Please specify operation : %s" % " | ".join (ops)
+	raise SystemExit
+
+args = sys.argv[1]
+if args == "install":
+	install()
+elif args == "uninstall":
+	uninstall()
+elif args == "build":
+	build()

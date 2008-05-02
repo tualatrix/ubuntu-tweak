@@ -91,6 +91,7 @@ class Shortcuts(TweakPage):
 			if not command: command = _("None")
 			icon = icontheme.lookup_icon(command, 32, gtk.ICON_LOOKUP_NO_SVG)
 			if icon: icon = icon.load_icon()
+			if key == "disabled": key = _("disabled")
 
 			model.set(iter,
 					COLUMN_ID, id,

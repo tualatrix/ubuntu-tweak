@@ -115,7 +115,7 @@ class GconfCombobox(ConstStringSetting):
 		text = widget.get_active_text()
 		self.client.set_string(self.key, self.values[self.texts.index(text)])
 
-class GconfScale(Setting, gtk.HScale):
+class GconfScale(NumSetting, gtk.HScale):
 	def __init__(self, min, max, key, digits = 0):
 		gtk.HScale.__init__(self)
 		Setting.__init__(self, key)
@@ -125,17 +125,10 @@ class GconfScale(Setting, gtk.HScale):
 		self.set_value_pos(gtk.POS_RIGHT)
 		self.connect("value-changed", self.on_value_changed)
 
-		if self.value.type == gconf.VALUE_INT:
-			self.set_value(self.client.get_int(key))
-		elif self.value.type == gconf.VALUE_FLOAT:
-			self.set_value(self.client.get_float(key))
+		self.set_value(self.get_num())
 
 	def on_value_changed(self, widget, data = None):
-		self.value = self.client.get(self.key)
-		if self.value.type == gconf.VALUE_INT:
-			self.client.set_int(self.key, int(widget.get_value()))
-		elif self.value.type == gconf.VALUE_FLOAT:
-			self.client.set_float(self.key, widget.get_value())
+		self.set_num(widget.get_value())
 
 class BasePack(gtk.VBox):
 	def __init__(self, title):
