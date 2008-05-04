@@ -311,6 +311,7 @@ class MessageDialog(gtk.MessageDialog):
 		if title:
 			self.set_title(title)
 		self.set_icon_from_file("pixmaps/ubuntu-tweak.png")
+		self.set_default_response(gtk.RESPONSE_REJECT)
 
 """Popup and KeyGrabber come from ccsm"""
 KeyModifier = ["Shift", "Control", "Mod1", "Mod2", "Mod3", "Mod4",

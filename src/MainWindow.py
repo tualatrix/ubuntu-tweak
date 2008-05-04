@@ -21,14 +21,16 @@
 
 import pygtk
 pygtk.require('2.0')
+import os
 import gtk
 import sys
-import os
+import gconf
 import gobject
 import gettext
 
 from Constants import *
 from gnome import url_show
+from Widgets import MessageDialog
 from SystemInfo import GnomeVersion
 
 GNOME = int(GnomeVersion.minor)
@@ -186,6 +188,8 @@ class MainWindow(gtk.Window):
 
 	def __init__(self):
 		gtk.Window.__init__(self)
+		gtk.gdk.threads_init()
+
 		self.connect("destroy", self.destroy)
 		self.set_title("Ubuntu Tweak")
 		self.set_default_size(650, 680)
@@ -238,6 +242,8 @@ class MainWindow(gtk.Window):
 		hbox.pack_end(button, False, False, 0)
 		
 		self.show_all()
+
+		gobject.timeout_add(5000, self.on_timeout)
 
 	def __create_model(self):
 		model = gtk.TreeStore(
@@ -354,8 +360,30 @@ You should have received a copy of the GNU General Public License along with Ubu
 		about.run()
 		about.destroy()
 
+	def on_timeout(self):
+		import thread
+		thread.start_new_thread(self.check_version, ())
+
+	def check_version(self):
+		gtk.gdk.threads_enter()
+
+		client = gconf.client_get_default()
+		version = client.get_string("/apps/ubuntu-tweak/update")
+		if version > Version:
+			dialog = MessageDialog(_("A newer version: %s is available online.\nWould you like to update?") % version)
+
+			dialog.set_transient_for(self)
+			if dialog.run() == gtk.RESPONSE_YES:
+				url_show("http://ubuntu-tweak.com/downloads")
+			dialog.destroy()
+
+		gtk.gdk.threads_leave()
+
 	def destroy(self, widget, data = None):
 		gtk.main_quit()
 
 	def main(self):
+		gtk.gdk.threads_enter()
+		os.system("./CheckVersion.py &")
 		gtk.main()
+		gtk.gdk.threads_leave()
