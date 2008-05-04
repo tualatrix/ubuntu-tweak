@@ -33,30 +33,29 @@ from Factory import Factory
 gettext.install(App, unicode = True)
 
 class PowerManager(gtk.VBox):
-        """Advanced Powermanager Settings"""
+    """Advanced Powermanager Settings"""
+    def __init__(self, parent = None):
+        gtk.VBox.__init__(self)
 
-        def __init__(self, parent = None):
-                gtk.VBox.__init__(self)
+        box = TablePack(_("<b>Advanced Power Management Settings</b>"), [
+                [Factory.create("gconfcheckbutton", _("Enable Hibernation"), "can_hibernate")],
+                [Factory.create("gconfcheckbutton", _("Enable Suspend"), "can_suspend")],
+                [Factory.create("gconfcheckbutton", _("Show CPU frequency control option"), "cpufreq_show")],
+                [Factory.create("gconfcheckbutton", _("Disable the Network Manager on sleep"), "network_sleep")],
+                [Factory.create("gconfcheckbutton", _("Lock screen when blanked"), "blank_screen")],
+                [gtk.Label(_("\"GNOME Panel\" Power Management icon")), Factory.create("gconfcombobox", "icon_policy", [_("Never display"), _("When charging"), _("Always display")], ["never", "charge", "always"])],
+        ]) 
+        self.pack_start(box, False, False, 0)
 
-		box = TablePack(_("<b>Advanced Power Management Settings</b>"), [
-			[Factory.create("gconfcheckbutton", _("Enable Hibernation"), "can_hibernate")],
-			[Factory.create("gconfcheckbutton", _("Enable Suspend"), "can_suspend")],
-			[Factory.create("gconfcheckbutton", _("Show CPU frequency control option"), "cpufreq_show")],
-			[Factory.create("gconfcheckbutton", _("Disable the Network Manager on sleep"), "network_sleep")],
-			[Factory.create("gconfcheckbutton", _("Lock screen when blanked"), "blank_screen")],
-			[gtk.Label(_("\"GNOME Panel\" Power Management icon")), Factory.create("gconfcombobox", "icon_policy", [_("Never display"), _("When charging"), _("Always display")], ["never", "charge", "always"])],
-				]) 
-                self.pack_start(box, False, False, 0)
-
-		box = TablePack(_("<b>CPU Policy</b>"), [
-			[gtk.Label(_("The Performance value when on AC power")), Factory.create("gconfscale", 0, 100, "performance_ac", 0)],
-			[gtk.Label(_("The Performance value when on battery power")), Factory.create("gconfscale", 0, 100, "performance_battery", 0)],
-			[gtk.Label(_("The CPU frequency policy when on AC power")), Factory.create("gconfcombobox", "policy_ac", [_("On Demand"), _("Power Save"), _("Performance")], ["ondemand", "powersave", "performance"])],
-			[gtk.Label(_("The CPU frequency policy when on battery power")), Factory.create("gconfcombobox", "policy_battery", [_("On Demand"), _("Power Save"), _("Performance")], ["ondemand", "powersave", "performance"])],
-		])
-			
-                self.pack_start(box, False, False, 0)
+        box = TablePack(_("<b>CPU Policy</b>"), [
+                [gtk.Label(_("The Performance value when on AC power")), Factory.create("gconfscale", 0, 100, "performance_ac", 0)],
+                [gtk.Label(_("The Performance value when on battery power")), Factory.create("gconfscale", 0, 100, "performance_battery", 0)],
+                [gtk.Label(_("The CPU frequency policy when on AC power")), Factory.create("gconfcombobox", "policy_ac", [_("On Demand"), _("Power Save"), _("Performance")], ["ondemand", "powersave", "performance"])],
+                [gtk.Label(_("The CPU frequency policy when on battery power")), Factory.create("gconfcombobox", "policy_battery", [_("On Demand"), _("Power Save"), _("Performance")], ["ondemand", "powersave", "performance"])],
+        ])
+            
+        self.pack_start(box, False, False, 0)
 
 if __name__ == "__main__":
-	from Utility import Test
-	Test(PowerManager)
+    from Utility import Test
+    Test(PowerManager)

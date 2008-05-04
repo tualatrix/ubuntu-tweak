@@ -27,39 +27,38 @@ def gtk_process_events ():
         gtk.main_iteration ()
 
 class Test:
-	def __init__(self, model):
-		win = gtk.Window()
+    def __init__(self, model):
+        win = gtk.Window()
 
-		win.connect('destroy', lambda *w: gtk.main_quit())
-		win.set_position(gtk.WIN_POS_CENTER)
+        win.connect('destroy', lambda *w: gtk.main_quit())
+        win.set_position(gtk.WIN_POS_CENTER)
 
-		if getattr(model, "__name__", None):
-			win.set_title(model.__name__)
-		else:
-			win.set_title(str(model))
+        if getattr(model, "__name__", None):
+            win.set_title(model.__name__)
+        else:
+            win.set_title(str(model))
 
-		win.add(model())
-		win.show_all()
+        win.add(model())
+        win.show_all()
 
-		gtk.main()
-
+        gtk.main()
 
 class ManyTest:
-	def __init__(self, widgets):
-		win = gtk.Window()
+    def __init__(self, widgets):
+        win = gtk.Window()
 
-		win.connect('destroy', lambda *w: gtk.main_quit())
-		win.set_position(gtk.WIN_POS_CENTER)
+        win.connect('destroy', lambda *w: gtk.main_quit())
+        win.set_position(gtk.WIN_POS_CENTER)
 
-		win.set_title("Many test")
-		
-		vbox = gtk.VBox(False, 10)
-		win.add(vbox)
+        win.set_title("Many test")
+        
+        vbox = gtk.VBox(False, 10)
+        win.add(vbox)
 
-		for widget in widgets:
-			vbox.pack_start(widget, False, False, 5)
+        for widget in widgets:
+            vbox.pack_start(widget, False, False, 5)
 
-		win.show_all()
+        win.show_all()
 
-		gtk.main()
+        gtk.main()
 

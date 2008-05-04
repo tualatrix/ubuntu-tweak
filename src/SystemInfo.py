@@ -24,26 +24,26 @@ from xml.sax import make_parser
 from xml.dom import minidom
 
 class GnomeVersion:
-	xmldoc = minidom.parse("/usr/share/gnome-about/gnome-version.xml")
+    xmldoc = minidom.parse("/usr/share/gnome-about/gnome-version.xml")
 
-	platform = xmldoc.getElementsByTagName("platform")[0].firstChild.data
-	minor = xmldoc.getElementsByTagName("minor")[0].firstChild.data
-	micro = xmldoc.getElementsByTagName("micro")[0].firstChild.data
-	distributor = xmldoc.getElementsByTagName("distributor")[0].firstChild.data
-	date = xmldoc.getElementsByTagName("date")[0].firstChild.data
-	description = "GNOME %s.%s.%s (%s %s)" % (platform, minor, micro, distributor, date)
+    platform = xmldoc.getElementsByTagName("platform")[0].firstChild.data
+    minor = xmldoc.getElementsByTagName("minor")[0].firstChild.data
+    micro = xmldoc.getElementsByTagName("micro")[0].firstChild.data
+    distributor = xmldoc.getElementsByTagName("distributor")[0].firstChild.data
+    date = xmldoc.getElementsByTagName("date")[0].firstChild.data
+    description = "GNOME %s.%s.%s (%s %s)" % (platform, minor, micro, distributor, date)
 
 class DistroInfo:
-	distro = GnomeVersion.distributor
-	if  distro == "Ubuntu":
-		from aptsources import distro
-		ubuntu = distro.get_distro()
-		distro = ubuntu.description
+    distro = GnomeVersion.distributor
+    if  distro == "Ubuntu":
+        from aptsources import distro
+        ubuntu = distro.get_distro()
+        distro = ubuntu.description
 
 class SystemInfo:
-	gnome = GnomeVersion.description
-	distro = DistroInfo.distro
-			
+    gnome = GnomeVersion.description
+    distro = DistroInfo.distro
+            
 if __name__ == "__main__":
-	print SystemInfo.gnome
-	print SystemInfo.distro
+    print SystemInfo.gnome
+    print SystemInfo.distro

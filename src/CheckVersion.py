@@ -9,39 +9,39 @@ import gtk
 import gconf
 import gobject
 
-from xmlrpclib import ServerProxy, Error
 from Constants import *
 from SystemInfo import SystemInfo
+from xmlrpclib import ServerProxy, Error
 
 client = gconf.client_get_default()
 server = ServerProxy("http://ubuntu-tweak.appspot.com/xmlrpc")
 #server = ServerProxy('http://127.0.0.1:8080/xmlrpc')
 
 def CheckVersion():
-	try:
-		version = server.version()
-	except Error, e:
-		print "Error:", e
-	else:
-		client.set_string('/apps/ubuntu-tweak/update', version)
+    try:
+        version = server.version()
+    except Error, e:
+        print "Error:", e
+    else:
+        client.set_string('/apps/ubuntu-tweak/update', version)
 
 def SubmitCurrent():
-	current = client.get_string('/apps/ubuntu-tweak/current')
-	if Version != current:
+    current = client.get_string('/apps/ubuntu-tweak/current')
+    if Version != current:
 
-		distro = SystemInfo.distro
-		locale = os.getenv("LANG")
-		platform = os.uname()[-1]
+        distro = SystemInfo.distro
+        locale = os.getenv("LANG")
+        platform = os.uname()[-1]
 
-		try:
-			result = server.putinfo(Version, distro, locale, platform)
-		except Error, e:
-			print "Error:", e
-		else:
-			if result:
-				client.set_string('/apps/ubuntu-tweak/current', Version)
+        try:
+            result = server.putinfo(Version, distro, locale, platform)
+        except Error, e:
+            print "Error:", e
+        else:
+            if result:
+                client.set_string('/apps/ubuntu-tweak/current', Version)
 
 if __name__ == "__main__":
-	CheckVersion()
+    CheckVersion()
 
-	SubmitCurrent()
+    SubmitCurrent()

@@ -32,28 +32,28 @@ from Widgets import TablePack
 gettext.install(App, unicode = True)
 
 class Metacity(gtk.VBox):
-	"""Some options about Metacity Window Manager"""
-	def __init__(self, parent = None):
-		gtk.VBox.__init__(self)
+    """Some options about Metacity Window Manager"""
+    def __init__(self, parent = None):
+        gtk.VBox.__init__(self)
 
-		box = TablePack(_("<b>Window Decorate Effect</b>"), [
-			[Factory.create("gconfcheckbutton", _("Use metacity theme"), "use_metacity_theme")],
-			[Factory.create("gconfcheckbutton", _("Active window opacity shade"), "metacity_theme_active_shade_opacity")],
-			[gtk.Label(_("Active window opacity level")), Factory.create("gconfscale", 0, 1, "metacity_theme_active_opacity", 2)],
-			[Factory.create("gconfcheckbutton", _("Inactive window opacity shade"), "metacity_theme_shade_opacity")],
-			[gtk.Label(_("Inactive window shade opacity level")), Factory.create("gconfscale", 0, 1, "metacity_theme_opacity", 2)],
-			])
-		self.pack_start(box, False, False, 0)
+        box = TablePack(_("<b>Window Decorate Effect</b>"), [
+                [Factory.create("gconfcheckbutton", _("Use metacity theme"), "use_metacity_theme")],
+                [Factory.create("gconfcheckbutton", _("Active window opacity shade"), "metacity_theme_active_shade_opacity")],
+                [gtk.Label(_("Active window opacity level")), Factory.create("gconfscale", 0, 1, "metacity_theme_active_opacity", 2)],
+                [Factory.create("gconfcheckbutton", _("Inactive window opacity shade"), "metacity_theme_shade_opacity")],
+                [gtk.Label(_("Inactive window shade opacity level")), Factory.create("gconfscale", 0, 1, "metacity_theme_opacity", 2)],
+            ])
+        self.pack_start(box, False, False, 0)
 
-		table = TablePack(_("<b>Window Titlebar Action</b>"), [
-			[gtk.Label(_("Title bar mouse wheel action")), Factory.create("gconfcombobox", "mouse_wheel_action", [_("None"), _("Roll up")], ["none", "shade"])],
-			[gtk.Label(_("Title bar Double-click action")), Factory.create("gconfcombobox", "action_double_click_titlebar", [_("None"), _("Maximize"), _("Minimize"), _("Roll up"), _("Lower"), _("Menu")], ["none", "toggle_maximize", "minimize", "toggle_shade", "lower", "menu"])],
-			[gtk.Label(_("Title bar Middle-click action")), Factory.create("gconfcombobox", "action_middle_click_titlebar", [_("None"), _("Maximize"), _("Minimize"), _("Roll up"), _("Lower"), _("Menu")], ["none", "toggle_maximize", "minimize", "toggle_shade", "lower", "menu"])],
-			[gtk.Label(_("Title bar Right-click action")), Factory.create("gconfcombobox", "action_right_click_titlebar", [_("None"), _("Maximize"), _("Minimize"), _("Roll up"), _("Lower"), _("Menu")], ["none", "toggle_maximize", "minimize", "toggle_shade", "lower", "menu"])],
-				])
+        table = TablePack(_("<b>Window Titlebar Action</b>"), [
+                [gtk.Label(_("Title bar mouse wheel action")), Factory.create("gconfcombobox", "mouse_wheel_action", [_("None"), _("Roll up")], ["none", "shade"])],
+                [gtk.Label(_("Title bar Double-click action")), Factory.create("gconfcombobox", "action_double_click_titlebar", [_("None"), _("Maximize"), _("Minimize"), _("Roll up"), _("Lower"), _("Menu")], ["none", "toggle_maximize", "minimize", "toggle_shade", "lower", "menu"])],
+                [gtk.Label(_("Title bar Middle-click action")), Factory.create("gconfcombobox", "action_middle_click_titlebar", [_("None"), _("Maximize"), _("Minimize"), _("Roll up"), _("Lower"), _("Menu")], ["none", "toggle_maximize", "minimize", "toggle_shade", "lower", "menu"])],
+                [gtk.Label(_("Title bar Right-click action")), Factory.create("gconfcombobox", "action_right_click_titlebar", [_("None"), _("Maximize"), _("Minimize"), _("Roll up"), _("Lower"), _("Menu")], ["none", "toggle_maximize", "minimize", "toggle_shade", "lower", "menu"])],
+                ])
 
-		self.pack_start(table, False, False, 0)
+        self.pack_start(table, False, False, 0)
 
 if __name__ == "__main__":
-	from Utility import Test
-	Test(Metacity)
+    from Utility import Test
+    Test(Metacity)

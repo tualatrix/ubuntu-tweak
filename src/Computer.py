@@ -31,43 +31,43 @@ from SystemInfo import SystemInfo
 gettext.install("ubuntu-tweak", unicode = True)
 
 class Computer(gtk.VBox):
-	"""Some options about current user"""
-	def __init__(self, parent = None):
-		gtk.VBox.__init__(self)
+    """Some options about current user"""
+    def __init__(self, parent = None):
+        gtk.VBox.__init__(self)
 
-		if os.uname()[4][0:3] == "ppc":
-			for element in file("/proc/cpuinfo"):
-				if element.split(":")[0][0:3] == "cpu":
-					cpumodel = element.split(":")[1]
-		else:
-			for element in file("/proc/cpuinfo"):
-				if element.split(":")[0] == "model name\t":
-					cpumodel = element.split(":")[1]
+        if os.uname()[4][0:3] == "ppc":
+            for element in file("/proc/cpuinfo"):
+                if element.split(":")[0][0:3] == "cpu":
+                    cpumodel = element.split(":")[1]
+        else:
+            for element in file("/proc/cpuinfo"):
+                if element.split(":")[0] == "model name\t":
+                    cpumodel = element.split(":")[1]
 
-		for element in file("/proc/meminfo"):
-			if element.split(" ")[0] == "MemTotal:":
-				raminfo = element.split(" ")[-2]
+        for element in file("/proc/meminfo"):
+            if element.split(" ")[0] == "MemTotal:":
+                raminfo = element.split(" ")[-2]
 
-		box = ListPack(_("<b>System information</b>"),(
-			EntryBox(_("Hostname"),		os.uname()[1]),
-			EntryBox(_("Distribution"), 	SystemInfo.distro),
-			EntryBox(_("Desktop Environment"), 	SystemInfo.gnome),
-			EntryBox(_("Kernel"), 		os.uname()[0]+" "+os.uname()[2]),
-			EntryBox(_("Platform"), 	os.uname()[-1]),
-			EntryBox(_("CPU"), 		cpumodel[1:-1]),
-			EntryBox(_("Memory"), 		str(int(raminfo)/1024)+" MB"),
-				))
-		self.pack_start(box, False, False, 0)
+        box = ListPack(_("<b>System information</b>"),(
+                    EntryBox(_("Hostname"),        os.uname()[1]),
+                    EntryBox(_("Distribution"),     SystemInfo.distro),
+                    EntryBox(_("Desktop Environment"),     SystemInfo.gnome),
+                    EntryBox(_("Kernel"),         os.uname()[0]+" "+os.uname()[2]),
+                    EntryBox(_("Platform"),     os.uname()[-1]),
+                    EntryBox(_("CPU"),         cpumodel[1:-1]),
+                    EntryBox(_("Memory"),         str(int(raminfo)/1024)+" MB"),
+                ))
+        self.pack_start(box, False, False, 0)
 
-		box = ListPack(_("<b>User information</b>"),(
-			EntryBox(_("Current User"), 	os.getenv("USER")),
-			EntryBox(_("Home Directory"), 	os.getenv("HOME")),
-			EntryBox(_("Shell"), 		os.getenv("SHELL")),
-			EntryBox(_("Language"), 	os.getenv("LANG")),
-				))
-			
-		self.pack_start(box, False, False, 0)
+        box = ListPack(_("<b>User information</b>"),(
+                    EntryBox(_("Current User"),     os.getenv("USER")),
+                    EntryBox(_("Home Directory"),     os.getenv("HOME")),
+                    EntryBox(_("Shell"),         os.getenv("SHELL")),
+                    EntryBox(_("Language"),     os.getenv("LANG")),
+                ))
+            
+        self.pack_start(box, False, False, 0)
 
 if __name__ == "__main__":
-	from Utility import Test
-	Test(Computer)
+    from Utility import Test
+    Test(Computer)

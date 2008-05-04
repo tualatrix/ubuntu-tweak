@@ -33,153 +33,153 @@ from Factory import Factory
 gettext.install(App, unicode = True)
 
 (
-		COLUMN_ID,
-		COLUMN_TITLE,
-		COLUMN_ICON,
-		COLUMN_COMMAND,
-		COLUMN_KEY,
-		COLUMN_EDITABLE,
+    COLUMN_ID,
+    COLUMN_TITLE,
+    COLUMN_ICON,
+    COLUMN_COMMAND,
+    COLUMN_KEY,
+    COLUMN_EDITABLE,
 ) = range(6)
 
 class Shortcuts(TweakPage):
-	"""Setting the command of keybinding"""
+    """Setting the command of keybinding"""
 
-	def __init__(self, parent = None):
-		TweakPage.__init__(self)
-		gtk.VBox.__init__(self)
+    def __init__(self, parent = None):
+        TweakPage.__init__(self)
+        gtk.VBox.__init__(self)
 
-		self.main_window = parent
-		self.set_title(_("Set the shortcut of your commands"))
-		self.set_description(_("By configuring keyboard shortcuts, you have faster access to the \napplications you need.\nInput the command and set any desired key, it's easy to set a shortcut.\nUse <b>Delete</b> or <b>BackSpace</b> to clean the key."))
+        self.main_window = parent
+        self.set_title(_("Set the shortcut of your commands"))
+        self.set_description(_("By configuring keyboard shortcuts, you have faster access to the \napplications you need.\nInput the command and set any desired key, it's easy to set a shortcut.\nUse <b>Delete</b> or <b>BackSpace</b> to clean the key."))
 
-		treeview = self.create_treeview()
+        treeview = self.create_treeview()
 
-		self.pack_start(treeview)
-	
-	def create_treeview(self):
-		treeview = gtk.TreeView()
+        self.pack_start(treeview)
+    
+    def create_treeview(self):
+        treeview = gtk.TreeView()
 
-		self.model = self.__create_model()
+        self.model = self.__create_model()
 
-		treeview.set_model(self.model)
+        treeview.set_model(self.model)
 
-		self.__add_columns(treeview)
+        self.__add_columns(treeview)
 
-		return treeview
+        return treeview
 
-	def __create_model(self):
-		model = gtk.ListStore(
-				gobject.TYPE_INT,
-				gobject.TYPE_STRING,
-				gtk.gdk.Pixbuf,
-				gobject.TYPE_STRING,
-				gobject.TYPE_STRING,
-				gobject.TYPE_BOOLEAN,
-				)
+    def __create_model(self):
+        model = gtk.ListStore(
+                    gobject.TYPE_INT,
+                    gobject.TYPE_STRING,
+                    gtk.gdk.Pixbuf,
+                    gobject.TYPE_STRING,
+                    gobject.TYPE_STRING,
+                    gobject.TYPE_BOOLEAN,
+                )
 
-		client = gconf.client_get_default()
+        client = gconf.client_get_default()
 
-		for id in range(12):
-			iter = model.append()
-			icontheme = gtk.icon_theme_get_default()
-			id = id + 1
+        for id in range(12):
+            iter = model.append()
+            icontheme = gtk.icon_theme_get_default()
+            id = id + 1
 
-			title = _("Command %d") % id
-			command = client.get_string("/apps/metacity/keybinding_commands/command_%d" % id)
-			key = client.get_string("/apps/metacity/global_keybindings/run_command_%d" % id)
+            title = _("Command %d") % id
+            command = client.get_string("/apps/metacity/keybinding_commands/command_%d" % id)
+            key = client.get_string("/apps/metacity/global_keybindings/run_command_%d" % id)
 
-			if not command: command = _("None")
-			icon = icontheme.lookup_icon(command, 32, gtk.ICON_LOOKUP_NO_SVG)
-			if icon: icon = icon.load_icon()
-			if key == "disabled": key = _("disabled")
+            if not command: command = _("None")
+            icon = icontheme.lookup_icon(command, 32, gtk.ICON_LOOKUP_NO_SVG)
+            if icon: icon = icon.load_icon()
+            if key == "disabled": key = _("disabled")
 
-			model.set(iter,
-					COLUMN_ID, id,
-					COLUMN_TITLE, title,
-					COLUMN_ICON, icon,
-					COLUMN_COMMAND, command,
-					COLUMN_KEY, key,
-					COLUMN_EDITABLE, True)
+            model.set(iter,
+                    COLUMN_ID, id,
+                    COLUMN_TITLE, title,
+                    COLUMN_ICON, icon,
+                    COLUMN_COMMAND, command,
+                    COLUMN_KEY, key,
+                    COLUMN_EDITABLE, True)
 
-		return model
+        return model
 
-	def __add_columns(self, treeview):
-		model = treeview.get_model()
+    def __add_columns(self, treeview):
+        model = treeview.get_model()
 
-		column = gtk.TreeViewColumn(_("ID"), gtk.CellRendererText(), text = COLUMN_TITLE)
-		treeview.append_column(column)
+        column = gtk.TreeViewColumn(_("ID"), gtk.CellRendererText(), text = COLUMN_TITLE)
+        treeview.append_column(column)
 
-		column = gtk.TreeViewColumn(_("Command"))
+        column = gtk.TreeViewColumn(_("Command"))
 
-		renderer = gtk.CellRendererPixbuf()
-		column.pack_start(renderer, False)
-		column.set_attributes(renderer, pixbuf = COLUMN_ICON)
+        renderer = gtk.CellRendererPixbuf()
+        column.pack_start(renderer, False)
+        column.set_attributes(renderer, pixbuf = COLUMN_ICON)
 
-		renderer = gtk.CellRendererText()
-		renderer.connect("edited", self.on_cell_edited, model)
-		column.pack_start(renderer, True)
-		column.set_attributes(renderer, text = COLUMN_COMMAND, editable = COLUMN_EDITABLE)
-		treeview.append_column(column)
-	
-		renderer = gtk.CellRendererText()
-		renderer.connect("editing-started", self.on_editing_started)
-		renderer.connect("edited", self.on_cell_edited, model)
-		column = gtk.TreeViewColumn(_("Key"), renderer, text = COLUMN_KEY, editable = COLUMN_EDITABLE)
-		treeview.append_column(column)
+        renderer = gtk.CellRendererText()
+        renderer.connect("edited", self.on_cell_edited, model)
+        column.pack_start(renderer, True)
+        column.set_attributes(renderer, text = COLUMN_COMMAND, editable = COLUMN_EDITABLE)
+        treeview.append_column(column)
+    
+        renderer = gtk.CellRendererText()
+        renderer.connect("editing-started", self.on_editing_started)
+        renderer.connect("edited", self.on_cell_edited, model)
+        column = gtk.TreeViewColumn(_("Key"), renderer, text = COLUMN_KEY, editable = COLUMN_EDITABLE)
+        treeview.append_column(column)
 
-	def on_got_key(self, widget, key, mods, cell):
-		new = gtk.accelerator_name (key, mods)
-		for mod in KeyModifier:
-			if "%s_L" % mod in new:
-				new = new.replace ("%s_L" % mod, "<%s>" % mod)
-			if "%s_R" % mod in new:
-				new = new.replace ("%s_R" % mod, "<%s>" % mod)
+    def on_got_key(self, widget, key, mods, cell):
+        new = gtk.accelerator_name (key, mods)
+        for mod in KeyModifier:
+            if "%s_L" % mod in new:
+                new = new.replace ("%s_L" % mod, "<%s>" % mod)
+            if "%s_R" % mod in new:
+                new = new.replace ("%s_R" % mod, "<%s>" % mod)
 
-		widget.destroy()
+        widget.destroy()
 
-		client = gconf.client_get_default()
-		column = cell.get_data("id")
-		iter = self.model.get_iter_from_string(cell.get_data("path_string"))
+        client = gconf.client_get_default()
+        column = cell.get_data("id")
+        iter = self.model.get_iter_from_string(cell.get_data("path_string"))
 
-		id = self.model.get_value(iter, COLUMN_ID)
+        id = self.model.get_value(iter, COLUMN_ID)
 
-		if new == "Delete" or new == "BackSpace":
-			client.set_string("/apps/metacity/global_keybindings/run_command_%d" % id, "disabled")
-			self.model.set_value(iter, COLUMN_KEY, _("disabled"))
-		else:
-			client.set_string("/apps/metacity/global_keybindings/run_command_%d" % id, new)
-			self.model.set_value(iter, COLUMN_KEY, new)
+        if new == "Delete" or new == "BackSpace":
+            client.set_string("/apps/metacity/global_keybindings/run_command_%d" % id, "disabled")
+            self.model.set_value(iter, COLUMN_KEY, _("disabled"))
+        else:
+            client.set_string("/apps/metacity/global_keybindings/run_command_%d" % id, new)
+            self.model.set_value(iter, COLUMN_KEY, new)
 
-	def on_editing_started(self, cell, editable, path):
-		grabber = KeyGrabber(self.main_window, label = "Grab key combination")
-		cell.set_data("path_string", path)
-		grabber.hide()
-		grabber.set_no_show_all(True)
-		grabber.connect('changed', self.on_got_key, cell)
-		grabber.begin_key_grab(None)
+    def on_editing_started(self, cell, editable, path):
+        grabber = KeyGrabber(self.main_window, label = "Grab key combination")
+        cell.set_data("path_string", path)
+        grabber.hide()
+        grabber.set_no_show_all(True)
+        grabber.connect('changed', self.on_got_key, cell)
+        grabber.begin_key_grab(None)
 
-	def on_cell_edited(self, cell, path_string, new_text, model):
-		iter = model.get_iter_from_string(path_string)
+    def on_cell_edited(self, cell, path_string, new_text, model):
+        iter = model.get_iter_from_string(path_string)
 
-		client = gconf.client_get_default()
-		column = cell.get_data("id")
+        client = gconf.client_get_default()
+        column = cell.get_data("id")
 
-		id = model.get_value(iter, COLUMN_ID)
-		old = model.get_value(iter, COLUMN_COMMAND)
+        id = model.get_value(iter, COLUMN_ID)
+        old = model.get_value(iter, COLUMN_COMMAND)
 
-		if old != new_text:
-			client.set_string("/apps/metacity/keybinding_commands/command_%d" % id, new_text)
-			if new_text:
-				icontheme = gtk.icon_theme_get_default()
-				icon = icontheme.lookup_icon(new_text, 32, gtk.ICON_LOOKUP_NO_SVG)
-				if icon: icon = icon.load_icon()
+        if old != new_text:
+            client.set_string("/apps/metacity/keybinding_commands/command_%d" % id, new_text)
+            if new_text:
+                icontheme = gtk.icon_theme_get_default()
+                icon = icontheme.lookup_icon(new_text, 32, gtk.ICON_LOOKUP_NO_SVG)
+                if icon: icon = icon.load_icon()
 
-				model.set_value(iter, COLUMN_ICON, icon)
-				model.set_value(iter, COLUMN_COMMAND, new_text)
-			else:
-				model.set_value(iter, COLUMN_ICON, None)
-				model.set_value(iter, COLUMN_COMMAND, _("None"))
+                model.set_value(iter, COLUMN_ICON, icon)
+                model.set_value(iter, COLUMN_COMMAND, new_text)
+            else:
+                model.set_value(iter, COLUMN_ICON, None)
+                model.set_value(iter, COLUMN_COMMAND, _("None"))
 
 if __name__ == "__main__":
-	from Utility import Test
-	Test(Shortcuts)
+    from Utility import Test
+    Test(Shortcuts)

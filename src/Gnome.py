@@ -32,28 +32,28 @@ from Factory import Factory
 gettext.install(App, unicode = True)
 
 class Gnome(gtk.VBox):
-	"""GNOME Settings"""
+    """GNOME Settings"""
 
-	def __init__(self, parent = None):
-		gtk.VBox.__init__(self)
+    def __init__(self, parent = None):
+        gtk.VBox.__init__(self)
 
-		hbox = gtk.HBox(False, 10)
-		label = gtk.Label(_("Notification-daemon popup location"))
-		label.set_alignment(0, 0.5)
-		combobox = Factory.create("gconfcombobox", "popup_location", [_("Top Left"), _("Top Right"), _("Bottom Left"), _("Bottom Right")], ["top_left", "top_right", "bottom_left", "bottom_right"])
-		hbox.pack_start(label, False, False, 0)
-		hbox.pack_start(combobox)
+        hbox = gtk.HBox(False, 10)
+        label = gtk.Label(_("Notification-daemon popup location"))
+        label.set_alignment(0, 0.5)
+        combobox = Factory.create("gconfcombobox", "popup_location", [_("Top Left"), _("Top Right"), _("Bottom Left"), _("Bottom Right")], ["top_left", "top_right", "bottom_left", "bottom_right"])
+        hbox.pack_start(label, False, False, 0)
+        hbox.pack_start(combobox)
 
-		box = ListPack(_("<b>GNOME Panel and Menu</b>"), (
-			Factory.create("gconfcheckbutton", _("Confirm Message when removing panel"), "confirm_panel_remove"),
-			Factory.create("gconfcheckbutton", _("Complete lockdown of the Panel "), "locked_down"),
-			Factory.create("gconfcheckbutton", _("Enable panel animations"), "enable_animations"),
-			Factory.create("gconfcheckbutton", _("Show Input Method menu on the Context Menu"), "show_input_method_menu"),
-			Factory.create("gconfcheckbutton", _("Show Unicode Method menu on the Context Menu"), "show_unicode_menu"),
-			hbox,
-			))
-		self.pack_start(box, False, False, 0)
+        box = ListPack(_("<b>GNOME Panel and Menu</b>"), (
+                    Factory.create("gconfcheckbutton", _("Confirm Message when removing panel"), "confirm_panel_remove"),
+                    Factory.create("gconfcheckbutton", _("Complete lockdown of the Panel "), "locked_down"),
+                    Factory.create("gconfcheckbutton", _("Enable panel animations"), "enable_animations"),
+                    Factory.create("gconfcheckbutton", _("Show Input Method menu on the Context Menu"), "show_input_method_menu"),
+                    Factory.create("gconfcheckbutton", _("Show Unicode Method menu on the Context Menu"), "show_unicode_menu"),
+                    hbox,
+            ))
+        self.pack_start(box, False, False, 0)
 
 if __name__ == "__main__":
-	from Utility import Test
-	Test(Gnome)
+    from Utility import Test
+    Test(Gnome)

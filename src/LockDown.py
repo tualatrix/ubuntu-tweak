@@ -32,21 +32,21 @@ from Widgets import ListPack
 gettext.install(App, unicode = True)
 
 class LockDown(gtk.VBox):
-        """Lock down some function"""
-        def __init__(self, parent = None):
-                gtk.VBox.__init__(self)
+    """Lock down some function"""
+    def __init__(self, parent = None):
+        gtk.VBox.__init__(self)
 
-		box = ListPack(_("<b>System Security options</b>"), (
-			Factory.create("gconfcheckbutton", _("Disable \"Run Application\" dialog (Alt+F2)"), "disable_command_line"),
-			Factory.create("gconfcheckbutton", _("Disable Lock Screen"), "disable_lock_screen"),
-			Factory.create("gconfcheckbutton", _("Disable Printing"), "disable_printing"),
-			Factory.create("gconfcheckbutton", _("Disable Print Setup"), "disable_print_setup"),
-			Factory.create("gconfcheckbutton", _("Disable Save To Disk"), "disable_save_to_disk"),
-			Factory.create("gconfcheckbutton", _("Disable User Switching"), "disable_user_switching"),
-			))
+        box = ListPack(_("<b>System Security options</b>"), (
+                    Factory.create("gconfcheckbutton", _("Disable \"Run Application\" dialog (Alt+F2)"), "disable_command_line"),
+                    Factory.create("gconfcheckbutton", _("Disable Lock Screen"), "disable_lock_screen"),
+                    Factory.create("gconfcheckbutton", _("Disable Printing"), "disable_printing"),
+                    Factory.create("gconfcheckbutton", _("Disable Print Setup"), "disable_print_setup"),
+                    Factory.create("gconfcheckbutton", _("Disable Save To Disk"), "disable_save_to_disk"),
+                    Factory.create("gconfcheckbutton", _("Disable User Switching"), "disable_user_switching"),
+            ))
 
-		self.pack_start(box, False, False, 0)
+        self.pack_start(box, False, False, 0)
 
 if __name__ == "__main__":
-	from Utility import Test
-        Test(LockDown)
+    from Utility import Test
+    Test(LockDown)
