@@ -6,14 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-27 06:28+0000\n"
-"PO-Revision-Date: 2008-03-17 07:32+0000\n"
-"Last-Translator: Ketil Wendelbo Aanensen <ketil.w.aanensen@gmail.com>\n"
+"POT-Creation-Date: 2008-05-07 08:09+0000\n"
+"PO-Revision-Date: 2008-05-04 10:02+0000\n"
+"Last-Translator: Olav Andreas Lindekleiv <Unknown>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-04-29 16:36+0000\n"
+"X-Launchpad-Export-Date: 2008-05-07 08:32+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "Generated-By: pygettext.py 1.5\n"
 
@@ -97,15 +97,15 @@ msgstr ""
 
 #: AutoStart.py:47
 msgid "_Name:"
-msgstr ""
+msgstr "_Navn:"
 
 #: AutoStart.py:50
 msgid "Co_mmand:"
-msgstr ""
+msgstr "Ko_mmando:"
 
 #: AutoStart.py:53
 msgid "Comm_ent:"
-msgstr ""
+msgstr "Komm_entar:"
 
 #: AutoStart.py:64
 msgid "Edit Startup Program"
@@ -177,7 +177,7 @@ msgstr "<b>Kantinnstilling</b>"
 
 #: Compiz.py:194
 msgid "Snapping Windows"
-msgstr ""
+msgstr "Smekkende vinduer"
 
 #: Compiz.py:195
 msgid "Wobbly Windows"
@@ -189,7 +189,7 @@ msgstr "<b>Vinduseffekter</b>"
 
 #: Compiz.py:200
 msgid "Opaque Menu"
-msgstr ""
+msgstr "Gjennomsiktig Meny"
 
 #: Compiz.py:201
 msgid "Wobbly Menu"
@@ -209,11 +209,11 @@ msgstr "Velg vinduer"
 
 #: Compiz.py:238
 msgid "Show Desktop"
-msgstr ""
+msgstr "Vis skrivebord"
 
 #: Compiz.py:239
 msgid "Widget"
-msgstr ""
+msgstr "Miniprogram (widget)"
 
 #: Computer.py:51
 msgid "<b>System information</b>"
@@ -229,7 +229,7 @@ msgstr "Distribusjon"
 
 #: Computer.py:54
 msgid "Desktop Environment"
-msgstr ""
+msgstr "Skrivebordsmiljø"
 
 #: Computer.py:55
 msgid "Kernel"
@@ -293,7 +293,7 @@ msgstr "<b>GNOME-panel og -meny</b>"
 
 #: Gnome.py:48
 msgid "Confirm Message when removing panel"
-msgstr ""
+msgstr "Godkjenningsmelding ved sletting av panel"
 
 #: Gnome.py:49
 msgid "Complete lockdown of the Panel "
@@ -301,7 +301,7 @@ msgstr "Fullstendig låsing av panelet "
 
 #: Gnome.py:50
 msgid "Enable panel animations"
-msgstr ""
+msgstr "Aktiver panel-animasjoner"
 
 #: Gnome.py:51
 msgid "Show Input Method menu on the Context Menu"
@@ -335,25 +335,29 @@ msgstr "Vis \"Søppelkurv\"-ikon på skrivebord"
 msgid "Rename the \"Trash\" icon: "
 msgstr "Endre navn på \"Søppelkurv\"-ikonet: "
 
-#: Icon.py:101
+#: Icon.py:96 Widgets.py:80 Widgets.py:90
+msgid "Unset"
+msgstr "Slå av"
+
+#: Icon.py:107
 msgid "<b>Desktop Icon settings</b>"
 msgstr "<b>Innstillinger for skrivebordsikoner</b>"
 
-#: Icon.py:105
+#: Icon.py:111
 msgid "Show desktop icons"
 msgstr "Vis skrivebordsikoner"
 
-#: Icon.py:124
+#: Icon.py:130
 msgid "Show \"Network\" icon on desktop"
 msgstr "Vis \"Nettverk\"-ikon på skrivebord"
 
-#: Icon.py:127
+#: Icon.py:133
 msgid "Show Mounted Volumes on desktop"
 msgstr "Vis monterte volumer på skrivebord"
 
-#: Icon.py:130
+#: Icon.py:136
 msgid "Use Home Folder as the desktop(Logout for changes to take effect)"
-msgstr ""
+msgstr "Bruk hjemmemappe som skrivebord (Logg ut for å aktivere)"
 
 #: LockDown.py:39
 msgid "<b>System Security options</b>"
@@ -383,7 +387,8 @@ msgstr "Slå av lagre til disk"
 msgid "Disable User Switching"
 msgstr "Slå av brukerbytte"
 
-#: MainWindow.py:122
+#: MainWindow.py:124
+#, fuzzy
 msgid ""
 "<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak!</b></span>\n"
 "\n"
@@ -398,92 +403,104 @@ msgid ""
 "\n"
 "Enjoy!"
 msgstr ""
+"<span size=\"xx-large\">Velkommen til <b>Ubuntu Tweak!</b></span>\n"
+"\n"
+"\n"
+"Dette er et verktøy for Ubuntu som gjør det enklere å forandre \n"
+"gjemte system- og skrivebordsinnstillinger.\n"
+"\n"
+"Ubuntu Tweak kan også kjøres i andre distribusjoner.\n"
+"\n"
+"Hvis du har forslag, besøk nettsiden under \"Om\" og \n"
+"del ideene dine med meg.\n"
+"\n"
+"Nyt programmet!"
 
-#: MainWindow.py:135
+#: MainWindow.py:137
 msgid "<span size=\"xx-large\">Please select the child item</span>"
 msgstr "<span size=\"xx-large\">Vennligst velg underkategori</span>"
 
-#: MainWindow.py:142
+#: MainWindow.py:144
 msgid "Session Control"
 msgstr "Sesjonskontroll"
 
-#: MainWindow.py:143
+#: MainWindow.py:145
 msgid "Auto Start"
 msgstr "Autostart"
 
-#: MainWindow.py:148
+#: MainWindow.py:150
 msgid "Desktop Icon"
 msgstr "Skrivebordsikon"
 
-#: MainWindow.py:149
+#: MainWindow.py:151
 msgid "Metacity"
 msgstr "Metacity"
 
-#: MainWindow.py:150
+#: MainWindow.py:152
 msgid "Compiz Fusion"
 msgstr "Compiz Fusion"
 
-#: MainWindow.py:155
+#: MainWindow.py:157
 msgid "User Folder"
 msgstr "Brukerkatalog"
 
-#: MainWindow.py:156
+#: MainWindow.py:158
 msgid "Templates"
 msgstr "Maler"
 
-#: MainWindow.py:157
+#: MainWindow.py:159
 msgid "Scripts"
 msgstr "Skript"
 
-#: MainWindow.py:158
+#: MainWindow.py:160
 msgid "Shortcuts"
-msgstr ""
+msgstr "Hurtigtaster"
 
-#: MainWindow.py:163
+#: MainWindow.py:165
 msgid "GNOME"
 msgstr "GNOME"
 
-#: MainWindow.py:164
+#: MainWindow.py:166
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: MainWindow.py:165
+#: MainWindow.py:167
 msgid "Power Manager"
 msgstr "Strømhåndterer"
 
-#: MainWindow.py:170
+#: MainWindow.py:172
 msgid "Security Options"
 msgstr "Sikkerhetsvalg"
 
-#: MainWindow.py:175
+#: MainWindow.py:177
 msgid "Welcome"
 msgstr "Velkommen"
 
-#: MainWindow.py:176
+#: MainWindow.py:178
 msgid "Computer"
 msgstr "Datamaskin"
 
-#: MainWindow.py:177
+#: MainWindow.py:179
 msgid "Startup"
 msgstr "Oppstart"
 
-#: MainWindow.py:178
+#: MainWindow.py:180
 msgid "Desktop"
 msgstr "Skrivebord"
 
-#: MainWindow.py:179
+#: MainWindow.py:181
 msgid "Personal"
 msgstr "Personlig"
 
-#: MainWindow.py:180
+#: MainWindow.py:182
 msgid "System"
 msgstr "System"
 
-#: MainWindow.py:181
+#: MainWindow.py:183
 msgid "Security"
 msgstr "Sikkerhet"
 
-#: MainWindow.py:345
+#: MainWindow.py:351
 msgid ""
 "Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
 "system and desktop settings."
@@ -491,11 +508,18 @@ msgstr ""
 "Ubuntu Tweak er et verktøy for Ubuntu, som gjør det enklere å konfigurere "
 "systemet og skrivebordsinnstillingene dine."
 
-#: MainWindow.py:352
+#: MainWindow.py:358
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
-"  Ketil Wendelbo Aanensen https://launchpad.net/~ketilwaa"
+"  Ketil Wendelbo Aanensen https://launchpad.net/~ketilwaa\n"
+"  Olav Andreas Lindekleiv https://launchpad.net/~aq"
+
+#: MainWindow.py:373
+msgid ""
+"A newer version: %s is available online.\n"
+"Would you like to update?"
+msgstr ""
 
 #: Metacity.py:39
 msgid "<b>Window Decorate Effect</b>"
@@ -507,7 +531,7 @@ msgstr "Bruk Metacity-tema"
 
 #: Metacity.py:41
 msgid "Active window opacity shade"
-msgstr ""
+msgstr "Gjennomsiktighet på aktive vinduer"
 
 #: Metacity.py:42
 msgid "Active window opacity level"
@@ -515,11 +539,11 @@ msgstr "Dekkevne-nivå for aktivt vindu"
 
 #: Metacity.py:43
 msgid "Inactive window opacity shade"
-msgstr ""
+msgstr "Gjennomsiktighet på inaktive vinduer"
 
 #: Metacity.py:44
 msgid "Inactive window shade opacity level"
-msgstr ""
+msgstr "Gjennomsiktighetsnivå på inaktive vinduer"
 
 #: Metacity.py:48
 msgid "<b>Window Titlebar Action</b>"
@@ -534,7 +558,7 @@ msgid "Roll up"
 msgstr "Rull opp"
 
 #: Metacity.py:49 Metacity.py:50 Metacity.py:51 Metacity.py:52 Shortcuts.py:91
-#: Shortcuts.py:180
+#: Shortcuts.py:181
 msgid "None"
 msgstr "Ingen"
 
@@ -566,99 +590,101 @@ msgstr "Hendelse for midtklikk på tittellinje"
 msgid "Title bar Right-click action"
 msgstr "Hendelse for høyreklikk på tittellinje"
 
-#: Nautilus.py:39
+#: Nautilus.py:38
+#, fuzzy
 msgid "Show advanced Permissions on File Property pages"
-msgstr ""
+msgstr "Vis avanserte rettigheter på filrettighetssider"
 
-#: Nautilus.py:41
+#: Nautilus.py:40
 msgid "<b>Settings for Nautilus behavior</b>"
 msgstr "<b>Innstillinger for Nautilus-oppførsel</b>"
 
-#: Nautilus.py:45
+#: Nautilus.py:44
 msgid "Default Thumbnail Icon Size"
 msgstr "Forvalgt størrelse for miniatyrikon"
 
-#: Nautilus.py:54
+#: Nautilus.py:53
 msgid "<b>CD Burner</b>"
 msgstr "<b>CD-brenner</b>"
 
-#: Nautilus.py:55
+#: Nautilus.py:54
 msgid "Enable BurnProof technology"
 msgstr "Slå på Burnproof-teknologi"
 
-#: Nautilus.py:56
+#: Nautilus.py:55
 msgid "Enable OverBurn"
 msgstr "Slå på OverBurn"
 
-#: PowerManager.py:41
+#: PowerManager.py:40
 msgid "<b>Advanced Power Management Settings</b>"
 msgstr "<b>Avanserte innstillinger for strømhåndtering</b>"
 
-#: PowerManager.py:42
+#: PowerManager.py:41
 msgid "Enable Hibernation"
 msgstr "Slå på dvalemodus"
 
-#: PowerManager.py:43
+#: PowerManager.py:42
 msgid "Enable Suspend"
 msgstr "Slå på hvilemodus"
 
-#: PowerManager.py:44
+#: PowerManager.py:43
+#, fuzzy
 msgid "Show CPU frequency control option"
-msgstr ""
+msgstr "Vis CPU-frekvenskontroller"
+
+#: PowerManager.py:44
+msgid "Disable the Network Manager on sleep"
+msgstr "Slå av nettverksbehandleren i sovemodus"
 
 #: PowerManager.py:45
-msgid "Disable the Network Manager on sleep"
-msgstr ""
-
-#: PowerManager.py:46
 msgid "Lock screen when blanked"
 msgstr "Lås skjermen når den blankes ut"
 
-#: PowerManager.py:47
+#: PowerManager.py:46
 msgid "\"GNOME Panel\" Power Management icon"
 msgstr "GNOME-panelets ikon for strømhåndtering"
 
-#: PowerManager.py:47
+#: PowerManager.py:46
 msgid "Always display"
 msgstr "Alltid vis"
 
-#: PowerManager.py:47
+#: PowerManager.py:46
 msgid "Never display"
 msgstr "Aldri vis"
 
-#: PowerManager.py:47
+#: PowerManager.py:46
 msgid "When charging"
 msgstr "Ved lading"
 
-#: PowerManager.py:51
+#: PowerManager.py:50
 msgid "<b>CPU Policy</b>"
 msgstr "<b>CPU-regel</b>"
 
-#: PowerManager.py:52
+#: PowerManager.py:51
 msgid "The Performance value when on AC power"
 msgstr "Ytelsesverdien ved tilkoblet strøm (AC)"
 
-#: PowerManager.py:53
+#: PowerManager.py:52
 msgid "The Performance value when on battery power"
 msgstr "Ytelsesverdi ved batteribruk"
 
-#: PowerManager.py:54
+#: PowerManager.py:53
 msgid "The CPU frequency policy when on AC power"
 msgstr "Regel for CPU-frekvens når tilkoblet strømnettet (AC)"
 
-#: PowerManager.py:54 PowerManager.py:55
+#: PowerManager.py:53 PowerManager.py:54
 msgid "On Demand"
 msgstr "Ved behov (On Demand)"
 
-#: PowerManager.py:54 PowerManager.py:55
+#: PowerManager.py:53 PowerManager.py:54
 msgid "Performance"
 msgstr "Ytelse (Peformance)"
 
-#: PowerManager.py:54 PowerManager.py:55
+#: PowerManager.py:53 PowerManager.py:54
 msgid "Power Save"
 msgstr "Strømsparing (Power Save)"
 
-#: PowerManager.py:55
+#: PowerManager.py:54
 msgid "The CPU frequency policy when on battery power"
 msgstr "Regel for CPU-frekvens når batteriet brukes"
 
@@ -714,46 +740,50 @@ msgstr "Let som superbruker"
 msgid "Search in current folder"
 msgstr "Søk i nåværende mappe"
 
-#: Scripts.py:120
+#: Scripts.py:121
 msgid "Delete this script"
 msgstr "Slett dette skriptet"
 
-#: Scripts.py:163
+#: Scripts.py:164
 msgid "Sorry! This isn't a script file."
 msgstr "Beklager! Dette er ikke en skript-fil"
 
-#: Scripts.py:163 ubuntu-tweak.py:30
+#: Scripts.py:164 ubuntu-tweak.py:30
 msgid "Error"
 msgstr "Feil"
 
-#: Scripts.py:175
+#: Scripts.py:176
 msgid "Enabled Scripts"
 msgstr "Påslåtte skript"
 
-#: Scripts.py:245
+#: Scripts.py:246
 msgid "Disabled Scripts"
 msgstr "Avslåtte skript"
 
-#: Scripts.py:331
+#: Scripts.py:332
 msgid "Manage your scripts"
 msgstr "Håndter skriptene dine"
 
-#: Scripts.py:332
+#: Scripts.py:333
+#, fuzzy
 msgid ""
 "You can do all kinds of tasks with scripts.\n"
 "You can drag and drop from File Manager.\n"
 "\"Scripts\" will be added to the Context Menu.\n"
 msgstr ""
+"Du kan gjøre alle slags oppgaver med skripts.\n"
+"Du kan da og slippe dem fra filbehandleren.\n"
+"\"Scripts\" legges til under kontekstmenyen.\n"
 
-#: Scripts.py:354
+#: Scripts.py:355
 msgid "Rebuild the system scripts"
 msgstr "Gjenoppbygger systemskriptene"
 
-#: Scripts.py:359
+#: Scripts.py:360
 msgid "This will delete all the disabled scripts, continue?"
 msgstr "Dette vil slette alle avslåtte skripter. Fortsette?"
 
-#: Scripts.py:359 Templates.py:345
+#: Scripts.py:360 Templates.py:345
 msgid "Warning"
 msgstr "Advarsel"
 
@@ -769,29 +799,29 @@ msgstr "Velg et oppstartsbilde"
 msgid "PNG image (*.png)"
 msgstr "PNG-bilde (*.png)"
 
-#: Session.py:129
+#: Session.py:133
 msgid "Automatically save changes to session"
 msgstr "Automatisk lagring av sesjonsendringer"
 
-#: Session.py:130
+#: Session.py:134
 msgid "Show Logout prompt"
 msgstr "Vis utloggings-dialog"
 
-#: Session.py:131
+#: Session.py:135
 msgid "Allow TCP Connections(Remote Connect)"
 msgstr "Tillat TCP-tilkoblinger (fjerntilkobling)"
 
-#: Session.py:132
+#: Session.py:136
 msgid "Show Splash screen"
 msgstr "Vis oppstartsskjerm"
 
-#: Session.py:134
+#: Session.py:138
 msgid "<b>Session Control</b>"
 msgstr "<b>Sesjonskontroll</b>"
 
 #: Shortcuts.py:52
 msgid "Set the shortcut of your commands"
-msgstr ""
+msgstr "Velg hurtigtaster for dine kommandoer"
 
 #: Shortcuts.py:53
 msgid ""
@@ -800,26 +830,31 @@ msgid ""
 "Input the command and set any desired key, it's easy to set a shortcut.\n"
 "Use <b>Delete</b> or <b>BackSpace</b> to clean the key."
 msgstr ""
+"Ved å konfigurere tastatursnarveier vil du få tilgang til programmene\n"
+"dine på en raskere måte.\n"
+"Skriv inn en kommando og velg en hurtigtast. Det er enkelt å lage "
+"hurtigtaster.\n"
+"Bruk <b>Delete</b> eller <b>BackSpace</b> for å fjerne en tast."
 
 #: Shortcuts.py:87
 msgid "Command %d"
-msgstr ""
+msgstr "Kommando %d"
 
-#: Shortcuts.py:108
-msgid "ID"
-msgstr ""
-
-#: Shortcuts.py:111
-msgid "Command"
-msgstr ""
-
-#: Shortcuts.py:126
-msgid "Key"
-msgstr ""
-
-#: Shortcuts.py:147
+#: Shortcuts.py:94 Shortcuts.py:148
 msgid "disabled"
-msgstr ""
+msgstr "deaktivert"
+
+#: Shortcuts.py:109
+msgid "ID"
+msgstr "ID"
+
+#: Shortcuts.py:112
+msgid "Command"
+msgstr "Kommando"
+
+#: Shortcuts.py:127
+msgid "Key"
+msgstr "Tast"
 
 #: Templates.py:49
 msgid "HTML document"
@@ -875,6 +910,9 @@ msgid ""
 "You can drag and drop from File Manager.\n"
 "\"Create Document\" will be added to the Context Menu.\n"
 msgstr ""
+"Du kan fritt behandle dokumentmalene dine.\n"
+"Du kan da og slippe dem fra filbehandleren.\n"
+"\"Opprett dokument\" vil bli lagt til under kontekstmenyen.\n"
 
 #: Templates.py:340
 msgid "Rebuild the system templates"
@@ -936,17 +974,13 @@ msgstr "Oppdatering vellykket!"
 msgid "Select a new folder"
 msgstr "Velg en ny katalog"
 
-#: Widgets.py:80
-msgid "Unset"
-msgstr "Slå av"
-
-#: Widgets.py:376
+#: Widgets.py:368
 msgid "Please press the new key combination"
-msgstr ""
+msgstr "Vennligst utfør den nye tastekombinasjonen"
 
-#: Widgets.py:425
+#: Widgets.py:417
 msgid "Disabled"
-msgstr ""
+msgstr "Deaktivert"
 
 #: ubuntu-tweak.py:39
 msgid ""
@@ -954,6 +988,9 @@ msgid ""
 "\n"
 "Ubuntu Tweak can only run under <b>GNOME 2.18 or above.</b>\n"
 msgstr ""
+"Beklager!\n"
+"\n"
+"Ubuntu Tweak kan kun kjøres under <b>GNOME 2.18 eller nyere.</b>\n"
 
 #: ubuntu-tweak.py:46
 msgid ""
