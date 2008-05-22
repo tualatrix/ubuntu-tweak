@@ -20,6 +20,7 @@
 
 import pygtk
 pygtk.require("2.0")
+import os
 import gtk
 import gconf
 import gobject
@@ -163,10 +164,13 @@ class BaseListPack(BasePack):
 class ListPack(BaseListPack):
     def __init__(self, title, widgets):
         BaseListPack.__init__(self, title)
+        self.items = []
 
         if widgets:
             for widget in widgets:
-                if widget: self.vbox.pack_start(widget, False, False, 5)
+                if widget: 
+                    self.vbox.pack_start(widget, False, False, 5)
+                    self.items.append(widget)
         else:
             self = None
 
@@ -293,9 +297,9 @@ def show_info(message, title = None, buttons = gtk.BUTTONS_OK, type = gtk.MESSAG
     dialog.set_icon_from_file("pixmaps/ubuntu-tweak.png")
     if title:
         dialog.set_title(title)
-        dialog.set_markup(message)
-        dialog.run()
-        dialog.destroy()
+    dialog.set_markup(message)
+    dialog.run()
+    dialog.destroy()
 
 class MessageDialog(gtk.MessageDialog):
     def __init__(self, message, title = None, parent = None, flags = 0, type = gtk.MESSAGE_INFO, buttons = gtk.BUTTONS_YES_NO):

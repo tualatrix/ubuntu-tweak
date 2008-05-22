@@ -18,29 +18,27 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
+import os
 import gtk
 import gettext
-import os
 
+from Widgets import show_info
 from Constants import *
-from SystemInfo import GnomeVersion
+try:
+    from PackageWorker import update_apt_cache
+except ImportError:
+    pass
 
 gettext.install(App, unicode = True)
 
-def show_error(message, title = _("Error"), parent = None):
-   dialog = gtk.MessageDialog(None, gtk.DIALOG_MODAL, gtk.MESSAGE_ERROR, gtk.BUTTONS_OK)
-   dialog.set_title(title)
-   dialog.set_markup(message)
-   dialog.run()
-   dialog.destroy()
-
 if __name__ == "__main__":
-   if GnomeVersion.minor < 18:
-      show_error(_("Sorry!\n\nUbuntu Tweak can only run under <b>GNOME 2.18 or above.</b>\n"))
-   else:
-      #determine whether the gnome is the default desktop
-      if os.getenv("GNOME_DESKTOP_SESSION_ID"):
-         from MainWindow import MainWindow
-         MainWindow().main()
-      else:
-         show_error(_("Sorry!\n\nUbuntu Tweak can only run in <b>GNOME Desktop.</b>\n"))
+    #determine whether the gnome is the default desktop
+    if os.getenv("GNOME_DESKTOP_SESSION_ID"):
+        from SystemInfo import GnomeVersion
+        if GnomeVersion.minor < 18:
+            show_info(_("Sorry!\n\nUbuntu Tweak can only run under <b>GNOME 2.18 or above.</b>\n"))
+        else:
+            from MainWindow import MainWindow
+            MainWindow().main()
+    else:
+        show_info(_("Sorry!\n\nUbuntu Tweak can only run in <b>GNOME Desktop.</b>\n"))

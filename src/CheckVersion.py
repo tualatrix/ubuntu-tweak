@@ -44,4 +44,4 @@ def SubmitCurrent():
 if __name__ == "__main__":
     CheckVersion()
 
-    SubmitCurrent()
+#    SubmitCurrent()

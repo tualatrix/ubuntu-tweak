@@ -28,14 +28,21 @@ import gobject
 try:
     import compizconfig as ccs
     import ccm
-    if ccm.Version == "0.7.4":
+    if ccm.Version >= "0.7.4":
         DISABLE = False
     else:
         DISABLE = True
 except ImportError:
     DISABLE = True
 from Constants import *
-from Widgets import ListPack
+from Widgets import ListPack, Mediator, MessageDialog
+
+try:
+    import apt_pkg
+    from PackageWorker import PackageWorker, AptCheckButton, update_apt_cache
+    DISABLE_APT = False
+except ImportError:
+    DISABLE_APT = True
 
 gettext.install(App, unicode = True)
 
@@ -172,11 +179,12 @@ class SnapWindow(gtk.CheckButton, CompizSetting):
 
         self.set_active(self.plugin.Enabled)
 
-class Compiz(gtk.VBox, CompizSetting):
+class Compiz(gtk.VBox, CompizSetting, Mediator):
     """Compiz Fusion tweak"""
 
     def __init__(self, parent = None):
         gtk.VBox.__init__(self)
+        self.main_window = parent
 
         vbox = gtk.VBox(False, 0)
         vbox.set_border_width(5)
@@ -202,6 +210,29 @@ class Compiz(gtk.VBox, CompizSetting):
 
         box = ListPack(_("<b>Menu Effects</b>"), (button1, self.wobbly_m))
         self.pack_start(box, False, False, 0)
+
+        if not DISABLE_APT:
+            self.packageWorker = PackageWorker()
+
+            self.advanced_settings = AptCheckButton(_("Compiz with advanced settings"), 'compizconfig-settings-manager', self)
+            self.simple_settings = AptCheckButton(_("Compiz with advanced settings"), 'simple-ccsm', self)
+            self.screenlets = AptCheckButton(_("Screenlets"), 'screenlets', self)
+
+            box = ListPack(_("<b>Compiz Extensions</b>"), (
+                self.advanced_settings,
+                self.simple_settings,
+                self.screenlets,
+            ))
+
+            self.button = gtk.Button(stock = gtk.STOCK_APPLY)
+            self.button.connect("clicked", self.on_apply_clicked, box)
+            self.button.set_sensitive(False)
+            hbox = gtk.HBox(False, 0)
+            hbox.pack_end(self.button, False, False, 0)
+
+            box.vbox.pack_start(hbox, False, False, 0)
+
+            self.pack_start(box, False, False, 0)
 
     def combo_box_changed_cb(self, widget, edge):
         """If the previous setting is none, then select the add edge"""
@@ -290,6 +321,33 @@ class Compiz(gtk.VBox, CompizSetting):
         vbox.pack_end(combobox, False, False, 0)
 
         return hbox
+
+    def on_apply_clicked(self, widget, box):
+        to_add = []
+        to_rm = []
+
+        for widget in box.items:
+            if widget.get_active():
+                to_add.append(widget.pkgname)
+            else:
+                to_rm.append(widget.pkgname)
+
+        self.packageWorker.perform_action(self.main_window, to_add, to_rm)
+
+        self.button.set_sensitive(False)
+        dialog = MessageDialog(_("Update Successfully!"), buttons = gtk.BUTTONS_OK)
+        dialog.run()
+        dialog.destroy()
+
+        update_apt_cache()
+
+    def colleague_changed(self):
+        if self.advanced_settings.get_state() != self.advanced_settings.get_active() or\
+                self.simple_settings.get_state() != self.simple_settings.get_active() or\
+                self.screenlets.get_state() != self.screenlets.get_active():
+                    self.button.set_sensitive(True)
+        else:
+            self.button.set_sensitive(False)
 
 if __name__ == "__main__":
     from Utility import Test
