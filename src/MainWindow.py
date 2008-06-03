@@ -25,6 +25,7 @@ import os
 import gtk
 import sys
 import gconf
+import thread
 import gobject
 import gettext
 
@@ -39,8 +40,8 @@ from Computer import Computer
 from Session import Session
 from AutoStart import AutoStart
 from Icon import Icon
-from Compiz import DISABLE
-if DISABLE:
+from Compiz import DISABLE_APT, DISABLE_VER
+if DISABLE_APT or DISABLE_VER:
     Compiz = None
     UNKOWN = 99
 else:
@@ -188,7 +189,6 @@ class MainWindow(gtk.Window):
 
     def __init__(self):
         gtk.Window.__init__(self)
-        gtk.gdk.threads_init()
 
         self.connect("destroy", self.destroy)
         self.set_title("Ubuntu Tweak")
@@ -361,7 +361,6 @@ You should have received a copy of the GNU General Public License along with Ubu
         about.destroy()
 
     def on_timeout(self):
-        import thread
         thread.start_new_thread(self.check_version, ())
 
     def check_version(self):
@@ -381,9 +380,3 @@ You should have received a copy of the GNU General Public License along with Ubu
 
     def destroy(self, widget, data = None):
         gtk.main_quit()
-
-    def main(self):
-        gtk.gdk.threads_enter()
-        os.system("./CheckVersion.py &")
-        gtk.main()
-        gtk.gdk.threads_leave()

@@ -26,12 +26,12 @@ import gconf
 import gettext
 
 from Constants import *
-from Widgets import ListPack
+from Widgets import ListPack, ColleagueCheckButton, Mediator
 from Factory import Factory
 
 gettext.install(App, unicode = True)
 
-class Gnome(gtk.VBox):
+class Gnome(gtk.VBox, Mediator):
     """GNOME Settings"""
 
     def __init__(self, parent = None):
@@ -44,7 +44,7 @@ class Gnome(gtk.VBox):
         hbox.pack_start(label, False, False, 0)
         hbox.pack_start(combobox)
 
-        box = ListPack(_("<b>GNOME Panel and Menu</b>"), (
+        box = ListPack(_("<b>Panel and Menu</b>"), (
                     Factory.create("gconfcheckbutton", _("Confirm Message when removing panel"), "confirm_panel_remove"),
                     Factory.create("gconfcheckbutton", _("Complete lockdown of the Panel "), "locked_down"),
                     Factory.create("gconfcheckbutton", _("Enable panel animations"), "enable_animations"),
@@ -53,6 +53,38 @@ class Gnome(gtk.VBox):
                     hbox,
             ))
         self.pack_start(box, False, False, 0)
+
+        box = ListPack(_("<b>Screensaver</b>"), (
+                    Factory.create("gconfcheckbutton", _("Enable user switching while locking screen."), "user_switch_enabled"),
+            ))
+        self.pack_start(box, False, False, 0)
+
+        self.recently_used = ColleagueCheckButton(_("Enable System-wide recently used"), self)
+        self.recently_used.set_active(self.get_state())
+        box = ListPack(_("<b>History</b>"), (
+                    self.recently_used,
+            ))
+        self.pack_start(box, False, False, 0)
+
+    def get_state(self):
+        file = os.path.join(os.path.expanduser("~"), ".recently-used.xbel")
+        if os.path.exists(file):
+            if os.path.isdir(file):
+                return False
+            elif os.path.isfile(file):
+                return True
+        else:
+            return True
+
+    def colleague_changed(self):
+        enabled = self.recently_used.get_active()
+        file = os.path.join(os.path.expanduser("~"), ".recently-used.xbel")
+        if enabled:
+            os.system('rm -r %s' % file)
+            os.system('touch %s' % file)
+        else:
+            os.system('rm -r %s' % file)
+            os.system('mkdir %s' % file)
 
 if __name__ == "__main__":
     from Utility import Test

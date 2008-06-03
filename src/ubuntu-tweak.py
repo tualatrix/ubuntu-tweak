@@ -20,16 +20,52 @@
 
 import os
 import gtk
+import thread
 import gettext
 
 from Widgets import show_info
 from Constants import *
-try:
-    from PackageWorker import update_apt_cache
-except ImportError:
-    pass
-
 gettext.install(App, unicode = True)
+
+class TweakLauncher:
+    def __init__(self):
+            gtk.gdk.threads_init()
+            thread.start_new_thread(self.show_splash, ())
+
+            try:
+                from PackageWorker import update_apt_cache
+            except ImportError:
+                pass
+
+            from MainWindow import MainWindow
+
+            window = MainWindow()
+
+    def show_splash(self):
+        gtk.gdk.threads_enter()
+        win = gtk.Window(gtk.WINDOW_POPUP)
+        win.set_position(gtk.WIN_POS_CENTER)
+
+        vbox = gtk.VBox(False, 0)
+        image = gtk.Image()
+        image.set_from_file('pixmaps/splash.png')
+
+        vbox.pack_start(image)
+        win.add(vbox)
+
+        win.show_all()
+
+        while gtk.events_pending ():
+            gtk.main_iteration ()
+
+        win.destroy()
+        gtk.gdk.threads_leave()
+
+    def main(self):
+        gtk.gdk.threads_enter()
+        os.system("./CheckVersion.py &")
+        gtk.main()
+        gtk.gdk.threads_leave()    
 
 if __name__ == "__main__":
     #determine whether the gnome is the default desktop
@@ -38,7 +74,7 @@ if __name__ == "__main__":
         if GnomeVersion.minor < 18:
             show_info(_("Sorry!\n\nUbuntu Tweak can only run under <b>GNOME 2.18 or above.</b>\n"))
         else:
-            from MainWindow import MainWindow
-            MainWindow().main()
+            launcher = TweakLauncher()
+            launcher.main()
     else:
         show_info(_("Sorry!\n\nUbuntu Tweak can only run in <b>GNOME Desktop.</b>\n"))

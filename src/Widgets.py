@@ -97,6 +97,13 @@ class CGconfCheckButton(GconfCheckButton, Colleague):
 
         self.connect("toggled", self.state_changed)
 
+class ColleagueCheckButton(gtk.CheckButton, Colleague):
+    def __init__(self, label, mediator):
+        gtk.CheckButton.__init__(self, label)
+        Colleague.__init__(self, mediator)
+
+        self.connect("toggled", self.state_changed)
+
 class GconfCombobox(ConstStringSetting):
     def __init__(self, key, texts, values):
         ConstStringSetting.__init__(self, key, values)

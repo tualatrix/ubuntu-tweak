@@ -29,11 +29,14 @@ try:
     import compizconfig as ccs
     import ccm
     if ccm.Version >= "0.7.4":
-        DISABLE = False
+        DISABLE_VER = False
+        DISABLE_NOR = False
     else:
-        DISABLE = True
+        DISABLE_VER = True
+        DISABLE_NOR = False
 except ImportError:
-    DISABLE = True
+    DISABLE_NOR = True
+    DISABLE_VER = False
 from Constants import *
 from Widgets import ListPack, Mediator, MessageDialog
 
@@ -64,7 +67,7 @@ plugins_settings = \
 }
 
 class CompizSetting:
-    if not DISABLE:
+    if not DISABLE_NOR and not DISABLE_VER:
         context = ccs.Context()
 
 class OpacityMenu(gtk.CheckButton, CompizSetting):
@@ -189,39 +192,62 @@ class Compiz(gtk.VBox, CompizSetting, Mediator):
         vbox = gtk.VBox(False, 0)
         vbox.set_border_width(5)
 
-        label = gtk.Label()
-        label.set_markup(_("<b>Edge Setting</b>"))
-        label.set_alignment(0, 0)
-        vbox.pack_start(label, False, False, 0)
-        self.pack_start(vbox, False, False, 0)
+        if not DISABLE_NOR:
+            label = gtk.Label()
+            label.set_markup(_("<b>Edge Setting</b>"))
+            label.set_alignment(0, 0)
+            vbox.pack_start(label, False, False, 0)
+            self.pack_start(vbox, False, False, 0)
 
-        hbox = gtk.HBox(False, 0)
-        self.pack_start(hbox, False, False, 0)
-        hbox.pack_start(self.create_edge_setting(), True, False, 0)
+            hbox = gtk.HBox(False, 0)
+            self.pack_start(hbox, False, False, 0)
+            hbox.pack_start(self.create_edge_setting(), True, False, 0)
 
-        self.snap = SnapWindow(_("Snapping Windows"), self)
-        self.wobbly_w = WobblyWindow(_("Wobbly Windows"), self);
+            self.snap = SnapWindow(_("Snapping Windows"), self)
+            self.wobbly_w = WobblyWindow(_("Wobbly Windows"), self);
 
-        box = ListPack(_("<b>Window Effects</b>"), (self.snap, self.wobbly_w))
-        self.pack_start(box, False, False, 0)
+            box = ListPack(_("<b>Window Effects</b>"), (self.snap, self.wobbly_w))
+            self.pack_start(box, False, False, 0)
 
-        button1 = OpacityMenu(_("Opaque Menu"))
-        self.wobbly_m = WobblyMenu(_("Wobbly Menu"), self)
+            button1 = OpacityMenu(_("Opaque Menu"))
+            self.wobbly_m = WobblyMenu(_("Wobbly Menu"), self)
 
-        box = ListPack(_("<b>Menu Effects</b>"), (button1, self.wobbly_m))
-        self.pack_start(box, False, False, 0)
+            box = ListPack(_("<b>Menu Effects</b>"), (button1, self.wobbly_m))
+            self.pack_start(box, False, False, 0)
 
-        if not DISABLE_APT:
+            if not DISABLE_APT:
+                self.packageWorker = PackageWorker()
+
+                self.simple_settings = AptCheckButton(_("Install Compiz Simple Settings manager"),\
+                        'simple-ccsm',\
+                        self)
+                self.screenlets = AptCheckButton(_("Install Screenlets Widget tool"),\
+                        'screenlets',\
+                        self)
+
+                box = ListPack(_("<b>Compiz Extensions</b>"), (
+                    self.simple_settings,
+                    self.screenlets,
+                ))
+
+                self.button = gtk.Button(stock = gtk.STOCK_APPLY)
+                self.button.connect("clicked", self.on_apply_clicked, box)
+                self.button.set_sensitive(False)
+                hbox = gtk.HBox(False, 0)
+                hbox.pack_end(self.button, False, False, 0)
+
+                box.vbox.pack_start(hbox, False, False, 0)
+
+                self.pack_start(box, False, False, 0)
+        else:
             self.packageWorker = PackageWorker()
 
-            self.advanced_settings = AptCheckButton(_("Compiz with advanced settings"), 'compizconfig-settings-manager', self)
-            self.simple_settings = AptCheckButton(_("Compiz with advanced settings"), 'simple-ccsm', self)
-            self.screenlets = AptCheckButton(_("Screenlets"), 'screenlets', self)
+            self.advanced_settings = AptCheckButton(_("Install Compiz Settings manager to enable Compiz settings"),\
+                    'compizconfig-settings-manager',\
+                    self)
 
-            box = ListPack(_("<b>Compiz Extensions</b>"), (
+            box = ListPack(_("<b>Prerequisite Conditions</b>"), (
                 self.advanced_settings,
-                self.simple_settings,
-                self.screenlets,
             ))
 
             self.button = gtk.Button(stock = gtk.STOCK_APPLY)
@@ -335,7 +361,10 @@ class Compiz(gtk.VBox, CompizSetting, Mediator):
         self.packageWorker.perform_action(self.main_window, to_add, to_rm)
 
         self.button.set_sensitive(False)
-        dialog = MessageDialog(_("Update Successfully!"), buttons = gtk.BUTTONS_OK)
+        if DISABLE_NOR:
+            dialog = MessageDialog(_("Update Successfully!\nPlease restart Ubuntu Tweak."), buttons = gtk.BUTTONS_OK)
+        else:
+            dialog = MessageDialog(_("Update Successfully!"), buttons = gtk.BUTTONS_OK)
         dialog.run()
         dialog.destroy()
 

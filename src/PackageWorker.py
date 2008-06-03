@@ -41,18 +41,27 @@ apt_pkg.init()
 update_apt_cache()
 
 class AptCheckButton(gtk.CheckButton, Colleague):
-    def __init__(self, label, pkgname, mediator):
+    def __init__(self, label, pkgname, mediator, tooltip = None):
         gtk.CheckButton.__init__(self, label)
         Colleague.__init__(self, mediator)
 
         self.pkgname = pkgname
+        if tooltip:
+            self.set_tooltip_text(tooltip)
 
         self.set_active(self.get_state())
         self.connect("toggled", self.state_changed)
 
     def get_state(self):
-        pkgiter = cache[self.pkgname]
-        pkg = package.Package(cache, depcache, records, sourcelist, None, pkgiter)
+        try:
+            pkgiter = cache[self.pkgname]
+            pkg = package.Package(cache, depcache, records, sourcelist, None, pkgiter)
+        except KeyError:
+            self.set_sensitive(False)
+            label = self.get_property('label')
+            label = label + _('(Not available)')
+            self.set_property('label', label)
+            return False
 
         return pkg.isInstalled
 
