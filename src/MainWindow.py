@@ -40,8 +40,8 @@ from Computer import Computer
 from Session import Session
 from AutoStart import AutoStart
 from Icon import Icon
-from Compiz import DISABLE_APT, DISABLE_VER
-if DISABLE_APT or DISABLE_VER:
+from Compiz import DISABLE_APT, DISABLE_NOR, DISABLE_VER
+if DISABLE_NOR and DISABLE_APT or DISABLE_VER:
     Compiz = None
     UNKOWN = 99
 else:

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak 0.24\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-07 08:09+0000\n"
-"PO-Revision-Date: 2008-02-06 19:50+0000\n"
-"Last-Translator: Daniel Nylander <yeager@ubuntu.com>\n"
+"POT-Creation-Date: 2008-06-04 15:27+0000\n"
+"PO-Revision-Date: 2008-05-22 11:32+0000\n"
+"Last-Translator: Gustaf Johansson <gustaf@aeger.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-05-07 08:32+0000\n"
+"X-Launchpad-Export-Date: 2008-06-05 04:48+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: SWEDEN\n"
 "X-Poedit-Language: Swedish\n"
@@ -31,6 +31,9 @@ msgstr ""
 
 #~ msgid "Maximize Effect"
 #~ msgstr "Maximeringseffekt"
+
+#~ msgid "<b>GNOME Panel and Menu</b>"
+#~ msgstr "<b>GNOME-panel och -meny</b>"
 
 #~ msgid "Confirm before remove panel"
 #~ msgstr "Bekräfta innan panel tas bort"
@@ -102,15 +105,15 @@ msgstr ""
 
 #: AutoStart.py:47
 msgid "_Name:"
-msgstr ""
+msgstr "_Namn:"
 
 #: AutoStart.py:50
 msgid "Co_mmand:"
-msgstr ""
+msgstr "Ko_mmando:"
 
 #: AutoStart.py:53
 msgid "Comm_ent:"
-msgstr ""
+msgstr "Komm_entar:"
 
 #: AutoStart.py:64
 msgid "Edit Startup Program"
@@ -122,7 +125,7 @@ msgstr "Nytt startprogram"
 
 #: AutoStart.py:71 UserDir.py:91
 msgid "_Browse"
-msgstr ""
+msgstr "_Bläddra"
 
 #: AutoStart.py:100
 msgid "Choose a Program"
@@ -176,48 +179,78 @@ msgstr "Namnet på startkommandot får inte vara tomt"
 msgid "Text was empty (or contained only whitespace)"
 msgstr "Texten var tom (eller innehöll bara tomrum)"
 
-#: Compiz.py:185
-msgid "<b>Edge Setting</b>"
-msgstr "<b>Kantinställning</b>"
-
-#: Compiz.py:194
-msgid "Snapping Windows"
-msgstr ""
-
-#: Compiz.py:195
-msgid "Wobbly Windows"
-msgstr "Geléaktiga fönster"
-
-#: Compiz.py:197
-msgid "<b>Window Effects</b>"
-msgstr "<b>Fönstereffekter</b>"
-
-#: Compiz.py:200
-msgid "Opaque Menu"
+#: Compiz.py:198
+msgid "Install Advanced Desktop Effects Settings Manager"
 msgstr ""
 
 #: Compiz.py:201
+msgid "Install Simple Desktop Effects Settings manager"
+msgstr ""
+
+#: Compiz.py:204
+msgid "Install Screenlets Widget Application"
+msgstr ""
+
+#: Compiz.py:210
+msgid "<b>Edge Setting</b>"
+msgstr "<b>Kantinställning</b>"
+
+#: Compiz.py:219
+msgid "Snapping Windows"
+msgstr "Fästande fönster"
+
+#: Compiz.py:220
+msgid "Wobbly Windows"
+msgstr "Geléaktiga fönster"
+
+#: Compiz.py:222
+msgid "<b>Window Effects</b>"
+msgstr "<b>Fönstereffekter</b>"
+
+#: Compiz.py:225
+msgid "Opaque Menu"
+msgstr "Genomskinlig meny"
+
+#: Compiz.py:226
 msgid "Wobbly Menu"
 msgstr "Geléaktig meny"
 
-#: Compiz.py:203
+#: Compiz.py:228
 msgid "<b>Menu Effects</b>"
 msgstr "<b>Menyeffekter</b>"
 
-#: Compiz.py:236
+#: Compiz.py:232
+msgid "<b>Compiz Extensions</b>"
+msgstr ""
+
+#: Compiz.py:247
+msgid "<b>Prerequisite Conditions</b>"
+msgstr ""
+
+#: Compiz.py:291
 msgid "Expo"
 msgstr "Expo"
 
-#: Compiz.py:237
+#: Compiz.py:292
 msgid "Pick Windows"
 msgstr "Välj fönster"
 
-#: Compiz.py:238
+#: Compiz.py:293
 msgid "Show Desktop"
+msgstr "Visa skrivbordet"
+
+#: Compiz.py:294
+msgid "Widget"
+msgstr "Widget"
+
+#: Compiz.py:363
+msgid ""
+"Update Successfully!\n"
+"Please restart Ubuntu Tweak."
 msgstr ""
 
-#: Compiz.py:239
-msgid "Widget"
+#: Compiz.py:365 Nautilus.py:107
+msgid "Update Successfully!"
 msgstr ""
 
 #: Computer.py:51
@@ -234,7 +267,7 @@ msgstr "Distribution"
 
 #: Computer.py:54
 msgid "Desktop Environment"
-msgstr ""
+msgstr "Skrivbordsmiljö"
 
 #: Computer.py:55
 msgid "Kernel"
@@ -293,8 +326,8 @@ msgid "Top Right"
 msgstr "Övre höger"
 
 #: Gnome.py:47
-msgid "<b>GNOME Panel and Menu</b>"
-msgstr "<b>GNOME-panel och -meny</b>"
+msgid "<b>Panel and Menu</b>"
+msgstr ""
 
 #: Gnome.py:48
 msgid "Confirm Message when removing panel"
@@ -306,7 +339,7 @@ msgstr "Komplett nedlåsning av panelen "
 
 #: Gnome.py:50
 msgid "Enable panel animations"
-msgstr ""
+msgstr "Aktivera panel animationer"
 
 #: Gnome.py:51
 msgid "Show Input Method menu on the Context Menu"
@@ -314,6 +347,22 @@ msgstr ""
 
 #: Gnome.py:52
 msgid "Show Unicode Method menu on the Context Menu"
+msgstr ""
+
+#: Gnome.py:57
+msgid "<b>Screensaver</b>"
+msgstr ""
+
+#: Gnome.py:58
+msgid "Enable User Switching while locking screen."
+msgstr ""
+
+#: Gnome.py:62
+msgid "Enable System-wide 'Recently Used' list"
+msgstr ""
+
+#: Gnome.py:64
+msgid "<b>History</b>"
 msgstr ""
 
 #: Icon.py:35
@@ -340,7 +389,7 @@ msgstr "Visa \"Papperskorg\"-ikon på skrivbordet"
 msgid "Rename the \"Trash\" icon: "
 msgstr "Byt namn på \"Papperskorg\"-ikonen: "
 
-#: Icon.py:96 Widgets.py:80 Widgets.py:90
+#: Icon.py:96 Widgets.py:81 Widgets.py:91
 msgid "Unset"
 msgstr "Inte inställt"
 
@@ -363,6 +412,8 @@ msgstr "Visa monterade volymer på skrivbordet"
 #: Icon.py:136
 msgid "Use Home Folder as the desktop(Logout for changes to take effect)"
 msgstr ""
+"Använd hemma katalogen som skrivbord (Logga ut för att ändringarna ska få "
+"någon effekt)"
 
 #: LockDown.py:39
 msgid "<b>System Security options</b>"
@@ -392,7 +443,7 @@ msgstr "Inaktivera Spara till disk"
 msgid "Disable User Switching"
 msgstr "Inaktivera användarväxling"
 
-#: MainWindow.py:124
+#: MainWindow.py:125
 msgid ""
 "<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak!</b></span>\n"
 "\n"
@@ -407,88 +458,100 @@ msgid ""
 "\n"
 "Enjoy!"
 msgstr ""
+"<span size=\"xx-large\">Välkommen till <b>Ubuntu Tweak!</b></span>\n"
+"\n"
+"\n"
+"Detta är ett verktyg för Ubuntu som gör det enklare att ändra gömda \n"
+"system och skrivbordsinställningar.\n"
+"\n"
+"Ubuntu Tweak kan också köras i andra distrubutioner.\n"
+"\n"
+"Om du har några förslag, besök hemsidan i \"Om\" och \n"
+"dela med dig av dina idéer med mig. \n"
+"\n"
+"Ha så kul!"
 
-#: MainWindow.py:137
+#: MainWindow.py:138
 msgid "<span size=\"xx-large\">Please select the child item</span>"
 msgstr "<span size=\"xx-large\">Välj barnobjektet</span>"
 
-#: MainWindow.py:144
+#: MainWindow.py:145
 msgid "Session Control"
 msgstr "Sessionskontroll"
 
-#: MainWindow.py:145
+#: MainWindow.py:146
 msgid "Auto Start"
 msgstr "Automatisk start"
 
-#: MainWindow.py:150
+#: MainWindow.py:151
 msgid "Desktop Icon"
 msgstr "Skrivbordsikon"
 
-#: MainWindow.py:151
+#: MainWindow.py:152
 msgid "Metacity"
 msgstr "Metacity"
 
-#: MainWindow.py:152
+#: MainWindow.py:153
 msgid "Compiz Fusion"
 msgstr "Compiz Fusion"
 
-#: MainWindow.py:157
-msgid "User Folder"
-msgstr ""
-
 #: MainWindow.py:158
-msgid "Templates"
-msgstr ""
+msgid "User Folder"
+msgstr "Användarkatalog"
 
 #: MainWindow.py:159
-msgid "Scripts"
-msgstr ""
+msgid "Templates"
+msgstr "Mallar"
 
 #: MainWindow.py:160
-msgid "Shortcuts"
-msgstr ""
+msgid "Scripts"
+msgstr "Skript"
 
-#: MainWindow.py:165
+#: MainWindow.py:161
+msgid "Shortcuts"
+msgstr "Genvägar"
+
+#: MainWindow.py:166
 msgid "GNOME"
 msgstr "GNOME"
 
-#: MainWindow.py:166
+#: MainWindow.py:167
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: MainWindow.py:167
+#: MainWindow.py:168
 msgid "Power Manager"
 msgstr "Strömhantering"
 
-#: MainWindow.py:172
+#: MainWindow.py:173
 msgid "Security Options"
 msgstr "Säkerhetsalternativ"
 
-#: MainWindow.py:177
+#: MainWindow.py:178
 msgid "Welcome"
 msgstr "Välkommen"
 
-#: MainWindow.py:178
+#: MainWindow.py:179
 msgid "Computer"
 msgstr "Dator"
 
-#: MainWindow.py:179
+#: MainWindow.py:180
 msgid "Startup"
 msgstr "Uppstart"
 
-#: MainWindow.py:180
+#: MainWindow.py:181
 msgid "Desktop"
 msgstr "Skrivbord"
 
-#: MainWindow.py:181
-msgid "Personal"
-msgstr ""
-
 #: MainWindow.py:182
+msgid "Personal"
+msgstr "Personlig"
+
+#: MainWindow.py:183
 msgid "System"
 msgstr "System"
 
-#: MainWindow.py:183
+#: MainWindow.py:184
 msgid "Security"
 msgstr "Säkerhet"
 
@@ -505,14 +568,17 @@ msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
 "  Daniel Nylander https://launchpad.net/~yeager\n"
+"  Gustaf Johansson https://launchpad.net/~gustaf-joh\n"
 "  TualatriX https://launchpad.net/~tualatrix\n"
 "  daoo https://launchpad.net/~daoo90"
 
-#: MainWindow.py:373
+#: MainWindow.py:372
 msgid ""
 "A newer version: %s is available online.\n"
 "Would you like to update?"
 msgstr ""
+"En nyare version: %s är tillgänglig online.\n"
+"Vill du uppdatera?"
 
 #: Metacity.py:39
 msgid "<b>Window Decorate Effect</b>"
@@ -583,29 +649,49 @@ msgstr "Mittenklicksåtgärd på titellist"
 msgid "Title bar Right-click action"
 msgstr "Högerklicksåtgärd på titellist"
 
-#: Nautilus.py:38
+#: Nautilus.py:46
 msgid "Show advanced Permissions on File Property pages"
 msgstr ""
 
-#: Nautilus.py:40
+#: Nautilus.py:48
 msgid "<b>Settings for Nautilus behavior</b>"
 msgstr "<b>Inställningar för Nautilus-beteende</b>"
 
-#: Nautilus.py:44
+#: Nautilus.py:52
 msgid "Default Thumbnail Icon Size"
 msgstr "Standardstorlek på miniatyrbildsikon"
 
-#: Nautilus.py:53
+#: Nautilus.py:61
 msgid "<b>CD Burner</b>"
 msgstr "<b>Cd-brännare</b>"
 
-#: Nautilus.py:54
+#: Nautilus.py:62
 msgid "Enable BurnProof technology"
 msgstr "Aktivera BurnProof-teknologi"
 
-#: Nautilus.py:55
+#: Nautilus.py:63
 msgid "Enable OverBurn"
 msgstr "Aktivera OverBurn"
+
+#: Nautilus.py:70
+msgid "Nautilus with Open Terminal"
+msgstr ""
+
+#: Nautilus.py:71
+msgid "Nautilus with Root Privileges"
+msgstr ""
+
+#: Nautilus.py:72
+msgid "Nautilus with Wallpaper"
+msgstr ""
+
+#: Nautilus.py:73
+msgid "<b>Nautilus Extensions</b>"
+msgstr ""
+
+#: PackageWorker.py:62
+msgid "(Not available)"
+msgstr ""
 
 #: PowerManager.py:40
 msgid "<b>Advanced Power Management Settings</b>"
@@ -621,11 +707,11 @@ msgstr "Aktivera vänteläge"
 
 #: PowerManager.py:43
 msgid "Show CPU frequency control option"
-msgstr ""
+msgstr "Visa CPU frekvens kontroll alternativ"
 
 #: PowerManager.py:44
 msgid "Disable the Network Manager on sleep"
-msgstr ""
+msgstr "Inaktivera nätverkshanteraren vid sovläge"
 
 #: PowerManager.py:45
 msgid "Lock screen when blanked"
@@ -681,11 +767,11 @@ msgstr "Processfrekvenspolicy när batterispänning används"
 
 #: ScriptWorker.py:53
 msgid "The file \"%s\" is exists!"
-msgstr ""
+msgstr "Filen %s finns redan!"
 
 #: ScriptWorker.py:58
 msgid "The folder \"%s\" is exists!"
-msgstr ""
+msgstr "Katalogen %s finns redan!"
 
 #: ScriptWorker.py:66 ScriptWorker.py:74
 msgid "The target \"%s\" is exists!"
@@ -693,11 +779,11 @@ msgstr ""
 
 #: ScriptWorker.py:79 ScriptWorker.py:90
 msgid "Enter your password to perform the administrative tasks"
-msgstr ""
+msgstr "Ange ditt lösenord för att utföra administrativa åtgärder"
 
 #: ScriptWorker.py:109
 msgid "Select a folder"
-msgstr ""
+msgstr "Välj en mapp"
 
 #: ScriptWorker.py:128
 msgid "Please select a target(files or folders)."
@@ -705,23 +791,23 @@ msgstr ""
 
 #: Scripts.py:48
 msgid "Copy to ..."
-msgstr ""
+msgstr "Kopiera till..."
 
 #: Scripts.py:49
 msgid "Move to ..."
-msgstr ""
+msgstr "Flytta till..."
 
 #: Scripts.py:50
 msgid "Link to ..."
-msgstr ""
+msgstr "Länka till..."
 
 #: Scripts.py:51
 msgid "Open with gedit"
-msgstr ""
+msgstr "Öppna med gedit"
 
 #: Scripts.py:52
 msgid "Open with gedit(as root)"
-msgstr ""
+msgstr "Öppna med gedit(som root)"
 
 #: Scripts.py:53
 msgid "Browse as root"
@@ -729,31 +815,31 @@ msgstr ""
 
 #: Scripts.py:54
 msgid "Search in current folder"
-msgstr ""
+msgstr "Sök i den aktuellt mappen"
 
 #: Scripts.py:121
 msgid "Delete this script"
-msgstr ""
+msgstr "Radera detta skript"
 
 #: Scripts.py:164
-msgid "Sorry! This isn't a script file."
-msgstr ""
-
-#: Scripts.py:164 ubuntu-tweak.py:30
 msgid "Error"
 msgstr "Fel"
 
+#: Scripts.py:164
+msgid "Sorry! This isn't a script file."
+msgstr "Tyvärr! Detta är ingen skriptfil."
+
 #: Scripts.py:176
 msgid "Enabled Scripts"
-msgstr ""
+msgstr "Aktivera skript"
 
 #: Scripts.py:246
 msgid "Disabled Scripts"
-msgstr ""
+msgstr "Inaktivera skript"
 
 #: Scripts.py:332
 msgid "Manage your scripts"
-msgstr ""
+msgstr "Hantera dina skript"
 
 #: Scripts.py:333
 msgid ""
@@ -764,15 +850,15 @@ msgstr ""
 
 #: Scripts.py:355
 msgid "Rebuild the system scripts"
-msgstr ""
+msgstr "Uppdatera systemskripten"
 
 #: Scripts.py:360
 msgid "This will delete all the disabled scripts, continue?"
-msgstr ""
+msgstr "Detta kommer radera alla inaktiverade skript, fortsätta?"
 
 #: Scripts.py:360 Templates.py:345
 msgid "Warning"
-msgstr ""
+msgstr "Varning"
 
 #: Session.py:42
 msgid "<b>Click the large button to change Splash screen</b>"
@@ -820,71 +906,71 @@ msgstr ""
 
 #: Shortcuts.py:87
 msgid "Command %d"
-msgstr ""
+msgstr "Kommande %d"
 
 #: Shortcuts.py:94 Shortcuts.py:148
 msgid "disabled"
-msgstr ""
+msgstr "avaktiverad"
 
 #: Shortcuts.py:109
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: Shortcuts.py:112
 msgid "Command"
-msgstr ""
+msgstr "Kommando"
 
 #: Shortcuts.py:127
 msgid "Key"
-msgstr ""
+msgstr "Tangent"
 
 #: Templates.py:49
 msgid "HTML document"
-msgstr ""
+msgstr "HTML-dokument"
 
 #: Templates.py:50
 msgid "ODB Database"
-msgstr ""
+msgstr "ODB Databas"
 
 #: Templates.py:51
 msgid "ODS Spreadsheet"
-msgstr ""
+msgstr "ODS Kalkylark"
 
 #: Templates.py:52
 msgid "ODT Document"
-msgstr ""
+msgstr "ODT Dokument"
 
 #: Templates.py:53
 msgid "Plain text document"
-msgstr ""
+msgstr "Vanligt textdokument"
 
 #: Templates.py:54
 msgid "ODP Presentation"
-msgstr ""
+msgstr "ODP Presentation"
 
 #: Templates.py:55
 msgid "Python script"
-msgstr ""
+msgstr "Pythonskript"
 
 #: Templates.py:56
 msgid "Shell script"
-msgstr ""
+msgstr "Skalskript"
 
 #: Templates.py:122
 msgid "Delete this template"
-msgstr ""
+msgstr "Ta bort denna mall"
 
 #: Templates.py:166
 msgid "Enabled Templates"
-msgstr ""
+msgstr "Aktivera mallar"
 
 #: Templates.py:232
 msgid "Disabled Templates"
-msgstr ""
+msgstr "Inaktivera mallar"
 
 #: Templates.py:317
 msgid "Manage your templates"
-msgstr ""
+msgstr "Hantera dina mallar"
 
 #: Templates.py:318
 msgid ""
@@ -903,11 +989,11 @@ msgstr ""
 
 #: UserDir.py:41
 msgid "Desktop Folder"
-msgstr ""
+msgstr "Skrivbordsmapp"
 
 #: UserDir.py:42
 msgid "Download Folder"
-msgstr ""
+msgstr "Nerladdningsmapp"
 
 #: UserDir.py:43
 msgid "Templates Folder"
@@ -915,15 +1001,15 @@ msgstr ""
 
 #: UserDir.py:44
 msgid "Public Folder"
-msgstr ""
+msgstr "Publik mapp"
 
 #: UserDir.py:45
 msgid "Document Folder"
-msgstr ""
+msgstr "Dokument mapp"
 
 #: UserDir.py:46
 msgid "Music Folder"
-msgstr ""
+msgstr "Musikmapp"
 
 #: UserDir.py:47
 msgid "Pictures Folder"
@@ -931,7 +1017,7 @@ msgstr ""
 
 #: UserDir.py:48
 msgid "Videos Folder"
-msgstr ""
+msgstr "Film mapp"
 
 #: UserDir.py:52
 msgid "Set your document folders"
@@ -945,28 +1031,31 @@ msgstr ""
 
 #: UserDir.py:67
 msgid "Update successfully!"
-msgstr ""
+msgstr "Uppdatering klar!"
 
 #: UserDir.py:104
 msgid "Select a new folder"
-msgstr ""
+msgstr "Välj en ny mapp"
 
-#: Widgets.py:368
+#: Widgets.py:379
 msgid "Please press the new key combination"
 msgstr ""
 
-#: Widgets.py:417
+#: Widgets.py:428
 msgid "Disabled"
-msgstr ""
+msgstr "Inaktiverad"
 
-#: ubuntu-tweak.py:39
+#: ubuntu-tweak.py:75
 msgid ""
 "Sorry!\n"
 "\n"
 "Ubuntu Tweak can only run under <b>GNOME 2.18 or above.</b>\n"
 msgstr ""
+"Tyvärr!\n"
+"\n"
+"Ubuntu Tweak kan bara köras under <b>GNOME 2.18 eller högre</b>\n"
 
-#: ubuntu-tweak.py:46
+#: ubuntu-tweak.py:80
 msgid ""
 "Sorry!\n"
 "\n"

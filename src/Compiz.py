@@ -192,6 +192,19 @@ class Compiz(gtk.VBox, CompizSetting, Mediator):
         vbox = gtk.VBox(False, 0)
         vbox.set_border_width(5)
 
+        if not DISABLE_APT:
+            self.packageWorker = PackageWorker()
+
+            self.advanced_settings = AptCheckButton(_("Install Advanced Desktop Effects Settings Manager"),\
+                    'compizconfig-settings-manager',\
+                    self)
+            self.simple_settings = AptCheckButton(_("Install Simple Desktop Effects Settings manager"),\
+                    'simple-ccsm',\
+                    self)
+            self.screenlets = AptCheckButton(_("Install Screenlets Widget Application"),\
+                    'screenlets',\
+                    self)
+
         if not DISABLE_NOR:
             label = gtk.Label()
             label.set_markup(_("<b>Edge Setting</b>"))
@@ -216,15 +229,6 @@ class Compiz(gtk.VBox, CompizSetting, Mediator):
             self.pack_start(box, False, False, 0)
 
             if not DISABLE_APT:
-                self.packageWorker = PackageWorker()
-
-                self.simple_settings = AptCheckButton(_("Install Compiz Simple Settings manager"),\
-                        'simple-ccsm',\
-                        self)
-                self.screenlets = AptCheckButton(_("Install Screenlets Widget tool"),\
-                        'screenlets',\
-                        self)
-
                 box = ListPack(_("<b>Compiz Extensions</b>"), (
                     self.simple_settings,
                     self.screenlets,
@@ -240,12 +244,6 @@ class Compiz(gtk.VBox, CompizSetting, Mediator):
 
                 self.pack_start(box, False, False, 0)
         else:
-            self.packageWorker = PackageWorker()
-
-            self.advanced_settings = AptCheckButton(_("Install Compiz Settings manager to enable Compiz settings"),\
-                    'compizconfig-settings-manager',\
-                    self)
-
             box = ListPack(_("<b>Prerequisite Conditions</b>"), (
                 self.advanced_settings,
             ))

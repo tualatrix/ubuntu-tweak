@@ -55,11 +55,11 @@ class Gnome(gtk.VBox, Mediator):
         self.pack_start(box, False, False, 0)
 
         box = ListPack(_("<b>Screensaver</b>"), (
-                    Factory.create("gconfcheckbutton", _("Enable user switching while locking screen."), "user_switch_enabled"),
+                    Factory.create("gconfcheckbutton", _("Enable User Switching while locking screen."), "user_switch_enabled"),
             ))
         self.pack_start(box, False, False, 0)
 
-        self.recently_used = ColleagueCheckButton(_("Enable System-wide recently used"), self)
+        self.recently_used = ColleagueCheckButton(_("Enable System-wide 'Recently Used' list"), self)
         self.recently_used.set_active(self.get_state())
         box = ListPack(_("<b>History</b>"), (
                     self.recently_used,

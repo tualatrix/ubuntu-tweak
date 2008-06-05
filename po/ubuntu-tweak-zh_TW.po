@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-07 08:09+0000\n"
-"PO-Revision-Date: 2008-04-29 13:43+0000\n"
+"POT-Creation-Date: 2008-06-04 15:27+0000\n"
+"PO-Revision-Date: 2008-06-05 04:40+0000\n"
 "Last-Translator: TualatriX <Unknown>\n"
 "Language-Team: TualatriX <tualatrix@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-05-07 08:32+0000\n"
+"X-Launchpad-Export-Date: 2008-06-05 04:48+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: TAIWAN\n"
 "X-Poedit-Language: Chinese\n"
@@ -32,6 +32,9 @@ msgstr ""
 
 #~ msgid "Snapping Windows(DON'T USE with Wobbly Windows)"
 #~ msgstr "粘性視窗(不要與彈性視窗一起使用)"
+
+#~ msgid "<b>GNOME Panel and Menu</b>"
+#~ msgstr "<b>GNOME面版和選單</b>"
 
 #~ msgid "Confirm before remove panel"
 #~ msgstr "刪除面版前確認"
@@ -174,49 +177,82 @@ msgstr "初始啟動程式不能留空"
 msgid "Text was empty (or contained only whitespace)"
 msgstr "文字是空白的（或只含有空白字元）"
 
-#: Compiz.py:185
+#: Compiz.py:198
+#, fuzzy
+msgid "Install Advanced Desktop Effects Settings Manager"
+msgstr "安裝進階桌面特效設定器"
+
+#: Compiz.py:201
+msgid "Install Simple Desktop Effects Settings manager"
+msgstr "安裝簡易桌面特效設定器"
+
+#: Compiz.py:204
+msgid "Install Screenlets Widget Application"
+msgstr "安裝Screenlets桌面應用程式"
+
+#: Compiz.py:210
 msgid "<b>Edge Setting</b>"
 msgstr "<b>螢幕邊角設定</b>"
 
-#: Compiz.py:194
+#: Compiz.py:219
 msgid "Snapping Windows"
 msgstr "粘性視窗"
 
-#: Compiz.py:195
+#: Compiz.py:220
 msgid "Wobbly Windows"
 msgstr "搖擺視窗"
 
-#: Compiz.py:197
+#: Compiz.py:222
 msgid "<b>Window Effects</b>"
 msgstr "<b>視窗特效</b>"
 
-#: Compiz.py:200
+#: Compiz.py:225
 msgid "Opaque Menu"
 msgstr "透明選單"
 
-#: Compiz.py:201
+#: Compiz.py:226
 msgid "Wobbly Menu"
 msgstr "彈性選單"
 
-#: Compiz.py:203
+#: Compiz.py:228
 msgid "<b>Menu Effects</b>"
 msgstr "<b>選單特效</b>"
 
-#: Compiz.py:236
+#: Compiz.py:232
+msgid "<b>Compiz Extensions</b>"
+msgstr "<b>Compiz擴展</b>"
+
+#: Compiz.py:247
+msgid "<b>Prerequisite Conditions</b>"
+msgstr "<b>先決條件</b>"
+
+#: Compiz.py:291
 msgid "Expo"
 msgstr "展示桌面"
 
-#: Compiz.py:237
+#: Compiz.py:292
 msgid "Pick Windows"
 msgstr "選取視窗"
 
-#: Compiz.py:238
+#: Compiz.py:293
 msgid "Show Desktop"
 msgstr "顯示桌面"
 
-#: Compiz.py:239
+#: Compiz.py:294
 msgid "Widget"
 msgstr "Widget層"
+
+#: Compiz.py:363
+msgid ""
+"Update Successfully!\n"
+"Please restart Ubuntu Tweak."
+msgstr ""
+"更新成功！\n"
+"請重啟Ubuntu Tweak。"
+
+#: Compiz.py:365 Nautilus.py:107
+msgid "Update Successfully!"
+msgstr "更新成功！"
 
 #: Computer.py:51
 msgid "<b>System information</b>"
@@ -291,8 +327,8 @@ msgid "Top Right"
 msgstr "右上角"
 
 #: Gnome.py:47
-msgid "<b>GNOME Panel and Menu</b>"
-msgstr "<b>GNOME面版和選單</b>"
+msgid "<b>Panel and Menu</b>"
+msgstr "<b>面版和選單</b>"
 
 #: Gnome.py:48
 msgid "Confirm Message when removing panel"
@@ -313,6 +349,22 @@ msgstr "在右鍵選單中顯示輸入法選單"
 #: Gnome.py:52
 msgid "Show Unicode Method menu on the Context Menu"
 msgstr "在右鍵選單中顯示Unicode控制選單"
+
+#: Gnome.py:57
+msgid "<b>Screensaver</b>"
+msgstr "<b>螢幕保護程式</b>"
+
+#: Gnome.py:58
+msgid "Enable User Switching while locking screen."
+msgstr "當鎖定螢幕時允許用戶切換"
+
+#: Gnome.py:62
+msgid "Enable System-wide 'Recently Used' list"
+msgstr "啟用系統級“最近存取文件”列表"
+
+#: Gnome.py:64
+msgid "<b>History</b>"
+msgstr "<b>歷史紀錄</b>"
 
 #: Icon.py:35
 msgid "Show \"Computer\" icon on desktop"
@@ -338,7 +390,7 @@ msgstr "在桌面上顯示\"垃圾筒\"圖示"
 msgid "Rename the \"Trash\" icon: "
 msgstr "重命名\"垃圾筒\"圖示: "
 
-#: Icon.py:96 Widgets.py:80 Widgets.py:90
+#: Icon.py:96 Widgets.py:81 Widgets.py:91
 msgid "Unset"
 msgstr "未設定"
 
@@ -390,7 +442,7 @@ msgstr "禁止使用另存新檔"
 msgid "Disable User Switching"
 msgstr "禁止切換使用者"
 
-#: MainWindow.py:124
+#: MainWindow.py:125
 msgid ""
 "<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak!</b></span>\n"
 "\n"
@@ -415,87 +467,87 @@ msgstr ""
 "\n"
 "Enjoy!"
 
-#: MainWindow.py:137
+#: MainWindow.py:138
 msgid "<span size=\"xx-large\">Please select the child item</span>"
 msgstr "<span size=\"xx-large\">請選擇子選項</span>"
 
-#: MainWindow.py:144
+#: MainWindow.py:145
 msgid "Session Control"
 msgstr "作業階段"
 
-#: MainWindow.py:145
+#: MainWindow.py:146
 msgid "Auto Start"
 msgstr "自動啟動"
 
-#: MainWindow.py:150
+#: MainWindow.py:151
 msgid "Desktop Icon"
 msgstr "桌面圖示"
 
-#: MainWindow.py:151
+#: MainWindow.py:152
 msgid "Metacity"
 msgstr "Metacity"
 
-#: MainWindow.py:152
+#: MainWindow.py:153
 msgid "Compiz Fusion"
 msgstr "Compiz Fusion"
 
-#: MainWindow.py:157
+#: MainWindow.py:158
 msgid "User Folder"
 msgstr "用戶目錄"
 
-#: MainWindow.py:158
+#: MainWindow.py:159
 msgid "Templates"
 msgstr "樣本"
 
-#: MainWindow.py:159
+#: MainWindow.py:160
 msgid "Scripts"
 msgstr "指令稿"
 
-#: MainWindow.py:160
+#: MainWindow.py:161
 msgid "Shortcuts"
 msgstr "快速鍵"
 
-#: MainWindow.py:165
+#: MainWindow.py:166
 msgid "GNOME"
 msgstr "GNOME"
 
-#: MainWindow.py:166
+#: MainWindow.py:167
 msgid "Nautilus"
 msgstr "檔案管理器"
 
-#: MainWindow.py:167
+#: MainWindow.py:168
 msgid "Power Manager"
 msgstr "電源管理"
 
-#: MainWindow.py:172
+#: MainWindow.py:173
 msgid "Security Options"
 msgstr "安全選項"
 
-#: MainWindow.py:177
+#: MainWindow.py:178
 msgid "Welcome"
 msgstr "歡迎使用"
 
-#: MainWindow.py:178
+#: MainWindow.py:179
 msgid "Computer"
 msgstr "本機資訊"
 
-#: MainWindow.py:179
+#: MainWindow.py:180
 msgid "Startup"
 msgstr "啟動控制"
 
-#: MainWindow.py:180
+#: MainWindow.py:181
 msgid "Desktop"
 msgstr "桌面設定"
 
-#: MainWindow.py:181
+#: MainWindow.py:182
 msgid "Personal"
 msgstr "個人設定"
 
-#: MainWindow.py:182
+#: MainWindow.py:183
 msgid "System"
 msgstr "系統設定"
 
-#: MainWindow.py:183
+#: MainWindow.py:184
 msgid "Security"
 msgstr "安全相關"
 
@@ -511,11 +563,13 @@ msgstr ""
 "Launchpad Contributions:\n"
 "  TualatriX https://launchpad.net/~tualatrix"
 
-#: MainWindow.py:373
+#: MainWindow.py:372
 msgid ""
 "A newer version: %s is available online.\n"
 "Would you like to update?"
 msgstr ""
+"一個新版本：%s 已經可以下載了。\n"
+"你想要更新嗎？"
 
 #: Metacity.py:39
 msgid "<b>Window Decorate Effect</b>"
@@ -586,29 +640,49 @@ msgstr "中鍵點擊標題列的動作"
 msgid "Title bar Right-click action"
 msgstr "右鍵點擊標題列的動作"
 
-#: Nautilus.py:38
+#: Nautilus.py:46
 msgid "Show advanced Permissions on File Property pages"
 msgstr "在檔案屬性頁中顯示進階權限控制"
 
-#: Nautilus.py:40
+#: Nautilus.py:48
 msgid "<b>Settings for Nautilus behavior</b>"
 msgstr "<b>設定檔案管理器的行為</b>"
 
-#: Nautilus.py:44
+#: Nautilus.py:52
 msgid "Default Thumbnail Icon Size"
 msgstr "預設的縮圖大小"
 
-#: Nautilus.py:53
+#: Nautilus.py:61
 msgid "<b>CD Burner</b>"
 msgstr "<b>CD燒錄機</b>"
 
-#: Nautilus.py:54
+#: Nautilus.py:62
 msgid "Enable BurnProof technology"
 msgstr "啟用防燒死技術"
 
-#: Nautilus.py:55
+#: Nautilus.py:63
 msgid "Enable OverBurn"
 msgstr "啟用超燒功能"
+
+#: Nautilus.py:70
+msgid "Nautilus with Open Terminal"
+msgstr "Nautilus的開啟終端機功能"
+
+#: Nautilus.py:71
+msgid "Nautilus with Root Privileges"
+msgstr "Nautilus的以管理員打開功能"
+
+#: Nautilus.py:72
+msgid "Nautilus with Wallpaper"
+msgstr "Nautilus的設定桌面壁紙功能"
+
+#: Nautilus.py:73
+msgid "<b>Nautilus Extensions</b>"
+msgstr "<b>Nautilus擴展</b>"
+
+#: PackageWorker.py:62
+msgid "(Not available)"
+msgstr "（不可用）"
 
 #: PowerManager.py:40
 msgid "<b>Advanced Power Management Settings</b>"
@@ -739,12 +813,12 @@ msgid "Delete this script"
 msgstr "刪除這個指令稿"
 
 #: Scripts.py:164
-msgid "Sorry! This isn't a script file."
-msgstr "對不起！這不是一個指令稿。"
-
-#: Scripts.py:164 ubuntu-tweak.py:30
 msgid "Error"
 msgstr "錯誤"
+
+#: Scripts.py:164
+msgid "Sorry! This isn't a script file."
+msgstr "對不起！這不是一個指令稿。"
 
 #: Scripts.py:176
 msgid "Enabled Scripts"
@@ -965,15 +1039,15 @@ msgstr "更新成功！"
 msgid "Select a new folder"
 msgstr "選擇一個新的資料夾"
 
-#: Widgets.py:368
+#: Widgets.py:379
 msgid "Please press the new key combination"
 msgstr "请按下新组合键"
 
-#: Widgets.py:417
+#: Widgets.py:428
 msgid "Disabled"
 msgstr "禁用"
 
-#: ubuntu-tweak.py:39
+#: ubuntu-tweak.py:75
 msgid ""
 "Sorry!\n"
 "\n"
@@ -982,7 +1056,7 @@ msgstr ""
 "對不起！\n"
 "Ubuntu Tweak只能運行在<b>GNOME 2.18</b>或更新。\n"
 
-#: ubuntu-tweak.py:46
+#: ubuntu-tweak.py:80
 msgid ""
 "Sorry!\n"
 "\n"

@@ -68,7 +68,7 @@ class Nautilus(gtk.VBox, Mediator):
             self.packageWorker = PackageWorker()
 
             self.nautilus_terminal = AptCheckButton(_("Nautilus with Open Terminal"), 'nautilus-open-terminal', self)
-            self.nautilus_root = AptCheckButton(_("Nautilus with Root"), 'nautilus-gksu', self)
+            self.nautilus_root = AptCheckButton(_("Nautilus with Root Privileges"), 'nautilus-gksu', self)
             self.nautilus_wallpaper = AptCheckButton(_("Nautilus with Wallpaper"), 'nautilus-wallpaper', self)
             box = ListPack(_("<b>Nautilus Extensions</b>"), (
                 self.nautilus_terminal,

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-05-07 08:09+0000\n"
-"PO-Revision-Date: 2008-05-01 15:18+0000\n"
-"Last-Translator: Nazo <lovesyao@gmail.com>\n"
+"POT-Creation-Date: 2008-06-04 15:27+0000\n"
+"PO-Revision-Date: 2008-06-01 19:38+0000\n"
+"Last-Translator: TAS <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-05-07 08:32+0000\n"
+"X-Launchpad-Export-Date: 2008-06-05 04:48+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: AutoStart.py:47
@@ -93,49 +93,79 @@ msgstr "自動起動するプログラムの名前は空にはできません。
 msgid "Text was empty (or contained only whitespace)"
 msgstr "テキストが空、もしくは空白のみです。"
 
-#: Compiz.py:185
-msgid "<b>Edge Setting</b>"
-msgstr "<b>エッジの設定</b>"
-
-#: Compiz.py:194
-msgid "Snapping Windows"
-msgstr "ウィンドウのスナップ"
-
-#: Compiz.py:195
-msgid "Wobbly Windows"
-msgstr "揺れるウィンドウ効果"
-
-#: Compiz.py:197
-msgid "<b>Window Effects</b>"
-msgstr "<b>ウィンドウ効果</b>"
-
-#: Compiz.py:200
-msgid "Opaque Menu"
+#: Compiz.py:198
+msgid "Install Advanced Desktop Effects Settings Manager"
 msgstr ""
 
 #: Compiz.py:201
+msgid "Install Simple Desktop Effects Settings manager"
+msgstr ""
+
+#: Compiz.py:204
+msgid "Install Screenlets Widget Application"
+msgstr ""
+
+#: Compiz.py:210
+msgid "<b>Edge Setting</b>"
+msgstr "<b>エッジの設定</b>"
+
+#: Compiz.py:219
+msgid "Snapping Windows"
+msgstr "ウィンドウのスナップ"
+
+#: Compiz.py:220
+msgid "Wobbly Windows"
+msgstr "揺れるウィンドウ効果"
+
+#: Compiz.py:222
+msgid "<b>Window Effects</b>"
+msgstr "<b>ウィンドウ効果</b>"
+
+#: Compiz.py:225
+msgid "Opaque Menu"
+msgstr "メニューの半透明化"
+
+#: Compiz.py:226
 msgid "Wobbly Menu"
 msgstr "揺れるメニュー効果"
 
-#: Compiz.py:203
+#: Compiz.py:228
 msgid "<b>Menu Effects</b>"
 msgstr "<b>メニュー効果</b>"
 
-#: Compiz.py:236
+#: Compiz.py:232
+msgid "<b>Compiz Extensions</b>"
+msgstr ""
+
+#: Compiz.py:247
+msgid "<b>Prerequisite Conditions</b>"
+msgstr ""
+
+#: Compiz.py:291
 msgid "Expo"
 msgstr "デスクトップを展示する"
 
-#: Compiz.py:237
+#: Compiz.py:292
 msgid "Pick Windows"
 msgstr "ウィンドウ選定"
 
-#: Compiz.py:238
+#: Compiz.py:293
 msgid "Show Desktop"
 msgstr "デスクトップの表示"
 
-#: Compiz.py:239
+#: Compiz.py:294
 msgid "Widget"
 msgstr "ウィジェット"
+
+#: Compiz.py:363
+msgid ""
+"Update Successfully!\n"
+"Please restart Ubuntu Tweak."
+msgstr ""
+
+#: Compiz.py:365 Nautilus.py:107
+msgid "Update Successfully!"
+msgstr ""
 
 #: Computer.py:51
 msgid "<b>System information</b>"
@@ -210,12 +240,13 @@ msgid "Top Right"
 msgstr "右上"
 
 #: Gnome.py:47
-msgid "<b>GNOME Panel and Menu</b>"
-msgstr "<b>GNOMEパネルとメニュー</b>"
+msgid "<b>Panel and Menu</b>"
+msgstr ""
 
 #: Gnome.py:48
+#, fuzzy
 msgid "Confirm Message when removing panel"
-msgstr ""
+msgstr "パネルを削除する時に確認する"
 
 #: Gnome.py:49
 msgid "Complete lockdown of the Panel "
@@ -232,6 +263,22 @@ msgstr "コンテキストメニューに入力メソッドのメニューを表
 #: Gnome.py:52
 msgid "Show Unicode Method menu on the Context Menu"
 msgstr "コンテキストメニューにユニコードメソッドのメニューを表示する"
+
+#: Gnome.py:57
+msgid "<b>Screensaver</b>"
+msgstr ""
+
+#: Gnome.py:58
+msgid "Enable User Switching while locking screen."
+msgstr ""
+
+#: Gnome.py:62
+msgid "Enable System-wide 'Recently Used' list"
+msgstr ""
+
+#: Gnome.py:64
+msgid "<b>History</b>"
+msgstr ""
 
 #: Icon.py:35
 msgid "Show \"Computer\" icon on desktop"
@@ -257,7 +304,7 @@ msgstr "「ごみ箱」アイコンをデスクトップに表示"
 msgid "Rename the \"Trash\" icon: "
 msgstr "「ごみ箱」アイコンの名前を変更： "
 
-#: Icon.py:96 Widgets.py:80 Widgets.py:90
+#: Icon.py:96 Widgets.py:81 Widgets.py:91
 msgid "Unset"
 msgstr "未設定"
 
@@ -278,7 +325,6 @@ msgid "Show Mounted Volumes on desktop"
 msgstr "デスクトップにマウントしたボリュームを表示する"
 
 #: Icon.py:136
-#, fuzzy
 msgid "Use Home Folder as the desktop(Logout for changes to take effect)"
 msgstr "ホームフォルダをデスクトップとして扱う (変化を有功にするにはログアウトしてください)"
 
@@ -310,7 +356,7 @@ msgstr "ファイル保存の機能を利用不可にする"
 msgid "Disable User Switching"
 msgstr "ユーザ切り替えを利用不可にする"
 
-#: MainWindow.py:124
+#: MainWindow.py:125
 #, fuzzy
 msgid ""
 "<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak!</b></span>\n"
@@ -339,87 +385,87 @@ msgstr ""
 "\n"
 "楽しんでください!"
 
-#: MainWindow.py:137
+#: MainWindow.py:138
 msgid "<span size=\"xx-large\">Please select the child item</span>"
 msgstr "<span size=\"xx-large\">子項目を選んでください</span>"
 
-#: MainWindow.py:144
+#: MainWindow.py:145
 msgid "Session Control"
 msgstr "セッションコントロール"
 
-#: MainWindow.py:145
+#: MainWindow.py:146
 msgid "Auto Start"
 msgstr "自動スタート"
 
-#: MainWindow.py:150
+#: MainWindow.py:151
 msgid "Desktop Icon"
 msgstr "デスクトップアイコン"
 
-#: MainWindow.py:151
+#: MainWindow.py:152
 msgid "Metacity"
 msgstr "Metacity"
 
-#: MainWindow.py:152
+#: MainWindow.py:153
 msgid "Compiz Fusion"
 msgstr "Compiz Fusion"
 
-#: MainWindow.py:157
+#: MainWindow.py:158
 msgid "User Folder"
 msgstr "ユーザフォルダ"
 
-#: MainWindow.py:158
+#: MainWindow.py:159
 msgid "Templates"
 msgstr "テンプレート"
 
-#: MainWindow.py:159
+#: MainWindow.py:160
 msgid "Scripts"
 msgstr "スクリプト"
 
-#: MainWindow.py:160
+#: MainWindow.py:161
 msgid "Shortcuts"
 msgstr "ショートカット"
 
-#: MainWindow.py:165
+#: MainWindow.py:166
 msgid "GNOME"
 msgstr "GNOME"
 
-#: MainWindow.py:166
+#: MainWindow.py:167
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: MainWindow.py:167
+#: MainWindow.py:168
 msgid "Power Manager"
 msgstr "電源管理"
 
-#: MainWindow.py:172
+#: MainWindow.py:173
 msgid "Security Options"
 msgstr "セキュリティオプションズ"
 
-#: MainWindow.py:177
+#: MainWindow.py:178
 msgid "Welcome"
 msgstr "ようこそ"
 
-#: MainWindow.py:178
+#: MainWindow.py:179
 msgid "Computer"
 msgstr "コンピューター"
 
-#: MainWindow.py:179
+#: MainWindow.py:180
 msgid "Startup"
 msgstr "スタートアップ"
 
-#: MainWindow.py:180
+#: MainWindow.py:181
 msgid "Desktop"
 msgstr "デスクトップ"
 
-#: MainWindow.py:181
+#: MainWindow.py:182
 msgid "Personal"
 msgstr "個人用"
 
-#: MainWindow.py:182
+#: MainWindow.py:183
 msgid "System"
 msgstr "システム"
 
-#: MainWindow.py:183
+#: MainWindow.py:184
 msgid "Security"
 msgstr "セキュリティ"
 
@@ -435,14 +481,18 @@ msgstr ""
 "Launchpad Contributions:\n"
 "  Masatoshi Haraoka https://launchpad.net/~f99aq8ove\n"
 "  Nazo https://launchpad.net/~lovesyao\n"
+"  TAS https://launchpad.net/~tas7\n"
 "  booker https://launchpad.net/~zwl-zhcn\n"
 "  zwl.zhcn https://launchpad.net/~zwl-zhcn+launchpad"
 
-#: MainWindow.py:373
+#: MainWindow.py:372
+#, fuzzy
 msgid ""
 "A newer version: %s is available online.\n"
 "Would you like to update?"
 msgstr ""
+"新しいバージョン (%s) が公開されました。\n"
+"アップデートしますか?"
 
 #: Metacity.py:39
 msgid "<b>Window Decorate Effect</b>"
@@ -454,7 +504,7 @@ msgstr "Metacityテーマを使用"
 
 #: Metacity.py:41
 msgid "Active window opacity shade"
-msgstr ""
+msgstr "アクティブ・ウィンドウを透明化"
 
 #: Metacity.py:42
 msgid "Active window opacity level"
@@ -462,11 +512,11 @@ msgstr "アクティブ・ウィンドウの不透明度"
 
 #: Metacity.py:43
 msgid "Inactive window opacity shade"
-msgstr ""
+msgstr "非アクティブ・ウィンドウを透明化"
 
 #: Metacity.py:44
 msgid "Inactive window shade opacity level"
-msgstr ""
+msgstr "非アクティブ・ウィンドウの不透明度"
 
 #: Metacity.py:48
 msgid "<b>Window Titlebar Action</b>"
@@ -513,29 +563,49 @@ msgstr "タイトルバーをマウスのミドルボタンでクリックした
 msgid "Title bar Right-click action"
 msgstr "タイトルバーをマウスの右ボタンでクリックしたときのアクション"
 
-#: Nautilus.py:38
+#: Nautilus.py:46
 msgid "Show advanced Permissions on File Property pages"
 msgstr "ファイルのプロパティのページに高度なパーミッションを表示する"
 
-#: Nautilus.py:40
+#: Nautilus.py:48
 msgid "<b>Settings for Nautilus behavior</b>"
 msgstr "<b>Nautilus動きの設定</b>"
 
-#: Nautilus.py:44
+#: Nautilus.py:52
 msgid "Default Thumbnail Icon Size"
 msgstr "デフォルトのサムネイルの大きさ"
 
-#: Nautilus.py:53
+#: Nautilus.py:61
 msgid "<b>CD Burner</b>"
 msgstr "<b>CD 書き込み</b>"
 
-#: Nautilus.py:54
+#: Nautilus.py:62
 msgid "Enable BurnProof technology"
 msgstr "バーンプルーフ機能を有効にする"
 
-#: Nautilus.py:55
+#: Nautilus.py:63
 msgid "Enable OverBurn"
 msgstr "オーバーバーン機能を有効にする"
+
+#: Nautilus.py:70
+msgid "Nautilus with Open Terminal"
+msgstr ""
+
+#: Nautilus.py:71
+msgid "Nautilus with Root Privileges"
+msgstr ""
+
+#: Nautilus.py:72
+msgid "Nautilus with Wallpaper"
+msgstr ""
+
+#: Nautilus.py:73
+msgid "<b>Nautilus Extensions</b>"
+msgstr ""
+
+#: PackageWorker.py:62
+msgid "(Not available)"
+msgstr ""
 
 #: PowerManager.py:40
 msgid "<b>Advanced Power Management Settings</b>"
@@ -550,8 +620,9 @@ msgid "Enable Suspend"
 msgstr "サスペンドを利用可能にする"
 
 #: PowerManager.py:43
+#, fuzzy
 msgid "Show CPU frequency control option"
-msgstr ""
+msgstr "CPU 周波数コントロールオプションの表示"
 
 #: PowerManager.py:44
 msgid "Disable the Network Manager on sleep"
@@ -669,12 +740,12 @@ msgid "Delete this script"
 msgstr "このスクリプトを削除"
 
 #: Scripts.py:164
-msgid "Sorry! This isn't a script file."
-msgstr "このファイルはスクリプトではありません。"
-
-#: Scripts.py:164 ubuntu-tweak.py:30
 msgid "Error"
 msgstr "エラー"
+
+#: Scripts.py:164
+msgid "Sorry! This isn't a script file."
+msgstr "このファイルはスクリプトではありません。"
 
 #: Scripts.py:176
 msgid "Enabled Scripts"
@@ -694,6 +765,9 @@ msgid ""
 "You can drag and drop from File Manager.\n"
 "\"Scripts\" will be added to the Context Menu.\n"
 msgstr ""
+"どのような種類のタスクもスクリプトで処理できます。\n"
+"ファイルマネージャーからドラッグ＆ドロップもできます。\n"
+"\"スクリプト\" はコンテキストメニューに追加されます。\n"
 
 #: Scripts.py:355
 msgid "Rebuild the system scripts"
@@ -751,9 +825,12 @@ msgid ""
 "Input the command and set any desired key, it's easy to set a shortcut.\n"
 "Use <b>Delete</b> or <b>BackSpace</b> to clean the key."
 msgstr ""
+"キーボードショートカットを設定することにより、アプリケーションに \n"
+"素早くアクセスできます。\n"
+"コマンドと任意のキーを入力してください。簡単にショートカットが設定できます。\n"
+"キーのクリアには <b>Delete</b> か <b>BackSpace</b> を使います。"
 
 #: Shortcuts.py:87
-#, fuzzy
 msgid "Command %d"
 msgstr "コマンド %d"
 
@@ -827,6 +904,9 @@ msgid ""
 "You can drag and drop from File Manager.\n"
 "\"Create Document\" will be added to the Context Menu.\n"
 msgstr ""
+"ドキュメント・テンプレートを自由に管理できます。\n"
+"ファイルマネージャーからドラッグ＆ドロップもできます。\n"
+"\"ドキュメントの作成\" はコンテキストメニューに追加されます。\n"
 
 #: Templates.py:340
 msgid "Rebuild the system templates"
@@ -888,17 +968,17 @@ msgstr "更新が成功しました！"
 msgid "Select a new folder"
 msgstr "新しいフォルダを選んでください。"
 
-#: Widgets.py:368
+#: Widgets.py:379
 #, fuzzy
 msgid "Please press the new key combination"
 msgstr "新しいキーの組み合わせを押してください"
 
-#: Widgets.py:417
+#: Widgets.py:428
 #, fuzzy
 msgid "Disabled"
 msgstr "使用不可"
 
-#: ubuntu-tweak.py:39
+#: ubuntu-tweak.py:75
 msgid ""
 "Sorry!\n"
 "\n"
@@ -908,7 +988,7 @@ msgstr ""
 "\n"
 "Ubuntu Tweak は<b>GNOME 2.18以降</b>でないと動きません。\n"
 
-#: ubuntu-tweak.py:46
+#: ubuntu-tweak.py:80
 msgid ""
 "Sorry!\n"
 "\n"
