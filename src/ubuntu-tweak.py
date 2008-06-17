@@ -29,7 +29,6 @@ gettext.install(App, unicode = True)
 
 class TweakLauncher:
     def __init__(self):
-            gtk.gdk.threads_init()
             thread.start_new_thread(self.show_splash, ())
 
             try:
@@ -62,19 +61,18 @@ class TweakLauncher:
         gtk.gdk.threads_leave()
 
     def main(self):
-        gtk.gdk.threads_enter()
         os.system("./CheckVersion.py &")
         gtk.main()
-        gtk.gdk.threads_leave()    
 
 if __name__ == "__main__":
     #determine whether the gnome is the default desktop
-    if os.getenv("GNOME_DESKTOP_SESSION_ID"):
-        from SystemInfo import GnomeVersion
-        if GnomeVersion.minor < 18:
-            show_info(_("Sorry!\n\nUbuntu Tweak can only run under <b>GNOME 2.18 or above.</b>\n"))
-        else:
+#    if os.getenv("GNOME_DESKTOP_SESSION_ID"):
+#        from SystemInfo import GnomeVersion
+#        if GnomeVersion.minor < 18:
+#            show_info(_("Sorry!\n\nUbuntu Tweak can only run under <b>GNOME 2.18 or above.</b>\n"))
+#        else:
+            gtk.gdk.threads_init()
             launcher = TweakLauncher()
             launcher.main()
-    else:
-        show_info(_("Sorry!\n\nUbuntu Tweak can only run in <b>GNOME Desktop.</b>\n"))
+#    else:
+#        show_info(_("Sorry!\n\nUbuntu Tweak can only run in <b>GNOME Desktop.</b>\n"))

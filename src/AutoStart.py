@@ -117,6 +117,13 @@ class AutoStartItem(gtk.TreeView):
         self.useritems = map(lambda path: "%s/%s" % (self.userdir, path), os.listdir(self.userdir))
         self.systemitems = map(lambda path: "%s/%s" % (self.systemdir, path), filter(lambda i: i not in os.listdir(self.userdir), os.listdir(self.systemdir)))
 
+        for item in self.useritems:
+            if os.path.isdir(item): 
+                self.useritems.remove(item)
+        for item in self.systemitems:
+            if os.path.isdir(item): 
+                self.systemitems.remove(item)
+
         model = gtk.ListStore(
             gobject.TYPE_BOOLEAN,
             gobject.TYPE_STRING,
@@ -180,6 +187,7 @@ class AutoStartItem(gtk.TreeView):
         'comment' parameter used to show the comment of program"""
         self.useritems = map(lambda path: "%s/%s" % (self.userdir, path), os.listdir(self.userdir))
         self.systemitems = map(lambda path: "%s/%s" % (self.systemdir, path), filter(lambda i: i not in os.listdir(self.userdir), os.listdir(self.systemdir)))
+
         self.__create_model(all, comment)
 
     def __create_model(self, all = False, comment = False):

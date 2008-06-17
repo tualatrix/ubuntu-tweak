@@ -53,6 +53,11 @@ if GNOME >= 20:
 else:
     UserDir = None
     Templates = None
+
+if DISABLE_APT:
+    Installer = None
+else:
+    from Installer import Installer
 from Scripts import Scripts
 from Shortcuts import Shortcuts
 from PowerManager import PowerManager
@@ -73,6 +78,7 @@ from Metacity import Metacity
 (
     WELCOME_PAGE,
     COMPUTER_PAGE,
+    INSTALLER_PAGE,
     STARTUP_PAGE,
     SESSION_PAGE,
     AUTOSTART_PAGE,
@@ -92,12 +98,13 @@ from Metacity import Metacity
     SECURITY_PAGE,
     SECU_OPTIONS_PAGE,
     TOTAL_PAGE
-) = range(21)
+) = range(22)
 
 icons = \
 [
     "pixmaps/welcome.png",
     "pixmaps/computer.png",
+    "pixmaps/installer.png",
     "pixmaps/startup.png",
     "pixmaps/session.png",
     "pixmaps/autostart.png",
@@ -118,7 +125,7 @@ icons = \
     "pixmaps/lockdown.png",
 ]
 
-def Welcome():
+def Welcome(parent = None):
     vbox = gtk.VBox(False, 0)
 
     label = gtk.Label()
@@ -131,7 +138,7 @@ def Welcome():
         
     return vbox
 
-def Blank():
+def Blank(parent = None):
     vbox = gtk.VBox(True, 0)
 
     label = gtk.Label()
@@ -177,6 +184,7 @@ itemlist = \
 [
     [WELCOME_PAGE, icons[WELCOME_PAGE], _("Welcome"), Welcome, None],
     [COMPUTER_PAGE, icons[COMPUTER_PAGE], _("Computer"), Computer, None],
+    [INSTALLER_PAGE, icons[INSTALLER_PAGE], _("Installer"), Installer, None],
     [STARTUP_PAGE, icons[STARTUP_PAGE], _("Startup"), Blank, startup],
     [DESKTOP_PAGE, icons[DESKTOP_PAGE], _("Desktop"), Blank, desktop],
     [PERSONAL_PAGE, icons[PERSONAL_PAGE], _("Personal"), Blank, personal],
@@ -244,6 +252,7 @@ class MainWindow(gtk.Window):
         self.show_all()
 
         gobject.timeout_add(5000, self.on_timeout)
+        self.notebook.set_current_page(0)
 
     def __create_model(self):
         model = gtk.TreeStore(
@@ -322,7 +331,7 @@ class MainWindow(gtk.Window):
 
         for item in itemlist:
             page = item[PAGE_COLUMN]
-            notebook.append_page(page(), None)
+            notebook.append_page(page(self), None)
 
             if item[-1]:
                 for child_item in item[-1]:

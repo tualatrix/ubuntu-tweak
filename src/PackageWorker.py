@@ -28,6 +28,7 @@ import tempfile
 import subprocess
 import apt_pkg
 from apt import package
+from xdg.DesktopEntry import DesktopEntry
 from Widgets import MessageDialog, Colleague
 
 def update_apt_cache():
@@ -67,6 +68,28 @@ class AptCheckButton(gtk.CheckButton, Colleague):
 
     def button_toggled(self, widget, data = None):
         pass
+
+class PackageInfo:
+    DESKTOP_DIR = '/usr/share/app-install/desktop/'
+
+    def __init__(self, name):
+        self.name = name
+        pkgiter = cache[name]
+        self.pkg = package.Package(cache, depcache, records, sourcelist, None, pkgiter)
+        self.desktopentry = DesktopEntry(self.DESKTOP_DIR + name + ".desktop")
+
+    def check_installed(self):
+        return self.pkg.isInstalled
+
+    def get_comment(self):
+        return self.desktopentry.getComment()
+
+    def get_name(self):
+        appname = self.desktopentry.getName()
+        if appname == "":
+            return self.name.title()
+
+        return appname
 
 class PackageWorker:
     def run_synaptic(self, id, lock, to_add = None,to_rm = None):

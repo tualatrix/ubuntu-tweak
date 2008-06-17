@@ -109,6 +109,7 @@ class Nautilus(gtk.VBox, Mediator):
         dialog.destroy()
 
         update_apt_cache()
+        print self.nautilus_terminal.get_active()
 
     def colleague_changed(self):
         if self.nautilus_terminal.get_state() != self.nautilus_terminal.get_active() or\
