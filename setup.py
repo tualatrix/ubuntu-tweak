@@ -8,10 +8,31 @@ INSTALLED_FILES = "installed_files"
 PREFIX = '/usr'
 APP_DIR = os.path.join(PREFIX, 'share', 'ubuntu-tweak')
 BIN_DIR = os.path.join(PREFIX, 'bin')
-BIN_FILEs = ['script-worker', 'ubuntu-tweak']
+BIN_FILEs = ['script-worker', 'ubuntu-tweak', 'ubuntu-tweak-dbus']
 DESKTOP_FILE = os.path.join(PREFIX, 'share', 'applications', 'ubuntu-tweak.desktop')
 LOCALES = []
 MOFILES = []
+
+def make_policykit(install = True):
+    conf = 'policykit/com.ubuntu-tweak.Mechanism.conf'
+    conf_dist = '/etc/dbus-1/system.d/com.ubuntu-tweak.Mechanism.conf'
+    policy = 'policykit/com.ubuntu-tweak.mechanism.policy'
+    policy_dist = '/usr/share/PolicyKit/policy/com.ubuntu-tweak.mechanism.policy'
+    service = 'policykit/com.ubuntu_tweak.Mechanism.service'
+    service_dist = '/usr/share/dbus-1/system-services/com.ubuntu_tweak.Mechanism.service'
+    if os.path.exists(conf_dist):
+        os.remove(conf_dist)
+
+    if os.path.exists(policy_dist):
+        os.remove(policy_dist)
+
+    if os.path.exists(service_dist):
+        os.remove(service_dist)
+
+    if install:
+        shutil.copy(conf, conf_dist)
+        shutil.copy(policy, policy_dist)
+        shutil.copy(service, service_dist)
 
 def removeall(dir_file):
     if not os.path.exists(dir_file): return
@@ -26,6 +47,8 @@ def removeall(dir_file):
         os.rmdir(dir_file)
     else:
         os.unlink(dir_file)
+
+    make_policykit(False)
     return
 
 def install():
@@ -36,6 +59,8 @@ def install():
         if os.path.exists(fullpath):
             os.remove(fullpath)
         shutil.copy(file, fullpath)
+
+    make_policykit()
 
     shutil.copytree('src', APP_DIR)
     if os.path.exists(DESKTOP_FILE):
@@ -48,7 +73,6 @@ def install():
         shutil.copy(file, dest)
 
     print "Installed Successfully"
-
 
 def uninstall():
     removeall(APP_DIR)

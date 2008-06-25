@@ -31,6 +31,7 @@ data = \
 (
     ("agave", _("A powerful color picker"), _("Image")),
     ("amule", _("A donkey p2p software"), _("P2P")),
+    ("anjuta", _("A powerful color picker"), _("IDE")),
     ("audacious", _("Media play"), _("Sound")),
     ("avant-window-navigator", _("Mac OS X dock like tools"), _("Desktop")),
     ("azureus", _("Java based bit torrent tools"), _("P2P")),
@@ -47,6 +48,29 @@ data = \
     ("ghex", _("text hex"), _("Text")),
     ("gmail-notify", _("Check gmail"), _("Mail")),
     ("gnomebaker", _("CD tools"), _("CD")),
+    ("gnome-do", _("CD tools"), _("Desktop")),
+    ("gnome-do", _("CD tools"), _("Desktop")),
+    ("googleearth", _("ddd"), _("Internet")),
+    ("gparted", _("ddd"), _("Disk")),
+    ("gpicview", _("ddd"), _("Image")),
+    ("gtk-recordmydesktop", _("ddd"), _("Video")),
+    ("isomaster", _("ddd"), _("CD")),
+    ("lastfm", _("ddd"), _("Internet")),
+    ("leafpad", _("ddd"), _("Text")),
+    ("mail-notification", _("ddd"), _("Mail")),
+    ("meld", _("ddd"), _("Text")),
+    ("mirage", _("ddd"), _("Image")),
+    ("monodevelop", _("ddd"), _("IDE")),
+    ("mplayer", _("ddd"), _("Video")),
+    ("netbeans", _("ddd"), _("IDE")),
+    ("rar", _("ddd"), _("Desktop")),
+    ("screenlets", _("ddd"), _("Desktop")),
+    ("smplayer", _("ddd"), _("Video")),
+    ("stardict", _("ddd"), _("Desktop")),
+    ("virtualbox", _("ddd"), _("Virtual")),
+    ("vlc", _("ddd"), _("Video")),
+    ("vmware-player", _("ddd"), _("Virtual")),
+    ("wine", _("ddd"), _("Virtual")),
 )
 
 class Installer(TweakPage):
@@ -122,11 +146,14 @@ class Installer(TweakPage):
             except gobject.GError:
                 pixbuf = icon.load_icon(gtk.STOCK_MISSING_IMAGE, 32, 0)
 
-            appname = item[0]
-            package = PackageInfo(appname)
-            is_installed = package.check_installed()
-            disname = package.get_name()
-            desc = item[1]
+            try:
+                appname = item[0]
+                package = PackageInfo(appname)
+                is_installed = package.check_installed()
+                disname = package.get_name()
+                desc = item[1]
+            except KeyError:
+                continue
 
             if self.filter == None:
                 if item[0] in self.to_add or item[0] in self.to_rm:
@@ -225,10 +252,13 @@ class Installer(TweakPage):
         return treeview
 
     def on_apply_clicked(self, widget, data = None):
-        self.packageWorker.perform_action(self.main_window, self.to_add, self.to_rm)
+        state = self.packageWorker.perform_action(self.main_window, self.to_add, self.to_rm)
 
-        self.button.set_sensitive(False)
-        dialog = MessageDialog(_("Update Successfully!"), buttons = gtk.BUTTONS_OK)
+        if state == 0:
+            self.button.set_sensitive(False)
+            dialog = MessageDialog(_("Update Successfully!"), buttons = gtk.BUTTONS_OK)
+        else:
+            dialog = MessageDialog(_("Update Failed!"), buttons = gtk.BUTTONS_OK)
         dialog.run()
         dialog.destroy()
 

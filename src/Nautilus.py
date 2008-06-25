@@ -101,15 +101,18 @@ class Nautilus(gtk.VBox, Mediator):
             else:
                 to_rm.append(widget.pkgname)
 
-        self.packageWorker.perform_action(self.main_window, to_add, to_rm)
+        state = self.packageWorker.perform_action(self.main_window, to_add, to_rm)
 
-        self.button.set_sensitive(False)
-        dialog = MessageDialog(_("Update Successfully!"), buttons = gtk.BUTTONS_OK)
+        if state == 0:
+            self.button.set_sensitive(False)
+            dialog = MessageDialog(_("Update Successfully!"), buttons = gtk.BUTTONS_OK)
+        else:
+            dialog = MessageDialog(_("Update Failed!"), buttons = gtk.BUTTONS_OK)
+
         dialog.run()
         dialog.destroy()
 
         update_apt_cache()
-        print self.nautilus_terminal.get_active()
 
     def colleague_changed(self):
         if self.nautilus_terminal.get_state() != self.nautilus_terminal.get_active() or\

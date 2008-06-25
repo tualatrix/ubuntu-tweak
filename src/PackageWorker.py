@@ -116,7 +116,7 @@ class PackageWorker:
         cmd.append("%s" % f.name)
         f.flush()
 
-        subprocess.call(cmd)
+        self.return_code = subprocess.call(cmd)
         lock.release()
         f.close()
 
@@ -132,3 +132,5 @@ class PackageWorker:
             time.sleep(0.05)
         window_main.set_sensitive(True)
         window_main.window.set_cursor(None)
+
+        return self.return_code

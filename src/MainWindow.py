@@ -63,7 +63,7 @@ from Shortcuts import Shortcuts
 from PowerManager import PowerManager
 from Gnome import Gnome
 from Nautilus import Nautilus
-from LockDown import LockDown
+from PkTest import PkTest
 from Metacity import Metacity
 
 (
@@ -177,7 +177,7 @@ system = \
 
 security = \
 [
-    [SECU_OPTIONS_PAGE, icons[SECU_OPTIONS_PAGE], _("Security Options"), LockDown, 0]
+    [SECU_OPTIONS_PAGE, icons[SECU_OPTIONS_PAGE], _("Security Options"), PkTest, 0]
 ]
 
 itemlist = \
