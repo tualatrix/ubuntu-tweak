@@ -7,6 +7,7 @@ import pygtk
 pygtk.require('2.0')
 import gtk
 import gconf
+import socket
 import gobject
 
 from Constants import *
@@ -22,6 +23,8 @@ def CheckVersion():
         version = server.version()
     except Error, e:
         print "Error:", e
+    except socket.gaierror:
+        print "Bad Network!"
     else:
         client.set_string('/apps/ubuntu-tweak/update', version)
 
@@ -43,5 +46,3 @@ def SubmitCurrent():
 
 if __name__ == "__main__":
     CheckVersion()
-
-#    SubmitCurrent()

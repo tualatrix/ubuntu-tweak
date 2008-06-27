@@ -25,11 +25,6 @@ import os
 import gettext
 import dbus
 
-from Constants import *
-from Widgets import ListPack
-
-gettext.install(App, unicode = True)
-
 class PolkitButton(gtk.Button):
     action = 0
 
@@ -47,7 +42,7 @@ class PolkitButton(gtk.Button):
         xid = win.window.xid
         policykit = dbus.SessionBus().get_object('org.freedesktop.PolicyKit.AuthenticationAgent', '/')
 
-        granted = policykit.ObtainAuthorization('com.ubuntu-tweak.tweak', dbus.UInt32(xid), dbus.UInt32(os.getpid()))
+        granted = policykit.ObtainAuthorization('com.ubuntu-tweak.mechanism', dbus.UInt32(xid), dbus.UInt32(os.getpid()))
 
         self.action = granted
 

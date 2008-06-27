@@ -21,8 +21,10 @@
 import gconf
 
 class Setting:
-    """The base class of an option, client is shared by all subclass
-    Every Setting hold a key and a value"""
+    """
+    The base class of an option, client is shared by all subclass
+    Every Setting hold a key and a value
+    """
 
     client = gconf.client_get_default()
 

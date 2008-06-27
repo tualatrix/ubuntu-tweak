@@ -56,14 +56,16 @@ else:
 
 if DISABLE_APT:
     Installer = None
+    ThirdSoft = None
 else:
     from Installer import Installer
+    from ThirdSoft import ThirdSoft
 from Scripts import Scripts
 from Shortcuts import Shortcuts
 from PowerManager import PowerManager
 from Gnome import Gnome
 from Nautilus import Nautilus
-from PkTest import PkTest
+from LockDown import LockDown
 from Metacity import Metacity
 
 (
@@ -78,7 +80,9 @@ from Metacity import Metacity
 (
     WELCOME_PAGE,
     COMPUTER_PAGE,
+    APPLICATIONS_PAGE,
     INSTALLER_PAGE,
+    THIRDSOFT_PAGE,
     STARTUP_PAGE,
     SESSION_PAGE,
     AUTOSTART_PAGE,
@@ -98,13 +102,15 @@ from Metacity import Metacity
     SECURITY_PAGE,
     SECU_OPTIONS_PAGE,
     TOTAL_PAGE
-) = range(22)
+) = range(24)
 
 icons = \
 [
     "pixmaps/welcome.png",
     "pixmaps/computer.png",
+    "pixmaps/applications.png",
     "pixmaps/installer.png",
+    "pixmaps/third-soft.png",
     "pixmaps/startup.png",
     "pixmaps/session.png",
     "pixmaps/autostart.png",
@@ -138,58 +144,31 @@ def Welcome(parent = None):
         
     return vbox
 
-def Blank(parent = None):
-    vbox = gtk.VBox(True, 0)
-
-    label = gtk.Label()
-    label.set_markup(_("<span size=\"xx-large\">Please select the child item</span>"))
-    vbox.pack_start(label, False, False, 0)
-
-    return vbox
-
-startup = \
+MODULE_LIST = \
 [
+    [WELCOME_PAGE, icons[WELCOME_PAGE], _("Welcome"), Welcome, None],
+    [COMPUTER_PAGE, icons[COMPUTER_PAGE], _("Computer"), Computer, None],
+    [APPLICATIONS_PAGE, icons[APPLICATIONS_PAGE], _("Applications"), None, True],
+    [INSTALLER_PAGE, icons[INSTALLER_PAGE], _("Installer"), Installer, None],
+    [THIRDSOFT_PAGE, icons[THIRDSOFT_PAGE], _("Third-Party App"), ThirdSoft, None],
+    [STARTUP_PAGE, icons[STARTUP_PAGE], _("Startup"), None, True],
     [SESSION_PAGE, icons[SESSION_PAGE], _("Session Control"), Session, 0],
     [AUTOSTART_PAGE, icons[AUTOSTART_PAGE], _("Auto Start"), AutoStart, 0],
-]
-
-desktop = \
-[
+    [DESKTOP_PAGE, icons[DESKTOP_PAGE], _("Desktop"), None, True],
     [ICON_PAGE, icons[ICON_PAGE], _("Desktop Icon"), Icon, 0],
     [METACITY_PAGE, icons[METACITY_PAGE], _("Metacity"), Metacity, 0],
     [COMPIZ_PAGE, icons[COMPIZ_PAGE], _("Compiz Fusion"), Compiz, UNKOWN],
-]
-
-personal = \
-[
+    [PERSONAL_PAGE, icons[PERSONAL_PAGE], _("Personal"), None, True],
     [USERDIR_PAGE, icons[USERDIR_PAGE], _("User Folder"), UserDir, 20],
     [TEMPLATES_PAGE, icons[TEMPLATES_PAGE], _("Templates"), Templates, 20],
     [SCRIPTS_PAGE, icons[SCRIPTS_PAGE], _("Scripts"), Scripts, 0],
     [SHORTCUTS_PAGE, icons[SHORTCUTS_PAGE], _("Shortcuts"), Shortcuts, 0],
-]
-
-system = \
-[
+    [SYSTEM_PAGE, icons[SYSTEM_PAGE], _("System"), None, True],
     [GNOME_PAGE, icons[GNOME_PAGE], _("GNOME"), Gnome, 0],
     [NAUTILUS_PAGE, icons[NAUTILUS_PAGE], _("Nautilus"), Nautilus, 0],
     [POWER_PAGE, icons[POWER_PAGE], _("Power Manager"), PowerManager, 0],
-]
-
-security = \
-[
-    [SECU_OPTIONS_PAGE, icons[SECU_OPTIONS_PAGE], _("Security Options"), PkTest, 0]
-]
-
-itemlist = \
-[
-    [WELCOME_PAGE, icons[WELCOME_PAGE], _("Welcome"), Welcome, None],
-    [COMPUTER_PAGE, icons[COMPUTER_PAGE], _("Computer"), Computer, None],
-    [INSTALLER_PAGE, icons[INSTALLER_PAGE], _("Installer"), Installer, None],
-    [STARTUP_PAGE, icons[STARTUP_PAGE], _("Startup"), Blank, startup],
-    [DESKTOP_PAGE, icons[DESKTOP_PAGE], _("Desktop"), Blank, desktop],
-    [PERSONAL_PAGE, icons[PERSONAL_PAGE], _("Personal"), Blank, personal],
-    [SYSTEM_PAGE, icons[SYSTEM_PAGE], _("System"), Blank, system],
-    [SECURITY_PAGE, icons[SECURITY_PAGE], _("Security"), Blank, security],
+    [SECURITY_PAGE, icons[SECURITY_PAGE], _("Security"), None, True],
+    [SECU_OPTIONS_PAGE, icons[SECU_OPTIONS_PAGE], _("Security Options"), LockDown, 0],
 ]
 
 class MainWindow(gtk.Window):
@@ -238,6 +217,7 @@ class MainWindow(gtk.Window):
         sw.add(self.treeview)
 
         self.notebook = self.create_notebook()
+        self.moduletable = {0: 0}
         hpaned.pack2(self.notebook)
 
         hbox = gtk.HBox(False,5)
@@ -250,40 +230,50 @@ class MainWindow(gtk.Window):
         hbox.pack_end(button, False, False, 0)
         
         self.show_all()
-
         gobject.timeout_add(5000, self.on_timeout)
-        self.notebook.set_current_page(0)
 
     def __create_model(self):
         model = gtk.TreeStore(
                     gobject.TYPE_INT,
                     gtk.gdk.Pixbuf,
                     gobject.TYPE_STRING)
-        i = 0
 
-        for item in itemlist:
-            icon = gtk.gdk.pixbuf_new_from_file(item[ICON_COLUMN])
-            iter = model.append(None)
-            model.set(iter,
-                NUM_COLUMN, i,
-                ICON_COLUMN, icon,
-                NAME_COLUMN, item[NAME_COLUMN]
-            )
-            if item[-1]:
-                for child_item in item[-1]:
-                    if  GNOME >= child_item[Version_COLUMN]:
-                        i = i + 1
-                        icon = gtk.gdk.pixbuf_new_from_file(child_item[ICON_COLUMN])
-                        child_iter = model.append(iter)
-                        model.set(child_iter,
-                            NUM_COLUMN, i,
-                            ICON_COLUMN, icon,
-                            NAME_COLUMN, child_item[NAME_COLUMN]
-                        )
+        have_child = False
+        child_iter = None
+        iter = None
+
+        for module in MODULE_LIST:
+            if have_child == False:
+                icon = gtk.gdk.pixbuf_new_from_file(module[ICON_COLUMN])
+                iter = model.append(None)
+                model.set(iter,
+                    NUM_COLUMN, module[NUM_COLUMN],
+                    ICON_COLUMN, icon,
+                    NAME_COLUMN, module[NAME_COLUMN]
+                )
+                if module[-1] == True:
+                    have_child = True
+                else:
+                    have_child = False
+            else:
+                try:
+                    if MODULE_LIST[module[NUM_COLUMN]+1][-1] == True:
+                        have_child = False
                     else:
-                        continue
+                        have_child = True
+                except IndexError:
+                    pass
 
-            i = i + 1
+                if GNOME >= module[Version_COLUMN]:
+                    icon = gtk.gdk.pixbuf_new_from_file(module[ICON_COLUMN])
+                    child_iter = model.append(iter)
+                    model.set(child_iter,
+                        NUM_COLUMN, module[NUM_COLUMN],
+                        ICON_COLUMN, icon,
+                        NAME_COLUMN, module[NAME_COLUMN]
+                    )
+                else:
+                    continue
 
         return model
 
@@ -298,10 +288,21 @@ class MainWindow(gtk.Window):
 
             if model.iter_has_child(iter):
                 child_iter = model.iter_children(iter)
-                self.notebook.set_current_page(model.get_value(child_iter, NUM_COLUMN))
+                page_num = model.get_value(child_iter, NUM_COLUMN)
+
+                if page_num not in self.moduletable:
+                    self.setup_notebook(page_num)
+                    self.moduletable[page_num] = self.notebook.get_n_pages() - 1
+
+                self.notebook.set_current_page(self.moduletable[page_num])
                 widget.select_iter(child_iter)
             else:
-                self.notebook.set_current_page(model.get_value(iter, NUM_COLUMN))
+                page_num = model.get_value(iter, NUM_COLUMN)
+                if page_num not in self.moduletable:
+                    self.setup_notebook(page_num)
+                    self.moduletable[page_num] = self.notebook.get_n_pages() - 1
+
+                self.notebook.set_current_page(self.moduletable[page_num])
 
     def __add_columns(self, treeview):
         renderer = gtk.CellRendererText()
@@ -325,23 +326,24 @@ class MainWindow(gtk.Window):
         treeview.append_column(column)
 
     def create_notebook(self):
+        """
+        Create the notebook with welcome page.
+        the remain page will be created when request.
+        """
         notebook = gtk.Notebook()
         notebook.set_scrollable(True)
         notebook.set_show_tabs(False)
 
-        for item in itemlist:
-            page = item[PAGE_COLUMN]
-            notebook.append_page(page(self), None)
-
-            if item[-1]:
-                for child_item in item[-1]:
-                    if GNOME >= child_item[Version_COLUMN]:
-                        page = child_item[PAGE_COLUMN]
-                        notebook.append_page(page(self), None)
-                    else:
-                        continue
+        page = MODULE_LIST[WELCOME_PAGE][PAGE_COLUMN]
+        notebook.append_page(page())
 
         return notebook
+
+    def setup_notebook(self, id):
+        page = MODULE_LIST[id][PAGE_COLUMN]
+        page = page(self)
+        page.show_all()
+        self.notebook.append_page(page)
 
     def click_website(self, dialog, link, data = None):
         url_show(link)
