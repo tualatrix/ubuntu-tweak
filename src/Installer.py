@@ -34,6 +34,7 @@ data = \
     ("anjuta", _("A powerful color picker"), _("IDE")),
     ("audacious", _("Media play"), _("Sound")),
     ("avant-window-navigator", _("Mac OS X dock like tools"), _("Desktop")),
+    ("avant-window-navigator-trunk", _("Mac OS X dock like tools-trunk"), _("Desktop")),
     ("azureus", _("Java based bit torrent tools"), _("P2P")),
     ("banshee", _("Sound player"), _("Sound")),
     ("chmsee", _("read chm"), _("Text")),

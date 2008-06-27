@@ -390,4 +390,16 @@ You should have received a copy of the GNU General Public License along with Ubu
         gtk.gdk.threads_leave()
 
     def destroy(self, widget, data = None):
+        from PolicyKit import DbusProxy
+        if not DISABLE_APT:
+            state = DbusProxy.proxy.GetListState(dbus_interface = DbusProxy.INTERFACE)
+            print state
+
+            if state == "expire":
+                from softwareproperties.gtk.DialogCacheOutdated import DialogCacheOutdated
+                dialog = DialogCacheOutdated(self, '/usr/share/software-properties')
+                res = dialog.run()
+                print res
+
+        DbusProxy.proxy.Exit(dbus_interface = DbusProxy.INTERFACE)
         gtk.main_quit()

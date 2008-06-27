@@ -5,39 +5,71 @@ import dbus.service
 import dbus.mainloop.glib
 import gobject
 
+
+
 class DemoException(dbus.DBusException):
     _dbus_error_name = 'com.ubuntu_tweak.Mechanism.DemoException'
 
 class Tweak(dbus.service.Object):
+    INTERFACE = "com.ubuntu_tweak.Mechanism"
+    liststate = None
 
-    @dbus.service.method("com.ubuntu_tweak.Mechanism.SampleInterface",
+    @dbus.service.method(INTERFACE,
                          in_signature='s', out_signature='as')
     def HelloWorld(self, hello_message):
         print (str(hello_message))
         return ["Hello", " from example-service.py", "with unique name",
                 system_bus.get_unique_name()]
 
-    @dbus.service.method("com.ubuntu_tweak.Mechanism.SampleInterface",
+    @dbus.service.method(INTERFACE,
                          in_signature='', out_signature='')
     def RaiseException(self):
         raise DemoException('The RaiseException method does what you might '
                             'expect')
 
-    @dbus.service.method("com.ubuntu_tweak.Mechanism.SampleInterface",
+    @dbus.service.method(INTERFACE,
                          in_signature='', out_signature='(ss)')
-    def GetTuple(self):
+    def GetTuuple(self):
         return ("Hello Tuple", " from example-service.py")
 
-    @dbus.service.method("com.ubuntu_tweak.Mechanism.SampleInterface",
+    @dbus.service.method(INTERFACE,
                          in_signature='', out_signature='a{ss}')
     def GetDict(self):
         return {"first": "Hello Dict", "second": " from example-service.py"}
 
-    @dbus.service.method("com.ubuntu_tweak.Mechanism.SampleInterface",
+    @dbus.service.method(INTERFACE,
+                         in_signature='ssb', out_signature='s')
+    def SetSourcesList(self, url, comment, enabled):
+        import apt_pkg
+        from aptsources.sourceslist import SourceEntry, SourcesList
+        apt_pkg.init()
+        list = SourcesList()
+        self.liststate = "expire"
+        if enabled:
+            list.add('deb', url, 'hardy', ['main'], comment)
+            list.add('deb-src', url, 'hardy', ['main'], comment)
+            list.save()
+            return 'enabled'
+        else:
+            for entry in list:
+                if url in entry.str():
+                    entry.disabled = True
+
+            list.save()
+            return 'disabled'
+
+    @dbus.service.method(INTERFACE,
+                         in_signature='', out_signature='s')
+    def GetListState(self):
+        if self.liststate:
+            return self.liststate
+        else:
+            return "none"
+
+    @dbus.service.method(INTERFACE,
                          in_signature='', out_signature='')
     def Exit(self):
         mainloop.quit()
-
 
 if __name__ == '__main__':
     dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
