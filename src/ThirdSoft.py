@@ -21,9 +21,12 @@
 import pygtk
 pygtk.require("2.0")
 import gtk
+import gtk.glade
 import os
 import dbus
-import gconf
+import time
+import thread
+import subprocess
 import gobject
 import gettext
 import apt_pkg
@@ -41,33 +44,81 @@ gettext.install(App, unicode = True)
     COLUMN_ENABLED,
     COLUMN_URL,
     COLUMN_COMPS,
+    COLUMN_NAME,
     COLUMN_COMMENT,
-) = range(4)
+) = range(5)
 
 (
     ENTRY_URL,
     ENTRY_COMPS,
+    ENTRY_NAME,
     ENTRY_COMMENT,
-) = range(3)
+) = range(4)
 
 SOURCES_DATA = [
-    ['http://ppa.launchpad.net/awn-testing/ubuntu', ['main'], _('<b>Avant Window Navigator</b>: webkit based light-weight browser')],
-    ['http://ppa.launchpad.net/stemp/ubuntu', ['main'], _('<b>Midori</b>: webkit based light-weight browser')],
-    ['http://ppa.launchpad.net/fta/ubuntu', ['main'], _('<b>Firefox</b>: The development firefox version')],
-    ['http://ppa.launchpad.net/compiz/ubuntu', ['main'], _('<b>Compiz Fusion</b>: the development Compiz Fusion')],
-    ['http://ppa.launchpad.net/do-core/ubuntu', ['main'], _('<b>GNOME Do</b>: dfsafdaf')],
-    ['http://ppa.launchpad.net/banshee-team/ubuntu', ['main'], _('<b>Banshee</b>: music player')],
-    ['http://ppa.launchpad.net/googlegadgets/ubuntu', ['main'], _('<b>Google gadgets</b>: Google desktopt tools')],
-    ['http://ppa.launchpad.net/lidaobing/ubuntu', ['main'], _('<b>chmsee</b>: chm reader')],
-    ['http://ppa.launchpad.net/kubuntu-members-kde4/ubuntu', ['main'], _('<b>KDE 4</b>')],
-    ['http://ppa.launchpad.net/tualatrix/ubuntu', ['main'], _('Ubuntu Tweak')],
+    ['http://ppa.launchpad.net/awn-testing/ubuntu', ['main'], _('Avant Window Navigator'), _('webkit based light-weight browser')],
+    ['http://ppa.launchpad.net/stemp/ubuntu', ['main'], _('Midori'), _('webkit based light-weight browser')],
+    ['http://ppa.launchpad.net/fta/ubuntu', ['main'], _('Firefox'), _('The development firefox version')],
+    ['http://ppa.launchpad.net/compiz/ubuntu', ['main'], _('Compiz Fusion'), _('the development Compiz Fusion')],
+    ['http://ppa.launchpad.net/do-core/ubuntu', ['main'], _('GNOME Do'), _('dfsafdaf')],
+    ['http://ppa.launchpad.net/banshee-team/ubuntu', ['main'], _('Banshee'), _('music player')],
+    ['http://ppa.launchpad.net/googlegadgets/ubuntu', ['main'], _('Google gadgets'), _('Google desktopt tools')],
+    ['http://ppa.launchpad.net/lidaobing/ubuntu', ['main'], _('chmsee'), _('chm reader')],
+    ['http://ppa.launchpad.net/kubuntu-members-kde4/ubuntu', ['main'], _('KDE 4'), _('Desktop Etnry')],
+    ['http://ppa.launchpad.net/tualatrix/ubuntu', ['main'], _('Ubuntu Tweak'), _('Hello')],
+    ['http://wine.budgetdedicated.com/apt', ['main'], _('WineHQ'), _('Ubuntu 8.04 "Hardy Heron"')],
+    ['http://ppa.launchpad.net/lxde/ubuntu', ['main'], _('LXDE'), _('Lightweight X11 Desktop Environment for Ubuntu.')],
 ]
+
+class UpdateCacheDialog:
+    """This class is modified from Software-Properties"""
+    def __init__(self, parent):
+        self.parent = parent
+
+        self.dialog = gtk.MessageDialog(parent, buttons = gtk.BUTTONS_YES_NO)
+        self.dialog.set_markup(_("<b><big>The information about available software is out-of-date</big></b>\n\nTo install software and updates from newly added or changed sources, you have to reload the information about available software.\n\nYou need a working internet connection to continue."))
+
+    def update_cache(self, window_id, lock):
+        """start synaptic to update the package cache"""
+        try:
+            apt_pkg.PkgSystemUnLock()
+        except SystemError:
+            pass
+        cmd = []
+        if os.getuid() != 0:
+            cmd = ["/usr/bin/gksu",
+                   "--desktop", "/usr/share/applications/synaptic.desktop",
+                   "--"]
+        
+        cmd += ["/usr/sbin/synaptic", "--hide-main-window",
+               "--non-interactive",
+               "--parent-window-id", "%s" % (window_id),
+               "--update-at-startup"]
+        subprocess.call(cmd)
+        lock.release()
+
+    def run(self):
+        """run the dialog, and if reload was pressed run synaptic"""
+        res = self.dialog.run()
+        self.dialog.hide()
+        if res == gtk.RESPONSE_YES:
+            self.parent.set_sensitive(False)
+            lock = thread.allocate_lock()
+            lock.acquire()
+            t = thread.start_new_thread(self.update_cache,
+                                       (self.parent.window.xid, lock))
+            while lock.locked():
+                while gtk.events_pending():
+                    gtk.main_iteration()
+                    time.sleep(0.05)
+            self.parent.set_sensitive(True)
+        return res
 
 class SourcesView(gtk.TreeView):
     def __init__(self):
         gtk.TreeView.__init__(self)
 
-        apt_pkg.init()
+        #apt_pkg.init()
         self.list = SourcesList()
         self.proxy = DbusProxy()
         self.model = self.__create_model()
@@ -79,6 +130,7 @@ class SourcesView(gtk.TreeView):
     def __create_model(self):
         model = gtk.ListStore(
                 gobject.TYPE_BOOLEAN,
+                gobject.TYPE_STRING,
                 gobject.TYPE_STRING,
                 gobject.TYPE_STRING,
                 gobject.TYPE_STRING)
@@ -100,19 +152,20 @@ class SourcesView(gtk.TreeView):
             enabled = False
             url = entry[ENTRY_URL]
             comps = entry[ENTRY_COMPS]
+            name = entry[ENTRY_NAME]
             comment = entry[ENTRY_COMMENT]
+            comment = "<b>%s</b>: %s" % (name, comment)
 
             for source in self.list:
                 if url in source.str() and source.type == 'deb':
-                    print "found match!" 
-                    print source.str()
                     enabled = not source.disabled
 
             self.model.append((
                 enabled,
                 url,
                 comps,
-                comment
+                name,
+                comment,
                 ))
 
     def on_enable_toggled(self, cell, path):
@@ -120,9 +173,9 @@ class SourcesView(gtk.TreeView):
 
         enabled = self.model.get_value(iter, COLUMN_ENABLED)
         url = self.model.get_value(iter, COLUMN_URL)
-        comment = self.model.get_value(iter, COLUMN_COMMENT)
+        name = self.model.get_value(iter, COLUMN_NAME)
 
-        result = self.proxy.proxy.SetSourcesList(url, comment, not enabled, dbus_interface = self.proxy.INTERFACE)
+        result = self.proxy.proxy.SetSourcesList(url, name, not enabled, dbus_interface = self.proxy.INTERFACE)
 
         if result == 'enabled':
             self.model.set(iter, COLUMN_ENABLED, True)

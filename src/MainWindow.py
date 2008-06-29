@@ -144,13 +144,26 @@ def Welcome(parent = None):
         
     return vbox
 
+def Wait(parent = None):
+    vbox = gtk.VBox(False, 0)
+
+    label = gtk.Label()
+    label.set_markup(_("<span size=\"xx-large\">Wait a moment...</span>"))
+    label.set_justify(gtk.JUSTIFY_FILL)
+    vbox.pack_start(label, False, False, 50)
+
+    hbox = gtk.HBox(False, 0)
+    vbox.pack_start(hbox, False, False, 0)
+        
+    return vbox
+
 MODULE_LIST = \
 [
     [WELCOME_PAGE, icons[WELCOME_PAGE], _("Welcome"), Welcome, None],
     [COMPUTER_PAGE, icons[COMPUTER_PAGE], _("Computer"), Computer, None],
     [APPLICATIONS_PAGE, icons[APPLICATIONS_PAGE], _("Applications"), None, True],
     [INSTALLER_PAGE, icons[INSTALLER_PAGE], _("Installer"), Installer, None],
-    [THIRDSOFT_PAGE, icons[THIRDSOFT_PAGE], _("Third-Party App"), ThirdSoft, None],
+    [THIRDSOFT_PAGE, icons[THIRDSOFT_PAGE], _("Third-Party Sources"), ThirdSoft, None],
     [STARTUP_PAGE, icons[STARTUP_PAGE], _("Startup"), None, True],
     [SESSION_PAGE, icons[SESSION_PAGE], _("Session Control"), Session, 0],
     [AUTOSTART_PAGE, icons[AUTOSTART_PAGE], _("Auto Start"), AutoStart, 0],
@@ -287,22 +300,37 @@ class MainWindow(gtk.Window):
             self.treeview.expand_row(path, True)
 
             if model.iter_has_child(iter):
-                child_iter = model.iter_children(iter)
-                page_num = model.get_value(child_iter, NUM_COLUMN)
+                iter = model.iter_children(iter)
 
-                if page_num not in self.moduletable:
-                    self.setup_notebook(page_num)
-                    self.moduletable[page_num] = self.notebook.get_n_pages() - 1
+            page_num = model.get_value(iter, NUM_COLUMN)
 
+            if page_num not in self.moduletable:
+                self.notebook.set_current_page(1)
+                widget.select_iter(iter)
+
+                self.TEMP = {'page_num':page_num,'iter': iter}
+                gobject.timeout_add(5, self.create_newpage, widget)
+                return
+
+            self.notebook.set_current_page(self.moduletable[page_num])
+            widget.select_iter(iter)
+
+    def create_newpage(self, widget):
+        try:
+            if self.TEMP:
+                page_num = self.TEMP['page_num']
+                iter = self.TEMP['iter']
+
+                self.setup_notebook(page_num)
+                self.moduletable[page_num] = self.notebook.get_n_pages() - 1
                 self.notebook.set_current_page(self.moduletable[page_num])
-                widget.select_iter(child_iter)
-            else:
-                page_num = model.get_value(iter, NUM_COLUMN)
-                if page_num not in self.moduletable:
-                    self.setup_notebook(page_num)
-                    self.moduletable[page_num] = self.notebook.get_n_pages() - 1
 
-                self.notebook.set_current_page(self.moduletable[page_num])
+                if iter:
+                    widget.select_iter(iter)
+
+                del self.TEMP
+        except AttributeError:
+            pass
 
     def __add_columns(self, treeview):
         renderer = gtk.CellRendererText()
@@ -336,6 +364,8 @@ class MainWindow(gtk.Window):
 
         page = MODULE_LIST[WELCOME_PAGE][PAGE_COLUMN]
         notebook.append_page(page())
+
+        notebook.append_page(Wait())
 
         return notebook
 
@@ -396,8 +426,8 @@ You should have received a copy of the GNU General Public License along with Ubu
             print state
 
             if state == "expire":
-                from softwareproperties.gtk.DialogCacheOutdated import DialogCacheOutdated
-                dialog = DialogCacheOutdated(self, '/usr/share/software-properties')
+                from ThirdSoft import UpdateCacheDialog
+                dialog = UpdateCacheDialog(self)
                 res = dialog.run()
                 print res
 

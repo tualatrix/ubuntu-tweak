@@ -193,6 +193,7 @@ class Compiz(gtk.VBox, CompizSetting, Mediator):
         vbox.set_border_width(5)
 
         if not DISABLE_APT:
+            update_apt_cache(True)
             self.packageWorker = PackageWorker()
 
             self.advanced_settings = AptCheckButton(_("Install Advanced Desktop Effects Settings Manager"),\
@@ -229,6 +230,7 @@ class Compiz(gtk.VBox, CompizSetting, Mediator):
             self.pack_start(box, False, False, 0)
 
             if not DISABLE_APT:
+                update_apt_cache(True)
                 box = ListPack(_("<b>Compiz Extensions</b>"), (
                     self.simple_settings,
                     self.screenlets,
@@ -298,6 +300,7 @@ class Compiz(gtk.VBox, CompizSetting, Mediator):
 
         for k, v in plugins_settings.items():
             plugin = self.context.Plugins[k]
+            #TODO The plugin should be turned off when it is unused.
             if not plugin.Enabled:
                 plugin.Enabled = True
                 self.context.Write()

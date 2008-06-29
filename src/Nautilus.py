@@ -65,6 +65,7 @@ class Nautilus(gtk.VBox, Mediator):
         self.pack_start(box, False, False, 0)
 
         if not DISABLE:
+            update_apt_cache(True)
             self.packageWorker = PackageWorker()
 
             self.nautilus_terminal = AptCheckButton(_("Nautilus with Open Terminal"), 'nautilus-open-terminal', self)

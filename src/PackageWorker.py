@@ -31,15 +31,22 @@ from apt import package
 from xdg.DesktopEntry import DesktopEntry
 from Widgets import MessageDialog, Colleague
 
-def update_apt_cache():
+def update_apt_cache(init = False):
     global cache, depcache, records, sourcelist
+
+    if init:
+        try:
+            print cache
+        except NameError:
+            pass
+        else:
+            return
+
+    apt_pkg.init()
     cache = apt_pkg.GetCache()
     depcache = apt_pkg.GetDepCache(cache)
     records = apt_pkg.GetPkgRecords(cache)
     sourcelist = apt_pkg.GetPkgSourceList()
-
-apt_pkg.init()
-update_apt_cache()
 
 class AptCheckButton(gtk.CheckButton, Colleague):
     def __init__(self, label, pkgname, mediator, tooltip = None):

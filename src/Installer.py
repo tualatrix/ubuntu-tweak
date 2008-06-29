@@ -27,64 +27,77 @@ ICON_DIR = 'applogos'
     COLUMN_CATE,
 ) = range(6)
 
+P2P = _("P2P")
+Image = _("Image")
+Sound = _("Sound")
+Video = _("Video")
+Text = _("Text")
+Internet = _("Internet")
+FTP = _("FTP Transform")
+Desktop = _("Desktop")
+Disk = _("Disk")
+Develop = _("Develop")
+Virtual = _("Virtual")
+Mail = _("Main")
+
 data = \
 (
-    ("agave", _("A powerful color picker"), _("Image")),
-    ("amule", _("A donkey p2p software"), _("P2P")),
-    ("anjuta", _("A powerful color picker"), _("IDE")),
-    ("audacious", _("Media play"), _("Sound")),
-    ("avant-window-navigator", _("Mac OS X dock like tools"), _("Desktop")),
-    ("avant-window-navigator-trunk", _("Mac OS X dock like tools-trunk"), _("Desktop")),
-    ("azureus", _("Java based bit torrent tools"), _("P2P")),
-    ("banshee", _("Sound player"), _("Sound")),
-    ("chmsee", _("read chm"), _("Text")),
-    ("compizconfig-settings-manager", _("Compiz setting tools"), _("Desktop")),
-    ("devhelp", _("MSDN like book"), _("Develop")),
-    ("eclipse", _("Java based ide"), _("Develop")),
-    ("emesene", _("Window Live Message like software"), _("Instant Message")),
-    ("eva", _("QQ"), _("Instant Message")),
-    ("exaile", _("Sound player"), _("Sound")),
-    ("filezilla", _("FTP "), _("FTP")),
-    ("gftp", _("FTP "), _("FTP")),
-    ("ghex", _("text hex"), _("Text")),
-    ("gmail-notify", _("Check gmail"), _("Mail")),
-    ("gnomebaker", _("CD tools"), _("CD")),
-    ("gnome-do", _("CD tools"), _("Desktop")),
-    ("gnome-do", _("CD tools"), _("Desktop")),
-    ("googleearth", _("ddd"), _("Internet")),
-    ("gparted", _("ddd"), _("Disk")),
-    ("gpicview", _("ddd"), _("Image")),
-    ("gtk-recordmydesktop", _("ddd"), _("Video")),
-    ("isomaster", _("ddd"), _("CD")),
-    ("lastfm", _("ddd"), _("Internet")),
-    ("leafpad", _("ddd"), _("Text")),
-    ("mail-notification", _("ddd"), _("Mail")),
-    ("meld", _("ddd"), _("Text")),
-    ("mirage", _("ddd"), _("Image")),
-    ("monodevelop", _("ddd"), _("IDE")),
-    ("mplayer", _("ddd"), _("Video")),
-    ("netbeans", _("ddd"), _("IDE")),
-    ("rar", _("ddd"), _("Desktop")),
-    ("screenlets", _("ddd"), _("Desktop")),
-    ("smplayer", _("ddd"), _("Video")),
-    ("stardict", _("ddd"), _("Desktop")),
-    ("virtualbox", _("ddd"), _("Virtual")),
-    ("vlc", _("ddd"), _("Video")),
-    ("vmware-player", _("ddd"), _("Virtual")),
-    ("wine", _("ddd"), _("Virtual")),
+    ("agave", _("A colorscheme designer for GNOME"), Image),
+    ("amule", _("Client for the eD2k and Kad networks, like eMule."), P2P),
+    ("anjuta", _("Integrated Development Environment for GNOME"), Develop),
+    ("audacious", _("A skinned multimedia player for many platforms."), Sound),
+    ("avant-window-navigator", _("Fully customisable dock-like window navigator for GNOME."), Desktop),
+    ("azureus", _("Java based BitTorrent client."), P2P),
+    ("banshee", _("GTK# based Audio Management and Playback application."), Sound),
+    ("chmsee", _("A chm file viewer written in GTK+."), Text),
+    ("compizconfig-settings-manager", _("Advanced Desktop Effects Settings Manager for Compiz Fusion."), Desktop),
+    ("devhelp", _("An API documentation browser for GNOME."), Develop),
+    ("deluge-torrent", _("Deluge is a Bittorrent client, created using Python and GTK+."), P2P),
+    ("eclipse", _("Extensible Tool Platform and Java IDE."), Develop),
+    ("emesene", _("A client for the Windows Live Message network."), Internet),
+    ("eva", _("KDE IM client using Tencent QQ's protocol"), Internet),
+    ("exaile", _("GTK+ based flexible audio player, similar to Amarok."), Sound),
+    ("filezilla", _("gFTP is a multithreaded FTP client"), FTP),
+    ("gftp", _("gFTP is a multithreaded FTP client"), FTP),
+    ("ghex", _("GNOME Hex editor for files"), Text),
+    ("gmail-notify", _("Notify the arrival of new mail on Gmail"), Mail),
+    ("gnomebaker", _("CD tools"), Disk),
+    ("gnome-do", _("CD tools"), Desktop),
+    ("googleearth", _("ddd"), Internet),
+    ("gparted", _("GNOME partition editor"), Disk),
+    ("gpicview", _("lightweight image viewer"), Image),
+    ("gtk-recordmydesktop", _("Graphical frontend for recordmydesktop"), Video),
+    ("isomaster", _("A graphical CD image editor"), Disk),
+    ("lastfm", _("a music player for Last.fm personalized radio"), Internet),
+    ("leafpad", _("GTK+ based simple text editor"), Text),
+    ("mail-notification", _("mail notification in system tray"), Mail),
+    ("meld", _("adcal tool to diff and merge files"), Text),
+    ("mirage", _("A fast and simple GTK+ Image Viewer"), Image),
+    ("monodevelop", _("Develop .NET applications in an Integrated Development Environment"), Develop),
+    ("mplayer", _("The Ultimate Movie Player For Linux - Medibuntu package"), Video),
+    ("netbeans", _("NetBeans Integrated Development Environment for Java, C/C++, Ruby, UML, etc."), Develop),
+    ("rar", _("ddd"), Desktop),
+    ("screenlets", _("ddd"), Desktop),
+    ("smplayer", _("ddd"), Video),
+    ("stardict", _("ddd"), Desktop),
+    ("virtualbox", _("ddd"), Virtual),
+    ("vlc", _("ddd"), Video),
+    ("vmware-player", _("ddd"), Virtual),
+    ("wine", _("ddd"), Virtual),
 )
 
 class Installer(TweakPage):
     def __init__(self, parent = None):
         TweakPage.__init__(self)
         self.main_window = parent
+        update_apt_cache(True)
 
         self.to_add = []
         self.to_rm = []
         self.packageWorker = PackageWorker()
 
-        self.set_title(_("Install the must application"))
-        self.set_description(_("You can install some application form this easily interface."))
+        self.set_title(_("Install the common used applications"))
+        self.set_description(_("You can install applications form this easily interface."))
 
         vbox = gtk.VBox(False, 8)
         self.pack_start(vbox)

@@ -36,9 +36,7 @@ class GnomeVersion:
 class DistroInfo:
     distro = GnomeVersion.distributor
     if  distro == "Ubuntu":
-        from aptsources import distro
-        ubuntu = distro.get_distro()
-        distro = ubuntu.description
+        distro = file('/etc/issue').readline().split('\\n')[0]
 
 class SystemInfo:
     gnome = GnomeVersion.description
