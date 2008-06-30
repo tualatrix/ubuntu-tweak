@@ -64,7 +64,12 @@ class Tweak(dbus.service.Object):
         if self.liststate:
             return self.liststate
         else:
-            return "none"
+            return "normal"
+            
+    @dbus.service.method(INTERFACE,
+                         in_signature='s', out_signature='')
+    def SetListState(self, state):
+        self.liststate = state
 
     @dbus.service.method(INTERFACE,
                          in_signature='', out_signature='')

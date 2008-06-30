@@ -27,63 +27,66 @@ ICON_DIR = 'applogos'
     COLUMN_CATE,
 ) = range(6)
 
-P2P = _("P2P")
-Image = _("Image")
-Sound = _("Sound")
-Video = _("Video")
-Text = _("Text")
-Internet = _("Internet")
-FTP = _("FTP Transform")
-Desktop = _("Desktop")
-Disk = _("Disk")
-Develop = _("Develop")
-Virtual = _("Virtual")
-Mail = _("Main")
+P2P = _("P2P Client")
+Image = _("Image Tool")
+Sound = _("Sound Tool")
+Video = _("Video Tool")
+Text = _("Text Tool")
+Internet = _("Internet Tool")
+FTP = _("FTP Tool")
+Desktop = _("Desktop Tool")
+Disk = _("Disk Tool")
+Develop = _("Develop Kit")
+Emulator = _("Emulator")
+Mail = _("EMail Tool")
 
 data = \
 (
-    ("agave", _("A colorscheme designer for GNOME"), Image),
-    ("amule", _("Client for the eD2k and Kad networks, like eMule."), P2P),
-    ("anjuta", _("Integrated Development Environment for GNOME"), Develop),
-    ("audacious", _("A skinned multimedia player for many platforms."), Sound),
-    ("avant-window-navigator", _("Fully customisable dock-like window navigator for GNOME."), Desktop),
+    ("agave", _("A colorscheme designer"), Image),
+    ("amule", _("Client for the eD2k and Kad networks"), P2P),
+    ("anjuta", _("GNOME's IDE for C/C++, Java, Python"), Develop),
+    ("audacious", _("A skinned multimedia player for many platforms"), Sound),
+    ("audacity", _("Record and edit audio files"), Sound),
+    ("avant-window-navigator", _("Fully customisable dock-like window navigator"), Desktop),
+    ("avidemux", _("A free video editor"), Video),
     ("azureus", _("Java based BitTorrent client."), P2P),
     ("banshee", _("GTK# based Audio Management and Playback application."), Sound),
-    ("chmsee", _("A chm file viewer written in GTK+."), Text),
-    ("compizconfig-settings-manager", _("Advanced Desktop Effects Settings Manager for Compiz Fusion."), Desktop),
+    ("chmsee", _("A chm file viewer written in GTK+"), Text),
+    ("compizconfig-settings-manager", _("Advanced Desktop Effects Settings Manager"), Desktop),
     ("devhelp", _("An API documentation browser for GNOME."), Develop),
-    ("deluge-torrent", _("Deluge is a Bittorrent client, created using Python and GTK+."), P2P),
+    ("deluge-torrent", _("A Bittorrent client, created using PyGTK"), P2P),
     ("eclipse", _("Extensible Tool Platform and Java IDE."), Develop),
-    ("emesene", _("A client for the Windows Live Message network."), Internet),
+    ("emesene", _("A client for the Windows Live Message network"), Internet),
     ("eva", _("KDE IM client using Tencent QQ's protocol"), Internet),
-    ("exaile", _("GTK+ based flexible audio player, similar to Amarok."), Sound),
+    ("exaile", _("GTK+ based flexible audio player, similar to Amarok"), Sound),
     ("filezilla", _("gFTP is a multithreaded FTP client"), FTP),
     ("gftp", _("gFTP is a multithreaded FTP client"), FTP),
     ("ghex", _("GNOME Hex editor for files"), Text),
     ("gmail-notify", _("Notify the arrival of new mail on Gmail"), Mail),
-    ("gnomebaker", _("CD tools"), Disk),
-    ("gnome-do", _("CD tools"), Desktop),
-    ("googleearth", _("ddd"), Internet),
+    ("gnome-do", _("Do things as quickly as possible"), Desktop),
+    ("googleearth", _("Let you fly anywhere to view the earth"), Internet),
     ("gparted", _("GNOME partition editor"), Disk),
     ("gpicview", _("lightweight image viewer"), Image),
     ("gtk-recordmydesktop", _("Graphical frontend for recordmydesktop"), Video),
     ("isomaster", _("A graphical CD image editor"), Disk),
+    ("kino", _("Non-linear editor for Digital Video data"), Video),
     ("lastfm", _("a music player for Last.fm personalized radio"), Internet),
     ("leafpad", _("GTK+ based simple text editor"), Text),
+    ("liferea", _("Feed aggregator for GNOME"), Internet),
     ("mail-notification", _("mail notification in system tray"), Mail),
     ("meld", _("adcal tool to diff and merge files"), Text),
     ("mirage", _("A fast and simple GTK+ Image Viewer"), Image),
-    ("monodevelop", _("Develop .NET applications in an Integrated Development Environment"), Develop),
-    ("mplayer", _("The Ultimate Movie Player For Linux - Medibuntu package"), Video),
-    ("netbeans", _("NetBeans Integrated Development Environment for Java, C/C++, Ruby, UML, etc."), Develop),
-    ("rar", _("ddd"), Desktop),
-    ("screenlets", _("ddd"), Desktop),
-    ("smplayer", _("ddd"), Video),
-    ("stardict", _("ddd"), Desktop),
-    ("virtualbox", _("ddd"), Virtual),
-    ("vlc", _("ddd"), Video),
-    ("vmware-player", _("ddd"), Virtual),
-    ("wine", _("ddd"), Virtual),
+    ("monodevelop", _("Develop .NET applications."), Develop),
+    ("mplayer", _("The Ultimate Movie Player For Linux"), Video),
+    ("netbeans", _("IDE for Java, C/C++, Ruby, UML, etc."), Develop),
+    ("screenlets", _("Widget-like mini-applications"), Desktop),
+    ("smplayer", _("A great MPlayer front-end, written in QT4"), Video),
+    ("soundconverter", _("Convert audio files into other formats"), Sound),
+    ("stardict", _("An international dictionary"), Text),
+    ("virtualbox", _("A feature rich, high performance virtualization software"), Emulator),
+    ("vlc", _("Read, capture, broadcast your multimedia streams"), Video),
+    ("vmware-player", _("VMware Player can play virtual machines created by VMware"), Emulator),
+    ("wine", _("A compatibility layer for running Windows programs"), Emulator),
 )
 
 class Installer(TweakPage):
@@ -97,7 +100,7 @@ class Installer(TweakPage):
         self.packageWorker = PackageWorker()
 
         self.set_title(_("Install the common used applications"))
-        self.set_description(_("You can install applications form this easily interface."))
+        self.set_description(_("You can install applications form this simple interface."))
 
         vbox = gtk.VBox(False, 8)
         self.pack_start(vbox)

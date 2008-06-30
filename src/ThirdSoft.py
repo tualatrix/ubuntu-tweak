@@ -34,7 +34,7 @@ import apt_pkg
 from Constants import *
 from Factory import Factory
 from PolicyKit import PolkitButton, DbusProxy
-from Widgets import ListPack, TweakPage
+from Widgets import ListPack, TweakPage, Colleague, Mediator
 from aptsources.sourceslist import SourceEntry, SourcesList
 from PolicyKit import PolkitButton
 
@@ -56,18 +56,18 @@ gettext.install(App, unicode = True)
 ) = range(4)
 
 SOURCES_DATA = [
-    ['http://ppa.launchpad.net/awn-testing/ubuntu', ['main'], _('Avant Window Navigator'), _('webkit based light-weight browser')],
-    ['http://ppa.launchpad.net/stemp/ubuntu', ['main'], _('Midori'), _('webkit based light-weight browser')],
+    ['http://ppa.launchpad.net/awn-core/ubuntu', ['main'], _('AWN'), _('Fully customisable dock-like window navigator')],
+    ['http://ppa.launchpad.net/stemp/ubuntu', ['main'], _('Midori'), _('Webkit based lightweight web browser')],
     ['http://ppa.launchpad.net/fta/ubuntu', ['main'], _('Firefox'), _('The development firefox version')],
-    ['http://ppa.launchpad.net/compiz/ubuntu', ['main'], _('Compiz Fusion'), _('the development Compiz Fusion')],
-    ['http://ppa.launchpad.net/do-core/ubuntu', ['main'], _('GNOME Do'), _('dfsafdaf')],
-    ['http://ppa.launchpad.net/banshee-team/ubuntu', ['main'], _('Banshee'), _('music player')],
-    ['http://ppa.launchpad.net/googlegadgets/ubuntu', ['main'], _('Google gadgets'), _('Google desktopt tools')],
-    ['http://ppa.launchpad.net/lidaobing/ubuntu', ['main'], _('chmsee'), _('chm reader')],
-    ['http://ppa.launchpad.net/kubuntu-members-kde4/ubuntu', ['main'], _('KDE 4'), _('Desktop Etnry')],
+    ['http://ppa.launchpad.net/compiz/ubuntu', ['main'], _('Compiz Fusion'), _('Development version of Compiz Fusion')],
+    ['http://ppa.launchpad.net/do-core/ubuntu', ['main'], _('GNOME Do'), _('Quickly perform actions on your desktop')],
+    ['http://ppa.launchpad.net/banshee-team/ubuntu', ['main'], _('Banshee'), _('Audio Management and Playback application.')],
+    ['http://ppa.launchpad.net/googlegadgets/ubuntu', ['main'], _('Google gadgets'), _('Platform for running Google Gadgets on Linux')],
+    ['http://ppa.launchpad.net/lidaobing/ubuntu', ['main'], _('chmsee'), _('A chm file viewer written in GTK+')],
+    ['http://ppa.launchpad.net/kubuntu-members-kde4/ubuntu', ['main'], _('KDE 4'), _('KDE 4.1')],
     ['http://ppa.launchpad.net/tualatrix/ubuntu', ['main'], _('Ubuntu Tweak'), _('Hello')],
-    ['http://wine.budgetdedicated.com/apt', ['main'], _('WineHQ'), _('Ubuntu 8.04 "Hardy Heron"')],
-    ['http://ppa.launchpad.net/lxde/ubuntu', ['main'], _('LXDE'), _('Lightweight X11 Desktop Environment for Ubuntu.')],
+    ['http://wine.budgetdedicated.com/apt', ['main'], _('Wine'), _('Wine')],
+    ['http://ppa.launchpad.net/lxde/ubuntu', ['main'], _('LXDE'), _('Lightweight X11 Desktop Environment:GPicView, PCManFM')],
 ]
 
 class UpdateCacheDialog:
@@ -114,11 +114,11 @@ class UpdateCacheDialog:
             self.parent.set_sensitive(True)
         return res
 
-class SourcesView(gtk.TreeView):
-    def __init__(self):
+class SourcesView(gtk.TreeView, Colleague):
+    def __init__(self, mediator):
         gtk.TreeView.__init__(self)
+        Colleague.__init__(self, mediator)
 
-        #apt_pkg.init()
         self.list = SourcesList()
         self.proxy = DbusProxy()
         self.model = self.__create_model()
@@ -181,20 +181,25 @@ class SourcesView(gtk.TreeView):
             self.model.set(iter, COLUMN_ENABLED, True)
         else:
             self.model.set(iter, COLUMN_ENABLED, False)
+            
+        self.state_changed(cell)
+    
+    def set_sourceslist_state(self, state):
+        self.proxy.proxy.SetListState(state)
 
-class ThirdSoft(TweakPage):
+class ThirdSoft(TweakPage, Mediator):
     def __init__(self, parent = None):
         TweakPage.__init__(self)
 
-        self.set_title(_("Added the Third-Party Softwares"))
-        self.set_description(_("Always use the newest thrid-party softwares with Ubuntu Tweak!"))
+        self.set_title(_("Third-Party Softwares Sources"))
+        self.set_description(_("You can always follow the latest version of a application.\nJust enable the application what you want."))
 
         sw = gtk.ScrolledWindow()
         sw.set_shadow_type(gtk.SHADOW_ETCHED_IN)
         sw.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
         self.pack_start(sw)
 
-        self.treeview = SourcesView()
+        self.treeview = SourcesView(self)
         self.treeview.set_sensitive(False)
         self.treeview.set_rules_hint(True)
         sw.add(self.treeview)
@@ -204,12 +209,26 @@ class ThirdSoft(TweakPage):
 
         un_lock = PolkitButton()
         un_lock.connect("clicked", self.on_polkit_action)
+        hbox.pack_end(un_lock, False, False, 5)
 
-        hbox.pack_end(un_lock, False, False, 0)
+        self.refresh_button = gtk.Button(stock = gtk.STOCK_REFRESH)
+        self.refresh_button.set_sensitive(False)
+        self.refresh_button.connect("clicked", self.on_refresh_button_clicked)
+        hbox.pack_end(self.refresh_button, False, False, 5)
 
     def on_polkit_action(self, widget):
         if widget.action == 1:
             self.treeview.set_sensitive(True)
+            
+    def colleague_changed(self):
+        self.refresh_button.set_sensitive(True)
+    
+    def on_refresh_button_clicked(self, widget):
+        print self.parent
+        dialog = UpdateCacheDialog(widget.get_toplevel())
+        res = dialog.run()
+        self.treeview.set_sourceslist_state('normal')
+        widget.set_sensitive(False)
 
 if __name__ == "__main__":
     from Utility import Test

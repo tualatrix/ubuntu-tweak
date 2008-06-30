@@ -59,7 +59,6 @@ plugins = \
 
 plugins_settings = \
 {
-    
     "expo": "expo_edge",
     "scale": "initiate_all_edge",
     "core": "show_desktop_edge",
@@ -101,7 +100,7 @@ class WobblyMenu(gtk.CheckButton, CompizSetting):
         self.mediator = mediator
         self.plugin = self.context.Plugins['wobbly']
         self.setting = self.plugin.Screens[0]['map_window_match']
-        
+
         if self.setting.Value == self.setting.DefaultValue and self.plugin.Enabled:
             self.set_active(True)
 
@@ -162,7 +161,7 @@ class SnapWindow(gtk.CheckButton, CompizSetting):
 
         self.mediator = mediator
         self.plugin = self.context.Plugins['snap']
-        
+
         self.set_active(self.plugin.Enabled)
 
         self.connect("toggled", self.on_button_toggled)
@@ -266,7 +265,7 @@ class Compiz(gtk.VBox, CompizSetting, Mediator):
             self.change_edge(widget, edge)
         else:
             self.add_edge(widget, edge)
-            
+
     def change_edge(self, widget, edge):
         previous = widget.previous
 
