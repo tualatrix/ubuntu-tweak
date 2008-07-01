@@ -61,4 +61,3 @@ class ManyTest:
         win.show_all()
 
         gtk.main()
-

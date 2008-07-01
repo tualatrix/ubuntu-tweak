@@ -56,18 +56,18 @@ gettext.install(App, unicode = True)
 ) = range(4)
 
 SOURCES_DATA = [
-    ['http://ppa.launchpad.net/awn-core/ubuntu', ['main'], _('AWN'), _('Fully customisable dock-like window navigator')],
-    ['http://ppa.launchpad.net/stemp/ubuntu', ['main'], _('Midori'), _('Webkit based lightweight web browser')],
-    ['http://ppa.launchpad.net/fta/ubuntu', ['main'], _('Firefox'), _('The development firefox version')],
-    ['http://ppa.launchpad.net/compiz/ubuntu', ['main'], _('Compiz Fusion'), _('Development version of Compiz Fusion')],
-    ['http://ppa.launchpad.net/do-core/ubuntu', ['main'], _('GNOME Do'), _('Quickly perform actions on your desktop')],
-    ['http://ppa.launchpad.net/banshee-team/ubuntu', ['main'], _('Banshee'), _('Audio Management and Playback application.')],
-    ['http://ppa.launchpad.net/googlegadgets/ubuntu', ['main'], _('Google gadgets'), _('Platform for running Google Gadgets on Linux')],
-    ['http://ppa.launchpad.net/lidaobing/ubuntu', ['main'], _('chmsee'), _('A chm file viewer written in GTK+')],
-    ['http://ppa.launchpad.net/kubuntu-members-kde4/ubuntu', ['main'], _('KDE 4'), _('KDE 4.1')],
-    ['http://ppa.launchpad.net/tualatrix/ubuntu', ['main'], _('Ubuntu Tweak'), _('Hello')],
-    ['http://wine.budgetdedicated.com/apt', ['main'], _('Wine'), _('Wine')],
-    ['http://ppa.launchpad.net/lxde/ubuntu', ['main'], _('LXDE'), _('Lightweight X11 Desktop Environment:GPicView, PCManFM')],
+    ['http://ppa.launchpad.net/awn-core/ubuntu', ['main'], 'AWN', _('Fully customisable dock-like window navigator')],
+    ['http://ppa.launchpad.net/stemp/ubuntu', ['main'], 'Midori', _('Webkit based lightweight web browser')],
+    ['http://ppa.launchpad.net/fta/ubuntu', ['main'], 'Firefox', _('Development version of firefox 3.0/3.1, 4.0')],
+    ['http://ppa.launchpad.net/compiz/ubuntu', ['main'], 'Compiz Fusion', _('Development version of Compiz Fusion')],
+    ['http://ppa.launchpad.net/do-core/ubuntu', ['main'], 'GNOME Do', _('Do things as quickly as possible')],
+    ['http://ppa.launchpad.net/banshee-team/ubuntu', ['main'], 'Banshee', _('Audio Management and Playback application')],
+    ['http://ppa.launchpad.net/googlegadgets/ubuntu', ['main'], 'Google gadgets', _('Platform for running Google Gadgets on Linux')],
+    ['http://ppa.launchpad.net/lidaobing/ubuntu', ['main'], 'chmsee', _('A chm file viewer written in GTK+')],
+    ['http://ppa.launchpad.net/kubuntu-members-kde4/ubuntu', ['main'], 'KDE 4', _('K Desktop Environment 4.1')],
+    ['http://ppa.launchpad.net/tualatrix/ubuntu', ['main'], 'Ubuntu Tweak', _('Tweak ubuntu to what you like')],
+    ['http://wine.budgetdedicated.com/apt', ['main'], 'Wine', _('A compatibility layer for running Windows programs')],
+    ['http://ppa.launchpad.net/lxde/ubuntu', ['main'], 'LXDE', _('Lightweight X11 Desktop Environment:GPicView, PCManFM')],
 ]
 
 class UpdateCacheDialog:
@@ -185,7 +185,7 @@ class SourcesView(gtk.TreeView, Colleague):
         self.state_changed(cell)
     
     def set_sourceslist_state(self, state):
-        self.proxy.proxy.SetListState(state)
+        self.proxy.proxy.SetListState(state, dbus_interface = self.proxy.INTERFACE)
 
 class ThirdSoft(TweakPage, Mediator):
     def __init__(self, parent = None):
@@ -224,7 +224,6 @@ class ThirdSoft(TweakPage, Mediator):
         self.refresh_button.set_sensitive(True)
     
     def on_refresh_button_clicked(self, widget):
-        print self.parent
         dialog = UpdateCacheDialog(widget.get_toplevel())
         res = dialog.run()
         self.treeview.set_sourceslist_state('normal')

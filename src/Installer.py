@@ -27,18 +27,18 @@ ICON_DIR = 'applogos'
     COLUMN_CATE,
 ) = range(6)
 
-P2P = _("P2P Client")
-Image = _("Image Tool")
-Sound = _("Sound Tool")
-Video = _("Video Tool")
-Text = _("Text Tool")
-Internet = _("Internet Tool")
-FTP = _("FTP Tool")
-Desktop = _("Desktop Tool")
-Disk = _("Disk Tool")
+P2P = _("P2P Clients")
+Image = _("Image Tools")
+Sound = _("Sound Tools")
+Video = _("Video Tools")
+Text = _("Text Tools")
+Internet = _("Internet Tools")
+FTP = _("FTP Tools")
+Desktop = _("Desktop Tools")
+Disk = _("CD/Disk Tools")
 Develop = _("Develop Kit")
-Emulator = _("Emulator")
-Mail = _("EMail Tool")
+Emulator = _("Emulators")
+Mail = _("Email Tools")
 
 data = \
 (
@@ -49,33 +49,35 @@ data = \
     ("audacity", _("Record and edit audio files"), Sound),
     ("avant-window-navigator", _("Fully customisable dock-like window navigator"), Desktop),
     ("avidemux", _("A free video editor"), Video),
-    ("azureus", _("Java based BitTorrent client."), P2P),
-    ("banshee", _("GTK# based Audio Management and Playback application."), Sound),
+    ("azureus", _("BitTorrent client written in Java"), P2P),
+    ("banshee", _("Audio Management and Playback application"), Sound),
     ("chmsee", _("A chm file viewer written in GTK+"), Text),
     ("compizconfig-settings-manager", _("Advanced Desktop Effects Settings Manager"), Desktop),
     ("devhelp", _("An API documentation browser for GNOME."), Develop),
-    ("deluge-torrent", _("A Bittorrent client, created using PyGTK"), P2P),
-    ("eclipse", _("Extensible Tool Platform and Java IDE."), Develop),
+    ("deluge-torrent", _("A Bittorrent client written in PyGTK"), P2P),
+    ("eclipse", _("Extensible Tool Platform and Java IDE"), Develop),
     ("emesene", _("A client for the Windows Live Message network"), Internet),
     ("eva", _("KDE IM client using Tencent QQ's protocol"), Internet),
     ("exaile", _("GTK+ based flexible audio player, similar to Amarok"), Sound),
-    ("filezilla", _("gFTP is a multithreaded FTP client"), FTP),
-    ("gftp", _("gFTP is a multithreaded FTP client"), FTP),
+    ("filezilla", _("File transmission via ftp, sftp and ftps"), FTP),
+    ("pcmanfm", _("An extremly fast and lightweight file manager"), Desktop),
+    ("gftp", _("A multithreaded FTP client"), FTP),
     ("ghex", _("GNOME Hex editor for files"), Text),
     ("gmail-notify", _("Notify the arrival of new mail on Gmail"), Mail),
     ("gnome-do", _("Do things as quickly as possible"), Desktop),
     ("googleearth", _("Let you fly anywhere to view the earth"), Internet),
     ("gparted", _("GNOME partition editor"), Disk),
-    ("gpicview", _("lightweight image viewer"), Image),
+    ("gpicview", _("Lightweight image viewer"), Image),
     ("gtk-recordmydesktop", _("Graphical frontend for recordmydesktop"), Video),
     ("isomaster", _("A graphical CD image editor"), Disk),
     ("kino", _("Non-linear editor for Digital Video data"), Video),
-    ("lastfm", _("a music player for Last.fm personalized radio"), Internet),
+    ("lastfm", _("A music player for Last.fm personalized radio"), Internet),
     ("leafpad", _("GTK+ based simple text editor"), Text),
     ("liferea", _("Feed aggregator for GNOME"), Internet),
     ("mail-notification", _("mail notification in system tray"), Mail),
     ("meld", _("adcal tool to diff and merge files"), Text),
     ("mirage", _("A fast and simple GTK+ Image Viewer"), Image),
+    ("midori", _("Webkit based lightweight web browser"), Internet),
     ("monodevelop", _("Develop .NET applications."), Develop),
     ("mplayer", _("The Ultimate Movie Player For Linux"), Video),
     ("netbeans", _("IDE for Java, C/C++, Ruby, UML, etc."), Develop),
@@ -99,7 +101,7 @@ class Installer(TweakPage):
         self.to_rm = []
         self.packageWorker = PackageWorker()
 
-        self.set_title(_("Install the common used applications"))
+        self.set_title(_("Install the widely used applications"))
         self.set_description(_("You can install applications form this simple interface."))
 
         vbox = gtk.VBox(False, 8)
@@ -109,7 +111,7 @@ class Installer(TweakPage):
         vbox.pack_start(hbox, False, False, 0)
 
         combobox = gtk.combo_box_new_text()
-        combobox.append_text(_("All Category"))
+        combobox.append_text(_("All Categories"))
         temp = []
         for item in data:
             cate = item[-1]
@@ -212,9 +214,6 @@ class Installer(TweakPage):
         desc = self.model.get_value(iter, COLUMN_DESC)
         display = self.model.get_value(iter, COLUMN_DISPLAY)
 
-        print is_installed
-        print appname
-
         is_installed = not is_installed
         if is_installed:
             if appname in self.to_rm:
@@ -251,7 +250,7 @@ class Installer(TweakPage):
         treeview.append_column(column)
 
         # column for application
-        column = gtk.TreeViewColumn('Application')
+        column = gtk.TreeViewColumn('Applications')
         column.set_spacing(5)
         renderer = gtk.CellRendererPixbuf()
         column.pack_start(renderer, False)

@@ -1,11 +1,27 @@
-#!/usr/bin/env python
+#!/usr/bin/python
+
+# Ubuntu Tweak - PyGTK based desktop configure tool
+#
+# Copyright (C) 2007-2008 TualatriX <tualatrix@gmail.com>
+#
+# Ubuntu Tweak is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# Ubuntu Tweak is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import dbus
 import dbus.service
 import dbus.mainloop.glib
 import gobject
-
-
 
 class DemoException(dbus.DBusException):
     _dbus_error_name = 'com.ubuntu_tweak.Mechanism.DemoException'
@@ -13,29 +29,6 @@ class DemoException(dbus.DBusException):
 class Tweak(dbus.service.Object):
     INTERFACE = "com.ubuntu_tweak.Mechanism"
     liststate = None
-
-    @dbus.service.method(INTERFACE,
-                         in_signature='s', out_signature='as')
-    def HelloWorld(self, hello_message):
-        print (str(hello_message))
-        return ["Hello", " from example-service.py", "with unique name",
-                system_bus.get_unique_name()]
-
-    @dbus.service.method(INTERFACE,
-                         in_signature='', out_signature='')
-    def RaiseException(self):
-        raise DemoException('The RaiseException method does what you might '
-                            'expect')
-
-    @dbus.service.method(INTERFACE,
-                         in_signature='', out_signature='(ss)')
-    def GetTuuple(self):
-        return ("Hello Tuple", " from example-service.py")
-
-    @dbus.service.method(INTERFACE,
-                         in_signature='', out_signature='a{ss}')
-    def GetDict(self):
-        return {"first": "Hello Dict", "second": " from example-service.py"}
 
     @dbus.service.method(INTERFACE,
                          in_signature='ssb', out_signature='s')

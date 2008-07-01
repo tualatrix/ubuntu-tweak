@@ -33,8 +33,49 @@ from Constants import *
 from gnome import url_show
 from Widgets import MessageDialog
 from SystemInfo import GnomeVersion
+from SystemInfo import SystemInfo
 
+DISABLE_HARDY = '8.04' not in SystemInfo.distro
 GNOME = int(GnomeVersion.minor)
+
+def Welcome(parent = None):
+    vbox = gtk.VBox(False, 0)
+
+    label = gtk.Label()
+    label.set_markup(_("<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak!</b></span>\n\n\nThis is a tool for Ubuntu which makes it easy to change hidden \nsystem and desktop settings.\n\nUbuntu Tweak can also be run in other distributions.\n\nIf you have any suggestions, please visit the website in \"About\" and \nshare ideas with me. \n\nEnjoy!"))
+    label.set_justify(gtk.JUSTIFY_FILL)
+    vbox.pack_start(label, False, False, 50)
+
+    hbox = gtk.HBox(False, 0)
+    vbox.pack_start(hbox, False, False, 0)
+        
+    return vbox
+
+def Wait(parent = None):
+    vbox = gtk.VBox(False, 0)
+
+    label = gtk.Label()
+    label.set_markup(_("<span size=\"xx-large\">Wait a moment...</span>"))
+    label.set_justify(gtk.JUSTIFY_FILL)
+    vbox.pack_start(label, False, False, 50)
+
+    hbox = gtk.HBox(False, 0)
+    vbox.pack_start(hbox, False, False, 0)
+        
+    return vbox
+
+def Notice(parent = None):
+    vbox = gtk.VBox(False, 0)
+
+    label = gtk.Label()
+    label.set_markup(_("<span size=\"x-large\">This feature is only enabled in Ubuntu 8.04</span>"))
+    label.set_justify(gtk.JUSTIFY_FILL)
+    vbox.pack_start(label, False, False, 50)
+
+    hbox = gtk.HBox(False, 0)
+    vbox.pack_start(hbox, False, False, 0)
+        
+    return vbox
 
 from Computer import Computer
 from Session import Session
@@ -54,9 +95,9 @@ else:
     UserDir = None
     Templates = None
 
-if DISABLE_APT:
-    Installer = None
-    ThirdSoft = None
+if DISABLE_APT or DISABLE_HARDY:
+    Installer = Notice
+    ThirdSoft = Notice
 else:
     from Installer import Installer
     from ThirdSoft import ThirdSoft
@@ -131,32 +172,6 @@ icons = \
     "pixmaps/lockdown.png",
 ]
 
-def Welcome(parent = None):
-    vbox = gtk.VBox(False, 0)
-
-    label = gtk.Label()
-    label.set_markup(_("<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak!</b></span>\n\n\nThis is a tool for Ubuntu which makes it easy to change hidden \nsystem and desktop settings.\n\nUbuntu Tweak can also be run in other distributions.\n\nIf you have any suggestions, please visit the website in \"About\" and \nshare ideas with me. \n\nEnjoy!"))
-    label.set_justify(gtk.JUSTIFY_FILL)
-    vbox.pack_start(label, False, False, 50)
-
-    hbox = gtk.HBox(False, 0)
-    vbox.pack_start(hbox, False, False, 0)
-        
-    return vbox
-
-def Wait(parent = None):
-    vbox = gtk.VBox(False, 0)
-
-    label = gtk.Label()
-    label.set_markup(_("<span size=\"xx-large\">Wait a moment...</span>"))
-    label.set_justify(gtk.JUSTIFY_FILL)
-    vbox.pack_start(label, False, False, 50)
-
-    hbox = gtk.HBox(False, 0)
-    vbox.pack_start(hbox, False, False, 0)
-        
-    return vbox
-
 MODULE_LIST = \
 [
     [WELCOME_PAGE, icons[WELCOME_PAGE], _("Welcome"), Welcome, None],
@@ -192,7 +207,7 @@ class MainWindow(gtk.Window):
 
         self.connect("destroy", self.destroy)
         self.set_title("Ubuntu Tweak")
-        self.set_default_size(650, 680)
+        self.set_default_size(690, 680)
         self.set_position(gtk.WIN_POS_CENTER)
         self.set_border_width(10)
         self.set_icon_from_file("pixmaps/ubuntu-tweak.png")
@@ -420,16 +435,13 @@ You should have received a copy of the GNU General Public License along with Ubu
         gtk.gdk.threads_leave()
 
     def destroy(self, widget, data = None):
-        from PolicyKit import DbusProxy
-        if not DISABLE_APT:
+        if not DISABLE_APT and not DISABLE_HARDY:
+            from PolicyKit import DbusProxy
             state = DbusProxy.proxy.GetListState(dbus_interface = DbusProxy.INTERFACE)
-            print state
-
             if state == "expire":
                 from ThirdSoft import UpdateCacheDialog
                 dialog = UpdateCacheDialog(self)
                 res = dialog.run()
-                print res
 
-        DbusProxy.proxy.Exit(dbus_interface = DbusProxy.INTERFACE)
+            DbusProxy.proxy.Exit(dbus_interface = DbusProxy.INTERFACE)
         gtk.main_quit()
