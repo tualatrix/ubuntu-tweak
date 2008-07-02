@@ -49,7 +49,7 @@ class DefaultTemplates(AbstractTempates):
             "HTML document.html": _("HTML document"),
             "ODB Database.odb": _("ODB Database"),
             "ODS Spreadsheet.ods": _("ODS Spreadsheet"),
-            "ODT Document.dot": _("ODT Document"),
+            "ODT Document.odt": _("ODT Document"),
             "Plain text document.txt": _("Plain text document"),
             "ODP Presentation.odp": _("ODP Presentation"),
             "Python script.py": _("Python script"),

@@ -38,10 +38,10 @@ class Metacity(gtk.VBox):
 
         box = TablePack(_("<b>Window Decorate Effect</b>"), [
                 [Factory.create("gconfcheckbutton", _("Use metacity theme"), "use_metacity_theme")],
-                [Factory.create("gconfcheckbutton", _("Active window opacity shade"), "metacity_theme_active_shade_opacity")],
-                [gtk.Label(_("Active window opacity level")), Factory.create("gconfscale", 0, 1, "metacity_theme_active_opacity", 2)],
-                [Factory.create("gconfcheckbutton", _("Inactive window opacity shade"), "metacity_theme_shade_opacity")],
-                [gtk.Label(_("Inactive window shade opacity level")), Factory.create("gconfscale", 0, 1, "metacity_theme_opacity", 2)],
+                [Factory.create("gconfcheckbutton", _("Active window transparency shade"), "metacity_theme_active_shade_opacity")],
+                [gtk.Label(_("Active window transparency level")), Factory.create("gconfscale", 0, 1, "metacity_theme_active_opacity", 2)],
+                [Factory.create("gconfcheckbutton", _("Inactive window transparency shade"), "metacity_theme_shade_opacity")],
+                [gtk.Label(_("Inactive window shade transparency level")), Factory.create("gconfscale", 0, 1, "metacity_theme_opacity", 2)],
             ])
         self.pack_start(box, False, False, 0)
 

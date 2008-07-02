@@ -31,16 +31,16 @@ class Tweak(dbus.service.Object):
     liststate = None
 
     @dbus.service.method(INTERFACE,
-                         in_signature='ssb', out_signature='s')
-    def SetSourcesList(self, url, comment, enabled):
+                         in_signature='sssb', out_signature='s')
+    def SetSourcesList(self, url, comment, comps, enabled):
         import apt_pkg
         from aptsources.sourceslist import SourceEntry, SourcesList
         apt_pkg.init()
         list = SourcesList()
         self.liststate = "expire"
         if enabled:
-            list.add('deb', url, 'hardy', ['main'], comment)
-            list.add('deb-src', url, 'hardy', ['main'], comment)
+            list.add('deb', url, 'hardy', [comps], comment)
+        #    list.add('deb-src', url, 'hardy', [comps], comment)
             list.save()
             return 'enabled'
         else:

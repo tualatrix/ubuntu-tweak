@@ -51,6 +51,7 @@ data = \
     ("avidemux", _("A free video editor"), Video),
     ("azureus", _("BitTorrent client written in Java"), P2P),
     ("banshee", _("Audio Management and Playback application"), Sound),
+    ("cairo-dock", _("A true dock for linux"), Desktop),
     ("chmsee", _("A chm file viewer written in GTK+"), Text),
     ("compizconfig-settings-manager", _("Advanced Desktop Effects Settings Manager"), Desktop),
     ("devhelp", _("An API documentation browser for GNOME."), Develop),
@@ -102,7 +103,7 @@ class Installer(TweakPage):
         self.packageWorker = PackageWorker()
 
         self.set_title(_("Install the widely used applications"))
-        self.set_description(_("You can install applications form this simple interface."))
+        self.set_description(_("You can install applications by using this simple interface."))
 
         vbox = gtk.VBox(False, 8)
         self.pack_start(vbox)
