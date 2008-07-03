@@ -67,6 +67,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/lidaobing/ubuntu', 'main', 'chmsee', _('A chm file viewer written in GTK+')],
     ['http://ppa.launchpad.net/kubuntu-members-kde4/ubuntu', 'main', 'KDE 4', _('K Desktop Environment 4.1')],
     ['http://ppa.launchpad.net/tualatrix/ubuntu', 'main', 'Ubuntu Tweak', _('Tweak ubuntu to what you like')],
+    ['http://ppa.launchpad.net/gilir/ubuntu', 'main', 'Screenlets', _('A framework for desktop widgets')],
     ['http://wine.budgetdedicated.com/apt', 'main', 'Wine', _('A compatibility layer for running Windows programs')],
     ['http://ppa.launchpad.net/lxde/ubuntu', 'main', 'LXDE', _('Lightweight X11 Desktop Environment:GPicView, PCManFM')],
 ]

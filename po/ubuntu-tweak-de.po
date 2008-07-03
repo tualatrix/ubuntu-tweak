@@ -3,14 +3,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-07 08:09+0000\n"
-"PO-Revision-Date: 2008-05-03 14:22+0000\n"
-"Last-Translator: spocky <spocky@bluebottle.com>\n"
+"POT-Creation-Date: 2008-07-02 15:28+0000\n"
+"PO-Revision-Date: 2008-06-22 16:21+0000\n"
+"Last-Translator: oknuwxh <Unknown>\n"
 "Language-Team: LL <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-05-07 08:32+0000\n"
+"X-Launchpad-Export-Date: 2008-07-03 06:32+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: GERMANY\n"
 "X-Poedit-Language: German\n"
@@ -26,6 +26,9 @@ msgstr ""
 #~ msgid "Maximize Effect"
 #~ msgstr "Maximieren-Effekt"
 
+#~ msgid "<b>GNOME Panel and Menu</b>"
+#~ msgstr "<b>GNOME-Panel und Menü</b>"
+
 #~ msgid "Confirm before remove panel"
 #~ msgstr "Entfernen des Panels bestätigen"
 
@@ -34,6 +37,12 @@ msgstr ""
 
 #~ msgid "Show Unicode Method menu in the right-click"
 #~ msgstr "Unicode-Steuerzeichen bei Rechtsklick anbieten"
+
+#~ msgid "<span size=\"xx-large\">Please select the child item</span>"
+#~ msgstr "<span size=\"xx-large\">Bitte einen Unterpunkt auswählen</span>"
+
+#~ msgid "Active window opacity level"
+#~ msgstr "Transparenz aktiver Fensterrahmen"
 
 #~ msgid "Window shade opacity level"
 #~ msgstr "Transparenz inaktiver Fensterrahmen"
@@ -85,32 +94,31 @@ msgstr "_Durchsuchen"
 msgid "Choose a Program"
 msgstr "Programm auswählen"
 
-#: AutoStart.py:159
+#: AutoStart.py:166
 msgid "Delete from Disk"
 msgstr "Endgültig entfernen"
 
-#: AutoStart.py:173
+#: AutoStart.py:180
 msgid "Can't delete the system item from disk."
 msgstr "Endgültiges Entfernen nicht möglich"
 
-#: AutoStart.py:210
+#: AutoStart.py:218
 msgid "None description"
 msgstr "Keine Beschreibung"
 
-#: AutoStart.py:224
+#: AutoStart.py:232
 msgid "Enabled"
 msgstr "Aktiviert"
 
-#: AutoStart.py:229
+#: AutoStart.py:237
 msgid "Program"
 msgstr "Programm"
 
-#: AutoStart.py:279
+#: AutoStart.py:287
 msgid "<b>Enable or Disable the AutoStart Program</b>"
 msgstr "<b>Automatischen Start aktivieren oder deaktivieren</b>"
 
-#: AutoStart.py:283
-#, fuzzy
+#: AutoStart.py:291
 msgid ""
 "You can safely delete the item, it will only been marked as hidden.\n"
 "If you want to delete it from disk, right-click the item."
@@ -120,65 +128,101 @@ msgstr ""
 "Wenn sie es von der Festplatte löschen wollen, klicken sie das Element mit "
 "der rechten Maustaste."
 
-#: AutoStart.py:291
+#: AutoStart.py:299
 msgid "Show program comments"
 msgstr "Kommentare zum Programm anzeigen"
 
-#: AutoStart.py:293
+#: AutoStart.py:301
 msgid "Show all runnable programs"
 msgstr "Alle ausführbaren Programme anzeigen"
 
-#: AutoStart.py:355 AutoStart.py:402
+#: AutoStart.py:363 AutoStart.py:410
 msgid "The name of the startup program cannot be empty"
 msgstr "Der Name des Startgefehls darf nicht leer sein"
 
-#: AutoStart.py:357 AutoStart.py:404
+#: AutoStart.py:365 AutoStart.py:412
 msgid "Text was empty (or contained only whitespace)"
 msgstr "Das Eingabefeld war leer (oder enthielt nur Leerzeichen)"
 
-#: Compiz.py:185
+#: Compiz.py:198
+#, fuzzy
+msgid "Install Advanced Desktop Effects Settings Manager"
+msgstr "Installiere den erweiterten Manager für Desktop Effekte"
+
+#: Compiz.py:201
+#, fuzzy
+msgid "Install Simple Desktop Effects Settings manager"
+msgstr "Installiere den einfachen Manager für Desktop Effekte"
+
+#: Compiz.py:204
+#, fuzzy
+msgid "Install Screenlets Widget Application"
+msgstr "Installiere Screenlets Widget-Anwendung"
+
+#: Compiz.py:210
 msgid "<b>Edge Setting</b>"
 msgstr "<b>Eckeneinstellung</b>"
 
-#: Compiz.py:194
+#: Compiz.py:219
 msgid "Snapping Windows"
 msgstr "Einschnappende Fenster"
 
-#: Compiz.py:195
+#: Compiz.py:220
 msgid "Wobbly Windows"
 msgstr "Wackelige Fenster"
 
-#: Compiz.py:197
+#: Compiz.py:222
 msgid "<b>Window Effects</b>"
 msgstr "<b>Fenstereffekte</b>"
 
-#: Compiz.py:200
-msgid "Opaque Menu"
-msgstr "Undurchsichtiges Menü"
+#: Compiz.py:225
+msgid "Transparent Menu"
+msgstr ""
 
-#: Compiz.py:201
+#: Compiz.py:226
 msgid "Wobbly Menu"
 msgstr "Wackelige Menüs"
 
-#: Compiz.py:203
+#: Compiz.py:228
 msgid "<b>Menu Effects</b>"
 msgstr "<b>Effekte für Menüs</b>"
 
-#: Compiz.py:236
+#: Compiz.py:233
+msgid "<b>Compiz Extensions</b>"
+msgstr "<b>Compiz Erweiterungen</b>"
+
+#: Compiz.py:248
+#, fuzzy
+msgid "<b>Prerequisite Conditions</b>"
+msgstr "<b>Mindestanforderungen</b>"
+
+#: Compiz.py:292
 msgid "Expo"
 msgstr "Expo"
 
-#: Compiz.py:237
+#: Compiz.py:293
 msgid "Pick Windows"
 msgstr "Fenster auswählen"
 
-#: Compiz.py:238
+#: Compiz.py:294
 msgid "Show Desktop"
 msgstr "Desktop anzeigen"
 
-#: Compiz.py:239
+#: Compiz.py:295
 msgid "Widget"
 msgstr "Widget"
+
+#: Compiz.py:365
+msgid ""
+"Update Successfully!\n"
+"Please restart Ubuntu Tweak."
+msgstr ""
+"Update war erfolgreich!\n"
+"Bitte starten Sie Ubuntu Tweak neu."
+
+#: Compiz.py:367 Installer.py:276 Nautilus.py:109
+msgid "Update Successfully!"
+msgstr "Update war erfolgreich!"
 
 #: Computer.py:51
 msgid "<b>System information</b>"
@@ -253,8 +297,8 @@ msgid "Top Right"
 msgstr "Oben rechts"
 
 #: Gnome.py:47
-msgid "<b>GNOME Panel and Menu</b>"
-msgstr "<b>GNOME-Panel und Menü</b>"
+msgid "<b>Panel and Menu</b>"
+msgstr "<b>Panel und Menü</b>"
 
 #: Gnome.py:48
 msgid "Confirm Message when removing panel"
@@ -275,6 +319,24 @@ msgstr "Eingabemethode bei Rechtsklick anbieten"
 #: Gnome.py:52
 msgid "Show Unicode Method menu on the Context Menu"
 msgstr "Unicode-Steuerzeichen bei Rechtsklick anbieten"
+
+#: Gnome.py:57
+msgid "<b>Screensaver</b>"
+msgstr "<b>Bildschirmschoner</b>"
+
+#: Gnome.py:58
+#, fuzzy
+msgid "Enable User Switching while locking screen."
+msgstr "Aktiviere User-Wechsel während der Bildschirm gesperrt ist."
+
+#: Gnome.py:62
+#, fuzzy
+msgid "Enable System-wide 'Recently Used' list"
+msgstr "Aktiviere systemweite \"Zuletzt geöffnet\"-Liste"
+
+#: Gnome.py:64
+msgid "<b>History</b>"
+msgstr "<b>Chronik</b>"
 
 #: Icon.py:35
 msgid "Show \"Computer\" icon on desktop"
@@ -300,7 +362,7 @@ msgstr "Müll-Symbol auf dem Desktop anzeigen"
 msgid "Rename the \"Trash\" icon: "
 msgstr "Müll-Symbol umbenennen: "
 
-#: Icon.py:96 Widgets.py:80 Widgets.py:90
+#: Icon.py:96 Widgets.py:81 Widgets.py:91
 msgid "Unset"
 msgstr "Zurücksetzen"
 
@@ -325,6 +387,262 @@ msgid "Use Home Folder as the desktop(Logout for changes to take effect)"
 msgstr ""
 "Ordner \"home\" als Desktop benutzen (Änderungen werden erst nach neuer "
 "Anmeldung aktiv)"
+
+#: Installer.py:30
+msgid "P2P Clients"
+msgstr ""
+
+#: Installer.py:31
+msgid "Image Tools"
+msgstr ""
+
+#: Installer.py:32
+msgid "Sound Tools"
+msgstr ""
+
+#: Installer.py:33
+msgid "Video Tools"
+msgstr ""
+
+#: Installer.py:34
+msgid "Text Tools"
+msgstr ""
+
+#: Installer.py:35
+msgid "Internet Tools"
+msgstr ""
+
+#: Installer.py:36
+msgid "FTP Tools"
+msgstr ""
+
+#: Installer.py:37
+msgid "Desktop Tools"
+msgstr ""
+
+#: Installer.py:38
+msgid "CD/Disk Tools"
+msgstr ""
+
+#: Installer.py:39
+msgid "Develop Kit"
+msgstr ""
+
+#: Installer.py:40
+msgid "Emulators"
+msgstr ""
+
+#: Installer.py:41
+msgid "Email Tools"
+msgstr ""
+
+#: Installer.py:45
+msgid "A colorscheme designer"
+msgstr ""
+
+#: Installer.py:46
+msgid "Client for the eD2k and Kad networks"
+msgstr ""
+
+#: Installer.py:47
+msgid "GNOME's IDE for C/C++, Java, Python"
+msgstr ""
+
+#: Installer.py:48
+msgid "A skinned multimedia player for many platforms"
+msgstr ""
+
+#: Installer.py:49
+msgid "Record and edit audio files"
+msgstr ""
+
+#: Installer.py:50 ThirdSoft.py:59
+msgid "Fully customisable dock-like window navigator"
+msgstr ""
+
+#: Installer.py:51
+msgid "A free video editor"
+msgstr ""
+
+#: Installer.py:52
+msgid "BitTorrent client written in Java"
+msgstr ""
+
+#: Installer.py:53 ThirdSoft.py:65
+msgid "Audio Management and Playback application"
+msgstr ""
+
+#: Installer.py:54 ThirdSoft.py:63
+msgid "A true dock for linux"
+msgstr ""
+
+#: Installer.py:55 ThirdSoft.py:67
+msgid "A chm file viewer written in GTK+"
+msgstr ""
+
+#: Installer.py:56
+msgid "Advanced Desktop Effects Settings Manager"
+msgstr ""
+
+#: Installer.py:57
+msgid "An API documentation browser for GNOME."
+msgstr ""
+
+#: Installer.py:58
+msgid "A Bittorrent client written in PyGTK"
+msgstr ""
+
+#: Installer.py:59
+msgid "Extensible Tool Platform and Java IDE"
+msgstr ""
+
+#: Installer.py:60
+msgid "A client for the Windows Live Message network"
+msgstr ""
+
+#: Installer.py:61
+msgid "KDE IM client using Tencent QQ's protocol"
+msgstr ""
+
+#: Installer.py:62
+msgid "GTK+ based flexible audio player, similar to Amarok"
+msgstr ""
+
+#: Installer.py:63
+msgid "File transmission via ftp, sftp and ftps"
+msgstr ""
+
+#: Installer.py:64
+msgid "An extremly fast and lightweight file manager"
+msgstr ""
+
+#: Installer.py:65
+msgid "A multithreaded FTP client"
+msgstr ""
+
+#: Installer.py:66
+msgid "GNOME Hex editor for files"
+msgstr ""
+
+#: Installer.py:67
+msgid "Notify the arrival of new mail on Gmail"
+msgstr ""
+
+#: Installer.py:68 ThirdSoft.py:64
+msgid "Do things as quickly as possible"
+msgstr ""
+
+#: Installer.py:69
+msgid "Let you fly anywhere to view the earth"
+msgstr ""
+
+#: Installer.py:70
+msgid "GNOME partition editor"
+msgstr ""
+
+#: Installer.py:71
+msgid "Lightweight image viewer"
+msgstr ""
+
+#: Installer.py:72
+msgid "Graphical frontend for recordmydesktop"
+msgstr ""
+
+#: Installer.py:73
+msgid "A graphical CD image editor"
+msgstr ""
+
+#: Installer.py:74
+msgid "Non-linear editor for Digital Video data"
+msgstr ""
+
+#: Installer.py:75
+msgid "A music player for Last.fm personalized radio"
+msgstr ""
+
+#: Installer.py:76
+msgid "GTK+ based simple text editor"
+msgstr ""
+
+#: Installer.py:77
+msgid "Feed aggregator for GNOME"
+msgstr ""
+
+#: Installer.py:78
+msgid "mail notification in system tray"
+msgstr ""
+
+#: Installer.py:79
+msgid "adcal tool to diff and merge files"
+msgstr ""
+
+#: Installer.py:80
+msgid "A fast and simple GTK+ Image Viewer"
+msgstr ""
+
+#: Installer.py:81 ThirdSoft.py:60
+msgid "Webkit based lightweight web browser"
+msgstr ""
+
+#: Installer.py:82
+msgid "Develop .NET applications."
+msgstr ""
+
+#: Installer.py:83
+msgid "The Ultimate Movie Player For Linux"
+msgstr ""
+
+#: Installer.py:84
+msgid "IDE for Java, C/C++, Ruby, UML, etc."
+msgstr ""
+
+#: Installer.py:85 ThirdSoft.py:70
+msgid "A framework for desktop widgets"
+msgstr ""
+
+#: Installer.py:86
+msgid "A great MPlayer front-end, written in QT4"
+msgstr ""
+
+#: Installer.py:87
+msgid "Convert audio files into other formats"
+msgstr ""
+
+#: Installer.py:88
+msgid "An international dictionary"
+msgstr ""
+
+#: Installer.py:89
+msgid "A feature rich, high performance virtualization software"
+msgstr ""
+
+#: Installer.py:90
+msgid "Read, capture, broadcast your multimedia streams"
+msgstr ""
+
+#: Installer.py:91
+msgid "VMware Player can play virtual machines created by VMware"
+msgstr ""
+
+#: Installer.py:92 ThirdSoft.py:71
+msgid "A compatibility layer for running Windows programs"
+msgstr ""
+
+#: Installer.py:105
+msgid "Install the widely used applications"
+msgstr ""
+
+#: Installer.py:106
+msgid "You can install applications by using this simple interface."
+msgstr ""
+
+#: Installer.py:115
+msgid "All Categories"
+msgstr ""
+
+#: Installer.py:278 Nautilus.py:111
+msgid "Update Failed!"
+msgstr ""
 
 #: LockDown.py:39
 msgid "<b>System Security options</b>"
@@ -354,7 +672,7 @@ msgstr "Speichern deaktivieren"
 msgid "Disable User Switching"
 msgstr "Benutzerwechsel deaktivieren"
 
-#: MainWindow.py:124
+#: MainWindow.py:45
 msgid ""
 "<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak!</b></span>\n"
 "\n"
@@ -382,61 +700,14 @@ msgstr ""
 "\n"
 "Viel Spaß!"
 
-#: MainWindow.py:137
-msgid "<span size=\"xx-large\">Please select the child item</span>"
-msgstr "<span size=\"xx-large\">Bitte einen Unterpunkt auswählen</span>"
+#: MainWindow.py:58
+msgid "<span size=\"xx-large\">Wait a moment...</span>"
+msgstr ""
 
-#: MainWindow.py:144
-msgid "Session Control"
-msgstr "Sitzungseinstellungen"
-
-#: MainWindow.py:145
-msgid "Auto Start"
-msgstr "Autostart"
-
-#: MainWindow.py:150
-msgid "Desktop Icon"
-msgstr "Desktop-Symbole"
-
-#: MainWindow.py:151
-msgid "Metacity"
-msgstr "Metacity"
-
-#: MainWindow.py:152
-msgid "Compiz Fusion"
-msgstr "Compiz Fusion"
-
-#: MainWindow.py:157
-msgid "User Folder"
-msgstr "Ordner benutzen"
-
-#: MainWindow.py:158
-msgid "Templates"
-msgstr "Dokumentvorlage"
-
-#: MainWindow.py:159
-msgid "Scripts"
-msgstr "Skripte"
-
-#: MainWindow.py:160
-msgid "Shortcuts"
-msgstr "Tastenkürzel"
-
-#: MainWindow.py:165
-msgid "GNOME"
-msgstr "GNOME"
-
-#: MainWindow.py:166
-msgid "Nautilus"
-msgstr "Nautilus"
-
-#: MainWindow.py:167
-msgid "Power Manager"
-msgstr "Energieverwaltung"
-
-#: MainWindow.py:172
-msgid "Security Options"
-msgstr "Sicherheitseinstellungen"
+#: MainWindow.py:71
+msgid ""
+"<span size=\"x-large\">This feature is only enabled in Ubuntu 8.04</span>"
+msgstr ""
 
 #: MainWindow.py:177
 msgid "Welcome"
@@ -447,26 +718,90 @@ msgid "Computer"
 msgstr "Computer"
 
 #: MainWindow.py:179
+msgid "Applications"
+msgstr ""
+
+#: MainWindow.py:180
+msgid "Add/Remove"
+msgstr ""
+
+#: MainWindow.py:181
+msgid "Third Party Sources"
+msgstr ""
+
+#: MainWindow.py:182
 msgid "Startup"
 msgstr "Systemstart"
 
-#: MainWindow.py:180
+#: MainWindow.py:183
+msgid "Session Control"
+msgstr "Sitzungseinstellungen"
+
+#: MainWindow.py:184
+msgid "Auto Start"
+msgstr "Autostart"
+
+#: MainWindow.py:185
 msgid "Desktop"
 msgstr "Desktop"
 
-#: MainWindow.py:181
+#: MainWindow.py:186
+msgid "Desktop Icon"
+msgstr "Desktop-Symbole"
+
+#: MainWindow.py:187
+msgid "Metacity"
+msgstr "Metacity"
+
+#: MainWindow.py:188
+msgid "Compiz Fusion"
+msgstr "Compiz Fusion"
+
+#: MainWindow.py:189
 msgid "Personal"
 msgstr "Persönlich"
 
-#: MainWindow.py:182
+#: MainWindow.py:190
+msgid "User Folder"
+msgstr "Ordner benutzen"
+
+#: MainWindow.py:191
+msgid "Templates"
+msgstr "Dokumentvorlage"
+
+#: MainWindow.py:192
+msgid "Scripts"
+msgstr "Skripte"
+
+#: MainWindow.py:193
+msgid "Shortcuts"
+msgstr "Tastenkürzel"
+
+#: MainWindow.py:194
 msgid "System"
 msgstr "System"
 
-#: MainWindow.py:183
+#: MainWindow.py:195
+msgid "GNOME"
+msgstr "GNOME"
+
+#: MainWindow.py:196
+msgid "Nautilus"
+msgstr "Nautilus"
+
+#: MainWindow.py:197
+msgid "Power Manager"
+msgstr "Energieverwaltung"
+
+#: MainWindow.py:198
 msgid "Security"
 msgstr "Sicherheit"
 
-#: MainWindow.py:351
+#: MainWindow.py:199
+msgid "Security Options"
+msgstr "Sicherheitseinstellungen"
+
+#: MainWindow.py:407
 msgid ""
 "Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
 "system and desktop settings."
@@ -474,24 +809,27 @@ msgstr ""
 "Ubuntu Tweak erlaubt Ihnen Ihr Ubuntu-System und den Desktop einfach "
 "anzupassen."
 
-#: MainWindow.py:358
+#: MainWindow.py:414
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
 "  Martin Lettner https://launchpad.net/~m.lettner\n"
+"  Martin Nemec https://launchpad.net/~spocky\n"
 "  TualatriX https://launchpad.net/~tualatrix\n"
 "  hello08 https://launchpad.net/~hello08\n"
 "  mniess https://launchpad.net/~mniess\n"
 "  nordlicht.ol https://launchpad.net/~nordlicht-ol\n"
+"  oknuwxh https://launchpad.net/~oknuwxh\n"
 "  simpson-fan https://launchpad.net/~valentin-steinwandter\n"
-"  spocky https://launchpad.net/~spocky\n"
 "  staedtler-przyborski https://launchpad.net/~staedtler-przyborski"
 
-#: MainWindow.py:373
+#: MainWindow.py:428
 msgid ""
 "A newer version: %s is available online.\n"
 "Would you like to update?"
 msgstr ""
+"Eine neue Version ist verfügbar: %s\n"
+"Möchten sie diese installieren?"
 
 #: Metacity.py:39
 msgid "<b>Window Decorate Effect</b>"
@@ -502,20 +840,20 @@ msgid "Use metacity theme"
 msgstr "Metacity-Thema verwenden"
 
 #: Metacity.py:41
-msgid "Active window opacity shade"
-msgstr "Metacity-Thema Transparenz Schatten"
+msgid "Active window transparency shade"
+msgstr ""
 
 #: Metacity.py:42
-msgid "Active window opacity level"
-msgstr "Transparenz aktiver Fensterrahmen"
+msgid "Active window transparency level"
+msgstr ""
 
 #: Metacity.py:43
-msgid "Inactive window opacity shade"
-msgstr "Metacity-Thema aktive Fenster Transparenz Schatten"
+msgid "Inactive window transparency shade"
+msgstr ""
 
 #: Metacity.py:44
-msgid "Inactive window shade opacity level"
-msgstr "Transparenz inaktiver Fensterrahmen"
+msgid "Inactive window shade transparency level"
+msgstr ""
 
 #: Metacity.py:48
 msgid "<b>Window Titlebar Action</b>"
@@ -562,30 +900,57 @@ msgstr "Aktion bei Mittelklick auf Titelleiste"
 msgid "Title bar Right-click action"
 msgstr "Aktion bei Rechtsklick auf Titelleiste"
 
-#: Nautilus.py:38
+#: Nautilus.py:46
 msgid "Show advanced Permissions on File Property pages"
 msgstr ""
 "Erweiterte Berechtigungen in den Datei- und Ordnereigenschaften anzeigen"
 
-#: Nautilus.py:40
+#: Nautilus.py:48
 msgid "<b>Settings for Nautilus behavior</b>"
 msgstr "<b>Einstellungen für Nautilus</b>"
 
-#: Nautilus.py:44
+#: Nautilus.py:52
 msgid "Default Thumbnail Icon Size"
 msgstr "Voreingestellte Symbolgröße für Vorschaubilder"
 
-#: Nautilus.py:53
+#: Nautilus.py:61
 msgid "<b>CD Burner</b>"
 msgstr "<b>CD-Brenner</b>"
 
-#: Nautilus.py:54
+#: Nautilus.py:62
 msgid "Enable BurnProof technology"
 msgstr "BurnProof-Technologie aktivieren"
 
-#: Nautilus.py:55
+#: Nautilus.py:63
 msgid "Enable OverBurn"
 msgstr "Überbrennen aktivieren"
+
+#: Nautilus.py:71
+#, fuzzy
+msgid "Nautilus with Open Terminal"
+msgstr "Nautilus mit \"Terminal öffnen\""
+
+#: Nautilus.py:72
+#, fuzzy
+msgid "Nautilus with Root Privileges"
+msgstr "Nautilus mit Root-Rechten"
+
+#: Nautilus.py:73
+#, fuzzy
+msgid "Nautilus with Wallpaper"
+msgstr "Nautilus mit Wallpaper"
+
+#: Nautilus.py:74
+msgid "<b>Nautilus Extensions</b>"
+msgstr "<b>Nautilus Erweiterungen</b>"
+
+#: PackageWorker.py:70
+msgid "(Not available)"
+msgstr "Nicht verfügbar"
+
+#: PolicyKit/PolkitButton.py:34
+msgid "_Unlock"
+msgstr ""
 
 #: PowerManager.py:40
 msgid "<b>Advanced Power Management Settings</b>"
@@ -717,12 +1082,12 @@ msgid "Delete this script"
 msgstr "Dieses Skript löschen"
 
 #: Scripts.py:164
-msgid "Sorry! This isn't a script file."
-msgstr "Fehler! Dies ist keine Skript-Datei"
-
-#: Scripts.py:164 ubuntu-tweak.py:30
 msgid "Error"
 msgstr "Fehler"
+
+#: Scripts.py:164
+msgid "Sorry! This isn't a script file."
+msgstr "Fehler! Dies ist keine Skript-Datei"
 
 #: Scripts.py:176
 msgid "Enabled Scripts"
@@ -894,6 +1259,50 @@ msgstr "Systemvorlagen wiederherstellen"
 msgid "This will delete all the disabled templates, continue?"
 msgstr "Sollen alle deaktivierten Vorlagen gelöscht werden?"
 
+#: ThirdSoft.py:61
+msgid "Development Version of Mozilla Firefox 3.0/3.1, 4.0"
+msgstr ""
+
+#: ThirdSoft.py:62
+msgid "Development version of Compiz Fusion"
+msgstr ""
+
+#: ThirdSoft.py:66
+msgid "Platform for running Google Gadgets on Linux"
+msgstr ""
+
+#: ThirdSoft.py:68
+msgid "K Desktop Environment 4.1"
+msgstr ""
+
+#: ThirdSoft.py:69
+msgid "Tweak ubuntu to what you like"
+msgstr ""
+
+#: ThirdSoft.py:72
+msgid "Lightweight X11 Desktop Environment:GPicView, PCManFM"
+msgstr ""
+
+#: ThirdSoft.py:81
+msgid ""
+"<b><big>The information about available software is out-of-date</big></b>\n"
+"\n"
+"To install software and updates from newly added or changed sources, you "
+"have to reload the information about available software.\n"
+"\n"
+"You need a working internet connection to continue."
+msgstr ""
+
+#: ThirdSoft.py:197
+msgid "Third Party Softwares Sources"
+msgstr ""
+
+#: ThirdSoft.py:198
+msgid ""
+"You can always follow the latest version of a application.\n"
+"Just enable the application what you want."
+msgstr ""
+
 #: UserDir.py:41
 msgid "Desktop Folder"
 msgstr "Desktop-Ordner"
@@ -946,30 +1355,10 @@ msgstr "Aktualisierung war erfolgreich!"
 msgid "Select a new folder"
 msgstr "Einen neuen Ordner auswählen"
 
-#: Widgets.py:368
+#: Widgets.py:379
 msgid "Please press the new key combination"
 msgstr "Bitte drücken Sie eine neue Tastenkombination"
 
-#: Widgets.py:417
+#: Widgets.py:428
 msgid "Disabled"
 msgstr "Deaktiviert"
-
-#: ubuntu-tweak.py:39
-msgid ""
-"Sorry!\n"
-"\n"
-"Ubuntu Tweak can only run under <b>GNOME 2.18 or above.</b>\n"
-msgstr ""
-"Fehler!\n"
-"\n"
-"Ubuntu Tweak funktioniert nur mit <b>GNOME-Versionen über 2.18.</b>\n"
-
-#: ubuntu-tweak.py:46
-msgid ""
-"Sorry!\n"
-"\n"
-"Ubuntu Tweak can only run in <b>GNOME Desktop.</b>\n"
-msgstr ""
-"Fehler!\n"
-"\n"
-"Ubuntu Tweak läuft nur mit dem <b>GNOME Desktop</b>.\n"

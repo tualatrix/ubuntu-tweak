@@ -82,7 +82,7 @@ data = \
     ("monodevelop", _("Develop .NET applications."), Develop),
     ("mplayer", _("The Ultimate Movie Player For Linux"), Video),
     ("netbeans", _("IDE for Java, C/C++, Ruby, UML, etc."), Develop),
-    ("screenlets", _("Widget-like mini-applications"), Desktop),
+    ("screenlets", _("A framework for desktop widgets"), Desktop),
     ("smplayer", _("A great MPlayer front-end, written in QT4"), Video),
     ("soundconverter", _("Convert audio files into other formats"), Sound),
     ("stardict", _("An international dictionary"), Text),
