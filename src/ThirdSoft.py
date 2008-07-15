@@ -46,14 +46,16 @@ gettext.install(App, unicode = True)
     COLUMN_COMPS,
     COLUMN_NAME,
     COLUMN_COMMENT,
-) = range(5)
+    COLUMN_KEY,
+) = range(6)
 
 (
     ENTRY_URL,
     ENTRY_COMPS,
     ENTRY_NAME,
     ENTRY_COMMENT,
-) = range(4)
+    ENTRY_KEY,
+) = range(5)
 
 SOURCES_DATA = [
     ['http://ppa.launchpad.net/awn-core/ubuntu', 'main', 'AWN', _('Fully customisable dock-like window navigator')],
@@ -68,10 +70,11 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/kubuntu-members-kde4/ubuntu', 'main', 'KDE 4', _('K Desktop Environment 4.1')],
     ['http://ppa.launchpad.net/tualatrix/ubuntu', 'main', 'Ubuntu Tweak', _('Tweak ubuntu to what you like')],
     ['http://ppa.launchpad.net/gilir/ubuntu', 'main', 'Screenlets', _('A framework for desktop widgets')],
-    ['http://wine.budgetdedicated.com/apt', 'main', 'Wine', _('A compatibility layer for running Windows programs')],
+    ['http://wine.budgetdedicated.com/apt', 'main', 'Wine', _('A compatibility layer for running Windows programs'), 'aptkeys/387EE263.gpg'],
     ['http://ppa.launchpad.net/lxde/ubuntu', 'main', 'LXDE', _('Lightweight X11 Desktop Environment:GPicView, PCManFM')],
     ['http://ppa.launchpad.net/gnome-terminator/ubuntu', 'main', 'Terminator', _('A powerful terminal')],
     ['http://ppa.launchpad.net/gscrot/ubuntu', 'main', 'gscrot', _('A powerful scrot')],
+    ['http://playonlinux.botux.net/', 'main', 'PlayOnLinux', _('Play windows games on your Linux'), 'aptkeys/pol.gpg'],
 ]
 
 class UpdateCacheDialog:
@@ -137,6 +140,7 @@ class SourcesView(gtk.TreeView, Colleague):
                 gobject.TYPE_STRING,
                 gobject.TYPE_STRING,
                 gobject.TYPE_STRING,
+                gobject.TYPE_STRING,
                 gobject.TYPE_STRING)
 
         return model
@@ -159,6 +163,10 @@ class SourcesView(gtk.TreeView, Colleague):
             name = entry[ENTRY_NAME]
             comment = entry[ENTRY_COMMENT]
             comment = "<b>%s</b>: %s" % (name, comment)
+            try:
+                key = entry[ENTRY_KEY]
+            except IndexError:
+                key = ''
 
             for source in self.list:
                 if url in source.str() and source.type == 'deb':
@@ -170,6 +178,7 @@ class SourcesView(gtk.TreeView, Colleague):
                 comps,
                 name,
                 comment,
+                key,
                 ))
 
     def on_enable_toggled(self, cell, path):
@@ -179,6 +188,10 @@ class SourcesView(gtk.TreeView, Colleague):
         url = self.model.get_value(iter, COLUMN_URL)
         name = self.model.get_value(iter, COLUMN_NAME)
         comps = self.model.get_value(iter, COLUMN_COMPS)
+        key = self.model.get_value(iter, COLUMN_KEY)
+
+        if key:
+            self.proxy.proxy.AddAptKey(key, dbus_interface = self.proxy.INTERFACE)
 
         result = self.proxy.proxy.SetSourcesList(url, name, comps, not enabled, dbus_interface = self.proxy.INTERFACE)
 
