@@ -324,13 +324,12 @@ class DisableScripts(ScriptList):
 class Scripts(TweakPage, AbstractScripts):
     """Freedom added your docmuent scripts"""
     def __init__(self, parent = None):
-        TweakPage.__init__(self)
+        TweakPage.__init__(self, 
+                _("Manage your scripts"),
+                _('You can do all kinds of tasks with scripts.\nYou can drag and drop from File Manager.\n"Scripts" will be added to the Context Menu.\n'))
 
         self.default = DefaultScripts()
         self.config_test()
-
-        self.set_title(_("Manage your scripts"))
-        self.set_description(_('You can do all kinds of tasks with scripts.\nYou can drag and drop from File Manager.\n"Scripts" will be added to the Context Menu.\n'))
 
         hbox = gtk.HBox(False, 10)
         self.pack_start(hbox)

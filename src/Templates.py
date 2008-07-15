@@ -309,13 +309,12 @@ class DisableTemplate(TemplateList):
 class Templates(TweakPage, AbstractTempates):
     """Freedom added your docmuent templates"""
     def __init__(self, parent = None):
-        TweakPage.__init__(self)
+        TweakPage.__init__(self, 
+                _("Manage your templates"),
+                _('You can freely manage your document templates.\nYou can drag and drop from File Manager.\n"Create Document" will be added to the Context Menu.\n'))
 
         self.default = DefaultTemplates()
         self.config_test()
-
-        self.set_title(_("Manage your templates"))
-        self.set_description(_('You can freely manage your document templates.\nYou can drag and drop from File Manager.\n"Create Document" will be added to the Context Menu.\n'))
 
         hbox = gtk.HBox(False, 10)
         self.pack_start(hbox)

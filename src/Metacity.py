@@ -36,7 +36,7 @@ class Metacity(gtk.VBox):
     def __init__(self, parent = None):
         gtk.VBox.__init__(self)
 
-        box = TablePack(_("<b>Window Decorate Effect</b>"), [
+        box = TablePack(_("Window Decorate Effect"), [
                 [Factory.create("gconfcheckbutton", _("Use metacity theme"), "use_metacity_theme")],
                 [Factory.create("gconfcheckbutton", _("Active window transparency shade"), "metacity_theme_active_shade_opacity")],
                 [gtk.Label(_("Active window transparency level")), Factory.create("gconfscale", 0, 1, "metacity_theme_active_opacity", 2)],
@@ -45,7 +45,7 @@ class Metacity(gtk.VBox):
             ])
         self.pack_start(box, False, False, 0)
 
-        table = TablePack(_("<b>Window Titlebar Action</b>"), [
+        table = TablePack(_("Window Titlebar Action"), [
                 [gtk.Label(_("Title bar mouse wheel action")), Factory.create("gconfcombobox", "mouse_wheel_action", [_("None"), _("Roll up")], ["none", "shade"])],
                 [gtk.Label(_("Title bar Double-click action")), Factory.create("gconfcombobox", "action_double_click_titlebar", [_("None"), _("Maximize"), _("Minimize"), _("Roll up"), _("Lower"), _("Menu")], ["none", "toggle_maximize", "minimize", "toggle_shade", "lower", "menu"])],
                 [gtk.Label(_("Title bar Middle-click action")), Factory.create("gconfcombobox", "action_middle_click_titlebar", [_("None"), _("Maximize"), _("Minimize"), _("Roll up"), _("Lower"), _("Menu")], ["none", "toggle_maximize", "minimize", "toggle_shade", "lower", "menu"])],

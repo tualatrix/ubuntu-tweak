@@ -47,10 +47,9 @@ class UserDir(TweakPage):
             "XDG_PICTURES_DIR": _("Pictures Folder"),
             "XDG_VIDEOS_DIR": _("Videos Folder")}
     def __init__(self, parent = None):
-        TweakPage.__init__(self)
-
-        self.set_title(_("Set your document folders"))
-        self.set_description(_("You can change the default document folders.\nDon't change the Desktop folder in normal case."))
+        TweakPage.__init__(self, 
+                _("Set your document folders"), 
+                _("You can change the default document folders.\nDon't change the Desktop folder in normal case."))
 
         table = self.create_table()
         self.pack_start(table, False, False, 5)

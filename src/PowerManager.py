@@ -37,7 +37,7 @@ class PowerManager(gtk.VBox):
     def __init__(self, parent = None):
         gtk.VBox.__init__(self)
 
-        box = TablePack(_("<b>Advanced Power Management Settings</b>"), [
+        box = TablePack(_("Advanced Power Management Settings"), [
                 [Factory.create("gconfcheckbutton", _("Enable Hibernation"), "can_hibernate")],
                 [Factory.create("gconfcheckbutton", _("Enable Suspend"), "can_suspend")],
                 [Factory.create("gconfcheckbutton", _("Show CPU frequency control option"), "cpufreq_show")],
@@ -47,7 +47,7 @@ class PowerManager(gtk.VBox):
         ]) 
         self.pack_start(box, False, False, 0)
 
-        box = TablePack(_("<b>CPU Policy</b>"), [
+        box = TablePack(_("CPU Policy"), [
                 [gtk.Label(_("The Performance value when on AC power")), Factory.create("gconfscale", 0, 100, "performance_ac", 0)],
                 [gtk.Label(_("The Performance value when on battery power")), Factory.create("gconfscale", 0, 100, "performance_battery", 0)],
                 [gtk.Label(_("The CPU frequency policy when on AC power")), Factory.create("gconfcombobox", "policy_ac", [_("On Demand"), _("Power Save"), _("Performance")], ["ondemand", "powersave", "performance"])],

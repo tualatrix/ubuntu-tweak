@@ -26,6 +26,7 @@ import gconf
 import gobject
 import gettext
 import time
+import cairo
 from Settings import *
 from Utility import gtk_process_events
 
@@ -59,6 +60,97 @@ class GconfCheckButton(gtk.CheckButton, BoolSetting):
 
     def button_toggled(self, widget, data = None):
         self.client.set_bool(self.key, self.get_active())
+        
+class CairoDraw(gtk.DrawingArea):
+    """Draw the title of every item"""
+    client = gconf.client_get_default()
+    font_info = client.get_string("/desktop/gnome/interface/font_name")
+    font_size = int(font_info[-2:])
+    margin = 3
+    up_padding = (font_size - 10) / 5 + 5
+    down_padding = (font_size - 12) / 4 + 5
+    title_height = margin + up_padding + down_padding + font_size
+
+    def __init__(self, title = None):
+        gtk.DrawingArea.__init__(self)
+        self.title = title
+
+        self.connect("expose_event", self.expose_event)
+        self.set_size_request(-1, self.title_height + self.margin)
+
+    def expose_event(self, widget, event):
+        class Color:
+            def __init__(self, color):
+                self.red = color.red/65535.0
+                self.green = color.green/65535.0
+                self.blue = color.blue/65535.0
+
+            def __str__(self):
+                return "%s, %s, %s" % (self.red, self.green, self.blue)
+
+        light_color = None
+        bg_color = None
+        fg_color = None
+
+        print '*'*80
+        style = widget.get_style()
+        light_color = Color(style.mid[3])
+        line_color = Color(style.dark[3])
+        dark_color = Color(style.white)
+        bg_color = Color(style.base[3])
+        fg_color = Color(style.fg[3])
+        text_color = Color(style.text[3])
+        print '*'*80
+
+        ctx = self.window.cairo_create()
+
+        width = event.area.width - 10
+        height = event.area.height
+        print width, height
+
+        ctx.set_line_width(1)
+        ctx.set_source_rgb(line_color.red, line_color.green, line_color.blue)
+        ctx.move_to(self.margin, self.margin)
+        ctx.line_to(width, self.margin)
+        ctx.line_to(width + 2, self.margin + 2)
+        ctx.line_to(width + 2, self.title_height)
+        ctx.line_to(width, self.title_height + 2)
+        ctx.line_to(self.margin, self.title_height + 2)
+        ctx.line_to(self.margin - 2, self.title_height)
+        ctx.line_to(self.margin -2 , self.margin + 2)
+        ctx.line_to(self.margin, self.margin)
+        ctx.close_path()
+        ctx.set_line_width(1)
+        ctx.stroke()
+
+        ctx.move_to(self.margin, self.margin)
+        ctx.line_to(width, self.margin)
+        ctx.line_to(width + 2, self.margin +2)
+        ctx.line_to(width + 2, self.title_height)
+        ctx.line_to(width, self.title_height + 2)
+        ctx.line_to(self.margin, self.title_height + 2)
+        ctx.line_to(self.margin -2, self.title_height)
+        ctx.line_to(self.margin - 2, self.margin +2)
+        ctx.line_to(self.margin , self.margin)
+        ctx.close_path()
+
+        pat = cairo.LinearGradient(80, 10, 80, 80)
+#        pat.add_color_stop_rgb(0, light_color.red, light_color.green, light_color.blue)
+        pat.add_color_stop_rgb(1, bg_color.red, bg_color.green, bg_color.blue)
+#        pat.add_color_stop_rgb(1, light_color.red, light_color.green, light_color.blue)
+        ctx.set_source(pat)
+        ctx.fill_preserve()
+
+        ctx.set_font_size(self.font_size + 4)
+        ctx.select_font_face(self.font_info, cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_BOLD)
+
+#        (x, y, width, height, dx, dy) = ctx.text_extents('Hello World')
+
+        print self.title_height
+#        ctx.move_to(12, self.title_height - 3)
+        ctx.move_to(self.margin + 2, self.font_size + self.margin + self.up_padding)
+        ctx.set_source_rgb(text_color.red, text_color.green, text_color.blue)
+        ctx.show_text(self.title)
 
 class StrGconfCheckButton(GconfCheckButton, Colleague):
     def __init__(self, label, key, mediator):
@@ -143,16 +235,14 @@ class BasePack(gtk.VBox):
         gtk.VBox.__init__(self)
         self.set_border_width(5)
 
-        label = gtk.Label()
-        label.set_markup(title)
-        label.set_alignment(0, 0)
-        self.pack_start(label, False, False, 0)
+        cairo_title = CairoDraw(title)
+        self.pack_start(cairo_title, False, False, 0)
 
 class SinglePack(BasePack):
     def __init__(self, title, widget):
         BasePack.__init__(self, title)
 
-        self.pack_start(widget, True, True, 20)
+        self.pack_start(widget, True, True, 10)
 
 class BaseListPack(BasePack):
     def __init__(self, title):
@@ -176,7 +266,7 @@ class ListPack(BaseListPack):
         if widgets:
             for widget in widgets:
                 if widget: 
-                    self.vbox.pack_start(widget, False, False, 5)
+                    self.vbox.pack_start(widget, False, False, 3)
                     self.items.append(widget)
         else:
             self = None
@@ -275,29 +365,30 @@ class AboutBlank:
 
 class TweakPage(gtk.VBox):
     """The standard page of tweak"""
+    client = gconf.client_get_default()
+    font_info = client.get_string("/desktop/gnome/interface/font_name")
+    font_size = int(font_info[-2:])
+    margin = 3
+    up_padding = (font_size - 10) / 5 + 5
+    down_padding = (font_size - 12) / 4 + 5
+    title_height = margin + up_padding + down_padding + font_size
+
     def __init__(self, title = None, des = None):
         gtk.VBox.__init__(self)
 
         self.set_border_width(5)
 
-        self.title = gtk.Label()
-        if title:
-            self.set_title(title)
-        self.title.set_alignment(0, 0)
-        self.pack_start(self.title, False, False, 0)
+        cairo_title = CairoDraw(title)
+        self.pack_start(cairo_title, False, False, 0)
 
-        self.description = gtk.Label()
         if des:
-            self.set_description
-        self.description.set_alignment(0, 0)
-        self.pack_start(self.description, False, False, 5)
-
-    def set_title(self, title):
-        self.title.set_markup("<b>%s</b>" % title)
+            self.description = gtk.Label()
+            self.set_description(des)
+            self.description.set_alignment(0, 0)
+            self.pack_start(self.description, False, False, 5)
 
     def set_description(self, des):
         self.description.set_markup(des)
-
 
 def show_info(message, title = None, buttons = gtk.BUTTONS_OK, type = gtk.MESSAGE_ERROR, parent = None):
     dialog = gtk.MessageDialog(parent, gtk.DIALOG_DESTROY_WITH_PARENT, type, buttons)

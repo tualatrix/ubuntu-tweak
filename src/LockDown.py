@@ -36,7 +36,7 @@ class LockDown(gtk.VBox):
     def __init__(self, parent = None):
         gtk.VBox.__init__(self)
 
-        box = ListPack(_("<b>System Security options</b>"), (
+        box = ListPack(_("System Security options"), (
                     Factory.create("gconfcheckbutton", _("Disable \"Run Application\" dialog (Alt+F2)"), "disable_command_line"),
                     Factory.create("gconfcheckbutton", _("Disable Lock Screen"), "disable_lock_screen"),
                     Factory.create("gconfcheckbutton", _("Disable Printing"), "disable_printing"),

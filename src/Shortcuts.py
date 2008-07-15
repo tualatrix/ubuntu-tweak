@@ -45,12 +45,12 @@ class Shortcuts(TweakPage):
     """Setting the command of keybinding"""
 
     def __init__(self, parent = None):
-        TweakPage.__init__(self)
+        TweakPage.__init__(self, 
+                _("Set the shortcut of your commands"), 
+                _("By configuring keyboard shortcuts, you have faster access to the \napplications you need.\nInput the command and set any desired key, it's easy to set a shortcut.\nUse <b>Delete</b> or <b>BackSpace</b> to clean the key."))
         gtk.VBox.__init__(self)
 
         self.main_window = parent
-        self.set_title(_("Set the shortcut of your commands"))
-        self.set_description(_("By configuring keyboard shortcuts, you have faster access to the \napplications you need.\nInput the command and set any desired key, it's easy to set a shortcut.\nUse <b>Delete</b> or <b>BackSpace</b> to clean the key."))
 
         treeview = self.create_treeview()
 

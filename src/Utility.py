@@ -32,6 +32,8 @@ class Test:
 
         win.connect('destroy', lambda *w: gtk.main_quit())
         win.set_position(gtk.WIN_POS_CENTER)
+        win.set_size_request(400, 400)
+
 
         if getattr(model, "__name__", None):
             win.set_title(model.__name__)

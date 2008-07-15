@@ -25,7 +25,7 @@ import gettext
 import gconf
 
 from Constants import *
-from Widgets import Mediator
+from Widgets import Mediator, TweakPage
 from Factory import Factory
 
 gettext.install(App, unicode = True)
@@ -95,18 +95,11 @@ class DesktopIcon(gtk.VBox, Mediator):
             self.entry.client.unset(self.entry.key)
             self.entry.set_text(_("Unset"))
 
-class Icon(gtk.VBox, Mediator):
+class Icon(TweakPage, Mediator):
     """Desktop Icon settings"""
 
     def __init__(self, parent = None):
-        gtk.VBox.__init__(self, False, 5)
-
-        self.set_border_width(5)
-
-        label = gtk.Label()
-        label.set_markup(_("<b>Desktop Icon settings</b>"))
-        label.set_alignment(0, 0)
-        self.pack_start(label, False, False, 0)
+        TweakPage.__init__(self, _("Desktop Icon settings"))
 
         self.show_button = Factory.create("cgconfcheckbutton", _("Show desktop icons"), "show_desktop", self)
         self.pack_start(self.show_button, False, False, 0)

@@ -25,7 +25,7 @@ import gettext
 import gobject
 from Constants import *
 from xdg.DesktopEntry import DesktopEntry
-from Widgets import show_info
+from Widgets import show_info, TweakPage
 
 gettext.install(App, unicode = True)
 
@@ -272,34 +272,23 @@ class AutoStartItem(gtk.TreeView):
 
         model.set(iter, COLUMN_ACTIVE, active)
 
-class AutoStart(gtk.VBox):
+class AutoStart(TweakPage):
     """The box pack the autostart list"""
     def __init__(self, parent = None):
-        gtk.VBox.__init__(self)
+        TweakPage.__init__(self,
+                _("Enable or Disable the AutoStart Program"),
+                _("You can safely delete the item, it will only been marked as hidden.\nIf you want to delete it from disk, right-click the item."))
 
         self.main_window = parent
 
-        vbox = gtk.VBox(False, 0)
-        vbox.set_border_width(5)
-        self.pack_start(vbox)
-
-        label = gtk.Label()
-        label.set_markup(_("<b>Enable or Disable the AutoStart Program</b>"))
-        label.set_alignment(0, 0)
-        vbox.pack_start(label, False, False, 0)
-
-        label = gtk.Label(_("You can safely delete the item, it will only been marked as hidden.\nIf you want to delete it from disk, right-click the item."))
-        label.set_alignment(0, 0)
-        vbox.pack_start(label, False, False, 5)
-
         hbox = gtk.HBox(False, 10)
-        vbox.pack_start(hbox, True, True, 10)
+        self.pack_start(hbox, True, True, 10)
 
         #create the two checkbutton for extra options of auto run list
         self.show_comment_button = gtk.CheckButton(_("Show program comments"))
-        vbox.pack_start(self.show_comment_button, False, False, 0)
+        self.pack_start(self.show_comment_button, False, False, 0)
         self.show_all_button = gtk.CheckButton(_("Show all runnable programs"))
-        vbox.pack_start(self.show_all_button, False, False, 0)
+        self.pack_start(self.show_all_button, False, False, 0)
 
         self.show_all_button.connect("toggled", self.on_show_all, self.show_comment_button)
         self.show_comment_button.connect("toggled", self.on_show_comment, self.show_all_button)

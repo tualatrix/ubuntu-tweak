@@ -45,7 +45,7 @@ class Nautilus(gtk.VBox, Mediator):
 
         button = Factory.create("gconfcheckbutton", _("Show advanced Permissions on File Property pages"), "show_advanced_permissions")
 
-        box = ListPack(_("<b>Settings for Nautilus behavior</b>"), (button, )) 
+        box = ListPack(_("Settings for Nautilus behavior"), (button, )) 
         self.pack_start(box, False, False, 0)
 
         hbox = gtk.HBox(False, 5)
@@ -58,7 +58,7 @@ class Nautilus(gtk.VBox, Mediator):
         hbox.pack_end(spinbutton, False, False, 0)
         box.vbox.pack_start(hbox, False, False, 0)
 
-        box = ListPack(_("<b>CD Burner</b>"), (
+        box = ListPack(_("CD Burner"), (
             Factory.create("gconfcheckbutton", _("Enable BurnProof technology"), "burnproof"),
             Factory.create("gconfcheckbutton", _("Enable OverBurn"), "overburn"),
         ))
@@ -71,7 +71,7 @@ class Nautilus(gtk.VBox, Mediator):
             self.nautilus_terminal = AptCheckButton(_("Nautilus with Open Terminal"), 'nautilus-open-terminal', self)
             self.nautilus_root = AptCheckButton(_("Nautilus with Root Privileges"), 'nautilus-gksu', self)
             self.nautilus_wallpaper = AptCheckButton(_("Nautilus with Wallpaper"), 'nautilus-wallpaper', self)
-            box = ListPack(_("<b>Nautilus Extensions</b>"), (
+            box = ListPack(_("Nautilus Extensions"), (
                 self.nautilus_terminal,
                 self.nautilus_root,
                 self.nautilus_wallpaper,

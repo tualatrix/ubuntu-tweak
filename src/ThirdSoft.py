@@ -70,6 +70,8 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/gilir/ubuntu', 'main', 'Screenlets', _('A framework for desktop widgets')],
     ['http://wine.budgetdedicated.com/apt', 'main', 'Wine', _('A compatibility layer for running Windows programs')],
     ['http://ppa.launchpad.net/lxde/ubuntu', 'main', 'LXDE', _('Lightweight X11 Desktop Environment:GPicView, PCManFM')],
+    ['http://ppa.launchpad.net/gnome-terminator/ubuntu', 'main', 'Terminator', _('A powerful terminal')],
+    ['http://ppa.launchpad.net/gscrot/ubuntu', 'main', 'gscrot', _('A powerful scrot')],
 ]
 
 class UpdateCacheDialog:
@@ -192,10 +194,9 @@ class SourcesView(gtk.TreeView, Colleague):
 
 class ThirdSoft(TweakPage, Mediator):
     def __init__(self, parent = None):
-        TweakPage.__init__(self)
-
-        self.set_title(_("Third Party Softwares Sources"))
-        self.set_description(_("You can always follow the latest version of a application.\nJust enable the application what you want."))
+        TweakPage.__init__(self, 
+                _("Third Party Softwares Sources"), 
+                _("You can always follow the latest version of an application.\nJust enable the application what you want."))
 
         sw = gtk.ScrolledWindow()
         sw.set_shadow_type(gtk.SHADOW_ETCHED_IN)

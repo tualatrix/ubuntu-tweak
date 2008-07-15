@@ -94,16 +94,16 @@ data = \
 
 class Installer(TweakPage):
     def __init__(self, parent = None):
-        TweakPage.__init__(self)
+        TweakPage.__init__(self, 
+                _("Install the widely used applications"),
+                _("You can install applications by using this simple interface."))
+
         self.main_window = parent
         update_apt_cache(True)
 
         self.to_add = []
         self.to_rm = []
         self.packageWorker = PackageWorker()
-
-        self.set_title(_("Install the widely used applications"))
-        self.set_description(_("You can install applications by using this simple interface."))
 
         vbox = gtk.VBox(False, 8)
         self.pack_start(vbox)

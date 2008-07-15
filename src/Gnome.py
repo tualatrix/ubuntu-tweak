@@ -44,7 +44,7 @@ class Gnome(gtk.VBox, Mediator):
         hbox.pack_start(label, False, False, 0)
         hbox.pack_start(combobox)
 
-        box = ListPack(_("<b>Panel and Menu</b>"), (
+        box = ListPack(_("Panel and Menu"), (
                     Factory.create("gconfcheckbutton", _("Confirm Message when removing panel"), "confirm_panel_remove"),
                     Factory.create("gconfcheckbutton", _("Complete lockdown of the Panel "), "locked_down"),
                     Factory.create("gconfcheckbutton", _("Enable panel animations"), "enable_animations"),
@@ -54,14 +54,14 @@ class Gnome(gtk.VBox, Mediator):
             ))
         self.pack_start(box, False, False, 0)
 
-        box = ListPack(_("<b>Screensaver</b>"), (
+        box = ListPack(_("Screensaver"), (
                     Factory.create("gconfcheckbutton", _("Enable User Switching while locking screen."), "user_switch_enabled"),
             ))
         self.pack_start(box, False, False, 0)
 
         self.recently_used = ColleagueCheckButton(_("Enable System-wide 'Recently Used' list"), self)
         self.recently_used.set_active(self.get_state())
-        box = ListPack(_("<b>History</b>"), (
+        box = ListPack(_("History"), (
                     self.recently_used,
             ))
         self.pack_start(box, False, False, 0)

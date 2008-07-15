@@ -38,7 +38,7 @@ except ImportError:
     DISABLE_NOR = True
     DISABLE_VER = False
 from Constants import *
-from Widgets import ListPack, Mediator, MessageDialog
+from Widgets import ListPack, Mediator, MessageDialog, SinglePack
 
 try:
     import apt_pkg
@@ -206,31 +206,26 @@ class Compiz(gtk.VBox, CompizSetting, Mediator):
                     self)
 
         if not DISABLE_NOR:
-            label = gtk.Label()
-            label.set_markup(_("<b>Edge Setting</b>"))
-            label.set_alignment(0, 0)
-            vbox.pack_start(label, False, False, 0)
-            self.pack_start(vbox, False, False, 0)
-
             hbox = gtk.HBox(False, 0)
-            self.pack_start(hbox, False, False, 0)
             hbox.pack_start(self.create_edge_setting(), True, False, 0)
+            edge_setting = SinglePack('Edge Setting', hbox)
+            self.pack_start(edge_setting, False, False, 0)
 
             self.snap = SnapWindow(_("Snapping Windows"), self)
             self.wobbly_w = WobblyWindow(_("Wobbly Windows"), self);
 
-            box = ListPack(_("<b>Window Effects</b>"), (self.snap, self.wobbly_w))
+            box = ListPack(_("Window Effects"), (self.snap, self.wobbly_w))
             self.pack_start(box, False, False, 0)
 
             button1 = OpacityMenu(_("Transparent Menu"))
             self.wobbly_m = WobblyMenu(_("Wobbly Menu"), self)
 
-            box = ListPack(_("<b>Menu Effects</b>"), (button1, self.wobbly_m))
+            box = ListPack(_("Menu Effects"), (button1, self.wobbly_m))
             self.pack_start(box, False, False, 0)
 
             if not DISABLE_APT:
                 update_apt_cache(True)
-                box = ListPack(_("<b>Compiz Extensions</b>"), (
+                box = ListPack(_("Compiz Extensions"), (
                     self.simple_settings,
                     self.screenlets,
                 ))
@@ -245,7 +240,7 @@ class Compiz(gtk.VBox, CompizSetting, Mediator):
 
                 self.pack_start(box, False, False, 0)
         else:
-            box = ListPack(_("<b>Prerequisite Conditions</b>"), (
+            box = ListPack(_("Prerequisite Conditions"), (
                 self.advanced_settings,
             ))
 
