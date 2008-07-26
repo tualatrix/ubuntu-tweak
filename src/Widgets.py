@@ -31,7 +31,8 @@ from Settings import *
 from Utility import gtk_process_events
 
 from Constants import *
-gettext.install(App, unicode = True)
+
+InitLocale()
 
 class Colleague:
     def __init__(self, mediator):
@@ -376,7 +377,6 @@ class TweakPage(gtk.VBox):
 
 def show_info(message, title = None, buttons = gtk.BUTTONS_OK, type = gtk.MESSAGE_ERROR, parent = None):
     dialog = gtk.MessageDialog(parent, gtk.DIALOG_DESTROY_WITH_PARENT, type, buttons)
-    dialog.set_icon_from_file("pixmaps/ubuntu-tweak.png")
     if title:
         dialog.set_title(title)
     dialog.set_markup(message)
@@ -389,7 +389,6 @@ class MessageDialog(gtk.MessageDialog):
         self.set_markup(message)
         if title:
             self.set_title(title)
-        self.set_icon_from_file("pixmaps/ubuntu-tweak.png")
         self.set_default_response(gtk.RESPONSE_REJECT)
 
 """Popup and KeyGrabber come from ccsm"""

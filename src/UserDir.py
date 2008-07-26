@@ -28,8 +28,6 @@ from Constants import *
 from IniFile import IniFile
 from Widgets import TweakPage, EntryBox, show_info
 
-gettext.install(App, unicode = True)
-
 class UserdirFile(IniFile):
     """Class to parse userdir file"""
     filename = os.path.join(os.path.expanduser("~"), ".config/user-dirs.dirs")
@@ -46,7 +44,7 @@ class UserDir(TweakPage):
             "XDG_MUSIC_DIR": _("Music Folder"),
             "XDG_PICTURES_DIR": _("Pictures Folder"),
             "XDG_VIDEOS_DIR": _("Videos Folder")}
-    def __init__(self, parent = None):
+    def __init__(self):
         TweakPage.__init__(self, 
                 _("Set your document folders"), 
                 _("You can change the default document folders.\nDon't change the Desktop folder in normal case."))

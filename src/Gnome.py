@@ -29,12 +29,10 @@ from Constants import *
 from Widgets import ListPack, ColleagueCheckButton, Mediator
 from Factory import Factory
 
-gettext.install(App, unicode = True)
-
 class Gnome(gtk.VBox, Mediator):
     """GNOME Settings"""
 
-    def __init__(self, parent = None):
+    def __init__(self):
         gtk.VBox.__init__(self)
 
         hbox = gtk.HBox(False, 10)

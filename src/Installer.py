@@ -5,6 +5,7 @@ import gtk
 import gettext
 import gobject
 
+from Constants import *
 from Widgets import TweakPage, MessageDialog
 from xdg.DesktopEntry import DesktopEntry
 
@@ -16,7 +17,7 @@ except ImportError:
     DISABLE = True
 
 DESKTOP_DIR = '/usr/share/app-install/desktop/'
-ICON_DIR = 'applogos'
+ICON_DIR = os.path.join(DATA_DIR, 'applogos')
 
 (
     COLUMN_INSTALLED,
@@ -93,12 +94,11 @@ data = \
 )
 
 class Installer(TweakPage):
-    def __init__(self, parent = None):
+    def __init__(self):
         TweakPage.__init__(self, 
                 _("Install the widely used applications"),
                 _("You can install applications by using this simple interface."))
 
-        self.main_window = parent
         update_apt_cache(True)
 
         self.to_add = []
@@ -269,7 +269,7 @@ class Installer(TweakPage):
         return treeview
 
     def on_apply_clicked(self, widget, data = None):
-        state = self.packageWorker.perform_action(self.main_window, self.to_add, self.to_rm)
+        state = self.packageWorker.perform_action(widget.get_toplevel(), self.to_add, self.to_rm)
 
         if state == 0:
             self.button.set_sensitive(False)

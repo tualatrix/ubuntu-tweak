@@ -47,8 +47,6 @@ try:
 except ImportError:
     DISABLE_APT = True
 
-gettext.install(App, unicode = True)
-
 plugins = \
 [
     "expo",
@@ -184,9 +182,8 @@ class SnapWindow(gtk.CheckButton, CompizSetting):
 class Compiz(gtk.VBox, CompizSetting, Mediator):
     """Compiz Fusion tweak"""
 
-    def __init__(self, parent = None):
+    def __init__(self):
         gtk.VBox.__init__(self)
-        self.main_window = parent
 
         vbox = gtk.VBox(False, 0)
         vbox.set_border_width(5)
@@ -353,7 +350,7 @@ class Compiz(gtk.VBox, CompizSetting, Mediator):
             else:
                 to_rm.append(widget.pkgname)
 
-        self.packageWorker.perform_action(self.main_window, to_add, to_rm)
+        self.packageWorker.perform_action(widget.get_toplevel(), to_add, to_rm)
 
         self.button.set_sensitive(False)
         if DISABLE_NOR:

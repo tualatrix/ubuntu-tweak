@@ -28,8 +28,6 @@ from Constants import *
 from Widgets import Mediator, TweakPage
 from Factory import Factory
 
-gettext.install(App, unicode = True)
-
 computer_icon = \
 {
     "label" : _("Show \"Computer\" icon on desktop"),
@@ -98,7 +96,7 @@ class DesktopIcon(gtk.VBox, Mediator):
 class Icon(TweakPage, Mediator):
     """Desktop Icon settings"""
 
-    def __init__(self, parent = None):
+    def __init__(self):
         TweakPage.__init__(self, _("Desktop Icon settings"))
 
         self.show_button = Factory.create("cgconfcheckbutton", _("Show desktop icons"), "show_desktop", self)

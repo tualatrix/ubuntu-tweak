@@ -30,8 +30,6 @@ from Constants import *
 from gnome import ui
 from Widgets import TweakPage, MessageDialog
 
-gettext.install(App, unicode = True)
-
 (
     COLUMN_ICON,
     COLUMN_SCRIPTINFO,
@@ -59,8 +57,8 @@ class DefaultScripts(AbstractScripts):
             os.makedirs(self.systemdir)
         for file, des in self.scripts.items():
             realname = "%s" % des
-            if not os.path.exists(self.systemdir + realname):
-                shutil.copy("scripts/%s" % file, self.systemdir + "/" + realname)
+            if not os.path.exists(os.path.join(self.systemdir,realname)):
+                shutil.copy(os.path.join(DATA_DIR, "scripts/%s" % file), os.path.join(self.systemdir,realname))
 
     def remove(self):
         if not os.path.exists(self.systemdir):
@@ -323,7 +321,7 @@ class DisableScripts(ScriptList):
 
 class Scripts(TweakPage, AbstractScripts):
     """Freedom added your docmuent scripts"""
-    def __init__(self, parent = None):
+    def __init__(self):
         TweakPage.__init__(self, 
                 _("Manage your scripts"),
                 _('You can do all kinds of tasks with scripts.\nYou can drag and drop from File Manager.\n"Scripts" will be added to the Context Menu.\n'))

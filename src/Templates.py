@@ -31,8 +31,6 @@ from gnome import ui
 from UserDir import UserdirFile
 from Widgets import TweakPage, MessageDialog
 
-gettext.install(App, unicode = True)
-
 (
     COLUMN_ICON,
     COLUMN_TEMPINFO,
@@ -61,8 +59,8 @@ class DefaultTemplates(AbstractTempates):
             os.makedirs(self.systemdir)
         for file, des in self.templates.items():
             realname = "%s.%s" % (des, file.split('.')[1])
-            if not os.path.exists(self.systemdir + realname):
-                shutil.copy("templates/%s" % file, self.systemdir + "/" + realname)
+            if not os.path.exists(os.path.join(self.systemdir, realname)):
+                shutil.copy(os.path.join(DATA_DIR, 'templates/%s' % file), os.path.join(self.systemdir, realname))
 
     def remove(self):
         if not os.path.exists(self.systemdir):
@@ -308,7 +306,7 @@ class DisableTemplate(TemplateList):
 
 class Templates(TweakPage, AbstractTempates):
     """Freedom added your docmuent templates"""
-    def __init__(self, parent = None):
+    def __init__(self):
         TweakPage.__init__(self, 
                 _("Manage your templates"),
                 _('You can freely manage your document templates.\nYou can drag and drop from File Manager.\n"Create Document" will be added to the Context Menu.\n'))

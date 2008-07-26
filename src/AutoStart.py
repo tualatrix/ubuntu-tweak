@@ -21,13 +21,12 @@
 import os
 import gtk
 import shutil
-import gettext
 import gobject
 from Constants import *
 from xdg.DesktopEntry import DesktopEntry
 from Widgets import show_info, TweakPage
 
-gettext.install(App, unicode = True)
+InitLocale()
 
 (
     COLUMN_ACTIVE,
@@ -40,7 +39,6 @@ class AutoStartDialog(gtk.Dialog):
     def __init__(self, desktopentry = None, parent = None):
         """Init the dialog, if use to edit, pass the desktopentry parameter"""
         gtk.Dialog.__init__(self, parent = parent)
-        self.set_icon_from_file("pixmaps/ubuntu-tweak.png")
         self.set_default_size(400, -1)
 
         lbl1 = gtk.Label()
@@ -274,12 +272,10 @@ class AutoStartItem(gtk.TreeView):
 
 class AutoStart(TweakPage):
     """The box pack the autostart list"""
-    def __init__(self, parent = None):
+    def __init__(self):
         TweakPage.__init__(self,
                 _("Enable or Disable the AutoStart Program"),
                 _("You can safely delete the item, it will only been marked as hidden.\nIf you want to delete it from disk, right-click the item."))
-
-        self.main_window = parent
 
         hbox = gtk.HBox(False, 10)
         self.pack_start(hbox, True, True, 10)
@@ -344,7 +340,7 @@ class AutoStart(TweakPage):
                 self.treeview.update_items()
 
     def on_add_item(self, widget, treeview):
-        dialog = AutoStartDialog(parent = self.main_window)
+        dialog = AutoStartDialog(parent = widget.get_toplevel())
         while dialog.run() == gtk.RESPONSE_OK:
             name = dialog.pm_name.get_text()
             cmd = dialog.pm_cmd.get_text()
@@ -391,7 +387,7 @@ class AutoStart(TweakPage):
             if path[1:4] == "etc":
                 shutil.copy(path, treeview.userdir)
                 path = os.path.join(treeview.userdir, os.path.basename(path))
-            dialog = AutoStartDialog(DesktopEntry(path), self.main_window)
+            dialog = AutoStartDialog(DesktopEntry(path), widget.get_toplevel())
             while dialog.run() == gtk.RESPONSE_OK:
                 name = dialog.pm_name.get_text()
                 cmd = dialog.pm_cmd.get_text()

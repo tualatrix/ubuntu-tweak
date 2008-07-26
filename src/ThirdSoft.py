@@ -34,49 +34,51 @@ import apt_pkg
 from Constants import *
 from Factory import Factory
 from PolicyKit import PolkitButton, DbusProxy
-from Widgets import ListPack, TweakPage, Colleague, Mediator
+from Widgets import ListPack, TweakPage, Colleague, Mediator, MessageDialog
 from aptsources.sourceslist import SourceEntry, SourcesList
 from PolicyKit import PolkitButton
-
-gettext.install(App, unicode = True)
 
 (
     COLUMN_ENABLED,
     COLUMN_URL,
+    COLUMN_DISTRO,
     COLUMN_COMPS,
     COLUMN_NAME,
     COLUMN_COMMENT,
     COLUMN_KEY,
-) = range(6)
+) = range(7)
 
 (
     ENTRY_URL,
+    ENTRY_DISTRO,
     ENTRY_COMPS,
     ENTRY_NAME,
     ENTRY_COMMENT,
     ENTRY_KEY,
-) = range(5)
+) = range(6)
 
 SOURCES_DATA = [
-    ['http://ppa.launchpad.net/awn-core/ubuntu', 'main', 'AWN', _('Fully customisable dock-like window navigator')],
-    ['http://ppa.launchpad.net/stemp/ubuntu', 'main', 'Midori', _('Webkit based lightweight web browser')],
-    ['http://ppa.launchpad.net/fta/ubuntu', 'main', 'Firefox', _('Development Version of Mozilla Firefox 3.0/3.1, 4.0')],
-    ['http://ppa.launchpad.net/compiz/ubuntu', 'main', 'Compiz Fusion', _('Development version of Compiz Fusion')],
-    ['http://repository.cairo-dock.org/ubuntu', 'cairo-dock', 'Cairo Dock', _('A true dock for linux')],
-    ['http://ppa.launchpad.net/do-core/ubuntu', 'main', 'GNOME Do', _('Do things as quickly as possible')],
-    ['http://ppa.launchpad.net/banshee-team/ubuntu', 'main', 'Banshee', _('Audio Management and Playback application')],
-    ['http://ppa.launchpad.net/googlegadgets/ubuntu', 'main', 'Google gadgets', _('Platform for running Google Gadgets on Linux')],
-    ['http://ppa.launchpad.net/lidaobing/ubuntu', 'main', 'chmsee', _('A chm file viewer written in GTK+')],
-    ['http://ppa.launchpad.net/kubuntu-members-kde4/ubuntu', 'main', 'KDE 4', _('K Desktop Environment 4.1')],
-    ['http://ppa.launchpad.net/tualatrix/ubuntu', 'main', 'Ubuntu Tweak', _('Tweak ubuntu to what you like')],
-    ['http://ppa.launchpad.net/gilir/ubuntu', 'main', 'Screenlets', _('A framework for desktop widgets')],
-    ['http://wine.budgetdedicated.com/apt', 'main', 'Wine', _('A compatibility layer for running Windows programs'), 'aptkeys/387EE263.gpg'],
-    ['http://ppa.launchpad.net/lxde/ubuntu', 'main', 'LXDE', _('Lightweight X11 Desktop Environment:GPicView, PCManFM')],
-    ['http://ppa.launchpad.net/gnome-terminator/ubuntu', 'main', 'Terminator', _('A powerful terminal')],
-    ['http://ppa.launchpad.net/gscrot/ubuntu', 'main', 'gscrot', _('A powerful scrot')],
-    ['http://playonlinux.botux.net/', 'main', 'PlayOnLinux', _('Play windows games on your Linux'), 'aptkeys/pol.gpg'],
-    ['http://ppa.launchpad.net/reacocard-awn/ubuntu/', 'main', 'AWN Trunk', _('Play windows games on your Linux')],
-    ['http://ppa.launchpad.net/bearoso/ubuntu', 'main', 'snes9x-gtk', _('Hello World')],
+    ['http://ppa.launchpad.net/awn-core/ubuntu', 'hardy', 'main', 'AWN', _('Fully customisable dock-like window navigator')],
+    ['http://ppa.launchpad.net/stemp/ubuntu', 'hardy', 'main', 'Midori', _('Webkit based lightweight web browser')],
+    ['http://ppa.launchpad.net/fta/ubuntu', 'hardy', 'main', 'Firefox', _('Development Version of Mozilla Firefox 3.0/3.1, 4.0')],
+    ['http://ppa.launchpad.net/compiz/ubuntu', 'hardy', 'main', 'Compiz Fusion', _('Development version of Compiz Fusion')],
+    ['http://repository.cairo-dock.org/ubuntu', 'hardy', 'cairo-dock', 'Cairo Dock', _('A true dock for linux')],
+    ['http://ppa.launchpad.net/do-core/ubuntu', 'hardy', 'main', 'GNOME Do', _('Do things as quickly as possible')],
+    ['http://ppa.launchpad.net/banshee-team/ubuntu', 'hardy', 'main', 'Banshee', _('Audio Management and Playback application')],
+    ['http://ppa.launchpad.net/googlegadgets/ubuntu', 'hardy', 'main', 'Google gadgets', _('Platform for running Google Gadgets on Linux')],
+    ['http://ppa.launchpad.net/lidaobing/ubuntu', 'hardy', 'main', 'chmsee', _('A chm file viewer written in GTK+')],
+    ['http://ppa.launchpad.net/kubuntu-members-kde4/ubuntu', 'hardy', 'main', 'KDE 4', _('K Desktop Environment 4.1')],
+    ['http://ppa.launchpad.net/tualatrix/ubuntu', 'hardy', 'main', 'Ubuntu Tweak', _('Tweak ubuntu to what you like')],
+    ['http://ppa.launchpad.net/gilir/ubuntu', 'hardy', 'main', 'Screenlets', _('A framework for desktop widgets')],
+    ['http://wine.budgetdedicated.com/apt', 'hardy', 'main', 'Wine', _('A compatibility layer for running Windows programs'), 'wine.gpg'],
+    ['http://ppa.launchpad.net/lxde/ubuntu', 'hardy', 'main', 'LXDE', _('Lightweight X11 Desktop Environment:GPicView, PCManFM')],
+    ['http://ppa.launchpad.net/gnome-terminator/ubuntu', 'hardy', 'main', 'Terminator', _('A powerful terminal')],
+    ['http://ppa.launchpad.net/gscrot/ubuntu', 'hardy', 'main', 'gscrot', _('A powerful scrot')],
+    ['http://playonlinux.botux.net/', 'hardy', 'main', 'PlayOnLinux', _('Play windows games on your Linux'), 'pol.gpg'],
+    ['http://ppa.launchpad.net/reacocard-awn/ubuntu/', 'hardy', 'main', 'AWN Trunk', _('Play windows games on your Linux')],
+    ['http://ppa.launchpad.net/bearoso/ubuntu', 'hardy', 'main', 'snes9x-gtk', _('Hello World')],
+    ['http://deb.opera.com/opera/', 'lenny', 'non-free', 'opera', _('Hello World'), 'opera.gpg'],
+    ['http://download.skype.com/linux/repos/debian', 'stable', 'non-free', 'skype', _('Hello World')],
 ]
 
 class UpdateCacheDialog:
@@ -143,6 +145,7 @@ class SourcesView(gtk.TreeView, Colleague):
                 gobject.TYPE_STRING,
                 gobject.TYPE_STRING,
                 gobject.TYPE_STRING,
+                gobject.TYPE_STRING,
                 gobject.TYPE_STRING)
 
         return model
@@ -162,11 +165,12 @@ class SourcesView(gtk.TreeView, Colleague):
             enabled = False
             url = entry[ENTRY_URL]
             comps = entry[ENTRY_COMPS]
+            distro = entry[ENTRY_DISTRO]
             name = entry[ENTRY_NAME]
             comment = entry[ENTRY_COMMENT]
             comment = "<b>%s</b>: %s" % (name, comment)
             try:
-                key = entry[ENTRY_KEY]
+                key = os.path.join(DATA_DIR, 'aptkeys', entry[ENTRY_KEY])
             except IndexError:
                 key = ''
 
@@ -177,6 +181,7 @@ class SourcesView(gtk.TreeView, Colleague):
             self.model.append((
                 enabled,
                 url,
+                distro,
                 comps,
                 name,
                 comment,
@@ -188,14 +193,15 @@ class SourcesView(gtk.TreeView, Colleague):
 
         enabled = self.model.get_value(iter, COLUMN_ENABLED)
         url = self.model.get_value(iter, COLUMN_URL)
+        distro = self.model.get_value(iter, COLUMN_DISTRO)
         name = self.model.get_value(iter, COLUMN_NAME)
         comps = self.model.get_value(iter, COLUMN_COMPS)
         key = self.model.get_value(iter, COLUMN_KEY)
 
         if key:
-            self.proxy.proxy.AddAptKey(key, dbus_interface = self.proxy.INTERFACE)
+            self.proxy.add_aptkey(key)
 
-        result = self.proxy.proxy.SetSourcesList(url, name, comps, not enabled, dbus_interface = self.proxy.INTERFACE)
+        result = self.proxy.set_entry(url, distro, comps, name, not enabled)
 
         if result == 'enabled':
             self.model.set(iter, COLUMN_ENABLED, True)
@@ -203,12 +209,9 @@ class SourcesView(gtk.TreeView, Colleague):
             self.model.set(iter, COLUMN_ENABLED, False)
             
         self.state_changed(cell)
-    
-    def set_sourceslist_state(self, state):
-        self.proxy.proxy.SetListState(state, dbus_interface = self.proxy.INTERFACE)
-
+   
 class ThirdSoft(TweakPage, Mediator):
-    def __init__(self, parent = None):
+    def __init__(self):
         TweakPage.__init__(self, 
                 _("Third Party Softwares Sources"), 
                 _("You can always follow the latest version of an application.\nJust enable the application what you want."))
@@ -227,7 +230,7 @@ class ThirdSoft(TweakPage, Mediator):
         self.pack_end(hbox, False, False, 5)
 
         un_lock = PolkitButton()
-        un_lock.connect("clicked", self.on_polkit_action)
+        un_lock.connect("authenticated", self.on_polkit_action)
         hbox.pack_end(un_lock, False, False, 5)
 
         self.refresh_button = gtk.Button(stock = gtk.STOCK_REFRESH)
@@ -236,16 +239,26 @@ class ThirdSoft(TweakPage, Mediator):
         hbox.pack_end(self.refresh_button, False, False, 5)
 
     def on_polkit_action(self, widget):
+        gtk.gdk.threads_enter()
         if widget.action == 1:
             self.treeview.set_sensitive(True)
-            
+            dialog = MessageDialog(_("<b><big>Warning</big></b>\n\nIt is possible security rish to use packages from third party sources. Please be careful."), type = gtk.MESSAGE_WARNING, buttons = gtk.BUTTONS_OK)
+            dialog.run()
+            dialog.destroy()
+        elif widget.error == -1:
+            dialog = MessageDialog(_("<b><big>Could not authenticate</big></b>\n\nAn unexpected error has occurred."), type = gtk.MESSAGE_ERROR, buttons = gtk.BUTTONS_CLOSE)
+            dialog.run()
+            dialog.destroy()
+
+        gtk.gdk.threads_leave()
+
     def colleague_changed(self):
         self.refresh_button.set_sensitive(True)
     
     def on_refresh_button_clicked(self, widget):
         dialog = UpdateCacheDialog(widget.get_toplevel())
         res = dialog.run()
-        self.treeview.set_sourceslist_state('normal')
+        self.treeview.proxy.set_liststate('normal')
         widget.set_sensitive(False)
 
 if __name__ == "__main__":

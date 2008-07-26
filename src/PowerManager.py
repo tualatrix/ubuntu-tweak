@@ -30,11 +30,9 @@ from Widgets import HScaleBox
 from Widgets import TablePack
 from Factory import Factory
 
-gettext.install(App, unicode = True)
-
 class PowerManager(gtk.VBox):
     """Advanced Powermanager Settings"""
-    def __init__(self, parent = None):
+    def __init__(self):
         gtk.VBox.__init__(self)
 
         box = TablePack(_("Advanced Power Management Settings"), [

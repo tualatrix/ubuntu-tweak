@@ -35,13 +35,10 @@ from Constants import *
 from Factory import Factory
 from Widgets import ListPack, TablePack, Mediator, MessageDialog
 
-gettext.install(App, unicode = True)
-
 class Nautilus(gtk.VBox, Mediator):
     """Nautilus Settings"""
-    def __init__(self, parent = None):
+    def __init__(self):
         gtk.VBox.__init__(self)
-        self.main_window = parent
 
         button = Factory.create("gconfcheckbutton", _("Show advanced Permissions on File Property pages"), "show_advanced_permissions")
 
@@ -102,7 +99,7 @@ class Nautilus(gtk.VBox, Mediator):
             else:
                 to_rm.append(widget.pkgname)
 
-        state = self.packageWorker.perform_action(self.main_window, to_add, to_rm)
+        state = self.packageWorker.perform_action(widget.get_toplevel(), to_add, to_rm)
 
         if state == 0:
             self.button.set_sensitive(False)

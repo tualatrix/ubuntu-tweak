@@ -27,3 +27,23 @@ class DbusProxy:
 
     system_bus = dbus.SystemBus()
     proxy = system_bus.get_object('com.ubuntu_tweak.Mechanism', '/Tweak', INTERFACE)
+
+    @classmethod
+    def set_liststate(self, state):
+        self.proxy.SetListState(state, dbus_interface = self.INTERFACE)
+
+    @classmethod
+    def get_liststate(self):
+        return self.proxy.GetListState(dbus_interface = DbusProxy.INTERFACE)
+
+    @classmethod
+    def set_entry(self, url, distro, comps, name, enabled):
+        return self.proxy.SetSourcesList(url, distro, comps, name, enabled, dbus_interface = self.INTERFACE)
+
+    @classmethod
+    def add_aptkey(self, key):
+        self.proxy.AddAptKey(key, dbus_interface = self.INTERFACE)
+
+    @classmethod
+    def exit(self):
+        self.proxy.Exit(dbus_interface = DbusProxy.INTERFACE)

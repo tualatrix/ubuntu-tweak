@@ -22,11 +22,17 @@ import pygtk
 pygtk.require("2.0")
 import gtk
 import os
+import thread
+import gobject
 import gettext
 import dbus
 
 class PolkitButton(gtk.Button):
     action = 0
+    error = 0
+    __gsignals__ = {
+            'authenticated': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, ())
+            }
 
     def __init__(self):
         gtk.Button.__init__(self)
@@ -38,15 +44,22 @@ class PolkitButton(gtk.Button):
         self.connect("clicked", self.on_button_clicked)
 
     def on_button_clicked(self, widget):
-        win = widget.get_toplevel()
-        xid = win.window.xid
+        xid = widget.get_toplevel().window.xid
+        thread.start_new_thread(self.obtain_authorization, (xid,))
+
+    def obtain_authorization(self, xid):
         policykit = dbus.SessionBus().get_object('org.freedesktop.PolicyKit.AuthenticationAgent', '/')
 
-        granted = policykit.ObtainAuthorization('com.ubuntu-tweak.mechanism', dbus.UInt32(xid), dbus.UInt32(os.getpid()))
+        try:
+            granted = policykit.ObtainAuthorization('com.ubuntu-tweak.mechanism', dbus.UInt32(xid), dbus.UInt32(os.getpid()))
+        except dbus.exceptions.DBusException:
+            self.error = -1
+        else:
+            self.action = granted
 
-        self.action = granted
-
-        if self.action == 1:
-            image = gtk.image_new_from_stock(gtk.STOCK_YES, gtk.ICON_SIZE_BUTTON)
-            self.set_image(image)
-            self.set_sensitive(False)
+            if self.action == 1:
+                image = gtk.image_new_from_stock(gtk.STOCK_YES, gtk.ICON_SIZE_BUTTON)
+                self.set_image(image)
+                self.set_sensitive(False)
+        finally:
+            self.emit('authenticated')

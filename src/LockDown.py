@@ -29,11 +29,11 @@ from Constants import *
 from Factory import Factory
 from Widgets import ListPack
 
-gettext.install(App, unicode = True)
+InitLocale()
 
 class LockDown(gtk.VBox):
     """Lock down some function"""
-    def __init__(self, parent = None):
+    def __init__(self):
         gtk.VBox.__init__(self)
 
         box = ListPack(_("System Security options"), (

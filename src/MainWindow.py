@@ -27,13 +27,14 @@ import sys
 import gconf
 import thread
 import gobject
-import gettext
 
 from Constants import *
 from gnome import url_show
 from Widgets import MessageDialog
 from SystemInfo import GnomeVersion
 from SystemInfo import SystemInfo
+
+InitLocale()
 
 DISABLE_HARDY = '8.04' not in SystemInfo.distro
 GNOME = int(GnomeVersion.minor)
@@ -114,7 +115,7 @@ from Metacity import Metacity
     ICON_COLUMN,
     NAME_COLUMN,
     PAGE_COLUMN,
-    Version_COLUMN,
+    VERSION_COLUMN,
     TOTAL_COLUMN,
 ) = range(6)
 
@@ -144,7 +145,6 @@ from Metacity import Metacity
     SECU_OPTIONS_PAGE,
     TOTAL_PAGE
 ) = range(24)
-
 icons = \
 [
     "pixmaps/welcome.png",
@@ -171,6 +171,14 @@ icons = \
     "pixmaps/security.png",
     "pixmaps/lockdown.png",
 ]
+def update_icons(icons):
+    list = []
+    for icon in icons:
+        list.append(DATA_DIR + '/' + icon)
+
+    return list
+
+icons = update_icons(icons)
 
 MODULE_LIST = \
 [
@@ -210,7 +218,7 @@ class MainWindow(gtk.Window):
         self.set_default_size(690, 680)
         self.set_position(gtk.WIN_POS_CENTER)
         self.set_border_width(10)
-        self.set_icon_from_file("pixmaps/ubuntu-tweak.png")
+        gtk.window_set_default_icon_from_file(os.path.join(DATA_DIR, 'pixmaps/ubuntu-tweak.png'))
 
         vbox = gtk.VBox(False, 0)
         self.add(vbox)
@@ -222,10 +230,10 @@ class MainWindow(gtk.Window):
         vbox.pack_start(eventbox, False, False, 0)
 
         banner_left = gtk.Image()
-        banner_left.set_from_file("pixmaps/banner_left.png")
+        banner_left.set_from_file("data/pixmaps/banner_left.png")
         hbox.pack_start(banner_left, False, False, 0)
         banner_right = gtk.Image()
-        banner_right.set_from_file("pixmaps/banner_right.png")
+        banner_right.set_from_file("data/pixmaps/banner_right.png")
         hbox.pack_end(banner_right, False, False, 0)
 
         hpaned = gtk.HPaned()
@@ -292,7 +300,7 @@ class MainWindow(gtk.Window):
                 except IndexError:
                     pass
 
-                if GNOME >= module[Version_COLUMN]:
+                if GNOME >= module[VERSION_COLUMN]:
                     icon = gtk.gdk.pixbuf_new_from_file(module[ICON_COLUMN])
                     child_iter = model.append(iter)
                     model.set(child_iter,
@@ -386,7 +394,7 @@ class MainWindow(gtk.Window):
 
     def setup_notebook(self, id):
         page = MODULE_LIST[id][PAGE_COLUMN]
-        page = page(self)
+        page = page()
         page.show_all()
         self.notebook.append_page(page)
 
@@ -398,9 +406,8 @@ class MainWindow(gtk.Window):
 
         about = gtk.AboutDialog()
         about.set_transient_for(self)
-        about.set_icon_from_file("pixmaps/ubuntu-tweak.png")
         about.set_name("Ubuntu Tweak")
-        about.set_version(Version)
+        about.set_version(VERSION)
         about.set_website("http://ubuntu-tweak.com")
         about.set_website_label("ubuntu-tweak.com")
         about.set_logo(self.get_icon())
@@ -424,7 +431,7 @@ You should have received a copy of the GNU General Public License along with Ubu
 
         client = gconf.client_get_default()
         version = client.get_string("/apps/ubuntu-tweak/update")
-        if version > Version:
+        if version > VERSION:
             dialog = MessageDialog(_("A newer version: %s is available online.\nWould you like to update?") % version)
 
             dialog.set_transient_for(self)
@@ -437,11 +444,11 @@ You should have received a copy of the GNU General Public License along with Ubu
     def destroy(self, widget, data = None):
         if not DISABLE_APT and not DISABLE_HARDY:
             from PolicyKit import DbusProxy
-            state = DbusProxy.proxy.GetListState(dbus_interface = DbusProxy.INTERFACE)
+            state = DbusProxy.get_liststate()
             if state == "expire":
                 from ThirdSoft import UpdateCacheDialog
                 dialog = UpdateCacheDialog(self)
                 res = dialog.run()
 
-            DbusProxy.proxy.Exit(dbus_interface = DbusProxy.INTERFACE)
+            DbusProxy.exit()
         gtk.main_quit()

@@ -24,7 +24,7 @@ import thread
 import gettext
 
 from Constants import *
-gettext.install(App, unicode = True)
+InitLocale()
 
 class TweakLauncher:
     def __init__(self):
@@ -46,7 +46,7 @@ class TweakLauncher:
 
         vbox = gtk.VBox(False, 0)
         image = gtk.Image()
-        image.set_from_file('pixmaps/splash.png')
+        image.set_from_file(os.path.join(DATA_DIR, 'pixmaps/splash.png'))
 
         vbox.pack_start(image)
         win.add(vbox)

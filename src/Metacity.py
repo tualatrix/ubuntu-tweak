@@ -29,11 +29,9 @@ from Constants import *
 from Factory import Factory
 from Widgets import TablePack
 
-gettext.install(App, unicode = True)
-
 class Metacity(gtk.VBox):
     """Some options about Metacity Window Manager"""
-    def __init__(self, parent = None):
+    def __init__(self):
         gtk.VBox.__init__(self)
 
         box = TablePack(_("Window Decorate Effect"), [

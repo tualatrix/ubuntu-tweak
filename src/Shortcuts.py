@@ -30,8 +30,6 @@ from Constants import *
 from Widgets import TweakPage, Popup, KeyGrabber, KeyModifier
 from Factory import Factory
 
-gettext.install(App, unicode = True)
-
 (
     COLUMN_ID,
     COLUMN_TITLE,
@@ -44,13 +42,11 @@ gettext.install(App, unicode = True)
 class Shortcuts(TweakPage):
     """Setting the command of keybinding"""
 
-    def __init__(self, parent = None):
+    def __init__(self):
         TweakPage.__init__(self, 
                 _("Set the shortcut of your commands"), 
                 _("By configuring keyboard shortcuts, you have faster access to the \napplications you need.\nInput the command and set any desired key, it's easy to set a shortcut.\nUse <b>Delete</b> or <b>BackSpace</b> to clean the key."))
         gtk.VBox.__init__(self)
-
-        self.main_window = parent
 
         treeview = self.create_treeview()
 
@@ -151,7 +147,7 @@ class Shortcuts(TweakPage):
             self.model.set_value(iter, COLUMN_KEY, new)
 
     def on_editing_started(self, cell, editable, path):
-        grabber = KeyGrabber(self.main_window, label = "Grab key combination")
+        grabber = KeyGrabber(self.get_toplevel(), label = "Grab key combination")
         cell.set_data("path_string", path)
         grabber.hide()
         grabber.set_no_show_all(True)
