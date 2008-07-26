@@ -44,7 +44,7 @@ class GconfKeys:
     parser = make_parser()
     handler = XmlHandler(keys)
     parser.setContentHandler(handler)
-    parser.parse("tweaks.xml")
+    parser.parse("data/tweaks.xml")
 
 class Factory:
     keys = GconfKeys.keys

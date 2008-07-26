@@ -102,7 +102,7 @@ class Icon(TweakPage, Mediator):
         TweakPage.__init__(self, _("Desktop Icon settings"))
 
         self.show_button = Factory.create("cgconfcheckbutton", _("Show desktop icons"), "show_desktop", self)
-        self.pack_start(self.show_button, False, False, 0)
+        self.pack_start(self.show_button, False, False, 10)
 
         self.show_button_box = gtk.HBox(False, 10)
         self.pack_start(self.show_button_box, False, False,0)

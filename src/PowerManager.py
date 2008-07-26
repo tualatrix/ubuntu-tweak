@@ -47,11 +47,13 @@ class PowerManager(gtk.VBox):
         ]) 
         self.pack_start(box, False, False, 0)
 
+        cpu_policy_text = [_("Normal"), _("On Demand"), _("Power Save"), _("Performance")]
+        cpu_policy_value = ["nothing", "ondemand", "powersave", "performance"]
         box = TablePack(_("CPU Policy"), [
                 [gtk.Label(_("The Performance value when on AC power")), Factory.create("gconfscale", 0, 100, "performance_ac", 0)],
                 [gtk.Label(_("The Performance value when on battery power")), Factory.create("gconfscale", 0, 100, "performance_battery", 0)],
-                [gtk.Label(_("The CPU frequency policy when on AC power")), Factory.create("gconfcombobox", "policy_ac", [_("On Demand"), _("Power Save"), _("Performance")], ["ondemand", "powersave", "performance"])],
-                [gtk.Label(_("The CPU frequency policy when on battery power")), Factory.create("gconfcombobox", "policy_battery", [_("On Demand"), _("Power Save"), _("Performance")], ["ondemand", "powersave", "performance"])],
+                [gtk.Label(_("The CPU frequency policy when on AC power")), Factory.create("gconfcombobox", "policy_ac", cpu_policy_text, cpu_policy_value)],
+                [gtk.Label(_("The CPU frequency policy when on battery power")), Factory.create("gconfcombobox", "policy_battery", cpu_policy_text, cpu_policy_value)],
         ])
             
         self.pack_start(box, False, False, 0)

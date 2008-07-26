@@ -75,6 +75,8 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/gnome-terminator/ubuntu', 'main', 'Terminator', _('A powerful terminal')],
     ['http://ppa.launchpad.net/gscrot/ubuntu', 'main', 'gscrot', _('A powerful scrot')],
     ['http://playonlinux.botux.net/', 'main', 'PlayOnLinux', _('Play windows games on your Linux'), 'aptkeys/pol.gpg'],
+    ['http://ppa.launchpad.net/reacocard-awn/ubuntu/', 'main', 'AWN Trunk', _('Play windows games on your Linux')],
+    ['http://ppa.launchpad.net/bearoso/ubuntu', 'main', 'snes9x-gtk', _('Hello World')],
 ]
 
 class UpdateCacheDialog:

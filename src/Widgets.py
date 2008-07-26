@@ -88,25 +88,15 @@ class CairoDraw(gtk.DrawingArea):
             def __str__(self):
                 return "%s, %s, %s" % (self.red, self.green, self.blue)
 
-        light_color = None
-        bg_color = None
-        fg_color = None
-
-        print '*'*80
         style = widget.get_style()
-        light_color = Color(style.mid[3])
         line_color = Color(style.dark[3])
-        dark_color = Color(style.white)
         bg_color = Color(style.base[3])
-        fg_color = Color(style.fg[3])
         text_color = Color(style.text[3])
-        print '*'*80
 
         ctx = self.window.cairo_create()
 
         width = event.area.width - 10
         height = event.area.height
-        print width, height
 
         ctx.set_line_width(1)
         ctx.set_source_rgb(line_color.red, line_color.green, line_color.blue)
@@ -135,19 +125,13 @@ class CairoDraw(gtk.DrawingArea):
         ctx.close_path()
 
         pat = cairo.LinearGradient(80, 10, 80, 80)
-#        pat.add_color_stop_rgb(0, light_color.red, light_color.green, light_color.blue)
         pat.add_color_stop_rgb(1, bg_color.red, bg_color.green, bg_color.blue)
-#        pat.add_color_stop_rgb(1, light_color.red, light_color.green, light_color.blue)
         ctx.set_source(pat)
         ctx.fill_preserve()
 
         ctx.set_font_size(self.font_size + 4)
         ctx.select_font_face(self.font_info, cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_BOLD)
 
-#        (x, y, width, height, dx, dy) = ctx.text_extents('Hello World')
-
-        print self.title_height
-#        ctx.move_to(12, self.title_height - 3)
         ctx.move_to(self.margin + 2, self.font_size + self.margin + self.up_padding)
         ctx.set_source_rgb(text_color.red, text_color.green, text_color.blue)
         ctx.show_text(self.title)
