@@ -88,7 +88,7 @@ class Tweak(dbus.service.Object):
         list = SourcesList()
         self.liststate = "expire"
         if enabled:
-            list.add('deb', url, distro, [comps], comment)
+            list.add('deb', url, distro, comps.split(' '), comment)
             list.save()
             return 'enabled'
         else:

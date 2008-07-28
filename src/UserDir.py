@@ -36,14 +36,16 @@ class UserdirFile(IniFile):
 
 class UserDir(TweakPage):
     """Setting the user default dictories"""
-    diritems = {    "XDG_DESKTOP_DIR": _("Desktop Folder"),
+    diritems = {
+            "XDG_DESKTOP_DIR": _("Desktop Folder"),
             "XDG_DOWNLOAD_DIR": _("Download Folder"),
             "XDG_TEMPLATES_DIR": _("Templates Folder"),
             "XDG_PUBLICSHARE_DIR": _("Public Folder"),
             "XDG_DOCUMENTS_DIR": _("Document Folder"),
             "XDG_MUSIC_DIR": _("Music Folder"),
             "XDG_PICTURES_DIR": _("Pictures Folder"),
-            "XDG_VIDEOS_DIR": _("Videos Folder")}
+            "XDG_VIDEOS_DIR": _("Videos Folder")
+            }
     def __init__(self):
         TweakPage.__init__(self, 
                 _("Set your document folders"), 

@@ -220,8 +220,9 @@ class BasePack(gtk.VBox):
         gtk.VBox.__init__(self)
         self.set_border_width(5)
 
-        cairo_title = CairoDraw(title)
-        self.pack_start(cairo_title, False, False, 0)
+        title = gtk.MenuItem(title)
+        title.select()
+        self.pack_start(title, False, False, 0)
 
 class SinglePack(BasePack):
     def __init__(self, title, widget):
@@ -363,8 +364,9 @@ class TweakPage(gtk.VBox):
 
         self.set_border_width(5)
 
-        cairo_title = CairoDraw(title)
-        self.pack_start(cairo_title, False, False, 0)
+        title = gtk.MenuItem(title)
+        title.select()
+        self.pack_start(title, False, False, 0)
 
         if des:
             self.description = gtk.Label()
