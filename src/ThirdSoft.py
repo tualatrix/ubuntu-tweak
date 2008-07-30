@@ -63,7 +63,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/awn-core/ubuntu', 'hardy', 'main', 'AWN', _('Fully customisable dock-like window navigator'), 'awn.png'],
     ['http://deb.opera.com/opera/', 'lenny', 'non-free', 'Opera', _('The Opera Web Browser'), 'opera.png', 'opera.gpg'],
     ['http://download.skype.com/linux/repos/debian', 'stable', 'non-free', 'Skype', _('A VoIP software'), 'skype.png'],
-    ['http://playonlinux.botux.net/', 'hardy', 'main', 'PlayOnLinux', _('Play windows games on your Linux'), 'playonlinux.png', 'pol.gpg'],
+    ['http://playonlinux.botux.net/', 'hardy', 'main', 'PlayOnLinux', _('Run your Windows programs on Linux'), 'playonlinux.png', 'pol.gpg'],
     ['http://ppa.launchpad.net/stemp/ubuntu', 'hardy', 'main', 'Midori', _('Webkit based lightweight web browser'), 'midori.png'],
     ['http://ppa.launchpad.net/fta/ubuntu', 'hardy', 'main', 'Firefox', _('Development Version of Mozilla Firefox 3.0/3.1, 4.0'), 'firefox.png'],
     ['http://ppa.launchpad.net/compiz/ubuntu', 'hardy', 'main', 'Compiz Fusion', _('Development version of Compiz Fusion'), 'compiz-fusion.png'],
@@ -79,6 +79,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/lxde/ubuntu', 'hardy', 'main', 'LXDE', _('Lightweight X11 Desktop Environment:GPicView, PCManFM'), 'lxde.png'],
     ['http://ppa.launchpad.net/gnome-terminator/ubuntu', 'hardy', 'main', 'Terminator', _('Multiple GNOME terminals in one window'), 'terminator.png'],
     ['http://ppa.launchpad.net/gscrot/ubuntu', 'hardy', 'main', 'GScrot', _('A powerful screenshot tool'), 'gscrot.png'],
+#    ['http://ppa.launchpad.net/macslow/ubuntu', 'hardy', 'main', 'MacSlow', _("MacSlow's package-building playground... use at your own risk"), 'gscrot.png'],
 #    ['http://packages.medibuntu.org/', 'hardy', 'free non-free', 'Medibuntu', _('Multimedia, Entertainment and Distraction In Ubuntu'), 'medibuntu.png', 'medibuntu.gpg'],
 #    ['http://ppa.launchpad.net/reacocard-awn/ubuntu/', 'hardy', 'main', 'AWN Trunk', _('Play windows games on your Linux')],
 #    ['http://ppa.launchpad.net/bearoso/ubuntu', 'hardy', 'main', 'snes9x-gtk', _('Hello World')],
@@ -256,18 +257,23 @@ class ThirdSoft(TweakPage, Mediator):
     def on_polkit_action(self, widget):
         gtk.gdk.threads_enter()
         if widget.action == 1:
-            self.treeview.set_sensitive(True)
-            WARNING_KEY = '/apps/ubuntu-tweak/disable_thidparty_warning'
+            if self.treeview.proxy.proxy:
+                self.treeview.set_sensitive(True)
+                WARNING_KEY = '/apps/ubuntu-tweak/disable_thidparty_warning'
 
-            if not BoolSetting(WARNING_KEY).get_bool():
-                dialog = MessageDialog(_('<b><big>Warning</big></b>\n\nIt is possible security rish to use packages from third party sources. Please be careful.'), type = gtk.MESSAGE_WARNING, buttons = gtk.BUTTONS_OK)
-                vbox = dialog.get_child()
-                hbox = gtk.HBox()
-                vbox.pack_start(hbox, False, False, 0)
-                checkbutton = GconfCheckButton(_('Never show this dialog'), WARNING_KEY)
-                hbox.pack_end(checkbutton, False, False, 0)
-                hbox.show_all()
+                if not BoolSetting(WARNING_KEY).get_bool():
+                    dialog = MessageDialog(_('<b><big>Warning</big></b>\n\nIt is possible security rish to use packages from third party sources. Please be careful.'), type = gtk.MESSAGE_WARNING, buttons = gtk.BUTTONS_OK)
+                    vbox = dialog.get_child()
+                    hbox = gtk.HBox()
+                    vbox.pack_start(hbox, False, False, 0)
+                    checkbutton = GconfCheckButton(_('Never show this dialog'), WARNING_KEY)
+                    hbox.pack_end(checkbutton, False, False, 0)
+                    hbox.show_all()
 
+                    dialog.run()
+                    dialog.destroy()
+            else:
+                dialog = MessageDialog(_("<b><big>Service hasn't initialized yet</big></b>\n\nYou need to restart your Ubuntu."), type = gtk.MESSAGE_ERROR, buttons = gtk.BUTTONS_CLOSE)
                 dialog.run()
                 dialog.destroy()
         elif widget.error == -1:

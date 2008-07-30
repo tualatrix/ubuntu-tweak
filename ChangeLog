@@ -1,18 +1,24 @@
 2008-07-28 TualatriX <tualatrix@gmail.com>
+	
+	Ubuntu Tweak 0.3.5
+	* src/MainWindow.py: Added the support of Linux Mint.
+
+2008-07-28 TualatriX <tualatrix@gmail.com>
 
 	* src/ThirdSoft.py: Redesigned the interface. Show warning dialog before
 	use, show inform dialog after refresh the sources.
 	* src/Installer.py: Added an icon into the category, added some
-	applications from 
+	applications from.
 
 2008-07-26 TualatriX <tualatrix@gmail.com>
 
 	* src/PowerManager.py: Added the "Normal" option.
-	* src/data/*: Re-arranged the data folder.
 	* src/PolicyKit/*: Enhanced the PolicyKit button and DbusProxy.
 	* src/ThirdSoft.py: Added the Error dialog, added new three sources.
 	* src/PowerManager.py: Added the normal option.
 	* src/Constants.py: Use the new locale mechanism.
+	* src/Widgets.py: Use gtk.MenuItem to show title.
+	* src/data/*: Re-arranged the data folder.
 	* src/*.py: Cleaned the code of "parent"(all use get_toplevel), use the
 	unique set_icon API.
 

@@ -35,8 +35,7 @@ from SystemInfo import GnomeVersion
 from SystemInfo import SystemInfo
 
 InitLocale()
-
-DISABLE_HARDY = '8.04' not in SystemInfo.distro
+DISABLE_HARDY = 'Mint' not in SystemInfo.distro and '8.04' not in SystemInfo.distro
 GNOME = int(GnomeVersion.minor)
 
 def Welcome(parent = None):
@@ -444,11 +443,12 @@ You should have received a copy of the GNU General Public License along with Ubu
     def destroy(self, widget, data = None):
         if not DISABLE_APT and not DISABLE_HARDY:
             from PolicyKit import DbusProxy
-            state = DbusProxy.get_liststate()
-            if state == "expire":
-                from ThirdSoft import UpdateCacheDialog
-                dialog = UpdateCacheDialog(self)
-                res = dialog.run()
+            if DbusProxy.proxy:
+                state = DbusProxy.get_liststate()
+                if state == "expire":
+                    from ThirdSoft import UpdateCacheDialog
+                    dialog = UpdateCacheDialog(self)
+                    res = dialog.run()
 
-            DbusProxy.exit()
+                DbusProxy.exit()
         gtk.main_quit()

@@ -25,8 +25,11 @@ import gettext
 class DbusProxy:
     INTERFACE = "com.ubuntu_tweak.Mechanism"
 
-    system_bus = dbus.SystemBus()
-    proxy = system_bus.get_object('com.ubuntu_tweak.Mechanism', '/Tweak', INTERFACE)
+    try:
+        system_bus = dbus.SystemBus()
+        proxy = system_bus.get_object('com.ubuntu_tweak.Mechanism', '/Tweak', INTERFACE)
+    except dbus.exceptions.DBusException:
+        proxy = None
 
     @classmethod
     def set_liststate(self, state):

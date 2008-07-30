@@ -98,6 +98,7 @@ data = \
     ('soundconverter', _('Convert audio files into other formats'), Sound),
     ('stardict', _('An international dictionary'), Desktop),
     ('terminator', _('Multiple GNOME terminals in one window'), Emulator),
+    ('ubuntu-restricted-extras', _('Commonly used restricted packages'), Desktop),
     ('virtualbox', _('A feature rich, high performance virtualization software'), Emulator),
     ('vlc', _('Read, capture, broadcast your multimedia streams'), Video),
     ('vmware-player', _('VMware Player can play virtual machines created by VMware'), Emulator),
