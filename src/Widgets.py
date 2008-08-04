@@ -62,81 +62,6 @@ class GconfCheckButton(gtk.CheckButton, BoolSetting):
     def button_toggled(self, widget, data = None):
         self.client.set_bool(self.key, self.get_active())
         
-class CairoDraw(gtk.DrawingArea):
-    """Draw the title of every item"""
-    client = gconf.client_get_default()
-    font_info = client.get_string("/desktop/gnome/interface/font_name")
-    font_size = int(font_info[-2:])
-    margin = 3
-    up_padding = (font_size - 10) / 5 + 5
-    down_padding = (font_size - 12) / 4 + 5
-    title_height = margin + up_padding + down_padding + font_size
-
-    def __init__(self, title = None):
-        gtk.DrawingArea.__init__(self)
-        self.title = title
-
-        self.connect("expose_event", self.expose_event)
-        self.set_size_request(-1, self.title_height + self.margin)
-
-    def expose_event(self, widget, event):
-        class Color:
-            def __init__(self, color):
-                self.red = color.red/65535.0
-                self.green = color.green/65535.0
-                self.blue = color.blue/65535.0
-
-            def __str__(self):
-                return "%s, %s, %s" % (self.red, self.green, self.blue)
-
-        style = widget.get_style()
-        line_color = Color(style.dark[3])
-        bg_color = Color(style.base[3])
-        text_color = Color(style.text[3])
-
-        ctx = self.window.cairo_create()
-
-        width = event.area.width - 10
-        height = event.area.height
-
-        ctx.set_line_width(1)
-        ctx.set_source_rgb(line_color.red, line_color.green, line_color.blue)
-        ctx.move_to(self.margin, self.margin)
-        ctx.line_to(width, self.margin)
-        ctx.line_to(width + 2, self.margin + 2)
-        ctx.line_to(width + 2, self.title_height)
-        ctx.line_to(width, self.title_height + 2)
-        ctx.line_to(self.margin, self.title_height + 2)
-        ctx.line_to(self.margin - 2, self.title_height)
-        ctx.line_to(self.margin -2 , self.margin + 2)
-        ctx.line_to(self.margin, self.margin)
-        ctx.close_path()
-        ctx.set_line_width(1)
-        ctx.stroke()
-
-        ctx.move_to(self.margin, self.margin)
-        ctx.line_to(width, self.margin)
-        ctx.line_to(width + 2, self.margin +2)
-        ctx.line_to(width + 2, self.title_height)
-        ctx.line_to(width, self.title_height + 2)
-        ctx.line_to(self.margin, self.title_height + 2)
-        ctx.line_to(self.margin -2, self.title_height)
-        ctx.line_to(self.margin - 2, self.margin +2)
-        ctx.line_to(self.margin , self.margin)
-        ctx.close_path()
-
-        pat = cairo.LinearGradient(80, 10, 80, 80)
-        pat.add_color_stop_rgb(1, bg_color.red, bg_color.green, bg_color.blue)
-        ctx.set_source(pat)
-        ctx.fill_preserve()
-
-        ctx.set_font_size(self.font_size + 4)
-        ctx.select_font_face(self.font_info, cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_BOLD)
-
-        ctx.move_to(self.margin + 2, self.font_size + self.margin + self.up_padding)
-        ctx.set_source_rgb(text_color.red, text_color.green, text_color.blue)
-        ctx.show_text(self.title)
-
 class StrGconfCheckButton(GconfCheckButton, Colleague):
     def __init__(self, label, key, mediator):
         GconfCheckButton.__init__(self, label, key)
@@ -349,30 +274,36 @@ class ComboboxItem(gtk.HBox):
 class AboutBlank:
     pass
 
-class TweakPage(gtk.VBox):
+class TweakPage(gtk.ScrolledWindow):
     """The standard page of tweak"""
-    client = gconf.client_get_default()
-    font_info = client.get_string("/desktop/gnome/interface/font_name")
-    font_size = int(font_info[-2:])
-    margin = 3
-    up_padding = (font_size - 10) / 5 + 5
-    down_padding = (font_size - 12) / 4 + 5
-    title_height = margin + up_padding + down_padding + font_size
 
     def __init__(self, title = None, des = None):
-        gtk.VBox.__init__(self)
+        gtk.ScrolledWindow.__init__(self)
+        self.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
 
-        self.set_border_width(5)
+        self.vbox = gtk.VBox(False, 0)
+        self.add_with_viewport(self.vbox)
+        viewport = self.get_child()
+        viewport.set_shadow_type(gtk.SHADOW_NONE)
 
-        title = gtk.MenuItem(title)
-        title.select()
-        self.pack_start(title, False, False, 0)
+        if title:
+            self.set_border_width(5)
+
+            title = gtk.MenuItem(title)
+            title.select()
+            self.pack_start(title, False, False, 0)
 
         if des:
             self.description = gtk.Label()
             self.set_description(des)
             self.description.set_alignment(0, 0)
             self.pack_start(self.description, False, False, 5)
+
+    def pack_start(self, child, expand = True, fill = True, padding = 0):
+        self.vbox.pack_start(child, expand, fill, padding)
+
+    def pack_end(self, child, expand = True, fill = True, padding = 0):
+        self.vbox.pack_end(child, expand, fill, padding)
 
     def set_description(self, des):
         self.description.set_markup(des)
@@ -385,7 +316,41 @@ def show_info(message, title = None, buttons = gtk.BUTTONS_OK, type = gtk.MESSAG
     dialog.run()
     dialog.destroy()
 
+class BaseMessageDialog(gtk.MessageDialog):
+    def __init__(self, message, type, buttons):
+        gtk.MessageDialog.__init__(self, None, 0, type, buttons)
+
+        self.set_markup(message)
+
+    def launch(self):
+        self.run()
+        self.destroy()
+
 class MessageDialog(gtk.MessageDialog):
+    def __init__(self, message, title = None, parent = None, flags = 0, type = gtk.MESSAGE_INFO, buttons = gtk.BUTTONS_YES_NO):
+        gtk.MessageDialog.__init__(self, parent, flags, type, buttons)
+        self.set_markup(message)
+        if title:
+            self.set_title(title)
+        self.set_default_response(gtk.RESPONSE_REJECT)
+
+class InfoDialog(BaseMessageDialog):
+    def __init__(self, message, type = gtk.MESSAGE_INFO, buttons = gtk.BUTTONS_OK):
+        BaseMessageDialog.__init__(self, message, type, buttons)
+
+class QuestionDialog(BaseMessageDialog):
+    def __init__(self, message, type = gtk.MESSAGE_QUESTION, buttons = gtk.BUTTONS_YES_NO):
+        BaseMessageDialog.__init__(self, message, type, buttons)
+
+class ErrorDialog(gtk.MessageDialog):
+    def __init__(self, message, title = None, parent = None, flags = 0, type = gtk.MESSAGE_INFO, buttons = gtk.BUTTONS_YES_NO):
+        gtk.MessageDialog.__init__(self, parent, flags, type, buttons)
+        self.set_markup(message)
+        if title:
+            self.set_title(title)
+        self.set_default_response(gtk.RESPONSE_REJECT)
+
+class WarningDialog(gtk.MessageDialog):
     def __init__(self, message, title = None, parent = None, flags = 0, type = gtk.MESSAGE_INFO, buttons = gtk.BUTTONS_YES_NO):
         gtk.MessageDialog.__init__(self, parent, flags, type, buttons)
         self.set_markup(message)

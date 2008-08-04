@@ -46,7 +46,6 @@ class Shortcuts(TweakPage):
         TweakPage.__init__(self, 
                 _("Set the shortcut of your commands"), 
                 _("By configuring keyboard shortcuts, you have faster access to the \napplications you need.\nInput the command and set any desired key, it's easy to set a shortcut.\nUse <b>Delete</b> or <b>BackSpace</b> to clean the key."))
-        gtk.VBox.__init__(self)
 
         treeview = self.create_treeview()
 
@@ -85,7 +84,7 @@ class Shortcuts(TweakPage):
             key = client.get_string("/apps/metacity/global_keybindings/run_command_%d" % id)
 
             if not command: command = _("None")
-            icon = icontheme.lookup_icon(command, 32, gtk.ICON_LOOKUP_NO_SVG)
+            icon = icontheme.lookup_icon(command, 24, gtk.ICON_LOOKUP_NO_SVG)
             if icon: icon = icon.load_icon()
             if key == "disabled": key = _("disabled")
 
@@ -167,7 +166,7 @@ class Shortcuts(TweakPage):
             client.set_string("/apps/metacity/keybinding_commands/command_%d" % id, new_text)
             if new_text:
                 icontheme = gtk.icon_theme_get_default()
-                icon = icontheme.lookup_icon(new_text, 32, gtk.ICON_LOOKUP_NO_SVG)
+                icon = icontheme.lookup_icon(new_text, 24, gtk.ICON_LOOKUP_NO_SVG)
                 if icon: icon = icon.load_icon()
 
                 model.set_value(iter, COLUMN_ICON, icon)

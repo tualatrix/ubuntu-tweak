@@ -79,6 +79,8 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/lxde/ubuntu', 'hardy', 'main', 'LXDE', _('Lightweight X11 Desktop Environment:GPicView, PCManFM'), 'lxde.png'],
     ['http://ppa.launchpad.net/gnome-terminator/ubuntu', 'hardy', 'main', 'Terminator', _('Multiple GNOME terminals in one window'), 'terminator.png'],
     ['http://ppa.launchpad.net/gscrot/ubuntu', 'hardy', 'main', 'GScrot', _('A powerful screenshot tool'), 'gscrot.png'],
+    ['http://ppa.launchpad.net/msn-pecan/ubuntu', 'hardy', 'main', 'Pidgin-msn', _('A powerful screenshot tool'), 'gscrot.png'],
+    ['http://ppa.launchpad.net/galaxium/ubuntu', 'hardy', 'main', 'Galaxium', _('MSN'), 'gscrot.png'],
 #    ['http://ppa.launchpad.net/macslow/ubuntu', 'hardy', 'main', 'MacSlow', _("MacSlow's package-building playground... use at your own risk"), 'gscrot.png'],
 #    ['http://packages.medibuntu.org/', 'hardy', 'free non-free', 'Medibuntu', _('Multimedia, Entertainment and Distraction In Ubuntu'), 'medibuntu.png', 'medibuntu.gpg'],
 #    ['http://ppa.launchpad.net/reacocard-awn/ubuntu/', 'hardy', 'main', 'AWN Trunk', _('Play windows games on your Linux')],
@@ -262,7 +264,7 @@ class ThirdSoft(TweakPage, Mediator):
                 WARNING_KEY = '/apps/ubuntu-tweak/disable_thidparty_warning'
 
                 if not BoolSetting(WARNING_KEY).get_bool():
-                    dialog = MessageDialog(_('<b><big>Warning</big></b>\n\nIt is possible security rish to use packages from third party sources. Please be careful.'), type = gtk.MESSAGE_WARNING, buttons = gtk.BUTTONS_OK)
+                    dialog = MessageDialog(_('<b><big>Warning</big></b>\n\nIt is possible security risk to use packages from third party sources. Please be careful.'), type = gtk.MESSAGE_WARNING, buttons = gtk.BUTTONS_OK)
                     vbox = dialog.get_child()
                     hbox = gtk.HBox()
                     vbox.pack_start(hbox, False, False, 0)

@@ -33,12 +33,12 @@ except ImportError:
 
 from Constants import *
 from Factory import Factory
-from Widgets import ListPack, TablePack, Mediator, MessageDialog
+from Widgets import ListPack, TablePack, Mediator, MessageDialog, TweakPage
 
-class Nautilus(gtk.VBox, Mediator):
+class Nautilus(TweakPage, Mediator):
     """Nautilus Settings"""
     def __init__(self):
-        gtk.VBox.__init__(self)
+        TweakPage.__init__(self)
 
         button = Factory.create("gconfcheckbutton", _("Show advanced Permissions on File Property pages"), "show_advanced_permissions")
 

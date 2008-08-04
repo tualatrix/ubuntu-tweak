@@ -26,14 +26,14 @@ import gconf
 import gettext
 
 from Constants import *
-from Widgets import ListPack, ColleagueCheckButton, Mediator
+from Widgets import ListPack, ColleagueCheckButton, Mediator, TweakPage
 from Factory import Factory
 
-class Gnome(gtk.VBox, Mediator):
+class Gnome(TweakPage, Mediator):
     """GNOME Settings"""
 
     def __init__(self):
-        gtk.VBox.__init__(self)
+        TweakPage.__init__(self)
 
         hbox = gtk.HBox(False, 10)
         label = gtk.Label(_("Notification-daemon popup location"))

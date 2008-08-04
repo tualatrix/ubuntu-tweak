@@ -27,14 +27,14 @@ import gettext
 
 from Constants import *
 from Factory import Factory
-from Widgets import ListPack
+from Widgets import ListPack, TweakPage
 
 InitLocale()
 
-class LockDown(gtk.VBox):
+class LockDown(TweakPage):
     """Lock down some function"""
     def __init__(self):
-        gtk.VBox.__init__(self)
+        TweakPage.__init__(self)
 
         box = ListPack(_("System Security options"), (
                     Factory.create("gconfcheckbutton", _("Disable \"Run Application\" dialog (Alt+F2)"), "disable_command_line"),

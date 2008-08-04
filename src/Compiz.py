@@ -38,7 +38,7 @@ except ImportError:
     DISABLE_NOR = True
     DISABLE_VER = False
 from Constants import *
-from Widgets import ListPack, Mediator, MessageDialog, SinglePack
+from Widgets import ListPack, Mediator, MessageDialog, SinglePack, TweakPage
 
 try:
     import apt_pkg
@@ -179,14 +179,11 @@ class SnapWindow(gtk.CheckButton, CompizSetting):
 
         self.set_active(self.plugin.Enabled)
 
-class Compiz(gtk.VBox, CompizSetting, Mediator):
+class Compiz(TweakPage, CompizSetting, Mediator):
     """Compiz Fusion tweak"""
 
     def __init__(self):
-        gtk.VBox.__init__(self)
-
-        vbox = gtk.VBox(False, 0)
-        vbox.set_border_width(5)
+        TweakPage.__init__(self)
 
         if not DISABLE_APT:
             update_apt_cache(True)

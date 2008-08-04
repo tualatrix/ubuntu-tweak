@@ -26,14 +26,14 @@ import gconf
 import gettext
 
 from Constants import *
-from Widgets import ListPack, SinglePack
+from Widgets import ListPack, SinglePack, TweakPage
 from Widgets import Mediator
 from Factory import Factory
 
-class Session(gtk.VBox, Mediator):
+class Session(TweakPage, Mediator):
     """GNOME Session control"""
     def __init__(self):
-        gtk.VBox.__init__(self)
+        TweakPage.__init__(self)
 
         self.pack_start(self.session_control_box(), False, False, 0)
 

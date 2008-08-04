@@ -23,20 +23,24 @@ pygtk.require("2.0")
 import gtk
 import os
 import gconf
+import gobject
 import gettext
+
 from Constants import *
 from IniFile import IniFile
-from Widgets import TweakPage, EntryBox, show_info
+from Widgets import TweakPage, EntryBox, QuestionDialog, InfoDialog
+
+(
+    COLUMN_ICON,
+    COLUMN_NAME,
+    COLUMN_DIR,
+    COLUMN_PATH,
+) = range(4)
 
 class UserdirFile(IniFile):
     """Class to parse userdir file"""
     filename = os.path.join(os.path.expanduser("~"), ".config/user-dirs.dirs")
-    def __init__(self):
-        IniFile.__init__(self, self.filename)
-
-class UserDir(TweakPage):
-    """Setting the user default dictories"""
-    diritems = {
+    XDG_DIRS = {
             "XDG_DESKTOP_DIR": _("Desktop Folder"),
             "XDG_DOWNLOAD_DIR": _("Download Folder"),
             "XDG_TEMPLATES_DIR": _("Templates Folder"),
@@ -47,79 +51,187 @@ class UserDir(TweakPage):
             "XDG_VIDEOS_DIR": _("Videos Folder")
             }
     def __init__(self):
+        IniFile.__init__(self, self.filename)
+
+    def items(self):
+        dict = {}
+        for userdir in self.XDG_DIRS.keys():
+            prefix = self.get(userdir).strip('"').split("/")[0]
+            if prefix:
+                path = os.getenv("HOME") + "/"  + "/".join([dir for dir in self.get(userdir).strip('"').split("/")[1:]])
+            else:
+                path = self.get(userdir).strip('"')
+
+            dict[userdir] = path
+
+        return dict.items()
+
+    def set_userdir(self, userdir, fullpath):
+        dirname = '/'.join([path for path in fullpath.split('/')[:3]])
+
+        if dirname == os.getenv("HOME"):
+            folder = '"$HOME/' + "/".join([dir for dir in fullpath.split('/')[3:]]) + '"'
+        else:
+            folder = '"' + fullpath + '"'
+
+        self.set(userdir, folder)
+        self.write()
+
+        if dirname == os.getenv("HOME"):
+            folder = os.getenv("HOME") + "/" +  "/".join([dir for dir in fullpath.split('/')[3:]])
+        else:
+            folder = folder.strip('"')
+
+        return folder
+
+    def get_display(self, userdir):
+        return self.XDG_DIRS[userdir]
+
+    def get_restorename(self, userdir):
+        gettext.bindtextdomain('xdg-user-dirs')
+        gettext.textdomain('xdg-user-dirs')
+
+        string = userdir.split('_')[1]
+        if string.lower() in 'publicshare':
+            string = 'public'
+
+        return gettext.gettext(string.title())
+
+class UserdirView(gtk.TreeView):
+    __gsignals__ = {
+            'changed': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, ())
+            }
+    def __init__(self):
+        gtk.TreeView.__init__(self)
+
+        self.uf = UserdirFile()
+
+        self.set_rules_hint(True)
+        self.model = self.__create_model()
+        self.set_model(self.model)
+        self.__add_columns()
+
+        menu = self.__create_popup_menu()
+        menu.show_all()
+        self.connect('button_press_event', self.button_press_event, menu)
+
+    def button_press_event(self, widget, event, menu):
+        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+            menu.popup(None, None, None, event.button, event.time)
+        return False
+
+    def on_change_directory(self, widget):
+        model, iter = self.get_selection().get_selected()
+        userdir = model.get_value(iter, COLUMN_DIR)
+
+        dialog = gtk.FileChooserDialog(_("Select a new folder"), 
+                                       action = gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER,
+                                       buttons = (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, gtk.STOCK_OPEN, gtk.RESPONSE_ACCEPT))
+        dialog.set_current_folder(os.getenv("HOME"))
+
+        if dialog.run() == gtk.RESPONSE_ACCEPT:
+            fullpath = dialog.get_filename()
+
+            folder = self.uf.set_userdir(userdir, fullpath)
+
+            model.set_value(iter, COLUMN_PATH, folder)
+
+        dialog.destroy()
+        self.emit('changed')
+
+    def on_restore_directory(self, widget):
+        model, iter = self.get_selection().get_selected()
+        userdir = model.get_value(iter, COLUMN_DIR)
+
+        dialog = QuestionDialog(_('<b><big>Please notice</big></b>\n\nUbuntu Tweak will restore the directory to the default setting.\nBut you need to migration your files by yourself.\nGo on?'), buttons = gtk.BUTTONS_YES_NO)
+
+        if dialog.run() == gtk.RESPONSE_YES:
+            newdir = os.path.join(os.getenv("HOME"), self.uf.get_restorename(userdir))
+            self.uf.set_userdir(userdir, newdir)
+            model.set_value(iter, COLUMN_PATH, newdir)
+
+            if not os.path.exists(newdir):
+                os.mkdir(newdir)
+
+        dialog.destroy()
+        self.emit('changed')
+
+    def __create_model(self):
+        model = gtk.ListStore(
+                            gtk.gdk.Pixbuf,
+                            gobject.TYPE_STRING,
+                            gobject.TYPE_STRING,
+                            gobject.TYPE_STRING)
+
+        icontheme = gtk.icon_theme_get_default()
+        icon = icontheme.lookup_icon('gnome-fs-directory', 24, gtk.ICON_LOOKUP_NO_SVG).load_icon()
+
+        for dir, path in self.uf.items():
+            name = self.uf.get_display(dir)
+
+            model.append((icon, name, dir, path))
+
+        return model
+
+    def __add_columns(self):
+        column = gtk.TreeViewColumn(_('Direcotry name'))
+        column.set_spacing(5)
+        column.set_sort_column_id(COLUMN_NAME)
+        self.append_column(column)
+
+        renderer = gtk.CellRendererPixbuf()
+        column.pack_start(renderer, False)
+        column.set_attributes(renderer, pixbuf = COLUMN_ICON)
+
+        renderer = gtk.CellRendererText()
+        column.pack_start(renderer, True)
+        column.set_attributes(renderer, text = COLUMN_NAME)
+        
+        renderer = gtk.CellRendererText()
+        column = gtk.TreeViewColumn(_('Path'), renderer, text = COLUMN_PATH)
+        column.set_sort_column_id(COLUMN_PATH)
+        self.append_column(column)
+
+    def __create_popup_menu(self):
+        menu = gtk.Menu()
+
+        change_item = gtk.MenuItem(_('Change Directory'))
+        menu.append(change_item)
+        change_item.connect('activate', self.on_change_directory)
+
+        restore_item = gtk.MenuItem(_('Restore Directory'))
+        menu.append(restore_item)
+        restore_item.connect('activate', self.on_restore_directory)
+
+        return menu
+
+class UserDir(TweakPage):
+    """Setting the user default dictories"""
+    def __init__(self):
         TweakPage.__init__(self, 
                 _("Set your document folders"), 
                 _("You can change the default document folders.\nDon't change the Desktop folder in normal case."))
 
-        table = self.create_table()
-        self.pack_start(table, False, False, 5)
+        dirview = UserdirView()
+        self.pack_start(dirview, True, True, 5)
 
         hbox = gtk.HBox(False, 0)
         self.pack_start(hbox, False, False, 5)
 
-        button = gtk.Button(stock = gtk.STOCK_APPLY)
-        button.connect("clicked", self.on_apply_clicked)
+        button = gtk.Button(stock = gtk.STOCK_REFRESH)
+        button.set_sensitive(False)
+        button.connect("clicked", self.on_refresh_clicked)
         hbox.pack_end(button, False, False, 0)
 
-    def on_apply_clicked(self, widget, data = None):
-        os.system('xdg-user-dirs-gtk-update')
-        show_info(_("Update successfully!"), type = gtk.MESSAGE_INFO)
+        dirview.connect('changed', self.on_dirview_changed, button)
 
-    def create_table(self):
-        table = gtk.Table(8, 3)
+    def on_refresh_clicked(self, widget):
+        os.system('xdg-user-dirs-gtk-update &')
+        InfoDialog(_("Update successfully!")).launch()
+        widget.set_sensitive(False)
 
-        ue = UserdirFile()
-        length = len(ue.content.keys())
-
-        for item, value in self.diritems.items():
-            label = gtk.Label()
-            label.set_markup("%s" % value)
-            label.set_alignment(0, 0.5)
-
-            entry = gtk.Entry()
-
-            prefix = ue.get(item).strip('"').split("/")[0]
-            if prefix:
-                dirpath = os.getenv("HOME") + "/"  + "/".join([dir for dir in ue.get(item).strip('"').split("/")[1:]])
-            else:
-                dirpath = ue.get(item).strip('"')
-
-            entry.set_text(dirpath)
-            entry.set_editable(False)
-
-            button = gtk.Button(_("_Browse"))
-            button.connect("clicked", self.on_browser_clicked, (item, entry))
-
-            offset = self.diritems.keys().index(item)
-
-            table.attach(label, 0, 1, offset, offset + 1, xoptions = gtk.FILL, xpadding = 5, ypadding = 5)
-            table.attach(entry, 1, 2, offset, offset + 1, xpadding = 5, ypadding = 5)
-            table.attach(button, 2, 3, offset, offset + 1, xoptions = gtk.FILL, xpadding = 5, ypadding = 5)
-
-        return table
-
-    def on_browser_clicked(self, widget, data = None):
-        item, entry = data
-        dialog = gtk.FileChooserDialog(_("Select a new folder"),
-                action = gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER,
-                buttons = (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, gtk.STOCK_OPEN, gtk.RESPONSE_ACCEPT))
-        dialog.set_current_folder(os.getenv("HOME"))
-        if dialog.run() == gtk.RESPONSE_ACCEPT:
-            ue = UserdirFile()
-            realpath = dialog.get_filename()
-            dirname = '/'.join([path for path in realpath.split('/')[:3]])
-            if dirname == os.getenv("HOME"):
-                folder = '"$HOME/' + "/".join([dir for dir in realpath.split('/')[3:]]) + '"'
-            else:
-                folder = '"' + realpath + '"'
-            ue.set(item, folder)
-            ue.write()
-            if dirname == os.getenv("HOME"):
-                folder = os.getenv("HOME") + "/" +  "/".join([dir for dir in realpath.split('/')[3:]])
-            else:
-                folder = folder.strip('"')
-            entry.set_text(folder)
-        dialog.destroy()
+    def on_dirview_changed(self, widget, button):
+        button.set_sensitive(True)
 
 if __name__ == "__main__":
     from Utility import Test

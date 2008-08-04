@@ -27,12 +27,12 @@ import gettext
 
 from Constants import *
 from Factory import Factory
-from Widgets import TablePack
+from Widgets import TablePack, TweakPage
 
-class Metacity(gtk.VBox):
+class Metacity(TweakPage):
     """Some options about Metacity Window Manager"""
     def __init__(self):
-        gtk.VBox.__init__(self)
+        TweakPage.__init__(self)
 
         box = TablePack(_("Window Decorate Effect"), [
                 [Factory.create("gconfcheckbutton", _("Use metacity theme"), "use_metacity_theme")],

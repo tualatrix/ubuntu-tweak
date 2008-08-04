@@ -27,13 +27,13 @@ import gettext
 
 from Constants import *
 from Widgets import HScaleBox
-from Widgets import TablePack
+from Widgets import TablePack, TweakPage
 from Factory import Factory
 
-class PowerManager(gtk.VBox):
+class PowerManager(TweakPage):
     """Advanced Powermanager Settings"""
     def __init__(self):
-        gtk.VBox.__init__(self)
+        TweakPage.__init__(self)
 
         box = TablePack(_("Advanced Power Management Settings"), [
                 [Factory.create("gconfcheckbutton", _("Enable Hibernation"), "can_hibernate")],
