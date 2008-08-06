@@ -81,6 +81,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/gscrot/ubuntu', 'hardy', 'main', 'GScrot', _('A powerful screenshot tool'), 'gscrot.png'],
     ['http://ppa.launchpad.net/msn-pecan/ubuntu', 'hardy', 'main', 'Pidgin-msn', _('A powerful screenshot tool'), 'gscrot.png'],
     ['http://ppa.launchpad.net/galaxium/ubuntu', 'hardy', 'main', 'Galaxium', _('MSN'), 'gscrot.png'],
+    ['http://download.tuxfamily.org/swiftweasel', 'hardy', 'multiverse', 'Swiftweasel', _('MSN'), 'gscrot.png'],
 #    ['http://ppa.launchpad.net/macslow/ubuntu', 'hardy', 'main', 'MacSlow', _("MacSlow's package-building playground... use at your own risk"), 'gscrot.png'],
 #    ['http://packages.medibuntu.org/', 'hardy', 'free non-free', 'Medibuntu', _('Multimedia, Entertainment and Distraction In Ubuntu'), 'medibuntu.png', 'medibuntu.gpg'],
 #    ['http://ppa.launchpad.net/reacocard-awn/ubuntu/', 'hardy', 'main', 'AWN Trunk', _('Play windows games on your Linux')],

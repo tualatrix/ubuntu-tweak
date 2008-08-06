@@ -1,3 +1,10 @@
+__all__ = (
+        'APP',
+        'VERSION',
+        'DATA_DIR',
+        'InitLocale',
+        )
+
 import gettext
 
 APP = 'ubuntu-tweak'

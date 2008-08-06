@@ -32,12 +32,13 @@ from Factory import Factory
 
 (
     COLUMN_ID,
+    COLUMN_LOGO,
     COLUMN_TITLE,
     COLUMN_ICON,
     COLUMN_COMMAND,
     COLUMN_KEY,
     COLUMN_EDITABLE,
-) = range(6)
+) = range(7)
 
 class Shortcuts(TweakPage):
     """Setting the command of keybinding"""
@@ -65,6 +66,7 @@ class Shortcuts(TweakPage):
     def __create_model(self):
         model = gtk.ListStore(
                     gobject.TYPE_INT,
+                    gtk.gdk.Pixbuf,
                     gobject.TYPE_STRING,
                     gtk.gdk.Pixbuf,
                     gobject.TYPE_STRING,
@@ -73,10 +75,11 @@ class Shortcuts(TweakPage):
                 )
 
         client = gconf.client_get_default()
+        icontheme = gtk.icon_theme_get_default()
+        logo = icontheme.lookup_icon('gnome-terminal', 24, gtk.ICON_LOOKUP_NO_SVG).load_icon()
 
         for id in range(12):
             iter = model.append()
-            icontheme = gtk.icon_theme_get_default()
             id = id + 1
 
             title = _("Command %d") % id
@@ -90,6 +93,7 @@ class Shortcuts(TweakPage):
 
             model.set(iter,
                     COLUMN_ID, id,
+                    COLUMN_LOGO, logo,
                     COLUMN_TITLE, title,
                     COLUMN_ICON, icon,
                     COLUMN_COMMAND, command,
@@ -101,7 +105,15 @@ class Shortcuts(TweakPage):
     def __add_columns(self, treeview):
         model = treeview.get_model()
 
-        column = gtk.TreeViewColumn(_("ID"), gtk.CellRendererText(), text = COLUMN_TITLE)
+        column = gtk.TreeViewColumn(_("ID"))
+
+        renderer = gtk.CellRendererPixbuf()
+        column.pack_start(renderer, False)
+        column.set_attributes(renderer, pixbuf = COLUMN_LOGO)
+
+        renderer = gtk.CellRendererText()
+        column.pack_start(renderer, True)
+        column.set_attributes(renderer, text = COLUMN_TITLE)
         treeview.append_column(column)
 
         column = gtk.TreeViewColumn(_("Command"))
