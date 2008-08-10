@@ -12,6 +12,11 @@ VERSION = '0.3.5'
 DATA_DIR = 'data'
 
 def InitLocale():
-    gettext.install(APP, unicode = True)
+    global INIT
+    try:
+        INIT
+    except:
+        gettext.install(APP, unicode = True)
+        INIT = True
 
 InitLocale()
