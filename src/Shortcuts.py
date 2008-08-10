@@ -27,7 +27,7 @@ import gettext
 import gobject
 
 from Constants import *
-from Widgets import TweakPage, Popup, KeyGrabber, KeyModifier
+from Widgets import TweakPage, KeyGrabber, KeyModifier
 from Factory import Factory
 
 (

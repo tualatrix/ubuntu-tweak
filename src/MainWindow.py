@@ -442,7 +442,7 @@ You should have received a copy of the GNU General Public License along with Ubu
 
     def destroy(self, widget, data = None):
         if not DISABLE_APT and not DISABLE_HARDY:
-            from PolicyKit import DbusProxy
+            from common.PolicyKit import DbusProxy
             if DbusProxy.proxy:
                 state = DbusProxy.get_liststate()
                 if state == "expire":

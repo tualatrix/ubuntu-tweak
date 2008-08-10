@@ -33,10 +33,9 @@ import apt_pkg
 from Constants import *
 from Factory import Factory
 from Settings import BoolSetting
-from PolicyKit import PolkitButton, DbusProxy
 from Widgets import ListPack, TweakPage, Colleague, Mediator, MessageDialog, GconfCheckButton
 from aptsources.sourceslist import SourceEntry, SourcesList
-from PolicyKit import PolkitButton
+from common.PolicyKit import PolkitButton, DbusProxy
 
 (
     COLUMN_ENABLED,
