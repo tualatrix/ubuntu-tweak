@@ -24,7 +24,7 @@ import shutil
 import gobject
 from Constants import *
 from xdg.DesktopEntry import DesktopEntry
-from Widgets import show_info, TweakPage
+from common.Widgets import show_info, TweakPage
 
 InitLocale()
 

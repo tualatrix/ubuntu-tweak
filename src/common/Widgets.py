@@ -28,11 +28,10 @@ import gettext
 import time
 import cairo
 from Settings import *
-from Utility import gtk_process_events
 
-from Constants import *
+#from Constants import *
 
-InitLocale()
+#InitLocale()
 
 class Colleague:
     def __init__(self, mediator):
@@ -140,68 +139,6 @@ class GconfScale(NumSetting, gtk.HScale):
     def on_value_changed(self, widget, data = None):
         self.set_num(widget.get_value())
 
-class BasePack(gtk.VBox):
-    def __init__(self, title):
-        gtk.VBox.__init__(self)
-        self.set_border_width(5)
-
-        title = gtk.MenuItem(title)
-        title.select()
-        self.pack_start(title, False, False, 0)
-
-class SinglePack(BasePack):
-    def __init__(self, title, widget):
-        BasePack.__init__(self, title)
-
-        self.pack_start(widget, True, True, 10)
-
-class BaseListPack(BasePack):
-    def __init__(self, title):
-        BasePack.__init__(self, title)
-
-        hbox = gtk.HBox(False, 5)
-        hbox.set_border_width(5)
-        self.pack_start(hbox, True, False, 0)
-
-        label = gtk.Label(" ")
-        hbox.pack_start(label, False, False, 0)
-
-        self.vbox = gtk.VBox(False, 0)
-        hbox.pack_start(self.vbox, True, True, 0)
-
-class ListPack(BaseListPack):
-    def __init__(self, title, widgets):
-        BaseListPack.__init__(self, title)
-        self.items = []
-
-        if widgets:
-            for widget in widgets:
-                if widget: 
-                    self.vbox.pack_start(widget, False, False, 3)
-                    self.items.append(widget)
-        else:
-            self = None
-
-class TablePack(BaseListPack):
-    def __init__(self, title, items):
-        BaseListPack.__init__(self, title)
-
-        table = gtk.Table(len(items), len(items[0]))
-
-        for item in items:
-            if not None in item:
-                for widget in item:
-                    left_attch = item.index(widget)
-                    top_attach = items.index(item)
-
-                    if left_attch == 1:
-                        table.attach(widget, left_attch, left_attch + 1, top_attach, top_attach + 1, xpadding = 10, ypadding = 5)
-                    else:
-#                        if type(widget) == "gtk.Label":
-                        widget.set_alignment(0, 0.5)
-                        table.attach(widget, left_attch, left_attch + 1, top_attach, top_attach + 1, gtk.FILL, ypadding = 5)
-
-        self.vbox.pack_start(table)
 
 class EntryBox(gtk.HBox):
     def __init__(self, label, text):
@@ -271,93 +208,6 @@ class ComboboxItem(gtk.HBox):
         text = widget.get_active_text()
         client.set_string(data, widget.values[widget.texts.index(text)]) 
 
-class AboutBlank:
-    pass
-
-class TweakPage(gtk.ScrolledWindow):
-    """The standard page of tweak"""
-
-    def __init__(self, title = None, des = None):
-        gtk.ScrolledWindow.__init__(self)
-        self.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
-
-        self.vbox = gtk.VBox(False, 0)
-        self.add_with_viewport(self.vbox)
-        viewport = self.get_child()
-        viewport.set_shadow_type(gtk.SHADOW_NONE)
-
-        if title:
-            self.set_border_width(5)
-
-            title = gtk.MenuItem(title)
-            title.select()
-            self.pack_start(title, False, False, 0)
-
-        if des:
-            self.description = gtk.Label()
-            self.set_description(des)
-            self.description.set_alignment(0, 0)
-            self.pack_start(self.description, False, False, 5)
-
-    def pack_start(self, child, expand = True, fill = True, padding = 0):
-        self.vbox.pack_start(child, expand, fill, padding)
-
-    def pack_end(self, child, expand = True, fill = True, padding = 0):
-        self.vbox.pack_end(child, expand, fill, padding)
-
-    def set_description(self, des):
-        self.description.set_markup(des)
-
-def show_info(message, title = None, buttons = gtk.BUTTONS_OK, type = gtk.MESSAGE_ERROR, parent = None):
-    dialog = gtk.MessageDialog(parent, gtk.DIALOG_DESTROY_WITH_PARENT, type, buttons)
-    if title:
-        dialog.set_title(title)
-    dialog.set_markup(message)
-    dialog.run()
-    dialog.destroy()
-
-class BaseMessageDialog(gtk.MessageDialog):
-    def __init__(self, message, type, buttons):
-        gtk.MessageDialog.__init__(self, None, 0, type, buttons)
-
-        self.set_markup(message)
-
-    def launch(self):
-        self.run()
-        self.destroy()
-
-class MessageDialog(gtk.MessageDialog):
-    def __init__(self, message, title = None, parent = None, flags = 0, type = gtk.MESSAGE_INFO, buttons = gtk.BUTTONS_YES_NO):
-        gtk.MessageDialog.__init__(self, parent, flags, type, buttons)
-        self.set_markup(message)
-        if title:
-            self.set_title(title)
-        self.set_default_response(gtk.RESPONSE_REJECT)
-
-class InfoDialog(BaseMessageDialog):
-    def __init__(self, message, type = gtk.MESSAGE_INFO, buttons = gtk.BUTTONS_OK):
-        BaseMessageDialog.__init__(self, message, type, buttons)
-
-class QuestionDialog(BaseMessageDialog):
-    def __init__(self, message, type = gtk.MESSAGE_QUESTION, buttons = gtk.BUTTONS_YES_NO):
-        BaseMessageDialog.__init__(self, message, type, buttons)
-
-class ErrorDialog(gtk.MessageDialog):
-    def __init__(self, message, title = None, parent = None, flags = 0, type = gtk.MESSAGE_INFO, buttons = gtk.BUTTONS_YES_NO):
-        gtk.MessageDialog.__init__(self, parent, flags, type, buttons)
-        self.set_markup(message)
-        if title:
-            self.set_title(title)
-        self.set_default_response(gtk.RESPONSE_REJECT)
-
-class WarningDialog(gtk.MessageDialog):
-    def __init__(self, message, title = None, parent = None, flags = 0, type = gtk.MESSAGE_INFO, buttons = gtk.BUTTONS_YES_NO):
-        gtk.MessageDialog.__init__(self, parent, flags, type, buttons)
-        self.set_markup(message)
-        if title:
-            self.set_title(title)
-        self.set_default_response(gtk.RESPONSE_REJECT)
-
 """Popup and KeyGrabber come from ccsm"""
 KeyModifier = ["Shift", "Control", "Mod1", "Mod2", "Mod3", "Mod4",
                "Mod5", "Alt", "Meta", "Super", "Hyper", "ModeSwitch"]
@@ -380,11 +230,14 @@ class Popup (gtk.Window):
             self.add (align)
         elif child:
             self.add (child)
-        gtk_process_events ()
+        while gtk.events_pending ():
+            gtk.main_iteration ()
+
 
     def destroy (self):
         gtk.Window.destroy (self)
-        gtk_process_events ()
+        while gtk.events_pending ():
+            gtk.main_iteration ()
 
 class KeyGrabber (gtk.Button):
 
