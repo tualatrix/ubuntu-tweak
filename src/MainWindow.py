@@ -28,13 +28,11 @@ import gconf
 import thread
 import gobject
 
-from Constants import *
 from gnome import url_show
-from Widgets import MessageDialog
-from SystemInfo import GnomeVersion
-from SystemInfo import SystemInfo
+from common.Constants import *
+from common.Widgets import QuestionDialog
+from common.SystemInfo import GnomeVersion, SystemInfo
 
-InitLocale()
 DISABLE_HARDY = 'Mint' not in SystemInfo.distro and '8.04' not in SystemInfo.distro
 GNOME = int(GnomeVersion.minor)
 
@@ -431,9 +429,8 @@ You should have received a copy of the GNU General Public License along with Ubu
         client = gconf.client_get_default()
         version = client.get_string("/apps/ubuntu-tweak/update")
         if version > VERSION:
-            dialog = MessageDialog(_("A newer version: %s is available online.\nWould you like to update?") % version)
+            dialog = QuestionDialog(_("A newer version: %s is available online.\nWould you like to update?") % version)
 
-            dialog.set_transient_for(self)
             if dialog.run() == gtk.RESPONSE_YES:
                 url_show("http://ubuntu-tweak.com/downloads")
             dialog.destroy()

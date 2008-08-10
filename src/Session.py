@@ -25,10 +25,9 @@ import os
 import gconf
 import gettext
 
-from Constants import *
-from Widgets import ListPack, SinglePack, TweakPage
-from Widgets import Mediator
-from Factory import Factory
+from common.Constants import *
+from common.Widgets import ListPack, SinglePack, TweakPage, Mediator
+from common.Factory import Factory
 
 class Session(TweakPage, Mediator):
     """GNOME Session control"""

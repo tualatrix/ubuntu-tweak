@@ -20,6 +20,7 @@
 
 import UserDict
 from Widgets import *
+from Constants import *
 from SystemInfo import GnomeVersion
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
@@ -44,7 +45,7 @@ class GconfKeys:
     parser = make_parser()
     handler = XmlHandler(keys)
     parser.setContentHandler(handler)
-    parser.parse("data/tweaks.xml")
+    parser.parse("%s/tweaks.xml" % DATA_DIR)
 
 class Factory:
     keys = GconfKeys.keys

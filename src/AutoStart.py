@@ -22,11 +22,8 @@ import os
 import gtk
 import shutil
 import gobject
-from Constants import *
+from common.Widgets import InfoDialog, TweakPage
 from xdg.DesktopEntry import DesktopEntry
-from common.Widgets import show_info, TweakPage
-
-InitLocale()
 
 (
     COLUMN_ACTIVE,
@@ -175,7 +172,7 @@ class AutoStartItem(gtk.TreeView):
         if iter:
             path = model.get_value(iter, COLUMN_PATH)
             if os.path.basename(path) in os.listdir(self.systemdir):
-                show_info(_("Can't delete the system item from disk."))
+                InfoDialog(_("Can't delete the system item from disk.")).launch()
             else:
                 os.remove(path)
                 model.remove(iter)
@@ -345,9 +342,9 @@ class AutoStart(TweakPage):
             name = dialog.pm_name.get_text()
             cmd = dialog.pm_cmd.get_text()
             if not name:
-                show_info(_("The name of the startup program cannot be empty"))    
+                InfoDialog(_("The name of the startup program cannot be empty")).launch()
             elif not cmd:
-                show_info(_("Text was empty (or contained only whitespace)"))
+                InfoDialog(_("Text was empty (or contained only whitespace)")).launch()
             else:
                 path = os.path.join(treeview.userdir, os.path.basename(cmd) + ".desktop")
                 desktopentry = DesktopEntry(path)
@@ -392,9 +389,9 @@ class AutoStart(TweakPage):
                 name = dialog.pm_name.get_text()
                 cmd = dialog.pm_cmd.get_text()
                 if not name:
-                    show_info(_("The name of the startup program cannot be empty"))    
+                    InfoDialog(_("The name of the startup program cannot be empty")).launch()
                 elif not cmd:
-                    show_info(_("Text was empty (or contained only whitespace)"))
+                    InfoDialog(_("Text was empty (or contained only whitespace)")).launch()
                 else:
                     desktopentry = DesktopEntry(path)
                     desktopentry.set("Name", name, locale = True)

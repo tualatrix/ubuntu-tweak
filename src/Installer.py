@@ -5,13 +5,14 @@ import gtk
 import gettext
 import gobject
 
-from Constants import *
-from Widgets import TweakPage, MessageDialog
+from common.Constants import *
+from common.Widgets import TweakPage, InfoDialog
 from xdg.DesktopEntry import DesktopEntry
 
+InitLocale()
+
 try:
-    import apt_pkg
-    from PackageWorker import PackageWorker, PackageInfo, update_apt_cache
+    from common.PackageWorker import PackageWorker, PackageInfo, update_apt_cache
     DISABLE = False
 except ImportError:
     DISABLE = True
@@ -309,11 +310,9 @@ class Installer(TweakPage):
 
         if state == 0:
             self.button.set_sensitive(False)
-            dialog = MessageDialog(_('Update Successfully!'), buttons = gtk.BUTTONS_OK)
+            InfoDialog(_('Update Successfully!')).launch()
         else:
-            dialog = MessageDialog(_('Update Failed!'), buttons = gtk.BUTTONS_OK)
-        dialog.run()
-        dialog.destroy()
+            InfoDialog(_('Update Failed!')).launch()
 
         update_apt_cache()
         self.to_add = []

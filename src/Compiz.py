@@ -25,6 +25,8 @@ import gettext
 import gconf
 import os
 import gobject
+from common.Widgets import ListPack, Mediator, InfoDialog, SinglePack, TweakPage
+
 try:
     import compizconfig as ccs
     import ccm
@@ -37,12 +39,10 @@ try:
 except ImportError:
     DISABLE_NOR = True
     DISABLE_VER = False
-from Constants import *
-from Widgets import ListPack, Mediator, MessageDialog, SinglePack, TweakPage
 
 try:
     import apt_pkg
-    from PackageWorker import PackageWorker, AptCheckButton, update_apt_cache
+    from common.PackageWorker import PackageWorker, AptCheckButton, update_apt_cache
     DISABLE_APT = False
 except ImportError:
     DISABLE_APT = True
@@ -351,11 +351,9 @@ class Compiz(TweakPage, CompizSetting, Mediator):
 
         self.button.set_sensitive(False)
         if DISABLE_NOR:
-            dialog = MessageDialog(_("Update Successfully!\nPlease restart Ubuntu Tweak."), buttons = gtk.BUTTONS_OK)
+            InfoDialog(_("Update Successfully!\nPlease restart Ubuntu Tweak.")).launch()
         else:
-            dialog = MessageDialog(_("Update Successfully!"), buttons = gtk.BUTTONS_OK)
-        dialog.run()
-        dialog.destroy()
+            InfoDialog(_("Update Successfully!")).launch()
 
         update_apt_cache()
 

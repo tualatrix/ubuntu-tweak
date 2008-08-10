@@ -25,15 +25,13 @@ import os
 import gobject
 import gettext
 
-from Widgets import EntryBox, ListPack
-from SystemInfo import SystemInfo
+from common.Widgets import EntryBox, ListPack, TweakPage
+from common.SystemInfo import SystemInfo
 
-gettext.install("ubuntu-tweak", unicode = True)
-
-class Computer(gtk.VBox):
+class Computer(TweakPage):
     """Some options about current user"""
-    def __init__(self, parent = None):
-        gtk.VBox.__init__(self)
+    def __init__(self):
+        TweakPage.__init__(self)
 
         if os.uname()[4][0:3] == "ppc":
             for element in file("/proc/cpuinfo"):

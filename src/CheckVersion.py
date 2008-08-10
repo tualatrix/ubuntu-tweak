@@ -10,8 +10,8 @@ import gconf
 import socket
 import gobject
 
-from Constants import *
-from SystemInfo import SystemInfo
+from common.Constants import *
+from common.SystemInfo import SystemInfo
 from xmlrpclib import ServerProxy, Error
 
 client = gconf.client_get_default()

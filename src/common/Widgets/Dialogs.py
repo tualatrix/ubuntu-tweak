@@ -57,18 +57,10 @@ class QuestionDialog(BaseMessageDialog):
     def __init__(self, message, type = gtk.MESSAGE_QUESTION, buttons = gtk.BUTTONS_YES_NO):
         BaseMessageDialog.__init__(self, message, type, buttons)
 
-class ErrorDialog(gtk.MessageDialog):
-    def __init__(self, message, title = None, parent = None, flags = 0, type = gtk.MESSAGE_INFO, buttons = gtk.BUTTONS_YES_NO):
-        gtk.MessageDialog.__init__(self, parent, flags, type, buttons)
-        self.set_markup(message)
-        if title:
-            self.set_title(title)
-        self.set_default_response(gtk.RESPONSE_REJECT)
+class ErrorDialog(BaseMessageDialog):
+    def __init__(self, message, type = gtk.MESSAGE_ERROR, buttons = gtk.BUTTONS_OK):
+        BaseMessageDialog.__init__(self, message, type, buttons)
 
-class WarningDialog(gtk.MessageDialog):
-    def __init__(self, message, title = None, parent = None, flags = 0, type = gtk.MESSAGE_INFO, buttons = gtk.BUTTONS_YES_NO):
-        gtk.MessageDialog.__init__(self, parent, flags, type, buttons)
-        self.set_markup(message)
-        if title:
-            self.set_title(title)
-        self.set_default_response(gtk.RESPONSE_REJECT)
+class WarningDialog(BaseMessageDialog):
+    def __init__(self, message, type = gtk.MESSAGE_WARNING, buttons = gtk.BUTTONS_YES_NO):
+        BaseMessageDialog.__init__(self, message, type, buttons)

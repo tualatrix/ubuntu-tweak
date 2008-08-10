@@ -29,7 +29,7 @@ import subprocess
 import apt_pkg
 from apt import package
 from xdg.DesktopEntry import DesktopEntry
-from Widgets import MessageDialog, Colleague
+from Widgets import Colleague
 
 def update_apt_cache(init = False):
     global cache, depcache, records, sourcelist

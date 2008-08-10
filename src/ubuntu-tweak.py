@@ -21,10 +21,8 @@
 import os
 import gtk
 import thread
-import gettext
 
-from Constants import *
-InitLocale()
+from common.Constants import *
 
 class TweakLauncher:
     def __init__(self):

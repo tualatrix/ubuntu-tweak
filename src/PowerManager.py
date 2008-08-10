@@ -25,10 +25,8 @@ import os
 import gconf
 import gettext
 
-from Constants import *
-from Widgets import HScaleBox
-from Widgets import TablePack, TweakPage
-from Factory import Factory
+from common.Widgets import HScaleBox, TablePack, TweakPage
+from common.Factory import Factory
 
 class PowerManager(TweakPage):
     """Advanced Powermanager Settings"""
@@ -57,5 +55,7 @@ class PowerManager(TweakPage):
         self.pack_start(box, False, False, 0)
 
 if __name__ == "__main__":
+    from common.Constants import *
     from Utility import Test
+    InitLocale()
     Test(PowerManager)

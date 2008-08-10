@@ -24,11 +24,10 @@ import gtk
 import os
 import gconf
 import gobject
-import gettext
 
-from Constants import *
-from IniFile import IniFile
-from Widgets import TweakPage, EntryBox, QuestionDialog, InfoDialog
+from common.IniFile import IniFile
+from common.Constants import InitLocale
+from common.Widgets import TweakPage, EntryBox, QuestionDialog, InfoDialog
 
 (
     COLUMN_ICON,

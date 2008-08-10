@@ -26,7 +26,7 @@ import gnomevfs
 import gettext
 import shutil
 import subprocess
-from Widgets import show_info
+from common.Widgets import ErrorDialog
 
 gettext.install("ubuntu-tweak", unicode = True)
 
@@ -50,12 +50,12 @@ class FileOperation:
             if not os.path.exists(dest):
                 shutil.copy(source, dest)
             else:
-                show_info(_('The file "%s" is exists!') % dest)
+                ErrorDialog(_('The file "%s" is exists!') % dest).launch()
         elif os.path.isdir(source):
             if not os.path.exists(dest):
                 shutil.copytree(source, dest)
             else:
-                show_info(_('The folder "%s" is exists!') % dest)
+                ErrorDialog(_('The folder "%s" is exists!') % dest).launch()
 
     def move(self, source, dest):
         """Move the file or folder with necessary notice"""
@@ -63,7 +63,7 @@ class FileOperation:
         if not os.path.exists(dest):
             shutil.move(source, dest)
         else:
-            show_info(_('The target "%s" is exists!') % dest)
+            ErrorDialog(_('The target "%s" is exists!') % dest).launch()
 
     def link(self, source, dest):
         """Link the file or folder with necessary notice"""
@@ -71,7 +71,7 @@ class FileOperation:
         if not os.path.exists(dest):
             os.symlink(source, dest)
         else:
-            show_info(_('The target "%s" is exists!') % dest)
+            ErrorDialog(_('The target "%s" is exists!') % dest).launch()
 
     def open(self, source):
         """Open the file with gedit"""
@@ -125,6 +125,6 @@ class Worker:
 if __name__ == "__main__":
 #    show_info(' '.join([i for i in sys.argv]))
     if len(sys.argv) <= 2:
-        show_info(_("Please select a target(files or folders)."))
+        ErrorDialog(_("Please select a target(files or folders).")).launch()
     if len(sys.argv) > 2:
         Worker(sys.argv)

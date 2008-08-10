@@ -30,12 +30,12 @@ import gobject
 import gettext
 import apt_pkg
 
-from Constants import *
-from Factory import Factory
-from Settings import BoolSetting
-from Widgets import ListPack, TweakPage, Colleague, Mediator, MessageDialog, GconfCheckButton
 from aptsources.sourceslist import SourceEntry, SourcesList
+from common.Factory import Factory
+from common.Constants import *
+from common.Settings import BoolSetting
 from common.PolicyKit import PolkitButton, DbusProxy
+from common.Widgets import ListPack, TweakPage, Colleague, Mediator, GconfCheckButton, InfoDialog, WarningDialog, ErrorDialog, QuestionDialog
 
 (
     COLUMN_ENABLED,
@@ -92,8 +92,7 @@ class UpdateCacheDialog:
     def __init__(self, parent):
         self.parent = parent
 
-        self.dialog = gtk.MessageDialog(parent, buttons = gtk.BUTTONS_YES_NO)
-        self.dialog.set_markup(_('<b><big>The information about available software is out-of-date</big></b>\n\nTo install software and updates from newly added or changed sources, you have to reload the information about available software.\n\nYou need a working internet connection to continue.'))
+        self.dialog = QuestionDialog(_('<b><big>The information about available software is out-of-date</big></b>\n\nTo install software and updates from newly added or changed sources, you have to reload the information about available software.\n\nYou need a working internet connection to continue.'))
 
     def update_cache(self, window_id, lock):
         """start synaptic to update the package cache"""
@@ -264,7 +263,7 @@ class ThirdSoft(TweakPage, Mediator):
                 WARNING_KEY = '/apps/ubuntu-tweak/disable_thidparty_warning'
 
                 if not BoolSetting(WARNING_KEY).get_bool():
-                    dialog = MessageDialog(_('<b><big>Warning</big></b>\n\nIt is possible security risk to use packages from third party sources. Please be careful.'), type = gtk.MESSAGE_WARNING, buttons = gtk.BUTTONS_OK)
+                    dialog = WarningDialog(_('<b><big>Warning</big></b>\n\nIt is possible security risk to use packages from third party sources. Please be careful.'), buttons = gtk.BUTTONS_OK)
                     vbox = dialog.get_child()
                     hbox = gtk.HBox()
                     vbox.pack_start(hbox, False, False, 0)
@@ -275,13 +274,9 @@ class ThirdSoft(TweakPage, Mediator):
                     dialog.run()
                     dialog.destroy()
             else:
-                dialog = MessageDialog(_("<b><big>Service hasn't initialized yet</big></b>\n\nYou need to restart your Ubuntu."), type = gtk.MESSAGE_ERROR, buttons = gtk.BUTTONS_CLOSE)
-                dialog.run()
-                dialog.destroy()
+                ErrorDialog(_("<b><big>Service hasn't initialized yet</big></b>\n\nYou need to restart your Ubuntu.")).launch()
         elif widget.error == -1:
-            dialog = MessageDialog(_('<b><big>Could not authenticate</big></b>\n\nAn unexpected error has occurred.'), type = gtk.MESSAGE_ERROR, buttons = gtk.BUTTONS_CLOSE)
-            dialog.run()
-            dialog.destroy()
+            ErrorDialog(_('<b><big>Could not authenticate</big></b>\n\nAn unexpected error has occurred.')).launch()
 
         gtk.gdk.threads_leave()
 
@@ -294,10 +289,7 @@ class ThirdSoft(TweakPage, Mediator):
         self.treeview.proxy.set_liststate('normal')
         widget.set_sensitive(False)
 
-        dialog = gtk.MessageDialog(buttons = gtk.BUTTONS_OK)
-        dialog.set_markup(_('<b><big>The software information is up-to-date now</big></b>.\n\nYou need to restart Ubuntu Tweak if you want to install the new applications through Add/Remove.'))
-        dialog.run()
-        dialog.destroy()
+        InfoDialog(_('<b><big>The software information is up-to-date now</big></b>.\n\nYou need to restart Ubuntu Tweak if you want to install the new applications through Add/Remove.')).launch()
 
 if __name__ == '__main__':
     from Utility import Test

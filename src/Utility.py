@@ -21,10 +21,9 @@
 import pygtk
 pygtk.require("2.0")
 import gtk
+from common.Constants import InitLocale
 
-def gtk_process_events ():
-    while gtk.events_pending ():
-        gtk.main_iteration ()
+InitLocale()
 
 class Test:
     def __init__(self, model):

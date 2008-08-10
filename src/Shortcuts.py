@@ -26,9 +26,8 @@ import gconf
 import gettext
 import gobject
 
-from Constants import *
-from Widgets import TweakPage, KeyGrabber, KeyModifier
-from Factory import Factory
+from common.Widgets import TweakPage, KeyGrabber, KeyModifier
+from common.Factory import Factory
 
 (
     COLUMN_ID,

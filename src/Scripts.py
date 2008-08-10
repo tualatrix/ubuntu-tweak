@@ -26,9 +26,9 @@ import shutil
 import gobject
 import gettext
 import gnomevfs
-from Constants import *
 from gnome import ui
-from Widgets import TweakPage, MessageDialog
+from common.Constants import *
+from common.Widgets import TweakPage, ErrorDialog, WarningDialog
 
 (
     COLUMN_ICON,
@@ -159,9 +159,7 @@ class ScriptList(gtk.TreeView, AbstractScripts):
         self.append_column(column)
 
     def show_error_dialog(self):
-        dialog = MessageDialog(_("Sorry! This isn't a script file."), title = _("Error"), buttons = gtk.BUTTONS_OK, type = gtk.MESSAGE_ERROR)
-        dialog.run()
-        dialog.destroy()
+        ErrorDialog(_("Sorry! This isn't a script file.")).launch()
 
     def check_script_type(self, data):
         if file(data).readline()[0:6] == "#!/bin":
@@ -354,7 +352,7 @@ class Scripts(TweakPage, AbstractScripts):
         hbox.pack_end(button, False, False, 5)
 
     def on_rebuild_clicked(self, widget, tl):
-        dialog = MessageDialog(_("This will delete all the disabled scripts, continue?"), title = _("Warning"), type = gtk.MESSAGE_WARNING)
+        dialog = WarningDialog(_("This will delete all the disabled scripts, continue?"))
         if dialog.run() == gtk.RESPONSE_YES:
             self.default.remove()
             self.default.create()

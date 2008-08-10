@@ -24,9 +24,9 @@ import gtk
 import gettext
 import gconf
 
-from Constants import *
-from Widgets import Mediator, TweakPage
-from Factory import Factory
+from common.Constants import *
+from common.Widgets import Mediator, TweakPage
+from common.Factory import Factory
 
 computer_icon = \
 {

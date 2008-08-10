@@ -13,3 +13,5 @@ DATA_DIR = 'data'
 
 def InitLocale():
     gettext.install(APP, unicode = True)
+
+InitLocale()

@@ -26,10 +26,10 @@ import shutil
 import gobject
 import gettext
 import gnomevfs
-from Constants import *
 from gnome import ui
 from UserDir import UserdirFile
-from Widgets import TweakPage, MessageDialog
+from common.Constants import *
+from common.Widgets import TweakPage, WarningDialog
 
 (
     COLUMN_ICON,
@@ -339,7 +339,7 @@ class Templates(TweakPage, AbstractTempates):
         hbox.pack_end(button, False, False, 5)
 
     def on_rebuild_clicked(self, widget, tl):
-        dialog = MessageDialog(_("This will delete all the disabled templates, continue?"), title = _("Warning"), type = gtk.MESSAGE_WARNING)
+        dialog = WarningDialog(_("This will delete all the disabled templates, continue?"))
         if dialog.run() == gtk.RESPONSE_YES:
             self.default.remove()
             self.default.create()

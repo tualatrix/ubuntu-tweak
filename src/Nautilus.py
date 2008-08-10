@@ -25,15 +25,13 @@ import gconf
 import gettext
 
 try:
-    import apt_pkg
-    from PackageWorker import PackageWorker, AptCheckButton, update_apt_cache
+    from common.PackageWorker import PackageWorker, AptCheckButton, update_apt_cache
     DISABLE = False
 except ImportError:
     DISABLE = True
 
-from Constants import *
-from Factory import Factory
-from Widgets import ListPack, TablePack, Mediator, MessageDialog, TweakPage
+from common.Factory import Factory
+from common.Widgets import ListPack, TablePack, Mediator, InfoDialog, TweakPage
 
 class Nautilus(TweakPage, Mediator):
     """Nautilus Settings"""
@@ -103,12 +101,9 @@ class Nautilus(TweakPage, Mediator):
 
         if state == 0:
             self.button.set_sensitive(False)
-            dialog = MessageDialog(_("Update Successfully!"), buttons = gtk.BUTTONS_OK)
+            InfoDialog(_("Update Successfully!")).launch()
         else:
-            dialog = MessageDialog(_("Update Failed!"), buttons = gtk.BUTTONS_OK)
-
-        dialog.run()
-        dialog.destroy()
+            InfoDialog(_("Update Failed!")).launch()
 
         update_apt_cache()
 

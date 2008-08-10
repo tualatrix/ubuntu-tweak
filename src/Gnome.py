@@ -25,9 +25,8 @@ import os
 import gconf
 import gettext
 
-from Constants import *
-from Widgets import ListPack, ColleagueCheckButton, Mediator, TweakPage
-from Factory import Factory
+from common.Widgets import ListPack, ColleagueCheckButton, Mediator, TweakPage
+from common.Factory import Factory
 
 class Gnome(TweakPage, Mediator):
     """GNOME Settings"""

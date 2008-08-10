@@ -25,11 +25,8 @@ import os
 import gconf
 import gettext
 
-from Constants import *
-from Factory import Factory
-from Widgets import ListPack, TweakPage
-
-InitLocale()
+from common.Factory import Factory
+from common.Widgets import ListPack, TweakPage
 
 class LockDown(TweakPage):
     """Lock down some function"""
