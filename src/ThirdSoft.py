@@ -31,6 +31,7 @@ import gettext
 import apt_pkg
 
 from aptsources.sourceslist import SourceEntry, SourcesList
+from gnome import url_show
 from common.Factory import Factory
 from common.Constants import *
 from common.Settings import BoolSetting
@@ -45,44 +46,71 @@ from common.Widgets import ListPack, TweakPage, Colleague, Mediator, GconfCheckB
     COLUMN_LOGO,
     COLUMN_NAME,
     COLUMN_COMMENT,
+    COLUMN_HOME,
     COLUMN_KEY,
-) = range(8)
+) = range(9)
 
 (
     ENTRY_URL,
     ENTRY_DISTRO,
     ENTRY_COMPS,
-    ENTRY_NAME,
-    ENTRY_COMMENT,
-    ENTRY_LOGO,
-    ENTRY_KEY,
-) = range(7)
+) = range(3)
+
+(
+    SOURCE_NAME,
+    SOURCE_DESC,
+    SOURCE_LOGO,
+    SOURCE_HOME,
+    SOURCE_KEY,
+) = range(5)
+
+AWN = ['AWN', _('Fully customisable dock-like window navigator'), 'awn.png', 'awn-project.org', '']
+Opera = ['Opera', _('The Opera Web Browser'), 'opera.png', 'www.opera.com/', 'opera.gpg']
+Skype = ['Skype', _('A VoIP software'), 'skype.png', 'www.skype.com', '']
+PlayOnLinux = ['PlayOnLinux', _('Run your Windows programs on Linux'), 'playonlinux.png', 'www.playonlinux.com', 'pol.gpg']
+Midori = ['Midori', _('Webkit based lightweight web browser'), 'midori.png', 'www.twotoasts.de', '']
+Firefox = ['Firefox', _('Development Version of Mozilla Firefox 3.0/3.1, 4.0'), 'firefox.png', 'www.mozilla.org/', '']
+CompizFusion = ['Compiz Fusion', _('Development version of Compiz Fusion'), 'compiz-fusion.png', 'www.compiz-fusion.org/', '']
+CairoDock = ['Cairo Dock', _('A true dock for linux'), 'cairo-dock.png', 'cairo-dock.org', '']
+GnomeDo = ['GNOME Do', _('Do things as quickly as possible'), 'gnome-do.png', 'do.davebsd.com', '']
+Banshee = ['Banshee', _('Audio Management and Playback application'), 'banshee.png', 'banshee-project.org', '']
+GoogleGadgets = ['Google gadgets', _('Platform for running Google Gadgets on Linux'), 'gadgets.png', 'desktop.google.com/plugins/', '']
+ChmSee = ['chmsee', _('A chm file viewer written in GTK+'), 'chmsee.png', 'chmsee.gro.clinux.org/', '']
+KDE4 = ['KDE 4', _('K Desktop Environment 4.1'), 'kde4.png', 'www.kde.org', '']
+UbuntuTweak = ['Ubuntu Tweak', _('Tweak ubuntu to what you like'), 'ubuntu-tweak.png', 'ubuntu-tweak.com', '']
+Screenlets = ['Screenlets', _('A framework for desktop widgets'), 'screenlets.png', 'www.screenlets.org/', '']
+Wine = ['Wine', _('A compatibility layer for running Windows programs'), 'wine.png', 'www.winehq.org/', 'wine.gpg']
+LXDE = ['LXDE', _('Lightweight X11 Desktop Environment:GPicView, PCManFM'), 'lxde.png', 'lxde.org/', '']
+Terminator = ['Terminator', _('Multiple GNOME terminals in one window'), 'terminator.png', 'www.tenshu.net/terminator/', '']
+GScrot = ['GScrot', _('A powerful screenshot tool'), 'gscrot.png', 'launchpad.net/gscrot', '']
+Galaxium = ['Galaxium', _('MSN'), 'gscrot.png', 'code.google.com/p/galaxium/', '']
+Swiftweasel = ['Swiftweasel', _('MSN'), 'gscrot.png', 'swiftweasel.tuxfamily.org/', '']
+Medibuntu = ['Medibuntu', _('Multimedia, Entertainment and Distraction In Ubuntu'), 'medibuntu.png', 'www.medibuntu.org/', 'medibuntu.gpg']
 
 SOURCES_DATA = [
-    ['http://ppa.launchpad.net/awn-core/ubuntu', 'hardy', 'main', 'AWN', _('Fully customisable dock-like window navigator'), 'awn.png'],
-    ['http://deb.opera.com/opera/', 'lenny', 'non-free', 'Opera', _('The Opera Web Browser'), 'opera.png', 'opera.gpg'],
-    ['http://download.skype.com/linux/repos/debian', 'stable', 'non-free', 'Skype', _('A VoIP software'), 'skype.png'],
-    ['http://playonlinux.botux.net/', 'hardy', 'main', 'PlayOnLinux', _('Run your Windows programs on Linux'), 'playonlinux.png', 'pol.gpg'],
-    ['http://ppa.launchpad.net/stemp/ubuntu', 'hardy', 'main', 'Midori', _('Webkit based lightweight web browser'), 'midori.png'],
-    ['http://ppa.launchpad.net/fta/ubuntu', 'hardy', 'main', 'Firefox', _('Development Version of Mozilla Firefox 3.0/3.1, 4.0'), 'firefox.png'],
-    ['http://ppa.launchpad.net/compiz/ubuntu', 'hardy', 'main', 'Compiz Fusion', _('Development version of Compiz Fusion'), 'compiz-fusion.png'],
-    ['http://repository.cairo-dock.org/ubuntu', 'hardy', 'cairo-dock', 'Cairo Dock', _('A true dock for linux'), 'cairo-dock.png'],
-    ['http://ppa.launchpad.net/do-core/ubuntu', 'hardy', 'main', 'GNOME Do', _('Do things as quickly as possible'), 'gnome-do.png'],
-    ['http://ppa.launchpad.net/banshee-team/ubuntu', 'hardy', 'main', 'Banshee', _('Audio Management and Playback application'), 'banshee.png'],
-    ['http://ppa.launchpad.net/googlegadgets/ubuntu', 'hardy', 'main', 'Google gadgets', _('Platform for running Google Gadgets on Linux'), 'gadgets.png'],
-    ['http://ppa.launchpad.net/lidaobing/ubuntu', 'hardy', 'main', 'chmsee', _('A chm file viewer written in GTK+'), 'chmsee.png'],
-    ['http://ppa.launchpad.net/kubuntu-members-kde4/ubuntu', 'hardy', 'main', 'KDE 4', _('K Desktop Environment 4.1'), 'kde4.png'],
-    ['http://ppa.launchpad.net/tualatrix/ubuntu', 'hardy', 'main', 'Ubuntu Tweak', _('Tweak ubuntu to what you like'), 'ubuntu-tweak.png'],
-    ['http://ppa.launchpad.net/gilir/ubuntu', 'hardy', 'main', 'Screenlets', _('A framework for desktop widgets'), 'screenlets.png'],
-    ['http://wine.budgetdedicated.com/apt', 'hardy', 'main', 'Wine', _('A compatibility layer for running Windows programs'), 'wine.png', 'wine.gpg'],
-    ['http://ppa.launchpad.net/lxde/ubuntu', 'hardy', 'main', 'LXDE', _('Lightweight X11 Desktop Environment:GPicView, PCManFM'), 'lxde.png'],
-    ['http://ppa.launchpad.net/gnome-terminator/ubuntu', 'hardy', 'main', 'Terminator', _('Multiple GNOME terminals in one window'), 'terminator.png'],
-    ['http://ppa.launchpad.net/gscrot/ubuntu', 'hardy', 'main', 'GScrot', _('A powerful screenshot tool'), 'gscrot.png'],
-    ['http://ppa.launchpad.net/msn-pecan/ubuntu', 'hardy', 'main', 'Pidgin-msn', _('A powerful screenshot tool'), 'gscrot.png'],
-    ['http://ppa.launchpad.net/galaxium/ubuntu', 'hardy', 'main', 'Galaxium', _('MSN'), 'gscrot.png'],
-    ['http://download.tuxfamily.org/swiftweasel', 'hardy', 'multiverse', 'Swiftweasel', _('MSN'), 'gscrot.png'],
+    ['http://ppa.launchpad.net/awn-core/ubuntu', 'hardy', 'main', AWN],
+    ['http://deb.opera.com/opera/', 'lenny', 'non-free', Opera],
+    ['http://download.skype.com/linux/repos/debian', 'stable', 'non-free', Skype],
+    ['http://playonlinux.botux.net/', 'hardy', 'main', PlayOnLinux],
+    ['http://ppa.launchpad.net/stemp/ubuntu', 'hardy', 'main', Midori],
+    ['http://ppa.launchpad.net/fta/ubuntu', 'hardy', 'main', Firefox],
+    ['http://ppa.launchpad.net/compiz/ubuntu', 'hardy', 'main', CompizFusion],
+    ['http://repository.cairo-dock.org/ubuntu', 'hardy', 'cairo-dock', CairoDock],
+    ['http://ppa.launchpad.net/do-core/ubuntu', 'hardy', 'main', GnomeDo],
+    ['http://ppa.launchpad.net/banshee-team/ubuntu', 'hardy', 'main', Banshee],
+    ['http://ppa.launchpad.net/googlegadgets/ubuntu', 'hardy', 'main', GoogleGadgets],
+    ['http://ppa.launchpad.net/lidaobing/ubuntu', 'hardy', 'main', ChmSee],
+    ['http://ppa.launchpad.net/kubuntu-members-kde4/ubuntu', 'hardy', 'main', KDE4],
+    ['http://ppa.launchpad.net/tualatrix/ubuntu', 'hardy', 'main', UbuntuTweak],
+    ['http://ppa.launchpad.net/gilir/ubuntu', 'hardy', 'main', Screenlets],
+    ['http://wine.budgetdedicated.com/apt', 'hardy', 'main', Wine],
+    ['http://ppa.launchpad.net/lxde/ubuntu', 'hardy', 'main', LXDE],
+    ['http://ppa.launchpad.net/gnome-terminator/ubuntu', 'hardy', 'main', Terminator],
+    ['http://ppa.launchpad.net/gscrot/ubuntu', 'hardy', 'main', GScrot],
+    ['http://ppa.launchpad.net/galaxium/ubuntu', 'hardy', 'main', Galaxium],
+    ['http://download.tuxfamily.org/swiftweasel', 'hardy', 'multiverse', Swiftweasel],
+    ['http://packages.medibuntu.org/', 'hardy', 'free non-free', Medibuntu],
 #    ['http://ppa.launchpad.net/macslow/ubuntu', 'hardy', 'main', 'MacSlow', _("MacSlow's package-building playground... use at your own risk"), 'gscrot.png'],
-#    ['http://packages.medibuntu.org/', 'hardy', 'free non-free', 'Medibuntu', _('Multimedia, Entertainment and Distraction In Ubuntu'), 'medibuntu.png', 'medibuntu.gpg'],
 #    ['http://ppa.launchpad.net/reacocard-awn/ubuntu/', 'hardy', 'main', 'AWN Trunk', _('Play windows games on your Linux')],
 #    ['http://ppa.launchpad.net/bearoso/ubuntu', 'hardy', 'main', 'snes9x-gtk', _('Hello World')],
 ]
@@ -143,6 +171,8 @@ class SourcesView(gtk.TreeView, Colleague):
 
         self.update_model()
 
+        self.selection = self.get_selection()
+
     def __create_model(self):
         model = gtk.ListStore(
                 gobject.TYPE_BOOLEAN,
@@ -150,6 +180,7 @@ class SourcesView(gtk.TreeView, Colleague):
                 gobject.TYPE_STRING,
                 gobject.TYPE_STRING,
                 gtk.gdk.Pixbuf,
+                gobject.TYPE_STRING,
                 gobject.TYPE_STRING,
                 gobject.TYPE_STRING,
                 gobject.TYPE_STRING)
@@ -182,13 +213,17 @@ class SourcesView(gtk.TreeView, Colleague):
             url = entry[ENTRY_URL]
             comps = entry[ENTRY_COMPS]
             distro = entry[ENTRY_DISTRO]
-            logo = gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'aptlogos', entry[ENTRY_LOGO]))
-            name = entry[ENTRY_NAME]
-            comment = entry[ENTRY_COMMENT]
-            try:
-                key = os.path.join(DATA_DIR, 'aptkeys', entry[ENTRY_KEY])
-            except IndexError:
-                key = ''
+
+            source = entry[-1]
+            name = source[SOURCE_NAME]
+            comment = source[SOURCE_DESC]
+            logo = gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'aptlogos', source[SOURCE_LOGO]))
+            home = source[SOURCE_HOME]
+            if home:
+                home = 'http://' + home
+            key = source[SOURCE_KEY]
+            if key:
+                key = os.path.join(DATA_DIR, 'aptkeys', source[SOURCE_KEY])
 
             for source in self.list:
                 if url in source.str() and source.type == 'deb':
@@ -202,6 +237,7 @@ class SourcesView(gtk.TreeView, Colleague):
                 logo,
                 name,
                 '<b>%s</b>\n%s' % (name, comment),
+                home,
                 key,
                 ))
 
@@ -231,37 +267,43 @@ class SourceDetail(gtk.VBox):
     def __init__(self):
         gtk.VBox.__init__(self)
 
-        table = gtk.Table(2, 2)
-        self.pack_start(table)
+        self.table = gtk.Table(2, 2)
+        self.pack_start(self.table)
 
-        items = [_('Homepage'), _('Source URL'), _('Category'), _('Description')]
+        gtk.link_button_set_uri_hook(self.click_website)
+
+        items = [_('Homepage'), _('Source URL'), _('Description')]
         for i, text in enumerate(items):
             label = gtk.Label()
             label.set_markup('<b>%s</b>' % text)
 
-            table.attach(label, 0, 1, i, i + 1, xoptions = gtk.FILL, xpadding = 10)
+            self.table.attach(label, 0, 1, i, i + 1, xoptions = gtk.FILL, xpadding = 10)
 
-        self.homepage = gtk.Label(_('This is home page'))
-        table.attach(self.homepage, 1, 2, 0, 1)
-        self.url = gtk.Label(_('This is url'))
-        table.attach(self.url, 1, 2, 1, 2)
-        self.category = gtk.Label(_('This is Category'))
-        table.attach(self.category, 1, 2, 2, 3)
+        self.homepage_button = gtk.LinkButton('http://ubuntu-tweak.com')
+        self.table.attach(self.homepage_button, 1, 2, 0, 1)
+        self.url_button = gtk.LinkButton('http://ubuntu-tweak.com')
+        self.table.attach(self.url_button, 1, 2, 1, 2)
         self.description = gtk.Label(_('Description is here'))
-        table.attach(self.description, 1, 2, 3, 4)
+        self.table.attach(self.description, 1, 2, 2, 3)
 
-    def set_details(self, homepage = None, url = None, category = None, description = None):
+    def click_website(self, widget, link):
+        url_show(link)
+
+    def set_details(self, homepage = None, url = None, description = None):
         if homepage:
-            self.homepage.set_text(homepage)
+            self.homepage_button.destroy()
+            self.homepage_button = gtk.LinkButton(homepage)
+            self.homepage_button.show()
+            self.table.attach(self.homepage_button, 1, 2, 0, 1)
 
         if url:
-            self.url.set_text(url)
-
-        if category:
-            self.category.set_text(category)
+            self.url_button.destroy()
+            self.url_button = gtk.LinkButton(url)
+            self.url_button.show()
+            self.table.attach(self.url_button, 1, 2, 1, 2)
 
         if description:
-            self.category.set_text(description)
+            self.description.set_text(description.split('\n')[1])
 
 class ThirdSoft(TweakPage, Mediator):
     def __init__(self):
@@ -275,6 +317,7 @@ class ThirdSoft(TweakPage, Mediator):
         self.pack_start(sw)
 
         self.treeview = SourcesView(self)
+        self.treeview.selection.connect('changed', self.on_selection_changed)
         self.treeview.set_sensitive(False)
         self.treeview.set_rules_hint(True)
         sw.add(self.treeview)
@@ -296,6 +339,15 @@ class ThirdSoft(TweakPage, Mediator):
         self.refresh_button.set_sensitive(False)
         self.refresh_button.connect('clicked', self.on_refresh_button_clicked)
         hbox.pack_end(self.refresh_button, False, False, 5)
+
+    def on_selection_changed(self, widget):
+        model, iter = widget.get_selected()
+
+        home = model.get_value(iter, COLUMN_HOME)
+        url = model.get_value(iter, COLUMN_URL)
+        description = model.get_value(iter, COLUMN_COMMENT)
+
+        self.sourcedetail.set_details(home, url, description)
 
     def on_polkit_action(self, widget):
         gtk.gdk.threads_enter()
