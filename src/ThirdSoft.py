@@ -226,7 +226,43 @@ class SourcesView(gtk.TreeView, Colleague):
             self.model.set(iter, COLUMN_ENABLED, False)
             
         self.state_changed(cell)
-   
+
+class SourceDetail(gtk.VBox):
+    def __init__(self):
+        gtk.VBox.__init__(self)
+
+        table = gtk.Table(2, 2)
+        self.pack_start(table)
+
+        items = [_('Homepage'), _('Source URL'), _('Category'), _('Description')]
+        for i, text in enumerate(items):
+            label = gtk.Label()
+            label.set_markup('<b>%s</b>' % text)
+
+            table.attach(label, 0, 1, i, i + 1, xoptions = gtk.FILL, xpadding = 10)
+
+        self.homepage = gtk.Label(_('This is home page'))
+        table.attach(self.homepage, 1, 2, 0, 1)
+        self.url = gtk.Label(_('This is url'))
+        table.attach(self.url, 1, 2, 1, 2)
+        self.category = gtk.Label(_('This is Category'))
+        table.attach(self.category, 1, 2, 2, 3)
+        self.description = gtk.Label(_('Description is here'))
+        table.attach(self.description, 1, 2, 3, 4)
+
+    def set_details(self, homepage = None, url = None, category = None, description = None):
+        if homepage:
+            self.homepage.set_text(homepage)
+
+        if url:
+            self.url.set_text(url)
+
+        if category:
+            self.category.set_text(category)
+
+        if description:
+            self.category.set_text(description)
+
 class ThirdSoft(TweakPage, Mediator):
     def __init__(self):
         TweakPage.__init__(self, 
@@ -242,6 +278,12 @@ class ThirdSoft(TweakPage, Mediator):
         self.treeview.set_sensitive(False)
         self.treeview.set_rules_hint(True)
         sw.add(self.treeview)
+
+        self.expander = gtk.Expander(_('Source Details'))
+        self.pack_start(self.expander, False, False, 0)
+        self.sourcedetail = SourceDetail()
+        self.expander.set_sensitive(False)
+        self.expander.add(self.sourcedetail)
 
         hbox = gtk.HBox(False, 0)
         self.pack_end(hbox, False, False, 5)
@@ -260,6 +302,7 @@ class ThirdSoft(TweakPage, Mediator):
         if widget.action == 1:
             if self.treeview.proxy.proxy:
                 self.treeview.set_sensitive(True)
+                self.expander.set_sensitive(True)
                 WARNING_KEY = '/apps/ubuntu-tweak/disable_thidparty_warning'
 
                 if not BoolSetting(WARNING_KEY).get_bool():
