@@ -46,9 +46,10 @@ from common.Widgets import ListPack, TweakPage, Colleague, Mediator, GconfCheckB
     COLUMN_LOGO,
     COLUMN_NAME,
     COLUMN_COMMENT,
+    COLUMN_DISPLAY,
     COLUMN_HOME,
     COLUMN_KEY,
-) = range(9)
+) = range(10)
 
 (
     ENTRY_URL,
@@ -85,7 +86,7 @@ Terminator = ['Terminator', _('Multiple GNOME terminals in one window'), 'termin
 GScrot = ['GScrot', _('A powerful screenshot tool'), 'gscrot.png', 'launchpad.net/gscrot', '']
 Galaxium = ['Galaxium', _('MSN'), 'gscrot.png', 'code.google.com/p/galaxium/', '']
 Swiftweasel = ['Swiftweasel', _('MSN'), 'gscrot.png', 'swiftweasel.tuxfamily.org/', '']
-Medibuntu = ['Medibuntu', _('Multimedia, Entertainment and Distraction In Ubuntu'), 'medibuntu.png', 'www.medibuntu.org/', 'medibuntu.gpg']
+Medibuntu = ['Medibuntu', _('Multimedia, Entertainment and Distraction In Ubuntu\nMedibuntu is a repository of packages that cannot be included into the Ubuntu distribution for legal reasons (copyright, license, patent, etc).'), 'medibuntu.png', 'www.medibuntu.org/', 'medibuntu.gpg']
 
 SOURCES_DATA = [
     ['http://ppa.launchpad.net/awn-core/ubuntu', 'hardy', 'main', AWN],
@@ -183,6 +184,7 @@ class SourcesView(gtk.TreeView, Colleague):
                 gobject.TYPE_STRING,
                 gobject.TYPE_STRING,
                 gobject.TYPE_STRING,
+                gobject.TYPE_STRING,
                 gobject.TYPE_STRING)
 
         return model
@@ -203,7 +205,7 @@ class SourcesView(gtk.TreeView, Colleague):
 
         renderer = gtk.CellRendererText()
         column.pack_start(renderer, True)
-        column.set_attributes(renderer, markup = COLUMN_COMMENT)
+        column.set_attributes(renderer, markup = COLUMN_DISPLAY)
 
         self.append_column(column)
 
@@ -236,7 +238,8 @@ class SourcesView(gtk.TreeView, Colleague):
                 comps,
                 logo,
                 name,
-                '<b>%s</b>\n%s' % (name, comment),
+                comment,
+                '<b>%s</b>\n%s' % (name, comment.split('\n')[0]),
                 home,
                 key,
                 ))
@@ -277,13 +280,14 @@ class SourceDetail(gtk.VBox):
             label = gtk.Label()
             label.set_markup('<b>%s</b>' % text)
 
-            self.table.attach(label, 0, 1, i, i + 1, xoptions = gtk.FILL, xpadding = 10)
+            self.table.attach(label, 0, 1, i, i + 1, xoptions = gtk.FILL, xpadding = 10, ypadding = 5)
 
         self.homepage_button = gtk.LinkButton('http://ubuntu-tweak.com')
         self.table.attach(self.homepage_button, 1, 2, 0, 1)
         self.url_button = gtk.LinkButton('http://ubuntu-tweak.com')
         self.table.attach(self.url_button, 1, 2, 1, 2)
         self.description = gtk.Label(_('Description is here'))
+        self.description.set_line_wrap(True)
         self.table.attach(self.description, 1, 2, 2, 3)
 
     def click_website(self, widget, link):

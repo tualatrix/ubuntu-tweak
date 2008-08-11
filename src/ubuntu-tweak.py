@@ -24,6 +24,13 @@ import thread
 
 from common.Constants import *
 
+try:
+    import dl
+    libc = dl.open('/lib/libc.so.6')
+    libc.call('prctl', 15, 'ubuntu-tweak', 0, 0, 0)
+except:
+    pass
+
 class TweakLauncher:
     def __init__(self):
             thread.start_new_thread(self.show_splash, ())
