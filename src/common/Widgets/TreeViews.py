@@ -45,7 +45,20 @@ class DirList(gtk.TreeView):
         selection.set(selection.target, 8, data)
 
     def on_drag_data_received(self, treeview, context, x, y, selection, info, etime):
-        print context,x,y,selection, info, etime
+        path, position = treeview.get_dest_row_at_pos(x, y)
+
+        print path, position
+        iter = self.model.get_iter(path)
+        target = self.model.get_value(iter, COLUMN_PATH)
+        source = selection.data
+        print 'target is ' + target
+        print 'source is ' + source
+        if os.path.isdir(target) and \
+                position in (gtk.TREE_VIEW_DROP_INTO_OR_BEFORE,gtk.TREE_VIEW_DROP_INTO_OR_AFTER):
+            print 'need to deal with'
+
+        if os.path.dirname(target) != os.path.dirname(source):
+            print "Will move!"
 
     def __create_model(self):
         model = gtk.TreeStore(
