@@ -39,7 +39,10 @@ class Test:
         else:
             win.set_title(str(model))
 
-        win.add(model())
+        if callable(model):
+            win.add(model())
+        else:
+            win.add(model)
         win.show_all()
 
         gtk.main()
