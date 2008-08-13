@@ -4,6 +4,7 @@ import shutil
 import gobject
 from gnome import ui
 from LookupIcon import get_icon_with_type
+from Dialogs import ErrorDialog
 
 (
     COLUMN_ICON,
@@ -38,6 +39,46 @@ class DirList(gtk.TreeView):
         self.connect('drag_data_get', self.on_drag_data_get)
         self.connect('drag_data_received', self.on_drag_data_received)
 
+        menu = self.__create_popup_menu()
+        menu.show_all()
+        self.connect('button_press_event', self.button_press_event, menu)
+
+    def button_press_event(self, widget, event, menu):
+        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+            menu.popup(None, None, None, event.button, event.time)
+        return False
+
+    def __create_popup_menu(self):
+        menu = gtk.Menu()
+
+#        change_item = gtk.MenuItem(_('Create folder'))
+#        menu.append(change_item)
+#        change_item.connect('activate', self.on_create_folder)
+
+        change_item = gtk.MenuItem(_('Delete'))
+        menu.append(change_item)
+        change_item.connect('activate', self.on_delete_item)
+
+        return menu
+
+    def on_create_folder(self, widget):
+        pass
+
+    def on_delete_item(self, widget):
+        model, iter = self.get_selection().get_selected()
+        filepath = model.get_value(iter, COLUMN_PATH)
+
+        if filepath != self.dir:
+            if os.path.isdir(filepath):
+                shutil.rmtree(filepath)
+            else:
+                os.remove(filepath)
+
+            self.update_model()
+        else:
+            ErrorDialog(_("Can't delete the root folder")).launch()
+
+
     def on_drag_data_get(self, treeview, context, selection, target_id, etime):
         treeselection = self.get_selection()
         model, iter = treeselection.get_selected()
@@ -48,9 +89,13 @@ class DirList(gtk.TreeView):
 
     def on_drag_data_received(self, treeview, context, x, y, selection, info, etime):
         '''If the source is coming from internal, then move it, or copy it.'''
-        path, position = treeview.get_dest_row_at_pos(x, y)
         source_widget = context.get_source_widget()
-        iter = self.model.get_iter(path)
+
+        try:
+            path, position = treeview.get_dest_row_at_pos(x, y)
+            iter = self.model.get_iter(path)
+        except:
+            iter = self.model.get_iter_first()
 
         try:
             if source_widget:
@@ -61,9 +106,9 @@ class DirList(gtk.TreeView):
                 file_action = 'copy'
                 dir_action = 'copytree'
 
-            iter = self.model.get_iter(path)
             target = self.model.get_value(iter, COLUMN_PATH)
             source = selection.data
+
             if os.path.isdir(target) and not os.path.isdir(source):
                 if os.path.dirname(source) != target:
                     if os.path.isdir(source):
