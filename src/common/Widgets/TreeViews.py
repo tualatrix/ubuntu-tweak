@@ -1,6 +1,7 @@
-import gtk
-import gobject
 import os
+import gtk
+import shutil
+import gobject
 from gnome import ui
 from LookupIcon import get_icon_with_type
 
@@ -43,22 +44,56 @@ class DirList(gtk.TreeView):
         data = model.get_value(iter, COLUMN_PATH)
 
         selection.set(selection.target, 8, data)
+        treeview.set_data('source', 'internal')
 
     def on_drag_data_received(self, treeview, context, x, y, selection, info, etime):
+        '''If the source is coming from internal, then move it, or copy it.'''
         path, position = treeview.get_dest_row_at_pos(x, y)
-
-        print path, position
+        source_widget = context.get_source_widget()
         iter = self.model.get_iter(path)
-        target = self.model.get_value(iter, COLUMN_PATH)
-        source = selection.data
-        print 'target is ' + target
-        print 'source is ' + source
-        if os.path.isdir(target) and \
-                position in (gtk.TREE_VIEW_DROP_INTO_OR_BEFORE,gtk.TREE_VIEW_DROP_INTO_OR_AFTER):
-            print 'need to deal with'
 
-        if os.path.dirname(target) != os.path.dirname(source):
-            print "Will move!"
+        try:
+            if source_widget:
+                source_widget.get_data('source')
+                file_action = 'move'
+                dir_action = 'move'
+            else:
+                file_action = 'copy'
+                dir_action = 'copytree'
+
+            iter = self.model.get_iter(path)
+            target = self.model.get_value(iter, COLUMN_PATH)
+            source = selection.data
+            if os.path.isdir(target) and not os.path.isdir(source):
+                if os.path.dirname(source) != target:
+                    if os.path.isdir(source):
+                        getattr(shutil, dir_action)(source, target)
+                    else:
+                        getattr(shutil, file_action)(source, target)
+            elif os.path.isdir(target) and os.path.isdir(source):
+                target = os.path.join(target, os.path.basename(source))
+                getattr(shutil, dir_action)(source, target)
+            elif os.path.dirname(target) != os.path.dirname(source):
+                if not os.path.isdir(target):
+                    target = os.path.dirname(target)
+
+                if os.path.isdir(source):
+                    target = os.path.join(target, os.path.basename(source))
+                    getattr(shutil, dir_action)(source, target)
+                else:
+                    getattr(shutil, file_action)(source, target)
+
+            self.update_model()
+        except:
+            pass
+
+    def update_model(self):
+        self.model.clear()
+
+        iter = self.__setup_root_model()
+        self.__update_model(self.dir, iter)
+
+        self.expand_all()
 
     def __create_model(self):
         model = gtk.TreeStore(
@@ -75,7 +110,7 @@ class DirList(gtk.TreeView):
         self.model.set(iter,
                 COLUMN_ICON, pixbuf,
                 COLUMN_TITLE, os.path.basename(self.dir),
-                COLUMN_PATH, dir)
+                COLUMN_PATH, self.dir)
 
         return iter
 
