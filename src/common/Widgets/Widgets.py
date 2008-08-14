@@ -29,10 +29,6 @@ import time
 import cairo
 from Settings import *
 
-#from Constants import *
-
-#InitLocale()
-
 class Colleague:
     def __init__(self, mediator):
         self.mediator = mediator

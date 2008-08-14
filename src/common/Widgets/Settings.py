@@ -20,6 +20,13 @@
 
 import gconf
 
+__all__ = (
+    'BoolSetting',
+    'StringSetting',
+    'NumSetting',
+    'ConstStringSetting',
+)
+
 class Setting:
     """
     The base class of an option, client is shared by all subclass

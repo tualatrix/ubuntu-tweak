@@ -7,10 +7,11 @@ from LookupIcon import get_icon_with_type
 from Dialogs import ErrorDialog
 
 (
-    COLUMN_ICON,
-    COLUMN_TITLE,
-    COLUMN_PATH,
-) = range(3)
+    DIR_ICON,
+    DIR_TITLE,
+    DIR_PATH,
+    DIR_EDITABLE,
+) = range(4)
 
 class DirList(gtk.TreeView):
     TARGETS = [
@@ -51,9 +52,13 @@ class DirList(gtk.TreeView):
     def __create_popup_menu(self):
         menu = gtk.Menu()
 
-#        change_item = gtk.MenuItem(_('Create folder'))
-#        menu.append(change_item)
-#        change_item.connect('activate', self.on_create_folder)
+        change_item = gtk.MenuItem(_('Create folder'))
+        menu.append(change_item)
+        change_item.connect('activate', self.on_create_folder)
+
+        change_item = gtk.MenuItem(_('Rename'))
+        menu.append(change_item)
+        change_item.connect('activate', self.on_rename_item)
 
         change_item = gtk.MenuItem(_('Delete'))
         menu.append(change_item)
@@ -61,12 +66,53 @@ class DirList(gtk.TreeView):
 
         return menu
 
+    def create_file_name(self, filename, count):
+        if filename in os.listdir(self.dir):
+            if filename[-1].isdigit():
+                filename = filename[:-1] + str(count)
+            else:
+                filename = filename + ' %d' % count
+            count = count + 1
+            self.create_file_name(filename, count)
+        else:
+            self.tempname = filename
+
     def on_create_folder(self, widget):
-        pass
+
+        iter = self.model.append(self.model.get_iter_first())
+        column = self.get_column(0)
+        path = self.model.get_path(iter)
+
+        self.create_file_name(_('Input the dir name'), 1)
+        filename = self.tempname
+        del self.tempname
+        newdir = os.path.join(self.dir, filename)
+        os.mkdir(newdir)
+
+        self.model.set(iter,
+                DIR_ICON, get_icon_with_type(newdir, 24),
+                DIR_TITLE, filename,
+                DIR_PATH, newdir,
+                DIR_EDITABLE, True)
+
+        self.set_cursor(path, focus_column = column, start_editing = True)
+
+    def on_rename_item(self, widget):
+        model, iter = self.get_selection().get_selected()
+        filepath = model.get_value(iter, DIR_PATH)
+
+        if filepath != self.dir:
+            model.set_value(iter, DIR_EDITABLE, True)
+
+            column = self.get_column(0)
+            path = self.model.get_path(iter)
+            self.set_cursor(path, focus_column = column, start_editing = True)
+        else:
+            ErrorDialog(_("Can't rename the root folder")).launch()
 
     def on_delete_item(self, widget):
         model, iter = self.get_selection().get_selected()
-        filepath = model.get_value(iter, COLUMN_PATH)
+        filepath = model.get_value(iter, DIR_PATH)
 
         if filepath != self.dir:
             if os.path.isdir(filepath):
@@ -78,11 +124,25 @@ class DirList(gtk.TreeView):
         else:
             ErrorDialog(_("Can't delete the root folder")).launch()
 
+    def on_cellrenderer_edited(self, cellrenderertext, path, new_text):
+        iter = self.model.get_iter_from_string(path)
+        filepath = self.model.get_value(iter, DIR_PATH)
+        old_text = self.model.get_value(iter, DIR_TITLE)
+
+        if old_text == new_text or new_text not in os.listdir(os.path.dirname(filepath)):
+            newpath = os.path.join(os.path.dirname(filepath), new_text)
+            os.rename(filepath, newpath)
+            self.model.set(iter,
+                           DIR_TITLE, new_text,
+                           DIR_PATH, newpath,
+                           DIR_EDITABLE, False)
+        else:
+            ErrorDialog(_("Can't rename!\n\nThere's file in it")).launch()
 
     def on_drag_data_get(self, treeview, context, selection, target_id, etime):
         treeselection = self.get_selection()
         model, iter = treeselection.get_selected()
-        data = model.get_value(iter, COLUMN_PATH)
+        data = model.get_value(iter, DIR_PATH)
 
         selection.set(selection.target, 8, data)
         treeview.set_data('source', 'internal')
@@ -106,7 +166,7 @@ class DirList(gtk.TreeView):
                 file_action = 'copy'
                 dir_action = 'copytree'
 
-            target = self.model.get_value(iter, COLUMN_PATH)
+            target = self.model.get_value(iter, DIR_PATH)
             source = selection.data
 
             if os.path.isdir(target) and not os.path.isdir(source):
@@ -144,7 +204,8 @@ class DirList(gtk.TreeView):
         model = gtk.TreeStore(
                         gtk.gdk.Pixbuf,
                         gobject.TYPE_STRING,
-                        gobject.TYPE_STRING)
+                        gobject.TYPE_STRING,
+                        gobject.TYPE_BOOLEAN)
 
         return model
 
@@ -153,9 +214,10 @@ class DirList(gtk.TreeView):
         pixbuf = get_icon_with_type(self.dir, 24)
 
         self.model.set(iter,
-                COLUMN_ICON, pixbuf,
-                COLUMN_TITLE, os.path.basename(self.dir),
-                COLUMN_PATH, self.dir)
+                DIR_ICON, pixbuf,
+                DIR_TITLE, os.path.basename(self.dir),
+                DIR_PATH, self.dir,
+                DIR_EDITABLE, False)
 
         return iter
 
@@ -166,9 +228,10 @@ class DirList(gtk.TreeView):
 
             child_iter = self.model.append(iter)
             self.model.set(child_iter,
-                              COLUMN_ICON, pixbuf,
-                              COLUMN_TITLE, os.path.basename(fullname),
-                              COLUMN_PATH, fullname)
+                              DIR_ICON, pixbuf,
+                              DIR_TITLE, os.path.basename(fullname),
+                              DIR_PATH, fullname, 
+                              DIR_EDITABLE, False)
 
             if os.path.isdir(fullname):
                 self.__update_model(fullname, child_iter)
@@ -179,10 +242,11 @@ class DirList(gtk.TreeView):
 
         renderer = gtk.CellRendererPixbuf()
         column.pack_start(renderer, False)
-        column.set_attributes(renderer, pixbuf = COLUMN_ICON)
+        column.set_attributes(renderer, pixbuf = DIR_ICON)
 
         renderer = gtk.CellRendererText()
+        renderer.connect('edited', self.on_cellrenderer_edited)
         column.pack_start(renderer, True)
-        column.set_attributes(renderer, text = COLUMN_TITLE)
+        column.set_attributes(renderer, text = DIR_TITLE, editable = DIR_EDITABLE)
 
         self.append_column(column)
