@@ -14,9 +14,11 @@ from Dialogs import ErrorDialog
     DIR_EDITABLE,
 ) = range(4)
 
-class DirList(gtk.TreeView):
+class DirView(gtk.TreeView):
     TARGETS = [
             ('text/plain', 0, 1),
+            ('TEXT', 0, 2),
+            ('STRING', 0, 3),
             ]
     def __init__(self, dir):
         gtk.TreeView.__init__(self)
@@ -79,7 +81,6 @@ class DirList(gtk.TreeView):
             self.tempname = filename
 
     def on_create_folder(self, widget):
-
         iter = self.model.append(self.model.get_iter_first())
         column = self.get_column(0)
         path = self.model.get_path(iter)
@@ -146,7 +147,6 @@ class DirList(gtk.TreeView):
         data = model.get_value(iter, DIR_PATH)
 
         selection.set(selection.target, 8, data)
-        treeview.set_data('source', 'internal')
 
     def on_drag_data_received(self, treeview, context, x, y, selection, info, etime):
         '''If the source is coming from internal, then move it, or copy it.'''
@@ -158,42 +158,39 @@ class DirList(gtk.TreeView):
         except:
             iter = self.model.get_iter_first()
 
-        try:
-            if source_widget:
-                source_widget.get_data('source')
-                file_action = 'move'
-                dir_action = 'move'
-            else:
-                file_action = 'copy'
-                dir_action = 'copytree'
+        if source_widget:
+            source_widget.get_data('source')
+            file_action = 'move'
+            dir_action = 'move'
+        else:
+            file_action = 'copy'
+            dir_action = 'copytree'
 
-            target = self.model.get_value(iter, DIR_PATH)
-            source = selection.data
-            if source.startswith('file:///'):
-                source = gnomevfs.format_uri_for_display(source.strip())
+        target = self.model.get_value(iter, DIR_PATH)
+        source = selection.data
+        if source.startswith('file:///'):
+            source = gnomevfs.format_uri_for_display(source.strip())
 
-            if os.path.isdir(target) and not os.path.isdir(source):
-                if os.path.dirname(source) != target:
-                    if os.path.isdir(source):
-                        getattr(shutil, dir_action)(source, target)
-                    else:
-                        getattr(shutil, file_action)(source, target)
-            elif os.path.isdir(target) and os.path.isdir(source):
-                target = os.path.join(target, os.path.basename(source))
-                getattr(shutil, dir_action)(source, target)
-            elif os.path.dirname(target) != os.path.dirname(source):
-                if not os.path.isdir(target):
-                    target = os.path.dirname(target)
-
+        if os.path.isdir(target) and not os.path.isdir(source):
+            if os.path.dirname(source) != target:
                 if os.path.isdir(source):
-                    target = os.path.join(target, os.path.basename(source))
                     getattr(shutil, dir_action)(source, target)
                 else:
                     getattr(shutil, file_action)(source, target)
+        elif os.path.isdir(target) and os.path.isdir(source):
+            target = os.path.join(target, os.path.basename(source))
+            getattr(shutil, dir_action)(source, target)
+        elif os.path.dirname(target) != os.path.dirname(source):
+            if not os.path.isdir(target):
+                target = os.path.dirname(target)
 
-            self.update_model()
-        except:
-            pass
+            if os.path.isdir(source):
+                target = os.path.join(target, os.path.basename(source))
+                getattr(shutil, dir_action)(source, target)
+            else:
+                getattr(shutil, file_action)(source, target)
+
+        self.update_model()
 
     def update_model(self):
         self.model.clear()
@@ -257,25 +254,29 @@ class DirList(gtk.TreeView):
 (
     FLAT_ICON,
     FLAT_TITLE,
-) = range(2)
+    FLAT_PATH,
+) = range(3)
 
 class FlatView(gtk.TreeView):
     TARGETS = [
         ('text/plain', 0, 1),
+        ('TEXT', 0, 2),
+        ('STRING', 0, 3),
         ]
 
-    def __init__(self):
+    def __init__(self, dir, exclude_dir = None):
         gtk.TreeView.__init__(self)
-
         self.set_rules_hint(True)
+        self.dir = dir
+        self.exclude_dir = exclude_dir
 
-        model = gtk.ListStore(
+        self.model = gtk.ListStore(
                         gtk.gdk.Pixbuf,
                         gobject.TYPE_STRING,
                         gobject.TYPE_STRING)
 
-        self.set_model(model)
-        self.create_model()
+        self.set_model(self.model)
+        self.__create_model()
         self.__add_columns()
 
         self.enable_model_drag_source( gtk.gdk.BUTTON1_MASK,
@@ -289,15 +290,79 @@ class FlatView(gtk.TreeView):
         self.connect("drag_data_received", self.on_drag_data_received_data)
 
     def on_drag_data_get_data(self, treeview, context, selection, target_id, etime):
-        """will implement in subclass"""
-        pass
+        treeselection = self.get_selection()
+        model, iter = treeselection.get_selected()
+        data = model.get_value(iter, FLAT_PATH)
+
+        selection.set(selection.target, 8, data)
 
     def on_drag_data_received_data(self, treeview, context, x, y, selection, info, etime):
-        """will implement in subclass"""
-        pass
+        source_widget = context.get_source_widget()
+
+        try:
+            path, position = treeview.get_dest_row_at_pos(x, y)
+            iter = self.model.get_iter(path)
+        except:
+            iter = self.model.get_iter_first()
+
+        if source_widget:
+            return
+        else:
+            file_action = 'move'
+            dir_action = 'move'
+
+        target = self.model.get_value(iter, DIR_PATH)
+        source = selection.data
+        print target, source
+
+        if source.startswith('file:///'):
+            source = gnomevfs.format_uri_for_display(source.strip())
+
+        if os.path.isdir(target) and not os.path.isdir(source):
+            if os.path.dirname(source) != target:
+                if os.path.isdir(source):
+                    getattr(shutil, dir_action)(source, target)
+                else:
+                    getattr(shutil, file_action)(source, target)
+        elif os.path.isdir(target) and os.path.isdir(source):
+            target = os.path.join(target, os.path.basename(source))
+            getattr(shutil, dir_action)(source, target)
+        elif os.path.dirname(target) != os.path.dirname(source):
+            if not os.path.isdir(target):
+                target = os.path.dirname(target)
+
+            if os.path.isdir(source):
+                target = os.path.join(target, os.path.basename(source))
+                getattr(shutil, dir_action)(source, target)
+            else:
+                getattr(shutil, file_action)(source, target)
+
+        self.__create_model()
+
+    def __create_model(self):
+        self.model.clear()
+
+        dir = self.dir
+        self.exist_lsit = []
+        if self.exclude_dir:
+            for root, dirs, files in os.walk(self.exclude_dir):
+                if files:
+                    self.exist_lsit.extend(files)
+
+        for item in os.listdir(dir):
+            fullname = os.path.join(dir, item)
+            title = os.path.basename(fullname)
+            if title in self.exist_lsit: continue
+            pixbuf = get_icon_with_type(fullname, 24)
+
+            iter = self.model.append(None)
+            self.model.set(iter,
+                           FLAT_ICON, pixbuf,
+                           FLAT_TITLE, title,
+                           FLAT_PATH, fullname) 
 
     def __add_columns(self):
-        column = gtk.TreeViewColumn(self.type)
+        column = gtk.TreeViewColumn()
         column.set_spacing(5)
 
         renderer = gtk.CellRendererPixbuf()
