@@ -21,6 +21,7 @@
 import gconf
 
 __all__ = (
+    'Setting',
     'BoolSetting',
     'StringSetting',
     'NumSetting',

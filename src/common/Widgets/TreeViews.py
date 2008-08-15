@@ -3,6 +3,7 @@ import gtk
 import shutil
 import gobject
 from gnome import ui
+import gnomevfs
 from LookupIcon import get_icon_with_type
 from Dialogs import ErrorDialog
 
@@ -168,6 +169,8 @@ class DirList(gtk.TreeView):
 
             target = self.model.get_value(iter, DIR_PATH)
             source = selection.data
+            if source.startswith('file:///'):
+                source = gnomevfs.format_uri_for_display(source.strip())
 
             if os.path.isdir(target) and not os.path.isdir(source):
                 if os.path.dirname(source) != target:
@@ -248,5 +251,61 @@ class DirList(gtk.TreeView):
         renderer.connect('edited', self.on_cellrenderer_edited)
         column.pack_start(renderer, True)
         column.set_attributes(renderer, text = DIR_TITLE, editable = DIR_EDITABLE)
+
+        self.append_column(column)
+        
+(
+    FLAT_ICON,
+    FLAT_TITLE,
+) = range(2)
+
+class FlatView(gtk.TreeView):
+    TARGETS = [
+        ('text/plain', 0, 1),
+        ]
+
+    def __init__(self):
+        gtk.TreeView.__init__(self)
+
+        self.set_rules_hint(True)
+
+        model = gtk.ListStore(
+                        gtk.gdk.Pixbuf,
+                        gobject.TYPE_STRING,
+                        gobject.TYPE_STRING)
+
+        self.set_model(model)
+        self.create_model()
+        self.__add_columns()
+
+        self.enable_model_drag_source( gtk.gdk.BUTTON1_MASK,
+                        self.TARGETS,
+                        gtk.gdk.ACTION_DEFAULT|
+                        gtk.gdk.ACTION_MOVE)
+        self.enable_model_drag_dest(self.TARGETS,
+                        gtk.gdk.ACTION_DEFAULT)
+
+        self.connect("drag_data_get", self.on_drag_data_get_data)
+        self.connect("drag_data_received", self.on_drag_data_received_data)
+
+    def on_drag_data_get_data(self, treeview, context, selection, target_id, etime):
+        """will implement in subclass"""
+        pass
+
+    def on_drag_data_received_data(self, treeview, context, x, y, selection, info, etime):
+        """will implement in subclass"""
+        pass
+
+    def __add_columns(self):
+        column = gtk.TreeViewColumn(self.type)
+        column.set_spacing(5)
+
+        renderer = gtk.CellRendererPixbuf()
+        column.pack_start(renderer, False)
+        column.set_attributes(renderer, pixbuf = FLAT_ICON)
+
+        renderer = gtk.CellRendererText()
+        column.pack_start(renderer, True)
+        column.set_attributes(renderer, text = FLAT_TITLE)
 
         self.append_column(column)
