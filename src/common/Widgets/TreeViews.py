@@ -20,10 +20,16 @@ class DirView(gtk.TreeView):
             ('TEXT', 0, 2),
             ('STRING', 0, 3),
             ]
+    __gsignals__ = {
+                    'deleted': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, ())
+                    }
+
     def __init__(self, dir):
         gtk.TreeView.__init__(self)
         self.set_rules_hint(True)
         self.dir = dir
+        if not os.path.exists(self.dir):
+            os.makedirs(self.dir)
 
         self.model = self.__create_model()
         self.set_model(self.model)
@@ -122,6 +128,7 @@ class DirView(gtk.TreeView):
             else:
                 os.remove(filepath)
 
+            self.emit('deleted')
             self.update_model()
         else:
             ErrorDialog(_("Can't delete the root folder")).launch()
@@ -146,28 +153,32 @@ class DirView(gtk.TreeView):
         model, iter = treeselection.get_selected()
         data = model.get_value(iter, DIR_PATH)
 
-        selection.set(selection.target, 8, data)
+        if data != self.dir:
+            selection.set(selection.target, 8, data)
 
     def on_drag_data_received(self, treeview, context, x, y, selection, info, etime):
         '''If the source is coming from internal, then move it, or copy it.'''
-        source_widget = context.get_source_widget()
-
         try:
             path, position = treeview.get_dest_row_at_pos(x, y)
             iter = self.model.get_iter(path)
         except:
-            iter = self.model.get_iter_first()
+            try:
+                iter = self.model.get_iter_first()
+            except:
+                iter = self.model.append(None)
 
-        if source_widget:
-            source_widget.get_data('source')
+        target = self.model.get_value(iter, DIR_PATH)
+        source = selection.data
+        if not source:
+            return
+
+        if context.get_source_widget() is self:
             file_action = 'move'
             dir_action = 'move'
         else:
             file_action = 'copy'
             dir_action = 'copytree'
 
-        target = self.model.get_value(iter, DIR_PATH)
-        source = selection.data
         if source.startswith('file:///'):
             source = gnomevfs.format_uri_for_display(source.strip())
 
@@ -237,7 +248,13 @@ class DirView(gtk.TreeView):
                 self.__update_model(fullname, child_iter)
 
     def __add_columns(self):
-        column = gtk.TreeViewColumn()
+        try:
+            self.type
+        except:
+            column = gtk.TreeViewColumn()
+        else:
+            column = gtk.TreeViewColumn(self.type)
+
         column.set_spacing(5)
 
         renderer = gtk.CellRendererPixbuf()
@@ -276,7 +293,7 @@ class FlatView(gtk.TreeView):
                         gobject.TYPE_STRING)
 
         self.set_model(self.model)
-        self.__create_model()
+        self.update_model()
         self.__add_columns()
 
         self.enable_model_drag_source( gtk.gdk.BUTTON1_MASK,
@@ -297,49 +314,46 @@ class FlatView(gtk.TreeView):
         selection.set(selection.target, 8, data)
 
     def on_drag_data_received_data(self, treeview, context, x, y, selection, info, etime):
-        source_widget = context.get_source_widget()
-
         try:
             path, position = treeview.get_dest_row_at_pos(x, y)
             iter = self.model.get_iter(path)
         except:
-            iter = self.model.get_iter_first()
+            iter = self.model.append(None)
 
-        if source_widget:
-            return
-        else:
+        target = self.dir
+        source = selection.data
+
+        if context.get_source_widget() is not self and source:
             file_action = 'move'
             dir_action = 'move'
 
-        target = self.model.get_value(iter, DIR_PATH)
-        source = selection.data
-        print target, source
+            if source.startswith('file:///'):
+                source = gnomevfs.format_uri_for_display(source.strip())
 
-        if source.startswith('file:///'):
-            source = gnomevfs.format_uri_for_display(source.strip())
+            if source in os.listdir(self.dir):
+                os.remove(source)
+            elif os.path.isdir(target) and not os.path.isdir(source):
+                if os.path.dirname(source) != target:
+                    if os.path.isdir(source):
+                        getattr(shutil, dir_action)(source, target)
+                    else:
+                        getattr(shutil, file_action)(source, target)
+            elif os.path.isdir(target) and os.path.isdir(source):
+                target = os.path.join(target, os.path.basename(source))
+                getattr(shutil, dir_action)(source, target)
+            elif os.path.dirname(target) != os.path.dirname(source):
+                if not os.path.isdir(target):
+                    target = os.path.dirname(target)
 
-        if os.path.isdir(target) and not os.path.isdir(source):
-            if os.path.dirname(source) != target:
                 if os.path.isdir(source):
+                    target = os.path.join(target, os.path.basename(source))
                     getattr(shutil, dir_action)(source, target)
                 else:
                     getattr(shutil, file_action)(source, target)
-        elif os.path.isdir(target) and os.path.isdir(source):
-            target = os.path.join(target, os.path.basename(source))
-            getattr(shutil, dir_action)(source, target)
-        elif os.path.dirname(target) != os.path.dirname(source):
-            if not os.path.isdir(target):
-                target = os.path.dirname(target)
 
-            if os.path.isdir(source):
-                target = os.path.join(target, os.path.basename(source))
-                getattr(shutil, dir_action)(source, target)
-            else:
-                getattr(shutil, file_action)(source, target)
+            self.update_model()
 
-        self.__create_model()
-
-    def __create_model(self):
+    def update_model(self):
         self.model.clear()
 
         dir = self.dir
@@ -362,7 +376,13 @@ class FlatView(gtk.TreeView):
                            FLAT_PATH, fullname) 
 
     def __add_columns(self):
-        column = gtk.TreeViewColumn()
+        try:
+            self.type
+        except:
+            column = gtk.TreeViewColumn()
+        else:
+            column = gtk.TreeViewColumn(self.type)
+
         column.set_spacing(5)
 
         renderer = gtk.CellRendererPixbuf()
