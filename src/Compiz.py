@@ -219,7 +219,7 @@ class Compiz(TweakPage, CompizSetting, Mediator):
 
             if not DISABLE_APT:
                 update_apt_cache(True)
-                box = ListPack(_("Compiz Extensions"), (
+                box = ListPack(_("Compiz Fusion Extensions"), (
                     self.simple_settings,
                     self.screenlets,
                 ))

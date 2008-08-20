@@ -39,15 +39,15 @@ Internet = (_('Internet Tools'), 'internet.png')
 FTP = (_('FTP Tools'), 'ftp.png')
 Desktop = (_('Desktop Tools'), 'desktop.png')
 Disk = (_('CD/Disk Tools'), 'cd.png')
-Develop = (_('Develop Kit'), 'develop.png')
+Develop = (_('Development Kit'), 'develop.png')
 Emulator = (_('Emulators'), 'emulator.png')
-Mail = (_('Email Tools'), 'mail.png')
+Mail = (_('E-mail Tools'), 'mail.png')
 
 CATES_DATA = (P2P, Image, Sound, Video, Text, IM, Internet, FTP, Desktop, Disk, Develop, Emulator, Mail)
 
 data = \
 (
-    ('agave', _('A colorscheme designer'), Image),
+    ('agave', _('A color scheme designer'), Image),
     ('amule', _('Client for the eD2k and Kad networks'), P2P),
     ('anjuta', _('GNOME IDE for C/C++, Java, Python'), Develop),
     ('audacious', _('A skinned multimedia player for many platforms'), Sound),
@@ -70,7 +70,7 @@ data = \
     ('gajim', _('A GTK+ jabber client'), IM),
     ('geany', _('A fast and lightweight IDE'), Develop),
     ('gftp', _('A multithreaded FTP client'), FTP),
-    ('ghex', _('GNOME Hex editor for files'), Text),
+    ('ghex', _('GNOME Hex editor'), Text),
     ('gmail-notify', _('Notify the arrival of new mail on Gmail'), Mail),
     ('gnome-do', _('Do things as quickly as possible'), Desktop),
     ('googleearth', _('Let you fly anywhere to view the earth'), Internet),

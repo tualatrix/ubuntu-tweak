@@ -78,7 +78,7 @@ Banshee = ['Banshee', _('Audio Management and Playback application'), 'banshee.p
 GoogleGadgets = ['Google gadgets', _('Platform for running Google Gadgets on Linux'), 'gadgets.png', 'desktop.google.com/plugins/', '']
 ChmSee = ['chmsee', _('A chm file viewer written in GTK+'), 'chmsee.png', 'chmsee.gro.clinux.org/', '']
 KDE4 = ['KDE 4', _('K Desktop Environment 4.1'), 'kde4.png', 'www.kde.org', '']
-UbuntuTweak = ['Ubuntu Tweak', _('Tweak ubuntu to what you like'), 'ubuntu-tweak.png', 'ubuntu-tweak.com', '']
+UbuntuTweak = ['Ubuntu Tweak', _('Ubuntu Tweak makes it easier to configure Ubuntu'), 'ubuntu-tweak.png', 'ubuntu-tweak.com', '']
 Screenlets = ['Screenlets', _('A framework for desktop widgets'), 'screenlets.png', 'www.screenlets.org/', '']
 Wine = ['Wine', _('A compatibility layer for running Windows programs'), 'wine.png', 'www.winehq.org/', 'wine.gpg']
 LXDE = ['LXDE', _('Lightweight X11 Desktop Environment:GPicView, PCManFM'), 'lxde.png', 'lxde.org/', '']
@@ -313,7 +313,7 @@ class ThirdSoft(TweakPage, Mediator):
     def __init__(self):
         TweakPage.__init__(self, 
                 _('Third Party Softwares Sources'), 
-                _('You can always follow the latest version of an application.\nAnd new applications can be installed through Add/Remove.'))
+                _('You can always keep up-to-date with the latest version of an application.\nAnd new applications can be installed through Add/Remove.'))
 
         sw = gtk.ScrolledWindow()
         sw.set_shadow_type(gtk.SHADOW_ETCHED_IN)
@@ -362,7 +362,7 @@ class ThirdSoft(TweakPage, Mediator):
                 WARNING_KEY = '/apps/ubuntu-tweak/disable_thidparty_warning'
 
                 if not BoolSetting(WARNING_KEY).get_bool():
-                    dialog = WarningDialog(_('<b><big>Warning</big></b>\n\nIt is possible security risk to use packages from third party sources. Please be careful.'), buttons = gtk.BUTTONS_OK)
+                    dialog = WarningDialog(_('<b><big>Warning</big></b>\n\nIt is a possible security risk to use packages from Third Party Sources. Please be careful.'), buttons = gtk.BUTTONS_OK)
                     vbox = dialog.get_child()
                     hbox = gtk.HBox()
                     vbox.pack_start(hbox, False, False, 0)

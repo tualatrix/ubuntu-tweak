@@ -52,7 +52,7 @@ class Gnome(TweakPage, Mediator):
         self.pack_start(box, False, False, 0)
 
         box = ListPack(_("Screensaver"), (
-                    Factory.create("gconfcheckbutton", _("Enable User Switching while locking screen."), "user_switch_enabled"),
+                    Factory.create("gconfcheckbutton", _("Enable User Switching when Screen is locked."), "user_switch_enabled"),
             ))
         self.pack_start(box, False, False, 0)
 
