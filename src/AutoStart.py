@@ -111,21 +111,7 @@ class AutoStartItem(gtk.TreeView):
     def __init__(self):
         gtk.TreeView.__init__(self)
 
-        if not os.path.exists(self.userdir): os.mkdir(self.userdir)
-
-        #get the item with full-path from the dirs
-        self.useritems = map(lambda path: "%s/%s" % (self.userdir, path), 
-                                                    os.listdir(self.userdir))
-        self.systemitems = map(lambda path: "%s/%s" % (self.systemdir, path),
-                           filter(lambda i: i not in os.listdir(self.userdir), 
-                                                    os.listdir(self.systemdir)))
-
-        for item in self.useritems:
-            if os.path.isdir(item): 
-                self.useritems.remove(item)
-        for item in self.systemitems:
-            if os.path.isdir(item): 
-                self.systemitems.remove(item)
+        self.refresh_items()
 
         model = gtk.ListStore(
                     gobject.TYPE_BOOLEAN,
@@ -145,6 +131,23 @@ class AutoStartItem(gtk.TreeView):
         menu = self.create_popup_menu()
         menu.show_all()
         self.connect("button_press_event", self.button_press_event, menu)    
+
+    def refresh_items(self):
+        if not os.path.exists(self.userdir): os.mkdir(self.userdir)
+
+        #get the item with full-path from the dirs
+        self.useritems = map(lambda path: "%s/%s" % (self.userdir, path), 
+                                                    os.listdir(self.userdir))
+        self.systemitems = map(lambda path: "%s/%s" % (self.systemdir, path),
+                           filter(lambda i: i not in os.listdir(self.userdir), 
+                                                    os.listdir(self.systemdir)))
+
+        for item in self.useritems:
+            if os.path.isdir(item): 
+                self.useritems.remove(item)
+        for item in self.systemitems:
+            if os.path.isdir(item): 
+                self.systemitems.remove(item)
 
     def selection_cb(self, widget, data = None):
         """If selected an item, it should set the sensitive of the remove and edit button"""
@@ -189,12 +192,7 @@ class AutoStartItem(gtk.TreeView):
     def update_items(self, all = False, comment = False):
         """'all' parameter used to show the hide item,
         'comment' parameter used to show the comment of program"""
-        self.useritems = map(lambda path: "%s/%s" % (self.userdir, path), 
-                                                    os.listdir(self.userdir))
-        self.systemitems = map(lambda path: "%s/%s" % (self.systemdir, path), 
-                            filter(lambda i: i not in os.listdir(self.userdir), 
-                                                    os.listdir(self.systemdir)))
-
+        self.refresh_items()
         self.__create_model(all, comment)
 
     def __create_model(self, all = False, comment = False):
@@ -234,11 +232,12 @@ class AutoStartItem(gtk.TreeView):
                 description = "<b>%s</b>\n%s" % (name, comment)
             else:
                 description = "<b>%s</b>" % name
+
             model.set(iter,
-                COLUMN_ACTIVE, enable,
-                COLUMN_ICON, icon,
-                COLUMN_PROGRAM, description,
-                COLUMN_PATH, item)
+                      COLUMN_ACTIVE, enable,
+                      COLUMN_ICON, icon,
+                      COLUMN_PROGRAM, description,
+                      COLUMN_PATH, item)
 
     def __add_columns(self):
         model = self.get_model()
