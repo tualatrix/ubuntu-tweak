@@ -30,7 +30,7 @@ from gnome import url_show
 from common.Constants import *
 from common.Widgets import QuestionDialog
 from common.SystemInfo import GnomeVersion, SystemInfo
-from CheckVersion import UpdateManager
+from UpdateManager import UpdateManager, TweakSettings
 
 DISABLE_HARDY = 'Mint' not in SystemInfo.distro and '8.04' not in SystemInfo.distro
 GNOME = int(GnomeVersion.minor)
@@ -264,7 +264,7 @@ class MainWindow(gtk.Window):
         hbox.pack_end(button, False, False, 0)
         
         self.show_all()
-        gobject.timeout_add(2000, self.on_timeout)
+        gobject.timeout_add(8000, self.on_timeout)
 
     def __create_model(self):
         model = gtk.TreeStore(
@@ -427,8 +427,7 @@ You should have received a copy of the GNU General Public License along with Ubu
     def check_version(self):
         gtk.gdk.threads_enter()
 
-        client = gconf.client_get_default()
-        version = client.get_string("/apps/ubuntu-tweak/update")
+        version = TweakSettings.get_version()
         if version > VERSION:
             dialog = QuestionDialog(_("A newer version: %s is available online.\nWould you like to update?") % version)
 

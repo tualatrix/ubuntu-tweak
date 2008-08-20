@@ -28,28 +28,21 @@ class TweakSettings:
     url = gconf_dir + 'url'
 
     @classmethod
+    def set_url(self, url):
+        return self.client.set_string(self.url, url)
+
+    @classmethod
     def get_url(self):
         return self.client.get_string(self.url)
 
-class CheckUpdate(threading.Thread):
-    client = gconf.client_get_default()
+    @classmethod
+    def set_version(self, version):
+        return self.client.set_string(self.version, version)
 
-    def __init__(self):
-        threading.Thread.__init__(self)
+    @classmethod
+    def get_version(self):
+        return self.client.get_string(self.version)
 
-    def run(self):
-        '''设置socket超时为8秒，获取成功后将键值对写入gconf'''
-        print "Checking update..."
-        try:
-            socket.setdefaulttimeout(8)
-            f = urllib.urlopen(TweakSettings.get_addr())
-            info = f.read().strip()
-            for line in info.split('\n'):
-                key, value = line.split('=')
-                self.client.set_string('%s%s' % (TweakSettings.gconf_dir, key.strip()), value.strip())
-        except:
-            TweakSettings.set_update_state(-1)
-       
 class Downloader(gobject.GObject):
     __gsignals__ = {
               'downloading': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, ())
@@ -94,7 +87,7 @@ class UpdateManager(gtk.Window):
         self.set_modal(True)
         self.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_DIALOG)
         self.set_size_request(360, 40)
-        self.set_title(_('Ubuntu Tweak Update Manager'))
+        self.set_title(_('Update Manager'))
         self.connect('destroy', lambda *w: self.destroy())
         if parent:
             self.set_transient_for(parent)
@@ -111,17 +104,14 @@ class UpdateManager(gtk.Window):
         percentage = self.downloader.percentage
 
         if percentage < 1:
-            self.progress_bar.set_text("下载中...%d" % int(percentage * 100)+ '%')
+            self.progress_bar.set_text(_('Downloading...%d') % int(percentage * 100)+ '%')
             self.progress_bar.set_fraction(percentage)
 
             return True
         else:
-            self.progress_bar.set_text("Finished")
-            self.progress_bar.set_fraction(1)
             gobject.timeout_add(1000, self.on_start_install)
 
     def on_start_install(self):
-        self.time_count = 0
         thread.start_new_thread(self.start_install, ())
 
     def start_install(self):
@@ -142,7 +132,7 @@ class UpdateManager(gtk.Window):
         percentage = self.downloader.percentage
 
         if percentage < 1:
-            self.progress_bar.set_text("下载中...%d" % int(percentage * 100)+ '%')
+            self.progress_bar.set_text("Downloading...%d" % int(percentage * 100)+ '%')
             self.progress_bar.set_fraction(percentage)
 
             return True
@@ -167,9 +157,8 @@ def CheckVersion():
     except socket.gaierror:
         print "Bad Network!"
     else:
-        TweakSettings.client.set_string('/apps/ubuntu-tweak/update', version)
-        TweakSettings.client.set_string('/apps/ubuntu-tweak/url', url)
+        TweakSettings.set_version(version)
+        TweakSettings.set_url(url)
 
 if __name__ == "__main__":
     CheckVersion()
-#    UpdateManager().main()
