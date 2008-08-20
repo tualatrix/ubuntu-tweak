@@ -1,1 +1,1 @@
-from Widgets.Settings import BoolSetting
+from Widgets.Settings import BoolSetting, Setting

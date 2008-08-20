@@ -17,8 +17,6 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
-# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
-
 import pygtk
 pygtk.require('2.0')
 import os
@@ -32,6 +30,7 @@ from gnome import url_show
 from common.Constants import *
 from common.Widgets import QuestionDialog
 from common.SystemInfo import GnomeVersion, SystemInfo
+from CheckVersion import UpdateManager
 
 DISABLE_HARDY = 'Mint' not in SystemInfo.distro and '8.04' not in SystemInfo.distro
 GNOME = int(GnomeVersion.minor)
@@ -142,6 +141,7 @@ from Metacity import Metacity
     SECU_OPTIONS_PAGE,
     TOTAL_PAGE
 ) = range(24)
+
 icons = \
 [
     "pixmaps/welcome.png",
@@ -168,6 +168,7 @@ icons = \
     "pixmaps/security.png",
     "pixmaps/lockdown.png",
 ]
+
 def update_icons(icons):
     list = []
     for icon in icons:
@@ -263,7 +264,7 @@ class MainWindow(gtk.Window):
         hbox.pack_end(button, False, False, 0)
         
         self.show_all()
-        gobject.timeout_add(5000, self.on_timeout)
+        gobject.timeout_add(2000, self.on_timeout)
 
     def __create_model(self):
         model = gtk.TreeStore(
@@ -431,9 +432,14 @@ You should have received a copy of the GNU General Public License along with Ubu
         if version > VERSION:
             dialog = QuestionDialog(_("A newer version: %s is available online.\nWould you like to update?") % version)
 
+            update = False
+
             if dialog.run() == gtk.RESPONSE_YES:
-                url_show("http://ubuntu-tweak.com/downloads")
+                update = True
             dialog.destroy()
+
+            if update: 
+                UpdateManager(self.get_toplevel())
 
         gtk.gdk.threads_leave()
 
