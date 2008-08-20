@@ -24,7 +24,12 @@ def get_icon_with_cate(cate, size):
     pass
 
 def get_icon_with_name(name, size):
-    pass
+    try:
+        pixbuf = icontheme.load_icon(name, size, 0)
+    except:
+        pixbuf = icontheme.load_icon('binary', size, 0)
+    
+    return pixbuf
 
 if __name__ == '__main__':
     print get_icon_with_type('/home/tualatrixx', 24)

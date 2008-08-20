@@ -22,14 +22,16 @@ import os
 import gtk
 import shutil
 import gobject
-from common.Widgets import InfoDialog, TweakPage
 from xdg.DesktopEntry import DesktopEntry
+from common.Widgets import InfoDialog, TweakPage
+from common.Widgets.LookupIcon import *
 
 (
     COLUMN_ACTIVE,
+    COLUMN_ICON,
     COLUMN_PROGRAM,
     COLUMN_PATH,
-) = range(3)
+) = range(4)
 
 class AutoStartDialog(gtk.Dialog):
     """The dialog used to add or edit the autostart program"""
@@ -92,7 +94,10 @@ class AutoStartDialog(gtk.Dialog):
 
     def on_choose_program(self, widget, data = None):
         """The action taken by clicked the browse button"""
-        dialog = gtk.FileChooserDialog(_("Choose a Program"), action = gtk.FILE_CHOOSER_ACTION_OPEN, buttons = (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, gtk.STOCK_OPEN, gtk.RESPONSE_ACCEPT))
+        dialog = gtk.FileChooserDialog(_("Choose a Program"), \
+                        action = gtk.FILE_CHOOSER_ACTION_OPEN, \
+                        buttons = (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,\
+                                    gtk.STOCK_OPEN, gtk.RESPONSE_ACCEPT))
 
         if dialog.run() == gtk.RESPONSE_ACCEPT:
             self.pm_cmd.set_text(dialog.get_filename())
@@ -109,8 +114,11 @@ class AutoStartItem(gtk.TreeView):
         if not os.path.exists(self.userdir): os.mkdir(self.userdir)
 
         #get the item with full-path from the dirs
-        self.useritems = map(lambda path: "%s/%s" % (self.userdir, path), os.listdir(self.userdir))
-        self.systemitems = map(lambda path: "%s/%s" % (self.systemdir, path), filter(lambda i: i not in os.listdir(self.userdir), os.listdir(self.systemdir)))
+        self.useritems = map(lambda path: "%s/%s" % (self.userdir, path), 
+                                                    os.listdir(self.userdir))
+        self.systemitems = map(lambda path: "%s/%s" % (self.systemdir, path),
+                           filter(lambda i: i not in os.listdir(self.userdir), 
+                                                    os.listdir(self.systemdir)))
 
         for item in self.useritems:
             if os.path.isdir(item): 
@@ -120,9 +128,10 @@ class AutoStartItem(gtk.TreeView):
                 self.systemitems.remove(item)
 
         model = gtk.ListStore(
-            gobject.TYPE_BOOLEAN,
-            gobject.TYPE_STRING,
-            gobject.TYPE_STRING)
+                    gobject.TYPE_BOOLEAN,
+                    gtk.gdk.Pixbuf,
+                    gobject.TYPE_STRING,
+                    gobject.TYPE_STRING)
 
         self.set_model(model)
         self.__create_model()
@@ -180,8 +189,11 @@ class AutoStartItem(gtk.TreeView):
     def update_items(self, all = False, comment = False):
         """'all' parameter used to show the hide item,
         'comment' parameter used to show the comment of program"""
-        self.useritems = map(lambda path: "%s/%s" % (self.userdir, path), os.listdir(self.userdir))
-        self.systemitems = map(lambda path: "%s/%s" % (self.systemdir, path), filter(lambda i: i not in os.listdir(self.userdir), os.listdir(self.systemdir)))
+        self.useritems = map(lambda path: "%s/%s" % (self.userdir, path), 
+                                                    os.listdir(self.userdir))
+        self.systemitems = map(lambda path: "%s/%s" % (self.systemdir, path), 
+                            filter(lambda i: i not in os.listdir(self.userdir), 
+                                                    os.listdir(self.systemdir)))
 
         self.__create_model(all, comment)
 
@@ -206,6 +218,14 @@ class AutoStartItem(gtk.TreeView):
             else:
                 enable = True
             
+            iconname = desktopentry.get('Icon', locale = False)
+            if not iconname:
+               iconname = desktopentry.get('Name', locale = False)
+               if not iconname:
+                   iconname = desktopentry.getName()
+
+            icon = get_icon_with_name(iconname, 24)
+
             name = desktopentry.getName()
             if comment:
                 comment = desktopentry.getComment()
@@ -216,6 +236,7 @@ class AutoStartItem(gtk.TreeView):
                 description = "<b>%s</b>" % name
             model.set(iter,
                 COLUMN_ACTIVE, enable,
+                COLUMN_ICON, icon,
                 COLUMN_PROGRAM, description,
                 COLUMN_PATH, item)
 
@@ -228,10 +249,16 @@ class AutoStartItem(gtk.TreeView):
         column.set_sort_column_id(COLUMN_ACTIVE)
         self.append_column(column)
 
-        renderer = gtk.CellRendererText()
         column = gtk.TreeViewColumn(_("Program"))
+        column.set_spacing(3)
+
+        renderer = gtk.CellRendererPixbuf()
+        column.pack_start(renderer, False)
+        column.set_attributes(renderer, pixbuf = COLUMN_ICON)
+
+        renderer = gtk.CellRendererText()
         column.pack_start(renderer, True)
-        column.add_attribute(renderer, "markup", COLUMN_PROGRAM)
+        column.set_attributes(renderer, markup = COLUMN_PROGRAM)
         column.set_sort_column_id(COLUMN_ACTIVE)
         self.append_column(column)
 
@@ -293,7 +320,7 @@ class AutoStart(TweakPage):
         self.treeview = AutoStartItem()
         sw.add(self.treeview)
         
-        vbox = gtk.VBox(False, 10)
+        vbox = gtk.VBox(False, 5)
         hbox.pack_start(vbox, False, False, 0)
 
         button = gtk.Button(stock = gtk.STOCK_ADD)
