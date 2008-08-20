@@ -212,8 +212,12 @@ class UserDir(TweakPage):
                 _("Set your document folders"), 
                 _("You can change the default document folders.\nDon't change the Desktop folder in normal case."))
 
+        sw = gtk.ScrolledWindow()
+        sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        self.pack_start(sw, True, True, 5)
+
         dirview = UserdirView()
-        self.pack_start(dirview, True, True, 5)
+        sw.add(dirview)
 
         hbox = gtk.HBox(False, 0)
         self.pack_start(hbox, False, False, 5)

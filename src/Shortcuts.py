@@ -47,9 +47,12 @@ class Shortcuts(TweakPage):
                 _("Set the shortcut of your commands"), 
                 _("By configuring keyboard shortcuts, you have faster access to the \napplications you need.\nInput the command and set any desired key, it's easy to set a shortcut.\nUse <b>Delete</b> or <b>BackSpace</b> to clean the key."))
 
-        treeview = self.create_treeview()
+        sw = gtk.ScrolledWindow()
+        sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        self.pack_start(sw)
 
-        self.pack_start(treeview)
+        treeview = self.create_treeview()
+        sw.add(treeview)
     
     def create_treeview(self):
         treeview = gtk.TreeView()
