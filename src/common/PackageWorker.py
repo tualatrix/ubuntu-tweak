@@ -36,7 +36,7 @@ def update_apt_cache(init = False):
 
     if init:
         try:
-            print cache
+            cache
         except NameError:
             pass
         else:
