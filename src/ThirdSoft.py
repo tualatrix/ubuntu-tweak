@@ -30,13 +30,14 @@ import gobject
 import gettext
 import apt_pkg
 
-from aptsources.sourceslist import SourceEntry, SourcesList
 from gnome import url_show
 from common.Factory import Factory
 from common.Constants import *
+from common.AppData import *
 from common.Settings import BoolSetting
 from common.PolicyKit import PolkitButton, DbusProxy
 from common.Widgets import ListPack, TweakPage, Colleague, Mediator, GconfCheckButton, InfoDialog, WarningDialog, ErrorDialog, QuestionDialog
+from aptsources.sourceslist import SourceEntry, SourcesList
 
 (
     COLUMN_ENABLED,
@@ -59,35 +60,33 @@ from common.Widgets import ListPack, TweakPage, Colleague, Mediator, GconfCheckB
 
 (
     SOURCE_NAME,
-    SOURCE_DESC,
-    SOURCE_LOGO,
     SOURCE_HOME,
     SOURCE_KEY,
-) = range(5)
+) = range(3)
 
-AWN = ['AWN', _('Fully customisable dock-like window navigator'), 'awn.png', 'awn-project.org', '']
-Opera = ['Opera', _('The Opera Web Browser'), 'opera.png', 'www.opera.com/', 'opera.gpg']
-Skype = ['Skype', _('A VoIP software'), 'skype.png', 'www.skype.com', '']
-PlayOnLinux = ['PlayOnLinux', _('Run your Windows programs on Linux'), 'playonlinux.png', 'www.playonlinux.com', 'pol.gpg']
-Midori = ['Midori', _('Webkit based lightweight web browser'), 'midori.png', 'www.twotoasts.de', '']
-Firefox = ['Firefox', _('Development Version of Mozilla Firefox 3.0/3.1, 4.0'), 'firefox.png', 'www.mozilla.org/', '']
-CompizFusion = ['Compiz Fusion', _('Development version of Compiz Fusion'), 'compiz-fusion.png', 'www.compiz-fusion.org/', '']
-CairoDock = ['Cairo Dock', _('A true dock for linux'), 'cairo-dock.png', 'cairo-dock.org', '']
-GnomeDo = ['GNOME Do', _('Do things as quickly as possible'), 'gnome-do.png', 'do.davebsd.com', '']
-Banshee = ['Banshee', _('Audio Management and Playback application'), 'banshee.png', 'banshee-project.org', '']
-GoogleGadgets = ['Google gadgets', _('Platform for running Google Gadgets on Linux'), 'gadgets.png', 'desktop.google.com/plugins/', '']
-ChmSee = ['chmsee', _('A chm file viewer written in GTK+'), 'chmsee.png', 'chmsee.gro.clinux.org/', '']
-KDE4 = ['KDE 4', _('K Desktop Environment 4.1'), 'kde4.png', 'www.kde.org', '']
-UbuntuTweak = ['Ubuntu Tweak', _('Ubuntu Tweak makes it easier to configure Ubuntu'), 'ubuntu-tweak.png', 'ubuntu-tweak.com', '']
-Pidgin = ['Pidgin', _('Pidgin!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'), 'pidgin.png', 'pidgin.im', '']
-Screenlets = ['Screenlets', _('A framework for desktop widgets'), 'screenlets.png', 'www.screenlets.org/', '']
-Wine = ['Wine', _('A compatibility layer for running Windows programs'), 'wine.png', 'www.winehq.org/', 'wine.gpg']
-LXDE = ['LXDE', _('Lightweight X11 Desktop Environment:GPicView, PCManFM'), 'lxde.png', 'lxde.org/', '']
-Terminator = ['Terminator', _('Multiple GNOME terminals in one window'), 'terminator.png', 'www.tenshu.net/terminator/', '']
-GScrot = ['GScrot', _('A powerful screenshot tool'), 'gscrot.png', 'launchpad.net/gscrot', '']
-Galaxium = ['Galaxium', _('MSN'), 'galaxium.png', 'code.google.com/p/galaxium/', '']
-Swiftweasel = ['Swiftweasel', _('MSN'), 'swiftweasel.png', 'swiftweasel.tuxfamily.org/', '']
-Medibuntu = ['Medibuntu', _('Multimedia, Entertainment and Distraction In Ubuntu\nMedibuntu is a repository of packages that cannot be included into the Ubuntu distribution for legal reasons (copyright, license, patent, etc).'), 'medibuntu.png', 'www.medibuntu.org/', 'medibuntu.gpg']
+AWN = ['Avant Window Navigator', 'awn-project.org', '']
+Opera = ['Opera', 'www.opera.com', 'opera.gpg']
+Skype = ['Skype', 'www.skype.com', '']
+PlayOnLinux = ['PlayOnLinux', 'www.playonlinux.com', 'pol.gpg']
+Midori = ['Midori', 'www.twotoasts.de', '']
+Firefox = ['Firefox', 'www.mozilla.org', '']
+CompizFusion = ['Compiz Fusion', 'www.compiz-fusion.org/', '']
+CairoDock = ['Cairo Dock', 'cairo-dock.org', '']
+GnomeDo = ['GNOME Do', 'gnome-do.png', 'do.davebsd.com', '']
+Banshee = ['Banshee', 'banshee-project.org', '']
+GoogleGadgets = ['Google gadgets', 'desktop.google.com/plugins/', '']
+ChmSee = ['chmsee', 'chmsee.gro.clinux.org', '']
+KDE4 = ['KDE 4', 'www.kde.org', '']
+UbuntuTweak = ['Ubuntu Tweak', 'ubuntu-tweak.com', '']
+Pidgin = ['Pidgin', 'pidgin.im', '']
+Screenlets = ['Screenlets', 'www.screenlets.org', '']
+Wine = ['Wine', 'www.winehq.org', 'wine.gpg']
+LXDE = ['LXDE', 'lxde.org', '']
+Terminator = ['Terminator', 'www.tenshu.net/terminator/', '']
+GScrot = ['GScrot', 'launchpad.net/gscrot', '']
+Galaxium = ['Galaxium', 'galaxium.png', 'code.google.com/p/galaxium/', '']
+Swiftweasel = ['Swiftweasel', 'swiftweasel.tuxfamily.org/', '']
+Medibuntu = ['Medibuntu', 'www.medibuntu.org/', 'medibuntu.gpg']
 
 SOURCES_DATA = [
     ['http://ppa.launchpad.net/awn-core/ubuntu', 'hardy', 'main', AWN],
@@ -220,8 +219,8 @@ class SourcesView(gtk.TreeView, Colleague):
 
             source = entry[-1]
             name = source[SOURCE_NAME]
-            comment = source[SOURCE_DESC]
-            logo = gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'aptlogos', source[SOURCE_LOGO]))
+            comment = get_source_describ(name)
+            logo = gtk.gdk.pixbuf_new_from_file(get_source_logo(name))
             home = source[SOURCE_HOME]
             if home:
                 home = 'http://' + home

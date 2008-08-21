@@ -65,7 +65,7 @@ def Notice(parent = None):
     vbox = gtk.VBox(False, 0)
 
     label = gtk.Label()
-    label.set_markup(_("<span size=\"x-large\">This feature is only enabled in Ubuntu 8.04</span>"))
+    label.set_markup(_("<span size=\"x-large\">This feature is only available in Ubuntu 8.04</span>"))
     label.set_justify(gtk.JUSTIFY_FILL)
     vbox.pack_start(label, False, False, 50)
 

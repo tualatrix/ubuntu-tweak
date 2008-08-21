@@ -6,6 +6,8 @@ import gettext
 import gobject
 
 from common.Constants import *
+from common.AppData import *
+from common.Widgets.LookupIcon import *
 from common.Widgets import TweakPage, InfoDialog
 from xdg.DesktopEntry import DesktopEntry
 
@@ -47,70 +49,70 @@ CATES_DATA = (P2P, Image, Sound, Video, Text, IM, Internet, FTP, Desktop, Disk, 
 
 data = \
 (
-    ('agave', _('A color scheme designer'), Image),
-    ('amule', _('Client for the eD2k and Kad networks'), P2P),
-    ('anjuta', _('GNOME IDE for C/C++, Java, Python'), Develop),
-    ('audacious', _('A skinned multimedia player for many platforms'), Sound),
-    ('audacity', _('Record and edit audio files'), Sound),
-    ('avant-window-navigator', _('Fully customisable dock-like window navigator'), Desktop),
-    ('avidemux', _('A free video editor'), Video),
-    ('azureus', _('BitTorrent client written in Java'), P2P),
-    ('banshee-1', _('Audio Management and Playback application'), Sound),
-    ('cairo-dock', _('A true dock for linux'), Desktop),
-    ('chmsee', _('A chm file viewer written in GTK+'), Text),
-    ('compizconfig-settings-manager', _('Advanced Desktop Effects Settings Manager'), Desktop),
-    ('devhelp', _('An API documentation browser for GNOME.'), Develop),
-    ('deluge-torrent', _('A Bittorrent client written in PyGTK'), P2P),
-    ('eclipse', _('Extensible Tool Platform and Java IDE'), Develop),
-    ('emesene', _('A client for the Windows Live Message network'), IM),
-    ('eva', _('KDE IM client using Tencent QQ protocol'), IM),
-    ('exaile', _('GTK+ based flexible audio player, similar to Amarok'), Sound),
-    ('filezilla', _('File transmission via ftp, sftp and ftps'), FTP),
-    ('pcmanfm', _('An extremly fast and lightweight file manager'), Desktop),
-    ('gajim', _('A GTK+ jabber client'), IM),
-    ('geany', _('A fast and lightweight IDE'), Develop),
-    ('gftp', _('A multithreaded FTP client'), FTP),
-    ('ghex', _('GNOME Hex editor'), Text),
-    ('gmail-notify', _('Notify the arrival of new mail on Gmail'), Mail),
-    ('gnome-do', _('Do things as quickly as possible'), Desktop),
-    ('googleearth', _('Let you fly anywhere to view the earth'), Internet),
-    ('google-gadgets', _('Platform for running Google Gadgets on Linux'), Desktop),
-    ('gparted', _('GNOME partition editor'), Disk),
-    ('gpicview', _('Lightweight image viewer'), Image),
-    ('gscrot', _('A powerful screenshot tool'), Image),
-    ('gtk-recordmydesktop', _('Graphical frontend for recordmydesktop'), Video),
-    ('isomaster', _('A graphical CD image editor'), Disk),
-    ('kino', _('Non-linear editor for Digital Video data'), Video),
-    ('lastfm', _('A music player for Last.fm personalized radio'), Internet),
-    ('leafpad', _('GTK+ based simple text editor'), Text),
-    ('liferea', _('Feed aggregator for GNOME'), Internet),
-    ('mail-notification', _('mail notification in system tray'), Mail),
-    ('meld', _('adcal tool to diff and merge files'), Text),
-    ('mirage', _('A fast and simple GTK+ Image Viewer'), Image),
-    ('midori', _('Webkit based lightweight web browser'), Internet),
-    ('monodevelop', _('Develop .NET applications.'), Develop),
-    ('mplayer', _('The Ultimate Movie Player For Linux'), Video),
-    ('netbeans', _('IDE for Java, C/C++, Ruby, UML, etc.'), Develop),
-    ('opera', _('The Opera Web Browser'), Internet),
-    ('playonlinux', _('Run your Windows programs on Linux'), Emulator),
-    ('screenlets', _('A framework for desktop widgets'), Desktop),
-    ('skype', _('A VoIP software'), IM),
-    ('smplayer', _('A great MPlayer front-end, written in QT4'), Video),
-    ('soundconverter', _('Convert audio files into other formats'), Sound),
-    ('stardict', _('An international dictionary'), Desktop),
-    ('terminator', _('Multiple GNOME terminals in one window'), Emulator),
-    ('ubuntu-restricted-extras', _('Commonly used restricted packages'), Desktop),
-    ('virtualbox', _('A feature rich, high performance virtualization software'), Emulator),
-    ('vlc', _('Read, capture, broadcast your multimedia streams'), Video),
-    ('vmware-player', _('VMware Player can play virtual machines created by VMware'), Emulator),
-    ('wine', _('A compatibility layer for running Windows programs'), Emulator),
+    ('agave', Image),
+    ('amule', P2P),
+    ('anjuta', Develop),
+    ('audacious', Sound),
+    ('audacity', Sound),
+    ('avant-window-navigator', Desktop),
+    ('avidemux', Video),
+    ('azureus', P2P),
+    ('banshee-1', Sound),
+    ('cairo-dock', Desktop),
+    ('chmsee', Text),
+    ('compizconfig-settings-manager', Desktop),
+    ('devhelp', Develop),
+    ('deluge-torrent', P2P),
+    ('eclipse', Develop),
+    ('emesene', IM),
+    ('eva', IM),
+    ('exaile', Sound),
+    ('filezilla', FTP),
+    ('pcmanfm', Desktop),
+    ('gajim', IM),
+    ('geany', Develop),
+    ('gftp', FTP),
+    ('ghex', Text),
+    ('gmail-notify', Mail),
+    ('gnome-do', Desktop),
+    ('googleearth', Internet),
+    ('google-gadgets', Desktop),
+    ('gparted', Disk),
+    ('gpicview', Image),
+    ('gscrot', Image),
+    ('gtk-recordmydesktop', Video),
+    ('isomaster', Disk),
+    ('kino', Video),
+    ('lastfm', Internet),
+    ('leafpad', Text),
+    ('liferea', Internet),
+    ('mail-notification', Mail),
+    ('meld', Text),
+    ('mirage', Image),
+    ('midori', Internet),
+    ('monodevelop', Develop),
+    ('mplayer', Video),
+    ('netbeans', Develop),
+    ('opera', Internet),
+    ('playonlinux', Emulator),
+    ('screenlets', Desktop),
+    ('skype', IM),
+    ('smplayer', Video),
+    ('soundconverter', Sound),
+    ('stardict', Desktop),
+    ('terminator', Emulator),
+    ('ubuntu-restricted-extras', Desktop),
+    ('virtualbox', Emulator),
+    ('vlc', Video),
+    ('vmware-player', Emulator),
+    ('wine', Emulator),
 )
 
 class Installer(TweakPage):
     def __init__(self):
         TweakPage.__init__(self, 
-                _('Install the widely used applications'),
-                _('You can install applications by using this simple interface.'))
+                _('Install widely used applications'),
+                _('A simple interface for installing applications.'))
 
         update_apt_cache(True)
 
@@ -193,25 +195,25 @@ class Installer(TweakPage):
         icon = gtk.icon_theme_get_default()
 
         for item in data:
+            appname = item[0]
+            category = item[-1][0] 
+
             try:
-                iconpath = os.path.join(ICON_DIR, item[0] + '.png')
+                iconpath = get_app_logo(appname)
                 pixbuf = gtk.gdk.pixbuf_new_from_file(iconpath)
             except gobject.GError:
                 pixbuf = icon.load_icon(gtk.STOCK_MISSING_IMAGE, 32, 0)
 
             try:
-                appname = item[0]
                 package = PackageInfo(appname)
                 is_installed = package.check_installed()
                 disname = package.get_name()
-                desc = item[1]
+                desc = get_app_describ(appname)
             except KeyError:
                 continue
 
-            category = item[-1][0]
-
             if self.filter == None:
-                if item[0] in self.to_add or item[0] in self.to_rm:
+                if appname in self.to_add or appname in self.to_rm:
                     self.model.append((not is_installed,
                             pixbuf,
                             appname,
