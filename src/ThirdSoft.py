@@ -79,13 +79,14 @@ GoogleGadgets = ['Google gadgets', _('Platform for running Google Gadgets on Lin
 ChmSee = ['chmsee', _('A chm file viewer written in GTK+'), 'chmsee.png', 'chmsee.gro.clinux.org/', '']
 KDE4 = ['KDE 4', _('K Desktop Environment 4.1'), 'kde4.png', 'www.kde.org', '']
 UbuntuTweak = ['Ubuntu Tweak', _('Ubuntu Tweak makes it easier to configure Ubuntu'), 'ubuntu-tweak.png', 'ubuntu-tweak.com', '']
+Pidgin = ['Pidgin', _('Pidgin!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'), 'pidgin.png', 'pidgin.im', '']
 Screenlets = ['Screenlets', _('A framework for desktop widgets'), 'screenlets.png', 'www.screenlets.org/', '']
 Wine = ['Wine', _('A compatibility layer for running Windows programs'), 'wine.png', 'www.winehq.org/', 'wine.gpg']
 LXDE = ['LXDE', _('Lightweight X11 Desktop Environment:GPicView, PCManFM'), 'lxde.png', 'lxde.org/', '']
 Terminator = ['Terminator', _('Multiple GNOME terminals in one window'), 'terminator.png', 'www.tenshu.net/terminator/', '']
 GScrot = ['GScrot', _('A powerful screenshot tool'), 'gscrot.png', 'launchpad.net/gscrot', '']
-Galaxium = ['Galaxium', _('MSN'), 'gscrot.png', 'code.google.com/p/galaxium/', '']
-Swiftweasel = ['Swiftweasel', _('MSN'), 'gscrot.png', 'swiftweasel.tuxfamily.org/', '']
+Galaxium = ['Galaxium', _('MSN'), 'galaxium.png', 'code.google.com/p/galaxium/', '']
+Swiftweasel = ['Swiftweasel', _('MSN'), 'swiftweasel.png', 'swiftweasel.tuxfamily.org/', '']
 Medibuntu = ['Medibuntu', _('Multimedia, Entertainment and Distraction In Ubuntu\nMedibuntu is a repository of packages that cannot be included into the Ubuntu distribution for legal reasons (copyright, license, patent, etc).'), 'medibuntu.png', 'www.medibuntu.org/', 'medibuntu.gpg']
 
 SOURCES_DATA = [
@@ -104,6 +105,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/kubuntu-members-kde4/ubuntu', 'hardy', 'main', KDE4],
     ['http://ppa.launchpad.net/tualatrix/ubuntu', 'hardy', 'main', UbuntuTweak],
     ['http://ppa.launchpad.net/gilir/ubuntu', 'hardy', 'main', Screenlets],
+    ['http://ppa.launchpad.net/punischdude/ubuntu', 'hardy', 'main', Pidgin],
     ['http://wine.budgetdedicated.com/apt', 'hardy', 'main', Wine],
     ['http://ppa.launchpad.net/lxde/ubuntu', 'hardy', 'main', LXDE],
     ['http://ppa.launchpad.net/gnome-terminator/ubuntu', 'hardy', 'main', Terminator],
@@ -239,7 +241,7 @@ class SourcesView(gtk.TreeView, Colleague):
                 logo,
                 name,
                 comment,
-                '<b>%s</b>\n%s' % (name, comment.split('\n')[0]),
+                '<b>%s</b>\n%s' % (name, comment),
                 home,
                 key,
                 ))
@@ -301,13 +303,15 @@ class SourceDetail(gtk.VBox):
             self.table.attach(self.homepage_button, 1, 2, 0, 1)
 
         if url:
+            if 'ppa.launchpad.net' in url:
+                url = 'https://launchpad.net/~%s/+archive' % url.split('/')[3]
             self.url_button.destroy()
             self.url_button = gtk.LinkButton(url)
             self.url_button.show()
             self.table.attach(self.url_button, 1, 2, 1, 2)
 
         if description:
-            self.description.set_text(description.split('\n')[1])
+            self.description.set_text(description)
 
 class ThirdSoft(TweakPage, Mediator):
     def __init__(self):
