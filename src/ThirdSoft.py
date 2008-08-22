@@ -87,6 +87,7 @@ GScrot = ['GScrot', 'launchpad.net/gscrot', '']
 Galaxium = ['Galaxium', 'galaxium.png', 'code.google.com/p/galaxium/', '']
 Swiftweasel = ['Swiftweasel', 'swiftweasel.tuxfamily.org/', '']
 Medibuntu = ['Medibuntu', 'www.medibuntu.org/', 'medibuntu.gpg']
+XBMC = ['XBMC', 'xbmc.org', '']
 
 SOURCES_DATA = [
     ['http://ppa.launchpad.net/awn-core/ubuntu', 'hardy', 'main', AWN],
@@ -112,6 +113,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/galaxium/ubuntu', 'hardy', 'main', Galaxium],
     ['http://download.tuxfamily.org/swiftweasel', 'hardy', 'multiverse', Swiftweasel],
     ['http://packages.medibuntu.org/', 'hardy', 'free non-free', Medibuntu],
+    ['http://ppa.launchpad.net/team-xbmc/ubuntu', 'hardy', 'main', XBMC],
 #    ['http://ppa.launchpad.net/macslow/ubuntu', 'hardy', 'main', 'MacSlow', _("MacSlow's package-building playground... use at your own risk"), 'gscrot.png'],
 #    ['http://ppa.launchpad.net/reacocard-awn/ubuntu/', 'hardy', 'main', 'AWN Trunk', _('Play windows games on your Linux')],
 #    ['http://ppa.launchpad.net/bearoso/ubuntu', 'hardy', 'main', 'snes9x-gtk', _('Hello World')],

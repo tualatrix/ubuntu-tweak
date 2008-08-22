@@ -61,6 +61,7 @@ data = \
     ('cairo-dock', Desktop),
     ('chmsee', Text),
     ('compizconfig-settings-manager', Desktop),
+    ('codeblocks', Develop),
     ('devhelp', Develop),
     ('deluge-torrent', P2P),
     ('eclipse', Develop),
@@ -69,6 +70,7 @@ data = \
     ('exaile', Sound),
     ('filezilla', FTP),
     ('pcmanfm', Desktop),
+    ('galaxium', IM),
     ('gajim', IM),
     ('geany', Develop),
     ('gftp', FTP),
@@ -96,6 +98,7 @@ data = \
     ('opera', Internet),
     ('playonlinux', Emulator),
     ('screenlets', Desktop),
+    ('swiftweasel', Internet),
     ('skype', IM),
     ('smplayer', Video),
     ('soundconverter', Sound),
@@ -106,6 +109,7 @@ data = \
     ('vlc', Video),
     ('vmware-player', Emulator),
     ('wine', Emulator),
+    ('xbmc', Desktop),
 )
 
 class Installer(TweakPage):
@@ -243,6 +247,10 @@ class Installer(TweakPage):
                                 desc,
                                 '<b>%s</b>\n%s' % (disname, desc),
                                 category))
+
+    def deep_update(self):
+        update_apt_cache()
+        self.update_model()
         
     def on_install_toggled(self, cell, path):
         iter = self.model.get_iter((int(path),))

@@ -65,6 +65,7 @@ APP_DATA = {
     'banshee-1': _('Audio Management and Playback application'),
     'cairo-dock': _('A true dock for linux'),
     'chmsee': _('A chm file viewer written in GTK+'),
+    'codeblocks': _('The open source, cross-platform IDE'),
     'compizconfig-settings-manager': _('Advanced Desktop Effects Settings Manager'),
     'devhelp': _('An API documentation browser for GNOME.'),
     'deluge-torrent': _('A Bittorrent client written in PyGTK'),
@@ -115,10 +116,12 @@ APP_DATA = {
     'vlc': _('Read, capture, broadcast your multimedia streams'),
     'vmware-player': _('Run Virtual Machines using VMware'),
     'wine': _('A compatibility layer for running Windows programs'),
+    'xbmc': _('XBMC is a free and open source software media player and entertainment hub'),
 }
 
 SOURCE_DATA = {
     'firefox': _('Development Version of Mozilla Firefox 3.0/3.1, 4.0'),
+    'banshee': _('Audio Management and Playback application'),
     'compiz-fusion': _('Development version of Compiz Fusion'),
     'kde-4': _('K Desktop Environment 4.1'),
     'lxde': _('Lightweight X11 Desktop Environment:GPicView, PCManFM'),

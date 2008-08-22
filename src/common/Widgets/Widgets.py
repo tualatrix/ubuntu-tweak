@@ -26,7 +26,6 @@ import gconf
 import gobject
 import gettext
 import time
-import cairo
 from Settings import *
 
 class Colleague:
