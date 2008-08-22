@@ -393,7 +393,8 @@ class ThirdSoft(TweakPage, Mediator):
         self.treeview.proxy.set_liststate('normal')
         widget.set_sensitive(False)
 
-        InfoDialog(_('<b><big>The software information is up-to-date now</big></b>.\n\nYou need to restart Ubuntu Tweak if you want to install the new applications through Add/Remove.')).launch()
+        InfoDialog(_('<b><big>The software information is up-to-date now</big></b>\n\nYou can install the new applications through Add/Remove.')).launch()
+        self.emit('update', 'Installer', 'deep_update')
 
 if __name__ == '__main__':
     from Utility import Test

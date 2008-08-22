@@ -252,6 +252,7 @@ class MainWindow(gtk.Window):
 
         self.notebook = self.create_notebook()
         self.moduletable = {0: 0}
+        self.modules = {}
         hpaned.pack2(self.notebook)
 
         hbox = gtk.HBox(False, 5)
@@ -385,7 +386,6 @@ class MainWindow(gtk.Window):
 
         page = MODULE_LIST[WELCOME_PAGE][PAGE_COLUMN]
         notebook.append_page(page())
-
         notebook.append_page(Wait())
 
         return notebook
@@ -394,7 +394,12 @@ class MainWindow(gtk.Window):
         page = MODULE_LIST[id][PAGE_COLUMN]
         page = page()
         page.show_all()
+        page.connect('update', self.on_child_page_update)
+        self.modules[page.__module__] = page
         self.notebook.append_page(page)
+
+    def on_child_page_update(self, widget, module, action):
+        getattr(self.modules[module], action)()
 
     def click_website(self, dialog, link, data = None):
         url_show(link)

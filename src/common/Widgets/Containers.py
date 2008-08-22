@@ -21,6 +21,7 @@
 import pygtk
 pygtk.require("2.0")
 import gtk
+import gobject
 
 class BasePack(gtk.VBox):
     def __init__(self, title):
@@ -87,6 +88,9 @@ class TablePack(BaseListPack):
         
 class TweakPage(gtk.ScrolledWindow):
     """The standard page of tweak"""
+    __gsignals__ = {
+            'update': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_STRING, gobject.TYPE_STRING))
+    }
 
     def __init__(self, title = None, des = None):
         gtk.ScrolledWindow.__init__(self)

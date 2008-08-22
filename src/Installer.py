@@ -98,7 +98,6 @@ data = \
     ('opera', Internet),
     ('playonlinux', Emulator),
     ('screenlets', Desktop),
-    ('swiftweasel', Internet),
     ('skype', IM),
     ('smplayer', Video),
     ('soundconverter', Sound),

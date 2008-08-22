@@ -143,7 +143,7 @@ class UserdirView(gtk.TreeView):
         model, iter = self.get_selection().get_selected()
         userdir = model.get_value(iter, COLUMN_DIR)
 
-        dialog = QuestionDialog(_('<b><big>Please notice</big></b>\n\nUbuntu Tweak will restore the directory to the default setting.\nBut you need to migration your files by yourself.\nGo on?'), buttons = gtk.BUTTONS_YES_NO)
+        dialog = QuestionDialog(_('<b><big>Please notice</big></b>\n\nUbuntu Tweak will restore the directory to the default setting.\nBut you need to migration your files by yourself.\nGo on?'))
 
         if dialog.run() == gtk.RESPONSE_YES:
             newdir = os.path.join(os.getenv("HOME"), self.uf.get_restorename(userdir))
