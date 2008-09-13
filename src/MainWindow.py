@@ -28,12 +28,10 @@ import gobject
 
 from gnome import url_show
 from common.Constants import *
-from common.Widgets import QuestionDialog
+from common.Widgets import QuestionDialog, TweakPage
 from common.SystemInfo import GnomeVersion, SystemInfo
 from UpdateManager import UpdateManager, TweakSettings
-
-DISABLE_HARDY = 'Mint' not in SystemInfo.distro and '8.04' not in SystemInfo.distro
-GNOME = int(GnomeVersion.minor)
+from CheckModules import *
 
 def Welcome(parent = None):
     vbox = gtk.VBox(False, 0)
@@ -78,21 +76,19 @@ from Computer import Computer
 from Session import Session
 from AutoStart import AutoStart
 from Icon import Icon
-from Compiz import DISABLE_APT, DISABLE_NOR, DISABLE_VER
-if DISABLE_NOR and DISABLE_APT or DISABLE_VER:
+if NO_COMPIZ and NO_APT or CF_VERSION_ERROR:
     Compiz = None
-    UNKOWN = 99
 else:
     from Compiz import Compiz
-    UNKOWN = 0
-if GNOME >= 20:
+
+if GNOME_VESION >= 20:
     from UserDir import UserDir
     from Templates import Templates
 else:
     UserDir = None
     Templates = None
 
-if DISABLE_APT or DISABLE_HARDY:
+if NO_APT or NO_HARDY:
     Installer = Notice
     ThirdSoft = Notice
 else:
@@ -107,104 +103,130 @@ from LockDown import LockDown
 from Metacity import Metacity
 
 (
-    NUM_COLUMN,
-    ICON_COLUMN,
-    NAME_COLUMN,
-    PAGE_COLUMN,
-    VERSION_COLUMN,
-    TOTAL_COLUMN,
-) = range(6)
+    ID_COLUMN,
+    DATA_COLUMN,
+    MODULE_COLUMN,
+    CHILD_COLUMN,
+) = range(4)
 
 (
-    WELCOME_PAGE,
-    COMPUTER_PAGE,
-    APPLICATIONS_PAGE,
-    INSTALLER_PAGE,
-    THIRDSOFT_PAGE,
-    STARTUP_PAGE,
-    SESSION_PAGE,
-    AUTOSTART_PAGE,
-    DESKTOP_PAGE,
-    ICON_PAGE,
-    METACITY_PAGE,
-    COMPIZ_PAGE,
-    PERSONAL_PAGE,
-    USERDIR_PAGE,
-    TEMPLATES_PAGE,
-    SCRIPTS_PAGE,
-    SHORTCUTS_PAGE,
-    SYSTEM_PAGE,
-    GNOME_PAGE,
-    NAUTILUS_PAGE,
-    POWER_PAGE,
-    SECURITY_PAGE,
-    SECU_OPTIONS_PAGE,
-    TOTAL_PAGE
+    MODULE_ID,
+    MODULE_LOGO,
+    MODULE_TITLE,
+    MODULE_FUNC,
+    MODULE_TYPE,
+) = range(5)
+
+(
+    SHOW_ALWAYS,
+    SHOW_CHILD,
+    SHOW_NONE,
+) = range(3)
+
+(
+    WELCOME,
+    COMPUTER,
+    APPLICATIONS,
+    INSTALLER,
+    THIRDSOFT,
+    STARTUP,
+    SESSION,
+    AUTOSTART,
+    DESKTOP,
+    ICON,
+    METACITY,
+    COMPIZ,
+    PERSONAL,
+    USERDIR,
+    TEMPLATES,
+    SCRIPTS,
+    SHORTCUTS,
+    SYSTEM,
+    GNOME,
+    NAUTILUS,
+    POWER,
+    SECURITY,
+    SECU_OPTIONS,
+    TOTAL
 ) = range(24)
 
-icons = \
+MODULES_TABLE = {
+    APPLICATIONS: [INSTALLER, THIRDSOFT],
+    STARTUP: [SESSION, AUTOSTART],
+    DESKTOP: [ICON, METACITY, COMPIZ],
+    PERSONAL: [USERDIR, TEMPLATES, SCRIPTS, SHORTCUTS],
+    SYSTEM: [GNOME, NAUTILUS, POWER],
+    SECURITY: [SECU_OPTIONS],
+}
+
+MODULES = \
 [
-    "pixmaps/welcome.png",
-    "pixmaps/computer.png",
-    "pixmaps/applications.png",
-    "pixmaps/installer.png",
-    "pixmaps/third-soft.png",
-    "pixmaps/startup.png",
-    "pixmaps/session.png",
-    "pixmaps/autostart.png",
-    "pixmaps/desktop.png",
-    "pixmaps/icon.png",
-    "pixmaps/metacity.png",
-    "pixmaps/compiz-fusion.png",
-    "pixmaps/personal.png",
-    "pixmaps/userdir.png",
-    "pixmaps/template.png",
-    "pixmaps/scripts.png",
-    "pixmaps/shortcuts.png",
-    "pixmaps/system.png",
-    "pixmaps/gnome.png",
-    "pixmaps/nautilus.png",
-    "pixmaps/powermanager.png",
-    "pixmaps/security.png",
-    "pixmaps/lockdown.png",
+    [WELCOME, 'welcome.png', _("Welcome"), Welcome, SHOW_ALWAYS],
+    [COMPUTER, 'computer.png', _("Computer"), Computer, SHOW_ALWAYS],
+    [APPLICATIONS, 'applications.png', _("Applications"), None, SHOW_CHILD],
+    [INSTALLER, 'installer.png', _("Add/Remove"), Installer, SHOW_NONE],
+    [THIRDSOFT, 'third-soft.png', _("Third Party Sources"), ThirdSoft, SHOW_NONE],
+    [STARTUP, 'startup.png', _("Startup"), None, SHOW_CHILD],
+    [SESSION, 'session.png', _("Session Control"), Session, SHOW_NONE],
+    [AUTOSTART, 'autostart.png', _("Auto Start"), AutoStart, SHOW_NONE],
+    [DESKTOP, 'desktop.png', _("Desktop"), None, SHOW_CHILD],
+    [ICON, 'icon.png', _("Desktop Icon"), Icon, SHOW_NONE],
+    [METACITY, 'metacity.png', _("Metacity"), Metacity, SHOW_NONE],
+    [COMPIZ, 'compiz-fusion.png', _("Compiz Fusion"), Compiz, SHOW_NONE],
+    [PERSONAL, 'personal.png', _("Personal"), None, SHOW_CHILD],
+    [USERDIR, 'userdir.png', _("User Folder"), UserDir, SHOW_NONE],
+    [TEMPLATES, 'templates.png', _("Templates"), Templates, SHOW_NONE],
+    [SCRIPTS, 'scripts.png', _("Scripts"), Scripts, SHOW_NONE],
+    [SHORTCUTS, 'shortcuts.png', _("Shortcuts"), Shortcuts, SHOW_NONE],
+    [SYSTEM, 'system.png', _("System"), None, SHOW_CHILD],
+    [GNOME, 'gnome.png', _("GNOME"), Gnome, SHOW_NONE],
+    [NAUTILUS, 'nautilus.png', _("Nautilus"), Nautilus, SHOW_NONE],
+    [POWER, 'powermanager.png', _("Power Manager"), PowerManager, SHOW_NONE],
+    [SECURITY, 'security.png', _("Security"), None, SHOW_CHILD],
+    [SECU_OPTIONS, 'lockdown.png', _("Security Options"), LockDown, SHOW_NONE],
 ]
 
-def update_icons(icons):
-    list = []
-    for icon in icons:
-        list.append(DATA_DIR + '/' + icon)
+class ItemCellRenderer ( gtk.GenericCellRenderer ):
+    __gproperties__ = {
+        "data": ( gobject.TYPE_PYOBJECT, "Data", "Data", gobject.PARAM_READWRITE ), 
+    }
+   
+    def __init__( self ):
+        self.__gobject_init__()
+        self.height = 40
+        self.width = 200
+        self.set_fixed_size(self.width, self.height)
+        self.data = None
+        
+    def do_set_property( self, pspec, value ):
+        setattr( self, pspec.name, value )
+        
+    def do_get_property( self, pspec ):
+        return getattr( self, pspec.name )
+		
+    def on_render( self, window, widget, background_area, cell_area, expose_area, flags ):
+        from cell import Cell
+        if not self.data: return
+        cairo = window.cairo_create()
+        icon, title, type = self.data
+        
+        x, y, width, h = cell_area
+#        ydiff = int(float(h - height) / 2)
+#        y = y + ydiff
+##        if height > 0:
+#            x = ydiff
+            
+#        width = width - 2*ydiff
+        cell_area = gtk.gdk.Rectangle(x, y, width, 32)
+        Cell(cairo, 
+             title, 
+             icon,
+             type,
+             cell_area)
 
-    return list
-
-icons = update_icons(icons)
-
-MODULE_LIST = \
-[
-    [WELCOME_PAGE, icons[WELCOME_PAGE], _("Welcome"), Welcome, None],
-    [COMPUTER_PAGE, icons[COMPUTER_PAGE], _("Computer"), Computer, None],
-    [APPLICATIONS_PAGE, icons[APPLICATIONS_PAGE], _("Applications"), None, True],
-    [INSTALLER_PAGE, icons[INSTALLER_PAGE], _("Add/Remove"), Installer, None],
-    [THIRDSOFT_PAGE, icons[THIRDSOFT_PAGE], _("Third Party Sources"), ThirdSoft, None],
-    [STARTUP_PAGE, icons[STARTUP_PAGE], _("Startup"), None, True],
-    [SESSION_PAGE, icons[SESSION_PAGE], _("Session Control"), Session, 0],
-    [AUTOSTART_PAGE, icons[AUTOSTART_PAGE], _("Auto Start"), AutoStart, 0],
-    [DESKTOP_PAGE, icons[DESKTOP_PAGE], _("Desktop"), None, True],
-    [ICON_PAGE, icons[ICON_PAGE], _("Desktop Icon"), Icon, 0],
-    [METACITY_PAGE, icons[METACITY_PAGE], _("Metacity"), Metacity, 0],
-    [COMPIZ_PAGE, icons[COMPIZ_PAGE], _("Compiz Fusion"), Compiz, UNKOWN],
-    [PERSONAL_PAGE, icons[PERSONAL_PAGE], _("Personal"), None, True],
-    [USERDIR_PAGE, icons[USERDIR_PAGE], _("User Folder"), UserDir, 20],
-    [TEMPLATES_PAGE, icons[TEMPLATES_PAGE], _("Templates"), Templates, 20],
-    [SCRIPTS_PAGE, icons[SCRIPTS_PAGE], _("Scripts"), Scripts, 0],
-    [SHORTCUTS_PAGE, icons[SHORTCUTS_PAGE], _("Shortcuts"), Shortcuts, 0],
-    [SYSTEM_PAGE, icons[SYSTEM_PAGE], _("System"), None, True],
-    [GNOME_PAGE, icons[GNOME_PAGE], _("GNOME"), Gnome, 0],
-    [NAUTILUS_PAGE, icons[NAUTILUS_PAGE], _("Nautilus"), Nautilus, 0],
-    [POWER_PAGE, icons[POWER_PAGE], _("Power Manager"), PowerManager, 0],
-    [SECURITY_PAGE, icons[SECURITY_PAGE], _("Security"), None, True],
-    [SECU_OPTIONS_PAGE, icons[SECU_OPTIONS_PAGE], _("Security Options"), LockDown, 0],
-]
-
+    def on_get_size( self, widget, cell_area=None ):
+        return ( 0, 0, self.width, self.height )
+        
 class MainWindow(gtk.Window):
     """the main Window of Ubuntu Tweak"""
 
@@ -213,26 +235,13 @@ class MainWindow(gtk.Window):
 
         self.connect("destroy", self.destroy)
         self.set_title("Ubuntu Tweak")
-        self.set_default_size(690, 680)
+        self.set_default_size(720, 480)
         self.set_position(gtk.WIN_POS_CENTER)
         self.set_border_width(10)
         gtk.window_set_default_icon_from_file(os.path.join(DATA_DIR, 'pixmaps/ubuntu-tweak.png'))
 
         vbox = gtk.VBox(False, 0)
         self.add(vbox)
-
-        eventbox = gtk.EventBox()
-        hbox = gtk.HBox(False, 0)
-        eventbox.add(hbox)
-        eventbox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.Color(8448, 8448, 8448))
-        vbox.pack_start(eventbox, False, False, 0)
-
-        banner_left = gtk.Image()
-        banner_left.set_from_file("data/pixmaps/banner_left.png")
-        hbox.pack_start(banner_left, False, False, 0)
-        banner_right = gtk.Image()
-        banner_right.set_from_file("data/pixmaps/banner_right.png")
-        hbox.pack_end(banner_right, False, False, 0)
 
         hpaned = gtk.HPaned()
         vbox.pack_start(hpaned, True, True, 0)
@@ -242,8 +251,9 @@ class MainWindow(gtk.Window):
         sw.set_size_request(150, -1)
         hpaned.pack1(sw)
 
-        model = self.__create_model()
-        self.treeview = gtk.TreeView(model)
+        self.model = self.__create_model()
+        self.update_model()
+        self.treeview = gtk.TreeView(self.model)
         self.__add_columns(self.treeview)
         selection = self.treeview.get_selection()
         selection.connect("changed", self.selection_cb)
@@ -268,47 +278,43 @@ class MainWindow(gtk.Window):
         gobject.timeout_add(8000, self.on_timeout)
 
     def __create_model(self):
-        model = gtk.TreeStore(
+        model = gtk.ListStore(
                     gobject.TYPE_INT,
-                    gtk.gdk.Pixbuf,
-                    gobject.TYPE_STRING)
+                    gobject.TYPE_PYOBJECT)
+
+        return model
+
+    def update_model(self, id = None):
+        '''如果指定了ID，则将此ID下的所有子模块显示'''
+        model = self.model
+        model.clear()
 
         have_child = False
         child_iter = None
         iter = None
 
-        for module in MODULE_LIST:
-            if have_child == False:
-                icon = gtk.gdk.pixbuf_new_from_file(module[ICON_COLUMN])
+        for i, module in enumerate(MODULES):
+            assert module[MODULE_ID] == i
+
+            if module[MODULE_TYPE] in (SHOW_ALWAYS, SHOW_CHILD):
+                icon = os.path.join(DATA_DIR, 'pixmaps', module[MODULE_LOGO])
+                title = module[MODULE_TITLE]
                 iter = model.append(None)
                 model.set(iter,
-                    NUM_COLUMN, module[NUM_COLUMN],
-                    ICON_COLUMN, icon,
-                    NAME_COLUMN, module[NAME_COLUMN]
+                    ID_COLUMN, module[MODULE_ID],
+                    DATA_COLUMN, (icon, title, module[MODULE_TYPE]),
                 )
-                if module[-1] == True:
-                    have_child = True
-                else:
-                    have_child = False
-            else:
-                try:
-                    if MODULE_LIST[module[NUM_COLUMN]+1][-1] == True:
-                        have_child = False
-                    else:
-                        have_child = True
-                except IndexError:
-                    pass
 
-                if GNOME >= module[VERSION_COLUMN]:
-                    icon = gtk.gdk.pixbuf_new_from_file(module[ICON_COLUMN])
-                    child_iter = model.append(iter)
-                    model.set(child_iter,
-                        NUM_COLUMN, module[NUM_COLUMN],
-                        ICON_COLUMN, icon,
-                        NAME_COLUMN, module[NAME_COLUMN]
+            if i == id:
+                for child_id in MODULES_TABLE[id]:
+                    module = MODULES[child_id]
+                    icon = os.path.join(DATA_DIR, 'pixmaps', module[MODULE_LOGO])
+                    title = module[MODULE_TITLE]
+                    iter = model.append(None)
+                    model.set(iter,
+                        ID_COLUMN, module[MODULE_ID],
+                        DATA_COLUMN, (icon, title, module[MODULE_TYPE]),
                     )
-                else:
-                    continue
 
         return model
 
@@ -318,60 +324,55 @@ class MainWindow(gtk.Window):
         model, iter = widget.get_selected()
 
         if iter:
-            path = model.get_path(iter)
-            self.treeview.expand_row(path, True)
+#            path = model.get_path(iter)
 
-            if model.iter_has_child(iter):
-                iter = model.iter_children(iter)
+            id = model.get_value(iter, ID_COLUMN)
+            data = model.get_value(iter, DATA_COLUMN)
+            print 'selected infomation: %d %s' % (id, data)
+            if data[-1] == SHOW_CHILD:
+                print '>=================\nOK, I\'ll show child!'
+                self.update_model(id)
+                child_id =  id + 1
 
-            page_num = model.get_value(iter, NUM_COLUMN)
+                if child_id not in self.moduletable:
+                    print 'Module not load, load it first!'
+                    self.notebook.set_current_page(1)
 
-            if page_num not in self.moduletable:
-                self.notebook.set_current_page(1)
-                widget.select_iter(iter)
-
-                self.TEMP = {'page_num':page_num,'iter': iter}
-                gobject.timeout_add(5, self.create_newpage, widget)
-                return
-
-            self.notebook.set_current_page(self.moduletable[page_num])
-            widget.select_iter(iter)
-
-    def create_newpage(self, widget):
-        try:
-            if self.TEMP:
-                page_num = self.TEMP['page_num']
-                iter = self.TEMP['iter']
-
-                self.setup_notebook(page_num)
-                self.moduletable[page_num] = self.notebook.get_n_pages() - 1
-                self.notebook.set_current_page(self.moduletable[page_num])
-
-                if iter:
+                    gobject.timeout_add(5, self.__create_newpage, child_id)
+                else:
+                    self.__select_child_item(id + 1)
+            else:
+                if id not in self.moduletable:
+                    self.notebook.set_current_page(1)
+                    gobject.timeout_add(5, self.__create_newpage, id)
+                else:
+                    self.notebook.set_current_page(self.moduletable[id])
                     widget.select_iter(iter)
 
-                del self.TEMP
-        except AttributeError:
-            pass
+    def __model_for_each(self, model, path, iter, id):
+        m_id = model.get_value(iter, ID_COLUMN)
+        if id == m_id:
+            selection = self.treeview.get_selection()
+            selection.select_iter(iter)
+
+    def __select_child_item(self, id):
+        self.model.foreach(self.__model_for_each, id)
+
+    def __create_newpage(self, id):
+        print 'try to create newpage'
+
+        self.setup_notebook(id)
+        self.moduletable[id] = self.notebook.get_n_pages() - 1
+        self.notebook.set_current_page(self.moduletable[id])
+
+        self.__select_child_item(id)
 
     def __add_columns(self, treeview):
-        renderer = gtk.CellRendererText()
-
-        column = gtk.TreeViewColumn("Num",renderer,text = NUM_COLUMN)
+        column = gtk.TreeViewColumn('ID', gtk.CellRendererText(),text = ID_COLUMN)
         column.set_visible(False)
         treeview.append_column(column)
 
-        column = gtk.TreeViewColumn("Title")
-        column.set_spacing(5)
-
-        renderer = gtk.CellRendererPixbuf()
-        column.pack_start(renderer, False)
-        column.set_attributes(renderer, pixbuf = ICON_COLUMN)
-
-        renderer = gtk.CellRendererText()
-        column.pack_start(renderer, True)
-        column.set_attributes(renderer, text = NAME_COLUMN)
-
+        column = gtk.TreeViewColumn('DATA', ItemCellRenderer(), data = DATA_COLUMN)
         treeview.set_headers_visible(False)
         treeview.append_column(column)
 
@@ -384,17 +385,19 @@ class MainWindow(gtk.Window):
         notebook.set_scrollable(True)
         notebook.set_show_tabs(False)
 
-        page = MODULE_LIST[WELCOME_PAGE][PAGE_COLUMN]
+        page = MODULES[WELCOME][MODULE_FUNC]
         notebook.append_page(page())
         notebook.append_page(Wait())
 
         return notebook
 
     def setup_notebook(self, id):
-        page = MODULE_LIST[id][PAGE_COLUMN]
+        print 'insert new module: %s\n' % MODULES[id]
+        page = MODULES[id][MODULE_FUNC]
         page = page()
         page.show_all()
-        page.connect('update', self.on_child_page_update)
+        if isinstance(page, TweakPage):
+            page.connect('update', self.on_child_page_update)
         self.modules[page.__module__] = page
         self.notebook.append_page(page)
 
@@ -448,7 +451,7 @@ You should have received a copy of the GNU General Public License along with Ubu
         gtk.gdk.threads_leave()
 
     def destroy(self, widget, data = None):
-        if not DISABLE_APT and not DISABLE_HARDY:
+        if not NO_APT and not NO_HARDY:
             from common.PolicyKit import DbusProxy
             if DbusProxy.proxy:
                 state = DbusProxy.get_liststate()

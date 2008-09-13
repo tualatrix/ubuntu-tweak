@@ -26,26 +26,7 @@ import gconf
 import os
 import gobject
 from common.Widgets import ListPack, Mediator, InfoDialog, SinglePack, TweakPage
-
-try:
-    import compizconfig as ccs
-    import ccm
-    if ccm.Version >= "0.7.4":
-        DISABLE_VER = False
-        DISABLE_NOR = False
-    else:
-        DISABLE_VER = True
-        DISABLE_NOR = False
-except ImportError:
-    DISABLE_NOR = True
-    DISABLE_VER = False
-
-try:
-    import apt_pkg
-    from common.PackageWorker import PackageWorker, AptCheckButton, update_apt_cache
-    DISABLE_APT = False
-except ImportError:
-    DISABLE_APT = True
+from CheckModules import *
 
 plugins = \
 [
@@ -64,7 +45,8 @@ plugins_settings = \
 }
 
 class CompizSetting:
-    if not DISABLE_NOR and not DISABLE_VER:
+    if not NO_COMPIZ and not CF_VERSION_ERROR:
+        import compizconfig as ccs
         context = ccs.Context()
 
 class OpacityMenu(gtk.CheckButton, CompizSetting):
@@ -185,7 +167,7 @@ class Compiz(TweakPage, CompizSetting, Mediator):
     def __init__(self):
         TweakPage.__init__(self)
 
-        if not DISABLE_APT:
+        if not NO_APT:
             update_apt_cache(True)
             self.packageWorker = PackageWorker()
 
@@ -199,7 +181,7 @@ class Compiz(TweakPage, CompizSetting, Mediator):
                     'screenlets',\
                     self)
 
-        if not DISABLE_NOR:
+        if not CF_VERSION_ERROR:
             hbox = gtk.HBox(False, 0)
             hbox.pack_start(self.create_edge_setting(), True, False, 0)
             edge_setting = SinglePack('Edge Setting', hbox)
@@ -217,7 +199,7 @@ class Compiz(TweakPage, CompizSetting, Mediator):
             box = ListPack(_("Menu Effects"), (button1, self.wobbly_m))
             self.pack_start(box, False, False, 0)
 
-            if not DISABLE_APT:
+            if not NO_APT:
                 update_apt_cache(True)
                 box = ListPack(_("Compiz Fusion Extensions"), (
                     self.simple_settings,
@@ -350,7 +332,7 @@ class Compiz(TweakPage, CompizSetting, Mediator):
         self.packageWorker.perform_action(widget.get_toplevel(), to_add, to_rm)
 
         self.button.set_sensitive(False)
-        if DISABLE_NOR:
+        if CF_VERSION_ERROR:
             InfoDialog(_("Update Successfully!\nPlease restart Ubuntu Tweak.")).launch()
         else:
             InfoDialog(_("Update Successfully!")).launch()

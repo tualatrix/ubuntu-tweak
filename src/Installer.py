@@ -66,6 +66,7 @@ data = \
     ('deluge-torrent', P2P),
     ('eclipse', Develop),
     ('emesene', IM),
+    ('empathy', IM),
     ('eva', IM),
     ('exaile', Sound),
     ('filezilla', FTP),

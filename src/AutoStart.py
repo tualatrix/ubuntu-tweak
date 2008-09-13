@@ -94,10 +94,10 @@ class AutoStartDialog(gtk.Dialog):
 
     def on_choose_program(self, widget, data = None):
         """The action taken by clicked the browse button"""
-        dialog = gtk.FileChooserDialog(_("Choose a Program"), \
-                        action = gtk.FILE_CHOOSER_ACTION_OPEN, \
-                        buttons = (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,\
-                                    gtk.STOCK_OPEN, gtk.RESPONSE_ACCEPT))
+        dialog = gtk.FileChooserDialog(_("Choose a Program"), 
+                            action = gtk.FILE_CHOOSER_ACTION_OPEN, 
+                            buttons = (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
+                                        gtk.STOCK_OPEN, gtk.RESPONSE_ACCEPT))
 
         if dialog.run() == gtk.RESPONSE_ACCEPT:
             self.pm_cmd.set_text(dialog.get_filename())

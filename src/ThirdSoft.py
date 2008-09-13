@@ -79,6 +79,7 @@ ChmSee = ['chmsee', 'chmsee.gro.clinux.org', '']
 KDE4 = ['KDE 4', 'www.kde.org', '']
 UbuntuTweak = ['Ubuntu Tweak', 'ubuntu-tweak.com', '']
 Pidgin = ['Pidgin', 'pidgin.im', '']
+Playdeb = ['Playdeb', 'www.playdeb.net', '']
 Screenlets = ['Screenlets', 'www.screenlets.org', '']
 Wine = ['Wine', 'www.winehq.org', 'wine.gpg']
 LXDE = ['LXDE', 'lxde.org', '']
@@ -106,6 +107,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/tualatrix/ubuntu', 'hardy', 'main', UbuntuTweak],
     ['http://ppa.launchpad.net/gilir/ubuntu', 'hardy', 'main', Screenlets],
     ['http://ppa.launchpad.net/punischdude/ubuntu', 'hardy', 'main', Pidgin],
+    ['mirror://www.getdeb.net/playdeb-mirror/hardy/// ', 'hardy', 'main', Playdeb],
     ['http://wine.budgetdedicated.com/apt', 'hardy', 'main', Wine],
     ['http://ppa.launchpad.net/lxde/ubuntu', 'hardy', 'main', LXDE],
     ['http://ppa.launchpad.net/gnome-terminator/ubuntu', 'hardy', 'main', Terminator],

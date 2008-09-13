@@ -94,7 +94,7 @@ class TweakPage(gtk.ScrolledWindow):
 
     def __init__(self, title = None, des = None):
         gtk.ScrolledWindow.__init__(self)
-        self.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
+        self.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
 
         self.vbox = gtk.VBox(False, 0)
         self.add_with_viewport(self.vbox)
