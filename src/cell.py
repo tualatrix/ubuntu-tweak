@@ -46,7 +46,7 @@ class Cell:
 #        self.title_size = (self.title_text_ratio * (self.height-2))
         self.title_size = 14
             
-        self.title_y = self.title_size + self.padding /2
+        self.title_y = self.title_size + self.left_padding /2
 
     def set_icon(self, icon):
         self.tile_info_x = self.height
@@ -56,7 +56,8 @@ class Cell:
         self.icon = icon
 
     def set_padding(self):
-        self.padding = 5
+        self.left_padding = 5
+        self.top_padding = 2
     
     def draw_cell( self ):
         self.ctr.save()
@@ -71,7 +72,7 @@ class Cell:
         if x and y:
             self.ctr.translate( x, y )
         
-        self.ctr.translate( self.padding, self.padding )
+        self.ctr.translate( self.left_padding, self.top_padding)
 
         if self.icon.endswith( ".png" ):
             try:
@@ -98,9 +99,11 @@ class Cell:
         self.draw_text(self.title)
         
     def draw_text( self, text):
+        if self.type == SHOW_CHILD:
+            self.ctr.set_source_rgb (1, 1, 1)
+
         self.ctr.set_font_size(14)
         self.ctr.select_font_face('Sans')
-
         self.ctr.move_to(48, 24)
         self.ctr.show_text(text)
         self.ctr.stroke()

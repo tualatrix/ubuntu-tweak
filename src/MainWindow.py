@@ -193,7 +193,7 @@ class ItemCellRenderer ( gtk.GenericCellRenderer ):
    
     def __init__( self ):
         self.__gobject_init__()
-        self.height = 40
+        self.height = 36
         self.width = 200
         self.set_fixed_size(self.width, self.height)
         self.data = None
@@ -211,13 +211,15 @@ class ItemCellRenderer ( gtk.GenericCellRenderer ):
         icon, title, type = self.data
         
         x, y, width, h = cell_area
+        x1, y1, width1, h2 = expose_area
 #        ydiff = int(float(h - height) / 2)
 #        y = y + ydiff
 ##        if height > 0:
 #            x = ydiff
             
 #        width = width - 2*ydiff
-        cell_area = gtk.gdk.Rectangle(x, y, width, 32)
+#        cell_area = gtk.gdk.Rectangle(0, y, width, h)
+        cell_area = gtk.gdk.Rectangle(x1, y1, width1, h2)
         Cell(cairo, 
              title, 
              icon,
@@ -324,13 +326,19 @@ class MainWindow(gtk.Window):
         model, iter = widget.get_selected()
 
         if iter:
-#            path = model.get_path(iter)
-
             id = model.get_value(iter, ID_COLUMN)
             data = model.get_value(iter, DATA_COLUMN)
+
             print 'selected infomation: %d %s' % (id, data)
             if data[-1] == SHOW_CHILD:
                 print '>=================\nOK, I\'ll show child!'
+                
+                self.shrink = False
+                self.need_shrink(id)
+                if self.shrink:
+                    self.update_model()
+                    return
+
                 self.update_model(id)
                 child_id =  id + 1
 
@@ -349,14 +357,22 @@ class MainWindow(gtk.Window):
                     self.notebook.set_current_page(self.moduletable[id])
                     widget.select_iter(iter)
 
-    def __model_for_each(self, model, path, iter, id):
+    def __shrink_for_each(self, model, path, iter, id):
+        m_id = model.get_value(iter, ID_COLUMN)
+        if id + 1 == m_id:
+            self.shrink = True
+
+    def need_shrink(self, id):
+        self.model.foreach(self.__shrink_for_each, id)
+
+    def __select_for_each(self, model, path, iter, id):
         m_id = model.get_value(iter, ID_COLUMN)
         if id == m_id:
             selection = self.treeview.get_selection()
             selection.select_iter(iter)
 
     def __select_child_item(self, id):
-        self.model.foreach(self.__model_for_each, id)
+        self.model.foreach(self.__select_for_each, id)
 
     def __create_newpage(self, id):
         print 'try to create newpage'
