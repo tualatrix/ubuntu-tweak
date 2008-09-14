@@ -33,17 +33,42 @@ from common.SystemInfo import GnomeVersion, SystemInfo
 from UpdateManager import UpdateManager, TweakSettings
 from CheckModules import *
 
+class Tip(gtk.HBox):
+    def __init__(self, tip):
+        gtk.HBox.__init__(self)
+
+        image = gtk.image_new_from_stock(gtk.STOCK_GO_FORWARD, gtk.ICON_SIZE_BUTTON)
+        self.pack_start(image, False, False, 15)
+
+        label = gtk.Label(tip)
+        self.pack_start(label, False, False, 0)
+
+class TipsFactory(gtk.VBox):
+    def __init__(self, *tips):
+        gtk.VBox.__init__(self)
+
+        for tip in tips:
+            self.pack_start(Tip(tip), False, False, 10)
+
 def Welcome(parent = None):
     vbox = gtk.VBox(False, 0)
+    vbox.set_border_width(20)
 
-    label = gtk.Label()
-    label.set_markup(_("<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak!</b></span>\n\n\nThis is a tool for Ubuntu which makes it easy to change hidden \nsystem and desktop settings.\n\nUbuntu Tweak can also be run in other distributions.\n\nIf you have any suggestions, please visit the website in \"About\" and \nshare ideas with me. \n\nEnjoy!"))
-    label.set_justify(gtk.JUSTIFY_FILL)
-    vbox.pack_start(label, False, False, 50)
+    title = gtk.MenuItem('')
+    label = title.get_child()
+    label.set_markup(_('<span size="xx-large">Welcome to <b>Ubuntu Tweak!</b></span>'))
+    label.set_alignment(0.5, 0.5)
+    title.select()
+    vbox.pack_start(title, False, False, 20)
 
-    hbox = gtk.HBox(False, 0)
-    vbox.pack_start(hbox, False, False, 0)
-        
+    tips = TipsFactory(
+            'This is a tool for Ubuntu which makes it easy to change hidden',
+            'Ubuntu Tweak can also be run in other distributions.',
+            'This is a tool for Ubuntu which makes it easy to change hidden.',
+            'If you have any suggestions, please visit the website in!',
+            )
+    vbox.pack_start(tips, False, False, 10)
+
     return vbox
 
 def Wait(parent = None):
