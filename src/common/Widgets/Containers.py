@@ -124,5 +124,5 @@ class TweakPage(gtk.ScrolledWindow):
         self.description.set_markup(des)        
 
     def remove_all_children(self):
-        for child in self.get_children():
-            self.remove(child)
+        for child in self.vbox.get_children():
+            self.vbox.remove(child)

@@ -41,7 +41,45 @@ class DistroInfo:
 class SystemInfo:
     gnome = GnomeVersion.description
     distro = DistroInfo.distro
+
+class SystemModule:
+
+    @classmethod
+    def has_apt(self):
+        try:
+            import apt_pkg
+            return True
+        except ImportError:
+            return False
+
+    @classmethod
+    def has_ccm(self):
+        try:
+            import ccm
+            return True
+        except ImportError:
+            return False
+
+    @classmethod
+    def has_right_compiz(self):
+        if self.has_ccm():
+            import ccm
+            if ccm.Version >= "0.7.4":
+                return True
+            else:
+                return False
+        else:
+            return False
+
+    @classmethod
+    def gnome_version(self):
+        return int(GnomeVersion.minor)
+
+    @classmethod
+    def is_hardy(self):
+        return 'Mint' not in SystemInfo.distro and '8.04' not in SystemInfo.distro
             
 if __name__ == "__main__":
     print SystemInfo.gnome
     print SystemInfo.distro
+    print SystemModule.has_apt(), SystemModule.has_ccm(), SystemModule.has_right_compiz(), SystemModule.gnome_version(), SystemModule.is_hardy()

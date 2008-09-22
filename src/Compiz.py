@@ -26,11 +26,11 @@ import gconf
 import os
 import gobject
 from common.Widgets import ListPack, Mediator, InfoDialog, SinglePack, TweakPage
+from common.SystemInfo import SystemModule
 try:
     from common.PackageWorker import update_apt_cache, PackageWorker, AptCheckButton
 except:
     pass
-from CheckModules import *
 
 plugins = \
 [
@@ -49,9 +49,15 @@ plugins_settings = \
 }
 
 class CompizSetting:
-    if not NO_COMPIZ and not CF_VERSION_ERROR:
+    if SystemModule.has_ccm() and SystemModule.has_right_compiz():
         import compizconfig as ccs
         context = ccs.Context()
+
+    @classmethod
+    def update_context(self):
+        if SystemModule.has_ccm() and SystemModule.has_right_compiz():
+            import compizconfig as ccs
+            self.context = ccs.Context()
 
 class OpacityMenu(gtk.CheckButton, CompizSetting):
     menu_match = 'Tooltip | Menu | PopupMenu | DropdownMenu'
@@ -171,7 +177,10 @@ class Compiz(TweakPage, CompizSetting, Mediator):
     def __init__(self):
         TweakPage.__init__(self)
 
-        if not NO_APT:
+        self.create_interface()
+
+    def create_interface(self):
+        if SystemModule.has_apt():
             update_apt_cache(True)
             self.packageWorker = PackageWorker()
 
@@ -185,7 +194,7 @@ class Compiz(TweakPage, CompizSetting, Mediator):
                     'screenlets',\
                     self)
 
-        if not CF_VERSION_ERROR and not NO_COMPIZ:
+        if SystemModule.has_ccm() and SystemModule.has_right_compiz():
             hbox = gtk.HBox(False, 0)
             hbox.pack_start(self.create_edge_setting(), True, False, 0)
             edge_setting = SinglePack('Edge Setting', hbox)
@@ -203,7 +212,7 @@ class Compiz(TweakPage, CompizSetting, Mediator):
             box = ListPack(_("Menu Effects"), (button1, self.wobbly_m))
             self.pack_start(box, False, False, 0)
 
-            if not NO_APT:
+            if SystemModule.has_apt():
                 update_apt_cache(True)
                 box = ListPack(_("Compiz Fusion Extensions"), (
                     self.simple_settings,
@@ -231,7 +240,6 @@ class Compiz(TweakPage, CompizSetting, Mediator):
             hbox.pack_end(self.button, False, False, 0)
 
             box.vbox.pack_start(hbox, False, False, 0)
-
             self.pack_start(box, False, False, 0)
 
     def combo_box_changed_cb(self, widget, edge):
@@ -336,13 +344,15 @@ class Compiz(TweakPage, CompizSetting, Mediator):
         self.packageWorker.perform_action(widget.get_toplevel(), to_add, to_rm)
 
         self.button.set_sensitive(False)
-        if CF_VERSION_ERROR:
-            InfoDialog(_("Update Successfully!\nPlease restart Ubuntu Tweak.")).launch()
-        else:
-            InfoDialog(_("Update Successfully!")).launch()
+
+        InfoDialog(_("Update Successfully!")).launch()
 
         update_apt_cache()
+        CompizSetting.update_context()
         self.remove_all_children()
+        self.create_interface()
+
+        self.show_all()
 
     def colleague_changed(self):
         if self.advanced_settings.get_state() != self.advanced_settings.get_active() or\

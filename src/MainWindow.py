@@ -29,9 +29,8 @@ import gobject
 from gnome import url_show
 from common.Constants import *
 from common.Widgets import QuestionDialog, TweakPage
-from common.SystemInfo import GnomeVersion, SystemInfo
+from common.SystemInfo import GnomeVersion, SystemInfo, SystemModule
 from UpdateManager import UpdateManager, TweakSettings
-from CheckModules import *
 
 class Tip(gtk.HBox):
     def __init__(self, tip):
@@ -101,24 +100,24 @@ from Computer import Computer
 from Session import Session
 from AutoStart import AutoStart
 from Icon import Icon
-if NO_COMPIZ and NO_APT or CF_VERSION_ERROR:
-    Compiz = None
-else:
+if SystemModule.has_ccm() and SystemModule.has_apt() or SystemModule.has_right_compiz():
     from Compiz import Compiz
+else:
+    Compiz = None
 
-if GNOME_VESION >= 20:
+if SystemModule.gnome_version() >= 20:
     from UserDir import UserDir
     from Templates import Templates
 else:
     UserDir = None
     Templates = None
 
-if NO_APT or NO_HARDY:
-    Installer = Notice
-    ThirdSoft = Notice
-else:
+if SystemModule.has_apt() or SystemModule.is_hardy():
     from Installer import Installer
     from ThirdSoft import ThirdSoft
+else:
+    Installer = Notice
+    ThirdSoft = Notice
 from Scripts import Scripts
 from Shortcuts import Shortcuts
 from PowerManager import PowerManager
@@ -509,7 +508,7 @@ You should have received a copy of the GNU General Public License along with Ubu
         gtk.gdk.threads_leave()
 
     def destroy(self, widget, data = None):
-        if not NO_APT and not NO_HARDY:
+        if SystemModule.has_apt() and SystemModule.is_hardy():
             from common.PolicyKit import DbusProxy
             if DbusProxy.proxy:
                 state = DbusProxy.get_liststate()
