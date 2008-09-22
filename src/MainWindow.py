@@ -112,7 +112,7 @@ else:
     UserDir = None
     Templates = None
 
-if SystemModule.has_apt() or SystemModule.is_hardy():
+if SystemModule.has_apt() and SystemModule.is_hardy():
     from Installer import Installer
     from ThirdSoft import ThirdSoft
 else:
