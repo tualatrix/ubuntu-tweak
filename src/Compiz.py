@@ -185,7 +185,7 @@ class Compiz(TweakPage, CompizSetting, Mediator):
                     'screenlets',\
                     self)
 
-        if not CF_VERSION_ERROR:
+        if not CF_VERSION_ERROR and not NO_COMPIZ:
             hbox = gtk.HBox(False, 0)
             hbox.pack_start(self.create_edge_setting(), True, False, 0)
             edge_setting = SinglePack('Edge Setting', hbox)
