@@ -14,6 +14,9 @@ def get_icon_with_type(filepath, size):
     icon = ui.icon_lookup(icontheme, None, filepath)
 
     pixbuf = icontheme.load_icon(icon[0], size, 0)
+
+    if pixbuf.get_height() != size:
+        return pixbuf.scale_simple(24, 24, gtk.gdk.INTERP_BILINEAR)
     
     return pixbuf
 
@@ -28,7 +31,10 @@ def get_icon_with_name(name, size):
         pixbuf = icontheme.load_icon(name, size, 0)
     except:
         pixbuf = icontheme.load_icon('binary', size, 0)
-    
+
+    if pixbuf.get_height() != size:
+        return pixbuf.scale_simple(24, 24, gtk.gdk.INTERP_BILINEAR)
+
     return pixbuf
 
 if __name__ == '__main__':

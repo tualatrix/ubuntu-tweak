@@ -74,16 +74,19 @@ CompizFusion = ['Compiz Fusion', 'www.compiz-fusion.org/', '']
 CairoDock = ['Cairo Dock', 'cairo-dock.org', '']
 GnomeDo = ['GNOME Do', 'gnome-do.png', 'do.davebsd.com', '']
 Banshee = ['Banshee', 'banshee-project.org', '']
+Google = ['Google', 'www.google.com/linuxrepositories/index.html', 'google.pub']
 GoogleGadgets = ['Google gadgets', 'desktop.google.com/plugins/', '']
 ChmSee = ['chmsee', 'chmsee.gro.clinux.org', '']
 KDE4 = ['KDE 4', 'www.kde.org', '']
 UbuntuTweak = ['Ubuntu Tweak', 'ubuntu-tweak.com', '']
+NautilusDropbox = ['Nautilus-DropBox', 'www.getdropbox.com', '']
 Pidgin = ['Pidgin', 'pidgin.im', '']
 Playdeb = ['Playdeb', 'www.playdeb.net', '']
 Screenlets = ['Screenlets', 'www.screenlets.org', '']
 Wine = ['Wine', 'www.winehq.org', 'wine.gpg']
 LXDE = ['LXDE', 'lxde.org', '']
 Terminator = ['Terminator', 'www.tenshu.net/terminator/', '']
+VirtualBox = ['VirtualBox', 'www.virtualbox.org/', 'virtualbox.asc']
 GScrot = ['GScrot', 'launchpad.net/gscrot', '']
 Galaxium = ['Galaxium', 'galaxium.png', 'code.google.com/p/galaxium/', '']
 Swiftweasel = ['Swiftweasel', 'swiftweasel.tuxfamily.org/', '']
@@ -101,9 +104,11 @@ SOURCES_DATA = [
     ['http://repository.cairo-dock.org/ubuntu', 'hardy', 'cairo-dock', CairoDock],
     ['http://ppa.launchpad.net/do-core/ubuntu', 'hardy', 'main', GnomeDo],
     ['http://ppa.launchpad.net/banshee-team/ubuntu', 'hardy', 'main', Banshee],
+    ['http://dl.google.com/linux/deb/', 'stable', 'non-free', Google],
     ['http://ppa.launchpad.net/googlegadgets/ubuntu', 'hardy', 'main', GoogleGadgets],
     ['http://ppa.launchpad.net/lidaobing/ubuntu', 'hardy', 'main', ChmSee],
     ['http://ppa.launchpad.net/kubuntu-members-kde4/ubuntu', 'hardy', 'main', KDE4],
+    ['http://www.getdropbox.com/static/ubuntu', 'hardy', 'main', NautilusDropbox],
     ['http://ppa.launchpad.net/tualatrix/ubuntu', 'hardy', 'main', UbuntuTweak],
     ['http://ppa.launchpad.net/gilir/ubuntu', 'hardy', 'main', Screenlets],
     ['http://ppa.launchpad.net/punischdude/ubuntu', 'hardy', 'main', Pidgin],
@@ -111,6 +116,7 @@ SOURCES_DATA = [
     ['http://wine.budgetdedicated.com/apt', 'hardy', 'main', Wine],
     ['http://ppa.launchpad.net/lxde/ubuntu', 'hardy', 'main', LXDE],
     ['http://ppa.launchpad.net/gnome-terminator/ubuntu', 'hardy', 'main', Terminator],
+    ['http://download.virtualbox.org/virtualbox/debian', 'hardy', 'non-free', VirtualBox],
     ['http://ppa.launchpad.net/gscrot/ubuntu', 'hardy', 'main', GScrot],
     ['http://ppa.launchpad.net/galaxium/ubuntu', 'hardy', 'main', Galaxium],
     ['http://download.tuxfamily.org/swiftweasel', 'hardy', 'multiverse', Swiftweasel],

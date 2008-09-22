@@ -26,6 +26,10 @@ import gconf
 import os
 import gobject
 from common.Widgets import ListPack, Mediator, InfoDialog, SinglePack, TweakPage
+try:
+    from common.PackageWorker import update_apt_cache, PackageWorker, AptCheckButton
+except:
+    pass
 from CheckModules import *
 
 plugins = \

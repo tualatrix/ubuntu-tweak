@@ -56,16 +56,16 @@ def Welcome(parent = None):
 
     title = gtk.MenuItem('')
     label = title.get_child()
-    label.set_markup(_('<span size="xx-large">Welcome to <b>Ubuntu Tweak!</b></span>'))
+    label.set_markup('\n<span size="xx-large">%s <b>Ubuntu Tweak!</b></span>\n' % _('Welcome to'))
     label.set_alignment(0.5, 0.5)
     title.select()
-    vbox.pack_start(title, False, False, 20)
+    vbox.pack_start(title, False, False, 10)
 
     tips = TipsFactory(
-            'This is a tool for Ubuntu which makes it easy to change hidden',
-            'Ubuntu Tweak can also be run in other distributions.',
-            'This is a tool for Ubuntu which makes it easy to change hidden.',
-            'If you have any suggestions, please visit the website in!',
+            'Tweak your desktop to make it what you like.',
+            'Use templates and scripts to enhance your desktop.',
+            'Easily install various kinds of applications in your option.',
+            'More useful features wait you to use!',
             )
     vbox.pack_start(tips, False, False, 10)
 
@@ -211,25 +211,25 @@ MODULES = \
     [SECU_OPTIONS, 'lockdown.png', _("Security Options"), LockDown, SHOW_NONE],
 ]
 
-class ItemCellRenderer ( gtk.GenericCellRenderer ):
+class ItemCellRenderer(gtk.GenericCellRenderer):
     __gproperties__ = {
-        "data": ( gobject.TYPE_PYOBJECT, "Data", "Data", gobject.PARAM_READWRITE ), 
+        "data": (gobject.TYPE_PYOBJECT, "Data", "Data", gobject.PARAM_READWRITE ), 
     }
    
-    def __init__( self ):
+    def __init__(self):
         self.__gobject_init__()
         self.height = 36
-        self.width = 200
+        self.width = 100
         self.set_fixed_size(self.width, self.height)
         self.data = None
         
-    def do_set_property( self, pspec, value ):
-        setattr( self, pspec.name, value )
+    def do_set_property(self, pspec, value):
+        setattr(self, pspec.name, value)
         
-    def do_get_property( self, pspec ):
-        return getattr( self, pspec.name )
+    def do_get_property(self, pspec):
+        return getattr(self, pspec.name)
 		
-    def on_render( self, window, widget, background_area, cell_area, expose_area, flags ):
+    def on_render(self, window, widget, background_area, cell_area, expose_area, flags):
         from cell import Cell
         if not self.data: return
         cairo = window.cairo_create()
@@ -251,8 +251,8 @@ class ItemCellRenderer ( gtk.GenericCellRenderer ):
              type,
              cell_area)
 
-    def on_get_size( self, widget, cell_area=None ):
-        return ( 0, 0, self.width, self.height )
+    def on_get_size(self, widget, cell_area = None ):
+        return (0, 0, self.width, self.height )
         
 class MainWindow(gtk.Window):
     """the main Window of Ubuntu Tweak"""
@@ -284,6 +284,7 @@ class MainWindow(gtk.Window):
         self.__add_columns(self.treeview)
         selection = self.treeview.get_selection()
         selection.connect("changed", self.selection_cb)
+#        selection.connect("changed", self.expand_menu, hpaned)
 
         sw.add(self.treeview)
 
@@ -300,9 +301,27 @@ class MainWindow(gtk.Window):
         button = gtk.Button(stock = gtk.STOCK_QUIT)
         button.connect("clicked", self.destroy);
         hbox.pack_end(button, False, False, 0)
-        
+
         self.show_all()
         gobject.timeout_add(8000, self.on_timeout)
+
+    def __expand_for_each(self, model, path, iter):
+        data = model.get_value(iter, DATA_COLUMN)
+        (a, app, b) = data
+        print len(app)
+        length = len(app) * 10
+
+        if length > self.max_size:
+            self.max_size = length
+
+    def need_expand(self):
+        self.model.foreach(self.__expand_for_each)
+
+    def expand_menu(self, widget, hpaned):
+        self.max_size = 0
+        self.need_expand()
+        print self.max_size
+        hpaned.set_position(self.max_size + 36)
 
     def __create_model(self):
         model = gtk.ListStore(
@@ -354,9 +373,9 @@ class MainWindow(gtk.Window):
             id = model.get_value(iter, ID_COLUMN)
             data = model.get_value(iter, DATA_COLUMN)
 
-            print 'selected infomation: %d %s' % (id, data)
+#            print 'selected infomation: %d %s' % (id, data)
             if data[-1] == SHOW_CHILD:
-                print '>=================\nOK, I\'ll show child!'
+#                print '>=================\nOK, I\'ll show child!'
                 
                 self.shrink = False
                 self.need_shrink(id)
@@ -368,7 +387,7 @@ class MainWindow(gtk.Window):
                 child_id =  id + 1
 
                 if child_id not in self.moduletable:
-                    print 'Module not load, load it first!'
+#                    print 'Module not load, load it first!'
                     self.notebook.set_current_page(1)
 
                     gobject.timeout_add(5, self.__create_newpage, child_id)
@@ -400,7 +419,7 @@ class MainWindow(gtk.Window):
         self.model.foreach(self.__select_for_each, id)
 
     def __create_newpage(self, id):
-        print 'try to create newpage'
+#        print 'try to create newpage'
 
         self.setup_notebook(id)
         self.moduletable[id] = self.notebook.get_n_pages() - 1
@@ -433,7 +452,7 @@ class MainWindow(gtk.Window):
         return notebook
 
     def setup_notebook(self, id):
-        print 'insert new module: %s\n' % MODULES[id]
+#        print 'insert new module: %s\n' % MODULES[id]
         page = MODULES[id][MODULE_FUNC]
         page = page()
         page.show_all()

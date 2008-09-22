@@ -96,6 +96,7 @@ data = \
     ('monodevelop', Develop),
     ('mplayer', Video),
     ('netbeans', Develop),
+    ('nautilus-dropbox', Internet),
     ('opera', Internet),
     ('playonlinux', Emulator),
     ('screenlets', Desktop),

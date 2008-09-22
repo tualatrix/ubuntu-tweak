@@ -47,8 +47,78 @@ class GconfKeys:
     parser.setContentHandler(handler)
     parser.parse("%s/tweaks.xml" % DATA_DIR)
 
+class WidgetFactory:
+    keys = GconfKeys.keys
+
+    @classmethod
+    def create(self, widget, *argv):
+        return getattr(WidgetFactory, "create_%s" % widget)(*argv)
+    
+    @classmethod
+    def create_gconfcheckbutton(self, *argv):
+        if len(argv) > 2:
+            (label, key, tooltip) = argv[:3]
+        else:
+            tooltip = None
+            (label, key) = argv[:2]
+
+        if key in self.keys:
+            button = GconfCheckButton(label, self.keys[key])
+            if tooltip:
+                button.set_tooltip_text(tooltip)
+            return button
+        else:
+            return None
+
+    @classmethod
+    def create_cgconfcheckbutton(self, label, key, mediator, tooltip = None):
+        if key in self.keys:
+            button = CGconfCheckButton(label, self.keys[key], mediator)
+            if tooltip:
+                button.set_tooltip_text(tooltip)
+            return button
+        else:
+            return None
+
+    @classmethod
+    def create_strgconfcheckbutton(self, label, key, mediator, tooltip = None):
+        if key in self.keys:
+            button = StrGconfCheckButton(label, self.keys[key], mediator)
+            if tooltip:
+                button.set_tooltip_text(tooltip)
+            return button
+        else:
+            return None
+
+    @classmethod
+    def create_gconfentry(self, key, mediator = None, tooltip = None):
+        if key in self.keys:
+            entry = GconfEntry(self.keys[key])
+            if tooltip:
+                entry.set_tooltip_text(tooltip)
+            return entry
+        else:
+            return None
+
+    @classmethod
+    def create_gconfcombobox(self, key, texts, values):
+        if key in self.keys:
+            combobox = GconfCombobox(self.keys[key], texts, values)
+            return combobox.combobox
+        else:
+            return None
+
+    @classmethod
+    def create_gconfscale(self, min, max, key, digits = None):
+        if key in self.keys:
+            scale = GconfScale(min, max, self.keys[key], digits)
+            return scale
+        else:
+            return None
+
 class Factory:
     keys = GconfKeys.keys
+
     @staticmethod
     def create(widget = None, *argv):
         if len(argv) == 1:
@@ -112,3 +182,4 @@ class Factory:
 
 if __name__ == "__main__":
     print Factory().keys
+    print WidgetFactory.create("gconfcheckbutton", _("Disable \"Run Application\" dialog (Alt+F2)"), "disable_command_line")
