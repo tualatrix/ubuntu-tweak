@@ -342,6 +342,7 @@ class Compiz(TweakPage, CompizSetting, Mediator):
             InfoDialog(_("Update Successfully!")).launch()
 
         update_apt_cache()
+        self.remove_all_children()
 
     def colleague_changed(self):
         if self.advanced_settings.get_state() != self.advanced_settings.get_active() or\

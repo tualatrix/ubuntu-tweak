@@ -419,8 +419,6 @@ class MainWindow(gtk.Window):
         self.model.foreach(self.__select_for_each, id)
 
     def __create_newpage(self, id):
-#        print 'try to create newpage'
-
         self.setup_notebook(id)
         self.moduletable[id] = self.notebook.get_n_pages() - 1
         self.notebook.set_current_page(self.moduletable[id])
