@@ -269,13 +269,13 @@ class MainWindow(gtk.Window):
         vbox = gtk.VBox(False, 0)
         self.add(vbox)
 
-        hpaned = gtk.HPaned()
-        vbox.pack_start(hpaned, True, True, 0)
+        self.hpaned = gtk.HPaned()
+        vbox.pack_start(self.hpaned, True, True, 0)
 
         sw = gtk.ScrolledWindow()
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         sw.set_size_request(150, -1)
-        hpaned.pack1(sw)
+        self.hpaned.pack1(sw)
 
         self.model = self.__create_model()
         self.update_model()
@@ -283,14 +283,14 @@ class MainWindow(gtk.Window):
         self.__add_columns(self.treeview)
         selection = self.treeview.get_selection()
         selection.connect("changed", self.selection_cb)
-#        selection.connect("changed", self.expand_menu, hpaned)
+#        selection.connect("changed", self.expand_menu, self.hpaned)
 
         sw.add(self.treeview)
 
         self.notebook = self.create_notebook()
         self.moduletable = {0: 0}
         self.modules = {}
-        hpaned.pack2(self.notebook)
+        self.hpaned.pack2(self.notebook)
 
         hbox = gtk.HBox(False, 5)
         vbox.pack_start(hbox, False, False, 5)

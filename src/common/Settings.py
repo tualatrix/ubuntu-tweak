@@ -1,1 +1,1 @@
-from Widgets.Settings import BoolSetting, Setting
+from Widgets.Settings import BoolSetting, Setting, NumSetting, StringSetting 
