@@ -28,6 +28,7 @@ import gobject
 from common.Widgets import ListPack, Mediator, InfoDialog, SinglePack, TweakPage
 from common.SystemInfo import SystemModule
 try:
+    import ccm
     from common.PackageWorker import update_apt_cache, PackageWorker, AptCheckButton
 except:
     pass
