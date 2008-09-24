@@ -104,6 +104,8 @@ class Cell:
 
         self.ctr.set_font_size(14)
 #        self.ctr.select_font_face('Sans')
+#        self.ctr.select_font_face('WenQuanYi ZenHei')
+        self.ctr.select_font_face('AR PL UMing CN')
         self.ctr.move_to(48, 24)
         self.ctr.show_text(text)
         self.ctr.stroke()
