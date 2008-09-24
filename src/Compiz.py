@@ -60,6 +60,14 @@ class CompizSetting:
             import compizconfig as ccs
             self.context = ccs.Context()
 
+    def get_plugin(self, name):
+        try:
+            plugin = self.context.Plugins[name]
+        except KeyError:
+            return None
+        else:
+            return plugin
+
 class OpacityMenu(gtk.CheckButton, CompizSetting):
     menu_match = 'Tooltip | Menu | PopupMenu | DropdownMenu'
     def __init__(self, label):

@@ -77,9 +77,11 @@ class SystemModule:
 
     @classmethod
     def is_hardy(self):
-        return 'Mint' not in SystemInfo.distro and '8.04' not in SystemInfo.distro
+        return 'Mint' in SystemInfo.distro or '8.04' in SystemInfo.distro
             
 if __name__ == "__main__":
-    print SystemInfo.gnome
-    print SystemInfo.distro
-    print SystemModule.has_apt(), SystemModule.has_ccm(), SystemModule.has_right_compiz(), SystemModule.gnome_version(), SystemModule.is_hardy()
+    print 'has pat', SystemModule.has_apt()
+    print 'has ccm', SystemModule.has_ccm()
+    print 'has right compiz', SystemModule.has_right_compiz()
+    print 'gnome version', SystemModule.gnome_version()
+    print 'is hardy', SystemModule.is_hardy()
