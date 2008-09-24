@@ -28,8 +28,8 @@ import gobject
 from common.Widgets import ListPack, Mediator, InfoDialog, SinglePack, TweakPage
 from common.SystemInfo import SystemModule
 try:
-    import ccm
     from common.PackageWorker import update_apt_cache, PackageWorker, AptCheckButton
+    import ccm
 except:
     pass
 
@@ -58,6 +58,7 @@ class CompizSetting:
     def update_context(self):
         if SystemModule.has_ccm() and SystemModule.has_right_compiz():
             import compizconfig as ccs
+            import ccm
             self.context = ccs.Context()
 
     def get_plugin(self, name):

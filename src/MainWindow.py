@@ -100,10 +100,11 @@ from Computer import Computer
 from Session import Session
 from AutoStart import AutoStart
 from Icon import Icon
-if SystemModule.has_ccm() and SystemModule.has_apt() or SystemModule.has_right_compiz():
+#if SystemModule.has_ccm() and SystemModule.has_apt() or SystemModule.has_right_compiz():
+if SystemModule.has_apt() or SystemModule.has_right_compiz():
     from Compiz import Compiz
 else:
-    Compiz = None
+    Compiz = Notice
 
 if SystemModule.gnome_version() >= 20:
     from UserDir import UserDir

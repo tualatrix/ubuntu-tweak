@@ -99,7 +99,7 @@ class PackageInfo:
         return appname
 
 class PackageWorker:
-    def run_synaptic(self, id, lock, to_add = None,to_rm = None):
+    def run_synaptic(self, id, lock, to_add = None, to_rm = None):
         cmd = []
         if os.getuid() != 0:
             cmd = ["/usr/bin/gksu",
@@ -132,7 +132,7 @@ class PackageWorker:
         window_main.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
         lock = thread.allocate_lock()
         lock.acquire()
-        t = thread.start_new_thread(self.run_synaptic,(window_main.window.xid,lock,to_add, to_rm))
+        t = thread.start_new_thread(self.run_synaptic, (window_main.window.xid, lock, to_add, to_rm))
         while lock.locked():
             while gtk.events_pending():
                 gtk.main_iteration()
