@@ -106,7 +106,7 @@ data = \
     ('stardict', Desktop),
     ('terminator', Emulator),
     ('ubuntu-restricted-extras', Desktop),
-    ('virtualbox', Emulator),
+    ('virtualbox-ose', Emulator),
     ('vlc', Video),
     ('vmware-player', Emulator),
     ('wine', Emulator),

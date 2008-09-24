@@ -36,6 +36,7 @@ from common.Constants import *
 from common.AppData import *
 from common.Settings import BoolSetting
 from common.PolicyKit import PolkitButton, DbusProxy
+from common.SystemInfo import SystemModule
 from common.Widgets import ListPack, TweakPage, Colleague, Mediator, GconfCheckButton, InfoDialog, WarningDialog, ErrorDialog, QuestionDialog
 from aptsources.sourceslist import SourceEntry, SourcesList
 
@@ -80,7 +81,6 @@ ChmSee = ['chmsee', 'chmsee.gro.clinux.org', '']
 KDE4 = ['KDE 4', 'www.kde.org', '']
 UbuntuTweak = ['Ubuntu Tweak', 'ubuntu-tweak.com', '']
 NautilusDropbox = ['Nautilus-DropBox', 'www.getdropbox.com', '']
-Pidgin = ['Pidgin', 'pidgin.im', '']
 Playdeb = ['Playdeb', 'www.playdeb.net', '']
 Screenlets = ['Screenlets', 'www.screenlets.org', '']
 Wine = ['Wine', 'www.winehq.org', 'wine.gpg']
@@ -94,15 +94,15 @@ Medibuntu = ['Medibuntu', 'www.medibuntu.org/', 'medibuntu.gpg']
 XBMC = ['XBMC', 'xbmc.org', '']
 
 SOURCES_DATA = [
-    ['http://ppa.launchpad.net/awn-core/ubuntu', 'hardy', 'main', AWN],
+    ['http://ppa.launchpad.net/reacocard-awn/ubuntu/', ['hardy','intrepid'], 'main', AWN],
     ['http://deb.opera.com/opera/', 'lenny', 'non-free', Opera],
     ['http://download.skype.com/linux/repos/debian', 'stable', 'non-free', Skype],
     ['http://playonlinux.botux.net/', 'hardy', 'main', PlayOnLinux],
-    ['http://ppa.launchpad.net/stemp/ubuntu', 'hardy', 'main', Midori],
-    ['http://ppa.launchpad.net/fta/ubuntu', 'hardy', 'main', Firefox],
-    ['http://ppa.launchpad.net/compiz/ubuntu', 'hardy', 'main', CompizFusion],
+    ['http://ppa.launchpad.net/stemp/ubuntu', ['hardy', 'intrepid'], 'main', Midori],
+    ['http://ppa.launchpad.net/fta/ubuntu', ['hardy', 'intrepid'], 'main', Firefox],
+    ['http://ppa.launchpad.net/compiz/ubuntu', ['hardy', 'intrepid'], 'main', CompizFusion],
     ['http://repository.cairo-dock.org/ubuntu', 'hardy', 'cairo-dock', CairoDock],
-    ['http://ppa.launchpad.net/do-core/ubuntu', 'hardy', 'main', GnomeDo],
+    ['http://ppa.launchpad.net/do-core/ubuntu', ['hardy', 'intrepid'], 'main', GnomeDo],
     ['http://ppa.launchpad.net/banshee-team/ubuntu', 'hardy', 'main', Banshee],
     ['http://dl.google.com/linux/deb/', 'stable', 'non-free', Google],
     ['http://ppa.launchpad.net/googlegadgets/ubuntu', 'hardy', 'main', GoogleGadgets],
@@ -111,21 +111,34 @@ SOURCES_DATA = [
     ['http://www.getdropbox.com/static/ubuntu', 'hardy', 'main', NautilusDropbox],
     ['http://ppa.launchpad.net/tualatrix/ubuntu', 'hardy', 'main', UbuntuTweak],
     ['http://ppa.launchpad.net/gilir/ubuntu', 'hardy', 'main', Screenlets],
-    ['http://ppa.launchpad.net/punischdude/ubuntu', 'hardy', 'main', Pidgin],
     ['mirror://www.getdeb.net/playdeb-mirror/hardy/// ', 'hardy', 'main', Playdeb],
     ['http://wine.budgetdedicated.com/apt', 'hardy', 'main', Wine],
     ['http://ppa.launchpad.net/lxde/ubuntu', 'hardy', 'main', LXDE],
-    ['http://ppa.launchpad.net/gnome-terminator/ubuntu', 'hardy', 'main', Terminator],
+    ['http://ppa.launchpad.net/gnome-terminator/ubuntu', ['hardy', 'intrepid'], 'main', Terminator],
     ['http://download.virtualbox.org/virtualbox/debian', 'hardy', 'non-free', VirtualBox],
-    ['http://ppa.launchpad.net/gscrot/ubuntu', 'hardy', 'main', GScrot],
+    ['http://ppa.launchpad.net/gscrot/ubuntu', ['hardy', 'intrepid'], 'main', GScrot],
     ['http://ppa.launchpad.net/galaxium/ubuntu', 'hardy', 'main', Galaxium],
     ['http://download.tuxfamily.org/swiftweasel', 'hardy', 'multiverse', Swiftweasel],
-    ['http://packages.medibuntu.org/', 'hardy', 'free non-free', Medibuntu],
+    ['http://packages.medibuntu.org/', ['hardy', 'intrepid'], 'free non-free', Medibuntu],
     ['http://ppa.launchpad.net/team-xbmc/ubuntu', 'hardy', 'main', XBMC],
-#    ['http://ppa.launchpad.net/macslow/ubuntu', 'hardy', 'main', 'MacSlow', _("MacSlow's package-building playground... use at your own risk"), 'gscrot.png'],
-#    ['http://ppa.launchpad.net/reacocard-awn/ubuntu/', 'hardy', 'main', 'AWN Trunk', _('Play windows games on your Linux')],
 #    ['http://ppa.launchpad.net/bearoso/ubuntu', 'hardy', 'main', 'snes9x-gtk', _('Hello World')],
 ]
+
+def filter_sources(light = False):
+    newsource = []
+    for item in SOURCES_DATA:
+        distro = item[1]
+        if light and distro == 'hardy' and SystemModule.is_intrepid():
+            newsource.append(item)
+        elif SystemModule.get_codename() in distro:
+            newsource.append([item[0], SystemModule.get_codename(), item[2], item[3]])
+        else:
+            if distro not in ['hardy', 'intrepid']:
+                newsource.append(item)
+
+    return newsource
+
+SOURCES_DATA = filter_sources()
 
 class UpdateCacheDialog:
     """This class is modified from Software-Properties"""

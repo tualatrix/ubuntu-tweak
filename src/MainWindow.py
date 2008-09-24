@@ -110,10 +110,10 @@ if SystemModule.gnome_version() >= 20:
     from UserDir import UserDir
     from Templates import Templates
 else:
-    UserDir = None
-    Templates = None
+    UserDir = Notice
+    Templates = Notice
 
-if SystemModule.has_apt() and SystemModule.is_hardy():
+if SystemModule.is_hardy() or SystemModule.is_intrepid():
     from Installer import Installer
     from ThirdSoft import ThirdSoft
 else:

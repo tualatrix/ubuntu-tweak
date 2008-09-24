@@ -78,6 +78,20 @@ class SystemModule:
     @classmethod
     def is_hardy(self):
         return 'Mint' in SystemInfo.distro or '8.04' in SystemInfo.distro
+
+    @classmethod
+    def is_intrepid(self):
+        return 'Mint' in SystemInfo.distro or '8.04' in SystemInfo.distro \
+                or 'intrepid' in SystemInfo.distro
+
+    @classmethod
+    def get_codename(self):
+        if self.is_hardy():
+            return 'hardy'
+        elif self.is_intrepid():
+            return 'intrepid'
+        else:
+            return 'NULL'
             
 if __name__ == "__main__":
     print 'has pat', SystemModule.has_apt()
