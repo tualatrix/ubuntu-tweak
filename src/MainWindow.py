@@ -235,16 +235,9 @@ class ItemCellRenderer(gtk.GenericCellRenderer):
         cairo = window.cairo_create()
         icon, title, type = self.data
         
-        x, y, width, h = cell_area
-        x1, y1, width1, h2 = expose_area
-#        ydiff = int(float(h - height) / 2)
-#        y = y + ydiff
-##        if height > 0:
-#            x = ydiff
-            
-#        width = width - 2*ydiff
-#        cell_area = gtk.gdk.Rectangle(0, y, width, h)
-        cell_area = gtk.gdk.Rectangle(x1, y1, width1, h2)
+        x, y, width, height = expose_area
+        cell_area = gtk.gdk.Rectangle(x, y, width, height)
+
         RenderCell(cairo, 
                  title, 
                  icon,
@@ -284,7 +277,6 @@ class MainWindow(gtk.Window):
         self.__add_columns(self.treeview)
         selection = self.treeview.get_selection()
         selection.connect("changed", self.selection_cb)
-#        selection.connect("changed", self.expand_menu, self.hpaned)
 
         sw.add(self.treeview)
 
@@ -304,24 +296,6 @@ class MainWindow(gtk.Window):
 
         self.show_all()
         gobject.timeout_add(8000, self.on_timeout)
-
-    def __expand_for_each(self, model, path, iter):
-        data = model.get_value(iter, DATA_COLUMN)
-        (a, app, b) = data
-        print len(app)
-        length = len(app) * 10
-
-        if length > self.max_size:
-            self.max_size = length
-
-    def need_expand(self):
-        self.model.foreach(self.__expand_for_each)
-
-    def expand_menu(self, widget, hpaned):
-        self.max_size = 0
-        self.need_expand()
-        print self.max_size
-        hpaned.set_position(self.max_size + 36)
 
     def __create_model(self):
         model = gtk.ListStore(
@@ -373,10 +347,7 @@ class MainWindow(gtk.Window):
             id = model.get_value(iter, ID_COLUMN)
             data = model.get_value(iter, DATA_COLUMN)
 
-#            print 'selected infomation: %d %s' % (id, data)
             if data[-1] == SHOW_CHILD:
-#                print '>=================\nOK, I\'ll show child!'
-                
                 self.shrink = False
                 self.need_shrink(id)
                 if self.shrink:
@@ -387,7 +358,6 @@ class MainWindow(gtk.Window):
                 child_id =  id + 1
 
                 if child_id not in self.moduletable:
-#                    print 'Module not load, load it first!'
                     self.notebook.set_current_page(1)
 
                     gobject.timeout_add(5, self.__create_newpage, child_id)
@@ -450,7 +420,6 @@ class MainWindow(gtk.Window):
         return notebook
 
     def setup_notebook(self, id):
-#        print 'insert new module: %s\n' % MODULES[id]
         page = MODULES[id][MODULE_FUNC]
         page = page()
         page.show_all()
@@ -509,7 +478,7 @@ You should have received a copy of the GNU General Public License along with Ubu
         gtk.gdk.threads_leave()
 
     def destroy(self, widget, data = None):
-        if SystemModule.has_apt() and SystemModule.is_hardy():
+        if SystemModule.has_apt() and SystemModule.is_hardy() or SystemModule.is_intrepid():
             from common.PolicyKit import DbusProxy
             if DbusProxy.proxy:
                 state = DbusProxy.get_liststate()

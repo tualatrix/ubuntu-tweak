@@ -1,3 +1,4 @@
+# this file is modified from wine-doors ctile.py
 import os
 import cairo
 import pango
@@ -93,28 +94,16 @@ class RenderCell:
         self.ctr.restore()
 
     def draw_title(self):
-        style = 0
-        font = None
-#        alignment = LEFT
-#        color = (0,0,0)
-#        properties = ( self.title_size, style, font, alignment, color ) 
         self.draw_text(self.title)
         
     def draw_text(self, text):
         if self.type == SHOW_CHILD:
             self.ctr.set_source_rgb (1, 1, 1)
 
-#        self.ctr.set_font_size(14)
-#        self.ctr.select_font_face('Sans')
-#        self.ctr.select_font_face('WenQuanYi ZenHei')
-#        self.ctr.select_font_face('AR PL UMing CN')
         self.ctr.move_to(self.title_x, self.title_y)
-#        self.ctr.show_text(text)
-#        self.ctr.stroke()
 
         layout = self.ctr.create_layout()
         layout.set_text(text)
         layout.set_font_description(pango.FontDescription(self.font_name))
 
-#        ctx.update_layout(layout)
         self.ctr.show_layout(layout)
