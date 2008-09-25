@@ -1,8 +1,8 @@
-import cairo, rsvg, math
-#from preferences import preferences 
 import os
+import cairo
+import pango
+import pangocairo
 
-import gtk
 (
     SHOW_ALWAYS,
     SHOW_CHILD,
@@ -98,14 +98,22 @@ class Cell:
 #        properties = ( self.title_size, style, font, alignment, color ) 
         self.draw_text(self.title)
         
-    def draw_text( self, text):
+    def draw_text(self, text):
         if self.type == SHOW_CHILD:
             self.ctr.set_source_rgb (1, 1, 1)
 
-        self.ctr.set_font_size(14)
+#        self.ctr.set_font_size(14)
 #        self.ctr.select_font_face('Sans')
 #        self.ctr.select_font_face('WenQuanYi ZenHei')
-        self.ctr.select_font_face('AR PL UMing CN')
-        self.ctr.move_to(48, 24)
-        self.ctr.show_text(text)
-        self.ctr.stroke()
+#        self.ctr.select_font_face('AR PL UMing CN')
+        self.ctr.move_to(42, 10)
+#        self.ctr.show_text(text)
+#        self.ctr.stroke()
+
+        FONT = "Sans 10"
+        layout = self.ctr.create_layout()
+        layout.set_text(text)
+        layout.set_font_description(pango.FontDescription(FONT))
+
+#        ctx.update_layout(layout)
+        self.ctr.show_layout(layout)
