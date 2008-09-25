@@ -114,6 +114,7 @@ APP_DATA = {
     'terminator': _('Multiple GNOME terminals in one window'),
     'ubuntu-tweak': _('Ubuntu Tweak makes it easier to configure Ubuntu'),
     'ubuntu-restricted-extras': _('Commonly used restricted packages'),
+    'virtualbox': _('A feature rich, high performance virtualization software'),
     'virtualbox-ose': _('A feature rich, high performance virtualization software'),
     'vlc': _('Read, capture, broadcast your multimedia streams'),
     'vmware-player': _('Run Virtual Machines using VMware'),
