@@ -28,6 +28,7 @@ import gobject
 
 from gnome import url_show
 from common.Constants import *
+from common.Canvas import RenderCell
 from common.Widgets import QuestionDialog, TweakPage
 from common.SystemInfo import GnomeVersion, SystemInfo, SystemModule
 from UpdateManager import UpdateManager, TweakSettings
@@ -230,7 +231,6 @@ class ItemCellRenderer(gtk.GenericCellRenderer):
         return getattr(self, pspec.name)
 		
     def on_render(self, window, widget, background_area, cell_area, expose_area, flags):
-        from cell import Cell
         if not self.data: return
         cairo = window.cairo_create()
         icon, title, type = self.data
@@ -245,11 +245,11 @@ class ItemCellRenderer(gtk.GenericCellRenderer):
 #        width = width - 2*ydiff
 #        cell_area = gtk.gdk.Rectangle(0, y, width, h)
         cell_area = gtk.gdk.Rectangle(x1, y1, width1, h2)
-        Cell(cairo, 
-             title, 
-             icon,
-             type,
-             cell_area)
+        RenderCell(cairo, 
+                 title, 
+                 icon,
+                 type,
+                 cell_area)
 
     def on_get_size(self, widget, cell_area = None ):
         return (0, 0, self.width, self.height )

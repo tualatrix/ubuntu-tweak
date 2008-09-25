@@ -2,6 +2,7 @@ import os
 import cairo
 import pango
 import pangocairo
+from Settings import StringSetting
 
 (
     SHOW_ALWAYS,
@@ -9,7 +10,10 @@ import pangocairo
     SHOW_NONE,
 ) = range(3)
 
-class Cell:
+class RenderCell:
+    font_name = StringSetting('/desktop/gnome/interface/font_name').get_string()
+    font_size = int(font_name.split()[-1])
+
     def __init__(self, 
                 ctr = None,
                 title = None, 
@@ -27,12 +31,13 @@ class Cell:
         self.draw_cell()
 
     def set_rect(self, rect):
-        ( self.x, self.y, self.width, self.height ) = rect
+        (self.x, self.y, self.width, self.height) = rect
         self.rect = rect
         self.draw_background()
         
     def draw_background(self):
         if self.type == SHOW_CHILD:
+            #TODO: the color need to follow the system style
             self.ctr.set_source_rgb (0.5, 0.5, 0.5)
             self.ctr.rectangle(self.x, self.y, self.width, self.height)
             self.ctr.fill()
@@ -41,16 +46,13 @@ class Cell:
         if not title:
             return
         self.title = title
-        self.title_text_ratio = 0.3
-        
-#        self.title_size = (self.title_text_ratio * (self.height-2))
-        self.title_size = 14
-            
-        self.title_y = self.title_size + self.left_padding /2
+
+        self.title_x = self.left_padding * 2 + self.icon_width
+        self.title_y = self.icon_height / 2 - self.font_size / 2
 
     def set_icon(self, icon):
-        self.tile_info_x = self.height
         self.icon_height = 32
+        self.icon_width = 32
         if not icon:
             return
         self.icon = icon
@@ -89,8 +91,8 @@ class Cell:
                 pass                
 
         self.ctr.restore()
-        
-    def draw_title( self ):
+
+    def draw_title(self):
         style = 0
         font = None
 #        alignment = LEFT
@@ -106,14 +108,13 @@ class Cell:
 #        self.ctr.select_font_face('Sans')
 #        self.ctr.select_font_face('WenQuanYi ZenHei')
 #        self.ctr.select_font_face('AR PL UMing CN')
-        self.ctr.move_to(42, 10)
+        self.ctr.move_to(self.title_x, self.title_y)
 #        self.ctr.show_text(text)
 #        self.ctr.stroke()
 
-        FONT = "Sans 10"
         layout = self.ctr.create_layout()
         layout.set_text(text)
-        layout.set_font_description(pango.FontDescription(FONT))
+        layout.set_font_description(pango.FontDescription(self.font_name))
 
 #        ctx.update_layout(layout)
         self.ctr.show_layout(layout)
