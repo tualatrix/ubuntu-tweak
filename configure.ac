@@ -28,8 +28,12 @@ AC_CONFIG_FILES([
     po/Makefile.in
     src/Makefile
     src/common/Makefile
+    src/common/Widgets/Makefile
+    src/common/PolicyKit/Makefile
     data/Makefile
+    data/aptkeys/Makefile
     data/applogos/Makefile
+    data/pixmaps/Makefile
     scripts/Makefile
     scripts/ubuntu-tweak
     scripts/script-worker
