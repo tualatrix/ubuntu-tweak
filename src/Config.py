@@ -27,6 +27,10 @@ class Config:
     def set_value(self, key, value):
         if type(value) == int:
             pass
+        elif type(value) == str:
+            pass
+        elif type(value) == bool:
+            pass
 
     @classmethod
     def get_value(self, key):
