@@ -43,13 +43,13 @@ class AbstractScripts:
 class DefaultScripts(AbstractScripts):
     """This class use to create the default scripts"""
     scripts = {
-            "Copy to ...": _("Copy to ..."),
-            "Move to ...": _("Move to ..."),
-            "Link to ...": _("Link to ..."),
-            "Open with gedit": _("Open with gedit"),
-            "Open with gedit(as root)": _("Open with gedit(as root)"),
-            "Browse as root": _("Browse as root"),
-            "Search in current folder": _("Search in current folder"),
+            "copy-to": _("Copy to ..."),
+            "move-to": _("Move to ..."),
+            "link-to": _("Link to ..."),
+            "open-with-gedit": _("Open with gedit"),
+            "open-with-gedit-as-root": _("Open with gedit(as root)"),
+            "browse-as-root": _("Browse as root"),
+            "search-in-current": _("Search in current folder"),
             }
 
     def create(self):

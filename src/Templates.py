@@ -44,14 +44,14 @@ class AbstractTempates:
 class DefaultTemplates(AbstractTempates):
     """This class use to create the default templates"""
     templates = {
-            "HTML document.html": _("HTML document"),
-            "ODB Database.odb": _("ODB Database"),
-            "ODS Spreadsheet.ods": _("ODS Spreadsheet"),
-            "ODT Document.odt": _("ODT Document"),
-            "Plain text document.txt": _("Plain text document"),
-            "ODP Presentation.odp": _("ODP Presentation"),
-            "Python script.py": _("Python script"),
-            "Shell script.sh": _("Shell script")
+            "html-document.html": _("HTML document"),
+            "odb-database.odb": _("ODB Database"),
+            "ods-spreadsheet.ods": _("ODS Spreadsheet"),
+            "odt-document.odt": _("ODT Document"),
+            "plain-text-document.txt": _("Plain text document"),
+            "odp-presentation.odp": _("ODP Presentation"),
+            "python-script.py": _("Python script"),
+            "shell-script.sh": _("Shell script")
             }
 
     def create(self):

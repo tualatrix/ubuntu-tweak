@@ -36,9 +36,12 @@ AC_CONFIG_FILES([
     src/common/Widgets/Makefile
     src/common/PolicyKit/Makefile
     data/Makefile
+    data/appcates/Makefile
     data/aptkeys/Makefile
     data/applogos/Makefile
     data/pixmaps/Makefile
+    data/scripts/Makefile
+    data/templates/Makefile
     scripts/Makefile
     scripts/ubuntu-tweak
     scripts/script-worker
