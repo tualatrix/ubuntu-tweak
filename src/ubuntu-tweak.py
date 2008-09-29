@@ -22,7 +22,7 @@ import os
 import gtk
 import thread
 
-from common.Constants import *
+from common.Consts import *
 
 try:
     import dl

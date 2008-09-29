@@ -32,7 +32,7 @@ import apt_pkg
 
 from gnome import url_show
 from common.Factory import Factory
-from common.Constants import *
+from common.Consts import *
 from common.AppData import *
 from common.Settings import BoolSetting
 from common.PolicyKit import PolkitButton, DbusProxy

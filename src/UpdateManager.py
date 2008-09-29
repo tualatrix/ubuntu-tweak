@@ -13,7 +13,7 @@ import socket
 import threading
 import gobject
 
-from common.Constants import *
+from common.Consts import *
 from common.SystemInfo import SystemInfo
 from common.Settings import Setting
 from xmlrpclib import ServerProxy, Error

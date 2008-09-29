@@ -23,11 +23,16 @@ AM_GNU_GETTEXT_VERSION(0.16.1)
 
 AC_SUBST(PYTHON)
 
+AS_AC_EXPAND(DATADIR, "${datadir}")
+AC_SUBST(DATADIR)
+AS_AC_EXPAND(DATADIR, "${DATADIR}")
+
 AC_CONFIG_FILES([ 
     Makefile
     po/Makefile.in
     src/Makefile
     src/common/Makefile
+    src/common/Consts.py
     src/common/Widgets/Makefile
     src/common/PolicyKit/Makefile
     data/Makefile

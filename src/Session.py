@@ -25,7 +25,7 @@ import os
 import gconf
 import gettext
 
-from common.Constants import *
+from common.Consts import *
 from common.Widgets import ListPack, SinglePack, TweakPage, Mediator
 from common.Factory import Factory
 

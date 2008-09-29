@@ -21,7 +21,7 @@
 import pygtk
 pygtk.require("2.0")
 import gtk
-from common.Constants import InitLocale
+from common.Consts import InitLocale
 
 InitLocale()
 

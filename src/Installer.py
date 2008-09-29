@@ -5,7 +5,7 @@ import gtk
 import gettext
 import gobject
 
-from common.Constants import *
+from common.Consts import *
 from common.AppData import *
 from common.Widgets.LookupIcon import *
 from common.Widgets import TweakPage, InfoDialog

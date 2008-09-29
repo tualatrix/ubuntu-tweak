@@ -7,9 +7,9 @@ __all__ = (
 
 import gettext
 
-APP = 'ubuntu-tweak'
-VERSION = '0.3.6'
-DATA_DIR = 'data'
+APP = '@PACKAGE@'
+VERSION = '@VERSION@'
+DATA_DIR = '@DATADIR@/@PACKAGE@/data'
 
 def InitLocale():
     global INIT

@@ -27,7 +27,7 @@ import gobject
 import gettext
 import gnomevfs
 from gnome import ui
-from common.Constants import *
+from common.Consts import *
 from common.Widgets import TweakPage, ErrorDialog, WarningDialog, DirView, FlatView
 
 (

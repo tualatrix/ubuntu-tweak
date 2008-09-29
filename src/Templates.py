@@ -28,7 +28,7 @@ import gettext
 import gnomevfs
 from gnome import ui
 from UserDir import UserdirFile
-from common.Constants import *
+from common.Consts import *
 from common.Widgets import TweakPage, WarningDialog, DirView, FlatView
 
 (

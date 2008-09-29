@@ -27,7 +27,7 @@ import thread
 import gobject
 
 from gnome import url_show
-from common.Constants import *
+from common.Consts import *
 from common.Canvas import RenderCell
 from common.Widgets import QuestionDialog, TweakPage
 from common.SystemInfo import GnomeVersion, SystemInfo, SystemModule

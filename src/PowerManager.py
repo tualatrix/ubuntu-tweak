@@ -55,7 +55,7 @@ class PowerManager(TweakPage):
         self.pack_start(box, False, False, 0)
 
 if __name__ == "__main__":
-    from common.Constants import *
+    from common.Consts import *
     from Utility import Test
     InitLocale()
     Test(PowerManager)

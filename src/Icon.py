@@ -24,7 +24,7 @@ import gtk
 import gettext
 import gconf
 
-from common.Constants import *
+from common.Consts import *
 from common.Widgets import Mediator, TweakPage
 from common.Factory import Factory
 
