@@ -27,8 +27,8 @@ import gobject
 from common.Widgets import ListPack, InfoDialog, SinglePack, TweakPage
 from common.SystemInfo import SystemModule
 try:
-    from common.PackageWorker import update_apt_cache, PackageWorker, AptCheckButton
     import ccm
+    from common.PackageWorker import update_apt_cache, PackageWorker, AptCheckButton
 except:
     pass
 

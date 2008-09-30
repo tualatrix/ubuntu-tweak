@@ -1,5 +1,5 @@
-from Dialogs import InfoDialog, QuestionDialog, ErrorDialog, WarningDialog
-from Containers import SinglePack, ListPack, TablePack, TweakPage
-from Widgets import Colleague, Mediator, GconfCheckButton, StrGconfCheckButton, GconfEntry, GconfCombobox, GconfScale, EntryBox, HScaleBox, ComboboxItem, Popup, KeyGrabber, KeyModifier
+from Dialogs import *
+from Widgets import *
+from TreeViews import *
+from Containers import *
 from LookupIcon import *
-from TreeViews import DirView, FlatView
