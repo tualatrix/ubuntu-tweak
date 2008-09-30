@@ -109,6 +109,14 @@ class PackageCleaner(TweakPage):
         hbox = gtk.HBox(False, 0)
         vbox.pack_start(hbox, False, False, 0)
 
+        cache_button = gtk.ToggleButton(_('Clean Cache'))
+        cache_button.set_image(gtk.image_new_from_pixbuf(get_icon_with_name('deb', 24)))
+        hbox.pack_start(cache_button, False, False, 0)
+
+        pkg_button = gtk.ToggleButton(_('Clean Package'))
+        pkg_button.set_image(gtk.image_new_from_stock(gtk.STOCK_CLEAR, gtk.ICON_SIZE_BUTTON))
+        hbox.pack_start(pkg_button, False, False, 0)
+
         sw = gtk.ScrolledWindow()
         sw.set_shadow_type(gtk.SHADOW_ETCHED_IN)
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
