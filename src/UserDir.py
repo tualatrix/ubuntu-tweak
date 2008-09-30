@@ -26,8 +26,8 @@ import gconf
 import gettext
 import gobject
 
+from common.Consts import *
 from common.IniFile import IniFile
-from common.Consts import InitLocale
 from common.Widgets import TweakPage, EntryBox, QuestionDialog, InfoDialog
 
 (

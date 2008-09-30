@@ -3,13 +3,14 @@ SUBDIRS = PolicyKit Widgets
 common_PYTHON = \
 	./Download.py \
 	./__init__.py \
-	./Consts.py \
 	./SystemInfo.py \
+	./Canvas.py \
 	./PackageWorker.py \
 	./AppData.py \
 	./IniFile.py \
 	./Factory.py \
-	./Settings.py
+	./Settings.py \
+	$(NULL)
 
 commondir = $(pkgdatadir)/common
 

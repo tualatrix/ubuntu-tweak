@@ -57,5 +57,4 @@ class PowerManager(TweakPage):
 if __name__ == "__main__":
     from common.Consts import *
     from Utility import Test
-    InitLocale()
     Test(PowerManager)

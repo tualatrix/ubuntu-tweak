@@ -2,7 +2,7 @@ __all__ = (
         'APP',
         'VERSION',
         'DATA_DIR',
-        'InitLocale',
+        'init_locale',
         )
 
 import gettext
@@ -11,7 +11,7 @@ APP = '@PACKAGE@'
 VERSION = '@VERSION@'
 DATA_DIR = '@DATADIR@/@PACKAGE@/data'
 
-def InitLocale():
+def init_locale():
     global INIT
     try:
         INIT
@@ -19,4 +19,4 @@ def InitLocale():
         gettext.install(APP, unicode = True)
         INIT = True
 
-InitLocale()
+init_locale()

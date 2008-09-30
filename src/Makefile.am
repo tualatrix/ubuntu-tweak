@@ -22,6 +22,7 @@ tweak_PYTHON = \
 	./Installer.py \
 	./ScriptWorker.py \
 	./Compiz.py \
-	./Utility.py
+	./Utility.py \
+	$(NULL)
 
 tweakdir = $(pkgdatadir)

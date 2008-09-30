@@ -26,7 +26,7 @@ import gconf
 import gobject
 import gettext
 import time
-from Settings import *
+from common.Settings import *
 
 class Colleague:
     def __init__(self, mediator):

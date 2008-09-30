@@ -197,7 +197,7 @@ MODULES = \
     [AUTOSTART, 'autostart.png', _("Auto Start"), AutoStart, SHOW_NONE],
     [DESKTOP, 'desktop.png', _("Desktop"), None, SHOW_CHILD],
     [ICON, 'icon.png', _("Desktop Icon"), Icon, SHOW_NONE],
-    [METACITY, 'metacity.png', _("Metacity"), Metacity, SHOW_NONE],
+    [METACITY, 'metacity.png', _("Window Settings"), Metacity, SHOW_NONE],
     [COMPIZ, 'compiz-fusion.png', _("Compiz Fusion"), Compiz, SHOW_NONE],
     [PERSONAL, 'personal.png', _("Personal"), None, SHOW_CHILD],
     [USERDIR, 'userdir.png', _("User Folder"), UserDir, SHOW_NONE],

@@ -11,8 +11,6 @@ from common.Widgets.LookupIcon import *
 from common.Widgets import TweakPage, InfoDialog
 from xdg.DesktopEntry import DesktopEntry
 
-InitLocale()
-
 try:
     from common.PackageWorker import PackageWorker, PackageInfo, update_apt_cache
     DISABLE = False
