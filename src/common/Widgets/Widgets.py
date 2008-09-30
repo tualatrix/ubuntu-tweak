@@ -91,13 +91,6 @@ class GconfEntry(gtk.Entry):
             client.unset(key)
             self.set_text(_("Unset"))
 
-class CGconfCheckButton(GconfCheckButton, Colleague):
-    def __init__(self, label, key, mediator):
-        GconfCheckButton.__init__(self, label, key)
-        Colleague.__init__(self, mediator)
-
-        self.connect("toggled", self.state_changed)
-
 class ColleagueCheckButton(gtk.CheckButton, Colleague):
     def __init__(self, label, mediator):
         gtk.CheckButton.__init__(self, label)

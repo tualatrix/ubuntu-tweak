@@ -49,17 +49,15 @@ def update_apt_cache(init = False):
     records = apt_pkg.GetPkgRecords(cache)
     sourcelist = apt_pkg.GetPkgSourceList()
 
-class AptCheckButton(gtk.CheckButton, Colleague):
-    def __init__(self, label, pkgname, mediator, tooltip = None):
+class AptCheckButton(gtk.CheckButton):
+    def __init__(self, label, pkgname, tooltip = None):
         gtk.CheckButton.__init__(self, label)
-        Colleague.__init__(self, mediator)
 
         self.pkgname = pkgname
         if tooltip:
             self.set_tooltip_text(tooltip)
 
         self.set_active(self.get_state())
-        self.connect("toggled", self.state_changed)
 
     def get_state(self):
         try:

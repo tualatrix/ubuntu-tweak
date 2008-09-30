@@ -31,9 +31,9 @@ except ImportError:
     DISABLE = True
 
 from common.Factory import Factory
-from common.Widgets import ListPack, TablePack, Mediator, InfoDialog, TweakPage
+from common.Widgets import ListPack, TablePack, InfoDialog, TweakPage
 
-class Nautilus(TweakPage, Mediator):
+class Nautilus(TweakPage):
     """Nautilus Settings"""
     def __init__(self):
         TweakPage.__init__(self)
@@ -48,7 +48,9 @@ class Nautilus(TweakPage, Mediator):
         hbox.pack_start(label, False, False, 0)
 
         client = gconf.client_get_default()
-        spinbutton = gtk.SpinButton(gtk.Adjustment(client.get_int("/apps/nautilus/icon_view/thumbnail_size"), 16, 512, 16, 16, 16))
+        init_size = client.get_int("/apps/nautilus/icon_view/thumbnail_size")
+        adjust = gtk.Adjustment(init_size, 16, 512, 16, 16)
+        spinbutton = gtk.SpinButton(adjust)
         spinbutton.connect("value-changed", self.spinbutton_value_changed_cb)
         hbox.pack_end(spinbutton, False, False, 0)
         box.vbox.pack_start(hbox, False, False, 0)
@@ -63,9 +65,12 @@ class Nautilus(TweakPage, Mediator):
             update_apt_cache(True)
             self.packageWorker = PackageWorker()
 
-            self.nautilus_terminal = AptCheckButton(_("Nautilus with Open Terminal"), 'nautilus-open-terminal', self)
-            self.nautilus_root = AptCheckButton(_("Nautilus with Root Privileges"), 'nautilus-gksu', self)
-            self.nautilus_wallpaper = AptCheckButton(_("Nautilus with Wallpaper"), 'nautilus-wallpaper', self)
+            self.nautilus_terminal = AptCheckButton(_('Nautilus with Open Terminal'), 'nautilus-open-terminal')
+            self.nautilus_terminal.connect('toggled', self.colleague_changed)
+            self.nautilus_root = AptCheckButton(_('Nautilus with Root Privileges'), 'nautilus-gksu')
+            self.nautilus_root.connect('toggled', self.colleague_changed)
+            self.nautilus_wallpaper = AptCheckButton(_('Nautilus with Wallpaper'), 'nautilus-wallpaper')
+            self.nautilus_wallpaper.connect('toggled', self.colleague_changed)
             box = ListPack(_("Nautilus Extensions"), (
                 self.nautilus_terminal,
                 self.nautilus_root,
@@ -83,7 +88,6 @@ class Nautilus(TweakPage, Mediator):
             self.pack_start(box, False, False, 0)
 
     def spinbutton_value_changed_cb(self, widget, data = None):
-        widget.set_increments(widget.get_value(), widget.get_value())
         client = gconf.client_get_default()
         client.set_int("/apps/nautilus/icon_view/thumbnail_size", int(widget.get_value()))
 
@@ -107,7 +111,7 @@ class Nautilus(TweakPage, Mediator):
 
         update_apt_cache()
 
-    def colleague_changed(self):
+    def colleague_changed(self, widget):
         if self.nautilus_terminal.get_state() != self.nautilus_terminal.get_active() or\
                 self.nautilus_root.get_state() != self.nautilus_root.get_active() or\
                 self.nautilus_wallpaper.get_state() != self.nautilus_wallpaper.get_active():

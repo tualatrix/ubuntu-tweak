@@ -21,11 +21,10 @@
 import pygtk
 pygtk.require("2.0")
 import gtk
-import gettext
 import gconf
 
 from common.Consts import *
-from common.Widgets import Mediator, TweakPage
+from common.Widgets import TweakPage
 from common.Factory import Factory
 
 computer_icon = \
@@ -100,7 +99,7 @@ class DesktopIcon(gtk.VBox):
             self.entry.get_gsetting().unset()
             self.entry.set_text(_("Unset"))
 
-class Icon(TweakPage, Mediator):
+class Icon(TweakPage):
     """Desktop Icon settings"""
 
     def __init__(self):
