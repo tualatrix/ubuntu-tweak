@@ -20,12 +20,11 @@
 
 import pygtk
 pygtk.require("2.0")
-import gtk
-import gettext
-import gconf
 import os
+import gtk
+import gconf
 import gobject
-from common.Widgets import ListPack, Mediator, InfoDialog, SinglePack, TweakPage
+from common.Widgets import ListPack, InfoDialog, SinglePack, TweakPage
 from common.SystemInfo import SystemModule
 try:
     from common.PackageWorker import update_apt_cache, PackageWorker, AptCheckButton
@@ -74,7 +73,7 @@ class OpacityMenu(gtk.CheckButton, CompizSetting):
     def __init__(self, label):
         gtk.CheckButton.__init__(self, label)
 
-        self.plugin = self.context.Plugins['core']
+        self.plugin = self.context.Plugins['obs']
         self.setting_matches = self.plugin.Screens[0]['opacity_matches']
         self.setting_values = self.plugin.Screens[0]['opacity_values']
 
@@ -181,7 +180,7 @@ class SnapWindow(gtk.CheckButton, CompizSetting):
 
         self.set_active(self.plugin.Enabled)
 
-class Compiz(TweakPage, CompizSetting, Mediator):
+class Compiz(TweakPage, CompizSetting):
     """Compiz Fusion tweak"""
 
     def __init__(self):
@@ -194,15 +193,15 @@ class Compiz(TweakPage, CompizSetting, Mediator):
             update_apt_cache(True)
             self.packageWorker = PackageWorker()
 
-            self.advanced_settings = AptCheckButton(_("Install Advanced Desktop Effects Settings Manager"),\
-                    'compizconfig-settings-manager',\
-                    self)
-            self.simple_settings = AptCheckButton(_("Install Simple Desktop Effects Settings manager"),\
-                    'simple-ccsm',\
-                    self)
-            self.screenlets = AptCheckButton(_("Install Screenlets Widget Application"),\
-                    'screenlets',\
-                    self)
+            self.advanced_settings = AptCheckButton(_("Install Advanced Desktop Effects Settings Manager"),
+                    'compizconfig-settings-manager')
+            self.advanced_settings.connect('toggled', self.colleague_changed)
+            self.simple_settings = AptCheckButton(_("Install Simple Desktop Effects Settings manager"),
+                    'simple-ccsm')
+            self.simple_settings.connect('toggled', self.colleague_changed)
+            self.screenlets = AptCheckButton(_("Install Screenlets Widget Application"),
+                    'screenlets')
+            self.screenlets.connect('toggled', self.colleague_changed)
 
         if SystemModule.has_ccm() and SystemModule.has_right_compiz():
             hbox = gtk.HBox(False, 0)
@@ -364,7 +363,7 @@ class Compiz(TweakPage, CompizSetting, Mediator):
 
         self.show_all()
 
-    def colleague_changed(self):
+    def colleague_changed(self, widget):
         if self.advanced_settings.get_state() != self.advanced_settings.get_active() or\
                 self.simple_settings.get_state() != self.simple_settings.get_active() or\
                 self.screenlets.get_state() != self.screenlets.get_active():
