@@ -129,6 +129,9 @@ class PackageWorker:
 
         return list
 
+    def get_pkgsummary(self, pkg):
+        return cache[pkg].summary
+
     def perform_action(self, window_main, to_add = None, to_rm = None):
         window_main.set_sensitive(False)
         window_main.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
