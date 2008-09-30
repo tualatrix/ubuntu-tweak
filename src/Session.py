@@ -26,10 +26,10 @@ import gconf
 import gettext
 
 from common.Consts import *
-from common.Widgets import ListPack, SinglePack, TweakPage, Mediator
+from common.Widgets import ListPack, SinglePack, TweakPage
 from common.Factory import Factory
 
-class Session(TweakPage, Mediator):
+class Session(TweakPage):
     """GNOME Session control"""
     def __init__(self):
         TweakPage.__init__(self)
@@ -130,12 +130,13 @@ class Session(TweakPage, Mediator):
         button = Factory.create("gconfcheckbutton", _("Automatically save changes to session"), "auto_save_session")
         button2 = Factory.create("gconfcheckbutton", _("Show Logout prompt"), "logout_prompt")
         button3 = Factory.create("gconfcheckbutton", _("Allow TCP Connections(Remote Connect)"), "allow_tcp_connections")
-        self.show_splash_button = Factory.create("cgconfcheckbutton", _("Show Splash screen"), "show_splash_screen", self)
+        self.show_splash_button = Factory.create("gconfcheckbutton", _("Show Splash screen"), "show_splash_screen")
+        self.show_splash_button.connect('toggled', self.colleague_changed)
 
         box = ListPack(_("Session Control"), (button, button2, button3, self.show_splash_button))
         return box
 
-    def colleague_changed(self):
+    def colleague_changed(self, widget):
         if self.show_splash_button.get_active():
             self.button.set_sensitive(True)
         else:
