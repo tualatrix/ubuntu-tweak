@@ -346,7 +346,8 @@ class ThirdSoft(TweakPage):
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         self.pack_start(sw)
 
-        self.treeview = SourcesView(self)
+        self.treeview = SourcesView()
+        self.treeview.connect('sourcechanged', self.colleague_changed)
         self.treeview.selection.connect('changed', self.on_selection_changed)
         self.treeview.set_sensitive(False)
         self.treeview.set_rules_hint(True)

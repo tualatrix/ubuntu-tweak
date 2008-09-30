@@ -26,14 +26,14 @@ import time
 import thread
 import tempfile
 import subprocess
+import apt
 import apt_pkg
-from apt import package
 from xdg.DesktopEntry import DesktopEntry
 from Widgets import Colleague
 
 def update_apt_cache(init = False):
     '''if init is true, force to update, or it will update only once'''
-    global cache, depcache, records, sourcelist
+    global cache
 
     if init:
         try:
@@ -44,10 +44,7 @@ def update_apt_cache(init = False):
             return
 
     apt_pkg.init()
-    cache = apt_pkg.GetCache()
-    depcache = apt_pkg.GetDepCache(cache)
-    records = apt_pkg.GetPkgRecords(cache)
-    sourcelist = apt_pkg.GetPkgSourceList()
+    cache = apt.Cache(apt.progress.OpTextProgress())
 
 class AptCheckButton(gtk.CheckButton):
     def __init__(self, label, pkgname, tooltip = None):
@@ -61,8 +58,7 @@ class AptCheckButton(gtk.CheckButton):
 
     def get_state(self):
         try:
-            pkgiter = cache[self.pkgname]
-            pkg = package.Package(cache, depcache, records, sourcelist, None, pkgiter)
+            pkg = cache[self.pkgname]
         except KeyError:
             self.set_sensitive(False)
             label = self.get_property('label')
@@ -80,8 +76,7 @@ class PackageInfo:
 
     def __init__(self, name):
         self.name = name
-        pkgiter = cache[name]
-        self.pkg = package.Package(cache, depcache, records, sourcelist, None, pkgiter)
+        self.pkg = cache[name]
         self.desktopentry = DesktopEntry(self.DESKTOP_DIR + name + ".desktop")
 
     def check_installed(self):
