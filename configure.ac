@@ -7,11 +7,20 @@ AM_INIT_AUTOMAKE([1.10 -Wall -Werror])
 AC_CONFIG_HEADER(config.h)
 AC_CONFIG_MACRO_DIR([m4])
 
+PKG_PROG_PKG_CONFIG([0.19])
+
 # Check Python
 AM_PATH_PYTHON([2.5])
 if test "x$PYTHON" = "x:"; then
     AC_MSG_ERROR([Python not found])
 fi
+
+# Pygtk
+PKG_CHECK_MODULES([pygtk], [gtk+-2.0 >= 2.12.0 pygtk-2.0 >= 2.12.0])
+AC_SUBST(PYGTK_CFLAGS)
+AC_SUBST(PYGTK_LIBS)
+PYGTK_DEFS=`$PKG_CONFIG --variable=defsdir pygtk-2.0`
+AC_SUBST(PYGTK_DEFS)
 
 # Define Getext
 GETTEXT_PACKAGE=ubuntu-tweak
