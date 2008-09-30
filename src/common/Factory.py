@@ -148,9 +148,9 @@ class Factory:
         else:
             return None
 
-    def create_strgconfcheckbutton(self, label, key, mediator, tooltip = None):
+    def create_strgconfcheckbutton(self, label, key, tooltip = None):
         if key in self.keys:
-            button = StrGconfCheckButton(label, self.keys[key], mediator)
+            button = StrGconfCheckButton(label, self.keys[key])
             if tooltip:
                 button.set_tooltip_text(tooltip)
             return button

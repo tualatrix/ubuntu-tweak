@@ -39,51 +39,56 @@ class Mediator:
     def colleague_changed(self):
         pass
 
-class GconfCheckButton(gtk.CheckButton, BoolSetting):
+class GconfCheckButton(gtk.CheckButton):
     def __init__(self, label, key):
-        gtk.CheckButton.__init__(self)
-        BoolSetting.__init__(self, key)
+        super(GconfCheckButton, self).__init__()
+        self.__setting = BoolSetting(key)
 
         self.set_label(label)
-        self.set_active(self.get_bool())
+        self.set_active(self.__setting.get_bool())
 
-        self.client.notify_add(key, self.value_changed)
+        self.__setting.get_client().notify_add(key, self.value_changed)
         self.connect("toggled", self.button_toggled)
 
     def value_changed(self, client, id, entry, data = None):
-        self.set_active(self.get_bool())
+        self.set_active(self.__setting.get_bool())
 
     def button_toggled(self, widget, data = None):
-        self.client.set_bool(self.key, self.get_active())
+        self.__setting.set_bool(self.get_active())
         
-class StrGconfCheckButton(GconfCheckButton, Colleague):
-    def __init__(self, label, key, mediator):
-        GconfCheckButton.__init__(self, label, key)
-        Colleague.__init__(self, mediator)
-
-        self.connect("toggled", self.state_changed)
+class StrGconfCheckButton(GconfCheckButton):
+    '''This class use to moniter the key with StringSetting, nothing else'''
+    def __init__(self, label, key):
+        super(StrGconfCheckButton, self).__init__(label, key)
 
     def button_toggled(self, widget, data = None):
+        '''rewrite the toggled function, it do nothing with the setting'''
         pass
 
-class GconfEntry(gtk.Entry, StringSetting):
+class GconfEntry(gtk.Entry):
     def __init__(self, key):
         gtk.Entry.__init__(self)
-        StringSetting.__init__(self, key)
+        self.__setting = StringSetting(key)
 
-        if self.get_string():
-            self.set_text(self.get_string())
+        string = self.__setting.get_string()
+        if string:
+            self.set_text(string)
         else:
             self.set_text(_("Unset"))
 
-        self.connect("activate", self.on_edit_finished_cb)
-    
-    def on_edit_finished_cb(self, widget, data = None):
+        self.connect('activate', self.on_edit_finished_cb)
+
+    def get_gsetting(self):
+         return self.__setting
+
+    def on_edit_finished_cb(self, widget):
         string = self.get_text()
+        client = self.__setting.get_client()
+        key = self.__setting.get_key()
         if string:
-            self.client.set_string(self.key, self.get_text())
+            client.set_string(key, self.get_text())
         else:
-            self.client.unset(self.key)
+            client.unset(key)
             self.set_text(_("Unset"))
 
 class CGconfCheckButton(GconfCheckButton, Colleague):
@@ -117,23 +122,24 @@ class GconfCombobox(ConstStringSetting):
 
     def value_changed_cb(self, widget, data = None):
         text = widget.get_active_text()
-        self.client.set_string(self.key, self.values[self.texts.index(text)])
+        client = self.get_client()
+        key = self.get_key()
 
-class GconfScale(NumSetting, gtk.HScale):
+        client.set_string(key, self.values[self.texts.index(text)])
+
+class GconfScale(gtk.HScale):
     def __init__(self, min, max, key, digits = 0):
         gtk.HScale.__init__(self)
-        Setting.__init__(self, key)
+        self.__setting = NumSetting(key)
         
         self.set_range(min, max)
         self.set_digits(digits)
         self.set_value_pos(gtk.POS_RIGHT)
-        self.connect("value-changed", self.on_value_changed)
-
-        self.set_value(self.get_num())
+        self.connect("value-changed", self.on_value_changed) 
+        self.set_value(self.__setting.get_num())
 
     def on_value_changed(self, widget, data = None):
-        self.set_num(widget.get_value())
-
+        self.__setting.set_num(widget.get_value())
 
 class EntryBox(gtk.HBox):
     def __init__(self, label, text):

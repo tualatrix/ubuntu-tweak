@@ -57,11 +57,12 @@ trash_icon = \
 
 desktop_icon = (computer_icon, home_icon, trash_icon)
 
-class DesktopIcon(gtk.VBox, Mediator):
+class DesktopIcon(gtk.VBox):
     def __init__(self, item):
         gtk.VBox.__init__(self)
 
-        self.show_button = Factory.create("cgconfcheckbutton", item["label"], item["visible"], self)
+        self.show_button = Factory.create("gconfcheckbutton", item["label"], item["visible"])
+        self.show_button.connect('toggled', self.colleague_changed)
         self.pack_start(self.show_button, False, False, 0)
 
         self.show_hbox = gtk.HBox(False, 10)
@@ -73,24 +74,30 @@ class DesktopIcon(gtk.VBox, Mediator):
         icon = gtk.image_new_from_icon_name(item["icon"], gtk.ICON_SIZE_DIALOG)
         self.show_hbox.pack_start(icon, False, False, 0)
 
-        self.rename_button = Factory.create("strgconfcheckbutton", item["rename"], item["name"], self)
+        self.rename_button = Factory.create("strgconfcheckbutton", item["rename"], item["name"])
+        self.rename_button.connect('toggled', self.colleague_changed)
         vbox = gtk.VBox(False, 5)
         self.show_hbox.pack_start(vbox, False, False, 0)
         vbox.pack_start(self.rename_button, False, False, 0)
 
         self.entry = Factory.create("gconfentry", item["name"])
+        self.entry.connect('focus-out-event', self.entry_focus_out)
         if not self.rename_button.get_active():
             self.entry.set_sensitive(False)
         vbox.pack_start(self.entry, False, False, 0)
 
-    def colleague_changed(self):
+    def entry_focus_out(self, widget, event):
+        self.entry.get_gsetting().set_string(self.entry.get_text())
+
+    def colleague_changed(self, widget):
         self.show_hbox.set_sensitive(self.show_button.get_active())
         active = self.rename_button.get_active()
         if active:
             self.entry.set_sensitive(True)
+            self.entry.grab_focus()
         else:
             self.entry.set_sensitive(False)
-            self.entry.client.unset(self.entry.key)
+            self.entry.get_gsetting().unset()
             self.entry.set_text(_("Unset"))
 
 class Icon(TweakPage, Mediator):
@@ -99,7 +106,8 @@ class Icon(TweakPage, Mediator):
     def __init__(self):
         TweakPage.__init__(self, _("Desktop Icon settings"))
 
-        self.show_button = Factory.create("cgconfcheckbutton", _("Show desktop icons"), "show_desktop", self)
+        self.show_button = Factory.create("gconfcheckbutton", _("Show desktop icons"), "show_desktop")
+        self.show_button.connect('toggled', self.colleague_changed)
         self.pack_start(self.show_button, False, False, 10)
 
         self.show_button_box = gtk.HBox(False, 10)
@@ -127,7 +135,7 @@ class Icon(TweakPage, Mediator):
         button = Factory.create("gconfcheckbutton", _("Use Home Folder as the desktop(Logout for changes to take effect)"), "desktop_is_home_dir")
         vbox.pack_start(button, False, False, 0)
 
-    def colleague_changed(self):
+    def colleague_changed(self, widget):
         self.show_button_box.set_sensitive(self.show_button.get_active())
 
 if __name__ == "__main__":

@@ -19,6 +19,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import gconf
+import gobject
 
 __all__ = (
     'Setting',
@@ -28,84 +29,135 @@ __all__ = (
     'ConstStringSetting',
 )
 
-class Setting:
+class Setting(gobject.GObject):
     """
     The base class of an option, client is shared by all subclass
     Every Setting hold a key and a value
     """
 
-    client = gconf.client_get_default()
+    __client = gconf.client_get_default()
 
     def __init__(self, key):
-        self.key = key
-        self.value = self.client.get(key)
+        super(Setting, self).__init__()
+        self.__key = key
+        self.__dir = self.get_dir()
 
-        dir = self.get_dir_from_key(key)
-        self.client.add_dir(dir, gconf.CLIENT_PRELOAD_NONE)
-#       self.client.notify_add(key, self.value_changed, key)
+        self.__client.add_dir(self.__dir, gconf.CLIENT_PRELOAD_NONE)
+#       self.__client.notify_add(key, self.value_changed, key)
 
     def value_changed(self, client, id, entry, data = None):
         pass
 
-    def get_dir_from_key(self, key):
-        return "/".join(key.split("/")[0: -1])
+    def set_value(self, value):
+        pass
+
+    def set_string(self, string):
+        self.__client.set_string(self.__key, string)
+
+    def get_dir(self):
+        return "/".join(self.__key.split("/")[0: -1])
+
+    def get_key(self):
+        return self.__key
+
+    def get_value(self):
+        return self.__client.get(self.__key)
+
+    def get_client(self):
+        return self.__client
+
+    def unset(self):
+        self.__client.unset(self.__key)
+
+gobject.type_register(Setting)
 
 class BoolSetting(Setting):
     def __init__(self, key):
-        Setting.__init__(self, key)
+        super(BoolSetting, self).__init__(key)
 
-        self.bool = self.get_bool()
+    def set_bool(self, bool):
+        self.get_client().set_bool(self.get_key(), bool)
 
     def get_bool(self):
-        self.value = self.client.get(self.key)
-        if self.value:
-            if self.value.type == gconf.VALUE_BOOL:
-                return self.value.get_bool()
-            elif self.value.type == gconf.VALUE_STRING:
-                return bool(self.value.get_string())
-            elif self.value.type == gconf.VALUE_INT:
-                return bool(self.value.get_int())
+        value = self.get_value()
+        if value:
+            if value.type == gconf.VALUE_BOOL:
+                return value.get_bool()
+            elif value.type == gconf.VALUE_STRING:
+                return bool(value.get_string())
+            elif value.type == gconf.VALUE_INT:
+                return bool(value.get_int())
         else:
             return False
 
 class StringSetting(Setting):
     def __init__(self, key):
-        Setting.__init__(self, key)
-
-        self.string = self.get_string()
+        super(StringSetting, self).__init__(key)
 
     def get_string(self):
-        self.value = self.client.get(self.key)
-        if self.value:
-            return self.value.get_string()
+        value = self.get_value()
+        if value:
+            return value.get_string()
         else:
-            return None
+            return ''
+
+class IntString(Setting):
+    def __init__(self, key):
+        super(IntString, self).__init__(key)
+
+        self.__int = self.__get_int()
+
+    def __get_int(self):
+        self.__value = self.__client.get(self.__key)
+        if self.__value:
+            return self.__value.get_int()
+        else:
+            return 0
+
+    def get_int(self):
+        return self.__int
+
+class FloatString(Setting):
+    def __init__(self, key):
+        super(IntString, self).__init__(key)
+
+        self.__float = self.__get_float()
+
+    def __get_float(self):
+        self.__value = self.__client.get(self.__key)
+        if self.__value:
+            return self.__value.get_float()
+        else:
+            return 0
+
+    def get_float(self):
+        return self.__float
 
 class NumSetting(Setting):
     def __init__(self, key):
-        Setting.__init__(self, key)
-
-        self.num = self.get_num()
+        super(NumSetting, self).__init__(key)
 
     def get_num(self):
-        self.value = self.client.get(self.key)
-        if self.value:
-            if self.value.type == gconf.VALUE_INT:
-                return self.value.get_int()
-            elif self.value.type == gconf.VALUE_FLOAT:
-                return self.value.get_float()
+        value = self.get_value()
+        if value:
+            if value.type == gconf.VALUE_INT:
+                return value.get_int()
+            elif value.type == gconf.VALUE_FLOAT:
+                return value.get_float()
         else:
             return 0
 
     def set_num(self, num):
-        self.value = self.client.get(self.key)
-        if self.value:
-            if self.value.type == gconf.VALUE_INT:
-                self.client.set_int(self.key, int(num))
-            elif self.value.type == gconf.VALUE_FLOAT:
-                self.client.set_float(self.key, num)
+        value = self.get_value()
+        key = self.get_key()
+        client = self.get_client()
+        if value:
+            if value.type == gconf.VALUE_INT:
+                client.set_int(key, int(num))
+            elif value.type == gconf.VALUE_FLOAT:
+                client.set_float(key, num)
         else:
-            self.client.set_float(self.key, num)
+            client.set_float(key, num)
 
 class ConstStringSetting(StringSetting):
     def __init__(self, key, values):
