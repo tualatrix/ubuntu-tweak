@@ -6,6 +6,7 @@ common_PYTHON = \
 	./SystemInfo.py \
 	./Canvas.py \
 	./PackageWorker.py \
+	./LookupIcon.py \
 	./AppData.py \
 	./IniFile.py \
 	./Factory.py \

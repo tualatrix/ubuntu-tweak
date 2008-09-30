@@ -1,5 +1,4 @@
 widgets_PYTHON = \
-	./LookupIcon.py \
 	./__init__.py \
 	./Widgets.py \
 	./TreeViews.py \

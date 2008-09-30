@@ -23,8 +23,8 @@ import gtk
 import shutil
 import gobject
 from xdg.DesktopEntry import DesktopEntry
+from common.LookupIcon import *
 from common.Widgets import InfoDialog, TweakPage
-from common.Widgets.LookupIcon import *
 
 (
     COLUMN_ACTIVE,

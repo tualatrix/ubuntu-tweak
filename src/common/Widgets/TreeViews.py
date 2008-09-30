@@ -4,8 +4,8 @@ import shutil
 import gobject
 from gnome import ui
 import gnomevfs
-from LookupIcon import get_icon_with_type
 from Dialogs import ErrorDialog
+from common.LookupIcon import get_icon_with_type
 
 (
     DIR_ICON,
