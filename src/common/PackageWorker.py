@@ -121,6 +121,14 @@ class PackageWorker:
         lock.release()
         f.close()
 
+    def list_autoeemovable(self):
+        list = []
+        for pkg in cache.keys():
+            if cache[pkg].isAutoRemovable:
+                list.append(pkg)
+
+        return list
+
     def perform_action(self, window_main, to_add = None, to_rm = None):
         window_main.set_sensitive(False)
         window_main.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
@@ -135,3 +143,7 @@ class PackageWorker:
         window_main.window.set_cursor(None)
 
         return self.return_code
+
+if __name__ == '__main__':
+    update_apt_cache()
+    print PackageWorker().list_autoeemovable()
