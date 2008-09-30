@@ -27,7 +27,6 @@ import time
 import thread
 import subprocess
 import gobject
-import gettext
 import apt_pkg
 
 from gnome import url_show
@@ -37,7 +36,7 @@ from common.AppData import *
 from common.Settings import BoolSetting
 from common.PolicyKit import PolkitButton, DbusProxy
 from common.SystemInfo import SystemModule
-from common.Widgets import ListPack, TweakPage, Colleague, Mediator, GconfCheckButton, InfoDialog, WarningDialog, ErrorDialog, QuestionDialog
+from common.Widgets import ListPack, TweakPage, GconfCheckButton, InfoDialog, WarningDialog, ErrorDialog, QuestionDialog
 from aptsources.sourceslist import SourceEntry, SourcesList
 
 (
@@ -183,10 +182,12 @@ class UpdateCacheDialog:
             self.parent.set_sensitive(True)
         return res
 
-class SourcesView(gtk.TreeView, Colleague):
-    def __init__(self, mediator):
+class SourcesView(gtk.TreeView):
+    __gsignals__ = {
+        'sourcechanged': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, ())
+    }
+    def __init__(self):
         gtk.TreeView.__init__(self)
-        Colleague.__init__(self, mediator)
 
         self.list = SourcesList()
         self.proxy = DbusProxy()
@@ -195,7 +196,6 @@ class SourcesView(gtk.TreeView, Colleague):
         self.__add_column()
 
         self.update_model()
-
         self.selection = self.get_selection()
 
     def __create_model(self):
@@ -288,7 +288,7 @@ class SourcesView(gtk.TreeView, Colleague):
         else:
             self.model.set(iter, COLUMN_ENABLED, False)
             
-        self.state_changed(cell)
+        self.emit('sourcechanged')
 
 class SourceDetail(gtk.VBox):
     def __init__(self):
@@ -335,7 +335,7 @@ class SourceDetail(gtk.VBox):
         if description:
             self.description.set_text(description)
 
-class ThirdSoft(TweakPage, Mediator):
+class ThirdSoft(TweakPage):
     def __init__(self):
         TweakPage.__init__(self, 
                 _('Third Party Softwares Sources'), 
@@ -405,7 +405,7 @@ class ThirdSoft(TweakPage, Mediator):
 
         gtk.gdk.threads_leave()
 
-    def colleague_changed(self):
+    def colleague_changed(self, widget):
         self.refresh_button.set_sensitive(True)
     
     def on_refresh_button_clicked(self, widget):
