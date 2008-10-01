@@ -5,11 +5,16 @@ __all__ = (
         'init_locale',
         )
 
+import os
 import gettext
 
 APP = '@PACKAGE@'
 VERSION = '@VERSION@'
 DATA_DIR = '@DATADIR@/@PACKAGE@/data'
+
+if not os.path.exists(DATA_DIR):
+	datadir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+	DATA_DIR = os.path.join(datadir, 'data')
 
 def init_locale():
     global INIT
