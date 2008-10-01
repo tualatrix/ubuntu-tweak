@@ -29,7 +29,7 @@ class Test:
 
         win.connect('destroy', lambda *w: gtk.main_quit())
         win.set_position(gtk.WIN_POS_CENTER)
-        win.set_size_request(450, 400)
+        win.set_size_request(640, 400)
 
 
         if getattr(model, "__name__", None):

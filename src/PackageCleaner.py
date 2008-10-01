@@ -33,11 +33,16 @@ from common.PackageWorker import PackageWorker, update_apt_cache
 ) = range(5)
 
 class PackageView(gtk.TreeView):
+    __gsignals__ = {
+        'checked': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, ())
+    }
     def __init__(self):
         super(PackageView, self).__init__()
 
         model = self.__create_model()
         self.set_model(model)
+
+        self.__check_list = []
         self.__packageworker = PackageWorker()
 
         self.__add_column()
@@ -57,7 +62,7 @@ class PackageView(gtk.TreeView):
 
     def __add_column(self):
         renderer = gtk.CellRendererToggle()
-#        renderer.connect('toggled', self.on_enable_toggled)
+        renderer.connect('toggled', self.on_package_toggled)
         column = gtk.TreeViewColumn(' ', renderer, active = COLUMN_CHECK)
         column.set_sort_column_id(COLUMN_CHECK)
         self.append_column(column)
@@ -74,6 +79,9 @@ class PackageView(gtk.TreeView):
         column.set_attributes(renderer, markup = COLUMN_DISPLAY)
 
         self.append_column(column)
+
+    def get_list(self):
+        return self.__check_list
 
     def update_model(self):
         model = self.get_model()
@@ -92,11 +100,47 @@ class PackageView(gtk.TreeView):
                 '<b>%s</b>\n%s' % (pkg, desc)
                 ))
 
+    def on_package_toggled(self, cell, path):
+        model = self.get_model()
+        iter = model.get_iter(path)
+
+        check = model.get_value(iter, COLUMN_CHECK)
+        model.set(iter, COLUMN_CHECK, not check)
+        if not check:
+            self.__check_list.append(model.get_value(iter, COLUMN_NAME))
+        else:
+            self.__check_list.remove(model.get_value(iter, COLUMN_NAME))
+
+        self.emit('checked')
+
+    def select_all(self, check = True):
+        model = self.get_model()
+        model.foreach(self.select_foreach, check)
+        self.emit('checked')
+
+    def select_foreach(self, model, path, iter, check):
+        model.set(iter, COLUMN_CHECK, check)
+        if check:
+            self.__check_list.append(model.get_value(iter, COLUMN_NAME))
+        else:
+            self.__check_list.remove(model.get_value(iter, COLUMN_NAME))
+
+    def has_checked(self):
+        model = self.get_model()
+        model.foreach(self.check_foreach, check_list)
+
+        return check_list
+
+    def check_foreach(self, model, path, iter, check_list):
+        check = model.get_value(iter, COLUMN_CHECK)
+        if check:
+            check_list.append(model.get_value(iter, COLUMN_NAME))
+
 class PackageCleaner(TweakPage):
     def __init__(self):
         super(PackageCleaner, self).__init__(
                 _('Package Cleaner'),
-                _('Clean up non-useless packages and the package cache!'))
+                _('Clean up the no more needed packages and the package cache.'))
 
         update_apt_cache(True)
 
@@ -126,23 +170,37 @@ class PackageCleaner(TweakPage):
         vbox.pack_start(self.cache_button, False, False, 0)
 
         # create tree view
-        treeview = PackageView()
-        treeview.set_rules_hint(True)
-        sw.add(treeview)
+        self.treeview = PackageView()
+        self.treeview.set_rules_hint(True)
+        self.treeview.connect('checked', self.on_selection_changed)
+        sw.add(self.treeview)
 
         # checkbutton
-        checkbutton = gtk.CheckButton(_('Select All'))
-        self.pack_start(checkbutton, False, False, 0)
+        self.select_button = gtk.CheckButton(_('Select All'))
+        self.select_button.connect('toggled', self.on_select_all)
+        self.pack_start(self.select_button, False, False, 0)
 
         # button
         hbox = gtk.HBox(False, 0)
         self.pack_end(hbox, False ,False, 0)
 
-        self.button = gtk.Button(stock = gtk.STOCK_CLEAR)
-        self.button.set_sensitive(False)
-        hbox.pack_end(self.button, False, False, 0)
+        self.clean_button = gtk.Button(stock = gtk.STOCK_CLEAR)
+        self.clean_button.set_sensitive(False)
+        hbox.pack_end(self.clean_button, False, False, 0)
 
         self.show_all()
+
+    def on_select_all(self, widget):
+        check = widget.get_active()
+        self.treeview.select_all(check)
+
+    def on_selection_changed(self, widget):
+        list = widget.get_list()
+        if list:
+            self.clean_button.set_sensitive(True)
+        else:
+            self.clean_button.set_sensitive(False)
+            self.select_button.set_active(False)
 
     def on_button_toggled(self, widget):
         if widget == self.cache_button:
