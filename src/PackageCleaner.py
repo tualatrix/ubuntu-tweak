@@ -103,24 +103,27 @@ class PackageCleaner(TweakPage):
         self.to_add = []
         self.to_rm = []
 
-        vbox = gtk.VBox(False, 8)
-        self.pack_start(vbox)
-
         hbox = gtk.HBox(False, 0)
-        vbox.pack_start(hbox, False, False, 0)
-
-        cache_button = gtk.ToggleButton(_('Clean Cache'))
-        cache_button.set_image(gtk.image_new_from_pixbuf(get_icon_with_name('deb', 24)))
-        hbox.pack_start(cache_button, False, False, 0)
-
-        pkg_button = gtk.ToggleButton(_('Clean Package'))
-        pkg_button.set_image(gtk.image_new_from_stock(gtk.STOCK_CLEAR, gtk.ICON_SIZE_BUTTON))
-        hbox.pack_start(pkg_button, False, False, 0)
+        self.pack_start(hbox, True, True, 5)
 
         sw = gtk.ScrolledWindow()
         sw.set_shadow_type(gtk.SHADOW_ETCHED_IN)
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        vbox.pack_start(sw)
+        hbox.pack_start(sw)
+
+        vbox = gtk.VBox(False, 8)
+        hbox.pack_start(vbox, False, False, 5)
+
+        self.pkg_button = gtk.ToggleButton(_('Clean Package'))
+        self.pkg_button.set_image(gtk.image_new_from_pixbuf(get_icon_with_name('deb', 24)))
+        self.pkg_button.set_active(True)
+        self.pkg_button.connect('toggled', self.on_button_toggled)
+        vbox.pack_start(self.pkg_button, False, False, 0)
+
+        self.cache_button = gtk.ToggleButton(_('Clean Cache'))
+        self.cache_button.set_image(gtk.image_new_from_stock(gtk.STOCK_CLEAR, gtk.ICON_SIZE_BUTTON))
+        self.cache_button.connect('toggled', self.on_button_toggled)
+        vbox.pack_start(self.cache_button, False, False, 0)
 
         # create tree view
         treeview = PackageView()
@@ -129,17 +132,23 @@ class PackageCleaner(TweakPage):
 
         # checkbutton
         checkbutton = gtk.CheckButton(_('Select All'))
-        vbox.pack_start(checkbutton, False, False, 0)
+        self.pack_start(checkbutton, False, False, 0)
 
         # button
         hbox = gtk.HBox(False, 0)
-        vbox.pack_end(hbox, False ,False, 0)
+        self.pack_end(hbox, False ,False, 0)
 
-        self.button = gtk.Button(stock = gtk.STOCK_APPLY)
+        self.button = gtk.Button(stock = gtk.STOCK_CLEAR)
         self.button.set_sensitive(False)
         hbox.pack_end(self.button, False, False, 0)
 
         self.show_all()
+
+    def on_button_toggled(self, widget):
+        if widget == self.cache_button:
+            self.pkg_button.set_active(not widget.get_active())
+        elif widget == self.pkg_button:
+            self.cache_button.set_active(not widget.get_active())
 
 if __name__ == '__main__':
     from Utility import Test

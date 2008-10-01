@@ -117,9 +117,11 @@ else:
 if SystemModule.is_hardy() or SystemModule.is_intrepid():
     from Installer import Installer
     from ThirdSoft import ThirdSoft
+    from PackageCleaner import PackageCleaner
 else:
     Installer = Notice
     ThirdSoft = Notice
+    PackageCleaner = Notice
 from Scripts import Scripts
 from Shortcuts import Shortcuts
 from PowerManager import PowerManager
@@ -155,6 +157,7 @@ from Metacity import Metacity
     APPLICATIONS,
     INSTALLER,
     THIRDSOFT,
+    PACKAGE,
     STARTUP,
     SESSION,
     AUTOSTART,
@@ -174,10 +177,10 @@ from Metacity import Metacity
     SECURITY,
     SECU_OPTIONS,
     TOTAL
-) = range(24)
+) = range(25)
 
 MODULES_TABLE = {
-    APPLICATIONS: [INSTALLER, THIRDSOFT],
+    APPLICATIONS: [INSTALLER, THIRDSOFT, PACKAGE],
     STARTUP: [SESSION, AUTOSTART],
     DESKTOP: [ICON, METACITY, COMPIZ],
     PERSONAL: [USERDIR, TEMPLATES, SCRIPTS, SHORTCUTS],
@@ -192,6 +195,7 @@ MODULES = \
     [APPLICATIONS, 'applications.png', _("Applications"), None, SHOW_CHILD],
     [INSTALLER, 'installer.png', _("Add/Remove"), Installer, SHOW_NONE],
     [THIRDSOFT, 'third-soft.png', _("Third Party Sources"), ThirdSoft, SHOW_NONE],
+    [PACKAGE, 'package.png', _("Package Cleaner"), PackageCleaner, SHOW_NONE],
     [STARTUP, 'startup.png', _("Startup"), None, SHOW_CHILD],
     [SESSION, 'session.png', _("Session Control"), Session, SHOW_NONE],
     [AUTOSTART, 'autostart.png', _("Auto Start"), AutoStart, SHOW_NONE],
