@@ -28,17 +28,6 @@ import gettext
 import time
 from common.Settings import *
 
-class Colleague:
-    def __init__(self, mediator):
-        self.mediator = mediator
-
-    def state_changed(self, widget, data = None):
-        self.mediator.colleague_changed()
-
-class Mediator:
-    def colleague_changed(self):
-        pass
-
 class GconfCheckButton(gtk.CheckButton):
     def __init__(self, label, key):
         super(GconfCheckButton, self).__init__()
@@ -90,13 +79,6 @@ class GconfEntry(gtk.Entry):
         else:
             client.unset(key)
             self.set_text(_("Unset"))
-
-class ColleagueCheckButton(gtk.CheckButton, Colleague):
-    def __init__(self, label, mediator):
-        gtk.CheckButton.__init__(self, label)
-        Colleague.__init__(self, mediator)
-
-        self.connect("toggled", self.state_changed)
 
 class GconfCombobox(ConstStringSetting):
     def __init__(self, key, texts, values):
