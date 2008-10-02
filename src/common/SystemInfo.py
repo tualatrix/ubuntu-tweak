@@ -81,7 +81,7 @@ class SystemModule:
 
     @classmethod
     def is_intrepid(self):
-        return 'Mint' in SystemInfo.distro or '8.04' in SystemInfo.distro \
+        return 'Mint' in SystemInfo.distro or '8.10' in SystemInfo.distro \
                 or 'intrepid' in SystemInfo.distro
 
     @classmethod
@@ -99,3 +99,4 @@ if __name__ == "__main__":
     print 'has right compiz', SystemModule.has_right_compiz()
     print 'gnome version', SystemModule.gnome_version()
     print 'is hardy', SystemModule.is_hardy()
+    print 'is inprepid', SystemModule.is_intrepid()

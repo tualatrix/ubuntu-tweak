@@ -29,7 +29,6 @@ import subprocess
 import apt
 import apt_pkg
 from xdg.DesktopEntry import DesktopEntry
-from Widgets import Colleague
 
 def update_apt_cache(init = False):
     '''if init is true, force to update, or it will update only once'''
