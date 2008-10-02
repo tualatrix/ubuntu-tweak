@@ -117,10 +117,12 @@ else:
 if SystemModule.is_hardy() or SystemModule.is_intrepid():
     from Installer import Installer
     from ThirdSoft import ThirdSoft
-    from PackageCleaner import PackageCleaner
 else:
     Installer = Notice
     ThirdSoft = Notice
+if SystemModule.is_intrepid():
+    from PackageCleaner import PackageCleaner
+else:
     PackageCleaner = Notice
 from Scripts import Scripts
 from Shortcuts import Shortcuts
