@@ -27,10 +27,18 @@ import gobject
 from common.Widgets import ListPack, InfoDialog, SinglePack, TweakPage
 from common.SystemInfo import SystemModule
 try:
-    import ccm
     from common.PackageWorker import update_apt_cache, PackageWorker, AptCheckButton
 except:
     pass
+
+def load_ccm():
+    global ccm
+    try:
+        import ccm
+    except:
+        pass
+
+load_ccm()
 
 plugins = \
 [
@@ -57,7 +65,7 @@ class CompizSetting:
     def update_context(self):
         if SystemModule.has_ccm() and SystemModule.has_right_compiz():
             import compizconfig as ccs
-            import ccm
+            load_ccm()
             self.context = ccs.Context()
 
     def get_plugin(self, name):
