@@ -34,7 +34,8 @@ from common.PackageWorker import PackageWorker, update_apt_cache
 
 class PackageView(gtk.TreeView):
     __gsignals__ = {
-        'checked': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, ())
+        'checked': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, 
+                    (gobject.TYPE_BOOLEAN,))
     }
     def __init__(self):
         super(PackageView, self).__init__()
@@ -67,18 +68,18 @@ class PackageView(gtk.TreeView):
         column.set_sort_column_id(COLUMN_CHECK)
         self.append_column(column)
 
-        column = gtk.TreeViewColumn(_('Package'))
-        column.set_sort_column_id(COLUMN_NAME)
-        column.set_spacing(5)
+        self.__column = gtk.TreeViewColumn(_('Package'))
+        self.__column.set_sort_column_id(COLUMN_NAME)
+        self.__column.set_spacing(5)
         renderer = gtk.CellRendererPixbuf()
-        column.pack_start(renderer, False)
-        column.set_attributes(renderer, pixbuf = COLUMN_ICON)
+        self.__column.pack_start(renderer, False)
+        self.__column.set_attributes(renderer, pixbuf = COLUMN_ICON)
 
         renderer = gtk.CellRendererText()
-        column.pack_start(renderer, True)
-        column.set_attributes(renderer, markup = COLUMN_DISPLAY)
+        self.__column.pack_start(renderer, True)
+        self.__column.set_attributes(renderer, markup = COLUMN_DISPLAY)
 
-        self.append_column(column)
+        self.append_column(self.__column)
 
     def get_list(self):
         return self.__check_list
@@ -88,6 +89,7 @@ class PackageView(gtk.TreeView):
         icon = get_icon_with_name('deb', 24)
 
         list = self.__packageworker.list_autoeemovable()
+        self.total_num = len(list)
 
         for pkg in list:
             desc = self.__packageworker.get_pkgsummary(pkg)
@@ -111,30 +113,28 @@ class PackageView(gtk.TreeView):
         else:
             self.__check_list.remove(model.get_value(iter, COLUMN_NAME))
 
-        self.emit('checked')
+        if len(self.__check_list) == self.total_num:
+            self.emit('checked', True)
+        else:
+            self.emit('checked', False)
+
+        self.__column.set_title(_('Package (%d Packages selected to remove)') % 
+                             len(self.__check_list))
 
     def select_all(self, check = True):
-        model = self.get_model()
-        model.foreach(self.select_foreach, check)
-        self.emit('checked')
+        self.__check_list = []
 
-    def select_foreach(self, model, path, iter, check):
+        model = self.get_model()
+        model.foreach(self.__select_foreach, check)
+        self.emit('checked', check)
+
+        self.__column.set_title(_('Package (%d Packages selected to remove)') % 
+                             len(self.__check_list))
+
+    def __select_foreach(self, model, path, iter, check):
         model.set(iter, COLUMN_CHECK, check)
         if check:
             self.__check_list.append(model.get_value(iter, COLUMN_NAME))
-        else:
-            self.__check_list.remove(model.get_value(iter, COLUMN_NAME))
-
-    def has_checked(self):
-        model = self.get_model()
-        model.foreach(self.check_foreach, check_list)
-
-        return check_list
-
-    def check_foreach(self, model, path, iter, check_list):
-        check = model.get_value(iter, COLUMN_CHECK)
-        if check:
-            check_list.append(model.get_value(iter, COLUMN_NAME))
 
 class PackageCleaner(TweakPage):
     def __init__(self):
@@ -172,7 +172,7 @@ class PackageCleaner(TweakPage):
         # create tree view
         self.treeview = PackageView()
         self.treeview.set_rules_hint(True)
-        self.treeview.connect('checked', self.on_selection_changed)
+        self.treeview.connect('checked', self.on_item_checked)
         sw.add(self.treeview)
 
         # checkbutton
@@ -194,12 +194,16 @@ class PackageCleaner(TweakPage):
         check = widget.get_active()
         self.treeview.select_all(check)
 
-    def on_selection_changed(self, widget):
+    def on_item_checked(self, widget, all):
         list = widget.get_list()
         if list:
             self.clean_button.set_sensitive(True)
         else:
             self.clean_button.set_sensitive(False)
+
+        if all:
+            self.select_button.set_active(True)
+        else:
             self.select_button.set_active(False)
 
     def on_button_toggled(self, widget):
