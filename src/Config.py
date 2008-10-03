@@ -39,15 +39,8 @@ class Config:
     def get_value(self, key):
         if not key.startswith("/"):
             key = self.build_key(key)
-
-        if type(value) == int:
-            return IntString(key).get_int()
-        elif type(value) == float:
-            return FloatString(key).get_float()
-        elif type(value) == str:
-            return StringSetting(key).get_string()
-        elif type(value) == bool:
-            return BoolSetting(key).get_bool()
+		
+		return Setting(key).get_value()
 
     def build_key(self, key):
         return os.path.join(self.dir, key)
