@@ -18,6 +18,7 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
+import os
 import gtk
 import gobject
 from common.LookupIcon import *
@@ -48,7 +49,8 @@ class PackageView(gtk.TreeView):
 
         self.__add_column()
 
-        self.update_model()
+        self.update_package_model()
+#        self.update_cache_model()
         self.selection = self.get_selection()
 
     def __create_model(self):
@@ -84,12 +86,14 @@ class PackageView(gtk.TreeView):
     def get_list(self):
         return self.__check_list
 
-    def update_model(self):
+    def update_package_model(self):
         model = self.get_model()
-        icon = get_icon_with_name('deb', 24)
+        model.clear()
 
+        icon = get_icon_with_name('deb', 24)
         list = self.__packageworker.list_autoeemovable()
         self.total_num = len(list)
+        self.__column.set_title('Packages need to be removed')
 
         for pkg in list:
             desc = self.__packageworker.get_pkgsummary(pkg)
@@ -100,6 +104,28 @@ class PackageView(gtk.TreeView):
                 pkg,
                 desc,
                 '<b>%s</b>\n%s' % (pkg, desc)
+                ))
+
+    def update_cache_model(self):
+        model = self.get_model()
+        model.clear()
+
+        cache_dir = '/var/cache/apt/archives' 
+        icon = get_icon_with_name('deb', 24)
+        list = map(lambda file: "%s/%s" % (cache_dir, file),
+                    filter(lambda x:x.endswith('deb'), os.listdir(cache_dir))) 
+        self.total_num = len(list)
+        self.__column.set_title('Cache need to be removed')
+
+        for pkg in list:
+            size = os.path.getsize(pkg)/1024
+
+            model.append((
+                False,
+                icon,
+                pkg,
+                size,
+                '<b>%s</b>\nTake space %s KB' % (os.path.basename(pkg), size)
                 ))
 
     def on_package_toggled(self, cell, path):
@@ -177,7 +203,7 @@ class PackageCleaner(TweakPage):
 
         # checkbutton
         self.select_button = gtk.CheckButton(_('Select All'))
-        self.select_button.connect('toggled', self.on_select_all)
+        self.__handler_id = self.select_button.connect('toggled', self.on_select_all)
         self.pack_start(self.select_button, False, False, 0)
 
         # button
@@ -192,6 +218,7 @@ class PackageCleaner(TweakPage):
 
     def on_select_all(self, widget):
         check = widget.get_active()
+
         self.treeview.select_all(check)
 
     def on_item_checked(self, widget, all):
@@ -201,16 +228,25 @@ class PackageCleaner(TweakPage):
         else:
             self.clean_button.set_sensitive(False)
 
+        self.select_button.handler_block(self.__handler_id)
         if all:
             self.select_button.set_active(True)
         else:
             self.select_button.set_active(False)
+        self.select_button.handler_unblock(self.__handler_id)
 
     def on_button_toggled(self, widget):
+        self.select_button.set_active(False)
+
         if widget == self.cache_button:
             self.pkg_button.set_active(not widget.get_active())
         elif widget == self.pkg_button:
             self.cache_button.set_active(not widget.get_active())
+
+        if self.pkg_button.get_active():
+            self.treeview.update_package_model()
+        else:
+            self.treeview.update_cache_model()
 
 if __name__ == '__main__':
     from Utility import Test
