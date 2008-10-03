@@ -29,11 +29,12 @@ import subprocess
 import gobject
 import apt_pkg
 
+from Config import Config
 from gnome import url_show
-from common.Factory import Factory
 from common.Consts import *
 from common.AppData import *
-from common.Settings import BoolSetting
+from common.Factory import Factory
+#from common.Settings import BoolSetting
 from common.PolicyKit import PolkitButton, DbusProxy
 from common.SystemInfo import SystemModule
 from common.Widgets import ListPack, TweakPage, GconfCheckButton, InfoDialog, WarningDialog, ErrorDialog, QuestionDialog
@@ -190,7 +191,7 @@ class SourcesView(gtk.TreeView):
         gtk.TreeView.__init__(self)
 
         self.list = SourcesList()
-        self.proxy = DbusProxy()
+        self.__proxy = DbusProxy()
         self.model = self.__create_model()
         self.set_model(self.model)
         self.__add_column()
@@ -279,9 +280,9 @@ class SourcesView(gtk.TreeView):
         key = self.model.get_value(iter, COLUMN_KEY)
 
         if key:
-            self.proxy.add_aptkey(key)
+            self.__proxy.add_aptkey(key)
 
-        result = self.proxy.set_entry(url, distro, comps, name, not enabled)
+        result = self.__proxy.set_entry(url, distro, comps, name, not enabled)
 
         if result == 'enabled':
             self.model.set(iter, COLUMN_ENABLED, True)
@@ -289,6 +290,9 @@ class SourcesView(gtk.TreeView):
             self.model.set(iter, COLUMN_ENABLED, False)
             
         self.emit('sourcechanged')
+
+    def get_proxy(self):
+        return self.__proxy.get_proxy()
 
 class SourceDetail(gtk.VBox):
     def __init__(self):
@@ -341,6 +345,8 @@ class ThirdSoft(TweakPage):
                 _('Third Party Softwares Sources'), 
                 _('You can always keep up-to-date with the latest version of an application.\nAnd new applications can be installed through Add/Remove.'))
 
+        self.__config = Config()
+
         sw = gtk.ScrolledWindow()
         sw.set_shadow_type(gtk.SHADOW_ETCHED_IN)
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
@@ -382,13 +388,15 @@ class ThirdSoft(TweakPage):
 
     def on_polkit_action(self, widget):
         gtk.gdk.threads_enter()
+        proxy = self.treeview.get_proxy()
+
         if widget.action == 1:
-            if self.treeview.proxy.proxy:
+            if proxy:
                 self.treeview.set_sensitive(True)
                 self.expander.set_sensitive(True)
                 WARNING_KEY = '/apps/ubuntu-tweak/disable_thidparty_warning'
 
-                if not BoolSetting(WARNING_KEY).get_bool():
+                if not self.__config.get_value(WARNING_KEY):
                     dialog = WarningDialog(_('<b><big>Warning</big></b>\n\nIt is a possible security risk to use packages from Third Party Sources. Please be careful.'), buttons = gtk.BUTTONS_OK)
                     vbox = dialog.get_child()
                     hbox = gtk.HBox()

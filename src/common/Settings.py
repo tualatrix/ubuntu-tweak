@@ -101,37 +101,33 @@ class StringSetting(Setting):
         else:
             return ''
 
-class IntString(Setting):
+class IntSetting(Setting):
     def __init__(self, key):
-        super(IntString, self).__init__(key)
+        super(IntSetting, self).__init__(key)
 
-        self.__int = self.__get_int()
-
-    def __get_int(self):
-        self.__value = self.__client.get(self.__key)
-        if self.__value:
-            return self.__value.get_int()
-        else:
-            return 0
+    def set_int(self, int):
+        self.get_client().set_int(self.get_key(), int)
 
     def get_int(self):
-        return self.__int
+        value = self.get_value()
+        if value:
+            return value.get_int()
+        else:
+            return 0
 
 class FloatString(Setting):
     def __init__(self, key):
-        super(IntString, self).__init__(key)
+        super(FloatString, self).__init__(key)
 
-        self.__float = self.__get_float()
-
-    def __get_float(self):
-        self.__value = self.__client.get(self.__key)
-        if self.__value:
-            return self.__value.get_float()
-        else:
-            return 0
+    def set_float(self, float):
+        self.get_client().set_float(self.get_key(), float)
 
     def get_float(self):
-        return self.__float
+        value = self.get_value()
+        if value:
+            return value.get_float()
+        else:
+            return 0.0
 
 class NumSetting(Setting):
     def __init__(self, key):

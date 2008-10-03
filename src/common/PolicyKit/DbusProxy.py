@@ -18,35 +18,37 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-import os
 import dbus
-import gettext
 
 class DbusProxy:
     INTERFACE = "com.ubuntu_tweak.Mechanism"
 
     try:
-        system_bus = dbus.SystemBus()
-        proxy = system_bus.get_object('com.ubuntu_tweak.Mechanism', '/Tweak', INTERFACE)
+        __system_bus = dbus.SystemBus()
+        __proxy = __system_bus.get_object('com.ubuntu_tweak.Mechanism', '/Tweak', INTERFACE)
     except dbus.exceptions.DBusException:
-        proxy = None
+        __proxy = None
 
     @classmethod
     def set_liststate(self, state):
-        self.proxy.SetListState(state, dbus_interface = self.INTERFACE)
+        self.__proxy.SetListState(state, dbus_interface = self.INTERFACE)
 
     @classmethod
     def get_liststate(self):
-        return self.proxy.GetListState(dbus_interface = DbusProxy.INTERFACE)
+        return self.__proxy.GetListState(dbus_interface = self.INTERFACE)
 
     @classmethod
     def set_entry(self, url, distro, comps, name, enabled):
-        return self.proxy.SetSourcesList(url, distro, comps, name, enabled, dbus_interface = self.INTERFACE)
+        return self.__proxy.SetSourcesList(url, distro, comps, name, enabled, dbus_interface = self.INTERFACE)
 
     @classmethod
     def add_aptkey(self, key):
-        self.proxy.AddAptKey(key, dbus_interface = self.INTERFACE)
+        self.__proxy.AddAptKey(key, dbus_interface = self.INTERFACE)
+
+    @classmethod
+    def get_proxy(self):
+        return self.__proxy
 
     @classmethod
     def exit(self):
-        self.proxy.Exit(dbus_interface = DbusProxy.INTERFACE)
+        self.__proxy.Exit(dbus_interface = self.INTERFACE)

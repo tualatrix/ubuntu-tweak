@@ -23,20 +23,32 @@ from common.Settings import *
 class Config:
     dir = '/apps/ubuntu-tweak'
 
-    @classmethod
     def set_value(self, key, value):
+        if not key.startswith("/"):
+            key = self.build_key(key)
+
         if type(value) == int:
-            pass
+            IntString(key).set_int(value)
+        elif type(value) == float:
+            FloatString(key).set_float(value)
         elif type(value) == str:
-            pass
+            StringSetting(key).set_string(value)
         elif type(value) == bool:
-            pass
+            BoolSetting(key).set_bool(value)
 
-    @classmethod
     def get_value(self, key):
-        pass
+        if not key.startswith("/"):
+            key = self.build_key(key)
 
-    @classmethod
+        if type(value) == int:
+            return IntString(key).get_int()
+        elif type(value) == float:
+            return FloatString(key).get_float()
+        elif type(value) == str:
+            return StringSetting(key).get_string()
+        elif type(value) == bool:
+            return BoolSetting(key).get_bool()
+
     def build_key(self, key):
         return os.path.join(self.dir, key)
 
