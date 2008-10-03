@@ -486,7 +486,7 @@ You should have received a copy of the GNU General Public License along with Ubu
     def destroy(self, widget, data = None):
         if SystemModule.has_apt() and SystemModule.is_hardy() or SystemModule.is_intrepid():
             from common.PolicyKit import DbusProxy
-            if DbusProxy.proxy:
+            if DbusProxy.get_proxy():
                 state = DbusProxy.get_liststate()
                 if state == "expire":
                     from ThirdSoft import UpdateCacheDialog
