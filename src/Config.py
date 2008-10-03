@@ -40,7 +40,7 @@ class Config:
         if not key.startswith("/"):
             key = self.build_key(key)
 		
-		return Setting(key).get_value()
+        return Setting(key).get_value()
 
     def build_key(self, key):
         return os.path.join(self.dir, key)
