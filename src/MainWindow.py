@@ -102,7 +102,6 @@ from Computer import Computer
 from Session import Session
 from AutoStart import AutoStart
 from Icon import Icon
-#if SystemModule.has_ccm() and SystemModule.has_apt() or SystemModule.has_right_compiz():
 if SystemModule.has_apt() or SystemModule.has_right_compiz():
     from Compiz import Compiz
 else:
@@ -227,7 +226,7 @@ class ItemCellRenderer(gtk.GenericCellRenderer):
     def __init__(self):
         self.__gobject_init__()
         self.height = 36
-        self.width = 100
+        self.width = 120
         self.set_fixed_size(self.width, self.height)
         self.data = None
         
@@ -245,11 +244,12 @@ class ItemCellRenderer(gtk.GenericCellRenderer):
         x, y, width, height = expose_area
         cell_area = gtk.gdk.Rectangle(x, y, width, height)
 
-        RenderCell(cairo, 
-                 title, 
-                 icon,
-                 type,
-                 cell_area)
+        RenderCell(self,
+                   cairo, 
+                   title, 
+                   icon,
+                   type,
+                   cell_area)
 
     def on_get_size(self, widget, cell_area = None ):
         return (0, 0, self.width, self.height )

@@ -16,11 +16,13 @@ class RenderCell:
     font_size = int(font_name.split()[-1])
 
     def __init__(self, 
+                cell = None,
                 ctr = None,
                 title = None, 
                 icon = None, 
                 type = None,
                 rect = None):
+        self.cell = cell
         self.ctr = ctr
         self.type = type
         
@@ -62,7 +64,7 @@ class RenderCell:
         self.left_padding = 5
         self.top_padding = 2
     
-    def draw_cell( self ):
+    def draw_cell(self):
         self.ctr.save()
         oy = self.y
         self.ctr.translate( self.x, self.y )

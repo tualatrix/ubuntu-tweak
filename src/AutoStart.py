@@ -244,7 +244,7 @@ class AutoStartItem(gtk.TreeView):
 
         renderer = gtk.CellRendererToggle()
         renderer.connect("toggled", self.enabled_toggled, model)
-        column = gtk.TreeViewColumn(_("Enabled"), renderer, active = COLUMN_ACTIVE)
+        column = gtk.TreeViewColumn("", renderer, active = COLUMN_ACTIVE)
         column.set_sort_column_id(COLUMN_ACTIVE)
         self.append_column(column)
 
