@@ -50,7 +50,6 @@ class PackageView(gtk.TreeView):
         self.__add_column()
 
         self.update_package_model()
-#        self.update_cache_model()
         self.selection = self.get_selection()
 
     def __create_model(self):
