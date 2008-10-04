@@ -81,7 +81,7 @@ class OpacityMenu(gtk.CheckButton, CompizSetting):
     def __init__(self, label):
         gtk.CheckButton.__init__(self, label)
 
-        if ccm.Version >= '0.7.8':
+        if ccm.Version > '0.7.6':
             self.plugin = self.context.Plugins['obs']
         else:
             self.plugin = self.context.Plugins['core']
