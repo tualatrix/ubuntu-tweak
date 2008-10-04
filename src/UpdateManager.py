@@ -15,33 +15,10 @@ import gobject
 
 from common.Consts import *
 from common.SystemInfo import SystemInfo
-from common.Settings import Setting
 from xmlrpclib import ServerProxy, Error
+from Config import TweakSettings
 
 socket.setdefaulttimeout(10)
-
-class TweakSettings:
-    client = gconf.client_get_default()
-
-    gconf_dir = '/apps/ubuntu-tweak/'
-    version = gconf_dir + 'version'
-    url = gconf_dir + 'url'
-
-    @classmethod
-    def set_url(self, url):
-        return self.client.set_string(self.url, url)
-
-    @classmethod
-    def get_url(self):
-        return self.client.get_string(self.url)
-
-    @classmethod
-    def set_version(self, version):
-        return self.client.set_string(self.version, version)
-
-    @classmethod
-    def get_version(self):
-        return self.client.get_string(self.version)
 
 class Downloader(gobject.GObject):
     __gsignals__ = {
@@ -84,6 +61,8 @@ class UpdateManager(gtk.Window):
     def __init__(self, parent = None):
         gtk.Window.__init__(self)
 
+        self.__settings = TweakSettings()
+
         self.set_modal(True)
         self.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_DIALOG)
         self.set_size_request(360, 40)
@@ -98,7 +77,7 @@ class UpdateManager(gtk.Window):
         self.downloader.connect('downloading', self.on_downloading)
 
         self.show_all()
-        self.start_download(TweakSettings.get_url())
+        self.start_download(self.__settings.get_url())
 
     def on_downloading(self, widget):
         percentage = self.downloader.percentage
@@ -148,6 +127,7 @@ class UpdateManager(gtk.Window):
     
 def CheckVersion():
     server = ServerProxy("http://ubuntu-tweak.appspot.com/xmlrpc")
+    settings = TweakSettings()
 
     try:
         version = server.version()
@@ -157,8 +137,8 @@ def CheckVersion():
     except socket.gaierror:
         print "Bad Network!"
     else:
-        TweakSettings.set_version(version)
-        TweakSettings.set_url(url)
+        settings.set_version(version)
+        settings.set_url(url)
 
 if __name__ == "__main__":
     CheckVersion()

@@ -64,11 +64,65 @@ class Config:
         else:
             return (0, 0)
 
+    def get_string(self, key):
+        if not key.startswith("/"):
+            key = self.build_key(key)
+
+        return str(self.__client.get_value(key))
+
     def build_key(self, key):
         return os.path.join(self.dir, key)
 
     def get_client(self):
         return self.__client
+
+class TweakSettings:
+    '''Manage the settings of ubuntu tweak'''
+    client = gconf.client_get_default()
+
+    url = 'url'
+    version = 'version'
+    paned_size = 'paned_size'
+    window_size= 'window_size'
+
+    def __init__(self):
+        self.__config = Config()
+
+    def set_url(self, url):
+        '''The new version's download url'''
+        return self.__config.set_value(self.url, url)
+
+    def get_url(self):
+        return self.__config.get_string(self.url)
+
+    def set_version(self, version):
+        return self.__config.set_value(self.version, version)
+
+    def get_version(self):
+        return self.__config.get_string(self.version)
+
+    def set_paned_size(self, size):
+        self.__config.set_value(self.paned_size, size)
+
+    def get_paned_size(self):
+        position = self.__config.get_value(self.paned_size)
+
+        if position:
+            return position
+        else:
+            return 150
+
+    def set_window_size(self, height, width):
+        self.__config.set_pair(self.window_size, gconf.VALUE_INT, gconf.VALUE_INT, height, width)
+
+    def get_window_size(self):
+        height, width = self.__config.get_pair(self.window_size)
+        height, width = int(height), int(width)
+
+        if height and width:
+            return (height, width)
+        else:
+            return (720, 480)
 
 if __name__ == '__main__':
     print Config().build_key('hello')

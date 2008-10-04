@@ -31,8 +31,8 @@ from common.Consts import *
 from common.Canvas import RenderCell
 from common.Widgets import QuestionDialog, TweakPage
 from common.SystemInfo import GnomeVersion, SystemInfo, SystemModule
-from UpdateManager import UpdateManager, TweakSettings
-from Config import Config
+from UpdateManager import UpdateManager
+from Config import Config, TweakSettings
 
 class Tip(gtk.HBox):
     def __init__(self, tip):
@@ -260,7 +260,7 @@ class MainWindow(gtk.Window):
     def __init__(self):
         gtk.Window.__init__(self)
 
-        self.__config = Config()
+        self.__settings = TweakSettings()
 
         self.connect("destroy", self.destroy)
         self.set_title("Ubuntu Tweak")
@@ -303,36 +303,17 @@ class MainWindow(gtk.Window):
         button.connect("clicked", self.destroy);
         hbox.pack_end(button, False, False, 0)
 
-        self.get_paned_size()
-        self.get_window_size()
-
+        self.get_gui_state()
         self.show_all()
         gobject.timeout_add(8000, self.on_timeout)
 
-    def get_paned_size(self):
-        paned_size_key = 'paned_size'
-        position = self.__config.get_value(paned_size_key)
+    def save_gui_state(self):
+        self.__settings.set_window_size(*(self.get_size()))
+        self.__settings.set_paned_size(self.hpaned.get_position())
 
-        if position:
-            self.hpaned.set_position(position)
-
-    def get_window_size(self):
-        window_size_key = 'window_size'
-        height, width = self.__config.get_pair(window_size_key)
-        height, width = int(height), int(width)
-
-        if height and width:
-            self.set_size_request(height, width)
-
-    def save_window_size(self):
-        window_size_key = 'window_size'
-
-        (height, width) = self.get_size()
-        self.__config.set_pair(window_size_key, gconf.VALUE_INT, gconf.VALUE_INT, height, width)
-
-    def save_paned_size(self):
-        paned_size_key = 'paned_size'
-        self.__config.set_value(paned_size_key, self.hpaned.get_position())
+    def get_gui_state(self):
+        self.set_size_request(*(self.__settings.get_window_size()))
+        self.hpaned.set_position(self.__settings.get_paned_size())
 
     def __create_model(self):
         model = gtk.ListStore(
@@ -499,7 +480,7 @@ You should have received a copy of the GNU General Public License along with Ubu
     def check_version(self):
         gtk.gdk.threads_enter()
 
-        version = TweakSettings.get_version()
+        version = self.__settings.get_version()
         if version > VERSION:
             dialog = QuestionDialog(_("A newer version: %s is available online.\nWould you like to update?") % version)
 
@@ -526,6 +507,5 @@ You should have received a copy of the GNU General Public License along with Ubu
 
                 DbusProxy.exit()
 
-        self.save_paned_size()
-        self.save_window_size()
+        self.save_gui_state()
         gtk.main_quit()
