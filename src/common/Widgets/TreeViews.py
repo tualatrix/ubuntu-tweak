@@ -52,6 +52,11 @@ class DirView(gtk.TreeView):
         menu = self.__create_popup_menu()
         menu.show_all()
         self.connect('button_press_event', self.button_press_event, menu)
+        self.connect('key-press-event', self.on_key_press_event)
+
+    def on_key_press_event(self, widget, event):
+        if event.keyval == 65535:
+            self.on_delete_item(widget)
 
     def button_press_event(self, widget, event, menu):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
@@ -120,6 +125,8 @@ class DirView(gtk.TreeView):
 
     def on_delete_item(self, widget):
         model, iter = self.get_selection().get_selected()
+        if not iter:
+            return
         filepath = model.get_value(iter, DIR_PATH)
 
         if filepath != self.dir:
@@ -179,6 +186,17 @@ class DirView(gtk.TreeView):
             file_action = 'copy'
             dir_action = 'copytree'
 
+        if '\r\n' in source:
+            file_list = source.split('\r\n')
+            for file in file_list:
+                if file:
+                    self.file_operate(file, dir_action, file_action, target)
+        else:
+            self.file_operate(source, dir_action, file_action, target)
+
+        self.update_model()
+
+    def file_operate(self, source, dir_action, file_action, target):
         if source.startswith('file:///'):
             source = gnomevfs.format_uri_for_display(source.strip())
 
@@ -200,8 +218,6 @@ class DirView(gtk.TreeView):
                 getattr(shutil, dir_action)(source, target)
             else:
                 getattr(shutil, file_action)(source, target)
-
-        self.update_model()
 
     def update_model(self):
         self.model.clear()
