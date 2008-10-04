@@ -25,8 +25,9 @@ import os
 import gconf
 import gettext
 
-from common.Widgets import HScaleBox, TablePack, TweakPage
+from common.SystemInfo import SystemModule
 from common.Factory import Factory
+from common.Widgets import HScaleBox, TablePack, TweakPage
 
 class PowerManager(TweakPage):
     """Advanced Powermanager Settings"""
@@ -43,16 +44,17 @@ class PowerManager(TweakPage):
         ]) 
         self.pack_start(box, False, False, 0)
 
-        cpu_policy_text = [_("Normal"), _("On Demand"), _("Power Save"), _("Performance")]
-        cpu_policy_value = ["nothing", "ondemand", "powersave", "performance"]
-        box = TablePack(_("CPU Policy"), [
-                [gtk.Label(_("The Performance value when on AC power")), Factory.create("gconfscale", 0, 100, "performance_ac", 0)],
-                [gtk.Label(_("The Performance value when on battery power")), Factory.create("gconfscale", 0, 100, "performance_battery", 0)],
-                [gtk.Label(_("The CPU frequency policy when on AC power")), Factory.create("gconfcombobox", "policy_ac", cpu_policy_text, cpu_policy_value)],
-                [gtk.Label(_("The CPU frequency policy when on battery power")), Factory.create("gconfcombobox", "policy_battery", cpu_policy_text, cpu_policy_value)],
-        ])
-            
-        self.pack_start(box, False, False, 0)
+        if SystemModule.gnome_version < 24:
+            cpu_policy_text = [_("Normal"), _("On Demand"), _("Power Save"), _("Performance")]
+            cpu_policy_value = ["nothing", "ondemand", "powersave", "performance"]
+            box = TablePack(_("CPU Policy"), [
+                    [gtk.Label(_("The Performance value when on AC power")), Factory.create("gconfscale", 0, 100, "performance_ac", 0)],
+                    [gtk.Label(_("The Performance value when on battery power")), Factory.create("gconfscale", 0, 100, "performance_battery", 0)],
+                    [gtk.Label(_("The CPU frequency policy when on AC power")), Factory.create("gconfcombobox", "policy_ac", cpu_policy_text, cpu_policy_value)],
+                    [gtk.Label(_("The CPU frequency policy when on battery power")), Factory.create("gconfcombobox", "policy_battery", cpu_policy_text, cpu_policy_value)],
+            ])
+                
+            self.pack_start(box, False, False, 0)
 
 if __name__ == "__main__":
     from common.Consts import *

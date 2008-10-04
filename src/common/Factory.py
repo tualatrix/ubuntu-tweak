@@ -30,29 +30,32 @@ class XmlHandler(ContentHandler):
         self.dict = dict
 
     def startElement(self, name, attrs):
-        if name == "item":
+        if name == 'item':
             try:
-                minor = attrs["version"]
+                minor = attrs['version']
             except KeyError:
-                self.dict[attrs["title"]] = attrs["key"]
+                self.dict[attrs['title']] = attrs['key']
             else:
                 if GnomeVersion.minor >= minor:
-                    self.dict[attrs["title"]] = attrs["key"]
+                    if attrs['key']:
+                        self.dict[attrs['title']] = attrs['key']
+                    else:
+                        self.dict.pop(attrs['title'])
 
 class GconfKeys:
-    """This class used to store the keys, it will create for only once"""
+    '''This class used to store the keys, it will create for only once'''
     keys = {}
     parser = make_parser()
     handler = XmlHandler(keys)
     parser.setContentHandler(handler)
-    parser.parse("%s/tweaks.xml" % DATA_DIR)
+    parser.parse('%s/tweaks.xml' % DATA_DIR)
 
 class WidgetFactory:
     keys = GconfKeys.keys
 
     @classmethod
     def create(self, widget, *argv):
-        return getattr(WidgetFactory, "create_%s" % widget)(*argv)
+        return getattr(WidgetFactory, 'create_%s' % widget)(*argv)
     
     @classmethod
     def create_gconfcheckbutton(self, *argv):
@@ -122,13 +125,13 @@ class Factory:
     @staticmethod
     def create(widget = None, *argv):
         if len(argv) == 1:
-            return getattr(Factory(), "create_%s" % widget)(argv[0])
+            return getattr(Factory(), 'create_%s' % widget)(argv[0])
         elif len(argv) == 2:
-            return getattr(Factory(), "create_%s" % widget)(argv[0], argv[1])
+            return getattr(Factory(), 'create_%s' % widget)(argv[0], argv[1])
         elif len(argv) == 3:
-            return getattr(Factory(), "create_%s" % widget)(argv[0], argv[1], argv[2])
+            return getattr(Factory(), 'create_%s' % widget)(argv[0], argv[1], argv[2])
         elif len(argv) == 4:
-            return getattr(Factory(), "create_%s" % widget)(argv[0], argv[1], argv[2], argv[3])
+            return getattr(Factory(), 'create_%s' % widget)(argv[0], argv[1], argv[2], argv[3])
     
     def create_gconfcheckbutton(self, label, key, tooltip = None):
         if key in self.keys:
@@ -180,6 +183,8 @@ class Factory:
         else:
             return None
 
-if __name__ == "__main__":
-    print Factory().keys
-    print WidgetFactory.create("gconfcheckbutton", _("Disable \"Run Application\" dialog (Alt+F2)"), "disable_command_line")
+if __name__ == '__main__':
+    for k,v in Factory.keys.items():
+        print '%s\t%s\n' % (k, v)
+
+    print WidgetFactory.create('gconfcheckbutton', _('Disable \'Run Application\' dialog (Alt+F2)'), 'disable_command_line')
