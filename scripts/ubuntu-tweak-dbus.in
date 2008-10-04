@@ -72,9 +72,6 @@ class AptAuth:
         p = subprocess.Popen(cmd)
         return (p.wait() == 0)
         
-class DemoException(dbus.DBusException):
-    _dbus_error_name = 'com.ubuntu_tweak.Mechanism.DemoException'
-
 class Tweak(dbus.service.Object):
     INTERFACE = "com.ubuntu_tweak.Mechanism"
     liststate = None
@@ -106,6 +103,13 @@ class Tweak(dbus.service.Object):
             return self.liststate
         else:
             return "normal"
+
+    @dbus.service.method(INTERFACE,
+                         in_signature='', out_signature='s')
+    def CleanAptCache(self):
+        os.system('apt-get clean')
+
+        return 'done'
             
     @dbus.service.method(INTERFACE,
                          in_signature='s', out_signature='')

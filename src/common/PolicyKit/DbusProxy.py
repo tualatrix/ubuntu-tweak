@@ -50,5 +50,9 @@ class DbusProxy:
         return self.__proxy
 
     @classmethod
+    def clean_apt_cache(self):
+        return self.__proxy.CleanAptCache(dbus_interface = self.INTERFACE)
+
+    @classmethod
     def exit(self):
         self.__proxy.Exit(dbus_interface = self.INTERFACE)

@@ -8,6 +8,7 @@ tweak_PYTHON = \
 	./Computer.py \
 	./Metacity.py \
 	./PowerManager.py \
+	./PackageCleaner.py \
 	./UpdateManager.py \
 	./MainWindow.py \
 	./Templates.py \

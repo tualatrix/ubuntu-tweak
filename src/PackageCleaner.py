@@ -21,8 +21,9 @@
 import os
 import gtk
 import gobject
+from common.PolicyKit import DbusProxy
 from common.LookupIcon import *
-from common.Widgets import TweakPage
+from common.Widgets import TweakPage, InfoDialog, QuestionDialog
 from common.PackageWorker import PackageWorker, update_apt_cache
 
 (
@@ -36,8 +37,10 @@ from common.PackageWorker import PackageWorker, update_apt_cache
 class PackageView(gtk.TreeView):
     __gsignals__ = {
         'checked': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, 
-                    (gobject.TYPE_BOOLEAN,))
+                    (gobject.TYPE_BOOLEAN,)),
+        'cleaned': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, ())
     }
+
     def __init__(self):
         super(PackageView, self).__init__()
 
@@ -49,6 +52,7 @@ class PackageView(gtk.TreeView):
 
         self.__add_column()
 
+        self.mode = 'package'
         self.update_package_model()
         self.selection = self.get_selection()
 
@@ -88,6 +92,7 @@ class PackageView(gtk.TreeView):
     def update_package_model(self):
         model = self.get_model()
         model.clear()
+        self.mode = 'package'
 
         icon = get_icon_with_name('deb', 24)
         list = self.__packageworker.list_autoeemovable()
@@ -108,6 +113,7 @@ class PackageView(gtk.TreeView):
     def update_cache_model(self):
         model = self.get_model()
         model.clear()
+        self.mode = 'cache'
 
         cache_dir = '/var/cache/apt/archives' 
         icon = get_icon_with_name('deb', 24)
@@ -161,6 +167,29 @@ class PackageView(gtk.TreeView):
         if check:
             self.__check_list.append(model.get_value(iter, COLUMN_NAME))
 
+    def clean_selected_package(self):
+        state = self.__packageworker.perform_action(self.get_toplevel(), [],self.__check_list)
+
+        if state == 0:
+            InfoDialog(_('Clean Successfully!')).launch()
+        else:
+            InfoDialog(_('Clean Failed!')).launch()
+
+        update_apt_cache()
+        self.update_package_model()
+        self.__check_list = []
+        self.emit('cleaned')
+
+    def clean_selected_cache(self):
+        state = DbusProxy.clean_apt_cache()
+        if state == 'done':
+            InfoDialog(_('Clean Successfully!')).launch()
+        else:
+            InfoDialog(_('Clean Failed!')).launch()
+
+        self.update_cache_model()
+        self.emit('cleaned')
+
 class PackageCleaner(TweakPage):
     def __init__(self):
         super(PackageCleaner, self).__init__(
@@ -198,6 +227,7 @@ class PackageCleaner(TweakPage):
         self.treeview = PackageView()
         self.treeview.set_rules_hint(True)
         self.treeview.connect('checked', self.on_item_checked)
+        self.treeview.connect('cleaned', self.on_item_cleaned)
         sw.add(self.treeview)
 
         # checkbutton
@@ -210,6 +240,7 @@ class PackageCleaner(TweakPage):
         self.pack_end(hbox, False ,False, 0)
 
         self.clean_button = gtk.Button(stock = gtk.STOCK_CLEAR)
+        self.clean_button.connect('clicked', self.on_clean_button_clicked)
         self.clean_button.set_sensitive(False)
         hbox.pack_end(self.clean_button, False, False, 0)
 
@@ -234,6 +265,10 @@ class PackageCleaner(TweakPage):
             self.select_button.set_active(False)
         self.select_button.handler_unblock(self.__handler_id)
 
+    def on_item_cleaned(self, widget):
+        self.select_button.set_active(False)
+        self.clean_button.set_sensitive(False)
+
     def on_button_toggled(self, widget):
         self.select_button.set_active(False)
 
@@ -246,6 +281,20 @@ class PackageCleaner(TweakPage):
             self.treeview.update_package_model()
         else:
             self.treeview.update_cache_model()
+
+    def on_clean_button_clicked(self, widget):
+        mode = self.treeview.mode
+        if mode == 'package':
+            self.treeview.clean_selected_package()
+        elif mode == 'cache':
+            dialog = QuestionDialog(_('The cache should be clean all by once. Continue?'))
+            clean = False
+            if dialog.run() == gtk.RESPONSE_YES:
+                clean = True
+            dialog.destroy()
+
+            if clean:
+                self.treeview.clean_selected_cache()
 
 if __name__ == '__main__':
     from Utility import Test

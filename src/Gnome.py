@@ -146,7 +146,7 @@ class Gnome(TweakPage):
 
     def colleague_changed(self, widget):
         enabled = self.recently_used.get_active()
-        file = os.path.join(os.path.expanduser("~"), ".recently-used.xbel")
+        file = os.path.expanduser("~/.recently-used.xbel")
         if enabled:
             os.system('rm -r %s' % file)
             os.system('touch %s' % file)
