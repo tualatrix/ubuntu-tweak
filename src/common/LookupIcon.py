@@ -41,4 +41,4 @@ def get_icon_with_name(name, size):
 
 if __name__ == '__main__':
     print get_icon_with_type('/home/tualatrixx', 24)
-    print get_icon_with_name('exec', 24)
+    print get_icon_with_name('start-here', 24)

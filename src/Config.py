@@ -124,5 +124,8 @@ class TweakSettings:
         else:
             return (720, 480)
 
+    def get_icon_theme(self):
+        return self.__config.get_value('/desktop/gnome/interface/icon_theme')
+
 if __name__ == '__main__':
     print Config().build_key('hello')
