@@ -18,32 +18,57 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 
 import os
-from common.Settings import *
+import gconf
 
 class Config:
     dir = '/apps/ubuntu-tweak'
+    __client = gconf.Client()
 
     def set_value(self, key, value):
         if not key.startswith("/"):
             key = self.build_key(key)
 
         if type(value) == int:
-            IntString(key).set_int(value)
+            self.__client.set_int(key, value)
         elif type(value) == float:
-            FloatString(key).set_float(value)
+            self.__client.set_float(key, value)
         elif type(value) == str:
-            StringSetting(key).set_string(value)
+            self.__client.set_string(key, value)
         elif type(value) == bool:
-            BoolSetting(key).set_bool(value)
+            self.__client.set_bool(key, value)
 
     def get_value(self, key):
         if not key.startswith("/"):
             key = self.build_key(key)
 		
-        return Setting(key).get_value()
+        try:
+            value = self.__client.get_value(key)
+        except:
+            return None
+        else:
+            return value
+
+    def set_pair(self, key, type1, type2, value1, value2):
+        if not key.startswith("/"):
+            key = self.build_key(key)
+		
+        self.__client.set_pair(key, type1, type2, value1, value2)
+
+    def get_pair(self, key):
+        if not key.startswith("/"):
+            key = self.build_key(key)
+
+        value = self.__client.get(key)
+        if value:
+            return value.to_string().strip('()').split(',')
+        else:
+            return (0, 0)
 
     def build_key(self, key):
         return os.path.join(self.dir, key)
 
+    def get_client(self):
+        return self.__client
+
 if __name__ == '__main__':
-    print Config.build_key('hello')
+    print Config().build_key('hello')

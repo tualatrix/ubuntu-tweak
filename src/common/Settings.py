@@ -25,6 +25,8 @@ __all__ = (
     'Setting',
     'BoolSetting',
     'StringSetting',
+    'IntSetting',
+    'FloatSetting',
     'NumSetting',
     'ConstStringSetting',
 )
@@ -115,9 +117,9 @@ class IntSetting(Setting):
         else:
             return 0
 
-class FloatString(Setting):
+class FloatSetting(Setting):
     def __init__(self, key):
-        super(FloatString, self).__init__(key)
+        super(FloatSetting, self).__init__(key)
 
     def set_float(self, float):
         self.get_client().set_float(self.get_key(), float)

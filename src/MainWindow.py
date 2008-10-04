@@ -32,6 +32,7 @@ from common.Canvas import RenderCell
 from common.Widgets import QuestionDialog, TweakPage
 from common.SystemInfo import GnomeVersion, SystemInfo, SystemModule
 from UpdateManager import UpdateManager, TweakSettings
+from Config import Config
 
 class Tip(gtk.HBox):
     def __init__(self, tip):
@@ -259,6 +260,8 @@ class MainWindow(gtk.Window):
     def __init__(self):
         gtk.Window.__init__(self)
 
+        self.__config = Config()
+
         self.connect("destroy", self.destroy)
         self.set_title("Ubuntu Tweak")
         self.set_default_size(720, 480)
@@ -300,8 +303,36 @@ class MainWindow(gtk.Window):
         button.connect("clicked", self.destroy);
         hbox.pack_end(button, False, False, 0)
 
+        self.get_paned_size()
+        self.get_window_size()
+
         self.show_all()
         gobject.timeout_add(8000, self.on_timeout)
+
+    def get_paned_size(self):
+        paned_size_key = 'paned_size'
+        position = self.__config.get_value(paned_size_key)
+
+        if position:
+            self.hpaned.set_position(position)
+
+    def get_window_size(self):
+        window_size_key = 'window_size'
+        height, width = self.__config.get_pair(window_size_key)
+        height, width = int(height), int(width)
+
+        if height and width:
+            self.set_size_request(height, width)
+
+    def save_window_size(self):
+        window_size_key = 'window_size'
+
+        (height, width) = self.get_size()
+        self.__config.set_pair(window_size_key, gconf.VALUE_INT, gconf.VALUE_INT, height, width)
+
+    def save_paned_size(self):
+        paned_size_key = 'paned_size'
+        self.__config.set_value(paned_size_key, self.hpaned.get_position())
 
     def __create_model(self):
         model = gtk.ListStore(
@@ -494,4 +525,7 @@ You should have received a copy of the GNU General Public License along with Ubu
                     res = dialog.run()
 
                 DbusProxy.exit()
+
+        self.save_paned_size()
+        self.save_window_size()
         gtk.main_quit()
