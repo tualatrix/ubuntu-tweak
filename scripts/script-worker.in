@@ -1,7 +1,8 @@
 #!/bin/bash
 
-WORKER_DIR=/usr/share/ubuntu-tweak
-WORKER=ScriptWorker.py
+tweakdir=@DATADIR@/ubuntu-tweak
+python_exec=@PYTHON@
 
-cd $WORKER_DIR
-python $WORKER $*
+cd ${tweakdir}
+export PYTHONPATH="$PYTHONPATH:${tweakdir}"
+exec ${python_exec} -OO ScriptWorker.py $*

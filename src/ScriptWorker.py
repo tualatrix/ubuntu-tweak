@@ -26,9 +26,9 @@ import gnomevfs
 import gettext
 import shutil
 import subprocess
-from common.Widgets import ErrorDialog
 
-gettext.install("ubuntu-tweak", unicode = True)
+from common.Consts import *
+from common.Widgets import ErrorDialog
 
 class FileChooserDialog(gtk.FileChooserDialog):
     """Show a dialog to select a folder, or to do more thing
