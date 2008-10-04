@@ -29,7 +29,6 @@ pixmaps_DATA = \
 	./startup.png \
 	./splash.png \
 	./personal.png \
-	./security.png \
 	./gnome.png \
 	./nautilus.png \
 	./scripts.png \

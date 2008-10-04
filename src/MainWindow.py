@@ -167,27 +167,25 @@ from Metacity import Metacity
     ICON,
     METACITY,
     COMPIZ,
+    GNOME,
     PERSONAL,
     USERDIR,
     TEMPLATES,
     SCRIPTS,
     SHORTCUTS,
     SYSTEM,
-    GNOME,
     NAUTILUS,
     POWER,
-    SECURITY,
     SECU_OPTIONS,
     TOTAL
-) = range(25)
+) = range(24)
 
 MODULES_TABLE = {
     APPLICATIONS: [INSTALLER, THIRDSOFT, PACKAGE],
     STARTUP: [SESSION, AUTOSTART],
-    DESKTOP: [ICON, METACITY, COMPIZ],
+    DESKTOP: [ICON, METACITY, COMPIZ, GNOME],
     PERSONAL: [USERDIR, TEMPLATES, SCRIPTS, SHORTCUTS],
-    SYSTEM: [GNOME, NAUTILUS, POWER],
-    SECURITY: [SECU_OPTIONS],
+    SYSTEM: [NAUTILUS, POWER, SECU_OPTIONS],
 }
 
 MODULES = \
@@ -205,16 +203,15 @@ MODULES = \
     [ICON, 'icon.png', _("Desktop Icon"), Icon, SHOW_NONE],
     [METACITY, 'metacity.png', _("Window Settings"), Metacity, SHOW_NONE],
     [COMPIZ, 'compiz-fusion.png', _("Compiz Fusion"), Compiz, SHOW_NONE],
+    [GNOME, 'gnome.png', _("GNOME"), Gnome, SHOW_NONE],
     [PERSONAL, 'personal.png', _("Personal"), None, SHOW_CHILD],
     [USERDIR, 'userdir.png', _("User Folder"), UserDir, SHOW_NONE],
     [TEMPLATES, 'templates.png', _("Templates"), Templates, SHOW_NONE],
     [SCRIPTS, 'scripts.png', _("Scripts"), Scripts, SHOW_NONE],
     [SHORTCUTS, 'shortcuts.png', _("Shortcuts"), Shortcuts, SHOW_NONE],
     [SYSTEM, 'system.png', _("System"), None, SHOW_CHILD],
-    [GNOME, 'gnome.png', _("GNOME"), Gnome, SHOW_NONE],
     [NAUTILUS, 'nautilus.png', _("Nautilus"), Nautilus, SHOW_NONE],
     [POWER, 'powermanager.png', _("Power Manager"), PowerManager, SHOW_NONE],
-    [SECURITY, 'security.png', _("Security"), None, SHOW_CHILD],
     [SECU_OPTIONS, 'lockdown.png', _("Security Options"), LockDown, SHOW_NONE],
 ]
 
