@@ -68,7 +68,9 @@ def Welcome(parent = None):
             'Easily install various kinds of applications in your option.',
             'More useful features wait you to use!',
             )
-    vbox.pack_start(tips, False, False, 10)
+    align = gtk.Alignment(0.5)
+    align.add(tips)
+    vbox.pack_start(align, False, False, 10)
 
     return vbox
 
@@ -309,7 +311,7 @@ class MainWindow(gtk.Window):
         self.__settings.set_paned_size(self.hpaned.get_position())
 
     def get_gui_state(self):
-        self.set_size_request(*(self.__settings.get_window_size()))
+        self.set_default_size(*(self.__settings.get_window_size()))
         self.hpaned.set_position(self.__settings.get_paned_size())
 
     def __create_model(self):

@@ -83,7 +83,7 @@ class AutoStartDialog(gtk.Dialog):
         self.vbox.pack_start(table)
 
         self.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
-        self.add_button(gtk.STOCK_OK, gtk.RESPONSE_OK)
+        self.add_button(gtk.STOCK_SAVE, gtk.RESPONSE_OK)
 
         self.set_default_response(gtk.RESPONSE_OK)
 
