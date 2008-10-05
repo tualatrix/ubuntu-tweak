@@ -54,7 +54,13 @@ class DbusProxy:
         try:
             return self.__proxy.CleanAptCache(dbus_interface = self.INTERFACE)
         except:
-            print 'server not prepare yet!'
+            return 'error'
+
+    @classmethod
+    def delete_file(self, path):
+        try:
+            return self.__proxy.DeleteFile(path, dbus_interface = self.INTERFACE)
+        except:
             return 'error'
 
     @classmethod

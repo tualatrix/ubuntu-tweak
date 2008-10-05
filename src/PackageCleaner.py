@@ -123,7 +123,7 @@ class PackageView(gtk.TreeView):
         self.__column.set_title('Cache need to be removed')
 
         for pkg in list:
-            size = os.path.getsize(pkg)/1024
+            size = str(os.path.getsize(pkg)/1024)
 
             model.append((
                 False,
@@ -149,8 +149,29 @@ class PackageView(gtk.TreeView):
         else:
             self.emit('checked', False)
 
-        self.__column.set_title(_('Package (%d Packages selected to remove)') % 
+        self.set_column_title()
+
+    def set_column_title(self):
+        if self.mode == 'package':
+            self.__column.set_title(_('Package (%d Packages selected to remove)') % 
                              len(self.__check_list))
+        else:
+            self.computer_cache_size()
+            self.__column.set_title(_('Cache (%d KB Space will be free)') % 
+                             self.size)
+
+    def computer_cache_size(self):
+        self.size = 0
+
+        model = self.get_model()
+        model.foreach(self.__cache_foreach)
+
+    def __cache_foreach(self, model, path, iter):
+        cache = model.get_value(iter, COLUMN_NAME)
+
+        if cache in self.__check_list:
+            size = model.get_value(iter, COLUMN_DESC)
+            self.size = self.size + int(size)
 
     def select_all(self, check = True):
         self.__check_list = []
@@ -159,8 +180,7 @@ class PackageView(gtk.TreeView):
         model.foreach(self.__select_foreach, check)
         self.emit('checked', check)
 
-        self.__column.set_title(_('Package (%d Packages selected to remove)') % 
-                             len(self.__check_list))
+        self.set_column_title()
 
     def __select_foreach(self, model, path, iter, check):
         model.set(iter, COLUMN_CHECK, check)
@@ -181,8 +201,13 @@ class PackageView(gtk.TreeView):
         self.emit('cleaned')
 
     def clean_selected_cache(self):
-        state = DbusProxy.clean_apt_cache()
-        if state == 'done':
+        model = self.get_model()
+        for file in self.__check_list:
+            path = '/var/cache/apt/archives/%s' % file
+            result = DbusProxy.delete_file(path)
+            if result == 'error': break
+
+        if result == 'done':
             InfoDialog(_('Clean Successfully!')).launch()
         else:
             InfoDialog(_('Clean Failed!')).launch()
@@ -287,14 +312,7 @@ class PackageCleaner(TweakPage):
         if mode == 'package':
             self.treeview.clean_selected_package()
         elif mode == 'cache':
-            dialog = QuestionDialog(_('The cache should be clean all by once. Continue?'))
-            clean = False
-            if dialog.run() == gtk.RESPONSE_YES:
-                clean = True
-            dialog.destroy()
-
-            if clean:
-                self.treeview.clean_selected_cache()
+            self.treeview.clean_selected_cache()
 
 if __name__ == '__main__':
     from Utility import Test
