@@ -51,7 +51,11 @@ class DbusProxy:
 
     @classmethod
     def clean_apt_cache(self):
-        return self.__proxy.CleanAptCache(dbus_interface = self.INTERFACE)
+        try:
+            return self.__proxy.CleanAptCache(dbus_interface = self.INTERFACE)
+        except:
+            print 'server not prepare yet!'
+            return 'error'
 
     @classmethod
     def exit(self):

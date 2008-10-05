@@ -123,7 +123,13 @@ class PackageWorker:
     def list_autoremovable(self):
         list = []
         for pkg in cache.keys():
-            if cache[pkg].isAutoRemovable:
+            p = cache[pkg]
+            try:
+                need_remove = getattr(p, 'isAutoRemovable')
+            except:
+                need_remove = p.isInstalled and p._depcache.IsGarbage(p._pkg)
+
+            if need_remove:
                 list.append(pkg)
 
         return list
