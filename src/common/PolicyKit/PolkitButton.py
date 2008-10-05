@@ -31,7 +31,8 @@ class PolkitButton(gtk.Button):
     action = 0
     error = 0
     __gsignals__ = {
-            'authenticated': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, ())
+            'authenticated': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, ()),
+            'failed': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, ()),
             }
 
     def __init__(self):
@@ -54,6 +55,7 @@ class PolkitButton(gtk.Button):
             granted = policykit.ObtainAuthorization('com.ubuntu-tweak.mechanism', dbus.UInt32(xid), dbus.UInt32(os.getpid()))
         except dbus.exceptions.DBusException:
             self.error = -1
+            self.emit('failed')
         else:
             self.action = granted
 
@@ -61,5 +63,6 @@ class PolkitButton(gtk.Button):
                 image = gtk.image_new_from_stock(gtk.STOCK_YES, gtk.ICON_SIZE_BUTTON)
                 self.set_image(image)
                 self.set_sensitive(False)
-        finally:
-            self.emit('authenticated')
+                self.emit('authenticated')
+            else:
+                self.emit('failed')
