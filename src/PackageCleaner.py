@@ -95,7 +95,7 @@ class PackageView(gtk.TreeView):
         self.mode = 'package'
 
         icon = get_icon_with_name('deb', 24)
-        list = self.__packageworker.list_autoeemovable()
+        list = self.__packageworker.list_autoremovable()
         self.total_num = len(list)
         self.__column.set_title('Packages need to be removed')
 

@@ -120,7 +120,7 @@ class PackageWorker:
         lock.release()
         f.close()
 
-    def list_autoeemovable(self):
+    def list_autoremovable(self):
         list = []
         for pkg in cache.keys():
             if cache[pkg].isAutoRemovable:
@@ -148,4 +148,4 @@ class PackageWorker:
 
 if __name__ == '__main__':
     update_apt_cache()
-    print PackageWorker().list_autoeemovable()
+    print PackageWorker().list_autoremovable()
