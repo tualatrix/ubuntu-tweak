@@ -34,7 +34,6 @@ from gnome import url_show
 from common.Consts import *
 from common.AppData import *
 from common.Factory import Factory
-#from common.Settings import BoolSetting
 from common.PolicyKit import PolkitButton, DbusProxy
 from common.SystemInfo import SystemModule
 from common.Widgets import ListPack, TweakPage, GconfCheckButton, InfoDialog, WarningDialog, ErrorDialog, QuestionDialog
@@ -73,7 +72,7 @@ Midori = ['Midori', 'www.twotoasts.de', '']
 Firefox = ['Firefox', 'www.mozilla.org', '']
 CompizFusion = ['Compiz Fusion', 'www.compiz-fusion.org/', '']
 CairoDock = ['Cairo Dock', 'cairo-dock.org', '']
-GnomeDo = ['GNOME Do', 'gnome-do.png', 'do.davebsd.com', '']
+GnomeDo = ['GNOME Do', 'do.davebsd.com', '']
 Banshee = ['Banshee', 'banshee-project.org', '']
 Google = ['Google', 'www.google.com/linuxrepositories/index.html', 'google.gpg']
 GoogleGadgets = ['Google gadgets', 'desktop.google.com/plugins/', '']
@@ -88,7 +87,7 @@ LXDE = ['LXDE', 'lxde.org', '']
 Terminator = ['Terminator', 'www.tenshu.net/terminator/', '']
 VirtualBox = ['VirtualBox', 'www.virtualbox.org/', 'virtualbox.gpg']
 GScrot = ['GScrot', 'launchpad.net/gscrot', '']
-Galaxium = ['Galaxium', 'galaxium.png', 'code.google.com/p/galaxium/', '']
+Galaxium = ['Galaxium', 'code.google.com/p/galaxium/', '']
 Swiftweasel = ['Swiftweasel', 'swiftweasel.tuxfamily.org/', '']
 Medibuntu = ['Medibuntu', 'www.medibuntu.org/', 'medibuntu.gpg']
 XBMC = ['XBMC', 'xbmc.org', '']
@@ -271,18 +270,18 @@ class SourcesView(gtk.TreeView):
 
     def on_enable_toggled(self, cell, path):
         iter = self.model.get_iter((int(path),))
-
         enabled = self.model.get_value(iter, COLUMN_ENABLED)
         url = self.model.get_value(iter, COLUMN_URL)
         distro = self.model.get_value(iter, COLUMN_DISTRO)
         name = self.model.get_value(iter, COLUMN_NAME)
         comps = self.model.get_value(iter, COLUMN_COMPS)
         key = self.model.get_value(iter, COLUMN_KEY)
+        proxy = self.get_proxy()
 
         if key:
-            self.__proxy.add_aptkey(key)
+            proxy.add_aptkey(key)
 
-        result = self.__proxy.set_entry(url, distro, comps, name, not enabled)
+        result = proxy.set_entry(url, distro, comps, name, not enabled)
 
         if result == 'enabled':
             self.model.set(iter, COLUMN_ENABLED, True)
