@@ -25,12 +25,12 @@ from common.Consts import *
 
 class Test:
     def __init__(self, model):
-        win = gtk.Window()
+        gtk.gdk.threads_init()
 
+        win = gtk.Window()
         win.connect('destroy', lambda *w: gtk.main_quit())
         win.set_position(gtk.WIN_POS_CENTER)
         win.set_size_request(640, 400)
-
 
         if getattr(model, "__name__", None):
             win.set_title(model.__name__)

@@ -21,10 +21,10 @@
 import os
 import gtk
 import gobject
-from common.PolicyKit import DbusProxy
 from common.LookupIcon import *
-from common.Widgets import TweakPage, InfoDialog, QuestionDialog
+from common.PolicyKit import DbusProxy, PolkitButton
 from common.PackageWorker import PackageWorker, update_apt_cache
+from common.Widgets import TweakPage, InfoDialog, QuestionDialog, ErrorDialog
 
 (
     COLUMN_CHECK,
@@ -48,6 +48,7 @@ class PackageView(gtk.TreeView):
         self.set_model(model)
 
         self.__check_list = []
+        self.__proxy = DbusProxy()
         self.__packageworker = PackageWorker()
 
         self.__add_column()
@@ -55,6 +56,7 @@ class PackageView(gtk.TreeView):
         self.mode = 'package'
         self.update_package_model()
         self.selection = self.get_selection()
+        self.set_sensitive(False)
 
     def __create_model(self):
         model = gtk.ListStore(
@@ -204,7 +206,8 @@ class PackageView(gtk.TreeView):
         model = self.get_model()
         for file in self.__check_list:
             path = '/var/cache/apt/archives/%s' % file
-            result = DbusProxy.delete_file(path)
+            result = self.__proxy.delete_file(path)
+            print result
             if result == 'error': break
 
         if result == 'done':
@@ -227,7 +230,7 @@ class PackageCleaner(TweakPage):
         self.to_rm = []
 
         hbox = gtk.HBox(False, 0)
-        self.pack_start(hbox, True, True, 5)
+        self.pack_start(hbox, True, True, 0)
 
         sw = gtk.ScrolledWindow()
         sw.set_shadow_type(gtk.SHADOW_ETCHED_IN)
@@ -257,17 +260,23 @@ class PackageCleaner(TweakPage):
 
         # checkbutton
         self.select_button = gtk.CheckButton(_('Select All'))
+        self.select_button.set_sensitive(False)
         self.__handler_id = self.select_button.connect('toggled', self.on_select_all)
         self.pack_start(self.select_button, False, False, 0)
 
         # button
         hbox = gtk.HBox(False, 0)
-        self.pack_end(hbox, False ,False, 0)
+        self.pack_end(hbox, False ,False, 5)
+
+        un_lock = PolkitButton()
+        un_lock.connect('authenticated', self.on_polkit_action)
+        un_lock.connect('failed', self.on_auth_failed)
+        hbox.pack_end(un_lock, False, False, 5)
 
         self.clean_button = gtk.Button(stock = gtk.STOCK_CLEAR)
         self.clean_button.connect('clicked', self.on_clean_button_clicked)
         self.clean_button.set_sensitive(False)
-        hbox.pack_end(self.clean_button, False, False, 0)
+        hbox.pack_end(self.clean_button, False, False, 5)
 
         self.show_all()
 
@@ -313,6 +322,24 @@ class PackageCleaner(TweakPage):
             self.treeview.clean_selected_package()
         elif mode == 'cache':
             self.treeview.clean_selected_cache()
+
+    def on_auth_failed(self, widget):
+        gtk.gdk.threads_enter()
+        ErrorDialog(_('<b><big>Could not authenticate</big></b>\n\nAn unexpected error has occurred.')).launch()
+        gtk.gdk.threads_leave()
+
+    def on_polkit_action(self, widget):
+        gtk.gdk.threads_enter()
+        proxy = DbusProxy.get_proxy()
+
+        print proxy
+        if proxy:
+            self.treeview.set_sensitive(True)
+            self.select_button.set_sensitive(True)
+        else:
+            ErrorDialog(_("<b><big>Service hasn't initialized yet</big></b>\n\nYou need to restart your Ubuntu.")).launch()
+
+        gtk.gdk.threads_leave()
 
 if __name__ == '__main__':
     from Utility import Test

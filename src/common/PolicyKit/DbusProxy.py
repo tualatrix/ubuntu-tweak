@@ -66,3 +66,9 @@ class DbusProxy:
     @classmethod
     def exit(self):
         self.__proxy.Exit(dbus_interface = self.INTERFACE)
+
+if __name__ == '__main__':
+    print DbusProxy
+    print DbusProxy.__proxy
+    DbusProxy.get_liststate()
+    DbusProxy.add_aptkey('hello')

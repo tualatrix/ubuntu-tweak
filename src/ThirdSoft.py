@@ -276,12 +276,11 @@ class SourcesView(gtk.TreeView):
         name = self.model.get_value(iter, COLUMN_NAME)
         comps = self.model.get_value(iter, COLUMN_COMPS)
         key = self.model.get_value(iter, COLUMN_KEY)
-        proxy = self.get_proxy()
 
         if key:
-            proxy.add_aptkey(key)
+            self.__proxy.add_aptkey(key)
 
-        result = proxy.set_entry(url, distro, comps, name, not enabled)
+        result = self.__proxy.set_entry(url, distro, comps, name, not enabled)
 
         if result == 'enabled':
             self.model.set(iter, COLUMN_ENABLED, True)
@@ -421,10 +420,9 @@ class ThirdSoft(TweakPage):
     
     def on_refresh_button_clicked(self, widget):
         dialog = UpdateCacheDialog(widget.get_toplevel())
-        proxy = self.treeview.get_proxy()
         res = dialog.run()
 
-        proxy.set_liststate('normal')
+        self.__proxy.set_liststate('normal')
         widget.set_sensitive(False)
 
         InfoDialog(_('<b><big>The software information is up-to-date now</big></b>\n\nYou can install the new applications through Add/Remove.')).launch()
@@ -432,5 +430,4 @@ class ThirdSoft(TweakPage):
 
 if __name__ == '__main__':
     from Utility import Test
-    gtk.gdk.threads_init()
     Test(ThirdSoft)
