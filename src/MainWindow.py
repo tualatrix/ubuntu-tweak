@@ -63,10 +63,11 @@ def Welcome(parent = None):
     vbox.pack_start(title, False, False, 10)
 
     tips = TipsFactory(
-            'Tweak your desktop to make it what you like.',
-            'Use templates and scripts to enhance your desktop.',
-            'Easily install various kinds of applications in your option.',
-            'More useful features wait you to use!',
+            _('Tweak your desktop to make it what you like.'),
+            _('Clean up the garbage packages to free your disk.'),
+            _('Use templates and scripts to enhance your desktop.'),
+            _('Easily install various kinds of applications in your option.'),
+            _('More useful features wait you to use!'),
             )
     align = gtk.Alignment(0.5)
     align.add(tips)

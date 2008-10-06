@@ -102,7 +102,7 @@ class Gnome(TweakPage):
         return hbox
 
     def on_change_icon_clicked(self, widget):
-        dialog = gtk.FileChooserDialog(_('choose a New logo'),action = gtk.FILE_CHOOSER_ACTION_OPEN, buttons = (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, gtk.STOCK_OPEN, gtk.RESPONSE_ACCEPT))
+        dialog = gtk.FileChooserDialog(_('Choose a new logo'),action = gtk.FILE_CHOOSER_ACTION_OPEN, buttons = (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, gtk.STOCK_OPEN, gtk.RESPONSE_ACCEPT))
         filter = gtk.FileFilter()
         filter.set_name(_("PNG image (*.png)"))
         filter.add_mime_type("image/png")
@@ -119,7 +119,7 @@ class Gnome(TweakPage):
             pixbuf = gtk.gdk.pixbuf_new_from_file(filename)
             w, h = pixbuf.get_width(), pixbuf.get_height()
             if w != 24 or h != 24:
-                ErrorDialog(_('The size isnt suitable for the panel.\nIt should be 24x24')).launch()
+                ErrorDialog(_("The size isn't suitable for the panel.\nIt should be 24x24.")).launch()
             else:
                 dest = os.path.expanduser('~/.icons/%s/24x24/places/start-here.png' % self.__setting.get_icon_theme())
                 os.system('mkdir -p %s' % os.path.dirname(dest))
