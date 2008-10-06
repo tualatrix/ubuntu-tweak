@@ -51,18 +51,26 @@ class PolkitButton(gtk.Button):
     def obtain_authorization(self, xid):
         policykit = dbus.SessionBus().get_object('org.freedesktop.PolicyKit.AuthenticationAgent', '/')
 
+        if self.__class__.action:
+            self.change_button_state()
+            self.emit('authenticated')
+            return
+
         try:
             granted = policykit.ObtainAuthorization('com.ubuntu-tweak.mechanism', dbus.UInt32(xid), dbus.UInt32(os.getpid()))
         except dbus.exceptions.DBusException:
             self.error = -1
             self.emit('failed')
         else:
-            self.action = granted
+            self.__class__.action = granted
 
-            if self.action == 1:
-                image = gtk.image_new_from_stock(gtk.STOCK_YES, gtk.ICON_SIZE_BUTTON)
-                self.set_image(image)
-                self.set_sensitive(False)
+            if self.__class__.action == 1:
+                self.change_button_state()
                 self.emit('authenticated')
             else:
                 self.emit('failed')
+
+    def change_button_state(self):
+        image = gtk.image_new_from_stock(gtk.STOCK_YES, gtk.ICON_SIZE_BUTTON)
+        self.set_image(image)
+        self.set_sensitive(False)

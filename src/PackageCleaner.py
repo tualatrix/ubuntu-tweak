@@ -205,9 +205,7 @@ class PackageView(gtk.TreeView):
     def clean_selected_cache(self):
         model = self.get_model()
         for file in self.__check_list:
-            path = '/var/cache/apt/archives/%s' % file
-            result = self.__proxy.delete_file(path)
-            print result
+            result = self.__proxy.delete_file(file)
             if result == 'error': break
 
         if result == 'done':
@@ -332,7 +330,6 @@ class PackageCleaner(TweakPage):
         gtk.gdk.threads_enter()
         proxy = DbusProxy.get_proxy()
 
-        print proxy
         if proxy:
             self.treeview.set_sensitive(True)
             self.select_button.set_sensitive(True)

@@ -112,11 +112,13 @@ class Tweak(dbus.service.Object):
         return 'done'
             
     @dbus.service.method(INTERFACE,
-                         in_signature='s', out_signature='')
+                         in_signature='s', out_signature='s')
     def DeleteFile(self, path):
         os.system('rm %s' % path)
-
-        return 'done'
+        if os.path.exists(path):
+            return 'error'
+        else:
+            return 'done'
             
     @dbus.service.method(INTERFACE,
                          in_signature='s', out_signature='')
