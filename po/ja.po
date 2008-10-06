@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2008-10-06 14:49+0800\n"
+"POT-Creation-Date: 2008-10-06 17:17+0800\n"
 "PO-Revision-Date: 2008-07-14 14:13+0000\n"
 "Last-Translator: Junichi Takahara <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
@@ -17,33 +17,57 @@ msgstr ""
 "X-Launchpad-Export-Date: 2008-07-29 00:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
-#: src/LockDown.py:36
-msgid "System Security options"
+#: src/Computer.py:49
+msgid "System information"
 msgstr ""
 
-#: src/LockDown.py:37
-msgid "Disable \"Run Application\" dialog (Alt+F2)"
-msgstr "「アプリケーションの実行」ダイアログを無効にする（Alt+F2）"
+#: src/Computer.py:50
+msgid "Hostname"
+msgstr "ホストネーム"
 
-#: src/LockDown.py:38
-msgid "Disable Lock Screen"
-msgstr "画面のロックを利用不可にする"
+#: src/Computer.py:51
+msgid "Distribution"
+msgstr "ディストリビューション"
 
-#: src/LockDown.py:39
-msgid "Disable Printing"
-msgstr "印刷機能を利用不可にする"
+#: src/Computer.py:52
+msgid "Desktop Environment"
+msgstr "デスクトップ環境"
 
-#: src/LockDown.py:40
-msgid "Disable Print Setup"
-msgstr "印刷設定を利用不可にする"
+#: src/Computer.py:53
+msgid "Kernel"
+msgstr "カーネル"
 
-#: src/LockDown.py:41
-msgid "Disable Save To Disk"
-msgstr "ファイル保存の機能を利用不可にする"
+#: src/Computer.py:54
+msgid "Platform"
+msgstr "プラットフォーム"
 
-#: src/LockDown.py:42
-msgid "Disable User Switching"
-msgstr "ユーザ切り替えを利用不可にする"
+#: src/Computer.py:55
+msgid "CPU"
+msgstr "CPU"
+
+#: src/Computer.py:56
+msgid "Memory"
+msgstr "メモリ"
+
+#: src/Computer.py:60
+msgid "User information"
+msgstr ""
+
+#: src/Computer.py:61
+msgid "Current User"
+msgstr "カレントユーザ"
+
+#: src/Computer.py:62
+msgid "Home Directory"
+msgstr "ホームディレクトリー"
+
+#: src/Computer.py:63
+msgid "Shell"
+msgstr "シェル"
+
+#: src/Computer.py:64
+msgid "Language"
+msgstr "言語"
 
 #: src/Scripts.py:46
 msgid "Copy to ..."
@@ -102,106 +126,6 @@ msgstr "システム・スクリプトをリビルドする"
 #: src/Scripts.py:139
 msgid "This will delete all the disabled scripts, continue?"
 msgstr "無効なスクリプトをすべて削除されます。よろしいでしょうか？"
-
-#: src/Nautilus.py:41
-msgid "Show advanced Permissions on File Property pages"
-msgstr "ファイルのプロパティのページに高度なパーミッションを表示する"
-
-#: src/Nautilus.py:43
-msgid "Settings for Nautilus behavior"
-msgstr ""
-
-#: src/Nautilus.py:47
-msgid "Default Thumbnail Icon Size"
-msgstr "デフォルトのサムネイルの大きさ"
-
-#: src/Nautilus.py:58
-msgid "CD Burner"
-msgstr ""
-
-#: src/Nautilus.py:59
-msgid "Enable BurnProof technology"
-msgstr "バーンプルーフ機能を有効にする"
-
-#: src/Nautilus.py:60
-msgid "Enable OverBurn"
-msgstr "オーバーバーン機能を有効にする"
-
-#: src/Nautilus.py:68
-msgid "Nautilus with Open Terminal"
-msgstr ""
-
-#: src/Nautilus.py:70
-msgid "Nautilus with Root Privileges"
-msgstr ""
-
-#: src/Nautilus.py:72
-msgid "Nautilus with Wallpaper"
-msgstr ""
-
-#: src/Nautilus.py:74
-msgid "Nautilus Extensions"
-msgstr ""
-
-#: src/Nautilus.py:108 src/Installer.py:340 src/Compiz.py:368
-msgid "Update Successfully!"
-msgstr "アップデート成功！"
-
-#: src/Nautilus.py:110 src/Installer.py:342
-msgid "Update Failed!"
-msgstr "アップデート 失敗!"
-
-#: src/Computer.py:49
-msgid "System information"
-msgstr ""
-
-#: src/Computer.py:50
-msgid "Hostname"
-msgstr "ホストネーム"
-
-#: src/Computer.py:51
-msgid "Distribution"
-msgstr "ディストリビューション"
-
-#: src/Computer.py:52
-msgid "Desktop Environment"
-msgstr "デスクトップ環境"
-
-#: src/Computer.py:53
-msgid "Kernel"
-msgstr "カーネル"
-
-#: src/Computer.py:54
-msgid "Platform"
-msgstr "プラットフォーム"
-
-#: src/Computer.py:55
-msgid "CPU"
-msgstr "CPU"
-
-#: src/Computer.py:56
-msgid "Memory"
-msgstr "メモリ"
-
-#: src/Computer.py:60
-msgid "User information"
-msgstr ""
-
-#: src/Computer.py:61
-msgid "Current User"
-msgstr "カレントユーザ"
-
-#: src/Computer.py:62
-msgid "Home Directory"
-msgstr "ホームディレクトリー"
-
-#: src/Computer.py:63
-msgid "Shell"
-msgstr "シェル"
-
-#: src/Computer.py:64
-msgid "Language"
-msgstr "言語"
 
 #: src/Metacity.py:36
 msgid "Window Decorate Effect"
@@ -273,91 +197,355 @@ msgstr "タイトルバーをマウスのミドルボタンでクリックした
 msgid "Title bar Right-click action"
 msgstr "タイトルバーをマウスの右ボタンでクリックしたときのアクション"
 
-#: src/PowerManager.py:37
-msgid "Advanced Power Management Settings"
-msgstr ""
-
-#: src/PowerManager.py:38
-msgid "Enable Hibernation"
-msgstr "ハイバーネートを利用可能にする"
-
-#: src/PowerManager.py:39
-msgid "Enable Suspend"
-msgstr "サスペンドを利用可能にする"
-
-#: src/PowerManager.py:40
-msgid "Show CPU frequency control option"
-msgstr "CPU 周波数コントロールオプションの表示"
-
-#: src/PowerManager.py:41
-msgid "Disable the Network Manager on sleep"
-msgstr "スリープ時にネットワークマネージャを無効にする"
-
-#: src/PowerManager.py:42
-msgid "Lock screen when blanked"
-msgstr "サスペンドになったら画面をロックする"
-
-#: src/PowerManager.py:43
-msgid "\"GNOME Panel\" Power Management icon"
-msgstr "「GNOMEパネル」電源管理アイコン"
-
-#: src/PowerManager.py:43
-msgid "Never display"
-msgstr "常に非表示"
-
-#: src/PowerManager.py:43
-msgid "When charging"
-msgstr "充電中のみ"
-
-#: src/PowerManager.py:43
-msgid "Always display"
-msgstr "常に表示"
-
-#: src/PowerManager.py:48
-msgid "Normal"
-msgstr ""
-
-#: src/PowerManager.py:48
-msgid "On Demand"
-msgstr "必要な場合に自動"
-
-#: src/PowerManager.py:48
-msgid "Power Save"
-msgstr "省電力"
-
-#: src/PowerManager.py:48
-msgid "Performance"
-msgstr "パフォーマンス"
-
-#: src/PowerManager.py:50
-msgid "CPU Policy"
-msgstr ""
-
-#: src/PowerManager.py:51
-msgid "The Performance value when on AC power"
-msgstr "電源使用時のパフォーマンスの実効値"
-
-#: src/PowerManager.py:52
-msgid "The Performance value when on battery power"
-msgstr "バッテリー使用時のパフォーマンスの実効値"
-
-#: src/PowerManager.py:53
-msgid "The CPU frequency policy when on AC power"
-msgstr "AC 電源使用時の周波数ポリシー"
-
-#: src/PowerManager.py:54
-msgid "The CPU frequency policy when on battery power"
-msgstr "バッテリー使用時の周波数ポリシー"
-
-#: src/UpdateManager.py:69
-#, fuzzy
-msgid "Update Manager"
-msgstr "電源管理"
-
-#: src/UpdateManager.py:86
+#: src/ScriptWorker.py:53
 #, python-format
-msgid "Downloading...%d"
+msgid "The file \"%s\" is exists!"
+msgstr "ファイル「%s」が既に存在しています。"
+
+#: src/ScriptWorker.py:58
+#, python-format
+msgid "The folder \"%s\" is exists!"
+msgstr "フォルダ「%s」が既に存在しています。"
+
+#: src/ScriptWorker.py:66 src/ScriptWorker.py:74
+#, python-format
+msgid "The target \"%s\" is exists!"
+msgstr "ターゲット「%s」が既に存在しています。"
+
+#: src/ScriptWorker.py:79 src/ScriptWorker.py:90
+msgid "Enter your password to perform the administrative tasks"
+msgstr "管理タスクを行う為にパスワードを入力してください。"
+
+#: src/ScriptWorker.py:109
+msgid "Select a folder"
+msgstr "フォルダを選択してください"
+
+#: src/ScriptWorker.py:128
+msgid "Please select a target(files or folders)."
+msgstr "ターゲット（ファイル又はフォルダ）を選択してください。"
+
+#: src/ThirdSoft.py:144
+msgid ""
+"<b><big>The information about available software is out-of-date</big></b>\n"
+"\n"
+"To install software and updates from newly added or changed sources, you "
+"have to reload the information about available software.\n"
+"\n"
+"You need a working internet connection to continue."
 msgstr ""
+"<b><big>利用可能なソフトウェアの情報が古くなっています</big></b>\n"
+"\n"
+"新規に追加もしくは変更されたソフトウェアをインストール/アップデートするには、"
+"利用可能なソフトウェアの情報を再読み込みする必要があります。\n"
+"\n"
+"続けるためには、インターネット接続が有効になっている必要があります。"
+
+#: src/ThirdSoft.py:220 src/MainWindow.py:197
+msgid "Third Party Sources"
+msgstr "サードパーティーのソース"
+
+#: src/ThirdSoft.py:301
+msgid "Homepage"
+msgstr ""
+
+#: src/ThirdSoft.py:301
+msgid "Source URL"
+msgstr ""
+
+#: src/ThirdSoft.py:301
+#, fuzzy
+msgid "Description"
+msgstr "説明無し"
+
+#: src/ThirdSoft.py:312
+msgid "Description is here"
+msgstr ""
+
+#: src/ThirdSoft.py:340
+msgid "Third Party Softwares Sources"
+msgstr "サードパーティ・ソフトウェアソース"
+
+#: src/ThirdSoft.py:341
+msgid ""
+"You can always keep up-to-date with the latest version of an application.\n"
+"And new applications can be installed through Add/Remove."
+msgstr ""
+
+#: src/ThirdSoft.py:357
+msgid "Source Details"
+msgstr ""
+
+#: src/ThirdSoft.py:387 src/PackageCleaner.py:332
+msgid ""
+"<b><big>Could not authenticate</big></b>\n"
+"\n"
+"An unexpected error has occurred."
+msgstr ""
+
+#: src/ThirdSoft.py:400
+msgid ""
+"<b><big>Warning</big></b>\n"
+"\n"
+"It is a possible security risk to use packages from Third Party Sources. "
+"Please be careful."
+msgstr ""
+
+#: src/ThirdSoft.py:404
+msgid "Never show this dialog"
+msgstr ""
+
+#: src/ThirdSoft.py:411 src/PackageCleaner.py:343
+msgid ""
+"<b><big>Service hasn't initialized yet</big></b>\n"
+"\n"
+"You need to restart your Ubuntu."
+msgstr ""
+
+#: src/ThirdSoft.py:425
+msgid ""
+"<b><big>The software information is up-to-date now</big></b>\n"
+"\n"
+"You can install the new applications through Add/Remove."
+msgstr ""
+
+#: src/Session.py:39
+msgid "Click the large button to change Splash screen"
+msgstr ""
+
+#: src/Session.py:43
+msgid "Choose a Splash image"
+msgstr "スプラッシュ画像ファイルを選択してください"
+
+#: src/Session.py:45 src/Gnome.py:107
+msgid "PNG image (*.png)"
+msgstr "PNG 画像ファイル(*.png)"
+
+#: src/Session.py:130
+msgid "Automatically save changes to session"
+msgstr "自動的にセッションの変更点を保存する"
+
+#: src/Session.py:131
+msgid "Show Logout prompt"
+msgstr "ログアウト時に確認する"
+
+#: src/Session.py:132
+msgid "Allow TCP Connections(Remote Connect)"
+msgstr "TCP 接続を許可する（リモート接続）"
+
+#: src/Session.py:133
+msgid "Show Splash screen"
+msgstr "起動画面表示"
+
+#: src/Session.py:136 src/MainWindow.py:200
+msgid "Session Control"
+msgstr "セッションコントロール"
+
+#: src/LockDown.py:36
+msgid "System Security options"
+msgstr ""
+
+#: src/LockDown.py:37
+msgid "Disable \"Run Application\" dialog (Alt+F2)"
+msgstr "「アプリケーションの実行」ダイアログを無効にする（Alt+F2）"
+
+#: src/LockDown.py:38
+msgid "Disable Lock Screen"
+msgstr "画面のロックを利用不可にする"
+
+#: src/LockDown.py:39
+msgid "Disable Printing"
+msgstr "印刷機能を利用不可にする"
+
+#: src/LockDown.py:40
+msgid "Disable Print Setup"
+msgstr "印刷設定を利用不可にする"
+
+#: src/LockDown.py:41
+msgid "Disable Save To Disk"
+msgstr "ファイル保存の機能を利用不可にする"
+
+#: src/LockDown.py:42
+msgid "Disable User Switching"
+msgstr "ユーザ切り替えを利用不可にする"
+
+#: src/Nautilus.py:41
+msgid "Show advanced Permissions on File Property pages"
+msgstr "ファイルのプロパティのページに高度なパーミッションを表示する"
+
+#: src/Nautilus.py:43
+msgid "Settings for Nautilus behavior"
+msgstr ""
+
+#: src/Nautilus.py:47
+msgid "Default Thumbnail Icon Size"
+msgstr "デフォルトのサムネイルの大きさ"
+
+#: src/Nautilus.py:58
+msgid "CD Burner"
+msgstr ""
+
+#: src/Nautilus.py:59
+msgid "Enable BurnProof technology"
+msgstr "バーンプルーフ機能を有効にする"
+
+#: src/Nautilus.py:60
+msgid "Enable OverBurn"
+msgstr "オーバーバーン機能を有効にする"
+
+#: src/Nautilus.py:68
+msgid "Nautilus with Open Terminal"
+msgstr ""
+
+#: src/Nautilus.py:70
+msgid "Nautilus with Root Privileges"
+msgstr ""
+
+#: src/Nautilus.py:72
+msgid "Nautilus with Wallpaper"
+msgstr ""
+
+#: src/Nautilus.py:74
+msgid "Nautilus Extensions"
+msgstr ""
+
+#: src/Nautilus.py:108 src/Installer.py:340 src/Compiz.py:368
+msgid "Update Successfully!"
+msgstr "アップデート成功！"
+
+#: src/Nautilus.py:110 src/Installer.py:342
+msgid "Update Failed!"
+msgstr "アップデート 失敗!"
+
+#: src/Gnome.py:43
+msgid "Panel and Menu"
+msgstr ""
+
+#: src/Gnome.py:45
+msgid "Confirm Message when removing panel"
+msgstr "パネルを削除する時に確認する"
+
+#: src/Gnome.py:48
+msgid "Complete lockdown of the Panel "
+msgstr "完全にパネルをロックする "
+
+#: src/Gnome.py:51
+msgid "Enable panel animations"
+msgstr "パネルのアニメーションを有効にする"
+
+#: src/Gnome.py:54
+msgid "Show Input Method menu on the Context Menu"
+msgstr "コンテキストメニューに入力メソッドのメニューを表示する"
+
+#: src/Gnome.py:57
+msgid "Show Unicode Method menu on the Context Menu"
+msgstr "コンテキストメニューにユニコードメソッドのメニューを表示する"
+
+#: src/Gnome.py:64
+msgid "Screensaver"
+msgstr ""
+
+#: src/Gnome.py:65
+#, fuzzy
+msgid "Enable User Switching when Screen is locked."
+msgstr "画面のロック中にユーザー切り替えを有効にする"
+
+#: src/Gnome.py:69
+msgid "Enable System-wide 'Recently Used' list"
+msgstr "システム全体に '最近使用した' リストを有効にする"
+
+#: src/Gnome.py:72
+msgid "History"
+msgstr ""
+
+#: src/Gnome.py:79
+msgid "Notification-daemon popup location"
+msgstr "通知デーモンのポップアップ位置"
+
+#: src/Gnome.py:83
+msgid "Top Left"
+msgstr "左上"
+
+#: src/Gnome.py:83
+msgid "Top Right"
+msgstr "右上"
+
+#: src/Gnome.py:83
+msgid "Bottom Left"
+msgstr "左下"
+
+#: src/Gnome.py:83
+msgid "Bottom Right"
+msgstr "右下"
+
+#: src/Gnome.py:92
+msgid "Click the button to change panel logo"
+msgstr ""
+
+#: src/Gnome.py:105
+#, fuzzy
+msgid "choose a New logo"
+msgstr "プログラムを選択"
+
+#: src/Gnome.py:122
+msgid ""
+"The size isnt suitable for the panel.\n"
+"It should be 24x24"
+msgstr ""
+
+#: src/Gnome.py:131
+msgid "Do you want take effect immediately?"
+msgstr ""
+
+#: src/Icon.py:32
+msgid "Show \"Computer\" icon on desktop"
+msgstr "「コンピューター」アイコンをデスクトップに表示"
+
+#: src/Icon.py:33
+msgid "Rename the \"Computer\" icon: "
+msgstr "「コンピューター」アイコンの名前を変更： "
+
+#: src/Icon.py:41
+msgid "Show \"Home\" icon on desktop"
+msgstr "「ホーム」アイコンをデスクトップに表示"
+
+#: src/Icon.py:42
+msgid "Rename the \"Home\" icon: "
+msgstr "「ホーム」アイコンの名前を変更： "
+
+#: src/Icon.py:50
+msgid "Show \"Trash\" icon on desktop"
+msgstr "「ごみ箱」アイコンをデスクトップに表示"
+
+#: src/Icon.py:51
+msgid "Rename the \"Trash\" icon: "
+msgstr "「ごみ箱」アイコンの名前を変更： "
+
+#: src/Icon.py:100 src/common/Widgets/Widgets.py:66
+#: src/common/Widgets/Widgets.py:81
+msgid "Unset"
+msgstr "未設定"
+
+#: src/Icon.py:106
+msgid "Desktop Icon settings"
+msgstr ""
+
+#: src/Icon.py:108
+msgid "Show desktop icons"
+msgstr "デスクトップアイコン表示"
+
+#: src/Icon.py:128
+msgid "Show \"Network\" icon on desktop"
+msgstr "「ネットワーク」アイコンをデスクトップに表示"
+
+#: src/Icon.py:131
+msgid "Show Mounted Volumes on desktop"
+msgstr "デスクトップにマウントしたボリュームを表示する"
+
+#: src/Icon.py:134
+msgid "Use Home Folder as the desktop(Logout for changes to take effect)"
+msgstr ""
+"ホームフォルダをデスクトップとして扱う (変化を有効にするにはログアウトしてく"
+"ださい)"
 
 #: src/MainWindow.py:60
 #, fuzzy
@@ -391,21 +579,13 @@ msgstr "アプリケーション"
 msgid "Add/Remove"
 msgstr "追加/削除"
 
-#: src/MainWindow.py:197 src/ThirdSoft.py:223
-msgid "Third Party Sources"
-msgstr "サードパーティーのソース"
-
-#: src/MainWindow.py:198
+#: src/MainWindow.py:198 src/PackageCleaner.py:228
 msgid "Package Cleaner"
 msgstr ""
 
 #: src/MainWindow.py:199
 msgid "Startup"
 msgstr "スタートアップ"
-
-#: src/MainWindow.py:200 src/Session.py:136
-msgid "Session Control"
-msgstr "セッションコントロール"
 
 #: src/MainWindow.py:201
 msgid "Auto Start"
@@ -495,147 +675,209 @@ msgstr ""
 "新しいバージョン (%s) が公開されました。\n"
 "アップデートしますか?"
 
-#: src/Templates.py:47
-msgid "HTML document"
-msgstr "HTML ドキュメント"
+#: src/Installer.py:50
+msgid "P2P Clients"
+msgstr "P2P クライアント"
 
-#: src/Templates.py:48
-msgid "ODB Database"
-msgstr "ODB データベース"
+#: src/Installer.py:51
+msgid "Image Tools"
+msgstr "画像 ツール"
 
-#: src/Templates.py:49
-msgid "ODS Spreadsheet"
-msgstr "ODS スプレッドシート"
+#: src/Installer.py:52
+msgid "Sound Tools"
+msgstr "サウンド ツール"
 
-#: src/Templates.py:50
-msgid "ODT Document"
-msgstr "ODT ドキュメント"
+#: src/Installer.py:53
+msgid "Video Tools"
+msgstr "ビデオ ツール"
 
-#: src/Templates.py:51
-msgid "Plain text document"
-msgstr "通常のテキスト・ドキュメント"
+#: src/Installer.py:54
+msgid "Text Tools"
+msgstr "テキスト ツール"
 
-#: src/Templates.py:52
-msgid "ODP Presentation"
-msgstr "ODP プレゼンテーション"
-
-#: src/Templates.py:53
-msgid "Python script"
-msgstr "Python スクリプト"
-
-#: src/Templates.py:54
-msgid "Shell script"
-msgstr "Shell スクリプト"
-
-#: src/Templates.py:81
-msgid "Enabled Templates"
-msgstr "有効なテンプレート"
-
-#: src/Templates.py:88
-msgid "Disabled Templates"
-msgstr "無効なテンプレート"
-
-#: src/Templates.py:97
-msgid "Manage your templates"
-msgstr "テンプレートを管理する"
-
-#: src/Templates.py:98
-msgid ""
-"You can freely manage your document templates.\n"
-"You can drag and drop from File Manager.\n"
-"\"Create Document\" will be added to the Context Menu.\n"
-msgstr ""
-"ドキュメント・テンプレートを自由に管理できます。\n"
-"ファイルマネージャーからドラッグ＆ドロップもできます。\n"
-"\"ドキュメントの作成\" はコンテキストメニューに追加されます。\n"
-
-#: src/Templates.py:123
-msgid "Rebuild the system templates"
-msgstr "システム・テンプレートをリビルドする"
-
-#: src/Templates.py:141
-msgid "This will delete all the disabled templates, continue?"
-msgstr "無効なテンプレートがすべて削除されます。よろしいでしょうか？"
-
-#: src/ThirdSoft.py:147
-msgid ""
-"<b><big>The information about available software is out-of-date</big></b>\n"
-"\n"
-"To install software and updates from newly added or changed sources, you "
-"have to reload the information about available software.\n"
-"\n"
-"You need a working internet connection to continue."
-msgstr ""
-"<b><big>利用可能なソフトウェアの情報が古くなっています</big></b>\n"
-"\n"
-"新規に追加もしくは変更されたソフトウェアをインストール/アップデートするには、"
-"利用可能なソフトウェアの情報を再読み込みする必要があります。\n"
-"\n"
-"続けるためには、インターネット接続が有効になっている必要があります。"
-
-#: src/ThirdSoft.py:304
-msgid "Homepage"
+#: src/Installer.py:55
+msgid "Instant Messenger"
 msgstr ""
 
-#: src/ThirdSoft.py:304
-msgid "Source URL"
-msgstr ""
+#: src/Installer.py:56
+msgid "Internet Tools"
+msgstr "インターネット ツール"
 
-#: src/ThirdSoft.py:304
+#: src/Installer.py:57
+msgid "FTP Tools"
+msgstr "FTP ツール"
+
+#: src/Installer.py:58
+msgid "Desktop Tools"
+msgstr "デスクトップ ツール"
+
+#: src/Installer.py:59
+msgid "CD/Disk Tools"
+msgstr "CD/ディスク ツール"
+
+#: src/Installer.py:60
 #, fuzzy
-msgid "Description"
-msgstr "説明無し"
+msgid "Development Kit"
+msgstr "開発キット"
 
-#: src/ThirdSoft.py:315
-msgid "Description is here"
+#: src/Installer.py:61
+msgid "Emulators"
+msgstr "エミュレータ"
+
+#: src/Installer.py:62
+#, fuzzy
+msgid "E-mail Tools"
+msgstr "電子メール ツール"
+
+#: src/Installer.py:135
+#, fuzzy
+msgid "Install widely used applications"
+msgstr "広く使われているアプリケーションをインストール"
+
+#: src/Installer.py:136
+msgid "A simple interface for installing applications."
 msgstr ""
 
-#: src/ThirdSoft.py:343
-msgid "Third Party Softwares Sources"
-msgstr "サードパーティ・ソフトウェアソース"
+#: src/Installer.py:184
+msgid "All Categories"
+msgstr "全てのカテゴリ"
 
-#: src/ThirdSoft.py:344
+#: src/PowerManager.py:37
+msgid "Advanced Power Management Settings"
+msgstr ""
+
+#: src/PowerManager.py:38
+msgid "Enable Hibernation"
+msgstr "ハイバーネートを利用可能にする"
+
+#: src/PowerManager.py:39
+msgid "Enable Suspend"
+msgstr "サスペンドを利用可能にする"
+
+#: src/PowerManager.py:40
+msgid "Show CPU frequency control option"
+msgstr "CPU 周波数コントロールオプションの表示"
+
+#: src/PowerManager.py:41
+msgid "Disable the Network Manager on sleep"
+msgstr "スリープ時にネットワークマネージャを無効にする"
+
+#: src/PowerManager.py:42
+msgid "Lock screen when blanked"
+msgstr "サスペンドになったら画面をロックする"
+
+#: src/PowerManager.py:43
+msgid "\"GNOME Panel\" Power Management icon"
+msgstr "「GNOMEパネル」電源管理アイコン"
+
+#: src/PowerManager.py:43
+msgid "Never display"
+msgstr "常に非表示"
+
+#: src/PowerManager.py:43
+msgid "When charging"
+msgstr "充電中のみ"
+
+#: src/PowerManager.py:43
+msgid "Always display"
+msgstr "常に表示"
+
+#: src/PowerManager.py:48
+msgid "Normal"
+msgstr ""
+
+#: src/PowerManager.py:48
+msgid "On Demand"
+msgstr "必要な場合に自動"
+
+#: src/PowerManager.py:48
+msgid "Power Save"
+msgstr "省電力"
+
+#: src/PowerManager.py:48
+msgid "Performance"
+msgstr "パフォーマンス"
+
+#: src/PowerManager.py:50
+msgid "CPU Policy"
+msgstr ""
+
+#: src/PowerManager.py:51
+msgid "The Performance value when on AC power"
+msgstr "電源使用時のパフォーマンスの実効値"
+
+#: src/PowerManager.py:52
+msgid "The Performance value when on battery power"
+msgstr "バッテリー使用時のパフォーマンスの実効値"
+
+#: src/PowerManager.py:53
+msgid "The CPU frequency policy when on AC power"
+msgstr "AC 電源使用時の周波数ポリシー"
+
+#: src/PowerManager.py:54
+msgid "The CPU frequency policy when on battery power"
+msgstr "バッテリー使用時の周波数ポリシー"
+
+#: src/PackageCleaner.py:80
+msgid "Package"
+msgstr ""
+
+#: src/PackageCleaner.py:104
+msgid "The Packages is no more needed"
+msgstr ""
+
+#: src/PackageCleaner.py:127
+msgid "The Cache is no more needed"
+msgstr ""
+
+#: src/PackageCleaner.py:137
+#, python-format
 msgid ""
-"You can always keep up-to-date with the latest version of an application.\n"
-"And new applications can be installed through Add/Remove."
+"<b>%s</b>\n"
+"Take %s KB disk space"
 msgstr ""
 
-#: src/ThirdSoft.py:360
-msgid "Source Details"
+#: src/PackageCleaner.py:162
+#, python-format
+msgid "%d Package selected to remove)"
 msgstr ""
 
-#: src/ThirdSoft.py:390
-msgid ""
-"<b><big>Could not authenticate</big></b>\n"
-"\n"
-"An unexpected error has occurred."
+#: src/PackageCleaner.py:163
+#, python-format
+msgid "%d Packages selected to remove)"
 msgstr ""
 
-#: src/ThirdSoft.py:403
-msgid ""
-"<b><big>Warning</big></b>\n"
-"\n"
-"It is a possible security risk to use packages from Third Party Sources. "
-"Please be careful."
+#: src/PackageCleaner.py:166
+#, python-format
+msgid "%d KB Space will be free)"
 msgstr ""
 
-#: src/ThirdSoft.py:407
-msgid "Never show this dialog"
+#: src/PackageCleaner.py:199 src/PackageCleaner.py:217
+#, fuzzy
+msgid "Clean Successfully!"
+msgstr "アップデート成功！"
+
+#: src/PackageCleaner.py:201 src/PackageCleaner.py:219
+#, fuzzy
+msgid "Clean Failed!"
+msgstr "アップデート 失敗!"
+
+#: src/PackageCleaner.py:229
+msgid "Clean up the no more needed packages and the package cache."
 msgstr ""
 
-#: src/ThirdSoft.py:414
-msgid ""
-"<b><big>Service hasn't initialized yet</big></b>\n"
-"\n"
-"You need to restart your Ubuntu."
+#: src/PackageCleaner.py:247
+msgid "Clean Package"
 msgstr ""
 
-#: src/ThirdSoft.py:428
-msgid ""
-"<b><big>The software information is up-to-date now</big></b>\n"
-"\n"
-"You can install the new applications through Add/Remove."
+#: src/PackageCleaner.py:253
+msgid "Clean Cache"
 msgstr ""
+
+#: src/PackageCleaner.py:266
+#, fuzzy
+msgid "Select All"
+msgstr "フォルダを選択してください"
 
 #: src/AutoStart.py:44
 msgid "_Name:"
@@ -708,6 +950,115 @@ msgstr "自動起動するプログラムの名前は空にはできません。
 #: src/AutoStart.py:373 src/AutoStart.py:420
 msgid "Text was empty (or contained only whitespace)"
 msgstr "テキストが空、もしくは空白のみです。"
+
+#: src/Compiz.py:207
+msgid "Install Advanced Desktop Effects Settings Manager"
+msgstr "Advanced Desktop Effects Settings Managerをインストール"
+
+#: src/Compiz.py:210
+msgid "Install Simple Desktop Effects Settings manager"
+msgstr "Simple Desktop Effects Settings managerをインストール"
+
+#: src/Compiz.py:213
+msgid "Install Screenlets Widget Application"
+msgstr "Screenlets Widgetアプリケーションをインストール"
+
+#: src/Compiz.py:223
+msgid "Snapping Windows"
+msgstr "ウィンドウのスナップ"
+
+#: src/Compiz.py:224
+msgid "Wobbly Windows"
+msgstr "揺れるウィンドウ効果"
+
+#: src/Compiz.py:226
+msgid "Window Effects"
+msgstr ""
+
+#: src/Compiz.py:229
+msgid "Transparent Menu"
+msgstr "透明なメニュー"
+
+#: src/Compiz.py:230
+msgid "Wobbly Menu"
+msgstr "揺れるメニュー効果"
+
+#: src/Compiz.py:232
+msgid "Menu Effects"
+msgstr ""
+
+#: src/Compiz.py:237
+#, fuzzy
+msgid "Compiz Fusion Extensions"
+msgstr "Compiz Fusion"
+
+#: src/Compiz.py:252
+msgid "Prerequisite Conditions"
+msgstr ""
+
+#: src/Compiz.py:295
+msgid "Expo"
+msgstr "展開"
+
+#: src/Compiz.py:296
+msgid "Pick Windows"
+msgstr "ウィンドウ選定"
+
+#: src/Compiz.py:297
+msgid "Show Desktop"
+msgstr "デスクトップの表示"
+
+#: src/Compiz.py:298
+msgid "Widget"
+msgstr "ウィジェット"
+
+#: src/Shortcuts.py:47
+msgid "Set the shortcut of your commands"
+msgstr "コマンドのショートカットを設定する"
+
+#: src/Shortcuts.py:48
+msgid ""
+"By configuring keyboard shortcuts, you have faster access to the \n"
+"applications you need.\n"
+"Input the command and set any desired key, it's easy to set a shortcut.\n"
+"Use <b>Delete</b> or <b>BackSpace</b> to clean the key."
+msgstr ""
+"キーボードショートカットを設定することにより、アプリケーションに \n"
+"素早くアクセスできます。\n"
+"コマンドと任意のキーを入力してください。簡単にショートカットが設定できま"
+"す。\n"
+"キーのクリアには <b>Delete</b> か <b>BackSpace</b> を使います。"
+
+#: src/Shortcuts.py:87
+#, python-format
+msgid "Command %d"
+msgstr "コマンド %d"
+
+#: src/Shortcuts.py:94 src/Shortcuts.py:157
+msgid "disabled"
+msgstr "無効"
+
+#: src/Shortcuts.py:110
+msgid "ID"
+msgstr "ID"
+
+#: src/Shortcuts.py:121
+msgid "Command"
+msgstr "コマンド"
+
+#: src/Shortcuts.py:136
+msgid "Key"
+msgstr "キー"
+
+#: src/UpdateManager.py:69
+#, fuzzy
+msgid "Update Manager"
+msgstr "電源管理"
+
+#: src/UpdateManager.py:86
+#, python-format
+msgid "Downloading...%d"
+msgstr ""
 
 #: src/UserDir.py:44
 msgid "Desktop Folder"
@@ -788,356 +1139,427 @@ msgstr ""
 msgid "Update successfully!"
 msgstr "更新が成功しました！"
 
-#: src/Gnome.py:43
-msgid "Panel and Menu"
-msgstr ""
+#: src/Templates.py:47
+msgid "HTML document"
+msgstr "HTML ドキュメント"
 
-#: src/Gnome.py:45
-msgid "Confirm Message when removing panel"
-msgstr "パネルを削除する時に確認する"
+#: src/Templates.py:48
+msgid "ODB Database"
+msgstr "ODB データベース"
 
-#: src/Gnome.py:48
-msgid "Complete lockdown of the Panel "
-msgstr "完全にパネルをロックする "
+#: src/Templates.py:49
+msgid "ODS Spreadsheet"
+msgstr "ODS スプレッドシート"
 
-#: src/Gnome.py:51
-msgid "Enable panel animations"
-msgstr "パネルのアニメーションを有効にする"
+#: src/Templates.py:50
+msgid "ODT Document"
+msgstr "ODT ドキュメント"
 
-#: src/Gnome.py:54
-msgid "Show Input Method menu on the Context Menu"
-msgstr "コンテキストメニューに入力メソッドのメニューを表示する"
+#: src/Templates.py:51
+msgid "Plain text document"
+msgstr "通常のテキスト・ドキュメント"
 
-#: src/Gnome.py:57
-msgid "Show Unicode Method menu on the Context Menu"
-msgstr "コンテキストメニューにユニコードメソッドのメニューを表示する"
+#: src/Templates.py:52
+msgid "ODP Presentation"
+msgstr "ODP プレゼンテーション"
 
-#: src/Gnome.py:64
-msgid "Screensaver"
-msgstr ""
+#: src/Templates.py:53
+msgid "Python script"
+msgstr "Python スクリプト"
 
-#: src/Gnome.py:65
-#, fuzzy
-msgid "Enable User Switching when Screen is locked."
-msgstr "画面のロック中にユーザー切り替えを有効にする"
+#: src/Templates.py:54
+msgid "Shell script"
+msgstr "Shell スクリプト"
 
-#: src/Gnome.py:69
-msgid "Enable System-wide 'Recently Used' list"
-msgstr "システム全体に '最近使用した' リストを有効にする"
+#: src/Templates.py:81
+msgid "Enabled Templates"
+msgstr "有効なテンプレート"
 
-#: src/Gnome.py:72
-msgid "History"
-msgstr ""
+#: src/Templates.py:88
+msgid "Disabled Templates"
+msgstr "無効なテンプレート"
 
-#: src/Gnome.py:79
-msgid "Notification-daemon popup location"
-msgstr "通知デーモンのポップアップ位置"
+#: src/Templates.py:97
+msgid "Manage your templates"
+msgstr "テンプレートを管理する"
 
-#: src/Gnome.py:83
-msgid "Top Left"
-msgstr "左上"
-
-#: src/Gnome.py:83
-msgid "Top Right"
-msgstr "右上"
-
-#: src/Gnome.py:83
-msgid "Bottom Left"
-msgstr "左下"
-
-#: src/Gnome.py:83
-msgid "Bottom Right"
-msgstr "右下"
-
-#: src/Gnome.py:92
-msgid "Click the button to change panel logo"
-msgstr ""
-
-#: src/Gnome.py:105
-#, fuzzy
-msgid "choose a New logo"
-msgstr "プログラムを選択"
-
-#: src/Gnome.py:107 src/Session.py:45
-msgid "PNG image (*.png)"
-msgstr "PNG 画像ファイル(*.png)"
-
-#: src/Gnome.py:122
+#: src/Templates.py:98
 msgid ""
-"The size isnt suitable for the panel.\n"
-"It should be 24x24"
+"You can freely manage your document templates.\n"
+"You can drag and drop from File Manager.\n"
+"\"Create Document\" will be added to the Context Menu.\n"
+msgstr ""
+"ドキュメント・テンプレートを自由に管理できます。\n"
+"ファイルマネージャーからドラッグ＆ドロップもできます。\n"
+"\"ドキュメントの作成\" はコンテキストメニューに追加されます。\n"
+
+#: src/Templates.py:123
+msgid "Rebuild the system templates"
+msgstr "システム・テンプレートをリビルドする"
+
+#: src/Templates.py:141
+msgid "This will delete all the disabled templates, continue?"
+msgstr "無効なテンプレートがすべて削除されます。よろしいでしょうか？"
+
+#: src/common/PackageWorker.py:64
+msgid "(Not available)"
+msgstr "(利用できません)"
+
+#: src/common/AppData.py:57
+#, fuzzy
+msgid "A color scheme designer"
+msgstr "カラースキーマ デザイナー"
+
+#: src/common/AppData.py:58
+msgid "Client for the eD2k and Kad networks"
+msgstr "eD2KとKadネットワーク用クライアント"
+
+#: src/common/AppData.py:59
+msgid "GNOME IDE for C/C++, Java, Python"
 msgstr ""
 
-#: src/Gnome.py:131
-msgid "Do you want take effect immediately?"
+#: src/common/AppData.py:60
+msgid "A skinned multimedia player for many platforms"
+msgstr "多くのプラットフォームのスキン対応マルチメディアプレイヤー"
+
+#: src/common/AppData.py:61
+msgid "Record and edit audio files"
+msgstr "オーディオファイルの録音と編集"
+
+#: src/common/AppData.py:62
+msgid "Fully customisable dock-like window navigator"
+msgstr "カスタマイズ可能なドックのようなウインドウナビゲーター"
+
+#: src/common/AppData.py:63
+msgid "A free video editor"
+msgstr "フリービデオエディタ"
+
+#: src/common/AppData.py:64
+msgid "BitTorrent client written in Java"
+msgstr "Javaで書かれたBitTorrentクライアント"
+
+#: src/common/AppData.py:65 src/common/AppData.py:127
+msgid "Audio Management and Playback application"
+msgstr "オーディオ管理および再生用アプリケーション"
+
+#: src/common/AppData.py:66
+msgid "A true dock for linux"
+msgstr "A true dock for linux"
+
+#: src/common/AppData.py:67
+msgid "A chm file viewer written in GTK+"
+msgstr "GTK+で書かれた chm ファイルビューア"
+
+#: src/common/AppData.py:68
+msgid "The open source, cross-platform IDE"
 msgstr ""
 
-#: src/Session.py:39
-msgid "Click the large button to change Splash screen"
+#: src/common/AppData.py:69
+msgid "Advanced Desktop Effects Settings Manager"
+msgstr "高度なデスクトップエフェクト設定マネージャ"
+
+#: src/common/AppData.py:70
+msgid "An API documentation browser for GNOME."
+msgstr "GNOMEのAPIドキュメントブラウザ"
+
+#: src/common/AppData.py:71
+msgid "A Bittorrent client written in PyGTK"
+msgstr "PyGTKで書かれたBitTorrentクライアント"
+
+#: src/common/AppData.py:72
+msgid "Store, Sync and Share your files online."
 msgstr ""
 
-#: src/Session.py:43
-msgid "Choose a Splash image"
-msgstr "スプラッシュ画像ファイルを選択してください"
+#: src/common/AppData.py:73
+msgid "Extensible Tool Platform and Java IDE"
+msgstr "拡張可能なツールプラットフォームとJava IDE(統合開発環境)"
 
-#: src/Session.py:130
-msgid "Automatically save changes to session"
-msgstr "自動的にセッションの変更点を保存する"
+#: src/common/AppData.py:74
+msgid "A client for the Windows Live Message network"
+msgstr "Windows Live Messageネットワーク用クライアント"
 
-#: src/Session.py:131
-msgid "Show Logout prompt"
-msgstr "ログアウト時に確認する"
-
-#: src/Session.py:132
-msgid "Allow TCP Connections(Remote Connect)"
-msgstr "TCP 接続を許可する（リモート接続）"
-
-#: src/Session.py:133
-msgid "Show Splash screen"
-msgstr "起動画面表示"
-
-#: src/Shortcuts.py:47
-msgid "Set the shortcut of your commands"
-msgstr "コマンドのショートカットを設定する"
-
-#: src/Shortcuts.py:48
+#: src/common/AppData.py:75
 msgid ""
-"By configuring keyboard shortcuts, you have faster access to the \n"
-"applications you need.\n"
-"Input the command and set any desired key, it's easy to set a shortcut.\n"
-"Use <b>Delete</b> or <b>BackSpace</b> to clean the key."
+"Empathy consists of a rich set of reusable instant messaging widgets, and a "
+"GNOME client using those widgets."
 msgstr ""
-"キーボードショートカットを設定することにより、アプリケーションに \n"
-"素早くアクセスできます。\n"
-"コマンドと任意のキーを入力してください。簡単にショートカットが設定できま"
-"す。\n"
-"キーのクリアには <b>Delete</b> か <b>BackSpace</b> を使います。"
 
-#: src/Shortcuts.py:87
-#, python-format
-msgid "Command %d"
-msgstr "コマンド %d"
+#: src/common/AppData.py:76
+msgid "KDE IM client using Tencent QQ protocol"
+msgstr ""
 
-#: src/Shortcuts.py:94 src/Shortcuts.py:157
-msgid "disabled"
+#: src/common/AppData.py:77
+msgid "GTK+ based flexible audio player, similar to Amarok"
+msgstr "GTK+ ベースの順応性なオーディオプレイヤーで、Amarokに類似しています。"
+
+#: src/common/AppData.py:78
+msgid "File transmission via ftp, sftp and ftps"
+msgstr "ftp, sftp and ftps軽油でファイル転送"
+
+#: src/common/AppData.py:79
+msgid "An extremly fast and lightweight file manager"
+msgstr "非常に高速かつ軽量なファイルマネージャー"
+
+#: src/common/AppData.py:80
+msgid ""
+"Galaxium is an instant messenger application designed for the GNOME desktop"
+msgstr ""
+
+#: src/common/AppData.py:81
+msgid "A GTK+ jabber client"
+msgstr ""
+
+#: src/common/AppData.py:82
+#, fuzzy
+msgid "A fast and lightweight IDE"
+msgstr "非常に高速かつ軽量なファイルマネージャー"
+
+#: src/common/AppData.py:83
+msgid "A multithreaded FTP client"
+msgstr "マルチスレッドFTPクライアント"
+
+#: src/common/AppData.py:84
+#, fuzzy
+msgid "GNOME Hex editor"
+msgstr "GNOME 用 16 進数エディタ"
+
+#: src/common/AppData.py:85
+#, fuzzy
+msgid "Notifies the user upon arrival of new mail in Gmail"
+msgstr "Gmailの新着メールを通知する"
+
+#: src/common/AppData.py:86
+msgid "A powerful, speedy, and sexy remote control for the GNOME Desktop"
+msgstr ""
+
+#: src/common/AppData.py:87
+msgid ""
+"A program that combines satellite imagery and maps to put the world's "
+"geographic information at your fingertips."
+msgstr ""
+
+#: src/common/AppData.py:88
+msgid "Platform for running Google Gadgets on Linux"
+msgstr "Linuxプラットフォームで動作するGoogle Gadgets"
+
+#: src/common/AppData.py:89
+msgid "GNOME partition editor"
+msgstr "GNOME パーティションエディタ"
+
+#: src/common/AppData.py:90
+msgid "Lightweight image viewer"
+msgstr "軽量なイメージビューア"
+
+#: src/common/AppData.py:91
+msgid "A powerful screenshot tool"
+msgstr ""
+
+#: src/common/AppData.py:92
+msgid "Graphical frontend for recordmydesktop"
+msgstr "recordmydesktop用グラフィカルフロントエンド"
+
+#: src/common/AppData.py:93
+msgid "A graphical CD image editor"
+msgstr "グラフィカルCDイメージエディタ"
+
+#: src/common/AppData.py:94
+msgid "Non-linear editor for Digital Video data"
+msgstr "Digital Video dataのノンリニア編集"
+
+#: src/common/AppData.py:95
+msgid "A music player for Last.fm personalized radio"
+msgstr "Last.fm personalized radio用ミュージックプレイヤー"
+
+#: src/common/AppData.py:96
+msgid "GTK+ based simple text editor"
+msgstr "GTK+ ベースのシンプルなテキストエディタ"
+
+#: src/common/AppData.py:97
+msgid "Feed aggregator for GNOME"
+msgstr "GNOME用フィード・アグリゲータ"
+
+#: src/common/AppData.py:98
+#, fuzzy
+msgid "Mail notification in system tray"
+msgstr "システムトレイにメール通知"
+
+#: src/common/AppData.py:99
+#, fuzzy
+msgid "Adcal tool to diff and merge files"
+msgstr "ファイルを比較・マージ"
+
+#: src/common/AppData.py:100
+msgid "A fast and simple GTK+ Image Viewer"
+msgstr "速くてシンプルなGTK+イメージビューア"
+
+#: src/common/AppData.py:101
+msgid "Webkit based lightweight web browser"
+msgstr "Webkitベースの軽量Webブラウザ"
+
+#: src/common/AppData.py:102
+#, fuzzy
+msgid "An IDE to Develop .NET applications."
+msgstr ".NETアプリケーションの開発"
+
+#: src/common/AppData.py:103
+msgid "The Ultimate Movie Player For Linux"
+msgstr "Linux用の究極ムービープレイヤー"
+
+#: src/common/AppData.py:104
+msgid "IDE for Java, C/C++, Ruby, UML, etc."
+msgstr "Java, C/C++, Ruby, UML, などの統合開発環境"
+
+#: src/common/AppData.py:105
+msgid "The Opera Web Browser"
+msgstr ""
+
+#: src/common/AppData.py:106
+msgid ""
+"Pidgin is a graphical modular messaging client based on libpurple which is "
+"capable of connecting to AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, SIP/SIMPLE, "
+"Novell GroupWise, Lotus Sametime, Bonjour, Zephyr, MySpaceIM, Gadu-Gadu, and "
+"QQ all at once."
+msgstr ""
+
+#: src/common/AppData.py:107
+msgid "Run your Windows programs on Linux"
+msgstr ""
+
+#: src/common/AppData.py:108
+msgid "A framework for desktop widgets"
+msgstr "デスクトップ・ウィジェットの為のフレームワーク"
+
+#: src/common/AppData.py:109
+msgid "Make audio/video calls using this VoIP Software"
+msgstr ""
+
+#: src/common/AppData.py:110
+msgid "A great MPlayer front-end, written in QT4"
+msgstr "QT4で書かれたMPlayer用フロントエンド"
+
+#: src/common/AppData.py:111
+msgid "Convert audio files into other formats"
+msgstr "オーディオファイルを別のフォーマットに変換"
+
+#: src/common/AppData.py:112
+msgid "An international dictionary"
+msgstr "国際辞書"
+
+#: src/common/AppData.py:113
+msgid ""
+"Swiftweasel is an optimized build of the Mozilla Firefox web browser for "
+"Linux"
+msgstr ""
+
+#: src/common/AppData.py:114
+msgid "Multiple GNOME terminals in one window"
+msgstr ""
+
+#: src/common/AppData.py:115
+msgid "Ubuntu Tweak makes it easier to configure Ubuntu"
+msgstr ""
+
+#: src/common/AppData.py:116
+msgid "Commonly used restricted packages"
+msgstr ""
+
+#: src/common/AppData.py:117 src/common/AppData.py:118
+msgid "A feature rich, high performance virtualization software"
+msgstr "豊富な機能、高性能仮想化ソフトウェア"
+
+#: src/common/AppData.py:119
+msgid "Read, capture, broadcast your multimedia streams"
+msgstr "あなたのマルチメディアストリームを読み込み、キャプチャ、放送"
+
+#: src/common/AppData.py:120
+msgid "Run Virtual Machines using VMware"
+msgstr ""
+
+#: src/common/AppData.py:121
+msgid "A compatibility layer for running Windows programs"
+msgstr "Windowsプログラムを実行する互換性レイヤ"
+
+#: src/common/AppData.py:122
+msgid ""
+"XBMC is a free and open source software media player and entertainment hub"
+msgstr ""
+
+#: src/common/AppData.py:126
+msgid "Development Version of Mozilla Firefox 3.0/3.1, 4.0"
+msgstr "開発版のMozilla Firefox 3.0/3.1, 4.0"
+
+#: src/common/AppData.py:128
+msgid "Development version of Compiz Fusion"
+msgstr "Compiz Fusionの開発版"
+
+#: src/common/AppData.py:129
+msgid "Google's Linux Repository"
+msgstr ""
+
+#: src/common/AppData.py:130
+msgid "K Desktop Environment 4.1"
+msgstr "K Desktop Environment 4.1"
+
+#: src/common/AppData.py:131
+msgid "Lightweight X11 Desktop Environment:GPicView, PCManFM"
+msgstr "軽量なX11デスクトップ環境:GPicView、PCManFM"
+
+#: src/common/AppData.py:132
+msgid ""
+"Multimedia, Entertainment and Distraction In Ubuntu\n"
+"Medibuntu is a repository of packages that cannot be included into the "
+"Ubuntu distribution for legal reasons (copyright, license, patent, etc)."
+msgstr ""
+
+#: src/common/Factory.py:190
+#, fuzzy
+msgid "Disable 'Run Application' dialog (Alt+F2)"
+msgstr "「アプリケーションの実行」ダイアログを無効にする（Alt+F2）"
+
+#: src/common/PolicyKit/PolkitButton.py:41
+msgid "_Unlock"
+msgstr "ロック解除(_U)"
+
+#: src/common/Widgets/Widgets.py:249
+msgid "Please press the new key combination"
+msgstr "新しいキーの組み合わせを押してください"
+
+#: src/common/Widgets/Widgets.py:298
+msgid "Disabled"
 msgstr "無効"
 
-#: src/Shortcuts.py:110
-msgid "ID"
-msgstr "ID"
-
-#: src/Shortcuts.py:121
-msgid "Command"
-msgstr "コマンド"
-
-#: src/Shortcuts.py:136
-msgid "Key"
-msgstr "キー"
-
-#: src/Icon.py:32
-msgid "Show \"Computer\" icon on desktop"
-msgstr "「コンピューター」アイコンをデスクトップに表示"
-
-#: src/Icon.py:33
-msgid "Rename the \"Computer\" icon: "
-msgstr "「コンピューター」アイコンの名前を変更： "
-
-#: src/Icon.py:41
-msgid "Show \"Home\" icon on desktop"
-msgstr "「ホーム」アイコンをデスクトップに表示"
-
-#: src/Icon.py:42
-msgid "Rename the \"Home\" icon: "
-msgstr "「ホーム」アイコンの名前を変更： "
-
-#: src/Icon.py:50
-msgid "Show \"Trash\" icon on desktop"
-msgstr "「ごみ箱」アイコンをデスクトップに表示"
-
-#: src/Icon.py:51
-msgid "Rename the \"Trash\" icon: "
-msgstr "「ごみ箱」アイコンの名前を変更： "
-
-#: src/Icon.py:100
-msgid "Unset"
-msgstr "未設定"
-
-#: src/Icon.py:106
-msgid "Desktop Icon settings"
-msgstr ""
-
-#: src/Icon.py:108
-msgid "Show desktop icons"
-msgstr "デスクトップアイコン表示"
-
-#: src/Icon.py:128
-msgid "Show \"Network\" icon on desktop"
-msgstr "「ネットワーク」アイコンをデスクトップに表示"
-
-#: src/Icon.py:131
-msgid "Show Mounted Volumes on desktop"
-msgstr "デスクトップにマウントしたボリュームを表示する"
-
-#: src/Icon.py:134
-msgid "Use Home Folder as the desktop(Logout for changes to take effect)"
-msgstr ""
-"ホームフォルダをデスクトップとして扱う (変化を有効にするにはログアウトしてく"
-"ださい)"
-
-#: src/Installer.py:50
-msgid "P2P Clients"
-msgstr "P2P クライアント"
-
-#: src/Installer.py:51
-msgid "Image Tools"
-msgstr "画像 ツール"
-
-#: src/Installer.py:52
-msgid "Sound Tools"
-msgstr "サウンド ツール"
-
-#: src/Installer.py:53
-msgid "Video Tools"
-msgstr "ビデオ ツール"
-
-#: src/Installer.py:54
-msgid "Text Tools"
-msgstr "テキスト ツール"
-
-#: src/Installer.py:55
-msgid "Instant Messenger"
-msgstr ""
-
-#: src/Installer.py:56
-msgid "Internet Tools"
-msgstr "インターネット ツール"
-
-#: src/Installer.py:57
-msgid "FTP Tools"
-msgstr "FTP ツール"
-
-#: src/Installer.py:58
-msgid "Desktop Tools"
-msgstr "デスクトップ ツール"
-
-#: src/Installer.py:59
-msgid "CD/Disk Tools"
-msgstr "CD/ディスク ツール"
-
-#: src/Installer.py:60
+#: src/common/Widgets/TreeViews.py:69
 #, fuzzy
-msgid "Development Kit"
-msgstr "開発キット"
+msgid "Create folder"
+msgstr "テンプレートフォルダ"
 
-#: src/Installer.py:61
-msgid "Emulators"
-msgstr "エミュレータ"
+#: src/common/Widgets/TreeViews.py:73
+msgid "Rename"
+msgstr ""
 
-#: src/Installer.py:62
+#: src/common/Widgets/TreeViews.py:77
+msgid "Delete"
+msgstr ""
+
+#: src/common/Widgets/TreeViews.py:99
+msgid "Input the dir name"
+msgstr ""
+
+#: src/common/Widgets/TreeViews.py:124
+msgid "Can't rename the root folder"
+msgstr ""
+
+#: src/common/Widgets/TreeViews.py:141
 #, fuzzy
-msgid "E-mail Tools"
-msgstr "電子メール ツール"
+msgid "Can't delete the root folder"
+msgstr "システムアイテムをディスク上から削除できません。"
 
-#: src/Installer.py:135
-#, fuzzy
-msgid "Install widely used applications"
-msgstr "広く使われているアプリケーションをインストール"
-
-#: src/Installer.py:136
-msgid "A simple interface for installing applications."
+#: src/common/Widgets/TreeViews.py:156
+msgid ""
+"Can't rename!\n"
+"\n"
+"There're files in it!"
 msgstr ""
-
-#: src/Installer.py:184
-msgid "All Categories"
-msgstr "全てのカテゴリ"
-
-#: src/ScriptWorker.py:53
-#, python-format
-msgid "The file \"%s\" is exists!"
-msgstr "ファイル「%s」が既に存在しています。"
-
-#: src/ScriptWorker.py:58
-#, python-format
-msgid "The folder \"%s\" is exists!"
-msgstr "フォルダ「%s」が既に存在しています。"
-
-#: src/ScriptWorker.py:66 src/ScriptWorker.py:74
-#, python-format
-msgid "The target \"%s\" is exists!"
-msgstr "ターゲット「%s」が既に存在しています。"
-
-#: src/ScriptWorker.py:79 src/ScriptWorker.py:90
-msgid "Enter your password to perform the administrative tasks"
-msgstr "管理タスクを行う為にパスワードを入力してください。"
-
-#: src/ScriptWorker.py:109
-msgid "Select a folder"
-msgstr "フォルダを選択してください"
-
-#: src/ScriptWorker.py:128
-msgid "Please select a target(files or folders)."
-msgstr "ターゲット（ファイル又はフォルダ）を選択してください。"
-
-#: src/Compiz.py:207
-msgid "Install Advanced Desktop Effects Settings Manager"
-msgstr "Advanced Desktop Effects Settings Managerをインストール"
-
-#: src/Compiz.py:210
-msgid "Install Simple Desktop Effects Settings manager"
-msgstr "Simple Desktop Effects Settings managerをインストール"
-
-#: src/Compiz.py:213
-msgid "Install Screenlets Widget Application"
-msgstr "Screenlets Widgetアプリケーションをインストール"
-
-#: src/Compiz.py:223
-msgid "Snapping Windows"
-msgstr "ウィンドウのスナップ"
-
-#: src/Compiz.py:224
-msgid "Wobbly Windows"
-msgstr "揺れるウィンドウ効果"
-
-#: src/Compiz.py:226
-msgid "Window Effects"
-msgstr ""
-
-#: src/Compiz.py:229
-msgid "Transparent Menu"
-msgstr "透明なメニュー"
-
-#: src/Compiz.py:230
-msgid "Wobbly Menu"
-msgstr "揺れるメニュー効果"
-
-#: src/Compiz.py:232
-msgid "Menu Effects"
-msgstr ""
-
-#: src/Compiz.py:237
-#, fuzzy
-msgid "Compiz Fusion Extensions"
-msgstr "Compiz Fusion"
-
-#: src/Compiz.py:252
-msgid "Prerequisite Conditions"
-msgstr ""
-
-#: src/Compiz.py:295
-msgid "Expo"
-msgstr "展開"
-
-#: src/Compiz.py:296
-msgid "Pick Windows"
-msgstr "ウィンドウ選定"
-
-#: src/Compiz.py:297
-msgid "Show Desktop"
-msgstr "デスクトップの表示"
-
-#: src/Compiz.py:298
-msgid "Widget"
-msgstr "ウィジェット"
 
 #~ msgid "Security"
 #~ msgstr "セキュリティ"
@@ -1155,147 +1577,14 @@ msgstr "ウィジェット"
 #~ "アップデート成功！\n"
 #~ "Ubuntu Tweakを再起動してください。"
 
-#~ msgid "A colorscheme designer"
-#~ msgstr "カラースキーマ デザイナー"
-
-#~ msgid "Client for the eD2k and Kad networks"
-#~ msgstr "eD2KとKadネットワーク用クライアント"
-
-#~ msgid "A skinned multimedia player for many platforms"
-#~ msgstr "多くのプラットフォームのスキン対応マルチメディアプレイヤー"
-
-#~ msgid "Record and edit audio files"
-#~ msgstr "オーディオファイルの録音と編集"
-
-#~ msgid "Fully customisable dock-like window navigator"
-#~ msgstr "カスタマイズ可能なドックのようなウインドウナビゲーター"
-
-#~ msgid "A free video editor"
-#~ msgstr "フリービデオエディタ"
-
-#~ msgid "BitTorrent client written in Java"
-#~ msgstr "Javaで書かれたBitTorrentクライアント"
-
-#~ msgid "Audio Management and Playback application"
-#~ msgstr "オーディオ管理および再生用アプリケーション"
-
-#~ msgid "A true dock for linux"
-#~ msgstr "A true dock for linux"
-
-#~ msgid "A chm file viewer written in GTK+"
-#~ msgstr "GTK+で書かれた chm ファイルビューア"
-
-#~ msgid "Advanced Desktop Effects Settings Manager"
-#~ msgstr "高度なデスクトップエフェクト設定マネージャ"
-
-#~ msgid "An API documentation browser for GNOME."
-#~ msgstr "GNOMEのAPIドキュメントブラウザ"
-
-#~ msgid "A Bittorrent client written in PyGTK"
-#~ msgstr "PyGTKで書かれたBitTorrentクライアント"
-
-#~ msgid "Extensible Tool Platform and Java IDE"
-#~ msgstr "拡張可能なツールプラットフォームとJava IDE(統合開発環境)"
-
-#~ msgid "A client for the Windows Live Message network"
-#~ msgstr "Windows Live Messageネットワーク用クライアント"
-
-#~ msgid "GTK+ based flexible audio player, similar to Amarok"
-#~ msgstr ""
-#~ "GTK+ ベースの順応性なオーディオプレイヤーで、Amarokに類似しています。"
-
-#~ msgid "File transmission via ftp, sftp and ftps"
-#~ msgstr "ftp, sftp and ftps軽油でファイル転送"
-
-#~ msgid "An extremly fast and lightweight file manager"
-#~ msgstr "非常に高速かつ軽量なファイルマネージャー"
-
-#~ msgid "A multithreaded FTP client"
-#~ msgstr "マルチスレッドFTPクライアント"
-
-#~ msgid "GNOME Hex editor for files"
-#~ msgstr "GNOME 用 16 進数エディタ"
-
-#~ msgid "Notify the arrival of new mail on Gmail"
-#~ msgstr "Gmailの新着メールを通知する"
-
 #~ msgid "Do things as quickly as possible"
 #~ msgstr "Do things as quickly as possible"
 
 #~ msgid "Let you fly anywhere to view the earth"
 #~ msgstr "あらゆる場所を飛び回り、地球を表示します"
 
-#~ msgid "Platform for running Google Gadgets on Linux"
-#~ msgstr "Linuxプラットフォームで動作するGoogle Gadgets"
-
-#~ msgid "GNOME partition editor"
-#~ msgstr "GNOME パーティションエディタ"
-
-#~ msgid "Lightweight image viewer"
-#~ msgstr "軽量なイメージビューア"
-
-#~ msgid "Graphical frontend for recordmydesktop"
-#~ msgstr "recordmydesktop用グラフィカルフロントエンド"
-
-#~ msgid "A graphical CD image editor"
-#~ msgstr "グラフィカルCDイメージエディタ"
-
-#~ msgid "Non-linear editor for Digital Video data"
-#~ msgstr "Digital Video dataのノンリニア編集"
-
-#~ msgid "A music player for Last.fm personalized radio"
-#~ msgstr "Last.fm personalized radio用ミュージックプレイヤー"
-
-#~ msgid "GTK+ based simple text editor"
-#~ msgstr "GTK+ ベースのシンプルなテキストエディタ"
-
-#~ msgid "Feed aggregator for GNOME"
-#~ msgstr "GNOME用フィード・アグリゲータ"
-
-#~ msgid "mail notification in system tray"
-#~ msgstr "システムトレイにメール通知"
-
-#~ msgid "adcal tool to diff and merge files"
-#~ msgstr "ファイルを比較・マージ"
-
-#~ msgid "A fast and simple GTK+ Image Viewer"
-#~ msgstr "速くてシンプルなGTK+イメージビューア"
-
-#~ msgid "Webkit based lightweight web browser"
-#~ msgstr "Webkitベースの軽量Webブラウザ"
-
-#~ msgid "Develop .NET applications."
-#~ msgstr ".NETアプリケーションの開発"
-
-#~ msgid "The Ultimate Movie Player For Linux"
-#~ msgstr "Linux用の究極ムービープレイヤー"
-
-#~ msgid "IDE for Java, C/C++, Ruby, UML, etc."
-#~ msgstr "Java, C/C++, Ruby, UML, などの統合開発環境"
-
-#~ msgid "A framework for desktop widgets"
-#~ msgstr "デスクトップ・ウィジェットの為のフレームワーク"
-
-#~ msgid "A great MPlayer front-end, written in QT4"
-#~ msgstr "QT4で書かれたMPlayer用フロントエンド"
-
-#~ msgid "Convert audio files into other formats"
-#~ msgstr "オーディオファイルを別のフォーマットに変換"
-
-#~ msgid "An international dictionary"
-#~ msgstr "国際辞書"
-
-#~ msgid "A feature rich, high performance virtualization software"
-#~ msgstr "豊富な機能、高性能仮想化ソフトウェア"
-
-#~ msgid "Read, capture, broadcast your multimedia streams"
-#~ msgstr "あなたのマルチメディアストリームを読み込み、キャプチャ、放送"
-
 #~ msgid "VMware Player can play virtual machines created by VMware"
 #~ msgstr "VMware Playerは VMwareで作成されたバーチャルマシンを再生できます"
-
-#~ msgid "A compatibility layer for running Windows programs"
-#~ msgstr "Windowsプログラムを実行する互換性レイヤ"
 
 #~ msgid "You can install applications by using this simple interface."
 #~ msgstr ""
@@ -1328,12 +1617,6 @@ msgstr "ウィジェット"
 #~ "\n"
 #~ "楽しんでください!"
 
-#~ msgid "(Not available)"
-#~ msgstr "(利用できません)"
-
-#~ msgid "_Unlock"
-#~ msgstr "ロック解除(_U)"
-
 #~ msgid "Delete this script"
 #~ msgstr "このスクリプトを削除"
 
@@ -1349,23 +1632,5 @@ msgstr "ウィジェット"
 #~ msgid "Delete this template"
 #~ msgstr "このテンプレートを削除する"
 
-#~ msgid "Development Version of Mozilla Firefox 3.0/3.1, 4.0"
-#~ msgstr "開発版のMozilla Firefox 3.0/3.1, 4.0"
-
-#~ msgid "Development version of Compiz Fusion"
-#~ msgstr "Compiz Fusionの開発版"
-
-#~ msgid "K Desktop Environment 4.1"
-#~ msgstr "K Desktop Environment 4.1"
-
 #~ msgid "Tweak ubuntu to what you like"
 #~ msgstr "あなたが好きなようにUbuntuを微調整"
-
-#~ msgid "Lightweight X11 Desktop Environment:GPicView, PCManFM"
-#~ msgstr "軽量なX11デスクトップ環境:GPicView、PCManFM"
-
-#~ msgid "Please press the new key combination"
-#~ msgstr "新しいキーの組み合わせを押してください"
-
-#~ msgid "Disabled"
-#~ msgstr "無効"

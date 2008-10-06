@@ -80,7 +80,6 @@ ChmSee = ['chmsee', 'chmsee.gro.clinux.org', '']
 KDE4 = ['KDE 4', 'www.kde.org', '']
 UbuntuTweak = ['Ubuntu Tweak', 'ubuntu-tweak.com', '']
 NautilusDropbox = ['Nautilus-DropBox', 'www.getdropbox.com', '']
-Playdeb = ['Playdeb', 'www.playdeb.net', '']
 Screenlets = ['Screenlets', 'www.screenlets.org', '']
 Wine = ['Wine', 'www.winehq.org', 'wine.gpg']
 LXDE = ['LXDE', 'lxde.org', '']
@@ -110,7 +109,6 @@ SOURCES_DATA = [
     ['http://www.getdropbox.com/static/ubuntu', 'hardy', 'main', NautilusDropbox],
     ['http://ppa.launchpad.net/tualatrix/ubuntu', 'hardy', 'main', UbuntuTweak],
     ['http://ppa.launchpad.net/gilir/ubuntu', 'hardy', 'main', Screenlets],
-    ['mirror://www.getdeb.net/playdeb-mirror/hardy/// ', 'hardy', 'main', Playdeb],
     ['http://wine.budgetdedicated.com/apt', 'hardy', 'main', Wine],
     ['http://ppa.launchpad.net/lxde/ubuntu', 'hardy', 'main', LXDE],
     ['http://ppa.launchpad.net/gnome-terminator/ubuntu', ['hardy', 'intrepid'], 'main', Terminator],
@@ -120,7 +118,6 @@ SOURCES_DATA = [
     ['http://download.tuxfamily.org/swiftweasel', 'hardy', 'multiverse', Swiftweasel],
     ['http://packages.medibuntu.org/', ['hardy', 'intrepid'], 'free non-free', Medibuntu],
     ['http://ppa.launchpad.net/team-xbmc/ubuntu', 'hardy', 'main', XBMC],
-#    ['http://ppa.launchpad.net/bearoso/ubuntu', 'hardy', 'main', 'snes9x-gtk', _('Hello World')],
 ]
 
 def filter_sources(light = False):

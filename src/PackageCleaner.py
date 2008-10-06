@@ -22,6 +22,7 @@ import os
 import gtk
 import thread
 import gobject
+import gettext
 from common.LookupIcon import *
 from common.PolicyKit import DbusProxy, PolkitButton
 from common.PackageWorker import PackageWorker, update_apt_cache
@@ -100,7 +101,7 @@ class PackageView(gtk.TreeView):
         icon = get_icon_with_name('deb', 24)
         list = self.__packageworker.list_autoremovable()
         self.total_num = len(list)
-        self.__column.set_title('Packages need to be removed')
+        self.__column.set_title(_('The Packages is no more needed'))
 
         for pkg in list:
             desc = self.__packageworker.get_pkgsummary(pkg)
@@ -123,7 +124,7 @@ class PackageView(gtk.TreeView):
         list = map(lambda file: "%s/%s" % (cache_dir, file),
                     filter(lambda x:x.endswith('deb'), os.listdir(cache_dir))) 
         self.total_num = len(list)
-        self.__column.set_title('Cache need to be removed')
+        self.__column.set_title(_('The Cache is no more needed'))
 
         for pkg in list:
             size = str(os.path.getsize(pkg)/1024)
@@ -133,7 +134,7 @@ class PackageView(gtk.TreeView):
                 icon,
                 pkg,
                 size,
-                '<b>%s</b>\nTake space %s KB' % (os.path.basename(pkg), size)
+                _('<b>%s</b>\nTake %s KB disk space') % (os.path.basename(pkg), size)
                 ))
 
     def on_package_toggled(self, cell, path):
@@ -156,12 +157,13 @@ class PackageView(gtk.TreeView):
 
     def set_column_title(self):
         if self.mode == 'package':
-            self.__column.set_title(_('Package (%d Packages selected to remove)') % 
-                             len(self.__check_list))
+            n = len(self.__check_list)
+            self.__column.set_title(
+                    gettext.ngettext(_('%d Package selected to remove)') % n, 
+                                    _('%d Packages selected to remove)') % n, n))
         else:
             self.computer_cache_size()
-            self.__column.set_title(_('Cache (%d KB Space will be free)') % 
-                             self.size)
+            self.__column.set_title(_('%d KB Space will be free)') % self.size)
 
     def computer_cache_size(self):
         self.size = 0

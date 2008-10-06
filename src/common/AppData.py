@@ -129,7 +129,6 @@ SOURCE_DATA = {
     'google': _("Google's Linux Repository"),
     'kde-4': _('K Desktop Environment 4.1'),
     'lxde': _('Lightweight X11 Desktop Environment:GPicView, PCManFM'),
-    'playdeb': _('Playdeb is a gaming repository for Ubuntu - aimed to provide titles already available on getdeb.net in an easier to install and update format.'),
     'medibuntu': _('Multimedia, Entertainment and Distraction In Ubuntu\nMedibuntu is a repository of packages that cannot be included into the Ubuntu distribution for legal reasons (copyright, license, patent, etc).'),
 }
 

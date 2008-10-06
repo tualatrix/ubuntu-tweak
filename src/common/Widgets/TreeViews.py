@@ -153,7 +153,7 @@ class DirView(gtk.TreeView):
                            DIR_PATH, newpath,
                            DIR_EDITABLE, False)
         else:
-            ErrorDialog(_("Can't rename!\n\nThere's file in it")).launch()
+            ErrorDialog(_("Can't rename!\n\nThere're files in it!")).launch()
 
     def on_drag_data_get(self, treeview, context, selection, target_id, etime):
         treeselection = self.get_selection()
