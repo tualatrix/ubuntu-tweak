@@ -1,4 +1,5 @@
-bin_SCRIPTS = ubuntu-tweak script-worker ubuntu-tweak-dbus
+bin_SCRIPTS = ubuntu-tweak script-worker 
+sbin_SCRIPTS = ubuntu-tweak-dbus
 
-CLEANFILES = ubuntu-tweak script-worker
-EXTRA_DIST = ubuntu-tweak-dbus
+CLEANFILES = $(bin_SCRIPTS)
+EXTRA_DIST = $(sbin_SCRIPTS)
