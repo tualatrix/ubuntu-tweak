@@ -16,7 +16,13 @@ if test "x$PYTHON" = "x:"; then
 fi
 
 # Pygtk
-PKG_CHECK_MODULES([pygtk], [gtk+-2.0 >= 2.12.0 pygtk-2.0 >= 2.12.0])
+PKG_CHECK_MODULES(TWEAK,
+    gtk+-2.0                >= 2.10
+    pygtk-2.0               >= 2.10
+    pygobject-2.0           >= 2.10
+    gnome-python-2.0        >= 2.10
+    gnome-desktop-2.0       >= 2.10
+)
 AC_SUBST(PYGTK_CFLAGS)
 AC_SUBST(PYGTK_LIBS)
 PYGTK_DEFS=`$PKG_CONFIG --variable=defsdir pygtk-2.0`
@@ -59,3 +65,13 @@ AC_CONFIG_FILES([
 ])
 
 AC_OUTPUT
+
+echo
+echo $PACKAGE v$VERSION
+echo
+
+echo Prefix............... : $prefix
+
+echo
+echo "Now type make to compile"
+echo

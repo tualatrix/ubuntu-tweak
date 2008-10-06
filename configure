@@ -648,8 +648,8 @@ pythondir
 pkgpythondir
 pyexecdir
 pkgpyexecdir
-pygtk_CFLAGS
-pygtk_LIBS
+TWEAK_CFLAGS
+TWEAK_LIBS
 PYGTK_CFLAGS
 PYGTK_LIBS
 PYGTK_DEFS
@@ -701,8 +701,8 @@ ac_subst_files=''
 host_alias
 target_alias
 PKG_CONFIG
-pygtk_CFLAGS
-pygtk_LIBS
+TWEAK_CFLAGS
+TWEAK_LIBS
 CC
 CFLAGS
 LDFLAGS
@@ -1303,9 +1303,9 @@ Optional Packages:
 
 Some influential environment variables:
   PKG_CONFIG  path to pkg-config utility
-  pygtk_CFLAGS
-              C compiler flags for pygtk, overriding pkg-config
-  pygtk_LIBS  linker flags for pygtk, overriding pkg-config
+  TWEAK_CFLAGS
+              C compiler flags for TWEAK, overriding pkg-config
+  TWEAK_LIBS  linker flags for TWEAK, overriding pkg-config
   CC          C compiler command
   CFLAGS      C compiler flags
   LDFLAGS     linker flags, e.g. -L<lib dir> if you have libraries in a
@@ -2551,20 +2551,35 @@ fi
 # Pygtk
 
 pkg_failed=no
-{ echo "$as_me:$LINENO: checking for pygtk" >&5
-echo $ECHO_N "checking for pygtk... $ECHO_C" >&6; }
+{ echo "$as_me:$LINENO: checking for TWEAK" >&5
+echo $ECHO_N "checking for TWEAK... $ECHO_C" >&6; }
 
 if test -n "$PKG_CONFIG"; then
-    if test -n "$pygtk_CFLAGS"; then
-        pkg_cv_pygtk_CFLAGS="$pygtk_CFLAGS"
+    if test -n "$TWEAK_CFLAGS"; then
+        pkg_cv_TWEAK_CFLAGS="$TWEAK_CFLAGS"
     else
         if test -n "$PKG_CONFIG" && \
-    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gtk+-2.0 >= 2.12.0 pygtk-2.0 >= 2.12.0\"") >&5
-  ($PKG_CONFIG --exists --print-errors "gtk+-2.0 >= 2.12.0 pygtk-2.0 >= 2.12.0") 2>&5
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gtk+-2.0                >= 2.10
+    pygtk-2.0               >= 2.10
+    pygobject-2.0           >= 2.10
+    gnome-python-2.0        >= 2.10
+    gnome-desktop-2.0       >= 2.10
+\"") >&5
+  ($PKG_CONFIG --exists --print-errors "gtk+-2.0                >= 2.10
+    pygtk-2.0               >= 2.10
+    pygobject-2.0           >= 2.10
+    gnome-python-2.0        >= 2.10
+    gnome-desktop-2.0       >= 2.10
+") 2>&5
   ac_status=$?
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); }; then
-  pkg_cv_pygtk_CFLAGS=`$PKG_CONFIG --cflags "gtk+-2.0 >= 2.12.0 pygtk-2.0 >= 2.12.0" 2>/dev/null`
+  pkg_cv_TWEAK_CFLAGS=`$PKG_CONFIG --cflags "gtk+-2.0                >= 2.10
+    pygtk-2.0               >= 2.10
+    pygobject-2.0           >= 2.10
+    gnome-python-2.0        >= 2.10
+    gnome-desktop-2.0       >= 2.10
+" 2>/dev/null`
 else
   pkg_failed=yes
 fi
@@ -2573,16 +2588,31 @@ else
 	pkg_failed=untried
 fi
 if test -n "$PKG_CONFIG"; then
-    if test -n "$pygtk_LIBS"; then
-        pkg_cv_pygtk_LIBS="$pygtk_LIBS"
+    if test -n "$TWEAK_LIBS"; then
+        pkg_cv_TWEAK_LIBS="$TWEAK_LIBS"
     else
         if test -n "$PKG_CONFIG" && \
-    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gtk+-2.0 >= 2.12.0 pygtk-2.0 >= 2.12.0\"") >&5
-  ($PKG_CONFIG --exists --print-errors "gtk+-2.0 >= 2.12.0 pygtk-2.0 >= 2.12.0") 2>&5
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gtk+-2.0                >= 2.10
+    pygtk-2.0               >= 2.10
+    pygobject-2.0           >= 2.10
+    gnome-python-2.0        >= 2.10
+    gnome-desktop-2.0       >= 2.10
+\"") >&5
+  ($PKG_CONFIG --exists --print-errors "gtk+-2.0                >= 2.10
+    pygtk-2.0               >= 2.10
+    pygobject-2.0           >= 2.10
+    gnome-python-2.0        >= 2.10
+    gnome-desktop-2.0       >= 2.10
+") 2>&5
   ac_status=$?
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); }; then
-  pkg_cv_pygtk_LIBS=`$PKG_CONFIG --libs "gtk+-2.0 >= 2.12.0 pygtk-2.0 >= 2.12.0" 2>/dev/null`
+  pkg_cv_TWEAK_LIBS=`$PKG_CONFIG --libs "gtk+-2.0                >= 2.10
+    pygtk-2.0               >= 2.10
+    pygobject-2.0           >= 2.10
+    gnome-python-2.0        >= 2.10
+    gnome-desktop-2.0       >= 2.10
+" 2>/dev/null`
 else
   pkg_failed=yes
 fi
@@ -2601,33 +2631,53 @@ else
         _pkg_short_errors_supported=no
 fi
         if test $_pkg_short_errors_supported = yes; then
-	        pygtk_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "gtk+-2.0 >= 2.12.0 pygtk-2.0 >= 2.12.0"`
+	        TWEAK_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "gtk+-2.0                >= 2.10
+    pygtk-2.0               >= 2.10
+    pygobject-2.0           >= 2.10
+    gnome-python-2.0        >= 2.10
+    gnome-desktop-2.0       >= 2.10
+"`
         else
-	        pygtk_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "gtk+-2.0 >= 2.12.0 pygtk-2.0 >= 2.12.0"`
+	        TWEAK_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "gtk+-2.0                >= 2.10
+    pygtk-2.0               >= 2.10
+    pygobject-2.0           >= 2.10
+    gnome-python-2.0        >= 2.10
+    gnome-desktop-2.0       >= 2.10
+"`
         fi
 	# Put the nasty error message in config.log where it belongs
-	echo "$pygtk_PKG_ERRORS" >&5
+	echo "$TWEAK_PKG_ERRORS" >&5
 
-	{ { echo "$as_me:$LINENO: error: Package requirements (gtk+-2.0 >= 2.12.0 pygtk-2.0 >= 2.12.0) were not met:
+	{ { echo "$as_me:$LINENO: error: Package requirements (gtk+-2.0                >= 2.10
+    pygtk-2.0               >= 2.10
+    pygobject-2.0           >= 2.10
+    gnome-python-2.0        >= 2.10
+    gnome-desktop-2.0       >= 2.10
+) were not met:
 
-$pygtk_PKG_ERRORS
+$TWEAK_PKG_ERRORS
 
 Consider adjusting the PKG_CONFIG_PATH environment variable if you
 installed software in a non-standard prefix.
 
-Alternatively, you may set the environment variables pygtk_CFLAGS
-and pygtk_LIBS to avoid the need to call pkg-config.
+Alternatively, you may set the environment variables TWEAK_CFLAGS
+and TWEAK_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details.
 " >&5
-echo "$as_me: error: Package requirements (gtk+-2.0 >= 2.12.0 pygtk-2.0 >= 2.12.0) were not met:
+echo "$as_me: error: Package requirements (gtk+-2.0                >= 2.10
+    pygtk-2.0               >= 2.10
+    pygobject-2.0           >= 2.10
+    gnome-python-2.0        >= 2.10
+    gnome-desktop-2.0       >= 2.10
+) were not met:
 
-$pygtk_PKG_ERRORS
+$TWEAK_PKG_ERRORS
 
 Consider adjusting the PKG_CONFIG_PATH environment variable if you
 installed software in a non-standard prefix.
 
-Alternatively, you may set the environment variables pygtk_CFLAGS
-and pygtk_LIBS to avoid the need to call pkg-config.
+Alternatively, you may set the environment variables TWEAK_CFLAGS
+and TWEAK_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details.
 " >&2;}
    { (exit 1); exit 1; }; }
@@ -2636,8 +2686,8 @@ elif test $pkg_failed = untried; then
 is in your PATH or set the PKG_CONFIG environment variable to the full
 path to pkg-config.
 
-Alternatively, you may set the environment variables pygtk_CFLAGS
-and pygtk_LIBS to avoid the need to call pkg-config.
+Alternatively, you may set the environment variables TWEAK_CFLAGS
+and TWEAK_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details.
 
 To get pkg-config, see <http://pkg-config.freedesktop.org/>.
@@ -2646,16 +2696,16 @@ echo "$as_me: error: The pkg-config script could not be found or is too old.  Ma
 is in your PATH or set the PKG_CONFIG environment variable to the full
 path to pkg-config.
 
-Alternatively, you may set the environment variables pygtk_CFLAGS
-and pygtk_LIBS to avoid the need to call pkg-config.
+Alternatively, you may set the environment variables TWEAK_CFLAGS
+and TWEAK_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details.
 
 To get pkg-config, see <http://pkg-config.freedesktop.org/>.
 See \`config.log' for more details." >&2;}
    { (exit 1); exit 1; }; }
 else
-	pygtk_CFLAGS=$pkg_cv_pygtk_CFLAGS
-	pygtk_LIBS=$pkg_cv_pygtk_LIBS
+	TWEAK_CFLAGS=$pkg_cv_TWEAK_CFLAGS
+	TWEAK_LIBS=$pkg_cv_TWEAK_LIBS
         { echo "$as_me:$LINENO: result: yes" >&5
 echo "${ECHO_T}yes" >&6; }
 	:
@@ -6557,8 +6607,8 @@ pythondir!$pythondir$ac_delim
 pkgpythondir!$pkgpythondir$ac_delim
 pyexecdir!$pyexecdir$ac_delim
 pkgpyexecdir!$pkgpyexecdir$ac_delim
-pygtk_CFLAGS!$pygtk_CFLAGS$ac_delim
-pygtk_LIBS!$pygtk_LIBS$ac_delim
+TWEAK_CFLAGS!$TWEAK_CFLAGS$ac_delim
+TWEAK_LIBS!$TWEAK_LIBS$ac_delim
 PYGTK_CFLAGS!$PYGTK_CFLAGS$ac_delim
 PYGTK_LIBS!$PYGTK_LIBS$ac_delim
 PYGTK_DEFS!$PYGTK_DEFS$ac_delim
@@ -7360,3 +7410,12 @@ if test "$no_create" != yes; then
   $ac_cs_success || { (exit 1); exit 1; }
 fi
 
+
+echo
+echo $PACKAGE v$VERSION
+echo
+
+echo Prefix............... : $prefix
+
+echo "Now type make to compile"
+echo

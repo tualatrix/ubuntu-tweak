@@ -20,6 +20,7 @@
 
 import os
 import gtk
+import thread
 import gobject
 from common.LookupIcon import *
 from common.PolicyKit import DbusProxy, PolkitButton
@@ -203,6 +204,8 @@ class PackageView(gtk.TreeView):
         self.emit('cleaned')
 
     def clean_selected_cache(self):
+        gtk.gdk.threads_enter()
+
         model = self.get_model()
         for file in self.__check_list:
             result = self.__proxy.delete_file(file)
@@ -215,6 +218,7 @@ class PackageView(gtk.TreeView):
 
         self.update_cache_model()
         self.emit('cleaned')
+        gtk.gdk.threads_leave()
 
 class PackageCleaner(TweakPage):
     def __init__(self):
@@ -319,7 +323,7 @@ class PackageCleaner(TweakPage):
         if mode == 'package':
             self.treeview.clean_selected_package()
         elif mode == 'cache':
-            self.treeview.clean_selected_cache()
+            thread.start_new_thread(self.treeview.clean_selected_cache, ())
 
     def on_auth_failed(self, widget):
         gtk.gdk.threads_enter()
