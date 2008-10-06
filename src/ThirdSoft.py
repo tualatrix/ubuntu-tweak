@@ -422,8 +422,10 @@ class ThirdSoft(TweakPage):
     
     def on_refresh_button_clicked(self, widget):
         dialog = UpdateCacheDialog(widget.get_toplevel())
+        proxy = self.treeview.get_proxy()
         res = dialog.run()
-        self.treeview.proxy.set_liststate('normal')
+
+        proxy.set_liststate('normal')
         widget.set_sensitive(False)
 
         InfoDialog(_('<b><big>The software information is up-to-date now</big></b>\n\nYou can install the new applications through Add/Remove.')).launch()

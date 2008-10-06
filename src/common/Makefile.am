@@ -19,4 +19,3 @@ nodist_consts_DATA = Consts.py
 constsdir = $(pkgdatadir)/common
 
 EXTRA_DIST = Consts.py.in
-

@@ -54,7 +54,6 @@ AC_CONFIG_FILES([
     scripts/Makefile
     scripts/ubuntu-tweak
     scripts/script-worker
-    scripts/ubuntu-tweak-dbus
     policykit/Makefile
     policykit/com.ubuntu_tweak.Mechanism.service
 ])

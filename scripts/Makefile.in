@@ -34,8 +34,7 @@ build_triplet = @build@
 host_triplet = @host@
 subdir = scripts
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
-	$(srcdir)/script-worker.in $(srcdir)/ubuntu-tweak-dbus.in \
-	$(srcdir)/ubuntu-tweak.in
+	$(srcdir)/script-worker.in $(srcdir)/ubuntu-tweak.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/acinclude.m4 \
 	$(top_srcdir)/m4/gettext.m4 $(top_srcdir)/m4/iconv.m4 \
@@ -47,7 +46,7 @@ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/config.h
-CONFIG_CLEAN_FILES = ubuntu-tweak script-worker ubuntu-tweak-dbus
+CONFIG_CLEAN_FILES = ubuntu-tweak script-worker
 am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(sbindir)"
 binSCRIPT_INSTALL = $(INSTALL_SCRIPT)
 sbinSCRIPT_INSTALL = $(INSTALL_SCRIPT)
@@ -178,7 +177,8 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 bin_SCRIPTS = ubuntu-tweak script-worker
 sbin_SCRIPTS = ubuntu-tweak-dbus
-CLEANFILES = $(bin_SCRIPTS) $(sbin_SCRIPTS)
+CLEANFILES = $(bin_SCRIPTS)
+EXTRA_DIST = $(sbin_SCRIPTS)
 all: all-am
 
 .SUFFIXES:
@@ -214,8 +214,6 @@ $(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 ubuntu-tweak: $(top_builddir)/config.status $(srcdir)/ubuntu-tweak.in
 	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
 script-worker: $(top_builddir)/config.status $(srcdir)/script-worker.in
-	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
-ubuntu-tweak-dbus: $(top_builddir)/config.status $(srcdir)/ubuntu-tweak-dbus.in
 	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
 install-binSCRIPTS: $(bin_SCRIPTS)
 	@$(NORMAL_INSTALL)
