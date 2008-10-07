@@ -1,4 +1,3 @@
-# this file is modified from wine-doors ctile.py
 import os
 import cairo
 import pango

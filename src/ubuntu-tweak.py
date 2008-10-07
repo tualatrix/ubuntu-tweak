@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 
 # Ubuntu Tweak - PyGTK based desktop configure tool
 #
