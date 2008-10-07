@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2008-10-06 17:38+0800\n"
+"POT-Creation-Date: 2008-10-07 15:34+0800\n"
 "PO-Revision-Date: 2008-07-14 14:13+0000\n"
 "Last-Translator: Junichi Takahara <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
@@ -275,7 +275,7 @@ msgstr ""
 msgid "Source Details"
 msgstr ""
 
-#: src/ThirdSoft.py:387 src/PackageCleaner.py:332
+#: src/ThirdSoft.py:387 src/PackageCleaner.py:338
 msgid ""
 "<b><big>Could not authenticate</big></b>\n"
 "\n"
@@ -294,7 +294,7 @@ msgstr ""
 msgid "Never show this dialog"
 msgstr ""
 
-#: src/ThirdSoft.py:411 src/PackageCleaner.py:343
+#: src/ThirdSoft.py:411 src/PackageCleaner.py:349
 msgid ""
 "<b><big>Service hasn't initialized yet</big></b>\n"
 "\n"
@@ -329,7 +329,8 @@ msgid "Show Logout prompt"
 msgstr "ログアウト時に確認する"
 
 #: src/Session.py:132
-msgid "Allow TCP Connections(Remote Connect)"
+#, fuzzy
+msgid "Allow TCP Connections(Remote Desktop Connect)"
 msgstr "TCP 接続を許可する（リモート接続）"
 
 #: src/Session.py:133
@@ -408,11 +409,11 @@ msgstr ""
 msgid "Nautilus Extensions"
 msgstr ""
 
-#: src/Nautilus.py:108 src/Installer.py:340 src/Compiz.py:368
+#: src/Nautilus.py:108 src/Compiz.py:368
 msgid "Update Successfully!"
 msgstr "アップデート成功！"
 
-#: src/Nautilus.py:110 src/Installer.py:342
+#: src/Nautilus.py:110
 msgid "Update Failed!"
 msgstr "アップデート 失敗!"
 
@@ -558,23 +559,25 @@ msgid "Tweak your desktop to make it what you like."
 msgstr "あなたが好きなようにUbuntuを微調整"
 
 #: src/MainWindow.py:67
-msgid "Clean up the garbage packages to free your disk."
-msgstr ""
+#, fuzzy
+msgid "Easily install various kinds of applications."
+msgstr "広く使われているアプリケーションをインストール"
 
 #: src/MainWindow.py:68
-msgid "Use templates and scripts to enhance your desktop."
+msgid "Clean up unneeded packages to free your disk."
 msgstr ""
 
 #: src/MainWindow.py:69
-msgid "Easily install various kinds of applications in your option."
+msgid "Use templates and scripts to enhance your desktop."
 msgstr ""
 
 #: src/MainWindow.py:70
-msgid "More useful features wait you to use!"
+msgid "And many more useful features!"
 msgstr ""
 
 #: src/MainWindow.py:82
-msgid "<span size=\"xx-large\">Wait a moment...</span>"
+#, fuzzy
+msgid "<span size=\"xx-large\">Please wait a moment...</span>"
 msgstr "<span size=\"xx-large\">しばらくお待ちください...</span>"
 
 #: src/MainWindow.py:95
@@ -600,7 +603,7 @@ msgstr "アプリケーション"
 msgid "Add/Remove"
 msgstr "追加/削除"
 
-#: src/MainWindow.py:199 src/PackageCleaner.py:228
+#: src/MainWindow.py:199 src/PackageCleaner.py:234
 msgid "Package Cleaner"
 msgstr ""
 
@@ -763,6 +766,16 @@ msgstr ""
 msgid "All Categories"
 msgstr "全てのカテゴリ"
 
+#: src/Installer.py:340
+#, fuzzy
+msgid "Updated Successfully!"
+msgstr "アップデート成功！"
+
+#: src/Installer.py:342
+#, fuzzy
+msgid "Updated Failed!"
+msgstr "アップデート 失敗!"
+
 #: src/PowerManager.py:37
 msgid "Advanced Power Management Settings"
 msgstr ""
@@ -844,11 +857,11 @@ msgid "Package"
 msgstr ""
 
 #: src/PackageCleaner.py:104
-msgid "The Packages is no more needed"
+msgid "Packages"
 msgstr ""
 
 #: src/PackageCleaner.py:127
-msgid "The Cache is no more needed"
+msgid "Package Cache"
 msgstr ""
 
 #: src/PackageCleaner.py:137
@@ -860,42 +873,42 @@ msgstr ""
 
 #: src/PackageCleaner.py:162
 #, python-format
-msgid "%d Package selected to remove)"
+msgid "%d Package selected to remove"
 msgstr ""
 
 #: src/PackageCleaner.py:163
 #, python-format
-msgid "%d Packages selected to remove)"
+msgid "%d Packages selected to remove"
 msgstr ""
 
 #: src/PackageCleaner.py:166
 #, python-format
-msgid "%d KB Space will be free)"
+msgid "%d KB Space will be free"
 msgstr ""
 
-#: src/PackageCleaner.py:199 src/PackageCleaner.py:217
+#: src/PackageCleaner.py:226
 #, fuzzy
-msgid "Clean Successfully!"
+msgid "Cleaned up Successfully!"
 msgstr "アップデート成功！"
 
-#: src/PackageCleaner.py:201 src/PackageCleaner.py:219
+#: src/PackageCleaner.py:229
 #, fuzzy
-msgid "Clean Failed!"
+msgid "Cleaned up Failed!"
 msgstr "アップデート 失敗!"
 
-#: src/PackageCleaner.py:229
-msgid "Clean up the no more needed packages and the package cache."
-msgstr ""
-
-#: src/PackageCleaner.py:247
-msgid "Clean Package"
+#: src/PackageCleaner.py:235
+msgid "Clean up the unneeded packages and the package cache."
 msgstr ""
 
 #: src/PackageCleaner.py:253
+msgid "Clean Package"
+msgstr ""
+
+#: src/PackageCleaner.py:259
 msgid "Clean Cache"
 msgstr ""
 
-#: src/PackageCleaner.py:266
+#: src/PackageCleaner.py:272
 #, fuzzy
 msgid "Select All"
 msgstr "フォルダを選択してください"
@@ -1149,9 +1162,10 @@ msgid "Set your document folders"
 msgstr "ドキュメントフォルダを設定する"
 
 #: src/UserDir.py:213
+#, fuzzy
 msgid ""
 "You can change the default document folders.\n"
-"Don't change the Desktop folder in normal case."
+"Don't change the Desktop folder under normal use."
 msgstr ""
 "デフォルト ドキュメントフォルダを変更することができます。\n"
 "一般には、デスクトップフォルダを変更しないでください。"
@@ -1160,51 +1174,51 @@ msgstr ""
 msgid "Update successfully!"
 msgstr "更新が成功しました！"
 
-#: src/Templates.py:47
+#: src/Templates.py:57
 msgid "HTML document"
 msgstr "HTML ドキュメント"
 
-#: src/Templates.py:48
+#: src/Templates.py:58
 msgid "ODB Database"
 msgstr "ODB データベース"
 
-#: src/Templates.py:49
+#: src/Templates.py:59
 msgid "ODS Spreadsheet"
 msgstr "ODS スプレッドシート"
 
-#: src/Templates.py:50
+#: src/Templates.py:60
 msgid "ODT Document"
 msgstr "ODT ドキュメント"
 
-#: src/Templates.py:51
+#: src/Templates.py:61
 msgid "Plain text document"
 msgstr "通常のテキスト・ドキュメント"
 
-#: src/Templates.py:52
+#: src/Templates.py:62
 msgid "ODP Presentation"
 msgstr "ODP プレゼンテーション"
 
-#: src/Templates.py:53
+#: src/Templates.py:63
 msgid "Python script"
 msgstr "Python スクリプト"
 
-#: src/Templates.py:54
+#: src/Templates.py:64
 msgid "Shell script"
 msgstr "Shell スクリプト"
 
-#: src/Templates.py:81
+#: src/Templates.py:91
 msgid "Enabled Templates"
 msgstr "有効なテンプレート"
 
-#: src/Templates.py:88
+#: src/Templates.py:98
 msgid "Disabled Templates"
 msgstr "無効なテンプレート"
 
-#: src/Templates.py:97
+#: src/Templates.py:107
 msgid "Manage your templates"
 msgstr "テンプレートを管理する"
 
-#: src/Templates.py:98
+#: src/Templates.py:108
 msgid ""
 "You can freely manage your document templates.\n"
 "You can drag and drop from File Manager.\n"
@@ -1214,11 +1228,11 @@ msgstr ""
 "ファイルマネージャーからドラッグ＆ドロップもできます。\n"
 "\"ドキュメントの作成\" はコンテキストメニューに追加されます。\n"
 
-#: src/Templates.py:123
+#: src/Templates.py:133
 msgid "Rebuild the system templates"
 msgstr "システム・テンプレートをリビルドする"
 
-#: src/Templates.py:141
+#: src/Templates.py:151
 msgid "This will delete all the disabled templates, continue?"
 msgstr "無効なテンプレートがすべて削除されます。よろしいでしょうか？"
 

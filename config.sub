@@ -1,10 +1,10 @@
 #! /bin/sh
 # Configuration validation subroutine script.
 #   Copyright (C) 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999,
-#   2000, 2001, 2002, 2003, 2004, 2005, 2006 Free Software Foundation,
-#   Inc.
+#   2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008
+#   Free Software Foundation, Inc.
 
-timestamp='2007-06-28'
+timestamp='2008-01-16'
 
 # This file is (in principle) common to ALL GNU software.
 # The presence of a machine in this file suggests that SOME GNU software
@@ -72,8 +72,8 @@ Report bugs and patches to <config-patches@gnu.org>."
 version="\
 GNU config.sub ($timestamp)
 
-Copyright (C) 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005
-Free Software Foundation, Inc.
+Copyright (C) 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001,
+2002, 2003, 2004, 2005, 2006, 2007, 2008 Free Software Foundation, Inc.
 
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE."
@@ -244,7 +244,7 @@ case $basic_machine in
 	| arc | arm | arm[bl]e | arme[lb] | armv[2345] | armv[345][lb] | avr | avr32 \
 	| bfin \
 	| c4x | clipper \
-	| d10v | d30v | dlx | dsp16xx \
+	| d10v | d30v | dlx | dsp16xx | dvp \
 	| fido | fr30 | frv \
 	| h8300 | h8500 | hppa | hppa1.[01] | hppa2.0 | hppa2.0[nw] | hppa64 \
 	| i370 | i860 | i960 | ia64 \
@@ -277,7 +277,7 @@ case $basic_machine in
 	| powerpc | powerpc64 | powerpc64le | powerpcle | ppcbe \
 	| pyramid \
 	| score \
-	| sh | sh[1234] | sh[24]a | sh[23]e | sh[34]eb | sheb | shbe | shle | sh[1234]le | sh3ele \
+	| sh | sh[1234] | sh[24]a | sh[24]a*eb | sh[23]e | sh[34]eb | sheb | shbe | shle | sh[1234]le | sh3ele \
 	| sh64 | sh64le \
 	| sparc | sparc64 | sparc64b | sparc64v | sparc86x | sparclet | sparclite \
 	| sparcv8 | sparcv9 | sparcv9b | sparcv9v \
@@ -358,7 +358,7 @@ case $basic_machine in
 	| powerpc-* | powerpc64-* | powerpc64le-* | powerpcle-* | ppcbe-* \
 	| pyramid-* \
 	| romp-* | rs6000-* \
-	| sh-* | sh[1234]-* | sh[24]a-* | sh[23]e-* | sh[34]eb-* | sheb-* | shbe-* \
+	| sh-* | sh[1234]-* | sh[24]a-* | sh[24]a*eb-* | sh[23]e-* | sh[34]eb-* | sheb-* | shbe-* \
 	| shle-* | sh[1234]le-* | sh3ele-* | sh64-* | sh64le-* \
 	| sparc-* | sparc64-* | sparc64b-* | sparc64v-* | sparc86x-* | sparclet-* \
 	| sparclite-* \
@@ -369,9 +369,13 @@ case $basic_machine in
 	| v850-* | v850e-* | vax-* \
 	| we32k-* \
 	| x86-* | x86_64-* | xc16x-* | xps100-* | xscale-* | xscalee[bl]-* \
-	| xstormy16-* | xtensa-* \
+	| xstormy16-* | xtensa*-* \
 	| ymp-* \
 	| z8k-*)
+		;;
+	# Recognize the basic CPU types without company name, with glob match.
+	xtensa*)
+		basic_machine=$basic_machine-unknown
 		;;
 	# Recognize the various machine names and aliases which stand
 	# for a CPU type and a company and sometimes even an OS.
@@ -442,6 +446,14 @@ case $basic_machine in
 	balance)
 		basic_machine=ns32k-sequent
 		os=-dynix
+		;;
+	blackfin)
+		basic_machine=bfin-unknown
+		os=-linux
+		;;
+	blackfin-*)
+		basic_machine=bfin-`echo $basic_machine | sed 's/^[^-]*-//'`
+		os=-linux
 		;;
 	c90)
 		basic_machine=c90-cray
@@ -668,6 +680,14 @@ case $basic_machine in
 		basic_machine=m68k-isi
 		os=-sysv
 		;;
+	m68knommu)
+		basic_machine=m68k-unknown
+		os=-linux
+		;;
+	m68knommu-*)
+		basic_machine=m68k-`echo $basic_machine | sed 's/^[^-]*-//'`
+		os=-linux
+		;;
 	m88k-omron*)
 		basic_machine=m88k-omron
 		;;
@@ -693,6 +713,24 @@ case $basic_machine in
 	*mint | -mint[0-9]* | *MiNT | *MiNT[0-9]*)
 		basic_machine=m68k-atari
 		os=-mint
+		;;
+	mipsEE* | ee | ps2)
+		basic_machine=mips64r5900el-scei
+		case $os in
+		    -linux*)
+			;;
+		    *)
+			os=-elf
+			;;
+		esac
+		;;
+	iop)
+		basic_machine=mipsel-scei
+		os=-irx
+		;;
+	dvp)
+		basic_machine=dvp-scei
+		os=-elf
 		;;
 	mips3*-*)
 		basic_machine=`echo $basic_machine | sed -e 's/mips3/mips64/'`
@@ -812,6 +850,14 @@ case $basic_machine in
 	paragon)
 		basic_machine=i860-intel
 		os=-osf
+		;;
+	parisc)
+		basic_machine=hppa-unknown
+		os=-linux
+		;;
+	parisc-*)
+		basic_machine=hppa-`echo $basic_machine | sed 's/^[^-]*-//'`
+		os=-linux
 		;;
 	pbd)
 		basic_machine=sparc-tti
@@ -1021,6 +1067,10 @@ case $basic_machine in
 		basic_machine=tic6x-unknown
 		os=-coff
 		;;
+	tile*)
+		basic_machine=tile-unknown
+		os=-linux-gnu
+		;;
 	tx39)
 		basic_machine=mipstx39-unknown
 		;;
@@ -1226,7 +1276,7 @@ case $os in
 	      | -os2* | -vos* | -palmos* | -uclinux* | -nucleus* \
 	      | -morphos* | -superux* | -rtmk* | -rtmk-nova* | -windiss* \
 	      | -powermax* | -dnix* | -nx6 | -nx7 | -sei* | -dragonfly* \
-	      | -skyos* | -haiku* | -rdos* | -toppers* | -drops*)
+	      | -skyos* | -haiku* | -rdos* | -toppers* | -drops* | -irx*)
 	# Remember, each alternative MUST END IN *, to match a version number.
 		;;
 	-qnx*)
