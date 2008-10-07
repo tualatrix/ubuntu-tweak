@@ -111,12 +111,12 @@ class UpdateManager(gtk.Window):
         percentage = self.downloader.percentage
 
         if percentage < 1:
-            self.progress_bar.set_text("Downloading...%d" % int(percentage * 100)+ '%')
+            self.progress_bar.set_text(_("Downloading...%d") % int(percentage * 100)+ '%')
             self.progress_bar.set_fraction(percentage)
 
             return True
         else:
-            self.progress_bar.set_text("Finished")
+            self.progress_bar.set_text(_("Finished"))
             self.progress_bar.set_fraction(1)
             gobject.timeout_add(1000, self.on_start_install)
 

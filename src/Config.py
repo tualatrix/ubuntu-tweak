@@ -67,8 +67,11 @@ class Config:
     def get_string(self, key):
         if not key.startswith("/"):
             key = self.build_key(key)
-
-        return str(self.get_value(key))
+        string = self.get_value(key)
+        if string: 
+            return string
+        else: 
+            return '0'
 
     def build_key(self, key):
         return os.path.join(self.dir, key)
