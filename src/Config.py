@@ -68,7 +68,7 @@ class Config:
         if not key.startswith("/"):
             key = self.build_key(key)
 
-        return str(self.__client.get_value(key))
+        return str(self.get_value(key))
 
     def build_key(self, key):
         return os.path.join(self.dir, key)
