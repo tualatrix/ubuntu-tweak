@@ -129,7 +129,7 @@ class Session(TweakPage):
     def session_control_box(self):
         button = Factory.create("gconfcheckbutton", _("Automatically save changes to session"), "auto_save_session")
         button2 = Factory.create("gconfcheckbutton", _("Show Logout prompt"), "logout_prompt")
-        button3 = Factory.create("gconfcheckbutton", _("Allow TCP Connections(Remote Connect)"), "allow_tcp_connections")
+        button3 = Factory.create("gconfcheckbutton", _("Allow TCP Connections(Remote Desktop Connect)"), "allow_tcp_connections")
         self.show_splash_button = Factory.create("gconfcheckbutton", _("Show Splash screen"), "show_splash_screen")
         self.show_splash_button.connect('toggled', self.colleague_changed)
 

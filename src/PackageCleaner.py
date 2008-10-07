@@ -101,7 +101,7 @@ class PackageView(gtk.TreeView):
         icon = get_icon_with_name('deb', 24)
         list = self.__packageworker.list_autoremovable()
         self.total_num = len(list)
-        self.__column.set_title(_('The Packages is no more needed'))
+        self.__column.set_title(_('Packages'))
 
         for pkg in list:
             desc = self.__packageworker.get_pkgsummary(pkg)
@@ -121,10 +121,10 @@ class PackageView(gtk.TreeView):
 
         cache_dir = '/var/cache/apt/archives' 
         icon = get_icon_with_name('deb', 24)
-        list = map(lambda file: "%s/%s" % (cache_dir, file),
+        list = map(lambda file: '%s/%s' % (cache_dir, file),
                     filter(lambda x:x.endswith('deb'), os.listdir(cache_dir))) 
         self.total_num = len(list)
-        self.__column.set_title(_('The Cache is no more needed'))
+        self.__column.set_title(_('Package Cache'))
 
         for pkg in list:
             size = str(os.path.getsize(pkg)/1024)
@@ -159,11 +159,11 @@ class PackageView(gtk.TreeView):
         if self.mode == 'package':
             n = len(self.__check_list)
             self.__column.set_title(
-                    gettext.ngettext(_('%d Package selected to remove)') % n, 
-                                    _('%d Packages selected to remove)') % n, n))
+                    gettext.ngettext(_('%d Package selected to remove') % n, 
+                                    _('%d Packages selected to remove') % n, n))
         else:
             self.computer_cache_size()
-            self.__column.set_title(_('%d KB Space will be free)') % self.size)
+            self.__column.set_title(_('%d KB Space will be free') % self.size)
 
     def computer_cache_size(self):
         self.size = 0
@@ -196,9 +196,9 @@ class PackageView(gtk.TreeView):
         state = self.__packageworker.perform_action(self.get_toplevel(), [],self.__check_list)
 
         if state == 0:
-            InfoDialog(_('Clean Successfully!')).launch()
+            self.show_success_dialog()
         else:
-            InfoDialog(_('Clean Failed!')).launch()
+            self.show_failed_dialog()
 
         update_apt_cache()
         self.update_package_model()
@@ -214,19 +214,25 @@ class PackageView(gtk.TreeView):
             if result == 'error': break
 
         if result == 'done':
-            InfoDialog(_('Clean Successfully!')).launch()
+            self.show_success_dialog()
         else:
-            InfoDialog(_('Clean Failed!')).launch()
+            self.show_failed_dialog()
 
         self.update_cache_model()
         self.emit('cleaned')
         gtk.gdk.threads_leave()
 
+    def show_success_dialog(self):
+        InfoDialog(_('Cleaned up Successfully!')).launch()
+
+    def show_failed_dialog(self):
+        InfoDialog(_('Cleaned up Failed!')).launch()
+
 class PackageCleaner(TweakPage):
     def __init__(self):
         super(PackageCleaner, self).__init__(
                 _('Package Cleaner'),
-                _('Clean up the no more needed packages and the package cache.'))
+                _('Clean up the unneeded packages and the package cache.'))
 
         update_apt_cache(True)
 

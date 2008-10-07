@@ -64,10 +64,10 @@ def Welcome(parent = None):
 
     tips = TipsFactory(
             _('Tweak your desktop to make it what you like.'),
-            _('Clean up the garbage packages to free your disk.'),
+            _('Easily install various kinds of applications.'),
+            _('Clean up unneeded packages to free your disk.'),
             _('Use templates and scripts to enhance your desktop.'),
-            _('Easily install various kinds of applications in your option.'),
-            _('More useful features wait you to use!'),
+            _('And many more useful features!'),
             )
     align = gtk.Alignment(0.5)
     align.add(tips)
@@ -79,7 +79,7 @@ def Wait(parent = None):
     vbox = gtk.VBox(False, 0)
 
     label = gtk.Label()
-    label.set_markup(_("<span size=\"xx-large\">Wait a moment...</span>"))
+    label.set_markup(_("<span size=\"xx-large\">Please wait a moment...</span>"))
     label.set_justify(gtk.JUSTIFY_FILL)
     vbox.pack_start(label, False, False, 50)
 
@@ -461,7 +461,7 @@ class MainWindow(gtk.Window):
         about.set_website_label("ubuntu-tweak.com")
         about.set_logo(self.get_icon())
         about.set_comments(_("Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your system and desktop settings."))
-        about.set_authors(["TualatriX <tualatrix@gmail.com>", "Lee Jarratt <lee.jarratt@live.co.uk> English consultants"])
+        about.set_authors(["TualatriX <tualatrix@gmail.com>", "Lee Jarratt <lee.jarratt@googlemail.com> English consultants"])
         about.set_copyright("Copyright © 2007-2008 TualatriX")
         about.set_wrap_license(True)
         about.set_license("Ubuntu Tweak is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n\

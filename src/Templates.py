@@ -39,7 +39,17 @@ from common.Widgets import TweakPage, WarningDialog, DirView, FlatView
 
 class AbstractTempates:
     systemdir = os.path.join(os.path.expanduser("~"), ".ubuntu-tweak/templates")
-    userdir = os.getenv("HOME") + "/"  + "/".join([dir for dir in UserdirFile().get('XDG_TEMPLATES_DIR').strip('"').split("/")[1:]])
+    __uf = UserdirFile()
+    __template_dir = __uf.get('XDG_TEMPLATES_DIR').strip('"').split("/")[1:]
+    if not __template_dir:
+        __template_dir = os.path.expanduser('~/Templates')
+        if not os.path.exists(os.path.expanduser('~/Templates')):
+            os.mkdir(__template_dir)
+        userdir = __template_dir
+    else:
+        userdir = os.getenv("HOME") + "/"  + "/".join(__template_dir)
+
+    __uf.set_userdir('XDG_TEMPLATES_DIR', userdir)
 
 class DefaultTemplates(AbstractTempates):
     """This class use to create the default templates"""

@@ -337,9 +337,9 @@ class Installer(TweakPage):
 
         if state == 0:
             self.button.set_sensitive(False)
-            InfoDialog(_('Update Successfully!')).launch()
+            InfoDialog(_('Updated Successfully!')).launch()
         else:
-            InfoDialog(_('Update Failed!')).launch()
+            InfoDialog(_('Updated Failed!')).launch()
 
         update_apt_cache()
         self.to_add = []

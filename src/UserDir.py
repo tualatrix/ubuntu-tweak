@@ -58,7 +58,7 @@ class UserdirFile(IniFile):
         for userdir in self.XDG_DIRS.keys():
             prefix = self.get(userdir).strip('"').split("/")[0]
             if prefix:
-                path = os.getenv("HOME") + "/"  + "/".join([dir for dir in self.get(userdir).strip('"').split("/")[1:]])
+                path = os.getenv("HOME") + "/"  + "/".join(self.get(userdir).strip('"').split("/")[1:])
             else:
                 path = self.get(userdir).strip('"')
 
@@ -67,10 +67,10 @@ class UserdirFile(IniFile):
         return dict.items()
 
     def set_userdir(self, userdir, fullpath):
-        dirname = '/'.join([path for path in fullpath.split('/')[:3]])
+        dirname = '/'.join(fullpath.split('/')[:3])
 
         if dirname == os.getenv("HOME"):
-            folder = '"$HOME/' + "/".join([dir for dir in fullpath.split('/')[3:]]) + '"'
+            folder = '"$HOME/' + "/".join(fullpath.split('/')[3:]) + '"'
         else:
             folder = '"' + fullpath + '"'
 
@@ -78,7 +78,7 @@ class UserdirFile(IniFile):
         self.write()
 
         if dirname == os.getenv("HOME"):
-            folder = os.getenv("HOME") + "/" +  "/".join([dir for dir in fullpath.split('/')[3:]])
+            folder = os.getenv("HOME") + "/" +  "/".join(fullpath.split('/')[3:])
         else:
             folder = folder.strip('"')
 
@@ -210,7 +210,7 @@ class UserDir(TweakPage):
     def __init__(self):
         TweakPage.__init__(self, 
                 _("Set your document folders"), 
-                _("You can change the default document folders.\nDon't change the Desktop folder in normal case."))
+                _("You can change the default document folders.\nDon't change the Desktop folder under normal use."))
 
         sw = gtk.ScrolledWindow()
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
