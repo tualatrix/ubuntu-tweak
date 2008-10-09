@@ -12,7 +12,7 @@ from Settings import StringSetting
 
 class RenderCell:
     font_name = StringSetting('/desktop/gnome/interface/font_name').get_string()
-    font_size = int(font_name.split()[-1])
+    font_size = float(font_name.split()[-1])
 
     def __init__(self, 
                 cell = None,
