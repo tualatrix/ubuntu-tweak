@@ -21,7 +21,6 @@ PKG_CHECK_MODULES(TWEAK,
     pygtk-2.0               >= 2.10
     pygobject-2.0           >= 2.10
     gnome-python-2.0        >= 2.10
-    gnome-desktop-2.0       >= 2.10
 )
 AC_SUBST(PYGTK_CFLAGS)
 AC_SUBST(PYGTK_LIBS)
