@@ -129,7 +129,7 @@ class Tweak(dbus.service.Object):
                          in_signature='s', out_signature='')
     def AddAptKey(self, filename):
         apt_key = AptAuth()
-        apt_key.add('filename')
+        apt_key.add(filename)
 
     @dbus.service.method(INTERFACE,
                          in_signature='', out_signature='')
