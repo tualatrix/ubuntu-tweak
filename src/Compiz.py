@@ -217,24 +217,24 @@ class Compiz(TweakPage, CompizSetting):
         if SystemModule.has_ccm() and SystemModule.has_right_compiz():
             hbox = gtk.HBox(False, 0)
             hbox.pack_start(self.create_edge_setting(), True, False, 0)
-            edge_setting = SinglePack('Edge Setting', hbox)
+            edge_setting = SinglePack('Edge Settings', hbox)
             self.pack_start(edge_setting, False, False, 0)
 
-            self.snap = SnapWindow(_("Snapping Windows"), self)
-            self.wobbly_w = WobblyWindow(_("Wobbly Windows"), self);
+            self.snap = SnapWindow(_("Enable snapping windows"), self)
+            self.wobbly_w = WobblyWindow(_("Enable wobbly windows"), self);
 
             box = ListPack(_("Window Effects"), (self.snap, self.wobbly_w))
             self.pack_start(box, False, False, 0)
 
-            button1 = OpacityMenu(_("Transparent Menu"))
-            self.wobbly_m = WobblyMenu(_("Wobbly Menu"), self)
+            button1 = OpacityMenu(_("Enable transparent menus"))
+            self.wobbly_m = WobblyMenu(_("Enable wobbly menus"), self)
 
             box = ListPack(_("Menu Effects"), (button1, self.wobbly_m))
             self.pack_start(box, False, False, 0)
 
             if SystemModule.has_apt():
                 update_apt_cache(True)
-                box = ListPack(_("Compiz Fusion Extensions"), (
+                box = ListPack(_("Useful Extensions"), (
                     self.simple_settings,
                     self.screenlets,
                 ))
@@ -293,7 +293,7 @@ class Compiz(TweakPage, CompizSetting):
     def create_edge_combo_box(self, edge):
         combobox = gtk.combo_box_new_text()
         combobox.append_text(_("Expo"))
-        combobox.append_text(_("Pick Windows"))
+        combobox.append_text(_("Show Windows"))
         combobox.append_text(_("Show Desktop"))
         combobox.append_text(_("Widget"))
         combobox.append_text("-")

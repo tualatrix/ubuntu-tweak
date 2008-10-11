@@ -42,19 +42,19 @@ class Gnome(TweakPage):
 
         box = ListPack(_("Panel and Menu"), (
                     Factory.create("gconfcheckbutton", 
-                                    _("Confirm Message when removing panel"), 
+                                    _("Display warning when removing a panel"), 
                                     "confirm_panel_remove"),
                     Factory.create("gconfcheckbutton", 
-                                    _("Complete lockdown of the Panel "), 
+                                    _("Complete lockdown of all panels"), 
                                     "locked_down"),
                     Factory.create("gconfcheckbutton", 
                                     _("Enable panel animations"), 
                                     "enable_animations"),
                     Factory.create("gconfcheckbutton", 
-                                    _("Show Input Method menu on the Context Menu"), 
+                                    _("Show Input Method menu on the context menu"), 
                                     "show_input_method_menu"),
                     Factory.create("gconfcheckbutton",
-                                    _("Show Unicode Method menu on the Context Menu"), 
+                                    _("Show Unicode Method menu on the context menu"), 
                                     "show_unicode_menu"),
                     changeicon_hbox,
                     notify_hbox,
@@ -62,11 +62,11 @@ class Gnome(TweakPage):
         self.pack_start(box, False, False, 0)
 
         box = ListPack(_("Screensaver"), (
-                    Factory.create("gconfcheckbutton", _("Enable User Switching when Screen is locked."), "user_switch_enabled"),
+                    Factory.create("gconfcheckbutton", _("Enable user switching when screen is locked."), "user_switch_enabled"),
             ))
         self.pack_start(box, False, False, 0)
 
-        self.recently_used = gtk.CheckButton(_("Enable System-wide 'Recently Used' list"))
+        self.recently_used = gtk.CheckButton(_("Enable system-wide 'Recently Documents' list"))
         self.recently_used.connect('toggled', self.colleague_changed)
         self.recently_used.set_active(self.get_state())
         box = ListPack(_("History"), (

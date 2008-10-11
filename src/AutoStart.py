@@ -65,7 +65,7 @@ class AutoStartDialog(gtk.Dialog):
         else:
             self.set_title(_("New Startup Program"))
 
-        button = gtk.Button(_("_Browse"))
+        button = gtk.Button(_("_Browse..."))
         button.connect("clicked", self.on_choose_program)
         
         hbox = gtk.HBox(False, 5)
@@ -297,14 +297,14 @@ class AutoStart(TweakPage):
     """The box pack the autostart list"""
     def __init__(self):
         TweakPage.__init__(self,
-                _("Enable or Disable the AutoStart Program"),
-                _("You can safely delete the item, it will only been marked as hidden.\nIf you want to delete it from disk, right-click the item."))
+                _('Session Programs'),
+                _("Here you can manage what programs get started upon login.\nBy selecing an item and pressing Remove, you simply hide it from view.\nTo permanently delete it, right-click and press 'Delete'."))
 
         hbox = gtk.HBox(False, 10)
         self.pack_start(hbox, True, True, 10)
 
         #create the two checkbutton for extra options of auto run list
-        self.show_comment_button = gtk.CheckButton(_("Show program comments"))
+        self.show_comment_button = gtk.CheckButton(_("Show comments"))
         self.pack_start(self.show_comment_button, False, False, 0)
         self.show_all_button = gtk.CheckButton(_("Show all runnable programs"))
         self.pack_start(self.show_all_button, False, False, 0)

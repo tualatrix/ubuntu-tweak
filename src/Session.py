@@ -36,11 +36,11 @@ class Session(TweakPage):
 
         self.pack_start(self.session_control_box(), False, False, 0)
 
-        box = SinglePack(_("Click the large button to change Splash screen"), self.splash_hbox())
+        box = SinglePack(_("Click the large button to change splash screen"), self.splash_hbox())
         self.pack_start(box, False, False, 0)
 
     def change_splash_cb(self, widget, data = None):
-        dialog = gtk.FileChooserDialog(_("Choose a Splash image"),action = gtk.FILE_CHOOSER_ACTION_OPEN, buttons = (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, gtk.STOCK_OPEN, gtk.RESPONSE_ACCEPT))
+        dialog = gtk.FileChooserDialog(_("Choose a splash image"),action = gtk.FILE_CHOOSER_ACTION_OPEN, buttons = (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, gtk.STOCK_OPEN, gtk.RESPONSE_ACCEPT))
         filter = gtk.FileFilter()
         filter.set_name(_("PNG image (*.png)"))
         filter.add_mime_type("image/png")
@@ -128,9 +128,9 @@ class Session(TweakPage):
 
     def session_control_box(self):
         button = Factory.create("gconfcheckbutton", _("Automatically save changes to session"), "auto_save_session")
-        button2 = Factory.create("gconfcheckbutton", _("Show Logout prompt"), "logout_prompt")
+        button2 = Factory.create("gconfcheckbutton", _("Show logout prompt"), "logout_prompt")
         button3 = Factory.create("gconfcheckbutton", _("Allow TCP Connections(Remote Desktop Connect)"), "allow_tcp_connections")
-        self.show_splash_button = Factory.create("gconfcheckbutton", _("Show Splash screen"), "show_splash_screen")
+        self.show_splash_button = Factory.create("gconfcheckbutton", _("Show splash screen"), "show_splash_screen")
         self.show_splash_button.connect('toggled', self.colleague_changed)
 
         box = ListPack(_("Session Control"), (button, button2, button3, self.show_splash_button))

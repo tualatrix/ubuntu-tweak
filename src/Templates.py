@@ -104,8 +104,8 @@ class Templates(TweakPage, AbstractTempates):
     """Freedom added your docmuent templates"""
     def __init__(self):
         TweakPage.__init__(self, 
-                _("Manage your templates"),
-                _('You can freely manage your document templates.\nYou can drag and drop from File Manager.\n"Create Document" will be added to the Context Menu.\n'))
+                _("Manage Templates"),
+                _('You can freely manage your document templates.\nYou can drag and drop from File Manager.\n"Create Document" will be added to the context menu.\n'))
 
         self.default = DefaultTemplates()
         self.config_test()
@@ -130,7 +130,7 @@ class Templates(TweakPage, AbstractTempates):
         hbox = gtk.HBox(False, 0)
         self.pack_start(hbox, False, False, 10)
 
-        button = gtk.Button(_("Rebuild the system templates"))
+        button = gtk.Button(_("Rebuild System Templates"))
         button.connect("clicked", self.on_rebuild_clicked)
         hbox.pack_end(button, False, False, 5)
 
@@ -148,7 +148,7 @@ class Templates(TweakPage, AbstractTempates):
         self.enable_templates.update_model()
 
     def on_rebuild_clicked(self, widget):
-        dialog = WarningDialog(_("This will delete all the disabled templates, continue?"))
+        dialog = WarningDialog(_('This will delete all disabled templates.\nDo you wish to continue?'))
         if dialog.run() == gtk.RESPONSE_YES:
             self.default.remove()
             self.default.create()

@@ -29,8 +29,8 @@ from common.Factory import Factory
 
 computer_icon = \
 {
-    "label" : _("Show \"Computer\" icon on desktop"),
-    "rename" : _("Rename the \"Computer\" icon: "),
+    "label" : _('Show "Computer" icon on desktop'),
+    "rename" : _('Rename'),
     "visible" : "computer_icon_visible",
     "name" : "computer_icon_name",
     "icon" : "gnome-fs-client"
@@ -38,8 +38,8 @@ computer_icon = \
 
 home_icon = \
 {
-    "label" : _("Show \"Home\" icon on desktop"),
-    "rename" : _("Rename the \"Home\" icon: "),
+    "label" : _('Show "Home Folder" icon on desktop'),
+    "rename" : _('Rename'),
     "visible" : "home_icon_visible",
     "name" : "home_icon_name",
     "icon" : "gnome-fs-home"
@@ -47,8 +47,8 @@ home_icon = \
     
 trash_icon = \
 {
-    "label" : _("Show \"Trash\" icon on desktop"),
-    "rename" : _("Rename the \"Trash\" icon: "),
+    "label" : _('Show "Trash" icon on desktop'),
+    "rename" : _('Rename'),
     "visible" : "trash_icon_visible",
     "name" : "trash_icon_name",
     "icon" : "gnome-fs-trash-empty"
@@ -128,10 +128,10 @@ class Icon(TweakPage):
         button = Factory.create("gconfcheckbutton", _("Show \"Network\" icon on desktop"), "network_icon_visible")
         vbox.pack_start(button, False, False, 0)
 
-        button = Factory.create("gconfcheckbutton", _("Show Mounted Volumes on desktop"), "volumes_visible")
+        button = Factory.create("gconfcheckbutton", _("Show mounted volumes on desktop"), "volumes_visible")
         vbox.pack_start(button, False, False, 0)
 
-        button = Factory.create("gconfcheckbutton", _("Use Home Folder as the desktop(Logout for changes to take effect)"), "desktop_is_home_dir")
+        button = Factory.create("gconfcheckbutton", _('Use "Home Folder" as desktop(Logout for changes to take effect)'), "desktop_is_home_dir")
         vbox.pack_start(button, False, False, 0)
 
     def colleague_changed(self, widget):

@@ -65,8 +65,8 @@ def Welcome(parent = None):
     tips = TipsFactory(
             _('Tweak your desktop to make it what you like.'),
             _('Easily install various kinds of applications.'),
-            _('Clean up unneeded packages to free your disk.'),
-            _('Use templates and scripts to enhance your desktop.'),
+            _('Clean up unneeded packages to free diskspace.'),
+            _('Configure templates and scripts to improve your computing.'),
             _('And many more useful features!'),
             )
     align = gtk.Alignment(0.5)
@@ -92,7 +92,7 @@ def Notice(parent = None):
     vbox = gtk.VBox(False, 0)
 
     label = gtk.Label()
-    label.set_markup(_("<span size=\"x-large\">This feature isn't available in current distrobution</span>"))
+    label.set_markup(_("<span size=\"x-large\">This feature isn't currently available in your distrobution</span>"))
     label.set_justify(gtk.JUSTIFY_FILL)
     vbox.pack_start(label, False, False, 50)
 
@@ -195,25 +195,25 @@ MODULES = \
     [COMPUTER, 'computer.png', _("Computer"), Computer, SHOW_ALWAYS],
     [APPLICATIONS, 'applications.png', _("Applications"), None, SHOW_CHILD],
     [INSTALLER, 'installer.png', _("Add/Remove"), Installer, SHOW_NONE],
-    [THIRDSOFT, 'third-soft.png', _("Third Party Sources"), ThirdSoft, SHOW_NONE],
+    [THIRDSOFT, 'third-soft.png', _("Third-Party Sources"), ThirdSoft, SHOW_NONE],
     [PACKAGE, 'package.png', _("Package Cleaner"), PackageCleaner, SHOW_NONE],
     [STARTUP, 'startup.png', _("Startup"), None, SHOW_CHILD],
     [SESSION, 'session.png', _("Session Control"), Session, SHOW_NONE],
-    [AUTOSTART, 'autostart.png', _("Auto Start"), AutoStart, SHOW_NONE],
+    [AUTOSTART, 'autostart.png', _("Autostart"), AutoStart, SHOW_NONE],
     [DESKTOP, 'desktop.png', _("Desktop"), None, SHOW_CHILD],
-    [ICON, 'icon.png', _("Desktop Icon"), Icon, SHOW_NONE],
-    [METACITY, 'metacity.png', _("Window Settings"), Metacity, SHOW_NONE],
+    [ICON, 'icon.png', _("Icons"), Icon, SHOW_NONE],
+    [METACITY, 'metacity.png', _("Windows"), Metacity, SHOW_NONE],
     [COMPIZ, 'compiz-fusion.png', _("Compiz Fusion"), Compiz, SHOW_NONE],
     [GNOME, 'gnome.png', _("GNOME"), Gnome, SHOW_NONE],
     [PERSONAL, 'personal.png', _("Personal"), None, SHOW_CHILD],
-    [USERDIR, 'userdir.png', _("User Folder"), UserDir, SHOW_NONE],
+    [USERDIR, 'userdir.png', _("Folders"), UserDir, SHOW_NONE],
     [TEMPLATES, 'templates.png', _("Templates"), Templates, SHOW_NONE],
     [SCRIPTS, 'scripts.png', _("Scripts"), Scripts, SHOW_NONE],
     [SHORTCUTS, 'shortcuts.png', _("Shortcuts"), Shortcuts, SHOW_NONE],
     [SYSTEM, 'system.png', _("System"), None, SHOW_CHILD],
     [NAUTILUS, 'nautilus.png', _("Nautilus"), Nautilus, SHOW_NONE],
-    [POWER, 'powermanager.png', _("Power Manager"), PowerManager, SHOW_NONE],
-    [SECU_OPTIONS, 'lockdown.png', _("Security Options"), LockDown, SHOW_NONE],
+    [POWER, 'powermanager.png', _("Power Managerment"), PowerManager, SHOW_NONE],
+    [SECU_OPTIONS, 'lockdown.png', _("Security"), LockDown, SHOW_NONE],
 ]
 
 class ItemCellRenderer(gtk.GenericCellRenderer):
@@ -458,17 +458,17 @@ class MainWindow(gtk.Window):
         about.set_name("Ubuntu Tweak")
         about.set_version(VERSION)
         about.set_website("http://ubuntu-tweak.com")
-        about.set_website_label("ubuntu-tweak.com")
+        about.set_website_label(_('Ubuntu Tweak Website'))
         about.set_logo(self.get_icon())
         about.set_comments(_("Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your system and desktop settings."))
-        about.set_authors(["TualatriX <tualatrix@gmail.com>", "Lee Jarratt <lee.jarratt@googlemail.com> English consultants"])
+        about.set_authors(["TualatriX tualatrix@gmail.com", "Lee Jarratt lee.jarratt@googlemail.com (English consultants)"])
         about.set_copyright("Copyright © 2007-2008 TualatriX")
         about.set_wrap_license(True)
         about.set_license("Ubuntu Tweak is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n\
 Ubuntu Tweak is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\
 You should have received a copy of the GNU General Public License along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA")
         about.set_translator_credits(_("translator-credits"))
-        about.set_artists(["m.Sharp <mac.sharp@gmail.com> Logo and Banner", "Medical-Wei <a790407@hotmail.com> ArtWork of 0.1 version"])
+        about.set_artists(["m.Sharp mac.sharp@gmail.com Logo and Banner", "Medical-Wei a790407@hotmail.com ArtWork of 0.1 version"])
         about.run()
         about.destroy()
 

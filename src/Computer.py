@@ -49,7 +49,7 @@ class Computer(TweakPage):
         box = ListPack(_("System information"),(
                     EntryBox(_("Hostname"),        os.uname()[1]),
                     EntryBox(_("Distribution"),     SystemInfo.distro),
-                    EntryBox(_("Desktop Environment"),     SystemInfo.gnome),
+                    EntryBox(_("Desktop environment"),     SystemInfo.gnome),
                     EntryBox(_("Kernel"),         os.uname()[0]+" "+os.uname()[2]),
                     EntryBox(_("Platform"),     os.uname()[-1]),
                     EntryBox(_("CPU"),         cpumodel[1:-1]),
@@ -58,8 +58,8 @@ class Computer(TweakPage):
         self.pack_start(box, False, False, 0)
 
         box = ListPack(_("User information"),(
-                    EntryBox(_("Current User"),     os.getenv("USER")),
-                    EntryBox(_("Home Directory"),     os.getenv("HOME")),
+                    EntryBox(_("Current user"),     os.getenv("USER")),
+                    EntryBox(_("Home directory"),     os.getenv("HOME")),
                     EntryBox(_("Shell"),         os.getenv("SHELL")),
                     EntryBox(_("Language"),     os.getenv("LANG")),
                 ))

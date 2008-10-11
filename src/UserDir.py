@@ -41,14 +41,14 @@ class UserdirFile(IniFile):
     """Class to parse userdir file"""
     filename = os.path.join(os.path.expanduser("~"), ".config/user-dirs.dirs")
     XDG_DIRS = {
-            "XDG_DESKTOP_DIR": _("Desktop Folder"),
-            "XDG_DOWNLOAD_DIR": _("Download Folder"),
-            "XDG_TEMPLATES_DIR": _("Templates Folder"),
-            "XDG_PUBLICSHARE_DIR": _("Public Folder"),
-            "XDG_DOCUMENTS_DIR": _("Document Folder"),
-            "XDG_MUSIC_DIR": _("Music Folder"),
-            "XDG_PICTURES_DIR": _("Pictures Folder"),
-            "XDG_VIDEOS_DIR": _("Videos Folder")
+            "XDG_DESKTOP_DIR": _("Desktop"),
+            "XDG_DOWNLOAD_DIR": _("Download"),
+            "XDG_TEMPLATES_DIR": _("Templates"),
+            "XDG_PUBLICSHARE_DIR": _("Public"),
+            "XDG_DOCUMENTS_DIR": _("Document"),
+            "XDG_MUSIC_DIR": _("Music"),
+            "XDG_PICTURES_DIR": _("Pictures"),
+            "XDG_VIDEOS_DIR": _("Videos")
             }
     def __init__(self):
         IniFile.__init__(self, self.filename)
@@ -124,7 +124,7 @@ class UserdirView(gtk.TreeView):
         model, iter = self.get_selection().get_selected()
         userdir = model.get_value(iter, COLUMN_DIR)
 
-        dialog = gtk.FileChooserDialog(_("Select a new folder"), 
+        dialog = gtk.FileChooserDialog(_("Choose a folder"), 
                                        action = gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER,
                                        buttons = (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, gtk.STOCK_OPEN, gtk.RESPONSE_ACCEPT))
         dialog.set_current_folder(os.getenv("HOME"))
@@ -143,7 +143,7 @@ class UserdirView(gtk.TreeView):
         model, iter = self.get_selection().get_selected()
         userdir = model.get_value(iter, COLUMN_DIR)
 
-        dialog = QuestionDialog(_('<b><big>Please notice</big></b>\n\nUbuntu Tweak will restore the directory to the default setting.\nBut you need to migration your files by yourself.\nGo on?'))
+        dialog = QuestionDialog(_('<b><big>Notice</big></b>\n\nUbuntu Tweak will restore the chosen directory to the default location.\nHowever, you must move your files back into place by yourself.\nDo you wish to continue?'))
 
         if dialog.run() == gtk.RESPONSE_YES:
             newdir = os.path.join(os.getenv("HOME"), self.uf.get_restorename(userdir))
@@ -174,7 +174,7 @@ class UserdirView(gtk.TreeView):
         return model
 
     def __add_columns(self):
-        column = gtk.TreeViewColumn(_('Direcotry name'))
+        column = gtk.TreeViewColumn(_('Direcotry'))
         column.set_spacing(5)
         column.set_sort_column_id(COLUMN_NAME)
         self.append_column(column)
@@ -195,11 +195,11 @@ class UserdirView(gtk.TreeView):
     def __create_popup_menu(self):
         menu = gtk.Menu()
 
-        change_item = gtk.MenuItem(_('Change Directory'))
+        change_item = gtk.MenuItem(_('Change'))
         menu.append(change_item)
         change_item.connect('activate', self.on_change_directory)
 
-        restore_item = gtk.MenuItem(_('Restore Directory'))
+        restore_item = gtk.MenuItem(_('Restore to default'))
         menu.append(restore_item)
         restore_item.connect('activate', self.on_restore_directory)
 
@@ -209,8 +209,8 @@ class UserDir(TweakPage):
     """Setting the user default dictories"""
     def __init__(self):
         TweakPage.__init__(self, 
-                _("Set your document folders"), 
-                _("You can change the default document folders.\nDon't change the Desktop folder under normal use."))
+                _("Default Folder Locations"), 
+                _("You can change the default document folders here.\nBut don't change the Desktop folder under normal use."))
 
         sw = gtk.ScrolledWindow()
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
