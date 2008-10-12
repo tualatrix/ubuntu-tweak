@@ -39,13 +39,13 @@ class SourceView(gtk.TextView):
     def __init__(self):
         super(SourceView, self).__init__()
 
-        buffer = self.get_buffer()
-        self.create_tags(buffer)
-        self.update_content(buffer)
+        self.create_tags()
+        self.update_content()
 
-    def update_content(self, buffer):
+    def update_content(self):
 #        data = file('/etc/apt/sources.list').read()
-#        buffer = self.get_buffer()
+        buffer = self.get_buffer()
+        buffer.delete(buffer.get_start_iter(), buffer.get_end_iter())
 #        buffer.set_text(data)
         iter = buffer.get_iter_at_offset(0)
         for line in file('/etc/apt/sources.list'):
@@ -64,8 +64,10 @@ class SourceView(gtk.TextView):
             else:
                 buffer.insert(iter, line)
 
-    def create_tags(self, buffer):
+    def create_tags(self):
         import pango
+        buffer = self.get_buffer()
+
         buffer.create_tag('full_comment', foreground = "blue")
         buffer.create_tag('type', weight = pango.WEIGHT_BOLD)
         buffer.create_tag('uri', underline = pango.UNDERLINE_SINGLE)
@@ -91,13 +93,14 @@ class SourceView(gtk.TextView):
                 has_comment = True
                 break
 
-        print list
-        print stop_i
-        print '##########'
         buffer.insert_with_tags_by_name(iter, ' '.join(component), 'component')
         self.insert_blank(buffer, iter)
         if has_comment:
             buffer.insert_with_tags_by_name(iter, ' '.join(list[stop_i:]), 'addon_comment')
+
+    def get_text(self):
+        buffer = self.get_buffer()
+        return buffer.get_text(buffer.get_start_iter(), buffer.get_end_iter())
 
 class SourceEditor(TweakPage):
     def __init__(self):
@@ -123,19 +126,14 @@ class SourceEditor(TweakPage):
 
         self.redo_button = gtk.Button(stock = gtk.STOCK_REDO)
         self.redo_button.set_sensitive(False)
-        self.redo_button.connect('clicked', self.on_button_clicked)
+        self.redo_button.connect('clicked', self.on_redo_button_clicked)
         vbox.pack_start(self.redo_button, False, False, 0)
 
         self.textview = SourceView()
+        self.textview.set_sensitive(False)
         sw.add(self.textview)
         buffer = self.textview.get_buffer()
         buffer.connect('changed', self.on_buffer_changed)
-
-        # checkbutton
-        self.select_button = gtk.CheckButton(_('Select All'))
-        self.select_button.set_sensitive(False)
-        self.__handler_id = self.select_button.connect('clicked', self.on_select_all)
-        self.pack_start(self.select_button, False, False, 0)
 
         # button
         hbox = gtk.HBox(False, 0)
@@ -146,11 +144,6 @@ class SourceEditor(TweakPage):
         un_lock.connect('failed', self.on_auth_failed)
         hbox.pack_end(un_lock, False, False, 5)
 
-        self.clean_button = gtk.Button(stock = gtk.STOCK_CLEAR)
-        self.clean_button.connect('clicked', self.on_clean_button_clicked)
-        self.clean_button.set_sensitive(False)
-        hbox.pack_end(self.clean_button, False, False, 5)
-
         self.show_all()
 
     def on_buffer_changed(self, buffer):
@@ -158,51 +151,18 @@ class SourceEditor(TweakPage):
         self.redo_button.set_sensitive(True)
 
     def on_save_button_clicked(self, wiget):
-        buffer = self.textview.get_buffer()
-        print buffer.get_text(buffer.get_start_iter(), buffer.get_end_iter())
+        text = self.textview.get_text()
+        self.save_button.set_sensitive(False)
+        self.redo_button.set_sensitive(False)
 
-    def on_select_all(self, widget):
-        check = widget.get_active()
+    def on_redo_button_clicked(self, widget):
+        dialog = QuestionDialog(_('I will reload the file and currenly content will be lost!'))
+        if dialog.run() == gtk.RESPONSE_YES:
+            self.textview.update_content()
+            self.save_button.set_sensitive(False)
+            self.redo_button.set_sensitive(False)
 
-        self.treeview.select_all(check)
-
-    def on_item_checked(self, widget, all):
-        list = widget.get_list()
-        if list:
-            self.clean_button.set_sensitive(True)
-        else:
-            self.clean_button.set_sensitive(False)
-
-        self.select_button.handler_block(self.__handler_id)
-        if all:
-            self.select_button.set_active(True)
-        else:
-            self.select_button.set_active(False)
-        self.select_button.handler_unblock(self.__handler_id)
-
-    def on_item_cleaned(self, widget):
-        self.select_button.set_active(False)
-        self.clean_button.set_sensitive(False)
-
-    def on_button_clicked(self, widget):
-        self.select_button.set_active(False)
-
-        if widget == self.redo_button:
-            self.save_button.set_active(not widget.get_active())
-        elif widget == self.save_button:
-            self.redo_button.set_active(not widget.get_active())
-
-        if self.save_button.get_active():
-            self.treeview.update_package_model()
-        else:
-            self.treeview.update_cache_model()
-
-    def on_clean_button_clicked(self, widget):
-        mode = self.treeview.mode
-        if mode == 'package':
-            self.treeview.clean_selected_package()
-        elif mode == 'cache':
-            thread.start_new_thread(self.treeview.clean_selected_cache, ())
+        dialog.destroy()
 
     def on_auth_failed(self, widget):
         gtk.gdk.threads_enter()
@@ -214,8 +174,7 @@ class SourceEditor(TweakPage):
         proxy = DbusProxy.get_proxy()
 
         if proxy:
-            self.treeview.set_sensitive(True)
-            self.select_button.set_sensitive(True)
+            self.textview.set_sensitive(True)
         else:
             ErrorDialog(_("<b><big>Service hasn't initialized yet</big></b>\n\nYou need to restart your Ubuntu.")).launch()
 
