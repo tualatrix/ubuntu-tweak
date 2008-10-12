@@ -134,7 +134,7 @@ class PackageView(gtk.TreeView):
                 icon,
                 pkg,
                 size,
-                _('<b>%s</b>\nTake %s KB disk space') % (os.path.basename(pkg), size)
+                _('<b>%s</b>\nTake %s KB of disk space') % (os.path.basename(pkg), size)
                 ))
 
     def on_package_toggled(self, cell, path):
@@ -159,11 +159,11 @@ class PackageView(gtk.TreeView):
         if self.mode == 'package':
             n = len(self.__check_list)
             self.__column.set_title(
-                    gettext.ngettext(_('%d Package selected to remove') % n, 
-                                    _('%d Packages selected to remove') % n, n))
+                    gettext.ngettext(_('%d package selected to remove') % n, 
+                                    _('%d packages selected to remove') % n, n))
         else:
             self.computer_cache_size()
-            self.__column.set_title(_('%d KB Space will be free') % self.size)
+            self.__column.set_title(_('%d KB of space will be freed') % self.size)
 
     def computer_cache_size(self):
         self.size = 0
@@ -232,7 +232,7 @@ class PackageCleaner(TweakPage):
     def __init__(self):
         super(PackageCleaner, self).__init__(
                 _('Package Cleaner'),
-                _('Clean up the unneeded packages and the package cache.'))
+                _('Free up disk space by clearing unneeded packages and the package cache.'))
 
         update_apt_cache(True)
 

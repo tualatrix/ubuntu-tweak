@@ -38,13 +38,13 @@ class Nautilus(TweakPage):
     def __init__(self):
         TweakPage.__init__(self)
 
-        button = Factory.create("gconfcheckbutton", _("Show advanced Permissions on File Property pages"), "show_advanced_permissions")
+        button = Factory.create("gconfcheckbutton", _("Show advanced permissions on Permissions tab of File Property"), "show_advanced_permissions")
 
-        box = ListPack(_("Settings for Nautilus behavior"), (button, )) 
+        box = ListPack(_("File Browser"), (button, )) 
         self.pack_start(box, False, False, 0)
 
         hbox = gtk.HBox(False, 5)
-        label = gtk.Label(_("Default Thumbnail Icon Size"))
+        label = gtk.Label(_("Default thumbnail icon Size"))
         hbox.pack_start(label, False, False, 0)
 
         client = gconf.client_get_default()

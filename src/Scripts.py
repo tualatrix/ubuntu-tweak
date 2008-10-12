@@ -92,8 +92,8 @@ class Scripts(TweakPage, AbstractScripts):
     """Freedom added your docmuent scripts"""
     def __init__(self):
         TweakPage.__init__(self, 
-                _("Manage your scripts"),
-                _('You can do all kinds of tasks with scripts.\nYou can drag and drop from File Manager.\n"Scripts" will be added to the Context Menu.\n'))
+                _("Manage Scripts"),
+                _('You can do all kinds of tasks with scripts.\nYou can drag and drop from File Manager.\n"Scripts" will be added to the context menu.\n'))
 
         self.default = DefaultScripts()
         self.config_test()
@@ -118,7 +118,7 @@ class Scripts(TweakPage, AbstractScripts):
         hbox = gtk.HBox(False, 0)
         self.pack_start(hbox, False, False, 10)
 
-        button = gtk.Button(_("Rebuild the system scripts"))
+        button = gtk.Button(_("Rebuild System Scripts"))
         button.connect("clicked", self.on_rebuild_clicked)
         hbox.pack_end(button, False, False, 5)
         
@@ -136,7 +136,7 @@ class Scripts(TweakPage, AbstractScripts):
         self.enable_scripts.update_model()
 
     def on_rebuild_clicked(self, widget):
-        dialog = WarningDialog(_("This will delete all the disabled scripts, continue?"))
+        dialog = WarningDialog(_('This will delete all disabled scripts.\nDo you wish to continue?'))
         if dialog.run() == gtk.RESPONSE_YES:
             self.default.remove()
             self.default.create()

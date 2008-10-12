@@ -44,8 +44,8 @@ class Shortcuts(TweakPage):
 
     def __init__(self):
         TweakPage.__init__(self, 
-                _("Set the shortcut of your commands"), 
-                _("By configuring keyboard shortcuts, you have faster access to the \napplications you need.\nInput the command and set any desired key, it's easy to set a shortcut.\nUse <b>Delete</b> or <b>BackSpace</b> to clean the key."))
+                _("Shortcut Commands"), 
+                _("By configuring keyboard shortcuts, you have faster access to the applications you need.\nInput the command and set any desired key, it's easy to set a shortcut.\nUse the <b>Delete</b> or <b>BackSpace</b> to clean the shortcut."))
 
         sw = gtk.ScrolledWindow()
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)

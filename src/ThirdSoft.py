@@ -217,7 +217,7 @@ class SourcesView(gtk.TreeView):
         column.set_sort_column_id(COLUMN_ENABLED)
         self.append_column(column)
 
-        column = gtk.TreeViewColumn(_('Third Party Sources'))
+        column = gtk.TreeViewColumn(_('Third-Party Sources'))
         column.set_sort_column_id(COLUMN_NAME)
         column.set_spacing(5)
         renderer = gtk.CellRendererPixbuf()
@@ -337,8 +337,8 @@ class SourceDetail(gtk.VBox):
 class ThirdSoft(TweakPage):
     def __init__(self):
         TweakPage.__init__(self, 
-                _('Third Party Softwares Sources'), 
-                _('You can always keep up-to-date with the latest version of an application.\nAnd new applications can be installed through Add/Remove.'))
+                _('Third-Party Softwares Sources'), 
+                _('After every releases of Ubuntu comes a feature freeze. This means only applications with bug-fixes get into the repository. By using third-party DEB repositories, you can always keep up-to-date with the latest version.\nAfter adding these repositories, locate and install them using Add/Remove.'))
 
         self.__config = Config()
 
@@ -354,7 +354,7 @@ class ThirdSoft(TweakPage):
         self.treeview.set_rules_hint(True)
         sw.add(self.treeview)
 
-        self.expander = gtk.Expander(_('Source Details'))
+        self.expander = gtk.Expander(_('Details'))
         self.pack_start(self.expander, False, False, 0)
         self.sourcedetail = SourceDetail()
         self.expander.set_sensitive(False)
@@ -397,7 +397,7 @@ class ThirdSoft(TweakPage):
             WARNING_KEY = '/apps/ubuntu-tweak/disable_thidparty_warning'
 
             if not self.__config.get_value(WARNING_KEY):
-                dialog = WarningDialog(_('<b><big>Warning</big></b>\n\nIt is a possible security risk to use packages from Third Party Sources. Please be careful.'), buttons = gtk.BUTTONS_OK)
+                dialog = WarningDialog(_('<b><big>Warning</big></b>\n\nIt is a possible security risk to use packages from Third-Party Sources. Please be careful.'), buttons = gtk.BUTTONS_OK)
                 vbox = dialog.get_child()
                 hbox = gtk.HBox()
                 vbox.pack_start(hbox, False, False, 0)

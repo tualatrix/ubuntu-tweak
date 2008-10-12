@@ -47,17 +47,17 @@ ICON_DIR = os.path.join(DATA_DIR, 'applogos')
     COLUMN_CATE,
 ) = range(6)
 
-P2P = (_('P2P Clients'), 'p2p.png')
+P2P = (_('File-Sharing Clients'), 'p2p.png')
 Image = (_('Image Tools'), 'image.png')
 Sound = (_('Sound Tools'), 'sound.png')
 Video = (_('Video Tools'), 'video.png')
 Text = (_('Text Tools'), 'text.png')
-IM = (_('Instant Messenger'), 'im.png')
+IM = (_('Instant Messengers'), 'im.png')
 Internet = (_('Internet Tools'), 'internet.png')
 FTP = (_('FTP Tools'), 'ftp.png')
 Desktop = (_('Desktop Tools'), 'desktop.png')
 Disk = (_('CD/Disk Tools'), 'cd.png')
-Develop = (_('Development Kit'), 'develop.png')
+Develop = (_('Development'), 'develop.png')
 Emulator = (_('Emulators'), 'emulator.png')
 Mail = (_('E-mail Tools'), 'mail.png')
 
@@ -132,8 +132,8 @@ data = \
 class Installer(TweakPage):
     def __init__(self):
         TweakPage.__init__(self, 
-                _('Install widely used applications'),
-                _('A simple interface for installing applications.'))
+                _('Add/Remove Applications'),
+                _('A simple but more effective for finding and installing popular packages than the default Add/Remove.'))
 
         update_apt_cache(True)
 

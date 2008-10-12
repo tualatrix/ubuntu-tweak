@@ -35,12 +35,12 @@ class PowerManager(TweakPage):
         TweakPage.__init__(self)
 
         box = TablePack(_("Advanced Power Management Settings"), [
-                [Factory.create("gconfcheckbutton", _("Enable Hibernation"), "can_hibernate")],
-                [Factory.create("gconfcheckbutton", _("Enable Suspend"), "can_suspend")],
-                [Factory.create("gconfcheckbutton", _("Show CPU frequency control option"), "cpufreq_show")],
-                [Factory.create("gconfcheckbutton", _("Disable the Network Manager on sleep"), "network_sleep")],
-                [Factory.create("gconfcheckbutton", _("Lock screen when blanked"), "blank_screen")],
-                [gtk.Label(_("\"GNOME Panel\" Power Management icon")), Factory.create("gconfcombobox", "icon_policy", [_("Never display"), _("When charging"), _("Always display")], ["never", "charge", "always"])],
+                [Factory.create("gconfcheckbutton", _('Enable "Hibernation"'), "can_hibernate")],
+                [Factory.create("gconfcheckbutton", _('Enable "Suspend"'), "can_suspend")],
+                [Factory.create("gconfcheckbutton", _('Show "CPU frequency control option" in Power Management Preferences'), "cpufreq_show")],
+                [Factory.create("gconfcheckbutton", _("Disable Network Manager when on sleep"), "network_sleep")],
+                [Factory.create("gconfcheckbutton", _('Enable "Lock screen" when "Blank Screen" activates'), "blank_screen")],
+                [gtk.Label(_('Display "Power Manager" panel item')), Factory.create("gconfcombobox", "icon_policy", [_("Never display"), _("When charging"), _("Always display")], ["never", "charge", "always"])],
         ]) 
         self.pack_start(box, False, False, 0)
 
