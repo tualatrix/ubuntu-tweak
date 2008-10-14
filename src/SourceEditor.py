@@ -86,6 +86,11 @@ class SubmitDialog(gtk.Dialog):
                 self.e_comment.get_text(),
                 file(SOURCES_LIST).read())
 
+    def check_fill_data(self):
+        return self.e_title.get_text().strip() \
+                and self.e_locale.get_text().strip() \
+                and self.e_comment.get_text().strip()
+
 class UploadDialog(gtk.Dialog):
     def __init__(self, data = None):
         super(UploadDialog, self).__init__()
@@ -112,6 +117,34 @@ class UploadDialog(gtk.Dialog):
         self.progressbar.pulse()
 
         if not self.uploading:
+            gobject.timeout_add(100, self.destroy)
+        else:
+            return True
+
+class UpdateDialog(gtk.Dialog):
+    def __init__(self, data = None):
+        super(UpdateDialog, self).__init__()
+
+        self.progressbar = gtk.ProgressBar()
+        self.progressbar.set_text(_('Updating...'))
+        self.vbox.add(self.progressbar)
+
+        self.show_all()
+        gobject.timeout_add(100, self.on_timeout)
+        thread.start_new_thread(self.update_data, (data,))
+        
+    def update_data(self, data):
+        self.updating = True
+#        import time
+#        time.sleep(10)
+        server = ServerProxy("http://ubuntu-tweak.appspot.com/xmlrpc")
+        server.putsource(title, locale, comment, source)
+        self.updating = False
+
+    def on_timeout(self):
+        self.progressbar.pulse()
+
+        if not self.updating:
             gobject.timeout_add(100, self.destroy)
         else:
             return True
@@ -205,7 +238,7 @@ class SourceEditor(TweakPage):
 
         self.update_button = gtk.Button(_('Update'))
         self.update_button.set_sensitive(False)
-#        self.update_button.connect('clicked', self.on_update_button_clicked)
+        self.update_button.connect('clicked', self.on_update_button_clicked)
         vbox.pack_start(self.update_button, False, False, 0)
 
         self.textview = SourceView()
@@ -239,11 +272,17 @@ class SourceEditor(TweakPage):
         dialog = SubmitDialog()
         source_data = ()
         if dialog.run() == gtk.RESPONSE_YES:
-            source_data = dialog.get_source_data()
+            if dialog.check_fill_data():
+                source_data = dialog.get_source_data()
+            else:
+                ErrorDialog('Wow').launch()
         dialog.destroy()
 
         if source_data:
             thread.start_new_thread(self.submit_source_data, (source_data,))
+
+    def on_update_button_clicked(self, widget):
+
 
     def submit_source_data(self, data):
         gtk.gdk.threads_enter()
@@ -280,6 +319,7 @@ class SourceEditor(TweakPage):
 
         if proxy:
             self.textview.set_sensitive(True)
+            self.update_button.set_sensitive(True)
         else:
             ErrorDialog(_("<b><big>Service hasn't initialized yet</big></b>\n\nYou need to restart your Ubuntu.")).launch()
 
