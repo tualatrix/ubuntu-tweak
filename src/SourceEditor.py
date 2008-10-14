@@ -23,6 +23,7 @@ import gtk
 import thread
 import gobject
 import gettext
+from xmlrpclib import ServerProxy, Error
 from common.LookupIcon import *
 from common.PolicyKit import DbusProxy, PolkitButton
 from common.Widgets import TweakPage, InfoDialog, QuestionDialog, ErrorDialog
@@ -78,6 +79,42 @@ class SubmitDialog(gtk.Dialog):
         self.set_default_response(gtk.RESPONSE_YES)
 
         self.show_all()
+
+    def get_source_data(self):
+        return (self.e_title.get_text(), 
+                self.e_locale.get_text(), 
+                self.e_comment.get_text(),
+                file(SOURCES_LIST).read())
+
+class UploadDialog(gtk.Dialog):
+    def __init__(self, data = None):
+        super(UploadDialog, self).__init__()
+
+        self.progressbar = gtk.ProgressBar()
+        self.progressbar.set_text(_('Uploding...'))
+        self.vbox.add(self.progressbar)
+
+        self.show_all()
+        gobject.timeout_add(100, self.on_timeout)
+        thread.start_new_thread(self.upload_data, (data,))
+        
+    def upload_data(self, data):
+        self.uploading = True
+#        import time
+#        time.sleep(10)
+        server = ServerProxy("http://ubuntu-tweak.appspot.com/xmlrpc")
+        title, locale, comment, source = data
+        print title, locale, comment, source
+        server.putsource(title, locale, comment, source)
+        self.uploading = False
+
+    def on_timeout(self):
+        self.progressbar.pulse()
+
+        if not self.uploading:
+            gobject.timeout_add(100, self.destroy)
+        else:
+            return True
 
 class SourceView(gtk.TextView):
     def __init__(self):
@@ -200,10 +237,19 @@ class SourceEditor(TweakPage):
 
     def on_submit_button_clicked(self, widget):
         dialog = SubmitDialog()
+        source_data = ()
         if dialog.run() == gtk.RESPONSE_YES:
-            pass
-
+            source_data = dialog.get_source_data()
         dialog.destroy()
+
+        if source_data:
+            thread.start_new_thread(self.submit_source_data, (source_data,))
+
+    def submit_source_data(self, data):
+        gtk.gdk.threads_enter()
+        dialog = UploadDialog(data)
+        dialog.run()
+        gtk.gdk.threads_leave()
 
     def on_buffer_changed(self, buffer):
         self.save_button.set_sensitive(True)
