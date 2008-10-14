@@ -35,6 +35,50 @@ from common.Widgets import TweakPage, InfoDialog, QuestionDialog, ErrorDialog
     COLUMN_DISPLAY,
 ) = range(5)
 
+#SOURCES_LIST = '/etc/apt/sources.list'
+SOURCES_LIST = '/home/tualatrix/Desktop/sources.list'
+
+class SubmitDialog(gtk.Dialog):
+    def __init__(self):
+        super(SubmitDialog, self).__init__()
+
+        l_title = gtk.Label()
+        l_title.set_text_with_mnemonic(_("_Source Title:"))
+        l_title.set_alignment(0, 0)
+        l_locale = gtk.Label()
+        l_locale.set_text_with_mnemonic(_("Locale"))
+        l_locale.set_alignment(0, 0)
+        l_comment = gtk.Label()
+        l_comment.set_text_with_mnemonic(_("Comm_ent:"))
+        l_comment.set_alignment(0, 0)
+
+        self.e_title = gtk.Entry ();
+        self.e_title.set_tooltip_text(_('Enter the title of the source, such as "Ubuntu Official Repostory"'))
+#        self.e_title.connect("activate", self.on_entry_activate)
+        self.e_locale = gtk.Entry ();
+        self.e_locale.set_tooltip_text(_("If the locale isn't correct, you can edit by you self"))
+        self.e_locale.set_text(os.getenv('LANG'))
+#        self.e_locale.connect("activate", self.on_entry_activate)
+        self.e_comment = gtk.Entry ();
+#        self.e_comment.connect("activate", self.on_entry_activate)
+
+        table = gtk.Table(3, 2)
+        table.attach(l_title, 0, 1, 0, 1, xoptions = gtk.FILL, xpadding = 10, ypadding = 10)
+        table.attach(l_locale, 0, 1, 1, 2, xoptions = gtk.FILL, xpadding = 10, ypadding = 10)
+        table.attach(l_comment, 0, 1, 2, 3, xoptions = gtk.FILL, xpadding = 10, ypadding = 10)
+        table.attach(self.e_title, 1, 2, 0, 1)
+        table.attach(self.e_locale, 1, 2, 1, 2)
+        table.attach(self.e_comment, 1, 2, 2, 3)
+
+        self.vbox.pack_start(table)
+
+        self.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
+        self.add_button(_('Submit'), gtk.RESPONSE_YES)
+
+        self.set_default_response(gtk.RESPONSE_YES)
+
+        self.show_all()
+
 class SourceView(gtk.TextView):
     def __init__(self):
         super(SourceView, self).__init__()
@@ -43,12 +87,11 @@ class SourceView(gtk.TextView):
         self.update_content()
 
     def update_content(self):
-#        data = file('/etc/apt/sources.list').read()
         buffer = self.get_buffer()
         buffer.delete(buffer.get_start_iter(), buffer.get_end_iter())
 #        buffer.set_text(data)
         iter = buffer.get_iter_at_offset(0)
-        for line in file('/etc/apt/sources.list'):
+        for line in file(SOURCES_LIST):
             if line.strip():
                 if line.strip()[0] == '#':
                     buffer.insert_with_tags_by_name(iter, line, 'full_comment')
@@ -119,15 +162,14 @@ class SourceEditor(TweakPage):
         vbox = gtk.VBox(False, 8)
         hbox.pack_start(vbox, False, False, 5)
 
-        self.save_button = gtk.Button(stock = gtk.STOCK_SAVE)
-        self.save_button.set_sensitive(False)
-        self.save_button.connect('clicked', self.on_save_button_clicked)
-        vbox.pack_start(self.save_button, False, False, 0)
+        self.submit_button = gtk.Button(_('Submit'))
+        self.submit_button.connect('clicked', self.on_submit_button_clicked)
+        vbox.pack_start(self.submit_button, False, False, 0)
 
-        self.redo_button = gtk.Button(stock = gtk.STOCK_REDO)
-        self.redo_button.set_sensitive(False)
-        self.redo_button.connect('clicked', self.on_redo_button_clicked)
-        vbox.pack_start(self.redo_button, False, False, 0)
+        self.update_button = gtk.Button(_('Update'))
+        self.update_button.set_sensitive(False)
+#        self.update_button.connect('clicked', self.on_update_button_clicked)
+        vbox.pack_start(self.update_button, False, False, 0)
 
         self.textview = SourceView()
         self.textview.set_sensitive(False)
@@ -139,12 +181,29 @@ class SourceEditor(TweakPage):
         hbox = gtk.HBox(False, 0)
         self.pack_end(hbox, False ,False, 5)
 
+        self.save_button = gtk.Button(stock = gtk.STOCK_SAVE)
+        self.save_button.set_sensitive(False)
+        self.save_button.connect('clicked', self.on_save_button_clicked)
+        hbox.pack_start(self.save_button, False, False, 0)
+
+        self.redo_button = gtk.Button(stock = gtk.STOCK_REDO)
+        self.redo_button.set_sensitive(False)
+        self.redo_button.connect('clicked', self.on_redo_button_clicked)
+        hbox.pack_start(self.redo_button, False, False, 0)
+
         un_lock = PolkitButton()
         un_lock.connect('authenticated', self.on_polkit_action)
         un_lock.connect('failed', self.on_auth_failed)
         hbox.pack_end(un_lock, False, False, 5)
 
         self.show_all()
+
+    def on_submit_button_clicked(self, widget):
+        dialog = SubmitDialog()
+        if dialog.run() == gtk.RESPONSE_YES:
+            pass
+
+        dialog.destroy()
 
     def on_buffer_changed(self, buffer):
         self.save_button.set_sensitive(True)
