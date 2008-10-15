@@ -282,7 +282,7 @@ class SourceEditor(TweakPage):
             thread.start_new_thread(self.submit_source_data, (source_data,))
 
     def on_update_button_clicked(self, widget):
-
+        pass
 
     def submit_source_data(self, data):
         gtk.gdk.threads_enter()

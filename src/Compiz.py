@@ -24,6 +24,7 @@ import os
 import gtk
 import gconf
 import gobject
+from common.Consts import DATA_DIR
 from common.Widgets import ListPack, InfoDialog, SinglePack, TweakPage
 from common.SystemInfo import SystemModule
 try:
@@ -330,13 +331,14 @@ class Compiz(TweakPage, CompizSetting):
         client = gconf.client_get_default()
         wallpaper = client.get_string("/desktop/gnome/background/picture_filename")
 
+        system_wallpaper = os.path.join(DATA_DIR, "pixmaps/ubuntu-tweak.png")
         if wallpaper:
             try:
                 pixbuf = gtk.gdk.pixbuf_new_from_file_at_size(wallpaper, 160, 100)
             except gobject.GError:
-                pixbuf = gtk.gdk.pixbuf_new_from_file_at_size("pixmaps/ubuntu-tweak.png", 160, 100)
+                pixbuf = gtk.gdk.pixbuf_new_from_file_at_size(system_wallpaper, 160, 100)
         else:
-            pixbuf = gtk.gdk.pixbuf_new_from_file_at_size("pixmaps/ubuntu-tweak.png", 160, 100)
+            pixbuf = gtk.gdk.pixbuf_new_from_file_at_size(system_wallpaper, 160, 100)
         image = gtk.image_new_from_pixbuf(pixbuf)
         hbox.pack_start(image, False, False, 0)
         

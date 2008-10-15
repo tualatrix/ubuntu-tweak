@@ -54,6 +54,7 @@ class PolkitButton(gtk.Button):
         if self.__class__.action:
             self.change_button_state()
             self.emit('authenticated')
+            gtk.gdk.threads_leave()
             return
 
         try:
