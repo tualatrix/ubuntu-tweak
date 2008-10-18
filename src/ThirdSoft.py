@@ -383,12 +383,9 @@ class ThirdSoft(TweakPage):
         self.sourcedetail.set_details(home, url, description)
 
     def on_auth_failed(self, widget):
-        gtk.gdk.threads_enter()
         ErrorDialog(_('<b><big>Could not authenticate</big></b>\n\nAn unexpected error has occurred.')).launch()
-        gtk.gdk.threads_leave()
 
     def on_polkit_action(self, widget):
-        gtk.gdk.threads_enter()
         proxy = self.treeview.get_proxy()
 
         if proxy:
@@ -409,8 +406,6 @@ class ThirdSoft(TweakPage):
                 dialog.destroy()
         else:
             ErrorDialog(_("<b><big>Service hasn't initialized yet</big></b>\n\nYou need to restart your Ubuntu.")).launch()
-
-        gtk.gdk.threads_leave()
 
     def colleague_changed(self, widget):
         self.refresh_button.set_sensitive(True)

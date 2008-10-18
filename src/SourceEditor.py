@@ -309,12 +309,9 @@ class SourceEditor(TweakPage):
         dialog.destroy()
 
     def on_auth_failed(self, widget):
-        gtk.gdk.threads_enter()
         ErrorDialog(_('<b><big>Could not authenticate</big></b>\n\nAn unexpected error has occurred.')).launch()
-        gtk.gdk.threads_leave()
 
     def on_polkit_action(self, widget):
-        gtk.gdk.threads_enter()
         proxy = DbusProxy.get_proxy()
 
         if proxy:
@@ -322,8 +319,6 @@ class SourceEditor(TweakPage):
             self.update_button.set_sensitive(True)
         else:
             ErrorDialog(_("<b><big>Service hasn't initialized yet</big></b>\n\nYou need to restart your Ubuntu.")).launch()
-
-        gtk.gdk.threads_leave()
 
 if __name__ == '__main__':
     from Utility import Test

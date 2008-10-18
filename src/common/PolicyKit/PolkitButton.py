@@ -49,13 +49,13 @@ class PolkitButton(gtk.Button):
         thread.start_new_thread(self.obtain_authorization, (xid,))
 
     def obtain_authorization(self, xid):
-#        gtk.gdk.threads_enter()
         policykit = dbus.SessionBus().get_object('org.freedesktop.PolicyKit.AuthenticationAgent', '/')
 
         if self.__class__.action:
+            gtk.gdk.threads_enter()
             self.change_button_state()
             self.emit('authenticated')
-#            gtk.gdk.threads_leave()
+            gtk.gdk.threads_leave()
             return
 
         try:
@@ -67,11 +67,12 @@ class PolkitButton(gtk.Button):
             self.__class__.action = granted
 
             if self.__class__.action == 1:
+                gtk.gdk.threads_enter()
                 self.change_button_state()
                 self.emit('authenticated')
+                gtk.gdk.threads_leave()
             else:
                 self.emit('failed')
-#        gtk.gdk.threads_leave()
 
     def change_button_state(self):
         image = gtk.image_new_from_stock(gtk.STOCK_YES, gtk.ICON_SIZE_BUTTON)
