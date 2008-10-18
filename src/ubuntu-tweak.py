@@ -20,6 +20,7 @@
 
 import os
 import gtk
+import gobject
 import thread
 
 from common.Consts import *
@@ -71,6 +72,6 @@ class TweakLauncher:
         gtk.gdk.threads_leave()
 
 if __name__ == "__main__":
-    gtk.gdk.threads_init()
+    gobject.threads_init()
     launcher = TweakLauncher()
     launcher.main()
