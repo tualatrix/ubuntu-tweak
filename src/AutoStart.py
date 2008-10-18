@@ -106,7 +106,8 @@ class AutoStartDialog(gtk.Dialog):
 class AutoStartItem(gtk.TreeView):
     """The autostart program list, loading from userdir and systemdir"""
     userdir = os.path.join(os.path.expanduser("~"), ".config/autostart")
-    systemdir = "/etc/xdg/autostart"
+    etc_dir = "/etc/xdg/autostart"
+    gnome_dir = "/usr/share/gnome/autostart"
 
     def __init__(self):
         gtk.TreeView.__init__(self)
@@ -138,9 +139,16 @@ class AutoStartItem(gtk.TreeView):
         #get the item with full-path from the dirs
         self.useritems = map(lambda path: "%s/%s" % (self.userdir, path), 
                                                     os.listdir(self.userdir))
-        self.systemitems = map(lambda path: "%s/%s" % (self.systemdir, path),
-                           filter(lambda i: i not in os.listdir(self.userdir), 
-                                                    os.listdir(self.systemdir)))
+
+        etc_items = map(lambda path: "%s/%s" % (self.etc_dir, path),
+                        filter(lambda i: i not in os.listdir(self.userdir), 
+                                                    os.listdir(self.etc_dir)))
+
+        gnome_items = map(lambda path: "%s/%s" % (self.gnome_dir, path),
+                        filter(lambda i: i not in os.listdir(self.userdir), 
+                                                    os.listdir(self.gnome_dir)))
+
+        self.systemitems = etc_items + gnome_items
 
         for item in self.useritems:
             if os.path.isdir(item): 
@@ -183,11 +191,12 @@ class AutoStartItem(gtk.TreeView):
 
         if iter:
             path = model.get_value(iter, COLUMN_PATH)
-            if os.path.basename(path) in os.listdir(self.systemdir):
+            if self.is_defaultitem(path):
                 InfoDialog(_("Can't delete the system item from disk.")).launch()
             else:
                 os.remove(path)
-                model.remove(iter)
+
+        self.update_items()
 
     def update_items(self, all = False, comment = False):
         """'all' parameter used to show the hide item,
@@ -266,7 +275,7 @@ class AutoStartItem(gtk.TreeView):
         active = model.get_value(iter, COLUMN_ACTIVE)
         path = model.get_value(iter, COLUMN_PATH)
 
-        if path[1:4] == 'etc':
+        if self.is_defaultitem(path):
             shutil.copy(path, self.userdir)
             path = os.path.join(self.userdir, os.path.basename(path))
             desktopentry = DesktopEntry(path)
@@ -279,9 +288,9 @@ class AutoStartItem(gtk.TreeView):
                 desktopentry.set("X-GNOME-Autostart-enabled", "false")
                 desktopentry.write()
             else:
-                if os.path.basename(path) in os.listdir(self.systemdir):
+                if self.is_in_systemdir(path):
                     os.remove(path)
-                    path = os.path.join(self.systemdir, os.path.basename(path))
+                    path = os.path.join(self.get_systemdir(path), os.path.basename(path))
                     model.set(iter, COLUMN_PATH, path)
                 else:
                     desktopentry = DesktopEntry(path)
@@ -292,6 +301,19 @@ class AutoStartItem(gtk.TreeView):
         active =  not active
 
         model.set(iter, COLUMN_ACTIVE, active)
+
+    def is_in_systemdir(self, path):
+        return os.path.basename(path) in os.listdir(self.etc_dir) or \
+                os.path.basename(path) in os.listdir(self.gnome_dir)
+
+    def is_defaultitem(self, path):
+        return os.path.dirname(path) in [self.etc_dir, self.gnome_dir]
+
+    def get_systemdir(self, path):
+        if os.path.basename(path) in os.listdir(self.etc_dir):
+            return self.etc_dir
+        elif os.path.basename(path) in os.listdir(self.gnome_dir):
+            return self.gnome_dir
 
 class AutoStart(TweakPage):
     """The box pack the autostart list"""
