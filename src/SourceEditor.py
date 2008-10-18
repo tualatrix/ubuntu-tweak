@@ -21,6 +21,7 @@
 import os
 import gtk
 import thread
+import socket
 import gobject
 import gettext
 from xmlrpclib import ServerProxy, Error
@@ -81,9 +82,9 @@ class SubmitDialog(gtk.Dialog):
         self.show_all()
 
     def get_source_data(self):
-        return (self.e_title.get_text(), 
-                self.e_locale.get_text(), 
-                self.e_comment.get_text(),
+        return (self.e_title.get_text().strip(), 
+                self.e_locale.get_text().strip(), 
+                self.e_comment.get_text().strip(),
                 file(SOURCES_LIST).read())
 
     def check_fill_data(self):
@@ -105,6 +106,7 @@ class UploadDialog(gtk.Dialog):
         
     def upload_data(self, data):
         self.uploading = True
+        socket.setdefaulttimeout(10)
 #        import time
 #        time.sleep(10)
         server = ServerProxy("http://ubuntu-tweak.appspot.com/xmlrpc")
@@ -122,7 +124,7 @@ class UploadDialog(gtk.Dialog):
             return True
 
 class UpdateDialog(gtk.Dialog):
-    def __init__(self, data = None):
+    def __init__(self):
         super(UpdateDialog, self).__init__()
 
         self.progressbar = gtk.ProgressBar()
@@ -131,14 +133,16 @@ class UpdateDialog(gtk.Dialog):
 
         self.show_all()
         gobject.timeout_add(100, self.on_timeout)
-        thread.start_new_thread(self.update_data, (data,))
+        thread.start_new_thread(self.update_data, ())
         
-    def update_data(self, data):
+    def update_data(self):
         self.updating = True
+        socket.setdefaulttimeout(10)
 #        import time
 #        time.sleep(10)
         server = ServerProxy("http://ubuntu-tweak.appspot.com/xmlrpc")
-        server.putsource(title, locale, comment, source)
+        dict = server.getsource(os.getenv('LANG'))
+        print dict
         self.updating = False
 
     def on_timeout(self):
@@ -221,6 +225,8 @@ class SourceEditor(TweakPage):
                 _('Source Editor'),
                 _('By editing the sources.list to make it what you like'))
 
+        self.online_data = {}
+
         hbox = gtk.HBox(False, 0)
         self.pack_start(hbox, True, True, 0)
 
@@ -282,7 +288,13 @@ class SourceEditor(TweakPage):
             thread.start_new_thread(self.submit_source_data, (source_data,))
 
     def on_update_button_clicked(self, widget):
-        pass
+        thread.start_new_thread(self.update_source_data, ())
+
+    def update_source_data(self):
+        gtk.gdk.threads_enter()
+        dialog = UpdateDialog()
+        dialog.run()
+        gtk.gdk.threads_leave()
 
     def submit_source_data(self, data):
         gtk.gdk.threads_enter()
