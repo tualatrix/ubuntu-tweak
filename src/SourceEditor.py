@@ -40,6 +40,39 @@ from common.Widgets import TweakPage, InfoDialog, QuestionDialog, ErrorDialog
 #SOURCES_LIST = '/etc/apt/sources.list'
 SOURCES_LIST = '/home/tualatrix/Desktop/sources.list'
 
+class SelectSourceDialog(gtk.Dialog):
+    def __init__(self):
+        super(SelectSourceDialog, self).__init__()
+        self.set_border_width(10)
+
+        label = gtk.Label()
+        label.set_markup('<b><big>Select the source</big></b>\n\nYou can read the title and comment to determine which source is suitable for you')
+        self.vbox.pack_start(label, False, False, 0)
+
+        group = None
+
+        for i, (k, v) in enumerate(SOURCES_DATA.items()):
+            title, comment = k.split('\n')
+            button = gtk.RadioButton(group = group, label = "%s: %s" % (title, comment))
+            button.connect('toggled', self.on_button_toggled)
+            if i == 0:
+                group = button
+            self.vbox.pack_start(button, False, False, 5)
+
+        self.expander = gtk.Expander('Details')
+        self.vbox.pack_start(self.expander)
+
+        self.detail = gtk.Label()
+        self.expander.add(self.detail)
+
+        self.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
+        self.add_button(_('Change'), gtk.RESPONSE_YES)
+
+        self.show_all()
+
+    def on_button_toggled(self, widget):
+        self.detail.set_text(widget.get_label())
+
 class SubmitDialog(gtk.Dialog):
     def __init__(self):
         super(SubmitDialog, self).__init__()
@@ -136,13 +169,13 @@ class UpdateDialog(gtk.Dialog):
         thread.start_new_thread(self.update_data, ())
         
     def update_data(self):
+        global SOURCES_DATA
         self.updating = True
         socket.setdefaulttimeout(10)
 #        import time
 #        time.sleep(10)
         server = ServerProxy("http://ubuntu-tweak.appspot.com/xmlrpc")
-        dict = server.getsource(os.getenv('LANG'))
-        print dict
+        SOURCES_DATA = server.getsource(os.getenv('LANG'))
         self.updating = False
 
     def on_timeout(self):
@@ -288,13 +321,17 @@ class SourceEditor(TweakPage):
             thread.start_new_thread(self.submit_source_data, (source_data,))
 
     def on_update_button_clicked(self, widget):
-        thread.start_new_thread(self.update_source_data, ())
-
-    def update_source_data(self):
-        gtk.gdk.threads_enter()
         dialog = UpdateDialog()
         dialog.run()
-        gtk.gdk.threads_leave()
+        self.open_source_select_dialog()
+
+    def open_source_select_dialog(self):
+        if SOURCES_DATA:
+            dialog = SelectSourceDialog()
+            dialog.run()
+            dialog.destroy()
+        else:
+            ErrorDialog('No source here').launch()
 
     def submit_source_data(self, data):
         gtk.gdk.threads_enter()
