@@ -35,11 +35,11 @@ class LockDown(TweakPage):
 
         box = ListPack(_("System Security options"), (
                     Factory.create("gconfcheckbutton", _("Disable \"Run Application\" dialog (Alt+F2)"), "disable_command_line"),
-                    Factory.create("gconfcheckbutton", _("Disable Lock Screen"), "disable_lock_screen"),
-                    Factory.create("gconfcheckbutton", _("Disable Printing"), "disable_printing"),
-                    Factory.create("gconfcheckbutton", _("Disable Print Setup"), "disable_print_setup"),
-                    Factory.create("gconfcheckbutton", _("Disable Save To Disk"), "disable_save_to_disk"),
-                    Factory.create("gconfcheckbutton", _("Disable User Switching"), "disable_user_switching"),
+                    Factory.create("gconfcheckbutton", _('Disable "Lock Screen"'), "disable_lock_screen"),
+                    Factory.create("gconfcheckbutton", _("Disable printing"), "disable_printing"),
+                    Factory.create("gconfcheckbutton", _("Disable print setup"), "disable_print_setup"),
+                    Factory.create("gconfcheckbutton", _("Disable save to disk"), "disable_save_to_disk"),
+                    Factory.create("gconfcheckbutton", _('Disable "User Switch"'), "disable_user_switching"),
             ))
 
         self.pack_start(box, False, False, 0)

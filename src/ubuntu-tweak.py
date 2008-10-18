@@ -65,8 +65,10 @@ class TweakLauncher:
         gtk.gdk.threads_leave()
 
     def main(self):
+        gtk.gdk.threads_enter()
         os.system("exec python UpdateManager.py &")
         gtk.main()
+        gtk.gdk.threads_leave()
 
 if __name__ == "__main__":
     gtk.gdk.threads_init()

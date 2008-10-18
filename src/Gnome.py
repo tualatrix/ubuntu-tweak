@@ -66,7 +66,7 @@ class Gnome(TweakPage):
             ))
         self.pack_start(box, False, False, 0)
 
-        self.recently_used = gtk.CheckButton(_("Enable system-wide 'Recently Documents' list"))
+        self.recently_used = gtk.CheckButton(_('Enable system-wide "Recently Documents" list'))
         self.recently_used.connect('toggled', self.colleague_changed)
         self.recently_used.set_active(self.get_state())
         box = ListPack(_("History"), (
@@ -89,7 +89,7 @@ class Gnome(TweakPage):
 
     def create_change_icon_hbox(self):
         hbox = gtk.HBox(False, 10)
-        label = gtk.Label(_('Click the button to change panel logo'))
+        label = gtk.Label(_('Click the button to change the menu logo'))
         label.set_alignment(0, 0.5)
         hbox.pack_start(label, False, False, 0)
 

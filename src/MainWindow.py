@@ -63,7 +63,7 @@ def Welcome(parent = None):
     vbox.pack_start(title, False, False, 10)
 
     tips = TipsFactory(
-            _('Tweak your desktop to make it what you like.'),
+            _('Tweak your Linux computer to what you like.'),
             _('Easily install various kinds of applications.'),
             _('Clean up unneeded packages to free diskspace.'),
             _('Configure templates and scripts to improve your computing.'),

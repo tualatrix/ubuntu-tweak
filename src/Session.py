@@ -36,7 +36,7 @@ class Session(TweakPage):
 
         self.pack_start(self.session_control_box(), False, False, 0)
 
-        box = SinglePack(_("Click the large button to change splash screen"), self.splash_hbox())
+        box = SinglePack(_('Splash Screen (Click Below Image)'), self.splash_hbox())
         self.pack_start(box, False, False, 0)
 
     def change_splash_cb(self, widget, data = None):
