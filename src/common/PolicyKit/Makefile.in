@@ -180,7 +180,13 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-policykit_PYTHON = $(srcdir)/*.py
+policykit_PYTHON = \
+	./PolkitAction.py \
+	./__init__.py \
+	./DbusProxy.py \
+	./PolkitButton.py \
+	$(NULL)
+
 policykitdir = $(pkgdatadir)/common/PolicyKit
 all: all-am
 

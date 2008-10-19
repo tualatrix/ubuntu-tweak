@@ -26,53 +26,32 @@ import thread
 import gobject
 import gettext
 import dbus
+from PolkitAction import PolkitAction
 
 class PolkitButton(gtk.Button):
-    action = 0
-    error = 0
     __gsignals__ = {
-            'authenticated': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, ()),
-            'failed': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, ()),
-            }
+        'changed': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_INT,)),
+    }
 
     def __init__(self):
-        gtk.Button.__init__(self)
+        super(PolkitButton, self).__init__()
 
         self.set_label(_('_Unlock'))
         image = gtk.image_new_from_stock(gtk.STOCK_DIALOG_AUTHENTICATION, gtk.ICON_SIZE_BUTTON)
         self.set_image(image)
 
-        self.connect("clicked", self.on_button_clicked)
+        self.action = PolkitAction(self)
+        self.action.connect('changed', self.on_action_changed)
+        self.connect('clicked', self.on_button_clicked)
 
     def on_button_clicked(self, widget):
-        xid = widget.get_toplevel().window.xid
-        thread.start_new_thread(self.obtain_authorization, (xid,))
+        self.action.authenticate()
 
-    def obtain_authorization(self, xid):
-        policykit = dbus.SessionBus().get_object('org.freedesktop.PolicyKit.AuthenticationAgent', '/')
-
-        if self.__class__.action:
-            gtk.gdk.threads_enter()
+    def on_action_changed(self, widget, action):
+        if action:
             self.change_button_state()
-            self.emit('authenticated')
-            gtk.gdk.threads_leave()
-            return
 
-        try:
-            granted = policykit.ObtainAuthorization('com.ubuntu-tweak.mechanism', dbus.UInt32(xid), dbus.UInt32(os.getpid()))
-        except dbus.exceptions.DBusException:
-            self.error = -1
-            self.emit('failed')
-        else:
-            self.__class__.action = granted
-
-            if self.__class__.action == 1:
-                gtk.gdk.threads_enter()
-                self.change_button_state()
-                self.emit('authenticated')
-                gtk.gdk.threads_leave()
-            else:
-                self.emit('failed')
+        self.emit('changed', self.action.get_authenticated())
 
     def change_button_state(self):
         image = gtk.image_new_from_stock(gtk.STOCK_YES, gtk.ICON_SIZE_BUTTON)

@@ -279,8 +279,7 @@ class PackageCleaner(TweakPage):
         self.pack_end(hbox, False ,False, 5)
 
         un_lock = PolkitButton()
-        un_lock.connect('authenticated', self.on_polkit_action)
-        un_lock.connect('failed', self.on_auth_failed)
+        un_lock.connect('changed', self.on_polkit_action)
         hbox.pack_end(un_lock, False, False, 5)
 
         self.clean_button = gtk.Button(stock = gtk.STOCK_CLEAR)
@@ -333,17 +332,17 @@ class PackageCleaner(TweakPage):
         elif mode == 'cache':
             thread.start_new_thread(self.treeview.clean_selected_cache, ())
 
-    def on_auth_failed(self, widget):
-        ErrorDialog(_('<b><big>Could not authenticate</big></b>\n\nAn unexpected error has occurred.')).launch()
-
-    def on_polkit_action(self, widget):
+    def on_polkit_action(self, widget, action):
         proxy = DbusProxy.get_proxy()
 
-        if proxy:
-            self.treeview.set_sensitive(True)
-            self.select_button.set_sensitive(True)
+        if action:
+            if proxy:
+                self.treeview.set_sensitive(True)
+                self.select_button.set_sensitive(True)
+            else:
+                ErrorDialog(_("<b><big>Service hasn't initialized yet</big></b>\n\nYou need to restart your Ubuntu.")).launch()
         else:
-            ErrorDialog(_("<b><big>Service hasn't initialized yet</big></b>\n\nYou need to restart your Ubuntu.")).launch()
+            ErrorDialog(_('<b><big>Could not authenticate</big></b>\n\nAn unexpected error has occurred.')).launch()
 
 if __name__ == '__main__':
     from Utility import Test

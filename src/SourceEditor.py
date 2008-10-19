@@ -125,66 +125,68 @@ class SubmitDialog(gtk.Dialog):
                 and self.e_locale.get_text().strip() \
                 and self.e_comment.get_text().strip()
 
-class UploadDialog(gtk.Dialog):
+class ProcessDialog(gtk.Dialog):
+    def __init__(self, data):
+        super(ProcessDialog, self).__init__()
+
+        socket.setdefaulttimeout(10)
+
+        self.error = None
+        self.server = ServerProxy("http://ubuntu-tweak.appspot.com/xmlrpc")
+
+        self.progressbar = gtk.ProgressBar()
+        self.vbox.add(self.progressbar)
+
+        self.show_all()
+        gobject.timeout_add(100, self.on_timeout)
+        thread.start_new_thread(self.process_data, (data,))
+        
+    def on_timeout(self):
+        self.progressbar.pulse()
+
+        if not self.processing:
+            self.destroy()
+            if self.error:
+                self.show_error()
+        else:
+            return True
+
+    def show_error(self):
+        gtk.gdk.threads_enter()
+        ErrorDialog('hello').launch()
+        gtk.gdk.threads_leave()
+
+class UploadDialog(ProcessDialog):
     def __init__(self, data = None):
-        super(UploadDialog, self).__init__()
+        super(UploadDialog, self).__init__(data)
 
-        self.progressbar = gtk.ProgressBar()
         self.progressbar.set_text(_('Uploding...'))
-        self.vbox.add(self.progressbar)
 
-        self.show_all()
-        gobject.timeout_add(100, self.on_timeout)
-        thread.start_new_thread(self.upload_data, (data,))
-        
-    def upload_data(self, data):
-        self.uploading = True
-        socket.setdefaulttimeout(10)
-#        import time
-#        time.sleep(10)
-        server = ServerProxy("http://ubuntu-tweak.appspot.com/xmlrpc")
-        title, locale, comment, source = data
-        print title, locale, comment, source
-        server.putsource(title, locale, comment, source)
-        self.uploading = False
+    def process_data(self, data):
+        self.processing = True
+        try:
+            title, locale, comment, source = data
+            self.server.putsource(title, locale, comment, source)
+        except:
+            self.error = True
 
-    def on_timeout(self):
-        self.progressbar.pulse()
+        self.processing = False
 
-        if not self.uploading:
-            gobject.timeout_add(100, self.destroy)
-        else:
-            return True
-
-class UpdateDialog(gtk.Dialog):
+class UpdateDialog(ProcessDialog):
     def __init__(self):
-        super(UpdateDialog, self).__init__()
+        super(UpdateDialog, self).__init__(None)
 
-        self.progressbar = gtk.ProgressBar()
         self.progressbar.set_text(_('Updating...'))
-        self.vbox.add(self.progressbar)
-
-        self.show_all()
-        gobject.timeout_add(100, self.on_timeout)
-        thread.start_new_thread(self.update_data, ())
         
-    def update_data(self):
+    def process_data(self, data):
         global SOURCES_DATA
-        self.updating = True
-        socket.setdefaulttimeout(10)
-#        import time
-#        time.sleep(10)
-        server = ServerProxy("http://ubuntu-tweak.appspot.com/xmlrpc")
-        SOURCES_DATA = server.getsource(os.getenv('LANG'))
-        self.updating = False
+        self.processing = True
+        try:
+            SOURCES_DATA = self.server.getsource(os.getenv('LANG'))
+        except:
+            self.error = True
 
-    def on_timeout(self):
-        self.progressbar.pulse()
-
-        if not self.updating:
-            gobject.timeout_add(100, self.destroy)
-        else:
-            return True
+        self.processing = False
 
 class SourceView(gtk.TextView):
     def __init__(self):
@@ -301,11 +303,13 @@ class SourceEditor(TweakPage):
         hbox.pack_start(self.redo_button, False, False, 0)
 
         un_lock = PolkitButton()
-        un_lock.connect('authenticated', self.on_polkit_action)
-        un_lock.connect('failed', self.on_auth_failed)
+        un_lock.connect('changed', self.on_polkit_action)
         hbox.pack_end(un_lock, False, False, 5)
 
         self.show_all()
+
+    def on_network_failed(self, widget):
+        ErrorDialog('NetWork Error').launch()
 
     def on_submit_button_clicked(self, widget):
         dialog = SubmitDialog()
@@ -318,7 +322,7 @@ class SourceEditor(TweakPage):
         dialog.destroy()
 
         if source_data:
-            thread.start_new_thread(self.submit_source_data, (source_data,))
+            self.submit_source_data(source_data)
 
     def on_update_button_clicked(self, widget):
         dialog = UpdateDialog()
@@ -326,7 +330,7 @@ class SourceEditor(TweakPage):
         self.open_source_select_dialog()
 
     def open_source_select_dialog(self):
-        if SOURCES_DATA:
+        if 'SOURCES_DATA' in locals():
             dialog = SelectSourceDialog()
             dialog.run()
             dialog.destroy()
@@ -334,10 +338,8 @@ class SourceEditor(TweakPage):
             ErrorDialog('No source here').launch()
 
     def submit_source_data(self, data):
-        gtk.gdk.threads_enter()
         dialog = UploadDialog(data)
         dialog.run()
-        gtk.gdk.threads_leave()
 
     def on_buffer_changed(self, buffer):
         self.save_button.set_sensitive(True)
@@ -357,17 +359,17 @@ class SourceEditor(TweakPage):
 
         dialog.destroy()
 
-    def on_auth_failed(self, widget):
-        ErrorDialog(_('<b><big>Could not authenticate</big></b>\n\nAn unexpected error has occurred.')).launch()
-
-    def on_polkit_action(self, widget):
+    def on_polkit_action(self, widget, action):
         proxy = DbusProxy.get_proxy()
 
-        if proxy:
-            self.textview.set_sensitive(True)
-            self.update_button.set_sensitive(True)
+        if action:
+            if proxy:
+                self.textview.set_sensitive(True)
+                self.update_button.set_sensitive(True)
+            else:
+                ErrorDialog(_("<b><big>Service hasn't initialized yet</big></b>\n\nYou need to restart your Ubuntu.")).launch()
         else:
-            ErrorDialog(_("<b><big>Service hasn't initialized yet</big></b>\n\nYou need to restart your Ubuntu.")).launch()
+            ErrorDialog(_('<b><big>Could not authenticate</big></b>\n\nAn unexpected error has occurred.')).launch()
 
 if __name__ == '__main__':
     from Utility import Test

@@ -364,8 +364,7 @@ class ThirdSoft(TweakPage):
         self.pack_end(hbox, False, False, 5)
 
         un_lock = PolkitButton()
-        un_lock.connect('authenticated', self.on_polkit_action)
-        un_lock.connect('failed', self.on_auth_failed)
+        un_lock.connect('changed', self.on_polkit_action)
         hbox.pack_end(un_lock, False, False, 5)
 
         self.refresh_button = gtk.Button(stock = gtk.STOCK_REFRESH)
@@ -382,30 +381,30 @@ class ThirdSoft(TweakPage):
 
         self.sourcedetail.set_details(home, url, description)
 
-    def on_auth_failed(self, widget):
-        ErrorDialog(_('<b><big>Could not authenticate</big></b>\n\nAn unexpected error has occurred.')).launch()
-
-    def on_polkit_action(self, widget):
+    def on_polkit_action(self, widget, action):
         proxy = self.treeview.get_proxy()
 
-        if proxy:
-            self.treeview.set_sensitive(True)
-            self.expander.set_sensitive(True)
-            WARNING_KEY = '/apps/ubuntu-tweak/disable_thidparty_warning'
+        if action:
+            if proxy:
+                self.treeview.set_sensitive(True)
+                self.expander.set_sensitive(True)
+                WARNING_KEY = '/apps/ubuntu-tweak/disable_thidparty_warning'
 
-            if not self.__config.get_value(WARNING_KEY):
-                dialog = WarningDialog(_('<b><big>Warning</big></b>\n\nIt is a possible security risk to use packages from Third-Party Sources. Please be careful.'), buttons = gtk.BUTTONS_OK)
-                vbox = dialog.get_child()
-                hbox = gtk.HBox()
-                vbox.pack_start(hbox, False, False, 0)
-                checkbutton = GconfCheckButton(_('Never show this dialog'), WARNING_KEY)
-                hbox.pack_end(checkbutton, False, False, 0)
-                hbox.show_all()
+                if not self.__config.get_value(WARNING_KEY):
+                    dialog = WarningDialog(_('<b><big>Warning</big></b>\n\nIt is a possible security risk to use packages from Third-Party Sources. Please be careful.'), buttons = gtk.BUTTONS_OK)
+                    vbox = dialog.get_child()
+                    hbox = gtk.HBox()
+                    vbox.pack_start(hbox, False, False, 0)
+                    checkbutton = GconfCheckButton(_('Never show this dialog'), WARNING_KEY)
+                    hbox.pack_end(checkbutton, False, False, 0)
+                    hbox.show_all()
 
-                dialog.run()
-                dialog.destroy()
+                    dialog.run()
+                    dialog.destroy()
+            else:
+                ErrorDialog(_("<b><big>Service hasn't initialized yet</big></b>\n\nYou need to restart your Ubuntu.")).launch()
         else:
-            ErrorDialog(_("<b><big>Service hasn't initialized yet</big></b>\n\nYou need to restart your Ubuntu.")).launch()
+            ErrorDialog(_('<b><big>Could not authenticate</big></b>\n\nAn unexpected error has occurred.')).launch()
 
     def colleague_changed(self, widget):
         self.refresh_button.set_sensitive(True)
