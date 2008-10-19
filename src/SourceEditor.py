@@ -131,6 +131,7 @@ class ProcessDialog(gtk.Dialog):
 
         socket.setdefaulttimeout(10)
 
+        self.count = 0
         self.error = None
         self.server = ServerProxy("http://ubuntu-tweak.appspot.com/xmlrpc")
 
@@ -143,10 +144,11 @@ class ProcessDialog(gtk.Dialog):
         
     def on_timeout(self):
         self.progressbar.pulse()
+        self.count = self.count + 1
 
-        if not self.processing:
+        if not self.processing or self.count == 100:
             self.destroy()
-            if self.error:
+            if self.error or self.count == 100:
                 self.show_error()
         else:
             return True
@@ -330,7 +332,7 @@ class SourceEditor(TweakPage):
         self.open_source_select_dialog()
 
     def open_source_select_dialog(self):
-        if 'SOURCES_DATA' in locals():
+        if 'SOURCES_DATA' in globals():
             dialog = SelectSourceDialog()
             dialog.run()
             dialog.destroy()
