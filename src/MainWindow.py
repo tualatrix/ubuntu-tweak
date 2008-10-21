@@ -118,10 +118,12 @@ else:
     Templates = Notice
 
 if SystemModule.is_hardy() or SystemModule.is_intrepid():
+    from SourceEditor import SourceEditor
     from Installer import Installer
     from ThirdSoft import ThirdSoft
     from PackageCleaner import PackageCleaner
 else:
+    SourceEditor = Notice
     Installer = Notice
     ThirdSoft = Notice
     PackageCleaner = Notice
@@ -158,6 +160,7 @@ from Metacity import Metacity
     WELCOME,
     COMPUTER,
     APPLICATIONS,
+    SOURCEEDITOR,
     INSTALLER,
     THIRDSOFT,
     PACKAGE,
@@ -179,10 +182,10 @@ from Metacity import Metacity
     POWER,
     SECU_OPTIONS,
     TOTAL
-) = range(24)
+) = range(25)
 
 MODULES_TABLE = {
-    APPLICATIONS: [INSTALLER, THIRDSOFT, PACKAGE],
+    APPLICATIONS: [SOURCEEDITOR, INSTALLER, THIRDSOFT, PACKAGE],
     STARTUP: [SESSION, AUTOSTART],
     DESKTOP: [ICON, METACITY, COMPIZ, GNOME],
     PERSONAL: [USERDIR, TEMPLATES, SCRIPTS, SHORTCUTS],
@@ -194,6 +197,7 @@ MODULES = \
     [WELCOME, 'welcome.png', _("Welcome"), Welcome, SHOW_ALWAYS],
     [COMPUTER, 'computer.png', _("Computer"), Computer, SHOW_ALWAYS],
     [APPLICATIONS, 'applications.png', _("Applications"), None, SHOW_CHILD],
+    [SOURCEEDITOR, 'sourceeditor.png', _('Source Editor'), SourceEditor, SHOW_NONE],
     [INSTALLER, 'installer.png', _("Add/Remove"), Installer, SHOW_NONE],
     [THIRDSOFT, 'third-soft.png', _("Third-Party Sources"), ThirdSoft, SHOW_NONE],
     [PACKAGE, 'package.png', _("Package Cleaner"), PackageCleaner, SHOW_NONE],

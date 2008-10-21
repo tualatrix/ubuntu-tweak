@@ -7,6 +7,7 @@ tweak_PYTHON = \
 	./Nautilus.py \
 	./Computer.py \
 	./Metacity.py \
+	./SourceEditor.py \
 	./PowerManager.py \
 	./PackageCleaner.py \
 	./UpdateManager.py \

@@ -44,7 +44,7 @@ class PowerManager(TweakPage):
         ]) 
         self.pack_start(box, False, False, 0)
 
-        if SystemModule.gnome_version < 24:
+        if SystemModule.gnome_version() < 24:
             cpu_policy_text = [_("Normal"), _("On Demand"), _("Power Save"), _("Performance")]
             cpu_policy_value = ["nothing", "ondemand", "powersave", "performance"]
             box = TablePack(_("CPU Policy"), [

@@ -10,6 +10,7 @@ pixmaps_DATA = \
 	./installer.png \
 	./applications.png \
 	./shortcuts.png \
+	./sourceeditor.png \
 	./ubuntu-tweak.png \
 	./userdir.png \
 	./system.png \

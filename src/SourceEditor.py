@@ -42,8 +42,8 @@ SOURCES_LIST = '/etc/apt/sources.list'
 #SOURCES_LIST = '/home/tualatrix/Desktop/sources.list'
 
 class SelectSourceDialog(gtk.Dialog):
-    def __init__(self):
-        super(SelectSourceDialog, self).__init__()
+    def __init__(self, parent):
+        super(SelectSourceDialog, self).__init__(parent = parent)
 
         self.set_title(_('Select the source what you want'))
         self.set_border_width(10)
@@ -82,8 +82,10 @@ class SelectSourceDialog(gtk.Dialog):
         return self.detail.get_text()
 
 class SubmitDialog(gtk.Dialog):
-    def __init__(self):
-        super(SubmitDialog, self).__init__()
+    def __init__(self, parent):
+        super(SubmitDialog, self).__init__(
+            title = _('Fill the source info'),
+            parent = parent)
 
         l_title = gtk.Label()
         l_title.set_text_with_mnemonic(_("_Source Title:"))
@@ -134,8 +136,8 @@ class SubmitDialog(gtk.Dialog):
                 and self.e_comment.get_text().strip()
 
 class ProcessDialog(gtk.Dialog):
-    def __init__(self, data):
-        super(ProcessDialog, self).__init__()
+    def __init__(self, data, parent):
+        super(ProcessDialog, self).__init__(title = '', parent = parent)
 
         socket.setdefaulttimeout(10)
 
@@ -167,8 +169,8 @@ class ProcessDialog(gtk.Dialog):
         gtk.gdk.threads_leave()
 
 class UploadDialog(ProcessDialog):
-    def __init__(self, data = None):
-        super(UploadDialog, self).__init__(data)
+    def __init__(self, data, parent):
+        super(UploadDialog, self).__init__(data, parent)
 
         self.progressbar.set_text(_('Uploding...'))
 
@@ -183,8 +185,8 @@ class UploadDialog(ProcessDialog):
         self.processing = False
 
 class UpdateDialog(ProcessDialog):
-    def __init__(self):
-        super(UpdateDialog, self).__init__(None)
+    def __init__(self, parent):
+        super(UpdateDialog, self).__init__(None, parent)
 
         self.progressbar.set_text(_('Updating...'))
         
@@ -332,7 +334,7 @@ class SourceEditor(TweakPage):
         ErrorDialog('NetWork Error').launch()
 
     def on_submit_button_clicked(self, widget):
-        dialog = SubmitDialog()
+        dialog = SubmitDialog(widget.get_toplevel())
         source_data = ()
         if dialog.run() == gtk.RESPONSE_YES:
             if dialog.check_fill_data():
@@ -345,7 +347,7 @@ class SourceEditor(TweakPage):
             self.submit_source_data(source_data)
 
     def on_update_button_clicked(self, widget):
-        dialog = UpdateDialog()
+        dialog = UpdateDialog(widget.get_toplevel())
         dialog.run()
         if SOURCES_DATA:
                 self.open_source_select_dialog()
@@ -353,14 +355,14 @@ class SourceEditor(TweakPage):
             InfoDialog('No source here').launch()
 
     def open_source_select_dialog(self):
-        dialog = SelectSourceDialog()
+        dialog = SelectSourceDialog(self.get_toplevel())
         if dialog.run() == gtk.RESPONSE_YES:
             content = dialog.get_source_data()
             self.textview.update_content(content)
         dialog.destroy()
 
     def submit_source_data(self, data):
-        dialog = UploadDialog(data)
+        dialog = UploadDialog(data, self.get_toplevel())
         dialog.run()
 
     def on_buffer_changed(self, buffer):
