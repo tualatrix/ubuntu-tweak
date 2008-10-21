@@ -25,7 +25,7 @@ import socket
 import gobject
 import gettext
 from xmlrpclib import ServerProxy, Error
-from common.SystemInfo import SystemInfo
+from common.SystemInfo import SystemModule
 from common.LookupIcon import *
 from common.PolicyKit import DbusProxy, PolkitButton
 from common.Widgets import TweakPage, InfoDialog, QuestionDialog, ErrorDialog
@@ -38,8 +38,8 @@ from common.Widgets import TweakPage, InfoDialog, QuestionDialog, ErrorDialog
     COLUMN_DISPLAY,
 ) = range(5)
 
-#SOURCES_LIST = '/etc/apt/sources.list'
-SOURCES_LIST = '/home/tualatrix/Desktop/sources.list'
+SOURCES_LIST = '/etc/apt/sources.list'
+#SOURCES_LIST = '/home/tualatrix/Desktop/sources.list'
 
 class SelectSourceDialog(gtk.Dialog):
     def __init__(self):
@@ -176,7 +176,7 @@ class UploadDialog(ProcessDialog):
         self.processing = True
         try:
             title, locale, comment, source = data
-            self.server.putsource(title, locale, comment, SystemInfo.get_codename(), source)
+            self.server.putsource(title, locale, comment, SystemModule.get_codename(), source)
         except:
             self.error = True
 
@@ -192,7 +192,7 @@ class UpdateDialog(ProcessDialog):
         global SOURCES_DATA
         self.processing = True
         try:
-            SOURCES_DATA = self.server.getsource(os.getenv('LANG'), SystemInfo.get_codename())
+            SOURCES_DATA = self.server.getsource(os.getenv('LANG'), SystemModule.get_codename())
         except:
             self.error = True
 
@@ -205,13 +205,20 @@ class SourceView(gtk.TextView):
         self.create_tags()
         self.update_content()
 
-    def update_content(self):
+    def update_content(self, content = None):
         buffer = self.get_buffer()
         buffer.delete(buffer.get_start_iter(), buffer.get_end_iter())
-#        buffer.set_text(data)
         iter = buffer.get_iter_at_offset(0)
-        for line in file(SOURCES_LIST):
-            if line.strip():
+        if content:
+            for line in content.split('\n'):
+                self.__insert_line(buffer, iter, line)
+        else:
+            for line in file(SOURCES_LIST):
+                self.__insert_line(buffer, iter, line)
+
+    def __insert_line(self, buffer, iter, line):
+        if line.strip():
+            try:
                 if line.strip()[0] == '#':
                     buffer.insert_with_tags_by_name(iter, line, 'full_comment')
                 else:
@@ -223,8 +230,10 @@ class SourceView(gtk.TextView):
                     self.insert_blank(buffer, iter)
                     self.seprarte_component(buffer, line.split()[3:], iter)
                     self.insert_line(buffer, iter)
-            else:
+            except:
                 buffer.insert(iter, line)
+        else:
+            buffer.insert(iter, line)
 
     def create_tags(self):
         import pango
@@ -338,16 +347,17 @@ class SourceEditor(TweakPage):
     def on_update_button_clicked(self, widget):
         dialog = UpdateDialog()
         dialog.run()
-        self.open_source_select_dialog()
+        if SOURCES_DATA:
+                self.open_source_select_dialog()
+        else:
+            InfoDialog('No source here').launch()
 
     def open_source_select_dialog(self):
-        if 'SOURCES_DATA' in globals():
-            dialog = SelectSourceDialog()
-            if dialog.run() == gtk.RESPONSE_YES:
-                print dialog.get_source_data()
-            dialog.destroy()
-        else:
-            ErrorDialog('No source here').launch()
+        dialog = SelectSourceDialog()
+        if dialog.run() == gtk.RESPONSE_YES:
+            content = dialog.get_source_data()
+            self.textview.update_content(content)
+        dialog.destroy()
 
     def submit_source_data(self, data):
         dialog = UploadDialog(data)
