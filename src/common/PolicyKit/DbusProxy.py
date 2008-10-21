@@ -64,6 +64,13 @@ class DbusProxy:
             return 'error'
 
     @classmethod
+    def edit_file(self, path, content):
+        try:
+            return self.__proxy.EditFile(path, content, dbus_interface = self.INTERFACE)
+        except:
+            return 'error'
+
+    @classmethod
     def exit(self):
         self.__proxy.Exit(dbus_interface = self.INTERFACE)
 

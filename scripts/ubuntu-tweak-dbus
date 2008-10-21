@@ -126,6 +126,13 @@ class Tweak(dbus.service.Object):
         self.liststate = state
 
     @dbus.service.method(INTERFACE,
+                         in_signature='ss', out_signature='')
+    def EditFile(self, path, content):
+        file = open(path, 'w')
+        file.write(content)
+        file.close()
+
+    @dbus.service.method(INTERFACE,
                          in_signature='s', out_signature='')
     def AddAptKey(self, filename):
         apt_key = AptAuth()

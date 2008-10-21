@@ -43,26 +43,30 @@ SOURCES_LIST = '/home/tualatrix/Desktop/sources.list'
 class SelectSourceDialog(gtk.Dialog):
     def __init__(self):
         super(SelectSourceDialog, self).__init__()
+
+        self.set_title(_('Select the source what you want'))
         self.set_border_width(10)
+        self.set_resizable(False)
 
         label = gtk.Label()
         label.set_markup('<b><big>Select the source</big></b>\n\nYou can read the title and comment to determine which source is suitable for you')
+        label.set_alignment(0, 0)
         self.vbox.pack_start(label, False, False, 0)
 
         group = None
+        self.detail = gtk.Label()
 
         for i, (k, v) in enumerate(SOURCES_DATA.items()):
             title, comment = k.split('\n')
             button = gtk.RadioButton(group = group, label = "%s: %s" % (title, comment))
-            button.connect('toggled', self.on_button_toggled)
+            button.connect('toggled', self.on_button_toggled, v)
             if i == 0:
                 group = button
+                self.detail.set_text(v)
             self.vbox.pack_start(button, False, False, 5)
 
         self.expander = gtk.Expander('Details')
         self.vbox.pack_start(self.expander)
-
-        self.detail = gtk.Label()
         self.expander.add(self.detail)
 
         self.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
@@ -70,8 +74,8 @@ class SelectSourceDialog(gtk.Dialog):
 
         self.show_all()
 
-    def on_button_toggled(self, widget):
-        self.detail.set_text(widget.get_label())
+    def on_button_toggled(self, widget, value):
+        self.detail.set_text(value)
 
 class SubmitDialog(gtk.Dialog):
     def __init__(self):
@@ -263,7 +267,8 @@ class SourceEditor(TweakPage):
                 _('By editing the sources.list to make it what you like'))
 
         self.online_data = {}
-
+        self.proxy = DbusProxy()
+        
         hbox = gtk.HBox(False, 0)
         self.pack_start(hbox, True, True, 0)
 
@@ -334,7 +339,8 @@ class SourceEditor(TweakPage):
     def open_source_select_dialog(self):
         if 'SOURCES_DATA' in globals():
             dialog = SelectSourceDialog()
-            dialog.run()
+            if dialog.run() == gtk.RESPONSE_YES:
+                print 'I have choice'
             dialog.destroy()
         else:
             ErrorDialog('No source here').launch()
@@ -349,8 +355,11 @@ class SourceEditor(TweakPage):
 
     def on_save_button_clicked(self, wiget):
         text = self.textview.get_text()
-        self.save_button.set_sensitive(False)
-        self.redo_button.set_sensitive(False)
+        if self.proxy.edit_file(SOURCES_LIST, text) == 'error':
+            ErrorDialog('Error').launch()
+        else:
+            self.save_button.set_sensitive(False)
+            self.redo_button.set_sensitive(False)
 
     def on_redo_button_clicked(self, widget):
         dialog = QuestionDialog(_('I will reload the file and currenly content will be lost!'))
@@ -362,7 +371,7 @@ class SourceEditor(TweakPage):
         dialog.destroy()
 
     def on_polkit_action(self, widget, action):
-        proxy = DbusProxy.get_proxy()
+        proxy = self.proxy.get_proxy()
 
         if action:
             if proxy:
