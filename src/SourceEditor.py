@@ -25,6 +25,7 @@ import socket
 import gobject
 import gettext
 from xmlrpclib import ServerProxy, Error
+from common.SystemInfo import SystemInfo
 from common.LookupIcon import *
 from common.PolicyKit import DbusProxy, PolkitButton
 from common.Widgets import TweakPage, InfoDialog, QuestionDialog, ErrorDialog
@@ -76,6 +77,9 @@ class SelectSourceDialog(gtk.Dialog):
 
     def on_button_toggled(self, widget, value):
         self.detail.set_text(value)
+
+    def get_source_data(self):
+        return self.detail.get_text()
 
 class SubmitDialog(gtk.Dialog):
     def __init__(self):
@@ -172,7 +176,7 @@ class UploadDialog(ProcessDialog):
         self.processing = True
         try:
             title, locale, comment, source = data
-            self.server.putsource(title, locale, comment, source)
+            self.server.putsource(title, locale, comment, SystemInfo.get_codename(), source)
         except:
             self.error = True
 
@@ -188,7 +192,7 @@ class UpdateDialog(ProcessDialog):
         global SOURCES_DATA
         self.processing = True
         try:
-            SOURCES_DATA = self.server.getsource(os.getenv('LANG'))
+            SOURCES_DATA = self.server.getsource(os.getenv('LANG'), SystemInfo.get_codename())
         except:
             self.error = True
 
@@ -340,7 +344,7 @@ class SourceEditor(TweakPage):
         if 'SOURCES_DATA' in globals():
             dialog = SelectSourceDialog()
             if dialog.run() == gtk.RESPONSE_YES:
-                print 'I have choice'
+                print dialog.get_source_data()
             dialog.destroy()
         else:
             ErrorDialog('No source here').launch()
