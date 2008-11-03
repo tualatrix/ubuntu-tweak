@@ -143,7 +143,8 @@ class ProcessDialog(gtk.Dialog):
 
         self.count = 0
         self.error = None
-        self.server = ServerProxy("http://ubuntu-tweak.appspot.com/xmlrpc")
+        self.server = ServerProxy("http://localhost:8080/xmlrpc")
+#        self.server = ServerProxy("http://ubuntu-tweak.appspot.com/xmlrpc")
 
         self.progressbar = gtk.ProgressBar()
         self.vbox.add(self.progressbar)

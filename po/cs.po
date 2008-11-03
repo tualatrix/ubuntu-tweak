@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2008-10-18 16:28+0800\n"
+"POT-Creation-Date: 2008-10-21 16:14+0800\n"
 "PO-Revision-Date: 2008-08-03 19:51+0000\n"
 "Last-Translator: Kamil Páral <ripper42@gmail.com>\n"
 "Language-Team: Tomáš Pikálek <tpikalek@gmail.com>\n"
@@ -291,7 +291,26 @@ msgstr ""
 msgid "Details"
 msgstr ""
 
-#: src/ThirdSoft.py:387 src/PackageCleaner.py:338
+#: src/ThirdSoft.py:394
+msgid ""
+"<b><big>Warning</big></b>\n"
+"\n"
+"It is a possible security risk to use packages from Third-Party Sources. "
+"Please be careful."
+msgstr ""
+
+#: src/ThirdSoft.py:398
+msgid "Never show this dialog"
+msgstr "Nezobrazovat tento dialog"
+
+#: src/ThirdSoft.py:405 src/PackageCleaner.py:343
+msgid ""
+"<b><big>Service hasn't initialized yet</big></b>\n"
+"\n"
+"You need to restart your Ubuntu."
+msgstr ""
+
+#: src/ThirdSoft.py:407 src/PackageCleaner.py:345
 msgid ""
 "<b><big>Could not authenticate</big></b>\n"
 "\n"
@@ -301,26 +320,7 @@ msgstr ""
 "\n"
 "Nastala neočekávaná chyba."
 
-#: src/ThirdSoft.py:400
-msgid ""
-"<b><big>Warning</big></b>\n"
-"\n"
-"It is a possible security risk to use packages from Third-Party Sources. "
-"Please be careful."
-msgstr ""
-
-#: src/ThirdSoft.py:404
-msgid "Never show this dialog"
-msgstr "Nezobrazovat tento dialog"
-
-#: src/ThirdSoft.py:411 src/PackageCleaner.py:349
-msgid ""
-"<b><big>Service hasn't initialized yet</big></b>\n"
-"\n"
-"You need to restart your Ubuntu."
-msgstr ""
-
-#: src/ThirdSoft.py:425
+#: src/ThirdSoft.py:419
 msgid ""
 "<b><big>The software information is up-to-date now</big></b>\n"
 "\n"
@@ -969,48 +969,48 @@ msgstr "_Procházet"
 msgid "Choose a Program"
 msgstr "Vybrat program"
 
-#: src/AutoStart.py:173
+#: src/AutoStart.py:181
 msgid "Delete from Disk"
 msgstr "Smazat z disku"
 
-#: src/AutoStart.py:187
+#: src/AutoStart.py:195
 msgid "Can't delete the system item from disk."
 msgstr "Nemohu smazat systémovou položku z disku"
 
-#: src/AutoStart.py:231
+#: src/AutoStart.py:240
 msgid "None description"
 msgstr "Bez popisu"
 
-#: src/AutoStart.py:251
+#: src/AutoStart.py:260
 msgid "Program"
 msgstr "Program"
 
-#: src/AutoStart.py:300
+#: src/AutoStart.py:322
 #, fuzzy
 msgid "Session Programs"
 msgstr "Sezení"
 
-#: src/AutoStart.py:301
+#: src/AutoStart.py:323
 msgid ""
 "Here you can manage what programs get started upon login.\n"
 "By selecing an item and pressing Remove, you simply hide it from view.\n"
 "To permanently delete it, right-click and press 'Delete'."
 msgstr ""
 
-#: src/AutoStart.py:307
+#: src/AutoStart.py:329
 #, fuzzy
 msgid "Show comments"
 msgstr "Zobrazit komentáře programu"
 
-#: src/AutoStart.py:309
+#: src/AutoStart.py:331
 msgid "Show all runnable programs"
 msgstr "Zobrazit všechny spustitelné programy"
 
-#: src/AutoStart.py:371 src/AutoStart.py:418
+#: src/AutoStart.py:393 src/AutoStart.py:440
 msgid "The name of the startup program cannot be empty"
 msgstr "Jméno programu ke spuštění nemůže být prázdné"
 
-#: src/AutoStart.py:373 src/AutoStart.py:420
+#: src/AutoStart.py:395 src/AutoStart.py:442
 msgid "Text was empty (or contained only whitespace)"
 msgstr "Text je prázdný (nebo obsahuje pouze mezery)"
 
@@ -1582,7 +1582,7 @@ msgstr ""
 msgid "Disable 'Run Application' dialog (Alt+F2)"
 msgstr ""
 
-#: src/common/PolicyKit/PolkitButton.py:41
+#: src/common/PolicyKit/PolkitButton.py:39
 msgid "_Unlock"
 msgstr "Odemkno_ut"
 
