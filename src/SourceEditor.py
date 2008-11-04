@@ -29,6 +29,7 @@ from common.SystemInfo import SystemModule
 from common.LookupIcon import *
 from common.PolicyKit import DbusProxy, PolkitButton
 from common.Widgets import TweakPage, InfoDialog, QuestionDialog, ErrorDialog
+from common.utils import set_label_for_stock_button
 
 (
     COLUMN_CHECK,
@@ -305,8 +306,8 @@ class SourceEditor(TweakPage):
         super(SourceEditor, self).__init__(
                 _('Source Editor'),
                 _('Freely edit your sources to fit your needs.\n'
-                'Submit your sources to share with other people.\n'
-                'Or use other default sources directly by clicking "Update"')
+                'Click "Update Sources" if you want change the sources to that we prepare for you.\n'
+                'Click "Submit Sources" if you want share your sources with other people.\n')
         )
 
         self.online_data = {}
@@ -323,14 +324,17 @@ class SourceEditor(TweakPage):
         vbox = gtk.VBox(False, 8)
         hbox.pack_start(vbox, False, False, 5)
 
-        self.submit_button = gtk.Button(_('Submit'))
-        self.submit_button.connect('clicked', self.on_submit_button_clicked)
-        vbox.pack_start(self.submit_button, False, False, 0)
-
-        self.update_button = gtk.Button(_('Update'))
+        self.update_button = gtk.Button(stock = gtk.STOCK_GO_DOWN)
+        set_label_for_stock_button(self.update_button, _('Update Sources'))
         self.update_button.set_sensitive(False)
         self.update_button.connect('clicked', self.on_update_button_clicked)
         vbox.pack_start(self.update_button, False, False, 0)
+
+        self.submit_button = gtk.Button(stock = gtk.STOCK_GO_UP)
+        set_label_for_stock_button(self.submit_button, _('Submit Sources'))
+        self.submit_button.set_sensitive(False)
+        self.submit_button.connect('clicked', self.on_submit_button_clicked)
+        vbox.pack_start(self.submit_button, False, False, 0)
 
         self.textview = SourceView()
         self.textview.set_sensitive(False)
@@ -425,6 +429,7 @@ class SourceEditor(TweakPage):
             if proxy:
                 self.textview.set_sensitive(True)
                 self.update_button.set_sensitive(True)
+                self.submit_button.set_sensitive(True)
             else:
                 ErrorDialog(_("<b><big>Service hasn't initialized yet</big></b>\n\nYou need to restart your Ubuntu.")).launch()
         else:
