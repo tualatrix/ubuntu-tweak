@@ -143,8 +143,8 @@ class ProcessDialog(gtk.Dialog):
 
         self.count = 0
         self.error = None
-        self.server = ServerProxy("http://localhost:8080/xmlrpc")
-#        self.server = ServerProxy("http://ubuntu-tweak.appspot.com/xmlrpc")
+#        self.server = ServerProxy("http://localhost:8080/xmlrpc")
+        self.server = ServerProxy("http://ubuntu-tweak.appspot.com/xmlrpc")
 
         self.progressbar = gtk.ProgressBar()
         self.vbox.add(self.progressbar)
@@ -244,7 +244,7 @@ class SourceView(gtk.TextView):
 
         buffer.create_tag('full_comment', foreground = "blue")
         buffer.create_tag('type', weight = pango.WEIGHT_BOLD)
-        buffer.create_tag('uri', underline = pango.UNDERLINE_SINGLE)
+        buffer.create_tag('uri', underline = pango.UNDERLINE_SINGLE, foreground = 'blue')
         buffer.create_tag('distro', weight = pango.WEIGHT_BOLD)
         buffer.create_tag('component', foreground = "red")
         buffer.create_tag('addon_comment', foreground = "blue")
@@ -280,7 +280,10 @@ class SourceEditor(TweakPage):
     def __init__(self):
         super(SourceEditor, self).__init__(
                 _('Source Editor'),
-                _('By editing the sources.list to make it what you like'))
+                _('Freely edit your sources to fit your needs.\n'
+                'Submit your sources to share with other people.\n'
+                'Or use other default sources directly by clicking "Update"')
+        )
 
         self.online_data = {}
         self.proxy = DbusProxy()
