@@ -88,17 +88,23 @@ class SubmitDialog(gtk.Dialog):
             title = _('Fill the source info'),
             parent = parent)
 
+        label = gtk.Label()
+        label.set_markup('<big><b>%s</b></big>\n\n%s'  % 
+            (_('Submit your sources'), _('You can upload your sources to the server, '
+            'so that other people can share with your sources.')))
+        self.vbox.pack_start(label, False, False, 5)
+
         l_title = gtk.Label()
-        l_title.set_text_with_mnemonic(_("_Source Title:"))
+        l_title.set_text_with_mnemonic(_('_Source Title:'))
         l_title.set_alignment(0, 0)
         l_locale = gtk.Label()
-        l_locale.set_text_with_mnemonic(_("Locale"))
+        l_locale.set_text_with_mnemonic(_('_Locale:'))
         l_locale.set_alignment(0, 0)
         l_comment = gtk.Label()
-        l_comment.set_text_with_mnemonic(_("Comm_ent:"))
+        l_comment.set_text_with_mnemonic(_('Comm_ent:'))
         l_comment.set_alignment(0, 0)
 
-        self.e_title = gtk.Entry ();
+        self.e_title = gtk.Entry();
         self.e_title.set_tooltip_text(_('Enter the title of the source, such as "Ubuntu Official Repostory"'))
 #        self.e_title.connect("activate", self.on_entry_activate)
         self.e_locale = gtk.Entry ();
@@ -116,7 +122,7 @@ class SubmitDialog(gtk.Dialog):
         table.attach(self.e_locale, 1, 2, 1, 2)
         table.attach(self.e_comment, 1, 2, 2, 3)
 
-        self.vbox.pack_start(table)
+        self.vbox.pack_start(table, False, False, 5)
 
         self.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
         self.add_button(_('Submit'), gtk.RESPONSE_YES)
@@ -343,7 +349,7 @@ class SourceEditor(TweakPage):
         buffer.connect('changed', self.on_buffer_changed)
 
         # button
-        hbox = gtk.HBox(False, 0)
+        hbox = gtk.HBox(False, 5)
         self.pack_end(hbox, False ,False, 5)
 
         self.save_button = gtk.Button(stock = gtk.STOCK_SAVE)
@@ -363,7 +369,7 @@ class SourceEditor(TweakPage):
         self.show_all()
 
     def on_network_failed(self, widget):
-        ErrorDialog('NetWork Error').launch()
+        ErrorDialog('<big><b>%s</b></big>%s' % (_('NetWork Error'), _('The network'))).launch()
 
     def on_submit_button_clicked(self, widget):
         dialog = SubmitDialog(widget.get_toplevel())
@@ -372,7 +378,7 @@ class SourceEditor(TweakPage):
             if dialog.check_fill_data():
                 source_data = dialog.get_source_data()
             else:
-                ErrorDialog('Wow').launch()
+                ErrorDialog(_('Please input the correct infomation of the sources!')).launch()
         dialog.destroy()
 
         if source_data:
@@ -384,7 +390,9 @@ class SourceEditor(TweakPage):
         if SOURCES_DATA:
                 self.open_source_select_dialog()
         else:
-            InfoDialog('No source here').launch()
+            InfoDialog(_('<big><b>No source available yet</b></big>\n\n'
+                        'You can submit your sources to our server, '
+                        'or you need to wait the server data available.')).launch()
 
     def open_source_select_dialog(self):
         dialog = SelectSourceDialog(self.get_toplevel())
