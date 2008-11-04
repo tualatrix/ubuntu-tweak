@@ -208,6 +208,26 @@ class SourceView(gtk.TextView):
         self.create_tags()
         self.update_content()
 
+        buffer = self.get_buffer()
+        buffer.connect('end-user-action', self.on_buffer_changed)
+
+    def on_buffer_changed(self, widget):
+        self.update_from_buffer()
+
+    def update_from_buffer(self):
+        buffer = self.get_buffer()
+        content = self.get_text()
+
+        offset = buffer.get_iter_at_mark(buffer.get_insert()).get_offset()
+
+        buffer.delete(buffer.get_start_iter(), buffer.get_end_iter())
+        iter = buffer.get_iter_at_offset(0)
+        for line in content.split('\n'):
+            self.__insert_line(buffer, iter, line)
+
+        iter = buffer.get_iter_at_offset(offset)
+        buffer.place_cursor(iter)
+
     def update_content(self, content = None):
         buffer = self.get_buffer()
         buffer.delete(buffer.get_start_iter(), buffer.get_end_iter())
@@ -224,14 +244,18 @@ class SourceView(gtk.TextView):
             try:
                 if line.strip()[0] == '#':
                     buffer.insert_with_tags_by_name(iter, line, 'full_comment')
+                    self.insert_line(buffer, iter)
                 else:
-                    buffer.insert_with_tags_by_name(iter, line.split()[0], 'type')
+                    list = line.split()
+                    type, uri, distro, component = list[0], list[1], list[2], list[3:]
+
+                    buffer.insert_with_tags_by_name(iter, type, 'type')
                     self.insert_blank(buffer, iter)
-                    buffer.insert_with_tags_by_name(iter, line.split()[1], 'uri')
+                    buffer.insert_with_tags_by_name(iter, uri, 'uri')
                     self.insert_blank(buffer, iter)
-                    buffer.insert_with_tags_by_name(iter, line.split()[2], 'distro')
+                    buffer.insert_with_tags_by_name(iter, distro, 'distro')
                     self.insert_blank(buffer, iter)
-                    self.seprarte_component(buffer, line.split()[3:], iter)
+                    self.seprarte_component(buffer, component, iter)
                     self.insert_line(buffer, iter)
             except:
                 buffer.insert(iter, line)
@@ -370,8 +394,12 @@ class SourceEditor(TweakPage):
         dialog.run()
 
     def on_buffer_changed(self, buffer):
-        self.save_button.set_sensitive(True)
-        self.redo_button.set_sensitive(True)
+        if buffer.get_modified():
+            self.save_button.set_sensitive(True)
+            self.redo_button.set_sensitive(True)
+        else:
+            self.save_button.set_sensitive(False)
+            self.redo_button.set_sensitive(False)
 
     def on_save_button_clicked(self, wiget):
         text = self.textview.get_text()
