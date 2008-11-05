@@ -1,9 +1,9 @@
 widgets_PYTHON = \
 	./__init__.py \
-	./Widgets.py \
-	./TreeViews.py \
-	./Dialogs.py \
-	./Containers.py \
+	./widgets.py \
+	./treeviews.py \
+	./dialogs.py \
+	./containers.py \
 	$(NULL)
 
-widgetsdir = $(pkgdatadir)/common/Widgets
+widgetsdir = $(pkgdatadir)/common/widgets

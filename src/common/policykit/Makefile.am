@@ -5,4 +5,4 @@ policykit_PYTHON = \
 	./PolkitButton.py \
 	$(NULL)
 
-policykitdir = $(pkgdatadir)/common/PolicyKit
+policykitdir = $(pkgdatadir)/common/policykit

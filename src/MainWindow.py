@@ -29,7 +29,7 @@ import gobject
 from gnome import url_show
 from common.Consts import *
 from common.Canvas import RenderCell
-from common.Widgets import QuestionDialog, TweakPage
+from common.widgets import QuestionDialog, TweakPage
 from common.SystemInfo import GnomeVersion, SystemInfo, SystemModule
 from UpdateManager import UpdateManager
 from Config import Config, TweakSettings
