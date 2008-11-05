@@ -46,7 +46,7 @@ class SelectSourceDialog(gtk.Dialog):
     def __init__(self, parent):
         super(SelectSourceDialog, self).__init__(parent = parent)
 
-        self.set_title(_('Select the source what you want'))
+#        self.set_title(_('Select the source what you want'))
         self.set_border_width(10)
         self.set_resizable(False)
 
@@ -84,13 +84,13 @@ class SelectSourceDialog(gtk.Dialog):
 
 class SubmitDialog(gtk.Dialog):
     def __init__(self, parent):
-        super(SubmitDialog, self).__init__(
-            title = _('Fill the source info'),
-            parent = parent)
+        super(SubmitDialog, self).__init__(parent = parent)
+
+        self.set_border_width(5)
 
         label = gtk.Label()
         label.set_markup('<big><b>%s</b></big>\n\n%s'  % 
-            (_('Submit your sources'), _('You can upload your sources to the server, '
+            (_('Submit your sources'), _('You can submit your sources to the server, '
             'so that other people can share with your sources.')))
         self.vbox.pack_start(label, False, False, 5)
 
@@ -122,7 +122,7 @@ class SubmitDialog(gtk.Dialog):
         table.attach(self.e_locale, 1, 2, 1, 2)
         table.attach(self.e_comment, 1, 2, 2, 3)
 
-        self.vbox.pack_start(table, False, False, 5)
+        self.vbox.pack_start(table, True, False, 5)
 
         self.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
         self.add_button(_('Submit'), gtk.RESPONSE_YES)
@@ -173,7 +173,7 @@ class ProcessDialog(gtk.Dialog):
 
     def show_error(self):
         gtk.gdk.threads_enter()
-        ErrorDialog('hello').launch()
+        ErrorDialog('<b>%s</b>\n\n%s' % (_('Network Error'), _('Please check your network connection!'))).launch()
         gtk.gdk.threads_leave()
 
 class UploadDialog(ProcessDialog):
@@ -387,12 +387,13 @@ class SourceEditor(TweakPage):
     def on_update_button_clicked(self, widget):
         dialog = UpdateDialog(widget.get_toplevel())
         dialog.run()
-        if SOURCES_DATA:
-                self.open_source_select_dialog()
-        else:
-            InfoDialog(_('<big><b>No source available yet</b></big>\n\n'
-                        'You can submit your sources to our server, '
-                        'or you need to wait the server data available.')).launch()
+        if not dialog.error:
+            if 'SOURCES_DATA' in globals() and SOURCES_DATA:
+                    self.open_source_select_dialog()
+            else:
+                InfoDialog('<big><b>%s</b></big>\n\n%s' % (_('No source data available'),
+                            _('You can submit your sources to our server, '
+                            'or you need to wait the server data available.'))).launch()
 
     def open_source_select_dialog(self):
         dialog = SelectSourceDialog(self.get_toplevel())
