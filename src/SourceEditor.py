@@ -46,14 +46,15 @@ class SelectSourceDialog(gtk.Dialog):
     def __init__(self, parent):
         super(SelectSourceDialog, self).__init__(parent = parent)
 
-#        self.set_title(_('Select the source what you want'))
+        self.set_title(_('Choose the sources'))
         self.set_border_width(10)
         self.set_resizable(False)
 
         label = gtk.Label()
-        label.set_markup('<b><big>Select the source</big></b>\n\nYou can read the title and comment to determine which source is suitable for you')
+        label.set_markup('<b><big>%s</big></b>\n\n%s' % (_('Choose the sources'),
+            _('You can read the title and comment to determine which source is suitable for you.')))
         label.set_alignment(0, 0)
-        self.vbox.pack_start(label, False, False, 0)
+        self.vbox.pack_start(label, False, False, 5)
 
         group = None
         self.detail = gtk.Label()
@@ -67,12 +68,12 @@ class SelectSourceDialog(gtk.Dialog):
                 self.detail.set_text(v)
             self.vbox.pack_start(button, False, False, 5)
 
-        self.expander = gtk.Expander('Details')
+        self.expander = gtk.Expander(_('Detail'))
         self.vbox.pack_start(self.expander)
         self.expander.add(self.detail)
 
         self.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
-        self.add_button(_('Change'), gtk.RESPONSE_YES)
+        self.add_button(gtk.STOCK_OK, gtk.RESPONSE_YES)
 
         self.show_all()
 
@@ -86,6 +87,7 @@ class SubmitDialog(gtk.Dialog):
     def __init__(self, parent):
         super(SubmitDialog, self).__init__(parent = parent)
 
+        self.set_title(_('Submit your sources'))
         self.set_border_width(5)
 
         label = gtk.Label()
@@ -368,9 +370,6 @@ class SourceEditor(TweakPage):
 
         self.show_all()
 
-    def on_network_failed(self, widget):
-        ErrorDialog('<big><b>%s</b></big>%s' % (_('NetWork Error'), _('The network'))).launch()
-
     def on_submit_button_clicked(self, widget):
         dialog = SubmitDialog(widget.get_toplevel())
         source_data = ()
@@ -400,11 +399,15 @@ class SourceEditor(TweakPage):
         if dialog.run() == gtk.RESPONSE_YES:
             content = dialog.get_source_data()
             self.textview.update_content(content)
+            InfoDialog(_("Don't forget to save your sources!")).launch()
         dialog.destroy()
 
     def submit_source_data(self, data):
         dialog = UploadDialog(data, self.get_toplevel())
         dialog.run()
+        if not dialog.error:
+            InfoDialog('<big><b>%s</b></big>\n\n%s' % (_('Sumit successfully'),
+                _('Thank you!'))).launch()
 
     def on_buffer_changed(self, buffer):
         if buffer.get_modified():
