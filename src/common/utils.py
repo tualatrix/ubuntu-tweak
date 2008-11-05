@@ -35,10 +35,10 @@ def get_icon_with_name(name, size):
     try:
         pixbuf = icontheme.load_icon(name, size, 0)
     except:
-        pixbuf = icontheme.load_icon('binary', size, 0)
+        pixbuf = icontheme.load_icon('gtk-execute', size, 0)
 
     if pixbuf.get_height() != size:
-        return pixbuf.scale_simple(24, 24, gtk.gdk.INTERP_BILINEAR)
+        return pixbuf.scale_simple(size, size, gtk.gdk.INTERP_BILINEAR)
 
     return pixbuf
 

@@ -231,7 +231,7 @@ class AutoStartItem(gtk.TreeView):
                if not iconname:
                    iconname = desktopentry.getName()
 
-            icon = get_icon_with_name(iconname, 24)
+            icon = get_icon_with_name(iconname, 32)
 
             name = desktopentry.getName()
             if comment:

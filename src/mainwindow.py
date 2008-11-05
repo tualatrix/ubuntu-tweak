@@ -105,7 +105,7 @@ from computer import Computer
 from session import Session
 from autostart import AutoStart
 from icons import Icon
-if module_check.is_supported_ubuntu():
+if module_check.has_right_compiz():
     from compiz import Compiz
 else:
     Compiz = Notice
