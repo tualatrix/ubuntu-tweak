@@ -47,8 +47,8 @@ AC_CONFIG_FILES([
     src/Makefile
     src/common/Makefile
     src/common/Consts.py
-    src/common/Widgets/Makefile
-    src/common/PolicyKit/Makefile
+    src/common/widgets/Makefile
+    src/common/policykit/Makefile
     data/Makefile
     data/appcates/Makefile
     data/aptkeys/Makefile

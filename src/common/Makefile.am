@@ -1,4 +1,4 @@
-SUBDIRS = PolicyKit Widgets
+SUBDIRS = policykit widgets
 
 common_PYTHON = \
 	./Download.py \
