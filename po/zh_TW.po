@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2008-10-21 16:14+0800\n"
+"POT-Creation-Date: 2008-11-05 19:41+0800\n"
 "PO-Revision-Date: 2008-10-08 10:23+0000\n"
 "Last-Translator: TualatriX <Unknown>\n"
 "Language-Team: TualatriX <tualatrix@gmail.com>\n"
@@ -15,200 +15,202 @@ msgstr ""
 "X-Poedit-Language: Chinese\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: src/Computer.py:49
-msgid "System information"
-msgstr "系統資訊"
+#: src/autostart.py:44
+msgid "_Name:"
+msgstr "名稱(_N)："
 
-#: src/Computer.py:50
-msgid "Hostname"
-msgstr "主機名"
+#: src/autostart.py:47
+msgid "Co_mmand:"
+msgstr "指令(_M)："
 
-#: src/Computer.py:51
-msgid "Distribution"
-msgstr "發行版"
+#: src/autostart.py:50 src/sourceeditor.py:106
+msgid "Comm_ent:"
+msgstr "備註(_E)："
 
-#: src/Computer.py:52
+#: src/autostart.py:61
+msgid "Edit Startup Program"
+msgstr "修改初始啟動程式"
+
+#: src/autostart.py:66
+msgid "New Startup Program"
+msgstr "新增初始啟動程式"
+
+#: src/autostart.py:68
 #, fuzzy
-msgid "Desktop environment"
-msgstr "桌面環境"
+msgid "_Browse..."
+msgstr "瀏覽(_B)"
 
-#: src/Computer.py:53
-msgid "Kernel"
-msgstr "核心"
+#: src/autostart.py:97
+msgid "Choose a Program"
+msgstr "選擇一個程式"
 
-#: src/Computer.py:54
-msgid "Platform"
-msgstr "硬體平台"
+#: src/autostart.py:181
+msgid "Delete from Disk"
+msgstr "從硬碟上刪除"
 
-#: src/Computer.py:55
-msgid "CPU"
-msgstr "CPU"
+#: src/autostart.py:195
+msgid "Can't delete the system item from disk."
+msgstr "不能將系統項目從硬碟上刪除"
 
-#: src/Computer.py:56
-msgid "Memory"
-msgstr "記憶體"
+#: src/autostart.py:240
+msgid "None description"
+msgstr "沒有描述"
 
-#: src/Computer.py:60
-msgid "User information"
-msgstr "使用者資訊"
+#: src/autostart.py:260
+msgid "Program"
+msgstr "程式"
 
-#: src/Computer.py:61
+#: src/autostart.py:322
 #, fuzzy
-msgid "Current user"
-msgstr "當前用戶"
+msgid "Session Programs"
+msgstr "作業階段"
 
-#: src/Computer.py:62
-#, fuzzy
-msgid "Home directory"
-msgstr "個人資料夾"
-
-#: src/Computer.py:63
-msgid "Shell"
-msgstr "Shell"
-
-#: src/Computer.py:64
-msgid "Language"
-msgstr "語言"
-
-#: src/Scripts.py:46
-msgid "Copy to ..."
-msgstr "複製到..."
-
-#: src/Scripts.py:47
-msgid "Move to ..."
-msgstr "移動到..."
-
-#: src/Scripts.py:48
-msgid "Link to ..."
-msgstr "連結到..."
-
-#: src/Scripts.py:49
-msgid "Open with gedit"
-msgstr "使用gedit打開"
-
-#: src/Scripts.py:50
-msgid "Open with gedit(as root)"
-msgstr "使用gedit打開（作為root）"
-
-#: src/Scripts.py:51
-msgid "Browse as root"
-msgstr "作為root瀏覽"
-
-#: src/Scripts.py:52
-msgid "Search in current folder"
-msgstr "在當前目錄檢索"
-
-#: src/Scripts.py:79
-msgid "Enabled Scripts"
-msgstr "已啟用的指令稿"
-
-#: src/Scripts.py:86
-msgid "Disabled Scripts"
-msgstr "已禁用的指令稿"
-
-#: src/Scripts.py:95
-#, fuzzy
-msgid "Manage Scripts"
-msgstr "管理你的指令稿"
-
-#: src/Scripts.py:96
-#, fuzzy
+#: src/autostart.py:323
 msgid ""
-"You can do all kinds of tasks with scripts.\n"
-"You can drag and drop from File Manager.\n"
-"\"Scripts\" will be added to the context menu.\n"
+"Here you can manage what programs get started upon login.\n"
+"By selecing an item and pressing Remove, you simply hide it from view.\n"
+"To permanently delete it, right-click and press 'Delete'."
 msgstr ""
-"使用指令稿來完成各種任務。\n"
-"你可以從檔案管理器拖拽外部指令稿進來。\n"
-"“指令稿”將被加到右鍵選單中。\n"
 
-#: src/Scripts.py:121
+#: src/autostart.py:329
 #, fuzzy
-msgid "Rebuild System Scripts"
-msgstr "重建系統指令稿"
+msgid "Show comments"
+msgstr "顯示程式註釋"
 
-#: src/Scripts.py:139
+#: src/autostart.py:331
+msgid "Show all runnable programs"
+msgstr "顯示所有可啟用的程式"
+
+#: src/autostart.py:393 src/autostart.py:440
+msgid "The name of the startup program cannot be empty"
+msgstr "初始啟動程式不能留空"
+
+#: src/autostart.py:395 src/autostart.py:442
+msgid "Text was empty (or contained only whitespace)"
+msgstr "文字是空白的（或只含有空白字元）"
+
+#: src/updatemanager.py:69
+msgid "Update Manager"
+msgstr "更新管理員"
+
+#: src/updatemanager.py:86 src/updatemanager.py:114
+#, python-format
+msgid "Downloading...%d"
+msgstr "正在下載...%d"
+
+#: src/updatemanager.py:119
+msgid "Finished"
+msgstr ""
+
+#: src/installer.py:50
+msgid "File-Sharing Clients"
+msgstr ""
+
+#: src/installer.py:51
+msgid "Image Tools"
+msgstr "圖像工具"
+
+#: src/installer.py:52
+msgid "Sound Tools"
+msgstr "聲音工具"
+
+#: src/installer.py:53
+msgid "Video Tools"
+msgstr "影像工具"
+
+#: src/installer.py:54
+msgid "Text Tools"
+msgstr "文字工具"
+
+#: src/installer.py:55
 #, fuzzy
+msgid "Instant Messengers"
+msgstr "即時通訊程式"
+
+#: src/installer.py:56
+msgid "Internet Tools"
+msgstr "綱路工具"
+
+#: src/installer.py:57
+msgid "FTP Tools"
+msgstr "FTP工具"
+
+#: src/installer.py:58
+msgid "Desktop Tools"
+msgstr "桌面工具"
+
+#: src/installer.py:59
+msgid "CD/Disk Tools"
+msgstr "CD/磁盤工具"
+
+#: src/installer.py:60
+#, fuzzy
+msgid "Development"
+msgstr "開發套件"
+
+#: src/installer.py:61
+msgid "Emulators"
+msgstr "虛擬工具"
+
+#: src/installer.py:62
+msgid "E-mail Tools"
+msgstr "電郵工具"
+
+#: src/installer.py:135
+#, fuzzy
+msgid "Add/Remove Applications"
+msgstr "應用程式"
+
+#: src/installer.py:136
 msgid ""
-"This will delete all disabled scripts.\n"
-"Do you wish to continue?"
-msgstr "這將會刪除掉所有已禁用的指令稿，繼續？"
+"A simple but more effective for finding and installing popular packages than "
+"the default Add/Remove."
+msgstr ""
 
-#: src/Metacity.py:36
-msgid "Window Decorate Effect"
-msgstr "視窗裝飾效果"
+#: src/installer.py:184
+msgid "All Categories"
+msgstr "所有分類"
 
-#: src/Metacity.py:37
+#: src/installer.py:340
+msgid "Updated Successfully!"
+msgstr "更新成功！"
+
+#: src/installer.py:342
+msgid "Updated Failed!"
+msgstr "更新失敗！"
+
+#: src/lockdown.py:36
+msgid "System Security options"
+msgstr "系統安全選項"
+
+#: src/lockdown.py:37
+msgid "Disable \"Run Application\" dialog (Alt+F2)"
+msgstr "禁用\"執行程式\"對話框(Alt+F2)"
+
+#: src/lockdown.py:38
 #, fuzzy
-msgid "Use Metacity window theme"
-msgstr "使用Metacity主題"
+msgid "Disable \"Lock Screen\""
+msgstr "禁用鎖定螢幕"
 
-#: src/Metacity.py:38
+#: src/lockdown.py:39
 #, fuzzy
-msgid "Enable active window transparency"
-msgstr "非活動視窗的陰影透明度"
+msgid "Disable printing"
+msgstr "禁用列印功能"
 
-#: src/Metacity.py:39
-msgid "Active window transparency level"
-msgstr "活動視窗的陰影透明級別"
-
-#: src/Metacity.py:40
+#: src/lockdown.py:40
 #, fuzzy
-msgid "Enable inactive window transparency"
-msgstr "非活動視窗的陰影透明度"
+msgid "Disable print setup"
+msgstr "禁止使用列印設定嚮導"
 
-#: src/Metacity.py:41
-msgid "Inactive window shade transparency level"
-msgstr "非活動視窗的陰影透明級別"
-
-#: src/Metacity.py:45
-msgid "Window Titlebar Action"
-msgstr "視窗標題列動作"
-
-#: src/Metacity.py:46
+#: src/lockdown.py:41
 #, fuzzy
-msgid "Titlebar mouse wheel action"
-msgstr "標題列鼠標滾輪動作"
+msgid "Disable save to disk"
+msgstr "禁止使用另存新檔"
 
-#: src/Metacity.py:46 src/Metacity.py:47 src/Metacity.py:48 src/Metacity.py:49
-#: src/Shortcuts.py:91 src/Shortcuts.py:190
-msgid "None"
-msgstr "沒有"
-
-#: src/Metacity.py:46 src/Metacity.py:47 src/Metacity.py:48 src/Metacity.py:49
-msgid "Roll up"
-msgstr "捲起"
-
-#: src/Metacity.py:47
+#: src/lockdown.py:42
 #, fuzzy
-msgid "Titlebar double-click action"
-msgstr "雙擊標題列的動作"
-
-#: src/Metacity.py:47 src/Metacity.py:48 src/Metacity.py:49
-msgid "Maximize"
-msgstr "最大化"
-
-#: src/Metacity.py:47 src/Metacity.py:48 src/Metacity.py:49
-msgid "Minimize"
-msgstr "最小化"
-
-#: src/Metacity.py:47 src/Metacity.py:48 src/Metacity.py:49
-msgid "Lower"
-msgstr "降至最下層"
-
-#: src/Metacity.py:47 src/Metacity.py:48 src/Metacity.py:49
-msgid "Menu"
-msgstr "彈出選單"
-
-#: src/Metacity.py:48
-#, fuzzy
-msgid "Titlebar middle-click action"
-msgstr "中鍵點擊標題列的動作"
-
-#: src/Metacity.py:49
-#, fuzzy
-msgid "Titlebar right-click action"
-msgstr "右鍵點擊標題列的動作"
+msgid "Disable \"User Switch\""
+msgstr "禁止切換使用者"
 
 #: src/ScriptWorker.py:53
 #, python-format
@@ -237,7 +239,311 @@ msgstr "選擇資料夾"
 msgid "Please select a target(files or folders)."
 msgstr "請選擇一個目標（檔案或資料夾）。"
 
-#: src/ThirdSoft.py:144
+#: src/mainwindow.py:60
+msgid "Welcome to"
+msgstr "歡迎來到"
+
+#: src/mainwindow.py:66
+#, fuzzy
+msgid "Tweak your Linux computer to what you like."
+msgstr "調整你的桌面至你想要的樣子。"
+
+#: src/mainwindow.py:67
+msgid "Easily install various kinds of applications."
+msgstr "簡易地安裝各種應用程式。"
+
+#: src/mainwindow.py:68
+#, fuzzy
+msgid "Clean up unneeded packages to free diskspace."
+msgstr "清理不必要的套件來釋放你的硬碟空間。"
+
+#: src/mainwindow.py:69
+#, fuzzy
+msgid "Configure templates and scripts to improve your computing."
+msgstr "使用樣板和指令稿來增強你的桌面。"
+
+#: src/mainwindow.py:70
+msgid "And many more useful features!"
+msgstr "其他更多有用的特性！"
+
+#: src/mainwindow.py:82
+msgid "<span size=\"xx-large\">Please wait a moment...</span>"
+msgstr "<span size=\"xx-large\">請稍候...</span>"
+
+#: src/mainwindow.py:95
+#, fuzzy
+msgid ""
+"<span size=\"x-large\">This feature isn't currently available in your "
+"distrobution</span>"
+msgstr "<span size=\"x-large\">這項特性不能在當前的發行版中使用</span>"
+
+#: src/mainwindow.py:197
+msgid "Welcome"
+msgstr "歡迎使用"
+
+#: src/mainwindow.py:198
+msgid "Computer"
+msgstr "本機資訊"
+
+#: src/mainwindow.py:199
+msgid "Applications"
+msgstr "應用程式"
+
+#: src/mainwindow.py:200
+msgid "Add/Remove"
+msgstr "添加/刪除"
+
+#: src/mainwindow.py:201 src/sourceeditor.py:312
+#, fuzzy
+msgid "Source Editor"
+msgstr "源的地址"
+
+#: src/mainwindow.py:202 src/thirdsoft.py:219
+#, fuzzy
+msgid "Third-Party Sources"
+msgstr "第三方源"
+
+#: src/mainwindow.py:203 src/cleaner.py:233
+msgid "Package Cleaner"
+msgstr "套件清理"
+
+#: src/mainwindow.py:204
+msgid "Startup"
+msgstr "啟動控制"
+
+#: src/mainwindow.py:205 src/session.py:136
+msgid "Session Control"
+msgstr "作業階段"
+
+#: src/mainwindow.py:206
+#, fuzzy
+msgid "Autostart"
+msgstr "自動啟動"
+
+#: src/mainwindow.py:207 src/userdir.py:44
+msgid "Desktop"
+msgstr "桌面設定"
+
+#: src/mainwindow.py:208
+msgid "Icons"
+msgstr ""
+
+#: src/mainwindow.py:209
+#, fuzzy
+msgid "Windows"
+msgstr "選取視窗"
+
+#: src/mainwindow.py:210
+msgid "Compiz Fusion"
+msgstr "Compiz Fusion"
+
+#: src/mainwindow.py:211
+msgid "GNOME"
+msgstr "GNOME"
+
+#: src/mainwindow.py:212
+msgid "Personal"
+msgstr "個人設定"
+
+#: src/mainwindow.py:213
+#, fuzzy
+msgid "Folders"
+msgstr "用戶目錄"
+
+#: src/mainwindow.py:214 src/userdir.py:46
+msgid "Templates"
+msgstr "樣本"
+
+#: src/mainwindow.py:215
+msgid "Scripts"
+msgstr "指令稿"
+
+#: src/mainwindow.py:216
+msgid "Shortcuts"
+msgstr "快速鍵"
+
+#: src/mainwindow.py:217
+msgid "System"
+msgstr "系統設定"
+
+#: src/mainwindow.py:218
+msgid "Nautilus"
+msgstr "檔案管理器"
+
+#: src/mainwindow.py:219
+#, fuzzy
+msgid "Power Managerment"
+msgstr "電源管理"
+
+#: src/mainwindow.py:220
+msgid "Security"
+msgstr "安全相關"
+
+#: src/mainwindow.py:466
+msgid "Ubuntu Tweak Website"
+msgstr ""
+
+#: src/mainwindow.py:468
+msgid ""
+"Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
+"system and desktop settings."
+msgstr "Ubuntu Tweak是一個專門為簡易配置系統和桌面而準備的工具。"
+
+#: src/mainwindow.py:475
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  TualatriX https://launchpad.net/~tualatrix\n"
+"  蔡查理 https://launchpad.net/~charlie-tsai"
+
+#: src/mainwindow.py:488
+#, python-format
+msgid ""
+"A newer version: %s is available online.\n"
+"Would you like to update?"
+msgstr ""
+"一個新版本：%s 已經可以下載了。\n"
+"你想要更新嗎？"
+
+#: src/userdir.py:45
+#, fuzzy
+msgid "Download"
+msgstr "下載資料夾"
+
+#: src/userdir.py:47
+#, fuzzy
+msgid "Public"
+msgstr "公開資料夾"
+
+#: src/userdir.py:48
+#, fuzzy
+msgid "Document"
+msgstr "ODT文字"
+
+#: src/userdir.py:49
+msgid "Music"
+msgstr ""
+
+#: src/userdir.py:50
+#, fuzzy
+msgid "Pictures"
+msgstr "圖片資料夾"
+
+#: src/userdir.py:51
+#, fuzzy
+msgid "Videos"
+msgstr "影像工具"
+
+#: src/userdir.py:127
+#, fuzzy
+msgid "Choose a folder"
+msgstr "建立資料夾"
+
+#: src/userdir.py:146
+#, fuzzy
+msgid ""
+"<b><big>Notice</big></b>\n"
+"\n"
+"Ubuntu Tweak will restore the chosen directory to the default location.\n"
+"However, you must move your files back into place by yourself.\n"
+"Do you wish to continue?"
+msgstr ""
+"<b><big>請注意</big></b>\n"
+"\n"
+"Ubuntu Tweak將會還原資料夾至默認設定。\n"
+"但你需要手動轉移你的檔案。\n"
+"繼續？"
+
+#: src/userdir.py:177
+#, fuzzy
+msgid "Direcotry"
+msgstr "資料夾名稱"
+
+#: src/userdir.py:191
+msgid "Path"
+msgstr "路徑"
+
+#: src/userdir.py:198
+msgid "Change"
+msgstr ""
+
+#: src/userdir.py:202
+msgid "Restore to default"
+msgstr ""
+
+#: src/userdir.py:212
+msgid "Default Folder Locations"
+msgstr ""
+
+#: src/userdir.py:213
+#, fuzzy
+msgid ""
+"You can change the default document folders here.\n"
+"But don't change the Desktop folder under normal use."
+msgstr ""
+"你可以改變默認的文檔資料夾。\n"
+"不過一般情況下不要改變桌面資料夾的路徑。"
+
+#: src/userdir.py:234
+msgid "Update successfully!"
+msgstr "更新成功！"
+
+#: src/computer.py:49
+msgid "System information"
+msgstr "系統資訊"
+
+#: src/computer.py:50
+msgid "Hostname"
+msgstr "主機名"
+
+#: src/computer.py:51
+msgid "Distribution"
+msgstr "發行版"
+
+#: src/computer.py:52
+#, fuzzy
+msgid "Desktop environment"
+msgstr "桌面環境"
+
+#: src/computer.py:53
+msgid "Kernel"
+msgstr "核心"
+
+#: src/computer.py:54
+msgid "Platform"
+msgstr "硬體平台"
+
+#: src/computer.py:55
+msgid "CPU"
+msgstr "CPU"
+
+#: src/computer.py:56
+msgid "Memory"
+msgstr "記憶體"
+
+#: src/computer.py:60
+msgid "User information"
+msgstr "使用者資訊"
+
+#: src/computer.py:61
+#, fuzzy
+msgid "Current user"
+msgstr "當前用戶"
+
+#: src/computer.py:62
+#, fuzzy
+msgid "Home directory"
+msgstr "個人資料夾"
+
+#: src/computer.py:63
+msgid "Shell"
+msgstr "Shell"
+
+#: src/computer.py:64
+msgid "Language"
+msgstr "語言"
+
+#: src/thirdsoft.py:144
 msgid ""
 "<b><big>The information about available software is out-of-date</big></b>\n"
 "\n"
@@ -253,33 +559,28 @@ msgstr ""
 "\n"
 "你需要連接網際網路才能繼續。"
 
-#: src/ThirdSoft.py:220 src/MainWindow.py:198
-#, fuzzy
-msgid "Third-Party Sources"
-msgstr "第三方源"
-
-#: src/ThirdSoft.py:301
+#: src/thirdsoft.py:297
 msgid "Homepage"
 msgstr "主頁"
 
-#: src/ThirdSoft.py:301
+#: src/thirdsoft.py:297
 msgid "Source URL"
 msgstr "源的地址"
 
-#: src/ThirdSoft.py:301
+#: src/thirdsoft.py:297
 msgid "Description"
 msgstr "描述"
 
-#: src/ThirdSoft.py:312
+#: src/thirdsoft.py:308
 msgid "Description is here"
 msgstr "描述在這裏"
 
-#: src/ThirdSoft.py:340
+#: src/thirdsoft.py:336
 #, fuzzy
 msgid "Third-Party Softwares Sources"
 msgstr "第三方軟體源"
 
-#: src/ThirdSoft.py:341
+#: src/thirdsoft.py:337
 msgid ""
 "After every releases of Ubuntu comes a feature freeze.\n"
 "This means only applications with bug-fixes get into the repository.\n"
@@ -288,12 +589,12 @@ msgid ""
 "After adding these repositories, locate and install them using Add/Remove."
 msgstr ""
 
-#: src/ThirdSoft.py:357
+#: src/thirdsoft.py:353
 #, fuzzy
 msgid "Details"
 msgstr "源的細節"
 
-#: src/ThirdSoft.py:394
+#: src/thirdsoft.py:388
 #, fuzzy
 msgid ""
 "<b><big>Warning</big></b>\n"
@@ -305,11 +606,11 @@ msgstr ""
 "\n"
 "使用第三方源的套件可能會引起安全隱患。請務必小心！"
 
-#: src/ThirdSoft.py:398
+#: src/thirdsoft.py:392
 msgid "Never show this dialog"
 msgstr "不再顯示這個提示"
 
-#: src/ThirdSoft.py:405 src/PackageCleaner.py:343
+#: src/thirdsoft.py:399 src/cleaner.py:340 src/sourceeditor.py:441
 msgid ""
 "<b><big>Service hasn't initialized yet</big></b>\n"
 "\n"
@@ -319,7 +620,7 @@ msgstr ""
 "\n"
 "你需要重啟你的Ubuntu。"
 
-#: src/ThirdSoft.py:407 src/PackageCleaner.py:345
+#: src/thirdsoft.py:401 src/cleaner.py:342 src/sourceeditor.py:443
 msgid ""
 "<b><big>Could not authenticate</big></b>\n"
 "\n"
@@ -329,7 +630,7 @@ msgstr ""
 "\n"
 "一個未知錯誤已經發生了。"
 
-#: src/ThirdSoft.py:419
+#: src/thirdsoft.py:413
 msgid ""
 "<b><big>The software information is up-to-date now</big></b>\n"
 "\n"
@@ -339,773 +640,302 @@ msgstr ""
 "\n"
 "你可以在添加/刪除處安裝新的軟體。"
 
-#: src/Session.py:39
-msgid "Splash Screen (Click Below Image)"
-msgstr ""
-
-#: src/Session.py:43
-#, fuzzy
-msgid "Choose a splash image"
-msgstr "選擇一張啟動畫面"
-
-#: src/Session.py:45 src/Gnome.py:107
-msgid "PNG image (*.png)"
-msgstr "PNG圖像格式(*.png)"
-
-#: src/Session.py:130
-msgid "Automatically save changes to session"
-msgstr "自動儲存當前作業階段"
-
-#: src/Session.py:131
-#, fuzzy
-msgid "Show logout prompt"
-msgstr "顯示註銷選單"
-
-#: src/Session.py:132
-msgid "Allow TCP Connections(Remote Desktop Connect)"
-msgstr "允許TCP連接（遠端桌面連接）"
-
-#: src/Session.py:133
-#, fuzzy
-msgid "Show splash screen"
-msgstr "顯示Splash啟動畫面"
-
-#: src/Session.py:136 src/MainWindow.py:201
-msgid "Session Control"
-msgstr "作業階段"
-
-#: src/LockDown.py:36
-msgid "System Security options"
-msgstr "系統安全選項"
-
-#: src/LockDown.py:37
-msgid "Disable \"Run Application\" dialog (Alt+F2)"
-msgstr "禁用\"執行程式\"對話框(Alt+F2)"
-
-#: src/LockDown.py:38
-#, fuzzy
-msgid "Disable \"Lock Screen\""
-msgstr "禁用鎖定螢幕"
-
-#: src/LockDown.py:39
-#, fuzzy
-msgid "Disable printing"
-msgstr "禁用列印功能"
-
-#: src/LockDown.py:40
-#, fuzzy
-msgid "Disable print setup"
-msgstr "禁止使用列印設定嚮導"
-
-#: src/LockDown.py:41
-#, fuzzy
-msgid "Disable save to disk"
-msgstr "禁止使用另存新檔"
-
-#: src/LockDown.py:42
-#, fuzzy
-msgid "Disable \"User Switch\""
-msgstr "禁止切換使用者"
-
-#: src/Nautilus.py:41
-#, fuzzy
-msgid "Show advanced permissions on Permissions tab of File Property"
-msgstr "在檔案屬性頁中顯示進階權限控制"
-
-#: src/Nautilus.py:43
-#, fuzzy
-msgid "File Browser"
-msgstr "瀏覽(_B)"
-
-#: src/Nautilus.py:47
-#, fuzzy
-msgid "Default thumbnail icon Size"
-msgstr "預設的縮圖大小"
-
-#: src/Nautilus.py:58
-msgid "CD Burner"
-msgstr "CD 燒錄器"
-
-#: src/Nautilus.py:59
-msgid "Enable BurnProof technology"
-msgstr "啟用防燒死技術"
-
-#: src/Nautilus.py:60
-msgid "Enable OverBurn"
-msgstr "啟用超燒功能"
-
-#: src/Nautilus.py:68
-msgid "Nautilus with Open Terminal"
-msgstr "Nautilus的開啟終端機功能"
-
-#: src/Nautilus.py:70
-msgid "Nautilus with Root Privileges"
-msgstr "Nautilus的以管理員打開功能"
-
-#: src/Nautilus.py:72
-msgid "Nautilus with Wallpaper"
-msgstr "Nautilus的設定桌面壁紙功能"
-
-#: src/Nautilus.py:74
-msgid "Nautilus Extensions"
-msgstr "檔案瀏覽器外掛程式"
-
-#: src/Nautilus.py:108 src/Compiz.py:370
-msgid "Update Successfully!"
-msgstr "更新成功！"
-
-#: src/Nautilus.py:110
-msgid "Update Failed!"
-msgstr "更新失敗！"
-
-#: src/Gnome.py:43
-msgid "Panel and Menu"
-msgstr "面板和選單"
-
-#: src/Gnome.py:45
-#, fuzzy
-msgid "Display warning when removing a panel"
-msgstr "移除選單前顯示確認消息"
-
-#: src/Gnome.py:48
-#, fuzzy
-msgid "Complete lockdown of all panels"
-msgstr "完全鎖定面版使其不得变更 "
-
-#: src/Gnome.py:51
-msgid "Enable panel animations"
-msgstr "啟用面版動畫"
-
-#: src/Gnome.py:54
-#, fuzzy
-msgid "Show Input Method menu on the context menu"
-msgstr "在右鍵選單中顯示輸入法選單"
-
-#: src/Gnome.py:57
-#, fuzzy
-msgid "Show Unicode Method menu on the context menu"
-msgstr "在右鍵選單中顯示Unicode控制選單"
-
-#: src/Gnome.py:64
-msgid "Screensaver"
-msgstr "螢幕保護程式"
-
-#: src/Gnome.py:65
-#, fuzzy
-msgid "Enable user switching when screen is locked."
-msgstr "當熒幕被鎖定時啟用用戶切換"
-
-#: src/Gnome.py:69
-#, fuzzy
-msgid "Enable system-wide \"Recently Documents\" list"
-msgstr "啟用系統級“最近存取文件”列表"
-
-#: src/Gnome.py:72
-msgid "History"
-msgstr "歷史"
-
-#: src/Gnome.py:79
-msgid "Notification-daemon popup location"
-msgstr "提示視窗彈出點"
-
-#: src/Gnome.py:83
-msgid "Top Left"
-msgstr "左上角"
-
-#: src/Gnome.py:83
-msgid "Top Right"
-msgstr "右上角"
-
-#: src/Gnome.py:83
-msgid "Bottom Left"
-msgstr "左下角"
-
-#: src/Gnome.py:83
-msgid "Bottom Right"
-msgstr "右下角"
-
-#: src/Gnome.py:92
-#, fuzzy
-msgid "Click the button to change the menu logo"
-msgstr "點擊按鈕來更改面板的Logo"
-
-#: src/Gnome.py:105
-msgid "Choose a new logo"
-msgstr "選擇一個新的Logo"
-
-#: src/Gnome.py:122
-msgid ""
-"The size isn't suitable for the panel.\n"
-"It should be 24x24."
-msgstr ""
-"尺寸不適合面板。\n"
-"它應該為24x24。"
-
-#: src/Gnome.py:131
-msgid "Do you want take effect immediately?"
-msgstr "你是否要立即生效？"
-
-#: src/Icon.py:32
+#: src/icons.py:32
 msgid "Show \"Computer\" icon on desktop"
 msgstr "在桌面上顯示\"電腦\"圖示"
 
-#: src/Icon.py:33 src/Icon.py:42 src/Icon.py:51
-#: src/common/Widgets/TreeViews.py:73
+#: src/icons.py:33 src/icons.py:42 src/icons.py:51
+#: src/common/widgets/treeviews.py:73
 msgid "Rename"
 msgstr "重新命名"
 
-#: src/Icon.py:41
+#: src/icons.py:41
 #, fuzzy
 msgid "Show \"Home Folder\" icon on desktop"
 msgstr "在桌面上顯示\"個人資料夾\"圖示"
 
-#: src/Icon.py:50
+#: src/icons.py:50
 msgid "Show \"Trash\" icon on desktop"
 msgstr "在桌面上顯示\"垃圾筒\"圖示"
 
-#: src/Icon.py:100 src/common/Widgets/Widgets.py:66
-#: src/common/Widgets/Widgets.py:81
+#: src/icons.py:100 src/common/widgets/widgets.py:66
+#: src/common/widgets/widgets.py:81
 msgid "Unset"
 msgstr "未設定"
 
-#: src/Icon.py:106
+#: src/icons.py:106
 msgid "Desktop Icon settings"
 msgstr "桌面圖示設定"
 
-#: src/Icon.py:108
+#: src/icons.py:108
 msgid "Show desktop icons"
 msgstr "顯示桌面圖示"
 
-#: src/Icon.py:128
+#: src/icons.py:128
 msgid "Show \"Network\" icon on desktop"
 msgstr "在桌面上顯示\"綱路伺服器\"圖示"
 
-#: src/Icon.py:131
+#: src/icons.py:131
 #, fuzzy
 msgid "Show mounted volumes on desktop"
 msgstr "顯示已掛載的分區"
 
-#: src/Icon.py:134
+#: src/icons.py:134
 #, fuzzy
 msgid "Use \"Home Folder\" as desktop(Logout for changes to take effect)"
 msgstr "使用家目錄作為桌面（需要登出生效）"
 
-#: src/MainWindow.py:60
-msgid "Welcome to"
-msgstr "歡迎來到"
+#: src/metacity.py:36
+msgid "Window Decorate Effect"
+msgstr "視窗裝飾效果"
 
-#: src/MainWindow.py:66
+#: src/metacity.py:37
 #, fuzzy
-msgid "Tweak your Linux computer to what you like."
-msgstr "調整你的桌面至你想要的樣子。"
+msgid "Use Metacity window theme"
+msgstr "使用Metacity主題"
 
-#: src/MainWindow.py:67
-msgid "Easily install various kinds of applications."
-msgstr "簡易地安裝各種應用程式。"
-
-#: src/MainWindow.py:68
+#: src/metacity.py:38
 #, fuzzy
-msgid "Clean up unneeded packages to free diskspace."
-msgstr "清理不必要的套件來釋放你的硬碟空間。"
+msgid "Enable active window transparency"
+msgstr "非活動視窗的陰影透明度"
 
-#: src/MainWindow.py:69
+#: src/metacity.py:39
+msgid "Active window transparency level"
+msgstr "活動視窗的陰影透明級別"
+
+#: src/metacity.py:40
 #, fuzzy
-msgid "Configure templates and scripts to improve your computing."
-msgstr "使用樣板和指令稿來增強你的桌面。"
+msgid "Enable inactive window transparency"
+msgstr "非活動視窗的陰影透明度"
 
-#: src/MainWindow.py:70
-msgid "And many more useful features!"
-msgstr "其他更多有用的特性！"
+#: src/metacity.py:41
+msgid "Inactive window shade transparency level"
+msgstr "非活動視窗的陰影透明級別"
 
-#: src/MainWindow.py:82
-msgid "<span size=\"xx-large\">Please wait a moment...</span>"
-msgstr "<span size=\"xx-large\">請稍候...</span>"
+#: src/metacity.py:45
+msgid "Window Titlebar Action"
+msgstr "視窗標題列動作"
 
-#: src/MainWindow.py:95
+#: src/metacity.py:46
+#, fuzzy
+msgid "Titlebar mouse wheel action"
+msgstr "標題列鼠標滾輪動作"
+
+#: src/metacity.py:46 src/metacity.py:47 src/metacity.py:48 src/metacity.py:49
+#: src/shortcuts.py:91 src/shortcuts.py:190
+msgid "None"
+msgstr "沒有"
+
+#: src/metacity.py:46 src/metacity.py:47 src/metacity.py:48 src/metacity.py:49
+msgid "Roll up"
+msgstr "捲起"
+
+#: src/metacity.py:47
+#, fuzzy
+msgid "Titlebar double-click action"
+msgstr "雙擊標題列的動作"
+
+#: src/metacity.py:47 src/metacity.py:48 src/metacity.py:49
+msgid "Maximize"
+msgstr "最大化"
+
+#: src/metacity.py:47 src/metacity.py:48 src/metacity.py:49
+msgid "Minimize"
+msgstr "最小化"
+
+#: src/metacity.py:47 src/metacity.py:48 src/metacity.py:49
+msgid "Lower"
+msgstr "降至最下層"
+
+#: src/metacity.py:47 src/metacity.py:48 src/metacity.py:49
+msgid "Menu"
+msgstr "彈出選單"
+
+#: src/metacity.py:48
+#, fuzzy
+msgid "Titlebar middle-click action"
+msgstr "中鍵點擊標題列的動作"
+
+#: src/metacity.py:49
+#, fuzzy
+msgid "Titlebar right-click action"
+msgstr "右鍵點擊標題列的動作"
+
+#: src/session.py:39
+msgid "Splash Screen (Click Below Image)"
+msgstr ""
+
+#: src/session.py:43
+#, fuzzy
+msgid "Choose a splash image"
+msgstr "選擇一張啟動畫面"
+
+#: src/session.py:45 src/gnomesettings.py:107
+msgid "PNG image (*.png)"
+msgstr "PNG圖像格式(*.png)"
+
+#: src/session.py:130
+msgid "Automatically save changes to session"
+msgstr "自動儲存當前作業階段"
+
+#: src/session.py:131
+#, fuzzy
+msgid "Show logout prompt"
+msgstr "顯示註銷選單"
+
+#: src/session.py:132
+msgid "Allow TCP Connections(Remote Desktop Connect)"
+msgstr "允許TCP連接（遠端桌面連接）"
+
+#: src/session.py:133
+#, fuzzy
+msgid "Show splash screen"
+msgstr "顯示Splash啟動畫面"
+
+#: src/templates.py:57
+msgid "HTML document"
+msgstr "HTML 文件"
+
+#: src/templates.py:58
+msgid "ODB Database"
+msgstr "ODB資料庫"
+
+#: src/templates.py:59
+msgid "ODS Spreadsheet"
+msgstr "ODS工作表"
+
+#: src/templates.py:60
+msgid "ODT Document"
+msgstr "ODT文字"
+
+#: src/templates.py:61
+msgid "Plain text document"
+msgstr "純文字檔"
+
+#: src/templates.py:62
+msgid "ODP Presentation"
+msgstr "ODP簡報"
+
+#: src/templates.py:63
+msgid "Python script"
+msgstr "Python 描述語言檔"
+
+#: src/templates.py:64
+msgid "Shell script"
+msgstr "Shell 描述語言檔"
+
+#: src/templates.py:91
+msgid "Enabled Templates"
+msgstr "已啟用的樣本"
+
+#: src/templates.py:98
+msgid "Disabled Templates"
+msgstr "已禁用的樣本"
+
+#: src/templates.py:107
+#, fuzzy
+msgid "Manage Templates"
+msgstr "管理你的樣本"
+
+#: src/templates.py:108
 #, fuzzy
 msgid ""
-"<span size=\"x-large\">This feature isn't currently available in your "
-"distrobution</span>"
-msgstr "<span size=\"x-large\">這項特性不能在當前的發行版中使用</span>"
-
-#: src/MainWindow.py:194
-msgid "Welcome"
-msgstr "歡迎使用"
-
-#: src/MainWindow.py:195
-msgid "Computer"
-msgstr "本機資訊"
-
-#: src/MainWindow.py:196
-msgid "Applications"
-msgstr "應用程式"
-
-#: src/MainWindow.py:197
-msgid "Add/Remove"
-msgstr "添加/刪除"
-
-#: src/MainWindow.py:199 src/PackageCleaner.py:234
-msgid "Package Cleaner"
-msgstr "套件清理"
-
-#: src/MainWindow.py:200
-msgid "Startup"
-msgstr "啟動控制"
-
-#: src/MainWindow.py:202
-#, fuzzy
-msgid "Autostart"
-msgstr "自動啟動"
-
-#: src/MainWindow.py:203 src/UserDir.py:44
-msgid "Desktop"
-msgstr "桌面設定"
-
-#: src/MainWindow.py:204
-msgid "Icons"
+"You can freely manage your document templates.\n"
+"You can drag and drop from File Manager.\n"
+"\"Create Document\" will be added to the context menu.\n"
 msgstr ""
+"自由地管理你的文檔樣本。\n"
+"你可以從文件管理器拖拽外部樣本進來。\n"
+"它將被加到你的右鍵選單：新增文件。\n"
 
-#: src/MainWindow.py:205
+#: src/templates.py:133
 #, fuzzy
-msgid "Windows"
-msgstr "選取視窗"
+msgid "Rebuild System Templates"
+msgstr "重建系統樣本"
 
-#: src/MainWindow.py:206
-msgid "Compiz Fusion"
-msgstr "Compiz Fusion"
-
-#: src/MainWindow.py:207
-msgid "GNOME"
-msgstr "GNOME"
-
-#: src/MainWindow.py:208
-msgid "Personal"
-msgstr "個人設定"
-
-#: src/MainWindow.py:209
+#: src/templates.py:151
 #, fuzzy
-msgid "Folders"
-msgstr "用戶目錄"
-
-#: src/MainWindow.py:210 src/UserDir.py:46
-msgid "Templates"
-msgstr "樣本"
-
-#: src/MainWindow.py:211
-msgid "Scripts"
-msgstr "指令稿"
-
-#: src/MainWindow.py:212
-msgid "Shortcuts"
-msgstr "快速鍵"
-
-#: src/MainWindow.py:213
-msgid "System"
-msgstr "系統設定"
-
-#: src/MainWindow.py:214
-msgid "Nautilus"
-msgstr "檔案管理器"
-
-#: src/MainWindow.py:215
-#, fuzzy
-msgid "Power Managerment"
-msgstr "電源管理"
-
-#: src/MainWindow.py:216
-msgid "Security"
-msgstr "安全相關"
-
-#: src/MainWindow.py:461
-msgid "Ubuntu Tweak Website"
-msgstr ""
-
-#: src/MainWindow.py:463
 msgid ""
-"Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
-"system and desktop settings."
-msgstr "Ubuntu Tweak是一個專門為簡易配置系統和桌面而準備的工具。"
-
-#: src/MainWindow.py:470
-msgid "translator-credits"
-msgstr ""
-"Launchpad Contributions:\n"
-"  TualatriX https://launchpad.net/~tualatrix\n"
-"  蔡查理 https://launchpad.net/~charlie-tsai"
-
-#: src/MainWindow.py:483
-#, python-format
-msgid ""
-"A newer version: %s is available online.\n"
-"Would you like to update?"
-msgstr ""
-"一個新版本：%s 已經可以下載了。\n"
-"你想要更新嗎？"
-
-#: src/Installer.py:50
-msgid "File-Sharing Clients"
-msgstr ""
-
-#: src/Installer.py:51
-msgid "Image Tools"
-msgstr "圖像工具"
-
-#: src/Installer.py:52
-msgid "Sound Tools"
-msgstr "聲音工具"
-
-#: src/Installer.py:53
-msgid "Video Tools"
-msgstr "影像工具"
-
-#: src/Installer.py:54
-msgid "Text Tools"
-msgstr "文字工具"
-
-#: src/Installer.py:55
-#, fuzzy
-msgid "Instant Messengers"
-msgstr "即時通訊程式"
-
-#: src/Installer.py:56
-msgid "Internet Tools"
-msgstr "綱路工具"
-
-#: src/Installer.py:57
-msgid "FTP Tools"
-msgstr "FTP工具"
-
-#: src/Installer.py:58
-msgid "Desktop Tools"
-msgstr "桌面工具"
-
-#: src/Installer.py:59
-msgid "CD/Disk Tools"
-msgstr "CD/磁盤工具"
-
-#: src/Installer.py:60
-#, fuzzy
-msgid "Development"
-msgstr "開發套件"
-
-#: src/Installer.py:61
-msgid "Emulators"
-msgstr "虛擬工具"
-
-#: src/Installer.py:62
-msgid "E-mail Tools"
-msgstr "電郵工具"
-
-#: src/Installer.py:135
-#, fuzzy
-msgid "Add/Remove Applications"
-msgstr "應用程式"
-
-#: src/Installer.py:136
-msgid ""
-"A simple but more effective for finding and installing popular packages than "
-"the default Add/Remove."
-msgstr ""
-
-#: src/Installer.py:184
-msgid "All Categories"
-msgstr "所有分類"
-
-#: src/Installer.py:340
-msgid "Updated Successfully!"
-msgstr "更新成功！"
-
-#: src/Installer.py:342
-msgid "Updated Failed!"
-msgstr "更新失敗！"
-
-#: src/PowerManager.py:37
-msgid "Advanced Power Management Settings"
-msgstr "進階電源管理設定"
-
-#: src/PowerManager.py:38
-#, fuzzy
-msgid "Enable \"Hibernation\""
-msgstr "啟用休眠支持"
-
-#: src/PowerManager.py:39
-#, fuzzy
-msgid "Enable \"Suspend\""
-msgstr "啟用待命支持"
-
-#: src/PowerManager.py:40
-#, fuzzy
-msgid "Show \"CPU frequency control option\" in Power Management Preferences"
-msgstr "在\"電源管理\"顯示CPU頻率控制"
-
-#: src/PowerManager.py:41
-#, fuzzy
-msgid "Disable Network Manager when on sleep"
-msgstr "當睡眠時禁用網絡管理員"
-
-#: src/PowerManager.py:42
-msgid "Enable \"Lock screen\" when \"Blank Screen\" activates"
-msgstr ""
-
-#: src/PowerManager.py:43
-msgid "Display \"Power Manager\" panel item"
-msgstr ""
-
-#: src/PowerManager.py:43
-msgid "Never display"
-msgstr "從不顯示"
-
-#: src/PowerManager.py:43
-msgid "When charging"
-msgstr "僅在充電時"
-
-#: src/PowerManager.py:43
-msgid "Always display"
-msgstr "始終顯示"
-
-#: src/PowerManager.py:48
-msgid "Normal"
-msgstr "標準"
-
-#: src/PowerManager.py:48
-msgid "On Demand"
-msgstr "以處理器負載為準"
-
-#: src/PowerManager.py:48
-msgid "Power Save"
-msgstr "最大節約電源"
-
-#: src/PowerManager.py:48
-msgid "Performance"
-msgstr "永遠保持最高速度"
-
-#: src/PowerManager.py:50
-msgid "CPU Policy"
-msgstr "CPU使用策略"
-
-#: src/PowerManager.py:51
-msgid "The Performance value when on AC power"
-msgstr "當使用交流電時CPU性能值"
-
-#: src/PowerManager.py:52
-msgid "The Performance value when on battery power"
-msgstr "當使用電池時CPU性能值"
-
-#: src/PowerManager.py:53
-msgid "The CPU frequency policy when on AC power"
-msgstr "當使用交流電時CPU頻率使用策略"
-
-#: src/PowerManager.py:54
-msgid "The CPU frequency policy when on battery power"
-msgstr "當使用電池時CPU頻率使用策略"
-
-#: src/PackageCleaner.py:80
-msgid "Package"
-msgstr "套件名"
-
-#: src/PackageCleaner.py:104
-msgid "Packages"
-msgstr "套件"
-
-#: src/PackageCleaner.py:127
-msgid "Package Cache"
-msgstr "套件快取"
-
-#: src/PackageCleaner.py:137
-#, fuzzy, python-format
-msgid ""
-"<b>%s</b>\n"
-"Take %s KB of disk space"
-msgstr ""
-"<b>%s</b>\n"
-"占用了%s KB 硬碟空間"
-
-#: src/PackageCleaner.py:162
-#, fuzzy, python-format
-msgid "%d package selected to remove"
-msgstr "%d 個套件被選擇移除"
-
-#: src/PackageCleaner.py:163
-#, fuzzy, python-format
-msgid "%d packages selected to remove"
-msgstr "%d 個套件被選擇移除"
-
-#: src/PackageCleaner.py:166
-#, fuzzy, python-format
-msgid "%d KB of space will be freed"
-msgstr "%d KB空間將被釋放"
-
-#: src/PackageCleaner.py:226
-msgid "Cleaned up Successfully!"
-msgstr "清理成功！"
-
-#: src/PackageCleaner.py:229
-msgid "Cleaned up Failed!"
-msgstr "清理失敗！"
-
-#: src/PackageCleaner.py:235
-#, fuzzy
-msgid "Free up disk space by clearing unneeded packages and the package cache."
-msgstr "清理不必要的套件和快取。"
-
-#: src/PackageCleaner.py:253
-msgid "Clean Package"
-msgstr "清理套件"
-
-#: src/PackageCleaner.py:259
-msgid "Clean Cache"
-msgstr "清理快取"
-
-#: src/PackageCleaner.py:272
-msgid "Select All"
-msgstr "全選/全不選"
-
-#: src/AutoStart.py:44
-msgid "_Name:"
-msgstr "名稱(_N)："
-
-#: src/AutoStart.py:47
-msgid "Co_mmand:"
-msgstr "指令(_M)："
-
-#: src/AutoStart.py:50
-msgid "Comm_ent:"
-msgstr "備註(_E)："
-
-#: src/AutoStart.py:61
-msgid "Edit Startup Program"
-msgstr "修改初始啟動程式"
-
-#: src/AutoStart.py:66
-msgid "New Startup Program"
-msgstr "新增初始啟動程式"
-
-#: src/AutoStart.py:68
-#, fuzzy
-msgid "_Browse..."
-msgstr "瀏覽(_B)"
-
-#: src/AutoStart.py:97
-msgid "Choose a Program"
-msgstr "選擇一個程式"
-
-#: src/AutoStart.py:181
-msgid "Delete from Disk"
-msgstr "從硬碟上刪除"
-
-#: src/AutoStart.py:195
-msgid "Can't delete the system item from disk."
-msgstr "不能將系統項目從硬碟上刪除"
-
-#: src/AutoStart.py:240
-msgid "None description"
-msgstr "沒有描述"
-
-#: src/AutoStart.py:260
-msgid "Program"
-msgstr "程式"
-
-#: src/AutoStart.py:322
-#, fuzzy
-msgid "Session Programs"
-msgstr "作業階段"
-
-#: src/AutoStart.py:323
-msgid ""
-"Here you can manage what programs get started upon login.\n"
-"By selecing an item and pressing Remove, you simply hide it from view.\n"
-"To permanently delete it, right-click and press 'Delete'."
-msgstr ""
-
-#: src/AutoStart.py:329
-#, fuzzy
-msgid "Show comments"
-msgstr "顯示程式註釋"
-
-#: src/AutoStart.py:331
-msgid "Show all runnable programs"
-msgstr "顯示所有可啟用的程式"
-
-#: src/AutoStart.py:393 src/AutoStart.py:440
-msgid "The name of the startup program cannot be empty"
-msgstr "初始啟動程式不能留空"
-
-#: src/AutoStart.py:395 src/AutoStart.py:442
-msgid "Text was empty (or contained only whitespace)"
-msgstr "文字是空白的（或只含有空白字元）"
-
-#: src/Compiz.py:208
+"This will delete all disabled templates.\n"
+"Do you wish to continue?"
+msgstr "這將會刪除掉所有已禁用的樣本，繼續？"
+
+#: src/compiz.py:208
 msgid "Install Advanced Desktop Effects Settings Manager"
 msgstr "安裝進階桌面特效設定器"
 
-#: src/Compiz.py:211
+#: src/compiz.py:211
 msgid "Install Simple Desktop Effects Settings manager"
 msgstr "安裝簡易桌面特效設定器"
 
-#: src/Compiz.py:214
+#: src/compiz.py:214
 msgid "Install Screenlets Widget Application"
 msgstr "安裝Screenlets桌面應用程式"
 
-#: src/Compiz.py:224
+#: src/compiz.py:224
 #, fuzzy
 msgid "Enable snapping windows"
 msgstr "粘性視窗"
 
-#: src/Compiz.py:225
+#: src/compiz.py:225
 #, fuzzy
 msgid "Enable wobbly windows"
 msgstr "搖擺視窗"
 
-#: src/Compiz.py:227
+#: src/compiz.py:227
 msgid "Window Effects"
 msgstr "視窗特效"
 
-#: src/Compiz.py:230
+#: src/compiz.py:230
 #, fuzzy
 msgid "Enable transparent menus"
 msgstr "透明選單"
 
-#: src/Compiz.py:231
+#: src/compiz.py:231
 #, fuzzy
 msgid "Enable wobbly menus"
 msgstr "彈性選單"
 
-#: src/Compiz.py:233
+#: src/compiz.py:233
 msgid "Menu Effects"
 msgstr "選單特效"
 
-#: src/Compiz.py:238
+#: src/compiz.py:238
 #, fuzzy
 msgid "Useful Extensions"
 msgstr "檔案瀏覽器外掛程式"
 
-#: src/Compiz.py:253
+#: src/compiz.py:253
 msgid "Prerequisite Conditions"
 msgstr "先決條件"
 
-#: src/Compiz.py:296
+#: src/compiz.py:296
 msgid "Expo"
 msgstr "展示桌面"
 
-#: src/Compiz.py:297
+#: src/compiz.py:297
 #, fuzzy
 msgid "Show Windows"
 msgstr "搖擺視窗"
 
-#: src/Compiz.py:298
+#: src/compiz.py:298
 msgid "Show Desktop"
 msgstr "顯示桌面"
 
-#: src/Compiz.py:299
+#: src/compiz.py:299
 msgid "Widget"
 msgstr "Widget層"
 
-#: src/Shortcuts.py:47
+#: src/compiz.py:370 src/nautilus.py:108
+msgid "Update Successfully!"
+msgstr "更新成功！"
+
+#: src/shortcuts.py:47
 #, fuzzy
 msgid "Shortcut Commands"
 msgstr "快速鍵"
 
-#: src/Shortcuts.py:48
+#: src/shortcuts.py:48
 #, fuzzy
 msgid ""
 "By configuring keyboard shortcuts, you have faster access to the "
@@ -1117,397 +947,695 @@ msgstr ""
 "輸入指令並設定需要的按鍵，即可設定一個快速鍵。\n"
 "使用<b>Delete</b>或<b>BackSpace</b>來刪除一個按鍵。"
 
-#: src/Shortcuts.py:87
+#: src/shortcuts.py:87
 #, python-format
 msgid "Command %d"
 msgstr "指令%d"
 
-#: src/Shortcuts.py:94 src/Shortcuts.py:157
+#: src/shortcuts.py:94 src/shortcuts.py:157
 msgid "disabled"
 msgstr "關閉"
 
-#: src/Shortcuts.py:110
+#: src/shortcuts.py:110
 msgid "ID"
 msgstr "編號"
 
-#: src/Shortcuts.py:121
+#: src/shortcuts.py:121
 msgid "Command"
 msgstr "指令"
 
-#: src/Shortcuts.py:136
+#: src/shortcuts.py:136
 msgid "Key"
 msgstr "按鍵"
 
-#: src/UpdateManager.py:69
-msgid "Update Manager"
-msgstr "更新管理員"
+#: src/cleaner.py:79
+msgid "Package"
+msgstr "套件名"
 
-#: src/UpdateManager.py:86 src/UpdateManager.py:114
-#, python-format
-msgid "Downloading...%d"
-msgstr "正在下載...%d"
+#: src/cleaner.py:103
+msgid "Packages"
+msgstr "套件"
 
-#: src/UpdateManager.py:119
-msgid "Finished"
+#: src/cleaner.py:126
+msgid "Package Cache"
+msgstr "套件快取"
+
+#: src/cleaner.py:136
+#, fuzzy, python-format
+msgid ""
+"<b>%s</b>\n"
+"Take %s KB of disk space"
+msgstr ""
+"<b>%s</b>\n"
+"占用了%s KB 硬碟空間"
+
+#: src/cleaner.py:161
+#, fuzzy, python-format
+msgid "%d package selected to remove"
+msgstr "%d 個套件被選擇移除"
+
+#: src/cleaner.py:162
+#, fuzzy, python-format
+msgid "%d packages selected to remove"
+msgstr "%d 個套件被選擇移除"
+
+#: src/cleaner.py:165
+#, fuzzy, python-format
+msgid "%d KB of space will be freed"
+msgstr "%d KB空間將被釋放"
+
+#: src/cleaner.py:225
+msgid "Cleaned up Successfully!"
+msgstr "清理成功！"
+
+#: src/cleaner.py:228
+msgid "Cleaned up Failed!"
+msgstr "清理失敗！"
+
+#: src/cleaner.py:234
+#, fuzzy
+msgid "Free up disk space by clearing unneeded packages and the package cache."
+msgstr "清理不必要的套件和快取。"
+
+#: src/cleaner.py:252
+msgid "Clean Package"
+msgstr "清理套件"
+
+#: src/cleaner.py:258
+msgid "Clean Cache"
+msgstr "清理快取"
+
+#: src/cleaner.py:271
+msgid "Select All"
+msgstr "全選/全不選"
+
+#: src/scripts.py:46
+msgid "Copy to ..."
+msgstr "複製到..."
+
+#: src/scripts.py:47
+msgid "Move to ..."
+msgstr "移動到..."
+
+#: src/scripts.py:48
+msgid "Link to ..."
+msgstr "連結到..."
+
+#: src/scripts.py:49
+msgid "Open with gedit"
+msgstr "使用gedit打開"
+
+#: src/scripts.py:50
+msgid "Open with gedit(as root)"
+msgstr "使用gedit打開（作為root）"
+
+#: src/scripts.py:51
+msgid "Browse as root"
+msgstr "作為root瀏覽"
+
+#: src/scripts.py:52
+msgid "Search in current folder"
+msgstr "在當前目錄檢索"
+
+#: src/scripts.py:79
+msgid "Enabled Scripts"
+msgstr "已啟用的指令稿"
+
+#: src/scripts.py:86
+msgid "Disabled Scripts"
+msgstr "已禁用的指令稿"
+
+#: src/scripts.py:95
+#, fuzzy
+msgid "Manage Scripts"
+msgstr "管理你的指令稿"
+
+#: src/scripts.py:96
+#, fuzzy
+msgid ""
+"You can do all kinds of tasks with scripts.\n"
+"You can drag and drop from File Manager.\n"
+"\"Scripts\" will be added to the context menu.\n"
+msgstr ""
+"使用指令稿來完成各種任務。\n"
+"你可以從檔案管理器拖拽外部指令稿進來。\n"
+"“指令稿”將被加到右鍵選單中。\n"
+
+#: src/scripts.py:121
+#, fuzzy
+msgid "Rebuild System Scripts"
+msgstr "重建系統指令稿"
+
+#: src/scripts.py:139
+#, fuzzy
+msgid ""
+"This will delete all disabled scripts.\n"
+"Do you wish to continue?"
+msgstr "這將會刪除掉所有已禁用的指令稿，繼續？"
+
+#: src/gnomesettings.py:43
+msgid "Panel and Menu"
+msgstr "面板和選單"
+
+#: src/gnomesettings.py:45
+#, fuzzy
+msgid "Display warning when removing a panel"
+msgstr "移除選單前顯示確認消息"
+
+#: src/gnomesettings.py:48
+#, fuzzy
+msgid "Complete lockdown of all panels"
+msgstr "完全鎖定面版使其不得变更 "
+
+#: src/gnomesettings.py:51
+msgid "Enable panel animations"
+msgstr "啟用面版動畫"
+
+#: src/gnomesettings.py:54
+#, fuzzy
+msgid "Show Input Method menu on the context menu"
+msgstr "在右鍵選單中顯示輸入法選單"
+
+#: src/gnomesettings.py:57
+#, fuzzy
+msgid "Show Unicode Method menu on the context menu"
+msgstr "在右鍵選單中顯示Unicode控制選單"
+
+#: src/gnomesettings.py:64
+msgid "Screensaver"
+msgstr "螢幕保護程式"
+
+#: src/gnomesettings.py:65
+#, fuzzy
+msgid "Enable user switching when screen is locked."
+msgstr "當熒幕被鎖定時啟用用戶切換"
+
+#: src/gnomesettings.py:69
+#, fuzzy
+msgid "Enable system-wide \"Recently Documents\" list"
+msgstr "啟用系統級“最近存取文件”列表"
+
+#: src/gnomesettings.py:72
+msgid "History"
+msgstr "歷史"
+
+#: src/gnomesettings.py:79
+msgid "Notification-daemon popup location"
+msgstr "提示視窗彈出點"
+
+#: src/gnomesettings.py:83
+msgid "Top Left"
+msgstr "左上角"
+
+#: src/gnomesettings.py:83
+msgid "Top Right"
+msgstr "右上角"
+
+#: src/gnomesettings.py:83
+msgid "Bottom Left"
+msgstr "左下角"
+
+#: src/gnomesettings.py:83
+msgid "Bottom Right"
+msgstr "右下角"
+
+#: src/gnomesettings.py:92
+#, fuzzy
+msgid "Click the button to change the menu logo"
+msgstr "點擊按鈕來更改面板的Logo"
+
+#: src/gnomesettings.py:105
+msgid "Choose a new logo"
+msgstr "選擇一個新的Logo"
+
+#: src/gnomesettings.py:122
+msgid ""
+"The size isn't suitable for the panel.\n"
+"It should be 24x24."
+msgstr ""
+"尺寸不適合面板。\n"
+"它應該為24x24。"
+
+#: src/gnomesettings.py:131
+msgid "Do you want take effect immediately?"
+msgstr "你是否要立即生效？"
+
+#: src/nautilus.py:41
+#, fuzzy
+msgid "Show advanced permissions on Permissions tab of File Property"
+msgstr "在檔案屬性頁中顯示進階權限控制"
+
+#: src/nautilus.py:43
+#, fuzzy
+msgid "File Browser"
+msgstr "瀏覽(_B)"
+
+#: src/nautilus.py:47
+#, fuzzy
+msgid "Default thumbnail icon Size"
+msgstr "預設的縮圖大小"
+
+#: src/nautilus.py:58
+msgid "CD Burner"
+msgstr "CD 燒錄器"
+
+#: src/nautilus.py:59
+msgid "Enable BurnProof technology"
+msgstr "啟用防燒死技術"
+
+#: src/nautilus.py:60
+msgid "Enable OverBurn"
+msgstr "啟用超燒功能"
+
+#: src/nautilus.py:68
+msgid "Nautilus with Open Terminal"
+msgstr "Nautilus的開啟終端機功能"
+
+#: src/nautilus.py:70
+msgid "Nautilus with Root Privileges"
+msgstr "Nautilus的以管理員打開功能"
+
+#: src/nautilus.py:72
+msgid "Nautilus with Wallpaper"
+msgstr "Nautilus的設定桌面壁紙功能"
+
+#: src/nautilus.py:74
+msgid "Nautilus Extensions"
+msgstr "檔案瀏覽器外掛程式"
+
+#: src/nautilus.py:110
+msgid "Update Failed!"
+msgstr "更新失敗！"
+
+#: src/powermanager.py:37
+msgid "Advanced Power Management Settings"
+msgstr "進階電源管理設定"
+
+#: src/powermanager.py:38
+#, fuzzy
+msgid "Enable \"Hibernation\""
+msgstr "啟用休眠支持"
+
+#: src/powermanager.py:39
+#, fuzzy
+msgid "Enable \"Suspend\""
+msgstr "啟用待命支持"
+
+#: src/powermanager.py:40
+#, fuzzy
+msgid "Show \"CPU frequency control option\" in Power Management Preferences"
+msgstr "在\"電源管理\"顯示CPU頻率控制"
+
+#: src/powermanager.py:41
+#, fuzzy
+msgid "Disable Network Manager when on sleep"
+msgstr "當睡眠時禁用網絡管理員"
+
+#: src/powermanager.py:42
+msgid "Enable \"Lock screen\" when \"Blank Screen\" activates"
 msgstr ""
 
-#: src/UserDir.py:45
-#, fuzzy
-msgid "Download"
-msgstr "下載資料夾"
-
-#: src/UserDir.py:47
-#, fuzzy
-msgid "Public"
-msgstr "公開資料夾"
-
-#: src/UserDir.py:48
-#, fuzzy
-msgid "Document"
-msgstr "ODT文字"
-
-#: src/UserDir.py:49
-msgid "Music"
+#: src/powermanager.py:43
+msgid "Display \"Power Manager\" panel item"
 msgstr ""
 
-#: src/UserDir.py:50
-#, fuzzy
-msgid "Pictures"
-msgstr "圖片資料夾"
+#: src/powermanager.py:43
+msgid "Never display"
+msgstr "從不顯示"
 
-#: src/UserDir.py:51
-#, fuzzy
-msgid "Videos"
-msgstr "影像工具"
+#: src/powermanager.py:43
+msgid "When charging"
+msgstr "僅在充電時"
 
-#: src/UserDir.py:127
+#: src/powermanager.py:43
+msgid "Always display"
+msgstr "始終顯示"
+
+#: src/powermanager.py:48
+msgid "Normal"
+msgstr "標準"
+
+#: src/powermanager.py:48
+msgid "On Demand"
+msgstr "以處理器負載為準"
+
+#: src/powermanager.py:48
+msgid "Power Save"
+msgstr "最大節約電源"
+
+#: src/powermanager.py:48
+msgid "Performance"
+msgstr "永遠保持最高速度"
+
+#: src/powermanager.py:50
+msgid "CPU Policy"
+msgstr "CPU使用策略"
+
+#: src/powermanager.py:51
+msgid "The Performance value when on AC power"
+msgstr "當使用交流電時CPU性能值"
+
+#: src/powermanager.py:52
+msgid "The Performance value when on battery power"
+msgstr "當使用電池時CPU性能值"
+
+#: src/powermanager.py:53
+msgid "The CPU frequency policy when on AC power"
+msgstr "當使用交流電時CPU頻率使用策略"
+
+#: src/powermanager.py:54
+msgid "The CPU frequency policy when on battery power"
+msgstr "當使用電池時CPU頻率使用策略"
+
+#: src/sourceeditor.py:49 src/sourceeditor.py:54
 #, fuzzy
-msgid "Choose a folder"
+msgid "Choose the sources"
 msgstr "建立資料夾"
 
-#: src/UserDir.py:146
-#, fuzzy
+#: src/sourceeditor.py:55
 msgid ""
-"<b><big>Notice</big></b>\n"
-"\n"
-"Ubuntu Tweak will restore the chosen directory to the default location.\n"
-"However, you must move your files back into place by yourself.\n"
-"Do you wish to continue?"
+"You can read the title and comment to determine which source is suitable for "
+"you."
 msgstr ""
-"<b><big>請注意</big></b>\n"
-"\n"
-"Ubuntu Tweak將會還原資料夾至默認設定。\n"
-"但你需要手動轉移你的檔案。\n"
-"繼續？"
 
-#: src/UserDir.py:177
+#: src/sourceeditor.py:71
 #, fuzzy
-msgid "Direcotry"
-msgstr "資料夾名稱"
+msgid "Detail"
+msgstr "源的細節"
 
-#: src/UserDir.py:191
-msgid "Path"
-msgstr "路徑"
-
-#: src/UserDir.py:198
-msgid "Change"
+#: src/sourceeditor.py:90 src/sourceeditor.py:95
+msgid "Submit your sources"
 msgstr ""
 
-#: src/UserDir.py:202
-msgid "Restore to default"
-msgstr ""
-
-#: src/UserDir.py:212
-msgid "Default Folder Locations"
-msgstr ""
-
-#: src/UserDir.py:213
-#, fuzzy
+#: src/sourceeditor.py:95
 msgid ""
-"You can change the default document folders here.\n"
-"But don't change the Desktop folder under normal use."
+"You can submit your sources to the server, so that other people can share "
+"with your sources."
 msgstr ""
-"你可以改變默認的文檔資料夾。\n"
-"不過一般情況下不要改變桌面資料夾的路徑。"
 
-#: src/UserDir.py:234
-msgid "Update successfully!"
+#: src/sourceeditor.py:100
+msgid "_Source Title:"
+msgstr ""
+
+#: src/sourceeditor.py:103
+msgid "_Locale:"
+msgstr ""
+
+#: src/sourceeditor.py:110
+msgid "Enter the title of the source, such as \"Ubuntu Official Repostory\""
+msgstr ""
+
+#: src/sourceeditor.py:113
+msgid "If the locale isn't correct, you can edit by you self"
+msgstr ""
+
+#: src/sourceeditor.py:130
+msgid "Submit"
+msgstr ""
+
+#: src/sourceeditor.py:178
+msgid "Network Error"
+msgstr ""
+
+#: src/sourceeditor.py:178
+#, fuzzy
+msgid "Please check your network connection!"
+msgstr "请按下新组合键"
+
+#: src/sourceeditor.py:185
+#, fuzzy
+msgid "Uploding..."
+msgstr "正在下載...%d"
+
+#: src/sourceeditor.py:201
+msgid "Updating..."
+msgstr ""
+
+#: src/sourceeditor.py:313
+msgid ""
+"Freely edit your sources to fit your needs.\n"
+"Click \"Update Sources\" if you want change the sources to that we prepare "
+"for you.\n"
+"Click \"Submit Sources\" if you want share your sources with other people.\n"
+msgstr ""
+
+#: src/sourceeditor.py:332
+#, fuzzy
+msgid "Update Sources"
 msgstr "更新成功！"
 
-#: src/Templates.py:57
-msgid "HTML document"
-msgstr "HTML 文件"
-
-#: src/Templates.py:58
-msgid "ODB Database"
-msgstr "ODB資料庫"
-
-#: src/Templates.py:59
-msgid "ODS Spreadsheet"
-msgstr "ODS工作表"
-
-#: src/Templates.py:60
-msgid "ODT Document"
-msgstr "ODT文字"
-
-#: src/Templates.py:61
-msgid "Plain text document"
-msgstr "純文字檔"
-
-#: src/Templates.py:62
-msgid "ODP Presentation"
-msgstr "ODP簡報"
-
-#: src/Templates.py:63
-msgid "Python script"
-msgstr "Python 描述語言檔"
-
-#: src/Templates.py:64
-msgid "Shell script"
-msgstr "Shell 描述語言檔"
-
-#: src/Templates.py:91
-msgid "Enabled Templates"
-msgstr "已啟用的樣本"
-
-#: src/Templates.py:98
-msgid "Disabled Templates"
-msgstr "已禁用的樣本"
-
-#: src/Templates.py:107
+#: src/sourceeditor.py:338
 #, fuzzy
-msgid "Manage Templates"
-msgstr "管理你的樣本"
+msgid "Submit Sources"
+msgstr "第三方源"
 
-#: src/Templates.py:108
-#, fuzzy
-msgid ""
-"You can freely manage your document templates.\n"
-"You can drag and drop from File Manager.\n"
-"\"Create Document\" will be added to the context menu.\n"
+#: src/sourceeditor.py:376
+msgid "Please input the correct infomation of the sources!"
 msgstr ""
-"自由地管理你的文檔樣本。\n"
-"你可以從文件管理器拖拽外部樣本進來。\n"
-"它將被加到你的右鍵選單：新增文件。\n"
 
-#: src/Templates.py:133
+#: src/sourceeditor.py:389
 #, fuzzy
-msgid "Rebuild System Templates"
-msgstr "重建系統樣本"
+msgid "No source data available"
+msgstr "（不可用）"
 
-#: src/Templates.py:151
-#, fuzzy
+#: src/sourceeditor.py:390
 msgid ""
-"This will delete all disabled templates.\n"
-"Do you wish to continue?"
-msgstr "這將會刪除掉所有已禁用的樣本，繼續？"
+"You can submit your sources to our server, or you need to wait the server "
+"data available."
+msgstr ""
 
-#: src/common/PackageWorker.py:64
+#: src/sourceeditor.py:398
+msgid "Don't forget to save your sources!"
+msgstr ""
+
+#: src/sourceeditor.py:405
+#, fuzzy
+msgid "Sumit successfully"
+msgstr "更新成功！"
+
+#: src/sourceeditor.py:406
+msgid "Thank you!"
+msgstr ""
+
+#: src/sourceeditor.py:419
+#, fuzzy
+msgid "Save failed!"
+msgstr "更新失敗！"
+
+#: src/sourceeditor.py:420
+msgid "Please check the permission of the sources.list."
+msgstr ""
+
+#: src/sourceeditor.py:426
+msgid "I will reload the file and currenly content will be lost!"
+msgstr ""
+
+#: src/common/package.py:64
 msgid "(Not available)"
 msgstr "（不可用）"
 
-#: src/common/AppData.py:57
+#: src/common/appdata.py:57
 msgid "A color scheme designer"
 msgstr "一個色彩設計器"
 
-#: src/common/AppData.py:58
+#: src/common/appdata.py:58
 msgid "Client for the eD2k and Kad networks"
 msgstr ""
 
-#: src/common/AppData.py:59
+#: src/common/appdata.py:59
 msgid "GNOME IDE for C/C++, Java, Python"
 msgstr ""
 
-#: src/common/AppData.py:60
+#: src/common/appdata.py:60
 msgid "A skinned multimedia player for many platforms"
 msgstr ""
 
-#: src/common/AppData.py:61
+#: src/common/appdata.py:61
 msgid "Record and edit audio files"
 msgstr ""
 
-#: src/common/AppData.py:62
+#: src/common/appdata.py:62
 msgid "Fully customisable dock-like window navigator"
 msgstr ""
 
-#: src/common/AppData.py:63
+#: src/common/appdata.py:63
 msgid "A free video editor"
 msgstr ""
 
-#: src/common/AppData.py:64
+#: src/common/appdata.py:64
 msgid "BitTorrent client written in Java"
 msgstr ""
 
-#: src/common/AppData.py:65 src/common/AppData.py:127
+#: src/common/appdata.py:65 src/common/appdata.py:127
 msgid "Audio Management and Playback application"
 msgstr ""
 
-#: src/common/AppData.py:66
+#: src/common/appdata.py:66
 msgid "A true dock for linux"
 msgstr ""
 
-#: src/common/AppData.py:67
+#: src/common/appdata.py:67
 msgid "A chm file viewer written in GTK+"
 msgstr ""
 
-#: src/common/AppData.py:68
+#: src/common/appdata.py:68
 msgid "The open source, cross-platform IDE"
 msgstr ""
 
-#: src/common/AppData.py:69
+#: src/common/appdata.py:69
 msgid "Advanced Desktop Effects Settings Manager"
 msgstr "進階式桌面特效設定管理員"
 
-#: src/common/AppData.py:70
+#: src/common/appdata.py:70
 msgid "An API documentation browser for GNOME."
 msgstr ""
 
-#: src/common/AppData.py:71
+#: src/common/appdata.py:71
 msgid "A Bittorrent client written in PyGTK"
 msgstr ""
 
-#: src/common/AppData.py:72
+#: src/common/appdata.py:72
 msgid "Store, Sync and Share your files online."
 msgstr ""
 
-#: src/common/AppData.py:73
+#: src/common/appdata.py:73
 msgid "Extensible Tool Platform and Java IDE"
 msgstr ""
 
-#: src/common/AppData.py:74
+#: src/common/appdata.py:74
 msgid "A client for the Windows Live Message network"
 msgstr ""
 
-#: src/common/AppData.py:75
+#: src/common/appdata.py:75
 msgid ""
 "Empathy consists of a rich set of reusable instant messaging widgets, and a "
 "GNOME client using those widgets."
 msgstr ""
 
-#: src/common/AppData.py:76
+#: src/common/appdata.py:76
 msgid "KDE IM client using Tencent QQ protocol"
 msgstr ""
 
-#: src/common/AppData.py:77
+#: src/common/appdata.py:77
 msgid "GTK+ based flexible audio player, similar to Amarok"
 msgstr ""
 
-#: src/common/AppData.py:78
+#: src/common/appdata.py:78
 msgid "File transmission via ftp, sftp and ftps"
 msgstr ""
 
-#: src/common/AppData.py:79
+#: src/common/appdata.py:79
 msgid "An extremly fast and lightweight file manager"
 msgstr ""
 
-#: src/common/AppData.py:80
+#: src/common/appdata.py:80
 msgid ""
 "Galaxium is an instant messenger application designed for the GNOME desktop"
 msgstr ""
 
-#: src/common/AppData.py:81
+#: src/common/appdata.py:81
 msgid "A GTK+ jabber client"
 msgstr ""
 
-#: src/common/AppData.py:82
+#: src/common/appdata.py:82
 msgid "A fast and lightweight IDE"
 msgstr ""
 
-#: src/common/AppData.py:83
+#: src/common/appdata.py:83
 msgid "A multithreaded FTP client"
 msgstr ""
 
-#: src/common/AppData.py:84
+#: src/common/appdata.py:84
 msgid "GNOME Hex editor"
 msgstr ""
 
-#: src/common/AppData.py:85
+#: src/common/appdata.py:85
 msgid "Notifies the user upon arrival of new mail in Gmail"
 msgstr ""
 
-#: src/common/AppData.py:86
+#: src/common/appdata.py:86
 msgid "A powerful, speedy, and sexy remote control for the GNOME Desktop"
 msgstr ""
 
-#: src/common/AppData.py:87
+#: src/common/appdata.py:87
 msgid ""
 "A program that combines satellite imagery and maps to put the world's "
 "geographic information at your fingertips."
 msgstr ""
 
-#: src/common/AppData.py:88
+#: src/common/appdata.py:88
 msgid "Platform for running Google Gadgets on Linux"
 msgstr ""
 
-#: src/common/AppData.py:89
+#: src/common/appdata.py:89
 msgid "GNOME partition editor"
 msgstr "GNOME 桌面環境的磁碟分割管理程式"
 
-#: src/common/AppData.py:90
+#: src/common/appdata.py:90
 msgid "Lightweight image viewer"
 msgstr ""
 
-#: src/common/AppData.py:91
+#: src/common/appdata.py:91
 msgid "A powerful screenshot tool"
 msgstr ""
 
-#: src/common/AppData.py:92
+#: src/common/appdata.py:92
 msgid "Graphical frontend for recordmydesktop"
 msgstr ""
 
-#: src/common/AppData.py:93
+#: src/common/appdata.py:93
 msgid "A graphical CD image editor"
 msgstr ""
 
-#: src/common/AppData.py:94
+#: src/common/appdata.py:94
 msgid "Non-linear editor for Digital Video data"
 msgstr ""
 
-#: src/common/AppData.py:95
+#: src/common/appdata.py:95
 msgid "A music player for Last.fm personalized radio"
 msgstr ""
 
-#: src/common/AppData.py:96
+#: src/common/appdata.py:96
 msgid "GTK+ based simple text editor"
 msgstr "基於 GTK+ 的簡易文字編輯器"
 
-#: src/common/AppData.py:97
+#: src/common/appdata.py:97
 msgid "Feed aggregator for GNOME"
 msgstr ""
 
-#: src/common/AppData.py:98
+#: src/common/appdata.py:98
 msgid "Mail notification in system tray"
 msgstr ""
 
-#: src/common/AppData.py:99
+#: src/common/appdata.py:99
 msgid "Adcal tool to diff and merge files"
 msgstr ""
 
-#: src/common/AppData.py:100
+#: src/common/appdata.py:100
 msgid "A fast and simple GTK+ Image Viewer"
 msgstr ""
 
-#: src/common/AppData.py:101
+#: src/common/appdata.py:101
 msgid "Webkit based lightweight web browser"
 msgstr ""
 
-#: src/common/AppData.py:102
+#: src/common/appdata.py:102
 msgid "An IDE to Develop .NET applications."
 msgstr ""
 
-#: src/common/AppData.py:103
+#: src/common/appdata.py:103
 msgid "The Ultimate Movie Player For Linux"
 msgstr ""
 
-#: src/common/AppData.py:104
+#: src/common/appdata.py:104
 msgid "IDE for Java, C/C++, Ruby, UML, etc."
 msgstr ""
 
-#: src/common/AppData.py:105
+#: src/common/appdata.py:105
 msgid "The Opera Web Browser"
 msgstr ""
 
-#: src/common/AppData.py:106
+#: src/common/appdata.py:106
 msgid ""
 "Pidgin is a graphical modular messaging client based on libpurple which is "
 "capable of connecting to AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, SIP/SIMPLE, "
@@ -1515,133 +1643,137 @@ msgid ""
 "QQ all at once."
 msgstr ""
 
-#: src/common/AppData.py:107
+#: src/common/appdata.py:107
 msgid "Run your Windows programs on Linux"
 msgstr ""
 
-#: src/common/AppData.py:108
+#: src/common/appdata.py:108
 msgid "A framework for desktop widgets"
 msgstr ""
 
-#: src/common/AppData.py:109
+#: src/common/appdata.py:109
 msgid "Make audio/video calls using this VoIP Software"
 msgstr ""
 
-#: src/common/AppData.py:110
+#: src/common/appdata.py:110
 msgid "A great MPlayer front-end, written in QT4"
 msgstr ""
 
-#: src/common/AppData.py:111
+#: src/common/appdata.py:111
 msgid "Convert audio files into other formats"
 msgstr ""
 
-#: src/common/AppData.py:112
+#: src/common/appdata.py:112
 msgid "An international dictionary"
 msgstr ""
 
-#: src/common/AppData.py:113
+#: src/common/appdata.py:113
 msgid ""
 "Swiftweasel is an optimized build of the Mozilla Firefox web browser for "
 "Linux"
 msgstr ""
 
-#: src/common/AppData.py:114
+#: src/common/appdata.py:114
 msgid "Multiple GNOME terminals in one window"
 msgstr ""
 
-#: src/common/AppData.py:115
+#: src/common/appdata.py:115
 msgid "Ubuntu Tweak makes it easier to configure Ubuntu"
 msgstr ""
 
-#: src/common/AppData.py:116
+#: src/common/appdata.py:116
 msgid "Commonly used restricted packages"
 msgstr "常用的受限套件"
 
-#: src/common/AppData.py:117 src/common/AppData.py:118
+#: src/common/appdata.py:117 src/common/appdata.py:118
 msgid "A feature rich, high performance virtualization software"
 msgstr ""
 
-#: src/common/AppData.py:119
+#: src/common/appdata.py:119
 msgid "Read, capture, broadcast your multimedia streams"
 msgstr ""
 
-#: src/common/AppData.py:120
+#: src/common/appdata.py:120
 msgid "Run Virtual Machines using VMware"
 msgstr ""
 
-#: src/common/AppData.py:121
+#: src/common/appdata.py:121
 msgid "A compatibility layer for running Windows programs"
 msgstr ""
 
-#: src/common/AppData.py:122
+#: src/common/appdata.py:122
 msgid ""
 "XBMC is a free and open source software media player and entertainment hub"
 msgstr ""
 
-#: src/common/AppData.py:126
+#: src/common/appdata.py:126
 msgid "Development Version of Mozilla Firefox 3.0/3.1, 4.0"
 msgstr ""
 
-#: src/common/AppData.py:128
+#: src/common/appdata.py:128
 msgid "Development version of Compiz Fusion"
 msgstr ""
 
-#: src/common/AppData.py:129
+#: src/common/appdata.py:129
 msgid "Google's Linux Repository"
 msgstr ""
 
-#: src/common/AppData.py:130
+#: src/common/appdata.py:130
 msgid "K Desktop Environment 4.1"
 msgstr ""
 
-#: src/common/AppData.py:131
+#: src/common/appdata.py:131
 msgid "Lightweight X11 Desktop Environment:GPicView, PCManFM"
 msgstr ""
 
-#: src/common/AppData.py:132
+#: src/common/appdata.py:132
 msgid ""
 "Multimedia, Entertainment and Distraction In Ubuntu\n"
 "Medibuntu is a repository of packages that cannot be included into the "
 "Ubuntu distribution for legal reasons (copyright, license, patent, etc)."
 msgstr ""
 
-#: src/common/Factory.py:190
+#: src/common/appdata.py:133
+msgid "OpenOffice.org 3.0.0"
+msgstr ""
+
+#: src/common/factory.py:190
 msgid "Disable 'Run Application' dialog (Alt+F2)"
 msgstr "禁用“運行應用程式”對話框（Alt+F2）"
 
-#: src/common/PolicyKit/PolkitButton.py:39
+#: src/common/policykit/polkitbutton.py:80
 msgid "_Unlock"
 msgstr "解鎖(_U)"
 
-#: src/common/Widgets/Widgets.py:249
+#: src/common/widgets/widgets.py:249
 msgid "Please press the new key combination"
 msgstr "请按下新组合键"
 
-#: src/common/Widgets/Widgets.py:298
+#: src/common/widgets/widgets.py:298
 msgid "Disabled"
 msgstr "禁用"
 
-#: src/common/Widgets/TreeViews.py:69
+#: src/common/widgets/treeviews.py:69
 msgid "Create folder"
 msgstr "建立資料夾"
 
-#: src/common/Widgets/TreeViews.py:77
+#: src/common/widgets/treeviews.py:77
 msgid "Delete"
 msgstr "刪除"
 
-#: src/common/Widgets/TreeViews.py:99
+#: src/common/widgets/treeviews.py:99
 msgid "Input the dir name"
 msgstr "輸入資料夾名稱"
 
-#: src/common/Widgets/TreeViews.py:124
+#: src/common/widgets/treeviews.py:124
 msgid "Can't rename the root folder"
 msgstr "不能重命名根目錄"
 
-#: src/common/Widgets/TreeViews.py:141
+#: src/common/widgets/treeviews.py:141
 msgid "Can't delete the root folder"
 msgstr "不能刪除根目錄"
 
-#: src/common/Widgets/TreeViews.py:156
+#: src/common/widgets/treeviews.py:156
 msgid ""
 "Can't rename!\n"
 "\n"

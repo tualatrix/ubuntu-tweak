@@ -23,7 +23,7 @@ import gtk
 import gobject
 import thread
 
-from common.Consts import *
+from common.consts import *
 
 try:
     import dl
@@ -37,11 +37,11 @@ class TweakLauncher:
             thread.start_new_thread(self.show_splash, ())
 
             try:
-                from PackageWorker import update_apt_cache
+                from common.package import update_apt_cache
             except ImportError:
                 pass
 
-            from MainWindow import MainWindow
+            from mainwindow import MainWindow
 
             window = MainWindow()
 
@@ -67,7 +67,7 @@ class TweakLauncher:
 
     def main(self):
         gtk.gdk.threads_enter()
-        os.system("exec python UpdateManager.py &")
+        os.system("exec python updatemanager.py &")
         gtk.main()
         gtk.gdk.threads_leave()
 

@@ -30,7 +30,7 @@ from common.widgets import TweakPage, InfoDialog
 from xdg.DesktopEntry import DesktopEntry
 
 try:
-    from common.PackageWorker import PackageWorker, PackageInfo, update_apt_cache
+    from common.package import PackageWorker, PackageInfo, update_apt_cache
     DISABLE = False
 except ImportError:
     DISABLE = True

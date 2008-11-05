@@ -25,9 +25,9 @@ import socket
 import gobject
 import gettext
 from xmlrpclib import ServerProxy, Error
-from common.systeminfo import SystemModule
 from common.utils import *
-from common.policykit import DbusProxy, PolkitButton
+from common.systeminfo import module_check
+from common.policykit import PolkitButton, proxy
 from common.widgets import TweakPage, InfoDialog, QuestionDialog, ErrorDialog
 from common.utils import set_label_for_stock_button
 
@@ -39,8 +39,8 @@ from common.utils import set_label_for_stock_button
     COLUMN_DISPLAY,
 ) = range(5)
 
-#SOURCES_LIST = '/etc/apt/sources.list'
-SOURCES_LIST = '/home/tualatrix/Desktop/sources.list'
+SOURCES_LIST = '/etc/apt/sources.list'
+#SOURCES_LIST = '/home/tualatrix/Desktop/sources.list'
 
 class SelectSourceDialog(gtk.Dialog):
     def __init__(self, parent):
@@ -188,7 +188,7 @@ class UploadDialog(ProcessDialog):
         self.processing = True
         try:
             title, locale, comment, source = data
-            self.server.putsource(title, locale, comment, SystemModule.get_codename(), source)
+            self.server.putsource(title, locale, comment, module_check.get_codename(), source)
         except:
             self.error = True
 
@@ -204,7 +204,7 @@ class UpdateDialog(ProcessDialog):
         global SOURCES_DATA
         self.processing = True
         try:
-            SOURCES_DATA = self.server.getsource(os.getenv('LANG'), SystemModule.get_codename())
+            SOURCES_DATA = self.server.getsource(os.getenv('LANG'), module_check.get_codename())
         except:
             self.error = True
 
@@ -232,7 +232,7 @@ class SourceView(gtk.TextView):
         buffer.delete(buffer.get_start_iter(), buffer.get_end_iter())
         iter = buffer.get_iter_at_offset(0)
         for line in content.split('\n'):
-            self.__insert_line(buffer, iter, line)
+            self.parse_and_insert(buffer, iter, line)
 
         iter = buffer.get_iter_at_offset(offset)
         buffer.place_cursor(iter)
@@ -243,33 +243,30 @@ class SourceView(gtk.TextView):
         iter = buffer.get_iter_at_offset(0)
         if content:
             for line in content.split('\n'):
-                self.__insert_line(buffer, iter, line)
+                self.parse_and_insert(buffer, iter, line)
         else:
             for line in file(SOURCES_LIST):
-                self.__insert_line(buffer, iter, line)
+                self.parse_and_insert(buffer, iter, line)
 
-    def __insert_line(self, buffer, iter, line):
-        if line.strip():
-            try:
-                if line.strip()[0] == '#':
-                    buffer.insert_with_tags_by_name(iter, line, 'full_comment')
-                    self.insert_line(buffer, iter)
-                else:
-                    list = line.split()
-                    type, uri, distro, component = list[0], list[1], list[2], list[3:]
+    def parse_and_insert(self, buffer, iter, line):
+        try:
+            if line.strip()[0] == '#':
+                buffer.insert_with_tags_by_name(iter, line, 'full_comment')
+                self.insert_line(buffer, iter)
+            else:
+                list = line.split()
+                type, uri, distro, component = list[0], list[1], list[2], list[3:]
 
-                    buffer.insert_with_tags_by_name(iter, type, 'type')
-                    self.insert_blank(buffer, iter)
-                    buffer.insert_with_tags_by_name(iter, uri, 'uri')
-                    self.insert_blank(buffer, iter)
-                    buffer.insert_with_tags_by_name(iter, distro, 'distro')
-                    self.insert_blank(buffer, iter)
-                    self.seprarte_component(buffer, component, iter)
-                    self.insert_line(buffer, iter)
-            except:
-                buffer.insert(iter, line)
-        else:
-            buffer.insert(iter, line)
+                buffer.insert_with_tags_by_name(iter, type, 'type')
+                self.insert_blank(buffer, iter)
+                buffer.insert_with_tags_by_name(iter, uri, 'uri')
+                self.insert_blank(buffer, iter)
+                buffer.insert_with_tags_by_name(iter, distro, 'distro')
+                self.insert_blank(buffer, iter)
+                self.seprarte_component(buffer, component, iter)
+                self.insert_line(buffer, iter)
+        except IndexError:
+            buffer.insert(iter, '\n')
 
     def create_tags(self):
         import pango
@@ -319,7 +316,6 @@ class SourceEditor(TweakPage):
         )
 
         self.online_data = {}
-        self.proxy = DbusProxy()
         
         hbox = gtk.HBox(False, 0)
         self.pack_start(hbox, True, True, 0)
@@ -419,8 +415,9 @@ class SourceEditor(TweakPage):
 
     def on_save_button_clicked(self, wiget):
         text = self.textview.get_text()
-        if self.proxy.edit_file(SOURCES_LIST, text) == 'error':
-            ErrorDialog('Error').launch()
+        if proxy.edit_file(SOURCES_LIST, text) == 'error':
+            ErrorDialog('<big><b>%s</b></big>\n\n%s' % (_('Save failed!'), 
+                _('Please check the permission of the sources.list.'))).launch()
         else:
             self.save_button.set_sensitive(False)
             self.redo_button.set_sensitive(False)
@@ -435,10 +432,8 @@ class SourceEditor(TweakPage):
         dialog.destroy()
 
     def on_polkit_action(self, widget, action):
-        proxy = self.proxy.get_proxy()
-
         if action:
-            if proxy:
+            if proxy.get_proxy():
                 self.textview.set_sensitive(True)
                 self.update_button.set_sensitive(True)
                 self.submit_button.set_sensitive(True)

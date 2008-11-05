@@ -1,21 +1,23 @@
 SUBDIRS = policykit widgets
 
 common_PYTHON = \
-	./Download.py \
+	./settings.py \
+	./download.py \
+	./inifile.py \
+	./package.py \
 	./__init__.py \
-	./SystemInfo.py \
-	./Canvas.py \
-	./PackageWorker.py \
-	./LookupIcon.py \
-	./AppData.py \
-	./IniFile.py \
-	./Factory.py \
-	./Settings.py \
+	./config.py \
+	./appdata.py \
+	./utils.py \
+	./consts.py \
+	./canvas.py \
+	./factory.py \
+	./systeminfo.py \
 	$(NULL)
 
 commondir = $(pkgdatadir)/common
 
-nodist_consts_DATA = Consts.py
+nodist_consts_DATA = consts.py
 constsdir = $(pkgdatadir)/common
 
-EXTRA_DIST = Consts.py.in
+EXTRA_DIST = consts.py.in

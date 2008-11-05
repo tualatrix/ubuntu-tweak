@@ -7,6 +7,7 @@ templates_DATA = \
 	html-document.html \
 	odp-presentation.odp \
 	odb-database.odb \
-	plain-text-document.txt
+	plain-text-document.txt \
+	$(NULL)
 
 EXTRA_DIST = $(templates_DATA)

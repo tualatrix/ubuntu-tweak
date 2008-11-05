@@ -24,7 +24,7 @@ import thread
 import gobject
 import gettext
 from common.utils import *
-from common.policykit import DbusProxy, PolkitButton
+from common.policykit import PolkitButton, proxy
 from common.package import PackageWorker, update_apt_cache
 from common.widgets import TweakPage, InfoDialog, QuestionDialog, ErrorDialog
 
@@ -50,7 +50,6 @@ class PackageView(gtk.TreeView):
         self.set_model(model)
 
         self.__check_list = []
-        self.__proxy = DbusProxy()
         self.__packageworker = PackageWorker()
 
         self.__add_column()
@@ -210,7 +209,7 @@ class PackageView(gtk.TreeView):
 
         model = self.get_model()
         for file in self.__check_list:
-            result = self.__proxy.delete_file(file)
+            result = proxy.delete_file(file)
             if result == 'error': break
 
         if result == 'done':
@@ -333,10 +332,8 @@ class PackageCleaner(TweakPage):
             thread.start_new_thread(self.treeview.clean_selected_cache, ())
 
     def on_polkit_action(self, widget, action):
-        proxy = DbusProxy.get_proxy()
-
         if action:
-            if proxy:
+            if proxy.get_proxy():
                 self.treeview.set_sensitive(True)
                 self.select_button.set_sensitive(True)
             else:

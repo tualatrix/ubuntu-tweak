@@ -2,7 +2,7 @@ import os
 import cairo
 import pango
 import pangocairo
-from Settings import StringSetting
+from settings import StringSetting
 
 (
     SHOW_ALWAYS,

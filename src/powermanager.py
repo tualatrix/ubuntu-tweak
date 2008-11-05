@@ -25,7 +25,7 @@ import os
 import gconf
 import gettext
 
-from common.systeminfo import SystemModule
+from common.systeminfo import module_check
 from common.factory import Factory
 from common.widgets import HScaleBox, TablePack, TweakPage
 
@@ -44,7 +44,7 @@ class PowerManager(TweakPage):
         ]) 
         self.pack_start(box, False, False, 0)
 
-        if SystemModule.gnome_version() < 24:
+        if module_check.get_gnome_version() < 24:
             cpu_policy_text = [_("Normal"), _("On Demand"), _("Power Save"), _("Performance")]
             cpu_policy_value = ["nothing", "ondemand", "powersave", "performance"]
             box = TablePack(_("CPU Policy"), [

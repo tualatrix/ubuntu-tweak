@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2008-10-21 16:14+0800\n"
+"POT-Creation-Date: 2008-11-05 19:41+0800\n"
 "PO-Revision-Date: 2008-09-29 20:57+0000\n"
 "Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
@@ -17,200 +17,202 @@ msgstr ""
 "X-Launchpad-Export-Date: 2008-10-08 10:33+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
-#: src/Computer.py:49
-msgid "System information"
-msgstr "Rendszerinformáció"
+#: src/autostart.py:44
+msgid "_Name:"
+msgstr "_Név:"
 
-#: src/Computer.py:50
-msgid "Hostname"
-msgstr "Gépnév"
+#: src/autostart.py:47
+msgid "Co_mmand:"
+msgstr "_Parancs:"
 
-#: src/Computer.py:51
-msgid "Distribution"
-msgstr "Disztribúció"
+#: src/autostart.py:50 src/sourceeditor.py:106
+msgid "Comm_ent:"
+msgstr "Me_gjegyzés:"
 
-#: src/Computer.py:52
+#: src/autostart.py:61
+msgid "Edit Startup Program"
+msgstr "Elindítandó program szerkesztése"
+
+#: src/autostart.py:66
+msgid "New Startup Program"
+msgstr "Új automatikusan elinduló program"
+
+#: src/autostart.py:68
 #, fuzzy
-msgid "Desktop environment"
-msgstr "Munkaasztal környezet"
+msgid "_Browse..."
+msgstr "_Böngészés"
 
-#: src/Computer.py:53
-msgid "Kernel"
-msgstr "Kernel"
+#: src/autostart.py:97
+msgid "Choose a Program"
+msgstr "Válasszon programot"
 
-#: src/Computer.py:54
-msgid "Platform"
-msgstr "Platform"
+#: src/autostart.py:181
+msgid "Delete from Disk"
+msgstr "Törlés a merevlemezről"
 
-#: src/Computer.py:55
-msgid "CPU"
-msgstr "Processzor"
+#: src/autostart.py:195
+msgid "Can't delete the system item from disk."
+msgstr "Nem törölhető a rendszereszköz a merevlemezről."
 
-#: src/Computer.py:56
-msgid "Memory"
-msgstr "Memória"
+#: src/autostart.py:240
+msgid "None description"
+msgstr "Nincs leírás"
 
-#: src/Computer.py:60
-msgid "User information"
-msgstr "Felhasználói információ"
+#: src/autostart.py:260
+msgid "Program"
+msgstr "Program"
 
-#: src/Computer.py:61
+#: src/autostart.py:322
 #, fuzzy
-msgid "Current user"
-msgstr "Jelenlegi felhasználó"
+msgid "Session Programs"
+msgstr "Munkafolyamat vezérlés"
 
-#: src/Computer.py:62
-#, fuzzy
-msgid "Home directory"
-msgstr "Saját mappa"
-
-#: src/Computer.py:63
-msgid "Shell"
-msgstr "Parancsértelmező"
-
-#: src/Computer.py:64
-msgid "Language"
-msgstr "Nyelv"
-
-#: src/Scripts.py:46
-msgid "Copy to ..."
-msgstr "Másolás..."
-
-#: src/Scripts.py:47
-msgid "Move to ..."
-msgstr "Áthelyezés..."
-
-#: src/Scripts.py:48
-msgid "Link to ..."
-msgstr "Link..."
-
-#: src/Scripts.py:49
-msgid "Open with gedit"
-msgstr "Megnyitás a Szövegszerkesztővel"
-
-#: src/Scripts.py:50
-msgid "Open with gedit(as root)"
-msgstr "Megnyitás a Szövegszerkesztővel (rendszergazdai jogokkal)"
-
-#: src/Scripts.py:51
-msgid "Browse as root"
-msgstr "Böngészés rendszergazdaként"
-
-#: src/Scripts.py:52
-msgid "Search in current folder"
-msgstr "Keresés a jelenlegi könyvtárban"
-
-#: src/Scripts.py:79
-msgid "Enabled Scripts"
-msgstr "Engedélyezett parancsfájlok"
-
-#: src/Scripts.py:86
-msgid "Disabled Scripts"
-msgstr "Parancsfájlok letiltva"
-
-#: src/Scripts.py:95
-#, fuzzy
-msgid "Manage Scripts"
-msgstr "Parancsfájlok kezelése."
-
-#: src/Scripts.py:96
-#, fuzzy
+#: src/autostart.py:323
 msgid ""
-"You can do all kinds of tasks with scripts.\n"
-"You can drag and drop from File Manager.\n"
-"\"Scripts\" will be added to the context menu.\n"
+"Here you can manage what programs get started upon login.\n"
+"By selecing an item and pressing Remove, you simply hide it from view.\n"
+"To permanently delete it, right-click and press 'Delete'."
 msgstr ""
-"Minden féle feladatot meg tudsz oldani szkriptekkel.\n"
-"Használhatod a drag and drop módszert a fájlkezelőben.\n"
-"A \"Szkriptek\" hozzá lesznek adva a helyi menühöz.\n"
 
-#: src/Scripts.py:121
+#: src/autostart.py:329
 #, fuzzy
-msgid "Rebuild System Scripts"
-msgstr "Rendszer szkriptek újraépítése"
+msgid "Show comments"
+msgstr "Program megjegyzések mutatása"
 
-#: src/Scripts.py:139
+#: src/autostart.py:331
+msgid "Show all runnable programs"
+msgstr "Összes futtatható program mutatása"
+
+#: src/autostart.py:393 src/autostart.py:440
+msgid "The name of the startup program cannot be empty"
+msgstr "Az elindítandó program neve nem lehet üres"
+
+#: src/autostart.py:395 src/autostart.py:442
+msgid "Text was empty (or contained only whitespace)"
+msgstr ""
+"A szöveg üres volt (vagy legfeljebb üreshely-karaktereket tartalmazott)"
+
+#: src/updatemanager.py:69
+msgid "Update Manager"
+msgstr ""
+
+#: src/updatemanager.py:86 src/updatemanager.py:114
+#, python-format
+msgid "Downloading...%d"
+msgstr ""
+
+#: src/updatemanager.py:119
+msgid "Finished"
+msgstr ""
+
+#: src/installer.py:50
+msgid "File-Sharing Clients"
+msgstr ""
+
+#: src/installer.py:51
+msgid "Image Tools"
+msgstr "Képeszközök"
+
+#: src/installer.py:52
+msgid "Sound Tools"
+msgstr "Hangeszközök"
+
+#: src/installer.py:53
+msgid "Video Tools"
+msgstr "Videoeszközök"
+
+#: src/installer.py:54
+msgid "Text Tools"
+msgstr "Szövegeszközök"
+
+#: src/installer.py:55
 #, fuzzy
+msgid "Instant Messengers"
+msgstr "Azonnali üzenetküldő"
+
+#: src/installer.py:56
+msgid "Internet Tools"
+msgstr "Interneteszközök"
+
+#: src/installer.py:57
+msgid "FTP Tools"
+msgstr "FTP eszközök"
+
+#: src/installer.py:58
+msgid "Desktop Tools"
+msgstr "Asztali eszközök"
+
+#: src/installer.py:59
+msgid "CD/Disk Tools"
+msgstr "CD/Lemez eszközök"
+
+#: src/installer.py:60
+msgid "Development"
+msgstr ""
+
+#: src/installer.py:61
+msgid "Emulators"
+msgstr "Emulátorok"
+
+#: src/installer.py:62
+msgid "E-mail Tools"
+msgstr ""
+
+#: src/installer.py:135
+#, fuzzy
+msgid "Add/Remove Applications"
+msgstr "Alkalmazások"
+
+#: src/installer.py:136
 msgid ""
-"This will delete all disabled scripts.\n"
-"Do you wish to continue?"
-msgstr "Minden letiltott parancsfájl törölve lesz. Folytatja?"
+"A simple but more effective for finding and installing popular packages than "
+"the default Add/Remove."
+msgstr ""
 
-#: src/Metacity.py:36
-msgid "Window Decorate Effect"
-msgstr "Ablakdekorációs Effektek"
+#: src/installer.py:184
+msgid "All Categories"
+msgstr "Minden kategória"
 
-#: src/Metacity.py:37
+#: src/installer.py:340
+msgid "Updated Successfully!"
+msgstr ""
+
+#: src/installer.py:342
+msgid "Updated Failed!"
+msgstr ""
+
+#: src/lockdown.py:36
+msgid "System Security options"
+msgstr "Rendszer Biztonsági beállítások"
+
+#: src/lockdown.py:37
+msgid "Disable \"Run Application\" dialog (Alt+F2)"
+msgstr "\"Alkalmazás futtatása\" párbeszédablak tiltása (Alt+F2)"
+
+#: src/lockdown.py:38
 #, fuzzy
-msgid "Use Metacity window theme"
-msgstr "Metacity téma alkalmazása"
+msgid "Disable \"Lock Screen\""
+msgstr "Képernyő zárolásának tiltása"
 
-#: src/Metacity.py:38
+#: src/lockdown.py:39
 #, fuzzy
-msgid "Enable active window transparency"
-msgstr "Inaktív ablak átlátszóság homályossága"
+msgid "Disable printing"
+msgstr "Nyomtatás tiltása"
 
-#: src/Metacity.py:39
-msgid "Active window transparency level"
-msgstr "Aktív ablak átlátszósága"
-
-#: src/Metacity.py:40
+#: src/lockdown.py:40
 #, fuzzy
-msgid "Enable inactive window transparency"
-msgstr "Inaktív ablak átlátszóság homályossága"
+msgid "Disable print setup"
+msgstr "Nyomtató beállítások tiltása"
 
-#: src/Metacity.py:41
-msgid "Inactive window shade transparency level"
-msgstr "Inaktív ablak átlátszósága"
-
-#: src/Metacity.py:45
-msgid "Window Titlebar Action"
-msgstr "Ablak címsorának hatása"
-
-#: src/Metacity.py:46
+#: src/lockdown.py:41
 #, fuzzy
-msgid "Titlebar mouse wheel action"
-msgstr "Egérgörgő esemény a címsoron"
+msgid "Disable save to disk"
+msgstr "Merevlemezre mentés tiltása"
 
-#: src/Metacity.py:46 src/Metacity.py:47 src/Metacity.py:48 src/Metacity.py:49
-#: src/Shortcuts.py:91 src/Shortcuts.py:190
-msgid "None"
-msgstr "Semmi"
-
-#: src/Metacity.py:46 src/Metacity.py:47 src/Metacity.py:48 src/Metacity.py:49
-msgid "Roll up"
-msgstr "Felgördítés"
-
-#: src/Metacity.py:47
+#: src/lockdown.py:42
 #, fuzzy
-msgid "Titlebar double-click action"
-msgstr "Címsorművelet dupla kattintásra"
-
-#: src/Metacity.py:47 src/Metacity.py:48 src/Metacity.py:49
-msgid "Maximize"
-msgstr "Maximalizálás"
-
-#: src/Metacity.py:47 src/Metacity.py:48 src/Metacity.py:49
-msgid "Minimize"
-msgstr "Minimalizálás"
-
-#: src/Metacity.py:47 src/Metacity.py:48 src/Metacity.py:49
-msgid "Lower"
-msgstr "Alacsonyabb"
-
-#: src/Metacity.py:47 src/Metacity.py:48 src/Metacity.py:49
-msgid "Menu"
-msgstr "Menü"
-
-#: src/Metacity.py:48
-#, fuzzy
-msgid "Titlebar middle-click action"
-msgstr "Címsorművelet középső kattintásra"
-
-#: src/Metacity.py:49
-#, fuzzy
-msgid "Titlebar right-click action"
-msgstr "Címsorművelet jobb kattintásra"
+msgid "Disable \"User Switch\""
+msgstr "Felhasználóváltás tiltása"
 
 #: src/ScriptWorker.py:53
 #, python-format
@@ -239,7 +241,302 @@ msgstr "Válasszon egy könyvtárat"
 msgid "Please select a target(files or folders)."
 msgstr "Kérlek válassz egy célt (fájlt, vagy mappát)"
 
-#: src/ThirdSoft.py:144
+#: src/mainwindow.py:60
+msgid "Welcome to"
+msgstr ""
+
+#: src/mainwindow.py:66
+msgid "Tweak your Linux computer to what you like."
+msgstr ""
+
+#: src/mainwindow.py:67
+msgid "Easily install various kinds of applications."
+msgstr ""
+
+#: src/mainwindow.py:68
+msgid "Clean up unneeded packages to free diskspace."
+msgstr ""
+
+#: src/mainwindow.py:69
+msgid "Configure templates and scripts to improve your computing."
+msgstr ""
+
+#: src/mainwindow.py:70
+msgid "And many more useful features!"
+msgstr ""
+
+#: src/mainwindow.py:82
+msgid "<span size=\"xx-large\">Please wait a moment...</span>"
+msgstr ""
+
+#: src/mainwindow.py:95
+msgid ""
+"<span size=\"x-large\">This feature isn't currently available in your "
+"distrobution</span>"
+msgstr ""
+
+#: src/mainwindow.py:197
+msgid "Welcome"
+msgstr "Üdvözlés"
+
+#: src/mainwindow.py:198
+msgid "Computer"
+msgstr "Számítógép"
+
+#: src/mainwindow.py:199
+msgid "Applications"
+msgstr "Alkalmazások"
+
+#: src/mainwindow.py:200
+msgid "Add/Remove"
+msgstr "Hozzáadás/eltávolítás"
+
+#: src/mainwindow.py:201 src/sourceeditor.py:312
+msgid "Source Editor"
+msgstr ""
+
+#: src/mainwindow.py:202 src/thirdsoft.py:219
+#, fuzzy
+msgid "Third-Party Sources"
+msgstr "Harmadik fél források"
+
+#: src/mainwindow.py:203 src/cleaner.py:233
+msgid "Package Cleaner"
+msgstr ""
+
+#: src/mainwindow.py:204
+msgid "Startup"
+msgstr "Indítás"
+
+#: src/mainwindow.py:205 src/session.py:136
+msgid "Session Control"
+msgstr "Munkafolyamat vezérlés"
+
+#: src/mainwindow.py:206
+#, fuzzy
+msgid "Autostart"
+msgstr "Automatikus indítás"
+
+#: src/mainwindow.py:207 src/userdir.py:44
+msgid "Desktop"
+msgstr "Munkaasztal"
+
+#: src/mainwindow.py:208
+msgid "Icons"
+msgstr ""
+
+#: src/mainwindow.py:209
+#, fuzzy
+msgid "Windows"
+msgstr "Ablakok kiválasztása"
+
+#: src/mainwindow.py:210
+msgid "Compiz Fusion"
+msgstr "Compiz Fusion"
+
+#: src/mainwindow.py:211
+msgid "GNOME"
+msgstr "Gnome"
+
+#: src/mainwindow.py:212
+msgid "Personal"
+msgstr "Személyes"
+
+#: src/mainwindow.py:213
+#, fuzzy
+msgid "Folders"
+msgstr "Felhasználó mappája"
+
+#: src/mainwindow.py:214 src/userdir.py:46
+msgid "Templates"
+msgstr "Sablonok"
+
+#: src/mainwindow.py:215
+msgid "Scripts"
+msgstr "Parancsfájlok"
+
+#: src/mainwindow.py:216
+msgid "Shortcuts"
+msgstr "Gyorsbillentyűk"
+
+#: src/mainwindow.py:217
+msgid "System"
+msgstr "Rendszer"
+
+#: src/mainwindow.py:218
+msgid "Nautilus"
+msgstr "Fájlböngésző"
+
+#: src/mainwindow.py:219
+#, fuzzy
+msgid "Power Managerment"
+msgstr "Energiakezelés"
+
+#: src/mainwindow.py:220
+#, fuzzy
+msgid "Security"
+msgstr "Parancsfájlok"
+
+#: src/mainwindow.py:466
+msgid "Ubuntu Tweak Website"
+msgstr ""
+
+#: src/mainwindow.py:468
+msgid ""
+"Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
+"system and desktop settings."
+msgstr ""
+"Az Ubuntu Tweak egy eszköz az Ubuntuhoz, amivel könnyen beállíthatja a "
+"rendszerét, és a munkaasztalát."
+
+#: src/mainwindow.py:475
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  Gabor Kelemen https://launchpad.net/~kelemeng\n"
+"  Kőrösi Krisztián https://launchpad.net/~koeroesi86\n"
+"  Pittmann Tamás https://launchpad.net/~zaivaldi\n"
+"  Szilveszter Kovács https://launchpad.net/~hunsly"
+
+#: src/mainwindow.py:488
+#, python-format
+msgid ""
+"A newer version: %s is available online.\n"
+"Would you like to update?"
+msgstr ""
+"Egy újabb (%s) verzió elérhető online.\n"
+"Szeretne frissíteni?"
+
+#: src/userdir.py:45
+#, fuzzy
+msgid "Download"
+msgstr "Letöltés könyvtár"
+
+#: src/userdir.py:47
+#, fuzzy
+msgid "Public"
+msgstr "Nyilvános könyvtár"
+
+#: src/userdir.py:48
+#, fuzzy
+msgid "Document"
+msgstr "ODT dokumentum"
+
+#: src/userdir.py:49
+msgid "Music"
+msgstr ""
+
+#: src/userdir.py:50
+#, fuzzy
+msgid "Pictures"
+msgstr "Képek könyvtár"
+
+#: src/userdir.py:51
+#, fuzzy
+msgid "Videos"
+msgstr "Videoeszközök"
+
+#: src/userdir.py:127
+#, fuzzy
+msgid "Choose a folder"
+msgstr "Válasszon programot"
+
+#: src/userdir.py:146
+msgid ""
+"<b><big>Notice</big></b>\n"
+"\n"
+"Ubuntu Tweak will restore the chosen directory to the default location.\n"
+"However, you must move your files back into place by yourself.\n"
+"Do you wish to continue?"
+msgstr ""
+
+#: src/userdir.py:177
+#, fuzzy
+msgid "Direcotry"
+msgstr "Saját mappa"
+
+#: src/userdir.py:191
+msgid "Path"
+msgstr ""
+
+#: src/userdir.py:198
+msgid "Change"
+msgstr ""
+
+#: src/userdir.py:202
+msgid "Restore to default"
+msgstr ""
+
+#: src/userdir.py:212
+msgid "Default Folder Locations"
+msgstr ""
+
+#: src/userdir.py:213
+msgid ""
+"You can change the default document folders here.\n"
+"But don't change the Desktop folder under normal use."
+msgstr ""
+
+#: src/userdir.py:234
+msgid "Update successfully!"
+msgstr "Frissítés kész!"
+
+#: src/computer.py:49
+msgid "System information"
+msgstr "Rendszerinformáció"
+
+#: src/computer.py:50
+msgid "Hostname"
+msgstr "Gépnév"
+
+#: src/computer.py:51
+msgid "Distribution"
+msgstr "Disztribúció"
+
+#: src/computer.py:52
+#, fuzzy
+msgid "Desktop environment"
+msgstr "Munkaasztal környezet"
+
+#: src/computer.py:53
+msgid "Kernel"
+msgstr "Kernel"
+
+#: src/computer.py:54
+msgid "Platform"
+msgstr "Platform"
+
+#: src/computer.py:55
+msgid "CPU"
+msgstr "Processzor"
+
+#: src/computer.py:56
+msgid "Memory"
+msgstr "Memória"
+
+#: src/computer.py:60
+msgid "User information"
+msgstr "Felhasználói információ"
+
+#: src/computer.py:61
+#, fuzzy
+msgid "Current user"
+msgstr "Jelenlegi felhasználó"
+
+#: src/computer.py:62
+#, fuzzy
+msgid "Home directory"
+msgstr "Saját mappa"
+
+#: src/computer.py:63
+msgid "Shell"
+msgstr "Parancsértelmező"
+
+#: src/computer.py:64
+msgid "Language"
+msgstr "Nyelv"
+
+#: src/thirdsoft.py:144
 msgid ""
 "<b><big>The information about available software is out-of-date</big></b>\n"
 "\n"
@@ -257,33 +554,28 @@ msgstr ""
 "\n"
 "A folytatáshoz működő hálózati kapcsolatra van szükség."
 
-#: src/ThirdSoft.py:220 src/MainWindow.py:198
-#, fuzzy
-msgid "Third-Party Sources"
-msgstr "Harmadik fél források"
-
-#: src/ThirdSoft.py:301
+#: src/thirdsoft.py:297
 msgid "Homepage"
 msgstr ""
 
-#: src/ThirdSoft.py:301
+#: src/thirdsoft.py:297
 msgid "Source URL"
 msgstr ""
 
-#: src/ThirdSoft.py:301
+#: src/thirdsoft.py:297
 msgid "Description"
 msgstr ""
 
-#: src/ThirdSoft.py:312
+#: src/thirdsoft.py:308
 msgid "Description is here"
 msgstr ""
 
-#: src/ThirdSoft.py:340
+#: src/thirdsoft.py:336
 #, fuzzy
 msgid "Third-Party Softwares Sources"
 msgstr "Harmadik fél szoftverforrásai"
 
-#: src/ThirdSoft.py:341
+#: src/thirdsoft.py:337
 msgid ""
 "After every releases of Ubuntu comes a feature freeze.\n"
 "This means only applications with bug-fixes get into the repository.\n"
@@ -292,11 +584,11 @@ msgid ""
 "After adding these repositories, locate and install them using Add/Remove."
 msgstr ""
 
-#: src/ThirdSoft.py:357
+#: src/thirdsoft.py:353
 msgid "Details"
 msgstr ""
 
-#: src/ThirdSoft.py:394
+#: src/thirdsoft.py:388
 msgid ""
 "<b><big>Warning</big></b>\n"
 "\n"
@@ -304,18 +596,18 @@ msgid ""
 "Please be careful."
 msgstr ""
 
-#: src/ThirdSoft.py:398
+#: src/thirdsoft.py:392
 msgid "Never show this dialog"
 msgstr "Ne mutasd ezt az ablaköt többször"
 
-#: src/ThirdSoft.py:405 src/PackageCleaner.py:343
+#: src/thirdsoft.py:399 src/cleaner.py:340 src/sourceeditor.py:441
 msgid ""
 "<b><big>Service hasn't initialized yet</big></b>\n"
 "\n"
 "You need to restart your Ubuntu."
 msgstr ""
 
-#: src/ThirdSoft.py:407 src/PackageCleaner.py:345
+#: src/thirdsoft.py:401 src/cleaner.py:342 src/sourceeditor.py:443
 msgid ""
 "<b><big>Could not authenticate</big></b>\n"
 "\n"
@@ -325,775 +617,309 @@ msgstr ""
 "\n"
 "Egy váratlan hiba lépett fel."
 
-#: src/ThirdSoft.py:419
+#: src/thirdsoft.py:413
 msgid ""
 "<b><big>The software information is up-to-date now</big></b>\n"
 "\n"
 "You can install the new applications through Add/Remove."
 msgstr ""
 
-#: src/Session.py:39
-msgid "Splash Screen (Click Below Image)"
-msgstr ""
-
-#: src/Session.py:43
-#, fuzzy
-msgid "Choose a splash image"
-msgstr "Válasszon Splash képet"
-
-#: src/Session.py:45 src/Gnome.py:107
-msgid "PNG image (*.png)"
-msgstr "Png kép (*.png)"
-
-#: src/Session.py:130
-msgid "Automatically save changes to session"
-msgstr "Munkafolyamat változtatásai automatikusan mentésre kerülnek"
-
-#: src/Session.py:131
-#, fuzzy
-msgid "Show logout prompt"
-msgstr "Kijelentkezőablak mutatása"
-
-#: src/Session.py:132
-msgid "Allow TCP Connections(Remote Desktop Connect)"
-msgstr ""
-
-#: src/Session.py:133
-#, fuzzy
-msgid "Show splash screen"
-msgstr "Splash képernyő mutatása"
-
-#: src/Session.py:136 src/MainWindow.py:201
-msgid "Session Control"
-msgstr "Munkafolyamat vezérlés"
-
-#: src/LockDown.py:36
-msgid "System Security options"
-msgstr "Rendszer Biztonsági beállítások"
-
-#: src/LockDown.py:37
-msgid "Disable \"Run Application\" dialog (Alt+F2)"
-msgstr "\"Alkalmazás futtatása\" párbeszédablak tiltása (Alt+F2)"
-
-#: src/LockDown.py:38
-#, fuzzy
-msgid "Disable \"Lock Screen\""
-msgstr "Képernyő zárolásának tiltása"
-
-#: src/LockDown.py:39
-#, fuzzy
-msgid "Disable printing"
-msgstr "Nyomtatás tiltása"
-
-#: src/LockDown.py:40
-#, fuzzy
-msgid "Disable print setup"
-msgstr "Nyomtató beállítások tiltása"
-
-#: src/LockDown.py:41
-#, fuzzy
-msgid "Disable save to disk"
-msgstr "Merevlemezre mentés tiltása"
-
-#: src/LockDown.py:42
-#, fuzzy
-msgid "Disable \"User Switch\""
-msgstr "Felhasználóváltás tiltása"
-
-#: src/Nautilus.py:41
-#, fuzzy
-msgid "Show advanced permissions on Permissions tab of File Property"
-msgstr "Mutasd a haladó beállításokat a Fájl Tulajdunságai ablakban"
-
-#: src/Nautilus.py:43
-#, fuzzy
-msgid "File Browser"
-msgstr "_Böngészés"
-
-#: src/Nautilus.py:47
-#, fuzzy
-msgid "Default thumbnail icon Size"
-msgstr "Alapértelmezett bélyegkép-ikon méret"
-
-#: src/Nautilus.py:58
-msgid "CD Burner"
-msgstr "CD író"
-
-#: src/Nautilus.py:59
-msgid "Enable BurnProof technology"
-msgstr "BurnProof technológia engedélyezése"
-
-#: src/Nautilus.py:60
-msgid "Enable OverBurn"
-msgstr "Túlírás engedélyezése"
-
-#: src/Nautilus.py:68
-msgid "Nautilus with Open Terminal"
-msgstr "Nautilus Open Terminal-al"
-
-#: src/Nautilus.py:70
-msgid "Nautilus with Root Privileges"
-msgstr "Nautilus rendszergazdai jogokkal"
-
-#: src/Nautilus.py:72
-msgid "Nautilus with Wallpaper"
-msgstr "Nautilus háttérrel"
-
-#: src/Nautilus.py:74
-msgid "Nautilus Extensions"
-msgstr "Nautilus kiegészítők"
-
-#: src/Nautilus.py:108 src/Compiz.py:370
-msgid "Update Successfully!"
-msgstr "A frissítés sikeres!"
-
-#: src/Nautilus.py:110
-msgid "Update Failed!"
-msgstr "Frissítés sikertelen!"
-
-#: src/Gnome.py:43
-msgid "Panel and Menu"
-msgstr "Panel és menü"
-
-#: src/Gnome.py:45
-#, fuzzy
-msgid "Display warning when removing a panel"
-msgstr "Megerősítő üzenet a panel eltávolításakor"
-
-#: src/Gnome.py:48
-#, fuzzy
-msgid "Complete lockdown of all panels"
-msgstr "Panel teljes rögzítése "
-
-#: src/Gnome.py:51
-msgid "Enable panel animations"
-msgstr "Panel animációk engedélyezése"
-
-#: src/Gnome.py:54
-#, fuzzy
-msgid "Show Input Method menu on the context menu"
-msgstr "Mutasd a beviteli módokat a szöveg menüben"
-
-#: src/Gnome.py:57
-#, fuzzy
-msgid "Show Unicode Method menu on the context menu"
-msgstr "Mutasd a(z) Unicode módokat a szöveg menüben"
-
-#: src/Gnome.py:64
-msgid "Screensaver"
-msgstr "Képernyővédő"
-
-#: src/Gnome.py:65
-msgid "Enable user switching when screen is locked."
-msgstr ""
-
-#: src/Gnome.py:69
-#, fuzzy
-msgid "Enable system-wide \"Recently Documents\" list"
-msgstr "Engedélyezd a 'Legutóbb Használtak' listáját"
-
-#: src/Gnome.py:72
-msgid "History"
-msgstr "Előzmények"
-
-#: src/Gnome.py:79
-msgid "Notification-daemon popup location"
-msgstr "Értesítő-démon felugró ablakának helye"
-
-#: src/Gnome.py:83
-msgid "Top Left"
-msgstr "Balra fent"
-
-#: src/Gnome.py:83
-msgid "Top Right"
-msgstr "Jobbra fent"
-
-#: src/Gnome.py:83
-msgid "Bottom Left"
-msgstr "Balra lent"
-
-#: src/Gnome.py:83
-msgid "Bottom Right"
-msgstr "Jobbra lent"
-
-#: src/Gnome.py:92
-#, fuzzy
-msgid "Click the button to change the menu logo"
-msgstr "Kattints a nagy gombra a Splash képernyő változtatásához"
-
-#: src/Gnome.py:105
-msgid "Choose a new logo"
-msgstr ""
-
-#: src/Gnome.py:122
-msgid ""
-"The size isn't suitable for the panel.\n"
-"It should be 24x24."
-msgstr ""
-
-#: src/Gnome.py:131
-msgid "Do you want take effect immediately?"
-msgstr ""
-
-#: src/Icon.py:32
+#: src/icons.py:32
 msgid "Show \"Computer\" icon on desktop"
 msgstr "Mutassa a \"Számítógép\" ikont a munkaasztalon"
 
-#: src/Icon.py:33 src/Icon.py:42 src/Icon.py:51
-#: src/common/Widgets/TreeViews.py:73
+#: src/icons.py:33 src/icons.py:42 src/icons.py:51
+#: src/common/widgets/treeviews.py:73
 msgid "Rename"
 msgstr ""
 
-#: src/Icon.py:41
+#: src/icons.py:41
 #, fuzzy
 msgid "Show \"Home Folder\" icon on desktop"
 msgstr "Mutassa a \"Saját mappa\" ikont a munkaasztalon"
 
-#: src/Icon.py:50
+#: src/icons.py:50
 msgid "Show \"Trash\" icon on desktop"
 msgstr "Mutassa a \"Kuka\" ikont a munkaasztalon"
 
-#: src/Icon.py:100 src/common/Widgets/Widgets.py:66
-#: src/common/Widgets/Widgets.py:81
+#: src/icons.py:100 src/common/widgets/widgets.py:66
+#: src/common/widgets/widgets.py:81
 msgid "Unset"
 msgstr "Visszaállít"
 
-#: src/Icon.py:106
+#: src/icons.py:106
 msgid "Desktop Icon settings"
 msgstr "Asztali ikonok beállításai"
 
-#: src/Icon.py:108
+#: src/icons.py:108
 msgid "Show desktop icons"
 msgstr "Mutassa a munkaasztalon az ikonokat"
 
-#: src/Icon.py:128
+#: src/icons.py:128
 msgid "Show \"Network\" icon on desktop"
 msgstr "Mutassa a \"Hálózat\" ikont a munkaasztalon"
 
-#: src/Icon.py:131
+#: src/icons.py:131
 #, fuzzy
 msgid "Show mounted volumes on desktop"
 msgstr "Mutassa a csatolt köteteket a munkaasztalon"
 
-#: src/Icon.py:134
+#: src/icons.py:134
 #, fuzzy
 msgid "Use \"Home Folder\" as desktop(Logout for changes to take effect)"
 msgstr "Saját mappa használata asztalként"
 
-#: src/MainWindow.py:60
-msgid "Welcome to"
+#: src/metacity.py:36
+msgid "Window Decorate Effect"
+msgstr "Ablakdekorációs Effektek"
+
+#: src/metacity.py:37
+#, fuzzy
+msgid "Use Metacity window theme"
+msgstr "Metacity téma alkalmazása"
+
+#: src/metacity.py:38
+#, fuzzy
+msgid "Enable active window transparency"
+msgstr "Inaktív ablak átlátszóság homályossága"
+
+#: src/metacity.py:39
+msgid "Active window transparency level"
+msgstr "Aktív ablak átlátszósága"
+
+#: src/metacity.py:40
+#, fuzzy
+msgid "Enable inactive window transparency"
+msgstr "Inaktív ablak átlátszóság homályossága"
+
+#: src/metacity.py:41
+msgid "Inactive window shade transparency level"
+msgstr "Inaktív ablak átlátszósága"
+
+#: src/metacity.py:45
+msgid "Window Titlebar Action"
+msgstr "Ablak címsorának hatása"
+
+#: src/metacity.py:46
+#, fuzzy
+msgid "Titlebar mouse wheel action"
+msgstr "Egérgörgő esemény a címsoron"
+
+#: src/metacity.py:46 src/metacity.py:47 src/metacity.py:48 src/metacity.py:49
+#: src/shortcuts.py:91 src/shortcuts.py:190
+msgid "None"
+msgstr "Semmi"
+
+#: src/metacity.py:46 src/metacity.py:47 src/metacity.py:48 src/metacity.py:49
+msgid "Roll up"
+msgstr "Felgördítés"
+
+#: src/metacity.py:47
+#, fuzzy
+msgid "Titlebar double-click action"
+msgstr "Címsorművelet dupla kattintásra"
+
+#: src/metacity.py:47 src/metacity.py:48 src/metacity.py:49
+msgid "Maximize"
+msgstr "Maximalizálás"
+
+#: src/metacity.py:47 src/metacity.py:48 src/metacity.py:49
+msgid "Minimize"
+msgstr "Minimalizálás"
+
+#: src/metacity.py:47 src/metacity.py:48 src/metacity.py:49
+msgid "Lower"
+msgstr "Alacsonyabb"
+
+#: src/metacity.py:47 src/metacity.py:48 src/metacity.py:49
+msgid "Menu"
+msgstr "Menü"
+
+#: src/metacity.py:48
+#, fuzzy
+msgid "Titlebar middle-click action"
+msgstr "Címsorművelet középső kattintásra"
+
+#: src/metacity.py:49
+#, fuzzy
+msgid "Titlebar right-click action"
+msgstr "Címsorművelet jobb kattintásra"
+
+#: src/session.py:39
+msgid "Splash Screen (Click Below Image)"
 msgstr ""
 
-#: src/MainWindow.py:66
-msgid "Tweak your Linux computer to what you like."
+#: src/session.py:43
+#, fuzzy
+msgid "Choose a splash image"
+msgstr "Válasszon Splash képet"
+
+#: src/session.py:45 src/gnomesettings.py:107
+msgid "PNG image (*.png)"
+msgstr "Png kép (*.png)"
+
+#: src/session.py:130
+msgid "Automatically save changes to session"
+msgstr "Munkafolyamat változtatásai automatikusan mentésre kerülnek"
+
+#: src/session.py:131
+#, fuzzy
+msgid "Show logout prompt"
+msgstr "Kijelentkezőablak mutatása"
+
+#: src/session.py:132
+msgid "Allow TCP Connections(Remote Desktop Connect)"
 msgstr ""
 
-#: src/MainWindow.py:67
-msgid "Easily install various kinds of applications."
-msgstr ""
+#: src/session.py:133
+#, fuzzy
+msgid "Show splash screen"
+msgstr "Splash képernyő mutatása"
 
-#: src/MainWindow.py:68
-msgid "Clean up unneeded packages to free diskspace."
-msgstr ""
+#: src/templates.py:57
+msgid "HTML document"
+msgstr "Html dokumentum"
 
-#: src/MainWindow.py:69
-msgid "Configure templates and scripts to improve your computing."
-msgstr ""
+#: src/templates.py:58
+msgid "ODB Database"
+msgstr "ODB adatbázis"
 
-#: src/MainWindow.py:70
-msgid "And many more useful features!"
-msgstr ""
+#: src/templates.py:59
+msgid "ODS Spreadsheet"
+msgstr "ODS táblázatkezelő"
 
-#: src/MainWindow.py:82
-msgid "<span size=\"xx-large\">Please wait a moment...</span>"
-msgstr ""
+#: src/templates.py:60
+msgid "ODT Document"
+msgstr "ODT dokumentum"
 
-#: src/MainWindow.py:95
+#: src/templates.py:61
+msgid "Plain text document"
+msgstr "Egyszerű szöveg"
+
+#: src/templates.py:62
+msgid "ODP Presentation"
+msgstr "ODP prezentáció"
+
+#: src/templates.py:63
+msgid "Python script"
+msgstr "Python-parancsfájl"
+
+#: src/templates.py:64
+msgid "Shell script"
+msgstr "Parancsfájl"
+
+#: src/templates.py:91
+msgid "Enabled Templates"
+msgstr "Sablonok engedélyezése"
+
+#: src/templates.py:98
+msgid "Disabled Templates"
+msgstr "Sablonok tiltása"
+
+#: src/templates.py:107
+#, fuzzy
+msgid "Manage Templates"
+msgstr "Sablonok kezelése"
+
+#: src/templates.py:108
+#, fuzzy
 msgid ""
-"<span size=\"x-large\">This feature isn't currently available in your "
-"distrobution</span>"
+"You can freely manage your document templates.\n"
+"You can drag and drop from File Manager.\n"
+"\"Create Document\" will be added to the context menu.\n"
 msgstr ""
+"Szabadon szerkesztheted a dokumentum sablonokat.\n"
+"Használhatod a drag and drop módszert a fájlkezelőben.\n"
+"A \"Dokumentum létrehozása\" hozzá lesz adva a helyi menühöz.\n"
 
-#: src/MainWindow.py:194
-msgid "Welcome"
-msgstr "Üdvözlés"
-
-#: src/MainWindow.py:195
-msgid "Computer"
-msgstr "Számítógép"
-
-#: src/MainWindow.py:196
-msgid "Applications"
-msgstr "Alkalmazások"
-
-#: src/MainWindow.py:197
-msgid "Add/Remove"
-msgstr "Hozzáadás/eltávolítás"
-
-#: src/MainWindow.py:199 src/PackageCleaner.py:234
-msgid "Package Cleaner"
-msgstr ""
-
-#: src/MainWindow.py:200
-msgid "Startup"
-msgstr "Indítás"
-
-#: src/MainWindow.py:202
+#: src/templates.py:133
 #, fuzzy
-msgid "Autostart"
-msgstr "Automatikus indítás"
+msgid "Rebuild System Templates"
+msgstr "Rendszersablonok újraépítése"
 
-#: src/MainWindow.py:203 src/UserDir.py:44
-msgid "Desktop"
-msgstr "Munkaasztal"
-
-#: src/MainWindow.py:204
-msgid "Icons"
-msgstr ""
-
-#: src/MainWindow.py:205
+#: src/templates.py:151
 #, fuzzy
-msgid "Windows"
-msgstr "Ablakok kiválasztása"
-
-#: src/MainWindow.py:206
-msgid "Compiz Fusion"
-msgstr "Compiz Fusion"
-
-#: src/MainWindow.py:207
-msgid "GNOME"
-msgstr "Gnome"
-
-#: src/MainWindow.py:208
-msgid "Personal"
-msgstr "Személyes"
-
-#: src/MainWindow.py:209
-#, fuzzy
-msgid "Folders"
-msgstr "Felhasználó mappája"
-
-#: src/MainWindow.py:210 src/UserDir.py:46
-msgid "Templates"
-msgstr "Sablonok"
-
-#: src/MainWindow.py:211
-msgid "Scripts"
-msgstr "Parancsfájlok"
-
-#: src/MainWindow.py:212
-msgid "Shortcuts"
-msgstr "Gyorsbillentyűk"
-
-#: src/MainWindow.py:213
-msgid "System"
-msgstr "Rendszer"
-
-#: src/MainWindow.py:214
-msgid "Nautilus"
-msgstr "Fájlböngésző"
-
-#: src/MainWindow.py:215
-#, fuzzy
-msgid "Power Managerment"
-msgstr "Energiakezelés"
-
-#: src/MainWindow.py:216
-#, fuzzy
-msgid "Security"
-msgstr "Parancsfájlok"
-
-#: src/MainWindow.py:461
-msgid "Ubuntu Tweak Website"
-msgstr ""
-
-#: src/MainWindow.py:463
 msgid ""
-"Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
-"system and desktop settings."
-msgstr ""
-"Az Ubuntu Tweak egy eszköz az Ubuntuhoz, amivel könnyen beállíthatja a "
-"rendszerét, és a munkaasztalát."
-
-#: src/MainWindow.py:470
-msgid "translator-credits"
-msgstr ""
-"Launchpad Contributions:\n"
-"  Gabor Kelemen https://launchpad.net/~kelemeng\n"
-"  Kőrösi Krisztián https://launchpad.net/~koeroesi86\n"
-"  Pittmann Tamás https://launchpad.net/~zaivaldi\n"
-"  Szilveszter Kovács https://launchpad.net/~hunsly"
-
-#: src/MainWindow.py:483
-#, python-format
-msgid ""
-"A newer version: %s is available online.\n"
-"Would you like to update?"
-msgstr ""
-"Egy újabb (%s) verzió elérhető online.\n"
-"Szeretne frissíteni?"
-
-#: src/Installer.py:50
-msgid "File-Sharing Clients"
-msgstr ""
-
-#: src/Installer.py:51
-msgid "Image Tools"
-msgstr "Képeszközök"
-
-#: src/Installer.py:52
-msgid "Sound Tools"
-msgstr "Hangeszközök"
-
-#: src/Installer.py:53
-msgid "Video Tools"
-msgstr "Videoeszközök"
-
-#: src/Installer.py:54
-msgid "Text Tools"
-msgstr "Szövegeszközök"
-
-#: src/Installer.py:55
-#, fuzzy
-msgid "Instant Messengers"
-msgstr "Azonnali üzenetküldő"
-
-#: src/Installer.py:56
-msgid "Internet Tools"
-msgstr "Interneteszközök"
-
-#: src/Installer.py:57
-msgid "FTP Tools"
-msgstr "FTP eszközök"
-
-#: src/Installer.py:58
-msgid "Desktop Tools"
-msgstr "Asztali eszközök"
-
-#: src/Installer.py:59
-msgid "CD/Disk Tools"
-msgstr "CD/Lemez eszközök"
-
-#: src/Installer.py:60
-msgid "Development"
-msgstr ""
-
-#: src/Installer.py:61
-msgid "Emulators"
-msgstr "Emulátorok"
-
-#: src/Installer.py:62
-msgid "E-mail Tools"
-msgstr ""
-
-#: src/Installer.py:135
-#, fuzzy
-msgid "Add/Remove Applications"
-msgstr "Alkalmazások"
-
-#: src/Installer.py:136
-msgid ""
-"A simple but more effective for finding and installing popular packages than "
-"the default Add/Remove."
-msgstr ""
-
-#: src/Installer.py:184
-msgid "All Categories"
-msgstr "Minden kategória"
-
-#: src/Installer.py:340
-msgid "Updated Successfully!"
-msgstr ""
-
-#: src/Installer.py:342
-msgid "Updated Failed!"
-msgstr ""
-
-#: src/PowerManager.py:37
-msgid "Advanced Power Management Settings"
-msgstr "Haladó energiagazdálkodási lehetőségek"
-
-#: src/PowerManager.py:38
-#, fuzzy
-msgid "Enable \"Hibernation\""
-msgstr "Hibernálás engedélyezése"
-
-#: src/PowerManager.py:39
-#, fuzzy
-msgid "Enable \"Suspend\""
-msgstr "Felfüggesztés engedélyezése"
-
-#: src/PowerManager.py:40
-#, fuzzy
-msgid "Show \"CPU frequency control option\" in Power Management Preferences"
-msgstr "CPU órajel beállítási lehetőség megjelenítése"
-
-#: src/PowerManager.py:41
-#, fuzzy
-msgid "Disable Network Manager when on sleep"
-msgstr "Network Manager letiltása készenlétben"
-
-#: src/PowerManager.py:42
-msgid "Enable \"Lock screen\" when \"Blank Screen\" activates"
-msgstr ""
-
-#: src/PowerManager.py:43
-msgid "Display \"Power Manager\" panel item"
-msgstr ""
-
-#: src/PowerManager.py:43
-msgid "Never display"
-msgstr "Sosem"
-
-#: src/PowerManager.py:43
-msgid "When charging"
-msgstr "Töltés közben"
-
-#: src/PowerManager.py:43
-msgid "Always display"
-msgstr "Mindig"
-
-#: src/PowerManager.py:48
-msgid "Normal"
-msgstr "Normál"
-
-#: src/PowerManager.py:48
-msgid "On Demand"
-msgstr "Igény szerint"
-
-#: src/PowerManager.py:48
-msgid "Power Save"
-msgstr "Energiatakarékos"
-
-#: src/PowerManager.py:48
-msgid "Performance"
-msgstr "Teljesítmény"
-
-#: src/PowerManager.py:50
-msgid "CPU Policy"
-msgstr "CPU szabály"
-
-#: src/PowerManager.py:51
-msgid "The Performance value when on AC power"
-msgstr "A Teljesítmény érték használata hálózati tápellátás esetén"
-
-#: src/PowerManager.py:52
-msgid "The Performance value when on battery power"
-msgstr "A Teljesítmény érték használata akkumulátoros tápellátás esetén"
-
-#: src/PowerManager.py:53
-msgid "The CPU frequency policy when on AC power"
-msgstr "A CPU órajel szabályozása hálózati feszültségen"
-
-#: src/PowerManager.py:54
-msgid "The CPU frequency policy when on battery power"
-msgstr "A CPU órajel szabályozása akkumulátoron"
-
-#: src/PackageCleaner.py:80
-msgid "Package"
-msgstr ""
-
-#: src/PackageCleaner.py:104
-msgid "Packages"
-msgstr ""
-
-#: src/PackageCleaner.py:127
-msgid "Package Cache"
-msgstr ""
-
-#: src/PackageCleaner.py:137
-#, python-format
-msgid ""
-"<b>%s</b>\n"
-"Take %s KB of disk space"
-msgstr ""
-
-#: src/PackageCleaner.py:162
-#, python-format
-msgid "%d package selected to remove"
-msgstr ""
-
-#: src/PackageCleaner.py:163
-#, python-format
-msgid "%d packages selected to remove"
-msgstr ""
-
-#: src/PackageCleaner.py:166
-#, python-format
-msgid "%d KB of space will be freed"
-msgstr ""
-
-#: src/PackageCleaner.py:226
-msgid "Cleaned up Successfully!"
-msgstr ""
-
-#: src/PackageCleaner.py:229
-msgid "Cleaned up Failed!"
-msgstr ""
-
-#: src/PackageCleaner.py:235
-msgid "Free up disk space by clearing unneeded packages and the package cache."
-msgstr ""
-
-#: src/PackageCleaner.py:253
-msgid "Clean Package"
-msgstr ""
-
-#: src/PackageCleaner.py:259
-msgid "Clean Cache"
-msgstr ""
-
-#: src/PackageCleaner.py:272
-msgid "Select All"
-msgstr ""
-
-#: src/AutoStart.py:44
-msgid "_Name:"
-msgstr "_Név:"
-
-#: src/AutoStart.py:47
-msgid "Co_mmand:"
-msgstr "_Parancs:"
-
-#: src/AutoStart.py:50
-msgid "Comm_ent:"
-msgstr "Me_gjegyzés:"
-
-#: src/AutoStart.py:61
-msgid "Edit Startup Program"
-msgstr "Elindítandó program szerkesztése"
-
-#: src/AutoStart.py:66
-msgid "New Startup Program"
-msgstr "Új automatikusan elinduló program"
-
-#: src/AutoStart.py:68
-#, fuzzy
-msgid "_Browse..."
-msgstr "_Böngészés"
-
-#: src/AutoStart.py:97
-msgid "Choose a Program"
-msgstr "Válasszon programot"
-
-#: src/AutoStart.py:181
-msgid "Delete from Disk"
-msgstr "Törlés a merevlemezről"
-
-#: src/AutoStart.py:195
-msgid "Can't delete the system item from disk."
-msgstr "Nem törölhető a rendszereszköz a merevlemezről."
-
-#: src/AutoStart.py:240
-msgid "None description"
-msgstr "Nincs leírás"
-
-#: src/AutoStart.py:260
-msgid "Program"
-msgstr "Program"
-
-#: src/AutoStart.py:322
-#, fuzzy
-msgid "Session Programs"
-msgstr "Munkafolyamat vezérlés"
-
-#: src/AutoStart.py:323
-msgid ""
-"Here you can manage what programs get started upon login.\n"
-"By selecing an item and pressing Remove, you simply hide it from view.\n"
-"To permanently delete it, right-click and press 'Delete'."
-msgstr ""
-
-#: src/AutoStart.py:329
-#, fuzzy
-msgid "Show comments"
-msgstr "Program megjegyzések mutatása"
-
-#: src/AutoStart.py:331
-msgid "Show all runnable programs"
-msgstr "Összes futtatható program mutatása"
-
-#: src/AutoStart.py:393 src/AutoStart.py:440
-msgid "The name of the startup program cannot be empty"
-msgstr "Az elindítandó program neve nem lehet üres"
-
-#: src/AutoStart.py:395 src/AutoStart.py:442
-msgid "Text was empty (or contained only whitespace)"
-msgstr ""
-"A szöveg üres volt (vagy legfeljebb üreshely-karaktereket tartalmazott)"
-
-#: src/Compiz.py:208
+"This will delete all disabled templates.\n"
+"Do you wish to continue?"
+msgstr "Minden letiltott sablon törölve lesz. Folytatja?"
+
+#: src/compiz.py:208
 msgid "Install Advanced Desktop Effects Settings Manager"
 msgstr "Telepíti az Advanced Desktop Effects Settings Manager-t"
 
-#: src/Compiz.py:211
+#: src/compiz.py:211
 msgid "Install Simple Desktop Effects Settings manager"
 msgstr "Telepíti a Simple Desktop Effects Settings manager-t"
 
-#: src/Compiz.py:214
+#: src/compiz.py:214
 msgid "Install Screenlets Widget Application"
 msgstr "Telepíti a Screenlets Widget alkalmazást"
 
-#: src/Compiz.py:224
+#: src/compiz.py:224
 #, fuzzy
 msgid "Enable snapping windows"
 msgstr "Ragadós ablakok"
 
-#: src/Compiz.py:225
+#: src/compiz.py:225
 #, fuzzy
 msgid "Enable wobbly windows"
 msgstr "Imbolygó ablakok"
 
-#: src/Compiz.py:227
+#: src/compiz.py:227
 msgid "Window Effects"
 msgstr "Ablak effektek"
 
-#: src/Compiz.py:230
+#: src/compiz.py:230
 #, fuzzy
 msgid "Enable transparent menus"
 msgstr "Átlátszó menü"
 
-#: src/Compiz.py:231
+#: src/compiz.py:231
 #, fuzzy
 msgid "Enable wobbly menus"
 msgstr "Imbolygó menü"
 
-#: src/Compiz.py:233
+#: src/compiz.py:233
 msgid "Menu Effects"
 msgstr "Menü effektek"
 
-#: src/Compiz.py:238
+#: src/compiz.py:238
 #, fuzzy
 msgid "Useful Extensions"
 msgstr "Nautilus kiegészítők"
 
-#: src/Compiz.py:253
+#: src/compiz.py:253
 msgid "Prerequisite Conditions"
 msgstr "Előfeltételek"
 
-#: src/Compiz.py:296
+#: src/compiz.py:296
 msgid "Expo"
 msgstr "Expo"
 
-#: src/Compiz.py:297
+#: src/compiz.py:297
 #, fuzzy
 msgid "Show Windows"
 msgstr "Imbolygó ablakok"
 
-#: src/Compiz.py:298
+#: src/compiz.py:298
 msgid "Show Desktop"
 msgstr "Munkaasztal megjelenítése"
 
-#: src/Compiz.py:299
+#: src/compiz.py:299
 msgid "Widget"
 msgstr "Felületi elem"
 
-#: src/Shortcuts.py:47
+#: src/compiz.py:370 src/nautilus.py:108
+msgid "Update Successfully!"
+msgstr "A frissítés sikeres!"
+
+#: src/shortcuts.py:47
 #, fuzzy
 msgid "Shortcut Commands"
 msgstr "Gyorsbillentyűk"
 
-#: src/Shortcuts.py:48
+#: src/shortcuts.py:48
 #, fuzzy
 msgid ""
 "By configuring keyboard shortcuts, you have faster access to the "
@@ -1107,388 +933,687 @@ msgstr ""
 "parancs.\n"
 "Használd a <b>Delete</b> vagy a <b>BackSpace</b> a parancs törléséhez."
 
-#: src/Shortcuts.py:87
+#: src/shortcuts.py:87
 #, python-format
 msgid "Command %d"
 msgstr "%d parancs"
 
-#: src/Shortcuts.py:94 src/Shortcuts.py:157
+#: src/shortcuts.py:94 src/shortcuts.py:157
 msgid "disabled"
 msgstr "letiltva"
 
-#: src/Shortcuts.py:110
+#: src/shortcuts.py:110
 msgid "ID"
 msgstr "ID"
 
-#: src/Shortcuts.py:121
+#: src/shortcuts.py:121
 msgid "Command"
 msgstr "Parancs"
 
-#: src/Shortcuts.py:136
+#: src/shortcuts.py:136
 msgid "Key"
 msgstr "Billentyű"
 
-#: src/UpdateManager.py:69
-msgid "Update Manager"
+#: src/cleaner.py:79
+msgid "Package"
 msgstr ""
 
-#: src/UpdateManager.py:86 src/UpdateManager.py:114
+#: src/cleaner.py:103
+msgid "Packages"
+msgstr ""
+
+#: src/cleaner.py:126
+msgid "Package Cache"
+msgstr ""
+
+#: src/cleaner.py:136
 #, python-format
-msgid "Downloading...%d"
+msgid ""
+"<b>%s</b>\n"
+"Take %s KB of disk space"
 msgstr ""
 
-#: src/UpdateManager.py:119
-msgid "Finished"
+#: src/cleaner.py:161
+#, python-format
+msgid "%d package selected to remove"
 msgstr ""
 
-#: src/UserDir.py:45
-#, fuzzy
-msgid "Download"
-msgstr "Letöltés könyvtár"
-
-#: src/UserDir.py:47
-#, fuzzy
-msgid "Public"
-msgstr "Nyilvános könyvtár"
-
-#: src/UserDir.py:48
-#, fuzzy
-msgid "Document"
-msgstr "ODT dokumentum"
-
-#: src/UserDir.py:49
-msgid "Music"
+#: src/cleaner.py:162
+#, python-format
+msgid "%d packages selected to remove"
 msgstr ""
 
-#: src/UserDir.py:50
-#, fuzzy
-msgid "Pictures"
-msgstr "Képek könyvtár"
+#: src/cleaner.py:165
+#, python-format
+msgid "%d KB of space will be freed"
+msgstr ""
 
-#: src/UserDir.py:51
-#, fuzzy
-msgid "Videos"
-msgstr "Videoeszközök"
+#: src/cleaner.py:225
+msgid "Cleaned up Successfully!"
+msgstr ""
 
-#: src/UserDir.py:127
+#: src/cleaner.py:228
+msgid "Cleaned up Failed!"
+msgstr ""
+
+#: src/cleaner.py:234
+msgid "Free up disk space by clearing unneeded packages and the package cache."
+msgstr ""
+
+#: src/cleaner.py:252
+msgid "Clean Package"
+msgstr ""
+
+#: src/cleaner.py:258
+msgid "Clean Cache"
+msgstr ""
+
+#: src/cleaner.py:271
+msgid "Select All"
+msgstr ""
+
+#: src/scripts.py:46
+msgid "Copy to ..."
+msgstr "Másolás..."
+
+#: src/scripts.py:47
+msgid "Move to ..."
+msgstr "Áthelyezés..."
+
+#: src/scripts.py:48
+msgid "Link to ..."
+msgstr "Link..."
+
+#: src/scripts.py:49
+msgid "Open with gedit"
+msgstr "Megnyitás a Szövegszerkesztővel"
+
+#: src/scripts.py:50
+msgid "Open with gedit(as root)"
+msgstr "Megnyitás a Szövegszerkesztővel (rendszergazdai jogokkal)"
+
+#: src/scripts.py:51
+msgid "Browse as root"
+msgstr "Böngészés rendszergazdaként"
+
+#: src/scripts.py:52
+msgid "Search in current folder"
+msgstr "Keresés a jelenlegi könyvtárban"
+
+#: src/scripts.py:79
+msgid "Enabled Scripts"
+msgstr "Engedélyezett parancsfájlok"
+
+#: src/scripts.py:86
+msgid "Disabled Scripts"
+msgstr "Parancsfájlok letiltva"
+
+#: src/scripts.py:95
 #, fuzzy
-msgid "Choose a folder"
+msgid "Manage Scripts"
+msgstr "Parancsfájlok kezelése."
+
+#: src/scripts.py:96
+#, fuzzy
+msgid ""
+"You can do all kinds of tasks with scripts.\n"
+"You can drag and drop from File Manager.\n"
+"\"Scripts\" will be added to the context menu.\n"
+msgstr ""
+"Minden féle feladatot meg tudsz oldani szkriptekkel.\n"
+"Használhatod a drag and drop módszert a fájlkezelőben.\n"
+"A \"Szkriptek\" hozzá lesznek adva a helyi menühöz.\n"
+
+#: src/scripts.py:121
+#, fuzzy
+msgid "Rebuild System Scripts"
+msgstr "Rendszer szkriptek újraépítése"
+
+#: src/scripts.py:139
+#, fuzzy
+msgid ""
+"This will delete all disabled scripts.\n"
+"Do you wish to continue?"
+msgstr "Minden letiltott parancsfájl törölve lesz. Folytatja?"
+
+#: src/gnomesettings.py:43
+msgid "Panel and Menu"
+msgstr "Panel és menü"
+
+#: src/gnomesettings.py:45
+#, fuzzy
+msgid "Display warning when removing a panel"
+msgstr "Megerősítő üzenet a panel eltávolításakor"
+
+#: src/gnomesettings.py:48
+#, fuzzy
+msgid "Complete lockdown of all panels"
+msgstr "Panel teljes rögzítése "
+
+#: src/gnomesettings.py:51
+msgid "Enable panel animations"
+msgstr "Panel animációk engedélyezése"
+
+#: src/gnomesettings.py:54
+#, fuzzy
+msgid "Show Input Method menu on the context menu"
+msgstr "Mutasd a beviteli módokat a szöveg menüben"
+
+#: src/gnomesettings.py:57
+#, fuzzy
+msgid "Show Unicode Method menu on the context menu"
+msgstr "Mutasd a(z) Unicode módokat a szöveg menüben"
+
+#: src/gnomesettings.py:64
+msgid "Screensaver"
+msgstr "Képernyővédő"
+
+#: src/gnomesettings.py:65
+msgid "Enable user switching when screen is locked."
+msgstr ""
+
+#: src/gnomesettings.py:69
+#, fuzzy
+msgid "Enable system-wide \"Recently Documents\" list"
+msgstr "Engedélyezd a 'Legutóbb Használtak' listáját"
+
+#: src/gnomesettings.py:72
+msgid "History"
+msgstr "Előzmények"
+
+#: src/gnomesettings.py:79
+msgid "Notification-daemon popup location"
+msgstr "Értesítő-démon felugró ablakának helye"
+
+#: src/gnomesettings.py:83
+msgid "Top Left"
+msgstr "Balra fent"
+
+#: src/gnomesettings.py:83
+msgid "Top Right"
+msgstr "Jobbra fent"
+
+#: src/gnomesettings.py:83
+msgid "Bottom Left"
+msgstr "Balra lent"
+
+#: src/gnomesettings.py:83
+msgid "Bottom Right"
+msgstr "Jobbra lent"
+
+#: src/gnomesettings.py:92
+#, fuzzy
+msgid "Click the button to change the menu logo"
+msgstr "Kattints a nagy gombra a Splash képernyő változtatásához"
+
+#: src/gnomesettings.py:105
+msgid "Choose a new logo"
+msgstr ""
+
+#: src/gnomesettings.py:122
+msgid ""
+"The size isn't suitable for the panel.\n"
+"It should be 24x24."
+msgstr ""
+
+#: src/gnomesettings.py:131
+msgid "Do you want take effect immediately?"
+msgstr ""
+
+#: src/nautilus.py:41
+#, fuzzy
+msgid "Show advanced permissions on Permissions tab of File Property"
+msgstr "Mutasd a haladó beállításokat a Fájl Tulajdunságai ablakban"
+
+#: src/nautilus.py:43
+#, fuzzy
+msgid "File Browser"
+msgstr "_Böngészés"
+
+#: src/nautilus.py:47
+#, fuzzy
+msgid "Default thumbnail icon Size"
+msgstr "Alapértelmezett bélyegkép-ikon méret"
+
+#: src/nautilus.py:58
+msgid "CD Burner"
+msgstr "CD író"
+
+#: src/nautilus.py:59
+msgid "Enable BurnProof technology"
+msgstr "BurnProof technológia engedélyezése"
+
+#: src/nautilus.py:60
+msgid "Enable OverBurn"
+msgstr "Túlírás engedélyezése"
+
+#: src/nautilus.py:68
+msgid "Nautilus with Open Terminal"
+msgstr "Nautilus Open Terminal-al"
+
+#: src/nautilus.py:70
+msgid "Nautilus with Root Privileges"
+msgstr "Nautilus rendszergazdai jogokkal"
+
+#: src/nautilus.py:72
+msgid "Nautilus with Wallpaper"
+msgstr "Nautilus háttérrel"
+
+#: src/nautilus.py:74
+msgid "Nautilus Extensions"
+msgstr "Nautilus kiegészítők"
+
+#: src/nautilus.py:110
+msgid "Update Failed!"
+msgstr "Frissítés sikertelen!"
+
+#: src/powermanager.py:37
+msgid "Advanced Power Management Settings"
+msgstr "Haladó energiagazdálkodási lehetőségek"
+
+#: src/powermanager.py:38
+#, fuzzy
+msgid "Enable \"Hibernation\""
+msgstr "Hibernálás engedélyezése"
+
+#: src/powermanager.py:39
+#, fuzzy
+msgid "Enable \"Suspend\""
+msgstr "Felfüggesztés engedélyezése"
+
+#: src/powermanager.py:40
+#, fuzzy
+msgid "Show \"CPU frequency control option\" in Power Management Preferences"
+msgstr "CPU órajel beállítási lehetőség megjelenítése"
+
+#: src/powermanager.py:41
+#, fuzzy
+msgid "Disable Network Manager when on sleep"
+msgstr "Network Manager letiltása készenlétben"
+
+#: src/powermanager.py:42
+msgid "Enable \"Lock screen\" when \"Blank Screen\" activates"
+msgstr ""
+
+#: src/powermanager.py:43
+msgid "Display \"Power Manager\" panel item"
+msgstr ""
+
+#: src/powermanager.py:43
+msgid "Never display"
+msgstr "Sosem"
+
+#: src/powermanager.py:43
+msgid "When charging"
+msgstr "Töltés közben"
+
+#: src/powermanager.py:43
+msgid "Always display"
+msgstr "Mindig"
+
+#: src/powermanager.py:48
+msgid "Normal"
+msgstr "Normál"
+
+#: src/powermanager.py:48
+msgid "On Demand"
+msgstr "Igény szerint"
+
+#: src/powermanager.py:48
+msgid "Power Save"
+msgstr "Energiatakarékos"
+
+#: src/powermanager.py:48
+msgid "Performance"
+msgstr "Teljesítmény"
+
+#: src/powermanager.py:50
+msgid "CPU Policy"
+msgstr "CPU szabály"
+
+#: src/powermanager.py:51
+msgid "The Performance value when on AC power"
+msgstr "A Teljesítmény érték használata hálózati tápellátás esetén"
+
+#: src/powermanager.py:52
+msgid "The Performance value when on battery power"
+msgstr "A Teljesítmény érték használata akkumulátoros tápellátás esetén"
+
+#: src/powermanager.py:53
+msgid "The CPU frequency policy when on AC power"
+msgstr "A CPU órajel szabályozása hálózati feszültségen"
+
+#: src/powermanager.py:54
+msgid "The CPU frequency policy when on battery power"
+msgstr "A CPU órajel szabályozása akkumulátoron"
+
+#: src/sourceeditor.py:49 src/sourceeditor.py:54
+#, fuzzy
+msgid "Choose the sources"
 msgstr "Válasszon programot"
 
-#: src/UserDir.py:146
+#: src/sourceeditor.py:55
 msgid ""
-"<b><big>Notice</big></b>\n"
-"\n"
-"Ubuntu Tweak will restore the chosen directory to the default location.\n"
-"However, you must move your files back into place by yourself.\n"
-"Do you wish to continue?"
+"You can read the title and comment to determine which source is suitable for "
+"you."
 msgstr ""
 
-#: src/UserDir.py:177
+#: src/sourceeditor.py:71
+msgid "Detail"
+msgstr ""
+
+#: src/sourceeditor.py:90 src/sourceeditor.py:95
+msgid "Submit your sources"
+msgstr ""
+
+#: src/sourceeditor.py:95
+msgid ""
+"You can submit your sources to the server, so that other people can share "
+"with your sources."
+msgstr ""
+
+#: src/sourceeditor.py:100
+msgid "_Source Title:"
+msgstr ""
+
+#: src/sourceeditor.py:103
+msgid "_Locale:"
+msgstr ""
+
+#: src/sourceeditor.py:110
+msgid "Enter the title of the source, such as \"Ubuntu Official Repostory\""
+msgstr ""
+
+#: src/sourceeditor.py:113
+msgid "If the locale isn't correct, you can edit by you self"
+msgstr ""
+
+#: src/sourceeditor.py:130
+msgid "Submit"
+msgstr ""
+
+#: src/sourceeditor.py:178
+msgid "Network Error"
+msgstr ""
+
+#: src/sourceeditor.py:178
 #, fuzzy
-msgid "Direcotry"
-msgstr "Saját mappa"
+msgid "Please check your network connection!"
+msgstr "Kérem nyomja meg az új billentyű kombinációt"
 
-#: src/UserDir.py:191
-msgid "Path"
+#: src/sourceeditor.py:185
+msgid "Uploding..."
 msgstr ""
 
-#: src/UserDir.py:198
-msgid "Change"
+#: src/sourceeditor.py:201
+msgid "Updating..."
 msgstr ""
 
-#: src/UserDir.py:202
-msgid "Restore to default"
-msgstr ""
-
-#: src/UserDir.py:212
-msgid "Default Folder Locations"
-msgstr ""
-
-#: src/UserDir.py:213
+#: src/sourceeditor.py:313
 msgid ""
-"You can change the default document folders here.\n"
-"But don't change the Desktop folder under normal use."
+"Freely edit your sources to fit your needs.\n"
+"Click \"Update Sources\" if you want change the sources to that we prepare "
+"for you.\n"
+"Click \"Submit Sources\" if you want share your sources with other people.\n"
 msgstr ""
 
-#: src/UserDir.py:234
-msgid "Update successfully!"
+#: src/sourceeditor.py:332
+#, fuzzy
+msgid "Update Sources"
+msgstr "A frissítés sikeres!"
+
+#: src/sourceeditor.py:338
+#, fuzzy
+msgid "Submit Sources"
+msgstr "Harmadik fél források"
+
+#: src/sourceeditor.py:376
+msgid "Please input the correct infomation of the sources!"
+msgstr ""
+
+#: src/sourceeditor.py:389
+#, fuzzy
+msgid "No source data available"
+msgstr "(nem elérhető)"
+
+#: src/sourceeditor.py:390
+msgid ""
+"You can submit your sources to our server, or you need to wait the server "
+"data available."
+msgstr ""
+
+#: src/sourceeditor.py:398
+msgid "Don't forget to save your sources!"
+msgstr ""
+
+#: src/sourceeditor.py:405
+#, fuzzy
+msgid "Sumit successfully"
 msgstr "Frissítés kész!"
 
-#: src/Templates.py:57
-msgid "HTML document"
-msgstr "Html dokumentum"
-
-#: src/Templates.py:58
-msgid "ODB Database"
-msgstr "ODB adatbázis"
-
-#: src/Templates.py:59
-msgid "ODS Spreadsheet"
-msgstr "ODS táblázatkezelő"
-
-#: src/Templates.py:60
-msgid "ODT Document"
-msgstr "ODT dokumentum"
-
-#: src/Templates.py:61
-msgid "Plain text document"
-msgstr "Egyszerű szöveg"
-
-#: src/Templates.py:62
-msgid "ODP Presentation"
-msgstr "ODP prezentáció"
-
-#: src/Templates.py:63
-msgid "Python script"
-msgstr "Python-parancsfájl"
-
-#: src/Templates.py:64
-msgid "Shell script"
-msgstr "Parancsfájl"
-
-#: src/Templates.py:91
-msgid "Enabled Templates"
-msgstr "Sablonok engedélyezése"
-
-#: src/Templates.py:98
-msgid "Disabled Templates"
-msgstr "Sablonok tiltása"
-
-#: src/Templates.py:107
-#, fuzzy
-msgid "Manage Templates"
-msgstr "Sablonok kezelése"
-
-#: src/Templates.py:108
-#, fuzzy
-msgid ""
-"You can freely manage your document templates.\n"
-"You can drag and drop from File Manager.\n"
-"\"Create Document\" will be added to the context menu.\n"
+#: src/sourceeditor.py:406
+msgid "Thank you!"
 msgstr ""
-"Szabadon szerkesztheted a dokumentum sablonokat.\n"
-"Használhatod a drag and drop módszert a fájlkezelőben.\n"
-"A \"Dokumentum létrehozása\" hozzá lesz adva a helyi menühöz.\n"
 
-#: src/Templates.py:133
+#: src/sourceeditor.py:419
 #, fuzzy
-msgid "Rebuild System Templates"
-msgstr "Rendszersablonok újraépítése"
+msgid "Save failed!"
+msgstr "Frissítés sikertelen!"
 
-#: src/Templates.py:151
-#, fuzzy
-msgid ""
-"This will delete all disabled templates.\n"
-"Do you wish to continue?"
-msgstr "Minden letiltott sablon törölve lesz. Folytatja?"
+#: src/sourceeditor.py:420
+msgid "Please check the permission of the sources.list."
+msgstr ""
 
-#: src/common/PackageWorker.py:64
+#: src/sourceeditor.py:426
+msgid "I will reload the file and currenly content will be lost!"
+msgstr ""
+
+#: src/common/package.py:64
 msgid "(Not available)"
 msgstr "(nem elérhető)"
 
-#: src/common/AppData.py:57
+#: src/common/appdata.py:57
 msgid "A color scheme designer"
 msgstr ""
 
-#: src/common/AppData.py:58
+#: src/common/appdata.py:58
 msgid "Client for the eD2k and Kad networks"
 msgstr "eD2k és Kad hálózati kliens"
 
-#: src/common/AppData.py:59
+#: src/common/appdata.py:59
 msgid "GNOME IDE for C/C++, Java, Python"
 msgstr "GNOME IDE a C/C++, Java és Python nyelvekre"
 
-#: src/common/AppData.py:60
+#: src/common/appdata.py:60
 msgid "A skinned multimedia player for many platforms"
 msgstr "Egy témázott multimédialejátszó számos platformra"
 
-#: src/common/AppData.py:61
+#: src/common/appdata.py:61
 msgid "Record and edit audio files"
 msgstr "Hangok rögzítése és szerkesztése"
 
-#: src/common/AppData.py:62
+#: src/common/appdata.py:62
 msgid "Fully customisable dock-like window navigator"
 msgstr "Teljesen testreszabható dokkoló-stílusú ablakkezelő"
 
-#: src/common/AppData.py:63
+#: src/common/appdata.py:63
 msgid "A free video editor"
 msgstr "Egy ingyenes videószerkesztő"
 
-#: src/common/AppData.py:64
+#: src/common/appdata.py:64
 msgid "BitTorrent client written in Java"
 msgstr "Java-s Bittorrent kliens"
 
-#: src/common/AppData.py:65 src/common/AppData.py:127
+#: src/common/appdata.py:65 src/common/appdata.py:127
 msgid "Audio Management and Playback application"
 msgstr "Hang beálítások, és lejátszási alkalmazás"
 
-#: src/common/AppData.py:66
+#: src/common/appdata.py:66
 msgid "A true dock for linux"
 msgstr "Egy valódi dokk linuxra"
 
-#: src/common/AppData.py:67
+#: src/common/appdata.py:67
 msgid "A chm file viewer written in GTK+"
 msgstr "GTK+-ban írt chm fájl nézegető."
 
-#: src/common/AppData.py:68
+#: src/common/appdata.py:68
 msgid "The open source, cross-platform IDE"
 msgstr ""
 
-#: src/common/AppData.py:69
+#: src/common/appdata.py:69
 msgid "Advanced Desktop Effects Settings Manager"
 msgstr "Advanced Desktop Effects Settings Manager"
 
-#: src/common/AppData.py:70
+#: src/common/appdata.py:70
 msgid "An API documentation browser for GNOME."
 msgstr "API dokumentáció böngésző a GNOME-hoz"
 
-#: src/common/AppData.py:71
+#: src/common/appdata.py:71
 msgid "A Bittorrent client written in PyGTK"
 msgstr "PyGTK-ban írt Bittorrent kliens"
 
-#: src/common/AppData.py:72
+#: src/common/appdata.py:72
 msgid "Store, Sync and Share your files online."
 msgstr ""
 
-#: src/common/AppData.py:73
+#: src/common/appdata.py:73
 msgid "Extensible Tool Platform and Java IDE"
 msgstr "Bővíthető eszközplatform és Java IDE"
 
-#: src/common/AppData.py:74
+#: src/common/appdata.py:74
 msgid "A client for the Windows Live Message network"
 msgstr "Egy Windows Live Message kliens"
 
-#: src/common/AppData.py:75
+#: src/common/appdata.py:75
 msgid ""
 "Empathy consists of a rich set of reusable instant messaging widgets, and a "
 "GNOME client using those widgets."
 msgstr ""
 
-#: src/common/AppData.py:76
+#: src/common/appdata.py:76
 msgid "KDE IM client using Tencent QQ protocol"
 msgstr "KDE IM kliens Tecent QQ protokoll használattal"
 
-#: src/common/AppData.py:77
+#: src/common/appdata.py:77
 msgid "GTK+ based flexible audio player, similar to Amarok"
 msgstr "GTK+ alapú rugalmas zenelejátszó, hasonló az Amarok-hoz"
 
-#: src/common/AppData.py:78
+#: src/common/appdata.py:78
 msgid "File transmission via ftp, sftp and ftps"
 msgstr "Fájlátvitel ftp-n, sftp-n, és ftpfs-en keresztül"
 
-#: src/common/AppData.py:79
+#: src/common/appdata.py:79
 msgid "An extremly fast and lightweight file manager"
 msgstr "Egy nagyon gyors és egyszerű fájlkezelő"
 
-#: src/common/AppData.py:80
+#: src/common/appdata.py:80
 msgid ""
 "Galaxium is an instant messenger application designed for the GNOME desktop"
 msgstr ""
 
-#: src/common/AppData.py:81
+#: src/common/appdata.py:81
 msgid "A GTK+ jabber client"
 msgstr "Egy GTK+ jabber kliens"
 
-#: src/common/AppData.py:82
+#: src/common/appdata.py:82
 msgid "A fast and lightweight IDE"
 msgstr "Egy gyors és egyszerű IDE"
 
-#: src/common/AppData.py:83
+#: src/common/appdata.py:83
 msgid "A multithreaded FTP client"
 msgstr "Egy többszálú FTP kliens"
 
-#: src/common/AppData.py:84
+#: src/common/appdata.py:84
 msgid "GNOME Hex editor"
 msgstr ""
 
-#: src/common/AppData.py:85
+#: src/common/appdata.py:85
 msgid "Notifies the user upon arrival of new mail in Gmail"
 msgstr ""
 
-#: src/common/AppData.py:86
+#: src/common/appdata.py:86
 msgid "A powerful, speedy, and sexy remote control for the GNOME Desktop"
 msgstr ""
 
-#: src/common/AppData.py:87
+#: src/common/appdata.py:87
 msgid ""
 "A program that combines satellite imagery and maps to put the world's "
 "geographic information at your fingertips."
 msgstr ""
 
-#: src/common/AppData.py:88
+#: src/common/appdata.py:88
 msgid "Platform for running Google Gadgets on Linux"
 msgstr "Google Gadget futtató platform Linuxra"
 
-#: src/common/AppData.py:89
+#: src/common/appdata.py:89
 msgid "GNOME partition editor"
 msgstr "GNOME-partíciószerkesztő"
 
-#: src/common/AppData.py:90
+#: src/common/appdata.py:90
 msgid "Lightweight image viewer"
 msgstr "Egyszerű képnézegető"
 
-#: src/common/AppData.py:91
+#: src/common/appdata.py:91
 msgid "A powerful screenshot tool"
 msgstr "Egy hasznos képernyőkép-készítő eszköz"
 
-#: src/common/AppData.py:92
+#: src/common/appdata.py:92
 msgid "Graphical frontend for recordmydesktop"
 msgstr "Grafikus felület a recordmydesktop-hoz"
 
-#: src/common/AppData.py:93
+#: src/common/appdata.py:93
 msgid "A graphical CD image editor"
 msgstr "Egy grafikus CD kép szerkesztő"
 
-#: src/common/AppData.py:94
+#: src/common/appdata.py:94
 msgid "Non-linear editor for Digital Video data"
 msgstr "Nem lineáris szerkesztő digitális videóadathoz (DV)"
 
-#: src/common/AppData.py:95
+#: src/common/appdata.py:95
 msgid "A music player for Last.fm personalized radio"
 msgstr "Egy zenelejátszó a saját Last.fm rádiódhoz"
 
-#: src/common/AppData.py:96
+#: src/common/appdata.py:96
 msgid "GTK+ based simple text editor"
 msgstr "GTK+-ra épülő egyszerű szövegszerkesztő"
 
-#: src/common/AppData.py:97
+#: src/common/appdata.py:97
 msgid "Feed aggregator for GNOME"
 msgstr "Hírforrás olvasó GNOME alá"
 
-#: src/common/AppData.py:98
+#: src/common/appdata.py:98
 msgid "Mail notification in system tray"
 msgstr ""
 
-#: src/common/AppData.py:99
+#: src/common/appdata.py:99
 msgid "Adcal tool to diff and merge files"
 msgstr ""
 
-#: src/common/AppData.py:100
+#: src/common/appdata.py:100
 msgid "A fast and simple GTK+ Image Viewer"
 msgstr "Egy gyors és egyszerá GTK+ képnézegető"
 
-#: src/common/AppData.py:101
+#: src/common/appdata.py:101
 msgid "Webkit based lightweight web browser"
 msgstr "Webkit alapú egyszerű webböngésző"
 
-#: src/common/AppData.py:102
+#: src/common/appdata.py:102
 msgid "An IDE to Develop .NET applications."
 msgstr ""
 
-#: src/common/AppData.py:103
+#: src/common/appdata.py:103
 msgid "The Ultimate Movie Player For Linux"
 msgstr "A legjobb filmlejátszó Linuxra"
 
-#: src/common/AppData.py:104
+#: src/common/appdata.py:104
 msgid "IDE for Java, C/C++, Ruby, UML, etc."
 msgstr "IDE a Java, C/C++, Ruby, UML, stb. nyelvekhez"
 
-#: src/common/AppData.py:105
+#: src/common/appdata.py:105
 msgid "The Opera Web Browser"
 msgstr "Az Opera webböngésző"
 
-#: src/common/AppData.py:106
+#: src/common/appdata.py:106
 msgid ""
 "Pidgin is a graphical modular messaging client based on libpurple which is "
 "capable of connecting to AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, SIP/SIMPLE, "
@@ -1496,133 +1621,137 @@ msgid ""
 "QQ all at once."
 msgstr ""
 
-#: src/common/AppData.py:107
+#: src/common/appdata.py:107
 msgid "Run your Windows programs on Linux"
 msgstr "Futtassa Windows-os programjait Linux-on"
 
-#: src/common/AppData.py:108
+#: src/common/appdata.py:108
 msgid "A framework for desktop widgets"
 msgstr "Asztali widget keretrendszer"
 
-#: src/common/AppData.py:109
+#: src/common/appdata.py:109
 msgid "Make audio/video calls using this VoIP Software"
 msgstr ""
 
-#: src/common/AppData.py:110
+#: src/common/appdata.py:110
 msgid "A great MPlayer front-end, written in QT4"
 msgstr "Egy nagyszerű MPlayer felület QT4-ben megírva"
 
-#: src/common/AppData.py:111
+#: src/common/appdata.py:111
 msgid "Convert audio files into other formats"
 msgstr "Hang fájlok konvertálása eltérő formátumokba"
 
-#: src/common/AppData.py:112
+#: src/common/appdata.py:112
 msgid "An international dictionary"
 msgstr "Egy nemzetközi szótár"
 
-#: src/common/AppData.py:113
+#: src/common/appdata.py:113
 msgid ""
 "Swiftweasel is an optimized build of the Mozilla Firefox web browser for "
 "Linux"
 msgstr ""
 
-#: src/common/AppData.py:114
+#: src/common/appdata.py:114
 msgid "Multiple GNOME terminals in one window"
 msgstr "Több GNOME terminál egy ablakban"
 
-#: src/common/AppData.py:115
+#: src/common/appdata.py:115
 msgid "Ubuntu Tweak makes it easier to configure Ubuntu"
 msgstr ""
 
-#: src/common/AppData.py:116
+#: src/common/appdata.py:116
 msgid "Commonly used restricted packages"
 msgstr ""
 
-#: src/common/AppData.py:117 src/common/AppData.py:118
+#: src/common/appdata.py:117 src/common/appdata.py:118
 msgid "A feature rich, high performance virtualization software"
 msgstr "Egy lehetőség a látványos és gyors látványelemekhez"
 
-#: src/common/AppData.py:119
+#: src/common/appdata.py:119
 msgid "Read, capture, broadcast your multimedia streams"
 msgstr "Olvassa, tárolja, valamint megjeleníti a multimédia-folyamokat"
 
-#: src/common/AppData.py:120
+#: src/common/appdata.py:120
 msgid "Run Virtual Machines using VMware"
 msgstr ""
 
-#: src/common/AppData.py:121
+#: src/common/appdata.py:121
 msgid "A compatibility layer for running Windows programs"
 msgstr "Egy kompatibilitási megoldás a Windows-os programokhoz"
 
-#: src/common/AppData.py:122
+#: src/common/appdata.py:122
 msgid ""
 "XBMC is a free and open source software media player and entertainment hub"
 msgstr ""
 
-#: src/common/AppData.py:126
+#: src/common/appdata.py:126
 msgid "Development Version of Mozilla Firefox 3.0/3.1, 4.0"
 msgstr "Fejlesztői változata a Mozilla Firefox 3.0/3.1, 4.0-nek"
 
-#: src/common/AppData.py:128
+#: src/common/appdata.py:128
 msgid "Development version of Compiz Fusion"
 msgstr "A Compiz Fusion fejlesztői verziója"
 
-#: src/common/AppData.py:129
+#: src/common/appdata.py:129
 msgid "Google's Linux Repository"
 msgstr ""
 
-#: src/common/AppData.py:130
+#: src/common/appdata.py:130
 msgid "K Desktop Environment 4.1"
 msgstr "K Desktop Environment 4.1"
 
-#: src/common/AppData.py:131
+#: src/common/appdata.py:131
 msgid "Lightweight X11 Desktop Environment:GPicView, PCManFM"
 msgstr "Egyszerű X11 Asztali környezet: GPicView, PCManFM"
 
-#: src/common/AppData.py:132
+#: src/common/appdata.py:132
 msgid ""
 "Multimedia, Entertainment and Distraction In Ubuntu\n"
 "Medibuntu is a repository of packages that cannot be included into the "
 "Ubuntu distribution for legal reasons (copyright, license, patent, etc)."
 msgstr ""
 
-#: src/common/Factory.py:190
+#: src/common/appdata.py:133
+msgid "OpenOffice.org 3.0.0"
+msgstr ""
+
+#: src/common/factory.py:190
 msgid "Disable 'Run Application' dialog (Alt+F2)"
 msgstr ""
 
-#: src/common/PolicyKit/PolkitButton.py:39
+#: src/common/policykit/polkitbutton.py:80
 msgid "_Unlock"
 msgstr "_Feloldás"
 
-#: src/common/Widgets/Widgets.py:249
+#: src/common/widgets/widgets.py:249
 msgid "Please press the new key combination"
 msgstr "Kérem nyomja meg az új billentyű kombinációt"
 
-#: src/common/Widgets/Widgets.py:298
+#: src/common/widgets/widgets.py:298
 msgid "Disabled"
 msgstr "Letiltva"
 
-#: src/common/Widgets/TreeViews.py:69
+#: src/common/widgets/treeviews.py:69
 msgid "Create folder"
 msgstr ""
 
-#: src/common/Widgets/TreeViews.py:77
+#: src/common/widgets/treeviews.py:77
 msgid "Delete"
 msgstr ""
 
-#: src/common/Widgets/TreeViews.py:99
+#: src/common/widgets/treeviews.py:99
 msgid "Input the dir name"
 msgstr ""
 
-#: src/common/Widgets/TreeViews.py:124
+#: src/common/widgets/treeviews.py:124
 msgid "Can't rename the root folder"
 msgstr ""
 
-#: src/common/Widgets/TreeViews.py:141
+#: src/common/widgets/treeviews.py:141
 msgid "Can't delete the root folder"
 msgstr ""
 
-#: src/common/Widgets/TreeViews.py:156
+#: src/common/widgets/treeviews.py:156
 msgid ""
 "Can't rename!\n"
 "\n"

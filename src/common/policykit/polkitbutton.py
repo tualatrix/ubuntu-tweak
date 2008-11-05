@@ -22,10 +22,9 @@ import pygtk
 pygtk.require("2.0")
 import gtk
 import os
+import dbus
 import thread
 import gobject
-import gettext
-import dbus
 
 class PolkitAction(gobject.GObject):
     """
@@ -69,3 +68,33 @@ class PolkitAction(gobject.GObject):
                 self.emit('changed', 1)
             else:
                 self.emit('changed', 0)
+
+class PolkitButton(gtk.Button):
+    __gsignals__ = {
+        'changed': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_INT,)),
+    }
+
+    def __init__(self):
+        super(PolkitButton, self).__init__()
+
+        self.set_label(_('_Unlock'))
+        image = gtk.image_new_from_stock(gtk.STOCK_DIALOG_AUTHENTICATION, gtk.ICON_SIZE_BUTTON)
+        self.set_image(image)
+
+        self.action = PolkitAction(self)
+        self.action.connect('changed', self.on_action_changed)
+        self.connect('clicked', self.on_button_clicked)
+
+    def on_button_clicked(self, widget):
+        self.action.authenticate()
+
+    def on_action_changed(self, widget, action):
+        if action:
+            self.change_button_state()
+
+        self.emit('changed', self.action.get_authenticated())
+
+    def change_button_state(self):
+        image = gtk.image_new_from_stock(gtk.STOCK_YES, gtk.ICON_SIZE_BUTTON)
+        self.set_image(image)
+        self.set_sensitive(False)

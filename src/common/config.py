@@ -125,7 +125,7 @@ class TweakSettings:
         if height and width:
             return (height, width)
         else:
-            return (720, 480)
+            return (740, 480)
 
     def get_icon_theme(self):
         return self.__config.get_value('/desktop/gnome/interface/icon_theme')

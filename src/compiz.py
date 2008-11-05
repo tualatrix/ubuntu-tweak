@@ -26,7 +26,7 @@ import gconf
 import gobject
 from common.consts import DATA_DIR
 from common.widgets import ListPack, InfoDialog, SinglePack, TweakPage
-from common.systeminfo import SystemModule
+from common.systeminfo import module_check
 try:
     from common.package import update_apt_cache, PackageWorker, AptCheckButton
 except:
@@ -58,13 +58,13 @@ plugins_settings = \
 }
 
 class CompizSetting:
-    if SystemModule.has_ccm() and SystemModule.has_right_compiz():
+    if module_check.has_ccm() and module_check.has_right_compiz():
         import compizconfig as ccs
         context = ccs.Context()
 
     @classmethod
     def update_context(self):
-        if SystemModule.has_ccm() and SystemModule.has_right_compiz():
+        if module_check.has_ccm() and module_check.has_right_compiz():
             import compizconfig as ccs
             load_ccm()
             self.context = ccs.Context()
@@ -201,7 +201,7 @@ class Compiz(TweakPage, CompizSetting):
         self.create_interface()
 
     def create_interface(self):
-        if SystemModule.has_apt():
+        if module_check.has_apt():
             update_apt_cache(True)
             self.packageWorker = PackageWorker()
 
@@ -215,7 +215,7 @@ class Compiz(TweakPage, CompizSetting):
                     'screenlets')
             self.screenlets.connect('toggled', self.colleague_changed)
 
-        if SystemModule.has_ccm() and SystemModule.has_right_compiz():
+        if module_check.has_ccm() and module_check.has_right_compiz():
             hbox = gtk.HBox(False, 0)
             hbox.pack_start(self.create_edge_setting(), True, False, 0)
             edge_setting = SinglePack('Edge Settings', hbox)
@@ -233,7 +233,7 @@ class Compiz(TweakPage, CompizSetting):
             box = ListPack(_("Menu Effects"), (button1, self.wobbly_m))
             self.pack_start(box, False, False, 0)
 
-            if SystemModule.has_apt():
+            if module_check.has_apt():
                 update_apt_cache(True)
                 box = ListPack(_("Useful Extensions"), (
                     self.simple_settings,

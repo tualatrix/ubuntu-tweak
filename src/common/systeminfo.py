@@ -43,8 +43,6 @@ class SystemInfo:
     distro = DistroInfo.distro
 
 class SystemModule:
-
-    @classmethod
     def has_apt(self):
         try:
             import apt_pkg
@@ -52,7 +50,6 @@ class SystemModule:
         except ImportError:
             return False
 
-    @classmethod
     def has_ccm(self):
         try:
             import ccm
@@ -60,7 +57,6 @@ class SystemModule:
         except ImportError:
             return False
 
-    @classmethod
     def has_right_compiz(self):
         if self.has_ccm():
             import ccm
@@ -71,20 +67,19 @@ class SystemModule:
         else:
             return False
 
-    @classmethod
-    def gnome_version(self):
+    def get_gnome_version(self):
         return int(GnomeVersion.minor)
 
-    @classmethod
+    def is_supported_ubuntu(self):
+        return self.is_hardy() or self.is_intrepid()
+
     def is_hardy(self):
         return 'Mint' in SystemInfo.distro or '8.04' in SystemInfo.distro
 
-    @classmethod
     def is_intrepid(self):
         return 'Mint' in SystemInfo.distro or '8.10' in SystemInfo.distro \
                 or 'intrepid' in SystemInfo.distro
 
-    @classmethod
     def get_codename(self):
         if self.is_hardy():
             return 'hardy'
@@ -92,11 +87,13 @@ class SystemModule:
             return 'intrepid'
         else:
             return 'NULL'
+
+module_check = SystemModule()
             
 if __name__ == "__main__":
-    print 'has pat', SystemModule.has_apt()
-    print 'has ccm', SystemModule.has_ccm()
-    print 'has right compiz', SystemModule.has_right_compiz()
-    print 'gnome version', SystemModule.gnome_version()
-    print 'is hardy', SystemModule.is_hardy()
-    print 'is inprepid', SystemModule.is_intrepid()
+    print 'has pat', module_check.has_apt()
+    print 'has ccm', module_check.has_ccm()
+    print 'has right compiz', module_check.has_right_compiz()
+    print 'gnome version', module_check.get_gnome_version()
+    print 'is hardy', module_check.is_hardy()
+    print 'is inprepid', module_check.is_intrepid()

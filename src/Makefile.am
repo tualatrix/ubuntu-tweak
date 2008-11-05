@@ -1,30 +1,29 @@
 SUBDIRS = common
 
 tweak_PYTHON = \
-	./ubuntu-tweak.py \
-	./LockDown.py \
-	./Scripts.py \
-	./Nautilus.py \
-	./Computer.py \
-	./Metacity.py \
-	./SourceEditor.py \
-	./PowerManager.py \
-	./PackageCleaner.py \
-	./UpdateManager.py \
-	./MainWindow.py \
-	./Templates.py \
-	./Config.py \
-	./ThirdSoft.py \
-	./AutoStart.py \
-	./UserDir.py \
-	./Gnome.py \
-	./Session.py \
-	./Shortcuts.py \
-	./Icon.py \
-	./Installer.py \
+	./autostart.py \
+	./updatemanager.py \
+	./installer.py \
+	./lockdown.py \
 	./ScriptWorker.py \
-	./Compiz.py \
-	./Utility.py \
+	./mainwindow.py \
+	./userdir.py \
+	./computer.py \
+	./thirdsoft.py \
+	./icons.py \
+	./metacity.py \
+	./session.py \
+	./utility.py \
+	./templates.py \
+	./compiz.py \
+	./shortcuts.py \
+	./ubuntu-tweak.py \
+	./cleaner.py \
+	./scripts.py \
+	./gnomesettings.py \
+	./nautilus.py \
+	./powermanager.py \
+	./sourceeditor.py \
 	$(NULL)
 
 tweakdir = $(pkgdatadir)

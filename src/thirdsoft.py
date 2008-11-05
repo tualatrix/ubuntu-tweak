@@ -34,8 +34,8 @@ from gnome import url_show
 from common.consts import *
 from common.appdata import *
 from common.factory import Factory
-from common.policykit import PolkitButton, DbusProxy
-from common.systeminfo import SystemModule
+from common.policykit import PolkitButton, proxy
+from common.systeminfo import module_check
 from common.widgets import ListPack, TweakPage, GconfCheckButton, InfoDialog, WarningDialog, ErrorDialog, QuestionDialog
 from aptsources.sourceslist import SourceEntry, SourcesList
 
@@ -124,10 +124,10 @@ def filter_sources(light = False):
     newsource = []
     for item in SOURCES_DATA:
         distro = item[1]
-        if light and distro == 'hardy' and SystemModule.is_intrepid():
+        if light and distro == 'hardy' and module_check.is_intrepid():
             newsource.append(item)
-        elif SystemModule.get_codename() in distro:
-            newsource.append([item[0], SystemModule.get_codename(), item[2], item[3]])
+        elif module_check.get_codename() in distro:
+            newsource.append([item[0], module_check.get_codename(), item[2], item[3]])
         else:
             if distro not in ['hardy', 'intrepid']:
                 newsource.append(item)
@@ -187,7 +187,6 @@ class SourcesView(gtk.TreeView):
         gtk.TreeView.__init__(self)
 
         self.list = SourcesList()
-        self.__proxy = DbusProxy()
         self.model = self.__create_model()
         self.set_model(self.model)
         self.__add_column()
@@ -275,9 +274,9 @@ class SourcesView(gtk.TreeView):
         key = self.model.get_value(iter, COLUMN_KEY)
 
         if key:
-            self.__proxy.add_aptkey(key)
+            proxy.add_aptkey(key)
 
-        result = self.__proxy.set_entry(url, distro, comps, name, not enabled)
+        result = proxy.set_entry(url, distro, comps, name, not enabled)
 
         if result == 'enabled':
             self.model.set(iter, COLUMN_ENABLED, True)
@@ -285,9 +284,6 @@ class SourcesView(gtk.TreeView):
             self.model.set(iter, COLUMN_ENABLED, False)
             
         self.emit('sourcechanged')
-
-    def get_proxy(self):
-        return self.__proxy.get_proxy()
 
 class SourceDetail(gtk.VBox):
     def __init__(self):
@@ -382,10 +378,8 @@ class ThirdSoft(TweakPage):
         self.sourcedetail.set_details(home, url, description)
 
     def on_polkit_action(self, widget, action):
-        proxy = self.treeview.get_proxy()
-
         if action:
-            if proxy:
+            if proxy.get_proxy():
                 self.treeview.set_sensitive(True)
                 self.expander.set_sensitive(True)
                 WARNING_KEY = '/apps/ubuntu-tweak/disable_thidparty_warning'
@@ -413,7 +407,7 @@ class ThirdSoft(TweakPage):
         dialog = UpdateCacheDialog(widget.get_toplevel())
         res = dialog.run()
 
-        self.__proxy.set_liststate('normal')
+        proxy.set_liststate('normal')
         widget.set_sensitive(False)
 
         InfoDialog(_('<b><big>The software information is up-to-date now</big></b>\n\nYou can install the new applications through Add/Remove.')).launch()

@@ -29,50 +29,43 @@ class DbusProxy:
     except dbus.exceptions.DBusException:
         __proxy = None
 
-    @classmethod
     def set_liststate(self, state):
         self.__proxy.SetListState(state, dbus_interface = self.INTERFACE)
 
-    @classmethod
     def get_liststate(self):
         return self.__proxy.GetListState(dbus_interface = self.INTERFACE)
 
-    @classmethod
     def set_entry(self, url, distro, comps, name, enabled):
         return self.__proxy.SetSourcesList(url, distro, comps, name, enabled, dbus_interface = self.INTERFACE)
 
-    @classmethod
     def add_aptkey(self, key):
         self.__proxy.AddAptKey(key, dbus_interface = self.INTERFACE)
 
-    @classmethod
     def get_proxy(self):
         return self.__proxy
 
-    @classmethod
     def clean_apt_cache(self):
         try:
             return self.__proxy.CleanAptCache(dbus_interface = self.INTERFACE)
         except:
             return 'error'
 
-    @classmethod
     def delete_file(self, path):
         try:
             return self.__proxy.DeleteFile(path, dbus_interface = self.INTERFACE)
         except:
             return 'error'
 
-    @classmethod
     def edit_file(self, path, content):
         try:
             return self.__proxy.EditFile(path, content, dbus_interface = self.INTERFACE)
         except:
             return 'error'
 
-    @classmethod
     def exit(self):
         self.__proxy.Exit(dbus_interface = self.INTERFACE)
+
+proxy = DbusProxy()
 
 if __name__ == '__main__':
     print DbusProxy

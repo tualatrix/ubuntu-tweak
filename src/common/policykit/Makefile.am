@@ -1,8 +1,7 @@
 policykit_PYTHON = \
-	./PolkitAction.py \
+	./dbusproxy.py \
+	./polkitbutton.py \
 	./__init__.py \
-	./DbusProxy.py \
-	./PolkitButton.py \
 	$(NULL)
 
 policykitdir = $(pkgdatadir)/common/policykit

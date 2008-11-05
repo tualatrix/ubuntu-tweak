@@ -177,7 +177,6 @@ sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
-top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 templatesdir = $(pkgdatadir)/data/templates
@@ -189,7 +188,8 @@ templates_DATA = \
 	html-document.html \
 	odp-presentation.odp \
 	odb-database.odb \
-	plain-text-document.txt
+	plain-text-document.txt \
+	$(NULL)
 
 EXTRA_DIST = $(templates_DATA)
 all: all-am

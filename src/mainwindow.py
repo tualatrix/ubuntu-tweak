@@ -27,12 +27,12 @@ import thread
 import gobject
 
 from gnome import url_show
-from common.Consts import *
-from common.Canvas import RenderCell
+from common.consts import *
+from common.canvas import RenderCell
 from common.widgets import QuestionDialog, TweakPage
-from common.SystemInfo import GnomeVersion, SystemInfo, SystemModule
-from UpdateManager import UpdateManager
-from Config import Config, TweakSettings
+from common.systeminfo import module_check
+from common.config import Config, TweakSettings
+from updatemanager import UpdateManager
 
 class Tip(gtk.HBox):
     def __init__(self, tip):
@@ -101,39 +101,39 @@ def Notice(parent = None):
         
     return vbox
 
-from Computer import Computer
-from Session import Session
-from AutoStart import AutoStart
-from Icon import Icon
-if SystemModule.has_apt() or SystemModule.has_right_compiz():
-    from Compiz import Compiz
+from computer import Computer
+from session import Session
+from autostart import AutoStart
+from icons import Icon
+if module_check.is_supported_ubuntu():
+    from compiz import Compiz
 else:
     Compiz = Notice
 
-if SystemModule.gnome_version() >= 20:
-    from UserDir import UserDir
-    from Templates import Templates
+if module_check.get_gnome_version() >= 20:
+    from userdir import UserDir
+    from templates import Templates
 else:
     UserDir = Notice
     Templates = Notice
 
-if SystemModule.is_hardy() or SystemModule.is_intrepid():
-    from SourceEditor import SourceEditor
-    from Installer import Installer
-    from ThirdSoft import ThirdSoft
-    from PackageCleaner import PackageCleaner
+if module_check.is_supported_ubuntu():
+    from sourceeditor import SourceEditor
+    from installer import Installer
+    from thirdsoft import ThirdSoft
+    from cleaner import PackageCleaner
 else:
     SourceEditor = Notice
     Installer = Notice
     ThirdSoft = Notice
     PackageCleaner = Notice
-from Scripts import Scripts
-from Shortcuts import Shortcuts
-from PowerManager import PowerManager
-from Gnome import Gnome
-from Nautilus import Nautilus
-from LockDown import LockDown
-from Metacity import Metacity
+from scripts import Scripts
+from shortcuts import Shortcuts
+from powermanager import PowerManager
+from gnomesettings import Gnome
+from nautilus import Nautilus
+from lockdown import LockDown
+from metacity import Metacity
 
 (
     ID_COLUMN,
@@ -160,8 +160,8 @@ from Metacity import Metacity
     WELCOME,
     COMPUTER,
     APPLICATIONS,
-    SOURCEEDITOR,
     INSTALLER,
+    SOURCEEDITOR,
     THIRDSOFT,
     PACKAGE,
     STARTUP,
@@ -185,7 +185,7 @@ from Metacity import Metacity
 ) = range(25)
 
 MODULES_TABLE = {
-    APPLICATIONS: [SOURCEEDITOR, INSTALLER, THIRDSOFT, PACKAGE],
+    APPLICATIONS: [INSTALLER, SOURCEEDITOR, THIRDSOFT, PACKAGE],
     STARTUP: [SESSION, AUTOSTART],
     DESKTOP: [ICON, METACITY, COMPIZ, GNOME],
     PERSONAL: [USERDIR, TEMPLATES, SCRIPTS, SHORTCUTS],
@@ -197,8 +197,8 @@ MODULES = \
     [WELCOME, 'welcome.png', _("Welcome"), Welcome, SHOW_ALWAYS],
     [COMPUTER, 'computer.png', _("Computer"), Computer, SHOW_ALWAYS],
     [APPLICATIONS, 'applications.png', _("Applications"), None, SHOW_CHILD],
-    [SOURCEEDITOR, 'sourceeditor.png', _('Source Editor'), SourceEditor, SHOW_NONE],
     [INSTALLER, 'installer.png', _("Add/Remove"), Installer, SHOW_NONE],
+    [SOURCEEDITOR, 'sourceeditor.png', _('Source Editor'), SourceEditor, SHOW_NONE],
     [THIRDSOFT, 'third-soft.png', _("Third-Party Sources"), ThirdSoft, SHOW_NONE],
     [PACKAGE, 'package.png', _("Package Cleaner"), PackageCleaner, SHOW_NONE],
     [STARTUP, 'startup.png', _("Startup"), None, SHOW_CHILD],
@@ -266,7 +266,7 @@ class MainWindow(gtk.Window):
 
         self.connect("destroy", self.destroy)
         self.set_title("Ubuntu Tweak")
-        self.set_default_size(720, 480)
+        self.set_default_size(740, 480)
         self.set_position(gtk.WIN_POS_CENTER)
         self.set_border_width(10)
         gtk.window_set_default_icon_from_file(os.path.join(DATA_DIR, 'pixmaps/ubuntu-tweak.png'))
@@ -310,11 +310,11 @@ class MainWindow(gtk.Window):
         gobject.timeout_add(8000, self.on_timeout)
 
     def save_gui_state(self):
-        self.__settings.set_window_size(*(self.get_size()))
+        self.__settings.set_window_size(*self.get_size())
         self.__settings.set_paned_size(self.hpaned.get_position())
 
     def get_gui_state(self):
-        self.set_default_size(*(self.__settings.get_window_size()))
+        self.set_default_size(*self.__settings.get_window_size())
         self.hpaned.set_position(self.__settings.get_paned_size())
 
     def __create_model(self):
@@ -449,6 +449,7 @@ class MainWindow(gtk.Window):
         self.notebook.append_page(page)
 
     def on_child_page_update(self, widget, module, action):
+        # FIXME: If the module hasn't load yet!
         getattr(self.modules[module], action)()
 
     def click_website(self, dialog, link, data = None):
@@ -498,16 +499,15 @@ You should have received a copy of the GNU General Public License along with Ubu
         gtk.gdk.threads_leave()
 
     def destroy(self, widget, data = None):
-        if SystemModule.has_apt() and SystemModule.is_hardy() or SystemModule.is_intrepid():
-            from common.PolicyKit import DbusProxy
-            if DbusProxy.get_proxy():
-                state = DbusProxy.get_liststate()
-                if state == "expire":
-                    from ThirdSoft import UpdateCacheDialog
-                    dialog = UpdateCacheDialog(self)
-                    res = dialog.run()
+        from common.policykit import proxy
+        if proxy.get_proxy():
+            state = proxy.get_liststate()
+            if state == "expire":
+                from thirdsoft import UpdateCacheDialog
+                dialog = UpdateCacheDialog(self)
+                res = dialog.run()
 
-                DbusProxy.exit()
+            proxy.exit()
 
         self.save_gui_state()
         gtk.main_quit()
