@@ -19,7 +19,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import os
-from Consts import *
+from consts import *
 
 __all__ = (
     'get_app_describ',

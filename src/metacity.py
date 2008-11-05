@@ -25,8 +25,8 @@ import os
 import gobject
 import gettext
 
-from common.Factory import Factory
-from common.Widgets import TablePack, TweakPage
+from common.factory import Factory
+from common.widgets import TablePack, TweakPage
 
 class Metacity(TweakPage):
     """Some options about Metacity Window Manager"""
@@ -52,5 +52,5 @@ class Metacity(TweakPage):
         self.pack_start(table, False, False, 0)
 
 if __name__ == "__main__":
-    from Utility import Test
+    from utility import Test
     Test(Metacity)

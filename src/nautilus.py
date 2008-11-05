@@ -25,13 +25,13 @@ import gconf
 import gettext
 
 try:
-    from common.PackageWorker import PackageWorker, AptCheckButton, update_apt_cache
+    from common.package import PackageWorker, AptCheckButton, update_apt_cache
     DISABLE = False
 except ImportError:
     DISABLE = True
 
-from common.Factory import Factory
-from common.Widgets import ListPack, TablePack, InfoDialog, TweakPage
+from common.factory import Factory
+from common.widgets import ListPack, TablePack, InfoDialog, TweakPage
 
 class Nautilus(TweakPage):
     """Nautilus Settings"""
@@ -120,5 +120,5 @@ class Nautilus(TweakPage):
             self.button.set_sensitive(False)
 
 if __name__ == "__main__":
-    from Utility import Test
+    from utility import Test
     Test(Nautilus)

@@ -27,8 +27,8 @@ import gettext
 import shutil
 import subprocess
 
-from common.Consts import *
-from common.Widgets import ErrorDialog
+from common.consts import *
+from common.widgets import ErrorDialog
 
 class FileChooserDialog(gtk.FileChooserDialog):
     """Show a dialog to select a folder, or to do more thing

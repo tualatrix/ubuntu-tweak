@@ -24,11 +24,11 @@ import os
 import gtk
 import gconf
 import gobject
-from common.Consts import DATA_DIR
-from common.Widgets import ListPack, InfoDialog, SinglePack, TweakPage
-from common.SystemInfo import SystemModule
+from common.consts import DATA_DIR
+from common.widgets import ListPack, InfoDialog, SinglePack, TweakPage
+from common.systeminfo import SystemModule
 try:
-    from common.PackageWorker import update_apt_cache, PackageWorker, AptCheckButton
+    from common.package import update_apt_cache, PackageWorker, AptCheckButton
 except:
     pass
 
@@ -385,5 +385,5 @@ class Compiz(TweakPage, CompizSetting):
             self.button.set_sensitive(False)
 
 if __name__ == "__main__":
-    from Utility import Test
+    from utility import Test
     Test(Compiz)

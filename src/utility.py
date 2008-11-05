@@ -21,7 +21,7 @@
 import pygtk
 pygtk.require("2.0")
 import gtk
-from common.Consts import *
+from common.consts import *
 
 class Test:
     def __init__(self, model):

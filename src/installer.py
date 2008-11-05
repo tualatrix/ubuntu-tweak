@@ -23,10 +23,10 @@ import gtk
 import gettext
 import gobject
 
-from common.Consts import *
-from common.AppData import *
-from common.LookupIcon import *
-from common.Widgets import TweakPage, InfoDialog
+from common.consts import *
+from common.appdata import *
+from common.utils import *
+from common.widgets import TweakPage, InfoDialog
 from xdg.DesktopEntry import DesktopEntry
 
 try:
@@ -353,5 +353,5 @@ class Installer(TweakPage):
             self.button.set_sensitive(False)
 
 if __name__ == '__main__':
-    from Utility import Test
+    from utility import Test
     Test(Installer)

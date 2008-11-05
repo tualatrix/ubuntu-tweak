@@ -46,7 +46,7 @@ AC_CONFIG_FILES([
     po/Makefile.in
     src/Makefile
     src/common/Makefile
-    src/common/Consts.py
+    src/common/consts.py
     src/common/widgets/Makefile
     src/common/policykit/Makefile
     data/Makefile

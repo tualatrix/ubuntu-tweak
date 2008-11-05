@@ -25,9 +25,9 @@ import os
 import gconf
 import gettext
 
-from common.SystemInfo import SystemModule
-from common.Factory import Factory
-from common.Widgets import HScaleBox, TablePack, TweakPage
+from common.systeminfo import SystemModule
+from common.factory import Factory
+from common.widgets import HScaleBox, TablePack, TweakPage
 
 class PowerManager(TweakPage):
     """Advanced Powermanager Settings"""
@@ -57,6 +57,5 @@ class PowerManager(TweakPage):
             self.pack_start(box, False, False, 0)
 
 if __name__ == "__main__":
-    from common.Consts import *
-    from Utility import Test
+    from utility import Test
     Test(PowerManager)

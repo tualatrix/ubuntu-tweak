@@ -23,10 +23,10 @@ import gtk
 import thread
 import gobject
 import gettext
-from common.LookupIcon import *
-from common.PolicyKit import DbusProxy, PolkitButton
-from common.PackageWorker import PackageWorker, update_apt_cache
-from common.Widgets import TweakPage, InfoDialog, QuestionDialog, ErrorDialog
+from common.utils import *
+from common.policykit import DbusProxy, PolkitButton
+from common.package import PackageWorker, update_apt_cache
+from common.widgets import TweakPage, InfoDialog, QuestionDialog, ErrorDialog
 
 (
     COLUMN_CHECK,
@@ -345,5 +345,5 @@ class PackageCleaner(TweakPage):
             ErrorDialog(_('<b><big>Could not authenticate</big></b>\n\nAn unexpected error has occurred.')).launch()
 
 if __name__ == '__main__':
-    from Utility import Test
+    from utility import Test
     Test(PackageCleaner)

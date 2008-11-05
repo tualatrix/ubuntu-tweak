@@ -33,8 +33,8 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 subdir = src/common
-DIST_COMMON = $(common_PYTHON) $(srcdir)/Consts.py.in \
-	$(srcdir)/Makefile.am $(srcdir)/Makefile.in
+DIST_COMMON = $(common_PYTHON) $(srcdir)/Makefile.am \
+	$(srcdir)/Makefile.in $(srcdir)/consts.py.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/acinclude.m4 \
 	$(top_srcdir)/m4/gettext.m4 $(top_srcdir)/m4/iconv.m4 \
@@ -46,7 +46,7 @@ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/config.h
-CONFIG_CLEAN_FILES = Consts.py
+CONFIG_CLEAN_FILES = consts.py
 SOURCES =
 DIST_SOURCES =
 RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
@@ -192,6 +192,7 @@ sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
+top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 SUBDIRS = policykit widgets
@@ -244,7 +245,7 @@ $(top_srcdir)/configure:  $(am__configure_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
-Consts.py: $(top_builddir)/config.status $(srcdir)/Consts.py.in
+consts.py: $(top_builddir)/config.status $(srcdir)/consts.py.in
 	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
 install-commonPYTHON: $(common_PYTHON)
 	@$(NORMAL_INSTALL)

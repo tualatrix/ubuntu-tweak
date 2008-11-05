@@ -177,6 +177,7 @@ sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
+top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 policykit_PYTHON = \
@@ -186,7 +187,7 @@ policykit_PYTHON = \
 	./PolkitButton.py \
 	$(NULL)
 
-policykitdir = $(pkgdatadir)/common/PolicyKit
+policykitdir = $(pkgdatadir)/common/policykit
 all: all-am
 
 .SUFFIXES:

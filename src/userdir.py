@@ -26,9 +26,9 @@ import gconf
 import gettext
 import gobject
 
-from common.Consts import *
-from common.IniFile import IniFile
-from common.Widgets import TweakPage, EntryBox, QuestionDialog, InfoDialog
+from common.consts import *
+from common.inifile import IniFile
+from common.widgets import TweakPage, EntryBox, QuestionDialog, InfoDialog
 
 (
     COLUMN_ICON,
@@ -238,5 +238,5 @@ class UserDir(TweakPage):
         button.set_sensitive(True)
 
 if __name__ == "__main__":
-    from Utility import Test
+    from utility import Test
     Test(UserDir)

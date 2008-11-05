@@ -19,9 +19,9 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import UserDict
-from Consts import *
-from Widgets import *
-from SystemInfo import GnomeVersion
+from consts import *
+from widgets import *
+from systeminfo import GnomeVersion
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 

@@ -26,7 +26,7 @@ import gconf
 import gobject
 import gettext
 import time
-from common.Settings import *
+from common.settings import *
 
 class GconfCheckButton(gtk.CheckButton):
     def __init__(self, label, key):

@@ -27,50 +27,38 @@ import gobject
 import gettext
 import gnomevfs
 from gnome import ui
-from UserDir import UserdirFile
-from common.Consts import *
-from common.Widgets import TweakPage, WarningDialog, DirView, FlatView
+from common.consts import *
+from common.widgets import TweakPage, ErrorDialog, WarningDialog, DirView, FlatView
 
 (
     COLUMN_ICON,
-    COLUMN_TEMPINFO,
+    COLUMN_SCRIPTINFO,
     COLUMN_FILE,
 ) = range(3)
 
-class AbstractTempates:
-    systemdir = os.path.join(os.path.expanduser("~"), ".ubuntu-tweak/templates")
-    __uf = UserdirFile()
-    __template_dir = __uf.get('XDG_TEMPLATES_DIR').strip('"').split("/")[1:]
-    if not __template_dir:
-        __template_dir = os.path.expanduser('~/Templates')
-        if not os.path.exists(os.path.expanduser('~/Templates')):
-            os.mkdir(__template_dir)
-        userdir = __template_dir
-    else:
-        userdir = os.getenv("HOME") + "/"  + "/".join(__template_dir)
+class AbstractScripts:
+    systemdir = os.path.join(os.path.expanduser("~"), ".ubuntu-tweak/scripts")
+    userdir = os.path.join(os.getenv("HOME"), ".gnome2", "nautilus-scripts")
 
-    __uf.set_userdir('XDG_TEMPLATES_DIR', userdir)
-
-class DefaultTemplates(AbstractTempates):
-    """This class use to create the default templates"""
-    templates = {
-            "html-document.html": _("HTML document"),
-            "odb-database.odb": _("ODB Database"),
-            "ods-spreadsheet.ods": _("ODS Spreadsheet"),
-            "odt-document.odt": _("ODT Document"),
-            "plain-text-document.txt": _("Plain text document"),
-            "odp-presentation.odp": _("ODP Presentation"),
-            "python-script.py": _("Python script"),
-            "shell-script.sh": _("Shell script")
+class DefaultScripts(AbstractScripts):
+    """This class use to create the default scripts"""
+    scripts = {
+            "copy-to": _("Copy to ..."),
+            "move-to": _("Move to ..."),
+            "link-to": _("Link to ..."),
+            "open-with-gedit": _("Open with gedit"),
+            "open-with-gedit-as-root": _("Open with gedit(as root)"),
+            "browse-as-root": _("Browse as root"),
+            "search-in-current": _("Search in current folder"),
             }
 
     def create(self):
         if not os.path.exists(self.systemdir):
             os.makedirs(self.systemdir)
-        for file, des in self.templates.items():
-            realname = "%s.%s" % (des, file.split('.')[1])
-            if not os.path.exists(os.path.join(self.systemdir, realname)):
-                shutil.copy(os.path.join(DATA_DIR, 'templates/%s' % file), os.path.join(self.systemdir, realname))
+        for file, des in self.scripts.items():
+            realname = "%s" % des
+            if not os.path.exists(os.path.join(self.systemdir,realname)):
+                shutil.copy(os.path.join(DATA_DIR, "scripts/%s" % file), os.path.join(self.systemdir,realname))
 
     def remove(self):
         if not os.path.exists(self.systemdir):
@@ -86,28 +74,28 @@ class DefaultTemplates(AbstractTempates):
             os.unlink(self.systemdir)
         return
 
-class EnableTemplate(DirView, AbstractTempates):
-    """The treeview to display the enable templates"""
-    type = _("Enabled Templates")
+class EnableScripts(DirView, AbstractScripts):
+    """The treeview to display the enable scripts"""
+    type = _("Enabled Scripts")
 
     def __init__(self):
         DirView.__init__(self, self.userdir)
 
-class DisableTemplate(FlatView, AbstractTempates):
+class DisableScripts(FlatView, AbstractScripts):
     """The treeview to display the system template"""
-    type = _("Disabled Templates")
+    type = _("Disabled Scripts")
 
     def __init__(self):
         FlatView.__init__(self, self.systemdir, self.userdir)
 
-class Templates(TweakPage, AbstractTempates):
-    """Freedom added your docmuent templates"""
+class Scripts(TweakPage, AbstractScripts):
+    """Freedom added your docmuent scripts"""
     def __init__(self):
         TweakPage.__init__(self, 
-                _("Manage Templates"),
-                _('You can freely manage your document templates.\nYou can drag and drop from File Manager.\n"Create Document" will be added to the context menu.\n'))
+                _("Manage Scripts"),
+                _('You can do all kinds of tasks with scripts.\nYou can drag and drop from File Manager.\n"Scripts" will be added to the context menu.\n'))
 
-        self.default = DefaultTemplates()
+        self.default = DefaultScripts()
         self.config_test()
 
         hbox = gtk.HBox(False, 10)
@@ -117,42 +105,42 @@ class Templates(TweakPage, AbstractTempates):
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         hbox.pack_start(sw)
 
-        self.enable_templates = EnableTemplate()
-        sw.add(self.enable_templates)
+        self.enable_scripts = EnableScripts()
+        sw.add(self.enable_scripts)
 
         sw = gtk.ScrolledWindow()
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         hbox.pack_start(sw)
 
-        self.disable_templates = DisableTemplate()
-        sw.add(self.disable_templates)
+        self.disable_scripts = DisableScripts()
+        sw.add(self.disable_scripts)
 
         hbox = gtk.HBox(False, 0)
         self.pack_start(hbox, False, False, 10)
 
-        button = gtk.Button(_("Rebuild System Templates"))
+        button = gtk.Button(_("Rebuild System Scripts"))
         button.connect("clicked", self.on_rebuild_clicked)
         hbox.pack_end(button, False, False, 5)
-
-        self.enable_templates.connect('drag_data_received', self.on_enable_drag_data_received)
-        self.enable_templates.connect('deleted', self.on_enable_deleted)
-        self.disable_templates.connect('drag_data_received', self.on_disable_drag_data_received)
+        
+        self.enable_scripts.connect('drag_data_received', self.on_enable_drag_data_received)
+        self.enable_scripts.connect('deleted', self.on_enable_deleted)
+        self.disable_scripts.connect('drag_data_received', self.on_disable_drag_data_received)
 
     def on_enable_deleted(self, widget):
-        self.disable_templates.update_model()
+        self.disable_scripts.update_model()
 
     def on_enable_drag_data_received(self, treeview, context, x, y, selection, info, etime):
-        self.disable_templates.update_model()
+        self.disable_scripts.update_model()
 
     def on_disable_drag_data_received(self, treeview, context, x, y, selection, info, etime):
-        self.enable_templates.update_model()
+        self.enable_scripts.update_model()
 
     def on_rebuild_clicked(self, widget):
-        dialog = WarningDialog(_('This will delete all disabled templates.\nDo you wish to continue?'))
+        dialog = WarningDialog(_('This will delete all disabled scripts.\nDo you wish to continue?'))
         if dialog.run() == gtk.RESPONSE_YES:
             self.default.remove()
             self.default.create()
-            self.disable_templates.update_model()
+            self.disable_scripts.update_model()
         dialog.destroy()
 
     def config_test(self):
@@ -160,5 +148,5 @@ class Templates(TweakPage, AbstractTempates):
             self.default.create()
 
 if __name__ == "__main__":
-    from Utility import Test
-    Test(Templates)
+    from utility import Test
+    Test(Scripts)

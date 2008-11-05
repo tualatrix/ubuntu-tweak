@@ -25,8 +25,8 @@ import os
 import gobject
 import gettext
 
-from common.Widgets import EntryBox, ListPack, TweakPage
-from common.SystemInfo import SystemInfo
+from common.widgets import EntryBox, ListPack, TweakPage
+from common.systeminfo import SystemInfo
 
 class Computer(TweakPage):
     """Some options about current user"""
@@ -67,5 +67,5 @@ class Computer(TweakPage):
         self.pack_start(box, False, False, 0)
 
 if __name__ == "__main__":
-    from Utility import Test
+    from utility import Test
     Test(Computer)

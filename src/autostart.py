@@ -23,8 +23,8 @@ import gtk
 import shutil
 import gobject
 from xdg.DesktopEntry import DesktopEntry
-from common.LookupIcon import *
-from common.Widgets import InfoDialog, TweakPage
+from common.widgets import InfoDialog, TweakPage
+from common.utils import *
 
 (
     COLUMN_ACTIVE,
@@ -452,5 +452,5 @@ class AutoStart(TweakPage):
             dialog.destroy()
 
 if __name__ == "__main__":
-    from Utility import Test
+    from utility import Test
     Test(AutoStart)

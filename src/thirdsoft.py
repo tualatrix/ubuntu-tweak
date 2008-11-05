@@ -29,14 +29,14 @@ import subprocess
 import gobject
 import apt_pkg
 
-from Config import Config
+from common.config import Config
 from gnome import url_show
-from common.Consts import *
-from common.AppData import *
-from common.Factory import Factory
-from common.PolicyKit import PolkitButton, DbusProxy
-from common.SystemInfo import SystemModule
-from common.Widgets import ListPack, TweakPage, GconfCheckButton, InfoDialog, WarningDialog, ErrorDialog, QuestionDialog
+from common.consts import *
+from common.appdata import *
+from common.factory import Factory
+from common.policykit import PolkitButton, DbusProxy
+from common.systeminfo import SystemModule
+from common.widgets import ListPack, TweakPage, GconfCheckButton, InfoDialog, WarningDialog, ErrorDialog, QuestionDialog
 from aptsources.sourceslist import SourceEntry, SourcesList
 
 (
@@ -420,5 +420,5 @@ class ThirdSoft(TweakPage):
         self.emit('update', 'Installer', 'deep_update')
 
 if __name__ == '__main__':
-    from Utility import Test
+    from utility import Test
     Test(ThirdSoft)

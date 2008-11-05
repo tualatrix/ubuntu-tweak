@@ -25,9 +25,9 @@ import os
 import gconf
 import gettext
 
-from common.Consts import *
-from common.Widgets import ListPack, SinglePack, TweakPage
-from common.Factory import Factory
+from common.consts import *
+from common.widgets import ListPack, SinglePack, TweakPage
+from common.factory import Factory
 
 class Session(TweakPage):
     """GNOME Session control"""
@@ -143,5 +143,5 @@ class Session(TweakPage):
             self.button.set_sensitive(False)
 
 if __name__ == "__main__":
-    from Utility import Test
+    from utility import Test
     Test(Session)

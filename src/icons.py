@@ -23,9 +23,9 @@ pygtk.require("2.0")
 import gtk
 import gconf
 
-from common.Consts import *
-from common.Widgets import TweakPage
-from common.Factory import Factory
+from common.consts import *
+from common.widgets import TweakPage
+from common.factory import Factory
 
 computer_icon = \
 {
@@ -138,5 +138,5 @@ class Icon(TweakPage):
         self.show_button_box.set_sensitive(self.show_button.get_active())
 
 if __name__ == "__main__":
-    from Utility import Test
+    from utility import Test
     Test(Icon)

@@ -25,8 +25,8 @@ import os
 import gconf
 import gettext
 
-from common.Factory import Factory
-from common.Widgets import ListPack, TweakPage
+from common.factory import Factory
+from common.widgets import ListPack, TweakPage
 
 class LockDown(TweakPage):
     """Lock down some function"""
@@ -45,5 +45,5 @@ class LockDown(TweakPage):
         self.pack_start(box, False, False, 0)
 
 if __name__ == "__main__":
-    from Utility import Test
+    from utility import Test
     Test(LockDown)

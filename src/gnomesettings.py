@@ -24,10 +24,10 @@ import os
 import gtk
 import gconf
 
-from Config import TweakSettings
-from common.LookupIcon import get_icon_with_name
-from common.Factory import Factory
-from common.Widgets import ListPack, TweakPage, ErrorDialog, QuestionDialog
+from common.config import TweakSettings
+from common.factory import Factory
+from common.utils import get_icon_with_name
+from common.widgets import ListPack, TweakPage, ErrorDialog, QuestionDialog
 
 class Gnome(TweakPage):
     """GNOME Settings"""
@@ -155,5 +155,5 @@ class Gnome(TweakPage):
             os.system('mkdir %s' % file)
 
 if __name__ == "__main__":
-    from Utility import Test
+    from utility import Test
     Test(Gnome)

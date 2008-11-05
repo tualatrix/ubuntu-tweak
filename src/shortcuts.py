@@ -26,8 +26,8 @@ import gconf
 import gettext
 import gobject
 
-from common.Widgets import TweakPage, KeyGrabber, KeyModifier
-from common.Factory import Factory
+from common.widgets import TweakPage, KeyGrabber, KeyModifier
+from common.factory import Factory
 
 (
     COLUMN_ID,
@@ -190,5 +190,5 @@ class Shortcuts(TweakPage):
                 model.set_value(iter, COLUMN_COMMAND, _("None"))
 
 if __name__ == "__main__":
-    from Utility import Test
+    from utility import Test
     Test(Shortcuts)

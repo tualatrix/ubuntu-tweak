@@ -2,10 +2,10 @@ import os
 import gtk
 import shutil
 import gobject
-from gnome import ui
 import gnomevfs
-from Dialogs import ErrorDialog
-from common.LookupIcon import get_icon_with_type
+from gnome import ui
+from dialogs import ErrorDialog
+from common.utils import get_icon_with_type
 
 (
     DIR_ICON,

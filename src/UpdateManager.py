@@ -13,10 +13,10 @@ import socket
 import threading
 import gobject
 
-from common.Consts import *
-from common.SystemInfo import SystemInfo
+from common.consts import *
+from common.systeminfo import SystemInfo
 from xmlrpclib import ServerProxy, Error
-from Config import TweakSettings
+from common.config import TweakSettings
 
 socket.setdefaulttimeout(10)
 

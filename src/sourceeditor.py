@@ -25,10 +25,10 @@ import socket
 import gobject
 import gettext
 from xmlrpclib import ServerProxy, Error
-from common.SystemInfo import SystemModule
-from common.LookupIcon import *
-from common.PolicyKit import DbusProxy, PolkitButton
-from common.Widgets import TweakPage, InfoDialog, QuestionDialog, ErrorDialog
+from common.systeminfo import SystemModule
+from common.utils import *
+from common.policykit import DbusProxy, PolkitButton
+from common.widgets import TweakPage, InfoDialog, QuestionDialog, ErrorDialog
 from common.utils import set_label_for_stock_button
 
 (
@@ -39,8 +39,8 @@ from common.utils import set_label_for_stock_button
     COLUMN_DISPLAY,
 ) = range(5)
 
-SOURCES_LIST = '/etc/apt/sources.list'
-#SOURCES_LIST = '/home/tualatrix/Desktop/sources.list'
+#SOURCES_LIST = '/etc/apt/sources.list'
+SOURCES_LIST = '/home/tualatrix/Desktop/sources.list'
 
 class SelectSourceDialog(gtk.Dialog):
     def __init__(self, parent):
@@ -448,5 +448,5 @@ class SourceEditor(TweakPage):
             ErrorDialog(_('<b><big>Could not authenticate</big></b>\n\nAn unexpected error has occurred.')).launch()
 
 if __name__ == '__main__':
-    from Utility import Test
+    from utility import Test
     Test(SourceEditor)
