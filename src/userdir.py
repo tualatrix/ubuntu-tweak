@@ -131,19 +131,20 @@ class UserdirView(gtk.TreeView):
 
         if dialog.run() == gtk.RESPONSE_ACCEPT:
             fullpath = dialog.get_filename()
-
             folder = self.uf.set_userdir(userdir, fullpath)
-
             model.set_value(iter, COLUMN_PATH, folder)
+            self.emit('changed')
 
         dialog.destroy()
-        self.emit('changed')
 
     def on_restore_directory(self, widget):
         model, iter = self.get_selection().get_selected()
         userdir = model.get_value(iter, COLUMN_DIR)
 
-        dialog = QuestionDialog(_('<b><big>Notice</big></b>\n\nUbuntu Tweak will restore the chosen directory to the default location.\nHowever, you must move your files back into place by yourself.\nDo you wish to continue?'))
+        dialog = QuestionDialog('<b><big>%s</big></b>\n\n%s' % (_('Notice'),
+            _('Ubuntu Tweak will restore the chosen directory to the default '
+            'location.\nHowever, you must move your files back into place by '
+            'yourself.\nDo you wish to continue?')))
 
         if dialog.run() == gtk.RESPONSE_YES:
             newdir = os.path.join(os.getenv("HOME"), self.uf.get_restorename(userdir))
@@ -153,8 +154,9 @@ class UserdirView(gtk.TreeView):
             if not os.path.exists(newdir):
                 os.mkdir(newdir)
 
+            self.emit('changed')
+
         dialog.destroy()
-        self.emit('changed')
 
     def __create_model(self):
         model = gtk.ListStore(

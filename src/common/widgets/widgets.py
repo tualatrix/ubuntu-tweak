@@ -36,8 +36,8 @@ class GconfCheckButton(gtk.CheckButton):
         self.set_label(label)
         self.set_active(self.__setting.get_bool())
 
-        self.__setting.get_client().notify_add(key, self.value_changed)
-        self.connect("toggled", self.button_toggled)
+        self.__setting.client.notify_add(key, self.value_changed)
+        self.connect('toggled', self.button_toggled)
 
     def value_changed(self, client, id, entry, data = None):
         self.set_active(self.__setting.get_bool())
@@ -72,8 +72,8 @@ class GconfEntry(gtk.Entry):
 
     def on_edit_finished_cb(self, widget):
         string = self.get_text()
-        client = self.__setting.get_client()
-        key = self.__setting.get_key()
+        client = self.__setting.client
+        key = self.__setting.key
         if string:
             client.set_string(key, self.get_text())
         else:
@@ -97,8 +97,8 @@ class GconfCombobox(ConstStringSetting):
 
     def value_changed_cb(self, widget, data = None):
         text = widget.get_active_text()
-        client = self.get_client()
-        key = self.get_key()
+        client = self.client
+        key = self.key
 
         client.set_string(key, self.values[self.texts.index(text)])
 
@@ -129,15 +129,6 @@ class EntryBox(gtk.HBox):
         self.pack_end(entry, False, False, 0)
 
 class HScaleBox(gtk.HBox):
-
-    def hscale_value_changed_cb(self, widget, data = None):
-        client = gconf.client_get_default()
-        value = client.get(data)
-        if value.type == gconf.VALUE_INT:
-            client.set_int(data, int(widget.get_value()))
-        elif value.type == gconf.VALUE_FLOAT:
-            client.set_float(data, widget.get_value())
-
     def __init__(self, label, min, max, key, digits = 0):
         gtk.HBox.__init__(self)
         self.pack_start(gtk.Label(label), False, False, 0)
@@ -159,9 +150,15 @@ class HScaleBox(gtk.HBox):
             elif value.type == gconf.VALUE_FLOAT:
                 hscale.set_value(client.get_float(key))
 
+    def hscale_value_changed_cb(self, widget, data = None):
+        client = gconf.client_get_default()
+        value = client.get(data)
+        if value.type == gconf.VALUE_INT:
+            client.set_int(data, int(widget.get_value()))
+        elif value.type == gconf.VALUE_FLOAT:
+            client.set_float(data, widget.get_value())
 
 class ComboboxItem(gtk.HBox):
-
     def __init__(self, label, texts, values, key):
         gtk.HBox.__init__(self)
         self.pack_start(gtk.Label(label), False, False, 0)    
@@ -179,6 +176,7 @@ class ComboboxItem(gtk.HBox):
 
         if client.get_string(key) in values:
             combobox.set_active(values.index(client.get_string(key)))
+
     def value_changed_cb(self, widget, data = None):
         client = gconf.client_get_default()
         text = widget.get_active_text()
@@ -215,7 +213,7 @@ class Popup (gtk.Window):
         while gtk.events_pending ():
             gtk.main_iteration ()
 
-class KeyGrabber (gtk.Button):
+class KeyGrabber(gtk.Button):
 
     __gsignals__ = {"changed" : (gobject.SIGNAL_RUN_FIRST,
                             gobject.TYPE_NONE,
