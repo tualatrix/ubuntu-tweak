@@ -71,7 +71,7 @@ APP_DATA = {
     'deluge-torrent': _('A Bittorrent client written in PyGTK'),
     'nautilus-dropbox': _('Store, Sync and Share your files online.'),
     'eclipse': _('Extensible Tool Platform and Java IDE'),
-    'eioffice-personal', _('EIOffice Personal 2009 . See http://www.evermoresw.com.'),
+    'eioffice-personal': _('EIOffice Personal 2009. See http://www.evermoresw.com.'),
     'emesene': _('A client for the Windows Live Message network'),
     'empathy': _('Empathy consists of a rich set of reusable instant messaging widgets, and a GNOME client using those widgets.'),
     'eva': _('KDE IM client using Tencent QQ protocol'),
