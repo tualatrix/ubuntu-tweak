@@ -83,6 +83,7 @@ data = \
     ('eclipse', Develop),
     ('emesene', IM),
     ('empathy', IM),
+    ('eioffice-personal', Text),
     ('eva', IM),
     ('exaile', Sound),
     ('filezilla', FTP),

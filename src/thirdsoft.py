@@ -68,6 +68,7 @@ AWN = ['Avant Window Navigator', 'awn-project.org', '']
 Opera = ['Opera', 'www.opera.com', 'opera.gpg']
 Skype = ['Skype', 'www.skype.com', '']
 PlayOnLinux = ['PlayOnLinux', 'www.playonlinux.com', 'pol.gpg']
+Eioffice = ['EIOffice', 'www.evermoresw.com', '']
 Midori = ['Midori', 'www.twotoasts.de', '']
 Firefox = ['Firefox', 'www.mozilla.org', '']
 CompizFusion = ['Compiz Fusion', 'www.compiz-fusion.org/', '']
@@ -93,6 +94,7 @@ XBMC = ['XBMC', 'xbmc.org', '']
 
 SOURCES_DATA = [
     ['http://ppa.launchpad.net/reacocard-awn/ubuntu/', ['hardy','intrepid'], 'main', AWN],
+    ['http://archive.ubuntu.org.cn/ubuntu-cn/', ['hardy', 'intrepid'], 'main restricted universe multiverse', Eioffice],
     ['http://deb.opera.com/opera/', 'lenny', 'non-free', Opera],
     ['http://download.skype.com/linux/repos/debian', 'stable', 'non-free', Skype],
     ['http://playonlinux.botux.net/', 'hardy', 'main', PlayOnLinux],
