@@ -449,8 +449,9 @@ class MainWindow(gtk.Window):
         self.notebook.append_page(page)
 
     def on_child_page_update(self, widget, module, action):
-        # FIXME: If the module hasn't load yet!
-        getattr(self.modules[module], action)()
+        # FIXME: If the module hasn't load yet! 
+        if module in self.modules:
+            getattr(self.modules[module], action)()
 
     def click_website(self, dialog, link, data = None):
         url_show(link)

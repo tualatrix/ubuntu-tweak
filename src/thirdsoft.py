@@ -68,7 +68,7 @@ AWN = ['Avant Window Navigator', 'awn-project.org', '']
 Opera = ['Opera', 'www.opera.com', 'opera.gpg']
 Skype = ['Skype', 'www.skype.com', '']
 PlayOnLinux = ['PlayOnLinux', 'www.playonlinux.com', 'pol.gpg']
-Eioffice = ['EIOffice', 'www.evermoresw.com', '']
+Eioffice = ['EIOffice Personal', 'www.evermoresw.com', '']
 Midori = ['Midori', 'www.twotoasts.de', '']
 Firefox = ['Firefox', 'www.mozilla.org', '']
 CompizFusion = ['Compiz Fusion', 'www.compiz-fusion.org/', '']
@@ -404,6 +404,7 @@ class ThirdSoft(TweakPage):
 
     def colleague_changed(self, widget):
         self.refresh_button.set_sensitive(True)
+        self.emit('update', 'sourceeditor', 'update_sourceslist')
     
     def on_refresh_button_clicked(self, widget):
         dialog = UpdateCacheDialog(widget.get_toplevel())
@@ -413,7 +414,7 @@ class ThirdSoft(TweakPage):
         widget.set_sensitive(False)
 
         InfoDialog(_('<b><big>The software information is up-to-date now</big></b>\n\nYou can install the new applications through Add/Remove.')).launch()
-        self.emit('update', 'Installer', 'deep_update')
+        self.emit('update', 'installer', 'deep_update')
 
 if __name__ == '__main__':
     from utility import Test

@@ -366,6 +366,11 @@ class SourceEditor(TweakPage):
 
         self.show_all()
 
+    def update_sourceslist(self):
+        self.textview.update_content()
+        self.redo_button.set_sensitive(False)
+        self.save_button.set_sensitive(False)
+
     def on_submit_button_clicked(self, widget):
         dialog = SubmitDialog(widget.get_toplevel())
         source_data = ()
