@@ -66,7 +66,7 @@ AC_CONFIG_FILES([
 AC_OUTPUT
 
 echo
-echo $PACKAGE v$VERSION
+echo $PACKAGE $VERSION
 echo
 
 echo Prefix............... : $prefix
