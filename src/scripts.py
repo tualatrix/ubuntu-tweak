@@ -22,19 +22,22 @@ import pygtk
 pygtk.require("2.0")
 import gtk
 import os
+import stat
 import shutil
 import gobject
 import gettext
 import gnomevfs
 from gnome import ui
 from common.consts import *
+from common.utils import get_icon_with_type
 from common.widgets import TweakPage, ErrorDialog, WarningDialog, DirView, FlatView
 
 (
     COLUMN_ICON,
-    COLUMN_SCRIPTINFO,
-    COLUMN_FILE,
-) = range(3)
+    COLUMN_TITLE,
+    COLUMN_PATH,
+    COLUMN_EDITABLE,
+) = range(4)
 
 class AbstractScripts:
     systemdir = os.path.join(os.path.expanduser("~"), ".ubuntu-tweak/scripts")
@@ -80,6 +83,24 @@ class EnableScripts(DirView, AbstractScripts):
 
     def __init__(self):
         DirView.__init__(self, self.userdir)
+
+    def do_update_model(self, dir, iter):
+        for item in os.listdir(dir):
+            fullname = os.path.join(dir, item)
+            pixbuf = get_icon_with_type(fullname, 24)
+
+            child_iter = self.model.append(iter)
+            self.model.set(child_iter,
+                              COLUMN_ICON, pixbuf,
+                              COLUMN_TITLE, os.path.basename(fullname),
+                              COLUMN_PATH, fullname, 
+                              COLUMN_EDITABLE, False)
+
+            if os.path.isdir(fullname):
+                self.do_update_model(fullname, child_iter)
+            else:
+                if not os.access(fullname, os.X_OK):
+                    os.chmod(fullname, stat.S_IRWXU)
 
 class DisableScripts(FlatView, AbstractScripts):
     """The treeview to display the system template"""

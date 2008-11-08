@@ -35,7 +35,7 @@ class DirView(gtk.TreeView):
         self.set_model(self.model)
 
         iter = self.__setup_root_model()
-        self.__update_model(self.dir, iter)
+        self.do_update_model(self.dir, iter)
 
         self.__add_columns()
         self.set_size_request(180, -1)
@@ -223,7 +223,7 @@ class DirView(gtk.TreeView):
         self.model.clear()
 
         iter = self.__setup_root_model()
-        self.__update_model(self.dir, iter)
+        self.do_update_model(self.dir, iter)
 
         self.expand_all()
 
@@ -248,7 +248,7 @@ class DirView(gtk.TreeView):
 
         return iter
 
-    def __update_model(self, dir, iter):
+    def do_update_model(self, dir, iter):
         for item in os.listdir(dir):
             fullname = os.path.join(dir, item)
             pixbuf = get_icon_with_type(fullname, 24)
@@ -261,7 +261,7 @@ class DirView(gtk.TreeView):
                               DIR_EDITABLE, False)
 
             if os.path.isdir(fullname):
-                self.__update_model(fullname, child_iter)
+                self.do_update_model(fullname, child_iter)
 
     def __add_columns(self):
         try:
