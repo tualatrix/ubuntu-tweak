@@ -55,6 +55,7 @@ def get_source_logo(name):
 
 APP_DATA = {
     'agave': _('A color scheme designer'),
+    'amarok-nightly': _('Development version of an audio player for KDE'),
     'amule': _('Client for the eD2k and Kad networks'),
     'anjuta': _('GNOME IDE for C/C++, Java, Python'),
     'audacious': _('A skinned multimedia player for many platforms'),

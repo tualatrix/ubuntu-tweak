@@ -65,6 +65,7 @@ from aptsources.sourceslist import SourceEntry, SourcesList
 ) = range(3)
 
 AWN = ['Avant Window Navigator', 'awn-project.org', '']
+Amarok = ['Amarok Nightly', 'amarok.kde.org', '']
 Opera = ['Opera', 'www.opera.com', 'opera.gpg']
 Skype = ['Skype', 'www.skype.com', '']
 PlayOnLinux = ['PlayOnLinux', 'www.playonlinux.com', 'pol.gpg']
@@ -94,6 +95,7 @@ XBMC = ['XBMC', 'xbmc.org', '']
 
 SOURCES_DATA = [
     ['http://ppa.launchpad.net/reacocard-awn/ubuntu/', ['hardy','intrepid'], 'main', AWN],
+    ['http://ppa.launchpad.net/project-neon/ubuntu/', ['hardy', 'intrepid'], 'main', Amarok],
     ['http://archive.ubuntu.org.cn/ubuntu-cn/', ['hardy', 'intrepid'], 'main restricted universe multiverse', Eioffice],
     ['http://deb.opera.com/opera/', 'lenny', 'non-free', Opera],
     ['http://download.skype.com/linux/repos/debian', 'stable', 'non-free', Skype],
@@ -111,7 +113,7 @@ SOURCES_DATA = [
     ['http://www.getdropbox.com/static/ubuntu', 'hardy', 'main', NautilusDropbox],
     ['http://ppa.launchpad.net/tualatrix/ubuntu', 'hardy', 'main', UbuntuTweak],
     ['http://ppa.launchpad.net/gilir/ubuntu', 'hardy', 'main', Screenlets],
-    ['http://wine.budgetdedicated.com/apt', 'hardy', 'main', Wine],
+    ['http://wine.budgetdedicated.com/apt', ['hardy', 'intrepid'], 'main', Wine],
     ['http://ppa.launchpad.net/lxde/ubuntu', 'hardy', 'main', LXDE],
     ['http://ppa.launchpad.net/gnome-terminator/ubuntu', ['hardy', 'intrepid'], 'main', Terminator],
     ['http://download.virtualbox.org/virtualbox/debian', 'hardy', 'non-free', VirtualBox],
