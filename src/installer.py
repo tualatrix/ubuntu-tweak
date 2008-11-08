@@ -67,6 +67,7 @@ data = \
 (
     ('agave', Image),
     ('amule', P2P),
+    ('amarok-nightly', Sound),
     ('anjuta', Develop),
     ('audacious', Sound),
     ('audacity', Sound),
