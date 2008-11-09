@@ -60,7 +60,15 @@ class SystemModule:
     def has_right_compiz(self):
         if self.has_ccm():
             import ccm
-            if ccm.Version >= "0.7.4":
+            if ccm.Version >= '0.7.4':
+                return True
+            else:
+                return False
+        elif self.has_apt():
+            from package import worker, update_apt_cache
+            update_apt_cache()
+            version = str(worker.get_pkgversion('compiz'))
+            if version.split(':')[1] >= '0.7.4':
                 return True
             else:
                 return False

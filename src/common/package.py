@@ -137,6 +137,9 @@ class PackageWorker:
     def get_pkgsummary(self, pkg):
         return cache[pkg].summary
 
+    def get_pkgversion(self, pkg):
+        return cache[pkg].installedVersion
+
     def perform_action(self, window_main, to_add = None, to_rm = None):
         window_main.set_sensitive(False)
         window_main.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
@@ -152,6 +155,7 @@ class PackageWorker:
 
         return self.return_code
 
+worker = PackageWorker()
+
 if __name__ == '__main__':
-    update_apt_cache()
-    print PackageWorker().list_autoremovable()
+    print worker.get_pkgversion('compiz')

@@ -71,7 +71,8 @@ Amarok = ['Amarok', 'amarok-nightly', 'amarok.kde.org', '']
 Opera = ['Opera', 'opera', 'www.opera.com', 'opera.gpg']
 Skype = ['Skype', 'skype', 'www.skype.com', '']
 PlayOnLinux = ['PlayOnLinux', 'playonlinux', 'www.playonlinux.com', 'pol.gpg']
-Eioffice = [_('EIOffice Personal Edition'), 'eioffice-personal', 'www.evermoresw.com', '']
+Ubuntu_cn = [_('Ubuntu Chinese Repository'), 'ubuntu-cn', 'www.ubuntu.org.cn', '']
+OpenOffice = ['OpenOffice.org', 'openoffice', 'www.openoffice.org', '']
 Midori = ['Midori', 'midori', 'www.twotoasts.de', '']
 Firefox = ['Firefox', 'firefox', 'www.mozilla.org', '']
 CompizFusion = ['Compiz Fusion', 'compiz-fusion', 'www.compiz-fusion.org/', '']
@@ -99,7 +100,8 @@ XBMC = ['XBMC', 'xbmc', 'xbmc.org', '']
 SOURCES_DATA = [
     ['http://ppa.launchpad.net/reacocard-awn/ubuntu/', ['hardy','intrepid'], 'main', AWN],
     ['http://ppa.launchpad.net/project-neon/ubuntu/', ['hardy', 'intrepid'], 'main', Amarok],
-    ['http://archive.ubuntu.org.cn/ubuntu-cn/', ['hardy', 'intrepid'], 'main restricted universe multiverse', Eioffice],
+    ['http://archive.ubuntu.org.cn/ubuntu-cn/', ['hardy', 'intrepid'], 'main restricted universe multiverse', Ubuntu_cn],
+    ['http://ppa.launchpad.net/openoffice-pkgs/ubuntu', 'intrepid', 'main', OpenOffice],
     ['http://deb.opera.com/opera/', 'lenny', 'non-free', Opera],
     ['http://download.skype.com/linux/repos/debian', 'stable', 'non-free', Skype],
     ['http://playonlinux.botux.net/', 'hardy', 'main', PlayOnLinux],

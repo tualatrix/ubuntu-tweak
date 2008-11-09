@@ -72,7 +72,7 @@ APP_DATA = {
     'deluge-torrent': _('A Bittorrent client written in PyGTK'),
     'nautilus-dropbox': _('Store, Sync and Share your files online.'),
     'eclipse': _('Extensible Tool Platform and Java IDE'),
-    'eioffice-personal': _('EIOffice Personal 2009. See http://www.evermoresw.com.'),
+    'eioffice-personal': _('EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw.com.'),
     'emesene': _('A client for the Windows Live Message network'),
     'empathy': _('Empathy consists of a rich set of reusable instant messaging widgets, and a GNOME client using those widgets.'),
     'eva': _('KDE IM client using Tencent QQ protocol'),
@@ -93,6 +93,9 @@ APP_DATA = {
     'gscrot': _('A powerful screenshot tool'),
     'gtk-recordmydesktop': _('Graphical frontend for recordmydesktop'),
     'isomaster': _('A graphical CD image editor'),
+    'ibus': _('Intelligent Input Bus for Linux / Unix OS'),
+    'ibus-pinyin': _('It is a PinYin engine for IBus.'),
+    'ibus-table': _('IBus-Table is the IM Engine framework for table-based input methods, such as ZhengMa, WuBi, ErBi, ChangJie and so on.'),
     'kino': _('Non-linear editor for Digital Video data'),
     'lastfm': _('A music player for Last.fm personalized radio'),
     'leafpad': _('GTK+ based simple text editor'),
@@ -129,9 +132,11 @@ SOURCE_DATA = {
     'compiz-fusion': _('Development version of Compiz Fusion'),
     'google': _("Google's Linux Repository"),
     'kde-4': _('K Desktop Environment 4.1'),
-    'lxde': _('Lightweight X11 Desktop Environment:GPicView, PCManFM'),
+    'lxde': _('Lightweight X11 Desktop Environment: GPicView, PCManFM'),
     'medibuntu': _('Multimedia, Entertainment and Distraction In Ubuntu\nMedibuntu is a repository of packages that cannot be included into the Ubuntu distribution for legal reasons (copyright, license, patent, etc).'),
-    'openoffice': _('OpenOffice.org 3.0.0'),
+    'openoffice': 'OpenOffice.org 3.0 for Ubuntu 8.10 Intrepid Ibex',
+    'ubuntu-cn': _('Ubuntu repository for Chinese users.\n'
+        'Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and other softwares.'),
 }
 
 if __name__ == '__main__':

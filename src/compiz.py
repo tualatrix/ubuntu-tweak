@@ -25,7 +25,8 @@ import gtk
 import gconf
 import gobject
 from common.consts import DATA_DIR
-from common.widgets import ListPack, InfoDialog, SinglePack, TweakPage
+from common.widgets import ListPack, SinglePack, TweakPage
+from common.widgets.dialogs import InfoDialog
 from common.systeminfo import module_check
 try:
     from common.package import update_apt_cache, PackageWorker, AptCheckButton
