@@ -66,18 +66,18 @@ from aptsources.sourceslist import SourceEntry, SourcesList
 ) = range(4)
 
 AWN = ['Avant Window Navigator', 'avant-window-navigator', 'awn-project.org', '']
-Amarok = ['Amarok Nightly', 'amarok-nightly', 'amarok.kde.org', '']
-Opera = ['Opera', 'www.opera.com', 'opera.gpg']
-Skype = ['Skype', 'www.skype.com', '']
-PlayOnLinux = ['PlayOnLinux', 'www.playonlinux.com', 'pol.gpg']
-Eioffice = ['EIOffice Personal', 'www.evermoresw.com', '']
-Midori = ['Midori', 'www.twotoasts.de', '']
-Firefox = ['Firefox', 'www.mozilla.org', '']
-CompizFusion = ['Compiz Fusion', 'www.compiz-fusion.org/', '']
-CairoDock = ['Cairo Dock', 'cairo-dock.org', '']
-GnomeDo = ['GNOME Do', 'do.davebsd.com', '']
-Banshee_Stable = ['Banshee Stable', 'banshee', 'banshee-project.org', '']
-Banshee_Unstable = ['Banshee Unstable', 'banshee', 'banshee-project.org', '']
+Amarok = ['Amarok', 'amarok-nightly', 'amarok.kde.org', '']
+Opera = ['Opera', 'opera', 'www.opera.com', 'opera.gpg']
+Skype = ['Skype', 'skype', 'www.skype.com', '']
+PlayOnLinux = ['PlayOnLinux', 'playonlinux', 'www.playonlinux.com', 'pol.gpg']
+Eioffice = [_('EIOffice Personal Edition'), 'eioffice-personal', 'www.evermoresw.com', '']
+Midori = ['Midori', 'midori', 'www.twotoasts.de', '']
+Firefox = ['Firefox', 'firefox', 'www.mozilla.org', '']
+CompizFusion = ['Compiz Fusion', 'compiz-fusion', 'www.compiz-fusion.org/', '']
+CairoDock = ['Cairo Dock', 'cairo-dock',  'cairo-dock.org', '']
+GnomeDo = ['GNOME Do', 'gnome-do', 'do.davebsd.com', '']
+Banshee_Stable = [_('Banshee (Stable Version)'), 'banshee', 'banshee-project.org', '']
+Banshee_Unstable = [_('Banshee (Unstable Version)'), 'banshee', 'banshee-project.org', '']
 Google = ['Google', 'google', 'www.google.com/linuxrepositories/index.html', 'google.gpg']
 GoogleGadgets = ['Google gadgets', 'google-gadgets', 'desktop.google.com/plugins/', '']
 ChmSee = ['Chmsee', 'chmsee', 'chmsee.gro.clinux.org', '']
@@ -245,8 +245,9 @@ class SourcesView(gtk.TreeView):
 
             source = entry[-1]
             name = source[SOURCE_NAME]
-            comment = get_source_describ(name)
-            logo = gtk.gdk.pixbuf_new_from_file(get_source_logo(name))
+            package = source[SOURCE_PACKAGE]
+            comment = get_source_describ(package)
+            logo = gtk.gdk.pixbuf_new_from_file(get_source_logo(package))
             home = source[SOURCE_HOME]
             if home:
                 home = 'http://' + home
