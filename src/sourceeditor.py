@@ -28,8 +28,9 @@ from xmlrpclib import ServerProxy, Error
 from common.utils import *
 from common.systeminfo import module_check
 from common.policykit import PolkitButton, proxy
-from common.widgets import TweakPage, InfoDialog, QuestionDialog, ErrorDialog
 from common.utils import set_label_for_stock_button
+from common.widgets import TweakPage
+from common.widgets.dialogs import *
 
 (
     COLUMN_CHECK,
@@ -38,6 +39,17 @@ from common.utils import set_label_for_stock_button
     COLUMN_DESC,
     COLUMN_DISPLAY,
 ) = range(5)
+
+DEFAULT_SOURCE = '''deb http://archive.ubuntu.com/ubuntu/ %(distro)s main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu/ %(distro)s-security main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu/ %(distro)s-updates main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu/ %(distro)s-proposed main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu/ %(distro)s-backports main restricted universe multiverse
+deb-src http://archive.ubuntu.com/ubuntu/ %(distro)s main restricted universe multiverse
+deb-src http://archive.ubuntu.com/ubuntu/ %(distro)s-security main restricted universe multiverse
+deb-src http://archive.ubuntu.com/ubuntu/ %(distro)s-updates main restricted universe multiverse
+deb-src http://archive.ubuntu.com/ubuntu/ %(distro)s-proposed main restricted universe multiverse
+deb-src http://archive.ubuntu.com/ubuntu/ %(distro)s-backports main restricted universe multiverse''' % {'distro': module_check.get_codename()}
 
 SOURCES_LIST = '/etc/apt/sources.list'
 #SOURCES_LIST = '/home/tualatrix/Desktop/sources.list'
@@ -108,13 +120,10 @@ class SubmitDialog(gtk.Dialog):
 
         self.e_title = gtk.Entry();
         self.e_title.set_tooltip_text(_('Enter the title of the source, such as "Ubuntu Official Repostory"'))
-#        self.e_title.connect("activate", self.on_entry_activate)
         self.e_locale = gtk.Entry ();
         self.e_locale.set_tooltip_text(_("If the locale isn't correct, you can edit by you self"))
         self.e_locale.set_text(os.getenv('LANG'))
-#        self.e_locale.connect("activate", self.on_entry_activate)
         self.e_comment = gtk.Entry ();
-#        self.e_comment.connect("activate", self.on_entry_activate)
 
         table = gtk.Table(3, 2)
         table.attach(l_title, 0, 1, 0, 1, xoptions = gtk.FILL, xpadding = 10, ypadding = 10)
@@ -175,7 +184,7 @@ class ProcessDialog(gtk.Dialog):
 
     def show_error(self):
         gtk.gdk.threads_enter()
-        ErrorDialog('<b>%s</b>\n\n%s' % (_('Network Error'), _('Please check your network connection!'))).launch()
+        ErrorDialog(_('Please check your network connection!'), title = _('Network Error')).launch()
         gtk.gdk.threads_leave()
 
 class UploadDialog(ProcessDialog):
@@ -391,24 +400,28 @@ class SourceEditor(TweakPage):
             if 'SOURCES_DATA' in globals() and SOURCES_DATA:
                     self.open_source_select_dialog()
             else:
-                InfoDialog('<big><b>%s</b></big>\n\n%s' % (_('No source data available'),
-                            _('You can submit your sources to our server, '
-                            'or you need to wait the server data available.'))).launch()
+                dialog = QuestionDialog(_('You can submit your sources to our server to help build the sources list, '
+                        'or you can use the official sources.\n'
+                        'Do you wish to use the official sources?'), 
+                        title = _('No source data available'))
+                if dialog.run() == gtk.RESPONSE_YES:
+                    self.textview.update_content(DEFAULT_SOURCE)
+
+                dialog.destroy()
 
     def open_source_select_dialog(self):
         dialog = SelectSourceDialog(self.get_toplevel())
         if dialog.run() == gtk.RESPONSE_YES:
             content = dialog.get_source_data()
             self.textview.update_content(content)
-            InfoDialog(_("Don't forget to save your sources!")).launch()
         dialog.destroy()
 
     def submit_source_data(self, data):
         dialog = UploadDialog(data, self.get_toplevel())
         dialog.run()
         if not dialog.error:
-            InfoDialog('<big><b>%s</b></big>\n\n%s' % (_('Sumit successfully'),
-                _('Thank you!'))).launch()
+            InfoDialog(_('Your sources will be reviewed and open for others soon.\nThank you!'), 
+                    title = _('Sumit successfully')).launch()
 
     def on_buffer_changed(self, buffer):
         if buffer.get_modified():
@@ -421,14 +434,14 @@ class SourceEditor(TweakPage):
     def on_save_button_clicked(self, wiget):
         text = self.textview.get_text()
         if proxy.edit_file(SOURCES_LIST, text) == 'error':
-            ErrorDialog('<big><b>%s</b></big>\n\n%s' % (_('Save failed!'), 
-                _('Please check the permission of the sources.list.'))).launch()
+            ErrorDialog(_('Please check the permission of the sources.list.'),
+                    title = _('Save failed!')).launch()
         else:
             self.save_button.set_sensitive(False)
             self.redo_button.set_sensitive(False)
 
     def on_redo_button_clicked(self, widget):
-        dialog = QuestionDialog(_('I will reload the file and currenly content will be lost!'))
+        dialog = QuestionDialog(_('The currenly content will be lost after reloading!\nDo you wish to continue?'))
         if dialog.run() == gtk.RESPONSE_YES:
             self.textview.update_content()
             self.save_button.set_sensitive(False)
@@ -443,9 +456,9 @@ class SourceEditor(TweakPage):
                 self.update_button.set_sensitive(True)
                 self.submit_button.set_sensitive(True)
             else:
-                ErrorDialog(_("<b><big>Service hasn't initialized yet</big></b>\n\nYou need to restart your Ubuntu.")).launch()
+                ServerErrorDialog().launch()
         else:
-            ErrorDialog(_('<b><big>Could not authenticate</big></b>\n\nAn unexpected error has occurred.')).launch()
+            AuthenticateFailDialog().launch()
 
 if __name__ == '__main__':
     from utility import Test

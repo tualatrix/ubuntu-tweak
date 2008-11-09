@@ -28,7 +28,8 @@ import gobject
 
 from common.consts import *
 from common.inifile import IniFile
-from common.widgets import TweakPage, EntryBox, QuestionDialog, InfoDialog
+from common.widgets import TweakPage, EntryBox
+from common.widgets.dialogs import QuestionDialog, InfoDialog
 
 (
     COLUMN_ICON,
@@ -141,10 +142,10 @@ class UserdirView(gtk.TreeView):
         model, iter = self.get_selection().get_selected()
         userdir = model.get_value(iter, COLUMN_DIR)
 
-        dialog = QuestionDialog('<b><big>%s</big></b>\n\n%s' % (_('Notice'),
-            _('Ubuntu Tweak will restore the chosen directory to the default '
-            'location.\nHowever, you must move your files back into place by '
-            'yourself.\nDo you wish to continue?')))
+        dialog = QuestionDialog(_('Ubuntu Tweak will restore the chosen '
+            'directory to the default location.\n'
+            'However, you must move your files back into place by yourself.\n'
+            'Do you wish to continue?'))
 
         if dialog.run() == gtk.RESPONSE_YES:
             newdir = os.path.join(os.getenv("HOME"), self.uf.get_restorename(userdir))

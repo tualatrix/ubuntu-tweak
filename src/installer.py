@@ -26,7 +26,8 @@ import gobject
 from common.consts import *
 from common.appdata import *
 from common.utils import *
-from common.widgets import TweakPage, InfoDialog
+from common.widgets import TweakPage
+from common.widgets.dialogs import InfoDialog
 from xdg.DesktopEntry import DesktopEntry
 
 try:

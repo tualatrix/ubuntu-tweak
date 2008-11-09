@@ -29,7 +29,8 @@ import gobject
 from gnome import url_show
 from common.consts import *
 from common.canvas import RenderCell
-from common.widgets import QuestionDialog, TweakPage
+from common.widgets import TweakPage
+from common.widgets.dialogs import QuestionDialog
 from common.systeminfo import module_check
 from common.config import Config, TweakSettings
 from updatemanager import UpdateManager
@@ -486,7 +487,8 @@ You should have received a copy of the GNU General Public License along with Ubu
 
         version = self.__settings.get_version()
         if version > VERSION:
-            dialog = QuestionDialog(_("A newer version: %s is available online.\nWould you like to update?") % version)
+            dialog = QuestionDialog(_('A newer version: %s is available online.\nWould you like to update?' % version), 
+                    title = _('Software Update'))
 
             update = False
 

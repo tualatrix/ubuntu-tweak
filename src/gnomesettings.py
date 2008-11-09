@@ -27,7 +27,8 @@ import gconf
 from common.config import TweakSettings
 from common.factory import Factory
 from common.utils import get_icon_with_name
-from common.widgets import ListPack, TweakPage, ErrorDialog, QuestionDialog
+from common.widgets import ListPack, TweakPage
+from common.widgets.dialogs import ErrorDialog, QuestionDialog
 
 class Gnome(TweakPage):
     """GNOME Settings"""

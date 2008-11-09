@@ -36,7 +36,8 @@ from common.appdata import *
 from common.factory import Factory
 from common.policykit import PolkitButton, proxy
 from common.systeminfo import module_check
-from common.widgets import ListPack, TweakPage, GconfCheckButton, InfoDialog, WarningDialog, ErrorDialog, QuestionDialog
+from common.widgets import ListPack, TweakPage, GconfCheckButton
+from common.widgets.dialogs import *
 from aptsources.sourceslist import SourceEntry, SourcesList
 
 (
@@ -148,7 +149,11 @@ class UpdateCacheDialog:
     def __init__(self, parent):
         self.parent = parent
 
-        self.dialog = QuestionDialog(_('<b><big>The information about available software is out-of-date</big></b>\n\nTo install software and updates from newly added or changed sources, you have to reload the information about available software.\n\nYou need a working internet connection to continue.'))
+        self.dialog = QuestionDialog(_('To install software and updates from '
+            'newly added or changed sources, you have to reload the information '
+            'about available software.\n\n'
+            'You need a working internet connection to continue.'), 
+            title = _('The information about available software is out-of-date'))
 
     def update_cache(self, window_id, lock):
         """start synaptic to update the package cache"""
@@ -393,7 +398,10 @@ class ThirdSoft(TweakPage):
                 WARNING_KEY = '/apps/ubuntu-tweak/disable_thidparty_warning'
 
                 if not self.__config.get_value(WARNING_KEY):
-                    dialog = WarningDialog(_('<b><big>Warning</big></b>\n\nIt is a possible security risk to use packages from Third-Party Sources. Please be careful.'), buttons = gtk.BUTTONS_OK)
+                    dialog = WarningDialog(_('It is a possible security risk to '
+                        'use packages from Third-Party Sources.\n'
+                        'Please be careful.'), 
+                        buttons = gtk.BUTTONS_OK, title = _('Warning'))
                     vbox = dialog.get_child()
                     hbox = gtk.HBox()
                     vbox.pack_start(hbox, False, False, 0)
@@ -404,9 +412,9 @@ class ThirdSoft(TweakPage):
                     dialog.run()
                     dialog.destroy()
             else:
-                ErrorDialog(_("<b><big>Service hasn't initialized yet</big></b>\n\nYou need to restart your Ubuntu.")).launch()
+                ServerErrorDialog().launch()
         else:
-            ErrorDialog(_('<b><big>Could not authenticate</big></b>\n\nAn unexpected error has occurred.')).launch()
+            AuthenticateFailDialog().launch()
 
     def colleague_changed(self, widget):
         self.refresh_button.set_sensitive(True)
@@ -419,7 +427,8 @@ class ThirdSoft(TweakPage):
         proxy.set_liststate('normal')
         widget.set_sensitive(False)
 
-        InfoDialog(_('<b><big>The software information is up-to-date now</big></b>\n\nYou can install the new applications through Add/Remove.')).launch()
+        InfoDialog(_('You can install the new applications through Add/Remove.'),
+            title = _('The software information is up-to-date now')).launch()
         self.emit('update', 'installer', 'deep_update')
 
 if __name__ == '__main__':

@@ -31,7 +31,8 @@ except ImportError:
     DISABLE = True
 
 from common.factory import Factory
-from common.widgets import ListPack, TablePack, InfoDialog, TweakPage
+from common.widgets import ListPack, TablePack, TweakPage
+from common.widgets.dialogs import InfoDialog
 
 class Nautilus(TweakPage):
     """Nautilus Settings"""

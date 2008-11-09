@@ -26,7 +26,8 @@ import gettext
 from common.utils import *
 from common.policykit import PolkitButton, proxy
 from common.package import PackageWorker, update_apt_cache
-from common.widgets import TweakPage, InfoDialog, QuestionDialog, ErrorDialog
+from common.widgets import TweakPage
+from common.widgets.dialogs import *
 
 (
     COLUMN_CHECK,
@@ -337,9 +338,9 @@ class PackageCleaner(TweakPage):
                 self.treeview.set_sensitive(True)
                 self.select_button.set_sensitive(True)
             else:
-                ErrorDialog(_("<b><big>Service hasn't initialized yet</big></b>\n\nYou need to restart your Ubuntu.")).launch()
+                ServerErrorDialog().launch()
         else:
-            ErrorDialog(_('<b><big>Could not authenticate</big></b>\n\nAn unexpected error has occurred.')).launch()
+            AuthenticateFailDialog().launch()
 
 if __name__ == '__main__':
     from utility import Test
