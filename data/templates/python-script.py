@@ -1,2 +1,3 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 
+print 'Hello World'

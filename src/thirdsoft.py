@@ -60,12 +60,13 @@ from aptsources.sourceslist import SourceEntry, SourcesList
 
 (
     SOURCE_NAME,
+    SOURCE_PACKAGE,
     SOURCE_HOME,
     SOURCE_KEY,
-) = range(3)
+) = range(4)
 
-AWN = ['Avant Window Navigator', 'awn-project.org', '']
-Amarok = ['Amarok Nightly', 'amarok.kde.org', '']
+AWN = ['Avant Window Navigator', 'avant-window-navigator', 'awn-project.org', '']
+Amarok = ['Amarok Nightly', 'amarok-nightly', 'amarok.kde.org', '']
 Opera = ['Opera', 'www.opera.com', 'opera.gpg']
 Skype = ['Skype', 'www.skype.com', '']
 PlayOnLinux = ['PlayOnLinux', 'www.playonlinux.com', 'pol.gpg']
@@ -75,23 +76,24 @@ Firefox = ['Firefox', 'www.mozilla.org', '']
 CompizFusion = ['Compiz Fusion', 'www.compiz-fusion.org/', '']
 CairoDock = ['Cairo Dock', 'cairo-dock.org', '']
 GnomeDo = ['GNOME Do', 'do.davebsd.com', '']
-Banshee = ['Banshee', 'banshee-project.org', '']
-Google = ['Google', 'www.google.com/linuxrepositories/index.html', 'google.gpg']
-GoogleGadgets = ['Google gadgets', 'desktop.google.com/plugins/', '']
-ChmSee = ['chmsee', 'chmsee.gro.clinux.org', '']
-KDE4 = ['KDE 4', 'www.kde.org', '']
-UbuntuTweak = ['Ubuntu Tweak', 'ubuntu-tweak.com', '']
-NautilusDropbox = ['Nautilus-DropBox', 'www.getdropbox.com', '']
-Screenlets = ['Screenlets', 'www.screenlets.org', '']
-Wine = ['Wine', 'www.winehq.org', 'wine.gpg']
-LXDE = ['LXDE', 'lxde.org', '']
-Terminator = ['Terminator', 'www.tenshu.net/terminator/', '']
-VirtualBox = ['VirtualBox', 'www.virtualbox.org/', 'virtualbox.gpg']
-GScrot = ['GScrot', 'launchpad.net/gscrot', '']
-Galaxium = ['Galaxium', 'code.google.com/p/galaxium/', '']
-Swiftweasel = ['Swiftweasel', 'swiftweasel.tuxfamily.org/', '']
-Medibuntu = ['Medibuntu', 'www.medibuntu.org/', 'medibuntu.gpg']
-XBMC = ['XBMC', 'xbmc.org', '']
+Banshee_Stable = ['Banshee Stable', 'banshee', 'banshee-project.org', '']
+Banshee_Unstable = ['Banshee Unstable', 'banshee', 'banshee-project.org', '']
+Google = ['Google', 'google', 'www.google.com/linuxrepositories/index.html', 'google.gpg']
+GoogleGadgets = ['Google gadgets', 'google-gadgets', 'desktop.google.com/plugins/', '']
+ChmSee = ['Chmsee', 'chmsee', 'chmsee.gro.clinux.org', '']
+KDE4 = ['KDE 4', 'kde-4', 'www.kde.org', '']
+UbuntuTweak = ['Ubuntu Tweak', 'ubuntu-tweak', 'ubuntu-tweak.com', '']
+NautilusDropbox = ['Nautilus DropBox', 'nautilus-dropbox', 'www.getdropbox.com', '']
+Screenlets = ['Screenlets', 'screenlets', 'www.screenlets.org', '']
+Wine = ['Wine', 'wine', 'www.winehq.org', 'wine.gpg']
+LXDE = ['LXDE', 'lxde', 'lxde.org', '']
+Terminator = ['Terminator', 'terminator', 'www.tenshu.net/terminator/', '']
+VirtualBox = ['VirtualBox', 'virtualbox', 'www.virtualbox.org/', 'virtualbox.gpg']
+GScrot = ['GScrot', 'gscrot', 'launchpad.net/gscrot', '']
+Galaxium = ['Galaxium', 'galaxium', 'code.google.com/p/galaxium/', '']
+Swiftweasel = ['Swiftweasel', 'swiftweasel', 'swiftweasel.tuxfamily.org/', '']
+Medibuntu = ['Medibuntu', 'medibuntu', 'www.medibuntu.org/', 'medibuntu.gpg']
+XBMC = ['XBMC', 'xbmc', 'xbmc.org', '']
 
 SOURCES_DATA = [
     ['http://ppa.launchpad.net/reacocard-awn/ubuntu/', ['hardy','intrepid'], 'main', AWN],
@@ -105,7 +107,8 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/compiz/ubuntu', ['hardy', 'intrepid'], 'main', CompizFusion],
     ['http://repository.cairo-dock.org/ubuntu', 'hardy', 'cairo-dock', CairoDock],
     ['http://ppa.launchpad.net/do-core/ubuntu', ['hardy', 'intrepid'], 'main', GnomeDo],
-    ['http://ppa.launchpad.net/banshee-team/ubuntu', 'hardy', 'main', Banshee],
+    ['http://ppa.launchpad.net/banshee-team/ubuntu', 'hardy', 'main', Banshee_Stable],
+    ['http://ppa.launchpad.net/banshee-unstable-team/ubuntu', ['hardy', 'intrepid'], 'main', Banshee_Unstable],
     ['http://dl.google.com/linux/deb/', 'stable', 'non-free', Google],
     ['http://ppa.launchpad.net/googlegadgets/ubuntu', 'hardy', 'main', GoogleGadgets],
     ['http://ppa.launchpad.net/lidaobing/ubuntu', 'hardy', 'main', ChmSee],

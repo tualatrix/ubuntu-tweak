@@ -63,7 +63,7 @@ APP_DATA = {
     'avant-window-navigator': _('Fully customisable dock-like window navigator'),
     'avidemux': _('A free video editor'),
     'azureus': _('BitTorrent client written in Java'),
-    'banshee-1': _('Audio Management and Playback application'),
+    'banshee': _('Audio Management and Playback application'),
     'cairo-dock': _('A true dock for linux'),
     'chmsee': _('A chm file viewer written in GTK+'),
     'codeblocks': _('The open source, cross-platform IDE'),
@@ -126,7 +126,6 @@ APP_DATA = {
 
 SOURCE_DATA = {
     'firefox': _('Development Version of Mozilla Firefox 3.0/3.1, 4.0'),
-    'banshee': _('Audio Management and Playback application'),
     'compiz-fusion': _('Development version of Compiz Fusion'),
     'google': _("Google's Linux Repository"),
     'kde-4': _('K Desktop Environment 4.1'),

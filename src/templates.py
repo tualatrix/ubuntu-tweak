@@ -61,6 +61,7 @@ class DefaultTemplates(AbstractTempates):
             "plain-text-document.txt": _("Plain text document"),
             "odp-presentation.odp": _("ODP Presentation"),
             "python-script.py": _("Python script"),
+            "pygtk-example.py": _("Pygtk Example"),
             "shell-script.sh": _("Shell script")
             }
 
