@@ -319,9 +319,9 @@ class SourceEditor(TweakPage):
     def __init__(self):
         super(SourceEditor, self).__init__(
                 _('Source Editor'),
-                _('Freely edit your sources to fit your needs.\n'
-                'Click "Update Sources" if you want change the sources to that we prepare for you.\n'
-                'Click "Submit Sources" if you want share your sources with other people.\n')
+                _('Freely edit your software sources to fit your needs.\n'
+                'Click "Update Sources" if you want to change the sources.\n'
+                'Click "Submit Sources" if you want to share your sources with other people.\n')
         )
 
         self.online_data = {}

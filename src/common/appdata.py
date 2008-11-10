@@ -33,7 +33,7 @@ def get_app_describ(name):
     try:
         desc = APP_DATA[name]
     except KeyError:
-        desc = 'Unkown Error'
+        desc = 'Unknown Error'
 
     return desc
 
