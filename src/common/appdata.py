@@ -141,5 +141,5 @@ SOURCE_DATA = {
 
 if __name__ == '__main__':
     print get_app_describ('Avant Window Navigator')
-    print get_app_describ('StarDict')
+    print get_app_describ('Banshee')
     print get_source_describ('wine')

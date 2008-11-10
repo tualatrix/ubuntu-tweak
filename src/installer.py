@@ -75,7 +75,7 @@ data = \
     ('avant-window-navigator', Desktop),
     ('avidemux', Video),
     ('azureus', P2P),
-    ('banshee-1', Sound),
+    ('banshee', Sound),
     ('cairo-dock', Desktop),
     ('chmsee', Text),
     ('compizconfig-settings-manager', Desktop),
