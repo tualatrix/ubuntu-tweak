@@ -206,7 +206,7 @@ class PackageView(gtk.TreeView):
         self.emit('cleaned')
 
     def clean_selected_cache(self):
-        gtk.gdk.threads_enter()
+#        gtk.gdk.threads_enter()
 
         model = self.get_model()
         for file in self.__check_list:
@@ -220,7 +220,7 @@ class PackageView(gtk.TreeView):
 
         self.update_cache_model()
         self.emit('cleaned')
-        gtk.gdk.threads_leave()
+#        gtk.gdk.threads_leave()
 
     def show_success_dialog(self):
         InfoDialog(_('Cleaned up Successfully!')).launch()
@@ -330,7 +330,8 @@ class PackageCleaner(TweakPage):
         if mode == 'package':
             self.treeview.clean_selected_package()
         elif mode == 'cache':
-            thread.start_new_thread(self.treeview.clean_selected_cache, ())
+#            thread.start_new_thread(self.treeview.clean_selected_cache, ())
+            self.treeview.clean_selected_cache()
 
     def on_polkit_action(self, widget, action):
         if action:
