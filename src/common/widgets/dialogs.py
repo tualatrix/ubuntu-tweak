@@ -63,10 +63,12 @@ class WarningDialog(BaseMessageDialog):
 
 class AuthenticateFailDialog(ErrorDialog):
     def __init__(self):
-        ErrorDialog.__init__(_('An unexpected error has occurred.'), 
+        ErrorDialog.__init__(self, 
+                _('An unexpected error has occurred.'), 
                 title = _('Could not authenticate'))
 
 class ServerErrorDialog(ErrorDialog):
     def __init__(self):
-        ErrorDialog.__init__(_('You need to restart your computer.'), 
+        ErrorDialog.__init__(self,
+                _('You need to restart your computer.'), 
                 title = _("Service hasn't initialized yet"))
