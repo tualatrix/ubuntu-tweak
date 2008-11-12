@@ -68,7 +68,4 @@ class DbusProxy:
 proxy = DbusProxy()
 
 if __name__ == '__main__':
-    print DbusProxy
-    print DbusProxy.__proxy
-    DbusProxy.get_liststate()
-    DbusProxy.add_aptkey('hello')
+    print proxy
