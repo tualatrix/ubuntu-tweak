@@ -241,7 +241,12 @@ class SourceView(gtk.TextView):
 
         buffer.delete(buffer.get_start_iter(), buffer.get_end_iter())
         iter = buffer.get_iter_at_offset(0)
-        for line in content.split('\n'):
+        print '!!%s!!' % content
+        if content[-2:] == '\n\n':
+            content = content[:-1]
+        for i, line in enumerate(content.split('\n')):
+            print i, '~%s~' % line
+#            if i != content.count('\n') and line:
             self.parse_and_insert(buffer, iter, line)
 
         iter = buffer.get_iter_at_offset(offset)
@@ -251,32 +256,40 @@ class SourceView(gtk.TextView):
         buffer = self.get_buffer()
         buffer.delete(buffer.get_start_iter(), buffer.get_end_iter())
         iter = buffer.get_iter_at_offset(0)
-        if content:
-            for line in content.split('\n'):
-                self.parse_and_insert(buffer, iter, line)
-        else:
-            for line in file(SOURCES_LIST):
+        if content is None:
+            content = file(SOURCES_LIST).read()
+
+        for i, line in enumerate(content.split('\n')):
+            if i != content.count('\n') and line:
                 self.parse_and_insert(buffer, iter, line)
 
     def parse_and_insert(self, buffer, iter, line):
         try:
-            if line.strip()[0] == '#':
+            if line.lstrip().startswith('#'):
                 buffer.insert_with_tags_by_name(iter, line, 'full_comment')
                 self.insert_line(buffer, iter)
             else:
+                has_end_blank = line.endswith(' ')
                 list = line.split()
-                type, uri, distro, component = list[0], list[1], list[2], list[3:]
+                if has_end_blank:
+                    list[-1] = list[-1] + ' '
+                if len(list) > 3:
+                    type, uri, distro, component = list[0], list[1], list[2], list[3:]
 
-                buffer.insert_with_tags_by_name(iter, type, 'type')
-                self.insert_blank(buffer, iter)
-                buffer.insert_with_tags_by_name(iter, uri, 'uri')
-                self.insert_blank(buffer, iter)
-                buffer.insert_with_tags_by_name(iter, distro, 'distro')
-                self.insert_blank(buffer, iter)
-                self.seprarte_component(buffer, component, iter)
-                self.insert_line(buffer, iter)
-        except IndexError:
-            buffer.insert(iter, '\n')
+                    buffer.insert_with_tags_by_name(iter, type, 'type')
+                    self.insert_blank(buffer, iter)
+                    buffer.insert_with_tags_by_name(iter, uri, 'uri')
+                    self.insert_blank(buffer, iter)
+                    buffer.insert_with_tags_by_name(iter, distro, 'distro')
+                    self.insert_blank(buffer, iter)
+                    self.seprarte_component(buffer, component, iter)
+                    buffer.insert(iter, '\n')
+                elif line == '':
+                    buffer.insert(iter, '\n')
+                else:
+                    buffer.insert(iter, line)
+        except:
+            buffer.insert(iter, line)
 
     def create_tags(self):
         import pango
@@ -308,8 +321,8 @@ class SourceView(gtk.TextView):
                 break
 
         buffer.insert_with_tags_by_name(iter, ' '.join(component), 'component')
-        self.insert_blank(buffer, iter)
         if has_comment:
+            print '!%s!' % ' '.join(list[stop_i:])
             buffer.insert_with_tags_by_name(iter, ' '.join(list[stop_i:]), 'addon_comment')
 
     def get_text(self):
