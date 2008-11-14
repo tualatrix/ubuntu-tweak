@@ -71,7 +71,7 @@ Amarok = ['Amarok', 'amarok-nightly', 'amarok.kde.org', '']
 Opera = ['Opera', 'opera', 'www.opera.com', 'opera.gpg']
 Skype = ['Skype', 'skype', 'www.skype.com', '']
 PlayOnLinux = ['PlayOnLinux', 'playonlinux', 'www.playonlinux.com', 'pol.gpg']
-Ubuntu_cn = [_('Ubuntu Chinese Repository'), 'ubuntu-cn', 'www.ubuntu.org.cn', '']
+Ubuntu_cn = ['Ubuntu Chinese Repository', 'ubuntu-cn', 'www.ubuntu.org.cn', '']
 OpenOffice = ['OpenOffice.org', 'openoffice', 'www.openoffice.org', '']
 Midori = ['Midori', 'midori', 'www.twotoasts.de', '']
 Firefox = ['Firefox', 'firefox', 'www.mozilla.org', '']
@@ -200,13 +200,16 @@ class SourcesView(gtk.TreeView):
     def __init__(self):
         gtk.TreeView.__init__(self)
 
-        self.list = SourcesList()
         self.model = self.__create_model()
         self.set_model(self.model)
         self.__add_column()
 
         self.update_model()
         self.selection = self.get_selection()
+
+    def get_sourceslist(self):
+        from aptsources.sourceslist import SourcesList
+        return SourcesList()
 
     def __create_model(self):
         model = gtk.ListStore(
@@ -244,6 +247,9 @@ class SourcesView(gtk.TreeView):
         self.append_column(column)
 
     def update_model(self):
+        self.model.clear()
+        sourceslist = self.get_sourceslist()
+
         for entry in SOURCES_DATA:
             enabled = False
             url = entry[ENTRY_URL]
@@ -262,7 +268,7 @@ class SourcesView(gtk.TreeView):
             if key:
                 key = os.path.join(DATA_DIR, 'aptkeys', source[SOURCE_KEY])
 
-            for source in self.list:
+            for source in sourceslist:
                 if url in source.str() and source.type == 'deb':
                     enabled = not source.disabled
 
@@ -371,21 +377,25 @@ class ThirdSoft(TweakPage):
         self.expander.set_sensitive(False)
         self.expander.add(self.sourcedetail)
 
-        hbox = gtk.HBox(False, 0)
-        self.pack_end(hbox, False, False, 5)
+        hbox = gtk.HBox(False, 5)
+        self.pack_end(hbox, False, False, 0)
 
         un_lock = PolkitButton()
         un_lock.connect('changed', self.on_polkit_action)
-        hbox.pack_end(un_lock, False, False, 5)
+        hbox.pack_end(un_lock, False, False, 0)
 
         self.refresh_button = gtk.Button(stock = gtk.STOCK_REFRESH)
         self.refresh_button.set_sensitive(False)
         self.refresh_button.connect('clicked', self.on_refresh_button_clicked)
-        hbox.pack_end(self.refresh_button, False, False, 5)
+        hbox.pack_end(self.refresh_button, False, False, 0)
+
+    def update_thirdparty(self):
+        self.treeview.update_model()
 
     def on_selection_changed(self, widget):
         model, iter = widget.get_selected()
-
+        if iter is None:
+            return
         home = model.get_value(iter, COLUMN_HOME)
         url = model.get_value(iter, COLUMN_URL)
         description = model.get_value(iter, COLUMN_COMMENT)

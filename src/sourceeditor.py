@@ -24,6 +24,7 @@ import thread
 import socket
 import gobject
 import gettext
+from thirdsoft import UpdateCacheDialog
 from xmlrpclib import ServerProxy, Error
 from common.utils import *
 from common.systeminfo import module_check
@@ -371,9 +372,26 @@ class SourceEditor(TweakPage):
 
         un_lock = PolkitButton()
         un_lock.connect('changed', self.on_polkit_action)
-        hbox.pack_end(un_lock, False, False, 5)
+        hbox.pack_end(un_lock, False, False, 0)
+
+        self.refresh_button = gtk.Button(stock = gtk.STOCK_REFRESH)
+        self.refresh_button.set_sensitive(False)
+        self.refresh_button.connect('clicked', self.on_refresh_button_clicked)
+        hbox.pack_end(self.refresh_button, False, False, 0)
 
         self.show_all()
+
+    def on_refresh_button_clicked(self, widget):
+        dialog = UpdateCacheDialog(widget.get_toplevel())
+        res = dialog.run()
+
+        proxy.set_liststate('normal')
+        widget.set_sensitive(False)
+
+        InfoDialog(_('You can install the new applications through Add/Remove.'),
+            title = _('The software information is up-to-date now')).launch()
+        self.emit('update', 'installer', 'deep_update')
+        self.emit('update', 'thirdsoft', 'update_thirdparty')
 
     def update_sourceslist(self):
         self.textview.update_content()
@@ -439,6 +457,7 @@ class SourceEditor(TweakPage):
         else:
             self.save_button.set_sensitive(False)
             self.redo_button.set_sensitive(False)
+            self.refresh_button.set_sensitive(True)
 
     def on_redo_button_clicked(self, widget):
         dialog = QuestionDialog(_('The currenly content will be lost after reloading!\nDo you wish to continue?'))
@@ -455,6 +474,7 @@ class SourceEditor(TweakPage):
                 self.textview.set_sensitive(True)
                 self.update_button.set_sensitive(True)
                 self.submit_button.set_sensitive(True)
+                self.refresh_button.set_sensitive(True)
             else:
                 ServerErrorDialog().launch()
         else:
