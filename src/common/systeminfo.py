@@ -68,7 +68,7 @@ class SystemModule:
             from package import worker, update_apt_cache
             update_apt_cache()
             version = str(worker.get_pkgversion('compiz'))
-            if version.split(':')[1] >= '0.7.4':
+            if version.find(':') != -1 and version.split(':')[1] >= '0.7.4':
                 return True
             else:
                 return False
