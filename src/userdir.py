@@ -177,7 +177,7 @@ class UserdirView(gtk.TreeView):
         return model
 
     def __add_columns(self):
-        column = gtk.TreeViewColumn(_('Direcotry'))
+        column = gtk.TreeViewColumn(_('Directory'))
         column.set_spacing(5)
         column.set_sort_column_id(COLUMN_NAME)
         self.append_column(column)
