@@ -10,6 +10,7 @@ tweak_PYTHON = \
 	./userdir.py \
 	./computer.py \
 	./thirdsoft.py \
+	./filetype.py \
 	./icons.py \
 	./metacity.py \
 	./session.py \

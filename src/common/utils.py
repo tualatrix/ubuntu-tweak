@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import gtk
 from gnome import ui
 
@@ -42,6 +44,13 @@ def get_icon_with_name(name, size):
 
     return pixbuf
 
+def mime_type_get_icon(mime, size = 24):
+    import gio
+    gicon = gio.content_type_get_icon(mime)
+    iconinfo = icontheme.choose_icon(gicon.get_names(), size, gtk.ICON_LOOKUP_USE_BUILTIN)
+    return iconinfo.load_icon()
+
 if __name__ == '__main__':
-    print get_icon_with_type('/home/tualatrixx', 24)
-    print get_icon_with_name('start-here', 24)
+#    print get_icon_with_name('start-here', 24)
+#    print get_icon_with_type('/home/tualatrixx', 24)
+    print mime_type_get_icon('application/msword')

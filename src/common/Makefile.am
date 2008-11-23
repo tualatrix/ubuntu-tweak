@@ -7,6 +7,7 @@ common_PYTHON = \
 	./package.py \
 	./__init__.py \
 	./config.py \
+	./mimetype.py \
 	./appdata.py \
 	./utils.py \
 	./consts.py \
