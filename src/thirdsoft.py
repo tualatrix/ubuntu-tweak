@@ -122,7 +122,7 @@ SOURCES_DATA = [
     ['http://wine.budgetdedicated.com/apt', ['hardy', 'intrepid'], 'main', Wine],
     ['http://ppa.launchpad.net/lxde/ubuntu', 'hardy', 'main', LXDE],
     ['http://ppa.launchpad.net/gnome-terminator/ubuntu', ['hardy', 'intrepid'], 'main', Terminator],
-    ['http://download.virtualbox.org/virtualbox/debian', 'hardy', 'non-free', VirtualBox],
+    ['http://download.virtualbox.org/virtualbox/debian', ['hardy', 'intrepid'], 'non-free', VirtualBox],
     ['http://ppa.launchpad.net/gscrot/ubuntu', ['hardy', 'intrepid'], 'main', GScrot],
     ['http://ppa.launchpad.net/galaxium/ubuntu', 'hardy', 'main', Galaxium],
     ['http://download.tuxfamily.org/swiftweasel', 'hardy', 'multiverse', Swiftweasel],

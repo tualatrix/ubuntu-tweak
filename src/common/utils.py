@@ -27,9 +27,6 @@ def get_icon_with_type(filepath, size):
     
     return pixbuf
 
-def get_icon_with_app(app, size):
-    pass
-
 def get_icon_with_cate(cate, size):
     pass
 
@@ -48,6 +45,16 @@ def mime_type_get_icon(mime, size = 24):
     import gio
     gicon = gio.content_type_get_icon(mime)
     iconinfo = icontheme.choose_icon(gicon.get_names(), size, gtk.ICON_LOOKUP_USE_BUILTIN)
+    if not iconinfo:
+        return get_icon_with_name('application-x-executable', size)
+    return iconinfo.load_icon()
+
+def get_icon_with_app(app, size):
+    gicon = app.get_icon()
+
+    iconinfo = icontheme.choose_icon(gicon.get_names(), size, gtk.ICON_LOOKUP_USE_BUILTIN)
+    if not iconinfo:
+        return get_icon_with_name('application-x-executable', size)
     return iconinfo.load_icon()
 
 if __name__ == '__main__':
