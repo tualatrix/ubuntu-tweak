@@ -34,6 +34,7 @@ except ImportError:
 from common.factory import Factory
 from common.widgets import ListPack, TablePack, TweakPage
 from common.widgets.dialogs import InfoDialog
+from common.utils import set_label_for_stock_button
 
 (
     COLUMN_ICON,
@@ -76,26 +77,45 @@ class Nautilus(TweakPage):
         box = ListPack(_("File Browser"), (button, )) 
         self.pack_start(box, False, False, 0)
 
-        hbox = gtk.HBox(False, 5)
-        label = gtk.Label(_('Default thumbnail icon Size'))
-        hbox.pack_start(label, False, False, 0)
-
-        button = Factory.create('gconfspinbutton', 
-                            'thumbnail_size',
-                            16, 512, 16)
-        hbox.pack_end(button, False, False, 0)
-        box.vbox.pack_start(hbox)
-
         box = ListPack(_("CD Burner"), (
             Factory.create("gconfcheckbutton", _("Enable BurnProof technology"), "burnproof"),
             Factory.create("gconfcheckbutton", _("Enable OverBurn"), "overburn"),
         ))
         self.pack_start(box, False, False, 0)
 
-        box = ListPack(_('Thumbnails Settings'), (
-            Factory.create("gconfcheckbutton", _("Enable BurnProof technology"), "burnproof"),
-            Factory.create("gconfcheckbutton", _("Enable OverBurn"), "overburn"),
-        ))
+        hbox1 = gtk.HBox(False, 5)
+        label = gtk.Label(_('Default thumbnail icon size'))
+        hbox1.pack_start(label, False, False, 0)
+
+        button = Factory.create('gconfspinbutton', 
+                            'thumbnail_size',
+                            16, 512, 16)
+        hbox1.pack_end(button, False, False, 0)
+
+        hbox2 = gtk.HBox(False, 5)
+        label = gtk.Label(_('Maximum size of the thumbnail cache (MB)'))
+        hbox2.pack_start(label, False, False, 0)
+
+        button = Factory.create('gconfspinbutton', 
+                            'maximum_size',
+                            -1, 512, 1)
+        hbox2.pack_end(button, False, False, 0)
+
+        hbox3 = gtk.HBox(False, 5)
+        label = gtk.Label(_('Maximum age for the thumbnail in the cache (Day)'))
+        hbox3.pack_start(label, False, False, 0)
+
+        button = Factory.create('gconfspinbutton', 
+                            'maximum_age',
+                            -1, 180, 1)
+        hbox3.pack_end(button, False, False, 0)
+
+        hbox4 = gtk.HBox(False, 5)
+        button = gtk.Button(stock = gtk.STOCK_CLEAR)
+        set_label_for_stock_button(button, _('Clean up the cache'))
+        hbox4.pack_end(button, False, False, 0)
+
+        box = ListPack(_('Thumbnails Settings'), (hbox1, hbox2, hbox3, hbox4))
         self.pack_start(box, False, False, 0)
 
 
