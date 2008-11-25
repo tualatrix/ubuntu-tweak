@@ -21,6 +21,7 @@ import pygtk
 pygtk.require("2.0")
 import gtk
 import os
+import gobject
 import gconf
 import gettext
 
@@ -34,6 +35,37 @@ from common.factory import Factory
 from common.widgets import ListPack, TablePack, TweakPage
 from common.widgets.dialogs import InfoDialog
 
+(
+    COLUMN_ICON,
+    COLUMN_TITLE,
+) = range(2)
+
+class EmblemsView(gtk.IconView):
+    def __init__(self):
+        gtk.IconView.__init__()
+
+        model = self.__create_model()
+        self.set_model(model)
+
+    def __create_model(self):
+        model = gtk.ListStore(
+                gtk.gdk.Pixbuf,
+                gobject.TYPE_STRING)
+
+        return model
+
+    def __add_colums(self):
+        renderer = gtk.CellRendererPixbuf()
+        self.pack_start(renderer, False)
+        self.set_attributes(renderer, pixbuf = COLUMN_ICON)
+
+        renderer = gtk.CellRendererText()
+        self.pack_start(renderer, True)
+        self.set_attributes(renderer, text = COLUMN_TITLE)
+
+    def update_model(self):
+        pass
+
 class Nautilus(TweakPage):
     """Nautilus Settings"""
     def __init__(self):
@@ -45,22 +77,27 @@ class Nautilus(TweakPage):
         self.pack_start(box, False, False, 0)
 
         hbox = gtk.HBox(False, 5)
-        label = gtk.Label(_("Default thumbnail icon Size"))
+        label = gtk.Label(_('Default thumbnail icon Size'))
         hbox.pack_start(label, False, False, 0)
 
-        client = gconf.client_get_default()
-        init_size = client.get_int("/apps/nautilus/icon_view/thumbnail_size")
-        adjust = gtk.Adjustment(init_size, 16, 512, 16, 16)
-        spinbutton = gtk.SpinButton(adjust)
-        spinbutton.connect("value-changed", self.spinbutton_value_changed_cb)
-        hbox.pack_end(spinbutton, False, False, 0)
-        box.vbox.pack_start(hbox, False, False, 0)
+        button = Factory.create('gconfspinbutton', 
+                            'thumbnail_size',
+                            16, 512, 16)
+        hbox.pack_end(button, False, False, 0)
+        box.vbox.pack_start(hbox)
 
         box = ListPack(_("CD Burner"), (
             Factory.create("gconfcheckbutton", _("Enable BurnProof technology"), "burnproof"),
             Factory.create("gconfcheckbutton", _("Enable OverBurn"), "overburn"),
         ))
         self.pack_start(box, False, False, 0)
+
+        box = ListPack(_('Thumbnails Settings'), (
+            Factory.create("gconfcheckbutton", _("Enable BurnProof technology"), "burnproof"),
+            Factory.create("gconfcheckbutton", _("Enable OverBurn"), "overburn"),
+        ))
+        self.pack_start(box, False, False, 0)
+
 
         if not DISABLE:
             update_apt_cache(True)

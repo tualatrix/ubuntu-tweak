@@ -116,6 +116,18 @@ class GconfScale(gtk.HScale):
     def on_value_changed(self, widget, data = None):
         self.__setting.set_num(widget.get_value())
 
+class GconfSpinButton(gtk.SpinButton):
+    def __init__(self, key, min = 0, max = 0, step = 0):
+        self.__setting = IntSetting(key)
+        init = self.__setting.get_int()
+        adjust = gtk.Adjustment(init, min, max, step)
+
+        gtk.SpinButton.__init__(self, adjust)
+        self.connect('value-changed', self.on_value_changed) 
+
+    def on_value_changed(self, widget):
+        self.__setting.set_int(widget.get_value())
+
 class EntryBox(gtk.HBox):
     def __init__(self, label, text):
         gtk.HBox.__init__(self)

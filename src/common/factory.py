@@ -132,6 +132,10 @@ class Factory:
             return getattr(Factory(), 'create_%s' % widget)(argv[0], argv[1], argv[2])
         elif len(argv) == 4:
             return getattr(Factory(), 'create_%s' % widget)(argv[0], argv[1], argv[2], argv[3])
+        elif len(argv) == 5:
+            return getattr(Factory(), 'create_%s' % widget)(argv[0], argv[1], argv[2], argv[3], argv[4])
+        elif len(argv) == 6:
+            return getattr(Factory(), 'create_%s' % widget)(argv[0], argv[1], argv[2], argv[3], argv[4], argv[5])
     
     def create_gconfcheckbutton(self, label, key, tooltip = None):
         if key in self.keys:
@@ -182,6 +186,14 @@ class Factory:
             return scale
         else:
             return None
+
+    def create_gconfspinbutton(self, key, min = 0, max = 0, step = 0):
+        if key in self.keys:
+            button = GconfSpinButton(self.keys[key], min, max, step)
+            return button
+        else:
+            return None
+
 
 if __name__ == '__main__':
     for k,v in Factory.keys.items():
