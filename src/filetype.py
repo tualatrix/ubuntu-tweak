@@ -22,6 +22,7 @@ import pygtk
 pygtk.require("2.0")
 import gtk
 import gio
+import pango
 import gobject
 
 from common.factory import Factory
@@ -94,6 +95,8 @@ class TypeView(gtk.TreeView):
         self.__add_columns()
         self.update_model()
 
+        self.set_size_request(200, -1)
+
     def __create_model(self):
         '''The model is icon, title and the list reference'''
         model = gtk.ListStore(
@@ -125,6 +128,7 @@ class TypeView(gtk.TreeView):
         column.set_attributes(renderer, pixbuf = TYPE_APPICON)
 
         renderer = gtk.CellRendererText()
+#        renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
         column.pack_start(renderer, False)
         column.set_sort_column_id(TYPE_APP)
         column.set_attributes(renderer, text = TYPE_APP)

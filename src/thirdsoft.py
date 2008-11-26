@@ -356,7 +356,7 @@ class SourceDetail(gtk.VBox):
 class ThirdSoft(TweakPage):
     def __init__(self):
         TweakPage.__init__(self, 
-                _('Third-Party Softwares Sources'), 
+                _('Third-Party Software Sources'), 
                 _('After every releases of Ubuntu comes a feature freeze.\nThis means only applications with bug-fixes get into the repository.\nBy using third-party DEB repositories, you can always keep up-to-date with the latest version.\nAfter adding these repositories, locate and install them using Add/Remove.'))
 
         self.__config = Config()
