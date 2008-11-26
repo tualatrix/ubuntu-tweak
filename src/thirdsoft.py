@@ -26,6 +26,7 @@ import dbus
 import time
 import thread
 import subprocess
+import pango
 import gobject
 import apt_pkg
 
@@ -241,6 +242,7 @@ class SourcesView(gtk.TreeView):
         column.set_attributes(renderer, pixbuf = COLUMN_LOGO)
 
         renderer = gtk.CellRendererText()
+        renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
         column.pack_start(renderer, True)
         column.set_attributes(renderer, markup = COLUMN_DISPLAY)
 

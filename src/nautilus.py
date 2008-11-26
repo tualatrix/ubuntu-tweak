@@ -83,39 +83,47 @@ class Nautilus(TweakPage):
         ))
         self.pack_start(box, False, False, 0)
 
+
+        boxes = []
         hbox1 = gtk.HBox(False, 5)
         label = gtk.Label(_('Default thumbnail icon size'))
         hbox1.pack_start(label, False, False, 0)
+        boxes.append(hbox1)
 
         button = Factory.create('gconfspinbutton', 
                             'thumbnail_size',
                             16, 512, 16)
         hbox1.pack_end(button, False, False, 0)
 
-        hbox2 = gtk.HBox(False, 5)
-        label = gtk.Label(_('Maximum size of the thumbnail cache (MB)'))
-        hbox2.pack_start(label, False, False, 0)
-
         button = Factory.create('gconfspinbutton', 
                             'maximum_size',
                             -1, 512, 1)
-        hbox2.pack_end(button, False, False, 0)
+        if button:
+            hbox2 = gtk.HBox(False, 5)
+            label = gtk.Label(_('Maximum size of the thumbnail cache (MB)'))
 
-        hbox3 = gtk.HBox(False, 5)
-        label = gtk.Label(_('Maximum age for the thumbnail in the cache (Day)'))
-        hbox3.pack_start(label, False, False, 0)
+            hbox2.pack_start(label, False, False, 0)
+            hbox2.pack_end(button, False, False, 0)
+            boxes.append(hbox2)
 
-        button = Factory.create('gconfspinbutton', 
-                            'maximum_age',
-                            -1, 180, 1)
-        hbox3.pack_end(button, False, False, 0)
+        if button:
+            button = Factory.create('gconfspinbutton', 
+                                'maximum_age',
+                                -1, 180, 1)
+
+            hbox3 = gtk.HBox(False, 5)
+            label = gtk.Label(_('Maximum age for the thumbnail in the cache (Day)'))
+            hbox3.pack_start(label, False, False, 0)
+            hbox3.pack_end(button, False, False, 0)
+            boxes.append(hbox3)
 
         hbox4 = gtk.HBox(False, 5)
         button = gtk.Button(stock = gtk.STOCK_CLEAR)
         set_label_for_stock_button(button, _('Clean up the cache'))
         hbox4.pack_end(button, False, False, 0)
+        boxes.append(hbox4)
 
-        box = ListPack(_('Thumbnails Settings'), (hbox1, hbox2, hbox3, hbox4))
+        box = ListPack(_('Thumbnails Settings'), boxes)
         self.pack_start(box, False, False, 0)
 
 

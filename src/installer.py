@@ -22,6 +22,7 @@ import os
 import gtk
 import gettext
 import gobject
+import pango
 
 from common.consts import *
 from common.appdata import *
@@ -328,6 +329,7 @@ class Installer(TweakPage):
         column.set_attributes(renderer, pixbuf = COLUMN_ICON)
 
         renderer = gtk.CellRendererText()
+        renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
         column.pack_start(renderer, True)
         column.add_attribute(renderer, 'markup', COLUMN_DISPLAY)
         treeview.append_column(column)
