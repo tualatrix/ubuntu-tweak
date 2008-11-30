@@ -119,7 +119,11 @@ class Nautilus(TweakPage):
 
         hbox4 = gtk.HBox(False, 5)
         button = gtk.Button(stock = gtk.STOCK_CLEAR)
-        set_label_for_stock_button(button, _('Clean up the cache'))
+        try:
+            size = os.popen('du -hs ~/.thumbnails').read().split()[0]
+        except:
+            size = '0M'
+        set_label_for_stock_button(button, _('Clean up the cache (Free %s)') % size)
         hbox4.pack_end(button, False, False, 0)
         boxes.append(hbox4)
 

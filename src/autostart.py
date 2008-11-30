@@ -389,7 +389,7 @@ class AutoStart(TweakPage):
 
     def on_add_item(self, widget, treeview):
         dialog = AutoStartDialog(parent = widget.get_toplevel())
-        while dialog.run() == gtk.RESPONSE_OK:
+        if dialog.run() == gtk.RESPONSE_OK:
             name = dialog.pm_name.get_text()
             cmd = dialog.pm_cmd.get_text()
             if not name:
@@ -436,7 +436,7 @@ class AutoStart(TweakPage):
                 shutil.copy(path, treeview.userdir)
                 path = os.path.join(treeview.userdir, os.path.basename(path))
             dialog = AutoStartDialog(DesktopEntry(path), widget.get_toplevel())
-            while dialog.run() == gtk.RESPONSE_OK:
+            if dialog.run() == gtk.RESPONSE_OK:
                 name = dialog.pm_name.get_text()
                 cmd = dialog.pm_cmd.get_text()
                 if not name:
@@ -446,7 +446,7 @@ class AutoStart(TweakPage):
                 else:
                     desktopentry = DesktopEntry(path)
                     desktopentry.set("Name", name, locale = True)
-                    desktopentry.set("Exec", cmd, locale = True)
+                    desktopentry.set("Exec", cmd)
                     desktopentry.set("Comment", dialog.pm_comment.get_text(), locale = True)
                     desktopentry.write()
                     treeview.update_items(all = self.show_all_button.get_active(), comment = self.show_comment_button.get_active())
