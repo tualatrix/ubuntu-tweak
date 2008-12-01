@@ -64,7 +64,7 @@ class Metacity(TweakPage):
 
         self.pack_start(table, False, False, 0)
 
-        button = Factory.create('gconfcheckbutton', _('Enable the Metacity compositing manager feature'), 'compositing_manager')
+        button = Factory.create('gconfcheckbutton', _("Enable Metacity's Compositing feature"), 'compositing_manager')
         if button:
             box = ListPack(_('Compositing Manager'), (button,))
             button.connect('toggled', self.on_compositing_button_toggled)
@@ -73,7 +73,7 @@ class Metacity(TweakPage):
 
     def on_compositing_button_toggled(self, widget):
         if widget.get_active():
-            InfoDialog(_('You sould turn off compiz')).launch()
+            InfoDialog(_('To enable the compositing feature of metacity, You should disable the Visual Effects in "Appearance".')).launch()
 
 if __name__ == '__main__':
     from utility import Test

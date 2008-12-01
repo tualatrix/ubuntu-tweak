@@ -184,7 +184,7 @@ class Nautilus(TweakPage):
         except:
             size = '0M'
             button.set_sensitive(False)
-        set_label_for_stock_button(button, _('Clean up the thumbnails cache (%s disk size)') % size)
+        set_label_for_stock_button(button, _('Clean up the thumbnails cache (Free %s disk size)') % size)
 
     def on_clean_thumbnails_clicked(self, widget):
         dialog = CleanDialog(widget.get_toplevel())
