@@ -24,6 +24,7 @@ import gtk
 import gio
 import pango
 import gobject
+import thread
 
 from common.factory import Factory
 from common.widgets import TweakPage
@@ -43,8 +44,8 @@ class CateView(gtk.TreeView):
         self.set_rules_hint(True)
         self.model = self.__create_model()
         self.set_model(self.model)
-        self.update_model()
         self.__add_columns()
+        self.update_model()
 
 #        self.set_size_request(80, -1)
 
@@ -93,9 +94,9 @@ class TypeView(gtk.TreeView):
         self.set_model(self.model)
         self.set_rules_hint(True)
         self.__add_columns()
-        self.update_model()
 
         self.set_size_request(200, -1)
+#        thread.start_new_thread(self.update_model, ())
 
     def __create_model(self):
         '''The model is icon, title and the list reference'''
@@ -136,7 +137,7 @@ class TypeView(gtk.TreeView):
         self.append_column(column)
 
     def update_model(self, all = False):
-        for type in gio.content_types_get_registered()[:100]:
+        for type in gio.content_types_get_registered():
             pixbuf = mime_type_get_icon(type, 24)
             description = gio.content_type_get_description(type)
             app = gio.app_info_get_default_for_type(type, False)
@@ -194,6 +195,7 @@ class FileType(TweakPage):
         self.pack_start(show_have_app, False, False, 5)
 
         self.show_all()
+        gobject.idle_add(typeview.update_model)
 
 if __name__ == "__main__":
     from utility import Test
