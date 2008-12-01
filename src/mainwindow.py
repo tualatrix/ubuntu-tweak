@@ -135,6 +135,10 @@ from gnomesettings import Gnome
 from nautilus import Nautilus
 from lockdown import LockDown
 from metacity import Metacity
+if module_check.has_gio():
+    from filetype import FileType
+else:
+    FileType = Notice
 
 (
     ID_COLUMN,
@@ -179,18 +183,19 @@ from metacity import Metacity
     SCRIPTS,
     SHORTCUTS,
     SYSTEM,
+    FILETYPE,
     NAUTILUS,
     POWER,
     SECU_OPTIONS,
     TOTAL
-) = range(25)
+) = range(26)
 
 MODULES_TABLE = {
     APPLICATIONS: [INSTALLER, SOURCEEDITOR, THIRDSOFT, PACKAGE],
     STARTUP: [SESSION, AUTOSTART],
     DESKTOP: [ICON, METACITY, COMPIZ, GNOME],
     PERSONAL: [USERDIR, TEMPLATES, SCRIPTS, SHORTCUTS],
-    SYSTEM: [NAUTILUS, POWER, SECU_OPTIONS],
+    SYSTEM: [FILETYPE, NAUTILUS, POWER, SECU_OPTIONS],
 }
 
 MODULES = \
@@ -216,6 +221,7 @@ MODULES = \
     [SCRIPTS, 'scripts.png', _("Scripts"), Scripts, SHOW_NONE],
     [SHORTCUTS, 'shortcuts.png', _("Shortcuts"), Shortcuts, SHOW_NONE],
     [SYSTEM, 'system.png', _("System"), None, SHOW_CHILD],
+    [FILETYPE, 'filetype.png', _('File Type Manager'), FileType, SHOW_NONE],
     [NAUTILUS, 'nautilus.png', _("Nautilus"), Nautilus, SHOW_NONE],
     [POWER, 'powermanager.png', _("Power Managerment"), PowerManager, SHOW_NONE],
     [SECU_OPTIONS, 'lockdown.png', _("Security"), LockDown, SHOW_NONE],
@@ -410,11 +416,13 @@ class MainWindow(gtk.Window):
         self.model.foreach(self.__select_for_each, id)
 
     def __create_newpage(self, id):
+        self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
         self.setup_notebook(id)
         self.moduletable[id] = self.notebook.get_n_pages() - 1
         self.notebook.set_current_page(self.moduletable[id])
 
         self.__select_child_item(id)
+        self.window.set_cursor(None)
 
     def __add_columns(self, treeview):
         column = gtk.TreeViewColumn('ID', gtk.CellRendererText(),text = ID_COLUMN)

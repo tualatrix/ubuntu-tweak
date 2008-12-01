@@ -96,6 +96,13 @@ class SystemModule:
         else:
             return 'NULL'
 
+    def has_gio(self):
+        try:
+            import gio
+            return True
+        except:
+            return False
+
 module_check = SystemModule()
             
 if __name__ == "__main__":

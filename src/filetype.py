@@ -28,8 +28,16 @@ import thread
 
 from common.factory import Factory
 from common.widgets import TweakPage
-from common.mimetype import MIMETYPE, MIMETYPE_LIST
 from common.utils import get_icon_with_name, mime_type_get_icon, get_icon_with_app
+
+MIMETYPE = {
+    _('All'): 'binary-x-generic',
+    _('Application'): 'vcard',
+    _('Audio'): 'audio-x-generic',
+    _('Image'): 'image-x-generic',
+    _('Video'): 'video-x-generic',
+    _('Text'): 'text-x-generic',
+}
 
 (
     COLUMN_ICON,
@@ -47,6 +55,8 @@ class CateView(gtk.TreeView):
         self.__add_columns()
         self.update_model()
 
+        selection = self.get_selection()
+        selection.select_iter(self.model.get_iter_first())
 #        self.set_size_request(80, -1)
 
     def __create_model(self):
@@ -58,7 +68,7 @@ class CateView(gtk.TreeView):
         return model
 
     def __add_columns(self):
-        column = gtk.TreeViewColumn(_('Type Categories'))
+        column = gtk.TreeViewColumn(_('Categories'))
 
         renderer = gtk.CellRendererPixbuf()
         column.pack_start(renderer, False)
@@ -72,11 +82,12 @@ class CateView(gtk.TreeView):
         self.append_column(column)
 
     def update_model(self):
-        for title, (list, icon) in MIMETYPE.items():
+        list = MIMETYPE.items()
+        list.sort()
+        for title, icon in list:
             pixbuf = get_icon_with_name(icon, 24)
             iter = self.model.append(None)
             self.model.set(iter, COLUMN_ICON, pixbuf, COLUMN_TITLE, title)
-
 
 (
     TYPE_ICON,
@@ -96,7 +107,7 @@ class TypeView(gtk.TreeView):
         self.__add_columns()
 
         self.set_size_request(200, -1)
-#        thread.start_new_thread(self.update_model, ())
+        self.update_model()
 
     def __create_model(self):
         '''The model is icon, title and the list reference'''
@@ -117,6 +128,8 @@ class TypeView(gtk.TreeView):
         column.set_attributes(renderer, pixbuf = TYPE_ICON)
 
         renderer = gtk.CellRendererText()
+        renderer.set_fixed_size(180, -1)
+        renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
         column.pack_start(renderer, False)
         column.set_attributes(renderer, text = TYPE_DESCRIPTION)
         column.set_sort_column_id(TYPE_DESCRIPTION)
@@ -129,15 +142,24 @@ class TypeView(gtk.TreeView):
         column.set_attributes(renderer, pixbuf = TYPE_APPICON)
 
         renderer = gtk.CellRendererText()
-#        renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
         column.pack_start(renderer, False)
         column.set_sort_column_id(TYPE_APP)
         column.set_attributes(renderer, text = TYPE_APP)
 
         self.append_column(column)
 
-    def update_model(self, all = False):
+    def update_model(self, filter = False, all = False):
+        self.model.clear()
+        mainwindow = self.get_toplevel().window
+        if mainwindow:
+            mainwindow.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
         for type in gio.content_types_get_registered():
+            while gtk.events_pending ():
+                gtk.main_iteration ()
+
+            if filter and filter != type.split('/')[0]:
+                continue
+
             pixbuf = mime_type_get_icon(type, 24)
             description = gio.content_type_get_description(type)
             app = gio.app_info_get_default_for_type(type, False)
@@ -146,8 +168,8 @@ class TypeView(gtk.TreeView):
                 appname = app.get_name()
                 applogo = get_icon_with_app(app, 24)
             elif all and not app:
-                appname = ''
-                applogo = get_icon_with_name('gtk-execute', 24)
+                appname = _('None')
+                applogo = None
             else:
                 continue
             
@@ -158,6 +180,8 @@ class TypeView(gtk.TreeView):
                     TYPE_DESCRIPTION, description,
                     TYPE_APPICON, applogo,
                     TYPE_APP, appname)
+        if mainwindow:
+            mainwindow.set_cursor(None)
 
 class FileType(TweakPage):
     def __init__(self):
@@ -168,19 +192,22 @@ class FileType(TweakPage):
         hbox = gtk.HBox(False, 5)
         self.pack_start(hbox)
 
-        cateview = CateView()
-        hbox.pack_start(cateview, False, False, 0)
+        self.cateview = CateView()
+        self.cate_selection = self.cateview.get_selection()
+        self.cate_selection.connect('changed', self.on_cateview_changed)
+        hbox.pack_start(self.cateview, False, False, 0)
 
-        typeview = TypeView()
+        self.typeview = TypeView()
         sw = gtk.ScrolledWindow()
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        sw.add(typeview)
+        sw.add(self.typeview)
         hbox.pack_start(sw)
 
         vbox = gtk.VBox(False, 5)
         hbox.pack_start(vbox, False, False, 0)
 
         button = gtk.Button(stock = gtk.STOCK_ADD)
+        button.connect('clicked', self.on_add_clicked)
         vbox.pack_start(button, False, False, 0)
 
         button = gtk.Button(stock = gtk.STOCK_REMOVE)
@@ -191,11 +218,34 @@ class FileType(TweakPage):
         button.set_sensitive(False)
         vbox.pack_start(button, False, False, 0)
 
-        show_have_app = gtk.CheckButton(_('Only show associated type'))
-        self.pack_start(show_have_app, False, False, 5)
+        self.show_have_app = gtk.CheckButton(_('Only show associated type'))
+        self.show_have_app.set_active(True)
+        self.show_have_app.connect('toggled', self.on_show_all_toggled)
+        self.pack_start(self.show_have_app, False, False, 5)
 
         self.show_all()
-        gobject.idle_add(typeview.update_model)
+
+    def on_show_all_toggled(self, widget):
+        model, iter = self.cate_selection.get_selected()
+        type = False
+        if iter:
+            type = model.get_value(iter, COLUMN_TITLE).lower()
+            self.set_update_mode(type)
+
+    def on_cateview_changed(self, widget):
+        model, iter = widget.get_selected()
+        if iter:
+            type = model.get_value(iter, COLUMN_TITLE).lower()
+            self.set_update_mode(type)
+
+    def on_add_clicked(self, widget):
+        self.typeview.update_model()
+
+    def set_update_mode(self, type):
+        if type == 'all':
+            self.typeview.update_model(all = not self.show_have_app.get_active())
+        else:
+            self.typeview.update_model(filter = type, all = not self.show_have_app.get_active())
 
 if __name__ == "__main__":
     from utility import Test
