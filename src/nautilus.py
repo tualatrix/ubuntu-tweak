@@ -24,6 +24,7 @@ import os
 import gobject
 import gconf
 import gettext
+import thread
 
 try:
     from common.package import PackageWorker, AptCheckButton, update_apt_cache
@@ -40,6 +41,29 @@ from common.utils import set_label_for_stock_button
     COLUMN_ICON,
     COLUMN_TITLE,
 ) = range(2)
+
+class CleanDialog(gtk.Dialog):
+    def __init__(self, parent):
+        super(CleanDialog, self).__init__(title = '', parent = parent)
+
+        self.progressbar = gtk.ProgressBar()
+        self.progressbar.set_text(_('Cleaning...'))
+        self.vbox.add(self.progressbar)
+
+        self.show_all()
+        gobject.timeout_add(100, self.on_timeout)
+        thread.start_new_thread(self.process_data, ())
+
+    def process_data(self):
+        os.system('rm -rf ~/.thumbnails/*')
+        
+    def on_timeout(self):
+        self.progressbar.pulse()
+
+        if os.listdir(os.path.join(os.path.expanduser('~'), '.thumbnails')):
+            return True
+        else:
+            self.destroy()
 
 class EmblemsView(gtk.IconView):
     def __init__(self):
@@ -86,7 +110,7 @@ class Nautilus(TweakPage):
 
         boxes = []
         hbox1 = gtk.HBox(False, 5)
-        label = gtk.Label(_('Default thumbnail icon size'))
+        label = gtk.Label(_('Default thumbnail icon size (Pixel)'))
         hbox1.pack_start(label, False, False, 0)
         boxes.append(hbox1)
 
@@ -100,7 +124,7 @@ class Nautilus(TweakPage):
                             -1, 512, 1)
         if button:
             hbox2 = gtk.HBox(False, 5)
-            label = gtk.Label(_('Maximum size of the thumbnail cache (MB)'))
+            label = gtk.Label(_('Maximum size of the thumbnail cache (Megabyte)'))
 
             hbox2.pack_start(label, False, False, 0)
             hbox2.pack_end(button, False, False, 0)
@@ -119,11 +143,8 @@ class Nautilus(TweakPage):
 
         hbox4 = gtk.HBox(False, 5)
         button = gtk.Button(stock = gtk.STOCK_CLEAR)
-        try:
-            size = os.popen('du -hs ~/.thumbnails').read().split()[0]
-        except:
-            size = '0M'
-        set_label_for_stock_button(button, _('Clean up the cache (Free %s)') % size)
+        self.set_clean_button_label(button)
+        button.connect('clicked', self.on_clean_thumbnails_clicked)
         hbox4.pack_end(button, False, False, 0)
         boxes.append(hbox4)
 
@@ -157,9 +178,19 @@ class Nautilus(TweakPage):
 
             self.pack_start(box, False, False, 0)
 
-    def spinbutton_value_changed_cb(self, widget, data = None):
-        client = gconf.client_get_default()
-        client.set_int("/apps/nautilus/icon_view/thumbnail_size", int(widget.get_value()))
+    def set_clean_button_label(self, button):
+        try:
+            size = os.popen('du -hs ~/.thumbnails').read().split()[0]
+        except:
+            size = '0M'
+            button.set_sensitive(False)
+        set_label_for_stock_button(button, _('Clean up the thumbnails cache (%s disk size)') % size)
+
+    def on_clean_thumbnails_clicked(self, widget):
+        dialog = CleanDialog(widget.get_toplevel())
+        dialog.run()
+        InfoDialog(_("Clean up successfully!")).launch()
+        self.set_clean_button_label(widget)
 
     def on_apply_clicked(self, widget, box):
         to_add = []
