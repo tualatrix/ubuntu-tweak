@@ -42,9 +42,12 @@ class AbstractTempates:
     systemdir = os.path.join(os.path.expanduser("~"), ".ubuntu-tweak/templates")
     __uf = UserdirFile()
     __template_dir = __uf.get('XDG_TEMPLATES_DIR').strip('"').split("/")[1:]
-    if not __template_dir:
+    if not __template_dir or os.path.isfile(os.getenv("HOME") + "/"  + "/".join(__template_dir)):
         __template_dir = os.path.expanduser('~/Templates')
-        if not os.path.exists(os.path.expanduser('~/Templates')):
+        if not os.path.exists(__template_dir):
+            os.mkdir(__template_dir)
+        elif os.path.exists(__template_dir):
+            os.remove(__template_dir)
             os.mkdir(__template_dir)
         userdir = __template_dir
     else:
