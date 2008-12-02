@@ -106,7 +106,7 @@ class TypeView(gtk.TreeView):
         self.set_rules_hint(True)
         self.__add_columns()
 
-        self.set_size_request(200, -1)
+#        self.set_size_request(200, -1)
         self.update_model()
 
     def __create_model(self):

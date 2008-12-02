@@ -49,8 +49,14 @@ def mime_type_get_icon(mime, size = 24):
     gicon = gio.content_type_get_icon(mime)
     iconinfo = icontheme.choose_icon(gicon.get_names(), size, gtk.ICON_LOOKUP_USE_BUILTIN)
     if not iconinfo:
-        return get_icon_with_name('application-x-executable', size)
-    return iconinfo.load_icon()
+        pixbuf = get_icon_with_name('application-x-executable', size)
+    else:
+        pixbuf = iconinfo.load_icon()
+
+    if pixbuf.get_width() != size:
+        return pixbuf.scale_simple(size, size, gtk.gdk.INTERP_BILINEAR)
+
+    return pixbuf
 
 def get_icon_with_app(app, size):
     import gio
