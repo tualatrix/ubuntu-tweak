@@ -82,11 +82,15 @@ class SystemModule:
         return self.is_hardy() or self.is_intrepid()
 
     def is_hardy(self):
-        return 'Mint' in SystemInfo.distro or '8.04' in SystemInfo.distro
+        return 'Mint' in SystemInfo.distro or \
+               'Greenie 3' in SystemInfo.distro or \
+               '8.04' in SystemInfo.distro
 
     def is_intrepid(self):
-        return 'Mint' in SystemInfo.distro or '8.10' in SystemInfo.distro \
-                or 'intrepid' in SystemInfo.distro
+        return 'Mint' in SystemInfo.distro or \
+               '8.10' in SystemInfo.distro or \
+               'Greenie 3' in SystemInfo.distro or \
+               'intrepid' in SystemInfo.distro
 
     def get_codename(self):
         if self.is_hardy():
