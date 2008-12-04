@@ -1,4 +1,4 @@
-SUBDIRS = appcates applogos aptkeys pixmaps scripts templates
+SUBDIRS = appcates applogos aptkeys pixmaps scripts templates glade
 
 xmldir = $(pkgdatadir)/data/
 xml_DATA = $(srcdir)/*.xml

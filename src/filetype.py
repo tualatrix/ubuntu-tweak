@@ -29,6 +29,7 @@ import thread
 from common.factory import Factory
 from common.widgets import TweakPage
 from common.utils import get_icon_with_name, mime_type_get_icon, get_icon_with_app
+from common.gui import GuiWorker
 
 MIMETYPE = {
     _('All'): 'binary-x-generic',
@@ -90,11 +91,12 @@ class CateView(gtk.TreeView):
             self.model.set(iter, COLUMN_ICON, pixbuf, COLUMN_TITLE, title)
 
 (
+    TYPE_MIME,
     TYPE_ICON,
     TYPE_DESCRIPTION,
     TYPE_APPICON,
     TYPE_APP,
-) = range(4)
+) = range(5)
 
 class TypeView(gtk.TreeView):
     def __init__(self):
@@ -112,6 +114,7 @@ class TypeView(gtk.TreeView):
     def __create_model(self):
         '''The model is icon, title and the list reference'''
         model = gtk.ListStore(
+                    gobject.TYPE_STRING,
                     gtk.gdk.Pixbuf,
                     gobject.TYPE_STRING,
                     gtk.gdk.Pixbuf,
@@ -176,12 +179,124 @@ class TypeView(gtk.TreeView):
 #            self.model.set(iter, TYPE_ICON, pixbuf, TYPE_DESCRIPTION, description, TYPE_APP, appname)
             iter = self.model.append()
             self.model.set(iter, 
+                    TYPE_MIME, type,
                     TYPE_ICON, pixbuf, 
                     TYPE_DESCRIPTION, description,
                     TYPE_APPICON, applogo,
                     TYPE_APP, appname)
         if mainwindow:
             mainwindow.set_cursor(None)
+
+    def update_for_type(self, type):
+        self.model.foreach(self.do_update_for_type, type)
+
+    def do_update_for_type(self, model, path, iter, type):
+        this_type = model.get_value(iter, TYPE_MIME)
+
+        if this_type == type:
+            app = gio.app_info_get_default_for_type(type, False)
+
+            appname = app.get_name()
+            applogo = get_icon_with_app(app, 24)
+            
+            model.set(iter, 
+                    TYPE_APPICON, applogo,
+                    TYPE_APP, appname)
+
+(
+    TYPE_EDIT_ENABLE,
+    TYPE_EDIT_TYPE,
+    TYPE_EDIT_APPINFO,
+    TYPE_EDIT_APPLOGO,
+    TYPE_EDIT_APPNAME,
+) = range(5)
+
+class TypeEditDialog(gobject.GObject):
+    __gsignals__ = {
+        'update': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_STRING,))
+    }
+
+    def __init__(self, type, parent):
+        super(TypeEditDialog, self).__init__()
+        worker = GuiWorker()
+
+        type_pixbuf = mime_type_get_icon(type, 64)
+
+        self.dialog = worker.get_widget('type_edit_dialog')
+        type_logo = worker.get_widget('type_logo')
+        type_label = worker.get_widget('type_label')
+        type_view = worker.get_widget('type_view')
+
+        self.setup_treeview(type, type_view)
+        self.dialog.add_buttons(gtk.STOCK_ADD, gtk.RESPONSE_ACCEPT,
+                           gtk.STOCK_REMOVE, gtk.RESPONSE_DELETE_EVENT)
+        self.dialog.set_transient_for(parent)
+
+        type_logo.set_from_pixbuf(type_pixbuf)
+        type_label.set_markup(_('Please select an application to open %s') % type)
+
+    def setup_treeview(self, type, treeview):
+        model = gtk.ListStore(
+                gobject.TYPE_BOOLEAN,
+                gobject.TYPE_STRING,
+                gobject.GObject,
+                gtk.gdk.Pixbuf,
+                gobject.TYPE_STRING)
+
+        treeview.set_model(model)
+        treeview.set_headers_visible(False)
+
+        column = gtk.TreeViewColumn()
+        renderer = gtk.CellRendererToggle()
+        renderer.connect('toggled', self.on_renderer_toggled, treeview)
+        renderer.set_radio(True)
+        column.pack_start(renderer, False)
+        column.set_attributes(renderer, active = TYPE_EDIT_ENABLE)
+
+        renderer = gtk.CellRendererPixbuf()
+        column.pack_start(renderer, False)
+        column.set_attributes(renderer, pixbuf = TYPE_EDIT_APPLOGO)
+        
+        renderer = gtk.CellRendererText()
+        column.pack_start(renderer, False)
+        column.set_attributes(renderer, text = TYPE_EDIT_APPNAME)
+        column.set_sort_column_id(TYPE_DESCRIPTION)
+        treeview.append_column(column)
+
+        def_app = gio.app_info_get_default_for_type(type, False)
+        for appinfo in gio.app_info_get_all_for_type(type):
+            applogo = get_icon_with_app(appinfo, 24)
+            appname = appinfo.get_name()
+
+            iter = model.append()
+            model.set(iter, 
+                    TYPE_EDIT_ENABLE, def_app.get_name() == appname,
+                    TYPE_EDIT_TYPE, type,
+                    TYPE_EDIT_APPINFO, appinfo,
+                    TYPE_EDIT_APPLOGO, applogo,
+                    TYPE_EDIT_APPNAME, appname)
+
+    def on_renderer_toggled(self, widget, path, treeview):
+        model = treeview.get_model()
+        iter = model.get_iter(path)
+
+        enable, type, appinfo = model.get(iter, TYPE_EDIT_ENABLE, TYPE_EDIT_TYPE, TYPE_EDIT_APPINFO)
+        if not enable:
+            model.foreach(self.cancenl_last_toggle)
+            appinfo.set_as_default_for_type(type)
+            model.set(iter, TYPE_EDIT_ENABLE, not enable)
+            self.emit('update', type)
+
+    def cancenl_last_toggle(self, model, path, iter):
+        enable = model.get(iter, TYPE_EDIT_ENABLE)
+        if enable:
+            model.set(iter, TYPE_EDIT_ENABLE, not enable)
+
+    def run(self):
+        return self.dialog.run()
+
+    def destroy(self):
+        return self.dialog.destroy()
 
 class FileType(TweakPage):
     def __init__(self):
@@ -198,6 +313,7 @@ class FileType(TweakPage):
         hbox.pack_start(self.cateview, False, False, 0)
 
         self.typeview = TypeView()
+        self.type_selection = self.typeview.get_selection()
         sw = gtk.ScrolledWindow()
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         sw.add(self.typeview)
@@ -239,7 +355,22 @@ class FileType(TweakPage):
             self.set_update_mode(type)
 
     def on_add_clicked(self, widget):
-        self.typeview.update_model()
+        worker = GuiWorker()
+
+        model, iter = self.type_selection.get_selected()
+        if iter:
+            type = model.get_value(iter, TYPE_MIME)
+
+            dialog = TypeEditDialog(type, self.get_toplevel())
+            dialog.connect('update', self.on_mime_type_update)
+
+            dialog.run()
+            dialog.destroy()
+        else:
+            return
+
+    def on_mime_type_update(self, widget, type):
+        self.typeview.update_for_type(type)
 
     def set_update_mode(self, type):
         if type == 'all':
