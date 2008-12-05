@@ -42,7 +42,10 @@ def get_icon_with_name(name, size):
     return pixbuf
 
 def get_icon_with_file(file, size):
-    return gtk.gdk.pixbuf_new_from_file_at_size(file, size, size)
+    try:
+        return gtk.gdk.pixbuf_new_from_file_at_size(file, size, size)
+    except:
+        return get_icon_with_name('gtk-execute', size)
 
 def mime_type_get_icon(mime, size = 24):
     import gio

@@ -99,6 +99,7 @@ class CateView(gtk.TreeView):
 ) = range(5)
 
 class TypeView(gtk.TreeView):
+    update = False
     def __init__(self):
         gtk.TreeView.__init__(self)
 
@@ -204,6 +205,67 @@ class TypeView(gtk.TreeView):
                     TYPE_APP, appname)
 
 (
+    TYPE_ADD_APPINFO,
+    TYPE_ADD_APPLOGO,
+    TYPE_ADD_APPNAME,
+) = range(3)
+
+class AddAppDialog(gobject.GObject):
+    __gsignals__ = {
+        'update': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_STRING,))
+    }
+
+    def __init__(self, type, parent):
+        super(AddAppDialog, self).__init__()
+        worker = GuiWorker()
+
+        self.dialog = worker.get_widget('add_app_dialog') 
+        self.dialog.set_modal(True)
+        self.dialog.set_transient_for(parent)
+        treeview = worker.get_widget('app_view')
+        self.setup_treeview(treeview)
+
+#        self.dialog.add_buttons(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
+#                                gtk.STOCK_ADD, gtk.RESPONSE_ACCEPT)
+
+    def setup_treeview(self, treeview):
+        model = gtk.ListStore(gobject.GObject,
+                              gtk.gdk.Pixbuf,
+                              gobject.TYPE_STRING)
+
+        treeview.set_model(model)
+        treeview.set_headers_visible(False)
+
+        column = gtk.TreeViewColumn()
+        renderer = gtk.CellRendererPixbuf()
+        column.pack_start(renderer, False)
+        column.set_attributes(renderer, pixbuf = TYPE_ADD_APPLOGO)
+        
+        renderer = gtk.CellRendererText()
+        column.pack_start(renderer, False)
+        column.set_attributes(renderer, text = TYPE_ADD_APPNAME)
+        column.set_sort_column_id(TYPE_DESCRIPTION)
+        treeview.append_column(column)
+
+        for appinfo in gio.app_info_get_all():
+            if appinfo.supports_files() or appinfo.supports_uris():
+                applogo = get_icon_with_app(appinfo, 24)
+                appname = appinfo.get_name()
+
+                iter = model.append()
+                model.set(iter, 
+                        TYPE_ADD_APPINFO, appinfo,
+                        TYPE_ADD_APPLOGO, applogo,
+                        TYPE_ADD_APPNAME, appname)
+
+    def run(self):
+        return self.dialog.run()
+
+    def destroy(self):
+        return self.dialog.destroy()
+
+
+(
     TYPE_EDIT_ENABLE,
     TYPE_EDIT_TYPE,
     TYPE_EDIT_APPINFO,
@@ -223,17 +285,37 @@ class TypeEditDialog(gobject.GObject):
         type_pixbuf = mime_type_get_icon(type, 64)
 
         self.dialog = worker.get_widget('type_edit_dialog')
-        type_logo = worker.get_widget('type_logo')
-        type_label = worker.get_widget('type_label')
-        type_view = worker.get_widget('type_view')
-
-        self.setup_treeview(type, type_view)
-        self.dialog.add_buttons(gtk.STOCK_ADD, gtk.RESPONSE_ACCEPT,
-                           gtk.STOCK_REMOVE, gtk.RESPONSE_DELETE_EVENT)
         self.dialog.set_transient_for(parent)
+        self.dialog.set_modal(True)
+        self.dialog.connect('destroy', self.on_dialog_destroy)
 
+        type_logo = worker.get_widget('type_edit_logo')
         type_logo.set_from_pixbuf(type_pixbuf)
-        type_label.set_markup(_('Please select an application to open %s') % type)
+
+        type_label = worker.get_widget('type_edit_label')
+        type_label.set_markup(_('Please select an application to open <b>%s</b>') % type)
+
+        type_view = worker.get_widget('type_edit_view')
+        self.setup_treeview(type, type_view)
+
+        add_button = worker.get_widget('type_edit_add_button')
+        add_button.connect('clicked', self.on_add_button_clicked, type)
+
+        remove_button = worker.get_widget('type_edit_remove_button')
+        remove_button.connect('clicked', self.on_remove_button_clicked, type)
+
+#        self.dialog.add_buttons(gtk.STOCK_ADD, gtk.RESPONSE_ACCEPT,
+#                           gtk.STOCK_REMOVE, gtk.RESPONSE_DELETE_EVENT)
+
+    def on_add_button_clicked(self, widget, type):
+        print 'on_add_button_clicked'
+        dialog = AddAppDialog(type, widget.get_toplevel())
+        if dialog.run() == gtk.RESPONSE_ACCEPT:
+            print 'accept'
+        dialog.destroy()
+
+    def on_remove_button_clicked(self, widget, type):
+        print 'on_remove_button_clicked'
 
     def setup_treeview(self, type, treeview):
         model = gtk.ListStore(
@@ -252,7 +334,9 @@ class TypeEditDialog(gobject.GObject):
         renderer.set_radio(True)
         column.pack_start(renderer, False)
         column.set_attributes(renderer, active = TYPE_EDIT_ENABLE)
+        treeview.append_column(column)
 
+        column = gtk.TreeViewColumn()
         renderer = gtk.CellRendererPixbuf()
         column.pack_start(renderer, False)
         column.set_attributes(renderer, pixbuf = TYPE_EDIT_APPLOGO)
@@ -292,8 +376,11 @@ class TypeEditDialog(gobject.GObject):
         if enable:
             model.set(iter, TYPE_EDIT_ENABLE, not enable)
 
-    def run(self):
-        return self.dialog.run()
+    def show_all(self):
+        self.dialog.show_all()
+
+    def on_dialog_destroy(self, widget):
+        self.destroy()
 
     def destroy(self):
         return self.dialog.destroy()
@@ -314,6 +401,7 @@ class FileType(TweakPage):
 
         self.typeview = TypeView()
         self.type_selection = self.typeview.get_selection()
+        self.type_selection.connect('changed', self.on_typeview_changed)
         sw = gtk.ScrolledWindow()
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         sw.add(self.typeview)
@@ -322,17 +410,14 @@ class FileType(TweakPage):
         vbox = gtk.VBox(False, 5)
         hbox.pack_start(vbox, False, False, 0)
 
-        button = gtk.Button(stock = gtk.STOCK_ADD)
-        button.connect('clicked', self.on_add_clicked)
-        vbox.pack_start(button, False, False, 0)
+        self.edit_button = gtk.Button(stock = gtk.STOCK_EDIT)
+        self.edit_button.connect('clicked', self.on_edit_clicked)
+        self.edit_button.set_sensitive(False)
+        vbox.pack_start(self.edit_button, False, False, 0)
 
-        button = gtk.Button(stock = gtk.STOCK_REMOVE)
-        button.set_sensitive(False)
-        vbox.pack_start(button, False, False, 0)
-
-        button = gtk.Button(stock = gtk.STOCK_EDIT)
-        button.set_sensitive(False)
-        vbox.pack_start(button, False, False, 0)
+        self.remove_button = gtk.Button(stock = gtk.STOCK_REMOVE)
+        self.remove_button.set_sensitive(False)
+        vbox.pack_start(self.remove_button, False, False, 0)
 
         self.show_have_app = gtk.CheckButton(_('Only show associated type'))
         self.show_have_app.set_active(True)
@@ -354,7 +439,16 @@ class FileType(TweakPage):
             type = model.get_value(iter, COLUMN_TITLE).lower()
             self.set_update_mode(type)
 
-    def on_add_clicked(self, widget):
+    def on_typeview_changed(self, widget):
+        model, iter = widget.get_selected()
+        if iter:
+            self.remove_button.set_sensitive(True)
+            self.edit_button.set_sensitive(True)
+        else:
+            self.remove_button.set_sensitive(False)
+            self.edit_button.set_sensitive(False)
+
+    def on_edit_clicked(self, widget):
         worker = GuiWorker()
 
         model, iter = self.type_selection.get_selected()
@@ -364,8 +458,7 @@ class FileType(TweakPage):
             dialog = TypeEditDialog(type, self.get_toplevel())
             dialog.connect('update', self.on_mime_type_update)
 
-            dialog.run()
-            dialog.destroy()
+            dialog.show_all()
         else:
             return
 
