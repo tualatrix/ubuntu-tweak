@@ -23,6 +23,8 @@ import gtk
 import gtk.glade
 from consts import DATA_DIR
 
+print gtk.glade.textdomain('ubuntu-tweak')
+
 class GuiWorker(object):
 
     glade = os.path.join(DATA_DIR, 'glade', 'gui.glade')

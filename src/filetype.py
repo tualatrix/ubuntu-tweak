@@ -293,7 +293,7 @@ class TypeEditDialog(gobject.GObject):
         type_logo.set_from_pixbuf(type_pixbuf)
 
         type_label = worker.get_widget('type_edit_label')
-        type_label.set_markup(_('Please select an application to open <b>%s</b>') % type)
+        type_label.set_markup(_('Select an application to open the type <b>%s</b>') % type)
 
         type_view = worker.get_widget('type_edit_view')
         self.setup_treeview(type, type_view)
