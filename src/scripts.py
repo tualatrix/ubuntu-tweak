@@ -19,7 +19,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import pygtk
-pygtk.require("2.0")
+pygtk.require('2.0')
 import gtk
 import os
 import stat
@@ -42,28 +42,40 @@ from common.widgets.dialogs import WarningDialog
 ) = range(4)
 
 class AbstractScripts:
-    systemdir = os.path.join(os.path.expanduser("~"), ".ubuntu-tweak/scripts")
-    userdir = os.path.join(os.getenv("HOME"), ".gnome2", "nautilus-scripts")
+    systemdir = os.path.join(os.path.expanduser('~'), '.ubuntu-tweak/scripts')
+    userdir = os.path.join(os.getenv('HOME'), '.gnome2', 'nautilus-scripts')
 
 class DefaultScripts(AbstractScripts):
-    """This class use to create the default scripts"""
+    '''This class use to create the default scripts'''
     scripts = {
-            "copy-to": _("Copy to ..."),
-            "move-to": _("Move to ..."),
-            "link-to": _("Link to ..."),
-            "open-with-gedit": _("Open with gedit"),
-            "open-with-gedit-as-root": _("Open with gedit(as root)"),
-            "browse-as-root": _("Browse as root"),
-            "search-in-current": _("Search in current folder"),
+            'copy-to': _('Copy to ...'),
+            'copy-to-desktop': _('Copy to Desktop'),
+            'copy-to-download': _('Copy to Download'),
+            'copy-to-home': _('Copy to Home'),
+            'move-to': _('Move to ...'),
+            'move-to-desktop': _('Move to Desktop'),
+            'move-to-download': _('Move to Download'),
+            'move-to-home': _('Move to Home'),
+            'link-to': _('Link to ...'),
+            'link-to-desktop': _('Link to Desktop'),
+            'link-to-download': _('Link to Download'),
+            'link-to-home': _('Link to Home'),
+            'open-with-gedit': _('Open with gedit'),
+            'open-with-gedit-as-root': _('Open with gedit(as root)'),
+            'browse-as-root': _('Browse as root'),
+            'search-in-current': _('Search in current folder'),
+            'convert-image-to-jpg': _('Convert image to JPG'),
+            'convert-image-to-png': _('Convert image to PNG'),
+            'set-image-as-wallpaper': _('Set image as wallpaper'),
             }
 
     def create(self):
         if not os.path.exists(self.systemdir):
             os.makedirs(self.systemdir)
         for file, des in self.scripts.items():
-            realname = "%s" % des
+            realname = '%s' % des
             if not os.path.exists(os.path.join(self.systemdir,realname)):
-                shutil.copy(os.path.join(DATA_DIR, "scripts/%s" % file), os.path.join(self.systemdir,realname))
+                shutil.copy(os.path.join(DATA_DIR, 'scripts/%s' % file), os.path.join(self.systemdir,realname))
 
     def remove(self):
         if not os.path.exists(self.systemdir):
@@ -80,8 +92,8 @@ class DefaultScripts(AbstractScripts):
         return
 
 class EnableScripts(DirView, AbstractScripts):
-    """The treeview to display the enable scripts"""
-    type = _("Enabled Scripts")
+    '''The treeview to display the enable scripts'''
+    type = _('Enabled Scripts')
 
     def __init__(self):
         DirView.__init__(self, self.userdir)
@@ -105,18 +117,18 @@ class EnableScripts(DirView, AbstractScripts):
                     os.chmod(fullname, stat.S_IRWXU)
 
 class DisableScripts(FlatView, AbstractScripts):
-    """The treeview to display the system template"""
-    type = _("Disabled Scripts")
+    '''The treeview to display the system template'''
+    type = _('Disabled Scripts')
 
     def __init__(self):
         FlatView.__init__(self, self.systemdir, self.userdir)
 
 class Scripts(TweakPage, AbstractScripts):
-    """Freedom added your docmuent scripts"""
+    '''Freedom added your docmuent scripts'''
     def __init__(self):
         TweakPage.__init__(self, 
-                _("Manage Scripts"),
-                _('You can do all kinds of tasks with scripts.\nYou can drag and drop from File Manager.\n"Scripts" will be added to the context menu.\n'))
+                _('Manage Scripts'),
+                _("You can do all kinds of tasks with scripts.\nYou can drag and drop from File Manager.\n'Scripts' will be added to the context menu.\n"))
 
         self.default = DefaultScripts()
         self.config_test()
@@ -141,8 +153,8 @@ class Scripts(TweakPage, AbstractScripts):
         hbox = gtk.HBox(False, 0)
         self.pack_start(hbox, False, False, 10)
 
-        button = gtk.Button(_("Rebuild System Scripts"))
-        button.connect("clicked", self.on_rebuild_clicked)
+        button = gtk.Button(_('Rebuild System Scripts'))
+        button.connect('clicked', self.on_rebuild_clicked)
         hbox.pack_end(button, False, False, 5)
         
         self.enable_scripts.connect('drag_data_received', self.on_enable_drag_data_received)
@@ -170,6 +182,6 @@ class Scripts(TweakPage, AbstractScripts):
         if not os.path.exists(self.systemdir):
             self.default.create()
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     from utility import Test
     Test(Scripts)

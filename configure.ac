@@ -4,8 +4,8 @@
 AC_INIT([ubuntu-tweak], [0.4.4], [tualatrix@gmail.com])
 AM_INIT_AUTOMAKE([1.10 -Wall -Werror])
 
-AC_CONFIG_HEADER(config.h)
-AC_CONFIG_MACRO_DIR([m4])
+#AC_CONFIG_HEADER(config.h)
+#AC_CONFIG_MACRO_DIR([m4])
 
 PKG_PROG_PKG_CONFIG([0.19])
 

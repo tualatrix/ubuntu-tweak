@@ -54,6 +54,24 @@ class UserdirFile(IniFile):
     def __init__(self):
         IniFile.__init__(self, self.filename)
 
+        self.data = self.get_items()
+
+    def __getitem__(self, key):
+        return self.data[key]
+
+    def get_items(self):
+        dict = {}
+        for userdir in self.XDG_DIRS.keys():
+            prefix = self.get(userdir).strip('"').split("/")[0]
+            if prefix:
+                path = os.getenv("HOME") + "/"  + "/".join(self.get(userdir).strip('"').split("/")[1:])
+            else:
+                path = self.get(userdir).strip('"')
+
+            dict[userdir] = path
+
+        return dict
+
     def items(self):
         dict = {}
         for userdir in self.XDG_DIRS.keys():

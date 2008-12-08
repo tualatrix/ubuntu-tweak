@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2008-12-06 21:35+0800\n"
+"POT-Creation-Date: 2008-12-08 10:49+0800\n"
 "PO-Revision-Date: 2008-11-10 06:41+0000\n"
 "Last-Translator: Harun Hurma <Unknown>\n"
 "Language-Team: Turkish <tr@li.org>\n"
@@ -210,30 +210,30 @@ msgstr "Kaydetmeyi devre dışı bırak"
 msgid "Disable \"User Switch\""
 msgstr "Kullanıcı değiştirmeyi devre dışı bırak"
 
-#: src/ScriptWorker.py:53
+#: src/ScriptWorker.py:52
 #, python-format
 msgid "The file \"%s\" is exists!"
 msgstr "\"%s\" dosyası mevcut!"
 
-#: src/ScriptWorker.py:58
+#: src/ScriptWorker.py:57
 #, python-format
 msgid "The folder \"%s\" is exists!"
 msgstr "%s klasörü mevcut!"
 
-#: src/ScriptWorker.py:66 src/ScriptWorker.py:74
+#: src/ScriptWorker.py:63 src/ScriptWorker.py:69
 #, python-format
 msgid "The target \"%s\" is exists!"
 msgstr "Hedef \"%s\" mevcut!"
 
-#: src/ScriptWorker.py:79 src/ScriptWorker.py:90
+#: src/ScriptWorker.py:110 src/ScriptWorker.py:121
 msgid "Enter your password to perform the administrative tasks"
 msgstr "Yönetimsel görevleri gerçekleştirmek için şifrenizi girin"
 
-#: src/ScriptWorker.py:109
+#: src/ScriptWorker.py:140
 msgid "Select a folder"
 msgstr "Bir klasör seçin"
 
-#: src/ScriptWorker.py:128
+#: src/ScriptWorker.py:170
 msgid "Please select a target(files or folders)."
 msgstr "Lütfen bir hedef seçin(dosyalar ya da klasörler)."
 
@@ -437,11 +437,11 @@ msgstr "Resimler"
 msgid "Videos"
 msgstr "Videolar"
 
-#: src/userdir.py:128
+#: src/userdir.py:146
 msgid "Choose a folder"
 msgstr "Bir dizin seçin"
 
-#: src/userdir.py:145
+#: src/userdir.py:163
 msgid ""
 "Ubuntu Tweak will restore the chosen directory to the default location.\n"
 "However, you must move your files back into place by yourself.\n"
@@ -451,28 +451,28 @@ msgstr ""
 "Ancak, doyalarınızı mutlaka kendiniz koymalısınız.\n"
 "DEvam etmek istiyormusunuz?"
 
-#: src/userdir.py:180
+#: src/userdir.py:198
 #, fuzzy
 msgid "Directory"
 msgstr "Dizin"
 
-#: src/userdir.py:194
+#: src/userdir.py:212
 msgid "Path"
 msgstr "Yol"
 
-#: src/userdir.py:201
+#: src/userdir.py:219
 msgid "Change"
 msgstr "Değiştir"
 
-#: src/userdir.py:205
+#: src/userdir.py:223
 msgid "Restore to default"
 msgstr "Varsayılana geri yükle"
 
-#: src/userdir.py:215
+#: src/userdir.py:233
 msgid "Default Folder Locations"
 msgstr "Varsayılan Dizin Yerleri"
 
-#: src/userdir.py:216
+#: src/userdir.py:234
 msgid ""
 "You can change the default document folders here.\n"
 "But don't change the Desktop folder under normal use."
@@ -480,7 +480,7 @@ msgstr ""
 "Varsayılan belge dizinlerini değiştirebilirsiniz.\n"
 "Fakat normal kullanımda Masaüstü dizini değişmez."
 
-#: src/userdir.py:237
+#: src/userdir.py:255
 msgid "Update successfully!"
 msgstr "Güncelleştirme Başarılı!"
 
@@ -1019,56 +1019,114 @@ msgid "Copy to ..."
 msgstr "Buraya kopyala ..."
 
 #: src/scripts.py:52
+#, fuzzy
+msgid "Copy to Desktop"
+msgstr "Masaüstünü Göster"
+
+#: src/scripts.py:53
+#, fuzzy
+msgid "Copy to Download"
+msgstr "İndir"
+
+#: src/scripts.py:54
+#, fuzzy
+msgid "Copy to Home"
+msgstr "Buraya kopyala ..."
+
+#: src/scripts.py:55
 msgid "Move to ..."
 msgstr "Buraya taşı ..."
 
-#: src/scripts.py:53
+#: src/scripts.py:56
+#, fuzzy
+msgid "Move to Desktop"
+msgstr "Masaüstünü Göster"
+
+#: src/scripts.py:57
+#, fuzzy
+msgid "Move to Download"
+msgstr "İndir"
+
+#: src/scripts.py:58
+#, fuzzy
+msgid "Move to Home"
+msgstr "Buraya taşı ..."
+
+#: src/scripts.py:59
 msgid "Link to ..."
 msgstr "Buraya bağla ..."
 
-#: src/scripts.py:54
+#: src/scripts.py:60
+#, fuzzy
+msgid "Link to Desktop"
+msgstr "Buraya bağla ..."
+
+#: src/scripts.py:61
+#, fuzzy
+msgid "Link to Download"
+msgstr "İndir"
+
+#: src/scripts.py:62
+#, fuzzy
+msgid "Link to Home"
+msgstr "Buraya bağla ..."
+
+#: src/scripts.py:63
 msgid "Open with gedit"
 msgstr "Gedit ile aç"
 
-#: src/scripts.py:55
+#: src/scripts.py:64
 msgid "Open with gedit(as root)"
 msgstr "Gedit ile aç(yönetici olarak)"
 
-#: src/scripts.py:56
+#: src/scripts.py:65
 msgid "Browse as root"
 msgstr "Yönetici olarak göz at"
 
-#: src/scripts.py:57
+#: src/scripts.py:66
 msgid "Search in current folder"
 msgstr "Mevcut klasörde ara"
 
-#: src/scripts.py:84
+#: src/scripts.py:67
+msgid "Convert image to JPG"
+msgstr ""
+
+#: src/scripts.py:68
+msgid "Convert image to PNG"
+msgstr ""
+
+#: src/scripts.py:69
+msgid "Set image as wallpaper"
+msgstr ""
+
+#: src/scripts.py:96
 msgid "Enabled Scripts"
 msgstr "Etkin Betikler"
 
-#: src/scripts.py:109
+#: src/scripts.py:121
 msgid "Disabled Scripts"
 msgstr "Devre Dışı Betikler"
 
-#: src/scripts.py:118
+#: src/scripts.py:130
 msgid "Manage Scripts"
 msgstr "Betikleri yönet"
 
-#: src/scripts.py:119
+#: src/scripts.py:131
+#, fuzzy
 msgid ""
 "You can do all kinds of tasks with scripts.\n"
 "You can drag and drop from File Manager.\n"
-"\"Scripts\" will be added to the context menu.\n"
+"'Scripts' will be added to the context menu.\n"
 msgstr ""
 "Betiklerle birçok görevi yapabilirsiniz .\n"
 "Dosya yöneticisinden sürükle-bırak yapabilirsiniz.\n"
 "\"Betikler\"  sağ tuş menüsüne eklenecektir.\n"
 
-#: src/scripts.py:144
+#: src/scripts.py:156
 msgid "Rebuild System Scripts"
 msgstr "Sistem betiklerini tekrar oluştur"
 
-#: src/scripts.py:162
+#: src/scripts.py:174
 msgid ""
 "This will delete all disabled scripts.\n"
 "Do you wish to continue?"

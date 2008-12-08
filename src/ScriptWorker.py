@@ -27,6 +27,7 @@ import gettext
 import shutil
 import subprocess
 
+from userdir import UserdirFile
 from common.consts import *
 from common.widgets import ErrorDialog
 
@@ -43,9 +44,7 @@ class FileChooserDialog(gtk.FileChooserDialog):
 
 class FileOperation:
     """Do the real operation"""
-    def copy(self, source, dest):
-        """Copy the file or folder with necessary notice"""
-        dest = os.path.join(dest, os.path.basename(source))
+    def do_copy(self, source, dest):
         if os.path.isfile(source):
             if not os.path.exists(dest):
                 shutil.copy(source, dest)
@@ -57,21 +56,53 @@ class FileOperation:
             else:
                 ErrorDialog(_('The folder "%s" is exists!') % dest).launch()
 
-    def move(self, source, dest):
-        """Move the file or folder with necessary notice"""
-        dest = os.path.join(dest, os.path.basename(source))
+    def do_move(self, source, dest):
         if not os.path.exists(dest):
             shutil.move(source, dest)
         else:
             ErrorDialog(_('The target "%s" is exists!') % dest).launch()
 
-    def link(self, source, dest):
-        """Link the file or folder with necessary notice"""
-        dest = os.path.join(dest, os.path.basename(source))
+    def do_link(self, source, dest):
         if not os.path.exists(dest):
             os.symlink(source, dest)
         else:
             ErrorDialog(_('The target "%s" is exists!') % dest).launch()
+
+    def copy(self, source, dest):
+        """Copy the file or folder with necessary notice"""
+        dest = os.path.join(dest, os.path.basename(source))
+        self.do_copy(source, dest)
+
+    def copy_to_xdg(self, source, xdg):
+        if dest == 'HOME':
+            dest = os.path.join(os.path.expanduser('~'), os.path.basename(source))
+        else:
+            dest = os.path.join(UserdirFile()[xdg], os.path.basename(source))
+        self.do_copy(source, dest)
+
+    def move(self, source, dest):
+        """Move the file or folder with necessary notice"""
+        dest = os.path.join(dest, os.path.basename(source))
+        self.do_move(source, dest)
+
+    def move_to_xdg(self, source, xdg):
+        if dest == 'HOME':
+            dest = os.path.join(os.path.expanduser('~'), os.path.basename(source))
+        else:
+            dest = os.path.join(UserdirFile()[xdg], os.path.basename(source))
+        self.do_move(source, dest)
+
+    def link(self, source, dest):
+        """Link the file or folder with necessary notice"""
+        dest = os.path.join(dest, os.path.basename(source))
+        self.do_link(source, dest)
+
+    def link_to_xdg(self, source, xdg):
+        if dest == 'HOME':
+            dest = os.path.join(os.path.expanduser('~'), os.path.basename(source))
+        else:
+            dest = os.path.join(UserdirFile()[xdg], os.path.basename(source))
+        self.do_link(source, dest)
 
     def open(self, source):
         """Open the file with gedit"""
@@ -115,9 +146,20 @@ class Worker:
                 operation = FileOperation()
                 work = getattr(operation, command)
                 for file in paras:
-                    if file[0:4] == "file":
+                    if file.startswith('file'):
                         file = operation.get_local_path(file)
                     work(file, folder)
+        elif command in ('copy_to_xdg', 'move_to_xdg', 'link_to_xdg'):
+            xdg = paras[-1]
+            paras = paras[:-1]
+
+            operation = FileOperation()
+            work = getattr(operation, command)
+
+            for file in paras:
+                if file.startswith('file'):
+                    file = operation.get_local_path(file)
+                work(file, xdg)
         else:
             operation = FileOperation()
             getattr(operation, command)(paras)

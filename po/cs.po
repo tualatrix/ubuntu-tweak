@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2008-12-06 21:35+0800\n"
+"POT-Creation-Date: 2008-12-08 10:49+0800\n"
 "PO-Revision-Date: 2008-11-16 13:38+0000\n"
 "Last-Translator: Lachim <michl.vavrusa@volny.cz>\n"
 "Language-Team: Tomáš Pikálek <tpikalek@gmail.com>\n"
@@ -202,30 +202,30 @@ msgstr "Zakázat ukládání na disk"
 msgid "Disable \"User Switch\""
 msgstr "Zakázat \"Přepnout uživatele\""
 
-#: src/ScriptWorker.py:53
+#: src/ScriptWorker.py:52
 #, python-format
 msgid "The file \"%s\" is exists!"
 msgstr "Soubor \"%s\" existuje!"
 
-#: src/ScriptWorker.py:58
+#: src/ScriptWorker.py:57
 #, python-format
 msgid "The folder \"%s\" is exists!"
 msgstr "Složka \"%s\" existuje!"
 
-#: src/ScriptWorker.py:66 src/ScriptWorker.py:74
+#: src/ScriptWorker.py:63 src/ScriptWorker.py:69
 #, python-format
 msgid "The target \"%s\" is exists!"
 msgstr "Cíl \"%s\" existuje!"
 
-#: src/ScriptWorker.py:79 src/ScriptWorker.py:90
+#: src/ScriptWorker.py:110 src/ScriptWorker.py:121
 msgid "Enter your password to perform the administrative tasks"
 msgstr "Zadejte heslo pro změnu systémového nastavení"
 
-#: src/ScriptWorker.py:109
+#: src/ScriptWorker.py:140
 msgid "Select a folder"
 msgstr "Vyberte složku"
 
-#: src/ScriptWorker.py:128
+#: src/ScriptWorker.py:170
 msgid "Please select a target(files or folders)."
 msgstr "Vyberte cíl (soubory nebo složky)"
 
@@ -429,39 +429,39 @@ msgstr "Obrázky"
 msgid "Videos"
 msgstr "Videa"
 
-#: src/userdir.py:128
+#: src/userdir.py:146
 msgid "Choose a folder"
 msgstr "Zvolte složku"
 
-#: src/userdir.py:145
+#: src/userdir.py:163
 msgid ""
 "Ubuntu Tweak will restore the chosen directory to the default location.\n"
 "However, you must move your files back into place by yourself.\n"
 "Do you wish to continue?"
 msgstr ""
 
-#: src/userdir.py:180
+#: src/userdir.py:198
 #, fuzzy
 msgid "Directory"
 msgstr "Složka"
 
-#: src/userdir.py:194
+#: src/userdir.py:212
 msgid "Path"
 msgstr "Cesta"
 
-#: src/userdir.py:201
+#: src/userdir.py:219
 msgid "Change"
 msgstr "Změnit"
 
-#: src/userdir.py:205
+#: src/userdir.py:223
 msgid "Restore to default"
 msgstr "Obnovit výchozí"
 
-#: src/userdir.py:215
+#: src/userdir.py:233
 msgid "Default Folder Locations"
 msgstr "Výchozí umístění složek"
 
-#: src/userdir.py:216
+#: src/userdir.py:234
 msgid ""
 "You can change the default document folders here.\n"
 "But don't change the Desktop folder under normal use."
@@ -469,7 +469,7 @@ msgstr ""
 "Zde můžete změnit výchozí umístění složek.\n"
 "Za normálních okolností však neměňte složku Plocha."
 
-#: src/userdir.py:237
+#: src/userdir.py:255
 msgid "Update successfully!"
 msgstr "Úspěšně změněno!"
 
@@ -999,56 +999,114 @@ msgid "Copy to ..."
 msgstr "Kopírovat do ..."
 
 #: src/scripts.py:52
+#, fuzzy
+msgid "Copy to Desktop"
+msgstr "Zobrazit plochu"
+
+#: src/scripts.py:53
+#, fuzzy
+msgid "Copy to Download"
+msgstr "Stažené"
+
+#: src/scripts.py:54
+#, fuzzy
+msgid "Copy to Home"
+msgstr "Kopírovat do ..."
+
+#: src/scripts.py:55
 msgid "Move to ..."
 msgstr "Přesunout do ..."
 
-#: src/scripts.py:53
+#: src/scripts.py:56
+#, fuzzy
+msgid "Move to Desktop"
+msgstr "Zobrazit plochu"
+
+#: src/scripts.py:57
+#, fuzzy
+msgid "Move to Download"
+msgstr "Stažené"
+
+#: src/scripts.py:58
+#, fuzzy
+msgid "Move to Home"
+msgstr "Přesunout do ..."
+
+#: src/scripts.py:59
 msgid "Link to ..."
 msgstr "Odkázat na ..."
 
-#: src/scripts.py:54
+#: src/scripts.py:60
+#, fuzzy
+msgid "Link to Desktop"
+msgstr "Odkázat na ..."
+
+#: src/scripts.py:61
+#, fuzzy
+msgid "Link to Download"
+msgstr "Stažené"
+
+#: src/scripts.py:62
+#, fuzzy
+msgid "Link to Home"
+msgstr "Odkázat na ..."
+
+#: src/scripts.py:63
 msgid "Open with gedit"
 msgstr "Otevřít pomocí gedit"
 
-#: src/scripts.py:55
+#: src/scripts.py:64
 msgid "Open with gedit(as root)"
 msgstr "Otevřít v gedit (jako root)"
 
-#: src/scripts.py:56
+#: src/scripts.py:65
 msgid "Browse as root"
 msgstr "Procházet jako root"
 
-#: src/scripts.py:57
+#: src/scripts.py:66
 msgid "Search in current folder"
 msgstr "Hledat v současné složce"
 
-#: src/scripts.py:84
+#: src/scripts.py:67
+msgid "Convert image to JPG"
+msgstr ""
+
+#: src/scripts.py:68
+msgid "Convert image to PNG"
+msgstr ""
+
+#: src/scripts.py:69
+msgid "Set image as wallpaper"
+msgstr ""
+
+#: src/scripts.py:96
 msgid "Enabled Scripts"
 msgstr "Povolené skripty"
 
-#: src/scripts.py:109
+#: src/scripts.py:121
 msgid "Disabled Scripts"
 msgstr "Zakázané skripty"
 
-#: src/scripts.py:118
+#: src/scripts.py:130
 msgid "Manage Scripts"
 msgstr "Spravovat skripty"
 
-#: src/scripts.py:119
+#: src/scripts.py:131
+#, fuzzy
 msgid ""
 "You can do all kinds of tasks with scripts.\n"
 "You can drag and drop from File Manager.\n"
-"\"Scripts\" will be added to the context menu.\n"
+"'Scripts' will be added to the context menu.\n"
 msgstr ""
 "Se skripty můžete dělat všemožné úkony.\n"
 "Přidávat je můžete i přetažením ze správce souborů.\n"
 "Do místní nabídky pak budou přidány \"Skripty\".\n"
 
-#: src/scripts.py:144
+#: src/scripts.py:156
 msgid "Rebuild System Scripts"
 msgstr "Přetvořit systémové skripty"
 
-#: src/scripts.py:162
+#: src/scripts.py:174
 msgid ""
 "This will delete all disabled scripts.\n"
 "Do you wish to continue?"

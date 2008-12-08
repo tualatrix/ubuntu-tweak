@@ -44,7 +44,6 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/acinclude.m4 \
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
-CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 SOURCES =
 DIST_SOURCES =
@@ -183,9 +182,21 @@ top_srcdir = @top_srcdir@
 scriptsdir = $(pkgdatadir)/data/scripts
 scripts_DATA = \
 	move-to \
+	move-to-desktop \
+	move-to-download \
+	move-to-home \
 	copy-to \
+	copy-to-desktop \
+	copy-to-download \
+	copy-to-home \
 	link-to \
+	link-to-desktop \
+	link-to-download \
+	link-to-home \
 	search-in-current \
+	set-image-as-wallpaper \
+	convert-image-to-jpg \
+	convert-image-to-png \
 	open-with-gedit \
 	open-with-gedit-as-root \
 	browse-as-root \

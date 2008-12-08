@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2008-12-06 21:35+0800\n"
+"POT-Creation-Date: 2008-12-08 10:49+0800\n"
 "PO-Revision-Date: 2008-12-06 21:36+0800\n"
 "Last-Translator: TualatriX <tualatrix@gmail.com>\n"
 "Language-Team: TualatriX <tualatrix@gmail.com>\n"
@@ -204,30 +204,30 @@ msgstr "禁用保存到磁盘"
 msgid "Disable \"User Switch\""
 msgstr "禁用\"切换用户\""
 
-#: src/ScriptWorker.py:53
+#: src/ScriptWorker.py:52
 #, python-format
 msgid "The file \"%s\" is exists!"
 msgstr "文件 \"%s\" 已存在！"
 
-#: src/ScriptWorker.py:58
+#: src/ScriptWorker.py:57
 #, python-format
 msgid "The folder \"%s\" is exists!"
 msgstr "文件夹“%s”已存在！"
 
-#: src/ScriptWorker.py:66 src/ScriptWorker.py:74
+#: src/ScriptWorker.py:63 src/ScriptWorker.py:69
 #, python-format
 msgid "The target \"%s\" is exists!"
 msgstr "目标“%s”已存在！"
 
-#: src/ScriptWorker.py:79 src/ScriptWorker.py:90
+#: src/ScriptWorker.py:110 src/ScriptWorker.py:121
 msgid "Enter your password to perform the administrative tasks"
 msgstr "输入你的密码来执行管理权限的任务。"
 
-#: src/ScriptWorker.py:109
+#: src/ScriptWorker.py:140
 msgid "Select a folder"
 msgstr "选择文件夹"
 
-#: src/ScriptWorker.py:128
+#: src/ScriptWorker.py:170
 msgid "Please select a target(files or folders)."
 msgstr "请选择一个目标（文件或文件夹）。"
 
@@ -436,11 +436,11 @@ msgstr "图片"
 msgid "Videos"
 msgstr "视频"
 
-#: src/userdir.py:128
+#: src/userdir.py:146
 msgid "Choose a folder"
 msgstr "选择一个文件夹"
 
-#: src/userdir.py:145
+#: src/userdir.py:163
 msgid ""
 "Ubuntu Tweak will restore the chosen directory to the default location.\n"
 "However, you must move your files back into place by yourself.\n"
@@ -450,28 +450,28 @@ msgstr ""
 "但是，你必须手动移动你的文件至新的位置。\n"
 "你想要继续吗？"
 
-#: src/userdir.py:180
+#: src/userdir.py:198
 #, fuzzy
 msgid "Directory"
 msgstr "文件夹"
 
-#: src/userdir.py:194
+#: src/userdir.py:212
 msgid "Path"
 msgstr "路径"
 
-#: src/userdir.py:201
+#: src/userdir.py:219
 msgid "Change"
 msgstr "更改"
 
-#: src/userdir.py:205
+#: src/userdir.py:223
 msgid "Restore to default"
 msgstr "恢复默认"
 
-#: src/userdir.py:215
+#: src/userdir.py:233
 msgid "Default Folder Locations"
 msgstr "默认目录位置"
 
-#: src/userdir.py:216
+#: src/userdir.py:234
 msgid ""
 "You can change the default document folders here.\n"
 "But don't change the Desktop folder under normal use."
@@ -479,7 +479,7 @@ msgstr ""
 "在这里你可以改变默认文档的目录。\n"
 "但是一般情况下请不要改变桌面文件夹。"
 
-#: src/userdir.py:237
+#: src/userdir.py:255
 msgid "Update successfully!"
 msgstr "更新成功！"
 
@@ -1009,56 +1009,114 @@ msgid "Copy to ..."
 msgstr "复制到..."
 
 #: src/scripts.py:52
+#, fuzzy
+msgid "Copy to Desktop"
+msgstr "显示桌面"
+
+#: src/scripts.py:53
+#, fuzzy
+msgid "Copy to Download"
+msgstr "下载"
+
+#: src/scripts.py:54
+#, fuzzy
+msgid "Copy to Home"
+msgstr "复制到..."
+
+#: src/scripts.py:55
 msgid "Move to ..."
 msgstr "移动到..."
 
-#: src/scripts.py:53
+#: src/scripts.py:56
+#, fuzzy
+msgid "Move to Desktop"
+msgstr "显示桌面"
+
+#: src/scripts.py:57
+#, fuzzy
+msgid "Move to Download"
+msgstr "下载"
+
+#: src/scripts.py:58
+#, fuzzy
+msgid "Move to Home"
+msgstr "移动到..."
+
+#: src/scripts.py:59
 msgid "Link to ..."
 msgstr "链接到..."
 
-#: src/scripts.py:54
+#: src/scripts.py:60
+#, fuzzy
+msgid "Link to Desktop"
+msgstr "链接到..."
+
+#: src/scripts.py:61
+#, fuzzy
+msgid "Link to Download"
+msgstr "下载"
+
+#: src/scripts.py:62
+#, fuzzy
+msgid "Link to Home"
+msgstr "链接到..."
+
+#: src/scripts.py:63
 msgid "Open with gedit"
 msgstr "使用文本编辑器打开"
 
-#: src/scripts.py:55
+#: src/scripts.py:64
 msgid "Open with gedit(as root)"
 msgstr "使用文本编辑器打开（作为root）"
 
-#: src/scripts.py:56
+#: src/scripts.py:65
 msgid "Browse as root"
 msgstr "作为root浏览"
 
-#: src/scripts.py:57
+#: src/scripts.py:66
 msgid "Search in current folder"
 msgstr "搜索当前文件夹"
 
-#: src/scripts.py:84
+#: src/scripts.py:67
+msgid "Convert image to JPG"
+msgstr ""
+
+#: src/scripts.py:68
+msgid "Convert image to PNG"
+msgstr ""
+
+#: src/scripts.py:69
+msgid "Set image as wallpaper"
+msgstr ""
+
+#: src/scripts.py:96
 msgid "Enabled Scripts"
 msgstr "已启用的脚本"
 
-#: src/scripts.py:109
+#: src/scripts.py:121
 msgid "Disabled Scripts"
 msgstr "已禁用的脚本"
 
-#: src/scripts.py:118
+#: src/scripts.py:130
 msgid "Manage Scripts"
 msgstr "管理脚本"
 
-#: src/scripts.py:119
+#: src/scripts.py:131
+#, fuzzy
 msgid ""
 "You can do all kinds of tasks with scripts.\n"
 "You can drag and drop from File Manager.\n"
-"\"Scripts\" will be added to the context menu.\n"
+"'Scripts' will be added to the context menu.\n"
 msgstr ""
 "你可以用脚本来完全各种任务。\n"
 "你也可以从文件管理器拖拽外部文档进来。\n"
 "“脚本”将被加到右键菜单当中。\n"
 
-#: src/scripts.py:144
+#: src/scripts.py:156
 msgid "Rebuild System Scripts"
 msgstr "重建系统脚本"
 
-#: src/scripts.py:162
+#: src/scripts.py:174
 msgid ""
 "This will delete all disabled scripts.\n"
 "Do you wish to continue?"

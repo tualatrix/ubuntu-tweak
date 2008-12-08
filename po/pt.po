@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2008-12-06 21:35+0800\n"
+"POT-Creation-Date: 2008-12-08 10:49+0800\n"
 "PO-Revision-Date: 2008-10-31 11:28+0000\n"
 "Last-Translator: Adérito (Primeconsulting.cv) <yongzox@hotmail.com>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
@@ -203,30 +203,30 @@ msgstr ""
 msgid "Disable \"User Switch\""
 msgstr ""
 
-#: src/ScriptWorker.py:53
+#: src/ScriptWorker.py:52
 #, python-format
 msgid "The file \"%s\" is exists!"
 msgstr "O ficheiro \"%s\" existe!"
 
-#: src/ScriptWorker.py:58
+#: src/ScriptWorker.py:57
 #, python-format
 msgid "The folder \"%s\" is exists!"
 msgstr "A pasta \"%s\" existe!"
 
-#: src/ScriptWorker.py:66 src/ScriptWorker.py:74
+#: src/ScriptWorker.py:63 src/ScriptWorker.py:69
 #, python-format
 msgid "The target \"%s\" is exists!"
 msgstr "O destino \"%s\" existe!"
 
-#: src/ScriptWorker.py:79 src/ScriptWorker.py:90
+#: src/ScriptWorker.py:110 src/ScriptWorker.py:121
 msgid "Enter your password to perform the administrative tasks"
 msgstr "Insira a sua palavra passe para executar as tarefas administrativas"
 
-#: src/ScriptWorker.py:109
+#: src/ScriptWorker.py:140
 msgid "Select a folder"
 msgstr "Seleccione uma pasta"
 
-#: src/ScriptWorker.py:128
+#: src/ScriptWorker.py:170
 msgid "Please select a target(files or folders)."
 msgstr "Por favor, seleccione um destino(ficheiros ou pastas)."
 
@@ -426,45 +426,45 @@ msgstr ""
 msgid "Videos"
 msgstr ""
 
-#: src/userdir.py:128
+#: src/userdir.py:146
 msgid "Choose a folder"
 msgstr ""
 
-#: src/userdir.py:145
+#: src/userdir.py:163
 msgid ""
 "Ubuntu Tweak will restore the chosen directory to the default location.\n"
 "However, you must move your files back into place by yourself.\n"
 "Do you wish to continue?"
 msgstr ""
 
-#: src/userdir.py:180
+#: src/userdir.py:198
 #, fuzzy
 msgid "Directory"
 msgstr "Pasta Pessoal"
 
-#: src/userdir.py:194
+#: src/userdir.py:212
 msgid "Path"
 msgstr ""
 
-#: src/userdir.py:201
+#: src/userdir.py:219
 msgid "Change"
 msgstr ""
 
-#: src/userdir.py:205
+#: src/userdir.py:223
 msgid "Restore to default"
 msgstr ""
 
-#: src/userdir.py:215
+#: src/userdir.py:233
 msgid "Default Folder Locations"
 msgstr ""
 
-#: src/userdir.py:216
+#: src/userdir.py:234
 msgid ""
 "You can change the default document folders here.\n"
 "But don't change the Desktop folder under normal use."
 msgstr ""
 
-#: src/userdir.py:237
+#: src/userdir.py:255
 msgid "Update successfully!"
 msgstr "Actualizado com sucesso!"
 
@@ -974,56 +974,111 @@ msgid "Copy to ..."
 msgstr "Copiar para..."
 
 #: src/scripts.py:52
+#, fuzzy
+msgid "Copy to Desktop"
+msgstr "Mostrar Área de Trabalho"
+
+#: src/scripts.py:53
+msgid "Copy to Download"
+msgstr ""
+
+#: src/scripts.py:54
+#, fuzzy
+msgid "Copy to Home"
+msgstr "Copiar para..."
+
+#: src/scripts.py:55
 msgid "Move to ..."
 msgstr "Mover para..."
 
-#: src/scripts.py:53
+#: src/scripts.py:56
+#, fuzzy
+msgid "Move to Desktop"
+msgstr "Mostrar Área de Trabalho"
+
+#: src/scripts.py:57
+msgid "Move to Download"
+msgstr ""
+
+#: src/scripts.py:58
+#, fuzzy
+msgid "Move to Home"
+msgstr "Mover para..."
+
+#: src/scripts.py:59
 msgid "Link to ..."
 msgstr "Atalho para ..."
 
-#: src/scripts.py:54
+#: src/scripts.py:60
+#, fuzzy
+msgid "Link to Desktop"
+msgstr "Atalho para ..."
+
+#: src/scripts.py:61
+msgid "Link to Download"
+msgstr ""
+
+#: src/scripts.py:62
+#, fuzzy
+msgid "Link to Home"
+msgstr "Atalho para ..."
+
+#: src/scripts.py:63
 msgid "Open with gedit"
 msgstr "Abrir com gedit"
 
-#: src/scripts.py:55
+#: src/scripts.py:64
 msgid "Open with gedit(as root)"
 msgstr "Abrir com gedit(como root)"
 
-#: src/scripts.py:56
+#: src/scripts.py:65
 msgid "Browse as root"
 msgstr "Explorar como root"
 
-#: src/scripts.py:57
+#: src/scripts.py:66
 msgid "Search in current folder"
 msgstr "Procurar na pasta actual"
 
-#: src/scripts.py:84
+#: src/scripts.py:67
+msgid "Convert image to JPG"
+msgstr ""
+
+#: src/scripts.py:68
+msgid "Convert image to PNG"
+msgstr ""
+
+#: src/scripts.py:69
+msgid "Set image as wallpaper"
+msgstr ""
+
+#: src/scripts.py:96
 msgid "Enabled Scripts"
 msgstr "Scripts Activos"
 
-#: src/scripts.py:109
+#: src/scripts.py:121
 msgid "Disabled Scripts"
 msgstr "Scripts Desactivos"
 
-#: src/scripts.py:118
+#: src/scripts.py:130
 msgid "Manage Scripts"
 msgstr "Gerir scripts"
 
-#: src/scripts.py:119
+#: src/scripts.py:131
+#, fuzzy
 msgid ""
 "You can do all kinds of tasks with scripts.\n"
 "You can drag and drop from File Manager.\n"
-"\"Scripts\" will be added to the context menu.\n"
+"'Scripts' will be added to the context menu.\n"
 msgstr ""
 "Você pode realizar todos os tipos de tarefas com os scripts.\n"
 "Você pode arrastar e largar a partir do gestor de ficheiros.\n"
 "\"Scripts\" serão adicionados ao menu de contexto.\n"
 
-#: src/scripts.py:144
+#: src/scripts.py:156
 msgid "Rebuild System Scripts"
 msgstr "Reconstruir scripts do sistema"
 
-#: src/scripts.py:162
+#: src/scripts.py:174
 msgid ""
 "This will delete all disabled scripts.\n"
 "Do you wish to continue?"

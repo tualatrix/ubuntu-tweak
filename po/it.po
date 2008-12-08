@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2008-12-06 21:35+0800\n"
+"POT-Creation-Date: 2008-12-08 10:49+0800\n"
 "PO-Revision-Date: 2008-11-15 00:34+0000\n"
 "Last-Translator: Canio Massimo Tristano <massimo.tristano@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -209,30 +209,30 @@ msgstr "Disabilita il salvataggio su disco"
 msgid "Disable \"User Switch\""
 msgstr "Disabilita cambio utente"
 
-#: src/ScriptWorker.py:53
+#: src/ScriptWorker.py:52
 #, python-format
 msgid "The file \"%s\" is exists!"
 msgstr "Il file \"%s\" esiste!"
 
-#: src/ScriptWorker.py:58
+#: src/ScriptWorker.py:57
 #, python-format
 msgid "The folder \"%s\" is exists!"
 msgstr "La cartella \"%s\" e' gia' esistente!"
 
-#: src/ScriptWorker.py:66 src/ScriptWorker.py:74
+#: src/ScriptWorker.py:63 src/ScriptWorker.py:69
 #, python-format
 msgid "The target \"%s\" is exists!"
 msgstr "La destinazione \"%s\" e' gia' esistente!"
 
-#: src/ScriptWorker.py:79 src/ScriptWorker.py:90
+#: src/ScriptWorker.py:110 src/ScriptWorker.py:121
 msgid "Enter your password to perform the administrative tasks"
 msgstr "Inserire la propria password per compiere azioni da amministratore"
 
-#: src/ScriptWorker.py:109
+#: src/ScriptWorker.py:140
 msgid "Select a folder"
 msgstr "Seleziona una cartella"
 
-#: src/ScriptWorker.py:128
+#: src/ScriptWorker.py:170
 msgid "Please select a target(files or folders)."
 msgstr "Selezionare una destinazione (file o cartelle)."
 
@@ -474,11 +474,11 @@ msgstr "Fotografie"
 msgid "Videos"
 msgstr "Video"
 
-#: src/userdir.py:128
+#: src/userdir.py:146
 msgid "Choose a folder"
 msgstr "Scegli una cartella"
 
-#: src/userdir.py:145
+#: src/userdir.py:163
 msgid ""
 "Ubuntu Tweak will restore the chosen directory to the default location.\n"
 "However, you must move your files back into place by yourself.\n"
@@ -488,28 +488,28 @@ msgstr ""
 "Comunque, devi spostare i tuoi file nella posizione a mano.\n"
 "Vuoi continuare?"
 
-#: src/userdir.py:180
+#: src/userdir.py:198
 #, fuzzy
 msgid "Directory"
 msgstr "Cartella"
 
-#: src/userdir.py:194
+#: src/userdir.py:212
 msgid "Path"
 msgstr "Percorso"
 
-#: src/userdir.py:201
+#: src/userdir.py:219
 msgid "Change"
 msgstr "Cambia"
 
-#: src/userdir.py:205
+#: src/userdir.py:223
 msgid "Restore to default"
 msgstr "Ripristinare la configurazione predefinita"
 
-#: src/userdir.py:215
+#: src/userdir.py:233
 msgid "Default Folder Locations"
 msgstr "Posizioni predefinite cartella"
 
-#: src/userdir.py:216
+#: src/userdir.py:234
 msgid ""
 "You can change the default document folders here.\n"
 "But don't change the Desktop folder under normal use."
@@ -517,7 +517,7 @@ msgstr ""
 "È possibile cambiare il documento predefinito delle cartelle qui.\n"
 "Non cambiare la cartella Scrivania in normali condizioni d'uso."
 
-#: src/userdir.py:237
+#: src/userdir.py:255
 msgid "Update successfully!"
 msgstr "Aggiornamento completato."
 
@@ -1055,56 +1055,114 @@ msgid "Copy to ..."
 msgstr "Copia in..."
 
 #: src/scripts.py:52
+#, fuzzy
+msgid "Copy to Desktop"
+msgstr "Mostrare scrivania"
+
+#: src/scripts.py:53
+#, fuzzy
+msgid "Copy to Download"
+msgstr "Scarica"
+
+#: src/scripts.py:54
+#, fuzzy
+msgid "Copy to Home"
+msgstr "Copia in..."
+
+#: src/scripts.py:55
 msgid "Move to ..."
 msgstr "Muovi in..."
 
-#: src/scripts.py:53
+#: src/scripts.py:56
+#, fuzzy
+msgid "Move to Desktop"
+msgstr "Mostrare scrivania"
+
+#: src/scripts.py:57
+#, fuzzy
+msgid "Move to Download"
+msgstr "Scarica"
+
+#: src/scripts.py:58
+#, fuzzy
+msgid "Move to Home"
+msgstr "Muovi in..."
+
+#: src/scripts.py:59
 msgid "Link to ..."
 msgstr "Collega a..."
 
-#: src/scripts.py:54
+#: src/scripts.py:60
+#, fuzzy
+msgid "Link to Desktop"
+msgstr "Collega a..."
+
+#: src/scripts.py:61
+#, fuzzy
+msgid "Link to Download"
+msgstr "Scarica"
+
+#: src/scripts.py:62
+#, fuzzy
+msgid "Link to Home"
+msgstr "Collega a..."
+
+#: src/scripts.py:63
 msgid "Open with gedit"
 msgstr "Aprire con gedit"
 
-#: src/scripts.py:55
+#: src/scripts.py:64
 msgid "Open with gedit(as root)"
 msgstr "Aprire con gedit (come root)"
 
-#: src/scripts.py:56
+#: src/scripts.py:65
 msgid "Browse as root"
 msgstr "Esplora da amministratore"
 
-#: src/scripts.py:57
+#: src/scripts.py:66
 msgid "Search in current folder"
 msgstr "Cerca nella cartella corrente"
 
-#: src/scripts.py:84
+#: src/scripts.py:67
+msgid "Convert image to JPG"
+msgstr ""
+
+#: src/scripts.py:68
+msgid "Convert image to PNG"
+msgstr ""
+
+#: src/scripts.py:69
+msgid "Set image as wallpaper"
+msgstr ""
+
+#: src/scripts.py:96
 msgid "Enabled Scripts"
 msgstr "Script abilitati"
 
-#: src/scripts.py:109
+#: src/scripts.py:121
 msgid "Disabled Scripts"
 msgstr "Script disabilitati"
 
-#: src/scripts.py:118
+#: src/scripts.py:130
 msgid "Manage Scripts"
 msgstr "Gestire gli script"
 
-#: src/scripts.py:119
+#: src/scripts.py:131
+#, fuzzy
 msgid ""
 "You can do all kinds of tasks with scripts.\n"
 "You can drag and drop from File Manager.\n"
-"\"Scripts\" will be added to the context menu.\n"
+"'Scripts' will be added to the context menu.\n"
 msgstr ""
 "È possibile fare ogni tipo di operazione con gli script.\n"
 "È possibile trascinare file dal gestore di file.\n"
 "«Script» verrà aggiunto al menù contestuale.\n"
 
-#: src/scripts.py:144
+#: src/scripts.py:156
 msgid "Rebuild System Scripts"
 msgstr "Ricostruisci gli script di sistema"
 
-#: src/scripts.py:162
+#: src/scripts.py:174
 msgid ""
 "This will delete all disabled scripts.\n"
 "Do you wish to continue?"
