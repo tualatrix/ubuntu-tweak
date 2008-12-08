@@ -18,6 +18,7 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
+import os
 import gtk
 import gio
 import pango
@@ -28,6 +29,7 @@ from common.factory import Factory
 from common.widgets import TweakPage
 from common.utils import get_icon_with_name, mime_type_get_icon, get_icon_with_app
 from common.gui import GuiWorker
+from common.widgets.dialogs import ErrorDialog
 
 MIMETYPE = [
     (_('Audio'), 'audio', 'audio-x-generic'), 
@@ -177,7 +179,6 @@ class TypeView(gtk.TreeView):
             else:
                 continue
             
-#            self.model.set(iter, TYPE_ICON, pixbuf, TYPE_DESCRIPTION, description, TYPE_APP, appname)
             iter = self.model.append()
             self.model.set(iter, 
                     TYPE_MIME, type,
@@ -223,24 +224,77 @@ class AddAppDialog(gobject.GObject):
         self.dialog = worker.get_widget('add_app_dialog') 
         self.dialog.set_modal(True)
         self.dialog.set_transient_for(parent)
-        treeview = worker.get_widget('app_view')
-        self.setup_treeview(treeview)
+        self.app_view = worker.get_widget('app_view')
+        self.setup_treeview()
+        self.app_selection = self.app_view.get_selection()
+        self.app_selection.connect('changed', self.on_app_selection_changed)
 
         self.info_label = worker.get_widget('info_label')
         self.description_label = worker.get_widget('description_label')
 
         self.info_label.set_markup(_('Open the files of type "%s" with:') % gio.content_type_get_description(type))
 
-#        self.dialog.add_buttons(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
-#                                gtk.STOCK_ADD, gtk.RESPONSE_ACCEPT)
+        self.add_button = worker.get_widget('add_button')
+        self.add_button.connect('clicked', self.on_add_button_clicked)
 
-    def setup_treeview(self, treeview):
+        self.command_entry = worker.get_widget('command_entry')
+        self.browse_button = worker.get_widget('browse_button')
+        self.browse_button.connect('clicked', self.on_browse_button_clicked)
+
+    def get_command_or_appinfo(self):
+        command = self.command_entry.get_text()
+        if command.startswith('/'):
+            return command
+        else:
+            model, iter = self.app_selection.get_selected()
+            if iter:
+                return model.get_value(iter, TYPE_ADD_APPINFO)
+
+    def get_command_runable(self):
+        command = self.command_entry.get_text()
+        if command.startswith('/'):
+            if not os.access(command, os.X_OK):
+                return False
+            else:
+                return True
+        else:
+            return True
+
+    def on_browse_button_clicked(self, widget):
+        dialog = gtk.FileChooserDialog(_('Choose a application'),
+                action = gtk.FILE_CHOOSER_ACTION_OPEN, 
+                buttons = (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, 
+                    gtk.STOCK_OPEN, gtk.RESPONSE_ACCEPT))
+        dialog.set_current_folder('/usr/bin')
+
+        if dialog.run() == gtk.RESPONSE_ACCEPT:
+            self.command_entry.set_text(dialog.get_filename())
+
+        dialog.destroy()
+
+    def on_app_selection_changed(self, widget):
+        model, iter = widget.get_selected()
+        if iter:
+            appinfo = model.get_value(iter, TYPE_ADD_APPINFO)
+            description = appinfo.get_description()
+
+            if description:
+                self.description_label.set_label(description)
+            else:
+                self.description_label.set_label('')
+
+            self.command_entry.set_text(appinfo.get_executable())
+
+    def on_add_button_clicked(self, widget):
+        pass
+
+    def setup_treeview(self):
         model = gtk.ListStore(gobject.GObject,
                               gtk.gdk.Pixbuf,
                               gobject.TYPE_STRING)
 
-        treeview.set_model(model)
-        treeview.set_headers_visible(False)
+        self.app_view.set_model(model)
+        self.app_view.set_headers_visible(False)
 
         column = gtk.TreeViewColumn()
         renderer = gtk.CellRendererPixbuf()
@@ -251,7 +305,7 @@ class AddAppDialog(gobject.GObject):
         column.pack_start(renderer, False)
         column.set_attributes(renderer, text = TYPE_ADD_APPNAME)
         column.set_sort_column_id(TYPE_DESCRIPTION)
-        treeview.append_column(column)
+        self.app_view.append_column(column)
 
         for appinfo in gio.app_info_get_all():
             if appinfo.supports_files() or appinfo.supports_uris():
@@ -286,6 +340,7 @@ class TypeEditDialog(gobject.GObject):
     def __init__(self, type, parent):
         super(TypeEditDialog, self).__init__()
         worker = GuiWorker()
+        self.type = type
 
         type_pixbuf = mime_type_get_icon(type, 64)
 
@@ -300,26 +355,45 @@ class TypeEditDialog(gobject.GObject):
         type_label = worker.get_widget('type_edit_label')
         type_label.set_markup(_('Select an application to open the type <b>%s</b>') % gio.content_type_get_description(type))
 
-        type_view = worker.get_widget('type_edit_view')
-        self.setup_treeview(type, type_view)
+        self.type_edit_view = worker.get_widget('type_edit_view')
+        self.setup_treeview()
 
         add_button = worker.get_widget('type_edit_add_button')
-        add_button.connect('clicked', self.on_add_button_clicked, type)
+        add_button.connect('clicked', self.on_add_button_clicked)
 
         remove_button = worker.get_widget('type_edit_remove_button')
-        remove_button.connect('clicked', self.on_remove_button_clicked, type)
+        remove_button.connect('clicked', self.on_remove_button_clicked)
 
-    def on_add_button_clicked(self, widget, type):
-        dialog = AddAppDialog(type, widget.get_toplevel())
+    def on_add_button_clicked(self, widget):
+        dialog = AddAppDialog(self.type, widget.get_toplevel())
         if dialog.run() == gtk.RESPONSE_ACCEPT:
-            print _('Could not find application')
-            print _('Could not find %s') % 'test'
+            if dialog.get_command_runable():
+                we = dialog.get_command_or_appinfo()
+                if type(we) == gio.unix.DesktopAppInfo:
+                    app = we
+                else:
+                    app = gio.AppInfo(we)
+                app.set_as_default_for_type(self.type)
+
+                self.update_model()
+                self.emit('update', self.type)
+            else:
+                ErrorDialog(_('Could not find %s') % dialog.get_command_or_appinfo(),
+                        title = _('Could not find application')).launch()
+                
         dialog.destroy()
 
-    def on_remove_button_clicked(self, widget, type):
-        print 'on_remove_button_clicked'
+    def on_remove_button_clicked(self, widget):
+        model, iter = self.type_edit_view.get_selection().get_selected()
 
-    def setup_treeview(self, type, treeview):
+        if iter:
+            type, appinfo = model.get(iter, TYPE_EDIT_TYPE, TYPE_EDIT_APPINFO)
+            appinfo.remove_supports_type(type)
+
+            self.update_model()
+            self.emit('update', type)
+
+    def setup_treeview(self):
         model = gtk.ListStore(
                 gobject.TYPE_BOOLEAN,
                 gobject.TYPE_STRING,
@@ -327,16 +401,18 @@ class TypeEditDialog(gobject.GObject):
                 gtk.gdk.Pixbuf,
                 gobject.TYPE_STRING)
 
-        treeview.set_model(model)
-        treeview.set_headers_visible(False)
+        self.type_edit_view.set_model(model)
+        self.type_edit_view.set_headers_visible(False)
+
+        self.model = model
 
         column = gtk.TreeViewColumn()
         renderer = gtk.CellRendererToggle()
-        renderer.connect('toggled', self.on_renderer_toggled, treeview)
+        renderer.connect('toggled', self.on_renderer_toggled)
         renderer.set_radio(True)
         column.pack_start(renderer, False)
         column.set_attributes(renderer, active = TYPE_EDIT_ENABLE)
-        treeview.append_column(column)
+        self.type_edit_view.append_column(column)
 
         column = gtk.TreeViewColumn()
         renderer = gtk.CellRendererPixbuf()
@@ -347,23 +423,28 @@ class TypeEditDialog(gobject.GObject):
         column.pack_start(renderer, False)
         column.set_attributes(renderer, text = TYPE_EDIT_APPNAME)
         column.set_sort_column_id(TYPE_DESCRIPTION)
-        treeview.append_column(column)
+        self.type_edit_view.append_column(column)
 
-        def_app = gio.app_info_get_default_for_type(type, False)
-        for appinfo in gio.app_info_get_all_for_type(type):
+        self.update_model()
+
+    def update_model(self):
+        self.model.clear()
+
+        def_app = gio.app_info_get_default_for_type(self.type, False)
+        for appinfo in gio.app_info_get_all_for_type(self.type):
             applogo = get_icon_with_app(appinfo, 24)
             appname = appinfo.get_name()
 
-            iter = model.append()
-            model.set(iter, 
+            iter = self.model.append()
+            self.model.set(iter, 
                     TYPE_EDIT_ENABLE, def_app.get_name() == appname,
-                    TYPE_EDIT_TYPE, type,
+                    TYPE_EDIT_TYPE, self.type,
                     TYPE_EDIT_APPINFO, appinfo,
                     TYPE_EDIT_APPLOGO, applogo,
                     TYPE_EDIT_APPNAME, appname)
 
-    def on_renderer_toggled(self, widget, path, treeview):
-        model = treeview.get_model()
+    def on_renderer_toggled(self, widget, path):
+        model = self.type_edit_view.get_model()
         iter = model.get_iter(path)
 
         enable, type, appinfo = model.get(iter, TYPE_EDIT_ENABLE, TYPE_EDIT_TYPE, TYPE_EDIT_APPINFO)
