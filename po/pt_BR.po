@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2008-12-08 10:49+0800\n"
+"POT-Creation-Date: 2008-12-08 17:11+0800\n"
 "PO-Revision-Date: 2008-11-11 17:35+0000\n"
 "Last-Translator: Eduardo Folly <edufolly@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
@@ -37,7 +37,7 @@ msgstr "Editar programas de início automático"
 msgid "New Startup Program"
 msgstr "Novo programa de início automático"
 
-#: src/autostart.py:69
+#: src/autostart.py:69 data/glade/gui.glade:171
 msgid "_Browse..."
 msgstr "_Navegar..."
 
@@ -354,7 +354,7 @@ msgstr "Atalhos"
 msgid "System"
 msgstr "Sistema"
 
-#: src/mainwindow.py:224
+#: src/mainwindow.py:224 src/filetype.py:389
 #, fuzzy
 msgid "File Type Manager"
 msgstr "Gerenciador de Atualizações"
@@ -490,6 +490,82 @@ msgstr ""
 msgid "Update successfully!"
 msgstr "Atualizado com sucesso!"
 
+#: src/filetype.py:33
+msgid "Audio"
+msgstr ""
+
+#: src/filetype.py:34
+msgid "Text"
+msgstr ""
+
+#: src/filetype.py:35
+#, fuzzy
+msgid "Image"
+msgstr "Ferramentas de Imagem"
+
+#: src/filetype.py:36
+#, fuzzy
+msgid "Video"
+msgstr "Vídeos"
+
+#: src/filetype.py:37
+#, fuzzy
+msgid "Application"
+msgstr "Aplicativos"
+
+#: src/filetype.py:38
+msgid "All"
+msgstr ""
+
+#: src/filetype.py:70
+#, fuzzy
+msgid "Categories"
+msgstr "Todas as Categorias"
+
+#: src/filetype.py:124
+#, fuzzy
+msgid "File Type"
+msgstr "Gerenciador de Atualizações"
+
+#: src/filetype.py:138
+#, fuzzy
+msgid "Associated Application"
+msgstr "Aplicativos"
+
+#: src/filetype.py:171 src/metacity.py:49 src/metacity.py:53
+#: src/metacity.py:57 src/metacity.py:61 src/shortcuts.py:91
+#: src/shortcuts.py:190
+msgid "None"
+msgstr "Nenhum"
+
+#: src/filetype.py:228
+#, python-format
+msgid "Open the files of type \"%s\" with:"
+msgstr ""
+
+#: src/filetype.py:297
+#, python-format
+msgid "Select an application to open the type <b>%s</b>"
+msgstr ""
+
+#: src/filetype.py:311
+#, fuzzy
+msgid "Could not find application"
+msgstr "Aplicativos"
+
+#: src/filetype.py:312
+#, python-format
+msgid "Could not find %s"
+msgstr ""
+
+#: src/filetype.py:390
+msgid "Here you can manage all of the registered types of your system."
+msgstr ""
+
+#: src/filetype.py:416
+msgid "Only show associated type"
+msgstr ""
+
 #: src/computer.py:49
 msgid "System information"
 msgstr "Informações do sistema"
@@ -605,7 +681,7 @@ msgstr ""
 "Terceiros.\n"
 "Por favor, tome cuidado."
 
-#: src/thirdsoft.py:418
+#: src/thirdsoft.py:418 src/nautilus.py:191
 msgid "Warning"
 msgstr "Aviso"
 
@@ -696,11 +772,6 @@ msgid "Titlebar mouse wheel action"
 msgstr ""
 
 #: src/metacity.py:49 src/metacity.py:53 src/metacity.py:57 src/metacity.py:61
-#: src/shortcuts.py:91 src/shortcuts.py:190
-msgid "None"
-msgstr "Nenhum"
-
-#: src/metacity.py:49 src/metacity.py:53 src/metacity.py:57 src/metacity.py:61
 msgid "Roll up"
 msgstr "Rolar para cima"
 
@@ -744,7 +815,7 @@ msgstr "Gerenciador de Atualizações"
 #: src/metacity.py:76
 msgid ""
 "To enable the compositing feature of metacity, You should disable the Visual "
-"Effects in \"Appearance\"."
+"Effects in \"Appearance\" by yourself."
 msgstr ""
 
 #: src/session.py:39
@@ -901,7 +972,7 @@ msgstr "Mostrar Área de Trabalho"
 msgid "Widget"
 msgstr "Widget"
 
-#: src/compiz.py:371 src/nautilus.py:209
+#: src/compiz.py:371 src/nautilus.py:216
 msgid "Update Successfully!"
 msgstr "Atualização feita com sucesso!"
 
@@ -1252,12 +1323,16 @@ msgstr "Extensões do Nautilus"
 msgid "Clean up the thumbnails cache (Free %s disk size)"
 msgstr ""
 
-#: src/nautilus.py:192
+#: src/nautilus.py:190
+msgid "The thumbnails cache will be cleaned, do you wish to continue?"
+msgstr ""
+
+#: src/nautilus.py:197
 #, fuzzy
 msgid "Clean up successfully!"
 msgstr "Atualizado com sucesso!"
 
-#: src/nautilus.py:211
+#: src/nautilus.py:218
 msgid "Update Failed!"
 msgstr "Atualização falhou!"
 
@@ -1845,16 +1920,8 @@ msgstr ""
 msgid "Service hasn't initialized yet"
 msgstr ""
 
-#: data/glade/gui.glade:33
-msgid "label"
-msgstr ""
-
-#: data/glade/gui.glade:70 data/glade/gui.glade:224
-msgid "gtk-add"
-msgstr ""
-
-#: data/glade/gui.glade:80
-msgid "gtk-remove"
+#: data/glade/gui.glade:7
+msgid "Edit Type"
 msgstr ""
 
 #: data/glade/gui.glade:99
@@ -1862,24 +1929,12 @@ msgstr ""
 msgid "Add Application"
 msgstr "Aplicativos"
 
-#: data/glade/gui.glade:115
-msgid "Open Desktop and other files of type \"folder\" with:"
-msgstr ""
-
-#: data/glade/gui.glade:145
+#: data/glade/gui.glade:144
 msgid "Select an application to view its description."
-msgstr ""
-
-#: data/glade/gui.glade:172
-msgid "button"
 msgstr ""
 
 #: data/glade/gui.glade:186
 msgid "_Use a custom command"
-msgstr ""
-
-#: data/glade/gui.glade:214
-msgid "gtk-cancel"
 msgstr ""
 
 #~ msgid "Ubuntu Chinese Repository"

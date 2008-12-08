@@ -34,7 +34,7 @@ except ImportError:
 
 from common.factory import Factory
 from common.widgets import ListPack, TablePack, TweakPage
-from common.widgets.dialogs import InfoDialog
+from common.widgets.dialogs import InfoDialog, QuestionDialog
 from common.utils import set_label_for_stock_button
 
 (
@@ -187,10 +187,17 @@ class Nautilus(TweakPage):
         set_label_for_stock_button(button, _('Clean up the thumbnails cache (Free %s disk size)') % size)
 
     def on_clean_thumbnails_clicked(self, widget):
-        dialog = CleanDialog(widget.get_toplevel())
-        dialog.run()
-        InfoDialog(_("Clean up successfully!")).launch()
-        self.set_clean_button_label(widget)
+        question = QuestionDialog(_('The thumbnails cache will be cleaned, do you wish to continue?'), 
+            title = _('Warning'))
+        if question.run() == gtk.RESPONSE_YES:
+            question.destroy()
+
+            dialog = CleanDialog(widget.get_toplevel())
+            dialog.run()
+            InfoDialog(_('Clean up successfully!')).launch()
+            self.set_clean_button_label(widget)
+        else:
+            question.destroy()
 
     def on_apply_clicked(self, widget, box):
         to_add = []

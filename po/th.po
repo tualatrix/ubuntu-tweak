@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2008-12-08 10:49+0800\n"
+"POT-Creation-Date: 2008-12-08 17:11+0800\n"
 "PO-Revision-Date: 2008-10-08 15:18+0000\n"
 "Last-Translator: TualatriX <Unknown>\n"
 "Language-Team: Thai <th@li.org>\n"
@@ -37,7 +37,7 @@ msgstr "แก้ไขโปรแกรมเริ่มระบบ"
 msgid "New Startup Program"
 msgstr "เพิ่มโปรแกรมเริ่มวาระ"
 
-#: src/autostart.py:69
+#: src/autostart.py:69 data/glade/gui.glade:171
 msgid "_Browse..."
 msgstr ""
 
@@ -348,7 +348,7 @@ msgstr ""
 msgid "System"
 msgstr ""
 
-#: src/mainwindow.py:224
+#: src/mainwindow.py:224 src/filetype.py:389
 msgid "File Type Manager"
 msgstr ""
 
@@ -458,6 +458,75 @@ msgstr ""
 
 #: src/userdir.py:255
 msgid "Update successfully!"
+msgstr ""
+
+#: src/filetype.py:33
+msgid "Audio"
+msgstr ""
+
+#: src/filetype.py:34
+msgid "Text"
+msgstr ""
+
+#: src/filetype.py:35
+msgid "Image"
+msgstr ""
+
+#: src/filetype.py:36
+msgid "Video"
+msgstr ""
+
+#: src/filetype.py:37
+msgid "Application"
+msgstr ""
+
+#: src/filetype.py:38
+msgid "All"
+msgstr ""
+
+#: src/filetype.py:70
+msgid "Categories"
+msgstr ""
+
+#: src/filetype.py:124
+msgid "File Type"
+msgstr ""
+
+#: src/filetype.py:138
+msgid "Associated Application"
+msgstr ""
+
+#: src/filetype.py:171 src/metacity.py:49 src/metacity.py:53
+#: src/metacity.py:57 src/metacity.py:61 src/shortcuts.py:91
+#: src/shortcuts.py:190
+msgid "None"
+msgstr ""
+
+#: src/filetype.py:228
+#, python-format
+msgid "Open the files of type \"%s\" with:"
+msgstr ""
+
+#: src/filetype.py:297
+#, python-format
+msgid "Select an application to open the type <b>%s</b>"
+msgstr ""
+
+#: src/filetype.py:311
+msgid "Could not find application"
+msgstr ""
+
+#: src/filetype.py:312
+#, python-format
+msgid "Could not find %s"
+msgstr ""
+
+#: src/filetype.py:390
+msgid "Here you can manage all of the registered types of your system."
+msgstr ""
+
+#: src/filetype.py:416
+msgid "Only show associated type"
 msgstr ""
 
 #: src/computer.py:49
@@ -571,7 +640,7 @@ msgid ""
 "Please be careful."
 msgstr ""
 
-#: src/thirdsoft.py:418
+#: src/thirdsoft.py:418 src/nautilus.py:191
 msgid "Warning"
 msgstr ""
 
@@ -662,11 +731,6 @@ msgid "Titlebar mouse wheel action"
 msgstr ""
 
 #: src/metacity.py:49 src/metacity.py:53 src/metacity.py:57 src/metacity.py:61
-#: src/shortcuts.py:91 src/shortcuts.py:190
-msgid "None"
-msgstr ""
-
-#: src/metacity.py:49 src/metacity.py:53 src/metacity.py:57 src/metacity.py:61
 msgid "Roll up"
 msgstr ""
 
@@ -709,7 +773,7 @@ msgstr ""
 #: src/metacity.py:76
 msgid ""
 "To enable the compositing feature of metacity, You should disable the Visual "
-"Effects in \"Appearance\"."
+"Effects in \"Appearance\" by yourself."
 msgstr ""
 
 #: src/session.py:39
@@ -865,7 +929,7 @@ msgstr ""
 msgid "Widget"
 msgstr "วิดเจ็ต"
 
-#: src/compiz.py:371 src/nautilus.py:209
+#: src/compiz.py:371 src/nautilus.py:216
 msgid "Update Successfully!"
 msgstr ""
 
@@ -1204,11 +1268,15 @@ msgstr ""
 msgid "Clean up the thumbnails cache (Free %s disk size)"
 msgstr ""
 
-#: src/nautilus.py:192
+#: src/nautilus.py:190
+msgid "The thumbnails cache will be cleaned, do you wish to continue?"
+msgstr ""
+
+#: src/nautilus.py:197
 msgid "Clean up successfully!"
 msgstr ""
 
-#: src/nautilus.py:211
+#: src/nautilus.py:218
 msgid "Update Failed!"
 msgstr ""
 
@@ -1796,40 +1864,20 @@ msgstr ""
 msgid "Service hasn't initialized yet"
 msgstr ""
 
-#: data/glade/gui.glade:33
-msgid "label"
-msgstr ""
-
-#: data/glade/gui.glade:70 data/glade/gui.glade:224
-msgid "gtk-add"
-msgstr ""
-
-#: data/glade/gui.glade:80
-msgid "gtk-remove"
+#: data/glade/gui.glade:7
+msgid "Edit Type"
 msgstr ""
 
 #: data/glade/gui.glade:99
 msgid "Add Application"
 msgstr ""
 
-#: data/glade/gui.glade:115
-msgid "Open Desktop and other files of type \"folder\" with:"
-msgstr ""
-
-#: data/glade/gui.glade:145
+#: data/glade/gui.glade:144
 msgid "Select an application to view its description."
-msgstr ""
-
-#: data/glade/gui.glade:172
-msgid "button"
 msgstr ""
 
 #: data/glade/gui.glade:186
 msgid "_Use a custom command"
-msgstr ""
-
-#: data/glade/gui.glade:214
-msgid "gtk-cancel"
 msgstr ""
 
 #~ msgid "_Browse"

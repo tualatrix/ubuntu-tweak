@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2008-12-08 10:49+0800\n"
-"PO-Revision-Date: 2008-12-06 21:36+0800\n"
+"POT-Creation-Date: 2008-12-08 17:11+0800\n"
+"PO-Revision-Date: 2008-12-08 17:12+0800\n"
 "Last-Translator: TualatriX <tualatrix@gmail.com>\n"
 "Language-Team: TualatriX <tualatrix@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -35,7 +35,7 @@ msgstr "编辑启动项"
 msgid "New Startup Program"
 msgstr "新建启动项"
 
-#: src/autostart.py:69
+#: src/autostart.py:69 data/glade/gui.glade:171
 msgid "_Browse..."
 msgstr "浏览(_B)..."
 
@@ -349,10 +349,9 @@ msgstr "快捷键"
 msgid "System"
 msgstr "系统"
 
-#: src/mainwindow.py:224
-#, fuzzy
+#: src/mainwindow.py:224 src/filetype.py:389
 msgid "File Type Manager"
-msgstr "更新管理器"
+msgstr "文件类型管理"
 
 #: src/mainwindow.py:225
 msgid "Nautilus"
@@ -451,7 +450,6 @@ msgstr ""
 "你想要继续吗？"
 
 #: src/userdir.py:198
-#, fuzzy
 msgid "Directory"
 msgstr "文件夹"
 
@@ -482,6 +480,75 @@ msgstr ""
 #: src/userdir.py:255
 msgid "Update successfully!"
 msgstr "更新成功！"
+
+#: src/filetype.py:33
+msgid "Audio"
+msgstr "音频"
+
+#: src/filetype.py:34
+msgid "Text"
+msgstr "文本"
+
+#: src/filetype.py:35
+msgid "Image"
+msgstr "图像"
+
+#: src/filetype.py:36
+msgid "Video"
+msgstr "视频"
+
+#: src/filetype.py:37
+msgid "Application"
+msgstr "应用程序"
+
+#: src/filetype.py:38
+msgid "All"
+msgstr "所有"
+
+#: src/filetype.py:70
+msgid "Categories"
+msgstr "类别"
+
+#: src/filetype.py:124
+msgid "File Type"
+msgstr "文件类型"
+
+#: src/filetype.py:138
+msgid "Associated Application"
+msgstr "已关联的应用程序"
+
+#: src/filetype.py:171 src/metacity.py:49 src/metacity.py:53
+#: src/metacity.py:57 src/metacity.py:61 src/shortcuts.py:91
+#: src/shortcuts.py:190
+msgid "None"
+msgstr "没有"
+
+#: src/filetype.py:228
+#, python-format
+msgid "Open the files of type \"%s\" with:"
+msgstr "用此应用程序打开\"%s\"类型的文件："
+
+#: src/filetype.py:297
+#, python-format
+msgid "Select an application to open the type <b>%s</b>"
+msgstr "选择一个应用程序来打开类型 <b>%s</b>"
+
+#: src/filetype.py:311
+msgid "Could not find application"
+msgstr "找不到应用程序"
+
+#: src/filetype.py:312
+#, python-format
+msgid "Could not find %s"
+msgstr "不能找到 %s"
+
+#: src/filetype.py:390
+msgid "Here you can manage all of the registered types of your system."
+msgstr "这里你可以管理所有系统上已注册的文件类型。"
+
+#: src/filetype.py:416
+msgid "Only show associated type"
+msgstr "只显示已关联的类型"
 
 #: src/computer.py:49
 msgid "System information"
@@ -575,7 +642,6 @@ msgid "Description is here"
 msgstr "描述在这里"
 
 #: src/thirdsoft.py:359
-#, fuzzy
 msgid "Third-Party Software Sources"
 msgstr "第三方软件源"
 
@@ -604,7 +670,7 @@ msgstr ""
 "使用第三方源可能会引起安全方面的问题。\n"
 "请小心谨慎！"
 
-#: src/thirdsoft.py:418
+#: src/thirdsoft.py:418 src/nautilus.py:191
 msgid "Warning"
 msgstr "警告"
 
@@ -695,11 +761,6 @@ msgid "Titlebar mouse wheel action"
 msgstr "标题栏鼠标滚轮动作"
 
 #: src/metacity.py:49 src/metacity.py:53 src/metacity.py:57 src/metacity.py:61
-#: src/shortcuts.py:91 src/shortcuts.py:190
-msgid "None"
-msgstr "没有"
-
-#: src/metacity.py:49 src/metacity.py:53 src/metacity.py:57 src/metacity.py:61
 msgid "Roll up"
 msgstr "卷起"
 
@@ -733,18 +794,17 @@ msgstr "标题栏右键点击动作"
 
 #: src/metacity.py:67
 msgid "Enable Metacity's Compositing feature"
-msgstr ""
+msgstr "启用Metacity的复合特性"
 
 #: src/metacity.py:69
-#, fuzzy
 msgid "Compositing Manager"
-msgstr "更新管理器"
+msgstr "复合管理器"
 
 #: src/metacity.py:76
 msgid ""
 "To enable the compositing feature of metacity, You should disable the Visual "
-"Effects in \"Appearance\"."
-msgstr ""
+"Effects in \"Appearance\" by yourself."
+msgstr "为了启用Metacity的复合特性，你需要手动禁用“外观”的视觉效果。"
 
 #: src/session.py:39
 msgid "Splash Screen (Click Below Image)"
@@ -904,7 +964,7 @@ msgstr "显示桌面"
 msgid "Widget"
 msgstr "Widget层"
 
-#: src/compiz.py:371 src/nautilus.py:209
+#: src/compiz.py:371 src/nautilus.py:216
 msgid "Update Successfully!"
 msgstr "更新成功！"
 
@@ -1009,57 +1069,48 @@ msgid "Copy to ..."
 msgstr "复制到..."
 
 #: src/scripts.py:52
-#, fuzzy
 msgid "Copy to Desktop"
-msgstr "显示桌面"
+msgstr "复制到桌面"
 
 #: src/scripts.py:53
-#, fuzzy
 msgid "Copy to Download"
-msgstr "下载"
+msgstr "复制到下载文件夹"
 
 #: src/scripts.py:54
-#, fuzzy
 msgid "Copy to Home"
-msgstr "复制到..."
+msgstr "复制到主文件夹"
 
 #: src/scripts.py:55
 msgid "Move to ..."
 msgstr "移动到..."
 
 #: src/scripts.py:56
-#, fuzzy
 msgid "Move to Desktop"
-msgstr "显示桌面"
+msgstr "移到桌面"
 
 #: src/scripts.py:57
-#, fuzzy
 msgid "Move to Download"
-msgstr "下载"
+msgstr "移到下载文件夹"
 
 #: src/scripts.py:58
-#, fuzzy
 msgid "Move to Home"
-msgstr "移动到..."
+msgstr "移到主文件夹"
 
 #: src/scripts.py:59
 msgid "Link to ..."
 msgstr "链接到..."
 
 #: src/scripts.py:60
-#, fuzzy
 msgid "Link to Desktop"
-msgstr "链接到..."
+msgstr "链接到桌面"
 
 #: src/scripts.py:61
-#, fuzzy
 msgid "Link to Download"
-msgstr "下载"
+msgstr "链接到下载文件夹"
 
 #: src/scripts.py:62
-#, fuzzy
 msgid "Link to Home"
-msgstr "链接到..."
+msgstr "链接到主文件夹"
 
 #: src/scripts.py:63
 msgid "Open with gedit"
@@ -1079,15 +1130,15 @@ msgstr "搜索当前文件夹"
 
 #: src/scripts.py:67
 msgid "Convert image to JPG"
-msgstr ""
+msgstr "转换图片至JPG格式"
 
 #: src/scripts.py:68
 msgid "Convert image to PNG"
-msgstr ""
+msgstr "转换图片至PNG格式"
 
 #: src/scripts.py:69
 msgid "Set image as wallpaper"
-msgstr ""
+msgstr "将图片设置为壁纸"
 
 #: src/scripts.py:96
 msgid "Enabled Scripts"
@@ -1102,7 +1153,6 @@ msgid "Manage Scripts"
 msgstr "管理脚本"
 
 #: src/scripts.py:131
-#, fuzzy
 msgid ""
 "You can do all kinds of tasks with scripts.\n"
 "You can drag and drop from File Manager.\n"
@@ -1205,9 +1255,8 @@ msgid "Do you want take effect immediately?"
 msgstr "你想要马上生效吗？"
 
 #: src/nautilus.py:50
-#, fuzzy
 msgid "Cleaning..."
-msgstr "上传中。。。"
+msgstr "清理中。。。"
 
 #: src/nautilus.py:99
 msgid "Show advanced permissions on Permissions tab of File Property"
@@ -1230,21 +1279,20 @@ msgid "Enable OverBurn"
 msgstr "打开超刻功能"
 
 #: src/nautilus.py:113
-#, fuzzy
 msgid "Default thumbnail icon size (Pixel)"
-msgstr "默认缩略图图标大小"
+msgstr "默认缩略图图标大小（像素）"
 
 #: src/nautilus.py:127
 msgid "Maximum size of the thumbnail cache (Megabyte)"
-msgstr ""
+msgstr "缩略图缓存的最大尺寸（MB）"
 
 #: src/nautilus.py:139
 msgid "Maximum age for the thumbnail in the cache (Day)"
-msgstr ""
+msgstr "缩略图缓存的最大存活天数"
 
 #: src/nautilus.py:151
 msgid "Thumbnails Settings"
-msgstr ""
+msgstr "缩略图设置"
 
 #: src/nautilus.py:159
 msgid "Nautilus with Open Terminal"
@@ -1265,14 +1313,17 @@ msgstr "Nautilus 扩展"
 #: src/nautilus.py:187
 #, python-format
 msgid "Clean up the thumbnails cache (Free %s disk size)"
-msgstr ""
+msgstr "清理缩略图缓存（释放%s硬盘空间）"
 
-#: src/nautilus.py:192
-#, fuzzy
+#: src/nautilus.py:190
+msgid "The thumbnails cache will be cleaned, do you wish to continue?"
+msgstr "缩略图缓存将被清理，你想要继续吗？"
+
+#: src/nautilus.py:197
 msgid "Clean up successfully!"
 msgstr "清理成功！"
 
-#: src/nautilus.py:211
+#: src/nautilus.py:218
 msgid "Update Failed!"
 msgstr "更新失败！"
 
@@ -1796,7 +1847,7 @@ msgstr "K桌面环境4.1版"
 
 #: src/common/appdata.py:135
 msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
-msgstr ""
+msgstr "轻量级X11桌面环境：GPicView，PCManFM"
 
 #: src/common/appdata.py:136
 msgid ""
@@ -1876,42 +1927,21 @@ msgstr "你需要重启你的电脑。"
 msgid "Service hasn't initialized yet"
 msgstr "服务尚未初始化"
 
-#: data/glade/gui.glade:33
-msgid "label"
-msgstr ""
-
-#: data/glade/gui.glade:70 data/glade/gui.glade:224
-msgid "gtk-add"
-msgstr ""
-
-#: data/glade/gui.glade:80
-msgid "gtk-remove"
-msgstr ""
+#: data/glade/gui.glade:7
+msgid "Edit Type"
+msgstr "编辑类型"
 
 #: data/glade/gui.glade:99
-#, fuzzy
 msgid "Add Application"
-msgstr "应用程序"
+msgstr "添加应用程序"
 
-#: data/glade/gui.glade:115
-msgid "Open Desktop and other files of type \"folder\" with:"
-msgstr ""
-
-#: data/glade/gui.glade:145
+#: data/glade/gui.glade:144
 msgid "Select an application to view its description."
-msgstr ""
-
-#: data/glade/gui.glade:172
-msgid "button"
-msgstr ""
+msgstr "选择一个应用程序来查看它的描述"
 
 #: data/glade/gui.glade:186
 msgid "_Use a custom command"
 msgstr "使用一个自定义命令(_U)"
-
-#: data/glade/gui.glade:214
-msgid "gtk-cancel"
-msgstr ""
 
 #~ msgid "Ubuntu Chinese Repository"
 #~ msgstr "Ubuntu中文源"

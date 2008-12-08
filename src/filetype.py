@@ -18,8 +18,6 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-import pygtk
-pygtk.require("2.0")
 import gtk
 import gio
 import pango
@@ -31,19 +29,19 @@ from common.widgets import TweakPage
 from common.utils import get_icon_with_name, mime_type_get_icon, get_icon_with_app
 from common.gui import GuiWorker
 
-MIMETYPE = {
-    _('All'): 'binary-x-generic',
-    _('Application'): 'vcard',
-    _('Audio'): 'audio-x-generic',
-    _('Image'): 'image-x-generic',
-    _('Video'): 'video-x-generic',
-    _('Text'): 'text-x-generic',
-}
+MIMETYPE = [
+    (_('Audio'), 'audio', 'audio-x-generic'), 
+    (_('Text'), 'text', 'text-x-generic'),
+    (_('Image'), 'image', 'image-x-generic'), 
+    (_('Video'), 'video', 'video-x-generic'), 
+    (_('Application'), 'application', 'vcard'), 
+    (_('All'), 'all', 'binary-x-generic'),
+]
 
 (
     COLUMN_ICON,
     COLUMN_TITLE,
-    COLUMN_LIST,
+    COLUMN_CATE,
 ) = range(3)
 
 class CateView(gtk.TreeView):
@@ -64,6 +62,7 @@ class CateView(gtk.TreeView):
         '''The model is icon, title and the list reference'''
         model = gtk.ListStore(
                     gtk.gdk.Pixbuf,
+                    gobject.TYPE_STRING,
                     gobject.TYPE_STRING)
         
         return model
@@ -83,12 +82,13 @@ class CateView(gtk.TreeView):
         self.append_column(column)
 
     def update_model(self):
-        list = MIMETYPE.items()
-        list.sort()
-        for title, icon in list:
+        for title, cate, icon in MIMETYPE:
             pixbuf = get_icon_with_name(icon, 24)
             iter = self.model.append(None)
-            self.model.set(iter, COLUMN_ICON, pixbuf, COLUMN_TITLE, title)
+            self.model.set(iter, 
+                    COLUMN_ICON, pixbuf, 
+                    COLUMN_TITLE, title, 
+                    COLUMN_CATE, cate)
 
 (
     TYPE_MIME,
@@ -110,7 +110,7 @@ class TypeView(gtk.TreeView):
         self.__add_columns()
 
 #        self.set_size_request(200, -1)
-        self.update_model()
+        self.update_model(filter = 'audio')
 
     def __create_model(self):
         '''The model is icon, title and the list reference'''
@@ -185,6 +185,7 @@ class TypeView(gtk.TreeView):
                     TYPE_DESCRIPTION, description,
                     TYPE_APPICON, applogo,
                     TYPE_APP, appname)
+
         if mainwindow:
             mainwindow.set_cursor(None)
 
@@ -225,6 +226,11 @@ class AddAppDialog(gobject.GObject):
         treeview = worker.get_widget('app_view')
         self.setup_treeview(treeview)
 
+        self.info_label = worker.get_widget('info_label')
+        self.description_label = worker.get_widget('description_label')
+
+        self.info_label.set_markup(_('Open the files of type "%s" with:') % gio.content_type_get_description(type))
+
 #        self.dialog.add_buttons(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
 #                                gtk.STOCK_ADD, gtk.RESPONSE_ACCEPT)
 
@@ -264,7 +270,6 @@ class AddAppDialog(gobject.GObject):
     def destroy(self):
         return self.dialog.destroy()
 
-
 (
     TYPE_EDIT_ENABLE,
     TYPE_EDIT_TYPE,
@@ -293,7 +298,7 @@ class TypeEditDialog(gobject.GObject):
         type_logo.set_from_pixbuf(type_pixbuf)
 
         type_label = worker.get_widget('type_edit_label')
-        type_label.set_markup(_('Select an application to open the type <b>%s</b>') % type)
+        type_label.set_markup(_('Select an application to open the type <b>%s</b>') % gio.content_type_get_description(type))
 
         type_view = worker.get_widget('type_edit_view')
         self.setup_treeview(type, type_view)
@@ -304,14 +309,11 @@ class TypeEditDialog(gobject.GObject):
         remove_button = worker.get_widget('type_edit_remove_button')
         remove_button.connect('clicked', self.on_remove_button_clicked, type)
 
-#        self.dialog.add_buttons(gtk.STOCK_ADD, gtk.RESPONSE_ACCEPT,
-#                           gtk.STOCK_REMOVE, gtk.RESPONSE_DELETE_EVENT)
-
     def on_add_button_clicked(self, widget, type):
-        print 'on_add_button_clicked'
         dialog = AddAppDialog(type, widget.get_toplevel())
         if dialog.run() == gtk.RESPONSE_ACCEPT:
-            print 'accept'
+            print _('Could not find application')
+            print _('Could not find %s') % 'test'
         dialog.destroy()
 
     def on_remove_button_clicked(self, widget, type):
@@ -388,8 +390,8 @@ class TypeEditDialog(gobject.GObject):
 class FileType(TweakPage):
     def __init__(self):
         TweakPage.__init__(self,
-                _('File Type'),
-                _('Modify your file type.'))
+                _('File Type Manager'),
+                _('Here you can manage all of the registered types of your system.'))
 
         hbox = gtk.HBox(False, 5)
         self.pack_start(hbox)
@@ -415,10 +417,6 @@ class FileType(TweakPage):
         self.edit_button.set_sensitive(False)
         vbox.pack_start(self.edit_button, False, False, 0)
 
-        self.remove_button = gtk.Button(stock = gtk.STOCK_REMOVE)
-        self.remove_button.set_sensitive(False)
-        vbox.pack_start(self.remove_button, False, False, 0)
-
         self.show_have_app = gtk.CheckButton(_('Only show associated type'))
         self.show_have_app.set_active(True)
         self.show_have_app.connect('toggled', self.on_show_all_toggled)
@@ -430,22 +428,20 @@ class FileType(TweakPage):
         model, iter = self.cate_selection.get_selected()
         type = False
         if iter:
-            type = model.get_value(iter, COLUMN_TITLE).lower()
+            type = model.get_value(iter, COLUMN_CATE)
             self.set_update_mode(type)
 
     def on_cateview_changed(self, widget):
         model, iter = widget.get_selected()
         if iter:
-            type = model.get_value(iter, COLUMN_TITLE).lower()
+            type = model.get_value(iter, COLUMN_CATE)
             self.set_update_mode(type)
 
     def on_typeview_changed(self, widget):
         model, iter = widget.get_selected()
         if iter:
-            self.remove_button.set_sensitive(True)
             self.edit_button.set_sensitive(True)
         else:
-            self.remove_button.set_sensitive(False)
             self.edit_button.set_sensitive(False)
 
     def on_edit_clicked(self, widget):

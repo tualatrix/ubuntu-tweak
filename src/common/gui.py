@@ -23,7 +23,7 @@ import gtk
 import gtk.glade
 from consts import DATA_DIR
 
-print gtk.glade.textdomain('ubuntu-tweak')
+gtk.glade.textdomain('ubuntu-tweak')
 
 class GuiWorker(object):
 
