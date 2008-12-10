@@ -1,0 +1,268 @@
+2008-11-14 TualatriX <tualatrix@gmail.com>
+
+	Ubuntu Tweak 0.4.2
+	* Fixed bug when user has no wallpaper.
+	* Fixed the GNOME Font size crash bug. (LP #291695)
+	* Fixed Package cleaner bug. (LP #288600)
+	* Fixed the nautilus scripts no execute permission bug. (LP #295591)
+	* Improved the unlock mechanism.
+	* Improved the Autostart.
+	* Improved the Cleaner's cache clean.
+	* Added more third-party sources: Ubuntu Chinese, banshee unstable,
+	OpenOffice 3.0 and Amarok.
+	* Removed dependence of PolicyKit from debian package, so gutsy people
+	can use now.
+	* New feature Source Editor: Easily, freely access to the interface to 
+	edit sources.list with syntax highlighting, no more 
+	"sudo gedit /etc/apt/sources.list" now!
+	Easily change the sources to the default, best sources of your 
+	location. Need you to submit your sources to our server by "Submit 
+	Sources".
+
+2008-10-11 TualatriX <tualatrix@gmail.com>
+
+	* src/common/Canvas.py: font_size type change from int to float (LP
+	#280714).
+	* scripts/ubuntu-tweak/dbus: fix the AddAptKey method.
+	* Update many strings.
+
+2008-10-09 TualatriX <tualatrix@gmail.com>
+
+	Ubuntu Tweak 0.4.0
+	* New upstream version.
+	* Fully support of Ubuntu 8.10 Intrepid.
+	* Many GUI improvements.
+	* Many more Third Party Sources, add view of Source Details.
+	* New feature to clean unneeded packages and cache.
+	* New feature to change panel logo of GNOME.
+	* Scripts and Tempates support treeview and more file operations.
+	* User Folder support restore directory.
+
+2008-09-14 TualatriX <tualatrix@gmail.com>
+
+	* src/MainWindow.py: Update the Welcome page.
+
+2008-09-13 TualatriX <tualatrix@gmail.com>
+
+	* src/MainWindow.py: Remove the banner, Rewrite the left bar.
+
+2008-08-20 TualatriX <tualatrix@gmail.com>
+
+	* src/UpdateManager.py: Move CheckVersion to UpdateManager, improve the
+	auto-update feature.
+
+2008-08-10 TualatriX <tualatrix@gmail.com>
+
+	* src/common: Create the common folder, move all common lib to common.
+	* src/common/Widgets/Dialogs.py: Add the common dialogs.
+	* src/common/Widgets/Containers.py, Widgets.py: Seprarte the widgets to
+	Containers and Widgets.
+	
+2008-08-05 TualatriX <tualatrix@gmail.com>
+
+	* src/Shortcuts.py: Add an Icon to the first column.
+
+2008-08-04 TualatriX <tualatrix@gmail.com>
+
+	* src/Widgets.py: Make the TweakPage support scrolling, and all modules
+	use TweakPage.
+	Introduce the new MessageDialog.
+	* src/UserDir.py: Re-write the User Directory, use TreeView and support
+	restore.
+
+2008-07-28 TualatriX <tualatrix@gmail.com>
+	
+	Ubuntu Tweak 0.3.5
+	* src/MainWindow.py: Added the support of Linux Mint.
+
+2008-07-28 TualatriX <tualatrix@gmail.com>
+
+	* src/ThirdSoft.py: Redesigned the interface. Show warning dialog before
+	use, show inform dialog after refresh the sources.
+	* src/Installer.py: Added an icon into the category, added some
+	applications from.
+
+2008-07-26 TualatriX <tualatrix@gmail.com>
+
+	* src/PowerManager.py: Added the "Normal" option.
+	* src/PolicyKit/*: Enhanced the PolicyKit button and DbusProxy.
+	* src/ThirdSoft.py: Added the Error dialog, added new three sources.
+	* src/PowerManager.py: Added the normal option.
+	* src/Constants.py: Use the new locale mechanism.
+	* src/Widgets.py: Use gtk.MenuItem to show title.
+	* src/data/*: Re-arranged the data folder.
+	* src/*.py: Cleaned the code of "parent"(all use get_toplevel), use the
+	unique set_icon API.
+
+2008-07-15 TualatriX <tualatrix@gmail.com>
+
+	* src/Widgets.py: Added the CairoDraw. Adjust the widgets.
+	* src/ThirdSoft.py, ubuntu-tweak-dbus: Added the apt key import function.
+
+2008-07-02 TualatriX <tualatrix@gmail.com>
+
+	Ubuntu Tweak 0.3.4
+	* src/ubuntu-tweak.py: Removed the gnome determine function.
+	* ubuntu-tweak-dbus,policykit/*, src/PolicyKit/*:
+	Added the Policykit mechanism.
+	* src/pixmaps/third-soft.png, src/ThirdSoft.py:
+	Added the Third Party Software admin interface.
+	* src/Installer.py, src/applogos/*: 
+	Added the easy-install interface: Add/Remove.
+	* src/MainWindow.py: Optimize the code, faster startup.
+
+2008-06-05 TualatriX <tualatrix@gmail.com>
+
+	Ubuntu Tweak 0.3.2
+	* src/pixmaps/splash.png, src/ubuntu-tweak.py: added the splash.
+	* src/PackageWorker.py: added the case that package isn't available.
+	* src/Compiz.py: enhanced the environment check.
+	* po/*: updated translations.
+
+2008-05-22 TualatriX <tualatrix@gmail.com>
+
+	* src/PackageWorker.py: the apt package worker.
+	* src/Compiz.py: added the compiz extension options.
+	* src/Nautilus.py: added the nautilus extentsion options.
+	* src/ubuntu-tweak.py: fixed the environment check.
+	* src/CheckVersion.py: disabled the submit function.
+
+2008-05-07 TualatriX <tualatrix@gmail.com>
+
+	* src/Widgets.py: MessageDialog has default response now.
+	* src/MainWindow.py: Added the CheckVersion function.
+	* src/CheckVersion.py: CheckVersion model.
+	* src/*.py: replace the code's tab with 4 blank.
+
+2008-05-02 TualatriX <tualatrix@gmail.com>
+
+	* src/templates: fixed Shell script.sh.
+	* src/Shortcuts.py: fixed the "disabled" to _"disabled".
+	* setup.py: rewrote the setup script.
+	* MAINFEST.in: deleted the file.
+
+2008-05-01 TualatriX <tualatrix@gmail.com>
+
+	* src/Settings.py, Widgets.py: Fixed the bug coursed by GconfScale, and
+	use NumSetting to deal with the int or float Settings.
+
+2008-04-30 TualatriX <tualatrix@gmail.com>
+
+	* src/Icon.py, Settings.py, Widgets.py: Fixed the bug of Icon Settings.
+
+2008-04-27 TualatriX <tualatrix@gmail.com>
+
+	* src/pixmaps: *NEW* shrink the logo.
+	* src/Constants.py: *NEW* store the app's information.
+	* src/Factory.py: *NEW* new factory pattern.
+	* src/Widgets.py: *UPDATE* many more widgets for tweaks.
+	* src/Shortcuts.py: *NEW* new feature of command shortcuts.
+	* src/Settings.py: *NEW* base class of all widgets.
+	* src/SystemInfo.py: *NEW* base class of system info.
+	* src/Utility.py: *NEW* some usefull function.
+	* src/tweaks.xml: *NEW* all key items.
+	* src/Compiz.py: totally re-write, use ccs and ccm.
+	* src/UserDir.py: support external folder now.
+	* src/scripts/Search in current folder: fix the bug can't search the
+	folder with space in the name.
+	* src/Templates.py: fix the bug that cause by the unavailable icon theme.
+	* src/*.py: fix the incorrect FSF address.
+	* src/*.py: many ui improve.
+
+2008-03-12 TualatriX <tualatrix@gmail.com>
+
+	* src/Scripts.py: Nautilus scripts tweak.
+	* src/ScriptWorker.py: The GUI script worker.
+	* src/scripts: 7 default scripts.
+	* script-worker: the script delegate.
+
+2008-03-06 TualatriX <tualatrix@gmail.com>
+
+	* ubuntu-tweak.desktop: Make it stardard.
+	* src/Template.py: Added the "rebuild function" and templates translation.
+	* debian: Remove debian directory from the source tarball.
+
+2008-02-24 TualatriX <tualatrix@gmail.com>
+
+	* src/pixmaps/personal.png.
+	* src/pixmaps/template.png.
+	* src/pixmaps/userdir.png.
+	* src/Template.py: New file, added Tempate Tweak.
+	* src/UserDir.py: New file, added Userdir Tweak.
+	* src/IniFile.py: New file, to parse Userdir file.
+	* src/Widgets.py: added new class of TweakPage.
+	* src/templates/*: New dictory with some default templates.
+
+2008-02-13
+
+	* src/Computer.py: added the boot time and uptime display.
+
+2008-02-11
+
+	* po: added six new translations.
+
+2008-02-04
+
+	* po: added the po files from launchpad.net.
+	* setup.py: support the new po files.
+
+2008-02-02
+
+	* src/ubuntu-tweak.py: support hardy.
+
+2008-01-31
+
+	* src/pixmaps/banner_*.png: Shrink the banner, so it looks better.
+	* src/AutoStart.py: added many option to make better.
+	* src/Icon.py: re-added the "Home as desktop".
+
+2008-01-27
+	
+	* src/AutoStart.py: added the AutoStart program control.
+
+2008-01-21
+	* debianized.
+	* added the Norwegen translation
+
+2008-01-20
+	* write the setup.py file.
+
+2008-01-19
+	* if the parent menu is selected, the first child item will be selected automatically.
+	* fixed the bug that can't run on ppc.
+
+2008-01-18
+	* set the about dialog's "translator credits" to _("translator-credit"), so that
+	* translator can replace it with his/their name(s).
+
+2008-01-13
+	* fixed the bug with non-gutsy version of Compiz Fusion.
+	* changed the method to determine Compiz Fusion's version(Now more quickly).
+	* added the Czech tranlation.
+
+2008-01-11
+	* fixed the bug caused by non-wallpaper
+
+2008-01-04
+	* added the Swedish
+
+2007-12-18
+	* added the Spanish
+
+2007-12-17
+	* updated the de language
+
+2007-12-15	Ubuntu Tweak 0.2.4
+	* updated the about dialog(license,transaltors)
+	* use apt to test Compiz
+
+2007-12-14
+	* added the pl language
+	* changed banner display behavior
+
+2007-12-13
+	* added GNOME environment test
+	* changed Compiz test method
+	* improved the Splash screen change method and the filename to display.
+
+2007-12-12	Ubuntu Tweak 0.2.4 Beta1
