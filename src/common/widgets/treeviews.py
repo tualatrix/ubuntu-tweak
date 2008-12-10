@@ -165,36 +165,39 @@ class DirView(gtk.TreeView):
 
     def on_drag_data_received(self, treeview, context, x, y, selection, info, etime):
         '''If the source is coming from internal, then move it, or copy it.'''
-        try:
-            path, position = treeview.get_dest_row_at_pos(x, y)
-            iter = self.model.get_iter(path)
-        except:
-            try:
-                iter = self.model.get_iter_first()
-            except:
-                iter = self.model.append(None)
-
-        target = self.model.get_value(iter, DIR_PATH)
         source = selection.data
-        if not source:
-            return
 
-        if context.get_source_widget() is self:
-            file_action = 'move'
-            dir_action = 'move'
+        if source:
+            try:
+                path, position = treeview.get_dest_row_at_pos(x, y)
+                iter = self.model.get_iter(path)
+            except:
+                try:
+                    iter = self.model.get_iter_first()
+                except:
+                    iter = self.model.append(None)
+
+            target = self.model.get_value(iter, DIR_PATH)
+
+            if context.get_source_widget() is self:
+                file_action = 'move'
+                dir_action = 'move'
+            else:
+                file_action = 'copy'
+                dir_action = 'copytree'
+
+            if '\r\n' in source:
+                file_list = source.split('\r\n')
+                for file in file_list:
+                    if file:
+                        self.file_operate(file, dir_action, file_action, target)
+            else:
+                self.file_operate(source, dir_action, file_action, target)
+
+            self.update_model()
+            context.finish(True, False)
         else:
-            file_action = 'copy'
-            dir_action = 'copytree'
-
-        if '\r\n' in source:
-            file_list = source.split('\r\n')
-            for file in file_list:
-                if file:
-                    self.file_operate(file, dir_action, file_action, target)
-        else:
-            self.file_operate(source, dir_action, file_action, target)
-
-        self.update_model()
+            context.finish(False, False)
 
     def file_operate(self, source, dir_action, file_action, target):
         if source.startswith('file:///'):
@@ -330,16 +333,17 @@ class FlatView(gtk.TreeView):
         selection.set(selection.target, 8, data)
 
     def on_drag_data_received_data(self, treeview, context, x, y, selection, info, etime):
-        try:
-            path, position = treeview.get_dest_row_at_pos(x, y)
-            iter = self.model.get_iter(path)
-        except:
-            iter = self.model.append(None)
-
-        target = self.dir
         source = selection.data
 
         if context.get_source_widget() is not self and source:
+            try:
+                path, position = treeview.get_dest_row_at_pos(x, y)
+                iter = self.model.get_iter(path)
+            except:
+                iter = self.model.append(None)
+
+            target = self.dir
+
             file_action = 'move'
             dir_action = 'move'
 
@@ -368,6 +372,9 @@ class FlatView(gtk.TreeView):
                     getattr(shutil, file_action)(source, target)
 
             self.update_model()
+            context.finish(True, False)
+        else:
+            context.finish(False, False)
 
     def update_model(self):
         self.model.clear()
