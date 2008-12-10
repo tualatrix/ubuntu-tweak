@@ -22,8 +22,11 @@ import os
 import gtk
 import gobject
 import thread
+import traceback
 
 from common.consts import *
+from common.gui import GuiWorker
+from common.widgets.dialogs import ErrorDialog
 
 try:
     import dl
@@ -67,11 +70,28 @@ class TweakLauncher:
 
     def main(self):
         gtk.gdk.threads_enter()
-        os.system("exec python updatemanager.py &")
+        os.systemm("exec python updatemanager.py &")
         gtk.main()
         gtk.gdk.threads_leave()
 
 if __name__ == "__main__":
-    gobject.threads_init()
-    launcher = TweakLauncher()
-    launcher.main()
+    try:
+        gobject.threads_init()
+        launcher = TweakLauncher()
+        launcher.main()
+    except:
+        f = open('/tmp/error', 'w')
+        exc = traceback.print_exc(file = f)
+        f.close()
+
+        worker = GuiWorker('traceback.glade')
+        dialog = worker.get_widget('FatalErrorDialog')
+        textview = worker.get_widget('message_view')
+        buffer = textview.get_buffer()
+
+        buffer.set_text(file('/tmp/error').read())
+        dialog.run()
+        dialog.destroy()
+#        dialog = ErrorDialog('test', title = _('Oops...A fatal error occured'))
+#        dialog.label.set_text(_('The error message is %s.\nPlease report it to the developer with the currently status.') % open('/tmp/error').readlines())
+#E       dialog.launch()

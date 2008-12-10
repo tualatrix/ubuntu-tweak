@@ -27,10 +27,10 @@ gtk.glade.textdomain('ubuntu-tweak')
 
 class GuiWorker(object):
 
-    glade = os.path.join(DATA_DIR, 'glade', 'gui.glade')
+    def __init__(self, file = 'gui.glade'):
+        glade = os.path.join(DATA_DIR, 'glade', file)
 
-    def __init__(self):
-        self.xml = gtk.glade.XML(self.glade)
+        self.xml = gtk.glade.XML(glade)
 
     def get_widget(self, name):
         return self.xml.get_widget(name)
