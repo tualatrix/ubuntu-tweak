@@ -138,6 +138,7 @@ class Worker:
 
         if command in ('copy', 'move', 'link'):
             dialog = FileChooserDialog(_("Select a folder"))
+            dialog.set_current_folder(os.path.expanduser('~'))
             if dialog.run() == gtk.RESPONSE_ACCEPT:
                 folder = dialog.get_filename()
 
