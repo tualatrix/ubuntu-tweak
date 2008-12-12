@@ -20,8 +20,9 @@
 
 import os
 import gtk
-import gobject
 import thread
+import gobject
+import StringIO
 import traceback
 
 from common.consts import *
@@ -80,18 +81,15 @@ if __name__ == "__main__":
         launcher = TweakLauncher()
         launcher.main()
     except:
-        f = open('/tmp/error', 'w')
-        exc = traceback.print_exc(file = f)
-        f.close()
+        output = StringIO.StringIO()
+        exc = traceback.print_exc(file = output)
 
         worker = GuiWorker('traceback.glade')
         dialog = worker.get_widget('FatalErrorDialog')
         textview = worker.get_widget('message_view')
         buffer = textview.get_buffer()
 
-        buffer.set_text(file('/tmp/error').read())
+        buffer.set_text(output.getvalue())
         dialog.run()
         dialog.destroy()
-#        dialog = ErrorDialog('test', title = _('Oops...A fatal error occured'))
-#        dialog.label.set_text(_('The error message is %s.\nPlease report it to the developer with the currently status.') % open('/tmp/error').readlines())
-#E       dialog.launch()
+        output.close()
