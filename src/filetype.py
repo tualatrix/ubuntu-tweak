@@ -318,11 +318,8 @@ class AddAppDialog(gobject.GObject):
                         TYPE_ADD_APPLOGO, applogo,
                         TYPE_ADD_APPNAME, appname)
 
-    def run(self):
-        return self.dialog.run()
-
-    def destroy(self):
-        return self.dialog.destroy()
+    def __getattr__(self, key):
+        return getattr(self.dialog, key)
 
 (
     TYPE_EDIT_ENABLE,
@@ -459,14 +456,11 @@ class TypeEditDialog(gobject.GObject):
         if enable:
             model.set(iter, TYPE_EDIT_ENABLE, not enable)
 
-    def show_all(self):
-        self.dialog.show_all()
-
     def on_dialog_destroy(self, widget):
         self.destroy()
 
-    def destroy(self):
-        return self.dialog.destroy()
+    def __getattr__(self, key):
+        return getattr(self.dialog, key)
 
 class FileType(TweakPage):
     def __init__(self):
