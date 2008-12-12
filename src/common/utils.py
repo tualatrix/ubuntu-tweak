@@ -67,15 +67,24 @@ def get_icon_with_app(app, size):
 
     if gicon:
         if isinstance(gicon, gio.ThemedIcon):
-            iconinfo = icontheme.choose_icon(gicon.get_names(), size, gtk.ICON_LOOKUP_USE_BUILTIN)
+            names = gicon.get_names()
+            names_list = []
+            for name in names:
+                if name.rfind('.') != -1:
+                    names_list.append(name[:name.rfind('.')])
+                else:
+                    names_list.append(name)
+
+            iconinfo = icontheme.choose_icon(names_list, size, gtk.ICON_LOOKUP_USE_BUILTIN)
             if not iconinfo:
                 return get_icon_with_name('application-x-executable', size)
+
+            return iconinfo.load_icon()
         elif isinstance(gicon, gio.FileIcon):
             file = app.get_icon().get_file().get_path()
             return get_icon_with_file(file, size)
     else:
         return get_icon_with_name('application-x-executable', size)
-    return iconinfo.load_icon()
 
 if __name__ == '__main__':
 #    print get_icon_with_name('start-here', 24)

@@ -199,12 +199,17 @@ class TypeView(gtk.TreeView):
         if this_type == type:
             app = gio.app_info_get_default_for_type(type, False)
 
-            appname = app.get_name()
-            applogo = get_icon_with_app(app, 24)
-            
-            model.set(iter, 
-                    TYPE_APPICON, applogo,
-                    TYPE_APP, appname)
+            if app:
+                appname = app.get_name()
+                applogo = get_icon_with_app(app, 24)
+                
+                model.set(iter, 
+                        TYPE_APPICON, applogo,
+                        TYPE_APP, appname)
+            else:
+                model.set(iter, 
+                        TYPE_APPICON, None,
+                        TYPE_APP, _('None'))
 
 (
     TYPE_ADD_APPINFO,
@@ -388,7 +393,8 @@ class TypeEditDialog(gobject.GObject):
             appinfo.remove_supports_type(type)
 
             self.update_model()
-            self.emit('update', type)
+
+        self.emit('update', type)
 
     def setup_treeview(self):
         model = gtk.ListStore(
