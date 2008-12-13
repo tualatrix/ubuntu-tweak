@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2008-12-10 17:14+0800\n"
-"PO-Revision-Date: 2008-11-11 19:47+0000\n"
-"Last-Translator: Lee Jarratt <lee.jarratt@googlemail.com>\n"
+"POT-Creation-Date: 2008-12-13 21:55+0800\n"
+"PO-Revision-Date: 2008-12-09 13:56+0000\n"
+"Last-Translator: jgraeme <Unknown>\n"
 "Language-Team: English (United Kingdom) <en_GB@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-11-17 11:29+0000\n"
+"X-Launchpad-Export-Date: 2008-12-13 05:29+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/autostart.py:45
@@ -37,7 +37,7 @@ msgstr "Edit Startup Program"
 msgid "New Startup Program"
 msgstr "New Startup Program"
 
-#: src/autostart.py:69 data/glade/gui.glade:171
+#: src/autostart.py:69 data/glade/gui.glade:173
 msgid "_Browse..."
 msgstr "_Browse..."
 
@@ -231,7 +231,7 @@ msgstr "Enter your password to perform the administrative tasks"
 msgid "Select a folder"
 msgstr "Select a folder"
 
-#: src/ScriptWorker.py:170
+#: src/ScriptWorker.py:171
 msgid "Please select a target(files or folders)."
 msgstr "Please select a target(files or folders)."
 
@@ -356,9 +356,8 @@ msgid "System"
 msgstr "System"
 
 #: src/mainwindow.py:224 src/filetype.py:474
-#, fuzzy
 msgid "File Type Manager"
-msgstr "Update Manager"
+msgstr "File Type Manager"
 
 #: src/mainwindow.py:225
 msgid "Nautilus"
@@ -395,7 +394,8 @@ msgstr ""
 "Launchpad Contributions:\n"
 "  Jen Ockwell https://launchpad.net/~rj-ockwell\n"
 "  Lee Jarratt https://launchpad.net/~lee.jarratt\n"
-"  Me https://launchpad.net/~glich-glich"
+"  Me https://launchpad.net/~glich-glich\n"
+"  jgraeme https://launchpad.net/~jgraeme"
 
 #: src/mainwindow.py:498
 #, python-format
@@ -452,7 +452,6 @@ msgstr ""
 "Do you wish to continue?"
 
 #: src/userdir.py:198
-#, fuzzy
 msgid "Directory"
 msgstr "Directory"
 
@@ -486,76 +485,69 @@ msgstr "Update successfull!"
 
 #: src/filetype.py:35
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 #: src/filetype.py:36
 msgid "Text"
-msgstr ""
+msgstr "Text"
 
 #: src/filetype.py:37
-#, fuzzy
 msgid "Image"
-msgstr "Image tools"
+msgstr "Image"
 
 #: src/filetype.py:38
-#, fuzzy
 msgid "Video"
-msgstr "Videos"
+msgstr "Video"
 
 #: src/filetype.py:39
-#, fuzzy
 msgid "Application"
-msgstr "Applications"
+msgstr "Application"
 
 #: src/filetype.py:40
 msgid "All"
-msgstr ""
+msgstr "All"
 
 #: src/filetype.py:73
-#, fuzzy
 msgid "Categories"
-msgstr "All Categories"
+msgstr "Categories"
 
 #: src/filetype.py:130
-#, fuzzy
 msgid "File Type"
-msgstr "Update Manager"
+msgstr "File Type"
 
 #: src/filetype.py:144
-#, fuzzy
 msgid "Associated Application"
-msgstr "Applications"
+msgstr "Associated Application"
 
-#: src/filetype.py:177 src/metacity.py:49 src/metacity.py:53
-#: src/metacity.py:57 src/metacity.py:61 src/shortcuts.py:91
-#: src/shortcuts.py:190
+#: src/filetype.py:177 src/filetype.py:212 src/metacity.py:49
+#: src/metacity.py:53 src/metacity.py:57 src/metacity.py:61
+#: src/shortcuts.py:91 src/shortcuts.py:190
 msgid "None"
 msgstr "None"
 
-#: src/filetype.py:235
+#: src/filetype.py:240
 #, python-format
 msgid "Open the files of type \"%s\" with:"
 msgstr ""
 
-#: src/filetype.py:264
+#: src/filetype.py:269
 #, fuzzy
 msgid "Choose a application"
-msgstr "Applications"
+msgstr "Could not find application"
 
-#: src/filetype.py:356
+#: src/filetype.py:358
 #, python-format
 msgid "Select an application to open the type <b>%s</b>"
 msgstr ""
 
-#: src/filetype.py:381
+#: src/filetype.py:383
 #, python-format
 msgid "Could not find %s"
-msgstr ""
+msgstr "Could not find %s"
 
-#: src/filetype.py:382
-#, fuzzy
+#: src/filetype.py:384
 msgid "Could not find application"
-msgstr "Applications"
+msgstr "Could not find application"
 
 #: src/filetype.py:475
 msgid "Here you can manage all of the registered types of your system."
@@ -563,7 +555,7 @@ msgstr ""
 
 #: src/filetype.py:501
 msgid "Only show associated type"
-msgstr ""
+msgstr "Only show associated type"
 
 #: src/computer.py:49
 msgid "System information"
@@ -658,7 +650,6 @@ msgid "Description is here"
 msgstr "Description is here"
 
 #: src/thirdsoft.py:359
-#, fuzzy
 msgid "Third-Party Software Sources"
 msgstr "Third-Party Software Sources"
 
@@ -740,7 +731,7 @@ msgstr "Show \"Network\" icon on desktop"
 
 #: src/icons.py:131
 msgid "Show mounted volumes on desktop"
-msgstr "How mounted volumes on desktop"
+msgstr "Show mounted volumes on desktop"
 
 #: src/icons.py:134
 msgid "Use \"Home Folder\" as desktop(Logout for changes to take effect)"
@@ -776,7 +767,7 @@ msgstr "Window Titlebar Action"
 
 #: src/metacity.py:47
 msgid "Titlebar mouse wheel action"
-msgstr "Titlbar mouse wheel action"
+msgstr "Titlebar mouse wheel action"
 
 #: src/metacity.py:49 src/metacity.py:53 src/metacity.py:57 src/metacity.py:61
 msgid "Roll up"
@@ -815,9 +806,8 @@ msgid "Enable Metacity's Compositing feature"
 msgstr ""
 
 #: src/metacity.py:69
-#, fuzzy
 msgid "Compositing Manager"
-msgstr "Update Manager"
+msgstr "Compositing Manager"
 
 #: src/metacity.py:76
 msgid ""
@@ -1090,57 +1080,48 @@ msgid "Copy to ..."
 msgstr "Copy to ..."
 
 #: src/scripts.py:52
-#, fuzzy
 msgid "Copy to Desktop"
-msgstr "Show Desktop"
+msgstr "Copy to Desktop"
 
 #: src/scripts.py:53
-#, fuzzy
 msgid "Copy to Download"
-msgstr "Download"
+msgstr "Copy to Download"
 
 #: src/scripts.py:54
-#, fuzzy
 msgid "Copy to Home"
-msgstr "Copy to ..."
+msgstr "Copy to Home"
 
 #: src/scripts.py:55
 msgid "Move to ..."
 msgstr "Move to ..."
 
 #: src/scripts.py:56
-#, fuzzy
 msgid "Move to Desktop"
-msgstr "Show Desktop"
+msgstr "Move to Desktop"
 
 #: src/scripts.py:57
-#, fuzzy
 msgid "Move to Download"
-msgstr "Download"
+msgstr "Move to Download"
 
 #: src/scripts.py:58
-#, fuzzy
 msgid "Move to Home"
-msgstr "Move to ..."
+msgstr "Move to Home"
 
 #: src/scripts.py:59
 msgid "Link to ..."
 msgstr "Link to ..."
 
 #: src/scripts.py:60
-#, fuzzy
 msgid "Link to Desktop"
-msgstr "Link to ..."
+msgstr "Link to Desktop"
 
 #: src/scripts.py:61
-#, fuzzy
 msgid "Link to Download"
-msgstr "Download"
+msgstr "Link to Download"
 
 #: src/scripts.py:62
-#, fuzzy
 msgid "Link to Home"
-msgstr "Link to ..."
+msgstr "Link to Home"
 
 #: src/scripts.py:63
 msgid "Open with gedit"
@@ -1160,15 +1141,15 @@ msgstr "Search in current folder"
 
 #: src/scripts.py:67
 msgid "Convert image to JPG"
-msgstr ""
+msgstr "Convert image to JPG"
 
 #: src/scripts.py:68
 msgid "Convert image to PNG"
-msgstr ""
+msgstr "Convert image to PNG"
 
 #: src/scripts.py:69
 msgid "Set image as wallpaper"
-msgstr ""
+msgstr "Set image as wallpaper"
 
 #: src/scripts.py:96
 msgid "Enabled Scripts"
@@ -1183,15 +1164,11 @@ msgid "Manage Scripts"
 msgstr "Manage Scripts"
 
 #: src/scripts.py:131
-#, fuzzy
 msgid ""
 "You can do all kinds of tasks with scripts.\n"
 "You can drag and drop from File Manager.\n"
 "'Scripts' will be added to the context menu.\n"
 msgstr ""
-"You can do all kinds of tasks with scripts.\n"
-"You can drag and drop from File Manager.\n"
-"\"Scripts\" will be added to the context menu.\n"
 
 #: src/scripts.py:156
 msgid "Rebuild System Scripts"
@@ -1286,9 +1263,8 @@ msgid "Do you want take effect immediately?"
 msgstr "Do you want the settings to take effect immediately?"
 
 #: src/nautilus.py:50
-#, fuzzy
 msgid "Cleaning..."
-msgstr "Uploading..."
+msgstr "Cleaning..."
 
 #: src/nautilus.py:99
 msgid "Show advanced permissions on Permissions tab of File Property"
@@ -1311,9 +1287,8 @@ msgid "Enable OverBurn"
 msgstr "Enable OverBurn"
 
 #: src/nautilus.py:113
-#, fuzzy
 msgid "Default thumbnail icon size (Pixel)"
-msgstr "Default thumbnail icon size"
+msgstr ""
 
 #: src/nautilus.py:127
 msgid "Maximum size of the thumbnail cache (Megabyte)"
@@ -1329,11 +1304,11 @@ msgstr ""
 
 #: src/nautilus.py:159
 msgid "Nautilus with Open Terminal"
-msgstr "Nautilus wh Open Terminal"
+msgstr "Nautilus with Open Terminal"
 
 #: src/nautilus.py:161
 msgid "Nautilus with Root Privileges"
-msgstr "Nautilus with Root Privelages"
+msgstr "Nautilus with Root Privileges"
 
 #: src/nautilus.py:163
 msgid "Nautilus with Wallpaper"
@@ -1349,16 +1324,12 @@ msgid "Clean up the thumbnails cache (Free %s disk size)"
 msgstr ""
 
 #: src/nautilus.py:190
-#, fuzzy
 msgid "The thumbnails cache will be cleaned, do you wish to continue?"
 msgstr ""
-"The current content will be lost after reloading!\n"
-"Do you wish to continue?"
 
 #: src/nautilus.py:197
-#, fuzzy
 msgid "Clean up successfully!"
-msgstr "Cleaned up Successfully!"
+msgstr ""
 
 #: src/nautilus.py:218
 msgid "Update Failed!"
@@ -1474,7 +1445,7 @@ msgstr "_Source Title:"
 
 #: src/sourceeditor.py:116
 msgid "_Locale:"
-msgstr "Copy text   \t _Locale:"
+msgstr "_Locale:"
 
 #: src/sourceeditor.py:123
 msgid "Enter the title of the source, such as \"Ubuntu Official Repostory\""
@@ -1490,7 +1461,7 @@ msgstr "Submit"
 
 #: src/sourceeditor.py:188
 msgid "Please check your network connection!"
-msgstr "Copy text   \t Please check your network connection!"
+msgstr "Please check your network connection!"
 
 #: src/sourceeditor.py:188
 msgid "Network Error"
@@ -1596,7 +1567,7 @@ msgstr "A skinned multimedia player for many platforms"
 
 #: src/common/appdata.py:62
 msgid "Record and edit audio files"
-msgstr "Recorts and edits audio files"
+msgstr "Record and edit audio files"
 
 #: src/common/appdata.py:63
 msgid "Fully customisable dock-like window navigator"
@@ -1927,7 +1898,7 @@ msgstr ""
 
 #: src/common/factory.py:202
 msgid "Disable 'Run Application' dialog (Alt+F2)"
-msgstr "Disable 'Run Application' dialog (Alt+F2)"
+msgstr "Disable 'Run Application' dialogue (Alt+F2)"
 
 #: src/common/policykit/polkitbutton.py:80
 msgid "_Unlock"
@@ -1985,27 +1956,23 @@ msgstr "The System needs to be restarted."
 
 #: src/common/widgets/dialogs.py:74
 msgid "Service hasn't initialized yet"
-msgstr "Service hasn't initialized yet"
+msgstr "Service hasn't initialised yet"
 
 #: data/glade/gui.glade:7
 msgid "Edit Type"
-msgstr ""
+msgstr "Edit Type"
 
-#: data/glade/gui.glade:99
-#, fuzzy
+#: data/glade/gui.glade:100
 msgid "Add Application"
-msgstr "Applications"
+msgstr "Add Application"
 
-#: data/glade/gui.glade:144
+#: data/glade/gui.glade:146
 msgid "Select an application to view its description."
-msgstr ""
+msgstr "Select an application to view its description."
 
-#: data/glade/gui.glade:186
+#: data/glade/gui.glade:188
 msgid "_Use a custom command"
-msgstr ""
-
-#~ msgid "Ubuntu Chinese Repository"
-#~ msgstr "Copy text   \t Ubuntu Chinese Repository"
+msgstr "_Use a custom command"
 
 #~ msgid "Pick Windows"
 #~ msgstr "Pick Windows"
