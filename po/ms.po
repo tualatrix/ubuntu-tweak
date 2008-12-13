@@ -6,15 +6,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
-"Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2008-12-10 17:14+0800\n"
-"PO-Revision-Date: 2008-10-08 14:13+0000\n"
-"Last-Translator: TualatriX <Unknown>\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2008-12-08 17:11+0800\n"
+"PO-Revision-Date: 2008-12-01 01:41+0000\n"
+"Last-Translator: Khairul Aizat Kamarudzzaman <fenris@ubuntu.com>\n"
 "Language-Team: Malay <ms@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-11-17 11:29+0000\n"
+"X-Launchpad-Export-Date: 2008-12-13 05:28+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/autostart.py:45
@@ -39,7 +39,7 @@ msgstr "Program Permulaan Baru"
 
 #: src/autostart.py:69 data/glade/gui.glade:171
 msgid "_Browse..."
-msgstr ""
+msgstr "_Layari..."
 
 #: src/autostart.py:98
 msgid "Choose a Program"
@@ -59,11 +59,11 @@ msgstr "Keterangan tiada."
 
 #: src/autostart.py:261
 msgid "Program"
-msgstr ""
+msgstr "Program"
 
 #: src/autostart.py:323
 msgid "Session Programs"
-msgstr ""
+msgstr "Sessi Applikasi"
 
 #: src/autostart.py:324
 msgid ""
@@ -74,7 +74,7 @@ msgstr ""
 
 #: src/autostart.py:332
 msgid "Show comments"
-msgstr ""
+msgstr "Papar Komen"
 
 #: src/autostart.py:334
 msgid "Show all runnable programs"
@@ -86,7 +86,7 @@ msgstr ""
 
 #: src/autostart.py:398 src/autostart.py:445
 msgid "Text was empty (or contained only whitespace)"
-msgstr ""
+msgstr "Teks telah kosong (atau mengandungi hanya ruangputih)"
 
 #: src/updatemanager.py:69
 msgid "Update Manager"
@@ -95,11 +95,11 @@ msgstr ""
 #: src/updatemanager.py:86 src/updatemanager.py:114
 #, python-format
 msgid "Downloading...%d"
-msgstr ""
+msgstr "Muat turun... %d"
 
 #: src/updatemanager.py:119
 msgid "Finished"
-msgstr ""
+msgstr "Selesai"
 
 #: src/installer.py:52
 msgid "File-Sharing Clients"
@@ -348,7 +348,7 @@ msgstr ""
 msgid "System"
 msgstr ""
 
-#: src/mainwindow.py:224 src/filetype.py:474
+#: src/mainwindow.py:224 src/filetype.py:389
 msgid "File Type Manager"
 msgstr ""
 
@@ -381,6 +381,7 @@ msgstr ""
 "  Muhammad Fauzilkamil Zainuddin https://launchpad.net/~apogee\n"
 "\n"
 "Launchpad Contributions:\n"
+"  Khairul Aizat Kamarudzzaman https://launchpad.net/~fenris\n"
 "  Muhammad Fauzilkamil Zainuddin https://launchpad.net/~apogee\n"
 "  TualatriX https://launchpad.net/~tualatrix"
 
@@ -460,76 +461,72 @@ msgstr ""
 msgid "Update successfully!"
 msgstr ""
 
-#: src/filetype.py:35
+#: src/filetype.py:33
 msgid "Audio"
 msgstr ""
 
-#: src/filetype.py:36
+#: src/filetype.py:34
 msgid "Text"
 msgstr ""
 
-#: src/filetype.py:37
+#: src/filetype.py:35
 msgid "Image"
 msgstr ""
 
-#: src/filetype.py:38
+#: src/filetype.py:36
 msgid "Video"
 msgstr ""
 
-#: src/filetype.py:39
+#: src/filetype.py:37
 msgid "Application"
 msgstr ""
 
-#: src/filetype.py:40
+#: src/filetype.py:38
 msgid "All"
 msgstr ""
 
-#: src/filetype.py:73
+#: src/filetype.py:70
 msgid "Categories"
 msgstr ""
 
-#: src/filetype.py:130
+#: src/filetype.py:124
 msgid "File Type"
 msgstr ""
 
-#: src/filetype.py:144
+#: src/filetype.py:138
 msgid "Associated Application"
 msgstr ""
 
-#: src/filetype.py:177 src/metacity.py:49 src/metacity.py:53
+#: src/filetype.py:171 src/metacity.py:49 src/metacity.py:53
 #: src/metacity.py:57 src/metacity.py:61 src/shortcuts.py:91
 #: src/shortcuts.py:190
 msgid "None"
 msgstr ""
 
-#: src/filetype.py:235
+#: src/filetype.py:228
 #, python-format
 msgid "Open the files of type \"%s\" with:"
 msgstr ""
 
-#: src/filetype.py:264
-msgid "Choose a application"
-msgstr ""
-
-#: src/filetype.py:356
+#: src/filetype.py:297
 #, python-format
 msgid "Select an application to open the type <b>%s</b>"
 msgstr ""
 
-#: src/filetype.py:381
+#: src/filetype.py:311
+msgid "Could not find application"
+msgstr ""
+
+#: src/filetype.py:312
 #, python-format
 msgid "Could not find %s"
 msgstr ""
 
-#: src/filetype.py:382
-msgid "Could not find application"
-msgstr ""
-
-#: src/filetype.py:475
+#: src/filetype.py:390
 msgid "Here you can manage all of the registered types of your system."
 msgstr ""
 
-#: src/filetype.py:501
+#: src/filetype.py:416
 msgid "Only show associated type"
 msgstr ""
 
@@ -1013,7 +1010,8 @@ msgid "Cleaned up Failed!"
 msgstr ""
 
 #: src/cleaner.py:235
-msgid "Free up disk space by clearing unneeded packages and the package cache."
+msgid ""
+"Free up disk space by clearing unneeded packages and the package cache."
 msgstr ""
 
 #: src/cleaner.py:253
@@ -1553,8 +1551,8 @@ msgstr ""
 
 #: src/common/appdata.py:75
 msgid ""
-"EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
-"com."
+"EIOffice Personal 2009. Free for Chinese users. See "
+"http://www.evermoresw.com."
 msgstr ""
 
 #: src/common/appdata.py:76

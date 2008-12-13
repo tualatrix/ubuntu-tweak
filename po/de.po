@@ -3,14 +3,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2008-12-10 17:14+0800\n"
-"PO-Revision-Date: 2008-11-15 14:14+0000\n"
-"Last-Translator: Thori <thori_@gmx.de>\n"
+"POT-Creation-Date: 2008-12-08 17:11+0800\n"
+"PO-Revision-Date: 2008-12-09 14:52+0000\n"
+"Last-Translator: ig-88 <Unknown>\n"
 "Language-Team: LL <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-11-17 11:29+0000\n"
+"X-Launchpad-Export-Date: 2008-12-13 05:29+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: GERMANY\n"
 "X-Poedit-Language: German\n"
@@ -294,7 +294,7 @@ msgstr "Hinzufügen/Entfernen"
 
 #: src/mainwindow.py:207 src/sourceeditor.py:335
 msgid "Source Editor"
-msgstr "Quelltext-Editor"
+msgstr "Quellen-Editor"
 
 #: src/mainwindow.py:208 src/thirdsoft.py:237
 msgid "Third-Party Sources"
@@ -360,10 +360,9 @@ msgstr "Tastenkürzel"
 msgid "System"
 msgstr "System"
 
-#: src/mainwindow.py:224 src/filetype.py:474
-#, fuzzy
+#: src/mainwindow.py:224 src/filetype.py:389
 msgid "File Type Manager"
-msgstr "Aktualisierungsverwaltung"
+msgstr "Dateitypzuordnung"
 
 #: src/mainwindow.py:225
 msgid "Nautilus"
@@ -485,9 +484,8 @@ msgstr ""
 "Möchtest Du Fortfahren?"
 
 #: src/userdir.py:198
-#, fuzzy
 msgid "Directory"
-msgstr "Verzeichnis"
+msgstr "Ordner"
 
 #: src/userdir.py:212
 msgid "Path"
@@ -517,84 +515,72 @@ msgstr ""
 msgid "Update successfully!"
 msgstr "Aktualisierung war erfolgreich!"
 
-#: src/filetype.py:35
+#: src/filetype.py:33
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
+
+#: src/filetype.py:34
+msgid "Text"
+msgstr "Text"
+
+#: src/filetype.py:35
+msgid "Image"
+msgstr "Bild"
 
 #: src/filetype.py:36
-msgid "Text"
-msgstr ""
+msgid "Video"
+msgstr "Video"
 
 #: src/filetype.py:37
-#, fuzzy
-msgid "Image"
-msgstr "Grafikwerkzeuge"
+msgid "Application"
+msgstr "Programm"
 
 #: src/filetype.py:38
-#, fuzzy
-msgid "Video"
-msgstr "Videos"
-
-#: src/filetype.py:39
-#, fuzzy
-msgid "Application"
-msgstr "Anwendungen"
-
-#: src/filetype.py:40
 msgid "All"
-msgstr ""
+msgstr "Alles"
 
-#: src/filetype.py:73
-#, fuzzy
+#: src/filetype.py:70
 msgid "Categories"
-msgstr "Alle Kategorien"
+msgstr "Kategorien"
 
-#: src/filetype.py:130
-#, fuzzy
+#: src/filetype.py:124
 msgid "File Type"
-msgstr "Aktualisierungsverwaltung"
+msgstr "Dateityp"
 
-#: src/filetype.py:144
-#, fuzzy
+#: src/filetype.py:138
 msgid "Associated Application"
-msgstr "Anwendungen"
+msgstr "Verknüpfte Anwendung"
 
-#: src/filetype.py:177 src/metacity.py:49 src/metacity.py:53
+#: src/filetype.py:171 src/metacity.py:49 src/metacity.py:53
 #: src/metacity.py:57 src/metacity.py:61 src/shortcuts.py:91
 #: src/shortcuts.py:190
 msgid "None"
 msgstr "Keiner"
 
-#: src/filetype.py:235
+#: src/filetype.py:228
 #, python-format
 msgid "Open the files of type \"%s\" with:"
 msgstr ""
 
-#: src/filetype.py:264
-#, fuzzy
-msgid "Choose a application"
-msgstr "Anwendungen"
-
-#: src/filetype.py:356
+#: src/filetype.py:297
 #, python-format
 msgid "Select an application to open the type <b>%s</b>"
 msgstr ""
 
-#: src/filetype.py:381
+#: src/filetype.py:311
+msgid "Could not find application"
+msgstr "Anwendung konnte nicht gefunden werden"
+
+#: src/filetype.py:312
 #, python-format
 msgid "Could not find %s"
-msgstr ""
+msgstr "%s konnte nicht gefunden werden"
 
-#: src/filetype.py:382
-#, fuzzy
-msgid "Could not find application"
-msgstr "Anwendungen"
-
-#: src/filetype.py:475
+#: src/filetype.py:390
 msgid "Here you can manage all of the registered types of your system."
-msgstr ""
+msgstr "Hier können sie alle dem System bekannten Dateitypen bearbeiten."
 
-#: src/filetype.py:501
+#: src/filetype.py:416
 msgid "Only show associated type"
 msgstr ""
 
@@ -690,9 +676,8 @@ msgid "Description is here"
 msgstr "Beschreibung hier"
 
 #: src/thirdsoft.py:359
-#, fuzzy
 msgid "Third-Party Software Sources"
-msgstr "Softwarequellen von Drittanbietern"
+msgstr ""
 
 #: src/thirdsoft.py:360
 msgid ""
@@ -706,7 +691,8 @@ msgstr ""
 "Das heißt, nur Anwendungen mit Fehlerkorrekturen kommen ins Repositorium.\n"
 "Indem man DEB-Repositorien von Dritten verwendet, bleibt man immer mit der "
 "aktuellsten Version auf dem neuesten Stand.\n"
-"Nachdem man diese hinzugefügt hat"
+"Nachdem man diese hinzugefügt hat, installiere das/die Programme mit Hilfe "
+"von \"Hinzufügen/Entfernen\"."
 
 #: src/thirdsoft.py:376
 msgid "Details"
@@ -848,9 +834,8 @@ msgid "Enable Metacity's Compositing feature"
 msgstr ""
 
 #: src/metacity.py:69
-#, fuzzy
 msgid "Compositing Manager"
-msgstr "Aktualisierungsverwaltung"
+msgstr ""
 
 #: src/metacity.py:76
 msgid ""
@@ -1103,7 +1088,8 @@ msgid "Cleaned up Failed!"
 msgstr "Aufräumen gescheitert!"
 
 #: src/cleaner.py:235
-msgid "Free up disk space by clearing unneeded packages and the package cache."
+msgid ""
+"Free up disk space by clearing unneeded packages and the package cache."
 msgstr ""
 "Speicherplatz freigeben indem unnötige Pakete und der Paketpuffer gelöscht "
 "werden."
@@ -1125,57 +1111,48 @@ msgid "Copy to ..."
 msgstr "Kopieren nach ..."
 
 #: src/scripts.py:52
-#, fuzzy
 msgid "Copy to Desktop"
-msgstr "Desktop anzeigen"
+msgstr ""
 
 #: src/scripts.py:53
-#, fuzzy
 msgid "Copy to Download"
-msgstr "Download"
+msgstr ""
 
 #: src/scripts.py:54
-#, fuzzy
 msgid "Copy to Home"
-msgstr "Kopieren nach ..."
+msgstr ""
 
 #: src/scripts.py:55
 msgid "Move to ..."
 msgstr "Verschieben nach ..."
 
 #: src/scripts.py:56
-#, fuzzy
 msgid "Move to Desktop"
-msgstr "Desktop anzeigen"
+msgstr ""
 
 #: src/scripts.py:57
-#, fuzzy
 msgid "Move to Download"
-msgstr "Download"
+msgstr "In den Downloads-Ordner verschieben"
 
 #: src/scripts.py:58
-#, fuzzy
 msgid "Move to Home"
-msgstr "Verschieben nach ..."
+msgstr ""
 
 #: src/scripts.py:59
 msgid "Link to ..."
 msgstr "Verknüpfen nach ..."
 
 #: src/scripts.py:60
-#, fuzzy
 msgid "Link to Desktop"
-msgstr "Verknüpfen nach ..."
+msgstr ""
 
 #: src/scripts.py:61
-#, fuzzy
 msgid "Link to Download"
-msgstr "Download"
+msgstr ""
 
 #: src/scripts.py:62
-#, fuzzy
 msgid "Link to Home"
-msgstr "Verknüpfen nach ..."
+msgstr ""
 
 #: src/scripts.py:63
 msgid "Open with gedit"
@@ -1218,15 +1195,11 @@ msgid "Manage Scripts"
 msgstr "Skripte verwalten"
 
 #: src/scripts.py:131
-#, fuzzy
 msgid ""
 "You can do all kinds of tasks with scripts.\n"
 "You can drag and drop from File Manager.\n"
 "'Scripts' will be added to the context menu.\n"
 msgstr ""
-"Du kannst alle Arten von Aufgaben durch Skripts erledigen.\n"
-"Du kannst Dateien aus dem Dateimanager per Drag&Drop hinzufügen.\n"
-"\"Skripte\" werden zum Kontextmenü hinzugefügt.\n"
 
 #: src/scripts.py:156
 msgid "Rebuild System Scripts"
@@ -1321,9 +1294,8 @@ msgid "Do you want take effect immediately?"
 msgstr "Sofort anwenden?"
 
 #: src/nautilus.py:50
-#, fuzzy
 msgid "Cleaning..."
-msgstr "Übertrage..."
+msgstr "Bereinige..."
 
 #: src/nautilus.py:99
 msgid "Show advanced permissions on Permissions tab of File Property"
@@ -1348,9 +1320,8 @@ msgid "Enable OverBurn"
 msgstr "Überbrennen aktivieren"
 
 #: src/nautilus.py:113
-#, fuzzy
 msgid "Default thumbnail icon size (Pixel)"
-msgstr "Standardgröße für Vorschaubilder"
+msgstr ""
 
 #: src/nautilus.py:127
 msgid "Maximum size of the thumbnail cache (Megabyte)"
@@ -1358,11 +1329,11 @@ msgstr ""
 
 #: src/nautilus.py:139
 msgid "Maximum age for the thumbnail in the cache (Day)"
-msgstr ""
+msgstr "Maximales Alter der Vorschaubilder im Cache (in Tagen)"
 
 #: src/nautilus.py:151
 msgid "Thumbnails Settings"
-msgstr ""
+msgstr "Einstellungen für Vorschaubilder"
 
 #: src/nautilus.py:159
 msgid "Nautilus with Open Terminal"
@@ -1384,18 +1355,15 @@ msgstr "Neutilus-Erweiterungen"
 #, python-format
 msgid "Clean up the thumbnails cache (Free %s disk size)"
 msgstr ""
+"Den Cache für Vorschaubilder bereinigen (Macht %s Speicherplatz frei)"
 
 #: src/nautilus.py:190
-#, fuzzy
 msgid "The thumbnails cache will be cleaned, do you wish to continue?"
 msgstr ""
-"Der aktuelle Inhalt wird durch Neuladen verloren gehen!\n"
-"Möchtest Du fortfahren?"
 
 #: src/nautilus.py:197
-#, fuzzy
 msgid "Clean up successfully!"
-msgstr "Erfolgreich aufgeräumt!"
+msgstr ""
 
 #: src/nautilus.py:218
 msgid "Update Failed!"
@@ -1550,9 +1518,9 @@ msgid ""
 "people.\n"
 msgstr ""
 "Fühle Dich frei Deine Softwarequellen nach Deinen Bedürfnissen anzupassen.\n"
-"Klicke \"Update Quellen\" wenn Du die Quellen ändern willst.\n"
-"Klicke \"Übermittle Quellen\" wenn Du Deine Quellen mit anderen teilen "
-"willst.\n"
+"Klicke \"Quellen updaten\" wenn Du die Quellen ändern willst.\n"
+"Klicke \"Quellen übermitteln\" wenn Du Deine Quellen mit anderen teilen "
+"willst\n"
 
 #: src/sourceeditor.py:355
 msgid "Update Sources"
@@ -1679,7 +1647,8 @@ msgstr "Ein in PyGTK geschriebener Bittorrent-Client"
 
 #: src/common/appdata.py:73
 msgid "Store, Sync and Share your files online."
-msgstr "Speichere, synchronisiere und teile Deine Dateien online mit anderen."
+msgstr ""
+"Speichere, synchronisiere und teile Deine Dateien online mit anderen."
 
 #: src/common/appdata.py:74
 msgid "Extensible Tool Platform and Java IDE"
@@ -1687,11 +1656,11 @@ msgstr "Erweiterbare Werkzeugplattform und Java IDE"
 
 #: src/common/appdata.py:75
 msgid ""
-"EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
-"com."
+"EIOffice Personal 2009. Free for Chinese users. See "
+"http://www.evermoresw.com."
 msgstr ""
-"EIOffice Personal 2009. Kostenlos für chinesische Benutzer. Siehe http://www."
-"evermoresw.com"
+"EIOffice Personal 2009. Kostenlos für chinesische Benutzer. Siehe "
+"http://www.evermoresw.com"
 
 #: src/common/appdata.py:76
 msgid "A client for the Windows Live Message network"
@@ -1889,7 +1858,8 @@ msgstr "Ein internationales Wörterbuch"
 msgid ""
 "Swiftweasel is an optimized build of the Mozilla Firefox web browser for "
 "Linux"
-msgstr "Swiftweasel ist eine optimierte Version von Mozilla Firefox für Linux"
+msgstr ""
+"Swiftweasel ist eine optimierte Version von Mozilla Firefox für Linux"
 
 #: src/common/appdata.py:119
 msgid "Multiple GNOME terminals in one window"
@@ -2027,12 +1997,11 @@ msgstr "Der Service ist noch nicht gestartet"
 
 #: data/glade/gui.glade:7
 msgid "Edit Type"
-msgstr ""
+msgstr "Typ bearbeiten"
 
 #: data/glade/gui.glade:99
-#, fuzzy
 msgid "Add Application"
-msgstr "Anwendungen"
+msgstr ""
 
 #: data/glade/gui.glade:144
 msgid "Select an application to view its description."
@@ -2041,9 +2010,6 @@ msgstr ""
 #: data/glade/gui.glade:186
 msgid "_Use a custom command"
 msgstr ""
-
-#~ msgid "Ubuntu Chinese Repository"
-#~ msgstr "Chinesisches Ubuntu-Repositorium"
 
 #~ msgid "Pick Windows"
 #~ msgstr "Fenster auswählen"
@@ -2238,8 +2204,8 @@ msgstr ""
 #~ msgstr ""
 #~ "Sie können das Element ohne Bedenken entfernen, es wird lediglich als "
 #~ "versteckt markiert.\n"
-#~ "Wenn sie es von der Festplatte löschen wollen, klicken sie das Element "
-#~ "mit der rechten Maustaste."
+#~ "Wenn sie es von der Festplatte löschen wollen, klicken sie das Element mit "
+#~ "der rechten Maustaste."
 
 #~ msgid "Show program comments"
 #~ msgstr "Kommentare zum Programm anzeigen"
@@ -2359,8 +2325,7 @@ msgstr ""
 #~ "You can drag and drop from File Manager.\n"
 #~ "\"Create Document\" will be added to the Context Menu.\n"
 #~ msgstr ""
-#~ "Hier können Sie Ihre Dokumentvorlagen verwalten. Dokumentvorlagen "
-#~ "können \n"
+#~ "Hier können Sie Ihre Dokumentvorlagen verwalten. Dokumentvorlagen können \n"
 #~ "einfach hier hereingezogen werden. Die Vorlage wird zu Ihrem Rechtsklick-"
 #~ "Menü \n"
 #~ "hinzugefügt: Dokument anlegen.\n"
@@ -2375,8 +2340,7 @@ msgstr ""
 #~ msgstr "Leichtgewichtige X11-Desktopumgebung: GPicView, PCManFM"
 
 #~ msgid ""
-#~ "<b><big>The information about available software is out-of-date</big></"
-#~ "b>\n"
+#~ "<b><big>The information about available software is out-of-date</big></b>\n"
 #~ "\n"
 #~ "To install software and updates from newly added or changed sources, you "
 #~ "have to reload the information about available software.\n"

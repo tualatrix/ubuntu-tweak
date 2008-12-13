@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2008-12-10 17:14+0800\n"
-"PO-Revision-Date: 2008-11-16 09:41+0000\n"
-"Last-Translator: Omega13 <Unknown>\n"
+"POT-Creation-Date: 2008-12-08 17:11+0800\n"
+"PO-Revision-Date: 2008-12-10 22:55+0000\n"
+"Last-Translator: Nizar Kerkeni <nizar.kerkeni@gmail.com>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-11-17 11:29+0000\n"
+"X-Launchpad-Export-Date: 2008-12-13 05:29+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/autostart.py:45
@@ -72,9 +72,9 @@ msgid ""
 "To permanently delete it, right-click and press \"Delete\"."
 msgstr ""
 "Vous pouvez gérer les programmes lancés au démarrage.\n"
-"Vous pouvez cacher les entrée vue en les sélectionnant et en cliquant sur "
-"\"Enlever\".\n"
-"Pour les supprimer de manière permanente, clic droit puis \"Supprimer\"."
+"Vous pouvez cacher les entrées de la vue en les sélectionnant et en cliquant "
+"sur \"Enlever\".\n"
+"Pour les supprimer définitivement, clic droit puis \"Supprimer\"."
 
 #: src/autostart.py:332
 msgid "Show comments"
@@ -359,10 +359,9 @@ msgstr "Raccourcis"
 msgid "System"
 msgstr "Système"
 
-#: src/mainwindow.py:224 src/filetype.py:474
-#, fuzzy
+#: src/mainwindow.py:224 src/filetype.py:389
 msgid "File Type Manager"
-msgstr "Gestionnaire de mises à jour"
+msgstr ""
 
 #: src/mainwindow.py:225
 msgid "Nautilus"
@@ -413,9 +412,9 @@ msgstr ""
 "  waxzce https://launchpad.net/~waxzce\n"
 "\n"
 "Launchpad Contributions:\n"
-"  ButterflyOfFire https://launchpad.net/~butterflyoffire\n"
-"  Cyril Grageon https://launchpad.net/~cyril-g\n"
-"  David Brisebois https://launchpad.net/~davidbrisebois\n"
+"  Athmane MOKRAOUI (ButterflyOfFire) https://launchpad.net/~butterflyoffire\n"
+"  Cyril GRAGEON https://launchpad.net/~cyril-g\n"
+"  David Brisebois https://launchpad.net/~davidbrisebois-deactivatedaccount\n"
 "  Gabriel Plante https://launchpad.net/~kaallis\n"
 "  Jonathan Ernst https://launchpad.net/~jonathan.ernst\n"
 "  Jérémie78 https://launchpad.net/~jiem78\n"
@@ -433,6 +432,7 @@ msgstr ""
 "  TuniX12 https://launchpad.net/~tunix12\n"
 "  brazzmonkey https://launchpad.net/~samuel-benoit\n"
 "  chaoswizard https://launchpad.net/~chaoswizard\n"
+"  flobe https://launchpad.net/~florianbeau\n"
 "  napster2core https://launchpad.net/~napster2core\n"
 "  royto https://launchpad.net/~royto\n"
 "  thebachman https://launchpad.net/~thebachman\n"
@@ -485,9 +485,11 @@ msgid ""
 "However, you must move your files back into place by yourself.\n"
 "Do you wish to continue?"
 msgstr ""
+"Ubuntu Tweak va restaurer le chemin choisi vers l'emplacement par défaut\n"
+"Cependant, vous devez déplacer vos fichiers vers cet emplacement vous-même\n"
+"Voulez-vous continuez?"
 
 #: src/userdir.py:198
-#, fuzzy
 msgid "Directory"
 msgstr "Répertoire"
 
@@ -519,84 +521,72 @@ msgstr ""
 msgid "Update successfully!"
 msgstr "Mise à jour réussie!"
 
-#: src/filetype.py:35
+#: src/filetype.py:33
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
+
+#: src/filetype.py:34
+msgid "Text"
+msgstr "Texte"
+
+#: src/filetype.py:35
+msgid "Image"
+msgstr "Image"
 
 #: src/filetype.py:36
-msgid "Text"
-msgstr ""
+msgid "Video"
+msgstr "Vidéo"
 
 #: src/filetype.py:37
-#, fuzzy
-msgid "Image"
-msgstr "Outils Image"
+msgid "Application"
+msgstr "Application"
 
 #: src/filetype.py:38
-#, fuzzy
-msgid "Video"
-msgstr "Vidéos"
-
-#: src/filetype.py:39
-#, fuzzy
-msgid "Application"
-msgstr "Programmes"
-
-#: src/filetype.py:40
 msgid "All"
+msgstr "Tout"
+
+#: src/filetype.py:70
+msgid "Categories"
+msgstr "Catégories"
+
+#: src/filetype.py:124
+msgid "File Type"
+msgstr "Type de fichier"
+
+#: src/filetype.py:138
+msgid "Associated Application"
 msgstr ""
 
-#: src/filetype.py:73
-#, fuzzy
-msgid "Categories"
-msgstr "Toutes les catégories"
-
-#: src/filetype.py:130
-#, fuzzy
-msgid "File Type"
-msgstr "Gestionnaire de mises à jour"
-
-#: src/filetype.py:144
-#, fuzzy
-msgid "Associated Application"
-msgstr "Programmes"
-
-#: src/filetype.py:177 src/metacity.py:49 src/metacity.py:53
+#: src/filetype.py:171 src/metacity.py:49 src/metacity.py:53
 #: src/metacity.py:57 src/metacity.py:61 src/shortcuts.py:91
 #: src/shortcuts.py:190
 msgid "None"
 msgstr "Aucun"
 
-#: src/filetype.py:235
+#: src/filetype.py:228
 #, python-format
 msgid "Open the files of type \"%s\" with:"
 msgstr ""
 
-#: src/filetype.py:264
-#, fuzzy
-msgid "Choose a application"
-msgstr "Programmes"
-
-#: src/filetype.py:356
+#: src/filetype.py:297
 #, python-format
 msgid "Select an application to open the type <b>%s</b>"
 msgstr ""
 
-#: src/filetype.py:381
+#: src/filetype.py:311
+msgid "Could not find application"
+msgstr "Impossible de trouver l'application"
+
+#: src/filetype.py:312
 #, python-format
 msgid "Could not find %s"
-msgstr ""
+msgstr "Impossible de trouver %s"
 
-#: src/filetype.py:382
-#, fuzzy
-msgid "Could not find application"
-msgstr "Programmes"
-
-#: src/filetype.py:475
+#: src/filetype.py:390
 msgid "Here you can manage all of the registered types of your system."
 msgstr ""
 
-#: src/filetype.py:501
+#: src/filetype.py:416
 msgid "Only show associated type"
 msgstr ""
 
@@ -692,9 +682,8 @@ msgid "Description is here"
 msgstr "Description ici"
 
 #: src/thirdsoft.py:359
-#, fuzzy
 msgid "Third-Party Software Sources"
-msgstr "Sources de logiciels de tierce-partie"
+msgstr ""
 
 #: src/thirdsoft.py:360
 msgid ""
@@ -709,8 +698,8 @@ msgstr ""
 "dépôt.\n"
 "En utilisant des dépôt DEB de tierce parties , Vous pouvez en avoir toujours "
 "les dernières versions.\n"
-"Après l'ajout de ces dépôts, installez ces applications avec Supprimer/"
-"Ajouter."
+"Après l'ajout de ces dépôts, installez ces applications avec "
+"Supprimer/Ajouter."
 
 #: src/thirdsoft.py:376
 msgid "Details"
@@ -734,7 +723,8 @@ msgstr "Ne jamais afficher cette fenêtre de dialogue"
 
 #: src/thirdsoft.py:444 src/sourceeditor.py:403
 msgid "You can install the new applications through Add/Remove."
-msgstr "Vous pouvait installer de nouvelles application par Ajouter/Supprimer"
+msgstr ""
+"Vous pouvait installer de nouvelles application par Ajouter/Supprimer"
 
 #: src/thirdsoft.py:445 src/sourceeditor.py:404
 msgid "The software information is up-to-date now"
@@ -853,9 +843,8 @@ msgid "Enable Metacity's Compositing feature"
 msgstr ""
 
 #: src/metacity.py:69
-#, fuzzy
 msgid "Compositing Manager"
-msgstr "Gestionnaire de mises à jour"
+msgstr "Gestionnaire de composition"
 
 #: src/metacity.py:76
 msgid ""
@@ -1108,7 +1097,8 @@ msgid "Cleaned up Failed!"
 msgstr "Nettoyage en erreur!"
 
 #: src/cleaner.py:235
-msgid "Free up disk space by clearing unneeded packages and the package cache."
+msgid ""
+"Free up disk space by clearing unneeded packages and the package cache."
 msgstr ""
 "Libérer de l'espace disque en effaçant les paquets inutiles ainsi que le "
 "cache des paquets."
@@ -1130,57 +1120,48 @@ msgid "Copy to ..."
 msgstr "Copier vers ..."
 
 #: src/scripts.py:52
-#, fuzzy
 msgid "Copy to Desktop"
-msgstr "Afficher le Bureau"
+msgstr "Copier vers le Bureau"
 
 #: src/scripts.py:53
-#, fuzzy
 msgid "Copy to Download"
-msgstr "Télécharger"
+msgstr "Copier vers le dossier Téléchargements"
 
 #: src/scripts.py:54
-#, fuzzy
 msgid "Copy to Home"
-msgstr "Copier vers ..."
+msgstr "Copier vers le dossier personnel"
 
 #: src/scripts.py:55
 msgid "Move to ..."
 msgstr "Déplacer vers ..."
 
 #: src/scripts.py:56
-#, fuzzy
 msgid "Move to Desktop"
-msgstr "Afficher le Bureau"
+msgstr "Déplacer vers le Bureau"
 
 #: src/scripts.py:57
-#, fuzzy
 msgid "Move to Download"
-msgstr "Télécharger"
+msgstr "Déplacer vers le dossier Téléchargements"
 
 #: src/scripts.py:58
-#, fuzzy
 msgid "Move to Home"
-msgstr "Déplacer vers ..."
+msgstr "Dépalcer vers le dossier personnel"
 
 #: src/scripts.py:59
 msgid "Link to ..."
 msgstr "Lier à ..."
 
 #: src/scripts.py:60
-#, fuzzy
 msgid "Link to Desktop"
-msgstr "Lier à ..."
+msgstr "Lier vers le Bureau"
 
 #: src/scripts.py:61
-#, fuzzy
 msgid "Link to Download"
-msgstr "Télécharger"
+msgstr "Lier vers le dossier Téléchargements"
 
 #: src/scripts.py:62
-#, fuzzy
 msgid "Link to Home"
-msgstr "Lier à ..."
+msgstr "Lier vers le dossier personnel"
 
 #: src/scripts.py:63
 msgid "Open with gedit"
@@ -1200,11 +1181,11 @@ msgstr "Rechercher dans le dossier courant"
 
 #: src/scripts.py:67
 msgid "Convert image to JPG"
-msgstr ""
+msgstr "Convertir l'image en JPG"
 
 #: src/scripts.py:68
 msgid "Convert image to PNG"
-msgstr ""
+msgstr "Convertir l'image en PNG"
 
 #: src/scripts.py:69
 msgid "Set image as wallpaper"
@@ -1223,16 +1204,11 @@ msgid "Manage Scripts"
 msgstr "Gérer les Scripts"
 
 #: src/scripts.py:131
-#, fuzzy
 msgid ""
 "You can do all kinds of tasks with scripts.\n"
 "You can drag and drop from File Manager.\n"
 "'Scripts' will be added to the context menu.\n"
 msgstr ""
-"Vous pouver faire toutes sortes de choses\n"
-"avec les scripts.\n"
-"Vous pouver glisser/déposer depuis le gestionnaire de fichiers.\n"
-"\"Scripts\" va être ajouter au menu contextuel.\n"
 
 #: src/scripts.py:156
 msgid "Rebuild System Scripts"
@@ -1276,7 +1252,8 @@ msgstr "Écran de veille"
 
 #: src/gnomesettings.py:66
 msgid "Enable user switching when screen is locked."
-msgstr "Permettre le changement d'utilisateur lorsque l'écran est verrouillé."
+msgstr ""
+"Permettre le changement d'utilisateur lorsque l'écran est verrouillé."
 
 #: src/gnomesettings.py:70
 msgid "Enable system-wide \"Recently Documents\" list"
@@ -1327,9 +1304,8 @@ msgid "Do you want take effect immediately?"
 msgstr "Voulez-vous prendre l'effet immédiatement ?"
 
 #: src/nautilus.py:50
-#, fuzzy
 msgid "Cleaning..."
-msgstr "Chargement..."
+msgstr "Netoyage en cours..."
 
 #: src/nautilus.py:99
 msgid "Show advanced permissions on Permissions tab of File Property"
@@ -1354,9 +1330,8 @@ msgid "Enable OverBurn"
 msgstr "Activer l'OverBurn"
 
 #: src/nautilus.py:113
-#, fuzzy
 msgid "Default thumbnail icon size (Pixel)"
-msgstr "Taille par défaut des icônes des vignettes"
+msgstr ""
 
 #: src/nautilus.py:127
 msgid "Maximum size of the thumbnail cache (Megabyte)"
@@ -1392,16 +1367,12 @@ msgid "Clean up the thumbnails cache (Free %s disk size)"
 msgstr ""
 
 #: src/nautilus.py:190
-#, fuzzy
 msgid "The thumbnails cache will be cleaned, do you wish to continue?"
 msgstr ""
-"Le contenu actuel sera perdu après rechargement!!!\n"
-"Souhaitez-vous continuer ?"
 
 #: src/nautilus.py:197
-#, fuzzy
 msgid "Clean up successfully!"
-msgstr "Nettoyage réussi!"
+msgstr "Nettoyage réussit!"
 
 #: src/nautilus.py:218
 msgid "Update Failed!"
@@ -1485,7 +1456,8 @@ msgstr ""
 
 #: src/powermanager.py:54
 msgid "The CPU frequency policy when on battery power"
-msgstr "Politique de gestion de la fréquence du processeur quand sur batterie"
+msgstr ""
+"Politique de gestion de la fréquence du processeur quand sur batterie"
 
 #: src/sourceeditor.py:62 src/sourceeditor.py:67
 msgid "Choose the sources"
@@ -1496,6 +1468,8 @@ msgid ""
 "You can read the title and comment to determine which source is suitable for "
 "you."
 msgstr ""
+"Vous pouvez lire le titre et les commentaires pour déterminer la source que "
+"vous convient."
 
 #: src/sourceeditor.py:84
 msgid "Detail"
@@ -1510,6 +1484,8 @@ msgid ""
 "You can submit your sources to the server, so that other people can share "
 "with your sources."
 msgstr ""
+"Vous pouvez envoyer vos sources au serveur pour que d'autres personnes "
+"puissent les partager."
 
 #: src/sourceeditor.py:113
 msgid "_Source Title:"
@@ -1525,7 +1501,7 @@ msgstr "Entrer le tire de votre sourcee, comme \"Ubuntu Official Repostory\""
 
 #: src/sourceeditor.py:125
 msgid "If the locale isn't correct, you can edit by you self"
-msgstr ""
+msgstr "Si la locale n'est pas correcte, vous pouvez l'éditez par vous même."
 
 #: src/sourceeditor.py:140
 msgid "Submit"
@@ -1592,6 +1568,8 @@ msgid ""
 "Your sources will be reviewed and open for others soon.\n"
 "Thank you!"
 msgstr ""
+"Vous sources seront revues et ouvertes pour les autres prochainement.\n"
+"Merci!"
 
 #: src/sourceeditor.py:454
 msgid "Sumit successfully"
@@ -1691,8 +1669,8 @@ msgstr "Plateforme d'outils et IDE Java extensibles"
 
 #: src/common/appdata.py:75
 msgid ""
-"EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
-"com."
+"EIOffice Personal 2009. Free for Chinese users. See "
+"http://www.evermoresw.com."
 msgstr ""
 "EIOffice Personal 2009. Libre pour les utilisateurs chinois. Rendez-vous sur "
 "http://www.evermoresw.com."
@@ -1711,7 +1689,8 @@ msgstr ""
 
 #: src/common/appdata.py:78
 msgid "KDE IM client using Tencent QQ protocol"
-msgstr "Client de messagerie instantanée KDE utilisant le protocole Tencent QQ"
+msgstr ""
+"Client de messagerie instantanée KDE utilisant le protocole Tencent QQ"
 
 #: src/common/appdata.py:79
 msgid "GTK+ based flexible audio player, similar to Amarok"
@@ -1794,7 +1773,7 @@ msgstr "Port d'entrée intelligent pour Linux / Unix OS"
 
 #: src/common/appdata.py:97
 msgid "It is a PinYin engine for IBus."
-msgstr ""
+msgstr "C'est le moteur PinYin pour IBus."
 
 #: src/common/appdata.py:98
 msgid ""
@@ -1858,9 +1837,9 @@ msgid ""
 "QQ all at once."
 msgstr ""
 "Pidgin est un client de messagerie graphique modulaire basé sur libpurple "
-"capable de se connecter à AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, SIP/"
-"SIMPLE, Novell GroupWise, Lotus Sametime, Bonjour, Zephyr, MySpaceIM, Gadu-"
-"Gadu, and QQ en même temps."
+"capable de se connecter à AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, "
+"SIP/SIMPLE, Novell GroupWise, Lotus Sametime, Bonjour, Zephyr, MySpaceIM, "
+"Gadu-Gadu, and QQ en même temps."
 
 #: src/common/appdata.py:112
 msgid "Run your Windows programs on Linux"
@@ -2032,23 +2011,19 @@ msgstr "Le service ne s'est pas encore initialiser"
 
 #: data/glade/gui.glade:7
 msgid "Edit Type"
-msgstr ""
+msgstr "Modifier le type"
 
 #: data/glade/gui.glade:99
-#, fuzzy
 msgid "Add Application"
-msgstr "Programmes"
+msgstr "Ajouter une application"
 
 #: data/glade/gui.glade:144
 msgid "Select an application to view its description."
-msgstr ""
+msgstr "Sélectionnez une application pour afficher sa description"
 
 #: data/glade/gui.glade:186
 msgid "_Use a custom command"
-msgstr ""
-
-#~ msgid "Ubuntu Chinese Repository"
-#~ msgstr "Dépôts Chinois d'Ubuntu"
+msgstr "_Utiliser une commande personnalisée"
 
 #~ msgid "Pick Windows"
 #~ msgstr "Sélection des fenêtres"
@@ -2152,8 +2127,7 @@ msgstr ""
 #~ msgstr ""
 #~ "Vous pouvez  supprimer cet élément sans risque, il sera seulement marqué "
 #~ "comme masqué.\n"
-#~ "Si vous souhaitez le supprimer du disque, faites un clic droit sur "
-#~ "l'élément."
+#~ "Si vous souhaitez le supprimer du disque, faites un clic droit sur l'élément."
 
 #~ msgid "Show program comments"
 #~ msgstr "Afficher les commentaires du programme"
@@ -2232,13 +2206,12 @@ msgstr ""
 
 #~ msgid "Use Home Folder as the desktop(Logout for changes to take effect)"
 #~ msgstr ""
-#~ "Utiliser le dossier personnel comme bureau (nécessite une déconnexion "
-#~ "pour appliquer les changements)"
+#~ "Utiliser le dossier personnel comme bureau (nécessite une déconnexion pour "
+#~ "appliquer les changements)"
 
 #~ msgid "Show advanced Permissions on File Property pages"
 #~ msgstr ""
-#~ "Afficher les permissions avancées dans les pages des propriétés  de "
-#~ "fichiers"
+#~ "Afficher les permissions avancées dans les pages des propriétés  de fichiers"
 
 #~ msgid "Show CPU frequency control option"
 #~ msgstr "Afficher l'option de contrôle de la fréquence du CPU"
@@ -2267,8 +2240,8 @@ msgstr ""
 #~ "En configurant les raccourcis clavier, vous obtenez un accès plus rapide "
 #~ "aux\n"
 #~ "applications dont vous avez besoin.\n"
-#~ "Entrez la commande et réglez les touches désirées. il est facile de créer "
-#~ "un raccourci.\n"
+#~ "Entrez la commande et réglez les touches désirées. il est facile de créer un "
+#~ "raccourci.\n"
 #~ "Utilisez <b>Supprimer</b> ou <b>Retour Arrière</b> pour effacer la touche."
 
 #~ msgid ""
@@ -2290,20 +2263,18 @@ msgstr ""
 #~ msgstr "Environnement du bureau X11 léger: GPicView, PCManFM"
 
 #~ msgid ""
-#~ "<b><big>The information about available software is out-of-date</big></"
-#~ "b>\n"
+#~ "<b><big>The information about available software is out-of-date</big></b>\n"
 #~ "\n"
 #~ "To install software and updates from newly added or changed sources, you "
 #~ "have to reload the information about available software.\n"
 #~ "\n"
 #~ "You need a working internet connection to continue."
 #~ msgstr ""
-#~ "<b><big>Les informations sur les logiciels disponibles sont obsolètes</"
-#~ "big></b>\n"
+#~ "<b><big>Les informations sur les logiciels disponibles sont "
+#~ "obsolètes</big></b>\n"
 #~ "\n"
-#~ "Pour installer de nouveaux logiciels ou des mises à jour à partir de "
-#~ "dépôts modifiés ou nouvellement ajoutés, vous devez recharger ces "
-#~ "informations.\n"
+#~ "Pour installer de nouveaux logiciels ou des mises à jour à partir de dépôts "
+#~ "modifiés ou nouvellement ajoutés, vous devez recharger ces informations.\n"
 #~ "\n"
 #~ "Une connexion internet fonctionnelle sera nécessaire."
 
