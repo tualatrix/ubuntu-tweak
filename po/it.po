@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2008-12-08 17:11+0800\n"
+"POT-Creation-Date: 2008-12-13 21:55+0800\n"
 "PO-Revision-Date: 2008-12-08 14:45+0000\n"
 "Last-Translator: Daniele Napolitano <dnax88@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -37,7 +37,7 @@ msgstr "Modifica programma d'avvio"
 msgid "New Startup Program"
 msgstr "Nuovo programma d'avvio"
 
-#: src/autostart.py:69 data/glade/gui.glade:171
+#: src/autostart.py:69 data/glade/gui.glade:173
 msgid "_Browse..."
 msgstr "_Sfoglia..."
 
@@ -72,8 +72,8 @@ msgid ""
 "To permanently delete it, right-click and press \"Delete\"."
 msgstr ""
 "Qui puoi gestire quali programmi vengono lanciati dopo il login.\n"
-"Puoi nascondere elementi dalla vista selezionando e cliccando su "
-"\"Rimuovi\".\n"
+"Puoi nascondere elementi dalla vista selezionando e cliccando su \"Rimuovi"
+"\".\n"
 "Per eliminarlo permanentemente, fai click-destro e clicca su \"Elimina\"."
 
 #: src/autostart.py:332
@@ -232,7 +232,7 @@ msgstr "Inserire la propria password per compiere azioni da amministratore"
 msgid "Select a folder"
 msgstr "Seleziona una cartella"
 
-#: src/ScriptWorker.py:170
+#: src/ScriptWorker.py:171
 msgid "Please select a target(files or folders)."
 msgstr "Selezionare una destinazione (file o cartelle)."
 
@@ -356,7 +356,7 @@ msgstr "Scorciatoie"
 msgid "System"
 msgstr "Sistema"
 
-#: src/mainwindow.py:224 src/filetype.py:389
+#: src/mainwindow.py:224 src/filetype.py:474
 msgid "File Type Manager"
 msgstr ""
 
@@ -520,72 +520,77 @@ msgstr ""
 msgid "Update successfully!"
 msgstr "Aggiornamento completato."
 
-#: src/filetype.py:33
+#: src/filetype.py:35
 msgid "Audio"
 msgstr "Audio"
 
-#: src/filetype.py:34
+#: src/filetype.py:36
 msgid "Text"
 msgstr "Testo"
 
-#: src/filetype.py:35
+#: src/filetype.py:37
 msgid "Image"
 msgstr "Immagine"
 
-#: src/filetype.py:36
+#: src/filetype.py:38
 msgid "Video"
 msgstr "Video"
 
-#: src/filetype.py:37
+#: src/filetype.py:39
 msgid "Application"
 msgstr "Applicazione"
 
-#: src/filetype.py:38
+#: src/filetype.py:40
 msgid "All"
 msgstr ""
 
-#: src/filetype.py:70
+#: src/filetype.py:73
 msgid "Categories"
 msgstr "Categorie"
 
-#: src/filetype.py:124
+#: src/filetype.py:130
 msgid "File Type"
 msgstr "Tipo di file"
 
-#: src/filetype.py:138
+#: src/filetype.py:144
 msgid "Associated Application"
 msgstr ""
 
-#: src/filetype.py:171 src/metacity.py:49 src/metacity.py:53
-#: src/metacity.py:57 src/metacity.py:61 src/shortcuts.py:91
-#: src/shortcuts.py:190
+#: src/filetype.py:177 src/filetype.py:212 src/metacity.py:49
+#: src/metacity.py:53 src/metacity.py:57 src/metacity.py:61
+#: src/shortcuts.py:91 src/shortcuts.py:190
 msgid "None"
 msgstr "Nessuna"
 
-#: src/filetype.py:228
+#: src/filetype.py:240
 #, python-format
 msgid "Open the files of type \"%s\" with:"
 msgstr ""
 
-#: src/filetype.py:297
+#: src/filetype.py:269
+#, fuzzy
+msgid "Choose a application"
+msgstr "Impossibile trovare l'applicazione"
+
+#: src/filetype.py:358
 #, python-format
 msgid "Select an application to open the type <b>%s</b>"
 msgstr ""
 
-#: src/filetype.py:311
-msgid "Could not find application"
-msgstr "Impossibile trovare l'applicazione"
-
-#: src/filetype.py:312
+#: src/filetype.py:383
 #, python-format
 msgid "Could not find %s"
 msgstr "Impossibile trovare %s"
 
-#: src/filetype.py:390
+#: src/filetype.py:384
+msgid "Could not find application"
+msgstr "Impossibile trovare l'applicazione"
+
+#: src/filetype.py:475
 msgid "Here you can manage all of the registered types of your system."
 msgstr ""
 
-#: src/filetype.py:416
+#: src/filetype.py:501
 msgid "Only show associated type"
 msgstr ""
 
@@ -1096,8 +1101,7 @@ msgid "Cleaned up Failed!"
 msgstr "Impossibile ripulire."
 
 #: src/cleaner.py:235
-msgid ""
-"Free up disk space by clearing unneeded packages and the package cache."
+msgid "Free up disk space by clearing unneeded packages and the package cache."
 msgstr ""
 "Libera spazio dal disco pulendo i pacchetti non necessari e la cache dei "
 "pacchetti."
@@ -1452,8 +1456,7 @@ msgstr ""
 
 #: src/powermanager.py:54
 msgid "The CPU frequency policy when on battery power"
-msgstr ""
-"Comportamento della variazione freq.CPU con alimentazione da batteria"
+msgstr "Comportamento della variazione freq.CPU con alimentazione da batteria"
 
 #: src/sourceeditor.py:62 src/sourceeditor.py:67
 msgid "Choose the sources"
@@ -1664,11 +1667,11 @@ msgstr "Piattaforma estensibile e IDE Java"
 
 #: src/common/appdata.py:75
 msgid ""
-"EIOffice Personal 2009. Free for Chinese users. See "
-"http://www.evermoresw.com."
+"EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
+"com."
 msgstr ""
-"EIOffice Personal 2009. Gratuito per utenti cinesi. Visita "
-"http://www.evermoresw.com."
+"EIOffice Personal 2009. Gratuito per utenti cinesi. Visita http://www."
+"evermoresw.com."
 
 #: src/common/appdata.py:76
 msgid "A client for the Windows Live Message network"
@@ -1880,8 +1883,7 @@ msgstr "Pacchetti restricted comunemente usati"
 
 #: src/common/appdata.py:122 src/common/appdata.py:123
 msgid "A feature rich, high performance virtualization software"
-msgstr ""
-"Un software di virtualizzazione ricco di opzioni e ad alte prestazioni"
+msgstr "Un software di virtualizzazione ricco di opzioni e ad alte prestazioni"
 
 #: src/common/appdata.py:124
 msgid "Read, capture, broadcast your multimedia streams"
@@ -2009,15 +2011,15 @@ msgstr "Il servizio non è stato inizializzato ancora."
 msgid "Edit Type"
 msgstr "Modifica tipo"
 
-#: data/glade/gui.glade:99
+#: data/glade/gui.glade:100
 msgid "Add Application"
 msgstr "Aggiungi applicazione"
 
-#: data/glade/gui.glade:144
+#: data/glade/gui.glade:146
 msgid "Select an application to view its description."
 msgstr ""
 
-#: data/glade/gui.glade:186
+#: data/glade/gui.glade:188
 msgid "_Use a custom command"
 msgstr ""
 
@@ -2070,8 +2072,8 @@ msgstr ""
 #~ "You can safely delete the item, it will only been marked as hidden.\n"
 #~ "If you want to delete it from disk, right-click the item."
 #~ msgstr ""
-#~ "È possibile rimuovere con sicurezza l'elemento, sarà soltanto marcato come "
-#~ "nascosto.\n"
+#~ "È possibile rimuovere con sicurezza l'elemento, sarà soltanto marcato "
+#~ "come nascosto.\n"
 #~ "Se si desidera eliminarlo dal disco, selezionare l'elemento con il tasto "
 #~ "destro del mouse."
 
@@ -2172,7 +2174,8 @@ msgstr ""
 #~ msgstr "Ambiente desktop X11 leggero: GPicView, PCManFM"
 
 #~ msgid ""
-#~ "<b><big>The information about available software is out-of-date</big></b>\n"
+#~ "<b><big>The information about available software is out-of-date</big></"
+#~ "b>\n"
 #~ "\n"
 #~ "To install software and updates from newly added or changed sources, you "
 #~ "have to reload the information about available software.\n"
@@ -2221,12 +2224,14 @@ msgstr ""
 #~ "Si è verificato un errore imprevisto."
 
 #~ msgid ""
-#~ "You can always keep up-to-date with the latest version of an application.\n"
+#~ "You can always keep up-to-date with the latest version of an "
+#~ "application.\n"
 #~ "And new applications can be installed through Add/Remove."
 #~ msgstr ""
 #~ "È possibile restare sempre aggiornati con l'ultima versione di "
 #~ "un'applicazione.\n"
-#~ "Le nuove applicazioni possono essere installate attraverso Aggiungi/Rimuovi."
+#~ "Le nuove applicazioni possono essere installate attraverso Aggiungi/"
+#~ "Rimuovi."
 
 #~ msgid "Source Details"
 #~ msgstr "Dettagli fonte"
@@ -2270,8 +2275,8 @@ msgstr ""
 #~ "<span size=\"x-large\">This feature isn't available in current "
 #~ "distrobution</span>"
 #~ msgstr ""
-#~ "<span size=\"x-large\">Questa funzione non è disponibile nella distribuzione "
-#~ "attuale</span>"
+#~ "<span size=\"x-large\">Questa funzione non è disponibile nella "
+#~ "distribuzione attuale</span>"
 
 #~ msgid "Window Settings"
 #~ msgstr "Impostazioni finestra"
@@ -2285,7 +2290,6 @@ msgstr ""
 #~ msgid "A simple interface for installing applications."
 #~ msgstr "Una semplice interfaccia per installare applicazioni."
 
-#, python-format
 #~ msgid ""
 #~ "<b>%s</b>\n"
 #~ "Take %s KB disk space"
@@ -2293,15 +2297,12 @@ msgstr ""
 #~ "<b>%s</b>\n"
 #~ "Prende %s KB di spazio sul disco"
 
-#, python-format
 #~ msgid "%d Package selected to remove"
 #~ msgstr "%d Pacchetto selezionato per la rimozione"
 
-#, python-format
 #~ msgid "%d Packages selected to remove"
 #~ msgstr "%d pacchetti selezionati per la rimozione"
 
-#, python-format
 #~ msgid "%d KB Space will be free"
 #~ msgstr "%d KB di spazio verranno liberati"
 

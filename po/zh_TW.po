@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2008-12-08 17:11+0800\n"
+"POT-Creation-Date: 2008-12-13 21:55+0800\n"
 "PO-Revision-Date: 2008-12-13 05:24+0000\n"
 "Last-Translator: TualatriX <Unknown>\n"
 "Language-Team: TualatriX <tualatrix@gmail.com>\n"
@@ -35,7 +35,7 @@ msgstr "修改初始啟動程式"
 msgid "New Startup Program"
 msgstr "新增初始啟動程式"
 
-#: src/autostart.py:69 data/glade/gui.glade:171
+#: src/autostart.py:69 data/glade/gui.glade:173
 msgid "_Browse..."
 msgstr "瀏覽(_B)..."
 
@@ -227,7 +227,7 @@ msgstr "輸入你的密碼來執行管理權限的任務"
 msgid "Select a folder"
 msgstr "選擇資料夾"
 
-#: src/ScriptWorker.py:170
+#: src/ScriptWorker.py:171
 msgid "Please select a target(files or folders)."
 msgstr "請選擇一個目標（檔案或資料夾）。"
 
@@ -349,7 +349,7 @@ msgstr "快速鍵"
 msgid "System"
 msgstr "系統設定"
 
-#: src/mainwindow.py:224 src/filetype.py:389
+#: src/mainwindow.py:224 src/filetype.py:474
 msgid "File Type Manager"
 msgstr "檔案類型管理員"
 
@@ -473,72 +473,77 @@ msgstr ""
 msgid "Update successfully!"
 msgstr "更新成功！"
 
-#: src/filetype.py:33
+#: src/filetype.py:35
 msgid "Audio"
 msgstr "音訊"
 
-#: src/filetype.py:34
+#: src/filetype.py:36
 msgid "Text"
 msgstr "文字"
 
-#: src/filetype.py:35
+#: src/filetype.py:37
 msgid "Image"
 msgstr "圖片"
 
-#: src/filetype.py:36
+#: src/filetype.py:38
 msgid "Video"
 msgstr "視訊"
 
-#: src/filetype.py:37
+#: src/filetype.py:39
 msgid "Application"
 msgstr "應用程式"
 
-#: src/filetype.py:38
+#: src/filetype.py:40
 msgid "All"
 msgstr "全部"
 
-#: src/filetype.py:70
+#: src/filetype.py:73
 msgid "Categories"
 msgstr "類別"
 
-#: src/filetype.py:124
+#: src/filetype.py:130
 msgid "File Type"
 msgstr "檔案類型"
 
-#: src/filetype.py:138
+#: src/filetype.py:144
 msgid "Associated Application"
 msgstr "已關聯的應用程序"
 
-#: src/filetype.py:171 src/metacity.py:49 src/metacity.py:53
-#: src/metacity.py:57 src/metacity.py:61 src/shortcuts.py:91
-#: src/shortcuts.py:190
+#: src/filetype.py:177 src/filetype.py:212 src/metacity.py:49
+#: src/metacity.py:53 src/metacity.py:57 src/metacity.py:61
+#: src/shortcuts.py:91 src/shortcuts.py:190
 msgid "None"
 msgstr "沒有"
 
-#: src/filetype.py:228
+#: src/filetype.py:240
 #, python-format
 msgid "Open the files of type \"%s\" with:"
 msgstr "用此應用程式打開\"%s\"類型的檔案："
 
-#: src/filetype.py:297
+#: src/filetype.py:269
+#, fuzzy
+msgid "Choose a application"
+msgstr "找不到應用程式"
+
+#: src/filetype.py:358
 #, python-format
 msgid "Select an application to open the type <b>%s</b>"
 msgstr "選擇一個應用程序來打開類型<b>%s</b>"
 
-#: src/filetype.py:311
-msgid "Could not find application"
-msgstr "找不到應用程式"
-
-#: src/filetype.py:312
+#: src/filetype.py:383
 #, python-format
 msgid "Could not find %s"
 msgstr "無法找到 %s"
 
-#: src/filetype.py:390
+#: src/filetype.py:384
+msgid "Could not find application"
+msgstr "找不到應用程式"
+
+#: src/filetype.py:475
 msgid "Here you can manage all of the registered types of your system."
 msgstr "在這裡你可以管理所有系統中已註冊的檔案類型"
 
-#: src/filetype.py:416
+#: src/filetype.py:501
 msgid "Only show associated type"
 msgstr "僅顯示已關聯的類型"
 
@@ -796,7 +801,8 @@ msgstr "視窗管理程式"
 msgid ""
 "To enable the compositing feature of metacity, You should disable the Visual "
 "Effects in \"Appearance\" by yourself."
-msgstr "為了啟用Metacity的合成視窗特性，你需要手動禁用“外觀設定”裡的“視覺特效”。"
+msgstr ""
+"為了啟用Metacity的合成視窗特性，你需要手動禁用“外觀設定”裡的“視覺特效”。"
 
 #: src/session.py:39
 msgid "Splash Screen (Click Below Image)"
@@ -1041,8 +1047,7 @@ msgid "Cleaned up Failed!"
 msgstr "清理失敗！"
 
 #: src/cleaner.py:235
-msgid ""
-"Free up disk space by clearing unneeded packages and the package cache."
+msgid "Free up disk space by clearing unneeded packages and the package cache."
 msgstr "清除未使用的套件及快取來釋放硬碟空間。"
 
 #: src/cleaner.py:253
@@ -1598,9 +1603,10 @@ msgstr "可延伸的工具平台與 Java 整合開發環境"
 
 #: src/common/appdata.py:75
 msgid ""
-"EIOffice Personal 2009. Free for Chinese users. See "
-"http://www.evermoresw.com."
-msgstr "EIOffice 個人版 2009. 免費提供給中文使用者. 請見http://www.evermoresw.com."
+"EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
+"com."
+msgstr ""
+"EIOffice 個人版 2009. 免費提供給中文使用者. 請見http://www.evermoresw.com."
 
 #: src/common/appdata.py:76
 msgid "A client for the Windows Live Message network"
@@ -1756,9 +1762,9 @@ msgid ""
 "Novell GroupWise, Lotus Sametime, Bonjour, Zephyr, MySpaceIM, Gadu-Gadu, and "
 "QQ all at once."
 msgstr ""
-"Pidgin是一套基於libpurple的圖形化即時通訊軟體，相容以下各種通訊協定 : AIM, MSN, Yahoo!, XMPP, ICQ, "
-"IRC, SILC, SIP/SIMPLE, Novell GroupWise, Lotus Sametime, Bonjour, Zephyr, "
-"MySpaceIM, Gadu-Gadu, 和 QQ."
+"Pidgin是一套基於libpurple的圖形化即時通訊軟體，相容以下各種通訊協定 : AIM, "
+"MSN, Yahoo!, XMPP, ICQ, IRC, SILC, SIP/SIMPLE, Novell GroupWise, Lotus "
+"Sametime, Bonjour, Zephyr, MySpaceIM, Gadu-Gadu, 和 QQ."
 
 #: src/common/appdata.py:112
 msgid "Run your Windows programs on Linux"
@@ -1925,15 +1931,15 @@ msgstr "服務尚未初始化"
 msgid "Edit Type"
 msgstr "編輯類型"
 
-#: data/glade/gui.glade:99
+#: data/glade/gui.glade:100
 msgid "Add Application"
 msgstr "新增應用程式"
 
-#: data/glade/gui.glade:144
+#: data/glade/gui.glade:146
 msgid "Select an application to view its description."
 msgstr "選取一程式來檢視它的描述。"
 
-#: data/glade/gui.glade:186
+#: data/glade/gui.glade:188
 msgid "_Use a custom command"
 msgstr "使用自訂指令(_U)"
 
@@ -2036,7 +2042,8 @@ msgstr "使用自訂指令(_U)"
 #~ "\n"
 #~ "Ubuntu Tweak is currently only for the GNOME Desktop Environment.\n"
 #~ "\n"
-#~ "Although this application is only in early stages, I'll keep developing it.\n"
+#~ "Although this application is only in early stages, I'll keep developing "
+#~ "it.\n"
 #~ "\n"
 #~ "If you have any suggestions, Please visit the website in \"About\" and \n"
 #~ "share ideas with me. \n"
@@ -2311,7 +2318,8 @@ msgstr "使用自訂指令(_U)"
 #~ msgstr "P2P客户端"
 
 #~ msgid ""
-#~ "<b><big>The information about available software is out-of-date</big></b>\n"
+#~ "<b><big>The information about available software is out-of-date</big></"
+#~ "b>\n"
 #~ "\n"
 #~ "To install software and updates from newly added or changed sources, you "
 #~ "have to reload the information about available software.\n"
@@ -2320,7 +2328,8 @@ msgstr "使用自訂指令(_U)"
 #~ msgstr ""
 #~ "<b><big>可安裝軟體的資訊已過時</big></b>\n"
 #~ "\n"
-#~ "您需要重新載入可安裝軟體的資訊，才可以由新加入或已更變的來源安裝和更新軟體。\n"
+#~ "您需要重新載入可安裝軟體的資訊，才可以由新加入或已更變的來源安裝和更新軟"
+#~ "體。\n"
 #~ "\n"
 #~ "你需要連接網際網路才能繼續。"
 
@@ -2361,7 +2370,8 @@ msgstr "使用自訂指令(_U)"
 #~ "一個未知錯誤已經發生了。"
 
 #~ msgid ""
-#~ "You can always keep up-to-date with the latest version of an application.\n"
+#~ "You can always keep up-to-date with the latest version of an "
+#~ "application.\n"
 #~ "And new applications can be installed through Add/Remove."
 #~ msgstr ""
 #~ "你可以一直保持相關應用程式的最新版。\n"
@@ -2430,7 +2440,6 @@ msgstr "使用自訂指令(_U)"
 #~ msgid "A simple interface for installing applications."
 #~ msgstr "一個安裝應用程式的簡易界面"
 
-#, python-format
 #~ msgid ""
 #~ "<b>%s</b>\n"
 #~ "Take %s KB disk space"
@@ -2438,15 +2447,12 @@ msgstr "使用自訂指令(_U)"
 #~ "<b>%s</b>\n"
 #~ "占用了%s KB 硬碟空間"
 
-#, python-format
 #~ msgid "%d Package selected to remove"
 #~ msgstr "%d 個套件被選擇移除"
 
-#, python-format
 #~ msgid "%d Packages selected to remove"
 #~ msgstr "%d 個套件被選擇移除"
 
-#, python-format
 #~ msgid "%d KB Space will be free"
 #~ msgstr "%d KB空間將被釋放"
 

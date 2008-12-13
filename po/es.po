@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2008-12-08 17:11+0800\n"
+"POT-Creation-Date: 2008-12-13 21:55+0800\n"
 "PO-Revision-Date: 2008-12-08 23:16+0000\n"
 "Last-Translator: Agustín Dall'Alba <Unknown>\n"
 "Language-Team: LL <LL@li.org>\n"
@@ -37,7 +37,7 @@ msgstr "Edita el Programa de inicio"
 msgid "New Startup Program"
 msgstr "Nuevo programa de Inicio"
 
-#: src/autostart.py:69 data/glade/gui.glade:171
+#: src/autostart.py:69 data/glade/gui.glade:173
 msgid "_Browse..."
 msgstr "_Examinar…"
 
@@ -72,8 +72,8 @@ msgid ""
 "To permanently delete it, right-click and press \"Delete\"."
 msgstr ""
 "Aquí puedes gestionar que programas se arrancan al entrar en el sistema.\n"
-"Puedes ocultar objetos de la vista seleccionándolos y pulsando en "
-"\"Quitar\".\n"
+"Puedes ocultar objetos de la vista seleccionándolos y pulsando en \"Quitar"
+"\".\n"
 "Para borrar permanentemente un objeto, pulsa con el botón derecho encima de "
 "él y pulsa \"Eliminar\"."
 
@@ -233,7 +233,7 @@ msgstr "Introduce tu contraseña para realizar tareas administrativas"
 msgid "Select a folder"
 msgstr "Seleccione una carpeta"
 
-#: src/ScriptWorker.py:170
+#: src/ScriptWorker.py:171
 msgid "Please select a target(files or folders)."
 msgstr "Por favor, seleccione un elemento (archivos y carpetas)."
 
@@ -357,7 +357,7 @@ msgstr "Atajos"
 msgid "System"
 msgstr "Sistema"
 
-#: src/mainwindow.py:224 src/filetype.py:389
+#: src/mainwindow.py:224 src/filetype.py:474
 msgid "File Type Manager"
 msgstr "Gestor de Tipos de Archivo"
 
@@ -526,74 +526,79 @@ msgstr ""
 msgid "Update successfully!"
 msgstr "¡Actualización correcta!"
 
-#: src/filetype.py:33
+#: src/filetype.py:35
 msgid "Audio"
 msgstr "Sonido"
 
-#: src/filetype.py:34
+#: src/filetype.py:36
 msgid "Text"
 msgstr "Texto"
 
-#: src/filetype.py:35
+#: src/filetype.py:37
 msgid "Image"
 msgstr "Imagen"
 
-#: src/filetype.py:36
+#: src/filetype.py:38
 msgid "Video"
 msgstr "Vídeo"
 
-#: src/filetype.py:37
+#: src/filetype.py:39
 msgid "Application"
 msgstr "Programa"
 
-#: src/filetype.py:38
+#: src/filetype.py:40
 msgid "All"
 msgstr "Todos"
 
-#: src/filetype.py:70
+#: src/filetype.py:73
 msgid "Categories"
 msgstr "Categorías"
 
-#: src/filetype.py:124
+#: src/filetype.py:130
 msgid "File Type"
 msgstr "Tipo de archivo"
 
-#: src/filetype.py:138
+#: src/filetype.py:144
 msgid "Associated Application"
 msgstr "Programa Asociado"
 
-#: src/filetype.py:171 src/metacity.py:49 src/metacity.py:53
-#: src/metacity.py:57 src/metacity.py:61 src/shortcuts.py:91
-#: src/shortcuts.py:190
+#: src/filetype.py:177 src/filetype.py:212 src/metacity.py:49
+#: src/metacity.py:53 src/metacity.py:57 src/metacity.py:61
+#: src/shortcuts.py:91 src/shortcuts.py:190
 msgid "None"
 msgstr "Ninguno"
 
-#: src/filetype.py:228
+#: src/filetype.py:240
 #, python-format
 msgid "Open the files of type \"%s\" with:"
 msgstr "Abrir archivos \"%s\" con:"
 
-#: src/filetype.py:297
+#: src/filetype.py:269
+#, fuzzy
+msgid "Choose a application"
+msgstr "No se pudo encontrar la aplicación"
+
+#: src/filetype.py:358
 #, python-format
 msgid "Select an application to open the type <b>%s</b>"
 msgstr "Elija una aplicación para abrir los archivos <b>%s</b>"
 
-#: src/filetype.py:311
-msgid "Could not find application"
-msgstr "No se pudo encontrar la aplicación"
-
-#: src/filetype.py:312
+#: src/filetype.py:383
 #, python-format
 msgid "Could not find %s"
 msgstr "No se pudo encontrar %s"
 
-#: src/filetype.py:390
+#: src/filetype.py:384
+msgid "Could not find application"
+msgstr "No se pudo encontrar la aplicación"
+
+#: src/filetype.py:475
 msgid "Here you can manage all of the registered types of your system."
 msgstr ""
 "En esta sección puede administrar todos los tipos de archivo registrados en "
 "su sistema."
 
-#: src/filetype.py:416
+#: src/filetype.py:501
 msgid "Only show associated type"
 msgstr "Sólo mostrar tipos de archivo asociados."
 
@@ -1107,8 +1112,7 @@ msgid "Cleaned up Failed!"
 msgstr "Error limpieza"
 
 #: src/cleaner.py:235
-msgid ""
-"Free up disk space by clearing unneeded packages and the package cache."
+msgid "Free up disk space by clearing unneeded packages and the package cache."
 msgstr ""
 "Libera espacio en disco liberando paquetes innecesarios y el cache de "
 "paquetes."
@@ -1463,8 +1467,7 @@ msgstr "Desempeño al funcionar con batería"
 
 #: src/powermanager.py:53
 msgid "The CPU frequency policy when on AC power"
-msgstr ""
-"Política de frecuencia de la CPU al conectar la fuente de alimentación"
+msgstr "Política de frecuencia de la CPU al conectar la fuente de alimentación"
 
 #: src/powermanager.py:54
 msgid "The CPU frequency policy when on battery power"
@@ -1680,11 +1683,11 @@ msgstr "Plataforma de herramientas extensible y IDE de Java"
 
 #: src/common/appdata.py:75
 msgid ""
-"EIOffice Personal 2009. Free for Chinese users. See "
-"http://www.evermoresw.com."
+"EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
+"com."
 msgstr ""
-"ElOffice Personal 2009. Gratis para usuarios chinos. Ver "
-"http://www.evermoresw.com."
+"ElOffice Personal 2009. Gratis para usuarios chinos. Ver http://www."
+"evermoresw.com."
 
 #: src/common/appdata.py:76
 msgid "A client for the Windows Live Message network"
@@ -2029,15 +2032,15 @@ msgstr "El servicio aun no se ha inicializado"
 msgid "Edit Type"
 msgstr ""
 
-#: data/glade/gui.glade:99
+#: data/glade/gui.glade:100
 msgid "Add Application"
 msgstr "Añadir Aplicación"
 
-#: data/glade/gui.glade:144
+#: data/glade/gui.glade:146
 msgid "Select an application to view its description."
 msgstr "Seleccione una aplicación para ver su descripción."
 
-#: data/glade/gui.glade:186
+#: data/glade/gui.glade:188
 msgid "_Use a custom command"
 msgstr "_Usar un comando personalizado"
 
@@ -2287,7 +2290,8 @@ msgstr "_Usar un comando personalizado"
 #~ "Input the command and set any desired key, it's easy to set a shortcut.\n"
 #~ "Use <b>Delete</b> or <b>BackSpace</b> to clean the key."
 #~ msgstr ""
-#~ "Configurando los atajos de teclado tendrás acceso a las aplicaciones que \n"
+#~ "Configurando los atajos de teclado tendrás acceso a las aplicaciones "
+#~ "que \n"
 #~ "necesites de forma rápida.\n"
 #~ "Introduce el comando y configura la tecla deseada, es fácil configurar un "
 #~ "atajo.\n"
@@ -2312,18 +2316,19 @@ msgstr "_Usar un comando personalizado"
 #~ msgstr "Ligero ambiente de escritorio X11: GPicView, PCManFM"
 
 #~ msgid ""
-#~ "<b><big>The information about available software is out-of-date</big></b>\n"
+#~ "<b><big>The information about available software is out-of-date</big></"
+#~ "b>\n"
 #~ "\n"
 #~ "To install software and updates from newly added or changed sources, you "
 #~ "have to reload the information about available software.\n"
 #~ "\n"
 #~ "You need a working internet connection to continue."
 #~ msgstr ""
-#~ "<b><big>La información acerca del software disponible está "
-#~ "obsoleta</big></b>\n"
+#~ "<b><big>La información acerca del software disponible está obsoleta</"
+#~ "big></b>\n"
 #~ "\n"
-#~ "Para poder instalar software y actualizaciones a partir de los orígenes que "
-#~ "se hayan añadido o cambiado recientemente, es necesario recargar la "
+#~ "Para poder instalar software y actualizaciones a partir de los orígenes "
+#~ "que se hayan añadido o cambiado recientemente, es necesario recargar la "
 #~ "información acerca del software disponible.\n"
 #~ "\n"
 #~ "Necesita una conexión a Internet para continuar."

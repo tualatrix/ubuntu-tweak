@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2008-12-08 17:11+0800\n"
+"POT-Creation-Date: 2008-12-13 21:55+0800\n"
 "PO-Revision-Date: 2008-10-08 14:17+0000\n"
 "Last-Translator: TualatriX <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
@@ -37,7 +37,7 @@ msgstr "自動起動するプログラムの編集"
 msgid "New Startup Program"
 msgstr "新しく自動起動するプログラム"
 
-#: src/autostart.py:69 data/glade/gui.glade:171
+#: src/autostart.py:69 data/glade/gui.glade:173
 msgid "_Browse..."
 msgstr "参照(_B)..."
 
@@ -226,7 +226,7 @@ msgstr "管理タスクを行う為にパスワードを入力してください
 msgid "Select a folder"
 msgstr "フォルダを選択してください"
 
-#: src/ScriptWorker.py:170
+#: src/ScriptWorker.py:171
 msgid "Please select a target(files or folders)."
 msgstr "ターゲット（ファイル又はフォルダ）を選択してください。"
 
@@ -348,7 +348,7 @@ msgstr "ショートカット"
 msgid "System"
 msgstr "システム"
 
-#: src/mainwindow.py:224 src/filetype.py:389
+#: src/mainwindow.py:224 src/filetype.py:474
 msgid "File Type Manager"
 msgstr ""
 
@@ -372,7 +372,9 @@ msgstr ""
 msgid ""
 "Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
 "system and desktop settings."
-msgstr "Ubuntu TweakはUbuntuのシステムやデスクトップの設定を簡単に変更できるためのツールです。"
+msgstr ""
+"Ubuntu TweakはUbuntuのシステムやデスクトップの設定を簡単に変更できるための"
+"ツールです。"
 
 #: src/mainwindow.py:485
 msgid "translator-credits"
@@ -472,72 +474,77 @@ msgstr ""
 msgid "Update successfully!"
 msgstr "更新が成功しました！"
 
-#: src/filetype.py:33
+#: src/filetype.py:35
 msgid "Audio"
 msgstr ""
 
-#: src/filetype.py:34
+#: src/filetype.py:36
 msgid "Text"
 msgstr ""
 
-#: src/filetype.py:35
+#: src/filetype.py:37
 msgid "Image"
 msgstr ""
 
-#: src/filetype.py:36
+#: src/filetype.py:38
 msgid "Video"
 msgstr ""
 
-#: src/filetype.py:37
+#: src/filetype.py:39
 msgid "Application"
 msgstr ""
 
-#: src/filetype.py:38
+#: src/filetype.py:40
 msgid "All"
 msgstr ""
 
-#: src/filetype.py:70
+#: src/filetype.py:73
 msgid "Categories"
 msgstr ""
 
-#: src/filetype.py:124
+#: src/filetype.py:130
 msgid "File Type"
 msgstr ""
 
-#: src/filetype.py:138
+#: src/filetype.py:144
 msgid "Associated Application"
 msgstr ""
 
-#: src/filetype.py:171 src/metacity.py:49 src/metacity.py:53
-#: src/metacity.py:57 src/metacity.py:61 src/shortcuts.py:91
-#: src/shortcuts.py:190
+#: src/filetype.py:177 src/filetype.py:212 src/metacity.py:49
+#: src/metacity.py:53 src/metacity.py:57 src/metacity.py:61
+#: src/shortcuts.py:91 src/shortcuts.py:190
 msgid "None"
 msgstr "無"
 
-#: src/filetype.py:228
+#: src/filetype.py:240
 #, python-format
 msgid "Open the files of type \"%s\" with:"
 msgstr ""
 
-#: src/filetype.py:297
+#: src/filetype.py:269
+#, fuzzy
+msgid "Choose a application"
+msgstr "スプラッシュ画像ファイルを選択してください"
+
+#: src/filetype.py:358
 #, python-format
 msgid "Select an application to open the type <b>%s</b>"
 msgstr ""
 
-#: src/filetype.py:311
-msgid "Could not find application"
-msgstr ""
-
-#: src/filetype.py:312
+#: src/filetype.py:383
 #, python-format
 msgid "Could not find %s"
 msgstr ""
 
-#: src/filetype.py:390
+#: src/filetype.py:384
+msgid "Could not find application"
+msgstr ""
+
+#: src/filetype.py:475
 msgid "Here you can manage all of the registered types of your system."
 msgstr ""
 
-#: src/filetype.py:416
+#: src/filetype.py:501
 msgid "Only show associated type"
 msgstr ""
 
@@ -1021,8 +1028,7 @@ msgid "Cleaned up Failed!"
 msgstr ""
 
 #: src/cleaner.py:235
-msgid ""
-"Free up disk space by clearing unneeded packages and the package cache."
+msgid "Free up disk space by clearing unneeded packages and the package cache."
 msgstr ""
 
 #: src/cleaner.py:253
@@ -1562,8 +1568,8 @@ msgstr "拡張可能なツールプラットフォームとJava IDE(統合開発
 
 #: src/common/appdata.py:75
 msgid ""
-"EIOffice Personal 2009. Free for Chinese users. See "
-"http://www.evermoresw.com."
+"EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
+"com."
 msgstr ""
 
 #: src/common/appdata.py:76
@@ -1881,15 +1887,15 @@ msgstr ""
 msgid "Edit Type"
 msgstr ""
 
-#: data/glade/gui.glade:99
+#: data/glade/gui.glade:100
 msgid "Add Application"
 msgstr ""
 
-#: data/glade/gui.glade:144
+#: data/glade/gui.glade:146
 msgid "Select an application to view its description."
 msgstr ""
 
-#: data/glade/gui.glade:186
+#: data/glade/gui.glade:188
 msgid "_Use a custom command"
 msgstr ""
 
@@ -1954,7 +1960,9 @@ msgstr ""
 #~ msgstr "Metacityテーマを使用"
 
 #~ msgid "Title bar mouse wheel action"
-#~ msgstr "ウィンドウのタイトルバー上でマウスホイールをスクロールさせたときのアクション"
+#~ msgstr ""
+#~ "ウィンドウのタイトルバー上でマウスホイールをスクロールさせたときのアクショ"
+#~ "ン"
 
 #~ msgid "Title bar Double-click action"
 #~ msgstr "タイトルバーをダブルクリックしたときのアクション"
@@ -1979,9 +1987,6 @@ msgstr ""
 
 #~ msgid "\"GNOME Panel\" Power Management icon"
 #~ msgstr "「GNOMEパネル」電源管理アイコン"
-
-#~ msgid "Choose a Splash image"
-#~ msgstr "スプラッシュ画像ファイルを選択してください"
 
 #~ msgid "Show Logout prompt"
 #~ msgstr "ログアウト時に確認する"
@@ -2072,7 +2077,9 @@ msgstr ""
 #~ msgstr "コンテキストメニューにユニコードメソッドのメニューを表示する"
 
 #~ msgid "Use Home Folder as the desktop(Logout for changes to take effect)"
-#~ msgstr "ホームフォルダをデスクトップとして扱う (変化を有効にするにはログアウトしてください)"
+#~ msgstr ""
+#~ "ホームフォルダをデスクトップとして扱う (変化を有効にするにはログアウトして"
+#~ "ください)"
 
 #~ msgid "Show advanced Permissions on File Property pages"
 #~ msgstr "ファイルのプロパティのページに高度なパーミッションを表示する"
@@ -2103,7 +2110,8 @@ msgstr ""
 #~ msgstr ""
 #~ "キーボードショートカットを設定することにより、アプリケーションに \n"
 #~ "素早くアクセスできます。\n"
-#~ "コマンドと任意のキーを入力してください。簡単にショートカットが設定できます。\n"
+#~ "コマンドと任意のキーを入力してください。簡単にショートカットが設定できま"
+#~ "す。\n"
 #~ "キーのクリアには <b>Delete</b> か <b>BackSpace</b> を使います。"
 
 #~ msgid ""
@@ -2125,7 +2133,8 @@ msgstr ""
 #~ msgstr "軽量なX11デスクトップ環境:GPicView、PCManFM"
 
 #~ msgid ""
-#~ "<b><big>The information about available software is out-of-date</big></b>\n"
+#~ "<b><big>The information about available software is out-of-date</big></"
+#~ "b>\n"
 #~ "\n"
 #~ "To install software and updates from newly added or changed sources, you "
 #~ "have to reload the information about available software.\n"
@@ -2134,7 +2143,8 @@ msgstr ""
 #~ msgstr ""
 #~ "<b><big>利用可能なソフトウェアの情報が古くなっています</big></b>\n"
 #~ "\n"
-#~ "新規に追加もしくは変更されたソフトウェアをインストール/アップデートするには、利用可能なソフトウェアの情報を再読み込みする必要があります。\n"
+#~ "新規に追加もしくは変更されたソフトウェアをインストール/アップデートするに"
+#~ "は、利用可能なソフトウェアの情報を再読み込みする必要があります。\n"
 #~ "\n"
 #~ "続けるためには、インターネット接続が有効になっている必要があります。"
 

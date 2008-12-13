@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2008-12-08 17:11+0800\n"
+"POT-Creation-Date: 2008-12-13 21:55+0800\n"
 "PO-Revision-Date: 2008-11-21 13:00+0000\n"
 "Last-Translator: Svetoslav Stefanov <svetlisashkov@yahoo.com>\n"
 "Language-Team: Svetoslav Stefanov <lfu.project@gmail.com>\n"
@@ -39,7 +39,7 @@ msgstr "Редактиране на начална програма"
 msgid "New Startup Program"
 msgstr "Нова начална програма"
 
-#: src/autostart.py:69 data/glade/gui.glade:171
+#: src/autostart.py:69 data/glade/gui.glade:173
 msgid "_Browse..."
 msgstr "_Разглеждане..."
 
@@ -74,8 +74,8 @@ msgid ""
 "To permanently delete it, right-click and press \"Delete\"."
 msgstr ""
 "Тук можете да управлявате кои програми да се стартират при вписване.\n"
-"Можете да изключите елементи от списъка чрез натискане на бутон "
-"\"Премахване\".\n"
+"Можете да изключите елементи от списъка чрез натискане на бутон \"Премахване"
+"\".\n"
 "За да изтриете елемент от списъка, цъкнете десен бутон и изберете "
 "\"Изтриване от диска\"."
 
@@ -190,8 +190,7 @@ msgstr "Системни настройки на сигурността"
 
 #: src/lockdown.py:37
 msgid "Disable \"Run Application\" dialog (Alt+F2)"
-msgstr ""
-"Изключване на диалоговия прозорец  \"Стартиране на програма\" (Alt+F2)"
+msgstr "Изключване на диалоговия прозорец  \"Стартиране на програма\" (Alt+F2)"
 
 #: src/lockdown.py:38
 msgid "Disable \"Lock Screen\""
@@ -236,7 +235,7 @@ msgstr "Въведете паролата си за да изпълните ад
 msgid "Select a folder"
 msgstr "Избор на папка"
 
-#: src/ScriptWorker.py:170
+#: src/ScriptWorker.py:171
 msgid "Please select a target(files or folders)."
 msgstr "Моля изберете цел (файлове или папки)"
 
@@ -258,8 +257,7 @@ msgstr "Изчистете ненужните пакети за освобожд
 
 #: src/mainwindow.py:70
 msgid "Configure templates and scripts to improve your computing."
-msgstr ""
-"Настройте шаблони и скриптове за да подобрите работата си с компютър."
+msgstr "Настройте шаблони и скриптове за да подобрите работата си с компютър."
 
 #: src/mainwindow.py:71
 msgid "And many more useful features!"
@@ -361,7 +359,7 @@ msgstr "Бързи клавиши"
 msgid "System"
 msgstr "Система"
 
-#: src/mainwindow.py:224 src/filetype.py:389
+#: src/mainwindow.py:224 src/filetype.py:474
 msgid "File Type Manager"
 msgstr ""
 
@@ -484,72 +482,77 @@ msgstr ""
 msgid "Update successfully!"
 msgstr "Обновяването е успешно!"
 
-#: src/filetype.py:33
+#: src/filetype.py:35
 msgid "Audio"
 msgstr ""
 
-#: src/filetype.py:34
+#: src/filetype.py:36
 msgid "Text"
 msgstr ""
 
-#: src/filetype.py:35
+#: src/filetype.py:37
 msgid "Image"
 msgstr ""
 
-#: src/filetype.py:36
+#: src/filetype.py:38
 msgid "Video"
 msgstr ""
 
-#: src/filetype.py:37
+#: src/filetype.py:39
 msgid "Application"
 msgstr ""
 
-#: src/filetype.py:38
+#: src/filetype.py:40
 msgid "All"
 msgstr ""
 
-#: src/filetype.py:70
+#: src/filetype.py:73
 msgid "Categories"
 msgstr ""
 
-#: src/filetype.py:124
+#: src/filetype.py:130
 msgid "File Type"
 msgstr ""
 
-#: src/filetype.py:138
+#: src/filetype.py:144
 msgid "Associated Application"
 msgstr ""
 
-#: src/filetype.py:171 src/metacity.py:49 src/metacity.py:53
-#: src/metacity.py:57 src/metacity.py:61 src/shortcuts.py:91
-#: src/shortcuts.py:190
+#: src/filetype.py:177 src/filetype.py:212 src/metacity.py:49
+#: src/metacity.py:53 src/metacity.py:57 src/metacity.py:61
+#: src/shortcuts.py:91 src/shortcuts.py:190
 msgid "None"
 msgstr "Без"
 
-#: src/filetype.py:228
+#: src/filetype.py:240
 #, python-format
 msgid "Open the files of type \"%s\" with:"
 msgstr ""
 
-#: src/filetype.py:297
+#: src/filetype.py:269
+#, fuzzy
+msgid "Choose a application"
+msgstr "Избор на изображение за началния екран"
+
+#: src/filetype.py:358
 #, python-format
 msgid "Select an application to open the type <b>%s</b>"
 msgstr ""
 
-#: src/filetype.py:311
-msgid "Could not find application"
-msgstr ""
-
-#: src/filetype.py:312
+#: src/filetype.py:383
 #, python-format
 msgid "Could not find %s"
 msgstr ""
 
-#: src/filetype.py:390
+#: src/filetype.py:384
+msgid "Could not find application"
+msgstr ""
+
+#: src/filetype.py:475
 msgid "Here you can manage all of the registered types of your system."
 msgstr ""
 
-#: src/filetype.py:416
+#: src/filetype.py:501
 msgid "Only show associated type"
 msgstr ""
 
@@ -661,8 +664,8 @@ msgstr ""
 "Това значи, че в хранилищата влизат само поправки за приложенията.\n"
 "Чрез използването на DEB-хранилища от трети страни, вие можете винаги да "
 "имате последните им версии.\n"
-"След като ги добавите, можете да ги намерите и инсталирате чрез "
-"Добавяне/Премахване."
+"След като ги добавите, можете да ги намерите и инсталирате чрез Добавяне/"
+"Премахване."
 
 #: src/thirdsoft.py:376
 msgid "Details"
@@ -1061,8 +1064,7 @@ msgid "Cleaned up Failed!"
 msgstr "Неуспешно изчистване!"
 
 #: src/cleaner.py:235
-msgid ""
-"Free up disk space by clearing unneeded packages and the package cache."
+msgid "Free up disk space by clearing unneeded packages and the package cache."
 msgstr ""
 "Освободете дисково пространство, като изчистите ненужните и кешираните "
 "пакети."
@@ -1364,8 +1366,8 @@ msgstr "Изключване на Мениджъра на мрежи при пр
 #: src/powermanager.py:42
 msgid "Enable \"Lock screen\" when \"Blank Screen\" activates"
 msgstr ""
-"Включване на \"Заключване на екрана\" и активиране на \"Изчистване на "
-"екрана\""
+"Включване на \"Заключване на екрана\" и активиране на \"Изчистване на екрана"
+"\""
 
 #: src/powermanager.py:43
 msgid "Display \"Power Manager\" panel item"
@@ -1630,11 +1632,11 @@ msgstr ""
 
 #: src/common/appdata.py:75
 msgid ""
-"EIOffice Personal 2009. Free for Chinese users. See "
-"http://www.evermoresw.com."
+"EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
+"com."
 msgstr ""
-"EIOffice Personal 2009. Свободен за китайски потребители. Вж. "
-"http://www.evermoresw.com."
+"EIOffice Personal 2009. Свободен за китайски потребители. Вж. http://www."
+"evermoresw.com."
 
 #: src/common/appdata.py:76
 msgid "A client for the Windows Live Message network"
@@ -1793,9 +1795,9 @@ msgid ""
 "QQ all at once."
 msgstr ""
 "Pidgin е графичен модулен клиент за моментални съобщения, който може "
-"едновременно да се свързва към AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, "
-"SIP/SIMPLE, Novell GroupWise, Lotus Sametime, Bonjour, Zephyr, MySpaceIM, "
-"Gadu-Gadu е QQ."
+"едновременно да се свързва към AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, SIP/"
+"SIMPLE, Novell GroupWise, Lotus Sametime, Bonjour, Zephyr, MySpaceIM, Gadu-"
+"Gadu е QQ."
 
 #: src/common/appdata.py:112
 msgid "Run your Windows programs on Linux"
@@ -1903,8 +1905,7 @@ msgstr ""
 
 #: src/common/factory.py:202
 msgid "Disable 'Run Application' dialog (Alt+F2)"
-msgstr ""
-"Изключване на диалоговия прозорец  \"Стартиране на програма\" (Alt+F2)"
+msgstr "Изключване на диалоговия прозорец  \"Стартиране на програма\" (Alt+F2)"
 
 #: src/common/policykit/polkitbutton.py:80
 msgid "_Unlock"
@@ -1968,15 +1969,15 @@ msgstr "Услугата все още не е инициализирана"
 msgid "Edit Type"
 msgstr ""
 
-#: data/glade/gui.glade:99
+#: data/glade/gui.glade:100
 msgid "Add Application"
 msgstr ""
 
-#: data/glade/gui.glade:144
+#: data/glade/gui.glade:146
 msgid "Select an application to view its description."
 msgstr ""
 
-#: data/glade/gui.glade:186
+#: data/glade/gui.glade:188
 msgid "_Use a custom command"
 msgstr ""
 

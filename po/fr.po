@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2008-12-08 17:11+0800\n"
+"POT-Creation-Date: 2008-12-13 21:55+0800\n"
 "PO-Revision-Date: 2008-12-10 22:55+0000\n"
 "Last-Translator: Nizar Kerkeni <nizar.kerkeni@gmail.com>\n"
 "Language-Team: French <fr@li.org>\n"
@@ -37,7 +37,7 @@ msgstr "Éditer le programme de démarrage"
 msgid "New Startup Program"
 msgstr "Nouveau programme de démarrage"
 
-#: src/autostart.py:69 data/glade/gui.glade:171
+#: src/autostart.py:69 data/glade/gui.glade:173
 msgid "_Browse..."
 msgstr "_Parcourir..."
 
@@ -232,7 +232,7 @@ msgstr "Entrez votre mot de passe pour effectuer des tâches administratives"
 msgid "Select a folder"
 msgstr "Sélectionner un dossier"
 
-#: src/ScriptWorker.py:170
+#: src/ScriptWorker.py:171
 msgid "Please select a target(files or folders)."
 msgstr "Veuillez sélectionner une cible (fichiers ou dossiers)."
 
@@ -359,7 +359,7 @@ msgstr "Raccourcis"
 msgid "System"
 msgstr "Système"
 
-#: src/mainwindow.py:224 src/filetype.py:389
+#: src/mainwindow.py:224 src/filetype.py:474
 msgid "File Type Manager"
 msgstr ""
 
@@ -521,72 +521,77 @@ msgstr ""
 msgid "Update successfully!"
 msgstr "Mise à jour réussie!"
 
-#: src/filetype.py:33
+#: src/filetype.py:35
 msgid "Audio"
 msgstr "Audio"
 
-#: src/filetype.py:34
+#: src/filetype.py:36
 msgid "Text"
 msgstr "Texte"
 
-#: src/filetype.py:35
+#: src/filetype.py:37
 msgid "Image"
 msgstr "Image"
 
-#: src/filetype.py:36
+#: src/filetype.py:38
 msgid "Video"
 msgstr "Vidéo"
 
-#: src/filetype.py:37
+#: src/filetype.py:39
 msgid "Application"
 msgstr "Application"
 
-#: src/filetype.py:38
+#: src/filetype.py:40
 msgid "All"
 msgstr "Tout"
 
-#: src/filetype.py:70
+#: src/filetype.py:73
 msgid "Categories"
 msgstr "Catégories"
 
-#: src/filetype.py:124
+#: src/filetype.py:130
 msgid "File Type"
 msgstr "Type de fichier"
 
-#: src/filetype.py:138
+#: src/filetype.py:144
 msgid "Associated Application"
 msgstr ""
 
-#: src/filetype.py:171 src/metacity.py:49 src/metacity.py:53
-#: src/metacity.py:57 src/metacity.py:61 src/shortcuts.py:91
-#: src/shortcuts.py:190
+#: src/filetype.py:177 src/filetype.py:212 src/metacity.py:49
+#: src/metacity.py:53 src/metacity.py:57 src/metacity.py:61
+#: src/shortcuts.py:91 src/shortcuts.py:190
 msgid "None"
 msgstr "Aucun"
 
-#: src/filetype.py:228
+#: src/filetype.py:240
 #, python-format
 msgid "Open the files of type \"%s\" with:"
 msgstr ""
 
-#: src/filetype.py:297
+#: src/filetype.py:269
+#, fuzzy
+msgid "Choose a application"
+msgstr "Impossible de trouver l'application"
+
+#: src/filetype.py:358
 #, python-format
 msgid "Select an application to open the type <b>%s</b>"
 msgstr ""
 
-#: src/filetype.py:311
-msgid "Could not find application"
-msgstr "Impossible de trouver l'application"
-
-#: src/filetype.py:312
+#: src/filetype.py:383
 #, python-format
 msgid "Could not find %s"
 msgstr "Impossible de trouver %s"
 
-#: src/filetype.py:390
+#: src/filetype.py:384
+msgid "Could not find application"
+msgstr "Impossible de trouver l'application"
+
+#: src/filetype.py:475
 msgid "Here you can manage all of the registered types of your system."
 msgstr ""
 
-#: src/filetype.py:416
+#: src/filetype.py:501
 msgid "Only show associated type"
 msgstr ""
 
@@ -698,8 +703,8 @@ msgstr ""
 "dépôt.\n"
 "En utilisant des dépôt DEB de tierce parties , Vous pouvez en avoir toujours "
 "les dernières versions.\n"
-"Après l'ajout de ces dépôts, installez ces applications avec "
-"Supprimer/Ajouter."
+"Après l'ajout de ces dépôts, installez ces applications avec Supprimer/"
+"Ajouter."
 
 #: src/thirdsoft.py:376
 msgid "Details"
@@ -723,8 +728,7 @@ msgstr "Ne jamais afficher cette fenêtre de dialogue"
 
 #: src/thirdsoft.py:444 src/sourceeditor.py:403
 msgid "You can install the new applications through Add/Remove."
-msgstr ""
-"Vous pouvait installer de nouvelles application par Ajouter/Supprimer"
+msgstr "Vous pouvait installer de nouvelles application par Ajouter/Supprimer"
 
 #: src/thirdsoft.py:445 src/sourceeditor.py:404
 msgid "The software information is up-to-date now"
@@ -1097,8 +1101,7 @@ msgid "Cleaned up Failed!"
 msgstr "Nettoyage en erreur!"
 
 #: src/cleaner.py:235
-msgid ""
-"Free up disk space by clearing unneeded packages and the package cache."
+msgid "Free up disk space by clearing unneeded packages and the package cache."
 msgstr ""
 "Libérer de l'espace disque en effaçant les paquets inutiles ainsi que le "
 "cache des paquets."
@@ -1252,8 +1255,7 @@ msgstr "Écran de veille"
 
 #: src/gnomesettings.py:66
 msgid "Enable user switching when screen is locked."
-msgstr ""
-"Permettre le changement d'utilisateur lorsque l'écran est verrouillé."
+msgstr "Permettre le changement d'utilisateur lorsque l'écran est verrouillé."
 
 #: src/gnomesettings.py:70
 msgid "Enable system-wide \"Recently Documents\" list"
@@ -1456,8 +1458,7 @@ msgstr ""
 
 #: src/powermanager.py:54
 msgid "The CPU frequency policy when on battery power"
-msgstr ""
-"Politique de gestion de la fréquence du processeur quand sur batterie"
+msgstr "Politique de gestion de la fréquence du processeur quand sur batterie"
 
 #: src/sourceeditor.py:62 src/sourceeditor.py:67
 msgid "Choose the sources"
@@ -1669,8 +1670,8 @@ msgstr "Plateforme d'outils et IDE Java extensibles"
 
 #: src/common/appdata.py:75
 msgid ""
-"EIOffice Personal 2009. Free for Chinese users. See "
-"http://www.evermoresw.com."
+"EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
+"com."
 msgstr ""
 "EIOffice Personal 2009. Libre pour les utilisateurs chinois. Rendez-vous sur "
 "http://www.evermoresw.com."
@@ -1689,8 +1690,7 @@ msgstr ""
 
 #: src/common/appdata.py:78
 msgid "KDE IM client using Tencent QQ protocol"
-msgstr ""
-"Client de messagerie instantanée KDE utilisant le protocole Tencent QQ"
+msgstr "Client de messagerie instantanée KDE utilisant le protocole Tencent QQ"
 
 #: src/common/appdata.py:79
 msgid "GTK+ based flexible audio player, similar to Amarok"
@@ -1837,9 +1837,9 @@ msgid ""
 "QQ all at once."
 msgstr ""
 "Pidgin est un client de messagerie graphique modulaire basé sur libpurple "
-"capable de se connecter à AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, "
-"SIP/SIMPLE, Novell GroupWise, Lotus Sametime, Bonjour, Zephyr, MySpaceIM, "
-"Gadu-Gadu, and QQ en même temps."
+"capable de se connecter à AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, SIP/"
+"SIMPLE, Novell GroupWise, Lotus Sametime, Bonjour, Zephyr, MySpaceIM, Gadu-"
+"Gadu, and QQ en même temps."
 
 #: src/common/appdata.py:112
 msgid "Run your Windows programs on Linux"
@@ -2013,15 +2013,15 @@ msgstr "Le service ne s'est pas encore initialiser"
 msgid "Edit Type"
 msgstr "Modifier le type"
 
-#: data/glade/gui.glade:99
+#: data/glade/gui.glade:100
 msgid "Add Application"
 msgstr "Ajouter une application"
 
-#: data/glade/gui.glade:144
+#: data/glade/gui.glade:146
 msgid "Select an application to view its description."
 msgstr "Sélectionnez une application pour afficher sa description"
 
-#: data/glade/gui.glade:186
+#: data/glade/gui.glade:188
 msgid "_Use a custom command"
 msgstr "_Utiliser une commande personnalisée"
 
@@ -2127,7 +2127,8 @@ msgstr "_Utiliser une commande personnalisée"
 #~ msgstr ""
 #~ "Vous pouvez  supprimer cet élément sans risque, il sera seulement marqué "
 #~ "comme masqué.\n"
-#~ "Si vous souhaitez le supprimer du disque, faites un clic droit sur l'élément."
+#~ "Si vous souhaitez le supprimer du disque, faites un clic droit sur "
+#~ "l'élément."
 
 #~ msgid "Show program comments"
 #~ msgstr "Afficher les commentaires du programme"
@@ -2206,12 +2207,13 @@ msgstr "_Utiliser une commande personnalisée"
 
 #~ msgid "Use Home Folder as the desktop(Logout for changes to take effect)"
 #~ msgstr ""
-#~ "Utiliser le dossier personnel comme bureau (nécessite une déconnexion pour "
-#~ "appliquer les changements)"
+#~ "Utiliser le dossier personnel comme bureau (nécessite une déconnexion "
+#~ "pour appliquer les changements)"
 
 #~ msgid "Show advanced Permissions on File Property pages"
 #~ msgstr ""
-#~ "Afficher les permissions avancées dans les pages des propriétés  de fichiers"
+#~ "Afficher les permissions avancées dans les pages des propriétés  de "
+#~ "fichiers"
 
 #~ msgid "Show CPU frequency control option"
 #~ msgstr "Afficher l'option de contrôle de la fréquence du CPU"
@@ -2240,8 +2242,8 @@ msgstr "_Utiliser une commande personnalisée"
 #~ "En configurant les raccourcis clavier, vous obtenez un accès plus rapide "
 #~ "aux\n"
 #~ "applications dont vous avez besoin.\n"
-#~ "Entrez la commande et réglez les touches désirées. il est facile de créer un "
-#~ "raccourci.\n"
+#~ "Entrez la commande et réglez les touches désirées. il est facile de créer "
+#~ "un raccourci.\n"
 #~ "Utilisez <b>Supprimer</b> ou <b>Retour Arrière</b> pour effacer la touche."
 
 #~ msgid ""
@@ -2263,18 +2265,20 @@ msgstr "_Utiliser une commande personnalisée"
 #~ msgstr "Environnement du bureau X11 léger: GPicView, PCManFM"
 
 #~ msgid ""
-#~ "<b><big>The information about available software is out-of-date</big></b>\n"
+#~ "<b><big>The information about available software is out-of-date</big></"
+#~ "b>\n"
 #~ "\n"
 #~ "To install software and updates from newly added or changed sources, you "
 #~ "have to reload the information about available software.\n"
 #~ "\n"
 #~ "You need a working internet connection to continue."
 #~ msgstr ""
-#~ "<b><big>Les informations sur les logiciels disponibles sont "
-#~ "obsolètes</big></b>\n"
+#~ "<b><big>Les informations sur les logiciels disponibles sont obsolètes</"
+#~ "big></b>\n"
 #~ "\n"
-#~ "Pour installer de nouveaux logiciels ou des mises à jour à partir de dépôts "
-#~ "modifiés ou nouvellement ajoutés, vous devez recharger ces informations.\n"
+#~ "Pour installer de nouveaux logiciels ou des mises à jour à partir de "
+#~ "dépôts modifiés ou nouvellement ajoutés, vous devez recharger ces "
+#~ "informations.\n"
 #~ "\n"
 #~ "Une connexion internet fonctionnelle sera nécessaire."
 

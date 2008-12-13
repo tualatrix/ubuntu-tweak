@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2008-12-08 17:11+0800\n"
+"POT-Creation-Date: 2008-12-13 21:55+0800\n"
 "PO-Revision-Date: 2008-12-07 22:49+0000\n"
 "Last-Translator: Sergey Ivanov <rus_patriot@inbox.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -37,7 +37,7 @@ msgstr "Изменить программы, запускаемые при ст�
 msgid "New Startup Program"
 msgstr "Новая программа, запускаемая при старте системы"
 
-#: src/autostart.py:69 data/glade/gui.glade:171
+#: src/autostart.py:69 data/glade/gui.glade:173
 msgid "_Browse..."
 msgstr "_Обзор..."
 
@@ -232,7 +232,7 @@ msgstr "Введите пароль для выполнения админист
 msgid "Select a folder"
 msgstr "Выберите директорию"
 
-#: src/ScriptWorker.py:170
+#: src/ScriptWorker.py:171
 msgid "Please select a target(files or folders)."
 msgstr "Пожалуйста, выберите цель (файл или директория)"
 
@@ -269,8 +269,8 @@ msgid ""
 "<span size=\"x-large\">This feature isn't currently available in your "
 "distrobution</span>"
 msgstr ""
-"<span size=\"x-large\">Эта опция не поддерживается в вашем "
-"дистрибутиве</span>"
+"<span size=\"x-large\">Эта опция не поддерживается в вашем дистрибутиве</"
+"span>"
 
 #: src/mainwindow.py:203
 msgid "Welcome"
@@ -356,7 +356,7 @@ msgstr "Ярлыки"
 msgid "System"
 msgstr "Система"
 
-#: src/mainwindow.py:224 src/filetype.py:389
+#: src/mainwindow.py:224 src/filetype.py:474
 msgid "File Type Manager"
 msgstr ""
 
@@ -488,72 +488,77 @@ msgstr ""
 msgid "Update successfully!"
 msgstr "Обновление прошло успешно!"
 
-#: src/filetype.py:33
+#: src/filetype.py:35
 msgid "Audio"
 msgstr ""
 
-#: src/filetype.py:34
+#: src/filetype.py:36
 msgid "Text"
 msgstr ""
 
-#: src/filetype.py:35
+#: src/filetype.py:37
 msgid "Image"
 msgstr ""
 
-#: src/filetype.py:36
+#: src/filetype.py:38
 msgid "Video"
 msgstr ""
 
-#: src/filetype.py:37
+#: src/filetype.py:39
 msgid "Application"
 msgstr ""
 
-#: src/filetype.py:38
+#: src/filetype.py:40
 msgid "All"
 msgstr ""
 
-#: src/filetype.py:70
+#: src/filetype.py:73
 msgid "Categories"
 msgstr ""
 
-#: src/filetype.py:124
+#: src/filetype.py:130
 msgid "File Type"
 msgstr ""
 
-#: src/filetype.py:138
+#: src/filetype.py:144
 msgid "Associated Application"
 msgstr ""
 
-#: src/filetype.py:171 src/metacity.py:49 src/metacity.py:53
-#: src/metacity.py:57 src/metacity.py:61 src/shortcuts.py:91
-#: src/shortcuts.py:190
+#: src/filetype.py:177 src/filetype.py:212 src/metacity.py:49
+#: src/metacity.py:53 src/metacity.py:57 src/metacity.py:61
+#: src/shortcuts.py:91 src/shortcuts.py:190
 msgid "None"
 msgstr "Отсутствует"
 
-#: src/filetype.py:228
+#: src/filetype.py:240
 #, python-format
 msgid "Open the files of type \"%s\" with:"
 msgstr ""
 
-#: src/filetype.py:297
+#: src/filetype.py:269
+#, fuzzy
+msgid "Choose a application"
+msgstr "Выберите загрузочное изображение"
+
+#: src/filetype.py:358
 #, python-format
 msgid "Select an application to open the type <b>%s</b>"
 msgstr ""
 
-#: src/filetype.py:311
-msgid "Could not find application"
-msgstr ""
-
-#: src/filetype.py:312
+#: src/filetype.py:383
 #, python-format
 msgid "Could not find %s"
 msgstr ""
 
-#: src/filetype.py:390
+#: src/filetype.py:384
+msgid "Could not find application"
+msgstr ""
+
+#: src/filetype.py:475
 msgid "Here you can manage all of the registered types of your system."
 msgstr ""
 
-#: src/filetype.py:416
+#: src/filetype.py:501
 msgid "Only show associated type"
 msgstr ""
 
@@ -665,8 +670,8 @@ msgstr ""
 "Это обозначает что только программы с баг-фиксами попадают в репозитории.\n"
 "Используя DEB-источники третьих сторон вы всегда можете получить последнюю "
 "версию.\n"
-"После подключения этих источников вы можете использовать их через "
-"Установку/Удаление."
+"После подключения этих источников вы можете использовать их через Установку/"
+"Удаление."
 
 #: src/thirdsoft.py:376
 msgid "Details"
@@ -1061,10 +1066,8 @@ msgid "Cleaned up Failed!"
 msgstr "Не очищено :("
 
 #: src/cleaner.py:235
-msgid ""
-"Free up disk space by clearing unneeded packages and the package cache."
-msgstr ""
-"Освободите место на диске удалением ненужных пакетов и пакетов в кеше."
+msgid "Free up disk space by clearing unneeded packages and the package cache."
+msgstr "Освободите место на диске удалением ненужных пакетов и пакетов в кеше."
 
 #: src/cleaner.py:253
 msgid "Clean Package"
@@ -1271,8 +1274,7 @@ msgstr ""
 
 #: src/nautilus.py:99
 msgid "Show advanced permissions on Permissions tab of File Property"
-msgstr ""
-"Показывать дополнительные права на вкладке \"Права\" в свойствах файла"
+msgstr "Показывать дополнительные права на вкладке \"Права\" в свойствах файла"
 
 #: src/nautilus.py:101
 msgid "File Browser"
@@ -1628,11 +1630,11 @@ msgstr "Расширяемая платформа инструментов и Ja
 
 #: src/common/appdata.py:75
 msgid ""
-"EIOffice Personal 2009. Free for Chinese users. See "
-"http://www.evermoresw.com."
+"EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
+"com."
 msgstr ""
-"EIOffice Personal 2009. Бесплатен для китайцев. Смотрите "
-"http://www.evermoresw.com."
+"EIOffice Personal 2009. Бесплатен для китайцев. Смотрите http://www."
+"evermoresw.com."
 
 #: src/common/appdata.py:76
 msgid "A client for the Windows Live Message network"
@@ -1826,8 +1828,7 @@ msgstr "Мультиязычный словарь"
 msgid ""
 "Swiftweasel is an optimized build of the Mozilla Firefox web browser for "
 "Linux"
-msgstr ""
-"Swiftweasel является оптимизированным билдом Mozilla Firefox для Linux"
+msgstr "Swiftweasel является оптимизированным билдом Mozilla Firefox для Linux"
 
 #: src/common/appdata.py:119
 msgid "Multiple GNOME terminals in one window"
@@ -1968,15 +1969,15 @@ msgstr "Сервис ещё не готов"
 msgid "Edit Type"
 msgstr ""
 
-#: data/glade/gui.glade:99
+#: data/glade/gui.glade:100
 msgid "Add Application"
 msgstr ""
 
-#: data/glade/gui.glade:144
+#: data/glade/gui.glade:146
 msgid "Select an application to view its description."
 msgstr ""
 
-#: data/glade/gui.glade:186
+#: data/glade/gui.glade:188
 msgid "_Use a custom command"
 msgstr ""
 
@@ -2049,7 +2050,8 @@ msgstr ""
 
 #~ msgid "Title bar Middle-click action"
 #~ msgstr ""
-#~ "Действие, применяемое для заголовка окна при нажатии на среднюю кнопку мыши"
+#~ "Действие, применяемое для заголовка окна при нажатии на среднюю кнопку "
+#~ "мыши"
 
 #~ msgid "Title bar Right-click action"
 #~ msgstr "Действие, применяемое для окна при нажатии правой клавиши мышки"
@@ -2164,8 +2166,8 @@ msgstr ""
 
 #~ msgid "Use Home Folder as the desktop(Logout for changes to take effect)"
 #~ msgstr ""
-#~ "Использовать папку /home в качестве рабочего стола (Лог-аут для того, чтобы "
-#~ "изменения вступили в силу)"
+#~ "Использовать папку /home в качестве рабочего стола (Лог-аут для того, "
+#~ "чтобы изменения вступили в силу)"
 
 #~ msgid "Show advanced Permissions on File Property pages"
 #~ msgstr "Показывать дополнительные ограничения в разделе \"свойства файла\""
@@ -2197,9 +2199,10 @@ msgstr ""
 #~ "Настраивая горячие сочетания клавиш, вы обеспечиваете себе более быстрый "
 #~ "доступ к \n"
 #~ "нужным Вам приложениям. \n"
-#~ "Выберите команду и вставьте любую клавишу в соответствие, так легко сделать "
-#~ "горячую клавишу.\n"
-#~ "Используйте <b>Delete</b> или <b>BackSpace</b> чтобы удалить горячую клавишу."
+#~ "Выберите команду и вставьте любую клавишу в соответствие, так легко "
+#~ "сделать горячую клавишу.\n"
+#~ "Используйте <b>Delete</b> или <b>BackSpace</b> чтобы удалить горячую "
+#~ "клавишу."
 
 #~ msgid ""
 #~ "You can freely manage your document templates.\n"
@@ -2217,7 +2220,8 @@ msgstr ""
 #~ msgstr "Lightweight X11 Desktop Environment:GPicView, PCManFM"
 
 #~ msgid ""
-#~ "<b><big>The information about available software is out-of-date</big></b>\n"
+#~ "<b><big>The information about available software is out-of-date</big></"
+#~ "b>\n"
 #~ "\n"
 #~ "To install software and updates from newly added or changed sources, you "
 #~ "have to reload the information about available software.\n"
@@ -2226,8 +2230,8 @@ msgstr ""
 #~ msgstr ""
 #~ "<b><big>Информация о программном обеспечении устарела</big></b>\n"
 #~ "\n"
-#~ "Для установки программ и обновлений из новых или изменённых источников нужно "
-#~ "скачать информацию о доступном программном обеспечении.\n"
+#~ "Для установки программ и обновлений из новых или изменённых источников "
+#~ "нужно скачать информацию о доступном программном обеспечении.\n"
 #~ "\n"
 #~ "Для продолжения требуется действующее подключение к Интернет."
 
