@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2008-12-08 17:11+0800\n"
+"POT-Creation-Date: 2008-12-13 21:55+0800\n"
 "PO-Revision-Date: 2008-12-06 00:36+0000\n"
 "Last-Translator: pankamyk <pankamyk@o2.pl>\n"
 "Language-Team: Łukasz <lukaszsk@gmail.com>\n"
@@ -37,7 +37,7 @@ msgstr "Modyfikacja programu startowego"
 msgid "New Startup Program"
 msgstr "Nowy program startowy"
 
-#: src/autostart.py:69 data/glade/gui.glade:171
+#: src/autostart.py:69 data/glade/gui.glade:173
 msgid "_Browse..."
 msgstr "_Przeglądaj..."
 
@@ -235,7 +235,7 @@ msgstr "Proszę wpisać hasło administratora"
 msgid "Select a folder"
 msgstr "Wybierz katalog"
 
-#: src/ScriptWorker.py:170
+#: src/ScriptWorker.py:171
 msgid "Please select a target(files or folders)."
 msgstr "Proszę wybierz jako cel plik lub katalog"
 
@@ -357,7 +357,7 @@ msgstr "Skróty"
 msgid "System"
 msgstr "System"
 
-#: src/mainwindow.py:224 src/filetype.py:389
+#: src/mainwindow.py:224 src/filetype.py:474
 msgid "File Type Manager"
 msgstr ""
 
@@ -509,72 +509,77 @@ msgstr ""
 msgid "Update successfully!"
 msgstr "Aktualizacja zakończona!"
 
-#: src/filetype.py:33
+#: src/filetype.py:35
 msgid "Audio"
 msgstr ""
 
-#: src/filetype.py:34
+#: src/filetype.py:36
 msgid "Text"
 msgstr ""
 
-#: src/filetype.py:35
+#: src/filetype.py:37
 msgid "Image"
 msgstr ""
 
-#: src/filetype.py:36
+#: src/filetype.py:38
 msgid "Video"
 msgstr ""
 
-#: src/filetype.py:37
+#: src/filetype.py:39
 msgid "Application"
 msgstr ""
 
-#: src/filetype.py:38
+#: src/filetype.py:40
 msgid "All"
 msgstr ""
 
-#: src/filetype.py:70
+#: src/filetype.py:73
 msgid "Categories"
 msgstr ""
 
-#: src/filetype.py:124
+#: src/filetype.py:130
 msgid "File Type"
 msgstr ""
 
-#: src/filetype.py:138
+#: src/filetype.py:144
 msgid "Associated Application"
 msgstr ""
 
-#: src/filetype.py:171 src/metacity.py:49 src/metacity.py:53
-#: src/metacity.py:57 src/metacity.py:61 src/shortcuts.py:91
-#: src/shortcuts.py:190
+#: src/filetype.py:177 src/filetype.py:212 src/metacity.py:49
+#: src/metacity.py:53 src/metacity.py:57 src/metacity.py:61
+#: src/shortcuts.py:91 src/shortcuts.py:190
 msgid "None"
 msgstr "żaden"
 
-#: src/filetype.py:228
+#: src/filetype.py:240
 #, python-format
 msgid "Open the files of type \"%s\" with:"
 msgstr ""
 
-#: src/filetype.py:297
+#: src/filetype.py:269
+#, fuzzy
+msgid "Choose a application"
+msgstr "Należy wybrać obrazek startowy"
+
+#: src/filetype.py:358
 #, python-format
 msgid "Select an application to open the type <b>%s</b>"
 msgstr ""
 
-#: src/filetype.py:311
-msgid "Could not find application"
-msgstr ""
-
-#: src/filetype.py:312
+#: src/filetype.py:383
 #, python-format
 msgid "Could not find %s"
 msgstr ""
 
-#: src/filetype.py:390
+#: src/filetype.py:384
+msgid "Could not find application"
+msgstr ""
+
+#: src/filetype.py:475
 msgid "Here you can manage all of the registered types of your system."
 msgstr ""
 
-#: src/filetype.py:416
+#: src/filetype.py:501
 msgid "Only show associated type"
 msgstr ""
 
@@ -687,8 +692,8 @@ msgstr ""
 "Należy zaznaczyć te repozytoria od których chce się dostawać aktualizacje.\n"
 "Przykładowo jeśli chcemy zawsze posiadać aktualną wersję \"Firefox\" należy "
 "włączyć repozytorium o tej nazwie.\n"
-"Dodawanie repozytoriów zwiększa ilość dostępnego oprogramowania w "
-"\"Dodaj/Usuń\"."
+"Dodawanie repozytoriów zwiększa ilość dostępnego oprogramowania w \"Dodaj/"
+"Usuń\"."
 
 #: src/thirdsoft.py:376
 msgid "Details"
@@ -1086,8 +1091,7 @@ msgid "Cleaned up Failed!"
 msgstr "Nie odkurzono!"
 
 #: src/cleaner.py:235
-msgid ""
-"Free up disk space by clearing unneeded packages and the package cache."
+msgid "Free up disk space by clearing unneeded packages and the package cache."
 msgstr ""
 "Odkurzając system ze zbędnych pakietów odzyskujesz porządek i miejsce na "
 "dysku twardym."
@@ -1245,8 +1249,7 @@ msgstr "Przełączanie użytkowników przy zablokowanym ekranie"
 
 #: src/gnomesettings.py:70
 msgid "Enable system-wide \"Recently Documents\" list"
-msgstr ""
-"Zapisywanie historii otwieranych plików w menu \"Ostatnie dokumenty\""
+msgstr "Zapisywanie historii otwieranych plików w menu \"Ostatnie dokumenty\""
 
 #: src/gnomesettings.py:73
 msgid "History"
@@ -1566,8 +1569,8 @@ msgstr "Wysyłanie zakończone"
 #: src/sourceeditor.py:467
 msgid "Please check the permission of the sources.list."
 msgstr ""
-"Należy sprawdzić uprawnienia do listy repozytoriów dla pliku "
-"\"sources.list\"."
+"Należy sprawdzić uprawnienia do listy repozytoriów dla pliku \"sources.list"
+"\"."
 
 #: src/sourceeditor.py:468
 msgid "Save failed!"
@@ -1611,8 +1614,8 @@ msgstr ""
 #: src/common/appdata.py:62
 msgid "Record and edit audio files"
 msgstr ""
-"Nagrywa i edytuje pliki z różnych źródeł audio. "
-"http://audacity.sourceforge.net/"
+"Nagrywa i edytuje pliki z różnych źródeł audio. http://audacity.sourceforge."
+"net/"
 
 #: src/common/appdata.py:63
 msgid "Fully customisable dock-like window navigator"
@@ -1662,8 +1665,8 @@ msgstr ""
 #: src/common/appdata.py:73
 msgid "Store, Sync and Share your files online."
 msgstr ""
-"Przechowuj, synchronizuj i dziel się swoimi plikami on-line. "
-"http://www.getdropbox.com/"
+"Przechowuj, synchronizuj i dziel się swoimi plikami on-line. http://www."
+"getdropbox.com/"
 
 #: src/common/appdata.py:74
 msgid "Extensible Tool Platform and Java IDE"
@@ -1671,8 +1674,8 @@ msgstr "Rozszerzalna platforma narzędziowa i IDE dla Javy"
 
 #: src/common/appdata.py:75
 msgid ""
-"EIOffice Personal 2009. Free for Chinese users. See "
-"http://www.evermoresw.com."
+"EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
+"com."
 msgstr ""
 "EIOffice Personal 2009. Wersja darmowa dla użytkowników z Chin. Zobacz na "
 "http://www.evermoresw.com."
@@ -1704,8 +1707,8 @@ msgstr "Transmisja plików przez FTP, SFTP i FTPS"
 #: src/common/appdata.py:81
 msgid "An extremly fast and lightweight file manager"
 msgstr ""
-"Szybki, prosty i niezastąpiony menedżer plików używający zakładek. "
-"http://pcmanfm.sourceforge.net/"
+"Szybki, prosty i niezastąpiony menedżer plików używający zakładek. http://"
+"pcmanfm.sourceforge.net/"
 
 #: src/common/appdata.py:82
 msgid ""
@@ -1767,8 +1770,8 @@ msgstr "Narzędzie do zrzutów ekranu"
 #: src/common/appdata.py:94
 msgid "Graphical frontend for recordmydesktop"
 msgstr ""
-"Nagraj zdarzenia na swoim pulpicie jako animacje. "
-"http://recordmydesktop.sourceforge.net/"
+"Nagraj zdarzenia na swoim pulpicie jako animacje. http://recordmydesktop."
+"sourceforge.net/"
 
 #: src/common/appdata.py:95
 msgid "A graphical CD image editor"
@@ -1883,8 +1886,8 @@ msgid ""
 "Swiftweasel is an optimized build of the Mozilla Firefox web browser for "
 "Linux"
 msgstr ""
-"Oparta na Firefox przeglądarka www z dodatkowymi możliwościami. "
-"http://swiftweasel.tuxfamily.org/"
+"Oparta na Firefox przeglądarka www z dodatkowymi możliwościami. http://"
+"swiftweasel.tuxfamily.org/"
 
 #: src/common/appdata.py:119
 msgid "Multiple GNOME terminals in one window"
@@ -2034,15 +2037,15 @@ msgstr "Usługa nie została włączona"
 msgid "Edit Type"
 msgstr ""
 
-#: data/glade/gui.glade:99
+#: data/glade/gui.glade:100
 msgid "Add Application"
 msgstr ""
 
-#: data/glade/gui.glade:144
+#: data/glade/gui.glade:146
 msgid "Select an application to view its description."
 msgstr ""
 
-#: data/glade/gui.glade:186
+#: data/glade/gui.glade:188
 msgid "_Use a custom command"
 msgstr ""
 
@@ -2088,7 +2091,8 @@ msgstr ""
 
 #~ msgid "Show Unicode Method menu in the right-click"
 #~ msgstr ""
-#~ "Pokaż menu znaków kontrolnych Unicode po kliknięciu prawym przyciskiem myszy"
+#~ "Pokaż menu znaków kontrolnych Unicode po kliknięciu prawym przyciskiem "
+#~ "myszy"
 
 #~ msgid "Rename the \"Computer\" icon: "
 #~ msgstr "Zmień nazwę ikony komputera: "
@@ -2126,7 +2130,8 @@ msgstr ""
 #~ "\n"
 #~ "Ubuntu Tweak is currently only for the GNOME Desktop Environment.\n"
 #~ "\n"
-#~ "Although this application is only in early stages, I'll keep developing it.\n"
+#~ "Although this application is only in early stages, I'll keep developing "
+#~ "it.\n"
 #~ "\n"
 #~ "If you have any suggestions, Please visit the website in \"About\" and \n"
 #~ "share ideas with me. \n"
@@ -2247,7 +2252,8 @@ msgstr ""
 #~ msgstr ""
 #~ "Przepraszamy!\n"
 #~ "\n"
-#~ "Ubuntu Tweak może zostać uruchomione tylko na <b>Ubuntu 7.04 or 7.10.</b>\n"
+#~ "Ubuntu Tweak może zostać uruchomione tylko na <b>Ubuntu 7.04 or 7.10.</"
+#~ "b>\n"
 
 #~ msgid ""
 #~ "You can safely delete the item, it will only been marked as hidden.\n"
@@ -2382,7 +2388,8 @@ msgstr ""
 #~ msgstr "Klienci P2P"
 
 #~ msgid ""
-#~ "<b><big>The information about available software is out-of-date</big></b>\n"
+#~ "<b><big>The information about available software is out-of-date</big></"
+#~ "b>\n"
 #~ "\n"
 #~ "To install software and updates from newly added or changed sources, you "
 #~ "have to reload the information about available software.\n"
@@ -2428,11 +2435,11 @@ msgstr ""
 #~ "You can drag and drop from File Manager.\n"
 #~ "\"Scripts\" will be added to the context menu.\n"
 #~ msgstr ""
-#~ "Za pomocą skryptów można wykonywać różnego rodzaju zadania. Można je pobrać "
-#~ "np z http://www.gnome-look.org/\n"
+#~ "Za pomocą skryptów można wykonywać różnego rodzaju zadania. Można je "
+#~ "pobrać np z http://www.gnome-look.org/\n"
 #~ "Należy przeciągnąć tutaj plik skryptu, który ma być dodany.\n"
-#~ "Włączanie i wyłączanie szablonów polega na ich przeciąganiu z jednej ramki w "
-#~ "drugą.\n"
+#~ "Włączanie i wyłączanie szablonów polega na ich przeciąganiu z jednej "
+#~ "ramki w drugą.\n"
 #~ "Wszystkie dodane skrypty będą widoczne w menu kontekstowym w Nautilusie.\n"
 
 #~ msgid "Default thumbnail icon Size"

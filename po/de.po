@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2008-12-08 17:11+0800\n"
+"POT-Creation-Date: 2008-12-13 21:55+0800\n"
 "PO-Revision-Date: 2008-12-09 14:52+0000\n"
 "Last-Translator: ig-88 <Unknown>\n"
 "Language-Team: LL <LL@li.org>\n"
@@ -37,7 +37,7 @@ msgstr "Startprogramm bearbeiten"
 msgid "New Startup Program"
 msgstr "Neues Startprogramm"
 
-#: src/autostart.py:69 data/glade/gui.glade:171
+#: src/autostart.py:69 data/glade/gui.glade:173
 msgid "_Browse..."
 msgstr "_Durchsuchen..."
 
@@ -234,7 +234,7 @@ msgstr ""
 msgid "Select a folder"
 msgstr "Ordner auswählen"
 
-#: src/ScriptWorker.py:170
+#: src/ScriptWorker.py:171
 msgid "Please select a target(files or folders)."
 msgstr "Bitte wählen Sie eine Datei oder einen Ordner."
 
@@ -360,7 +360,7 @@ msgstr "Tastenkürzel"
 msgid "System"
 msgstr "System"
 
-#: src/mainwindow.py:224 src/filetype.py:389
+#: src/mainwindow.py:224 src/filetype.py:474
 msgid "File Type Manager"
 msgstr "Dateitypzuordnung"
 
@@ -515,72 +515,77 @@ msgstr ""
 msgid "Update successfully!"
 msgstr "Aktualisierung war erfolgreich!"
 
-#: src/filetype.py:33
+#: src/filetype.py:35
 msgid "Audio"
 msgstr "Audio"
 
-#: src/filetype.py:34
+#: src/filetype.py:36
 msgid "Text"
 msgstr "Text"
 
-#: src/filetype.py:35
+#: src/filetype.py:37
 msgid "Image"
 msgstr "Bild"
 
-#: src/filetype.py:36
+#: src/filetype.py:38
 msgid "Video"
 msgstr "Video"
 
-#: src/filetype.py:37
+#: src/filetype.py:39
 msgid "Application"
 msgstr "Programm"
 
-#: src/filetype.py:38
+#: src/filetype.py:40
 msgid "All"
 msgstr "Alles"
 
-#: src/filetype.py:70
+#: src/filetype.py:73
 msgid "Categories"
 msgstr "Kategorien"
 
-#: src/filetype.py:124
+#: src/filetype.py:130
 msgid "File Type"
 msgstr "Dateityp"
 
-#: src/filetype.py:138
+#: src/filetype.py:144
 msgid "Associated Application"
 msgstr "Verknüpfte Anwendung"
 
-#: src/filetype.py:171 src/metacity.py:49 src/metacity.py:53
-#: src/metacity.py:57 src/metacity.py:61 src/shortcuts.py:91
-#: src/shortcuts.py:190
+#: src/filetype.py:177 src/filetype.py:212 src/metacity.py:49
+#: src/metacity.py:53 src/metacity.py:57 src/metacity.py:61
+#: src/shortcuts.py:91 src/shortcuts.py:190
 msgid "None"
 msgstr "Keiner"
 
-#: src/filetype.py:228
+#: src/filetype.py:240
 #, python-format
 msgid "Open the files of type \"%s\" with:"
 msgstr ""
 
-#: src/filetype.py:297
+#: src/filetype.py:269
+#, fuzzy
+msgid "Choose a application"
+msgstr "Anwendung konnte nicht gefunden werden"
+
+#: src/filetype.py:358
 #, python-format
 msgid "Select an application to open the type <b>%s</b>"
 msgstr ""
 
-#: src/filetype.py:311
-msgid "Could not find application"
-msgstr "Anwendung konnte nicht gefunden werden"
-
-#: src/filetype.py:312
+#: src/filetype.py:383
 #, python-format
 msgid "Could not find %s"
 msgstr "%s konnte nicht gefunden werden"
 
-#: src/filetype.py:390
+#: src/filetype.py:384
+msgid "Could not find application"
+msgstr "Anwendung konnte nicht gefunden werden"
+
+#: src/filetype.py:475
 msgid "Here you can manage all of the registered types of your system."
 msgstr "Hier können sie alle dem System bekannten Dateitypen bearbeiten."
 
-#: src/filetype.py:416
+#: src/filetype.py:501
 msgid "Only show associated type"
 msgstr ""
 
@@ -1088,8 +1093,7 @@ msgid "Cleaned up Failed!"
 msgstr "Aufräumen gescheitert!"
 
 #: src/cleaner.py:235
-msgid ""
-"Free up disk space by clearing unneeded packages and the package cache."
+msgid "Free up disk space by clearing unneeded packages and the package cache."
 msgstr ""
 "Speicherplatz freigeben indem unnötige Pakete und der Paketpuffer gelöscht "
 "werden."
@@ -1354,8 +1358,7 @@ msgstr "Neutilus-Erweiterungen"
 #: src/nautilus.py:187
 #, python-format
 msgid "Clean up the thumbnails cache (Free %s disk size)"
-msgstr ""
-"Den Cache für Vorschaubilder bereinigen (Macht %s Speicherplatz frei)"
+msgstr "Den Cache für Vorschaubilder bereinigen (Macht %s Speicherplatz frei)"
 
 #: src/nautilus.py:190
 msgid "The thumbnails cache will be cleaned, do you wish to continue?"
@@ -1647,8 +1650,7 @@ msgstr "Ein in PyGTK geschriebener Bittorrent-Client"
 
 #: src/common/appdata.py:73
 msgid "Store, Sync and Share your files online."
-msgstr ""
-"Speichere, synchronisiere und teile Deine Dateien online mit anderen."
+msgstr "Speichere, synchronisiere und teile Deine Dateien online mit anderen."
 
 #: src/common/appdata.py:74
 msgid "Extensible Tool Platform and Java IDE"
@@ -1656,11 +1658,11 @@ msgstr "Erweiterbare Werkzeugplattform und Java IDE"
 
 #: src/common/appdata.py:75
 msgid ""
-"EIOffice Personal 2009. Free for Chinese users. See "
-"http://www.evermoresw.com."
+"EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
+"com."
 msgstr ""
-"EIOffice Personal 2009. Kostenlos für chinesische Benutzer. Siehe "
-"http://www.evermoresw.com"
+"EIOffice Personal 2009. Kostenlos für chinesische Benutzer. Siehe http://www."
+"evermoresw.com"
 
 #: src/common/appdata.py:76
 msgid "A client for the Windows Live Message network"
@@ -1858,8 +1860,7 @@ msgstr "Ein internationales Wörterbuch"
 msgid ""
 "Swiftweasel is an optimized build of the Mozilla Firefox web browser for "
 "Linux"
-msgstr ""
-"Swiftweasel ist eine optimierte Version von Mozilla Firefox für Linux"
+msgstr "Swiftweasel ist eine optimierte Version von Mozilla Firefox für Linux"
 
 #: src/common/appdata.py:119
 msgid "Multiple GNOME terminals in one window"
@@ -1999,15 +2000,15 @@ msgstr "Der Service ist noch nicht gestartet"
 msgid "Edit Type"
 msgstr "Typ bearbeiten"
 
-#: data/glade/gui.glade:99
+#: data/glade/gui.glade:100
 msgid "Add Application"
 msgstr ""
 
-#: data/glade/gui.glade:144
+#: data/glade/gui.glade:146
 msgid "Select an application to view its description."
 msgstr ""
 
-#: data/glade/gui.glade:186
+#: data/glade/gui.glade:188
 msgid "_Use a custom command"
 msgstr ""
 
@@ -2204,8 +2205,8 @@ msgstr ""
 #~ msgstr ""
 #~ "Sie können das Element ohne Bedenken entfernen, es wird lediglich als "
 #~ "versteckt markiert.\n"
-#~ "Wenn sie es von der Festplatte löschen wollen, klicken sie das Element mit "
-#~ "der rechten Maustaste."
+#~ "Wenn sie es von der Festplatte löschen wollen, klicken sie das Element "
+#~ "mit der rechten Maustaste."
 
 #~ msgid "Show program comments"
 #~ msgstr "Kommentare zum Programm anzeigen"
@@ -2325,7 +2326,8 @@ msgstr ""
 #~ "You can drag and drop from File Manager.\n"
 #~ "\"Create Document\" will be added to the Context Menu.\n"
 #~ msgstr ""
-#~ "Hier können Sie Ihre Dokumentvorlagen verwalten. Dokumentvorlagen können \n"
+#~ "Hier können Sie Ihre Dokumentvorlagen verwalten. Dokumentvorlagen "
+#~ "können \n"
 #~ "einfach hier hereingezogen werden. Die Vorlage wird zu Ihrem Rechtsklick-"
 #~ "Menü \n"
 #~ "hinzugefügt: Dokument anlegen.\n"
@@ -2340,7 +2342,8 @@ msgstr ""
 #~ msgstr "Leichtgewichtige X11-Desktopumgebung: GPicView, PCManFM"
 
 #~ msgid ""
-#~ "<b><big>The information about available software is out-of-date</big></b>\n"
+#~ "<b><big>The information about available software is out-of-date</big></"
+#~ "b>\n"
 #~ "\n"
 #~ "To install software and updates from newly added or changed sources, you "
 #~ "have to reload the information about available software.\n"

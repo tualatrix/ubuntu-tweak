@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2008-12-08 17:11+0800\n"
+"POT-Creation-Date: 2008-12-13 21:55+0800\n"
 "PO-Revision-Date: 2008-10-08 14:19+0000\n"
 "Last-Translator: TualatriX <Unknown>\n"
 "Language-Team: Indonesian <id@li.org>\n"
@@ -37,7 +37,7 @@ msgstr "Sunting Program Startup"
 msgid "New Startup Program"
 msgstr "Program Startup Baru"
 
-#: src/autostart.py:69 data/glade/gui.glade:171
+#: src/autostart.py:69 data/glade/gui.glade:173
 msgid "_Browse..."
 msgstr ""
 
@@ -226,7 +226,7 @@ msgstr "masukkan kata sandi anda untuk melakukan tugas administratif"
 msgid "Select a folder"
 msgstr "Pilih direktori"
 
-#: src/ScriptWorker.py:170
+#: src/ScriptWorker.py:171
 msgid "Please select a target(files or folders)."
 msgstr "Harap pilih target(berkas atau direktori)"
 
@@ -348,7 +348,7 @@ msgstr "Jalan Pintas"
 msgid "System"
 msgstr "Sistem"
 
-#: src/mainwindow.py:224 src/filetype.py:389
+#: src/mainwindow.py:224 src/filetype.py:474
 msgid "File Type Manager"
 msgstr ""
 
@@ -470,72 +470,77 @@ msgstr ""
 msgid "Update successfully!"
 msgstr "Perbaharuan berhasil!"
 
-#: src/filetype.py:33
+#: src/filetype.py:35
 msgid "Audio"
 msgstr ""
 
-#: src/filetype.py:34
+#: src/filetype.py:36
 msgid "Text"
 msgstr ""
 
-#: src/filetype.py:35
+#: src/filetype.py:37
 msgid "Image"
 msgstr ""
 
-#: src/filetype.py:36
+#: src/filetype.py:38
 msgid "Video"
 msgstr ""
 
-#: src/filetype.py:37
+#: src/filetype.py:39
 msgid "Application"
 msgstr ""
 
-#: src/filetype.py:38
+#: src/filetype.py:40
 msgid "All"
 msgstr ""
 
-#: src/filetype.py:70
+#: src/filetype.py:73
 msgid "Categories"
 msgstr ""
 
-#: src/filetype.py:124
+#: src/filetype.py:130
 msgid "File Type"
 msgstr ""
 
-#: src/filetype.py:138
+#: src/filetype.py:144
 msgid "Associated Application"
 msgstr ""
 
-#: src/filetype.py:171 src/metacity.py:49 src/metacity.py:53
-#: src/metacity.py:57 src/metacity.py:61 src/shortcuts.py:91
-#: src/shortcuts.py:190
+#: src/filetype.py:177 src/filetype.py:212 src/metacity.py:49
+#: src/metacity.py:53 src/metacity.py:57 src/metacity.py:61
+#: src/shortcuts.py:91 src/shortcuts.py:190
 msgid "None"
 msgstr "Tidak ada"
 
-#: src/filetype.py:228
+#: src/filetype.py:240
 #, python-format
 msgid "Open the files of type \"%s\" with:"
 msgstr ""
 
-#: src/filetype.py:297
+#: src/filetype.py:269
+#, fuzzy
+msgid "Choose a application"
+msgstr "Pilih sebuah gambar Splash"
+
+#: src/filetype.py:358
 #, python-format
 msgid "Select an application to open the type <b>%s</b>"
 msgstr ""
 
-#: src/filetype.py:311
-msgid "Could not find application"
-msgstr ""
-
-#: src/filetype.py:312
+#: src/filetype.py:383
 #, python-format
 msgid "Could not find %s"
 msgstr ""
 
-#: src/filetype.py:390
+#: src/filetype.py:384
+msgid "Could not find application"
+msgstr ""
+
+#: src/filetype.py:475
 msgid "Here you can manage all of the registered types of your system."
 msgstr ""
 
-#: src/filetype.py:416
+#: src/filetype.py:501
 msgid "Only show associated type"
 msgstr ""
 
@@ -1019,8 +1024,7 @@ msgid "Cleaned up Failed!"
 msgstr ""
 
 #: src/cleaner.py:235
-msgid ""
-"Free up disk space by clearing unneeded packages and the package cache."
+msgid "Free up disk space by clearing unneeded packages and the package cache."
 msgstr ""
 
 #: src/cleaner.py:253
@@ -1560,8 +1564,8 @@ msgstr ""
 
 #: src/common/appdata.py:75
 msgid ""
-"EIOffice Personal 2009. Free for Chinese users. See "
-"http://www.evermoresw.com."
+"EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
+"com."
 msgstr ""
 
 #: src/common/appdata.py:76
@@ -1879,15 +1883,15 @@ msgstr ""
 msgid "Edit Type"
 msgstr ""
 
-#: data/glade/gui.glade:99
+#: data/glade/gui.glade:100
 msgid "Add Application"
 msgstr ""
 
-#: data/glade/gui.glade:144
+#: data/glade/gui.glade:146
 msgid "Select an application to view its description."
 msgstr ""
 
-#: data/glade/gui.glade:186
+#: data/glade/gui.glade:188
 msgid "_Use a custom command"
 msgstr ""
 
@@ -1960,9 +1964,6 @@ msgstr ""
 #~ msgid "\"GNOME Panel\" Power Management icon"
 #~ msgstr "ikon manajemen daya \"Panel GNOME\""
 
-#~ msgid "Choose a Splash image"
-#~ msgstr "Pilih sebuah gambar Splash"
-
 #~ msgid "Show Logout prompt"
 #~ msgstr "Perlihatkan prompt Logout"
 
@@ -1973,8 +1974,8 @@ msgstr ""
 #~ "You can safely delete the item, it will only been marked as hidden.\n"
 #~ "If you want to delete it from disk, right-click the item."
 #~ msgstr ""
-#~ "anda dapat menghapus item dengan aman, hanya akan ditandai sebagai item yang "
-#~ "tersembunyi\n"
+#~ "anda dapat menghapus item dengan aman, hanya akan ditandai sebagai item "
+#~ "yang tersembunyi\n"
 #~ "apabila anda ingin menghapus item tersebut dari disk klik kanan item"
 
 #~ msgid "Show program comments"
@@ -2068,19 +2069,20 @@ msgstr ""
 #~ msgstr "Lightweight X11 Desktop Environment:GPicView, PCManFM"
 
 #~ msgid ""
-#~ "<b><big>The information about available software is out-of-date</big></b>\n"
+#~ "<b><big>The information about available software is out-of-date</big></"
+#~ "b>\n"
 #~ "\n"
 #~ "To install software and updates from newly added or changed sources, you "
 #~ "have to reload the information about available software.\n"
 #~ "\n"
 #~ "You need a working internet connection to continue."
 #~ msgstr ""
-#~ "<b><big>Informasi tentang perangkat lunak yang tersedia sudah "
-#~ "kedaluarsa</big></b>\n"
+#~ "<b><big>Informasi tentang perangkat lunak yang tersedia sudah kedaluarsa</"
+#~ "big></b>\n"
 #~ "\n"
 #~ "Untuk memasang perangkat lunak dan pemutakhiran dari sumber yang baru "
-#~ "ditambah atau berubah, anda harus memuat ulang informasi tentang perangkat "
-#~ "lunak yang tersedia.\n"
+#~ "ditambah atau berubah, anda harus memuat ulang informasi tentang "
+#~ "perangkat lunak yang tersedia.\n"
 #~ "\n"
 #~ "Anda butuh koneksi internet untuk melanjutkannya."
 

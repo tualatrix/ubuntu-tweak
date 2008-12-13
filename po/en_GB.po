@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2008-12-08 17:11+0800\n"
+"POT-Creation-Date: 2008-12-13 21:55+0800\n"
 "PO-Revision-Date: 2008-12-09 13:56+0000\n"
 "Last-Translator: jgraeme <Unknown>\n"
 "Language-Team: English (United Kingdom) <en_GB@li.org>\n"
@@ -37,7 +37,7 @@ msgstr "Edit Startup Program"
 msgid "New Startup Program"
 msgstr "New Startup Program"
 
-#: src/autostart.py:69 data/glade/gui.glade:171
+#: src/autostart.py:69 data/glade/gui.glade:173
 msgid "_Browse..."
 msgstr "_Browse..."
 
@@ -231,7 +231,7 @@ msgstr "Enter your password to perform the administrative tasks"
 msgid "Select a folder"
 msgstr "Select a folder"
 
-#: src/ScriptWorker.py:170
+#: src/ScriptWorker.py:171
 msgid "Please select a target(files or folders)."
 msgstr "Please select a target(files or folders)."
 
@@ -355,7 +355,7 @@ msgstr "Shortcuts"
 msgid "System"
 msgstr "System"
 
-#: src/mainwindow.py:224 src/filetype.py:389
+#: src/mainwindow.py:224 src/filetype.py:474
 msgid "File Type Manager"
 msgstr "File Type Manager"
 
@@ -483,72 +483,77 @@ msgstr ""
 msgid "Update successfully!"
 msgstr "Update successfull!"
 
-#: src/filetype.py:33
+#: src/filetype.py:35
 msgid "Audio"
 msgstr "Audio"
 
-#: src/filetype.py:34
+#: src/filetype.py:36
 msgid "Text"
 msgstr "Text"
 
-#: src/filetype.py:35
+#: src/filetype.py:37
 msgid "Image"
 msgstr "Image"
 
-#: src/filetype.py:36
+#: src/filetype.py:38
 msgid "Video"
 msgstr "Video"
 
-#: src/filetype.py:37
+#: src/filetype.py:39
 msgid "Application"
 msgstr "Application"
 
-#: src/filetype.py:38
+#: src/filetype.py:40
 msgid "All"
 msgstr "All"
 
-#: src/filetype.py:70
+#: src/filetype.py:73
 msgid "Categories"
 msgstr "Categories"
 
-#: src/filetype.py:124
+#: src/filetype.py:130
 msgid "File Type"
 msgstr "File Type"
 
-#: src/filetype.py:138
+#: src/filetype.py:144
 msgid "Associated Application"
 msgstr "Associated Application"
 
-#: src/filetype.py:171 src/metacity.py:49 src/metacity.py:53
-#: src/metacity.py:57 src/metacity.py:61 src/shortcuts.py:91
-#: src/shortcuts.py:190
+#: src/filetype.py:177 src/filetype.py:212 src/metacity.py:49
+#: src/metacity.py:53 src/metacity.py:57 src/metacity.py:61
+#: src/shortcuts.py:91 src/shortcuts.py:190
 msgid "None"
 msgstr "None"
 
-#: src/filetype.py:228
+#: src/filetype.py:240
 #, python-format
 msgid "Open the files of type \"%s\" with:"
 msgstr ""
 
-#: src/filetype.py:297
+#: src/filetype.py:269
+#, fuzzy
+msgid "Choose a application"
+msgstr "Could not find application"
+
+#: src/filetype.py:358
 #, python-format
 msgid "Select an application to open the type <b>%s</b>"
 msgstr ""
 
-#: src/filetype.py:311
-msgid "Could not find application"
-msgstr "Could not find application"
-
-#: src/filetype.py:312
+#: src/filetype.py:383
 #, python-format
 msgid "Could not find %s"
 msgstr "Could not find %s"
 
-#: src/filetype.py:390
+#: src/filetype.py:384
+msgid "Could not find application"
+msgstr "Could not find application"
+
+#: src/filetype.py:475
 msgid "Here you can manage all of the registered types of your system."
 msgstr ""
 
-#: src/filetype.py:416
+#: src/filetype.py:501
 msgid "Only show associated type"
 msgstr "Only show associated type"
 
@@ -1054,8 +1059,7 @@ msgid "Cleaned up Failed!"
 msgstr "Failed to clean up!"
 
 #: src/cleaner.py:235
-msgid ""
-"Free up disk space by clearing unneeded packages and the package cache."
+msgid "Free up disk space by clearing unneeded packages and the package cache."
 msgstr ""
 "Free up disk space by clearing unneeded packages and the package cache."
 
@@ -1615,8 +1619,8 @@ msgstr "Extensible Tool Platform and Java IDE"
 
 #: src/common/appdata.py:75
 msgid ""
-"EIOffice Personal 2009. Free for Chinese users. See "
-"http://www.evermoresw.com."
+"EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
+"com."
 msgstr ""
 "EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw.com"
 
@@ -1958,15 +1962,15 @@ msgstr "Service hasn't initialised yet"
 msgid "Edit Type"
 msgstr "Edit Type"
 
-#: data/glade/gui.glade:99
+#: data/glade/gui.glade:100
 msgid "Add Application"
 msgstr "Add Application"
 
-#: data/glade/gui.glade:144
+#: data/glade/gui.glade:146
 msgid "Select an application to view its description."
 msgstr "Select an application to view its description."
 
-#: data/glade/gui.glade:186
+#: data/glade/gui.glade:188
 msgid "_Use a custom command"
 msgstr "_Use a custom command"
 
@@ -2202,14 +2206,16 @@ msgstr "_Use a custom command"
 #~ msgstr "Lightweight X11 Desktop Environment: GPicView, PCManFM"
 
 #~ msgid ""
-#~ "<b><big>The information about available software is out-of-date</big></b>\n"
+#~ "<b><big>The information about available software is out-of-date</big></"
+#~ "b>\n"
 #~ "\n"
 #~ "To install software and updates from newly added or changed sources, you "
 #~ "have to reload the information about available software.\n"
 #~ "\n"
 #~ "You need a working internet connection to continue."
 #~ msgstr ""
-#~ "<b><big>The information about available software is out-of-date</big></b>\n"
+#~ "<b><big>The information about available software is out-of-date</big></"
+#~ "b>\n"
 #~ "\n"
 #~ "To install software and updates from newly added or changed sources, you "
 #~ "have to reload the information about available software.\n"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2008-12-08 17:11+0800\n"
+"POT-Creation-Date: 2008-12-13 21:55+0800\n"
 "PO-Revision-Date: 2008-12-07 17:05+0000\n"
 "Last-Translator: Frederico R. Scheel <fredscheel@yahoo.com.br>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
@@ -37,7 +37,7 @@ msgstr "Editar programas de início automático"
 msgid "New Startup Program"
 msgstr "Novo programa de início automático"
 
-#: src/autostart.py:69 data/glade/gui.glade:171
+#: src/autostart.py:69 data/glade/gui.glade:173
 msgid "_Browse..."
 msgstr "_Navegar..."
 
@@ -232,7 +232,7 @@ msgstr "Entre com sua senha para executar as tarefas administrativas"
 msgid "Select a folder"
 msgstr "Selecionar uma pasta"
 
-#: src/ScriptWorker.py:170
+#: src/ScriptWorker.py:171
 msgid "Please select a target(files or folders)."
 msgstr "Por favor selecione um alvo(arquivos ou pastas)"
 
@@ -356,7 +356,7 @@ msgstr "Atalhos"
 msgid "System"
 msgstr "Sistema"
 
-#: src/mainwindow.py:224 src/filetype.py:389
+#: src/mainwindow.py:224 src/filetype.py:474
 msgid "File Type Manager"
 msgstr ""
 
@@ -497,72 +497,77 @@ msgstr ""
 msgid "Update successfully!"
 msgstr "Atualizado com sucesso!"
 
-#: src/filetype.py:33
+#: src/filetype.py:35
 msgid "Audio"
 msgstr ""
 
-#: src/filetype.py:34
+#: src/filetype.py:36
 msgid "Text"
 msgstr ""
 
-#: src/filetype.py:35
+#: src/filetype.py:37
 msgid "Image"
 msgstr ""
 
-#: src/filetype.py:36
+#: src/filetype.py:38
 msgid "Video"
 msgstr ""
 
-#: src/filetype.py:37
+#: src/filetype.py:39
 msgid "Application"
 msgstr ""
 
-#: src/filetype.py:38
+#: src/filetype.py:40
 msgid "All"
 msgstr ""
 
-#: src/filetype.py:70
+#: src/filetype.py:73
 msgid "Categories"
 msgstr ""
 
-#: src/filetype.py:124
+#: src/filetype.py:130
 msgid "File Type"
 msgstr ""
 
-#: src/filetype.py:138
+#: src/filetype.py:144
 msgid "Associated Application"
 msgstr ""
 
-#: src/filetype.py:171 src/metacity.py:49 src/metacity.py:53
-#: src/metacity.py:57 src/metacity.py:61 src/shortcuts.py:91
-#: src/shortcuts.py:190
+#: src/filetype.py:177 src/filetype.py:212 src/metacity.py:49
+#: src/metacity.py:53 src/metacity.py:57 src/metacity.py:61
+#: src/shortcuts.py:91 src/shortcuts.py:190
 msgid "None"
 msgstr "Nenhum"
 
-#: src/filetype.py:228
+#: src/filetype.py:240
 #, python-format
 msgid "Open the files of type \"%s\" with:"
 msgstr ""
 
-#: src/filetype.py:297
+#: src/filetype.py:269
+#, fuzzy
+msgid "Choose a application"
+msgstr "Escolha uma imagem de tela"
+
+#: src/filetype.py:358
 #, python-format
 msgid "Select an application to open the type <b>%s</b>"
 msgstr ""
 
-#: src/filetype.py:311
-msgid "Could not find application"
-msgstr ""
-
-#: src/filetype.py:312
+#: src/filetype.py:383
 #, python-format
 msgid "Could not find %s"
 msgstr ""
 
-#: src/filetype.py:390
+#: src/filetype.py:384
+msgid "Could not find application"
+msgstr ""
+
+#: src/filetype.py:475
 msgid "Here you can manage all of the registered types of your system."
 msgstr ""
 
-#: src/filetype.py:416
+#: src/filetype.py:501
 msgid "Only show associated type"
 msgstr ""
 
@@ -933,8 +938,7 @@ msgstr ""
 
 #: src/compiz.py:212
 msgid "Install Simple Desktop Effects Settings manager"
-msgstr ""
-"Instalar o Gerenciador de Configurações de Efeitos Simples de Desktop"
+msgstr "Instalar o Gerenciador de Configurações de Efeitos Simples de Desktop"
 
 #: src/compiz.py:215
 msgid "Install Screenlets Widget Application"
@@ -1073,8 +1077,7 @@ msgid "Cleaned up Failed!"
 msgstr ""
 
 #: src/cleaner.py:235
-msgid ""
-"Free up disk space by clearing unneeded packages and the package cache."
+msgid "Free up disk space by clearing unneeded packages and the package cache."
 msgstr ""
 "Libere espaço em disco eliminando pacotes desnecessários e o cache de pacotes"
 
@@ -1637,8 +1640,8 @@ msgstr "Plataforma de Ferramentas Extensível e IDE Java"
 
 #: src/common/appdata.py:75
 msgid ""
-"EIOffice Personal 2009. Free for Chinese users. See "
-"http://www.evermoresw.com."
+"EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
+"com."
 msgstr ""
 
 #: src/common/appdata.py:76
@@ -1968,15 +1971,15 @@ msgstr "Serviço ainda não foi inicializado"
 msgid "Edit Type"
 msgstr ""
 
-#: data/glade/gui.glade:99
+#: data/glade/gui.glade:100
 msgid "Add Application"
 msgstr ""
 
-#: data/glade/gui.glade:144
+#: data/glade/gui.glade:146
 msgid "Select an application to view its description."
 msgstr ""
 
-#: data/glade/gui.glade:186
+#: data/glade/gui.glade:188
 msgid "_Use a custom command"
 msgstr ""
 
@@ -2067,9 +2070,6 @@ msgstr ""
 #~ msgid "\"GNOME Panel\" Power Management icon"
 #~ msgstr "\"Painel do GNOME\" ícone do Gerenciamento de Energia"
 
-#~ msgid "Choose a Splash image"
-#~ msgstr "Escolha uma imagem de tela"
-
 #~ msgid "Show Logout prompt"
 #~ msgstr "Mostre o alerta de logout"
 
@@ -2081,8 +2081,8 @@ msgstr ""
 #~ "If you want to delete it from disk, right-click the item."
 #~ msgstr ""
 #~ "Você pode seguramente excluir o item, ele só será marcado como oculto.\n"
-#~ "Se você desejar apagá-lo do disco, clique com o botão direito do mouse sobre "
-#~ "o item."
+#~ "Se você desejar apagá-lo do disco, clique com o botão direito do mouse "
+#~ "sobre o item."
 
 #~ msgid "Show program comments"
 #~ msgstr "Mostrar comentários sobre o programa"
@@ -2194,8 +2194,8 @@ msgstr ""
 #~ msgstr ""
 #~ "Configurando atalhos no teclado, você tem um rápido acesso às \n"
 #~ "aplicações que você necessita.\n"
-#~ "Insira o comando e defina uma combinação de teclas desejada, é fácil ajustar "
-#~ "um atalho.\n"
+#~ "Insira o comando e defina uma combinação de teclas desejada, é fácil "
+#~ "ajustar um atalho.\n"
 #~ "Use <b>Delete</b> ou <b>BackSpace</b> pra limpar a combinação."
 
 #~ msgid ""
@@ -2204,7 +2204,8 @@ msgstr ""
 #~ "\"Create Document\" will be added to the Context Menu.\n"
 #~ msgstr ""
 #~ "Você pode gerenciar livremente seus modelos de documentos.\n"
-#~ "Você pode arrastar e soltar eles aqui a partir do Gerenciador de Arquivos.\n"
+#~ "Você pode arrastar e soltar eles aqui a partir do Gerenciador de "
+#~ "Arquivos.\n"
 #~ "\"Criar Documento\" será adicionado ao menu de contexto.\n"
 
 #~ msgid "Enable System-wide 'Recently Used' list"
@@ -2214,18 +2215,19 @@ msgstr ""
 #~ msgstr "Clientes P2P"
 
 #~ msgid ""
-#~ "<b><big>The information about available software is out-of-date</big></b>\n"
+#~ "<b><big>The information about available software is out-of-date</big></"
+#~ "b>\n"
 #~ "\n"
 #~ "To install software and updates from newly added or changed sources, you "
 #~ "have to reload the information about available software.\n"
 #~ "\n"
 #~ "You need a working internet connection to continue."
 #~ msgstr ""
-#~ "<b><big>A informação sobre programas disponíveis está "
-#~ "desatualizada</big></b>\n"
+#~ "<b><big>A informação sobre programas disponíveis está desatualizada</"
+#~ "big></b>\n"
 #~ "\n"
-#~ "Para instalar programas e atualizações de fontes recentemente adicionadas ou "
-#~ "alteradas, você tem que recarregar as informações sobre programas "
+#~ "Para instalar programas e atualizações de fontes recentemente adicionadas "
+#~ "ou alteradas, você tem que recarregar as informações sobre programas "
 #~ "disponíveis.\n"
 #~ "\n"
 #~ "Você precisa de uma conexão à Internet funcionando para continuar."

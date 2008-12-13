@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-12-08 17:11+0800\n"
+"Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
+"POT-Creation-Date: 2008-12-13 21:55+0800\n"
 "PO-Revision-Date: 2008-11-21 16:55+0000\n"
 "Last-Translator: Hjalmar <hjalmar@knassar.com>\n"
 "Language-Team: Faroese <fo@li.org>\n"
@@ -37,7 +37,7 @@ msgstr "Rætta byrjanarforrit"
 msgid "New Startup Program"
 msgstr "Nýtt Byrjunar Forrit"
 
-#: src/autostart.py:69 data/glade/gui.glade:171
+#: src/autostart.py:69 data/glade/gui.glade:173
 msgid "_Browse..."
 msgstr "Kaga"
 
@@ -231,7 +231,7 @@ msgstr "Inntasta koduorð til at gera fyrisetinga uppgávur"
 msgid "Select a folder"
 msgstr "Vel ein faldara"
 
-#: src/ScriptWorker.py:170
+#: src/ScriptWorker.py:171
 msgid "Please select a target(files or folders)."
 msgstr "Vinarliga vel mál(fílir ella mappur)"
 
@@ -355,7 +355,7 @@ msgstr "Snarvegir"
 msgid "System"
 msgstr "Skipan"
 
-#: src/mainwindow.py:224 src/filetype.py:389
+#: src/mainwindow.py:224 src/filetype.py:474
 msgid "File Type Manager"
 msgstr ""
 
@@ -472,72 +472,77 @@ msgstr ""
 msgid "Update successfully!"
 msgstr "Dagføring væleydna!"
 
-#: src/filetype.py:33
+#: src/filetype.py:35
 msgid "Audio"
 msgstr ""
 
-#: src/filetype.py:34
+#: src/filetype.py:36
 msgid "Text"
 msgstr ""
 
-#: src/filetype.py:35
+#: src/filetype.py:37
 msgid "Image"
 msgstr ""
 
-#: src/filetype.py:36
+#: src/filetype.py:38
 msgid "Video"
 msgstr ""
 
-#: src/filetype.py:37
+#: src/filetype.py:39
 msgid "Application"
 msgstr ""
 
-#: src/filetype.py:38
+#: src/filetype.py:40
 msgid "All"
 msgstr ""
 
-#: src/filetype.py:70
+#: src/filetype.py:73
 msgid "Categories"
 msgstr ""
 
-#: src/filetype.py:124
+#: src/filetype.py:130
 msgid "File Type"
 msgstr ""
 
-#: src/filetype.py:138
+#: src/filetype.py:144
 msgid "Associated Application"
 msgstr ""
 
-#: src/filetype.py:171 src/metacity.py:49 src/metacity.py:53
-#: src/metacity.py:57 src/metacity.py:61 src/shortcuts.py:91
-#: src/shortcuts.py:190
+#: src/filetype.py:177 src/filetype.py:212 src/metacity.py:49
+#: src/metacity.py:53 src/metacity.py:57 src/metacity.py:61
+#: src/shortcuts.py:91 src/shortcuts.py:190
 msgid "None"
 msgstr "Einki"
 
-#: src/filetype.py:228
+#: src/filetype.py:240
 #, python-format
 msgid "Open the files of type \"%s\" with:"
 msgstr ""
 
-#: src/filetype.py:297
+#: src/filetype.py:269
+#, fuzzy
+msgid "Choose a application"
+msgstr "Vel splash mynd"
+
+#: src/filetype.py:358
 #, python-format
 msgid "Select an application to open the type <b>%s</b>"
 msgstr ""
 
-#: src/filetype.py:311
-msgid "Could not find application"
-msgstr ""
-
-#: src/filetype.py:312
+#: src/filetype.py:383
 #, python-format
 msgid "Could not find %s"
 msgstr ""
 
-#: src/filetype.py:390
+#: src/filetype.py:384
+msgid "Could not find application"
+msgstr ""
+
+#: src/filetype.py:475
 msgid "Here you can manage all of the registered types of your system."
 msgstr ""
 
-#: src/filetype.py:416
+#: src/filetype.py:501
 msgid "Only show associated type"
 msgstr ""
 
@@ -1030,11 +1035,10 @@ msgid "Cleaned up Failed!"
 msgstr "Útreinsan Miseyðnaist!"
 
 #: src/cleaner.py:235
-msgid ""
-"Free up disk space by clearing unneeded packages and the package cache."
+msgid "Free up disk space by clearing unneeded packages and the package cache."
 msgstr ""
-"Fá meira pláss á telduni við at stika óneyðugar pakkar og teirra "
-"goymslu(cache)"
+"Fá meira pláss á telduni við at stika óneyðugar pakkar og teirra goymslu"
+"(cache)"
 
 #: src/cleaner.py:253
 msgid "Clean Package"
@@ -1573,8 +1577,8 @@ msgstr ""
 
 #: src/common/appdata.py:75
 msgid ""
-"EIOffice Personal 2009. Free for Chinese users. See "
-"http://www.evermoresw.com."
+"EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
+"com."
 msgstr ""
 
 #: src/common/appdata.py:76
@@ -1892,14 +1896,14 @@ msgstr "Tænastan er ikki innleidd enn"
 msgid "Edit Type"
 msgstr ""
 
-#: data/glade/gui.glade:99
+#: data/glade/gui.glade:100
 msgid "Add Application"
 msgstr ""
 
-#: data/glade/gui.glade:144
+#: data/glade/gui.glade:146
 msgid "Select an application to view its description."
 msgstr ""
 
-#: data/glade/gui.glade:186
+#: data/glade/gui.glade:188
 msgid "_Use a custom command"
 msgstr ""
