@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2008-12-10 17:14+0800\n"
-"PO-Revision-Date: 2008-11-14 04:15+0000\n"
+"POT-Creation-Date: 2008-12-08 17:11+0800\n"
+"PO-Revision-Date: 2008-12-13 05:24+0000\n"
 "Last-Translator: TualatriX <Unknown>\n"
 "Language-Team: TualatriX <tualatrix@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-11-17 11:29+0000\n"
+"X-Launchpad-Export-Date: 2008-12-13 05:29+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: TAIWAN\n"
 "X-Poedit-Language: Chinese\n"
@@ -349,10 +349,9 @@ msgstr "快速鍵"
 msgid "System"
 msgstr "系統設定"
 
-#: src/mainwindow.py:224 src/filetype.py:474
-#, fuzzy
+#: src/mainwindow.py:224 src/filetype.py:389
 msgid "File Type Manager"
-msgstr "更新管理員"
+msgstr "檔案類型管理員"
 
 #: src/mainwindow.py:225
 msgid "Nautilus"
@@ -443,7 +442,6 @@ msgstr ""
 "您想繼續嗎?"
 
 #: src/userdir.py:198
-#, fuzzy
 msgid "Directory"
 msgstr "目錄"
 
@@ -475,86 +473,74 @@ msgstr ""
 msgid "Update successfully!"
 msgstr "更新成功！"
 
-#: src/filetype.py:35
+#: src/filetype.py:33
 msgid "Audio"
-msgstr ""
+msgstr "音訊"
+
+#: src/filetype.py:34
+msgid "Text"
+msgstr "文字"
+
+#: src/filetype.py:35
+msgid "Image"
+msgstr "圖片"
 
 #: src/filetype.py:36
-msgid "Text"
-msgstr ""
+msgid "Video"
+msgstr "視訊"
 
 #: src/filetype.py:37
-#, fuzzy
-msgid "Image"
-msgstr "圖像工具"
-
-#: src/filetype.py:38
-#, fuzzy
-msgid "Video"
-msgstr "影片"
-
-#: src/filetype.py:39
-#, fuzzy
 msgid "Application"
 msgstr "應用程式"
 
-#: src/filetype.py:40
+#: src/filetype.py:38
 msgid "All"
-msgstr ""
+msgstr "全部"
 
-#: src/filetype.py:73
-#, fuzzy
+#: src/filetype.py:70
 msgid "Categories"
-msgstr "所有分類"
+msgstr "類別"
 
-#: src/filetype.py:130
-#, fuzzy
+#: src/filetype.py:124
 msgid "File Type"
-msgstr "更新管理員"
+msgstr "檔案類型"
 
-#: src/filetype.py:144
-#, fuzzy
+#: src/filetype.py:138
 msgid "Associated Application"
-msgstr "應用程式"
+msgstr "已關聯的應用程序"
 
-#: src/filetype.py:177 src/metacity.py:49 src/metacity.py:53
+#: src/filetype.py:171 src/metacity.py:49 src/metacity.py:53
 #: src/metacity.py:57 src/metacity.py:61 src/shortcuts.py:91
 #: src/shortcuts.py:190
 msgid "None"
 msgstr "沒有"
 
-#: src/filetype.py:235
+#: src/filetype.py:228
 #, python-format
 msgid "Open the files of type \"%s\" with:"
-msgstr ""
+msgstr "用此應用程式打開\"%s\"類型的檔案："
 
-#: src/filetype.py:264
-#, fuzzy
-msgid "Choose a application"
-msgstr "應用程式"
-
-#: src/filetype.py:356
+#: src/filetype.py:297
 #, python-format
 msgid "Select an application to open the type <b>%s</b>"
-msgstr ""
+msgstr "選擇一個應用程序來打開類型<b>%s</b>"
 
-#: src/filetype.py:381
+#: src/filetype.py:311
+msgid "Could not find application"
+msgstr "找不到應用程式"
+
+#: src/filetype.py:312
 #, python-format
 msgid "Could not find %s"
-msgstr ""
+msgstr "無法找到 %s"
 
-#: src/filetype.py:382
-#, fuzzy
-msgid "Could not find application"
-msgstr "應用程式"
-
-#: src/filetype.py:475
+#: src/filetype.py:390
 msgid "Here you can manage all of the registered types of your system."
-msgstr ""
+msgstr "在這裡你可以管理所有系統中已註冊的檔案類型"
 
-#: src/filetype.py:501
+#: src/filetype.py:416
 msgid "Only show associated type"
-msgstr ""
+msgstr "僅顯示已關聯的類型"
 
 #: src/computer.py:49
 msgid "System information"
@@ -648,9 +634,8 @@ msgid "Description is here"
 msgstr "描述在這裏"
 
 #: src/thirdsoft.py:359
-#, fuzzy
 msgid "Third-Party Software Sources"
-msgstr "第三方軟體來源"
+msgstr "第三方套件源"
 
 #: src/thirdsoft.py:360
 msgid ""
@@ -801,18 +786,17 @@ msgstr "滑鼠右鍵點擊標題列的動作"
 
 #: src/metacity.py:67
 msgid "Enable Metacity's Compositing feature"
-msgstr ""
+msgstr "啟用Metacity的合成視窗特效"
 
 #: src/metacity.py:69
-#, fuzzy
 msgid "Compositing Manager"
-msgstr "更新管理員"
+msgstr "視窗管理程式"
 
 #: src/metacity.py:76
 msgid ""
 "To enable the compositing feature of metacity, You should disable the Visual "
 "Effects in \"Appearance\" by yourself."
-msgstr ""
+msgstr "為了啟用Metacity的合成視窗特性，你需要手動禁用“外觀設定”裡的“視覺特效”。"
 
 #: src/session.py:39
 msgid "Splash Screen (Click Below Image)"
@@ -1057,7 +1041,8 @@ msgid "Cleaned up Failed!"
 msgstr "清理失敗！"
 
 #: src/cleaner.py:235
-msgid "Free up disk space by clearing unneeded packages and the package cache."
+msgid ""
+"Free up disk space by clearing unneeded packages and the package cache."
 msgstr "清除未使用的套件及快取來釋放硬碟空間。"
 
 #: src/cleaner.py:253
@@ -1077,57 +1062,48 @@ msgid "Copy to ..."
 msgstr "複製到..."
 
 #: src/scripts.py:52
-#, fuzzy
 msgid "Copy to Desktop"
-msgstr "顯示桌面"
+msgstr "複製到桌面"
 
 #: src/scripts.py:53
-#, fuzzy
 msgid "Copy to Download"
-msgstr "下載"
+msgstr "複製到下載"
 
 #: src/scripts.py:54
-#, fuzzy
 msgid "Copy to Home"
-msgstr "複製到..."
+msgstr "複製到家目錄"
 
 #: src/scripts.py:55
 msgid "Move to ..."
 msgstr "移動到..."
 
 #: src/scripts.py:56
-#, fuzzy
 msgid "Move to Desktop"
-msgstr "顯示桌面"
+msgstr "移動到桌面"
 
 #: src/scripts.py:57
-#, fuzzy
 msgid "Move to Download"
-msgstr "下載"
+msgstr "移動到下載"
 
 #: src/scripts.py:58
-#, fuzzy
 msgid "Move to Home"
-msgstr "移動到..."
+msgstr "移動到家目錄"
 
 #: src/scripts.py:59
 msgid "Link to ..."
 msgstr "連結到..."
 
 #: src/scripts.py:60
-#, fuzzy
 msgid "Link to Desktop"
-msgstr "連結到..."
+msgstr "連結到桌面"
 
 #: src/scripts.py:61
-#, fuzzy
 msgid "Link to Download"
-msgstr "下載"
+msgstr "連結到下載"
 
 #: src/scripts.py:62
-#, fuzzy
 msgid "Link to Home"
-msgstr "連結到..."
+msgstr "連結到家目錄"
 
 #: src/scripts.py:63
 msgid "Open with gedit"
@@ -1147,15 +1123,15 @@ msgstr "在當前目錄檢索"
 
 #: src/scripts.py:67
 msgid "Convert image to JPG"
-msgstr ""
+msgstr "轉換圖像至JPG格式"
 
 #: src/scripts.py:68
 msgid "Convert image to PNG"
-msgstr ""
+msgstr "轉換圖像至PNG格式"
 
 #: src/scripts.py:69
 msgid "Set image as wallpaper"
-msgstr ""
+msgstr "將圖像設定為桌布"
 
 #: src/scripts.py:96
 msgid "Enabled Scripts"
@@ -1170,15 +1146,14 @@ msgid "Manage Scripts"
 msgstr "管理 Scripts"
 
 #: src/scripts.py:131
-#, fuzzy
 msgid ""
 "You can do all kinds of tasks with scripts.\n"
 "You can drag and drop from File Manager.\n"
 "'Scripts' will be added to the context menu.\n"
 msgstr ""
-"您可以執行任何功能的指令稿.\n"
-"您可以從檔案總管拖曳.\n"
-"這將會新增到 \"指令稿\" 選單裡面.\n"
+"您可以執行任何功能的指令稿。\n"
+"您可以從探案瀏覽器拖曳。\n"
+"這將會新增到“指定稿”選單裡面。\n"
 
 #: src/scripts.py:156
 msgid "Rebuild System Scripts"
@@ -1273,9 +1248,8 @@ msgid "Do you want take effect immediately?"
 msgstr "你是否要立即生效？"
 
 #: src/nautilus.py:50
-#, fuzzy
 msgid "Cleaning..."
-msgstr "上傳中..."
+msgstr "清理中。。。"
 
 #: src/nautilus.py:99
 msgid "Show advanced permissions on Permissions tab of File Property"
@@ -1298,21 +1272,20 @@ msgid "Enable OverBurn"
 msgstr "啟用超燒功能"
 
 #: src/nautilus.py:113
-#, fuzzy
 msgid "Default thumbnail icon size (Pixel)"
-msgstr "預設圖示大小"
+msgstr "預設的縮圖大小（Pixel）"
 
 #: src/nautilus.py:127
 msgid "Maximum size of the thumbnail cache (Megabyte)"
-msgstr ""
+msgstr "縮圖快取的最大尺寸（Megabyte）"
 
 #: src/nautilus.py:139
 msgid "Maximum age for the thumbnail in the cache (Day)"
-msgstr ""
+msgstr "縮圖快取的最長保留期限（天）"
 
 #: src/nautilus.py:151
 msgid "Thumbnails Settings"
-msgstr ""
+msgstr "縮圖設定"
 
 #: src/nautilus.py:159
 msgid "Nautilus with Open Terminal"
@@ -1333,17 +1306,13 @@ msgstr "檔案瀏覽器外掛程式"
 #: src/nautilus.py:187
 #, python-format
 msgid "Clean up the thumbnails cache (Free %s disk size)"
-msgstr ""
+msgstr "清理縮圖快取（釋放%s硬碟空間）"
 
 #: src/nautilus.py:190
-#, fuzzy
 msgid "The thumbnails cache will be cleaned, do you wish to continue?"
-msgstr ""
-"目前的內容在重新讀取後將會遺失!\n"
-"您確定要繼續嗎?"
+msgstr "縮圖的快取將被清理，你想要繼續嗎？"
 
 #: src/nautilus.py:197
-#, fuzzy
 msgid "Clean up successfully!"
 msgstr "清理成功！"
 
@@ -1629,10 +1598,9 @@ msgstr "可延伸的工具平台與 Java 整合開發環境"
 
 #: src/common/appdata.py:75
 msgid ""
-"EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
-"com."
-msgstr ""
-"EIOffice 個人版 2009. 免費提供給中文使用者. 請見http://www.evermoresw.com."
+"EIOffice Personal 2009. Free for Chinese users. See "
+"http://www.evermoresw.com."
+msgstr "EIOffice 個人版 2009. 免費提供給中文使用者. 請見http://www.evermoresw.com."
 
 #: src/common/appdata.py:76
 msgid "A client for the Windows Live Message network"
@@ -1788,9 +1756,9 @@ msgid ""
 "Novell GroupWise, Lotus Sametime, Bonjour, Zephyr, MySpaceIM, Gadu-Gadu, and "
 "QQ all at once."
 msgstr ""
-"Pidgin是一套基於libpurple的圖形化即時通訊軟體，相容以下各種通訊協定 : AIM, "
-"MSN, Yahoo!, XMPP, ICQ, IRC, SILC, SIP/SIMPLE, Novell GroupWise, Lotus "
-"Sametime, Bonjour, Zephyr, MySpaceIM, Gadu-Gadu, 和 QQ."
+"Pidgin是一套基於libpurple的圖形化即時通訊軟體，相容以下各種通訊協定 : AIM, MSN, Yahoo!, XMPP, ICQ, "
+"IRC, SILC, SIP/SIMPLE, Novell GroupWise, Lotus Sametime, Bonjour, Zephyr, "
+"MySpaceIM, Gadu-Gadu, 和 QQ."
 
 #: src/common/appdata.py:112
 msgid "Run your Windows programs on Linux"
@@ -1955,23 +1923,19 @@ msgstr "服務尚未初始化"
 
 #: data/glade/gui.glade:7
 msgid "Edit Type"
-msgstr ""
+msgstr "編輯類型"
 
 #: data/glade/gui.glade:99
-#, fuzzy
 msgid "Add Application"
-msgstr "應用程式"
+msgstr "新增應用程式"
 
 #: data/glade/gui.glade:144
 msgid "Select an application to view its description."
-msgstr ""
+msgstr "選取一程式來檢視它的描述。"
 
 #: data/glade/gui.glade:186
 msgid "_Use a custom command"
-msgstr ""
-
-#~ msgid "Ubuntu Chinese Repository"
-#~ msgstr "Ubuntu 中文套件庫"
+msgstr "使用自訂指令(_U)"
 
 #~ msgid "Pick Windows"
 #~ msgstr "選取視窗"
@@ -2072,8 +2036,7 @@ msgstr ""
 #~ "\n"
 #~ "Ubuntu Tweak is currently only for the GNOME Desktop Environment.\n"
 #~ "\n"
-#~ "Although this application is only in early stages, I'll keep developing "
-#~ "it.\n"
+#~ "Although this application is only in early stages, I'll keep developing it.\n"
 #~ "\n"
 #~ "If you have any suggestions, Please visit the website in \"About\" and \n"
 #~ "share ideas with me. \n"
@@ -2348,8 +2311,7 @@ msgstr ""
 #~ msgstr "P2P客户端"
 
 #~ msgid ""
-#~ "<b><big>The information about available software is out-of-date</big></"
-#~ "b>\n"
+#~ "<b><big>The information about available software is out-of-date</big></b>\n"
 #~ "\n"
 #~ "To install software and updates from newly added or changed sources, you "
 #~ "have to reload the information about available software.\n"
@@ -2358,8 +2320,7 @@ msgstr ""
 #~ msgstr ""
 #~ "<b><big>可安裝軟體的資訊已過時</big></b>\n"
 #~ "\n"
-#~ "您需要重新載入可安裝軟體的資訊，才可以由新加入或已更變的來源安裝和更新軟"
-#~ "體。\n"
+#~ "您需要重新載入可安裝軟體的資訊，才可以由新加入或已更變的來源安裝和更新軟體。\n"
 #~ "\n"
 #~ "你需要連接網際網路才能繼續。"
 
@@ -2400,8 +2361,7 @@ msgstr ""
 #~ "一個未知錯誤已經發生了。"
 
 #~ msgid ""
-#~ "You can always keep up-to-date with the latest version of an "
-#~ "application.\n"
+#~ "You can always keep up-to-date with the latest version of an application.\n"
 #~ "And new applications can be installed through Add/Remove."
 #~ msgstr ""
 #~ "你可以一直保持相關應用程式的最新版。\n"
@@ -2470,6 +2430,7 @@ msgstr ""
 #~ msgid "A simple interface for installing applications."
 #~ msgstr "一個安裝應用程式的簡易界面"
 
+#, python-format
 #~ msgid ""
 #~ "<b>%s</b>\n"
 #~ "Take %s KB disk space"
@@ -2477,12 +2438,15 @@ msgstr ""
 #~ "<b>%s</b>\n"
 #~ "占用了%s KB 硬碟空間"
 
+#, python-format
 #~ msgid "%d Package selected to remove"
 #~ msgstr "%d 個套件被選擇移除"
 
+#, python-format
 #~ msgid "%d Packages selected to remove"
 #~ msgstr "%d 個套件被選擇移除"
 
+#, python-format
 #~ msgid "%d KB Space will be free"
 #~ msgstr "%d KB空間將被釋放"
 
