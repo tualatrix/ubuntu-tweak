@@ -38,16 +38,16 @@ except:
 
 class TweakLauncher:
     def __init__(self):
-            thread.start_new_thread(self.show_splash, ())
+        thread.start_new_thread(self.show_splash, ())
 
-            try:
-                from common.package import update_apt_cache
-            except ImportError:
-                pass
+        try:
+            from common.package import update_apt_cache
+        except ImportError:
+            pass
 
-            from mainwindow import MainWindow
+        from mainwindow import MainWindow
 
-            window = MainWindow()
+        window = MainWindow()
 
     def show_splash(self):
         gtk.gdk.threads_enter()

@@ -23,7 +23,6 @@ import os
 import gtk
 import sys
 import gconf
-import thread
 import gobject
 
 from gnome import url_show
@@ -488,7 +487,7 @@ You should have received a copy of the GNU General Public License along with Ubu
         about.destroy()
 
     def on_timeout(self):
-        thread.start_new_thread(self.check_version, ())
+        gobject.idle_add(self.check_version)
 
     def check_version(self):
         gtk.gdk.threads_enter()
