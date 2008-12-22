@@ -41,7 +41,8 @@ class Tip(gtk.HBox):
         image = gtk.image_new_from_stock(gtk.STOCK_GO_FORWARD, gtk.ICON_SIZE_BUTTON)
         self.pack_start(image, False, False, 15)
 
-        label = gtk.Label(tip)
+        label = gtk.Label()
+        label.set_markup(tip)
         self.pack_start(label, False, False, 0)
 
 class TipsFactory(gtk.VBox):
