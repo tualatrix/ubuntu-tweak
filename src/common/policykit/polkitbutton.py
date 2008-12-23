@@ -23,7 +23,6 @@ pygtk.require("2.0")
 import gtk
 import os
 import dbus
-import thread
 import gobject
 
 class PolkitAction(gobject.GObject):
@@ -44,7 +43,6 @@ class PolkitAction(gobject.GObject):
 
     def authenticate(self):
         self.do_authenticate()
-#        thread.start_new_thread(self.do_authenticate, ())
 
     def get_authenticated(self):
         return self.result
