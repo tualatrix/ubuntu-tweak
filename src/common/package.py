@@ -158,4 +158,5 @@ class PackageWorker:
 worker = PackageWorker()
 
 if __name__ == '__main__':
+    update_apt_cache()
     print worker.get_pkgversion('compiz')

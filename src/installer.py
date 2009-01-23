@@ -341,15 +341,27 @@ class Installer(TweakPage):
         return treeview
 
     def on_apply_clicked(self, widget, data = None):
-        state = self.packageWorker.perform_action(widget.get_toplevel(), self.to_add, self.to_rm)
+        self.packageWorker.perform_action(widget.get_toplevel(), self.to_add, self.to_rm)
 
-        if state == 0:
+        done = True
+        update_apt_cache()
+
+        for pkg in self.to_add:
+            if not PackageInfo(pkg).check_installed():
+                done = False
+                break
+
+        for pkg in self.to_rm:
+            if PackageInfo(pkg).check_installed():
+                done = False
+                break
+
+        if done:
             self.button.set_sensitive(False)
             InfoDialog(_('Updated Successfully!')).launch()
         else:
             InfoDialog(_('Updated Failed!')).launch()
 
-        update_apt_cache()
         self.to_add = []
         self.to_rm = []
         self.update_model()
