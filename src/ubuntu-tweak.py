@@ -24,6 +24,7 @@ import thread
 import gobject
 import StringIO
 import traceback
+import webbrowser
 
 from common.consts import *
 from common.gui import GuiWorker
@@ -71,7 +72,7 @@ class TweakLauncher:
 
     def main(self):
         gtk.gdk.threads_enter()
-        os.systemm("exec python updatemanager.py &")
+        os.system("exec python updatemanager.py &")
         gtk.main()
         gtk.gdk.threads_leave()
 
@@ -90,6 +91,7 @@ if __name__ == "__main__":
         buffer = textview.get_buffer()
 
         buffer.set_text(output.getvalue())
-        dialog.run()
+        if dialog.run() == gtk.RESPONSE_YES:
+            webbrowser.open('https://bugs.launchpad.net/ubuntu-tweak/+filebug')
         dialog.destroy()
         output.close()
