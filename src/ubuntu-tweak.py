@@ -20,10 +20,15 @@
 
 import os
 import gtk
-import gobject
 import thread
+import gobject
+import StringIO
+import traceback
+import webbrowser
 
 from common.consts import *
+from common.gui import GuiWorker
+from common.widgets.dialogs import ErrorDialog
 
 try:
     import dl
@@ -72,6 +77,21 @@ class TweakLauncher:
         gtk.gdk.threads_leave()
 
 if __name__ == "__main__":
-    gobject.threads_init()
-    launcher = TweakLauncher()
-    launcher.main()
+    try:
+        gobject.threads_init()
+        launcher = TweakLauncher()
+        launcher.main()
+    except:
+        output = StringIO.StringIO()
+        exc = traceback.print_exc(file = output)
+
+        worker = GuiWorker('traceback.glade')
+        dialog = worker.get_widget('FatalErrorDialog')
+        textview = worker.get_widget('message_view')
+        buffer = textview.get_buffer()
+
+        buffer.set_text(output.getvalue())
+        if dialog.run() == gtk.RESPONSE_YES:
+            webbrowser.open('https://bugs.launchpad.net/ubuntu-tweak/+filebug')
+        dialog.destroy()
+        output.close()
