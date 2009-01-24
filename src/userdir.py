@@ -172,6 +172,9 @@ class UserdirView(gtk.TreeView):
 
             if not os.path.exists(newdir):
                 os.mkdir(newdir)
+            elif os.path.isfile(newdir):
+                os.remove(newdir)
+                os.mkdir(newdir)
 
             self.emit('changed')
 

@@ -38,24 +38,19 @@ from common.widgets.dialogs import WarningDialog
     COLUMN_FILE,
 ) = range(3)
 
-class AbstractTempates:
+class BaseTemplates:
     systemdir = os.path.join(os.path.expanduser("~"), ".ubuntu-tweak/templates")
     __uf = UserdirFile()
-    __template_dir = __uf.get('XDG_TEMPLATES_DIR').strip('"').split("/")[1:]
-    if not __template_dir or os.path.isfile(os.getenv("HOME") + "/"  + "/".join(__template_dir)):
+    __template_dir = __uf['XDG_TEMPLATES_DIR']
+    if not __template_dir:
         __template_dir = os.path.expanduser('~/Templates')
         if not os.path.exists(__template_dir):
             os.mkdir(__template_dir)
-        elif os.path.exists(__template_dir):
-            os.remove(__template_dir)
-            os.mkdir(__template_dir)
         userdir = __template_dir
-    else:
-        userdir = os.getenv("HOME") + "/"  + "/".join(__template_dir)
 
-    __uf.set_userdir('XDG_TEMPLATES_DIR', userdir)
+    userdir = __template_dir
 
-class DefaultTemplates(AbstractTempates):
+class DefaultTemplates(BaseTemplates):
     """This class use to create the default templates"""
     templates = {
             "html-document.html": _("HTML document"),
@@ -91,26 +86,30 @@ class DefaultTemplates(AbstractTempates):
             os.unlink(self.systemdir)
         return
 
-class EnableTemplate(DirView, AbstractTempates):
+class EnableTemplate(DirView, BaseTemplates):
     """The treeview to display the enable templates"""
     type = _("Enabled Templates")
 
     def __init__(self):
         DirView.__init__(self, self.userdir)
 
-class DisableTemplate(FlatView, AbstractTempates):
+class DisableTemplate(FlatView, BaseTemplates):
     """The treeview to display the system template"""
     type = _("Disabled Templates")
 
     def __init__(self):
         FlatView.__init__(self, self.systemdir, self.userdir)
 
-class Templates(TweakPage, AbstractTempates):
+class Templates(TweakPage, BaseTemplates):
     """Freedom added your docmuent templates"""
     def __init__(self):
-        TweakPage.__init__(self, 
-                _("Manage Templates"),
-                _('You can freely manage your document templates.\nYou can drag and drop from File Manager.\n"Create Document" will be added to the context menu.\n'))
+        TweakPage.__init__(self, _('Manage Templates'))
+
+        if os.path.isfile(self.userdir):
+            self.set_description(_('Templates path is error. Please go to Folder to set it correctly.'))
+            return
+
+        self.set_description(_('You can freely manage your document templates.\nYou can drag and drop from File Manager.\n"Create Document" will be added to the context menu.\n'))
 
         self.default = DefaultTemplates()
         self.config_test()
