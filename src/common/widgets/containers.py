@@ -108,11 +108,11 @@ class TweakPage(gtk.ScrolledWindow):
             title.select()
             self.pack_start(title, False, False, 0)
 
+        self.description = gtk.Label()
+        self.description.set_alignment(0, 0)
+        self.pack_start(self.description, False, False, 5)
         if des:
-            self.description = gtk.Label()
             self.set_description(des)
-            self.description.set_alignment(0, 0)
-            self.pack_start(self.description, False, False, 5)
 
     def pack_start(self, child, expand = True, fill = True, padding = 0):
         self.vbox.pack_start(child, expand, fill, padding)

@@ -28,6 +28,7 @@ import gobject
 from gnome import url_show
 from common.consts import *
 from common.canvas import RenderCell
+from common.debug import run_traceback
 from common.widgets import TweakPage
 from common.widgets.dialogs import QuestionDialog
 from common.systeminfo import module_check
@@ -94,6 +95,19 @@ def Notice(parent = None):
 
     label = gtk.Label()
     label.set_markup(_("<span size=\"x-large\">This feature isn't currently available in your distrobution</span>"))
+    label.set_justify(gtk.JUSTIFY_FILL)
+    vbox.pack_start(label, False, False, 50)
+
+    hbox = gtk.HBox(False, 0)
+    vbox.pack_start(hbox, False, False, 0)
+        
+    return vbox
+
+def ErrorPage(parent = None):
+    vbox = gtk.VBox(False, 0)
+
+    label = gtk.Label()
+    label.set_markup(_("<span size=\"x-large\">This module is error while loading.</span>"))
     label.set_justify(gtk.JUSTIFY_FILL)
     vbox.pack_start(label, False, False, 50)
 
@@ -244,7 +258,7 @@ class ItemCellRenderer(gtk.GenericCellRenderer):
         
     def do_get_property(self, pspec):
         return getattr(self, pspec.name)
-		
+        
     def on_render(self, window, widget, background_area, cell_area, expose_area, flags):
         if not self.data: return
         cairo = window.cairo_create()
@@ -449,8 +463,13 @@ class MainWindow(gtk.Window):
         return notebook
 
     def setup_notebook(self, id):
-        page = MODULES[id][MODULE_FUNC]
-        page = page()
+        try:
+            page = MODULES[id][MODULE_FUNC]
+            page = page()
+        except:
+            run_traceback('error')
+            page = ErrorPage()
+
         page.show_all()
         if isinstance(page, TweakPage):
             page.connect('update', self.on_child_page_update)

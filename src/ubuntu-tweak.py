@@ -22,12 +22,9 @@ import os
 import gtk
 import thread
 import gobject
-import StringIO
-import traceback
-import webbrowser
 
 from common.consts import *
-from common.gui import GuiWorker
+from common.debug import run_traceback
 from common.widgets.dialogs import ErrorDialog
 
 try:
@@ -82,16 +79,4 @@ if __name__ == "__main__":
         launcher = TweakLauncher()
         launcher.main()
     except:
-        output = StringIO.StringIO()
-        exc = traceback.print_exc(file = output)
-
-        worker = GuiWorker('traceback.glade')
-        dialog = worker.get_widget('FatalErrorDialog')
-        textview = worker.get_widget('message_view')
-        buffer = textview.get_buffer()
-
-        buffer.set_text(output.getvalue())
-        if dialog.run() == gtk.RESPONSE_YES:
-            webbrowser.open('https://bugs.launchpad.net/ubuntu-tweak/+filebug')
-        dialog.destroy()
-        output.close()
+		run_traceback('fatal')
