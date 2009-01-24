@@ -66,6 +66,7 @@ class DefaultScripts(AbstractScripts):
             'search-in-current': _('Search in current folder'),
             'convert-image-to-jpg': _('Convert image to JPG'),
             'convert-image-to-png': _('Convert image to PNG'),
+            'convert-image-to-gif': _('Convert image to GIF'),
             'set-image-as-wallpaper': _('Set image as wallpaper'),
             }
 

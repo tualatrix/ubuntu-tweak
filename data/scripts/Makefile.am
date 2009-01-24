@@ -16,6 +16,7 @@ scripts_DATA = \
 	set-image-as-wallpaper \
 	convert-image-to-jpg \
 	convert-image-to-png \
+	convert-image-to-gif \
 	open-with-gedit \
 	open-with-gedit-as-root \
 	browse-as-root \
