@@ -34,6 +34,7 @@ from common.widgets.dialogs import QuestionDialog
 from common.systeminfo import module_check
 from common.config import Config, TweakSettings
 from updatemanager import UpdateManager
+from common.utils import set_label_for_stock_button
 
 class Tip(gtk.HBox):
     def __init__(self, tip):
@@ -322,13 +323,29 @@ class MainWindow(gtk.Window):
         button = gtk.Button(stock = gtk.STOCK_ABOUT)
         button.connect("clicked", self.show_about)
         hbox.pack_start(button, False, False, 0)
+
+        d_button = gtk.Button(stock = gtk.STOCK_INFO)
+        set_label_for_stock_button(d_button, _('Donate'))
+        d_button.connect("clicked", self.show_about)
+        hbox.pack_start(d_button, False, False, 0)
+
         button = gtk.Button(stock = gtk.STOCK_QUIT)
         button.connect("clicked", self.destroy);
         hbox.pack_end(button, False, False, 0)
 
         self.get_gui_state()
         self.show_all()
+
+        gobject.timeout_add(3000, self.on_d_timeout, d_button)
         gobject.timeout_add(8000, self.on_timeout)
+
+    def on_d_timeout(self, widget):
+        import pynotify
+        pynotify.init("Basics")
+        notify = pynotify.Notification('ubuntu-tweak')
+        notify.update(_('Support the development of Ubuntu Tweak'), _('Ubuntu Tweak is a free-software, you can use it for free. If you like it, Please consider to donate for Ubuntu Tweak'))
+        notify.attach_to_widget(widget)
+        notify.show()
 
     def save_gui_state(self):
         self.__settings.set_window_size(*self.get_size())
