@@ -103,37 +103,49 @@ class Gnome(TweakPage):
         return hbox
 
     def on_change_icon_clicked(self, widget):
-        dialog = gtk.FileChooserDialog(_('Choose a new logo'),action = gtk.FILE_CHOOSER_ACTION_OPEN, buttons = (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, gtk.STOCK_OPEN, gtk.RESPONSE_ACCEPT))
+        dialog = gtk.FileChooserDialog(_('Choose a new logo'),action = gtk.FILE_CHOOSER_ACTION_OPEN, buttons = (gtk.STOCK_REVERT_TO_SAVED, gtk.RESPONSE_DELETE_EVENT, gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, gtk.STOCK_OPEN, gtk.RESPONSE_ACCEPT))
         filter = gtk.FileFilter()
         filter.set_name(_("PNG image (*.png)"))
         filter.add_mime_type("image/png")
         dialog.set_current_folder(os.path.expanduser('~'))
         dialog.add_filter(filter)
 
+        dest = os.path.expanduser('~/.icons/%s/24x24/places/start-here.png' % self.__setting.get_icon_theme())
+        revert_button = dialog.action_area.get_children()[-1]
+        if not os.path.exists(dest):
+            revert_button.set_sensitive(False)
+
         filename = ''
-        if dialog.run() == gtk.RESPONSE_ACCEPT:
+        response = dialog.run()
+        if response == gtk.RESPONSE_ACCEPT:
             filename = dialog.get_filename()
 
+            if filename:
+                pixbuf = gtk.gdk.pixbuf_new_from_file(filename)
+                w, h = pixbuf.get_width(), pixbuf.get_height()
+                if w != 24 or h != 24:
+                    ErrorDialog(_("The size isn't suitable for the panel.\nIt should be 24x24.")).launch()
+                else:
+                    os.system('mkdir -p %s' % os.path.dirname(dest))
+                    os.system('cp %s %s' % (filename, dest))
+
+                    image = gtk.image_new_from_file(dest)
+                    widget.set_image(image)
+            dialog.destroy()
+        elif response == gtk.RESPONSE_DELETE_EVENT:
+            os.remove(dest)
+            image = gtk.image_new_from_pixbuf(get_icon_with_name('start-here', 24))
+            widget.set_image(image)
+            dialog.destroy()
+        else:
+            dialog.destroy()
+            return
+
+        dialog = QuestionDialog(_('Do you want take effect immediately?'))
+        if dialog.run() == gtk.RESPONSE_YES:
+            os.system('killall gnome-panel')
+
         dialog.destroy()
-
-        if filename:
-            pixbuf = gtk.gdk.pixbuf_new_from_file(filename)
-            w, h = pixbuf.get_width(), pixbuf.get_height()
-            if w != 24 or h != 24:
-                ErrorDialog(_("The size isn't suitable for the panel.\nIt should be 24x24.")).launch()
-            else:
-                dest = os.path.expanduser('~/.icons/%s/24x24/places/start-here.png' % self.__setting.get_icon_theme())
-                os.system('mkdir -p %s' % os.path.dirname(dest))
-                os.system('cp %s %s' % (filename, dest))
-
-                image = gtk.image_new_from_file(dest)
-                widget.set_image(image)
-
-                dialog = QuestionDialog(_('Do you want take effect immediately?'))
-                if dialog.run() == gtk.RESPONSE_YES:
-                    os.system('killall gnome-panel')
-
-                dialog.destroy()
 
     def get_state(self):
         file = os.path.join(os.path.expanduser("~"), ".recently-used.xbel")
