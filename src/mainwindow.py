@@ -60,7 +60,7 @@ def Welcome(parent = None):
 
     title = gtk.MenuItem('')
     label = title.get_child()
-    label.set_markup('\n<span size="xx-large">%s <b>Ubuntu Tweak!</b></span>\n' % _('Welcome to'))
+    label.set_markup('\n<span size="xx-large">%s <b>%s!</b></span>\n' % (_('Welcome to'), APP))
     label.set_alignment(0.5, 0.5)
     title.select()
     vbox.pack_start(title, False, False, 10)
@@ -279,15 +279,13 @@ class ItemCellRenderer(gtk.GenericCellRenderer):
         return (0, 0, self.width, self.height )
         
 class MainWindow(gtk.Window):
-    """the main Window of Ubuntu Tweak"""
-
     def __init__(self):
         gtk.Window.__init__(self)
 
         self.__settings = TweakSettings()
 
         self.connect("destroy", self.destroy)
-        self.set_title("Ubuntu Tweak")
+        self.set_title(APP)
         self.set_default_size(740, 480)
         self.set_position(gtk.WIN_POS_CENTER)
         self.set_border_width(10)
@@ -506,7 +504,7 @@ class MainWindow(gtk.Window):
 
         about = gtk.AboutDialog()
         about.set_transient_for(self)
-        about.set_name("Ubuntu Tweak")
+        about.set_name(APP)
         about.set_version(VERSION)
         about.set_website("http://ubuntu-tweak.com")
         about.set_website_label(_('Ubuntu Tweak Website'))

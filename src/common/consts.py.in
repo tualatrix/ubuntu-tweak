@@ -1,5 +1,6 @@
 __all__ = (
         'APP',
+        'PACKAGE',
         'VERSION',
         'DATA_DIR',
         'init_locale',
@@ -8,9 +9,13 @@ __all__ = (
 import os
 import gettext
 
-APP = '@PACKAGE@'
+def applize(package):
+    return ' '.join([a.capitalize() for a in package.split('-')])
+
+PACKAGE = '@PACKAGE@'
 VERSION = '@VERSION@'
 DATA_DIR = '@DATADIR@/@PACKAGE@/data'
+APP = applize(PACKAGE)
 
 if not os.path.exists(DATA_DIR):
 	datadir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
@@ -21,7 +26,7 @@ def init_locale():
     try:
         INIT
     except:
-        gettext.install(APP, unicode = True)
+        gettext.install(PACKAGE, unicode = True)
         INIT = True
 
 init_locale()
