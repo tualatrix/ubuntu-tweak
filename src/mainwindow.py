@@ -24,8 +24,8 @@ import gtk
 import sys
 import gconf
 import gobject
+import webbrowser
 
-from gnome import url_show
 from common.consts import *
 from common.canvas import RenderCell
 from common.debug import run_traceback
@@ -322,9 +322,9 @@ class MainWindow(gtk.Window):
         button.connect("clicked", self.show_about)
         hbox.pack_start(button, False, False, 0)
 
-        d_button = gtk.Button(stock = gtk.STOCK_INFO)
+        d_button = gtk.Button(stock = gtk.STOCK_YES)
         set_label_for_stock_button(d_button, _('Donate'))
-        d_button.connect("clicked", self.show_about)
+        d_button.connect("clicked", self.on_d_clicked)
         hbox.pack_start(d_button, False, False, 0)
 
         button = gtk.Button(stock = gtk.STOCK_QUIT)
@@ -334,16 +334,22 @@ class MainWindow(gtk.Window):
         self.get_gui_state()
         self.show_all()
 
-        gobject.timeout_add(3000, self.on_d_timeout, d_button)
+        if self.__settings.get_show_donate_notify():
+            gobject.timeout_add(3000, self.on_d_timeout, d_button)
         gobject.timeout_add(8000, self.on_timeout)
-
+		
     def on_d_timeout(self, widget):
-        import pynotify
-        pynotify.init("Basics")
-        notify = pynotify.Notification('ubuntu-tweak')
+        from common.notify import notify
         notify.update(_('Support the development of Ubuntu Tweak'), _('Ubuntu Tweak is a free-software, you can use it for free. If you like it, Please consider to donate for Ubuntu Tweak'))
+        notify.add_action("never_show", "Never show this again", self.on_never_show)
         notify.attach_to_widget(widget)
         notify.show()
+		
+    def on_d_clicked(self, widget):
+        webbrowser.open('http://ubuntu-tweak.com')
+
+    def on_never_show(self, widget, action):
+        self.__settings.set_show_donate_notify(False)
 
     def save_gui_state(self):
         self.__settings.set_window_size(*self.get_size())
@@ -361,7 +367,6 @@ class MainWindow(gtk.Window):
         return model
 
     def update_model(self, id = None):
-        '''如果指定了ID，则将此ID下的所有子模块显示'''
         model = self.model
         model.clear()
 
@@ -497,7 +502,7 @@ class MainWindow(gtk.Window):
             getattr(self.modules[module], action)()
 
     def click_website(self, dialog, link, data = None):
-        url_show(link)
+        webbrowser.open(link)
     
     def show_about(self, data = None):
         gtk.about_dialog_set_url_hook(self.click_website)
