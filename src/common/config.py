@@ -87,9 +87,19 @@ class TweakSettings:
     version = 'version'
     paned_size = 'paned_size'
     window_size= 'window_size'
+    show_donate_notify = 'show_donate_notify'
 
     def __init__(self):
         self.__config = Config()
+
+    def set_show_donate_notify(self, bool):
+        return self.__config.set_value(self.show_donate_notify, bool)
+
+    def get_show_donate_notify(self):
+        value = self.__config.get_value(self.show_donate_notify)
+        if value == None:
+            return True
+        return value
 
     def set_url(self, url):
         '''The new version's download url'''
