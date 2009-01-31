@@ -28,6 +28,7 @@ from common.policykit import PolkitButton, proxy
 from common.package import PackageWorker, update_apt_cache
 from common.widgets import TweakPage
 from common.widgets.dialogs import *
+from common.widgets.utils import ProcessDialog
 
 (
     COLUMN_CHECK,
@@ -36,6 +37,33 @@ from common.widgets.dialogs import *
     COLUMN_DESC,
     COLUMN_DISPLAY,
 ) = range(5)
+
+class AbsPkg:
+    def __init__(self, pkg, des):
+        self.name = pkg
+        self.des = des
+
+class CleanConfigDialog(ProcessDialog):
+    def __init__(self, parent, pkgs):
+        super(CleanConfigDialog, self).__init__(parent = parent)
+
+        self.pkgs = pkgs
+        self.done = False
+        self.set_progress_text(_('Cleaning...'))
+
+    def process_data(self):
+        for pkg in self.pkgs:
+            print pkg
+            print proxy.clean_config(pkg)
+        self.done = True
+        
+    def on_timeout(self):
+        self.pulse()
+
+        if not self.done:
+            return True
+        else:
+            self.destroy()
 
 class PackageView(gtk.TreeView):
     __gsignals__ = {
@@ -137,6 +165,39 @@ class PackageView(gtk.TreeView):
                 _('<b>%s</b>\nTake %s KB of disk space') % (os.path.basename(pkg), size)
                 ))
 
+    def update_config_model(self):
+        model = self.get_model()
+        model.clear()
+        self.mode = 'config'
+
+        command = "dpkg -l |awk '/^rc/ {print $2}'"
+
+        icon = get_icon_with_name('text', 24)
+
+        list = []
+        for line in os.popen('dpkg -l'):
+            try:
+                temp_list = line.split()
+                status, pkg = temp_list[0], temp_list[1]
+                if status == 'rc':
+                    des = temp_list[3:]
+                    pkg = AbsPkg(pkg, ' '.join(temp_list[3:]))
+                    list.append(pkg) 
+            except:
+                pass
+
+        self.total_num = len(list)
+        self.__column.set_title(_('Package Config'))
+
+        for pkg in list:
+            model.append((
+                False,
+                icon,
+                pkg.name,
+                0,
+                '<b>%s</b>\n%s' % (pkg.name, pkg.des),
+                ))
+
     def on_package_toggled(self, cell, path):
         model = self.get_model()
         iter = model.get_iter(path)
@@ -161,11 +222,11 @@ class PackageView(gtk.TreeView):
             self.__column.set_title(
                     gettext.ngettext(_('%d package selected to remove') % n, 
                                     _('%d packages selected to remove') % n, n))
-        else:
-            self.computer_cache_size()
+        elif self.mode == 'cache':
+            self.compute_cache_size()
             self.__column.set_title(_('%d KB of space will be freed') % self.size)
 
-    def computer_cache_size(self):
+    def compute_cache_size(self):
         self.size = 0
 
         model = self.get_model()
@@ -206,9 +267,8 @@ class PackageView(gtk.TreeView):
         self.emit('cleaned')
 
     def clean_selected_cache(self):
-#        gtk.gdk.threads_enter()
-
         model = self.get_model()
+
         for file in self.__check_list:
             result = proxy.delete_file(file)
             if result == 'error': break
@@ -220,7 +280,18 @@ class PackageView(gtk.TreeView):
 
         self.update_cache_model()
         self.emit('cleaned')
-#        gtk.gdk.threads_leave()
+
+    def clean_selected_config(self):
+        model = self.get_model()
+
+        dialog = CleanConfigDialog(self.get_toplevel(), self.get_list())
+        dialog.run()
+
+        self.show_success_dialog()
+
+        update_apt_cache()
+        self.update_config_model()
+        self.emit('cleaned')
 
     def show_success_dialog(self):
         InfoDialog(_('Cleaned up Successfully!')).launch()
@@ -238,6 +309,8 @@ class PackageCleaner(TweakPage):
 
         self.to_add = []
         self.to_rm = []
+        self.button_list = []
+        self.current_button = 0
 
         hbox = gtk.HBox(False, 0)
         self.pack_start(hbox, True, True, 0)
@@ -250,23 +323,29 @@ class PackageCleaner(TweakPage):
         vbox = gtk.VBox(False, 8)
         hbox.pack_start(vbox, False, False, 5)
 
-        self.pkg_button = gtk.ToggleButton(_('Clean Package'))
-        self.pkg_button.set_image(gtk.image_new_from_pixbuf(get_icon_with_name('deb', 24)))
-        self.pkg_button.set_active(True)
-        self.pkg_button.connect('toggled', self.on_button_toggled)
-        vbox.pack_start(self.pkg_button, False, False, 0)
-
-        self.cache_button = gtk.ToggleButton(_('Clean Cache'))
-        self.cache_button.set_image(gtk.image_new_from_stock(gtk.STOCK_CLEAR, gtk.ICON_SIZE_BUTTON))
-        self.cache_button.connect('toggled', self.on_button_toggled)
-        vbox.pack_start(self.cache_button, False, False, 0)
-
         # create tree view
         self.treeview = PackageView()
         self.treeview.set_rules_hint(True)
         self.treeview.connect('checked', self.on_item_checked)
         self.treeview.connect('cleaned', self.on_item_cleaned)
         sw.add(self.treeview)
+
+        # create the button
+        self.pkg_button = self.create_button(_('Clean Package'), 
+                gtk.image_new_from_pixbuf(get_icon_with_name('deb', 24)),
+                self.treeview.update_package_model)
+        vbox.pack_start(self.pkg_button, False, False, 0)
+
+        self.cache_button = self.create_button(_('Clean Cache'), 
+                gtk.image_new_from_stock(gtk.STOCK_CLEAR, gtk.ICON_SIZE_BUTTON),
+                self.treeview.update_cache_model)
+        vbox.pack_start(self.cache_button, False, False, 0)
+
+        self.config_button = self.create_button(_('Clean Config'), 
+                gtk.image_new_from_stock(gtk.STOCK_PREFERENCES, gtk.ICON_SIZE_BUTTON),
+                self.treeview.update_config_model)
+        vbox.pack_start(self.config_button, False, False, 0)
+
 
         # checkbutton
         self.select_button = gtk.CheckButton(_('Select All'))
@@ -288,6 +367,17 @@ class PackageCleaner(TweakPage):
         hbox.pack_end(self.clean_button, False, False, 5)
 
         self.show_all()
+
+    def create_button(self, text, image, function):
+        button = gtk.ToggleButton(text)
+        if len(self.button_list) == 0:
+            button.set_active(True)
+        self.button_list.append(button)
+        button.set_image(image)
+        button.set_data('handler', button.connect('toggled', self.on_button_toggled))
+        button.set_data('function', function)
+
+        return button
 
     def on_select_all(self, widget):
         check = widget.get_active()
@@ -313,25 +403,40 @@ class PackageCleaner(TweakPage):
         self.clean_button.set_sensitive(False)
 
     def on_button_toggled(self, widget):
-        self.select_button.set_active(False)
+        if self.current_button != self.button_list.index(widget):
+            button = self.button_list[self.current_button]
 
-        if widget == self.cache_button:
-            self.pkg_button.set_active(not widget.get_active())
-        elif widget == self.pkg_button:
-            self.cache_button.set_active(not widget.get_active())
+            handler = button.get_data('handler')
+            button.handler_block(handler)
+            button.set_active(False)
+            button.handler_unblock(handler)
 
-        if self.pkg_button.get_active():
-            self.treeview.update_package_model()
-        else:
-            self.treeview.update_cache_model()
+            widget.set_active(True)
+            self.current_button = self.button_list.index(widget)
+
+            function = widget.get_data('function')
+            function()
+
+#        self.select_button.set_active(False)
+
+#        if widget == self.cache_button:
+#            self.pkg_button.set_active(not widget.get_active())
+#        elif widget == self.pkg_button:
+#            self.cache_button.set_active(not widget.get_active())
+#
+#        if self.pkg_button.get_active():
+#            self.treeview.update_package_model()
+#        else:
+#            self.treeview.update_cache_model()
 
     def on_clean_button_clicked(self, widget):
         mode = self.treeview.mode
         if mode == 'package':
             self.treeview.clean_selected_package()
         elif mode == 'cache':
-#            thread.start_new_thread(self.treeview.clean_selected_cache, ())
             self.treeview.clean_selected_cache()
+        elif mode == 'config':
+            self.treeview.clean_selected_config()
 
     def on_polkit_action(self, widget, action):
         if action:

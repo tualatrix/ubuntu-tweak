@@ -4,6 +4,7 @@ widgets_PYTHON = \
 	./widgets.py \
 	./treeviews.py \
 	./dialogs.py \
+	./utils.py \
 	$(NULL)
 
 widgetsdir = $(pkgdatadir)/common/widgets

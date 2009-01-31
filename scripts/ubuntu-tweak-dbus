@@ -133,6 +133,11 @@ class Tweak(dbus.service.Object):
         file.close()
 
     @dbus.service.method(INTERFACE,
+                         in_signature='s', out_signature='s')
+    def CleanConfig(self, pkg):
+        return str(os.system('sudo dpkg --purge %s' % pkg))
+
+    @dbus.service.method(INTERFACE,
                          in_signature='s', out_signature='')
     def AddAptKey(self, filename):
         apt_key = AptAuth()
