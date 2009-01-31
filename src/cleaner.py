@@ -53,8 +53,7 @@ class CleanConfigDialog(ProcessDialog):
 
     def process_data(self):
         for pkg in self.pkgs:
-            print pkg
-            print proxy.clean_config(pkg)
+            self.set_progress_text(_('Cleaning...%s') % pkg)
         self.done = True
         
     def on_timeout(self):
