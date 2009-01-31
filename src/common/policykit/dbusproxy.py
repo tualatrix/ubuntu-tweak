@@ -62,6 +62,9 @@ class DbusProxy:
         except:
             return 'error'
 
+    def clean_config(self, pkg):
+        self.__proxy.CleanConfig(pkg, dbus_interface = self.INTERFACE)
+
     def exit(self):
         self.__proxy.Exit(dbus_interface = self.INTERFACE)
 
