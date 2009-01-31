@@ -27,6 +27,7 @@ import gobject
 import webbrowser
 
 from common.consts import *
+from common.gui import GuiWorker
 from common.canvas import RenderCell
 from common.debug import run_traceback
 from common.widgets import TweakPage
@@ -331,6 +332,10 @@ class MainWindow(gtk.Window):
         button.connect("clicked", self.destroy);
         hbox.pack_end(button, False, False, 0)
 
+        button = gtk.Button(stock = gtk.STOCK_PREFERENCES)
+        button.connect('clicked', self.on_preferences_clicked)
+        hbox.pack_end(button, False, False, 0)
+
         self.get_gui_state()
         self.show_all()
 
@@ -347,6 +352,12 @@ class MainWindow(gtk.Window):
 		
     def on_d_clicked(self, widget):
         webbrowser.open('http://ubuntu-tweak.com')
+
+    def on_preferences_clicked(self, widget):
+        worker = GuiWorker('preferences.glade')
+        dialog = worker.get_widget('preferences_dialog')
+        dialog.run()
+        dialog.destroy()
 
     def on_never_show(self, widget, action):
         self.__settings.set_show_donate_notify(False)
