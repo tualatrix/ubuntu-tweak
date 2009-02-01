@@ -3,6 +3,7 @@ import cairo
 import pango
 import pangocairo
 from settings import StringSetting
+from common.config import tweak_settings
 
 (
     SHOW_ALWAYS,
@@ -40,7 +41,8 @@ class RenderCell:
     def draw_background(self):
         if self.type == SHOW_CHILD:
             #TODO: the color need to follow the system style
-            self.ctr.set_source_rgb (0.5, 0.5, 0.5)
+       #     self.ctr.set_source_rgb (0.5, 0.5, 0.5)
+            self.ctr.set_source_rgb (*tweak_settings.get_toolbar_color())
             self.ctr.rectangle(self.x, self.y, self.width, self.height)
             self.ctr.fill()
 

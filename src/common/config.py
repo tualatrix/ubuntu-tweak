@@ -18,6 +18,7 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 
 import os
+import gtk
 import gconf
 from common.factory import GconfKeys
 
@@ -82,15 +83,42 @@ class TweakSettings:
     '''Manage the settings of ubuntu tweak'''
     url = 'tweak_url'
     version = 'tweak_version'
-    paned_size = 'paned_size'
+    toolbar_size = 'toolbar_size'
+    toolbar_color = 'toolbar_color'
     window_size= 'window_size'
     window_height = 'window_height'
     window_width = 'window_width'
     show_donate_notify = 'show_donate_notify'
+    default_launch = 'default_launch'
     need_save = True
 
     def __init__(self):
         self.__config = Config()
+
+    def get_toolbar_color(self, instance = False):
+        color = self.__config.get_value(self.toolbar_color)
+        if color == None:
+            if instance:
+                return gtk.gdk.Color(32767, 32767, 32767)
+            return (0.5, 0.5, 0.5)
+        else:
+            try:
+                color = gtk.gdk.color_parse(color)
+                if instance:
+                    return color
+                red, green, blue = color.red/65535.0, color.green/65535.0, color.blue/65535.0
+                return (red, green, blue)
+            except:
+                return (0.5, 0.5, 0.5)
+
+    def set_toolbar_color(self, color):
+        self.__config.set_value(self.toolbar_color, color)
+
+    def set_default_launch(self, id):
+        self.__config.set_value(self.default_launch, id)
+
+    def get_default_launch(self):
+        return self.__config.get_value(self.default_launch)
 
     def set_show_donate_notify(self, bool):
         return self.__config.set_value(self.show_donate_notify, bool)
@@ -116,10 +144,10 @@ class TweakSettings:
         return self.__config.get_string(self.version)
 
     def set_paned_size(self, size):
-        self.__config.set_value(self.paned_size, size)
+        self.__config.set_value(self.toolbar_size, size)
 
     def get_paned_size(self):
-        position = self.__config.get_value(self.paned_size)
+        position = self.__config.get_value(self.toolbar_size)
 
         if position:
             return position
@@ -145,6 +173,8 @@ class TweakSettings:
 
     def get_icon_theme(self):
         return self.__config.get_value('/desktop/gnome/interface/icon_theme')
+
+tweak_settings = TweakSettings()
 
 if __name__ == '__main__':
     print Config().get_value('show_donate_notify')
