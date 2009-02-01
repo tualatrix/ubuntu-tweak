@@ -19,14 +19,15 @@
 
 import os
 import gconf
+from common.factory import GconfKeys
 
 class Config:
-    dir = '/apps/ubuntu-tweak'
+    #FIXME The class should be generic config getter and setter
     __client = gconf.Client()
 
     def set_value(self, key, value):
         if not key.startswith("/"):
-            key = self.build_key(key)
+            key = GconfKeys.keys[key]
 
         if type(value) == int:
             self.__client.set_int(key, value)
@@ -39,7 +40,7 @@ class Config:
 
     def get_value(self, key):
         if not key.startswith("/"):
-            key = self.build_key(key)
+            key = GconfKeys.keys[key]
 		
         try:
             value = self.__client.get_value(key)
@@ -50,13 +51,13 @@ class Config:
 
     def set_pair(self, key, type1, type2, value1, value2):
         if not key.startswith("/"):
-            key = self.build_key(key)
+            key = GconfKeys.keys[key]
 		
         self.__client.set_pair(key, type1, type2, value1, value2)
 
     def get_pair(self, key):
         if not key.startswith("/"):
-            key = self.build_key(key)
+            key = GconfKeys.keys[key]
 
         value = self.__client.get(key)
         if value:
@@ -66,28 +67,27 @@ class Config:
 
     def get_string(self, key):
         if not key.startswith("/"):
-            key = self.build_key(key)
+            key = GconfKeys.keys[key]
+
         string = self.get_value(key)
         if string: 
             return string
         else: 
             return '0'
 
-    def build_key(self, key):
-        return os.path.join(self.dir, key)
-
     def get_client(self):
         return self.__client
 
 class TweakSettings:
     '''Manage the settings of ubuntu tweak'''
-    client = gconf.client_get_default()
-
-    url = 'url'
-    version = 'version'
+    url = 'tweak_url'
+    version = 'tweak_version'
     paned_size = 'paned_size'
     window_size= 'window_size'
+    window_height = 'window_height'
+    window_width = 'window_width'
     show_donate_notify = 'show_donate_notify'
+    need_save = True
 
     def __init__(self):
         self.__config = Config()
@@ -97,6 +97,7 @@ class TweakSettings:
 
     def get_show_donate_notify(self):
         value = self.__config.get_value(self.show_donate_notify)
+
         if value == None:
             return True
         return value
@@ -125,15 +126,20 @@ class TweakSettings:
         else:
             return 150
 
-    def set_window_size(self, height, width):
-        self.__config.set_pair(self.window_size, gconf.VALUE_INT, gconf.VALUE_INT, height, width)
+    def set_window_size(self, width, height):
+        self.__config.set_value(self.window_width, width)
+        self.__config.set_value(self.window_height, height)
+#        self.__config.set_pair(self.window_size, gconf.VALUE_INT, gconf.VALUE_INT, height, width)
 
     def get_window_size(self):
-        height, width = self.__config.get_pair(self.window_size)
-        height, width = int(height), int(width)
+        width = self.__config.get_value(self.window_width)
+        height = self.__config.get_value(self.window_height)
 
-        if height and width:
-            return (height, width)
+#        height, width = self.__config.get_pair(self.window_size)
+
+        if width and height:
+            height, width = int(height), int(width)
+            return (width, height)
         else:
             return (740, 480)
 
@@ -141,4 +147,4 @@ class TweakSettings:
         return self.__config.get_value('/desktop/gnome/interface/icon_theme')
 
 if __name__ == '__main__':
-    print Config().build_key('hello')
+    print Config().get_value('show_donate_notify')
