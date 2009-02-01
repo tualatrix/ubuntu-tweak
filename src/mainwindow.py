@@ -17,6 +17,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
+
 import pygtk
 pygtk.require('2.0')
 import os
@@ -27,7 +28,6 @@ import gobject
 import webbrowser
 
 from common.consts import *
-from common.gui import GuiWorker
 from common.canvas import RenderCell
 from common.debug import run_traceback
 from common.widgets import TweakPage
@@ -35,6 +35,7 @@ from common.widgets.dialogs import QuestionDialog
 from common.systeminfo import module_check
 from common.config import Config, TweakSettings
 from updatemanager import UpdateManager
+from preferences import PreferencesDialog
 from common.utils import set_label_for_stock_button
 
 class Tip(gtk.HBox):
@@ -354,8 +355,7 @@ class MainWindow(gtk.Window):
         webbrowser.open('http://ubuntu-tweak.com')
 
     def on_preferences_clicked(self, widget):
-        worker = GuiWorker('preferences.glade')
-        dialog = worker.get_widget('preferences_dialog')
+        dialog = PreferencesDialog()
         dialog.run()
         dialog.destroy()
 
@@ -363,8 +363,9 @@ class MainWindow(gtk.Window):
         self.__settings.set_show_donate_notify(False)
 
     def save_gui_state(self):
-        self.__settings.set_window_size(*self.get_size())
-        self.__settings.set_paned_size(self.hpaned.get_position())
+        if self.__settings.need_save:
+            self.__settings.set_window_size(*self.get_size())
+            self.__settings.set_paned_size(self.hpaned.get_position())
 
     def get_gui_state(self):
         self.set_default_size(*self.__settings.get_window_size())

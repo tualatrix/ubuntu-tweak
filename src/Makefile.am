@@ -24,6 +24,7 @@ tweak_PYTHON = \
 	./gnomesettings.py \
 	./nautilus.py \
 	./powermanager.py \
+	./preferences.py \
 	./sourceeditor.py \
 	$(NULL)
 
