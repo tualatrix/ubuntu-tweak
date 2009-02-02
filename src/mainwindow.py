@@ -340,7 +340,8 @@ class MainWindow(gtk.Window):
 
         if tweak_settings.get_show_donate_notify():
             gobject.timeout_add(3000, self.on_d_timeout, d_button)
-        gobject.timeout_add(8000, self.on_timeout)
+        if tweak_settings.get_check_update():
+            gobject.timeout_add(8000, self.on_timeout)
 
         launch = tweak_settings.get_default_launch()
         if launch:

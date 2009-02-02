@@ -30,6 +30,7 @@ import gobject
 from common.consts import *
 from common.debug import run_traceback
 from common.widgets.dialogs import ErrorDialog
+from common.config import tweak_settings
 
 try:
     import dl
@@ -73,7 +74,8 @@ class TweakLauncher:
 
     def main(self):
         gtk.gdk.threads_enter()
-        os.system("exec python updatemanager.py &")
+        if tweak_settings.get_check_update():
+            os.system("exec python updatemanager.py &")
         gtk.main()
         gtk.gdk.threads_leave()
 

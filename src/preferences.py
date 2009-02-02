@@ -32,6 +32,7 @@ class PreferencesDialog:
         self.setup_window_preference()
         self.setup_color_preference()
         self.setup_launch_function()
+        self.setup_other_features()
 
     def setup_window_preference(self):
         table = self.worker.get_widget('table1')
@@ -42,19 +43,19 @@ class PreferencesDialog:
                     'window_width', 640, 1280, 1)
         win_width.show()
         win_width.connect('value-changed', self.on_value_changed)
-        table.attach(win_width, 1, 2, 0, 1)
+        table.attach(win_width, 1, 3, 0, 1)
 
         win_height = Factory.create('gconfspinbutton',
                     'window_height', 480, 1280, 1)
         win_height.show()
         win_height.connect('value-changed', self.on_value_changed)
-        table.attach(win_height, 1, 2, 1, 2)
+        table.attach(win_height, 1, 3, 1, 2)
 
         toolbar_size = Factory.create('gconfspinbutton',
                     'toolbar_size', 100, 500, 1)
         toolbar_size.show()
         toolbar_size.connect('value-changed', self.on_value_changed)
-        table.attach(toolbar_size, 1, 2, 2, 3)
+        table.attach(toolbar_size, 1, 3, 2, 3)
 
     def setup_color_preference(self):
         colorbutton = self.worker.get_widget('colorbutton')
@@ -110,6 +111,17 @@ class PreferencesDialog:
             if id == _id:
                 function_box.set_active(i)
         function_box.connect('changed', self.on_launch_changed)
+
+    def setup_other_features(self):
+        vbox = self.worker.get_widget('vbox5')
+
+        button = Factory.create('gconfcheckbutton', _('Enable the Automate Update'), 'check_update')
+        vbox.pack_start(button, False, False, 0)
+
+        button = Factory.create('gconfcheckbutton', _('Show Donate Natiffcation'), 'show_donate_notify')
+        vbox.pack_start(button, False, False, 0)
+
+        vbox.show_all()
 
     def on_launch_changed(self, widget):
         index = widget.get_active()

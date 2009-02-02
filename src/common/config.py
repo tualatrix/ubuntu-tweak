@@ -90,10 +90,17 @@ class TweakSettings:
     window_width = 'window_width'
     show_donate_notify = 'show_donate_notify'
     default_launch = 'default_launch'
+    check_update = 'check_update'
     need_save = True
 
     def __init__(self):
         self.__config = Config()
+
+    def get_check_update(self):
+        return self.__config.get_value(self.check_update)
+
+    def set_check_update(self, bool):
+        self.__config.set_value(self.check_update, bool)
 
     def get_toolbar_color(self, instance = False):
         color = self.__config.get_value(self.toolbar_color)
