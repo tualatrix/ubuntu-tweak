@@ -415,6 +415,8 @@ class PackageCleaner(TweakPage):
 
             function = widget.get_data('function')
             function()
+        elif self.current_button == self.button_list.index(widget):
+            widget.set_active(True)
 
 #        self.select_button.set_active(False)
 
