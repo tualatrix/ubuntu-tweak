@@ -362,6 +362,7 @@ class MainWindow(gtk.Window):
 
     def on_preferences_clicked(self, widget):
         dialog = PreferencesDialog()
+        dialog.dialog.set_transient_for(widget.get_toplevel())
         dialog.run()
         dialog.destroy()
 

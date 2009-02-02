@@ -29,12 +29,11 @@ import subprocess
 import pango
 import gobject
 import apt_pkg
+import webbrowser
 
 from common.config import Config
-from gnome import url_show
 from common.consts import *
 from common.appdata import *
-from common.factory import Factory
 from common.policykit import PolkitButton, proxy
 from common.systeminfo import module_check
 from common.widgets import ListPack, TweakPage, GconfCheckButton
@@ -333,7 +332,7 @@ class SourceDetail(gtk.VBox):
         self.table.attach(self.description, 1, 2, 2, 3)
 
     def click_website(self, widget, link):
-        url_show(link)
+        webbrowser.open(link)
 
     def set_details(self, homepage = None, url = None, description = None):
         if homepage:
