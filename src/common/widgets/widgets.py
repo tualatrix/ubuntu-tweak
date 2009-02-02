@@ -36,7 +36,7 @@ class GconfCheckButton(gtk.CheckButton):
         self.set_label(label)
         self.set_active(self.__setting.get_bool())
         if tooltip:
-            button.set_tooltip_text(tooltip)
+            self.set_tooltip_text(tooltip)
 
         self.__setting.client.notify_add(key, self.value_changed)
         self.connect('toggled', self.button_toggled)
