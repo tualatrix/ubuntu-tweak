@@ -87,7 +87,7 @@ class PreferencesDialog:
                 MODULE_TITLE, _('None')
         )
         for module in module_list:
-            icon = gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'pixmaps', module[MODULE_LOGO]))
+            icon = gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'pixmaps', module[MODULE_LOGO])).scale_simple(18, 18, gtk.gdk.INTERP_NEAREST)
 
             iter = model.append(None)
 
