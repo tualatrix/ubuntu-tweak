@@ -121,6 +121,7 @@ class WidgetFactory:
 
 class Factory:
     keys = GconfKeys.keys
+    #FIXME Use *argv and **karws to do a more powerful factory
 
     @staticmethod
     def create(widget = None, *argv):
@@ -193,7 +194,6 @@ class Factory:
             return button
         else:
             return None
-
 
 if __name__ == '__main__':
     for k,v in Factory.keys.items():
