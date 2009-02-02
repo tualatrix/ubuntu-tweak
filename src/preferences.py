@@ -20,9 +20,9 @@ import gtk
 import gobject
 from common.consts import *
 from common.gui import GuiWorker
-from common.config import tweak_settings
+from common.config import TweakSettings
 from common.utils import set_label_for_stock_button
-from common.factory import Factory
+from common.factory import WidgetFactory
 
 class PreferencesDialog:
     def __init__(self):
@@ -37,29 +37,32 @@ class PreferencesDialog:
     def setup_window_preference(self):
         table = self.worker.get_widget('table1')
 
-        height, width = tweak_settings.get_window_size()
+        height, width = TweakSettings.get_window_size()
 
-        win_width = Factory.create('gconfspinbutton',
-                    'window_width', 640, 1280, 1)
+        win_width = WidgetFactory.create('GconfSpinButton',
+                                        key = 'window_width', 
+                                        min = 640, max = 1280, step = 1)
         win_width.show()
         win_width.connect('value-changed', self.on_value_changed)
         table.attach(win_width, 1, 3, 0, 1)
 
-        win_height = Factory.create('gconfspinbutton',
-                    'window_height', 480, 1280, 1)
+        win_height = WidgetFactory.create('GconfSpinButton',
+                                          key = 'window_height', 
+                                          min = 480, max = 1280, step = 1)
         win_height.show()
         win_height.connect('value-changed', self.on_value_changed)
         table.attach(win_height, 1, 3, 1, 2)
 
-        toolbar_size = Factory.create('gconfspinbutton',
-                    'toolbar_size', 100, 500, 1)
+        toolbar_size = WidgetFactory.create('GconfSpinButton',
+                                            key = 'toolbar_size', 
+                                            min = 100, max = 500, step = 1)
         toolbar_size.show()
         toolbar_size.connect('value-changed', self.on_value_changed)
         table.attach(toolbar_size, 1, 3, 2, 3)
 
     def setup_color_preference(self):
         colorbutton = self.worker.get_widget('colorbutton')
-        colorbutton.set_color(tweak_settings.get_toolbar_color(True))
+        colorbutton.set_color(TweakSettings.get_toolbar_color(True))
         colorbutton.connect('color-set', self.on_color_set)
 
         reset_button = self.worker.get_widget('reset_button')
@@ -105,7 +108,7 @@ class PreferencesDialog:
         function_box.pack_start(textcell, True)
         function_box.add_attribute(textcell, 'text', MODULE_TITLE)
         function_box.add_attribute(pixbufcell, 'pixbuf', MODULE_LOGO)
-        id = tweak_settings.get_default_launch()
+        id = TweakSettings.get_default_launch()
         for i, row in enumerate(model):
             _id = model.get_value(row.iter, MODULE_ID)
             if id == _id:
@@ -115,10 +118,16 @@ class PreferencesDialog:
     def setup_other_features(self):
         vbox = self.worker.get_widget('vbox5')
 
-        button = Factory.create('gconfcheckbutton', _('Enable the Automate Update'), 'check_update')
+        button = WidgetFactory.create('GconfCheckButton', 
+                                      label = _('Enable the Automate Update'), 
+                                      key = 'check_update',
+                                      default = True)
         vbox.pack_start(button, False, False, 0)
 
-        button = Factory.create('gconfcheckbutton', _('Show Donate Natiffcation'), 'show_donate_notify')
+        button = WidgetFactory.create('GconfCheckButton', 
+                                      label = _('Show Donate Natiffcation'), 
+                                      key = 'show_donate_notify',
+                                      default = True)
         vbox.pack_start(button, False, False, 0)
 
         vbox.show_all()
@@ -128,15 +137,15 @@ class PreferencesDialog:
         liststore = widget.get_model()
         iter = liststore.get_iter(index)
         id = liststore.get_value(iter, 0)
-        tweak_settings.set_default_launch(id)
+        TweakSettings.set_default_launch(id)
 
     def on_color_set(self, widget):
-        tweak_settings.set_toolbar_color(widget.get_color().to_string())
+        TweakSettings.set_toolbar_color(widget.get_color().to_string())
     
     def on_reset_clicked(self, widget, colorbutton):
         color = gtk.gdk.Color(32767, 32767, 32767)
         colorbutton.set_color(color)
-        tweak_settings.set_toolbar_color(color.to_string())
+        TweakSettings.set_toolbar_color(color.to_string())
 
     def on_value_changed(self, widget):
         TweakSettings.need_save = False

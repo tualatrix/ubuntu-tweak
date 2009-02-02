@@ -25,7 +25,6 @@ import pango
 import gobject
 import thread
 
-from common.factory import Factory
 from common.widgets import TweakPage
 from common.utils import get_icon_with_name, mime_type_get_icon, get_icon_with_app
 from common.gui import GuiWorker
