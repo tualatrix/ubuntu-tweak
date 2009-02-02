@@ -29,12 +29,14 @@ import time
 from common.settings import *
 
 class GconfCheckButton(gtk.CheckButton):
-    def __init__(self, label, key):
+    def __init__(self, label = None, key = None, default = None, tooltip = None):
         super(GconfCheckButton, self).__init__()
-        self.__setting = BoolSetting(key)
+        self.__setting = BoolSetting(key, default)
 
         self.set_label(label)
         self.set_active(self.__setting.get_bool())
+        if tooltip:
+            button.set_tooltip_text(tooltip)
 
         self.__setting.client.notify_add(key, self.value_changed)
         self.connect('toggled', self.button_toggled)
@@ -47,17 +49,17 @@ class GconfCheckButton(gtk.CheckButton):
         
 class StrGconfCheckButton(GconfCheckButton):
     '''This class use to moniter the key with StringSetting, nothing else'''
-    def __init__(self, label, key):
-        super(StrGconfCheckButton, self).__init__(label, key)
+    def __init__(self, **kwargs):
+        super(StrGconfCheckButton, self).__init__(**kwargs)
 
     def button_toggled(self, widget, data = None):
         '''rewrite the toggled function, it do nothing with the setting'''
         pass
 
 class GconfEntry(gtk.Entry):
-    def __init__(self, key):
+    def __init__(self, key = None, default = None):
         gtk.Entry.__init__(self)
-        self.__setting = StringSetting(key)
+        self.__setting = StringSetting(key, default)
 
         string = self.__setting.get_string()
         if string:
@@ -80,30 +82,29 @@ class GconfEntry(gtk.Entry):
             client.unset(key)
             self.set_text(_("Unset"))
 
-class GconfCombobox(ConstStringSetting):
-    def __init__(self, key, texts, values):
-        ConstStringSetting.__init__(self, key, values)
-
-        self.combobox = gtk.combo_box_new_text()
-        self.texts = texts
-
-        for text in texts:
-            self.combobox.append_text(text)
-
-        if self.get_string() in values:
-            self.combobox.set_active(values.index(self.get_string()))
-
-        self.combobox.connect("changed", self.value_changed_cb)
-
-    def value_changed_cb(self, widget, data = None):
+def GconfComboBox(key = None, texts = None, values = None):
+    def value_changed_cb(widget, setting):
         text = widget.get_active_text()
-        client = self.client
-        key = self.key
+        client = setting.client
+        key = setting.key
 
-        client.set_string(key, self.values[self.texts.index(text)])
+        client.set_string(key, setting.values[setting.texts.index(text)])
+
+    combobox = gtk.combo_box_new_text()
+    setting = ConstStringSetting(key, values)
+    setting.texts = texts
+
+    for text in texts:
+        combobox.append_text(text)
+
+    if setting.get_string() in values:
+        combobox.set_active(values.index(setting.get_string()))
+    combobox.connect("changed", value_changed_cb, setting)
+
+    return combobox
 
 class GconfScale(gtk.HScale):
-    def __init__(self, min, max, key, digits = 0):
+    def __init__(self, key = None, min = None, max = None, digits = 0):
         gtk.HScale.__init__(self)
         self.__setting = NumSetting(key)
         

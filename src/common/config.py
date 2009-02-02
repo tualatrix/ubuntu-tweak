@@ -20,6 +20,7 @@
 import os
 import gtk
 import gconf
+from common.settings import *
 from common.factory import GconfKeys
 
 class Config:
@@ -39,14 +40,18 @@ class Config:
         elif type(value) == bool:
             self.__client.set_bool(key, value)
 
-    def get_value(self, key):
+    def get_value(self, key, default = None):
         if not key.startswith("/"):
             key = GconfKeys.keys[key]
 		
         try:
             value = self.__client.get_value(key)
         except:
-            return None
+            if default is not None:
+                self.set_value(key, default)
+                return default
+            else:
+                return None
         else:
             return value
 
@@ -81,6 +86,8 @@ class Config:
 
 class TweakSettings:
     '''Manage the settings of ubuntu tweak'''
+    config = Config()
+
     url = 'tweak_url'
     version = 'tweak_version'
     toolbar_size = 'toolbar_size'
@@ -93,17 +100,17 @@ class TweakSettings:
     check_update = 'check_update'
     need_save = True
 
-    def __init__(self):
-        self.__config = Config()
+    @classmethod
+    def get_check_update(cls):
+        return cls.config.get_value(cls.check_update, default = True)
 
-    def get_check_update(self):
-        return self.__config.get_value(self.check_update)
+    @classmethod
+    def set_check_update(cls, bool):
+        cls.config.set_value(cls.check_update, bool)
 
-    def set_check_update(self, bool):
-        self.__config.set_value(self.check_update, bool)
-
-    def get_toolbar_color(self, instance = False):
-        color = self.__config.get_value(self.toolbar_color)
+    @classmethod
+    def get_toolbar_color(cls, instance = False):
+        color = cls.config.get_value(cls.toolbar_color)
         if color == None:
             if instance:
                 return gtk.gdk.Color(32767, 32767, 32767)
@@ -118,59 +125,70 @@ class TweakSettings:
             except:
                 return (0.5, 0.5, 0.5)
 
-    def set_toolbar_color(self, color):
-        self.__config.set_value(self.toolbar_color, color)
+    @classmethod
+    def set_toolbar_color(cls, color):
+        cls.config.set_value(cls.toolbar_color, color)
 
-    def set_default_launch(self, id):
-        self.__config.set_value(self.default_launch, id)
+    @classmethod
+    def set_default_launch(cls, id):
+        cls.config.set_value(cls.default_launch, id)
 
-    def get_default_launch(self):
-        return self.__config.get_value(self.default_launch)
+    @classmethod
+    def get_default_launch(cls):
+        return cls.config.get_value(cls.default_launch)
 
-    def set_show_donate_notify(self, bool):
-        return self.__config.set_value(self.show_donate_notify, bool)
+    @classmethod
+    def set_show_donate_notify(cls, bool):
+        return cls.config.set_value(cls.show_donate_notify, bool)
 
-    def get_show_donate_notify(self):
-        value = self.__config.get_value(self.show_donate_notify)
+    @classmethod
+    def get_show_donate_notify(cls):
+        value = cls.config.get_value(cls.show_donate_notify, default = True)
 
-        if value == None:
-            return True
         return value
 
-    def set_url(self, url):
+    @classmethod
+    def set_url(cls, url):
         '''The new version's download url'''
-        return self.__config.set_value(self.url, url)
+        return cls.config.set_value(cls.url, url)
 
-    def get_url(self):
-        return self.__config.get_string(self.url)
+    @classmethod
+    def get_url(cls):
+        return cls.config.get_string(cls.url)
 
-    def set_version(self, version):
-        return self.__config.set_value(self.version, version)
+    @classmethod
+    def set_version(cls, version):
+        return cls.config.set_value(cls.version, version)
 
-    def get_version(self):
-        return self.__config.get_string(self.version)
+    @classmethod
+    def get_version(cls):
+        return cls.config.get_string(cls.version)
 
-    def set_paned_size(self, size):
-        self.__config.set_value(self.toolbar_size, size)
+    @classmethod
+    def set_paned_size(cls, size):
+        cls.config.set_value(cls.toolbar_size, size)
 
-    def get_paned_size(self):
-        position = self.__config.get_value(self.toolbar_size)
+    @classmethod
+    def get_paned_size(cls):
+        position = cls.config.get_value(cls.toolbar_size)
 
         if position:
             return position
         else:
             return 150
 
-    def set_window_size(self, width, height):
-        self.__config.set_value(self.window_width, width)
-        self.__config.set_value(self.window_height, height)
-#        self.__config.set_pair(self.window_size, gconf.VALUE_INT, gconf.VALUE_INT, height, width)
+    @classmethod
+    def set_window_size(cls, width, height):
+        cls.config.set_value(cls.window_width, width)
+        cls.config.set_value(cls.window_height, height)
+#        cls.config.set_pair(cls.window_size, gconf.VALUE_INT, gconf.VALUE_INT, height, width)
 
-    def get_window_size(self):
-        width = self.__config.get_value(self.window_width)
-        height = self.__config.get_value(self.window_height)
+    @classmethod
+    def get_window_size(cls):
+        width = cls.config.get_value(cls.window_width)
+        height = cls.config.get_value(cls.window_height)
 
-#        height, width = self.__config.get_pair(self.window_size)
+#        height, width = cls.config.get_pair(cls.window_size)
 
         if width and height:
             height, width = int(height), int(width)
@@ -178,10 +196,9 @@ class TweakSettings:
         else:
             return (740, 480)
 
-    def get_icon_theme(self):
-        return self.__config.get_value('/desktop/gnome/interface/icon_theme')
-
-tweak_settings = TweakSettings()
+    @classmethod
+    def get_icon_theme(cls):
+        return cls.config.get_value('/desktop/gnome/interface/icon_theme')
 
 if __name__ == '__main__':
     print Config().get_value('show_donate_notify')

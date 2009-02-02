@@ -33,7 +33,7 @@ from common.debug import run_traceback
 from common.widgets import TweakPage
 from common.widgets.dialogs import QuestionDialog
 from common.systeminfo import module_check
-from common.config import tweak_settings
+from common.config import TweakSettings
 from updatemanager import UpdateManager
 from preferences import PreferencesDialog
 from common.utils import set_label_for_stock_button
@@ -338,12 +338,12 @@ class MainWindow(gtk.Window):
         self.get_gui_state()
         self.show_all()
 
-        if tweak_settings.get_show_donate_notify():
+        if TweakSettings.get_show_donate_notify():
             gobject.timeout_add(3000, self.on_d_timeout, d_button)
-        if tweak_settings.get_check_update():
+        if TweakSettings.get_check_update():
             gobject.timeout_add(8000, self.on_timeout)
 
-        launch = tweak_settings.get_default_launch()
+        launch = TweakSettings.get_default_launch()
         if launch:
             self.__create_newpage(launch)
 		
@@ -363,16 +363,16 @@ class MainWindow(gtk.Window):
         dialog.destroy()
 
     def on_never_show(self, widget, action):
-        tweak_settings.set_show_donate_notify(False)
+        TweakSettings.set_show_donate_notify(False)
 
     def save_gui_state(self):
-        if tweak_settings.need_save:
-            tweak_settings.set_window_size(*self.get_size())
-            tweak_settings.set_paned_size(self.hpaned.get_position())
+        if TweakSettings.need_save:
+            TweakSettings.set_window_size(*self.get_size())
+            TweakSettings.set_paned_size(self.hpaned.get_position())
 
     def get_gui_state(self):
-        self.set_default_size(*tweak_settings.get_window_size())
-        self.hpaned.set_position(tweak_settings.get_paned_size())
+        self.set_default_size(*TweakSettings.get_window_size())
+        self.hpaned.set_position(TweakSettings.get_paned_size())
 
     def __create_model(self):
         model = gtk.ListStore(
@@ -547,7 +547,7 @@ You should have received a copy of the GNU General Public License along with Ubu
     def check_version(self):
         gtk.gdk.threads_enter()
 
-        version = tweak_settings.get_version()
+        version = TweakSettings.get_version()
         if version > VERSION:
             dialog = QuestionDialog(_('A newer version: %s is available online.\nWould you like to update?' % version), 
                     title = _('Software Update'))

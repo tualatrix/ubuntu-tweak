@@ -27,7 +27,6 @@ import gettext
 import gobject
 
 from common.widgets import TweakPage, KeyGrabber, KeyModifier
-from common.factory import Factory
 
 (
     COLUMN_ID,

@@ -25,7 +25,7 @@ import gconf
 
 from common.consts import *
 from common.widgets import TweakPage
-from common.factory import Factory
+from common.factory import WidgetFactory
 
 computer_icon = \
 {
@@ -60,7 +60,9 @@ class DesktopIcon(gtk.VBox):
     def __init__(self, item):
         gtk.VBox.__init__(self)
 
-        self.show_button = Factory.create("gconfcheckbutton", item["label"], item["visible"])
+        self.show_button = WidgetFactory.create("GconfCheckButton", 
+                                                label = item["label"], 
+                                                key = item["visible"])
         self.show_button.connect('toggled', self.colleague_changed)
         self.pack_start(self.show_button, False, False, 0)
 
@@ -73,13 +75,15 @@ class DesktopIcon(gtk.VBox):
         icon = gtk.image_new_from_icon_name(item["icon"], gtk.ICON_SIZE_DIALOG)
         self.show_hbox.pack_start(icon, False, False, 0)
 
-        self.rename_button = Factory.create("strgconfcheckbutton", item["rename"], item["name"])
+        self.rename_button = WidgetFactory.create("StrGconfCheckButton", 
+                                                  label = item["rename"], 
+                                                  key = item["name"])
         self.rename_button.connect('toggled', self.colleague_changed)
         vbox = gtk.VBox(False, 5)
         self.show_hbox.pack_start(vbox, False, False, 0)
         vbox.pack_start(self.rename_button, False, False, 0)
 
-        self.entry = Factory.create("gconfentry", item["name"])
+        self.entry = WidgetFactory.create("GconfEntry", key = item["name"])
         self.entry.connect('focus-out-event', self.entry_focus_out)
         if not self.rename_button.get_active():
             self.entry.set_sensitive(False)
@@ -105,7 +109,9 @@ class Icon(TweakPage):
     def __init__(self):
         TweakPage.__init__(self, _("Desktop Icon settings"))
 
-        self.show_button = Factory.create("gconfcheckbutton", _("Show desktop icons"), "show_desktop")
+        self.show_button = WidgetFactory.create("GconfCheckButton", 
+                                                label = _("Show desktop icons"), 
+                                                key = "show_desktop")
         self.show_button.connect('toggled', self.colleague_changed)
         self.pack_start(self.show_button, False, False, 10)
 
@@ -125,13 +131,19 @@ class Icon(TweakPage):
         for item in desktop_icon:
             vbox.pack_start(DesktopIcon(item), False, False, 0)
 
-        button = Factory.create("gconfcheckbutton", _("Show \"Network\" icon on desktop"), "network_icon_visible")
+        button = WidgetFactory.create("GconfCheckButton", 
+                                      label = _("Show \"Network\" icon on desktop"), 
+                                      key = "network_icon_visible")
         vbox.pack_start(button, False, False, 0)
 
-        button = Factory.create("gconfcheckbutton", _("Show mounted volumes on desktop"), "volumes_visible")
+        button = WidgetFactory.create("GconfCheckButton", 
+                                      label = _("Show mounted volumes on desktop"), 
+                                      key = "volumes_visible")
         vbox.pack_start(button, False, False, 0)
 
-        button = Factory.create("gconfcheckbutton", _('Use "Home Folder" as desktop(Logout for changes to take effect)'), "desktop_is_home_dir")
+        button = WidgetFactory.create("GconfCheckButton", 
+                                      label = _('Use "Home Folder" as desktop(Logout for changes to take effect)'), 
+                                      key = "desktop_is_home_dir")
         vbox.pack_start(button, False, False, 0)
 
     def colleague_changed(self, widget):
