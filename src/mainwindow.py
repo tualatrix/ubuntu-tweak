@@ -135,16 +135,19 @@ else:
     UserDir = Notice
     Templates = Notice
 
-if module_check.is_supported_ubuntu():
-    from sourceeditor import SourceEditor
+if module_check.is_ubuntu():
     from installer import Installer
-    from thirdsoft import ThirdSoft
     from cleaner import PackageCleaner
 else:
-    SourceEditor = Notice
     Installer = Notice
-    ThirdSoft = Notice
     PackageCleaner = Notice
+
+if module_check.is_supported_ubuntu():
+    from sourceeditor import SourceEditor
+    from thirdsoft import ThirdSoft
+else:
+    SourceEditor = Notice
+    ThirdSoft = Notice
 from scripts import Scripts
 from shortcuts import Shortcuts
 from powermanager import PowerManager
