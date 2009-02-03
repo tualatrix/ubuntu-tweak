@@ -352,7 +352,7 @@ class MainWindow(gtk.Window):
 		
     def on_d_timeout(self, widget):
         from common.notify import notify
-        notify.update(_('Help the development of Ubuntu Tweak'), _('Ubuntu Tweak is a free-software, you can use it for free. If you like it, Please consider to donate for Ubuntu Tweak'))
+        notify.update(_('Help the development of Ubuntu Tweak'), _('Ubuntu Tweak is a free-software, you can use it for free. If you like it, Please consider to donate for Ubuntu Tweak.'))
         notify.add_action("never_show", _('Never Show This Again'), self.on_never_show)
         notify.attach_to_widget(widget)
         notify.show()

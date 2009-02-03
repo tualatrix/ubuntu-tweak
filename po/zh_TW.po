@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2009-02-03 10:19+0800\n"
+"POT-Creation-Date: 2009-02-03 19:36+0800\n"
 "PO-Revision-Date: 2008-12-13 05:24+0000\n"
 "Last-Translator: TualatriX <Unknown>\n"
 "Language-Team: TualatriX <tualatrix@gmail.com>\n"
@@ -64,10 +64,11 @@ msgid "Session Programs"
 msgstr "作業階段程式"
 
 #: src/autostart.py:324
+#, fuzzy
 msgid ""
-"Here you can manage what programs get started upon login.\n"
+"Here you can manage what programs get started when you login.\n"
 "You can hide items from view by selecting and clicking \"Remove\"\n"
-"To permanently delete it, right-click and press \"Delete\"."
+"To permanently delete an item, right-click and press \"Delete\"."
 msgstr ""
 "你可以管理在登入的時候哪些程式需要啟動，\n"
 "你可以按\"Remove\"將項目從列表中隱藏。\n"
@@ -154,25 +155,26 @@ msgstr "模擬器"
 msgid "E-mail Tools"
 msgstr "電郵工具"
 
-#: src/installer.py:142
+#: src/installer.py:143
 msgid "Add/Remove Applications"
 msgstr "新增/移除應用程式"
 
-#: src/installer.py:143
+#: src/installer.py:144
+#, fuzzy
 msgid ""
-"A simple but more effective for finding and installing popular packages than "
-"the default Add/Remove."
+"A simple but more effecient method for finding and installing popular "
+"packages than the default Add/Remove."
 msgstr "这是一个比預設新增/移除工具簡單且更有效的尋找及安裝套件的介面。"
 
-#: src/installer.py:191
+#: src/installer.py:192
 msgid "All Categories"
 msgstr "所有分類"
 
-#: src/installer.py:361
+#: src/installer.py:362
 msgid "Updated Successfully!"
 msgstr "更新成功！"
 
-#: src/installer.py:363
+#: src/installer.py:364
 msgid "Updated Failed!"
 msgstr "更新失敗！"
 
@@ -201,8 +203,9 @@ msgid "Disable save to disk"
 msgstr "禁止儲存到硬碟"
 
 #: src/lockdown.py:53
-msgid "Disable \"User Switch\""
-msgstr "禁止 \"切換使用者\""
+#, fuzzy
+msgid "Disable \"Fast User Switching\""
+msgstr "禁止切換使用者"
 
 #: src/ScriptWorker.py:52
 #, python-format
@@ -236,19 +239,23 @@ msgid "Welcome to"
 msgstr "歡迎來到"
 
 #: src/mainwindow.py:71
-msgid "Tweak your Linux computer to what you like."
-msgstr "把您的Linux電腦調整成您想要的"
+msgid "Tweak otherwise hidden settings."
+msgstr ""
 
 #: src/mainwindow.py:72
-msgid "Easily install various kinds of applications."
-msgstr "簡易地安裝各種應用程式。"
-
-#: src/mainwindow.py:73
 msgid "Clean up unneeded packages to free diskspace."
 msgstr "清除不需要的套件來得到更多的空間"
 
+#: src/mainwindow.py:73
+#, fuzzy
+msgid "Easily install up-to-date versions of many applications."
+msgstr "簡易地安裝各種應用程式。"
+
 #: src/mainwindow.py:74
-msgid "Configure templates and scripts to improve your computing."
+#, fuzzy
+msgid ""
+"Configure file templates and shortcut scripts for easy access to common "
+"tasks."
 msgstr "設定範本和Scripts來改善您的電腦"
 
 #: src/mainwindow.py:75
@@ -383,7 +390,7 @@ msgstr ""
 #: src/mainwindow.py:355
 msgid ""
 "Ubuntu Tweak is a free-software, you can use it for free. If you like it, "
-"Please consider to donate for Ubuntu Tweak"
+"Please consider to donate for Ubuntu Tweak."
 msgstr ""
 
 #: src/mainwindow.py:356
@@ -488,9 +495,11 @@ msgid "Default Folder Locations"
 msgstr "預設資料夾位址"
 
 #: src/userdir.py:237
+#, fuzzy
 msgid ""
-"You can change the default document folders here.\n"
-"But don't change the Desktop folder under normal use."
+"You can change the paths of the default folders here.\n"
+"Don't change the location of your desktop folder unless you know what you "
+"are doing."
 msgstr ""
 "您可以在這裡更改文件資料夾的預設值.\n"
 "但是不可以在一般使用下更改桌面資料夾."
@@ -537,7 +546,7 @@ msgstr "已關聯的應用程序"
 
 #: src/filetype.py:176 src/filetype.py:211 src/metacity.py:62
 #: src/metacity.py:67 src/metacity.py:72 src/metacity.py:77
-#: src/shortcuts.py:90 src/shortcuts.py:189 src/preferences.py:99
+#: src/shortcuts.py:89 src/shortcuts.py:188 src/preferences.py:99
 msgid "None"
 msgstr "沒有"
 
@@ -566,12 +575,12 @@ msgid "Could not find application"
 msgstr "找不到應用程式"
 
 #: src/filetype.py:474
-msgid "Here you can manage all of the registered types of your system."
-msgstr "在這裡你可以管理所有系統中已註冊的檔案類型"
+msgid "Here you can manage which application will open which filetypes."
+msgstr ""
 
 #: src/filetype.py:500
-msgid "Only show associated type"
-msgstr "僅顯示已關聯的類型"
+msgid "Only show filetypes with an associated application"
+msgstr ""
 
 #: src/computer.py:49
 msgid "System information"
@@ -831,7 +840,8 @@ msgstr ""
 "為了啟用Metacity的合成視窗特性，你需要手動禁用“外觀設定”裡的“視覺特效”。"
 
 #: src/session.py:39
-msgid "Splash Screen (Click Below Image)"
+#, fuzzy
+msgid "Splash Screen (Click On Image)"
 msgstr "歡迎畫面 (點選以下的圖片)"
 
 #: src/session.py:43
@@ -843,7 +853,8 @@ msgid "PNG image (*.png)"
 msgstr "PNG圖像格式(*.png)"
 
 #: src/session.py:131
-msgid "Automatically save changes to session"
+#, fuzzy
+msgid "Automatically save open applications when logging out"
 msgstr "自動儲存當前作業階段"
 
 #: src/session.py:134
@@ -912,13 +923,11 @@ msgstr ""
 
 #: src/templates.py:112
 msgid ""
-"You can freely manage your document templates.\n"
-"You can drag and drop from File Manager.\n"
-"\"Create Document\" will be added to the context menu.\n"
+"Here you can freely manage your document templates.\n"
+"You can add files as templates by dragging them onto this window.\n"
+"You can create new documents based on these templates from the Nautilus "
+"right-click menu."
 msgstr ""
-"您可以自行管理您的文件範本.\n"
-"您可以從檔案總管來拖曳.\n"
-"這將會新增在\"新增文件\" 選單裡面.\n"
 
 #: src/templates.py:137
 msgid "Rebuild System Templates"
@@ -1001,34 +1010,35 @@ msgid "Shortcut Commands"
 msgstr "設定快捷鍵"
 
 #: src/shortcuts.py:47
+#, fuzzy
 msgid ""
-"By configuring keyboard shortcuts, you have faster access to the "
-"applications you need.\n"
-"Input the command and set any desired key, it's easy to set a shortcut.\n"
-"Use the <b>Delete</b> or <b>BackSpace</b> to clean the shortcut."
+"By configuring keyboard shortcuts, you can access your favourite "
+"applications instantly.\n"
+"Enter the application's command and set the desired shortcut keys.\n"
+"Use the <b>Delete</b> or <b>BackSpace</b> keys to disable the shortcut."
 msgstr ""
 "經由設定鍵盤快捷鍵，可以快速的啟動應用程式.\n"
 "只要輸入指令及任一按鍵，即可簡單的的設定快捷鍵。\n"
 "使用<b>Delete</a>或<b>BackSpace</b>清除快捷鍵。"
 
-#: src/shortcuts.py:86
+#: src/shortcuts.py:85
 #, python-format
 msgid "Command %d"
 msgstr "指令%d"
 
-#: src/shortcuts.py:93 src/shortcuts.py:156
+#: src/shortcuts.py:92 src/shortcuts.py:155
 msgid "disabled"
 msgstr "關閉"
 
-#: src/shortcuts.py:109
+#: src/shortcuts.py:108
 msgid "ID"
 msgstr "編號"
 
-#: src/shortcuts.py:120
+#: src/shortcuts.py:119
 msgid "Command"
 msgstr "指令"
 
-#: src/shortcuts.py:135
+#: src/shortcuts.py:134
 msgid "Key"
 msgstr "按鍵"
 
@@ -1091,7 +1101,10 @@ msgid "Cleaned up Failed!"
 msgstr "清理失敗！"
 
 #: src/cleaner.py:303
-msgid "Free up disk space by clearing unneeded packages and the package cache."
+#, fuzzy
+msgid ""
+"Free up disk space by removing unneeded packages and cleaning the package "
+"download cache."
 msgstr "清除未使用的套件及快取來釋放硬碟空間。"
 
 #: src/cleaner.py:331
@@ -1107,7 +1120,7 @@ msgstr "清理快取"
 msgid "Clean Config"
 msgstr "清理快取"
 
-#: src/cleaner.py:348
+#: src/cleaner.py:347
 msgid "Select All"
 msgstr "全選/全不選"
 
@@ -1205,10 +1218,11 @@ msgid "Manage Scripts"
 msgstr "管理 Scripts"
 
 #: src/scripts.py:132
+#, fuzzy
 msgid ""
 "You can do all kinds of tasks with scripts.\n"
 "You can drag and drop from File Manager.\n"
-"'Scripts' will be added to the context menu.\n"
+"'Scripts' will be added to the context menu."
 msgstr ""
 "您可以執行任何功能的指令稿。\n"
 "您可以從探案瀏覽器拖曳。\n"
@@ -1307,8 +1321,9 @@ msgid "Do you want take effect immediately?"
 msgstr "你是否要立即生效？"
 
 #: src/nautilus.py:100
-msgid "Show advanced permissions on Permissions tab of File Property"
-msgstr "在檔案內容的權限分頁中顯示進階權限"
+#, fuzzy
+msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
+msgstr "在檔案屬性頁中顯示進階權限控制"
 
 #: src/nautilus.py:103
 msgid "File Browser"
@@ -1327,15 +1342,18 @@ msgid "Enable OverBurn"
 msgstr "啟用超燒功能"
 
 #: src/nautilus.py:119
-msgid "Default thumbnail icon size (Pixel)"
+#, fuzzy
+msgid "Default thumbnail icon size (Pixels)"
 msgstr "預設的縮圖大小（Pixel）"
 
 #: src/nautilus.py:133
-msgid "Maximum size of the thumbnail cache (Megabyte)"
+#, fuzzy
+msgid "Maximum size of the thumbnail cache (Megabytes)"
 msgstr "縮圖快取的最大尺寸（Megabyte）"
 
 #: src/nautilus.py:145
-msgid "Maximum age for the thumbnail in the cache (Day)"
+#, fuzzy
+msgid "Maximum age for the thumbnail in the cache (Days)"
 msgstr "縮圖快取的最長保留期限（天）"
 
 #: src/nautilus.py:157
@@ -1392,7 +1410,8 @@ msgid "Show \"CPU frequency control option\" in Power Management Preferences"
 msgstr "在電源管理中顯示 \"CPU 頻率控制選項\""
 
 #: src/powermanager.py:48
-msgid "Disable Network Manager when on sleep"
+#, fuzzy
+msgid "Disable Network Manager when asleep"
 msgstr "當休眠時關閉網路管理"
 
 #: src/powermanager.py:51
@@ -1460,10 +1479,6 @@ msgstr "未設定"
 #, fuzzy
 msgid "Enable Check Update"
 msgstr "已啟用的樣本"
-
-#: src/preferences.py:137
-msgid "Show Donate Natiffcation"
-msgstr ""
 
 #: src/sourceeditor.py:62 src/sourceeditor.py:67
 msgid "Choose the sources"
@@ -1865,62 +1880,66 @@ msgid "Multiple GNOME terminals in one window"
 msgstr "一個視窗中有多個GNOME終端機"
 
 #: src/common/appdata.py:120
+msgid "A Useful Task List"
+msgstr ""
+
+#: src/common/appdata.py:121
 msgid "Ubuntu Tweak makes it easier to configure Ubuntu"
 msgstr "Ubuntu Tweak讓設定Ubuntu更容易"
 
-#: src/common/appdata.py:121
+#: src/common/appdata.py:122
 msgid "Commonly used restricted packages"
 msgstr "常用的受限制套件"
 
-#: src/common/appdata.py:122 src/common/appdata.py:123
+#: src/common/appdata.py:123 src/common/appdata.py:124
 msgid "A feature rich, high performance virtualization software"
 msgstr "一個功能豐富、性能強大的視覺化軟體"
 
-#: src/common/appdata.py:124
+#: src/common/appdata.py:125
 msgid "Read, capture, broadcast your multimedia streams"
 msgstr "讀取、截取及廣播你的多媒體串流"
 
-#: src/common/appdata.py:125
+#: src/common/appdata.py:126
 msgid "Run Virtual Machines using VMware"
 msgstr "使用VMware執行虛擬機器"
 
-#: src/common/appdata.py:126
+#: src/common/appdata.py:127
 msgid "A compatibility layer for running Windows programs"
 msgstr "一個可以執行Windows程式的相容底層"
 
-#: src/common/appdata.py:127
+#: src/common/appdata.py:128
 msgid ""
 "XBMC is a free and open source software media player and entertainment hub"
 msgstr "XMBC是一套免費及開放的媒體播放器和娛樂中心"
 
-#: src/common/appdata.py:131
+#: src/common/appdata.py:132
 msgid "Development Version of Mozilla Firefox 3.0/3.1, 4.0"
 msgstr "開發版的Mozilla Firefox 3.0/3.1, 4.0"
 
-#: src/common/appdata.py:132
+#: src/common/appdata.py:133
 msgid "Development version of Compiz Fusion"
 msgstr "開發版的Compiz Fusion"
 
-#: src/common/appdata.py:133
+#: src/common/appdata.py:134
 msgid "Google's Linux Repository"
 msgstr "Google的套件庫"
 
-#: src/common/appdata.py:134
+#: src/common/appdata.py:135
 msgid "K Desktop Environment 4.1"
 msgstr "KDE 4.1"
 
-#: src/common/appdata.py:135
+#: src/common/appdata.py:136
 msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
 msgstr "輕量化的X11桌面環境: GPicView, PCManFM"
 
-#: src/common/appdata.py:136
+#: src/common/appdata.py:137
 msgid ""
 "Multimedia, Entertainment and Distraction In Ubuntu\n"
 "Medibuntu is a repository of packages that cannot be included into the "
 "Ubuntu distribution for legal reasons (copyright, license, patent, etc)."
 msgstr ""
 
-#: src/common/appdata.py:138
+#: src/common/appdata.py:139
 msgid ""
 "Ubuntu repository for Chinese users.\n"
 "Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and "
@@ -2012,61 +2031,41 @@ msgstr "使用自訂指令(_U)"
 msgid "Ubuntu Tweak Preferences"
 msgstr "Ubuntu Tweak 網站"
 
-#: data/glade/preferences.glade:38
+#: data/glade/preferences.glade:32
 #, fuzzy
 msgid "<b>User Interface</b>"
 msgstr "<b>用戶資訊</b>"
 
-#: data/glade/preferences.glade:60 data/glade/preferences.glade:121
-msgid "gtk-clear"
-msgstr ""
-
-#: data/glade/preferences.glade:91
+#: data/glade/preferences.glade:103
 msgid "Left Menubar Font Color"
 msgstr ""
 
-#: data/glade/preferences.glade:152
+#: data/glade/preferences.glade:146
 msgid "Left Menubar Color"
 msgstr ""
 
-#: data/glade/preferences.glade:163
+#: data/glade/preferences.glade:157
 msgid "Default Window Height"
 msgstr ""
 
-#: data/glade/preferences.glade:175
+#: data/glade/preferences.glade:169
 msgid "Default Window Width"
 msgstr ""
 
-#: data/glade/preferences.glade:185
+#: data/glade/preferences.glade:179
 msgid "Left Menubar Width"
 msgstr ""
 
-#: data/glade/preferences.glade:211
+#: data/glade/preferences.glade:205
 #, fuzzy
 msgid "<b>Features</b>"
 msgstr "<b>選單特效</b>"
 
-#: data/glade/preferences.glade:231
+#: data/glade/preferences.glade:225
 msgid "Default Launch Function"
 msgstr ""
 
-#: data/glade/preferences.glade:261
-msgid "page 1"
-msgstr ""
-
-#: data/glade/preferences.glade:274
-msgid "page 2"
-msgstr ""
-
-#: data/glade/preferences.glade:288
-msgid "page 3"
-msgstr ""
-
-#: data/glade/preferences.glade:302
-msgid "page 4"
-msgstr ""
-
-#: data/glade/preferences.glade:345
+#: data/glade/preferences.glade:267
 msgid "gtk-close"
 msgstr ""
 
@@ -2101,6 +2100,30 @@ msgid ""
 "Please choose \"Yes\" and and report the \"Error Message\"\n"
 " to the opening website."
 msgstr ""
+
+#~ msgid "Disable \"User Switch\""
+#~ msgstr "禁止 \"切換使用者\""
+
+#~ msgid "Tweak your Linux computer to what you like."
+#~ msgstr "把您的Linux電腦調整成您想要的"
+
+#~ msgid "Here you can manage all of the registered types of your system."
+#~ msgstr "在這裡你可以管理所有系統中已註冊的檔案類型"
+
+#~ msgid "Only show associated type"
+#~ msgstr "僅顯示已關聯的類型"
+
+#~ msgid ""
+#~ "You can freely manage your document templates.\n"
+#~ "You can drag and drop from File Manager.\n"
+#~ "\"Create Document\" will be added to the context menu.\n"
+#~ msgstr ""
+#~ "您可以自行管理您的文件範本.\n"
+#~ "您可以從檔案總管來拖曳.\n"
+#~ "這將會新增在\"新增文件\" 選單裡面.\n"
+
+#~ msgid "Show advanced permissions on Permissions tab of File Property"
+#~ msgstr "在檔案內容的權限分頁中顯示進階權限"
 
 #~ msgid "KDE IM client using Tencent QQ protocol"
 #~ msgstr "使用騰訊QQ通訊協議的KDE即時通訊"
@@ -2182,9 +2205,6 @@ msgstr ""
 
 #~ msgid "Disable Save To Disk"
 #~ msgstr "禁止使用另存新檔"
-
-#~ msgid "Disable User Switching"
-#~ msgstr "禁止切換使用者"
 
 #~ msgid "<b>System Security options</b>"
 #~ msgstr "<b>系統安全選項</b>"
@@ -2426,9 +2446,6 @@ msgstr ""
 
 #~ msgid "Use Home Folder as the desktop(Logout for changes to take effect)"
 #~ msgstr "使用家目錄作為桌面（需要登出生效）"
-
-#~ msgid "Show advanced Permissions on File Property pages"
-#~ msgstr "在檔案屬性頁中顯示進階權限控制"
 
 #~ msgid "Show CPU frequency control option"
 #~ msgstr "顯示CPU時脈控制選項"
