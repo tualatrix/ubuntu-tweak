@@ -134,7 +134,7 @@ class PreferencesDialog:
 
 # Only For Test
         button = WidgetFactory.create('GconfCheckButton', 
-                                      label = _('Show Donate Natiffcation'), 
+                                      label = 'Show Donate Natiffcation', 
                                       key = 'show_donate_notify',
                                       default = True)
         vbox.pack_start(button, False, False, 0)

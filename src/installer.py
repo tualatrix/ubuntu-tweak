@@ -127,6 +127,7 @@ data = \
     ('smplayer', Video),
     ('soundconverter', Sound),
     ('stardict', Desktop),
+    ('tasque', Desktop),
     ('terminator', Emulator),
     ('ubuntu-restricted-extras', Desktop),
     ('virtualbox-ose', Emulator),

@@ -117,6 +117,7 @@ APP_DATA = {
     'stardict': _('An international dictionary'),
     'swiftweasel': _('Swiftweasel is an optimized build of the Mozilla Firefox web browser for Linux'),
     'terminator': _('Multiple GNOME terminals in one window'),
+    'tasque': _('A Useful Task List'),
     'ubuntu-tweak': _('Ubuntu Tweak makes it easier to configure Ubuntu'),
     'ubuntu-restricted-extras': _('Commonly used restricted packages'),
     'virtualbox': _('A feature rich, high performance virtualization software'),
