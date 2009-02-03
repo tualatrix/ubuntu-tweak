@@ -18,9 +18,8 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-import pygtk
-pygtk.require("2.0")
 import gtk
+import pango
 import gobject
 
 class BasePack(gtk.VBox):
@@ -110,6 +109,7 @@ class TweakPage(gtk.ScrolledWindow):
 
         if des:
             self.description = gtk.Label()
+            self.description.set_ellipsize(pango.ELLIPSIZE_END)
             self.description.set_alignment(0, 0)
             self.pack_start(self.description, False, False, 5)
             self.set_description(des)
