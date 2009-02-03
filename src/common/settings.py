@@ -151,7 +151,7 @@ class NumSetting(Setting):
             elif value.type == gconf.VALUE_FLOAT:
                 self.client.set_float(self.key, num)
         else:
-            self.client.set_int(self.key, num)
+            self.client.set_int(self.key, int(num))
 
 class ConstStringSetting(StringSetting):
     def __init__(self, key, values):

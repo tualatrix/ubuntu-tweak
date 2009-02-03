@@ -123,6 +123,7 @@ class TweakPage(gtk.ScrolledWindow):
     def set_description(self, des):
         if not getattr(self, 'description', None):
             self.description = gtk.Label()
+            self.description.set_ellipsize(pango.ELLIPSIZE_END)
             self.description.set_alignment(0, 0)
             self.pack_start(self.description, False, False, 5)
         self.description.set_markup(des)        

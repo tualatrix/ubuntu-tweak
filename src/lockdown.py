@@ -50,7 +50,7 @@ class LockDown(TweakPage):
                                          label = _("Disable save to disk"), 
                                          key = "disable_save_to_disk"),
                     WidgetFactory.create("GconfCheckButton", 
-                                         label = _('Disable "User Switch"'), 
+                                         label = _('Disable "Fast User Switching"'), 
                                          key = "disable_user_switching"),
             ))
 
