@@ -69,6 +69,14 @@ class PreferencesDialog:
         set_label_for_stock_button(reset_button, _('Reset'))
         reset_button.connect('clicked', self.on_reset_clicked, colorbutton)
 
+        font_colorbutton = self.worker.get_widget('font_colorbutton')
+        font_colorbutton.set_color(TweakSettings.get_toolbar_font_color(True))
+        font_colorbutton.connect('color-set', self.on_font_color_set)
+
+        font_reset_button = self.worker.get_widget('font_reset_button')
+        set_label_for_stock_button(font_reset_button, _('Reset'))
+        font_reset_button.connect('clicked', self.on_font_reset_clicked, font_colorbutton)
+
     def setup_launch_function(self):
         from mainwindow import MODULES
         from mainwindow import MODULE_ID, MODULE_LOGO, MODULE_TITLE
@@ -119,11 +127,12 @@ class PreferencesDialog:
         vbox = self.worker.get_widget('vbox5')
 
         button = WidgetFactory.create('GconfCheckButton', 
-                                      label = _('Enable the Automate Update'), 
+                                      label = _('Enable Check Update'), 
                                       key = 'check_update',
                                       default = True)
         vbox.pack_start(button, False, False, 0)
 
+# Only For Test
         button = WidgetFactory.create('GconfCheckButton', 
                                       label = _('Show Donate Natiffcation'), 
                                       key = 'show_donate_notify',
@@ -146,6 +155,14 @@ class PreferencesDialog:
         color = gtk.gdk.Color(32767, 32767, 32767)
         colorbutton.set_color(color)
         TweakSettings.set_toolbar_color(color.to_string())
+
+    def on_font_color_set(self, widget):
+        TweakSettings.set_toolbar_font_color(widget.get_color().to_string())
+    
+    def on_font_reset_clicked(self, widget, colorbutton):
+        color = gtk.gdk.Color(65535, 65535, 65535)
+        colorbutton.set_color(color)
+        TweakSettings.set_toolbar_font_color(color.to_string())
 
     def on_value_changed(self, widget):
         TweakSettings.need_save = False

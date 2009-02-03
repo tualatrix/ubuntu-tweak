@@ -100,7 +100,7 @@ class RenderCell:
         
     def draw_text(self, text):
         if self.type == SHOW_CHILD:
-            self.ctr.set_source_rgb (1, 1, 1)
+            self.ctr.set_source_rgb (*TweakSettings.get_toolbar_font_color())
 
         self.ctr.move_to(self.title_x, self.title_y)
 

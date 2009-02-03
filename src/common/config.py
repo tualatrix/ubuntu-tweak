@@ -92,6 +92,7 @@ class TweakSettings:
     version = 'tweak_version'
     toolbar_size = 'toolbar_size'
     toolbar_color = 'toolbar_color'
+    toolbar_font_color = 'toolbar_font_color'
     window_size= 'window_size'
     window_height = 'window_height'
     window_width = 'window_width'
@@ -130,6 +131,27 @@ class TweakSettings:
         cls.config.set_value(cls.toolbar_color, color)
 
     @classmethod
+    def get_toolbar_font_color(cls, instance = False):
+        color = cls.config.get_value(cls.toolbar_font_color)
+        if color == None:
+            if instance:
+                return gtk.gdk.Color(65535, 65535, 65535)
+            return (1, 1, 1)
+        else:
+            try:
+                color = gtk.gdk.color_parse(color)
+                if instance:
+                    return color
+                red, green, blue = color.red/65535.0, color.green/65535.0, color.blue/65535.0
+                return (red, green, blue)
+            except:
+                return (1, 1, 1)
+
+    @classmethod
+    def set_toolbar_font_color(cls, color):
+        cls.config.set_value(cls.toolbar_font_color, color)
+
+    @classmethod
     def set_default_launch(cls, id):
         cls.config.set_value(cls.default_launch, id)
 
@@ -149,7 +171,6 @@ class TweakSettings:
 
     @classmethod
     def set_url(cls, url):
-        '''The new version's download url'''
         return cls.config.set_value(cls.url, url)
 
     @classmethod
@@ -181,14 +202,11 @@ class TweakSettings:
     def set_window_size(cls, width, height):
         cls.config.set_value(cls.window_width, width)
         cls.config.set_value(cls.window_height, height)
-#        cls.config.set_pair(cls.window_size, gconf.VALUE_INT, gconf.VALUE_INT, height, width)
 
     @classmethod
     def get_window_size(cls):
         width = cls.config.get_value(cls.window_width)
         height = cls.config.get_value(cls.window_height)
-
-#        height, width = cls.config.get_pair(cls.window_size)
 
         if width and height:
             height, width = int(height), int(width)
