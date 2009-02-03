@@ -168,9 +168,7 @@ class PackageView(gtk.TreeView):
         model = self.get_model()
         model.clear()
         self.mode = 'config'
-
-        command = "dpkg -l |awk '/^rc/ {print $2}'"
-
+#        command = "dpkg -l |awk '/^rc/ {print $2}'"
         icon = get_icon_with_name('text', 24)
 
         list = []
