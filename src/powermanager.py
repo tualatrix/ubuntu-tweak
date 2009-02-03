@@ -45,7 +45,7 @@ class PowerManager(TweakPage):
                                       label = _('Show "CPU frequency control option" in Power Management Preferences'), 
                                       key = "cpufreq_show")],
                 [WidgetFactory.create("GconfCheckButton", 
-                                      label = _("Disable Network Manager when on sleep"), 
+                                      label = _("Disable Network Manager when asleep"), 
                                       key = "network_sleep")],
                 [WidgetFactory.create("GconfCheckButton", 
                                       label = _('Enable "Lock screen" when "Blank Screen" activates'), 

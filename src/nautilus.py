@@ -97,7 +97,7 @@ class Nautilus(TweakPage):
         TweakPage.__init__(self)
 
         button = WidgetFactory.create("GconfCheckButton", 
-                                      label = _("Show advanced permissions on Permissions tab of File Property"), 
+                                      label = _('Show advanced permissions in the Nautilus "File Properties" window'),
                                       key = "show_advanced_permissions")
 
         box = ListPack(_("File Browser"), (button, )) 
@@ -116,7 +116,7 @@ class Nautilus(TweakPage):
 
         boxes = []
         hbox1 = gtk.HBox(False, 5)
-        label = gtk.Label(_('Default thumbnail icon size (Pixel)'))
+        label = gtk.Label(_('Default thumbnail icon size (Pixels)'))
         hbox1.pack_start(label, False, False, 0)
         boxes.append(hbox1)
 
@@ -130,7 +130,7 @@ class Nautilus(TweakPage):
                                       min = -1, max = 512, step = 1)
         if button:
             hbox2 = gtk.HBox(False, 5)
-            label = gtk.Label(_('Maximum size of the thumbnail cache (Megabyte)'))
+            label = gtk.Label(_('Maximum size of the thumbnail cache (Megabytes)'))
 
             hbox2.pack_start(label, False, False, 0)
             hbox2.pack_end(button, False, False, 0)
@@ -142,7 +142,7 @@ class Nautilus(TweakPage):
                                           min = -1, max = 180, step = 1)
 
             hbox3 = gtk.HBox(False, 5)
-            label = gtk.Label(_('Maximum age for the thumbnail in the cache (Day)'))
+            label = gtk.Label(_('Maximum age for the thumbnail in the cache (Days)'))
             hbox3.pack_start(label, False, False, 0)
             hbox3.pack_end(button, False, False, 0)
             boxes.append(hbox3)

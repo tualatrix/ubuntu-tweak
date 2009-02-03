@@ -321,9 +321,9 @@ class AutoStart(TweakPage):
     def __init__(self):
         TweakPage.__init__(self,
                 _('Session Programs'),
-                _('Here you can manage what programs get started upon login.\n'
+                _('Here you can manage what programs get started when you login.\n'
                 'You can hide items from view by selecting and clicking "Remove"\n'
-                'To permanently delete it, right-click and press "Delete".'))
+                'To permanently delete an item, right-click and press "Delete".'))
 
         hbox = gtk.HBox(False, 10)
         self.pack_start(hbox, True, True, 10)

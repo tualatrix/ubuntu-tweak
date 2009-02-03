@@ -109,7 +109,7 @@ class Templates(TweakPage, BaseTemplates):
             self.set_description(_('Templates path is error. Please go to Folder to set it correctly.'))
             return
 
-        self.set_description(_('You can freely manage your document templates.\nYou can drag and drop from File Manager.\n"Create Document" will be added to the context menu.\n'))
+        self.set_description(_('Here you can freely manage your document templates.\nYou can add files as templates by dragging them onto this window.\nYou can create new documents based on these templates from the Nautilus right-click menu.'))
 
         self.default = DefaultTemplates()
         self.config_test()

@@ -68,10 +68,10 @@ def Welcome(parent = None):
     vbox.pack_start(title, False, False, 10)
 
     tips = TipsFactory(
-            _('Tweak your Linux computer to what you like.'),
-            _('Easily install various kinds of applications.'),
+            _('Tweak otherwise hidden settings.'),
             _('Clean up unneeded packages to free diskspace.'),
-            _('Configure templates and scripts to improve your computing.'),
+            _('Easily install up-to-date versions of many applications.'),
+            _('Configure file templates and shortcut scripts for easy access to common tasks.'),
             _('And many more useful features!'),
             )
     align = gtk.Alignment(0.5)

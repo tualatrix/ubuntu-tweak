@@ -234,7 +234,7 @@ class UserDir(TweakPage):
     def __init__(self):
         TweakPage.__init__(self, 
                 _("Default Folder Locations"), 
-                _("You can change the default document folders here.\nBut don't change the Desktop folder under normal use."))
+                _("You can change the paths of the default folders here.\nDon't change the location of your desktop folder unless you know what you are doing."))
 
         sw = gtk.ScrolledWindow()
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
