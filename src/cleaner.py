@@ -293,10 +293,10 @@ class PackageView(gtk.TreeView):
         self.emit('cleaned')
 
     def show_success_dialog(self):
-        InfoDialog(_('Cleaned up Successfully!')).launch()
+        InfoDialog(_('Clean up Successful!')).launch()
 
     def show_failed_dialog(self):
-        InfoDialog(_('Cleaned up Failed!')).launch()
+        InfoDialog(_('Clean up Failed!')).launch()
 
 class PackageCleaner(TweakPage):
     def __init__(self):

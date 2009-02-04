@@ -194,7 +194,7 @@ class Nautilus(TweakPage):
 
             dialog = CleanDialog(widget.get_toplevel())
             dialog.run()
-            InfoDialog(_('Clean up successfully!')).launch()
+            InfoDialog(_('Clean up successful!')).launch()
             self.set_clean_button_label(widget)
         else:
             question.destroy()
