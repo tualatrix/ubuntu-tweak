@@ -26,7 +26,7 @@ import gconf
 import gettext
 
 from common.systeminfo import module_check
-from common.factory import Factory
+from common.factory import WidgetFactory
 from common.widgets import HScaleBox, TablePack, TweakPage
 
 class PowerManager(TweakPage):
@@ -35,12 +35,26 @@ class PowerManager(TweakPage):
         TweakPage.__init__(self)
 
         box = TablePack(_("Advanced Power Management Settings"), [
-                [Factory.create("gconfcheckbutton", _('Enable "Hibernation"'), "can_hibernate")],
-                [Factory.create("gconfcheckbutton", _('Enable "Suspend"'), "can_suspend")],
-                [Factory.create("gconfcheckbutton", _('Show "CPU frequency control option" in Power Management Preferences'), "cpufreq_show")],
-                [Factory.create("gconfcheckbutton", _("Disable Network Manager when on sleep"), "network_sleep")],
-                [Factory.create("gconfcheckbutton", _('Enable "Lock screen" when "Blank Screen" activates'), "blank_screen")],
-                [gtk.Label(_('Display "Power Manager" panel item')), Factory.create("gconfcombobox", "icon_policy", [_("Never display"), _("When charging"), _("Always display")], ["never", "charge", "always"])],
+                [WidgetFactory.create("GconfCheckButton", 
+                                      label = _('Enable "Hibernation"'), 
+                                      key = "can_hibernate")],
+                [WidgetFactory.create("GconfCheckButton", 
+                                      label = _('Enable "Suspend"'), 
+                                      key = "can_suspend")],
+                [WidgetFactory.create("GconfCheckButton", 
+                                      label = _('Show "CPU frequency control option" in Power Management Preferences'), 
+                                      key = "cpufreq_show")],
+                [WidgetFactory.create("GconfCheckButton", 
+                                      label = _("Disable Network Manager when asleep"), 
+                                      key = "network_sleep")],
+                [WidgetFactory.create("GconfCheckButton", 
+                                      label = _('Enable "Lock screen" when "Blank Screen" activates'), 
+                                      key = "blank_screen")],
+                [gtk.Label(_('Display "Power Manager" panel item')), 
+                    WidgetFactory.create("GconfComboBox", 
+                                         key = "icon_policy", 
+                                         texts = [_("Never display"), _("When charging"), _("Always display")], 
+                                         values = ["never", "charge", "always"])],
         ]) 
         self.pack_start(box, False, False, 0)
 
@@ -48,10 +62,28 @@ class PowerManager(TweakPage):
             cpu_policy_text = [_("Normal"), _("On Demand"), _("Power Save"), _("Performance")]
             cpu_policy_value = ["nothing", "ondemand", "powersave", "performance"]
             box = TablePack(_("CPU Policy"), [
-                    [gtk.Label(_("The Performance value when on AC power")), Factory.create("gconfscale", 0, 100, "performance_ac", 0)],
-                    [gtk.Label(_("The Performance value when on battery power")), Factory.create("gconfscale", 0, 100, "performance_battery", 0)],
-                    [gtk.Label(_("The CPU frequency policy when on AC power")), Factory.create("gconfcombobox", "policy_ac", cpu_policy_text, cpu_policy_value)],
-                    [gtk.Label(_("The CPU frequency policy when on battery power")), Factory.create("gconfcombobox", "policy_battery", cpu_policy_text, cpu_policy_value)],
+                    [gtk.Label(_("The Performance value when on AC power")), 
+                        WidgetFactory.create("GconfScale", 
+                                             key = "performance_ac", 
+                                             min = 0, 
+                                             max = 100, 
+                                             digits = 0)],
+                    [gtk.Label(_("The Performance value when on battery power")), 
+                        WidgetFactory.create("GconfScale", 
+                                             key = "performance_battery", 
+                                             min = 0, 
+                                             max = 100, 
+                                             digits = 0)],
+                    [gtk.Label(_("The CPU frequency policy when on AC power")), 
+                        WidgetFactory.create("GconfComboBox", 
+                                             key = "policy_ac", 
+                                             texts = cpu_policy_text, 
+                                             values = cpu_policy_value)],
+                    [gtk.Label(_("The CPU frequency policy when on battery power")), 
+                        WidgetFactory.create("GconfComboBox", 
+                                             key = "policy_battery", 
+                                             texts = cpu_policy_text, 
+                                             values = cpu_policy_value)],
             ])
                 
             self.pack_start(box, False, False, 0)

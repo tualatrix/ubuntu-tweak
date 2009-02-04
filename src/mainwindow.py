@@ -17,6 +17,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
+
 import pygtk
 pygtk.require('2.0')
 import os
@@ -32,8 +33,9 @@ from common.debug import run_traceback
 from common.widgets import TweakPage
 from common.widgets.dialogs import QuestionDialog
 from common.systeminfo import module_check
-from common.config import Config, TweakSettings
+from common.config import TweakSettings
 from updatemanager import UpdateManager
+from preferences import PreferencesDialog
 from common.utils import set_label_for_stock_button
 
 class Tip(gtk.HBox):
@@ -66,10 +68,10 @@ def Welcome(parent = None):
     vbox.pack_start(title, False, False, 10)
 
     tips = TipsFactory(
-            _('Tweak your Linux computer to what you like.'),
-            _('Easily install various kinds of applications.'),
+            _('Tweak otherwise hidden settings.'),
             _('Clean up unneeded packages to free diskspace.'),
-            _('Configure templates and scripts to improve your computing.'),
+            _('Easily install up-to-date versions of many applications.'),
+            _('Configure file templates and shortcut scripts for easy access to common tasks.'),
             _('And many more useful features!'),
             )
     align = gtk.Alignment(0.5)
@@ -133,16 +135,19 @@ else:
     UserDir = Notice
     Templates = Notice
 
-if module_check.is_supported_ubuntu():
-    from sourceeditor import SourceEditor
+if module_check.is_ubuntu():
     from installer import Installer
-    from thirdsoft import ThirdSoft
     from cleaner import PackageCleaner
 else:
-    SourceEditor = Notice
     Installer = Notice
-    ThirdSoft = Notice
     PackageCleaner = Notice
+
+if module_check.is_supported_ubuntu():
+    from sourceeditor import SourceEditor
+    from thirdsoft import ThirdSoft
+else:
+    SourceEditor = Notice
+    ThirdSoft = Notice
 from scripts import Scripts
 from shortcuts import Shortcuts
 from powermanager import PowerManager
@@ -282,8 +287,6 @@ class MainWindow(gtk.Window):
     def __init__(self):
         gtk.Window.__init__(self)
 
-        self.__settings = TweakSettings()
-
         self.connect("destroy", self.destroy)
         self.set_title(APP)
         self.set_default_size(740, 480)
@@ -331,33 +334,49 @@ class MainWindow(gtk.Window):
         button.connect("clicked", self.destroy);
         hbox.pack_end(button, False, False, 0)
 
+        button = gtk.Button(stock = gtk.STOCK_PREFERENCES)
+        button.connect('clicked', self.on_preferences_clicked)
+        hbox.pack_end(button, False, False, 0)
+
         self.get_gui_state()
         self.show_all()
 
-        if self.__settings.get_show_donate_notify():
+        if TweakSettings.get_show_donate_notify():
             gobject.timeout_add(3000, self.on_d_timeout, d_button)
-        gobject.timeout_add(8000, self.on_timeout)
+        if TweakSettings.get_check_update():
+            gobject.timeout_add(8000, self.on_timeout)
+
+        launch = TweakSettings.get_default_launch()
+        if launch:
+            self.__create_newpage(launch)
 		
     def on_d_timeout(self, widget):
         from common.notify import notify
-        notify.update(_('Support the development of Ubuntu Tweak'), _('Ubuntu Tweak is a free-software, you can use it for free. If you like it, Please consider to donate for Ubuntu Tweak'))
-        notify.add_action("never_show", "Never show this again", self.on_never_show)
+        notify.update(_('Help the development of Ubuntu Tweak'), _('Ubuntu Tweak is a free-software, you can use it for free. If you like it, Please consider to donate for Ubuntu Tweak.'))
+        notify.add_action("never_show", _('Never Show This Again'), self.on_never_show)
         notify.attach_to_widget(widget)
         notify.show()
 		
     def on_d_clicked(self, widget):
         webbrowser.open('http://ubuntu-tweak.com')
 
+    def on_preferences_clicked(self, widget):
+        dialog = PreferencesDialog()
+        dialog.dialog.set_transient_for(widget.get_toplevel())
+        dialog.run()
+        dialog.destroy()
+
     def on_never_show(self, widget, action):
-        self.__settings.set_show_donate_notify(False)
+        TweakSettings.set_show_donate_notify(False)
 
     def save_gui_state(self):
-        self.__settings.set_window_size(*self.get_size())
-        self.__settings.set_paned_size(self.hpaned.get_position())
+        if TweakSettings.need_save:
+            TweakSettings.set_window_size(*self.get_size())
+            TweakSettings.set_paned_size(self.hpaned.get_position())
 
     def get_gui_state(self):
-        self.set_default_size(*self.__settings.get_window_size())
-        self.hpaned.set_position(self.__settings.get_paned_size())
+        self.set_default_size(*TweakSettings.get_window_size())
+        self.hpaned.set_position(TweakSettings.get_paned_size())
 
     def __create_model(self):
         model = gtk.ListStore(
@@ -532,7 +551,7 @@ You should have received a copy of the GNU General Public License along with Ubu
     def check_version(self):
         gtk.gdk.threads_enter()
 
-        version = self.__settings.get_version()
+        version = TweakSettings.get_version()
         if version > VERSION:
             dialog = QuestionDialog(_('A newer version: %s is available online.\nWould you like to update?' % version), 
                     title = _('Software Update'))

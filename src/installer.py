@@ -127,6 +127,7 @@ data = \
     ('smplayer', Video),
     ('soundconverter', Sound),
     ('stardict', Desktop),
+    ('tasque', Desktop),
     ('terminator', Emulator),
     ('ubuntu-restricted-extras', Desktop),
     ('virtualbox-ose', Emulator),
@@ -140,7 +141,7 @@ class Installer(TweakPage):
     def __init__(self):
         TweakPage.__init__(self, 
                 _('Add/Remove Applications'),
-                _('A simple but more effective for finding and installing popular packages than the default Add/Remove.'))
+                _('A simple but more effecient method for finding and installing popular packages than the default Add/Remove.'))
 
         update_apt_cache(True)
 

@@ -25,7 +25,7 @@ import os
 import gconf
 import gettext
 
-from common.factory import Factory
+from common.factory import WidgetFactory
 from common.widgets import ListPack, TweakPage
 
 class LockDown(TweakPage):
@@ -34,12 +34,24 @@ class LockDown(TweakPage):
         TweakPage.__init__(self)
 
         box = ListPack(_("System Security options"), (
-                    Factory.create("gconfcheckbutton", _("Disable \"Run Application\" dialog (Alt+F2)"), "disable_command_line"),
-                    Factory.create("gconfcheckbutton", _('Disable "Lock Screen"'), "disable_lock_screen"),
-                    Factory.create("gconfcheckbutton", _("Disable printing"), "disable_printing"),
-                    Factory.create("gconfcheckbutton", _("Disable print setup"), "disable_print_setup"),
-                    Factory.create("gconfcheckbutton", _("Disable save to disk"), "disable_save_to_disk"),
-                    Factory.create("gconfcheckbutton", _('Disable "User Switch"'), "disable_user_switching"),
+                    WidgetFactory.create("GconfCheckButton", 
+                                         label = _("Disable \"Run Application\" dialog (Alt+F2)"), 
+                                         key = "disable_command_line"),
+                    WidgetFactory.create("GconfCheckButton",
+                                         label = _('Disable "Lock Screen"'), 
+                                         key = "disable_lock_screen"),
+                    WidgetFactory.create("GconfCheckButton", 
+                                         label = _("Disable printing"), 
+                                         key = "disable_printing"),
+                    WidgetFactory.create("GconfCheckButton", 
+                                         label = _("Disable print setup"), 
+                                         key = "disable_print_setup"),
+                    WidgetFactory.create("GconfCheckButton", 
+                                         label = _("Disable save to disk"), 
+                                         key = "disable_save_to_disk"),
+                    WidgetFactory.create("GconfCheckButton", 
+                                         label = _('Disable "Fast User Switching"'), 
+                                         key = "disable_user_switching"),
             ))
 
         self.pack_start(box, False, False, 0)

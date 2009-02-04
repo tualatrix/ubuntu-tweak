@@ -25,7 +25,7 @@ import gtk
 import gconf
 
 from common.config import TweakSettings
-from common.factory import Factory
+from common.factory import WidgetFactory
 from common.utils import get_icon_with_name
 from common.widgets import ListPack, TweakPage
 from common.widgets.dialogs import ErrorDialog, QuestionDialog
@@ -42,28 +42,30 @@ class Gnome(TweakPage):
         changeicon_hbox = self.create_change_icon_hbox()
 
         box = ListPack(_("Panel and Menu"), (
-                    Factory.create("gconfcheckbutton", 
-                                    _("Display warning when removing a panel"), 
-                                    "confirm_panel_remove"),
-                    Factory.create("gconfcheckbutton", 
-                                    _("Complete lockdown of all panels"), 
-                                    "locked_down"),
-                    Factory.create("gconfcheckbutton", 
-                                    _("Enable panel animations"), 
-                                    "enable_animations"),
-                    Factory.create("gconfcheckbutton", 
-                                    _("Show Input Method menu on the context menu"), 
-                                    "show_input_method_menu"),
-                    Factory.create("gconfcheckbutton",
-                                    _("Show Unicode Method menu on the context menu"), 
-                                    "show_unicode_menu"),
+                    WidgetFactory.create("GconfCheckButton", 
+                                    label = _("Display warning when removing a panel"), 
+                                    key = "confirm_panel_remove"),
+                    WidgetFactory.create("GconfCheckButton", 
+                                    label = _("Complete lockdown of all panels"), 
+                                    key = "locked_down"),
+                    WidgetFactory.create("GconfCheckButton", 
+                                    label = _("Enable panel animations"), 
+                                    key = "enable_animations"),
+                    WidgetFactory.create("GconfCheckButton", 
+                                    label = _("Show Input Method menu on the context menu"), 
+                                    key = "show_input_method_menu"),
+                    WidgetFactory.create("GconfCheckButton",
+                                    label = _("Show Unicode Method menu on the context menu"), 
+                                    key = "show_unicode_menu"),
                     changeicon_hbox,
                     notify_hbox,
             ))
         self.pack_start(box, False, False, 0)
 
         box = ListPack(_("Screensaver"), (
-                    Factory.create("gconfcheckbutton", _("Enable user switching when screen is locked."), "user_switch_enabled"),
+                    WidgetFactory.create("GconfCheckButton", 
+                                         label = _("Enable user switching when screen is locked."), 
+                                         key = "user_switch_enabled"),
             ))
         self.pack_start(box, False, False, 0)
 
@@ -79,10 +81,10 @@ class Gnome(TweakPage):
         hbox = gtk.HBox(False, 10)
         label = gtk.Label(_("Notification-daemon popup location"))
         label.set_alignment(0, 0.5)
-        combobox = Factory.create("gconfcombobox", 
-                                  "popup_location", 
-                                  [_("Top Left"), _("Top Right"), _("Bottom Left"), _("Bottom Right")], 
-                                  ["top_left", "top_right", "bottom_left", "bottom_right"])
+        combobox = WidgetFactory.create("GconfComboBox", 
+                                  key = "popup_location", 
+                                  texts = [_("Top Left"), _("Top Right"), _("Bottom Left"), _("Bottom Right")], 
+                                  values= ["top_left", "top_right", "bottom_left", "bottom_right"])
         hbox.pack_start(label, False, False, 0)
         hbox.pack_start(combobox)
 

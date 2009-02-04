@@ -39,8 +39,14 @@ class Setting(object):
 
     __client = gconf.client_get_default()
 
-    def __init__(self, key):
+    def __init__(self, key = None, default = None):
+        assert key is not None
         self.__key = key
+
+        if default is not None:
+            value = self.get_value()
+            if value is None:
+                self.set_value(default)
 
         self.__client.add_dir(self.dir, gconf.CLIENT_PRELOAD_NONE)
 
@@ -72,8 +78,8 @@ class Setting(object):
         self.client.unset(self.key)
 
 class BoolSetting(Setting):
-    def __init__(self, key):
-        super(BoolSetting, self).__init__(key)
+    def __init__(self, key, default = None):
+        super(BoolSetting, self).__init__(key, default)
 
     def set_bool(self, value):
         self.value = bool(value)
@@ -82,8 +88,8 @@ class BoolSetting(Setting):
         return bool(self.value)
 
 class StringSetting(Setting):
-    def __init__(self, key):
-        super(StringSetting, self).__init__(key)
+    def __init__(self, key, default = None):
+        super(StringSetting, self).__init__(key, default)
 
     def set_string(self, value):
         self.value = value
@@ -95,8 +101,8 @@ class StringSetting(Setting):
             return ''
 
 class IntSetting(Setting):
-    def __init__(self, key):
-        super(IntSetting, self).__init__(key)
+    def __init__(self, key, default = None):
+        super(IntSetting, self).__init__(key, default)
 
     def set_int(self, value):
         self.value = int(value)
@@ -108,8 +114,8 @@ class IntSetting(Setting):
             return 0
 
 class FloatSetting(Setting):
-    def __init__(self, key):
-        super(FloatSetting, self).__init__(key)
+    def __init__(self, key, default = None):
+        super(FloatSetting, self).__init__(key, default)
 
     def set_float(self, value):
         self.value = float(value)
@@ -121,8 +127,8 @@ class FloatSetting(Setting):
             return 0.0
 
 class NumSetting(Setting):
-    def __init__(self, key):
-        super(NumSetting, self).__init__(key)
+    def __init__(self, key, default = None):
+        super(NumSetting, self).__init__(key, default)
 
     def get_num(self):
         if self.value:
@@ -145,7 +151,7 @@ class NumSetting(Setting):
             elif value.type == gconf.VALUE_FLOAT:
                 self.client.set_float(self.key, num)
         else:
-            self.client.set_int(self.key, num)
+            self.client.set_int(self.key, int(num))
 
 class ConstStringSetting(StringSetting):
     def __init__(self, key, values):

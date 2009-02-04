@@ -168,9 +168,7 @@ class PackageView(gtk.TreeView):
         model = self.get_model()
         model.clear()
         self.mode = 'config'
-
-        command = "dpkg -l |awk '/^rc/ {print $2}'"
-
+#        command = "dpkg -l |awk '/^rc/ {print $2}'"
         icon = get_icon_with_name('text', 24)
 
         list = []
@@ -302,7 +300,7 @@ class PackageCleaner(TweakPage):
     def __init__(self):
         super(PackageCleaner, self).__init__(
                 _('Package Cleaner'),
-                _('Free up disk space by clearing unneeded packages and the package cache.'))
+                _('Free up disk space by removing unneeded packages and cleaning the package download cache.'))
 
         update_apt_cache(True)
 
@@ -344,7 +342,6 @@ class PackageCleaner(TweakPage):
                 gtk.image_new_from_stock(gtk.STOCK_PREFERENCES, gtk.ICON_SIZE_BUTTON),
                 self.treeview.update_config_model)
         vbox.pack_start(self.config_button, False, False, 0)
-
 
         # checkbutton
         self.select_button = gtk.CheckButton(_('Select All'))
@@ -415,18 +412,8 @@ class PackageCleaner(TweakPage):
 
             function = widget.get_data('function')
             function()
-
-#        self.select_button.set_active(False)
-
-#        if widget == self.cache_button:
-#            self.pkg_button.set_active(not widget.get_active())
-#        elif widget == self.pkg_button:
-#            self.cache_button.set_active(not widget.get_active())
-#
-#        if self.pkg_button.get_active():
-#            self.treeview.update_package_model()
-#        else:
-#            self.treeview.update_cache_model()
+        elif self.current_button == self.button_list.index(widget):
+            widget.set_active(True)
 
     def on_clean_button_clicked(self, widget):
         mode = self.treeview.mode

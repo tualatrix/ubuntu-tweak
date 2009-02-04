@@ -32,7 +32,7 @@ try:
 except ImportError:
     DISABLE = True
 
-from common.factory import Factory
+from common.factory import WidgetFactory
 from common.widgets import ListPack, TablePack, TweakPage
 from common.widgets.dialogs import InfoDialog, QuestionDialog
 from common.utils import set_label_for_stock_button
@@ -96,47 +96,53 @@ class Nautilus(TweakPage):
     def __init__(self):
         TweakPage.__init__(self)
 
-        button = Factory.create("gconfcheckbutton", _("Show advanced permissions on Permissions tab of File Property"), "show_advanced_permissions")
+        button = WidgetFactory.create("GconfCheckButton", 
+                                      label = _('Show advanced permissions in the Nautilus "File Properties" window'),
+                                      key = "show_advanced_permissions")
 
         box = ListPack(_("File Browser"), (button, )) 
         self.pack_start(box, False, False, 0)
 
         box = ListPack(_("CD Burner"), (
-            Factory.create("gconfcheckbutton", _("Enable BurnProof technology"), "burnproof"),
-            Factory.create("gconfcheckbutton", _("Enable OverBurn"), "overburn"),
+            WidgetFactory.create("GconfCheckButton", 
+                                 label = _("Enable BurnProof technology"), 
+                                 key = "burnproof"),
+            WidgetFactory.create("GconfCheckButton", 
+                                 label = _("Enable OverBurn"), 
+                                 key = "overburn"),
         ))
         self.pack_start(box, False, False, 0)
 
 
         boxes = []
         hbox1 = gtk.HBox(False, 5)
-        label = gtk.Label(_('Default thumbnail icon size (Pixel)'))
+        label = gtk.Label(_('Default thumbnail icon size (Pixels)'))
         hbox1.pack_start(label, False, False, 0)
         boxes.append(hbox1)
 
-        button = Factory.create('gconfspinbutton', 
-                            'thumbnail_size',
-                            16, 512, 16)
+        button = WidgetFactory.create('GconfSpinButton', 
+                                      key = 'thumbnail_size',
+                                      min = 16, max = 512, step = 16)
         hbox1.pack_end(button, False, False, 0)
 
-        button = Factory.create('gconfspinbutton', 
-                            'maximum_size',
-                            -1, 512, 1)
+        button = WidgetFactory.create('GconfSpinButton', 
+                                      key = 'maximum_size',
+                                      min = -1, max = 512, step = 1)
         if button:
             hbox2 = gtk.HBox(False, 5)
-            label = gtk.Label(_('Maximum size of the thumbnail cache (Megabyte)'))
+            label = gtk.Label(_('Maximum size of the thumbnail cache (Megabytes)'))
 
             hbox2.pack_start(label, False, False, 0)
             hbox2.pack_end(button, False, False, 0)
             boxes.append(hbox2)
 
         if button:
-            button = Factory.create('gconfspinbutton', 
-                                'maximum_age',
-                                -1, 180, 1)
+            button = WidgetFactory.create('GconfSpinButton', 
+                                          key = 'maximum_age',
+                                          min = -1, max = 180, step = 1)
 
             hbox3 = gtk.HBox(False, 5)
-            label = gtk.Label(_('Maximum age for the thumbnail in the cache (Day)'))
+            label = gtk.Label(_('Maximum age for the thumbnail in the cache (Days)'))
             hbox3.pack_start(label, False, False, 0)
             hbox3.pack_end(button, False, False, 0)
             boxes.append(hbox3)

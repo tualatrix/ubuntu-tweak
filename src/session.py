@@ -27,7 +27,7 @@ import gettext
 
 from common.consts import *
 from common.widgets import ListPack, SinglePack, TweakPage
-from common.factory import Factory
+from common.factory import WidgetFactory
 
 class Session(TweakPage):
     """GNOME Session control"""
@@ -36,7 +36,7 @@ class Session(TweakPage):
 
         self.pack_start(self.session_control_box(), False, False, 0)
 
-        box = SinglePack(_('Splash Screen (Click Below Image)'), self.splash_hbox())
+        box = SinglePack(_('Splash Screen (Click On Image)'), self.splash_hbox())
         self.pack_start(box, False, False, 0)
 
     def change_splash_cb(self, widget, data = None):
@@ -127,10 +127,18 @@ class Session(TweakPage):
         return hbox
 
     def session_control_box(self):
-        button = Factory.create("gconfcheckbutton", _("Automatically save changes to session"), "auto_save_session")
-        button2 = Factory.create("gconfcheckbutton", _("Show logout prompt"), "logout_prompt")
-        button3 = Factory.create("gconfcheckbutton", _("Allow TCP Connections(Remote Desktop Connect)"), "allow_tcp_connections")
-        self.show_splash_button = Factory.create("gconfcheckbutton", _("Show splash screen"), "show_splash_screen")
+        button = WidgetFactory.create("GconfCheckButton", 
+                                      label = _("Automatically save open applications when logging out"), 
+                                      key = "auto_save_session")
+        button2 = WidgetFactory.create("GconfCheckButton", 
+                                       label = _("Show logout prompt"), 
+                                       key = "logout_prompt")
+        button3 = WidgetFactory.create("GconfCheckButton", 
+                                       label = _("Allow TCP Connections(Remote Desktop Connect)"), 
+                                       key = "allow_tcp_connections")
+        self.show_splash_button = WidgetFactory.create("GconfCheckButton", 
+                                                       label = _("Show splash screen"), 
+                                                       key = "show_splash_screen")
         self.show_splash_button.connect('toggled', self.colleague_changed)
 
         box = ListPack(_("Session Control"), (button, button2, button3, self.show_splash_button))

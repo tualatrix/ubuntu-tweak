@@ -25,7 +25,6 @@ import pango
 import gobject
 import thread
 
-from common.factory import Factory
 from common.widgets import TweakPage
 from common.utils import get_icon_with_name, mime_type_get_icon, get_icon_with_app
 from common.gui import GuiWorker
@@ -472,7 +471,7 @@ class FileType(TweakPage):
     def __init__(self):
         TweakPage.__init__(self,
                 _('File Type Manager'),
-                _('Here you can manage all of the registered types of your system.'))
+                _('Here you can manage which application will open which filetypes.'))
 
         hbox = gtk.HBox(False, 5)
         self.pack_start(hbox)
@@ -498,7 +497,7 @@ class FileType(TweakPage):
         self.edit_button.set_sensitive(False)
         vbox.pack_start(self.edit_button, False, False, 0)
 
-        self.show_have_app = gtk.CheckButton(_('Only show associated type'))
+        self.show_have_app = gtk.CheckButton(_('Only show filetypes with an associated application'))
         self.show_have_app.set_active(True)
         self.show_have_app.connect('toggled', self.on_show_all_toggled)
         self.pack_start(self.show_have_app, False, False, 5)

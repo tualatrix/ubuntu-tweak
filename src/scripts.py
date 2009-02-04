@@ -129,7 +129,7 @@ class Scripts(TweakPage, AbstractScripts):
     def __init__(self):
         TweakPage.__init__(self, 
                 _('Manage Scripts'),
-                _("You can do all kinds of tasks with scripts.\nYou can drag and drop from File Manager.\n'Scripts' will be added to the context menu.\n"))
+                _("You can do all kinds of tasks with scripts.\nYou can drag and drop from File Manager.\n'Scripts' will be added to the context menu."))
 
         self.default = DefaultScripts()
         self.config_test()

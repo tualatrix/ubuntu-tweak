@@ -25,7 +25,7 @@ import os
 import gobject
 import gettext
 
-from common.factory import Factory
+from common.factory import WidgetFactory
 from common.widgets import ListPack, TablePack, TweakPage
 from common.widgets.dialogs import InfoDialog
 
@@ -35,36 +35,54 @@ class Metacity(TweakPage):
         TweakPage.__init__(self)
 
         box = TablePack(_('Window Decorate Effect'), [
-                [Factory.create('gconfcheckbutton', _('Use Metacity window theme'), 'use_metacity_theme')],
-                [Factory.create('gconfcheckbutton', _('Enable active window transparency'), 'metacity_theme_active_shade_opacity')],
-                [gtk.Label(_('Active window transparency level')), Factory.create('gconfscale', 0, 1, 'metacity_theme_active_opacity', 2)],
-                [Factory.create('gconfcheckbutton', _('Enable inactive window transparency'), 'metacity_theme_shade_opacity')],
-                [gtk.Label(_('Inactive window shade transparency level')), Factory.create('gconfscale', 0, 1, 'metacity_theme_opacity', 2)],
+                [WidgetFactory.create('GconfCheckButton', 
+                                      label = _('Use Metacity window theme'), 
+                                      key = 'use_metacity_theme')],
+                [WidgetFactory.create('GconfCheckButton', 
+                                      label = _('Enable active window transparency'), 
+                                      key = 'metacity_theme_active_shade_opacity')],
+                [gtk.Label(_('Active window transparency level')), 
+                    WidgetFactory.create('GconfScale', 
+                                         key = 'metacity_theme_active_opacity',
+                                         min = 0, max = 1, digits = 2)],
+                [WidgetFactory.create('GconfCheckButton', 
+                                      label = _('Enable inactive window transparency'), 
+                                      key = 'metacity_theme_shade_opacity')],
+                [gtk.Label(_('Inactive window shade transparency level')), 
+                    WidgetFactory.create('GconfScale', 
+                                         key = 'metacity_theme_opacity',
+                                         min = 0, max = 1, digits = 2)],
             ])
         self.pack_start(box, False, False, 0)
 
         table = TablePack(_('Window Titlebar Action'), [
                 [gtk.Label(_('Titlebar mouse wheel action')), 
-                    Factory.create('gconfcombobox', 'mouse_wheel_action', 
-                        [_('None'), _('Roll up')], 
-                        ['none', 'shade'])],
+                    WidgetFactory.create('GconfComboBox', 
+                                         key = 'mouse_wheel_action', 
+                                         texts = [_('None'), _('Roll up')], 
+                                         values = ['none', 'shade'])],
                 [gtk.Label(_('Titlebar double-click action')), 
-                    Factory.create('gconfcombobox', 'action_double_click_titlebar', 
-                        [_('None'), _('Maximize'), _('Minimize'), _('Roll up'), _('Lower'), _('Menu')], 
-                        ['none', 'toggle_maximize', 'minimize', 'toggle_shade', 'lower', 'menu'])],
+                    WidgetFactory.create('GconfComboBox', 
+                                         key = 'action_double_click_titlebar', 
+                                         texts = [_('None'), _('Maximize'), _('Minimize'), _('Roll up'), _('Lower'), _('Menu')], 
+                                         values = ['none', 'toggle_maximize', 'minimize', 'toggle_shade', 'lower', 'menu'])],
                 [gtk.Label(_('Titlebar middle-click action')), 
-                    Factory.create('gconfcombobox', 'action_middle_click_titlebar', 
-                        [_('None'), _('Maximize'), _('Minimize'), _('Roll up'), _('Lower'), _('Menu')], 
-                        ['none', 'toggle_maximize', 'minimize', 'toggle_shade', 'lower', 'menu'])],
+                    WidgetFactory.create('GconfComboBox', 
+                                         key = 'action_middle_click_titlebar', 
+                                         texts = [_('None'), _('Maximize'), _('Minimize'), _('Roll up'), _('Lower'), _('Menu')], 
+                                         values = ['none', 'toggle_maximize', 'minimize', 'toggle_shade', 'lower', 'menu'])],
                 [gtk.Label(_('Titlebar right-click action')), 
-                    Factory.create('gconfcombobox', 'action_right_click_titlebar', 
-                        [_('None'), _('Maximize'), _('Minimize'), _('Roll up'), _('Lower'), _('Menu')], 
-                        ['none', 'toggle_maximize', 'minimize', 'toggle_shade', 'lower', 'menu'])],
+                    WidgetFactory.create('GconfComboBox', 
+                                         key = 'action_right_click_titlebar', 
+                                         texts = [_('None'), _('Maximize'), _('Minimize'), _('Roll up'), _('Lower'), _('Menu')], 
+                                         values = ['none', 'toggle_maximize', 'minimize', 'toggle_shade', 'lower', 'menu'])],
                 ])
 
         self.pack_start(table, False, False, 0)
 
-        button = Factory.create('gconfcheckbutton', _("Enable Metacity's Compositing feature"), 'compositing_manager')
+        button = WidgetFactory.create('GconfCheckButton', 
+                                      label = _("Enable Metacity's Compositing feature"), 
+                                      key = 'compositing_manager')
         if button:
             box = ListPack(_('Compositing Manager'), (button,))
             button.connect('toggled', self.on_compositing_button_toggled)

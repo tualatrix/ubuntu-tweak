@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2009-01-24 18:15+0800\n"
+"POT-Creation-Date: 2009-02-03 20:17+0800\n"
 "PO-Revision-Date: 2008-12-07 22:49+0000\n"
 "Last-Translator: Sergey Ivanov <rus_patriot@inbox.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -66,10 +66,11 @@ msgid "Session Programs"
 msgstr "Программы сессии"
 
 #: src/autostart.py:324
+#, fuzzy
 msgid ""
-"Here you can manage what programs get started upon login.\n"
+"Here you can manage what programs get started when you login.\n"
 "You can hide items from view by selecting and clicking \"Remove\"\n"
-"To permanently delete it, right-click and press \"Delete\"."
+"To permanently delete an item, right-click and press \"Delete\"."
 msgstr ""
 "Здесь вы можете определить, какие программы будут запускаться при входе в "
 "компьютер.\n"
@@ -157,27 +158,28 @@ msgstr "Эмуляторы"
 msgid "E-mail Tools"
 msgstr "Работа с почтой"
 
-#: src/installer.py:142
+#: src/installer.py:143
 msgid "Add/Remove Applications"
 msgstr "Установка/удаление приложений"
 
-#: src/installer.py:143
+#: src/installer.py:144
+#, fuzzy
 msgid ""
-"A simple but more effective for finding and installing popular packages than "
-"the default Add/Remove."
+"A simple but more effecient method for finding and installing popular "
+"packages than the default Add/Remove."
 msgstr ""
 "Простой но более эффективный способ для поиска и установки приложений чем "
 "Установка/Удаление."
 
-#: src/installer.py:191
+#: src/installer.py:192
 msgid "All Categories"
 msgstr "Все категории"
 
-#: src/installer.py:361
+#: src/installer.py:362
 msgid "Updated Successfully!"
 msgstr "Обновлено успешно!"
 
-#: src/installer.py:363
+#: src/installer.py:364
 msgid "Updated Failed!"
 msgstr "Обновление сорвалось :("
 
@@ -185,29 +187,30 @@ msgstr "Обновление сорвалось :("
 msgid "System Security options"
 msgstr "Настройки безопасности системы"
 
-#: src/lockdown.py:37
+#: src/lockdown.py:38
 msgid "Disable \"Run Application\" dialog (Alt+F2)"
 msgstr "Отключить диалог \"Запуск приложения\" (Alt+F2)"
 
-#: src/lockdown.py:38
+#: src/lockdown.py:41
 msgid "Disable \"Lock Screen\""
 msgstr "Отключить \"Экран блокировки\""
 
-#: src/lockdown.py:39
+#: src/lockdown.py:44
 msgid "Disable printing"
 msgstr "Отключить печать"
 
-#: src/lockdown.py:40
+#: src/lockdown.py:47
 msgid "Disable print setup"
 msgstr "Отключить настройку печати"
 
-#: src/lockdown.py:41
+#: src/lockdown.py:50
 msgid "Disable save to disk"
 msgstr "Отключить сохранение на диск"
 
-#: src/lockdown.py:42
-msgid "Disable \"User Switch\""
-msgstr "Отключить \"Переключение пользователя\""
+#: src/lockdown.py:53
+#, fuzzy
+msgid "Disable \"Fast User Switching\""
+msgstr "Отключить возможность переключения пользователей"
 
 #: src/ScriptWorker.py:52
 #, python-format
@@ -236,147 +239,177 @@ msgstr "Выберите директорию"
 msgid "Please select a target(files or folders)."
 msgstr "Пожалуйста, выберите цель (файл или директория)"
 
-#: src/mainwindow.py:61
+#: src/mainwindow.py:65
 msgid "Welcome to"
 msgstr "Добро пожаловать в"
 
-#: src/mainwindow.py:67
-msgid "Tweak your Linux computer to what you like."
-msgstr "Настройка вашего компьютера так, как вам нравиться"
+#: src/mainwindow.py:71
+msgid "Tweak otherwise hidden settings."
+msgstr ""
 
-#: src/mainwindow.py:68
-msgid "Easily install various kinds of applications."
-msgstr "Лёгкая установка различных видов программ"
-
-#: src/mainwindow.py:69
+#: src/mainwindow.py:72
 msgid "Clean up unneeded packages to free diskspace."
 msgstr "Удалить ненужные пакеты для освобождения места на диске."
 
-#: src/mainwindow.py:70
-msgid "Configure templates and scripts to improve your computing."
+#: src/mainwindow.py:73
+#, fuzzy
+msgid "Easily install up-to-date versions of many applications."
+msgstr "Лёгкая установка различных видов программ"
+
+#: src/mainwindow.py:74
+#, fuzzy
+msgid ""
+"Configure file templates and shortcut scripts for easy access to common "
+"tasks."
 msgstr "Настройка шаблонов и скриптов для повышения эффективности"
 
-#: src/mainwindow.py:71
+#: src/mainwindow.py:75
 msgid "And many more useful features!"
 msgstr "И множество других пользовательских настроек!"
 
-#: src/mainwindow.py:83
+#: src/mainwindow.py:87
 msgid "<span size=\"xx-large\">Please wait a moment...</span>"
 msgstr "<span size=\"xx-large\">Ждите...</span>"
 
-#: src/mainwindow.py:96
+#: src/mainwindow.py:100
+#, fuzzy
 msgid ""
 "<span size=\"x-large\">This feature isn't currently available in your "
-"distrobution</span>"
+"distribution</span>"
 msgstr ""
 "<span size=\"x-large\">Эта опция не поддерживается в вашем дистрибутиве</"
 "span>"
 
-#: src/mainwindow.py:203
+#: src/mainwindow.py:113
+#, fuzzy
+msgid "<span size=\"x-large\">This module is error while loading.</span>"
+msgstr "<span size=\"xx-large\">Ждите...</span>"
+
+#: src/mainwindow.py:223
 msgid "Welcome"
 msgstr "Добро пожаловать"
 
-#: src/mainwindow.py:204
+#: src/mainwindow.py:224
 msgid "Computer"
 msgstr "Компьютер"
 
-#: src/mainwindow.py:205
+#: src/mainwindow.py:225
 msgid "Applications"
 msgstr "Приложения"
 
-#: src/mainwindow.py:206
+#: src/mainwindow.py:226
 msgid "Add/Remove"
 msgstr "Установка/Удаление"
 
-#: src/mainwindow.py:207 src/sourceeditor.py:335
+#: src/mainwindow.py:227 src/sourceeditor.py:335
 msgid "Source Editor"
 msgstr "Редактор источников"
 
-#: src/mainwindow.py:208 src/thirdsoft.py:237
+#: src/mainwindow.py:228 src/thirdsoft.py:236
 msgid "Third-Party Sources"
 msgstr "Источники третьих сторон"
 
-#: src/mainwindow.py:209 src/cleaner.py:234
+#: src/mainwindow.py:229 src/cleaner.py:302
 msgid "Package Cleaner"
 msgstr "Чистильщик пакетов"
 
-#: src/mainwindow.py:210
+#: src/mainwindow.py:230
 msgid "Startup"
 msgstr "Автозапуск"
 
-#: src/mainwindow.py:211 src/session.py:136
+#: src/mainwindow.py:231 src/session.py:144
 msgid "Session Control"
 msgstr "Управление сессией"
 
-#: src/mainwindow.py:212
+#: src/mainwindow.py:232
 msgid "Autostart"
 msgstr "Автозапуск"
 
-#: src/mainwindow.py:213 src/userdir.py:45
+#: src/mainwindow.py:233 src/userdir.py:45
 msgid "Desktop"
 msgstr "Рабочий стол"
 
-#: src/mainwindow.py:214
+#: src/mainwindow.py:234
 msgid "Icons"
 msgstr "Иконки"
 
-#: src/mainwindow.py:215
+#: src/mainwindow.py:235
 msgid "Windows"
 msgstr "Окна"
 
-#: src/mainwindow.py:216
+#: src/mainwindow.py:236
 msgid "Compiz Fusion"
 msgstr "Compiz Fusion"
 
-#: src/mainwindow.py:217
+#: src/mainwindow.py:237
 msgid "GNOME"
 msgstr "Среда GNOME"
 
-#: src/mainwindow.py:218
+#: src/mainwindow.py:238
 msgid "Personal"
 msgstr "Личные"
 
-#: src/mainwindow.py:219
+#: src/mainwindow.py:239
 msgid "Folders"
 msgstr "Папки"
 
-#: src/mainwindow.py:220 src/userdir.py:47
+#: src/mainwindow.py:240 src/userdir.py:47
 msgid "Templates"
 msgstr "Шаблоны"
 
-#: src/mainwindow.py:221
+#: src/mainwindow.py:241
 msgid "Scripts"
 msgstr "Скрипты"
 
-#: src/mainwindow.py:222
+#: src/mainwindow.py:242
 msgid "Shortcuts"
 msgstr "Ярлыки"
 
-#: src/mainwindow.py:223
+#: src/mainwindow.py:243
 msgid "System"
 msgstr "Система"
 
-#: src/mainwindow.py:224 src/filetype.py:474
+#: src/mainwindow.py:244 src/filetype.py:473
 msgid "File Type Manager"
 msgstr ""
 
-#: src/mainwindow.py:225
+#: src/mainwindow.py:245
 msgid "Nautilus"
 msgstr "Nautilus - графическая оболочка для среды GNOME"
 
-#: src/mainwindow.py:226
+#: src/mainwindow.py:246
 msgid "Power Managerment"
 msgstr "Управление питанием"
 
-#: src/mainwindow.py:227
+#: src/mainwindow.py:247
 msgid "Security"
 msgstr "Безопасность"
 
-#: src/mainwindow.py:476
+#: src/mainwindow.py:329
+#, fuzzy
+msgid "Donate"
+msgstr "Отсутствует"
+
+#: src/mainwindow.py:355
+msgid "Help the development of Ubuntu Tweak"
+msgstr ""
+
+#: src/mainwindow.py:355
+msgid ""
+"Ubuntu Tweak is a free-software, you can use it for free. If you like it, "
+"Please consider to donate for Ubuntu Tweak."
+msgstr ""
+
+#: src/mainwindow.py:356
+#, fuzzy
+msgid "Never Show This Again"
+msgstr "Не показывать данный диалог"
+
+#: src/mainwindow.py:534
 msgid "Ubuntu Tweak Website"
 msgstr "Сайт Ubuntu Tweak"
 
-#: src/mainwindow.py:478
+#: src/mainwindow.py:536
 msgid ""
 "Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
 "system and desktop settings."
@@ -384,7 +417,7 @@ msgstr ""
 "Ubuntu Tweak - это инструмент для Ubuntu, который позволяет настроить вашу "
 "систему и установки рабочего стола."
 
-#: src/mainwindow.py:485
+#: src/mainwindow.py:543
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
@@ -405,7 +438,7 @@ msgstr ""
 "  Александр AldeX Крылов https://launchpad.net/~aldex\n"
 "  Андрей Калинин https://launchpad.net/~prize2step"
 
-#: src/mainwindow.py:498
+#: src/mainwindow.py:556
 #, python-format
 msgid ""
 "A newer version: %s is available online.\n"
@@ -414,7 +447,7 @@ msgstr ""
 "Более новая версия: %s доступна.\n"
 "Хотите обновить?"
 
-#: src/mainwindow.py:499
+#: src/mainwindow.py:557
 msgid "Software Update"
 msgstr "Обновление программы"
 
@@ -456,110 +489,112 @@ msgstr ""
 "Тем не менее, вы должны переместить файлы обратно на место сами.\n"
 "Вы хотите продолжить?"
 
-#: src/userdir.py:198
+#: src/userdir.py:201
 msgid "Directory"
 msgstr ""
 
-#: src/userdir.py:212
+#: src/userdir.py:215
 msgid "Path"
 msgstr "Путь"
 
-#: src/userdir.py:219
+#: src/userdir.py:222
 msgid "Change"
 msgstr "Изменить"
 
-#: src/userdir.py:223
+#: src/userdir.py:226
 msgid "Restore to default"
 msgstr "Восстановить стандартные настройки"
 
-#: src/userdir.py:233
+#: src/userdir.py:236
 msgid "Default Folder Locations"
 msgstr "Стандартные пути папок"
 
-#: src/userdir.py:234
+#: src/userdir.py:237
+#, fuzzy
 msgid ""
-"You can change the default document folders here.\n"
-"But don't change the Desktop folder under normal use."
+"You can change the paths of the default folders here.\n"
+"Don't change the location of your desktop folder unless you know what you "
+"are doing."
 msgstr ""
 "Вы можете изменить стандартную папку документов здесь.\n"
 "Но не меняйте папку рабочего стола для нормального использования."
 
-#: src/userdir.py:255
+#: src/userdir.py:258
 msgid "Update successfully!"
 msgstr "Обновление прошло успешно!"
 
-#: src/filetype.py:35
+#: src/filetype.py:34
 msgid "Audio"
 msgstr ""
 
-#: src/filetype.py:36
+#: src/filetype.py:35
 msgid "Text"
 msgstr ""
 
-#: src/filetype.py:37
+#: src/filetype.py:36
 msgid "Image"
 msgstr ""
 
-#: src/filetype.py:38
+#: src/filetype.py:37
 msgid "Video"
 msgstr ""
 
-#: src/filetype.py:39
+#: src/filetype.py:38
 msgid "Application"
 msgstr ""
 
-#: src/filetype.py:40
+#: src/filetype.py:39
 msgid "All"
 msgstr ""
 
-#: src/filetype.py:73
+#: src/filetype.py:72
 msgid "Categories"
 msgstr ""
 
-#: src/filetype.py:130
+#: src/filetype.py:129
 msgid "File Type"
 msgstr ""
 
-#: src/filetype.py:144
+#: src/filetype.py:143
 msgid "Associated Application"
 msgstr ""
 
-#: src/filetype.py:177 src/filetype.py:212 src/metacity.py:49
-#: src/metacity.py:53 src/metacity.py:57 src/metacity.py:61
-#: src/shortcuts.py:91 src/shortcuts.py:190
+#: src/filetype.py:176 src/filetype.py:211 src/metacity.py:62
+#: src/metacity.py:67 src/metacity.py:72 src/metacity.py:77
+#: src/shortcuts.py:89 src/shortcuts.py:188 src/preferences.py:99
 msgid "None"
 msgstr "Отсутствует"
 
-#: src/filetype.py:240
+#: src/filetype.py:239
 #, python-format
 msgid "Open the files of type \"%s\" with:"
 msgstr ""
 
-#: src/filetype.py:269
+#: src/filetype.py:268
 #, fuzzy
 msgid "Choose a application"
 msgstr "Выберите загрузочное изображение"
 
-#: src/filetype.py:358
+#: src/filetype.py:357
 #, python-format
 msgid "Select an application to open the type <b>%s</b>"
 msgstr ""
 
-#: src/filetype.py:383
+#: src/filetype.py:382
 #, python-format
 msgid "Could not find %s"
 msgstr ""
 
-#: src/filetype.py:384
+#: src/filetype.py:383
 msgid "Could not find application"
 msgstr ""
 
-#: src/filetype.py:475
-msgid "Here you can manage all of the registered types of your system."
+#: src/filetype.py:474
+msgid "Here you can manage which application will open which filetypes."
 msgstr ""
 
-#: src/filetype.py:501
-msgid "Only show associated type"
+#: src/filetype.py:500
+msgid "Only show filetypes with an associated application"
 msgstr ""
 
 #: src/computer.py:49
@@ -614,15 +649,15 @@ msgstr "Оболочка"
 msgid "Language"
 msgstr "Язык"
 
-#: src/thirdsoft.py:82
+#: src/thirdsoft.py:81
 msgid "Banshee (Stable Version)"
 msgstr "Banshee (Стабильная)"
 
-#: src/thirdsoft.py:83
+#: src/thirdsoft.py:82
 msgid "Banshee (Unstable Version)"
 msgstr "Banshee (нетабильная)"
 
-#: src/thirdsoft.py:155
+#: src/thirdsoft.py:154
 msgid ""
 "To install software and updates from newly added or changed sources, you "
 "have to reload the information about available software.\n"
@@ -634,31 +669,31 @@ msgstr ""
 "\n"
 "У вас должен быть интернет. Рабочий."
 
-#: src/thirdsoft.py:159
+#: src/thirdsoft.py:158
 msgid "The information about available software is out-of-date"
 msgstr "Информация о программах устарела"
 
-#: src/thirdsoft.py:320
+#: src/thirdsoft.py:319
 msgid "Homepage"
 msgstr "Домашняя страница"
 
-#: src/thirdsoft.py:320
+#: src/thirdsoft.py:319
 msgid "Source URL"
 msgstr "Источник"
 
-#: src/thirdsoft.py:320
+#: src/thirdsoft.py:319
 msgid "Description"
 msgstr "Описание"
 
-#: src/thirdsoft.py:331
+#: src/thirdsoft.py:330
 msgid "Description is here"
 msgstr "Описание здесь"
 
-#: src/thirdsoft.py:359
+#: src/thirdsoft.py:358
 msgid "Third-Party Software Sources"
 msgstr ""
 
-#: src/thirdsoft.py:360
+#: src/thirdsoft.py:359
 msgid ""
 "After every releases of Ubuntu comes a feature freeze.\n"
 "This means only applications with bug-fixes get into the repository.\n"
@@ -673,11 +708,11 @@ msgstr ""
 "После подключения этих источников вы можете использовать их через Установку/"
 "Удаление."
 
-#: src/thirdsoft.py:376
+#: src/thirdsoft.py:375
 msgid "Details"
 msgstr "Подробности"
 
-#: src/thirdsoft.py:415
+#: src/thirdsoft.py:414
 msgid ""
 "It is a possible security risk to use packages from Third-Party Sources.\n"
 "Please be careful."
@@ -685,19 +720,19 @@ msgstr ""
 "Возможна опасность при использовании источников третьих сторон.\n"
 "Мы Вас предупредили..."
 
-#: src/thirdsoft.py:418 src/nautilus.py:191
+#: src/thirdsoft.py:417 src/nautilus.py:197
 msgid "Warning"
 msgstr "Предупреждение"
 
-#: src/thirdsoft.py:422
+#: src/thirdsoft.py:421
 msgid "Never show this dialog"
 msgstr "Не показывать данный диалог"
 
-#: src/thirdsoft.py:444 src/sourceeditor.py:403
+#: src/thirdsoft.py:443 src/sourceeditor.py:403
 msgid "You can install the new applications through Add/Remove."
 msgstr "Вы можете установить новые программы в \"Установка/Удаление\"."
 
-#: src/thirdsoft.py:445 src/sourceeditor.py:404
+#: src/thirdsoft.py:444 src/sourceeditor.py:404
 msgid "The software information is up-to-date now"
 msgstr "Программы до сих пор не устарели..."
 
@@ -718,28 +753,28 @@ msgstr "Показывать иконку Домашней папки на Ра�
 msgid "Show \"Trash\" icon on desktop"
 msgstr "Показывать значок \"Корзина\" на Рабочем столе"
 
-#: src/icons.py:100 src/common/widgets/widgets.py:66
-#: src/common/widgets/widgets.py:81
+#: src/icons.py:104 src/common/widgets/widgets.py:68
+#: src/common/widgets/widgets.py:83
 msgid "Unset"
 msgstr "Не установлено"
 
-#: src/icons.py:106
+#: src/icons.py:110
 msgid "Desktop Icon settings"
 msgstr "Настройки значков рабочего стола"
 
-#: src/icons.py:108
+#: src/icons.py:113
 msgid "Show desktop icons"
 msgstr "Показывать значки Рабочего стола"
 
-#: src/icons.py:128
+#: src/icons.py:135
 msgid "Show \"Network\" icon on desktop"
 msgstr "Показывать значок \"Сеть\" на Рабочем столе"
 
-#: src/icons.py:131
+#: src/icons.py:140
 msgid "Show mounted volumes on desktop"
 msgstr "Показывать примонтированные устройства на рабочем столе"
 
-#: src/icons.py:134
+#: src/icons.py:145
 msgid "Use \"Home Folder\" as desktop(Logout for changes to take effect)"
 msgstr ""
 "Использовать домашнюю папку как рабочий стол (Закройте сессию для применения)"
@@ -748,171 +783,175 @@ msgstr ""
 msgid "Window Decorate Effect"
 msgstr "Эффекты украшения окон"
 
-#: src/metacity.py:38
+#: src/metacity.py:39
 msgid "Use Metacity window theme"
 msgstr "Использовать тему Metacity"
 
-#: src/metacity.py:39
+#: src/metacity.py:42
 msgid "Enable active window transparency"
 msgstr "Включить прозрачность активного окна"
 
-#: src/metacity.py:40
+#: src/metacity.py:44
 msgid "Active window transparency level"
 msgstr "Уровень прозрачности активного окна"
 
-#: src/metacity.py:41
+#: src/metacity.py:49
 msgid "Enable inactive window transparency"
 msgstr "Включить прозрачность неактивного окна"
 
-#: src/metacity.py:42
+#: src/metacity.py:51
 msgid "Inactive window shade transparency level"
 msgstr "Уровень прозрачности неактивного окна"
 
-#: src/metacity.py:46
+#: src/metacity.py:58
 msgid "Window Titlebar Action"
 msgstr "Действие заголовка окна"
 
-#: src/metacity.py:47
+#: src/metacity.py:59
 msgid "Titlebar mouse wheel action"
 msgstr "Действие заголовка на колёсико мыши"
 
-#: src/metacity.py:49 src/metacity.py:53 src/metacity.py:57 src/metacity.py:61
+#: src/metacity.py:62 src/metacity.py:67 src/metacity.py:72 src/metacity.py:77
 msgid "Roll up"
 msgstr "Свернуть в заголовок"
 
-#: src/metacity.py:51
+#: src/metacity.py:64
 msgid "Titlebar double-click action"
 msgstr "Действие заголовка на двойной клик"
 
-#: src/metacity.py:53 src/metacity.py:57 src/metacity.py:61
+#: src/metacity.py:67 src/metacity.py:72 src/metacity.py:77
 msgid "Maximize"
 msgstr "Развернуть"
 
-#: src/metacity.py:53 src/metacity.py:57 src/metacity.py:61
+#: src/metacity.py:67 src/metacity.py:72 src/metacity.py:77
 msgid "Minimize"
 msgstr "Свернуть"
 
-#: src/metacity.py:53 src/metacity.py:57 src/metacity.py:61
+#: src/metacity.py:67 src/metacity.py:72 src/metacity.py:77
 msgid "Lower"
 msgstr "Ниже"
 
-#: src/metacity.py:53 src/metacity.py:57 src/metacity.py:61
+#: src/metacity.py:67 src/metacity.py:72 src/metacity.py:77
 msgid "Menu"
 msgstr "Меню"
 
-#: src/metacity.py:55
+#: src/metacity.py:69
 msgid "Titlebar middle-click action"
 msgstr "Действие заголовка при щелчке средней кнопки мыши"
 
-#: src/metacity.py:59
+#: src/metacity.py:74
 msgid "Titlebar right-click action"
 msgstr "Действие заголовка при щелчке правой кнопки мыши"
 
-#: src/metacity.py:67
+#: src/metacity.py:84
 msgid "Enable Metacity's Compositing feature"
 msgstr ""
 
-#: src/metacity.py:69
+#: src/metacity.py:87
 msgid "Compositing Manager"
 msgstr ""
 
-#: src/metacity.py:76
+#: src/metacity.py:94
 msgid ""
 "To enable the compositing feature of metacity, You should disable the Visual "
 "Effects in \"Appearance\" by yourself."
 msgstr ""
 
 #: src/session.py:39
-msgid "Splash Screen (Click Below Image)"
+#, fuzzy
+msgid "Splash Screen (Click On Image)"
 msgstr "Заставка экрана (нажмите на кнопку ниже)"
 
 #: src/session.py:43
 msgid "Choose a splash image"
 msgstr "Выберите загрузочное изображение"
 
-#: src/session.py:45 src/gnomesettings.py:108
+#: src/session.py:45 src/gnomesettings.py:110
 msgid "PNG image (*.png)"
 msgstr "Изображение в формате PNG (*.png)"
 
-#: src/session.py:130
-msgid "Automatically save changes to session"
+#: src/session.py:131
+#, fuzzy
+msgid "Automatically save open applications when logging out"
 msgstr "Автоматически сохранять сеанс при выходе"
 
-#: src/session.py:131
+#: src/session.py:134
 msgid "Show logout prompt"
 msgstr "Показывать предупреждение при логауте"
 
-#: src/session.py:132
+#: src/session.py:137
 msgid "Allow TCP Connections(Remote Desktop Connect)"
 msgstr "Разрешать TCP (Удаленный рабочий стол)"
 
-#: src/session.py:133
+#: src/session.py:140
 msgid "Show splash screen"
 msgstr "Отображать экран заставки"
 
-#: src/templates.py:63
+#: src/templates.py:56
 msgid "HTML document"
 msgstr "Документ HTML"
 
-#: src/templates.py:64
+#: src/templates.py:57
 msgid "ODB Database"
 msgstr "База данных ODB"
 
-#: src/templates.py:65
+#: src/templates.py:58
 msgid "ODS Spreadsheet"
 msgstr "Таблица ODS"
 
-#: src/templates.py:66
+#: src/templates.py:59
 msgid "ODT Document"
 msgstr "Документ ODT"
 
-#: src/templates.py:67
+#: src/templates.py:60
 msgid "Plain text document"
 msgstr "текстовый документ"
 
-#: src/templates.py:68
+#: src/templates.py:61
 msgid "ODP Presentation"
 msgstr "Презентация ODP"
 
-#: src/templates.py:69
+#: src/templates.py:62
 msgid "Python script"
 msgstr "скрипт Python"
 
-#: src/templates.py:70
+#: src/templates.py:63
 msgid "Pygtk Example"
 msgstr "Pygtk примеры"
 
-#: src/templates.py:71
+#: src/templates.py:64
 msgid "Shell script"
 msgstr "скрипт оболочки"
 
-#: src/templates.py:98
+#: src/templates.py:91
 msgid "Enabled Templates"
 msgstr "Активные Шаблоны"
 
-#: src/templates.py:105
+#: src/templates.py:98
 msgid "Disabled Templates"
 msgstr "Неактивные Шаблоны"
 
-#: src/templates.py:114
+#: src/templates.py:106
 msgid "Manage Templates"
 msgstr "Управление шаблонами"
 
-#: src/templates.py:115
-msgid ""
-"You can freely manage your document templates.\n"
-"You can drag and drop from File Manager.\n"
-"\"Create Document\" will be added to the context menu.\n"
+#: src/templates.py:109
+msgid "Templates path is error. Please go to Folder to set it correctly."
 msgstr ""
-"Здесь вы можете свободно управлять шаблонами документов.\n"
-"Вы можете перемещать элементы из файл-менеджера.\n"
-"\"Создать документ\" будет добавлен в контекстное меню.\n"
 
-#: src/templates.py:140
+#: src/templates.py:112
+msgid ""
+"Here you can freely manage your document templates.\n"
+"You can add files as templates by dragging them onto this window.\n"
+"You can create new documents based on these templates from the Nautilus "
+"right-click menu."
+msgstr ""
+
+#: src/templates.py:137
 msgid "Rebuild System Templates"
 msgstr "Пересобрать системные шаблоны"
 
-#: src/templates.py:158
+#: src/templates.py:155
 msgid ""
 "This will delete all disabled templates.\n"
 "Do you wish to continue?"
@@ -980,60 +1019,70 @@ msgstr "Показать рабочий стол"
 msgid "Widget"
 msgstr "Виджет"
 
-#: src/compiz.py:371 src/nautilus.py:216
+#: src/compiz.py:371 src/nautilus.py:222
 msgid "Update Successfully!"
 msgstr "Обновление прошло успешно!"
 
-#: src/shortcuts.py:47
+#: src/shortcuts.py:46
 msgid "Shortcut Commands"
 msgstr "Горячие клавиши"
 
-#: src/shortcuts.py:48
+#: src/shortcuts.py:47
+#, fuzzy
 msgid ""
-"By configuring keyboard shortcuts, you have faster access to the "
-"applications you need.\n"
-"Input the command and set any desired key, it's easy to set a shortcut.\n"
-"Use the <b>Delete</b> or <b>BackSpace</b> to clean the shortcut."
+"By configuring keyboard shortcuts, you can access your favourite "
+"applications instantly.\n"
+"Enter the application's command and set the desired shortcut keys.\n"
+"Use the <b>Delete</b> or <b>BackSpace</b> keys to disable the shortcut."
 msgstr ""
 "Настраивая \"горячие клавиши\" на клавиатуре вы можете получить быстрый "
 "доступ к программе.\n"
 "Наберите команду и присвойте что вы хотите.\n"
 "Используйте <b>Удалить</b> или <b>BackSpace</b> для очистки."
 
-#: src/shortcuts.py:87
+#: src/shortcuts.py:85
 #, python-format
 msgid "Command %d"
 msgstr "Команда %d"
 
-#: src/shortcuts.py:94 src/shortcuts.py:157
+#: src/shortcuts.py:92 src/shortcuts.py:155
 msgid "disabled"
 msgstr "отключено"
 
-#: src/shortcuts.py:110
+#: src/shortcuts.py:108
 msgid "ID"
 msgstr "Идентификатор"
 
-#: src/shortcuts.py:121
+#: src/shortcuts.py:119
 msgid "Command"
 msgstr "Команда"
 
-#: src/shortcuts.py:136
+#: src/shortcuts.py:134
 msgid "Key"
 msgstr "Клавиша"
 
-#: src/cleaner.py:80
+#: src/cleaner.py:52 src/nautilus.py:50
+msgid "Cleaning..."
+msgstr ""
+
+#: src/cleaner.py:56
+#, fuzzy, python-format
+msgid "Cleaning...%s"
+msgstr "Загрузка...%d"
+
+#: src/cleaner.py:107
 msgid "Package"
 msgstr "Пакет"
 
-#: src/cleaner.py:104
+#: src/cleaner.py:131
 msgid "Packages"
 msgstr "Пакеты"
 
-#: src/cleaner.py:127
+#: src/cleaner.py:154
 msgid "Package Cache"
 msgstr "Кэш пакетов"
 
-#: src/cleaner.py:137
+#: src/cleaner.py:164
 #, python-format
 msgid ""
 "<b>%s</b>\n"
@@ -1042,42 +1091,55 @@ msgstr ""
 "<b>%s</b>\n"
 "Требует %s KB свободного места"
 
-#: src/cleaner.py:162
+#: src/cleaner.py:187
+#, fuzzy
+msgid "Package Config"
+msgstr "Чистильщик пакетов"
+
+#: src/cleaner.py:220
 #, python-format
 msgid "%d package selected to remove"
 msgstr "%d выбран для удаления"
 
-#: src/cleaner.py:163
+#: src/cleaner.py:221
 #, python-format
 msgid "%d packages selected to remove"
 msgstr "%d пакетов выбрано для удаления"
 
-#: src/cleaner.py:166
+#: src/cleaner.py:224
 #, python-format
 msgid "%d KB of space will be freed"
 msgstr "%d KB будет освобождено"
 
-#: src/cleaner.py:226
+#: src/cleaner.py:294
 msgid "Cleaned up Successfully!"
 msgstr "Очищено удачно!"
 
-#: src/cleaner.py:229
+#: src/cleaner.py:297
 msgid "Cleaned up Failed!"
 msgstr "Не очищено :("
 
-#: src/cleaner.py:235
-msgid "Free up disk space by clearing unneeded packages and the package cache."
+#: src/cleaner.py:303
+#, fuzzy
+msgid ""
+"Free up disk space by removing unneeded packages and cleaning the package "
+"download cache."
 msgstr "Освободите место на диске удалением ненужных пакетов и пакетов в кеше."
 
-#: src/cleaner.py:253
+#: src/cleaner.py:331
 msgid "Clean Package"
 msgstr "Очистить пакет"
 
-#: src/cleaner.py:259
+#: src/cleaner.py:336
 msgid "Clean Cache"
 msgstr "Очисттить кэш"
 
-#: src/cleaner.py:272
+#: src/cleaner.py:341
+#, fuzzy
+msgid "Clean Config"
+msgstr "Очисттить кэш"
+
+#: src/cleaner.py:347
 msgid "Select All"
 msgstr "Выделить все"
 
@@ -1174,11 +1236,15 @@ msgid "Manage Scripts"
 msgstr "Управление скриптами"
 
 #: src/scripts.py:132
+#, fuzzy
 msgid ""
 "You can do all kinds of tasks with scripts.\n"
 "You can drag and drop from File Manager.\n"
-"'Scripts' will be added to the context menu.\n"
+"'Scripts' will be added to the context menu."
 msgstr ""
+"Вы можете выполнять любые задачи с помощью скриптов.\n"
+"Вы можете \"переместиться\" из файлового менеджера.\n"
+"\"Скрипты\" будут добавлены в контекстное меню.\n"
 
 #: src/scripts.py:157
 msgid "Rebuild System Scripts"
@@ -1220,47 +1286,47 @@ msgstr "Показывать метод Юникода в контексном �
 msgid "Screensaver"
 msgstr "Хранитель экрана"
 
-#: src/gnomesettings.py:66
+#: src/gnomesettings.py:67
 msgid "Enable user switching when screen is locked."
 msgstr "Включить переключение польхователей при заблокированном экране"
 
-#: src/gnomesettings.py:70
+#: src/gnomesettings.py:72
 msgid "Enable system-wide \"Recently Documents\" list"
 msgstr "Включить в рамках всей системы список \"Последние документы\""
 
-#: src/gnomesettings.py:73
+#: src/gnomesettings.py:75
 msgid "History"
 msgstr "История"
 
-#: src/gnomesettings.py:80
+#: src/gnomesettings.py:82
 msgid "Notification-daemon popup location"
 msgstr "Местоположение всплывающей подсказки-уведомления"
 
-#: src/gnomesettings.py:84
+#: src/gnomesettings.py:86
 msgid "Top Left"
 msgstr "Верхний левый угол"
 
-#: src/gnomesettings.py:84
+#: src/gnomesettings.py:86
 msgid "Top Right"
 msgstr "Верхний правый угол"
 
-#: src/gnomesettings.py:84
+#: src/gnomesettings.py:86
 msgid "Bottom Left"
 msgstr "Нижний левый"
 
-#: src/gnomesettings.py:84
+#: src/gnomesettings.py:86
 msgid "Bottom Right"
 msgstr "Нижний правый"
 
-#: src/gnomesettings.py:93
+#: src/gnomesettings.py:95
 msgid "Click the button to change the menu logo"
 msgstr "Нажмите кнопку для смены логотипа меню"
 
-#: src/gnomesettings.py:106
+#: src/gnomesettings.py:108
 msgid "Choose a new logo"
 msgstr "Выбрать новый логотип"
 
-#: src/gnomesettings.py:123
+#: src/gnomesettings.py:129
 msgid ""
 "The size isn't suitable for the panel.\n"
 "It should be 24x24."
@@ -1268,84 +1334,82 @@ msgstr ""
 "Размер не подходит для панели.\n"
 "Он должен быть 24x24."
 
-#: src/gnomesettings.py:132
+#: src/gnomesettings.py:146
 msgid "Do you want take effect immediately?"
 msgstr "Вы хотите применить немедленно?"
 
-#: src/nautilus.py:50
-msgid "Cleaning..."
-msgstr ""
+#: src/nautilus.py:100
+#, fuzzy
+msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
+msgstr "Показывать дополнительные ограничения в разделе \"свойства файла\""
 
-#: src/nautilus.py:99
-msgid "Show advanced permissions on Permissions tab of File Property"
-msgstr "Показывать дополнительные права на вкладке \"Права\" в свойствах файла"
-
-#: src/nautilus.py:101
+#: src/nautilus.py:103
 msgid "File Browser"
 msgstr "Обзор файлов"
 
-#: src/nautilus.py:104
+#: src/nautilus.py:106
 msgid "CD Burner"
 msgstr "Программа записи CD"
 
-#: src/nautilus.py:105
+#: src/nautilus.py:108
 msgid "Enable BurnProof technology"
 msgstr ""
 "Включить технологию BurnProof (защита записываемого диска от возможных "
 "ошибок)"
 
-#: src/nautilus.py:106
+#: src/nautilus.py:111
 msgid "Enable OverBurn"
 msgstr ""
 "Включить OverBurn (Функция, позволяющая записать на диск больше, нежели его "
 "штатная вместимость. Может вызвать проблемы)"
 
-#: src/nautilus.py:113
-msgid "Default thumbnail icon size (Pixel)"
+#: src/nautilus.py:119
+#, fuzzy
+msgid "Default thumbnail icon size (Pixels)"
+msgstr "Размер значков эскизов по умолчанию"
+
+#: src/nautilus.py:133
+msgid "Maximum size of the thumbnail cache (Megabytes)"
 msgstr ""
 
-#: src/nautilus.py:127
-msgid "Maximum size of the thumbnail cache (Megabyte)"
+#: src/nautilus.py:145
+msgid "Maximum age for the thumbnail in the cache (Days)"
 msgstr ""
 
-#: src/nautilus.py:139
-msgid "Maximum age for the thumbnail in the cache (Day)"
-msgstr ""
-
-#: src/nautilus.py:151
+#: src/nautilus.py:157
 msgid "Thumbnails Settings"
 msgstr ""
 
-#: src/nautilus.py:159
+#: src/nautilus.py:165
 msgid "Nautilus with Open Terminal"
 msgstr "Nautilus с Открытым Терминалом"
 
-#: src/nautilus.py:161
+#: src/nautilus.py:167
 msgid "Nautilus with Root Privileges"
 msgstr "Nautilus с привилегиями рута"
 
-#: src/nautilus.py:163
+#: src/nautilus.py:169
 msgid "Nautilus with Wallpaper"
 msgstr "Nautilus с рисунком"
 
-#: src/nautilus.py:165
+#: src/nautilus.py:171
 msgid "Nautilus Extensions"
 msgstr "Расширения Nautilus"
 
-#: src/nautilus.py:187
+#: src/nautilus.py:193
 #, python-format
 msgid "Clean up the thumbnails cache (Free %s disk size)"
 msgstr ""
 
-#: src/nautilus.py:190
+#: src/nautilus.py:196
 msgid "The thumbnails cache will be cleaned, do you wish to continue?"
 msgstr ""
 
-#: src/nautilus.py:197
+#: src/nautilus.py:203
 msgid "Clean up successfully!"
 msgstr ""
 
-#: src/nautilus.py:218
+#: src/nautilus.py:224
 msgid "Update Failed!"
 msgstr "Обновление неудачно!"
 
@@ -1353,77 +1417,88 @@ msgstr "Обновление неудачно!"
 msgid "Advanced Power Management Settings"
 msgstr "Дополнительные настройки управления питанием"
 
-#: src/powermanager.py:38
+#: src/powermanager.py:39
 msgid "Enable \"Hibernation\""
 msgstr "Включить \"Гибернацию\""
 
-#: src/powermanager.py:39
+#: src/powermanager.py:42
 msgid "Enable \"Suspend\""
 msgstr "Включить \"Suspent\""
 
-#: src/powermanager.py:40
+#: src/powermanager.py:45
 msgid "Show \"CPU frequency control option\" in Power Management Preferences"
 msgstr "Показывать \"контроль частоты CPU\" в свойствах питания"
 
-#: src/powermanager.py:41
-msgid "Disable Network Manager when on sleep"
+#: src/powermanager.py:48
+#, fuzzy
+msgid "Disable Network Manager when asleep"
 msgstr "Выключить апплет сети при \"спячке\""
 
-#: src/powermanager.py:42
+#: src/powermanager.py:51
 msgid "Enable \"Lock screen\" when \"Blank Screen\" activates"
 msgstr "Включить \"Заблокировать экран\" при появлении \"пустого экрана\""
 
-#: src/powermanager.py:43
+#: src/powermanager.py:53
 msgid "Display \"Power Manager\" panel item"
 msgstr "Показывать \"Управление питанием\""
 
-#: src/powermanager.py:43
+#: src/powermanager.py:56
 msgid "Never display"
 msgstr "Не показывать никогда"
 
-#: src/powermanager.py:43
+#: src/powermanager.py:56
 msgid "When charging"
 msgstr "Во время зарядки"
 
-#: src/powermanager.py:43
+#: src/powermanager.py:56
 msgid "Always display"
 msgstr "Всегда показывать"
 
-#: src/powermanager.py:48
+#: src/powermanager.py:62
 msgid "Normal"
 msgstr "Нормальный"
 
-#: src/powermanager.py:48
+#: src/powermanager.py:62
 msgid "On Demand"
 msgstr "По запросу"
 
-#: src/powermanager.py:48
+#: src/powermanager.py:62
 msgid "Power Save"
 msgstr "Энергосбережение"
 
-#: src/powermanager.py:48
+#: src/powermanager.py:62
 msgid "Performance"
 msgstr "Производительность"
 
-#: src/powermanager.py:50
+#: src/powermanager.py:64
 msgid "CPU Policy"
 msgstr "Политика управления ЦП"
 
-#: src/powermanager.py:51
+#: src/powermanager.py:65
 msgid "The Performance value when on AC power"
 msgstr "Производительность при питании от сети"
 
-#: src/powermanager.py:52
+#: src/powermanager.py:71
 msgid "The Performance value when on battery power"
 msgstr "Производительность при использовании батареи"
 
-#: src/powermanager.py:53
+#: src/powermanager.py:77
 msgid "The CPU frequency policy when on AC power"
 msgstr "Политика управления частотой процессора при питании от сети"
 
-#: src/powermanager.py:54
+#: src/powermanager.py:82
 msgid "The CPU frequency policy when on battery power"
 msgstr "Политика управления частотой процессора при использовании батареи"
+
+#: src/preferences.py:69 src/preferences.py:77
+#, fuzzy
+msgid "Reset"
+msgstr "Не установлено"
+
+#: src/preferences.py:130
+#, fuzzy
+msgid "Enable Check Update"
+msgstr "Активные Шаблоны"
 
 #: src/sourceeditor.py:62 src/sourceeditor.py:67
 msgid "Choose the sources"
@@ -1839,55 +1914,59 @@ msgid "Multiple GNOME terminals in one window"
 msgstr "Несколько терминалов GNOME в одном окне"
 
 #: src/common/appdata.py:120
+msgid "A Useful Task List"
+msgstr ""
+
+#: src/common/appdata.py:121
 msgid "Ubuntu Tweak makes it easier to configure Ubuntu"
 msgstr "Ubuntu Tweak делает легче настройку Ubuntu."
 
-#: src/common/appdata.py:121
+#: src/common/appdata.py:122
 msgid "Commonly used restricted packages"
 msgstr "Используемые пакеты с ограничениями"
 
-#: src/common/appdata.py:122 src/common/appdata.py:123
+#: src/common/appdata.py:123 src/common/appdata.py:124
 msgid "A feature rich, high performance virtualization software"
 msgstr "Богатое возможностями программное обеспечение для виртуализации"
 
-#: src/common/appdata.py:124
+#: src/common/appdata.py:125
 msgid "Read, capture, broadcast your multimedia streams"
 msgstr "Воспроизводите, захватывайте и транслируйте потоковое аудио и видео"
 
-#: src/common/appdata.py:125
+#: src/common/appdata.py:126
 msgid "Run Virtual Machines using VMware"
 msgstr "Запускайте виртуальные машины используя VMware"
 
-#: src/common/appdata.py:126
+#: src/common/appdata.py:127
 msgid "A compatibility layer for running Windows programs"
 msgstr "Программа для совмещения  Windows программ с Linux"
 
-#: src/common/appdata.py:127
+#: src/common/appdata.py:128
 msgid ""
 "XBMC is a free and open source software media player and entertainment hub"
 msgstr "XBMC это полностью бесплатный и открытый медиаплеер"
 
-#: src/common/appdata.py:131
+#: src/common/appdata.py:132
 msgid "Development Version of Mozilla Firefox 3.0/3.1, 4.0"
 msgstr "Разрабатываемая версия Мозиллы Файрфокс 3.0/3.1, 4.0"
 
-#: src/common/appdata.py:132
+#: src/common/appdata.py:133
 msgid "Development version of Compiz Fusion"
 msgstr "Разрабатываемая версия Compiz Fusion"
 
-#: src/common/appdata.py:133
+#: src/common/appdata.py:134
 msgid "Google's Linux Repository"
 msgstr "Репозиторий Google для linux"
 
-#: src/common/appdata.py:134
+#: src/common/appdata.py:135
 msgid "K Desktop Environment 4.1"
 msgstr "K Desktop Environment 4.1"
 
-#: src/common/appdata.py:135
+#: src/common/appdata.py:136
 msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
 msgstr "Лёгккое X11 окружение рабочего стола: GPicView, PCManFM"
 
-#: src/common/appdata.py:136
+#: src/common/appdata.py:137
 msgid ""
 "Multimedia, Entertainment and Distraction In Ubuntu\n"
 "Medibuntu is a repository of packages that cannot be included into the "
@@ -1897,7 +1976,7 @@ msgstr ""
 "Medibuntu это репозиторий, содержащий пакеты, которые не могут быть включены "
 "в Ubuntu по легальным причинам (копирайт, лицензия, патент и др.)"
 
-#: src/common/appdata.py:138
+#: src/common/appdata.py:139
 msgid ""
 "Ubuntu repository for Chinese users.\n"
 "Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and "
@@ -1907,7 +1986,7 @@ msgstr ""
 "Включает EIOffice, Ubuntu Tweak, метод ввода ibus, OpenOffice.org 3.0 и "
 "остальное."
 
-#: src/common/factory.py:202
+#: src/common/factory.py:93
 msgid "Disable 'Run Application' dialog (Alt+F2)"
 msgstr "Выключить диалог \"Запустить приложение\""
 
@@ -1915,11 +1994,11 @@ msgstr "Выключить диалог \"Запустить приложени�
 msgid "_Unlock"
 msgstr "_Разблокировать"
 
-#: src/common/widgets/widgets.py:259
+#: src/common/widgets/widgets.py:260
 msgid "Please press the new key combination"
 msgstr "Пожалуйста, введите новую комбинацию клавиш"
 
-#: src/common/widgets/widgets.py:308
+#: src/common/widgets/widgets.py:309
 msgid "Disabled"
 msgstr "Отключено"
 
@@ -1985,6 +2064,93 @@ msgstr ""
 msgid "_Use a custom command"
 msgstr ""
 
+#: data/glade/preferences.glade:7
+#, fuzzy
+msgid "Ubuntu Tweak Preferences"
+msgstr "Сайт Ubuntu Tweak"
+
+#: data/glade/preferences.glade:32
+msgid "<b>User Interface</b>"
+msgstr ""
+
+#: data/glade/preferences.glade:103
+msgid "Left Menubar Font Color"
+msgstr ""
+
+#: data/glade/preferences.glade:146
+msgid "Left Menubar Color"
+msgstr ""
+
+#: data/glade/preferences.glade:157
+msgid "Default Window Height"
+msgstr ""
+
+#: data/glade/preferences.glade:169
+msgid "Default Window Width"
+msgstr ""
+
+#: data/glade/preferences.glade:179
+msgid "Left Menubar Width"
+msgstr ""
+
+#: data/glade/preferences.glade:205
+msgid "<b>Features</b>"
+msgstr ""
+
+#: data/glade/preferences.glade:225
+msgid "Default Launch Function"
+msgstr ""
+
+#: data/glade/traceback.glade:48
+msgid "<big><b>Oops...A fatal error occured</b></big>"
+msgstr ""
+
+#: data/glade/traceback.glade:61
+msgid ""
+"Ubuntu Tweak need to turn off.\n"
+"If you want to help the developer to debug, \n"
+"Please choose \"Yes\" and and report the \"Error Message\"\n"
+" to the opening website."
+msgstr ""
+
+#: data/glade/traceback.glade:87 data/glade/traceback.glade:229
+msgid "Error Message"
+msgstr ""
+
+#: data/glade/traceback.glade:191
+msgid "<big><b>Oops...A error occured</b></big>"
+msgstr ""
+
+#: data/glade/traceback.glade:204
+msgid ""
+"If you want to help the developer to debug, \n"
+"Please choose \"Yes\" and and report the \"Error Message\"\n"
+" to the opening website."
+msgstr ""
+
+#, fuzzy
+#~ msgid "Ubuntu Tweak"
+#~ msgstr "Сайт Ubuntu Tweak"
+
+#~ msgid "Disable \"User Switch\""
+#~ msgstr "Отключить \"Переключение пользователя\""
+
+#~ msgid "Tweak your Linux computer to what you like."
+#~ msgstr "Настройка вашего компьютера так, как вам нравиться"
+
+#~ msgid ""
+#~ "You can freely manage your document templates.\n"
+#~ "You can drag and drop from File Manager.\n"
+#~ "\"Create Document\" will be added to the context menu.\n"
+#~ msgstr ""
+#~ "Здесь вы можете свободно управлять шаблонами документов.\n"
+#~ "Вы можете перемещать элементы из файл-менеджера.\n"
+#~ "\"Создать документ\" будет добавлен в контекстное меню.\n"
+
+#~ msgid "Show advanced permissions on Permissions tab of File Property"
+#~ msgstr ""
+#~ "Показывать дополнительные права на вкладке \"Права\" в свойствах файла"
+
 #~ msgid "KDE IM client using Tencent QQ protocol"
 #~ msgstr "KDE IM клиент, использующий протокол Tencent QQ"
 
@@ -2033,9 +2199,6 @@ msgstr ""
 #~ msgid "Disable Save To Disk"
 #~ msgstr "Отключить сохранение на диск"
 
-#~ msgid "Disable User Switching"
-#~ msgstr "Отключить возможность переключения пользователей"
-
 #~ msgid "Desktop Icon"
 #~ msgstr "Значок Рабочего стола"
 
@@ -2062,9 +2225,6 @@ msgstr ""
 
 #~ msgid "Title bar Right-click action"
 #~ msgstr "Действие, применяемое для окна при нажатии правой клавиши мышки"
-
-#~ msgid "Default Thumbnail Icon Size"
-#~ msgstr "Размер значков эскизов по умолчанию"
 
 #~ msgid "Enable Hibernation"
 #~ msgstr "Включить спящий режим"
@@ -2176,9 +2336,6 @@ msgstr ""
 #~ "Использовать папку /home в качестве рабочего стола (Лог-аут для того, "
 #~ "чтобы изменения вступили в силу)"
 
-#~ msgid "Show advanced Permissions on File Property pages"
-#~ msgstr "Показывать дополнительные ограничения в разделе \"свойства файла\""
-
 #~ msgid "Show CPU frequency control option"
 #~ msgstr "Показывать"
 
@@ -2187,15 +2344,6 @@ msgstr ""
 
 #~ msgid "Set the shortcut of your commands"
 #~ msgstr "Настройте ярлыки для часто используемых Вами программ"
-
-#~ msgid ""
-#~ "You can do all kinds of tasks with scripts.\n"
-#~ "You can drag and drop from File Manager.\n"
-#~ "\"Scripts\" will be added to the Context Menu.\n"
-#~ msgstr ""
-#~ "Вы можете выполнять любые задачи с помощью скриптов.\n"
-#~ "Вы можете \"переместиться\" из файлового менеджера.\n"
-#~ "\"Скрипты\" будут добавлены в контекстное меню.\n"
 
 #~ msgid ""
 #~ "By configuring keyboard shortcuts, you have faster access to the \n"

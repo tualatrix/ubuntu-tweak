@@ -78,6 +78,9 @@ class SystemModule:
     def get_gnome_version(self):
         return int(GnomeVersion.minor)
 
+    def is_ubuntu(self):
+        return self.is_hardy() or self.is_intrepid() or self.is_jaunty()
+
     def is_supported_ubuntu(self):
         return self.is_hardy() or self.is_intrepid()
 
@@ -92,11 +95,16 @@ class SystemModule:
                'Greenie 3' in SystemInfo.distro or \
                'intrepid' in SystemInfo.distro
 
+    def is_jaunty(self):
+        return 'jaunty' in SystemInfo.distro
+
     def get_codename(self):
         if self.is_hardy():
             return 'hardy'
         elif self.is_intrepid():
             return 'intrepid'
+        elif self.is_jaunty():
+            return 'jaunty'
         else:
             return 'NULL'
 
@@ -110,6 +118,7 @@ class SystemModule:
 module_check = SystemModule()
             
 if __name__ == "__main__":
+    print SystemInfo.distro
     print 'has pat', module_check.has_apt()
     print 'has ccm', module_check.has_ccm()
     print 'has right compiz', module_check.has_right_compiz()

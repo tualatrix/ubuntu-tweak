@@ -27,7 +27,6 @@ import gettext
 import gobject
 
 from common.widgets import TweakPage, KeyGrabber, KeyModifier
-from common.factory import Factory
 
 (
     COLUMN_ID,
@@ -45,8 +44,7 @@ class Shortcuts(TweakPage):
     def __init__(self):
         TweakPage.__init__(self, 
                 _("Shortcut Commands"), 
-                _("By configuring keyboard shortcuts, you have faster access to the applications you need.\nInput the command and set any desired key, it's easy to set a shortcut.\nUse the <b>Delete</b> or <b>BackSpace</b> to clean the shortcut."))
-
+                _("By configuring keyboard shortcuts, you can access your favourite applications instantly.\nEnter the application's command and set the desired shortcut keys.\nUse the <b>Delete</b> or <b>BackSpace</b> keys to disable the shortcut."))
         sw = gtk.ScrolledWindow()
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         self.pack_start(sw)
