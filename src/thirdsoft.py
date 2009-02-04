@@ -66,36 +66,36 @@ from aptsources.sourceslist import SourceEntry, SourcesList
     SOURCE_KEY,
 ) = range(4)
 
-AWN = ['Avant Window Navigator', 'avant-window-navigator', 'awn-project.org', '']
-Amarok = ['Amarok', 'amarok-nightly', 'amarok.kde.org', '']
+AWN = ['Avant Window Navigator', 'avant-window-navigator', 'awn-project.org', 'awn.gpg']
+Amarok = ['Amarok', 'amarok-nightly', 'amarok.kde.org', 'neon.gpg']
 Opera = ['Opera', 'opera', 'www.opera.com', 'opera.gpg']
 Skype = ['Skype', 'skype', 'www.skype.com', '']
 PlayOnLinux = ['PlayOnLinux', 'playonlinux', 'www.playonlinux.com', 'pol.gpg']
 Ubuntu_cn = ['Ubuntu Chinese Repository', 'ubuntu-cn', 'www.ubuntu.org.cn', '']
-OpenOffice = ['OpenOffice.org', 'openoffice', 'www.openoffice.org', '']
-Midori = ['Midori', 'midori', 'www.twotoasts.de', '']
-Firefox = ['Firefox', 'firefox', 'www.mozilla.org', '']
-CompizFusion = ['Compiz Fusion', 'compiz-fusion', 'www.compiz-fusion.org/', '']
-CairoDock = ['Cairo Dock', 'cairo-dock',  'cairo-dock.org', '']
-GnomeDo = ['GNOME Do', 'gnome-do', 'do.davebsd.com', '']
-Banshee_Stable = [_('Banshee (Stable Version)'), 'banshee', 'banshee-project.org', '']
-Banshee_Unstable = [_('Banshee (Unstable Version)'), 'banshee', 'banshee-project.org', '']
+OpenOffice = ['OpenOffice.org', 'openoffice', 'www.openoffice.org', 'ooo.gpg']
+Midori = ['Midori', 'midori', 'www.twotoasts.de', 'midori.gpg']
+Firefox = ['Firefox', 'firefox', 'www.mozilla.org', 'firefox.gpg']
+CompizFusion = ['Compiz Fusion', 'compiz-fusion', 'www.compiz-fusion.org/', 'compiz-fusion.gpg']
+CairoDock = ['Cairo Dock', 'cairo-dock',  'cairo-dock.org', 'cairo-dock.gpg']
+GnomeDo = ['GNOME Do', 'gnome-do', 'do.davebsd.com', 'do.gpg']
+Banshee_Stable = [_('Banshee (Stable Version)'), 'banshee', 'banshee-project.org', 'banshee-stable.gpg']
+Banshee_Unstable = [_('Banshee (Unstable Version)'), 'banshee', 'banshee-project.org', 'banshee-unstable.gpg']
 Google = ['Google', 'google', 'www.google.com/linuxrepositories/index.html', 'google.gpg']
 GoogleGadgets = ['Google gadgets', 'google-gadgets', 'desktop.google.com/plugins/', '']
-ChmSee = ['Chmsee', 'chmsee', 'chmsee.gro.clinux.org', '']
-KDE4 = ['KDE 4', 'kde-4', 'www.kde.org', '']
-UbuntuTweak = ['Ubuntu Tweak', 'ubuntu-tweak', 'ubuntu-tweak.com', '']
+ChmSee = ['Chmsee', 'chmsee', 'chmsee.gro.clinux.org', 'chmsee.gpg']
+KDE4 = ['KDE 4', 'kde-4', 'www.kde.org', 'kde4.gpg']
+UbuntuTweak = ['Ubuntu Tweak', 'ubuntu-tweak', 'ubuntu-tweak.com', 'tweak.gpg']
 NautilusDropbox = ['Nautilus DropBox', 'nautilus-dropbox', 'www.getdropbox.com', '']
-Screenlets = ['Screenlets', 'screenlets', 'www.screenlets.org', '']
+Screenlets = ['Screenlets', 'screenlets', 'www.screenlets.org', 'screenlets.gpg']
 Wine = ['Wine', 'wine', 'www.winehq.org', 'wine.gpg']
 LXDE = ['LXDE', 'lxde', 'lxde.org', '']
-Terminator = ['Terminator', 'terminator', 'www.tenshu.net/terminator/', '']
+Terminator = ['Terminator', 'terminator', 'www.tenshu.net/terminator/', 'terminator.gpg']
 VirtualBox = ['VirtualBox', 'virtualbox', 'www.virtualbox.org/', 'virtualbox.gpg']
 GScrot = ['GScrot', 'gscrot', 'launchpad.net/gscrot', '']
 Galaxium = ['Galaxium', 'galaxium', 'code.google.com/p/galaxium/', '']
 Swiftweasel = ['Swiftweasel', 'swiftweasel', 'swiftweasel.tuxfamily.org/', '']
 Medibuntu = ['Medibuntu', 'medibuntu', 'www.medibuntu.org/', 'medibuntu.gpg']
-XBMC = ['XBMC', 'xbmc', 'xbmc.org', '']
+XBMC = ['XBMC', 'xbmc', 'xbmc.org', 'xbmc.gpg']
 
 SOURCES_DATA = [
     ['http://ppa.launchpad.net/reacocard-awn/ubuntu/', ['hardy','intrepid'], 'main', AWN],
@@ -116,7 +116,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/googlegadgets/ubuntu', 'hardy', 'main', GoogleGadgets],
     ['http://ppa.launchpad.net/lidaobing/ubuntu', ['hardy', 'intrepid'], 'main', ChmSee],
     ['http://ppa.launchpad.net/kubuntu-members-kde4/ubuntu', ['hardy', 'intrepid'], 'main', KDE4],
-    ['http://linux.getdropbox.com/ubuntu', ['hardy', 'intrepid'], 'main', NautilusDropbox],
+    ['http://www.getdropbox.com/downloading?os=lnx', ['hardy', 'intrepid'], 'main', NautilusDropbox],
     ['http://ppa.launchpad.net/tualatrix/ubuntu', ['hardy', 'intrepid'], 'main', UbuntuTweak],
     ['http://ppa.launchpad.net/gilir/ubuntu', ['hardy', 'intrepid'], 'main', Screenlets],
     ['http://wine.budgetdedicated.com/apt', ['hardy', 'intrepid'], 'main', Wine],
@@ -343,7 +343,7 @@ class SourceDetail(gtk.VBox):
 
         if url:
             if 'ppa.launchpad.net' in url:
-                url = 'https://launchpad.net/~%s/+archive' % url.split('/')[3]
+                url = 'https://launchpad.net/~%s/+archive/ppa' % url.split('/')[3]
             self.url_button.destroy()
             self.url_button = gtk.LinkButton(url)
             self.url_button.show()

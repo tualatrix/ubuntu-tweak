@@ -359,9 +359,9 @@ class Installer(TweakPage):
 
         if done:
             self.button.set_sensitive(False)
-            InfoDialog(_('Updated Successfully!')).launch()
+            InfoDialog(_('Update Successful!')).launch()
         else:
-            InfoDialog(_('Updated Failed!')).launch()
+            InfoDialog(_('Update Failed!')).launch()
 
         self.to_add = []
         self.to_rm = []
