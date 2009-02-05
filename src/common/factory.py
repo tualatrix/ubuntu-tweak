@@ -26,6 +26,25 @@ from systeminfo import GnomeVersion
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 
+class KeysHandler(ContentHandler):
+    def __init__(self, dict):
+        self.dict = dict
+
+    def startElement(self, name, attrs):
+        if name == 'key':
+            if attrs.has_key('start'):
+                start = attrs['start']
+            else:
+                start = 0
+
+            if attrs.has_key('end'):
+                end = attrs['end']
+            else:
+                end = 99
+
+            if int(start) < int(GnomeVersion.minor) < int(end):
+                self.dict[attrs['name']] = attrs['value']
+
 class XmlHandler(ContentHandler):
     def __init__(self, dict):
         self.dict = dict
@@ -47,9 +66,11 @@ class GconfKeys:
     '''This class used to store the keys, it will create for only once'''
     keys = {}
     parser = make_parser()
-    handler = XmlHandler(keys)
+#    handler = XmlHandler(keys)
+    handler = KeysHandler(keys)
     parser.setContentHandler(handler)
-    parser.parse('%s/tweaks.xml' % DATA_DIR)
+#    parser.parse('%s/tweaks.xml' % DATA_DIR)
+    parser.parse('%s/keys.xml' % DATA_DIR)
 
 class SettingFactory:
     keys = GconfKeys.keys
@@ -86,9 +107,5 @@ class WidgetFactory:
         return globals().get(widget)(**kwargs)
 
 if __name__ == '__main__':
-    for k,v in WidgetFactory.keys.items():
+    for k,v in GconfKeys.keys.items():
         print '%s\t%s\n' % (k, v)
-
-    print WidgetFactory.create('GconfCheckButton', 
-                               label = _('Disable \'Run Application\' dialog (Alt+F2)'), 
-                               key = 'disable_command_line')
