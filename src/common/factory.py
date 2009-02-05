@@ -37,7 +37,7 @@ class KeysHandler(ContentHandler):
 
                 if len(version.split(':')) == 2:
                         start, end = version.split(':')
-                        if int(start) < int(GnomeVersion.minor) < int(end):
+                        if int(start) <= int(GnomeVersion.minor) <= int(end):
                             self.dict[attrs['name']] = attrs['value']
                 else:
                     if GnomeVersion.minor == version:
