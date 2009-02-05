@@ -32,17 +32,17 @@ class KeysHandler(ContentHandler):
 
     def startElement(self, name, attrs):
         if name == 'key':
-            if attrs.has_key('start'):
-                start = attrs['start']
-            else:
-                start = 0
+            if attrs.has_key('version'):
+                version = attrs['version']
 
-            if attrs.has_key('end'):
-                end = attrs['end']
+                if len(version.split(':')) == 2:
+                        start, end = version.split(':')
+                        if int(start) < int(GnomeVersion.minor) < int(end):
+                            self.dict[attrs['name']] = attrs['value']
+                else:
+                    if GnomeVersion.minor == version:
+                        self.dict[attrs['name']] = attrs['value']
             else:
-                end = 99
-
-            if int(start) < int(GnomeVersion.minor) < int(end):
                 self.dict[attrs['name']] = attrs['value']
 
 class XmlHandler(ContentHandler):
@@ -66,10 +66,8 @@ class GconfKeys:
     '''This class used to store the keys, it will create for only once'''
     keys = {}
     parser = make_parser()
-#    handler = XmlHandler(keys)
     handler = KeysHandler(keys)
     parser.setContentHandler(handler)
-#    parser.parse('%s/tweaks.xml' % DATA_DIR)
     parser.parse('%s/keys.xml' % DATA_DIR)
 
 class SettingFactory:
