@@ -45,23 +45,6 @@ class KeysHandler(ContentHandler):
             else:
                 self.dict[attrs['name']] = attrs['value']
 
-class XmlHandler(ContentHandler):
-    def __init__(self, dict):
-        self.dict = dict
-
-    def startElement(self, name, attrs):
-        if name == 'item':
-            try:
-                minor = attrs['version']
-            except KeyError:
-                self.dict[attrs['title']] = attrs['key']
-            else:
-                if GnomeVersion.minor >= minor:
-                    if attrs['key']:
-                        self.dict[attrs['title']] = attrs['key']
-                    else:
-                        self.dict.pop(attrs['title'])
-
 class GconfKeys:
     '''This class used to store the keys, it will create for only once'''
     keys = {}
