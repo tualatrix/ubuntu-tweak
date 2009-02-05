@@ -136,11 +136,11 @@ class Nautilus(TweakPage):
             hbox2.pack_end(button, False, False, 0)
             boxes.append(hbox2)
 
-        if button:
-            button = WidgetFactory.create('GconfSpinButton', 
-                                          key = 'maximum_age',
-                                          min = -1, max = 180, step = 1)
+        button = WidgetFactory.create('GconfSpinButton', 
+                                      key = 'maximum_age',
+                                      min = -1, max = 180, step = 1)
 
+        if button:
             hbox3 = gtk.HBox(False, 5)
             label = gtk.Label(_('Maximum age for the thumbnail in the cache (Days)'))
             hbox3.pack_start(label, False, False, 0)
