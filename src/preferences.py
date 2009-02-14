@@ -129,15 +129,15 @@ class PreferencesDialog:
         button = WidgetFactory.create('GconfCheckButton', 
                                       label = _('Enable Check Update'), 
                                       key = 'check_update',
-                                      default = True)
+                                      default = False)
         vbox.pack_start(button, False, False, 0)
 
 # Only For Test
-        button = WidgetFactory.create('GconfCheckButton', 
-                                      label = 'Show Donate Natiffcation', 
-                                      key = 'show_donate_notify',
-                                      default = True)
-        vbox.pack_start(button, False, False, 0)
+#        button = WidgetFactory.create('GconfCheckButton', 
+#                                      label = 'Show Donate Natiffcation', 
+#                                      key = 'show_donate_notify',
+#                                      default = True)
+#        vbox.pack_start(button, False, False, 0)
 
         vbox.show_all()
 

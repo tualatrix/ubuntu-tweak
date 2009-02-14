@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak 0.24\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2009-02-03 20:17+0800\n"
-"PO-Revision-Date: 2008-12-08 22:51+0000\n"
-"Last-Translator: Dostojevskji <darkangel_nr1@hotmail.com>\n"
+"POT-Creation-Date: 2009-02-13 19:39+0800\n"
+"PO-Revision-Date: 2009-01-11 19:57+0000\n"
+"Last-Translator: Daniel Nylander <yeager@ubuntu.com>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-12-15 04:17+0000\n"
+"X-Launchpad-Export-Date: 2009-02-13 09:40+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: SWEDEN\n"
 "X-Poedit-Language: Swedish\n"
@@ -66,18 +66,14 @@ msgstr "Program"
 
 #: src/autostart.py:323
 msgid "Session Programs"
-msgstr ""
+msgstr "Sessionsprogram"
 
 #: src/autostart.py:324
-#, fuzzy
 msgid ""
 "Here you can manage what programs get started when you login.\n"
 "You can hide items from view by selecting and clicking \"Remove\"\n"
 "To permanently delete an item, right-click and press \"Delete\"."
 msgstr ""
-"Här kan du bestämma vilka program som ska startas upp vid inloggning.\n"
-"Du kan dölja objekt från att visas genom att markera och klicka \"Ta bort\"\n"
-"För att permanent radera ett objekt, högerklicka och tryck \"Ta bort\"."
 
 #: src/autostart.py:332
 msgid "Show comments"
@@ -102,7 +98,7 @@ msgstr "Uppdateringshanterare"
 #: src/updatemanager.py:86 src/updatemanager.py:114
 #, python-format
 msgid "Downloading...%d"
-msgstr "Laddar ner...%d"
+msgstr "Hämtar...%d"
 
 #: src/updatemanager.py:119
 msgid "Finished"
@@ -110,7 +106,7 @@ msgstr "Färdig"
 
 #: src/installer.py:52
 msgid "File-Sharing Clients"
-msgstr "Fil-Delnings Klienter"
+msgstr "Fildelningsklienter"
 
 #: src/installer.py:53
 msgid "Image Tools"
@@ -130,7 +126,7 @@ msgstr "Textverktyg"
 
 #: src/installer.py:57
 msgid "Instant Messengers"
-msgstr "Snabbmeddelandeprogram"
+msgstr "Snabbmeddelandeklienter"
 
 #: src/installer.py:58
 msgid "Internet Tools"
@@ -138,7 +134,7 @@ msgstr "Internetverktyg"
 
 #: src/installer.py:59
 msgid "FTP Tools"
-msgstr "FTP Verktyg"
+msgstr "FTP-verktyg"
 
 #: src/installer.py:60
 msgid "Desktop Tools"
@@ -146,7 +142,7 @@ msgstr "Skrivbordsverktyg"
 
 #: src/installer.py:61
 msgid "CD/Disk Tools"
-msgstr "CD/Disk Verktyg"
+msgstr "Cd-/diskverktyg"
 
 #: src/installer.py:62
 msgid "Development"
@@ -158,36 +154,34 @@ msgstr "Emulatorer"
 
 #: src/installer.py:64
 msgid "E-mail Tools"
-msgstr "E-post Verktyg"
+msgstr "E-postverktyg"
 
 #: src/installer.py:143
 msgid "Add/Remove Applications"
 msgstr "Lägg till/Ta bort program"
 
 #: src/installer.py:144
-#, fuzzy
 msgid ""
 "A simple but more effecient method for finding and installing popular "
 "packages than the default Add/Remove."
 msgstr ""
-"En lätt men mer effektiv för att hitta och installera populära paket än "
-"standard Lägg till/Ta bort."
 
 #: src/installer.py:192
 msgid "All Categories"
-msgstr "Alla Kategorier"
+msgstr "Alla kategorier"
 
 #: src/installer.py:362
-msgid "Updated Successfully!"
-msgstr "Uppdaterades!"
+#, fuzzy
+msgid "Update Successful!"
+msgstr "Uppdateringen lyckades!"
 
-#: src/installer.py:364
-msgid "Updated Failed!"
-msgstr "Uppdatering Misslyckades"
+#: src/installer.py:364 src/nautilus.py:224
+msgid "Update Failed!"
+msgstr "Uppdatering misslyckades!"
 
 #: src/lockdown.py:36
 msgid "System Security options"
-msgstr "Systemets Säkerhetsinställningar"
+msgstr "Alternativ för systemsäkerhet"
 
 #: src/lockdown.py:38
 msgid "Disable \"Run Application\" dialog (Alt+F2)"
@@ -195,7 +189,7 @@ msgstr "Inaktivera dialogrutan \"Kör program\" (Alt+F2)"
 
 #: src/lockdown.py:41
 msgid "Disable \"Lock Screen\""
-msgstr "Avaktivera \"Lås skärm\""
+msgstr "Inaktivera \"Lås skärm\""
 
 #: src/lockdown.py:44
 msgid "Disable printing"
@@ -210,9 +204,8 @@ msgid "Disable save to disk"
 msgstr "Inaktivera sparande till disk"
 
 #: src/lockdown.py:53
-#, fuzzy
 msgid "Disable \"Fast User Switching\""
-msgstr "Inaktivera användarväxling"
+msgstr ""
 
 #: src/ScriptWorker.py:52
 #, python-format
@@ -222,16 +215,16 @@ msgstr "Filen \"%s\" finns redan!"
 #: src/ScriptWorker.py:57
 #, python-format
 msgid "The folder \"%s\" is exists!"
-msgstr "Katalogen \"%s\" finns redan!"
+msgstr "Mappen \"%s\" finns redan!"
 
 #: src/ScriptWorker.py:63 src/ScriptWorker.py:69
 #, python-format
 msgid "The target \"%s\" is exists!"
-msgstr "Sökvägen \"%s\" existerar"
+msgstr "Målet \"%s\" finns redan!"
 
 #: src/ScriptWorker.py:110 src/ScriptWorker.py:121
 msgid "Enter your password to perform the administrative tasks"
-msgstr "Ange ditt lösenord för att utföra administrativa åtgärder"
+msgstr "Ange ditt lösenord för att genomföra administrativa åtgärder"
 
 #: src/ScriptWorker.py:140
 msgid "Select a folder"
@@ -239,7 +232,7 @@ msgstr "Välj en mapp"
 
 #: src/ScriptWorker.py:171
 msgid "Please select a target(files or folders)."
-msgstr "Välj mål(filer eller mappar)."
+msgstr "Välj ett mål (filer eller mappar)."
 
 #: src/mainwindow.py:65
 msgid "Welcome to"
@@ -254,16 +247,14 @@ msgid "Clean up unneeded packages to free diskspace."
 msgstr "Rensa paket som inte behövs för att frigöra diskutrymme."
 
 #: src/mainwindow.py:73
-#, fuzzy
 msgid "Easily install up-to-date versions of many applications."
-msgstr "Installera enkelt olika sorters applikationer"
+msgstr ""
 
 #: src/mainwindow.py:74
-#, fuzzy
 msgid ""
 "Configure file templates and shortcut scripts for easy access to common "
 "tasks."
-msgstr "Anpassa mallar och skript för att förbättra din datoranvändning."
+msgstr ""
 
 #: src/mainwindow.py:75
 msgid "And many more useful features!"
@@ -271,21 +262,17 @@ msgstr "Och många fler användbara funktioner!"
 
 #: src/mainwindow.py:87
 msgid "<span size=\"xx-large\">Please wait a moment...</span>"
-msgstr "<span size=\"xx-large\">Vänligen vänta en stund...</span>"
+msgstr "<span size=\"xx-large\">Vänta en stund...</span>"
 
 #: src/mainwindow.py:100
-#, fuzzy
 msgid ""
 "<span size=\"x-large\">This feature isn't currently available in your "
 "distribution</span>"
 msgstr ""
-"<span size=\"x-large\">Denna funktion finns för närvarande inte tillgänglig "
-"i din distribution.</span>"
 
 #: src/mainwindow.py:113
-#, fuzzy
 msgid "<span size=\"x-large\">This module is error while loading.</span>"
-msgstr "<span size=\"xx-large\">Vänligen vänta en stund...</span>"
+msgstr ""
 
 #: src/mainwindow.py:223
 msgid "Welcome"
@@ -305,15 +292,15 @@ msgstr "Lägg till/Ta bort"
 
 #: src/mainwindow.py:227 src/sourceeditor.py:335
 msgid "Source Editor"
-msgstr "Källhanterare"
+msgstr "Källredigerare"
 
 #: src/mainwindow.py:228 src/thirdsoft.py:236
 msgid "Third-Party Sources"
-msgstr "Tredje-Part Källor"
+msgstr "Tredjepartskällor"
 
 #: src/mainwindow.py:229 src/cleaner.py:302
 msgid "Package Cleaner"
-msgstr "Paket Rensare"
+msgstr "Paketrensare"
 
 #: src/mainwindow.py:230
 msgid "Startup"
@@ -373,7 +360,7 @@ msgstr "System"
 
 #: src/mainwindow.py:244 src/filetype.py:473
 msgid "File Type Manager"
-msgstr ""
+msgstr "Filtypshanterare"
 
 #: src/mainwindow.py:245
 msgid "Nautilus"
@@ -381,16 +368,15 @@ msgstr "Nautilus"
 
 #: src/mainwindow.py:246
 msgid "Power Managerment"
-msgstr ""
+msgstr "Strömhantering"
 
 #: src/mainwindow.py:247
 msgid "Security"
 msgstr "Säkerhet"
 
 #: src/mainwindow.py:329
-#, fuzzy
 msgid "Donate"
-msgstr "Ingen"
+msgstr ""
 
 #: src/mainwindow.py:355
 msgid "Help the development of Ubuntu Tweak"
@@ -403,9 +389,8 @@ msgid ""
 msgstr ""
 
 #: src/mainwindow.py:356
-#, fuzzy
 msgid "Never Show This Again"
-msgstr "Visa aldrig denna dialog"
+msgstr ""
 
 #: src/mainwindow.py:534
 msgid "Ubuntu Tweak Website"
@@ -437,6 +422,7 @@ msgstr ""
 "\n"
 "Launchpad Contributions:\n"
 "  Anders Grandt https://launchpad.net/~a.grandt\n"
+"  AndrewJ https://launchpad.net/~andrew-jonsson\n"
 "  Christian Widell https://launchpad.net/~christian.w\n"
 "  Daniel Holm https://launchpad.net/~danielholm\n"
 "  Daniel Nylander https://launchpad.net/~yeager\n"
@@ -458,20 +444,20 @@ msgid ""
 "A newer version: %s is available online.\n"
 "Would you like to update?"
 msgstr ""
-"En nyare version: %s är tillgänglig online.\n"
+"En nyare version: %s finns tillgänglig.\n"
 "Vill du uppdatera?"
 
 #: src/mainwindow.py:557
 msgid "Software Update"
-msgstr "Uppdatering av mjukvara"
+msgstr "Programuppdatering"
 
 #: src/userdir.py:46
 msgid "Download"
-msgstr "Hämta"
+msgstr "Hämtat"
 
 #: src/userdir.py:48
 msgid "Public"
-msgstr "Offentlig"
+msgstr "Publikt"
 
 #: src/userdir.py:49
 msgid "Document"
@@ -487,7 +473,7 @@ msgstr "Bilder"
 
 #: src/userdir.py:52
 msgid "Videos"
-msgstr "Videoklipp"
+msgstr "Video"
 
 #: src/userdir.py:146
 msgid "Choose a folder"
@@ -499,10 +485,14 @@ msgid ""
 "However, you must move your files back into place by yourself.\n"
 "Do you wish to continue?"
 msgstr ""
+"Ubuntu Tweak kommer att återställa den valda katalogen till "
+"standardplatsen.\n"
+"Dock måste du själv flytta tillbaka dina filer.\n"
+"Vill du fortsätta?"
 
 #: src/userdir.py:201
 msgid "Directory"
-msgstr ""
+msgstr "Katalog"
 
 #: src/userdir.py:215
 msgid "Path"
@@ -521,54 +511,51 @@ msgid "Default Folder Locations"
 msgstr "Standardplatser för mappar"
 
 #: src/userdir.py:237
-#, fuzzy
 msgid ""
 "You can change the paths of the default folders here.\n"
 "Don't change the location of your desktop folder unless you know what you "
 "are doing."
 msgstr ""
-"Du kan ändra den förvalda dokumentmappen här.\n"
-"Men ändra inte skrivbordsmappen under normal användning."
 
 #: src/userdir.py:258
 msgid "Update successfully!"
-msgstr "Uppdatering klar!"
+msgstr "Uppdateringen är färdig!"
 
 #: src/filetype.py:34
 msgid "Audio"
-msgstr ""
+msgstr "Ljud"
 
 #: src/filetype.py:35
 msgid "Text"
-msgstr ""
+msgstr "Text"
 
 #: src/filetype.py:36
 msgid "Image"
-msgstr ""
+msgstr "Bild"
 
 #: src/filetype.py:37
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 #: src/filetype.py:38
 msgid "Application"
-msgstr ""
+msgstr "Program"
 
 #: src/filetype.py:39
 msgid "All"
-msgstr ""
+msgstr "Alla"
 
 #: src/filetype.py:72
 msgid "Categories"
-msgstr ""
+msgstr "Kategorier"
 
 #: src/filetype.py:129
 msgid "File Type"
-msgstr ""
+msgstr "Filtyp"
 
 #: src/filetype.py:143
 msgid "Associated Application"
-msgstr ""
+msgstr "Associerade program"
 
 #: src/filetype.py:176 src/filetype.py:211 src/metacity.py:62
 #: src/metacity.py:67 src/metacity.py:72 src/metacity.py:77
@@ -579,12 +566,11 @@ msgstr "Ingen"
 #: src/filetype.py:239
 #, python-format
 msgid "Open the files of type \"%s\" with:"
-msgstr "Öppna filtypen \"%s\" med:"
+msgstr "Öppna filer av typen \"%s\" med:"
 
 #: src/filetype.py:268
-#, fuzzy
 msgid "Choose a application"
-msgstr "Välj en startbild"
+msgstr ""
 
 #: src/filetype.py:357
 #, python-format
@@ -594,11 +580,11 @@ msgstr "Välj ett program för att öppna typen <b>%s</b>"
 #: src/filetype.py:382
 #, python-format
 msgid "Could not find %s"
-msgstr ""
+msgstr "Kunde inte hitta %s"
 
 #: src/filetype.py:383
 msgid "Could not find application"
-msgstr ""
+msgstr "Kunde inte hitta programmet"
 
 #: src/filetype.py:474
 msgid "Here you can manage which application will open which filetypes."
@@ -646,7 +632,7 @@ msgstr "Användarinformation"
 
 #: src/computer.py:61
 msgid "Current user"
-msgstr "Nuvarande användare"
+msgstr "Aktuell användare"
 
 #: src/computer.py:62
 msgid "Home directory"
@@ -662,11 +648,11 @@ msgstr "Språk"
 
 #: src/thirdsoft.py:81
 msgid "Banshee (Stable Version)"
-msgstr "Banshee (Stabil version)"
+msgstr "Banshee (stabil version)"
 
 #: src/thirdsoft.py:82
 msgid "Banshee (Unstable Version)"
-msgstr "Banshee (ostabil version"
+msgstr "Banshee (ostabil version)"
 
 #: src/thirdsoft.py:154
 msgid ""
@@ -675,10 +661,15 @@ msgid ""
 "\n"
 "You need a working internet connection to continue."
 msgstr ""
+"För att installera programvara och uppdateringar från nyligen tillagda eller "
+"ändrade källor så måste du läsa om informationen gällande tillgänglig "
+"programvara.\n"
+"\n"
+"Du behöver en fungerande internetanslutning för att fortsätta."
 
 #: src/thirdsoft.py:158
 msgid "The information about available software is out-of-date"
-msgstr "Informationen om tillgänglig mjukvara är föråldrad"
+msgstr "Informationen om tillgänglig programvara är föråldrad"
 
 #: src/thirdsoft.py:319
 msgid "Homepage"
@@ -698,7 +689,7 @@ msgstr "Beskrivningen är här"
 
 #: src/thirdsoft.py:358
 msgid "Third-Party Software Sources"
-msgstr ""
+msgstr "Källor för tredjepartsprogram"
 
 #: src/thirdsoft.py:359
 msgid ""
@@ -708,6 +699,13 @@ msgid ""
 "the latest version.\n"
 "After adding these repositories, locate and install them using Add/Remove."
 msgstr ""
+"Efter varje ny version av Ubuntu kommer nya funktioner frysas.\n"
+"Detta innebär att endast ansökningar med bugg-fixar får komma in i "
+"förråden.\n"
+"Genom förråd från tredjeparter, kan du alltid uppdatera till den senaste "
+"versionen.\n"
+"Efter att ha lagt till dessa förråd, leta upp och installera dem med hjälp "
+"av Lägg till / ta bort."
 
 #: src/thirdsoft.py:375
 msgid "Details"
@@ -718,7 +716,8 @@ msgid ""
 "It is a possible security risk to use packages from Third-Party Sources.\n"
 "Please be careful."
 msgstr ""
-"Det är en möjlig risk att använda paket från tredjepartsförråd.\n"
+"Det är en möjlig säkerhetsrisk med att använda paket från "
+"tredjepartsförråd.\n"
 "Var försiktig."
 
 #: src/thirdsoft.py:417 src/nautilus.py:197
@@ -731,11 +730,11 @@ msgstr "Visa aldrig denna dialog"
 
 #: src/thirdsoft.py:443 src/sourceeditor.py:403
 msgid "You can install the new applications through Add/Remove."
-msgstr "Du kan installera nya applikationer genom Lägg till/Ta bort"
+msgstr "Du kan installera nya program genom Lägg till/Ta bort"
 
 #: src/thirdsoft.py:444 src/sourceeditor.py:404
 msgid "The software information is up-to-date now"
-msgstr "Mjukvaruinformationen är nu uppdaterad"
+msgstr "Programvaruinformationen är nu uppdaterad"
 
 #: src/icons.py:32
 msgid "Show \"Computer\" icon on desktop"
@@ -744,11 +743,11 @@ msgstr "Visa \"Dator\"-ikon på skrivbordet"
 #: src/icons.py:33 src/icons.py:42 src/icons.py:51
 #: src/common/widgets/treeviews.py:73
 msgid "Rename"
-msgstr "Ändra namn"
+msgstr "Byt namn"
 
 #: src/icons.py:41
 msgid "Show \"Home Folder\" icon on desktop"
-msgstr "Visa ikon för hemkatalog på skrivbordet"
+msgstr "Visa \"Hemmapp\"-ikon på skrivbordet"
 
 #: src/icons.py:50
 msgid "Show \"Trash\" icon on desktop"
@@ -761,7 +760,7 @@ msgstr "Inte inställt"
 
 #: src/icons.py:110
 msgid "Desktop Icon settings"
-msgstr "Skrivbordsikon inställningar"
+msgstr "Inställningar för skrivbordsikoner"
 
 #: src/icons.py:113
 msgid "Show desktop icons"
@@ -773,7 +772,7 @@ msgstr "Visa \"Nätverk\"-ikon på skrivbordet"
 
 #: src/icons.py:140
 msgid "Show mounted volumes on desktop"
-msgstr "Visa monterade diskar på skrivbordet"
+msgstr "Visa monterade volymer på skrivbordet"
 
 #: src/icons.py:145
 msgid "Use \"Home Folder\" as desktop(Logout for changes to take effect)"
@@ -782,15 +781,15 @@ msgstr ""
 
 #: src/metacity.py:37
 msgid "Window Decorate Effect"
-msgstr "Fönsterramseffekter"
+msgstr "Effekt för fönsterdekorationer"
 
 #: src/metacity.py:39
 msgid "Use Metacity window theme"
-msgstr "Använd Metacity fönstertema"
+msgstr "Använd Metacity-fönstertema"
 
 #: src/metacity.py:42
 msgid "Enable active window transparency"
-msgstr ""
+msgstr "Aktivera genomskinlighet för aktiva fönster"
 
 #: src/metacity.py:44
 msgid "Active window transparency level"
@@ -798,19 +797,19 @@ msgstr "Genomskinlighet för aktivt fönster"
 
 #: src/metacity.py:49
 msgid "Enable inactive window transparency"
-msgstr ""
+msgstr "Aktivera genomskinlighet för inaktiva fönster"
 
 #: src/metacity.py:51
 msgid "Inactive window shade transparency level"
-msgstr "Avaktivera fönstergenomskinlighetsnivån"
+msgstr "Inaktivera genomskinlighet för fönsterskugga"
 
 #: src/metacity.py:58
 msgid "Window Titlebar Action"
-msgstr "Åtgärder för fönstrets namnlist"
+msgstr "Åtgärd för fönstrets titellist"
 
 #: src/metacity.py:59
 msgid "Titlebar mouse wheel action"
-msgstr ""
+msgstr "Åtgärd för mushjul på titellist"
 
 #: src/metacity.py:62 src/metacity.py:67 src/metacity.py:72 src/metacity.py:77
 msgid "Roll up"
@@ -818,7 +817,7 @@ msgstr "Rulla upp"
 
 #: src/metacity.py:64
 msgid "Titlebar double-click action"
-msgstr ""
+msgstr "Åtgärd för dubbelklick på titellist"
 
 #: src/metacity.py:67 src/metacity.py:72 src/metacity.py:77
 msgid "Maximize"
@@ -838,25 +837,27 @@ msgstr "Meny"
 
 #: src/metacity.py:69
 msgid "Titlebar middle-click action"
-msgstr ""
+msgstr "Åtgärd för mittenklick på titellist"
 
 #: src/metacity.py:74
 msgid "Titlebar right-click action"
-msgstr ""
+msgstr "Åtgärd för högerklick på titellist"
 
 #: src/metacity.py:84
 msgid "Enable Metacity's Compositing feature"
-msgstr ""
+msgstr "Aktivera Metacitys compositingfunktion"
 
 #: src/metacity.py:87
 msgid "Compositing Manager"
-msgstr ""
+msgstr "Compositinghanterare"
 
 #: src/metacity.py:94
 msgid ""
 "To enable the compositing feature of metacity, You should disable the Visual "
 "Effects in \"Appearance\" by yourself."
 msgstr ""
+"Du måste själv inaktivera Visuella effekter i \"Utseende\" för att aktivera "
+"compositingfunktion i Metacity."
 
 #: src/session.py:39
 msgid "Splash Screen (Click On Image)"
@@ -864,16 +865,15 @@ msgstr ""
 
 #: src/session.py:43
 msgid "Choose a splash image"
-msgstr ""
+msgstr "Välj en startbild"
 
 #: src/session.py:45 src/gnomesettings.py:110
 msgid "PNG image (*.png)"
 msgstr "PNG-bild (*.png)"
 
 #: src/session.py:131
-#, fuzzy
 msgid "Automatically save open applications when logging out"
-msgstr "Spara automatiskt ändringar i session"
+msgstr ""
 
 #: src/session.py:134
 msgid "Show logout prompt"
@@ -881,7 +881,7 @@ msgstr "Visa utloggningsprompt"
 
 #: src/session.py:137
 msgid "Allow TCP Connections(Remote Desktop Connect)"
-msgstr "Tillåt TCP kopplingar (Fjärrskrivbord)"
+msgstr "Tillåt TCP-anslutningar (Fjärrskrivbord)"
 
 #: src/session.py:140
 msgid "Show splash screen"
@@ -893,23 +893,23 @@ msgstr "HTML-dokument"
 
 #: src/templates.py:57
 msgid "ODB Database"
-msgstr "ODB Databas"
+msgstr "ODB-databas"
 
 #: src/templates.py:58
 msgid "ODS Spreadsheet"
-msgstr "ODS Kalkylark"
+msgstr "ODS-kalkylark"
 
 #: src/templates.py:59
 msgid "ODT Document"
-msgstr "ODT Dokument"
+msgstr "ODT-dokument"
 
 #: src/templates.py:60
 msgid "Plain text document"
-msgstr "Vanligt textdokument"
+msgstr "Vanligt text-dokument"
 
 #: src/templates.py:61
 msgid "ODP Presentation"
-msgstr "ODP Presentation"
+msgstr "ODP-presentation"
 
 #: src/templates.py:62
 msgid "Python script"
@@ -917,7 +917,7 @@ msgstr "Pythonskript"
 
 #: src/templates.py:63
 msgid "Pygtk Example"
-msgstr "Pygtk exempel"
+msgstr "Pygtk-exempel"
 
 #: src/templates.py:64
 msgid "Shell script"
@@ -949,23 +949,23 @@ msgstr ""
 
 #: src/templates.py:137
 msgid "Rebuild System Templates"
-msgstr "Återbygg systemmallar"
+msgstr "Bygg om systemmallar"
 
 #: src/templates.py:155
 msgid ""
 "This will delete all disabled templates.\n"
 "Do you wish to continue?"
 msgstr ""
-"Detta kommer radera alla inaktiverade mallar.\n"
+"Detta kommer ta bort alla inaktiverade mallar.\n"
 "Vill du fortsätta?"
 
 #: src/compiz.py:209
 msgid "Install Advanced Desktop Effects Settings Manager"
-msgstr "Installera Avancerad Inställningshanterare för Skrivbordseffekter"
+msgstr "Installera Avancerad inställningshanterare för skrivbordseffekter"
 
 #: src/compiz.py:212
 msgid "Install Simple Desktop Effects Settings manager"
-msgstr "Installera Enkel Inställningshanterare för Skrivbordseffekter"
+msgstr "Installera Enkel inställningshanterare för skrivbordseffekter"
 
 #: src/compiz.py:215
 msgid "Install Screenlets Widget Application"
@@ -977,7 +977,7 @@ msgstr "Aktivera fästande fönster"
 
 #: src/compiz.py:226
 msgid "Enable wobbly windows"
-msgstr "Aktivera vobblande fönster"
+msgstr "Aktivera geléaktiga fönster"
 
 #: src/compiz.py:228
 msgid "Window Effects"
@@ -989,7 +989,7 @@ msgstr "Aktivera genomskinliga menyer"
 
 #: src/compiz.py:232
 msgid "Enable wobbly menus"
-msgstr "Aktivera vobblande menyer"
+msgstr "Aktivera geléaktiga menyer"
 
 #: src/compiz.py:234
 msgid "Menu Effects"
@@ -1021,30 +1021,24 @@ msgstr "Widget"
 
 #: src/compiz.py:371 src/nautilus.py:222
 msgid "Update Successfully!"
-msgstr "Uppdatering Slutförd!"
+msgstr "Uppdateringen lyckades!"
 
 #: src/shortcuts.py:46
 msgid "Shortcut Commands"
 msgstr "Genvägskommandon"
 
 #: src/shortcuts.py:47
-#, fuzzy
 msgid ""
 "By configuring keyboard shortcuts, you can access your favourite "
 "applications instantly.\n"
 "Enter the application's command and set the desired shortcut keys.\n"
 "Use the <b>Delete</b> or <b>BackSpace</b> keys to disable the shortcut."
 msgstr ""
-"Genom att konfigurera tangentbordsgenvägar, kan du snabbare öppna den \n"
-"applikationen du behöver.\n"
-"Skriv in kommandot och välj tangentkombination, det är enkelt att skapa en "
-"genväg.\n"
-"Använd <b>Delete</b> eller <b>BackSpace</b> för att rensa kombination."
 
 #: src/shortcuts.py:85
 #, python-format
 msgid "Command %d"
-msgstr "Kommande %d"
+msgstr "Kommando %d"
 
 #: src/shortcuts.py:92 src/shortcuts.py:155
 msgid "disabled"
@@ -1064,12 +1058,12 @@ msgstr "Tangent"
 
 #: src/cleaner.py:52 src/nautilus.py:50
 msgid "Cleaning..."
-msgstr ""
+msgstr "Rensar..."
 
 #: src/cleaner.py:56
-#, fuzzy, python-format
+#, python-format
 msgid "Cleaning...%s"
-msgstr "Laddar ner...%d"
+msgstr ""
 
 #: src/cleaner.py:107
 msgid "Package"
@@ -1081,7 +1075,7 @@ msgstr "Paket"
 
 #: src/cleaner.py:154
 msgid "Package Cache"
-msgstr ""
+msgstr "Paketcache"
 
 #: src/cleaner.py:164
 #, python-format
@@ -1093,19 +1087,18 @@ msgstr ""
 "Tar %s KB av diskutrymmet"
 
 #: src/cleaner.py:187
-#, fuzzy
 msgid "Package Config"
-msgstr "Paket Rensare"
+msgstr ""
 
 #: src/cleaner.py:220
 #, python-format
 msgid "%d package selected to remove"
-msgstr "%d paket makerat för borttagning"
+msgstr "%d paket markerat för borttagning"
 
 #: src/cleaner.py:221
 #, python-format
 msgid "%d packages selected to remove"
-msgstr "%d markerade paket för borttagning"
+msgstr "%d paket markerade för borttagning"
 
 #: src/cleaner.py:224
 #, python-format
@@ -1113,11 +1106,13 @@ msgid "%d KB of space will be freed"
 msgstr "%d KB av diskutrymmet kommer frigöras"
 
 #: src/cleaner.py:294
-msgid "Cleaned up Successfully!"
+#, fuzzy
+msgid "Clean up Successful!"
 msgstr "Rensning lyckades!"
 
 #: src/cleaner.py:297
-msgid "Cleaned up Failed!"
+#, fuzzy
+msgid "Clean up Failed!"
 msgstr "Rensning misslyckades!"
 
 #: src/cleaner.py:303
@@ -1128,11 +1123,11 @@ msgstr ""
 
 #: src/cleaner.py:331
 msgid "Clean Package"
-msgstr ""
+msgstr "Rensa paket"
 
 #: src/cleaner.py:336
 msgid "Clean Cache"
-msgstr ""
+msgstr "Rensa cachen"
 
 #: src/cleaner.py:341
 msgid "Clean Config"
@@ -1148,15 +1143,15 @@ msgstr "Kopiera till..."
 
 #: src/scripts.py:52
 msgid "Copy to Desktop"
-msgstr "kopiera till skrivbordet"
+msgstr "Kopiera till skrivbordet"
 
 #: src/scripts.py:53
 msgid "Copy to Download"
-msgstr "kopiera till Download"
+msgstr "Kopiera till Hämtat"
 
 #: src/scripts.py:54
 msgid "Copy to Home"
-msgstr "kopiera till Home"
+msgstr "Kopiera till Hem"
 
 #: src/scripts.py:55
 msgid "Move to ..."
@@ -1168,11 +1163,11 @@ msgstr "Flytta till skrivbordet"
 
 #: src/scripts.py:57
 msgid "Move to Download"
-msgstr "Flytta till Download"
+msgstr "Flytta till Hämtat"
 
 #: src/scripts.py:58
 msgid "Move to Home"
-msgstr "Flytta till Home"
+msgstr "Flytta till Hem"
 
 #: src/scripts.py:59
 msgid "Link to ..."
@@ -1180,15 +1175,15 @@ msgstr "Länka till..."
 
 #: src/scripts.py:60
 msgid "Link to Desktop"
-msgstr "Länk till skrivbordet"
+msgstr "Länka till skrivbordet"
 
 #: src/scripts.py:61
 msgid "Link to Download"
-msgstr "Länk till Download"
+msgstr "Länka till Hämtat"
 
 #: src/scripts.py:62
 msgid "Link to Home"
-msgstr "Länk till Home"
+msgstr "Länka till Hem"
 
 #: src/scripts.py:63
 msgid "Open with gedit"
@@ -1204,7 +1199,7 @@ msgstr "Bläddra som root"
 
 #: src/scripts.py:66
 msgid "Search in current folder"
-msgstr "Sök i den aktuellt mappen"
+msgstr "Sök i aktuell mapp"
 
 #: src/scripts.py:67
 msgid "Convert image to JPG"
@@ -1215,13 +1210,12 @@ msgid "Convert image to PNG"
 msgstr "Konvertera bild till PNG"
 
 #: src/scripts.py:69
-#, fuzzy
 msgid "Convert image to GIF"
-msgstr "Konvertera bild till JPG"
+msgstr ""
 
 #: src/scripts.py:70
 msgid "Set image as wallpaper"
-msgstr "Sätt bild som skrivbordsbakgrund"
+msgstr "Ställ in bild som skrivbordsbakgrund"
 
 #: src/scripts.py:97
 msgid "Enabled Scripts"
@@ -1236,19 +1230,15 @@ msgid "Manage Scripts"
 msgstr "Hantera skript"
 
 #: src/scripts.py:132
-#, fuzzy
 msgid ""
 "You can do all kinds of tasks with scripts.\n"
 "You can drag and drop from File Manager.\n"
 "'Scripts' will be added to the context menu."
 msgstr ""
-"Du kan göra alla typer av uppgifter med scripts.\n"
-"Du kan dra och släppa från filhanteraren.\n"
-"\"Scripts\" kommer att läggas till i den sammanhangsberoende menyn.\n"
 
 #: src/scripts.py:157
 msgid "Rebuild System Scripts"
-msgstr ""
+msgstr "Bygg om systemskript"
 
 #: src/scripts.py:175
 msgid ""
@@ -1268,19 +1258,19 @@ msgstr "Visa varning när en panel tas bort"
 
 #: src/gnomesettings.py:49
 msgid "Complete lockdown of all panels"
-msgstr ""
+msgstr "Komplett nedlåsning av alla paneler"
 
 #: src/gnomesettings.py:52
 msgid "Enable panel animations"
-msgstr "Aktivera panel animationer"
+msgstr "Aktivera panelanimationer"
 
 #: src/gnomesettings.py:55
 msgid "Show Input Method menu on the context menu"
-msgstr ""
+msgstr "Visa menyn för inmatingsmetod i sammanhangsmenyn"
 
 #: src/gnomesettings.py:58
 msgid "Show Unicode Method menu on the context menu"
-msgstr ""
+msgstr "Visa menyn för Unicode-metod i sammanhangsmenyn"
 
 #: src/gnomesettings.py:65
 msgid "Screensaver"
@@ -1292,7 +1282,7 @@ msgstr "Aktivera användarbyte när skärmen är låst."
 
 #: src/gnomesettings.py:72
 msgid "Enable system-wide \"Recently Documents\" list"
-msgstr ""
+msgstr "Aktivera \"Senaste dokument\"-listan för hela systemet"
 
 #: src/gnomesettings.py:75
 msgid "History"
@@ -1339,9 +1329,8 @@ msgid "Do you want take effect immediately?"
 msgstr "Ska ändringarna gälla direkt?"
 
 #: src/nautilus.py:100
-#, fuzzy
 msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
-msgstr "Visa avancerade behörigheter under filens egenskaper"
+msgstr ""
 
 #: src/nautilus.py:103
 msgid "File Browser"
@@ -1360,9 +1349,8 @@ msgid "Enable OverBurn"
 msgstr "Aktivera OverBurn"
 
 #: src/nautilus.py:119
-#, fuzzy
 msgid "Default thumbnail icon size (Pixels)"
-msgstr "Standardstorlek på miniatyrbildsikon"
+msgstr ""
 
 #: src/nautilus.py:133
 msgid "Maximum size of the thumbnail cache (Megabytes)"
@@ -1374,11 +1362,11 @@ msgstr ""
 
 #: src/nautilus.py:157
 msgid "Thumbnails Settings"
-msgstr ""
+msgstr "Inställningar för miniatyrbilder"
 
 #: src/nautilus.py:165
 msgid "Nautilus with Open Terminal"
-msgstr "Nautilis med Öppna Terminal"
+msgstr "Nautilus med Öppna terminal"
 
 #: src/nautilus.py:167
 msgid "Nautilus with Root Privileges"
@@ -1395,23 +1383,20 @@ msgstr "Nautilus-tillägg"
 #: src/nautilus.py:193
 #, python-format
 msgid "Clean up the thumbnails cache (Free %s disk size)"
-msgstr ""
+msgstr "Rensa upp miniatyrbildscachen (Frigör %s diskutrymme)"
 
 #: src/nautilus.py:196
 msgid "The thumbnails cache will be cleaned, do you wish to continue?"
-msgstr ""
+msgstr "Miniatyrbildscachen kommer att tömmas. Vill du fortsätta?"
 
 #: src/nautilus.py:203
-msgid "Clean up successfully!"
-msgstr ""
-
-#: src/nautilus.py:224
-msgid "Update Failed!"
-msgstr "Uppdatering misslyckades!"
+#, fuzzy
+msgid "Clean up successful!"
+msgstr "Upprensning lyckades!"
 
 #: src/powermanager.py:37
 msgid "Advanced Power Management Settings"
-msgstr "Advanced Power Management inställningar"
+msgstr "Inställningar för Advanced Power Management"
 
 #: src/powermanager.py:39
 msgid "Enable \"Hibernation\""
@@ -1423,21 +1408,19 @@ msgstr "Aktivera \"Vänteläge\""
 
 #: src/powermanager.py:45
 msgid "Show \"CPU frequency control option\" in Power Management Preferences"
-msgstr ""
-"Visa \"CPU frequency control option\" i Power Management-inställningarna"
+msgstr "Visa \"CPU frequency control option\" i strömhanteringsinställningarna"
 
 #: src/powermanager.py:48
-#, fuzzy
 msgid "Disable Network Manager when asleep"
-msgstr "Avaktivera Nätverkshanteraren under viloläge"
+msgstr ""
 
 #: src/powermanager.py:51
 msgid "Enable \"Lock screen\" when \"Blank Screen\" activates"
-msgstr "Aktivera \"Lock screen\" när \"Black screen\" aktiveras"
+msgstr "Aktivera \"Lås skärmen\" när \"skärmblankning\" aktiveras"
 
 #: src/powermanager.py:53
 msgid "Display \"Power Manager\" panel item"
-msgstr ""
+msgstr "Visa panelobjektet \"Strömhanterare\""
 
 #: src/powermanager.py:56
 msgid "Never display"
@@ -1445,7 +1428,7 @@ msgstr "Visa aldrig"
 
 #: src/powermanager.py:56
 msgid "When charging"
-msgstr "Vid laddning"
+msgstr "Vid uppladdning"
 
 #: src/powermanager.py:56
 msgid "Always display"
@@ -1469,7 +1452,7 @@ msgstr "Prestanda"
 
 #: src/powermanager.py:64
 msgid "CPU Policy"
-msgstr "CPU Policy"
+msgstr "Processorpolicy"
 
 #: src/powermanager.py:65
 msgid "The Performance value when on AC power"
@@ -1481,21 +1464,19 @@ msgstr "Prestandavärde när batterispänning används"
 
 #: src/powermanager.py:77
 msgid "The CPU frequency policy when on AC power"
-msgstr "Processfrekvenspolicy när nätadapter används"
+msgstr "Processorfrekvenspolicy när nätadapter används"
 
 #: src/powermanager.py:82
 msgid "The CPU frequency policy when on battery power"
-msgstr "Processfrekvenspolicy när batterispänning används"
+msgstr "Processorfrekvenspolicy när batterispänning används"
 
 #: src/preferences.py:69 src/preferences.py:77
-#, fuzzy
 msgid "Reset"
-msgstr "Inte inställt"
+msgstr ""
 
 #: src/preferences.py:130
-#, fuzzy
 msgid "Enable Check Update"
-msgstr "Aktivera mallar"
+msgstr ""
 
 #: src/sourceeditor.py:62 src/sourceeditor.py:67
 msgid "Choose the sources"
@@ -1506,7 +1487,8 @@ msgid ""
 "You can read the title and comment to determine which source is suitable for "
 "you."
 msgstr ""
-"Du kan läsa titeln och kommentarerna för att avgöra vilken källa passar dig."
+"Du kan läsa titeln och kommentarerna för att avgöra vilken källa som passar "
+"dig."
 
 #: src/sourceeditor.py:84
 msgid "Detail"
@@ -1514,21 +1496,23 @@ msgstr "Detalj"
 
 #: src/sourceeditor.py:103 src/sourceeditor.py:108
 msgid "Submit your sources"
-msgstr ""
+msgstr "Skicka in dina källor"
 
 #: src/sourceeditor.py:108
 msgid ""
 "You can submit your sources to the server, so that other people can share "
 "with your sources."
 msgstr ""
+"Du kan skicka in dina källor till servern så att andra personer kan använda "
+"dina källor."
 
 #: src/sourceeditor.py:113
 msgid "_Source Title:"
-msgstr ""
+msgstr "_Källans titel:"
 
 #: src/sourceeditor.py:116
 msgid "_Locale:"
-msgstr "_Plats:"
+msgstr "_Lokal:"
 
 #: src/sourceeditor.py:123
 msgid "Enter the title of the source, such as \"Ubuntu Official Repostory\""
@@ -1536,15 +1520,15 @@ msgstr "Skriv titeln på källan, såsom \"Ubuntu Official Repository\""
 
 #: src/sourceeditor.py:125
 msgid "If the locale isn't correct, you can edit by you self"
-msgstr ""
+msgstr "Om lokalen inte är korrekt så kan du redigera den själv"
 
 #: src/sourceeditor.py:140
 msgid "Submit"
-msgstr "Skicka"
+msgstr "Skicka in"
 
 #: src/sourceeditor.py:188
 msgid "Please check your network connection!"
-msgstr "Vänlig kolla din nätverksanslutning!"
+msgstr "Kontrollera din nätverksanslutning!"
 
 #: src/sourceeditor.py:188
 msgid "Network Error"
@@ -1552,7 +1536,7 @@ msgstr "Nätverksfel"
 
 #: src/sourceeditor.py:195
 msgid "Uploding..."
-msgstr "Laddar upp..."
+msgstr "Skickar upp..."
 
 #: src/sourceeditor.py:211
 msgid "Updating..."
@@ -1565,6 +1549,10 @@ msgid ""
 "Click \"Submit Sources\" if you want to share your sources with other "
 "people.\n"
 msgstr ""
+"Redigera dina programkällor för att passa dina behov.\n"
+"Klicka på \"Uppdatera källor\" om du vill ändra källorna.\n"
+"Klicka på \"Skicka in källor\" om du vill dela med dig av dina källor med "
+"andra.\n"
 
 #: src/sourceeditor.py:355
 msgid "Update Sources"
@@ -1572,11 +1560,11 @@ msgstr "Uppdatera källor"
 
 #: src/sourceeditor.py:361
 msgid "Submit Sources"
-msgstr ""
+msgstr "Skicka in källor"
 
 #: src/sourceeditor.py:420
 msgid "Please input the correct infomation of the sources!"
-msgstr ""
+msgstr "Mata in korrekt information om källorna!"
 
 #: src/sourceeditor.py:433
 msgid ""
@@ -1584,34 +1572,41 @@ msgid ""
 "you can use the official sources.\n"
 "Do you wish to use the official sources?"
 msgstr ""
+"Du kan skicka in dina källor till vår server för att hjälpa till att bygga "
+"upp en lista över källor. Du kan även använda de officiella källorna.\n"
+"Vill du använda de officiella källorna?"
 
 #: src/sourceeditor.py:436
 msgid "No source data available"
-msgstr ""
+msgstr "Inget källdata tillgängligt"
 
 #: src/sourceeditor.py:453
 msgid ""
 "Your sources will be reviewed and open for others soon.\n"
 "Thank you!"
 msgstr ""
+"Dina källor kommer att granskas och öppnas för andra inom kort.\n"
+"Tack!"
 
 #: src/sourceeditor.py:454
 msgid "Sumit successfully"
-msgstr ""
+msgstr "Insändning lyckades"
 
 #: src/sourceeditor.py:467
 msgid "Please check the permission of the sources.list."
-msgstr ""
+msgstr "Kontrollera rättigheterna för filen sources.list."
 
 #: src/sourceeditor.py:468
 msgid "Save failed!"
-msgstr "Misslyckades att spara"
+msgstr "Misslyckades med att spara!"
 
 #: src/sourceeditor.py:475
 msgid ""
 "The currenly content will be lost after reloading!\n"
 "Do you wish to continue?"
 msgstr ""
+"Den aktuella innehållet kommer att gå förlorat efter uppdatering!\n"
+"Vill du fortsätta?"
 
 #: src/common/package.py:64
 msgid "(Not available)"
@@ -1619,15 +1614,15 @@ msgstr "(Inte tillgänglig)"
 
 #: src/common/appdata.py:57
 msgid "A color scheme designer"
-msgstr ""
+msgstr "En designer för färgscheman"
 
 #: src/common/appdata.py:58
 msgid "Development version of an audio player for KDE"
-msgstr ""
+msgstr "Utvecklingsversion av en ljudspelare för KDE"
 
 #: src/common/appdata.py:59
 msgid "Client for the eD2k and Kad networks"
-msgstr "Klient för eD2k- och Kad-nätverk"
+msgstr "Klient för eD2k- och Kad-nätverken"
 
 #: src/common/appdata.py:60
 msgid "GNOME IDE for C/C++, Java, Python"
@@ -1635,7 +1630,7 @@ msgstr "GNOME IDE för C/C++, Java, Python"
 
 #: src/common/appdata.py:61
 msgid "A skinned multimedia player for many platforms"
-msgstr "En strippad miltimediaspelare för många plattformar"
+msgstr "En multimediaspelare för många plattformar"
 
 #: src/common/appdata.py:62
 msgid "Record and edit audio files"
@@ -1643,31 +1638,31 @@ msgstr "Spela in och redigera ljudfiler"
 
 #: src/common/appdata.py:63
 msgid "Fully customisable dock-like window navigator"
-msgstr "Fullt förändringsbar dock-liknande fönsternavigator"
+msgstr "Fullt anpassningsbar dockliknande fönsternavigator"
 
 #: src/common/appdata.py:64
 msgid "A free video editor"
-msgstr "En fri video editor"
+msgstr "En fri videoredigerare"
 
 #: src/common/appdata.py:65
 msgid "BitTorrent client written in Java"
-msgstr "BitTorrent klient skriven i Java"
+msgstr "BitTorrent-klient skriven i Java"
 
 #: src/common/appdata.py:66
 msgid "Audio Management and Playback application"
-msgstr "Ljudhanterare och -uppspelare"
+msgstr "Program för ljudhantering och -uppspelning"
 
 #: src/common/appdata.py:67
 msgid "A true dock for linux"
-msgstr "En riktig dock för linux"
+msgstr "En riktig docka för linux"
 
 #: src/common/appdata.py:68
 msgid "A chm file viewer written in GTK+"
-msgstr "En chm filhanterare skriven i GTK+"
+msgstr "En chm-filhanterare skriven i GTK+"
 
 #: src/common/appdata.py:69
 msgid "The open source, cross-platform IDE"
-msgstr ""
+msgstr "Integrerad utvecklingsmiljö med öppen källkod"
 
 #: src/common/appdata.py:70
 msgid "Advanced Desktop Effects Settings Manager"
@@ -1675,39 +1670,43 @@ msgstr "Avancerad inställningshanterare för skrivbordseffekter"
 
 #: src/common/appdata.py:71
 msgid "An API documentation browser for GNOME."
-msgstr "En API dokumentation bläddrare för GNOME."
+msgstr "En API-dokumentationsbläddrare för GNOME."
 
 #: src/common/appdata.py:72
 msgid "A Bittorrent client written in PyGTK"
-msgstr "En Bittorrent klient skriven i PyGTK"
+msgstr "En Bittorrent-klient skriven i PyGTK"
 
 #: src/common/appdata.py:73
 msgid "Store, Sync and Share your files online."
-msgstr ""
+msgstr "Lagra, synkronisera och dela dina filer på nätet."
 
 #: src/common/appdata.py:74
 msgid "Extensible Tool Platform and Java IDE"
-msgstr "Utökningsbar arbetsplatform och Java IDE"
+msgstr "Utökningsbar verktygsplattform och Java IDE"
 
 #: src/common/appdata.py:75
 msgid ""
 "EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
 "com."
 msgstr ""
+"EIOffice Personal 2009. Gratis för kinesiska användare. Se http://www."
+"evermoresw.com."
 
 #: src/common/appdata.py:76
 msgid "A client for the Windows Live Message network"
-msgstr "En klient för Windows Live Message närverket"
+msgstr "En klient för Windows Live Message-nätverket"
 
 #: src/common/appdata.py:77
 msgid ""
 "Empathy consists of a rich set of reusable instant messaging widgets, and a "
 "GNOME client using those widgets."
 msgstr ""
+"Empathy består av en större mängd återanvändningsbara widgetar för "
+"snabbmeddelanden och en GNOME-klient som använder dessa widgetar."
 
 #: src/common/appdata.py:78
 msgid "GTK+ based flexible audio player, similar to Amarok"
-msgstr "En flexibel ljudupspelare som är baserad på GTK+. Den liknar Amarok."
+msgstr "En flexibel ljuduppspelare som är baserad på GTK+, liknande Amarok."
 
 #: src/common/appdata.py:79
 msgid "File transmission via ftp, sftp and ftps"
@@ -1720,11 +1719,11 @@ msgstr "En extremt snabb och lättviktig filhanterare"
 #: src/common/appdata.py:81
 msgid ""
 "Galaxium is an instant messenger application designed for the GNOME desktop"
-msgstr ""
+msgstr "Galaxium är ett snabbmeddelandeprogram för GNOME-skrivbordet."
 
 #: src/common/appdata.py:82
 msgid "A GTK+ jabber client"
-msgstr "En GTK+ jabberklient"
+msgstr "En GTK+-jabberklient"
 
 #: src/common/appdata.py:83
 msgid "A fast and lightweight IDE"
@@ -1732,25 +1731,27 @@ msgstr "En snabb och lättviktig IDE"
 
 #: src/common/appdata.py:84
 msgid "A multithreaded FTP client"
-msgstr "En multitrådad FTP klient"
+msgstr "En multitrådad FTP-klient"
 
 #: src/common/appdata.py:85
 msgid "GNOME Hex editor"
-msgstr ""
+msgstr "Hexredigerare för GNOME"
 
 #: src/common/appdata.py:86
 msgid "Notifies the user upon arrival of new mail in Gmail"
-msgstr "Meddela användaren vid ankomst av ny post i Gmail"
+msgstr "Notifierar användaren vid ankomst av ny post i Gmail"
 
 #: src/common/appdata.py:87
 msgid "A powerful, speedy, and sexy remote control for the GNOME Desktop"
-msgstr "En kraftfull, snabb och sexig fjärrkontroll för GNOME skrivbordet."
+msgstr "En kraftfull, snabb och sexig fjärrkontroll för GNOME-skrivbordet."
 
 #: src/common/appdata.py:88
 msgid ""
 "A program that combines satellite imagery and maps to put the world's "
 "geographic information at your fingertips."
 msgstr ""
+"Ett program som kombinerar satellitbilder och kartor för att sätta världens "
+"geografiska information i din hand."
 
 #: src/common/appdata.py:89
 msgid "Platform for running Google Gadgets on Linux"
@@ -1766,7 +1767,7 @@ msgstr "Lättviktig bildvisare"
 
 #: src/common/appdata.py:92
 msgid "A powerful screenshot tool"
-msgstr "Ett kraftfullt skärmdumps verktyg"
+msgstr "Ett kraftfullt skärmbildsverktyg"
 
 #: src/common/appdata.py:93
 msgid "Graphical frontend for recordmydesktop"
@@ -1774,21 +1775,23 @@ msgstr "Grafiskt gränssnitt för recordmydesktop"
 
 #: src/common/appdata.py:94
 msgid "A graphical CD image editor"
-msgstr "En grafisk CD-avbildshanterare"
+msgstr "En grafisk cd-avbildsredigerare"
 
 #: src/common/appdata.py:95
 msgid "Intelligent Input Bus for Linux / Unix OS"
-msgstr ""
+msgstr "Intelligent Input Bus för Linux / Unix OS"
 
 #: src/common/appdata.py:96
 msgid "It is a PinYin engine for IBus."
-msgstr ""
+msgstr "Det är en PinYin-motor för IBus."
 
 #: src/common/appdata.py:97
 msgid ""
 "IBus-Table is the IM Engine framework for table-based input methods, such as "
 "ZhengMa, WuBi, ErBi, ChangJie and so on."
 msgstr ""
+"IBus-Table är IM Engine-ramverket för tabellbaserade inmatningsmetoder, "
+"såsom ZhengMa, WuBi, ErBi, ChangJie och så vidare."
 
 #: src/common/appdata.py:98
 msgid "Create and edit Scalable Vector Graphics images"
@@ -1796,15 +1799,15 @@ msgstr ""
 
 #: src/common/appdata.py:99
 msgid "Non-linear editor for Digital Video data"
-msgstr "Icke-linjär digitalvideoredigerare"
+msgstr "Icke-linjär redigerare för digital video"
 
 #: src/common/appdata.py:100
 msgid "A music player for Last.fm personalized radio"
-msgstr "En musikspelare för Last.fm personlig radio"
+msgstr "En musikspelare för personlig Last.fm-radio"
 
 #: src/common/appdata.py:101
 msgid "GTK+ based simple text editor"
-msgstr "Enkel GTK+-baserad texteditor"
+msgstr "Enkel GTK+-baserad textredigerare"
 
 #: src/common/appdata.py:102
 msgid "Feed aggregator for GNOME"
@@ -1812,23 +1815,23 @@ msgstr "Nyhetsläsare för GNOME"
 
 #: src/common/appdata.py:103
 msgid "Mail notification in system tray"
-msgstr "Post meddelande i systemkorgen."
+msgstr "E-postnotifierare i aktivitetsfältet."
 
 #: src/common/appdata.py:104
 msgid "Adcal tool to diff and merge files"
-msgstr ""
+msgstr "Adcal-verktyg för diff och sammanslagning av filer"
 
 #: src/common/appdata.py:105
 msgid "A fast and simple GTK+ Image Viewer"
-msgstr "En snabb och enkel GTK+ bildvisare"
+msgstr "En snabb och enkel GTK+-bildvisare"
 
 #: src/common/appdata.py:106
 msgid "Webkit based lightweight web browser"
-msgstr "Webkit baserad lättvikts webläsare"
+msgstr "Webkit-baserad lättviktig webbläsare"
 
 #: src/common/appdata.py:107
 msgid "An IDE to Develop .NET applications."
-msgstr "En IDE för att utveckla .NET program."
+msgstr "En IDE för att utveckla .NET-program."
 
 #: src/common/appdata.py:108
 msgid "The Ultimate Movie Player For Linux"
@@ -1840,7 +1843,7 @@ msgstr "IDE för Java, C/C++, Ruby, UML, etc."
 
 #: src/common/appdata.py:110
 msgid "The Opera Web Browser"
-msgstr "Webläsaren Opera."
+msgstr "Webbläsaren Opera"
 
 #: src/common/appdata.py:111
 msgid ""
@@ -1849,10 +1852,14 @@ msgid ""
 "Novell GroupWise, Lotus Sametime, Bonjour, Zephyr, MySpaceIM, Gadu-Gadu, and "
 "QQ all at once."
 msgstr ""
+"Pidgin är en grafisk, modulär meddelandeklient baserad på libpurple som kan "
+"ansluta till AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, SIP/SIMPLE, Novell "
+"GroupWise, Lotus Sametime, Bonjour, Zephyr, MySpaceIM, Gadu-Gadu och QQ, "
+"alla på samma gång."
 
 #: src/common/appdata.py:112
 msgid "Run your Windows programs on Linux"
-msgstr "Kör dina Windowsprogram i Linux"
+msgstr "Kör dina Windows-program i Linux"
 
 #: src/common/appdata.py:113
 msgid "A framework for desktop widgets"
@@ -1860,7 +1867,7 @@ msgstr "Ett ramverk för skrivbordswidgetar"
 
 #: src/common/appdata.py:114
 msgid "Make audio/video calls using this VoIP Software"
-msgstr "Starta ljud/video-samtal genom att använda detta VoIP mjukvara"
+msgstr "Ring ljud-/videosamtal genom denna VoIP-programvara"
 
 #: src/common/appdata.py:115
 msgid "A great MPlayer front-end, written in QT4"
@@ -1879,6 +1886,7 @@ msgid ""
 "Swiftweasel is an optimized build of the Mozilla Firefox web browser for "
 "Linux"
 msgstr ""
+"Swiftweasel är en optimerad version av webbläsaren Mozilla Firefox för Linux"
 
 #: src/common/appdata.py:119
 msgid "Multiple GNOME terminals in one window"
@@ -1894,7 +1902,7 @@ msgstr "Ununtu Tweak gör det enklare att konfigurera Ubuntu"
 
 #: src/common/appdata.py:122
 msgid "Commonly used restricted packages"
-msgstr ""
+msgstr "Ofta använda proprietära paket"
 
 #: src/common/appdata.py:123 src/common/appdata.py:124
 msgid "A feature rich, high performance virtualization software"
@@ -1906,16 +1914,16 @@ msgstr "Spela upp, spela in eller sänd dina multimediaströmmar"
 
 #: src/common/appdata.py:126
 msgid "Run Virtual Machines using VMware"
-msgstr ""
+msgstr "Kör virtuella maskiner med VMWare"
 
 #: src/common/appdata.py:127
 msgid "A compatibility layer for running Windows programs"
-msgstr "Ett kompabillitetslager för att kunna köra Windowsprogram"
+msgstr "Ett kompabillitetslager för att kunna köra Windows-program"
 
 #: src/common/appdata.py:128
 msgid ""
 "XBMC is a free and open source software media player and entertainment hub"
-msgstr ""
+msgstr "XBMC är en fri mediaspelare och multimediahubb med öppen källkod"
 
 #: src/common/appdata.py:132
 msgid "Development Version of Mozilla Firefox 3.0/3.1, 4.0"
@@ -1927,7 +1935,7 @@ msgstr "Utvecklingsversion av Compiz Fusion"
 
 #: src/common/appdata.py:134
 msgid "Google's Linux Repository"
-msgstr "Googles Linuxförråd"
+msgstr "Googles Linux-förråd"
 
 #: src/common/appdata.py:135
 msgid "K Desktop Environment 4.1"
@@ -1935,7 +1943,7 @@ msgstr "K Desktop Environment 4.1"
 
 #: src/common/appdata.py:136
 msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
-msgstr ""
+msgstr "Lightweight X11 Desktop Environment: GPicView, PCManFM"
 
 #: src/common/appdata.py:137
 msgid ""
@@ -1944,8 +1952,8 @@ msgid ""
 "Ubuntu distribution for legal reasons (copyright, license, patent, etc)."
 msgstr ""
 "Multimedia, underhållning och avkoppling i Ubuntu\n"
-"Medinuntu är en paketförråd, som inte går att inkludera i "
-"Ubuntudistributionen på grund av rättsliga orsaker ( upphovsrätt, licens, "
+"Medibuntu är en paketförråd som inte går att inkludera i Ubuntu-"
+"distributionen på grund av juridiska anledningar ( upphovsrätt, licens, "
 "patent o.s.v.)."
 
 #: src/common/appdata.py:139
@@ -1954,10 +1962,9 @@ msgid ""
 "Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and "
 "other softwares."
 msgstr ""
-
-#: src/common/factory.py:93
-msgid "Disable 'Run Application' dialog (Alt+F2)"
-msgstr ""
+"Ubuntu-förråd för kinesiska användare.\n"
+"Inkluderar EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 och "
+"annan programvara."
 
 #: src/common/policykit/polkitbutton.py:78
 msgid "_Unlock"
@@ -1965,7 +1972,7 @@ msgstr "Lås _upp"
 
 #: src/common/widgets/widgets.py:260
 msgid "Please press the new key combination"
-msgstr "Var vänligt välj en ny tangentkombination"
+msgstr "Tryck en ny tangentkombination"
 
 #: src/common/widgets/widgets.py:309
 msgid "Disabled"
@@ -1973,23 +1980,23 @@ msgstr "Inaktiverad"
 
 #: src/common/widgets/treeviews.py:69
 msgid "Create folder"
-msgstr ""
+msgstr "Skapa mapp"
 
 #: src/common/widgets/treeviews.py:77
 msgid "Delete"
-msgstr ""
+msgstr "Ta bort"
 
 #: src/common/widgets/treeviews.py:99
 msgid "Input the dir name"
-msgstr ""
+msgstr "Mata in katalognamnet"
 
 #: src/common/widgets/treeviews.py:124
 msgid "Can't rename the root folder"
-msgstr ""
+msgstr "Kan inte byta namn på rotmappen"
 
 #: src/common/widgets/treeviews.py:141
 msgid "Can't delete the root folder"
-msgstr ""
+msgstr "Kan inte ta bort rotmappen"
 
 #: src/common/widgets/treeviews.py:156
 msgid ""
@@ -1997,16 +2004,17 @@ msgid ""
 "\n"
 "There're files in it!"
 msgstr ""
-"Kan ej döpa om!\n"
-"Innehåller filer!"
+"Kan inte byta namn!\n"
+"\n"
+"Det finns filer i den!"
 
 #: src/common/widgets/dialogs.py:67
 msgid "An unexpected error has occurred."
-msgstr ""
+msgstr "Ett oväntat fel har inträffat."
 
 #: src/common/widgets/dialogs.py:68
 msgid "Could not authenticate"
-msgstr ""
+msgstr "Kunde inte autentisera"
 
 #: src/common/widgets/dialogs.py:73
 msgid "You need to restart your computer."
@@ -2014,33 +2022,31 @@ msgstr "Du måste starta om din dator."
 
 #: src/common/widgets/dialogs.py:74
 msgid "Service hasn't initialized yet"
-msgstr ""
+msgstr "Tjänsten har inte initierats än"
 
 #: data/glade/gui.glade:7
 msgid "Edit Type"
-msgstr ""
+msgstr "Redigera typ"
 
 #: data/glade/gui.glade:100
 msgid "Add Application"
-msgstr ""
+msgstr "Lägg till program"
 
 #: data/glade/gui.glade:146
 msgid "Select an application to view its description."
-msgstr ""
+msgstr "Välj ett program för att visa dess beskrivning."
 
 #: data/glade/gui.glade:188
 msgid "_Use a custom command"
-msgstr ""
+msgstr "A_nvänd ett anpassat kommando"
 
 #: data/glade/preferences.glade:7
-#, fuzzy
 msgid "Ubuntu Tweak Preferences"
-msgstr "Ubuntu Tweaks hemsida"
+msgstr ""
 
 #: data/glade/preferences.glade:32
-#, fuzzy
 msgid "<b>User Interface</b>"
-msgstr "<b>Användarinformation</b>"
+msgstr ""
 
 #: data/glade/preferences.glade:103
 msgid "Left Menubar Font Color"
@@ -2063,9 +2069,8 @@ msgid "Left Menubar Width"
 msgstr ""
 
 #: data/glade/preferences.glade:205
-#, fuzzy
 msgid "<b>Features</b>"
-msgstr "<b>Menyeffekter</b>"
+msgstr ""
 
 #: data/glade/preferences.glade:225
 msgid "Default Launch Function"
@@ -2098,18 +2103,14 @@ msgid ""
 " to the opening website."
 msgstr ""
 
-#, fuzzy
-#~ msgid "Ubuntu Tweak"
-#~ msgstr "Ubuntu Tweaks hemsida"
+#~ msgid "Updated Successfully!"
+#~ msgstr "Uppdaterades!"
 
-#~ msgid "Disable \"User Switch\""
-#~ msgstr "Inaktivera \"Användarbyte\""
+#~ msgid "Updated Failed!"
+#~ msgstr "Uppdatering misslyckades"
 
-#~ msgid "Tweak your Linux computer to what you like."
-#~ msgstr "Konfigurera din Linux-dator så som du vill."
-
-#~ msgid "KDE IM client using Tencent QQ protocol"
-#~ msgstr "KDE IM som använder Tencent QQ protokoll"
+#~ msgid "Disable 'Run Application' dialog (Alt+F2)"
+#~ msgstr "Inaktivera \"Kör program\"-dialogrutan (Alt+F2)"
 
 #~ msgid "Pick Windows"
 #~ msgstr "Välj fönster"
@@ -2138,8 +2139,14 @@ msgstr ""
 #~ msgid "Wobbly Menu"
 #~ msgstr "Geléaktig meny"
 
+#~ msgid "<b>Menu Effects</b>"
+#~ msgstr "<b>Menyeffekter</b>"
+
 #~ msgid "<b>System information</b>"
 #~ msgstr "<b>Systeminformation</b>"
+
+#~ msgid "<b>User information</b>"
+#~ msgstr "<b>Användarinformation</b>"
 
 #~ msgid "Current User"
 #~ msgstr "Aktuell användare"
@@ -2191,6 +2198,9 @@ msgstr ""
 
 #~ msgid "Disable Save To Disk"
 #~ msgstr "Inaktivera Spara till disk"
+
+#~ msgid "Disable User Switching"
+#~ msgstr "Inaktivera användarväxling"
 
 #~ msgid "<b>System Security options</b>"
 #~ msgstr "<b>Alternativ för systemsäkerhet</b>"
@@ -2283,6 +2293,9 @@ msgstr ""
 #~ msgid "<b>Settings for Nautilus behavior</b>"
 #~ msgstr "<b>Inställningar för Nautilus-beteende</b>"
 
+#~ msgid "Default Thumbnail Icon Size"
+#~ msgstr "Standardstorlek på miniatyrbildsikon"
+
 #~ msgid "<b>CD Burner</b>"
 #~ msgstr "<b>Cd-brännare</b>"
 
@@ -2309,6 +2322,12 @@ msgstr ""
 
 #~ msgid "<b>CPU Policy</b>"
 #~ msgstr "<b>Processorpolicy</b>"
+
+#~ msgid "Choose a Splash image"
+#~ msgstr "Välj en startbild"
+
+#~ msgid "Automatically save changes to session"
+#~ msgstr "Spara automatiskt ändringar i session"
 
 #~ msgid "Show Logout prompt"
 #~ msgstr "Visa Logga ut"
@@ -2433,6 +2452,9 @@ msgstr ""
 #~ "Använd hemma katalogen som skrivbord (Logga ut för att ändringarna ska få "
 #~ "någon effekt)"
 
+#~ msgid "Show advanced Permissions on File Property pages"
+#~ msgstr "Visa avancerade behörigheter under filens egenskaper"
+
 #~ msgid "Show CPU frequency control option"
 #~ msgstr "Visa CPU frekvens kontroll alternativ"
 
@@ -2441,6 +2463,27 @@ msgstr ""
 
 #~ msgid "Set the shortcut of your commands"
 #~ msgstr "Skapa genväg för ditt kommando"
+
+#~ msgid ""
+#~ "You can do all kinds of tasks with scripts.\n"
+#~ "You can drag and drop from File Manager.\n"
+#~ "\"Scripts\" will be added to the Context Menu.\n"
+#~ msgstr ""
+#~ "Du kan göra alla typer av uppgifter med scripts.\n"
+#~ "Du kan dra och släppa från filhanteraren.\n"
+#~ "\"Scripts\" kommer att läggas till i den sammanhangsberoende menyn.\n"
+
+#~ msgid ""
+#~ "By configuring keyboard shortcuts, you have faster access to the \n"
+#~ "applications you need.\n"
+#~ "Input the command and set any desired key, it's easy to set a shortcut.\n"
+#~ "Use <b>Delete</b> or <b>BackSpace</b> to clean the key."
+#~ msgstr ""
+#~ "Genom att konfigurera tangentbordsgenvägar, kan du snabbare öppna den \n"
+#~ "applikationen du behöver.\n"
+#~ "Skriv in kommandot och välj tangentkombination, det är enkelt att skapa "
+#~ "en genväg.\n"
+#~ "Använd <b>Delete</b> eller <b>BackSpace</b> för att rensa kombination."
 
 #~ msgid ""
 #~ "You can freely manage your document templates.\n"

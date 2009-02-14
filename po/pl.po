@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2009-02-03 20:17+0800\n"
-"PO-Revision-Date: 2008-12-06 00:36+0000\n"
+"POT-Creation-Date: 2009-02-13 19:39+0800\n"
+"PO-Revision-Date: 2009-02-10 23:27+0000\n"
 "Last-Translator: pankamyk <pankamyk@o2.pl>\n"
 "Language-Team: Łukasz <lukaszsk@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-12-15 04:17+0000\n"
+"X-Launchpad-Export-Date: 2009-02-13 09:40+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: POLAND\n"
 "X-Poedit-Language: Polish\n"
@@ -66,15 +66,11 @@ msgid "Session Programs"
 msgstr "Sesje programów"
 
 #: src/autostart.py:324
-#, fuzzy
 msgid ""
 "Here you can manage what programs get started when you login.\n"
 "You can hide items from view by selecting and clicking \"Remove\"\n"
 "To permanently delete an item, right-click and press \"Delete\"."
 msgstr ""
-"Poniższa lista to programy i usługi włączane wraz ze startem systemu.\n"
-"Można wyłączyć start wybranego programu odznaczając go.\n"
-"Można dodać nowy program klikając \"Dodaj\" lub \"Usuń\", aby usunąć wpis."
 
 #: src/autostart.py:332
 msgid "Show comments"
@@ -82,7 +78,7 @@ msgstr "Komentarze"
 
 #: src/autostart.py:334
 msgid "Show all runnable programs"
-msgstr "Pokaż wszystkie uruchamiane programy"
+msgstr "Ukryte programy"
 
 #: src/autostart.py:396 src/autostart.py:443
 msgid "The name of the startup program cannot be empty"
@@ -123,7 +119,7 @@ msgstr "Odtwarzacze i edytory filmów"
 
 #: src/installer.py:56
 msgid "Text Tools"
-msgstr "Edycja tekstu"
+msgstr "Edytory tekstu"
 
 #: src/installer.py:57
 msgid "Instant Messengers"
@@ -162,27 +158,23 @@ msgid "Add/Remove Applications"
 msgstr "Dodaj/Usuń programy"
 
 #: src/installer.py:144
-#, fuzzy
 msgid ""
 "A simple but more effecient method for finding and installing popular "
 "packages than the default Add/Remove."
 msgstr ""
-"Poniżej znajduje się lista przydatnych, popularnych programów.\n"
-"Proszę zaznaczyć wybrany program i kliknąć \"Zastosuj\", aby go "
-"zainstalować.\n"
-"Reszta dostępnych programów znajduje się w systemowym \"Dodaj/Usuń\"."
 
 #: src/installer.py:192
 msgid "All Categories"
 msgstr "Wszystkie programy"
 
 #: src/installer.py:362
-msgid "Updated Successfully!"
-msgstr "Aktualizacja zakończona!"
+#, fuzzy
+msgid "Update Successful!"
+msgstr "Aktualizacja zakończyła się pomyślnie!"
 
-#: src/installer.py:364
-msgid "Updated Failed!"
-msgstr "Błąd aktualizacji!"
+#: src/installer.py:364 src/nautilus.py:224
+msgid "Update Failed!"
+msgstr "Aktualizacja nie powiodła się!"
 
 #: src/lockdown.py:36
 msgid "System Security options"
@@ -199,8 +191,8 @@ msgstr "Wyłączone blokowania ekranu"
 #: src/lockdown.py:44
 msgid "Disable printing"
 msgstr ""
-"Wyłączone drukowanie. <i>Opcja drukowania dla każdego dokumentu będzie "
-"niedostępna.</i>"
+"Wyłączone drukowanie (opcja drukowania dla każdego dokumentu nie będzie "
+"dostępna)."
 
 #: src/lockdown.py:47
 msgid "Disable print setup"
@@ -211,9 +203,8 @@ msgid "Disable save to disk"
 msgstr "Wyłączony zapis na dysk"
 
 #: src/lockdown.py:53
-#, fuzzy
 msgid "Disable \"Fast User Switching\""
-msgstr "Wyłącz przełączanie użytkowników"
+msgstr ""
 
 #: src/ScriptWorker.py:52
 #, python-format
@@ -244,7 +235,7 @@ msgstr "Proszę wybierz jako cel plik lub katalog"
 
 #: src/mainwindow.py:65
 msgid "Welcome to"
-msgstr "<b>Witaj w</b>"
+msgstr "Witaj w"
 
 #: src/mainwindow.py:71
 msgid "Tweak otherwise hidden settings."
@@ -252,39 +243,37 @@ msgstr ""
 
 #: src/mainwindow.py:72
 msgid "Clean up unneeded packages to free diskspace."
-msgstr "<b>Wyczyść</b> system z niepotrzebnych plików!"
+msgstr "Wyczyść system z niepotrzebnych plików!"
 
 #: src/mainwindow.py:73
-#, fuzzy
 msgid "Easily install up-to-date versions of many applications."
-msgstr "<b>Dodaj</b> łatwo i szybko potrzebne programy!"
+msgstr ""
 
 #: src/mainwindow.py:74
-#, fuzzy
 msgid ""
 "Configure file templates and shortcut scripts for easy access to common "
 "tasks."
-msgstr "<b>Utwórz</b> przydatne skrypty i skróty klawiatury!"
+msgstr ""
 
 #: src/mainwindow.py:75
 msgid "And many more useful features!"
-msgstr "<b>Dostosuj</b> opcje bezpieczeństwa, wyglądu oraz wydajności!"
+msgstr "Dostosuj opcje bezpieczeństwa, wyglądu oraz wydajności!"
 
 #: src/mainwindow.py:87
 msgid "<span size=\"xx-large\">Please wait a moment...</span>"
-msgstr "<b><i>Proszę czekać...</i></b>"
+msgstr "Proszę czekać..."
 
 #: src/mainwindow.py:100
-#, fuzzy
 msgid ""
 "<span size=\"x-large\">This feature isn't currently available in your "
 "distribution</span>"
-msgstr "<b>Opcja nie jest dostępna dla tego systemu!</b>"
+msgstr ""
+"<span size=\"x-large\">Funkcja aktualnie niedostępna dla twojej dystrybucji."
+"</span>"
 
 #: src/mainwindow.py:113
-#, fuzzy
 msgid "<span size=\"x-large\">This module is error while loading.</span>"
-msgstr "<b><i>Proszę czekać...</i></b>"
+msgstr ""
 
 #: src/mainwindow.py:223
 msgid "Welcome"
@@ -372,7 +361,7 @@ msgstr "System"
 
 #: src/mainwindow.py:244 src/filetype.py:473
 msgid "File Type Manager"
-msgstr ""
+msgstr "Menadżer typów plików"
 
 #: src/mainwindow.py:245
 msgid "Nautilus"
@@ -387,9 +376,8 @@ msgid "Security"
 msgstr "Bezpieczeństwo"
 
 #: src/mainwindow.py:329
-#, fuzzy
 msgid "Donate"
-msgstr "żaden"
+msgstr "Wsparcie finansowe"
 
 #: src/mainwindow.py:355
 msgid "Help the development of Ubuntu Tweak"
@@ -402,9 +390,8 @@ msgid ""
 msgstr ""
 
 #: src/mainwindow.py:356
-#, fuzzy
 msgid "Never Show This Again"
-msgstr "Nigdy nie wyświetlaj okna dialogowego"
+msgstr ""
 
 #: src/mainwindow.py:534
 msgid "Ubuntu Tweak Website"
@@ -456,6 +443,23 @@ msgstr ""
 "  TualatriX https://launchpad.net/~tualatrix\n"
 "  pankamyk https://launchpad.net/~pankamyk\n"
 "  tatar111 https://launchpad.net/~tatar111\n"
+"  wrobel7 https://launchpad.net/~wrobel7\n"
+"\n"
+"Launchpad Contributions:\n"
+"  Bartosz Kaszubowski https://launchpad.net/~simek\n"
+"  Blazej Kowalski https://launchpad.net/~panjinx\n"
+"  Krzysztof Tataradziński https://launchpad.net/~tatar111\n"
+"  LordYoghurt https://launchpad.net/~lordyoghurt\n"
+"  PhysX https://launchpad.net/~physx64\n"
+"  Piotr Dobrysiak https://launchpad.net/~piotr-dobrysiak\n"
+"  Przemysław Kulczycki https://launchpad.net/~azrael\n"
+"  Rafał Barański https://launchpad.net/~kazislav\n"
+"  Szczepek https://launchpad.net/~szczepek-ok-wp\n"
+"  TualatriX https://launchpad.net/~tualatrix\n"
+"  Wacław Jacek https://launchpad.net/~waclawjacek\n"
+"  Wiatrak https://launchpad.net/~wiatrak-mailinator\n"
+"  bartekw https://launchpad.net/~bartekw\n"
+"  pankamyk https://launchpad.net/~pankamyk\n"
 "  wrobel7 https://launchpad.net/~wrobel7"
 
 #: src/mainwindow.py:556
@@ -464,7 +468,7 @@ msgid ""
 "A newer version: %s is available online.\n"
 "Would you like to update?"
 msgstr ""
-"Nowsza wersja: %s jest dostępna.\n"
+"Nowsza wersja \"%s\" jest dostępna.\n"
 "Zaktualizować program?"
 
 #: src/mainwindow.py:557
@@ -507,11 +511,11 @@ msgid ""
 msgstr ""
 "Ubuntu Tweak ustawi domyślną lokalizacje wybranego katalogu.\n"
 "Pliki w nim zawarte należy przenieść używając \"Ctrl+X\" i \"Ctrl+V\".\n"
-"<b>Kontynuować?</b>"
+"Kontynuować?"
 
 #: src/userdir.py:201
 msgid "Directory"
-msgstr ""
+msgstr "Katalog"
 
 #: src/userdir.py:215
 msgid "Path"
@@ -530,15 +534,11 @@ msgid "Default Folder Locations"
 msgstr "Domyślne położenia katalogów"
 
 #: src/userdir.py:237
-#, fuzzy
 msgid ""
 "You can change the paths of the default folders here.\n"
 "Don't change the location of your desktop folder unless you know what you "
 "are doing."
 msgstr ""
-"Można zmienić domyślne położenia katalogów systemowych.\n"
-"Uwaga!\n"
-"Proszę zachować szczególną ostrożność przy zmianie katalogu \"Pulpit\"."
 
 #: src/userdir.py:258
 msgid "Update successfully!"
@@ -546,39 +546,39 @@ msgstr "Aktualizacja zakończona!"
 
 #: src/filetype.py:34
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 #: src/filetype.py:35
 msgid "Text"
-msgstr ""
+msgstr "Tekst"
 
 #: src/filetype.py:36
 msgid "Image"
-msgstr ""
+msgstr "Grafika"
 
 #: src/filetype.py:37
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 #: src/filetype.py:38
 msgid "Application"
-msgstr ""
+msgstr "Programy"
 
 #: src/filetype.py:39
 msgid "All"
-msgstr ""
+msgstr "Wszystkie"
 
 #: src/filetype.py:72
 msgid "Categories"
-msgstr ""
+msgstr "Kategorie"
 
 #: src/filetype.py:129
 msgid "File Type"
-msgstr ""
+msgstr "Typ pliku"
 
 #: src/filetype.py:143
 msgid "Associated Application"
-msgstr ""
+msgstr "Powiązany program"
 
 #: src/filetype.py:176 src/filetype.py:211 src/metacity.py:62
 #: src/metacity.py:67 src/metacity.py:72 src/metacity.py:77
@@ -589,30 +589,29 @@ msgstr "żaden"
 #: src/filetype.py:239
 #, python-format
 msgid "Open the files of type \"%s\" with:"
-msgstr ""
+msgstr "Pliki typu \"%s\" otwórz w:"
 
 #: src/filetype.py:268
-#, fuzzy
 msgid "Choose a application"
-msgstr "Należy wybrać obrazek startowy"
+msgstr "Wybierz pakiet"
 
 #: src/filetype.py:357
 #, python-format
 msgid "Select an application to open the type <b>%s</b>"
-msgstr ""
+msgstr "Proszę wybrać program do otwarcia plików typu \"%s\""
 
 #: src/filetype.py:382
 #, python-format
 msgid "Could not find %s"
-msgstr ""
+msgstr "Nie można znaleźć \"%s\""
 
 #: src/filetype.py:383
 msgid "Could not find application"
-msgstr ""
+msgstr "Nie można znaleźć programu!"
 
 #: src/filetype.py:474
 msgid "Here you can manage which application will open which filetypes."
-msgstr ""
+msgstr "Tu możesz wskazać, która aplikacja otwiera domyślnie dany typ pliku."
 
 #: src/filetype.py:500
 msgid "Only show filetypes with an associated application"
@@ -676,7 +675,7 @@ msgstr "Banshee (wersja stabilna)"
 
 #: src/thirdsoft.py:82
 msgid "Banshee (Unstable Version)"
-msgstr "Banshee (wersja testowa)"
+msgstr "Banshee (wersja testowa!)"
 
 #: src/thirdsoft.py:154
 msgid ""
@@ -712,7 +711,7 @@ msgstr "Opis"
 
 #: src/thirdsoft.py:358
 msgid "Third-Party Software Sources"
-msgstr ""
+msgstr "Repozytoria osób trzecich"
 
 #: src/thirdsoft.py:359
 msgid ""
@@ -724,7 +723,7 @@ msgid ""
 msgstr ""
 "Poniższe oprogramowanie od osób trzecich pozwala być na bieżąco z "
 "aktualizacjami programów.\n"
-"Należy zaznaczyć te repozytoria od których chce się dostawać aktualizacje.\n"
+"Należy zaznaczyć te repozytoria, od których chce się dostawać aktualizacje.\n"
 "Przykładowo jeśli chcemy zawsze posiadać aktualną wersję \"Firefox\" należy "
 "włączyć repozytorium o tej nazwie.\n"
 "Dodawanie repozytoriów zwiększa ilość dostępnego oprogramowania w \"Dodaj/"
@@ -778,7 +777,7 @@ msgstr "Ikona \"Kosz\""
 #: src/icons.py:104 src/common/widgets/widgets.py:68
 #: src/common/widgets/widgets.py:83
 msgid "Unset"
-msgstr "niezmienione"
+msgstr "niezmieniona"
 
 #: src/icons.py:110
 msgid "Desktop Icon settings"
@@ -794,11 +793,11 @@ msgstr "Ikona \"Serwery sieciowe\""
 
 #: src/icons.py:140
 msgid "Show mounted volumes on desktop"
-msgstr "Ikony zamontowanych dysków"
+msgstr "Ikony zamontowanych dysków i napędów"
 
 #: src/icons.py:145
 msgid "Use \"Home Folder\" as desktop(Logout for changes to take effect)"
-msgstr "Użyj folderu \"Dom\" jako pulpitu (musisz się wylogować)."
+msgstr "Katalog \"Dom\" jako pulpit (należy się wylogować)."
 
 #: src/metacity.py:37
 msgid "Window Decorate Effect"
@@ -830,7 +829,7 @@ msgstr "Zachowanie się paska tytułu"
 
 #: src/metacity.py:59
 msgid "Titlebar mouse wheel action"
-msgstr "Zachowanie się paska tytułu dla kółka myszy"
+msgstr "Kółko myszy"
 
 #: src/metacity.py:62 src/metacity.py:67 src/metacity.py:72 src/metacity.py:77
 msgid "Roll up"
@@ -838,7 +837,7 @@ msgstr "Zwijanie"
 
 #: src/metacity.py:64
 msgid "Titlebar double-click action"
-msgstr "Zachowanie się paska tytułu dla podwójnego kliknięcia"
+msgstr "Podwójne kliknięcie"
 
 #: src/metacity.py:67 src/metacity.py:72 src/metacity.py:77
 msgid "Maximize"
@@ -858,19 +857,19 @@ msgstr "Menu"
 
 #: src/metacity.py:69
 msgid "Titlebar middle-click action"
-msgstr "Zachowanie się paska tytułu dla kliknięcia kółkiem myszy"
+msgstr "Kliknięcie kółkiem myszy"
 
 #: src/metacity.py:74
 msgid "Titlebar right-click action"
-msgstr "Zachowanie się paska tytułu dla kliknięcia prawym przyciskiem myszy"
+msgstr "Kliknięcie prawym przyciskiem myszy"
 
 #: src/metacity.py:84
 msgid "Enable Metacity's Compositing feature"
-msgstr ""
+msgstr "Używanie wyglądu \"Metacity\" dla okien"
 
 #: src/metacity.py:87
 msgid "Compositing Manager"
-msgstr ""
+msgstr "Compositing Manager"
 
 #: src/metacity.py:94
 msgid ""
@@ -879,11 +878,8 @@ msgid ""
 msgstr ""
 
 #: src/session.py:39
-#, fuzzy
 msgid "Splash Screen (Click On Image)"
 msgstr ""
-"Obrazek startowy. Można wybrać nowy klikając na podgląd poniżej. Wymagany "
-"typ PNG zalecany rozmiar to 400px/300px."
 
 #: src/session.py:43
 msgid "Choose a splash image"
@@ -894,9 +890,8 @@ msgid "PNG image (*.png)"
 msgstr "Obraz PNG"
 
 #: src/session.py:131
-#, fuzzy
 msgid "Automatically save open applications when logging out"
-msgstr "Automatyczne zapisywanie zmian do sesji"
+msgstr "Automatycznie przywróć ostatnio otwarte programy podczas logowania."
 
 #: src/session.py:134
 msgid "Show logout prompt"
@@ -928,7 +923,7 @@ msgstr "Dokument ODT"
 
 #: src/templates.py:60
 msgid "Plain text document"
-msgstr "Dokument tekstowy TXT"
+msgstr "Dokument tekstowy"
 
 #: src/templates.py:61
 msgid "ODP Presentation"
@@ -980,7 +975,7 @@ msgid ""
 "Do you wish to continue?"
 msgstr ""
 "Zostaną usunięte wszystkie wyłączone szablony!\n"
-"<b>Wykonać?</b>"
+"Wykonać?"
 
 #: src/compiz.py:209
 msgid "Install Advanced Desktop Effects Settings Manager"
@@ -1051,17 +1046,12 @@ msgid "Shortcut Commands"
 msgstr "Kombinacje skrótów"
 
 #: src/shortcuts.py:47
-#, fuzzy
 msgid ""
 "By configuring keyboard shortcuts, you can access your favourite "
 "applications instantly.\n"
 "Enter the application's command and set the desired shortcut keys.\n"
 "Use the <b>Delete</b> or <b>BackSpace</b> keys to disable the shortcut."
 msgstr ""
-"Dodając skróty klawiszy uzyskujemy szybszy dostęp często używanych "
-"programów.\n"
-"Należy wpisać polecenie i ustawić kombinacje klawiszy.\n"
-"Klawisz <b>Delete</b> lub <b>Backspace</b> usuwają zaznaczony skrót."
 
 #: src/shortcuts.py:85
 #, python-format
@@ -1086,12 +1076,12 @@ msgstr "Kombinacja klawiszy"
 
 #: src/cleaner.py:52 src/nautilus.py:50
 msgid "Cleaning..."
-msgstr ""
+msgstr "Odkurzanie..."
 
 #: src/cleaner.py:56
-#, fuzzy, python-format
+#, python-format
 msgid "Cleaning...%s"
-msgstr "Pobrano... %d"
+msgstr "Oczyszczanie... %s"
 
 #: src/cleaner.py:107
 msgid "Package"
@@ -1111,13 +1101,12 @@ msgid ""
 "<b>%s</b>\n"
 "Take %s KB of disk space"
 msgstr ""
-"<b>%s</b>\n"
+"\"%s\"\n"
 "Zajmuje %s KB miejsca na dysku"
 
 #: src/cleaner.py:187
-#, fuzzy
 msgid "Package Config"
-msgstr "Odkurzacz systemu"
+msgstr ""
 
 #: src/cleaner.py:220
 #, python-format
@@ -1127,7 +1116,7 @@ msgstr "%d pakiet zaznaczone do usunięcia"
 #: src/cleaner.py:221
 #, python-format
 msgid "%d packages selected to remove"
-msgstr "%d pakietów zaznaczonych do usunięcia"
+msgstr "%d zaznaczonych pakietów  do usunięcia"
 
 #: src/cleaner.py:224
 #, python-format
@@ -1135,21 +1124,21 @@ msgid "%d KB of space will be freed"
 msgstr "%d KB miejsca zostanie uwolnione"
 
 #: src/cleaner.py:294
-msgid "Cleaned up Successfully!"
+#, fuzzy
+msgid "Clean up Successful!"
 msgstr "Odkurzono!"
 
 #: src/cleaner.py:297
-msgid "Cleaned up Failed!"
+#, fuzzy
+msgid "Clean up Failed!"
 msgstr "Nie odkurzono!"
 
 #: src/cleaner.py:303
-#, fuzzy
 msgid ""
 "Free up disk space by removing unneeded packages and cleaning the package "
 "download cache."
 msgstr ""
-"Odkurzając system ze zbędnych pakietów odzyskujesz porządek i miejsce na "
-"dysku twardym."
+"Zwolnij miejsce na dysku usuwając niepotrzebne paczki i pozostałości po nich."
 
 #: src/cleaner.py:331
 msgid "Clean Package"
@@ -1160,9 +1149,8 @@ msgid "Clean Cache"
 msgstr "Odkurz pamięć podręczną"
 
 #: src/cleaner.py:341
-#, fuzzy
 msgid "Clean Config"
-msgstr "Odkurz pamięć podręczną"
+msgstr ""
 
 #: src/cleaner.py:347
 msgid "Select All"
@@ -1174,15 +1162,15 @@ msgstr "Kopiuj do..."
 
 #: src/scripts.py:52
 msgid "Copy to Desktop"
-msgstr ""
+msgstr "Kopiuj do \"Pulpit\""
 
 #: src/scripts.py:53
 msgid "Copy to Download"
-msgstr ""
+msgstr "Kopiuj do \"Pobrane\""
 
 #: src/scripts.py:54
 msgid "Copy to Home"
-msgstr ""
+msgstr "Kopiuj do \"Dom\""
 
 #: src/scripts.py:55
 msgid "Move to ..."
@@ -1190,15 +1178,15 @@ msgstr "Przenieś do..."
 
 #: src/scripts.py:56
 msgid "Move to Desktop"
-msgstr ""
+msgstr "Przenieś do \"Pulpit\""
 
 #: src/scripts.py:57
 msgid "Move to Download"
-msgstr ""
+msgstr "Przenieś do \"Pobrane\""
 
 #: src/scripts.py:58
 msgid "Move to Home"
-msgstr ""
+msgstr "Dowiązanie do \"Dom\""
 
 #: src/scripts.py:59
 msgid "Link to ..."
@@ -1206,15 +1194,15 @@ msgstr "Dowiązanie do..."
 
 #: src/scripts.py:60
 msgid "Link to Desktop"
-msgstr ""
+msgstr "Dowiązanie do \"Pulpit\""
 
 #: src/scripts.py:61
 msgid "Link to Download"
-msgstr ""
+msgstr "Dowiązanie do \"Pobrane\""
 
 #: src/scripts.py:62
 msgid "Link to Home"
-msgstr ""
+msgstr "Dowiązanie do \"Dom\""
 
 #: src/scripts.py:63
 msgid "Open with gedit"
@@ -1234,45 +1222,38 @@ msgstr "Szukaj w tym katalogu"
 
 #: src/scripts.py:67
 msgid "Convert image to JPG"
-msgstr ""
+msgstr "Zmiana typu grafiki na JPG"
 
 #: src/scripts.py:68
 msgid "Convert image to PNG"
-msgstr ""
+msgstr "Zmiana typu grafiki na PNG"
 
 #: src/scripts.py:69
 msgid "Convert image to GIF"
-msgstr ""
+msgstr "Przekonwertuj obraz do formatu GIF"
 
 #: src/scripts.py:70
 msgid "Set image as wallpaper"
-msgstr ""
+msgstr "Ustaw grafikę jako tapetę"
 
 #: src/scripts.py:97
 msgid "Enabled Scripts"
-msgstr "Włącz skrypty"
+msgstr "Włączone skrypty"
 
 #: src/scripts.py:122
 msgid "Disabled Scripts"
-msgstr "Wyłącz skrypty"
+msgstr "Wyłączone skrypty"
 
 #: src/scripts.py:131
 msgid "Manage Scripts"
 msgstr "Zarządzanie skryptami"
 
 #: src/scripts.py:132
-#, fuzzy
 msgid ""
 "You can do all kinds of tasks with scripts.\n"
 "You can drag and drop from File Manager.\n"
 "'Scripts' will be added to the context menu."
 msgstr ""
-"Za pomocą skryptów można wykonywać różnego rodzaju zadania. Można je pobrać "
-"np z http://www.gnome-look.org/\n"
-"Należy przeciągnąć tutaj plik skryptu, który ma być dodany.\n"
-"Włączanie i wyłączanie szablonów polega na ich przeciąganiu z jednej ramki w "
-"drugą.\n"
-"Wszystkie dodane skrypty będą widoczne w menu kontekstowym w Nautilusie.\n"
 
 #: src/scripts.py:157
 msgid "Rebuild System Scripts"
@@ -1284,7 +1265,7 @@ msgid ""
 "Do you wish to continue?"
 msgstr ""
 "Usunięte zostaną wyłączone skrypty.\n"
-"<b>Kontynuować?</b>"
+"Kontynuować?"
 
 #: src/gnomesettings.py:44
 msgid "Panel and Menu"
@@ -1296,7 +1277,7 @@ msgstr "Ostrzeżenie przy usuwaniu panelu"
 
 #: src/gnomesettings.py:49
 msgid "Complete lockdown of all panels"
-msgstr "Blokada wszystkich paneli"
+msgstr "Blokada modyfikacji wszystkich paneli"
 
 #: src/gnomesettings.py:52
 msgid "Enable panel animations"
@@ -1328,7 +1309,7 @@ msgstr "Historia"
 
 #: src/gnomesettings.py:82
 msgid "Notification-daemon popup location"
-msgstr "Umiejscowienie wyskakujących okienek powiadomień"
+msgstr "Wyskakujące powiadomienia"
 
 #: src/gnomesettings.py:86
 msgid "Top Left"
@@ -1348,7 +1329,7 @@ msgstr "Prawy dolny narożnik"
 
 #: src/gnomesettings.py:95
 msgid "Click the button to change the menu logo"
-msgstr "Kliknij w przycisk, aby zmienić logo menu"
+msgstr "Kliknij w przycisk, aby zmienić logo menu --------->"
 
 #: src/gnomesettings.py:108
 msgid "Choose a new logo"
@@ -1367,9 +1348,8 @@ msgid "Do you want take effect immediately?"
 msgstr "Zastosować zmiany teraz?"
 
 #: src/nautilus.py:100
-#, fuzzy
 msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
-msgstr "Pokaż zaawansowane Uprawnienia we Właściwościach Pliku"
+msgstr "Pokaż zaawansowane uprawnienia w oknie \"Własciwości\" Nautilusa"
 
 #: src/nautilus.py:103
 msgid "File Browser"
@@ -1392,9 +1372,8 @@ msgstr ""
 "pojemność"
 
 #: src/nautilus.py:119
-#, fuzzy
 msgid "Default thumbnail icon size (Pixels)"
-msgstr "Rozmiar miniaturek plików"
+msgstr "Domyślna wielkość miniaturek ikon (w pikselach)"
 
 #: src/nautilus.py:133
 msgid "Maximum size of the thumbnail cache (Megabytes)"
@@ -1406,42 +1385,37 @@ msgstr ""
 
 #: src/nautilus.py:157
 msgid "Thumbnails Settings"
-msgstr ""
+msgstr "Ustawienia miniaturek"
 
 #: src/nautilus.py:165
 msgid "Nautilus with Open Terminal"
-msgstr "\"Otwórz w terminalu\" w menu kontekstowym w Nautilusie"
+msgstr "\"Otwórz w terminalu\" dla katalogów"
 
 #: src/nautilus.py:167
 msgid "Nautilus with Root Privileges"
-msgstr ""
-"\"Otwórz jako administrator\" w menu kontekstowym dla katalogów w Nautilusie"
+msgstr "\"Otwórz jako administrator\" dla katalogów i plików"
 
 #: src/nautilus.py:169
 msgid "Nautilus with Wallpaper"
-msgstr ""
-"\"Ustaw jako tapetę\" w menu kontekstowym dla plików graficznych w Nautilusie"
+msgstr "\"Ustaw jako tapetę\" dla plików graficznych"
 
 #: src/nautilus.py:171
 msgid "Nautilus Extensions"
-msgstr "Rozszerzenia Nautilusa"
+msgstr "Menu kontekstowe"
 
 #: src/nautilus.py:193
 #, python-format
 msgid "Clean up the thumbnails cache (Free %s disk size)"
-msgstr ""
+msgstr "Odkurzanie pamięci miniaturek plików (do odzyskania %sB na dysku)"
 
 #: src/nautilus.py:196
 msgid "The thumbnails cache will be cleaned, do you wish to continue?"
-msgstr ""
+msgstr "Pamięć podręczna miniaturek zostanie wyczyszczona. Kontynuować?"
 
 #: src/nautilus.py:203
-msgid "Clean up successfully!"
-msgstr ""
-
-#: src/nautilus.py:224
-msgid "Update Failed!"
-msgstr "<b>Aktualizacja nie powiodła się!</b>"
+#, fuzzy
+msgid "Clean up successful!"
+msgstr "Odkurzanie zakończone!"
 
 #: src/powermanager.py:37
 msgid "Advanced Power Management Settings"
@@ -1461,17 +1435,16 @@ msgstr ""
 "Sterowanie częstotliwością pracy procesora w  \"Zarządzanie Zasilaniem\""
 
 #: src/powermanager.py:48
-#, fuzzy
 msgid "Disable Network Manager when asleep"
-msgstr "Wyłączony \"Menadżer sieci\" w trybie \"Wstrzymaj\""
+msgstr ""
 
 #: src/powermanager.py:51
 msgid "Enable \"Lock screen\" when \"Blank Screen\" activates"
-msgstr ""
+msgstr "Aktywne \"Zablokuj ekran\" podczas"
 
 #: src/powermanager.py:53
 msgid "Display \"Power Manager\" panel item"
-msgstr "Pokaż panel \"Zarządzanie zasilaniem\""
+msgstr "Widoczny panel \"Zarządzanie zasilaniem\""
 
 #: src/powermanager.py:56
 msgid "Never display"
@@ -1503,7 +1476,7 @@ msgstr "Wydajność"
 
 #: src/powermanager.py:64
 msgid "CPU Policy"
-msgstr "Zasady wykorzystania mocy procesora"
+msgstr "Tryby pracy procesora"
 
 #: src/powermanager.py:65
 msgid "The Performance value when on AC power"
@@ -1511,25 +1484,23 @@ msgstr "Wydajność podczas zasilania z sieci"
 
 #: src/powermanager.py:71
 msgid "The Performance value when on battery power"
-msgstr "Wydajność podczas zasilania na baterii"
+msgstr "Wydajność podczas zasilania z akumulatora"
 
 #: src/powermanager.py:77
 msgid "The CPU frequency policy when on AC power"
-msgstr "Reguła częstotliwości procesora podczas zasilania z sieci"
+msgstr "Praca procesora podczas zasilania z sieci"
 
 #: src/powermanager.py:82
 msgid "The CPU frequency policy when on battery power"
-msgstr "Reguła częstotliwości procesora podczas zasilania na baterii"
+msgstr "Praca procesora podczas zasilania z akumulatora"
 
 #: src/preferences.py:69 src/preferences.py:77
-#, fuzzy
 msgid "Reset"
-msgstr "niezmienione"
+msgstr ""
 
 #: src/preferences.py:130
-#, fuzzy
 msgid "Enable Check Update"
-msgstr "Włączone szablony"
+msgstr "Menedżera aktualizacji włączony"
 
 #: src/sourceeditor.py:62 src/sourceeditor.py:67
 msgid "Choose the sources"
@@ -1581,7 +1552,7 @@ msgstr "Wyślij"
 
 #: src/sourceeditor.py:188
 msgid "Please check your network connection!"
-msgstr "Proszę sprawdzić połączenie z siecią!"
+msgstr "Proszę sprawdzić połączenie z siecią."
 
 #: src/sourceeditor.py:188
 msgid "Network Error"
@@ -1602,11 +1573,11 @@ msgid ""
 "Click \"Submit Sources\" if you want to share your sources with other "
 "people.\n"
 msgstr ""
-"Edytor repozytoriów pozwala na ich najlepsze dopasowanie do Twojego "
-"systemu.\n"
-"Kliknij \"Aktualizacja\" jeśli chcesz zmienić swoje repozytoria.\n"
-"Kliknij \"Wyślij\" jeśli chcesz podzielić się i tworzyć listę repozytoriów z "
-"innymi użytkownikami.\n"
+"Edytor repozytoriów pozwala na ich najlepsze dopasowanie dla systemu.\n"
+"\n"
+"Należy kliknąć \"Aktualizacja\", aby zmienić obecne repozytoria.\n"
+"Można tworzyć listę repozytoriów z innymi użytkownikami wysyłając swoją "
+"propozycję poprzez kliknięcie \"Wyślij\".\n"
 
 #: src/sourceeditor.py:355
 msgid "Update Sources"
@@ -1628,7 +1599,7 @@ msgid ""
 msgstr ""
 "Można wysłać swoje repozytoria pomagając tworzyć listę repozytoriów lub "
 "wrócić do oficjalnej listy.\n"
-"<b>Czy użyć oficjalnej i skasować bieżącą listę z repozytoriami?<b>"
+"Czy użyć oficjalnej i skasować bieżącą listę z repozytoriami?"
 
 #: src/sourceeditor.py:436
 msgid "No source data available"
@@ -1654,7 +1625,7 @@ msgstr ""
 
 #: src/sourceeditor.py:468
 msgid "Save failed!"
-msgstr "<b>Nie zapisano!</b>"
+msgstr "Nie zapisano!"
 
 #: src/sourceeditor.py:475
 msgid ""
@@ -1662,7 +1633,7 @@ msgid ""
 "Do you wish to continue?"
 msgstr ""
 "Bieżąca zawartość będzie usunięta po ponownym załadowaniu!\n"
-"<b>Kontynuować?<b>"
+"Kontynuować?"
 
 #: src/common/package.py:64
 msgid "(Not available)"
@@ -1933,7 +1904,7 @@ msgstr ""
 "Gadu-Gadu. Obsługuje także sieci: AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, "
 "SIP/SIMPLE, Novell GroupWise, Lotus Sametime, Bonjour, Zephyr, MySpaceIM, "
 "QQ. Dodatkowo oferuje listę wtyczek poszerzających jego możliwości w tym o "
-"obsługę innych sieci. http://pidgin.im/"
+"obsługę innych sieci. http://pidgin.im"
 
 #: src/common/appdata.py:112
 msgid "Run your Windows programs on Linux"
@@ -1979,7 +1950,7 @@ msgstr ""
 
 #: src/common/appdata.py:121
 msgid "Ubuntu Tweak makes it easier to configure Ubuntu"
-msgstr "<b>Ubuntu Tweak</b> to prosta konfiguracja Ubuntu"
+msgstr "Ubuntu Tweak to prosta konfiguracja Ubuntu"
 
 #: src/common/appdata.py:122
 msgid "Commonly used restricted packages"
@@ -2028,7 +1999,9 @@ msgstr "Repozytoria od Google"
 
 #: src/common/appdata.py:135
 msgid "K Desktop Environment 4.1"
-msgstr "KDE 4.1"
+msgstr ""
+"KDE 4.1 (K Desktop Environment) to jedno z dwóch, obok GNOME, "
+"najpopularniejszych środowisk graficznych. www.kde.org"
 
 #: src/common/appdata.py:136
 msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
@@ -2056,13 +2029,9 @@ msgstr ""
 "Zawierają EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 i "
 "inne."
 
-#: src/common/factory.py:93
-msgid "Disable 'Run Application' dialog (Alt+F2)"
-msgstr "Wyłącz skrót \"Uruchom program\" <b>Alt+F2</b>"
-
 #: src/common/policykit/polkitbutton.py:78
 msgid "_Unlock"
-msgstr "_Odblokuj"
+msgstr "_Odblokowanie"
 
 #: src/common/widgets/widgets.py:260
 msgid "Please press the new key combination"
@@ -2086,11 +2055,11 @@ msgstr "Nazwa katalogu"
 
 #: src/common/widgets/treeviews.py:124
 msgid "Can't rename the root folder"
-msgstr "Nie można zmienić nazwy katalogu root"
+msgstr "Nie można zmienić nazwy \"katalogu root\""
 
 #: src/common/widgets/treeviews.py:141
 msgid "Can't delete the root folder"
-msgstr "Nie można usunąć katalogu root"
+msgstr "Nie można usunąć \"katalogu root\""
 
 #: src/common/widgets/treeviews.py:156
 msgid ""
@@ -2119,11 +2088,11 @@ msgstr "Usługa nie została włączona"
 
 #: data/glade/gui.glade:7
 msgid "Edit Type"
-msgstr ""
+msgstr "Edycja typu"
 
 #: data/glade/gui.glade:100
 msgid "Add Application"
-msgstr ""
+msgstr "Dodaj program"
 
 #: data/glade/gui.glade:146
 msgid "Select an application to view its description."
@@ -2131,16 +2100,15 @@ msgstr ""
 
 #: data/glade/gui.glade:188
 msgid "_Use a custom command"
-msgstr ""
+msgstr "_Własne polecenie"
 
 #: data/glade/preferences.glade:7
-#, fuzzy
 msgid "Ubuntu Tweak Preferences"
-msgstr "Strona domowa Ubuntu Tweak"
+msgstr "Ustawienia programu Ubuntu Tweak"
 
 #: data/glade/preferences.glade:32
 msgid "<b>User Interface</b>"
-msgstr ""
+msgstr "<b>Interfejs użytkownika</b>"
 
 #: data/glade/preferences.glade:103
 msgid "Left Menubar Font Color"
@@ -2197,33 +2165,14 @@ msgid ""
 " to the opening website."
 msgstr ""
 
-#, fuzzy
-#~ msgid "Ubuntu Tweak"
-#~ msgstr "Strona domowa Ubuntu Tweak"
+#~ msgid "Updated Successfully!"
+#~ msgstr "Aktualizacja zakończona!"
 
-#~ msgid "Disable \"User Switch\""
-#~ msgstr "Wyłączone \"Przełącz użytkownika\""
+#~ msgid "Updated Failed!"
+#~ msgstr "Błąd aktualizacji!"
 
-#~ msgid "Tweak your Linux computer to what you like."
-#~ msgstr "<b>Zmieniaj</b> swój system tak jak chcesz!"
-
-#~ msgid ""
-#~ "You can freely manage your document templates.\n"
-#~ "You can drag and drop from File Manager.\n"
-#~ "\"Create Document\" will be added to the context menu.\n"
-#~ msgstr ""
-#~ "Można w prosty sposób zarządzać szablonami dokumentów.\n"
-#~ "Należy przeciągnąć tutaj typ pliku, który ma być używany jako szablon.\n"
-#~ "Włączanie i wyłączanie szablonów polega na ich przeciąganiu z jednej "
-#~ "ramki w drugą.\n"
-#~ "Wszystkie dodane szablony będą widoczne w menu kontekstowym w "
-#~ "Nautilusie.\n"
-
-#~ msgid "Show advanced permissions on Permissions tab of File Property"
-#~ msgstr "Dodatkowe uprawnienia na karcie \"Właściwości pliku\""
-
-#~ msgid "KDE IM client using Tencent QQ protocol"
-#~ msgstr "Klient KDE IM używający protokołu Tencent QQ"
+#~ msgid "Disable 'Run Application' dialog (Alt+F2)"
+#~ msgstr "Niedostępny skrót \"Uruchom program\" (Alt+F2)"
 
 #~ msgid "Pick Windows"
 #~ msgstr "Wybór okienek"
@@ -2293,6 +2242,9 @@ msgstr ""
 
 #~ msgid "Disable Print Setup"
 #~ msgstr "Wyłącz ustawienia drukowania"
+
+#~ msgid "Disable User Switching"
+#~ msgstr "Wyłącz przełączanie użytkowników"
 
 #~ msgid ""
 #~ "<span size=\"xx-large\">Welcome to <b>Ubuntu Tweak!</b></span>\n"
@@ -2399,6 +2351,9 @@ msgstr ""
 
 #~ msgid "Choose a Splash image"
 #~ msgstr "Wybór obrazka wyświetlanego podczas ładowania"
+
+#~ msgid "Automatically save changes to session"
+#~ msgstr "Automatyczne zapisywanie zmian do sesji"
 
 #~ msgid "Show Logout prompt"
 #~ msgstr "Pokazuj potwierdzenie wylogowywania"
@@ -2515,6 +2470,9 @@ msgstr ""
 #~ msgstr ""
 #~ "Używaj Folderu Domowego jako pulpitu (wyloguj, aby wprowadzić zmiany)"
 
+#~ msgid "Show advanced Permissions on File Property pages"
+#~ msgstr "Pokaż zaawansowane Uprawnienia we Właściwościach Pliku"
+
 #~ msgid "Show CPU frequency control option"
 #~ msgstr "Pokaż ustawienia kontroli prędkości procesora"
 
@@ -2597,11 +2555,139 @@ msgstr ""
 #~ msgid "Instant Messenger"
 #~ msgstr "Komunikator internetowy"
 
+#~ msgid "KDE IM client using Tencent QQ protocol"
+#~ msgstr "Klient KDE IM używający protokołu Tencent QQ"
+
 #~ msgid "Click the large button to change Splash screen"
 #~ msgstr "Kliknij duży przycisk, aby zmienić Splash screen"
+
+#~ msgid "Easily install various kinds of applications."
+#~ msgstr "Dodaj łatwo i szybko potrzebne programy!"
+
+#~ msgid ""
+#~ "You can do all kinds of tasks with scripts.\n"
+#~ "You can drag and drop from File Manager.\n"
+#~ "\"Scripts\" will be added to the context menu.\n"
+#~ msgstr ""
+#~ "Za pomocą skryptów można wykonywać różnego rodzaju zadania. Można je "
+#~ "pobrać np z http://www.gnome-look.org/\n"
+#~ "Należy przeciągnąć tutaj plik skryptu, który ma być dodany.\n"
+#~ "Włączanie i wyłączanie szablonów polega na ich przeciąganiu z jednej "
+#~ "ramki w drugą.\n"
+#~ "Wszystkie dodane skrypty będą widoczne w menu kontekstowym w Nautilusie.\n"
+
+#~ msgid "Show advanced permissions on Permissions tab of File Property"
+#~ msgstr "Dodatkowe uprawnienia na karcie \"Właściwości pliku\""
+
+#~ msgid "Default thumbnail icon Size"
+#~ msgstr "Rozmiar miniaturek plików"
+
+#~ msgid "Configure templates and scripts to improve your computing."
+#~ msgstr "Utwórz przydatne skrypty i skróty klawiatury!"
+
+#~ msgid ""
+#~ "<span size=\"x-large\">This feature isn't currently available in your "
+#~ "distrobution</span>"
+#~ msgstr "Opcja nie jest dostępna dla tego systemu!"
+
+#~ msgid ""
+#~ "A simple but more effective for finding and installing popular packages "
+#~ "than the default Add/Remove."
+#~ msgstr ""
+#~ "Poniżej znajduje się lista przydatnych, popularnych programów.\n"
+#~ "Proszę zaznaczyć wybrany program i kliknąć \"Zastosuj\", aby go "
+#~ "zainstalować.\n"
+#~ "Reszta dostępnych programów znajduje się w repozytoriach \"Dodaj/Usuń\"."
+
+#~ msgid "Disable Network Manager when on sleep"
+#~ msgstr "Wyłączony \"Menadżer sieci\" w trybie \"Wstrzymaj\""
+
+#~ msgid ""
+#~ "Free up disk space by clearing unneeded packages and the package cache."
+#~ msgstr ""
+#~ "Odkurzając system ze zbędnych pakietów odzyskujesz porządek i miejsce na "
+#~ "dysku twardym."
+
+#~ msgid ""
+#~ "By configuring keyboard shortcuts, you have faster access to the "
+#~ "applications you need.\n"
+#~ "Input the command and set any desired key, it's easy to set a shortcut.\n"
+#~ "Use the <b>Delete</b> or <b>BackSpace</b> to clean the shortcut."
+#~ msgstr ""
+#~ "Dodając skróty klawiszy uzyskujemy szybszy dostęp często używanych "
+#~ "programów.\n"
+#~ "Należy wpisać polecenie i ustawić kombinacje klawiszy.\n"
+#~ "Klawisz \"Delete\" lub \"Backspace\" usuwają zaznaczony skrót."
 
 #~ msgid "Direcotry"
 #~ msgstr "Katalogi"
 
+#~ msgid ""
+#~ "You can change the default document folders here.\n"
+#~ "But don't change the Desktop folder under normal use."
+#~ msgstr ""
+#~ "Można zmienić domyślne położenia katalogów systemowych.\n"
+#~ "Uwaga!\n"
+#~ "Proszę zachować szczególną ostrożność przy zmianie katalogu \"Pulpit\"."
+
+#~ msgid ""
+#~ "You can freely manage your document templates.\n"
+#~ "You can drag and drop from File Manager.\n"
+#~ "\"Create Document\" will be added to the context menu.\n"
+#~ msgstr ""
+#~ "Można w prosty sposób zarządzać szablonami dokumentów.\n"
+#~ "Należy przeciągnąć tutaj typ pliku, który ma być używany jako szablon.\n"
+#~ "Włączanie i wyłączanie szablonów polega na ich przeciąganiu z jednej "
+#~ "ramki w drugą.\n"
+#~ "Wszystkie dodane szablony będą widoczne w menu kontekstowym w "
+#~ "Nautilusie.\n"
+
+#~ msgid "Splash Screen (Click Below Image)"
+#~ msgstr ""
+#~ "Obrazek startowy. Można wybrać nowy klikając na podgląd poniżej. Wymagany "
+#~ "typ PNG, zalecany rozmiar to 400px/300px."
+
+#~ msgid "Disable \"User Switch\""
+#~ msgstr "Wyłączone \"Przełącz użytkownika\""
+
+#~ msgid "Tweak your Linux computer to what you like."
+#~ msgstr "Zmieniaj swój system tak jak chcesz!"
+
 #~ msgid "Ubuntu Chinese Repository"
 #~ msgstr "Repozytoria dla użytkowników z Chin"
+
+#~ msgid ""
+#~ "Here you can manage what programs get started upon login.\n"
+#~ "You can hide items from view by selecting and clicking \"Remove\"\n"
+#~ "To permanently delete it, right-click and press \"Delete\"."
+#~ msgstr ""
+#~ "Poniższa lista to programy i usługi włączane wraz ze startem systemu.\n"
+#~ "Można wyłączyć start wybranego programu odznaczając go.\n"
+#~ "Można dodać nowy program klikając \"Dodaj\" lub \"Usuń\", aby usunąć wpis."
+
+#~ msgid "Here you can manage all of the registered types of your system."
+#~ msgstr "Można przydzielić program do wybranego typu pliku z listy poniżej."
+
+#~ msgid "Only show associated type"
+#~ msgstr "Tylko powiązane typy plików"
+
+#~ msgid ""
+#~ "You can do all kinds of tasks with scripts.\n"
+#~ "You can drag and drop from File Manager.\n"
+#~ "'Scripts' will be added to the context menu.\n"
+#~ msgstr ""
+#~ "Skrypty dodają nowe funkcje  sprawiając, że wykonywanie różnych zadań "
+#~ "staje się szybkie i proste\n"
+#~ "Można je pobrać z np www.gnome-look.org  --> Nautilus Scripts\n"
+#~ "Po zapisaniu ich na dysku należy przeciągnąć każdy nad poniższe okno "
+#~ "\"Włączone skrypty\". Skrypty będą dostępne w menu kontekstowym dla "
+#~ "katalogów i plików.\n"
+
+#~ msgid "Default thumbnail icon size (Pixel)"
+#~ msgstr "Domyślny rozmiar miniaturek plików w pikselach"
+
+#~ msgid "Maximum size of the thumbnail cache (Megabyte)"
+#~ msgstr "Maksymalny rozmiar pamięci dla miniaturek plików w MB"
+
+#~ msgid "Maximum age for the thumbnail in the cache (Day)"
+#~ msgstr "Maksymalna ilość dni przechowywania miniaturek plików w pamięci"

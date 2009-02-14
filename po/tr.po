@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2009-02-03 20:17+0800\n"
-"PO-Revision-Date: 2008-11-17 18:29+0000\n"
-"Last-Translator: Harun Hurma <Unknown>\n"
+"POT-Creation-Date: 2009-02-13 19:39+0800\n"
+"PO-Revision-Date: 2009-02-11 21:05+0000\n"
+"Last-Translator: mozgurbayhan <Unknown>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-12-15 04:18+0000\n"
+"X-Launchpad-Export-Date: 2009-02-13 09:40+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/autostart.py:45
@@ -66,17 +66,11 @@ msgid "Session Programs"
 msgstr "Oturum Programları"
 
 #: src/autostart.py:324
-#, fuzzy
 msgid ""
 "Here you can manage what programs get started when you login.\n"
 "You can hide items from view by selecting and clicking \"Remove\"\n"
 "To permanently delete an item, right-click and press \"Delete\"."
 msgstr ""
-"Sistem açıldığında otomatik başlayacak programları buradan "
-"yönetebilirsiniz.\n"
-"Açılışta çalışmasını istemediğiniz programı seçip \"Kaldır\" tuşuna basarak "
-"açılmasını engelleyebilsiniz\n"
-"Onu kalıcı olarak silmek için sağ tuşla tıklayıp \"Sil\"e basın."
 
 #: src/autostart.py:332
 msgid "Show comments"
@@ -164,25 +158,23 @@ msgid "Add/Remove Applications"
 msgstr "Program Ekle/Kaldır"
 
 #: src/installer.py:144
-#, fuzzy
 msgid ""
 "A simple but more effecient method for finding and installing popular "
 "packages than the default Add/Remove."
 msgstr ""
-"Program Ekle/Kaldır'dan basit ama etkili popüler paketleri bulmak ve kurmak "
-"için"
 
 #: src/installer.py:192
 msgid "All Categories"
 msgstr "Tüm Kategoriler"
 
 #: src/installer.py:362
-msgid "Updated Successfully!"
-msgstr "Başarıyla güncelleştirildi"
+#, fuzzy
+msgid "Update Successful!"
+msgstr "Güncelleştirme Başarıyla Tamamlandı"
 
-#: src/installer.py:364
-msgid "Updated Failed!"
-msgstr "Güncelleştirme başarısız oldu!"
+#: src/installer.py:364 src/nautilus.py:224
+msgid "Update Failed!"
+msgstr "Güncelleştirme Başarısız!"
 
 #: src/lockdown.py:36
 msgid "System Security options"
@@ -209,9 +201,8 @@ msgid "Disable save to disk"
 msgstr "Kaydetmeyi devre dışı bırak"
 
 #: src/lockdown.py:53
-#, fuzzy
 msgid "Disable \"Fast User Switching\""
-msgstr "Kullanıcı değişimini etkisizleştir"
+msgstr "'Hızlı Kullanıcı Değştirme'yi Kapat"
 
 #: src/ScriptWorker.py:52
 #, python-format
@@ -253,16 +244,14 @@ msgid "Clean up unneeded packages to free diskspace."
 msgstr "Diskte yer açmak için gereksiz paketleri silin"
 
 #: src/mainwindow.py:73
-#, fuzzy
 msgid "Easily install up-to-date versions of many applications."
-msgstr "Kolaylıkla birçok uygulama yükleyin."
+msgstr ""
 
 #: src/mainwindow.py:74
-#, fuzzy
 msgid ""
 "Configure file templates and shortcut scripts for easy access to common "
 "tasks."
-msgstr "Verimliliğinizi artırmak için şablon ve betikleri düzenleyin"
+msgstr ""
 
 #: src/mainwindow.py:75
 msgid "And many more useful features!"
@@ -273,18 +262,14 @@ msgid "<span size=\"xx-large\">Please wait a moment...</span>"
 msgstr "<span size=\"xx-large\">Lütfen bekleyin ...</span>"
 
 #: src/mainwindow.py:100
-#, fuzzy
 msgid ""
 "<span size=\"x-large\">This feature isn't currently available in your "
 "distribution</span>"
 msgstr ""
-"<span size=\"x-large\">Bu özellik  kullandığınız dağıtım için uygun "
-"değildir</span>"
 
 #: src/mainwindow.py:113
-#, fuzzy
 msgid "<span size=\"x-large\">This module is error while loading.</span>"
-msgstr "<span size=\"xx-large\">Lütfen bekleyin ...</span>"
+msgstr ""
 
 #: src/mainwindow.py:223
 msgid "Welcome"
@@ -372,7 +357,7 @@ msgstr "Sistem"
 
 #: src/mainwindow.py:244 src/filetype.py:473
 msgid "File Type Manager"
-msgstr ""
+msgstr "Dosya Tipi Yöneticisi"
 
 #: src/mainwindow.py:245
 msgid "Nautilus"
@@ -387,13 +372,12 @@ msgid "Security"
 msgstr "Güvenlik"
 
 #: src/mainwindow.py:329
-#, fuzzy
 msgid "Donate"
-msgstr "Hiçbiri"
+msgstr "Bağış"
 
 #: src/mainwindow.py:355
 msgid "Help the development of Ubuntu Tweak"
-msgstr ""
+msgstr "Ubuntu Tweak'ın geliştirilmesine yardım et"
 
 #: src/mainwindow.py:355
 msgid ""
@@ -402,9 +386,8 @@ msgid ""
 msgstr ""
 
 #: src/mainwindow.py:356
-#, fuzzy
 msgid "Never Show This Again"
-msgstr "Bu uyarıyı bir daha gösterme"
+msgstr ""
 
 #: src/mainwindow.py:534
 msgid "Ubuntu Tweak Website"
@@ -426,11 +409,14 @@ msgstr ""
 "  Ufuk Tekir https://launchpad.net/~living-corpse\n"
 "\n"
 "Launchpad Contributions:\n"
+"  Eylül Cavaç https://launchpad.net/~eylulcavac\n"
 "  Harun Hurma https://launchpad.net/~hhurma\n"
 "  Mert Bozkurt https://launchpad.net/~pasaboku\n"
 "  Selim Suerkan https://launchpad.net/~mokoko\n"
 "  Ufuk Tekir https://launchpad.net/~living-corpse\n"
-"  Yalçın AÇIKYILDIZ https://launchpad.net/~yalcin"
+"  Volkan Esgel https://launchpad.net/~vesgel\n"
+"  Yalçın AÇIKYILDIZ https://launchpad.net/~yalcin\n"
+"  mozgurbayhan https://launchpad.net/~mozgurbayhan"
 
 #: src/mainwindow.py:556
 #, python-format
@@ -485,7 +471,7 @@ msgstr ""
 
 #: src/userdir.py:201
 msgid "Directory"
-msgstr ""
+msgstr "Dizin"
 
 #: src/userdir.py:215
 msgid "Path"
@@ -504,14 +490,11 @@ msgid "Default Folder Locations"
 msgstr "Varsayılan Dizin Yerleri"
 
 #: src/userdir.py:237
-#, fuzzy
 msgid ""
 "You can change the paths of the default folders here.\n"
 "Don't change the location of your desktop folder unless you know what you "
 "are doing."
 msgstr ""
-"Varsayılan belge dizinlerini değiştirebilirsiniz.\n"
-"Fakat normal kullanımda Masaüstü dizini değişmez."
 
 #: src/userdir.py:258
 msgid "Update successfully!"
@@ -519,39 +502,39 @@ msgstr "Güncelleştirme Başarılı!"
 
 #: src/filetype.py:34
 msgid "Audio"
-msgstr ""
+msgstr "Ses"
 
 #: src/filetype.py:35
 msgid "Text"
-msgstr ""
+msgstr "Metin"
 
 #: src/filetype.py:36
 msgid "Image"
-msgstr ""
+msgstr "Resim"
 
 #: src/filetype.py:37
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 #: src/filetype.py:38
 msgid "Application"
-msgstr ""
+msgstr "Uygulama"
 
 #: src/filetype.py:39
 msgid "All"
-msgstr ""
+msgstr "Tümü"
 
 #: src/filetype.py:72
 msgid "Categories"
-msgstr ""
+msgstr "Kategoriler"
 
 #: src/filetype.py:129
 msgid "File Type"
-msgstr ""
+msgstr "Dosya Tipi"
 
 #: src/filetype.py:143
 msgid "Associated Application"
-msgstr ""
+msgstr "İlgili Uygulama"
 
 #: src/filetype.py:176 src/filetype.py:211 src/metacity.py:62
 #: src/metacity.py:67 src/metacity.py:72 src/metacity.py:77
@@ -565,9 +548,8 @@ msgid "Open the files of type \"%s\" with:"
 msgstr ""
 
 #: src/filetype.py:268
-#, fuzzy
 msgid "Choose a application"
-msgstr "Bir karşılama resmi seçin"
+msgstr "Bir uygulama seç"
 
 #: src/filetype.py:357
 #, python-format
@@ -577,11 +559,11 @@ msgstr ""
 #: src/filetype.py:382
 #, python-format
 msgid "Could not find %s"
-msgstr ""
+msgstr "%s Bulunamadı"
 
 #: src/filetype.py:383
 msgid "Could not find application"
-msgstr ""
+msgstr "Uygulama bulunamadı"
 
 #: src/filetype.py:474
 msgid "Here you can manage which application will open which filetypes."
@@ -685,7 +667,7 @@ msgstr "Açıklaması buradadır"
 
 #: src/thirdsoft.py:358
 msgid "Third-Party Software Sources"
-msgstr ""
+msgstr "Third-Party Yazılım Kaynakları"
 
 #: src/thirdsoft.py:359
 msgid ""
@@ -841,11 +823,11 @@ msgstr "Başlık çubuğu sağ tuş eylemi"
 
 #: src/metacity.py:84
 msgid "Enable Metacity's Compositing feature"
-msgstr ""
+msgstr "Metacity'nin Compositing özelliğini aç"
 
 #: src/metacity.py:87
 msgid "Compositing Manager"
-msgstr ""
+msgstr "Kompozisyon Yöneticisi"
 
 #: src/metacity.py:94
 msgid ""
@@ -854,9 +836,8 @@ msgid ""
 msgstr ""
 
 #: src/session.py:39
-#, fuzzy
 msgid "Splash Screen (Click On Image)"
-msgstr "Açılış Ekranı (Alttaki Resime Tıklayın)"
+msgstr ""
 
 #: src/session.py:43
 msgid "Choose a splash image"
@@ -867,9 +848,8 @@ msgid "PNG image (*.png)"
 msgstr "PNG resmi (*.png)"
 
 #: src/session.py:131
-#, fuzzy
 msgid "Automatically save open applications when logging out"
-msgstr "Değişiklikleri otomatik olarak oturuma kaydet"
+msgstr "Oturumu kapatırken açık olan uygulamaları otomatik kaydet"
 
 #: src/session.py:134
 msgid "Show logout prompt"
@@ -1024,17 +1004,12 @@ msgid "Shortcut Commands"
 msgstr "Kısayol komutları"
 
 #: src/shortcuts.py:47
-#, fuzzy
 msgid ""
 "By configuring keyboard shortcuts, you can access your favourite "
 "applications instantly.\n"
 "Enter the application's command and set the desired shortcut keys.\n"
 "Use the <b>Delete</b> or <b>BackSpace</b> keys to disable the shortcut."
 msgstr ""
-"Klavye kısayollarını düzenleyerek, iacınız olan uygulamara daha hızlı "
-"erişebilirsiniz.\n"
-"Komut girin ve istenilen tuşu ayarlayın, Kısayol ayarlamak kadar kolay.\n"
-"Kısayolu temizlemek için <b>Delete</b> or <b>BackSpace</b> kullanın."
 
 #: src/shortcuts.py:85
 #, python-format
@@ -1059,12 +1034,12 @@ msgstr "Tuş"
 
 #: src/cleaner.py:52 src/nautilus.py:50
 msgid "Cleaning..."
-msgstr ""
+msgstr "Temizleniyor..."
 
 #: src/cleaner.py:56
-#, fuzzy, python-format
+#, python-format
 msgid "Cleaning...%s"
-msgstr "İndiriliyor...%d"
+msgstr "Temizleniyor...%s"
 
 #: src/cleaner.py:107
 msgid "Package"
@@ -1088,9 +1063,8 @@ msgstr ""
 "Disk alanının %s KB ını kullanır"
 
 #: src/cleaner.py:187
-#, fuzzy
 msgid "Package Config"
-msgstr "Paket temizleyicisi"
+msgstr "Paket Yapılandırması"
 
 #: src/cleaner.py:220
 #, python-format
@@ -1108,21 +1082,20 @@ msgid "%d KB of space will be freed"
 msgstr "%d KB disk alanı boşaltılacak"
 
 #: src/cleaner.py:294
-msgid "Cleaned up Successfully!"
+#, fuzzy
+msgid "Clean up Successful!"
 msgstr "Başarıyla temizlendi!"
 
 #: src/cleaner.py:297
-msgid "Cleaned up Failed!"
+#, fuzzy
+msgid "Clean up Failed!"
 msgstr "Temizlenme başarısız!"
 
 #: src/cleaner.py:303
-#, fuzzy
 msgid ""
 "Free up disk space by removing unneeded packages and cleaning the package "
 "download cache."
 msgstr ""
-"İhtiyaç duyulmayan paketleri ve paket ön belleğini temizleyerek disk alanı "
-"açmak için"
 
 #: src/cleaner.py:331
 msgid "Clean Package"
@@ -1133,9 +1106,8 @@ msgid "Clean Cache"
 msgstr "Önbelleği Temizle"
 
 #: src/cleaner.py:341
-#, fuzzy
 msgid "Clean Config"
-msgstr "Önbelleği Temizle"
+msgstr ""
 
 #: src/cleaner.py:347
 msgid "Select All"
@@ -1179,7 +1151,7 @@ msgstr "Buraya bağla ..."
 
 #: src/scripts.py:60
 msgid "Link to Desktop"
-msgstr ""
+msgstr "Masaüstüne kısayol oluştur"
 
 #: src/scripts.py:61
 msgid "Link to Download"
@@ -1187,7 +1159,7 @@ msgstr ""
 
 #: src/scripts.py:62
 msgid "Link to Home"
-msgstr ""
+msgstr "Ev dizinine kısayol oluştur"
 
 #: src/scripts.py:63
 msgid "Open with gedit"
@@ -1234,15 +1206,11 @@ msgid "Manage Scripts"
 msgstr "Betikleri yönet"
 
 #: src/scripts.py:132
-#, fuzzy
 msgid ""
 "You can do all kinds of tasks with scripts.\n"
 "You can drag and drop from File Manager.\n"
 "'Scripts' will be added to the context menu."
 msgstr ""
-"Betiklerle her tür görevleri yapabilirsiniz.\n"
-"Dosya Yöneticisinden sürükleyip bırakabilirsiniz.\n"
-"\"Betikler\" İçerik Menüsüne eklenecek.\n"
 
 #: src/scripts.py:157
 msgid "Rebuild System Scripts"
@@ -1337,9 +1305,8 @@ msgid "Do you want take effect immediately?"
 msgstr "Etkiyi hemen görmek ister misin?"
 
 #: src/nautilus.py:100
-#, fuzzy
 msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
-msgstr "Dosya özelliği sayfaları için gelişmiş izinleri göster"
+msgstr ""
 
 #: src/nautilus.py:103
 msgid "File Browser"
@@ -1358,9 +1325,8 @@ msgid "Enable OverBurn"
 msgstr "Fazla yazmayı etkinleştir"
 
 #: src/nautilus.py:119
-#, fuzzy
 msgid "Default thumbnail icon size (Pixels)"
-msgstr "Varsayılan Önizleme Simge Boyutu"
+msgstr ""
 
 #: src/nautilus.py:133
 msgid "Maximum size of the thumbnail cache (Megabytes)"
@@ -1400,12 +1366,9 @@ msgid "The thumbnails cache will be cleaned, do you wish to continue?"
 msgstr ""
 
 #: src/nautilus.py:203
-msgid "Clean up successfully!"
-msgstr ""
-
-#: src/nautilus.py:224
-msgid "Update Failed!"
-msgstr "Güncelleştirme Başarısız!"
+#, fuzzy
+msgid "Clean up successful!"
+msgstr "Başarılı bir şekilde temizlendi!"
 
 #: src/powermanager.py:37
 msgid "Advanced Power Management Settings"
@@ -1425,9 +1388,8 @@ msgstr ""
 "Güç Yönetimi Özelliklerinde \"İşlemci frekansını kontrol seçeneğini\" göster"
 
 #: src/powermanager.py:48
-#, fuzzy
 msgid "Disable Network Manager when asleep"
-msgstr "Ağ yöneticisini uyku modundayken etkisizleştir."
+msgstr ""
 
 #: src/powermanager.py:51
 msgid "Enable \"Lock screen\" when \"Blank Screen\" activates"
@@ -1486,14 +1448,12 @@ msgid "The CPU frequency policy when on battery power"
 msgstr "Pil kullanımındaki işlemci davranış biçimi"
 
 #: src/preferences.py:69 src/preferences.py:77
-#, fuzzy
 msgid "Reset"
-msgstr "Ayarlanmamış"
+msgstr ""
 
 #: src/preferences.py:130
-#, fuzzy
 msgid "Enable Check Update"
-msgstr "Etkin Şablonlar"
+msgstr ""
 
 #: src/sourceeditor.py:62 src/sourceeditor.py:67
 msgid "Choose the sources"
@@ -1981,10 +1941,6 @@ msgstr ""
 "EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 ve diğer "
 "yazılımları içerir."
 
-#: src/common/factory.py:93
-msgid "Disable 'Run Application' dialog (Alt+F2)"
-msgstr "'Uygulama Çalıştır' penceresini devre dışı bırak  (Alt+F2)"
-
 #: src/common/policykit/polkitbutton.py:78
 msgid "_Unlock"
 msgstr "_Kilidi Aç"
@@ -2049,20 +2005,19 @@ msgstr ""
 
 #: data/glade/gui.glade:100
 msgid "Add Application"
-msgstr ""
+msgstr "Uygulama Ekle"
 
 #: data/glade/gui.glade:146
 msgid "Select an application to view its description."
-msgstr ""
+msgstr "Açıklamasını görüntülemek için bir uygulama seçin."
 
 #: data/glade/gui.glade:188
 msgid "_Use a custom command"
-msgstr ""
+msgstr "_Özel bir komut kullan"
 
 #: data/glade/preferences.glade:7
-#, fuzzy
 msgid "Ubuntu Tweak Preferences"
-msgstr "Ubuntu Tweak İnternet Sitesi"
+msgstr ""
 
 #: data/glade/preferences.glade:32
 msgid "<b>User Interface</b>"
@@ -2123,30 +2078,14 @@ msgid ""
 " to the opening website."
 msgstr ""
 
-#, fuzzy
-#~ msgid "Ubuntu Tweak"
-#~ msgstr "Ubuntu Tweak İnternet Sitesi"
+#~ msgid "Updated Successfully!"
+#~ msgstr "Başarıyla güncelleştirildi"
 
-#~ msgid "Disable \"User Switch\""
-#~ msgstr "Kullanıcı değiştirmeyi devre dışı bırak"
+#~ msgid "Updated Failed!"
+#~ msgstr "Güncelleştirme başarısız oldu!"
 
-#~ msgid "Tweak your Linux computer to what you like."
-#~ msgstr "Ubuntu'nuzu isteğinize göre düzenleyin"
-
-#~ msgid ""
-#~ "You can freely manage your document templates.\n"
-#~ "You can drag and drop from File Manager.\n"
-#~ "\"Create Document\" will be added to the context menu.\n"
-#~ msgstr ""
-#~ "Belge şablonlarınızı istediğiniz gibi yönetebilirsiniz.\n"
-#~ "Dosya yöneticisinden sürükle/bırak yapabilirsiniz.\n"
-#~ "Sağ tuş menüsüne \"Belge Oluştur\" eklenecektir.\n"
-
-#~ msgid "Show advanced permissions on Permissions tab of File Property"
-#~ msgstr "Dosya özelliklerinde gelişmiş yetkilendirme seçeneklerini göster"
-
-#~ msgid "KDE IM client using Tencent QQ protocol"
-#~ msgstr "Tencent QQ protokolünü kullanan KDE IM istemcisi"
+#~ msgid "Disable 'Run Application' dialog (Alt+F2)"
+#~ msgstr "'Uygulama Çalıştır' penceresini devre dışı bırak  (Alt+F2)"
 
 #~ msgid "Pick Windows"
 #~ msgstr "Pencereleri Seç"
@@ -2193,6 +2132,9 @@ msgstr ""
 #~ msgid "Disable Save To Disk"
 #~ msgstr "Diske kaydetmeyi devre dışı bırak"
 
+#~ msgid "Disable User Switching"
+#~ msgstr "Kullanıcı değişimini etkisizleştir"
+
 #~ msgid "Desktop Icon"
 #~ msgstr "Masaüstü Simgesi"
 
@@ -2217,6 +2159,9 @@ msgstr ""
 #~ msgid "Title bar Right-click action"
 #~ msgstr "Başık çubuğu Sağ-tık eylemi"
 
+#~ msgid "Default Thumbnail Icon Size"
+#~ msgstr "Varsayılan Önizleme Simge Boyutu"
+
 #~ msgid "Enable Hibernation"
 #~ msgstr "Hibernation Özelliğini Etkinleştir"
 
@@ -2231,6 +2176,9 @@ msgstr ""
 
 #~ msgid "Choose a Splash image"
 #~ msgstr "Açılış resmi seçin"
+
+#~ msgid "Automatically save changes to session"
+#~ msgstr "Değişiklikleri otomatik olarak oturuma kaydet"
 
 #~ msgid "Show Logout prompt"
 #~ msgstr "Oturumu Kapat iletisini göster"
@@ -2325,6 +2273,9 @@ msgstr ""
 #~ "Masaüstü olarak Ev klasörünü kullan (Değişikliklerin geçerli olması için "
 #~ "oturumu yeniden başlatın)"
 
+#~ msgid "Show advanced Permissions on File Property pages"
+#~ msgstr "Dosya özelliği sayfaları için gelişmiş izinleri göster"
+
 #~ msgid "Show CPU frequency control option"
 #~ msgstr "İşlemci frekans kontrolü ayarını göster"
 
@@ -2333,6 +2284,15 @@ msgstr ""
 
 #~ msgid "Set the shortcut of your commands"
 #~ msgstr "Komutlarınızın kısayollarını ayarlayın"
+
+#~ msgid ""
+#~ "You can do all kinds of tasks with scripts.\n"
+#~ "You can drag and drop from File Manager.\n"
+#~ "\"Scripts\" will be added to the Context Menu.\n"
+#~ msgstr ""
+#~ "Betiklerle her tür görevleri yapabilirsiniz.\n"
+#~ "Dosya Yöneticisinden sürükleyip bırakabilirsiniz.\n"
+#~ "\"Betikler\" İçerik Menüsüne eklenecek.\n"
 
 #~ msgid ""
 #~ "By configuring keyboard shortcuts, you have faster access to the \n"
@@ -2401,6 +2361,9 @@ msgstr ""
 
 #~ msgid "Instant Messenger"
 #~ msgstr "Anında Mesajlaşma"
+
+#~ msgid "KDE IM client using Tencent QQ protocol"
+#~ msgstr "Tencent QQ protokolünü kullanan KDE IM istemcisi"
 
 #~ msgid "Settings for Nautilus behavior"
 #~ msgstr "Nautlilus davranışı için ayarlar"

@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2009-02-03 20:17+0800\n"
-"PO-Revision-Date: 2008-11-16 13:38+0000\n"
-"Last-Translator: Lachim <michl.vavrusa@volny.cz>\n"
+"POT-Creation-Date: 2009-02-13 19:39+0800\n"
+"PO-Revision-Date: 2008-12-29 15:44+0000\n"
+"Last-Translator: Kamil Páral <ripper42@gmail.com>\n"
 "Language-Team: Tomáš Pikálek <tpikalek@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-12-15 04:17+0000\n"
+"X-Launchpad-Export-Date: 2009-02-13 09:40+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: CZECH REPUBLIC\n"
 "X-Poedit-Language: Czech\n"
@@ -155,24 +155,22 @@ msgid "Add/Remove Applications"
 msgstr "Přidat/Odstranit aplikace"
 
 #: src/installer.py:144
-#, fuzzy
 msgid ""
 "A simple but more effecient method for finding and installing popular "
 "packages than the default Add/Remove."
 msgstr ""
-"Jednoduché, avšak efektivnější pro hledání a instalaci oblíbených balíků než "
-"výchozí Přidat/Odstranit."
 
 #: src/installer.py:192
 msgid "All Categories"
 msgstr "Všechny kategorie"
 
 #: src/installer.py:362
-msgid "Updated Successfully!"
-msgstr "Úspěšně aktualizováno!"
+#, fuzzy
+msgid "Update Successful!"
+msgstr "Aktualizace byla úspěšná!"
 
-#: src/installer.py:364
-msgid "Updated Failed!"
+#: src/installer.py:364 src/nautilus.py:224
+msgid "Update Failed!"
 msgstr "Aktualizace selhala!"
 
 #: src/lockdown.py:36
@@ -200,9 +198,8 @@ msgid "Disable save to disk"
 msgstr "Zakázat ukládání na disk"
 
 #: src/lockdown.py:53
-#, fuzzy
 msgid "Disable \"Fast User Switching\""
-msgstr "Zakázat přepínání uživatelů"
+msgstr ""
 
 #: src/ScriptWorker.py:52
 #, python-format
@@ -244,16 +241,14 @@ msgid "Clean up unneeded packages to free diskspace."
 msgstr "Uvolněte místo na disku vyčistěním nepotřebných balíků."
 
 #: src/mainwindow.py:73
-#, fuzzy
 msgid "Easily install up-to-date versions of many applications."
-msgstr "Snadno nainstalujte různé druhy aplikací."
+msgstr ""
 
 #: src/mainwindow.py:74
-#, fuzzy
 msgid ""
 "Configure file templates and shortcut scripts for easy access to common "
 "tasks."
-msgstr "Nastavte si šablony a skripty pro vylepšení práce s počítačem."
+msgstr ""
 
 #: src/mainwindow.py:75
 msgid "And many more useful features!"
@@ -264,18 +259,14 @@ msgid "<span size=\"xx-large\">Please wait a moment...</span>"
 msgstr "<span size=\"xx-large\">Prosím chvíli vyčkejte...</span>"
 
 #: src/mainwindow.py:100
-#, fuzzy
 msgid ""
 "<span size=\"x-large\">This feature isn't currently available in your "
 "distribution</span>"
 msgstr ""
-"<span size=\"x-large\">Tato možnost aktuálně není ve vaší distribuci "
-"dostupná</span>"
 
 #: src/mainwindow.py:113
-#, fuzzy
 msgid "<span size=\"x-large\">This module is error while loading.</span>"
-msgstr "<span size=\"xx-large\">Prosím chvíli vyčkejte...</span>"
+msgstr ""
 
 #: src/mainwindow.py:223
 msgid "Welcome"
@@ -295,7 +286,7 @@ msgstr "Přidat/Odstranit"
 
 #: src/mainwindow.py:227 src/sourceeditor.py:335
 msgid "Source Editor"
-msgstr ""
+msgstr "Editor zdrojů"
 
 #: src/mainwindow.py:228 src/thirdsoft.py:236
 msgid "Third-Party Sources"
@@ -363,7 +354,7 @@ msgstr "Systém"
 
 #: src/mainwindow.py:244 src/filetype.py:473
 msgid "File Type Manager"
-msgstr ""
+msgstr "Správce typů souborů"
 
 #: src/mainwindow.py:245
 msgid "Nautilus"
@@ -378,9 +369,8 @@ msgid "Security"
 msgstr "Bezpečnost"
 
 #: src/mainwindow.py:329
-#, fuzzy
 msgid "Donate"
-msgstr "Žádná"
+msgstr ""
 
 #: src/mainwindow.py:355
 msgid "Help the development of Ubuntu Tweak"
@@ -393,9 +383,8 @@ msgid ""
 msgstr ""
 
 #: src/mainwindow.py:356
-#, fuzzy
 msgid "Never Show This Again"
-msgstr "Nezobrazovat tento dialog"
+msgstr ""
 
 #: src/mainwindow.py:534
 msgid "Ubuntu Tweak Website"
@@ -434,7 +423,7 @@ msgstr ""
 
 #: src/mainwindow.py:557
 msgid "Software Update"
-msgstr ""
+msgstr "Aktualizace softwaru"
 
 #: src/userdir.py:46
 msgid "Download"
@@ -470,10 +459,13 @@ msgid ""
 "However, you must move your files back into place by yourself.\n"
 "Do you wish to continue?"
 msgstr ""
+"Ubuntu Tweak obnoví zvolenou složku do jejího výchozího umístění.\n"
+"Nicméně své soubory si musíte přesunout ručně.\n"
+"Chcete pokračovat?"
 
 #: src/userdir.py:201
 msgid "Directory"
-msgstr ""
+msgstr "Složka"
 
 #: src/userdir.py:215
 msgid "Path"
@@ -492,14 +484,11 @@ msgid "Default Folder Locations"
 msgstr "Výchozí umístění složek"
 
 #: src/userdir.py:237
-#, fuzzy
 msgid ""
 "You can change the paths of the default folders here.\n"
 "Don't change the location of your desktop folder unless you know what you "
 "are doing."
 msgstr ""
-"Zde můžete změnit výchozí umístění složek.\n"
-"Za normálních okolností však neměňte složku Plocha."
 
 #: src/userdir.py:258
 msgid "Update successfully!"
@@ -507,39 +496,39 @@ msgstr "Úspěšně změněno!"
 
 #: src/filetype.py:34
 msgid "Audio"
-msgstr ""
+msgstr "Zvuk"
 
 #: src/filetype.py:35
 msgid "Text"
-msgstr ""
+msgstr "Text"
 
 #: src/filetype.py:36
 msgid "Image"
-msgstr ""
+msgstr "Obrázek"
 
 #: src/filetype.py:37
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 #: src/filetype.py:38
 msgid "Application"
-msgstr ""
+msgstr "Program"
 
 #: src/filetype.py:39
 msgid "All"
-msgstr ""
+msgstr "Vše"
 
 #: src/filetype.py:72
 msgid "Categories"
-msgstr ""
+msgstr "Kategorie"
 
 #: src/filetype.py:129
 msgid "File Type"
-msgstr ""
+msgstr "Typ souboru"
 
 #: src/filetype.py:143
 msgid "Associated Application"
-msgstr ""
+msgstr "Přiřazený program"
 
 #: src/filetype.py:176 src/filetype.py:211 src/metacity.py:62
 #: src/metacity.py:67 src/metacity.py:72 src/metacity.py:77
@@ -550,26 +539,25 @@ msgstr "Žádná"
 #: src/filetype.py:239
 #, python-format
 msgid "Open the files of type \"%s\" with:"
-msgstr ""
+msgstr "Otevřít soubory typu \"%s\" programem:"
 
 #: src/filetype.py:268
-#, fuzzy
 msgid "Choose a application"
-msgstr "Zvolte obrázek spouštěcí obrazovky"
+msgstr ""
 
 #: src/filetype.py:357
 #, python-format
 msgid "Select an application to open the type <b>%s</b>"
-msgstr ""
+msgstr "Vyberte program k otevření souboru typu <b>%s</b>"
 
 #: src/filetype.py:382
 #, python-format
 msgid "Could not find %s"
-msgstr ""
+msgstr "Nemohu nalézt %s"
 
 #: src/filetype.py:383
 msgid "Could not find application"
-msgstr ""
+msgstr "Nemohu nalézt program"
 
 #: src/filetype.py:474
 msgid "Here you can manage which application will open which filetypes."
@@ -633,11 +621,11 @@ msgstr "Jazyk"
 
 #: src/thirdsoft.py:81
 msgid "Banshee (Stable Version)"
-msgstr ""
+msgstr "Banshee (stabilní verze)"
 
 #: src/thirdsoft.py:82
 msgid "Banshee (Unstable Version)"
-msgstr ""
+msgstr "Banshee (nestabilní verze)"
 
 #: src/thirdsoft.py:154
 msgid ""
@@ -646,10 +634,14 @@ msgid ""
 "\n"
 "You need a working internet connection to continue."
 msgstr ""
+"Pro instalaci softwaru a aktualizaci z nově přidaných nebo změněných zdrojů "
+"musíte nejprve obnovit informace o dostupném softwaru.\n"
+"\n"
+"Pro pokračování potřebujete funkční internetové připojení."
 
 #: src/thirdsoft.py:158
 msgid "The information about available software is out-of-date"
-msgstr ""
+msgstr "Informace o dostupném softwaru jsou zastaralé"
 
 #: src/thirdsoft.py:319
 msgid "Homepage"
@@ -669,7 +661,7 @@ msgstr "Zde je popis"
 
 #: src/thirdsoft.py:358
 msgid "Third-Party Software Sources"
-msgstr ""
+msgstr "Zdroje softwaru třetích stran"
 
 #: src/thirdsoft.py:359
 msgid ""
@@ -694,6 +686,8 @@ msgid ""
 "It is a possible security risk to use packages from Third-Party Sources.\n"
 "Please be careful."
 msgstr ""
+"Používání balíků ze zdrojů třetích stran je možné bezpečnostní riziko.\n"
+"Prosím buďte opatrní."
 
 #: src/thirdsoft.py:417 src/nautilus.py:197
 msgid "Warning"
@@ -705,11 +699,11 @@ msgstr "Nezobrazovat tento dialog"
 
 #: src/thirdsoft.py:443 src/sourceeditor.py:403
 msgid "You can install the new applications through Add/Remove."
-msgstr ""
+msgstr "Nové aplikace můžete nainstalovat pomocí Přidat/Odstranit."
 
 #: src/thirdsoft.py:444 src/sourceeditor.py:404
 msgid "The software information is up-to-date now"
-msgstr ""
+msgstr "Informace o softwaru jsou nyní aktuální"
 
 #: src/icons.py:32
 msgid "Show \"Computer\" icon on desktop"
@@ -819,22 +813,23 @@ msgstr "Akce při kliknutí pravým tlačítkem myši na titulek okna"
 
 #: src/metacity.py:84
 msgid "Enable Metacity's Compositing feature"
-msgstr ""
+msgstr "Povolit kompozitní funkce u Metacity"
 
 #: src/metacity.py:87
 msgid "Compositing Manager"
-msgstr ""
+msgstr "Kompozitní správce"
 
 #: src/metacity.py:94
 msgid ""
 "To enable the compositing feature of metacity, You should disable the Visual "
 "Effects in \"Appearance\" by yourself."
 msgstr ""
+"Pro povolení kompozitní funkce u metacity byste měli ručně vypnout efekty "
+"vzhledu v dialogu \"Vzhled\"."
 
 #: src/session.py:39
-#, fuzzy
 msgid "Splash Screen (Click On Image)"
-msgstr "Spouštěcí obrazovka (klikněte na obrázek níže)"
+msgstr ""
 
 #: src/session.py:43
 msgid "Choose a splash image"
@@ -845,9 +840,8 @@ msgid "PNG image (*.png)"
 msgstr "Obrázek PNG (*.png)"
 
 #: src/session.py:131
-#, fuzzy
 msgid "Automatically save open applications when logging out"
-msgstr "Automaticky ukládat změny sezení"
+msgstr ""
 
 #: src/session.py:134
 msgid "Show logout prompt"
@@ -891,7 +885,7 @@ msgstr "Skript Pythonu"
 
 #: src/templates.py:63
 msgid "Pygtk Example"
-msgstr ""
+msgstr "Příklad Pygtk"
 
 #: src/templates.py:64
 msgid "Shell script"
@@ -1002,18 +996,12 @@ msgid "Shortcut Commands"
 msgstr "Příkazy zkratek"
 
 #: src/shortcuts.py:47
-#, fuzzy
 msgid ""
 "By configuring keyboard shortcuts, you can access your favourite "
 "applications instantly.\n"
 "Enter the application's command and set the desired shortcut keys.\n"
 "Use the <b>Delete</b> or <b>BackSpace</b> keys to disable the shortcut."
 msgstr ""
-"Nastavením klávesových zkratek máte rychlejší přístup k programům, které "
-"potřebujete.\n"
-"Vložte příkaz a nastavte požadovanou klávesu, tak jednoduché je nastavení "
-"zkratky.\n"
-"Použijte <b>Delete</b> nebo <b>Backspace</b> ke smazání zkratky."
 
 #: src/shortcuts.py:85
 #, python-format
@@ -1038,12 +1026,12 @@ msgstr "Klávesa"
 
 #: src/cleaner.py:52 src/nautilus.py:50
 msgid "Cleaning..."
-msgstr ""
+msgstr "Čistí se..."
 
 #: src/cleaner.py:56
-#, fuzzy, python-format
+#, python-format
 msgid "Cleaning...%s"
-msgstr "Stahování...%d"
+msgstr ""
 
 #: src/cleaner.py:107
 msgid "Package"
@@ -1067,9 +1055,8 @@ msgstr ""
 "Zabírá %s KB místa na disku"
 
 #: src/cleaner.py:187
-#, fuzzy
 msgid "Package Config"
-msgstr "Čistič balíků"
+msgstr ""
 
 #: src/cleaner.py:220
 #, python-format
@@ -1087,21 +1074,20 @@ msgid "%d KB of space will be freed"
 msgstr "Uvolní se %d KB místa"
 
 #: src/cleaner.py:294
-msgid "Cleaned up Successfully!"
+#, fuzzy
+msgid "Clean up Successful!"
 msgstr "Úspěšně vyčištěno!"
 
 #: src/cleaner.py:297
-msgid "Cleaned up Failed!"
+#, fuzzy
+msgid "Clean up Failed!"
 msgstr "Vyčištění selhalo!"
 
 #: src/cleaner.py:303
-#, fuzzy
 msgid ""
 "Free up disk space by removing unneeded packages and cleaning the package "
 "download cache."
 msgstr ""
-"Uvolněte místo na disku vyčistěním nepotřebných balíků a vyrovnávací paměti "
-"balíků."
 
 #: src/cleaner.py:331
 msgid "Clean Package"
@@ -1112,9 +1098,8 @@ msgid "Clean Cache"
 msgstr "Vyčistit vyrovnávací paměť"
 
 #: src/cleaner.py:341
-#, fuzzy
 msgid "Clean Config"
-msgstr "Vyčistit vyrovnávací paměť"
+msgstr ""
 
 #: src/cleaner.py:347
 msgid "Select All"
@@ -1126,15 +1111,15 @@ msgstr "Kopírovat do ..."
 
 #: src/scripts.py:52
 msgid "Copy to Desktop"
-msgstr ""
+msgstr "Kopírovat na Plochu"
 
 #: src/scripts.py:53
 msgid "Copy to Download"
-msgstr ""
+msgstr "Kopírovat do Stažené"
 
 #: src/scripts.py:54
 msgid "Copy to Home"
-msgstr ""
+msgstr "Kopírovat do Domova"
 
 #: src/scripts.py:55
 msgid "Move to ..."
@@ -1142,15 +1127,15 @@ msgstr "Přesunout do ..."
 
 #: src/scripts.py:56
 msgid "Move to Desktop"
-msgstr ""
+msgstr "Přesunout na Plochu"
 
 #: src/scripts.py:57
 msgid "Move to Download"
-msgstr ""
+msgstr "Přesunout do Stažené"
 
 #: src/scripts.py:58
 msgid "Move to Home"
-msgstr ""
+msgstr "Přesunout do Domova"
 
 #: src/scripts.py:59
 msgid "Link to ..."
@@ -1158,15 +1143,15 @@ msgstr "Odkázat na ..."
 
 #: src/scripts.py:60
 msgid "Link to Desktop"
-msgstr ""
+msgstr "Umístit odkaz na Plochu"
 
 #: src/scripts.py:61
 msgid "Link to Download"
-msgstr ""
+msgstr "Umístit odkaz do Stažené"
 
 #: src/scripts.py:62
 msgid "Link to Home"
-msgstr ""
+msgstr "Umístit odkaz do Domova"
 
 #: src/scripts.py:63
 msgid "Open with gedit"
@@ -1186,11 +1171,11 @@ msgstr "Hledat v současné složce"
 
 #: src/scripts.py:67
 msgid "Convert image to JPG"
-msgstr ""
+msgstr "Převeď obrázek na JPG"
 
 #: src/scripts.py:68
 msgid "Convert image to PNG"
-msgstr ""
+msgstr "Převeď obrázek na PNG"
 
 #: src/scripts.py:69
 msgid "Convert image to GIF"
@@ -1198,7 +1183,7 @@ msgstr ""
 
 #: src/scripts.py:70
 msgid "Set image as wallpaper"
-msgstr ""
+msgstr "Nastav obrázek jako pozadí plochy"
 
 #: src/scripts.py:97
 msgid "Enabled Scripts"
@@ -1213,15 +1198,11 @@ msgid "Manage Scripts"
 msgstr "Spravovat skripty"
 
 #: src/scripts.py:132
-#, fuzzy
 msgid ""
 "You can do all kinds of tasks with scripts.\n"
 "You can drag and drop from File Manager.\n"
 "'Scripts' will be added to the context menu."
 msgstr ""
-"Se skripty můžete dělat všemožné úkoly.\n"
-"Přidávat je můžete i přetažením z Prohlížeče souborů.\n"
-"Povolené skripty pak budou přidány do místní nabídky.\n"
 
 #: src/scripts.py:157
 msgid "Rebuild System Scripts"
@@ -1316,9 +1297,8 @@ msgid "Do you want take effect immediately?"
 msgstr "Chcete provést změnu okamžitě?"
 
 #: src/nautilus.py:100
-#, fuzzy
 msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
-msgstr "Zobrazit prokročilé nastavení práv u vlastností souborů"
+msgstr ""
 
 #: src/nautilus.py:103
 msgid "File Browser"
@@ -1337,9 +1317,8 @@ msgid "Enable OverBurn"
 msgstr "Povolit přeplňování"
 
 #: src/nautilus.py:119
-#, fuzzy
 msgid "Default thumbnail icon size (Pixels)"
-msgstr "Výchozí velikost náhledů"
+msgstr ""
 
 #: src/nautilus.py:133
 msgid "Maximum size of the thumbnail cache (Megabytes)"
@@ -1351,7 +1330,7 @@ msgstr ""
 
 #: src/nautilus.py:157
 msgid "Thumbnails Settings"
-msgstr ""
+msgstr "Nastavení náhledů"
 
 #: src/nautilus.py:165
 msgid "Nautilus with Open Terminal"
@@ -1372,19 +1351,16 @@ msgstr "Rozšíření Nautilu"
 #: src/nautilus.py:193
 #, python-format
 msgid "Clean up the thumbnails cache (Free %s disk size)"
-msgstr ""
+msgstr "Vyčistit vyrovnávací paměť náhledů (uvolní %s místa na disku)"
 
 #: src/nautilus.py:196
 msgid "The thumbnails cache will be cleaned, do you wish to continue?"
-msgstr ""
+msgstr "Vyrovnávací paměť náhledů bude vyčištěna. Chcete pokračovat?"
 
 #: src/nautilus.py:203
-msgid "Clean up successfully!"
-msgstr ""
-
-#: src/nautilus.py:224
-msgid "Update Failed!"
-msgstr "Aktualizace selhala!"
+#, fuzzy
+msgid "Clean up successful!"
+msgstr "Úspěšně vyčištěno!"
 
 #: src/powermanager.py:37
 msgid "Advanced Power Management Settings"
@@ -1404,9 +1380,8 @@ msgstr ""
 "Zobrazit volbu ovládání frekvence procesoru v nastavení správy napájení"
 
 #: src/powermanager.py:48
-#, fuzzy
 msgid "Disable Network Manager when asleep"
-msgstr "Při uspání vypnout správce sítě"
+msgstr ""
 
 #: src/powermanager.py:51
 msgid "Enable \"Lock screen\" when \"Blank Screen\" activates"
@@ -1465,74 +1440,74 @@ msgid "The CPU frequency policy when on battery power"
 msgstr "Frekvence procesoru při napájení z baterie"
 
 #: src/preferences.py:69 src/preferences.py:77
-#, fuzzy
 msgid "Reset"
-msgstr "Nevyplněno"
+msgstr ""
 
 #: src/preferences.py:130
-#, fuzzy
 msgid "Enable Check Update"
-msgstr "Povolené šablony"
+msgstr ""
 
 #: src/sourceeditor.py:62 src/sourceeditor.py:67
 msgid "Choose the sources"
-msgstr ""
+msgstr "Zvolte zdroje"
 
 #: src/sourceeditor.py:68
 msgid ""
 "You can read the title and comment to determine which source is suitable for "
 "you."
 msgstr ""
+"Vybrat, které zdroje jsou vhodné pro vás, si můžete přečtením názvu a "
+"komentáře."
 
 #: src/sourceeditor.py:84
 msgid "Detail"
-msgstr ""
+msgstr "Podrobnosti"
 
 #: src/sourceeditor.py:103 src/sourceeditor.py:108
 msgid "Submit your sources"
-msgstr ""
+msgstr "Odeslat své zdroje"
 
 #: src/sourceeditor.py:108
 msgid ""
 "You can submit your sources to the server, so that other people can share "
 "with your sources."
-msgstr ""
+msgstr "Můžete poslat své zdroje na server a sdílet je s ostatními lidmi."
 
 #: src/sourceeditor.py:113
 msgid "_Source Title:"
-msgstr ""
+msgstr "_Název zdroje:"
 
 #: src/sourceeditor.py:116
 msgid "_Locale:"
-msgstr ""
+msgstr "_Lokalizace:"
 
 #: src/sourceeditor.py:123
 msgid "Enter the title of the source, such as \"Ubuntu Official Repostory\""
-msgstr ""
+msgstr "Vložte název zdroje, například \"Oficiální zdroj Ubuntu\""
 
 #: src/sourceeditor.py:125
 msgid "If the locale isn't correct, you can edit by you self"
-msgstr ""
+msgstr "Pokud není lokalizace správná, můžete ji upravit ručně"
 
 #: src/sourceeditor.py:140
 msgid "Submit"
-msgstr ""
+msgstr "Odeslat"
 
 #: src/sourceeditor.py:188
 msgid "Please check your network connection!"
-msgstr ""
+msgstr "Zkontrolujte prosím své síťové připojení!"
 
 #: src/sourceeditor.py:188
 msgid "Network Error"
-msgstr ""
+msgstr "Chyba sítě"
 
 #: src/sourceeditor.py:195
 msgid "Uploding..."
-msgstr ""
+msgstr "Odesílání..."
 
 #: src/sourceeditor.py:211
 msgid "Updating..."
-msgstr ""
+msgstr "Aktualizuje se…"
 
 #: src/sourceeditor.py:336
 msgid ""
@@ -1541,18 +1516,22 @@ msgid ""
 "Click \"Submit Sources\" if you want to share your sources with other "
 "people.\n"
 msgstr ""
+"Volně si upravte zdroje softwaru ke svým představám.\n"
+"Klikněte na \"Aktualizovat zdroje\", pokud chcete změnit změnit své zdroje.\n"
+"Klikněte na \"Odeslat zdroje\", pokud chcete sdílet své zdroje s dalšími "
+"lidmi.\n"
 
 #: src/sourceeditor.py:355
 msgid "Update Sources"
-msgstr ""
+msgstr "Aktualizovat zdroje"
 
 #: src/sourceeditor.py:361
 msgid "Submit Sources"
-msgstr ""
+msgstr "Odeslat zdroje"
 
 #: src/sourceeditor.py:420
 msgid "Please input the correct infomation of the sources!"
-msgstr ""
+msgstr "Prosím zadejte správné informace o zdrojích!"
 
 #: src/sourceeditor.py:433
 msgid ""
@@ -1560,34 +1539,41 @@ msgid ""
 "you can use the official sources.\n"
 "Do you wish to use the official sources?"
 msgstr ""
+"Můžete odeslat své zdroje na náš server a pomoci tak vytvořit seznam zdrojů, "
+"nebo můžete používat oficiální zdroje.\n"
+"Chcete používat oficiální zdroje?"
 
 #: src/sourceeditor.py:436
 msgid "No source data available"
-msgstr ""
+msgstr "Zdrojová data nedostupná"
 
 #: src/sourceeditor.py:453
 msgid ""
 "Your sources will be reviewed and open for others soon.\n"
 "Thank you!"
 msgstr ""
+"Vaše zdroje budou shlédnuty a pro ostatní brzy dostupné.\n"
+"Děkujeme!"
 
 #: src/sourceeditor.py:454
 msgid "Sumit successfully"
-msgstr ""
+msgstr "Úspěšně odesláno"
 
 #: src/sourceeditor.py:467
 msgid "Please check the permission of the sources.list."
-msgstr ""
+msgstr "Prosím zkontrolute oprávnění souboru sources.list."
 
 #: src/sourceeditor.py:468
 msgid "Save failed!"
-msgstr ""
+msgstr "Ukládání selhalo!"
 
 #: src/sourceeditor.py:475
 msgid ""
 "The currenly content will be lost after reloading!\n"
 "Do you wish to continue?"
 msgstr ""
+"Aktuální obsah bude po obnovení ztracen!\n"
+"Chcete pokračovat?"
 
 #: src/common/package.py:64
 msgid "(Not available)"
@@ -1599,7 +1585,7 @@ msgstr "Návrhář barevných motivů"
 
 #: src/common/appdata.py:58
 msgid "Development version of an audio player for KDE"
-msgstr ""
+msgstr "Vývojová verze hudebního přehrávače pro KDE"
 
 #: src/common/appdata.py:59
 msgid "Client for the eD2k and Kad networks"
@@ -1670,6 +1656,8 @@ msgid ""
 "EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
 "com."
 msgstr ""
+"EIOffice Personal 2009. Zdarma pro čínské uživatele. Viz: http://www."
+"evermoresw.com (anglicky)."
 
 #: src/common/appdata.py:76
 msgid "A client for the Windows Live Message network"
@@ -1758,17 +1746,19 @@ msgstr "Grafický editor obrazu CD"
 
 #: src/common/appdata.py:95
 msgid "Intelligent Input Bus for Linux / Unix OS"
-msgstr ""
+msgstr "Inteligentní sběrnice vstupu pro Linux / Unix"
 
 #: src/common/appdata.py:96
 msgid "It is a PinYin engine for IBus."
-msgstr ""
+msgstr "Toto je systém PinYin pro IBus."
 
 #: src/common/appdata.py:97
 msgid ""
 "IBus-Table is the IM Engine framework for table-based input methods, such as "
 "ZhengMa, WuBi, ErBi, ChangJie and so on."
 msgstr ""
+"IBus-Table je rámec pro tabulkové vstupní metody, jako je ZhengMa, WuBi, "
+"ErBi, ChangJie a další."
 
 #: src/common/appdata.py:98
 msgid "Create and edit Scalable Vector Graphics images"
@@ -1921,7 +1911,7 @@ msgstr "K Desktop Environment 4.1"
 
 #: src/common/appdata.py:136
 msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
-msgstr ""
+msgstr "Nenáročné X11 pracovní prostředí: GPicView, PCManFM"
 
 #: src/common/appdata.py:137
 msgid ""
@@ -1939,10 +1929,9 @@ msgid ""
 "Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and "
 "other softwares."
 msgstr ""
-
-#: src/common/factory.py:93
-msgid "Disable 'Run Application' dialog (Alt+F2)"
-msgstr "Zakázat dialog \"Spustit aplikaci\" (Alt+F2)"
+"Ubuntu zdroje pro čínské uživatele.\n"
+"Obsahuje EIOffice, Ubuntu Tweak, IBus vstupní metodu, OpenOffice.org 3.0 a "
+"další programy."
 
 #: src/common/policykit/polkitbutton.py:78
 msgid "_Unlock"
@@ -1988,45 +1977,43 @@ msgstr ""
 
 #: src/common/widgets/dialogs.py:67
 msgid "An unexpected error has occurred."
-msgstr ""
+msgstr "Došlo k neočekávané chybě."
 
 #: src/common/widgets/dialogs.py:68
 msgid "Could not authenticate"
-msgstr ""
+msgstr "Nelze autentizovat"
 
 #: src/common/widgets/dialogs.py:73
 msgid "You need to restart your computer."
-msgstr ""
+msgstr "Potřebujete restartovat svůj počítač."
 
 #: src/common/widgets/dialogs.py:74
 msgid "Service hasn't initialized yet"
-msgstr ""
+msgstr "Služba ještě nebyla spuštěna"
 
 #: data/glade/gui.glade:7
 msgid "Edit Type"
-msgstr ""
+msgstr "Upravit typ"
 
 #: data/glade/gui.glade:100
 msgid "Add Application"
-msgstr ""
+msgstr "Přidat aplikaci"
 
 #: data/glade/gui.glade:146
 msgid "Select an application to view its description."
-msgstr ""
+msgstr "Vyberte aplikaci k zobrazení jejího popisu."
 
 #: data/glade/gui.glade:188
 msgid "_Use a custom command"
-msgstr ""
+msgstr "Po_užít vlastní příkaz"
 
 #: data/glade/preferences.glade:7
-#, fuzzy
 msgid "Ubuntu Tweak Preferences"
-msgstr "Webová stránka Ubuntu Tweak"
+msgstr ""
 
 #: data/glade/preferences.glade:32
-#, fuzzy
 msgid "<b>User Interface</b>"
-msgstr "<b>Informace o uživateli</b>"
+msgstr ""
 
 #: data/glade/preferences.glade:103
 msgid "Left Menubar Font Color"
@@ -2049,9 +2036,8 @@ msgid "Left Menubar Width"
 msgstr ""
 
 #: data/glade/preferences.glade:205
-#, fuzzy
 msgid "<b>Features</b>"
-msgstr "<b>Efekty menu</b>"
+msgstr ""
 
 #: data/glade/preferences.glade:225
 msgid "Default Launch Function"
@@ -2084,31 +2070,14 @@ msgid ""
 " to the opening website."
 msgstr ""
 
-#, fuzzy
-#~ msgid "Ubuntu Tweak"
-#~ msgstr "Webová stránka Ubuntu Tweak"
+#~ msgid "Updated Successfully!"
+#~ msgstr "Úspěšně aktualizováno!"
 
-#~ msgid "Disable \"User Switch\""
-#~ msgstr "Zakázat \"Přepnout uživatele\""
+#~ msgid "Updated Failed!"
+#~ msgstr "Aktualizace selhala!"
 
-#~ msgid "Tweak your Linux computer to what you like."
-#~ msgstr "Upravte si svůj linuxový počítač dle svých představ."
-
-#~ msgid ""
-#~ "You can freely manage your document templates.\n"
-#~ "You can drag and drop from File Manager.\n"
-#~ "\"Create Document\" will be added to the context menu.\n"
-#~ msgstr ""
-#~ "Své šablony souborů můžete libovolně spravovat.\n"
-#~ "Přidávat je můžete přetažením ze správce souborů.\n"
-#~ "Do místní nabídky bude přidána položka \"Vytvořit dokument\".\n"
-
-#~ msgid "Show advanced permissions on Permissions tab of File Property"
-#~ msgstr ""
-#~ "Zobrazit pokročilé nastavení práv na kartě Oprávnění u vlastností souborů"
-
-#~ msgid "KDE IM client using Tencent QQ protocol"
-#~ msgstr "KDE komunikátor používající protokol Tencent QQ"
+#~ msgid "Disable 'Run Application' dialog (Alt+F2)"
+#~ msgstr "Zakázat dialog \"Spustit aplikaci\" (Alt+F2)"
 
 #~ msgid "Pick Windows"
 #~ msgstr "Měřítko"
@@ -2137,8 +2106,14 @@ msgstr ""
 #~ msgid "Wobbly Menu"
 #~ msgstr "Vlnící se okna"
 
+#~ msgid "<b>Menu Effects</b>"
+#~ msgstr "<b>Efekty menu</b>"
+
 #~ msgid "<b>System information</b>"
 #~ msgstr "<b>Informace o systému</b>"
+
+#~ msgid "<b>User information</b>"
+#~ msgstr "<b>Informace o uživateli</b>"
 
 #~ msgid "Current User"
 #~ msgstr "Současný uživatel"
@@ -2190,6 +2165,9 @@ msgstr ""
 
 #~ msgid "Disable Save To Disk"
 #~ msgstr "Zakázat ukládání na disk"
+
+#~ msgid "Disable User Switching"
+#~ msgstr "Zakázat přepínání uživatelů"
 
 #~ msgid "<b>System Security options</b>"
 #~ msgstr "</b>Bezpečnostní volby</b>"
@@ -2277,6 +2255,9 @@ msgstr ""
 #~ msgid "<b>Settings for Nautilus behavior</b>"
 #~ msgstr "<b>Nastavení chování Nautilus</b>"
 
+#~ msgid "Default Thumbnail Icon Size"
+#~ msgstr "Výchozí velikost náhledů"
+
 #~ msgid "<b>CD Burner</b>"
 #~ msgstr "<b>Vypalování CD</b>"
 
@@ -2306,6 +2287,9 @@ msgstr ""
 
 #~ msgid "Choose a Splash image"
 #~ msgstr "Vybrat spouštěcí obrazovku"
+
+#~ msgid "Automatically save changes to session"
+#~ msgstr "Automaticky ukládat změny sezení"
 
 #~ msgid "Show Logout prompt"
 #~ msgstr "Zobrazovat odhlašovací dialog"
@@ -2428,6 +2412,9 @@ msgstr ""
 #~ msgid "Use Home Folder as the desktop(Logout for changes to take effect)"
 #~ msgstr "Použít domovskou složku jako plochu (potřebuje odhlášení)"
 
+#~ msgid "Show advanced Permissions on File Property pages"
+#~ msgstr "Zobrazit prokročilé nastavení práv u vlastností souborů"
+
 #~ msgid "Show CPU frequency control option"
 #~ msgstr "Zobrazit výběr kontroly frekvence procesoru"
 
@@ -2436,6 +2423,15 @@ msgstr ""
 
 #~ msgid "Set the shortcut of your commands"
 #~ msgstr "Nastavte zkratky svých příkazů"
+
+#~ msgid ""
+#~ "You can do all kinds of tasks with scripts.\n"
+#~ "You can drag and drop from File Manager.\n"
+#~ "\"Scripts\" will be added to the Context Menu.\n"
+#~ msgstr ""
+#~ "Se skripty můžete dělat všemožné úkoly.\n"
+#~ "Přidávat je můžete i přetažením z Prohlížeče souborů.\n"
+#~ "Povolené skripty pak budou přidány do místní nabídky.\n"
 
 #~ msgid ""
 #~ "By configuring keyboard shortcuts, you have faster access to the \n"
@@ -2503,6 +2499,9 @@ msgstr ""
 
 #~ msgid "Instant Messenger"
 #~ msgstr "Komunikátory"
+
+#~ msgid "KDE IM client using Tencent QQ protocol"
+#~ msgstr "KDE komunikátor používající protokol Tencent QQ"
 
 #~ msgid "Settings for Nautilus behavior"
 #~ msgstr "Nastavení chování Nautilu"
