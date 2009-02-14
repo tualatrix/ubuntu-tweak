@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2009-02-03 20:17+0800\n"
+"POT-Creation-Date: 2009-02-13 19:39+0800\n"
 "PO-Revision-Date: 2008-10-08 13:55+0000\n"
 "Last-Translator: TualatriX <Unknown>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-12-15 04:18+0000\n"
+"X-Launchpad-Export-Date: 2009-02-13 09:40+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/autostart.py:45
@@ -168,12 +168,13 @@ msgid "All Categories"
 msgstr "Vse kategorije"
 
 #: src/installer.py:362
-msgid "Updated Successfully!"
-msgstr ""
+#, fuzzy
+msgid "Update Successful!"
+msgstr "Posodobitev uspešna!"
 
-#: src/installer.py:364
-msgid "Updated Failed!"
-msgstr ""
+#: src/installer.py:364 src/nautilus.py:224
+msgid "Update Failed!"
+msgstr "Posodobitev ni uspela!"
 
 #: src/lockdown.py:36
 msgid "System Security options"
@@ -200,9 +201,8 @@ msgid "Disable save to disk"
 msgstr ""
 
 #: src/lockdown.py:53
-#, fuzzy
 msgid "Disable \"Fast User Switching\""
-msgstr "Onemogoči tiskanje"
+msgstr ""
 
 #: src/ScriptWorker.py:52
 #, python-format
@@ -372,9 +372,8 @@ msgid "Security"
 msgstr "Varnost"
 
 #: src/mainwindow.py:329
-#, fuzzy
 msgid "Donate"
-msgstr "Brez"
+msgstr ""
 
 #: src/mainwindow.py:355
 msgid "Help the development of Ubuntu Tweak"
@@ -387,9 +386,8 @@ msgid ""
 msgstr ""
 
 #: src/mainwindow.py:356
-#, fuzzy
 msgid "Never Show This Again"
-msgstr "Nikoli ne prikaži tega okna"
+msgstr ""
 
 #: src/mainwindow.py:534
 msgid "Ubuntu Tweak Website"
@@ -540,9 +538,8 @@ msgid "Open the files of type \"%s\" with:"
 msgstr ""
 
 #: src/filetype.py:268
-#, fuzzy
 msgid "Choose a application"
-msgstr "Programi"
+msgstr ""
 
 #: src/filetype.py:357
 #, python-format
@@ -826,9 +823,8 @@ msgid "PNG image (*.png)"
 msgstr "Slika PNG (*.png)"
 
 #: src/session.py:131
-#, fuzzy
 msgid "Automatically save open applications when logging out"
-msgstr "Samodejno shrani spremembe seje"
+msgstr ""
 
 #: src/session.py:134
 msgid "Show logout prompt"
@@ -1057,12 +1053,14 @@ msgid "%d KB of space will be freed"
 msgstr ""
 
 #: src/cleaner.py:294
-msgid "Cleaned up Successfully!"
-msgstr ""
+#, fuzzy
+msgid "Clean up Successful!"
+msgstr "Posodobitev uspešna!"
 
 #: src/cleaner.py:297
-msgid "Cleaned up Failed!"
-msgstr ""
+#, fuzzy
+msgid "Clean up Failed!"
+msgstr "Posodobitev ni uspela!"
 
 #: src/cleaner.py:303
 msgid ""
@@ -1294,9 +1292,8 @@ msgid "Enable OverBurn"
 msgstr ""
 
 #: src/nautilus.py:119
-#, fuzzy
 msgid "Default thumbnail icon size (Pixels)"
-msgstr "Privzeta velikost sličic ikon"
+msgstr ""
 
 #: src/nautilus.py:133
 msgid "Maximum size of the thumbnail cache (Megabytes)"
@@ -1336,12 +1333,9 @@ msgid "The thumbnails cache will be cleaned, do you wish to continue?"
 msgstr ""
 
 #: src/nautilus.py:203
-msgid "Clean up successfully!"
-msgstr ""
-
-#: src/nautilus.py:224
-msgid "Update Failed!"
-msgstr "Posodobitev ni uspela!"
+#, fuzzy
+msgid "Clean up successful!"
+msgstr "Posodobitev uspešna!"
 
 #: src/powermanager.py:37
 msgid "Advanced Power Management Settings"
@@ -1420,14 +1414,12 @@ msgid "The CPU frequency policy when on battery power"
 msgstr ""
 
 #: src/preferences.py:69 src/preferences.py:77
-#, fuzzy
 msgid "Reset"
-msgstr "Nenastavljeno"
+msgstr ""
 
 #: src/preferences.py:130
-#, fuzzy
 msgid "Enable Check Update"
-msgstr "Omogočene predloge"
+msgstr ""
 
 #: src/sourceeditor.py:62 src/sourceeditor.py:67
 msgid "Choose the sources"
@@ -1882,10 +1874,6 @@ msgid ""
 "other softwares."
 msgstr ""
 
-#: src/common/factory.py:93
-msgid "Disable 'Run Application' dialog (Alt+F2)"
-msgstr ""
-
 #: src/common/policykit/polkitbutton.py:78
 msgid "_Unlock"
 msgstr "_Odkleni"
@@ -2029,6 +2017,9 @@ msgstr ""
 #~ msgid "Disable Lock Screen"
 #~ msgstr "Onemogoči zaklepanje zaslona"
 
+#~ msgid "Disable Printing"
+#~ msgstr "Onemogoči tiskanje"
+
 #~ msgid "Disable Print Setup"
 #~ msgstr "Onemogoči nastavitev tiskanja"
 
@@ -2038,8 +2029,14 @@ msgstr ""
 #~ msgid "Security Options"
 #~ msgstr "Varnostne možnosti"
 
+#~ msgid "Default Thumbnail Icon Size"
+#~ msgstr "Privzeta velikost sličic ikon"
+
 #~ msgid "Lock screen when blanked"
 #~ msgstr "Zaslon ob izklopu zakleni"
+
+#~ msgid "Automatically save changes to session"
+#~ msgstr "Samodejno shrani spremembe seje"
 
 #~ msgid "Show program comments"
 #~ msgstr "Prikaži opombe programa"

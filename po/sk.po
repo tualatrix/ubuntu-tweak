@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2009-02-03 20:17+0800\n"
+"POT-Creation-Date: 2009-02-13 19:39+0800\n"
 "PO-Revision-Date: 2008-10-31 13:54+0000\n"
 "Last-Translator: helix84 <Unknown>\n"
 "Language-Team: Slovak <sk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-12-15 04:18+0000\n"
+"X-Launchpad-Export-Date: 2009-02-13 09:41+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/autostart.py:45
@@ -168,12 +168,13 @@ msgid "All Categories"
 msgstr "Všetky kategórie"
 
 #: src/installer.py:362
-msgid "Updated Successfully!"
-msgstr ""
+#, fuzzy
+msgid "Update Successful!"
+msgstr "Úspešne aktualizované!"
 
-#: src/installer.py:364
-msgid "Updated Failed!"
-msgstr ""
+#: src/installer.py:364 src/nautilus.py:224
+msgid "Update Failed!"
+msgstr "Aktualizácia zlyhala!"
 
 #: src/lockdown.py:36
 msgid "System Security options"
@@ -200,9 +201,8 @@ msgid "Disable save to disk"
 msgstr ""
 
 #: src/lockdown.py:53
-#, fuzzy
 msgid "Disable \"Fast User Switching\""
-msgstr "Zakázanie prepínania používateľov"
+msgstr ""
 
 #: src/ScriptWorker.py:52
 #, python-format
@@ -372,9 +372,8 @@ msgid "Security"
 msgstr "Bezpečnosť"
 
 #: src/mainwindow.py:329
-#, fuzzy
 msgid "Donate"
-msgstr "Žiadne"
+msgstr ""
 
 #: src/mainwindow.py:355
 msgid "Help the development of Ubuntu Tweak"
@@ -387,9 +386,8 @@ msgid ""
 msgstr ""
 
 #: src/mainwindow.py:356
-#, fuzzy
 msgid "Never Show This Again"
-msgstr "Nikdy nezobrazovať tento dialóg"
+msgstr ""
 
 #: src/mainwindow.py:534
 msgid "Ubuntu Tweak Website"
@@ -542,9 +540,8 @@ msgid "Open the files of type \"%s\" with:"
 msgstr ""
 
 #: src/filetype.py:268
-#, fuzzy
 msgid "Choose a application"
-msgstr "Vybrať spúšťaciu obrazovku"
+msgstr ""
 
 #: src/filetype.py:357
 #, python-format
@@ -828,9 +825,8 @@ msgid "PNG image (*.png)"
 msgstr "Obrázok PNG (*.png)"
 
 #: src/session.py:131
-#, fuzzy
 msgid "Automatically save open applications when logging out"
-msgstr "Automaticky ukladať zmeny v relácii"
+msgstr ""
 
 #: src/session.py:134
 msgid "Show logout prompt"
@@ -983,18 +979,12 @@ msgid "Shortcut Commands"
 msgstr ""
 
 #: src/shortcuts.py:47
-#, fuzzy
 msgid ""
 "By configuring keyboard shortcuts, you can access your favourite "
 "applications instantly.\n"
 "Enter the application's command and set the desired shortcut keys.\n"
 "Use the <b>Delete</b> or <b>BackSpace</b> keys to disable the shortcut."
 msgstr ""
-"Môžete si nastaviť klávesové skratky pre rýchlejší prístup k aplikáciám, "
-"ktoré využívate.\n"
-"Je to jednoduché - zadajte príkaz, ktorý sa má spustiť a nastavte požadovaný "
-"kláves.\n"
-"Klávesovú skratku zmažete pomocu <b>Delete</b> alebo <b>Backspace</b>."
 
 #: src/shortcuts.py:85
 #, python-format
@@ -1065,12 +1055,14 @@ msgid "%d KB of space will be freed"
 msgstr ""
 
 #: src/cleaner.py:294
-msgid "Cleaned up Successfully!"
-msgstr ""
+#, fuzzy
+msgid "Clean up Successful!"
+msgstr "Úspešne aktualizované!"
 
 #: src/cleaner.py:297
-msgid "Cleaned up Failed!"
-msgstr ""
+#, fuzzy
+msgid "Clean up Failed!"
+msgstr "Aktualizácia zlyhala!"
 
 #: src/cleaner.py:303
 msgid ""
@@ -1187,15 +1179,11 @@ msgid "Manage Scripts"
 msgstr "Spravovať skripty"
 
 #: src/scripts.py:132
-#, fuzzy
 msgid ""
 "You can do all kinds of tasks with scripts.\n"
 "You can drag and drop from File Manager.\n"
 "'Scripts' will be added to the context menu."
 msgstr ""
-"Pomocou skriptov môžete vykonávať všemožné úlohy.\n"
-"Môžete prenášať súbory zo Správcu súborov pomocou Ťahaj&Pusť.\n"
-"Do kontextovej ponuky sa pridá položka „Skripty”.\n"
 
 #: src/scripts.py:157
 msgid "Rebuild System Scripts"
@@ -1288,9 +1276,8 @@ msgid "Do you want take effect immediately?"
 msgstr ""
 
 #: src/nautilus.py:100
-#, fuzzy
 msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
-msgstr "Zobrazovať na záložkách vlastností súborov pokročilé oprávnenia"
+msgstr ""
 
 #: src/nautilus.py:103
 msgid "File Browser"
@@ -1309,9 +1296,8 @@ msgid "Enable OverBurn"
 msgstr "Povoliť preplňovanie"
 
 #: src/nautilus.py:119
-#, fuzzy
 msgid "Default thumbnail icon size (Pixels)"
-msgstr "Predvolená veľkosť ikon náhľadu"
+msgstr ""
 
 #: src/nautilus.py:133
 msgid "Maximum size of the thumbnail cache (Megabytes)"
@@ -1351,12 +1337,9 @@ msgid "The thumbnails cache will be cleaned, do you wish to continue?"
 msgstr ""
 
 #: src/nautilus.py:203
-msgid "Clean up successfully!"
-msgstr ""
-
-#: src/nautilus.py:224
-msgid "Update Failed!"
-msgstr "Aktualizácia zlyhala!"
+#, fuzzy
+msgid "Clean up successful!"
+msgstr "Úspešne zmenené!"
 
 #: src/powermanager.py:37
 msgid "Advanced Power Management Settings"
@@ -1375,9 +1358,8 @@ msgid "Show \"CPU frequency control option\" in Power Management Preferences"
 msgstr ""
 
 #: src/powermanager.py:48
-#, fuzzy
 msgid "Disable Network Manager when asleep"
-msgstr "Vypnúť Správcu siete počas spánku"
+msgstr ""
 
 #: src/powermanager.py:51
 msgid "Enable \"Lock screen\" when \"Blank Screen\" activates"
@@ -1436,14 +1418,12 @@ msgid "The CPU frequency policy when on battery power"
 msgstr "Frekvencia procesora pri napájaní z batérie"
 
 #: src/preferences.py:69 src/preferences.py:77
-#, fuzzy
 msgid "Reset"
-msgstr "Nenastavené"
+msgstr ""
 
 #: src/preferences.py:130
-#, fuzzy
 msgid "Enable Check Update"
-msgstr "Povolené šablóny"
+msgstr ""
 
 #: src/sourceeditor.py:62 src/sourceeditor.py:67
 msgid "Choose the sources"
@@ -1898,10 +1878,6 @@ msgid ""
 "other softwares."
 msgstr ""
 
-#: src/common/factory.py:93
-msgid "Disable 'Run Application' dialog (Alt+F2)"
-msgstr ""
-
 #: src/common/policykit/polkitbutton.py:78
 msgid "_Unlock"
 msgstr "_Odomknúť"
@@ -2036,9 +2012,6 @@ msgid ""
 " to the opening website."
 msgstr ""
 
-#~ msgid "KDE IM client using Tencent QQ protocol"
-#~ msgstr "IM klient používajúci protokol Tencent QQ"
-
 #~ msgid "Pick Windows"
 #~ msgstr "Výber Okien"
 
@@ -2084,6 +2057,9 @@ msgstr ""
 #~ msgid "Disable Save To Disk"
 #~ msgstr "Zakázať ukladanie na disk"
 
+#~ msgid "Disable User Switching"
+#~ msgstr "Zakázanie prepínania používateľov"
+
 #~ msgid "Desktop Icon"
 #~ msgstr "Ikony na ploche"
 
@@ -2108,6 +2084,9 @@ msgstr ""
 #~ msgid "Title bar Right-click action"
 #~ msgstr "Akcia pri kliknutí pravým tlačítkom myši na titulok okna"
 
+#~ msgid "Default Thumbnail Icon Size"
+#~ msgstr "Predvolená veľkosť ikon náhľadu"
+
 #~ msgid "Enable Hibernation"
 #~ msgstr "Povoliť Hibernáciu"
 
@@ -2119,6 +2098,12 @@ msgstr ""
 
 #~ msgid "\"GNOME Panel\" Power Management icon"
 #~ msgstr "Ikona správcy napájania v paneli GNOME"
+
+#~ msgid "Choose a Splash image"
+#~ msgstr "Vybrať spúšťaciu obrazovku"
+
+#~ msgid "Automatically save changes to session"
+#~ msgstr "Automaticky ukladať zmeny v relácii"
 
 #~ msgid "Show Logout prompt"
 #~ msgstr "Zobrazovať odhlasovací dialóg"
@@ -2212,11 +2197,38 @@ msgstr ""
 #~ msgstr ""
 #~ "Použiť domovský priečinok ako plochu (odhláste sa, aby sa zmeny prejavili)"
 
+#~ msgid "Show advanced Permissions on File Property pages"
+#~ msgstr "Zobrazovať na záložkách vlastností súborov pokročilé oprávnenia"
+
 #~ msgid "Show CPU frequency control option"
 #~ msgstr "Zobraziť voľby na riadenie frekvencie CPU"
 
+#~ msgid "Disable the Network Manager on sleep"
+#~ msgstr "Vypnúť Správcu siete počas spánku"
+
 #~ msgid "Set the shortcut of your commands"
 #~ msgstr "Nastaviť skratkové klávesy príkazov"
+
+#~ msgid ""
+#~ "You can do all kinds of tasks with scripts.\n"
+#~ "You can drag and drop from File Manager.\n"
+#~ "\"Scripts\" will be added to the Context Menu.\n"
+#~ msgstr ""
+#~ "Pomocou skriptov môžete vykonávať všemožné úlohy.\n"
+#~ "Môžete prenášať súbory zo Správcu súborov pomocou Ťahaj&Pusť.\n"
+#~ "Do kontextovej ponuky sa pridá položka „Skripty”.\n"
+
+#~ msgid ""
+#~ "By configuring keyboard shortcuts, you have faster access to the \n"
+#~ "applications you need.\n"
+#~ "Input the command and set any desired key, it's easy to set a shortcut.\n"
+#~ "Use <b>Delete</b> or <b>BackSpace</b> to clean the key."
+#~ msgstr ""
+#~ "Môžete si nastaviť klávesové skratky pre rýchlejší prístup k aplikáciám, "
+#~ "ktoré využívate.\n"
+#~ "Je to jednoduché - zadajte príkaz, ktorý sa má spustiť a nastavte "
+#~ "požadovaný kláves.\n"
+#~ "Klávesovú skratku zmažete pomocu <b>Delete</b> alebo <b>Backspace</b>."
 
 #~ msgid ""
 #~ "You can freely manage your document templates.\n"
@@ -2273,6 +2285,9 @@ msgstr ""
 
 #~ msgid "Instant Messenger"
 #~ msgstr "Okamžitá komunikácia"
+
+#~ msgid "KDE IM client using Tencent QQ protocol"
+#~ msgstr "IM klient používajúci protokol Tencent QQ"
 
 #~ msgid "Settings for Nautilus behavior"
 #~ msgstr "Nastavenia správania Nautilus"

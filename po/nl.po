@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2009-02-03 20:17+0800\n"
+"POT-Creation-Date: 2009-02-13 19:39+0800\n"
 "PO-Revision-Date: 2008-12-01 12:16+0000\n"
 "Last-Translator: Wim Champagne <wimpieke@gmail.com>\n"
 "Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-12-15 04:17+0000\n"
+"X-Launchpad-Export-Date: 2009-02-13 09:40+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/autostart.py:45
@@ -66,17 +66,11 @@ msgid "Session Programs"
 msgstr ""
 
 #: src/autostart.py:324
-#, fuzzy
 msgid ""
 "Here you can manage what programs get started when you login.\n"
 "You can hide items from view by selecting and clicking \"Remove\"\n"
 "To permanently delete an item, right-click and press \"Delete\"."
 msgstr ""
-"Hier kan u bepaken welke programma's gestart worden tijdens het inloggen\n"
-"U kan bepaalde programma's verbergen door deze te slecteren en op "
-"\"Verwijderen\" te klikken.\n"
-"Om programma's permanent te verwijderen, rechts-klik en selecteer \"Verwijder"
-"\"."
 
 #: src/autostart.py:332
 msgid "Show comments"
@@ -174,12 +168,13 @@ msgid "All Categories"
 msgstr "Alle categorieën"
 
 #: src/installer.py:362
-msgid "Updated Successfully!"
-msgstr ""
+#, fuzzy
+msgid "Update Successful!"
+msgstr "Succesvol geüpdate!"
 
-#: src/installer.py:364
-msgid "Updated Failed!"
-msgstr ""
+#: src/installer.py:364 src/nautilus.py:224
+msgid "Update Failed!"
+msgstr "Update mislukt!"
 
 #: src/lockdown.py:36
 msgid "System Security options"
@@ -206,9 +201,8 @@ msgid "Disable save to disk"
 msgstr "Opslaan uitschakelen"
 
 #: src/lockdown.py:53
-#, fuzzy
 msgid "Disable \"Fast User Switching\""
-msgstr "Desactiveer de optie om van gebruiker te wisselen"
+msgstr ""
 
 #: src/ScriptWorker.py:52
 #, python-format
@@ -250,9 +244,8 @@ msgid "Clean up unneeded packages to free diskspace."
 msgstr ""
 
 #: src/mainwindow.py:73
-#, fuzzy
 msgid "Easily install up-to-date versions of many applications."
-msgstr "Installeer gemakkelijk allerhande programa's."
+msgstr ""
 
 #: src/mainwindow.py:74
 msgid ""
@@ -379,9 +372,8 @@ msgid "Security"
 msgstr "Beveiliging"
 
 #: src/mainwindow.py:329
-#, fuzzy
 msgid "Donate"
-msgstr "Geen"
+msgstr ""
 
 #: src/mainwindow.py:355
 msgid "Help the development of Ubuntu Tweak"
@@ -394,9 +386,8 @@ msgid ""
 msgstr ""
 
 #: src/mainwindow.py:356
-#, fuzzy
 msgid "Never Show This Again"
-msgstr "Nooit dit venster katen zien"
+msgstr ""
 
 #: src/mainwindow.py:534
 msgid "Ubuntu Tweak Website"
@@ -425,6 +416,7 @@ msgstr ""
 "\n"
 "Launchpad Contributions:\n"
 "  Arya Ghodsi https://launchpad.net/~arya-ghodsi\n"
+"  Bart https://launchpad.net/~skratz-b\n"
 "  Edwin Dijk https://launchpad.net/~sitix\n"
 "  Lee Jarratt https://launchpad.net/~lee.jarratt\n"
 "  Sjoerd https://launchpad.net/~hoogwater\n"
@@ -562,9 +554,8 @@ msgid "Open the files of type \"%s\" with:"
 msgstr ""
 
 #: src/filetype.py:268
-#, fuzzy
 msgid "Choose a application"
-msgstr "Kies een opstartscherm"
+msgstr ""
 
 #: src/filetype.py:357
 #, python-format
@@ -848,9 +839,8 @@ msgid "PNG image (*.png)"
 msgstr "PNG bestand(*.png)"
 
 #: src/session.py:131
-#, fuzzy
 msgid "Automatically save open applications when logging out"
-msgstr "Sla wijzigingen automatisch op in een Sessie"
+msgstr ""
 
 #: src/session.py:134
 msgid "Show logout prompt"
@@ -1003,19 +993,12 @@ msgid "Shortcut Commands"
 msgstr ""
 
 #: src/shortcuts.py:47
-#, fuzzy
 msgid ""
 "By configuring keyboard shortcuts, you can access your favourite "
 "applications instantly.\n"
 "Enter the application's command and set the desired shortcut keys.\n"
 "Use the <b>Delete</b> or <b>BackSpace</b> keys to disable the shortcut."
 msgstr ""
-"Door de sneltoetsen aan te passen, heb je een snellere toegang tot \n"
-"programma's, die je nodig hebt.\n"
-"Voer de commando in en kies de gewenste toets. Het is gemakkelijk om een "
-"sneltoets in te stellen.\n"
-"Gebruik <b>Vewijder</b> of <b> Spatie </b> om de ingestelde toets te "
-"verwijderen."
 
 #: src/shortcuts.py:85
 #, python-format
@@ -1043,9 +1026,9 @@ msgid "Cleaning..."
 msgstr ""
 
 #: src/cleaner.py:56
-#, fuzzy, python-format
+#, python-format
 msgid "Cleaning...%s"
-msgstr "Downloaden...%d"
+msgstr ""
 
 #: src/cleaner.py:107
 msgid "Package"
@@ -1086,12 +1069,14 @@ msgid "%d KB of space will be freed"
 msgstr ""
 
 #: src/cleaner.py:294
-msgid "Cleaned up Successfully!"
-msgstr ""
+#, fuzzy
+msgid "Clean up Successful!"
+msgstr "Succesvol geüpdate!"
 
 #: src/cleaner.py:297
-msgid "Cleaned up Failed!"
-msgstr ""
+#, fuzzy
+msgid "Clean up Failed!"
+msgstr "Update mislukt!"
 
 #: src/cleaner.py:303
 msgid ""
@@ -1208,15 +1193,11 @@ msgid "Manage Scripts"
 msgstr ""
 
 #: src/scripts.py:132
-#, fuzzy
 msgid ""
 "You can do all kinds of tasks with scripts.\n"
 "You can drag and drop from File Manager.\n"
 "'Scripts' will be added to the context menu."
 msgstr ""
-"Je kan allerlei taken doen met scripts.\n"
-"Je kan slepen en plakken via de bestandsbeheerder.\n"
-"\"Scripts\" zullen toegevoegd worden aan de Context Menu\n"
 
 #: src/scripts.py:157
 msgid "Rebuild System Scripts"
@@ -1307,9 +1288,8 @@ msgid "Do you want take effect immediately?"
 msgstr ""
 
 #: src/nautilus.py:100
-#, fuzzy
 msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
-msgstr "Toon geavanceerde permissies op de Eigenaar pagina"
+msgstr ""
 
 #: src/nautilus.py:103
 msgid "File Browser"
@@ -1328,9 +1308,8 @@ msgid "Enable OverBurn"
 msgstr "Activeer OverBurn"
 
 #: src/nautilus.py:119
-#, fuzzy
 msgid "Default thumbnail icon size (Pixels)"
-msgstr "Standaardgrootte miniatuur-pictogrammen"
+msgstr ""
 
 #: src/nautilus.py:133
 msgid "Maximum size of the thumbnail cache (Megabytes)"
@@ -1370,12 +1349,9 @@ msgid "The thumbnails cache will be cleaned, do you wish to continue?"
 msgstr ""
 
 #: src/nautilus.py:203
-msgid "Clean up successfully!"
-msgstr ""
-
-#: src/nautilus.py:224
-msgid "Update Failed!"
-msgstr "Update mislukt!"
+#, fuzzy
+msgid "Clean up successful!"
+msgstr "Bijwerken geslaagd!"
 
 #: src/powermanager.py:37
 msgid "Advanced Power Management Settings"
@@ -1394,9 +1370,8 @@ msgid "Show \"CPU frequency control option\" in Power Management Preferences"
 msgstr ""
 
 #: src/powermanager.py:48
-#, fuzzy
 msgid "Disable Network Manager when asleep"
-msgstr "Schakel Netwerkbeheer uit bij sluimeren"
+msgstr ""
 
 #: src/powermanager.py:51
 msgid "Enable \"Lock screen\" when \"Blank Screen\" activates"
@@ -1455,14 +1430,12 @@ msgid "The CPU frequency policy when on battery power"
 msgstr "De CPU frequentie regels wanneer de computer op battrij werkt"
 
 #: src/preferences.py:69 src/preferences.py:77
-#, fuzzy
 msgid "Reset"
-msgstr "Niet ingesteld"
+msgstr ""
 
 #: src/preferences.py:130
-#, fuzzy
 msgid "Enable Check Update"
-msgstr "Actieve sjablonen"
+msgstr ""
 
 #: src/sourceeditor.py:62 src/sourceeditor.py:67
 msgid "Choose the sources"
@@ -1917,10 +1890,6 @@ msgid ""
 "other softwares."
 msgstr ""
 
-#: src/common/factory.py:93
-msgid "Disable 'Run Application' dialog (Alt+F2)"
-msgstr ""
-
 #: src/common/policykit/polkitbutton.py:78
 msgid "_Unlock"
 msgstr "_Ontgrendelen"
@@ -2055,9 +2024,6 @@ msgid ""
 " to the opening website."
 msgstr ""
 
-#~ msgid "Disable \"User Switch\""
-#~ msgstr "Het wisselen van gebruiker uitschakelen"
-
 #~ msgid "Pick Windows"
 #~ msgstr "Kies Venster"
 
@@ -2103,6 +2069,9 @@ msgstr ""
 #~ msgid "Disable Save To Disk"
 #~ msgstr "Schakel 'opslaan naar schijf' uit"
 
+#~ msgid "Disable User Switching"
+#~ msgstr "Desactiveer de optie om van gebruiker te wisselen"
+
 #~ msgid "Desktop Icon"
 #~ msgstr "Bureaublad icoon"
 
@@ -2127,6 +2096,9 @@ msgstr ""
 #~ msgid "Title bar Right-click action"
 #~ msgstr "Vensterbalk rechter klik actie"
 
+#~ msgid "Default Thumbnail Icon Size"
+#~ msgstr "Standaardgrootte miniatuur-pictogrammen"
+
 #~ msgid "Enable Hibernation"
 #~ msgstr "Activeer Slaapstand"
 
@@ -2138,6 +2110,12 @@ msgstr ""
 
 #~ msgid "\"GNOME Panel\" Power Management icon"
 #~ msgstr "Gnome balk energie beheer icoon"
+
+#~ msgid "Choose a Splash image"
+#~ msgstr "Kies een opstartscherm"
+
+#~ msgid "Automatically save changes to session"
+#~ msgstr "Sla wijzigingen automatisch op in een Sessie"
 
 #~ msgid "Show Logout prompt"
 #~ msgstr "Toon afmeld commandoscherm"
@@ -2235,11 +2213,39 @@ msgstr ""
 #~ "Gebruik Persoonlijke map als bureaublad(Afmelden is vereist om de "
 #~ "veranderingen te doorvoeren)"
 
+#~ msgid "Show advanced Permissions on File Property pages"
+#~ msgstr "Toon geavanceerde permissies op de Eigenaar pagina"
+
 #~ msgid "Show CPU frequency control option"
 #~ msgstr "Toon CPU frequentie in configuratiescherm"
 
+#~ msgid "Disable the Network Manager on sleep"
+#~ msgstr "Schakel Netwerkbeheer uit bij sluimeren"
+
 #~ msgid "Set the shortcut of your commands"
 #~ msgstr "Stel sneltoetsen in voor je commando's"
+
+#~ msgid ""
+#~ "You can do all kinds of tasks with scripts.\n"
+#~ "You can drag and drop from File Manager.\n"
+#~ "\"Scripts\" will be added to the Context Menu.\n"
+#~ msgstr ""
+#~ "Je kan allerlei taken doen met scripts.\n"
+#~ "Je kan slepen en plakken via de bestandsbeheerder.\n"
+#~ "\"Scripts\" zullen toegevoegd worden aan de Context Menu\n"
+
+#~ msgid ""
+#~ "By configuring keyboard shortcuts, you have faster access to the \n"
+#~ "applications you need.\n"
+#~ "Input the command and set any desired key, it's easy to set a shortcut.\n"
+#~ "Use <b>Delete</b> or <b>BackSpace</b> to clean the key."
+#~ msgstr ""
+#~ "Door de sneltoetsen aan te passen, heb je een snellere toegang tot \n"
+#~ "programma's, die je nodig hebt.\n"
+#~ "Voer de commando in en kies de gewenste toets. Het is gemakkelijk om een "
+#~ "sneltoets in te stellen.\n"
+#~ "Gebruik <b>Vewijder</b> of <b> Spatie </b> om de ingestelde toets te "
+#~ "verwijderen."
 
 #~ msgid ""
 #~ "You can freely manage your document templates.\n"
