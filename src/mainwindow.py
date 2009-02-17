@@ -418,11 +418,8 @@ class MainWindow(gtk.Window):
 
         return model
 
-    def selection_cb(self, widget, data = None):
-        if not widget.get_selected():
-            return
+    def selection_cb(self, widget):
         model, iter = widget.get_selected()
-
         if iter:
             id = model.get_value(iter, ID_COLUMN)
             data = model.get_value(iter, DATA_COLUMN)
