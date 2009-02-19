@@ -103,6 +103,7 @@ APP_DATA = {
     'mail-notification': _('Mail notification in system tray'),
     'meld': _('Adcal tool to diff and merge files'),
     'mirage': _('A fast and simple GTK+ Image Viewer'),
+    'miro': _('Open internet TV, beyond anything else'),
     'midori': _('Webkit based lightweight web browser'),
     'monodevelop': _('An IDE to Develop .NET applications.'),
     'mplayer': _('The Ultimate Movie Player For Linux'),

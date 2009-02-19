@@ -115,6 +115,7 @@ data = \
     ('mail-notification', Mail),
     ('meld', Text),
     ('mirage', Image),
+    ('miro', Video),
     ('midori', Internet),
     ('monodevelop', Develop),
     ('mplayer', Video),
