@@ -116,7 +116,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/googlegadgets/ubuntu', 'hardy', 'main', GoogleGadgets],
     ['http://ppa.launchpad.net/lidaobing/ubuntu', ['hardy', 'intrepid'], 'main', ChmSee],
     ['http://ppa.launchpad.net/kubuntu-members-kde4/ubuntu', ['hardy', 'intrepid'], 'main', KDE4],
-    ['http://www.getdropbox.com/downloading?os=lnx', ['hardy', 'intrepid'], 'main', NautilusDropbox],
+    ['http://linux.getdropbox.com/ubuntu', ['hardy', 'intrepid'], 'main', NautilusDropbox],
     ['http://ppa.launchpad.net/tualatrix/ubuntu', ['hardy', 'intrepid'], 'main', UbuntuTweak],
     ['http://ppa.launchpad.net/gilir/ubuntu', ['hardy', 'intrepid'], 'main', Screenlets],
     ['http://wine.budgetdedicated.com/apt', ['hardy', 'intrepid'], 'main', Wine],
