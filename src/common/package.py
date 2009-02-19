@@ -138,7 +138,7 @@ class PackageWorker:
         return cache[pkg].summary
 
     def get_pkgversion(self, pkg):
-        return cache[pkg].installedVersion
+        return pkg in cache and cache[pkg].installedVersion or None
 
     def perform_action(self, window_main, to_add = None, to_rm = None):
         window_main.set_sensitive(False)
