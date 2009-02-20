@@ -133,6 +133,7 @@ SOURCE_DATA = {
     'firefox': _('Development Version of Mozilla Firefox 3.0/3.1, 4.0'),
     'compiz-fusion': _('Development version of Compiz Fusion'),
     'google': _("Google's Linux Repository"),
+    'shutter': _('Feature-rich screenshot application(formerly known as GScrot)'),
     'kde-4': _('K Desktop Environment 4.1'),
     'lxde': _('Lightweight X11 Desktop Environment: GPicView, PCManFM'),
     'medibuntu': _('Multimedia, Entertainment and Distraction In Ubuntu\nMedibuntu is a repository of packages that cannot be included into the Ubuntu distribution for legal reasons (copyright, license, patent, etc).'),
