@@ -13,7 +13,10 @@ from common.config import TweakSettings
 
 class RenderCell:
     font_name = StringSetting('/desktop/gnome/interface/font_name').get_string()
-    font_size = float(font_name.split()[-1])
+    try:
+        font_size = float(font_name.split()[-1])
+    except:
+        font_size = 10.0
 
     def __init__(self, 
                 cell = None,
