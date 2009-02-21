@@ -26,7 +26,7 @@ import gconf
 import gettext
 import gobject
 
-from common.widgets import TweakPage, KeyGrabber, KeyModifier
+from common.widgets import TweakPage, KeyGrabber, KeyModifier, CellRendererButton
 
 (
     COLUMN_ID,
@@ -44,7 +44,7 @@ class Shortcuts(TweakPage):
     def __init__(self):
         TweakPage.__init__(self, 
                 _("Shortcut Commands"), 
-                _("By configuring keyboard shortcuts, you can access your favourite applications instantly.\nEnter the application's command and set the desired shortcut keys.\nUse the <b>Delete</b> or <b>BackSpace</b> keys to disable the shortcut."))
+                _("By configuring keyboard shortcuts, you can access your favourite applications instantly.\nEnter the application's command and set the desired shortcut keys."))
         sw = gtk.ScrolledWindow()
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         self.pack_start(sw)
@@ -127,12 +127,25 @@ class Shortcuts(TweakPage):
         column.pack_start(renderer, True)
         column.set_attributes(renderer, text = COLUMN_COMMAND, editable = COLUMN_EDITABLE)
         treeview.append_column(column)
-    
+
         renderer = gtk.CellRendererText()
         renderer.connect("editing-started", self.on_editing_started)
         renderer.connect("edited", self.on_cell_edited, model)
         column = gtk.TreeViewColumn(_("Key"), renderer, text = COLUMN_KEY, editable = COLUMN_EDITABLE)
         treeview.append_column(column)
+
+        column = gtk.TreeViewColumn("")
+        renderer = CellRendererButton(_("Clean"))
+        renderer.connect("clicked", self.on_clean_clicked)
+        column.pack_end(renderer, False)
+        treeview.append_column (column)
+
+    def on_clean_clicked(self, cell, path):
+        iter = self.model.get_iter_from_string(path)
+        id = self.model.get_value(iter, COLUMN_ID)
+        self.model.set_value(iter, COLUMN_KEY, _("disabled"))
+        client = gconf.client_get_default()
+        client.set_string("/apps/metacity/global_keybindings/run_command_%d" % id, "disabled")
 
     def on_got_key(self, widget, key, mods, cell):
         new = gtk.accelerator_name (key, mods)
@@ -150,12 +163,8 @@ class Shortcuts(TweakPage):
 
         id = self.model.get_value(iter, COLUMN_ID)
 
-        if new == "Delete" or new == "BackSpace":
-            client.set_string("/apps/metacity/global_keybindings/run_command_%d" % id, "disabled")
-            self.model.set_value(iter, COLUMN_KEY, _("disabled"))
-        else:
-            client.set_string("/apps/metacity/global_keybindings/run_command_%d" % id, new)
-            self.model.set_value(iter, COLUMN_KEY, new)
+        client.set_string("/apps/metacity/global_keybindings/run_command_%d" % id, new)
+        self.model.set_value(iter, COLUMN_KEY, new)
 
     def on_editing_started(self, cell, editable, path):
         grabber = KeyGrabber(self.get_toplevel(), label = "Grab key combination")
