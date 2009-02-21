@@ -15,7 +15,7 @@ icontheme = gtk.icon_theme_get_default()
 
 def set_label_for_stock_button(button, text):
     label = button.get_child().get_child().get_children()[1]
-    label.set_text(text)
+    label.set_text_with_mnemonic(text)
 
 def get_icon_with_type(filepath, size):
     icon = ui.icon_lookup(icontheme, None, filepath)

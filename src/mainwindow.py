@@ -326,7 +326,7 @@ class MainWindow(gtk.Window):
         hbox.pack_start(button, False, False, 0)
 
         d_button = gtk.Button(stock = gtk.STOCK_YES)
-        set_label_for_stock_button(d_button, _('Donate'))
+        set_label_for_stock_button(d_button, _('_Donate'))
         d_button.connect("clicked", self.on_d_clicked)
         hbox.pack_start(d_button, False, False, 0)
 

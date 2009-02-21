@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Sat Jan 24 19:05:14 2009 -->
+<!--Generated with glade3 3.4.5 on Sat Feb 21 23:09:26 2009 -->
 <glade-interface>
   <widget class="GtkDialog" id="FatalDialog">
     <property name="border_width">5</property>
@@ -45,7 +45,7 @@
                   <widget class="GtkLabel" id="label1">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">&lt;big&gt;&lt;b&gt;Oops...A fatal error occured&lt;/b&gt;&lt;/big&gt;</property>
+                    <property name="label" translatable="yes">&lt;big&gt;&lt;b&gt;Oops... a fatal error occured&lt;/b&gt;&lt;/big&gt;</property>
                     <property name="use_markup">True</property>
                   </widget>
                   <packing>
@@ -59,9 +59,10 @@
                     <property name="xalign">0</property>
                     <property name="yalign">0.30000001192092896</property>
                     <property name="label" translatable="yes">Ubuntu Tweak need to turn off.
-If you want to help the developer to debug, 
-Please choose "Yes" and and report the "Error Message"
- to the opening website.</property>
+If you'd like to help us fix the problem, 
+Please choose &lt;i&gt;Report&lt;/i&gt; to file a new bug report. Make sure to include the error message below:</property>
+                    <property name="use_markup">True</property>
+                    <property name="wrap">True</property>
                   </widget>
                   <packing>
                     <property name="expand">False</property>
@@ -128,9 +129,28 @@ Please choose "Yes" and and report the "Error Message"
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="label">gtk-yes</property>
-                <property name="use_stock">True</property>
                 <property name="response_id">-8</property>
+                <child>
+                  <widget class="GtkHBox" id="hbox4">
+                    <property name="visible">True</property>
+                    <child>
+                      <widget class="GtkImage" id="image4">
+                        <property name="visible">True</property>
+                        <property name="stock">gtk-yes</property>
+                      </widget>
+                    </child>
+                    <child>
+                      <widget class="GtkLabel" id="label8">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">_Report</property>
+                        <property name="use_underline">True</property>
+                      </widget>
+                      <packing>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </widget>
+                </child>
               </widget>
               <packing>
                 <property name="position">1</property>
@@ -188,7 +208,7 @@ Please choose "Yes" and and report the "Error Message"
                   <widget class="GtkLabel" id="label4">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">&lt;big&gt;&lt;b&gt;Oops...A error occured&lt;/b&gt;&lt;/big&gt;</property>
+                    <property name="label" translatable="yes">&lt;big&gt;&lt;b&gt;Oops... an error occured&lt;/b&gt;&lt;/big&gt;</property>
                     <property name="use_markup">True</property>
                   </widget>
                   <packing>
@@ -201,9 +221,10 @@ Please choose "Yes" and and report the "Error Message"
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
                     <property name="yalign">0.30000001192092896</property>
-                    <property name="label" translatable="yes">If you want to help the developer to debug, 
-Please choose "Yes" and and report the "Error Message"
- to the opening website.</property>
+                    <property name="label" translatable="yes">If you'd like to help us fix the problem, 
+Please choose &lt;i&gt;Report&lt;/i&gt; to file a new bug report. Make sure to include the error message below:</property>
+                    <property name="use_markup">True</property>
+                    <property name="wrap">True</property>
                   </widget>
                   <packing>
                     <property name="expand">False</property>
@@ -270,9 +291,28 @@ Please choose "Yes" and and report the "Error Message"
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="label">gtk-yes</property>
-                <property name="use_stock">True</property>
                 <property name="response_id">-8</property>
+                <child>
+                  <widget class="GtkHBox" id="hbox3">
+                    <property name="visible">True</property>
+                    <child>
+                      <widget class="GtkImage" id="image3">
+                        <property name="visible">True</property>
+                        <property name="stock">gtk-yes</property>
+                      </widget>
+                    </child>
+                    <child>
+                      <widget class="GtkLabel" id="label7">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">_Report</property>
+                        <property name="use_underline">True</property>
+                      </widget>
+                      <packing>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </widget>
+                </child>
               </widget>
               <packing>
                 <property name="position">1</property>
