@@ -97,6 +97,7 @@ data = \
     ('ghex', Text),
     ('gmail-notify', Mail),
     ('gnome-do', Desktop),
+    ('gnome-globalmenu', Desktop),
     ('googleearth', Internet),
     ('google-gadgets', Desktop),
     ('gparted', Disk),

@@ -85,6 +85,7 @@ APP_DATA = {
     'ghex': _('GNOME Hex editor'),
     'gmail-notify': _('Notifies the user upon arrival of new mail in Gmail'),
     'gnome-do': _('A powerful, speedy, and sexy remote control for the GNOME Desktop'),
+    'gnome-globalmenu': _('Global Menu Bar for GNOME'),
     'googleearth': _("A program that combines satellite imagery and maps to put the world's geographic information at your fingertips."),
     'google-gadgets': _('Platform for running Google Gadgets on Linux'),
     'gparted': _('GNOME partition editor'),
