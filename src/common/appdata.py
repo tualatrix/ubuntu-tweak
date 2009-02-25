@@ -92,6 +92,7 @@ APP_DATA = {
     'gpicview': _('Lightweight image viewer'),
     'gscrot': _('A powerful screenshot tool'),
     'gtk-recordmydesktop': _('Graphical frontend for recordmydesktop'),
+    'gwibber': _('Gwibber is an open source microblogging client for GNOME'),
     'isomaster': _('A graphical CD image editor'),
     'ibus': _('Intelligent Input Bus for Linux / Unix OS'),
     'ibus-pinyin': _('It is a PinYin engine for IBus.'),

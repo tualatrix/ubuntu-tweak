@@ -79,6 +79,7 @@ CompizFusion = ['Compiz Fusion', 'compiz-fusion', 'www.compiz-fusion.org/', 'com
 CairoDock = ['Cairo Dock', 'cairo-dock',  'cairo-dock.org', 'cairo-dock.gpg']
 GnomeDo = ['GNOME Do', 'gnome-do', 'do.davebsd.com', 'do.gpg']
 GlobalMenu = ['Gnome Global Menu', 'gnome-globalmenu', 'code.google.com/p/gnome2-globalmenu', 'globalmenu.gpg']
+Gwibber = ['Gwibber', 'gwibber', 'https://launchpad.net/gwibber', 'gwibber.gpg']
 Banshee_Stable = [_('Banshee (Stable Version)'), 'banshee', 'banshee-project.org', 'banshee-stable.gpg']
 Banshee_Unstable = [_('Banshee (Unstable Version)'), 'banshee', 'banshee-project.org', 'banshee-unstable.gpg']
 Google = ['Google', 'google', 'www.google.com/linuxrepositories/index.html', 'google.gpg']
@@ -106,6 +107,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/globalmenu-team/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', GlobalMenu],
     ['http://deb.opera.com/opera/', 'lenny', 'non-free', Opera],
     ['http://download.skype.com/linux/repos/debian', 'stable', 'non-free', Skype],
+    ['http://ppa.launchpad.net/gwibber-team/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Gwibber],
     ['http://playonlinux.botux.net/', 'hardy', 'main', PlayOnLinux],
     ['http://ppa.launchpad.net/stemp/ubuntu', ['hardy', 'intrepid'], 'main', Midori],
     ['http://ppa.launchpad.net/fta/ubuntu', ['hardy', 'intrepid'], 'main', Firefox],

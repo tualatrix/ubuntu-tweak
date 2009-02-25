@@ -104,6 +104,7 @@ data = \
     ('gpicview', Image),
     ('gscrot', Image),
     ('gtk-recordmydesktop', Video),
+    ('gwibber', Internet),
     ('isomaster', Disk),
     ('inkscape', Image),
     ('ibus', Text),
