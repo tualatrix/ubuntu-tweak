@@ -128,7 +128,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/shutter/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Shutter],
     ['http://ppa.launchpad.net/galaxium/ubuntu', 'hardy', 'main', Galaxium],
     ['http://download.tuxfamily.org/swiftweasel', 'hardy', 'multiverse', Swiftweasel],
-    ['http://packages.medibuntu.org/', ['hardy', 'intrepid'], 'free non-free', Medibuntu],
+    ['http://packages.medibuntu.org/', ['hardy', 'intrepid', 'jaunty'], 'free non-free', Medibuntu],
     ['http://ppa.launchpad.net/team-xbmc/ubuntu', ['hardy', 'intrepid'], 'main', XBMC],
 ]
 
