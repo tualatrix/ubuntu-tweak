@@ -88,7 +88,8 @@ class TablePack(BaseListPack):
 class TweakPage(gtk.ScrolledWindow):
     """The standard page of tweak"""
     __gsignals__ = {
-            'update': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_STRING, gobject.TYPE_STRING))
+            'update': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_STRING, gobject.TYPE_STRING)),
+            'call': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_STRING, gobject.TYPE_STRING, gobject.TYPE_PYOBJECT)),
     }
 
     def __init__(self, title = None, des = None):

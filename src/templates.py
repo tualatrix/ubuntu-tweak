@@ -31,6 +31,7 @@ from userdir import UserdirFile
 from common.consts import *
 from common.widgets import TweakPage, DirView, FlatView
 from common.widgets.dialogs import WarningDialog
+from common.utils import set_label_for_stock_button
 
 (
     COLUMN_ICON,
@@ -38,7 +39,7 @@ from common.widgets.dialogs import WarningDialog
     COLUMN_FILE,
 ) = range(3)
 
-class BaseTemplates:
+def update_dir():
     systemdir = os.path.join(os.path.expanduser("~"), ".ubuntu-tweak/templates")
     __uf = UserdirFile()
     __template_dir = __uf['XDG_TEMPLATES_DIR']
@@ -47,8 +48,31 @@ class BaseTemplates:
         if not os.path.exists(__template_dir):
             os.mkdir(__template_dir)
         userdir = __template_dir
-
     userdir = __template_dir
+
+    return systemdir, userdir
+
+class BaseTemplates:
+    systemdir, userdir = update_dir()
+
+    def is_right_path(self):
+        if (os.path.expanduser('~').strip('/') == self.userdir.strip('/')) or os.path.isfile(self.userdir):
+            return False
+        else:
+            return True
+
+    def update_dir(self):
+        systemdir = os.path.join(os.path.expanduser("~"), ".ubuntu-tweak/templates")
+        __uf = UserdirFile()
+        __template_dir = __uf['XDG_TEMPLATES_DIR']
+        if not __template_dir:
+            __template_dir = os.path.expanduser('~/Templates')
+            if not os.path.exists(__template_dir):
+                os.mkdir(__template_dir)
+            userdir = __template_dir
+
+        userdir = __template_dir
+
 
 class DefaultTemplates(BaseTemplates):
     """This class use to create the default templates"""
@@ -105,10 +129,26 @@ class Templates(TweakPage, BaseTemplates):
     def __init__(self):
         TweakPage.__init__(self, _('Manage Templates'))
 
-        if os.path.isfile(self.userdir):
-            self.set_description(_('Templates path is error. Please go to Folder to set it correctly.'))
-            return
+        if not self.is_right_path():
+#            self.set_description(_('Templates path is error. Please go to Folder to set it correctly.'))
+            self.set_description(_('Templates path is wrong!\nThe Current path is point to %s, Please reset it to a seprarted folder at User') % self.userdir)
 
+            hbox = gtk.HBox(False, 0)
+            self.pack_start(hbox, False, False, 0)
+
+            button = gtk.Button(stock = gtk.STOCK_GO_FORWARD)
+            button.connect('clicked', self.on_go_button_clicked)
+            set_label_for_stock_button(button, _('Go and set'))
+            hbox.pack_end(button, False, False, 0)
+
+            button = gtk.Button(stock = gtk.STOCK_EXECUTE)
+            button.connect('clicked', self.on_restart_button_clicked)
+            set_label_for_stock_button(button, _('Restart this module'))
+            hbox.pack_end(button, False, False, 0)
+        else:
+            self.create_interface()
+
+    def create_interface(self):
         self.set_description(_('Here you can freely manage your document templates.\nYou can add files as templates by dragging them onto this window.\nYou can create new documents based on these templates from the Nautilus right-click menu.'))
 
         self.default = DefaultTemplates()
@@ -141,6 +181,15 @@ class Templates(TweakPage, BaseTemplates):
         self.enable_templates.connect('drag_data_received', self.on_enable_drag_data_received)
         self.enable_templates.connect('deleted', self.on_enable_deleted)
         self.disable_templates.connect('drag_data_received', self.on_disable_drag_data_received)
+
+    def on_go_button_clicked(self, widget):
+        self.emit('call', 'mainwindow', 'select_module', {'name': 'userdir'})
+
+    def on_restart_button_clicked(self, widget):
+        self.systemdir, self.userdir = update_dir()
+        if self.is_right_path():
+            self.remove_all_children()
+            self.create_interface()
 
     def on_enable_deleted(self, widget):
         self.disable_templates.update_model()

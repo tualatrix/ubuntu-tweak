@@ -163,7 +163,7 @@ else:
 (
     ID_COLUMN,
     DATA_COLUMN,
-    MODULE_COLUMN,
+    MODULE_NAME_COLUMN,
     CHILD_COLUMN,
 ) = range(4)
 
@@ -381,7 +381,8 @@ class MainWindow(gtk.Window):
     def __create_model(self):
         model = gtk.ListStore(
                     gobject.TYPE_INT,
-                    gobject.TYPE_PYOBJECT)
+                    gobject.TYPE_PYOBJECT,
+                    gobject.TYPE_STRING)
 
         return model
 
@@ -403,6 +404,7 @@ class MainWindow(gtk.Window):
                 model.set(iter,
                     ID_COLUMN, module[MODULE_ID],
                     DATA_COLUMN, (icon, title, module[MODULE_TYPE]),
+                    MODULE_NAME_COLUMN, getattr(module[MODULE_FUNC], '__module__', None),
                 )
 
             if i == id:
@@ -414,6 +416,7 @@ class MainWindow(gtk.Window):
                     model.set(iter,
                         ID_COLUMN, module[MODULE_ID],
                         DATA_COLUMN, (icon, title, module[MODULE_TYPE]),
+                        MODULE_NAME_COLUMN, getattr(module[MODULE_FUNC], '__module__', None),
                     )
 
         return model
@@ -462,6 +465,15 @@ class MainWindow(gtk.Window):
             selection = self.treeview.get_selection()
             selection.select_iter(iter)
 
+    def __select_for_each_name(self, model, path, iter, name):
+        m_name = model.get_value(iter, MODULE_NAME_COLUMN)
+        if name == m_name:
+            selection = self.treeview.get_selection()
+            selection.select_iter(iter)
+
+    def select_module(self, name):
+        self.model.foreach(self.__select_for_each_name, name)
+
     def __select_child_item(self, id):
         self.model.foreach(self.__select_for_each, id)
 
@@ -509,8 +521,14 @@ class MainWindow(gtk.Window):
         page.show_all()
         if isinstance(page, TweakPage):
             page.connect('update', self.on_child_page_update)
+            page.connect('call', self.on_child_page_call)
         self.modules[page.__module__] = page
         self.notebook.append_page(page)
+
+    def on_child_page_call(self, widget, target, action, params):
+        # FIXME: Need to combin with page update
+        if target == 'mainwindow':
+            getattr(self, action)(**params)
 
     def on_child_page_update(self, widget, module, action):
         # FIXME: If the module hasn't load yet! 
