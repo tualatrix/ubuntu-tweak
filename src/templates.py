@@ -30,7 +30,7 @@ from gnome import ui
 from userdir import UserdirFile
 from common.consts import *
 from common.widgets import TweakPage, DirView, FlatView
-from common.widgets.dialogs import WarningDialog
+from common.widgets.dialogs import WarningDialog, ErrorDialog
 from common.utils import set_label_for_stock_button
 
 (
@@ -39,42 +39,29 @@ from common.utils import set_label_for_stock_button
     COLUMN_FILE,
 ) = range(3)
 
+
 def update_dir():
-    systemdir = os.path.join(os.path.expanduser("~"), ".ubuntu-tweak/templates")
+    system_dir = os.path.join(os.path.expanduser("~"), ".ubuntu-tweak/templates")
     __uf = UserdirFile()
     __template_dir = __uf['XDG_TEMPLATES_DIR']
     if not __template_dir:
         __template_dir = os.path.expanduser('~/Templates')
         if not os.path.exists(__template_dir):
             os.mkdir(__template_dir)
-        userdir = __template_dir
-    userdir = __template_dir
+        user_dir = __template_dir
+    user_dir = __template_dir
 
-    return systemdir, userdir
+    return system_dir, user_dir
 
-class BaseTemplates:
-    systemdir, userdir = update_dir()
+def is_right_path():
+    if (os.path.expanduser('~').strip('/') == USER_DIR.strip('/')) or os.path.isfile(USER_DIR):
+        return False
+    else:
+        return True
 
-    def is_right_path(self):
-        if (os.path.expanduser('~').strip('/') == self.userdir.strip('/')) or os.path.isfile(self.userdir):
-            return False
-        else:
-            return True
+SYSTEM_DIR, USER_DIR = update_dir()
 
-    def update_dir(self):
-        systemdir = os.path.join(os.path.expanduser("~"), ".ubuntu-tweak/templates")
-        __uf = UserdirFile()
-        __template_dir = __uf['XDG_TEMPLATES_DIR']
-        if not __template_dir:
-            __template_dir = os.path.expanduser('~/Templates')
-            if not os.path.exists(__template_dir):
-                os.mkdir(__template_dir)
-            userdir = __template_dir
-
-        userdir = __template_dir
-
-
-class DefaultTemplates(BaseTemplates):
+class DefaultTemplates:
     """This class use to create the default templates"""
     templates = {
             "html-document.html": _("HTML document"),
@@ -89,49 +76,48 @@ class DefaultTemplates(BaseTemplates):
             }
 
     def create(self):
-        if not os.path.exists(self.systemdir):
-            os.makedirs(self.systemdir)
+        if not os.path.exists(SYSTEM_DIR):
+            os.makedirs(SYSTEM_DIR)
         for file, des in self.templates.items():
             realname = "%s.%s" % (des, file.split('.')[1])
-            if not os.path.exists(os.path.join(self.systemdir, realname)):
-                shutil.copy(os.path.join(DATA_DIR, 'templates/%s' % file), os.path.join(self.systemdir, realname))
+            if not os.path.exists(os.path.join(SYSTEM_DIR, realname)):
+                shutil.copy(os.path.join(DATA_DIR, 'templates/%s' % file), os.path.join(SYSTEM_DIR, realname))
 
     def remove(self):
-        if not os.path.exists(self.systemdir):
+        if not os.path.exists(SYSTEM_DIR):
             return 
-        if os.path.isdir(self.systemdir): 
-            for root, dirs, files in os.walk(self.systemdir, topdown=False):
+        if os.path.isdir(SYSTEM_DIR): 
+            for root, dirs, files in os.walk(SYSTEM_DIR, topdown=False):
                 for name in files:
                     os.remove(os.path.join(root, name))
                 for name in dirs:
                     os.rmdir(os.path.join(root, name))
-                    os.rmdir(self.systemdir)
+                    os.rmdir(SYSTEM_DIR)
         else:
-            os.unlink(self.systemdir)
+            os.unlink(SYSTEM_DIR)
         return
 
-class EnableTemplate(DirView, BaseTemplates):
+class EnableTemplate(DirView):
     """The treeview to display the enable templates"""
     type = _("Enabled Templates")
 
     def __init__(self):
-        DirView.__init__(self, self.userdir)
+        DirView.__init__(self, USER_DIR)
 
-class DisableTemplate(FlatView, BaseTemplates):
+class DisableTemplate(FlatView):
     """The treeview to display the system template"""
     type = _("Disabled Templates")
 
     def __init__(self):
-        FlatView.__init__(self, self.systemdir, self.userdir)
+        FlatView.__init__(self, SYSTEM_DIR, USER_DIR)
 
-class Templates(TweakPage, BaseTemplates):
+class Templates(TweakPage):
     """Freedom added your docmuent templates"""
     def __init__(self):
         TweakPage.__init__(self, _('Manage Templates'))
 
-        if not self.is_right_path():
-#            self.set_description(_('Templates path is error. Please go to Folder to set it correctly.'))
-            self.set_description(_('Templates path is wrong!\nThe Current path is point to %s, Please reset it to a seprarted folder at User') % self.userdir)
+        if not is_right_path():
+            self.set_description(_('Templates path is wrong!\nThe Current path is point to %s, Please reset it to a seprarted folder at User') % USER_DIR)
 
             hbox = gtk.HBox(False, 0)
             self.pack_start(hbox, False, False, 0)
@@ -149,6 +135,7 @@ class Templates(TweakPage, BaseTemplates):
             self.create_interface()
 
     def create_interface(self):
+        self.set_title(_('Manage Templates'))
         self.set_description(_('Here you can freely manage your document templates.\nYou can add files as templates by dragging them onto this window.\nYou can create new documents based on these templates from the Nautilus right-click menu.'))
 
         self.default = DefaultTemplates()
@@ -182,14 +169,19 @@ class Templates(TweakPage, BaseTemplates):
         self.enable_templates.connect('deleted', self.on_enable_deleted)
         self.disable_templates.connect('drag_data_received', self.on_disable_drag_data_received)
 
+        self.show_all()
+
     def on_go_button_clicked(self, widget):
         self.emit('call', 'mainwindow', 'select_module', {'name': 'userdir'})
 
     def on_restart_button_clicked(self, widget):
-        self.systemdir, self.userdir = update_dir()
-        if self.is_right_path():
+        global SYSTEM_DIR, USER_DIR 
+        SYSTEM_DIR, USER_DIR = update_dir()
+        if is_right_path():
             self.remove_all_children()
             self.create_interface()
+        else:
+            ErrorDialog(_('Templates path is still wrong, Please reset it')).launch()
 
     def on_enable_deleted(self, widget):
         self.disable_templates.update_model()
@@ -209,7 +201,7 @@ class Templates(TweakPage, BaseTemplates):
         dialog.destroy()
 
     def config_test(self):
-        if not os.path.exists(self.systemdir):
+        if not os.path.exists(SYSTEM_DIR):
             self.default.create()
 
 if __name__ == "__main__":

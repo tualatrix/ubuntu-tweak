@@ -102,17 +102,9 @@ class TweakPage(gtk.ScrolledWindow):
         viewport.set_shadow_type(gtk.SHADOW_NONE)
 
         if title:
-            self.set_border_width(5)
-
-            title = gtk.MenuItem(title)
-            title.select()
-            self.pack_start(title, False, False, 0)
+            self.set_title(title)
 
         if des:
-            self.description = gtk.Label()
-            self.description.set_ellipsize(pango.ELLIPSIZE_END)
-            self.description.set_alignment(0, 0)
-            self.pack_start(self.description, False, False, 5)
             self.set_description(des)
 
     def pack_start(self, child, expand = True, fill = True, padding = 0):
@@ -121,12 +113,18 @@ class TweakPage(gtk.ScrolledWindow):
     def pack_end(self, child, expand = True, fill = True, padding = 0):
         self.vbox.pack_end(child, expand, fill, padding)
 
+    def set_title(self, title):
+        self.set_border_width(5)
+
+        title = gtk.MenuItem(title)
+        title.select()
+        self.pack_start(title, False, False, 0)
+
     def set_description(self, des):
-        if not getattr(self, 'description', None):
-            self.description = gtk.Label()
-            self.description.set_ellipsize(pango.ELLIPSIZE_END)
-            self.description.set_alignment(0, 0)
-            self.pack_start(self.description, False, False, 5)
+        self.description = gtk.Label()
+        self.description.set_ellipsize(pango.ELLIPSIZE_END)
+        self.description.set_alignment(0, 0)
+        self.pack_start(self.description, False, False, 5)
         self.description.set_markup(des)        
 
     def remove_all_children(self):
