@@ -122,7 +122,7 @@ class SubmitDialog(gtk.Dialog):
         self.e_title = gtk.Entry();
         self.e_title.set_tooltip_text(_('Enter the title of the source, such as "Ubuntu Official Repostory"'))
         self.e_locale = gtk.Entry ();
-        self.e_locale.set_tooltip_text(_("If the locale isn't correct, you can edit by you self"))
+        self.e_locale.set_tooltip_text(_("If the locale isn't correct, you can edit by yourself"))
         self.e_locale.set_text(os.getenv('LANG'))
         self.e_comment = gtk.Entry ();
 
