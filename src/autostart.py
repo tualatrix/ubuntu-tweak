@@ -214,7 +214,10 @@ class AutoStartItem(gtk.TreeView):
         allitems.extend(self.systemitems)
 
         for item in allitems:
-            desktopentry = DesktopEntry(item)
+            try:
+                desktopentry = DesktopEntry(item)
+            except:
+                continue
 
             if desktopentry.get("Hidden"):
                 if not all:
