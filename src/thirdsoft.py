@@ -45,13 +45,14 @@ from aptsources.sourceslist import SourceEntry, SourcesList
     COLUMN_URL,
     COLUMN_DISTRO,
     COLUMN_COMPS,
+    COLUMN_PACKAGE,
     COLUMN_LOGO,
     COLUMN_NAME,
     COLUMN_COMMENT,
     COLUMN_DISPLAY,
     COLUMN_HOME,
     COLUMN_KEY,
-) = range(10)
+) = range(11)
 
 (
     ENTRY_URL,
@@ -67,11 +68,12 @@ from aptsources.sourceslist import SourceEntry, SourcesList
 ) = range(4)
 
 AWN = ['Avant Window Navigator', 'avant-window-navigator', 'awn-project.org', 'awn.gpg']
+AWN_TESTING = [_('Avant Window Navigator (Unstable Version)'), 'avant-window-navigator', 'awn-project.org', 'awn-testing.gpg']
 Amarok = ['Amarok', 'amarok-nightly', 'amarok.kde.org', 'neon.gpg']
 Opera = ['Opera', 'opera', 'www.opera.com', 'opera.gpg']
 Skype = ['Skype', 'skype', 'www.skype.com', '']
 PlayOnLinux = ['PlayOnLinux', 'playonlinux', 'www.playonlinux.com', 'pol.gpg']
-Ubuntu_cn = ['Ubuntu Chinese Repository', 'ubuntu-cn', 'www.ubuntu.org.cn', '']
+Ubuntu_cn = [_('Ubuntu Chinese Repository'), 'ubuntu-cn', 'www.ubuntu.org.cn', '']
 OpenOffice = ['OpenOffice.org', 'openoffice', 'www.openoffice.org', 'ooo.gpg']
 Midori = ['Midori', 'midori', 'www.twotoasts.de', 'midori.gpg']
 Firefox = ['Firefox', 'firefox', 'www.mozilla.org', 'firefox.gpg']
@@ -101,6 +103,7 @@ XBMC = ['XBMC', 'xbmc', 'xbmc.org', 'xbmc.gpg']
 
 SOURCES_DATA = [
     ['http://ppa.launchpad.net/reacocard-awn/ubuntu/', ['hardy','intrepid'], 'main', AWN],
+    ['http://ppa.launchpad.net/awn-testing/ppa/ubuntu', ['hardy','intrepid', 'jaunty'], 'main', AWN_TESTING],
     ['http://ppa.launchpad.net/project-neon/ubuntu/', ['hardy', 'intrepid'], 'main', Amarok],
     ['http://archive.ubuntu.org.cn/ubuntu-cn/', ['hardy', 'intrepid'], 'main restricted universe multiverse', Ubuntu_cn],
     ['http://ppa.launchpad.net/openoffice-pkgs/ubuntu', 'intrepid', 'main', OpenOffice],
@@ -221,6 +224,7 @@ class SourcesView(gtk.TreeView):
                 gobject.TYPE_STRING,
                 gobject.TYPE_STRING,
                 gobject.TYPE_STRING,
+                gobject.TYPE_STRING,
                 gtk.gdk.Pixbuf,
                 gobject.TYPE_STRING,
                 gobject.TYPE_STRING,
@@ -282,6 +286,7 @@ class SourcesView(gtk.TreeView):
                 url,
                 distro,
                 comps,
+                package,
                 logo,
                 name,
                 comment,
@@ -295,7 +300,7 @@ class SourcesView(gtk.TreeView):
         enabled = self.model.get_value(iter, COLUMN_ENABLED)
         url = self.model.get_value(iter, COLUMN_URL)
         distro = self.model.get_value(iter, COLUMN_DISTRO)
-        name = self.model.get_value(iter, COLUMN_NAME)
+        name = self.model.get_value(iter, COLUMN_PACKAGE)
         comps = self.model.get_value(iter, COLUMN_COMPS)
         key = self.model.get_value(iter, COLUMN_KEY)
 
