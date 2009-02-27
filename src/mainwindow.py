@@ -358,7 +358,7 @@ class MainWindow(gtk.Window):
         notify.show()
 		
     def on_d_clicked(self, widget):
-        webbrowser.open('http://ubuntu-tweak.com')
+        webbrowser.open('http://ubuntu-tweak.com/donate')
 
     def on_preferences_clicked(self, widget):
         dialog = PreferencesDialog()
