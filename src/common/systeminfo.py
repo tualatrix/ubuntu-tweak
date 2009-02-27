@@ -82,7 +82,10 @@ class SystemModule:
         return self.is_hardy() or self.is_intrepid() or self.is_jaunty()
 
     def is_supported_ubuntu(self):
-        return self.is_hardy() or self.is_intrepid()
+        return self.is_hardy() or self.is_intrepid() or self.is_jaunty()
+
+    def get_supported_ubuntu(self):
+        return ['hardy', 'intrepid', 'jaunty']
 
     def is_hardy(self):
         return 'Mint' in SystemInfo.distro or \

@@ -112,16 +112,16 @@ SOURCES_DATA = [
     ['http://download.skype.com/linux/repos/debian', 'stable', 'non-free', Skype],
     ['http://ppa.launchpad.net/gwibber-team/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Gwibber],
     ['http://playonlinux.botux.net/', 'hardy', 'main', PlayOnLinux],
-    ['http://ppa.launchpad.net/stemp/ubuntu', ['hardy', 'intrepid'], 'main', Midori],
-    ['http://ppa.launchpad.net/fta/ubuntu', ['hardy', 'intrepid'], 'main', Firefox],
-    ['http://ppa.launchpad.net/compiz/ubuntu', ['hardy', 'intrepid'], 'main', CompizFusion],
+    ['http://ppa.launchpad.net/stemp/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Midori],
+    ['http://ppa.launchpad.net/fta/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Firefox],
+    ['http://ppa.launchpad.net/compiz/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', CompizFusion],
     ['http://repository.cairo-dock.org/ubuntu', ['hardy', 'intrepid'], 'cairo-dock', CairoDock],
-    ['http://ppa.launchpad.net/do-core/ubuntu', ['hardy', 'intrepid'], 'main', GnomeDo],
+    ['http://ppa.launchpad.net/do-core/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', GnomeDo],
     ['http://ppa.launchpad.net/banshee-team/ubuntu', ['hardy', 'intrepid'], 'main', Banshee_Stable],
     ['http://ppa.launchpad.net/banshee-unstable-team/ubuntu', ['hardy', 'intrepid'], 'main', Banshee_Unstable],
     ['http://dl.google.com/linux/deb/', 'stable', 'non-free', Google],
     ['http://ppa.launchpad.net/googlegadgets/ubuntu', 'hardy', 'main', GoogleGadgets],
-    ['http://ppa.launchpad.net/lidaobing/ubuntu', ['hardy', 'intrepid'], 'main', ChmSee],
+    ['http://ppa.launchpad.net/lidaobing/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', ChmSee],
     ['http://ppa.launchpad.net/kubuntu-members-kde4/ubuntu', ['hardy', 'intrepid'], 'main', KDE4],
     ['http://linux.getdropbox.com/ubuntu', ['hardy', 'intrepid'], 'main', NautilusDropbox],
     ['http://ppa.launchpad.net/tualatrix/ubuntu', ['hardy', 'intrepid'], 'main', UbuntuTweak],
@@ -132,21 +132,20 @@ SOURCES_DATA = [
     ['http://download.virtualbox.org/virtualbox/debian', ['hardy', 'intrepid'], 'non-free', VirtualBox],
     ['http://ppa.launchpad.net/shutter/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Shutter],
     ['http://ppa.launchpad.net/galaxium/ubuntu', 'hardy', 'main', Galaxium],
-    ['http://download.tuxfamily.org/swiftweasel', 'hardy', 'multiverse', Swiftweasel],
+    ['http://download.tuxfamily.org/swiftweasel', ['hardy', 'intrepid'], 'multiverse', Swiftweasel],
     ['http://packages.medibuntu.org/', ['hardy', 'intrepid', 'jaunty'], 'free non-free', Medibuntu],
     ['http://ppa.launchpad.net/team-xbmc/ubuntu', ['hardy', 'intrepid'], 'main', XBMC],
 ]
 
-def filter_sources(light = False):
+def filter_sources():
     newsource = []
     for item in SOURCES_DATA:
         distro = item[1]
-        if light and distro == 'hardy' and module_check.is_intrepid():
-            newsource.append(item)
-        elif module_check.get_codename() in distro:
-            newsource.append([item[0], module_check.get_codename(), item[2], item[3]])
+        if type(distro) ==  type([]):
+            if module_check.get_codename() in distro:
+                newsource.append([item[0], module_check.get_codename(), item[2], item[3]])
         else:
-            if distro not in ['hardy', 'intrepid']:
+            if distro not in ['hardy', 'intrepid', 'jaunty']:
                 newsource.append(item)
 
     return newsource
