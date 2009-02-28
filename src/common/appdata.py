@@ -66,6 +66,7 @@ APP_DATA = {
     'banshee': _('Audio Management and Playback application'),
     'cairo-dock': _('A true dock for linux'),
     'chmsee': _('A chm file viewer written in GTK+'),
+    'chromium-browser': _('Chromium is an open-source browser project that aims to build a safer, faster, and more stable way for all Internet users to experience the web.'),
     'codeblocks': _('The open source, cross-platform IDE'),
     'compizconfig-settings-manager': _('Advanced Desktop Effects Settings Manager'),
     'devhelp': _('An API documentation browser for GNOME.'),
