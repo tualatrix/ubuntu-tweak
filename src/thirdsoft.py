@@ -90,6 +90,7 @@ GoogleGadgets = ['Google gadgets', 'google-gadgets', 'desktop.google.com/plugins
 ChmSee = ['Chmsee', 'chmsee', 'chmsee.gro.clinux.org', 'chmsee.gpg']
 KDE4 = ['KDE 4', 'kde-4', 'www.kde.org', 'kde4.gpg']
 UbuntuTweak = ['Ubuntu Tweak', 'ubuntu-tweak', 'ubuntu-tweak.com', 'tweak.gpg']
+UbuntuTweakTesting = [_('Ubuntu Tweak (Unstable Version)'), 'ubuntu-tweak', 'ubuntu-tweak.com', 'tweak-unstable.gpg']
 NautilusDropbox = ['Nautilus DropBox', 'nautilus-dropbox', 'www.getdropbox.com', '']
 Screenlets = ['Screenlets', 'screenlets', 'www.screenlets.org', 'screenlets.gpg']
 Wine = ['Wine', 'wine', 'www.winehq.org', 'wine.gpg']
@@ -127,6 +128,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/kubuntu-members-kde4/ubuntu', ['hardy', 'intrepid'], 'main', KDE4],
     ['http://linux.getdropbox.com/ubuntu', ['hardy', 'intrepid'], 'main', NautilusDropbox],
     ['http://ppa.launchpad.net/tualatrix/ubuntu', ['hardy', 'intrepid'], 'main', UbuntuTweak],
+    ['http://ppa.launchpad.net/ubuntu-tweak-testing/ppa/ubuntu', ['hardy', 'intrepid'], 'main', UbuntuTweakTesting],
     ['http://ppa.launchpad.net/gilir/ubuntu', ['hardy', 'intrepid'], 'main', Screenlets],
     ['http://wine.budgetdedicated.com/apt', ['hardy', 'intrepid'], 'main', Wine],
     ['http://ppa.launchpad.net/lxde/ubuntu', 'hardy', 'main', LXDE],
