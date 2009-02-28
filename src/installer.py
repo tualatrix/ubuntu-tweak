@@ -79,6 +79,7 @@ data = \
     ('banshee', Sound),
     ('cairo-dock', Desktop),
     ('chmsee', Text),
+    ('chromium-browser', Internet),
     ('compizconfig-settings-manager', Desktop),
     ('codeblocks', Develop),
     ('devhelp', Develop),
