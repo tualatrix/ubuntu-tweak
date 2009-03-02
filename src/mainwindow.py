@@ -341,8 +341,8 @@ class MainWindow(gtk.Window):
         self.get_gui_state()
         self.show_all()
 
-        if TweakSettings.get_show_donate_notify():
-            gobject.timeout_add(3000, self.on_d_timeout, d_button)
+#        if TweakSettings.get_show_donate_notify():
+#            gobject.timeout_add(3000, self.on_d_timeout, d_button)
         if TweakSettings.get_check_update():
             gobject.timeout_add(8000, self.on_timeout)
 
