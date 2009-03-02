@@ -117,19 +117,19 @@ class Templates(TweakPage):
         TweakPage.__init__(self, _('Manage Templates'))
 
         if not is_right_path():
-            self.set_description(_('Templates path is wrong!\nThe Current path is point to %s, Please reset it to a seprarted folder at User') % USER_DIR)
+            self.set_description(_('Templates path is wrong! The current path is point to "%s".\nPlease reset it to a folder under your Home Folder.') % USER_DIR)
 
             hbox = gtk.HBox(False, 0)
             self.pack_start(hbox, False, False, 0)
 
             button = gtk.Button(stock = gtk.STOCK_GO_FORWARD)
             button.connect('clicked', self.on_go_button_clicked)
-            set_label_for_stock_button(button, _('Go and set'))
+            set_label_for_stock_button(button, _('Go And Set'))
             hbox.pack_end(button, False, False, 0)
 
             button = gtk.Button(stock = gtk.STOCK_EXECUTE)
             button.connect('clicked', self.on_restart_button_clicked)
-            set_label_for_stock_button(button, _('Restart this module'))
+            set_label_for_stock_button(button, _('Restart This Module'))
             hbox.pack_end(button, False, False, 0)
         else:
             self.create_interface()
@@ -181,7 +181,7 @@ class Templates(TweakPage):
             self.remove_all_children()
             self.create_interface()
         else:
-            ErrorDialog(_('Templates path is still wrong, Please reset it')).launch()
+            ErrorDialog(_('Templates path is still wrong, Please reset it!')).launch()
 
     def on_enable_deleted(self, widget):
         self.disable_templates.update_model()
