@@ -74,6 +74,7 @@ Opera = ['Opera', 'opera', 'www.opera.com', 'opera.gpg']
 Skype = ['Skype', 'skype', 'www.skype.com', '']
 PlayOnLinux = ['PlayOnLinux', 'playonlinux', 'www.playonlinux.com', 'pol.gpg']
 Ubuntu_cn = [_('Ubuntu Chinese Repository'), 'ubuntu-cn', 'www.ubuntu.org.cn', '']
+Specto = ['Specto', 'specto', 'specto.sourceforge.net', 'specto.gpg']
 OpenOffice = ['OpenOffice.org', 'openoffice', 'www.openoffice.org', 'ooo.gpg']
 Midori = ['Midori', 'midori', 'www.twotoasts.de', 'midori.gpg']
 Firefox = ['Firefox', 'firefox', 'www.mozilla.org', 'firefox.gpg']
@@ -111,6 +112,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/openoffice-pkgs/ubuntu', 'intrepid', 'main', OpenOffice],
     ['http://ppa.launchpad.net/globalmenu-team/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', GlobalMenu],
     ['http://ppa.launchpad.net/chromium-daily/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', ChromiumBrowser],
+    ['http://ppa.launchpad.net/specto/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Specto],
     ['http://deb.opera.com/opera/', 'lenny', 'non-free', Opera],
     ['http://download.skype.com/linux/repos/debian', 'stable', 'non-free', Skype],
     ['http://ppa.launchpad.net/gwibber-team/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Gwibber],
