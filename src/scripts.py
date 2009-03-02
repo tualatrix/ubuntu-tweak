@@ -115,7 +115,10 @@ class EnableScripts(DirView, AbstractScripts):
                 self.do_update_model(fullname, child_iter)
             else:
                 if not os.access(fullname, os.X_OK):
-                    os.chmod(fullname, stat.S_IRWXU)
+                    try:
+                        os.chmod(fullname, stat.S_IRWXU)
+                    except:
+                        pass
 
 class DisableScripts(FlatView, AbstractScripts):
     '''The treeview to display the system template'''
