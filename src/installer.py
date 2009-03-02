@@ -74,6 +74,7 @@ data = \
     ('audacious', Sound),
     ('audacity', Sound),
     ('avant-window-navigator', Desktop),
+    ('avant-window-navigator-trunk', Desktop),
     ('avidemux', Video),
     ('azureus', P2P),
     ('banshee', Sound),

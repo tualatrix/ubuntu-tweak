@@ -61,6 +61,7 @@ APP_DATA = {
     'audacious': _('A skinned multimedia player for many platforms'),
     'audacity': _('Record and edit audio files'),
     'avant-window-navigator': _('Fully customisable dock-like window navigator'),
+    'avant-window-navigator-trunk': _('Fully customisable dock-like window navigator(Unstable)'),
     'avidemux': _('A free video editor'),
     'azureus': _('BitTorrent client written in Java'),
     'banshee': _('Audio Management and Playback application'),
