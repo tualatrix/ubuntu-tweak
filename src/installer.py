@@ -128,6 +128,7 @@ data = \
     ('opera', Internet),
     ('playonlinux', Emulator),
     ('screenlets', Desktop),
+    ('shutter', Image),
     ('skype', IM),
     ('smplayer', Video),
     ('soundconverter', Sound),
