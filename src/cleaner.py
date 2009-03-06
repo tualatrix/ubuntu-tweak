@@ -65,6 +65,32 @@ class CleanConfigDialog(ProcessDialog):
         else:
             self.destroy()
 
+class CleanCacheDailog(ProcessDialog):
+    def __init__(self, parent, files):
+        super(CleanCacheDailog, self).__init__(parent = parent)
+
+        self.files = files
+        self.done = False
+        self.error = False
+        self.set_progress_text(_('Cleaning...'))
+
+    def process_data(self):
+        for file in self.files:
+            self.set_progress_text(_('Cleaning...%s') % os.path.basename(file))
+            result = proxy.delete_file(file)
+            if result == 'error':
+                self.error = True
+                break
+        self.done = True
+
+    def on_timeout(self):
+        self.pulse()
+
+        if not self.done:
+            return True
+        else:
+            self.destroy()
+
 class PackageView(gtk.TreeView):
     __gsignals__ = {
         'checked': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, 
@@ -267,11 +293,10 @@ class PackageView(gtk.TreeView):
     def clean_selected_cache(self):
         model = self.get_model()
 
-        for file in self.__check_list:
-            result = proxy.delete_file(file)
-            if result == 'error': break
+        dialog = CleanCacheDailog(self.get_toplevel(), self.get_list())
+        dialog.run()
 
-        if result == 'done':
+        if dialog.error == False:
             self.show_success_dialog()
         else:
             self.show_failed_dialog()
