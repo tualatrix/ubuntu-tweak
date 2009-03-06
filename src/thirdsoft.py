@@ -118,7 +118,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/gwibber-team/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Gwibber],
     ['http://playonlinux.botux.net/', 'hardy', 'main', PlayOnLinux],
     ['http://ppa.launchpad.net/stemp/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Midori],
-    ['http://ppa.launchpad.net/fta/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Firefox],
+    ['http://ppa.launchpad.net/ubuntu-mozilla-daily/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Firefox],
     ['http://ppa.launchpad.net/compiz/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', CompizFusion],
     ['http://repository.cairo-dock.org/ubuntu', ['hardy', 'intrepid'], 'cairo-dock', CairoDock],
     ['http://ppa.launchpad.net/do-core/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', GnomeDo],
