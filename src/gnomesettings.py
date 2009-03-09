@@ -85,10 +85,13 @@ class Gnome(TweakPage):
                                   key = "popup_location", 
                                   texts = [_("Top Left"), _("Top Right"), _("Bottom Left"), _("Bottom Right")], 
                                   values= ["top_left", "top_right", "bottom_left", "bottom_right"])
-        hbox.pack_start(label, False, False, 0)
-        hbox.pack_start(combobox)
+        if combobox:
+            hbox.pack_start(label, False, False, 0)
+            hbox.pack_start(combobox)
 
-        return hbox
+            return hbox
+        else:
+            return None
 
     def create_change_icon_hbox(self):
         hbox = gtk.HBox(False, 10)
