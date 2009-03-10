@@ -107,6 +107,7 @@ data = \
     ('gscrot', Image),
     ('gtk-recordmydesktop', Video),
     ('gwibber', Internet),
+    ('gtg', Text),
     ('isomaster', Disk),
     ('inkscape', Image),
     ('ibus', Text),
