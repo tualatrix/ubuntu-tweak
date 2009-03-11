@@ -20,17 +20,15 @@
 
 import os
 import gtk
-import gtk.glade
 from consts import DATA_DIR
 
-gtk.glade.textdomain('ubuntu-tweak')
-
 class GuiWorker(object):
+    def __init__(self, file_name):
+        file_path = os.path.join(DATA_DIR, 'gui', file_name)
 
-    def __init__(self, file = 'gui.glade'):
-        glade = os.path.join(DATA_DIR, 'glade', file)
+        self.builder = gtk.Builder()
+        self.builder.set_translation_domain('ubuntu-tweak')
+        self.builder.add_from_file(file_path)
 
-        self.xml = gtk.glade.XML(glade)
-
-    def get_widget(self, name):
-        return self.xml.get_widget(name)
+    def get_object(self, name):
+        return self.builder.get_object(name)
