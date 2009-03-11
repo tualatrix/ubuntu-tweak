@@ -345,7 +345,7 @@ class TypeEditDialog(gobject.GObject):
         self.type = type
 
         type_pixbuf = mime_type_get_icon(type, 64)
-        worker = GuiWorker('type_edit.xml')
+        worker = GuiWorker('type_edit.glade')
 
         self.dialog = worker.get_object('type_edit_dialog')
         self.dialog.set_transient_for(parent)
