@@ -27,7 +27,7 @@ from common.factory import WidgetFactory
 class PreferencesDialog:
     def __init__(self):
         self.worker = GuiWorker('preferences.glade')
-        self.dialog = self.worker.get_widget('preferences_dialog')
+        self.dialog = self.worker.get_object('preferences_dialog')
 
         self.setup_window_preference()
         self.setup_color_preference()
@@ -35,7 +35,7 @@ class PreferencesDialog:
         self.setup_other_features()
 
     def setup_window_preference(self):
-        table = self.worker.get_widget('table1')
+        table = self.worker.get_object('table1')
 
         height, width = TweakSettings.get_window_size()
 
@@ -61,26 +61,26 @@ class PreferencesDialog:
         table.attach(toolbar_size, 1, 3, 2, 3)
 
     def setup_color_preference(self):
-        colorbutton = self.worker.get_widget('colorbutton')
+        colorbutton = self.worker.get_object('colorbutton')
         colorbutton.set_color(TweakSettings.get_toolbar_color(True))
         colorbutton.connect('color-set', self.on_color_set)
 
-        reset_button = self.worker.get_widget('reset_button')
+        reset_button = self.worker.get_object('reset_button')
         set_label_for_stock_button(reset_button, _('Reset'))
         reset_button.connect('clicked', self.on_reset_clicked, colorbutton)
 
-        font_colorbutton = self.worker.get_widget('font_colorbutton')
+        font_colorbutton = self.worker.get_object('font_colorbutton')
         font_colorbutton.set_color(TweakSettings.get_toolbar_font_color(True))
         font_colorbutton.connect('color-set', self.on_font_color_set)
 
-        font_reset_button = self.worker.get_widget('font_reset_button')
+        font_reset_button = self.worker.get_object('font_reset_button')
         set_label_for_stock_button(font_reset_button, _('Reset'))
         font_reset_button.connect('clicked', self.on_font_reset_clicked, font_colorbutton)
 
     def setup_launch_function(self):
         from mainwindow import MODULES
         from mainwindow import MODULE_ID, MODULE_LOGO, MODULE_TITLE
-        function_box = self.worker.get_widget('function_box')
+        function_box = self.worker.get_object('function_box')
 
         module_list = []
         for module in MODULES:
@@ -124,20 +124,13 @@ class PreferencesDialog:
         function_box.connect('changed', self.on_launch_changed)
 
     def setup_other_features(self):
-        vbox = self.worker.get_widget('vbox5')
+        vbox = self.worker.get_object('vbox5')
 
         button = WidgetFactory.create('GconfCheckButton', 
                                       label = _('Enable Check Update'), 
                                       key = 'check_update',
                                       default = False)
         vbox.pack_start(button, False, False, 0)
-
-# Only For Test
-#        button = WidgetFactory.create('GconfCheckButton', 
-#                                      label = 'Show Donate Natiffcation', 
-#                                      key = 'show_donate_notify',
-#                                      default = True)
-#        vbox.pack_start(button, False, False, 0)
 
         vbox.show_all()
 

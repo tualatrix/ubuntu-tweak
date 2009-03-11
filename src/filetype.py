@@ -216,6 +216,7 @@ class TypeView(gtk.TreeView):
     TYPE_ADD_APPNAME,
 ) = range(3)
 
+
 class AddAppDialog(gobject.GObject):
     __gsignals__ = {
         'update': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_STRING,))
@@ -223,26 +224,27 @@ class AddAppDialog(gobject.GObject):
 
     def __init__(self, type, parent):
         super(AddAppDialog, self).__init__()
-        worker = GuiWorker()
 
-        self.dialog = worker.get_widget('add_app_dialog') 
+        worker = GuiWorker('type_edit.glade')
+
+        self.dialog = worker.get_object('add_app_dialog') 
         self.dialog.set_modal(True)
         self.dialog.set_transient_for(parent)
-        self.app_view = worker.get_widget('app_view')
+        self.app_view = worker.get_object('app_view')
         self.setup_treeview()
         self.app_selection = self.app_view.get_selection()
         self.app_selection.connect('changed', self.on_app_selection_changed)
 
-        self.info_label = worker.get_widget('info_label')
-        self.description_label = worker.get_widget('description_label')
+        self.info_label = worker.get_object('info_label')
+        self.description_label = worker.get_object('description_label')
 
         self.info_label.set_markup(_('Open the files of type "%s" with:') % gio.content_type_get_description(type))
 
-        self.add_button = worker.get_widget('add_button')
+        self.add_button = worker.get_object('add_button')
         self.add_button.connect('clicked', self.on_add_button_clicked)
 
-        self.command_entry = worker.get_widget('command_entry')
-        self.browse_button = worker.get_widget('browse_button')
+        self.command_entry = worker.get_object('command_entry')
+        self.browse_button = worker.get_object('browse_button')
         self.browse_button.connect('clicked', self.on_browse_button_clicked)
 
     def get_command_or_appinfo(self):
@@ -340,29 +342,29 @@ class TypeEditDialog(gobject.GObject):
 
     def __init__(self, type, parent):
         super(TypeEditDialog, self).__init__()
-        worker = GuiWorker()
         self.type = type
 
         type_pixbuf = mime_type_get_icon(type, 64)
+        worker = GuiWorker('type_edit.xml')
 
-        self.dialog = worker.get_widget('type_edit_dialog')
+        self.dialog = worker.get_object('type_edit_dialog')
         self.dialog.set_transient_for(parent)
         self.dialog.set_modal(True)
         self.dialog.connect('destroy', self.on_dialog_destroy)
 
-        type_logo = worker.get_widget('type_edit_logo')
+        type_logo = worker.get_object('type_edit_logo')
         type_logo.set_from_pixbuf(type_pixbuf)
 
-        type_label = worker.get_widget('type_edit_label')
+        type_label = worker.get_object('type_edit_label')
         type_label.set_markup(_('Select an application to open the type <b>%s</b>') % gio.content_type_get_description(type))
 
-        self.type_edit_view = worker.get_widget('type_edit_view')
+        self.type_edit_view = worker.get_object('type_edit_view')
         self.setup_treeview()
 
-        add_button = worker.get_widget('type_edit_add_button')
+        add_button = worker.get_object('type_edit_add_button')
         add_button.connect('clicked', self.on_add_button_clicked)
 
-        remove_button = worker.get_widget('type_edit_remove_button')
+        remove_button = worker.get_object('type_edit_remove_button')
         remove_button.connect('clicked', self.on_remove_button_clicked)
 
     def on_add_button_clicked(self, widget):
@@ -525,8 +527,6 @@ class FileType(TweakPage):
             self.edit_button.set_sensitive(False)
 
     def on_edit_clicked(self, widget):
-        worker = GuiWorker()
-
         model, iter = self.type_selection.get_selected()
         if iter:
             type = model.get_value(iter, TYPE_MIME)

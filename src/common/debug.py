@@ -30,8 +30,8 @@ def run_traceback(level):
         exc = traceback.print_exc(file = output)
 
         worker = GuiWorker('traceback.glade')
-        dialog = worker.get_widget('%sDialog' % level.capitalize())
-        textview = worker.get_widget('%s_view' % level)
+        dialog = worker.get_object('%sDialog' % level.capitalize())
+        textview = worker.get_object('%s_view' % level)
         buffer = textview.get_buffer()
 
         buffer.set_text(output.getvalue())

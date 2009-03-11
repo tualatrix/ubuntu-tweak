@@ -1,60 +1,63 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Sat Feb 21 23:09:26 2009 -->
-<glade-interface>
-  <widget class="GtkDialog" id="FatalDialog">
+<?xml version="1.0"?>
+<interface>
+  <!-- interface-requires gtk+ 2.12 -->
+  <!-- interface-naming-policy toplevel-contextual -->
+  <object class="GtkDialog" id="FatalDialog">
     <property name="border_width">5</property>
     <property name="title">Ubuntu Tweak</property>
     <property name="resizable">False</property>
-    <property name="window_position">GTK_WIN_POS_CENTER_ON_PARENT</property>
-    <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
+    <property name="window_position">center-on-parent</property>
+    <property name="type_hint">dialog</property>
     <child internal-child="vbox">
-      <widget class="GtkVBox" id="dialog-vbox1">
+      <object class="GtkVBox" id="dialog-vbox1">
         <property name="visible">True</property>
         <property name="spacing">2</property>
         <child>
-          <widget class="GtkHBox" id="hbox2">
+          <object class="GtkHBox" id="hbox2">
             <property name="visible">True</property>
             <property name="border_width">7</property>
             <property name="spacing">7</property>
             <child>
-              <widget class="GtkVBox" id="vbox3">
+              <object class="GtkVBox" id="vbox3">
                 <property name="visible">True</property>
                 <child>
-                  <widget class="GtkImage" id="image1">
+                  <object class="GtkImage" id="image1">
                     <property name="visible">True</property>
                     <property name="stock">gtk-dialog-error</property>
-                    <property name="icon_size">6</property>
-                  </widget>
+                    <property name="icon-size">6</property>
+                  </object>
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">False</property>
+                    <property name="position">0</property>
                   </packing>
                 </child>
-              </widget>
+              </object>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">False</property>
+                <property name="position">0</property>
               </packing>
             </child>
             <child>
-              <widget class="GtkVBox" id="vbox2">
+              <object class="GtkVBox" id="vbox2">
                 <property name="visible">True</property>
                 <property name="spacing">7</property>
                 <child>
-                  <widget class="GtkLabel" id="label1">
+                  <object class="GtkLabel" id="label1">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
                     <property name="label" translatable="yes">&lt;big&gt;&lt;b&gt;Oops... a fatal error occured&lt;/b&gt;&lt;/big&gt;</property>
                     <property name="use_markup">True</property>
-                  </widget>
+                  </object>
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">False</property>
+                    <property name="position">0</property>
                   </packing>
                 </child>
                 <child>
-                  <widget class="GtkLabel" id="label2">
+                  <object class="GtkLabel" id="label2">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
                     <property name="yalign">0.30000001192092896</property>
@@ -63,7 +66,7 @@ If you'd like to help us fix the problem,
 Please choose &lt;i&gt;Report&lt;/i&gt; to file a new bug report. Make sure to include the error message below:</property>
                     <property name="use_markup">True</property>
                     <property name="wrap">True</property>
-                  </widget>
+                  </object>
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">False</property>
@@ -71,39 +74,36 @@ Please choose &lt;i&gt;Report&lt;/i&gt; to file a new bug report. Make sure to i
                   </packing>
                 </child>
                 <child>
-                  <widget class="GtkExpander" id="expander1">
+                  <object class="GtkExpander" id="expander1">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <child>
-                      <widget class="GtkTextView" id="fatal_view">
+                      <object class="GtkTextView" id="fatal_view">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="editable">False</property>
-                        <property name="wrap_mode">GTK_WRAP_WORD</property>
-                      </widget>
+                        <property name="wrap_mode">word</property>
+                      </object>
                     </child>
-                    <child>
-                      <widget class="GtkLabel" id="label3">
+                    <child type="label">
+                      <object class="GtkLabel" id="label3">
                         <property name="visible">True</property>
                         <property name="label" translatable="yes">Error Message</property>
-                      </widget>
-                      <packing>
-                        <property name="type">label_item</property>
-                      </packing>
+                      </object>
                     </child>
-                  </widget>
+                  </object>
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">False</property>
                     <property name="position">2</property>
                   </packing>
                 </child>
-              </widget>
+              </object>
               <packing>
                 <property name="position">1</property>
               </packing>
             </child>
-          </widget>
+          </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">False</property>
@@ -111,113 +111,129 @@ Please choose &lt;i&gt;Report&lt;/i&gt; to file a new bug report. Make sure to i
           </packing>
         </child>
         <child internal-child="action_area">
-          <widget class="GtkHButtonBox" id="dialog-action_area1">
+          <object class="GtkHButtonBox" id="dialog-action_area1">
             <property name="visible">True</property>
-            <property name="layout_style">GTK_BUTTONBOX_END</property>
+            <property name="layout_style">end</property>
             <child>
-              <widget class="GtkButton" id="button2">
+              <object class="GtkButton" id="button2">
+                <property name="label">gtk-no</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="label">gtk-no</property>
                 <property name="use_stock">True</property>
-                <property name="response_id">-9</property>
-              </widget>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
+              </packing>
             </child>
             <child>
-              <widget class="GtkButton" id="button1">
+              <object class="GtkButton" id="button1">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="response_id">-8</property>
                 <child>
-                  <widget class="GtkHBox" id="hbox4">
+                  <object class="GtkHBox" id="hbox4">
                     <property name="visible">True</property>
                     <child>
-                      <widget class="GtkImage" id="image4">
+                      <object class="GtkImage" id="image4">
                         <property name="visible">True</property>
                         <property name="stock">gtk-yes</property>
-                      </widget>
+                      </object>
+                      <packing>
+                        <property name="position">0</property>
+                      </packing>
                     </child>
                     <child>
-                      <widget class="GtkLabel" id="label8">
+                      <object class="GtkLabel" id="label8">
                         <property name="visible">True</property>
                         <property name="label" translatable="yes">_Report</property>
                         <property name="use_underline">True</property>
-                      </widget>
+                      </object>
                       <packing>
                         <property name="position">1</property>
                       </packing>
                     </child>
-                  </widget>
+                  </object>
                 </child>
-              </widget>
+              </object>
               <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
                 <property name="position">1</property>
               </packing>
             </child>
-          </widget>
+          </object>
           <packing>
             <property name="expand">False</property>
-            <property name="pack_type">GTK_PACK_END</property>
+            <property name="pack_type">end</property>
+            <property name="position">0</property>
           </packing>
         </child>
-      </widget>
+      </object>
     </child>
-  </widget>
-  <widget class="GtkDialog" id="ErrorDialog">
+    <action-widgets>
+      <action-widget response="-9">button2</action-widget>
+      <action-widget response="-8">button1</action-widget>
+    </action-widgets>
+  </object>
+  <object class="GtkDialog" id="ErrorDialog">
     <property name="border_width">5</property>
     <property name="title">Ubuntu Tweak</property>
     <property name="resizable">False</property>
-    <property name="window_position">GTK_WIN_POS_CENTER_ON_PARENT</property>
-    <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
+    <property name="window_position">center-on-parent</property>
+    <property name="type_hint">dialog</property>
     <child internal-child="vbox">
-      <widget class="GtkVBox" id="dialog-vbox3">
+      <object class="GtkVBox" id="dialog-vbox3">
         <property name="visible">True</property>
         <property name="spacing">2</property>
         <child>
-          <widget class="GtkHBox" id="hbox1">
+          <object class="GtkHBox" id="hbox1">
             <property name="visible">True</property>
             <property name="border_width">7</property>
             <property name="spacing">7</property>
             <child>
-              <widget class="GtkVBox" id="vbox1">
+              <object class="GtkVBox" id="vbox1">
                 <property name="visible">True</property>
                 <child>
-                  <widget class="GtkImage" id="image2">
+                  <object class="GtkImage" id="image2">
                     <property name="visible">True</property>
                     <property name="stock">gtk-dialog-error</property>
-                    <property name="icon_size">6</property>
-                  </widget>
+                    <property name="icon-size">6</property>
+                  </object>
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">False</property>
+                    <property name="position">0</property>
                   </packing>
                 </child>
-              </widget>
+              </object>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">False</property>
+                <property name="position">0</property>
               </packing>
             </child>
             <child>
-              <widget class="GtkVBox" id="vbox4">
+              <object class="GtkVBox" id="vbox4">
                 <property name="visible">True</property>
                 <property name="spacing">7</property>
                 <child>
-                  <widget class="GtkLabel" id="label4">
+                  <object class="GtkLabel" id="label4">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
                     <property name="label" translatable="yes">&lt;big&gt;&lt;b&gt;Oops... an error occured&lt;/b&gt;&lt;/big&gt;</property>
                     <property name="use_markup">True</property>
-                  </widget>
+                  </object>
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">False</property>
+                    <property name="position">0</property>
                   </packing>
                 </child>
                 <child>
-                  <widget class="GtkLabel" id="label5">
+                  <object class="GtkLabel" id="label5">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
                     <property name="yalign">0.30000001192092896</property>
@@ -225,7 +241,7 @@ Please choose &lt;i&gt;Report&lt;/i&gt; to file a new bug report. Make sure to i
 Please choose &lt;i&gt;Report&lt;/i&gt; to file a new bug report. Make sure to include the error message below:</property>
                     <property name="use_markup">True</property>
                     <property name="wrap">True</property>
-                  </widget>
+                  </object>
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">False</property>
@@ -233,39 +249,36 @@ Please choose &lt;i&gt;Report&lt;/i&gt; to file a new bug report. Make sure to i
                   </packing>
                 </child>
                 <child>
-                  <widget class="GtkExpander" id="expander2">
+                  <object class="GtkExpander" id="expander2">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <child>
-                      <widget class="GtkTextView" id="error_view">
+                      <object class="GtkTextView" id="error_view">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="editable">False</property>
-                        <property name="wrap_mode">GTK_WRAP_WORD</property>
-                      </widget>
+                        <property name="wrap_mode">word</property>
+                      </object>
                     </child>
-                    <child>
-                      <widget class="GtkLabel" id="label6">
+                    <child type="label">
+                      <object class="GtkLabel" id="label6">
                         <property name="visible">True</property>
                         <property name="label" translatable="yes">Error Message</property>
-                      </widget>
-                      <packing>
-                        <property name="type">label_item</property>
-                      </packing>
+                      </object>
                     </child>
-                  </widget>
+                  </object>
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">False</property>
                     <property name="position">2</property>
                   </packing>
                 </child>
-              </widget>
+              </object>
               <packing>
                 <property name="position">1</property>
               </packing>
             </child>
-          </widget>
+          </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">False</property>
@@ -273,58 +286,71 @@ Please choose &lt;i&gt;Report&lt;/i&gt; to file a new bug report. Make sure to i
           </packing>
         </child>
         <child internal-child="action_area">
-          <widget class="GtkHButtonBox" id="dialog-action_area3">
+          <object class="GtkHButtonBox" id="dialog-action_area3">
             <property name="visible">True</property>
-            <property name="layout_style">GTK_BUTTONBOX_END</property>
+            <property name="layout_style">end</property>
             <child>
-              <widget class="GtkButton" id="button3">
+              <object class="GtkButton" id="button3">
+                <property name="label">gtk-no</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="label">gtk-no</property>
                 <property name="use_stock">True</property>
-                <property name="response_id">-9</property>
-              </widget>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
+              </packing>
             </child>
             <child>
-              <widget class="GtkButton" id="button4">
+              <object class="GtkButton" id="button4">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="response_id">-8</property>
                 <child>
-                  <widget class="GtkHBox" id="hbox3">
+                  <object class="GtkHBox" id="hbox3">
                     <property name="visible">True</property>
                     <child>
-                      <widget class="GtkImage" id="image3">
+                      <object class="GtkImage" id="image3">
                         <property name="visible">True</property>
                         <property name="stock">gtk-yes</property>
-                      </widget>
+                      </object>
+                      <packing>
+                        <property name="position">0</property>
+                      </packing>
                     </child>
                     <child>
-                      <widget class="GtkLabel" id="label7">
+                      <object class="GtkLabel" id="label7">
                         <property name="visible">True</property>
                         <property name="label" translatable="yes">_Report</property>
                         <property name="use_underline">True</property>
-                      </widget>
+                      </object>
                       <packing>
                         <property name="position">1</property>
                       </packing>
                     </child>
-                  </widget>
+                  </object>
                 </child>
-              </widget>
+              </object>
               <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
                 <property name="position">1</property>
               </packing>
             </child>
-          </widget>
+          </object>
           <packing>
             <property name="expand">False</property>
-            <property name="pack_type">GTK_PACK_END</property>
+            <property name="pack_type">end</property>
+            <property name="position">0</property>
           </packing>
         </child>
-      </widget>
+      </object>
     </child>
-  </widget>
-</glade-interface>
+    <action-widgets>
+      <action-widget response="-9">button3</action-widget>
+      <action-widget response="-8">button4</action-widget>
+    </action-widgets>
+  </object>
+</interface>
