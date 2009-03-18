@@ -103,7 +103,8 @@ VirtualBox = ['VirtualBox', 'virtualbox', 'www.virtualbox.org/', 'virtualbox.gpg
 Shutter = ['Shutter', 'shutter', 'launchpad.net/shutter', 'shutter.gpg']
 Galaxium = ['Galaxium', 'galaxium', 'code.google.com/p/galaxium/', 'galaxium.gpg']
 Swiftweasel = ['Swiftweasel', 'swiftweasel', 'swiftweasel.tuxfamily.org/', '']
-Medibuntu = ['Medibuntu', 'medibuntu', 'www.medibuntu.org/', 'medibuntu.gpg']
+Medibuntu = ['Medibuntu', 'medibuntu', 'www.medibuntu.org', 'medibuntu.gpg']
+WineDoors = ['Wine Doors', 'wine-doors', 'www.wine-doors.org', 'wine-doors.gpg']
 XBMC = ['XBMC', 'xbmc', 'xbmc.org', 'xbmc.gpg']
 
 SOURCES_DATA = [
@@ -144,6 +145,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/galaxium/ubuntu', 'hardy', 'main', Galaxium],
     ['http://download.tuxfamily.org/swiftweasel', ['hardy', 'intrepid'], 'multiverse', Swiftweasel],
     ['http://packages.medibuntu.org/', ['hardy', 'intrepid', 'jaunty'], 'free non-free', Medibuntu],
+    ['http://ppa.launchpad.net/wine-doors-dev-team/ppa/ubuntu', 'intrepid', 'main', WineDoors],
     ['http://ppa.launchpad.net/team-xbmc/ubuntu', ['hardy', 'intrepid'], 'main', XBMC],
 ]
 

@@ -141,6 +141,7 @@ data = \
     ('vlc', Video),
     ('vmware-player', Emulator),
     ('wine', Emulator),
+    ('wine-doors', Emulator),
     ('xbmc', Desktop),
 )
 

@@ -133,6 +133,7 @@ APP_DATA = {
     'vlc': _('Read, capture, broadcast your multimedia streams'),
     'vmware-player': _('Run Virtual Machines using VMware'),
     'wine': _('A compatibility layer for running Windows programs'),
+    'wine-doors': _('Wine-doors is an application designed to make installing windows software on Linux, Solaris or other Unix systems easier.'),
     'xbmc': _('XBMC is a free and open source software media player and entertainment hub'),
 }
 
