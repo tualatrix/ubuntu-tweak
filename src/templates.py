@@ -20,13 +20,9 @@
 
 import pygtk
 pygtk.require("2.0")
-import gtk
 import os
+import gtk
 import shutil
-import gobject
-import gettext
-import gnomevfs
-from gnome import ui
 from userdir import UserdirFile
 from common.consts import *
 from common.widgets import TweakPage, DirView, FlatView
