@@ -110,7 +110,7 @@ class DisableTemplate(FlatView):
 class Templates(TweakPage):
     """Freedom added your docmuent templates"""
     def __init__(self):
-        TweakPage.__init__(self, _('Manage Templates'))
+        TweakPage.__init__(self)
 
         if not is_right_path():
             self.set_description(_('Templates path is wrong! The current path is point to "%s".\nPlease reset it to a folder under your Home Folder.') % USER_DIR)

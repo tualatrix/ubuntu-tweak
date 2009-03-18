@@ -114,18 +114,20 @@ class TweakPage(gtk.ScrolledWindow):
         self.vbox.pack_end(child, expand, fill, padding)
 
     def set_title(self, title):
-        self.set_border_width(5)
+        if not getattr(self, 'title', None):
+            self.set_border_width(5)
 
-        title = gtk.MenuItem(title)
-        title.select()
-        self.pack_start(title, False, False, 0)
+            self.title = gtk.MenuItem(title)
+            self.title.select()
+            self.pack_start(self.title, False, False, 0)
 
     def set_description(self, des):
-        self.description = gtk.Label()
-        self.description.set_ellipsize(pango.ELLIPSIZE_END)
-        self.description.set_alignment(0, 0)
-        self.pack_start(self.description, False, False, 5)
-        self.description.set_markup(des)        
+        if not getattr(self, 'description', None):
+            self.description = gtk.Label()
+            self.description.set_ellipsize(pango.ELLIPSIZE_END)
+            self.description.set_alignment(0, 0)
+            self.pack_start(self.description, False, False, 5)
+            self.description.set_markup(des)        
 
     def remove_all_children(self):
         for child in self.vbox.get_children():
