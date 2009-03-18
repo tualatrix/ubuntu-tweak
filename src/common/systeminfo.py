@@ -33,6 +33,17 @@ class GnomeVersion:
     date = xmldoc.getElementsByTagName("date")[0].firstChild.data
     description = "GNOME %s.%s.%s (%s %s)" % (platform, minor, micro, distributor, date)
 
+def parse_lsb():
+    data = open('/etc/lsb-release').read()
+    dict = {}
+    for line in data.split('\n'):
+        try:
+            key, value = line.split('=')
+            dict[key] = value
+        except:
+            pass
+    return dict
+
 class DistroInfo:
     distro = GnomeVersion.distributor
     if  distro == "Ubuntu":
@@ -42,32 +53,36 @@ class SystemInfo:
     gnome = GnomeVersion.description
     distro = DistroInfo.distro
 
-class SystemModule:
-    def has_apt(self):
+class module_check:
+    @classmethod
+    def has_apt(cls):
         try:
             import apt_pkg
             return True
         except ImportError:
             return False
 
-    def has_ccm(self):
+    @classmethod
+    def has_ccm(cls):
         try:
             import ccm
             return True
         except ImportError:
             return False
 
-    def has_right_compiz(self):
-        if self.has_ccm():
+    @classmethod
+    def has_right_compiz(cls):
+        if cls.has_ccm():
             import ccm
             if ccm.Version >= '0.7.4':
                 return True
             else:
                 return False
-        elif self.has_apt():
+        elif cls.has_apt():
             from package import worker, update_apt_cache
             update_apt_cache()
-            version = str(worker.get_pkgversion('compiz'))
+            version = str(worker.get_pkgversion('compizconfig-settings-manager'))
+            print version
             if version.find(':') != -1 and version.split(':')[1] >= '0.7.4':
                 return True
             else:
@@ -75,50 +90,48 @@ class SystemModule:
         else:
             return False
 
-    def get_gnome_version(self):
+    @classmethod
+    def get_gnome_version(cls):
         return int(GnomeVersion.minor)
 
-    def is_ubuntu(self):
-        return self.is_hardy() or self.is_intrepid() or self.is_jaunty()
+    @classmethod
+    def is_ubuntu(cls):
+        return cls.is_hardy() or cls.is_intrepid() or cls.is_jaunty()
 
-    def is_supported_ubuntu(self):
-        return self.is_hardy() or self.is_intrepid() or self.is_jaunty()
+    @classmethod
+    def is_supported_ubuntu(cls):
+        return cls.is_hardy() or cls.is_intrepid() or cls.is_jaunty()
 
-    def get_supported_ubuntu(self):
+    @classmethod
+    def get_supported_ubuntu(cls):
         return ['hardy', 'intrepid', 'jaunty']
 
-    def is_hardy(self):
-        return 'Mint' in SystemInfo.distro or \
-               'Greenie 3' in SystemInfo.distro or \
-               '8.04' in SystemInfo.distro
+    @classmethod
+    def is_hardy(cls):
+        return 'hardy' in cls.get_codename()
 
-    def is_intrepid(self):
-        return 'Mint' in SystemInfo.distro or \
-               '8.10' in SystemInfo.distro or \
-               'Greenie 3' in SystemInfo.distro or \
-               'intrepid' in SystemInfo.distro
+    @classmethod
+    def is_intrepid(cls):
+        return 'intrepid' in cls.get_codename()
 
-    def is_jaunty(self):
-        return 'jaunty' in SystemInfo.distro
+    @classmethod
+    def is_jaunty(cls):
+        return 'jaunty' in cls.get_codename()
 
-    def get_codename(self):
-        if self.is_hardy():
-            return 'hardy'
-        elif self.is_intrepid():
-            return 'intrepid'
-        elif self.is_jaunty():
-            return 'jaunty'
-        else:
+    @classmethod
+    def get_codename(cls):
+        try:
+            return parse_lsb()['DISTRIB_CODENAME']
+        except:
             return 'NULL'
 
-    def has_gio(self):
+    @classmethod
+    def has_gio(cls):
         try:
             import gio
             return True
         except:
             return False
-
-module_check = SystemModule()
             
 if __name__ == "__main__":
     print SystemInfo.distro
@@ -128,3 +141,4 @@ if __name__ == "__main__":
     print 'gnome version', module_check.get_gnome_version()
     print 'is hardy', module_check.is_hardy()
     print 'is inprepid', module_check.is_intrepid()
+    print 'is jaunty', module_check.is_jaunty()
