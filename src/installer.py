@@ -136,6 +136,7 @@ data = \
     ('stardict', Desktop),
     ('tasque', Desktop),
     ('terminator', Emulator),
+    ('transmission-gtk', P2P),
     ('ubuntu-restricted-extras', Desktop),
     ('virtualbox-ose', Emulator),
     ('vlc', Video),

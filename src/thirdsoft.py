@@ -99,6 +99,9 @@ Screenlets = ['Screenlets', 'screenlets', 'www.screenlets.org', 'screenlets.gpg'
 Wine = ['Wine', 'wine', 'www.winehq.org', 'wine.gpg']
 LXDE = ['LXDE', 'lxde', 'lxde.org', 'lxde.gpg']
 Terminator = ['Terminator', 'terminator', 'www.tenshu.net/terminator/', 'terminator.gpg']
+Transmission_Stable = ['Transmission (Stable Version)', 'transmission-gtk', 'www.transmissionbt.com', 'transmission_stable.gpg']
+Transmission_Beta = ['Transmission (Beta Version)', 'transmission-gtk', 'www.transmissionbt.com', 'transmission_beta.gpg']
+Transmission_Nightly = ['Transmission (Nightly Version)', 'transmission-gtk', 'www.transmissionbt.com', 'transmission_nightly.gpg']
 VirtualBox = ['VirtualBox', 'virtualbox', 'www.virtualbox.org/', 'virtualbox.gpg']
 Shutter = ['Shutter', 'shutter', 'launchpad.net/shutter', 'shutter.gpg']
 Galaxium = ['Galaxium', 'galaxium', 'code.google.com/p/galaxium/', 'galaxium.gpg']
@@ -140,6 +143,9 @@ SOURCES_DATA = [
     ['http://wine.budgetdedicated.com/apt', ['hardy', 'intrepid'], 'main', Wine],
     ['http://ppa.launchpad.net/lxde/ubuntu', 'hardy', 'main', LXDE],
     ['http://ppa.launchpad.net/gnome-terminator/ubuntu', ['hardy', 'intrepid'], 'main', Terminator],
+    ['http://ppa.launchpad.net/transmissionbt/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Transmission_Stable],
+    ['http://ppa.launchpad.net/transmissionbt-beta/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Transmission_Beta],
+    ['http://ppa.launchpad.net/transmissionbt-nightly/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Transmission_Nightly],
     ['http://download.virtualbox.org/virtualbox/debian', ['hardy', 'intrepid'], 'non-free', VirtualBox],
     ['http://ppa.launchpad.net/shutter/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Shutter],
     ['http://ppa.launchpad.net/galaxium/ubuntu', 'hardy', 'main', Galaxium],
