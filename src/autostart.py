@@ -141,11 +141,15 @@ class AutoStartItem(gtk.TreeView):
         self.useritems = map(lambda path: "%s/%s" % (self.userdir, path), 
                                                     os.listdir(self.userdir))
 
-        etc_items = map(lambda path: "%s/%s" % (self.etc_dir, path),
+        etc_items = []
+        gnome_items = []
+        if os.path.exists(self.etc_dir):
+            etc_items = map(lambda path: "%s/%s" % (self.etc_dir, path),
                         filter(lambda i: i not in os.listdir(self.userdir), 
                                                     os.listdir(self.etc_dir)))
 
-        gnome_items = map(lambda path: "%s/%s" % (self.gnome_dir, path),
+        if os.path.exists(self.gnome_dir):
+            gnome_items = map(lambda path: "%s/%s" % (self.gnome_dir, path),
                         filter(lambda i: i not in os.listdir(self.userdir), 
                                                     os.listdir(self.gnome_dir)))
 
