@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2009-03-02 20:10+0800\n"
+"POT-Creation-Date: 2009-03-26 23:00+0800\n"
 "PO-Revision-Date: 2009-02-16 13:59+0000\n"
 "Last-Translator: Svetoslav Stefanov <svetlisashkov@yahoo.com>\n"
 "Language-Team: Svetoslav Stefanov <lfu.project@gmail.com>\n"
@@ -39,7 +39,7 @@ msgstr "Редактиране на начална програма"
 msgid "New Startup Program"
 msgstr "Нова начална програма"
 
-#: src/autostart.py:69 data/glade/gui.glade:173
+#: src/autostart.py:69 data/gui/type_edit.glade:205
 msgid "_Browse..."
 msgstr "_Разглеждане..."
 
@@ -47,27 +47,27 @@ msgstr "_Разглеждане..."
 msgid "Choose a Program"
 msgstr "Избор на програма"
 
-#: src/autostart.py:182
+#: src/autostart.py:186
 msgid "Delete from Disk"
 msgstr "Изтриване от диска"
 
-#: src/autostart.py:196
+#: src/autostart.py:200
 msgid "Can't delete the system item from disk."
 msgstr "Елемент на системата не може да бъде изтрит от диска."
 
-#: src/autostart.py:244
+#: src/autostart.py:248
 msgid "None description"
 msgstr "Без описание"
 
-#: src/autostart.py:264
+#: src/autostart.py:268
 msgid "Program"
 msgstr "Програма"
 
-#: src/autostart.py:326
+#: src/autostart.py:330
 msgid "Session Programs"
 msgstr "Зареждани програми при вписване"
 
-#: src/autostart.py:327
+#: src/autostart.py:331
 msgid ""
 "Here you can manage what programs get started when you login.\n"
 "You can hide items from view by selecting and clicking \"Remove\"\n"
@@ -78,19 +78,19 @@ msgstr ""
 "За окончателно изтриване, цъкнете с десен бутон и изберете \"Изтриване от "
 "диска\"."
 
-#: src/autostart.py:335
+#: src/autostart.py:339
 msgid "Show comments"
 msgstr "Показване на коментарите"
 
-#: src/autostart.py:337
+#: src/autostart.py:341
 msgid "Show all runnable programs"
 msgstr "Показване на всички изпълними програми"
 
-#: src/autostart.py:399 src/autostart.py:446
+#: src/autostart.py:403 src/autostart.py:450
 msgid "The name of the startup program cannot be empty"
 msgstr "Името на програмата за стартиране не може да бъде празно"
 
-#: src/autostart.py:401 src/autostart.py:448
+#: src/autostart.py:405 src/autostart.py:452
 msgid "Text was empty (or contained only whitespace)"
 msgstr "Текстът е празен (или съдържа само празни знаци)"
 
@@ -159,11 +159,11 @@ msgstr "Емулатори"
 msgid "E-mail Tools"
 msgstr "Електронна поща"
 
-#: src/installer.py:148
+#: src/installer.py:152
 msgid "Add/Remove Applications"
 msgstr "Добавяне/Премахване на приложения"
 
-#: src/installer.py:149
+#: src/installer.py:153
 msgid ""
 "A simple but more effecient method for finding and installing popular "
 "packages than the default Add/Remove."
@@ -171,15 +171,15 @@ msgstr ""
 "Прост но по-ефикасен метод за намиране и инсталиране на популярни пакети от "
 "стандартното Добавяне/Премахване."
 
-#: src/installer.py:197
+#: src/installer.py:201
 msgid "All Categories"
 msgstr "Всички категории"
 
-#: src/installer.py:367
+#: src/installer.py:371
 msgid "Update Successful!"
 msgstr ""
 
-#: src/installer.py:369 src/nautilus.py:224
+#: src/installer.py:373 src/nautilus.py:224
 msgid "Update Failed!"
 msgstr "Осъвременяването се провали!"
 
@@ -189,8 +189,7 @@ msgstr "Системни настройки на сигурността"
 
 #: src/lockdown.py:38
 msgid "Disable \"Run Application\" dialog (Alt+F2)"
-msgstr ""
-"Изключване на диалоговия прозорец  \"Стартиране на програма\" (Alt+F2)"
+msgstr "Изключване на диалоговия прозорец  \"Стартиране на програма\" (Alt+F2)"
 
 #: src/lockdown.py:41
 msgid "Disable \"Lock Screen\""
@@ -213,18 +212,18 @@ msgid "Disable \"Fast User Switching\""
 msgstr "Изключване на \"Бързо превключване на потребители\""
 
 #: src/ScriptWorker.py:52
-#, python-format
-msgid "The file \"%s\" is exists!"
+#, fuzzy, python-format
+msgid "The file \"%s\" already exists!"
 msgstr "Файлът \"%s\" съществува!"
 
 #: src/ScriptWorker.py:57
-#, python-format
-msgid "The folder \"%s\" is exists!"
+#, fuzzy, python-format
+msgid "The folder \"%s\" already exists!"
 msgstr "Папката \"%s\" съществува!"
 
 #: src/ScriptWorker.py:63 src/ScriptWorker.py:69
-#, python-format
-msgid "The target \"%s\" is exists!"
+#, fuzzy, python-format
+msgid "The target \"%s\" already exists!"
 msgstr "Целта \"%s\" съществува!"
 
 #: src/ScriptWorker.py:110 src/ScriptWorker.py:121
@@ -302,11 +301,11 @@ msgstr "Добавяне / премахване"
 msgid "Source Editor"
 msgstr "Редактор на източници"
 
-#: src/mainwindow.py:228 src/thirdsoft.py:259
+#: src/mainwindow.py:228 src/thirdsoft.py:271
 msgid "Third-Party Sources"
 msgstr "Източници от трети страни"
 
-#: src/mainwindow.py:229 src/cleaner.py:303
+#: src/mainwindow.py:229 src/cleaner.py:328
 msgid "Package Cleaner"
 msgstr "Изчистване на пакети"
 
@@ -366,7 +365,7 @@ msgstr "Бързи клавиши"
 msgid "System"
 msgstr "Система"
 
-#: src/mainwindow.py:244 src/filetype.py:473
+#: src/mainwindow.py:244 src/filetype.py:478
 msgid "File Type Manager"
 msgstr "Мениджър на файловите асоциации"
 
@@ -554,35 +553,35 @@ msgstr "Асоциирано приложение"
 msgid "None"
 msgstr "Без"
 
-#: src/filetype.py:239
+#: src/filetype.py:241
 #, python-format
 msgid "Open the files of type \"%s\" with:"
 msgstr "Отваряне на файловете \"%s\" с:"
 
-#: src/filetype.py:268
+#: src/filetype.py:270
 msgid "Choose a application"
 msgstr "Изберете приложение"
 
-#: src/filetype.py:357
+#: src/filetype.py:359
 #, python-format
 msgid "Select an application to open the type <b>%s</b>"
 msgstr "Избор на приложение за отваряне на типа <b>%s</b>"
 
-#: src/filetype.py:382
+#: src/filetype.py:387
 #, python-format
 msgid "Could not find %s"
 msgstr "Не може да бъде намерен %s"
 
-#: src/filetype.py:383
+#: src/filetype.py:388
 msgid "Could not find application"
 msgstr "Приложението не може да бъде открито"
 
-#: src/filetype.py:474
+#: src/filetype.py:479
 msgid "Here you can manage which application will open which filetypes."
 msgstr ""
 "От тук може да определите кое приложение да отваря определени файлови типове."
 
-#: src/filetype.py:500
+#: src/filetype.py:505
 msgid "Only show filetypes with an associated application"
 msgstr "Показване само на файловите типове, асоциирани с дадено приложение"
 
@@ -646,23 +645,23 @@ msgstr ""
 msgid "Ubuntu Chinese Repository"
 msgstr "Китайско хранилище на Убунту"
 
-#: src/thirdsoft.py:85
+#: src/thirdsoft.py:86
 msgid "Gnome Global Menu"
 msgstr ""
 
-#: src/thirdsoft.py:87
+#: src/thirdsoft.py:89
 msgid "Banshee (Stable Version)"
 msgstr "Banshee (стабилна версия)"
 
-#: src/thirdsoft.py:88
+#: src/thirdsoft.py:90
 msgid "Banshee (Unstable Version)"
 msgstr "Banshee (нестабилна версия)"
 
-#: src/thirdsoft.py:94
+#: src/thirdsoft.py:96
 msgid "Ubuntu Tweak (Unstable Version)"
 msgstr ""
 
-#: src/thirdsoft.py:176
+#: src/thirdsoft.py:188
 msgid ""
 "To install software and updates from newly added or changed sources, you "
 "have to reload the information about available software.\n"
@@ -674,31 +673,31 @@ msgstr ""
 "\n"
 "За да продължите ще ви е необходима работеща Интернет връзка."
 
-#: src/thirdsoft.py:180
+#: src/thirdsoft.py:192
 msgid "The information about available software is out-of-date"
 msgstr "Информацията за наличния софтуер е остаряла"
 
-#: src/thirdsoft.py:343
+#: src/thirdsoft.py:355
 msgid "Homepage"
 msgstr "Домашна страница"
 
-#: src/thirdsoft.py:343
+#: src/thirdsoft.py:355
 msgid "Source URL"
 msgstr "Адрес на източника"
 
-#: src/thirdsoft.py:343
+#: src/thirdsoft.py:355
 msgid "Description"
 msgstr "Описание"
 
-#: src/thirdsoft.py:354
+#: src/thirdsoft.py:366
 msgid "Description is here"
 msgstr "Описанието е тук"
 
-#: src/thirdsoft.py:382
+#: src/thirdsoft.py:394
 msgid "Third-Party Software Sources"
 msgstr "Източници на софтуер от трети страни"
 
-#: src/thirdsoft.py:383
+#: src/thirdsoft.py:395
 msgid ""
 "After every releases of Ubuntu comes a feature freeze.\n"
 "This means only applications with bug-fixes get into the repository.\n"
@@ -710,14 +709,14 @@ msgstr ""
 "Това значи, че в хранилищата влизат само поправки за приложенията.\n"
 "Чрез използването на DEB-хранилища от трети страни, вие можете винаги да "
 "имате последните им версии.\n"
-"След като ги добавите, можете да ги намерите и инсталирате чрез "
-"Добавяне/Премахване."
+"След като ги добавите, можете да ги намерите и инсталирате чрез Добавяне/"
+"Премахване."
 
-#: src/thirdsoft.py:399
+#: src/thirdsoft.py:411
 msgid "Details"
 msgstr "Подробности"
 
-#: src/thirdsoft.py:438
+#: src/thirdsoft.py:450
 msgid ""
 "It is a possible security risk to use packages from Third-Party Sources.\n"
 "Please be careful."
@@ -726,19 +725,22 @@ msgstr ""
 "сигурността.\n"
 "Моля бъдете внимателни."
 
-#: src/thirdsoft.py:441 src/nautilus.py:197
+#: src/thirdsoft.py:453 src/nautilus.py:197
 msgid "Warning"
 msgstr "Предупреждение"
 
-#: src/thirdsoft.py:445
+#: src/thirdsoft.py:457
 msgid "Never show this dialog"
 msgstr "Никога да не се показва този диалогов прозорец"
 
-#: src/thirdsoft.py:467 src/sourceeditor.py:403
-msgid "You can install the new applications through Add/Remove."
+#: src/thirdsoft.py:479
+#, fuzzy
+msgid ""
+"You can install the new applications through Add/Remove.\n"
+"Do you want to go now?"
 msgstr "Можете да инсталирате новите приложения чрез Добавяне/Премахване."
 
-#: src/thirdsoft.py:468 src/sourceeditor.py:404
+#: src/thirdsoft.py:480 src/sourceeditor.py:404
 msgid "The software information is up-to-date now"
 msgstr "Информацията за наличния софтуер е актуална"
 
@@ -874,7 +876,7 @@ msgstr "Начален екран (Цъкнете на изображениет�
 msgid "Choose a splash image"
 msgstr "Избор на изображение за началния екран"
 
-#: src/session.py:45 src/gnomesettings.py:110
+#: src/session.py:45 src/gnomesettings.py:113
 msgid "PNG image (*.png)"
 msgstr "Изображение PNG (*.png)"
 
@@ -894,70 +896,70 @@ msgstr "Разрешаване на TCP връзки (отдалечено св�
 msgid "Show splash screen"
 msgstr "Показване на начален екран"
 
-#: src/templates.py:67
+#: src/templates.py:63
 msgid "HTML document"
 msgstr "Документ, формат HTML"
 
-#: src/templates.py:68
+#: src/templates.py:64
 msgid "ODB Database"
 msgstr "База данни, формат ODB"
 
-#: src/templates.py:69
+#: src/templates.py:65
 msgid "ODS Spreadsheet"
 msgstr "Таблица, формат ODS"
 
-#: src/templates.py:70
+#: src/templates.py:66
 msgid "ODT Document"
 msgstr "Документ, формат ODT"
 
-#: src/templates.py:71
+#: src/templates.py:67
 msgid "Plain text document"
 msgstr "Документ с неформатиран текст"
 
-#: src/templates.py:72
+#: src/templates.py:68
 msgid "ODP Presentation"
 msgstr "Презентация, формат ODP"
 
-#: src/templates.py:73
+#: src/templates.py:69
 msgid "Python script"
 msgstr "Скрипт на Python"
 
-#: src/templates.py:74
+#: src/templates.py:70
 msgid "Pygtk Example"
 msgstr "Пример Pygtk"
 
-#: src/templates.py:75
+#: src/templates.py:71
 msgid "Shell script"
 msgstr "Скрипт на обвивката"
 
-#: src/templates.py:102
+#: src/templates.py:98
 msgid "Enabled Templates"
 msgstr "Включени шаблони"
 
-#: src/templates.py:109
+#: src/templates.py:105
 msgid "Disabled Templates"
 msgstr "Изключени шаблони"
 
-#: src/templates.py:117 src/templates.py:138
-msgid "Manage Templates"
-msgstr "Управление на шаблоните"
-
-#: src/templates.py:120
+#: src/templates.py:116
 #, python-format
 msgid ""
 "Templates path is wrong! The current path is point to \"%s\".\n"
 "Please reset it to a folder under your Home Folder."
 msgstr ""
 
-#: src/templates.py:127
+#: src/templates.py:123
 msgid "Go And Set"
 msgstr ""
 
-#: src/templates.py:132
+#: src/templates.py:128
 msgid "Restart This Module"
 msgstr ""
 
-#: src/templates.py:139
+#: src/templates.py:134
+msgid "Manage Templates"
+msgstr "Управление на шаблоните"
+
+#: src/templates.py:135
 msgid ""
 "Here you can freely manage your document templates.\n"
 "You can add files as templates by dragging them onto this window.\n"
@@ -969,15 +971,15 @@ msgstr ""
 "Можете да създавате нови документи, базирани на тези шаблони, чрез цъкане на "
 "десен бутон в Nautilus и избор от контекстното меню."
 
-#: src/templates.py:164
+#: src/templates.py:160
 msgid "Rebuild System Templates"
 msgstr "Презареждане на системните шаблони"
 
-#: src/templates.py:184
+#: src/templates.py:180
 msgid "Templates path is still wrong, Please reset it!"
 msgstr ""
 
-#: src/templates.py:196
+#: src/templates.py:192
 msgid ""
 "This will delete all disabled templates.\n"
 "Do you wish to continue?"
@@ -1086,28 +1088,28 @@ msgstr "Клавиш"
 msgid "Clean"
 msgstr ""
 
-#: src/cleaner.py:52 src/nautilus.py:50
+#: src/cleaner.py:52 src/cleaner.py:75 src/nautilus.py:50
 msgid "Cleaning..."
 msgstr "Изчистване..."
 
-#: src/cleaner.py:56
+#: src/cleaner.py:56 src/cleaner.py:79
 #, python-format
 msgid "Cleaning...%s"
 msgstr "Изчистване на ...%s"
 
-#: src/cleaner.py:108
+#: src/cleaner.py:134
 msgid "Package"
 msgstr "Пакет"
 
-#: src/cleaner.py:132
+#: src/cleaner.py:158
 msgid "Packages"
 msgstr "Пакети"
 
-#: src/cleaner.py:155
+#: src/cleaner.py:181
 msgid "Package Cache"
 msgstr "Кеш на пакетите"
 
-#: src/cleaner.py:165
+#: src/cleaner.py:191
 #, python-format
 msgid ""
 "<b>%s</b>\n"
@@ -1116,34 +1118,34 @@ msgstr ""
 "<b>%s</b>\n"
 "Заема %s КБ дисково пространство"
 
-#: src/cleaner.py:188
+#: src/cleaner.py:214
 msgid "Package Config"
 msgstr "Настройки на пакетите"
 
-#: src/cleaner.py:221
+#: src/cleaner.py:247
 #, python-format
 msgid "%d package selected to remove"
 msgstr "%d пакет избран за премахване"
 
-#: src/cleaner.py:222
+#: src/cleaner.py:248
 #, python-format
 msgid "%d packages selected to remove"
 msgstr "%dпакета избрани за премахване"
 
-#: src/cleaner.py:225
+#: src/cleaner.py:251
 #, python-format
 msgid "%d KB of space will be freed"
 msgstr "Ще бъде освободено %d КБ дисково пространство"
 
-#: src/cleaner.py:295 src/nautilus.py:203
+#: src/cleaner.py:320 src/nautilus.py:203
 msgid "Clean up Successful!"
 msgstr ""
 
-#: src/cleaner.py:298
+#: src/cleaner.py:323
 msgid "Clean up Failed!"
 msgstr ""
 
-#: src/cleaner.py:304
+#: src/cleaner.py:329
 msgid ""
 "Free up disk space by removing unneeded packages and cleaning the package "
 "download cache."
@@ -1151,19 +1153,19 @@ msgstr ""
 "Освобождаване на дисково пространство чрез премахване на ненужните пакети и "
 "изчистване на кешираните изтеглени пакети."
 
-#: src/cleaner.py:332
+#: src/cleaner.py:357
 msgid "Clean Package"
 msgstr "Изчистване на пакет"
 
-#: src/cleaner.py:337
+#: src/cleaner.py:362
 msgid "Clean Cache"
 msgstr "Изчистване на кеша"
 
-#: src/cleaner.py:342
+#: src/cleaner.py:367
 msgid "Clean Config"
 msgstr "Изчистване на настройките"
 
-#: src/cleaner.py:348
+#: src/cleaner.py:373
 msgid "Select All"
 msgstr "Избиране на всичко"
 
@@ -1341,15 +1343,15 @@ msgstr "Долу Вляво"
 msgid "Bottom Right"
 msgstr "Долу Вдясно"
 
-#: src/gnomesettings.py:95
+#: src/gnomesettings.py:98
 msgid "Click the button to change the menu logo"
 msgstr "Цъкнете на бутона за да смените логото на менюто"
 
-#: src/gnomesettings.py:108
+#: src/gnomesettings.py:111
 msgid "Choose a new logo"
 msgstr "Избиране на ново лого"
 
-#: src/gnomesettings.py:129
+#: src/gnomesettings.py:132
 msgid ""
 "The size isn't suitable for the panel.\n"
 "It should be 24x24."
@@ -1357,7 +1359,7 @@ msgstr ""
 "Размерът е неподходящ за панела.\n"
 "Трябва да е 24х24."
 
-#: src/gnomesettings.py:146
+#: src/gnomesettings.py:149
 msgid "Do you want take effect immediately?"
 msgstr "Незабавно прилагане?"
 
@@ -1416,8 +1418,7 @@ msgstr "Разширения за Nautilus"
 #: src/nautilus.py:193
 #, python-format
 msgid "Clean up the thumbnails cache (Free %s disk size)"
-msgstr ""
-"Изчистване на кеша на миниатюрите (Освободете %s дисково пространство)"
+msgstr "Изчистване на кеша на миниатюрите (Освободете %s дисково пространство)"
 
 #: src/nautilus.py:196
 msgid "The thumbnails cache will be cleaned, do you wish to continue?"
@@ -1448,8 +1449,8 @@ msgstr "Изключване на Мениджъра на мрежи при пр
 #: src/powermanager.py:51
 msgid "Enable \"Lock screen\" when \"Blank Screen\" activates"
 msgstr ""
-"Включване на \"Заключване на екрана\" и активиране на \"Изчистване на "
-"екрана\""
+"Включване на \"Заключване на екрана\" и активиране на \"Изчистване на екрана"
+"\""
 
 #: src/powermanager.py:53
 msgid "Display \"Power Manager\" panel item"
@@ -1571,7 +1572,8 @@ msgid "Network Error"
 msgstr "Мрежова грешка"
 
 #: src/sourceeditor.py:195
-msgid "Uploding..."
+#, fuzzy
+msgid "Uploading..."
 msgstr "Качване..."
 
 #: src/sourceeditor.py:211
@@ -1598,14 +1600,21 @@ msgstr "Обновяване на източници"
 msgid "Submit Sources"
 msgstr "Изпращане на източници"
 
+#: src/sourceeditor.py:403
+#, fuzzy
+msgid "You can install new applications through Add/Remove."
+msgstr "Можете да инсталирате новите приложения чрез Добавяне/Премахване."
+
 #: src/sourceeditor.py:420
-msgid "Please input the correct infomation of the sources!"
+#, fuzzy
+msgid "Please input the correct information of the sources!"
 msgstr "Моля въведете правилната информация за източниците!"
 
 #: src/sourceeditor.py:433
+#, fuzzy
 msgid ""
-"You can submit your sources to our server to help build the sources list, or "
-"you can use the official sources.\n"
+"You can submit your sources to our server to help building the sources list, "
+"or you can use the official sources.\n"
 "Do you wish to use the official sources?"
 msgstr ""
 "Можете да изпратите източниците си на нашия сървър за да помогнете при "
@@ -1629,7 +1638,8 @@ msgid "Sumit successfully"
 msgstr "Изпращането е успешно"
 
 #: src/sourceeditor.py:467
-msgid "Please check the permission of the sources.list."
+#, fuzzy
+msgid "Please check the permission of sources.list."
 msgstr "Моля проверете правата на sources.list"
 
 #: src/sourceeditor.py:468
@@ -1637,8 +1647,9 @@ msgid "Save failed!"
 msgstr "Запазването се провали!"
 
 #: src/sourceeditor.py:475
+#, fuzzy
 msgid ""
-"The currenly content will be lost after reloading!\n"
+"The current content will be lost after reloading!\n"
 "Do you wish to continue?"
 msgstr ""
 "Текущото съдържание ще бъде изгубено след презареждане!\n"
@@ -1732,11 +1743,11 @@ msgstr ""
 
 #: src/common/appdata.py:77
 msgid ""
-"EIOffice Personal 2009. Free for Chinese users. See "
-"http://www.evermoresw.com."
+"EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
+"com."
 msgstr ""
-"EIOffice Personal 2009. Свободен за китайски потребители. Вж. "
-"http://www.evermoresw.com."
+"EIOffice Personal 2009. Свободен за китайски потребители. Вж. http://www."
+"evermoresw.com."
 
 #: src/common/appdata.py:78
 msgid "A client for the Windows Live Message network"
@@ -1822,84 +1833,90 @@ msgid "Graphical frontend for recordmydesktop"
 msgstr "Графична обвивка за recordmydesktop"
 
 #: src/common/appdata.py:97
-msgid "Gwibber is an open source microblogging client for GNOME"
+msgid ""
+"GTG is a personal organizer for the GNOME desktop environment, it focuses on "
+"ease of use and flexibility, while keeping things simple."
 msgstr ""
 
 #: src/common/appdata.py:98
+msgid "Gwibber is an open source microblogging client for GNOME"
+msgstr ""
+
+#: src/common/appdata.py:99
 msgid "A graphical CD image editor"
 msgstr "Графичен редактор на CD изображения"
 
-#: src/common/appdata.py:99
+#: src/common/appdata.py:100
 msgid "Intelligent Input Bus for Linux / Unix OS"
 msgstr ""
 
-#: src/common/appdata.py:100
+#: src/common/appdata.py:101
 msgid "It is a PinYin engine for IBus."
 msgstr ""
 
-#: src/common/appdata.py:101
+#: src/common/appdata.py:102
 msgid ""
 "IBus-Table is the IM Engine framework for table-based input methods, such as "
 "ZhengMa, WuBi, ErBi, ChangJie and so on."
 msgstr ""
 
-#: src/common/appdata.py:102
+#: src/common/appdata.py:103
 msgid "Create and edit Scalable Vector Graphics images"
 msgstr "Създаване и редактиране на векторни изображения"
 
-#: src/common/appdata.py:103
+#: src/common/appdata.py:104
 msgid "Non-linear editor for Digital Video data"
 msgstr "Нелинеен редактор на DV данни"
 
-#: src/common/appdata.py:104
+#: src/common/appdata.py:105
 msgid "A music player for Last.fm personalized radio"
 msgstr "Музикален плейър за Last.fm"
 
-#: src/common/appdata.py:105
+#: src/common/appdata.py:106
 msgid "GTK+ based simple text editor"
 msgstr "Прост текстов редактор, базиран на GTK+"
 
-#: src/common/appdata.py:106
+#: src/common/appdata.py:107
 msgid "Feed aggregator for GNOME"
 msgstr "Събирач на емисии за GNOME"
 
-#: src/common/appdata.py:107
+#: src/common/appdata.py:108
 msgid "Mail notification in system tray"
 msgstr "Уведомление за нова поща в системната област за известяване"
 
-#: src/common/appdata.py:108
+#: src/common/appdata.py:109
 msgid "Adcal tool to diff and merge files"
 msgstr ""
 
-#: src/common/appdata.py:109
+#: src/common/appdata.py:110
 msgid "A fast and simple GTK+ Image Viewer"
 msgstr "Бърза и проста програма за преглед на изображения, базирана на GTK+"
 
-#: src/common/appdata.py:110
+#: src/common/appdata.py:111
 msgid "Open internet TV, beyond anything else"
 msgstr ""
 
-#: src/common/appdata.py:111
+#: src/common/appdata.py:112
 msgid "Webkit based lightweight web browser"
 msgstr "Лек уеб четец, базиран на Webkit"
 
-#: src/common/appdata.py:112
+#: src/common/appdata.py:113
 msgid "An IDE to Develop .NET applications."
 msgstr "Интегрирана среда за разработка на .NET приложения"
 
-#: src/common/appdata.py:113
+#: src/common/appdata.py:114
 msgid "The Ultimate Movie Player For Linux"
 msgstr "Ултимативният видео плейър за Линукс"
 
-#: src/common/appdata.py:114
+#: src/common/appdata.py:115
 msgid "IDE for Java, C/C++, Ruby, UML, etc."
 msgstr "Интегрирана среда за разработка за   Java, C/C++, Ruby, UML, и т. н."
 
-#: src/common/appdata.py:115
+#: src/common/appdata.py:116
 msgid "The Opera Web Browser"
 msgstr "Уеб четецът Opera"
 
-#: src/common/appdata.py:116
+#: src/common/appdata.py:117
 msgid ""
 "Pidgin is a graphical modular messaging client based on libpurple which is "
 "capable of connecting to AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, SIP/SIMPLE, "
@@ -1907,109 +1924,122 @@ msgid ""
 "QQ all at once."
 msgstr ""
 "Pidgin е графичен модулен клиент за моментални съобщения, който може "
-"едновременно да се свързва към AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, "
-"SIP/SIMPLE, Novell GroupWise, Lotus Sametime, Bonjour, Zephyr, MySpaceIM, "
-"Gadu-Gadu е QQ."
+"едновременно да се свързва към AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, SIP/"
+"SIMPLE, Novell GroupWise, Lotus Sametime, Bonjour, Zephyr, MySpaceIM, Gadu-"
+"Gadu е QQ."
 
-#: src/common/appdata.py:117
+#: src/common/appdata.py:118
 msgid "Run your Windows programs on Linux"
 msgstr "Пуснете вашите Windows програми под Линукс"
 
-#: src/common/appdata.py:118
+#: src/common/appdata.py:119
 msgid "A framework for desktop widgets"
 msgstr "Обкръжение за джаджи за работната площ"
 
-#: src/common/appdata.py:119
+#: src/common/appdata.py:120
+msgid "Feature-rich screenshot application(formerly known as GScrot)"
+msgstr ""
+
+#: src/common/appdata.py:121
 msgid "Make audio/video calls using this VoIP Software"
 msgstr "VoIP Софтуер за провеждане на аудио/видео разговори"
 
-#: src/common/appdata.py:120
+#: src/common/appdata.py:122
 msgid "A great MPlayer front-end, written in QT4"
 msgstr "Чудесна обвивка на MPlayer, написана на QT4"
 
-#: src/common/appdata.py:121
+#: src/common/appdata.py:123
 msgid "Convert audio files into other formats"
 msgstr "Обръщане на аудио файлове в други формати"
 
-#: src/common/appdata.py:122
+#: src/common/appdata.py:124
 msgid "An international dictionary"
 msgstr "Международен речник"
 
-#: src/common/appdata.py:123
+#: src/common/appdata.py:125
 msgid ""
 "Swiftweasel is an optimized build of the Mozilla Firefox web browser for "
 "Linux"
 msgstr ""
 "Swiftweasel е оптимизиран вариант на уеб четеца Mozilla Firefox за Линукс"
 
-#: src/common/appdata.py:124
+#: src/common/appdata.py:126
 msgid ""
 "A desktop application that will watch for events (website updates, emails, "
 "file and folder changes...)"
 msgstr ""
 
-#: src/common/appdata.py:125
-msgid "Multiple GNOME terminals in one window"
-msgstr "Множество терминали на Gnome в един прозорец"
-
-#: src/common/appdata.py:126
+#: src/common/appdata.py:127
 msgid "A Useful Task List"
 msgstr "Полезен списък със задачи"
 
-#: src/common/appdata.py:127
+#: src/common/appdata.py:128
+msgid "Multiple GNOME terminals in one window"
+msgstr "Множество терминали на Gnome в един прозорец"
+
+#: src/common/appdata.py:129
+msgid ""
+"Transmission is a fast, easy, and free multi-platform BitTorrent client."
+msgstr ""
+
+#: src/common/appdata.py:130
 msgid "Ubuntu Tweak makes it easier to configure Ubuntu"
 msgstr "Ubuntu Tweak прави лесна настройката на Убунту"
 
-#: src/common/appdata.py:128
+#: src/common/appdata.py:131
 msgid "Commonly used restricted packages"
 msgstr "Често използвани ограничени пакети"
 
-#: src/common/appdata.py:129 src/common/appdata.py:130
+#: src/common/appdata.py:132 src/common/appdata.py:133
 msgid "A feature rich, high performance virtualization software"
 msgstr "Богат на възможности, високопроизводителен софтуер за виртуализация"
 
-#: src/common/appdata.py:131
+#: src/common/appdata.py:134
 msgid "Read, capture, broadcast your multimedia streams"
 msgstr "Четете, прихващайте, излъчвайте вашите мултимедийни потоци"
 
-#: src/common/appdata.py:132
+#: src/common/appdata.py:135
 msgid "Run Virtual Machines using VMware"
 msgstr "Пускане на виртуални машини чрез VMware"
 
-#: src/common/appdata.py:133
+#: src/common/appdata.py:136
 msgid "A compatibility layer for running Windows programs"
 msgstr "Слой за изпълнение на Windows програми"
 
-#: src/common/appdata.py:134
+#: src/common/appdata.py:137
+msgid ""
+"Wine-doors is an application designed to make installing windows software on "
+"Linux, Solaris or other Unix systems easier."
+msgstr ""
+
+#: src/common/appdata.py:138
 msgid ""
 "XBMC is a free and open source software media player and entertainment hub"
 msgstr "XBMC е свободен медиен плеър и"
 
-#: src/common/appdata.py:138
-msgid "Development Version of Mozilla Firefox 3.0/3.1, 4.0"
+#: src/common/appdata.py:142
+#, fuzzy
+msgid "Development Version of Mozilla Firefox 3.1, 4.0"
 msgstr "Работна версия на Mozilla Firefox 3.0/3.1, 4.0"
 
-#: src/common/appdata.py:139
+#: src/common/appdata.py:143
 msgid "Development version of Compiz Fusion"
 msgstr "Работна версия на Compiz Fusion"
 
-#: src/common/appdata.py:140
+#: src/common/appdata.py:144
 msgid "Google's Linux Repository"
 msgstr "Линукс хранилището на Google"
 
-#: src/common/appdata.py:141
-msgid "Feature-rich screenshot application(formerly known as GScrot)"
-msgstr ""
-
-#: src/common/appdata.py:142
-msgid "K Desktop Environment 4.1"
+#: src/common/appdata.py:145
+#, fuzzy
+msgid "K Desktop Environment 4.2"
 msgstr "Работната среда KDE 4.1"
 
-#: src/common/appdata.py:143
+#: src/common/appdata.py:146
 msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
 msgstr "Лека работна среда Х11: GPicView, PCManFM"
 
-#: src/common/appdata.py:144
+#: src/common/appdata.py:147
 msgid ""
 "Multimedia, Entertainment and Distraction In Ubuntu\n"
 "Medibuntu is a repository of packages that cannot be included into the "
@@ -2019,7 +2049,7 @@ msgstr ""
 "Medibuntu е хранилище с пакети, които поради правни причини (авторски права, "
 "лиценз, патенти и т.н.) не могат да бъдат включени в Убунту."
 
-#: src/common/appdata.py:146
+#: src/common/appdata.py:149
 msgid ""
 "Ubuntu repository for Chinese users.\n"
 "Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and "
@@ -2087,63 +2117,47 @@ msgstr "Трябва да рестартирате компютъра си."
 msgid "Service hasn't initialized yet"
 msgstr "Услугата все още не е инициализирана"
 
-#: data/glade/gui.glade:7
-msgid "Edit Type"
-msgstr "Редактиране на тип"
-
-#: data/glade/gui.glade:100
-msgid "Add Application"
-msgstr "Добавяне на приложение"
-
-#: data/glade/gui.glade:146
-msgid "Select an application to view its description."
-msgstr "Изберете програма, за да видите описанието ѝ."
-
-#: data/glade/gui.glade:188
-msgid "_Use a custom command"
-msgstr "_Използване на потребителска команда"
-
-#: data/glade/preferences.glade:7
+#: data/gui/preferences.glade:7
 msgid "Ubuntu Tweak Preferences"
 msgstr "Настройки на Ubuntu Tweak"
 
-#: data/glade/preferences.glade:32
+#: data/gui/preferences.glade:33
 msgid "<b>User Interface</b>"
 msgstr "<b>Потребителски интерфейс</b>"
 
-#: data/glade/preferences.glade:103
+#: data/gui/preferences.glade:87
 msgid "Left Menubar Font Color"
 msgstr "Цвят на шрифта в лявата лента с менюта"
 
-#: data/glade/preferences.glade:146
+#: data/gui/preferences.glade:128
 msgid "Left Menubar Color"
 msgstr "Цвят на лявата лента с менюта"
 
-#: data/glade/preferences.glade:157
+#: data/gui/preferences.glade:139
 msgid "Default Window Height"
 msgstr "Стандартна височина на прозореца"
 
-#: data/glade/preferences.glade:169
+#: data/gui/preferences.glade:151
 msgid "Default Window Width"
 msgstr "Стандартна ширина на прозореца"
 
-#: data/glade/preferences.glade:179
+#: data/gui/preferences.glade:161
 msgid "Left Menubar Width"
 msgstr "Ширина на лявата лента с менюта"
 
-#: data/glade/preferences.glade:205
+#: data/gui/preferences.glade:211
 msgid "<b>Features</b>"
 msgstr ""
 
-#: data/glade/preferences.glade:225
+#: data/gui/preferences.glade:234
 msgid "Default Launch Function"
 msgstr "Стандартна функция при зареждане"
 
-#: data/glade/traceback.glade:48
+#: data/gui/traceback.glade:50
 msgid "<big><b>Oops... a fatal error occured</b></big>"
 msgstr ""
 
-#: data/glade/traceback.glade:61
+#: data/gui/traceback.glade:64
 msgid ""
 "Ubuntu Tweak need to turn off.\n"
 "If you'd like to help us fix the problem, \n"
@@ -2151,24 +2165,40 @@ msgid ""
 "the error message below:"
 msgstr ""
 
-#: data/glade/traceback.glade:88 data/glade/traceback.glade:250
+#: data/gui/traceback.glade:91 data/gui/traceback.glade:266
 msgid "Error Message"
 msgstr "Съобщение за грешка"
 
-#: data/glade/traceback.glade:145 data/glade/traceback.glade:307
+#: data/gui/traceback.glade:151 data/gui/traceback.glade:326
 msgid "_Report"
 msgstr ""
 
-#: data/glade/traceback.glade:211
+#: data/gui/traceback.glade:226
 msgid "<big><b>Oops... an error occured</b></big>"
 msgstr ""
 
-#: data/glade/traceback.glade:224
+#: data/gui/traceback.glade:240
 msgid ""
 "If you'd like to help us fix the problem, \n"
 "Please choose <i>Report</i> to file a new bug report. Make sure to include "
 "the error message below:"
 msgstr ""
+
+#: data/gui/type_edit.glade:7
+msgid "Edit Type"
+msgstr "Редактиране на тип"
+
+#: data/gui/type_edit.glade:131
+msgid "Add Application"
+msgstr "Добавяне на приложение"
+
+#: data/gui/type_edit.glade:178
+msgid "Select an application to view its description."
+msgstr "Изберете програма, за да видите описанието ѝ."
+
+#: data/gui/type_edit.glade:222
+msgid "_Use a custom command"
+msgstr "_Използване на потребителска команда"
 
 #~ msgid "Show program comments"
 #~ msgstr "Показване на коментарите към програмите"

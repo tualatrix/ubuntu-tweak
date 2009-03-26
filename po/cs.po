@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2009-03-02 20:10+0800\n"
+"POT-Creation-Date: 2009-03-26 23:00+0800\n"
 "PO-Revision-Date: 2008-12-29 15:44+0000\n"
 "Last-Translator: Kamil Páral <ripper42@gmail.com>\n"
 "Language-Team: Tomáš Pikálek <tpikalek@gmail.com>\n"
@@ -34,7 +34,7 @@ msgstr "Upravit program při přihlášení"
 msgid "New Startup Program"
 msgstr "Nový program ke spuštění"
 
-#: src/autostart.py:69 data/glade/gui.glade:173
+#: src/autostart.py:69 data/gui/type_edit.glade:205
 msgid "_Browse..."
 msgstr "P_rocházet..."
 
@@ -42,46 +42,46 @@ msgstr "P_rocházet..."
 msgid "Choose a Program"
 msgstr "Vybrat program"
 
-#: src/autostart.py:182
+#: src/autostart.py:186
 msgid "Delete from Disk"
 msgstr "Smazat z disku"
 
-#: src/autostart.py:196
+#: src/autostart.py:200
 msgid "Can't delete the system item from disk."
 msgstr "Nemohu smazat systémovou položku z disku"
 
-#: src/autostart.py:244
+#: src/autostart.py:248
 msgid "None description"
 msgstr "Bez popisu"
 
-#: src/autostart.py:264
+#: src/autostart.py:268
 msgid "Program"
 msgstr "Program"
 
-#: src/autostart.py:326
+#: src/autostart.py:330
 msgid "Session Programs"
 msgstr "Programy sezení"
 
-#: src/autostart.py:327
+#: src/autostart.py:331
 msgid ""
 "Here you can manage what programs get started when you login.\n"
 "You can hide items from view by selecting and clicking \"Remove\"\n"
 "To permanently delete an item, right-click and press \"Delete\"."
 msgstr ""
 
-#: src/autostart.py:335
+#: src/autostart.py:339
 msgid "Show comments"
 msgstr "Zobrazit komentáře"
 
-#: src/autostart.py:337
+#: src/autostart.py:341
 msgid "Show all runnable programs"
 msgstr "Zobrazit všechny spustitelné programy"
 
-#: src/autostart.py:399 src/autostart.py:446
+#: src/autostart.py:403 src/autostart.py:450
 msgid "The name of the startup program cannot be empty"
 msgstr "Jméno programu ke spuštění nemůže být prázdné"
 
-#: src/autostart.py:401 src/autostart.py:448
+#: src/autostart.py:405 src/autostart.py:452
 msgid "Text was empty (or contained only whitespace)"
 msgstr "Text je prázdný (nebo obsahuje pouze mezery)"
 
@@ -150,25 +150,25 @@ msgstr "Emulátory"
 msgid "E-mail Tools"
 msgstr "E-mailové nástroje"
 
-#: src/installer.py:148
+#: src/installer.py:152
 msgid "Add/Remove Applications"
 msgstr "Přidat/Odstranit aplikace"
 
-#: src/installer.py:149
+#: src/installer.py:153
 msgid ""
 "A simple but more effecient method for finding and installing popular "
 "packages than the default Add/Remove."
 msgstr ""
 
-#: src/installer.py:197
+#: src/installer.py:201
 msgid "All Categories"
 msgstr "Všechny kategorie"
 
-#: src/installer.py:367
+#: src/installer.py:371
 msgid "Update Successful!"
 msgstr ""
 
-#: src/installer.py:369 src/nautilus.py:224
+#: src/installer.py:373 src/nautilus.py:224
 msgid "Update Failed!"
 msgstr "Aktualizace selhala!"
 
@@ -201,18 +201,18 @@ msgid "Disable \"Fast User Switching\""
 msgstr ""
 
 #: src/ScriptWorker.py:52
-#, python-format
-msgid "The file \"%s\" is exists!"
+#, fuzzy, python-format
+msgid "The file \"%s\" already exists!"
 msgstr "Soubor \"%s\" existuje!"
 
 #: src/ScriptWorker.py:57
-#, python-format
-msgid "The folder \"%s\" is exists!"
+#, fuzzy, python-format
+msgid "The folder \"%s\" already exists!"
 msgstr "Složka \"%s\" existuje!"
 
 #: src/ScriptWorker.py:63 src/ScriptWorker.py:69
-#, python-format
-msgid "The target \"%s\" is exists!"
+#, fuzzy, python-format
+msgid "The target \"%s\" already exists!"
 msgstr "Cíl \"%s\" existuje!"
 
 #: src/ScriptWorker.py:110 src/ScriptWorker.py:121
@@ -287,11 +287,11 @@ msgstr "Přidat/Odstranit"
 msgid "Source Editor"
 msgstr "Editor zdrojů"
 
-#: src/mainwindow.py:228 src/thirdsoft.py:259
+#: src/mainwindow.py:228 src/thirdsoft.py:271
 msgid "Third-Party Sources"
 msgstr "Zdroje třetích stran"
 
-#: src/mainwindow.py:229 src/cleaner.py:303
+#: src/mainwindow.py:229 src/cleaner.py:328
 msgid "Package Cleaner"
 msgstr "Čistič balíků"
 
@@ -351,7 +351,7 @@ msgstr "Zkratky"
 msgid "System"
 msgstr "Systém"
 
-#: src/mainwindow.py:244 src/filetype.py:473
+#: src/mainwindow.py:244 src/filetype.py:478
 msgid "File Type Manager"
 msgstr "Správce typů souborů"
 
@@ -535,34 +535,34 @@ msgstr "Přiřazený program"
 msgid "None"
 msgstr "Žádná"
 
-#: src/filetype.py:239
+#: src/filetype.py:241
 #, python-format
 msgid "Open the files of type \"%s\" with:"
 msgstr "Otevřít soubory typu \"%s\" programem:"
 
-#: src/filetype.py:268
+#: src/filetype.py:270
 msgid "Choose a application"
 msgstr ""
 
-#: src/filetype.py:357
+#: src/filetype.py:359
 #, python-format
 msgid "Select an application to open the type <b>%s</b>"
 msgstr "Vyberte program k otevření souboru typu <b>%s</b>"
 
-#: src/filetype.py:382
+#: src/filetype.py:387
 #, python-format
 msgid "Could not find %s"
 msgstr "Nemohu nalézt %s"
 
-#: src/filetype.py:383
+#: src/filetype.py:388
 msgid "Could not find application"
 msgstr "Nemohu nalézt program"
 
-#: src/filetype.py:474
+#: src/filetype.py:479
 msgid "Here you can manage which application will open which filetypes."
 msgstr ""
 
-#: src/filetype.py:500
+#: src/filetype.py:505
 msgid "Only show filetypes with an associated application"
 msgstr ""
 
@@ -626,23 +626,23 @@ msgstr ""
 msgid "Ubuntu Chinese Repository"
 msgstr ""
 
-#: src/thirdsoft.py:85
+#: src/thirdsoft.py:86
 msgid "Gnome Global Menu"
 msgstr ""
 
-#: src/thirdsoft.py:87
+#: src/thirdsoft.py:89
 msgid "Banshee (Stable Version)"
 msgstr "Banshee (stabilní verze)"
 
-#: src/thirdsoft.py:88
+#: src/thirdsoft.py:90
 msgid "Banshee (Unstable Version)"
 msgstr "Banshee (nestabilní verze)"
 
-#: src/thirdsoft.py:94
+#: src/thirdsoft.py:96
 msgid "Ubuntu Tweak (Unstable Version)"
 msgstr ""
 
-#: src/thirdsoft.py:176
+#: src/thirdsoft.py:188
 msgid ""
 "To install software and updates from newly added or changed sources, you "
 "have to reload the information about available software.\n"
@@ -654,31 +654,31 @@ msgstr ""
 "\n"
 "Pro pokračování potřebujete funkční internetové připojení."
 
-#: src/thirdsoft.py:180
+#: src/thirdsoft.py:192
 msgid "The information about available software is out-of-date"
 msgstr "Informace o dostupném softwaru jsou zastaralé"
 
-#: src/thirdsoft.py:343
+#: src/thirdsoft.py:355
 msgid "Homepage"
 msgstr "Domovská stránka"
 
-#: src/thirdsoft.py:343
+#: src/thirdsoft.py:355
 msgid "Source URL"
 msgstr "Adresa zdroje"
 
-#: src/thirdsoft.py:343
+#: src/thirdsoft.py:355
 msgid "Description"
 msgstr "Popis"
 
-#: src/thirdsoft.py:354
+#: src/thirdsoft.py:366
 msgid "Description is here"
 msgstr "Zde je popis"
 
-#: src/thirdsoft.py:382
+#: src/thirdsoft.py:394
 msgid "Third-Party Software Sources"
 msgstr "Zdroje softwaru třetích stran"
 
-#: src/thirdsoft.py:383
+#: src/thirdsoft.py:395
 msgid ""
 "After every releases of Ubuntu comes a feature freeze.\n"
 "This means only applications with bug-fixes get into the repository.\n"
@@ -692,11 +692,11 @@ msgstr ""
 "aplikací.\n"
 "Po přidání zdrojů si je najděte a nainstalujte pomocí Přidat/Odstranit."
 
-#: src/thirdsoft.py:399
+#: src/thirdsoft.py:411
 msgid "Details"
 msgstr "Podrobnosti"
 
-#: src/thirdsoft.py:438
+#: src/thirdsoft.py:450
 msgid ""
 "It is a possible security risk to use packages from Third-Party Sources.\n"
 "Please be careful."
@@ -704,19 +704,22 @@ msgstr ""
 "Používání balíků ze zdrojů třetích stran je možné bezpečnostní riziko.\n"
 "Prosím buďte opatrní."
 
-#: src/thirdsoft.py:441 src/nautilus.py:197
+#: src/thirdsoft.py:453 src/nautilus.py:197
 msgid "Warning"
 msgstr "Varování"
 
-#: src/thirdsoft.py:445
+#: src/thirdsoft.py:457
 msgid "Never show this dialog"
 msgstr "Nezobrazovat tento dialog"
 
-#: src/thirdsoft.py:467 src/sourceeditor.py:403
-msgid "You can install the new applications through Add/Remove."
+#: src/thirdsoft.py:479
+#, fuzzy
+msgid ""
+"You can install the new applications through Add/Remove.\n"
+"Do you want to go now?"
 msgstr "Nové aplikace můžete nainstalovat pomocí Přidat/Odstranit."
 
-#: src/thirdsoft.py:468 src/sourceeditor.py:404
+#: src/thirdsoft.py:480 src/sourceeditor.py:404
 msgid "The software information is up-to-date now"
 msgstr "Informace o softwaru jsou nyní aktuální"
 
@@ -850,7 +853,7 @@ msgstr ""
 msgid "Choose a splash image"
 msgstr "Zvolte obrázek spouštěcí obrazovky"
 
-#: src/session.py:45 src/gnomesettings.py:110
+#: src/session.py:45 src/gnomesettings.py:113
 msgid "PNG image (*.png)"
 msgstr "Obrázek PNG (*.png)"
 
@@ -870,70 +873,70 @@ msgstr "Povolit TCP spojení (připojení vzdálené plochy)"
 msgid "Show splash screen"
 msgstr "Zobrazovat spouštěcí obrazovku"
 
-#: src/templates.py:67
+#: src/templates.py:63
 msgid "HTML document"
 msgstr "Dokument HTML"
 
-#: src/templates.py:68
+#: src/templates.py:64
 msgid "ODB Database"
 msgstr "Databáze ODB"
 
-#: src/templates.py:69
+#: src/templates.py:65
 msgid "ODS Spreadsheet"
 msgstr "Tabulka ODS"
 
-#: src/templates.py:70
+#: src/templates.py:66
 msgid "ODT Document"
 msgstr "Dokument ODT"
 
-#: src/templates.py:71
+#: src/templates.py:67
 msgid "Plain text document"
 msgstr "Textový dokument"
 
-#: src/templates.py:72
+#: src/templates.py:68
 msgid "ODP Presentation"
 msgstr "Prezentace ODP"
 
-#: src/templates.py:73
+#: src/templates.py:69
 msgid "Python script"
 msgstr "Skript Pythonu"
 
-#: src/templates.py:74
+#: src/templates.py:70
 msgid "Pygtk Example"
 msgstr "Příklad Pygtk"
 
-#: src/templates.py:75
+#: src/templates.py:71
 msgid "Shell script"
 msgstr "Skript shellu"
 
-#: src/templates.py:102
+#: src/templates.py:98
 msgid "Enabled Templates"
 msgstr "Povolené šablony"
 
-#: src/templates.py:109
+#: src/templates.py:105
 msgid "Disabled Templates"
 msgstr "Zakázané šablony"
 
-#: src/templates.py:117 src/templates.py:138
-msgid "Manage Templates"
-msgstr "Spravovat šablony"
-
-#: src/templates.py:120
+#: src/templates.py:116
 #, python-format
 msgid ""
 "Templates path is wrong! The current path is point to \"%s\".\n"
 "Please reset it to a folder under your Home Folder."
 msgstr ""
 
-#: src/templates.py:127
+#: src/templates.py:123
 msgid "Go And Set"
 msgstr ""
 
-#: src/templates.py:132
+#: src/templates.py:128
 msgid "Restart This Module"
 msgstr ""
 
-#: src/templates.py:139
+#: src/templates.py:134
+msgid "Manage Templates"
+msgstr "Spravovat šablony"
+
+#: src/templates.py:135
 msgid ""
 "Here you can freely manage your document templates.\n"
 "You can add files as templates by dragging them onto this window.\n"
@@ -941,15 +944,15 @@ msgid ""
 "right-click menu."
 msgstr ""
 
-#: src/templates.py:164
+#: src/templates.py:160
 msgid "Rebuild System Templates"
 msgstr "Přetvořit systémové šablony"
 
-#: src/templates.py:184
+#: src/templates.py:180
 msgid "Templates path is still wrong, Please reset it!"
 msgstr ""
 
-#: src/templates.py:196
+#: src/templates.py:192
 msgid ""
 "This will delete all disabled templates.\n"
 "Do you wish to continue?"
@@ -1057,28 +1060,28 @@ msgstr "Klávesa"
 msgid "Clean"
 msgstr ""
 
-#: src/cleaner.py:52 src/nautilus.py:50
+#: src/cleaner.py:52 src/cleaner.py:75 src/nautilus.py:50
 msgid "Cleaning..."
 msgstr "Čistí se..."
 
-#: src/cleaner.py:56
+#: src/cleaner.py:56 src/cleaner.py:79
 #, python-format
 msgid "Cleaning...%s"
 msgstr ""
 
-#: src/cleaner.py:108
+#: src/cleaner.py:134
 msgid "Package"
 msgstr "Balík"
 
-#: src/cleaner.py:132
+#: src/cleaner.py:158
 msgid "Packages"
 msgstr "Balíky"
 
-#: src/cleaner.py:155
+#: src/cleaner.py:181
 msgid "Package Cache"
 msgstr "Vyrovnávací paměť balíků"
 
-#: src/cleaner.py:165
+#: src/cleaner.py:191
 #, python-format
 msgid ""
 "<b>%s</b>\n"
@@ -1087,52 +1090,52 @@ msgstr ""
 "<b>%s</b>\n"
 "Zabírá %s KB místa na disku"
 
-#: src/cleaner.py:188
+#: src/cleaner.py:214
 msgid "Package Config"
 msgstr ""
 
-#: src/cleaner.py:221
+#: src/cleaner.py:247
 #, python-format
 msgid "%d package selected to remove"
 msgstr "%d balík vybrán pro odstranění"
 
-#: src/cleaner.py:222
+#: src/cleaner.py:248
 #, python-format
 msgid "%d packages selected to remove"
 msgstr "%d balíků vybráno pro odstranění"
 
-#: src/cleaner.py:225
+#: src/cleaner.py:251
 #, python-format
 msgid "%d KB of space will be freed"
 msgstr "Uvolní se %d KB místa"
 
-#: src/cleaner.py:295 src/nautilus.py:203
+#: src/cleaner.py:320 src/nautilus.py:203
 msgid "Clean up Successful!"
 msgstr ""
 
-#: src/cleaner.py:298
+#: src/cleaner.py:323
 msgid "Clean up Failed!"
 msgstr ""
 
-#: src/cleaner.py:304
+#: src/cleaner.py:329
 msgid ""
 "Free up disk space by removing unneeded packages and cleaning the package "
 "download cache."
 msgstr ""
 
-#: src/cleaner.py:332
+#: src/cleaner.py:357
 msgid "Clean Package"
 msgstr "Vyčistit balíky"
 
-#: src/cleaner.py:337
+#: src/cleaner.py:362
 msgid "Clean Cache"
 msgstr "Vyčistit vyrovnávací paměť"
 
-#: src/cleaner.py:342
+#: src/cleaner.py:367
 msgid "Clean Config"
 msgstr ""
 
-#: src/cleaner.py:348
+#: src/cleaner.py:373
 msgid "Select All"
 msgstr "Vybrat vše"
 
@@ -1307,15 +1310,15 @@ msgstr "Dole vlevo"
 msgid "Bottom Right"
 msgstr "Dole vpravo"
 
-#: src/gnomesettings.py:95
+#: src/gnomesettings.py:98
 msgid "Click the button to change the menu logo"
 msgstr "Klikněte na tlačítko pro změnu loga nabídky"
 
-#: src/gnomesettings.py:108
+#: src/gnomesettings.py:111
 msgid "Choose a new logo"
 msgstr "Zvolte nové logo"
 
-#: src/gnomesettings.py:129
+#: src/gnomesettings.py:132
 msgid ""
 "The size isn't suitable for the panel.\n"
 "It should be 24x24."
@@ -1323,7 +1326,7 @@ msgstr ""
 "Velikost není pro panel vhodná.\n"
 "Měla by být 24x24."
 
-#: src/gnomesettings.py:146
+#: src/gnomesettings.py:149
 msgid "Do you want take effect immediately?"
 msgstr "Chcete provést změnu okamžitě?"
 
@@ -1528,7 +1531,8 @@ msgid "Network Error"
 msgstr "Chyba sítě"
 
 #: src/sourceeditor.py:195
-msgid "Uploding..."
+#, fuzzy
+msgid "Uploading..."
 msgstr "Odesílání..."
 
 #: src/sourceeditor.py:211
@@ -1555,14 +1559,21 @@ msgstr "Aktualizovat zdroje"
 msgid "Submit Sources"
 msgstr "Odeslat zdroje"
 
+#: src/sourceeditor.py:403
+#, fuzzy
+msgid "You can install new applications through Add/Remove."
+msgstr "Nové aplikace můžete nainstalovat pomocí Přidat/Odstranit."
+
 #: src/sourceeditor.py:420
-msgid "Please input the correct infomation of the sources!"
+#, fuzzy
+msgid "Please input the correct information of the sources!"
 msgstr "Prosím zadejte správné informace o zdrojích!"
 
 #: src/sourceeditor.py:433
+#, fuzzy
 msgid ""
-"You can submit your sources to our server to help build the sources list, or "
-"you can use the official sources.\n"
+"You can submit your sources to our server to help building the sources list, "
+"or you can use the official sources.\n"
 "Do you wish to use the official sources?"
 msgstr ""
 "Můžete odeslat své zdroje na náš server a pomoci tak vytvořit seznam zdrojů, "
@@ -1586,7 +1597,8 @@ msgid "Sumit successfully"
 msgstr "Úspěšně odesláno"
 
 #: src/sourceeditor.py:467
-msgid "Please check the permission of the sources.list."
+#, fuzzy
+msgid "Please check the permission of sources.list."
 msgstr "Prosím zkontrolute oprávnění souboru sources.list."
 
 #: src/sourceeditor.py:468
@@ -1594,8 +1606,9 @@ msgid "Save failed!"
 msgstr "Ukládání selhalo!"
 
 #: src/sourceeditor.py:475
+#, fuzzy
 msgid ""
-"The currenly content will be lost after reloading!\n"
+"The current content will be lost after reloading!\n"
 "Do you wish to continue?"
 msgstr ""
 "Aktuální obsah bude po obnovení ztracen!\n"
@@ -1689,11 +1702,11 @@ msgstr "Rozšiřitelná nástrojová platforma a Javové IDE"
 
 #: src/common/appdata.py:77
 msgid ""
-"EIOffice Personal 2009. Free for Chinese users. See "
-"http://www.evermoresw.com."
+"EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
+"com."
 msgstr ""
-"EIOffice Personal 2009. Zdarma pro čínské uživatele. Viz: "
-"http://www.evermoresw.com (anglicky)."
+"EIOffice Personal 2009. Zdarma pro čínské uživatele. Viz: http://www."
+"evermoresw.com (anglicky)."
 
 #: src/common/appdata.py:78
 msgid "A client for the Windows Live Message network"
@@ -1781,22 +1794,28 @@ msgid "Graphical frontend for recordmydesktop"
 msgstr "Grafická nadstavba pro recordmydesktop"
 
 #: src/common/appdata.py:97
-msgid "Gwibber is an open source microblogging client for GNOME"
+msgid ""
+"GTG is a personal organizer for the GNOME desktop environment, it focuses on "
+"ease of use and flexibility, while keeping things simple."
 msgstr ""
 
 #: src/common/appdata.py:98
+msgid "Gwibber is an open source microblogging client for GNOME"
+msgstr ""
+
+#: src/common/appdata.py:99
 msgid "A graphical CD image editor"
 msgstr "Grafický editor obrazu CD"
 
-#: src/common/appdata.py:99
+#: src/common/appdata.py:100
 msgid "Intelligent Input Bus for Linux / Unix OS"
 msgstr "Inteligentní sběrnice vstupu pro Linux / Unix"
 
-#: src/common/appdata.py:100
+#: src/common/appdata.py:101
 msgid "It is a PinYin engine for IBus."
 msgstr "Toto je systém PinYin pro IBus."
 
-#: src/common/appdata.py:101
+#: src/common/appdata.py:102
 msgid ""
 "IBus-Table is the IM Engine framework for table-based input methods, such as "
 "ZhengMa, WuBi, ErBi, ChangJie and so on."
@@ -1804,63 +1823,63 @@ msgstr ""
 "IBus-Table je rámec pro tabulkové vstupní metody, jako je ZhengMa, WuBi, "
 "ErBi, ChangJie a další."
 
-#: src/common/appdata.py:102
+#: src/common/appdata.py:103
 msgid "Create and edit Scalable Vector Graphics images"
 msgstr ""
 
-#: src/common/appdata.py:103
+#: src/common/appdata.py:104
 msgid "Non-linear editor for Digital Video data"
 msgstr "Nelineární editor digitálního videa"
 
-#: src/common/appdata.py:104
+#: src/common/appdata.py:105
 msgid "A music player for Last.fm personalized radio"
 msgstr "Hudební přehrávač pro přizpůsobené rádio Last.fm"
 
-#: src/common/appdata.py:105
+#: src/common/appdata.py:106
 msgid "GTK+ based simple text editor"
 msgstr "Jednoduchý textový editor založený na GTK+"
 
-#: src/common/appdata.py:106
+#: src/common/appdata.py:107
 msgid "Feed aggregator for GNOME"
 msgstr "Čtečka kanálů pro GNOME"
 
-#: src/common/appdata.py:107
+#: src/common/appdata.py:108
 msgid "Mail notification in system tray"
 msgstr "Upozornění na e-mail v oznamovací oblasti"
 
-#: src/common/appdata.py:108
+#: src/common/appdata.py:109
 msgid "Adcal tool to diff and merge files"
 msgstr "Nástroj pro porovnávání a slučování souborů"
 
-#: src/common/appdata.py:109
+#: src/common/appdata.py:110
 msgid "A fast and simple GTK+ Image Viewer"
 msgstr "Rychlý a jednoduchý prohlížeč obrázků v GTK+"
 
-#: src/common/appdata.py:110
+#: src/common/appdata.py:111
 msgid "Open internet TV, beyond anything else"
 msgstr ""
 
-#: src/common/appdata.py:111
+#: src/common/appdata.py:112
 msgid "Webkit based lightweight web browser"
 msgstr "Lehký webový prohlížeč s jádrem Webkit"
 
-#: src/common/appdata.py:112
+#: src/common/appdata.py:113
 msgid "An IDE to Develop .NET applications."
 msgstr "IDE pro vývoj .NET aplikací."
 
-#: src/common/appdata.py:113
+#: src/common/appdata.py:114
 msgid "The Ultimate Movie Player For Linux"
 msgstr "Ultimátní přehrávač filmů pro Linux"
 
-#: src/common/appdata.py:114
+#: src/common/appdata.py:115
 msgid "IDE for Java, C/C++, Ruby, UML, etc."
 msgstr "IDE pro Java, C/C++, Ruby, UML, atd."
 
-#: src/common/appdata.py:115
+#: src/common/appdata.py:116
 msgid "The Opera Web Browser"
 msgstr "Webový prohlížeč Opera"
 
-#: src/common/appdata.py:116
+#: src/common/appdata.py:117
 msgid ""
 "Pidgin is a graphical modular messaging client based on libpurple which is "
 "capable of connecting to AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, SIP/SIMPLE, "
@@ -1868,35 +1887,39 @@ msgid ""
 "QQ all at once."
 msgstr ""
 "Pidgin je grafický modulární komunikátor založený na libpurple, který je "
-"schopen zároveň se připojit k AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, "
-"SIP/SIMPLE, Novell GroupWise, Lotus Sametime, Bonjour, Zephyr, MySpaceIM, "
-"Gadu-Gadu a QQ."
+"schopen zároveň se připojit k AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, SIP/"
+"SIMPLE, Novell GroupWise, Lotus Sametime, Bonjour, Zephyr, MySpaceIM, Gadu-"
+"Gadu a QQ."
 
-#: src/common/appdata.py:117
+#: src/common/appdata.py:118
 msgid "Run your Windows programs on Linux"
 msgstr "Spouštění aplikací pro Windows pod Linuxem"
 
-#: src/common/appdata.py:118
+#: src/common/appdata.py:119
 msgid "A framework for desktop widgets"
 msgstr "Rámec pro aplikace na plochu"
 
-#: src/common/appdata.py:119
+#: src/common/appdata.py:120
+msgid "Feature-rich screenshot application(formerly known as GScrot)"
+msgstr ""
+
+#: src/common/appdata.py:121
 msgid "Make audio/video calls using this VoIP Software"
 msgstr "Uskutečněte audio/video hovory pomocí tohoto VoIP programu"
 
-#: src/common/appdata.py:120
+#: src/common/appdata.py:122
 msgid "A great MPlayer front-end, written in QT4"
 msgstr "Skvělá nadstavba pro MPlayer napsaná v QT4"
 
-#: src/common/appdata.py:121
+#: src/common/appdata.py:123
 msgid "Convert audio files into other formats"
 msgstr "Převod zvukových souborů do jiných formátů"
 
-#: src/common/appdata.py:122
+#: src/common/appdata.py:124
 msgid "An international dictionary"
 msgstr "Mezinárodní slovník"
 
-#: src/common/appdata.py:123
+#: src/common/appdata.py:125
 msgid ""
 "Swiftweasel is an optimized build of the Mozilla Firefox web browser for "
 "Linux"
@@ -1904,75 +1927,83 @@ msgstr ""
 "Swiftweasel je optimalizované sestavení webového prohlížeče Mozilla Firefox "
 "pro Linux"
 
-#: src/common/appdata.py:124
+#: src/common/appdata.py:126
 msgid ""
 "A desktop application that will watch for events (website updates, emails, "
 "file and folder changes...)"
 msgstr ""
 
-#: src/common/appdata.py:125
-msgid "Multiple GNOME terminals in one window"
-msgstr "Více terminálů GNOME v jediném okně"
-
-#: src/common/appdata.py:126
+#: src/common/appdata.py:127
 msgid "A Useful Task List"
 msgstr ""
 
-#: src/common/appdata.py:127
+#: src/common/appdata.py:128
+msgid "Multiple GNOME terminals in one window"
+msgstr "Více terminálů GNOME v jediném okně"
+
+#: src/common/appdata.py:129
+msgid ""
+"Transmission is a fast, easy, and free multi-platform BitTorrent client."
+msgstr ""
+
+#: src/common/appdata.py:130
 msgid "Ubuntu Tweak makes it easier to configure Ubuntu"
 msgstr "Ubuntu Tweak usnadňuje nastavení Ubuntu"
 
-#: src/common/appdata.py:128
+#: src/common/appdata.py:131
 msgid "Commonly used restricted packages"
 msgstr "Běžně používané nesvobodné balíky"
 
-#: src/common/appdata.py:129 src/common/appdata.py:130
+#: src/common/appdata.py:132 src/common/appdata.py:133
 msgid "A feature rich, high performance virtualization software"
 msgstr "Velice schopný a výkonný virtualizační software"
 
-#: src/common/appdata.py:131
+#: src/common/appdata.py:134
 msgid "Read, capture, broadcast your multimedia streams"
 msgstr "Přehrávání, zaznamenávání a vysílání vašich multimediálních proudů"
 
-#: src/common/appdata.py:132
+#: src/common/appdata.py:135
 msgid "Run Virtual Machines using VMware"
 msgstr "Spouštějte virtuální stroje pomocí VMware"
 
-#: src/common/appdata.py:133
+#: src/common/appdata.py:136
 msgid "A compatibility layer for running Windows programs"
 msgstr "Kompatibilní vrstva pro spouštění programů pro Windows"
 
-#: src/common/appdata.py:134
+#: src/common/appdata.py:137
 msgid ""
-"XBMC is a free and open source software media player and entertainment hub"
+"Wine-doors is an application designed to make installing windows software on "
+"Linux, Solaris or other Unix systems easier."
 msgstr ""
-"XBMC je svobodný a otevření multimediální přehrávač a zábavní centrum"
 
 #: src/common/appdata.py:138
-msgid "Development Version of Mozilla Firefox 3.0/3.1, 4.0"
+msgid ""
+"XBMC is a free and open source software media player and entertainment hub"
+msgstr "XBMC je svobodný a otevření multimediální přehrávač a zábavní centrum"
+
+#: src/common/appdata.py:142
+#, fuzzy
+msgid "Development Version of Mozilla Firefox 3.1, 4.0"
 msgstr "Vývojová verze Mozilly Firefox 3.0/3.1, 4.0"
 
-#: src/common/appdata.py:139
+#: src/common/appdata.py:143
 msgid "Development version of Compiz Fusion"
 msgstr "Vývojová verze Compiz Fusion"
 
-#: src/common/appdata.py:140
+#: src/common/appdata.py:144
 msgid "Google's Linux Repository"
 msgstr "Linuxový zdroj od Google"
 
-#: src/common/appdata.py:141
-msgid "Feature-rich screenshot application(formerly known as GScrot)"
-msgstr ""
-
-#: src/common/appdata.py:142
-msgid "K Desktop Environment 4.1"
+#: src/common/appdata.py:145
+#, fuzzy
+msgid "K Desktop Environment 4.2"
 msgstr "K Desktop Environment 4.1"
 
-#: src/common/appdata.py:143
+#: src/common/appdata.py:146
 msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
 msgstr "Nenáročné X11 pracovní prostředí: GPicView, PCManFM"
 
-#: src/common/appdata.py:144
+#: src/common/appdata.py:147
 msgid ""
 "Multimedia, Entertainment and Distraction In Ubuntu\n"
 "Medibuntu is a repository of packages that cannot be included into the "
@@ -1982,7 +2013,7 @@ msgstr ""
 "Medibuntu je zdroj balíků, které nemohou být zahrnuty v distribuci Ubuntu "
 "kvůli právním důvodům (copyright, licence, patenty, atd)."
 
-#: src/common/appdata.py:146
+#: src/common/appdata.py:149
 msgid ""
 "Ubuntu repository for Chinese users.\n"
 "Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and "
@@ -2050,63 +2081,47 @@ msgstr "Potřebujete restartovat svůj počítač."
 msgid "Service hasn't initialized yet"
 msgstr "Služba ještě nebyla spuštěna"
 
-#: data/glade/gui.glade:7
-msgid "Edit Type"
-msgstr "Upravit typ"
-
-#: data/glade/gui.glade:100
-msgid "Add Application"
-msgstr "Přidat aplikaci"
-
-#: data/glade/gui.glade:146
-msgid "Select an application to view its description."
-msgstr "Vyberte aplikaci k zobrazení jejího popisu."
-
-#: data/glade/gui.glade:188
-msgid "_Use a custom command"
-msgstr "Po_užít vlastní příkaz"
-
-#: data/glade/preferences.glade:7
+#: data/gui/preferences.glade:7
 msgid "Ubuntu Tweak Preferences"
 msgstr ""
 
-#: data/glade/preferences.glade:32
+#: data/gui/preferences.glade:33
 msgid "<b>User Interface</b>"
 msgstr ""
 
-#: data/glade/preferences.glade:103
+#: data/gui/preferences.glade:87
 msgid "Left Menubar Font Color"
 msgstr ""
 
-#: data/glade/preferences.glade:146
+#: data/gui/preferences.glade:128
 msgid "Left Menubar Color"
 msgstr ""
 
-#: data/glade/preferences.glade:157
+#: data/gui/preferences.glade:139
 msgid "Default Window Height"
 msgstr ""
 
-#: data/glade/preferences.glade:169
+#: data/gui/preferences.glade:151
 msgid "Default Window Width"
 msgstr ""
 
-#: data/glade/preferences.glade:179
+#: data/gui/preferences.glade:161
 msgid "Left Menubar Width"
 msgstr ""
 
-#: data/glade/preferences.glade:205
+#: data/gui/preferences.glade:211
 msgid "<b>Features</b>"
 msgstr ""
 
-#: data/glade/preferences.glade:225
+#: data/gui/preferences.glade:234
 msgid "Default Launch Function"
 msgstr ""
 
-#: data/glade/traceback.glade:48
+#: data/gui/traceback.glade:50
 msgid "<big><b>Oops... a fatal error occured</b></big>"
 msgstr ""
 
-#: data/glade/traceback.glade:61
+#: data/gui/traceback.glade:64
 msgid ""
 "Ubuntu Tweak need to turn off.\n"
 "If you'd like to help us fix the problem, \n"
@@ -2114,24 +2129,40 @@ msgid ""
 "the error message below:"
 msgstr ""
 
-#: data/glade/traceback.glade:88 data/glade/traceback.glade:250
+#: data/gui/traceback.glade:91 data/gui/traceback.glade:266
 msgid "Error Message"
 msgstr ""
 
-#: data/glade/traceback.glade:145 data/glade/traceback.glade:307
+#: data/gui/traceback.glade:151 data/gui/traceback.glade:326
 msgid "_Report"
 msgstr ""
 
-#: data/glade/traceback.glade:211
+#: data/gui/traceback.glade:226
 msgid "<big><b>Oops... an error occured</b></big>"
 msgstr ""
 
-#: data/glade/traceback.glade:224
+#: data/gui/traceback.glade:240
 msgid ""
 "If you'd like to help us fix the problem, \n"
 "Please choose <i>Report</i> to file a new bug report. Make sure to include "
 "the error message below:"
 msgstr ""
+
+#: data/gui/type_edit.glade:7
+msgid "Edit Type"
+msgstr "Upravit typ"
+
+#: data/gui/type_edit.glade:131
+msgid "Add Application"
+msgstr "Přidat aplikaci"
+
+#: data/gui/type_edit.glade:178
+msgid "Select an application to view its description."
+msgstr "Vyberte aplikaci k zobrazení jejího popisu."
+
+#: data/gui/type_edit.glade:222
+msgid "_Use a custom command"
+msgstr "Po_užít vlastní příkaz"
 
 #~ msgid "Pick Windows"
 #~ msgstr "Měřítko"
@@ -2235,7 +2266,8 @@ msgstr ""
 #~ "\n"
 #~ "Ubuntu Tweak is currently only for the GNOME Desktop Environment.\n"
 #~ "\n"
-#~ "Although this application is only in early stages, I'll keep developing it.\n"
+#~ "Although this application is only in early stages, I'll keep developing "
+#~ "it.\n"
 #~ "\n"
 #~ "If you have any suggestions, Please visit the website in \"About\" and \n"
 #~ "share ideas with me. \n"
@@ -2517,7 +2549,8 @@ msgstr ""
 #~ msgstr "Lightweight X11 Desktop Environment:GPicView, PCManFM"
 
 #~ msgid ""
-#~ "<b><big>The information about available software is out-of-date</big></b>\n"
+#~ "<b><big>The information about available software is out-of-date</big></"
+#~ "b>\n"
 #~ "\n"
 #~ "To install software and updates from newly added or changed sources, you "
 #~ "have to reload the information about available software.\n"

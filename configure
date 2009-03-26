@@ -2656,11 +2656,10 @@ pkg_failed=no
 { $as_echo "$as_me:$LINENO: checking for TWEAK" >&5
 $as_echo_n "checking for TWEAK... " >&6; }
 
-if test -n "$PKG_CONFIG"; then
-    if test -n "$TWEAK_CFLAGS"; then
-        pkg_cv_TWEAK_CFLAGS="$TWEAK_CFLAGS"
-    else
-        if test -n "$PKG_CONFIG" && \
+if test -n "$TWEAK_CFLAGS"; then
+    pkg_cv_TWEAK_CFLAGS="$TWEAK_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gtk+-2.0                >= 2.10
     pygtk-2.0               >= 2.10
     pygobject-2.0           >= 2.10
@@ -2682,15 +2681,13 @@ if test -n "$PKG_CONFIG"; then
 else
   pkg_failed=yes
 fi
-    fi
-else
-	pkg_failed=untried
+ else
+    pkg_failed=untried
 fi
-if test -n "$PKG_CONFIG"; then
-    if test -n "$TWEAK_LIBS"; then
-        pkg_cv_TWEAK_LIBS="$TWEAK_LIBS"
-    else
-        if test -n "$PKG_CONFIG" && \
+if test -n "$TWEAK_LIBS"; then
+    pkg_cv_TWEAK_LIBS="$TWEAK_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gtk+-2.0                >= 2.10
     pygtk-2.0               >= 2.10
     pygobject-2.0           >= 2.10
@@ -2712,9 +2709,8 @@ if test -n "$PKG_CONFIG"; then
 else
   pkg_failed=yes
 fi
-    fi
-else
-	pkg_failed=untried
+ else
+    pkg_failed=untried
 fi
 
 
@@ -2727,17 +2723,17 @@ else
         _pkg_short_errors_supported=no
 fi
         if test $_pkg_short_errors_supported = yes; then
-	        TWEAK_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "gtk+-2.0                >= 2.10
+	        TWEAK_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "gtk+-2.0                >= 2.10
     pygtk-2.0               >= 2.10
     pygobject-2.0           >= 2.10
     gnome-python-2.0        >= 2.10
-"`
+" 2>&1`
         else
-	        TWEAK_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "gtk+-2.0                >= 2.10
+	        TWEAK_PKG_ERRORS=`$PKG_CONFIG --print-errors "gtk+-2.0                >= 2.10
     pygtk-2.0               >= 2.10
     pygobject-2.0           >= 2.10
     gnome-python-2.0        >= 2.10
-"`
+" 2>&1`
         fi
 	# Put the nasty error message in config.log where it belongs
 	echo "$TWEAK_PKG_ERRORS" >&5
