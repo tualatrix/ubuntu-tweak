@@ -56,7 +56,7 @@ AC_CONFIG_FILES([
     data/pixmaps/Makefile
     data/scripts/Makefile
     data/templates/Makefile
-    data/glade/Makefile
+    data/gui/Makefile
     scripts/Makefile
     scripts/ubuntu-tweak
     scripts/script-worker

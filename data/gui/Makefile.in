@@ -32,7 +32,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-subdir = data/glade
+subdir = data/gui
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/acinclude.m4 \
@@ -53,9 +53,9 @@ am__vpath_adj = case $$p in \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-am__installdirs = "$(DESTDIR)$(gladedir)"
-gladeDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(glade_DATA)
+am__installdirs = "$(DESTDIR)$(guidir)"
+guiDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(gui_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
@@ -179,9 +179,9 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-gladedir = $(pkgdatadir)/data/glade
-glade_DATA = $(srcdir)/*.glade
-EXTRA_DIST = $(glade_DATA)
+guidir = $(pkgdatadir)/data/gui
+gui_DATA = $(srcdir)/*.glade
+EXTRA_DIST = $(gui_DATA)
 all: all-am
 
 .SUFFIXES:
@@ -194,9 +194,9 @@ $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu  data/glade/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu  data/gui/Makefile'; \
 	cd $(top_srcdir) && \
-	  $(AUTOMAKE) --gnu  data/glade/Makefile
+	  $(AUTOMAKE) --gnu  data/gui/Makefile
 .PRECIOUS: Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \
@@ -214,22 +214,22 @@ $(top_srcdir)/configure:  $(am__configure_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
-install-gladeDATA: $(glade_DATA)
+install-guiDATA: $(gui_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(gladedir)" || $(MKDIR_P) "$(DESTDIR)$(gladedir)"
-	@list='$(glade_DATA)'; for p in $$list; do \
+	test -z "$(guidir)" || $(MKDIR_P) "$(DESTDIR)$(guidir)"
+	@list='$(gui_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(gladeDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(gladedir)/$$f'"; \
-	  $(gladeDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(gladedir)/$$f"; \
+	  echo " $(guiDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(guidir)/$$f'"; \
+	  $(guiDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(guidir)/$$f"; \
 	done
 
-uninstall-gladeDATA:
+uninstall-guiDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(glade_DATA)'; for p in $$list; do \
+	@list='$(gui_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(gladedir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(gladedir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(guidir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(guidir)/$$f"; \
 	done
 tags: TAGS
 TAGS:
@@ -268,7 +268,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(gladedir)"; do \
+	for dir in "$(DESTDIR)$(guidir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -313,7 +313,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-gladeDATA
+install-data-am: install-guiDATA
 
 install-dvi: install-dvi-am
 
@@ -347,20 +347,20 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-gladeDATA
+uninstall-am: uninstall-guiDATA
 
 .MAKE: install-am install-strip
 
 .PHONY: all all-am check check-am clean clean-generic distclean \
 	distclean-generic distdir dvi dvi-am html html-am info info-am \
 	install install-am install-data install-data-am install-dvi \
-	install-dvi-am install-exec install-exec-am install-gladeDATA \
+	install-dvi-am install-exec install-exec-am install-guiDATA \
 	install-html install-html-am install-info install-info-am \
 	install-man install-pdf install-pdf-am install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
 	installdirs maintainer-clean maintainer-clean-generic \
 	mostlyclean mostlyclean-generic pdf pdf-am ps ps-am uninstall \
-	uninstall-am uninstall-gladeDATA
+	uninstall-am uninstall-guiDATA
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
