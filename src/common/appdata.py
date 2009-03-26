@@ -126,7 +126,7 @@ APP_DATA = {
     'specto': _('A desktop application that will watch for events (website updates, emails, file and folder changes...)'),
     'tasque': _('A Useful Task List'),
     'terminator': _('Multiple GNOME terminals in one window'),
-    'transmission-gtk', _('Transmission is a fast, easy, and free multi-platform BitTorrent client.'),
+    'transmission-gtk': _('Transmission is a fast, easy, and free multi-platform BitTorrent client.'),
     'ubuntu-tweak': _('Ubuntu Tweak makes it easier to configure Ubuntu'),
     'ubuntu-restricted-extras': _('Commonly used restricted packages'),
     'virtualbox': _('A feature rich, high performance virtualization software'),
