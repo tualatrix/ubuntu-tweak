@@ -49,24 +49,24 @@ class FileOperation:
             if not os.path.exists(dest):
                 shutil.copy(source, dest)
             else:
-                ErrorDialog(_('The file "%s" is exists!') % dest).launch()
+                ErrorDialog(_('The file "%s" already exists!') % dest).launch()
         elif os.path.isdir(source):
             if not os.path.exists(dest):
                 shutil.copytree(source, dest)
             else:
-                ErrorDialog(_('The folder "%s" is exists!') % dest).launch()
+                ErrorDialog(_('The folder "%s" already exists!') % dest).launch()
 
     def do_move(self, source, dest):
         if not os.path.exists(dest):
             shutil.move(source, dest)
         else:
-            ErrorDialog(_('The target "%s" is exists!') % dest).launch()
+            ErrorDialog(_('The target "%s" already exists!') % dest).launch()
 
     def do_link(self, source, dest):
         if not os.path.exists(dest):
             os.symlink(source, dest)
         else:
-            ErrorDialog(_('The target "%s" is exists!') % dest).launch()
+            ErrorDialog(_('The target "%s" already exists!') % dest).launch()
 
     def copy(self, source, dest):
         """Copy the file or folder with necessary notice"""

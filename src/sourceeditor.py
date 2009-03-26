@@ -192,7 +192,7 @@ class UploadDialog(ProcessDialog):
     def __init__(self, data, parent):
         super(UploadDialog, self).__init__(data, parent)
 
-        self.progressbar.set_text(_('Uploding...'))
+        self.progressbar.set_text(_('Uploading...'))
 
     def process_data(self, data):
         self.processing = True
@@ -400,7 +400,7 @@ class SourceEditor(TweakPage):
 
         proxy.set_liststate('normal')
 
-        InfoDialog(_('You can install the new applications through Add/Remove.'),
+        InfoDialog(_('You can install new applications through Add/Remove.'),
             title = _('The software information is up-to-date now')).launch()
         self.emit('update', 'installer', 'deep_update')
         self.emit('update', 'thirdsoft', 'update_thirdparty')
@@ -417,7 +417,7 @@ class SourceEditor(TweakPage):
             if dialog.check_fill_data():
                 source_data = dialog.get_source_data()
             else:
-                ErrorDialog(_('Please input the correct infomation of the sources!')).launch()
+                ErrorDialog(_('Please input the correct information of the sources!')).launch()
         dialog.destroy()
 
         if source_data:
@@ -430,7 +430,7 @@ class SourceEditor(TweakPage):
             if 'SOURCES_DATA' in globals() and SOURCES_DATA:
                     self.open_source_select_dialog()
             else:
-                dialog = QuestionDialog(_('You can submit your sources to our server to help build the sources list, '
+                dialog = QuestionDialog(_('You can submit your sources to our server to help building the sources list, '
                         'or you can use the official sources.\n'
                         'Do you wish to use the official sources?'), 
                         title = _('No source data available'))
@@ -464,7 +464,7 @@ class SourceEditor(TweakPage):
     def on_save_button_clicked(self, wiget):
         text = self.textview.get_text()
         if proxy.edit_file(SOURCES_LIST, text) == 'error':
-            ErrorDialog(_('Please check the permission of the sources.list.'),
+            ErrorDialog(_('Please check the permission of sources.list.'),
                     title = _('Save failed!')).launch()
         else:
             self.save_button.set_sensitive(False)
@@ -472,7 +472,7 @@ class SourceEditor(TweakPage):
             self.refresh_button.set_sensitive(True)
 
     def on_redo_button_clicked(self, widget):
-        dialog = QuestionDialog(_('The currenly content will be lost after reloading!\nDo you wish to continue?'))
+        dialog = QuestionDialog(_('The current content will be lost after reloading!\nDo you wish to continue?'))
         if dialog.run() == gtk.RESPONSE_YES:
             self.textview.update_content()
             self.save_button.set_sensitive(False)
