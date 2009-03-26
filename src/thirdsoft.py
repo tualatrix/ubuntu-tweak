@@ -476,9 +476,14 @@ class ThirdSoft(TweakPage):
         proxy.set_liststate('normal')
         widget.set_sensitive(False)
 
-        InfoDialog(_('You can install the new applications through Add/Remove.'),
-            title = _('The software information is up-to-date now')).launch()
-        self.emit('update', 'installer', 'deep_update')
+        dialog = QuestionDialog(_('You can install the new applications through Add/Remove.\nDo you want to go now?'),
+            title = _('The software information is up-to-date now'))
+        if dialog.run() == gtk.RESPONSE_YES:
+            self.emit('update', 'installer', 'deep_update')
+            self.emit('call', 'mainwindow', 'select_module', {'name': 'installer'})
+        else:
+            self.emit('update', 'installer', 'deep_update')
+        dialog.destroy()
 
 if __name__ == '__main__':
     from utility import Test
