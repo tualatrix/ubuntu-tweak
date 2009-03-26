@@ -367,6 +367,9 @@ class TypeEditDialog(gobject.GObject):
         remove_button = worker.get_object('type_edit_remove_button')
         remove_button.connect('clicked', self.on_remove_button_clicked)
 
+        close_button = worker.get_object('type_edit_close_button')
+        close_button.connect('clicked', self.on_dialog_destroy)
+
     def on_add_button_clicked(self, widget):
         dialog = AddAppDialog(self.type, widget.get_toplevel())
         if dialog.run() == gtk.RESPONSE_ACCEPT:
