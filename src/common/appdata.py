@@ -65,6 +65,7 @@ APP_DATA = {
     'avidemux': _('A free video editor'),
     'azureus': _('BitTorrent client written in Java'),
     'banshee': _('Audio Management and Playback application'),
+    'blueman': _('GTK+ Bluetooth Manager'),
     'cairo-dock': _('A true dock for linux'),
     'chmsee': _('A chm file viewer written in GTK+'),
     'chromium-browser': _('Chromium is an open-source browser project that aims to build a safer, faster, and more stable way for all Internet users to experience the web.'),

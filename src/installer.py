@@ -78,6 +78,7 @@ data = \
     ('avidemux', Video),
     ('azureus', P2P),
     ('banshee', Sound),
+    ('blueman', P2P),
     ('cairo-dock', Desktop),
     ('chmsee', Text),
     ('chromium-browser', Internet),
