@@ -33,7 +33,7 @@ class GnomeVersion:
     date = xmldoc.getElementsByTagName("date")[0].firstChild.data
     description = "GNOME %s.%s.%s (%s %s)" % (platform, minor, micro, distributor, date)
 
-def parse_lsb():
+class parse_lsb:
     data = open('/etc/lsb-release').read()
     dict = {}
     for line in data.split('\n'):
@@ -42,12 +42,11 @@ def parse_lsb():
             dict[key] = value
         except:
             pass
-    return dict
 
 class DistroInfo:
     distro = GnomeVersion.distributor
-    if  distro == "Ubuntu":
-        distro = file('/etc/issue').readline().split('\\n')[0]
+    if parse_lsb.dict['DISTRIB_ID'] == "Ubuntu" or distro == "Ubuntu":
+        distro = file('/etc/issue.net').readline()[:-1]
 
 class SystemInfo:
     gnome = GnomeVersion.description
@@ -121,7 +120,7 @@ class module_check:
     @classmethod
     def get_codename(cls):
         try:
-            return parse_lsb()['DISTRIB_CODENAME']
+            return parse_lsb.dict['DISTRIB_CODENAME']
         except:
             return 'NULL'
 
