@@ -244,8 +244,8 @@ class PackageView(gtk.TreeView):
         if self.mode == 'package':
             n = len(self.__check_list)
             self.__column.set_title(
-                    gettext.ngettext(_('%d package selected to remove') % n, 
-                                    _('%d packages selected to remove') % n, n))
+                    gettext.ngettext('%d package selected to remove' % n, 
+                                    '%d packages selected to remove' % n, n))
         elif self.mode == 'cache':
             self.compute_cache_size()
             self.__column.set_title(_('%d KB of space will be freed') % self.size)
