@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#packagi!/usr/bin/python
 
 # Ubuntu Tweak - PyGTK based desktop configure tool
 #
@@ -30,6 +30,8 @@ import subprocess
 import apt
 import apt_pkg
 from xdg.DesktopEntry import DesktopEntry
+
+p_kernel = re.compile('\d')
 
 def update_apt_cache(init = False):
     '''if init is true, force to update, or it will update only once'''
@@ -77,7 +79,7 @@ class PackageInfo:
     def __init__(self, name):
         self.name = name
         self.pkg = cache[name]
-        self.desktopentry = DesktopEntry(self.DESKTOP_DIR + name + ".desktop")
+        self.desktopentry = DesktopEntry(self.DESKTOP_DIR + name + '.desktop')
 
     def check_installed(self):
         return self.pkg.isInstalled
@@ -87,50 +89,49 @@ class PackageInfo:
 
     def get_name(self):
         appname = self.desktopentry.getName()
-        if appname == "":
+        if appname == '':
             return self.name.title()
 
         return appname
 
 class PackageWorker:
-    basenames = ["linux-image", "linux-headers", "linux-image-debug",
-                  "linux-ubuntu-modules", "linux-header-lum",
-                  "linux-backport-modules",
-                  "linux-header-lbm", "linux-restricted-modules"]
+    basenames = ['linux-image', 'linux-headers', 'linux-image-debug',
+                  'linux-ubuntu-modules', 'linux-header-lum',
+                  'linux-backport-modules',
+                  'linux-header-lbm', 'linux-restricted-modules']
 
     def __init__(self):
         self.uname = os.uname()[2]
+	self.uname_no_generic = '-'.join(self.uname.split('-')[:2])
 
     def is_current_kernel(self, pkg):
         for base in self.basenames:
-            if pkg == "%s-%s" % (base, self.uname):
+            if pkg == '%s-%s' % (base, self.uname) or pkg == '%s-%s' % (base, self.uname_no_generic):
                 return True
-            else:
-                return False
         return False
 
     def run_synaptic(self, id, lock, to_add = None, to_rm = None):
         cmd = []
         if os.getuid() != 0:
-            cmd = ["/usr/bin/gksu",
-                   "--desktop", "/usr/share/applications/synaptic.desktop",
-                   "--"]
-        cmd += ["/usr/sbin/synaptic",
-                "--hide-main-window",
-                "--non-interactive",
-                "-o", "Synaptic::closeZvt=true",
-                "--parent-window-id", "%s" % (id) ]
+            cmd = ['/usr/bin/gksu',
+                   '--desktop', '/usr/share/applications/synaptic.desktop',
+                   '--']
+        cmd += ['/usr/sbin/synaptic',
+                '--hide-main-window',
+                '--non-interactive',
+                '-o', 'Synaptic::closeZvt=true',
+                '--parent-window-id', '%s' % (id) ]
 
         f = tempfile.NamedTemporaryFile()
 
         for item in to_add:
-            f.write("%s\tinstall\n" % item)
+            f.write('%s\tinstall\n' % item)
 
         for item in to_rm:
-            f.write("%s\tuninstall\n" % item)
+            f.write('%s\tuninstall\n' % item)
 
-        cmd.append("--set-selections-file")
-        cmd.append("%s" % f.name)
+        cmd.append('--set-selections-file')
+        cmd.append('%s' % f.name)
         f.flush()
 
         self.return_code = subprocess.call(cmd)
@@ -156,8 +157,9 @@ class PackageWorker:
         for pkg in cache.keys():
             if cache[pkg].isInstalled:
                 for base in self.basenames:
-                    if pkg.startswith(base) and not self.is_current_kernel(pkg):
-                        print pkg
+                    if pkg.startswith(base) and p_kernel.findall(pkg) and not self.is_current_kernel(pkg):
+			list.append(pkg)
+	return list
 
     def get_pkgsummary(self, pkg):
         return cache[pkg].summary

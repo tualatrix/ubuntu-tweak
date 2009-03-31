@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
 "POT-Creation-Date: 2009-03-26 23:00+0800\n"
-"PO-Revision-Date: 2009-03-03 09:38+0000\n"
-"Last-Translator: Michael Humblet <Unknown>\n"
+"PO-Revision-Date: 2009-03-28 11:27+0000\n"
+"Last-Translator: hardball <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-03-03 11:32+0000\n"
+"X-Launchpad-Export-Date: 2009-03-31 09:12+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/autostart.py:45
@@ -211,19 +211,19 @@ msgid "Disable \"Fast User Switching\""
 msgstr "Desactiver l'Applet de changement rapide d'utilisateur"
 
 #: src/ScriptWorker.py:52
-#, fuzzy, python-format
+#, python-format
 msgid "The file \"%s\" already exists!"
-msgstr "Le fichier \"%s\" existe!"
+msgstr "Le fichier \"%s\" existe déjà!"
 
 #: src/ScriptWorker.py:57
-#, fuzzy, python-format
+#, python-format
 msgid "The folder \"%s\" already exists!"
-msgstr "Le dossier \"%s\" existe!"
+msgstr "Le dossier \"%s\" existe déjà!"
 
 #: src/ScriptWorker.py:63 src/ScriptWorker.py:69
-#, fuzzy, python-format
+#, python-format
 msgid "The target \"%s\" already exists!"
-msgstr "La cible \"%s\" existe!"
+msgstr "La cible \"%s\" existe déjà!"
 
 #: src/ScriptWorker.py:110 src/ScriptWorker.py:121
 msgid "Enter your password to perform the administrative tasks"
@@ -456,6 +456,7 @@ msgstr ""
 "  Nizar Kerkeni https://launchpad.net/~nizarus\n"
 "  Omega13 https://launchpad.net/~omega13\n"
 "  Pierre DORBAIS https://launchpad.net/~chdorb\n"
+"  Pierre Slamich https://launchpad.net/~pierre-slamich\n"
 "  Rafik Ouerchefani https://launchpad.net/~rafik\n"
 "  Septime Lowe https://launchpad.net/~septox\n"
 "  TCHANQUE Julius https://launchpad.net/~tnjulius\n"
@@ -466,6 +467,7 @@ msgstr ""
 "  brazzmonkey https://launchpad.net/~samuel-benoit\n"
 "  chaoswizard https://launchpad.net/~chaoswizard\n"
 "  flobe https://launchpad.net/~florianbeau\n"
+"  hardball https://launchpad.net/~slzk-n\n"
 "  napster2core https://launchpad.net/~napster2core\n"
 "  royto https://launchpad.net/~royto\n"
 "  thebachman https://launchpad.net/~thebachman\n"
@@ -756,8 +758,8 @@ msgstr ""
 "dépôt.\n"
 "En utilisant des dépôt DEB de tierce parties , Vous pouvez en avoir toujours "
 "les dernières versions.\n"
-"Après l'ajout de ces dépôts, installez ces applications avec Supprimer/"
-"Ajouter."
+"Après l'ajout de ces dépôts, installez ces applications avec "
+"Supprimer/Ajouter."
 
 #: src/thirdsoft.py:411
 msgid "Details"
@@ -780,11 +782,12 @@ msgid "Never show this dialog"
 msgstr "Ne jamais afficher cette fenêtre de dialogue"
 
 #: src/thirdsoft.py:479
-#, fuzzy
 msgid ""
 "You can install the new applications through Add/Remove.\n"
 "Do you want to go now?"
-msgstr "Vous pouvait installer de nouvelles application par Ajouter/Supprimer"
+msgstr ""
+"Vous pouvez installer les nouvelles applications grâce à Ajouter/Supprimer.\n"
+"Voulez-vous y accéder ?"
 
 #: src/thirdsoft.py:480 src/sourceeditor.py:404
 msgid "The software information is up-to-date now"
@@ -993,8 +996,8 @@ msgid ""
 "Templates path is wrong! The current path is point to \"%s\".\n"
 "Please reset it to a folder under your Home Folder."
 msgstr ""
-"Le chemin vers les modèles est incorrect ! Le chemin actuel point vers \"%s"
-"\".\n"
+"Le chemin vers les modèles est incorrect ! Le chemin actuel point vers "
+"\"%s\".\n"
 "Veuillez le rediriger vers un dossier de votre dossier Home."
 
 #: src/templates.py:123
@@ -1366,7 +1369,8 @@ msgstr "Écran de veille"
 
 #: src/gnomesettings.py:67
 msgid "Enable user switching when screen is locked."
-msgstr "Permettre le changement d'utilisateur lorsque l'écran est verrouillé."
+msgstr ""
+"Permettre le changement d'utilisateur lorsque l'écran est verrouillé."
 
 #: src/gnomesettings.py:72
 msgid "Enable system-wide \"Recently Documents\" list"
@@ -1555,7 +1559,8 @@ msgstr ""
 
 #: src/powermanager.py:82
 msgid "The CPU frequency policy when on battery power"
-msgstr "Politique de gestion de la fréquence du processeur quand sur batterie"
+msgstr ""
+"Politique de gestion de la fréquence du processeur quand sur batterie"
 
 #: src/preferences.py:69 src/preferences.py:77
 msgid "Reset"
@@ -1622,9 +1627,8 @@ msgid "Network Error"
 msgstr "Erreur Réseau"
 
 #: src/sourceeditor.py:195
-#, fuzzy
 msgid "Uploading..."
-msgstr "Chargement..."
+msgstr "Transfert..."
 
 #: src/sourceeditor.py:211
 msgid "Updating..."
@@ -1653,24 +1657,23 @@ msgid "Submit Sources"
 msgstr "Soumettre les sources"
 
 #: src/sourceeditor.py:403
-#, fuzzy
 msgid "You can install new applications through Add/Remove."
-msgstr "Vous pouvait installer de nouvelles application par Ajouter/Supprimer"
+msgstr ""
+"Vous pouvez installer de nouvelles applications grâce à Ajouter/Supprimer."
 
 #: src/sourceeditor.py:420
-#, fuzzy
 msgid "Please input the correct information of the sources!"
-msgstr "Veuillez entrer une information correcte sur les sources !"
+msgstr "Veuillez saisir les informations correctes sur les sources !"
 
 #: src/sourceeditor.py:433
-#, fuzzy
 msgid ""
 "You can submit your sources to our server to help building the sources list, "
 "or you can use the official sources.\n"
 "Do you wish to use the official sources?"
 msgstr ""
-"Vous pouvez soumettre vos sources à notre serveur pour aider à établir la "
-"liste des sources, ou vous pouvez utiliser les sources officielles.\n"
+"Vous pouvez soumettre vos sources à notre serveur pour aider à créer une "
+"liste de sources disponibles, ou vous pouvez utiliser les sources "
+"officielles.\n"
 "Souhaitez-vous utiliser les sources officielles ?"
 
 #: src/sourceeditor.py:436
@@ -1690,7 +1693,6 @@ msgid "Sumit successfully"
 msgstr "Proposition effectuée avec succès"
 
 #: src/sourceeditor.py:467
-#, fuzzy
 msgid "Please check the permission of sources.list."
 msgstr "Veuillez vérifier les permissions du fichier sources.list."
 
@@ -1699,12 +1701,11 @@ msgid "Save failed!"
 msgstr "Sauvegarde échouée!"
 
 #: src/sourceeditor.py:475
-#, fuzzy
 msgid ""
 "The current content will be lost after reloading!\n"
 "Do you wish to continue?"
 msgstr ""
-"Le contenu actuel sera perdu après rechargement!!!\n"
+"Le contenu actuel sera perdu après un rechargement !\n"
 "Souhaitez-vous continuer ?"
 
 #: src/common/package.py:64
@@ -1730,7 +1731,7 @@ msgstr "EDI GNOME pour C/C++, Java, Python"
 #: src/common/appdata.py:61
 msgid "A skinned multimedia player for many platforms"
 msgstr ""
-"Un lecteur mutlimédia à différents habillages pour plusieurs plateformes"
+"Un lecteur multimédia à différents habillages pour plusieurs plateformes"
 
 #: src/common/appdata.py:62
 msgid "Record and edit audio files"
@@ -1798,8 +1799,8 @@ msgstr "Plateforme d'outils et IDE Java extensibles"
 
 #: src/common/appdata.py:77
 msgid ""
-"EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
-"com."
+"EIOffice Personal 2009. Free for Chinese users. See "
+"http://www.evermoresw.com."
 msgstr ""
 "EIOffice Personal 2009. Libre pour les utilisateurs chinois. Rendez-vous sur "
 "http://www.evermoresw.com."
@@ -1896,6 +1897,9 @@ msgid ""
 "GTG is a personal organizer for the GNOME desktop environment, it focuses on "
 "ease of use and flexibility, while keeping things simple."
 msgstr ""
+"GTG est un organiseur personnel pour l'environnment de bureau GNOME, il se "
+"focalise sur la facilité d'utilisation et la flexibilité en gardant les "
+"choses simples."
 
 #: src/common/appdata.py:98
 msgid "Gwibber is an open source microblogging client for GNOME"
@@ -1985,9 +1989,9 @@ msgid ""
 "QQ all at once."
 msgstr ""
 "Pidgin est un client de messagerie graphique modulaire basé sur libpurple "
-"capable de se connecter à AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, SIP/"
-"SIMPLE, Novell GroupWise, Lotus Sametime, Bonjour, Zephyr, MySpaceIM, Gadu-"
-"Gadu, and QQ en même temps."
+"capable de se connecter à AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, "
+"SIP/SIMPLE, Novell GroupWise, Lotus Sametime, Bonjour, Zephyr, MySpaceIM, "
+"Gadu-Gadu, and QQ en même temps."
 
 #: src/common/appdata.py:118
 msgid "Run your Windows programs on Linux"
@@ -2047,6 +2051,8 @@ msgstr "Plusieurs terminaux GNOME dans une seule fenêtre"
 msgid ""
 "Transmission is a fast, easy, and free multi-platform BitTorrent client."
 msgstr ""
+"Transmission est un client BitTorrent libre, rapide, simple et multi "
+"plateforme."
 
 #: src/common/appdata.py:130
 msgid "Ubuntu Tweak makes it easier to configure Ubuntu"
@@ -2077,6 +2083,8 @@ msgid ""
 "Wine-doors is an application designed to make installing windows software on "
 "Linux, Solaris or other Unix systems easier."
 msgstr ""
+"Wine-doors est une application conçue pour installer plus facilement sous "
+"Linux, Solaris et autre systèmes Unix des logiciels prévus pour Windows."
 
 #: src/common/appdata.py:138
 msgid ""
@@ -2084,9 +2092,8 @@ msgid ""
 msgstr "XBMC is est un lecteur multimedia et une plateforme  open source"
 
 #: src/common/appdata.py:142
-#, fuzzy
 msgid "Development Version of Mozilla Firefox 3.1, 4.0"
-msgstr "Version de Développement Mozilla Firefox 3.0/3.1, 4.0"
+msgstr "Version de développement de Mozilla Firefox 3.1, 4.0"
 
 #: src/common/appdata.py:143
 msgid "Development version of Compiz Fusion"
@@ -2097,9 +2104,8 @@ msgid "Google's Linux Repository"
 msgstr "Dépôts Google pour Linux"
 
 #: src/common/appdata.py:145
-#, fuzzy
 msgid "K Desktop Environment 4.2"
-msgstr "K Desktop Environment 4.1"
+msgstr "K Desktop Environment 4.2 (environnement de bureau KDE)"
 
 #: src/common/appdata.py:146
 msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
@@ -2379,8 +2385,7 @@ msgstr "_Utiliser une commande personnalisée"
 #~ msgstr ""
 #~ "Vous pouvez  supprimer cet élément sans risque, il sera seulement marqué "
 #~ "comme masqué.\n"
-#~ "Si vous souhaitez le supprimer du disque, faites un clic droit sur "
-#~ "l'élément."
+#~ "Si vous souhaitez le supprimer du disque, faites un clic droit sur l'élément."
 
 #~ msgid "Show program comments"
 #~ msgstr "Afficher les commentaires du programme"
@@ -2433,6 +2438,18 @@ msgstr "_Utiliser une commande personnalisée"
 #~ msgid "This will delete all the disabled templates, continue?"
 #~ msgstr "Cela va supprimer tous les modèles désactivés, continuer?"
 
+#, python-format
+#~ msgid "The file \"%s\" is exists!"
+#~ msgstr "Le fichier \"%s\" existe!"
+
+#, python-format
+#~ msgid "The folder \"%s\" is exists!"
+#~ msgstr "Le dossier \"%s\" existe!"
+
+#, python-format
+#~ msgid "The target \"%s\" is exists!"
+#~ msgstr "La cible \"%s\" existe!"
+
 #~ msgid "Manage your scripts"
 #~ msgstr "Gérer vos scripts"
 
@@ -2459,13 +2476,12 @@ msgstr "_Utiliser une commande personnalisée"
 
 #~ msgid "Use Home Folder as the desktop(Logout for changes to take effect)"
 #~ msgstr ""
-#~ "Utiliser le dossier personnel comme bureau (nécessite une déconnexion "
-#~ "pour appliquer les changements)"
+#~ "Utiliser le dossier personnel comme bureau (nécessite une déconnexion pour "
+#~ "appliquer les changements)"
 
 #~ msgid "Show advanced Permissions on File Property pages"
 #~ msgstr ""
-#~ "Afficher les permissions avancées dans les pages des propriétés  de "
-#~ "fichiers"
+#~ "Afficher les permissions avancées dans les pages des propriétés  de fichiers"
 
 #~ msgid "Show CPU frequency control option"
 #~ msgstr "Afficher l'option de contrôle de la fréquence du CPU"
@@ -2494,8 +2510,8 @@ msgstr "_Utiliser une commande personnalisée"
 #~ "En configurant les raccourcis clavier, vous obtenez un accès plus rapide "
 #~ "aux\n"
 #~ "applications dont vous avez besoin.\n"
-#~ "Entrez la commande et réglez les touches désirées. il est facile de créer "
-#~ "un raccourci.\n"
+#~ "Entrez la commande et réglez les touches désirées. il est facile de créer un "
+#~ "raccourci.\n"
 #~ "Utilisez <b>Supprimer</b> ou <b>Retour Arrière</b> pour effacer la touche."
 
 #~ msgid ""
@@ -2513,24 +2529,25 @@ msgstr "_Utiliser une commande personnalisée"
 #~ msgid "P2P Clients"
 #~ msgstr "Clients P2P"
 
+#~ msgid "K Desktop Environment 4.1"
+#~ msgstr "K Desktop Environment 4.1"
+
 #~ msgid "Lightweight X11 Desktop Environment:GPicView, PCManFM"
 #~ msgstr "Environnement du bureau X11 léger: GPicView, PCManFM"
 
 #~ msgid ""
-#~ "<b><big>The information about available software is out-of-date</big></"
-#~ "b>\n"
+#~ "<b><big>The information about available software is out-of-date</big></b>\n"
 #~ "\n"
 #~ "To install software and updates from newly added or changed sources, you "
 #~ "have to reload the information about available software.\n"
 #~ "\n"
 #~ "You need a working internet connection to continue."
 #~ msgstr ""
-#~ "<b><big>Les informations sur les logiciels disponibles sont obsolètes</"
-#~ "big></b>\n"
+#~ "<b><big>Les informations sur les logiciels disponibles sont "
+#~ "obsolètes</big></b>\n"
 #~ "\n"
-#~ "Pour installer de nouveaux logiciels ou des mises à jour à partir de "
-#~ "dépôts modifiés ou nouvellement ajoutés, vous devez recharger ces "
-#~ "informations.\n"
+#~ "Pour installer de nouveaux logiciels ou des mises à jour à partir de dépôts "
+#~ "modifiés ou nouvellement ajoutés, vous devez recharger ces informations.\n"
 #~ "\n"
 #~ "Une connexion internet fonctionnelle sera nécessaire."
 
@@ -2545,6 +2562,9 @@ msgstr "_Utiliser une commande personnalisée"
 
 #~ msgid "Inactive window transparency shade"
 #~ msgstr "Ombres transparentes pour les fenêtres inactives"
+
+#~ msgid "Development Version of Mozilla Firefox 3.0/3.1, 4.0"
+#~ msgstr "Version de Développement Mozilla Firefox 3.0/3.1, 4.0"
 
 #~ msgid "Third Party Softwares Sources"
 #~ msgstr "Sources Logiciels de Tierces Parties"

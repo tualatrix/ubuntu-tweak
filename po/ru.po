@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
 "POT-Creation-Date: 2009-03-26 23:00+0800\n"
-"PO-Revision-Date: 2009-03-03 07:55+0000\n"
+"PO-Revision-Date: 2009-03-20 11:20+0000\n"
 "Last-Translator: Pavel Belyaev <alp81@yandex.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-03-03 11:32+0000\n"
+"X-Launchpad-Export-Date: 2009-03-31 09:14+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/autostart.py:45
@@ -31,11 +31,11 @@ msgstr "Комм_ентарий:"
 
 #: src/autostart.py:62
 msgid "Edit Startup Program"
-msgstr "Изменить программы, запускаемые при старте системы"
+msgstr "Управление автозагрузкой"
 
 #: src/autostart.py:67
 msgid "New Startup Program"
-msgstr "Новая программа, запускаемая при старте системы"
+msgstr "Новое приложение для автозагрузки"
 
 #: src/autostart.py:69 data/gui/type_edit.glade:205
 msgid "_Browse..."
@@ -140,7 +140,7 @@ msgstr "Средства для работы с FTP"
 
 #: src/installer.py:60
 msgid "Desktop Tools"
-msgstr "Средства для работы с рабочим столом"
+msgstr "Настройка рабочего стола"
 
 #: src/installer.py:61
 msgid "CD/Disk Tools"
@@ -211,19 +211,19 @@ msgid "Disable \"Fast User Switching\""
 msgstr "Отключить \"Быстрая смена пользователя\""
 
 #: src/ScriptWorker.py:52
-#, fuzzy, python-format
+#, python-format
 msgid "The file \"%s\" already exists!"
-msgstr "Файл \"%s\" существует!"
+msgstr ""
 
 #: src/ScriptWorker.py:57
-#, fuzzy, python-format
+#, python-format
 msgid "The folder \"%s\" already exists!"
-msgstr "Директория \"%s\" существует!"
+msgstr ""
 
 #: src/ScriptWorker.py:63 src/ScriptWorker.py:69
-#, fuzzy, python-format
+#, python-format
 msgid "The target \"%s\" already exists!"
-msgstr "\"%s\" уже существует!"
+msgstr ""
 
 #: src/ScriptWorker.py:110 src/ScriptWorker.py:121
 msgid "Enter your password to perform the administrative tasks"
@@ -429,6 +429,7 @@ msgstr ""
 "  Dima Shmidt https://launchpad.net/~dima.shmidt\n"
 "  Dmitry Tumaikin https://launchpad.net/~nevly\n"
 "  Maxim Prokopyev https://launchpad.net/~xjazz\n"
+"  Maxim S. https://launchpad.net/~luvme-nn\n"
 "  Pavel Belyaev https://launchpad.net/~alp81\n"
 "  Pavlenty https://launchpad.net/~pavlenty\n"
 "  Sergey Ivanov https://launchpad.net/~rus-patriot\n"
@@ -722,8 +723,8 @@ msgstr ""
 "Это обозначает что только программы с баг-фиксами попадают в репозитории.\n"
 "Используя DEB-источники третьих сторон вы всегда можете получить последнюю "
 "версию.\n"
-"После подключения этих источников вы можете использовать их через Установку/"
-"Удаление."
+"После подключения этих источников вы можете использовать их через "
+"Установку/Удаление."
 
 #: src/thirdsoft.py:411
 msgid "Details"
@@ -746,11 +747,10 @@ msgid "Never show this dialog"
 msgstr "Не показывать данный диалог"
 
 #: src/thirdsoft.py:479
-#, fuzzy
 msgid ""
 "You can install the new applications through Add/Remove.\n"
 "Do you want to go now?"
-msgstr "Вы можете установить новые программы в \"Установка/Удаление\"."
+msgstr ""
 
 #: src/thirdsoft.py:480 src/sourceeditor.py:404
 msgid "The software information is up-to-date now"
@@ -962,7 +962,7 @@ msgstr ""
 
 #: src/templates.py:123
 msgid "Go And Set"
-msgstr ""
+msgstr "Настроить"
 
 #: src/templates.py:128
 msgid "Restart This Module"
@@ -1586,9 +1586,8 @@ msgid "Network Error"
 msgstr "Ошибка сети"
 
 #: src/sourceeditor.py:195
-#, fuzzy
 msgid "Uploading..."
-msgstr "Выгрузить..."
+msgstr ""
 
 #: src/sourceeditor.py:211
 msgid "Updating..."
@@ -1614,25 +1613,19 @@ msgid "Submit Sources"
 msgstr "Отослать источник"
 
 #: src/sourceeditor.py:403
-#, fuzzy
 msgid "You can install new applications through Add/Remove."
-msgstr "Вы можете установить новые программы в \"Установка/Удаление\"."
+msgstr ""
 
 #: src/sourceeditor.py:420
-#, fuzzy
 msgid "Please input the correct information of the sources!"
-msgstr "Введите корректную информацию об источниках!"
+msgstr ""
 
 #: src/sourceeditor.py:433
-#, fuzzy
 msgid ""
 "You can submit your sources to our server to help building the sources list, "
 "or you can use the official sources.\n"
 "Do you wish to use the official sources?"
 msgstr ""
-"Вы можете отослать нам репозитории, если хотите ими поделиться. Или можете "
-"использовать официальные репы.\n"
-"Вы хотите использовать официальные репозитории?"
 
 #: src/sourceeditor.py:436
 msgid "No source data available"
@@ -1651,22 +1644,18 @@ msgid "Sumit successfully"
 msgstr "Отправка завершена успешно"
 
 #: src/sourceeditor.py:467
-#, fuzzy
 msgid "Please check the permission of sources.list."
-msgstr "Проверьте права доступа к файлу sources.list."
+msgstr ""
 
 #: src/sourceeditor.py:468
 msgid "Save failed!"
 msgstr "Сохранение неудачно!"
 
 #: src/sourceeditor.py:475
-#, fuzzy
 msgid ""
 "The current content will be lost after reloading!\n"
 "Do you wish to continue?"
 msgstr ""
-"Данный контент будет потерян после обновления!\n"
-"Вы хотите продолжить?"
 
 #: src/common/package.py:64
 msgid "(Not available)"
@@ -1703,6 +1692,7 @@ msgstr "Полностью настраиваемый оконный навиг�
 #: src/common/appdata.py:64
 msgid "Fully customisable dock-like window navigator(Unstable)"
 msgstr ""
+"Полностью настраиваемый оконный навигатор в виде панели (нестабильный)"
 
 #: src/common/appdata.py:65
 msgid "A free video editor"
@@ -1758,11 +1748,11 @@ msgstr "Расширяемая платформа инструментов и Ja
 
 #: src/common/appdata.py:77
 msgid ""
-"EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
-"com."
+"EIOffice Personal 2009. Free for Chinese users. See "
+"http://www.evermoresw.com."
 msgstr ""
-"EIOffice Personal 2009. Бесплатен для китайцев. Смотрите http://www."
-"evermoresw.com."
+"EIOffice Personal 2009. Бесплатен для китайцев. Смотрите "
+"http://www.evermoresw.com."
 
 #: src/common/appdata.py:78
 msgid "A client for the Windows Live Message network"
@@ -1857,7 +1847,7 @@ msgstr ""
 
 #: src/common/appdata.py:98
 msgid "Gwibber is an open source microblogging client for GNOME"
-msgstr ""
+msgstr "Gwibber является открытым клиентом с для микроблоггинга среды GNOME"
 
 #: src/common/appdata.py:99
 msgid "A graphical CD image editor"
@@ -1913,7 +1903,7 @@ msgstr "Быстрая и простая программа просмотра �
 
 #: src/common/appdata.py:111
 msgid "Open internet TV, beyond anything else"
-msgstr ""
+msgstr "Открытое интернет-телевидение, вне чего-либо ещё"
 
 #: src/common/appdata.py:112
 msgid "Webkit based lightweight web browser"
@@ -1980,7 +1970,8 @@ msgstr "Мультиязычный словарь"
 msgid ""
 "Swiftweasel is an optimized build of the Mozilla Firefox web browser for "
 "Linux"
-msgstr "Swiftweasel является оптимизированным билдом Mozilla Firefox для Linux"
+msgstr ""
+"Swiftweasel является оптимизированным билдом Mozilla Firefox для Linux"
 
 #: src/common/appdata.py:126
 msgid ""
@@ -2039,9 +2030,8 @@ msgid ""
 msgstr "XBMC это полностью бесплатный и открытый медиаплеер"
 
 #: src/common/appdata.py:142
-#, fuzzy
 msgid "Development Version of Mozilla Firefox 3.1, 4.0"
-msgstr "Разрабатываемая версия Мозиллы Файрфокс 3.0/3.1, 4.0"
+msgstr ""
 
 #: src/common/appdata.py:143
 msgid "Development version of Compiz Fusion"
@@ -2052,9 +2042,8 @@ msgid "Google's Linux Repository"
 msgstr "Репозиторий Google для linux"
 
 #: src/common/appdata.py:145
-#, fuzzy
 msgid "K Desktop Environment 4.2"
-msgstr "K Desktop Environment 4.1"
+msgstr ""
 
 #: src/common/appdata.py:146
 msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
@@ -2297,8 +2286,7 @@ msgstr "Ввести свою комманду"
 
 #~ msgid "Title bar Middle-click action"
 #~ msgstr ""
-#~ "Действие, применяемое для заголовка окна при нажатии на среднюю кнопку "
-#~ "мыши"
+#~ "Действие, применяемое для заголовка окна при нажатии на среднюю кнопку мыши"
 
 #~ msgid "Title bar Right-click action"
 #~ msgstr "Действие, применяемое для окна при нажатии правой клавиши мышки"
@@ -2387,6 +2375,10 @@ msgstr "Ввести свою комманду"
 #~ msgid "This will delete all the disabled templates, continue?"
 #~ msgstr "Будут удалены все неактивные шаблоны, продолжить?"
 
+#, python-format
+#~ msgid "The target \"%s\" is exists!"
+#~ msgstr "\"%s\" уже существует!"
+
 #~ msgid "Manage your scripts"
 #~ msgstr "Управление скриптами"
 
@@ -2413,8 +2405,8 @@ msgstr "Ввести свою комманду"
 
 #~ msgid "Use Home Folder as the desktop(Logout for changes to take effect)"
 #~ msgstr ""
-#~ "Использовать папку /home в качестве рабочего стола (Лог-аут для того, "
-#~ "чтобы изменения вступили в силу)"
+#~ "Использовать папку /home в качестве рабочего стола (Лог-аут для того, чтобы "
+#~ "изменения вступили в силу)"
 
 #~ msgid "Show advanced Permissions on File Property pages"
 #~ msgstr "Показывать дополнительные ограничения в разделе \"свойства файла\""
@@ -2446,10 +2438,9 @@ msgstr "Ввести свою комманду"
 #~ "Настраивая горячие сочетания клавиш, вы обеспечиваете себе более быстрый "
 #~ "доступ к \n"
 #~ "нужным Вам приложениям. \n"
-#~ "Выберите команду и вставьте любую клавишу в соответствие, так легко "
-#~ "сделать горячую клавишу.\n"
-#~ "Используйте <b>Delete</b> или <b>BackSpace</b> чтобы удалить горячую "
-#~ "клавишу."
+#~ "Выберите команду и вставьте любую клавишу в соответствие, так легко сделать "
+#~ "горячую клавишу.\n"
+#~ "Используйте <b>Delete</b> или <b>BackSpace</b> чтобы удалить горячую клавишу."
 
 #~ msgid ""
 #~ "You can freely manage your document templates.\n"
@@ -2463,12 +2454,14 @@ msgstr "Ввести свою комманду"
 #~ msgid "P2P Clients"
 #~ msgstr "P2P клиенты"
 
+#~ msgid "K Desktop Environment 4.1"
+#~ msgstr "K Desktop Environment 4.1"
+
 #~ msgid "Lightweight X11 Desktop Environment:GPicView, PCManFM"
 #~ msgstr "Lightweight X11 Desktop Environment:GPicView, PCManFM"
 
 #~ msgid ""
-#~ "<b><big>The information about available software is out-of-date</big></"
-#~ "b>\n"
+#~ "<b><big>The information about available software is out-of-date</big></b>\n"
 #~ "\n"
 #~ "To install software and updates from newly added or changed sources, you "
 #~ "have to reload the information about available software.\n"
@@ -2477,8 +2470,8 @@ msgstr "Ввести свою комманду"
 #~ msgstr ""
 #~ "<b><big>Информация о программном обеспечении устарела</big></b>\n"
 #~ "\n"
-#~ "Для установки программ и обновлений из новых или изменённых источников "
-#~ "нужно скачать информацию о доступном программном обеспечении.\n"
+#~ "Для установки программ и обновлений из новых или изменённых источников нужно "
+#~ "скачать информацию о доступном программном обеспечении.\n"
 #~ "\n"
 #~ "Для продолжения требуется действующее подключение к Интернет."
 
@@ -2493,6 +2486,9 @@ msgstr "Ввести свою комманду"
 
 #~ msgid "Inactive window transparency shade"
 #~ msgstr "Прозрачная тень от неактивного окна"
+
+#~ msgid "Development Version of Mozilla Firefox 3.0/3.1, 4.0"
+#~ msgstr "Разрабатываемая версия Мозиллы Файрфокс 3.0/3.1, 4.0"
 
 #~ msgid "Third Party Softwares Sources"
 #~ msgstr "Источники программ третьих сторон"

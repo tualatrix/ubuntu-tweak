@@ -168,6 +168,28 @@ class PackageView(gtk.TreeView):
                 '<b>%s</b>\n%s' % (pkg, desc)
                 ))
 
+    def update_kernel_model(self):
+        model = self.get_model()
+        model.clear()
+        self.mode = 'kernel'
+
+        icon = get_icon_with_name('deb', 24)
+        list = self.__packageworker.list_unneeded_kerenl()
+        self.total_num = len(list)
+        self.__column.set_title(_('Packages'))
+
+        for pkg in list:
+            desc = self.__packageworker.get_pkgsummary(pkg)
+
+            model.append((
+                False,
+                icon,
+                pkg,
+                desc,
+                '<b>%s</b>\n%s' % (pkg, desc)
+                ))
+
+
     def update_cache_model(self):
         model = self.get_model()
         model.clear()
@@ -241,7 +263,7 @@ class PackageView(gtk.TreeView):
         self.set_column_title()
 
     def set_column_title(self):
-        if self.mode == 'package':
+        if self.mode == 'package' or self.mode == 'kernel':
             n = len(self.__check_list)
             self.__column.set_title(
                     gettext.ngettext('%d package selected to remove' % n, 
@@ -286,7 +308,10 @@ class PackageView(gtk.TreeView):
             self.show_failed_dialog()
 
         update_apt_cache()
-        self.update_package_model()
+        if self.mode == 'package':
+            self.update_package_model()
+        else:
+            self.update_kernel_model()
         self.__check_list = []
         self.emit('cleaned')
 
@@ -369,6 +394,11 @@ class PackageCleaner(TweakPage):
                 self.treeview.update_config_model)
         vbox.pack_start(self.config_button, False, False, 0)
 
+        self.kernel_button = self.create_button(_('Clean Kernel'), 
+                gtk.image_new_from_pixbuf(get_icon_with_name('start-here', 24)),
+                self.treeview.update_kernel_model)
+        vbox.pack_start(self.kernel_button, False, False, 0)
+
         # checkbutton
         self.select_button = gtk.CheckButton(_('Select All'))
         self.select_button.set_sensitive(False)
@@ -443,7 +473,7 @@ class PackageCleaner(TweakPage):
 
     def on_clean_button_clicked(self, widget):
         mode = self.treeview.mode
-        if mode == 'package':
+        if mode == 'package' or mode == 'kernel':
             self.treeview.clean_selected_package()
         elif mode == 'cache':
             self.treeview.clean_selected_cache()
