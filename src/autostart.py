@@ -245,7 +245,7 @@ class AutoStartItem(gtk.TreeView):
             if comment:
                 comment = desktopentry.getComment()
                 if not comment:
-                    comment = _("None description")
+                    comment = _("No description")
                 description = "<b>%s</b>\n%s" % (name, comment)
             else:
                 description = "<b>%s</b>" % name

@@ -91,7 +91,7 @@ class Metacity(TweakPage):
 
     def on_compositing_button_toggled(self, widget):
         if widget.get_active():
-            InfoDialog(_('To enable the compositing feature of metacity, You should disable the Visual Effects in "Appearance" by yourself.')).launch()
+            InfoDialog(_('To enable the compositing feature of metacity, you should manually disable Visual Effects in "Appearance".')).launch()
 
 if __name__ == '__main__':
     from utility import Test

@@ -134,7 +134,7 @@ class Session(TweakPage):
                                        label = _("Show logout prompt"), 
                                        key = "logout_prompt")
         button3 = WidgetFactory.create("GconfCheckButton", 
-                                       label = _("Allow TCP Connections(Remote Desktop Connect)"), 
+                                       label = _("Allow TCP Connections (Remote Desktop Connect)"), 
                                        key = "allow_tcp_connections")
         self.show_splash_button = WidgetFactory.create("GconfCheckButton", 
                                                        label = _("Show splash screen"), 

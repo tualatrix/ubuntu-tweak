@@ -368,7 +368,7 @@ class Compiz(TweakPage, CompizSetting):
 
         self.button.set_sensitive(False)
 
-        InfoDialog(_("Update Successfully!")).launch()
+        InfoDialog(_("Update successful!")).launch()
 
         update_apt_cache()
         CompizSetting.update_context()

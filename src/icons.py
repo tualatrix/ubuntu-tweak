@@ -137,12 +137,12 @@ class Icon(TweakPage):
         vbox.pack_start(button, False, False, 0)
 
         button = WidgetFactory.create("GconfCheckButton", 
-                                      label = _("Show mounted volumes on desktop"), 
+                                      label = _("Show mounted volumes on desktop"),
                                       key = "volumes_visible")
         vbox.pack_start(button, False, False, 0)
 
-        button = WidgetFactory.create("GconfCheckButton", 
-                                      label = _('Use "Home Folder" as desktop(Logout for changes to take effect)'), 
+        button = WidgetFactory.create("GconfCheckButton",
+                                      label = _('Use "Home Folder" as desktop (Logout for changes to take effect)'),
                                       key = "desktop_is_home_dir")
         vbox.pack_start(button, False, False, 0)
 

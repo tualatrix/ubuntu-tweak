@@ -255,7 +255,7 @@ class UserDir(TweakPage):
 
     def on_refresh_clicked(self, widget):
         os.system('xdg-user-dirs-gtk-update &')
-        InfoDialog(_("Update successfully!")).launch()
+        InfoDialog(_("Update successful!")).launch()
         widget.set_sensitive(False)
 
     def on_dirview_changed(self, widget, button):

@@ -267,7 +267,7 @@ class AddAppDialog(gobject.GObject):
             return True
 
     def on_browse_button_clicked(self, widget):
-        dialog = gtk.FileChooserDialog(_('Choose a application'),
+        dialog = gtk.FileChooserDialog(_('Choose an application'),
                 action = gtk.FILE_CHOOSER_ACTION_OPEN, 
                 buttons = (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, 
                     gtk.STOCK_OPEN, gtk.RESPONSE_ACCEPT))

@@ -81,7 +81,7 @@ class SelectSourceDialog(gtk.Dialog):
                 self.detail.set_text(v)
             self.vbox.pack_start(button, False, False, 5)
 
-        self.expander = gtk.Expander(_('Detail'))
+        self.expander = gtk.Expander(_('Details'))
         self.vbox.pack_start(self.expander)
         self.expander.add(self.detail)
 
@@ -105,8 +105,8 @@ class SubmitDialog(gtk.Dialog):
 
         label = gtk.Label()
         label.set_markup('<big><b>%s</b></big>\n\n%s'  % 
-            (_('Submit your sources'), _('You can submit your sources to the server, '
-            'so that other people can share with your sources.')))
+            (_('Submit your sources'), _('You can submit your sources to the server '
+            'for other people to use.')))
         self.vbox.pack_start(label, False, False, 5)
 
         l_title = gtk.Label()
@@ -120,9 +120,9 @@ class SubmitDialog(gtk.Dialog):
         l_comment.set_alignment(0, 0)
 
         self.e_title = gtk.Entry();
-        self.e_title.set_tooltip_text(_('Enter the title of the source, such as "Ubuntu Official Repostory"'))
+        self.e_title.set_tooltip_text(_('Enter the title of the source, e.g. "Ubuntu Official Repostory"'))
         self.e_locale = gtk.Entry ();
-        self.e_locale.set_tooltip_text(_("If the locale isn't correct, you can edit by yourself"))
+        self.e_locale.set_tooltip_text(_("If the locale isn't correct you can edit manually"))
         self.e_locale.set_text(os.getenv('LANG'))
         self.e_comment = gtk.Entry ();
 
@@ -417,7 +417,7 @@ class SourceEditor(TweakPage):
             if dialog.check_fill_data():
                 source_data = dialog.get_source_data()
             else:
-                ErrorDialog(_('Please input the correct information of the sources!')).launch()
+                ErrorDialog(_('Please input the correct information about sources!')).launch()
         dialog.destroy()
 
         if source_data:
@@ -450,8 +450,8 @@ class SourceEditor(TweakPage):
         dialog = UploadDialog(data, self.get_toplevel())
         dialog.run()
         if not dialog.error:
-            InfoDialog(_('Your sources will be reviewed and open for others soon.\nThank you!'), 
-                    title = _('Sumit successfully')).launch()
+            InfoDialog(_('Your sources will be reviewed and made available for others soon.\nThank you!'), 
+                    title = _('Successfully submitted')).launch()
 
     def on_buffer_changed(self, buffer):
         if buffer.get_modified():
@@ -464,7 +464,7 @@ class SourceEditor(TweakPage):
     def on_save_button_clicked(self, wiget):
         text = self.textview.get_text()
         if proxy.edit_file(SOURCES_LIST, text) == 'error':
-            ErrorDialog(_('Please check the permission of sources.list.'),
+            ErrorDialog(_('Please check the permission of the sources.list file'),
                     title = _('Save failed!')).launch()
         else:
             self.save_button.set_sensitive(False)

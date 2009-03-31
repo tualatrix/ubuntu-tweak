@@ -146,7 +146,7 @@ class Gnome(TweakPage):
             dialog.destroy()
             return
 
-        dialog = QuestionDialog(_('Do you want take effect immediately?'))
+        dialog = QuestionDialog(_('Do you want your changes to take effect immediately?'))
         if dialog.run() == gtk.RESPONSE_YES:
             os.system('killall gnome-panel')
 

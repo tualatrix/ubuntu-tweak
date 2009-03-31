@@ -394,7 +394,7 @@ class ThirdSoft(TweakPage):
     def __init__(self):
         TweakPage.__init__(self, 
                 _('Third-Party Software Sources'), 
-                _('After every releases of Ubuntu comes a feature freeze.\nThis means only applications with bug-fixes get into the repository.\nBy using third-party DEB repositories, you can always keep up-to-date with the latest version.\nAfter adding these repositories, locate and install them using Add/Remove.'))
+                _('After every release of Ubuntu there comes a feature freeze.\nThis means only applications with bug-fixes get into the repository.\nBy using third-party DEB repositories, you can always keep up-to-date with the latest version.\nAfter adding these repositories, locate and install them using Add/Remove.'))
 
         self.__config = Config()
 
@@ -451,7 +451,7 @@ class ThirdSoft(TweakPage):
                 if not self.__config.get_value(WARNING_KEY):
                     dialog = WarningDialog(_('It is a possible security risk to '
                         'use packages from Third-Party Sources.\n'
-                        'Please be careful.'), 
+                        'Please be careful and use only sources you trust.'),
                         buttons = gtk.BUTTONS_OK, title = _('Warning'))
                     vbox = dialog.get_child()
                     hbox = gtk.HBox()

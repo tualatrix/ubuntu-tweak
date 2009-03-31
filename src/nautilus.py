@@ -116,7 +116,7 @@ class Nautilus(TweakPage):
 
         boxes = []
         hbox1 = gtk.HBox(False, 5)
-        label = gtk.Label(_('Default thumbnail icon size (Pixels)'))
+        label = gtk.Label(_('Default thumbnail icon size (pixels)'))
         hbox1.pack_start(label, False, False, 0)
         boxes.append(hbox1)
 
@@ -130,7 +130,7 @@ class Nautilus(TweakPage):
                                       min = -1, max = 512, step = 1)
         if button:
             hbox2 = gtk.HBox(False, 5)
-            label = gtk.Label(_('Maximum size of the thumbnail cache (Megabytes)'))
+            label = gtk.Label(_('Maximum size of the thumbnail cache (megabytes)'))
 
             hbox2.pack_start(label, False, False, 0)
             hbox2.pack_end(button, False, False, 0)
@@ -142,7 +142,7 @@ class Nautilus(TweakPage):
 
         if button:
             hbox3 = gtk.HBox(False, 5)
-            label = gtk.Label(_('Maximum age for the thumbnail in the cache (Days)'))
+            label = gtk.Label(_('Maximum age for the thumbnail in the cache (days)'))
             hbox3.pack_start(label, False, False, 0)
             hbox3.pack_end(button, False, False, 0)
             boxes.append(hbox3)
@@ -190,10 +190,10 @@ class Nautilus(TweakPage):
         except:
             size = '0M'
             button.set_sensitive(False)
-        set_label_for_stock_button(button, _('Clean up the thumbnails cache (Free %s disk size)') % size)
+        set_label_for_stock_button(button, _('Clean up the thumbnails cache (will free %s of disk space)') % size)
 
     def on_clean_thumbnails_clicked(self, widget):
-        question = QuestionDialog(_('The thumbnails cache will be cleaned, do you wish to continue?'), 
+        question = QuestionDialog(_('The thumbnails cache will be cleaned, Do you wish to continue?'), 
             title = _('Warning'))
         if question.run() == gtk.RESPONSE_YES:
             question.destroy()
@@ -219,9 +219,9 @@ class Nautilus(TweakPage):
 
         if state == 0:
             self.button.set_sensitive(False)
-            InfoDialog(_("Update Successfully!")).launch()
+            InfoDialog(_("Update successful!")).launch()
         else:
-            InfoDialog(_("Update Failed!")).launch()
+            InfoDialog(_("Update failed!")).launch()
 
         update_apt_cache()
 

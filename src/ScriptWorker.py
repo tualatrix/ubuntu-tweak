@@ -168,6 +168,6 @@ class Worker:
 if __name__ == "__main__":
 #    show_info(' '.join([i for i in sys.argv]))
     if len(sys.argv) <= 2:
-        ErrorDialog(_("Please select a target(files or folders).")).launch()
+        ErrorDialog(_("Please select a target (files or folders).")).launch()
     if len(sys.argv) > 2:
         Worker(sys.argv)
