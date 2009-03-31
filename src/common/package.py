@@ -18,6 +18,7 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
+import re
 import os
 import sys
 import gtk
@@ -92,6 +93,22 @@ class PackageInfo:
         return appname
 
 class PackageWorker:
+    basenames = ["linux-image", "linux-headers", "linux-image-debug",
+                  "linux-ubuntu-modules", "linux-header-lum",
+                  "linux-backport-modules",
+                  "linux-header-lbm", "linux-restricted-modules"]
+
+    def __init__(self):
+        self.uname = os.uname()[2]
+
+    def is_current_kernel(self, pkg):
+        for base in self.basenames:
+            if pkg == "%s-%s" % (base, self.uname):
+                return True
+            else:
+                return False
+        return False
+
     def run_synaptic(self, id, lock, to_add = None, to_rm = None):
         cmd = []
         if os.getuid() != 0:
@@ -134,6 +151,14 @@ class PackageWorker:
 
         return list
 
+    def list_unneeded_kerenl(self):
+        list = []
+        for pkg in cache.keys():
+            if cache[pkg].isInstalled:
+                for base in self.basenames:
+                    if pkg.startswith(base) and not self.is_current_kernel(pkg):
+                        print pkg
+
     def get_pkgsummary(self, pkg):
         return cache[pkg].summary
 
@@ -159,4 +184,4 @@ worker = PackageWorker()
 
 if __name__ == '__main__':
     update_apt_cache()
-    print worker.get_pkgversion('compiz')
+    print worker.list_unneeded_kerenl()
