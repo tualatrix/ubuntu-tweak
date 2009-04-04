@@ -125,6 +125,7 @@ APP_DATA = {
     'stardict': _('An international dictionary'),
     'swiftweasel': _('Swiftweasel is an optimized build of the Mozilla Firefox web browser for Linux'),
     'specto': _('A desktop application that will watch for events (website updates, emails, file and folder changes...)'),
+    'synapse': _('An instant messaging application powered by qt-mono-bindings'),
     'tasque': _('A Useful Task List'),
     'terminator': _('Multiple GNOME terminals in one window'),
     'transmission-gtk': _('Transmission is a fast, easy, and free multi-platform BitTorrent client.'),

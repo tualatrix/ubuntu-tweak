@@ -18,10 +18,8 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-import pygtk
-pygtk.require("2.0")
-import gtk
 import os
+import gtk
 import dbus
 import time
 import thread
@@ -97,6 +95,7 @@ UbuntuTweak = ['Ubuntu Tweak', 'ubuntu-tweak', 'ubuntu-tweak.com', 'tweak.gpg']
 UbuntuTweakTesting = [_('Ubuntu Tweak (Unstable Version)'), 'ubuntu-tweak', 'ubuntu-tweak.com', 'tweak-unstable.gpg']
 NautilusDropbox = ['Nautilus DropBox', 'nautilus-dropbox', 'www.getdropbox.com', '']
 Screenlets = ['Screenlets', 'screenlets', 'www.screenlets.org', 'screenlets.gpg']
+Synapse = ['Synapse', 'synapse', 'synapse.im', 'synapse.gpg']
 Wine = ['Wine', 'wine', 'www.winehq.org', 'wine.gpg']
 LXDE = ['LXDE', 'lxde', 'lxde.org', 'lxde.gpg']
 Terminator = ['Terminator', 'terminator', 'www.tenshu.net/terminator/', 'terminator.gpg']
@@ -123,6 +122,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/specto/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Specto],
     ['http://ppa.launchpad.net/gtg/ppa/ubuntu', ['intrepid', 'jaunty'], 'main', GettingThingsGnome],
     ['http://deb.opera.com/opera/', 'lenny', 'non-free', Opera],
+    ['http://ppa.launchpad.net/firerabbit/ppa/ubuntu', ['intrepid','jaunty'], 'main', Synapse],
     ['http://download.skype.com/linux/repos/debian', 'stable', 'non-free', Skype],
     ['http://ppa.launchpad.net/gwibber-team/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Gwibber],
     ['http://playonlinux.botux.net/', 'hardy', 'main', PlayOnLinux],

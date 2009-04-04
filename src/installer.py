@@ -135,6 +135,7 @@ data = \
     ('smplayer', Video),
     ('soundconverter', Sound),
     ('stardict', Desktop),
+    ('synapse', IM),
     ('tasque', Desktop),
     ('terminator', Emulator),
     ('transmission-gtk', P2P),
