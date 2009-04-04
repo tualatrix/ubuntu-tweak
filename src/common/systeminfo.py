@@ -86,8 +86,7 @@ class module_check:
         elif cls.has_apt():
             from package import worker, update_apt_cache
             update_apt_cache()
-            version = str(worker.get_pkgversion('compizconfig-settings-manager'))
-            print version
+            version = str(worker.get_pkgversion('compiz'))
             if version.find(':') != -1 and version.split(':')[1] >= '0.7.4':
                 return True
             else:
@@ -125,7 +124,7 @@ class module_check:
 
     @classmethod
     def get_codename(cls):
-        DistroInfo.codename
+        return DistroInfo.codename
 
     @classmethod
     def has_gio(cls):
