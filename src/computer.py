@@ -18,15 +18,10 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-import pygtk
-pygtk.require('2.0')
-import gtk
 import os
-import gobject
-import gettext
-
-from common.widgets import EntryBox, ListPack, TweakPage
+import gtk
 from common.systeminfo import SystemInfo
+from common.widgets import EntryBox, ListPack, TweakPage
 
 class Computer(TweakPage):
     """Some options about current user"""

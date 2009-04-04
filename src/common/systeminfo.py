@@ -18,35 +18,41 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-import pygtk
-pygtk.require('2.0')
 from xml.sax import make_parser
 from xml.dom import minidom
 
 class GnomeVersion:
-    xmldoc = minidom.parse("/usr/share/gnome-about/gnome-version.xml")
+    _xmldoc = minidom.parse("/usr/share/gnome-about/gnome-version.xml")
 
-    platform = xmldoc.getElementsByTagName("platform")[0].firstChild.data
-    minor = xmldoc.getElementsByTagName("minor")[0].firstChild.data
-    micro = xmldoc.getElementsByTagName("micro")[0].firstChild.data
-    distributor = xmldoc.getElementsByTagName("distributor")[0].firstChild.data
-    date = xmldoc.getElementsByTagName("date")[0].firstChild.data
+    platform = _xmldoc.getElementsByTagName("platform")[0].firstChild.data
+    minor = _xmldoc.getElementsByTagName("minor")[0].firstChild.data
+    micro = _xmldoc.getElementsByTagName("micro")[0].firstChild.data
+    distributor = _xmldoc.getElementsByTagName("distributor")[0].firstChild.data
+    date = _xmldoc.getElementsByTagName("date")[0].firstChild.data
     description = "GNOME %s.%s.%s (%s %s)" % (platform, minor, micro, distributor, date)
 
-class parse_lsb:
-    data = open('/etc/lsb-release').read()
-    dict = {}
-    for line in data.split('\n'):
-        try:
-            key, value = line.split('=')
-            dict[key] = value
-        except:
-            pass
+def parse_codename():
+    if GnomeVersion.distributor == 'Ubuntu':
+        data = open('/etc/lsb-release').read()
+        dict = {}
+        for line in data.split('\n'):
+            try:
+                key, value = line.split('=')
+                dict[key] = value
+            except:
+                pass
+        return dict['DISTRIB_CODENAME']
+    return None
+
+def parse_distro():
+    if GnomeVersion.distributor == 'Ubuntu':
+        return file('/etc/issue.net').readline()[:-1]
+    return GnomeVersion.distributor
 
 class DistroInfo:
-    distro = GnomeVersion.distributor
-    if parse_lsb.dict['DISTRIB_ID'] == "Ubuntu" or distro == "Ubuntu":
-        distro = file('/etc/issue.net').readline()[:-1]
+    distributor = GnomeVersion.distributor
+    codename = parse_codename()
+    distro = parse_distro()
 
 class SystemInfo:
     gnome = GnomeVersion.description
@@ -107,22 +113,19 @@ class module_check:
 
     @classmethod
     def is_hardy(cls):
-        return 'hardy' in cls.get_codename()
+        return 'hardy' == cls.get_codename()
 
     @classmethod
     def is_intrepid(cls):
-        return 'intrepid' in cls.get_codename()
+        return 'intrepid' == cls.get_codename()
 
     @classmethod
     def is_jaunty(cls):
-        return 'jaunty' in cls.get_codename()
+        return 'jaunty' == cls.get_codename()
 
     @classmethod
     def get_codename(cls):
-        try:
-            return parse_lsb.dict['DISTRIB_CODENAME']
-        except:
-            return 'NULL'
+        DistroInfo.codename
 
     @classmethod
     def has_gio(cls):
@@ -139,5 +142,5 @@ if __name__ == "__main__":
     print 'has right compiz', module_check.has_right_compiz()
     print 'gnome version', module_check.get_gnome_version()
     print 'is hardy', module_check.is_hardy()
-    print 'is inprepid', module_check.is_intrepid()
+    print 'is intrepid', module_check.is_intrepid()
     print 'is jaunty', module_check.is_jaunty()
