@@ -103,17 +103,6 @@ class Nautilus(TweakPage):
         box = ListPack(_("File Browser"), (button, )) 
         self.pack_start(box, False, False, 0)
 
-        box = ListPack(_("CD Burner"), (
-            WidgetFactory.create("GconfCheckButton", 
-                                 label = _("Enable BurnProof technology"), 
-                                 key = "burnproof"),
-            WidgetFactory.create("GconfCheckButton", 
-                                 label = _("Enable OverBurn"), 
-                                 key = "overburn"),
-        ))
-        self.pack_start(box, False, False, 0)
-
-
         boxes = []
         hbox1 = gtk.HBox(False, 5)
         label = gtk.Label(_('Default thumbnail icon size (pixels)'))
