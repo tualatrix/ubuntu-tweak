@@ -73,7 +73,7 @@ class AptAuth:
         return (p.wait() == 0)
         
 class Daemon(dbus.service.Object):
-    INTERFACE = "com.ubuntu-tweak.daemon"
+    INTERFACE = "com.ubuntu_tweak.daemon"
     liststate = None
 
     @dbus.service.method(INTERFACE,
@@ -159,8 +159,8 @@ if __name__ == '__main__':
     dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
 
     system_bus = dbus.SystemBus()
-    name = dbus.service.BusName("com.ubuntu-tweak.daemon", system_bus)
-    object = Daemon(system_bus, '/com/ubuntu-tweak/daemon')
+    name = dbus.service.BusName("com.ubuntu_tweak.daemon", system_bus)
+    object = Daemon(system_bus, '/com/ubuntu_tweak/daemon')
 
     mainloop = gobject.MainLoop()
     mainloop.run()
