@@ -56,7 +56,7 @@ class PolkitAction(gobject.GObject):
             return
 
         try:
-            granted = policykit.ObtainAuthorization('com.ubuntu-tweak.mechanism', dbus.UInt32(xid), dbus.UInt32(os.getpid()))
+            granted = policykit.ObtainAuthorization('com.ubuntu-tweak.daemon', dbus.UInt32(xid), dbus.UInt32(os.getpid()))
         except dbus.exceptions.DBusException:
             self.emit('changed', 0)
         else:
