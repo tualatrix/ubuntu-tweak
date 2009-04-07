@@ -85,6 +85,7 @@ GnomeDo = ['GNOME Do', 'gnome-do', 'do.davebsd.com', 'do.gpg']
 GlobalMenu = [_('Gnome Global Menu'), 'gnome-globalmenu', 'code.google.com/p/gnome2-globalmenu', 'globalmenu.gpg']
 GettingThingsGnome = ['Getting Things Gnome!', 'gtg', 'gtg.fritalk.com', 'gtg.gpg']
 Gwibber = ['Gwibber', 'gwibber', 'launchpad.net/gwibber', 'gwibber.gpg']
+Gwibber_Daily = [_('Gwibber (Daily Version)'), 'gwibber', 'launchpad.net/gwibber', 'gwibber-daily.gpg']
 Banshee_Stable = [_('Banshee (Stable Version)'), 'banshee', 'banshee-project.org', 'banshee-stable.gpg']
 Banshee_Unstable = [_('Banshee (Unstable Version)'), 'banshee', 'banshee-project.org', 'banshee-unstable.gpg']
 Google = ['Google', 'google', 'www.google.com/linuxrepositories/index.html', 'google.gpg']
@@ -125,6 +126,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/firerabbit/ppa/ubuntu', ['intrepid','jaunty'], 'main', Synapse],
     ['http://download.skype.com/linux/repos/debian', 'stable', 'non-free', Skype],
     ['http://ppa.launchpad.net/gwibber-team/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Gwibber],
+    ['http://ppa.launchpad.net/gwibber-daily/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Gwibber_Daily],
     ['http://playonlinux.botux.net/', 'hardy', 'main', PlayOnLinux],
     ['http://ppa.launchpad.net/webkit-team/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Midori],
     ['http://ppa.launchpad.net/ibus-dev/ppa/ubuntu', ['intrepid', 'jaunty'], 'main', Ibus],
