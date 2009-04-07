@@ -398,7 +398,7 @@ class SourceEditor(TweakPage):
         dialog = UpdateCacheDialog(widget.get_toplevel())
         res = dialog.run()
 
-        proxy.set_liststate('normal')
+        proxy.set_list_state('normal')
 
         InfoDialog(_('You can install new applications through Add/Remove.'),
             title = _('The software information is up-to-date now')).launch()

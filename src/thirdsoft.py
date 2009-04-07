@@ -334,7 +334,7 @@ class SourcesView(gtk.TreeView):
         key = self.model.get_value(iter, COLUMN_KEY)
 
         if key:
-            proxy.add_aptkey(key)
+            proxy.add_apt_key(key)
 
         result = proxy.set_entry(url, distro, comps, name, not enabled)
 
@@ -475,7 +475,7 @@ class ThirdSoft(TweakPage):
         dialog = UpdateCacheDialog(widget.get_toplevel())
         res = dialog.run()
 
-        proxy.set_liststate('normal')
+        proxy.set_list_state('normal')
         widget.set_sensitive(False)
 
         dialog = QuestionDialog(_('You can install the new applications through Add/Remove.\nDo you want to go now?'),

@@ -585,7 +585,7 @@ You should have received a copy of the GNU General Public License along with Ubu
     def destroy(self, widget, data = None):
         from common.policykit import proxy
         if proxy.get_proxy():
-            state = proxy.get_liststate()
+            state = proxy.get_list_state()
             if state == "expire":
                 from thirdsoft import UpdateCacheDialog
                 dialog = UpdateCacheDialog(self)

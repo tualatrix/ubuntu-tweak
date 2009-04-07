@@ -61,7 +61,7 @@ AC_CONFIG_FILES([
     scripts/ubuntu-tweak
     scripts/script-worker
     policykit/Makefile
-    policykit/com.ubuntu_tweak.Mechanism.service
+    policykit/com.ubuntu_tweak.daemon.service
 ])
 
 AC_OUTPUT
