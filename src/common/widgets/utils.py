@@ -17,15 +17,26 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import gtk
-import gobject
 import thread
+import gobject
+import pango
 
 class ProcessDialog(gtk.Dialog):
     def __init__(self, parent):
         super(ProcessDialog, self).__init__(title = '', parent = parent)
 
+        vbox = gtk.VBox(False, 5)
+        self.vbox.add(vbox)
+        self.set_border_width(8)
+        self.set_has_separator(False)
+        self.set_position(gtk.WIN_POS_CENTER_ON_PARENT)
+
+        self.__label = gtk.Label()
+        vbox.pack_start(self.__label, False, False, 0)
+
         self.__progressbar = gtk.ProgressBar()
-        self.vbox.add(self.__progressbar)
+        self.__progressbar.set_ellipsize(pango.ELLIPSIZE_END)
+        vbox.pack_start(self.__progressbar, False, False, 0)
 
         self.show_all()
         gobject.timeout_add(100, self.on_timeout)
@@ -34,11 +45,14 @@ class ProcessDialog(gtk.Dialog):
     def pulse(self):
         self.__progressbar.pulse()
 
+    def set_dialog_lable(self, text):
+        self.__label.set_markup('<b><big>%s</big></b>' % text)
+
     def set_progress_text(self, text):
         self.__progressbar.set_text(text)
 
     def process_data(self):
-        pass
+        return NotImplemented
         
     def on_timeout(self):
-        pass
+        return NotImplemented

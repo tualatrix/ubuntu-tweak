@@ -49,10 +49,14 @@ class CleanConfigDialog(ProcessDialog):
 
         self.pkgs = pkgs
         self.done = False
-        self.set_progress_text(_('Cleaning...'))
+        self.user_action = False
+        self.set_dialog_lable(_('Cleaning Pakcage Config'))
+        self.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT)
 
     def process_data(self):
         for pkg in self.pkgs:
+            if self.user_action == True:
+                break
             self.set_progress_text(_('Cleaning...%s') % pkg)
             proxy.clean_config(pkg)
         self.done = True
@@ -67,15 +71,19 @@ class CleanConfigDialog(ProcessDialog):
 
 class CleanCacheDailog(ProcessDialog):
     def __init__(self, parent, files):
-        super(CleanCacheDailog, self).__init__(parent = parent)
+        super(CleanCacheDailog, self).__init__(parent=parent)
 
         self.files = files
         self.done = False
         self.error = False
-        self.set_progress_text(_('Cleaning...'))
+        self.user_action = False
+        self.set_dialog_lable(_('Cleaning Package Cache'))
+        self.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT)
 
     def process_data(self):
         for file in self.files:
+            if self.user_action == True:
+                break
             self.set_progress_text(_('Cleaning...%s') % os.path.basename(file))
             result = proxy.delete_file(file)
             if result == 'error':
@@ -319,12 +327,16 @@ class PackageView(gtk.TreeView):
         model = self.get_model()
 
         dialog = CleanCacheDailog(self.get_toplevel(), self.get_list())
-        dialog.run()
+        if dialog.run() == gtk.RESPONSE_REJECT:
+            dialog.destroy()
+            dialog.user_action = True
+            self.show_usercancel_dialog()
 
-        if dialog.error == False:
-            self.show_success_dialog()
-        else:
-            self.show_failed_dialog()
+        if not dialog.user_action:
+            if dialog.error == False:
+                self.show_success_dialog()
+            else:
+                self.show_failed_dialog()
 
         self.update_cache_model()
         self.emit('cleaned')
@@ -333,19 +345,25 @@ class PackageView(gtk.TreeView):
         model = self.get_model()
 
         dialog = CleanConfigDialog(self.get_toplevel(), self.get_list())
-        dialog.run()
-
-        self.show_success_dialog()
+        if dialog.run() == gtk.RESPONSE_REJECT:
+            dialog.destroy()
+            dialog.user_action = True
+            self.show_usercancel_dialog()
+        else:
+            self.show_success_dialog()
 
         update_apt_cache()
         self.update_config_model()
         self.emit('cleaned')
 
+    def show_usercancel_dialog(self):
+        InfoDialog(_('Canceled by user!')).launch()
+
     def show_success_dialog(self):
         InfoDialog(_('Clean up Successful!')).launch()
 
     def show_failed_dialog(self):
-        InfoDialog(_('Clean up Failed!')).launch()
+        ErrorDialog(_('Clean up Failed!')).launch()
 
 class PackageCleaner(TweakPage):
     def __init__(self):
