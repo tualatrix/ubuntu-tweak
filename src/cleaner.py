@@ -24,6 +24,7 @@ import thread
 import gobject
 import gettext
 from common.utils import *
+from common.misc import filesizeformat
 from common.policykit import PolkitButton, proxy
 from common.package import PackageWorker, update_apt_cache
 from common.widgets import TweakPage
@@ -211,14 +212,14 @@ class PackageView(gtk.TreeView):
         self.__column.set_title(_('Package Cache'))
 
         for pkg in list:
-            size = str(os.path.getsize(pkg)/1024)
+            size = str(os.path.getsize(pkg))
 
             model.append((
                 False,
                 icon,
                 pkg,
                 size,
-                _('<b>%s</b>\nTake %s KB of disk space') % (os.path.basename(pkg), size)
+                _('<b>%s</b>\nTake %s of disk space') % (os.path.basename(pkg), filesizeformat(size))
                 ))
 
     def update_config_model(self):
@@ -278,7 +279,7 @@ class PackageView(gtk.TreeView):
                                     '%d packages selected to remove' % n, n))
         elif self.mode == 'cache':
             self.compute_cache_size()
-            self.__column.set_title(_('%d KB of space will be freed') % self.size)
+            self.__column.set_title(_('%s of space will be freed') % filesizeformat(self.size))
 
     def compute_cache_size(self):
         self.size = 0

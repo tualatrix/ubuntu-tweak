@@ -32,6 +32,7 @@ try:
 except ImportError:
     DISABLE = True
 
+from common.misc import filesizeformat
 from common.factory import WidgetFactory
 from common.widgets import ListPack, TablePack, TweakPage
 from common.widgets.dialogs import InfoDialog, QuestionDialog
@@ -175,11 +176,11 @@ class Nautilus(TweakPage):
 
     def set_clean_button_label(self, button):
         try:
-            size = os.popen('du -hs ~/.thumbnails').read().split()[0]
+            size = os.popen('du -bs ~/.thumbnails').read().split()[0]
         except:
-            size = '0M'
+            size = '0'
             button.set_sensitive(False)
-        set_label_for_stock_button(button, _('Clean up the thumbnails cache (will free %s of disk space)') % size)
+        set_label_for_stock_button(button, _('Clean up the thumbnails cache (will free %s of disk space)') % filesizeformat(size))
 
     def on_clean_thumbnails_clicked(self, widget):
         question = QuestionDialog(_('The thumbnails cache will be cleaned, Do you wish to continue?'), 

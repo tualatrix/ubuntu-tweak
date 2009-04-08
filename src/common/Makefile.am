@@ -16,6 +16,7 @@ common_PYTHON = \
 	./canvas.py \
 	./factory.py \
 	./systeminfo.py \
+	./misc.py \
 	$(NULL)
 
 commondir = $(pkgdatadir)/common
