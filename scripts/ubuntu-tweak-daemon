@@ -114,7 +114,7 @@ class Daemon(dbus.service.Object):
     @dbus.service.method(INTERFACE,
                          in_signature='s', out_signature='s')
     def delete_file(self, path):
-        os.system('rm %s' % path)
+        os.system('rm "%s"' % path)
         if os.path.exists(path):
             return 'error'
         else:
