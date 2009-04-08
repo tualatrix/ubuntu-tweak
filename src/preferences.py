@@ -132,6 +132,12 @@ class PreferencesDialog:
                                       default = False)
         vbox.pack_start(button, False, False, 0)
 
+        button = WidgetFactory.create('GconfCheckButton', 
+                                      label = _('Enable PowerUser Mode'), 
+                                      key = 'power_user',
+                                      default = False)
+        vbox.pack_start(button, False, False, 0)
+
         vbox.show_all()
 
     def on_launch_changed(self, widget):

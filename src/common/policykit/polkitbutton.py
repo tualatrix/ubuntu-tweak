@@ -18,12 +18,11 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-import pygtk
-pygtk.require("2.0")
-import gtk
 import os
+import gtk
 import dbus
 import gobject
+from common.config import TweakSettings
 
 class PolkitAction(gobject.GObject):
     """
@@ -48,6 +47,10 @@ class PolkitAction(gobject.GObject):
         return self.result
 
     def do_authenticate(self):
+        if TweakSettings.get_power_user():
+            self.__class__.result = 1
+            self.emit('changed', 1)
+            return
         policykit = self.session_bus.get_object('org.freedesktop.PolicyKit.AuthenticationAgent', '/')
         xid = self.widget.get_toplevel().window.xid
 

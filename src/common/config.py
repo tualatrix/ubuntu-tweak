@@ -99,7 +99,16 @@ class TweakSettings:
     show_donate_notify = 'show_donate_notify'
     default_launch = 'default_launch'
     check_update = 'check_update'
+    power_user = 'power_user'
     need_save = True
+
+    @classmethod
+    def get_power_user(cls):
+        return cls.config.get_value(cls.power_user, default=False)
+
+    @classmethod
+    def set_power_user(cls, bool):
+        cls.config.set_value(cls.power_user, bool)
 
     @classmethod
     def get_check_update(cls):
