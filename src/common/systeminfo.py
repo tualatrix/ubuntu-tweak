@@ -32,6 +32,7 @@ class GnomeVersion:
     description = "GNOME %s.%s.%s (%s %s)" % (platform, minor, micro, distributor, date)
 
 def parse_codename():
+    # TODO: need support Mint and other distro based on Ubuntu.
     if GnomeVersion.distributor == 'Ubuntu':
         data = open('/etc/lsb-release').read()
         dict = {}
@@ -45,6 +46,7 @@ def parse_codename():
     return None
 
 def parse_distro():
+    # TODO: need support Mint and other distro based on Ubuntu.
     if GnomeVersion.distributor == 'Ubuntu':
         return file('/etc/issue.net').readline()[:-1]
     return GnomeVersion.distributor
