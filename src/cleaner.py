@@ -46,11 +46,11 @@ class AbsPkg:
 
 class CleanConfigDialog(ProcessDialog):
     def __init__(self, parent, pkgs):
-        super(CleanConfigDialog, self).__init__(parent = parent)
-
         self.pkgs = pkgs
         self.done = False
         self.user_action = False
+
+        super(CleanConfigDialog, self).__init__(parent = parent)
         self.set_dialog_lable(_('Cleaning Pakcage Config'))
         self.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT)
 
@@ -72,12 +72,12 @@ class CleanConfigDialog(ProcessDialog):
 
 class CleanCacheDailog(ProcessDialog):
     def __init__(self, parent, files):
-        super(CleanCacheDailog, self).__init__(parent=parent)
-
         self.files = files
         self.done = False
         self.error = False
         self.user_action = False
+
+        super(CleanCacheDailog, self).__init__(parent=parent)
         self.set_dialog_lable(_('Cleaning Package Cache'))
         self.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT)
 
