@@ -51,7 +51,7 @@ class CleanConfigDialog(ProcessDialog):
         self.user_action = False
 
         super(CleanConfigDialog, self).__init__(parent = parent)
-        self.set_dialog_lable(_('Cleaning Pakcage Config'))
+        self.set_dialog_lable(_('Cleaning Package Config'))
         self.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT)
 
     def process_data(self):
