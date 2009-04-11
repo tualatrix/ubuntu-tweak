@@ -33,28 +33,28 @@ class GnomeVersion:
 
 def parse_codename():
     # TODO: need support Mint and other distro based on Ubuntu.
-    if GnomeVersion.distributor == 'Ubuntu':
-        data = open('/etc/lsb-release').read()
-        dict = {}
-        for line in data.split('\n'):
-            try:
-                key, value = line.split('=')
-                dict[key] = value
-            except:
-                pass
-        return dict['DISTRIB_CODENAME']
-    return None
+    data = open('/etc/lsb-release').read()
+    dict = {}
+    for line in data.split('\n'):
+        try:
+            key, value = line.split('=')
+            dict[key] = value
+        except:
+            pass
+    return dict['DISTRIB_CODENAME']
 
 def parse_distro():
     # TODO: need support Mint and other distro based on Ubuntu.
-    if GnomeVersion.distributor == 'Ubuntu':
-        return file('/etc/issue.net').readline()[:-1]
-    return GnomeVersion.distributor
+    return file('/etc/issue.net').readline()[:-1]
 
 class DistroInfo:
     distributor = GnomeVersion.distributor
-    codename = parse_codename()
-    distro = parse_distro()
+    if GnomeVersion.distributor in ['Ubuntu', 'Linux Mint']:
+        codename = parse_codename()
+        distro = parse_distro()
+    else:
+        codename = None
+        distro = GnomeVersion.distributor
 
 class SystemInfo:
     gnome = GnomeVersion.description
@@ -114,11 +114,11 @@ class module_check:
 
     @classmethod
     def is_hardy(cls):
-        return 'hardy' == cls.get_codename()
+        return DistroInfo.codename in ['hardy', 'elyssa']
 
     @classmethod
     def is_intrepid(cls):
-        return 'intrepid' == cls.get_codename()
+        return DistroInfo.codename in ['intrepid', 'felicia']
 
     @classmethod
     def is_jaunty(cls):
@@ -126,7 +126,15 @@ class module_check:
 
     @classmethod
     def get_codename(cls):
-        return DistroInfo.codename
+        '''Return the unique code name, e.g. no matter hardy or elyssa, return hardy'''
+        if cls.is_hardy():
+            return 'hardy'
+        elif cls.is_intrepid():
+            return 'intrepid'
+        elif cls.is_jaunty():
+            return 'jaunty'
+        else:
+            return ''
 
     @classmethod
     def has_gio(cls):
