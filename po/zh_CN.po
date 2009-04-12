@@ -2,14 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2009-03-26 23:00+0800\n"
-"PO-Revision-Date: 2009-03-07 15:38+0000\n"
-"Last-Translator: Yuri <orc_tar_orga@yahoo.com.cn>\n"
+"POT-Creation-Date: 2009-04-11 13:21+0800\n"
+"PO-Revision-Date: 2009-04-12 00:02+0000\n"
+"Last-Translator: TualatriX <Unknown>\n"
 "Language-Team: TualatriX <tualatrix@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-03-31 09:13+0000\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Launchpad-Export-Date: 2009-04-12 00:16+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: CHINA\n"
 "X-Poedit-Language: Chinese\n"
@@ -52,7 +53,7 @@ msgid "Can't delete the system item from disk."
 msgstr "无法从硬盘删除系统选项"
 
 #: src/autostart.py:248
-msgid "None description"
+msgid "No description"
 msgstr "没有描述"
 
 #: src/autostart.py:268
@@ -154,25 +155,25 @@ msgstr "模拟器"
 msgid "E-mail Tools"
 msgstr "电邮工具"
 
-#: src/installer.py:152
+#: src/installer.py:154
 msgid "Add/Remove Applications"
 msgstr "添加/删除应用程序"
 
-#: src/installer.py:153
+#: src/installer.py:155
 msgid ""
 "A simple but more effecient method for finding and installing popular "
 "packages than the default Add/Remove."
 msgstr "一个简易但是比默认的“添加/删除”更方便寻找和安装流行软件的界面。"
 
-#: src/installer.py:201
+#: src/installer.py:203
 msgid "All Categories"
 msgstr "所有类别"
 
-#: src/installer.py:371
+#: src/installer.py:373
 msgid "Update Successful!"
 msgstr "更新成功！"
 
-#: src/installer.py:373 src/nautilus.py:224
+#: src/installer.py:375
 msgid "Update Failed!"
 msgstr "更新失败！"
 
@@ -207,17 +208,17 @@ msgstr "禁用“快速用户切换”"
 #: src/ScriptWorker.py:52
 #, python-format
 msgid "The file \"%s\" already exists!"
-msgstr ""
+msgstr "文件“%s”已经存在！"
 
 #: src/ScriptWorker.py:57
 #, python-format
 msgid "The folder \"%s\" already exists!"
-msgstr ""
+msgstr "目录“%s”已经存在！"
 
 #: src/ScriptWorker.py:63 src/ScriptWorker.py:69
 #, python-format
 msgid "The target \"%s\" already exists!"
-msgstr ""
+msgstr "目标“%s”已经存在！"
 
 #: src/ScriptWorker.py:110 src/ScriptWorker.py:121
 msgid "Enter your password to perform the administrative tasks"
@@ -228,8 +229,8 @@ msgid "Select a folder"
 msgstr "选择文件夹"
 
 #: src/ScriptWorker.py:171
-msgid "Please select a target(files or folders)."
-msgstr "请选择一个目标（文件或文件夹）。"
+msgid "Please select a target (files or folders)."
+msgstr "请选择一个目标（文件或目录）。"
 
 #: src/mainwindow.py:65
 msgid "Welcome to"
@@ -259,7 +260,7 @@ msgstr "其他更多有用的特性！"
 
 #: src/mainwindow.py:87
 msgid "<span size=\"xx-large\">Please wait a moment...</span>"
-msgstr "<span size=\"xx-large\">请稍候。。。</span>"
+msgstr "<span size=\"xx-large\">请稍候……</span>"
 
 #: src/mainwindow.py:100
 msgid ""
@@ -291,11 +292,11 @@ msgstr "添加/删除"
 msgid "Source Editor"
 msgstr "源编辑器"
 
-#: src/mainwindow.py:228 src/thirdsoft.py:271
+#: src/mainwindow.py:228 src/thirdsoft.py:275
 msgid "Third-Party Sources"
 msgstr "第三方源"
 
-#: src/mainwindow.py:229 src/cleaner.py:328
+#: src/mainwindow.py:229 src/cleaner.py:372
 msgid "Package Cleaner"
 msgstr "软件包清理"
 
@@ -429,6 +430,7 @@ msgstr ""
 "  TaoFei https://launchpad.net/~taofei\n"
 "  TualatriX https://launchpad.net/~tualatrix\n"
 "  chebula https://launchpad.net/~chebula\n"
+"  daf3707 https://launchpad.net/~daf3707\n"
 "  heisonyee https://launchpad.net/~heisonyee\n"
 "  lixinyu2268 https://launchpad.net/~lixinyu2268\n"
 "  luojie-dune https://launchpad.net/~luojie-dune\n"
@@ -515,8 +517,8 @@ msgstr ""
 "在这里您可以改变默认文件夹的位置。\n"
 "不要改变桌面文件夹的路径除非您知道您在做什么。"
 
-#: src/userdir.py:258
-msgid "Update successfully!"
+#: src/userdir.py:258 src/compiz.py:371 src/nautilus.py:212
+msgid "Update successful!"
 msgstr "更新成功！"
 
 #: src/filetype.py:34
@@ -567,7 +569,7 @@ msgid "Open the files of type \"%s\" with:"
 msgstr "用此应用程序打开\"%s\"类型的文件："
 
 #: src/filetype.py:270
-msgid "Choose a application"
+msgid "Choose an application"
 msgstr "选择一个应用程序"
 
 #: src/filetype.py:359
@@ -592,69 +594,73 @@ msgstr "这里您可以管理哪个应用程序可以打开哪种类型。"
 msgid "Only show filetypes with an associated application"
 msgstr "只显示与应用程序关联的文件类型"
 
-#: src/computer.py:49
+#: src/computer.py:44
 msgid "System information"
 msgstr "系统资讯"
 
-#: src/computer.py:50
+#: src/computer.py:45
 msgid "Hostname"
 msgstr "主机名"
 
-#: src/computer.py:51
+#: src/computer.py:46
 msgid "Distribution"
 msgstr "发行版"
 
-#: src/computer.py:52
+#: src/computer.py:47
 msgid "Desktop environment"
 msgstr "桌面环境"
 
-#: src/computer.py:53
+#: src/computer.py:48
 msgid "Kernel"
 msgstr "内核"
 
-#: src/computer.py:54
+#: src/computer.py:49
 msgid "Platform"
 msgstr "平台"
 
-#: src/computer.py:55
+#: src/computer.py:50
 msgid "CPU"
 msgstr "CPU"
 
-#: src/computer.py:56
+#: src/computer.py:51
 msgid "Memory"
 msgstr "内存"
 
-#: src/computer.py:60
+#: src/computer.py:55
 msgid "User information"
 msgstr "用户信息"
 
-#: src/computer.py:61
+#: src/computer.py:56
 msgid "Current user"
 msgstr "当前用户"
 
-#: src/computer.py:62
+#: src/computer.py:57
 msgid "Home directory"
 msgstr "主目录"
 
-#: src/computer.py:63
+#: src/computer.py:58
 msgid "Shell"
 msgstr "Shell命令"
 
-#: src/computer.py:64
+#: src/computer.py:59
 msgid "Language"
 msgstr "语言"
 
-#: src/thirdsoft.py:71
+#: src/thirdsoft.py:69
 msgid "Avant Window Navigator (Unstable Version)"
 msgstr "Avant Window Navigator（不稳定版本）"
 
-#: src/thirdsoft.py:76
+#: src/thirdsoft.py:75
 msgid "Ubuntu Chinese Repository"
 msgstr "Ubuntu中文源"
 
-#: src/thirdsoft.py:86
+#: src/thirdsoft.py:85
 msgid "Gnome Global Menu"
 msgstr "GNOME全局菜单"
+
+#: src/thirdsoft.py:88
+msgid "Gwibber (Daily Version)"
+msgstr "Gwibber（每日版本）"
 
 #: src/thirdsoft.py:89
 msgid "Banshee (Stable Version)"
@@ -668,7 +674,7 @@ msgstr "Banshee（不稳定版本）"
 msgid "Ubuntu Tweak (Unstable Version)"
 msgstr "Ubuntu Tweak（不稳定版本）"
 
-#: src/thirdsoft.py:188
+#: src/thirdsoft.py:192
 msgid ""
 "To install software and updates from newly added or changed sources, you "
 "have to reload the information about available software.\n"
@@ -679,33 +685,33 @@ msgstr ""
 "\n"
 "你需要一个可用的网络连接来继续下面的动作。"
 
-#: src/thirdsoft.py:192
+#: src/thirdsoft.py:196
 msgid "The information about available software is out-of-date"
 msgstr "可用软件的信息已经过时"
 
-#: src/thirdsoft.py:355
+#: src/thirdsoft.py:359
 msgid "Homepage"
 msgstr "主页"
 
-#: src/thirdsoft.py:355
+#: src/thirdsoft.py:359
 msgid "Source URL"
 msgstr "源的地址"
 
-#: src/thirdsoft.py:355
+#: src/thirdsoft.py:359
 msgid "Description"
 msgstr "描述"
 
-#: src/thirdsoft.py:366
+#: src/thirdsoft.py:370
 msgid "Description is here"
 msgstr "描述在这里"
 
-#: src/thirdsoft.py:394
+#: src/thirdsoft.py:398
 msgid "Third-Party Software Sources"
 msgstr "第三方软件源"
 
-#: src/thirdsoft.py:395
+#: src/thirdsoft.py:399
 msgid ""
-"After every releases of Ubuntu comes a feature freeze.\n"
+"After every release of Ubuntu there comes a feature freeze.\n"
 "This means only applications with bug-fixes get into the repository.\n"
 "By using third-party DEB repositories, you can always keep up-to-date with "
 "the latest version.\n"
@@ -716,33 +722,35 @@ msgstr ""
 "而使用第三方源的话，你将可以总是保持使用最新版本的应用软件。\n"
 "在启用这些源后，你可以到“添加/删除”去安装它们。"
 
-#: src/thirdsoft.py:411
+#: src/thirdsoft.py:415 src/sourceeditor.py:84
 msgid "Details"
 msgstr "详细"
 
-#: src/thirdsoft.py:450
+#: src/thirdsoft.py:454
 msgid ""
 "It is a possible security risk to use packages from Third-Party Sources.\n"
-"Please be careful."
+"Please be careful and use only sources you trust."
 msgstr ""
 "使用第三方源可能会引起安全方面的问题。\n"
 "请小心谨慎！"
 
-#: src/thirdsoft.py:453 src/nautilus.py:197
+#: src/thirdsoft.py:457 src/nautilus.py:187
 msgid "Warning"
 msgstr "警告"
 
-#: src/thirdsoft.py:457
+#: src/thirdsoft.py:461
 msgid "Never show this dialog"
 msgstr "从不显示此对话框"
 
-#: src/thirdsoft.py:479
+#: src/thirdsoft.py:483
 msgid ""
 "You can install the new applications through Add/Remove.\n"
 "Do you want to go now?"
 msgstr ""
+"您可以通过“添加/删除“来安装新的软件。\n"
+"是否立即前往？"
 
-#: src/thirdsoft.py:480 src/sourceeditor.py:404
+#: src/thirdsoft.py:484 src/sourceeditor.py:404
 msgid "The software information is up-to-date now"
 msgstr "现在软件信息已经是最新了"
 
@@ -785,8 +793,8 @@ msgid "Show mounted volumes on desktop"
 msgstr "在桌面上显示已挂载的分区"
 
 #: src/icons.py:145
-msgid "Use \"Home Folder\" as desktop(Logout for changes to take effect)"
-msgstr "将“主文件夹”作为桌面（需要登出生效）"
+msgid "Use \"Home Folder\" as desktop (Logout for changes to take effect)"
+msgstr "使用“主目录”作为桌面（需要登出生效）"
 
 #: src/metacity.py:37
 msgid "Window Decorate Effect"
@@ -862,9 +870,9 @@ msgstr "复合管理器"
 
 #: src/metacity.py:94
 msgid ""
-"To enable the compositing feature of metacity, You should disable the Visual "
-"Effects in \"Appearance\" by yourself."
-msgstr "为了启用Metacity的复合特性，你需要手动禁用“外观”的视觉效果。"
+"To enable the compositing feature of metacity, you should manually disable "
+"Visual Effects in \"Appearance\"."
+msgstr "为了启用Metacity的复合特性，您需要手动禁用“外观”的视觉效果。"
 
 #: src/session.py:39
 msgid "Splash Screen (Click On Image)"
@@ -887,7 +895,7 @@ msgid "Show logout prompt"
 msgstr "显示登出提示"
 
 #: src/session.py:137
-msgid "Allow TCP Connections(Remote Desktop Connect)"
+msgid "Allow TCP Connections (Remote Desktop Connect)"
 msgstr "允许TCP连接（远程桌面连接）"
 
 #: src/session.py:140
@@ -1046,10 +1054,6 @@ msgstr "显示桌面"
 msgid "Widget"
 msgstr "Widget层"
 
-#: src/compiz.py:371 src/nautilus.py:222
-msgid "Update Successfully!"
-msgstr "更新成功！"
-
 #: src/shortcuts.py:46
 msgid "Shortcut Commands"
 msgstr "快捷命令"
@@ -1088,82 +1092,90 @@ msgstr "按键"
 msgid "Clean"
 msgstr "清除"
 
-#: src/cleaner.py:52 src/cleaner.py:75 src/nautilus.py:50
-msgid "Cleaning..."
-msgstr "清理中。。。"
+#: src/cleaner.py:54
+msgid "Cleaning Package Config"
+msgstr "清理软件包配置"
 
-#: src/cleaner.py:56 src/cleaner.py:79
+#: src/cleaner.py:61 src/cleaner.py:88
 #, python-format
 msgid "Cleaning...%s"
 msgstr "正在清理...%s"
 
-#: src/cleaner.py:134
+#: src/cleaner.py:81
+msgid "Cleaning Package Cache"
+msgstr "清理软件包缓存"
+
+#: src/cleaner.py:143
 msgid "Package"
 msgstr "软件包"
 
-#: src/cleaner.py:158
+#: src/cleaner.py:167 src/cleaner.py:188
 msgid "Packages"
 msgstr "软件包"
 
-#: src/cleaner.py:181
+#: src/cleaner.py:212
 msgid "Package Cache"
 msgstr "软件包缓存"
 
-#: src/cleaner.py:191
+#: src/cleaner.py:222
 #, python-format
 msgid ""
 "<b>%s</b>\n"
-"Take %s KB of disk space"
+"Take %s of disk space"
 msgstr ""
 "<b>%s</b>\n"
-"占用了%s KB硬盘空间"
+"占用了%s磁盘空间"
 
-#: src/cleaner.py:214
+#: src/cleaner.py:245
 msgid "Package Config"
 msgstr "软件包配置"
 
-#: src/cleaner.py:247
+#: src/cleaner.py:278
 #, python-format
 msgid "%d package selected to remove"
-msgstr "%d个软件包被选择移除"
+msgid_plural "%d packages selected to remove"
+msgstr[0] "%d个软件包被选择移除"
 
-#: src/cleaner.py:248
+#: src/cleaner.py:282
 #, python-format
-msgid "%d packages selected to remove"
-msgstr "%d个软件包被选择移除"
+msgid "%s of space will be freed"
+msgstr "%s的空间将被释放"
 
-#: src/cleaner.py:251
-#, python-format
-msgid "%d KB of space will be freed"
-msgstr "%d KB空间将被释放"
+#: src/cleaner.py:361
+msgid "Canceled by user!"
+msgstr "被用户取消！"
 
-#: src/cleaner.py:320 src/nautilus.py:203
+#: src/cleaner.py:364 src/nautilus.py:193
 msgid "Clean up Successful!"
 msgstr "清理成功！"
 
-#: src/cleaner.py:323
+#: src/cleaner.py:367
 msgid "Clean up Failed!"
 msgstr "清理失败！"
 
-#: src/cleaner.py:329
+#: src/cleaner.py:373
 msgid ""
 "Free up disk space by removing unneeded packages and cleaning the package "
 "download cache."
 msgstr "释放被无用的软件包和软件包缓存占用的硬盘空间。"
 
-#: src/cleaner.py:357
+#: src/cleaner.py:401
 msgid "Clean Package"
 msgstr "清理软件包"
 
-#: src/cleaner.py:362
+#: src/cleaner.py:406
 msgid "Clean Cache"
 msgstr "清理缓存"
 
-#: src/cleaner.py:367
+#: src/cleaner.py:411
 msgid "Clean Config"
 msgstr "清理配置"
 
-#: src/cleaner.py:373
+#: src/cleaner.py:416
+msgid "Clean Kernel"
+msgstr "清理内核"
+
+#: src/cleaner.py:422
 msgid "Select All"
 msgstr "全选/全不选"
 
@@ -1358,69 +1370,65 @@ msgstr ""
 "它应该是24x24像素！"
 
 #: src/gnomesettings.py:149
-msgid "Do you want take effect immediately?"
-msgstr "你想要马上生效吗？"
+msgid "Do you want your changes to take effect immediately?"
+msgstr "您想要立即生效吗？"
 
-#: src/nautilus.py:100
+#: src/nautilus.py:51
+msgid "Cleaning..."
+msgstr "清理中。。。"
+
+#: src/nautilus.py:101
 msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
 msgstr "在文件属性页中显示高级权限控制"
 
-#: src/nautilus.py:103
+#: src/nautilus.py:104
 msgid "File Browser"
 msgstr "文件浏览器"
 
-#: src/nautilus.py:106
-msgid "CD Burner"
-msgstr "CD刻录"
-
-#: src/nautilus.py:108
-msgid "Enable BurnProof technology"
-msgstr "打开防刻死技术"
-
-#: src/nautilus.py:111
-msgid "Enable OverBurn"
-msgstr "打开超刻功能"
-
-#: src/nautilus.py:119
-msgid "Default thumbnail icon size (Pixels)"
+#: src/nautilus.py:109
+msgid "Default thumbnail icon size (pixels)"
 msgstr "默认缩略图尺寸（像素）"
 
-#: src/nautilus.py:133
-msgid "Maximum size of the thumbnail cache (Megabytes)"
+#: src/nautilus.py:123
+msgid "Maximum size of the thumbnail cache (megabytes)"
 msgstr "缩略图缓存的最大尺寸（MB）"
 
-#: src/nautilus.py:145
-msgid "Maximum age for the thumbnail in the cache (Days)"
+#: src/nautilus.py:135
+msgid "Maximum age for the thumbnail in the cache (days)"
 msgstr "缩略图缓存的最大存活天数"
 
-#: src/nautilus.py:157
+#: src/nautilus.py:147
 msgid "Thumbnails Settings"
 msgstr "缩略图设置"
 
-#: src/nautilus.py:165
+#: src/nautilus.py:155
 msgid "Nautilus with Open Terminal"
 msgstr "Nautilus的打开终端功能"
 
-#: src/nautilus.py:167
+#: src/nautilus.py:157
 msgid "Nautilus with Root Privileges"
 msgstr "Nautilus的管理员打开功能"
 
-#: src/nautilus.py:169
+#: src/nautilus.py:159
 msgid "Nautilus with Wallpaper"
 msgstr "Nautilus的设定壁纸功能"
 
-#: src/nautilus.py:171
+#: src/nautilus.py:161
 msgid "Nautilus Extensions"
 msgstr "Nautilus 扩展"
 
-#: src/nautilus.py:193
+#: src/nautilus.py:183
 #, python-format
-msgid "Clean up the thumbnails cache (Free %s disk size)"
+msgid "Clean up the thumbnails cache (will free %s of disk space)"
 msgstr "清理缩略图缓存（释放%s硬盘空间）"
 
-#: src/nautilus.py:196
-msgid "The thumbnails cache will be cleaned, do you wish to continue?"
+#: src/nautilus.py:186
+msgid "The thumbnails cache will be cleaned, Do you wish to continue?"
 msgstr "缩略图缓存将被清理，你想要继续吗？"
+
+#: src/nautilus.py:214
+msgid "Update failed!"
+msgstr "更新失败！"
 
 #: src/powermanager.py:37
 msgid "Advanced Power Management Settings"
@@ -1506,6 +1514,10 @@ msgstr "重设"
 msgid "Enable Check Update"
 msgstr "启用自动更新"
 
+#: src/preferences.py:136
+msgid "Enable PowerUser Mode"
+msgstr "启用超级用户模式"
+
 #: src/sourceeditor.py:62 src/sourceeditor.py:67
 msgid "Choose the sources"
 msgstr "选择软件源"
@@ -1516,18 +1528,12 @@ msgid ""
 "you."
 msgstr "你可以通过源的标题和注释来决定这源是否适合你"
 
-#: src/sourceeditor.py:84
-msgid "Detail"
-msgstr "细节"
-
 #: src/sourceeditor.py:103 src/sourceeditor.py:108
 msgid "Submit your sources"
 msgstr "提交你的源"
 
 #: src/sourceeditor.py:108
-msgid ""
-"You can submit your sources to the server, so that other people can share "
-"with your sources."
+msgid "You can submit your sources to the server for other people to use."
 msgstr "你可以提交你的源到服务器，这样别的用户可以共享你的源。"
 
 #: src/sourceeditor.py:113
@@ -1539,11 +1545,11 @@ msgid "_Locale:"
 msgstr "区域代码(_L)："
 
 #: src/sourceeditor.py:123
-msgid "Enter the title of the source, such as \"Ubuntu Official Repostory\""
+msgid "Enter the title of the source, e.g. \"Ubuntu Official Repostory\""
 msgstr "输入源的标题，比如“Ubuntu官方源”"
 
 #: src/sourceeditor.py:125
-msgid "If the locale isn't correct, you can edit by yourself"
+msgid "If the locale isn't correct you can edit manually"
 msgstr "如果locale不正确，你可以自己编辑它。"
 
 #: src/sourceeditor.py:140
@@ -1560,7 +1566,7 @@ msgstr "网络错误"
 
 #: src/sourceeditor.py:195
 msgid "Uploading..."
-msgstr ""
+msgstr "上传中..."
 
 #: src/sourceeditor.py:211
 msgid "Updating..."
@@ -1587,11 +1593,11 @@ msgstr "提交源"
 
 #: src/sourceeditor.py:403
 msgid "You can install new applications through Add/Remove."
-msgstr ""
+msgstr "您可以通过“添加/删除“来安装新的软件。"
 
 #: src/sourceeditor.py:420
-msgid "Please input the correct information of the sources!"
-msgstr ""
+msgid "Please input the correct information about sources!"
+msgstr "请输入关于源的正确信息！"
 
 #: src/sourceeditor.py:433
 msgid ""
@@ -1599,6 +1605,8 @@ msgid ""
 "or you can use the official sources.\n"
 "Do you wish to use the official sources?"
 msgstr ""
+"您可以提交你的源至我们的服务器来帮助建立源列表，或者你可以使用非官方的源。\n"
+"您想要使用官方源吗？"
 
 #: src/sourceeditor.py:436
 msgid "No source data available"
@@ -1606,19 +1614,19 @@ msgstr "暂时没有源的数据"
 
 #: src/sourceeditor.py:453
 msgid ""
-"Your sources will be reviewed and open for others soon.\n"
+"Your sources will be reviewed and made available for others soon.\n"
 "Thank you!"
 msgstr ""
 "你的源将被审核并很快开放给其他用户。\n"
 "谢谢！"
 
 #: src/sourceeditor.py:454
-msgid "Sumit successfully"
+msgid "Successfully submitted"
 msgstr "提交成功"
 
 #: src/sourceeditor.py:467
-msgid "Please check the permission of sources.list."
-msgstr ""
+msgid "Please check the permission of the sources.list file"
+msgstr "请检查sources.list的权限！"
 
 #: src/sourceeditor.py:468
 msgid "Save failed!"
@@ -1629,8 +1637,10 @@ msgid ""
 "The current content will be lost after reloading!\n"
 "Do you wish to continue?"
 msgstr ""
+"当前内容将在重载后丢失！\n"
+"您想要继续吗？"
 
-#: src/common/package.py:64
+#: src/common/package.py:67
 msgid "(Not available)"
 msgstr "（不可用）"
 
@@ -1679,215 +1689,219 @@ msgid "Audio Management and Playback application"
 msgstr "音乐管理和播放软件"
 
 #: src/common/appdata.py:68
+msgid "GTK+ Bluetooth Manager"
+msgstr "基于GTK+的蓝牙管理工具"
+
+#: src/common/appdata.py:69
 msgid "A true dock for linux"
 msgstr "又一个漂亮的Linux Dock"
 
-#: src/common/appdata.py:69
+#: src/common/appdata.py:70
 msgid "A chm file viewer written in GTK+"
 msgstr "使用GTK+编写的CHM文件浏览器"
 
-#: src/common/appdata.py:70
+#: src/common/appdata.py:71
 msgid ""
 "Chromium is an open-source browser project that aims to build a safer, "
 "faster, and more stable way for all Internet users to experience the web."
 msgstr "Chromium是一个开源的浏览器，它旨在建立一个更安全、更快和更稳定的网络体验。"
 
-#: src/common/appdata.py:71
+#: src/common/appdata.py:72
 msgid "The open source, cross-platform IDE"
 msgstr "开源、跨平台的IDE"
 
-#: src/common/appdata.py:72
+#: src/common/appdata.py:73
 msgid "Advanced Desktop Effects Settings Manager"
 msgstr "高级桌面特效设置管理器"
 
-#: src/common/appdata.py:73
+#: src/common/appdata.py:74
 msgid "An API documentation browser for GNOME."
 msgstr "GNOME桌面的API文档查询手册"
 
-#: src/common/appdata.py:74
+#: src/common/appdata.py:75
 msgid "A Bittorrent client written in PyGTK"
 msgstr "基于PyGTK的BitTorrent客户端"
 
-#: src/common/appdata.py:75
+#: src/common/appdata.py:76
 msgid "Store, Sync and Share your files online."
 msgstr "在线存储、同步和共享你的文件。"
 
-#: src/common/appdata.py:76
+#: src/common/appdata.py:77
 msgid "Extensible Tool Platform and Java IDE"
 msgstr "扩展性极好的Java IDE"
 
-#: src/common/appdata.py:77
+#: src/common/appdata.py:78
 msgid ""
 "EIOffice Personal 2009. Free for Chinese users. See "
 "http://www.evermoresw.com."
 msgstr "EIOffice 2009个人版，中文用户免费。详情请见：http://www.evermoresw.com。"
 
-#: src/common/appdata.py:78
+#: src/common/appdata.py:79
 msgid "A client for the Windows Live Message network"
 msgstr "一个Windows Live Message的客户端"
 
-#: src/common/appdata.py:79
+#: src/common/appdata.py:80
 msgid ""
 "Empathy consists of a rich set of reusable instant messaging widgets, and a "
 "GNOME client using those widgets."
 msgstr "Empathy是GNOME的一个新的即时通讯工具"
 
-#: src/common/appdata.py:80
+#: src/common/appdata.py:81
 msgid "GTK+ based flexible audio player, similar to Amarok"
 msgstr "基于GTK+的灵活的音乐播放器，与Amarok类似"
 
-#: src/common/appdata.py:81
+#: src/common/appdata.py:82
 msgid "File transmission via ftp, sftp and ftps"
 msgstr "可以传输FTP、SFTP和FTPS"
 
-#: src/common/appdata.py:82
+#: src/common/appdata.py:83
 msgid "An extremly fast and lightweight file manager"
 msgstr "一个非常快速和轻量的文件管理器"
 
-#: src/common/appdata.py:83
+#: src/common/appdata.py:84
 msgid ""
 "Galaxium is an instant messenger application designed for the GNOME desktop"
 msgstr "Galaxium是一个为GNOME桌面设计的即时通讯工具。"
 
-#: src/common/appdata.py:84
+#: src/common/appdata.py:85
 msgid "A GTK+ jabber client"
 msgstr "基于GTK+的Jabber客户端"
 
-#: src/common/appdata.py:85
+#: src/common/appdata.py:86
 msgid "A fast and lightweight IDE"
 msgstr "一个轻快的IDE"
 
-#: src/common/appdata.py:86
+#: src/common/appdata.py:87
 msgid "A multithreaded FTP client"
 msgstr "多线程FTP客户端"
 
-#: src/common/appdata.py:87
+#: src/common/appdata.py:88
 msgid "GNOME Hex editor"
 msgstr "GNOME的十六进制编辑器"
 
-#: src/common/appdata.py:88
+#: src/common/appdata.py:89
 msgid "Notifies the user upon arrival of new mail in Gmail"
 msgstr "提醒Gmail的邮件到达"
 
-#: src/common/appdata.py:89
+#: src/common/appdata.py:90
 msgid "A powerful, speedy, and sexy remote control for the GNOME Desktop"
 msgstr "一个强大，快速的GNOME桌面启动工具"
 
-#: src/common/appdata.py:90
+#: src/common/appdata.py:91
 msgid "Global Menu Bar for GNOME"
 msgstr "GNOME的全局菜单栏"
 
-#: src/common/appdata.py:91
+#: src/common/appdata.py:92
 msgid ""
 "A program that combines satellite imagery and maps to put the world's "
 "geographic information at your fingertips."
 msgstr "这一程序将结合卫星图像和地图,显示世界各地的地理情况。"
 
-#: src/common/appdata.py:92
+#: src/common/appdata.py:93
 msgid "Platform for running Google Gadgets on Linux"
 msgstr "在Linux上运行Google Gadgets"
 
-#: src/common/appdata.py:93
+#: src/common/appdata.py:94
 msgid "GNOME partition editor"
 msgstr "GNOME的分区编辑器"
 
-#: src/common/appdata.py:94
+#: src/common/appdata.py:95
 msgid "Lightweight image viewer"
 msgstr "轻量极的图像浏览器"
 
-#: src/common/appdata.py:95
+#: src/common/appdata.py:96
 msgid "A powerful screenshot tool"
 msgstr "一个强大的截屏软件"
 
-#: src/common/appdata.py:96
+#: src/common/appdata.py:97
 msgid "Graphical frontend for recordmydesktop"
 msgstr "recordmydesktop的图形前端"
 
-#: src/common/appdata.py:97
+#: src/common/appdata.py:98
 msgid ""
 "GTG is a personal organizer for the GNOME desktop environment, it focuses on "
 "ease of use and flexibility, while keeping things simple."
-msgstr ""
+msgstr "GTG是面向GNOME桌面环境的个人信息组织工具，它专注于方便使用及灵活。"
 
-#: src/common/appdata.py:98
+#: src/common/appdata.py:99
 msgid "Gwibber is an open source microblogging client for GNOME"
 msgstr "Gwibber是一个GNOME下的开源的微博客客户端"
 
-#: src/common/appdata.py:99
+#: src/common/appdata.py:100
 msgid "A graphical CD image editor"
 msgstr "一个图形化CD镜像编辑器"
 
-#: src/common/appdata.py:100
+#: src/common/appdata.py:101
 msgid "Intelligent Input Bus for Linux / Unix OS"
 msgstr "为Linux/Unix系统开发的灵巧的输入法框架"
 
-#: src/common/appdata.py:101
+#: src/common/appdata.py:102
 msgid "It is a PinYin engine for IBus."
 msgstr "IBus输入法的拼音引擎"
 
-#: src/common/appdata.py:102
+#: src/common/appdata.py:103
 msgid ""
 "IBus-Table is the IM Engine framework for table-based input methods, such as "
 "ZhengMa, WuBi, ErBi, ChangJie and so on."
 msgstr "IBus-Table包括了郑码、五笔、二笔、仓颉等输入码表。"
 
-#: src/common/appdata.py:103
+#: src/common/appdata.py:104
 msgid "Create and edit Scalable Vector Graphics images"
 msgstr "创建并编辑矢量图形文件"
 
-#: src/common/appdata.py:104
+#: src/common/appdata.py:105
 msgid "Non-linear editor for Digital Video data"
 msgstr "数字视频数据的编辑器"
 
-#: src/common/appdata.py:105
+#: src/common/appdata.py:106
 msgid "A music player for Last.fm personalized radio"
 msgstr "播放Last.fm上音乐的播放器"
 
-#: src/common/appdata.py:106
+#: src/common/appdata.py:107
 msgid "GTK+ based simple text editor"
 msgstr "基于 GTK+ 的简易文字编辑器"
 
-#: src/common/appdata.py:107
+#: src/common/appdata.py:108
 msgid "Feed aggregator for GNOME"
 msgstr "GNOME的聚合阅读器"
 
-#: src/common/appdata.py:108
+#: src/common/appdata.py:109
 msgid "Mail notification in system tray"
 msgstr "在系统通知区域显示邮件提醒"
 
-#: src/common/appdata.py:109
+#: src/common/appdata.py:110
 msgid "Adcal tool to diff and merge files"
 msgstr "显示差异和合并文件的工具"
 
-#: src/common/appdata.py:110
+#: src/common/appdata.py:111
 msgid "A fast and simple GTK+ Image Viewer"
 msgstr "一个快速和简单的GTK+图像浏览器"
 
-#: src/common/appdata.py:111
+#: src/common/appdata.py:112
 msgid "Open internet TV, beyond anything else"
 msgstr "开放式网络电视"
 
-#: src/common/appdata.py:112
+#: src/common/appdata.py:113
 msgid "Webkit based lightweight web browser"
 msgstr "基于Webkit的轻量极网络浏览器"
 
-#: src/common/appdata.py:113
+#: src/common/appdata.py:114
 msgid "An IDE to Develop .NET applications."
 msgstr "开发.NET应用程序的IDE"
 
-#: src/common/appdata.py:114
+#: src/common/appdata.py:115
 msgid "The Ultimate Movie Player For Linux"
 msgstr "Linux下最强大的电影播放器"
 
-#: src/common/appdata.py:115
+#: src/common/appdata.py:116
 msgid "IDE for Java, C/C++, Ruby, UML, etc."
 msgstr "用于Java、C/C++、Ruby、UML开发的IDE"
 
-#: src/common/appdata.py:116
+#: src/common/appdata.py:117
 msgid "The Opera Web Browser"
 msgstr "Opera网络浏览器"
 
-#: src/common/appdata.py:117
+#: src/common/appdata.py:118
 msgid ""
 "Pidgin is a graphical modular messaging client based on libpurple which is "
 "capable of connecting to AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, SIP/SIMPLE, "
@@ -1897,122 +1911,126 @@ msgstr ""
 "Pidgin是一个图形化界面的即时通讯客户端,能够连接的AIM、MSN、Yahoo!、XMPP、ICQ、IRC、SILC、SIP/SIMPLE、Novel"
 "l GroupWise、Lotus Sametime、Bonjour、Zephyr、MySpaceIM、Gadu-Gadu、QQ等通讯协议。"
 
-#: src/common/appdata.py:118
+#: src/common/appdata.py:119
 msgid "Run your Windows programs on Linux"
 msgstr "在Linux下运行Windows程序"
 
-#: src/common/appdata.py:119
+#: src/common/appdata.py:120
 msgid "A framework for desktop widgets"
 msgstr "桌面小布件的框架"
 
-#: src/common/appdata.py:120
+#: src/common/appdata.py:121
 msgid "Feature-rich screenshot application(formerly known as GScrot)"
 msgstr "功能丰富的桌面截图软件（之前的GScrot）"
 
-#: src/common/appdata.py:121
+#: src/common/appdata.py:122
 msgid "Make audio/video calls using this VoIP Software"
 msgstr "支持音频/视频通讯的VoIP软件"
 
-#: src/common/appdata.py:122
+#: src/common/appdata.py:123
 msgid "A great MPlayer front-end, written in QT4"
 msgstr "一个非常棒的Mplayer前端，用Qt4编写"
 
-#: src/common/appdata.py:123
+#: src/common/appdata.py:124
 msgid "Convert audio files into other formats"
 msgstr "把音频文件转换为其它格式"
 
-#: src/common/appdata.py:124
+#: src/common/appdata.py:125
 msgid "An international dictionary"
 msgstr "一个国际化词典"
 
-#: src/common/appdata.py:125
+#: src/common/appdata.py:126
 msgid ""
 "Swiftweasel is an optimized build of the Mozilla Firefox web browser for "
 "Linux"
 msgstr "Swiftweasel是Mozilla Firefox for Linux的优化版本"
 
-#: src/common/appdata.py:126
+#: src/common/appdata.py:127
 msgid ""
 "A desktop application that will watch for events (website updates, emails, "
 "file and folder changes...)"
 msgstr "一个监视各类事件（网站更新、电邮、文件/文件夹的改变）的桌面应用程序"
 
-#: src/common/appdata.py:127
+#: src/common/appdata.py:128
+msgid "An instant messaging application powered by qt-mono-bindings"
+msgstr "一款强大的、基于qt-mono-bindings的即时通读软件，支持XMPP协议"
+
+#: src/common/appdata.py:129
 msgid "A Useful Task List"
 msgstr "一个有用的任务列表"
 
-#: src/common/appdata.py:128
+#: src/common/appdata.py:130
 msgid "Multiple GNOME terminals in one window"
 msgstr "在同一窗口中使用多个GNOME终端"
 
-#: src/common/appdata.py:129
+#: src/common/appdata.py:131
 msgid ""
 "Transmission is a fast, easy, and free multi-platform BitTorrent client."
-msgstr ""
+msgstr "Transmission一个是快速、简易并支持多个平台的BitTorrent客户端。"
 
-#: src/common/appdata.py:130
+#: src/common/appdata.py:132
 msgid "Ubuntu Tweak makes it easier to configure Ubuntu"
 msgstr "Ubuntu Tweak使配置Ubuntu更加简单"
 
-#: src/common/appdata.py:131
+#: src/common/appdata.py:133
 msgid "Commonly used restricted packages"
 msgstr "常用的受限软件包"
 
-#: src/common/appdata.py:132 src/common/appdata.py:133
+#: src/common/appdata.py:134 src/common/appdata.py:135
 msgid "A feature rich, high performance virtualization software"
 msgstr "具有很多特性、高性能的虚拟机软件"
 
-#: src/common/appdata.py:134
+#: src/common/appdata.py:136
 msgid "Read, capture, broadcast your multimedia streams"
 msgstr "读取，录制，播放你的多媒体流"
 
-#: src/common/appdata.py:135
+#: src/common/appdata.py:137
 msgid "Run Virtual Machines using VMware"
 msgstr "使用VMware来运行虚拟机"
 
-#: src/common/appdata.py:136
+#: src/common/appdata.py:138
 msgid "A compatibility layer for running Windows programs"
 msgstr "运行Windows应用程序的兼容层"
 
-#: src/common/appdata.py:137
+#: src/common/appdata.py:139
 msgid ""
 "Wine-doors is an application designed to make installing windows software on "
 "Linux, Solaris or other Unix systems easier."
-msgstr ""
+msgstr "Wine-doors是一个用来在Linux、Solaris或其他Unix系统下方便地安装Windows软件的应用程序。"
 
-#: src/common/appdata.py:138
+#: src/common/appdata.py:140
 msgid ""
 "XBMC is a free and open source software media player and entertainment hub"
 msgstr "XBMC是一个免费开源的多媒体中心"
 
-#: src/common/appdata.py:142
+#: src/common/appdata.py:144
 msgid "Development Version of Mozilla Firefox 3.1, 4.0"
-msgstr ""
+msgstr "Mozilla Firefox 3.1, 4.0的开发版本"
 
-#: src/common/appdata.py:143
+#: src/common/appdata.py:145
 msgid "Development version of Compiz Fusion"
 msgstr "Compiz Fusion的开发版"
 
-#: src/common/appdata.py:144
+#: src/common/appdata.py:146
 msgid "Google's Linux Repository"
 msgstr "Google的Linux源"
 
-#: src/common/appdata.py:145
+#: src/common/appdata.py:147
 msgid "K Desktop Environment 4.2"
-msgstr ""
+msgstr "KDE桌面环境4.2"
 
-#: src/common/appdata.py:146
+#: src/common/appdata.py:148
 msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
 msgstr "轻量级X11桌面环境：GPicView，PCManFM"
 
-#: src/common/appdata.py:147
+#: src/common/appdata.py:149
 msgid ""
 "Multimedia, Entertainment and Distraction In Ubuntu\n"
 "Medibuntu is a repository of packages that cannot be included into the "
 "Ubuntu distribution for legal reasons (copyright, license, patent, etc)."
 msgstr "Medibuntu将出于法律原因（版权，许可证，专利等）,未能加入ubuntu的多媒体、娱乐整合入内。"
 
-#: src/common/appdata.py:149
+#: src/common/appdata.py:151
 msgid ""
 "Ubuntu repository for Chinese users.\n"
 "Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and "
@@ -2021,7 +2039,28 @@ msgstr ""
 "为中文用户准备的Ubuntu源。\n"
 "包括了永中Office、Ubuntu Tweak、iBus输入法、OpenOffice.org 3.0和其他软件。"
 
-#: src/common/policykit/polkitbutton.py:78
+#: src/common/misc.py:15
+#, python-format
+msgid "%(size)d byte"
+msgid_plural "%(size)d bytes"
+msgstr[0] "%(size)d字节"
+
+#: src/common/misc.py:17
+#, python-format
+msgid "%.1f KB"
+msgstr "%.1f KB"
+
+#: src/common/misc.py:19
+#, python-format
+msgid "%.1f MB"
+msgstr "%.1f MB"
+
+#: src/common/misc.py:20
+#, python-format
+msgid "%.1f GB"
+msgstr "%.1f G"
+
+#: src/common/policykit/polkitbutton.py:81
 msgid "_Unlock"
 msgstr "解锁(_U)"
 
@@ -2057,7 +2096,7 @@ msgstr "不能删除根文件夹"
 msgid ""
 "Can't rename!\n"
 "\n"
-"There're files in it!"
+"There are files in it!"
 msgstr ""
 "不能重命名!\n"
 "\n"
@@ -2313,6 +2352,12 @@ msgstr "使用一个自定义命令(_U)"
 #~ msgid "Show advanced Permissions on File and Folder Property pages"
 #~ msgstr "在文件属性中显示高级权限控制"
 
+#~ msgid "Enable BurnProof technology"
+#~ msgstr "打开防刻死技术"
+
+#~ msgid "Enable OverBurn"
+#~ msgstr "打开超刻功能"
+
 #~ msgid "<b>Settings for Nautilus behavior</b>"
 #~ msgstr "<b>设置文件管理器的行为</b>"
 
@@ -2388,6 +2433,9 @@ msgstr "使用一个自定义命令(_U)"
 #~ "\n"
 #~ "Ubuntu Tweak只能运行在 <b>GNOME桌面环境</b>上\n"
 
+#~ msgid "None description"
+#~ msgstr "没有描述"
+
 #~ msgid ""
 #~ "You can safely delete the item, it will only been marked as hidden.\n"
 #~ "If you want to delete it from disk, right-click the item."
@@ -2437,6 +2485,9 @@ msgstr "使用一个自定义命令(_U)"
 #~ msgid "Set your document folders"
 #~ msgstr "设置你的文档目录"
 
+#~ msgid "Update successfully!"
+#~ msgstr "更新成功！"
+
 #~ msgid "Select a new folder"
 #~ msgstr "选择一个新目录"
 
@@ -2457,6 +2508,9 @@ msgstr "使用一个自定义命令(_U)"
 #, python-format
 #~ msgid "The target \"%s\" is exists!"
 #~ msgstr "目标“%s”已存在！"
+
+#~ msgid "Please select a target(files or folders)."
+#~ msgstr "请选择一个目标（文件或文件夹）。"
 
 #~ msgid "Manage your scripts"
 #~ msgstr "管理你的脚本"
@@ -2525,6 +2579,9 @@ msgstr "使用一个自定义命令(_U)"
 #~ "你可以从文件管理器拖拽外部模板进来。\n"
 #~ "“创建文档”将被加到右键菜单中。\n"
 
+#~ msgid "Update Successfully!"
+#~ msgstr "更新成功！"
+
 #~ msgid "Enable System-wide 'Recently Used' list"
 #~ msgstr "启用系统级的“最近的文档”列表"
 
@@ -2581,6 +2638,9 @@ msgstr "使用一个自定义命令(_U)"
 #~ msgid "Settings for Nautilus behavior"
 #~ msgstr "文件管理器行为设置"
 
+#~ msgid "CD Burner"
+#~ msgstr "CD刻录"
+
 #~ msgid "Click the large button to change Splash screen"
 #~ msgstr "点击大按钮来改变Splash屏幕"
 
@@ -2631,11 +2691,17 @@ msgstr "使用一个自定义命令(_U)"
 #~ "\n"
 #~ "你可以通过“添加/删除”来安装新的软件。"
 
+#~ msgid "Allow TCP Connections(Remote Desktop Connect)"
+#~ msgstr "允许TCP连接（远程桌面连接）"
+
 #~ msgid "Enable User Switching when Screen is locked."
 #~ msgstr "当屏幕被锁时开启用户切换功能"
 
 #~ msgid "Click the button to change panel logo"
 #~ msgstr "点击按钮改变面板的Logo"
+
+#~ msgid "Do you want take effect immediately?"
+#~ msgstr "你想要马上生效吗？"
 
 #~ msgid "Tweak your desktop to make it what you like."
 #~ msgstr "调节你的桌面至你想要的样子。"
@@ -2736,8 +2802,20 @@ msgstr "使用一个自定义命令(_U)"
 #~ msgid "Disable 'Run Application' dialog (Alt+F2)"
 #~ msgstr "禁用“运行应用程序”的对话框（Alt+F2）"
 
+#~ msgid ""
+#~ "Can't rename!\n"
+#~ "\n"
+#~ "There're files in it!"
+#~ msgstr ""
+#~ "不能重命名!\n"
+#~ "\n"
+#~ "里面有文件存在!"
+
 #~ msgid "Show advanced permissions on Permissions tab of File Property"
 #~ msgstr "在文件属性的权限标签显示高级权限控制"
+
+#~ msgid "Use \"Home Folder\" as desktop(Logout for changes to take effect)"
+#~ msgstr "将“主文件夹”作为桌面（需要登出生效）"
 
 #~ msgid "Configure templates and scripts to improve your computing."
 #~ msgstr "配置模板和脚本来改善你的系统。"
@@ -2754,6 +2832,22 @@ msgstr "使用一个自定义命令(_U)"
 
 #~ msgid "Disable Network Manager when on sleep"
 #~ msgstr "当睡眠时禁用网络管理器"
+
+#, python-format
+#~ msgid ""
+#~ "<b>%s</b>\n"
+#~ "Take %s KB of disk space"
+#~ msgstr ""
+#~ "<b>%s</b>\n"
+#~ "占用了%s KB硬盘空间"
+
+#, python-format
+#~ msgid "%d packages selected to remove"
+#~ msgstr "%d个软件包被选择移除"
+
+#, python-format
+#~ msgid "%d KB of space will be freed"
+#~ msgstr "%d KB空间将被释放"
 
 #~ msgid ""
 #~ "Free up disk space by clearing unneeded packages and the package cache."
@@ -2785,6 +2879,18 @@ msgstr "使用一个自定义命令(_U)"
 #~ "你可以从文件管理器拖曳外部模板进来。\n"
 #~ "你将在右键菜单“创建文档”中看到它们。\n"
 
+#~ msgid ""
+#~ "After every releases of Ubuntu comes a feature freeze.\n"
+#~ "This means only applications with bug-fixes get into the repository.\n"
+#~ "By using third-party DEB repositories, you can always keep up-to-date with "
+#~ "the latest version.\n"
+#~ "After adding these repositories, locate and install them using Add/Remove."
+#~ msgstr ""
+#~ "在Ubuntu每次升级后都会进入特性冻结。\n"
+#~ "这意味着应用程序只会因为Bug修正而得到更新。\n"
+#~ "而使用第三方源的话，你将可以总是保持使用最新版本的应用软件。\n"
+#~ "在启用这些源后，你可以到“添加/删除”去安装它们。"
+
 #~ msgid "Splash Screen (Click Below Image)"
 #~ msgstr "启动画面(点击下面的图像)"
 
@@ -2793,6 +2899,17 @@ msgstr "使用一个自定义命令(_U)"
 
 #~ msgid "Tweak your Linux computer to what you like."
 #~ msgstr "调节你的Linux系统到你想要的样子"
+
+#~ msgid "Detail"
+#~ msgstr "细节"
+
+#~ msgid ""
+#~ "You can submit your sources to the server, so that other people can share "
+#~ "with your sources."
+#~ msgstr "你可以提交你的源到服务器，这样别的用户可以共享你的源。"
+
+#~ msgid "Enter the title of the source, such as \"Ubuntu Official Repostory\""
+#~ msgstr "输入源的标题，比如“Ubuntu官方源”"
 
 #~ msgid "If the locale isn't correct, you can edit by you self"
 #~ msgstr "如果区域不正确，你可以自己编辑它。"
@@ -2803,8 +2920,18 @@ msgstr "使用一个自定义命令(_U)"
 #~ msgid "Please input the correct infomation of the sources!"
 #~ msgstr "请输入关于这个源的正确信息！"
 
+#~ msgid "Sumit successfully"
+#~ msgstr "提交成功"
+
 #~ msgid "Please check the permission of the sources.list."
 #~ msgstr "请检查sources.list的权限！"
+
+#~ msgid ""
+#~ "It is a possible security risk to use packages from Third-Party Sources.\n"
+#~ "Please be careful."
+#~ msgstr ""
+#~ "使用第三方源可能会引起安全方面的问题。\n"
+#~ "请小心谨慎！"
 
 #~ msgid "You can install the new applications through Add/Remove."
 #~ msgstr "你可以通过“添加/删除”来安装新增的软件。"
@@ -2816,6 +2943,13 @@ msgstr "使用一个自定义命令(_U)"
 #~ msgstr ""
 #~ "你可以提交你的源至我们的服务器来帮助构建软件源列表，或者你可以选择使用官方源。\n"
 #~ "你想要使用官方源吗？"
+
+#~ msgid ""
+#~ "Your sources will be reviewed and open for others soon.\n"
+#~ "Thank you!"
+#~ msgstr ""
+#~ "你的源将被审核并很快开放给其他用户。\n"
+#~ "谢谢！"
 
 #~ msgid ""
 #~ "The currenly content will be lost after reloading!\n"
@@ -2840,6 +2974,11 @@ msgstr "使用一个自定义命令(_U)"
 #~ msgstr "只显示已关联的类型"
 
 #~ msgid ""
+#~ "To enable the compositing feature of metacity, You should disable the Visual "
+#~ "Effects in \"Appearance\" by yourself."
+#~ msgstr "为了启用Metacity的复合特性，你需要手动禁用“外观”的视觉效果。"
+
+#~ msgid ""
 #~ "You can do all kinds of tasks with scripts.\n"
 #~ "You can drag and drop from File Manager.\n"
 #~ "'Scripts' will be added to the context menu.\n"
@@ -2856,6 +2995,13 @@ msgstr "使用一个自定义命令(_U)"
 
 #~ msgid "Maximum age for the thumbnail in the cache (Day)"
 #~ msgstr "缩略图缓存的最大存活天数"
+
+#, python-format
+#~ msgid "Clean up the thumbnails cache (Free %s disk size)"
+#~ msgstr "清理缩略图缓存（释放%s硬盘空间）"
+
+#~ msgid "The thumbnails cache will be cleaned, do you wish to continue?"
+#~ msgstr "缩略图缓存将被清理，你想要继续吗？"
 
 #~ msgid "Clean up successfully!"
 #~ msgstr "清理成功！"

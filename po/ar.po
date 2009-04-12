@@ -9,14 +9,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2009-03-26 23:00+0800\n"
-"PO-Revision-Date: 2009-03-28 16:58+0000\n"
+"POT-Creation-Date: 2009-04-11 13:21+0800\n"
+"PO-Revision-Date: 2009-03-31 19:53+0000\n"
 "Last-Translator: Osama <osamak.wfm@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-03-31 09:12+0000\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n % 100 >= "
+"3 && n % 100 <= 10 ? 3 : n % 100 >= 11 && n % 100 <= 99 ? 4 : 5;\n"
+"X-Launchpad-Export-Date: 2009-04-12 00:16+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/autostart.py:45
@@ -56,7 +58,7 @@ msgid "Can't delete the system item from disk."
 msgstr "لا يمكن حذف هذا العنصر من القرص."
 
 #: src/autostart.py:248
-msgid "None description"
+msgid "No description"
 msgstr "لا وصف"
 
 #: src/autostart.py:268
@@ -158,26 +160,26 @@ msgstr "محاكيات"
 msgid "E-mail Tools"
 msgstr "أدوات البريد الإلكتروني"
 
-#: src/installer.py:152
+#: src/installer.py:154
 msgid "Add/Remove Applications"
 msgstr "إضافة/ازالة التطبيقات"
 
-#: src/installer.py:153
+#: src/installer.py:155
 msgid ""
 "A simple but more effecient method for finding and installing popular "
 "packages than the default Add/Remove."
 msgstr ""
 "طريقة بسيطة لكنها أكثر فعالية لإيجاد وتثبيت الحزم الشهيرة من أضف/أزل المبدئي."
 
-#: src/installer.py:201
+#: src/installer.py:203
 msgid "All Categories"
 msgstr "كل التصانيف"
 
-#: src/installer.py:371
+#: src/installer.py:373
 msgid "Update Successful!"
 msgstr "تم التحديث بنجاح!"
 
-#: src/installer.py:373 src/nautilus.py:224
+#: src/installer.py:375
 msgid "Update Failed!"
 msgstr "فشل التحديث!"
 
@@ -233,7 +235,7 @@ msgid "Select a folder"
 msgstr "اختر مجلّدا"
 
 #: src/ScriptWorker.py:171
-msgid "Please select a target(files or folders)."
+msgid "Please select a target (files or folders)."
 msgstr "من فضلك اختر هدفا (ملفات أو مجلدات)."
 
 #: src/mainwindow.py:65
@@ -296,11 +298,11 @@ msgstr "اضف/احذف"
 msgid "Source Editor"
 msgstr "محرر المصادر"
 
-#: src/mainwindow.py:228 src/thirdsoft.py:271
+#: src/mainwindow.py:228 src/thirdsoft.py:275
 msgid "Third-Party Sources"
 msgstr "مصادر الطرف الثالث"
 
-#: src/mainwindow.py:229 src/cleaner.py:328
+#: src/mainwindow.py:229 src/cleaner.py:372
 msgid "Package Cleaner"
 msgstr "منظف الحزم"
 
@@ -506,9 +508,9 @@ msgstr ""
 "تستطيع تغيير مسارات المجلدات الرئيسية هنا.\n"
 "لا تغير موقع سطح مكتبك إلا إذا كنت تعرف ما تفعل."
 
-#: src/userdir.py:258
-msgid "Update successfully!"
-msgstr "تم التحديث بنجاح!"
+#: src/userdir.py:258 src/compiz.py:371 src/nautilus.py:212
+msgid "Update successful!"
+msgstr "نجح التحديث!"
 
 #: src/filetype.py:34
 msgid "Audio"
@@ -558,8 +560,8 @@ msgid "Open the files of type \"%s\" with:"
 msgstr "فتح الملفات من نوع \"%s\" بـ:"
 
 #: src/filetype.py:270
-msgid "Choose a application"
-msgstr "إختيار تطبيق"
+msgid "Choose an application"
+msgstr "اختر تطبيقا"
 
 #: src/filetype.py:359
 #, python-format
@@ -583,69 +585,73 @@ msgstr "هنا تستطيع إدارة أي التطبيقات ستفتح أي �
 msgid "Only show filetypes with an associated application"
 msgstr "أظهر أنواع الملفات فقط مع"
 
-#: src/computer.py:49
+#: src/computer.py:44
 msgid "System information"
 msgstr "معلومات النظام"
 
-#: src/computer.py:50
+#: src/computer.py:45
 msgid "Hostname"
 msgstr "اسم المضيّف"
 
-#: src/computer.py:51
+#: src/computer.py:46
 msgid "Distribution"
 msgstr "التوزيعة"
 
-#: src/computer.py:52
+#: src/computer.py:47
 msgid "Desktop environment"
 msgstr "بيئة سطح مكتب"
 
-#: src/computer.py:53
+#: src/computer.py:48
 msgid "Kernel"
 msgstr "النواة"
 
-#: src/computer.py:54
+#: src/computer.py:49
 msgid "Platform"
 msgstr "المنصة"
 
-#: src/computer.py:55
+#: src/computer.py:50
 msgid "CPU"
 msgstr "وحدة المعالجة المركزية"
 
-#: src/computer.py:56
+#: src/computer.py:51
 msgid "Memory"
 msgstr "الذاكرة"
 
-#: src/computer.py:60
+#: src/computer.py:55
 msgid "User information"
 msgstr "معلومات المستخدم"
 
-#: src/computer.py:61
+#: src/computer.py:56
 msgid "Current user"
 msgstr "المستخدم الحالي"
 
-#: src/computer.py:62
+#: src/computer.py:57
 msgid "Home directory"
 msgstr "دليل المنزل"
 
-#: src/computer.py:63
+#: src/computer.py:58
 msgid "Shell"
-msgstr "شل"
+msgstr "الشل"
 
-#: src/computer.py:64
+#: src/computer.py:59
 msgid "Language"
 msgstr "اللغة"
 
-#: src/thirdsoft.py:71
+#: src/thirdsoft.py:69
 msgid "Avant Window Navigator (Unstable Version)"
 msgstr "Avant Window Navigator (النسخة التجريبية)"
 
-#: src/thirdsoft.py:76
+#: src/thirdsoft.py:75
 msgid "Ubuntu Chinese Repository"
 msgstr "مستودع أوبونتو الصيني"
 
-#: src/thirdsoft.py:86
+#: src/thirdsoft.py:85
 msgid "Gnome Global Menu"
 msgstr "Gnome Global Menu"
+
+#: src/thirdsoft.py:88
+msgid "Gwibber (Daily Version)"
+msgstr ""
 
 #: src/thirdsoft.py:89
 msgid "Banshee (Stable Version)"
@@ -659,7 +665,7 @@ msgstr "Banshee (النسخة غير المستقرة)"
 msgid "Ubuntu Tweak (Unstable Version)"
 msgstr "Ubuntu Tweak (النسخة التجريبية)"
 
-#: src/thirdsoft.py:188
+#: src/thirdsoft.py:192
 msgid ""
 "To install software and updates from newly added or changed sources, you "
 "have to reload the information about available software.\n"
@@ -671,64 +677,58 @@ msgstr ""
 "\n"
 "تحتاج إلى اتصال إنترنت فعال للاستمرار."
 
-#: src/thirdsoft.py:192
+#: src/thirdsoft.py:196
 msgid "The information about available software is out-of-date"
 msgstr "هذه المعلومات حول توفر البرمجيات غير محدثة"
 
-#: src/thirdsoft.py:355
+#: src/thirdsoft.py:359
 msgid "Homepage"
 msgstr "الصفحة الرئيسية"
 
-#: src/thirdsoft.py:355
+#: src/thirdsoft.py:359
 msgid "Source URL"
 msgstr "رابط المصدر"
 
-#: src/thirdsoft.py:355
+#: src/thirdsoft.py:359
 msgid "Description"
 msgstr "وصف"
 
-#: src/thirdsoft.py:366
+#: src/thirdsoft.py:370
 msgid "Description is here"
 msgstr "الوصف هنا"
 
-#: src/thirdsoft.py:394
+#: src/thirdsoft.py:398
 msgid "Third-Party Software Sources"
 msgstr "مصادر برامج الطرف الثالث"
 
-#: src/thirdsoft.py:395
+#: src/thirdsoft.py:399
 msgid ""
-"After every releases of Ubuntu comes a feature freeze.\n"
+"After every release of Ubuntu there comes a feature freeze.\n"
 "This means only applications with bug-fixes get into the repository.\n"
 "By using third-party DEB repositories, you can always keep up-to-date with "
 "the latest version.\n"
 "After adding these repositories, locate and install them using Add/Remove."
 msgstr ""
-"بعد كل إصدار من أوبونتو يتم تجميد المزايا.\n"
-"هذا يعني أن التطبيقات بإصلاحات علل تدخل للمستودع.\n"
-"باستخدم مستودعات DEB طرف ثالث، تستطيع دائما البقاء محدّثا لآخر إصدار.\n"
-"بعد إضافة هذه المستودعات، اجلبها وثبتها باستخدام أضف/أزل."
 
-#: src/thirdsoft.py:411
+#: src/thirdsoft.py:415 src/sourceeditor.py:84
 msgid "Details"
 msgstr "تفاصيل"
 
-#: src/thirdsoft.py:450
+#: src/thirdsoft.py:454
 msgid ""
 "It is a possible security risk to use packages from Third-Party Sources.\n"
-"Please be careful."
+"Please be careful and use only sources you trust."
 msgstr ""
-"استخدام مصادر طرف ثالث قد يكون خطرا أمنيا.\n"
-"من فضلك كن حذرا."
 
-#: src/thirdsoft.py:453 src/nautilus.py:197
+#: src/thirdsoft.py:457 src/nautilus.py:187
 msgid "Warning"
 msgstr "تحذير"
 
-#: src/thirdsoft.py:457
+#: src/thirdsoft.py:461
 msgid "Never show this dialog"
 msgstr "لا تظهر هذا الحوار أبدا"
 
-#: src/thirdsoft.py:479
+#: src/thirdsoft.py:483
 msgid ""
 "You can install the new applications through Add/Remove.\n"
 "Do you want to go now?"
@@ -736,7 +736,7 @@ msgstr ""
 "تستطيع تثبيت التطبيقات الجديد عبر أضف/أزل.\n"
 "أتريد التوجه الآن؟"
 
-#: src/thirdsoft.py:480 src/sourceeditor.py:404
+#: src/thirdsoft.py:484 src/sourceeditor.py:404
 msgid "The software information is up-to-date now"
 msgstr "معلومات البرنامج محدثة حالياً"
 
@@ -779,8 +779,8 @@ msgid "Show mounted volumes on desktop"
 msgstr "أظهر الأجزاء المضمومة على سطح المكتب"
 
 #: src/icons.py:145
-msgid "Use \"Home Folder\" as desktop(Logout for changes to take effect)"
-msgstr "استخدم \"مجلد المنزل\" كسطح مكتب (اخرج لتتم التغييرات)"
+msgid "Use \"Home Folder\" as desktop (Logout for changes to take effect)"
+msgstr "استخدم \"مجلد المنزل\" كسطح مكتب (سجّل خروجك لتنفذ التغييرات)"
 
 #: src/metacity.py:37
 msgid "Window Decorate Effect"
@@ -856,11 +856,9 @@ msgstr "مدير التركيب"
 
 #: src/metacity.py:94
 msgid ""
-"To enable the compositing feature of metacity, You should disable the Visual "
-"Effects in \"Appearance\" by yourself."
+"To enable the compositing feature of metacity, you should manually disable "
+"Visual Effects in \"Appearance\"."
 msgstr ""
-"لتمكين ميزة التركيب لmetacity. يجب أن تعطّل المزايا البصرية في \"المظهر\" "
-"بنفسك."
 
 #: src/session.py:39
 msgid "Splash Screen (Click On Image)"
@@ -883,8 +881,8 @@ msgid "Show logout prompt"
 msgstr "أظهر محث الخروج"
 
 #: src/session.py:137
-msgid "Allow TCP Connections(Remote Desktop Connect)"
-msgstr "اسمح باتصالات TCP (اتصال سطح المكتب البعيد)"
+msgid "Allow TCP Connections (Remote Desktop Connect)"
+msgstr "اسمح باتصالات TCP (اتصالات سطح مكتب بعيد)"
 
 #: src/session.py:140
 msgid "Show splash screen"
@@ -1042,10 +1040,6 @@ msgstr "أظهر سطح المكتب"
 msgid "Widget"
 msgstr "ودجة"
 
-#: src/compiz.py:371 src/nautilus.py:222
-msgid "Update Successfully!"
-msgstr "تم التحديث بنجاح!"
-
 #: src/shortcuts.py:46
 msgid "Shortcut Commands"
 msgstr "أوامر الاختصار"
@@ -1084,83 +1078,94 @@ msgstr "مفتاح"
 msgid "Clean"
 msgstr "تنظيف"
 
-#: src/cleaner.py:52 src/cleaner.py:75 src/nautilus.py:50
-msgid "Cleaning..."
-msgstr "تنظيف..."
+#: src/cleaner.py:54
+msgid "Cleaning Package Config"
+msgstr ""
 
-#: src/cleaner.py:56 src/cleaner.py:79
+#: src/cleaner.py:61 src/cleaner.py:88
 #, python-format
 msgid "Cleaning...%s"
 msgstr "تنظيف... %s"
 
-#: src/cleaner.py:134
+#: src/cleaner.py:81
+msgid "Cleaning Package Cache"
+msgstr ""
+
+#: src/cleaner.py:143
 msgid "Package"
 msgstr "حزمة"
 
-#: src/cleaner.py:158
+#: src/cleaner.py:167 src/cleaner.py:188
 msgid "Packages"
 msgstr "حزم"
 
-#: src/cleaner.py:181
+#: src/cleaner.py:212
 msgid "Package Cache"
 msgstr "مخزن الحزم"
 
-#: src/cleaner.py:191
+#: src/cleaner.py:222
 #, python-format
 msgid ""
 "<b>%s</b>\n"
-"Take %s KB of disk space"
+"Take %s of disk space"
 msgstr ""
-"<b>%s</b>\n"
-"يأخذ %s ك.ب. من مساحة القرص"
 
-#: src/cleaner.py:214
+#: src/cleaner.py:245
 msgid "Package Config"
 msgstr "تهيئة الحزمة"
 
-#: src/cleaner.py:247
+#: src/cleaner.py:278
 #, python-format
 msgid "%d package selected to remove"
-msgstr "%d حزمة مختارة للإزالة"
+msgid_plural "%d packages selected to remove"
+msgstr[0] "لا حزمة مختارة للحذف"
+msgstr[1] "حزمة مختارة واحدة للحذف"
+msgstr[2] "حزمتان مختارتان للحذف"
+msgstr[3] "%d حزم مختارة للحذف"
+msgstr[4] "%d حزمة مختارة للحذف"
+msgstr[5] "%d حزمة مختارة للحذف"
 
-#: src/cleaner.py:248
+#: src/cleaner.py:282
 #, python-format
-msgid "%d packages selected to remove"
-msgstr "%d حزم مختارة للإزالة"
+msgid "%s of space will be freed"
+msgstr ""
 
-#: src/cleaner.py:251
-#, python-format
-msgid "%d KB of space will be freed"
-msgstr "%d ك.ب. من المساحة ستحرر"
+#: src/cleaner.py:361
+msgid "Canceled by user!"
+msgstr ""
 
-#: src/cleaner.py:320 src/nautilus.py:203
+#: src/cleaner.py:364 src/nautilus.py:193
 msgid "Clean up Successful!"
 msgstr "تم التنظيف بنجاح!"
 
-#: src/cleaner.py:323
+#: src/cleaner.py:367
 msgid "Clean up Failed!"
 msgstr "فشل التنظيف!"
 
-#: src/cleaner.py:329
+#: src/cleaner.py:373
 msgid ""
 "Free up disk space by removing unneeded packages and cleaning the package "
 "download cache."
 msgstr ""
 "حرّر مساحة من القرص عن طريق إزالة الحزم غير المطلوبة وتنظيف مخزن تنزيل الحزم."
 
-#: src/cleaner.py:357
+#: src/cleaner.py:401
 msgid "Clean Package"
 msgstr "تنظيف الحزم"
 
-#: src/cleaner.py:362
+#: src/cleaner.py:406
 msgid "Clean Cache"
 msgstr "نظّف المخزن"
 
-#: src/cleaner.py:367
+#: src/cleaner.py:411
 msgid "Clean Config"
 msgstr "نظّف التهيئة"
 
-#: src/cleaner.py:373
+#: src/cleaner.py:416
+msgid "Clean Kernel"
+msgstr "نظّف النواة"
+
+#: src/cleaner.py:422
 msgid "Select All"
 msgstr "تحديد الكل"
 
@@ -1355,69 +1360,65 @@ msgstr ""
 "يجب أن يكون 24×24."
 
 #: src/gnomesettings.py:149
-msgid "Do you want take effect immediately?"
-msgstr "أتريد تنفيذ التأثير حالا؟"
+msgid "Do you want your changes to take effect immediately?"
+msgstr "أتريد تنفيذ تغييراتك فورا؟"
 
-#: src/nautilus.py:100
+#: src/nautilus.py:51
+msgid "Cleaning..."
+msgstr "تنظيف..."
+
+#: src/nautilus.py:101
 msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
 msgstr "أظهر التصاريح في نافذة \"خصائص الملف\" في نوتلس"
 
-#: src/nautilus.py:103
+#: src/nautilus.py:104
 msgid "File Browser"
 msgstr "مستعرض الملفات"
 
-#: src/nautilus.py:106
-msgid "CD Burner"
-msgstr "حارق الاسطونات"
+#: src/nautilus.py:109
+msgid "Default thumbnail icon size (pixels)"
+msgstr "حجم مصغرات الأيقونات (بالبكسل)"
 
-#: src/nautilus.py:108
-msgid "Enable BurnProof technology"
-msgstr "مكّن تقنية BurnProof"
+#: src/nautilus.py:123
+msgid "Maximum size of the thumbnail cache (megabytes)"
+msgstr "أقصى حجم لمخزن المصغرات (بالمغيابايت)"
 
-#: src/nautilus.py:111
-msgid "Enable OverBurn"
-msgstr "مكّن الحرق الزائد (OverBurn)"
+#: src/nautilus.py:135
+msgid "Maximum age for the thumbnail in the cache (days)"
+msgstr "أقصى عمر للمصغرات في المخزن (بالأيام)"
 
-#: src/nautilus.py:119
-msgid "Default thumbnail icon size (Pixels)"
-msgstr "حجم مصغرة الأيقونة المبدئي (بكسل)"
-
-#: src/nautilus.py:133
-msgid "Maximum size of the thumbnail cache (Megabytes)"
-msgstr "أقصى حجم لمخزن المصغرات (ميغابايت)"
-
-#: src/nautilus.py:145
-msgid "Maximum age for the thumbnail in the cache (Days)"
-msgstr "أقصى عمر لمخزن المصغرات (أيام)"
-
-#: src/nautilus.py:157
+#: src/nautilus.py:147
 msgid "Thumbnails Settings"
 msgstr "إعدادات المصغرات"
 
-#: src/nautilus.py:165
+#: src/nautilus.py:155
 msgid "Nautilus with Open Terminal"
 msgstr "نوتلس بطرفية مفتوحة"
 
-#: src/nautilus.py:167
+#: src/nautilus.py:157
 msgid "Nautilus with Root Privileges"
 msgstr "نوتلس بصلاحيات جذر"
 
-#: src/nautilus.py:169
+#: src/nautilus.py:159
 msgid "Nautilus with Wallpaper"
 msgstr "نوتلس بخلفية"
 
-#: src/nautilus.py:171
+#: src/nautilus.py:161
 msgid "Nautilus Extensions"
 msgstr "امتدادات نوتلس"
 
-#: src/nautilus.py:193
+#: src/nautilus.py:183
 #, python-format
-msgid "Clean up the thumbnails cache (Free %s disk size)"
-msgstr "نظّف مخزن المصغرات (يحرّر %s من مساحة القرص)"
+msgid "Clean up the thumbnails cache (will free %s of disk space)"
+msgstr "نظف مخزن المصغرات (سوف يحرر %s من مساحة القرص)"
 
-#: src/nautilus.py:196
-msgid "The thumbnails cache will be cleaned, do you wish to continue?"
-msgstr "سينظف مخزن المصغرات، أتريد المتابعة؟"
+#: src/nautilus.py:186
+msgid "The thumbnails cache will be cleaned, Do you wish to continue?"
+msgstr "سوف يُنظّف مخزن المصغرات، أتريد المتابعة؟"
+
+#: src/nautilus.py:214
+msgid "Update failed!"
+msgstr "فشل التحديث!"
 
 #: src/powermanager.py:37
 msgid "Advanced Power Management Settings"
@@ -1503,6 +1504,10 @@ msgstr "إعادة ضبط"
 msgid "Enable Check Update"
 msgstr "تمكين فحص التحديث"
 
+#: src/preferences.py:136
+msgid "Enable PowerUser Mode"
+msgstr ""
+
 #: src/sourceeditor.py:62 src/sourceeditor.py:67
 msgid "Choose the sources"
 msgstr "إختيار المصادر"
@@ -1513,20 +1518,13 @@ msgid ""
 "you."
 msgstr "تستطيع قراءة العنوان والتعليق لتقرير أي مصدر متاسب لك."
 
-#: src/sourceeditor.py:84
-msgid "Detail"
-msgstr "تفاصيل"
-
 #: src/sourceeditor.py:103 src/sourceeditor.py:108
 msgid "Submit your sources"
 msgstr "إرسال مصادرك"
 
 #: src/sourceeditor.py:108
-msgid ""
-"You can submit your sources to the server, so that other people can share "
-"with your sources."
-msgstr ""
-"تستطيع إرسال مصادرك إلى الخادوم، ليتمكن الأشخاص الأخرون من مشاركة مصادرك."
+msgid "You can submit your sources to the server for other people to use."
+msgstr "تستطيع إرسال مصادرك إلى الخادوم ليستخدمها أشخاص آخرون."
 
 #: src/sourceeditor.py:113
 msgid "_Source Title:"
@@ -1537,12 +1535,12 @@ msgid "_Locale:"
 msgstr "المو_قع:"
 
 #: src/sourceeditor.py:123
-msgid "Enter the title of the source, such as \"Ubuntu Official Repostory\""
-msgstr "أدهل عنوان المصدر، مثل \"مستودع أوبونتو الرسمي\""
+msgid "Enter the title of the source, e.g. \"Ubuntu Official Repostory\""
+msgstr "أدخل عنوان المصدر، على سبيل المثال \"مستودع أوبونتو الرسمي\""
 
 #: src/sourceeditor.py:125
-msgid "If the locale isn't correct, you can edit by yourself"
-msgstr "إذا لم يكن الموقع صحيحا، تستطيع تحريره بنفسك"
+msgid "If the locale isn't correct you can edit manually"
+msgstr "إذا لم تكن الإعدادات الإقليمية صحيحة تستطيع تعديلها يدويا"
 
 #: src/sourceeditor.py:140
 msgid "Submit"
@@ -1588,8 +1586,8 @@ msgid "You can install new applications through Add/Remove."
 msgstr "تستطيع تثبيت تطبيقات جديدة عبر أضف/أزل."
 
 #: src/sourceeditor.py:420
-msgid "Please input the correct information of the sources!"
-msgstr "من فضلك أدخل المعلومات الصحيحة عن المصادر!"
+msgid "Please input the correct information about sources!"
+msgstr "من فضلك أدخل معلومات المصادر الصحيحة!"
 
 #: src/sourceeditor.py:433
 msgid ""
@@ -1607,19 +1605,19 @@ msgstr "لا مصدر بيانات متاح"
 
 #: src/sourceeditor.py:453
 msgid ""
-"Your sources will be reviewed and open for others soon.\n"
+"Your sources will be reviewed and made available for others soon.\n"
 "Thank you!"
 msgstr ""
-"سوف تراجع مصادرك وتفتح للآخرين قريبا.\n"
+"سوف تُراجع مصادرك وتكون متاحة للآخرين قريبا.\n"
 "شكرا لك!"
 
 #: src/sourceeditor.py:454
-msgid "Sumit successfully"
-msgstr "نجح الإرسال"
+msgid "Successfully submitted"
+msgstr "أرسلت بنجاح"
 
 #: src/sourceeditor.py:467
-msgid "Please check the permission of sources.list."
-msgstr "من فضلك التمس إذن sources.list."
+msgid "Please check the permission of the sources.list file"
+msgstr "من فضلك التمس إذن ملف sources.list"
 
 #: src/sourceeditor.py:468
 msgid "Save failed!"
@@ -1633,7 +1631,7 @@ msgstr ""
 "سوف يضيع المحتوى الحالي بعد إعادة التحميل!\n"
 "أتريد الاستمرار؟"
 
-#: src/common/package.py:64
+#: src/common/package.py:67
 msgid "(Not available)"
 msgstr "(غير متوفر)"
 
@@ -1682,14 +1680,18 @@ msgid "Audio Management and Playback application"
 msgstr ""
 
 #: src/common/appdata.py:68
-msgid "A true dock for linux"
-msgstr ""
+msgid "GTK+ Bluetooth Manager"
+msgstr "مدير بلوتوث جتك+"
 
 #: src/common/appdata.py:69
+msgid "A true dock for linux"
+msgstr "مرساة حقيقة للينكس"
+
+#: src/common/appdata.py:70
 msgid "A chm file viewer written in GTK+"
 msgstr "عارض ملفات chm مكتوب بGTK+"
 
-#: src/common/appdata.py:70
+#: src/common/appdata.py:71
 msgid ""
 "Chromium is an open-source browser project that aims to build a safer, "
 "faster, and more stable way for all Internet users to experience the web."
@@ -1697,31 +1699,31 @@ msgstr ""
 "Chromium هو مشروع متصفح مفتوح-المصدر يهدف لبناء طريق آمن، سريع، و أكثر "
 "ثباتاً لكل مستخدمي الإنترنت."
 
-#: src/common/appdata.py:71
+#: src/common/appdata.py:72
 msgid "The open source, cross-platform IDE"
 msgstr "بيئة التطوير المتكاملة مفتوحة المصدر، متعددة المنصات"
 
-#: src/common/appdata.py:72
+#: src/common/appdata.py:73
 msgid "Advanced Desktop Effects Settings Manager"
 msgstr "مدير إعدادات تأثيرات سطح المكتب المتقدمة"
 
-#: src/common/appdata.py:73
-msgid "An API documentation browser for GNOME."
-msgstr ""
-
 #: src/common/appdata.py:74
+msgid "An API documentation browser for GNOME."
+msgstr "متصفح توثيق API لجنوم."
+
+#: src/common/appdata.py:75
 msgid "A Bittorrent client written in PyGTK"
 msgstr "عميل بتتورنت مكتوب بPyGTK"
 
-#: src/common/appdata.py:75
+#: src/common/appdata.py:76
 msgid "Store, Sync and Share your files online."
 msgstr "خزّن وزامن وشارك الملفات على الإنترنت."
 
-#: src/common/appdata.py:76
+#: src/common/appdata.py:77
 msgid "Extensible Tool Platform and Java IDE"
 msgstr "أداة منصة قابلة للامتداد وبيئة تطوير جافا متكاملة"
 
-#: src/common/appdata.py:77
+#: src/common/appdata.py:78
 msgid ""
 "EIOffice Personal 2009. Free for Chinese users. See "
 "http://www.evermoresw.com."
@@ -1729,172 +1731,172 @@ msgstr ""
 "EIOffice Personal 2009. مجاني للمستخدمين الصينين. راجع "
 "http://www.evermoresw.com."
 
-#: src/common/appdata.py:78
+#: src/common/appdata.py:79
 msgid "A client for the Windows Live Message network"
 msgstr "عميل لشبكة مراسلة ويندوز لايف"
 
-#: src/common/appdata.py:79
+#: src/common/appdata.py:80
 msgid ""
 "Empathy consists of a rich set of reusable instant messaging widgets, and a "
 "GNOME client using those widgets."
 msgstr ""
 
-#: src/common/appdata.py:80
+#: src/common/appdata.py:81
 msgid "GTK+ based flexible audio player, similar to Amarok"
 msgstr "مشغل صوت مرن مبني على جتك+، شبيه بأماروك"
 
-#: src/common/appdata.py:81
+#: src/common/appdata.py:82
 msgid "File transmission via ftp, sftp and ftps"
 msgstr "نقل الملفات عبر ftp و sftp و ftps"
 
-#: src/common/appdata.py:82
+#: src/common/appdata.py:83
 msgid "An extremly fast and lightweight file manager"
 msgstr "مدير ملفات سريع وخفيف جدا"
 
-#: src/common/appdata.py:83
+#: src/common/appdata.py:84
 msgid ""
 "Galaxium is an instant messenger application designed for the GNOME desktop"
 msgstr "Galaxium هو برنامج محادثة فورية مصمم لواجهة جنوم"
 
-#: src/common/appdata.py:84
+#: src/common/appdata.py:85
 msgid "A GTK+ jabber client"
 msgstr "عميل جتك+ لجابر"
 
-#: src/common/appdata.py:85
+#: src/common/appdata.py:86
 msgid "A fast and lightweight IDE"
 msgstr "بيئة تطوير متكاملة سريعة وخفيفية"
 
-#: src/common/appdata.py:86
+#: src/common/appdata.py:87
 msgid "A multithreaded FTP client"
 msgstr ""
 
-#: src/common/appdata.py:87
+#: src/common/appdata.py:88
 msgid "GNOME Hex editor"
 msgstr "محرّر جنوم هكس"
 
-#: src/common/appdata.py:88
+#: src/common/appdata.py:89
 msgid "Notifies the user upon arrival of new mail in Gmail"
 msgstr "يشعر المستخدم بوصول بريد جديد في Gmail"
 
-#: src/common/appdata.py:89
+#: src/common/appdata.py:90
 msgid "A powerful, speedy, and sexy remote control for the GNOME Desktop"
 msgstr "تحكم عن بعد قوي وسريع ومثير لسطح المكتب جنوم"
 
-#: src/common/appdata.py:90
+#: src/common/appdata.py:91
 msgid "Global Menu Bar for GNOME"
 msgstr "شريط قائمة عمومي لجنوم"
 
-#: src/common/appdata.py:91
+#: src/common/appdata.py:92
 msgid ""
 "A program that combines satellite imagery and maps to put the world's "
 "geographic information at your fingertips."
 msgstr ""
 
-#: src/common/appdata.py:92
+#: src/common/appdata.py:93
 msgid "Platform for running Google Gadgets on Linux"
 msgstr "منصة لتشغيل بريمجات غوغل على لينكس"
 
-#: src/common/appdata.py:93
+#: src/common/appdata.py:94
 msgid "GNOME partition editor"
 msgstr "محرّر أقسام جنوم"
 
-#: src/common/appdata.py:94
+#: src/common/appdata.py:95
 msgid "Lightweight image viewer"
 msgstr "عارض صور خفيف"
 
-#: src/common/appdata.py:95
+#: src/common/appdata.py:96
 msgid "A powerful screenshot tool"
 msgstr "أداة لقطات شاشة قوية"
 
-#: src/common/appdata.py:96
+#: src/common/appdata.py:97
 msgid "Graphical frontend for recordmydesktop"
 msgstr "واجهة رسومية لrecordmydesktop"
 
-#: src/common/appdata.py:97
+#: src/common/appdata.py:98
 msgid ""
 "GTG is a personal organizer for the GNOME desktop environment, it focuses on "
 "ease of use and flexibility, while keeping things simple."
 msgstr ""
 
-#: src/common/appdata.py:98
+#: src/common/appdata.py:99
 msgid "Gwibber is an open source microblogging client for GNOME"
 msgstr "Gwibber هو عميل مواقع التدوين المصغّر لواجهة جنوم"
 
-#: src/common/appdata.py:99
+#: src/common/appdata.py:100
 msgid "A graphical CD image editor"
 msgstr "محرّر صورة اسطوانة رسومي"
 
-#: src/common/appdata.py:100
+#: src/common/appdata.py:101
 msgid "Intelligent Input Bus for Linux / Unix OS"
 msgstr ""
 
-#: src/common/appdata.py:101
+#: src/common/appdata.py:102
 msgid "It is a PinYin engine for IBus."
 msgstr ""
 
-#: src/common/appdata.py:102
+#: src/common/appdata.py:103
 msgid ""
 "IBus-Table is the IM Engine framework for table-based input methods, such as "
 "ZhengMa, WuBi, ErBi, ChangJie and so on."
 msgstr ""
 
-#: src/common/appdata.py:103
+#: src/common/appdata.py:104
 msgid "Create and edit Scalable Vector Graphics images"
 msgstr ""
 
-#: src/common/appdata.py:104
+#: src/common/appdata.py:105
 msgid "Non-linear editor for Digital Video data"
 msgstr ""
 
-#: src/common/appdata.py:105
+#: src/common/appdata.py:106
 msgid "A music player for Last.fm personalized radio"
 msgstr ""
 
-#: src/common/appdata.py:106
+#: src/common/appdata.py:107
 msgid "GTK+ based simple text editor"
 msgstr "محرر نصوص بسيط مبني على GTK+"
 
-#: src/common/appdata.py:107
+#: src/common/appdata.py:108
 msgid "Feed aggregator for GNOME"
 msgstr ""
 
-#: src/common/appdata.py:108
-msgid "Mail notification in system tray"
-msgstr ""
-
 #: src/common/appdata.py:109
+msgid "Mail notification in system tray"
+msgstr "إشعار بريد في صينية النظام"
+
+#: src/common/appdata.py:110
 msgid "Adcal tool to diff and merge files"
 msgstr ""
 
-#: src/common/appdata.py:110
+#: src/common/appdata.py:111
 msgid "A fast and simple GTK+ Image Viewer"
 msgstr "عارض صور سريع و بسيط مبني على GTK+"
 
-#: src/common/appdata.py:111
+#: src/common/appdata.py:112
 msgid "Open internet TV, beyond anything else"
 msgstr ""
 
-#: src/common/appdata.py:112
+#: src/common/appdata.py:113
 msgid "Webkit based lightweight web browser"
 msgstr ""
 
-#: src/common/appdata.py:113
+#: src/common/appdata.py:114
 msgid "An IDE to Develop .NET applications."
 msgstr ""
 
-#: src/common/appdata.py:114
+#: src/common/appdata.py:115
 msgid "The Ultimate Movie Player For Linux"
 msgstr ""
 
-#: src/common/appdata.py:115
+#: src/common/appdata.py:116
 msgid "IDE for Java, C/C++, Ruby, UML, etc."
 msgstr ""
 
-#: src/common/appdata.py:116
-msgid "The Opera Web Browser"
-msgstr ""
-
 #: src/common/appdata.py:117
+msgid "The Opera Web Browser"
+msgstr "متصح الوب أوبرا"
+
+#: src/common/appdata.py:118
 msgid ""
 "Pidgin is a graphical modular messaging client based on libpurple which is "
 "capable of connecting to AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, SIP/SIMPLE, "
@@ -1902,122 +1904,126 @@ msgid ""
 "QQ all at once."
 msgstr ""
 
-#: src/common/appdata.py:118
+#: src/common/appdata.py:119
 msgid "Run your Windows programs on Linux"
 msgstr "شغّل برامجك لويندوز على لينكس"
 
-#: src/common/appdata.py:119
+#: src/common/appdata.py:120
 msgid "A framework for desktop widgets"
 msgstr "إطار عمل لودجات سطح المكتب"
 
-#: src/common/appdata.py:120
+#: src/common/appdata.py:121
 msgid "Feature-rich screenshot application(formerly known as GScrot)"
 msgstr ""
 
-#: src/common/appdata.py:121
+#: src/common/appdata.py:122
 msgid "Make audio/video calls using this VoIP Software"
 msgstr ""
 
-#: src/common/appdata.py:122
+#: src/common/appdata.py:123
 msgid "A great MPlayer front-end, written in QT4"
 msgstr "واجهة MPlayer رائعة، مكتوبة باستخدام QT4"
 
-#: src/common/appdata.py:123
+#: src/common/appdata.py:124
 msgid "Convert audio files into other formats"
 msgstr "حوّل ملفات الصورت إلى هيئات أخرى"
 
-#: src/common/appdata.py:124
+#: src/common/appdata.py:125
 msgid "An international dictionary"
 msgstr "قاموس دولي"
 
-#: src/common/appdata.py:125
+#: src/common/appdata.py:126
 msgid ""
 "Swiftweasel is an optimized build of the Mozilla Firefox web browser for "
 "Linux"
 msgstr ""
 
-#: src/common/appdata.py:126
+#: src/common/appdata.py:127
 msgid ""
 "A desktop application that will watch for events (website updates, emails, "
 "file and folder changes...)"
 msgstr ""
 
-#: src/common/appdata.py:127
+#: src/common/appdata.py:128
+msgid "An instant messaging application powered by qt-mono-bindings"
+msgstr ""
+
+#: src/common/appdata.py:129
 msgid "A Useful Task List"
 msgstr "قائمة مهمات مفيدة"
 
-#: src/common/appdata.py:128
+#: src/common/appdata.py:130
 msgid "Multiple GNOME terminals in one window"
 msgstr "طرفيات جنوم متعددة في نافذة واحدة"
 
-#: src/common/appdata.py:129
+#: src/common/appdata.py:131
 msgid ""
 "Transmission is a fast, easy, and free multi-platform BitTorrent client."
 msgstr ""
 
-#: src/common/appdata.py:130
+#: src/common/appdata.py:132
 msgid "Ubuntu Tweak makes it easier to configure Ubuntu"
 msgstr "يجعل تكييف أوبونتو تهيئة أوبونتو أسهل"
 
-#: src/common/appdata.py:131
+#: src/common/appdata.py:133
 msgid "Commonly used restricted packages"
 msgstr "الحزم المقيدة المستخدمة بشكل شائع"
 
-#: src/common/appdata.py:132 src/common/appdata.py:133
+#: src/common/appdata.py:134 src/common/appdata.py:135
 msgid "A feature rich, high performance virtualization software"
 msgstr ""
 
-#: src/common/appdata.py:134
+#: src/common/appdata.py:136
 msgid "Read, capture, broadcast your multimedia streams"
 msgstr ""
 
-#: src/common/appdata.py:135
+#: src/common/appdata.py:137
 msgid "Run Virtual Machines using VMware"
 msgstr "شغّل أجهزة تخيلية باستخدام VMware"
 
-#: src/common/appdata.py:136
+#: src/common/appdata.py:138
 msgid "A compatibility layer for running Windows programs"
 msgstr ""
 
-#: src/common/appdata.py:137
+#: src/common/appdata.py:139
 msgid ""
 "Wine-doors is an application designed to make installing windows software on "
 "Linux, Solaris or other Unix systems easier."
 msgstr ""
 
-#: src/common/appdata.py:138
+#: src/common/appdata.py:140
 msgid ""
 "XBMC is a free and open source software media player and entertainment hub"
 msgstr ""
 
-#: src/common/appdata.py:142
+#: src/common/appdata.py:144
 msgid "Development Version of Mozilla Firefox 3.1, 4.0"
 msgstr ""
 
-#: src/common/appdata.py:143
+#: src/common/appdata.py:145
 msgid "Development version of Compiz Fusion"
 msgstr "نسخة التطوير من Compiz Fusion"
 
-#: src/common/appdata.py:144
+#: src/common/appdata.py:146
 msgid "Google's Linux Repository"
 msgstr "مستودع غوغل لينكس"
 
-#: src/common/appdata.py:145
+#: src/common/appdata.py:147
 msgid "K Desktop Environment 4.2"
-msgstr ""
+msgstr "بيئة سطح المكتب كي 4.2"
 
-#: src/common/appdata.py:146
+#: src/common/appdata.py:148
 msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
 msgstr ""
 
-#: src/common/appdata.py:147
+#: src/common/appdata.py:149
 msgid ""
 "Multimedia, Entertainment and Distraction In Ubuntu\n"
 "Medibuntu is a repository of packages that cannot be included into the "
 "Ubuntu distribution for legal reasons (copyright, license, patent, etc)."
 msgstr ""
 
-#: src/common/appdata.py:149
+#: src/common/appdata.py:151
 msgid ""
 "Ubuntu repository for Chinese users.\n"
 "Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and "
@@ -2027,7 +2033,29 @@ msgstr ""
 "يتضمن EIOffice، وتكييف أوبونتو، و ibus input method، أوبن أوفيس.أورغ 3.0 "
 "وبرمجيات أخرى."
 
-#: src/common/policykit/polkitbutton.py:78
+#: src/common/misc.py:15
+#, python-format
+msgid "%(size)d byte"
+msgid_plural "%(size)d bytes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/common/misc.py:17
+#, python-format
+msgid "%.1f KB"
+msgstr ""
+
+#: src/common/misc.py:19
+#, python-format
+msgid "%.1f MB"
+msgstr ""
+
+#: src/common/misc.py:20
+#, python-format
+msgid "%.1f GB"
+msgstr ""
+
+#: src/common/policykit/polkitbutton.py:81
 msgid "_Unlock"
 msgstr "_فك القفل"
 
@@ -2063,11 +2091,11 @@ msgstr "تعذّر حذف مجلد الجذر"
 msgid ""
 "Can't rename!\n"
 "\n"
-"There're files in it!"
+"There are files in it!"
 msgstr ""
 "تعذّرت إعادة التسمية!\n"
 "\n"
-"يوجد ملفات فيه!"
+"يوجد ملفات داخله."
 
 #: src/common/widgets/dialogs.py:67
 msgid "An unexpected error has occurred."
