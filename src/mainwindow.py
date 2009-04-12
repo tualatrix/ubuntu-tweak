@@ -243,7 +243,7 @@ MODULES = \
     [SYSTEM, 'system.png', _("System"), None, SHOW_CHILD],
     [FILETYPE, 'filetype.png', _('File Type Manager'), FileType, SHOW_NONE],
     [NAUTILUS, 'nautilus.png', _("Nautilus"), Nautilus, SHOW_NONE],
-    [POWER, 'powermanager.png', _("Power Managerment"), PowerManager, SHOW_NONE],
+    [POWER, 'powermanager.png', _("Power Management"), PowerManager, SHOW_NONE],
     [SECU_OPTIONS, 'lockdown.png', _("Security"), LockDown, SHOW_NONE],
 ]
 
