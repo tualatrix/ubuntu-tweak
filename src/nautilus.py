@@ -27,7 +27,7 @@ import gettext
 import thread
 
 try:
-    from common.package import PackageWorker, AptCheckButton, update_apt_cache
+    from common.package import package_worker, AptCheckButton, update_apt_cache
     DISABLE = False
 except ImportError:
     DISABLE = True
@@ -150,7 +150,7 @@ class Nautilus(TweakPage):
 
         if not DISABLE:
             update_apt_cache(True)
-            self.packageWorker = PackageWorker()
+            self.package_worker = package_worker
 
             self.nautilus_terminal = AptCheckButton(_('Nautilus with Open Terminal'), 'nautilus-open-terminal')
             self.nautilus_terminal.connect('toggled', self.colleague_changed)
@@ -205,7 +205,7 @@ class Nautilus(TweakPage):
             else:
                 to_rm.append(widget.pkgname)
 
-        state = self.packageWorker.perform_action(widget.get_toplevel(), to_add, to_rm)
+        state = self.package_worker.perform_action(widget.get_toplevel(), to_add, to_rm)
 
         if state == 0:
             self.button.set_sensitive(False)

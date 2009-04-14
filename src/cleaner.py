@@ -26,7 +26,7 @@ import gettext
 from common.utils import *
 from common.misc import filesizeformat
 from common.policykit import PolkitButton, proxy
-from common.package import PackageWorker, update_apt_cache
+from common.package import package_worker, update_apt_cache
 from common.widgets import TweakPage
 from common.widgets.dialogs import *
 from common.widgets.utils import ProcessDialog
@@ -114,7 +114,7 @@ class PackageView(gtk.TreeView):
         self.set_model(model)
 
         self.__check_list = []
-        self.__packageworker = PackageWorker()
+        self.package_worker = package_worker
 
         self.__add_column()
 
@@ -162,12 +162,12 @@ class PackageView(gtk.TreeView):
         self.mode = 'package'
 
         icon = get_icon_with_name('deb', 24)
-        list = self.__packageworker.list_autoremovable()
+        list = self.package_worker.list_autoremovable()
         self.total_num = len(list)
         self.__column.set_title(_('Packages'))
 
         for pkg in list:
-            desc = self.__packageworker.get_pkgsummary(pkg)
+            desc = self.package_worker.get_pkgsummary(pkg)
 
             model.append((
                 False,
@@ -183,12 +183,12 @@ class PackageView(gtk.TreeView):
         self.mode = 'kernel'
 
         icon = get_icon_with_name('deb', 24)
-        list = self.__packageworker.list_unneeded_kerenl()
+        list = self.package_worker.list_unneeded_kerenl()
         self.total_num = len(list)
         self.__column.set_title(_('Packages'))
 
         for pkg in list:
-            desc = self.__packageworker.get_pkgsummary(pkg)
+            desc = self.package_worker.get_pkgsummary(pkg)
 
             model.append((
                 False,
@@ -309,7 +309,7 @@ class PackageView(gtk.TreeView):
             self.__check_list.append(model.get_value(iter, COLUMN_NAME))
 
     def clean_selected_package(self):
-        state = self.__packageworker.perform_action(self.get_toplevel(), [],self.__check_list)
+        state = self.package_worker.perform_action(self.get_toplevel(), [],self.__check_list)
 
         if state == 0:
             self.show_success_dialog()

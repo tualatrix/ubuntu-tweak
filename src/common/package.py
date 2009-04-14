@@ -182,7 +182,7 @@ class PackageWorker:
 
         return self.return_code
 
-worker = PackageWorker()
+package_worker = PackageWorker()
 
 if __name__ == '__main__':
     update_apt_cache()

@@ -32,7 +32,7 @@ from common.widgets.dialogs import InfoDialog
 from xdg.DesktopEntry import DesktopEntry
 
 try:
-    from common.package import PackageWorker, PackageInfo, update_apt_cache
+    from common.package import package_worker, PackageInfo, update_apt_cache
     DISABLE = False
 except ImportError:
     DISABLE = True
@@ -159,7 +159,7 @@ class Installer(TweakPage):
 
         self.to_add = []
         self.to_rm = []
-        self.packageWorker = PackageWorker()
+        self.package_worker = package_worker
 
         vbox = gtk.VBox(False, 8)
         self.pack_start(vbox)
@@ -354,7 +354,7 @@ class Installer(TweakPage):
         return treeview
 
     def on_apply_clicked(self, widget, data = None):
-        self.packageWorker.perform_action(widget.get_toplevel(), self.to_add, self.to_rm)
+        self.package_worker.perform_action(widget.get_toplevel(), self.to_add, self.to_rm)
 
         done = True
         update_apt_cache()

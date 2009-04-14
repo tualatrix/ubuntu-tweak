@@ -29,7 +29,7 @@ from common.widgets import ListPack, SinglePack, TweakPage
 from common.widgets.dialogs import InfoDialog
 from common.systeminfo import module_check
 try:
-    from common.package import update_apt_cache, PackageWorker, AptCheckButton
+    from common.package import update_apt_cache, package_worker, AptCheckButton
 except:
     pass
 
@@ -204,7 +204,7 @@ class Compiz(TweakPage, CompizSetting):
     def create_interface(self):
         if module_check.has_apt():
             update_apt_cache(True)
-            self.packageWorker = PackageWorker()
+            self.package_worker = package_worker
 
             self.advanced_settings = AptCheckButton(_("Install Advanced Desktop Effects Settings Manager"),
                     'compizconfig-settings-manager')
@@ -364,7 +364,7 @@ class Compiz(TweakPage, CompizSetting):
             else:
                 to_rm.append(widget.pkgname)
 
-        self.packageWorker.perform_action(widget.get_toplevel(), to_add, to_rm)
+        self.package_worker.perform_action(widget.get_toplevel(), to_add, to_rm)
 
         self.button.set_sensitive(False)
 
