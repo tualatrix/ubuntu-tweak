@@ -131,6 +131,7 @@ APP_DATA = {
     'transmission-gtk': _('Transmission is a fast, easy, and free multi-platform BitTorrent client.'),
     'ubuntu-tweak': _('Ubuntu Tweak makes it easier to configure Ubuntu'),
     'ubuntu-restricted-extras': _('Commonly used restricted packages'),
+    'ubudsl': _('configure your USB ADSL modem and connection easier than ever!'),
     'virtualbox': _('A feature rich, high performance virtualization software'),
     'virtualbox-ose': _('A feature rich, high performance virtualization software'),
     'vlc': _('Read, capture, broadcast your multimedia streams'),

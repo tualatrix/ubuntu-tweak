@@ -139,6 +139,7 @@ data = \
     ('tasque', Desktop),
     ('terminator', Emulator),
     ('transmission-gtk', P2P),
+    ('ubudsl', Internet),
     ('ubuntu-restricted-extras', Desktop),
     ('virtualbox-ose', Emulator),
     ('vlc', Video),
