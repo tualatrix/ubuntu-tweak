@@ -68,29 +68,32 @@ def mime_type_get_icon(mime, size = 24):
     return pixbuf
 
 def get_icon_with_app(app, size):
-    import gio
-    gicon = app.get_icon()
+    try:
+        import gio
+        gicon = app.get_icon()
 
-    if gicon:
-        if isinstance(gicon, gio.ThemedIcon):
-            names = gicon.get_names()
-            names_list = []
-            for name in names:
-                if name.rfind('.') != -1:
-                    names_list.append(name[:name.rfind('.')])
-                else:
-                    names_list.append(name)
+        if gicon:
+            if isinstance(gicon, gio.ThemedIcon):
+                names = gicon.get_names()
+                names_list = []
+                for name in names:
+                    if name.rfind('.') != -1:
+                        names_list.append(name[:name.rfind('.')])
+                    else:
+                        names_list.append(name)
 
-            iconinfo = icontheme.choose_icon(names_list, size, gtk.ICON_LOOKUP_USE_BUILTIN)
-            if not iconinfo:
-                return get_icon_with_name('application-x-executable', size)
+                iconinfo = icontheme.choose_icon(names_list, size, gtk.ICON_LOOKUP_USE_BUILTIN)
+                if not iconinfo:
+                    return get_icon_with_name('application-x-executable', size)
 
-            return iconinfo.load_icon()
-        elif isinstance(gicon, gio.FileIcon):
-            file = app.get_icon().get_file().get_path()
-            return get_icon_with_file(file, size)
-    else:
-        return get_icon_with_name('application-x-executable', size)
+                return iconinfo.load_icon()
+            elif isinstance(gicon, gio.FileIcon):
+                file = app.get_icon().get_file().get_path()
+                return get_icon_with_file(file, size)
+        else:
+            return get_icon_with_name('application-x-executable', size)
+    except:
+        return get_icon_with_name('gtk-execute', size)
 
 if __name__ == '__main__':
 #    print get_icon_with_name('start-here', 24)
