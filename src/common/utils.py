@@ -1,6 +1,8 @@
 #!/usr/bin/python
 
+import os
 import gtk
+#TODO Should not use gnome.ui any more.
 from gnome import ui
 
 __all__ = (
@@ -94,6 +96,20 @@ def get_icon_with_app(app, size):
             return get_icon_with_name('application-x-executable', size)
     except:
         return get_icon_with_name('gtk-execute', size)
+
+def get_command_for_type(mime):
+    try:
+        import gio
+        return gio.app_info_get_default_for_type('text/plain', False).get_executable()
+    except:
+        if os.path.exists('/usr/bin/gedit'):
+            return 'gedit'
+        elif os.path.exists('/usr/bin/leafpad'):
+            return 'leafpad'
+        elif os.path.exists('/usr/bin/gvim'):
+            return 'gvim'
+        else:
+            return None
 
 if __name__ == '__main__':
 #    print get_icon_with_name('start-here', 24)

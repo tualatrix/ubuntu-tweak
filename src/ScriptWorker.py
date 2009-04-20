@@ -30,6 +30,7 @@ import subprocess
 from userdir import UserdirFile
 from common.consts import *
 from common.widgets import ErrorDialog
+from common.utils import get_command_for_type
 
 class FileChooserDialog(gtk.FileChooserDialog):
     """Show a dialog to select a folder, or to do more thing
@@ -106,14 +107,17 @@ class FileOperation:
 
     def open(self, source):
         """Open the file with gedit"""
-        if source[-1] == "root":
-            cmd = ["gksu", "-m", _("Enter your password to perform the administrative tasks") , "gedit"]
-            cmd.extend(source[:-1])
+        exe = get_command_for_type('text/plain')
+        if exe:
+            if source[-1] == "root":
+                cmd = ["gksu", "-m", _("Enter your password to perform the administrative tasks") , exe]
+                cmd.extend(source[:-1])
+            else:
+                cmd = [exe]
+                cmd.extend(source)
             subprocess.call(cmd)
         else:
-            cmd = ["gedit"]
-            cmd.extend(source)
-            subprocess.call(cmd)
+            ErrorDialog(_("Coudn't find any text editor in your system!")).launch()
 
     def browse(self, source):
         """Browser the folder as root"""
