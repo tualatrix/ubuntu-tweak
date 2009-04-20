@@ -27,6 +27,7 @@ import gettext
 import gobject
 
 from common.widgets import TweakPage, KeyGrabber, KeyModifier, CellRendererButton
+from common.utils import get_icon_with_name
 
 (
     COLUMN_ID,
@@ -75,8 +76,7 @@ class Shortcuts(TweakPage):
                 )
 
         client = gconf.client_get_default()
-        icontheme = gtk.icon_theme_get_default()
-        logo = icontheme.lookup_icon('gnome-terminal', 24, gtk.ICON_LOOKUP_NO_SVG).load_icon()
+        logo = get_icon_with_name('gnome-terminal', 24)
 
         for id in range(12):
             iter = model.append()
@@ -86,10 +86,11 @@ class Shortcuts(TweakPage):
             command = client.get_string("/apps/metacity/keybinding_commands/command_%d" % id)
             key = client.get_string("/apps/metacity/global_keybindings/run_command_%d" % id)
 
-            if not command: command = _("None")
-            icon = icontheme.lookup_icon(command, 24, gtk.ICON_LOOKUP_NO_SVG)
-            if icon: icon = icon.load_icon()
-            if key == "disabled": key = _("disabled")
+            if not command:
+                command = _("None")
+            icon = get_icon_with_name(command, 24)
+            if key == "disabled":
+                key = _("disabled")
 
             model.set(iter,
                     COLUMN_ID, id,
