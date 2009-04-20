@@ -20,6 +20,7 @@ scripts_DATA = \
 	open-with-gedit \
 	open-with-gedit-as-root \
 	browse-as-root \
+	make-hard-shadow-to-image \
 	$(NULL)
 
 EXTRA_DIST = $(scripts_DATA)
