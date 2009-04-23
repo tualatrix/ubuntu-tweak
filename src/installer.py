@@ -99,6 +99,7 @@ data = \
     ('gftp', FTP),
     ('ghex', Text),
     ('gmail-notify', Mail),
+    ('gnote', Text),
     ('gnome-do', Desktop),
     ('gnome-globalmenu', Desktop),
     ('googleearth', Internet),
