@@ -23,10 +23,11 @@ import gtk
 import thread
 import gobject
 
-from common.consts import *
+from common.consts import DATA_DIR
 from common.debug import run_traceback
-from common.widgets.dialogs import ErrorDialog
 from common.config import TweakSettings
+from common.widgets.dialogs import ErrorDialog
+from mainwindow import MainWindow
 
 try:
     import dl
@@ -45,8 +46,6 @@ class TweakLauncher:
         except:
             pass
 
-        from mainwindow import MainWindow
-
         window = MainWindow()
 
     def show_splash(self):
@@ -63,8 +62,8 @@ class TweakLauncher:
 
         win.show_all()
 
-        while gtk.events_pending ():
-            gtk.main_iteration ()
+        while gtk.events_pending():
+            gtk.main_iteration()
 
         win.destroy()
         gtk.gdk.threads_leave()
