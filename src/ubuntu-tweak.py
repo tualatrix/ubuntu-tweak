@@ -21,10 +21,6 @@
 import os
 import gtk
 import thread
-try:
-    import pynotify
-except:
-    pass
 import gobject
 
 from common.consts import *
@@ -82,8 +78,6 @@ class TweakLauncher:
 if __name__ == "__main__":
     try:
         gobject.threads_init()
-        if 'pynotify' in locals():
-            pynotify.init("Basics")
         launcher = TweakLauncher()
         launcher.main()
     except:

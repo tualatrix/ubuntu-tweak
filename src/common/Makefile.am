@@ -5,7 +5,6 @@ common_PYTHON = \
 	./download.py \
 	./inifile.py \
 	./debug.py \
-	./notify.py \
 	./package.py \
 	./__init__.py \
 	./config.py \
