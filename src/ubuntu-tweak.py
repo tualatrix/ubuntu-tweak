@@ -41,7 +41,8 @@ class TweakLauncher:
 
         try:
             from common.package import update_apt_cache
-        except ImportError:
+            update_apt_cache(init=True)
+        except:
             pass
 
         from mainwindow import MainWindow
