@@ -62,6 +62,8 @@ class CompizSetting:
     if module_check.has_ccm() and module_check.has_right_compiz():
         import compizconfig as ccs
         context = ccs.Context()
+    else:
+        context = None
 
     @classmethod
     def update_context(cls):
@@ -234,7 +236,7 @@ class Compiz(TweakPage, CompizSetting):
                     'screenlets')
             self.screenlets.connect('toggled', self.colleague_changed)
 
-        if module_check.has_ccm() and module_check.has_right_compiz():
+        if self.context:
             hbox = gtk.HBox(False, 0)
             hbox.pack_start(self.create_edge_setting(), True, False, 0)
             edge_setting = SinglePack('Edge Settings', hbox)
