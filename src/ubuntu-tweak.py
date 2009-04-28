@@ -27,7 +27,6 @@ from common.consts import DATA_DIR
 from common.debug import run_traceback
 from common.config import TweakSettings
 from common.widgets.dialogs import ErrorDialog
-from mainwindow import MainWindow
 
 try:
     import dl
@@ -42,10 +41,10 @@ class TweakLauncher:
 
         try:
             from common.package import update_apt_cache
-            update_apt_cache(init=True)
         except:
             pass
 
+        from mainwindow import MainWindow
         window = MainWindow()
 
     def show_splash(self):
