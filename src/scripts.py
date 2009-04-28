@@ -27,12 +27,10 @@ import shutil
 import gobject
 import gettext
 import gnomevfs
-from gnome import ui
 from common.consts import *
 from common.utils import get_icon_with_type
 from common.widgets import TweakPage, DirView, FlatView
 from common.widgets.dialogs import WarningDialog
-
 
 (
     COLUMN_ICON,

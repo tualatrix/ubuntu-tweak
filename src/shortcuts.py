@@ -28,6 +28,8 @@ import gobject
 
 from common.widgets import TweakPage, KeyGrabber, KeyModifier, CellRendererButton
 from common.utils import get_icon_with_name
+from common.systeminfo import module_check
+from compiz import CompizSetting
 
 (
     COLUMN_ID,
@@ -46,6 +48,10 @@ class Shortcuts(TweakPage):
         TweakPage.__init__(self, 
                 _("Shortcut Commands"), 
                 _("By configuring keyboard shortcuts, you can access your favourite applications instantly.\nEnter the application's command and set the desired shortcut keys."))
+
+        if module_check.is_jaunty() and not CompizSetting.get_plugin_active('commands'):
+            CompizSetting.set_plugin_active('commands', True)
+
         sw = gtk.ScrolledWindow()
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         self.pack_start(sw)

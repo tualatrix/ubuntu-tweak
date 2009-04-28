@@ -64,19 +64,37 @@ class CompizSetting:
         context = ccs.Context()
 
     @classmethod
-    def update_context(self):
+    def update_context(cls):
         if module_check.has_ccm() and module_check.has_right_compiz():
             import compizconfig as ccs
             load_ccm()
-            self.context = ccs.Context()
+            cls.context = ccs.Context()
 
-    def get_plugin(self, name):
+    @classmethod
+    def get_plugin(cls, name):
         try:
-            plugin = self.context.Plugins[name]
+            plugin = cls.context.Plugins[name]
         except KeyError:
             return None
         else:
             return plugin
+
+    @classmethod
+    def set_plugin_active(cls, name, active):
+        try:
+            plugin = cls.context.Plugins[name]
+            plugin.Enabled = int(active)
+            cls.context.Write()
+        except:
+            pass
+
+    @classmethod
+    def get_plugin_active(cls, name):
+        try:
+            plugin = cls.context.Plugins[name]
+            return bool(plugin.Enabled)
+        except:
+            return False
 
 class OpacityMenu(gtk.CheckButton, CompizSetting):
     menu_match = 'Tooltip | Menu | PopupMenu | DropdownMenu'
