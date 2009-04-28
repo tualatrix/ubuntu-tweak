@@ -149,7 +149,10 @@ else:
     SourceEditor = Notice
     ThirdSoft = Notice
 from scripts import Scripts
-from shortcuts import Shortcuts
+if module_check.is_jaunty():
+    Shortcuts = Notice
+else:
+    from shortcuts import Shortcuts
 from powermanager import PowerManager
 from gnomesettings import Gnome
 from nautilus import Nautilus
