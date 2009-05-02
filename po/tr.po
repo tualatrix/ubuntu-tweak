@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2009-04-11 13:21+0800\n"
-"PO-Revision-Date: 2009-02-11 21:05+0000\n"
-"Last-Translator: mozgurbayhan <Unknown>\n"
+"POT-Creation-Date: 2009-04-29 07:49+0800\n"
+"PO-Revision-Date: 2009-04-24 08:05+0000\n"
+"Last-Translator: Ufuk Tekir <Unknown>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2009-04-12 00:16+0000\n"
+"X-Launchpad-Export-Date: 2009-05-02 07:06+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/autostart.py:45
@@ -54,10 +54,6 @@ msgstr "Diskten Sil"
 msgid "Can't delete the system item from disk."
 msgstr "Diskten sistem öğeleri silinemez"
 
-#: src/autostart.py:248
-msgid "No description"
-msgstr ""
-
 #: src/autostart.py:268
 msgid "Program"
 msgstr "Uygulama"
@@ -72,6 +68,10 @@ msgid ""
 "You can hide items from view by selecting and clicking \"Remove\"\n"
 "To permanently delete an item, right-click and press \"Delete\"."
 msgstr ""
+"Burada oturum açtığınızda hangi programların çalışacağını "
+"ayarlayabilirsiniz.\n"
+"Öğeleri görünümden saklamak için seçip \"Sil\" e tıklayabilirsiniz\n"
+"Bir öğeyi kalıcı olarak silmek için, sağ tıklayıp \"Sil\" e basın"
 
 #: src/autostart.py:339
 msgid "Show comments"
@@ -154,25 +154,27 @@ msgstr "Benzeticiler"
 msgid "E-mail Tools"
 msgstr "E-posta araçları"
 
-#: src/installer.py:154
+#: src/installer.py:156
 msgid "Add/Remove Applications"
 msgstr "Program Ekle/Kaldır"
 
-#: src/installer.py:155
+#: src/installer.py:157
 msgid ""
 "A simple but more effecient method for finding and installing popular "
 "packages than the default Add/Remove."
 msgstr ""
+"Popüler paketleri bulmak ve kurmak için varsayılan Ekle/Kaldır'dan daha "
+"basit ve etkili bir yöntem."
 
-#: src/installer.py:203
+#: src/installer.py:205
 msgid "All Categories"
 msgstr "Tüm Kategoriler"
 
-#: src/installer.py:373
-msgid "Update Successful!"
-msgstr ""
-
 #: src/installer.py:375
+msgid "Update Successful!"
+msgstr "Güncelleştirme Başarılı!"
+
+#: src/installer.py:377
 msgid "Update Failed!"
 msgstr "Güncelleştirme Başarısız!"
 
@@ -204,32 +206,32 @@ msgstr "Kaydetmeyi devre dışı bırak"
 msgid "Disable \"Fast User Switching\""
 msgstr "'Hızlı Kullanıcı Değştirme'yi Kapat"
 
-#: src/ScriptWorker.py:52
+#: src/ScriptWorker.py:53
 #, python-format
 msgid "The file \"%s\" already exists!"
-msgstr ""
+msgstr "\"%s\" dosyası zaten var!"
 
-#: src/ScriptWorker.py:57
+#: src/ScriptWorker.py:58
 #, python-format
 msgid "The folder \"%s\" already exists!"
-msgstr ""
+msgstr "\"%s\" klasörü zaten var!"
 
-#: src/ScriptWorker.py:63 src/ScriptWorker.py:69
+#: src/ScriptWorker.py:64 src/ScriptWorker.py:70
 #, python-format
 msgid "The target \"%s\" already exists!"
-msgstr ""
+msgstr "\"%s\" hedefi zaten var!"
 
-#: src/ScriptWorker.py:110 src/ScriptWorker.py:121
+#: src/ScriptWorker.py:113 src/ScriptWorker.py:125
 msgid "Enter your password to perform the administrative tasks"
 msgstr "Yönetimsel görevleri gerçekleştirmek için şifrenizi girin"
 
-#: src/ScriptWorker.py:140
+#: src/ScriptWorker.py:144
 msgid "Select a folder"
 msgstr "Bir klasör seçin"
 
-#: src/ScriptWorker.py:171
+#: src/ScriptWorker.py:175
 msgid "Please select a target (files or folders)."
-msgstr ""
+msgstr "Lütfen bir hedef seçin (dosyalar ya da klasörler)"
 
 #: src/mainwindow.py:65
 msgid "Welcome to"
@@ -237,7 +239,7 @@ msgstr "Hoşgeldiniz"
 
 #: src/mainwindow.py:71
 msgid "Tweak otherwise hidden settings."
-msgstr ""
+msgstr "Diğer gizli ayarları değiştir."
 
 #: src/mainwindow.py:72
 msgid "Clean up unneeded packages to free diskspace."
@@ -245,13 +247,15 @@ msgstr "Diskte yer açmak için gereksiz paketleri silin"
 
 #: src/mainwindow.py:73
 msgid "Easily install up-to-date versions of many applications."
-msgstr ""
+msgstr "Bir çok uygulamanın kolayca kurulan güncel sürümleri"
 
 #: src/mainwindow.py:74
 msgid ""
 "Configure file templates and shortcut scripts for easy access to common "
 "tasks."
 msgstr ""
+"Sık kullanılan görevlere kolay erişim için dosya şablonlarını ve kısayol "
+"betiklerini yapılandır."
 
 #: src/mainwindow.py:75
 msgid "And many more useful features!"
@@ -266,10 +270,12 @@ msgid ""
 "<span size=\"x-large\">This feature isn't currently available in your "
 "distribution</span>"
 msgstr ""
+"<span size=\"x-large\">Bu özellik kullandığınız dağıtımda henüz "
+"kullanılabilir değil.</span>"
 
 #: src/mainwindow.py:113
 msgid "<span size=\"x-large\">This module is error while loading.</span>"
-msgstr ""
+msgstr "<span size=\"x-large\">Modül yüklenirken hata oldu.</span>"
 
 #: src/mainwindow.py:223
 msgid "Welcome"
@@ -291,7 +297,7 @@ msgstr "Ekle/Kaldır"
 msgid "Source Editor"
 msgstr "Kaynak Düzenleyici"
 
-#: src/mainwindow.py:228 src/thirdsoft.py:275
+#: src/mainwindow.py:228 src/thirdsoft.py:279
 msgid "Third-Party Sources"
 msgstr "Üçüncü parti kaynaklar"
 
@@ -363,17 +369,13 @@ msgstr "Dosya Tipi Yöneticisi"
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: src/mainwindow.py:246
-msgid "Power Managerment"
-msgstr "Güç yönetimi"
-
 #: src/mainwindow.py:247
 msgid "Security"
 msgstr "Güvenlik"
 
 #: src/mainwindow.py:329
 msgid "_Donate"
-msgstr ""
+msgstr "_Bağış Yap"
 
 #: src/mainwindow.py:355
 msgid "Help the development of Ubuntu Tweak"
@@ -384,10 +386,12 @@ msgid ""
 "Ubuntu Tweak is a free-software, you can use it for free. If you like it, "
 "Please consider to donate for Ubuntu Tweak."
 msgstr ""
+"Ubuntu Tweak ücretsiz bir yazılımdır, bedava kullanabilirsiniz. Sevdiyseniz, "
+"lütfen Ubuntu Tweak için bağış yapın."
 
 #: src/mainwindow.py:356
 msgid "Never Show This Again"
-msgstr ""
+msgstr "Asla Bunu Gösterme"
 
 #: src/mainwindow.py:549
 msgid "Ubuntu Tweak Website"
@@ -414,6 +418,7 @@ msgstr ""
 "  Mert Bozkurt https://launchpad.net/~aquacultural\n"
 "  Selim Suerkan https://launchpad.net/~mokoko\n"
 "  Ufuk Tekir https://launchpad.net/~living-corpse\n"
+"  Ufuk Tekir https://launchpad.net/~tekir\n"
 "  Volkan Esgel https://launchpad.net/~vesgel\n"
 "  Yalçın AÇIKYILDIZ https://launchpad.net/~yalcin\n"
 "  mozgurbayhan https://launchpad.net/~mozgurbayhan"
@@ -495,10 +500,12 @@ msgid ""
 "Don't change the location of your desktop folder unless you know what you "
 "are doing."
 msgstr ""
+"Varsayılan klasörlerin yolunu burada değiştirebilirsiniz.\n"
+"Ne yaptığınızı bilmiyorsanız masaüstü klasörünüzün yolunu değiştirmeyin."
 
-#: src/userdir.py:258 src/compiz.py:371 src/nautilus.py:212
+#: src/userdir.py:258 src/compiz.py:391 src/nautilus.py:212
 msgid "Update successful!"
-msgstr ""
+msgstr "Güncelleştirme Başarılı!"
 
 #: src/filetype.py:34
 msgid "Audio"
@@ -538,23 +545,18 @@ msgstr "İlgili Uygulama"
 
 #: src/filetype.py:176 src/filetype.py:211 src/metacity.py:62
 #: src/metacity.py:67 src/metacity.py:72 src/metacity.py:77
-#: src/shortcuts.py:89 src/shortcuts.py:197 src/preferences.py:99
+#: src/shortcuts.py:96 src/shortcuts.py:204 src/preferences.py:99
 msgid "None"
 msgstr "Hiçbiri"
 
 #: src/filetype.py:241
 #, python-format
 msgid "Open the files of type \"%s\" with:"
-msgstr ""
+msgstr "\"%s\" türünde dosyaları bununla aç:"
 
 #: src/filetype.py:270
 msgid "Choose an application"
-msgstr ""
-
-#: src/filetype.py:359
-#, python-format
-msgid "Select an application to open the type <b>%s</b>"
-msgstr ""
+msgstr "Bir uygulama seçin"
 
 #: src/filetype.py:387
 #, python-format
@@ -568,10 +570,11 @@ msgstr "Uygulama bulunamadı"
 #: src/filetype.py:479
 msgid "Here you can manage which application will open which filetypes."
 msgstr ""
+"Hangi uygulamanın hangi dosya türlerini açacağını burada ayarlayabilirsiniz."
 
 #: src/filetype.py:505
 msgid "Only show filetypes with an associated application"
-msgstr ""
+msgstr "Sadece bir uygulamayla ilişkilendirilmiş dosya türlerini göster"
 
 #: src/computer.py:44
 msgid "System information"
@@ -627,33 +630,33 @@ msgstr "Dil"
 
 #: src/thirdsoft.py:69
 msgid "Avant Window Navigator (Unstable Version)"
-msgstr ""
+msgstr "Avant Window Navigator (Kararsız Sürüm)"
 
 #: src/thirdsoft.py:75
 msgid "Ubuntu Chinese Repository"
 msgstr "Ubuntu Çin Deposu"
 
-#: src/thirdsoft.py:85
+#: src/thirdsoft.py:86
 msgid "Gnome Global Menu"
-msgstr ""
-
-#: src/thirdsoft.py:88
-msgid "Gwibber (Daily Version)"
-msgstr ""
+msgstr "Gnome Global Menu"
 
 #: src/thirdsoft.py:89
+msgid "Gwibber (Daily Version)"
+msgstr "Gwibber (Günlük Sürüm)"
+
+#: src/thirdsoft.py:90
 msgid "Banshee (Stable Version)"
 msgstr "Banshee (Kararlı Sürüm)"
 
-#: src/thirdsoft.py:90
+#: src/thirdsoft.py:91
 msgid "Banshee (Unstable Version)"
 msgstr "Banshee (Kararsız Sürüm)"
 
-#: src/thirdsoft.py:96
+#: src/thirdsoft.py:97
 msgid "Ubuntu Tweak (Unstable Version)"
-msgstr ""
+msgstr "Ubuntu Tweak (Kararsız Sürüm)"
 
-#: src/thirdsoft.py:192
+#: src/thirdsoft.py:196
 msgid ""
 "To install software and updates from newly added or changed sources, you "
 "have to reload the information about available software.\n"
@@ -665,31 +668,31 @@ msgstr ""
 "\n"
 "Devam etmek için internet bağlantısına ihtiyacınız var."
 
-#: src/thirdsoft.py:196
+#: src/thirdsoft.py:200
 msgid "The information about available software is out-of-date"
 msgstr "Kullanılabilir yazılımlarla ilgili bilgi güncel değil"
 
-#: src/thirdsoft.py:359
+#: src/thirdsoft.py:363
 msgid "Homepage"
 msgstr "Ana Sayfa"
 
-#: src/thirdsoft.py:359
+#: src/thirdsoft.py:363
 msgid "Source URL"
 msgstr "Kaynak adres"
 
-#: src/thirdsoft.py:359
+#: src/thirdsoft.py:363
 msgid "Description"
 msgstr "Açıklama"
 
-#: src/thirdsoft.py:370
+#: src/thirdsoft.py:374
 msgid "Description is here"
 msgstr "Açıklaması buradadır"
 
-#: src/thirdsoft.py:398
+#: src/thirdsoft.py:402
 msgid "Third-Party Software Sources"
 msgstr "Third-Party Yazılım Kaynakları"
 
-#: src/thirdsoft.py:399
+#: src/thirdsoft.py:403
 msgid ""
 "After every release of Ubuntu there comes a feature freeze.\n"
 "This means only applications with bug-fixes get into the repository.\n"
@@ -697,32 +700,42 @@ msgid ""
 "the latest version.\n"
 "After adding these repositories, locate and install them using Add/Remove."
 msgstr ""
+"Ubuntu'nun her sürümüyle yeni bir özellik gelir.\n"
+"Bu, sadece bug onarımı yapılmış uygulamaların depoya girdiği anlamına "
+"gelir.\n"
+"Üçüncü-taraf DEB depolarını kullanarak, her zaman son versiyonla güncel "
+"kalabilirsiniz.\n"
+"Bu depoları ekledikten sonra, Ekle/Kaldır kullanarak bulun ve kurun."
 
-#: src/thirdsoft.py:415 src/sourceeditor.py:84
+#: src/thirdsoft.py:419 src/sourceeditor.py:84
 msgid "Details"
 msgstr "Ayrıntılar"
 
-#: src/thirdsoft.py:454
+#: src/thirdsoft.py:458
 msgid ""
 "It is a possible security risk to use packages from Third-Party Sources.\n"
 "Please be careful and use only sources you trust."
 msgstr ""
+"Üçüncü-Taraf kaynaklardan olan paketleri kullanmak olası bir güvenlik "
+"riskidir."
 
-#: src/thirdsoft.py:457 src/nautilus.py:187
+#: src/thirdsoft.py:461 src/nautilus.py:187
 msgid "Warning"
 msgstr "Uyarı"
 
-#: src/thirdsoft.py:461
+#: src/thirdsoft.py:465
 msgid "Never show this dialog"
 msgstr "Bu uyarıyı bir daha gösterme"
 
-#: src/thirdsoft.py:483
+#: src/thirdsoft.py:487
 msgid ""
 "You can install the new applications through Add/Remove.\n"
 "Do you want to go now?"
 msgstr ""
+"Yeni uygulamaları Ekle/Kaldır aracılığıyla kurabilirsiniz.\n"
+"Şimdi oraya gitmek ister misiniz?"
 
-#: src/thirdsoft.py:484 src/sourceeditor.py:404
+#: src/thirdsoft.py:488 src/sourceeditor.py:404
 msgid "The software information is up-to-date now"
 msgstr "Yazılım bilgisi şimdi güncel"
 
@@ -767,6 +780,8 @@ msgstr "Bağlanmış diskleri masaüstünde göster"
 #: src/icons.py:145
 msgid "Use \"Home Folder\" as desktop (Logout for changes to take effect)"
 msgstr ""
+"Masaüstü olarak \"Başlangıç Klasörü\" nü kullan. (Değişikliklerin etkili "
+"olması için oturumu kapatın)"
 
 #: src/metacity.py:37
 msgid "Window Decorate Effect"
@@ -845,10 +860,12 @@ msgid ""
 "To enable the compositing feature of metacity, you should manually disable "
 "Visual Effects in \"Appearance\"."
 msgstr ""
+"Metacity'nin masaüstü oluşturma özelliğini etkinleştirmek için, \"Görünüm\" "
+"den Görsel Efektleri elle devre dışı bırakmalısınız."
 
 #: src/session.py:39
 msgid "Splash Screen (Click On Image)"
-msgstr ""
+msgstr "Geçiş Ekranı (Resme Tıklayın)"
 
 #: src/session.py:43
 msgid "Choose a splash image"
@@ -868,7 +885,7 @@ msgstr "Çıkış uyarısını göster"
 
 #: src/session.py:137
 msgid "Allow TCP Connections (Remote Desktop Connect)"
-msgstr ""
+msgstr "TCP Bağlantılarına İzin ver (Uzak Masaüstü Bağlantısı)"
 
 #: src/session.py:140
 msgid "Show splash screen"
@@ -924,14 +941,16 @@ msgid ""
 "Templates path is wrong! The current path is point to \"%s\".\n"
 "Please reset it to a folder under your Home Folder."
 msgstr ""
+"Şablonlar yolu yanlış! Mevcut yol şurayı gösteriyor. \"%s\" .\n"
+"Lütfen Başlangıç Klasörünüzdeki bir klasöre tekrar ayarlayın."
 
 #: src/templates.py:123
 msgid "Go And Set"
-msgstr ""
+msgstr "Git ve Ayarla"
 
 #: src/templates.py:128
 msgid "Restart This Module"
-msgstr ""
+msgstr "Bu Modülü Yeniden Başlat"
 
 #: src/templates.py:134
 msgid "Manage Templates"
@@ -944,6 +963,11 @@ msgid ""
 "You can create new documents based on these templates from the Nautilus "
 "right-click menu."
 msgstr ""
+"Burada belge şablonlarınızı özgürce yönetebilirsiniz.\n"
+"Dosyalarınızı bu pencereye sürükleyerek onları şablon olarak "
+"ekleyebilirsiniz.\n"
+"Nautilus sağ-tık menüsünden bu şablonları temel alarak yeni dökümanlar "
+"yaratabilirsiniz."
 
 #: src/templates.py:160
 msgid "Rebuild System Templates"
@@ -951,7 +975,7 @@ msgstr "Sistem şablonlarını yeniden oluştur"
 
 #: src/templates.py:180
 msgid "Templates path is still wrong, Please reset it!"
-msgstr ""
+msgstr "Şablonlar yolu hala yanlış! Lütfen tekrar ayarlayın!"
 
 #: src/templates.py:192
 msgid ""
@@ -961,105 +985,108 @@ msgstr ""
 "Etkinleştirilmemiş tüm şablonları silinecektir.\n"
 "evam etmek istiyor musunuz?"
 
-#: src/compiz.py:209
+#: src/compiz.py:229
 msgid "Install Advanced Desktop Effects Settings Manager"
 msgstr "Gelişmiş Masaüstü Efektleri Yöneticisini Kur"
 
-#: src/compiz.py:212
+#: src/compiz.py:232
 msgid "Install Simple Desktop Effects Settings manager"
 msgstr "Basit Masaüstü Efektleri Yöneticisini Kur"
 
-#: src/compiz.py:215
+#: src/compiz.py:235
 msgid "Install Screenlets Widget Application"
 msgstr "Screenlets Widgets Uygulamasını Kur"
 
-#: src/compiz.py:225
+#: src/compiz.py:245
 msgid "Enable snapping windows"
 msgstr "Kopan pencereleri etkinleştir"
 
-#: src/compiz.py:226
+#: src/compiz.py:246
 msgid "Enable wobbly windows"
 msgstr "Sallanan pencereleri etkinleştir"
 
-#: src/compiz.py:228
+#: src/compiz.py:248
 msgid "Window Effects"
 msgstr "Pencere Efektleri"
 
-#: src/compiz.py:231
+#: src/compiz.py:251
 msgid "Enable transparent menus"
 msgstr "Saydam menüleri etkinleştir"
 
-#: src/compiz.py:232
+#: src/compiz.py:252
 msgid "Enable wobbly menus"
 msgstr "Sallanan menüleri etkinleştir"
 
-#: src/compiz.py:234
+#: src/compiz.py:254
 msgid "Menu Effects"
 msgstr "Menü Efektleri"
 
-#: src/compiz.py:239
+#: src/compiz.py:259
 msgid "Useful Extensions"
 msgstr "Kullanışlı eklentiler"
 
-#: src/compiz.py:254
+#: src/compiz.py:274
 msgid "Prerequisite Conditions"
 msgstr "Gerekli Durumlar"
 
-#: src/compiz.py:297
+#: src/compiz.py:317
 msgid "Expo"
 msgstr "Sergi"
 
-#: src/compiz.py:298
+#: src/compiz.py:318
 msgid "Show Windows"
 msgstr "Pencereleri göster"
 
-#: src/compiz.py:299
+#: src/compiz.py:319
 msgid "Show Desktop"
 msgstr "Masaüstünü Göster"
 
-#: src/compiz.py:300
+#: src/compiz.py:320
 msgid "Widget"
 msgstr "Yardımcı Programcık"
 
-#: src/shortcuts.py:46
+#: src/shortcuts.py:49
 msgid "Shortcut Commands"
 msgstr "Kısayol komutları"
 
-#: src/shortcuts.py:47
+#: src/shortcuts.py:50
 msgid ""
 "By configuring keyboard shortcuts, you can access your favourite "
 "applications instantly.\n"
 "Enter the application's command and set the desired shortcut keys."
 msgstr ""
+"Klavye kısayollarını yapılandırarak, favori uygulamalarınıza anında "
+"erişebilirsiniz.\n"
+"Uygulamanın komutunu girin ve istediğiniz kısayol tuşlarını ayarlayın."
 
-#: src/shortcuts.py:85
+#: src/shortcuts.py:91
 #, python-format
 msgid "Command %d"
 msgstr "Komut %d"
 
-#: src/shortcuts.py:92 src/shortcuts.py:146
+#: src/shortcuts.py:99 src/shortcuts.py:153
 msgid "disabled"
 msgstr "Devre Dışı"
 
-#: src/shortcuts.py:108
+#: src/shortcuts.py:115
 msgid "ID"
 msgstr "Kimlik"
 
-#: src/shortcuts.py:119
+#: src/shortcuts.py:126
 msgid "Command"
 msgstr "Komut"
 
-#: src/shortcuts.py:134
+#: src/shortcuts.py:141
 msgid "Key"
 msgstr "Tuş"
 
-#: src/shortcuts.py:138
+#: src/shortcuts.py:145
 msgid "Clean"
-msgstr ""
+msgstr "Temizle"
 
 #: src/cleaner.py:54
 msgid "Cleaning Package Config"
-msgstr ""
+msgstr "Paket Yapılandırması Temizleniyor"
 
 #: src/cleaner.py:61 src/cleaner.py:88
 #, python-format
@@ -1068,7 +1095,7 @@ msgstr "Temizleniyor...%s"
 
 #: src/cleaner.py:81
 msgid "Cleaning Package Cache"
-msgstr ""
+msgstr "Paket Önbelleği Temizleniyor"
 
 #: src/cleaner.py:143
 msgid "Package"
@@ -1088,6 +1115,8 @@ msgid ""
 "<b>%s</b>\n"
 "Take %s of disk space"
 msgstr ""
+"<b>%s</b>\n"
+"Disk alanının %s kadarını al."
 
 #: src/cleaner.py:245
 msgid "Package Config"
@@ -1097,31 +1126,32 @@ msgstr "Paket Yapılandırması"
 #, python-format
 msgid "%d package selected to remove"
 msgid_plural "%d packages selected to remove"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Kaldırılmak için %d paketi seçildi"
 
 #: src/cleaner.py:282
 #, python-format
 msgid "%s of space will be freed"
-msgstr ""
+msgstr "%s kadarlık alan boşaltılacak."
 
 #: src/cleaner.py:361
 msgid "Canceled by user!"
-msgstr ""
+msgstr "Kullanıcı tarafından iptal edildi!"
 
 #: src/cleaner.py:364 src/nautilus.py:193
 msgid "Clean up Successful!"
-msgstr ""
+msgstr "Temizleme Başarılı!"
 
 #: src/cleaner.py:367
 msgid "Clean up Failed!"
-msgstr ""
+msgstr "Temizleme Hatalı!"
 
 #: src/cleaner.py:373
 msgid ""
 "Free up disk space by removing unneeded packages and cleaning the package "
 "download cache."
 msgstr ""
+"Gerek duyulmayan paketleri silerek ve paket indirme önbelleğini temizleyerek "
+"disk alanı açın."
 
 #: src/cleaner.py:401
 msgid "Clean Package"
@@ -1133,120 +1163,115 @@ msgstr "Önbelleği Temizle"
 
 #: src/cleaner.py:411
 msgid "Clean Config"
-msgstr ""
+msgstr "Yapılandırmayı Temizle"
 
 #: src/cleaner.py:416
 msgid "Clean Kernel"
-msgstr ""
+msgstr "Çekirdeği Temizle"
 
 #: src/cleaner.py:422
 msgid "Select All"
 msgstr "Tümünü Seç"
 
-#: src/scripts.py:51
+#: src/scripts.py:49
 msgid "Copy to ..."
 msgstr "Buraya kopyala ..."
 
-#: src/scripts.py:52
+#: src/scripts.py:50
 msgid "Copy to Desktop"
-msgstr ""
+msgstr "Masaüstüne Kopyala"
+
+#: src/scripts.py:51
+msgid "Copy to Download"
+msgstr "İndirmelere Kopyala"
+
+#: src/scripts.py:52
+msgid "Copy to Home"
+msgstr "Başlangıç'a Kopyala"
 
 #: src/scripts.py:53
-msgid "Copy to Download"
-msgstr ""
-
-#: src/scripts.py:54
-msgid "Copy to Home"
-msgstr ""
-
-#: src/scripts.py:55
 msgid "Move to ..."
 msgstr "Buraya taşı ..."
 
-#: src/scripts.py:56
+#: src/scripts.py:54
 msgid "Move to Desktop"
-msgstr ""
+msgstr "Masaüstüne Taşı"
+
+#: src/scripts.py:55
+msgid "Move to Download"
+msgstr "İndirmelere Taşı"
+
+#: src/scripts.py:56
+msgid "Move to Home"
+msgstr "Başlangıç'a Taşı"
 
 #: src/scripts.py:57
-msgid "Move to Download"
-msgstr ""
-
-#: src/scripts.py:58
-msgid "Move to Home"
-msgstr ""
-
-#: src/scripts.py:59
 msgid "Link to ..."
 msgstr "Buraya bağla ..."
 
-#: src/scripts.py:60
+#: src/scripts.py:58
 msgid "Link to Desktop"
 msgstr "Masaüstüne kısayol oluştur"
 
-#: src/scripts.py:61
+#: src/scripts.py:59
 msgid "Link to Download"
-msgstr ""
+msgstr "İndirmelere Kısayol Oluştur"
 
-#: src/scripts.py:62
+#: src/scripts.py:60
 msgid "Link to Home"
 msgstr "Ev dizinine kısayol oluştur"
 
 #: src/scripts.py:63
-msgid "Open with gedit"
-msgstr "Gedit ile aç"
-
-#: src/scripts.py:64
-msgid "Open with gedit(as root)"
-msgstr "Gedit ile aç(yönetici olarak)"
-
-#: src/scripts.py:65
 msgid "Browse as root"
 msgstr "Yönetici olarak göz at"
 
-#: src/scripts.py:66
+#: src/scripts.py:64
 msgid "Search in current folder"
 msgstr "Mevcut klasörde ara"
 
-#: src/scripts.py:67
+#: src/scripts.py:65
 msgid "Convert image to JPG"
-msgstr ""
+msgstr "Resmi JPG'ye dönüştür"
+
+#: src/scripts.py:66
+msgid "Convert image to PNG"
+msgstr "Resmi PNG'ye dönüştür"
+
+#: src/scripts.py:67
+msgid "Convert image to GIF"
+msgstr "Resmi GIF'e dönüştür"
 
 #: src/scripts.py:68
-msgid "Convert image to PNG"
-msgstr ""
-
-#: src/scripts.py:69
-msgid "Convert image to GIF"
-msgstr ""
-
-#: src/scripts.py:70
 msgid "Set image as wallpaper"
-msgstr ""
+msgstr "Resmi duvar kağıdı olarak ayarla"
 
-#: src/scripts.py:97
+#: src/scripts.py:96
 msgid "Enabled Scripts"
 msgstr "Etkin Betikler"
 
-#: src/scripts.py:125
+#: src/scripts.py:124
 msgid "Disabled Scripts"
 msgstr "Devre Dışı Betikler"
 
-#: src/scripts.py:134
+#: src/scripts.py:133
 msgid "Manage Scripts"
 msgstr "Betikleri yönet"
 
-#: src/scripts.py:135
+#: src/scripts.py:134
 msgid ""
 "You can do all kinds of tasks with scripts.\n"
 "You can drag and drop from File Manager.\n"
 "'Scripts' will be added to the context menu."
 msgstr ""
+"Betiklerle her türlü görevi gerçekleştirebilirsiniz.\n"
+"Dosya Yöneticisinden sürükleyip bırakabilirsiniz.\n"
+"\"Betikler\" sağ tık menüsüne eklenecek."
 
-#: src/scripts.py:160
+#: src/scripts.py:159
 msgid "Rebuild System Scripts"
 msgstr "Sistem betiklerini tekrar oluştur"
 
-#: src/scripts.py:178
+#: src/scripts.py:177
 msgid ""
 "This will delete all disabled scripts.\n"
 "Do you wish to continue?"
@@ -1332,7 +1357,7 @@ msgstr "Bu boyut panel için uygun değildir 24x24 piksel olmalıdır"
 
 #: src/gnomesettings.py:149
 msgid "Do you want your changes to take effect immediately?"
-msgstr ""
+msgstr "Değişikliklerinizin hemen etkili olmasını istiyor musunuz?"
 
 #: src/nautilus.py:51
 msgid "Cleaning..."
@@ -1340,7 +1365,7 @@ msgstr "Temizleniyor..."
 
 #: src/nautilus.py:101
 msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
-msgstr ""
+msgstr "Nautilus \"Dosya Özellikleri\" penceresinde gelişmiş izinleri göster"
 
 #: src/nautilus.py:104
 msgid "File Browser"
@@ -1348,19 +1373,19 @@ msgstr "Dosya Gezgini"
 
 #: src/nautilus.py:109
 msgid "Default thumbnail icon size (pixels)"
-msgstr ""
+msgstr "Varsayılan küçük resim ikon boyutu (piksel olarak)"
 
 #: src/nautilus.py:123
 msgid "Maximum size of the thumbnail cache (megabytes)"
-msgstr ""
+msgstr "Küçük resim önbelleğinin en yüksek boyutu (megabyte olarak)"
 
 #: src/nautilus.py:135
 msgid "Maximum age for the thumbnail in the cache (days)"
-msgstr ""
+msgstr "Önbellekteki küçük resimler için en uzun ömür (gün olarak)"
 
 #: src/nautilus.py:147
 msgid "Thumbnails Settings"
-msgstr ""
+msgstr "Küçük Resim Ayarları"
 
 #: src/nautilus.py:155
 msgid "Nautilus with Open Terminal"
@@ -1381,15 +1406,15 @@ msgstr "Nautilus Eklentileri"
 #: src/nautilus.py:183
 #, python-format
 msgid "Clean up the thumbnails cache (will free %s of disk space)"
-msgstr ""
+msgstr "Küçük resim önbelleğini temizle (%s miktarda alan boşaltılacak)"
 
 #: src/nautilus.py:186
 msgid "The thumbnails cache will be cleaned, Do you wish to continue?"
-msgstr ""
+msgstr "Küçük resim önbelleği temizlenecek, Devam etmek istiyor musunuz?"
 
 #: src/nautilus.py:214
 msgid "Update failed!"
-msgstr ""
+msgstr "Güncelleştirme Başarısız!"
 
 #: src/powermanager.py:37
 msgid "Advanced Power Management Settings"
@@ -1410,7 +1435,7 @@ msgstr ""
 
 #: src/powermanager.py:48
 msgid "Disable Network Manager when asleep"
-msgstr ""
+msgstr "Uykudayken Ağ Yöneticisini Kapat"
 
 #: src/powermanager.py:51
 msgid "Enable \"Lock screen\" when \"Blank Screen\" activates"
@@ -1468,17 +1493,13 @@ msgstr "Elektrik kullanımındaki işlemci davranış biçimi"
 msgid "The CPU frequency policy when on battery power"
 msgstr "Pil kullanımındaki işlemci davranış biçimi"
 
-#: src/preferences.py:69 src/preferences.py:77
-msgid "Reset"
-msgstr ""
-
 #: src/preferences.py:130
 msgid "Enable Check Update"
-msgstr ""
+msgstr "Güncelleştirme Kontrolünü Etkinleştir"
 
 #: src/preferences.py:136
 msgid "Enable PowerUser Mode"
-msgstr ""
+msgstr "GüçlüKullanıcı Modunu Etkinleştir"
 
 #: src/sourceeditor.py:62 src/sourceeditor.py:67
 msgid "Choose the sources"
@@ -1499,6 +1520,7 @@ msgstr "Kaynaklarınızı gönderin"
 #: src/sourceeditor.py:108
 msgid "You can submit your sources to the server for other people to use."
 msgstr ""
+"Diğer insanların kullanması için kaynaklarınızı sunucuya gönderebilirsiniz."
 
 #: src/sourceeditor.py:113
 msgid "_Source Title:"
@@ -1510,11 +1532,11 @@ msgstr "_Yerel:"
 
 #: src/sourceeditor.py:123
 msgid "Enter the title of the source, e.g. \"Ubuntu Official Repostory\""
-msgstr ""
+msgstr "Kaynağın başlığını girin, örn. \"Ubuntu Resmi Deposu\""
 
 #: src/sourceeditor.py:125
 msgid "If the locale isn't correct you can edit manually"
-msgstr ""
+msgstr "Bölge doğru değilse elle düzenleyebilirsiniz"
 
 #: src/sourceeditor.py:140
 msgid "Submit"
@@ -1530,7 +1552,7 @@ msgstr "Ağ Arızası"
 
 #: src/sourceeditor.py:195
 msgid "Uploading..."
-msgstr ""
+msgstr "Karşıya yükleniyor..."
 
 #: src/sourceeditor.py:211
 msgid "Updating..."
@@ -1558,11 +1580,11 @@ msgstr "Kaynakları Gönder"
 
 #: src/sourceeditor.py:403
 msgid "You can install new applications through Add/Remove."
-msgstr ""
+msgstr "Ekle/Kaldır aracılığıyla yeni uygulamalar kurabilirsiniz."
 
 #: src/sourceeditor.py:420
 msgid "Please input the correct information about sources!"
-msgstr ""
+msgstr "Lütfen kaynaklar hakkında doğru bilgiyi girin!"
 
 #: src/sourceeditor.py:433
 msgid ""
@@ -1570,6 +1592,9 @@ msgid ""
 "or you can use the official sources.\n"
 "Do you wish to use the official sources?"
 msgstr ""
+"Kaynak listesini oluşturmada bize yardım etmek için kaynaklarınızı "
+"sunucumuza yükleyebilirsiniz ya da resmi kaynakları kullanabilirsiniz.\n"
+"Resmi kaynakları kullanmak istiyor musunuz?"
 
 #: src/sourceeditor.py:436
 msgid "No source data available"
@@ -1580,14 +1605,17 @@ msgid ""
 "Your sources will be reviewed and made available for others soon.\n"
 "Thank you!"
 msgstr ""
+"Kaynaklarınız değerlendirilecek ve yakında başkaları için de kullanılabilir "
+"olacak.\n"
+"Teşekkürler!"
 
 #: src/sourceeditor.py:454
 msgid "Successfully submitted"
-msgstr ""
+msgstr "Başarıyla onaya sunuldu."
 
 #: src/sourceeditor.py:467
 msgid "Please check the permission of the sources.list file"
-msgstr ""
+msgstr "Lütfen sources.list dosyasının izinlerini kontrol edin"
 
 #: src/sourceeditor.py:468
 msgid "Save failed!"
@@ -1598,6 +1626,8 @@ msgid ""
 "The current content will be lost after reloading!\n"
 "Do you wish to continue?"
 msgstr ""
+"Tekrar yüklemeden sonra mevcut içerik kaybolacak!\n"
+"Devam etmek istiyor musunuz?"
 
 #: src/common/package.py:67
 msgid "(Not available)"
@@ -1634,6 +1664,7 @@ msgstr "Tamamen özelleştirilebilir liman türevi pencere gezicisi"
 #: src/common/appdata.py:64
 msgid "Fully customisable dock-like window navigator(Unstable)"
 msgstr ""
+"Tamamen özelleştirilebilir dock benzeri pencere yöneticisi (Kararsız)"
 
 #: src/common/appdata.py:65
 msgid "A free video editor"
@@ -1649,7 +1680,7 @@ msgstr "Ses Yönetimi ve Çalma uygulaması"
 
 #: src/common/appdata.py:68
 msgid "GTK+ Bluetooth Manager"
-msgstr ""
+msgstr "GTK+ Bluetooth Yöneticisi"
 
 #: src/common/appdata.py:69
 msgid "A true dock for linux"
@@ -1664,6 +1695,9 @@ msgid ""
 "Chromium is an open-source browser project that aims to build a safer, "
 "faster, and more stable way for all Internet users to experience the web."
 msgstr ""
+"Chromium, tüm Internet kullanıcılarının web deneyimi için daha güvenli, daha "
+"hızlı ve daha kararlı bir araç yaratmak amacıyla oluşturulmuş açık kaynaklı "
+"bir tarayıcıdır."
 
 #: src/common/appdata.py:72
 msgid "The open source, cross-platform IDE"
@@ -1753,9 +1787,9 @@ msgstr "Gnome masaüstü için güçlü, hızlı ve şık uzaktan kontrol"
 
 #: src/common/appdata.py:91
 msgid "Global Menu Bar for GNOME"
-msgstr ""
+msgstr "GNOME için Global Menu Bar"
 
-#: src/common/appdata.py:92
+#: src/common/appdata.py:93
 msgid ""
 "A program that combines satellite imagery and maps to put the world's "
 "geographic information at your fingertips."
@@ -1763,49 +1797,52 @@ msgstr ""
 "Dünya'nın coğrafik bilginizi parmakuçlarınıza  getirmek için uydu resimleri "
 "ve haritalarını birleştiren bir program"
 
-#: src/common/appdata.py:93
+#: src/common/appdata.py:94
 msgid "Platform for running Google Gadgets on Linux"
 msgstr "Linux'da Google Programcıklarını çalıştırmak için gerekli ortam"
 
-#: src/common/appdata.py:94
+#: src/common/appdata.py:95
 msgid "GNOME partition editor"
 msgstr "GNOME Bölümleme Düzenleyicisi"
 
-#: src/common/appdata.py:95
+#: src/common/appdata.py:96
 msgid "Lightweight image viewer"
 msgstr "Hafif resim görüntüleyicisi"
 
-#: src/common/appdata.py:96
+#: src/common/appdata.py:97
 msgid "A powerful screenshot tool"
 msgstr "Güçlü bir ekran görüntüsü alma aracı"
 
-#: src/common/appdata.py:97
+#: src/common/appdata.py:98
 msgid "Graphical frontend for recordmydesktop"
 msgstr "Recordmydesktop için grafiksel arayüz"
 
-#: src/common/appdata.py:98
+#: src/common/appdata.py:99
 msgid ""
 "GTG is a personal organizer for the GNOME desktop environment, it focuses on "
 "ease of use and flexibility, while keeping things simple."
 msgstr ""
-
-#: src/common/appdata.py:99
-msgid "Gwibber is an open source microblogging client for GNOME"
-msgstr ""
+"GTG, GNOME masaüstü ortamı için kişisel bir organizatördür, herşeyi basit "
+"tutarak kullanım kolaylığı ve esnekliğe yoğunlaşmıştır."
 
 #: src/common/appdata.py:100
+msgid "Gwibber is an open source microblogging client for GNOME"
+msgstr ""
+"Gwibber, GNOME için açık kaynaklı bir mikro blog oluşturma istemcisidir."
+
+#: src/common/appdata.py:101
 msgid "A graphical CD image editor"
 msgstr "Grafiksel bir CD görüntüsü düzenleyicisi"
 
-#: src/common/appdata.py:101
+#: src/common/appdata.py:102
 msgid "Intelligent Input Bus for Linux / Unix OS"
 msgstr "Intelligent Input Bus for Linux / Unix OS"
 
-#: src/common/appdata.py:102
+#: src/common/appdata.py:103
 msgid "It is a PinYin engine for IBus."
 msgstr "IBus için PinYin motorudur."
 
-#: src/common/appdata.py:103
+#: src/common/appdata.py:104
 msgid ""
 "IBus-Table is the IM Engine framework for table-based input methods, such as "
 "ZhengMa, WuBi, ErBi, ChangJie and so on."
@@ -1813,63 +1850,63 @@ msgstr ""
 "IBus-Table is the IM Engine framework for table-based input methods, such as "
 "ZhengMa, WuBi, ErBi, ChangJie and so on."
 
-#: src/common/appdata.py:104
-msgid "Create and edit Scalable Vector Graphics images"
-msgstr ""
-
 #: src/common/appdata.py:105
+msgid "Create and edit Scalable Vector Graphics images"
+msgstr "Ölçeklenebilir Vektör Grafikleri Oluştur ve Düzenle"
+
+#: src/common/appdata.py:106
 msgid "Non-linear editor for Digital Video data"
 msgstr "Dijital Video verisi için doğrusal olmayan düzenleyici"
 
-#: src/common/appdata.py:106
+#: src/common/appdata.py:107
 msgid "A music player for Last.fm personalized radio"
 msgstr "Kişiselleştirilmiş Last.fm radyosu için müzik çalar"
 
-#: src/common/appdata.py:107
+#: src/common/appdata.py:108
 msgid "GTK+ based simple text editor"
 msgstr "GTK+ tabanlı basit metin düzenleyicisi"
 
-#: src/common/appdata.py:108
+#: src/common/appdata.py:109
 msgid "Feed aggregator for GNOME"
 msgstr "GNOME için besleme toplayıcısı"
 
-#: src/common/appdata.py:109
+#: src/common/appdata.py:110
 msgid "Mail notification in system tray"
 msgstr "sistem çekmecesinde e-posta uyarısı"
 
-#: src/common/appdata.py:110
+#: src/common/appdata.py:111
 msgid "Adcal tool to diff and merge files"
 msgstr "Diff ve merge dosyaları içn bir araç"
 
-#: src/common/appdata.py:111
+#: src/common/appdata.py:112
 msgid "A fast and simple GTK+ Image Viewer"
 msgstr "Hızlı ve basit bir GTK+ İmaj Görüntüleyici"
 
-#: src/common/appdata.py:112
-msgid "Open internet TV, beyond anything else"
-msgstr ""
-
 #: src/common/appdata.py:113
+msgid "Open internet TV, beyond anything else"
+msgstr "Açık internet TV, başka her şeyin ötesinde"
+
+#: src/common/appdata.py:114
 msgid "Webkit based lightweight web browser"
 msgstr "Webkit tabanlı hafif web tarayıcı"
 
-#: src/common/appdata.py:114
+#: src/common/appdata.py:115
 msgid "An IDE to Develop .NET applications."
 msgstr ".NET uygulamaları geliştirmek için bir IDE"
 
-#: src/common/appdata.py:115
+#: src/common/appdata.py:116
 msgid "The Ultimate Movie Player For Linux"
 msgstr "Linux için Ultimate Film Oynatıcısı"
 
-#: src/common/appdata.py:116
+#: src/common/appdata.py:117
 msgid "IDE for Java, C/C++, Ruby, UML, etc."
 msgstr "Java,C/C++,Ruby,UML,vb.. için IDE"
 
-#: src/common/appdata.py:117
+#: src/common/appdata.py:118
 msgid "The Opera Web Browser"
 msgstr "Opera Web Tarayıcı"
 
-#: src/common/appdata.py:118
+#: src/common/appdata.py:119
 msgid ""
 "Pidgin is a graphical modular messaging client based on libpurple which is "
 "capable of connecting to AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, SIP/SIMPLE, "
@@ -1881,119 +1918,95 @@ msgstr ""
 "yeteneği olan, libpurple'a dayanan grafik olarak  modüler mesajlaşma "
 "istemcisidir."
 
-#: src/common/appdata.py:119
+#: src/common/appdata.py:120
 msgid "Run your Windows programs on Linux"
 msgstr "Windows programlarınızı Linux üzerinde çalıştırın"
 
-#: src/common/appdata.py:120
+#: src/common/appdata.py:121
 msgid "A framework for desktop widgets"
 msgstr "Masaüstü programcıkları için yapı"
 
-#: src/common/appdata.py:121
+#: src/common/appdata.py:122
 msgid "Feature-rich screenshot application(formerly known as GScrot)"
 msgstr ""
+"Zengin özellikli ekran görüntüsü yakalama uygulaması (Eski adıyla GScrot)"
 
-#: src/common/appdata.py:122
+#: src/common/appdata.py:123
 msgid "Make audio/video calls using this VoIP Software"
 msgstr "VoIP yazılımını kullanarak sesli/görüntülü aramalar yapar"
 
-#: src/common/appdata.py:123
+#: src/common/appdata.py:124
 msgid "A great MPlayer front-end, written in QT4"
 msgstr "Çok iyi bir MPlayer arayüzü,QT4'te yazılmış"
 
-#: src/common/appdata.py:124
+#: src/common/appdata.py:125
 msgid "Convert audio files into other formats"
 msgstr "Ses dosyalarını diğer formatlara çevir"
 
-#: src/common/appdata.py:125
+#: src/common/appdata.py:126
 msgid "An international dictionary"
 msgstr "Uluslararası bir sözlük"
 
-#: src/common/appdata.py:126
+#: src/common/appdata.py:127
 msgid ""
 "Swiftweasel is an optimized build of the Mozilla Firefox web browser for "
 "Linux"
 msgstr "Swiftweasel optimize edilmiş Mozilla Firefox sürümüdür."
 
-#: src/common/appdata.py:127
+#: src/common/appdata.py:128
 msgid ""
 "A desktop application that will watch for events (website updates, emails, "
 "file and folder changes...)"
 msgstr ""
+"Olayları izleyecek bir masaüstü uygulaması (website güncellemeleri, e-"
+"mailler, dosya ve klasör değişiklikleri...)"
 
-#: src/common/appdata.py:128
-msgid "An instant messaging application powered by qt-mono-bindings"
-msgstr ""
-
-#: src/common/appdata.py:129
-msgid "A Useful Task List"
-msgstr ""
-
-#: src/common/appdata.py:130
+#: src/common/appdata.py:131
 msgid "Multiple GNOME terminals in one window"
 msgstr "Tek pencerede birden fazla GNOME terminali"
 
-#: src/common/appdata.py:131
-msgid ""
-"Transmission is a fast, easy, and free multi-platform BitTorrent client."
-msgstr ""
-
-#: src/common/appdata.py:132
+#: src/common/appdata.py:133
 msgid "Ubuntu Tweak makes it easier to configure Ubuntu"
 msgstr "Ubuntu Tweak, Ubuntu'yu kolayca yapılandırmaya yarar"
 
-#: src/common/appdata.py:133
+#: src/common/appdata.py:134
 msgid "Commonly used restricted packages"
 msgstr "Genel olarak kullanılan sınırlı paketler"
 
-#: src/common/appdata.py:134 src/common/appdata.py:135
+#: src/common/appdata.py:136 src/common/appdata.py:137
 msgid "A feature rich, high performance virtualization software"
 msgstr "Zengin özellikli,yüksek performanslı sanallaştırma yazılımı"
 
-#: src/common/appdata.py:136
+#: src/common/appdata.py:138
 msgid "Read, capture, broadcast your multimedia streams"
 msgstr "Çokluortam akışlarınızı okuyun,görüntülerini yakalayın ve yayınlayın"
 
-#: src/common/appdata.py:137
+#: src/common/appdata.py:139
 msgid "Run Virtual Machines using VMware"
 msgstr "VMware kullanan sanal makineleri çalıştır"
 
-#: src/common/appdata.py:138
+#: src/common/appdata.py:140
 msgid "A compatibility layer for running Windows programs"
 msgstr "Windows programlarını çalıştırmak için uyumluluk katmanı"
 
-#: src/common/appdata.py:139
-msgid ""
-"Wine-doors is an application designed to make installing windows software on "
-"Linux, Solaris or other Unix systems easier."
-msgstr ""
-
-#: src/common/appdata.py:140
+#: src/common/appdata.py:142
 msgid ""
 "XBMC is a free and open source software media player and entertainment hub"
 msgstr "XBMC özgür ve açık kaynak çoklu ortam yazılımıdır"
 
-#: src/common/appdata.py:144
-msgid "Development Version of Mozilla Firefox 3.1, 4.0"
-msgstr ""
-
-#: src/common/appdata.py:145
+#: src/common/appdata.py:147
 msgid "Development version of Compiz Fusion"
 msgstr "Compiz Fusion'ın geliştirme versiyonu"
 
-#: src/common/appdata.py:146
+#: src/common/appdata.py:148
 msgid "Google's Linux Repository"
 msgstr "Google'ın linux deposu"
 
-#: src/common/appdata.py:147
-msgid "K Desktop Environment 4.2"
-msgstr ""
-
-#: src/common/appdata.py:148
+#: src/common/appdata.py:150
 msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
 msgstr "Sistemi Yormayan X11 Masaüstü Çevresi: GPicView, PCManFM"
 
-#: src/common/appdata.py:149
+#: src/common/appdata.py:151
 msgid ""
 "Multimedia, Entertainment and Distraction In Ubuntu\n"
 "Medibuntu is a repository of packages that cannot be included into the "
@@ -2003,7 +2016,7 @@ msgstr ""
 "Medibuntu yasal nedenlerden dolayı Ubuntu'nun içermediği paketlein bulunduğu "
 "depodur. (copyright, lisans, patent, etc)."
 
-#: src/common/appdata.py:151
+#: src/common/appdata.py:153
 msgid ""
 "Ubuntu repository for Chinese users.\n"
 "Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and "
@@ -2012,28 +2025,6 @@ msgstr ""
 "Çin kullanıcılar için Ubuntu deposu.\n"
 "EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 ve diğer "
 "yazılımları içerir."
-
-#: src/common/misc.py:15
-#, python-format
-msgid "%(size)d byte"
-msgid_plural "%(size)d bytes"
-msgstr[0] ""
-msgstr[1] ""
-
-#: src/common/misc.py:17
-#, python-format
-msgid "%.1f KB"
-msgstr ""
-
-#: src/common/misc.py:19
-#, python-format
-msgid "%.1f MB"
-msgstr ""
-
-#: src/common/misc.py:20
-#, python-format
-msgid "%.1f GB"
-msgstr ""
 
 #: src/common/policykit/polkitbutton.py:81
 msgid "_Unlock"
@@ -2067,13 +2058,6 @@ msgstr "Root dizininin adı değiştirilemez"
 msgid "Can't delete the root folder"
 msgstr "Root dizini silinemez"
 
-#: src/common/widgets/treeviews.py:156
-msgid ""
-"Can't rename!\n"
-"\n"
-"There are files in it!"
-msgstr ""
-
 #: src/common/widgets/dialogs.py:67
 msgid "An unexpected error has occurred."
 msgstr "Beklenmeyen bir hata oluştu."
@@ -2089,6 +2073,115 @@ msgstr "Bilgisayarınızı yeniden başlatmalısınız"
 #: src/common/widgets/dialogs.py:74
 msgid "Service hasn't initialized yet"
 msgstr "Servis henüz başlatılmadı"
+
+#: data/gui/type_edit.glade:131
+msgid "Add Application"
+msgstr "Uygulama Ekle"
+
+#: data/gui/type_edit.glade:178
+msgid "Select an application to view its description."
+msgstr "Açıklamasını görüntülemek için bir uygulama seçin."
+
+#: data/gui/type_edit.glade:222
+msgid "_Use a custom command"
+msgstr "_Özel bir komut kullan"
+
+#: src/autostart.py:248
+msgid "No description"
+msgstr ""
+
+#: src/ScriptWorker.py:120
+msgid "Coudn't find any text editor in your system!"
+msgstr ""
+
+#: src/mainwindow.py:246
+msgid "Power Management"
+msgstr ""
+
+#: src/filetype.py:359
+#, python-format
+msgid "Select an application to open the type <b>%s</b>"
+msgstr ""
+
+#: src/scripts.py:61
+msgid "Open with your favourite text editor"
+msgstr ""
+
+#: src/scripts.py:62
+msgid "Open with your favourite text editor (as root)"
+msgstr ""
+
+#: src/scripts.py:69
+msgid "Make hard shadow to image"
+msgstr ""
+
+#: src/preferences.py:69 src/preferences.py:77
+msgid "Reset"
+msgstr ""
+
+#: src/common/appdata.py:92
+msgid "a C++ port of Tomboy"
+msgstr ""
+
+#: src/common/appdata.py:129
+msgid "An instant messaging application powered by qt-mono-bindings"
+msgstr ""
+
+#: src/common/appdata.py:130
+msgid "A Useful Task List"
+msgstr ""
+
+#: src/common/appdata.py:132
+msgid ""
+"Transmission is a fast, easy, and free multi-platform BitTorrent client."
+msgstr ""
+
+#: src/common/appdata.py:135
+msgid "configure your USB ADSL modem and connection easier than ever!"
+msgstr ""
+
+#: src/common/appdata.py:141
+msgid ""
+"Wine-doors is an application designed to make installing windows software on "
+"Linux, Solaris or other Unix systems easier."
+msgstr ""
+
+#: src/common/appdata.py:146
+msgid "Development Version of Mozilla Firefox 3.1, 4.0"
+msgstr ""
+
+#: src/common/appdata.py:149
+msgid "K Desktop Environment 4.2"
+msgstr ""
+
+#: src/common/misc.py:15
+#, python-format
+msgid "%(size)d byte"
+msgid_plural "%(size)d bytes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/common/misc.py:17
+#, python-format
+msgid "%.1f KB"
+msgstr ""
+
+#: src/common/misc.py:19
+#, python-format
+msgid "%.1f MB"
+msgstr ""
+
+#: src/common/misc.py:20
+#, python-format
+msgid "%.1f GB"
+msgstr ""
+
+#: src/common/widgets/treeviews.py:156
+msgid ""
+"Can't rename!\n"
+"\n"
+"There are files in it!"
+msgstr ""
 
 #: data/gui/preferences.glade:7
 msgid "Ubuntu Tweak Preferences"
@@ -2160,329 +2253,3 @@ msgstr ""
 #: data/gui/type_edit.glade:7
 msgid "Edit Type"
 msgstr ""
-
-#: data/gui/type_edit.glade:131
-msgid "Add Application"
-msgstr "Uygulama Ekle"
-
-#: data/gui/type_edit.glade:178
-msgid "Select an application to view its description."
-msgstr "Açıklamasını görüntülemek için bir uygulama seçin."
-
-#: data/gui/type_edit.glade:222
-msgid "_Use a custom command"
-msgstr "_Özel bir komut kullan"
-
-#~ msgid "Pick Windows"
-#~ msgstr "Pencereleri Seç"
-
-#~ msgid "Wobbly Windows"
-#~ msgstr "Sallanan Pencereler"
-
-#~ msgid "Wobbly Menu"
-#~ msgstr "Sallanan Menü"
-
-#~ msgid "Current User"
-#~ msgstr "Geçerli Kullanıcı"
-
-#~ msgid "Home Directory"
-#~ msgstr "Ev Dizini"
-
-#~ msgid "Complete lockdown of the Panel "
-#~ msgstr "Panelin tamamen kapatılması "
-
-#~ msgid "Rename the \"Computer\" icon: "
-#~ msgstr "\"Bilgisayar\" simgesini yeniden adlandır: "
-
-#~ msgid "Show \"Home\" icon on desktop"
-#~ msgstr "\"Ev\" simgesini masaüstünde göster"
-
-#~ msgid "Rename the \"Home\" icon: "
-#~ msgstr "\"Ev\" simgesini yeniden adlandır: "
-
-#~ msgid "Rename the \"Trash\" icon: "
-#~ msgstr "\"Çöp Kutusu\" simgesini yeniden adlandır: "
-
-#~ msgid "Show Mounted Volumes on desktop"
-#~ msgstr "Bağlanmış Birimleri masaüstünde göster"
-
-#~ msgid "Disable Lock Screen"
-#~ msgstr "Ekran Kilitlemeyi devre dışı bırak"
-
-#~ msgid "Disable Printing"
-#~ msgstr "Yazdırmayı devre dışı bırak"
-
-#~ msgid "Disable Print Setup"
-#~ msgstr "Yazdırma Kurulumunu devre dışı bırak"
-
-#~ msgid "Disable Save To Disk"
-#~ msgstr "Diske kaydetmeyi devre dışı bırak"
-
-#~ msgid "Disable User Switching"
-#~ msgstr "Kullanıcı değişimini etkisizleştir"
-
-#~ msgid "Desktop Icon"
-#~ msgstr "Masaüstü Simgesi"
-
-#~ msgid "Power Manager"
-#~ msgstr "Güç Yönetimi"
-
-#~ msgid "Security Options"
-#~ msgstr "Güvenlik Ayarları"
-
-#~ msgid "Use metacity theme"
-#~ msgstr "Metacity teması kullan"
-
-#~ msgid "Title bar mouse wheel action"
-#~ msgstr "Başlık çubuğu fare tekeri davranışı"
-
-#~ msgid "Title bar Double-click action"
-#~ msgstr "Başlık çubuğı Çift-tıklama eylemi"
-
-#~ msgid "Title bar Middle-click action"
-#~ msgstr "Başlık çubuğu tekerlek-tıklama eylemi"
-
-#~ msgid "Title bar Right-click action"
-#~ msgstr "Başık çubuğu Sağ-tık eylemi"
-
-#~ msgid "Enable BurnProof technology"
-#~ msgstr "Yanma Koruması teknolojisini etkinleştir"
-
-#~ msgid "Enable OverBurn"
-#~ msgstr "Fazla yazmayı etkinleştir"
-
-#~ msgid "Default Thumbnail Icon Size"
-#~ msgstr "Varsayılan Önizleme Simge Boyutu"
-
-#~ msgid "Enable Hibernation"
-#~ msgstr "Hibernation Özelliğini Etkinleştir"
-
-#~ msgid "Enable Suspend"
-#~ msgstr "Askıya Almayı Etkinleştir"
-
-#~ msgid "Lock screen when blanked"
-#~ msgstr "Ekran boş olduğunda kilitle"
-
-#~ msgid "\"GNOME Panel\" Power Management icon"
-#~ msgstr "\"GNOME Paneli\" Güç Yönetimi simgesi"
-
-#~ msgid "Choose a Splash image"
-#~ msgstr "Açılış resmi seçin"
-
-#~ msgid "Automatically save changes to session"
-#~ msgstr "Değişiklikleri otomatik olarak oturuma kaydet"
-
-#~ msgid "Show Logout prompt"
-#~ msgstr "Oturumu Kapat iletisini göster"
-
-#~ msgid "Show Splash screen"
-#~ msgstr "Açılış ekranını göster"
-
-#~ msgid "None description"
-#~ msgstr "Açıklama yok"
-
-#~ msgid ""
-#~ "You can safely delete the item, it will only been marked as hidden.\n"
-#~ "If you want to delete it from disk, right-click the item."
-#~ msgstr ""
-#~ "Öğeyi güvenle silebilirsiniz,sadece saklı olarak işaretlenecek.\n"
-#~ "Diskten silmek istiyorsanız öğeye sağ tıklayın."
-
-#~ msgid "Show program comments"
-#~ msgstr "Program yorumlarını göster"
-
-#~ msgid "Auto Start"
-#~ msgstr "Otomatik Başlatma"
-
-#~ msgid "_Browse"
-#~ msgstr "_Gözat"
-
-#~ msgid "User Folder"
-#~ msgstr "Kullanıcı Klasörü"
-
-#~ msgid "Manage your templates"
-#~ msgstr "Şablonlarınızı yönetin"
-
-#~ msgid "Desktop Folder"
-#~ msgstr "Masaüstü Klasörü"
-
-#~ msgid "Download Folder"
-#~ msgstr "İndirme Klasörü"
-
-#~ msgid "Templates Folder"
-#~ msgstr "Şablonlar Klasörü"
-
-#~ msgid "Public Folder"
-#~ msgstr "Genel Klasör"
-
-#~ msgid "Document Folder"
-#~ msgstr "Belgeler Klasörü"
-
-#~ msgid "Music Folder"
-#~ msgstr "Müzik Klasörü"
-
-#~ msgid "Pictures Folder"
-#~ msgstr "Resimler Klasörü"
-
-#~ msgid "Videos Folder"
-#~ msgstr "Videolar Klasörü"
-
-#~ msgid "Set your document folders"
-#~ msgstr "Belge klasörlerinizi ayarlayın"
-
-#~ msgid "Update successfully!"
-#~ msgstr "Güncelleştirme Başarılı!"
-
-#~ msgid "Select a new folder"
-#~ msgstr "Yeni bir klasör seçin"
-
-#~ msgid "Rebuild the system templates"
-#~ msgstr "Sistem şablonlarını yeniden kur"
-
-#~ msgid "This will delete all the disabled templates, continue?"
-#~ msgstr "Bu işlem devre dışı olan bütün şablonları silecek, devam mı?"
-
-#, python-format
-#~ msgid "The target \"%s\" is exists!"
-#~ msgstr "Hedef \"%s\" mevcut!"
-
-#~ msgid "Please select a target(files or folders)."
-#~ msgstr "Lütfen bir hedef seçin(dosyalar ya da klasörler)."
-
-#~ msgid "Manage your scripts"
-#~ msgstr "Betiklerinizi yönetin"
-
-#~ msgid "Rebuild the system scripts"
-#~ msgstr "Sistem betiklerini yeniden kur"
-
-#~ msgid "This will delete all the disabled scripts, continue?"
-#~ msgstr "Bu işlem bütün devre dışı betikleri silecek,devam mı?"
-
-#~ msgid "Snapping Windows"
-#~ msgstr "Mıknatıslı Pencereler"
-
-#~ msgid "Desktop Environment"
-#~ msgstr "Masaüstü Ortamı"
-
-#~ msgid "Confirm Message when removing panel"
-#~ msgstr "Paneli silerken onayla mesajı"
-
-#~ msgid "Show Input Method menu on the Context Menu"
-#~ msgstr "İçerik Menüsünde giriş yöntemi menüsünü göster"
-
-#~ msgid "Show Unicode Method menu on the Context Menu"
-#~ msgstr "İçerik Menüsünde Unicode yöntemi menüsünü göster"
-
-#~ msgid "Use Home Folder as the desktop(Logout for changes to take effect)"
-#~ msgstr ""
-#~ "Masaüstü olarak Ev klasörünü kullan (Değişikliklerin geçerli olması için "
-#~ "oturumu yeniden başlatın)"
-
-#~ msgid "Show advanced Permissions on File Property pages"
-#~ msgstr "Dosya özelliği sayfaları için gelişmiş izinleri göster"
-
-#~ msgid "Show CPU frequency control option"
-#~ msgstr "İşlemci frekans kontrolü ayarını göster"
-
-#~ msgid "Disable the Network Manager on sleep"
-#~ msgstr "Uyku modundayken Ağ Yöneticisini etkisizleştir"
-
-#~ msgid "Set the shortcut of your commands"
-#~ msgstr "Komutlarınızın kısayollarını ayarlayın"
-
-#~ msgid ""
-#~ "You can do all kinds of tasks with scripts.\n"
-#~ "You can drag and drop from File Manager.\n"
-#~ "\"Scripts\" will be added to the Context Menu.\n"
-#~ msgstr ""
-#~ "Betiklerle her tür görevleri yapabilirsiniz.\n"
-#~ "Dosya Yöneticisinden sürükleyip bırakabilirsiniz.\n"
-#~ "\"Betikler\" İçerik Menüsüne eklenecek.\n"
-
-#~ msgid ""
-#~ "By configuring keyboard shortcuts, you have faster access to the \n"
-#~ "applications you need.\n"
-#~ "Input the command and set any desired key, it's easy to set a shortcut.\n"
-#~ "Use <b>Delete</b> or <b>BackSpace</b> to clean the key."
-#~ msgstr ""
-#~ "Klavyle kısayollarını ayarlayarak,ihtiyacınız olan programlara \n"
-#~ "daha hızlı erişebilirsiniz.\n"
-#~ "Komutu girin ve istediğiniz tuşu belirleyin, bir kısayol ayarlamak çok "
-#~ "kolay.\n"
-#~ "Belirlediğiniz tuşu temizlemek için <b>Delete</b> ya da <b>BackSpace</b> "
-#~ "tuşlarını kullanın."
-
-#~ msgid ""
-#~ "You can freely manage your document templates.\n"
-#~ "You can drag and drop from File Manager.\n"
-#~ "\"Create Document\" will be added to the Context Menu.\n"
-#~ msgstr ""
-#~ "Belge şablonlarınızı serbestçe yönetebilirsiniz.\n"
-#~ "Dosya yöneticisinden sürükleyip bırakabilirsiniz.\n"
-#~ "\"Belge Oluştur\" komutu İçerik Menüsüne eklenecek.\n"
-
-#~ msgid "Update Successfully!"
-#~ msgstr "Güncelleştirme Başarıyla Tamamlandı"
-
-#~ msgid "Enable System-wide 'Recently Used' list"
-#~ msgstr "Sistem genelinde 'Son Zamanlarda Kullanılan' listesini etkinleştir"
-
-#~ msgid "P2P Clients"
-#~ msgstr "P2P İstemcileri"
-
-#~ msgid "K Desktop Environment 4.1"
-#~ msgstr "K Masaüstü Ortamı (KDE) 4.1"
-
-#~ msgid "Lightweight X11 Desktop Environment:GPicView, PCManFM"
-#~ msgstr "Hafif X11 Masaüstü Ortamı:GPicView, PCManFM"
-
-#~ msgid ""
-#~ "<b><big>The information about available software is out-of-date</big></b>\n"
-#~ "\n"
-#~ "To install software and updates from newly added or changed sources, you "
-#~ "have to reload the information about available software.\n"
-#~ "\n"
-#~ "You need a working internet connection to continue."
-#~ msgstr ""
-#~ "<b><big>Mevcut yazılım bilgileri güncel değil</big></b>\n"
-#~ "\n"
-#~ "Yeni eklenmiş ya da değişmiş kaynaklardan yazılım ve güncellemeler kurmak "
-#~ "için mevcut yazılım bilgilerini tekrar yüklemeniz gerekmektedir.\n"
-#~ "\n"
-#~ "Devam etmek için çalışır durumda bir internet bağlantısı gerekmektedir."
-
-#~ msgid "Transparent Menu"
-#~ msgstr "Geçirgen Menü"
-
-#~ msgid "Third Party Sources"
-#~ msgstr "Üçüncü Parti Kaynaklar"
-
-#~ msgid "Active window transparency shade"
-#~ msgstr "Etkin pencere geçirgenliği"
-
-#~ msgid "Inactive window transparency shade"
-#~ msgstr "Etkin olmayan pencere geçirgenliği"
-
-#~ msgid "Development Version of Mozilla Firefox 3.0/3.1, 4.0"
-#~ msgstr "Mozilla Firefox 3.0/3.1, 4.0 'ın Geliştirme Versiyonu"
-
-#~ msgid "Third Party Softwares Sources"
-#~ msgstr "Üçüncü Parti Yazılım Kaynakları"
-
-#~ msgid "Enable or Disable the AutoStart Program"
-#~ msgstr "Otomatik Başlatma Programını Etkinleştir ya da Devre Dışı Bırak"
-
-#~ msgid "Instant Messenger"
-#~ msgstr "Anında Mesajlaşma"
-
-#~ msgid "KDE IM client using Tencent QQ protocol"
-#~ msgstr "Tencent QQ protokolünü kullanan KDE IM istemcisi"
-
-#~ msgid "Settings for Nautilus behavior"
-#~ msgstr "Nautlilus davranışı için ayarlar"
-
-#~ msgid "CD Burner"
-#~ msgstr "CD Yazıcı"
-
-#~ msgid "Click the large button to change Splash screen"
-#~ msgstr "Açılış ekranını değiştirmek için geniş olan butona tıklayın"
