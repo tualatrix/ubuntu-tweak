@@ -154,7 +154,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/transmissionbt/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Transmission_Stable],
     ['http://ppa.launchpad.net/transmissionbt-beta/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Transmission_Beta],
     ['http://ppa.launchpad.net/transmissionbt-nightly/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Transmission_Nightly],
-    ['http://download.virtualbox.org/virtualbox/debian', ['hardy', 'intrepid'], 'non-free', VirtualBox],
+    ['http://download.virtualbox.org/virtualbox/debian', ['hardy', 'intrepid', 'jaunty'], 'non-free', VirtualBox],
     ['http://ppa.launchpad.net/shutter/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Shutter],
     ['http://ppa.launchpad.net/galaxium/ubuntu', 'hardy', 'main', Galaxium],
     ['http://download.tuxfamily.org/swiftweasel', ['hardy', 'intrepid'], 'multiverse', Swiftweasel],
