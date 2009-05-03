@@ -1,3 +1,21 @@
+ubuntu-tweak (0.4.7.1-1~jaunty1) jaunty; urgency=low
+
+  * Fix a typo in mainwindow, Power Managerment->PowerManagement
+  * Add ubundsl to third-party sources and installer
+  * Add the hard-shadow script, so that it will be easy if you want to
+  make shadow to image
+  * Catch the exception when get_icon_with_app, Fix LP #363208
+  * Improve the open-with-*** scripts, it can determine the associated
+  text editor now
+  * Add gnote ppa source, add gnote to installer
+  * Let Shortcuts works under Ubuntu 9.04, it is caused by Compiz, LP
+  #362378
+  * Improve the compiz check, I think LP #346212 is fixed. Need test.
+  * Enable NautilusDropbox, VirtualBox and Wine for Ubuntu 9.04 Jaunty in 
+  Third-Party Sources
+
+ -- TualatriX <tualatrix@gmail.com>  Sun, 03 May 2009 16:02:58 +0800
+
 ubuntu-tweak (0.4.7-1~jaunty3) jaunty; urgency=low
 
   * Fix the startup crash with Ubuntu 9.04 Jauty. (LP #359875 #359897)
