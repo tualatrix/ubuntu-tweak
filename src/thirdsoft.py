@@ -148,7 +148,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/ubuntu-tweak-testing/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', UbuntuTweakTesting],
     ['http://ppa.launchpad.net/adrian5632/ppa/ubuntu', ['hardy', 'intrepid'], 'main', UbuDSL],
     ['http://ppa.launchpad.net/gilir/ubuntu', ['hardy', 'intrepid'], 'main', Screenlets],
-    ['http://wine.budgetdedicated.com/apt', ['hardy', 'intrepid'], 'main', Wine],
+    ['http://wine.budgetdedicated.com/apt', ['hardy', 'intrepid', 'jaunty'], 'main', Wine],
     ['http://ppa.launchpad.net/lxde/ubuntu', 'hardy', 'main', LXDE],
     ['http://ppa.launchpad.net/gnome-terminator/ubuntu', ['hardy', 'intrepid'], 'main', Terminator],
     ['http://ppa.launchpad.net/transmissionbt/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Transmission_Stable],
