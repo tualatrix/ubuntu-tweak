@@ -20,6 +20,7 @@
 
 import os
 import gtk
+from common.misc import filesizeformat
 from common.systeminfo import SystemInfo
 from common.widgets import EntryBox, ListPack, TweakPage
 
@@ -42,13 +43,13 @@ class Computer(TweakPage):
                 raminfo = element.split(" ")[-2]
 
         box = ListPack(_("System information"),(
-                    EntryBox(_("Hostname"),        os.uname()[1]),
-                    EntryBox(_("Distribution"),     SystemInfo.distro),
-                    EntryBox(_("Desktop environment"),     SystemInfo.gnome),
-                    EntryBox(_("Kernel"),         os.uname()[0]+" "+os.uname()[2]),
-                    EntryBox(_("Platform"),     os.uname()[-1]),
-                    EntryBox(_("CPU"),         cpumodel[1:-1]),
-                    EntryBox(_("Memory"),         str(int(raminfo)/1024)+" MB"),
+                    EntryBox(_("Hostname"), os.uname()[1]),
+                    EntryBox(_("Distribution"), SystemInfo.distro),
+                    EntryBox(_("Desktop environment"), SystemInfo.gnome),
+                    EntryBox(_("Kernel"), os.uname()[0]+" "+os.uname()[2]),
+                    EntryBox(_("Platform"), os.uname()[-1]),
+                    EntryBox(_("CPU"), cpumodel[1:-1]),
+                    EntryBox(_("Memory"), filesizeformat(str(int(raminfo) * 1024))),
                 ))
         self.pack_start(box, False, False, 0)
 
