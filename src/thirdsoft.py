@@ -20,7 +20,6 @@
 
 import os
 import gtk
-import dbus
 import time
 import thread
 import subprocess
