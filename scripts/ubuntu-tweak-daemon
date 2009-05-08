@@ -119,7 +119,19 @@ class Daemon(dbus.service.Object):
             return 'error'
         else:
             return 'done'
-            
+
+    @dbus.service.method(INTERFACE,
+                         in_signature='ss', out_signature='')
+    def link_file(self, src, dst):
+        if not os.path.exists(dst):
+            os.symlink(src, dst)
+
+    @dbus.service.method(INTERFACE,
+                         in_signature='s', out_signature='')
+    def unlink_file(self, path):
+        if os.path.exists(path):
+            os.unlink(path)
+
     @dbus.service.method(INTERFACE,
                          in_signature='s', out_signature='')
     def set_list_state(self, state):
@@ -149,6 +161,11 @@ class Daemon(dbus.service.Object):
         f = file(filename, 'w')
         f.write(text)
         f.close()
+
+    @dbus.service.method(INTERFACE,
+                         in_signature='s', out_signature='b')
+    def is_exists(self, path):
+        return os.path.exists(path)
 
     @dbus.service.method(INTERFACE,
                          in_signature='', out_signature='')
