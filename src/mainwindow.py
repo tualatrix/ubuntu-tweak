@@ -21,6 +21,7 @@
 import pygtk
 pygtk.require('2.0')
 import os
+import re
 import gtk
 import sys
 import gconf
@@ -346,6 +347,7 @@ class MainWindow(gtk.Window):
         if TweakSettings.get_check_update():
             gobject.timeout_add(8000, self.on_timeout)
 
+        self.is_testing()
         launch = TweakSettings.get_default_launch()
         if launch:
             self.__create_newpage(launch)
@@ -581,6 +583,12 @@ You should have received a copy of the GNU General Public License along with Ubu
                 UpdateManager(self.get_toplevel())
 
         gtk.gdk.threads_leave()
+
+    def is_testing(self):
+        from common.package import package_worker
+        p = re.compile('\d{8}')
+        if p.search(package_worker.get_pkgversion('ubuntu-tweak')):
+            print 'ok, testing'
 
     def destroy(self, widget, data = None):
         from common.policykit import proxy
