@@ -550,7 +550,7 @@ class MainWindow(gtk.Window):
         about.set_logo(self.get_icon())
         about.set_comments(_("Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your system and desktop settings."))
         about.set_authors(["TualatriX tualatrix@gmail.com", "Lee Jarratt lee.jarratt@googlemail.com (English consultants)"])
-        about.set_copyright("Copyright © 2007-2008 TualatriX")
+        about.set_copyright("Copyright © 2007-2009 TualatriX")
         about.set_wrap_license(True)
         about.set_license("Ubuntu Tweak is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n\
 Ubuntu Tweak is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\
