@@ -43,19 +43,19 @@ def load_ccm():
 load_ccm()
 
 plugins = \
-[
-    "expo",
-    "scale",
-    "core",
-    "widget",
-]
+{
+    'expo': _('Expo'),
+    'scale': _('Show Windows'),
+    'core': _('Show Desktop'),
+    'widget': _('Widget'),
+}
 
 plugins_settings = \
 {
-    "expo": "expo_edge",
-    "scale": "initiate_all_edge",
-    "core": "show_desktop_edge",
-    "widget": "toggle_edge",
+    'expo': 'expo_edge',
+    'scale': 'initiate_all_edge',
+    'core': 'show_desktop_edge',
+    'widget': 'toggle_edge',
 }
 
 class CompizSetting:
@@ -302,37 +302,48 @@ class Compiz(TweakPage, CompizSetting):
         self.add_edge(widget, edge)    
 
     def add_edge(self, widget, edge):
-        i = widget.get_active()
-        if i == 4:
+        text = widget.get_active_text()
+        for k, v in plugins.items():
+            if v == text:
+                text = k
+                break
+
+        if text == '-':
             widget.previous = None
         else:
-            plugin = self.context.Plugins[plugins[i]]
-            setting = plugin.Display[plugins_settings[plugins[i]]]
+            plugin = self.context.Plugins[text]
+            setting = plugin.Display[plugins_settings[text]]
             setting.Value = edge
             self.context.Write()
-            widget.previous = plugins[i]
+            widget.previous = text
 
     def create_edge_combo_box(self, edge):
+        global plugins_settings, plugins
         combobox = gtk.combo_box_new_text()
-        combobox.append_text(_("Expo"))
-        combobox.append_text(_("Show Windows"))
-        combobox.append_text(_("Show Desktop"))
-        combobox.append_text(_("Widget"))
-        combobox.append_text("-")
-        combobox.set_active(4)
         combobox.previous = None
 
+        enable = False
+        count = 0
         for k, v in plugins_settings.items():
-            plugin = self.context.Plugins[k]
-            #TODO The plugin should be turned off when it is unused.
-            if not plugin.Enabled:
-                plugin.Enabled = True
-                self.context.Write()
-            setting = plugin.Display[v]
-            if setting.Value == edge:
-                combobox.previous = k
-                combobox.set_active(plugins.index(k))
+            if self.context.Plugins.has_key(k):
+                plugin = self.context.Plugins[k]
+                combobox.append_text(plugins[k])
+                if not plugin.Enabled:
+                    plugin.Enabled = True
+                    self.context.Write()
+                setting = plugin.Display[v]
+                if setting.Value == edge:
+                    combobox.previous = k
+                    combobox.set_active(count)
+                    enable = True
+                count = count + 1
+            else:
+                plugins.pop(k)
+                plugins_settings.pop(k)
 
+        combobox.append_text("-")
+        if not enable:
+            combobox.set_active(count)
         combobox.connect("changed", self.combo_box_changed_cb, edge)
 
         return combobox
