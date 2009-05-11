@@ -149,7 +149,7 @@ SOURCE_DATA = {
     'kde-4': _('K Desktop Environment 4.2'),
     'lxde': _('Lightweight X11 Desktop Environment: GPicView, PCManFM'),
     'medibuntu': _('Multimedia, Entertainment and Distraction In Ubuntu\nMedibuntu is a repository of packages that cannot be included into the Ubuntu distribution for legal reasons (copyright, license, patent, etc).'),
-    'openoffice': 'OpenOffice.org 3.0 for Ubuntu 8.10 Intrepid Ibex',
+    'openoffice': 'OpenOffice.org 3.1 for Ubuntu',
     'ubuntu-cn': _('Ubuntu repository for Chinese users.\n'
         'Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and other softwares.'),
 }

@@ -118,7 +118,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/project-neon/ubuntu/', ['hardy', 'intrepid'], 'main', Amarok],
     ['http://ppa.launchpad.net/blueman/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Blueman],
     ['http://archive.ubuntu.org.cn/ubuntu-cn/', ['hardy', 'intrepid'], 'main restricted universe multiverse', Ubuntu_cn],
-    ['http://ppa.launchpad.net/openoffice-pkgs/ubuntu', 'intrepid', 'main', OpenOffice],
+    ['http://ppa.launchpad.net/openoffice-pkgs/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', OpenOffice],
     ['http://ppa.launchpad.net/globalmenu-team/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', GlobalMenu],
     ['http://ppa.launchpad.net/chromium-daily/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', ChromiumBrowser],
     ['http://ppa.launchpad.net/specto/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Specto],
