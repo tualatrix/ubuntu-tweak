@@ -102,7 +102,7 @@ class PackageWorker:
 
     def __init__(self):
         self.uname = os.uname()[2]
-	self.uname_no_generic = '-'.join(self.uname.split('-')[:2])
+        self.uname_no_generic = '-'.join(self.uname.split('-')[:2])
 
     def is_current_kernel(self, pkg):
         for base in self.basenames:
