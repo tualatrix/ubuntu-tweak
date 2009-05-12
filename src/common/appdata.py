@@ -152,6 +152,7 @@ SOURCE_DATA = {
     'openoffice': 'OpenOffice.org 3.1 for Ubuntu',
     'ubuntu-cn': _('Ubuntu repository for Chinese users.\n'
         'Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and other softwares.'),
+    'getdeb': _('GetDeb extends the existing software options for Ubuntu (and derived) Linux distributions by providing major updates and software not yet available on the official Ubuntu repositories.'),
 }
 
 if __name__ == '__main__':
