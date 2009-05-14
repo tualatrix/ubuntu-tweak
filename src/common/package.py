@@ -46,7 +46,7 @@ def update_apt_cache(init = False):
             return
 
     apt_pkg.init()
-    cache = apt.Cache(apt.progress.OpTextProgress())
+    cache = apt.Cache()
 
 class AptCheckButton(gtk.CheckButton):
     def __init__(self, label, pkgname, tooltip = None):
