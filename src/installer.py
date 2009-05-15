@@ -25,10 +25,10 @@ import gobject
 import pango
 
 from common.consts import *
-from common.appdata import *
 from common.utils import *
 from common.widgets import TweakPage
 from common.widgets.dialogs import InfoDialog
+from common.appdata import get_app_logo, get_app_describ
 from xdg.DesktopEntry import DesktopEntry
 
 try:

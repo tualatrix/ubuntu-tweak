@@ -30,7 +30,7 @@ import webbrowser
 
 from common.config import Config
 from common.consts import *
-from common.appdata import *
+from common.appdata import get_source_logo, get_source_describ
 from common.policykit import PolkitButton, proxy
 from common.systeminfo import module_check
 from common.widgets import ListPack, TweakPage, GconfCheckButton
