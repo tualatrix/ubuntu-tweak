@@ -120,7 +120,7 @@ class module_check:
 
     @classmethod
     def is_jaunty(cls):
-        return DistroInfo.codename in ['jaunty']
+        return DistroInfo.codename in ['jaunty', 'gloria']
 
     @classmethod
     def get_codename(cls):
