@@ -77,21 +77,24 @@ class module_check:
 
     @classmethod
     def has_right_compiz(cls):
-        if cls.has_ccm():
-            import ccm
-            if ccm.Version >= '0.7.4':
-                return True
+        try:
+            if cls.has_ccm():
+                import ccm
+                if ccm.Version >= '0.7.4':
+                    return True
+                else:
+                    return False
+            elif cls.has_apt():
+                from package import package_worker, update_apt_cache
+                update_apt_cache()
+                version = str(package_worker.get_pkgversion('compiz'))
+                if version.find(':') != -1 and version.split(':')[1] >= '0.7.4':
+                    return True
+                else:
+                    return False
             else:
                 return False
-        elif cls.has_apt():
-            from package import package_worker, update_apt_cache
-            update_apt_cache()
-            version = str(package_worker.get_pkgversion('compiz'))
-            if version.find(':') != -1 and version.split(':')[1] >= '0.7.4':
-                return True
-            else:
-                return False
-        else:
+        except:
             return False
 
     @classmethod
