@@ -158,8 +158,8 @@ class PackageWorker:
             if cache[pkg].isInstalled:
                 for base in self.basenames:
                     if pkg.startswith(base) and p_kernel.findall(pkg) and not self.is_current_kernel(pkg):
-			list.append(pkg)
-	return list
+                        list.append(pkg)
+        return list
 
     def get_pkgsummary(self, pkg):
         return cache[pkg].summary
