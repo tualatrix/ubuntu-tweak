@@ -27,7 +27,7 @@ import gettext
 import thread
 
 try:
-    from common.package import package_worker, AptCheckButton, update_apt_cache
+    from common.package import package_worker, AptCheckButton
     DISABLE = False
 except ImportError:
     DISABLE = True
@@ -149,7 +149,6 @@ class Nautilus(TweakPage):
 
 
         if not DISABLE:
-            update_apt_cache(True)
             self.package_worker = package_worker
 
             self.nautilus_terminal = AptCheckButton(_('Nautilus with Open Terminal'), 'nautilus-open-terminal')
@@ -213,7 +212,7 @@ class Nautilus(TweakPage):
         else:
             InfoDialog(_("Update failed!")).launch()
 
-        update_apt_cache()
+        package_worker.update_apt_cache(True)
 
     def colleague_changed(self, widget):
         if self.nautilus_terminal.get_state() != self.nautilus_terminal.get_active() or\

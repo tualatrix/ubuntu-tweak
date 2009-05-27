@@ -26,7 +26,7 @@ import gettext
 from common.utils import *
 from common.misc import filesizeformat
 from common.policykit import PolkitButton, proxy
-from common.package import package_worker, update_apt_cache
+from common.package import package_worker
 from common.widgets import TweakPage
 from common.widgets.dialogs import *
 from common.widgets.utils import ProcessDialog
@@ -316,7 +316,7 @@ class PackageView(gtk.TreeView):
         else:
             self.show_failed_dialog()
 
-        update_apt_cache()
+        package_worker.update_apt_cache(True)
         if self.mode == 'package':
             self.update_package_model()
         else:
@@ -353,7 +353,7 @@ class PackageView(gtk.TreeView):
         else:
             self.show_success_dialog()
 
-        update_apt_cache()
+        package_worker.update_apt_cache(True)
         self.update_config_model()
         self.emit('cleaned')
 
@@ -371,8 +371,6 @@ class PackageCleaner(TweakPage):
         super(PackageCleaner, self).__init__(
                 _('Package Cleaner'),
                 _('Free up disk space by removing unneeded packages and cleaning the package download cache.'))
-
-        update_apt_cache(True)
 
         self.to_add = []
         self.to_rm = []

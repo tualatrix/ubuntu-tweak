@@ -32,7 +32,7 @@ from common.appdata import get_app_logo, get_app_describ
 from xdg.DesktopEntry import DesktopEntry
 
 try:
-    from common.package import package_worker, PackageInfo, update_apt_cache
+    from common.package import package_worker, PackageInfo
     DISABLE = False
 except ImportError:
     DISABLE = True
@@ -155,8 +155,6 @@ class Installer(TweakPage):
         TweakPage.__init__(self, 
                 _('Add/Remove Applications'),
                 _('A simple but more effecient method for finding and installing popular packages than the default Add/Remove.'))
-
-        update_apt_cache(True)
 
         self.to_add = []
         self.to_rm = []
@@ -287,7 +285,7 @@ class Installer(TweakPage):
                                 category))
 
     def deep_update(self):
-        update_apt_cache()
+        package_worker.update_apt_cache(True)
         self.update_model()
         
     def on_install_toggled(self, cell, path):
@@ -358,7 +356,7 @@ class Installer(TweakPage):
         self.package_worker.perform_action(widget.get_toplevel(), self.to_add, self.to_rm)
 
         done = True
-        update_apt_cache()
+        package_worker.update_apt_cache(True)
 
         for pkg in self.to_add:
             if not PackageInfo(pkg).check_installed():
