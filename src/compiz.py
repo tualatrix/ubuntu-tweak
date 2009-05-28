@@ -225,7 +225,7 @@ class Compiz(TweakPage, CompizSetting):
         self.create_interface()
 
     def create_interface(self):
-        if module_check.has_apt():
+        if module_check.has_apt() and package_worker.get_cache():
             self.package_worker = package_worker
 
             self.advanced_settings = AptCheckButton(_("Install Advanced Desktop Effects Settings Manager"),
@@ -256,7 +256,7 @@ class Compiz(TweakPage, CompizSetting):
             box = ListPack(_("Menu Effects"), (button1, self.wobbly_m))
             self.pack_start(box, False, False, 0)
 
-            if module_check.has_apt():
+            if module_check.has_apt() and package_worker.get_cache():
                 box = ListPack(_("Useful Extensions"), (
                     self.simple_settings,
                     self.screenlets,

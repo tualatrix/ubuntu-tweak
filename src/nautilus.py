@@ -28,7 +28,10 @@ import thread
 
 try:
     from common.package import package_worker, AptCheckButton
-    DISABLE = False
+    if package_worker.get_cache():
+        DISABLE = False
+    else:
+        DISABLE = True
 except ImportError:
     DISABLE = True
 

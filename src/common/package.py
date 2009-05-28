@@ -128,7 +128,7 @@ class PackageWorker:
             self.update_apt_cache()
         except:
             return None
-        finally:
+        else:
             return self.cache
 
     def update_apt_cache(self, init=False):
