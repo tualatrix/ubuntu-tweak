@@ -34,7 +34,10 @@ from common.widgets import TweakPage
 from common.widgets.dialogs import QuestionDialog
 from common.systeminfo import module_check
 from common.config import TweakSettings
-from common.package import package_worker
+try:
+    from common.package import package_worker
+except:
+    package_worker = None
 from updatemanager import UpdateManager
 from preferences import PreferencesDialog
 from common.utils import set_label_for_stock_button
