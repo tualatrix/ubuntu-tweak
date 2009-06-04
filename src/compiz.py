@@ -396,11 +396,14 @@ class Compiz(TweakPage, CompizSetting):
             else:
                 to_rm.append(widget.pkgname)
 
-        self.package_worker.perform_action(widget.get_toplevel(), to_add, to_rm)
+        state = self.package_worker.perform_action(widget.get_toplevel(), to_add, to_rm)
 
-        self.button.set_sensitive(False)
+        if state == 0:
+            self.button.set_sensitive(False)
+            InfoDialog(_("Update successful!")).launch()
+        else:
+            InfoDialog(_("Update failed!")).launch()
 
-        InfoDialog(_("Update successful!")).launch()
 
         package_worker.update_apt_cache(True)
         CompizSetting.update_context()
