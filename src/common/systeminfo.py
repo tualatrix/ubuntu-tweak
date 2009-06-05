@@ -85,12 +85,7 @@ class module_check:
                 else:
                     return False
             elif cls.has_apt():
-                from package import package_worker
-                version = str(package_worker.get_pkgversion('compiz'))
-                if version.find(':') != -1 and version.split(':')[1] >= '0.7.4':
-                    return True
-                else:
-                    return False
+                return True
             else:
                 return False
         except:
