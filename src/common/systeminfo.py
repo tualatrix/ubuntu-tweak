@@ -109,15 +109,15 @@ class module_check:
 
     @classmethod
     def is_hardy(cls):
-        return DistroInfo.codename in ['hardy', 'elyssa']
+        return DistroInfo.codename in ['hardy', 'elyssa', 'Elyssa']
 
     @classmethod
     def is_intrepid(cls):
-        return DistroInfo.codename in ['intrepid', 'felicia']
+        return DistroInfo.codename in ['intrepid', 'felicia', 'Felicia']
 
     @classmethod
     def is_jaunty(cls):
-        return DistroInfo.codename in ['jaunty', 'gloria']
+        return DistroInfo.codename in ['jaunty', 'gloria', 'Gloria']
 
     @classmethod
     def get_codename(cls):
