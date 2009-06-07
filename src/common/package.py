@@ -123,6 +123,21 @@ class PackageWorker:
 
         return self.return_code
 
+    def get_install_status(self, to_add, to_rm):
+        done = True
+
+        for pkg in to_add:
+            if not PackageInfo(pkg).check_installed():
+                done = False
+                break
+
+        for pkg in to_rm:
+            if PackageInfo(pkg).check_installed():
+                done = False
+                break
+
+        return done
+
     def get_cache(self):
         try:
             self.update_apt_cache()

@@ -355,18 +355,9 @@ class Installer(TweakPage):
     def on_apply_clicked(self, widget, data = None):
         self.package_worker.perform_action(widget.get_toplevel(), self.to_add, self.to_rm)
 
-        done = True
         package_worker.update_apt_cache(True)
 
-        for pkg in self.to_add:
-            if not PackageInfo(pkg).check_installed():
-                done = False
-                break
-
-        for pkg in self.to_rm:
-            if PackageInfo(pkg).check_installed():
-                done = False
-                break
+        done = package_worker.get_install_status(self.to_add, self.to_rm)
 
         if done:
             self.button.set_sensitive(False)
