@@ -126,7 +126,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/specto/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Specto],
 #    ['http://getdeb.masio.com.mx/', ['hardy', 'intrepid', 'jaunty'], '', GetDeb],
     ['http://ppa.launchpad.net/gtg/ppa/ubuntu', ['intrepid', 'jaunty'], 'main', GettingThingsGnome],
-    ['http://ppa.launchpad.net/vperetokin/gnote/ubuntu', ['intrepid', 'jaunty'], 'main', Gnote],
+    ['http://ppa.launchpad.net/gnote/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Gnote],
     ['http://deb.opera.com/opera/', 'lenny', 'non-free', Opera],
     ['http://ppa.launchpad.net/firerabbit/ppa/ubuntu', ['intrepid','jaunty'], 'main', Synapse],
     ['http://download.skype.com/linux/repos/debian', 'stable', 'non-free', Skype],
