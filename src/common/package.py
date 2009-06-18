@@ -179,6 +179,9 @@ class AptCheckButton(gtk.CheckButton):
     def button_toggled(self, widget, data = None):
         pass
 
+    def reset_active(self):
+        self.set_active(self.get_state())
+
 class PackageInfo:
     DESKTOP_DIR = '/usr/share/app-install/desktop/'
 

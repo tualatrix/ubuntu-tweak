@@ -207,15 +207,18 @@ class Nautilus(TweakPage):
             else:
                 to_rm.append(widget.pkgname)
 
-        state = self.package_worker.perform_action(widget.get_toplevel(), to_add, to_rm)
+        self.package_worker.perform_action(widget.get_toplevel(), to_add, to_rm)
+        self.package_worker.update_apt_cache(True)
 
-        if state == 0:
+        done = package_worker.get_install_status(to_add, to_rm)
+
+        if done:
             self.button.set_sensitive(False)
-            InfoDialog(_("Update successful!")).launch()
+            InfoDialog(_('Update Successful!')).launch()
         else:
-            InfoDialog(_("Update failed!")).launch()
-
-        package_worker.update_apt_cache(True)
+            InfoDialog(_('Update Failed!')).launch()
+            for widget in box.items:
+                widget.reset_active()
 
     def colleague_changed(self, widget):
         if self.nautilus_terminal.get_state() != self.nautilus_terminal.get_active() or\
