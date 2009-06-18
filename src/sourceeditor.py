@@ -53,7 +53,6 @@ deb-src http://archive.ubuntu.com/ubuntu/ %(distro)s-proposed main restricted un
 deb-src http://archive.ubuntu.com/ubuntu/ %(distro)s-backports main restricted universe multiverse''' % {'distro': module_check.get_codename()}
 
 SOURCES_LIST = '/etc/apt/sources.list'
-#SOURCES_LIST = '/home/tualatrix/Desktop/sources.list'
 
 class SelectSourceDialog(gtk.Dialog):
     def __init__(self, parent):
@@ -147,7 +146,7 @@ class SubmitDialog(gtk.Dialog):
         return (self.e_title.get_text().strip(), 
                 self.e_locale.get_text().strip(), 
                 self.e_comment.get_text().strip(),
-                file(SOURCES_LIST).read())
+                open(SOURCES_LIST).read())
 
     def check_fill_data(self):
         return self.e_title.get_text().strip() \
@@ -254,11 +253,10 @@ class SourceView(gtk.TextView):
         buffer.delete(buffer.get_start_iter(), buffer.get_end_iter())
         iter = buffer.get_iter_at_offset(0)
         if content is None:
-            content = file(SOURCES_LIST).read()
+            content = open(SOURCES_LIST).read()
 
         for i, line in enumerate(content.split('\n')):
-            if i != content.count('\n') and line:
-                self.parse_and_insert(buffer, iter, line, i != content.count('\n'))
+            self.parse_and_insert(buffer, iter, line, i != content.count('\n'))
 
     def parse_and_insert(self, buffer, iter, line, break_line = False):
         try:
@@ -274,7 +272,7 @@ class SourceView(gtk.TextView):
                     self.insert_line(buffer, iter)
                 elif has_end_blank:
                     list[-1] = list[-1] + ' '
-                if len(list) > 3:
+                if len(list) >= 4:
                     type, uri, distro, component = list[0], list[1], list[2], list[3:]
 
                     buffer.insert_with_tags_by_name(iter, type, 'type')
@@ -284,6 +282,16 @@ class SourceView(gtk.TextView):
                     buffer.insert_with_tags_by_name(iter, distro, 'distro')
                     self.insert_blank(buffer, iter)
                     self.seprarte_component(buffer, component, iter)
+                    if break_line:
+                        self.insert_line(buffer, iter)
+                elif len(list) == 3:
+                    type, uri, distro = list[0], list[1], list[2]
+
+                    buffer.insert_with_tags_by_name(iter, type, 'type')
+                    self.insert_blank(buffer, iter)
+                    buffer.insert_with_tags_by_name(iter, uri, 'uri')
+                    self.insert_blank(buffer, iter)
+                    buffer.insert_with_tags_by_name(iter, distro, 'distro')
                     if break_line:
                         self.insert_line(buffer, iter)
                 else:
@@ -462,7 +470,7 @@ class SourceEditor(TweakPage):
             self.redo_button.set_sensitive(False)
 
     def on_save_button_clicked(self, wiget):
-        text = self.textview.get_text()
+        text = self.textview.get_text().strip()
         if proxy.edit_file(SOURCES_LIST, text) == 'error':
             ErrorDialog(_('Please check the permission of the sources.list file'),
                     title = _('Save failed!')).launch()
