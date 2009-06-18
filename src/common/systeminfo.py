@@ -97,7 +97,7 @@ class module_check:
 
     @classmethod
     def is_ubuntu(cls):
-        return cls.is_hardy() or cls.is_intrepid() or cls.is_jaunty()
+        return cls.is_hardy() or cls.is_intrepid() or cls.is_jaunty() or cls.is_karmic()
 
     @classmethod
     def is_supported_ubuntu(cls):
@@ -118,6 +118,10 @@ class module_check:
     @classmethod
     def is_jaunty(cls):
         return DistroInfo.codename in ['jaunty', 'gloria', 'Gloria']
+
+    @classmethod
+    def is_karmic(cls):
+        return DistroInfo.codename in ['karmic']
 
     @classmethod
     def get_codename(cls):
