@@ -112,6 +112,7 @@ APP_DATA = {
     'mirage': _('A fast and simple GTK+ Image Viewer'),
     'miro': _('Open internet TV, beyond anything else'),
     'midori': _('Webkit based lightweight web browser'),
+    'moovida': _('The free media player - play all your files'),
     'monodevelop': _('An IDE to Develop .NET applications.'),
     'mplayer': _('The Ultimate Movie Player For Linux'),
     'netbeans': _('IDE for Java, C/C++, Ruby, UML, etc.'),

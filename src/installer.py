@@ -124,6 +124,7 @@ data = \
     ('mirage', Image),
     ('miro', Video),
     ('midori', Internet),
+    ('moovida', Sound),
     ('monodevelop', Develop),
     ('mplayer', Video),
     ('netbeans', Develop),
