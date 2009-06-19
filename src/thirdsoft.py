@@ -461,15 +461,29 @@ class ThirdSoft(TweakPage):
     def do_check_ppa_entry(self):
         content = open(SOURCES_LIST).read()
         for line in content.split('\n'):
-            if 'ppa.launchpad.net' in line and 'ppa/ubuntu' not in line:
+            if self.__is_expire_ppa(line):
                 return True
         return False
+
+    def __is_expire_ppa(self, line):
+        '''http://ppa.launchpad.net/tualatrix/ppa/ubuntu is the new style
+        http://ppa.launchpad.net/tualatrix/ubuntu is the old style
+        length check is important
+        '''
+        try:
+            url = line.split()[1]
+            if url.startswith('http://ppa.launchpad.net') and \
+                    len(url.split('/')) == 5 and \
+                    'ppa/ubuntu' not in line:
+                return True
+        except:
+            pass
 
     def do_update_ppa_entry(self):
         content = open(SOURCES_LIST).read()
         lines = []
         for line in content.split('\n'):
-            if 'ppa.launchpad.net' in line and 'ppa/ubuntu' not in line:
+            if self.__is_expire_ppa(line):
                 lines.append(line.replace('/ubuntu ', '/ppa/ubuntu '))
             else:
                 lines.append(line)
