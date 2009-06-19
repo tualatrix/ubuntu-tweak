@@ -473,7 +473,7 @@ class SourceEditor(TweakPage):
         text = self.textview.get_text().strip()
         if proxy.edit_file(SOURCES_LIST, text) == 'error':
             ErrorDialog(_('Please check the permission of the sources.list file'),
-                    title = _('Save failed!')).launch()
+                    title=_('Save failed!')).launch()
         else:
             self.save_button.set_sensitive(False)
             self.redo_button.set_sensitive(False)

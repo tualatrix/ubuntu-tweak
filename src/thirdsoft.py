@@ -64,6 +64,8 @@ from aptsources.sourceslist import SourceEntry, SourcesList
     SOURCE_KEY,
 ) = range(4)
 
+SOURCES_LIST = '/etc/apt/sources.list'
+
 AWN = ['Avant Window Navigator', 'avant-window-navigator', 'awn-project.org', 'awn.gpg']
 AWN_TESTING = [_('Avant Window Navigator (Unstable Version)'), 'avant-window-navigator', 'awn-project.org', 'awn-testing.gpg']
 Amarok = ['Amarok', 'amarok-nightly', 'amarok.kde.org', 'neon.gpg']
@@ -200,7 +202,7 @@ class UpdateCacheDialog:
             'newly added or changed sources, you have to reload the information '
             'about available software.\n\n'
             'You need a working internet connection to continue.'), 
-            title = _('The information about available software is out-of-date'))
+            title=_('The information about available software is out-of-date'))
 
     def update_cache(self, window_id, lock):
         """start synaptic to update the package cache"""
@@ -439,6 +441,44 @@ class ThirdSoft(TweakPage):
         self.refresh_button.set_sensitive(False)
         self.refresh_button.connect('clicked', self.on_refresh_button_clicked)
         hbox.pack_end(self.refresh_button, False, False, 0)
+
+        #FIXME close it when 0.5.0
+        gobject.idle_add(self.check_ppa_entry)
+
+    def check_ppa_entry(self):
+        if self.do_check_ppa_entry():
+            dialog = QuestionDialog(_('Some of your PPA Sources need to be update.\nDo you wish to continue?'), title=_('PPA Sources is expire'))
+            UPDATE = False
+            if dialog.run() == gtk.RESPONSE_YES:
+                UPDATE = True
+            dialog.destroy()
+
+            if UPDATE:
+                self.do_update_ppa_entry()
+
+    def do_check_ppa_entry(self):
+        content = open(SOURCES_LIST).read()
+        for line in content.split('\n'):
+            if 'ppa.launchpad.net' in line and 'ppa/ubuntu' not in line:
+                return True
+        return False
+
+    def do_update_ppa_entry(self):
+        content = open(SOURCES_LIST).read()
+        lines = []
+        for line in content.split('\n'):
+            if 'ppa.launchpad.net' in line and 'ppa/ubuntu' not in line:
+                lines.append(line.replace('/ubuntu ', '/ppa/ubuntu '))
+            else:
+                lines.append(line)
+
+        if proxy.edit_file(SOURCES_LIST, '\n'.join(lines)) == 'error':
+            ErrorDialog(_('Please check the permission of the sources.list file'),
+                    title=_('Save failed!')).launch()
+        else:
+            InfoDialog(_('Update Successfully')).launch()
+
+        self.update_thirdparty()
 
     def update_thirdparty(self):
         self.treeview.update_model()
