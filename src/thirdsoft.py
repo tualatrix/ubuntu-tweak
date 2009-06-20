@@ -492,7 +492,7 @@ class ThirdSoft(TweakPage):
             ErrorDialog(_('Please check the permission of the sources.list file'),
                     title=_('Save failed!')).launch()
         else:
-            InfoDialog(_('Update Successfully')).launch()
+            InfoDialog(_('Update Successful!')).launch()
 
         self.update_thirdparty()
 
