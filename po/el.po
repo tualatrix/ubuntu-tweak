@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2009-04-29 07:49+0800\n"
-"PO-Revision-Date: 2009-05-01 18:55+0000\n"
+"POT-Creation-Date: 2009-06-21 19:29+0800\n"
+"PO-Revision-Date: 2009-05-28 11:50+0000\n"
 "Last-Translator: Τάσος Παπανικολάου <paptas@gmail.com>\n"
 "Language-Team: Greek <el@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2009-05-02 07:06+0000\n"
+"X-Launchpad-Export-Date: 2009-06-21 09:28+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/autostart.py:45
@@ -26,7 +26,7 @@ msgstr "_Όνομα:"
 msgid "Co_mmand:"
 msgstr "Ε_ντολή:"
 
-#: src/autostart.py:51 src/sourceeditor.py:119
+#: src/autostart.py:51 src/sourceeditor.py:118
 msgid "Comm_ent:"
 msgstr "Σ_χόλιο"
 
@@ -53,6 +53,10 @@ msgstr "Διαγραφή απο τον Δίσκο"
 #: src/autostart.py:200
 msgid "Can't delete the system item from disk."
 msgstr "Αδύνατη η διαγραφή αρχείου Συστήματος απο τον Δίσκο"
+
+#: src/autostart.py:248
+msgid "No description"
+msgstr "Καμία περιγραφή"
 
 #: src/autostart.py:268
 msgid "Program"
@@ -152,11 +156,11 @@ msgstr "Προσωμειωτές"
 msgid "E-mail Tools"
 msgstr "Εργαλία E-mail"
 
-#: src/installer.py:156
+#: src/installer.py:157
 msgid "Add/Remove Applications"
 msgstr "Προσθαφαίρεση εφαρμογών"
 
-#: src/installer.py:157
+#: src/installer.py:158
 msgid ""
 "A simple but more effecient method for finding and installing popular "
 "packages than the default Add/Remove."
@@ -164,15 +168,16 @@ msgstr ""
 "Μια απλή αλλά πιο αποδοτική μέθοδος για ανεύρεση και εγκατάσταση φημισμένων "
 "προγραμμάτων, αντί του Add/Remove."
 
-#: src/installer.py:205
+#: src/installer.py:204
 msgid "All Categories"
 msgstr "Όλες οι Κατηγορίες"
 
-#: src/installer.py:375
+#: src/installer.py:365 src/thirdsoft.py:495 src/compiz.py:406
+#: src/nautilus.py:217
 msgid "Update Successful!"
 msgstr "Η ενημέρωση έγινε επιτυχώς!"
 
-#: src/installer.py:377
+#: src/installer.py:367 src/compiz.py:408 src/nautilus.py:219
 msgid "Update Failed!"
 msgstr "Ενημέρωση Απέτυχε!"
 
@@ -204,50 +209,63 @@ msgstr "Απενεργοποίηση \"Σώσιμο στο δίσκο\""
 msgid "Disable \"Fast User Switching\""
 msgstr "Απενεργοποίση \"Γρήγορης Εναλλαγής Χρηστών\""
 
-#: src/ScriptWorker.py:53
+#: src/lockdown.py:59
+msgid "Fix the theme appearance when grant the root privileges"
+msgstr ""
+"Διαμόρφωσε την εμφάνιση του θέματος όταν αποκτήσεις δικαιώματα διαχειριστή"
+
+#: src/lockdown.py:64
+msgid "Miscellaneous Options"
+msgstr "Διάφορες Επιλογές"
+
+#: src/ScriptWorker.py:56
 #, python-format
 msgid "The file \"%s\" already exists!"
 msgstr "Το αρχείο \"%s\" υπάρχει ήδη"
 
-#: src/ScriptWorker.py:58
+#: src/ScriptWorker.py:61
 #, python-format
 msgid "The folder \"%s\" already exists!"
 msgstr "Ο φάκελος \"%s\" υπάρχει ήδη"
 
-#: src/ScriptWorker.py:64 src/ScriptWorker.py:70
+#: src/ScriptWorker.py:68 src/ScriptWorker.py:75
 #, python-format
 msgid "The target \"%s\" already exists!"
 msgstr "Το αρχείο προορισμού  \"%s\" υπάρχει ήδη"
 
-#: src/ScriptWorker.py:113 src/ScriptWorker.py:125
+#: src/ScriptWorker.py:125 src/ScriptWorker.py:138
 msgid "Enter your password to perform the administrative tasks"
 msgstr "Εισάγετε τον κωδικό σας για να εκτελέσετε διαχειριστικές εργασίες"
 
-#: src/ScriptWorker.py:144
+#: src/ScriptWorker.py:132
+msgid "Coudn't find any text editor in your system!"
+msgstr "Δεν υπάρχει επεξεργαστής κειμένου στο σύστημά σας"
+
+#: src/ScriptWorker.py:159
 msgid "Select a folder"
 msgstr "Επιλέξτε ένα φάκελο"
 
-#: src/ScriptWorker.py:175
+#: src/ScriptWorker.py:189
 msgid "Please select a target (files or folders)."
 msgstr "Παρακαλώ κάντε μια επιλογή (αρχείο ή φάκελο)"
 
-#: src/mainwindow.py:65
+#: src/mainwindow.py:69
 msgid "Welcome to"
 msgstr "Καλως Ήρθατε στο"
 
-#: src/mainwindow.py:71
+#: src/mainwindow.py:75
 msgid "Tweak otherwise hidden settings."
 msgstr "Ρύθμιση κρυμμένων ρυθμίσεων"
 
-#: src/mainwindow.py:72
+#: src/mainwindow.py:76
 msgid "Clean up unneeded packages to free diskspace."
 msgstr "Καθάρισμα αχρείαστων πακέτων για να ελευθερωθεί χώρος στο δίσκο"
 
-#: src/mainwindow.py:73
+#: src/mainwindow.py:77
 msgid "Easily install up-to-date versions of many applications."
 msgstr "Εύκολη εγκατάσταση ενημερώσεων πολλών εφαρμογών"
 
-#: src/mainwindow.py:74
+#: src/mainwindow.py:78
 msgid ""
 "Configure file templates and shortcut scripts for easy access to common "
 "tasks."
@@ -255,15 +273,15 @@ msgstr ""
 "Ρύθμιση προτύπων αρχείων και shortcut scripts για εύκολη πρόσβαση σε κοινές "
 "εργασίες."
 
-#: src/mainwindow.py:75
+#: src/mainwindow.py:79
 msgid "And many more useful features!"
 msgstr "Και πολλά ακόμη χρήσιμα χαρακτηριστικά!"
 
-#: src/mainwindow.py:87
+#: src/mainwindow.py:91
 msgid "<span size=\"xx-large\">Please wait a moment...</span>"
 msgstr "<span size=\"xx-large\">Παρακαλώ περιμένετε μια στιγμή...</span>"
 
-#: src/mainwindow.py:100
+#: src/mainwindow.py:104
 msgid ""
 "<span size=\"x-large\">This feature isn't currently available in your "
 "distribution</span>"
@@ -271,117 +289,129 @@ msgstr ""
 "<span size=\"x-large\">Αυτό το χαρακτηριστικό δεν είναι αυτή την στιγμή "
 "διαθέσιμο στην διανομή σας</span>"
 
-#: src/mainwindow.py:113
+#: src/mainwindow.py:117
 msgid "<span size=\"x-large\">This module is error while loading.</span>"
 msgstr ""
-"<span size=\"x-large\">Αυτό το module παρουσιάζει σφάλμα κατά την "
-"φόρτωση.</span>"
+"<span size=\"x-large\">Αυτό το module παρουσιάζει σφάλμα κατά την φόρτωση.</"
+"span>"
 
-#: src/mainwindow.py:223
+#: src/mainwindow.py:132
+msgid ""
+"This is a major failure of your software management system. Please check for "
+"broken packages with synaptic, check the file permissions and correctness of "
+"the file '/etc/apt/sources.list' and reload the software information with: "
+"'sudo apt-get update' and 'sudo apt-get install -f'."
+msgstr ""
+
+#: src/mainwindow.py:249
 msgid "Welcome"
 msgstr "Καλωσορίσατε"
 
-#: src/mainwindow.py:224
+#: src/mainwindow.py:250
 msgid "Computer"
 msgstr "Υπολογιστής"
 
-#: src/mainwindow.py:225
+#: src/mainwindow.py:251
 msgid "Applications"
 msgstr "Εφαρμογές"
 
-#: src/mainwindow.py:226
+#: src/mainwindow.py:252
 msgid "Add/Remove"
 msgstr "Προσθήκη/Απομάκρυνση"
 
-#: src/mainwindow.py:227 src/sourceeditor.py:335
+#: src/mainwindow.py:253 src/sourceeditor.py:343
 msgid "Source Editor"
 msgstr "Διορθωτής Πηγών"
 
-#: src/mainwindow.py:228 src/thirdsoft.py:279
+#: src/mainwindow.py:254 src/thirdsoft.py:286
 msgid "Third-Party Sources"
 msgstr "Τρίτες πηγές"
 
-#: src/mainwindow.py:229 src/cleaner.py:372
+#: src/mainwindow.py:255 src/cleaner.py:372
 msgid "Package Cleaner"
 msgstr "Καθαριστής Πακέτων"
 
-#: src/mainwindow.py:230
+#: src/mainwindow.py:256
 msgid "Startup"
 msgstr "Εκκίνηση"
 
-#: src/mainwindow.py:231 src/session.py:144
+#: src/mainwindow.py:257 src/session.py:144
 msgid "Session Control"
 msgstr "Έλεγχος Συνεδρίας"
 
-#: src/mainwindow.py:232
+#: src/mainwindow.py:258
 msgid "Autostart"
 msgstr "Αυτόματη εκκίνηση"
 
-#: src/mainwindow.py:233 src/userdir.py:45
+#: src/mainwindow.py:259 src/userdir.py:45
 msgid "Desktop"
 msgstr "Επιφάνεια Eργασίας"
 
-#: src/mainwindow.py:234
+#: src/mainwindow.py:260
 msgid "Icons"
 msgstr "Εικονίδια"
 
-#: src/mainwindow.py:235
+#: src/mainwindow.py:261
 msgid "Windows"
 msgstr "Παράθυρα"
 
-#: src/mainwindow.py:236
+#: src/mainwindow.py:262
 msgid "Compiz Fusion"
 msgstr "Compiz Fusion"
 
-#: src/mainwindow.py:237
+#: src/mainwindow.py:263
 msgid "GNOME"
 msgstr "GNOME"
 
-#: src/mainwindow.py:238
+#: src/mainwindow.py:264
 msgid "Personal"
 msgstr "Προσωπικά"
 
-#: src/mainwindow.py:239
+#: src/mainwindow.py:265
 msgid "Folders"
 msgstr "Φάκελοι"
 
-#: src/mainwindow.py:240 src/userdir.py:47
+#: src/mainwindow.py:266 src/userdir.py:47
 msgid "Templates"
 msgstr "Πρότυπα"
 
-#: src/mainwindow.py:241
+#: src/mainwindow.py:267
 msgid "Scripts"
 msgstr "Δέσμες ενεργειών"
 
-#: src/mainwindow.py:242
+#: src/mainwindow.py:268
 msgid "Shortcuts"
 msgstr "Συντομεύσεις"
 
-#: src/mainwindow.py:243
+#: src/mainwindow.py:269
 msgid "System"
 msgstr "Σύστημα"
 
-#: src/mainwindow.py:244 src/filetype.py:478
+#: src/mainwindow.py:270 src/filetype.py:478
 msgid "File Type Manager"
 msgstr "Διαχειριστής Τύπων Αρχείων"
 
-#: src/mainwindow.py:245
+#: src/mainwindow.py:271
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: src/mainwindow.py:247
+#: src/mainwindow.py:272
+msgid "Power Management"
+msgstr "Διαχείρηση ενέργειας"
+
+#: src/mainwindow.py:273
 msgid "Security"
 msgstr "Ασφάλεια"
 
-#: src/mainwindow.py:329
+#: src/mainwindow.py:355
 msgid "_Donate"
 msgstr "_Κάντε δωρεά"
 
-#: src/mainwindow.py:355
+#: src/mainwindow.py:381
 msgid "Help the development of Ubuntu Tweak"
 msgstr "Βοηθήστε την ανάπτυξη του Ubuntu Tweak"
 
-#: src/mainwindow.py:355
+#: src/mainwindow.py:381
 msgid ""
 "Ubuntu Tweak is a free-software, you can use it for free. If you like it, "
 "Please consider to donate for Ubuntu Tweak."
@@ -390,15 +420,15 @@ msgstr ""
 "δωρεάν. Αν σας αρέσει, παρακαλώ σκεφτείτε να χορήσετε κάτι για το Ubuntu "
 "Tweak"
 
-#: src/mainwindow.py:356
+#: src/mainwindow.py:382
 msgid "Never Show This Again"
 msgstr "Μην ξαναδείξεις ποτέ αυτή την ενέργεια"
 
-#: src/mainwindow.py:549
+#: src/mainwindow.py:575
 msgid "Ubuntu Tweak Website"
 msgstr "Ιστοσελίδα Ubuntu Tweak"
 
-#: src/mainwindow.py:551
+#: src/mainwindow.py:577
 msgid ""
 "Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
 "system and desktop settings."
@@ -406,7 +436,7 @@ msgstr ""
 "Το Ubuntu Tweak είναι ένα εργαλείο για το Ubuntu το οποίο επιτρέπει την "
 "εύκολη διαμόρφωση ρυθμίσεων συστήματος και επιφάνειας εργασίας."
 
-#: src/mainwindow.py:558
+#: src/mainwindow.py:584
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
@@ -423,9 +453,19 @@ msgstr ""
 "  Yannis Kaskamanidis https://launchpad.net/~ttnfy17\n"
 "  ale3andro https://launchpad.net/~ale3andro\n"
 "  msrowley https://launchpad.net/~msrowley\n"
+"  Τάσος Παπανικολάου https://launchpad.net/~taspap\n"
+"\n"
+"Launchpad Contributions:\n"
+"  Greek Translator https://launchpad.net/~grtranslator\n"
+"  Konstantinos Foutzopoulos https://launchpad.net/~kfoutzopoulos\n"
+"  Manos Vasiliadis https://launchpad.net/~idioteque\n"
+"  Vassilis Skoullis https://launchpad.net/~vaskoul\n"
+"  Yannis Kaskamanidis https://launchpad.net/~ttnfy17\n"
+"  ale3andro https://launchpad.net/~ale3andro\n"
+"  msrowley https://launchpad.net/~msrowley\n"
 "  Τάσος Παπανικολάου https://launchpad.net/~taspap"
 
-#: src/mainwindow.py:571
+#: src/mainwindow.py:597
 #, python-format
 msgid ""
 "A newer version: %s is available online.\n"
@@ -434,7 +474,7 @@ msgstr ""
 "Μια πιο καινούργια έκδοση : %s   διατίθεται online.\n"
 "Θέλετε να κάνετε αναβάθμιση;"
 
-#: src/mainwindow.py:572
+#: src/mainwindow.py:598
 msgid "Software Update"
 msgstr "Software Update"
 
@@ -508,7 +548,7 @@ msgstr ""
 "Μην αλλάξετε την τοποθεσία του φακέλου επιφάνειας εργασίας εκτός αν ξέρετε "
 "τι κάνετε."
 
-#: src/userdir.py:258 src/compiz.py:391 src/nautilus.py:212
+#: src/userdir.py:258
 msgid "Update successful!"
 msgstr "Η ενημέρωση ήταν επιτυχής"
 
@@ -587,79 +627,91 @@ msgstr ""
 msgid "Only show filetypes with an associated application"
 msgstr "Δείξε τύπους αρχείων μόνο με σχετιζόμενη εφαρμογή"
 
-#: src/computer.py:44
+#: src/computer.py:45
 msgid "System information"
 msgstr "Πληροφορίες συστήματος"
 
-#: src/computer.py:45
+#: src/computer.py:46
 msgid "Hostname"
 msgstr "Όνομα υπολογιστή"
 
-#: src/computer.py:46
+#: src/computer.py:47
 msgid "Distribution"
 msgstr "Διανομή"
 
-#: src/computer.py:47
+#: src/computer.py:48
 msgid "Desktop environment"
 msgstr "Περιβάλλον Εργασίας"
 
-#: src/computer.py:48
+#: src/computer.py:49
 msgid "Kernel"
 msgstr "Πυρήνας"
 
-#: src/computer.py:49
+#: src/computer.py:50
 msgid "Platform"
 msgstr "Πλατφόρμα"
 
-#: src/computer.py:50
+#: src/computer.py:51
 msgid "CPU"
 msgstr "CPU"
 
-#: src/computer.py:51
+#: src/computer.py:52
 msgid "Memory"
 msgstr "Μνήμη"
 
-#: src/computer.py:55
+#: src/computer.py:56
 msgid "User information"
 msgstr "Πληροφορίες χρήστη"
 
-#: src/computer.py:56
+#: src/computer.py:57
 msgid "Current user"
 msgstr "Τρέχων χρήστης"
 
-#: src/computer.py:57
+#: src/computer.py:58
 msgid "Home directory"
 msgstr "Αρχικός κατάλογος"
 
-#: src/computer.py:58
+#: src/computer.py:59
 msgid "Shell"
 msgstr "Φλοιός"
 
-#: src/computer.py:59
+#: src/computer.py:60
 msgid "Language"
 msgstr "Γλώσσα"
 
-#: src/thirdsoft.py:69
+#: src/thirdsoft.py:70
 msgid "Avant Window Navigator (Unstable Version)"
 msgstr "Avant Window Navigator (Ασταθής Έκδοση)"
 
-#: src/thirdsoft.py:75
+#: src/thirdsoft.py:76
 msgid "Ubuntu Chinese Repository"
 msgstr "Κινέζικο Αποθετήριο του Ubuntu"
 
-#: src/thirdsoft.py:90
+#: src/thirdsoft.py:87
+msgid "Gnome Global Menu"
+msgstr "Κεντρικό μενού Gnome"
+
+#: src/thirdsoft.py:89
+msgid "GetDeb.net (Mirror)"
+msgstr ""
+
+#: src/thirdsoft.py:91
+msgid "Gwibber (Daily Version)"
+msgstr "Gwibber(Ημερήσια Έκδοση)"
+
+#: src/thirdsoft.py:92
 msgid "Banshee (Stable Version)"
 msgstr "Banshee (σταθερή έκδοση)"
 
-#: src/thirdsoft.py:91
+#: src/thirdsoft.py:93
 msgid "Banshee (Unstable Version)"
 msgstr "Banshee (Ασταθής Έκδοση)"
 
-#: src/thirdsoft.py:97
+#: src/thirdsoft.py:99
 msgid "Ubuntu Tweak (Unstable Version)"
 msgstr "Ubuntu Tweak (Ασταθής Έκδοση)"
 
-#: src/thirdsoft.py:196
+#: src/thirdsoft.py:203
 msgid ""
 "To install software and updates from newly added or changed sources, you "
 "have to reload the information about available software.\n"
@@ -671,43 +723,83 @@ msgstr ""
 "λογισμικό.\n"
 "Χρειάζεστε σύνδεση στο διαδίκτυο, για να συνεχίσετε."
 
-#: src/thirdsoft.py:200
+#: src/thirdsoft.py:207
 msgid "The information about available software is out-of-date"
 msgstr "Οι πληροφορίες για τα διαθέσιμα προγράμματα δεν είναι ενημερωμένες"
 
-#: src/thirdsoft.py:363
+#: src/thirdsoft.py:373
 msgid "Homepage"
 msgstr "Ιστοσελίδα"
 
-#: src/thirdsoft.py:363
+#: src/thirdsoft.py:373
 msgid "Source URL"
 msgstr "Πηγή URL"
 
-#: src/thirdsoft.py:363
+#: src/thirdsoft.py:373
 msgid "Description"
 msgstr "Περιγραφή"
 
-#: src/thirdsoft.py:374
+#: src/thirdsoft.py:384
 msgid "Description is here"
 msgstr "Η περιγραφή είναι εδώ"
 
-#: src/thirdsoft.py:402
+#: src/thirdsoft.py:412
 msgid "Third-Party Software Sources"
 msgstr "Τρίτες πηγές λογισμικού"
 
-#: src/thirdsoft.py:419 src/sourceeditor.py:84
+#: src/thirdsoft.py:413
+msgid ""
+"After every release of Ubuntu there comes a feature freeze.\n"
+"This means only applications with bug-fixes get into the repository.\n"
+"By using third-party DEB repositories, you can always keep up-to-date with "
+"the latest version.\n"
+"After adding these repositories, locate and install them using Add/Remove."
+msgstr ""
+"Έπειτα από κάθε έκδοση του Ubuntu υπάρχει πάγωμα των χαρακτηριστικών.\n"
+"Αυτό σημαίνει ότι μόνο εφαρμογές που έχουν διορθώσεις λαθών θα τοποθετηθούν "
+"στο αποθετήριο.\n"
+"Χρησιμοποιώντας  DEB αποθετήρια άλλων κατασκευαστών, μπορείτε πάντα να "
+"διατηρείτε ενημερωμένο με την τελευταία έκδοση.\n"
+"Αφού προσθέσετε αυτά τα αποθετήρια, επιλέξτε τα και εγκαταστήστε τα "
+"χρησιμοποιώντας την προσθαφαίρεση προγραμμάτων."
+
+#: src/thirdsoft.py:429 src/sourceeditor.py:83
 msgid "Details"
 msgstr "Λεπτομέρειες"
 
-#: src/thirdsoft.py:461 src/nautilus.py:187
+#: src/thirdsoft.py:452
+msgid ""
+"Some of your PPA Sources need to be update.\n"
+"Do you wish to continue?"
+msgstr ""
+
+#: src/thirdsoft.py:452
+msgid "PPA Sources is expire"
+msgstr ""
+
+#: src/thirdsoft.py:492 src/sourceeditor.py:475
+msgid "Please check the permission of the sources.list file"
+msgstr ""
+
+#: src/thirdsoft.py:493 src/sourceeditor.py:476
+msgid "Save failed!"
+msgstr "Αποτυχές Σώσιμο!"
+
+#: src/thirdsoft.py:520
+msgid ""
+"It is a possible security risk to use packages from Third-Party Sources.\n"
+"Please be careful and use only sources you trust."
+msgstr ""
+
+#: src/thirdsoft.py:523 src/nautilus.py:189
 msgid "Warning"
 msgstr "Προειδοποίηση"
 
-#: src/thirdsoft.py:465
+#: src/thirdsoft.py:527
 msgid "Never show this dialog"
 msgstr "Ποτέ μην δείχνεις αυτό τον διάλογο"
 
-#: src/thirdsoft.py:487
+#: src/thirdsoft.py:549
 msgid ""
 "You can install the new applications through Add/Remove.\n"
 "Do you want to go now?"
@@ -716,7 +808,7 @@ msgstr ""
 "εφαρμογών.\n"
 "Θέλετε να μεταβείτε εκεί τώρα;"
 
-#: src/thirdsoft.py:488 src/sourceeditor.py:404
+#: src/thirdsoft.py:550 src/sourceeditor.py:412
 msgid "The software information is up-to-date now"
 msgstr "Τώρα οι πληροφορίες για το λογισμικό είναι ενημερωμένες"
 
@@ -836,6 +928,12 @@ msgstr "Ενεργοποίση Compositing του Metacity"
 msgid "Compositing Manager"
 msgstr "Διαχειριστής Compositing"
 
+#: src/metacity.py:94
+msgid ""
+"To enable the compositing feature of metacity, you should manually disable "
+"Visual Effects in \"Appearance\"."
+msgstr ""
+
 #: src/session.py:39
 msgid "Splash Screen (Click On Image)"
 msgstr "Οθόνη splash (κάντε κλικ στην εικόνα)"
@@ -909,6 +1007,13 @@ msgstr "Ενεργοποιημένα Πρότυπα"
 msgid "Disabled Templates"
 msgstr "Απενεργοποιημένα Πρότυπα"
 
+#: src/templates.py:116
+#, python-format
+msgid ""
+"Templates path is wrong! The current path is point to \"%s\".\n"
+"Please reset it to a folder under your Home Folder."
+msgstr ""
+
 #: src/templates.py:123
 msgid "Go And Set"
 msgstr "Πήγαινε και Όρισε"
@@ -937,6 +1042,10 @@ msgstr ""
 msgid "Rebuild System Templates"
 msgstr "Ξανακτίσε τα πρότυπα συστήματος"
 
+#: src/templates.py:180
+msgid "Templates path is still wrong, Please reset it!"
+msgstr ""
+
 #: src/templates.py:192
 msgid ""
 "This will delete all disabled templates.\n"
@@ -945,65 +1054,65 @@ msgstr ""
 "Αυτό θα σβήσει όλα τα απενεργοποιημένα πρότυπα.\n"
 "Θέλετε να συνεχίσετε?"
 
-#: src/compiz.py:229
-msgid "Install Advanced Desktop Effects Settings Manager"
-msgstr "Εγκατάσταση του Advanced Desktop Effects Settings Manager"
-
-#: src/compiz.py:232
-msgid "Install Simple Desktop Effects Settings manager"
-msgstr "Εγκατάσταση του διαχειριστή Simple Desktop Effects Settings"
-
-#: src/compiz.py:235
-msgid "Install Screenlets Widget Application"
-msgstr "Εγκατάσταση της εφαρμογής Screenlets Widget"
-
-#: src/compiz.py:245
-msgid "Enable snapping windows"
-msgstr "Ενεργοποίησε snapping των παραθύρων"
-
-#: src/compiz.py:246
-msgid "Enable wobbly windows"
-msgstr "Ενεργοποίησε wobbly windows"
-
-#: src/compiz.py:248
-msgid "Window Effects"
-msgstr "Εφέ Παραθύρου"
-
-#: src/compiz.py:251
-msgid "Enable transparent menus"
-msgstr "Ενεργοποίηση διαφανών μενου"
-
-#: src/compiz.py:252
-msgid "Enable wobbly menus"
-msgstr "Ενεργοποίησε wobbly menus"
-
-#: src/compiz.py:254
-msgid "Menu Effects"
-msgstr "Εφέ Μενού"
-
-#: src/compiz.py:259
-msgid "Useful Extensions"
-msgstr "Χρήσιμες Επεκτάσεις"
-
-#: src/compiz.py:274
-msgid "Prerequisite Conditions"
-msgstr "Απαραίτητες Προϋποθέσεις"
-
-#: src/compiz.py:317
+#: src/compiz.py:47
 msgid "Expo"
 msgstr "Expo"
 
-#: src/compiz.py:318
+#: src/compiz.py:48
 msgid "Show Windows"
 msgstr "Δείξε τα Παράθυρα"
 
-#: src/compiz.py:319
+#: src/compiz.py:49
 msgid "Show Desktop"
 msgstr "Εμφάνιση Επιφάνειας Εργασίας"
 
-#: src/compiz.py:320
+#: src/compiz.py:50
 msgid "Widget"
 msgstr "Γραφικό Συστατικό"
+
+#: src/compiz.py:231
+msgid "Install Advanced Desktop Effects Settings Manager"
+msgstr "Εγκατάσταση του Advanced Desktop Effects Settings Manager"
+
+#: src/compiz.py:234
+msgid "Install Simple Desktop Effects Settings manager"
+msgstr "Εγκατάσταση του διαχειριστή Simple Desktop Effects Settings"
+
+#: src/compiz.py:237
+msgid "Install Screenlets Widget Application"
+msgstr "Εγκατάσταση της εφαρμογής Screenlets Widget"
+
+#: src/compiz.py:247
+msgid "Enable snapping windows"
+msgstr "Ενεργοποίησε snapping των παραθύρων"
+
+#: src/compiz.py:248
+msgid "Enable wobbly windows"
+msgstr "Ενεργοποίησε wobbly windows"
+
+#: src/compiz.py:250
+msgid "Window Effects"
+msgstr "Εφέ Παραθύρου"
+
+#: src/compiz.py:253
+msgid "Enable transparent menus"
+msgstr "Ενεργοποίηση διαφανών μενου"
+
+#: src/compiz.py:254
+msgid "Enable wobbly menus"
+msgstr "Ενεργοποίησε wobbly menus"
+
+#: src/compiz.py:256
+msgid "Menu Effects"
+msgstr "Εφέ Μενού"
+
+#: src/compiz.py:260
+msgid "Useful Extensions"
+msgstr "Χρήσιμες Επεκτάσεις"
+
+#: src/compiz.py:275
+msgid "Prerequisite Conditions"
+msgstr "Απαραίτητες Προϋποθέσεις"
 
 #: src/shortcuts.py:49
 msgid "Shortcut Commands"
@@ -1099,7 +1208,7 @@ msgstr "%s  χώρου θα ελευθερωθεί"
 msgid "Canceled by user!"
 msgstr "Ακυρώθηκε από το χρήστη"
 
-#: src/cleaner.py:364 src/nautilus.py:193
+#: src/cleaner.py:364 src/nautilus.py:195
 msgid "Clean up Successful!"
 msgstr "Η εκκαθάριση έγινε με επιτυχία!"
 
@@ -1115,23 +1224,23 @@ msgstr ""
 "Ελευθέρωσε χώρο στο δίσκο αφαιρώντας μή απαραίτητα πακέτα και καθαρίζοντας "
 "την προσωρινή μνήμη των κατεβασμένων πακέτων"
 
-#: src/cleaner.py:401
+#: src/cleaner.py:399
 msgid "Clean Package"
 msgstr "Καθαρισμός Πακέτου"
 
-#: src/cleaner.py:406
+#: src/cleaner.py:404
 msgid "Clean Cache"
 msgstr "Καθαρισμός προσωρινής μνήμης cache"
 
-#: src/cleaner.py:411
+#: src/cleaner.py:409
 msgid "Clean Config"
 msgstr "Καθάρισε τις Ρυθμίσεις"
 
-#: src/cleaner.py:416
+#: src/cleaner.py:414
 msgid "Clean Kernel"
 msgstr "Καθαρίστε τον πυρήνα"
 
-#: src/cleaner.py:422
+#: src/cleaner.py:420
 msgid "Select All"
 msgstr "Επιλογή Όλων"
 
@@ -1183,6 +1292,14 @@ msgstr "Σύνδεσμος στο Download"
 msgid "Link to Home"
 msgstr "Σύνδεσμος στο Home"
 
+#: src/scripts.py:61
+msgid "Open with your favourite text editor"
+msgstr "Ανοίξτε τον αγαπημένο σας επεξεργαστή κειμένου"
+
+#: src/scripts.py:62
+msgid "Open with your favourite text editor (as root)"
+msgstr "Ανοίξτε τον αγαπημένο σας επεξεργαστή κειμένου(σαν διαχειριστής)"
+
 #: src/scripts.py:63
 msgid "Browse as root"
 msgstr "Εξερεύνηση ως root"
@@ -1206,6 +1323,10 @@ msgstr "Μετατροπή εικόνας σε GIF"
 #: src/scripts.py:68
 msgid "Set image as wallpaper"
 msgstr "Χρησιμοποίηση την εικόνα ως wallpaper"
+
+#: src/scripts.py:69
+msgid "Make hard shadow to image"
+msgstr ""
 
 #: src/scripts.py:96
 msgid "Enabled Scripts"
@@ -1321,43 +1442,60 @@ msgstr ""
 msgid "Do you want your changes to take effect immediately?"
 msgstr "Θέλετε οι αλλαγές να εφαρμοστούν αμέσως;"
 
-#: src/nautilus.py:51
+#: src/nautilus.py:54
 msgid "Cleaning..."
 msgstr "Γίνεται Καθαρισμός..."
 
-#: src/nautilus.py:101
+#: src/nautilus.py:104
 msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
 msgstr ""
 "Εμφάνιση προχωρημένων δικαιωμάτων στο παράθυρο \"Ιδιότητες αρχείου\" του "
 "Nautilus"
 
-#: src/nautilus.py:104
+#: src/nautilus.py:107
 msgid "File Browser"
 msgstr "Περιηγητής Αρχείων"
 
-#: src/nautilus.py:147
+#: src/nautilus.py:112
+msgid "Default thumbnail icon size (pixels)"
+msgstr ""
+
+#: src/nautilus.py:126
+msgid "Maximum size of the thumbnail cache (megabytes)"
+msgstr ""
+
+#: src/nautilus.py:138
+msgid "Maximum age for the thumbnail in the cache (days)"
+msgstr ""
+
+#: src/nautilus.py:150
 msgid "Thumbnails Settings"
 msgstr "Ρυθμίσεις Thumbnails"
 
-#: src/nautilus.py:155
+#: src/nautilus.py:157
 msgid "Nautilus with Open Terminal"
 msgstr "Nautilus με Ανοικτό Τερματικό"
 
-#: src/nautilus.py:157
+#: src/nautilus.py:159
 msgid "Nautilus with Root Privileges"
 msgstr "Nautilus με δικαιώματα root"
 
-#: src/nautilus.py:159
+#: src/nautilus.py:161
 msgid "Nautilus with Wallpaper"
 msgstr "Nautilus με Wallpaper"
 
-#: src/nautilus.py:161
+#: src/nautilus.py:163
 msgid "Nautilus Extensions"
 msgstr "Επεκτάσεις Ναυτίλου"
 
-#: src/nautilus.py:214
-msgid "Update failed!"
-msgstr "Η ενημέρωση απέτυχε"
+#: src/nautilus.py:185
+#, python-format
+msgid "Clean up the thumbnails cache (will free %s of disk space)"
+msgstr ""
+
+#: src/nautilus.py:188
+msgid "The thumbnails cache will be cleaned, Do you wish to continue?"
+msgstr ""
 
 #: src/powermanager.py:37
 msgid "Advanced Power Management Settings"
@@ -1383,8 +1521,7 @@ msgstr "Απενεργοποίηση τον Διαχειριστή Δικτύο�
 
 #: src/powermanager.py:51
 msgid "Enable \"Lock screen\" when \"Blank Screen\" activates"
-msgstr ""
-"Ενεργοποιήση \"κλειδώματος οθόνης\" όταν ενεργοποιείται \"κενή οθόνη\""
+msgstr "Ενεργοποιήση \"κλειδώματος οθόνης\" όταν ενεργοποιείται \"κενή οθόνη\""
 
 #: src/powermanager.py:53
 msgid "Display \"Power Manager\" panel item"
@@ -1446,11 +1583,15 @@ msgstr "Επαναφορά"
 msgid "Enable Check Update"
 msgstr "Ενεργοποίησε Έλεγχο Ενημερώσεων"
 
-#: src/sourceeditor.py:62 src/sourceeditor.py:67
+#: src/preferences.py:136
+msgid "Enable PowerUser Mode"
+msgstr ""
+
+#: src/sourceeditor.py:61 src/sourceeditor.py:66
 msgid "Choose the sources"
 msgstr "Διάλεξε τις πηγές"
 
-#: src/sourceeditor.py:68
+#: src/sourceeditor.py:67
 msgid ""
 "You can read the title and comment to determine which source is suitable for "
 "you."
@@ -1458,41 +1599,55 @@ msgstr ""
 "Μπορείτε να διαβάσετε τον τίτλο και το σχόλιο για να αποφασίσετε ποιά πηγή "
 "είναι κατάλλη για σας."
 
-#: src/sourceeditor.py:103 src/sourceeditor.py:108
+#: src/sourceeditor.py:102 src/sourceeditor.py:107
 msgid "Submit your sources"
 msgstr "Στείλε τις πηγές σας"
 
-#: src/sourceeditor.py:113
+#: src/sourceeditor.py:107
+msgid "You can submit your sources to the server for other people to use."
+msgstr ""
+"Μπορείτε να υποβάλλετε τις πηγές σας στον διακομιστή ώστε να τις "
+"χρησιμοποιούν και άλλοι."
+
+#: src/sourceeditor.py:112
 msgid "_Source Title:"
 msgstr "_Τίτλος Πηγής:"
 
-#: src/sourceeditor.py:116
+#: src/sourceeditor.py:115
 msgid "_Locale:"
 msgstr "_Locale:"
 
-#: src/sourceeditor.py:125
+#: src/sourceeditor.py:122
+msgid "Enter the title of the source, e.g. \"Ubuntu Official Repostory\""
+msgstr ""
+
+#: src/sourceeditor.py:124
 msgid "If the locale isn't correct you can edit manually"
 msgstr ""
 "Αν η γλώσσα  εισαγωγής δεν είναι σωστή τότε μπορείτε να τροποποιήσετε "
 "χειροκίνητα"
 
-#: src/sourceeditor.py:140
+#: src/sourceeditor.py:139
 msgid "Submit"
 msgstr "Υποβολή"
 
-#: src/sourceeditor.py:188
+#: src/sourceeditor.py:187
 msgid "Please check your network connection!"
 msgstr "Παρακαλώ ελέγξτε την σύνδεση δικτύου"
 
-#: src/sourceeditor.py:188
+#: src/sourceeditor.py:187
 msgid "Network Error"
 msgstr "Πρόβλημα Δικτύου"
 
-#: src/sourceeditor.py:211
+#: src/sourceeditor.py:194
+msgid "Uploading..."
+msgstr ""
+
+#: src/sourceeditor.py:210
 msgid "Updating..."
 msgstr "Γίνεται Ενημέρωση..."
 
-#: src/sourceeditor.py:336
+#: src/sourceeditor.py:344
 msgid ""
 "Freely edit your software sources to fit your needs.\n"
 "Click \"Update Sources\" if you want to change the sources.\n"
@@ -1504,23 +1659,51 @@ msgstr ""
 "Πατείστε \"Αποστολή Πηγών\" αν θέλετε να μοιραστείτε τις πηγές σας με άλλους "
 "ανθρώπους.\n"
 
-#: src/sourceeditor.py:355
+#: src/sourceeditor.py:363
 msgid "Update Sources"
 msgstr "Ενημέρωση Πηγών"
 
-#: src/sourceeditor.py:361
+#: src/sourceeditor.py:369
 msgid "Submit Sources"
 msgstr "Στείλτε πηγές"
 
-#: src/sourceeditor.py:436
+#: src/sourceeditor.py:411
+msgid "You can install new applications through Add/Remove."
+msgstr ""
+"Μπορείτε να εγκαταστήσετε νέες εφαρμογές από την προσθαφαίρεση εφαρμογών"
+
+#: src/sourceeditor.py:428
+msgid "Please input the correct information about sources!"
+msgstr "Παρακαλώ εισάγετε τις σωστές πληροφορίες για τις πηγές!"
+
+#: src/sourceeditor.py:441
+msgid ""
+"You can submit your sources to our server to help building the sources list, "
+"or you can use the official sources.\n"
+"Do you wish to use the official sources?"
+msgstr ""
+
+#: src/sourceeditor.py:444
 msgid "No source data available"
 msgstr "Καμία διαθέσιμη πηγή δεδομένων"
 
-#: src/sourceeditor.py:468
-msgid "Save failed!"
-msgstr "Αποτυχές Σώσιμο!"
+#: src/sourceeditor.py:461
+msgid ""
+"Your sources will be reviewed and made available for others soon.\n"
+"Thank you!"
+msgstr ""
 
-#: src/common/package.py:67
+#: src/sourceeditor.py:462
+msgid "Successfully submitted"
+msgstr "Υποβλήθηκαν επιτυχώς"
+
+#: src/sourceeditor.py:483
+msgid ""
+"The current content will be lost after reloading!\n"
+"Do you wish to continue?"
+msgstr ""
+
+#: src/common/package.py:173
 msgid "(Not available)"
 msgstr "(Μή διαθέσιμο)"
 
@@ -1551,6 +1734,10 @@ msgstr "Εγγραφή και επεξεργασία αρχείων ήχου"
 #: src/common/appdata.py:63
 msgid "Fully customisable dock-like window navigator"
 msgstr "πλήρως παραμετροποιήσιμο dock-like window navigator"
+
+#: src/common/appdata.py:64
+msgid "Fully customisable dock-like window navigator(Unstable)"
+msgstr ""
 
 #: src/common/appdata.py:65
 msgid "A free video editor"
@@ -1611,11 +1798,11 @@ msgstr "Επεκτάσιμο εργαλείο πλατφόργμα και Java I
 
 #: src/common/appdata.py:78
 msgid ""
-"EIOffice Personal 2009. Free for Chinese users. See "
-"http://www.evermoresw.com."
+"EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
+"com."
 msgstr ""
-"EIOffice Personal 2009. Δωρεάν για κινέζους χρήστες. Δείτε "
-"http://www.evermoresw.com."
+"EIOffice Personal 2009. Δωρεάν για κινέζους χρήστες. Δείτε http://www."
+"evermoresw.com."
 
 #: src/common/appdata.py:79
 msgid "A client for the Windows Live Message network"
@@ -1674,6 +1861,14 @@ msgid "A powerful, speedy, and sexy remote control for the GNOME Desktop"
 msgstr ""
 "Ένα δυνατό, γρήγορο και όμορφο τηλεκοντρόλ για την επιφάνεια εργασίας GNOME"
 
+#: src/common/appdata.py:91
+msgid "Global Menu Bar for GNOME"
+msgstr ""
+
+#: src/common/appdata.py:92
+msgid "a C++ port of Tomboy"
+msgstr "Μια C++ θύρα του Tomboy"
+
 #: src/common/appdata.py:93
 msgid ""
 "A program that combines satellite imagery and maps to put the world's "
@@ -1701,6 +1896,16 @@ msgstr "Δυνατό εργαλείο για screenshot"
 #: src/common/appdata.py:98
 msgid "Graphical frontend for recordmydesktop"
 msgstr "γραφικό frontend για το recordmydesktop"
+
+#: src/common/appdata.py:99
+msgid ""
+"GTG is a personal organizer for the GNOME desktop environment, it focuses on "
+"ease of use and flexibility, while keeping things simple."
+msgstr ""
+
+#: src/common/appdata.py:100
+msgid "Gwibber is an open source microblogging client for GNOME"
+msgstr ""
 
 #: src/common/appdata.py:101
 msgid "A graphical CD image editor"
@@ -1756,27 +1961,35 @@ msgstr "Adcal εργαλείο για diff και merge αρχείων"
 msgid "A fast and simple GTK+ Image Viewer"
 msgstr "Γρήγορος και απλός viewer εικόνων GTK+."
 
+#: src/common/appdata.py:113
+msgid "Open internet TV, beyond anything else"
+msgstr ""
+
 #: src/common/appdata.py:114
 msgid "Webkit based lightweight web browser"
 msgstr "Ελαφρύς περιηγητής ιστού βασισμενος σε webkit"
 
 #: src/common/appdata.py:115
+msgid "The free media player - play all your files"
+msgstr ""
+
+#: src/common/appdata.py:116
 msgid "An IDE to Develop .NET applications."
 msgstr "IDE για .NET applications."
 
-#: src/common/appdata.py:116
+#: src/common/appdata.py:117
 msgid "The Ultimate Movie Player For Linux"
 msgstr "Ο απόλυτος player ταινιών για linux"
 
-#: src/common/appdata.py:117
+#: src/common/appdata.py:118
 msgid "IDE for Java, C/C++, Ruby, UML, etc."
 msgstr "IDE για Java, C/C++, Ruby, UML, κτλ."
 
-#: src/common/appdata.py:118
+#: src/common/appdata.py:119
 msgid "The Opera Web Browser"
 msgstr "Περιηγητής Ιστού Opera"
 
-#: src/common/appdata.py:119
+#: src/common/appdata.py:120
 msgid ""
 "Pidgin is a graphical modular messaging client based on libpurple which is "
 "capable of connecting to AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, SIP/SIMPLE, "
@@ -1788,32 +2001,36 @@ msgstr ""
 "Yahoo!, XMPP, ICQ, IRC, SILC, SIP/SIMPLE, Novell GroupWise, Lotus Sametime, "
 "Bonjour, Zephyr, MySpaceIM, Gadu-Gadu και QQ."
 
-#: src/common/appdata.py:120
+#: src/common/appdata.py:121
 msgid "Run your Windows programs on Linux"
 msgstr "Τρέξτε τα προγράμματα των Windows στο Linux"
 
-#: src/common/appdata.py:121
+#: src/common/appdata.py:122
 msgid "A framework for desktop widgets"
 msgstr "framework για desktop widgets"
 
 #: src/common/appdata.py:123
+msgid "Feature-rich screenshot application(formerly known as GScrot)"
+msgstr ""
+
+#: src/common/appdata.py:124
 msgid "Make audio/video calls using this VoIP Software"
 msgstr "Κάντε κλήσεις ήχου/βίντεο χρησιμοποιώντας αυτό το πρόγραμμα VoIP"
 
-#: src/common/appdata.py:124
+#: src/common/appdata.py:125
 msgid "A great MPlayer front-end, written in QT4"
 msgstr "εξαιρετικό MPlayer front-end, γραμμένο σε QT4"
 
-#: src/common/appdata.py:125
+#: src/common/appdata.py:126
 msgid "Convert audio files into other formats"
 msgstr ""
 "Μετατρέψτε αρχεία ήχου σε αρχεία ήχου διαφορετικής ψηφιακής κωδικοποίησης"
 
-#: src/common/appdata.py:126
+#: src/common/appdata.py:127
 msgid "An international dictionary"
 msgstr "Διεθνές λεξικό"
 
-#: src/common/appdata.py:127
+#: src/common/appdata.py:128
 msgid ""
 "Swiftweasel is an optimized build of the Mozilla Firefox web browser for "
 "Linux"
@@ -1821,39 +2038,64 @@ msgstr ""
 "To Swiftweasel είναι μια βελτιστοποιημένη έκδοση του περιητή ιστού Mozilla "
 "Firefox  για linux"
 
+#: src/common/appdata.py:129
+msgid ""
+"A desktop application that will watch for events (website updates, emails, "
+"file and folder changes...)"
+msgstr ""
+
 #: src/common/appdata.py:130
+msgid "An instant messaging application powered by qt-mono-bindings"
+msgstr ""
+
+#: src/common/appdata.py:131
 msgid "A Useful Task List"
 msgstr "Μια χρήσιμη Λίστα Εργασειών"
 
-#: src/common/appdata.py:131
+#: src/common/appdata.py:132
 msgid "Multiple GNOME terminals in one window"
 msgstr "Πολλαπλά τερματικά GNOME σε ένα παράθυρο"
 
 #: src/common/appdata.py:133
+msgid ""
+"Transmission is a fast, easy, and free multi-platform BitTorrent client."
+msgstr ""
+
+#: src/common/appdata.py:134
 msgid "Ubuntu Tweak makes it easier to configure Ubuntu"
 msgstr "Το Ubuntu Tweak κάνουν πιο εύκολη την ρύθμιση του Ubuntu"
 
-#: src/common/appdata.py:134
+#: src/common/appdata.py:135
 msgid "Commonly used restricted packages"
 msgstr "Κοινώς χρησιμοποιημένα περιορισμένα πακέτα"
 
-#: src/common/appdata.py:136 src/common/appdata.py:137
+#: src/common/appdata.py:136
+msgid "configure your USB ADSL modem and connection easier than ever!"
+msgstr ""
+
+#: src/common/appdata.py:137 src/common/appdata.py:138
 msgid "A feature rich, high performance virtualization software"
 msgstr "Πλούσιο σε χαρακτηριστικά, υψηλής απόδοσης λογισμικό virtualization"
 
-#: src/common/appdata.py:138
+#: src/common/appdata.py:139
 msgid "Read, capture, broadcast your multimedia streams"
 msgstr "Ανάγνωση, Εγγραφή, Εκπομπή των multimedia ροών σας"
 
-#: src/common/appdata.py:139
+#: src/common/appdata.py:140
 msgid "Run Virtual Machines using VMware"
 msgstr "Τρέξτε Εικονικές Μηχανές χρησιμοποιώντας Mozilla Firefox"
 
-#: src/common/appdata.py:140
+#: src/common/appdata.py:141
 msgid "A compatibility layer for running Windows programs"
 msgstr "Ένα layer συμβατότητας για να τρέχετε προγράμματα Windows"
 
 #: src/common/appdata.py:142
+msgid ""
+"Wine-doors is an application designed to make installing windows software on "
+"Linux, Solaris or other Unix systems easier."
+msgstr ""
+
+#: src/common/appdata.py:143
 msgid ""
 "XBMC is a free and open source software media player and entertainment hub"
 msgstr ""
@@ -1861,18 +2103,26 @@ msgstr ""
 "entertainment hub"
 
 #: src/common/appdata.py:147
+msgid "Development Version of Mozilla Firefox 3.1, 4.0"
+msgstr ""
+
+#: src/common/appdata.py:148
 msgid "Development version of Compiz Fusion"
 msgstr "Development version of Compiz Fusion"
 
-#: src/common/appdata.py:148
+#: src/common/appdata.py:149
 msgid "Google's Linux Repository"
 msgstr "Repository της Google για Linux"
 
 #: src/common/appdata.py:150
+msgid "K Desktop Environment 4.2"
+msgstr ""
+
+#: src/common/appdata.py:151
 msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
 msgstr "Development Version of Mozilla Firefox 3.0/3.1, 4.0"
 
-#: src/common/appdata.py:151
+#: src/common/appdata.py:152
 msgid ""
 "Multimedia, Entertainment and Distraction In Ubuntu\n"
 "Medibuntu is a repository of packages that cannot be included into the "
@@ -1882,7 +2132,7 @@ msgstr ""
 "Το Medibuntu είναι ένα αποθετήριο πακέτων που δεν μπορούν να συμπεριληφθούν "
 "στην διανομή Ubuntu για νομικούς λόγους (copyright, άδειες, πατέντες, κτλ)"
 
-#: src/common/appdata.py:153
+#: src/common/appdata.py:154
 msgid ""
 "Ubuntu repository for Chinese users.\n"
 "Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and "
@@ -1891,6 +2141,35 @@ msgstr ""
 "Ubuntu repository για Κινέζους χρήστες.\n"
 "Περιλαμβάνει τα Including EIOffice, Ubuntu Tweak, ibus input method, "
 "OpenOffice.org 3.0 και λοιπά προγράμματα."
+
+#: src/common/appdata.py:156
+msgid ""
+"GetDeb extends the existing software options for Ubuntu (and derived) Linux "
+"distributions by providing major updates and software not yet available on "
+"the official Ubuntu repositories."
+msgstr ""
+
+#: src/common/misc.py:15
+#, python-format
+msgid "%(size)d byte"
+msgid_plural "%(size)d bytes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/common/misc.py:17
+#, python-format
+msgid "%.1f KB"
+msgstr ""
+
+#: src/common/misc.py:19
+#, python-format
+msgid "%.1f MB"
+msgstr ""
+
+#: src/common/misc.py:20
+#, python-format
+msgid "%.1f GB"
+msgstr ""
 
 #: src/common/policykit/polkitbutton.py:81
 msgid "_Unlock"
@@ -1986,13 +2265,36 @@ msgstr "<b>Χαρακτηριστικά</b>"
 msgid "Default Launch Function"
 msgstr "Λανθάνουσα Λειτουργία Ξεκινήματος"
 
-#: data/gui/traceback.glade:91 data/gui/traceback.glade:266
+#: data/gui/traceback.glade:50
+msgid "<big><b>Oops... a fatal error occured</b></big>"
+msgstr ""
+
+#: data/gui/traceback.glade:64
+msgid ""
+"Ubuntu Tweak need to turn off.\n"
+"If you'd like to help us fix the problem, \n"
+"Please choose <i>Report</i> to file a new bug report. Make sure to include "
+"the error message below:"
+msgstr ""
+
+#: data/gui/traceback.glade:99 data/gui/traceback.glade:282
 msgid "Error Message"
 msgstr "Μήνυμα σφάλματος"
 
-#: data/gui/traceback.glade:151 data/gui/traceback.glade:326
+#: data/gui/traceback.glade:159 data/gui/traceback.glade:342
 msgid "_Report"
 msgstr "_Αναφορά"
+
+#: data/gui/traceback.glade:234
+msgid "<big><b>Oops... an error occured</b></big>"
+msgstr ""
+
+#: data/gui/traceback.glade:248
+msgid ""
+"If you'd like to help us fix the problem, \n"
+"Please choose <i>Report</i> to file a new bug report. Make sure to include "
+"the error message below:"
+msgstr ""
 
 #: data/gui/type_edit.glade:7
 msgid "Edit Type"
@@ -2010,256 +2312,5 @@ msgstr "Επιλέξτε μια εφαρμογή για να δείτε την �
 msgid "_Use a custom command"
 msgstr "_Χρήση μιας προσαρμοσμένης εντολής"
 
-#: src/autostart.py:248
-msgid "No description"
-msgstr "Καμία περιγραφή"
-
-#: src/ScriptWorker.py:120
-msgid "Coudn't find any text editor in your system!"
-msgstr "Δεν υπάρχει επεξεργαστής κειμένου στο σύστημά σας"
-
-#: src/mainwindow.py:246
-msgid "Power Management"
-msgstr "Διαχείρηση ενέργειας"
-
-#: src/thirdsoft.py:86
-msgid "Gnome Global Menu"
-msgstr "Κεντρικό μενού Gnome"
-
-#: src/thirdsoft.py:89
-msgid "Gwibber (Daily Version)"
-msgstr "Gwibber(Ημερήσια Έκδοση)"
-
-#: src/thirdsoft.py:403
-msgid ""
-"After every release of Ubuntu there comes a feature freeze.\n"
-"This means only applications with bug-fixes get into the repository.\n"
-"By using third-party DEB repositories, you can always keep up-to-date with "
-"the latest version.\n"
-"After adding these repositories, locate and install them using Add/Remove."
-msgstr ""
-"Έπειτα από κάθε έκδοση του Ubuntu υπάρχει πάγωμα των χαρακτηριστικών.\n"
-"Αυτό σημαίνει ότι μόνο εφαρμογές που έχουν διορθώσεις λαθών θα τοποθετηθούν "
-"στο αποθετήριο.\n"
-"Χρησιμοποιώντας  DEB αποθετήρια άλλων κατασκευαστών, μπορείτε πάντα να "
-"διατηρείτε ενημερωμένο με την τελευταία έκδοση.\n"
-"Αφού προσθέσετε αυτά τα αποθετήρια, επιλέξτε τα και εγκαταστήστε τα "
-"χρησιμοποιώντας την προσθαφαίρεση προγραμμάτων."
-
-#: src/thirdsoft.py:458
-msgid ""
-"It is a possible security risk to use packages from Third-Party Sources.\n"
-"Please be careful and use only sources you trust."
-msgstr ""
-
-#: src/metacity.py:94
-msgid ""
-"To enable the compositing feature of metacity, you should manually disable "
-"Visual Effects in \"Appearance\"."
-msgstr ""
-
-#: src/templates.py:116
-#, python-format
-msgid ""
-"Templates path is wrong! The current path is point to \"%s\".\n"
-"Please reset it to a folder under your Home Folder."
-msgstr ""
-
-#: src/templates.py:180
-msgid "Templates path is still wrong, Please reset it!"
-msgstr ""
-
-#: src/scripts.py:61
-msgid "Open with your favourite text editor"
-msgstr "Ανοίξτε τον αγαπημένο σας επεξεργαστή κειμένου"
-
-#: src/scripts.py:62
-msgid "Open with your favourite text editor (as root)"
-msgstr "Ανοίξτε τον αγαπημένο σας επεξεργαστή κειμένου(σαν διαχειριστής)"
-
-#: src/scripts.py:69
-msgid "Make hard shadow to image"
-msgstr ""
-
-#: src/nautilus.py:109
-msgid "Default thumbnail icon size (pixels)"
-msgstr ""
-
-#: src/nautilus.py:123
-msgid "Maximum size of the thumbnail cache (megabytes)"
-msgstr ""
-
-#: src/nautilus.py:135
-msgid "Maximum age for the thumbnail in the cache (days)"
-msgstr ""
-
-#: src/nautilus.py:183
-#, python-format
-msgid "Clean up the thumbnails cache (will free %s of disk space)"
-msgstr ""
-
-#: src/nautilus.py:186
-msgid "The thumbnails cache will be cleaned, Do you wish to continue?"
-msgstr ""
-
-#: src/preferences.py:136
-msgid "Enable PowerUser Mode"
-msgstr ""
-
-#: src/sourceeditor.py:108
-msgid "You can submit your sources to the server for other people to use."
-msgstr ""
-"Μπορείτε να υποβάλλετε τις πηγές σας στον διακομιστή ώστε να τις "
-"χρησιμοποιούν και άλλοι."
-
-#: src/sourceeditor.py:123
-msgid "Enter the title of the source, e.g. \"Ubuntu Official Repostory\""
-msgstr ""
-
-#: src/sourceeditor.py:195
-msgid "Uploading..."
-msgstr ""
-
-#: src/sourceeditor.py:403
-msgid "You can install new applications through Add/Remove."
-msgstr ""
-"Μπορείτε να εγκαταστήσετε νέες εφαρμογές από την προσθαφαίρεση εφαρμογών"
-
-#: src/sourceeditor.py:420
-msgid "Please input the correct information about sources!"
-msgstr "Παρακαλώ εισάγετε τις σωστές πληροφορίες για τις πηγές!"
-
-#: src/sourceeditor.py:433
-msgid ""
-"You can submit your sources to our server to help building the sources list, "
-"or you can use the official sources.\n"
-"Do you wish to use the official sources?"
-msgstr ""
-
-#: src/sourceeditor.py:453
-msgid ""
-"Your sources will be reviewed and made available for others soon.\n"
-"Thank you!"
-msgstr ""
-
-#: src/sourceeditor.py:454
-msgid "Successfully submitted"
-msgstr "Υποβλήθηκαν επιτυχώς"
-
-#: src/sourceeditor.py:467
-msgid "Please check the permission of the sources.list file"
-msgstr ""
-
-#: src/sourceeditor.py:475
-msgid ""
-"The current content will be lost after reloading!\n"
-"Do you wish to continue?"
-msgstr ""
-
-#: src/common/appdata.py:64
-msgid "Fully customisable dock-like window navigator(Unstable)"
-msgstr ""
-
-#: src/common/appdata.py:91
-msgid "Global Menu Bar for GNOME"
-msgstr ""
-
-#: src/common/appdata.py:92
-msgid "a C++ port of Tomboy"
-msgstr "Μια C++ θύρα του Tomboy"
-
-#: src/common/appdata.py:99
-msgid ""
-"GTG is a personal organizer for the GNOME desktop environment, it focuses on "
-"ease of use and flexibility, while keeping things simple."
-msgstr ""
-
-#: src/common/appdata.py:100
-msgid "Gwibber is an open source microblogging client for GNOME"
-msgstr ""
-
-#: src/common/appdata.py:113
-msgid "Open internet TV, beyond anything else"
-msgstr ""
-
-#: src/common/appdata.py:122
-msgid "Feature-rich screenshot application(formerly known as GScrot)"
-msgstr ""
-
-#: src/common/appdata.py:128
-msgid ""
-"A desktop application that will watch for events (website updates, emails, "
-"file and folder changes...)"
-msgstr ""
-
-#: src/common/appdata.py:129
-msgid "An instant messaging application powered by qt-mono-bindings"
-msgstr ""
-
-#: src/common/appdata.py:132
-msgid ""
-"Transmission is a fast, easy, and free multi-platform BitTorrent client."
-msgstr ""
-
-#: src/common/appdata.py:135
-msgid "configure your USB ADSL modem and connection easier than ever!"
-msgstr ""
-
-#: src/common/appdata.py:141
-msgid ""
-"Wine-doors is an application designed to make installing windows software on "
-"Linux, Solaris or other Unix systems easier."
-msgstr ""
-
-#: src/common/appdata.py:146
-msgid "Development Version of Mozilla Firefox 3.1, 4.0"
-msgstr ""
-
-#: src/common/appdata.py:149
-msgid "K Desktop Environment 4.2"
-msgstr ""
-
-#: src/common/misc.py:15
-#, python-format
-msgid "%(size)d byte"
-msgid_plural "%(size)d bytes"
-msgstr[0] ""
-msgstr[1] ""
-
-#: src/common/misc.py:17
-#, python-format
-msgid "%.1f KB"
-msgstr ""
-
-#: src/common/misc.py:19
-#, python-format
-msgid "%.1f MB"
-msgstr ""
-
-#: src/common/misc.py:20
-#, python-format
-msgid "%.1f GB"
-msgstr ""
-
-#: data/gui/traceback.glade:50
-msgid "<big><b>Oops... a fatal error occured</b></big>"
-msgstr ""
-
-#: data/gui/traceback.glade:64
-msgid ""
-"Ubuntu Tweak need to turn off.\n"
-"If you'd like to help us fix the problem, \n"
-"Please choose <i>Report</i> to file a new bug report. Make sure to include "
-"the error message below:"
-msgstr ""
-
-#: data/gui/traceback.glade:226
-msgid "<big><b>Oops... an error occured</b></big>"
-msgstr ""
-
-#: data/gui/traceback.glade:240
-msgid ""
-"If you'd like to help us fix the problem, \n"
-"Please choose <i>Report</i> to file a new bug report. Make sure to include "
-"the error message below:"
-msgstr ""
+#~ msgid "Update failed!"
+#~ msgstr "Η ενημέρωση απέτυχε"

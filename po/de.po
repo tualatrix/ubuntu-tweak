@@ -3,15 +3,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2009-04-29 07:49+0800\n"
-"PO-Revision-Date: 2009-04-23 19:57+0000\n"
-"Last-Translator: PsychoKim <Unknown>\n"
+"POT-Creation-Date: 2009-06-21 19:29+0800\n"
+"PO-Revision-Date: 2009-06-20 17:47+0000\n"
+"Last-Translator: Lukas Bögelein <Unknown>\n"
 "Language-Team: LL <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2009-05-02 07:06+0000\n"
+"X-Launchpad-Export-Date: 2009-06-21 09:28+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: GERMANY\n"
 "X-Poedit-Language: German\n"
@@ -26,7 +26,7 @@ msgstr "_Name:"
 msgid "Co_mmand:"
 msgstr "_Befehl:"
 
-#: src/autostart.py:51 src/sourceeditor.py:119
+#: src/autostart.py:51 src/sourceeditor.py:118
 msgid "Comm_ent:"
 msgstr "Komm_entar:"
 
@@ -160,11 +160,11 @@ msgstr "Emulatoren"
 msgid "E-mail Tools"
 msgstr "E-Mail Anwendungen"
 
-#: src/installer.py:156
+#: src/installer.py:157
 msgid "Add/Remove Applications"
 msgstr "Programme hinzufügen/entfernen"
 
-#: src/installer.py:157
+#: src/installer.py:158
 msgid ""
 "A simple but more effecient method for finding and installing popular "
 "packages than the default Add/Remove."
@@ -172,15 +172,16 @@ msgstr ""
 "Eine einfache, aber effizientere Methode um populäre Pakete zu finden und zu "
 "installieren, als der Standard \"Hinzufügen/Entfernen\""
 
-#: src/installer.py:205
+#: src/installer.py:204
 msgid "All Categories"
 msgstr "Alle Kategorien"
 
-#: src/installer.py:375
+#: src/installer.py:365 src/thirdsoft.py:495 src/compiz.py:406
+#: src/nautilus.py:217
 msgid "Update Successful!"
 msgstr "Aktualisierung erfolgreich!"
 
-#: src/installer.py:377
+#: src/installer.py:367 src/compiz.py:408 src/nautilus.py:219
 msgid "Update Failed!"
 msgstr "Aktualisierung fehlgeschlagen!"
 
@@ -212,52 +213,63 @@ msgstr "Auf Festplatte speichern ausschalten"
 msgid "Disable \"Fast User Switching\""
 msgstr "Schnellen Benutzerwechsel deaktivieren"
 
-#: src/ScriptWorker.py:53
+#: src/lockdown.py:59
+msgid "Fix the theme appearance when grant the root privileges"
+msgstr "Repeariert das Aussehen des Themes wenn Rootrechte erhalten wurden."
+
+#: src/lockdown.py:64
+msgid "Miscellaneous Options"
+msgstr "Verschiedene Einstellungen"
+
+#: src/ScriptWorker.py:56
 #, python-format
 msgid "The file \"%s\" already exists!"
 msgstr "Die Datei \"%s\" ist bereits vorhanden!"
 
-#: src/ScriptWorker.py:58
+#: src/ScriptWorker.py:61
 #, python-format
 msgid "The folder \"%s\" already exists!"
 msgstr "Der Ordner \"%s\" ist bereits vorhanden!"
 
-#: src/ScriptWorker.py:64 src/ScriptWorker.py:70
+#: src/ScriptWorker.py:68 src/ScriptWorker.py:75
 #, python-format
 msgid "The target \"%s\" already exists!"
 msgstr "Das Verzeichnis \"%s\" ist bereits vorhanden!"
 
-#: src/ScriptWorker.py:113 src/ScriptWorker.py:125
+#: src/ScriptWorker.py:125 src/ScriptWorker.py:138
 msgid "Enter your password to perform the administrative tasks"
 msgstr ""
 "Bitte geben Sie ihr Passwort ein um Änderungen am System durchzuführen."
 
-#: src/ScriptWorker.py:144
+#: src/ScriptWorker.py:132
+msgid "Coudn't find any text editor in your system!"
+msgstr "Auf Ihrem System konnte kein Text-Editor gefunden werden!"
+
+#: src/ScriptWorker.py:159
 msgid "Select a folder"
 msgstr "Ordner auswählen"
 
-#: src/ScriptWorker.py:175
+#: src/ScriptWorker.py:189
 msgid "Please select a target (files or folders)."
 msgstr "Bitte wählen Sie ein Zielverzeichnis."
 
-#: src/mainwindow.py:65
+#: src/mainwindow.py:69
 msgid "Welcome to"
 msgstr "Willkommen bei"
 
-#: src/mainwindow.py:71
+#: src/mainwindow.py:75
 msgid "Tweak otherwise hidden settings."
 msgstr "Versteckte Einstellungen ändern."
 
-#: src/mainwindow.py:72
+#: src/mainwindow.py:76
 msgid "Clean up unneeded packages to free diskspace."
-msgstr ""
-"Nicht benötigte Pakete entfernen um freien Speicherplatz zu gewinnen."
+msgstr "Nicht benötigte Pakete entfernen um freien Speicherplatz zu gewinnen."
 
-#: src/mainwindow.py:73
+#: src/mainwindow.py:77
 msgid "Easily install up-to-date versions of many applications."
 msgstr "Aktuelle Versionen vieler Anwendungen einfach installieren."
 
-#: src/mainwindow.py:74
+#: src/mainwindow.py:78
 msgid ""
 "Configure file templates and shortcut scripts for easy access to common "
 "tasks."
@@ -265,15 +277,15 @@ msgstr ""
 "Dateivorlagen und Verknüpfungs-Skripte für das Beschleunigen üblicher "
 "Aufgaben einstellen."
 
-#: src/mainwindow.py:75
+#: src/mainwindow.py:79
 msgid "And many more useful features!"
 msgstr "Und viele weitere nützliche Funktionen!"
 
-#: src/mainwindow.py:87
+#: src/mainwindow.py:91
 msgid "<span size=\"xx-large\">Please wait a moment...</span>"
 msgstr "<span size=\"xx-large\">Bitte warten Sie einen Moment...</span>"
 
-#: src/mainwindow.py:100
+#: src/mainwindow.py:104
 msgid ""
 "<span size=\"x-large\">This feature isn't currently available in your "
 "distribution</span>"
@@ -281,117 +293,133 @@ msgstr ""
 "<span size=\"x-large\">Dieses Feature ist in Deiner Distribution derzeit "
 "nicht verfügbar</span>"
 
-#: src/mainwindow.py:113
+#: src/mainwindow.py:117
 msgid "<span size=\"x-large\">This module is error while loading.</span>"
 msgstr ""
 "<span size=\"x-large\">Dieses Modul gab während des Ladens einen Fehler "
 "zurück.</span>"
 
-#: src/mainwindow.py:223
+#: src/mainwindow.py:132
+msgid ""
+"This is a major failure of your software management system. Please check for "
+"broken packages with synaptic, check the file permissions and correctness of "
+"the file '/etc/apt/sources.list' and reload the software information with: "
+"'sudo apt-get update' and 'sudo apt-get install -f'."
+msgstr ""
+"Dies ist ein größerer Fehler der Softwareverwaltung. Überprüfen sie bitte "
+"beschädigte Pakete mit Synaptic, überprüfen sie Zugriffsrechte und die "
+"Fehlerfreiheit der Datei '/etc/apt/sources.list' und aktualisieren sie die "
+"Softwareinformation mit: 'sudo apt-get update' und 'sudo apt-get install -f'."
+
+#: src/mainwindow.py:249
 msgid "Welcome"
 msgstr "Willkommen"
 
-#: src/mainwindow.py:224
+#: src/mainwindow.py:250
 msgid "Computer"
 msgstr "Computer"
 
-#: src/mainwindow.py:225
+#: src/mainwindow.py:251
 msgid "Applications"
 msgstr "Anwendungen"
 
-#: src/mainwindow.py:226
+#: src/mainwindow.py:252
 msgid "Add/Remove"
 msgstr "Hinzufügen/Entfernen"
 
-#: src/mainwindow.py:227 src/sourceeditor.py:335
+#: src/mainwindow.py:253 src/sourceeditor.py:343
 msgid "Source Editor"
 msgstr "Quellen-Editor"
 
-#: src/mainwindow.py:228 src/thirdsoft.py:279
+#: src/mainwindow.py:254 src/thirdsoft.py:286
 msgid "Third-Party Sources"
 msgstr "Software-Quellen von Drittanbietern"
 
-#: src/mainwindow.py:229 src/cleaner.py:372
+#: src/mainwindow.py:255 src/cleaner.py:372
 msgid "Package Cleaner"
 msgstr "Pakete aufräumen"
 
-#: src/mainwindow.py:230
+#: src/mainwindow.py:256
 msgid "Startup"
 msgstr "Systemstart"
 
-#: src/mainwindow.py:231 src/session.py:144
+#: src/mainwindow.py:257 src/session.py:144
 msgid "Session Control"
 msgstr "Sitzungseinstellungen"
 
-#: src/mainwindow.py:232
+#: src/mainwindow.py:258
 msgid "Autostart"
 msgstr "Autostart"
 
-#: src/mainwindow.py:233 src/userdir.py:45
+#: src/mainwindow.py:259 src/userdir.py:45
 msgid "Desktop"
 msgstr "Desktop"
 
-#: src/mainwindow.py:234
+#: src/mainwindow.py:260
 msgid "Icons"
 msgstr "Symbole"
 
-#: src/mainwindow.py:235
+#: src/mainwindow.py:261
 msgid "Windows"
 msgstr "Fenster"
 
-#: src/mainwindow.py:236
+#: src/mainwindow.py:262
 msgid "Compiz Fusion"
 msgstr "Compiz Fusion"
 
-#: src/mainwindow.py:237
+#: src/mainwindow.py:263
 msgid "GNOME"
 msgstr "GNOME"
 
-#: src/mainwindow.py:238
+#: src/mainwindow.py:264
 msgid "Personal"
 msgstr "Persönlich"
 
-#: src/mainwindow.py:239
+#: src/mainwindow.py:265
 msgid "Folders"
 msgstr "Ordner"
 
-#: src/mainwindow.py:240 src/userdir.py:47
+#: src/mainwindow.py:266 src/userdir.py:47
 msgid "Templates"
 msgstr "Dokumentvorlagen"
 
-#: src/mainwindow.py:241
+#: src/mainwindow.py:267
 msgid "Scripts"
 msgstr "Skripte"
 
-#: src/mainwindow.py:242
+#: src/mainwindow.py:268
 msgid "Shortcuts"
 msgstr "Tastenkürzel"
 
-#: src/mainwindow.py:243
+#: src/mainwindow.py:269
 msgid "System"
 msgstr "System"
 
-#: src/mainwindow.py:244 src/filetype.py:478
+#: src/mainwindow.py:270 src/filetype.py:478
 msgid "File Type Manager"
 msgstr "Dateitypzuordnung"
 
-#: src/mainwindow.py:245
+#: src/mainwindow.py:271
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: src/mainwindow.py:247
+#: src/mainwindow.py:272
+msgid "Power Management"
+msgstr "Energieverwaltung"
+
+#: src/mainwindow.py:273
 msgid "Security"
 msgstr "Sicherheit"
 
-#: src/mainwindow.py:329
+#: src/mainwindow.py:355
 msgid "_Donate"
 msgstr "_Spenden"
 
-#: src/mainwindow.py:355
+#: src/mainwindow.py:381
 msgid "Help the development of Ubuntu Tweak"
 msgstr "Helfen Sie bei der Entwicklung von Ubuntu Tweak"
 
-#: src/mainwindow.py:355
+#: src/mainwindow.py:381
 msgid ""
 "Ubuntu Tweak is a free-software, you can use it for free. If you like it, "
 "Please consider to donate for Ubuntu Tweak."
@@ -399,15 +427,15 @@ msgstr ""
 "Ubuntu Tweak ist freie Software, Sie können sie kostenlos benutzen. Wenn "
 "Ihnen Ubuntu Tweak gefällt, spenden Sie bitte für das Projekt."
 
-#: src/mainwindow.py:356
+#: src/mainwindow.py:382
 msgid "Never Show This Again"
 msgstr "Nicht wieder anzeigen"
 
-#: src/mainwindow.py:549
+#: src/mainwindow.py:575
 msgid "Ubuntu Tweak Website"
 msgstr "Ubuntu Tweak Webseite"
 
-#: src/mainwindow.py:551
+#: src/mainwindow.py:577
 msgid ""
 "Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
 "system and desktop settings."
@@ -415,7 +443,7 @@ msgstr ""
 "Ubuntu Tweak erlaubt Ihnen Ihr Ubuntu-System und den Desktop einfach "
 "anzupassen."
 
-#: src/mainwindow.py:558
+#: src/mainwindow.py:584
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
@@ -461,9 +489,38 @@ msgstr ""
 "  oknuwxh https://launchpad.net/~oknuwxh\n"
 "  simpson-fan https://launchpad.net/~valentin-steinwandter\n"
 "  soxs https://launchpad.net/~schuster-bernhard\n"
+"  staedtler-przyborski https://launchpad.net/~staedtler-przyborski\n"
+"\n"
+"Launchpad Contributions:\n"
+"  -Anzeige- https://launchpad.net/~domihoehne\n"
+"  Andreas Zettl https://launchpad.net/~andreas-zettl\n"
+"  Benjamin Schwarze https://launchpad.net/~benjixx\n"
+"  DrFaNaTiC https://launchpad.net/~drfanatic\n"
+"  Florian https://launchpad.net/~machalabad\n"
+"  Jochen Skulj https://launchpad.net/~joskulj\n"
+"  Keruskerfuerst https://launchpad.net/~arminmohring\n"
+"  LeTux https://launchpad.net/~letux\n"
+"  Lukas Bögelein https://launchpad.net/~lukas-boegelein\n"
+"  Martin Lettner https://launchpad.net/~m.lettner\n"
+"  Martin Nemec https://launchpad.net/~spocky\n"
+"  MartinGruen https://launchpad.net/~mhr-gmx\n"
+"  PsychoKim https://launchpad.net/~psychokim\n"
+"  Thomas Huemerlehner https://launchpad.net/~bombastoso\n"
+"  Thori https://launchpad.net/~thori-\n"
+"  TualatriX https://launchpad.net/~tualatrix\n"
+"  benste https://launchpad.net/~benste\n"
+"  dauerbaustelle https://launchpad.net/~dauerbaustelle\n"
+"  hello08 https://launchpad.net/~hello08\n"
+"  ig-88 https://launchpad.net/~merlin-schumacher\n"
+"  mniess https://launchpad.net/~mniess\n"
+"  mogli https://launchpad.net/~patrick-kohan\n"
+"  nordlicht.ol https://launchpad.net/~nordlicht-ol\n"
+"  oknuwxh https://launchpad.net/~oknuwxh\n"
+"  simpson-fan https://launchpad.net/~valentin-steinwandter\n"
+"  soxs https://launchpad.net/~schuster-bernhard\n"
 "  staedtler-przyborski https://launchpad.net/~staedtler-przyborski"
 
-#: src/mainwindow.py:571
+#: src/mainwindow.py:597
 #, python-format
 msgid ""
 "A newer version: %s is available online.\n"
@@ -472,7 +529,7 @@ msgstr ""
 "Eine neuere Version ist verfügbar: %s\n"
 "Wollen sie aktualisieren?"
 
-#: src/mainwindow.py:572
+#: src/mainwindow.py:598
 msgid "Software Update"
 msgstr "Programmaktualisierung"
 
@@ -545,7 +602,7 @@ msgstr ""
 "Ändern Sie nicht den Pfad Ihres Desktop-Ordners sofern Sie nicht genau "
 "wissen was Sie tun."
 
-#: src/userdir.py:258 src/compiz.py:391 src/nautilus.py:212
+#: src/userdir.py:258
 msgid "Update successful!"
 msgstr "Aktualisierung erfolgreich abgeschlossen!"
 
@@ -622,87 +679,91 @@ msgstr "Hier können Sie Anwendungen entsprechende Dateitypen zuordnen."
 msgid "Only show filetypes with an associated application"
 msgstr "Zeige nur Dateitypen die einer Anwendung zugeordnet sind"
 
-#: src/computer.py:44
+#: src/computer.py:45
 msgid "System information"
 msgstr "Systeminformationen"
 
-#: src/computer.py:45
+#: src/computer.py:46
 msgid "Hostname"
 msgstr "Rechnername"
 
-#: src/computer.py:46
+#: src/computer.py:47
 msgid "Distribution"
 msgstr "Distribution"
 
-#: src/computer.py:47
+#: src/computer.py:48
 msgid "Desktop environment"
 msgstr "Desktop-Umgebung"
 
-#: src/computer.py:48
+#: src/computer.py:49
 msgid "Kernel"
 msgstr "Kernel"
 
-#: src/computer.py:49
+#: src/computer.py:50
 msgid "Platform"
 msgstr "Architektur"
 
-#: src/computer.py:50
+#: src/computer.py:51
 msgid "CPU"
 msgstr "CPU (Central Processing Unit)"
 
-#: src/computer.py:51
+#: src/computer.py:52
 msgid "Memory"
 msgstr "Arbeitsspeicher"
 
-#: src/computer.py:55
+#: src/computer.py:56
 msgid "User information"
 msgstr "Benutzerinformationen"
 
-#: src/computer.py:56
+#: src/computer.py:57
 msgid "Current user"
 msgstr "Aktueller Nutzer"
 
-#: src/computer.py:57
+#: src/computer.py:58
 msgid "Home directory"
 msgstr "Home-Verzeichnis"
 
-#: src/computer.py:58
+#: src/computer.py:59
 msgid "Shell"
 msgstr "Befehlszeile"
 
-#: src/computer.py:59
+#: src/computer.py:60
 msgid "Language"
 msgstr "Sprache"
 
-#: src/thirdsoft.py:69
+#: src/thirdsoft.py:70
 msgid "Avant Window Navigator (Unstable Version)"
 msgstr "Avant Fensternavigator (instabile Version)"
 
-#: src/thirdsoft.py:75
+#: src/thirdsoft.py:76
 msgid "Ubuntu Chinese Repository"
 msgstr "Chinesisches Ubuntu-Repositorium"
 
-#: src/thirdsoft.py:86
+#: src/thirdsoft.py:87
 msgid "Gnome Global Menu"
 msgstr "globales Gnome Menü"
 
 #: src/thirdsoft.py:89
+msgid "GetDeb.net (Mirror)"
+msgstr "GetDeb.net (Spiegelserver)"
+
+#: src/thirdsoft.py:91
 msgid "Gwibber (Daily Version)"
 msgstr "Gwibber (Täglich-aktualisierte Version)"
 
-#: src/thirdsoft.py:90
+#: src/thirdsoft.py:92
 msgid "Banshee (Stable Version)"
 msgstr "Banshee (Stabile Version)"
 
-#: src/thirdsoft.py:91
+#: src/thirdsoft.py:93
 msgid "Banshee (Unstable Version)"
 msgstr "Banshee (Tesversion)"
 
-#: src/thirdsoft.py:97
+#: src/thirdsoft.py:99
 msgid "Ubuntu Tweak (Unstable Version)"
 msgstr "Justage von Ubuntu"
 
-#: src/thirdsoft.py:196
+#: src/thirdsoft.py:203
 msgid ""
 "To install software and updates from newly added or changed sources, you "
 "have to reload the information about available software.\n"
@@ -714,31 +775,31 @@ msgstr ""
 "erneuern.\n"
 "Sie benötigen eine funktionierende Internetverbindung um fortzufahren."
 
-#: src/thirdsoft.py:200
+#: src/thirdsoft.py:207
 msgid "The information about available software is out-of-date"
 msgstr "Die Informationen über verfügbare Programme sind veraltet."
 
-#: src/thirdsoft.py:363
+#: src/thirdsoft.py:373
 msgid "Homepage"
 msgstr "Homepage"
 
-#: src/thirdsoft.py:363
+#: src/thirdsoft.py:373
 msgid "Source URL"
 msgstr "Quell-Adresse (URL)"
 
-#: src/thirdsoft.py:363
+#: src/thirdsoft.py:373
 msgid "Description"
 msgstr "Beschreibung"
 
-#: src/thirdsoft.py:374
+#: src/thirdsoft.py:384
 msgid "Description is here"
 msgstr "Beschreibung hier"
 
-#: src/thirdsoft.py:402
+#: src/thirdsoft.py:412
 msgid "Third-Party Software Sources"
 msgstr "Software von Drittanbietern"
 
-#: src/thirdsoft.py:403
+#: src/thirdsoft.py:413
 msgid ""
 "After every release of Ubuntu there comes a feature freeze.\n"
 "This means only applications with bug-fixes get into the repository.\n"
@@ -754,11 +815,31 @@ msgstr ""
 "Nach dem Hinzufügen dieser Quellen, suchen und installieren Sie diese mit "
 "Hinzufügen/Entfernen."
 
-#: src/thirdsoft.py:419 src/sourceeditor.py:84
+#: src/thirdsoft.py:429 src/sourceeditor.py:83
 msgid "Details"
 msgstr "Details"
 
-#: src/thirdsoft.py:458
+#: src/thirdsoft.py:452
+msgid ""
+"Some of your PPA Sources need to be update.\n"
+"Do you wish to continue?"
+msgstr ""
+"Manche ihrer PPA Quellen müssen aktualisiert werden.\n"
+"Möchten sie fortfahren?"
+
+#: src/thirdsoft.py:452
+msgid "PPA Sources is expire"
+msgstr "Die PPA Quelle läuft ab"
+
+#: src/thirdsoft.py:492 src/sourceeditor.py:475
+msgid "Please check the permission of the sources.list file"
+msgstr "Überprüfen Sie die Zugriffsberechtigungen der Datei sources.list"
+
+#: src/thirdsoft.py:493 src/sourceeditor.py:476
+msgid "Save failed!"
+msgstr "Speichern fehlgeschlagen!"
+
+#: src/thirdsoft.py:520
 msgid ""
 "It is a possible security risk to use packages from Third-Party Sources.\n"
 "Please be careful and use only sources you trust."
@@ -767,15 +848,15 @@ msgstr ""
 "verwenden.\n"
 "Seien Sie vorsichtig und verwenden Sie nur Quellen, den Sie vertrauen."
 
-#: src/thirdsoft.py:461 src/nautilus.py:187
+#: src/thirdsoft.py:523 src/nautilus.py:189
 msgid "Warning"
 msgstr "Warnung"
 
-#: src/thirdsoft.py:465
+#: src/thirdsoft.py:527
 msgid "Never show this dialog"
 msgstr "Dieses Fenster nicht mehr anzeigen"
 
-#: src/thirdsoft.py:487
+#: src/thirdsoft.py:549
 msgid ""
 "You can install the new applications through Add/Remove.\n"
 "Do you want to go now?"
@@ -783,7 +864,7 @@ msgstr ""
 "Sie können die neue Anwendung über Hinzufügen/Entfernen installieren.\n"
 "Möchten Sie das nun erledigen?"
 
-#: src/thirdsoft.py:488 src/sourceeditor.py:404
+#: src/thirdsoft.py:550 src/sourceeditor.py:412
 msgid "The software information is up-to-date now"
 msgstr "Die Informationen über verfügbare Programme sind jetzt aktuell."
 
@@ -1033,65 +1114,65 @@ msgstr ""
 "Dies wird alle deaktivierten Vorlagen löschen.\n"
 "Wollen Sie fortfahren?"
 
-#: src/compiz.py:229
-msgid "Install Advanced Desktop Effects Settings Manager"
-msgstr "Erweiterten Einstellungsmanager für Desktop-Effekte installieren"
-
-#: src/compiz.py:232
-msgid "Install Simple Desktop Effects Settings manager"
-msgstr "Einfachen Einstellungsmanager für Desktop-Effekte einstallieren"
-
-#: src/compiz.py:235
-msgid "Install Screenlets Widget Application"
-msgstr "Screenlets Widget-Anwendung aktivieren"
-
-#: src/compiz.py:245
-msgid "Enable snapping windows"
-msgstr "Einrastende Fenster aktivieren"
-
-#: src/compiz.py:246
-msgid "Enable wobbly windows"
-msgstr "Wabbelnde Fenster aktivieren"
-
-#: src/compiz.py:248
-msgid "Window Effects"
-msgstr "Fenster-Effekte"
-
-#: src/compiz.py:251
-msgid "Enable transparent menus"
-msgstr "Transparente Menüs aktivieren"
-
-#: src/compiz.py:252
-msgid "Enable wobbly menus"
-msgstr "Wabbelnde Menüs aktivieren"
-
-#: src/compiz.py:254
-msgid "Menu Effects"
-msgstr "Menü-Effekte"
-
-#: src/compiz.py:259
-msgid "Useful Extensions"
-msgstr "Nützliche Erweiterungen"
-
-#: src/compiz.py:274
-msgid "Prerequisite Conditions"
-msgstr "Grundvorraussetzungen"
-
-#: src/compiz.py:317
+#: src/compiz.py:47
 msgid "Expo"
-msgstr "Exposé"
+msgstr "Expo"
 
-#: src/compiz.py:318
+#: src/compiz.py:48
 msgid "Show Windows"
 msgstr "Fenster anzeigen"
 
-#: src/compiz.py:319
+#: src/compiz.py:49
 msgid "Show Desktop"
 msgstr "Desktop anzeigen"
 
-#: src/compiz.py:320
+#: src/compiz.py:50
 msgid "Widget"
 msgstr "Widget"
+
+#: src/compiz.py:231
+msgid "Install Advanced Desktop Effects Settings Manager"
+msgstr "Erweiterten Einstellungsmanager für Desktop-Effekte installieren"
+
+#: src/compiz.py:234
+msgid "Install Simple Desktop Effects Settings manager"
+msgstr "Einfachen Einstellungsmanager für Desktop-Effekte einstallieren"
+
+#: src/compiz.py:237
+msgid "Install Screenlets Widget Application"
+msgstr "Screenlets Widget-Anwendung aktivieren"
+
+#: src/compiz.py:247
+msgid "Enable snapping windows"
+msgstr "Einrastende Fenster aktivieren"
+
+#: src/compiz.py:248
+msgid "Enable wobbly windows"
+msgstr "Wabbelnde Fenster aktivieren"
+
+#: src/compiz.py:250
+msgid "Window Effects"
+msgstr "Fenster-Effekte"
+
+#: src/compiz.py:253
+msgid "Enable transparent menus"
+msgstr "Transparente Menüs aktivieren"
+
+#: src/compiz.py:254
+msgid "Enable wobbly menus"
+msgstr "Wabbelnde Menüs aktivieren"
+
+#: src/compiz.py:256
+msgid "Menu Effects"
+msgstr "Menü-Effekte"
+
+#: src/compiz.py:260
+msgid "Useful Extensions"
+msgstr "Nützliche Erweiterungen"
+
+#: src/compiz.py:275
+msgid "Prerequisite Conditions"
+msgstr "Grundvorraussetzungen"
 
 #: src/shortcuts.py:49
 msgid "Shortcut Commands"
@@ -1133,6 +1214,10 @@ msgstr "Schlüssel"
 msgid "Clean"
 msgstr "Keine"
 
+#: src/cleaner.py:54
+msgid "Cleaning Package Config"
+msgstr "Paketkonfiguration wird gesäubert"
+
 #: src/cleaner.py:61 src/cleaner.py:88
 #, python-format
 msgid "Cleaning...%s"
@@ -1154,6 +1239,15 @@ msgstr "Pakete"
 msgid "Package Cache"
 msgstr "Zwischenspeicher für Pakete"
 
+#: src/cleaner.py:222
+#, python-format
+msgid ""
+"<b>%s</b>\n"
+"Take %s of disk space"
+msgstr ""
+"<b>%s</b>\n"
+"Benötigt %s Festplattenspeicher"
+
 #: src/cleaner.py:245
 msgid "Package Config"
 msgstr "Paket-Einstellungen"
@@ -1174,7 +1268,7 @@ msgstr "%s Speicher wird frei"
 msgid "Canceled by user!"
 msgstr "Abgebrochen vom Benutzer!"
 
-#: src/cleaner.py:364 src/nautilus.py:193
+#: src/cleaner.py:364 src/nautilus.py:195
 msgid "Clean up Successful!"
 msgstr "Säubern erfolgreich!"
 
@@ -1190,23 +1284,23 @@ msgstr ""
 "Speicherplatz durch Entfernen nicht benötigter Pakete und Löschen des "
 "Download-Zwischenspeichers freigeben."
 
-#: src/cleaner.py:401
+#: src/cleaner.py:399
 msgid "Clean Package"
 msgstr "Paket löschen"
 
-#: src/cleaner.py:406
+#: src/cleaner.py:404
 msgid "Clean Cache"
 msgstr "Zwischenspeicher leeren"
 
-#: src/cleaner.py:411
+#: src/cleaner.py:409
 msgid "Clean Config"
 msgstr "Säuberungs-Einstellungen"
 
-#: src/cleaner.py:416
+#: src/cleaner.py:414
 msgid "Clean Kernel"
 msgstr "Betriebssystemkern säubern"
 
-#: src/cleaner.py:422
+#: src/cleaner.py:420
 msgid "Select All"
 msgstr "Alle auswählen"
 
@@ -1258,6 +1352,14 @@ msgstr "Eine Verknüpfung auf den Download erstellen"
 msgid "Link to Home"
 msgstr "Eine Verknüpfung im Benutzerverzeichnis erstellen"
 
+#: src/scripts.py:61
+msgid "Open with your favourite text editor"
+msgstr "Mit Standard-Text-Editor starten"
+
+#: src/scripts.py:62
+msgid "Open with your favourite text editor (as root)"
+msgstr "Mit Standard-Text-Editor starten (als root)"
+
 #: src/scripts.py:63
 msgid "Browse as root"
 msgstr "Als root durchsuchen"
@@ -1281,6 +1383,10 @@ msgstr "Bild zu GIF konvertieren"
 #: src/scripts.py:68
 msgid "Set image as wallpaper"
 msgstr "Als Hintergrundbild verwenden"
+
+#: src/scripts.py:69
+msgid "Make hard shadow to image"
+msgstr "Einen harten Schatten im Bild erzeugen"
 
 #: src/scripts.py:96
 msgid "Enabled Scripts"
@@ -1396,65 +1502,60 @@ msgstr ""
 msgid "Do you want your changes to take effect immediately?"
 msgstr "Wollen Sie, daß die Änderungen sofort aktiv werden?"
 
-#: src/nautilus.py:51
+#: src/nautilus.py:54
 msgid "Cleaning..."
 msgstr "Bereinige..."
 
-#: src/nautilus.py:101
+#: src/nautilus.py:104
 msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
 msgstr ""
 "Erweiterte Benutzerrechte in Nautilus' \"Dateieigenschaften\"-Fenster "
 "anzeigen"
 
-#: src/nautilus.py:104
+#: src/nautilus.py:107
 msgid "File Browser"
 msgstr "Datei-Browser"
 
-#: src/nautilus.py:109
+#: src/nautilus.py:112
 msgid "Default thumbnail icon size (pixels)"
 msgstr "voreingestellte Größe des Vorschaubildes"
 
-#: src/nautilus.py:123
+#: src/nautilus.py:126
 msgid "Maximum size of the thumbnail cache (megabytes)"
 msgstr "maximale Größe des Zwischenspeichers für die Vorschaubilder"
 
-#: src/nautilus.py:135
+#: src/nautilus.py:138
 msgid "Maximum age for the thumbnail in the cache (days)"
 msgstr "maximales Alter der Vorschaubilder im Zwischenspeicher (Tage)"
 
-#: src/nautilus.py:147
+#: src/nautilus.py:150
 msgid "Thumbnails Settings"
 msgstr "Einstellungen für Vorschaubilder"
 
-#: src/nautilus.py:155
+#: src/nautilus.py:157
 msgid "Nautilus with Open Terminal"
 msgstr "Nautilus mit \"Im Terminal öffnen\""
 
-#: src/nautilus.py:157
+#: src/nautilus.py:159
 msgid "Nautilus with Root Privileges"
 msgstr "Nautilus mit Root-Rechten"
 
-#: src/nautilus.py:159
+#: src/nautilus.py:161
 msgid "Nautilus with Wallpaper"
 msgstr "Nautilus mit Hintergrundbild"
 
-#: src/nautilus.py:161
+#: src/nautilus.py:163
 msgid "Nautilus Extensions"
-msgstr "Neutilus-Erweiterungen"
+msgstr "Nautilus-Erweiterungen"
 
-#: src/nautilus.py:183
+#: src/nautilus.py:185
 #, python-format
 msgid "Clean up the thumbnails cache (will free %s of disk space)"
-msgstr ""
-"den Zwischenspeicher aufräumen (wird %s des Speicherplatzes freigeben)"
+msgstr "den Zwischenspeicher aufräumen (wird %s des Speicherplatzes freigeben)"
 
-#: src/nautilus.py:186
+#: src/nautilus.py:188
 msgid "The thumbnails cache will be cleaned, Do you wish to continue?"
 msgstr "Der Zwischenspeicher wird gelöscht, wollen Sie fortfahren?"
-
-#: src/nautilus.py:214
-msgid "Update failed!"
-msgstr "Bei der Aktualisierung ist ein Fehler aufgetreten"
 
 #: src/powermanager.py:37
 msgid "Advanced Power Management Settings"
@@ -1544,11 +1645,11 @@ msgstr "Automatisch auf Aktualisierungen prüfen"
 msgid "Enable PowerUser Mode"
 msgstr "PowerUser-Modus aktivieren"
 
-#: src/sourceeditor.py:62 src/sourceeditor.py:67
+#: src/sourceeditor.py:61 src/sourceeditor.py:66
 msgid "Choose the sources"
 msgstr "Wähle die Quellen aus"
 
-#: src/sourceeditor.py:68
+#: src/sourceeditor.py:67
 msgid ""
 "You can read the title and comment to determine which source is suitable for "
 "you."
@@ -1556,55 +1657,55 @@ msgstr ""
 "Du kannst den Titel und die Kommentare lesen um zu entscheiden welche Quelle "
 "für Dich sinnvoll ist."
 
-#: src/sourceeditor.py:103 src/sourceeditor.py:108
+#: src/sourceeditor.py:102 src/sourceeditor.py:107
 msgid "Submit your sources"
 msgstr "Übermittle Deine Quellen"
 
-#: src/sourceeditor.py:108
+#: src/sourceeditor.py:107
 msgid "You can submit your sources to the server for other people to use."
 msgstr ""
 "Sie können ihre Quellen zum Server übertragen, damit andere Personen dies "
 "verwenden können."
 
-#: src/sourceeditor.py:113
+#: src/sourceeditor.py:112
 msgid "_Source Title:"
 msgstr "_Quellentitel:"
 
-#: src/sourceeditor.py:116
+#: src/sourceeditor.py:115
 msgid "_Locale:"
 msgstr "_Sprachdatei:"
 
-#: src/sourceeditor.py:123
+#: src/sourceeditor.py:122
 msgid "Enter the title of the source, e.g. \"Ubuntu Official Repostory\""
 msgstr "Geben Sie den Titel der Quelle an, z.B.\"Ubuntu Official Repostory\""
 
-#: src/sourceeditor.py:125
+#: src/sourceeditor.py:124
 msgid "If the locale isn't correct you can edit manually"
 msgstr ""
 "Wenn die Spracheinstellung nicht korrekt ist, dann können Sie diese manuell "
 "editieren."
 
-#: src/sourceeditor.py:140
+#: src/sourceeditor.py:139
 msgid "Submit"
 msgstr "Übermitteln"
 
-#: src/sourceeditor.py:188
+#: src/sourceeditor.py:187
 msgid "Please check your network connection!"
 msgstr "Bitte überprüfe Deine Netzwerkverbindung!"
 
-#: src/sourceeditor.py:188
+#: src/sourceeditor.py:187
 msgid "Network Error"
 msgstr "Netzwerkfehler"
 
-#: src/sourceeditor.py:195
+#: src/sourceeditor.py:194
 msgid "Uploading..."
 msgstr "Wird hochgeladen..."
 
-#: src/sourceeditor.py:211
+#: src/sourceeditor.py:210
 msgid "Updating..."
 msgstr "Aktualisiere..."
 
-#: src/sourceeditor.py:336
+#: src/sourceeditor.py:344
 msgid ""
 "Freely edit your software sources to fit your needs.\n"
 "Click \"Update Sources\" if you want to change the sources.\n"
@@ -1616,23 +1717,23 @@ msgstr ""
 "Klicken Sie auf \"Quellen übermitteln\" um Ihre Quelle mit anderen zu "
 "teilen.\n"
 
-#: src/sourceeditor.py:355
+#: src/sourceeditor.py:363
 msgid "Update Sources"
 msgstr "Quellen aktualisieren"
 
-#: src/sourceeditor.py:361
+#: src/sourceeditor.py:369
 msgid "Submit Sources"
 msgstr "Quellen übermitteln"
 
-#: src/sourceeditor.py:403
+#: src/sourceeditor.py:411
 msgid "You can install new applications through Add/Remove."
 msgstr "Sie können neue Anwendungen über Hinzufügen/Entfernen installieren."
 
-#: src/sourceeditor.py:420
+#: src/sourceeditor.py:428
 msgid "Please input the correct information about sources!"
 msgstr "Geben Sie die korrekte Information über die Quellen an!"
 
-#: src/sourceeditor.py:433
+#: src/sourceeditor.py:441
 msgid ""
 "You can submit your sources to our server to help building the sources list, "
 "or you can use the official sources.\n"
@@ -1642,11 +1743,11 @@ msgstr ""
 "zu erstellen, oder Sie können die offiziellen Quellen verwenden.\n"
 "Wollen Sie die offiziellen Quellen verwenden?"
 
-#: src/sourceeditor.py:436
+#: src/sourceeditor.py:444
 msgid "No source data available"
 msgstr "Keine Quelldaten verfügbar"
 
-#: src/sourceeditor.py:453
+#: src/sourceeditor.py:461
 msgid ""
 "Your sources will be reviewed and made available for others soon.\n"
 "Thank you!"
@@ -1654,19 +1755,11 @@ msgstr ""
 "Ihre Quellen werden überprüft und für andere bald verfügbar gemacht.\n"
 "Danke!"
 
-#: src/sourceeditor.py:454
+#: src/sourceeditor.py:462
 msgid "Successfully submitted"
 msgstr "erfolgreich übertragen"
 
-#: src/sourceeditor.py:467
-msgid "Please check the permission of the sources.list file"
-msgstr "Überprüfen Sie die Zugriffsberechtigungen der Datei sources.list"
-
-#: src/sourceeditor.py:468
-msgid "Save failed!"
-msgstr "Speichern fehlgeschlagen!"
-
-#: src/sourceeditor.py:475
+#: src/sourceeditor.py:483
 msgid ""
 "The current content will be lost after reloading!\n"
 "Do you wish to continue?"
@@ -1674,7 +1767,7 @@ msgstr ""
 "Der aktuelle Inhalt geht nach dem Neuladen verloren!\n"
 "Wollen Sie fortfahren?"
 
-#: src/common/package.py:67
+#: src/common/package.py:173
 msgid "(Not available)"
 msgstr "Nicht verfügbar"
 
@@ -1761,8 +1854,7 @@ msgstr "Ein in PyGTK geschriebener Bittorrent-Client"
 
 #: src/common/appdata.py:76
 msgid "Store, Sync and Share your files online."
-msgstr ""
-"Speichere, synchronisiere und teile Deine Dateien online mit anderen."
+msgstr "Speichere, synchronisiere und teile Deine Dateien online mit anderen."
 
 #: src/common/appdata.py:77
 msgid "Extensible Tool Platform and Java IDE"
@@ -1770,11 +1862,11 @@ msgstr "Erweiterbare Werkzeugplattform und Java IDE"
 
 #: src/common/appdata.py:78
 msgid ""
-"EIOffice Personal 2009. Free for Chinese users. See "
-"http://www.evermoresw.com."
+"EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
+"com."
 msgstr ""
-"EIOffice Personal 2009. Kostenlos für chinesische Benutzer. Siehe "
-"http://www.evermoresw.com"
+"EIOffice Personal 2009. Kostenlos für chinesische Benutzer. Siehe http://www."
+"evermoresw.com"
 
 #: src/common/appdata.py:79
 msgid "A client for the Windows Live Message network"
@@ -1834,6 +1926,10 @@ msgstr ""
 #: src/common/appdata.py:91
 msgid "Global Menu Bar for GNOME"
 msgstr "globale Menüleiste für Gnome"
+
+#: src/common/appdata.py:92
+msgid "a C++ port of Tomboy"
+msgstr "eine C++ Portierung von Tomboy"
 
 #: src/common/appdata.py:93
 msgid ""
@@ -1938,22 +2034,26 @@ msgid "Webkit based lightweight web browser"
 msgstr "Ein auf Webkit basierender leichtgewichtiger Webbrowser"
 
 #: src/common/appdata.py:115
+msgid "The free media player - play all your files"
+msgstr "Der freie Media Player - spielt alle deine Dateien ab"
+
+#: src/common/appdata.py:116
 msgid "An IDE to Develop .NET applications."
 msgstr "Eine IDE um .NET-Anwendungen zu entwickeln"
 
-#: src/common/appdata.py:116
+#: src/common/appdata.py:117
 msgid "The Ultimate Movie Player For Linux"
 msgstr "Der ultimative Videoplayer für Linux"
 
-#: src/common/appdata.py:117
+#: src/common/appdata.py:118
 msgid "IDE for Java, C/C++, Ruby, UML, etc."
 msgstr "IDE für Java, C/C++, Ruby, UML usw."
 
-#: src/common/appdata.py:118
+#: src/common/appdata.py:119
 msgid "The Opera Web Browser"
 msgstr "Der Opera Webbrowser"
 
-#: src/common/appdata.py:119
+#: src/common/appdata.py:120
 msgid ""
 "Pidgin is a graphical modular messaging client based on libpurple which is "
 "capable of connecting to AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, SIP/SIMPLE, "
@@ -1965,44 +2065,43 @@ msgstr ""
 "SIP/SIMPLE, Novell GroupWise, Lotus Sametime, Bonjour, Zephyr, MySpaceIM, "
 "Gadu-Gadu und QQ gleichzeitig zu verbinden."
 
-#: src/common/appdata.py:120
+#: src/common/appdata.py:121
 msgid "Run your Windows programs on Linux"
 msgstr "Starten Sie ihre Windows-Programme in Linux"
 
-#: src/common/appdata.py:121
+#: src/common/appdata.py:122
 msgid "A framework for desktop widgets"
 msgstr "Ein Framework für Desktopwidgets"
 
-#: src/common/appdata.py:122
+#: src/common/appdata.py:123
 msgid "Feature-rich screenshot application(formerly known as GScrot)"
 msgstr ""
 "Bildschirmfoto Anwendung mit großer Funktionalität (vorher bekannt als "
 "GScrot)"
 
-#: src/common/appdata.py:123
+#: src/common/appdata.py:124
 msgid "Make audio/video calls using this VoIP Software"
 msgstr "Audio-/Videotelefonate sollen diese VoIP-Software nutzen"
 
-#: src/common/appdata.py:124
+#: src/common/appdata.py:125
 msgid "A great MPlayer front-end, written in QT4"
 msgstr "Ein tolles MPlayer-Frontend, geschrieben in QT4"
 
-#: src/common/appdata.py:125
+#: src/common/appdata.py:126
 msgid "Convert audio files into other formats"
 msgstr "Konvertierung von Audiodateien in andere Formate"
 
-#: src/common/appdata.py:126
+#: src/common/appdata.py:127
 msgid "An international dictionary"
 msgstr "Ein internationales Wörterbuch"
 
-#: src/common/appdata.py:127
+#: src/common/appdata.py:128
 msgid ""
 "Swiftweasel is an optimized build of the Mozilla Firefox web browser for "
 "Linux"
-msgstr ""
-"Swiftweasel ist eine optimierte Version von Mozilla Firefox für Linux"
+msgstr "Swiftweasel ist eine optimierte Version von Mozilla Firefox für Linux"
 
-#: src/common/appdata.py:128
+#: src/common/appdata.py:129
 msgid ""
 "A desktop application that will watch for events (website updates, emails, "
 "file and folder changes...)"
@@ -2011,50 +2110,56 @@ msgstr ""
 "(Aktualisierungen einer Website, Emails, Änderungen bei Dateien und "
 "Ordnern,...)"
 
-#: src/common/appdata.py:129
+#: src/common/appdata.py:130
 msgid "An instant messaging application powered by qt-mono-bindings"
 msgstr "Eine Sofortnachrichten-Anwendung auf Basis von Qt-Mono-Bindings"
 
-#: src/common/appdata.py:130
+#: src/common/appdata.py:131
 msgid "A Useful Task List"
 msgstr "Eine nützliche Taskliste"
 
-#: src/common/appdata.py:131
+#: src/common/appdata.py:132
 msgid "Multiple GNOME terminals in one window"
 msgstr "Mehrere GNOME-Terminals in einem Fenster"
 
-#: src/common/appdata.py:132
+#: src/common/appdata.py:133
 msgid ""
 "Transmission is a fast, easy, and free multi-platform BitTorrent client."
 msgstr ""
 "Transmission ist ein schnelles, einfaches, freies und "
 "plattformübergreifendes BitTorrent-Programm."
 
-#: src/common/appdata.py:133
+#: src/common/appdata.py:134
 msgid "Ubuntu Tweak makes it easier to configure Ubuntu"
 msgstr "Ubuntu Tweak macht es einfacher Ubuntu einzustellen"
 
-#: src/common/appdata.py:134
+#: src/common/appdata.py:135
 msgid "Commonly used restricted packages"
 msgstr "Häufig benötigte unfreie Pakete"
 
-#: src/common/appdata.py:136 src/common/appdata.py:137
+#: src/common/appdata.py:136
+msgid "configure your USB ADSL modem and connection easier than ever!"
+msgstr ""
+"konfigurieren Sie Ihr USB-ADSL-Modem und die Verbindung einfacher als je zu "
+"vor!"
+
+#: src/common/appdata.py:137 src/common/appdata.py:138
 msgid "A feature rich, high performance virtualization software"
 msgstr "Funktionsreiche, hochperformante Virtualisierungssoftware"
 
-#: src/common/appdata.py:138
+#: src/common/appdata.py:139
 msgid "Read, capture, broadcast your multimedia streams"
 msgstr "Multimedia-Streams empfangen, aufnehmen und senden"
 
-#: src/common/appdata.py:139
+#: src/common/appdata.py:140
 msgid "Run Virtual Machines using VMware"
 msgstr "Virtuelle Maschinen mit Hilfe von VMware starten"
 
-#: src/common/appdata.py:140
+#: src/common/appdata.py:141
 msgid "A compatibility layer for running Windows programs"
 msgstr "Eine Kompatibilitätsschicht für Windows-Anwendungen"
 
-#: src/common/appdata.py:141
+#: src/common/appdata.py:142
 msgid ""
 "Wine-doors is an application designed to make installing windows software on "
 "Linux, Solaris or other Unix systems easier."
@@ -2062,33 +2167,33 @@ msgstr ""
 "Wine-doors ist eine Anwendung, die programmiert worden ist, um Windows "
 "Software auf Linux, Solaris oder anderen Unix Systemen zu erleichtern."
 
-#: src/common/appdata.py:142
+#: src/common/appdata.py:143
 msgid ""
 "XBMC is a free and open source software media player and entertainment hub"
 msgstr ""
 "XBMC ist ein kostenloser Open Source Mediaplayer und Unterhaltungswerkzeug"
 
-#: src/common/appdata.py:146
+#: src/common/appdata.py:147
 msgid "Development Version of Mozilla Firefox 3.1, 4.0"
 msgstr "Entwicklerversion von Mozilla 3.5, 4.0"
 
-#: src/common/appdata.py:147
+#: src/common/appdata.py:148
 msgid "Development version of Compiz Fusion"
 msgstr "Entwicklerversion von Compiz Fusion"
 
-#: src/common/appdata.py:148
+#: src/common/appdata.py:149
 msgid "Google's Linux Repository"
 msgstr "Googles Linux Repositorium"
 
-#: src/common/appdata.py:149
+#: src/common/appdata.py:150
 msgid "K Desktop Environment 4.2"
 msgstr "KDE 4.2"
 
-#: src/common/appdata.py:150
+#: src/common/appdata.py:151
 msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
 msgstr "Leichtgewichtige X11-Desktopumgebung: GPicView, PCManFM"
 
-#: src/common/appdata.py:151
+#: src/common/appdata.py:152
 msgid ""
 "Multimedia, Entertainment and Distraction In Ubuntu\n"
 "Medibuntu is a repository of packages that cannot be included into the "
@@ -2099,12 +2204,44 @@ msgstr ""
 "nicht in Ubuntu aufgenommen werden können (Urheberrecht, Lizenzen, Patente, "
 "usw.)."
 
-#: src/common/appdata.py:153
+#: src/common/appdata.py:154
 msgid ""
 "Ubuntu repository for Chinese users.\n"
 "Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and "
 "other softwares."
 msgstr "Ubuntu Repositorium für chinesische Benutzer."
+
+#: src/common/appdata.py:156
+msgid ""
+"GetDeb extends the existing software options for Ubuntu (and derived) Linux "
+"distributions by providing major updates and software not yet available on "
+"the official Ubuntu repositories."
+msgstr ""
+"GetDeb erweitert die bestehenden Software Möglichkeiten für Ubuntu (und "
+"Derivat) Linux Distributionen, indem es größere Aktualisierungen und "
+"Software die noch nicht in den Ubuntu Repositories ist bereitstellt."
+
+#: src/common/misc.py:15
+#, python-format
+msgid "%(size)d byte"
+msgid_plural "%(size)d bytes"
+msgstr[0] "%(size)d Byte"
+msgstr[1] "%(size)d Byte"
+
+#: src/common/misc.py:17
+#, python-format
+msgid "%.1f KB"
+msgstr "%.1f KB"
+
+#: src/common/misc.py:19
+#, python-format
+msgid "%.1f MB"
+msgstr "%.1f MB"
+
+#: src/common/misc.py:20
+#, python-format
+msgid "%.1f GB"
+msgstr "%.1f GB"
 
 #: src/common/policykit/polkitbutton.py:81
 msgid "_Unlock"
@@ -2202,8 +2339,7 @@ msgstr "Autostart Funktion"
 
 #: data/gui/traceback.glade:50
 msgid "<big><b>Oops... a fatal error occured</b></big>"
-msgstr ""
-"<big><b>Oops...es ist ein schwerwiegender Fehler aufgetreten</b></big>"
+msgstr "<big><b>Oops...es ist ein schwerwiegender Fehler aufgetreten</b></big>"
 
 #: data/gui/traceback.glade:64
 msgid ""
@@ -2218,19 +2354,19 @@ msgstr ""
 "Stellen Sie sicher, daß Sie die weiter unten stehende Fehlermeldung "
 "hinzufügen:"
 
-#: data/gui/traceback.glade:91 data/gui/traceback.glade:266
+#: data/gui/traceback.glade:99 data/gui/traceback.glade:282
 msgid "Error Message"
 msgstr "Fehlermeldung"
 
-#: data/gui/traceback.glade:151 data/gui/traceback.glade:326
+#: data/gui/traceback.glade:159 data/gui/traceback.glade:342
 msgid "_Report"
 msgstr "_Berichten"
 
-#: data/gui/traceback.glade:226
+#: data/gui/traceback.glade:234
 msgid "<big><b>Oops... an error occured</b></big>"
 msgstr "<big><b>Oops...es ist ein Fehler aufgetreten</b></big>"
 
-#: data/gui/traceback.glade:240
+#: data/gui/traceback.glade:248
 msgid ""
 "If you'd like to help us fix the problem, \n"
 "Please choose <i>Report</i> to file a new bug report. Make sure to include "
@@ -2257,63 +2393,5 @@ msgstr "Wählen Sie eine Anwendung, um dessen Beschreibung anzusehen."
 msgid "_Use a custom command"
 msgstr "_Benutzerdefinierten Befehl benutzen"
 
-#: src/ScriptWorker.py:120
-msgid "Coudn't find any text editor in your system!"
-msgstr ""
-
-#: src/mainwindow.py:246
-msgid "Power Management"
-msgstr ""
-
-#: src/cleaner.py:54
-msgid "Cleaning Package Config"
-msgstr ""
-
-#: src/cleaner.py:222
-#, python-format
-msgid ""
-"<b>%s</b>\n"
-"Take %s of disk space"
-msgstr ""
-
-#: src/scripts.py:61
-msgid "Open with your favourite text editor"
-msgstr ""
-
-#: src/scripts.py:62
-msgid "Open with your favourite text editor (as root)"
-msgstr ""
-
-#: src/scripts.py:69
-msgid "Make hard shadow to image"
-msgstr ""
-
-#: src/common/appdata.py:92
-msgid "a C++ port of Tomboy"
-msgstr ""
-
-#: src/common/appdata.py:135
-msgid "configure your USB ADSL modem and connection easier than ever!"
-msgstr ""
-
-#: src/common/misc.py:15
-#, python-format
-msgid "%(size)d byte"
-msgid_plural "%(size)d bytes"
-msgstr[0] ""
-msgstr[1] ""
-
-#: src/common/misc.py:17
-#, python-format
-msgid "%.1f KB"
-msgstr ""
-
-#: src/common/misc.py:19
-#, python-format
-msgid "%.1f MB"
-msgstr ""
-
-#: src/common/misc.py:20
-#, python-format
-msgid "%.1f GB"
-msgstr ""
+#~ msgid "Update failed!"
+#~ msgstr "Bei der Aktualisierung ist ein Fehler aufgetreten"

@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2009-04-29 07:49+0800\n"
-"PO-Revision-Date: 2009-04-14 11:11+0000\n"
-"Last-Translator: Exsecrabilus <Exsecrabilus@Gmail.com>\n"
+"POT-Creation-Date: 2009-06-21 19:29+0800\n"
+"PO-Revision-Date: 2009-06-19 14:53+0000\n"
+"Last-Translator: jincreator <Unknown>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2009-05-02 07:06+0000\n"
+"X-Launchpad-Export-Date: 2009-06-21 09:28+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/autostart.py:45
@@ -26,7 +26,7 @@ msgstr "이름(_N):"
 msgid "Co_mmand:"
 msgstr "명령(_M):"
 
-#: src/autostart.py:51 src/sourceeditor.py:119
+#: src/autostart.py:51 src/sourceeditor.py:118
 msgid "Comm_ent:"
 msgstr "설명(_E):"
 
@@ -48,11 +48,11 @@ msgstr "프로그램을 선택하세요"
 
 #: src/autostart.py:186
 msgid "Delete from Disk"
-msgstr "디스크로부터 삭제"
+msgstr "디스크에서 삭제"
 
 #: src/autostart.py:200
 msgid "Can't delete the system item from disk."
-msgstr "시스템 항목을 디스크로부터 삭제할 수 없습니다."
+msgstr "시스템 항목을 디스크에서 삭제할 수 없습니다."
 
 #: src/autostart.py:248
 msgid "No description"
@@ -157,25 +157,27 @@ msgstr "에뮬레이터"
 msgid "E-mail Tools"
 msgstr "전자 메일 도구"
 
-#: src/installer.py:156
+#: src/installer.py:157
 msgid "Add/Remove Applications"
 msgstr "프로그램 추가/제거"
 
-#: src/installer.py:157
+#: src/installer.py:158
 msgid ""
 "A simple but more effecient method for finding and installing popular "
 "packages than the default Add/Remove."
-msgstr "기본 추가/제거 보다는 더 쉽고 효과가 있게 패키지를 찾고 설치할 수 있습니다."
+msgstr ""
+"기본 추가/제거 보다는 더 쉽고 효과가 있게 패키지를 찾고 설치할 수 있습니다."
 
-#: src/installer.py:205
+#: src/installer.py:204
 msgid "All Categories"
 msgstr "모두"
 
-#: src/installer.py:375
+#: src/installer.py:365 src/thirdsoft.py:495 src/compiz.py:406
+#: src/nautilus.py:217
 msgid "Update Successful!"
 msgstr "업데이트 성공!"
 
-#: src/installer.py:377
+#: src/installer.py:367 src/compiz.py:408 src/nautilus.py:219
 msgid "Update Failed!"
 msgstr "업데이트 실패!"
 
@@ -207,173 +209,230 @@ msgstr "디스크에 파일 저장 못함"
 msgid "Disable \"Fast User Switching\""
 msgstr "\"빠른 사용자 바꾸기\" 못함"
 
-#: src/ScriptWorker.py:113 src/ScriptWorker.py:125
+#: src/lockdown.py:59
+msgid "Fix the theme appearance when grant the root privileges"
+msgstr "root 권한을 주었을 때 테마 모양새 수정"
+
+#: src/lockdown.py:64
+msgid "Miscellaneous Options"
+msgstr "그 밖의 설정"
+
+#: src/ScriptWorker.py:56
+#, python-format
+msgid "The file \"%s\" already exists!"
+msgstr "\"%s\" 파일은 이미 존재합니다!"
+
+#: src/ScriptWorker.py:61
+#, python-format
+msgid "The folder \"%s\" already exists!"
+msgstr "\"%s\" 폴더는 이미 존재합니다!"
+
+#: src/ScriptWorker.py:68 src/ScriptWorker.py:75
+#, python-format
+msgid "The target \"%s\" already exists!"
+msgstr "\"%s\" 대상은 이미 존재합니다!"
+
+#: src/ScriptWorker.py:125 src/ScriptWorker.py:138
 msgid "Enter your password to perform the administrative tasks"
 msgstr "관리 작업을 수행하기 위해 암호를 넣어 주십시오"
 
-#: src/ScriptWorker.py:144
+#: src/ScriptWorker.py:132
+msgid "Coudn't find any text editor in your system!"
+msgstr "시스템에서 텍스트 편집기를 찾을 수 없습니다!"
+
+#: src/ScriptWorker.py:159
 msgid "Select a folder"
 msgstr "폴더를 선택하십시오"
 
-#: src/mainwindow.py:65
+#: src/ScriptWorker.py:189
+msgid "Please select a target (files or folders)."
+msgstr "대상을 선택하십시오 (파일 혹은 폴더)"
+
+#: src/mainwindow.py:69
 msgid "Welcome to"
 msgstr "으로 환영합니다"
 
-#: src/mainwindow.py:71
+#: src/mainwindow.py:75
 msgid "Tweak otherwise hidden settings."
 msgstr "숨겨진 설정도 비틀 수 있습니다."
 
-#: src/mainwindow.py:72
+#: src/mainwindow.py:76
 msgid "Clean up unneeded packages to free diskspace."
 msgstr "필요 없는 패키지들도 치워서 디스크 공간도 풀으세요"
 
-#: src/mainwindow.py:73
+#: src/mainwindow.py:77
 msgid "Easily install up-to-date versions of many applications."
 msgstr "아주 쉽게 최신 버전의 프로그램들을 설치하세요"
 
-#: src/mainwindow.py:75
+#: src/mainwindow.py:78
+msgid ""
+"Configure file templates and shortcut scripts for easy access to common "
+"tasks."
+msgstr ""
+"파일 서식 및 단축 스크립트를 설정하여 일상적인 작업을 쉽게 접근할 수 있습니"
+"다."
+
+#: src/mainwindow.py:79
 msgid "And many more useful features!"
 msgstr "그리고 많은 유용한 기능!"
 
-#: src/mainwindow.py:87
+#: src/mainwindow.py:91
 msgid "<span size=\"xx-large\">Please wait a moment...</span>"
 msgstr "<span size=\"xx-large\">잠시만 기다려 주세요..</span>"
 
-#: src/mainwindow.py:100
+#: src/mainwindow.py:104
 msgid ""
 "<span size=\"x-large\">This feature isn't currently available in your "
 "distribution</span>"
-msgstr "<span size=\"x-large\">이 배포판에서는 이기능을 현재 사용할 수 없습니다.</span>"
+msgstr ""
+"<span size=\"x-large\">이 배포판에서는 이기능을 현재 사용할 수 없습니다.</"
+"span>"
 
-#: src/mainwindow.py:113
+#: src/mainwindow.py:117
 msgid "<span size=\"x-large\">This module is error while loading.</span>"
 msgstr "<span size=\"x-large\">모듈을 읽는중 오류 발생</span>"
 
-#: src/mainwindow.py:223
+#: src/mainwindow.py:132
+msgid ""
+"This is a major failure of your software management system. Please check for "
+"broken packages with synaptic, check the file permissions and correctness of "
+"the file '/etc/apt/sources.list' and reload the software information with: "
+"'sudo apt-get update' and 'sudo apt-get install -f'."
+msgstr ""
+
+#: src/mainwindow.py:249
 msgid "Welcome"
 msgstr "환영합니다"
 
-#: src/mainwindow.py:224
+#: src/mainwindow.py:250
 msgid "Computer"
-msgstr "내컴퓨터 정보"
+msgstr "컴퓨터 정보"
 
-#: src/mainwindow.py:225
+#: src/mainwindow.py:251
 msgid "Applications"
 msgstr "프로그램"
 
-#: src/mainwindow.py:226
+#: src/mainwindow.py:252
 msgid "Add/Remove"
 msgstr "추가/삭제"
 
-#: src/mainwindow.py:227 src/sourceeditor.py:335
+#: src/mainwindow.py:253 src/sourceeditor.py:343
 msgid "Source Editor"
 msgstr "소스편집기"
 
-#: src/mainwindow.py:228 src/thirdsoft.py:279
+#: src/mainwindow.py:254 src/thirdsoft.py:286
 msgid "Third-Party Sources"
 msgstr "3rd파티 소스"
 
-#: src/mainwindow.py:229 src/cleaner.py:372
+#: src/mainwindow.py:255 src/cleaner.py:372
 msgid "Package Cleaner"
 msgstr "꾸러미 청소기"
 
-#: src/mainwindow.py:230
+#: src/mainwindow.py:256
 msgid "Startup"
-msgstr "스타트업 설정"
+msgstr "시작 설정"
 
-#: src/mainwindow.py:231 src/session.py:144
+#: src/mainwindow.py:257 src/session.py:144
 msgid "Session Control"
 msgstr "세션 컨트롤"
 
-#: src/mainwindow.py:232
+#: src/mainwindow.py:258
 msgid "Autostart"
 msgstr "자동시작"
 
-#: src/mainwindow.py:233 src/userdir.py:45
+#: src/mainwindow.py:259 src/userdir.py:45
 msgid "Desktop"
-msgstr "데스크톱 설정"
+msgstr "데스크탑 설정"
 
-#: src/mainwindow.py:234
+#: src/mainwindow.py:260
 msgid "Icons"
 msgstr "아이콘"
 
-#: src/mainwindow.py:235
+#: src/mainwindow.py:261
 msgid "Windows"
 msgstr "윈도우"
 
-#: src/mainwindow.py:236
+#: src/mainwindow.py:262
 msgid "Compiz Fusion"
 msgstr "컴피즈 퓨전"
 
-#: src/mainwindow.py:237
+#: src/mainwindow.py:263
 msgid "GNOME"
 msgstr "그놈"
 
-#: src/mainwindow.py:238
+#: src/mainwindow.py:264
 msgid "Personal"
 msgstr "개인"
 
-#: src/mainwindow.py:239
+#: src/mainwindow.py:265
 msgid "Folders"
 msgstr "폴더"
 
-#: src/mainwindow.py:240 src/userdir.py:47
+#: src/mainwindow.py:266 src/userdir.py:47
 msgid "Templates"
 msgstr "틀"
 
-#: src/mainwindow.py:241
+#: src/mainwindow.py:267
 msgid "Scripts"
 msgstr "스크립트"
 
-#: src/mainwindow.py:242
+#: src/mainwindow.py:268
 msgid "Shortcuts"
 msgstr "단축"
 
-#: src/mainwindow.py:243
+#: src/mainwindow.py:269
 msgid "System"
 msgstr "시스템 설정"
 
-#: src/mainwindow.py:244 src/filetype.py:478
+#: src/mainwindow.py:270 src/filetype.py:478
 msgid "File Type Manager"
 msgstr "파일종류 관리자"
 
-#: src/mainwindow.py:245
+#: src/mainwindow.py:271
 msgid "Nautilus"
 msgstr "노틸러스"
 
-#: src/mainwindow.py:247
+#: src/mainwindow.py:272
+msgid "Power Management"
+msgstr "전원 관리"
+
+#: src/mainwindow.py:273
 msgid "Security"
 msgstr "잠금 설정"
 
-#: src/mainwindow.py:329
+#: src/mainwindow.py:355
 msgid "_Donate"
 msgstr "기부(_D)"
 
-#: src/mainwindow.py:355
+#: src/mainwindow.py:381
 msgid "Help the development of Ubuntu Tweak"
 msgstr "우분투 트윅 개발을 돕기"
 
-#: src/mainwindow.py:355
+#: src/mainwindow.py:381
 msgid ""
 "Ubuntu Tweak is a free-software, you can use it for free. If you like it, "
 "Please consider to donate for Ubuntu Tweak."
-msgstr "우분투 트윅은 무료이며, 공짜로 사용할 수 있습니다. 프로그램이 마음에 들면 우분투 트윅에 기부해 주세요."
+msgstr ""
+"우분투 트윅은 무료이며, 공짜로 사용할 수 있습니다. 프로그램이 마음에 들면 우"
+"분투 트윅에 기부해 주세요."
 
-#: src/mainwindow.py:356
+#: src/mainwindow.py:382
 msgid "Never Show This Again"
 msgstr "다시 보이지 않음"
 
-#: src/mainwindow.py:549
+#: src/mainwindow.py:575
 msgid "Ubuntu Tweak Website"
 msgstr "우분트 트윅 웹사이트"
 
-#: src/mainwindow.py:551
+#: src/mainwindow.py:577
 msgid ""
 "Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
 "system and desktop settings."
-msgstr "이것은 우분투를 위한 도구로 숨겨진 시스템 설정과 데스크탑 설정을 쉽게 변경할수 있도록 해줍니다."
+msgstr ""
+"이것은 우분투를 위한 도구로 숨겨진 시스템 설정과 데스크탑 설정을 쉽게 변경할"
+"수 있도록 해줍니다."
 
-#: src/mainwindow.py:558
+#: src/mainwindow.py:584
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
@@ -384,9 +443,17 @@ msgstr ""
 "  Galmaegu https://launchpad.net/~galmaegu\n"
 "  Shin Hungjae https://launchpad.net/~fplive\n"
 "  TualatriX https://launchpad.net/~tualatrix\n"
+"  sunygu https://launchpad.net/~sunygyu\n"
+"\n"
+"Launchpad Contributions:\n"
+"  Exsecrabilus https://launchpad.net/~exsecrabilus\n"
+"  Galmaegu https://launchpad.net/~galmaegu\n"
+"  Namhyung Kim https://launchpad.net/~namhyung\n"
+"  Shin Hungjae https://launchpad.net/~fplive\n"
+"  TualatriX https://launchpad.net/~tualatrix\n"
 "  sunygu https://launchpad.net/~sunygyu"
 
-#: src/mainwindow.py:571
+#: src/mainwindow.py:597
 #, python-format
 msgid ""
 "A newer version: %s is available online.\n"
@@ -395,7 +462,7 @@ msgstr ""
 "새로운 판번 %s이 나왔습니다.\n"
 "업데이트 할까요?"
 
-#: src/mainwindow.py:572
+#: src/mainwindow.py:598
 msgid "Software Update"
 msgstr "무른모 갱신"
 
@@ -466,7 +533,7 @@ msgstr ""
 "여기를 기본폴더의 경로로 변경할 수 있습니다.\n"
 "뭘 하는건지 모르면 바탕화면폴더의 위치를 변경하지 말아주십시요."
 
-#: src/userdir.py:258 src/compiz.py:391 src/nautilus.py:212
+#: src/userdir.py:258
 msgid "Update successful!"
 msgstr "업데이트 성공!"
 
@@ -535,121 +602,186 @@ msgstr "%s를 찾을 수 없음"
 msgid "Could not find application"
 msgstr "프로그램을 찾을 수 없음"
 
-#: src/computer.py:44
+#: src/filetype.py:479
+msgid "Here you can manage which application will open which filetypes."
+msgstr "여기서 특정 파일 형식을 열 프로그램을 관리할 수 있습니다."
+
+#: src/filetype.py:505
+msgid "Only show filetypes with an associated application"
+msgstr "관련된 프로그램이 지정된 파일 종류만 보기"
+
+#: src/computer.py:45
 msgid "System information"
 msgstr "시스템 정보"
 
-#: src/computer.py:45
+#: src/computer.py:46
 msgid "Hostname"
 msgstr "호스트명"
 
-#: src/computer.py:46
+#: src/computer.py:47
 msgid "Distribution"
 msgstr "배포판"
 
-#: src/computer.py:47
+#: src/computer.py:48
 msgid "Desktop environment"
 msgstr "데스크탑 환경"
 
-#: src/computer.py:48
+#: src/computer.py:49
 msgid "Kernel"
 msgstr "커널"
 
-#: src/computer.py:49
+#: src/computer.py:50
 msgid "Platform"
 msgstr "플랫폼"
 
-#: src/computer.py:50
+#: src/computer.py:51
 msgid "CPU"
 msgstr "CPU"
 
-#: src/computer.py:51
+#: src/computer.py:52
 msgid "Memory"
 msgstr "메모리"
 
-#: src/computer.py:55
+#: src/computer.py:56
 msgid "User information"
 msgstr "사용자 정보"
 
-#: src/computer.py:56
+#: src/computer.py:57
 msgid "Current user"
 msgstr "현재 사용자"
 
-#: src/computer.py:57
+#: src/computer.py:58
 msgid "Home directory"
 msgstr "홈 디렉토리"
 
-#: src/computer.py:58
+#: src/computer.py:59
 msgid "Shell"
 msgstr "쉘"
 
-#: src/computer.py:59
+#: src/computer.py:60
 msgid "Language"
 msgstr "언어"
 
-#: src/thirdsoft.py:69
+#: src/thirdsoft.py:70
 msgid "Avant Window Navigator (Unstable Version)"
 msgstr "Avant Window Navigator (불안정판)"
 
-#: src/thirdsoft.py:75
+#: src/thirdsoft.py:76
 msgid "Ubuntu Chinese Repository"
 msgstr "우분투 중국어 저장소"
 
-#: src/thirdsoft.py:86
+#: src/thirdsoft.py:87
 msgid "Gnome Global Menu"
 msgstr "그놈 전체 메뉴"
 
-#: src/thirdsoft.py:90
+#: src/thirdsoft.py:89
+msgid "GetDeb.net (Mirror)"
+msgstr "GetDeb.net (미러)"
+
+#: src/thirdsoft.py:91
+msgid "Gwibber (Daily Version)"
+msgstr ""
+
+#: src/thirdsoft.py:92
 msgid "Banshee (Stable Version)"
 msgstr "밴쉬(안정판)"
 
-#: src/thirdsoft.py:91
+#: src/thirdsoft.py:93
 msgid "Banshee (Unstable Version)"
 msgstr "밴쉬(불안정판)"
 
-#: src/thirdsoft.py:97
+#: src/thirdsoft.py:99
 msgid "Ubuntu Tweak (Unstable Version)"
 msgstr "우분투 트윅(불안정판)"
 
-#: src/thirdsoft.py:363
+#: src/thirdsoft.py:203
+msgid ""
+"To install software and updates from newly added or changed sources, you "
+"have to reload the information about available software.\n"
+"\n"
+"You need a working internet connection to continue."
+msgstr ""
+
+#: src/thirdsoft.py:207
+msgid "The information about available software is out-of-date"
+msgstr ""
+
+#: src/thirdsoft.py:373
 msgid "Homepage"
 msgstr "홈페이지"
 
-#: src/thirdsoft.py:363
+#: src/thirdsoft.py:373
 msgid "Source URL"
 msgstr "소스 URL"
 
-#: src/thirdsoft.py:363
+#: src/thirdsoft.py:373
 msgid "Description"
 msgstr "설명"
 
-#: src/thirdsoft.py:374
+#: src/thirdsoft.py:384
 msgid "Description is here"
 msgstr "설명은 여기입니다"
 
-#: src/thirdsoft.py:402
+#: src/thirdsoft.py:412
 msgid "Third-Party Software Sources"
 msgstr "써드-파티 소프트웨어 소스"
 
-#: src/thirdsoft.py:419 src/sourceeditor.py:84
+#: src/thirdsoft.py:413
+msgid ""
+"After every release of Ubuntu there comes a feature freeze.\n"
+"This means only applications with bug-fixes get into the repository.\n"
+"By using third-party DEB repositories, you can always keep up-to-date with "
+"the latest version.\n"
+"After adding these repositories, locate and install them using Add/Remove."
+msgstr ""
+
+#: src/thirdsoft.py:429 src/sourceeditor.py:83
 msgid "Details"
 msgstr "자세히"
 
-#: src/thirdsoft.py:461 src/nautilus.py:187
+#: src/thirdsoft.py:452
+msgid ""
+"Some of your PPA Sources need to be update.\n"
+"Do you wish to continue?"
+msgstr ""
+
+#: src/thirdsoft.py:452
+msgid "PPA Sources is expire"
+msgstr ""
+
+#: src/thirdsoft.py:492 src/sourceeditor.py:475
+msgid "Please check the permission of the sources.list file"
+msgstr "sources.list 파일의 권한을 확인해 주십시오"
+
+#: src/thirdsoft.py:493 src/sourceeditor.py:476
+msgid "Save failed!"
+msgstr "저장 실패!"
+
+#: src/thirdsoft.py:520
+msgid ""
+"It is a possible security risk to use packages from Third-Party Sources.\n"
+"Please be careful and use only sources you trust."
+msgstr ""
+
+#: src/thirdsoft.py:523 src/nautilus.py:189
 msgid "Warning"
 msgstr "경고"
 
-#: src/thirdsoft.py:465
+#: src/thirdsoft.py:527
 msgid "Never show this dialog"
 msgstr "절대 이 대화 상자 보이지 않기"
 
-#: src/thirdsoft.py:487
+#: src/thirdsoft.py:549
 msgid ""
 "You can install the new applications through Add/Remove.\n"
 "Do you want to go now?"
 msgstr ""
 "이제 새로운 프로그램들은 설치/제거로 설치할 수 있습니다\n"
 "지금 가시겠습니까?"
+
+#: src/thirdsoft.py:550 src/sourceeditor.py:412
+msgid "The software information is up-to-date now"
+msgstr ""
 
 #: src/icons.py:32
 msgid "Show \"Computer\" icon on desktop"
@@ -693,6 +825,10 @@ msgstr "바탕 화면에 마운트된 볼륨 보이기"
 msgid "Use \"Home Folder\" as desktop (Logout for changes to take effect)"
 msgstr "\"홈 폴더\"를 바탕 화면으로 사용 (로그아웃을 해야 합니다)"
 
+#: src/metacity.py:37
+msgid "Window Decorate Effect"
+msgstr ""
+
 #: src/metacity.py:39
 msgid "Use Metacity window theme"
 msgstr "Metacity 윈도우 테마 쓰기"
@@ -701,9 +837,33 @@ msgstr "Metacity 윈도우 테마 쓰기"
 msgid "Enable active window transparency"
 msgstr "투명성 키기"
 
+#: src/metacity.py:44
+msgid "Active window transparency level"
+msgstr ""
+
+#: src/metacity.py:49
+msgid "Enable inactive window transparency"
+msgstr ""
+
+#: src/metacity.py:51
+msgid "Inactive window shade transparency level"
+msgstr ""
+
+#: src/metacity.py:58
+msgid "Window Titlebar Action"
+msgstr ""
+
+#: src/metacity.py:59
+msgid "Titlebar mouse wheel action"
+msgstr ""
+
 #: src/metacity.py:62 src/metacity.py:67 src/metacity.py:72 src/metacity.py:77
 msgid "Roll up"
 msgstr "말아올리기"
+
+#: src/metacity.py:64
+msgid "Titlebar double-click action"
+msgstr ""
 
 #: src/metacity.py:67 src/metacity.py:72 src/metacity.py:77
 msgid "Maximize"
@@ -721,9 +881,27 @@ msgstr "내리기"
 msgid "Menu"
 msgstr "창메뉴 표시"
 
+#: src/metacity.py:69
+msgid "Titlebar middle-click action"
+msgstr ""
+
+#: src/metacity.py:74
+msgid "Titlebar right-click action"
+msgstr ""
+
+#: src/metacity.py:84
+msgid "Enable Metacity's Compositing feature"
+msgstr ""
+
 #: src/metacity.py:87
 msgid "Compositing Manager"
 msgstr "조합 관리자"
+
+#: src/metacity.py:94
+msgid ""
+"To enable the compositing feature of metacity, you should manually disable "
+"Visual Effects in \"Appearance\"."
+msgstr ""
 
 #: src/session.py:39
 msgid "Splash Screen (Click On Image)"
@@ -740,6 +918,14 @@ msgstr "PNG 이미지 (*.png)"
 #: src/session.py:131
 msgid "Automatically save open applications when logging out"
 msgstr "로그아웃할 때 자동으로 열려있는 프로그램들을 저장함"
+
+#: src/session.py:134
+msgid "Show logout prompt"
+msgstr ""
+
+#: src/session.py:137
+msgid "Allow TCP Connections (Remote Desktop Connect)"
+msgstr ""
 
 #: src/session.py:140
 msgid "Show splash screen"
@@ -781,6 +967,25 @@ msgstr "Pygtk 예제"
 msgid "Shell script"
 msgstr "쉘 스크립트"
 
+#: src/templates.py:98
+msgid "Enabled Templates"
+msgstr ""
+
+#: src/templates.py:105
+msgid "Disabled Templates"
+msgstr ""
+
+#: src/templates.py:116
+#, python-format
+msgid ""
+"Templates path is wrong! The current path is point to \"%s\".\n"
+"Please reset it to a folder under your Home Folder."
+msgstr ""
+
+#: src/templates.py:123
+msgid "Go And Set"
+msgstr ""
+
 #: src/templates.py:128
 msgid "Restart This Module"
 msgstr "이 모듈 재시작"
@@ -789,49 +994,98 @@ msgstr "이 모듈 재시작"
 msgid "Manage Templates"
 msgstr "템플릿 관리"
 
-#: src/compiz.py:229
+#: src/templates.py:135
+msgid ""
+"Here you can freely manage your document templates.\n"
+"You can add files as templates by dragging them onto this window.\n"
+"You can create new documents based on these templates from the Nautilus "
+"right-click menu."
+msgstr ""
+
+#: src/templates.py:160
+msgid "Rebuild System Templates"
+msgstr ""
+
+#: src/templates.py:180
+msgid "Templates path is still wrong, Please reset it!"
+msgstr ""
+
+#: src/templates.py:192
+msgid ""
+"This will delete all disabled templates.\n"
+"Do you wish to continue?"
+msgstr ""
+
+#: src/compiz.py:47
+msgid "Expo"
+msgstr "엑스포"
+
+#: src/compiz.py:48
+msgid "Show Windows"
+msgstr "창 보이기"
+
+#: src/compiz.py:49
+msgid "Show Desktop"
+msgstr "바탕 화면 보이기"
+
+#: src/compiz.py:50
+msgid "Widget"
+msgstr "위젯"
+
+#: src/compiz.py:231
 msgid "Install Advanced Desktop Effects Settings Manager"
 msgstr "\"고급 화면 효과 설정 관리자\" 설치"
 
-#: src/compiz.py:232
+#: src/compiz.py:234
 msgid "Install Simple Desktop Effects Settings manager"
 msgstr "\"간단한 화면 효과 설정 관리자\" 설치"
 
-#: src/compiz.py:235
+#: src/compiz.py:237
 msgid "Install Screenlets Widget Application"
 msgstr "스크린랫 위젯 프로그램 설치"
 
+#: src/compiz.py:247
+msgid "Enable snapping windows"
+msgstr ""
+
 #: src/compiz.py:248
+msgid "Enable wobbly windows"
+msgstr ""
+
+#: src/compiz.py:250
 msgid "Window Effects"
 msgstr "창 효과"
 
-#: src/compiz.py:251
+#: src/compiz.py:253
 msgid "Enable transparent menus"
 msgstr "투명환 메뉴 사용"
 
 #: src/compiz.py:254
+msgid "Enable wobbly menus"
+msgstr ""
+
+#: src/compiz.py:256
 msgid "Menu Effects"
 msgstr "메뉴 효과"
 
-#: src/compiz.py:317
-msgid "Expo"
-msgstr "엑스포"
+#: src/compiz.py:260
+msgid "Useful Extensions"
+msgstr ""
 
-#: src/compiz.py:318
-msgid "Show Windows"
-msgstr "창 보이기"
-
-#: src/compiz.py:319
-msgid "Show Desktop"
-msgstr "바탕 화면 보이기"
-
-#: src/compiz.py:320
-msgid "Widget"
-msgstr "위젯"
+#: src/compiz.py:275
+msgid "Prerequisite Conditions"
+msgstr ""
 
 #: src/shortcuts.py:49
 msgid "Shortcut Commands"
 msgstr "바로 가기 명령"
+
+#: src/shortcuts.py:50
+msgid ""
+"By configuring keyboard shortcuts, you can access your favourite "
+"applications instantly.\n"
+"Enter the application's command and set the desired shortcut keys."
+msgstr ""
 
 #: src/shortcuts.py:91
 #, python-format
@@ -858,6 +1112,10 @@ msgstr "키"
 msgid "Clean"
 msgstr "청소"
 
+#: src/cleaner.py:54
+msgid "Cleaning Package Config"
+msgstr ""
+
 #: src/cleaner.py:61 src/cleaner.py:88
 #, python-format
 msgid "Cleaning...%s"
@@ -879,11 +1137,34 @@ msgstr "패키지"
 msgid "Package Cache"
 msgstr "패키지 캐시"
 
+#: src/cleaner.py:222
+#, python-format
+msgid ""
+"<b>%s</b>\n"
+"Take %s of disk space"
+msgstr ""
+
 #: src/cleaner.py:245
 msgid "Package Config"
 msgstr "패키지 구성"
 
-#: src/cleaner.py:364 src/nautilus.py:193
+#: src/cleaner.py:278
+#, python-format
+msgid "%d package selected to remove"
+msgid_plural "%d packages selected to remove"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/cleaner.py:282
+#, python-format
+msgid "%s of space will be freed"
+msgstr ""
+
+#: src/cleaner.py:361
+msgid "Canceled by user!"
+msgstr ""
+
+#: src/cleaner.py:364 src/nautilus.py:195
 msgid "Clean up Successful!"
 msgstr "청소 성공!"
 
@@ -891,23 +1172,29 @@ msgstr "청소 성공!"
 msgid "Clean up Failed!"
 msgstr "펑소 실패!"
 
-#: src/cleaner.py:401
+#: src/cleaner.py:373
+msgid ""
+"Free up disk space by removing unneeded packages and cleaning the package "
+"download cache."
+msgstr ""
+
+#: src/cleaner.py:399
 msgid "Clean Package"
 msgstr "피키지 청소"
 
-#: src/cleaner.py:406
+#: src/cleaner.py:404
 msgid "Clean Cache"
 msgstr "캐시 청소"
 
-#: src/cleaner.py:411
+#: src/cleaner.py:409
 msgid "Clean Config"
 msgstr "구성 청소"
 
-#: src/cleaner.py:416
+#: src/cleaner.py:414
 msgid "Clean Kernel"
 msgstr "커널 청소"
 
-#: src/cleaner.py:422
+#: src/cleaner.py:420
 msgid "Select All"
 msgstr "모두 선택"
 
@@ -959,6 +1246,14 @@ msgstr "다운로드 폴더로 링크"
 msgid "Link to Home"
 msgstr "홈 폴더로 링크"
 
+#: src/scripts.py:61
+msgid "Open with your favourite text editor"
+msgstr ""
+
+#: src/scripts.py:62
+msgid "Open with your favourite text editor (as root)"
+msgstr ""
+
 #: src/scripts.py:63
 msgid "Browse as root"
 msgstr "Root으로 열기"
@@ -983,6 +1278,10 @@ msgstr "GIF로 이미지 변환"
 msgid "Set image as wallpaper"
 msgstr "이미지를 바탕 화면 배경으로 지정"
 
+#: src/scripts.py:69
+msgid "Make hard shadow to image"
+msgstr ""
+
 #: src/scripts.py:96
 msgid "Enabled Scripts"
 msgstr "사용되는 스크립트"
@@ -994,6 +1293,23 @@ msgstr "사용 안되는 스크립트"
 #: src/scripts.py:133
 msgid "Manage Scripts"
 msgstr "스크립트 관리"
+
+#: src/scripts.py:134
+msgid ""
+"You can do all kinds of tasks with scripts.\n"
+"You can drag and drop from File Manager.\n"
+"'Scripts' will be added to the context menu."
+msgstr ""
+
+#: src/scripts.py:159
+msgid "Rebuild System Scripts"
+msgstr ""
+
+#: src/scripts.py:177
+msgid ""
+"This will delete all disabled scripts.\n"
+"Do you wish to continue?"
+msgstr ""
 
 #: src/gnomesettings.py:44
 msgid "Panel and Menu"
@@ -1011,6 +1327,14 @@ msgstr "모든 패널 잠그기"
 msgid "Enable panel animations"
 msgstr "패널 애니메이션 사용"
 
+#: src/gnomesettings.py:55
+msgid "Show Input Method menu on the context menu"
+msgstr ""
+
+#: src/gnomesettings.py:58
+msgid "Show Unicode Method menu on the context menu"
+msgstr ""
+
 #: src/gnomesettings.py:65
 msgid "Screensaver"
 msgstr "화면 보호기"
@@ -1018,6 +1342,10 @@ msgstr "화면 보호기"
 #: src/gnomesettings.py:67
 msgid "Enable user switching when screen is locked."
 msgstr "화면의 잠겼을 때 사용자 바꾸기 가능"
+
+#: src/gnomesettings.py:72
+msgid "Enable system-wide \"Recently Documents\" list"
+msgstr ""
 
 #: src/gnomesettings.py:75
 msgid "History"
@@ -1059,37 +1387,62 @@ msgstr ""
 "이 이미지는 패널에 맞지 않습니다.\n"
 "크기가 24x24인지 확인해 주십이오."
 
-#: src/nautilus.py:51
+#: src/gnomesettings.py:149
+msgid "Do you want your changes to take effect immediately?"
+msgstr ""
+
+#: src/nautilus.py:54
 msgid "Cleaning..."
 msgstr "청소하는 중..."
 
 #: src/nautilus.py:104
+msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
+msgstr ""
+
+#: src/nautilus.py:107
 msgid "File Browser"
 msgstr "파일 찾기"
 
-#: src/nautilus.py:109
+#: src/nautilus.py:112
 msgid "Default thumbnail icon size (pixels)"
 msgstr "기본 섬네일 아이콘 크기 (픽셀)"
 
-#: src/nautilus.py:123
+#: src/nautilus.py:126
 msgid "Maximum size of the thumbnail cache (megabytes)"
 msgstr "섬네일 캐시 최대 크기 (메가바이트)"
 
-#: src/nautilus.py:147
+#: src/nautilus.py:138
+msgid "Maximum age for the thumbnail in the cache (days)"
+msgstr ""
+
+#: src/nautilus.py:150
 msgid "Thumbnails Settings"
 msgstr "섬네일 설정"
 
 #: src/nautilus.py:157
+msgid "Nautilus with Open Terminal"
+msgstr ""
+
+#: src/nautilus.py:159
 msgid "Nautilus with Root Privileges"
 msgstr "루트 노틸러스"
 
 #: src/nautilus.py:161
+msgid "Nautilus with Wallpaper"
+msgstr ""
+
+#: src/nautilus.py:163
 msgid "Nautilus Extensions"
 msgstr "노틸러스 확장 기능"
 
-#: src/nautilus.py:214
-msgid "Update failed!"
-msgstr "업데이트 실패!"
+#: src/nautilus.py:185
+#, python-format
+msgid "Clean up the thumbnails cache (will free %s of disk space)"
+msgstr ""
+
+#: src/nautilus.py:188
+msgid "The thumbnails cache will be cleaned, Do you wish to continue?"
+msgstr ""
 
 #: src/powermanager.py:37
 msgid "Advanced Power Management Settings"
@@ -1103,9 +1456,17 @@ msgstr "\"최대 절전\" 사용 가능"
 msgid "Enable \"Suspend\""
 msgstr "\"절전\" 사용 가능"
 
+#: src/powermanager.py:45
+msgid "Show \"CPU frequency control option\" in Power Management Preferences"
+msgstr ""
+
 #: src/powermanager.py:48
 msgid "Disable Network Manager when asleep"
 msgstr "절전됬을 때 네트워크 관리자 사용 불가능"
+
+#: src/powermanager.py:51
+msgid "Enable \"Lock screen\" when \"Blank Screen\" activates"
+msgstr ""
 
 #: src/powermanager.py:53
 msgid "Display \"Power Manager\" panel item"
@@ -1139,6 +1500,10 @@ msgstr "전원 절약"
 msgid "Performance"
 msgstr "최대성능"
 
+#: src/powermanager.py:64
+msgid "CPU Policy"
+msgstr ""
+
 #: src/powermanager.py:65
 msgid "The Performance value when on AC power"
 msgstr "AC 전원 사용시 성능값"
@@ -1163,510 +1528,65 @@ msgstr "초기화"
 msgid "Enable Check Update"
 msgstr "업데이트 확인 사용"
 
-#: src/sourceeditor.py:62 src/sourceeditor.py:67
-msgid "Choose the sources"
-msgstr "소스들을 선택하세요"
-
-#: src/sourceeditor.py:103 src/sourceeditor.py:108
-msgid "Submit your sources"
-msgstr "소스 올리기"
-
-#: src/sourceeditor.py:113
-msgid "_Source Title:"
-msgstr "소스 제목(_S)"
-
-#: src/sourceeditor.py:116
-msgid "_Locale:"
-msgstr "로캘(_L)"
-
-#: src/sourceeditor.py:140
-msgid "Submit"
-msgstr "올리기"
-
-#: src/sourceeditor.py:188
-msgid "Please check your network connection!"
-msgstr "네트워크 연결을 확인해 주십시오!"
-
-#: src/sourceeditor.py:188
-msgid "Network Error"
-msgstr "네트워크 오류"
-
-#: src/sourceeditor.py:195
-msgid "Uploading..."
-msgstr "업로드 중..."
-
-#: src/sourceeditor.py:211
-msgid "Updating..."
-msgstr "업데이트 중..."
-
-#: src/sourceeditor.py:355
-msgid "Update Sources"
-msgstr "소스 업데이트하기"
-
-#: src/sourceeditor.py:361
-msgid "Submit Sources"
-msgstr "소스 올리기"
-
-#: src/sourceeditor.py:403
-msgid "You can install new applications through Add/Remove."
-msgstr "설치/제거를 사용하여 새로운 프로그램들을 설치할 수 있습니다"
-
-#: src/sourceeditor.py:436
-msgid "No source data available"
-msgstr "소스 정보를 찾을 수 없었습니다"
-
-#: src/sourceeditor.py:454
-msgid "Successfully submitted"
-msgstr "올리기 완성"
-
-#: src/sourceeditor.py:467
-msgid "Please check the permission of the sources.list file"
-msgstr "sources.list 파일의 권한을 확인해 주십시오"
-
-#: src/sourceeditor.py:468
-msgid "Save failed!"
-msgstr "저장 실패!"
-
-#: src/common/appdata.py:62
-msgid "Record and edit audio files"
-msgstr "오디오 파일들을 녹음하고 편집합니다"
-
-#: src/common/appdata.py:65
-msgid "A free video editor"
-msgstr "무료 영상 편집기"
-
-#: src/common/appdata.py:68
-msgid "GTK+ Bluetooth Manager"
-msgstr "GTK + 블루투스 관리자"
-
-#: src/common/appdata.py:95
-msgid "GNOME partition editor"
-msgstr "그놈 파티션 편집기"
-
-#: src/common/appdata.py:108
-msgid "GTK+ based simple text editor"
-msgstr "GTK+ 기반의 간단한 텍스트 편집기"
-
-#: src/common/widgets/treeviews.py:77
-msgid "Delete"
-msgstr "삭제"
-
-#: src/common/widgets/treeviews.py:124
-msgid "Can't rename the root folder"
-msgstr "Root 폴더의 이름을 번경할수 없습니다"
-
-#: src/common/widgets/treeviews.py:141
-msgid "Can't delete the root folder"
-msgstr "Root 폴더를 삭제할수 없습니다"
-
-#: src/common/widgets/dialogs.py:68
-msgid "Could not authenticate"
-msgstr "인증할 수 없었습니다"
-
-#: src/common/widgets/dialogs.py:73
-msgid "You need to restart your computer."
-msgstr "컴퓨터를 재시작해야 합니다"
-
-#: data/gui/preferences.glade:7
-msgid "Ubuntu Tweak Preferences"
-msgstr "우분투 투윅 기본 설정"
-
-#: data/gui/preferences.glade:33
-msgid "<b>User Interface</b>"
-msgstr "<b>사용자 모양새</b>"
-
-#: data/gui/preferences.glade:87
-msgid "Left Menubar Font Color"
-msgstr "왼쪽 메뉴 표시줄 글꼴 색상"
-
-#: data/gui/preferences.glade:128
-msgid "Left Menubar Color"
-msgstr "왼쪽 메뉴 표시줄 색상"
-
-#: data/gui/preferences.glade:139
-msgid "Default Window Height"
-msgstr "기본 창 높이"
-
-#: data/gui/preferences.glade:151
-msgid "Default Window Width"
-msgstr "기본 창 너비"
-
-#: data/gui/preferences.glade:161
-msgid "Left Menubar Width"
-msgstr "왼쪽 메뉴 포시줄 너비"
-
-#: data/gui/preferences.glade:211
-msgid "<b>Features</b>"
-msgstr "<b>기능</b>"
-
-#: data/gui/preferences.glade:234
-msgid "Default Launch Function"
-msgstr "기본 시작 모드"
-
-#: data/gui/traceback.glade:91 data/gui/traceback.glade:266
-msgid "Error Message"
-msgstr "오류 메시지"
-
-#: data/gui/traceback.glade:151 data/gui/traceback.glade:326
-msgid "_Report"
-msgstr "보고(_R)"
-
-#: data/gui/traceback.glade:226
-msgid "<big><b>Oops... an error occured</b></big>"
-msgstr "<big><b>오류가 발생했습니다</b></big>"
-
-#: data/gui/type_edit.glade:7
-msgid "Edit Type"
-msgstr "편집 종류"
-
-#: data/gui/type_edit.glade:131
-msgid "Add Application"
-msgstr "프로그램 추가"
-
-#: data/gui/type_edit.glade:178
-msgid "Select an application to view its description."
-msgstr "설명을 볼 프로그램을 선택하세요."
-
-#: data/gui/type_edit.glade:222
-msgid "_Use a custom command"
-msgstr "사용자 지정 명령 사용(_U)"
-
-#: src/ScriptWorker.py:53
-#, python-format
-msgid "The file \"%s\" already exists!"
-msgstr ""
-
-#: src/ScriptWorker.py:58
-#, python-format
-msgid "The folder \"%s\" already exists!"
-msgstr ""
-
-#: src/ScriptWorker.py:64 src/ScriptWorker.py:70
-#, python-format
-msgid "The target \"%s\" already exists!"
-msgstr ""
-
-#: src/ScriptWorker.py:120
-msgid "Coudn't find any text editor in your system!"
-msgstr ""
-
-#: src/ScriptWorker.py:175
-msgid "Please select a target (files or folders)."
-msgstr ""
-
-#: src/mainwindow.py:74
-msgid ""
-"Configure file templates and shortcut scripts for easy access to common "
-"tasks."
-msgstr ""
-
-#: src/mainwindow.py:246
-msgid "Power Management"
-msgstr ""
-
-#: src/filetype.py:479
-msgid "Here you can manage which application will open which filetypes."
-msgstr ""
-
-#: src/filetype.py:505
-msgid "Only show filetypes with an associated application"
-msgstr ""
-
-#: src/thirdsoft.py:89
-msgid "Gwibber (Daily Version)"
-msgstr ""
-
-#: src/thirdsoft.py:196
-msgid ""
-"To install software and updates from newly added or changed sources, you "
-"have to reload the information about available software.\n"
-"\n"
-"You need a working internet connection to continue."
-msgstr ""
-
-#: src/thirdsoft.py:200
-msgid "The information about available software is out-of-date"
-msgstr ""
-
-#: src/thirdsoft.py:403
-msgid ""
-"After every release of Ubuntu there comes a feature freeze.\n"
-"This means only applications with bug-fixes get into the repository.\n"
-"By using third-party DEB repositories, you can always keep up-to-date with "
-"the latest version.\n"
-"After adding these repositories, locate and install them using Add/Remove."
-msgstr ""
-
-#: src/thirdsoft.py:458
-msgid ""
-"It is a possible security risk to use packages from Third-Party Sources.\n"
-"Please be careful and use only sources you trust."
-msgstr ""
-
-#: src/thirdsoft.py:488 src/sourceeditor.py:404
-msgid "The software information is up-to-date now"
-msgstr ""
-
-#: src/metacity.py:37
-msgid "Window Decorate Effect"
-msgstr ""
-
-#: src/metacity.py:44
-msgid "Active window transparency level"
-msgstr ""
-
-#: src/metacity.py:49
-msgid "Enable inactive window transparency"
-msgstr ""
-
-#: src/metacity.py:51
-msgid "Inactive window shade transparency level"
-msgstr ""
-
-#: src/metacity.py:58
-msgid "Window Titlebar Action"
-msgstr ""
-
-#: src/metacity.py:59
-msgid "Titlebar mouse wheel action"
-msgstr ""
-
-#: src/metacity.py:64
-msgid "Titlebar double-click action"
-msgstr ""
-
-#: src/metacity.py:69
-msgid "Titlebar middle-click action"
-msgstr ""
-
-#: src/metacity.py:74
-msgid "Titlebar right-click action"
-msgstr ""
-
-#: src/metacity.py:84
-msgid "Enable Metacity's Compositing feature"
-msgstr ""
-
-#: src/metacity.py:94
-msgid ""
-"To enable the compositing feature of metacity, you should manually disable "
-"Visual Effects in \"Appearance\"."
-msgstr ""
-
-#: src/session.py:134
-msgid "Show logout prompt"
-msgstr ""
-
-#: src/session.py:137
-msgid "Allow TCP Connections (Remote Desktop Connect)"
-msgstr ""
-
-#: src/templates.py:98
-msgid "Enabled Templates"
-msgstr ""
-
-#: src/templates.py:105
-msgid "Disabled Templates"
-msgstr ""
-
-#: src/templates.py:116
-#, python-format
-msgid ""
-"Templates path is wrong! The current path is point to \"%s\".\n"
-"Please reset it to a folder under your Home Folder."
-msgstr ""
-
-#: src/templates.py:123
-msgid "Go And Set"
-msgstr ""
-
-#: src/templates.py:135
-msgid ""
-"Here you can freely manage your document templates.\n"
-"You can add files as templates by dragging them onto this window.\n"
-"You can create new documents based on these templates from the Nautilus "
-"right-click menu."
-msgstr ""
-
-#: src/templates.py:160
-msgid "Rebuild System Templates"
-msgstr ""
-
-#: src/templates.py:180
-msgid "Templates path is still wrong, Please reset it!"
-msgstr ""
-
-#: src/templates.py:192
-msgid ""
-"This will delete all disabled templates.\n"
-"Do you wish to continue?"
-msgstr ""
-
-#: src/compiz.py:245
-msgid "Enable snapping windows"
-msgstr ""
-
-#: src/compiz.py:246
-msgid "Enable wobbly windows"
-msgstr ""
-
-#: src/compiz.py:252
-msgid "Enable wobbly menus"
-msgstr ""
-
-#: src/compiz.py:259
-msgid "Useful Extensions"
-msgstr ""
-
-#: src/compiz.py:274
-msgid "Prerequisite Conditions"
-msgstr ""
-
-#: src/shortcuts.py:50
-msgid ""
-"By configuring keyboard shortcuts, you can access your favourite "
-"applications instantly.\n"
-"Enter the application's command and set the desired shortcut keys."
-msgstr ""
-
-#: src/cleaner.py:54
-msgid "Cleaning Package Config"
-msgstr ""
-
-#: src/cleaner.py:222
-#, python-format
-msgid ""
-"<b>%s</b>\n"
-"Take %s of disk space"
-msgstr ""
-
-#: src/cleaner.py:278
-#, python-format
-msgid "%d package selected to remove"
-msgid_plural "%d packages selected to remove"
-msgstr[0] ""
-msgstr[1] ""
-
-#: src/cleaner.py:282
-#, python-format
-msgid "%s of space will be freed"
-msgstr ""
-
-#: src/cleaner.py:361
-msgid "Canceled by user!"
-msgstr ""
-
-#: src/cleaner.py:373
-msgid ""
-"Free up disk space by removing unneeded packages and cleaning the package "
-"download cache."
-msgstr ""
-
-#: src/scripts.py:61
-msgid "Open with your favourite text editor"
-msgstr ""
-
-#: src/scripts.py:62
-msgid "Open with your favourite text editor (as root)"
-msgstr ""
-
-#: src/scripts.py:69
-msgid "Make hard shadow to image"
-msgstr ""
-
-#: src/scripts.py:134
-msgid ""
-"You can do all kinds of tasks with scripts.\n"
-"You can drag and drop from File Manager.\n"
-"'Scripts' will be added to the context menu."
-msgstr ""
-
-#: src/scripts.py:159
-msgid "Rebuild System Scripts"
-msgstr ""
-
-#: src/scripts.py:177
-msgid ""
-"This will delete all disabled scripts.\n"
-"Do you wish to continue?"
-msgstr ""
-
-#: src/gnomesettings.py:55
-msgid "Show Input Method menu on the context menu"
-msgstr ""
-
-#: src/gnomesettings.py:58
-msgid "Show Unicode Method menu on the context menu"
-msgstr ""
-
-#: src/gnomesettings.py:72
-msgid "Enable system-wide \"Recently Documents\" list"
-msgstr ""
-
-#: src/gnomesettings.py:149
-msgid "Do you want your changes to take effect immediately?"
-msgstr ""
-
-#: src/nautilus.py:101
-msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
-msgstr ""
-
-#: src/nautilus.py:135
-msgid "Maximum age for the thumbnail in the cache (days)"
-msgstr ""
-
-#: src/nautilus.py:155
-msgid "Nautilus with Open Terminal"
-msgstr ""
-
-#: src/nautilus.py:159
-msgid "Nautilus with Wallpaper"
-msgstr ""
-
-#: src/nautilus.py:183
-#, python-format
-msgid "Clean up the thumbnails cache (will free %s of disk space)"
-msgstr ""
-
-#: src/nautilus.py:186
-msgid "The thumbnails cache will be cleaned, Do you wish to continue?"
-msgstr ""
-
-#: src/powermanager.py:45
-msgid "Show \"CPU frequency control option\" in Power Management Preferences"
-msgstr ""
-
-#: src/powermanager.py:51
-msgid "Enable \"Lock screen\" when \"Blank Screen\" activates"
-msgstr ""
-
-#: src/powermanager.py:64
-msgid "CPU Policy"
-msgstr ""
-
 #: src/preferences.py:136
 msgid "Enable PowerUser Mode"
 msgstr ""
 
-#: src/sourceeditor.py:68
+#: src/sourceeditor.py:61 src/sourceeditor.py:66
+msgid "Choose the sources"
+msgstr "소스들을 선택하세요"
+
+#: src/sourceeditor.py:67
 msgid ""
 "You can read the title and comment to determine which source is suitable for "
 "you."
 msgstr ""
 
-#: src/sourceeditor.py:108
+#: src/sourceeditor.py:102 src/sourceeditor.py:107
+msgid "Submit your sources"
+msgstr "소스 올리기"
+
+#: src/sourceeditor.py:107
 msgid "You can submit your sources to the server for other people to use."
 msgstr ""
 
-#: src/sourceeditor.py:123
+#: src/sourceeditor.py:112
+msgid "_Source Title:"
+msgstr "소스 제목(_S)"
+
+#: src/sourceeditor.py:115
+msgid "_Locale:"
+msgstr "로캘(_L)"
+
+#: src/sourceeditor.py:122
 msgid "Enter the title of the source, e.g. \"Ubuntu Official Repostory\""
 msgstr ""
 
-#: src/sourceeditor.py:125
+#: src/sourceeditor.py:124
 msgid "If the locale isn't correct you can edit manually"
 msgstr ""
 
-#: src/sourceeditor.py:336
+#: src/sourceeditor.py:139
+msgid "Submit"
+msgstr "올리기"
+
+#: src/sourceeditor.py:187
+msgid "Please check your network connection!"
+msgstr "네트워크 연결을 확인해 주십시오!"
+
+#: src/sourceeditor.py:187
+msgid "Network Error"
+msgstr "네트워크 오류"
+
+#: src/sourceeditor.py:194
+msgid "Uploading..."
+msgstr "업로드 중..."
+
+#: src/sourceeditor.py:210
+msgid "Updating..."
+msgstr "업데이트 중..."
+
+#: src/sourceeditor.py:344
 msgid ""
 "Freely edit your software sources to fit your needs.\n"
 "Click \"Update Sources\" if you want to change the sources.\n"
@@ -1674,30 +1594,50 @@ msgid ""
 "people.\n"
 msgstr ""
 
-#: src/sourceeditor.py:420
+#: src/sourceeditor.py:363
+msgid "Update Sources"
+msgstr "소스 업데이트하기"
+
+#: src/sourceeditor.py:369
+msgid "Submit Sources"
+msgstr "소스 올리기"
+
+#: src/sourceeditor.py:411
+msgid "You can install new applications through Add/Remove."
+msgstr "설치/제거를 사용하여 새로운 프로그램들을 설치할 수 있습니다"
+
+#: src/sourceeditor.py:428
 msgid "Please input the correct information about sources!"
 msgstr ""
 
-#: src/sourceeditor.py:433
+#: src/sourceeditor.py:441
 msgid ""
 "You can submit your sources to our server to help building the sources list, "
 "or you can use the official sources.\n"
 "Do you wish to use the official sources?"
 msgstr ""
 
-#: src/sourceeditor.py:453
+#: src/sourceeditor.py:444
+msgid "No source data available"
+msgstr "소스 정보를 찾을 수 없었습니다"
+
+#: src/sourceeditor.py:461
 msgid ""
 "Your sources will be reviewed and made available for others soon.\n"
 "Thank you!"
 msgstr ""
 
-#: src/sourceeditor.py:475
+#: src/sourceeditor.py:462
+msgid "Successfully submitted"
+msgstr "올리기 완성"
+
+#: src/sourceeditor.py:483
 msgid ""
 "The current content will be lost after reloading!\n"
 "Do you wish to continue?"
 msgstr ""
 
-#: src/common/package.py:67
+#: src/common/package.py:173
 msgid "(Not available)"
 msgstr ""
 
@@ -1721,6 +1661,10 @@ msgstr ""
 msgid "A skinned multimedia player for many platforms"
 msgstr ""
 
+#: src/common/appdata.py:62
+msgid "Record and edit audio files"
+msgstr "오디오 파일들을 녹음하고 편집합니다"
+
 #: src/common/appdata.py:63
 msgid "Fully customisable dock-like window navigator"
 msgstr ""
@@ -1729,6 +1673,10 @@ msgstr ""
 msgid "Fully customisable dock-like window navigator(Unstable)"
 msgstr ""
 
+#: src/common/appdata.py:65
+msgid "A free video editor"
+msgstr "무료 영상 편집기"
+
 #: src/common/appdata.py:66
 msgid "BitTorrent client written in Java"
 msgstr ""
@@ -1736,6 +1684,10 @@ msgstr ""
 #: src/common/appdata.py:67
 msgid "Audio Management and Playback application"
 msgstr ""
+
+#: src/common/appdata.py:68
+msgid "GTK+ Bluetooth Manager"
+msgstr "GTK + 블루투스 관리자"
 
 #: src/common/appdata.py:69
 msgid "A true dock for linux"
@@ -1777,8 +1729,8 @@ msgstr ""
 
 #: src/common/appdata.py:78
 msgid ""
-"EIOffice Personal 2009. Free for Chinese users. See "
-"http://www.evermoresw.com."
+"EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
+"com."
 msgstr ""
 
 #: src/common/appdata.py:79
@@ -1850,6 +1802,10 @@ msgstr ""
 msgid "Platform for running Google Gadgets on Linux"
 msgstr ""
 
+#: src/common/appdata.py:95
+msgid "GNOME partition editor"
+msgstr "그놈 파티션 편집기"
+
 #: src/common/appdata.py:96
 msgid "Lightweight image viewer"
 msgstr ""
@@ -1902,6 +1858,10 @@ msgstr ""
 msgid "A music player for Last.fm personalized radio"
 msgstr ""
 
+#: src/common/appdata.py:108
+msgid "GTK+ based simple text editor"
+msgstr "GTK+ 기반의 간단한 텍스트 편집기"
+
 #: src/common/appdata.py:109
 msgid "Feed aggregator for GNOME"
 msgstr ""
@@ -1927,22 +1887,26 @@ msgid "Webkit based lightweight web browser"
 msgstr ""
 
 #: src/common/appdata.py:115
-msgid "An IDE to Develop .NET applications."
+msgid "The free media player - play all your files"
 msgstr ""
 
 #: src/common/appdata.py:116
-msgid "The Ultimate Movie Player For Linux"
+msgid "An IDE to Develop .NET applications."
 msgstr ""
 
 #: src/common/appdata.py:117
-msgid "IDE for Java, C/C++, Ruby, UML, etc."
+msgid "The Ultimate Movie Player For Linux"
 msgstr ""
 
 #: src/common/appdata.py:118
-msgid "The Opera Web Browser"
+msgid "IDE for Java, C/C++, Ruby, UML, etc."
 msgstr ""
 
 #: src/common/appdata.py:119
+msgid "The Opera Web Browser"
+msgstr ""
+
+#: src/common/appdata.py:120
 msgid ""
 "Pidgin is a graphical modular messaging client based on libpurple which is "
 "capable of connecting to AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, SIP/SIMPLE, "
@@ -1950,134 +1914,141 @@ msgid ""
 "QQ all at once."
 msgstr ""
 
-#: src/common/appdata.py:120
+#: src/common/appdata.py:121
 msgid "Run your Windows programs on Linux"
 msgstr ""
 
-#: src/common/appdata.py:121
+#: src/common/appdata.py:122
 msgid "A framework for desktop widgets"
 msgstr ""
 
-#: src/common/appdata.py:122
+#: src/common/appdata.py:123
 msgid "Feature-rich screenshot application(formerly known as GScrot)"
 msgstr ""
 
-#: src/common/appdata.py:123
+#: src/common/appdata.py:124
 msgid "Make audio/video calls using this VoIP Software"
 msgstr ""
 
-#: src/common/appdata.py:124
+#: src/common/appdata.py:125
 msgid "A great MPlayer front-end, written in QT4"
 msgstr ""
 
-#: src/common/appdata.py:125
+#: src/common/appdata.py:126
 msgid "Convert audio files into other formats"
 msgstr ""
 
-#: src/common/appdata.py:126
+#: src/common/appdata.py:127
 msgid "An international dictionary"
 msgstr ""
 
-#: src/common/appdata.py:127
+#: src/common/appdata.py:128
 msgid ""
 "Swiftweasel is an optimized build of the Mozilla Firefox web browser for "
 "Linux"
 msgstr ""
 
-#: src/common/appdata.py:128
+#: src/common/appdata.py:129
 msgid ""
 "A desktop application that will watch for events (website updates, emails, "
 "file and folder changes...)"
 msgstr ""
 
-#: src/common/appdata.py:129
+#: src/common/appdata.py:130
 msgid "An instant messaging application powered by qt-mono-bindings"
 msgstr ""
 
-#: src/common/appdata.py:130
+#: src/common/appdata.py:131
 msgid "A Useful Task List"
 msgstr ""
 
-#: src/common/appdata.py:131
+#: src/common/appdata.py:132
 msgid "Multiple GNOME terminals in one window"
 msgstr ""
 
-#: src/common/appdata.py:132
+#: src/common/appdata.py:133
 msgid ""
 "Transmission is a fast, easy, and free multi-platform BitTorrent client."
 msgstr ""
 
-#: src/common/appdata.py:133
+#: src/common/appdata.py:134
 msgid "Ubuntu Tweak makes it easier to configure Ubuntu"
 msgstr ""
 
-#: src/common/appdata.py:134
+#: src/common/appdata.py:135
 msgid "Commonly used restricted packages"
 msgstr ""
 
-#: src/common/appdata.py:135
+#: src/common/appdata.py:136
 msgid "configure your USB ADSL modem and connection easier than ever!"
 msgstr ""
 
-#: src/common/appdata.py:136 src/common/appdata.py:137
+#: src/common/appdata.py:137 src/common/appdata.py:138
 msgid "A feature rich, high performance virtualization software"
 msgstr ""
 
-#: src/common/appdata.py:138
+#: src/common/appdata.py:139
 msgid "Read, capture, broadcast your multimedia streams"
 msgstr ""
 
-#: src/common/appdata.py:139
+#: src/common/appdata.py:140
 msgid "Run Virtual Machines using VMware"
 msgstr ""
 
-#: src/common/appdata.py:140
+#: src/common/appdata.py:141
 msgid "A compatibility layer for running Windows programs"
 msgstr ""
 
-#: src/common/appdata.py:141
+#: src/common/appdata.py:142
 msgid ""
 "Wine-doors is an application designed to make installing windows software on "
 "Linux, Solaris or other Unix systems easier."
 msgstr ""
 
-#: src/common/appdata.py:142
+#: src/common/appdata.py:143
 msgid ""
 "XBMC is a free and open source software media player and entertainment hub"
 msgstr ""
 
-#: src/common/appdata.py:146
+#: src/common/appdata.py:147
 msgid "Development Version of Mozilla Firefox 3.1, 4.0"
 msgstr ""
 
-#: src/common/appdata.py:147
+#: src/common/appdata.py:148
 msgid "Development version of Compiz Fusion"
 msgstr ""
 
-#: src/common/appdata.py:148
+#: src/common/appdata.py:149
 msgid "Google's Linux Repository"
 msgstr ""
 
-#: src/common/appdata.py:149
+#: src/common/appdata.py:150
 msgid "K Desktop Environment 4.2"
 msgstr ""
 
-#: src/common/appdata.py:150
+#: src/common/appdata.py:151
 msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
 msgstr ""
 
-#: src/common/appdata.py:151
+#: src/common/appdata.py:152
 msgid ""
 "Multimedia, Entertainment and Distraction In Ubuntu\n"
 "Medibuntu is a repository of packages that cannot be included into the "
 "Ubuntu distribution for legal reasons (copyright, license, patent, etc)."
 msgstr ""
 
-#: src/common/appdata.py:153
+#: src/common/appdata.py:154
 msgid ""
 "Ubuntu repository for Chinese users.\n"
 "Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and "
 "other softwares."
+msgstr ""
+
+#: src/common/appdata.py:156
+msgid ""
+"GetDeb extends the existing software options for Ubuntu (and derived) Linux "
+"distributions by providing major updates and software not yet available on "
+"the official Ubuntu repositories."
 msgstr ""
 
 #: src/common/misc.py:15
@@ -2118,9 +2089,21 @@ msgstr ""
 msgid "Create folder"
 msgstr ""
 
+#: src/common/widgets/treeviews.py:77
+msgid "Delete"
+msgstr "삭제"
+
 #: src/common/widgets/treeviews.py:99
 msgid "Input the dir name"
 msgstr ""
+
+#: src/common/widgets/treeviews.py:124
+msgid "Can't rename the root folder"
+msgstr "Root 폴더의 이름을 번경할수 없습니다"
+
+#: src/common/widgets/treeviews.py:141
+msgid "Can't delete the root folder"
+msgstr "Root 폴더를 삭제할수 없습니다"
 
 #: src/common/widgets/treeviews.py:156
 msgid ""
@@ -2133,9 +2116,53 @@ msgstr ""
 msgid "An unexpected error has occurred."
 msgstr ""
 
+#: src/common/widgets/dialogs.py:68
+msgid "Could not authenticate"
+msgstr "인증할 수 없었습니다"
+
+#: src/common/widgets/dialogs.py:73
+msgid "You need to restart your computer."
+msgstr "컴퓨터를 재시작해야 합니다"
+
 #: src/common/widgets/dialogs.py:74
 msgid "Service hasn't initialized yet"
 msgstr ""
+
+#: data/gui/preferences.glade:7
+msgid "Ubuntu Tweak Preferences"
+msgstr "우분투 투윅 기본 설정"
+
+#: data/gui/preferences.glade:33
+msgid "<b>User Interface</b>"
+msgstr "<b>사용자 모양새</b>"
+
+#: data/gui/preferences.glade:87
+msgid "Left Menubar Font Color"
+msgstr "왼쪽 메뉴 표시줄 글꼴 색상"
+
+#: data/gui/preferences.glade:128
+msgid "Left Menubar Color"
+msgstr "왼쪽 메뉴 표시줄 색상"
+
+#: data/gui/preferences.glade:139
+msgid "Default Window Height"
+msgstr "기본 창 높이"
+
+#: data/gui/preferences.glade:151
+msgid "Default Window Width"
+msgstr "기본 창 너비"
+
+#: data/gui/preferences.glade:161
+msgid "Left Menubar Width"
+msgstr "왼쪽 메뉴 포시줄 너비"
+
+#: data/gui/preferences.glade:211
+msgid "<b>Features</b>"
+msgstr "<b>기능</b>"
+
+#: data/gui/preferences.glade:234
+msgid "Default Launch Function"
+msgstr "기본 시작 모드"
 
 #: data/gui/traceback.glade:50
 msgid "<big><b>Oops... a fatal error occured</b></big>"
@@ -2149,9 +2176,40 @@ msgid ""
 "the error message below:"
 msgstr ""
 
-#: data/gui/traceback.glade:240
+#: data/gui/traceback.glade:99 data/gui/traceback.glade:282
+msgid "Error Message"
+msgstr "오류 메시지"
+
+#: data/gui/traceback.glade:159 data/gui/traceback.glade:342
+msgid "_Report"
+msgstr "보고(_R)"
+
+#: data/gui/traceback.glade:234
+msgid "<big><b>Oops... an error occured</b></big>"
+msgstr "<big><b>오류가 발생했습니다</b></big>"
+
+#: data/gui/traceback.glade:248
 msgid ""
 "If you'd like to help us fix the problem, \n"
 "Please choose <i>Report</i> to file a new bug report. Make sure to include "
 "the error message below:"
 msgstr ""
+
+#: data/gui/type_edit.glade:7
+msgid "Edit Type"
+msgstr "편집 종류"
+
+#: data/gui/type_edit.glade:131
+msgid "Add Application"
+msgstr "프로그램 추가"
+
+#: data/gui/type_edit.glade:178
+msgid "Select an application to view its description."
+msgstr "설명을 볼 프로그램을 선택하세요."
+
+#: data/gui/type_edit.glade:222
+msgid "_Use a custom command"
+msgstr "사용자 지정 명령 사용(_U)"
+
+#~ msgid "Update failed!"
+#~ msgstr "업데이트 실패!"
