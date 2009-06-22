@@ -449,7 +449,7 @@ class ThirdSoft(TweakPage):
 
     def check_ppa_entry(self):
         if self.do_check_ppa_entry():
-            dialog = QuestionDialog(_('Some of your PPA Sources need to be update.\nDo you wish to continue?'), title=_('PPA Sources is expire'))
+            dialog = QuestionDialog(_('Some of your PPA Sources need to be updated.\nDo you wish to continue?'), title=_('PPA Sources has expired'))
             UPDATE = False
             if dialog.run() == gtk.RESPONSE_YES:
                 UPDATE = True
