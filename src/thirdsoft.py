@@ -167,7 +167,7 @@ SOURCES_DATA = [
     ['http://download.tuxfamily.org/swiftweasel', ['hardy', 'intrepid'], 'multiverse', Swiftweasel],
     ['http://packages.medibuntu.org/', ['hardy', 'intrepid', 'jaunty'], 'free non-free', Medibuntu],
     ['http://ppa.launchpad.net/wine-doors-dev-team/ppa/ubuntu', 'intrepid', 'main', WineDoors],
-    ['http://ppa.launchpad.net/team-xbmc/ppa/ubuntu', ['hardy', 'intrepid'], 'main', XBMC],
+    ['http://ppa.launchpad.net/team-xbmc/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', XBMC],
 ]
 
 def is_ubuntu(distro):
