@@ -116,6 +116,7 @@ Swiftweasel = ['Swiftweasel', 'swiftweasel', 'swiftweasel.tuxfamily.org/', '']
 Medibuntu = ['Medibuntu', 'medibuntu', 'www.medibuntu.org', 'medibuntu.gpg']
 WineDoors = ['Wine Doors', 'wine-doors', 'www.wine-doors.org', 'wine-doors.gpg']
 XBMC = ['XBMC', 'xbmc', 'xbmc.org', 'xbmc.gpg']
+UbuntuX = ['Ubuntu X', 'ubuntu-x', 'launchpad.net/~ubuntu-x-swat', 'ubuntu-x.gpg']
 
 SOURCES_DATA = [
     ['http://ppa.launchpad.net/reacocard-awn/ppa/ubuntu/', ['hardy','intrepid'], 'main', AWN],
@@ -168,6 +169,7 @@ SOURCES_DATA = [
     ['http://packages.medibuntu.org/', ['hardy', 'intrepid', 'jaunty'], 'free non-free', Medibuntu],
     ['http://ppa.launchpad.net/wine-doors-dev-team/ppa/ubuntu', 'intrepid', 'main', WineDoors],
     ['http://ppa.launchpad.net/team-xbmc/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', XBMC],
+    ['http://ppa.launchpad.net/ubuntu-x-swat/x-updates/ubuntu', ['jaunty'], 'main', UbuntuX],
 ]
 
 def is_ubuntu(distro):
