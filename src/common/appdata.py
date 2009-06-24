@@ -155,6 +155,7 @@ SOURCE_DATA = {
         'Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and other softwares.'),
     'getdeb': _('GetDeb extends the existing software options for Ubuntu (and derived) Linux distributions by providing major updates and software not yet available on the official Ubuntu repositories.'),
     'ubuntu-x': _('Updated versions of X.org drivers, libraries, etc. for Ubuntu.'),
+    'gnome-games': _('Gnome Games built from Git, with all experimental features and staging games enabled.'),
 }
 
 if __name__ == '__main__':
