@@ -9,4 +9,4 @@ ARG1="$1"
 shift
 ARG2="$1"
 shift
-exec ${python_exec} -OO ScriptWorker.py "$ARG1" "$ARG2" "$*"
+exec ${python_exec} -OO ScriptWorker.py "$ARG1" "$ARG2" $*
