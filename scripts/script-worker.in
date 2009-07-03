@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ $# -lt 2 ]; then
+	echo "Need more parameters!"
+	exit 0
+fi
+
 tweakdir=@DATADIR@/ubuntu-tweak
 python_exec=@PYTHON@
 
