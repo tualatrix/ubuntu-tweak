@@ -149,6 +149,7 @@ SOURCE_DATA = {
     'google': _("Google's Linux Repository"),
     'kde-4': _('K Desktop Environment 4.2'),
     'lxde': _('Lightweight X11 Desktop Environment: GPicView, PCManFM'),
+    'webkitgtk': _('WebkitGtk+, Liferea (Webkit), Midori and other WebKit related projects.'),
     'medibuntu': _('Multimedia, Entertainment and Distraction In Ubuntu\nMedibuntu is a repository of packages that cannot be included into the Ubuntu distribution for legal reasons (copyright, license, patent, etc).'),
     'openoffice': 'OpenOffice.org 3.1 for Ubuntu',
     'ubuntu-cn': _('Ubuntu repository for Chinese users.\n'
