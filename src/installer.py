@@ -102,6 +102,7 @@ data = \
     ('gnote', Text),
     ('gnome-do', Desktop),
     ('gnome-globalmenu', Desktop),
+    ('gnome-colors', Desktop),
     ('googleearth', Internet),
     ('google-gadgets', Desktop),
     ('gparted', Disk),

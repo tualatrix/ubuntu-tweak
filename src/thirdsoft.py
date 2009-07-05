@@ -86,6 +86,7 @@ CairoDock = ['Cairo Dock', 'cairo-dock',  'cairo-dock.org', 'cairo-dock.gpg']
 Gnote = ['Gnote', 'gnote', 'live.gnome.org/Gnote', 'gnote.gpg']
 GnomeDo = ['GNOME Do', 'gnome-do', 'do.davebsd.com', 'do.gpg']
 GnomeGames = [_('Experimental Gnome Games'), 'gnome-games', 'launchpad.net/~gnome-games-experimental', 'gnome-games.gpg']
+GnomeColors = ['Gnome Colors', 'gnome-colors', 'launchpad.net/~gnome-colors-packagers', 'gnome-colors.gpg']
 GlobalMenu = [_('Gnome Global Menu'), 'gnome-globalmenu', 'code.google.com/p/gnome2-globalmenu', 'globalmenu.gpg']
 GettingThingsGnome = ['Getting Things Gnome!', 'gtg', 'gtg.fritalk.com', 'gtg.gpg']
 GetDeb = [_('GetDeb.net (Mirror)'), 'getdeb', 'www.getdeb.net', '']
@@ -132,6 +133,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/chromium-daily/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', ChromiumBrowser],
     ['http://ppa.launchpad.net/specto/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Specto],
 #    ['http://getdeb.masio.com.mx/', ['hardy', 'intrepid', 'jaunty'], '', GetDeb],
+    ['http://ppa.launchpad.net/gnome-colors-packagers/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', GnomeColors],
     ['http://ppa.launchpad.net/gtg/ppa/ubuntu', ['intrepid', 'jaunty'], 'main', GettingThingsGnome],
     ['http://ppa.launchpad.net/gnote/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Gnote],
     ['http://deb.opera.com/opera/', 'lenny', 'non-free', Opera],

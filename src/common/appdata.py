@@ -89,6 +89,7 @@ APP_DATA = {
     'gmail-notify': _('Notifies the user upon arrival of new mail in Gmail'),
     'gnome-do': _('A powerful, speedy, and sexy remote control for the GNOME Desktop'),
     'gnome-globalmenu': _('Global Menu Bar for GNOME'),
+    'gnome-colors': _('the GNOME-Colors Icon Themes and Shiki-Colors GTK+/Metacity Themes for Debian and Ubuntu.'),
     'gnote': _('a C++ port of Tomboy'),
     'googleearth': _("A program that combines satellite imagery and maps to put the world's geographic information at your fingertips."),
     'google-gadgets': _('Platform for running Google Gadgets on Linux'),
