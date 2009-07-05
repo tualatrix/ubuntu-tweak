@@ -178,6 +178,11 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/ubuntu-x-swat/x-updates/ubuntu', ['jaunty'], 'main', UbuntuX],
 ]
 
+SOURCES_DEPENDENCIES = {
+    Midori[0]: WebKitGtk[0],
+    Liferea[0]: WebKitGtk[0],
+}
+
 def is_ubuntu(distro):
     if type(distro) == list:
         for dis in distro:
@@ -347,10 +352,63 @@ class SourcesView(gtk.TreeView):
 
     def on_enable_toggled(self, cell, path):
         iter = self.model.get_iter((int(path),))
+
+        name = self.model.get_value(iter, COLUMN_NAME)
+        enabled = self.model.get_value(iter, COLUMN_ENABLED)
+
+        if not enabled and name in SOURCES_DEPENDENCIES:
+            #FIXME: If more than one dependency
+            dependency = SOURCES_DEPENDENCIES[name]
+            if not self.get_source_enabled(dependency):
+                dialog = QuestionDialog(\
+                            _('To enable this PPA Source, You need to enable "%s" at first.\nDo you wish to continue?') \
+                            % dependency,
+                            title=_('Dependencies Notice'))
+                if dialog.run() == gtk.RESPONSE_YES:
+                    self.set_source_enabled(dependency)
+                else:
+                    self.model.set(iter, COLUMN_ENABLED, not enabled)
+
+                dialog.destroy()
+        elif enabled and name in SOURCES_DEPENDENCIES.values():
+            HAVE_REVERSE_DEPENDENCY = False
+            for k, v in SOURCES_DEPENDENCIES.items():
+                if v == name:
+                    if self.get_source_enabled(k):
+                        ErrorDialog(_('You can\'t disable this Source because "%(SOURCE)s" dependecy on it.\nTo continue you should disable "%(SOURCE)s" first.') % {'SOURCE': k}).launch()
+                        HAVE_REVERSE_DEPENDENCY = True
+                        break
+            if HAVE_REVERSE_DEPENDENCY:
+                self.model.set(iter, COLUMN_ENABLED, enabled)
+                return False
+
+        self.do_source_enable(iter)
+
+    def on_source_foreach(self, model, path, iter, name):
+        m_name = model.get_value(iter, COLUMN_NAME)
+        if m_name == name:
+            if self._foreach_mode == 'get':
+                self._foreach_take = model.get_value(iter, COLUMN_ENABLED)
+            elif self._foreach_mode == 'set':
+                self._foreach_take = iter
+
+    def get_source_enabled(self, name):
+        self._foreach_mode = 'get'
+        self._foreach_take = None
+        self.model.foreach(self.on_source_foreach, name)
+        return self._foreach_take
+
+    def set_source_enabled(self, name):
+        self._foreach_mode = 'set'
+        self._foreach_status = None
+        self.model.foreach(self.on_source_foreach, name)
+        self.do_source_enable(self._foreach_take)
+
+    def do_source_enable(self, iter):
         enabled = self.model.get_value(iter, COLUMN_ENABLED)
         url = self.model.get_value(iter, COLUMN_URL)
         distro = self.model.get_value(iter, COLUMN_DISTRO)
-        name = self.model.get_value(iter, COLUMN_PACKAGE)
+        name = self.model.get_value(iter, COLUMN_NAME)
         comps = self.model.get_value(iter, COLUMN_COMPS)
         key = self.model.get_value(iter, COLUMN_KEY)
 
