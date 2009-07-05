@@ -104,6 +104,7 @@ Screenlets = ['Screenlets', 'screenlets', 'www.screenlets.org', 'screenlets.gpg'
 Synapse = ['Synapse', 'synapse', 'synapse.im', 'synapse.gpg']
 Wine = ['Wine', 'wine', 'www.winehq.org', 'wine.gpg']
 LXDE = ['LXDE', 'lxde', 'lxde.org', 'lxde.gpg']
+Liferea = ['Liferea', 'liferea', 'liferea.sourceforge.net', 'liferea.gpg']
 Terminator = ['Terminator', 'terminator', 'www.tenshu.net/terminator/', 'terminator.gpg']
 Transmission_Stable = ['Transmission (Stable Version)', 'transmission-gtk', 'www.transmissionbt.com', 'transmission_stable.gpg']
 Transmission_Beta = ['Transmission (Beta Version)', 'transmission-gtk', 'www.transmissionbt.com', 'transmission_beta.gpg']
@@ -131,7 +132,6 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/specto/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Specto],
 #    ['http://getdeb.masio.com.mx/', ['hardy', 'intrepid', 'jaunty'], '', GetDeb],
     ['http://ppa.launchpad.net/gtg/ppa/ubuntu', ['intrepid', 'jaunty'], 'main', GettingThingsGnome],
-    ['http://ppa.launchpad.net/gnome-games-experimental/ppa/ubuntu', ['jaunty', 'karmic'], 'main', GnomeGames],
     ['http://ppa.launchpad.net/gnote/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Gnote],
     ['http://deb.opera.com/opera/', 'lenny', 'non-free', Opera],
     ['http://ppa.launchpad.net/firerabbit/ppa/ubuntu', ['intrepid','jaunty'], 'main', Synapse],
@@ -140,6 +140,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/gwibber-daily/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Gwibber_Daily],
     ['http://playonlinux.botux.net/', 'hardy', 'main', PlayOnLinux],
     ['http://ppa.launchpad.net/webkit-team/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Midori],
+    ['http://ppa.launchpad.net/liferea/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Liferea],
     ['http://ppa.launchpad.net/ibus-dev/ppa/ubuntu', ['intrepid', 'jaunty'], 'main', Ibus],
     ['http://ppa.launchpad.net/ubuntu-mozilla-daily/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Firefox],
     ['http://ppa.launchpad.net/compiz/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', CompizFusion],
@@ -171,6 +172,7 @@ SOURCES_DATA = [
     ['http://packages.medibuntu.org/', ['hardy', 'intrepid', 'jaunty'], 'free non-free', Medibuntu],
     ['http://ppa.launchpad.net/wine-doors-dev-team/ppa/ubuntu', 'intrepid', 'main', WineDoors],
     ['http://ppa.launchpad.net/team-xbmc/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', XBMC],
+    ['http://ppa.launchpad.net/gnome-games-experimental/ppa/ubuntu', ['jaunty', 'karmic'], 'main', GnomeGames],
     ['http://ppa.launchpad.net/ubuntu-x-swat/x-updates/ubuntu', ['jaunty'], 'main', UbuntuX],
 ]
 
