@@ -478,6 +478,7 @@ class SourceEditor(TweakPage):
             self.save_button.set_sensitive(False)
             self.redo_button.set_sensitive(False)
             self.refresh_button.set_sensitive(True)
+            self.emit('update', 'thirdsoft', 'update_thirdparty')
 
     def on_redo_button_clicked(self, widget):
         dialog = QuestionDialog(_('The current content will be lost after reloading!\nDo you wish to continue?'))
