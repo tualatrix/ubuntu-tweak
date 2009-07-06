@@ -330,7 +330,7 @@ class SourcesView(gtk.TreeView):
             name = source[SOURCE_NAME]
             package = source[SOURCE_PACKAGE]
             comment = get_source_describ(package)
-            logo = gtk.gdk.pixbuf_new_from_file(get_source_logo(package))
+            logo = get_source_logo(package)
             home = source[SOURCE_HOME]
             if home:
                 home = 'http://' + home

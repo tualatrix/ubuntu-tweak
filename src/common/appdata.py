@@ -19,6 +19,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import os
+import gtk
 from consts import *
 
 __all__ = (
@@ -51,7 +52,12 @@ def get_app_logo(name):
     return os.path.join(DATA_DIR, 'applogos', name)
 
 def get_source_logo(name):
-    return get_app_logo(name)
+    try:
+        return gtk.gdk.pixbuf_new_from_file(get_app_logo(name))
+    except:
+        icontheme = gtk.icon_theme_get_default()
+        icon = icontheme.lookup_icon('gtk-missing-image', 32, gtk.ICON_LOOKUP_NO_SVG)
+        return icon.load_icon()
 
 APP_DATA = {
     'agave': _('A color scheme designer'),
