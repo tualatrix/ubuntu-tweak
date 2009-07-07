@@ -191,6 +191,10 @@ SOURCES_DEPENDENCIES = {
     Liferea[0]: WebKitGtk[0],
 }
 
+SOURCES_CONFLICTS = {
+    Skype[0]: Medibuntu[0],
+}
+
 def is_ubuntu(distro):
     if type(distro) == list:
         for dis in distro:
@@ -381,15 +385,25 @@ class SourcesView(gtk.TreeView):
         elif enabled and name in SOURCES_DEPENDENCIES.values():
             HAVE_REVERSE_DEPENDENCY = False
             for k, v in SOURCES_DEPENDENCIES.items():
-                if v == name:
-                    if self.get_source_enabled(k):
-                        ErrorDialog(_('You can\'t disable this Source because "%(SOURCE)s" dependecy on it.\nTo continue you should disable "%(SOURCE)s" first.') % {'SOURCE': k}).launch()
-                        HAVE_REVERSE_DEPENDENCY = True
-                        break
+                if v == name and self.get_source_enabled(k):
+                    ErrorDialog(_('You can\'t disable this Source because "%(SOURCE)s" dependecy on it.\nTo continue you should disable "%(SOURCE)s" first.') % {'SOURCE': k}).launch()
+                    HAVE_REVERSE_DEPENDENCY = True
+                    break
             if HAVE_REVERSE_DEPENDENCY:
                 self.model.set(iter, COLUMN_ENABLED, enabled)
                 return False
-
+        elif not enabled and name in SOURCES_CONFLICTS.values() or name in SOURCES_CONFLICTS.keys():
+            key = None
+            if name in SOURCES_CONFLICTS.keys():
+                key = SOURCES_CONFLICTS[name]
+            if name in SOURCES_CONFLICTS.values():
+                for k, v in SOURCES_CONFLICTS.items():
+                    if v == name:
+                        key = k
+            if self.get_source_enabled(key):
+                ErrorDialog(_('You can\'t enabled this Source because "%(SOURCE)s" conflicts with it.\nTo continue you should disable "%(SOURCE)s" first.') % {'SOURCE': key}).launch()
+                self.model.set(iter, COLUMN_ENABLED, enabled)
+                return False
         self.do_source_enable(iter)
 
     def on_source_foreach(self, model, path, iter, name):
