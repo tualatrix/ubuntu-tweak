@@ -82,6 +82,7 @@ IBus_Jaunty = [_('IBus 1.2 for jaunty'), 'ibus', 'code.google.com/p/ibus', 'ibus
 Midori = ['Midori', 'midori', 'www.twotoasts.de', 'midori.gpg']
 WebKitGtk = ['WebKitGtk', 'webkitgtk', 'webkitgtk.org', 'webkitgtk.gpg']
 Firefox = ['Firefox', 'firefox', 'www.mozilla.org', 'firefox.gpg']
+MozillaSecurity = [_('Ubuntu Mozilla Security Team'), 'mozilla-security', 'launchpad.net/~ubuntu-mozilla-security', 'mozilla-security.gpg']
 CompizFusion = ['Compiz Fusion', 'compiz-fusion', 'www.compiz-fusion.org/', 'compiz-fusion.gpg']
 ChromiumBrowser = ['Chromium Browser', 'chromium-browser', 'launchpad.net/chromium-project', 'chromium-browser.gpg']
 CairoDock = ['Cairo Dock', 'cairo-dock',  'cairo-dock.org', 'cairo-dock.gpg']
@@ -151,6 +152,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/ibus-dev/ibus-1.2-jaunty/ubuntu', 'jaunty', 'main', IBus_Jaunty],
     ['http://ppa.launchpad.net/ibus-dev/ppa/ubuntu', ['intrepid', 'jaunty'], 'main', IBus],
     ['http://ppa.launchpad.net/ubuntu-mozilla-daily/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Firefox],
+    ['http://ppa.launchpad.net/ubuntu-mozilla-security/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', MozillaSecurity],
     ['http://ppa.launchpad.net/compiz/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', CompizFusion],
     ['http://ppa.launchpad.net/pidgin-developers/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Pidgin],
     ['http://ppa.launchpad.net/moovida-packagers/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Moovida],
@@ -174,7 +176,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/transmissionbt-beta/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Transmission_Beta],
     ['http://ppa.launchpad.net/transmissionbt-nightly/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Transmission_Nightly],
     ['http://download.virtualbox.org/virtualbox/debian', ['hardy', 'intrepid', 'jaunty'], 'non-free', VirtualBox],
-    ['http://ppa.launchpad.net/shutter/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Shutter],
+    ['http://ppa.launchpad.net/shutter/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Shutter],
     ['http://ppa.launchpad.net/galaxium/ppa/ubuntu', 'hardy', 'main', Galaxium],
     ['http://download.tuxfamily.org/swiftweasel', ['hardy', 'intrepid'], 'multiverse', Swiftweasel],
     ['http://packages.medibuntu.org/', ['hardy', 'intrepid', 'jaunty'], 'free non-free', Medibuntu],
