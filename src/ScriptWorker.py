@@ -22,6 +22,10 @@
 import os
 import sys
 import gtk
+try:
+    import gio
+except:
+    pass
 import gobject
 import gnomevfs
 import gettext
@@ -33,6 +37,9 @@ from common.consts import *
 from common.debug import run_traceback
 from common.widgets import ErrorDialog
 from common.utils import get_command_for_type
+from common.gui import GuiWorker
+from common.misc import filesizeformat
+from common.systeminfo import module_check
 
 class FileChooserDialog(gtk.FileChooserDialog):
     """Show a dialog to select a folder, or to do more thing
@@ -45,13 +52,68 @@ class FileChooserDialog(gtk.FileChooserDialog):
             ):
         gtk.FileChooserDialog.__init__(self, title, parent, action, buttons)
 
+class FileOperationDialog:
+    def __init__(self, source, destination, operation):
+        self.source = gio.File(source)
+        self.destination = gio.File(destination)
+
+        worker = GuiWorker('fileoperations.glade')
+
+        win = worker.get_object('window')
+        win.connect('destroy', gtk.main_quit)
+
+        self.pb = worker.get_object('file_progress')
+        self.file_info_label = worker.get_object('file_info_label')
+        self.status_label = worker.get_object('status_label')
+        self.cancel_button = worker.get_object('cancel_button')
+        self.cancel_button.connect('clicked', self.on_cancel)
+
+        win.show_all()
+        getattr(self, 'start_%s' % operation)()
+
+    def progress(self, current, total):
+        self.pb.set_fraction(float(current)/total)
+        self.status_label.set_label(_('%s of %s') % (filesizeformat(current), filesizeformat(total)))
+        while gtk.events_pending():
+            gtk.main_iteration()
+
+    def copied(self, source, result):
+        try:
+            source.copy_finish(result)
+        except:
+            gtk.main_quit()
+        finally:
+            gtk.main_quit()
+
+    def start_copy(self):
+        canc = gio.Cancellable()
+        self.file_info_label.set_label(_('Copying "%s" to "%s"') % (self.source.get_basename(), self.destination.get_parent().get_basename()))
+        self.source.copy_async(self.destination, self.copied, progress_callback=self.progress, cancellable=canc)
+
+        gtk.main()
+
+    def start_move(self):
+        canc = gio.Cancellable()
+        self.file_info_label.set_label(_('Moving "%s" to "%s"') % (self.source.get_basename(), self.destination.get_parent().get_basename()))
+        self.source.move(self.destination, progress_callback=self.progress, cancellable=canc)
+
+    def on_cancel(self, widget):
+        cancel = gio.cancellable_get_current()
+        os.system("echo %s>/tmp/gio" % cancel)
+        if cancel:
+            self.file_info_label('wow!!! cancel')
+            cancel.cancel()
+
 class FileOperation:
     """Do the real operation"""
     @classmethod
     def do_copy(cls, source, dest):
         if os.path.isfile(source):
             if not os.path.exists(dest):
-                shutil.copy(source, dest)
+                if module_check.has_gio():
+                    FileOperationDialog(source, dest, 'copy')
+                else:
+                    shutil.copy(source, dest)
             else:
                 ErrorDialog(_('The file "%s" already exists!') % dest).launch()
         elif os.path.isdir(source):
@@ -62,10 +124,19 @@ class FileOperation:
 
     @classmethod
     def do_move(cls, source, dest):
-        if not os.path.exists(dest):
-            shutil.move(source, dest)
-        else:
-            ErrorDialog(_('The target "%s" already exists!') % dest).launch()
+        if os.path.isfile(source):
+            if not os.path.exists(dest):
+                if module_check.has_gio():
+                    FileOperationDialog(source, dest, 'move')
+                else:
+                    shutil.move(source, dest)
+            else:
+                ErrorDialog(_('The target "%s" already exists!') % dest).launch()
+        elif os.path.isdir(source):
+            if not os.path.exists(dest):
+                shutil.move(source, dest)
+            else:
+                ErrorDialog(_('The target "%s" already exists!') % dest).launch()
 
     @classmethod
     def do_link(cls, source, dest):
