@@ -81,6 +81,7 @@ data = \
     ('blueman', P2P),
     ('cairo-dock', Desktop),
     ('chmsee', Text),
+    ('christine', Sound),
     ('chromium-browser', Internet),
     ('compizconfig-settings-manager', Desktop),
     ('codeblocks', Develop),

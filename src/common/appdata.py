@@ -74,6 +74,7 @@ APP_DATA = {
     'blueman': _('GTK+ Bluetooth Manager'),
     'cairo-dock': _('A true dock for linux'),
     'chmsee': _('A chm file viewer written in GTK+'),
+    'christine': _('Desired to be small and fast, christine is a simple media player, that let you play your favorite music and videos from one single application.'),
     'chromium-browser': _('Chromium is an open-source browser project that aims to build a safer, faster, and more stable way for all Internet users to experience the web.'),
     'codeblocks': _('The open source, cross-platform IDE'),
     'compizconfig-settings-manager': _('Advanced Desktop Effects Settings Manager'),
