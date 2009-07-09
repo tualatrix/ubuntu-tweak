@@ -80,6 +80,7 @@ IBus = [_('IBus (Old Version)'), 'ibus', 'code.google.com/p/ibus', 'ibus-dev.gpg
 IBus_Intrepid = [_('IBus 1.2 for intrepid'), 'ibus', 'code.google.com/p/ibus', 'ibus-dev.gpg']
 IBus_Jaunty = [_('IBus 1.2 for jaunty'), 'ibus', 'code.google.com/p/ibus', 'ibus-dev.gpg']
 Midori = ['Midori', 'midori', 'www.twotoasts.de', 'midori.gpg']
+Empathy = ['Empathy', 'empathy', 'launchpad.net/~telepathy', 'empathy.gpg']
 WebKitGtk = ['WebKitGtk', 'webkitgtk', 'webkitgtk.org', 'webkitgtk.gpg']
 Firefox = ['Firefox', 'firefox', 'www.mozilla.org', 'firefox.gpg']
 MozillaSecurity = [_('Ubuntu Mozilla Security Team'), 'mozilla-security', 'launchpad.net/~ubuntu-mozilla-security', 'mozilla-security.gpg']
@@ -142,6 +143,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/gnome-colors-packagers/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', GnomeColors],
     ['http://ppa.launchpad.net/gtg/ppa/ubuntu', ['intrepid', 'jaunty'], 'main', GettingThingsGnome],
     ['http://ppa.launchpad.net/gnote/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Gnote],
+    ['http://ppa.launchpad.net/telepathy/ppa/ubuntu', ['jaunty'], 'main', Empathy],
     ['http://deb.opera.com/opera/', 'lenny', 'non-free', Opera],
     ['http://ppa.launchpad.net/firerabbit/ppa/ubuntu', ['intrepid','jaunty'], 'main', Synapse],
     ['http://download.skype.com/linux/repos/debian', 'stable', 'non-free', Skype],
