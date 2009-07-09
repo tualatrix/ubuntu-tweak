@@ -88,9 +88,9 @@ class FileOperationDialog:
     def start_copy(self):
         canc = gio.Cancellable()
         self.file_info_label.set_label(_('Copying "%s" to "%s"') % (self.source.get_basename(), self.destination.get_parent().get_basename()))
-        self.source.copy_async(self.destination, self.copied, progress_callback=self.progress, cancellable=canc)
-
-        gtk.main()
+        #TODO Ubuntu 9.04 don't support copy_async yet
+#        self.source.copy_async(self.destination, self.copied, progress_callback=self.progress, cancellable=canc)
+        self.source.copy(self.destination, progress_callback=self.progress, cancellable=canc)
 
     def start_move(self):
         canc = gio.Cancellable()
@@ -99,9 +99,7 @@ class FileOperationDialog:
 
     def on_cancel(self, widget):
         cancel = gio.cancellable_get_current()
-        os.system("echo %s>/tmp/gio" % cancel)
         if cancel:
-            self.file_info_label('wow!!! cancel')
             cancel.cancel()
 
 class FileOperation:
