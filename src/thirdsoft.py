@@ -444,7 +444,7 @@ class SourcesView(gtk.TreeView):
             proxy.add_apt_key(key)
 
         if comps:
-            result = proxy.set_entry(url, distro, comps, name, not enabled)
+            result = proxy.set_separated_entry(url, distro, comps, name, not enabled)
         else:
             result = proxy.set_entry(url, distro + '/', comps, name, not enabled)
 
