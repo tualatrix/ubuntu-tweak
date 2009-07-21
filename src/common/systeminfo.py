@@ -101,7 +101,7 @@ class module_check:
 
     @classmethod
     def is_supported_ubuntu(cls):
-        return cls.is_hardy() or cls.is_intrepid() or cls.is_jaunty()
+        return cls.is_hardy() or cls.is_intrepid() or cls.is_jaunty() or cls.is_karmic()
 
     @classmethod
     def get_supported_ubuntu(cls):
@@ -132,6 +132,8 @@ class module_check:
             return 'intrepid'
         elif cls.is_jaunty():
             return 'jaunty'
+        elif cls.is_karmic():
+            return 'karmic'
         else:
             return ''
 
