@@ -28,7 +28,7 @@ import gobject
 import apt_pkg
 import webbrowser
 
-from common.config import Config
+from common.config import Config, TweakSettings
 from common.consts import *
 from common.appdata import get_source_logo, get_source_describ
 from common.policykit import PolkitButton, proxy
@@ -445,9 +445,12 @@ class SourcesView(gtk.TreeView):
             proxy.add_apt_key(key)
 
         if comps:
+            distro = distro + '/'
+
+        if TweakSettings.get_separated_sources():
             result = proxy.set_separated_entry(url, distro, comps, comment, not enabled, package)
         else:
-            result = proxy.set_entry(url, distro + '/', comps, comment, not enabled)
+            result = proxy.set_entry(url, distro, comps, comment, not enabled)
 
         if result == 'enabled':
             self.model.set(iter, COLUMN_ENABLED, True)

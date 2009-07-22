@@ -100,6 +100,7 @@ class TweakSettings:
     default_launch = 'default_launch'
     check_update = 'check_update'
     power_user = 'power_user'
+    separated_sources = 'separated_sources'
     need_save = True
 
     @classmethod
@@ -174,9 +175,15 @@ class TweakSettings:
 
     @classmethod
     def get_show_donate_notify(cls):
-        value = cls.config.get_value(cls.show_donate_notify, default = True)
+        return cls.config.get_value(cls.show_donate_notify, default = True)
 
-        return value
+    @classmethod
+    def set_separated_sources(cls, bool):
+        return cls.config.set_value(cls.separated_sources, bool)
+
+    @classmethod
+    def get_separated_sources(cls):
+        return cls.config.get_value(cls.separated_sources, default = True)
 
     @classmethod
     def set_url(cls, url):
