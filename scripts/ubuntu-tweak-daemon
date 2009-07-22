@@ -106,12 +106,18 @@ class Daemon(dbus.service.Object):
             return 'disabled'
 
     @dbus.service.method(UBUNTU_TWEAK_DAEMON_INTERFACE,
-                         in_signature='ssssb', out_signature='s')
-    def set_separated_entry(self, url, distro, comps, comment, enabled):
+                         in_signature='ssssbs', out_signature='s')
+    def set_separated_entry(self, url, distro, comps, comment, enabled, file):
         self.list.refresh()
 
         partsdir = apt_pkg.Config.FindDir("Dir::Etc::sourceparts")
-        file = os.path.join(partsdir, comment+'.list')
+        file = os.path.join(partsdir, file+'.list')
+
+        if os.path.exists(file) and url not in open(file).read():
+            for i in xrange(1000):
+                file = os.path.splitext(file)[0] + '-' + str(i) + '.list'
+                if not os.path.exists(file):
+                    break
 
         if enabled:
             self.list.add('deb', url, distro, comps.split(' '), comment, -1, file)

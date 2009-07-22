@@ -436,7 +436,8 @@ class SourcesView(gtk.TreeView):
         enabled = self.model.get_value(iter, COLUMN_ENABLED)
         url = self.model.get_value(iter, COLUMN_URL)
         distro = self.model.get_value(iter, COLUMN_DISTRO)
-        name = self.model.get_value(iter, COLUMN_NAME)
+        comment = self.model.get_value(iter, COLUMN_NAME)
+        package = self.model.get_value(iter, COLUMN_PACKAGE)
         comps = self.model.get_value(iter, COLUMN_COMPS)
         key = self.model.get_value(iter, COLUMN_KEY)
 
@@ -444,9 +445,9 @@ class SourcesView(gtk.TreeView):
             proxy.add_apt_key(key)
 
         if comps:
-            result = proxy.set_separated_entry(url, distro, comps, name, not enabled)
+            result = proxy.set_separated_entry(url, distro, comps, comment, not enabled, package)
         else:
-            result = proxy.set_entry(url, distro + '/', comps, name, not enabled)
+            result = proxy.set_entry(url, distro + '/', comps, comment, not enabled)
 
         if result == 'enabled':
             self.model.set(iter, COLUMN_ENABLED, True)
