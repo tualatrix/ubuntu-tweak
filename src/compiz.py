@@ -241,7 +241,7 @@ class Compiz(TweakPage, CompizSetting):
         if self.context:
             hbox = gtk.HBox(False, 0)
             hbox.pack_start(self.create_edge_setting(), True, False, 0)
-            edge_setting = SinglePack('Edge Settings', hbox)
+            edge_setting = SinglePack(_('Edge Settings'), hbox)
             self.pack_start(edge_setting, False, False, 0)
 
             self.snap = SnapWindow(_("Enable snapping windows"), self)

@@ -37,7 +37,8 @@ from common.utils import set_label_for_stock_button
 
 
 def update_dir():
-    system_dir = os.path.join(os.path.expanduser("~"), ".ubuntu-tweak/templates")
+    system_dir = os.path.expanduser('~/.ubuntu-tweak/templates')
+
     __uf = UserdirFile()
     __template_dir = __uf['XDG_TEMPLATES_DIR']
     if not __template_dir:
@@ -197,6 +198,7 @@ class Templates(TweakPage):
         dialog.destroy()
 
     def config_test(self):
+        #TODO need to test dir with os.R_OK | os.W_OK | os.X_OK
         if not os.path.exists(SYSTEM_DIR):
             self.default.create()
 
