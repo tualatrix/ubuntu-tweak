@@ -77,21 +77,18 @@ class module_check:
 
     @classmethod
     def has_right_compiz(cls):
-        if cls.has_ccm():
-            import ccm
-            if ccm.Version >= '0.7.4':
+        try:
+            if cls.has_ccm():
+                import ccm
+                if ccm.Version >= '0.7.4':
+                    return True
+                else:
+                    return False
+            elif cls.has_apt():
                 return True
             else:
                 return False
-        elif cls.has_apt():
-            from package import package_worker, update_apt_cache
-            update_apt_cache()
-            version = str(package_worker.get_pkgversion('compiz'))
-            if version.find(':') != -1 and version.split(':')[1] >= '0.7.4':
-                return True
-            else:
-                return False
-        else:
+        except:
             return False
 
     @classmethod
@@ -100,7 +97,7 @@ class module_check:
 
     @classmethod
     def is_ubuntu(cls):
-        return cls.is_hardy() or cls.is_intrepid() or cls.is_jaunty()
+        return cls.is_hardy() or cls.is_intrepid() or cls.is_jaunty() or cls.is_karmic()
 
     @classmethod
     def is_supported_ubuntu(cls):
@@ -112,15 +109,19 @@ class module_check:
 
     @classmethod
     def is_hardy(cls):
-        return DistroInfo.codename in ['hardy', 'elyssa']
+        return DistroInfo.codename in ['hardy', 'elyssa', 'Elyssa']
 
     @classmethod
     def is_intrepid(cls):
-        return DistroInfo.codename in ['intrepid', 'felicia']
+        return DistroInfo.codename in ['intrepid', 'felicia', 'Felicia']
 
     @classmethod
     def is_jaunty(cls):
-        return DistroInfo.codename in ['jaunty']
+        return DistroInfo.codename in ['jaunty', 'gloria', 'Gloria']
+
+    @classmethod
+    def is_karmic(cls):
+        return DistroInfo.codename in ['karmic']
 
     @classmethod
     def get_codename(cls):

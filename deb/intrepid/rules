@@ -34,7 +34,7 @@ build-stamp:  config.status
 	dh_testdir
 
 	# Add here commands to compile the package.
-	$(MAKE)
+	[ ! -f Makefile ] || $(MAKE) clean
 	#docbook-to-man debian/ubuntu-tweak.sgml > ubuntu-tweak.1
 
 	touch $@
@@ -53,16 +53,11 @@ clean:
 install: build
 	dh_testdir
 	dh_testroot
-	dh_clean -k 
 	dh_installdirs
 
 	# Add here commands to install the package into debian/ubuntu-tweak.
 	$(MAKE) DESTDIR=$(CURDIR)/debian/ubuntu-tweak install
 
-
-# Build architecture-independent files here.
-binary-indep: build install
-# We have nothing to do by default.
 
 # Build architecture-dependent files here.
 binary-arch: build install

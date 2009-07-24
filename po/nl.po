@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2009-04-29 07:49+0800\n"
-"PO-Revision-Date: 2009-04-29 09:44+0000\n"
-"Last-Translator: Timo <timovwb@gmail.com>\n"
+"POT-Creation-Date: 2009-07-04 10:46+0800\n"
+"PO-Revision-Date: 2009-07-03 17:21+0000\n"
+"Last-Translator: koen.de.jong@gmail.com <Unknown>\n"
 "Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2009-05-02 07:06+0000\n"
+"X-Launchpad-Export-Date: 2009-07-03 18:01+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/autostart.py:45
@@ -26,7 +26,7 @@ msgstr "_Naam"
 msgid "Co_mmand:"
 msgstr "Opdra_cht:"
 
-#: src/autostart.py:51 src/sourceeditor.py:119
+#: src/autostart.py:51 src/sourceeditor.py:118
 msgid "Comm_ent:"
 msgstr "Opmerking:"
 
@@ -76,8 +76,8 @@ msgstr ""
 "je inlogt\n"
 "Je kan onderdelen verbergen door ze te selecteren en op \"Remove\" te "
 "klikken.\n"
-"Om definitief een onderdeel te verwijderen, klik-rechts en druk op "
-"\"Delete\"."
+"Om definitief een onderdeel te verwijderen, klik-rechts en druk op \"Delete"
+"\"."
 
 #: src/autostart.py:339
 msgid "Show comments"
@@ -107,6 +107,10 @@ msgstr "Downloaden...%d"
 #: src/updatemanager.py:119
 msgid "Finished"
 msgstr "Voltooid"
+
+#: src/installer.py:52
+msgid "File-Sharing Clients"
+msgstr ""
 
 #: src/installer.py:53
 msgid "Image Tools"
@@ -156,11 +160,11 @@ msgstr "Emulatoren"
 msgid "E-mail Tools"
 msgstr "E-mail programma's"
 
-#: src/installer.py:156
+#: src/installer.py:157
 msgid "Add/Remove Applications"
 msgstr "Toepassingen Toevoegen/Verwijderen"
 
-#: src/installer.py:157
+#: src/installer.py:158
 msgid ""
 "A simple but more effecient method for finding and installing popular "
 "packages than the default Add/Remove."
@@ -168,15 +172,16 @@ msgstr ""
 "Een eenvoudige maar efficiëntere manier om populaire programma's te vinden "
 "en te installeren dan de standaardtoepassing Toevoegen/Verwijderen"
 
-#: src/installer.py:205
+#: src/installer.py:204
 msgid "All Categories"
 msgstr "Alle categorieën"
 
-#: src/installer.py:375
+#: src/installer.py:365 src/thirdsoft.py:499 src/compiz.py:406
+#: src/nautilus.py:217
 msgid "Update Successful!"
 msgstr "Update sucessvol"
 
-#: src/installer.py:377
+#: src/installer.py:367 src/compiz.py:408 src/nautilus.py:219
 msgid "Update Failed!"
 msgstr "Update mislukt!"
 
@@ -204,158 +209,206 @@ msgstr "Afdrukinstellingen uitschakelen"
 msgid "Disable save to disk"
 msgstr "Opslaan uitschakelen"
 
-#: src/ScriptWorker.py:53
+#: src/lockdown.py:53
+msgid "Disable \"Fast User Switching\""
+msgstr ""
+
+#: src/lockdown.py:59
+msgid "Fix the theme appearance when grant the root privileges"
+msgstr ""
+
+#: src/lockdown.py:64
+msgid "Miscellaneous Options"
+msgstr ""
+
+#: src/ScriptWorker.py:56
 #, python-format
 msgid "The file \"%s\" already exists!"
 msgstr "Het bestand \"%s\" bestaat al!"
 
-#: src/ScriptWorker.py:58
+#: src/ScriptWorker.py:61
 #, python-format
 msgid "The folder \"%s\" already exists!"
 msgstr "De map \"%s\" bestaat al!"
 
-#: src/ScriptWorker.py:64 src/ScriptWorker.py:70
+#: src/ScriptWorker.py:68 src/ScriptWorker.py:75
 #, python-format
 msgid "The target \"%s\" already exists!"
 msgstr "Het doel \"%s\" bestaat al"
 
-#: src/ScriptWorker.py:113 src/ScriptWorker.py:125
+#: src/ScriptWorker.py:125 src/ScriptWorker.py:138
 msgid "Enter your password to perform the administrative tasks"
 msgstr "Voer uw wachtwoord in om de administratieve taken uit te voeren."
 
-#: src/ScriptWorker.py:144
+#: src/ScriptWorker.py:132
+msgid "Coudn't find any text editor in your system!"
+msgstr ""
+
+#: src/ScriptWorker.py:159
 msgid "Select a folder"
 msgstr "Selecteer een map"
 
-#: src/ScriptWorker.py:175
+#: src/ScriptWorker.py:189
 msgid "Please select a target (files or folders)."
 msgstr "Selecteer een doel (bestanden of mappen)."
 
-#: src/mainwindow.py:65
+#: src/mainwindow.py:69
 msgid "Welcome to"
 msgstr "Welkom bij"
 
-#: src/mainwindow.py:72
+#: src/mainwindow.py:75
+msgid "Tweak otherwise hidden settings."
+msgstr ""
+
+#: src/mainwindow.py:76
 msgid "Clean up unneeded packages to free diskspace."
 msgstr "Ruim overbodige pakketten op om schijfruimte vrij te maken."
 
-#: src/mainwindow.py:73
+#: src/mainwindow.py:77
 msgid "Easily install up-to-date versions of many applications."
 msgstr "Eenvoudig installeren van up-to-date versies van veel applicaties"
 
-#: src/mainwindow.py:75
+#: src/mainwindow.py:78
+msgid ""
+"Configure file templates and shortcut scripts for easy access to common "
+"tasks."
+msgstr ""
+
+#: src/mainwindow.py:79
 msgid "And many more useful features!"
 msgstr "En nog veel meer!"
 
-#: src/mainwindow.py:87
+#: src/mainwindow.py:91
 msgid "<span size=\"xx-large\">Please wait a moment...</span>"
 msgstr "<span size=\"xx-large\">Even geduld a.u.b. ...</span>"
 
-#: src/mainwindow.py:223
+#: src/mainwindow.py:104
+msgid ""
+"<span size=\"x-large\">This feature isn't currently available in your "
+"distribution</span>"
+msgstr ""
+
+#: src/mainwindow.py:117
+msgid "<span size=\"x-large\">This module is error while loading.</span>"
+msgstr ""
+
+#: src/mainwindow.py:132
+msgid ""
+"This is a major failure of your software management system. Please check for "
+"broken packages with synaptic, check the file permissions and correctness of "
+"the file '/etc/apt/sources.list' and reload the software information with: "
+"'sudo apt-get update' and 'sudo apt-get install -f'."
+msgstr ""
+
+#: src/mainwindow.py:249
 msgid "Welcome"
 msgstr "Welkom"
 
-#: src/mainwindow.py:224
+#: src/mainwindow.py:250
 msgid "Computer"
 msgstr "Computer"
 
-#: src/mainwindow.py:225
+#: src/mainwindow.py:251
 msgid "Applications"
 msgstr "Programma's"
 
-#: src/mainwindow.py:226
+#: src/mainwindow.py:252
 msgid "Add/Remove"
 msgstr "Toevoegen/verwijderen"
 
-#: src/mainwindow.py:227 src/sourceeditor.py:335
+#: src/mainwindow.py:253 src/sourceeditor.py:343
 msgid "Source Editor"
 msgstr "Bron Editor"
 
-#: src/mainwindow.py:228 src/thirdsoft.py:279
+#: src/mainwindow.py:254 src/thirdsoft.py:290
 msgid "Third-Party Sources"
 msgstr "Bronnen van derden."
 
-#: src/mainwindow.py:229 src/cleaner.py:372
+#: src/mainwindow.py:255 src/cleaner.py:372
 msgid "Package Cleaner"
 msgstr "Pakket Opruimer"
 
-#: src/mainwindow.py:230
+#: src/mainwindow.py:256
 msgid "Startup"
 msgstr "Opstarten"
 
-#: src/mainwindow.py:231 src/session.py:144
+#: src/mainwindow.py:257 src/session.py:144
 msgid "Session Control"
 msgstr "Sessie controle"
 
-#: src/mainwindow.py:232
+#: src/mainwindow.py:258
 msgid "Autostart"
 msgstr "Autostart"
 
-#: src/mainwindow.py:233 src/userdir.py:45
+#: src/mainwindow.py:259 src/userdir.py:45
 msgid "Desktop"
 msgstr "Bureaublad"
 
-#: src/mainwindow.py:234
+#: src/mainwindow.py:260
 msgid "Icons"
 msgstr "Pictogrammen"
 
-#: src/mainwindow.py:235
+#: src/mainwindow.py:261
 msgid "Windows"
 msgstr "Vensters"
 
-#: src/mainwindow.py:236
+#: src/mainwindow.py:262
 msgid "Compiz Fusion"
 msgstr "Compiz Fusion"
 
-#: src/mainwindow.py:237
+#: src/mainwindow.py:263
 msgid "GNOME"
 msgstr "GNOME"
 
-#: src/mainwindow.py:238
+#: src/mainwindow.py:264
 msgid "Personal"
 msgstr "Persoonlijk"
 
-#: src/mainwindow.py:239
+#: src/mainwindow.py:265
 msgid "Folders"
 msgstr "Mappen"
 
-#: src/mainwindow.py:240 src/userdir.py:47
+#: src/mainwindow.py:266 src/userdir.py:47
 msgid "Templates"
 msgstr "Sjablonen"
 
-#: src/mainwindow.py:241
+#: src/mainwindow.py:267
 msgid "Scripts"
 msgstr "Scripts"
 
-#: src/mainwindow.py:242
+#: src/mainwindow.py:268
 msgid "Shortcuts"
 msgstr "Sneltoetsen"
 
-#: src/mainwindow.py:243
+#: src/mainwindow.py:269
 msgid "System"
 msgstr "Systeem"
 
-#: src/mainwindow.py:245
+#: src/mainwindow.py:270 src/filetype.py:478
+msgid "File Type Manager"
+msgstr ""
+
+#: src/mainwindow.py:271
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: src/mainwindow.py:246
+#: src/mainwindow.py:272
 msgid "Power Management"
 msgstr "Energiebeheer"
 
-#: src/mainwindow.py:247
+#: src/mainwindow.py:273
 msgid "Security"
 msgstr "Beveiliging"
 
-#: src/mainwindow.py:329
+#: src/mainwindow.py:355
 msgid "_Donate"
 msgstr "_Doneer"
 
-#: src/mainwindow.py:355
+#: src/mainwindow.py:381
 msgid "Help the development of Ubuntu Tweak"
 msgstr "Help de ontwikkeling van Ubuntu Twek"
 
-#: src/mainwindow.py:355
+#: src/mainwindow.py:381
 msgid ""
 "Ubuntu Tweak is a free-software, you can use it for free. If you like it, "
 "Please consider to donate for Ubuntu Tweak."
@@ -364,15 +417,15 @@ msgstr ""
 "programma je bevalt, denk er aub over na om een gift aan Ubuntu Tweak over "
 "te maken."
 
-#: src/mainwindow.py:356
+#: src/mainwindow.py:382
 msgid "Never Show This Again"
 msgstr "Laat dit nooit meer zien"
 
-#: src/mainwindow.py:549
+#: src/mainwindow.py:575
 msgid "Ubuntu Tweak Website"
 msgstr "Ubuntu Tweak Website"
 
-#: src/mainwindow.py:551
+#: src/mainwindow.py:577
 msgid ""
 "Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
 "system and desktop settings."
@@ -380,7 +433,7 @@ msgstr ""
 "Ubuntu Tweak is een programma voor Ubuntu dat het makkelijk maakt om uw "
 "systeem opties en bureaublad opties te wijzigen"
 
-#: src/mainwindow.py:558
+#: src/mainwindow.py:584
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
@@ -407,9 +460,27 @@ msgstr ""
 "  Wim Champagne https://launchpad.net/~fng\n"
 "  dvdmeer https://launchpad.net/~dennis-dvdmeer\n"
 "  ruben https://launchpad.net/~rubenvanassche\n"
+"  w.d https://launchpad.net/~wouter-dijk\n"
+"\n"
+"Launchpad Contributions:\n"
+"  Arya Ghodsi https://launchpad.net/~arya-ghodsi\n"
+"  Bart https://launchpad.net/~skratz-b\n"
+"  Bernard Decock https://launchpad.net/~decockbernard\n"
+"  Edwin Dijk https://launchpad.net/~sitix\n"
+"  Laurens-Jan https://launchpad.net/~ljmerkx\n"
+"  Lee Jarratt https://launchpad.net/~lee.jarratt\n"
+"  Sjoerd https://launchpad.net/~hoogwater\n"
+"  Taygeto https://launchpad.net/~taygeto\n"
+"  Timo https://launchpad.net/~timovwb\n"
+"  TualatriX https://launchpad.net/~tualatrix\n"
+"  Wim Champagne https://launchpad.net/~fng\n"
+"  dvdmeer https://launchpad.net/~dennis-dvdmeer\n"
+"  koen.de.jong@gmail.com https://launchpad.net/~koen-de-jong\n"
+"  rob https://launchpad.net/~rvdb\n"
+"  ruben https://launchpad.net/~rubenvanassche\n"
 "  w.d https://launchpad.net/~wouter-dijk"
 
-#: src/mainwindow.py:571
+#: src/mainwindow.py:597
 #, python-format
 msgid ""
 "A newer version: %s is available online.\n"
@@ -417,6 +488,26 @@ msgid ""
 msgstr ""
 "Er is een nieuwe versie: %s beschikbaar online.\n"
 "Wil je deze update installeren?"
+
+#: src/mainwindow.py:598
+msgid "Software Update"
+msgstr ""
+
+#: src/userdir.py:46
+msgid "Download"
+msgstr ""
+
+#: src/userdir.py:48
+msgid "Public"
+msgstr "Publiek"
+
+#: src/userdir.py:49
+msgid "Document"
+msgstr "Document"
+
+#: src/userdir.py:50
+msgid "Music"
+msgstr "Muziek"
 
 #: src/userdir.py:51
 msgid "Pictures"
@@ -440,6 +531,10 @@ msgstr ""
 "zetten.\n"
 "Echter, u moet uw bestanden zelf terug zetten.\n"
 "Wilt uw doorgaan?"
+
+#: src/userdir.py:201
+msgid "Directory"
+msgstr "Map"
 
 #: src/userdir.py:215
 msgid "Path"
@@ -467,7 +562,7 @@ msgstr ""
 "Wijzig de lokatie van je desktop map niet, tenzij je weet wat je aan het "
 "doen bent."
 
-#: src/userdir.py:258 src/compiz.py:391 src/nautilus.py:212
+#: src/userdir.py:258
 msgid "Update successful!"
 msgstr "Update geslaagd!"
 
@@ -499,6 +594,10 @@ msgstr "Alles"
 msgid "Categories"
 msgstr "Categoriën"
 
+#: src/filetype.py:129
+msgid "File Type"
+msgstr "Bestandstype"
+
 #: src/filetype.py:143
 msgid "Associated Application"
 msgstr "Geässocieerde Toepassing"
@@ -528,65 +627,201 @@ msgstr "Selecteer een toepassing om het type <b>%s</b> te openen."
 msgid "Could not find %s"
 msgstr "Kon %s niet vinden"
 
+#: src/filetype.py:388
+msgid "Could not find application"
+msgstr "Kon toepassing niet vinden"
+
+#: src/filetype.py:479
+msgid "Here you can manage which application will open which filetypes."
+msgstr ""
+
 #: src/filetype.py:505
 msgid "Only show filetypes with an associated application"
 msgstr "Toon slechts de filetypes die met de toepassing geassocieerd zijn"
 
-#: src/computer.py:44
+#: src/computer.py:45
 msgid "System information"
 msgstr "Systeem informatie"
 
-#: src/computer.py:45
+#: src/computer.py:46
 msgid "Hostname"
 msgstr "Computernaam"
 
-#: src/computer.py:46
+#: src/computer.py:47
 msgid "Distribution"
 msgstr "Distributie"
 
 #: src/computer.py:48
+msgid "Desktop environment"
+msgstr "Gebruikersomgeving"
+
+#: src/computer.py:49
 msgid "Kernel"
 msgstr "Kernel"
 
-#: src/computer.py:49
+#: src/computer.py:50
 msgid "Platform"
 msgstr "Platform"
 
-#: src/computer.py:50
+#: src/computer.py:51
 msgid "CPU"
 msgstr "CPU(Central Processing Unit)"
 
-#: src/computer.py:51
+#: src/computer.py:52
 msgid "Memory"
 msgstr "Geheugen"
 
-#: src/computer.py:55
+#: src/computer.py:56
 msgid "User information"
 msgstr "Gebruikersgegevens"
 
 #: src/computer.py:57
+msgid "Current user"
+msgstr "Huidige gebruiker"
+
+#: src/computer.py:58
 msgid "Home directory"
 msgstr "Persoonlijke map"
 
-#: src/computer.py:58
+#: src/computer.py:59
 msgid "Shell"
 msgstr "Console"
 
-#: src/computer.py:59
+#: src/computer.py:60
 msgid "Language"
 msgstr "Taal"
 
-#: src/thirdsoft.py:461 src/nautilus.py:187
+#: src/thirdsoft.py:70
+msgid "Avant Window Navigator (Unstable Version)"
+msgstr "Avant Window Navigator (onstabiele versie)"
+
+#: src/thirdsoft.py:76
+msgid "Ubuntu Chinese Repository"
+msgstr ""
+
+#: src/thirdsoft.py:87
+msgid "Experimental Gnome Games"
+msgstr ""
+
+#: src/thirdsoft.py:88
+msgid "Gnome Global Menu"
+msgstr ""
+
+#: src/thirdsoft.py:90
+msgid "GetDeb.net (Mirror)"
+msgstr "GetDeb.net (mirror)"
+
+#: src/thirdsoft.py:92
+msgid "Gwibber (Daily Version)"
+msgstr "Gwibber (dagelijkse versie)"
+
+#: src/thirdsoft.py:93
+msgid "Banshee (Stable Version)"
+msgstr "Banshee (stabiele versie)"
+
+#: src/thirdsoft.py:94
+msgid "Banshee (Unstable Version)"
+msgstr "Banshee (onstabiele versie)"
+
+#: src/thirdsoft.py:100
+msgid "Ubuntu Tweak (Unstable Version)"
+msgstr "Ubuntu Tweak (onstabiele versie)"
+
+#: src/thirdsoft.py:207
+msgid ""
+"To install software and updates from newly added or changed sources, you "
+"have to reload the information about available software.\n"
+"\n"
+"You need a working internet connection to continue."
+msgstr ""
+
+#: src/thirdsoft.py:211
+msgid "The information about available software is out-of-date"
+msgstr ""
+
+#: src/thirdsoft.py:377
+msgid "Homepage"
+msgstr ""
+
+#: src/thirdsoft.py:377
+msgid "Source URL"
+msgstr ""
+
+#: src/thirdsoft.py:377
+msgid "Description"
+msgstr ""
+
+#: src/thirdsoft.py:388
+msgid "Description is here"
+msgstr ""
+
+#: src/thirdsoft.py:416
+msgid "Third-Party Software Sources"
+msgstr ""
+
+#: src/thirdsoft.py:417
+msgid ""
+"After every release of Ubuntu there comes a feature freeze.\n"
+"This means only applications with bug-fixes get into the repository.\n"
+"By using third-party DEB repositories, you can always keep up-to-date with "
+"the latest version.\n"
+"After adding these repositories, locate and install them using Add/Remove."
+msgstr ""
+
+#: src/thirdsoft.py:433 src/sourceeditor.py:83
+msgid "Details"
+msgstr ""
+
+#: src/thirdsoft.py:456
+msgid ""
+"Some of your PPA Sources need to be updated.\n"
+"Do you wish to continue?"
+msgstr ""
+
+#: src/thirdsoft.py:456
+msgid "PPA Sources has expired"
+msgstr ""
+
+#: src/thirdsoft.py:496 src/sourceeditor.py:475
+msgid "Please check the permission of the sources.list file"
+msgstr ""
+
+#: src/thirdsoft.py:497 src/sourceeditor.py:476
+msgid "Save failed!"
+msgstr "Opslaan mislukt!"
+
+#: src/thirdsoft.py:524
+msgid ""
+"It is a possible security risk to use packages from Third-Party Sources.\n"
+"Please be careful and use only sources you trust."
+msgstr ""
+
+#: src/thirdsoft.py:527 src/nautilus.py:189
 msgid "Warning"
 msgstr "Waarschuwing"
 
-#: src/thirdsoft.py:465
+#: src/thirdsoft.py:531
 msgid "Never show this dialog"
 msgstr "Nooit dit venster laten zien"
+
+#: src/thirdsoft.py:553
+msgid ""
+"You can install the new applications through Add/Remove.\n"
+"Do you want to go now?"
+msgstr ""
+
+#: src/thirdsoft.py:554 src/sourceeditor.py:412
+msgid "The software information is up-to-date now"
+msgstr ""
 
 #: src/icons.py:32
 msgid "Show \"Computer\" icon on desktop"
 msgstr "Toon 'Deze Computer' icoon op het bureaublad"
+
+#: src/icons.py:33 src/icons.py:42 src/icons.py:51
+#: src/common/widgets/treeviews.py:73
+msgid "Rename"
+msgstr ""
 
 #: src/icons.py:41
 msgid "Show \"Home Folder\" icon on desktop"
@@ -613,626 +848,6 @@ msgstr "Toon bureaublad iconen"
 msgid "Show \"Network\" icon on desktop"
 msgstr "Toon 'Netwerk' icoon op het bureaublad"
 
-#: src/metacity.py:37
-msgid "Window Decorate Effect"
-msgstr "Venster Decoratie Effect"
-
-#: src/metacity.py:62 src/metacity.py:67 src/metacity.py:72 src/metacity.py:77
-msgid "Roll up"
-msgstr "Oprollen"
-
-#: src/metacity.py:67 src/metacity.py:72 src/metacity.py:77
-msgid "Maximize"
-msgstr "Maximaliseer"
-
-#: src/metacity.py:67 src/metacity.py:72 src/metacity.py:77
-msgid "Minimize"
-msgstr "Minimaliseer"
-
-#: src/metacity.py:67 src/metacity.py:72 src/metacity.py:77
-msgid "Lower"
-msgstr "Lager"
-
-#: src/metacity.py:67 src/metacity.py:72 src/metacity.py:77
-msgid "Menu"
-msgstr "Menu"
-
-#: src/session.py:45 src/gnomesettings.py:113
-msgid "PNG image (*.png)"
-msgstr "PNG bestand(*.png)"
-
-#: src/session.py:131
-msgid "Automatically save open applications when logging out"
-msgstr "Automatisch bestanden opslaan bij het afmelden"
-
-#: src/templates.py:63
-msgid "HTML document"
-msgstr "HTML-document"
-
-#: src/templates.py:64
-msgid "ODB Database"
-msgstr "ODB Gegevensbank"
-
-#: src/templates.py:65
-msgid "ODS Spreadsheet"
-msgstr "ODS Rekenblad"
-
-#: src/templates.py:66
-msgid "ODT Document"
-msgstr "ODT Document"
-
-#: src/templates.py:67
-msgid "Plain text document"
-msgstr "Simpel tekstbestand"
-
-#: src/templates.py:68
-msgid "ODP Presentation"
-msgstr "ODP Presentatie"
-
-#: src/templates.py:69
-msgid "Python script"
-msgstr "Python-script"
-
-#: src/templates.py:71
-msgid "Shell script"
-msgstr "Shell script"
-
-#: src/templates.py:98
-msgid "Enabled Templates"
-msgstr "Actieve sjablonen"
-
-#: src/templates.py:105
-msgid "Disabled Templates"
-msgstr "Inactieve sjablonen"
-
-#: src/templates.py:128
-msgid "Restart This Module"
-msgstr "Herstart Deze Module"
-
-#: src/templates.py:134
-msgid "Manage Templates"
-msgstr "Beheer sjablonen"
-
-#: src/compiz.py:229
-msgid "Install Advanced Desktop Effects Settings Manager"
-msgstr "Installeer Advanced Desktop Effects Settings Manager"
-
-#: src/compiz.py:232
-msgid "Install Simple Desktop Effects Settings manager"
-msgstr "Installeer Simple Desktop Effects Settings manager"
-
-#: src/compiz.py:235
-msgid "Install Screenlets Widget Application"
-msgstr "Installeer Screenlets Widget Applicatie"
-
-#: src/compiz.py:248
-msgid "Window Effects"
-msgstr "Venster Effecten"
-
-#: src/compiz.py:254
-msgid "Menu Effects"
-msgstr "Menu Effecten"
-
-#: src/compiz.py:317
-msgid "Expo"
-msgstr "Expo"
-
-#: src/compiz.py:319
-msgid "Show Desktop"
-msgstr "Toon bureaublad"
-
-#: src/compiz.py:320
-msgid "Widget"
-msgstr "Widget"
-
-#: src/shortcuts.py:91
-#, python-format
-msgid "Command %d"
-msgstr "Opdracht %d"
-
-#: src/shortcuts.py:99 src/shortcuts.py:153
-msgid "disabled"
-msgstr "Uitgeschakeld"
-
-#: src/shortcuts.py:115
-msgid "ID"
-msgstr "ID"
-
-#: src/shortcuts.py:126
-msgid "Command"
-msgstr "Opdracht"
-
-#: src/shortcuts.py:141
-msgid "Key"
-msgstr "Toets"
-
-#: src/shortcuts.py:145
-msgid "Clean"
-msgstr "Opschonen"
-
-#: src/cleaner.py:245
-msgid "Package Config"
-msgstr "Pakket Configuratie"
-
-#: src/cleaner.py:282
-#, python-format
-msgid "%s of space will be freed"
-msgstr "%s ruimte zal vrijkomen"
-
-#: src/cleaner.py:361
-msgid "Canceled by user!"
-msgstr "Geannuleerd door gebruiker"
-
-#: src/scripts.py:49
-msgid "Copy to ..."
-msgstr "Kopieer naar ..."
-
-#: src/scripts.py:53
-msgid "Move to ..."
-msgstr "Verplaats naar ..."
-
-#: src/scripts.py:57
-msgid "Link to ..."
-msgstr "Koppel aan ..."
-
-#: src/scripts.py:63
-msgid "Browse as root"
-msgstr "Verken als root"
-
-#: src/scripts.py:64
-msgid "Search in current folder"
-msgstr "Zoek in de huidige map"
-
-#: src/scripts.py:96
-msgid "Enabled Scripts"
-msgstr "Ingeschakelde Scripts"
-
-#: src/scripts.py:124
-msgid "Disabled Scripts"
-msgstr "Uitgeschakelde scripts"
-
-#: src/scripts.py:159
-msgid "Rebuild System Scripts"
-msgstr "Systeem Scripts Vernieuwen"
-
-#: src/gnomesettings.py:44
-msgid "Panel and Menu"
-msgstr "Paneel en Menu"
-
-#: src/gnomesettings.py:52
-msgid "Enable panel animations"
-msgstr "Activeer paneel animatie"
-
-#: src/gnomesettings.py:65
-msgid "Screensaver"
-msgstr "Schermbeveiliging"
-
-#: src/gnomesettings.py:75
-msgid "History"
-msgstr "Geschiedenis"
-
-#: src/gnomesettings.py:82
-msgid "Notification-daemon popup location"
-msgstr "Waarschuwings daemon popup locatie"
-
-#: src/gnomesettings.py:86
-msgid "Top Left"
-msgstr "Linksboven"
-
-#: src/gnomesettings.py:86
-msgid "Top Right"
-msgstr "Rechtsboven"
-
-#: src/gnomesettings.py:86
-msgid "Bottom Left"
-msgstr "Linksonder"
-
-#: src/gnomesettings.py:86
-msgid "Bottom Right"
-msgstr "Rechtsonder"
-
-#: src/nautilus.py:104
-msgid "File Browser"
-msgstr "Bestandsbeheer"
-
-#: src/nautilus.py:155
-msgid "Nautilus with Open Terminal"
-msgstr "Nautilus met open terminal"
-
-#: src/nautilus.py:157
-msgid "Nautilus with Root Privileges"
-msgstr "Nautilus met root- rechten"
-
-#: src/nautilus.py:159
-msgid "Nautilus with Wallpaper"
-msgstr "Nautilus met achtergrond"
-
-#: src/nautilus.py:161
-msgid "Nautilus Extensions"
-msgstr "Nautilus Extensies"
-
-#: src/nautilus.py:214
-msgid "Update failed!"
-msgstr "Update mislukt!"
-
-#: src/powermanager.py:39
-msgid "Enable \"Hibernation\""
-msgstr "Slaapstand Inschakelen"
-
-#: src/powermanager.py:42
-msgid "Enable \"Suspend\""
-msgstr "Pauzestand Inschakelen"
-
-#: src/powermanager.py:56
-msgid "Never display"
-msgstr "Nooit tonen"
-
-#: src/powermanager.py:56
-msgid "When charging"
-msgstr "Al opladend"
-
-#: src/powermanager.py:56
-msgid "Always display"
-msgstr "Altijd tonen"
-
-#: src/powermanager.py:62
-msgid "Normal"
-msgstr "Normaal"
-
-#: src/powermanager.py:62
-msgid "On Demand"
-msgstr "Op Aanvraag"
-
-#: src/powermanager.py:62
-msgid "Power Save"
-msgstr "Energie besparend"
-
-#: src/powermanager.py:62
-msgid "Performance"
-msgstr "Prestaties"
-
-#: src/powermanager.py:65
-msgid "The Performance value when on AC power"
-msgstr "De prestatie waarden wanneer de computer op netstroom werkt"
-
-#: src/powermanager.py:71
-msgid "The Performance value when on battery power"
-msgstr "De prestatie waarden wanneer de computer op battrij werkt"
-
-#: src/powermanager.py:77
-msgid "The CPU frequency policy when on AC power"
-msgstr "De CPU frequentie regels wanneer de computer op netstroom werkt"
-
-#: src/powermanager.py:82
-msgid "The CPU frequency policy when on battery power"
-msgstr "De CPU frequentie regels wanneer de computer op battrij werkt"
-
-#: src/sourceeditor.py:188
-msgid "Please check your network connection!"
-msgstr "Controleer uw netwerk verbinding!"
-
-#: src/sourceeditor.py:188
-msgid "Network Error"
-msgstr "Netwerk Fout"
-
-#: src/sourceeditor.py:195
-msgid "Uploading..."
-msgstr "Bezig met uploaden..."
-
-#: src/sourceeditor.py:403
-msgid "You can install new applications through Add/Remove."
-msgstr "U kan nieuwe applicaties installeren via Installeren/Verwijderen."
-
-#: src/sourceeditor.py:468
-msgid "Save failed!"
-msgstr "Opslaan mislukt!"
-
-#: src/common/package.py:67
-msgid "(Not available)"
-msgstr "(Niet beschikbaar)"
-
-#: src/common/appdata.py:59
-msgid "Client for the eD2k and Kad networks"
-msgstr "Client voor de eD2k en Kad netwerken"
-
-#: src/common/appdata.py:60
-msgid "GNOME IDE for C/C++, Java, Python"
-msgstr "GNOME IDE voor C/C++, Java, Python"
-
-#: src/common/appdata.py:62
-msgid "Record and edit audio files"
-msgstr "Opnemen en bewerken van geluidsbestanden"
-
-#: src/common/appdata.py:65
-msgid "A free video editor"
-msgstr "Een gratis vdeo editor"
-
-#: src/common/appdata.py:66
-msgid "BitTorrent client written in Java"
-msgstr "Bittirrent client geschreven in Java"
-
-#: src/common/appdata.py:69
-msgid "A true dock for linux"
-msgstr "Een echt dock voor linux"
-
-#: src/common/appdata.py:74
-msgid "An API documentation browser for GNOME."
-msgstr "Een API documentatie browser voor GNOME"
-
-#: src/common/appdata.py:79
-msgid "A client for the Windows Live Message network"
-msgstr "Een cliënt voor het Windows Live Berichten netwerk"
-
-#: src/common/appdata.py:83
-msgid "An extremly fast and lightweight file manager"
-msgstr "Een zeer snelle en lichte bestands beheerder"
-
-#: src/common/appdata.py:86
-msgid "A fast and lightweight IDE"
-msgstr "Een snelle en lichte IDE"
-
-#: src/common/appdata.py:94
-msgid "Platform for running Google Gadgets on Linux"
-msgstr "Platform voor het draaien van Google Gadgets op Linux"
-
-#: src/common/appdata.py:95
-msgid "GNOME partition editor"
-msgstr "GNOME partitie bewerker"
-
-#: src/common/appdata.py:97
-msgid "A powerful screenshot tool"
-msgstr "Een handig screenshot tool"
-
-#: src/common/appdata.py:101
-msgid "A graphical CD image editor"
-msgstr "Een grafische CD image editor"
-
-#: src/common/appdata.py:107
-msgid "A music player for Last.fm personalized radio"
-msgstr "Een audio speler oor een Last.fm gepersonaliseerde radio"
-
-#: src/common/appdata.py:108
-msgid "GTK+ based simple text editor"
-msgstr "GKT+ gebaseerde simple tekst bewerker"
-
-#: src/common/appdata.py:116
-msgid "The Ultimate Movie Player For Linux"
-msgstr "De Ultime Video Speler Voor Linux"
-
-#: src/common/appdata.py:118
-msgid "The Opera Web Browser"
-msgstr "De Opera Web Browser"
-
-#: src/common/appdata.py:120
-msgid "Run your Windows programs on Linux"
-msgstr "Draai uw Windows Applicaties op Linux"
-
-#: src/common/appdata.py:125
-msgid "Convert audio files into other formats"
-msgstr "Converteer audio bestanden naar andere formaten"
-
-#: src/common/appdata.py:126
-msgid "An international dictionary"
-msgstr "Een internationaal woordenboek"
-
-#: src/common/appdata.py:131
-msgid "Multiple GNOME terminals in one window"
-msgstr "Verschillende GNOME terminals in één venster"
-
-#: src/common/policykit/polkitbutton.py:81
-msgid "_Unlock"
-msgstr "_Ontgrendelen"
-
-#: src/common/widgets/widgets.py:260
-msgid "Please press the new key combination"
-msgstr "Druk de nieuwe toets combinatie in"
-
-#: src/common/widgets/widgets.py:309
-msgid "Disabled"
-msgstr "Uitgeschakeld"
-
-#: src/common/widgets/dialogs.py:67
-msgid "An unexpected error has occurred."
-msgstr "Er is een onverwachte fout opgetreden."
-
-#: data/gui/preferences.glade:7
-msgid "Ubuntu Tweak Preferences"
-msgstr "Ubuntu Tweak Voorkeuren"
-
-#: data/gui/preferences.glade:139
-msgid "Default Window Height"
-msgstr "Standaard Vensterhoogte"
-
-#: data/gui/preferences.glade:151
-msgid "Default Window Width"
-msgstr "Standaard Vensterbreedte"
-
-#: data/gui/preferences.glade:161
-msgid "Left Menubar Width"
-msgstr "Linkse Menubalk Breedte"
-
-#: data/gui/traceback.glade:91 data/gui/traceback.glade:266
-msgid "Error Message"
-msgstr "Foutmelding"
-
-#: data/gui/traceback.glade:151 data/gui/traceback.glade:326
-msgid "_Report"
-msgstr "_Rapporteren"
-
-#: src/installer.py:52
-msgid "File-Sharing Clients"
-msgstr ""
-
-#: src/lockdown.py:53
-msgid "Disable \"Fast User Switching\""
-msgstr ""
-
-#: src/ScriptWorker.py:120
-msgid "Coudn't find any text editor in your system!"
-msgstr ""
-
-#: src/mainwindow.py:71
-msgid "Tweak otherwise hidden settings."
-msgstr ""
-
-#: src/mainwindow.py:74
-msgid ""
-"Configure file templates and shortcut scripts for easy access to common "
-"tasks."
-msgstr ""
-
-#: src/mainwindow.py:100
-msgid ""
-"<span size=\"x-large\">This feature isn't currently available in your "
-"distribution</span>"
-msgstr ""
-
-#: src/mainwindow.py:113
-msgid "<span size=\"x-large\">This module is error while loading.</span>"
-msgstr ""
-
-#: src/mainwindow.py:244 src/filetype.py:478
-msgid "File Type Manager"
-msgstr ""
-
-#: src/mainwindow.py:572
-msgid "Software Update"
-msgstr ""
-
-#: src/userdir.py:46
-msgid "Download"
-msgstr ""
-
-#: src/userdir.py:48
-msgid "Public"
-msgstr ""
-
-#: src/userdir.py:49
-msgid "Document"
-msgstr ""
-
-#: src/userdir.py:50
-msgid "Music"
-msgstr ""
-
-#: src/userdir.py:201
-msgid "Directory"
-msgstr ""
-
-#: src/filetype.py:129
-msgid "File Type"
-msgstr ""
-
-#: src/filetype.py:388
-msgid "Could not find application"
-msgstr ""
-
-#: src/filetype.py:479
-msgid "Here you can manage which application will open which filetypes."
-msgstr ""
-
-#: src/computer.py:47
-msgid "Desktop environment"
-msgstr ""
-
-#: src/computer.py:56
-msgid "Current user"
-msgstr ""
-
-#: src/thirdsoft.py:69
-msgid "Avant Window Navigator (Unstable Version)"
-msgstr ""
-
-#: src/thirdsoft.py:75
-msgid "Ubuntu Chinese Repository"
-msgstr ""
-
-#: src/thirdsoft.py:86
-msgid "Gnome Global Menu"
-msgstr ""
-
-#: src/thirdsoft.py:89
-msgid "Gwibber (Daily Version)"
-msgstr ""
-
-#: src/thirdsoft.py:90
-msgid "Banshee (Stable Version)"
-msgstr ""
-
-#: src/thirdsoft.py:91
-msgid "Banshee (Unstable Version)"
-msgstr ""
-
-#: src/thirdsoft.py:97
-msgid "Ubuntu Tweak (Unstable Version)"
-msgstr ""
-
-#: src/thirdsoft.py:196
-msgid ""
-"To install software and updates from newly added or changed sources, you "
-"have to reload the information about available software.\n"
-"\n"
-"You need a working internet connection to continue."
-msgstr ""
-
-#: src/thirdsoft.py:200
-msgid "The information about available software is out-of-date"
-msgstr ""
-
-#: src/thirdsoft.py:363
-msgid "Homepage"
-msgstr ""
-
-#: src/thirdsoft.py:363
-msgid "Source URL"
-msgstr ""
-
-#: src/thirdsoft.py:363
-msgid "Description"
-msgstr ""
-
-#: src/thirdsoft.py:374
-msgid "Description is here"
-msgstr ""
-
-#: src/thirdsoft.py:402
-msgid "Third-Party Software Sources"
-msgstr ""
-
-#: src/thirdsoft.py:403
-msgid ""
-"After every release of Ubuntu there comes a feature freeze.\n"
-"This means only applications with bug-fixes get into the repository.\n"
-"By using third-party DEB repositories, you can always keep up-to-date with "
-"the latest version.\n"
-"After adding these repositories, locate and install them using Add/Remove."
-msgstr ""
-
-#: src/thirdsoft.py:419 src/sourceeditor.py:84
-msgid "Details"
-msgstr ""
-
-#: src/thirdsoft.py:458
-msgid ""
-"It is a possible security risk to use packages from Third-Party Sources.\n"
-"Please be careful and use only sources you trust."
-msgstr ""
-
-#: src/thirdsoft.py:487
-msgid ""
-"You can install the new applications through Add/Remove.\n"
-"Do you want to go now?"
-msgstr ""
-
-#: src/thirdsoft.py:488 src/sourceeditor.py:404
-msgid "The software information is up-to-date now"
-msgstr ""
-
-#: src/icons.py:33 src/icons.py:42 src/icons.py:51
-#: src/common/widgets/treeviews.py:73
-msgid "Rename"
-msgstr ""
-
 #: src/icons.py:140
 msgid "Show mounted volumes on desktop"
 msgstr ""
@@ -1240,6 +855,10 @@ msgstr ""
 #: src/icons.py:145
 msgid "Use \"Home Folder\" as desktop (Logout for changes to take effect)"
 msgstr ""
+
+#: src/metacity.py:37
+msgid "Window Decorate Effect"
+msgstr "Venster Decoratie Effect"
 
 #: src/metacity.py:39
 msgid "Use Metacity window theme"
@@ -1269,9 +888,29 @@ msgstr ""
 msgid "Titlebar mouse wheel action"
 msgstr ""
 
+#: src/metacity.py:62 src/metacity.py:67 src/metacity.py:72 src/metacity.py:77
+msgid "Roll up"
+msgstr "Oprollen"
+
 #: src/metacity.py:64
 msgid "Titlebar double-click action"
 msgstr ""
+
+#: src/metacity.py:67 src/metacity.py:72 src/metacity.py:77
+msgid "Maximize"
+msgstr "Maximaliseer"
+
+#: src/metacity.py:67 src/metacity.py:72 src/metacity.py:77
+msgid "Minimize"
+msgstr "Minimaliseer"
+
+#: src/metacity.py:67 src/metacity.py:72 src/metacity.py:77
+msgid "Lower"
+msgstr "Lager"
+
+#: src/metacity.py:67 src/metacity.py:72 src/metacity.py:77
+msgid "Menu"
+msgstr "Menu"
 
 #: src/metacity.py:69
 msgid "Titlebar middle-click action"
@@ -1303,6 +942,14 @@ msgstr ""
 msgid "Choose a splash image"
 msgstr ""
 
+#: src/session.py:45 src/gnomesettings.py:113
+msgid "PNG image (*.png)"
+msgstr "PNG bestand(*.png)"
+
+#: src/session.py:131
+msgid "Automatically save open applications when logging out"
+msgstr "Automatisch bestanden opslaan bij het afmelden"
+
 #: src/session.py:134
 msgid "Show logout prompt"
 msgstr ""
@@ -1315,9 +962,49 @@ msgstr ""
 msgid "Show splash screen"
 msgstr ""
 
+#: src/templates.py:63
+msgid "HTML document"
+msgstr "HTML-document"
+
+#: src/templates.py:64
+msgid "ODB Database"
+msgstr "ODB Gegevensbank"
+
+#: src/templates.py:65
+msgid "ODS Spreadsheet"
+msgstr "ODS Rekenblad"
+
+#: src/templates.py:66
+msgid "ODT Document"
+msgstr "ODT Document"
+
+#: src/templates.py:67
+msgid "Plain text document"
+msgstr "Simpel tekstbestand"
+
+#: src/templates.py:68
+msgid "ODP Presentation"
+msgstr "ODP Presentatie"
+
+#: src/templates.py:69
+msgid "Python script"
+msgstr "Python-script"
+
 #: src/templates.py:70
 msgid "Pygtk Example"
 msgstr ""
+
+#: src/templates.py:71
+msgid "Shell script"
+msgstr "Shell script"
+
+#: src/templates.py:98
+msgid "Enabled Templates"
+msgstr "Actieve sjablonen"
+
+#: src/templates.py:105
+msgid "Disabled Templates"
+msgstr "Inactieve sjablonen"
 
 #: src/templates.py:116
 #, python-format
@@ -1329,6 +1016,14 @@ msgstr ""
 #: src/templates.py:123
 msgid "Go And Set"
 msgstr ""
+
+#: src/templates.py:128
+msgid "Restart This Module"
+msgstr "Herstart Deze Module"
+
+#: src/templates.py:134
+msgid "Manage Templates"
+msgstr "Beheer sjablonen"
 
 #: src/templates.py:135
 msgid ""
@@ -1352,32 +1047,64 @@ msgid ""
 "Do you wish to continue?"
 msgstr ""
 
-#: src/compiz.py:245
+#: src/compiz.py:47
+msgid "Expo"
+msgstr "Expo"
+
+#: src/compiz.py:48
+msgid "Show Windows"
+msgstr ""
+
+#: src/compiz.py:49
+msgid "Show Desktop"
+msgstr "Toon bureaublad"
+
+#: src/compiz.py:50
+msgid "Widget"
+msgstr "Widget"
+
+#: src/compiz.py:231
+msgid "Install Advanced Desktop Effects Settings Manager"
+msgstr "Installeer Advanced Desktop Effects Settings Manager"
+
+#: src/compiz.py:234
+msgid "Install Simple Desktop Effects Settings manager"
+msgstr "Installeer Simple Desktop Effects Settings manager"
+
+#: src/compiz.py:237
+msgid "Install Screenlets Widget Application"
+msgstr "Installeer Screenlets Widget Applicatie"
+
+#: src/compiz.py:247
 msgid "Enable snapping windows"
 msgstr ""
 
-#: src/compiz.py:246
+#: src/compiz.py:248
 msgid "Enable wobbly windows"
 msgstr ""
 
-#: src/compiz.py:251
+#: src/compiz.py:250
+msgid "Window Effects"
+msgstr "Venster Effecten"
+
+#: src/compiz.py:253
 msgid "Enable transparent menus"
 msgstr ""
 
-#: src/compiz.py:252
+#: src/compiz.py:254
 msgid "Enable wobbly menus"
 msgstr ""
 
-#: src/compiz.py:259
+#: src/compiz.py:256
+msgid "Menu Effects"
+msgstr "Menu Effecten"
+
+#: src/compiz.py:260
 msgid "Useful Extensions"
 msgstr ""
 
-#: src/compiz.py:274
+#: src/compiz.py:275
 msgid "Prerequisite Conditions"
-msgstr ""
-
-#: src/compiz.py:318
-msgid "Show Windows"
 msgstr ""
 
 #: src/shortcuts.py:49
@@ -1390,6 +1117,31 @@ msgid ""
 "applications instantly.\n"
 "Enter the application's command and set the desired shortcut keys."
 msgstr ""
+
+#: src/shortcuts.py:91
+#, python-format
+msgid "Command %d"
+msgstr "Opdracht %d"
+
+#: src/shortcuts.py:99 src/shortcuts.py:153
+msgid "disabled"
+msgstr "Uitgeschakeld"
+
+#: src/shortcuts.py:115
+msgid "ID"
+msgstr "ID"
+
+#: src/shortcuts.py:126
+msgid "Command"
+msgstr "Opdracht"
+
+#: src/shortcuts.py:141
+msgid "Key"
+msgstr "Toets"
+
+#: src/shortcuts.py:145
+msgid "Clean"
+msgstr "Opschonen"
 
 #: src/cleaner.py:54
 msgid "Cleaning Package Config"
@@ -1423,6 +1175,10 @@ msgid ""
 "Take %s of disk space"
 msgstr ""
 
+#: src/cleaner.py:245
+msgid "Package Config"
+msgstr "Pakket Configuratie"
+
 #: src/cleaner.py:278
 #, python-format
 msgid "%d package selected to remove"
@@ -1430,7 +1186,16 @@ msgid_plural "%d packages selected to remove"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/cleaner.py:364 src/nautilus.py:193
+#: src/cleaner.py:282
+#, python-format
+msgid "%s of space will be freed"
+msgstr "%s ruimte zal vrijkomen"
+
+#: src/cleaner.py:361
+msgid "Canceled by user!"
+msgstr "Geannuleerd door gebruiker"
+
+#: src/cleaner.py:364 src/nautilus.py:195
 msgid "Clean up Successful!"
 msgstr ""
 
@@ -1444,25 +1209,29 @@ msgid ""
 "download cache."
 msgstr ""
 
-#: src/cleaner.py:401
+#: src/cleaner.py:399
 msgid "Clean Package"
 msgstr ""
 
-#: src/cleaner.py:406
+#: src/cleaner.py:404
 msgid "Clean Cache"
 msgstr ""
 
-#: src/cleaner.py:411
+#: src/cleaner.py:409
 msgid "Clean Config"
 msgstr ""
 
-#: src/cleaner.py:416
+#: src/cleaner.py:414
 msgid "Clean Kernel"
 msgstr ""
 
-#: src/cleaner.py:422
+#: src/cleaner.py:420
 msgid "Select All"
 msgstr ""
+
+#: src/scripts.py:49
+msgid "Copy to ..."
+msgstr "Kopieer naar ..."
 
 #: src/scripts.py:50
 msgid "Copy to Desktop"
@@ -1476,6 +1245,10 @@ msgstr ""
 msgid "Copy to Home"
 msgstr ""
 
+#: src/scripts.py:53
+msgid "Move to ..."
+msgstr "Verplaats naar ..."
+
 #: src/scripts.py:54
 msgid "Move to Desktop"
 msgstr ""
@@ -1487,6 +1260,10 @@ msgstr ""
 #: src/scripts.py:56
 msgid "Move to Home"
 msgstr ""
+
+#: src/scripts.py:57
+msgid "Link to ..."
+msgstr "Koppel aan ..."
 
 #: src/scripts.py:58
 msgid "Link to Desktop"
@@ -1508,6 +1285,14 @@ msgstr ""
 msgid "Open with your favourite text editor (as root)"
 msgstr ""
 
+#: src/scripts.py:63
+msgid "Browse as root"
+msgstr "Verken als root"
+
+#: src/scripts.py:64
+msgid "Search in current folder"
+msgstr "Zoek in de huidige map"
+
 #: src/scripts.py:65
 msgid "Convert image to JPG"
 msgstr ""
@@ -1528,6 +1313,14 @@ msgstr ""
 msgid "Make hard shadow to image"
 msgstr ""
 
+#: src/scripts.py:96
+msgid "Enabled Scripts"
+msgstr "Ingeschakelde Scripts"
+
+#: src/scripts.py:124
+msgid "Disabled Scripts"
+msgstr "Uitgeschakelde scripts"
+
 #: src/scripts.py:133
 msgid "Manage Scripts"
 msgstr ""
@@ -1539,11 +1332,19 @@ msgid ""
 "'Scripts' will be added to the context menu."
 msgstr ""
 
+#: src/scripts.py:159
+msgid "Rebuild System Scripts"
+msgstr "Systeem Scripts Vernieuwen"
+
 #: src/scripts.py:177
 msgid ""
 "This will delete all disabled scripts.\n"
 "Do you wish to continue?"
 msgstr ""
+
+#: src/gnomesettings.py:44
+msgid "Panel and Menu"
+msgstr "Paneel en Menu"
 
 #: src/gnomesettings.py:46
 msgid "Display warning when removing a panel"
@@ -1553,6 +1354,10 @@ msgstr ""
 msgid "Complete lockdown of all panels"
 msgstr ""
 
+#: src/gnomesettings.py:52
+msgid "Enable panel animations"
+msgstr "Activeer paneel animatie"
+
 #: src/gnomesettings.py:55
 msgid "Show Input Method menu on the context menu"
 msgstr ""
@@ -1561,6 +1366,10 @@ msgstr ""
 msgid "Show Unicode Method menu on the context menu"
 msgstr ""
 
+#: src/gnomesettings.py:65
+msgid "Screensaver"
+msgstr "Schermbeveiliging"
+
 #: src/gnomesettings.py:67
 msgid "Enable user switching when screen is locked."
 msgstr ""
@@ -1568,6 +1377,30 @@ msgstr ""
 #: src/gnomesettings.py:72
 msgid "Enable system-wide \"Recently Documents\" list"
 msgstr ""
+
+#: src/gnomesettings.py:75
+msgid "History"
+msgstr "Geschiedenis"
+
+#: src/gnomesettings.py:82
+msgid "Notification-daemon popup location"
+msgstr "Waarschuwings daemon popup locatie"
+
+#: src/gnomesettings.py:86
+msgid "Top Left"
+msgstr "Linksboven"
+
+#: src/gnomesettings.py:86
+msgid "Top Right"
+msgstr "Rechtsboven"
+
+#: src/gnomesettings.py:86
+msgid "Bottom Left"
+msgstr "Linksonder"
+
+#: src/gnomesettings.py:86
+msgid "Bottom Right"
+msgstr "Rechtsonder"
 
 #: src/gnomesettings.py:98
 msgid "Click the button to change the menu logo"
@@ -1587,42 +1420,70 @@ msgstr ""
 msgid "Do you want your changes to take effect immediately?"
 msgstr ""
 
-#: src/nautilus.py:51
+#: src/nautilus.py:54
 msgid "Cleaning..."
 msgstr ""
 
-#: src/nautilus.py:101
+#: src/nautilus.py:104
 msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
 msgstr ""
 
-#: src/nautilus.py:109
+#: src/nautilus.py:107
+msgid "File Browser"
+msgstr "Bestandsbeheer"
+
+#: src/nautilus.py:112
 msgid "Default thumbnail icon size (pixels)"
 msgstr ""
 
-#: src/nautilus.py:123
+#: src/nautilus.py:126
 msgid "Maximum size of the thumbnail cache (megabytes)"
 msgstr ""
 
-#: src/nautilus.py:135
+#: src/nautilus.py:138
 msgid "Maximum age for the thumbnail in the cache (days)"
 msgstr ""
 
-#: src/nautilus.py:147
+#: src/nautilus.py:150
 msgid "Thumbnails Settings"
 msgstr ""
 
-#: src/nautilus.py:183
+#: src/nautilus.py:157
+msgid "Nautilus with Open Terminal"
+msgstr "Nautilus met open terminal"
+
+#: src/nautilus.py:159
+msgid "Nautilus with Root Privileges"
+msgstr "Nautilus met root- rechten"
+
+#: src/nautilus.py:161
+msgid "Nautilus with Wallpaper"
+msgstr "Nautilus met achtergrond"
+
+#: src/nautilus.py:163
+msgid "Nautilus Extensions"
+msgstr "Nautilus Extensies"
+
+#: src/nautilus.py:185
 #, python-format
 msgid "Clean up the thumbnails cache (will free %s of disk space)"
 msgstr ""
 
-#: src/nautilus.py:186
+#: src/nautilus.py:188
 msgid "The thumbnails cache will be cleaned, Do you wish to continue?"
 msgstr ""
 
 #: src/powermanager.py:37
 msgid "Advanced Power Management Settings"
 msgstr ""
+
+#: src/powermanager.py:39
+msgid "Enable \"Hibernation\""
+msgstr "Slaapstand Inschakelen"
+
+#: src/powermanager.py:42
+msgid "Enable \"Suspend\""
+msgstr "Pauzestand Inschakelen"
 
 #: src/powermanager.py:45
 msgid "Show \"CPU frequency control option\" in Power Management Preferences"
@@ -1640,9 +1501,53 @@ msgstr ""
 msgid "Display \"Power Manager\" panel item"
 msgstr ""
 
+#: src/powermanager.py:56
+msgid "Never display"
+msgstr "Nooit tonen"
+
+#: src/powermanager.py:56
+msgid "When charging"
+msgstr "Al opladend"
+
+#: src/powermanager.py:56
+msgid "Always display"
+msgstr "Altijd tonen"
+
+#: src/powermanager.py:62
+msgid "Normal"
+msgstr "Normaal"
+
+#: src/powermanager.py:62
+msgid "On Demand"
+msgstr "Op Aanvraag"
+
+#: src/powermanager.py:62
+msgid "Power Save"
+msgstr "Energie besparend"
+
+#: src/powermanager.py:62
+msgid "Performance"
+msgstr "Prestaties"
+
 #: src/powermanager.py:64
 msgid "CPU Policy"
 msgstr ""
+
+#: src/powermanager.py:65
+msgid "The Performance value when on AC power"
+msgstr "De prestatie waarden wanneer de computer op netstroom werkt"
+
+#: src/powermanager.py:71
+msgid "The Performance value when on battery power"
+msgstr "De prestatie waarden wanneer de computer op battrij werkt"
+
+#: src/powermanager.py:77
+msgid "The CPU frequency policy when on AC power"
+msgstr "De CPU frequentie regels wanneer de computer op netstroom werkt"
+
+#: src/powermanager.py:82
+msgid "The CPU frequency policy when on battery power"
+msgstr "De CPU frequentie regels wanneer de computer op battrij werkt"
 
 #: src/preferences.py:69 src/preferences.py:77
 msgid "Reset"
@@ -1656,49 +1561,61 @@ msgstr ""
 msgid "Enable PowerUser Mode"
 msgstr ""
 
-#: src/sourceeditor.py:62 src/sourceeditor.py:67
+#: src/sourceeditor.py:61 src/sourceeditor.py:66
 msgid "Choose the sources"
 msgstr ""
 
-#: src/sourceeditor.py:68
+#: src/sourceeditor.py:67
 msgid ""
 "You can read the title and comment to determine which source is suitable for "
 "you."
 msgstr ""
 
-#: src/sourceeditor.py:103 src/sourceeditor.py:108
+#: src/sourceeditor.py:102 src/sourceeditor.py:107
 msgid "Submit your sources"
 msgstr ""
 
-#: src/sourceeditor.py:108
+#: src/sourceeditor.py:107
 msgid "You can submit your sources to the server for other people to use."
 msgstr ""
 
-#: src/sourceeditor.py:113
+#: src/sourceeditor.py:112
 msgid "_Source Title:"
 msgstr ""
 
-#: src/sourceeditor.py:116
+#: src/sourceeditor.py:115
 msgid "_Locale:"
 msgstr ""
 
-#: src/sourceeditor.py:123
+#: src/sourceeditor.py:122
 msgid "Enter the title of the source, e.g. \"Ubuntu Official Repostory\""
 msgstr ""
 
-#: src/sourceeditor.py:125
+#: src/sourceeditor.py:124
 msgid "If the locale isn't correct you can edit manually"
 msgstr ""
 
-#: src/sourceeditor.py:140
+#: src/sourceeditor.py:139
 msgid "Submit"
 msgstr ""
 
-#: src/sourceeditor.py:211
+#: src/sourceeditor.py:187
+msgid "Please check your network connection!"
+msgstr "Controleer uw netwerk verbinding!"
+
+#: src/sourceeditor.py:187
+msgid "Network Error"
+msgstr "Netwerk Fout"
+
+#: src/sourceeditor.py:194
+msgid "Uploading..."
+msgstr "Bezig met uploaden..."
+
+#: src/sourceeditor.py:210
 msgid "Updating..."
 msgstr ""
 
-#: src/sourceeditor.py:336
+#: src/sourceeditor.py:344
 msgid ""
 "Freely edit your software sources to fit your needs.\n"
 "Click \"Update Sources\" if you want to change the sources.\n"
@@ -1706,48 +1623,52 @@ msgid ""
 "people.\n"
 msgstr ""
 
-#: src/sourceeditor.py:355
+#: src/sourceeditor.py:363
 msgid "Update Sources"
 msgstr ""
 
-#: src/sourceeditor.py:361
+#: src/sourceeditor.py:369
 msgid "Submit Sources"
 msgstr ""
 
-#: src/sourceeditor.py:420
+#: src/sourceeditor.py:411
+msgid "You can install new applications through Add/Remove."
+msgstr "U kan nieuwe applicaties installeren via Installeren/Verwijderen."
+
+#: src/sourceeditor.py:428
 msgid "Please input the correct information about sources!"
 msgstr ""
 
-#: src/sourceeditor.py:433
+#: src/sourceeditor.py:441
 msgid ""
 "You can submit your sources to our server to help building the sources list, "
 "or you can use the official sources.\n"
 "Do you wish to use the official sources?"
 msgstr ""
 
-#: src/sourceeditor.py:436
+#: src/sourceeditor.py:444
 msgid "No source data available"
 msgstr ""
 
-#: src/sourceeditor.py:453
+#: src/sourceeditor.py:461
 msgid ""
 "Your sources will be reviewed and made available for others soon.\n"
 "Thank you!"
 msgstr ""
 
-#: src/sourceeditor.py:454
+#: src/sourceeditor.py:462
 msgid "Successfully submitted"
 msgstr ""
 
-#: src/sourceeditor.py:467
-msgid "Please check the permission of the sources.list file"
-msgstr ""
-
-#: src/sourceeditor.py:475
+#: src/sourceeditor.py:483
 msgid ""
 "The current content will be lost after reloading!\n"
 "Do you wish to continue?"
 msgstr ""
+
+#: src/common/package.py:173
+msgid "(Not available)"
+msgstr "(Niet beschikbaar)"
 
 #: src/common/appdata.py:57
 msgid "A color scheme designer"
@@ -1757,9 +1678,21 @@ msgstr ""
 msgid "Development version of an audio player for KDE"
 msgstr ""
 
+#: src/common/appdata.py:59
+msgid "Client for the eD2k and Kad networks"
+msgstr "Client voor de eD2k en Kad netwerken"
+
+#: src/common/appdata.py:60
+msgid "GNOME IDE for C/C++, Java, Python"
+msgstr "GNOME IDE voor C/C++, Java, Python"
+
 #: src/common/appdata.py:61
 msgid "A skinned multimedia player for many platforms"
 msgstr ""
+
+#: src/common/appdata.py:62
+msgid "Record and edit audio files"
+msgstr "Opnemen en bewerken van geluidsbestanden"
 
 #: src/common/appdata.py:63
 msgid "Fully customisable dock-like window navigator"
@@ -1769,6 +1702,14 @@ msgstr ""
 msgid "Fully customisable dock-like window navigator(Unstable)"
 msgstr ""
 
+#: src/common/appdata.py:65
+msgid "A free video editor"
+msgstr "Een gratis vdeo editor"
+
+#: src/common/appdata.py:66
+msgid "BitTorrent client written in Java"
+msgstr "Bittirrent client geschreven in Java"
+
 #: src/common/appdata.py:67
 msgid "Audio Management and Playback application"
 msgstr ""
@@ -1776,6 +1717,10 @@ msgstr ""
 #: src/common/appdata.py:68
 msgid "GTK+ Bluetooth Manager"
 msgstr ""
+
+#: src/common/appdata.py:69
+msgid "A true dock for linux"
+msgstr "Een echt dock voor linux"
 
 #: src/common/appdata.py:70
 msgid "A chm file viewer written in GTK+"
@@ -1795,6 +1740,10 @@ msgstr ""
 msgid "Advanced Desktop Effects Settings Manager"
 msgstr ""
 
+#: src/common/appdata.py:74
+msgid "An API documentation browser for GNOME."
+msgstr "Een API documentatie browser voor GNOME"
+
 #: src/common/appdata.py:75
 msgid "A Bittorrent client written in PyGTK"
 msgstr ""
@@ -1809,9 +1758,13 @@ msgstr ""
 
 #: src/common/appdata.py:78
 msgid ""
-"EIOffice Personal 2009. Free for Chinese users. See "
-"http://www.evermoresw.com."
+"EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
+"com."
 msgstr ""
+
+#: src/common/appdata.py:79
+msgid "A client for the Windows Live Message network"
+msgstr "Een cliënt voor het Windows Live Berichten netwerk"
 
 #: src/common/appdata.py:80
 msgid ""
@@ -1827,6 +1780,10 @@ msgstr ""
 msgid "File transmission via ftp, sftp and ftps"
 msgstr ""
 
+#: src/common/appdata.py:83
+msgid "An extremly fast and lightweight file manager"
+msgstr "Een zeer snelle en lichte bestands beheerder"
+
 #: src/common/appdata.py:84
 msgid ""
 "Galaxium is an instant messenger application designed for the GNOME desktop"
@@ -1835,6 +1792,10 @@ msgstr ""
 #: src/common/appdata.py:85
 msgid "A GTK+ jabber client"
 msgstr ""
+
+#: src/common/appdata.py:86
+msgid "A fast and lightweight IDE"
+msgstr "Een snelle en lichte IDE"
 
 #: src/common/appdata.py:87
 msgid "A multithreaded FTP client"
@@ -1866,9 +1827,21 @@ msgid ""
 "geographic information at your fingertips."
 msgstr ""
 
+#: src/common/appdata.py:94
+msgid "Platform for running Google Gadgets on Linux"
+msgstr "Platform voor het draaien van Google Gadgets op Linux"
+
+#: src/common/appdata.py:95
+msgid "GNOME partition editor"
+msgstr "GNOME partitie bewerker"
+
 #: src/common/appdata.py:96
 msgid "Lightweight image viewer"
 msgstr ""
+
+#: src/common/appdata.py:97
+msgid "A powerful screenshot tool"
+msgstr "Een handig screenshot tool"
 
 #: src/common/appdata.py:98
 msgid "Graphical frontend for recordmydesktop"
@@ -1883,6 +1856,10 @@ msgstr ""
 #: src/common/appdata.py:100
 msgid "Gwibber is an open source microblogging client for GNOME"
 msgstr ""
+
+#: src/common/appdata.py:101
+msgid "A graphical CD image editor"
+msgstr "Een grafische CD image editor"
 
 #: src/common/appdata.py:102
 msgid "Intelligent Input Bus for Linux / Unix OS"
@@ -1905,6 +1882,14 @@ msgstr ""
 #: src/common/appdata.py:106
 msgid "Non-linear editor for Digital Video data"
 msgstr ""
+
+#: src/common/appdata.py:107
+msgid "A music player for Last.fm personalized radio"
+msgstr "Een audio speler oor een Last.fm gepersonaliseerde radio"
+
+#: src/common/appdata.py:108
+msgid "GTK+ based simple text editor"
+msgstr "GKT+ gebaseerde simple tekst bewerker"
 
 #: src/common/appdata.py:109
 msgid "Feed aggregator for GNOME"
@@ -1931,14 +1916,26 @@ msgid "Webkit based lightweight web browser"
 msgstr ""
 
 #: src/common/appdata.py:115
+msgid "The free media player - play all your files"
+msgstr ""
+
+#: src/common/appdata.py:116
 msgid "An IDE to Develop .NET applications."
 msgstr ""
 
 #: src/common/appdata.py:117
+msgid "The Ultimate Movie Player For Linux"
+msgstr "De Ultime Video Speler Voor Linux"
+
+#: src/common/appdata.py:118
 msgid "IDE for Java, C/C++, Ruby, UML, etc."
 msgstr ""
 
 #: src/common/appdata.py:119
+msgid "The Opera Web Browser"
+msgstr "De Opera Web Browser"
+
+#: src/common/appdata.py:120
 msgid ""
 "Pidgin is a graphical modular messaging client based on libpurple which is "
 "capable of connecting to AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, SIP/SIMPLE, "
@@ -1947,117 +1944,150 @@ msgid ""
 msgstr ""
 
 #: src/common/appdata.py:121
+msgid "Run your Windows programs on Linux"
+msgstr "Draai uw Windows Applicaties op Linux"
+
+#: src/common/appdata.py:122
 msgid "A framework for desktop widgets"
 msgstr ""
 
-#: src/common/appdata.py:122
+#: src/common/appdata.py:123
 msgid "Feature-rich screenshot application(formerly known as GScrot)"
 msgstr ""
 
-#: src/common/appdata.py:123
+#: src/common/appdata.py:124
 msgid "Make audio/video calls using this VoIP Software"
 msgstr ""
 
-#: src/common/appdata.py:124
+#: src/common/appdata.py:125
 msgid "A great MPlayer front-end, written in QT4"
 msgstr ""
 
+#: src/common/appdata.py:126
+msgid "Convert audio files into other formats"
+msgstr "Converteer audio bestanden naar andere formaten"
+
 #: src/common/appdata.py:127
+msgid "An international dictionary"
+msgstr "Een internationaal woordenboek"
+
+#: src/common/appdata.py:128
 msgid ""
 "Swiftweasel is an optimized build of the Mozilla Firefox web browser for "
 "Linux"
 msgstr ""
 
-#: src/common/appdata.py:128
+#: src/common/appdata.py:129
 msgid ""
 "A desktop application that will watch for events (website updates, emails, "
 "file and folder changes...)"
 msgstr ""
 
-#: src/common/appdata.py:129
+#: src/common/appdata.py:130
 msgid "An instant messaging application powered by qt-mono-bindings"
 msgstr ""
 
-#: src/common/appdata.py:130
+#: src/common/appdata.py:131
 msgid "A Useful Task List"
 msgstr ""
 
 #: src/common/appdata.py:132
+msgid "Multiple GNOME terminals in one window"
+msgstr "Verschillende GNOME terminals in één venster"
+
+#: src/common/appdata.py:133
 msgid ""
 "Transmission is a fast, easy, and free multi-platform BitTorrent client."
 msgstr ""
 
-#: src/common/appdata.py:133
+#: src/common/appdata.py:134
 msgid "Ubuntu Tweak makes it easier to configure Ubuntu"
 msgstr ""
 
-#: src/common/appdata.py:134
+#: src/common/appdata.py:135
 msgid "Commonly used restricted packages"
 msgstr ""
 
-#: src/common/appdata.py:135
+#: src/common/appdata.py:136
 msgid "configure your USB ADSL modem and connection easier than ever!"
 msgstr ""
 
-#: src/common/appdata.py:136 src/common/appdata.py:137
+#: src/common/appdata.py:137 src/common/appdata.py:138
 msgid "A feature rich, high performance virtualization software"
 msgstr ""
 
-#: src/common/appdata.py:138
+#: src/common/appdata.py:139
 msgid "Read, capture, broadcast your multimedia streams"
 msgstr ""
 
-#: src/common/appdata.py:139
+#: src/common/appdata.py:140
 msgid "Run Virtual Machines using VMware"
 msgstr ""
 
-#: src/common/appdata.py:140
+#: src/common/appdata.py:141
 msgid "A compatibility layer for running Windows programs"
 msgstr ""
 
-#: src/common/appdata.py:141
+#: src/common/appdata.py:142
 msgid ""
 "Wine-doors is an application designed to make installing windows software on "
 "Linux, Solaris or other Unix systems easier."
 msgstr ""
 
-#: src/common/appdata.py:142
+#: src/common/appdata.py:143
 msgid ""
 "XBMC is a free and open source software media player and entertainment hub"
 msgstr ""
 
-#: src/common/appdata.py:146
+#: src/common/appdata.py:147
 msgid "Development Version of Mozilla Firefox 3.1, 4.0"
 msgstr ""
 
-#: src/common/appdata.py:147
+#: src/common/appdata.py:148
 msgid "Development version of Compiz Fusion"
 msgstr ""
 
-#: src/common/appdata.py:148
+#: src/common/appdata.py:149
 msgid "Google's Linux Repository"
 msgstr ""
 
-#: src/common/appdata.py:149
+#: src/common/appdata.py:150
 msgid "K Desktop Environment 4.2"
 msgstr ""
 
-#: src/common/appdata.py:150
+#: src/common/appdata.py:151
 msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
 msgstr ""
 
-#: src/common/appdata.py:151
+#: src/common/appdata.py:152
 msgid ""
 "Multimedia, Entertainment and Distraction In Ubuntu\n"
 "Medibuntu is a repository of packages that cannot be included into the "
 "Ubuntu distribution for legal reasons (copyright, license, patent, etc)."
 msgstr ""
 
-#: src/common/appdata.py:153
+#: src/common/appdata.py:154
 msgid ""
 "Ubuntu repository for Chinese users.\n"
 "Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and "
 "other softwares."
+msgstr ""
+
+#: src/common/appdata.py:156
+msgid ""
+"GetDeb extends the existing software options for Ubuntu (and derived) Linux "
+"distributions by providing major updates and software not yet available on "
+"the official Ubuntu repositories."
+msgstr ""
+
+#: src/common/appdata.py:157
+msgid "Updated versions of X.org drivers, libraries, etc. for Ubuntu."
+msgstr ""
+
+#: src/common/appdata.py:158
+msgid ""
+"Gnome Games built from Git, with all experimental features and staging games "
+"enabled."
 msgstr ""
 
 #: src/common/misc.py:15
@@ -2081,6 +2111,18 @@ msgstr ""
 #, python-format
 msgid "%.1f GB"
 msgstr ""
+
+#: src/common/policykit/polkitbutton.py:81
+msgid "_Unlock"
+msgstr "_Ontgrendelen"
+
+#: src/common/widgets/widgets.py:260
+msgid "Please press the new key combination"
+msgstr "Druk de nieuwe toets combinatie in"
+
+#: src/common/widgets/widgets.py:309
+msgid "Disabled"
+msgstr "Uitgeschakeld"
 
 #: src/common/widgets/treeviews.py:69
 msgid "Create folder"
@@ -2109,6 +2151,10 @@ msgid ""
 "There are files in it!"
 msgstr ""
 
+#: src/common/widgets/dialogs.py:67
+msgid "An unexpected error has occurred."
+msgstr "Er is een onverwachte fout opgetreden."
+
 #: src/common/widgets/dialogs.py:68
 msgid "Could not authenticate"
 msgstr ""
@@ -2121,6 +2167,10 @@ msgstr ""
 msgid "Service hasn't initialized yet"
 msgstr ""
 
+#: data/gui/preferences.glade:7
+msgid "Ubuntu Tweak Preferences"
+msgstr "Ubuntu Tweak Voorkeuren"
+
 #: data/gui/preferences.glade:33
 msgid "<b>User Interface</b>"
 msgstr ""
@@ -2132,6 +2182,18 @@ msgstr ""
 #: data/gui/preferences.glade:128
 msgid "Left Menubar Color"
 msgstr ""
+
+#: data/gui/preferences.glade:139
+msgid "Default Window Height"
+msgstr "Standaard Vensterhoogte"
+
+#: data/gui/preferences.glade:151
+msgid "Default Window Width"
+msgstr "Standaard Vensterbreedte"
+
+#: data/gui/preferences.glade:161
+msgid "Left Menubar Width"
+msgstr "Linkse Menubalk Breedte"
 
 #: data/gui/preferences.glade:211
 msgid "<b>Features</b>"
@@ -2153,11 +2215,19 @@ msgid ""
 "the error message below:"
 msgstr ""
 
-#: data/gui/traceback.glade:226
+#: data/gui/traceback.glade:99 data/gui/traceback.glade:282
+msgid "Error Message"
+msgstr "Foutmelding"
+
+#: data/gui/traceback.glade:159 data/gui/traceback.glade:342
+msgid "_Report"
+msgstr "_Rapporteren"
+
+#: data/gui/traceback.glade:234
 msgid "<big><b>Oops... an error occured</b></big>"
 msgstr ""
 
-#: data/gui/traceback.glade:240
+#: data/gui/traceback.glade:248
 msgid ""
 "If you'd like to help us fix the problem, \n"
 "Please choose <i>Report</i> to file a new bug report. Make sure to include "
@@ -2179,3 +2249,6 @@ msgstr ""
 #: data/gui/type_edit.glade:222
 msgid "_Use a custom command"
 msgstr ""
+
+#~ msgid "Update failed!"
+#~ msgstr "Update mislukt!"

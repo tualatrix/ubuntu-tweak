@@ -33,69 +33,6 @@ from xdg.DesktopEntry import DesktopEntry
 
 p_kernel = re.compile('\d')
 
-def update_apt_cache(init = False):
-    '''if init is true, force to update, or it will update only once'''
-    global cache
-
-    if init:
-        try:
-            cache
-        except NameError:
-            pass
-        else:
-            return
-
-    apt_pkg.init()
-    cache = apt.Cache(apt.progress.OpTextProgress())
-
-update_apt_cache(True)
-
-class AptCheckButton(gtk.CheckButton):
-    def __init__(self, label, pkgname, tooltip = None):
-        gtk.CheckButton.__init__(self, label)
-
-        self.pkgname = pkgname
-        if tooltip:
-            self.set_tooltip_text(tooltip)
-
-        self.set_active(self.get_state())
-
-    def get_state(self):
-        try:
-            pkg = cache[self.pkgname]
-        except KeyError:
-            self.set_sensitive(False)
-            label = self.get_property('label')
-            label = label + _('(Not available)')
-            self.set_property('label', label)
-            return False
-
-        return pkg.isInstalled
-
-    def button_toggled(self, widget, data = None):
-        pass
-
-class PackageInfo:
-    DESKTOP_DIR = '/usr/share/app-install/desktop/'
-
-    def __init__(self, name):
-        self.name = name
-        self.pkg = cache[name]
-        self.desktopentry = DesktopEntry(self.DESKTOP_DIR + name + '.desktop')
-
-    def check_installed(self):
-        return self.pkg.isInstalled
-
-    def get_comment(self):
-        return self.desktopentry.getComment()
-
-    def get_name(self):
-        appname = self.desktopentry.getName()
-        if appname == '':
-            return self.name.title()
-
-        return appname
-
 class PackageWorker:
     basenames = ['linux-image', 'linux-headers', 'linux-image-debug',
                   'linux-ubuntu-modules', 'linux-header-lum',
@@ -104,7 +41,9 @@ class PackageWorker:
 
     def __init__(self):
         self.uname = os.uname()[2]
-	self.uname_no_generic = '-'.join(self.uname.split('-')[:2])
+        self.uname_no_generic = '-'.join(self.uname.split('-')[:2])
+
+        self.cache = self.get_cache()
 
     def is_current_kernel(self, pkg):
         for base in self.basenames:
@@ -142,8 +81,8 @@ class PackageWorker:
 
     def list_autoremovable(self):
         list = []
-        for pkg in cache.keys():
-            p = cache[pkg]
+        for pkg in self.cache.keys():
+            p = self.cache[pkg]
             try:
                 need_remove = getattr(p, 'isAutoRemovable')
             except:
@@ -156,18 +95,18 @@ class PackageWorker:
 
     def list_unneeded_kerenl(self):
         list = []
-        for pkg in cache.keys():
-            if cache[pkg].isInstalled:
+        for pkg in self.cache.keys():
+            if self.cache[pkg].isInstalled:
                 for base in self.basenames:
                     if pkg.startswith(base) and p_kernel.findall(pkg) and not self.is_current_kernel(pkg):
-			list.append(pkg)
-	return list
+                        list.append(pkg)
+        return list
 
     def get_pkgsummary(self, pkg):
-        return cache[pkg].summary
+        return self.cache[pkg].summary
 
     def get_pkgversion(self, pkg):
-        return pkg in cache and cache[pkg].installedVersion or None
+        return pkg in self.cache and self.cache[pkg].installedVersion or None
 
     def perform_action(self, window_main, to_add = None, to_rm = None):
         window_main.set_sensitive(False)
@@ -184,7 +123,86 @@ class PackageWorker:
 
         return self.return_code
 
+    def get_install_status(self, to_add, to_rm):
+        done = True
+
+        for pkg in to_add:
+            if not PackageInfo(pkg).check_installed():
+                done = False
+                break
+
+        for pkg in to_rm:
+            if PackageInfo(pkg).check_installed():
+                done = False
+                break
+
+        return done
+
+    def get_cache(self):
+        try:
+            self.update_apt_cache()
+        except:
+            return None
+        else:
+            return self.cache
+
+    def update_apt_cache(self, init=False):
+        '''if init is true, force to update, or it will update only once'''
+        if init or not hasattr(self, 'cache'):
+            apt_pkg.init()
+            self.cache = apt.Cache()
+
 package_worker = PackageWorker()
+
+class AptCheckButton(gtk.CheckButton):
+    def __init__(self, label, pkgname, tooltip = None):
+        gtk.CheckButton.__init__(self, label)
+
+        self.pkgname = pkgname
+        if tooltip:
+            self.set_tooltip_text(tooltip)
+
+        self.set_active(self.get_state())
+
+    def get_state(self):
+        try:
+            pkg = package_worker.get_cache()[self.pkgname]
+        except KeyError:
+            self.set_sensitive(False)
+            label = self.get_property('label')
+            label = label + _('(Not available)')
+            self.set_property('label', label)
+            return False
+
+        return pkg.isInstalled
+
+    def button_toggled(self, widget, data = None):
+        pass
+
+    def reset_active(self):
+        self.set_active(self.get_state())
+
+class PackageInfo:
+    DESKTOP_DIR = '/usr/share/app-install/desktop/'
+
+    def __init__(self, name):
+        self.name = name
+        self.pkg = package_worker.get_cache()[name]
+        self.desktopentry = DesktopEntry(self.DESKTOP_DIR + name + '.desktop')
+
+    def check_installed(self):
+        return self.pkg.isInstalled
+
+    def get_comment(self):
+        return self.desktopentry.getComment()
+
+    def get_name(self):
+        appname = self.desktopentry.getName()
+        if appname == '':
+            return self.name.title()
+
+        return appname
+
 
 if __name__ == '__main__':
     update_apt_cache()

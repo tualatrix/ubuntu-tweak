@@ -27,8 +27,11 @@ import gettext
 import thread
 
 try:
-    from common.package import package_worker, AptCheckButton, update_apt_cache
-    DISABLE = False
+    from common.package import package_worker, AptCheckButton
+    if package_worker.get_cache():
+        DISABLE = False
+    else:
+        DISABLE = True
 except ImportError:
     DISABLE = True
 
@@ -149,7 +152,6 @@ class Nautilus(TweakPage):
 
 
         if not DISABLE:
-            update_apt_cache(True)
             self.package_worker = package_worker
 
             self.nautilus_terminal = AptCheckButton(_('Nautilus with Open Terminal'), 'nautilus-open-terminal')
@@ -205,15 +207,18 @@ class Nautilus(TweakPage):
             else:
                 to_rm.append(widget.pkgname)
 
-        state = self.package_worker.perform_action(widget.get_toplevel(), to_add, to_rm)
+        self.package_worker.perform_action(widget.get_toplevel(), to_add, to_rm)
+        self.package_worker.update_apt_cache(True)
 
-        if state == 0:
+        done = package_worker.get_install_status(to_add, to_rm)
+
+        if done:
             self.button.set_sensitive(False)
-            InfoDialog(_("Update successful!")).launch()
+            InfoDialog(_('Update Successful!')).launch()
         else:
-            InfoDialog(_("Update failed!")).launch()
-
-        update_apt_cache()
+            InfoDialog(_('Update Failed!')).launch()
+            for widget in box.items:
+                widget.reset_active()
 
     def colleague_changed(self, widget):
         if self.nautilus_terminal.get_state() != self.nautilus_terminal.get_active() or\

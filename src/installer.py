@@ -25,14 +25,14 @@ import gobject
 import pango
 
 from common.consts import *
-from common.appdata import *
 from common.utils import *
 from common.widgets import TweakPage
 from common.widgets.dialogs import InfoDialog
+from common.appdata import get_app_logo, get_app_describ
 from xdg.DesktopEntry import DesktopEntry
 
 try:
-    from common.package import package_worker, PackageInfo, update_apt_cache
+    from common.package import package_worker, PackageInfo
     DISABLE = False
 except ImportError:
     DISABLE = True
@@ -81,6 +81,7 @@ data = \
     ('blueman', P2P),
     ('cairo-dock', Desktop),
     ('chmsee', Text),
+    ('christine', Sound),
     ('chromium-browser', Internet),
     ('compizconfig-settings-manager', Desktop),
     ('codeblocks', Develop),
@@ -102,6 +103,7 @@ data = \
     ('gnote', Text),
     ('gnome-do', Desktop),
     ('gnome-globalmenu', Desktop),
+    ('gnome-colors', Desktop),
     ('googleearth', Internet),
     ('google-gadgets', Desktop),
     ('gparted', Disk),
@@ -124,6 +126,7 @@ data = \
     ('mirage', Image),
     ('miro', Video),
     ('midori', Internet),
+    ('moovida', Sound),
     ('monodevelop', Develop),
     ('mplayer', Video),
     ('netbeans', Develop),
@@ -155,8 +158,6 @@ class Installer(TweakPage):
         TweakPage.__init__(self, 
                 _('Add/Remove Applications'),
                 _('A simple but more effecient method for finding and installing popular packages than the default Add/Remove.'))
-
-        update_apt_cache(True)
 
         self.to_add = []
         self.to_rm = []
@@ -287,7 +288,7 @@ class Installer(TweakPage):
                                 category))
 
     def deep_update(self):
-        update_apt_cache()
+        package_worker.update_apt_cache(True)
         self.update_model()
         
     def on_install_toggled(self, cell, path):
@@ -357,18 +358,9 @@ class Installer(TweakPage):
     def on_apply_clicked(self, widget, data = None):
         self.package_worker.perform_action(widget.get_toplevel(), self.to_add, self.to_rm)
 
-        done = True
-        update_apt_cache()
+        package_worker.update_apt_cache(True)
 
-        for pkg in self.to_add:
-            if not PackageInfo(pkg).check_installed():
-                done = False
-                break
-
-        for pkg in self.to_rm:
-            if PackageInfo(pkg).check_installed():
-                done = False
-                break
+        done = package_worker.get_install_status(self.to_add, self.to_rm)
 
         if done:
             self.button.set_sensitive(False)

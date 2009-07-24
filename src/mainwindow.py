@@ -35,6 +35,10 @@ from common.widgets import TweakPage
 from common.widgets.dialogs import QuestionDialog
 from common.systeminfo import module_check
 from common.config import TweakSettings
+try:
+    from common.package import package_worker
+except:
+    package_worker = None
 from updatemanager import UpdateManager
 from preferences import PreferencesDialog
 from common.utils import set_label_for_stock_button
@@ -120,6 +124,21 @@ def ErrorPage(parent = None):
         
     return vbox
 
+def AptErrorPage(parent = None):
+    vbox = gtk.VBox(False, 0)
+
+    label = gtk.Label()
+    label.set_line_wrap(True)
+    label.set_markup('<span size="x-large">%s</span>' %
+            _("This is a major failure of your software management system. Please check for broken packages with synaptic, check the file permissions and correctness of the file '/etc/apt/sources.list' and reload the software information with: 'sudo apt-get update' and 'sudo apt-get install -f'."))
+    label.set_justify(gtk.JUSTIFY_FILL)
+    vbox.pack_start(label, False, False, 50)
+
+    hbox = gtk.HBox(False, 0)
+    vbox.pack_start(hbox, False, False, 0)
+
+    return vbox
+
 from computer import Computer
 from session import Session
 from autostart import AutoStart
@@ -137,15 +156,22 @@ else:
     Templates = Notice
 
 if module_check.is_ubuntu():
-    from installer import Installer
-    from cleaner import PackageCleaner
+    if package_worker.get_cache():
+        from installer import Installer
+        from cleaner import PackageCleaner
+    else:
+        Installer = AptErrorPage
+        PackageCleaner = AptErrorPage
 else:
     Installer = Notice
     PackageCleaner = Notice
 
 if module_check.is_supported_ubuntu():
     from sourceeditor import SourceEditor
-    from thirdsoft import ThirdSoft
+    if package_worker.get_cache():
+        from thirdsoft import ThirdSoft
+    else:
+        ThirdSoft = AptErrorPage
 else:
     SourceEditor = Notice
     ThirdSoft = Notice

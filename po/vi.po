@@ -6,16 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2009-04-29 07:49+0800\n"
-"PO-Revision-Date: 2009-04-16 02:20+0000\n"
+"Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
+"POT-Creation-Date: 2009-07-04 10:46+0800\n"
+"PO-Revision-Date: 2009-05-28 11:49+0000\n"
 "Last-Translator: zeratulbk <congtumotsach@gmail.com>\n"
 "Language-Team: Vietnamese <vi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2009-05-02 07:05+0000\n"
+"X-Launchpad-Export-Date: 2009-07-03 18:00+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/autostart.py:45
@@ -26,7 +26,7 @@ msgstr "_Tên:"
 msgid "Co_mmand:"
 msgstr "Lệ_nh:"
 
-#: src/autostart.py:51 src/sourceeditor.py:119
+#: src/autostart.py:51 src/sourceeditor.py:118
 msgid "Comm_ent:"
 msgstr "C_hú thích:"
 
@@ -157,11 +157,11 @@ msgstr "Giả lập"
 msgid "E-mail Tools"
 msgstr "Công cụ Thư điện tử"
 
-#: src/installer.py:156
+#: src/installer.py:157
 msgid "Add/Remove Applications"
 msgstr "Thêm/Gỡ bỏ các Ứng dụng"
 
-#: src/installer.py:157
+#: src/installer.py:158
 msgid ""
 "A simple but more effecient method for finding and installing popular "
 "packages than the default Add/Remove."
@@ -169,15 +169,16 @@ msgstr ""
 "Một cách đơn giản nhưng hữu ích hơn Thêm/Gỡ bỏ... mặc định để tìm kiếm và "
 "cài đặt những gói phổ biến."
 
-#: src/installer.py:205
+#: src/installer.py:204
 msgid "All Categories"
 msgstr "Toàn bộ hạng mục"
 
-#: src/installer.py:375
+#: src/installer.py:365 src/thirdsoft.py:499 src/compiz.py:406
+#: src/nautilus.py:217
 msgid "Update Successful!"
 msgstr "Cập nhật thành công"
 
-#: src/installer.py:377
+#: src/installer.py:367 src/compiz.py:408 src/nautilus.py:219
 msgid "Update Failed!"
 msgstr "Cập nhật thất bại!"
 
@@ -209,50 +210,62 @@ msgstr "Vô hiệu lưu vào đĩa"
 msgid "Disable \"Fast User Switching\""
 msgstr "Vô hiệu hóa \"Chuyển người dùng nhanh\""
 
-#: src/ScriptWorker.py:53
+#: src/lockdown.py:59
+msgid "Fix the theme appearance when grant the root privileges"
+msgstr ""
+
+#: src/lockdown.py:64
+msgid "Miscellaneous Options"
+msgstr ""
+
+#: src/ScriptWorker.py:56
 #, python-format
 msgid "The file \"%s\" already exists!"
 msgstr "Tệp \"%s\" đã tồn tại!"
 
-#: src/ScriptWorker.py:58
+#: src/ScriptWorker.py:61
 #, python-format
 msgid "The folder \"%s\" already exists!"
 msgstr "Thư mục \"%s\" đã tồn tại!"
 
-#: src/ScriptWorker.py:64 src/ScriptWorker.py:70
+#: src/ScriptWorker.py:68 src/ScriptWorker.py:75
 #, python-format
 msgid "The target \"%s\" already exists!"
 msgstr "Vị trí \"%s\" đã tồn tại!"
 
-#: src/ScriptWorker.py:113 src/ScriptWorker.py:125
+#: src/ScriptWorker.py:125 src/ScriptWorker.py:138
 msgid "Enter your password to perform the administrative tasks"
 msgstr "Nhập vào mật khẩu để thực hiện lệnh với quyền quản trị"
 
-#: src/ScriptWorker.py:144
+#: src/ScriptWorker.py:132
+msgid "Coudn't find any text editor in your system!"
+msgstr ""
+
+#: src/ScriptWorker.py:159
 msgid "Select a folder"
 msgstr "Chọn một thư mục"
 
-#: src/ScriptWorker.py:175
+#: src/ScriptWorker.py:189
 msgid "Please select a target (files or folders)."
 msgstr "Chọn một vị trí (tệp hoặc thư mục)."
 
-#: src/mainwindow.py:65
+#: src/mainwindow.py:69
 msgid "Welcome to"
 msgstr "Chào mừng tới"
 
-#: src/mainwindow.py:71
+#: src/mainwindow.py:75
 msgid "Tweak otherwise hidden settings."
 msgstr "Tùy chỉnh những cấu hình ẩn khác."
 
-#: src/mainwindow.py:72
+#: src/mainwindow.py:76
 msgid "Clean up unneeded packages to free diskspace."
 msgstr "Dọn dẹp những gói không cần thiết để tăng chỗ trống của đĩa."
 
-#: src/mainwindow.py:73
+#: src/mainwindow.py:77
 msgid "Easily install up-to-date versions of many applications."
 msgstr "Dễ dàng cài đặt phiên bản mới nhất của rất nhiều ứng dụng."
 
-#: src/mainwindow.py:74
+#: src/mainwindow.py:78
 msgid ""
 "Configure file templates and shortcut scripts for easy access to common "
 "tasks."
@@ -260,15 +273,15 @@ msgstr ""
 "Cấu hình các tệp mẫu và lỗi tắt để dễ dàng truy cập tới các tác vụ thông "
 "thường."
 
-#: src/mainwindow.py:75
+#: src/mainwindow.py:79
 msgid "And many more useful features!"
 msgstr "Và nhiều thành phần hữu ích khác!"
 
-#: src/mainwindow.py:87
+#: src/mainwindow.py:91
 msgid "<span size=\"xx-large\">Please wait a moment...</span>"
 msgstr "<span size=\"xx-large\">Vui lòng chờ một chút...</span>"
 
-#: src/mainwindow.py:100
+#: src/mainwindow.py:104
 msgid ""
 "<span size=\"x-large\">This feature isn't currently available in your "
 "distribution</span>"
@@ -276,115 +289,127 @@ msgstr ""
 "<span size=\"x-large\">Hiện tại thành phần này không có trong bản phân phối "
 "của bạn</span>"
 
-#: src/mainwindow.py:113
+#: src/mainwindow.py:117
 msgid "<span size=\"x-large\">This module is error while loading.</span>"
 msgstr "<span size=\"x-large\">Gặp lỗi khi nạp mo-đun.</span>"
 
-#: src/mainwindow.py:223
+#: src/mainwindow.py:132
+msgid ""
+"This is a major failure of your software management system. Please check for "
+"broken packages with synaptic, check the file permissions and correctness of "
+"the file '/etc/apt/sources.list' and reload the software information with: "
+"'sudo apt-get update' and 'sudo apt-get install -f'."
+msgstr ""
+
+#: src/mainwindow.py:249
 msgid "Welcome"
 msgstr "Chào mừng"
 
-#: src/mainwindow.py:224
+#: src/mainwindow.py:250
 msgid "Computer"
 msgstr "Máy tính"
 
-#: src/mainwindow.py:225
+#: src/mainwindow.py:251
 msgid "Applications"
 msgstr "Ứng dụng"
 
-#: src/mainwindow.py:226
+#: src/mainwindow.py:252
 msgid "Add/Remove"
 msgstr "Thêm/Gỡ bỏ"
 
-#: src/mainwindow.py:227 src/sourceeditor.py:335
+#: src/mainwindow.py:253 src/sourceeditor.py:343
 msgid "Source Editor"
 msgstr "Chỉnh sửa nguồn"
 
-#: src/mainwindow.py:228 src/thirdsoft.py:279
+#: src/mainwindow.py:254 src/thirdsoft.py:290
 msgid "Third-Party Sources"
 msgstr "Nguồn từ bên thứ ba"
 
-#: src/mainwindow.py:229 src/cleaner.py:372
+#: src/mainwindow.py:255 src/cleaner.py:372
 msgid "Package Cleaner"
 msgstr "Trình dọn gói"
 
-#: src/mainwindow.py:230
+#: src/mainwindow.py:256
 msgid "Startup"
 msgstr "Khởi động"
 
-#: src/mainwindow.py:231 src/session.py:144
+#: src/mainwindow.py:257 src/session.py:144
 msgid "Session Control"
 msgstr "Điều khiển phiên làm việc"
 
-#: src/mainwindow.py:232
+#: src/mainwindow.py:258
 msgid "Autostart"
 msgstr "Tự khởi động"
 
-#: src/mainwindow.py:233 src/userdir.py:45
+#: src/mainwindow.py:259 src/userdir.py:45
 msgid "Desktop"
 msgstr "Màn hình nền"
 
-#: src/mainwindow.py:234
+#: src/mainwindow.py:260
 msgid "Icons"
 msgstr "Biểu tượng"
 
-#: src/mainwindow.py:235
+#: src/mainwindow.py:261
 msgid "Windows"
 msgstr "Cửa sổ"
 
-#: src/mainwindow.py:236
+#: src/mainwindow.py:262
 msgid "Compiz Fusion"
 msgstr "Compiz Fusion"
 
-#: src/mainwindow.py:237
+#: src/mainwindow.py:263
 msgid "GNOME"
 msgstr "GNOME"
 
-#: src/mainwindow.py:238
+#: src/mainwindow.py:264
 msgid "Personal"
 msgstr "Cá nhân"
 
-#: src/mainwindow.py:239
+#: src/mainwindow.py:265
 msgid "Folders"
 msgstr "Thư mục"
 
-#: src/mainwindow.py:240 src/userdir.py:47
+#: src/mainwindow.py:266 src/userdir.py:47
 msgid "Templates"
 msgstr "Mẫu"
 
-#: src/mainwindow.py:241
+#: src/mainwindow.py:267
 msgid "Scripts"
 msgstr "Tập lệnh"
 
-#: src/mainwindow.py:242
+#: src/mainwindow.py:268
 msgid "Shortcuts"
 msgstr "Lối tắt"
 
-#: src/mainwindow.py:243
+#: src/mainwindow.py:269
 msgid "System"
 msgstr "Hệ thống"
 
-#: src/mainwindow.py:244 src/filetype.py:478
+#: src/mainwindow.py:270 src/filetype.py:478
 msgid "File Type Manager"
 msgstr "Quản lý kiểu tập tin"
 
-#: src/mainwindow.py:245
+#: src/mainwindow.py:271
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: src/mainwindow.py:247
+#: src/mainwindow.py:272
+msgid "Power Management"
+msgstr ""
+
+#: src/mainwindow.py:273
 msgid "Security"
 msgstr "Bảo mật"
 
-#: src/mainwindow.py:329
+#: src/mainwindow.py:355
 msgid "_Donate"
 msgstr "_Ủng hộ"
 
-#: src/mainwindow.py:355
+#: src/mainwindow.py:381
 msgid "Help the development of Ubuntu Tweak"
 msgstr "Giúp sự phát triển của Ubuntu Tweak"
 
-#: src/mainwindow.py:355
+#: src/mainwindow.py:381
 msgid ""
 "Ubuntu Tweak is a free-software, you can use it for free. If you like it, "
 "Please consider to donate for Ubuntu Tweak."
@@ -392,15 +417,15 @@ msgstr ""
 "Ubuntu Tweak là phần mềm miễn phí, bạn có thể tự do sử dụng nó. Nếu bạn "
 "thích, vui lòng quyền góp cho Ubuntu Tweak."
 
-#: src/mainwindow.py:356
+#: src/mainwindow.py:382
 msgid "Never Show This Again"
 msgstr "Đừng hiện nó lần nữa"
 
-#: src/mainwindow.py:549
+#: src/mainwindow.py:575
 msgid "Ubuntu Tweak Website"
 msgstr "Trang web Ubuntu Tweak"
 
-#: src/mainwindow.py:551
+#: src/mainwindow.py:577
 msgid ""
 "Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
 "system and desktop settings."
@@ -408,7 +433,7 @@ msgstr ""
 "Ubuntu Tweak là một công cụ cho Ubutnu để cấu hình hệ thống và sắp đặt bàn "
 "làm việc một cách dễ dàng."
 
-#: src/mainwindow.py:558
+#: src/mainwindow.py:584
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
@@ -417,9 +442,14 @@ msgstr ""
 "Launchpad Contributions:\n"
 "  huanctv https://launchpad.net/~huanctv\n"
 "  khanh_coltech https://launchpad.net/~khanhpt\n"
+"  zeratulbk https://launchpad.net/~congtumotsach\n"
+"\n"
+"Launchpad Contributions:\n"
+"  Phan Trọng Khanh https://launchpad.net/~khanhpt\n"
+"  huanctv https://launchpad.net/~huanctv\n"
 "  zeratulbk https://launchpad.net/~congtumotsach"
 
-#: src/mainwindow.py:571
+#: src/mainwindow.py:597
 #, python-format
 msgid ""
 "A newer version: %s is available online.\n"
@@ -428,7 +458,7 @@ msgstr ""
 "Một phiên bản mới: %s đã sẵn có trực tuyến.\n"
 "Bạn có muốn cập nhật?"
 
-#: src/mainwindow.py:572
+#: src/mainwindow.py:598
 msgid "Software Update"
 msgstr "Cập nhật phần mềm"
 
@@ -500,7 +530,7 @@ msgstr ""
 "Đừng thay đổi vị trí thư mục Bàn làm việc trừ khi bạn biết rõ mình đang làm "
 "gì."
 
-#: src/userdir.py:258 src/compiz.py:391 src/nautilus.py:212
+#: src/userdir.py:258
 msgid "Update successful!"
 msgstr "Cập nhật thành công!"
 
@@ -577,87 +607,95 @@ msgstr "Tại đây bạn có thể quản lý ứng dụng để mở các ki�
 msgid "Only show filetypes with an associated application"
 msgstr "Chỉ hiện kiểu tệp tin với một ứng dụng liên kết"
 
-#: src/computer.py:44
+#: src/computer.py:45
 msgid "System information"
 msgstr "Thông tin hệ thống"
 
-#: src/computer.py:45
+#: src/computer.py:46
 msgid "Hostname"
 msgstr "Tên máy"
 
-#: src/computer.py:46
+#: src/computer.py:47
 msgid "Distribution"
 msgstr "Bản phân phối"
 
-#: src/computer.py:47
+#: src/computer.py:48
 msgid "Desktop environment"
 msgstr "Môi trường làm việc"
 
-#: src/computer.py:48
+#: src/computer.py:49
 msgid "Kernel"
 msgstr "Nhân"
 
-#: src/computer.py:49
+#: src/computer.py:50
 msgid "Platform"
 msgstr "Kiến trúc"
 
-#: src/computer.py:50
+#: src/computer.py:51
 msgid "CPU"
 msgstr "CPU"
 
-#: src/computer.py:51
+#: src/computer.py:52
 msgid "Memory"
 msgstr "Bộ nhớ"
 
-#: src/computer.py:55
+#: src/computer.py:56
 msgid "User information"
 msgstr "Thông tin người dùng"
 
-#: src/computer.py:56
+#: src/computer.py:57
 msgid "Current user"
 msgstr "Người dùng hiện tại"
 
-#: src/computer.py:57
+#: src/computer.py:58
 msgid "Home directory"
 msgstr "Thư mục chính"
 
-#: src/computer.py:58
+#: src/computer.py:59
 msgid "Shell"
 msgstr "Shell"
 
-#: src/computer.py:59
+#: src/computer.py:60
 msgid "Language"
 msgstr "Ngôn ngữ"
 
-#: src/thirdsoft.py:69
+#: src/thirdsoft.py:70
 msgid "Avant Window Navigator (Unstable Version)"
 msgstr "Avan Window Navigator (Phiên bản không ổn định)"
 
-#: src/thirdsoft.py:75
+#: src/thirdsoft.py:76
 msgid "Ubuntu Chinese Repository"
 msgstr "Kho lưu Ubuntu Trung Quốc"
 
-#: src/thirdsoft.py:86
+#: src/thirdsoft.py:87
+msgid "Experimental Gnome Games"
+msgstr ""
+
+#: src/thirdsoft.py:88
 msgid "Gnome Global Menu"
 msgstr "Gnome Global Menu"
 
-#: src/thirdsoft.py:89
+#: src/thirdsoft.py:90
+msgid "GetDeb.net (Mirror)"
+msgstr ""
+
+#: src/thirdsoft.py:92
 msgid "Gwibber (Daily Version)"
 msgstr "Gwibber (Bản Hằng ngày)"
 
-#: src/thirdsoft.py:90
+#: src/thirdsoft.py:93
 msgid "Banshee (Stable Version)"
 msgstr "Banshee (Phiên bản ổn định)"
 
-#: src/thirdsoft.py:91
+#: src/thirdsoft.py:94
 msgid "Banshee (Unstable Version)"
 msgstr "Banshee (Phiên bản không ổn định)"
 
-#: src/thirdsoft.py:97
+#: src/thirdsoft.py:100
 msgid "Ubuntu Tweak (Unstable Version)"
 msgstr "Ubuntu Tweak (Phiên bản không ổn định)"
 
-#: src/thirdsoft.py:196
+#: src/thirdsoft.py:207
 msgid ""
 "To install software and updates from newly added or changed sources, you "
 "have to reload the information about available software.\n"
@@ -669,31 +707,31 @@ msgstr ""
 "\n"
 "Bạn cần một kết nối Internet đang hoạt động để tiếp tục."
 
-#: src/thirdsoft.py:200
+#: src/thirdsoft.py:211
 msgid "The information about available software is out-of-date"
 msgstr "Thông tin về các phần mềm sẵn có đã lỗi thời"
 
-#: src/thirdsoft.py:363
+#: src/thirdsoft.py:377
 msgid "Homepage"
 msgstr "Trang chủ"
 
-#: src/thirdsoft.py:363
+#: src/thirdsoft.py:377
 msgid "Source URL"
 msgstr "Nguồn URL"
 
-#: src/thirdsoft.py:363
+#: src/thirdsoft.py:377
 msgid "Description"
 msgstr "Mô tả"
 
-#: src/thirdsoft.py:374
+#: src/thirdsoft.py:388
 msgid "Description is here"
 msgstr "Mô tả tại đây"
 
-#: src/thirdsoft.py:402
+#: src/thirdsoft.py:416
 msgid "Third-Party Software Sources"
 msgstr "Nguồn phần mềm bên thứ ba."
 
-#: src/thirdsoft.py:403
+#: src/thirdsoft.py:417
 msgid ""
 "After every release of Ubuntu there comes a feature freeze.\n"
 "This means only applications with bug-fixes get into the repository.\n"
@@ -707,11 +745,29 @@ msgstr ""
 "nhất.\n"
 "Sau khi thêm những kho đó, tìm và cài đặt chúng sử dụng Thêm/Gỡ bỏ."
 
-#: src/thirdsoft.py:419 src/sourceeditor.py:84
+#: src/thirdsoft.py:433 src/sourceeditor.py:83
 msgid "Details"
 msgstr "Chi tiết"
 
-#: src/thirdsoft.py:458
+#: src/thirdsoft.py:456
+msgid ""
+"Some of your PPA Sources need to be updated.\n"
+"Do you wish to continue?"
+msgstr ""
+
+#: src/thirdsoft.py:456
+msgid "PPA Sources has expired"
+msgstr ""
+
+#: src/thirdsoft.py:496 src/sourceeditor.py:475
+msgid "Please check the permission of the sources.list file"
+msgstr ""
+
+#: src/thirdsoft.py:497 src/sourceeditor.py:476
+msgid "Save failed!"
+msgstr "Lưu thất bại!"
+
+#: src/thirdsoft.py:524
 msgid ""
 "It is a possible security risk to use packages from Third-Party Sources.\n"
 "Please be careful and use only sources you trust."
@@ -720,15 +776,21 @@ msgstr ""
 "hãng thứ ba.\n"
 "Xin hãy cẩn thận và chỉ sử dụng các nguồn mà bạn tin tưởng."
 
-#: src/thirdsoft.py:461 src/nautilus.py:187
+#: src/thirdsoft.py:527 src/nautilus.py:189
 msgid "Warning"
 msgstr "Cảnh báo"
 
-#: src/thirdsoft.py:465
+#: src/thirdsoft.py:531
 msgid "Never show this dialog"
 msgstr "Không hiện hộp thoại này nữa"
 
-#: src/thirdsoft.py:488 src/sourceeditor.py:404
+#: src/thirdsoft.py:553
+msgid ""
+"You can install the new applications through Add/Remove.\n"
+"Do you want to go now?"
+msgstr ""
+
+#: src/thirdsoft.py:554 src/sourceeditor.py:412
 msgid "The software information is up-to-date now"
 msgstr "Thông tin phần mềm đã được cập nhật."
 
@@ -769,6 +831,10 @@ msgstr "Hiện biểu tượng \"Mạng\" ở nền màn hình"
 #: src/icons.py:140
 msgid "Show mounted volumes on desktop"
 msgstr "Hiện các ổ đã gắn kết ở nền màn hình"
+
+#: src/icons.py:145
+msgid "Use \"Home Folder\" as desktop (Logout for changes to take effect)"
+msgstr ""
 
 #: src/metacity.py:37
 msgid "Window Decorate Effect"
@@ -842,6 +908,16 @@ msgstr "Bật  thành phần Metacity's Compositing"
 msgid "Compositing Manager"
 msgstr "Quản lý Compositing"
 
+#: src/metacity.py:94
+msgid ""
+"To enable the compositing feature of metacity, you should manually disable "
+"Visual Effects in \"Appearance\"."
+msgstr ""
+
+#: src/session.py:39
+msgid "Splash Screen (Click On Image)"
+msgstr ""
+
 #: src/session.py:43
 msgid "Choose a splash image"
 msgstr "Chọn một ảnh splash"
@@ -857,6 +933,10 @@ msgstr "Tự động lưu ứng dụng được mở khi đăng xuất"
 #: src/session.py:134
 msgid "Show logout prompt"
 msgstr "Hiện lời nhắc đăng xuất"
+
+#: src/session.py:137
+msgid "Allow TCP Connections (Remote Desktop Connect)"
+msgstr ""
 
 #: src/session.py:140
 msgid "Show splash screen"
@@ -955,65 +1035,65 @@ msgstr ""
 "Nó sẽ xóa toàn bộ mẫu không dùng.\n"
 "Bạn có muốn tiếp tục?"
 
-#: src/compiz.py:229
-msgid "Install Advanced Desktop Effects Settings Manager"
-msgstr "Cài đặt Quản lý hiệu ứng bàn làm việc nâng cao."
-
-#: src/compiz.py:232
-msgid "Install Simple Desktop Effects Settings manager"
-msgstr "Cài đặt Quản lý hiệu ứng bàn làm việc đơn giản"
-
-#: src/compiz.py:235
-msgid "Install Screenlets Widget Application"
-msgstr "Cài đặt Ứng dụng Screenlets Widget"
-
-#: src/compiz.py:245
-msgid "Enable snapping windows"
-msgstr "Bật bắt dính cửa sổ"
-
-#: src/compiz.py:246
-msgid "Enable wobbly windows"
-msgstr "Bật cửa sổ rung rinh"
-
-#: src/compiz.py:248
-msgid "Window Effects"
-msgstr "Hiệu ứng cửa sổ"
-
-#: src/compiz.py:251
-msgid "Enable transparent menus"
-msgstr "Bật trình đơn trong suốt"
-
-#: src/compiz.py:252
-msgid "Enable wobbly menus"
-msgstr "Bật trình đơn rung rinh"
-
-#: src/compiz.py:254
-msgid "Menu Effects"
-msgstr "Hiệu ứng trình đơn"
-
-#: src/compiz.py:259
-msgid "Useful Extensions"
-msgstr "Phần mở rộng hữu ích"
-
-#: src/compiz.py:274
-msgid "Prerequisite Conditions"
-msgstr "Điều kiện tiên quyết"
-
-#: src/compiz.py:317
+#: src/compiz.py:47
 msgid "Expo"
 msgstr "Triển lãm"
 
-#: src/compiz.py:318
+#: src/compiz.py:48
 msgid "Show Windows"
 msgstr "Hiện cửa sổ"
 
-#: src/compiz.py:319
+#: src/compiz.py:49
 msgid "Show Desktop"
 msgstr "Hiện màn hình nền"
 
-#: src/compiz.py:320
+#: src/compiz.py:50
 msgid "Widget"
 msgstr "Widget"
+
+#: src/compiz.py:231
+msgid "Install Advanced Desktop Effects Settings Manager"
+msgstr "Cài đặt Quản lý hiệu ứng bàn làm việc nâng cao."
+
+#: src/compiz.py:234
+msgid "Install Simple Desktop Effects Settings manager"
+msgstr "Cài đặt Quản lý hiệu ứng bàn làm việc đơn giản"
+
+#: src/compiz.py:237
+msgid "Install Screenlets Widget Application"
+msgstr "Cài đặt Ứng dụng Screenlets Widget"
+
+#: src/compiz.py:247
+msgid "Enable snapping windows"
+msgstr "Bật bắt dính cửa sổ"
+
+#: src/compiz.py:248
+msgid "Enable wobbly windows"
+msgstr "Bật cửa sổ rung rinh"
+
+#: src/compiz.py:250
+msgid "Window Effects"
+msgstr "Hiệu ứng cửa sổ"
+
+#: src/compiz.py:253
+msgid "Enable transparent menus"
+msgstr "Bật trình đơn trong suốt"
+
+#: src/compiz.py:254
+msgid "Enable wobbly menus"
+msgstr "Bật trình đơn rung rinh"
+
+#: src/compiz.py:256
+msgid "Menu Effects"
+msgstr "Hiệu ứng trình đơn"
+
+#: src/compiz.py:260
+msgid "Useful Extensions"
+msgstr "Phần mở rộng hữu ích"
+
+#: src/compiz.py:275
+msgid "Prerequisite Conditions"
+msgstr "Điều kiện tiên quyết"
 
 #: src/shortcuts.py:49
 msgid "Shortcut Commands"
@@ -1053,10 +1133,18 @@ msgstr "Khoá"
 msgid "Clean"
 msgstr "Làm sạch"
 
+#: src/cleaner.py:54
+msgid "Cleaning Package Config"
+msgstr ""
+
 #: src/cleaner.py:61 src/cleaner.py:88
 #, python-format
 msgid "Cleaning...%s"
 msgstr "Đang làm sạch...%s"
+
+#: src/cleaner.py:81
+msgid "Cleaning Package Cache"
+msgstr ""
 
 #: src/cleaner.py:143
 msgid "Package"
@@ -1070,11 +1158,34 @@ msgstr "Gói"
 msgid "Package Cache"
 msgstr "Gói lưu trữ"
 
+#: src/cleaner.py:222
+#, python-format
+msgid ""
+"<b>%s</b>\n"
+"Take %s of disk space"
+msgstr ""
+
 #: src/cleaner.py:245
 msgid "Package Config"
 msgstr "Cấu hình gói"
 
-#: src/cleaner.py:364 src/nautilus.py:193
+#: src/cleaner.py:278
+#, python-format
+msgid "%d package selected to remove"
+msgid_plural "%d packages selected to remove"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/cleaner.py:282
+#, python-format
+msgid "%s of space will be freed"
+msgstr ""
+
+#: src/cleaner.py:361
+msgid "Canceled by user!"
+msgstr ""
+
+#: src/cleaner.py:364 src/nautilus.py:195
 msgid "Clean up Successful!"
 msgstr "Làm sạch xong!"
 
@@ -1090,19 +1201,23 @@ msgstr ""
 "Làm tăng dung lượng trống của đĩa bằng cách xóa bỏ những gói không cần và "
 "làm sạch những gói tải về."
 
-#: src/cleaner.py:401
+#: src/cleaner.py:399
 msgid "Clean Package"
 msgstr "Dọn gói"
 
-#: src/cleaner.py:406
+#: src/cleaner.py:404
 msgid "Clean Cache"
 msgstr "Làm sạch chỗ lưu trữ"
 
-#: src/cleaner.py:411
+#: src/cleaner.py:409
 msgid "Clean Config"
 msgstr "Làm sạch cấu hình"
 
-#: src/cleaner.py:422
+#: src/cleaner.py:414
+msgid "Clean Kernel"
+msgstr ""
+
+#: src/cleaner.py:420
 msgid "Select All"
 msgstr "Chọn tất cả"
 
@@ -1154,6 +1269,14 @@ msgstr "Liên kết tới Download"
 msgid "Link to Home"
 msgstr "Liên kết tới Thư mục chính"
 
+#: src/scripts.py:61
+msgid "Open with your favourite text editor"
+msgstr ""
+
+#: src/scripts.py:62
+msgid "Open with your favourite text editor (as root)"
+msgstr ""
+
 #: src/scripts.py:63
 msgid "Browse as root"
 msgstr "Duyệt với quyền root"
@@ -1177,6 +1300,10 @@ msgstr "Chuyển ảnh thành định dạng GIF"
 #: src/scripts.py:68
 msgid "Set image as wallpaper"
 msgstr "Đặt ảnh làm ảnh nền"
+
+#: src/scripts.py:69
+msgid "Make hard shadow to image"
+msgstr ""
 
 #: src/scripts.py:96
 msgid "Enabled Scripts"
@@ -1288,38 +1415,63 @@ msgstr ""
 "Cỡ này không thích hợp cho panel.\n"
 "Nó nên là 24x24."
 
-#: src/nautilus.py:51
+#: src/gnomesettings.py:149
+msgid "Do you want your changes to take effect immediately?"
+msgstr ""
+
+#: src/nautilus.py:54
 msgid "Cleaning..."
 msgstr "Đang làm sạch..."
 
-#: src/nautilus.py:101
+#: src/nautilus.py:104
 msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
 msgstr ""
 "Hiện quyền truy cập nâng cao trong cửa sổ \"Thuộc tính tệp tin\" của Nautilus"
 
-#: src/nautilus.py:104
+#: src/nautilus.py:107
 msgid "File Browser"
 msgstr "Trình duyệt tập tin"
 
-#: src/nautilus.py:147
+#: src/nautilus.py:112
+msgid "Default thumbnail icon size (pixels)"
+msgstr ""
+
+#: src/nautilus.py:126
+msgid "Maximum size of the thumbnail cache (megabytes)"
+msgstr ""
+
+#: src/nautilus.py:138
+msgid "Maximum age for the thumbnail in the cache (days)"
+msgstr ""
+
+#: src/nautilus.py:150
 msgid "Thumbnails Settings"
 msgstr "Cấu hình Thumbnails"
 
-#: src/nautilus.py:155
+#: src/nautilus.py:157
 msgid "Nautilus with Open Terminal"
 msgstr "Nautilus với Mở trong cửa sổ dòng lệnh"
 
-#: src/nautilus.py:157
+#: src/nautilus.py:159
 msgid "Nautilus with Root Privileges"
 msgstr "Nautilus với Quyền Root"
 
-#: src/nautilus.py:159
+#: src/nautilus.py:161
 msgid "Nautilus with Wallpaper"
 msgstr "Nautilus với Ảnh nền màn hình"
 
-#: src/nautilus.py:161
+#: src/nautilus.py:163
 msgid "Nautilus Extensions"
 msgstr "Phần mở rộng Nautilus"
+
+#: src/nautilus.py:185
+#, python-format
+msgid "Clean up the thumbnails cache (will free %s of disk space)"
+msgstr ""
+
+#: src/nautilus.py:188
+msgid "The thumbnails cache will be cleaned, Do you wish to continue?"
+msgstr ""
 
 #: src/powermanager.py:37
 msgid "Advanced Power Management Settings"
@@ -1407,46 +1559,66 @@ msgstr "Đặt lại"
 msgid "Enable Check Update"
 msgstr "Cho phép kiểm tra cập nhật"
 
-#: src/sourceeditor.py:62 src/sourceeditor.py:67
+#: src/preferences.py:136
+msgid "Enable PowerUser Mode"
+msgstr ""
+
+#: src/sourceeditor.py:61 src/sourceeditor.py:66
 msgid "Choose the sources"
 msgstr "Chọn nguồn"
 
-#: src/sourceeditor.py:68
+#: src/sourceeditor.py:67
 msgid ""
 "You can read the title and comment to determine which source is suitable for "
 "you."
 msgstr ""
 "Bạn có thể đọc tiêu đề và chú thích để quyết định nguồn thích hợp với mình."
 
-#: src/sourceeditor.py:103 src/sourceeditor.py:108
+#: src/sourceeditor.py:102 src/sourceeditor.py:107
 msgid "Submit your sources"
 msgstr "Đệ trình những nguồn của bạn"
 
-#: src/sourceeditor.py:113
+#: src/sourceeditor.py:107
+msgid "You can submit your sources to the server for other people to use."
+msgstr ""
+
+#: src/sourceeditor.py:112
 msgid "_Source Title:"
 msgstr "_Tiêu đề nguồn:"
 
-#: src/sourceeditor.py:116
+#: src/sourceeditor.py:115
 msgid "_Locale:"
 msgstr "_Vị trí:"
 
-#: src/sourceeditor.py:140
+#: src/sourceeditor.py:122
+msgid "Enter the title of the source, e.g. \"Ubuntu Official Repostory\""
+msgstr ""
+
+#: src/sourceeditor.py:124
+msgid "If the locale isn't correct you can edit manually"
+msgstr ""
+
+#: src/sourceeditor.py:139
 msgid "Submit"
 msgstr "Chập nhận"
 
-#: src/sourceeditor.py:188
+#: src/sourceeditor.py:187
 msgid "Please check your network connection!"
 msgstr "Vui lòng kiểm tra kết nối mạng của bạn!"
 
-#: src/sourceeditor.py:188
+#: src/sourceeditor.py:187
 msgid "Network Error"
 msgstr "Lỗi mạng"
 
-#: src/sourceeditor.py:211
+#: src/sourceeditor.py:194
+msgid "Uploading..."
+msgstr ""
+
+#: src/sourceeditor.py:210
 msgid "Updating..."
 msgstr "Đang cập nhật..."
 
-#: src/sourceeditor.py:336
+#: src/sourceeditor.py:344
 msgid ""
 "Freely edit your software sources to fit your needs.\n"
 "Click \"Update Sources\" if you want to change the sources.\n"
@@ -1458,23 +1630,50 @@ msgstr ""
 "Nhắp \"Đệ trình nguồn\" nếu bạn muốn chia sẻ nguồn của bạn với những người "
 "khác.\n"
 
-#: src/sourceeditor.py:355
+#: src/sourceeditor.py:363
 msgid "Update Sources"
 msgstr "Cập nhật nguồn"
 
-#: src/sourceeditor.py:361
+#: src/sourceeditor.py:369
 msgid "Submit Sources"
 msgstr "Đệ trình nguồn"
 
-#: src/sourceeditor.py:436
+#: src/sourceeditor.py:411
+msgid "You can install new applications through Add/Remove."
+msgstr ""
+
+#: src/sourceeditor.py:428
+msgid "Please input the correct information about sources!"
+msgstr ""
+
+#: src/sourceeditor.py:441
+msgid ""
+"You can submit your sources to our server to help building the sources list, "
+"or you can use the official sources.\n"
+"Do you wish to use the official sources?"
+msgstr ""
+
+#: src/sourceeditor.py:444
 msgid "No source data available"
 msgstr "Không sẵn có nguồn dữ liệu"
 
-#: src/sourceeditor.py:468
-msgid "Save failed!"
-msgstr "Lưu thất bại!"
+#: src/sourceeditor.py:461
+msgid ""
+"Your sources will be reviewed and made available for others soon.\n"
+"Thank you!"
+msgstr ""
 
-#: src/common/package.py:67
+#: src/sourceeditor.py:462
+msgid "Successfully submitted"
+msgstr ""
+
+#: src/sourceeditor.py:483
+msgid ""
+"The current content will be lost after reloading!\n"
+"Do you wish to continue?"
+msgstr ""
+
+#: src/common/package.py:173
 msgid "(Not available)"
 msgstr "(Không sẵn có)"
 
@@ -1502,6 +1701,14 @@ msgstr "Một vẻ ngoài trình chơi đa phương tiện cho rất nhiều ki�
 msgid "Record and edit audio files"
 msgstr "Ghi và biên soạn tệp âm thanh"
 
+#: src/common/appdata.py:63
+msgid "Fully customisable dock-like window navigator"
+msgstr ""
+
+#: src/common/appdata.py:64
+msgid "Fully customisable dock-like window navigator(Unstable)"
+msgstr ""
+
 #: src/common/appdata.py:65
 msgid "A free video editor"
 msgstr "Một trình biên soạn Video miễn phí"
@@ -1514,6 +1721,10 @@ msgstr "Phần mềm BitTorrent trên máy khách viết bằng Java"
 msgid "Audio Management and Playback application"
 msgstr "Ứng dụng quản lý và phát nhạc"
 
+#: src/common/appdata.py:68
+msgid "GTK+ Bluetooth Manager"
+msgstr ""
+
 #: src/common/appdata.py:69
 msgid "A true dock for linux"
 msgstr "Dock thực sự cho Linux"
@@ -1521,6 +1732,12 @@ msgstr "Dock thực sự cho Linux"
 #: src/common/appdata.py:70
 msgid "A chm file viewer written in GTK+"
 msgstr "Trình xem tệp chm viết bằng GTK+"
+
+#: src/common/appdata.py:71
+msgid ""
+"Chromium is an open-source browser project that aims to build a safer, "
+"faster, and more stable way for all Internet users to experience the web."
+msgstr ""
 
 #: src/common/appdata.py:72
 msgid "The open source, cross-platform IDE"
@@ -1542,9 +1759,25 @@ msgstr "Phần mềm BitTorent trên máy khách viết bằng PyGTK"
 msgid "Store, Sync and Share your files online."
 msgstr "Lưu trữ, đồng bộ và chia sẻ tệp trực tuyến."
 
+#: src/common/appdata.py:77
+msgid "Extensible Tool Platform and Java IDE"
+msgstr ""
+
+#: src/common/appdata.py:78
+msgid ""
+"EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
+"com."
+msgstr ""
+
 #: src/common/appdata.py:79
 msgid "A client for the Windows Live Message network"
 msgstr "Một chương trình khách cho mạng Windows Live Messenge"
+
+#: src/common/appdata.py:80
+msgid ""
+"Empathy consists of a rich set of reusable instant messaging widgets, and a "
+"GNOME client using those widgets."
+msgstr ""
 
 #: src/common/appdata.py:81
 msgid "GTK+ based flexible audio player, similar to Amarok"
@@ -1561,8 +1794,7 @@ msgstr "Một trình quản lý tệp cực nhanh và nhẹ"
 #: src/common/appdata.py:84
 msgid ""
 "Galaxium is an instant messenger application designed for the GNOME desktop"
-msgstr ""
-"Galaxium là một ứng dụng tin nhắn nhanh thiết kế cho môi trường GNOME"
+msgstr "Galaxium là một ứng dụng tin nhắn nhanh thiết kế cho môi trường GNOME"
 
 #: src/common/appdata.py:85
 msgid "A GTK+ jabber client"
@@ -1571,6 +1803,10 @@ msgstr "Một trình khách jabber GTK+"
 #: src/common/appdata.py:86
 msgid "A fast and lightweight IDE"
 msgstr "Một IDE nhanh và nhẹ"
+
+#: src/common/appdata.py:87
+msgid "A multithreaded FTP client"
+msgstr ""
 
 #: src/common/appdata.py:88
 msgid "GNOME Hex editor"
@@ -1583,6 +1819,20 @@ msgstr "Thông báo cho người dùng khi có thư mới trong Gmail"
 #: src/common/appdata.py:90
 msgid "A powerful, speedy, and sexy remote control for the GNOME Desktop"
 msgstr "Chương trình điều khiển máy tính từ xa mạnh, nhanh cho GNOME"
+
+#: src/common/appdata.py:91
+msgid "Global Menu Bar for GNOME"
+msgstr ""
+
+#: src/common/appdata.py:92
+msgid "a C++ port of Tomboy"
+msgstr ""
+
+#: src/common/appdata.py:93
+msgid ""
+"A program that combines satellite imagery and maps to put the world's "
+"geographic information at your fingertips."
+msgstr ""
 
 #: src/common/appdata.py:94
 msgid "Platform for running Google Gadgets on Linux"
@@ -1600,9 +1850,45 @@ msgstr "Trình xem ảnh nhỏ nhẹ"
 msgid "A powerful screenshot tool"
 msgstr "Một công cụ mạnh để chụp ảnh màn hình"
 
+#: src/common/appdata.py:98
+msgid "Graphical frontend for recordmydesktop"
+msgstr ""
+
+#: src/common/appdata.py:99
+msgid ""
+"GTG is a personal organizer for the GNOME desktop environment, it focuses on "
+"ease of use and flexibility, while keeping things simple."
+msgstr ""
+
+#: src/common/appdata.py:100
+msgid "Gwibber is an open source microblogging client for GNOME"
+msgstr ""
+
 #: src/common/appdata.py:101
 msgid "A graphical CD image editor"
 msgstr "Biên soạn ảnh đĩa"
+
+#: src/common/appdata.py:102
+msgid "Intelligent Input Bus for Linux / Unix OS"
+msgstr ""
+
+#: src/common/appdata.py:103
+msgid "It is a PinYin engine for IBus."
+msgstr ""
+
+#: src/common/appdata.py:104
+msgid ""
+"IBus-Table is the IM Engine framework for table-based input methods, such as "
+"ZhengMa, WuBi, ErBi, ChangJie and so on."
+msgstr ""
+
+#: src/common/appdata.py:105
+msgid "Create and edit Scalable Vector Graphics images"
+msgstr ""
+
+#: src/common/appdata.py:106
+msgid "Non-linear editor for Digital Video data"
+msgstr ""
 
 #: src/common/appdata.py:107
 msgid "A music player for Last.fm personalized radio"
@@ -1611,6 +1897,10 @@ msgstr "Trình chơi nhạc cho đài cá nhân Last.fm"
 #: src/common/appdata.py:108
 msgid "GTK+ based simple text editor"
 msgstr "Soạn thảo văn bản đơn giản nền GTK+"
+
+#: src/common/appdata.py:109
+msgid "Feed aggregator for GNOME"
+msgstr ""
 
 #: src/common/appdata.py:110
 msgid "Mail notification in system tray"
@@ -1624,27 +1914,35 @@ msgstr "Công cụ Adcal để so sánh và nhập tệp"
 msgid "A fast and simple GTK+ Image Viewer"
 msgstr "Trình xem ảnh nhanh và đơn giản"
 
+#: src/common/appdata.py:113
+msgid "Open internet TV, beyond anything else"
+msgstr ""
+
 #: src/common/appdata.py:114
 msgid "Webkit based lightweight web browser"
 msgstr "Trình duyệt web nhỏ gọn trên cơ sở Webkit"
 
 #: src/common/appdata.py:115
+msgid "The free media player - play all your files"
+msgstr ""
+
+#: src/common/appdata.py:116
 msgid "An IDE to Develop .NET applications."
 msgstr "Một IDE để phát triển các ứng dụng .NET"
 
-#: src/common/appdata.py:116
+#: src/common/appdata.py:117
 msgid "The Ultimate Movie Player For Linux"
 msgstr "Trình xem video cho Linux"
 
-#: src/common/appdata.py:117
+#: src/common/appdata.py:118
 msgid "IDE for Java, C/C++, Ruby, UML, etc."
 msgstr "IDE cho Java, C/C++, Ruby, UML,..."
 
-#: src/common/appdata.py:118
+#: src/common/appdata.py:119
 msgid "The Opera Web Browser"
 msgstr "Trình duyệt web Opera"
 
-#: src/common/appdata.py:119
+#: src/common/appdata.py:120
 msgid ""
 "Pidgin is a graphical modular messaging client based on libpurple which is "
 "capable of connecting to AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, SIP/SIMPLE, "
@@ -1656,23 +1954,35 @@ msgstr ""
 "Yahoo!, XMPP, ICQ, IRC, SILC, SIP/SIMPLE, Novell GroupWise, Lotus Sametime, "
 "Bonjour, Zephyr, MySpaceIM, Gadu-Gadu, và QQ."
 
-#: src/common/appdata.py:120
+#: src/common/appdata.py:121
 msgid "Run your Windows programs on Linux"
 msgstr "Chạy các chương trình Windows của bạn trên Linux"
 
+#: src/common/appdata.py:122
+msgid "A framework for desktop widgets"
+msgstr ""
+
 #: src/common/appdata.py:123
+msgid "Feature-rich screenshot application(formerly known as GScrot)"
+msgstr ""
+
+#: src/common/appdata.py:124
 msgid "Make audio/video calls using this VoIP Software"
 msgstr "Tạo cuộc gọi âm thanh/video sử dụng Phần mềm VoIP"
 
 #: src/common/appdata.py:125
+msgid "A great MPlayer front-end, written in QT4"
+msgstr ""
+
+#: src/common/appdata.py:126
 msgid "Convert audio files into other formats"
 msgstr "Chuyển đổi các tệp âm thanh sang các định dạng khác"
 
-#: src/common/appdata.py:126
+#: src/common/appdata.py:127
 msgid "An international dictionary"
 msgstr "Một từ điền đa ngôn ngữ"
 
-#: src/common/appdata.py:127
+#: src/common/appdata.py:128
 msgid ""
 "Swiftweasel is an optimized build of the Mozilla Firefox web browser for "
 "Linux"
@@ -1680,43 +1990,89 @@ msgstr ""
 "Swiftweasel là một bản xây dựng tối ưu của trình duyệt web Mozilla Firefox "
 "cho Linux"
 
+#: src/common/appdata.py:129
+msgid ""
+"A desktop application that will watch for events (website updates, emails, "
+"file and folder changes...)"
+msgstr ""
+
+#: src/common/appdata.py:130
+msgid "An instant messaging application powered by qt-mono-bindings"
+msgstr ""
+
 #: src/common/appdata.py:131
+msgid "A Useful Task List"
+msgstr ""
+
+#: src/common/appdata.py:132
 msgid "Multiple GNOME terminals in one window"
 msgstr "Nhiều vùng lệnh trong một cửa sổ"
 
 #: src/common/appdata.py:133
+msgid ""
+"Transmission is a fast, easy, and free multi-platform BitTorrent client."
+msgstr ""
+
+#: src/common/appdata.py:134
 msgid "Ubuntu Tweak makes it easier to configure Ubuntu"
 msgstr "Ubuntu Tweak giúp dễ dàng cấu hình Ubuntu"
 
-#: src/common/appdata.py:134
+#: src/common/appdata.py:135
 msgid "Commonly used restricted packages"
 msgstr "Các gói hạn chế thường dùng"
 
-#: src/common/appdata.py:138
+#: src/common/appdata.py:136
+msgid "configure your USB ADSL modem and connection easier than ever!"
+msgstr ""
+
+#: src/common/appdata.py:137 src/common/appdata.py:138
+msgid "A feature rich, high performance virtualization software"
+msgstr ""
+
+#: src/common/appdata.py:139
 msgid "Read, capture, broadcast your multimedia streams"
 msgstr "Đọc, chụp, quảng bá luồng đa phương tiện của bạn"
 
-#: src/common/appdata.py:139
+#: src/common/appdata.py:140
 msgid "Run Virtual Machines using VMware"
 msgstr "Chạy máy ảo sử dụng VMware"
 
-#: src/common/appdata.py:140
+#: src/common/appdata.py:141
 msgid "A compatibility layer for running Windows programs"
 msgstr "Một lớp tương thích để chạy các chương trình Windows"
 
+#: src/common/appdata.py:142
+msgid ""
+"Wine-doors is an application designed to make installing windows software on "
+"Linux, Solaris or other Unix systems easier."
+msgstr ""
+
+#: src/common/appdata.py:143
+msgid ""
+"XBMC is a free and open source software media player and entertainment hub"
+msgstr ""
+
 #: src/common/appdata.py:147
+msgid "Development Version of Mozilla Firefox 3.1, 4.0"
+msgstr ""
+
+#: src/common/appdata.py:148
 msgid "Development version of Compiz Fusion"
 msgstr "Phiên bản phát triển của Compiz Fusion"
 
-#: src/common/appdata.py:148
+#: src/common/appdata.py:149
 msgid "Google's Linux Repository"
 msgstr "Kho lưu Linux của Google"
 
 #: src/common/appdata.py:150
+msgid "K Desktop Environment 4.2"
+msgstr ""
+
+#: src/common/appdata.py:151
 msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
 msgstr "Lightweight X11 Desktop Environment: GPicView, PCManFM"
 
-#: src/common/appdata.py:151
+#: src/common/appdata.py:152
 msgid ""
 "Multimedia, Entertainment and Distraction In Ubuntu\n"
 "Medibuntu is a repository of packages that cannot be included into the "
@@ -1725,6 +2081,52 @@ msgstr ""
 "Đa phương tiện, giải trí và trò chơi trong Ubuntu\n"
 "Medibuntu là một kho lưu những gói không được đi kèm trong bản phân phối "
 "Ubuntu vì lý do pháp luật (bản quyền, giấy phép, bằng sáng chế, ...)."
+
+#: src/common/appdata.py:154
+msgid ""
+"Ubuntu repository for Chinese users.\n"
+"Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and "
+"other softwares."
+msgstr ""
+
+#: src/common/appdata.py:156
+msgid ""
+"GetDeb extends the existing software options for Ubuntu (and derived) Linux "
+"distributions by providing major updates and software not yet available on "
+"the official Ubuntu repositories."
+msgstr ""
+
+#: src/common/appdata.py:157
+msgid "Updated versions of X.org drivers, libraries, etc. for Ubuntu."
+msgstr ""
+
+#: src/common/appdata.py:158
+msgid ""
+"Gnome Games built from Git, with all experimental features and staging games "
+"enabled."
+msgstr ""
+
+#: src/common/misc.py:15
+#, python-format
+msgid "%(size)d byte"
+msgid_plural "%(size)d bytes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/common/misc.py:17
+#, python-format
+msgid "%.1f KB"
+msgstr ""
+
+#: src/common/misc.py:19
+#, python-format
+msgid "%.1f MB"
+msgstr ""
+
+#: src/common/misc.py:20
+#, python-format
+msgid "%.1f GB"
+msgstr ""
 
 #: src/common/policykit/polkitbutton.py:81
 msgid "_Unlock"
@@ -1758,6 +2160,13 @@ msgstr "Không thể đổi tên thư mục gốc"
 msgid "Can't delete the root folder"
 msgstr "Không thể xóa thư mục gốc"
 
+#: src/common/widgets/treeviews.py:156
+msgid ""
+"Can't rename!\n"
+"\n"
+"There are files in it!"
+msgstr ""
+
 #: src/common/widgets/dialogs.py:67
 msgid "An unexpected error has occurred."
 msgstr "Gặp một lỗi bất thường."
@@ -1773,375 +2182,6 @@ msgstr "Bạn cần khởi động lại máy tính."
 #: src/common/widgets/dialogs.py:74
 msgid "Service hasn't initialized yet"
 msgstr "Dịch vụ chưa được khởi chạy"
-
-#: data/gui/type_edit.glade:7
-msgid "Edit Type"
-msgstr "Sửa kiểu"
-
-#: data/gui/type_edit.glade:131
-msgid "Add Application"
-msgstr "Thêm ứng dụng"
-
-#: data/gui/type_edit.glade:178
-msgid "Select an application to view its description."
-msgstr "Chọn một ứng dụng để xem mô tả của nó."
-
-#: data/gui/type_edit.glade:222
-msgid "_Use a custom command"
-msgstr "Dùng _lệnh tự chọn"
-
-#: src/ScriptWorker.py:120
-msgid "Coudn't find any text editor in your system!"
-msgstr ""
-
-#: src/mainwindow.py:246
-msgid "Power Management"
-msgstr ""
-
-#: src/thirdsoft.py:487
-msgid ""
-"You can install the new applications through Add/Remove.\n"
-"Do you want to go now?"
-msgstr ""
-
-#: src/icons.py:145
-msgid "Use \"Home Folder\" as desktop (Logout for changes to take effect)"
-msgstr ""
-
-#: src/metacity.py:94
-msgid ""
-"To enable the compositing feature of metacity, you should manually disable "
-"Visual Effects in \"Appearance\"."
-msgstr ""
-
-#: src/session.py:39
-msgid "Splash Screen (Click On Image)"
-msgstr ""
-
-#: src/session.py:137
-msgid "Allow TCP Connections (Remote Desktop Connect)"
-msgstr ""
-
-#: src/cleaner.py:54
-msgid "Cleaning Package Config"
-msgstr ""
-
-#: src/cleaner.py:81
-msgid "Cleaning Package Cache"
-msgstr ""
-
-#: src/cleaner.py:222
-#, python-format
-msgid ""
-"<b>%s</b>\n"
-"Take %s of disk space"
-msgstr ""
-
-#: src/cleaner.py:278
-#, python-format
-msgid "%d package selected to remove"
-msgid_plural "%d packages selected to remove"
-msgstr[0] ""
-msgstr[1] ""
-
-#: src/cleaner.py:282
-#, python-format
-msgid "%s of space will be freed"
-msgstr ""
-
-#: src/cleaner.py:361
-msgid "Canceled by user!"
-msgstr ""
-
-#: src/cleaner.py:416
-msgid "Clean Kernel"
-msgstr ""
-
-#: src/scripts.py:61
-msgid "Open with your favourite text editor"
-msgstr ""
-
-#: src/scripts.py:62
-msgid "Open with your favourite text editor (as root)"
-msgstr ""
-
-#: src/scripts.py:69
-msgid "Make hard shadow to image"
-msgstr ""
-
-#: src/gnomesettings.py:149
-msgid "Do you want your changes to take effect immediately?"
-msgstr ""
-
-#: src/nautilus.py:109
-msgid "Default thumbnail icon size (pixels)"
-msgstr ""
-
-#: src/nautilus.py:123
-msgid "Maximum size of the thumbnail cache (megabytes)"
-msgstr ""
-
-#: src/nautilus.py:135
-msgid "Maximum age for the thumbnail in the cache (days)"
-msgstr ""
-
-#: src/nautilus.py:183
-#, python-format
-msgid "Clean up the thumbnails cache (will free %s of disk space)"
-msgstr ""
-
-#: src/nautilus.py:186
-msgid "The thumbnails cache will be cleaned, Do you wish to continue?"
-msgstr ""
-
-#: src/nautilus.py:214
-msgid "Update failed!"
-msgstr ""
-
-#: src/preferences.py:136
-msgid "Enable PowerUser Mode"
-msgstr ""
-
-#: src/sourceeditor.py:108
-msgid "You can submit your sources to the server for other people to use."
-msgstr ""
-
-#: src/sourceeditor.py:123
-msgid "Enter the title of the source, e.g. \"Ubuntu Official Repostory\""
-msgstr ""
-
-#: src/sourceeditor.py:125
-msgid "If the locale isn't correct you can edit manually"
-msgstr ""
-
-#: src/sourceeditor.py:195
-msgid "Uploading..."
-msgstr ""
-
-#: src/sourceeditor.py:403
-msgid "You can install new applications through Add/Remove."
-msgstr ""
-
-#: src/sourceeditor.py:420
-msgid "Please input the correct information about sources!"
-msgstr ""
-
-#: src/sourceeditor.py:433
-msgid ""
-"You can submit your sources to our server to help building the sources list, "
-"or you can use the official sources.\n"
-"Do you wish to use the official sources?"
-msgstr ""
-
-#: src/sourceeditor.py:453
-msgid ""
-"Your sources will be reviewed and made available for others soon.\n"
-"Thank you!"
-msgstr ""
-
-#: src/sourceeditor.py:454
-msgid "Successfully submitted"
-msgstr ""
-
-#: src/sourceeditor.py:467
-msgid "Please check the permission of the sources.list file"
-msgstr ""
-
-#: src/sourceeditor.py:475
-msgid ""
-"The current content will be lost after reloading!\n"
-"Do you wish to continue?"
-msgstr ""
-
-#: src/common/appdata.py:63
-msgid "Fully customisable dock-like window navigator"
-msgstr ""
-
-#: src/common/appdata.py:64
-msgid "Fully customisable dock-like window navigator(Unstable)"
-msgstr ""
-
-#: src/common/appdata.py:68
-msgid "GTK+ Bluetooth Manager"
-msgstr ""
-
-#: src/common/appdata.py:71
-msgid ""
-"Chromium is an open-source browser project that aims to build a safer, "
-"faster, and more stable way for all Internet users to experience the web."
-msgstr ""
-
-#: src/common/appdata.py:77
-msgid "Extensible Tool Platform and Java IDE"
-msgstr ""
-
-#: src/common/appdata.py:78
-msgid ""
-"EIOffice Personal 2009. Free for Chinese users. See "
-"http://www.evermoresw.com."
-msgstr ""
-
-#: src/common/appdata.py:80
-msgid ""
-"Empathy consists of a rich set of reusable instant messaging widgets, and a "
-"GNOME client using those widgets."
-msgstr ""
-
-#: src/common/appdata.py:87
-msgid "A multithreaded FTP client"
-msgstr ""
-
-#: src/common/appdata.py:91
-msgid "Global Menu Bar for GNOME"
-msgstr ""
-
-#: src/common/appdata.py:92
-msgid "a C++ port of Tomboy"
-msgstr ""
-
-#: src/common/appdata.py:93
-msgid ""
-"A program that combines satellite imagery and maps to put the world's "
-"geographic information at your fingertips."
-msgstr ""
-
-#: src/common/appdata.py:98
-msgid "Graphical frontend for recordmydesktop"
-msgstr ""
-
-#: src/common/appdata.py:99
-msgid ""
-"GTG is a personal organizer for the GNOME desktop environment, it focuses on "
-"ease of use and flexibility, while keeping things simple."
-msgstr ""
-
-#: src/common/appdata.py:100
-msgid "Gwibber is an open source microblogging client for GNOME"
-msgstr ""
-
-#: src/common/appdata.py:102
-msgid "Intelligent Input Bus for Linux / Unix OS"
-msgstr ""
-
-#: src/common/appdata.py:103
-msgid "It is a PinYin engine for IBus."
-msgstr ""
-
-#: src/common/appdata.py:104
-msgid ""
-"IBus-Table is the IM Engine framework for table-based input methods, such as "
-"ZhengMa, WuBi, ErBi, ChangJie and so on."
-msgstr ""
-
-#: src/common/appdata.py:105
-msgid "Create and edit Scalable Vector Graphics images"
-msgstr ""
-
-#: src/common/appdata.py:106
-msgid "Non-linear editor for Digital Video data"
-msgstr ""
-
-#: src/common/appdata.py:109
-msgid "Feed aggregator for GNOME"
-msgstr ""
-
-#: src/common/appdata.py:113
-msgid "Open internet TV, beyond anything else"
-msgstr ""
-
-#: src/common/appdata.py:121
-msgid "A framework for desktop widgets"
-msgstr ""
-
-#: src/common/appdata.py:122
-msgid "Feature-rich screenshot application(formerly known as GScrot)"
-msgstr ""
-
-#: src/common/appdata.py:124
-msgid "A great MPlayer front-end, written in QT4"
-msgstr ""
-
-#: src/common/appdata.py:128
-msgid ""
-"A desktop application that will watch for events (website updates, emails, "
-"file and folder changes...)"
-msgstr ""
-
-#: src/common/appdata.py:129
-msgid "An instant messaging application powered by qt-mono-bindings"
-msgstr ""
-
-#: src/common/appdata.py:130
-msgid "A Useful Task List"
-msgstr ""
-
-#: src/common/appdata.py:132
-msgid ""
-"Transmission is a fast, easy, and free multi-platform BitTorrent client."
-msgstr ""
-
-#: src/common/appdata.py:135
-msgid "configure your USB ADSL modem and connection easier than ever!"
-msgstr ""
-
-#: src/common/appdata.py:136 src/common/appdata.py:137
-msgid "A feature rich, high performance virtualization software"
-msgstr ""
-
-#: src/common/appdata.py:141
-msgid ""
-"Wine-doors is an application designed to make installing windows software on "
-"Linux, Solaris or other Unix systems easier."
-msgstr ""
-
-#: src/common/appdata.py:142
-msgid ""
-"XBMC is a free and open source software media player and entertainment hub"
-msgstr ""
-
-#: src/common/appdata.py:146
-msgid "Development Version of Mozilla Firefox 3.1, 4.0"
-msgstr ""
-
-#: src/common/appdata.py:149
-msgid "K Desktop Environment 4.2"
-msgstr ""
-
-#: src/common/appdata.py:153
-msgid ""
-"Ubuntu repository for Chinese users.\n"
-"Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and "
-"other softwares."
-msgstr ""
-
-#: src/common/misc.py:15
-#, python-format
-msgid "%(size)d byte"
-msgid_plural "%(size)d bytes"
-msgstr[0] ""
-msgstr[1] ""
-
-#: src/common/misc.py:17
-#, python-format
-msgid "%.1f KB"
-msgstr ""
-
-#: src/common/misc.py:19
-#, python-format
-msgid "%.1f MB"
-msgstr ""
-
-#: src/common/misc.py:20
-#, python-format
-msgid "%.1f GB"
-msgstr ""
-
-#: src/common/widgets/treeviews.py:156
-msgid ""
-"Can't rename!\n"
-"\n"
-"There are files in it!"
-msgstr ""
 
 #: data/gui/preferences.glade:7
 msgid "Ubuntu Tweak Preferences"
@@ -2191,21 +2231,37 @@ msgid ""
 "the error message below:"
 msgstr ""
 
-#: data/gui/traceback.glade:91 data/gui/traceback.glade:266
+#: data/gui/traceback.glade:99 data/gui/traceback.glade:282
 msgid "Error Message"
 msgstr ""
 
-#: data/gui/traceback.glade:151 data/gui/traceback.glade:326
+#: data/gui/traceback.glade:159 data/gui/traceback.glade:342
 msgid "_Report"
 msgstr ""
 
-#: data/gui/traceback.glade:226
+#: data/gui/traceback.glade:234
 msgid "<big><b>Oops... an error occured</b></big>"
 msgstr ""
 
-#: data/gui/traceback.glade:240
+#: data/gui/traceback.glade:248
 msgid ""
 "If you'd like to help us fix the problem, \n"
 "Please choose <i>Report</i> to file a new bug report. Make sure to include "
 "the error message below:"
 msgstr ""
+
+#: data/gui/type_edit.glade:7
+msgid "Edit Type"
+msgstr "Sửa kiểu"
+
+#: data/gui/type_edit.glade:131
+msgid "Add Application"
+msgstr "Thêm ứng dụng"
+
+#: data/gui/type_edit.glade:178
+msgid "Select an application to view its description."
+msgstr "Chọn một ứng dụng để xem mô tả của nó."
+
+#: data/gui/type_edit.glade:222
+msgid "_Use a custom command"
+msgstr "Dùng _lệnh tự chọn"
