@@ -109,6 +109,7 @@ UbuDSL = ['UbuDSL', 'ubudsl', 'www.ubudsl.com', 'ubndsl.gpg']
 NautilusDropbox = ['Nautilus DropBox', 'nautilus-dropbox', 'www.getdropbox.com', '']
 Screenlets = ['Screenlets', 'screenlets', 'www.screenlets.org', 'screenlets.gpg']
 Synapse = ['Synapse', 'synapse', 'synapse.im', 'synapse.gpg']
+Smplayer = ['SMPlayer', 'smplayer', 'smplayer.sourceforge.net', 'smplayer.gpg']
 Wine = ['Wine', 'wine', 'www.winehq.org', 'wine.gpg']
 LXDE = ['LXDE', 'lxde', 'lxde.org', 'lxde.gpg']
 Liferea = ['Liferea', 'liferea', 'liferea.sourceforge.net', 'liferea.gpg']
@@ -147,6 +148,7 @@ SOURCES_DATA = [
     ['http://deb.opera.com/opera/', 'lenny', 'non-free', Opera],
     ['http://ppa.launchpad.net/firerabbit/ppa/ubuntu', ['intrepid','jaunty'], 'main', Synapse],
     ['http://download.skype.com/linux/repos/debian', 'stable', 'non-free', Skype],
+    ['http://ppa.launchpad.net/rvm/smplayer/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Smplayer],
     ['http://ppa.launchpad.net/gwibber-team/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Gwibber],
     ['http://ppa.launchpad.net/gwibber-daily/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Gwibber_Daily],
     ['http://playonlinux.botux.net/', 'hardy', 'main', PlayOnLinux],
@@ -495,7 +497,8 @@ class SourceDetail(gtk.VBox):
 
         if url:
             if 'ppa.launchpad.net' in url:
-                url = 'https://launchpad.net/~%s/+archive/ppa' % url.split('/')[3]
+                url_section = url.split('/')
+                url = 'https://launchpad.net/~%s/+archive/%s' % (url_section[3], url_section[4]) 
             self.url_button.destroy()
             self.url_button = gtk.LinkButton(url)
             self.url_button.show()
