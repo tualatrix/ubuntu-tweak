@@ -493,7 +493,8 @@ class SourceDetail(gtk.VBox):
 
         if url:
             if 'ppa.launchpad.net' in url:
-                url = 'https://launchpad.net/~%s/+archive/ppa' % url.split('/')[3]
+                url_section = url.split('/')
+                url = 'https://launchpad.net/~%s/+archive/%s' % (url_section[3], url_section[4]) 
             self.url_button.destroy()
             self.url_button = gtk.LinkButton(url)
             self.url_button.show()
