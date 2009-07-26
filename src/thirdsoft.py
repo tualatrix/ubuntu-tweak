@@ -444,7 +444,7 @@ class SourcesView(gtk.TreeView):
         if key:
             proxy.add_apt_key(key)
 
-        if comps:
+        if not comps:
             distro = distro + '/'
 
         if TweakSettings.get_separated_sources():
