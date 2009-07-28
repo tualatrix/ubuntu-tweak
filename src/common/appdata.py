@@ -48,8 +48,14 @@ def get_source_describ(name):
     return desc
 
 def get_app_logo(name):
-    name = '%s.png' % name.replace(' ', '-').lower()
-    return os.path.join(DATA_DIR, 'applogos', name)
+    try:
+        name = '%s.png' % name.replace(' ', '-').lower()
+        path = os.path.join(DATA_DIR, 'applogos', name)
+
+        return gtk.gdk.pixbuf_new_from_file(path)
+    except:
+        icon = gtk.icon_theme_get_default()
+        return icon.load_icon(gtk.STOCK_MISSING_IMAGE, 32, 0)
 
 def get_source_logo(name):
     try:

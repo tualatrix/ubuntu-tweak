@@ -241,11 +241,7 @@ class Installer(TweakPage):
             appname = item[0]
             category = item[-1][0] 
 
-            try:
-                iconpath = get_app_logo(appname)
-                pixbuf = gtk.gdk.pixbuf_new_from_file(iconpath)
-            except gobject.GError:
-                pixbuf = icon.load_icon(gtk.STOCK_MISSING_IMAGE, 32, 0)
+            pixbuf = get_app_logo(appname)
 
             try:
                 package = PackageInfo(appname)
