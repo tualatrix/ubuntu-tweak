@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# coding: utf-8
 
 # Ubuntu Tweak - PyGTK based desktop configure tool
 #
@@ -29,6 +30,7 @@ import subprocess
 
 from userdir import UserdirFile
 from common.consts import *
+from common.debug import run_traceback
 from common.widgets import ErrorDialog
 from common.utils import get_command_for_type
 
@@ -45,7 +47,8 @@ class FileChooserDialog(gtk.FileChooserDialog):
 
 class FileOperation:
     """Do the real operation"""
-    def do_copy(self, source, dest):
+    @classmethod
+    def do_copy(cls, source, dest):
         if os.path.isfile(source):
             if not os.path.exists(dest):
                 shutil.copy(source, dest)
@@ -57,55 +60,64 @@ class FileOperation:
             else:
                 ErrorDialog(_('The folder "%s" already exists!') % dest).launch()
 
-    def do_move(self, source, dest):
+    @classmethod
+    def do_move(cls, source, dest):
         if not os.path.exists(dest):
             shutil.move(source, dest)
         else:
             ErrorDialog(_('The target "%s" already exists!') % dest).launch()
 
-    def do_link(self, source, dest):
+    @classmethod
+    def do_link(cls, source, dest):
         if not os.path.exists(dest):
             os.symlink(source, dest)
         else:
             ErrorDialog(_('The target "%s" already exists!') % dest).launch()
 
-    def copy(self, source, dest):
+    @classmethod
+    def copy(cls, source, dest):
         """Copy the file or folder with necessary notice"""
         dest = os.path.join(dest, os.path.basename(source))
-        self.do_copy(source, dest)
+        cls.do_copy(source, dest)
 
-    def copy_to_xdg(self, source, xdg):
-        if dest == 'HOME':
+    @classmethod
+    def copy_to_xdg(cls, source, xdg):
+        if xdg == 'HOME':
             dest = os.path.join(os.path.expanduser('~'), os.path.basename(source))
         else:
             dest = os.path.join(UserdirFile()[xdg], os.path.basename(source))
-        self.do_copy(source, dest)
+        cls.do_copy(source, dest)
 
-    def move(self, source, dest):
+    @classmethod
+    def move(cls, source, dest):
         """Move the file or folder with necessary notice"""
         dest = os.path.join(dest, os.path.basename(source))
-        self.do_move(source, dest)
+        cls.do_move(source, dest)
 
-    def move_to_xdg(self, source, xdg):
-        if dest == 'HOME':
+    @classmethod
+    def move_to_xdg(cls, source, xdg):
+        if xdg == 'HOME':
             dest = os.path.join(os.path.expanduser('~'), os.path.basename(source))
         else:
             dest = os.path.join(UserdirFile()[xdg], os.path.basename(source))
-        self.do_move(source, dest)
+        cls.do_move(source, dest)
 
-    def link(self, source, dest):
+    @classmethod
+    def link(cls, source, dest):
         """Link the file or folder with necessary notice"""
         dest = os.path.join(dest, os.path.basename(source))
-        self.do_link(source, dest)
+        cls.do_link(source, dest)
 
-    def link_to_xdg(self, source, xdg):
-        if dest == 'HOME':
+    @classmethod
+    def link_to_xdg(cls, source, xdg):
+        if xdg == 'HOME':
             dest = os.path.join(os.path.expanduser('~'), os.path.basename(source))
         else:
             dest = os.path.join(UserdirFile()[xdg], os.path.basename(source))
-        self.do_link(source, dest)
+        cls.do_link(source, dest)
 
-    def open(self, source):
+    @classmethod
+    def open(cls, source):
         """Open the file with gedit"""
         exe = get_command_for_type('text/plain')
         if exe:
@@ -119,7 +131,8 @@ class FileOperation:
         else:
             ErrorDialog(_("Coudn't find any text editor in your system!")).launch()
 
-    def browse(self, source):
+    @classmethod
+    def browse(cls, source):
         """Browser the folder as root"""
         if source[-1] == "root":
             cmd = ["gksu", "-m", _("Enter your password to perform the administrative tasks") , "nautilus"]
@@ -130,47 +143,48 @@ class FileOperation:
             cmd.extend(source)
             subprocess.call(cmd)
 
-    def get_local_path(self, uri):
+    @classmethod
+    def get_local_path(cls, uri):
         """Convert the URI to local path"""
         return gnomevfs.get_local_path_from_uri(uri)
 
 class Worker:
     """The worker to do the real operation, with getattr to instrospect the operation"""
     def __init__(self, argv):
-        command = argv[1]
-        paras = argv[2:]
+        try:
+            command = argv[1]
+            paras = argv[2:]
 
-        if command in ('copy', 'move', 'link'):
-            dialog = FileChooserDialog(_("Select a folder"))
-            dialog.set_current_folder(os.path.expanduser('~'))
-            if dialog.run() == gtk.RESPONSE_ACCEPT:
-                folder = dialog.get_filename()
+            if command in ('copy', 'move', 'link'):
+                dialog = FileChooserDialog(_("Select a folder"))
+                dialog.set_current_folder(os.path.expanduser('~'))
+                if dialog.run() == gtk.RESPONSE_ACCEPT:
+                    folder = dialog.get_filename()
 
-                dialog.destroy()
+                    dialog.destroy()
 
-                operation = FileOperation()
-                work = getattr(operation, command)
+                    work = getattr(FileOperation, command)
+                    for file in paras:
+                        if file.startswith('file'):
+                            file = FileOperation.get_local_path(file)
+                        work(file, folder)
+            elif command in ('copy_to_xdg', 'move_to_xdg', 'link_to_xdg'):
+                xdg = paras[-1]
+                paras = paras[:-1]
+
+                work = getattr(FileOperation, command)
+
                 for file in paras:
                     if file.startswith('file'):
-                        file = operation.get_local_path(file)
-                    work(file, folder)
-        elif command in ('copy_to_xdg', 'move_to_xdg', 'link_to_xdg'):
-            xdg = paras[-1]
-            paras = paras[:-1]
-
-            operation = FileOperation()
-            work = getattr(operation, command)
-
-            for file in paras:
-                if file.startswith('file'):
-                    file = operation.get_local_path(file)
-                work(file, xdg)
-        else:
-            operation = FileOperation()
-            getattr(operation, command)(paras)
+                        file = FileOperation.get_local_path(file)
+                    work(file, xdg)
+            else:
+                getattr(FileOperation, command)(paras)
+        except:
+            run_traceback('fatal')
 
 if __name__ == "__main__":
-#    show_info(' '.join([i for i in sys.argv]))
+#    ErrorDialog(`sys.argv`).launch()
     if len(sys.argv) <= 2:
         ErrorDialog(_("Please select a target (files or folders).")).launch()
     if len(sys.argv) > 2:

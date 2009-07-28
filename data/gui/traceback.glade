@@ -78,11 +78,19 @@ Please choose &lt;i&gt;Report&lt;/i&gt; to file a new bug report. Make sure to i
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <child>
-                      <object class="GtkTextView" id="fatal_view">
+                      <object class="GtkScrolledWindow" id="scrolledwindow1">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="editable">False</property>
-                        <property name="wrap_mode">word</property>
+                        <property name="hscrollbar_policy">automatic</property>
+                        <property name="vscrollbar_policy">automatic</property>
+                        <child>
+                          <object class="GtkTextView" id="fatal_view">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="editable">False</property>
+                            <property name="wrap_mode">word</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
                     <child type="label">
@@ -253,11 +261,19 @@ Please choose &lt;i&gt;Report&lt;/i&gt; to file a new bug report. Make sure to i
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <child>
-                      <object class="GtkTextView" id="error_view">
+                      <object class="GtkScrolledWindow" id="scrolledwindow1">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="editable">False</property>
-                        <property name="wrap_mode">word</property>
+                        <property name="hscrollbar_policy">automatic</property>
+                        <property name="vscrollbar_policy">automatic</property>
+                        <child>
+                          <object class="GtkTextView" id="error_view">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="editable">False</property>
+                            <property name="wrap_mode">word</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
                     <child type="label">

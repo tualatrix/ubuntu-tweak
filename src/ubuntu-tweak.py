@@ -39,11 +39,6 @@ class TweakLauncher:
     def __init__(self):
         thread.start_new_thread(self.show_splash, ())
 
-        try:
-            from common.package import update_apt_cache
-        except:
-            pass
-
         from mainwindow import MainWindow
         window = MainWindow()
 

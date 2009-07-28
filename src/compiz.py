@@ -29,7 +29,7 @@ from common.widgets import ListPack, SinglePack, TweakPage
 from common.widgets.dialogs import InfoDialog
 from common.systeminfo import module_check
 try:
-    from common.package import update_apt_cache, package_worker, AptCheckButton
+    from common.package import package_worker, AptCheckButton
 except:
     pass
 
@@ -43,19 +43,19 @@ def load_ccm():
 load_ccm()
 
 plugins = \
-[
-    "expo",
-    "scale",
-    "core",
-    "widget",
-]
+{
+    'expo': _('Expo'),
+    'scale': _('Show Windows'),
+    'core': _('Show Desktop'),
+    'widget': _('Widget'),
+}
 
 plugins_settings = \
 {
-    "expo": "expo_edge",
-    "scale": "initiate_all_edge",
-    "core": "show_desktop_edge",
-    "widget": "toggle_edge",
+    'expo': 'expo_edge',
+    'scale': 'initiate_all_edge',
+    'core': 'show_desktop_edge',
+    'widget': 'toggle_edge',
 }
 
 class CompizSetting:
@@ -104,9 +104,12 @@ class OpacityMenu(gtk.CheckButton, CompizSetting):
         gtk.CheckButton.__init__(self, label)
 
         if ccm.Version > '0.7.6':
-            self.plugin = self.context.Plugins['obs']
+            self.plugin = self.get_plugin('obs')
         else:
-            self.plugin = self.context.Plugins['core']
+            self.plugin = self.get_plugin('core')
+        if not self.plugin.Enabled:
+            self.plugin.Enabled = 1
+            self.context.Write()
         self.setting_matches = self.plugin.Screens[0]['opacity_matches']
         self.setting_values = self.plugin.Screens[0]['opacity_values']
 
@@ -222,8 +225,7 @@ class Compiz(TweakPage, CompizSetting):
         self.create_interface()
 
     def create_interface(self):
-        if module_check.has_apt():
-            update_apt_cache(True)
+        if module_check.has_apt() and package_worker.get_cache():
             self.package_worker = package_worker
 
             self.advanced_settings = AptCheckButton(_("Install Advanced Desktop Effects Settings Manager"),
@@ -239,7 +241,7 @@ class Compiz(TweakPage, CompizSetting):
         if self.context:
             hbox = gtk.HBox(False, 0)
             hbox.pack_start(self.create_edge_setting(), True, False, 0)
-            edge_setting = SinglePack('Edge Settings', hbox)
+            edge_setting = SinglePack(_('Edge Settings'), hbox)
             self.pack_start(edge_setting, False, False, 0)
 
             self.snap = SnapWindow(_("Enable snapping windows"), self)
@@ -254,8 +256,7 @@ class Compiz(TweakPage, CompizSetting):
             box = ListPack(_("Menu Effects"), (button1, self.wobbly_m))
             self.pack_start(box, False, False, 0)
 
-            if module_check.has_apt():
-                update_apt_cache(True)
+            if module_check.has_apt() and package_worker.get_cache():
                 box = ListPack(_("Useful Extensions"), (
                     self.simple_settings,
                     self.screenlets,
@@ -302,37 +303,48 @@ class Compiz(TweakPage, CompizSetting):
         self.add_edge(widget, edge)    
 
     def add_edge(self, widget, edge):
-        i = widget.get_active()
-        if i == 4:
+        text = widget.get_active_text()
+        for k, v in plugins.items():
+            if v == text:
+                text = k
+                break
+
+        if text == '-':
             widget.previous = None
         else:
-            plugin = self.context.Plugins[plugins[i]]
-            setting = plugin.Display[plugins_settings[plugins[i]]]
+            plugin = self.context.Plugins[text]
+            setting = plugin.Display[plugins_settings[text]]
             setting.Value = edge
             self.context.Write()
-            widget.previous = plugins[i]
+            widget.previous = text
 
     def create_edge_combo_box(self, edge):
+        global plugins_settings, plugins
         combobox = gtk.combo_box_new_text()
-        combobox.append_text(_("Expo"))
-        combobox.append_text(_("Show Windows"))
-        combobox.append_text(_("Show Desktop"))
-        combobox.append_text(_("Widget"))
-        combobox.append_text("-")
-        combobox.set_active(4)
         combobox.previous = None
 
+        enable = False
+        count = 0
         for k, v in plugins_settings.items():
-            plugin = self.context.Plugins[k]
-            #TODO The plugin should be turned off when it is unused.
-            if not plugin.Enabled:
-                plugin.Enabled = True
-                self.context.Write()
-            setting = plugin.Display[v]
-            if setting.Value == edge:
-                combobox.previous = k
-                combobox.set_active(plugins.index(k))
+            if self.context.Plugins.has_key(k):
+                plugin = self.context.Plugins[k]
+                combobox.append_text(plugins[k])
+                if not plugin.Enabled:
+                    plugin.Enabled = True
+                    self.context.Write()
+                setting = plugin.Display[v]
+                if setting.Value == edge:
+                    combobox.previous = k
+                    combobox.set_active(count)
+                    enable = True
+                count = count + 1
+            else:
+                plugins.pop(k)
+                plugins_settings.pop(k)
 
+        combobox.append_text("-")
+        if not enable:
+            combobox.set_active(count)
         combobox.connect("changed", self.combo_box_changed_cb, edge)
 
         return combobox
@@ -385,12 +397,18 @@ class Compiz(TweakPage, CompizSetting):
                 to_rm.append(widget.pkgname)
 
         self.package_worker.perform_action(widget.get_toplevel(), to_add, to_rm)
+        self.package_worker.update_apt_cache(True)
 
-        self.button.set_sensitive(False)
+        done = package_worker.get_install_status(to_add, to_rm)
 
-        InfoDialog(_("Update successful!")).launch()
+        if done:
+            self.button.set_sensitive(False)
+            InfoDialog(_('Update Successful!')).launch()
+        else:
+            InfoDialog(_('Update Failed!')).launch()
+            for widget in box.items:
+                widget.reset_active()
 
-        update_apt_cache()
         CompizSetting.update_context()
         self.remove_all_children()
         self.create_interface()

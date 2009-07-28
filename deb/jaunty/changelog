@@ -1,3 +1,46 @@
+ubuntu-tweak (0.4.7.3-1~jaunty1) jaunty; urgency=low
+
+  * Fix a typo in thirdsoft.py (LP: 390275).
+  * Add gnome-desktop-data to dependency, update DEBIAN control and rules.
+  * Thanks Christoph Korn.
+  * Enable jaunty repo for XBMC PPA.
+  * Add Ubuntu X PPA.
+  * Add Experimental Gnome Games PPA.
+  * Fix the bug that erases the sources.list (LP: 390888).
+  * Fix and improve the script-worker.in (LP: 371626).
+  * Fix the script-worker --help error (LP: 394008).
+
+ -- TualatriX <tualatrix@gmail.com>  Sat, 04 Jul 2009 10:52:02 +0800
+
+ubuntu-tweak (0.4.7.2-1~jaunty1) jaunty; urgency=low
+
+  * Make the Memory info in Computer more readable
+  * Add the "Add an option to lockdown.py to fix root theme.
+  * Add python-xdg to the depends.
+  * Enable the OpenOffice.Org third-party sources for Ubuntu 8.04 and
+  * 9.04.
+  * Fix the thousand years of bug LP #371872, compiz crash.
+  * Fix the thousand years of bug LP #339261, Broken pipe when get apt 
+  * cache.
+  * Fix the xdg name error in ScriptWorker, add debug mode.
+  * Improve the open scripts, LP #371626, Thanks astolia.
+  * Fix transparent menus in Compiz, LP #377637.
+  * Move the update_apt_cache to package_worker, Add check for apt cache
+  * in some modules.
+  * Check update state in compiz fusion(Thanks Gig).
+  * Remove compiz version check in module_check.
+  * Add support for Linux Mint 7, Gloria. LP #378515.
+  * Add the get_install_status to package_worker, clean code in Installer.
+  * Add PPA pidgin-developer to third-party sources.
+  * Update the Gnote PPA.
+  * Make Add/Remove and Cleaner works under Ubuntu 9.10 Karmic.
+  * Add reset_active to AptCheckbutton, so fix LP #384046.
+  * Improve the Sources Editor, it support 3 sections of Sources Entry, LP #375658.
+  * Check old style PPA sources in Third-Party Sources, LP #384428.
+  * Add moodiva to the Installer and Third-Party Sources.
+
+ -- TualatriX <tualatrix@gmail.com>  Sun, 21 Jun 2009 19:41:09 +0800
+
 ubuntu-tweak (0.4.7.1-1~jaunty1) jaunty; urgency=low
 
   * Fix a typo in mainwindow, Power Managerment->PowerManagement
