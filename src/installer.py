@@ -20,6 +20,7 @@
 
 import os
 import gtk
+import urllib
 import gettext
 import gobject
 import pango
@@ -27,7 +28,9 @@ import pango
 from common.consts import *
 from common.utils import *
 from common.widgets import TweakPage
-from common.widgets.dialogs import InfoDialog
+from common.widgets.dialogs import InfoDialog, QuestionDialog
+from common.widgets.utils import ProcessDialog
+from common.network.parser import Parser
 from common.appdata import get_app_logo, get_app_describ
 from xdg.DesktopEntry import DesktopEntry
 
@@ -154,6 +157,72 @@ data = \
     ('xbmc', Desktop),
 )
 
+class LogoHandler:
+    dir = os.path.expanduser('~/.ubuntu-tweak/apps/logos')
+    if not os.path.exists(dir):
+        os.mkdir(dir)
+
+    @classmethod
+    def save_logo(cls, name, data):
+        f = open(os.path.join(cls.dir, '%s.png' % name), 'w')
+        f.write(data)
+        f.close()
+
+    @classmethod
+    def get_logo(cls, name):
+        path = os.path.join(cls.dir, '%s.png' % name)
+
+        return gtk.gdk.pixbuf_new_from_file(path)
+
+class FetchingDialog(ProcessDialog):
+    def __init__(self, parent, model):
+        self.done = False
+        self.user_action = False
+        self.model = model
+        self.parser = Parser(os.path.expanduser('~/.ubuntu-tweak/apps/data/apps.json'))
+
+        super(FetchingDialog, self).__init__(parent=parent)
+        self.set_dialog_lable(_('Fetching online data...'))
+
+    def process_data(self):
+        import time
+        self.model.clear()
+        for item in self.parser.get_items():
+            time.sleep(3)
+
+            appname = item['slug']
+            LogoHandler.save_logo(appname, urllib.urlopen(item['logo32']).read())
+
+            pixbuf = LogoHandler.get_logo(appname)
+
+            try:
+                package = PackageInfo(appname)
+                is_installed = package.check_installed()
+                disname = package.get_name()
+                desc = item['summary']
+            except KeyError:
+                continue
+
+            self.model.append((is_installed,
+                    pixbuf,
+                    appname,
+                    desc,
+                    '<b>%s</b>\n%s' % (disname, desc),
+                    1))
+
+            if self.user_action == True:
+                break
+
+        self.done = True
+
+    def on_timeout(self):
+        self.pulse()
+
+        if not self.done:
+            return True
+        else:
+            self.destroy()
+
 class Installer(TweakPage):
     def __init__(self):
         TweakPage.__init__(self, 
@@ -196,6 +265,29 @@ class Installer(TweakPage):
         hbox.pack_end(self.button, False, False, 0)
 
         self.show_all()
+
+        gobject.idle_add(self.on_idle_check)
+
+    def on_idle_check(self):
+        gtk.gdk.threads_enter()
+        if self.check_update():
+            dialog = QuestionDialog(_('New application data available, would you like to update?'))
+            action = False
+            if dialog.run() == gtk.RESPONSE_YES:
+                action = True
+            dialog.destroy()
+
+
+            dialog = FetchingDialog(self.get_toplevel(), self.model)
+
+            if dialog.run() == gtk.RESPONSE_REJECT:
+                dialog.destroy()
+
+        gtk.gdk.threads_leave()
+
+    def check_update(self):
+        #TODO
+        return True
 
     def create_category(self):
         liststore = gtk.ListStore(gtk.gdk.Pixbuf,
