@@ -144,6 +144,7 @@ APP_DATA = {
     'ubuntu-restricted-extras': _('Commonly used restricted packages'),
     'ubudsl': _('configure your USB ADSL modem and connection easier than ever!'),
     'virtualbox': _('A feature rich, high performance virtualization software'),
+    'virtualbox-3.0': _('A feature rich, high performance virtualization software'),
     'virtualbox-ose': _('A feature rich, high performance virtualization software'),
     'vlc': _('Read, capture, broadcast your multimedia streams'),
     'vmware-player': _('Run Virtual Machines using VMware'),
@@ -153,7 +154,7 @@ APP_DATA = {
 }
 
 SOURCE_DATA = {
-    'firefox': _('Development Version of Mozilla Firefox 3.1, 4.0'),
+    'firefox': _('Development Version of Mozilla Firefox 3.6, 4.0'),
     'compiz-fusion': _('Development version of Compiz Fusion'),
     'google': _("Google's Linux Repository"),
     'kde-4': _('K Desktop Environment 4.2'),

@@ -146,6 +146,7 @@ data = \
     ('ubudsl', Internet),
     ('ubuntu-restricted-extras', Desktop),
     ('virtualbox-ose', Emulator),
+    ('virtualbox-3.0', Emulator),
     ('vlc', Video),
     ('vmware-player', Emulator),
     ('wine', Emulator),
