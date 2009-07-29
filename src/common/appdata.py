@@ -58,12 +58,7 @@ def get_app_logo(name):
         return icon.load_icon(gtk.STOCK_MISSING_IMAGE, 32, 0)
 
 def get_source_logo(name):
-    try:
-        return gtk.gdk.pixbuf_new_from_file(get_app_logo(name))
-    except:
-        icontheme = gtk.icon_theme_get_default()
-        icon = icontheme.lookup_icon('gtk-missing-image', 32, gtk.ICON_LOOKUP_NO_SVG)
-        return icon.load_icon()
+    return get_app_logo(name)
 
 APP_DATA = {
     'agave': _('A color scheme designer'),
