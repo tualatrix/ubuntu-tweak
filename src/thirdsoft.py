@@ -383,7 +383,7 @@ class SourcesView(gtk.TreeView):
             dependency = SOURCES_DEPENDENCIES[name]
             if not self.get_source_enabled(dependency):
                 dialog = QuestionDialog(\
-                            _('To enable this PPA Source, You need to enable "%s" at first.\nDo you wish to continue?') \
+                            _('To enable this Source, You need to enable "%s" at first.\nDo you wish to continue?') \
                             % dependency,
                             title=_('Dependencies Notice'))
                 if dialog.run() == gtk.RESPONSE_YES:
@@ -396,7 +396,7 @@ class SourcesView(gtk.TreeView):
             HAVE_REVERSE_DEPENDENCY = False
             for k, v in SOURCES_DEPENDENCIES.items():
                 if v == name and self.get_source_enabled(k):
-                    ErrorDialog(_('You can\'t disable this Source because "%(SOURCE)s" dependecy on it.\nTo continue you should disable "%(SOURCE)s" first.') % {'SOURCE': k}).launch()
+                    ErrorDialog(_('You can\'t disable this Source because "%(SOURCE)s" depends on it.\nTo continue you need to disable "%(SOURCE)s" first.') % {'SOURCE': k}).launch()
                     HAVE_REVERSE_DEPENDENCY = True
                     break
             if HAVE_REVERSE_DEPENDENCY:
@@ -411,7 +411,7 @@ class SourcesView(gtk.TreeView):
                     if v == name:
                         key = k
             if self.get_source_enabled(key):
-                ErrorDialog(_('You can\'t enabled this Source because "%(SOURCE)s" conflicts with it.\nTo continue you should disable "%(SOURCE)s" first.') % {'SOURCE': key}).launch()
+                ErrorDialog(_('You can\'t enable this Source because "%(SOURCE)s" conflicts with it.\nTo continue you need to disable "%(SOURCE)s" first.') % {'SOURCE': key}).launch()
                 self.model.set(iter, COLUMN_ENABLED, enabled)
                 return False
         self.do_source_enable(iter)
