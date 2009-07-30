@@ -372,6 +372,12 @@ class SourcesView(gtk.TreeView):
                 key,
                 ))
 
+    def get_sourcelist_status(self, url):
+        for source in self.get_sourceslist():
+            if url in source.str() and source.type == 'deb':
+                return not source.disabled
+        return False
+
     def on_enable_toggled(self, cell, path):
         iter = self.model.get_iter((int(path),))
 
@@ -444,6 +450,8 @@ class SourcesView(gtk.TreeView):
         comps = self.model.get_value(iter, COLUMN_COMPS)
         key = self.model.get_value(iter, COLUMN_KEY)
 
+        status = self.get_sourcelist_status(url)
+
         if key:
             proxy.add_apt_key(key)
 
@@ -452,12 +460,15 @@ class SourcesView(gtk.TreeView):
         else:
             result = proxy.set_entry(url, distro + '/', comps, name, not enabled)
 
-        if result == 'enabled':
+        if str(result) == 'enabled':
             self.model.set(iter, COLUMN_ENABLED, True)
+            now_status = True
         else:
             self.model.set(iter, COLUMN_ENABLED, False)
-            
-        self.emit('sourcechanged')
+            now_status = False
+
+        if status != now_status:
+            self.emit('sourcechanged')
 
 class SourceDetail(gtk.VBox):
     def __init__(self):
