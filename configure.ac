@@ -57,6 +57,17 @@ AC_CONFIG_FILES([
     data/scripts/Makefile
     data/templates/Makefile
     data/gui/Makefile
+    icons/Makefile
+    icons/icons/Makefile
+    icons/icons/16x16/Makefile
+    icons/icons/22x22/Makefile
+    icons/icons/24x24/Makefile
+    icons/icons/32x32/Makefile
+    icons/icons/36x36/Makefile
+    icons/icons/48x48/Makefile
+    icons/icons/64x64/Makefile
+    icons/icons/96x96/Makefile
+    icons/icons/128x128/Makefile
     scripts/Makefile
     scripts/ubuntu-tweak
     scripts/script-worker

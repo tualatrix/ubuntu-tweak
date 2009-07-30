@@ -117,13 +117,14 @@ Terminator = ['Terminator', 'terminator', 'www.tenshu.net/terminator/', 'termina
 Transmission_Stable = ['Transmission (Stable Version)', 'transmission-gtk', 'www.transmissionbt.com', 'transmission_stable.gpg']
 Transmission_Beta = ['Transmission (Beta Version)', 'transmission-gtk', 'www.transmissionbt.com', 'transmission_beta.gpg']
 Transmission_Nightly = ['Transmission (Nightly Version)', 'transmission-gtk', 'www.transmissionbt.com', 'transmission_nightly.gpg']
-VirtualBox = ['VirtualBox', 'virtualbox', 'www.virtualbox.org/', 'virtualbox.gpg']
+VirtualBox = ['VirtualBox', 'virtualbox', 'www.virtualbox.org', 'virtualbox.gpg']
+VirtualBoxOse = [_('VirtualBox (Open Source Edition)'), 'virtualbox-ose', 'www.virtualbox.org', 'virtualboxose.gpg']
 Vlc = [_('VLC media player'), 'vlc', 'www.videolan.org/vlc/', 'vlc.gpg']
 Shutter = ['Shutter', 'shutter', 'launchpad.net/shutter', 'shutter.gpg']
 Pidgin = ['Pidgin', 'pidgin', 'pidgin.im', 'pidgin.gpg']
 Moovida = ['Moovida', 'moovida', 'www.moovida.com', 'moovida.gpg']
 Galaxium = ['Galaxium', 'galaxium', 'code.google.com/p/galaxium/', 'galaxium.gpg']
-Swiftweasel = ['Swiftweasel', 'swiftweasel', 'swiftweasel.tuxfamily.org/', '']
+Swiftweasel = ['Swiftweasel', 'swiftweasel', 'swiftweasel.tuxfamily.org', '']
 Medibuntu = ['Medibuntu', 'medibuntu', 'www.medibuntu.org', 'medibuntu.gpg']
 WineDoors = ['Wine Doors', 'wine-doors', 'www.wine-doors.org', 'wine-doors.gpg']
 XBMC = ['XBMC', 'xbmc', 'xbmc.org', 'xbmc.gpg']
@@ -183,6 +184,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/transmissionbt-beta/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Transmission_Beta],
     ['http://ppa.launchpad.net/transmissionbt-nightly/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Transmission_Nightly],
     ['http://download.virtualbox.org/virtualbox/debian', ['hardy', 'intrepid', 'jaunty'], 'non-free', VirtualBox],
+    ['http://ppa.launchpad.net/debfx/virtualbox/ubuntu', ['intrepid', 'jaunty'], 'main', VirtualBoxOse],
     ['http://ppa.launchpad.net/c-korn/vlc/ubuntu', ['jaunty'], 'main', Vlc],
     ['http://ppa.launchpad.net/shutter/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Shutter],
     ['http://ppa.launchpad.net/galaxium/ppa/ubuntu', 'hardy', 'main', Galaxium],
@@ -370,6 +372,12 @@ class SourcesView(gtk.TreeView):
                 key,
                 ))
 
+    def get_sourcelist_status(self, url):
+        for source in self.get_sourceslist():
+            if url in source.str() and source.type == 'deb':
+                return not source.disabled
+        return False
+
     def on_enable_toggled(self, cell, path):
         iter = self.model.get_iter((int(path),))
 
@@ -381,7 +389,7 @@ class SourcesView(gtk.TreeView):
             dependency = SOURCES_DEPENDENCIES[name]
             if not self.get_source_enabled(dependency):
                 dialog = QuestionDialog(\
-                            _('To enable this PPA Source, You need to enable "%s" at first.\nDo you wish to continue?') \
+                            _('To enable this Source, You need to enable "%s" at first.\nDo you wish to continue?') \
                             % dependency,
                             title=_('Dependencies Notice'))
                 if dialog.run() == gtk.RESPONSE_YES:
@@ -394,7 +402,7 @@ class SourcesView(gtk.TreeView):
             HAVE_REVERSE_DEPENDENCY = False
             for k, v in SOURCES_DEPENDENCIES.items():
                 if v == name and self.get_source_enabled(k):
-                    ErrorDialog(_('You can\'t disable this Source because "%(SOURCE)s" dependecy on it.\nTo continue you should disable "%(SOURCE)s" first.') % {'SOURCE': k}).launch()
+                    ErrorDialog(_('You can\'t disable this Source because "%(SOURCE)s" depends on it.\nTo continue you need to disable "%(SOURCE)s" first.') % {'SOURCE': k}).launch()
                     HAVE_REVERSE_DEPENDENCY = True
                     break
             if HAVE_REVERSE_DEPENDENCY:
@@ -409,7 +417,7 @@ class SourcesView(gtk.TreeView):
                     if v == name:
                         key = k
             if self.get_source_enabled(key):
-                ErrorDialog(_('You can\'t enabled this Source because "%(SOURCE)s" conflicts with it.\nTo continue you should disable "%(SOURCE)s" first.') % {'SOURCE': key}).launch()
+                ErrorDialog(_('You can\'t enable this Source because "%(SOURCE)s" conflicts with it.\nTo continue you need to disable "%(SOURCE)s" first.') % {'SOURCE': key}).launch()
                 self.model.set(iter, COLUMN_ENABLED, enabled)
                 return False
         self.do_source_enable(iter)
@@ -443,6 +451,8 @@ class SourcesView(gtk.TreeView):
         comps = self.model.get_value(iter, COLUMN_COMPS)
         key = self.model.get_value(iter, COLUMN_KEY)
 
+        status = self.get_sourcelist_status(url)
+
         if key:
             proxy.add_apt_key(key)
 
@@ -454,12 +464,15 @@ class SourcesView(gtk.TreeView):
         else:
             result = proxy.set_entry(url, distro, comps, comment, not enabled)
 
-        if result == 'enabled':
+        if str(result) == 'enabled':
             self.model.set(iter, COLUMN_ENABLED, True)
+            now_status = True
         else:
             self.model.set(iter, COLUMN_ENABLED, False)
-            
-        self.emit('sourcechanged')
+            now_status = False
+
+        if status != now_status:
+            self.emit('sourcechanged')
 
 class SourceDetail(gtk.VBox):
     def __init__(self):

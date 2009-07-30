@@ -48,16 +48,17 @@ def get_source_describ(name):
     return desc
 
 def get_app_logo(name):
-    name = '%s.png' % name.replace(' ', '-').lower()
-    return os.path.join(DATA_DIR, 'applogos', name)
+    try:
+        name = '%s.png' % name.replace(' ', '-').lower()
+        path = os.path.join(DATA_DIR, 'applogos', name)
+
+        return gtk.gdk.pixbuf_new_from_file(path)
+    except:
+        icon = gtk.icon_theme_get_default()
+        return icon.load_icon(gtk.STOCK_MISSING_IMAGE, 32, 0)
 
 def get_source_logo(name):
-    try:
-        return gtk.gdk.pixbuf_new_from_file(get_app_logo(name))
-    except:
-        icontheme = gtk.icon_theme_get_default()
-        icon = icontheme.lookup_icon('gtk-missing-image', 32, gtk.ICON_LOOKUP_NO_SVG)
-        return icon.load_icon()
+    return get_app_logo(name)
 
 APP_DATA = {
     'agave': _('A color scheme designer'),
@@ -143,6 +144,7 @@ APP_DATA = {
     'ubuntu-restricted-extras': _('Commonly used restricted packages'),
     'ubudsl': _('configure your USB ADSL modem and connection easier than ever!'),
     'virtualbox': _('A feature rich, high performance virtualization software'),
+    'virtualbox-3.0': _('A feature rich, high performance virtualization software'),
     'virtualbox-ose': _('A feature rich, high performance virtualization software'),
     'vlc': _('Read, capture, broadcast your multimedia streams'),
     'vmware-player': _('Run Virtual Machines using VMware'),
@@ -152,7 +154,7 @@ APP_DATA = {
 }
 
 SOURCE_DATA = {
-    'firefox': _('Development Version of Mozilla Firefox 3.1, 4.0'),
+    'firefox': _('Development Version of Mozilla Firefox 3.6, 4.0'),
     'compiz-fusion': _('Development version of Compiz Fusion'),
     'google': _("Google's Linux Repository"),
     'kde-4': _('K Desktop Environment 4.2'),
