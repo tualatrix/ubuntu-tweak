@@ -1,3 +1,3 @@
-SUBDIRS = po src scripts data policykit
+SUBDIRS = po src scripts data policykit icons
 
 ACLOCAL_AMFLAGS = -I m4
