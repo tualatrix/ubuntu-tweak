@@ -158,21 +158,23 @@ data = \
 )
 
 class LogoHandler:
-    dir = os.path.expanduser('~/.ubuntu-tweak/apps/logos')
-    if not os.path.exists(dir):
-        os.mkdir(dir)
+    def __init__(self, dir):
+        self.dir = dir
+        if not os.path.exists(self.dir):
+            os.mkdir(self.dir)
 
-    @classmethod
-    def save_logo(cls, name, data):
-        f = open(os.path.join(cls.dir, '%s.png' % name), 'w')
+    def save_logo(self, name, data):
+        f = open(os.path.join(self.dir, '%s.png' % name), 'w')
         f.write(data)
         f.close()
 
-    @classmethod
-    def get_logo(cls, name):
-        path = os.path.join(cls.dir, '%s.png' % name)
+    def get_logo(self, name):
+        path = os.path.join(self.dir, '%s.png' % name)
 
         return gtk.gdk.pixbuf_new_from_file(path)
+
+    def is_exists(self, name):
+        return os.path.exists(os.path.join(self.dir, '%s.png' % name))
 
 class FetchingDialog(ProcessDialog):
     def __init__(self, parent, model):
@@ -180,6 +182,7 @@ class FetchingDialog(ProcessDialog):
         self.user_action = False
         self.model = model
         self.parser = Parser(os.path.expanduser('~/.ubuntu-tweak/apps/data/apps.json'))
+        self.handler = LogoHandler(os.path.expanduser('~/.ubuntu-tweak/apps/logos'))
 
         super(FetchingDialog, self).__init__(parent=parent)
         self.set_dialog_lable(_('Fetching online data...'))
@@ -191,9 +194,10 @@ class FetchingDialog(ProcessDialog):
             time.sleep(3)
 
             appname = item['slug']
-            LogoHandler.save_logo(appname, urllib.urlopen(item['logo32']).read())
 
-            pixbuf = LogoHandler.get_logo(appname)
+            if not self.handler.is_exists(appname):
+                self.handler.save_logo(appname, urllib.urlopen(item['logo32']).read())
+            pixbuf = self.handler.get_logo(appname)
 
             try:
                 package = PackageInfo(appname)
