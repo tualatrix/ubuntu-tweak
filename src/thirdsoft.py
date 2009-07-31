@@ -391,7 +391,7 @@ class SourcesView(gtk.TreeView):
                 dialog = QuestionDialog(\
                             _('To enable this Source, You need to enable "%s" at first.\nDo you wish to continue?') \
                             % dependency,
-                            title=_('Dependencies Notice'))
+                            title=_('Dependency Notice'))
                 if dialog.run() == gtk.RESPONSE_YES:
                     self.set_source_enabled(dependency)
                 else:
@@ -452,23 +452,24 @@ class SourcesView(gtk.TreeView):
 
         status = self.get_sourcelist_status(url)
 
-        if key:
-            proxy.add_apt_key(key)
+        if status == enabled:
+            if key:
+                proxy.add_apt_key(key)
 
-        if comps:
-            result = proxy.set_entry(url, distro, comps, name, not enabled)
-        else:
-            result = proxy.set_entry(url, distro + '/', comps, name, not enabled)
+            if comps:
+                result = proxy.set_entry(url, distro, comps, name, not enabled)
+            else:
+                result = proxy.set_entry(url, distro + '/', comps, name, not enabled)
 
-        if str(result) == 'enabled':
-            self.model.set(iter, COLUMN_ENABLED, True)
-            now_status = True
-        else:
-            self.model.set(iter, COLUMN_ENABLED, False)
-            now_status = False
+            if str(result) == 'enabled':
+                self.model.set(iter, COLUMN_ENABLED, True)
+                now_status = True
+            else:
+                self.model.set(iter, COLUMN_ENABLED, False)
+                now_status = False
 
-        if status != now_status:
-            self.emit('sourcechanged')
+            if status != now_status:
+                self.emit('sourcechanged')
 
 class SourceDetail(gtk.VBox):
     def __init__(self):
