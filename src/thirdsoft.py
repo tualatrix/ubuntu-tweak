@@ -384,20 +384,23 @@ class SourcesView(gtk.TreeView):
         name = self.model.get_value(iter, COLUMN_NAME)
         enabled = self.model.get_value(iter, COLUMN_ENABLED)
 
-        if not enabled and name in SOURCES_DEPENDENCIES:
+        if enabled is False and name in SOURCES_DEPENDENCIES:
             #FIXME: If more than one dependency
             dependency = SOURCES_DEPENDENCIES[name]
-            if not self.get_source_enabled(dependency):
+            if self.get_source_enabled(dependency) is False:
                 dialog = QuestionDialog(\
                             _('To enable this Source, You need to enable "%s" at first.\nDo you wish to continue?') \
                             % dependency,
                             title=_('Dependency Notice'))
                 if dialog.run() == gtk.RESPONSE_YES:
                     self.set_source_enabled(dependency)
+                    self.set_source_enabled(name)
                 else:
-                    self.model.set(iter, COLUMN_ENABLED, not enabled)
+                    self.model.set(iter, COLUMN_ENABLED, enabled)
 
                 dialog.destroy()
+            else:
+                self.do_source_enable(iter, not enabled)
         elif enabled and name in SOURCES_DEPENDENCIES.values():
             HAVE_REVERSE_DEPENDENCY = False
             for k, v in SOURCES_DEPENDENCIES.items():
@@ -407,7 +410,8 @@ class SourcesView(gtk.TreeView):
                     break
             if HAVE_REVERSE_DEPENDENCY:
                 self.model.set(iter, COLUMN_ENABLED, enabled)
-                return False
+            else:
+                self.do_source_enable(iter, not enabled)
         elif not enabled and name in SOURCES_CONFLICTS.values() or name in SOURCES_CONFLICTS.keys():
             key = None
             if name in SOURCES_CONFLICTS.keys():
@@ -419,8 +423,10 @@ class SourcesView(gtk.TreeView):
             if self.get_source_enabled(key):
                 ErrorDialog(_('You can\'t enable this Source because "%(SOURCE)s" conflicts with it.\nTo continue you need to disable "%(SOURCE)s" first.') % {'SOURCE': key}).launch()
                 self.model.set(iter, COLUMN_ENABLED, enabled)
-                return False
-        self.do_source_enable(iter)
+            else:
+                self.do_source_enable(iter, not enabled)
+        else:
+            self.do_source_enable(iter, not enabled)
 
     def on_source_foreach(self, model, path, iter, name):
         m_name = model.get_value(iter, COLUMN_NAME)
@@ -431,45 +437,52 @@ class SourcesView(gtk.TreeView):
                 self._foreach_take = iter
 
     def get_source_enabled(self, name):
+        '''
+        Search source by name, then get status from model
+        '''
         self._foreach_mode = 'get'
         self._foreach_take = None
         self.model.foreach(self.on_source_foreach, name)
         return self._foreach_take
 
     def set_source_enabled(self, name):
+        '''
+        Search source by name, then call do_source_enable
+        '''
         self._foreach_mode = 'set'
         self._foreach_status = None
         self.model.foreach(self.on_source_foreach, name)
-        self.do_source_enable(self._foreach_take)
+        self.do_source_enable(self._foreach_take, True)
 
-    def do_source_enable(self, iter):
-        enabled = self.model.get_value(iter, COLUMN_ENABLED)
+    def do_source_enable(self, iter, enable):
+        '''
+        Do the really source enable or disable action by iter
+        Only emmit signal when source is changed
+        '''
+
         url = self.model.get_value(iter, COLUMN_URL)
         distro = self.model.get_value(iter, COLUMN_DISTRO)
         name = self.model.get_value(iter, COLUMN_NAME)
         comps = self.model.get_value(iter, COLUMN_COMPS)
         key = self.model.get_value(iter, COLUMN_KEY)
 
-        status = self.get_sourcelist_status(url)
+        pre_status = self.get_sourcelist_status(url)
 
-        if status == enabled:
-            if key:
-                proxy.add_apt_key(key)
+        if key:
+            proxy.add_apt_key(key)
 
-            if comps:
-                result = proxy.set_entry(url, distro, comps, name, not enabled)
-            else:
-                result = proxy.set_entry(url, distro + '/', comps, name, not enabled)
+        if comps:
+            result = proxy.set_entry(url, distro, comps, name, enable)
+        else:
+            result = proxy.set_entry(url, distro + '/', comps, name, enable)
 
-            if str(result) == 'enabled':
-                self.model.set(iter, COLUMN_ENABLED, True)
-                now_status = True
-            else:
-                self.model.set(iter, COLUMN_ENABLED, False)
-                now_status = False
+        if str(result) == 'enabled':
+            self.model.set(iter, COLUMN_ENABLED, True)
+        else:
+            self.model.set(iter, COLUMN_ENABLED, False)
 
-            if status != now_status:
-                self.emit('sourcechanged')
+        if pre_status != enable:
+            self.emit('sourcechanged')
 
 class SourceDetail(gtk.VBox):
     def __init__(self):
