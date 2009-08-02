@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2009-07-04 10:46+0800\n"
-"PO-Revision-Date: 2009-06-30 19:34+0000\n"
+"POT-Creation-Date: 2009-08-02 19:45+0800\n"
+"PO-Revision-Date: 2009-07-06 18:24+0000\n"
 "Last-Translator: Nedim Muminović <nedimmuminovic@gmail.com>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2009-07-03 18:00+0000\n"
+"X-Launchpad-Export-Date: 2009-08-02 07:04+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/autostart.py:45
@@ -53,7 +53,7 @@ msgstr "Obriši sa diska"
 
 #: src/autostart.py:200
 msgid "Can't delete the system item from disk."
-msgstr ""
+msgstr "Ne mogu obrisati sistemski podatak sa diska"
 
 #: src/autostart.py:248
 msgid "No description"
@@ -73,6 +73,9 @@ msgid ""
 "You can hide items from view by selecting and clicking \"Remove\"\n"
 "To permanently delete an item, right-click and press \"Delete\"."
 msgstr ""
+"Ovdje možete upravljati programima koji se pokreću kada se logirate.\n"
+"Možete ih sakriti selektirajući ih i klikom na dugme \"Ukloni\"\n"
+"Za brisanje uradite desni klik i odaberite \"Obriši sa diska\"."
 
 #: src/autostart.py:339
 msgid "Show comments"
@@ -155,11 +158,11 @@ msgstr "Emulatori"
 msgid "E-mail Tools"
 msgstr "E-mail alati"
 
-#: src/installer.py:157
+#: src/installer.py:160
 msgid "Add/Remove Applications"
 msgstr "Dodaj/Ukloni aplikacije"
 
-#: src/installer.py:158
+#: src/installer.py:161
 msgid ""
 "A simple but more effecient method for finding and installing popular "
 "packages than the default Add/Remove."
@@ -167,16 +170,16 @@ msgstr ""
 "Jednostavna ali efikasnija metoda za pronalaženje i instaliranje popularnih "
 "paketa u odnosu na Dodaj/Ukloni"
 
-#: src/installer.py:204
+#: src/installer.py:207
 msgid "All Categories"
 msgstr "Sve kategorije"
 
-#: src/installer.py:365 src/thirdsoft.py:499 src/compiz.py:406
+#: src/installer.py:364 src/thirdsoft.py:619 src/compiz.py:406
 #: src/nautilus.py:217
 msgid "Update Successful!"
 msgstr "Nadogradnja uspjela!"
 
-#: src/installer.py:367 src/compiz.py:408 src/nautilus.py:219
+#: src/installer.py:366 src/compiz.py:408 src/nautilus.py:219
 msgid "Update Failed!"
 msgstr "Nadogradnja nije uspjela!"
 
@@ -206,15 +209,15 @@ msgstr "Isključi spremanje na disk"
 
 #: src/lockdown.py:53
 msgid "Disable \"Fast User Switching\""
-msgstr ""
+msgstr "Isključi \"Brza promjena korisnika\""
 
 #: src/lockdown.py:59
 msgid "Fix the theme appearance when grant the root privileges"
-msgstr ""
+msgstr "Popravi izgled teme kada dobije root privilegije"
 
 #: src/lockdown.py:64
 msgid "Miscellaneous Options"
-msgstr ""
+msgstr "Razne opcije"
 
 #: src/ScriptWorker.py:56
 #, python-format
@@ -229,7 +232,7 @@ msgstr "Folder \"%s\" već postoji!"
 #: src/ScriptWorker.py:68 src/ScriptWorker.py:75
 #, python-format
 msgid "The target \"%s\" already exists!"
-msgstr ""
+msgstr "Meta \"%s\" već postoji!"
 
 #: src/ScriptWorker.py:125 src/ScriptWorker.py:138
 msgid "Enter your password to perform the administrative tasks"
@@ -245,7 +248,7 @@ msgstr "Odaberite folder"
 
 #: src/ScriptWorker.py:189
 msgid "Please select a target (files or folders)."
-msgstr ""
+msgstr "Molimo da odaberete metu (fajlove ili foldere)"
 
 #: src/mainwindow.py:69
 msgid "Welcome to"
@@ -253,7 +256,7 @@ msgstr "Dobrodošli u"
 
 #: src/mainwindow.py:75
 msgid "Tweak otherwise hidden settings."
-msgstr ""
+msgstr "Uredi sakrivene postavke"
 
 #: src/mainwindow.py:76
 msgid "Clean up unneeded packages to free diskspace."
@@ -261,13 +264,15 @@ msgstr "Očistite nepotrebne pakete kako biste oslobodili prostor na disku."
 
 #: src/mainwindow.py:77
 msgid "Easily install up-to-date versions of many applications."
-msgstr ""
+msgstr "Jednostavno instalirajte najnovije verzije mnogih aplikacija."
 
 #: src/mainwindow.py:78
 msgid ""
 "Configure file templates and shortcut scripts for easy access to common "
 "tasks."
 msgstr ""
+"Konfigurišite šablone fajlova i prečice do skripti za jednostavan pristup "
+"uobičajenim zadacima."
 
 #: src/mainwindow.py:79
 msgid "And many more useful features!"
@@ -282,10 +287,12 @@ msgid ""
 "<span size=\"x-large\">This feature isn't currently available in your "
 "distribution</span>"
 msgstr ""
+"<span size=\"x-large\">Ova mogućnost trenutno nije dostupna za Vašu "
+"distribuciju</span>"
 
 #: src/mainwindow.py:117
 msgid "<span size=\"x-large\">This module is error while loading.</span>"
-msgstr ""
+msgstr "<span size=\"x-large\">Greška prilikom pokretanja modula.</span>"
 
 #: src/mainwindow.py:132
 msgid ""
@@ -294,6 +301,10 @@ msgid ""
 "the file '/etc/apt/sources.list' and reload the software information with: "
 "'sudo apt-get update' and 'sudo apt-get install -f'."
 msgstr ""
+"Ovo je glavna greška Vašeg sistema za upravljanje softverom.Molimo da "
+"provjerite pokvarene pakete sa synapticom, provjerite fajl dozvole i "
+"ispravnost fajla  '/etc/apt/sources.list' i ponovo učitajte informacije o "
+"softveru naredbom 'sudo apt-get update' and 'sudo apt-get install -f'."
 
 #: src/mainwindow.py:249
 msgid "Welcome"
@@ -315,9 +326,9 @@ msgstr "Dodaj/Ukloni"
 msgid "Source Editor"
 msgstr "Uređivač repozitorija"
 
-#: src/mainwindow.py:254 src/thirdsoft.py:290
+#: src/mainwindow.py:254 src/thirdsoft.py:321
 msgid "Third-Party Sources"
-msgstr ""
+msgstr "Izvori trećih lica"
 
 #: src/mainwindow.py:255 src/cleaner.py:372
 msgid "Package Cleaner"
@@ -389,7 +400,7 @@ msgstr "Nautilus"
 
 #: src/mainwindow.py:272
 msgid "Power Management"
-msgstr ""
+msgstr "Upravljanje energijom"
 
 #: src/mainwindow.py:273
 msgid "Security"
@@ -481,6 +492,9 @@ msgid ""
 "However, you must move your files back into place by yourself.\n"
 "Do you wish to continue?"
 msgstr ""
+"Ubuntu Tweak će vratiti odabrani direktorij na zadanu lokaciju.\n"
+"Fajlove ćete morati sami vratiti na mjesto.\n"
+"Želite li nastaviti?"
 
 #: src/userdir.py:201
 msgid "Directory"
@@ -508,6 +522,8 @@ msgid ""
 "Don't change the location of your desktop folder unless you know what you "
 "are doing."
 msgstr ""
+"Ovdje možete promijeniti osnovne putanje do foldera.\n"
+"Ne mijenjajte lokaciju desktop foldera sve dok ne budete sigurni šta radite."
 
 #: src/userdir.py:258
 msgid "Update successful!"
@@ -580,11 +596,11 @@ msgstr "Nisam mogao pronaći aplikaciju"
 
 #: src/filetype.py:479
 msgid "Here you can manage which application will open which filetypes."
-msgstr ""
+msgstr "Ovdje određujete koja aplikacija će otvarati određeni tip fajla."
 
 #: src/filetype.py:505
 msgid "Only show filetypes with an associated application"
-msgstr ""
+msgstr "Samo prikaži fajl tipove sa asociranom aplikacijom"
 
 #: src/computer.py:45
 msgid "System information"
@@ -640,41 +656,69 @@ msgstr "Jezik"
 
 #: src/thirdsoft.py:70
 msgid "Avant Window Navigator (Unstable Version)"
-msgstr ""
+msgstr "Avant Window Navigator (nestabilna verzija)"
 
 #: src/thirdsoft.py:76
 msgid "Ubuntu Chinese Repository"
+msgstr "Ubuntu kineski repozitorij"
+
+#: src/thirdsoft.py:79
+msgid "IBus (Old Version)"
 msgstr ""
 
-#: src/thirdsoft.py:87
-msgid "Experimental Gnome Games"
+#: src/thirdsoft.py:80
+msgid "IBus 1.2 for intrepid"
+msgstr ""
+
+#: src/thirdsoft.py:81
+msgid "IBus 1.2 for jaunty"
+msgstr ""
+
+#: src/thirdsoft.py:86
+msgid "Ubuntu Mozilla Security Team"
 msgstr ""
 
 #: src/thirdsoft.py:88
-msgid "Gnome Global Menu"
-msgstr ""
-
-#: src/thirdsoft.py:90
-msgid "GetDeb.net (Mirror)"
-msgstr ""
-
-#: src/thirdsoft.py:92
-msgid "Gwibber (Daily Version)"
+msgid "Christine Media Player"
 msgstr ""
 
 #: src/thirdsoft.py:93
+msgid "Experimental Gnome Games"
+msgstr ""
+
+#: src/thirdsoft.py:95
+msgid "Gnome Global Menu"
+msgstr "Gnome Globalni Menu"
+
+#: src/thirdsoft.py:97
+msgid "GetDeb.net (Mirror)"
+msgstr "GetDeb.net (ogledalo)"
+
+#: src/thirdsoft.py:99
+msgid "Gwibber (Daily Version)"
+msgstr "Gwibber (dnevna verzija)"
+
+#: src/thirdsoft.py:100
 msgid "Banshee (Stable Version)"
 msgstr "Banshee (Stabilna verzija)"
 
-#: src/thirdsoft.py:94
+#: src/thirdsoft.py:101
 msgid "Banshee (Unstable Version)"
 msgstr "Banshee (Nestabilna verzija)"
 
-#: src/thirdsoft.py:100
+#: src/thirdsoft.py:107
 msgid "Ubuntu Tweak (Unstable Version)"
 msgstr "Ubuntu Tweak (nestabilna verzija)"
 
-#: src/thirdsoft.py:207
+#: src/thirdsoft.py:121
+msgid "VirtualBox (Open Source Edition)"
+msgstr ""
+
+#: src/thirdsoft.py:122
+msgid "VLC media player"
+msgstr ""
+
+#: src/thirdsoft.py:238
 msgid ""
 "To install software and updates from newly added or changed sources, you "
 "have to reload the information about available software.\n"
@@ -684,31 +728,56 @@ msgstr ""
 "Za instalaciju softvera i nadogradnji iz nedavno dodanih ili promijenjenih "
 "repozitorija, morate osvježiti informacije o dostupnom softveru."
 
-#: src/thirdsoft.py:211
+#: src/thirdsoft.py:242
 msgid "The information about available software is out-of-date"
 msgstr "Informacija o dostupnom softveru je zastarjela"
 
-#: src/thirdsoft.py:377
+#: src/thirdsoft.py:392
+#, python-format
+msgid ""
+"To enable this Source, You need to enable \"%s\" at first.\n"
+"Do you wish to continue?"
+msgstr ""
+
+#: src/thirdsoft.py:394
+msgid "Dependency Notice"
+msgstr ""
+
+#: src/thirdsoft.py:408
+#, python-format
+msgid ""
+"You can't disable this Source because \"%(SOURCE)s\" depends on it.\n"
+"To continue you need to disable \"%(SOURCE)s\" first."
+msgstr ""
+
+#: src/thirdsoft.py:424
+#, python-format
+msgid ""
+"You can't enable this Source because \"%(SOURCE)s\" conflicts with it.\n"
+"To continue you need to disable \"%(SOURCE)s\" first."
+msgstr ""
+
+#: src/thirdsoft.py:496
 msgid "Homepage"
 msgstr "Početna stranica"
 
-#: src/thirdsoft.py:377
+#: src/thirdsoft.py:496
 msgid "Source URL"
 msgstr "Izvorni URL"
 
-#: src/thirdsoft.py:377
+#: src/thirdsoft.py:496
 msgid "Description"
 msgstr "Opis"
 
-#: src/thirdsoft.py:388
+#: src/thirdsoft.py:507
 msgid "Description is here"
 msgstr "Ovdje je opis"
 
-#: src/thirdsoft.py:416
+#: src/thirdsoft.py:536
 msgid "Third-Party Software Sources"
-msgstr ""
+msgstr "Softver trećih lica"
 
-#: src/thirdsoft.py:417
+#: src/thirdsoft.py:537
 msgid ""
 "After every release of Ubuntu there comes a feature freeze.\n"
 "This means only applications with bug-fixes get into the repository.\n"
@@ -716,50 +785,62 @@ msgid ""
 "the latest version.\n"
 "After adding these repositories, locate and install them using Add/Remove."
 msgstr ""
+"Poslije svakog izdanja Ubuntu dolazi sa osobinom zamrzavanja.\n"
+"To znači da samo aplikacije koje imaju zakrpe ulaze u repozitorij.\n"
+"Koristećo DEB repozitorije trećih lica možete uvijek ostati nadograđeni na "
+"zadnju verziju programa.\n"
+"Poslije dodavanja ovih repozitorija, locirajte i instalirajte ih koristeći "
+"Dodaj/Ukloni."
 
-#: src/thirdsoft.py:433 src/sourceeditor.py:83
+#: src/thirdsoft.py:553 src/sourceeditor.py:83
 msgid "Details"
 msgstr "Detalji"
 
-#: src/thirdsoft.py:456
+#: src/thirdsoft.py:576
 msgid ""
 "Some of your PPA Sources need to be updated.\n"
 "Do you wish to continue?"
 msgstr ""
+"Nekoliko Vaših PPA izvora treba biti nadograđeno.\n"
+"Želite li nastaviti?"
 
-#: src/thirdsoft.py:456
+#: src/thirdsoft.py:576
 msgid "PPA Sources has expired"
-msgstr ""
+msgstr "PPA izvori su nevažeći"
 
-#: src/thirdsoft.py:496 src/sourceeditor.py:475
+#: src/thirdsoft.py:616 src/sourceeditor.py:475
 msgid "Please check the permission of the sources.list file"
-msgstr ""
+msgstr "Molimo da provjerite dozvole sources.list fajla"
 
-#: src/thirdsoft.py:497 src/sourceeditor.py:476
+#: src/thirdsoft.py:617 src/sourceeditor.py:476
 msgid "Save failed!"
 msgstr "Spremanje nije uspjelo!"
 
-#: src/thirdsoft.py:524
+#: src/thirdsoft.py:644
 msgid ""
 "It is a possible security risk to use packages from Third-Party Sources.\n"
 "Please be careful and use only sources you trust."
 msgstr ""
+"Moguć je sigurnosni rizik ukoliko koristite pakete trećih lica.\n"
+"Molimo da budete pažljivi i koristite samo one izvore kojima vjerujete."
 
-#: src/thirdsoft.py:527 src/nautilus.py:189
+#: src/thirdsoft.py:647 src/nautilus.py:189
 msgid "Warning"
 msgstr "Upozorenje"
 
-#: src/thirdsoft.py:531
+#: src/thirdsoft.py:651
 msgid "Never show this dialog"
 msgstr "Ne prikazuj više ovaj dijalog"
 
-#: src/thirdsoft.py:553
+#: src/thirdsoft.py:673
 msgid ""
 "You can install the new applications through Add/Remove.\n"
 "Do you want to go now?"
 msgstr ""
+"Možete instalirati nove aplikacije preko Dodaj/Ukloni.\n"
+"Želite li otići sada?"
 
-#: src/thirdsoft.py:554 src/sourceeditor.py:412
+#: src/thirdsoft.py:674 src/sourceeditor.py:412
 msgid "The software information is up-to-date now"
 msgstr "Informacija o softveru je sada ažurirana"
 
@@ -804,10 +885,12 @@ msgstr "Prikaži montirane uređaje na desktopu"
 #: src/icons.py:145
 msgid "Use \"Home Folder\" as desktop (Logout for changes to take effect)"
 msgstr ""
+"Koristi \"Home Folder\" kao desktop (izlogirajte se kako bi promjene imale "
+"efekta)"
 
 #: src/metacity.py:37
 msgid "Window Decorate Effect"
-msgstr ""
+msgstr "Efekti za dekoraciju prozora"
 
 #: src/metacity.py:39
 msgid "Use Metacity window theme"
@@ -815,11 +898,11 @@ msgstr "Koristi metacity temu za prozore"
 
 #: src/metacity.py:42
 msgid "Enable active window transparency"
-msgstr ""
+msgstr "Uključi providnost aktivnog prozora"
 
 #: src/metacity.py:44
 msgid "Active window transparency level"
-msgstr ""
+msgstr "Nivo prozirnosti aktivnog prozora"
 
 #: src/metacity.py:49
 msgid "Enable inactive window transparency"
@@ -827,11 +910,11 @@ msgstr "Uključi prozirnost neaktivnog prozora"
 
 #: src/metacity.py:51
 msgid "Inactive window shade transparency level"
-msgstr ""
+msgstr "Nivo prozirnosti sjene neaktivnog prozora"
 
 #: src/metacity.py:58
 msgid "Window Titlebar Action"
-msgstr ""
+msgstr "Akcija naslovne trake prozora"
 
 #: src/metacity.py:59
 msgid "Titlebar mouse wheel action"
@@ -871,7 +954,7 @@ msgstr "Akcija desnog klika na naslovnu traku"
 
 #: src/metacity.py:84
 msgid "Enable Metacity's Compositing feature"
-msgstr ""
+msgstr "Uključi Metacity's Compositing osobinu"
 
 #: src/metacity.py:87
 msgid "Compositing Manager"
@@ -882,10 +965,12 @@ msgid ""
 "To enable the compositing feature of metacity, you should manually disable "
 "Visual Effects in \"Appearance\"."
 msgstr ""
+"Za uključivanje kompozitne osobine metacity-ja trebate ručno isključiti "
+"vizuelne efekte u \"Izgled\""
 
 #: src/session.py:39
 msgid "Splash Screen (Click On Image)"
-msgstr ""
+msgstr "Uvodni ekran (kliknite na sliku)"
 
 #: src/session.py:43
 msgid "Choose a splash image"
@@ -897,100 +982,106 @@ msgstr "PNG slika (*.png)"
 
 #: src/session.py:131
 msgid "Automatically save open applications when logging out"
-msgstr ""
+msgstr "Automatski spremi otvorene aplikacije kada se izlogujete"
 
 #: src/session.py:134
 msgid "Show logout prompt"
-msgstr ""
+msgstr "Prikaži prompt za izlogiranje"
 
 #: src/session.py:137
 msgid "Allow TCP Connections (Remote Desktop Connect)"
-msgstr ""
+msgstr "Dopusti TCP konekcije (konekcija na udaljeni desktop)"
 
 #: src/session.py:140
 msgid "Show splash screen"
 msgstr "Pokaži uvodni ekran"
 
-#: src/templates.py:63
+#: src/templates.py:64
 msgid "HTML document"
 msgstr "HTML dokument"
 
-#: src/templates.py:64
+#: src/templates.py:65
 msgid "ODB Database"
 msgstr "ODB baza podataka"
 
-#: src/templates.py:65
-msgid "ODS Spreadsheet"
-msgstr ""
-
 #: src/templates.py:66
+msgid "ODS Spreadsheet"
+msgstr "ODS Spreadsheet"
+
+#: src/templates.py:67
 msgid "ODT Document"
 msgstr "ODT dokument"
 
-#: src/templates.py:67
+#: src/templates.py:68
 msgid "Plain text document"
 msgstr "Čisti tekst"
 
-#: src/templates.py:68
+#: src/templates.py:69
 msgid "ODP Presentation"
 msgstr "ODP prezentacija"
 
-#: src/templates.py:69
+#: src/templates.py:70
 msgid "Python script"
 msgstr "Python skripta"
 
-#: src/templates.py:70
+#: src/templates.py:71
 msgid "Pygtk Example"
 msgstr "Pygtk primjer"
 
-#: src/templates.py:71
+#: src/templates.py:72
 msgid "Shell script"
 msgstr "Shell skripta"
 
-#: src/templates.py:98
+#: src/templates.py:99
 msgid "Enabled Templates"
 msgstr "Uključeni šabloni"
 
-#: src/templates.py:105
+#: src/templates.py:106
 msgid "Disabled Templates"
 msgstr "Isključeni šabloni"
 
-#: src/templates.py:116
+#: src/templates.py:117
 #, python-format
 msgid ""
 "Templates path is wrong! The current path is point to \"%s\".\n"
 "Please reset it to a folder under your Home Folder."
 msgstr ""
+"Putanja do šablona je pogrešna!Trenutna putanja je \"%s\".\n"
+"Resetujte tako da pokazuje untura Vašeg Home foldera."
 
-#: src/templates.py:123
+#: src/templates.py:124
 msgid "Go And Set"
-msgstr ""
+msgstr "Idi i podesi"
 
-#: src/templates.py:128
+#: src/templates.py:129
 msgid "Restart This Module"
-msgstr ""
+msgstr "Resetuj ovaj modul"
 
-#: src/templates.py:134
+#: src/templates.py:135
 msgid "Manage Templates"
 msgstr "Upravljanje šablonima"
 
-#: src/templates.py:135
+#: src/templates.py:136
 msgid ""
 "Here you can freely manage your document templates.\n"
 "You can add files as templates by dragging them onto this window.\n"
 "You can create new documents based on these templates from the Nautilus "
 "right-click menu."
 msgstr ""
+"Ovdje možete slobodno upravljati svojim šablonima dokumenata.\n"
+"Možete dodati fajlove kao šablone prenoseći ih na ovaj prozor.\n"
+"Možete kreirati nove dokumente bazirane na ovim šablonima iz menija desnog "
+"klika u Nautilusu."
 
-#: src/templates.py:160
+#: src/templates.py:161
 msgid "Rebuild System Templates"
 msgstr "Obnavljanje sistemskih šablona"
 
-#: src/templates.py:180
+#: src/templates.py:181
 msgid "Templates path is still wrong, Please reset it!"
-msgstr ""
+msgstr "Putanja do šablona je pogrešna, molimo da je resetujete!"
 
-#: src/templates.py:192
+#: src/templates.py:193
 msgid ""
 "This will delete all disabled templates.\n"
 "Do you wish to continue?"
@@ -1000,7 +1091,7 @@ msgstr ""
 
 #: src/compiz.py:47
 msgid "Expo"
-msgstr ""
+msgstr "Expo"
 
 #: src/compiz.py:48
 msgid "Show Windows"
@@ -1016,7 +1107,7 @@ msgstr "Grafički element"
 
 #: src/compiz.py:231
 msgid "Install Advanced Desktop Effects Settings Manager"
-msgstr ""
+msgstr "Instaliraj menažer naprednih desktop efekt podešenja"
 
 #: src/compiz.py:234
 msgid "Install Simple Desktop Effects Settings manager"
@@ -1024,11 +1115,15 @@ msgstr "Instaliranje Simple Desktop Effects Settings manager-a"
 
 #: src/compiz.py:237
 msgid "Install Screenlets Widget Application"
+msgstr "Instaliraj Screenlets Widget Application"
+
+#: src/compiz.py:244
+msgid "Edge Settings"
 msgstr ""
 
 #: src/compiz.py:247
 msgid "Enable snapping windows"
-msgstr ""
+msgstr "Uključi snapping prozora"
 
 #: src/compiz.py:248
 msgid "Enable wobbly windows"
@@ -1044,7 +1139,7 @@ msgstr "Uključi prozirne menije"
 
 #: src/compiz.py:254
 msgid "Enable wobbly menus"
-msgstr ""
+msgstr "Uključi wobbly menije"
 
 #: src/compiz.py:256
 msgid "Menu Effects"
@@ -1056,7 +1151,7 @@ msgstr "Korisne ekstenzije"
 
 #: src/compiz.py:275
 msgid "Prerequisite Conditions"
-msgstr ""
+msgstr "Sistemski zahtjevi"
 
 #: src/shortcuts.py:49
 msgid "Shortcut Commands"
@@ -1068,6 +1163,9 @@ msgid ""
 "applications instantly.\n"
 "Enter the application's command and set the desired shortcut keys."
 msgstr ""
+"Konfiguracijom prečica na tastaturi možete instantno pristupiti svojim "
+"omiljenim aplikacijama.\n"
+"Upišite komandu aplikacije i postavite željenu tipku prečice."
 
 #: src/shortcuts.py:91
 #, python-format
@@ -1092,20 +1190,20 @@ msgstr "Ključ"
 
 #: src/shortcuts.py:145
 msgid "Clean"
-msgstr ""
+msgstr "Očisti"
 
 #: src/cleaner.py:54
 msgid "Cleaning Package Config"
-msgstr ""
+msgstr "Čistim podešavanja paketa"
 
 #: src/cleaner.py:61 src/cleaner.py:88
 #, python-format
 msgid "Cleaning...%s"
-msgstr ""
+msgstr "Čistim...%s"
 
 #: src/cleaner.py:81
 msgid "Cleaning Package Cache"
-msgstr ""
+msgstr "Čišćenje keš memorije paketa"
 
 #: src/cleaner.py:143
 msgid "Package"
@@ -1125,40 +1223,45 @@ msgid ""
 "<b>%s</b>\n"
 "Take %s of disk space"
 msgstr ""
+"<b>%s</b>\n"
+"Zauzima %s prostora na disku"
 
 #: src/cleaner.py:245
 msgid "Package Config"
-msgstr ""
+msgstr "Konfiguracija paketa"
 
 #: src/cleaner.py:278
 #, python-format
 msgid "%d package selected to remove"
 msgid_plural "%d packages selected to remove"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d paket izabran za uklanjanje"
+msgstr[1] "%d paketa izabrano za uklanjanje"
+msgstr[2] "%d paketa izabrano za uklanjanje"
 
 #: src/cleaner.py:282
 #, python-format
 msgid "%s of space will be freed"
-msgstr ""
+msgstr "%s prostora će biti oslobođeno"
 
 #: src/cleaner.py:361
 msgid "Canceled by user!"
-msgstr ""
+msgstr "Korisnik prekinuo!"
 
 #: src/cleaner.py:364 src/nautilus.py:195
 msgid "Clean up Successful!"
-msgstr ""
+msgstr "Čišćenje je završilo uspješno!"
 
 #: src/cleaner.py:367
 msgid "Clean up Failed!"
-msgstr ""
+msgstr "Čišćenje nije uspjelo!"
 
 #: src/cleaner.py:373
 msgid ""
 "Free up disk space by removing unneeded packages and cleaning the package "
 "download cache."
 msgstr ""
+"Oslobodite porsotr na disku uklanjajući nepotrebne pakete i čisteći keš "
+"memoriju skinutih paketa."
 
 #: src/cleaner.py:399
 msgid "Clean Package"
@@ -1170,11 +1273,11 @@ msgstr "Očisti keš memoriju"
 
 #: src/cleaner.py:409
 msgid "Clean Config"
-msgstr ""
+msgstr "Očisti podešavanja"
 
 #: src/cleaner.py:414
 msgid "Clean Kernel"
-msgstr ""
+msgstr "Očisti kernel"
 
 #: src/cleaner.py:420
 msgid "Select All"
@@ -1214,7 +1317,7 @@ msgstr "Pomjeri u Home"
 
 #: src/scripts.py:57
 msgid "Link to ..."
-msgstr ""
+msgstr "Link na..."
 
 #: src/scripts.py:58
 msgid "Link to Desktop"
@@ -1226,15 +1329,15 @@ msgstr "Link u Download"
 
 #: src/scripts.py:60
 msgid "Link to Home"
-msgstr ""
+msgstr "Link na Home"
 
 #: src/scripts.py:61
 msgid "Open with your favourite text editor"
-msgstr ""
+msgstr "Otvori sa Vašim omiljenim tekstualnim editorom"
 
 #: src/scripts.py:62
 msgid "Open with your favourite text editor (as root)"
-msgstr ""
+msgstr "Otvori sa Vašim omiljenim tekstualnim editorom (kao root)"
 
 #: src/scripts.py:63
 msgid "Browse as root"
@@ -1254,7 +1357,7 @@ msgstr "Konvertuj sliku u PNG"
 
 #: src/scripts.py:67
 msgid "Convert image to GIF"
-msgstr ""
+msgstr "Konverzija slike u GIF"
 
 #: src/scripts.py:68
 msgid "Set image as wallpaper"
@@ -1282,6 +1385,9 @@ msgid ""
 "You can drag and drop from File Manager.\n"
 "'Scripts' will be added to the context menu."
 msgstr ""
+"Sa skriptama možete raditi sve vrste zadataka.\n"
+"Možete koristiti prevuci i pusti metodu iz fajl menadžera.\n"
+"'Skripte' će biti dodane u kontekstni menu."
 
 #: src/scripts.py:159
 msgid "Rebuild System Scripts"
@@ -1313,11 +1419,11 @@ msgstr "Uključi animacije panela"
 
 #: src/gnomesettings.py:55
 msgid "Show Input Method menu on the context menu"
-msgstr ""
+msgstr "Prikaži Input Method menu u kontekstnom meniju"
 
 #: src/gnomesettings.py:58
 msgid "Show Unicode Method menu on the context menu"
-msgstr ""
+msgstr "Prikaži Unicode Method menu u kontekstnom meniju"
 
 #: src/gnomesettings.py:65
 msgid "Screensaver"
@@ -1325,11 +1431,12 @@ msgstr "Čuvar ekrana"
 
 #: src/gnomesettings.py:67
 msgid "Enable user switching when screen is locked."
-msgstr ""
+msgstr "Uključi promjenu korisnika kada je ekran zaključan."
 
 #: src/gnomesettings.py:72
 msgid "Enable system-wide \"Recently Documents\" list"
 msgstr ""
+"Uključi sistemski rasprosprostranjenu \"Nedavno koristeni dokumenti\" listu"
 
 #: src/gnomesettings.py:75
 msgid "History"
@@ -1337,7 +1444,7 @@ msgstr "Historija"
 
 #: src/gnomesettings.py:82
 msgid "Notification-daemon popup location"
-msgstr ""
+msgstr "Notification-daemon pop-up lokacija"
 
 #: src/gnomesettings.py:86
 msgid "Top Left"
@@ -1373,7 +1480,7 @@ msgstr ""
 
 #: src/gnomesettings.py:149
 msgid "Do you want your changes to take effect immediately?"
-msgstr ""
+msgstr "Želite li da promjene imaju odmah efekta?"
 
 #: src/nautilus.py:54
 msgid "Cleaning..."
@@ -1381,7 +1488,7 @@ msgstr "Čistim..."
 
 #: src/nautilus.py:104
 msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
-msgstr ""
+msgstr "Prikaži napredne dozvole u Nautilusovom \"Osobine fajla\" prozoru"
 
 #: src/nautilus.py:107
 msgid "File Browser"
@@ -1389,19 +1496,19 @@ msgstr "Fajl pretraživač"
 
 #: src/nautilus.py:112
 msgid "Default thumbnail icon size (pixels)"
-msgstr ""
+msgstr "Uobičajena veličina umanjenih slika (u pikselima)"
 
 #: src/nautilus.py:126
 msgid "Maximum size of the thumbnail cache (megabytes)"
-msgstr ""
+msgstr "Maksimalna veličina keš memorije umanjenih slika (u megabajtima)"
 
 #: src/nautilus.py:138
 msgid "Maximum age for the thumbnail in the cache (days)"
-msgstr ""
+msgstr "Maksimalna starost za umanjene slike u keš memoriji (u danima)"
 
 #: src/nautilus.py:150
 msgid "Thumbnails Settings"
-msgstr ""
+msgstr "Podešavanje umanjenih slika"
 
 #: src/nautilus.py:157
 msgid "Nautilus with Open Terminal"
@@ -1413,7 +1520,7 @@ msgstr "Nautilus sa root privilegijama"
 
 #: src/nautilus.py:161
 msgid "Nautilus with Wallpaper"
-msgstr ""
+msgstr "Nautilus sa pozadinom"
 
 #: src/nautilus.py:163
 msgid "Nautilus Extensions"
@@ -1422,15 +1529,15 @@ msgstr "Nautilus ekstenzije"
 #: src/nautilus.py:185
 #, python-format
 msgid "Clean up the thumbnails cache (will free %s of disk space)"
-msgstr ""
+msgstr "Očisti keš umanjenih slika (osloboditi ćete %s prostora na disku)"
 
 #: src/nautilus.py:188
 msgid "The thumbnails cache will be cleaned, Do you wish to continue?"
-msgstr ""
+msgstr "Keš umanjenih slika će biti očišćen.Želite li nastaviti?"
 
 #: src/powermanager.py:37
 msgid "Advanced Power Management Settings"
-msgstr ""
+msgstr "Napredno podešavanje menadžmenta energije"
 
 #: src/powermanager.py:39
 msgid "Enable \"Hibernation\""
@@ -1443,10 +1550,12 @@ msgstr "Uključi \"Suspenziju\""
 #: src/powermanager.py:45
 msgid "Show \"CPU frequency control option\" in Power Management Preferences"
 msgstr ""
+"Prikaži \"CPU frekvencija kontrolna opcija\" u postavkama menadžmenta "
+"energije"
 
 #: src/powermanager.py:48
 msgid "Disable Network Manager when asleep"
-msgstr ""
+msgstr "Isključi mrežni menadžer kada je \"zaspao\""
 
 #: src/powermanager.py:51
 msgid "Enable \"Lock screen\" when \"Blank Screen\" activates"
@@ -1454,7 +1563,7 @@ msgstr "Uključi \"Zaključavanje ekrana\" kada se aktivira \"Prazan ekran\""
 
 #: src/powermanager.py:53
 msgid "Display \"Power Manager\" panel item"
-msgstr ""
+msgstr "Prikaži panel \"Upravitelj energijom\""
 
 #: src/powermanager.py:56
 msgid "Never display"
@@ -1462,7 +1571,7 @@ msgstr "Nikad ne prikazuj"
 
 #: src/powermanager.py:56
 msgid "When charging"
-msgstr ""
+msgstr "Kada se puni"
 
 #: src/powermanager.py:56
 msgid "Always display"
@@ -1486,35 +1595,35 @@ msgstr "Performanse"
 
 #: src/powermanager.py:64
 msgid "CPU Policy"
-msgstr ""
+msgstr "CPU polica"
 
 #: src/powermanager.py:65
 msgid "The Performance value when on AC power"
-msgstr ""
+msgstr "Vrijednost performansi kada je na AC energiji"
 
 #: src/powermanager.py:71
 msgid "The Performance value when on battery power"
-msgstr ""
+msgstr "Vrijednost performanse kada je na energiji baterije"
 
 #: src/powermanager.py:77
 msgid "The CPU frequency policy when on AC power"
-msgstr ""
+msgstr "CPU frekvencija police kada je na AC energiji"
 
 #: src/powermanager.py:82
 msgid "The CPU frequency policy when on battery power"
-msgstr ""
+msgstr "CPU frekvencija police kada je na energiji baterije"
 
 #: src/preferences.py:69 src/preferences.py:77
 msgid "Reset"
-msgstr ""
+msgstr "Resetuj"
 
 #: src/preferences.py:130
 msgid "Enable Check Update"
-msgstr ""
+msgstr "Uključi provjeru nadogradnje"
 
 #: src/preferences.py:136
 msgid "Enable PowerUser Mode"
-msgstr ""
+msgstr "Uključi PowerUser mod"
 
 #: src/sourceeditor.py:61 src/sourceeditor.py:66
 msgid "Choose the sources"
@@ -1529,27 +1638,28 @@ msgstr ""
 
 #: src/sourceeditor.py:102 src/sourceeditor.py:107
 msgid "Submit your sources"
-msgstr ""
+msgstr "Pošaljite svoje izvore"
 
 #: src/sourceeditor.py:107
 msgid "You can submit your sources to the server for other people to use."
 msgstr ""
+"Možete poslati svoje izvore na server kako bi ih drugi ljudi mogli koristiti."
 
 #: src/sourceeditor.py:112
 msgid "_Source Title:"
-msgstr ""
+msgstr "_Naslov izvora:"
 
 #: src/sourceeditor.py:115
 msgid "_Locale:"
-msgstr ""
+msgstr "_Locale:"
 
 #: src/sourceeditor.py:122
 msgid "Enter the title of the source, e.g. \"Ubuntu Official Repostory\""
-msgstr ""
+msgstr "Upišite naslov izvora npr. \"Ubuntu oficijelni repozitorij\""
 
 #: src/sourceeditor.py:124
 msgid "If the locale isn't correct you can edit manually"
-msgstr ""
+msgstr "Ukoliko lacale nije tačan možete ga ručno urediti."
 
 #: src/sourceeditor.py:139
 msgid "Submit"
@@ -1565,7 +1675,7 @@ msgstr "Mrežna greška"
 
 #: src/sourceeditor.py:194
 msgid "Uploading..."
-msgstr ""
+msgstr "Uploadujem..."
 
 #: src/sourceeditor.py:210
 msgid "Updating..."
@@ -1578,6 +1688,10 @@ msgid ""
 "Click \"Submit Sources\" if you want to share your sources with other "
 "people.\n"
 msgstr ""
+"Slobodno uređujte svoje softverske izvore za svoje potrebe.\n"
+"Kliknite \"Nadogradnja izvora\" ukoliko želite da izmjenite izvore.\n"
+"Kliknite \"Pošalji izvore\" ako želite da djelite svoje izvore sa drugim "
+"ljudima.\n"
 
 #: src/sourceeditor.py:363
 msgid "Update Sources"
@@ -1585,15 +1699,15 @@ msgstr "Nadogradi repozitorije"
 
 #: src/sourceeditor.py:369
 msgid "Submit Sources"
-msgstr ""
+msgstr "Pošalji izvore"
 
 #: src/sourceeditor.py:411
 msgid "You can install new applications through Add/Remove."
-msgstr ""
+msgstr "Nove aplikacije možete instalirati koristeči Dodaj/Ukloni."
 
 #: src/sourceeditor.py:428
 msgid "Please input the correct information about sources!"
-msgstr ""
+msgstr "Molimo da upišete tačne informacije o izvorima!"
 
 #: src/sourceeditor.py:441
 msgid ""
@@ -1601,118 +1715,133 @@ msgid ""
 "or you can use the official sources.\n"
 "Do you wish to use the official sources?"
 msgstr ""
+"Možete poslati svoje izvore na naš server da pomognete izgradnju listi "
+"izvora ili možete koristiti oficijelne izvore.\n"
+"Želite li koristiti oficijelne izvore?"
 
 #: src/sourceeditor.py:444
 msgid "No source data available"
-msgstr ""
+msgstr "Izvori podataka nisu dostupni"
 
 #: src/sourceeditor.py:461
 msgid ""
 "Your sources will be reviewed and made available for others soon.\n"
 "Thank you!"
 msgstr ""
+"Vaši izvori će biti pregledani i ubrzo dostupni za druge.\n"
+"Hvala Vam!"
 
 #: src/sourceeditor.py:462
 msgid "Successfully submitted"
-msgstr ""
+msgstr "Uspješno dostavljeno"
 
-#: src/sourceeditor.py:483
+#: src/sourceeditor.py:484
 msgid ""
 "The current content will be lost after reloading!\n"
 "Do you wish to continue?"
 msgstr ""
+"Trenutni sadržaj će biti izgubljen poslije ponovnog učitavanja!\n"
+"Želite li nastaviti?"
 
 #: src/common/package.py:173
 msgid "(Not available)"
 msgstr "(Nedostupno)"
 
-#: src/common/appdata.py:57
+#: src/common/appdata.py:64
 msgid "A color scheme designer"
-msgstr ""
+msgstr "Dizajner šeme boja"
 
-#: src/common/appdata.py:58
+#: src/common/appdata.py:65
 msgid "Development version of an audio player for KDE"
 msgstr "Razvojna verzija audio player-a za KDE"
 
-#: src/common/appdata.py:59
+#: src/common/appdata.py:66
 msgid "Client for the eD2k and Kad networks"
-msgstr ""
+msgstr "Klijent za eD2k i Kad mreže"
 
-#: src/common/appdata.py:60
+#: src/common/appdata.py:67
 msgid "GNOME IDE for C/C++, Java, Python"
 msgstr "GNOME IDE za C/C++, Java, Python"
 
-#: src/common/appdata.py:61
+#: src/common/appdata.py:68
 msgid "A skinned multimedia player for many platforms"
-msgstr ""
+msgstr "Skinabilni multimedia player za mnogo platformi"
 
-#: src/common/appdata.py:62
+#: src/common/appdata.py:69
 msgid "Record and edit audio files"
 msgstr "Snimanje i uređivanje audio fajlova"
 
-#: src/common/appdata.py:63
+#: src/common/appdata.py:70
 msgid "Fully customisable dock-like window navigator"
-msgstr ""
+msgstr "Potpuno prilagodljiv kao dock prozorski navigator"
 
-#: src/common/appdata.py:64
+#: src/common/appdata.py:71
 msgid "Fully customisable dock-like window navigator(Unstable)"
-msgstr ""
+msgstr "Potpuno prilagodljiv kao dock prozorski navigator(Nestabilan)"
 
-#: src/common/appdata.py:65
+#: src/common/appdata.py:72
 msgid "A free video editor"
 msgstr "Besplatni video uređivač"
 
-#: src/common/appdata.py:66
+#: src/common/appdata.py:73
 msgid "BitTorrent client written in Java"
 msgstr "BitTorrent klijent napisan u Javi"
 
-#: src/common/appdata.py:67
+#: src/common/appdata.py:74
 msgid "Audio Management and Playback application"
-msgstr ""
+msgstr "Aplikacija za audio upravljanje i reprodukciju"
 
-#: src/common/appdata.py:68
+#: src/common/appdata.py:75
 msgid "GTK+ Bluetooth Manager"
-msgstr ""
+msgstr "GTK+ Bluetooth menadžer"
 
-#: src/common/appdata.py:69
+#: src/common/appdata.py:76
 msgid "A true dock for linux"
-msgstr ""
+msgstr "Pravi dock za linux"
 
-#: src/common/appdata.py:70
+#: src/common/appdata.py:77
 msgid "A chm file viewer written in GTK+"
 msgstr "Preglednik CHM fajlova napisan u GTK+"
 
-#: src/common/appdata.py:71
+#: src/common/appdata.py:78
+msgid ""
+"Desired to be small and fast, christine is a simple media player, that let "
+"you play your favorite music and videos from one single application."
+msgstr ""
+
+#: src/common/appdata.py:79
 msgid ""
 "Chromium is an open-source browser project that aims to build a safer, "
 "faster, and more stable way for all Internet users to experience the web."
 msgstr ""
+"Chromium je projekt otvorenog koda koji cilja na izgradnju sigurnijeg, bržeg "
+"i stabilnijeg puta za internet korisnike da dožive web."
 
-#: src/common/appdata.py:72
+#: src/common/appdata.py:80
 msgid "The open source, cross-platform IDE"
 msgstr "Otvorenog koda, višeplatformski IDE"
 
-#: src/common/appdata.py:73
+#: src/common/appdata.py:81
 msgid "Advanced Desktop Effects Settings Manager"
-msgstr ""
+msgstr "Advanced Desktop Effects Settings Manager"
 
-#: src/common/appdata.py:74
+#: src/common/appdata.py:82
 msgid "An API documentation browser for GNOME."
 msgstr "Pretraživač API dokumentacije za GNOME."
 
-#: src/common/appdata.py:75
+#: src/common/appdata.py:83
 msgid "A Bittorrent client written in PyGTK"
 msgstr "Bittorrent klijent napisan u PyGTK"
 
-#: src/common/appdata.py:76
+#: src/common/appdata.py:84
 msgid "Store, Sync and Share your files online."
-msgstr ""
+msgstr "Spremite,sinhronizirajte i djelite svoje fajlove online."
 
-#: src/common/appdata.py:77
+#: src/common/appdata.py:85
 msgid "Extensible Tool Platform and Java IDE"
-msgstr ""
+msgstr "Proširiva platforma alata i Java IDE"
 
-#: src/common/appdata.py:78
+#: src/common/appdata.py:86
 msgid ""
 "EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
 "com."
@@ -1720,355 +1849,403 @@ msgstr ""
 "EIOffice Personal 2009. Besplatan za kineske korisnike. Pogledajte http://"
 "www.evermoresw.com."
 
-#: src/common/appdata.py:79
+#: src/common/appdata.py:87
 msgid "A client for the Windows Live Message network"
 msgstr "Klijent za Windows Live Message mrežu"
 
-#: src/common/appdata.py:80
+#: src/common/appdata.py:88
 msgid ""
 "Empathy consists of a rich set of reusable instant messaging widgets, and a "
 "GNOME client using those widgets."
 msgstr ""
+"Empathy se sastoji od bogatog seta za razmjenu trenutnih poruka grafičkih "
+"elemenata koje koristi i GNOME klijent."
 
-#: src/common/appdata.py:81
+#: src/common/appdata.py:89
 msgid "GTK+ based flexible audio player, similar to Amarok"
 msgstr "GTK+ bazirani fleksibilni audio player, sličan Amaroku"
 
-#: src/common/appdata.py:82
+#: src/common/appdata.py:90
 msgid "File transmission via ftp, sftp and ftps"
 msgstr "Prijenos fajlova preko ftp, sftp i ftps"
 
-#: src/common/appdata.py:83
+#: src/common/appdata.py:91
 msgid "An extremly fast and lightweight file manager"
-msgstr ""
+msgstr "Ekstremno brz i jednostavan fajl menadžer"
 
-#: src/common/appdata.py:84
+#: src/common/appdata.py:92
 msgid ""
 "Galaxium is an instant messenger application designed for the GNOME desktop"
 msgstr "Galaxium je instant messenger aplikacija dizajnirana za GNOME desktop"
 
-#: src/common/appdata.py:85
+#: src/common/appdata.py:93
 msgid "A GTK+ jabber client"
 msgstr "GTK+ jabber klijent"
 
-#: src/common/appdata.py:86
+#: src/common/appdata.py:94
 msgid "A fast and lightweight IDE"
-msgstr ""
+msgstr "Brz i jednostavan IDE"
 
-#: src/common/appdata.py:87
+#: src/common/appdata.py:95
 msgid "A multithreaded FTP client"
-msgstr ""
+msgstr "Multithread FTP klijent"
 
-#: src/common/appdata.py:88
+#: src/common/appdata.py:96
 msgid "GNOME Hex editor"
 msgstr "GNOME Hex editor"
 
-#: src/common/appdata.py:89
+#: src/common/appdata.py:97
 msgid "Notifies the user upon arrival of new mail in Gmail"
 msgstr "Obavještava korisnika nakon dolaska nove pošte u Gmail-u"
 
-#: src/common/appdata.py:90
+#: src/common/appdata.py:98
 msgid "A powerful, speedy, and sexy remote control for the GNOME Desktop"
 msgstr "Moćna,brza i seksi udaljena kontrola za GNOME desktop"
 
-#: src/common/appdata.py:91
+#: src/common/appdata.py:99
 msgid "Global Menu Bar for GNOME"
+msgstr "Global menu bar za GNOME"
+
+#: src/common/appdata.py:100
+msgid ""
+"the GNOME-Colors Icon Themes and Shiki-Colors GTK+/Metacity Themes for "
+"Debian and Ubuntu."
 msgstr ""
 
-#: src/common/appdata.py:92
+#: src/common/appdata.py:101
 msgid "a C++ port of Tomboy"
-msgstr ""
+msgstr "Tomboy portovan u C++"
 
-#: src/common/appdata.py:93
+#: src/common/appdata.py:102
 msgid ""
 "A program that combines satellite imagery and maps to put the world's "
 "geographic information at your fingertips."
 msgstr ""
+"Program koji kombinuje satelitske slike i mape kako bi stavili svjetske "
+"geografske informacije pod Vaše prste."
 
-#: src/common/appdata.py:94
+#: src/common/appdata.py:103
 msgid "Platform for running Google Gadgets on Linux"
 msgstr "Platforma za pokretanje Google Gadgeta na Linuxu"
 
-#: src/common/appdata.py:95
+#: src/common/appdata.py:104
 msgid "GNOME partition editor"
 msgstr "GNOME partition editor"
 
-#: src/common/appdata.py:96
+#: src/common/appdata.py:105
 msgid "Lightweight image viewer"
 msgstr "Jednostavni preglednik slika"
 
-#: src/common/appdata.py:97
+#: src/common/appdata.py:106
 msgid "A powerful screenshot tool"
 msgstr "Moćan alat za hvatanje ekrana"
 
-#: src/common/appdata.py:98
+#: src/common/appdata.py:107
 msgid "Graphical frontend for recordmydesktop"
-msgstr ""
+msgstr "Grafički interfejs za recordmydesktop"
 
-#: src/common/appdata.py:99
+#: src/common/appdata.py:108
 msgid ""
 "GTG is a personal organizer for the GNOME desktop environment, it focuses on "
 "ease of use and flexibility, while keeping things simple."
 msgstr ""
+"GTG je lični organizator za GNOME desktop okruženje, fokusira se na "
+"jednostavnosti upotrebe i fleksibilnosti, čuvajući stvari jednostavnim."
 
-#: src/common/appdata.py:100
+#: src/common/appdata.py:109
 msgid "Gwibber is an open source microblogging client for GNOME"
-msgstr ""
+msgstr "Gwibber je mikrobloging klijent otvorenog koda za GNOME"
 
-#: src/common/appdata.py:101
+#: src/common/appdata.py:110
 msgid "A graphical CD image editor"
 msgstr "Grafički CD image uređivač"
 
-#: src/common/appdata.py:102
+#: src/common/appdata.py:111
 msgid "Intelligent Input Bus for Linux / Unix OS"
-msgstr ""
+msgstr "Intelligent Input Bus za Linux / Unix OS"
 
-#: src/common/appdata.py:103
+#: src/common/appdata.py:112
 msgid "It is a PinYin engine for IBus."
-msgstr ""
+msgstr "PinYin pogon za IBus."
 
-#: src/common/appdata.py:104
+#: src/common/appdata.py:113
 msgid ""
 "IBus-Table is the IM Engine framework for table-based input methods, such as "
 "ZhengMa, WuBi, ErBi, ChangJie and so on."
 msgstr ""
+"IBus-Table je IM Engine framework za tabelarno bazirane ulazne metode kao "
+"što su ZhengMa, WuBi, ErBi, ChangJie itd."
 
-#: src/common/appdata.py:105
+#: src/common/appdata.py:114
 msgid "Create and edit Scalable Vector Graphics images"
-msgstr ""
+msgstr "Kreiranje i uređivanje SVG slika (Scalable Vector Graphics)"
 
-#: src/common/appdata.py:106
+#: src/common/appdata.py:115
 msgid "Non-linear editor for Digital Video data"
-msgstr ""
+msgstr "Nelinearni uređivač za Digitalne Video podatke"
 
-#: src/common/appdata.py:107
+#: src/common/appdata.py:116
 msgid "A music player for Last.fm personalized radio"
-msgstr ""
+msgstr "Muzički player za Last.fm lični radio"
 
-#: src/common/appdata.py:108
+#: src/common/appdata.py:117
 msgid "GTK+ based simple text editor"
 msgstr "GTK+ bazirani jednostavni tekst uređivač"
 
-#: src/common/appdata.py:109
+#: src/common/appdata.py:118
 msgid "Feed aggregator for GNOME"
-msgstr ""
+msgstr "Feed aggregator za GNOME"
 
-#: src/common/appdata.py:110
+#: src/common/appdata.py:119
 msgid "Mail notification in system tray"
 msgstr "Obavještavanje o mailu u system tray"
 
-#: src/common/appdata.py:111
+#: src/common/appdata.py:120
 msgid "Adcal tool to diff and merge files"
-msgstr ""
+msgstr "Adcal alat za pronalaženje razlika i spajanje fajlova"
 
-#: src/common/appdata.py:112
+#: src/common/appdata.py:121
 msgid "A fast and simple GTK+ Image Viewer"
 msgstr "Brzi i jednostavni GTK+ preglednik slika"
 
-#: src/common/appdata.py:113
+#: src/common/appdata.py:122
 msgid "Open internet TV, beyond anything else"
-msgstr ""
+msgstr "Otvoreni internet TV, ako ništa drugo"
 
-#: src/common/appdata.py:114
+#: src/common/appdata.py:123
 msgid "Webkit based lightweight web browser"
-msgstr ""
+msgstr "Webkit bazirani jednostavni web browser"
 
-#: src/common/appdata.py:115
+#: src/common/appdata.py:124
 msgid "The free media player - play all your files"
-msgstr ""
+msgstr "Besplatni multimedijalni player - reprodukujte sve svoje fajlove"
 
-#: src/common/appdata.py:116
+#: src/common/appdata.py:125
 msgid "An IDE to Develop .NET applications."
 msgstr "IDE za razvoj .NET aplikacija"
 
-#: src/common/appdata.py:117
+#: src/common/appdata.py:126
 msgid "The Ultimate Movie Player For Linux"
-msgstr ""
+msgstr "Ultimate Movie Player za Linux"
 
-#: src/common/appdata.py:118
+#: src/common/appdata.py:127
 msgid "IDE for Java, C/C++, Ruby, UML, etc."
 msgstr "IDE za Javu, C/C++, Ruby, UML, itd."
 
-#: src/common/appdata.py:119
+#: src/common/appdata.py:128
 msgid "The Opera Web Browser"
 msgstr "Opera Web pretraživač"
 
-#: src/common/appdata.py:120
+#: src/common/appdata.py:129
 msgid ""
 "Pidgin is a graphical modular messaging client based on libpurple which is "
 "capable of connecting to AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, SIP/SIMPLE, "
 "Novell GroupWise, Lotus Sametime, Bonjour, Zephyr, MySpaceIM, Gadu-Gadu, and "
 "QQ all at once."
 msgstr ""
+"Pidgin je grafički modularni klijent za razmjenu poruka baziran na libpurple "
+"koji se može konektovati na AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, SIP/"
+"SIMPLE, Novell GroupWise, Lotus Sametime, Bonjour, Zephyr, MySpaceIM, Gadu-"
+"Gadu, i QQ odjednom."
 
-#: src/common/appdata.py:121
+#: src/common/appdata.py:130
 msgid "Run your Windows programs on Linux"
 msgstr "Pokrenite Windows programe na Linuxu"
 
-#: src/common/appdata.py:122
+#: src/common/appdata.py:131
 msgid "A framework for desktop widgets"
 msgstr "Framework za desktop grafičke elemente"
 
-#: src/common/appdata.py:123
+#: src/common/appdata.py:132
 msgid "Feature-rich screenshot application(formerly known as GScrot)"
 msgstr ""
+"Opcijama bogata aplikacija za slikanje ekrana (prije poznata kao GScrot)"
 
-#: src/common/appdata.py:124
+#: src/common/appdata.py:133
 msgid "Make audio/video calls using this VoIP Software"
 msgstr "Napravite audio/video pozive koristeći ovaj VoIP softver"
 
-#: src/common/appdata.py:125
+#: src/common/appdata.py:134
 msgid "A great MPlayer front-end, written in QT4"
-msgstr ""
+msgstr "Odlični MPlayer interfejs, napisan u QT4"
 
-#: src/common/appdata.py:126
+#: src/common/appdata.py:135
 msgid "Convert audio files into other formats"
 msgstr "Konvertovanje audio fajlova u druge formate"
 
-#: src/common/appdata.py:127
+#: src/common/appdata.py:136
 msgid "An international dictionary"
 msgstr "Internacionalni rječnik"
 
-#: src/common/appdata.py:128
+#: src/common/appdata.py:137
 msgid ""
 "Swiftweasel is an optimized build of the Mozilla Firefox web browser for "
 "Linux"
 msgstr ""
+"Swiftweasel je optimizovana verzija Mozilla Firefox web browsera za Linux"
 
-#: src/common/appdata.py:129
+#: src/common/appdata.py:138
 msgid ""
 "A desktop application that will watch for events (website updates, emails, "
 "file and folder changes...)"
 msgstr ""
+"Desktop aplikacija koja će nadzirati događaje (web sajt nadogradnje, e-"
+"mailove, promjene fajlova i foldera...)"
 
-#: src/common/appdata.py:130
+#: src/common/appdata.py:139
 msgid "An instant messaging application powered by qt-mono-bindings"
-msgstr ""
+msgstr "Aplikacija za instant razmjenu poruka pogonjena qt-mono-bindings-ima"
 
-#: src/common/appdata.py:131
+#: src/common/appdata.py:140
 msgid "A Useful Task List"
-msgstr ""
+msgstr "Korisna lista zadataka"
 
-#: src/common/appdata.py:132
+#: src/common/appdata.py:141
 msgid "Multiple GNOME terminals in one window"
 msgstr "Nekoliko GNOME terminala u jednom prozoru"
 
-#: src/common/appdata.py:133
+#: src/common/appdata.py:142
 msgid ""
 "Transmission is a fast, easy, and free multi-platform BitTorrent client."
 msgstr ""
+"Transmissionje brz, jednostavan, i besplatan multiplatformski BitTorrent "
+"klijent."
 
-#: src/common/appdata.py:134
+#: src/common/appdata.py:143
 msgid "Ubuntu Tweak makes it easier to configure Ubuntu"
 msgstr "Ubuntu Tweak olakšava konfiguraciju Ubuntu-a"
 
-#: src/common/appdata.py:135
+#: src/common/appdata.py:144
 msgid "Commonly used restricted packages"
-msgstr ""
+msgstr "Često korišteni vlasnički paketi"
 
-#: src/common/appdata.py:136
+#: src/common/appdata.py:145
 msgid "configure your USB ADSL modem and connection easier than ever!"
-msgstr ""
+msgstr "konfigurišite Vaš USB ADSL modem i konekciju jednostavnije nego ikad!"
 
-#: src/common/appdata.py:137 src/common/appdata.py:138
+#: src/common/appdata.py:146 src/common/appdata.py:147
+#: src/common/appdata.py:148
 msgid "A feature rich, high performance virtualization software"
 msgstr "Opcijama bogat, visokih performansi virtualizacijski softver"
 
-#: src/common/appdata.py:139
+#: src/common/appdata.py:149
 msgid "Read, capture, broadcast your multimedia streams"
-msgstr ""
+msgstr "Čitajte, uzimajte i emitujte svoje multimedijalne stream-ove"
 
-#: src/common/appdata.py:140
+#: src/common/appdata.py:150
 msgid "Run Virtual Machines using VMware"
-msgstr ""
+msgstr "Pokrenite virtualne mašine koristeći VMware"
 
-#: src/common/appdata.py:141
+#: src/common/appdata.py:151
 msgid "A compatibility layer for running Windows programs"
-msgstr ""
+msgstr "Kompatibilni sloj za pokretanje Windows programa"
 
-#: src/common/appdata.py:142
+#: src/common/appdata.py:152
 msgid ""
 "Wine-doors is an application designed to make installing windows software on "
 "Linux, Solaris or other Unix systems easier."
 msgstr ""
+"Wine-doors je aplikacija dizajnirana za jednostavnu instalaciju windows "
+"softvera na Linuxu, Solarisu i ostalim Unix sistemima."
 
-#: src/common/appdata.py:143
+#: src/common/appdata.py:153
 msgid ""
 "XBMC is a free and open source software media player and entertainment hub"
 msgstr ""
+"XBMC je besplatni i otvorenog koda multimedijalni player i centar zabave"
 
-#: src/common/appdata.py:147
-msgid "Development Version of Mozilla Firefox 3.1, 4.0"
+#: src/common/appdata.py:157
+msgid "Development Version of Mozilla Firefox 3.6, 4.0"
 msgstr ""
 
-#: src/common/appdata.py:148
+#: src/common/appdata.py:158
 msgid "Development version of Compiz Fusion"
 msgstr "Razvojna verzija Compiz Fusiona"
 
-#: src/common/appdata.py:149
+#: src/common/appdata.py:159
 msgid "Google's Linux Repository"
 msgstr "Google-ov Linux repozitorij"
 
-#: src/common/appdata.py:150
+#: src/common/appdata.py:160
 msgid "K Desktop Environment 4.2"
-msgstr ""
+msgstr "K Desktop okruženje 4.2"
 
-#: src/common/appdata.py:151
+#: src/common/appdata.py:161
 msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
+msgstr "Jednostavno X11 desktop okruženje: GPicView, PCManFM"
+
+#: src/common/appdata.py:162
+msgid "WebkitGtk+, Liferea (Webkit), Midori and other WebKit related projects."
 msgstr ""
 
-#: src/common/appdata.py:152
+#: src/common/appdata.py:163
 msgid ""
 "Multimedia, Entertainment and Distraction In Ubuntu\n"
 "Medibuntu is a repository of packages that cannot be included into the "
 "Ubuntu distribution for legal reasons (copyright, license, patent, etc)."
 msgstr ""
+"Multimedija, zabava i razonoda u Ubuntu-u\n"
+"Medibuntu je repozitorij paketa koji se ne mogu uključiti u Ubuntu "
+"distribuciju zbog legalnih razloga (autorska prava, licenca, patent, itd)."
 
-#: src/common/appdata.py:154
+#: src/common/appdata.py:165
 msgid ""
 "Ubuntu repository for Chinese users.\n"
 "Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and "
 "other softwares."
 msgstr ""
+"Ubuntu repozitorij za kineske korisnike.\n"
+"Uključuje EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 i "
+"ostali softver."
 
-#: src/common/appdata.py:156
+#: src/common/appdata.py:167
 msgid ""
 "GetDeb extends the existing software options for Ubuntu (and derived) Linux "
 "distributions by providing major updates and software not yet available on "
 "the official Ubuntu repositories."
 msgstr ""
+"GetDeb proširuje postojeće softverske opcije za Ubuntu (i derivate) Linux "
+"distribucije pružajući glavne nadogradnje i softver koji nije dostupan preko "
+"oficijelnih Ubuntu repozitorija."
 
-#: src/common/appdata.py:157
+#: src/common/appdata.py:168
 msgid "Updated versions of X.org drivers, libraries, etc. for Ubuntu."
 msgstr ""
 
-#: src/common/appdata.py:158
+#: src/common/appdata.py:169
 msgid ""
 "Gnome Games built from Git, with all experimental features and staging games "
 "enabled."
+msgstr ""
+
+#: src/common/appdata.py:170
+msgid ""
+"Ubuntu Mozilla Security Team provides beta and final stable/security updates "
+"for mozilla software in its PPA"
 msgstr ""
 
 #: src/common/misc.py:15
 #, python-format
 msgid "%(size)d byte"
 msgid_plural "%(size)d bytes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(size)d bajt"
+msgstr[1] "%(size)d bajtova"
+msgstr[2] "%(size)d bajta"
 
 #: src/common/misc.py:17
 #, python-format
 msgid "%.1f KB"
-msgstr ""
+msgstr "%.1f KB"
 
 #: src/common/misc.py:19
 #, python-format
 msgid "%.1f MB"
-msgstr ""
+msgstr "%.1f MB"
 
 #: src/common/misc.py:20
 #, python-format
 msgid "%.1f GB"
-msgstr ""
+msgstr "%.1f GB"
 
 #: src/common/policykit/polkitbutton.py:81
 msgid "_Unlock"
@@ -2092,7 +2269,7 @@ msgstr "Obriši"
 
 #: src/common/widgets/treeviews.py:99
 msgid "Input the dir name"
-msgstr ""
+msgstr "Upišite ime direktorija"
 
 #: src/common/widgets/treeviews.py:124
 msgid "Can't rename the root folder"
@@ -2108,6 +2285,8 @@ msgid ""
 "\n"
 "There are files in it!"
 msgstr ""
+"Ne mogu preimenovati!\n"
+"Sadrži fajlove!"
 
 #: src/common/widgets/dialogs.py:67
 msgid "An unexpected error has occurred."
@@ -2123,47 +2302,47 @@ msgstr "Potrebno je da resetujete računar."
 
 #: src/common/widgets/dialogs.py:74
 msgid "Service hasn't initialized yet"
-msgstr ""
+msgstr "Servis još nije pokrenut"
 
 #: data/gui/preferences.glade:7
 msgid "Ubuntu Tweak Preferences"
-msgstr ""
+msgstr "Ubuntu Tweak postavke"
 
 #: data/gui/preferences.glade:33
 msgid "<b>User Interface</b>"
-msgstr ""
+msgstr "<b>Korisnički interfejs</b>"
 
 #: data/gui/preferences.glade:87
 msgid "Left Menubar Font Color"
-msgstr ""
+msgstr "Boja fonta lijevog menu bara"
 
 #: data/gui/preferences.glade:128
 msgid "Left Menubar Color"
-msgstr ""
+msgstr "Boja lijevog menu bara"
 
 #: data/gui/preferences.glade:139
 msgid "Default Window Height"
-msgstr ""
+msgstr "Standardna visina prozora"
 
 #: data/gui/preferences.glade:151
 msgid "Default Window Width"
-msgstr ""
+msgstr "Standardna širina prozora"
 
 #: data/gui/preferences.glade:161
 msgid "Left Menubar Width"
-msgstr ""
+msgstr "Širina lijevog menu bara"
 
 #: data/gui/preferences.glade:211
 msgid "<b>Features</b>"
-msgstr ""
+msgstr "<b>Osobine</b>"
 
 #: data/gui/preferences.glade:234
 msgid "Default Launch Function"
-msgstr ""
+msgstr "Zadana funkcija pokretanja"
 
 #: data/gui/traceback.glade:50
 msgid "<big><b>Oops... a fatal error occured</b></big>"
-msgstr ""
+msgstr "<big><b>Ups... Dogodila se fatalna greška</b></big>"
 
 #: data/gui/traceback.glade:64
 msgid ""
@@ -2172,18 +2351,21 @@ msgid ""
 "Please choose <i>Report</i> to file a new bug report. Make sure to include "
 "the error message below:"
 msgstr ""
+"Ubuntu Tweak se mora zatvoriti.\n"
+"Ako želite da nam pomognete da popravimo problem,\n"
+"odaberite"
 
 #: data/gui/traceback.glade:99 data/gui/traceback.glade:282
 msgid "Error Message"
-msgstr ""
+msgstr "Poruka o grešci"
 
 #: data/gui/traceback.glade:159 data/gui/traceback.glade:342
 msgid "_Report"
-msgstr ""
+msgstr "_Report"
 
 #: data/gui/traceback.glade:234
 msgid "<big><b>Oops... an error occured</b></big>"
-msgstr ""
+msgstr "<big><b>Ups... dogodila se greška</b></big>"
 
 #: data/gui/traceback.glade:248
 msgid ""
@@ -2191,6 +2373,9 @@ msgid ""
 "Please choose <i>Report</i> to file a new bug report. Make sure to include "
 "the error message below:"
 msgstr ""
+"Ako nam želite pomoći da rješimo problem,\n"
+"odaberite <i>Report</i> za evidenciju novog bug-a.Budite sigurni da "
+"uključite sljedeće podatke o grešci:"
 
 #: data/gui/type_edit.glade:7
 msgid "Edit Type"
@@ -2206,4 +2391,4 @@ msgstr "Odaberite aplikaciju da vidite njen opis."
 
 #: data/gui/type_edit.glade:222
 msgid "_Use a custom command"
-msgstr ""
+msgstr "_Koristi prilagođenu komandu"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2009-07-04 10:46+0800\n"
+"POT-Creation-Date: 2009-08-02 19:45+0800\n"
 "PO-Revision-Date: 2009-06-25 10:21+0000\n"
 "Last-Translator: Takahiro Sato <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2009-07-03 18:01+0000\n"
+"X-Launchpad-Export-Date: 2009-08-02 07:04+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/autostart.py:45
@@ -158,11 +158,11 @@ msgstr "エミュレータ"
 msgid "E-mail Tools"
 msgstr "電子メール・ツール"
 
-#: src/installer.py:157
+#: src/installer.py:160
 msgid "Add/Remove Applications"
 msgstr "アプリケーションを追加/削除"
 
-#: src/installer.py:158
+#: src/installer.py:161
 msgid ""
 "A simple but more effecient method for finding and installing popular "
 "packages than the default Add/Remove."
@@ -170,16 +170,16 @@ msgstr ""
 "標準の追加と削除に比べ簡単で効率的に人気のあるパッケージを見つけてインストー"
 "ルできます。"
 
-#: src/installer.py:204
+#: src/installer.py:207
 msgid "All Categories"
 msgstr "全てのカテゴリ"
 
-#: src/installer.py:365 src/thirdsoft.py:499 src/compiz.py:406
+#: src/installer.py:364 src/thirdsoft.py:619 src/compiz.py:406
 #: src/nautilus.py:217
 msgid "Update Successful!"
 msgstr "アップデートが完了しました!"
 
-#: src/installer.py:367 src/compiz.py:408 src/nautilus.py:219
+#: src/installer.py:366 src/compiz.py:408 src/nautilus.py:219
 msgid "Update Failed!"
 msgstr "アップデート 失敗!"
 
@@ -327,7 +327,7 @@ msgstr "追加と削除"
 msgid "Source Editor"
 msgstr "ソースエディター"
 
-#: src/mainwindow.py:254 src/thirdsoft.py:290
+#: src/mainwindow.py:254 src/thirdsoft.py:321
 msgid "Third-Party Sources"
 msgstr "サードパーティーのソース"
 
@@ -469,7 +469,7 @@ msgstr ""
 "  TAS https://launchpad.net/~tas7\n"
 "  Takahiro https://launchpad.net/~tachan5963\n"
 "  Takahiro Sato https://launchpad.net/~taka-guwapo\n"
-"  Toshiya Tsuru https://launchpad.net/~turutosiya\n"
+"  Toshiya TSURU https://launchpad.net/~turutosiya\n"
 "  TualatriX https://launchpad.net/~tualatrix\n"
 "  booker https://launchpad.net/~zwl-zhcn\n"
 "  zwl.zhcn https://launchpad.net/~zwl-zhcn+launchpad"
@@ -694,35 +694,63 @@ msgstr "Avant Window Navigator (不安定なバージョン)"
 msgid "Ubuntu Chinese Repository"
 msgstr "Ubuntu Chinese のリポジトリ"
 
-#: src/thirdsoft.py:87
-msgid "Experimental Gnome Games"
+#: src/thirdsoft.py:79
+msgid "IBus (Old Version)"
+msgstr ""
+
+#: src/thirdsoft.py:80
+msgid "IBus 1.2 for intrepid"
+msgstr ""
+
+#: src/thirdsoft.py:81
+msgid "IBus 1.2 for jaunty"
+msgstr ""
+
+#: src/thirdsoft.py:86
+msgid "Ubuntu Mozilla Security Team"
 msgstr ""
 
 #: src/thirdsoft.py:88
+msgid "Christine Media Player"
+msgstr ""
+
+#: src/thirdsoft.py:93
+msgid "Experimental Gnome Games"
+msgstr ""
+
+#: src/thirdsoft.py:95
 msgid "Gnome Global Menu"
 msgstr "Gnome グローバル・メニュー"
 
-#: src/thirdsoft.py:90
+#: src/thirdsoft.py:97
 msgid "GetDeb.net (Mirror)"
 msgstr "GetDeb.net (ミラー)"
 
-#: src/thirdsoft.py:92
+#: src/thirdsoft.py:99
 msgid "Gwibber (Daily Version)"
 msgstr "Gwibber (デイリー・バージョン)"
 
-#: src/thirdsoft.py:93
+#: src/thirdsoft.py:100
 msgid "Banshee (Stable Version)"
 msgstr "Banshee (安定したバージョン)"
 
-#: src/thirdsoft.py:94
+#: src/thirdsoft.py:101
 msgid "Banshee (Unstable Version)"
 msgstr "Banshee (不安定なバージョン)"
 
-#: src/thirdsoft.py:100
+#: src/thirdsoft.py:107
 msgid "Ubuntu Tweak (Unstable Version)"
 msgstr "Ubuntu Tweak (不安定なバージョン)"
 
-#: src/thirdsoft.py:207
+#: src/thirdsoft.py:121
+msgid "VirtualBox (Open Source Edition)"
+msgstr ""
+
+#: src/thirdsoft.py:122
+msgid "VLC media player"
+msgstr ""
+
+#: src/thirdsoft.py:238
 msgid ""
 "To install software and updates from newly added or changed sources, you "
 "have to reload the information about available software.\n"
@@ -734,31 +762,56 @@ msgstr ""
 "\n"
 "インターネットの接続を続行する必要があります。"
 
-#: src/thirdsoft.py:211
+#: src/thirdsoft.py:242
 msgid "The information about available software is out-of-date"
 msgstr "利用可能なソフトウェア情報は既に無効です"
 
-#: src/thirdsoft.py:377
+#: src/thirdsoft.py:392
+#, python-format
+msgid ""
+"To enable this Source, You need to enable \"%s\" at first.\n"
+"Do you wish to continue?"
+msgstr ""
+
+#: src/thirdsoft.py:394
+msgid "Dependency Notice"
+msgstr ""
+
+#: src/thirdsoft.py:408
+#, python-format
+msgid ""
+"You can't disable this Source because \"%(SOURCE)s\" depends on it.\n"
+"To continue you need to disable \"%(SOURCE)s\" first."
+msgstr ""
+
+#: src/thirdsoft.py:424
+#, python-format
+msgid ""
+"You can't enable this Source because \"%(SOURCE)s\" conflicts with it.\n"
+"To continue you need to disable \"%(SOURCE)s\" first."
+msgstr ""
+
+#: src/thirdsoft.py:496
 msgid "Homepage"
 msgstr "ホームページ"
 
-#: src/thirdsoft.py:377
+#: src/thirdsoft.py:496
 msgid "Source URL"
 msgstr "ソースのURL"
 
-#: src/thirdsoft.py:377
+#: src/thirdsoft.py:496
 msgid "Description"
 msgstr "説明"
 
-#: src/thirdsoft.py:388
+#: src/thirdsoft.py:507
 msgid "Description is here"
 msgstr "記述はここです"
 
-#: src/thirdsoft.py:416
+#: src/thirdsoft.py:536
 msgid "Third-Party Software Sources"
 msgstr "サードパーティー・ソフトウェアのソース"
 
-#: src/thirdsoft.py:417
+#: src/thirdsoft.py:537
 msgid ""
 "After every release of Ubuntu there comes a feature freeze.\n"
 "This means only applications with bug-fixes get into the repository.\n"
@@ -773,11 +826,11 @@ msgstr ""
 "いつでも最新バージョンを維持できます。\n"
 "リポジトリ追加後に、追加と削除を使用してインストールして下さい。"
 
-#: src/thirdsoft.py:433 src/sourceeditor.py:83
+#: src/thirdsoft.py:553 src/sourceeditor.py:83
 msgid "Details"
 msgstr "詳細情報"
 
-#: src/thirdsoft.py:456
+#: src/thirdsoft.py:576
 msgid ""
 "Some of your PPA Sources need to be updated.\n"
 "Do you wish to continue?"
@@ -785,19 +838,19 @@ msgstr ""
 "幾つかのPPAソースを更新する必要があります。\n"
 "更新しますか？"
 
-#: src/thirdsoft.py:456
+#: src/thirdsoft.py:576
 msgid "PPA Sources has expired"
 msgstr "PPAソースの有効期限が切れています"
 
-#: src/thirdsoft.py:496 src/sourceeditor.py:475
+#: src/thirdsoft.py:616 src/sourceeditor.py:475
 msgid "Please check the permission of the sources.list file"
 msgstr "sources.list ファイルのアクセス権を確認してください"
 
-#: src/thirdsoft.py:497 src/sourceeditor.py:476
+#: src/thirdsoft.py:617 src/sourceeditor.py:476
 msgid "Save failed!"
 msgstr "保存に失敗しました！"
 
-#: src/thirdsoft.py:524
+#: src/thirdsoft.py:644
 msgid ""
 "It is a possible security risk to use packages from Third-Party Sources.\n"
 "Please be careful and use only sources you trust."
@@ -806,15 +859,15 @@ msgstr ""
 "リスクがあります。\n"
 "十分に注意して、信用できるソースだけを使用して下さい。"
 
-#: src/thirdsoft.py:527 src/nautilus.py:189
+#: src/thirdsoft.py:647 src/nautilus.py:189
 msgid "Warning"
 msgstr "警告"
 
-#: src/thirdsoft.py:531
+#: src/thirdsoft.py:651
 msgid "Never show this dialog"
 msgstr "このダイアログを表示しない"
 
-#: src/thirdsoft.py:553
+#: src/thirdsoft.py:673
 msgid ""
 "You can install the new applications through Add/Remove.\n"
 "Do you want to go now?"
@@ -822,7 +875,7 @@ msgstr ""
 "追加と削除から新しいアプリケーションをインストールできます。\n"
 "インストールしますか？"
 
-#: src/thirdsoft.py:554 src/sourceeditor.py:412
+#: src/thirdsoft.py:674 src/sourceeditor.py:412
 msgid "The software information is up-to-date now"
 msgstr "現在のソフトウェア情報は最新です"
 
@@ -978,51 +1031,51 @@ msgstr "TCP接続を許可する(リモートデスクトップ接続)"
 msgid "Show splash screen"
 msgstr "スプラッシュスクリーンを表示する"
 
-#: src/templates.py:63
+#: src/templates.py:64
 msgid "HTML document"
 msgstr "HTML ドキュメント"
 
-#: src/templates.py:64
+#: src/templates.py:65
 msgid "ODB Database"
 msgstr "ODB データベース"
 
-#: src/templates.py:65
+#: src/templates.py:66
 msgid "ODS Spreadsheet"
 msgstr "ODS スプレッドシート"
 
-#: src/templates.py:66
+#: src/templates.py:67
 msgid "ODT Document"
 msgstr "ODT ドキュメント"
 
-#: src/templates.py:67
+#: src/templates.py:68
 msgid "Plain text document"
 msgstr "通常のテキスト・ドキュメント"
 
-#: src/templates.py:68
+#: src/templates.py:69
 msgid "ODP Presentation"
 msgstr "ODP プレゼンテーション"
 
-#: src/templates.py:69
+#: src/templates.py:70
 msgid "Python script"
 msgstr "Python スクリプト"
 
-#: src/templates.py:70
+#: src/templates.py:71
 msgid "Pygtk Example"
 msgstr "Pygtk サンプル"
 
-#: src/templates.py:71
+#: src/templates.py:72
 msgid "Shell script"
 msgstr "Shell スクリプト"
 
-#: src/templates.py:98
+#: src/templates.py:99
 msgid "Enabled Templates"
 msgstr "有効なテンプレート"
 
-#: src/templates.py:105
+#: src/templates.py:106
 msgid "Disabled Templates"
 msgstr "無効なテンプレート"
 
-#: src/templates.py:116
+#: src/templates.py:117
 #, python-format
 msgid ""
 "Templates path is wrong! The current path is point to \"%s\".\n"
@@ -1031,19 +1084,19 @@ msgstr ""
 "Templatesのパスが間違ってます! 現在のパスは \"%s\" へ示してます。\n"
 "home フォルダ下のフォルダーにリセットして下さい。"
 
-#: src/templates.py:123
+#: src/templates.py:124
 msgid "Go And Set"
 msgstr "Go And Set"
 
-#: src/templates.py:128
+#: src/templates.py:129
 msgid "Restart This Module"
 msgstr "このモジュールを再起動"
 
-#: src/templates.py:134
+#: src/templates.py:135
 msgid "Manage Templates"
 msgstr "テンプレートの管理"
 
-#: src/templates.py:135
+#: src/templates.py:136
 msgid ""
 "Here you can freely manage your document templates.\n"
 "You can add files as templates by dragging them onto this window.\n"
@@ -1055,15 +1108,15 @@ msgstr ""
 "Nautilusの右クリックメニューから、このテンプレートに基づく新規ドキュメントの"
 "作成ができます。"
 
-#: src/templates.py:160
+#: src/templates.py:161
 msgid "Rebuild System Templates"
 msgstr "システムテンプレートの再構築"
 
-#: src/templates.py:180
+#: src/templates.py:181
 msgid "Templates path is still wrong, Please reset it!"
 msgstr "テンプレートのパスが間違っています、リセットして下さい!"
 
-#: src/templates.py:192
+#: src/templates.py:193
 msgid ""
 "This will delete all disabled templates.\n"
 "Do you wish to continue?"
@@ -1098,6 +1151,10 @@ msgstr "Simple Desktop Effects Settings managerをインストール"
 #: src/compiz.py:237
 msgid "Install Screenlets Widget Application"
 msgstr "Screenlets Widgetアプリケーションをインストール"
+
+#: src/compiz.py:244
+msgid "Edge Settings"
+msgstr ""
 
 #: src/compiz.py:247
 msgid "Enable snapping windows"
@@ -1707,7 +1764,7 @@ msgstr ""
 msgid "Successfully submitted"
 msgstr "正常に送信されました"
 
-#: src/sourceeditor.py:483
+#: src/sourceeditor.py:484
 msgid ""
 "The current content will be lost after reloading!\n"
 "Do you wish to continue?"
@@ -1719,64 +1776,70 @@ msgstr ""
 msgid "(Not available)"
 msgstr "(利用できません)"
 
-#: src/common/appdata.py:57
+#: src/common/appdata.py:64
 msgid "A color scheme designer"
 msgstr "カラー・スキームデザイナー"
 
-#: src/common/appdata.py:58
+#: src/common/appdata.py:65
 msgid "Development version of an audio player for KDE"
 msgstr "KDE用オーディオ・プレーヤーの開発版"
 
-#: src/common/appdata.py:59
+#: src/common/appdata.py:66
 msgid "Client for the eD2k and Kad networks"
 msgstr "eD2KとKadネットワーク用クライアント"
 
-#: src/common/appdata.py:60
+#: src/common/appdata.py:67
 msgid "GNOME IDE for C/C++, Java, Python"
 msgstr "GNOME IDE用 C/C++, Java, Python"
 
-#: src/common/appdata.py:61
+#: src/common/appdata.py:68
 msgid "A skinned multimedia player for many platforms"
 msgstr "多くのプラットフォームのスキン対応マルチメディアプレイヤー"
 
-#: src/common/appdata.py:62
+#: src/common/appdata.py:69
 msgid "Record and edit audio files"
 msgstr "オーディオファイルの録音と編集"
 
-#: src/common/appdata.py:63
+#: src/common/appdata.py:70
 msgid "Fully customisable dock-like window navigator"
 msgstr "カスタマイズ可能なウインドウナビゲーター(Dock風)"
 
-#: src/common/appdata.py:64
+#: src/common/appdata.py:71
 msgid "Fully customisable dock-like window navigator(Unstable)"
 msgstr ""
 "ウィンドウ・ナビゲーターのような、完全にカスタマイズ可能なdock（不安定版）"
 
-#: src/common/appdata.py:65
+#: src/common/appdata.py:72
 msgid "A free video editor"
 msgstr "フリービデオエディタ"
 
-#: src/common/appdata.py:66
+#: src/common/appdata.py:73
 msgid "BitTorrent client written in Java"
 msgstr "Javaで書かれたBitTorrentクライアント"
 
-#: src/common/appdata.py:67
+#: src/common/appdata.py:74
 msgid "Audio Management and Playback application"
 msgstr "オーディオ管理および再生用アプリケーション"
 
-#: src/common/appdata.py:68
+#: src/common/appdata.py:75
 msgid "GTK+ Bluetooth Manager"
 msgstr "GTK+ Bluetooth マネージャー"
 
-#: src/common/appdata.py:69
+#: src/common/appdata.py:76
 msgid "A true dock for linux"
 msgstr "Linux用-本物のdock"
 
-#: src/common/appdata.py:70
+#: src/common/appdata.py:77
 msgid "A chm file viewer written in GTK+"
 msgstr "GTK+で書かれた chm ファイルビューア"
 
-#: src/common/appdata.py:71
+#: src/common/appdata.py:78
+msgid ""
+"Desired to be small and fast, christine is a simple media player, that let "
+"you play your favorite music and videos from one single application."
+msgstr ""
+
+#: src/common/appdata.py:79
 msgid ""
 "Chromium is an open-source browser project that aims to build a safer, "
 "faster, and more stable way for all Internet users to experience the web."
@@ -1784,31 +1847,31 @@ msgstr ""
 "Chromiumはすべてのインターネットユーザーが快適に、安定してウェブ閲覧するオー"
 "プンソースブラウザプロジェクトの構築を目指しています。"
 
-#: src/common/appdata.py:72
+#: src/common/appdata.py:80
 msgid "The open source, cross-platform IDE"
 msgstr "オープンソースのクロスープラットフォーム IDE"
 
-#: src/common/appdata.py:73
+#: src/common/appdata.py:81
 msgid "Advanced Desktop Effects Settings Manager"
 msgstr "高度なデスクトップエフェクト設定マネージャ"
 
-#: src/common/appdata.py:74
+#: src/common/appdata.py:82
 msgid "An API documentation browser for GNOME."
 msgstr "GNOMEのAPIドキュメントブラウザ"
 
-#: src/common/appdata.py:75
+#: src/common/appdata.py:83
 msgid "A Bittorrent client written in PyGTK"
 msgstr "PyGTKで書かれたBitTorrentクライアント"
 
-#: src/common/appdata.py:76
+#: src/common/appdata.py:84
 msgid "Store, Sync and Share your files online."
 msgstr "オンラインでファイルの同期および共有、保管します。"
 
-#: src/common/appdata.py:77
+#: src/common/appdata.py:85
 msgid "Extensible Tool Platform and Java IDE"
 msgstr "拡張可能なツールプラットフォームとJava IDE(統合開発環境)"
 
-#: src/common/appdata.py:78
+#: src/common/appdata.py:86
 msgid ""
 "EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
 "com."
@@ -1816,11 +1879,11 @@ msgstr ""
 "無料の中国語圏ユーザー向け。EIOffice パーソナル 2009。 参照 http://www."
 "evermoresw.com。"
 
-#: src/common/appdata.py:79
+#: src/common/appdata.py:87
 msgid "A client for the Windows Live Message network"
 msgstr "Windows Live Messageネットワーク用クライアント"
 
-#: src/common/appdata.py:80
+#: src/common/appdata.py:88
 msgid ""
 "Empathy consists of a rich set of reusable instant messaging widgets, and a "
 "GNOME client using those widgets."
@@ -1828,58 +1891,64 @@ msgstr ""
 "Empathy consistsは再利用可能なインスタントメッセージ・ウィジェットの豊富な"
 "セットからの構成、およびウィジェットを使用しているGNOMEクライアント。"
 
-#: src/common/appdata.py:81
+#: src/common/appdata.py:89
 msgid "GTK+ based flexible audio player, similar to Amarok"
 msgstr "GTK+ ベースの順応性なオーディオプレイヤーで、Amarokに類似しています。"
 
-#: src/common/appdata.py:82
+#: src/common/appdata.py:90
 msgid "File transmission via ftp, sftp and ftps"
 msgstr "ftp, sftp and ftps 経由でファイル転送"
 
-#: src/common/appdata.py:83
+#: src/common/appdata.py:91
 msgid "An extremly fast and lightweight file manager"
 msgstr "非常に高速かつ軽量なファイルマネージャー"
 
-#: src/common/appdata.py:84
+#: src/common/appdata.py:92
 msgid ""
 "Galaxium is an instant messenger application designed for the GNOME desktop"
 msgstr ""
 "GalaxiumはGNOMEデスクトップ用に開発されたインスタントメッセンジ・アプリケー"
 "ションです。"
 
-#: src/common/appdata.py:85
+#: src/common/appdata.py:93
 msgid "A GTK+ jabber client"
 msgstr "GTK+ jabber クライアント"
 
-#: src/common/appdata.py:86
+#: src/common/appdata.py:94
 msgid "A fast and lightweight IDE"
 msgstr "速くて軽量のIDE"
 
-#: src/common/appdata.py:87
+#: src/common/appdata.py:95
 msgid "A multithreaded FTP client"
 msgstr "マルチスレッドFTPクライアント"
 
-#: src/common/appdata.py:88
+#: src/common/appdata.py:96
 msgid "GNOME Hex editor"
 msgstr "GNOME Hex エディタ"
 
-#: src/common/appdata.py:89
+#: src/common/appdata.py:97
 msgid "Notifies the user upon arrival of new mail in Gmail"
 msgstr "Gmailの新しいメールを受信した時ユーザに通知します"
 
-#: src/common/appdata.py:90
+#: src/common/appdata.py:98
 msgid "A powerful, speedy, and sexy remote control for the GNOME Desktop"
 msgstr "GNOME Desktopをパワフル、迅速、セクシーにリモート操作します"
 
-#: src/common/appdata.py:91
+#: src/common/appdata.py:99
 msgid "Global Menu Bar for GNOME"
 msgstr "GNOME用グローバル・メニューバー"
 
-#: src/common/appdata.py:92
+#: src/common/appdata.py:100
+msgid ""
+"the GNOME-Colors Icon Themes and Shiki-Colors GTK+/Metacity Themes for "
+"Debian and Ubuntu."
+msgstr ""
+
+#: src/common/appdata.py:101
 msgid "a C++ port of Tomboy"
 msgstr "TomboyのC++ポート"
 
-#: src/common/appdata.py:93
+#: src/common/appdata.py:102
 msgid ""
 "A program that combines satellite imagery and maps to put the world's "
 "geographic information at your fingertips."
@@ -1887,27 +1956,27 @@ msgstr ""
 "世界の地理情報を衛星画像と地図を組み合わせたプログラムの簡単な操作で入手でき"
 "ます。"
 
-#: src/common/appdata.py:94
+#: src/common/appdata.py:103
 msgid "Platform for running Google Gadgets on Linux"
 msgstr "Linuxプラットフォームで動作するGoogle Gadgets"
 
-#: src/common/appdata.py:95
+#: src/common/appdata.py:104
 msgid "GNOME partition editor"
 msgstr "GNOME パーティションエディタ"
 
-#: src/common/appdata.py:96
+#: src/common/appdata.py:105
 msgid "Lightweight image viewer"
 msgstr "軽量なイメージビューア"
 
-#: src/common/appdata.py:97
+#: src/common/appdata.py:106
 msgid "A powerful screenshot tool"
 msgstr "強力なスクリーンショット・ツール"
 
-#: src/common/appdata.py:98
+#: src/common/appdata.py:107
 msgid "Graphical frontend for recordmydesktop"
 msgstr "recordmydesktop用グラフィカルフロントエンド"
 
-#: src/common/appdata.py:99
+#: src/common/appdata.py:108
 msgid ""
 "GTG is a personal organizer for the GNOME desktop environment, it focuses on "
 "ease of use and flexibility, while keeping things simple."
@@ -1915,23 +1984,23 @@ msgstr ""
 "シンプルに現状維持した'GTG'はGNOMEデスクトップ環境の自己管理手帳で、使い易さ"
 "と柔軟性に焦点を合わせています。"
 
-#: src/common/appdata.py:100
+#: src/common/appdata.py:109
 msgid "Gwibber is an open source microblogging client for GNOME"
 msgstr "GwibberはGNOME用のオープンソースmicrobloggingクライアントです"
 
-#: src/common/appdata.py:101
+#: src/common/appdata.py:110
 msgid "A graphical CD image editor"
 msgstr "グラフィカルCDイメージエディタ"
 
-#: src/common/appdata.py:102
+#: src/common/appdata.py:111
 msgid "Intelligent Input Bus for Linux / Unix OS"
 msgstr "Linux / Unix OS のインテリジェント入力バス"
 
-#: src/common/appdata.py:103
+#: src/common/appdata.py:112
 msgid "It is a PinYin engine for IBus."
 msgstr "これは IBus のPinYinエンジンです。"
 
-#: src/common/appdata.py:104
+#: src/common/appdata.py:113
 msgid ""
 "IBus-Table is the IM Engine framework for table-based input methods, such as "
 "ZhengMa, WuBi, ErBi, ChangJie and so on."
@@ -1939,67 +2008,67 @@ msgstr ""
 "IBusテーブルはテーブル-ベース入力メソッドのZhengMa、WuBi、ErBi、ChangJieなど"
 "のIMエンジン・フレームワークです。"
 
-#: src/common/appdata.py:105
+#: src/common/appdata.py:114
 msgid "Create and edit Scalable Vector Graphics images"
 msgstr "作成および編集、拡大縮小可能なベクター・グラフィック・イメージ"
 
-#: src/common/appdata.py:106
+#: src/common/appdata.py:115
 msgid "Non-linear editor for Digital Video data"
 msgstr "Digital Video dataのノンリニア編集"
 
-#: src/common/appdata.py:107
+#: src/common/appdata.py:116
 msgid "A music player for Last.fm personalized radio"
 msgstr "Last.fm personalized radio用ミュージックプレイヤー"
 
-#: src/common/appdata.py:108
+#: src/common/appdata.py:117
 msgid "GTK+ based simple text editor"
 msgstr "GTK+ ベースのシンプルなテキストエディタ"
 
-#: src/common/appdata.py:109
+#: src/common/appdata.py:118
 msgid "Feed aggregator for GNOME"
 msgstr "GNOME用フィード・アグリゲータ"
 
-#: src/common/appdata.py:110
+#: src/common/appdata.py:119
 msgid "Mail notification in system tray"
 msgstr "システムトレーにメールを通知"
 
-#: src/common/appdata.py:111
+#: src/common/appdata.py:120
 msgid "Adcal tool to diff and merge files"
 msgstr "diffおよびmergeファイルへのAdcalツール"
 
-#: src/common/appdata.py:112
+#: src/common/appdata.py:121
 msgid "A fast and simple GTK+ Image Viewer"
 msgstr "速くてシンプルなGTK+イメージビューア"
 
-#: src/common/appdata.py:113
+#: src/common/appdata.py:122
 msgid "Open internet TV, beyond anything else"
 msgstr "インターネットTVを観る、他ソフトを上回る性能"
 
-#: src/common/appdata.py:114
+#: src/common/appdata.py:123
 msgid "Webkit based lightweight web browser"
 msgstr "Webkitベースの軽量Webブラウザ"
 
-#: src/common/appdata.py:115
+#: src/common/appdata.py:124
 msgid "The free media player - play all your files"
 msgstr "無料のメディアプレーヤー - すべてのファイルを再生"
 
-#: src/common/appdata.py:116
+#: src/common/appdata.py:125
 msgid "An IDE to Develop .NET applications."
 msgstr "IDEが開発した .NETアプリケーション。"
 
-#: src/common/appdata.py:117
+#: src/common/appdata.py:126
 msgid "The Ultimate Movie Player For Linux"
 msgstr "Linux用の究極ムービープレイヤー"
 
-#: src/common/appdata.py:118
+#: src/common/appdata.py:127
 msgid "IDE for Java, C/C++, Ruby, UML, etc."
 msgstr "Java, C/C++, Ruby, UML, などの統合開発環境"
 
-#: src/common/appdata.py:119
+#: src/common/appdata.py:128
 msgid "The Opera Web Browser"
 msgstr "Opera ウェブブラウザ"
 
-#: src/common/appdata.py:120
+#: src/common/appdata.py:129
 msgid ""
 "Pidgin is a graphical modular messaging client based on libpurple which is "
 "capable of connecting to AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, SIP/SIMPLE, "
@@ -2011,43 +2080,43 @@ msgstr ""
 "Gadu および QQ all at once をAIMに接続するグラフィカル・モジュールのメッセー"
 "ジングクライアントです。"
 
-#: src/common/appdata.py:121
+#: src/common/appdata.py:130
 msgid "Run your Windows programs on Linux"
 msgstr "Linux上でWindowsのプログラムを実行"
 
-#: src/common/appdata.py:122
+#: src/common/appdata.py:131
 msgid "A framework for desktop widgets"
 msgstr "デスクトップ・ウィジェットの為のフレームワーク"
 
-#: src/common/appdata.py:123
+#: src/common/appdata.py:132
 msgid "Feature-rich screenshot application(formerly known as GScrot)"
 msgstr ""
 "機能豊富なスクリーンショット・アプリケーション(以前 GScrotとして知られていま"
 "した)"
 
-#: src/common/appdata.py:124
+#: src/common/appdata.py:133
 msgid "Make audio/video calls using this VoIP Software"
 msgstr "VoIP ソフトウェアを使用した音声/ビデオ通話"
 
-#: src/common/appdata.py:125
+#: src/common/appdata.py:134
 msgid "A great MPlayer front-end, written in QT4"
 msgstr "QT4で書かれたMPlayer用フロントエンド"
 
-#: src/common/appdata.py:126
+#: src/common/appdata.py:135
 msgid "Convert audio files into other formats"
 msgstr "オーディオファイルを別のフォーマットに変換"
 
-#: src/common/appdata.py:127
+#: src/common/appdata.py:136
 msgid "An international dictionary"
 msgstr "国際辞書"
 
-#: src/common/appdata.py:128
+#: src/common/appdata.py:137
 msgid ""
 "Swiftweasel is an optimized build of the Mozilla Firefox web browser for "
 "Linux"
 msgstr "Swiftweasel はMozilla Firefox・Linux用に最適化されたビルドです"
 
-#: src/common/appdata.py:129
+#: src/common/appdata.py:138
 msgid ""
 "A desktop application that will watch for events (website updates, emails, "
 "file and folder changes...)"
@@ -2055,54 +2124,55 @@ msgstr ""
 "イベント監視を備えたデスクトップアプリケーション (ウェブサイトの更新、eメー"
 "ル、ファイルおよびフォルダーの変更…)"
 
-#: src/common/appdata.py:130
+#: src/common/appdata.py:139
 msgid "An instant messaging application powered by qt-mono-bindings"
 msgstr "インスタント・メッセージ・アプリケーション Powered by qt-mono-bindings"
 
-#: src/common/appdata.py:131
+#: src/common/appdata.py:140
 msgid "A Useful Task List"
 msgstr "便利なタスクリスト"
 
-#: src/common/appdata.py:132
+#: src/common/appdata.py:141
 msgid "Multiple GNOME terminals in one window"
 msgstr "複数のGNOME端末を1つの画面で操作"
 
-#: src/common/appdata.py:133
+#: src/common/appdata.py:142
 msgid ""
 "Transmission is a fast, easy, and free multi-platform BitTorrent client."
 msgstr ""
 "Transmission BitTorrent クライアントは高速・簡単な無料のマルチ・プラット"
 "フォーム です。"
 
-#: src/common/appdata.py:134
+#: src/common/appdata.py:143
 msgid "Ubuntu Tweak makes it easier to configure Ubuntu"
 msgstr "Ubuntu Tweakは簡単にUbuntuの設定を変更できます。"
 
-#: src/common/appdata.py:135
+#: src/common/appdata.py:144
 msgid "Commonly used restricted packages"
 msgstr "一般的に使用制限されたパッケージ"
 
-#: src/common/appdata.py:136
+#: src/common/appdata.py:145
 msgid "configure your USB ADSL modem and connection easier than ever!"
 msgstr "これまで以上にUSB ADSLモデムとの接続設定を簡単にします!"
 
-#: src/common/appdata.py:137 src/common/appdata.py:138
+#: src/common/appdata.py:146 src/common/appdata.py:147
+#: src/common/appdata.py:148
 msgid "A feature rich, high performance virtualization software"
 msgstr "豊富な機能、高性能仮想化ソフトウェア"
 
-#: src/common/appdata.py:139
+#: src/common/appdata.py:149
 msgid "Read, capture, broadcast your multimedia streams"
 msgstr "あなたのマルチメディアストリームを読み込み、キャプチャ、放送"
 
-#: src/common/appdata.py:140
+#: src/common/appdata.py:150
 msgid "Run Virtual Machines using VMware"
 msgstr "Vmwareを使用して仮想マシンを構築"
 
-#: src/common/appdata.py:141
+#: src/common/appdata.py:151
 msgid "A compatibility layer for running Windows programs"
 msgstr "Windowsプログラムを実行する互換性レイヤ"
 
-#: src/common/appdata.py:142
+#: src/common/appdata.py:152
 msgid ""
 "Wine-doors is an application designed to make installing windows software on "
 "Linux, Solaris or other Unix systems easier."
@@ -2110,34 +2180,38 @@ msgstr ""
 "Wine-doorsはWindows用ソフトウェアをLinux、Solaris、他のUnixシステムに簡単にイ"
 "ンストールできるよう開発されたアプリケーションです。"
 
-#: src/common/appdata.py:143
+#: src/common/appdata.py:153
 msgid ""
 "XBMC is a free and open source software media player and entertainment hub"
 msgstr ""
 "XBMCは無料オープンソースソフトウェアのメディアプレーヤーとエンターテインメン"
 "トの中心的役割です。"
 
-#: src/common/appdata.py:147
-msgid "Development Version of Mozilla Firefox 3.1, 4.0"
-msgstr "Mozilla Firefox 3.1、4.0 は開発版です"
+#: src/common/appdata.py:157
+msgid "Development Version of Mozilla Firefox 3.6, 4.0"
+msgstr ""
 
-#: src/common/appdata.py:148
+#: src/common/appdata.py:158
 msgid "Development version of Compiz Fusion"
 msgstr "Compiz Fusionの開発版"
 
-#: src/common/appdata.py:149
+#: src/common/appdata.py:159
 msgid "Google's Linux Repository"
 msgstr "Google's Linux リポジトリ"
 
-#: src/common/appdata.py:150
+#: src/common/appdata.py:160
 msgid "K Desktop Environment 4.2"
 msgstr "K Desktop Environment 4.2"
 
-#: src/common/appdata.py:151
+#: src/common/appdata.py:161
 msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
 msgstr "Lightweight X11 Desktop Environment: GPicView, PCManFM"
 
-#: src/common/appdata.py:152
+#: src/common/appdata.py:162
+msgid "WebkitGtk+, Liferea (Webkit), Midori and other WebKit related projects."
+msgstr ""
+
+#: src/common/appdata.py:163
 msgid ""
 "Multimedia, Entertainment and Distraction In Ubuntu\n"
 "Medibuntu is a repository of packages that cannot be included into the "
@@ -2147,7 +2221,7 @@ msgstr ""
 "Medibuntuは、法的な理由でUbuntuに含められないパッケージのリポジトリです(著作"
 "権、ライセンス、特許など)。"
 
-#: src/common/appdata.py:154
+#: src/common/appdata.py:165
 msgid ""
 "Ubuntu repository for Chinese users.\n"
 "Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and "
@@ -2157,7 +2231,7 @@ msgstr ""
 "EIOffice、Ubuntu Tweak、ibus入力メソッド、OpenOffice.org3.0、およびその他ソフ"
 "トウェアが含まれています。"
 
-#: src/common/appdata.py:156
+#: src/common/appdata.py:167
 msgid ""
 "GetDeb extends the existing software options for Ubuntu (and derived) Linux "
 "distributions by providing major updates and software not yet available on "
@@ -2167,14 +2241,20 @@ msgstr ""
 "ションの幅を広げます、主な更新プログラムやソフトウェアはまだ公式のUbuntuのリ"
 "ポジトリから提供されており利用できません。"
 
-#: src/common/appdata.py:157
+#: src/common/appdata.py:168
 msgid "Updated versions of X.org drivers, libraries, etc. for Ubuntu."
 msgstr ""
 
-#: src/common/appdata.py:158
+#: src/common/appdata.py:169
 msgid ""
 "Gnome Games built from Git, with all experimental features and staging games "
 "enabled."
+msgstr ""
+
+#: src/common/appdata.py:170
+msgid ""
+"Ubuntu Mozilla Security Team provides beta and final stable/security updates "
+"for mozilla software in its PPA"
 msgstr ""
 
 #: src/common/misc.py:15

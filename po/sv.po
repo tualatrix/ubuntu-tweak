@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak 0.24\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2009-07-04 10:46+0800\n"
+"POT-Creation-Date: 2009-08-02 19:45+0800\n"
 "PO-Revision-Date: 2009-06-15 08:52+0000\n"
 "Last-Translator: nairobie <samuel.ostman@gmail.com>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2009-07-03 18:01+0000\n"
+"X-Launchpad-Export-Date: 2009-08-02 07:04+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: SWEDEN\n"
 "X-Poedit-Language: Swedish\n"
@@ -161,11 +161,11 @@ msgstr "Emulatorer"
 msgid "E-mail Tools"
 msgstr "E-postverktyg"
 
-#: src/installer.py:157
+#: src/installer.py:160
 msgid "Add/Remove Applications"
 msgstr "Lägg till/Ta bort program"
 
-#: src/installer.py:158
+#: src/installer.py:161
 msgid ""
 "A simple but more effecient method for finding and installing popular "
 "packages than the default Add/Remove."
@@ -173,16 +173,16 @@ msgstr ""
 "Ett enkelt men effektivare sett att hitta och installera populära program än "
 "genom Lägg till/Ta bort program."
 
-#: src/installer.py:204
+#: src/installer.py:207
 msgid "All Categories"
 msgstr "Alla kategorier"
 
-#: src/installer.py:365 src/thirdsoft.py:499 src/compiz.py:406
+#: src/installer.py:364 src/thirdsoft.py:619 src/compiz.py:406
 #: src/nautilus.py:217
 msgid "Update Successful!"
 msgstr "Uppdatering slutförd!"
 
-#: src/installer.py:367 src/compiz.py:408 src/nautilus.py:219
+#: src/installer.py:366 src/compiz.py:408 src/nautilus.py:219
 msgid "Update Failed!"
 msgstr "Uppdatering misslyckades!"
 
@@ -330,7 +330,7 @@ msgstr "Lägg till/Ta bort"
 msgid "Source Editor"
 msgstr "Källredigerare"
 
-#: src/mainwindow.py:254 src/thirdsoft.py:290
+#: src/mainwindow.py:254 src/thirdsoft.py:321
 msgid "Third-Party Sources"
 msgstr "Tredjepartskällor"
 
@@ -717,35 +717,63 @@ msgstr "Avant Window Navigator (ostabil version)"
 msgid "Ubuntu Chinese Repository"
 msgstr "Ubuntu Kinesiskt förråd"
 
-#: src/thirdsoft.py:87
-msgid "Experimental Gnome Games"
+#: src/thirdsoft.py:79
+msgid "IBus (Old Version)"
+msgstr ""
+
+#: src/thirdsoft.py:80
+msgid "IBus 1.2 for intrepid"
+msgstr ""
+
+#: src/thirdsoft.py:81
+msgid "IBus 1.2 for jaunty"
+msgstr ""
+
+#: src/thirdsoft.py:86
+msgid "Ubuntu Mozilla Security Team"
 msgstr ""
 
 #: src/thirdsoft.py:88
-msgid "Gnome Global Menu"
-msgstr "Gnome Global Menu"
-
-#: src/thirdsoft.py:90
-msgid "GetDeb.net (Mirror)"
-msgstr "GetDeb.net (Kopia)"
-
-#: src/thirdsoft.py:92
-msgid "Gwibber (Daily Version)"
+msgid "Christine Media Player"
 msgstr ""
 
 #: src/thirdsoft.py:93
+msgid "Experimental Gnome Games"
+msgstr ""
+
+#: src/thirdsoft.py:95
+msgid "Gnome Global Menu"
+msgstr "Gnome Global Menu"
+
+#: src/thirdsoft.py:97
+msgid "GetDeb.net (Mirror)"
+msgstr "GetDeb.net (Kopia)"
+
+#: src/thirdsoft.py:99
+msgid "Gwibber (Daily Version)"
+msgstr ""
+
+#: src/thirdsoft.py:100
 msgid "Banshee (Stable Version)"
 msgstr "Banshee (stabil version)"
 
-#: src/thirdsoft.py:94
+#: src/thirdsoft.py:101
 msgid "Banshee (Unstable Version)"
 msgstr "Banshee (ostabil version)"
 
-#: src/thirdsoft.py:100
+#: src/thirdsoft.py:107
 msgid "Ubuntu Tweak (Unstable Version)"
 msgstr "Ubuntu Tweak (ostabil version)"
 
-#: src/thirdsoft.py:207
+#: src/thirdsoft.py:121
+msgid "VirtualBox (Open Source Edition)"
+msgstr ""
+
+#: src/thirdsoft.py:122
+msgid "VLC media player"
+msgstr ""
+
+#: src/thirdsoft.py:238
 msgid ""
 "To install software and updates from newly added or changed sources, you "
 "have to reload the information about available software.\n"
@@ -758,31 +786,56 @@ msgstr ""
 "\n"
 "Du behöver en fungerande internetanslutning för att fortsätta."
 
-#: src/thirdsoft.py:211
+#: src/thirdsoft.py:242
 msgid "The information about available software is out-of-date"
 msgstr "Informationen om tillgänglig programvara är föråldrad"
 
-#: src/thirdsoft.py:377
+#: src/thirdsoft.py:392
+#, python-format
+msgid ""
+"To enable this Source, You need to enable \"%s\" at first.\n"
+"Do you wish to continue?"
+msgstr ""
+
+#: src/thirdsoft.py:394
+msgid "Dependency Notice"
+msgstr ""
+
+#: src/thirdsoft.py:408
+#, python-format
+msgid ""
+"You can't disable this Source because \"%(SOURCE)s\" depends on it.\n"
+"To continue you need to disable \"%(SOURCE)s\" first."
+msgstr ""
+
+#: src/thirdsoft.py:424
+#, python-format
+msgid ""
+"You can't enable this Source because \"%(SOURCE)s\" conflicts with it.\n"
+"To continue you need to disable \"%(SOURCE)s\" first."
+msgstr ""
+
+#: src/thirdsoft.py:496
 msgid "Homepage"
 msgstr "Hemsida"
 
-#: src/thirdsoft.py:377
+#: src/thirdsoft.py:496
 msgid "Source URL"
 msgstr "Käll-URL"
 
-#: src/thirdsoft.py:377
+#: src/thirdsoft.py:496
 msgid "Description"
 msgstr "Beskrivning"
 
-#: src/thirdsoft.py:388
+#: src/thirdsoft.py:507
 msgid "Description is here"
 msgstr "Beskrivningen är här"
 
-#: src/thirdsoft.py:416
+#: src/thirdsoft.py:536
 msgid "Third-Party Software Sources"
 msgstr "Källor för tredjepartsprogram"
 
-#: src/thirdsoft.py:417
+#: src/thirdsoft.py:537
 msgid ""
 "After every release of Ubuntu there comes a feature freeze.\n"
 "This means only applications with bug-fixes get into the repository.\n"
@@ -798,29 +851,29 @@ msgstr ""
 "Efter att ha lagt till dessa förråd, leta upp och installera dem med hjälp "
 "av Lägg till / ta bort"
 
-#: src/thirdsoft.py:433 src/sourceeditor.py:83
+#: src/thirdsoft.py:553 src/sourceeditor.py:83
 msgid "Details"
 msgstr "Detaljer"
 
-#: src/thirdsoft.py:456
+#: src/thirdsoft.py:576
 msgid ""
 "Some of your PPA Sources need to be updated.\n"
 "Do you wish to continue?"
 msgstr ""
 
-#: src/thirdsoft.py:456
+#: src/thirdsoft.py:576
 msgid "PPA Sources has expired"
 msgstr ""
 
-#: src/thirdsoft.py:496 src/sourceeditor.py:475
+#: src/thirdsoft.py:616 src/sourceeditor.py:475
 msgid "Please check the permission of the sources.list file"
 msgstr "Kontrollera tillstånd av sources.list fil"
 
-#: src/thirdsoft.py:497 src/sourceeditor.py:476
+#: src/thirdsoft.py:617 src/sourceeditor.py:476
 msgid "Save failed!"
 msgstr "Misslyckades med att spara!"
 
-#: src/thirdsoft.py:524
+#: src/thirdsoft.py:644
 msgid ""
 "It is a possible security risk to use packages from Third-Party Sources.\n"
 "Please be careful and use only sources you trust."
@@ -828,15 +881,15 @@ msgstr ""
 "Det är en möjlig säkerhetsrisk att använda paket från tredje parts källor.\n"
 "Var försiktig och endast använda källor du litar på."
 
-#: src/thirdsoft.py:527 src/nautilus.py:189
+#: src/thirdsoft.py:647 src/nautilus.py:189
 msgid "Warning"
 msgstr "Varning"
 
-#: src/thirdsoft.py:531
+#: src/thirdsoft.py:651
 msgid "Never show this dialog"
 msgstr "Visa aldrig denna dialog"
 
-#: src/thirdsoft.py:553
+#: src/thirdsoft.py:673
 msgid ""
 "You can install the new applications through Add/Remove.\n"
 "Do you want to go now?"
@@ -844,7 +897,7 @@ msgstr ""
 "Du kan installera nya program genom Lägg till/Ta bort.\n"
 "Vill du gå dit nu?"
 
-#: src/thirdsoft.py:554 src/sourceeditor.py:412
+#: src/thirdsoft.py:674 src/sourceeditor.py:412
 msgid "The software information is up-to-date now"
 msgstr "Programvaruinformationen är nu uppdaterad"
 
@@ -1000,51 +1053,51 @@ msgstr "Tillåt TCP anslutningar (Fjärrskrivbord anslutning)"
 msgid "Show splash screen"
 msgstr "Visa startbild"
 
-#: src/templates.py:63
+#: src/templates.py:64
 msgid "HTML document"
 msgstr "HTML-dokument"
 
-#: src/templates.py:64
+#: src/templates.py:65
 msgid "ODB Database"
 msgstr "ODB-databas"
 
-#: src/templates.py:65
+#: src/templates.py:66
 msgid "ODS Spreadsheet"
 msgstr "ODS-kalkylark"
 
-#: src/templates.py:66
+#: src/templates.py:67
 msgid "ODT Document"
 msgstr "ODT-dokument"
 
-#: src/templates.py:67
+#: src/templates.py:68
 msgid "Plain text document"
 msgstr "Vanligt text-dokument"
 
-#: src/templates.py:68
+#: src/templates.py:69
 msgid "ODP Presentation"
 msgstr "ODP-presentation"
 
-#: src/templates.py:69
+#: src/templates.py:70
 msgid "Python script"
 msgstr "Pythonskript"
 
-#: src/templates.py:70
+#: src/templates.py:71
 msgid "Pygtk Example"
 msgstr "Pygtk-exempel"
 
-#: src/templates.py:71
+#: src/templates.py:72
 msgid "Shell script"
 msgstr "Skalskript"
 
-#: src/templates.py:98
+#: src/templates.py:99
 msgid "Enabled Templates"
 msgstr "Aktivera mallar"
 
-#: src/templates.py:105
+#: src/templates.py:106
 msgid "Disabled Templates"
 msgstr "Inaktivera mallar"
 
-#: src/templates.py:116
+#: src/templates.py:117
 #, python-format
 msgid ""
 "Templates path is wrong! The current path is point to \"%s\".\n"
@@ -1053,19 +1106,19 @@ msgstr ""
 "Genvägen till Mallar är fel! Nuvarande genväg är satt till \"%s\".\n"
 "Vänligen ändra till en mapp under din hemkatalog."
 
-#: src/templates.py:123
+#: src/templates.py:124
 msgid "Go And Set"
 msgstr "Gå dit och ställ in"
 
-#: src/templates.py:128
+#: src/templates.py:129
 msgid "Restart This Module"
 msgstr "Starta om denna modul"
 
-#: src/templates.py:134
+#: src/templates.py:135
 msgid "Manage Templates"
 msgstr "Hantera mallar"
 
-#: src/templates.py:135
+#: src/templates.py:136
 msgid ""
 "Here you can freely manage your document templates.\n"
 "You can add files as templates by dragging them onto this window.\n"
@@ -1077,15 +1130,15 @@ msgstr ""
 "Du kan också skapa nya dokument baserade på dessa mallar från Nautilus "
 "högerklick-meny."
 
-#: src/templates.py:160
+#: src/templates.py:161
 msgid "Rebuild System Templates"
 msgstr "Bygg om systemmallar"
 
-#: src/templates.py:180
+#: src/templates.py:181
 msgid "Templates path is still wrong, Please reset it!"
 msgstr "Genvägen till Mallar är fortfarande fel. Vänligen ändra!"
 
-#: src/templates.py:192
+#: src/templates.py:193
 msgid ""
 "This will delete all disabled templates.\n"
 "Do you wish to continue?"
@@ -1120,6 +1173,10 @@ msgstr "Installera Enkel inställningshanterare för skrivbordseffekter"
 #: src/compiz.py:237
 msgid "Install Screenlets Widget Application"
 msgstr "Installera widgetprogrammet Screenlets"
+
+#: src/compiz.py:244
+msgid "Edge Settings"
+msgstr ""
 
 #: src/compiz.py:247
 msgid "Enable snapping windows"
@@ -1733,7 +1790,7 @@ msgstr ""
 msgid "Successfully submitted"
 msgstr ""
 
-#: src/sourceeditor.py:483
+#: src/sourceeditor.py:484
 msgid ""
 "The current content will be lost after reloading!\n"
 "Do you wish to continue?"
@@ -1745,64 +1802,70 @@ msgstr ""
 msgid "(Not available)"
 msgstr "(Inte tillgänglig)"
 
-#: src/common/appdata.py:57
+#: src/common/appdata.py:64
 msgid "A color scheme designer"
 msgstr "En designer för färgscheman"
 
-#: src/common/appdata.py:58
+#: src/common/appdata.py:65
 msgid "Development version of an audio player for KDE"
 msgstr "Utvecklingsversion av en ljudspelare för KDE"
 
-#: src/common/appdata.py:59
+#: src/common/appdata.py:66
 msgid "Client for the eD2k and Kad networks"
 msgstr "Klient för eD2k- och Kad-nätverken"
 
-#: src/common/appdata.py:60
+#: src/common/appdata.py:67
 msgid "GNOME IDE for C/C++, Java, Python"
 msgstr "GNOME IDE för C/C++, Java, Python"
 
-#: src/common/appdata.py:61
+#: src/common/appdata.py:68
 msgid "A skinned multimedia player for many platforms"
 msgstr "En multimediaspelare för många plattformar"
 
-#: src/common/appdata.py:62
+#: src/common/appdata.py:69
 msgid "Record and edit audio files"
 msgstr "Spela in och redigera ljudfiler"
 
-#: src/common/appdata.py:63
+#: src/common/appdata.py:70
 msgid "Fully customisable dock-like window navigator"
 msgstr "Fullt anpassningsbar dockliknande fönsternavigator"
 
-#: src/common/appdata.py:64
+#: src/common/appdata.py:71
 msgid "Fully customisable dock-like window navigator(Unstable)"
 msgstr ""
 "Fullständigt anpassningsbar dockningsliknande fönsternavigator (instabil)"
 
-#: src/common/appdata.py:65
+#: src/common/appdata.py:72
 msgid "A free video editor"
 msgstr "En fri videoredigerare"
 
-#: src/common/appdata.py:66
+#: src/common/appdata.py:73
 msgid "BitTorrent client written in Java"
 msgstr "BitTorrent-klient skriven i Java"
 
-#: src/common/appdata.py:67
+#: src/common/appdata.py:74
 msgid "Audio Management and Playback application"
 msgstr "Program för ljudhantering och -uppspelning"
 
-#: src/common/appdata.py:68
+#: src/common/appdata.py:75
 msgid "GTK+ Bluetooth Manager"
 msgstr "GTK+ Blåtandshanterare"
 
-#: src/common/appdata.py:69
+#: src/common/appdata.py:76
 msgid "A true dock for linux"
 msgstr "En riktig docka för linux"
 
-#: src/common/appdata.py:70
+#: src/common/appdata.py:77
 msgid "A chm file viewer written in GTK+"
 msgstr "En chm-filhanterare skriven i GTK+"
 
-#: src/common/appdata.py:71
+#: src/common/appdata.py:78
+msgid ""
+"Desired to be small and fast, christine is a simple media player, that let "
+"you play your favorite music and videos from one single application."
+msgstr ""
+
+#: src/common/appdata.py:79
 msgid ""
 "Chromium is an open-source browser project that aims to build a safer, "
 "faster, and more stable way for all Internet users to experience the web."
@@ -1811,31 +1874,31 @@ msgstr ""
 "säkrare, snabbare och mer stabilt sätt för Internetanvändare att utforska "
 "webben."
 
-#: src/common/appdata.py:72
+#: src/common/appdata.py:80
 msgid "The open source, cross-platform IDE"
 msgstr "Integrerad utvecklingsmiljö med öppen källkod"
 
-#: src/common/appdata.py:73
+#: src/common/appdata.py:81
 msgid "Advanced Desktop Effects Settings Manager"
 msgstr "Avancerad inställningshanterare för skrivbordseffekter"
 
-#: src/common/appdata.py:74
+#: src/common/appdata.py:82
 msgid "An API documentation browser for GNOME."
 msgstr "En API-dokumentationsbläddrare för GNOME."
 
-#: src/common/appdata.py:75
+#: src/common/appdata.py:83
 msgid "A Bittorrent client written in PyGTK"
 msgstr "En Bittorrent-klient skriven i PyGTK"
 
-#: src/common/appdata.py:76
+#: src/common/appdata.py:84
 msgid "Store, Sync and Share your files online."
 msgstr "Lagra, synkronisera och dela dina filer på nätet."
 
-#: src/common/appdata.py:77
+#: src/common/appdata.py:85
 msgid "Extensible Tool Platform and Java IDE"
 msgstr "Utökningsbar verktygsplattform och Java IDE"
 
-#: src/common/appdata.py:78
+#: src/common/appdata.py:86
 msgid ""
 "EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
 "com."
@@ -1843,11 +1906,11 @@ msgstr ""
 "EIOffice Personal 2009. Gratis för kinesiska användare. Se http://www."
 "evermoresw.com."
 
-#: src/common/appdata.py:79
+#: src/common/appdata.py:87
 msgid "A client for the Windows Live Message network"
 msgstr "En klient för Windows Live Message-nätverket"
 
-#: src/common/appdata.py:80
+#: src/common/appdata.py:88
 msgid ""
 "Empathy consists of a rich set of reusable instant messaging widgets, and a "
 "GNOME client using those widgets."
@@ -1855,56 +1918,62 @@ msgstr ""
 "Empathy består av en större mängd återanvändningsbara widgetar för "
 "snabbmeddelanden och en GNOME-klient som använder dessa widgetar."
 
-#: src/common/appdata.py:81
+#: src/common/appdata.py:89
 msgid "GTK+ based flexible audio player, similar to Amarok"
 msgstr "En flexibel ljuduppspelare som är baserad på GTK+, liknande Amarok."
 
-#: src/common/appdata.py:82
+#: src/common/appdata.py:90
 msgid "File transmission via ftp, sftp and ftps"
 msgstr "Filöverföring via ftp, sftp och ftps"
 
-#: src/common/appdata.py:83
+#: src/common/appdata.py:91
 msgid "An extremly fast and lightweight file manager"
 msgstr "En extremt snabb och lättviktig filhanterare"
 
-#: src/common/appdata.py:84
+#: src/common/appdata.py:92
 msgid ""
 "Galaxium is an instant messenger application designed for the GNOME desktop"
 msgstr "Galaxium är ett snabbmeddelandeprogram för GNOME-skrivbordet."
 
-#: src/common/appdata.py:85
+#: src/common/appdata.py:93
 msgid "A GTK+ jabber client"
 msgstr "En GTK+-jabberklient"
 
-#: src/common/appdata.py:86
+#: src/common/appdata.py:94
 msgid "A fast and lightweight IDE"
 msgstr "En snabb och lättviktig IDE"
 
-#: src/common/appdata.py:87
+#: src/common/appdata.py:95
 msgid "A multithreaded FTP client"
 msgstr "En multitrådad FTP-klient"
 
-#: src/common/appdata.py:88
+#: src/common/appdata.py:96
 msgid "GNOME Hex editor"
 msgstr "Hexredigerare för GNOME"
 
-#: src/common/appdata.py:89
+#: src/common/appdata.py:97
 msgid "Notifies the user upon arrival of new mail in Gmail"
 msgstr "Notifierar användaren vid ankomst av ny post i Gmail"
 
-#: src/common/appdata.py:90
+#: src/common/appdata.py:98
 msgid "A powerful, speedy, and sexy remote control for the GNOME Desktop"
 msgstr "En kraftfull, snabb och sexig fjärrkontroll för GNOME-skrivbordet."
 
-#: src/common/appdata.py:91
+#: src/common/appdata.py:99
 msgid "Global Menu Bar for GNOME"
 msgstr "Global Menu Bar för GNOME"
 
-#: src/common/appdata.py:92
+#: src/common/appdata.py:100
+msgid ""
+"the GNOME-Colors Icon Themes and Shiki-Colors GTK+/Metacity Themes for "
+"Debian and Ubuntu."
+msgstr ""
+
+#: src/common/appdata.py:101
 msgid "a C++ port of Tomboy"
 msgstr "En C++-version av Tomboy"
 
-#: src/common/appdata.py:93
+#: src/common/appdata.py:102
 msgid ""
 "A program that combines satellite imagery and maps to put the world's "
 "geographic information at your fingertips."
@@ -1912,27 +1981,27 @@ msgstr ""
 "Ett program som kombinerar satellitbilder och kartor för att sätta världens "
 "geografiska information i din hand."
 
-#: src/common/appdata.py:94
+#: src/common/appdata.py:103
 msgid "Platform for running Google Gadgets on Linux"
 msgstr "Plattform för att köra Gnome Gadgets på Linux"
 
-#: src/common/appdata.py:95
+#: src/common/appdata.py:104
 msgid "GNOME partition editor"
 msgstr "GNOMEs partitionsredigerare"
 
-#: src/common/appdata.py:96
+#: src/common/appdata.py:105
 msgid "Lightweight image viewer"
 msgstr "Lättviktig bildvisare"
 
-#: src/common/appdata.py:97
+#: src/common/appdata.py:106
 msgid "A powerful screenshot tool"
 msgstr "Ett kraftfullt skärmbildsverktyg"
 
-#: src/common/appdata.py:98
+#: src/common/appdata.py:107
 msgid "Graphical frontend for recordmydesktop"
 msgstr "Grafiskt gränssnitt för recordmydesktop"
 
-#: src/common/appdata.py:99
+#: src/common/appdata.py:108
 msgid ""
 "GTG is a personal organizer for the GNOME desktop environment, it focuses on "
 "ease of use and flexibility, while keeping things simple."
@@ -1940,23 +2009,23 @@ msgstr ""
 "GTG är en personlig organisatör för skrivbordsmiljön GNOME. Den fokuserar på "
 "enkel användning och flexibilitet, samtidigt som den är lättanvänd."
 
-#: src/common/appdata.py:100
+#: src/common/appdata.py:109
 msgid "Gwibber is an open source microblogging client for GNOME"
 msgstr "Gwibber är en microbloggklient till GNOME, baserad på öppen källkod."
 
-#: src/common/appdata.py:101
+#: src/common/appdata.py:110
 msgid "A graphical CD image editor"
 msgstr "En grafisk cd-avbildsredigerare"
 
-#: src/common/appdata.py:102
+#: src/common/appdata.py:111
 msgid "Intelligent Input Bus for Linux / Unix OS"
 msgstr "Intelligent Input Bus för Linux / Unix OS"
 
-#: src/common/appdata.py:103
+#: src/common/appdata.py:112
 msgid "It is a PinYin engine for IBus."
 msgstr "Det är en PinYin-motor för IBus."
 
-#: src/common/appdata.py:104
+#: src/common/appdata.py:113
 msgid ""
 "IBus-Table is the IM Engine framework for table-based input methods, such as "
 "ZhengMa, WuBi, ErBi, ChangJie and so on."
@@ -1964,67 +2033,67 @@ msgstr ""
 "IBus-Table är IM Engine-ramverket för tabellbaserade inmatningsmetoder, "
 "såsom ZhengMa, WuBi, ErBi, ChangJie och så vidare."
 
-#: src/common/appdata.py:105
+#: src/common/appdata.py:114
 msgid "Create and edit Scalable Vector Graphics images"
 msgstr "Skapa och redigera SVG-bilder"
 
-#: src/common/appdata.py:106
+#: src/common/appdata.py:115
 msgid "Non-linear editor for Digital Video data"
 msgstr "Icke-linjär redigerare för digital video"
 
-#: src/common/appdata.py:107
+#: src/common/appdata.py:116
 msgid "A music player for Last.fm personalized radio"
 msgstr "En musikspelare för personlig Last.fm-radio"
 
-#: src/common/appdata.py:108
+#: src/common/appdata.py:117
 msgid "GTK+ based simple text editor"
 msgstr "Enkel GTK+-baserad textredigerare"
 
-#: src/common/appdata.py:109
+#: src/common/appdata.py:118
 msgid "Feed aggregator for GNOME"
 msgstr "Nyhetsläsare för GNOME"
 
-#: src/common/appdata.py:110
+#: src/common/appdata.py:119
 msgid "Mail notification in system tray"
 msgstr "E-postnotifierare i aktivitetsfältet."
 
-#: src/common/appdata.py:111
+#: src/common/appdata.py:120
 msgid "Adcal tool to diff and merge files"
 msgstr "Adcal-verktyg för diff och sammanslagning av filer"
 
-#: src/common/appdata.py:112
+#: src/common/appdata.py:121
 msgid "A fast and simple GTK+ Image Viewer"
 msgstr "En snabb och enkel GTK+-bildvisare"
 
-#: src/common/appdata.py:113
+#: src/common/appdata.py:122
 msgid "Open internet TV, beyond anything else"
 msgstr ""
 
-#: src/common/appdata.py:114
+#: src/common/appdata.py:123
 msgid "Webkit based lightweight web browser"
 msgstr "Webkit-baserad lättviktig webbläsare"
 
-#: src/common/appdata.py:115
+#: src/common/appdata.py:124
 msgid "The free media player - play all your files"
 msgstr ""
 
-#: src/common/appdata.py:116
+#: src/common/appdata.py:125
 msgid "An IDE to Develop .NET applications."
 msgstr "En IDE för att utveckla .NET-program."
 
-#: src/common/appdata.py:117
+#: src/common/appdata.py:126
 msgid "The Ultimate Movie Player For Linux"
 msgstr "Den ultimata filmspelaren för Linux"
 
-#: src/common/appdata.py:118
+#: src/common/appdata.py:127
 msgid "IDE for Java, C/C++, Ruby, UML, etc."
 msgstr "IDE för Java, C/C++, Ruby, UML, etc."
 
-#: src/common/appdata.py:119
+#: src/common/appdata.py:128
 msgid "The Opera Web Browser"
 msgstr "Webbläsaren Opera"
 
-#: src/common/appdata.py:120
+#: src/common/appdata.py:129
 msgid ""
 "Pidgin is a graphical modular messaging client based on libpurple which is "
 "capable of connecting to AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, SIP/SIMPLE, "
@@ -2036,42 +2105,42 @@ msgstr ""
 "GroupWise, Lotus Sametime, Bonjour, Zephyr, MySpaceIM, Gadu-Gadu och QQ, "
 "alla på samma gång."
 
-#: src/common/appdata.py:121
+#: src/common/appdata.py:130
 msgid "Run your Windows programs on Linux"
 msgstr "Kör dina Windows-program i Linux"
 
-#: src/common/appdata.py:122
+#: src/common/appdata.py:131
 msgid "A framework for desktop widgets"
 msgstr "Ett ramverk för skrivbordswidgetar"
 
-#: src/common/appdata.py:123
+#: src/common/appdata.py:132
 msgid "Feature-rich screenshot application(formerly known as GScrot)"
 msgstr "Funktionsrik applikation för skärmbilder (tidigare känd som GScrot)"
 
-#: src/common/appdata.py:124
+#: src/common/appdata.py:133
 msgid "Make audio/video calls using this VoIP Software"
 msgstr "Ring ljud-/videosamtal genom denna VoIP-programvara"
 
-#: src/common/appdata.py:125
+#: src/common/appdata.py:134
 msgid "A great MPlayer front-end, written in QT4"
 msgstr "Ett grafiskt gränssnitt till MPlayer, skriven i QT 4"
 
-#: src/common/appdata.py:126
+#: src/common/appdata.py:135
 msgid "Convert audio files into other formats"
 msgstr "Konvertera ljudfiler till andra format"
 
-#: src/common/appdata.py:127
+#: src/common/appdata.py:136
 msgid "An international dictionary"
 msgstr "En internationell uppslagsbok"
 
-#: src/common/appdata.py:128
+#: src/common/appdata.py:137
 msgid ""
 "Swiftweasel is an optimized build of the Mozilla Firefox web browser for "
 "Linux"
 msgstr ""
 "Swiftweasel är en optimerad version av webbläsaren Mozilla Firefox för Linux"
 
-#: src/common/appdata.py:129
+#: src/common/appdata.py:138
 msgid ""
 "A desktop application that will watch for events (website updates, emails, "
 "file and folder changes...)"
@@ -2079,54 +2148,55 @@ msgstr ""
 "En skrivbordsapplikation som håller koll på händelser (uppdaterade "
 "webbsidor, e-post, ändringar i filer och mappar...)"
 
-#: src/common/appdata.py:130
+#: src/common/appdata.py:139
 msgid "An instant messaging application powered by qt-mono-bindings"
 msgstr "En chatt ansökan powered by qt-mono-Bindningar"
 
-#: src/common/appdata.py:131
+#: src/common/appdata.py:140
 msgid "A Useful Task List"
 msgstr "En användbar \"att göra lista\""
 
-#: src/common/appdata.py:132
+#: src/common/appdata.py:141
 msgid "Multiple GNOME terminals in one window"
 msgstr "Flera GNOME-terminaler i samma fönster"
 
-#: src/common/appdata.py:133
+#: src/common/appdata.py:142
 msgid ""
 "Transmission is a fast, easy, and free multi-platform BitTorrent client."
 msgstr ""
 "Transmission är en snabb, enkel och fri bittorrent-klient för flera "
 "plattformar."
 
-#: src/common/appdata.py:134
+#: src/common/appdata.py:143
 msgid "Ubuntu Tweak makes it easier to configure Ubuntu"
 msgstr "Ubuntu Tweak gör det enklare att konfigurera Ubuntu"
 
-#: src/common/appdata.py:135
+#: src/common/appdata.py:144
 msgid "Commonly used restricted packages"
 msgstr "Ofta använda proprietära paket"
 
-#: src/common/appdata.py:136
+#: src/common/appdata.py:145
 msgid "configure your USB ADSL modem and connection easier than ever!"
 msgstr ""
 
-#: src/common/appdata.py:137 src/common/appdata.py:138
+#: src/common/appdata.py:146 src/common/appdata.py:147
+#: src/common/appdata.py:148
 msgid "A feature rich, high performance virtualization software"
 msgstr "Ett funktionsrikt, högpresterande virtualiseringsprogram"
 
-#: src/common/appdata.py:139
+#: src/common/appdata.py:149
 msgid "Read, capture, broadcast your multimedia streams"
 msgstr "Spela upp, spela in eller sänd dina multimediaströmmar"
 
-#: src/common/appdata.py:140
+#: src/common/appdata.py:150
 msgid "Run Virtual Machines using VMware"
 msgstr "Kör virtuella maskiner med VMWare"
 
-#: src/common/appdata.py:141
+#: src/common/appdata.py:151
 msgid "A compatibility layer for running Windows programs"
 msgstr "Ett kompabillitetslager för att kunna köra Windows-program"
 
-#: src/common/appdata.py:142
+#: src/common/appdata.py:152
 msgid ""
 "Wine-doors is an application designed to make installing windows software on "
 "Linux, Solaris or other Unix systems easier."
@@ -2134,32 +2204,36 @@ msgstr ""
 "Wine-doors är ett program designat att göra installationen av Windows-"
 "program på Linux, Solaris eller andra Unix-system enklare."
 
-#: src/common/appdata.py:143
+#: src/common/appdata.py:153
 msgid ""
 "XBMC is a free and open source software media player and entertainment hub"
 msgstr "XBMC är en fri mediaspelare och multimediahubb med öppen källkod"
 
-#: src/common/appdata.py:147
-msgid "Development Version of Mozilla Firefox 3.1, 4.0"
-msgstr "Utvecklingsversion av Mozilla Firefox 3.1, 4.0"
+#: src/common/appdata.py:157
+msgid "Development Version of Mozilla Firefox 3.6, 4.0"
+msgstr ""
 
-#: src/common/appdata.py:148
+#: src/common/appdata.py:158
 msgid "Development version of Compiz Fusion"
 msgstr "Utvecklingsversion av Compiz Fusion"
 
-#: src/common/appdata.py:149
+#: src/common/appdata.py:159
 msgid "Google's Linux Repository"
 msgstr "Googles Linux-förråd"
 
-#: src/common/appdata.py:150
+#: src/common/appdata.py:160
 msgid "K Desktop Environment 4.2"
 msgstr "K Desktop Environment 4.2"
 
-#: src/common/appdata.py:151
+#: src/common/appdata.py:161
 msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
 msgstr "Lightweight X11 Desktop Environment: GPicView, PCManFM"
 
-#: src/common/appdata.py:152
+#: src/common/appdata.py:162
+msgid "WebkitGtk+, Liferea (Webkit), Midori and other WebKit related projects."
+msgstr ""
+
+#: src/common/appdata.py:163
 msgid ""
 "Multimedia, Entertainment and Distraction In Ubuntu\n"
 "Medibuntu is a repository of packages that cannot be included into the "
@@ -2170,7 +2244,7 @@ msgstr ""
 "distributionen på grund av juridiska anledningar ( upphovsrätt, licens, "
 "patent o.s.v.)."
 
-#: src/common/appdata.py:154
+#: src/common/appdata.py:165
 msgid ""
 "Ubuntu repository for Chinese users.\n"
 "Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and "
@@ -2180,21 +2254,27 @@ msgstr ""
 "Inkluderar EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 och "
 "annan programvara."
 
-#: src/common/appdata.py:156
+#: src/common/appdata.py:167
 msgid ""
 "GetDeb extends the existing software options for Ubuntu (and derived) Linux "
 "distributions by providing major updates and software not yet available on "
 "the official Ubuntu repositories."
 msgstr ""
 
-#: src/common/appdata.py:157
+#: src/common/appdata.py:168
 msgid "Updated versions of X.org drivers, libraries, etc. for Ubuntu."
 msgstr ""
 
-#: src/common/appdata.py:158
+#: src/common/appdata.py:169
 msgid ""
 "Gnome Games built from Git, with all experimental features and staging games "
 "enabled."
+msgstr ""
+
+#: src/common/appdata.py:170
+msgid ""
+"Ubuntu Mozilla Security Team provides beta and final stable/security updates "
+"for mozilla software in its PPA"
 msgstr ""
 
 #: src/common/misc.py:15
@@ -2365,6 +2445,9 @@ msgstr "Välj ett program för att visa dess beskrivning."
 #: data/gui/type_edit.glade:222
 msgid "_Use a custom command"
 msgstr "A_nvänd ett anpassat kommando"
+
+#~ msgid "Development Version of Mozilla Firefox 3.1, 4.0"
+#~ msgstr "Utvecklingsversion av Mozilla Firefox 3.1, 4.0"
 
 #~ msgid "Update failed!"
 #~ msgstr "Uppdatering misslyckades!"
