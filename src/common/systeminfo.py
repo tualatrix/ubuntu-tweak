@@ -132,6 +132,8 @@ class module_check:
             return 'intrepid'
         elif cls.is_jaunty():
             return 'jaunty'
+        elif cls.is_karmic():
+            return 'karmic'
         else:
             return ''
 

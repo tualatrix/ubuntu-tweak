@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2009-07-04 10:46+0800\n"
-"PO-Revision-Date: 2009-06-17 23:59+0000\n"
-"Last-Translator: Roman Horník <roman.hornik@gmail.com>\n"
+"POT-Creation-Date: 2009-08-02 19:45+0800\n"
+"PO-Revision-Date: 2009-07-14 18:22+0000\n"
+"Last-Translator: milboy <Unknown>\n"
 "Language-Team: Slovak <sk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Launchpad-Export-Date: 2009-07-03 18:00+0000\n"
+"X-Launchpad-Export-Date: 2009-08-02 07:04+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/autostart.py:45
@@ -159,11 +159,11 @@ msgstr "Emulátory"
 msgid "E-mail Tools"
 msgstr "Nástroje pošty"
 
-#: src/installer.py:157
+#: src/installer.py:160
 msgid "Add/Remove Applications"
 msgstr "Pridať/odstrániť aplikácie"
 
-#: src/installer.py:158
+#: src/installer.py:161
 msgid ""
 "A simple but more effecient method for finding and installing popular "
 "packages than the default Add/Remove."
@@ -171,16 +171,16 @@ msgstr ""
 "Jednoduchá, ale efektívnejšia metóda na hľadanie a inštaláciu populárnych "
 "balíčkov ako predvolené Pridať/odstrániť."
 
-#: src/installer.py:204
+#: src/installer.py:207
 msgid "All Categories"
 msgstr "Všetky kategórie"
 
-#: src/installer.py:365 src/thirdsoft.py:499 src/compiz.py:406
+#: src/installer.py:364 src/thirdsoft.py:619 src/compiz.py:406
 #: src/nautilus.py:217
 msgid "Update Successful!"
 msgstr "Aktualizácia prebehla úspešne"
 
-#: src/installer.py:367 src/compiz.py:408 src/nautilus.py:219
+#: src/installer.py:366 src/compiz.py:408 src/nautilus.py:219
 msgid "Update Failed!"
 msgstr "Aktualizácia zlyhala!"
 
@@ -328,7 +328,7 @@ msgstr "Pridať/odstrániť"
 msgid "Source Editor"
 msgstr "Editor zdrojov"
 
-#: src/mainwindow.py:254 src/thirdsoft.py:290
+#: src/mainwindow.py:254 src/thirdsoft.py:321
 msgid "Third-Party Sources"
 msgstr "Zdroje tretích strán"
 
@@ -686,35 +686,63 @@ msgstr "Avant Window Navigator (nestabilná verzia)"
 msgid "Ubuntu Chinese Repository"
 msgstr "Čínske zdroje Ubuntu"
 
-#: src/thirdsoft.py:87
-msgid "Experimental Gnome Games"
-msgstr ""
+#: src/thirdsoft.py:79
+msgid "IBus (Old Version)"
+msgstr "IBus (Staršia verzia)"
+
+#: src/thirdsoft.py:80
+msgid "IBus 1.2 for intrepid"
+msgstr "IBus 1.2 pre intrepid"
+
+#: src/thirdsoft.py:81
+msgid "IBus 1.2 for jaunty"
+msgstr "IBus 1.2 pre jaunty"
+
+#: src/thirdsoft.py:86
+msgid "Ubuntu Mozilla Security Team"
+msgstr "Ubuntu Mozilla bezpečnostný tím"
 
 #: src/thirdsoft.py:88
+msgid "Christine Media Player"
+msgstr "Mediálny prehrávač Christine"
+
+#: src/thirdsoft.py:93
+msgid "Experimental Gnome Games"
+msgstr "Experimentálne Gnome hry"
+
+#: src/thirdsoft.py:95
 msgid "Gnome Global Menu"
 msgstr "Globálna ponuka Gnome"
 
-#: src/thirdsoft.py:90
+#: src/thirdsoft.py:97
 msgid "GetDeb.net (Mirror)"
 msgstr "GetDeb.net (zrkadlo)"
 
-#: src/thirdsoft.py:92
+#: src/thirdsoft.py:99
 msgid "Gwibber (Daily Version)"
 msgstr "Gwibber (denná verzia)"
 
-#: src/thirdsoft.py:93
+#: src/thirdsoft.py:100
 msgid "Banshee (Stable Version)"
 msgstr "Banshee (stabilná verzia)"
 
-#: src/thirdsoft.py:94
+#: src/thirdsoft.py:101
 msgid "Banshee (Unstable Version)"
 msgstr "Banshee (nestabilná verzia)"
 
-#: src/thirdsoft.py:100
+#: src/thirdsoft.py:107
 msgid "Ubuntu Tweak (Unstable Version)"
 msgstr "Ubuntu Tweak (nestabilná verzia)"
 
-#: src/thirdsoft.py:207
+#: src/thirdsoft.py:121
+msgid "VirtualBox (Open Source Edition)"
+msgstr ""
+
+#: src/thirdsoft.py:122
+msgid "VLC media player"
+msgstr "Mediálny prehrávač VLC"
+
+#: src/thirdsoft.py:238
 msgid ""
 "To install software and updates from newly added or changed sources, you "
 "have to reload the information about available software.\n"
@@ -726,31 +754,56 @@ msgstr ""
 "\n"
 "Aby ste mohli pokračovať, je potrebné funkčné pripojenie k internetu."
 
-#: src/thirdsoft.py:211
+#: src/thirdsoft.py:242
 msgid "The information about available software is out-of-date"
 msgstr "Informácie o dostupnom softvéri sú zastaralé"
 
-#: src/thirdsoft.py:377
+#: src/thirdsoft.py:392
+#, python-format
+msgid ""
+"To enable this Source, You need to enable \"%s\" at first.\n"
+"Do you wish to continue?"
+msgstr ""
+
+#: src/thirdsoft.py:394
+msgid "Dependency Notice"
+msgstr ""
+
+#: src/thirdsoft.py:408
+#, python-format
+msgid ""
+"You can't disable this Source because \"%(SOURCE)s\" depends on it.\n"
+"To continue you need to disable \"%(SOURCE)s\" first."
+msgstr ""
+
+#: src/thirdsoft.py:424
+#, python-format
+msgid ""
+"You can't enable this Source because \"%(SOURCE)s\" conflicts with it.\n"
+"To continue you need to disable \"%(SOURCE)s\" first."
+msgstr ""
+
+#: src/thirdsoft.py:496
 msgid "Homepage"
 msgstr "Domovská stránka"
 
-#: src/thirdsoft.py:377
+#: src/thirdsoft.py:496
 msgid "Source URL"
 msgstr "Zdrojový URL"
 
-#: src/thirdsoft.py:377
+#: src/thirdsoft.py:496
 msgid "Description"
 msgstr "Popis"
 
-#: src/thirdsoft.py:388
+#: src/thirdsoft.py:507
 msgid "Description is here"
 msgstr "Popis je tu"
 
-#: src/thirdsoft.py:416
+#: src/thirdsoft.py:536
 msgid "Third-Party Software Sources"
 msgstr "Zdroje softvéru tretích strán"
 
-#: src/thirdsoft.py:417
+#: src/thirdsoft.py:537
 msgid ""
 "After every release of Ubuntu there comes a feature freeze.\n"
 "This means only applications with bug-fixes get into the repository.\n"
@@ -765,29 +818,31 @@ msgstr ""
 "Po pridaní týchto zdrojov nájdete a nainštalujete aplikácie pomocou Pridať/"
 "odobrať."
 
-#: src/thirdsoft.py:433 src/sourceeditor.py:83
+#: src/thirdsoft.py:553 src/sourceeditor.py:83
 msgid "Details"
 msgstr "Podrobnosti"
 
-#: src/thirdsoft.py:456
+#: src/thirdsoft.py:576
 msgid ""
 "Some of your PPA Sources need to be updated.\n"
 "Do you wish to continue?"
 msgstr ""
+"Niektoré z vašich PPA zdrojov musia byť aktualizované.\n"
+"Prajete si pokračovať?"
 
-#: src/thirdsoft.py:456
+#: src/thirdsoft.py:576
 msgid "PPA Sources has expired"
-msgstr ""
+msgstr "Uplynula lehota PPA zdrojov"
 
-#: src/thirdsoft.py:496 src/sourceeditor.py:475
+#: src/thirdsoft.py:616 src/sourceeditor.py:475
 msgid "Please check the permission of the sources.list file"
 msgstr "Prosím, skontrolujte prístupové práva súboru sources.list."
 
-#: src/thirdsoft.py:497 src/sourceeditor.py:476
+#: src/thirdsoft.py:617 src/sourceeditor.py:476
 msgid "Save failed!"
 msgstr "Uloženie zlyhalo"
 
-#: src/thirdsoft.py:524
+#: src/thirdsoft.py:644
 msgid ""
 "It is a possible security risk to use packages from Third-Party Sources.\n"
 "Please be careful and use only sources you trust."
@@ -796,15 +851,15 @@ msgstr ""
 "riziko.\n"
 "Používajte iba zdroje softvéru, ktorým dôverujete."
 
-#: src/thirdsoft.py:527 src/nautilus.py:189
+#: src/thirdsoft.py:647 src/nautilus.py:189
 msgid "Warning"
 msgstr "Upozornenie"
 
-#: src/thirdsoft.py:531
+#: src/thirdsoft.py:651
 msgid "Never show this dialog"
 msgstr "Nikdy nezobrazovať tento dialóg"
 
-#: src/thirdsoft.py:553
+#: src/thirdsoft.py:673
 msgid ""
 "You can install the new applications through Add/Remove.\n"
 "Do you want to go now?"
@@ -812,7 +867,7 @@ msgstr ""
 "Nové aplikácie môžete inštalovať prostredníctvom Pridať/odstrániť.\n"
 "Chcete tak urobiť teraz?"
 
-#: src/thirdsoft.py:554 src/sourceeditor.py:412
+#: src/thirdsoft.py:674 src/sourceeditor.py:412
 msgid "The software information is up-to-date now"
 msgstr "Informácie o softvéri sú teraz aktuálne"
 
@@ -968,51 +1023,51 @@ msgstr "Povoliť TCP spojenia (pripojenie Vzdialenej plochy)"
 msgid "Show splash screen"
 msgstr "Zobraziť štartovaciu obrazovku"
 
-#: src/templates.py:63
+#: src/templates.py:64
 msgid "HTML document"
 msgstr "HTML dokument"
 
-#: src/templates.py:64
+#: src/templates.py:65
 msgid "ODB Database"
 msgstr "Databáza ODB"
 
-#: src/templates.py:65
+#: src/templates.py:66
 msgid "ODS Spreadsheet"
 msgstr "Tabuľka ODS"
 
-#: src/templates.py:66
+#: src/templates.py:67
 msgid "ODT Document"
 msgstr "Dokument ODT"
 
-#: src/templates.py:67
+#: src/templates.py:68
 msgid "Plain text document"
 msgstr "Textový dokument"
 
-#: src/templates.py:68
+#: src/templates.py:69
 msgid "ODP Presentation"
 msgstr "Prezentácia ODP"
 
-#: src/templates.py:69
+#: src/templates.py:70
 msgid "Python script"
 msgstr "Python skript"
 
-#: src/templates.py:70
+#: src/templates.py:71
 msgid "Pygtk Example"
 msgstr "Príklad Pygtk"
 
-#: src/templates.py:71
+#: src/templates.py:72
 msgid "Shell script"
 msgstr "Skript shellu"
 
-#: src/templates.py:98
+#: src/templates.py:99
 msgid "Enabled Templates"
 msgstr "Povolené šablóny"
 
-#: src/templates.py:105
+#: src/templates.py:106
 msgid "Disabled Templates"
 msgstr "Zakázané šablóny"
 
-#: src/templates.py:116
+#: src/templates.py:117
 #, python-format
 msgid ""
 "Templates path is wrong! The current path is point to \"%s\".\n"
@@ -1022,19 +1077,19 @@ msgstr ""
 "s“.\n"
 "Prosím nastavte ho na podadresár svojho Domovského priečinka."
 
-#: src/templates.py:123
+#: src/templates.py:124
 msgid "Go And Set"
 msgstr "Prejsť a nastaviť"
 
-#: src/templates.py:128
+#: src/templates.py:129
 msgid "Restart This Module"
 msgstr "Reštartovať tento modul"
 
-#: src/templates.py:134
+#: src/templates.py:135
 msgid "Manage Templates"
 msgstr "Spravovať šablóny"
 
-#: src/templates.py:135
+#: src/templates.py:136
 msgid ""
 "Here you can freely manage your document templates.\n"
 "You can add files as templates by dragging them onto this window.\n"
@@ -1046,15 +1101,15 @@ msgstr ""
 "Nové dokumenty založené na týchto šablónach môžete vytvárať z Nautilusu po "
 "kliknutí pravým tlačidlom myši."
 
-#: src/templates.py:160
+#: src/templates.py:161
 msgid "Rebuild System Templates"
 msgstr "Znova zostaviť systémové šablóny"
 
-#: src/templates.py:180
+#: src/templates.py:181
 msgid "Templates path is still wrong, Please reset it!"
 msgstr "Cesta k šablóne nie je správna. Nastavte ju prosím!"
 
-#: src/templates.py:192
+#: src/templates.py:193
 msgid ""
 "This will delete all disabled templates.\n"
 "Do you wish to continue?"
@@ -1089,6 +1144,10 @@ msgstr "Nainštalovať Správcu jednoduchých efektov plochy"
 #: src/compiz.py:237
 msgid "Install Screenlets Widget Application"
 msgstr "Nainštalovať aplikáciu screenletov"
+
+#: src/compiz.py:244
+msgid "Edge Settings"
+msgstr "Edge nastavenia"
 
 #: src/compiz.py:247
 msgid "Enable snapping windows"
@@ -1703,7 +1762,7 @@ msgstr ""
 msgid "Successfully submitted"
 msgstr "Úspešne odoslané"
 
-#: src/sourceeditor.py:483
+#: src/sourceeditor.py:484
 msgid ""
 "The current content will be lost after reloading!\n"
 "Do you wish to continue?"
@@ -1715,63 +1774,71 @@ msgstr ""
 msgid "(Not available)"
 msgstr "(nedostupné)"
 
-#: src/common/appdata.py:57
+#: src/common/appdata.py:64
 msgid "A color scheme designer"
 msgstr "Upraviť farebnú schému"
 
-#: src/common/appdata.py:58
+#: src/common/appdata.py:65
 msgid "Development version of an audio player for KDE"
 msgstr "Vývojová verzia hudobného prehrávača pre KDE"
 
-#: src/common/appdata.py:59
+#: src/common/appdata.py:66
 msgid "Client for the eD2k and Kad networks"
 msgstr "Klient sietí eD2k a Kad"
 
-#: src/common/appdata.py:60
+#: src/common/appdata.py:67
 msgid "GNOME IDE for C/C++, Java, Python"
 msgstr "GNOME IDE pre C/C++, Java, Python"
 
-#: src/common/appdata.py:61
+#: src/common/appdata.py:68
 msgid "A skinned multimedia player for many platforms"
 msgstr "Multiplatformný prehrávač multimédií"
 
-#: src/common/appdata.py:62
+#: src/common/appdata.py:69
 msgid "Record and edit audio files"
 msgstr "Záznam a úprava zvukových súborov"
 
-#: src/common/appdata.py:63
+#: src/common/appdata.py:70
 msgid "Fully customisable dock-like window navigator"
 msgstr "Plne prispôsobiteľný navigátor oknami"
 
-#: src/common/appdata.py:64
+#: src/common/appdata.py:71
 msgid "Fully customisable dock-like window navigator(Unstable)"
 msgstr "Prispôsobiteľný dokovateľný navigátor oknami (nestabilná verzia)"
 
-#: src/common/appdata.py:65
+#: src/common/appdata.py:72
 msgid "A free video editor"
 msgstr "Slobodný editor videa"
 
-#: src/common/appdata.py:66
+#: src/common/appdata.py:73
 msgid "BitTorrent client written in Java"
 msgstr "BitTorrent klient napísaný v Jave"
 
-#: src/common/appdata.py:67
+#: src/common/appdata.py:74
 msgid "Audio Management and Playback application"
 msgstr "Spráca a prehrávač zvukov"
 
-#: src/common/appdata.py:68
+#: src/common/appdata.py:75
 msgid "GTK+ Bluetooth Manager"
 msgstr "Správca Bluetooth pre GTK+"
 
-#: src/common/appdata.py:69
+#: src/common/appdata.py:76
 msgid "A true dock for linux"
 msgstr "Pravý dok pre Linux"
 
-#: src/common/appdata.py:70
+#: src/common/appdata.py:77
 msgid "A chm file viewer written in GTK+"
 msgstr "Prehliadač chm súborov napísaný v GTK+"
 
-#: src/common/appdata.py:71
+#: src/common/appdata.py:78
+msgid ""
+"Desired to be small and fast, christine is a simple media player, that let "
+"you play your favorite music and videos from one single application."
+msgstr ""
+"Požadované je byť malý a rýchly, Christine je jednoduchý prehrávač médií, "
+"ktorý vám umožní prehrať vašu obľúbenú hudbu a video v jedinej aplikácii."
+
+#: src/common/appdata.py:79
 msgid ""
 "Chromium is an open-source browser project that aims to build a safer, "
 "faster, and more stable way for all Internet users to experience the web."
@@ -1779,31 +1846,31 @@ msgstr ""
 "Chromium je open source projekt webového prehliadača, ktorého cieľom je "
 "bezpečnejšie, rýchlejšie a stabilnejšie prehliadanie webových stránok"
 
-#: src/common/appdata.py:72
+#: src/common/appdata.py:80
 msgid "The open source, cross-platform IDE"
 msgstr "open source, multiplatformové IDE"
 
-#: src/common/appdata.py:73
+#: src/common/appdata.py:81
 msgid "Advanced Desktop Effects Settings Manager"
 msgstr "Správca pokročilých efektov plochy"
 
-#: src/common/appdata.py:74
+#: src/common/appdata.py:82
 msgid "An API documentation browser for GNOME."
 msgstr "Prehliadač dokumentácie API GNOME."
 
-#: src/common/appdata.py:75
+#: src/common/appdata.py:83
 msgid "A Bittorrent client written in PyGTK"
 msgstr "Bittorrent klient napísaný v PyGTK"
 
-#: src/common/appdata.py:76
+#: src/common/appdata.py:84
 msgid "Store, Sync and Share your files online."
 msgstr "Uložiť, synchronizovať a zdieľať vaše súbory online"
 
-#: src/common/appdata.py:77
+#: src/common/appdata.py:85
 msgid "Extensible Tool Platform and Java IDE"
 msgstr "Rozšíriteľná platforma nástrojov a Java IDE"
 
-#: src/common/appdata.py:78
+#: src/common/appdata.py:86
 msgid ""
 "EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
 "com."
@@ -1811,11 +1878,11 @@ msgstr ""
 "EIOffice Personal 2009. Zadarmo pre čínskych používateľov. Pozri http://www."
 "evermoresw.com."
 
-#: src/common/appdata.py:79
+#: src/common/appdata.py:87
 msgid "A client for the Windows Live Message network"
 msgstr "Klient siete Windows Live Message"
 
-#: src/common/appdata.py:80
+#: src/common/appdata.py:88
 msgid ""
 "Empathy consists of a rich set of reusable instant messaging widgets, and a "
 "GNOME client using those widgets."
@@ -1823,56 +1890,63 @@ msgstr ""
 "Empathy obsahuje množstvo znovu-využiteľných prvkov na okamžitú komunikáciu "
 "a GNOME klienta využívajúceho tieto prvky."
 
-#: src/common/appdata.py:81
+#: src/common/appdata.py:89
 msgid "GTK+ based flexible audio player, similar to Amarok"
 msgstr "Flexibilný prehrávač zvuku založený na GTK+, podobný Amaroku"
 
-#: src/common/appdata.py:82
+#: src/common/appdata.py:90
 msgid "File transmission via ftp, sftp and ftps"
 msgstr "Prenos súborov prostredníctvom FTP, SFTP a FTPS"
 
-#: src/common/appdata.py:83
+#: src/common/appdata.py:91
 msgid "An extremly fast and lightweight file manager"
 msgstr "Extrémne rýchly a odľahčený správca súborov"
 
-#: src/common/appdata.py:84
+#: src/common/appdata.py:92
 msgid ""
 "Galaxium is an instant messenger application designed for the GNOME desktop"
 msgstr "Galaxium je komunikačná aplikácia upravená pre prostredie GNOME"
 
-#: src/common/appdata.py:85
+#: src/common/appdata.py:93
 msgid "A GTK+ jabber client"
 msgstr "GTK+ jabber klient"
 
-#: src/common/appdata.py:86
+#: src/common/appdata.py:94
 msgid "A fast and lightweight IDE"
 msgstr "Rýchle a odľahčené IDE"
 
-#: src/common/appdata.py:87
+#: src/common/appdata.py:95
 msgid "A multithreaded FTP client"
 msgstr "Viacvláknový FTP klient"
 
-#: src/common/appdata.py:88
+#: src/common/appdata.py:96
 msgid "GNOME Hex editor"
 msgstr "Hexadecimálny editor pre GNOME"
 
-#: src/common/appdata.py:89
+#: src/common/appdata.py:97
 msgid "Notifies the user upon arrival of new mail in Gmail"
 msgstr "Upozorňuje na novú poštu v schránke Gmail"
 
-#: src/common/appdata.py:90
+#: src/common/appdata.py:98
 msgid "A powerful, speedy, and sexy remote control for the GNOME Desktop"
 msgstr "Mocný, rýchly a sexi ovládač nastavení pre prostredie GNOME"
 
-#: src/common/appdata.py:91
+#: src/common/appdata.py:99
 msgid "Global Menu Bar for GNOME"
 msgstr "Panel globálnej ponuky pre GNOME"
 
-#: src/common/appdata.py:92
+#: src/common/appdata.py:100
+msgid ""
+"the GNOME-Colors Icon Themes and Shiki-Colors GTK+/Metacity Themes for "
+"Debian and Ubuntu."
+msgstr ""
+"GNOME-Colors témy ikôn a Shiki-Colors GTK+/Metacity Témy pre Debian a Ubuntu."
+
+#: src/common/appdata.py:101
 msgid "a C++ port of Tomboy"
 msgstr "C++ port aplikácie Tomboy"
 
-#: src/common/appdata.py:93
+#: src/common/appdata.py:102
 msgid ""
 "A program that combines satellite imagery and maps to put the world's "
 "geographic information at your fingertips."
@@ -1880,27 +1954,27 @@ msgstr ""
 "Program, ktorý vám sprístupňuje kombinujúcu satelitných snímok a máp s "
 "geografickými informáciami"
 
-#: src/common/appdata.py:94
+#: src/common/appdata.py:103
 msgid "Platform for running Google Gadgets on Linux"
 msgstr "Platforma na spúšťanie Google Gadgets na Linuxe"
 
-#: src/common/appdata.py:95
+#: src/common/appdata.py:104
 msgid "GNOME partition editor"
 msgstr "Editor oddielov pre GNOME"
 
-#: src/common/appdata.py:96
+#: src/common/appdata.py:105
 msgid "Lightweight image viewer"
 msgstr "Odľahčený prehliadač obrázkov"
 
-#: src/common/appdata.py:97
+#: src/common/appdata.py:106
 msgid "A powerful screenshot tool"
 msgstr "Mocný nástroj na zachytávanie snímok obrazovky"
 
-#: src/common/appdata.py:98
+#: src/common/appdata.py:107
 msgid "Graphical frontend for recordmydesktop"
 msgstr "Grafické rozhranie pre recordmydesktop"
 
-#: src/common/appdata.py:99
+#: src/common/appdata.py:108
 msgid ""
 "GTG is a personal organizer for the GNOME desktop environment, it focuses on "
 "ease of use and flexibility, while keeping things simple."
@@ -1908,23 +1982,23 @@ msgstr ""
 "GTG je osobný organizátor pre pracovné prostredie GNOME. Zameriava sa na "
 "jednoduché použitie a flexibilitu."
 
-#: src/common/appdata.py:100
+#: src/common/appdata.py:109
 msgid "Gwibber is an open source microblogging client for GNOME"
 msgstr "Gwibber je open source mikroblogovací klient pre GNOME"
 
-#: src/common/appdata.py:101
+#: src/common/appdata.py:110
 msgid "A graphical CD image editor"
 msgstr "Grafický editor obálok CD"
 
-#: src/common/appdata.py:102
+#: src/common/appdata.py:111
 msgid "Intelligent Input Bus for Linux / Unix OS"
 msgstr "Inteligentná vstupná zbernica pre Linux / Unix OS"
 
-#: src/common/appdata.py:103
+#: src/common/appdata.py:112
 msgid "It is a PinYin engine for IBus."
 msgstr "Jadro PinYin pre IBus"
 
-#: src/common/appdata.py:104
+#: src/common/appdata.py:113
 msgid ""
 "IBus-Table is the IM Engine framework for table-based input methods, such as "
 "ZhengMa, WuBi, ErBi, ChangJie and so on."
@@ -1932,67 +2006,67 @@ msgstr ""
 "IBus-Table je platforma pre tabuľkové vstupné metódy ako ZhengMa, WuBi, "
 "ErBi, ChangJie a ďalšie."
 
-#: src/common/appdata.py:105
+#: src/common/appdata.py:114
 msgid "Create and edit Scalable Vector Graphics images"
 msgstr "Tvorba a úprava obrázkov škálovateľnej vektorovej grafiky (SVG)"
 
-#: src/common/appdata.py:106
+#: src/common/appdata.py:115
 msgid "Non-linear editor for Digital Video data"
 msgstr "Nelineárny strih digitálneho videa"
 
-#: src/common/appdata.py:107
+#: src/common/appdata.py:116
 msgid "A music player for Last.fm personalized radio"
 msgstr "Prehrávač personalizovanej hudby Last.fm"
 
-#: src/common/appdata.py:108
+#: src/common/appdata.py:117
 msgid "GTK+ based simple text editor"
 msgstr "Jednoduchý textový editor založený na GTK+"
 
-#: src/common/appdata.py:109
+#: src/common/appdata.py:118
 msgid "Feed aggregator for GNOME"
 msgstr "Agregátor RSS kanálov pre GNOME"
 
-#: src/common/appdata.py:110
+#: src/common/appdata.py:119
 msgid "Mail notification in system tray"
 msgstr "Upozornenie na prichchádzajúcu poštu v oznamovacej oblasti"
 
-#: src/common/appdata.py:111
+#: src/common/appdata.py:120
 msgid "Adcal tool to diff and merge files"
 msgstr "Program na porovnávanie a zlučovanie súborov"
 
-#: src/common/appdata.py:112
+#: src/common/appdata.py:121
 msgid "A fast and simple GTK+ Image Viewer"
 msgstr "Rýchly a jednoduchý prehliadač obrázkov pre GTK+"
 
-#: src/common/appdata.py:113
+#: src/common/appdata.py:122
 msgid "Open internet TV, beyond anything else"
 msgstr "Predovšetkým otvorená internetová TV"
 
-#: src/common/appdata.py:114
+#: src/common/appdata.py:123
 msgid "Webkit based lightweight web browser"
 msgstr "Odľahčený webový prehliadač založený na Webkit"
 
-#: src/common/appdata.py:115
+#: src/common/appdata.py:124
 msgid "The free media player - play all your files"
-msgstr ""
+msgstr "Voľný prehrávač médií - prehrávanie všetkých vašich súborov"
 
-#: src/common/appdata.py:116
+#: src/common/appdata.py:125
 msgid "An IDE to Develop .NET applications."
 msgstr "IDE na vývoj .NET aplikácií."
 
-#: src/common/appdata.py:117
+#: src/common/appdata.py:126
 msgid "The Ultimate Movie Player For Linux"
 msgstr "Definitívny prehrávač filmov pre Linux"
 
-#: src/common/appdata.py:118
+#: src/common/appdata.py:127
 msgid "IDE for Java, C/C++, Ruby, UML, etc."
 msgstr "IDE pre Java, C/C++, Ruby, UML atď."
 
-#: src/common/appdata.py:119
+#: src/common/appdata.py:128
 msgid "The Opera Web Browser"
 msgstr "Webový prehliadač Opera"
 
-#: src/common/appdata.py:120
+#: src/common/appdata.py:129
 msgid ""
 "Pidgin is a graphical modular messaging client based on libpurple which is "
 "capable of connecting to AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, SIP/SIMPLE, "
@@ -2004,43 +2078,43 @@ msgstr ""
 "GroupWise, Lotus Sametime, Bonjour, Zephyr, MySpaceIM, Gadu-Gadu a QQ v "
 "jednom."
 
-#: src/common/appdata.py:121
+#: src/common/appdata.py:130
 msgid "Run your Windows programs on Linux"
 msgstr "Spúšťanie Windows programov na Linuxe"
 
-#: src/common/appdata.py:122
+#: src/common/appdata.py:131
 msgid "A framework for desktop widgets"
 msgstr "Infraštruktúra ovládacích prvkov pre plochu"
 
-#: src/common/appdata.py:123
+#: src/common/appdata.py:132
 msgid "Feature-rich screenshot application(formerly known as GScrot)"
 msgstr ""
 "Bohatá aplikácia na zachytávanie snímok obrazovky (predtým nazývaná GScrot)"
 
-#: src/common/appdata.py:124
+#: src/common/appdata.py:133
 msgid "Make audio/video calls using this VoIP Software"
 msgstr "VoIP  softvér na audio/video hovory"
 
-#: src/common/appdata.py:125
+#: src/common/appdata.py:134
 msgid "A great MPlayer front-end, written in QT4"
 msgstr "Skvelé rozhranie pre MPlayer napísané v QT4"
 
-#: src/common/appdata.py:126
+#: src/common/appdata.py:135
 msgid "Convert audio files into other formats"
 msgstr "Konverzia zvukových súborov do iného formátu"
 
-#: src/common/appdata.py:127
+#: src/common/appdata.py:136
 msgid "An international dictionary"
 msgstr "Medzinárodný slovník"
 
-#: src/common/appdata.py:128
+#: src/common/appdata.py:137
 msgid ""
 "Swiftweasel is an optimized build of the Mozilla Firefox web browser for "
 "Linux"
 msgstr ""
 "Swiftweasel je optimalizovaná verzia prehliadača Mozilla Firefox pre Linux"
 
-#: src/common/appdata.py:129
+#: src/common/appdata.py:138
 msgid ""
 "A desktop application that will watch for events (website updates, emails, "
 "file and folder changes...)"
@@ -2048,55 +2122,56 @@ msgstr ""
 "Aplikácia, ktorá sleduje udalosti (aktualizácie webstránok, emaily, zmeny "
 "súborov a adresárov, ...)"
 
-#: src/common/appdata.py:130
+#: src/common/appdata.py:139
 msgid "An instant messaging application powered by qt-mono-bindings"
 msgstr "Aplikácia na okamžité posielanie správ, beží pomocou qt-mono-bindings"
 
-#: src/common/appdata.py:131
+#: src/common/appdata.py:140
 msgid "A Useful Task List"
 msgstr "Užitočný zoznam úloh"
 
-#: src/common/appdata.py:132
+#: src/common/appdata.py:141
 msgid "Multiple GNOME terminals in one window"
 msgstr "Viaceré GNOME terminály v jednom okne"
 
-#: src/common/appdata.py:133
+#: src/common/appdata.py:142
 msgid ""
 "Transmission is a fast, easy, and free multi-platform BitTorrent client."
 msgstr ""
 "Transmission je rýchly, jednoduchý a slobodný multiplatformový klient siete "
 "BitTorrent."
 
-#: src/common/appdata.py:134
+#: src/common/appdata.py:143
 msgid "Ubuntu Tweak makes it easier to configure Ubuntu"
 msgstr "Ubuntu Tweak uľahčuje konfiguráciu Ubuntu"
 
-#: src/common/appdata.py:135
+#: src/common/appdata.py:144
 msgid "Commonly used restricted packages"
 msgstr "Bežne používané neslobodne balíky"
 
-#: src/common/appdata.py:136
+#: src/common/appdata.py:145
 msgid "configure your USB ADSL modem and connection easier than ever!"
 msgstr ""
 "nastaviť USB ADSL modem a pripojenie jednoduchšie ako kedykoľvek predtým!"
 
-#: src/common/appdata.py:137 src/common/appdata.py:138
+#: src/common/appdata.py:146 src/common/appdata.py:147
+#: src/common/appdata.py:148
 msgid "A feature rich, high performance virtualization software"
 msgstr "Výkonný virtualizačný softvér bohatý na vlastnosti"
 
-#: src/common/appdata.py:139
+#: src/common/appdata.py:149
 msgid "Read, capture, broadcast your multimedia streams"
 msgstr "Čítanie, zachytávanie a vysielanie multimediálnych tokov"
 
-#: src/common/appdata.py:140
+#: src/common/appdata.py:150
 msgid "Run Virtual Machines using VMware"
 msgstr "Spúšťanie virtuálnych strojov pomocou VMware"
 
-#: src/common/appdata.py:141
+#: src/common/appdata.py:151
 msgid "A compatibility layer for running Windows programs"
 msgstr "Vrstva kompatibility na spúšťanie programov Windows"
 
-#: src/common/appdata.py:142
+#: src/common/appdata.py:152
 msgid ""
 "Wine-doors is an application designed to make installing windows software on "
 "Linux, Solaris or other Unix systems easier."
@@ -2104,32 +2179,37 @@ msgstr ""
 "Wine-doors je aplikácia určena na zjednodušenie inštalácie softvéru pre "
 "Windows na Linuxe, Solarise a ďalších unixových systémoch"
 
-#: src/common/appdata.py:143
+#: src/common/appdata.py:153
 msgid ""
 "XBMC is a free and open source software media player and entertainment hub"
 msgstr "XBMC je slobodný softvér na prehrávanie multimédií a centrum zábavy"
 
-#: src/common/appdata.py:147
-msgid "Development Version of Mozilla Firefox 3.1, 4.0"
-msgstr "Vývojová verzia Mozilla Firefox 3.1, 4.0"
+#: src/common/appdata.py:157
+msgid "Development Version of Mozilla Firefox 3.6, 4.0"
+msgstr ""
 
-#: src/common/appdata.py:148
+#: src/common/appdata.py:158
 msgid "Development version of Compiz Fusion"
 msgstr "Vývojová verzia Compiz Fusion"
 
-#: src/common/appdata.py:149
+#: src/common/appdata.py:159
 msgid "Google's Linux Repository"
 msgstr "Linuxové zdroje od Google"
 
-#: src/common/appdata.py:150
+#: src/common/appdata.py:160
 msgid "K Desktop Environment 4.2"
 msgstr "Pracovné prostredie KDE 4.2"
 
-#: src/common/appdata.py:151
+#: src/common/appdata.py:161
 msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
 msgstr "Odľahčené pracovné prostredie X11: GPicView, PCManFM"
 
-#: src/common/appdata.py:152
+#: src/common/appdata.py:162
+msgid "WebkitGtk+, Liferea (Webkit), Midori and other WebKit related projects."
+msgstr ""
+"WebkitGtk+, Liferea (Webkit), Midori a daľšie WebKit súvisiace projekty."
+
+#: src/common/appdata.py:163
 msgid ""
 "Multimedia, Entertainment and Distraction In Ubuntu\n"
 "Medibuntu is a repository of packages that cannot be included into the "
@@ -2139,7 +2219,7 @@ msgstr ""
 "Medibuntu je zdroj balíkov, ktoré nemôžu byť zahrnuté do distribúcie Ubuntu "
 "z právnych dôvodov (autorské práva, licencie, patenty atď)."
 
-#: src/common/appdata.py:154
+#: src/common/appdata.py:165
 msgid ""
 "Ubuntu repository for Chinese users.\n"
 "Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and "
@@ -2149,7 +2229,7 @@ msgstr ""
 "Obsahuje EIOffice, Ubuntu Tweak, vstupnú metódu ibus, OpenOffice.org 3.0 a "
 "ďalší softvér."
 
-#: src/common/appdata.py:156
+#: src/common/appdata.py:167
 msgid ""
 "GetDeb extends the existing software options for Ubuntu (and derived) Linux "
 "distributions by providing major updates and software not yet available on "
@@ -2159,15 +2239,25 @@ msgstr ""
 "(a odvodených) tým, že poskytuje hlavné aktualizácie softvéru a softvér, "
 "ktorý zatiaľ nie je k dispozícii z oficiálnych zdrojov softvéru Ubuntu."
 
-#: src/common/appdata.py:157
+#: src/common/appdata.py:168
 msgid "Updated versions of X.org drivers, libraries, etc. for Ubuntu."
-msgstr ""
+msgstr "Aktualizovaná verzia X.org ovládačov, knižníc, atď pre Ubuntu."
 
-#: src/common/appdata.py:158
+#: src/common/appdata.py:169
 msgid ""
 "Gnome Games built from Git, with all experimental features and staging games "
 "enabled."
 msgstr ""
+"Gnome Hry postavené na Git, povolené so všetkými experimentálnymi funkciami "
+"hier."
+
+#: src/common/appdata.py:170
+msgid ""
+"Ubuntu Mozilla Security Team provides beta and final stable/security updates "
+"for mozilla software in its PPA"
+msgstr ""
+"Ubuntu Mozilla Security Team stanovuje beta a finálne stabilné/aktualizácie "
+"zabezpečenia pre Mozilla softvér vo svojom PPA"
 
 #: src/common/misc.py:15
 #, python-format
@@ -2342,3 +2432,6 @@ msgstr "Po_užiť vlastný príkaz"
 
 #~ msgid "Update failed!"
 #~ msgstr "Aktualizácia zlyhala!"
+
+#~ msgid "Development Version of Mozilla Firefox 3.1, 4.0"
+#~ msgstr "Vývojová verzia Mozilla Firefox 3.1, 4.0"
