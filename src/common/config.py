@@ -100,6 +100,7 @@ class TweakSettings:
     default_launch = 'default_launch'
     check_update = 'check_update'
     power_user = 'power_user'
+    use_remote_data = 'use_remote_data'
     need_save = True
 
     @classmethod
@@ -175,6 +176,16 @@ class TweakSettings:
     @classmethod
     def get_show_donate_notify(cls):
         value = cls.config.get_value(cls.show_donate_notify, default = True)
+
+        return value
+
+    @classmethod
+    def set_use_remote_data(cls, bool):
+        return cls.config.set_value(cls.use_remote_data, bool)
+
+    @classmethod
+    def get_use_remote_data(cls):
+        value = cls.config.get_value(cls.use_remote_data, default = True)
 
         return value
 

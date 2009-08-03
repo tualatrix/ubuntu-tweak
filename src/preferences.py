@@ -138,6 +138,12 @@ class PreferencesDialog:
                                       default = False)
         vbox.pack_start(button, False, False, 0)
 
+        button = WidgetFactory.create('GconfCheckButton', 
+                                      label = _('Use Remote Data When Available'), 
+                                      key='use_remote_data',
+                                      default=True)
+        vbox.pack_start(button, False, False, 0)
+
         vbox.show_all()
 
     def on_launch_changed(self, widget):
