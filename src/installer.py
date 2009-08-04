@@ -42,6 +42,10 @@ except ImportError:
 
 DESKTOP_DIR = '/usr/share/app-install/desktop/'
 ICON_DIR = os.path.join(DATA_DIR, 'applogos')
+REMOTE_APP_DATA = os.path.expanduser('~/.ubuntu-tweak/apps/data/apps.json')
+REMOTE_CATE_DATA = os.path.expanduser('~/.ubuntu-tweak/apps/data/cates.json')
+REMOTE_DATA_DIR = os.path.expanduser('~/.ubuntu-tweak/apps/data')
+REMOTE_LOGO_DIR = os.path.expanduser('~/.ubuntu-tweak/apps/logos')
 
 (
     COLUMN_INSTALLED,
@@ -181,8 +185,8 @@ class FetchingDialog(ProcessDialog):
         self.done = False
         self.user_action = False
         self.model = model
-        self.parser = Parser(os.path.expanduser('~/.ubuntu-tweak/apps/data/apps.json'))
-        self.handler = LogoHandler(os.path.expanduser('~/.ubuntu-tweak/apps/logos'))
+        self.parser = Parser(REMOTE_APP_DATA)
+        self.handler = LogoHandler(REMOTE_LOGO_DIR)
 
         super(FetchingDialog, self).__init__(parent=parent)
         self.set_dialog_lable(_('Fetching online data...'))
@@ -232,6 +236,11 @@ class Installer(TweakPage):
         TweakPage.__init__(self, 
                 _('Add/Remove Applications'),
                 _('A simple but more effecient method for finding and installing popular packages than the default Add/Remove.'))
+
+        if not os.path.exists(REMOTE_DATA_DIR):
+            os.makedirs(REMOTE_DATA_DIR)
+        if not os.path.exists(REMOTE_LOGO_DIR):
+            os.makedirs(REMOTE_LOGO_DIR)
 
         self.to_add = []
         self.to_rm = []
@@ -290,8 +299,10 @@ class Installer(TweakPage):
         gtk.gdk.threads_leave()
 
     def check_update(self):
-        #TODO
-        return True
+        if os.path.exists(REMOTE_APP_DATA) and os.path.exists(REMOTE_CATE_DATA):
+            return True
+        else:
+            return False
 
     def create_category(self):
         liststore = gtk.ListStore(gtk.gdk.Pixbuf,
