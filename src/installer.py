@@ -168,7 +168,8 @@ class LogoHandler:
         if not os.path.exists(self.dir):
             os.mkdir(self.dir)
 
-    def save_logo(self, name, data):
+    def save_logo(self, name, url):
+        data = urllib.urlopen(url).read()
         f = open(os.path.join(self.dir, '%s.png' % name), 'w')
         f.write(data)
         f.close()
@@ -186,8 +187,8 @@ class FetchingDialog(ProcessDialog):
         self.done = False
         self.user_action = False
         self.model = model
-        self.parser = Parser(REMOTE_APP_DATA)
-        self.handler = LogoHandler(REMOTE_LOGO_DIR)
+        self.app_data_parser = Parser(REMOTE_APP_DATA)
+        self.app_logo_handler = LogoHandler(REMOTE_LOGO_DIR)
 
         super(FetchingDialog, self).__init__(parent=parent)
         self.set_dialog_lable(_('Fetching online data...'))
@@ -195,14 +196,14 @@ class FetchingDialog(ProcessDialog):
     def process_data(self):
         import time
         self.model.clear()
-        for item in self.parser.get_items():
+        for item in self.app_data_parser.get_items():
             time.sleep(3)
 
             appname = item['slug']
 
-            if not self.handler.is_exists(appname):
-                self.handler.save_logo(appname, urllib.urlopen(item['logo32']).read())
-            pixbuf = self.handler.get_logo(appname)
+            if not self.app_logo_handler.is_exists(appname):
+                self.app_logo_handler.save_logo(appname, item['logos'])
+            pixbuf = self.app_logo_handler.get_logo(appname)
 
             try:
                 package = PackageInfo(appname)
@@ -242,6 +243,8 @@ class Installer(TweakPage):
             os.makedirs(REMOTE_DATA_DIR)
         if not os.path.exists(REMOTE_LOGO_DIR):
             os.makedirs(REMOTE_LOGO_DIR)
+        self.app_logo_handler = LogoHandler(REMOTE_LOGO_DIR)
+        self.app_data_parser = Parser(REMOTE_APP_DATA)
 
         self.to_add = []
         self.to_rm = []
@@ -341,6 +344,18 @@ class Installer(TweakPage):
 
         self.update_model()
 
+    def get_app_logo(self, pkgname, url=None):
+        if url:
+            self.app_logo_handler.save_logo(pkgname, url)
+
+        if self.app_logo_handler.is_exists(pkgname):
+            return self.app_logo_handler.get_logo(pkgname)
+        else:
+            return get_app_logo(pkgname)
+
+    def get_app_describ(self, pkgname):
+        pass
+
     def update_model(self):
         self.model.clear()
 
@@ -350,7 +365,7 @@ class Installer(TweakPage):
             pkgname = item[0]
             category = item[-1][0] 
 
-            pixbuf = get_app_logo(pkgname)
+            pixbuf = self.get_app_logo(pkgname)
 
             try:
                 package = PackageInfo(pkgname)
