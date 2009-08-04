@@ -73,7 +73,7 @@ Mail = (_('E-mail Tools'), 'mail.png')
 
 CATES_DATA = (P2P, Image, Sound, Video, Text, IM, Internet, FTP, Desktop, Disk, Develop, Emulator, Mail)
 
-data = \
+APP_DATA = \
 (
     ('agave', Image),
     ('amule', P2P),
@@ -183,38 +183,31 @@ class LogoHandler:
         return os.path.exists(os.path.join(self.dir, '%s.png' % name))
 
 class FetchingDialog(ProcessDialog):
-    def __init__(self, parent, model):
+    def __init__(self, parent, caller):
+        self.caller = caller
         self.done = False
         self.user_action = False
-        self.model = model
-        self.app_data_parser = Parser(REMOTE_APP_DATA, 'package')
-        self.app_logo_handler = LogoHandler(REMOTE_LOGO_DIR)
 
         super(FetchingDialog, self).__init__(parent=parent)
         self.set_dialog_lable(_('Fetching online data...'))
 
     def process_data(self):
         import time
-        self.model.clear()
-        for k, v in self.app_data_parser.items():
+        self.caller.model.clear()
+        for pkgname, v in self.caller.get_items():
             time.sleep(1)
 
-            pkgname = k
             appname = v['name']
+            desc = v['summary']
 
-            if not self.app_logo_handler.is_exists(pkgname):
-                self.app_logo_handler.save_logo(pkgname, v['logo32'])
-            pixbuf = self.app_logo_handler.get_logo(pkgname)
+            pixbuf = self.caller.get_app_logo(pkgname, v['logo32'])
 
             try:
-                package = PackageInfo(pkgname)
-                is_installed = package.check_installed()
-                appname = package.get_name()
-                desc = v['summary']
+                appname, is_installed = self.caller.get_app_meta(pkgname)
             except KeyError:
                 continue
 
-            self.model.append((is_installed,
+            self.caller.model.append((is_installed,
                     pixbuf,
                     pkgname,
                     appname,
@@ -297,7 +290,7 @@ class Installer(TweakPage):
             dialog.destroy()
 
 
-            dialog = FetchingDialog(self.get_toplevel(), self.model)
+            dialog = FetchingDialog(self.get_toplevel(), self)
 
             if dialog.run() == gtk.RESPONSE_REJECT:
                 dialog.destroy()
@@ -363,22 +356,32 @@ class Installer(TweakPage):
             pass
         return get_app_describ(pkgname)
 
+    def get_app_meta(self, pkgname):
+        '''
+        Meta data is App's display name and install status
+        Need catch exception: KeyError
+        '''
+        package = PackageInfo(pkgname)
+        return package.get_name(), package.check_installed()
+
+    def get_items(self):
+        if self.app_data_parser.items():
+            return self.app_data_parser.items()
+
     def update_model(self):
         self.model.clear()
 
         icon = gtk.icon_theme_get_default()
 
-        for item in data:
+        for item in APP_DATA:
             pkgname = item[0]
             category = item[-1][0] 
 
             pixbuf = self.get_app_logo(pkgname)
+            desc = self.get_app_describ(pkgname)
 
             try:
-                package = PackageInfo(pkgname)
-                is_installed = package.check_installed()
-                appname = package.get_name()
-                desc = self.get_app_describ(pkgname)
+                appname, is_installed = self.get_app_meta(pkgname)
             except KeyError:
                 continue
 
