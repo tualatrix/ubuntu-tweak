@@ -187,7 +187,7 @@ class FetchingDialog(ProcessDialog):
         self.done = False
         self.user_action = False
         self.model = model
-        self.app_data_parser = Parser(REMOTE_APP_DATA)
+        self.app_data_parser = Parser(REMOTE_APP_DATA, 'package')
         self.app_logo_handler = LogoHandler(REMOTE_LOGO_DIR)
 
         super(FetchingDialog, self).__init__(parent=parent)
@@ -196,28 +196,30 @@ class FetchingDialog(ProcessDialog):
     def process_data(self):
         import time
         self.model.clear()
-        for item in self.app_data_parser.get_items():
-            time.sleep(3)
+        for k, v in self.app_data_parser.items():
+            time.sleep(1)
 
-            appname = item['slug']
+            pkgname = k
+            appname = v['name']
 
-            if not self.app_logo_handler.is_exists(appname):
-                self.app_logo_handler.save_logo(appname, item['logos'])
-            pixbuf = self.app_logo_handler.get_logo(appname)
+            if not self.app_logo_handler.is_exists(pkgname):
+                self.app_logo_handler.save_logo(pkgname, v['logo32'])
+            pixbuf = self.app_logo_handler.get_logo(pkgname)
 
             try:
-                package = PackageInfo(appname)
+                package = PackageInfo(pkgname)
                 is_installed = package.check_installed()
-                disname = package.get_name()
-                desc = item['summary']
+                appname = package.get_name()
+                desc = v['summary']
             except KeyError:
                 continue
 
             self.model.append((is_installed,
                     pixbuf,
+                    pkgname,
                     appname,
                     desc,
-                    '<b>%s</b>\n%s' % (disname, desc),
+                    '<b>%s</b>\n%s' % (appname, desc),
                     1))
 
             if self.user_action == True:
@@ -244,7 +246,7 @@ class Installer(TweakPage):
         if not os.path.exists(REMOTE_LOGO_DIR):
             os.makedirs(REMOTE_LOGO_DIR)
         self.app_logo_handler = LogoHandler(REMOTE_LOGO_DIR)
-        self.app_data_parser = Parser(REMOTE_APP_DATA)
+        self.app_data_parser = Parser(REMOTE_APP_DATA, 'package')
 
         self.to_add = []
         self.to_rm = []
@@ -354,7 +356,12 @@ class Installer(TweakPage):
             return get_app_logo(pkgname)
 
     def get_app_describ(self, pkgname):
-        pass
+        try:
+            if self.app_data_parser['pkgname'].has_key('summary'):
+                return self.app_data_parser['pkgname']['summary']
+        except:
+            pass
+        return get_app_describ(pkgname)
 
     def update_model(self):
         self.model.clear()
@@ -371,7 +378,7 @@ class Installer(TweakPage):
                 package = PackageInfo(pkgname)
                 is_installed = package.check_installed()
                 appname = package.get_name()
-                desc = get_app_describ(pkgname)
+                desc = self.get_app_describ(pkgname)
             except KeyError:
                 continue
 
