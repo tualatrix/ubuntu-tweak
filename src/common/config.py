@@ -175,9 +175,7 @@ class TweakSettings:
 
     @classmethod
     def get_show_donate_notify(cls):
-        value = cls.config.get_value(cls.show_donate_notify, default = True)
-
-        return value
+        return cls.config.get_value(cls.show_donate_notify, default = True)
 
     @classmethod
     def set_use_remote_data(cls, bool):
@@ -185,9 +183,7 @@ class TweakSettings:
 
     @classmethod
     def get_use_remote_data(cls):
-        value = cls.config.get_value(cls.use_remote_data, default = True)
-
-        return value
+        return cls.config.get_value(cls.use_remote_data, default = True)
 
     @classmethod
     def set_url(cls, url):

@@ -32,6 +32,7 @@ from common.widgets.dialogs import ErrorDialog, InfoDialog, QuestionDialog
 from common.widgets.utils import ProcessDialog
 from common.network.parser import Parser
 from common.appdata import get_app_logo, get_app_describ
+from common.config import TweakSettings
 from xdg.DesktopEntry import DesktopEntry
 
 try:
@@ -253,6 +254,7 @@ class Installer(TweakPage):
             os.makedirs(REMOTE_LOGO_DIR)
         self.app_logo_handler = LogoHandler(REMOTE_LOGO_DIR)
         self.app_data_parser = Parser(REMOTE_APP_DATA, 'package')
+        self.use_remote = TweakSettings.get_use_remote_data()
 
         self.to_add = []
         self.to_rm = []
@@ -386,7 +388,7 @@ class Installer(TweakPage):
         return package.get_name(), package.check_installed()
 
     def get_items(self):
-        if self.app_data_parser.items():
+        if self.app_data_parser.items() and self.use_remote:
             return self.app_data_parser.items()
         else:
             return APP_DATA
@@ -420,7 +422,7 @@ class Installer(TweakPage):
 
         icon = gtk.icon_theme_get_default()
 
-        for item in APP_DATA:
+        for item in self.get_items():
             try:
                 pkgname, category, pixbuf, desc, appname, is_installed = self.parse_item(item)
             except KeyError:
