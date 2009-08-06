@@ -57,6 +57,12 @@ REMOTE_LOGO_DIR = os.path.expanduser('~/.ubuntu-tweak/apps/logos')
     COLUMN_CATE,
 ) = range(7)
 
+(
+    CATE_ID,
+    CATE_NAME,
+    CATE_ICON,
+) = range(3)
+
 P2P = (_('File-Sharing Clients'), 'p2p.png')
 Image = (_('Image Tools'), 'image.png')
 Sound = (_('Sound Tools'), 'sound.png')
@@ -71,7 +77,15 @@ Develop = (_('Development'), 'develop.png')
 Emulator = (_('Emulators'), 'emulator.png')
 Mail = (_('E-mail Tools'), 'mail.png')
 
-CATES_DATA = (P2P, Image, Sound, Video, Text, IM, Internet, FTP, Desktop, Disk, Develop, Emulator, Mail)
+def create_cate(*items):
+    new = []
+    for i, item in enumerate(items):
+        list = [i]
+        list.extend(item)
+        new.append(list)
+    return new
+
+CATES_DATA = create_cate(P2P, Image, Sound, Video, Text, IM, Internet, FTP, Desktop, Disk, Develop, Emulator, Mail)
 
 APP_DATA = \
 (
@@ -305,16 +319,17 @@ class Installer(TweakPage):
             return False
 
     def create_category(self):
-        self.cate_model = gtk.ListStore(gtk.gdk.Pixbuf,
-                gobject.TYPE_STRING)
+        self.cate_model = gtk.ListStore(gobject.TYPE_INT,
+                                gobject.TYPE_STRING,
+                                gtk.gdk.Pixbuf)
 
         combobox = gtk.ComboBox(self.cate_model)
         textcell = gtk.CellRendererText()
         pixbufcell = gtk.CellRendererPixbuf()
         combobox.pack_start(pixbufcell, False)
         combobox.pack_start(textcell, True)
-        combobox.add_attribute(pixbufcell, 'pixbuf', 0)
-        combobox.add_attribute(textcell, 'text', 1)
+        combobox.add_attribute(textcell, 'text', CATE_NAME)
+        combobox.add_attribute(pixbufcell, 'pixbuf', CATE_ICON)
 
         return combobox
 
@@ -323,14 +338,16 @@ class Installer(TweakPage):
 
         iter = self.cate_model.append()
         self.cate_model.set(iter, 
-                0, gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'appcates', 'all.png')),
-                1, _('All Categories'))
+                CATE_ID, 0,
+                CATE_NAME, _('All Categories'),
+                CATE_ICON, gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'appcates', 'all.png')))
 
         for item in CATES_DATA:
             iter = self.cate_model.append()
             self.cate_model.set(iter, 
-                    0, gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'appcates', item[1])),
-                    1, item[0])
+                    CATE_ID, item[0],
+                    CATE_NAME, item[1],
+                    CATE_ICON, gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'appcates', item[2])))
 
     def on_category_changed(self, widget, data = None):
         index = widget.get_active()
