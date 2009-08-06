@@ -371,6 +371,8 @@ class Installer(TweakPage):
     def get_items(self):
         if self.app_data_parser.items():
             return self.app_data_parser.items()
+        else:
+            return APP_DATA
 
     def parse_item(self, item):
         '''
