@@ -254,6 +254,7 @@ class Installer(TweakPage):
             os.makedirs(REMOTE_LOGO_DIR)
         self.app_logo_handler = LogoHandler(REMOTE_LOGO_DIR)
         self.app_data_parser = Parser(REMOTE_APP_DATA, 'package')
+        self.app_cate_parser = Parser(REMOTE_CATE_DATA, 'name')
         self.use_remote = TweakSettings.get_use_remote_data()
 
         self.to_add = []
@@ -344,19 +345,42 @@ class Installer(TweakPage):
                 CATE_NAME, _('All Categories'),
                 CATE_ICON, gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'appcates', 'all.png')))
 
-        for item in CATES_DATA:
+        for item in self.get_cate_items():
             iter = self.cate_model.append()
+            id, name, icon = self.parse_cate_item(item)
             self.cate_model.set(iter, 
-                    CATE_ID, item[0],
-                    CATE_NAME, item[1],
-                    CATE_ICON, gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'appcates', item[2])))
+                    CATE_ID, id,
+                    CATE_NAME, name,
+                    CATE_ICON, icon)
+
+    def get_cate_items(self):
+        if self.app_cate_parser.items() and self.use_remote:
+            return self.app_cate_parser.items()
+        else:
+            return CATES_DATA
+
+    def parse_cate_item(self, item):
+        '''
+        If item[1] == tuple, so it's local data, or the remote data
+        '''
+        if type(item) == list:
+            id = item[0]
+            name = item[1]
+            pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'appcates', item[2]))
+        elif type(item) == tuple:
+            catedata = item[1]
+            id = catedata['id']
+            name = catedata['name']
+            pixbuf = self.get_app_logo(catedata['slug'], catedata['logo32'])
+
+        return id, name, pixbuf
 
     def on_category_changed(self, widget, data = None):
         index = widget.get_active()
         if index:
             liststore = widget.get_model()
             iter = liststore.get_iter(index)
-            self.filter = liststore.get_value(iter, 1)
+            self.filter = liststore.get_value(iter, CATE_ID)
         else:
             self.filter = None
 
@@ -410,7 +434,7 @@ class Installer(TweakPage):
             pkgdata = item[1]
             appname = pkgdata['name']
             desc = pkgdata['summary']
-            category = 1
+            category = pkgdata['category']
 
             pixbuf = self.get_app_logo(pkgname, pkgdata['logo32'])
             appname, is_installed = self.get_app_meta(pkgname)
