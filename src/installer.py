@@ -28,7 +28,7 @@ import pango
 from common.consts import *
 from common.utils import *
 from common.widgets import TweakPage
-from common.widgets.dialogs import InfoDialog, QuestionDialog
+from common.widgets.dialogs import ErrorDialog, InfoDialog, QuestionDialog
 from common.widgets.utils import ProcessDialog
 from common.network.parser import Parser
 from common.appdata import get_app_logo, get_app_describ
@@ -186,6 +186,7 @@ class FetchingDialog(ProcessDialog):
     def __init__(self, parent, caller):
         self.caller = caller
         self.done = False
+        self.message = None
         self.user_action = False
 
         super(FetchingDialog, self).__init__(parent=parent)
@@ -200,7 +201,11 @@ class FetchingDialog(ProcessDialog):
             appname = v['name']
             desc = v['summary']
 
-            pixbuf = self.caller.get_app_logo(pkgname, v['logo32'])
+            try:
+                pixbuf = self.caller.get_app_logo(pkgname, v['logo32'])
+            except IOError:
+                self.message = _('Network is error')
+                break
 
             try:
                 appname, is_installed = self.caller.get_app_meta(pkgname)
@@ -284,16 +289,17 @@ class Installer(TweakPage):
         gtk.gdk.threads_enter()
         if self.check_update():
             dialog = QuestionDialog(_('New application data available, would you like to update?'))
-            action = False
-            if dialog.run() == gtk.RESPONSE_YES:
-                action = True
+            response = dialog.run()
             dialog.destroy()
 
+            if response == gtk.RESPONSE_YES:
+                dialog = FetchingDialog(self.get_toplevel(), self)
 
-            dialog = FetchingDialog(self.get_toplevel(), self)
+                if dialog.run() == gtk.RESPONSE_REJECT:
+                    dialog.destroy()
 
-            if dialog.run() == gtk.RESPONSE_REJECT:
-                dialog.destroy()
+                if dialog.message:
+                    ErrorDialog(dialog.message).launch()
 
         gtk.gdk.threads_leave()
 
