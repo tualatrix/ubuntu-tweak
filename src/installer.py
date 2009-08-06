@@ -195,20 +195,14 @@ class FetchingDialog(ProcessDialog):
     def process_data(self):
         import time
         self.caller.model.clear()
-        for pkgname, v in self.caller.get_items():
+        for item in self.caller.get_items():
             time.sleep(1)
 
-            appname = v['name']
-            desc = v['summary']
-
             try:
-                pixbuf = self.caller.get_app_logo(pkgname, v['logo32'])
+                pkgname, category, pixbuf, desc, appname, is_installed = self.caller.parse_item(item)
             except IOError:
                 self.message = _('Network is error')
                 break
-
-            try:
-                appname, is_installed = self.caller.get_app_meta(pkgname)
             except KeyError:
                 continue
 
@@ -218,7 +212,7 @@ class FetchingDialog(ProcessDialog):
                     appname,
                     desc,
                     '<b>%s</b>\n%s' % (appname, desc),
-                    1))
+                    category))
 
             if self.user_action == True:
                 break
@@ -350,7 +344,7 @@ class Installer(TweakPage):
         self.update_model()
 
     def get_app_logo(self, pkgname, url=None):
-        if url:
+        if url and not self.app_logo_handler.is_exists(pkgname):
             self.app_logo_handler.save_logo(pkgname, url)
 
         if self.app_logo_handler.is_exists(pkgname):
@@ -378,20 +372,38 @@ class Installer(TweakPage):
         if self.app_data_parser.items():
             return self.app_data_parser.items()
 
-    def update_model(self):
-        self.model.clear()
-
-        icon = gtk.icon_theme_get_default()
-
-        for item in APP_DATA:
+    def parse_item(self, item):
+        '''
+        If item[1] == tuple, so it's local data, or the remote data
+        '''
+        if type(item[1]) == tuple:
             pkgname = item[0]
             category = item[-1][0] 
 
             pixbuf = self.get_app_logo(pkgname)
             desc = self.get_app_describ(pkgname)
 
+            appname, is_installed = self.get_app_meta(pkgname)
+        elif type(item[1]) == dict:
+            pkgname = item[0]
+            pkgdata = item[1]
+            appname = pkgdata['name']
+            desc = pkgdata['summary']
+            category = 1
+
+            pixbuf = self.get_app_logo(pkgname, pkgdata['logo32'])
+            appname, is_installed = self.get_app_meta(pkgname)
+
+        return pkgname, category, pixbuf, desc, appname, is_installed
+
+    def update_model(self):
+        self.model.clear()
+
+        icon = gtk.icon_theme_get_default()
+
+        for item in APP_DATA:
             try:
-                appname, is_installed = self.get_app_meta(pkgname)
+                pkgname, category, pixbuf, desc, appname, is_installed = self.parse_item(item)
             except KeyError:
                 continue
 
