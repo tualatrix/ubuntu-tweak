@@ -172,6 +172,7 @@ class Installer(TweakPage):
         vbox.pack_start(hbox, False, False, 0)
 
         combobox = self.create_category()
+        self.update_cate_model()
         combobox.set_active(0)
         combobox.connect('changed', self.on_category_changed)
         hbox.pack_end(combobox, False, False, 0)
@@ -199,21 +200,10 @@ class Installer(TweakPage):
         self.show_all()
 
     def create_category(self):
-        liststore = gtk.ListStore(gtk.gdk.Pixbuf,
+        self.cate_model = gtk.ListStore(gtk.gdk.Pixbuf,
                 gobject.TYPE_STRING)
 
-        iter = liststore.append()
-        liststore.set(iter, 
-                0, gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'appcates', 'all.png')),
-                1, _('All Categories'))
-
-        for item in CATES_DATA:
-            iter = liststore.append()
-            liststore.set(iter, 
-                    0, gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'appcates', item[1])),
-                    1, item[0])
-
-        combobox = gtk.ComboBox(liststore)
+        combobox = gtk.ComboBox(self.cate_model)
         textcell = gtk.CellRendererText()
         pixbufcell = gtk.CellRendererPixbuf()
         combobox.pack_start(pixbufcell, False)
@@ -222,6 +212,20 @@ class Installer(TweakPage):
         combobox.add_attribute(textcell, 'text', 1)
 
         return combobox
+
+    def update_cate_model(self):
+        self.cate_model.clear()
+
+        iter = self.cate_model.append()
+        self.cate_model.set(iter, 
+                0, gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'appcates', 'all.png')),
+                1, _('All Categories'))
+
+        for item in CATES_DATA:
+            iter = self.cate_model.append()
+            self.cate_model.set(iter, 
+                    0, gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'appcates', item[1])),
+                    1, item[0])
 
     def on_category_changed(self, widget, data = None):
         index = widget.get_active()
