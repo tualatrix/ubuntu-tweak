@@ -256,6 +256,7 @@ class Installer(TweakPage):
         self.app_data_parser = Parser(REMOTE_APP_DATA, 'package')
         self.app_cate_parser = Parser(REMOTE_CATE_DATA, 'name')
         self.use_remote = TweakSettings.get_use_remote_data()
+        self.data_model = 'local'
 
         self.to_add = []
         self.to_rm = []
@@ -380,7 +381,10 @@ class Installer(TweakPage):
         if index:
             liststore = widget.get_model()
             iter = liststore.get_iter(index)
-            self.filter = liststore.get_value(iter, CATE_ID)
+            if self.data_model == 'remote':
+                self.filter = liststore.get_value(iter, CATE_ID)
+            else:
+                self.filter = liststore.get_value(iter, CATE_NAME)
         else:
             self.filter = None
 
@@ -413,8 +417,10 @@ class Installer(TweakPage):
 
     def get_items(self):
         if self.app_data_parser.items() and self.use_remote:
+            self.data_model = 'remote'
             return self.app_data_parser.items()
         else:
+            self.data_model = 'local'
             return APP_DATA
 
     def parse_item(self, item):
