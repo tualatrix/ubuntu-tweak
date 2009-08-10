@@ -69,6 +69,7 @@ SOURCES_LIST = '/etc/apt/sources.list'
 AWN = ['Avant Window Navigator', 'avant-window-navigator', 'awn-project.org', 'awn.gpg']
 AWN_TESTING = [_('Avant Window Navigator (Unstable Version)'), 'avant-window-navigator', 'awn-project.org', 'awn-testing.gpg']
 Amarok = ['Amarok', 'amarok-nightly', 'amarok.kde.org', 'neon.gpg']
+AmuleRelease = [_('aMule (Stable Version)'), 'amule', 'www.amule.org', 'amule-release.gpg']
 Blueman = ['Blueman', 'blueman', 'blueman-project.org', 'blueman.gpg']
 Opera = ['Opera', 'opera', 'www.opera.com', 'opera.gpg']
 Skype = ['Skype', 'skype', 'www.skype.com', '']
@@ -134,6 +135,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/reacocard-awn/ppa/ubuntu/', ['hardy','intrepid'], 'main', AWN],
     ['http://ppa.launchpad.net/awn-testing/ppa/ubuntu', ['hardy','intrepid', 'jaunty'], 'main', AWN_TESTING],
     ['http://ppa.launchpad.net/project-neon/ppa/ubuntu/', ['hardy', 'intrepid'], 'main', Amarok],
+    ['http://ppa.launchpad.net/amule-releases/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', AmuleRelease],
     ['http://ppa.launchpad.net/blueman/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Blueman],
     ['http://archive.ubuntu.org.cn/ubuntu-cn/', ['hardy', 'intrepid'], 'main restricted universe multiverse', Ubuntu_cn],
     ['http://ppa.launchpad.net/openoffice-pkgs/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', OpenOffice],
