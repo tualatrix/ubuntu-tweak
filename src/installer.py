@@ -192,7 +192,10 @@ class LogoHandler:
     def get_logo(self, name):
         path = os.path.join(self.dir, '%s.png' % name)
 
-        return gtk.gdk.pixbuf_new_from_file(path)
+        try:
+            return gtk.gdk.pixbuf_new_from_file(path)
+        except:
+            return gtk.icon_theme_get_default().load_icon(gtk.STOCK_MISSING_IMAGE, 32, 0)
 
     def is_exists(self, name):
         return os.path.exists(os.path.join(self.dir, '%s.png' % name))
@@ -372,7 +375,7 @@ class Installer(TweakPage):
             catedata = item[1]
             id = catedata['id']
             name = catedata['name']
-            pixbuf = self.get_app_logo(catedata['slug'], catedata['logo32'])
+            pixbuf = self.get_app_logo(catedata['name'], catedata['logo32'])
 
         return id, name, pixbuf
 
