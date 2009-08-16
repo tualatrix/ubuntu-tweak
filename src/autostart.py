@@ -121,6 +121,8 @@ class AutoStartItem(gtk.TreeView):
                     gobject.TYPE_STRING,
                     gobject.TYPE_STRING)
 
+        model.set_sort_column_id(COLUMN_PROGRAM, gtk.SORT_ASCENDING)
+
         self.set_model(model)
         self.__create_model()
 
@@ -275,7 +277,7 @@ class AutoStartItem(gtk.TreeView):
         renderer = gtk.CellRendererText()
         column.pack_start(renderer, True)
         column.set_attributes(renderer, markup = COLUMN_PROGRAM)
-        column.set_sort_column_id(COLUMN_ACTIVE)
+        column.set_sort_column_id(COLUMN_PROGRAM)
         self.append_column(column)
 
     def enabled_toggled(self, cell, path, model):

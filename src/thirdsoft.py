@@ -296,6 +296,7 @@ class SourcesView(gtk.TreeView):
 
         self.model = self.__create_model()
         self.set_model(self.model)
+        self.model.set_sort_column_id(COLUMN_NAME, gtk.SORT_ASCENDING)
         self.__add_column()
 
         self.update_model()

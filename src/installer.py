@@ -350,6 +350,8 @@ class Installer(TweakPage):
                         gobject.TYPE_STRING,
                         gobject.TYPE_STRING,
                         gobject.TYPE_STRING)
+
+        self.model.set_sort_column_id(COLUMN_NAME, gtk.SORT_ASCENDING)
         treeview = gtk.TreeView()
 
         # column for is_installed toggles
