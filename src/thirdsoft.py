@@ -101,7 +101,8 @@ Gwibber = ['Gwibber', 'gwibber', 'launchpad.net/gwibber', 'gwibber.gpg']
 Gwibber_Daily = [_('Gwibber (Daily Version)'), 'gwibber', 'launchpad.net/gwibber', 'gwibber-daily.gpg']
 Banshee_Stable = [_('Banshee (Stable Version)'), 'banshee', 'banshee-project.org', 'banshee-stable.gpg']
 Banshee_Unstable = [_('Banshee (Unstable Version)'), 'banshee', 'banshee-project.org', 'banshee-unstable.gpg']
-Google = ['Google', 'google', 'www.google.com/linuxrepositories/index.html', 'google.gpg']
+Google = [_('Google Repository'), 'google', 'www.google.com/linuxrepositories/index.html', 'google.gpg']
+Google_Testing = [_('Google Testing Repository'), 'google', 'www.google.com/linuxrepositories/testrepo.html', 'google.gpg']
 GoogleGadgets = ['Google gadgets', 'google-gadgets', 'desktop.google.com/plugins/', 'gadgets.gpg']
 ChmSee = ['Chmsee', 'chmsee', 'chmsee.gro.clinux.org', 'chmsee.gpg']
 KDE4 = ['KDE 4', 'kde-4', 'www.kde.org', 'kde4.gpg']
@@ -173,6 +174,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/banshee-team/ppa/ubuntu', ['hardy', 'intrepid'], 'main', Banshee_Stable],
     ['http://ppa.launchpad.net/banshee-unstable-team/ppa/ubuntu', ['hardy', 'intrepid', 'karmic'], 'main', Banshee_Unstable],
     ['http://dl.google.com/linux/deb/', 'stable', 'non-free', Google],
+    ['http://dl.google.com/linux/deb/', 'testing', 'non-free', Google_Testing],
     ['http://ppa.launchpad.net/googlegadgets/ppa/ubuntu', 'hardy', 'main', GoogleGadgets],
     ['http://ppa.launchpad.net/lidaobing/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', ChmSee],
     ['http://ppa.launchpad.net/chmsee/hardy/ubuntu', 'hardy', 'main', ChmSee],

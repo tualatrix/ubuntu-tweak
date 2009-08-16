@@ -148,6 +148,7 @@ data = \
     ('nautilus-dropbox', Internet),
     ('opera', Internet),
     ('playonlinux', Emulator),
+    ('picasa', Image),
     ('screenlets', Desktop),
     ('shutter', Image),
     ('skype', IM),
