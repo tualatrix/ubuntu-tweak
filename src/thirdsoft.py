@@ -114,6 +114,8 @@ NautilusDropbox = ['Nautilus DropBox', 'nautilus-dropbox', 'www.getdropbox.com',
 Screenlets = ['Screenlets', 'screenlets', 'www.screenlets.org', 'screenlets.gpg']
 Synapse = ['Synapse', 'synapse', 'synapse.im', 'synapse.gpg']
 Smplayer = ['SMPlayer', 'smplayer', 'smplayer.sourceforge.net', 'smplayer.gpg']
+MplayerLibs = [_('MPlayer Core Libraries'), 'mplayer', 'launchpad.net/~rvm/+archive/libs', 'mplayer-libs.gpg']
+Smplayer_Testing = [_('SMPlayer (Unstable Version)'), 'smplayer', 'smplayer.sourceforge.net', 'smplayer-testing.gpg']
 Wine = ['Wine', 'wine', 'www.winehq.org', 'wine.gpg']
 LXDE = ['LXDE', 'lxde', 'lxde.org', 'lxde.gpg']
 Liferea = ['Liferea', 'liferea', 'liferea.sourceforge.net', 'liferea.gpg']
@@ -155,6 +157,8 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/firerabbit/ppa/ubuntu', ['intrepid','jaunty'], 'main', Synapse],
     ['http://download.skype.com/linux/repos/debian', 'stable', 'non-free', Skype],
     ['http://ppa.launchpad.net/rvm/smplayer/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Smplayer],
+    ['http://ppa.launchpad.net/rvm/testing/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Smplayer_Testing],
+    ['http://ppa.launchpad.net/rvm/libs/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', MplayerLibs],
     ['http://ppa.launchpad.net/gwibber-team/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Gwibber],
     ['http://ppa.launchpad.net/gwibber-daily/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Gwibber_Daily],
     ['http://ppa.launchpad.net/gmchess/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Gmchess],
@@ -211,6 +215,7 @@ SOURCES_DATA = [
 SOURCES_DEPENDENCIES = {
     Midori[0]: WebKitGtk[0],
     Liferea[0]: WebKitGtk[0],
+    Smplayer_Testing[0]: MplayerLibs[0],
 }
 
 SOURCES_CONFLICTS = {
