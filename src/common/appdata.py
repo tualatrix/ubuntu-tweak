@@ -104,7 +104,6 @@ APP_DATA = {
     'google-gadgets': _('Platform for running Google Gadgets on Linux'),
     'gparted': _('GNOME partition editor'),
     'gpicview': _('Lightweight image viewer'),
-    'gscrot': _('A powerful screenshot tool'),
     'gtk-recordmydesktop': _('Graphical frontend for recordmydesktop'),
     'gtg': _('GTG is a personal organizer for the GNOME desktop environment, it focuses on ease of use and flexibility, while keeping things simple.'),
     'gwibber': _('Gwibber is an open source microblogging client for GNOME'),

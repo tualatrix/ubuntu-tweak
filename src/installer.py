@@ -123,7 +123,6 @@ data = \
     ('google-gadgets', Desktop),
     ('gparted', Disk),
     ('gpicview', Image),
-    ('gscrot', Image),
     ('gtk-recordmydesktop', Video),
     ('gwibber', Internet),
     ('gtg', Text),
