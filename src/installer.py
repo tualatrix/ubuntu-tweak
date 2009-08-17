@@ -43,11 +43,18 @@ ICON_DIR = os.path.join(DATA_DIR, 'applogos')
 (
     COLUMN_INSTALLED,
     COLUMN_ICON,
+    COLUMN_PKG,
     COLUMN_NAME,
     COLUMN_DESC,
     COLUMN_DISPLAY,
     COLUMN_CATE,
-) = range(6)
+) = range(7)
+
+(
+    CATE_ID,
+    CATE_NAME,
+    CATE_ICON,
+) = range(3)
 
 P2P = (_('File-Sharing Clients'), 'p2p.png')
 Image = (_('Image Tools'), 'image.png')
@@ -63,7 +70,15 @@ Develop = (_('Development'), 'develop.png')
 Emulator = (_('Emulators'), 'emulator.png')
 Mail = (_('E-mail Tools'), 'mail.png')
 
-CATES_DATA = (P2P, Image, Sound, Video, Text, IM, Internet, FTP, Desktop, Disk, Develop, Emulator, Mail)
+def create_cate(*items):
+    new = []
+    for i, item in enumerate(items):
+        list = [i]
+        list.extend(item)
+        new.append(list)
+    return new
+
+CATES_DATA = create_cate(P2P, Image, Sound, Video, Text, IM, Internet, FTP, Desktop, Disk, Develop, Emulator, Mail)
 
 data = \
 (
@@ -108,7 +123,6 @@ data = \
     ('google-gadgets', Desktop),
     ('gparted', Disk),
     ('gpicview', Image),
-    ('gscrot', Image),
     ('gtk-recordmydesktop', Video),
     ('gwibber', Internet),
     ('gtg', Text),
@@ -133,6 +147,7 @@ data = \
     ('nautilus-dropbox', Internet),
     ('opera', Internet),
     ('playonlinux', Emulator),
+    ('picasa', Image),
     ('screenlets', Desktop),
     ('shutter', Image),
     ('skype', IM),
@@ -171,6 +186,7 @@ class Installer(TweakPage):
         vbox.pack_start(hbox, False, False, 0)
 
         combobox = self.create_category()
+        self.update_cate_model()
         combobox.set_active(0)
         combobox.connect('changed', self.on_category_changed)
         hbox.pack_end(combobox, False, False, 0)
@@ -198,29 +214,35 @@ class Installer(TweakPage):
         self.show_all()
 
     def create_category(self):
-        liststore = gtk.ListStore(gtk.gdk.Pixbuf,
-                gobject.TYPE_STRING)
+        self.cate_model = gtk.ListStore(gobject.TYPE_INT,
+                                gobject.TYPE_STRING,
+                                gtk.gdk.Pixbuf)
 
-        iter = liststore.append()
-        liststore.set(iter, 
-                0, gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'appcates', 'all.png')),
-                1, _('All Categories'))
-
-        for item in CATES_DATA:
-            iter = liststore.append()
-            liststore.set(iter, 
-                    0, gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'appcates', item[1])),
-                    1, item[0])
-
-        combobox = gtk.ComboBox(liststore)
+        combobox = gtk.ComboBox(self.cate_model)
         textcell = gtk.CellRendererText()
         pixbufcell = gtk.CellRendererPixbuf()
         combobox.pack_start(pixbufcell, False)
         combobox.pack_start(textcell, True)
-        combobox.add_attribute(pixbufcell, 'pixbuf', 0)
-        combobox.add_attribute(textcell, 'text', 1)
+        combobox.add_attribute(textcell, 'text', CATE_NAME)
+        combobox.add_attribute(pixbufcell, 'pixbuf', CATE_ICON)
 
         return combobox
+
+    def update_cate_model(self):
+        self.cate_model.clear()
+
+        iter = self.cate_model.append()
+        self.cate_model.set(iter, 
+                CATE_ID, 0,
+                CATE_NAME, _('All Categories'),
+                CATE_ICON, gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'appcates', 'all.png')))
+
+        for item in CATES_DATA:
+            iter = self.cate_model.append()
+            self.cate_model.set(iter, 
+                    CATE_ID, item[0],
+                    CATE_NAME, item[1],
+                    CATE_ICON, gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'appcates', item[2])))
 
     def on_category_changed(self, widget, data = None):
         index = widget.get_active()
@@ -239,49 +261,53 @@ class Installer(TweakPage):
         icon = gtk.icon_theme_get_default()
 
         for item in data:
-            appname = item[0]
+            pkgname = item[0]
             category = item[-1][0] 
 
-            pixbuf = get_app_logo(appname)
+            pixbuf = get_app_logo(pkgname)
 
             try:
-                package = PackageInfo(appname)
+                package = PackageInfo(pkgname)
                 is_installed = package.check_installed()
-                disname = package.get_name()
-                desc = get_app_describ(appname)
+                appname = package.get_name()
+                desc = get_app_describ(pkgname)
             except KeyError:
                 continue
 
             if self.filter == None:
-                if appname in self.to_add or appname in self.to_rm:
+                if pkgname in self.to_add or pkgname in self.to_rm:
                     self.model.append((not is_installed,
                             pixbuf,
+                            pkgname,
                             appname,
                             desc,
-                            '<span foreground="#ffcc00"><b>%s</b>\n%s</span>' % (disname, desc),
+                            '<span foreground="#ffcc00"><b>%s</b>\n%s</span>' % (appname, desc),
                             category))
                 else:
                     self.model.append((is_installed,
                             pixbuf,
+                            pkgname,
                             appname,
                             desc,
-                            '<b>%s</b>\n%s' % (disname, desc),
+                            '<b>%s</b>\n%s' % (appname, desc),
                             category))
             else:
                 if self.filter == category:
-                    if appname in self.to_add or appname in self.to_rm:
+                    if pkgname in self.to_add or pkgname in self.to_rm:
                         self.model.append((not is_installed,
                                 pixbuf,
+                                pkgname,
                                 appname,
                                 desc,
-                                '<span foreground="#ffcc00"><b>%s</b>\n%s</span>' % (disname, desc),
+                                '<span foreground="#ffcc00"><b>%s</b>\n%s</span>' % (appname, desc),
                                 category))
                     else:
                         self.model.append((is_installed,
                                 pixbuf,
+                                pkgname,
                                 appname,
                                 desc,
-                                '<b>%s</b>\n%s' % (disname, desc),
+                                '<b>%s</b>\n%s' % (appname, desc),
                                 category))
 
     def deep_update(self):
@@ -291,26 +317,25 @@ class Installer(TweakPage):
     def on_install_toggled(self, cell, path):
         iter = self.model.get_iter((int(path),))
         is_installed = self.model.get_value(iter, COLUMN_INSTALLED)
+        pkgname = self.model.get_value(iter, COLUMN_PKG)
         appname = self.model.get_value(iter, COLUMN_NAME)
-        disname = PackageInfo(appname).get_name()
         desc = self.model.get_value(iter, COLUMN_DESC)
-        display = self.model.get_value(iter, COLUMN_DISPLAY)
 
         is_installed = not is_installed
         if is_installed:
-            if appname in self.to_rm:
-                self.to_rm.remove(appname)
-                self.model.set(iter, COLUMN_DISPLAY, '<b>%s</b>\n%s' % (disname, desc))
+            if pkgname in self.to_rm:
+                self.to_rm.remove(pkgname)
+                self.model.set(iter, COLUMN_DISPLAY, '<b>%s</b>\n%s' % (appname, desc))
             else:
-                self.to_add.append(appname)
-                self.model.set(iter, COLUMN_DISPLAY, '<span foreground="#ffcc00"><b>%s</b>\n%s</span>' % (disname, desc))
+                self.to_add.append(pkgname)
+                self.model.set(iter, COLUMN_DISPLAY, '<span foreground="#ffcc00"><b>%s</b>\n%s</span>' % (appname, desc))
         else:
-            if appname in self.to_add:
-                self.to_add.remove(appname)
-                self.model.set(iter, COLUMN_DISPLAY, '<b>%s</b>\n%s' % (disname, desc))
+            if pkgname in self.to_add:
+                self.to_add.remove(pkgname)
+                self.model.set(iter, COLUMN_DISPLAY, '<b>%s</b>\n%s' % (appname, desc))
             else:
-                self.to_rm.append(appname)
-                self.model.set(iter, COLUMN_DISPLAY, '<span foreground="#ffcc00"><b>%s</b>\n%s</span>' % (disname, desc))
+                self.to_rm.append(pkgname)
+                self.model.set(iter, COLUMN_DISPLAY, '<span foreground="#ffcc00"><b>%s</b>\n%s</span>' % (appname, desc))
 
         self.model.set(iter, COLUMN_INSTALLED, is_installed)
         self.colleague_changed()
@@ -322,7 +347,10 @@ class Installer(TweakPage):
                         gobject.TYPE_STRING,
                         gobject.TYPE_STRING,
                         gobject.TYPE_STRING,
+                        gobject.TYPE_STRING,
                         gobject.TYPE_STRING)
+
+        self.model.set_sort_column_id(COLUMN_NAME, gtk.SORT_ASCENDING)
         treeview = gtk.TreeView()
 
         # column for is_installed toggles
