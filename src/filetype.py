@@ -109,6 +109,7 @@ class TypeView(gtk.TreeView):
         self.set_model(self.model)
         self.set_rules_hint(True)
         self.__add_columns()
+        self.model.set_sort_column_id(TYPE_DESCRIPTION, gtk.SORT_ASCENDING)
 
 #        self.set_size_request(200, -1)
         self.update_model(filter = 'audio')

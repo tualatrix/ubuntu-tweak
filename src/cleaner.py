@@ -112,6 +112,7 @@ class PackageView(gtk.TreeView):
 
         model = self.__create_model()
         self.set_model(model)
+        model.set_sort_column_id(COLUMN_NAME, gtk.SORT_ASCENDING)
 
         self.__check_list = []
         self.package_worker = package_worker

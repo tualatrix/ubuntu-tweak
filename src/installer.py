@@ -131,7 +131,6 @@ APP_DATA = \
     ('google-gadgets', Desktop),
     ('gparted', Disk),
     ('gpicview', Image),
-    ('gscrot', Image),
     ('gtk-recordmydesktop', Video),
     ('gwibber', Internet),
     ('gtg', Text),
@@ -156,6 +155,7 @@ APP_DATA = \
     ('nautilus-dropbox', Internet),
     ('opera', Internet),
     ('playonlinux', Emulator),
+    ('picasa', Image),
     ('screenlets', Desktop),
     ('shutter', Image),
     ('skype', IM),
@@ -536,6 +536,8 @@ class Installer(TweakPage):
                         gobject.TYPE_STRING,
                         gobject.TYPE_STRING,
                         gobject.TYPE_STRING)
+
+        self.model.set_sort_column_id(COLUMN_NAME, gtk.SORT_ASCENDING)
         treeview = gtk.TreeView()
 
         # column for is_installed toggles
