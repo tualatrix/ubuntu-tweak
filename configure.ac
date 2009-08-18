@@ -1,7 +1,7 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_INIT([ubuntu-tweak], [0.4.8], [tualatrix@gmail.com])
+AC_INIT([ubuntu-tweak], [0.4.9], [tualatrix@gmail.com])
 AM_INIT_AUTOMAKE([1.10 -Wall -Werror])
 
 #AC_CONFIG_HEADER(config.h)
