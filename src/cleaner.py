@@ -473,6 +473,8 @@ class PackageCleaner(TweakPage):
         self.clean_button.set_sensitive(False)
 
     def on_button_toggled(self, widget):
+        self.select_button.set_active(False)
+
         if self.current_button != self.button_list.index(widget):
             button = self.button_list[self.current_button]
 
