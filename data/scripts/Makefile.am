@@ -1,5 +1,6 @@
 scriptsdir = $(pkgdatadir)/data/scripts
 scripts_DATA = \
+	create-launcher \
 	move-to \
 	move-to-desktop \
 	move-to-download \
