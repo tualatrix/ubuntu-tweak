@@ -476,6 +476,7 @@ class MainWindow(gtk.Window):
                 else:
                     self.notebook.set_current_page(self.moduletable[id])
                     widget.select_iter(iter)
+        self.do_notify()
 
     def __shrink_for_each(self, model, path, iter, id):
         m_id = model.get_value(iter, ID_COLUMN)
@@ -619,5 +620,20 @@ You should have received a copy of the GNU General Public License along with Ubu
 
             proxy.exit()
 
+        self.do_notify()
         self.save_gui_state()
         gtk.main_quit()
+
+    def prepare_notify(self, data):
+        self.notify_func = data
+
+    def get_notify(self):
+        if hasattr(self, 'notify_func') and self.notify_func:
+            notify_func = self.notify_func
+            self.notify_func = None
+            return notify_func
+
+    def do_notify(self):
+        notify_func = self.get_notify()
+        if notify_func:
+            notify_func()

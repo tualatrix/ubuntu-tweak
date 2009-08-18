@@ -465,9 +465,20 @@ class SourceEditor(TweakPage):
         if buffer.get_modified():
             self.save_button.set_sensitive(True)
             self.redo_button.set_sensitive(True)
+            self.emit('call', 'mainwindow', 'prepare_notify', {'data': self.notify_save})
         else:
             self.save_button.set_sensitive(False)
             self.redo_button.set_sensitive(False)
+
+    def notify_save(self):
+        dialog = QuestionDialog(_("You've changed the sources.list without saving it, Do you want to save it?"),
+                    title=_("Save Your sources.list"))
+
+        response = dialog.run()
+        dialog.destroy()
+
+        if response == gtk.RESPONSE_YES:
+            self.emit('call', 'mainwindow', 'select_module', {'name': 'sourceeditor'})
 
     def on_save_button_clicked(self, wiget):
         text = self.textview.get_text().strip()
