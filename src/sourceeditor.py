@@ -471,8 +471,7 @@ class SourceEditor(TweakPage):
             self.redo_button.set_sensitive(False)
 
     def notify_save(self):
-        dialog = QuestionDialog(_("You've changed the sources.list without saving it, Do you want to save it?"),
-                    title=_("Save Your sources.list"))
+        dialog = QuestionDialog(_("You've changed the sources.list without saving it.\nDo you want to save it?"))
 
         response = dialog.run()
         dialog.destroy()
