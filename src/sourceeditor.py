@@ -221,9 +221,10 @@ class UpdateDialog(ProcessDialog):
         self.processing = False
 
 class SourceView(gtk.TextView):
-    def __init__(self):
+    def __init__(self, path):
         super(SourceView, self).__init__()
 
+        self.path = path
         self.create_tags()
         self.update_content()
 
@@ -254,7 +255,7 @@ class SourceView(gtk.TextView):
         buffer.delete(buffer.get_start_iter(), buffer.get_end_iter())
         iter = buffer.get_iter_at_offset(0)
         if content is None:
-            content = open(SOURCES_LIST).read()
+            content = open(self.path).read()
 
         for i, line in enumerate(content.split('\n')):
             self.parse_and_insert(buffer, iter, line, i != content.count('\n'))
@@ -362,7 +363,7 @@ class SourceEditor(TweakPage):
         set_label_for_stock_button(self.submit_button, _('Submit Sources'))
         self.submit_button.connect('clicked', self.on_submit_button_clicked)
 
-        self.textview = SourceView()
+        self.textview = SourceView(SOURCES_LIST)
         self.textview.set_sensitive(False)
         sw1 = worker.get_object('sw1')
         sw1.add(self.textview)
@@ -371,6 +372,7 @@ class SourceEditor(TweakPage):
 
         self.source_combo = worker.get_object('source_combo')
         self.setup_source_combo(self.source_combo)
+        self.source_combo.connect('changed', self.on_source_combo_changed)
 
         self.save_button = worker.get_object('save_button')
         self.save_button.connect('clicked', self.on_save_button_clicked)
@@ -390,17 +392,32 @@ class SourceEditor(TweakPage):
         self.show_all()
 
     def setup_source_combo(self, widget):
-        model = gtk.ListStore(gobject.TYPE_STRING)
+        model = gtk.ListStore(gobject.TYPE_STRING,
+                        gobject.TYPE_STRING)
         widget.set_model(model)
 
         textcell = gtk.CellRendererText()
         widget.pack_start(textcell, True)
-        widget.add_attribute(textcell, 'text', 0)
+        widget.add_attribute(textcell, 'text', 1)
 
         iter = model.append()
         model.set(iter, 0, '/etc/apt/sources.list')
+        model.set(iter, 1, 'sources.list')
+
+        SOURCE_LIST_D = '/etc/apt/sources.list.d'
+        for file in os.listdir(SOURCE_LIST_D):
+            iter = model.append()
+            model.set(iter, 0, os.path.join(SOURCE_LIST_D, file))
+            model.set(iter, 1, os.path.basename(file))
 
         widget.set_active(0)
+
+    def on_source_combo_changed(self, widget):
+        model = widget.get_model()
+        iter = widget.get_active_iter()
+
+        self.textview.path = model.get_value(iter, 0)
+        self.update_sourceslist()
 
     def on_refresh_button_clicked(self, widget):
         dialog = UpdateCacheDialog(widget.get_toplevel())
@@ -482,7 +499,7 @@ class SourceEditor(TweakPage):
 
     def on_save_button_clicked(self, wiget):
         text = self.textview.get_text().strip()
-        if proxy.edit_file(SOURCES_LIST, text) == 'error':
+        if proxy.edit_file(self.textview.path, text) == 'error':
             ErrorDialog(_('Please check the permission of the sources.list file'),
                     title=_('Save failed!')).launch()
         else:
