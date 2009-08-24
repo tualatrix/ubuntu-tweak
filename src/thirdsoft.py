@@ -71,6 +71,7 @@ AWN_TESTING = [_('Avant Window Navigator (Unstable Version)'), 'avant-window-nav
 Amarok = ['Amarok', 'amarok-nightly', 'amarok.kde.org', 'neon.gpg']
 AmuleRelease = [_('aMule (Stable Version)'), 'amule', 'www.amule.org', 'amule-release.gpg']
 Blueman = ['Blueman', 'blueman', 'blueman-project.org', 'blueman.gpg']
+Backintime = ['Back In Time', 'backintime-gnome', 'backintime.le-web.org', 'backintime.gpg']
 Opera = ['Opera', 'opera', 'www.opera.com', 'opera.gpg']
 Skype = ['Skype', 'skype', 'www.skype.com', '']
 PlayOnLinux = ['PlayOnLinux', 'playonlinux', 'www.playonlinux.com', 'pol.gpg']
@@ -143,6 +144,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/project-neon/ppa/ubuntu/', ['hardy', 'intrepid'], 'main', Amarok],
     ['http://ppa.launchpad.net/amule-releases/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', AmuleRelease],
     ['http://ppa.launchpad.net/blueman/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Blueman],
+    ['http://le-web.org/repository', 'stable', 'main', Backintime],
     ['http://archive.ubuntu.org.cn/ubuntu-cn/', ['hardy', 'intrepid'], 'main restricted universe multiverse', Ubuntu_cn],
     ['http://ppa.launchpad.net/openoffice-pkgs/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', OpenOffice],
     ['http://ppa.launchpad.net/globalmenu-team/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', GlobalMenu],

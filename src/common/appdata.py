@@ -73,6 +73,8 @@ APP_DATA = {
     'azureus': _('BitTorrent client written in Java'),
     'banshee': _('Audio Management and Playback application'),
     'blueman': _('GTK+ Bluetooth Manager'),
+    'backintime-gnome': _('Simple backup system for GNOME Desktop'),
+    'backintime-kde4': _('Simple backup system for KDE4 Desktop'),
     'cairo-dock': _('A true dock for linux'),
     'chmsee': _('A chm file viewer written in GTK+'),
     'christine': _('Desired to be small and fast, christine is a simple media player, that let you play your favorite music and videos from one single application.'),
@@ -156,10 +158,10 @@ APP_DATA = {
 }
 
 SOURCE_DATA = {
-    'firefox': _('Development Version of Mozilla Firefox 3.6, 4.0'),
+    'firefox': _('Development Version of Mozilla Firefox'),
     'compiz-fusion': _('Development version of Compiz Fusion'),
     'google': _("Google's Linux Repository"),
-    'kde-4': _('K Desktop Environment 4.2'),
+    'kde-4': _('Development Version of K Desktop Environment'),
     'lxde': _('Lightweight X11 Desktop Environment: GPicView, PCManFM'),
     'webkitgtk': _('WebkitGtk+, Liferea (Webkit), Midori and other WebKit related projects.'),
     'medibuntu': _('Multimedia, Entertainment and Distraction In Ubuntu\nMedibuntu is a repository of packages that cannot be included into the Ubuntu distribution for legal reasons (copyright, license, patent, etc).'),

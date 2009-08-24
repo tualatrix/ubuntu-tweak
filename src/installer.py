@@ -94,6 +94,8 @@ data = \
     ('azureus', P2P),
     ('banshee', Sound),
     ('blueman', P2P),
+    ('backintime-gnome', Desktop),
+    ('backintime-kde4', Desktop),
     ('cairo-dock', Desktop),
     ('chmsee', Text),
     ('christine', Sound),
