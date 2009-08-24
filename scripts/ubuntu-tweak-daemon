@@ -24,6 +24,7 @@ sys.setdefaultencoding('utf8')
 import os
 import apt_pkg
 import dbus
+import dbus.glib
 import dbus.service
 import dbus.mainloop.glib
 import gobject
@@ -33,9 +34,6 @@ from subprocess import PIPE
 from aptsources.sourceslist import SourceEntry, SourcesList
 
 apt_pkg.init()
-
-UBUNTU_TWEAK_DAEMON_INTERFACE = 'com.ubuntu_tweak.daemon'
-UBUNTU_TWEAK_DAEMON_PATH = '/com/ubuntu_tweak/daemon'
 
 #This class is modified from softwareproperty. Author: Michael Vogt <mvo@debian.org>
 class AptAuth:
@@ -82,13 +80,21 @@ class AptAuth:
         cmd.append(key)
         p = subprocess.Popen(cmd)
         return (p.wait() == 0)
-        
+
+INTERFACE = "com.ubuntu_tweak.daemon"
+OBJ = "com.ubuntu_tweak.daemon"
+PATH = "/com/ubuntu_tweak/daemon"
+
 class Daemon(dbus.service.Object):
     #TODO use signal
     liststate = None
     list = SourcesList()
 
-    @dbus.service.method(UBUNTU_TWEAK_DAEMON_INTERFACE,
+    def __init__ (self, bus):
+        bus_name = dbus.service.BusName(OBJ, bus=bus)
+        dbus.service.Object.__init__(self, bus_name, PATH)
+
+    @dbus.service.method(INTERFACE,
                          in_signature='ssssb', out_signature='s')
     def set_entry(self, url, distro, comps, comment, enabled):
         self.list.refresh()
@@ -105,7 +111,7 @@ class Daemon(dbus.service.Object):
             self.list.save()
             return 'disabled'
 
-    @dbus.service.method(UBUNTU_TWEAK_DAEMON_INTERFACE,
+    @dbus.service.method(INTERFACE,
                          in_signature='ssssbs', out_signature='s')
     def set_separated_entry(self, url, distro, comps, comment, enabled, file):
         self.list.refresh()
@@ -131,7 +137,7 @@ class Daemon(dbus.service.Object):
             self.list.save()
             return 'disabled'
 
-    @dbus.service.method(UBUNTU_TWEAK_DAEMON_INTERFACE,
+    @dbus.service.method(INTERFACE,
                          in_signature='', out_signature='s')
     def get_list_state(self):
         if self.liststate:
@@ -139,14 +145,14 @@ class Daemon(dbus.service.Object):
         else:
             return "normal"
 
-    @dbus.service.method(UBUNTU_TWEAK_DAEMON_INTERFACE,
+    @dbus.service.method(INTERFACE,
                          in_signature='', out_signature='s')
     def clean_apt_cache(self):
         os.system('apt-get clean')
 
         return 'done'
             
-    @dbus.service.method(UBUNTU_TWEAK_DAEMON_INTERFACE,
+    @dbus.service.method(INTERFACE,
                          in_signature='s', out_signature='s')
     def delete_file(self, path):
         os.system('rm "%s"' % path)
@@ -155,64 +161,65 @@ class Daemon(dbus.service.Object):
         else:
             return 'done'
 
-    @dbus.service.method(UBUNTU_TWEAK_DAEMON_INTERFACE,
+    @dbus.service.method(INTERFACE,
                          in_signature='ss', out_signature='')
     def link_file(self, src, dst):
         if not os.path.exists(dst):
             os.symlink(src, dst)
 
-    @dbus.service.method(UBUNTU_TWEAK_DAEMON_INTERFACE,
+    @dbus.service.method(INTERFACE,
                          in_signature='s', out_signature='')
     def unlink_file(self, path):
         if os.path.exists(path):
             os.unlink(path)
 
-    @dbus.service.method(UBUNTU_TWEAK_DAEMON_INTERFACE,
+    @dbus.service.method(INTERFACE,
                          in_signature='s', out_signature='')
     def set_list_state(self, state):
         self.liststate = state
 
-    @dbus.service.method(UBUNTU_TWEAK_DAEMON_INTERFACE,
+    @dbus.service.method(INTERFACE,
                          in_signature='ss', out_signature='')
     def edit_file(self, path, content):
         file = open(path, 'w')
         file.write(content)
         file.close()
 
-    @dbus.service.method(UBUNTU_TWEAK_DAEMON_INTERFACE,
+    @dbus.service.method(INTERFACE,
                          in_signature='s', out_signature='s')
     def clean_config(self, pkg):
         return str(os.system('sudo dpkg --purge %s' % pkg))
 
-    @dbus.service.method(UBUNTU_TWEAK_DAEMON_INTERFACE,
+    @dbus.service.method(INTERFACE,
                          in_signature='s', out_signature='')
     def add_apt_key(self, filename):
         apt_key = AptAuth()
         apt_key.add(filename)
 
-    @dbus.service.method(UBUNTU_TWEAK_DAEMON_INTERFACE,
+    @dbus.service.method(INTERFACE,
                          in_signature='ss', out_signature='')
     def save_to_disk(self, text, filename):
         f = file(filename, 'w')
         f.write(text)
         f.close()
 
-    @dbus.service.method(UBUNTU_TWEAK_DAEMON_INTERFACE,
+    @dbus.service.method(INTERFACE,
                          in_signature='s', out_signature='b')
     def is_exists(self, path):
         return os.path.exists(path)
 
-    @dbus.service.method(UBUNTU_TWEAK_DAEMON_INTERFACE,
+    @dbus.service.method(INTERFACE,
                          in_signature='', out_signature='')
     def exit(self):
         mainloop.quit()
 
 if __name__ == '__main__':
-    dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
+    try:
+        dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
+        Daemon(dbus.SystemBus())
 
-    system_bus = dbus.SystemBus()
-    name = dbus.service.BusName(UBUNTU_TWEAK_DAEMON_INTERFACE, system_bus)
-    object = Daemon(system_bus, UBUNTU_TWEAK_DAEMON_PATH)
-
-    mainloop = gobject.MainLoop()
-    mainloop.run()
+        mainloop = gobject.MainLoop()
+        mainloop.run()
+    except:
+        print >> sys.stderr, 'Failed to start Ubuntu Tweak Daemon'
+        sys.exit(1)
