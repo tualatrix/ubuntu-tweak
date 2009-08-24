@@ -401,6 +401,7 @@ class SourceEditor(TweakPage):
         self.textview.update_content()
         self.redo_button.set_sensitive(False)
         self.save_button.set_sensitive(False)
+        self.emit('call', 'mainwindow', 'get_notify', {})
 
     def on_submit_button_clicked(self, widget):
         dialog = SubmitDialog(widget.get_toplevel())
@@ -472,6 +473,7 @@ class SourceEditor(TweakPage):
             self.save_button.set_sensitive(False)
             self.redo_button.set_sensitive(False)
             self.refresh_button.set_sensitive(True)
+            self.emit('call', 'mainwindow', 'get_notify', {})
             self.emit('update', 'thirdsoft', 'update_thirdparty')
 
     def on_redo_button_clicked(self, widget):
@@ -481,6 +483,7 @@ class SourceEditor(TweakPage):
             self.save_button.set_sensitive(False)
             self.redo_button.set_sensitive(False)
 
+        self.emit('call', 'mainwindow', 'get_notify', {})
         dialog.destroy()
 
     def on_polkit_action(self, widget, action):
