@@ -27,6 +27,7 @@ import gettext
 from thirdsoft import UpdateCacheDialog
 from xmlrpclib import ServerProxy, Error
 from common.utils import *
+from common.gui import GuiWorker
 from common.systeminfo import module_check
 from common.policykit import PolkitButton, proxy
 from common.utils import set_label_for_stock_button
@@ -343,62 +344,45 @@ class SourceEditor(TweakPage):
                 _('Source Editor'),
                 _('Freely edit your software sources to fit your needs.\n'
                 'Click "Update Sources" if you want to change the sources.\n'
-                'Click "Submit Sources" if you want to share your sources with other people.\n')
+                'Click "Submit Sources" if you want to share your sources with other people.')
         )
 
         self.online_data = {}
-        
-        hbox = gtk.HBox(False, 0)
-        self.pack_start(hbox, True, True, 0)
 
-        sw = gtk.ScrolledWindow()
-        sw.set_shadow_type(gtk.SHADOW_ETCHED_IN)
-        sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        hbox.pack_start(sw)
+        worker = GuiWorker('sourceeditor.glade')
 
-        vbox = gtk.VBox(False, 8)
-        hbox.pack_start(vbox, False, False, 5)
+        main_vbox = worker.get_object('main_vbox')
+        main_vbox.reparent(self.vbox)
 
-        self.update_button = gtk.Button(stock = gtk.STOCK_GO_DOWN)
+        self.update_button = worker.get_object('update_button')
         set_label_for_stock_button(self.update_button, _('Update Sources'))
-        self.update_button.set_sensitive(False)
         self.update_button.connect('clicked', self.on_update_button_clicked)
-        vbox.pack_start(self.update_button, False, False, 0)
 
-        self.submit_button = gtk.Button(stock = gtk.STOCK_GO_UP)
+        self.submit_button = worker.get_object('submit_button')
         set_label_for_stock_button(self.submit_button, _('Submit Sources'))
-        self.submit_button.set_sensitive(False)
         self.submit_button.connect('clicked', self.on_submit_button_clicked)
-        vbox.pack_start(self.submit_button, False, False, 0)
 
         self.textview = SourceView()
         self.textview.set_sensitive(False)
-        sw.add(self.textview)
+        sw1 = worker.get_object('sw1')
+        sw1.add(self.textview)
         buffer = self.textview.get_buffer()
         buffer.connect('changed', self.on_buffer_changed)
 
-        # button
-        hbox = gtk.HBox(False, 5)
-        self.pack_end(hbox, False ,False, 5)
-
-        self.save_button = gtk.Button(stock = gtk.STOCK_SAVE)
-        self.save_button.set_sensitive(False)
+        self.save_button = worker.get_object('save_button')
         self.save_button.connect('clicked', self.on_save_button_clicked)
-        hbox.pack_start(self.save_button, False, False, 0)
 
-        self.redo_button = gtk.Button(stock = gtk.STOCK_REDO)
-        self.redo_button.set_sensitive(False)
+        self.redo_button = worker.get_object('redo_button')
         self.redo_button.connect('clicked', self.on_redo_button_clicked)
-        hbox.pack_start(self.redo_button, False, False, 0)
 
+        self.refresh_button = worker.get_object('refresh_button')
+        self.refresh_button.connect('clicked', self.on_refresh_button_clicked)
+
+        hbox2 = worker.get_object('hbox2')
         un_lock = PolkitButton()
         un_lock.connect('changed', self.on_polkit_action)
-        hbox.pack_end(un_lock, False, False, 0)
-
-        self.refresh_button = gtk.Button(stock = gtk.STOCK_REFRESH)
-        self.refresh_button.set_sensitive(False)
-        self.refresh_button.connect('clicked', self.on_refresh_button_clicked)
-        hbox.pack_end(self.refresh_button, False, False, 0)
+        hbox2.pack_end(un_lock, False, False, 0)
+        hbox2.reorder_child(un_lock, 1)
 
         self.show_all()
 
@@ -465,9 +449,19 @@ class SourceEditor(TweakPage):
         if buffer.get_modified():
             self.save_button.set_sensitive(True)
             self.redo_button.set_sensitive(True)
+            self.emit('call', 'mainwindow', 'prepare_notify', {'data': self.notify_save})
         else:
             self.save_button.set_sensitive(False)
             self.redo_button.set_sensitive(False)
+
+    def notify_save(self):
+        dialog = QuestionDialog(_("You've changed the sources.list without saving it.\nDo you want to save it?"))
+
+        response = dialog.run()
+        dialog.destroy()
+
+        if response == gtk.RESPONSE_YES:
+            self.emit('call', 'mainwindow', 'select_module', {'name': 'sourceeditor'})
 
     def on_save_button_clicked(self, wiget):
         text = self.textview.get_text().strip()

@@ -100,6 +100,7 @@ GettingThingsGnome = ['Getting Things Gnome!', 'gtg', 'gtg.fritalk.com', 'gtg.gp
 GetDeb = [_('GetDeb.net (Mirror)'), 'getdeb', 'www.getdeb.net', '']
 Gwibber = ['Gwibber', 'gwibber', 'launchpad.net/gwibber', 'gwibber.gpg']
 Gwibber_Daily = [_('Gwibber (Daily Version)'), 'gwibber', 'launchpad.net/gwibber', 'gwibber-daily.gpg']
+Gimp_Testing = [_('GIMP (Testing Version)'), 'gimp', 'www.gimp.org', 'gimp-testing.gpg']
 Banshee_Stable = [_('Banshee (Stable Version)'), 'banshee', 'banshee-project.org', 'banshee-stable.gpg']
 Banshee_Unstable = [_('Banshee (Unstable Version)'), 'banshee', 'banshee-project.org', 'banshee-unstable.gpg']
 Google = [_('Google Repository'), 'google', 'www.google.com/linuxrepositories/index.html', 'google.gpg']
@@ -160,6 +161,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/rvm/testing/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Smplayer_Testing],
     ['http://ppa.launchpad.net/rvm/libs/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', MplayerLibs],
     ['http://ppa.launchpad.net/gwibber-team/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Gwibber],
+    ['http://ppa.launchpad.net/matthaeus123/mrw-gimp-svn/ubuntu', ['jaunty', 'karmic'], 'main', Gimp_Testing], 
     ['http://ppa.launchpad.net/gwibber-daily/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Gwibber_Daily],
     ['http://ppa.launchpad.net/gmchess/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Gmchess],
     ['http://playonlinux.botux.net/', 'hardy', 'main', PlayOnLinux],

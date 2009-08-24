@@ -94,6 +94,7 @@ APP_DATA = {
     'geany': _('A fast and lightweight IDE'),
     'gftp': _('A multithreaded FTP client'),
     'ghex': _('GNOME Hex editor'),
+    'gimp': _('The GNU Image Manipulation Program'),
     'gmail-notify': _('Notifies the user upon arrival of new mail in Gmail'),
     'gmchess': _('GMChess is chinese chess game write by gtkmm'),
     'gnome-do': _('A powerful, speedy, and sexy remote control for the GNOME Desktop'),
