@@ -369,6 +369,9 @@ class SourceEditor(TweakPage):
         buffer = self.textview.get_buffer()
         buffer.connect('changed', self.on_buffer_changed)
 
+        self.source_combo = worker.get_object('source_combo')
+        self.setup_source_combo(self.source_combo)
+
         self.save_button = worker.get_object('save_button')
         self.save_button.connect('clicked', self.on_save_button_clicked)
 
@@ -385,6 +388,19 @@ class SourceEditor(TweakPage):
         hbox2.reorder_child(un_lock, 1)
 
         self.show_all()
+
+    def setup_source_combo(self, widget):
+        model = gtk.ListStore(gobject.TYPE_STRING)
+        widget.set_model(model)
+
+        textcell = gtk.CellRendererText()
+        widget.pack_start(textcell, True)
+        widget.add_attribute(textcell, 'text', 0)
+
+        iter = model.append()
+        model.set(iter, 0, '/etc/apt/sources.list')
+
+        widget.set_active(0)
 
     def on_refresh_button_clicked(self, widget):
         dialog = UpdateCacheDialog(widget.get_toplevel())
