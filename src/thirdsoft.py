@@ -498,9 +498,9 @@ class SourcesView(gtk.TreeView):
             distro = distro + '/'
 
         if TweakSettings.get_separated_sources():
-            result = proxy.set_separated_entry(url, distro, comps, comment, not enable, package)
+            result = proxy.set_separated_entry(url, distro, comps, comment, enable, package)
         else:
-            result = proxy.set_entry(url, distro, comps, comment, not enable)
+            result = proxy.set_entry(url, distro, comps, comment, enable)
 
         if str(result) == 'enabled':
             self.model.set(iter, COLUMN_ENABLED, True)
