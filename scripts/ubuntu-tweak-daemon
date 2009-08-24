@@ -25,6 +25,7 @@ import os
 import subprocess
 from subprocess import PIPE
 import dbus
+import dbus.glib
 import dbus.service
 import dbus.mainloop.glib
 import gobject
@@ -74,10 +75,17 @@ class AptAuth:
         cmd.append(key)
         p = subprocess.Popen(cmd)
         return (p.wait() == 0)
-        
+
+INTERFACE = "com.ubuntu_tweak.daemon"
+OBJ = "com.ubuntu_tweak.daemon"
+PATH = "/com/ubuntu_tweak/daemon"
+
 class Daemon(dbus.service.Object):
-    INTERFACE = "com.ubuntu_tweak.daemon"
     liststate = None
+
+    def __init__ (self, bus):
+        bus_name = dbus.service.BusName(OBJ, bus=bus)
+        dbus.service.Object.__init__(self, bus_name, PATH)
 
     @dbus.service.method(INTERFACE,
                          in_signature='ssssb', out_signature='s')
@@ -176,11 +184,12 @@ class Daemon(dbus.service.Object):
         mainloop.quit()
 
 if __name__ == '__main__':
-    dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
+    try:
+        dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
+        Daemon(dbus.SystemBus())
 
-    system_bus = dbus.SystemBus()
-    name = dbus.service.BusName("com.ubuntu_tweak.daemon", system_bus)
-    object = Daemon(system_bus, '/com/ubuntu_tweak/daemon')
-
-    mainloop = gobject.MainLoop()
-    mainloop.run()
+        mainloop = gobject.MainLoop()
+        mainloop.run()
+    except:
+        print >> sys.stderr, 'Failed to start Ubuntu Tweak Daemon'
+        sys.exit(1)
