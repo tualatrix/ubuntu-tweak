@@ -188,7 +188,6 @@ SOURCES_DATA = [
     ['http://dl.google.com/linux/deb/', 'stable', 'non-free', Google],
     ['http://dl.google.com/linux/deb/', 'testing', 'non-free', Google_Testing],
     ['http://ppa.launchpad.net/googlegadgets/ppa/ubuntu', 'hardy', 'main', GoogleGadgets],
-    ['http://ppa.launchpad.net/lidaobing/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', ChmSee],
     ['http://ppa.launchpad.net/chmsee/hardy/ubuntu', 'hardy', 'main', ChmSee],
     ['http://ppa.launchpad.net/chmsee/intrepid/ubuntu', 'intrepid', 'main', ChmSee],
     ['http://ppa.launchpad.net/chmsee/jaunty/ubuntu', 'jaunty', 'main', ChmSee],
