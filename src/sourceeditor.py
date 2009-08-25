@@ -377,7 +377,8 @@ class SourceEditor(TweakPage):
         buffer.connect('changed', self.on_buffer_changed)
 
         self.source_combo = worker.get_object('source_combo')
-        self.setup_source_combo(self.source_combo)
+        self.setup_source_combo()
+        self.update_source_combo()
         self.source_combo.connect('changed', self.on_source_combo_changed)
 
         self.save_button = worker.get_object('save_button')
@@ -400,14 +401,23 @@ class SourceEditor(TweakPage):
 
         self.show_all()
 
-    def setup_source_combo(self, widget):
+    def setup_source_combo(self):
         model = gtk.ListStore(gobject.TYPE_STRING,
                         gobject.TYPE_STRING)
-        widget.set_model(model)
+        self.source_combo.set_model(model)
 
         textcell = gtk.CellRendererText()
-        widget.pack_start(textcell, True)
-        widget.add_attribute(textcell, 'text', 1)
+        self.source_combo.pack_start(textcell, True)
+        self.source_combo.add_attribute(textcell, 'text', 1)
+
+    def update_source_combo(self):
+        model = self.source_combo.get_model()
+        iter = self.source_combo.get_active_iter()
+        if iter:
+            (i, ) = model.get_path(iter)
+        else:
+            i = 0
+        model.clear()
 
         iter = model.append()
         model.set(iter, 0, '/etc/apt/sources.list')
@@ -419,7 +429,11 @@ class SourceEditor(TweakPage):
             model.set(iter, 0, os.path.join(SOURCE_LIST_D, file))
             model.set(iter, 1, os.path.basename(file))
 
-        widget.set_active(0)
+        if i:
+            iter = model.get_iter(i)
+            self.source_combo.set_active_iter(iter)
+        else:
+            self.source_combo.set_active(0)
 
     def on_source_combo_changed(self, widget):
         model = widget.get_model()

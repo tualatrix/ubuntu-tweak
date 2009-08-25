@@ -121,7 +121,7 @@ class Daemon(dbus.service.Object):
 
         if os.path.exists(file) and url not in open(file).read():
             for i in xrange(1000):
-                file = os.path.splitext(file)[0] + '-' + str(i) + '.list'
+                file = os.path.splitext(file)[0] + '-' + str(i+1) + '.list'
                 if not os.path.exists(file):
                     break
 

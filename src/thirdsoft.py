@@ -687,6 +687,7 @@ class ThirdSoft(TweakPage):
 
     def colleague_changed(self, widget):
         self.refresh_button.set_sensitive(True)
+        self.emit('update', 'sourceeditor', 'update_source_combo')
         self.emit('update', 'sourceeditor', 'update_sourceslist')
     
     def on_refresh_button_clicked(self, widget):
