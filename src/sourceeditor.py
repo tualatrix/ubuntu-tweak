@@ -339,6 +339,12 @@ class SourceView(gtk.TextView):
         buffer = self.get_buffer()
         return buffer.get_text(buffer.get_start_iter(), buffer.get_end_iter())
 
+    def set_path(self, path):
+        self.path = path
+
+    def get_path(self):
+        return self.path
+
 class SourceEditor(TweakPage):
     def __init__(self):
         super(SourceEditor, self).__init__(
@@ -380,6 +386,9 @@ class SourceEditor(TweakPage):
         self.redo_button = worker.get_object('redo_button')
         self.redo_button.connect('clicked', self.on_redo_button_clicked)
 
+        self.delete_button = worker.get_object('delete_button')
+        self.delete_button.connect('clicked', self.on_delete_button_clicked)
+
         self.refresh_button = worker.get_object('refresh_button')
         self.refresh_button.connect('clicked', self.on_refresh_button_clicked)
 
@@ -415,9 +424,9 @@ class SourceEditor(TweakPage):
     def on_source_combo_changed(self, widget):
         model = widget.get_model()
         iter = widget.get_active_iter()
-
-        self.textview.path = model.get_value(iter, 0)
-        self.update_sourceslist()
+        if iter:
+            self.textview.set_path(model.get_value(iter, 0))
+            self.update_sourceslist()
 
     def on_refresh_button_clicked(self, widget):
         dialog = UpdateCacheDialog(widget.get_toplevel())
@@ -499,7 +508,7 @@ class SourceEditor(TweakPage):
 
     def on_save_button_clicked(self, wiget):
         text = self.textview.get_text().strip()
-        if proxy.edit_file(self.textview.path, text) == 'error':
+        if proxy.edit_file(self.textview.get_path(), text) == 'error':
             ErrorDialog(_('Please check the permission of the sources.list file'),
                     title=_('Save failed!')).launch()
         else:
@@ -519,6 +528,25 @@ class SourceEditor(TweakPage):
         self.emit('call', 'mainwindow', 'get_notify', {})
         dialog.destroy()
 
+    def on_delete_button_clicked(self, widget):
+        if self.textview.get_path() ==  SOURCES_LIST:
+            ErrorDialog(_('You can\'t delete sources.list!')).launch()
+        else:
+            dialog = QuestionDialog(_('The "%s" will be deleted!\nDo you wish to continue?') % self.textview.get_path())
+            response = dialog.run()
+            dialog.destroy()
+            if response == gtk.RESPONSE_YES:
+                model = self.source_combo.get_model()
+                iter = self.source_combo.get_active_iter()
+                (i, ) = model.get_path(iter)
+                proxy.delete_file(model.get_value(iter, 0))
+                model.remove(iter)
+
+                iter = model.get_iter(i-1)
+                self.source_combo.set_active_iter(iter)
+            self.emit('call', 'mainwindow', 'get_notify', {})
+            self.emit('update', 'thirdsoft', 'update_thirdparty')
+
     def on_polkit_action(self, widget, action):
         if action:
             if proxy.get_proxy():
@@ -526,6 +554,7 @@ class SourceEditor(TweakPage):
                 self.update_button.set_sensitive(True)
                 self.submit_button.set_sensitive(True)
                 self.refresh_button.set_sensitive(True)
+                self.delete_button.set_sensitive(True)
             else:
                 ServerErrorDialog().launch()
         else:
