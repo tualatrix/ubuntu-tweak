@@ -157,6 +157,7 @@ data = \
     ('soundconverter', Sound),
     ('stardict', Desktop),
     ('synapse', IM),
+    ('spicebird', Internet),
     ('tasque', Desktop),
     ('terminator', Emulator),
     ('transmission-gtk', P2P),

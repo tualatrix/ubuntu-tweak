@@ -137,6 +137,7 @@ APP_DATA = {
     'skype': _('Make audio/video calls using this VoIP Software'),
     'smplayer': _('A great MPlayer front-end, written in QT4'),
     'soundconverter': _('Convert audio files into other formats'),
+    'spicebird': _('A fully integrated mail, PIM and instant messaging client'),
     'stardict': _('An international dictionary'),
     'swiftweasel': _('Swiftweasel is an optimized build of the Mozilla Firefox web browser for Linux'),
     'specto': _('A desktop application that will watch for events (website updates, emails, file and folder changes...)'),
