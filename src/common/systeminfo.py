@@ -105,7 +105,7 @@ class module_check:
 
     @classmethod
     def get_supported_ubuntu(cls):
-        return ['hardy', 'intrepid', 'jaunty']
+        return ['hardy', 'intrepid', 'jaunty', 'karmic', 'elyssa', 'Elyssa', 'felicia', 'Felicia', 'gloria', 'Gloria']
 
     @classmethod
     def is_hardy(cls):

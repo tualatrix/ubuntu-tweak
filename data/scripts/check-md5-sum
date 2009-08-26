@@ -1,0 +1,11 @@
+#!/bin/bash
+# Author: Hertatijanto Hartono
+ORIGINAL_IFS=$IFS
+IFS=$'\n'
+md5sum -b $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS > /tmp/md5sum.tmp
+IFS=' '
+read var1 var2 < /tmp/md5sum.tmp
+zenity --info --title md5sum --text "\n$var1"
+rm /tmp/md5sum.tmp
+IFS=$ORIGINAL_IFS
+exit 0

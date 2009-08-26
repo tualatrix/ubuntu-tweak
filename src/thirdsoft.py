@@ -91,6 +91,7 @@ CompizFusion = ['Compiz Fusion', 'compiz-fusion', 'www.compiz-fusion.org', 'comp
 Christine = [_('Christine Media Player'), 'christine', 'www.christine-project.org', 'christine.gpg']
 ChromiumBrowser = ['Chromium Browser', 'chromium-browser', 'launchpad.net/chromium-project', 'chromium-browser.gpg']
 CairoDock = ['Cairo Dock', 'cairo-dock',  'cairo-dock.org', 'cairo-dock.gpg']
+Geany = ['Geany', 'geany', 'www.geany.org', 'geany.gpg']
 Gnote = ['Gnote', 'gnote', 'live.gnome.org/Gnote', 'gnote.gpg']
 GnomeDo = ['GNOME Do', 'gnome-do', 'do.davebsd.com', 'do.gpg']
 GnomeGames = [_('Experimental Gnome Games'), 'gnome-games', 'launchpad.net/~gnome-games-experimental', 'gnome-games.gpg']
@@ -114,6 +115,8 @@ UbuntuTweakTesting = [_('Ubuntu Tweak (Unstable Version)'), 'ubuntu-tweak', 'ubu
 UbuDSL = ['UbuDSL', 'ubudsl', 'www.ubudsl.com', 'ubndsl.gpg']
 NautilusDropbox = ['Nautilus DropBox', 'nautilus-dropbox', 'www.getdropbox.com', '']
 Screenlets = ['Screenlets', 'screenlets', 'www.screenlets.org', 'screenlets.gpg']
+Spicebird = ['Spicebird', 'spicebird', 'www.spicebird.com', 'spicebird.gpg']
+Spicebird_Testing = [_('Spicebird (Testing Version)'), 'spicebird', 'www.spicebird.com', 'spicebird.gpg']
 Synapse = ['Synapse', 'synapse', 'synapse.im', 'synapse.gpg']
 Smplayer = ['SMPlayer', 'smplayer', 'smplayer.sourceforge.net', 'smplayer.gpg']
 MplayerLibs = [_('MPlayer Core Libraries'), 'mplayer', 'launchpad.net/~rvm/+archive/libs', 'mplayer-libs.gpg']
@@ -154,6 +157,7 @@ SOURCES_DATA = [
 #    ['http://getdeb.masio.com.mx/', ['hardy', 'intrepid', 'jaunty'], '', GetDeb],
     ['http://ppa.launchpad.net/gnome-colors-packagers/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', GnomeColors],
     ['http://ppa.launchpad.net/gtg/ppa/ubuntu', ['intrepid', 'jaunty'], 'main', GettingThingsGnome],
+    ['http://ppa.launchpad.net/geany-dev/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Geany],
     ['http://ppa.launchpad.net/gnote/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Gnote],
     ['http://ppa.launchpad.net/telepathy/ppa/ubuntu', ['jaunty', 'karmic'], 'main', Empathy],
     ['http://deb.opera.com/opera/', 'lenny', 'non-free', Opera],
@@ -186,7 +190,6 @@ SOURCES_DATA = [
     ['http://dl.google.com/linux/deb/', 'stable', 'non-free', Google],
     ['http://dl.google.com/linux/deb/', 'testing', 'non-free', Google_Testing],
     ['http://ppa.launchpad.net/googlegadgets/ppa/ubuntu', 'hardy', 'main', GoogleGadgets],
-    ['http://ppa.launchpad.net/lidaobing/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', ChmSee],
     ['http://ppa.launchpad.net/chmsee/hardy/ubuntu', 'hardy', 'main', ChmSee],
     ['http://ppa.launchpad.net/chmsee/intrepid/ubuntu', 'intrepid', 'main', ChmSee],
     ['http://ppa.launchpad.net/chmsee/jaunty/ubuntu', 'jaunty', 'main', ChmSee],
@@ -197,6 +200,8 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/ubuntu-tweak-testing/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', UbuntuTweakTesting],
     ['http://ppa.launchpad.net/adrian5632/ppa/ubuntu', ['hardy', 'intrepid'], 'main', UbuDSL],
     ['http://ppa.launchpad.net/gilir/ppa/ubuntu', ['hardy', 'intrepid'], 'main', Screenlets],
+    ['http://ppa.launchpad.net/spicebird/ppa/ubuntu', ['intrepid', 'jaunty'], 'main', Spicebird],
+    ['http://ppa.launchpad.net/spicebird/test-build/ubuntu', ['jaunty', 'karmic'], 'main', Spicebird_Testing],
     ['http://wine.budgetdedicated.com/apt', ['hardy', 'intrepid', 'jaunty'], 'main', Wine],
     ['http://ppa.launchpad.net/lxde/ppa/ubuntu', 'hardy', 'main', LXDE],
     ['http://ppa.launchpad.net/gnome-terminator/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Terminator],
