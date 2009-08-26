@@ -134,6 +134,9 @@ Vlc = [_('VLC media player'), 'vlc', 'www.videolan.org/vlc/', 'vlc.gpg']
 Shutter = ['Shutter', 'shutter', 'launchpad.net/shutter', 'shutter.gpg']
 Pidgin = ['Pidgin', 'pidgin', 'pidgin.im', 'pidgin.gpg']
 Moovida = ['Moovida', 'moovida', 'www.moovida.com', 'moovida.gpg']
+Moblin_Jaunty = [_('Moblin for Ubuntu 9.04 Jaunty'), 'moblin', 'launchpad.net/~sudbury-team', 'moblin-jaunty.gpg']
+Moblin_Karmic = [_('Moblin for Ubuntu 9.10 Karmic'), 'moblin', 'launchpad.net/~moblin', 'moblin-karmic.gpg']
+
 Galaxium = ['Galaxium', 'galaxium', 'code.google.com/p/galaxium/', 'galaxium.gpg']
 Swiftweasel = ['Swiftweasel', 'swiftweasel', 'swiftweasel.tuxfamily.org', '']
 Medibuntu = ['Medibuntu', 'medibuntu', 'www.medibuntu.org', 'medibuntu.gpg']
@@ -183,6 +186,8 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/compiz/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', CompizFusion],
     ['http://ppa.launchpad.net/pidgin-developers/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Pidgin],
     ['http://ppa.launchpad.net/moovida-packagers/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Moovida],
+    ['http://ppa.launchpad.net/sudbury-team/ppa/ubuntu', 'jaunty', 'main', Moblin_Jaunty],
+    ['http://ppa.launchpad.net/moblin/ppa/ubuntu', ['jaunty', 'karmic'], 'main', Moblin_Karmic],
     ['http://repository.cairo-dock.org/ubuntu', ['hardy', 'intrepid'], 'cairo-dock', CairoDock],
     ['http://ppa.launchpad.net/do-core/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', GnomeDo],
     ['http://ppa.launchpad.net/banshee-team/ppa/ubuntu', ['hardy', 'intrepid'], 'main', Banshee_Stable],
@@ -225,6 +230,7 @@ SOURCES_DEPENDENCIES = {
     Midori[0]: WebKitGtk[0],
     Liferea[0]: WebKitGtk[0],
     Smplayer_Testing[0]: MplayerLibs[0],
+    Moblin_Jaunty[0]: Moblin_Karmic[0],
 }
 
 SOURCES_CONFLICTS = {
