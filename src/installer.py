@@ -80,99 +80,144 @@ def create_cate(*items):
 
 CATES_DATA = create_cate(P2P, Image, Sound, Video, Text, IM, Internet, FTP, Desktop, Disk, Develop, Emulator, Mail)
 
-data = \
-(
-    ('agave', Image),
-    ('amule', P2P),
-    ('amarok-nightly', Sound),
-    ('anjuta', Develop),
-    ('audacious', Sound),
-    ('audacity', Sound),
-    ('avant-window-navigator', Desktop),
-    ('avant-window-navigator-trunk', Desktop),
-    ('avidemux', Video),
-    ('azureus', P2P),
-    ('banshee', Sound),
-    ('blueman', P2P),
-    ('backintime-gnome', Desktop),
-    ('backintime-kde4', Desktop),
-    ('cairo-dock', Desktop),
-    ('chmsee', Text),
-    ('christine', Sound),
-    ('chromium-browser', Internet),
-    ('compizconfig-settings-manager', Desktop),
-    ('codeblocks', Develop),
-    ('devhelp', Develop),
-    ('deluge-torrent', P2P),
-    ('eclipse', Develop),
-    ('emesene', IM),
-    ('empathy', IM),
-    ('eioffice-personal', Text),
-    ('exaile', Sound),
-    ('filezilla', FTP),
-    ('pcmanfm', Desktop),
-    ('galaxium', IM),
-    ('gajim', IM),
-    ('geany', Develop),
-    ('gftp', FTP),
-    ('ghex', Text),
-    ('gmail-notify', Mail),
-    ('gnote', Text),
-    ('gnome-do', Desktop),
-    ('gnome-globalmenu', Desktop),
-    ('gnome-colors', Desktop),
-    ('googleearth', Internet),
-    ('google-gadgets', Desktop),
-    ('google-chrome-unstable', Internet),
-    ('gparted', Disk),
-    ('gpicview', Image),
-    ('gtk-recordmydesktop', Video),
-    ('gwibber', Internet),
-    ('gtg', Text),
-    ('isomaster', Disk),
-    ('inkscape', Image),
-    ('ibus', Text),
-    ('ibus-pinyin', Text),
-    ('ibus-table', Text),
-    ('kino', Video),
-    ('lastfm', Internet),
-    ('leafpad', Text),
-    ('liferea', Internet),
-    ('mail-notification', Mail),
-    ('meld', Text),
-    ('mirage', Image),
-    ('miro', Video),
-    ('midori', Internet),
-    ('moovida', Sound),
-    ('monodevelop', Develop),
-    ('mplayer', Video),
-    ('netbeans', Develop),
-    ('nautilus-dropbox', Internet),
-    ('opera', Internet),
-    ('playonlinux', Emulator),
-    ('picasa', Image),
-    ('screenlets', Desktop),
-    ('specto', Desktop),
-    ('shutter', Image),
-    ('skype', IM),
-    ('smplayer', Video),
-    ('soundconverter', Sound),
-    ('stardict', Desktop),
-    ('synapse', IM),
-    ('spicebird', Internet),
-    ('tasque', Desktop),
-    ('terminator', Emulator),
-    ('transmission-gtk', P2P),
-    ('ubudsl', Internet),
-    ('ubuntu-restricted-extras', Desktop),
-    ('virtualbox-ose', Emulator),
-    ('virtualbox-3.0', Emulator),
-    ('vlc', Video),
-    ('vmware-player', Emulator),
-    ('wine', Emulator),
-    ('wine-doors', Emulator),
-    ('xbmc', Desktop),
-)
+APPS = \
+{
+    'agave': Image,
+    'amule': P2P,
+    'amarok-nightly': Sound,
+    'anjuta': Develop,
+    'audacious': Sound,
+    'audacity': Sound,
+    'avant-window-navigator': Desktop,
+    'avant-window-navigator-trunk': Desktop,
+    'avidemux': Video,
+    'azureus': P2P,
+    'banshee': Sound,
+    'blueman': P2P,
+    'backintime-gnome': Desktop,
+    'backintime-kde4': Desktop,
+    'cairo-dock': Desktop,
+    'chmsee': Text,
+    'christine': Sound,
+    'chromium-browser': Internet,
+    'compizconfig-settings-manager': Desktop,
+    'codeblocks': Develop,
+    'devhelp': Develop,
+    'deluge-torrent': P2P,
+    'eclipse': Develop,
+    'emesene': IM,
+    'empathy': IM,
+    'eioffice-personal': Text,
+    'exaile': Sound,
+    'filezilla': FTP,
+    'pcmanfm': Desktop,
+    'galaxium': IM,
+    'gajim': IM,
+    'geany': Develop,
+    'gftp': FTP,
+    'ghex': Text,
+    'gmail-notify': Mail,
+    'gnote': Text,
+    'gnome-do': Desktop,
+    'gnome-globalmenu': Desktop,
+    'gnome-colors': Desktop,
+    'googleearth': Internet,
+    'google-gadgets': Desktop,
+    'google-chrome-unstable': Internet,
+    'gparted': Disk,
+    'gpicview': Image,
+    'gtk-recordmydesktop': Video,
+    'gwibber': Internet,
+    'gtg': Text,
+    'isomaster': Disk,
+    'inkscape': Image,
+    'ibus': Text,
+    'ibus-pinyin': Text,
+    'ibus-table': Text,
+    'kino': Video,
+    'lastfm': Internet,
+    'leafpad': Text,
+    'liferea': Internet,
+    'mail-notification': Mail,
+    'meld': Text,
+    'mirage': Image,
+    'miro': Video,
+    'midori': Internet,
+    'moovida': Sound,
+    'monodevelop': Develop,
+    'mplayer': Video,
+    'netbeans': Develop,
+    'nautilus-dropbox': Internet,
+    'opera': Internet,
+    'playonlinux': Emulator,
+    'picasa': Image,
+    'screenlets': Desktop,
+    'specto': Desktop,
+    'shutter': Image,
+    'skype': IM,
+    'smplayer': Video,
+    'soundconverter': Sound,
+    'stardict': Desktop,
+    'synapse': IM,
+    'spicebird': Internet,
+    'tasque': Desktop,
+    'terminator': Emulator,
+    'transmission-gtk': P2P,
+    'ubudsl': Internet,
+    'ubuntu-restricted-extras': Desktop,
+    'virtualbox-ose': Emulator,
+    'virtualbox-3.0': Emulator,
+    'vlc': Video,
+    'vmware-player': Emulator,
+    'wine': Emulator,
+    'wine-doors': Emulator,
+    'xbmc': Desktop,
+}
+
+class AppView(gtk.TreeView):
+    def __init__(self, dir):
+        gtk.TreeView.__init__(self)
+
+        model = self.__create_model()
+        self.__add_columns()
+        self.set_model(model)
+
+        self.update_model()
+        treeview.set_model(self.model)
+
+    def __create_model(self):
+        model = gtk.ListStore(
+                        gobject.TYPE_BOOLEAN,
+                        gtk.gdk.Pixbuf,
+                        gobject.TYPE_STRING,
+                        gobject.TYPE_STRING,
+                        gobject.TYPE_STRING,
+                        gobject.TYPE_STRING,
+                        gobject.TYPE_STRING)
+
+        model.set_sort_column_id(COLUMN_NAME, gtk.SORT_ASCENDING)
+
+        return model
+
+    def __add_columns(self):
+        renderer = gtk.CellRendererToggle()
+        renderer.connect('toggled', self.on_install_toggled)
+        column = gtk.TreeViewColumn(' ', renderer, active = COLUMN_INSTALLED)
+        column.set_sort_column_id(COLUMN_INSTALLED)
+        self.append_column(column)
+
+        column = gtk.TreeViewColumn('Applications')
+        column.set_sort_column_id(COLUMN_NAME)
+        column.set_spacing(5)
+        renderer = gtk.CellRendererPixbuf()
+        column.pack_start(renderer, False)
+        column.set_attributes(renderer, pixbuf = COLUMN_ICON)
+
+        renderer = gtk.CellRendererText()
+        renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
+        column.pack_start(renderer, True)
+        column.add_attribute(renderer, 'markup', COLUMN_DISPLAY)
+        self.append_column(column)
 
 class Installer(TweakPage):
     def __init__(self):
@@ -258,16 +303,21 @@ class Installer(TweakPage):
         else:
             self.filter = None
 
-        self.update_model()
+        self.update_model(APPS.keys(), APPS)
 
-    def update_model(self):
+    def update_model(self, apps, cates=None):
+        '''apps is a list to iter pkgname,
+        cates is a dict to find what the category the pkg is
+        '''
         self.model.clear()
 
         icon = gtk.icon_theme_get_default()
 
-        for item in data:
-            pkgname = item[0]
-            category = item[-1][0] 
+        for pkgname in apps:
+            if cates:
+                category = cates[pkgname][0]
+            else:
+                category = 0
 
             pixbuf = get_app_logo(pkgname)
 
@@ -317,7 +367,7 @@ class Installer(TweakPage):
 
     def deep_update(self):
         package_worker.update_apt_cache(True)
-        self.update_model()
+        self.update_model(APPS.keys(), APPS)
         
     def on_install_toggled(self, cell, path):
         iter = self.model.get_iter((int(path),))
@@ -380,7 +430,7 @@ class Installer(TweakPage):
         treeview.append_column(column)
         
         self.filter = None
-        self.update_model()
+        self.update_model(APPS.keys(), APPS)
         treeview.set_model(self.model)
 
         return treeview
@@ -400,7 +450,7 @@ class Installer(TweakPage):
 
         self.to_add = []
         self.to_rm = []
-        self.update_model()
+        self.update_model(APPS.keys(), APPS)
 
     def colleague_changed(self):
         if self.to_add or self.to_rm:
