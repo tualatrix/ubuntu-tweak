@@ -35,6 +35,9 @@ from common.policykit import PolkitButton, proxy
 from common.systeminfo import module_check
 from common.widgets import ListPack, TweakPage, GconfCheckButton
 from common.widgets.dialogs import *
+from common.package import package_worker
+from installer import APPS
+from installer import AppView
 from aptsources.sourceslist import SourceEntry, SourcesList
 
 (
@@ -703,14 +706,54 @@ class ThirdSoft(TweakPage):
         proxy.set_list_state('normal')
         widget.set_sensitive(False)
 
-        dialog = QuestionDialog(_('You can install the new applications through Add/Remove.\nDo you want to go now?'),
-            title = _('The software information is up-to-date now'))
-        if dialog.run() == gtk.RESPONSE_YES:
-            self.emit('update', 'installer', 'deep_update')
-            self.emit('call', 'mainwindow', 'select_module', {'name': 'installer'})
+        new_pkg = []
+        for pkg in package_worker.get_new_package():
+            if pkg in APPS.keys():
+                new_pkg.append(pkg)
+
+        if new_pkg:
+            treeview = AppView()
+            treeview.update_model(new_pkg)
+
+            dialog = QuestionDialog(_('You can install the new applications by selecting them and choose "Yes".\nOr you can install them at Add/Remove by choose "No".'),
+                title = _('New applications are available to update'))
+
+            vbox = dialog.vbox
+            vbox.pack_start(treeview, False, False, 0)
+
+            res = dialog.run()
+            dialog.destroy()
+
+            if res == gtk.RESPONSE_YES:
+                to_rm = treeview.to_rm
+                to_add = treeview.to_add
+                package_worker.perform_action(widget.get_toplevel(), to_add, to_rm)
+
+                package_worker.update_apt_cache(True)
+
+                done = package_worker.get_install_status(to_add, to_rm)
+
+                if done:
+                    InfoDialog(_('Update Successful!')).launch()
+                else:
+                    InfoDialog(_('Update Failed!')).launch()
+
+                self.emit('update', 'installer', 'normal_update')
+            else:
+                self.emit('update', 'installer', 'normal_update')
         else:
-            self.emit('update', 'installer', 'deep_update')
-        dialog.destroy()
+            dialog = QuestionDialog(_('You can install the new applications through Add/Remove.\nDo you want to go now?'),
+                title = _('The software information is up-to-date now'))
+            dialog.destroy()
+
+            res = dialog.run()
+            dialog.destroy()
+
+            if res == gtk.RESPONSE_YES:
+                self.emit('update', 'installer', 'normal_update')
+                self.emit('call', 'mainwindow', 'select_module', {'name': 'installer'})
+            else:
+                self.emit('update', 'installer', 'normal_update')
 
 if __name__ == '__main__':
     from utility import Test

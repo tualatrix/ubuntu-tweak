@@ -193,6 +193,8 @@ class AppView(gtk.TreeView):
         self.set_rules_hint(True)
         self.set_search_column(COLUMN_NAME)
 
+        self.show_all()
+
     def __create_model(self):
         model = gtk.ListStore(
                         gobject.TYPE_BOOLEAN,
@@ -403,7 +405,10 @@ class Installer(TweakPage):
 
     def deep_update(self):
         package_worker.update_apt_cache(True)
-        self.update_model(APPS.keys(), APPS)
+        self.treeview.update_model(APPS.keys(), APPS)
+
+    def normal_update(self):
+        self.treeview.update_model(APPS.keys(), APPS)
 
     def on_apply_clicked(self, widget, data = None):
         to_rm = self.treeview.to_rm
