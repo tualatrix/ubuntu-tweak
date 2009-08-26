@@ -105,6 +105,7 @@ APP_DATA = {
     'gnote': _('a C++ port of Tomboy'),
     'googleearth': _("A program that combines satellite imagery and maps to put the world's geographic information at your fingertips."),
     'google-gadgets': _('Platform for running Google Gadgets on Linux'),
+    'google-chrome-unstable': _('Google Chrome is a browser that combines a minimal design with sophisticated technology to make the web faster, safer, and easier.'),
     'gparted': _('GNOME partition editor'),
     'gpicview': _('Lightweight image viewer'),
     'gtk-recordmydesktop': _('Graphical frontend for recordmydesktop'),

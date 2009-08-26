@@ -123,6 +123,7 @@ data = \
     ('gnome-colors', Desktop),
     ('googleearth', Internet),
     ('google-gadgets', Desktop),
+    ('google-chrome-unstable', Internet),
     ('gparted', Disk),
     ('gpicview', Image),
     ('gtk-recordmydesktop', Video),
