@@ -151,6 +151,7 @@ data = \
     ('playonlinux', Emulator),
     ('picasa', Image),
     ('screenlets', Desktop),
+    ('specto', Desktop),
     ('shutter', Image),
     ('skype', IM),
     ('smplayer', Video),
