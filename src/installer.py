@@ -175,15 +175,23 @@ APPS = \
 }
 
 class AppView(gtk.TreeView):
-    def __init__(self, dir):
+    __gsignals__ = {
+        'changed': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_INT,))
+    }
+
+    def __init__(self):
         gtk.TreeView.__init__(self)
+
+        self.to_add = []
+        self.to_rm = []
+        self.filter = None
 
         model = self.__create_model()
         self.__add_columns()
         self.set_model(model)
 
-        self.update_model()
-        treeview.set_model(self.model)
+        self.set_rules_hint(True)
+        self.set_search_column(COLUMN_NAME)
 
     def __create_model(self):
         model = gtk.ListStore(
@@ -219,14 +227,102 @@ class AppView(gtk.TreeView):
         column.add_attribute(renderer, 'markup', COLUMN_DISPLAY)
         self.append_column(column)
 
+    def update_model(self, apps, cates=None):
+        '''apps is a list to iter pkgname,
+        cates is a dict to find what the category the pkg is
+        '''
+        model = self.get_model()
+        model.clear()
+
+        icon = gtk.icon_theme_get_default()
+
+        for pkgname in apps:
+            if cates:
+                category = cates[pkgname][0]
+            else:
+                category = 0
+
+            pixbuf = get_app_logo(pkgname)
+
+            try:
+                package = PackageInfo(pkgname)
+                is_installed = package.check_installed()
+                appname = package.get_name()
+                desc = get_app_describ(pkgname)
+            except KeyError:
+                continue
+
+            if self.filter == None:
+                if pkgname in self.to_add or pkgname in self.to_rm:
+                    model.append((not is_installed,
+                            pixbuf,
+                            pkgname,
+                            appname,
+                            desc,
+                            '<span foreground="#ffcc00"><b>%s</b>\n%s</span>' % (appname, desc),
+                            category))
+                else:
+                    model.append((is_installed,
+                            pixbuf,
+                            pkgname,
+                            appname,
+                            desc,
+                            '<b>%s</b>\n%s' % (appname, desc),
+                            category))
+            else:
+                if self.filter == category:
+                    if pkgname in self.to_add or pkgname in self.to_rm:
+                        model.append((not is_installed,
+                                pixbuf,
+                                pkgname,
+                                appname,
+                                desc,
+                                '<span foreground="#ffcc00"><b>%s</b>\n%s</span>' % (appname, desc),
+                                category))
+                    else:
+                        model.append((is_installed,
+                                pixbuf,
+                                pkgname,
+                                appname,
+                                desc,
+                                '<b>%s</b>\n%s' % (appname, desc),
+                                category))
+
+    def on_install_toggled(self, cell, path):
+        model = self.get_model()
+
+        iter = model.get_iter((int(path),))
+        is_installed = model.get_value(iter, COLUMN_INSTALLED)
+        pkgname = model.get_value(iter, COLUMN_PKG)
+        appname = model.get_value(iter, COLUMN_NAME)
+        desc = model.get_value(iter, COLUMN_DESC)
+
+        is_installed = not is_installed
+        if is_installed:
+            if pkgname in self.to_rm:
+                self.to_rm.remove(pkgname)
+                model.set(iter, COLUMN_DISPLAY, '<b>%s</b>\n%s' % (appname, desc))
+            else:
+                self.to_add.append(pkgname)
+                model.set(iter, COLUMN_DISPLAY, '<span foreground="#ffcc00"><b>%s</b>\n%s</span>' % (appname, desc))
+        else:
+            if pkgname in self.to_add:
+                self.to_add.remove(pkgname)
+                model.set(iter, COLUMN_DISPLAY, '<b>%s</b>\n%s' % (appname, desc))
+            else:
+                self.to_rm.append(pkgname)
+                model.set(iter, COLUMN_DISPLAY, '<span foreground="#ffcc00"><b>%s</b>\n%s</span>' % (appname, desc))
+
+        model.set(iter, COLUMN_INSTALLED, is_installed)
+
+        self.emit('changed', len(self.to_add) + len(self.to_rm))
+
 class Installer(TweakPage):
     def __init__(self):
         TweakPage.__init__(self, 
                 _('Add/Remove Applications'),
                 _('A simple but more effecient method for finding and installing popular packages than the default Add/Remove.'))
 
-        self.to_add = []
-        self.to_rm = []
         self.package_worker = package_worker
 
         vbox = gtk.VBox(False, 8)
@@ -247,10 +343,10 @@ class Installer(TweakPage):
         vbox.pack_start(sw)
 
         # create tree view
-        treeview = self.create_treeview()
-        treeview.set_rules_hint(True)
-        treeview.set_search_column(COLUMN_NAME)
-        sw.add(treeview)
+        self.treeview = AppView()
+        self.treeview.update_model(APPS.keys(), APPS)
+        self.treeview.connect('changed', self.on_app_status_changed)
+        sw.add(self.treeview)
 
         # button
         hbox = gtk.HBox(False, 0)
@@ -299,148 +395,24 @@ class Installer(TweakPage):
         if index:
             liststore = widget.get_model()
             iter = liststore.get_iter(index)
-            self.filter = liststore.get_value(iter, 1)
+            self.treeview.filter = liststore.get_value(iter, 1)
         else:
-            self.filter = None
+            self.treeview.filter = None
 
-        self.update_model(APPS.keys(), APPS)
-
-    def update_model(self, apps, cates=None):
-        '''apps is a list to iter pkgname,
-        cates is a dict to find what the category the pkg is
-        '''
-        self.model.clear()
-
-        icon = gtk.icon_theme_get_default()
-
-        for pkgname in apps:
-            if cates:
-                category = cates[pkgname][0]
-            else:
-                category = 0
-
-            pixbuf = get_app_logo(pkgname)
-
-            try:
-                package = PackageInfo(pkgname)
-                is_installed = package.check_installed()
-                appname = package.get_name()
-                desc = get_app_describ(pkgname)
-            except KeyError:
-                continue
-
-            if self.filter == None:
-                if pkgname in self.to_add or pkgname in self.to_rm:
-                    self.model.append((not is_installed,
-                            pixbuf,
-                            pkgname,
-                            appname,
-                            desc,
-                            '<span foreground="#ffcc00"><b>%s</b>\n%s</span>' % (appname, desc),
-                            category))
-                else:
-                    self.model.append((is_installed,
-                            pixbuf,
-                            pkgname,
-                            appname,
-                            desc,
-                            '<b>%s</b>\n%s' % (appname, desc),
-                            category))
-            else:
-                if self.filter == category:
-                    if pkgname in self.to_add or pkgname in self.to_rm:
-                        self.model.append((not is_installed,
-                                pixbuf,
-                                pkgname,
-                                appname,
-                                desc,
-                                '<span foreground="#ffcc00"><b>%s</b>\n%s</span>' % (appname, desc),
-                                category))
-                    else:
-                        self.model.append((is_installed,
-                                pixbuf,
-                                pkgname,
-                                appname,
-                                desc,
-                                '<b>%s</b>\n%s' % (appname, desc),
-                                category))
+        self.treeview.update_model(APPS.keys(), APPS)
 
     def deep_update(self):
         package_worker.update_apt_cache(True)
         self.update_model(APPS.keys(), APPS)
-        
-    def on_install_toggled(self, cell, path):
-        iter = self.model.get_iter((int(path),))
-        is_installed = self.model.get_value(iter, COLUMN_INSTALLED)
-        pkgname = self.model.get_value(iter, COLUMN_PKG)
-        appname = self.model.get_value(iter, COLUMN_NAME)
-        desc = self.model.get_value(iter, COLUMN_DESC)
-
-        is_installed = not is_installed
-        if is_installed:
-            if pkgname in self.to_rm:
-                self.to_rm.remove(pkgname)
-                self.model.set(iter, COLUMN_DISPLAY, '<b>%s</b>\n%s' % (appname, desc))
-            else:
-                self.to_add.append(pkgname)
-                self.model.set(iter, COLUMN_DISPLAY, '<span foreground="#ffcc00"><b>%s</b>\n%s</span>' % (appname, desc))
-        else:
-            if pkgname in self.to_add:
-                self.to_add.remove(pkgname)
-                self.model.set(iter, COLUMN_DISPLAY, '<b>%s</b>\n%s' % (appname, desc))
-            else:
-                self.to_rm.append(pkgname)
-                self.model.set(iter, COLUMN_DISPLAY, '<span foreground="#ffcc00"><b>%s</b>\n%s</span>' % (appname, desc))
-
-        self.model.set(iter, COLUMN_INSTALLED, is_installed)
-        self.colleague_changed()
-
-    def create_treeview(self):
-        self.model = gtk.ListStore(
-                        gobject.TYPE_BOOLEAN,
-                        gtk.gdk.Pixbuf,
-                        gobject.TYPE_STRING,
-                        gobject.TYPE_STRING,
-                        gobject.TYPE_STRING,
-                        gobject.TYPE_STRING,
-                        gobject.TYPE_STRING)
-
-        self.model.set_sort_column_id(COLUMN_NAME, gtk.SORT_ASCENDING)
-        treeview = gtk.TreeView()
-
-        # column for is_installed toggles
-        renderer = gtk.CellRendererToggle()
-        renderer.connect('toggled', self.on_install_toggled)
-        column = gtk.TreeViewColumn(' ', renderer, active = COLUMN_INSTALLED)
-        column.set_sort_column_id(COLUMN_INSTALLED)
-        treeview.append_column(column)
-
-        # column for application
-        column = gtk.TreeViewColumn('Applications')
-        column.set_sort_column_id(COLUMN_NAME)
-        column.set_spacing(5)
-        renderer = gtk.CellRendererPixbuf()
-        column.pack_start(renderer, False)
-        column.set_attributes(renderer, pixbuf = COLUMN_ICON)
-
-        renderer = gtk.CellRendererText()
-        renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
-        column.pack_start(renderer, True)
-        column.add_attribute(renderer, 'markup', COLUMN_DISPLAY)
-        treeview.append_column(column)
-        
-        self.filter = None
-        self.update_model(APPS.keys(), APPS)
-        treeview.set_model(self.model)
-
-        return treeview
 
     def on_apply_clicked(self, widget, data = None):
-        self.package_worker.perform_action(widget.get_toplevel(), self.to_add, self.to_rm)
+        to_rm = self.treeview.to_rm
+        to_add = self.treeview.to_add
+        self.package_worker.perform_action(widget.get_toplevel(), to_add, to_rm)
 
         package_worker.update_apt_cache(True)
 
-        done = package_worker.get_install_status(self.to_add, self.to_rm)
+        done = package_worker.get_install_status(to_add, to_rm)
 
         if done:
             self.button.set_sensitive(False)
@@ -448,12 +420,12 @@ class Installer(TweakPage):
         else:
             InfoDialog(_('Update Failed!')).launch()
 
-        self.to_add = []
-        self.to_rm = []
-        self.update_model(APPS.keys(), APPS)
+        self.treeview.to_add = []
+        self.treeview.to_rm = []
+        self.treeview.update_model(APPS.keys(), APPS)
 
-    def colleague_changed(self):
-        if self.to_add or self.to_rm:
+    def on_app_status_changed(self, widget, i):
+        if i:
             self.button.set_sensitive(True)
         else:
             self.button.set_sensitive(False)
