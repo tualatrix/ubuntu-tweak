@@ -132,7 +132,7 @@ APP_DATA = {
     'netbeans': _('IDE for Java, C/C++, Ruby, UML, etc.'),
     'opera': _('The Opera Web Browser'),
     'pidgin': _('Pidgin is a graphical modular messaging client based on libpurple which is capable of connecting to AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, SIP/SIMPLE, Novell GroupWise, Lotus Sametime, Bonjour, Zephyr, MySpaceIM, Gadu-Gadu, and QQ all at once.'),
-    'playonlinux': _('Run your Windows programs on Linux'),
+    'playonlinux': _('PlayOnLinux is a front-end for wine. It permits you to install Windows Games and softwares on Linux.'),
     'picasa': _('Image management application from Google'),
     'screenlets': _('A framework for desktop widgets'),
     'shutter': _('Feature-rich screenshot application(formerly known as GScrot)'),
