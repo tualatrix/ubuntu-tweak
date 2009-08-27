@@ -713,6 +713,7 @@ class ThirdSoft(TweakPage):
 
         if new_pkg:
             treeview = AppView()
+            treeview.set_headers_visible(False)
             treeview.update_model(new_pkg)
 
             dialog = QuestionDialog(_('You can install the new applications by selecting them and choose "Yes".\nOr you can install them at Add/Remove by choose "No".'),
@@ -744,7 +745,6 @@ class ThirdSoft(TweakPage):
         else:
             dialog = QuestionDialog(_('You can install the new applications through Add/Remove.\nDo you want to go now?'),
                 title = _('The software information is up-to-date now'))
-            dialog.destroy()
 
             res = dialog.run()
             dialog.destroy()
