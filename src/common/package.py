@@ -152,6 +152,13 @@ class PackageWorker:
             apt_pkg.init()
             self.cache = apt.Cache()
 
+    def get_new_package(self):
+        old = self.get_cache().keys()
+        self.update_apt_cache(True)
+        new = self.get_cache().keys()
+
+        return set(new).difference(set(old))
+
 package_worker = PackageWorker()
 
 class AptCheckButton(gtk.CheckButton):
@@ -202,7 +209,6 @@ class PackageInfo:
             return self.name.title()
 
         return appname
-
 
 if __name__ == '__main__':
     update_apt_cache()

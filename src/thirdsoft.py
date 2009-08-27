@@ -35,6 +35,9 @@ from common.policykit import PolkitButton, proxy
 from common.systeminfo import module_check
 from common.widgets import ListPack, TweakPage, GconfCheckButton
 from common.widgets.dialogs import *
+from common.package import package_worker
+from installer import APPS
+from installer import AppView
 from aptsources.sourceslist import SourceEntry, SourcesList
 
 (
@@ -134,6 +137,9 @@ Vlc = [_('VLC media player'), 'vlc', 'www.videolan.org/vlc/', 'vlc.gpg']
 Shutter = ['Shutter', 'shutter', 'launchpad.net/shutter', 'shutter.gpg']
 Pidgin = ['Pidgin', 'pidgin', 'pidgin.im', 'pidgin.gpg']
 Moovida = ['Moovida', 'moovida', 'www.moovida.com', 'moovida.gpg']
+Moblin_Jaunty = [_('Moblin for Ubuntu 9.04 Jaunty'), 'moblin', 'launchpad.net/~sudbury-team', 'moblin-jaunty.gpg']
+Moblin_Karmic = [_('Moblin for Ubuntu 9.10 Karmic'), 'moblin', 'launchpad.net/~moblin', 'moblin-karmic.gpg']
+
 Galaxium = ['Galaxium', 'galaxium', 'code.google.com/p/galaxium/', 'galaxium.gpg']
 Swiftweasel = ['Swiftweasel', 'swiftweasel', 'swiftweasel.tuxfamily.org', '']
 Medibuntu = ['Medibuntu', 'medibuntu', 'www.medibuntu.org', 'medibuntu.gpg']
@@ -183,6 +189,8 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/compiz/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', CompizFusion],
     ['http://ppa.launchpad.net/pidgin-developers/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Pidgin],
     ['http://ppa.launchpad.net/moovida-packagers/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Moovida],
+    ['http://ppa.launchpad.net/sudbury-team/ppa/ubuntu', 'jaunty', 'main', Moblin_Jaunty],
+    ['http://ppa.launchpad.net/moblin/ppa/ubuntu', ['jaunty', 'karmic'], 'main', Moblin_Karmic],
     ['http://repository.cairo-dock.org/ubuntu', ['hardy', 'intrepid'], 'cairo-dock', CairoDock],
     ['http://ppa.launchpad.net/do-core/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', GnomeDo],
     ['http://ppa.launchpad.net/banshee-team/ppa/ubuntu', ['hardy', 'intrepid'], 'main', Banshee_Stable],
@@ -225,6 +233,7 @@ SOURCES_DEPENDENCIES = {
     Midori[0]: WebKitGtk[0],
     Liferea[0]: WebKitGtk[0],
     Smplayer_Testing[0]: MplayerLibs[0],
+    Moblin_Jaunty[0]: Moblin_Karmic[0],
 }
 
 SOURCES_CONFLICTS = {
@@ -702,14 +711,54 @@ class ThirdSoft(TweakPage):
         proxy.set_list_state('normal')
         widget.set_sensitive(False)
 
-        dialog = QuestionDialog(_('You can install the new applications through Add/Remove.\nDo you want to go now?'),
-            title = _('The software information is up-to-date now'))
-        if dialog.run() == gtk.RESPONSE_YES:
-            self.emit('update', 'installer', 'deep_update')
-            self.emit('call', 'mainwindow', 'select_module', {'name': 'installer'})
+        new_pkg = []
+        for pkg in package_worker.get_new_package():
+            if pkg in APPS.keys():
+                new_pkg.append(pkg)
+
+        if new_pkg:
+            treeview = AppView()
+            treeview.update_model(new_pkg)
+
+            dialog = QuestionDialog(_('You can install the new applications by selecting them and choose "Yes".\nOr you can install them at Add/Remove by choose "No".'),
+                title = _('New applications are available to update'))
+
+            vbox = dialog.vbox
+            vbox.pack_start(treeview, False, False, 0)
+
+            res = dialog.run()
+            dialog.destroy()
+
+            if res == gtk.RESPONSE_YES:
+                to_rm = treeview.to_rm
+                to_add = treeview.to_add
+                package_worker.perform_action(widget.get_toplevel(), to_add, to_rm)
+
+                package_worker.update_apt_cache(True)
+
+                done = package_worker.get_install_status(to_add, to_rm)
+
+                if done:
+                    InfoDialog(_('Update Successful!')).launch()
+                else:
+                    InfoDialog(_('Update Failed!')).launch()
+
+                self.emit('update', 'installer', 'normal_update')
+            else:
+                self.emit('update', 'installer', 'normal_update')
         else:
-            self.emit('update', 'installer', 'deep_update')
-        dialog.destroy()
+            dialog = QuestionDialog(_('You can install the new applications through Add/Remove.\nDo you want to go now?'),
+                title = _('The software information is up-to-date now'))
+            dialog.destroy()
+
+            res = dialog.run()
+            dialog.destroy()
+
+            if res == gtk.RESPONSE_YES:
+                self.emit('update', 'installer', 'normal_update')
+                self.emit('call', 'mainwindow', 'select_module', {'name': 'installer'})
+            else:
+                self.emit('update', 'installer', 'normal_update')
 
 if __name__ == '__main__':
     from utility import Test

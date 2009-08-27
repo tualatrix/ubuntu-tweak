@@ -127,6 +127,7 @@ APP_DATA = {
     'midori': _('Webkit based lightweight web browser'),
     'moovida': _('The free media player - play all your files'),
     'monodevelop': _('An IDE to Develop .NET applications.'),
+    'moblin': _('A moblin feature enabled environment for Ubuntu (Testing Only)'),
     'mplayer': _('The Ultimate Movie Player For Linux'),
     'netbeans': _('IDE for Java, C/C++, Ruby, UML, etc.'),
     'opera': _('The Opera Web Browser'),
