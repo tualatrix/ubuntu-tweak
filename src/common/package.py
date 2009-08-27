@@ -93,6 +93,14 @@ class PackageWorker:
 
         return list
 
+    def get_local_pkg(self):
+        #TODO More check
+        list = []
+        for pkg in self.get_cache():
+            if pkg.candidateDownloadable == 0:
+                list.append(pkg)
+        return list
+
     def list_unneeded_kerenl(self):
         list = []
         for pkg in self.cache.keys():
