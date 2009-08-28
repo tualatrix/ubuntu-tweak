@@ -116,6 +116,7 @@ APP_DATA = {
     'ibus': _('Intelligent Input Bus for Linux / Unix OS'),
     'ibus-pinyin': _('It is a PinYin engine for IBus.'),
     'ibus-table': _('IBus-Table is the IM Engine framework for table-based input methods, such as ZhengMa, WuBi, ErBi, ChangJie and so on.'),
+    'ibus-table-wubi': _('Wubi input method based on table engine of ibus'),
     'inkscape': _('Create and edit Scalable Vector Graphics images'),
     'kino': _('Non-linear editor for Digital Video data'),
     'lastfm': _('A music player for Last.fm personalized radio'),
