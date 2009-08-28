@@ -153,6 +153,7 @@ APPS = \
     'opera': Internet,
     'playonlinux': Emulator,
     'picasa': Image,
+    'qt-creator': Develop,
     'screenlets': Desktop,
     'specto': Desktop,
     'shutter': Image,

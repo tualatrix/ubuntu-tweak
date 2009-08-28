@@ -136,6 +136,7 @@ APP_DATA = {
     'pidgin': _('Pidgin is a graphical modular messaging client based on libpurple which is capable of connecting to AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, SIP/SIMPLE, Novell GroupWise, Lotus Sametime, Bonjour, Zephyr, MySpaceIM, Gadu-Gadu, and QQ all at once.'),
     'playonlinux': _('PlayOnLinux is a front-end for wine. It permits you to install Windows Games and softwares on Linux.'),
     'picasa': _('Image management application from Google'),
+    'qt-creator': _('IDE for Development with Qt'),
     'shiki-colors': _('Shiki-Colors is a set of Metacity/GTK-2+ themes which mix the elegance of a dark theme with the usability of a light theme, resulting in a hybrid theme.'),
     'screenlets': _('A framework for desktop widgets'),
     'shutter': _('Feature-rich screenshot application(formerly known as GScrot)'),
