@@ -68,6 +68,7 @@ Desktop = (_('Desktop Tools'), 'desktop.png')
 Disk = (_('CD/Disk Tools'), 'cd.png')
 Develop = (_('Development'), 'develop.png')
 Emulator = (_('Emulators'), 'emulator.png')
+Theme = (_('Themes'), 'theme.png')
 Mail = (_('E-mail Tools'), 'mail.png')
 
 def create_cate(*items):
@@ -78,7 +79,7 @@ def create_cate(*items):
         new.append(list)
     return new
 
-CATES_DATA = create_cate(P2P, Image, Sound, Video, Text, IM, Internet, FTP, Desktop, Disk, Develop, Emulator, Mail)
+CATES_DATA = create_cate(P2P, Image, Sound, Video, Text, IM, Internet, FTP, Desktop, Disk, Develop, Emulator, Theme, Mail)
 
 APPS = \
 {
@@ -120,7 +121,9 @@ APPS = \
     'gnote': Text,
     'gnome-do': Desktop,
     'gnome-globalmenu': Desktop,
-    'gnome-colors': Desktop,
+    'gnome-colors': Theme,
+    'shiki-colors': Theme,
+    'arc-colors': Theme,
     'googleearth': Internet,
     'google-gadgets': Desktop,
     'google-chrome-unstable': Internet,
