@@ -301,6 +301,7 @@ class UpdateCacheDialog:
         self.dialog.hide()
         if res == gtk.RESPONSE_YES:
             self.parent.set_sensitive(False)
+            self.parent.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
             lock = thread.allocate_lock()
             lock.acquire()
             t = thread.start_new_thread(self.update_cache,
@@ -310,6 +311,7 @@ class UpdateCacheDialog:
                     gtk.main_iteration()
                     time.sleep(0.05)
             self.parent.set_sensitive(True)
+            self.parent.window.set_cursor(None)
         return res
 
 class SourcesView(gtk.TreeView):
