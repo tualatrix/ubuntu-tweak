@@ -167,6 +167,11 @@ class PackageWorker:
 
         return set(new).difference(set(old))
 
+    def get_update_package(self):
+        for pkg in self.get_cache():
+            if pkg.isUpgradable == 1:
+                yield pkg
+
 package_worker = PackageWorker()
 
 class AptCheckButton(gtk.CheckButton):
