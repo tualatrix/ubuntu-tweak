@@ -265,6 +265,51 @@ def filter_sources():
 
 SOURCES_DATA = filter_sources()
 
+(
+    COLUMN_INSTALL,
+    COLUMN_PACKAGE,
+    COLUMN_TEXT,
+) = range(3)
+
+class UpdateView(AppView):
+    def __init__(self):
+        AppView.__init__(self)
+
+    def update_model(self, apps, cates=None):
+        model = self.get_model()
+
+        model.append((None,
+                        None,
+                        None,
+                        None,
+                        None,
+                        '<span size="large" weight="bold">%s</span>' % 'Available New Applications',
+                        None,
+                        None))
+
+        super(UpdateView, self).update_model(apps, cates)
+
+    def update_updates(self, pkgs):
+        '''apps is a list to iter pkgname,
+        cates is a dict to find what the category the pkg is
+        '''
+        model = self.get_model()
+
+        model.append((None,
+                        None,
+                        None,
+                        None,
+                        None,
+                        '<span size="large" weight="bold">%s</span>' % 'Available Package Updates',
+                        None,
+                        None))
+
+        for pkg in pkgs:
+            name = pkg.name
+            summary = pkg.summary
+
+            self.append_update(True, name, summary)
+
 class UpdateCacheDialog:
     """This class is modified from Software-Properties"""
     def __init__(self, parent):
@@ -602,7 +647,6 @@ class ThirdSoft(TweakPage):
         hbox.pack_end(un_lock, False, False, 0)
 
         self.refresh_button = gtk.Button(stock = gtk.STOCK_REFRESH)
-        self.refresh_button.set_sensitive(False)
         self.refresh_button.connect('clicked', self.on_refresh_button_clicked)
         hbox.pack_end(self.refresh_button, False, False, 0)
 
@@ -698,7 +742,6 @@ class ThirdSoft(TweakPage):
             AuthenticateFailDialog().launch()
 
     def colleague_changed(self, widget):
-        self.refresh_button.set_sensitive(True)
         self.emit('update', 'sourceeditor', 'update_sourceslist')
     
     def on_refresh_button_clicked(self, widget):
@@ -706,30 +749,41 @@ class ThirdSoft(TweakPage):
         res = dialog.run()
 
         proxy.set_list_state('normal')
-        widget.set_sensitive(False)
 
         new_pkg = []
         for pkg in package_worker.get_new_package():
             if pkg in APPS.keys():
                 new_pkg.append(pkg)
 
-        if new_pkg:
-            treeview = AppView()
-            treeview.set_headers_visible(False)
-            treeview.update_model(new_pkg)
+        new_updates = list(package_worker.get_update_package())
+
+        if new_pkg or new_updates:
+            updateview = UpdateView()
+            updateview.set_headers_visible(False)
+
+            if new_pkg:
+                updateview.update_model(new_pkg)
+
+            if new_updates:
+                updateview.update_updates(package_worker.get_update_package())
 
             dialog = QuestionDialog(_('You can install the new applications by selecting them and choose "Yes".\nOr you can install them at Add/Remove by choose "No".'),
                 title = _('New applications are available to update'))
 
             vbox = dialog.vbox
-            vbox.pack_start(treeview, False, False, 0)
+            sw = gtk.ScrolledWindow()
+            sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+            sw.set_size_request(-1, 200)
+            vbox.pack_start(sw, False, False, 0)
+            sw.add(updateview)
+            sw.show_all()
 
             res = dialog.run()
             dialog.destroy()
 
             if res == gtk.RESPONSE_YES:
-                to_rm = treeview.to_rm
-                to_add = treeview.to_add
+                to_rm = updateview.to_rm
+                to_add = updateview.to_add
                 package_worker.perform_action(widget.get_toplevel(), to_add, to_rm)
 
                 package_worker.update_apt_cache(True)
