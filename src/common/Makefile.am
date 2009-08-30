@@ -17,6 +17,7 @@ common_PYTHON = \
 	./factory.py \
 	./systeminfo.py \
 	./misc.py \
+	./notify.py \
 	$(NULL)
 
 commondir = $(pkgdatadir)/common

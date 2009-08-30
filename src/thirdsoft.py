@@ -36,6 +36,7 @@ from common.systeminfo import module_check
 from common.widgets import ListPack, TweakPage, GconfCheckButton
 from common.widgets.dialogs import *
 from common.package import package_worker
+from common.notify import notify
 from installer import APPS
 from installer import AppView
 from aptsources.sourceslist import SourceEntry, SourcesList
@@ -540,6 +541,7 @@ class SourcesView(gtk.TreeView):
         '''
 
         url = self.model.get_value(iter, COLUMN_URL)
+        icon = self.model.get_value(iter, COLUMN_LOGO)
         distro = self.model.get_value(iter, COLUMN_DISTRO)
         name = self.model.get_value(iter, COLUMN_NAME)
         comps = self.model.get_value(iter, COLUMN_COMPS)
@@ -562,6 +564,11 @@ class SourcesView(gtk.TreeView):
 
         if pre_status != enable:
             self.emit('sourcechanged')
+
+        if enable:
+            notify.update('New source has been enabled', '%s is enalbed now, Please click the refresh button to update the application cache.' % name)
+            notify.set_icon_from_pixbuf(icon)
+            notify.show()
 
 class SourceDetail(gtk.VBox):
     def __init__(self):
