@@ -90,7 +90,7 @@ APP_DATA = {
     'eioffice-personal': _('EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw.com.'),
     'emesene': _('A client for the Windows Live Message network'),
     'empathy': _('Empathy consists of a rich set of reusable instant messaging widgets, and a GNOME client using those widgets.'),
-    'exaile': _('GTK+ based flexible audio player, similar to Amarok'),
+    'exaile': _('flexible audio player, similar to Amarok, but written in GTK+'),
     'filezilla': _('File transmission via ftp, sftp and ftps'),
     'pcmanfm': _('An extremly fast and lightweight file manager'),
     'galaxium': _('Galaxium is an instant messenger application designed for the GNOME desktop'),

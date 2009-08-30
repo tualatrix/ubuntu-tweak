@@ -89,6 +89,7 @@ IBus_Jaunty = [_('IBus 1.2 for jaunty'), 'ibus', 'code.google.com/p/ibus', 'ibus
 IBus_Karmic = [_('IBus 1.2 for karmic'), 'ibus', 'code.google.com/p/ibus', 'ibus-dev.gpg']
 Midori = ['Midori', 'midori', 'www.twotoasts.de', 'midori.gpg']
 Empathy = ['Empathy', 'empathy', 'launchpad.net/~telepathy', 'empathy.gpg']
+Exaile = ['Exaile', 'exaile', 'www.exaile.org', 'exaile.gpg']
 WebKitGtk = ['WebKitGtk', 'webkitgtk', 'webkitgtk.org', 'webkitgtk.gpg']
 Firefox = ['Firefox', 'firefox', 'www.mozilla.org', 'firefox.gpg']
 MozillaSecurity = [_('Ubuntu Mozilla Security Team'), 'mozilla-security', 'launchpad.net/~ubuntu-mozilla-security', 'mozilla-security.gpg']
@@ -172,6 +173,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/geany-dev/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Geany],
     ['http://ppa.launchpad.net/gnote/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Gnote],
     ['http://ppa.launchpad.net/telepathy/ppa/ubuntu', ['jaunty', 'karmic'], 'main', Empathy],
+    ['http://ppa.launchpad.net/exaile-devel/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Exaile],
     ['http://deb.opera.com/opera/', 'lenny', 'non-free', Opera],
     ['http://ppa.launchpad.net/firerabbit/ppa/ubuntu', ['intrepid','jaunty'], 'main', Synapse],
     ['http://download.skype.com/linux/repos/debian', 'stable', 'non-free', Skype],
