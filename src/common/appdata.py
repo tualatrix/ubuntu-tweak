@@ -76,6 +76,7 @@ APP_DATA = {
     'blueman': _('GTK+ Bluetooth Manager'),
     'backintime-gnome': _('Simple backup system for GNOME Desktop'),
     'backintime-kde4': _('Simple backup system for KDE4 Desktop'),
+    'breathe-icon-theme': _("The Breathe icon theme is a refresh of the Human icon theme using KDE's Oxygen icon set as an inspiration but with that distinctly Human feel."),
     'cairo-dock': _('A true dock for linux'),
     'chmsee': _('A chm file viewer written in GTK+'),
     'christine': _('Desired to be small and fast, christine is a simple media player, that let you play your favorite music and videos from one single application.'),

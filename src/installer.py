@@ -98,6 +98,7 @@ APPS = \
     'blueman': P2P,
     'backintime-gnome': Desktop,
     'backintime-kde4': Desktop,
+    'breathe-icon-theme': Theme,
     'cairo-dock': Desktop,
     'chmsee': Text,
     'christine': Sound,
