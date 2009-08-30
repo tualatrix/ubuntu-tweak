@@ -316,7 +316,7 @@ def refresh_source(parent):
         if res == gtk.RESPONSE_YES:
             to_rm = updateview.to_rm
             to_add = updateview.to_add
-            package_worker.perform_action(widget.get_toplevel(), to_add, to_rm)
+            package_worker.perform_action(parent, to_add, to_rm)
 
             package_worker.update_apt_cache(True)
 
