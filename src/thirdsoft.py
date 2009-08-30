@@ -570,7 +570,7 @@ class SourcesView(gtk.TreeView):
             self.emit('sourcechanged')
 
         if enable:
-            notify.update('New source has been enabled', '%s is enalbed now, Please click the refresh button to update the application cache.' % name)
+            notify.update('New source has been enabled', '%s is enalbed now, Please click the refresh button to update the application cache.' % comment)
             notify.set_icon_from_pixbuf(icon)
             notify.show()
 
