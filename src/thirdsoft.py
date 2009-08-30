@@ -821,7 +821,7 @@ class ThirdSoft(TweakPage):
             AuthenticateFailDialog().launch()
 
     def colleague_changed(self, widget):
-        self.emit('update', 'sourceeditor', 'update_sourceslist')
+        self.emit('update', 'sourceeditor', 'update_source_combo')
     
     def on_refresh_button_clicked(self, widget):
         if refresh_source(widget.get_toplevel()):
