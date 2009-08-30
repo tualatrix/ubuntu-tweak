@@ -24,13 +24,14 @@ import thread
 import socket
 import gobject
 import gettext
-from thirdsoft import UpdateCacheDialog
+from thirdsoft import refresh_source
 from xmlrpclib import ServerProxy, Error
 from common.utils import *
 from common.gui import GuiWorker
 from common.systeminfo import module_check
 from common.policykit import PolkitButton, proxy
 from common.utils import set_label_for_stock_button
+from common.package import package_worker
 from common.widgets import TweakPage
 from common.widgets.dialogs import *
 
@@ -443,14 +444,8 @@ class SourceEditor(TweakPage):
             self.update_sourceslist()
 
     def on_refresh_button_clicked(self, widget):
-        dialog = UpdateCacheDialog(widget.get_toplevel())
-        res = dialog.run()
+        refresh_source(widget.get_toplevel())
 
-        proxy.set_list_state('normal')
-
-        InfoDialog(_('You can install new applications through Add/Remove.'),
-            title = _('The software information is up-to-date now')).launch()
-        self.emit('update', 'installer', 'deep_update')
         self.emit('update', 'thirdsoft', 'update_thirdparty')
 
     def update_sourceslist(self):

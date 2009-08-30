@@ -276,6 +276,65 @@ def filter_sources():
 
 SOURCES_DATA = filter_sources()
 
+def refresh_source(parent):
+    dialog = UpdateCacheDialog(parent)
+    res = dialog.run()
+
+    proxy.set_list_state('normal')
+
+    new_pkg = []
+    for pkg in package_worker.get_new_package():
+        if pkg in APPS.keys():
+            new_pkg.append(pkg)
+
+    new_updates = list(package_worker.get_update_package())
+
+    if new_pkg or new_updates:
+        updateview = UpdateView()
+        updateview.set_headers_visible(False)
+
+        if new_pkg:
+            updateview.update_model(new_pkg)
+
+        if new_updates:
+            updateview.update_updates(package_worker.get_update_package())
+
+        dialog = QuestionDialog(_('You can install the new applications by selecting them and choose "Yes".\nOr you can install them at Add/Remove by choose "No".'),
+            title = _('New applications are available to update'))
+
+        vbox = dialog.vbox
+        sw = gtk.ScrolledWindow()
+        sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        sw.set_size_request(-1, 200)
+        vbox.pack_start(sw, False, False, 0)
+        sw.add(updateview)
+        sw.show_all()
+
+        res = dialog.run()
+        dialog.destroy()
+
+        if res == gtk.RESPONSE_YES:
+            to_rm = updateview.to_rm
+            to_add = updateview.to_add
+            package_worker.perform_action(widget.get_toplevel(), to_add, to_rm)
+
+            package_worker.update_apt_cache(True)
+
+            done = package_worker.get_install_status(to_add, to_rm)
+
+            if done:
+                InfoDialog(_('Update Successful!')).launch()
+            else:
+                InfoDialog(_('Update Failed!')).launch()
+
+        return True
+    else:
+        dialog = InfoDialog(_("Your system is clean and there's no update yet."),
+            title = _('The software information is up-to-date now'))
+
+        dialog.launch()
+        return False
+
 class UpdateView(AppView):
     def __init__(self):
         AppView.__init__(self)
@@ -664,6 +723,7 @@ class ThirdSoft(TweakPage):
         hbox.pack_end(un_lock, False, False, 0)
 
         self.refresh_button = gtk.Button(stock = gtk.STOCK_REFRESH)
+        self.refresh_button.set_sensitive(False)
         self.refresh_button.connect('clicked', self.on_refresh_button_clicked)
         hbox.pack_end(self.refresh_button, False, False, 0)
 
@@ -734,6 +794,8 @@ class ThirdSoft(TweakPage):
 
     def on_polkit_action(self, widget, action):
         if action:
+            self.refresh_button.set_sensitive(True)
+
             if proxy.get_proxy():
                 self.treeview.set_sensitive(True)
                 self.expander.set_sensitive(True)
@@ -762,71 +824,8 @@ class ThirdSoft(TweakPage):
         self.emit('update', 'sourceeditor', 'update_sourceslist')
     
     def on_refresh_button_clicked(self, widget):
-        dialog = UpdateCacheDialog(widget.get_toplevel())
-        res = dialog.run()
-
-        proxy.set_list_state('normal')
-
-        new_pkg = []
-        for pkg in package_worker.get_new_package():
-            if pkg in APPS.keys():
-                new_pkg.append(pkg)
-
-        new_updates = list(package_worker.get_update_package())
-
-        if new_pkg or new_updates:
-            updateview = UpdateView()
-            updateview.set_headers_visible(False)
-
-            if new_pkg:
-                updateview.update_model(new_pkg)
-
-            if new_updates:
-                updateview.update_updates(package_worker.get_update_package())
-
-            dialog = QuestionDialog(_('You can install the new applications by selecting them and choose "Yes".\nOr you can install them at Add/Remove by choose "No".'),
-                title = _('New applications are available to update'))
-
-            vbox = dialog.vbox
-            sw = gtk.ScrolledWindow()
-            sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-            sw.set_size_request(-1, 200)
-            vbox.pack_start(sw, False, False, 0)
-            sw.add(updateview)
-            sw.show_all()
-
-            res = dialog.run()
-            dialog.destroy()
-
-            if res == gtk.RESPONSE_YES:
-                to_rm = updateview.to_rm
-                to_add = updateview.to_add
-                package_worker.perform_action(widget.get_toplevel(), to_add, to_rm)
-
-                package_worker.update_apt_cache(True)
-
-                done = package_worker.get_install_status(to_add, to_rm)
-
-                if done:
-                    InfoDialog(_('Update Successful!')).launch()
-                else:
-                    InfoDialog(_('Update Failed!')).launch()
-
-                self.emit('update', 'installer', 'normal_update')
-            else:
-                self.emit('update', 'installer', 'normal_update')
-        else:
-            dialog = QuestionDialog(_('You can install the new applications through Add/Remove.\nDo you want to go now?'),
-                title = _('The software information is up-to-date now'))
-
-            res = dialog.run()
-            dialog.destroy()
-
-            if res == gtk.RESPONSE_YES:
-                self.emit('update', 'installer', 'normal_update')
-                self.emit('call', 'mainwindow', 'select_module', {'name': 'installer'})
-            else:
-                self.emit('update', 'installer', 'normal_update')
+        if refresh_source(widget.get_toplevel()):
+            self.emit('update', 'installer', 'normal_update')
 
 if __name__ == '__main__':
     from utility import Test
