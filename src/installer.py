@@ -114,6 +114,8 @@ APPS = \
     'exaile': Sound,
     'filezilla': FTP,
     'pcmanfm': Desktop,
+    'gimp': Image,
+    'giver': P2P,
     'galaxium': IM,
     'gajim': IM,
     'geany': Develop,

@@ -99,6 +99,7 @@ APP_DATA = {
     'gftp': _('A multithreaded FTP client'),
     'ghex': _('GNOME Hex editor'),
     'gimp': _('The GNU Image Manipulation Program'),
+    'giver': _('A simple file sharing desktop application'),
     'gmail-notify': _('Notifies the user upon arrival of new mail in Gmail'),
     'gmchess': _('GMChess is chinese chess game write by gtkmm'),
     'gnome-do': _('A powerful, speedy, and sexy remote control for the GNOME Desktop'),
