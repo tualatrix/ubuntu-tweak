@@ -137,6 +137,7 @@ VirtualBox = ['VirtualBox', 'virtualbox', 'www.virtualbox.org', 'virtualbox.gpg'
 VirtualBoxOse = [_('VirtualBox (Open Source Edition)'), 'virtualbox-ose', 'www.virtualbox.org', 'virtualboxose.gpg']
 Vlc = [_('VLC media player'), 'vlc', 'www.videolan.org/vlc/', 'vlc.gpg']
 Shutter = ['Shutter', 'shutter', 'launchpad.net/shutter', 'shutter.gpg']
+Qt = ['Qt', 'qt', 'qt.nokia.com', 'qt.gpg']
 Rednotebook = ['RedNoteBook', 'rednotebook', 'rednotebook.sourceforge.net', 'rednotebook.gpg']
 Pidgin = ['Pidgin', 'pidgin', 'pidgin.im', 'pidgin.gpg']
 Moovida = ['Moovida', 'moovida', 'www.moovida.com', 'moovida.gpg']
@@ -224,6 +225,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/debfx/virtualbox/ubuntu', ['intrepid', 'jaunty'], 'main', VirtualBoxOse],
     ['http://ppa.launchpad.net/c-korn/vlc/ubuntu', ['jaunty'], 'main', Vlc],
     ['http://ppa.launchpad.net/shutter/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Shutter],
+    ['http://ppa.launchpad.net/debfx/qt/ubuntu', 'jaunty', 'main', Qt],
     ['http://robin.powdarrmonkey.net/ubuntu', 'jaunty', '', Rednotebook],
     ['http://ppa.launchpad.net/galaxium/ppa/ubuntu', ['intrepid', 'jaunty'], 'main', Galaxium],
     ['http://download.tuxfamily.org/swiftweasel', ['hardy', 'intrepid'], 'multiverse', Swiftweasel],
