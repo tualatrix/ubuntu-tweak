@@ -155,6 +155,7 @@ APPS = \
     'playonlinux': Emulator,
     'picasa': Image,
     'qt-creator': Develop,
+    'rednotebook': Text,
     'screenlets': Desktop,
     'specto': Desktop,
     'shutter': Image,

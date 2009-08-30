@@ -137,6 +137,7 @@ APP_DATA = {
     'playonlinux': _('PlayOnLinux is a front-end for wine. It permits you to install Windows Games and softwares on Linux.'),
     'picasa': _('Image management application from Google'),
     'qt-creator': _('IDE for Development with Qt'),
+    'rednotebook': _('RedNotebook is a graphical diary and journal to keep track of notes and thoughts throughout the day. It includes a calendar navigation, customisable templates for each day, and a keyword search and cloud.'),
     'shiki-colors': _('Shiki-Colors is a set of Metacity/GTK-2+ themes which mix the elegance of a dark theme with the usability of a light theme, resulting in a hybrid theme.'),
     'screenlets': _('A framework for desktop widgets'),
     'shutter': _('Feature-rich screenshot application(formerly known as GScrot)'),
