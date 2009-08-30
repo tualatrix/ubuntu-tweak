@@ -48,7 +48,8 @@ ICON_DIR = os.path.join(DATA_DIR, 'applogos')
     COLUMN_DESC,
     COLUMN_DISPLAY,
     COLUMN_CATE,
-) = range(7)
+    COLUMN_TYPE,
+) = range(8)
 
 (
     CATE_ID,
@@ -68,6 +69,7 @@ Desktop = (_('Desktop Tools'), 'desktop.png')
 Disk = (_('CD/Disk Tools'), 'cd.png')
 Develop = (_('Development'), 'develop.png')
 Emulator = (_('Emulators'), 'emulator.png')
+Theme = (_('Themes'), 'theme.png')
 Mail = (_('E-mail Tools'), 'mail.png')
 
 def create_cate(*items):
@@ -78,7 +80,7 @@ def create_cate(*items):
         new.append(list)
     return new
 
-CATES_DATA = create_cate(P2P, Image, Sound, Video, Text, IM, Internet, FTP, Desktop, Disk, Develop, Emulator, Mail)
+CATES_DATA = create_cate(P2P, Image, Sound, Video, Text, IM, Internet, FTP, Desktop, Disk, Develop, Emulator, Theme, Mail)
 
 APPS = \
 {
@@ -120,7 +122,9 @@ APPS = \
     'gnote': Text,
     'gnome-do': Desktop,
     'gnome-globalmenu': Desktop,
-    'gnome-colors': Desktop,
+    'gnome-colors': Theme,
+    'shiki-colors': Theme,
+    'arc-colors': Theme,
     'googleearth': Internet,
     'google-gadgets': Desktop,
     'google-chrome-unstable': Internet,
@@ -131,9 +135,8 @@ APPS = \
     'gtg': Text,
     'isomaster': Disk,
     'inkscape': Image,
-    'ibus': Text,
     'ibus-pinyin': Text,
-    'ibus-table': Text,
+    'ibus-table-wubi': Text,
     'kino': Video,
     'lastfm': Internet,
     'leafpad': Text,
@@ -151,6 +154,7 @@ APPS = \
     'opera': Internet,
     'playonlinux': Emulator,
     'picasa': Image,
+    'qt-creator': Develop,
     'screenlets': Desktop,
     'specto': Desktop,
     'shutter': Image,
@@ -203,16 +207,22 @@ class AppView(gtk.TreeView):
                         gobject.TYPE_STRING,
                         gobject.TYPE_STRING,
                         gobject.TYPE_STRING,
+                        gobject.TYPE_STRING,
                         gobject.TYPE_STRING)
-
-        model.set_sort_column_id(COLUMN_NAME, gtk.SORT_ASCENDING)
 
         return model
 
+    def sort_model(self):
+        model = self.get_model()
+        model.set_sort_column_id(COLUMN_NAME, gtk.SORT_ASCENDING)
+
     def __add_columns(self):
         renderer = gtk.CellRendererToggle()
+        renderer.set_property("xpad", 6)
         renderer.connect('toggled', self.on_install_toggled)
+
         column = gtk.TreeViewColumn(' ', renderer, active = COLUMN_INSTALLED)
+        column.set_cell_data_func(renderer, self.install_column_view_func)
         column.set_sort_column_id(COLUMN_INSTALLED)
         self.append_column(column)
 
@@ -221,20 +231,92 @@ class AppView(gtk.TreeView):
         column.set_spacing(5)
         renderer = gtk.CellRendererPixbuf()
         column.pack_start(renderer, False)
+        column.set_cell_data_func(renderer, self.icon_column_view_func)
         column.set_attributes(renderer, pixbuf = COLUMN_ICON)
 
         renderer = gtk.CellRendererText()
+        renderer.set_property("xpad", 6)
+        renderer.set_property("ypad", 6)
         renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
         column.pack_start(renderer, True)
         column.add_attribute(renderer, 'markup', COLUMN_DISPLAY)
         self.append_column(column)
 
+    def install_column_view_func(self, cell_layout, renderer, model, iter):
+        package = model.get_value(iter, COLUMN_PKG)
+        if package == None:
+            renderer.set_property("visible", False)
+        else:
+            renderer.set_property("visible", True)
+
+    def icon_column_view_func(self, cell_layout, renderer, model, iter):
+        icon = model.get_value(iter, COLUMN_ICON)
+        if icon == None:
+            renderer.set_property("visible", False)
+        else:
+            renderer.set_property("visible", True)
+
+    def clear_model(self):
+        self.get_model().clear()
+
+    def append_app(self, status, pixbuf, pkgname, appname, desc, category):
+        model = self.get_model()
+
+        model.append((status,
+                pixbuf,
+                pkgname,
+                appname,
+                desc,
+                '<b>%s</b>\n%s' % (appname, desc),
+                category,
+                'app'))
+
+    def append_changed_app(self, status, pixbuf, pkgname, appname, desc, category):
+        model = self.get_model()
+
+        model.append((status,
+                pixbuf,
+                pkgname,
+                appname,
+                desc,
+                '<span foreground="#ffcc00"><b>%s</b>\n%s</span>' % (appname, desc),
+                category,
+                'app'))
+
+    def append_update(self, status, pkgname, summary):
+        model = self.get_model()
+        self.to_add.append(pkgname)
+
+        model.append((status,
+                      None,
+                      pkgname,
+                      pkgname,
+                      summary,
+                      '<b>%s</b>\n%s' % (pkgname, summary),
+                      None,
+                      'update'))
+
     def update_model(self, apps, cates=None):
         '''apps is a list to iter pkgname,
         cates is a dict to find what the category the pkg is
         '''
+        def do_append(is_installed, pixbuf, pkgname, appname, desc, category):
+            if pkgname in self.to_add or pkgname in self.to_rm:
+                self.append_changed_app(not is_installed,
+                        pixbuf,
+                        pkgname,
+                        appname,
+                        desc,
+                        category)
+            else:
+                self.append_app(is_installed,
+                        pixbuf,
+                        pkgname,
+                        appname,
+                        desc,
+                        category)
+
         model = self.get_model()
-        model.clear()
 
         icon = gtk.icon_theme_get_default()
 
@@ -255,42 +337,17 @@ class AppView(gtk.TreeView):
                 continue
 
             if self.filter == None:
-                if pkgname in self.to_add or pkgname in self.to_rm:
-                    model.append((not is_installed,
-                            pixbuf,
-                            pkgname,
-                            appname,
-                            desc,
-                            '<span foreground="#ffcc00"><b>%s</b>\n%s</span>' % (appname, desc),
-                            category))
-                else:
-                    model.append((is_installed,
-                            pixbuf,
-                            pkgname,
-                            appname,
-                            desc,
-                            '<b>%s</b>\n%s' % (appname, desc),
-                            category))
+                do_append(is_installed, pixbuf, pkgname, appname, desc, category)
             else:
                 if self.filter == category:
-                    if pkgname in self.to_add or pkgname in self.to_rm:
-                        model.append((not is_installed,
-                                pixbuf,
-                                pkgname,
-                                appname,
-                                desc,
-                                '<span foreground="#ffcc00"><b>%s</b>\n%s</span>' % (appname, desc),
-                                category))
-                    else:
-                        model.append((is_installed,
-                                pixbuf,
-                                pkgname,
-                                appname,
-                                desc,
-                                '<b>%s</b>\n%s' % (appname, desc),
-                                category))
+                    do_append(is_installed, pixbuf, pkgname, appname, desc, category)
 
     def on_install_toggled(self, cell, path):
+        def do_app_changed(model, iter, appname, desc):
+                model.set(iter, COLUMN_DISPLAY, '<span foreground="#ffcc00"><b>%s</b>\n%s</span>' % (appname, desc))
+        def do_app_unchanged(model, iter, appname, desc):
+                model.set(iter, COLUMN_DISPLAY, '<b>%s</b>\n%s' % (appname, desc))
+
         model = self.get_model()
 
         iter = model.get_iter((int(path),))
@@ -298,24 +355,35 @@ class AppView(gtk.TreeView):
         pkgname = model.get_value(iter, COLUMN_PKG)
         appname = model.get_value(iter, COLUMN_NAME)
         desc = model.get_value(iter, COLUMN_DESC)
+        type = model.get_value(iter, COLUMN_TYPE)
 
-        is_installed = not is_installed
-        if is_installed:
-            if pkgname in self.to_rm:
-                self.to_rm.remove(pkgname)
-                model.set(iter, COLUMN_DISPLAY, '<b>%s</b>\n%s' % (appname, desc))
+        if type == 'app':
+            is_installed = not is_installed
+            if is_installed:
+                if pkgname in self.to_rm:
+                    self.to_rm.remove(pkgname)
+                    do_app_unchanged(model, iter, appname, desc)
+                else:
+                    self.to_add.append(pkgname)
+                    do_app_changed(model, iter, appname, desc)
             else:
-                self.to_add.append(pkgname)
-                model.set(iter, COLUMN_DISPLAY, '<span foreground="#ffcc00"><b>%s</b>\n%s</span>' % (appname, desc))
+                if pkgname in self.to_add:
+                    self.to_add.remove(pkgname)
+                    do_app_unchanged(model, iter, appname, desc)
+                else:
+                    self.to_rm.append(pkgname)
+                    do_app_changed(model, iter, appname, desc)
+
+            model.set(iter, COLUMN_INSTALLED, is_installed)
         else:
-            if pkgname in self.to_add:
-                self.to_add.remove(pkgname)
-                model.set(iter, COLUMN_DISPLAY, '<b>%s</b>\n%s' % (appname, desc))
+            to_installed = is_installed
+            to_installed = not to_installed
+            if to_installed == True:
+                self.to_add.append(pkgname)
             else:
-                self.to_rm.append(pkgname)
-                model.set(iter, COLUMN_DISPLAY, '<span foreground="#ffcc00"><b>%s</b>\n%s</span>' % (appname, desc))
+                self.to_add.remove(pkgname)
 
-        model.set(iter, COLUMN_INSTALLED, is_installed)
+            model.set(iter, COLUMN_INSTALLED, to_installed)
 
         self.emit('changed', len(self.to_add) + len(self.to_rm))
 
@@ -347,6 +415,7 @@ class Installer(TweakPage):
         # create tree view
         self.treeview = AppView()
         self.treeview.update_model(APPS.keys(), APPS)
+        self.treeview.sort_model()
         self.treeview.connect('changed', self.on_app_status_changed)
         sw.add(self.treeview)
 
@@ -401,13 +470,16 @@ class Installer(TweakPage):
         else:
             self.treeview.filter = None
 
+        self.treeview.clear_model()
         self.treeview.update_model(APPS.keys(), APPS)
 
     def deep_update(self):
         package_worker.update_apt_cache(True)
+        self.treeview.clear_model()
         self.treeview.update_model(APPS.keys(), APPS)
 
     def normal_update(self):
+        self.treeview.clear_model()
         self.treeview.update_model(APPS.keys(), APPS)
 
     def on_apply_clicked(self, widget, data = None):
@@ -427,6 +499,7 @@ class Installer(TweakPage):
 
         self.treeview.to_add = []
         self.treeview.to_rm = []
+        self.treeview.clear_model()
         self.treeview.update_model(APPS.keys(), APPS)
 
     def on_app_status_changed(self, widget, i):

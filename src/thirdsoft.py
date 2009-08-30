@@ -36,6 +36,7 @@ from common.systeminfo import module_check
 from common.widgets import ListPack, TweakPage, GconfCheckButton
 from common.widgets.dialogs import *
 from common.package import package_worker
+from common.notify import notify
 from installer import APPS
 from installer import AppView
 from aptsources.sourceslist import SourceEntry, SourcesList
@@ -176,7 +177,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/matthaeus123/mrw-gimp-svn/ubuntu', ['jaunty', 'karmic'], 'main', Gimp_Testing], 
     ['http://ppa.launchpad.net/gwibber-daily/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Gwibber_Daily],
     ['http://ppa.launchpad.net/gmchess/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Gmchess],
-    ['http://playonlinux.botux.net/', 'hardy', 'main', PlayOnLinux],
+    ['http://deb.playonlinux.com/', ['hardy', 'intrepid', 'jaunty'], 'main', PlayOnLinux],
     ['http://ppa.launchpad.net/webkit-team/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', WebKitGtk],
     ['http://ppa.launchpad.net/midori/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Midori],
     ['http://ppa.launchpad.net/liferea/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Liferea],
@@ -265,6 +266,45 @@ def filter_sources():
 
 SOURCES_DATA = filter_sources()
 
+class UpdateView(AppView):
+    def __init__(self):
+        AppView.__init__(self)
+
+    def update_model(self, apps, cates=None):
+        model = self.get_model()
+
+        model.append((None,
+                        None,
+                        None,
+                        None,
+                        None,
+                        '<span size="large" weight="bold">%s</span>' % 'Available New Applications',
+                        None,
+                        None))
+
+        super(UpdateView, self).update_model(apps, cates)
+
+    def update_updates(self, pkgs):
+        '''apps is a list to iter pkgname,
+        cates is a dict to find what the category the pkg is
+        '''
+        model = self.get_model()
+
+        model.append((None,
+                        None,
+                        None,
+                        None,
+                        None,
+                        '<span size="large" weight="bold">%s</span>' % 'Available Package Updates',
+                        None,
+                        None))
+
+        for pkg in pkgs:
+            name = pkg.name
+            summary = pkg.summary
+
+            self.append_update(True, name, summary)
+
 class UpdateCacheDialog:
     """This class is modified from Software-Properties"""
     def __init__(self, parent):
@@ -301,6 +341,7 @@ class UpdateCacheDialog:
         self.dialog.hide()
         if res == gtk.RESPONSE_YES:
             self.parent.set_sensitive(False)
+            self.parent.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
             lock = thread.allocate_lock()
             lock.acquire()
             t = thread.start_new_thread(self.update_cache,
@@ -310,6 +351,7 @@ class UpdateCacheDialog:
                     gtk.main_iteration()
                     time.sleep(0.05)
             self.parent.set_sensitive(True)
+            self.parent.window.set_cursor(None)
         return res
 
 class SourcesView(gtk.TreeView):
@@ -394,19 +436,21 @@ class SourcesView(gtk.TreeView):
                 if url in source.str() and source.type == 'deb':
                     enabled = not source.disabled
 
-            self.model.append((
-                enabled,
-                url,
-                distro,
-                comps,
-                package,
-                logo,
-                name,
-                comment,
-                '<b>%s</b>\n%s' % (name, comment),
-                home,
-                key,
-                ))
+            iter = self.model.append()
+
+            self.model.set(iter,
+                    COLUMN_ENABLED, enabled,
+                    COLUMN_URL, url,
+                    COLUMN_DISTRO, distro,
+                    COLUMN_COMPS, comps,
+                    COLUMN_COMMENT, comment,
+                    COLUMN_PACKAGE, package,
+                    COLUMN_NAME, name,
+                    COLUMN_DISPLAY, '<b>%s</b>\n%s' % (name, comment),
+                    COLUMN_LOGO, logo,
+                    COLUMN_HOME, home,
+                    COLUMN_KEY, key,
+                )
 
     def get_sourcelist_status(self, url):
         for source in self.get_sourceslist():
@@ -497,6 +541,7 @@ class SourcesView(gtk.TreeView):
         '''
 
         url = self.model.get_value(iter, COLUMN_URL)
+        icon = self.model.get_value(iter, COLUMN_LOGO)
         distro = self.model.get_value(iter, COLUMN_DISTRO)
         comment = self.model.get_value(iter, COLUMN_NAME)
         package = self.model.get_value(iter, COLUMN_PACKAGE)
@@ -523,6 +568,11 @@ class SourcesView(gtk.TreeView):
 
         if pre_status != enable:
             self.emit('sourcechanged')
+
+        if enable:
+            notify.update('New source has been enabled', '%s is enalbed now, Please click the refresh button to update the application cache.' % name)
+            notify.set_icon_from_pixbuf(icon)
+            notify.show()
 
 class SourceDetail(gtk.VBox):
     def __init__(self):
@@ -604,7 +654,6 @@ class ThirdSoft(TweakPage):
         hbox.pack_end(un_lock, False, False, 0)
 
         self.refresh_button = gtk.Button(stock = gtk.STOCK_REFRESH)
-        self.refresh_button.set_sensitive(False)
         self.refresh_button.connect('clicked', self.on_refresh_button_clicked)
         hbox.pack_end(self.refresh_button, False, False, 0)
 
@@ -700,8 +749,6 @@ class ThirdSoft(TweakPage):
             AuthenticateFailDialog().launch()
 
     def colleague_changed(self, widget):
-        self.refresh_button.set_sensitive(True)
-        self.emit('update', 'sourceeditor', 'update_source_combo')
         self.emit('update', 'sourceeditor', 'update_sourceslist')
     
     def on_refresh_button_clicked(self, widget):
@@ -709,29 +756,41 @@ class ThirdSoft(TweakPage):
         res = dialog.run()
 
         proxy.set_list_state('normal')
-        widget.set_sensitive(False)
 
         new_pkg = []
         for pkg in package_worker.get_new_package():
             if pkg in APPS.keys():
                 new_pkg.append(pkg)
 
-        if new_pkg:
-            treeview = AppView()
-            treeview.update_model(new_pkg)
+        new_updates = list(package_worker.get_update_package())
+
+        if new_pkg or new_updates:
+            updateview = UpdateView()
+            updateview.set_headers_visible(False)
+
+            if new_pkg:
+                updateview.update_model(new_pkg)
+
+            if new_updates:
+                updateview.update_updates(package_worker.get_update_package())
 
             dialog = QuestionDialog(_('You can install the new applications by selecting them and choose "Yes".\nOr you can install them at Add/Remove by choose "No".'),
                 title = _('New applications are available to update'))
 
             vbox = dialog.vbox
-            vbox.pack_start(treeview, False, False, 0)
+            sw = gtk.ScrolledWindow()
+            sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+            sw.set_size_request(-1, 200)
+            vbox.pack_start(sw, False, False, 0)
+            sw.add(updateview)
+            sw.show_all()
 
             res = dialog.run()
             dialog.destroy()
 
             if res == gtk.RESPONSE_YES:
-                to_rm = treeview.to_rm
-                to_add = treeview.to_add
+                to_rm = updateview.to_rm
+                to_add = updateview.to_add
                 package_worker.perform_action(widget.get_toplevel(), to_add, to_rm)
 
                 package_worker.update_apt_cache(True)
@@ -749,7 +808,6 @@ class ThirdSoft(TweakPage):
         else:
             dialog = QuestionDialog(_('You can install the new applications through Add/Remove.\nDo you want to go now?'),
                 title = _('The software information is up-to-date now'))
-            dialog.destroy()
 
             res = dialog.run()
             dialog.destroy()

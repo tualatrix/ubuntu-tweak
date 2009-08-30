@@ -170,13 +170,14 @@ class PackageView(gtk.TreeView):
         for pkg in list:
             desc = self.package_worker.get_pkgsummary(pkg)
 
-            model.append((
-                False,
-                icon,
-                pkg,
-                desc,
-                '<b>%s</b>\n%s' % (pkg, desc)
-                ))
+            iter = model.append()
+            model.set(iter,
+                   COLUMN_CHECK, False,
+                   COLUMN_ICON, icon,
+                   COLUMN_NAME, pkg,
+                   COLUMN_DESC, desc,
+                   COLUMN_DISPLAY, '<b>%s</b>\n%s' % (pkg, desc)
+                )
 
     def update_kernel_model(self):
         model = self.get_model()
@@ -191,14 +192,14 @@ class PackageView(gtk.TreeView):
         for pkg in list:
             desc = self.package_worker.get_pkgsummary(pkg)
 
-            model.append((
-                False,
-                icon,
-                pkg,
-                desc,
-                '<b>%s</b>\n%s' % (pkg, desc)
-                ))
-
+            iter = model.append()
+            model.set(iter,
+                   COLUMN_CHECK, False,
+                   COLUMN_ICON, icon,
+                   COLUMN_NAME, pkg,
+                   COLUMN_DESC, desc,
+                   COLUMN_DISPLAY, '<b>%s</b>\n%s' % (pkg, desc)
+                )
 
     def update_cache_model(self):
         model = self.get_model()
@@ -215,13 +216,15 @@ class PackageView(gtk.TreeView):
         for pkg in list:
             size = str(os.path.getsize(pkg))
 
-            model.append((
-                False,
-                icon,
-                pkg,
-                size,
-                _('<b>%s</b>\nTake %s of disk space') % (os.path.basename(pkg), filesizeformat(size))
-                ))
+            iter = model.append()
+            model.set(iter,
+                   COLUMN_ICON, icon,
+                   COLUMN_CHECK, False,
+                   COLUMN_NAME, pkg,
+                   COLUMN_DESC, size,
+                   COLUMN_DISPLAY, _('<b>%s</b>\nTake %s of disk space') % (os.path.basename(pkg), filesizeformat(size)) 
+
+                )
 
     def update_config_model(self):
         model = self.get_model()
@@ -246,13 +249,14 @@ class PackageView(gtk.TreeView):
         self.__column.set_title(_('Package Config'))
 
         for pkg in list:
-            model.append((
-                False,
-                icon,
-                pkg.name,
-                0,
-                '<b>%s</b>\n%s' % (pkg.name, pkg.des),
-                ))
+            iter = model.append()
+            model.set(iter,
+                   COLUMN_CHECK, False,
+                   COLUMN_ICON, icon,
+                   COLUMN_NAME, pkg,
+                   COLUMN_DESC, 0,
+                   COLUMN_DISPLAY, '<b>%s</b>\n%s' % (pkg.name, pkg.des),
+                )
 
     def on_package_toggled(self, cell, path):
         model = self.get_model()
