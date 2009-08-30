@@ -265,12 +265,6 @@ def filter_sources():
 
 SOURCES_DATA = filter_sources()
 
-(
-    COLUMN_INSTALL,
-    COLUMN_PACKAGE,
-    COLUMN_TEXT,
-) = range(3)
-
 class UpdateView(AppView):
     def __init__(self):
         AppView.__init__(self)
@@ -441,19 +435,21 @@ class SourcesView(gtk.TreeView):
                 if url in source.str() and source.type == 'deb':
                     enabled = not source.disabled
 
-            self.model.append((
-                enabled,
-                url,
-                distro,
-                comps,
-                package,
-                logo,
-                name,
-                comment,
-                '<b>%s</b>\n%s' % (name, comment),
-                home,
-                key,
-                ))
+            iter = self.model.append()
+
+            self.model.set(iter,
+                    COLUMN_ENABLED, enabled,
+                    COLUMN_URL, url,
+                    COLUMN_DISTRO, distro,
+                    COLUMN_COMPS, comps,
+                    COLUMN_COMMENT, comment,
+                    COLUMN_PACKAGE, package,
+                    COLUMN_NAME, name,
+                    COLUMN_DISPLAY, '<b>%s</b>\n%s' % (name, comment),
+                    COLUMN_LOGO, logo,
+                    COLUMN_HOME, home,
+                    COLUMN_KEY, key,
+                )
 
     def get_sourcelist_status(self, url):
         for source in self.get_sourceslist():
