@@ -128,6 +128,7 @@ MplayerLibs = [_('MPlayer Core Libraries'), 'mplayer', 'launchpad.net/~rvm/+arch
 Smplayer_Testing = [_('SMPlayer (Unstable Version)'), 'smplayer', 'smplayer.sourceforge.net', 'smplayer-testing.gpg']
 Wine = ['Wine', 'wine', 'www.winehq.org', 'wine.gpg']
 LXDE = ['LXDE', 'lxde', 'lxde.org', 'lxde.gpg']
+Mono = ['Mono', 'mono', 'www.mono-project.com', 'mono.gpg']
 Liferea = ['Liferea', 'liferea', 'liferea.sourceforge.net', 'liferea.gpg']
 Terminator = ['Terminator', 'terminator', 'www.tenshu.net/terminator/', 'terminator.gpg']
 Transmission_Stable = ['Transmission (Stable Version)', 'transmission-gtk', 'www.transmissionbt.com', 'transmission_stable.gpg']
@@ -189,6 +190,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/ibus-dev/ibus-1.2-jaunty/ubuntu', 'jaunty', 'main', IBus_Jaunty],
     ['http://ppa.launchpad.net/ibus-dev/ibus-1.2-karmic/ubuntu', 'karmic', 'main', IBus_Karmic],
     ['http://ppa.launchpad.net/ibus-dev/ppa/ubuntu', ['intrepid', 'jaunty'], 'main', IBus],
+    ['http://ppa.launchpad.net/mono-edge/ppa/ubuntu', ['intrepid', 'jaunty'], 'main', Mono],
     ['http://ppa.launchpad.net/ubuntu-mozilla-daily/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Firefox],
     ['http://ppa.launchpad.net/ubuntu-mozilla-security/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', MozillaSecurity],
     ['http://ppa.launchpad.net/compiz/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', CompizFusion],
