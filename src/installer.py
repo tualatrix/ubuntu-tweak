@@ -180,6 +180,7 @@ APPS = \
     'wine': Emulator,
     'wine-doors': Emulator,
     'xbmc': Desktop,
+    'zim': Text,
 }
 
 class AppView(gtk.TreeView):

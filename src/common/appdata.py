@@ -165,6 +165,7 @@ APP_DATA = {
     'wine': _('A compatibility layer for running Windows programs'),
     'wine-doors': _('Wine-doors is an application designed to make installing windows software on Linux, Solaris or other Unix systems easier.'),
     'xbmc': _('XBMC is a free and open source software media player and entertainment hub'),
+    'zim': _('Zim is a WYSIWYG text editor. It aims at bringing the concept of a wiki to your desktop.'),
 }
 
 SOURCE_DATA = {
