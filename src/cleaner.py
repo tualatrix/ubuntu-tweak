@@ -253,7 +253,7 @@ class PackageView(gtk.TreeView):
             model.set(iter,
                    COLUMN_CHECK, False,
                    COLUMN_ICON, icon,
-                   COLUMN_NAME, pkg,
+                   COLUMN_NAME, pkg.name,
                    COLUMN_DESC, 0,
                    COLUMN_DISPLAY, '<b>%s</b>\n%s' % (pkg.name, pkg.des),
                 )
