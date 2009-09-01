@@ -506,11 +506,12 @@ class PackageCleaner(TweakPage):
 
     def on_polkit_action(self, widget, action):
         if action:
-            if proxy.get_proxy():
-                self.treeview.set_sensitive(True)
-                self.select_button.set_sensitive(True)
-            else:
-                ServerErrorDialog().launch()
+            self.treeview.set_sensitive(True)
+            self.select_button.set_sensitive(True)
+            import dbus
+            systembus = dbus.SystemBus()
+            import pdb
+            pdb.set_trace()
         else:
             AuthenticateFailDialog().launch()
 

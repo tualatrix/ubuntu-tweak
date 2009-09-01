@@ -90,7 +90,7 @@ class Daemon(dbus.service.Object):
     list = SourcesList()
 
     def __init__ (self, bus):
-        bus_name = dbus.service.BusName(PATH, bus=bus)
+        bus_name = dbus.service.BusName(INTERFACE, bus=bus)
         dbus.service.Object.__init__(self, bus_name, PATH)
 
     @dbus.service.method(INTERFACE,
@@ -213,12 +213,8 @@ class Daemon(dbus.service.Object):
         mainloop.quit()
 
 if __name__ == '__main__':
-    try:
-        dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
-        Daemon(dbus.SystemBus())
+    dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
+    Daemon(dbus.SystemBus())
 
-        mainloop = gobject.MainLoop()
-        mainloop.run()
-    except:
-        print >> sys.stderr, 'Failed to start Ubuntu Tweak Daemon'
-        sys.exit(1)
+    mainloop = gobject.MainLoop()
+    mainloop.run()

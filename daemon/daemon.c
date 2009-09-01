@@ -176,7 +176,7 @@ get_destination (DBusMessage *message)
   /* paranoid check */
   if (arr[0] && strcmp (arr[0], "com") == 0 &&
       arr[1] && strcmp (arr[1], "ubuntu_tweak") == 0 &&
-      arr[2] && strcmp (arr[2], "backends") == 0 && arr[3] && !arr[4])
+      arr[2] && strcmp (arr[2], "daemon") == 0 && arr[3] && !arr[4])
     destination = g_strdup_printf (DBUS_INTERFACE_UT ".%s", arr[3]);
 
   dbus_free_string_array (arr);
@@ -254,6 +254,7 @@ dispatch_ut_message (UtDaemon *daemon,
   destination = get_destination (message);
 
   /* there's something wrong with the message */
+  DEBUG (daemon, "the message's destination is to: %s", destination);
   if (G_UNLIKELY (!destination))
     {
       g_critical ("Could not get a valid destination, original one was: %s", dbus_message_get_path (message));

@@ -25,7 +25,7 @@ class DbusProxy:
 
     try:
         __system_bus = dbus.SystemBus()
-        __proxy = __system_bus.get_object('com.ubuntu_tweak.daemon', '/com/ubuntu_tweak/daemon')
+#        __proxy = __system_bus.get_object('com.ubuntu_tweak.daemon', '/com/ubuntu_tweak/daemon')
     except dbus.exceptions.DBusException:
         __proxy = None
 
