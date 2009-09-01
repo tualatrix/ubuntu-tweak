@@ -34,6 +34,7 @@
 
 #define DBUS_ADDRESS_ENVVAR "DBUS_SESSION_BUS_ADDRESS"
 #define DBUS_INTERFACE_UT "com.ubuntu_tweak.daemon"
+#define UT_ACTION_ID "com.ubuntu-tweak.daemon"
 
 #define UT_DAEMON_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), UT_TYPE_DAEMON, UtDaemonPrivate))
 
@@ -195,7 +196,6 @@ can_caller_do_action (UtDaemon *daemon,
   DBusError error;
   PolKitResult result;
   const gchar *member;
-  gchar *action_id;
   gboolean retval;
   gchar *destination;
 
@@ -207,12 +207,10 @@ can_caller_do_action (UtDaemon *daemon,
   action = polkit_action_new ();
 
   destination = get_destination(message);
-//  action_id = g_strdup_printf ("%s.%s", destination, member);
-  action_id = "com.ubuntu-tweak.daemon";
 
-  polkit_action_set_action_id (action, action_id);
+  polkit_action_set_action_id (action, UT_ACTION_ID);
 
-  g_debug("the polkit action_id is %s", action_id);
+  g_debug("the polkit action_id is %s", UT_ACTION_ID);
 
   dbus_error_init (&error);
   caller = polkit_caller_new_from_dbus_name (priv->connection, dbus_message_get_sender (message), &error);
@@ -234,9 +232,8 @@ can_caller_do_action (UtDaemon *daemon,
 
   DEBUG (daemon,
 	 (retval) ? "caller is allowed to do action '%s'" : "caller can't do action '%s'",
-	 action_id);
+	 UT_ACTION_ID);
 
-  g_free (action_id);
   g_free (destination);
 
   return retval;
@@ -252,6 +249,7 @@ dispatch_ut_message (UtDaemon *daemon,
   DBusPendingCall *pending_call;
   UtDaemonAsyncData *async_data;
   gchar *destination;
+  gchar *interface;
 
   priv = UT_DAEMON_GET_PRIVATE (daemon);
   destination = get_destination (message);
@@ -265,6 +263,13 @@ dispatch_ut_message (UtDaemon *daemon,
     }
 
   DEBUG (daemon, "dispatching message to: %s", dbus_message_get_path (message));
+
+  interface = dbus_message_get_interface (message);
+  DEBUG (daemon, "the message has interface: %s", interface);
+
+  if (strcmp(interface, DBUS_INTERFACE_INTROSPECTABLE) != 0){
+	  dbus_message_set_interface(message, destination);
+  }
 
   copy = dbus_message_copy (message);
 
