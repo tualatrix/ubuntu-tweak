@@ -81,9 +81,8 @@ class AptAuth:
         p = subprocess.Popen(cmd)
         return (p.wait() == 0)
 
-INTERFACE = "com.ubuntu_tweak.daemon"
-OBJ = "com.ubuntu_tweak.daemon"
-PATH = "/com/ubuntu_tweak/daemon"
+INTERFACE = "com.ubuntu_tweak.daemon.packageconfig"
+PATH = "/com/ubuntu_tweak/daemon/packageconfig"
 
 class Daemon(dbus.service.Object):
     #TODO use signal
@@ -91,7 +90,7 @@ class Daemon(dbus.service.Object):
     list = SourcesList()
 
     def __init__ (self, bus):
-        bus_name = dbus.service.BusName(OBJ, bus=bus)
+        bus_name = dbus.service.BusName(PATH, bus=bus)
         dbus.service.Object.__init__(self, bus_name, PATH)
 
     @dbus.service.method(INTERFACE,

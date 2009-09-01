@@ -1,10 +1,7 @@
 AC_INIT([ubuntu-tweak], [0.4.9], [tualatrix@gmail.com])
 AM_INIT_AUTOMAKE
 
-AC_PROG_CC
 AM_PROG_CC_C_O
-AC_PROG_INSTALL
-AC_PROG_LIBTOOL
 
 DBUS_REQUIRED=1.1.2
 DBUS_GLIB_REQUIRED=0.74
@@ -88,6 +85,7 @@ AC_CONFIG_FILES([
     src/common/consts.py
     src/common/widgets/Makefile
     src/common/policykit/Makefile
+    src/backends/Makefile
     daemon/Makefile
     data/Makefile
     data/appcates/Makefile
@@ -113,6 +111,7 @@ AC_CONFIG_FILES([
     scripts/script-worker
     policykit/Makefile
     policykit/com.ubuntu_tweak.daemon.service
+    policykit/com.ubuntu_tweak.daemon.packageconfig.service
 ])
 
 AC_OUTPUT

@@ -33,10 +33,7 @@
 #include <polkit-dbus/polkit-dbus.h>
 
 #define DBUS_ADDRESS_ENVVAR "DBUS_SESSION_BUS_ADDRESS"
-#define DBUS_INTERFACE_UT "org.freedesktop.SystemToolsBackends"
-#define DBUS_INTERFACE_UT_PLATFORM "org.freedesktop.SystemToolsBackends.Platform"
-#define DBUS_PATH_USER_CONFIG "/org/freedesktop/SystemToolsBackends/UserConfig"
-#define DBUS_PATH_SELF_CONFIG "/org/freedesktop/SystemToolsBackends/SelfConfig"
+#define DBUS_INTERFACE_UT "com.ubuntu_tweak.daemon"
 
 #define UT_DAEMON_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), UT_TYPE_DAEMON, UtDaemonPrivate))
 
@@ -157,13 +154,6 @@ dispatch_reply (DBusPendingCall *pending_call,
       dbus_error_free (&error);
     }
 
-  if (dbus_message_has_interface (reply, DBUS_INTERFACE_UT_PLATFORM) &&
-      dbus_message_has_member (reply, "getPlatform") && !priv->platform)
-    {
-      /* get the platform if necessary */
-      priv->platform = retrieve_platform (reply);
-    }
-
   /* send the reply back */
   dbus_message_set_destination (reply, async_data->destination);
   dbus_message_set_reply_serial (reply, async_data->serial);
@@ -184,9 +174,9 @@ get_destination (DBusMessage *message)
     return NULL;
 
   /* paranoid check */
-  if (arr[0] && strcmp (arr[0], "org") == 0 &&
-      arr[1] && strcmp (arr[1], "freedesktop") == 0 &&
-      arr[2] && strcmp (arr[2], "SystemToolsBackends") == 0 && arr[3] && !arr[4])
+  if (arr[0] && strcmp (arr[0], "com") == 0 &&
+      arr[1] && strcmp (arr[1], "ubuntu_tweak") == 0 &&
+      arr[2] && strcmp (arr[2], "backends") == 0 && arr[3] && !arr[4])
     destination = g_strdup_printf (DBUS_INTERFACE_UT ".%s", arr[3]);
 
   dbus_free_string_array (arr);
@@ -224,9 +214,9 @@ can_caller_do_action (UtDaemon *daemon,
   action = polkit_action_new ();
 
   if (name)
-    action_id = g_strdup_printf ("org.freedesktop.systemtoolsbackends.%s.%s", name, member);
+    action_id = g_strdup_printf ("com.ubuntu_tweak.daemon.%s.%s", name, member);
   else
-    action_id = g_strdup_printf ("org.freedesktop.systemtoolsbackends.%s", member);
+    action_id = g_strdup_printf ("com.ubuntu_tweak.daemon.%s", member);
 
   polkit_action_set_action_id (action, action_id);
 
@@ -319,113 +309,6 @@ return_error (UtDaemon *daemon,
   dbus_message_unref (reply);
 }
 
-static void
-dispatch_platform_message (UtDaemon *daemon,
-			   DBusMessage   *message)
-{
-  UtDaemonPrivate *priv;
-
-  priv = daemon->_priv;
-
-  if (!dbus_message_has_interface (message, DBUS_INTERFACE_UT_PLATFORM))
-    return;
-
-  if (dbus_message_has_member (message, "getPlatform") && priv->platform)
-    {
-      DBusMessage *reply;
-      DBusMessageIter iter;
-
-      /* create a reply with the stored platform */
-      reply = dbus_message_new_method_return (message);
-      dbus_message_iter_init_append (reply, &iter);
-      dbus_message_iter_append_basic (&iter, DBUS_TYPE_STRING, &priv->platform);
-
-      dbus_connection_send (priv->connection, reply, NULL);
-      dbus_message_unref (reply);
-
-      return;
-    }
-  else if (dbus_message_has_member (message, "setPlatform"))
-    priv->platform = retrieve_platform (message);
-
-  dispatch_ut_message (daemon, message, 0);
-}
-
-static void
-dispatch_user_config (UtDaemon *daemon,
-		      DBusMessage   *message)
-{
-  UtDaemonPrivate *priv;
-  DBusMessageIter iter;
-  DBusMessage *user_message = NULL;
-  const gchar *sender;
-  gulong uid;
-
-  priv = daemon->_priv;
-  sender = dbus_message_get_sender (message);
-  uid = (uid_t) dbus_bus_get_unix_user (priv->connection, sender, NULL);
-
-  g_return_if_fail (uid != -1);
-
-  if (dbus_message_has_member (message, "get"))
-    {
-      /* compose the call to UserConfig with the uid of the caller */
-      user_message = dbus_message_new_method_call (DBUS_INTERFACE_UT ".UserConfig",
-						   DBUS_PATH_USER_CONFIG,
-						   DBUS_INTERFACE_UT,
-						   "get");
-      dbus_message_iter_init_append (user_message, &iter);
-      dbus_message_iter_append_basic (&iter, DBUS_TYPE_UINT32, &uid);
-    }
-  else if (dbus_message_has_member (message, "set"))
-    {
-      DBusMessageIter array_iter;
-      const gchar *passwd;
-      gchar **gecos;
-      gint gecos_elements, i;
-      uid_t message_uid;
-
-      if (dbus_message_get_args (message, NULL,
-				 DBUS_TYPE_UINT32, &message_uid,
-				 DBUS_TYPE_STRING, &passwd,
-				 DBUS_TYPE_ARRAY, DBUS_TYPE_STRING, &gecos, &gecos_elements,
-				 DBUS_TYPE_INVALID))
-	{
-	  user_message = dbus_message_new_method_call (DBUS_INTERFACE_UT ".UserConfig",
-						       DBUS_PATH_USER_CONFIG,
-						       DBUS_INTERFACE_UT,
-						       "set");
-
-	  dbus_message_iter_init_append (user_message, &iter);
-	  dbus_message_iter_append_basic (&iter, DBUS_TYPE_UINT32, &uid);
-	  dbus_message_iter_append_basic (&iter, DBUS_TYPE_STRING, &passwd);
-
-	  /* append gecos array */
-	  dbus_message_iter_open_container (&iter,
-					    DBUS_TYPE_ARRAY,
-					    DBUS_TYPE_STRING_AS_STRING,
-					    &array_iter);
-
-	  for (i = 0; gecos[i]; i++)
-	    dbus_message_iter_append_basic (&array_iter, DBUS_TYPE_STRING, &gecos[i]);
-
-	  dbus_message_iter_close_container (&iter, &array_iter);
-	  dbus_free_string_array (gecos);
-	}
-    }
-  else
-    g_warning ("unsupported method on SelfConfig");
-
-  if (user_message)
-    {
-      dbus_message_set_sender (user_message, sender);
-      dispatch_ut_message (daemon, user_message, dbus_message_get_serial (message));
-      dbus_message_unref (user_message);
-    }
-  else
-    return_error (daemon, message, DBUS_ERROR_UNKNOWN_METHOD);
-}
-
 static DBusHandlerResult
 daemon_filter_func (DBusConnection *connection,
 			DBusMessage    *message,
@@ -443,15 +326,6 @@ daemon_filter_func (DBusConnection *connection,
     }
   else if (dbus_message_has_interface (message, DBUS_INTERFACE_INTROSPECTABLE))
     dispatch_ut_message (daemon, message, 0);
-  else if (dbus_message_has_interface (message, DBUS_INTERFACE_UT_PLATFORM))
-    dispatch_platform_message (daemon, message);
-  else if (dbus_message_has_path (message, DBUS_PATH_SELF_CONFIG))
-    {
-      if (can_caller_do_action (daemon, message, "self"))
-	dispatch_user_config (daemon, message);
-      else
-	return_error (daemon, message, DBUS_ERROR_ACCESS_DENIED);
-    }
   else if (dbus_message_has_interface (message, DBUS_INTERFACE_UT))
     {
       if (can_caller_do_action (daemon, message, NULL))

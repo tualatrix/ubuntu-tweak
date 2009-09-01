@@ -1,4 +1,4 @@
-SUBDIRS = common
+SUBDIRS = common backends
 
 tweak_PYTHON = \
 	./autostart.py \

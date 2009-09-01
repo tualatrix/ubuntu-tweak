@@ -48,7 +48,7 @@ int
 main (int argc, char *argv[])
 {
   GMainLoop *main_loop;
-  gboolean debug = FALSE;
+  gboolean debug = TRUE;
   gboolean no_daemon = FALSE;
   GOptionContext *context;
   GOptionEntry entries[] =
