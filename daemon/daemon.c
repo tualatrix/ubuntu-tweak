@@ -197,6 +197,7 @@ can_caller_do_action (UtDaemon *daemon,
   const gchar *member;
   gchar *action_id;
   gboolean retval;
+  gchar *destination;
 
   priv = UT_DAEMON_GET_PRIVATE (daemon);
   member = dbus_message_get_member (message);
@@ -205,12 +206,13 @@ can_caller_do_action (UtDaemon *daemon,
 
   action = polkit_action_new ();
 
-  if (name)
-    action_id = g_strdup_printf ("com.ubuntu_tweak.daemon.%s.%s", name, member);
-  else
-    action_id = g_strdup_printf ("com.ubuntu_tweak.daemon.%s", member);
+  destination = get_destination(message);
+//  action_id = g_strdup_printf ("%s.%s", destination, member);
+  action_id = "com.ubuntu-tweak.daemon";
 
   polkit_action_set_action_id (action, action_id);
+
+  g_debug("the polkit action_id is %s", action_id);
 
   dbus_error_init (&error);
   caller = polkit_caller_new_from_dbus_name (priv->connection, dbus_message_get_sender (message), &error);
@@ -235,6 +237,7 @@ can_caller_do_action (UtDaemon *daemon,
 	 action_id);
 
   g_free (action_id);
+  g_free (destination);
 
   return retval;
 }
