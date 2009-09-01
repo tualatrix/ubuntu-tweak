@@ -223,7 +223,7 @@ can_caller_do_action (UtDaemon *daemon,
       return FALSE;
     }
 
-  result = polkit_context_can_caller_do_action (priv->polkit_context, action, caller);
+  result = polkit_context_is_caller_authorized(priv->polkit_context, action, caller, TRUE, NULL);
 
   polkit_caller_unref (caller);
   polkit_action_unref (action);
