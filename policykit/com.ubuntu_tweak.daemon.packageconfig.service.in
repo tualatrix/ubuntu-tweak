@@ -1,4 +1,4 @@
 [D-BUS Service]
-Name=com.ubuntu_tweak.daemon
-Exec=@prefix@/sbin/ubuntu-tweak-daemon
+Name=com.ubuntu_tweak.daemon.packageconfig
+Exec=/usr/bin/python @prefix@/share/ubuntu-tweak/backends/packageconfig.py
 User=root

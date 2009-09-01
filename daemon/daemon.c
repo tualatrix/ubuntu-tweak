@@ -198,14 +198,6 @@ can_caller_do_action (UtDaemon *daemon,
   gchar *action_id;
   gboolean retval;
 
-  /* Allow getting information */
-  if (dbus_message_has_member (message, "get"))
-    return TRUE;
-
-  /* Do not allow anything besides "set" past this point */
-  if (!dbus_message_has_member (message, "set"))
-    return FALSE;
-
   priv = UT_DAEMON_GET_PRIVATE (daemon);
   member = dbus_message_get_member (message);
 
