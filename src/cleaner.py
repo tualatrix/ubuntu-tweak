@@ -25,11 +25,12 @@ import gobject
 import gettext
 from common.utils import *
 from common.misc import filesizeformat
-from common.policykit import PolkitButton, proxy
+from common.policykit import PolkitButton, DbusProxy
 from common.package import package_worker
 from common.widgets import TweakPage
 from common.widgets.dialogs import *
 from common.widgets.utils import ProcessDialog
+from backends.packageconfig import PATH
 
 (
     COLUMN_CHECK,
@@ -505,13 +506,11 @@ class PackageCleaner(TweakPage):
             self.treeview.clean_selected_config()
 
     def on_polkit_action(self, widget, action):
+        global proxy
         if action:
             self.treeview.set_sensitive(True)
             self.select_button.set_sensitive(True)
-            import dbus
-            systembus = dbus.SystemBus()
-            import pdb
-            pdb.set_trace()
+            proxy = DbusProxy(PATH)
         else:
             AuthenticateFailDialog().launch()
 
