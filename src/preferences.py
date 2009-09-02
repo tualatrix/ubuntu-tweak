@@ -133,12 +133,6 @@ class PreferencesDialog:
         vbox.pack_start(button, False, False, 0)
 
         button = WidgetFactory.create('GconfCheckButton', 
-                                      label=_('Enable PowerUser Mode'), 
-                                      key='power_user',
-                                      default=False)
-        vbox.pack_start(button, False, False, 0)
-
-        button = WidgetFactory.create('GconfCheckButton', 
                                       label=_('Use Separated Sources'), 
                                       key='separated_sources',
                                       default=True)
