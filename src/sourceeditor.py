@@ -29,11 +29,12 @@ from xmlrpclib import ServerProxy, Error
 from common.utils import *
 from common.gui import GuiWorker
 from common.systeminfo import module_check
-from common.policykit import PolkitButton, proxy
+from common.policykit import PolkitButton, DbusProxy
 from common.utils import set_label_for_stock_button
 from common.package import package_worker
 from common.widgets import TweakPage
 from common.widgets.dialogs import *
+from backends.packageconfig import PATH
 
 (
     COLUMN_CHECK,
@@ -557,8 +558,10 @@ class SourceEditor(TweakPage):
             self.emit('update', 'thirdsoft', 'update_thirdparty')
 
     def on_polkit_action(self, widget, action):
+        global proxy
         if action:
-            if proxy.get_proxy():
+            proxy = DbusProxy(PATH)
+            if proxy.get_object():
                 self.textview.set_sensitive(True)
                 self.update_button.set_sensitive(True)
                 self.submit_button.set_sensitive(True)
