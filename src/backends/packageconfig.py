@@ -208,6 +208,11 @@ class Daemon(dbus.service.Object):
         return os.path.exists(path)
 
     @dbus.service.method(INTERFACE,
+                         in_signature='', out_signature='b')
+    def is_authorized(self):
+        return True
+
+    @dbus.service.method(INTERFACE,
                          in_signature='', out_signature='')
     def exit(self):
         mainloop.quit()

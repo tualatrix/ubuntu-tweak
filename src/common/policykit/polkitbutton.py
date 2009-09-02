@@ -22,6 +22,7 @@ import os
 import gtk
 import dbus
 import gobject
+from dbusproxy import DbusProxy
 
 class PolkitAction(gobject.GObject):
     """
@@ -39,8 +40,19 @@ class PolkitAction(gobject.GObject):
 
         self.widget = widget
 
+    def is_authenticated(self):
+        try:
+            proxy = DbusProxy("/com/ubuntu_tweak/daemon/packageconfig")
+            return bool(proxy.is_authorized())
+        except:
+            return False
+
     def authenticate(self):
-        self.do_authenticate()
+        if self.is_authenticated():
+            self.__class__.result = 1
+            self.emit('changed', 1)
+        else:
+            self.do_authenticate()
 
     def get_authenticated(self):
         return self.result
