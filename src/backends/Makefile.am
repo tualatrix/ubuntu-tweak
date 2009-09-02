@@ -1,5 +1,5 @@
 backends_PYTHON = \
-	./*.py \
+	./packageconfig.py \
 	$(NULL)
 
 backendsdir = $(pkgdatadir)/backends

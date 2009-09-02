@@ -42,14 +42,6 @@ AS_AC_EXPAND(DATADIR, "${datadir}")
 AC_SUBST(DATADIR)
 AS_AC_EXPAND(DATADIR, "${DATADIR}")
 
-dnl DBus services dir
-DBUS_SERVICES_DIR="${prefix}/share/dbus-1/system-services"
-AC_SUBST(DBUS_SERVICES_DIR)
-
-dnl PolicyKit policy files dir
-POLKIT_POLICY_DIR="${prefix}/share/PolicyKit/policy/"
-AC_SUBST(POLKIT_POLICY_DIR)
-
 dnl where is DBus system.d directory? 
 AC_ARG_WITH(dbus_sys, [  --with-dbus-sys=<dir>   where D-BUS system.d directory is]) 
  
@@ -87,6 +79,8 @@ AC_CONFIG_FILES([
     src/common/policykit/Makefile
     src/backends/Makefile
     daemon/Makefile
+    daemon/com.ubuntu_tweak.daemon.service
+    daemon/com.ubuntu_tweak.daemon.packageconfig.service
     data/Makefile
     data/appcates/Makefile
     data/aptkeys/Makefile
@@ -109,9 +103,6 @@ AC_CONFIG_FILES([
     scripts/Makefile
     scripts/ubuntu-tweak
     scripts/script-worker
-    policykit/Makefile
-    policykit/com.ubuntu_tweak.daemon.service
-    policykit/com.ubuntu_tweak.daemon.packageconfig.service
 ])
 
 AC_OUTPUT

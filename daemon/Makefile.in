@@ -14,6 +14,7 @@
 
 @SET_MAKE@
 
+
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
@@ -34,7 +35,9 @@ build_triplet = @build@
 host_triplet = @host@
 bin_PROGRAMS = ubuntu-tweak-daemon$(EXEEXT)
 subdir = daemon
-DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+	$(srcdir)/com.ubuntu_tweak.daemon.packageconfig.service.in \
+	$(srcdir)/com.ubuntu_tweak.daemon.service.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/acinclude.m4 \
 	$(top_srcdir)/m4/gettext.m4 $(top_srcdir)/m4/iconv.m4 \
@@ -45,8 +48,10 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/acinclude.m4 \
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
-CONFIG_CLEAN_FILES =
-am__installdirs = "$(DESTDIR)$(bindir)"
+CONFIG_CLEAN_FILES = com.ubuntu_tweak.daemon.service \
+	com.ubuntu_tweak.daemon.packageconfig.service
+am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(dbusconfdir)" \
+	"$(DESTDIR)$(dbusservicedir)" "$(DESTDIR)$(policyconfdir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
 am_ubuntu_tweak_daemon_OBJECTS = ubuntu_tweak_daemon-daemon.$(OBJEXT) \
@@ -64,6 +69,16 @@ CCLD = $(CC)
 LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
 SOURCES = $(ubuntu_tweak_daemon_SOURCES)
 DIST_SOURCES = $(ubuntu_tweak_daemon_SOURCES)
+am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
+am__vpath_adj = case $$p in \
+    $(srcdir)/*) f=`echo "$$p" | sed "s|^$$srcdirstrip/||"`;; \
+    *) f=$$p;; \
+  esac;
+am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
+dbusconfDATA_INSTALL = $(INSTALL_DATA)
+dbusserviceDATA_INSTALL = $(INSTALL_DATA)
+policyconfDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(dbusconf_DATA) $(dbusservice_DATA) $(policyconf_DATA)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -83,7 +98,6 @@ DAEMON_LIBS = @DAEMON_LIBS@
 DATADIR = @DATADIR@
 DBUS_CFLAGS = @DBUS_CFLAGS@
 DBUS_LIBS = @DBUS_LIBS@
-DBUS_SERVICES_DIR = @DBUS_SERVICES_DIR@
 DBUS_SYSTEMD_DIR = @DBUS_SYSTEMD_DIR@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
@@ -125,7 +139,6 @@ PATH_SEPARATOR = @PATH_SEPARATOR@
 PKG_CONFIG = @PKG_CONFIG@
 POLKIT_CFLAGS = @POLKIT_CFLAGS@
 POLKIT_LIBS = @POLKIT_LIBS@
-POLKIT_POLICY_DIR = @POLKIT_POLICY_DIR@
 POSUB = @POSUB@
 PYGTK_CFLAGS = @PYGTK_CFLAGS@
 PYGTK_DEFS = @PYGTK_DEFS@
@@ -211,6 +224,18 @@ ubuntu_tweak_daemon_CPPFLAGS = \
 	$(NULL)
 
 ubuntu_tweak_daemon_LDADD = $(DAEMON_LIBS) $(POLKIT_LIBS)
+dbusconfdir = $(sysconfdir)/dbus-1/system.d
+dbusconf_DATA = ubuntu-tweak-daemon.conf
+dbusservicedir = $(datadir)/dbus-1/system-services
+dbusservice_DATA = com.ubuntu_tweak.daemon.service \
+		   com.ubuntu_tweak.daemon.packageconfig.service
+
+policyconfdir = $(datadir)/PolicyKit/policy
+policyconf_DATA = com.ubuntu-tweak.daemon.policy
+EXTRA_DIST = $(dbusconf_DATA) \
+			 $(policyconf_DATA) \
+			 com.ubuntu_tweak.daemon.service.in
+
 all: all-am
 
 .SUFFIXES:
@@ -244,6 +269,10 @@ $(top_srcdir)/configure:  $(am__configure_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+com.ubuntu_tweak.daemon.service: $(top_builddir)/config.status $(srcdir)/com.ubuntu_tweak.daemon.service.in
+	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
+com.ubuntu_tweak.daemon.packageconfig.service: $(top_builddir)/config.status $(srcdir)/com.ubuntu_tweak.daemon.packageconfig.service.in
+	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
 install-binPROGRAMS: $(bin_PROGRAMS)
 	@$(NORMAL_INSTALL)
 	test -z "$(bindir)" || $(MKDIR_P) "$(DESTDIR)$(bindir)"
@@ -321,6 +350,57 @@ ubuntu_tweak_daemon-main.obj: main.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='main.c' object='ubuntu_tweak_daemon-main.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ubuntu_tweak_daemon_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ubuntu_tweak_daemon-main.obj `if test -f 'main.c'; then $(CYGPATH_W) 'main.c'; else $(CYGPATH_W) '$(srcdir)/main.c'; fi`
+install-dbusconfDATA: $(dbusconf_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(dbusconfdir)" || $(MKDIR_P) "$(DESTDIR)$(dbusconfdir)"
+	@list='$(dbusconf_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(dbusconfDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(dbusconfdir)/$$f'"; \
+	  $(dbusconfDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(dbusconfdir)/$$f"; \
+	done
+
+uninstall-dbusconfDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(dbusconf_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(dbusconfdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(dbusconfdir)/$$f"; \
+	done
+install-dbusserviceDATA: $(dbusservice_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(dbusservicedir)" || $(MKDIR_P) "$(DESTDIR)$(dbusservicedir)"
+	@list='$(dbusservice_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(dbusserviceDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(dbusservicedir)/$$f'"; \
+	  $(dbusserviceDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(dbusservicedir)/$$f"; \
+	done
+
+uninstall-dbusserviceDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(dbusservice_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(dbusservicedir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(dbusservicedir)/$$f"; \
+	done
+install-policyconfDATA: $(policyconf_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(policyconfdir)" || $(MKDIR_P) "$(DESTDIR)$(policyconfdir)"
+	@list='$(policyconf_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(policyconfDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(policyconfdir)/$$f'"; \
+	  $(policyconfDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(policyconfdir)/$$f"; \
+	done
+
+uninstall-policyconfDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(policyconf_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(policyconfdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(policyconfdir)/$$f"; \
+	done
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -397,9 +477,9 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(PROGRAMS)
+all-am: Makefile $(PROGRAMS) $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(bindir)"; do \
+	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(dbusconfdir)" "$(DESTDIR)$(dbusservicedir)" "$(DESTDIR)$(policyconfdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -446,7 +526,8 @@ info: info-am
 
 info-am:
 
-install-data-am:
+install-data-am: install-dbusconfDATA install-dbusserviceDATA \
+	install-policyconfDATA
 
 install-dvi: install-dvi-am
 
@@ -481,7 +562,8 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-binPROGRAMS
+uninstall-am: uninstall-binPROGRAMS uninstall-dbusconfDATA \
+	uninstall-dbusserviceDATA uninstall-policyconfDATA
 
 .MAKE: install-am install-strip
 
@@ -489,15 +571,19 @@ uninstall-am: uninstall-binPROGRAMS
 	clean-generic ctags distclean distclean-compile \
 	distclean-generic distclean-tags distdir dvi dvi-am html \
 	html-am info info-am install install-am install-binPROGRAMS \
-	install-data install-data-am install-dvi install-dvi-am \
+	install-data install-data-am install-dbusconfDATA \
+	install-dbusserviceDATA install-dvi install-dvi-am \
 	install-exec install-exec-am install-html install-html-am \
 	install-info install-info-am install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-binPROGRAMS
+	install-pdf-am install-policyconfDATA install-ps install-ps-am \
+	install-strip installcheck installcheck-am installdirs \
+	maintainer-clean maintainer-clean-generic mostlyclean \
+	mostlyclean-compile mostlyclean-generic pdf pdf-am ps ps-am \
+	tags uninstall uninstall-am uninstall-binPROGRAMS \
+	uninstall-dbusconfDATA uninstall-dbusserviceDATA \
+	uninstall-policyconfDATA
 
+			 com.ubuntu_tweak.daemon.service.packageconfig.in
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

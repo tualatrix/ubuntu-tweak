@@ -610,8 +610,6 @@ DAEMON_CFLAGS
 DBUS_LIBS
 DBUS_CFLAGS
 DBUS_SYSTEMD_DIR
-POLKIT_POLICY_DIR
-DBUS_SERVICES_DIR
 DATADIR
 POSUB
 LTLIBINTL
@@ -6188,12 +6186,6 @@ _ACEOF
   exec_prefix=$exec_prefix_save
 
 
-DBUS_SERVICES_DIR="${prefix}/share/dbus-1/system-services"
-
-
-POLKIT_POLICY_DIR="${prefix}/share/PolicyKit/policy/"
-
-
 
 # Check whether --with-dbus_sys was given.
 if test "${with_dbus_sys+set}" = set; then
@@ -6567,7 +6559,7 @@ fi
 
 
 
-ac_config_files="$ac_config_files Makefile po/Makefile.in src/Makefile src/common/Makefile src/common/consts.py src/common/widgets/Makefile src/common/policykit/Makefile src/backends/Makefile daemon/Makefile data/Makefile data/appcates/Makefile data/aptkeys/Makefile data/applogos/Makefile data/pixmaps/Makefile data/scripts/Makefile data/templates/Makefile data/gui/Makefile icons/Makefile icons/icons/Makefile icons/icons/16x16/Makefile icons/icons/22x22/Makefile icons/icons/24x24/Makefile icons/icons/32x32/Makefile icons/icons/36x36/Makefile icons/icons/48x48/Makefile icons/icons/64x64/Makefile icons/icons/96x96/Makefile icons/icons/128x128/Makefile scripts/Makefile scripts/ubuntu-tweak scripts/script-worker policykit/Makefile policykit/com.ubuntu_tweak.daemon.service policykit/com.ubuntu_tweak.daemon.packageconfig.service"
+ac_config_files="$ac_config_files Makefile po/Makefile.in src/Makefile src/common/Makefile src/common/consts.py src/common/widgets/Makefile src/common/policykit/Makefile src/backends/Makefile daemon/Makefile daemon/com.ubuntu_tweak.daemon.service daemon/com.ubuntu_tweak.daemon.packageconfig.service data/Makefile data/appcates/Makefile data/aptkeys/Makefile data/applogos/Makefile data/pixmaps/Makefile data/scripts/Makefile data/templates/Makefile data/gui/Makefile icons/Makefile icons/icons/Makefile icons/icons/16x16/Makefile icons/icons/22x22/Makefile icons/icons/24x24/Makefile icons/icons/32x32/Makefile icons/icons/36x36/Makefile icons/icons/48x48/Makefile icons/icons/64x64/Makefile icons/icons/96x96/Makefile icons/icons/128x128/Makefile scripts/Makefile scripts/ubuntu-tweak scripts/script-worker"
 
 
 cat >confcache <<\_ACEOF
@@ -7222,6 +7214,8 @@ do
     "src/common/policykit/Makefile") CONFIG_FILES="$CONFIG_FILES src/common/policykit/Makefile" ;;
     "src/backends/Makefile") CONFIG_FILES="$CONFIG_FILES src/backends/Makefile" ;;
     "daemon/Makefile") CONFIG_FILES="$CONFIG_FILES daemon/Makefile" ;;
+    "daemon/com.ubuntu_tweak.daemon.service") CONFIG_FILES="$CONFIG_FILES daemon/com.ubuntu_tweak.daemon.service" ;;
+    "daemon/com.ubuntu_tweak.daemon.packageconfig.service") CONFIG_FILES="$CONFIG_FILES daemon/com.ubuntu_tweak.daemon.packageconfig.service" ;;
     "data/Makefile") CONFIG_FILES="$CONFIG_FILES data/Makefile" ;;
     "data/appcates/Makefile") CONFIG_FILES="$CONFIG_FILES data/appcates/Makefile" ;;
     "data/aptkeys/Makefile") CONFIG_FILES="$CONFIG_FILES data/aptkeys/Makefile" ;;
@@ -7244,9 +7238,6 @@ do
     "scripts/Makefile") CONFIG_FILES="$CONFIG_FILES scripts/Makefile" ;;
     "scripts/ubuntu-tweak") CONFIG_FILES="$CONFIG_FILES scripts/ubuntu-tweak" ;;
     "scripts/script-worker") CONFIG_FILES="$CONFIG_FILES scripts/script-worker" ;;
-    "policykit/Makefile") CONFIG_FILES="$CONFIG_FILES policykit/Makefile" ;;
-    "policykit/com.ubuntu_tweak.daemon.service") CONFIG_FILES="$CONFIG_FILES policykit/com.ubuntu_tweak.daemon.service" ;;
-    "policykit/com.ubuntu_tweak.daemon.packageconfig.service") CONFIG_FILES="$CONFIG_FILES policykit/com.ubuntu_tweak.daemon.packageconfig.service" ;;
 
   *) { { $as_echo "$as_me:$LINENO: error: invalid argument: $ac_config_target" >&5
 $as_echo "$as_me: error: invalid argument: $ac_config_target" >&2;}
