@@ -28,10 +28,16 @@ class DbusProxy:
     def __init__(self, path):
         #TODO deal with exception
         self.path = path
-        self.__object = self.__system_bus.get_object(self.INTERFACE, self.path)
+        try:
+            self.__object = self.__system_bus.get_object(self.INTERFACE, self.path)
+        except:
+            self.__object = None
 
     def __getattr__(self, name):
         return self.__object.get_dbus_method(name, dbus_interface=self.INTERFACE)
+
+    def get_object(self):
+        return self.__object
 
 if __name__ == '__main__':
     print proxy

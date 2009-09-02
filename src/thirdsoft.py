@@ -31,7 +31,7 @@ import webbrowser
 from common.config import Config, TweakSettings
 from common.consts import *
 from common.appdata import get_source_logo, get_source_describ
-from common.policykit import PolkitButton, proxy
+from common.policykit import PolkitButton, DbusProxy
 from common.systeminfo import module_check
 from common.widgets import ListPack, TweakPage, GconfCheckButton
 from common.widgets.dialogs import *
@@ -39,6 +39,7 @@ from common.package import package_worker
 from common.notify import notify
 from installer import APPS
 from installer import AppView
+from backends.packageconfig import PATH
 from aptsources.sourceslist import SourceEntry, SourcesList
 
 (
@@ -793,10 +794,12 @@ class ThirdSoft(TweakPage):
         self.sourcedetail.set_details(home, url, description)
 
     def on_polkit_action(self, widget, action):
+        global proxy
         if action:
             self.refresh_button.set_sensitive(True)
 
-            if proxy.get_proxy():
+            proxy = DbusProxy(PATH)
+            if proxy.get_object():
                 self.treeview.set_sensitive(True)
                 self.expander.set_sensitive(True)
                 WARNING_KEY = '/apps/ubuntu-tweak/disable_thidparty_warning'
