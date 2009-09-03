@@ -610,16 +610,6 @@ You should have received a copy of the GNU General Public License along with Ubu
         gtk.gdk.threads_leave()
 
     def destroy(self, widget, data = None):
-        from common.policykit import proxy
-        if proxy.get_proxy():
-            state = proxy.get_list_state()
-            if state == "expire":
-                from thirdsoft import UpdateCacheDialog
-                dialog = UpdateCacheDialog(self)
-                res = dialog.run()
-
-            proxy.exit()
-
         self.do_notify()
         self.save_gui_state()
         gtk.main_quit()
