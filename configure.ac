@@ -81,6 +81,7 @@ AC_CONFIG_FILES([
     daemon/Makefile
     daemon/com.ubuntu_tweak.daemon.service
     daemon/com.ubuntu_tweak.daemon.packageconfig.service
+    daemon/com.ubuntu_tweak.daemon.getconfig.service
     data/Makefile
     data/appcates/Makefile
     data/aptkeys/Makefile

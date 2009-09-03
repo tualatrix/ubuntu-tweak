@@ -18,29 +18,32 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
+import os
 import dbus
+import dbus.glib
+import dbus.service
+import dbus.mainloop.glib
+import gobject
 
-class DbusProxy:
-    INTERFACE = "com.ubuntu_tweak.daemon"
+INTERFACE = "com.ubuntu_tweak.daemon.getconfig"
+PATH = "/com/ubuntu_tweak/daemon/getconfig"
 
-    __system_bus = dbus.SystemBus()
+class GetConfig(dbus.service.Object):
+    def __init__ (self, bus):
+        bus_name = dbus.service.BusName(INTERFACE, bus=bus)
+        dbus.service.Object.__init__(self, bus_name, PATH)
 
-    def __init__(self, path, interface=None):
-        #TODO deal with exception
-        self.path = path
-        if interface:
-            self.INTERFACE = interface
-
-        try:
-            self.__object = self.__system_bus.get_object(self.INTERFACE, self.path)
-        except:
-            self.__object = None
-
-    def __getattr__(self, name):
-        return self.__object.get_dbus_method(name, dbus_interface=self.INTERFACE)
-
-    def get_object(self):
-        return self.__object
+    @dbus.service.method(INTERFACE,
+                         in_signature='s', out_signature='b')
+    def is_exists(self, path):
+        return os.path.exists(path)
 
 if __name__ == '__main__':
-    print proxy
+    dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
+    GetConfig(dbus.SystemBus())
+
+    mainloop = gobject.MainLoop()
+    mainloop.run()
