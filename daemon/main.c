@@ -48,13 +48,12 @@ int
 main (int argc, char *argv[])
 {
   GMainLoop *main_loop;
-  gboolean debug = TRUE;
+  gboolean debug = FALSE;
   gboolean no_daemon = FALSE;
   GOptionContext *context;
   GOptionEntry entries[] =
     {
       { "debug",     'd', 0, G_OPTION_ARG_NONE, &debug,     "Debug mode",     NULL },
-      { "no-daemon", 'n', 0, G_OPTION_ARG_NONE, &no_daemon, "No daemon mode", NULL },
       { NULL }
     };
 
