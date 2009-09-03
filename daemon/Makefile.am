@@ -29,4 +29,4 @@ EXTRA_DIST = $(dbusconf_DATA) \
 			 $(policyconf_DATA) \
 			 com.ubuntu_tweak.daemon.service.in \
 			 com.ubuntu_tweak.daemon.getconfig.service.in \
-			 com.ubuntu_tweak.daemon.service.packageconfig.in
+			 com.ubuntu_tweak.daemon.packageconfig.service.in
