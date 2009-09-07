@@ -106,6 +106,7 @@ APP_DATA = {
     'gmail-notify': _('Notifies the user upon arrival of new mail in Gmail'),
     'gmchess': _('GMChess is chinese chess game write by gtkmm'),
     'gnome-do': _('A powerful, speedy, and sexy remote control for the GNOME Desktop'),
+    'gnome-do-plugins': _('Extra functionality for GNOME-Do launcher'),
     'gnome-globalmenu': _('Global Menu Bar for GNOME'),
     'gnome-colors': _('GNOME-Colors is a set of GNOME icon themes, with some inspiration from Tango, Elementary, Discovery, Tango Generator and others.'),
     'gnote': _('a C++ port of Tomboy'),

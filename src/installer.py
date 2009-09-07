@@ -124,6 +124,7 @@ APPS = \
     'gmail-notify': Mail,
     'gnote': Text,
     'gnome-do': Desktop,
+    'gnome-do-plugins': Desktop,
     'gnome-globalmenu': Desktop,
     'gnome-colors': Theme,
     'shiki-colors': Theme,
