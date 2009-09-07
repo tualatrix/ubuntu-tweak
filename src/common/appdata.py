@@ -173,7 +173,7 @@ APP_DATA = {
 
 SOURCE_DATA = {
     'firefox': _('Development Version of Mozilla Firefox'),
-    'compiz-fusion': _('Development version of Compiz Fusion'),
+    'compiz': _('Development version of Compiz'),
     'google': _("Google's Linux Repository"),
     'kde-4': _('Development Version of K Desktop Environment'),
     'lxde': _('Lightweight X11 Desktop Environment: GPicView, PCManFM'),
