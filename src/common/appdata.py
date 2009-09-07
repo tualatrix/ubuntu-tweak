@@ -188,6 +188,7 @@ SOURCE_DATA = {
     'mozilla-security': _('Ubuntu Mozilla Security Team provides beta and final stable/security updates for mozilla software in its PPA'),
     'qt': _('A cross-platform application and UI framework'),
     'mono': _('Mono is a cross platform, open source .NET development framework.'),
+    'clutter': _('Clutter is an OpenGL based interactive canvas library, designed for creating fast, mainly 2D single window applications such as media box UIs, presentations, kiosk style applications and so on.'),
 }
 
 if __name__ == '__main__':
