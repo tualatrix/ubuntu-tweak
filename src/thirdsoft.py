@@ -30,6 +30,7 @@ import webbrowser
 
 from common.config import Config, TweakSettings
 from common.consts import *
+from common.appdata import APP_DATA
 from common.appdata import get_app_logo, get_app_describ
 from common.appdata import get_source_logo, get_source_describ
 from common.policykit import PolkitButton, DbusProxy
@@ -42,6 +43,9 @@ from installer import APPS
 from installer import AppView
 from backends.packageconfig import PATH
 from aptsources.sourceslist import SourceEntry, SourcesList
+
+BUILTIN_APPS = APP_DATA.keys()
+BUILTIN_APPS.extend(APPS.keys())
 
 (
     COLUMN_ENABLED,
@@ -290,7 +294,7 @@ def refresh_source(parent):
 
     new_pkg = []
     for pkg in package_worker.get_new_package():
-        if pkg in APPS.keys():
+        if pkg in BUILTIN_APPS:
             new_pkg.append(pkg)
 
     new_updates = list(package_worker.get_update_package())
@@ -377,7 +381,7 @@ class UpdateView(AppView):
         apps = []
         updates = []
         for pkg in pkgs:
-            if pkg in APPS.keys():
+            if pkg in BUILTIN_APPS:
                 apps.append(pkg)
             else:
                 updates.append(pkg)
