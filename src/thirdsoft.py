@@ -30,12 +30,13 @@ import webbrowser
 
 from common.config import Config, TweakSettings
 from common.consts import *
+from common.appdata import get_app_logo, get_app_describ
 from common.appdata import get_source_logo, get_source_describ
 from common.policykit import PolkitButton, DbusProxy
 from common.systeminfo import module_check
 from common.widgets import ListPack, TweakPage, GconfCheckButton
 from common.widgets.dialogs import *
-from common.package import package_worker
+from common.package import package_worker, PackageInfo
 from common.notify import notify
 from installer import APPS
 from installer import AppView
@@ -352,7 +353,7 @@ class UpdateView(AppView):
                         None,
                         None,
                         None,
-                        '<span size="large" weight="bold">%s</span>' % 'Available New Applications',
+                        '<span size="large" weight="bold">%s</span>' % _('Available New Applications'),
                         None,
                         None))
 
@@ -369,15 +370,38 @@ class UpdateView(AppView):
                         None,
                         None,
                         None,
-                        '<span size="large" weight="bold">%s</span>' % 'Available Package Updates',
+                        '<span size="large" weight="bold">%s</span>' % _('Available Package Updates'),
                         None,
                         None))
 
+        apps = []
+        updates = []
         for pkg in pkgs:
-            name = pkg.name
-            summary = pkg.summary
+            if pkg in APPS.keys():
+                apps.append(pkg)
+            else:
+                updates.append(pkg)
 
-            self.append_update(True, name, summary)
+        for pkgname in apps:
+            pixbuf = get_app_logo(pkgname)
+
+            package = PackageInfo(pkgname)
+            appname = package.get_name()
+            desc = get_app_describ(pkgname)
+
+            self.append_app(True,
+                    pixbuf,
+                    pkgname,
+                    appname,
+                    desc,
+                    0,
+                    'update')
+            self.to_add.append(pkgname)
+
+        for pkgname in updates:
+            package = package_worker.get_cache()[pkgname]
+
+            self.append_update(True, package.name, package.summary)
 
 class UpdateCacheDialog:
     """This class is modified from Software-Properties"""
@@ -644,7 +668,7 @@ class SourcesView(gtk.TreeView):
             self.emit('sourcechanged')
 
         if enable:
-            notify.update('New source has been enabled', '%s is enalbed now, Please click the refresh button to update the application cache.' % comment)
+            notify.update(_('New source has been enabled'), _('%s is enalbed now, Please click the refresh button to update the application cache.') % comment)
             notify.set_icon_from_pixbuf(icon)
             notify.show()
 

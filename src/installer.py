@@ -264,7 +264,7 @@ class AppView(gtk.TreeView):
     def clear_model(self):
         self.get_model().clear()
 
-    def append_app(self, status, pixbuf, pkgname, appname, desc, category):
+    def append_app(self, status, pixbuf, pkgname, appname, desc, category, type='app'):
         model = self.get_model()
 
         model.append((status,
@@ -274,7 +274,7 @@ class AppView(gtk.TreeView):
                 desc,
                 '<b>%s</b>\n%s' % (appname, desc),
                 category,
-                'app'))
+                type))
 
     def append_changed_app(self, status, pixbuf, pkgname, appname, desc, category):
         model = self.get_model()
@@ -292,8 +292,12 @@ class AppView(gtk.TreeView):
         model = self.get_model()
         self.to_add.append(pkgname)
 
+        icontheme = gtk.icon_theme_get_default()
+        icon = icontheme.lookup_icon('application-x-deb', 32, gtk.ICON_LOOKUP_NO_SVG)
+        pixbuf = icon.load_icon()
+
         model.append((status,
-                      None,
+                      pixbuf,
                       pkgname,
                       pkgname,
                       summary,

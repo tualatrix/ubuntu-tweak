@@ -170,7 +170,7 @@ class PackageWorker:
     def get_update_package(self):
         for pkg in self.get_cache():
             if pkg.isUpgradable == 1:
-                yield pkg
+                yield pkg.name
 
 package_worker = PackageWorker()
 
