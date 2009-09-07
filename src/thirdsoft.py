@@ -153,6 +153,7 @@ Medibuntu = ['Medibuntu', 'medibuntu', 'www.medibuntu.org', 'medibuntu.gpg']
 WineDoors = ['Wine Doors', 'wine-doors', 'www.wine-doors.org', 'wine-doors.gpg']
 XBMC = ['XBMC', 'xbmc', 'xbmc.org', 'xbmc.gpg']
 UbuntuX = ['Ubuntu X', 'ubuntu-x', 'launchpad.net/~ubuntu-x-swat', 'ubuntu-x.gpg']
+UbuntuX_Unstable = ['Ubuntu X (Unstable)', 'ubuntu-x', 'launchpad.net/~xorg-edgers', 'ubuntu-x-unstable.gpg']
 Clutter = ['Clutter', 'clutter', 'www.clutter-project.org', 'clutter.gpg']
 
 SOURCES_DATA = [
@@ -240,6 +241,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/team-xbmc/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', XBMC],
     ['http://ppa.launchpad.net/gnome-games-experimental/ppa/ubuntu', ['jaunty', 'karmic'], 'main', GnomeGames],
     ['http://ppa.launchpad.net/ubuntu-x-swat/x-updates/ubuntu', ['jaunty', 'karmic'], 'main', UbuntuX],
+    ['http://ppa.launchpad.net/xorg-edgers/ppa/ubuntu', ['jaunty', 'karmic'], 'main', UbuntuX_Unstable],
     ['http://ppa.launchpad.net/njpatel/clutter-edgers/ubuntu', 'jaunty', 'main', Clutter],
 ]
 
