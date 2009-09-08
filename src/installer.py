@@ -354,7 +354,7 @@ class AppView(gtk.TreeView):
 
     def on_install_toggled(self, cell, path):
         def do_app_changed(model, iter, appname, desc):
-                model.set(iter, COLUMN_DISPLAY, '<span foreground="#ffcc00"><b>%s</b>\n%s</span>' % (appname, desc))
+                model.set(iter, COLUMN_DISPLAY, '<span style="italic" weight="bold"><b>%s</b>\n%s</span>' % (appname, desc))
         def do_app_unchanged(model, iter, appname, desc):
                 model.set(iter, COLUMN_DISPLAY, '<b>%s</b>\n%s' % (appname, desc))
 
