@@ -27,7 +27,7 @@ import pango
 from common.consts import *
 from common.utils import *
 from common.widgets import TweakPage
-from common.widgets.dialogs import InfoDialog
+from common.widgets.dialogs import InfoDialog, ErrorDialog
 from common.appdata import get_app_logo, get_app_describ
 from xdg.DesktopEntry import DesktopEntry
 
@@ -505,7 +505,7 @@ class Installer(TweakPage):
             self.button.set_sensitive(False)
             InfoDialog(_('Update Successful!')).launch()
         else:
-            InfoDialog(_('Update Failed!')).launch()
+            ErrorDialog(_('Update Failed!')).launch()
 
         self.treeview.to_add = []
         self.treeview.to_rm = []

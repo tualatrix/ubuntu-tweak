@@ -335,7 +335,7 @@ def refresh_source(parent):
             if done:
                 InfoDialog(_('Update Successful!')).launch()
             else:
-                InfoDialog(_('Update Failed!')).launch()
+                ErrorDialog(_('Update Failed!')).launch()
 
         return True
     else:
