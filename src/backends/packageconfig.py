@@ -118,12 +118,6 @@ class Daemon(dbus.service.Object):
         partsdir = apt_pkg.Config.FindDir("Dir::Etc::sourceparts")
         file = os.path.join(partsdir, file+'.list')
 
-        if os.path.exists(file) and url not in open(file).read():
-            for i in xrange(1000):
-                file = os.path.splitext(file)[0] + '-' + str(i+1) + '.list'
-                if not os.path.exists(file):
-                    break
-
         if enabled:
             self.list.add('deb', url, distro, comps.split(' '), comment, -1, file)
             self.list.save()
