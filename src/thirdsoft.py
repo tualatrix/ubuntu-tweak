@@ -159,6 +159,7 @@ XBMC = ['XBMC', 'xbmc', 'xbmc.org', 'xbmc.gpg']
 UbuntuX = ['Ubuntu X', 'ubuntu-x', 'launchpad.net/~ubuntu-x-swat', 'ubuntu-x.gpg']
 UbuntuX_Unstable = ['Ubuntu X (Unstable)', 'ubuntu-x', 'launchpad.net/~xorg-edgers', 'ubuntu-x-unstable.gpg']
 Clutter = ['Clutter', 'clutter', 'www.clutter-project.org', 'clutter.gpg']
+Gloobus = ['Gloobus', 'gloobus', 'gloobus.wordpress.com', 'tweak.gpg']
 
 SOURCES_DATA = [
     ['http://ppa.launchpad.net/reacocard-awn/ppa/ubuntu/', ['hardy','intrepid'], 'main', AWN],
@@ -247,6 +248,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/ubuntu-x-swat/x-updates/ubuntu', ['jaunty', 'karmic'], 'main', UbuntuX],
     ['http://ppa.launchpad.net/xorg-edgers/ppa/ubuntu', ['jaunty', 'karmic'], 'main', UbuntuX_Unstable],
     ['http://ppa.launchpad.net/njpatel/clutter-edgers/ubuntu', 'jaunty', 'main', Clutter],
+    ['http://ppa.launchpad.net/tualatrix/gloobus/ubuntu', 'jaunty', 'main', Gloobus],
 ]
 
 SOURCES_DEPENDENCIES = {

@@ -101,6 +101,7 @@ APP_DATA = {
     'geany': _('A fast and lightweight IDE'),
     'gftp': _('A multithreaded FTP client'),
     'ghex': _('GNOME Hex editor'),
+    'gloobus-preview': _('Gloobus is an extension of Gnome designed to enable a full screen preview of any kind of file.'),
     'gimp': _('The GNU Image Manipulation Program'),
     'giver': _('A simple file sharing desktop application'),
     'gmail-notify': _('Notifies the user upon arrival of new mail in Gmail'),
@@ -190,6 +191,7 @@ SOURCE_DATA = {
     'qt': _('A cross-platform application and UI framework'),
     'mono': _('Mono is a cross platform, open source .NET development framework.'),
     'clutter': _('Clutter is an OpenGL based interactive canvas library, designed for creating fast, mainly 2D single window applications such as media box UIs, presentations, kiosk style applications and so on.'),
+    'gloobus': _('Gloobus is an extension of Gnome designed to enable a full screen preview of any kind of file.'),
 }
 
 if __name__ == '__main__':

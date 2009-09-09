@@ -115,6 +115,7 @@ APPS = \
     'filezilla': FTP,
     'pcmanfm': Desktop,
     'gimp': Image,
+    'gloobus-preview': Desktop,
     'giver': P2P,
     'galaxium': IM,
     'gajim': IM,
