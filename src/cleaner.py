@@ -159,6 +159,7 @@ class PackageView(gtk.TreeView):
         return self.__check_list
 
     def update_package_model(self):
+        self.set_busy()
         model = self.get_model()
         model.clear()
         self.mode = 'package'
@@ -169,6 +170,9 @@ class PackageView(gtk.TreeView):
         self.__column.set_title(_('Packages'))
 
         for pkg in list:
+            while gtk.events_pending():
+                gtk.main_iteration()
+
             desc = self.package_worker.get_pkgsummary(pkg)
 
             iter = model.append()
@@ -180,7 +184,10 @@ class PackageView(gtk.TreeView):
                    COLUMN_DISPLAY, '<b>%s</b>\n%s' % (pkg, desc)
                 )
 
+        self.unset_busy()
+
     def update_kernel_model(self):
+        self.set_busy()
         model = self.get_model()
         model.clear()
         self.mode = 'kernel'
@@ -191,6 +198,9 @@ class PackageView(gtk.TreeView):
         self.__column.set_title(_('Packages'))
 
         for pkg in list:
+            while gtk.events_pending():
+                gtk.main_iteration()
+
             desc = self.package_worker.get_pkgsummary(pkg)
 
             iter = model.append()
@@ -201,8 +211,10 @@ class PackageView(gtk.TreeView):
                    COLUMN_DESC, desc,
                    COLUMN_DISPLAY, '<b>%s</b>\n%s' % (pkg, desc)
                 )
+        self.unset_busy()
 
     def update_cache_model(self):
+        self.set_busy()
         model = self.get_model()
         model.clear()
         self.mode = 'cache'
@@ -215,6 +227,9 @@ class PackageView(gtk.TreeView):
         self.__column.set_title(_('Package Cache'))
 
         for pkg in list:
+            while gtk.events_pending():
+                gtk.main_iteration()
+
             size = str(os.path.getsize(pkg))
 
             iter = model.append()
@@ -226,8 +241,10 @@ class PackageView(gtk.TreeView):
                    COLUMN_DISPLAY, _('<b>%s</b>\nTake %s of disk space') % (os.path.basename(pkg), filesizeformat(size)) 
 
                 )
+        self.unset_busy()
 
     def update_config_model(self):
+        self.set_busy()
         model = self.get_model()
         model.clear()
         self.mode = 'config'
@@ -250,6 +267,9 @@ class PackageView(gtk.TreeView):
         self.__column.set_title(_('Package Config'))
 
         for pkg in list:
+            while gtk.events_pending():
+                gtk.main_iteration()
+
             iter = model.append()
             model.set(iter,
                    COLUMN_CHECK, False,
@@ -258,6 +278,7 @@ class PackageView(gtk.TreeView):
                    COLUMN_DESC, 0,
                    COLUMN_DISPLAY, '<b>%s</b>\n%s' % (pkg.name, pkg.des),
                 )
+        self.unset_busy()
 
     def on_package_toggled(self, cell, path):
         model = self.get_model()
@@ -371,6 +392,16 @@ class PackageView(gtk.TreeView):
 
     def show_failed_dialog(self):
         ErrorDialog(_('Clean up Failed!')).launch()
+
+    def set_busy(self):
+        window = self.get_toplevel().window
+        if window:
+            window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+
+    def unset_busy(self):
+        window = self.get_toplevel().window
+        if window:
+            window.set_cursor(None)
 
 class PackageCleaner(TweakPage):
     def __init__(self):
