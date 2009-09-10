@@ -219,7 +219,7 @@ class TweakSettings:
             height, width = int(height), int(width)
             return (width, height)
         else:
-            return (740, 480)
+            return (800, 480)
 
     @classmethod
     def get_icon_theme(cls):
