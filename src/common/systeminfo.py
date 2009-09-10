@@ -47,7 +47,7 @@ def parse_distro():
 
 class DistroInfo:
     distributor = GnomeVersion.distributor
-    if GnomeVersion.distributor in ['Ubuntu', 'Linux Mint', 'Greenie']:
+    if GnomeVersion.distributor in ['Ubuntu', 'Linux Mint', 'Greenie', 'Jolicloud']:
         codename = parse_codename()
         distro = parse_distro()
     else:
@@ -117,7 +117,7 @@ class module_check:
 
     @classmethod
     def is_jaunty(cls):
-        return DistroInfo.codename in ['jaunty', 'gloria', 'Gloria']
+        return DistroInfo.codename in ['jaunty', 'gloria', 'Gloria', 'robby']
 
     @classmethod
     def is_karmic(cls):
