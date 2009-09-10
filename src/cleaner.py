@@ -336,6 +336,7 @@ class PackageView(gtk.TreeView):
             self.__check_list.append(model.get_value(iter, COLUMN_NAME))
 
     def clean_selected_package(self):
+        self.set_busy()
         state = self.package_worker.perform_action(self.get_toplevel(), [],self.__check_list)
 
         if state == 0:
@@ -350,8 +351,10 @@ class PackageView(gtk.TreeView):
             self.update_kernel_model()
         self.__check_list = []
         self.emit('cleaned')
+        self.unset_busy()
 
     def clean_selected_cache(self):
+        self.set_busy()
         model = self.get_model()
 
         dialog = CleanCacheDailog(self.get_toplevel(), self.get_list())
@@ -368,8 +371,10 @@ class PackageView(gtk.TreeView):
 
         self.update_cache_model()
         self.emit('cleaned')
+        self.unset_busy()
 
     def clean_selected_config(self):
+        self.set_busy()
         model = self.get_model()
 
         dialog = CleanConfigDialog(self.get_toplevel(), self.get_list())
@@ -383,6 +388,7 @@ class PackageView(gtk.TreeView):
         package_worker.update_apt_cache(True)
         self.update_config_model()
         self.emit('cleaned')
+        self.unset_busy()
 
     def show_usercancel_dialog(self):
         InfoDialog(_('Canceled by user!')).launch()
