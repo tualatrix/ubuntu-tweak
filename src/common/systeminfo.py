@@ -18,6 +18,7 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
+import os
 from xml.sax import make_parser
 from xml.dom import minidom
 
@@ -144,6 +145,10 @@ class module_check:
             return True
         except:
             return False
+
+    @classmethod
+    def is_gnome(cls):
+        return os.getenv('GDMSESSION') and os.getenv('GDM_LANG')
             
 if __name__ == "__main__":
     print SystemInfo.distro
