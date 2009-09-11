@@ -295,8 +295,15 @@ class AppView(gtk.TreeView):
         self.to_add.append(pkgname)
 
         icontheme = gtk.icon_theme_get_default()
-        icon = icontheme.lookup_icon('application-x-deb', 32, gtk.ICON_LOOKUP_NO_SVG)
-        pixbuf = icon.load_icon()
+        for icon_name in ['application-x-deb', 'package-x-generic', 'package']:
+            icon = icontheme.lookup_icon(icon_name, 32, gtk.ICON_LOOKUP_NO_SVG)
+            if icon:
+                break
+
+        if icon:
+            pixbuf = icon.load_icon()
+        else:
+            pixbuf = icontheme.load_icon(gtk.STOCK_MISSING_IMAGE, 32, 0)
 
         model.append((status,
                       pixbuf,
