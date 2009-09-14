@@ -181,6 +181,7 @@ APP_DATA = {
     'tropical-theme': _('Tropical theme contains a full theme for GNOME based system.'),
     'wild-shine-theme': _('Wild-shine theme contains a full theme for GNOME based system.'),
     'balanzan-theme': _('Balanzan theme contains a full theme for GNOME based system.'),
+    'dia': _('Dia is an editor for diagrams, graphs, charts etc.'),
 }
 
 SOURCE_DATA = {

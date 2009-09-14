@@ -193,6 +193,7 @@ APPS = \
     'tropical-theme': Theme,
     'wild-shine-theme': Theme,
     'balanzan-theme': Theme,
+    'dia': Image,
 }
 
 class AppView(gtk.TreeView):
