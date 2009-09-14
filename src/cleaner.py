@@ -169,10 +169,10 @@ class PackageView(gtk.TreeView):
         self.total_num = len(list)
         self.__column.set_title(_('Packages'))
 
-        for pkg in list:
-            while gtk.events_pending():
-                gtk.main_iteration()
+        while gtk.events_pending():
+            gtk.main_iteration()
 
+        for pkg in list:
             desc = self.package_worker.get_pkgsummary(pkg)
 
             iter = model.append()
@@ -197,10 +197,10 @@ class PackageView(gtk.TreeView):
         self.total_num = len(list)
         self.__column.set_title(_('Packages'))
 
-        for pkg in list:
-            while gtk.events_pending():
-                gtk.main_iteration()
+        while gtk.events_pending():
+            gtk.main_iteration()
 
+        for pkg in list:
             desc = self.package_worker.get_pkgsummary(pkg)
 
             iter = model.append()
@@ -226,10 +226,10 @@ class PackageView(gtk.TreeView):
         self.total_num = len(list)
         self.__column.set_title(_('Package Cache'))
 
-        for pkg in list:
-            while gtk.events_pending():
-                gtk.main_iteration()
+        while gtk.events_pending():
+            gtk.main_iteration()
 
+        for pkg in list:
             size = str(os.path.getsize(pkg))
 
             iter = model.append()
@@ -266,10 +266,10 @@ class PackageView(gtk.TreeView):
         self.total_num = len(list)
         self.__column.set_title(_('Package Config'))
 
-        for pkg in list:
-            while gtk.events_pending():
-                gtk.main_iteration()
+        while gtk.events_pending():
+            gtk.main_iteration()
 
+        for pkg in list:
             iter = model.append()
             model.set(iter,
                    COLUMN_CHECK, False,
