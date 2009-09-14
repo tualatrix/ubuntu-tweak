@@ -171,6 +171,16 @@ APP_DATA = {
     'wine-doors': _('Wine-doors is an application designed to make installing windows software on Linux, Solaris or other Unix systems easier.'),
     'xbmc': _('XBMC is a free and open source software media player and entertainment hub'),
     'zim': _('Zim is a WYSIWYG text editor. It aims at bringing the concept of a wiki to your desktop.'),
+    'step-into-freedom-theme': _('Step-into-freedom theme contains a full theme for GNOME based system.'),
+    'ubuntu-sunrise-theme': _('Ubuntu-sunrise theme contains a full theme for GNOME based system.'),
+    'bamboo-zen-theme': _('Bamboo-zen theme contains a full theme for GNOME based system.'),
+    'exotic-theme': _('Exotic theme contains a full theme for GNOME based system.'),
+    'aquadreams-theme': _('Aquadreams theme contains a full theme for GNOME based system.'),
+    'showtime-theme': _('Showtime theme contains a full theme for GNOME based system.'),
+    'infinity-theme': _('Infinity theme contains a full theme for GNOME based system.'),
+    'tropical-theme': _('Tropical theme contains a full theme for GNOME based system.'),
+    'wild-shine-theme': _('Wild-shine theme contains a full theme for GNOME based system.'),
+    'balanzan-theme': _('Balanzan theme contains a full theme for GNOME based system.'),
 }
 
 SOURCE_DATA = {
@@ -192,6 +202,7 @@ SOURCE_DATA = {
     'mono': _('Mono is a cross platform, open source .NET development framework.'),
     'clutter': _('Clutter is an OpenGL based interactive canvas library, designed for creating fast, mainly 2D single window applications such as media box UIs, presentations, kiosk style applications and so on.'),
     'gloobus': _('Gloobus is an extension of Gnome designed to enable a full screen preview of any kind of file.'),
+    'bisigi': _('Behind this African word, referring to the notion of imagination, you can find some themes for GNOME'),
 }
 
 if __name__ == '__main__':

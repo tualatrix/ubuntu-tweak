@@ -183,6 +183,16 @@ APPS = \
     'wine-doors': Emulator,
     'xbmc': Desktop,
     'zim': Text,
+    'step-into-freedom-theme': Theme,
+    'ubuntu-sunrise-theme': Theme,
+    'bamboo-zen-theme': Theme,
+    'exotic-theme': Theme,
+    'aquadreams-theme': Theme,
+    'showtime-theme': Theme,
+    'infinity-theme': Theme,
+    'tropical-theme': Theme,
+    'wild-shine-theme': Theme,
+    'balanzan-theme': Theme,
 }
 
 class AppView(gtk.TreeView):
