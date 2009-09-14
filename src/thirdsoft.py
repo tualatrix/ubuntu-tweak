@@ -161,6 +161,7 @@ UbuntuX_Unstable = ['Ubuntu X (Unstable)', 'ubuntu-x', 'launchpad.net/~xorg-edge
 Clutter = ['Clutter', 'clutter', 'www.clutter-project.org', 'clutter.gpg']
 Gloobus = ['Gloobus', 'gloobus', 'gloobus.wordpress.com', 'tweak.gpg']
 Bisigi = [_('Bisigi Theme Project'), 'bisigi', 'www.bisigi-project.org', 'bisigi.gpg']
+Pitivi = [_('PiTiVi video editor'), 'pitivi', 'www.pitivi.org', 'pitivi.gpg']
 
 SOURCES_DATA = [
     ['http://ppa.launchpad.net/reacocard-awn/ppa/ubuntu/', ['hardy','intrepid'], 'main', AWN],
@@ -251,6 +252,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/njpatel/clutter-edgers/ubuntu', 'jaunty', 'main', Clutter],
     ['http://ppa.launchpad.net/tualatrix/gloobus/ubuntu', 'jaunty', 'main', Gloobus],
     ['http://ppa.launchpad.net/bisigi/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Bisigi],
+    ['http://ppa.launchpad.net/gstreamer-developers/ppa/ubuntu', 'jaunty', 'main', Pitivi],
 ]
 
 SOURCES_DEPENDENCIES = {

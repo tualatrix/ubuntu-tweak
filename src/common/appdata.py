@@ -182,6 +182,7 @@ APP_DATA = {
     'wild-shine-theme': _('Wild-shine theme contains a full theme for GNOME based system.'),
     'balanzan-theme': _('Balanzan theme contains a full theme for GNOME based system.'),
     'dia': _('Dia is an editor for diagrams, graphs, charts etc.'),
+    'pitivi': _('non-linear audio/video editor using GStreamer'),
 }
 
 SOURCE_DATA = {

@@ -194,6 +194,7 @@ APPS = \
     'wild-shine-theme': Theme,
     'balanzan-theme': Theme,
     'dia': Image,
+    'pitivi': Video,
 }
 
 class AppView(gtk.TreeView):
