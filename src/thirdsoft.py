@@ -162,6 +162,8 @@ Clutter = ['Clutter', 'clutter', 'www.clutter-project.org', 'clutter.gpg']
 Gloobus = ['Gloobus', 'gloobus', 'gloobus.wordpress.com', 'tweak.gpg']
 Bisigi = [_('Bisigi Theme Project'), 'bisigi', 'www.bisigi-project.org', 'bisigi.gpg']
 Pitivi = [_('PiTiVi video editor'), 'pitivi', 'www.pitivi.org', 'pitivi.gpg']
+Kubuntu_update = [_('Kubuntu Update'), 'kubuntu-update', 'www.kubuntu.org', 'kubuntu.gpg']
+Kubuntu_backports = [_('Kubuntu Backports'), 'kubuntu-backports', 'www.kubuntu.org', 'kubuntu.gpg']
 
 SOURCES_DATA = [
     ['http://ppa.launchpad.net/reacocard-awn/ppa/ubuntu/', ['hardy','intrepid'], 'main', AWN],
@@ -253,6 +255,8 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/tualatrix/gloobus/ubuntu', 'jaunty', 'main', Gloobus],
     ['http://ppa.launchpad.net/bisigi/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Bisigi],
     ['http://ppa.launchpad.net/gstreamer-developers/ppa/ubuntu', 'jaunty', 'main', Pitivi],
+    ['http://ppa.launchpad.net/kubuntu-ppa/ppa/ubuntu', 'jaunty', 'main', Kubuntu_update],
+    ['http://ppa.launchpad.net/kubuntu-ppa/backports/ubuntu', 'jaunty', 'main', Kubuntu_backports],
 ]
 
 SOURCES_DEPENDENCIES = {

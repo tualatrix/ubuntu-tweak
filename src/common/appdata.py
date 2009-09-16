@@ -205,6 +205,8 @@ SOURCE_DATA = {
     'clutter': _('Clutter is an OpenGL based interactive canvas library, designed for creating fast, mainly 2D single window applications such as media box UIs, presentations, kiosk style applications and so on.'),
     'gloobus': _('Gloobus is an extension of Gnome designed to enable a full screen preview of any kind of file.'),
     'bisigi': _('Behind this African word, referring to the notion of imagination, you can find some themes for GNOME'),
+    'kubuntu-update': _('Updates for Kubuntu releases which are due to go to Ubuntu Updates. Mostly KDE point releases.'),
+    'kubuntu-backports': _('Backports of new versions of KDE for Kubuntu which are not yet tested enough to go to Ubuntu Backports.'),
 }
 
 if __name__ == '__main__':
