@@ -131,7 +131,7 @@ Spicebird = ['Spicebird', 'spicebird', 'www.spicebird.com', 'spicebird.gpg']
 Spicebird_Testing = [_('Spicebird (Testing Version)'), 'spicebird', 'www.spicebird.com', 'spicebird.gpg']
 Synapse = ['Synapse', 'synapse', 'synapse.im', 'synapse.gpg']
 Smplayer = ['SMPlayer', 'smplayer', 'smplayer.sourceforge.net', 'smplayer.gpg']
-MplayerLibs = [_('MPlayer Core Libraries'), 'mplayer', 'launchpad.net/~rvm/+archive/libs', 'mplayer-libs.gpg']
+Mplayer = ['Mplayer', 'mplayer', 'www.mplayerhq.hu', 'mplayer.gpg']
 Smplayer_Testing = [_('SMPlayer (Unstable Version)'), 'smplayer', 'smplayer.sourceforge.net', 'smplayer-testing.gpg']
 Wine = ['Wine', 'wine', 'www.winehq.org', 'wine.gpg']
 LXDE = ['LXDE', 'lxde', 'lxde.org', 'lxde.gpg']
@@ -189,7 +189,7 @@ SOURCES_DATA = [
     ['http://download.skype.com/linux/repos/debian', 'stable', 'non-free', Skype],
     ['http://ppa.launchpad.net/rvm/smplayer/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Smplayer],
     ['http://ppa.launchpad.net/rvm/testing/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Smplayer_Testing],
-    ['http://ppa.launchpad.net/rvm/libs/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', MplayerLibs],
+    ['http://ppa.launchpad.net/rvm/mplayer/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Mplayer],
     ['http://ppa.launchpad.net/gwibber-team/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Gwibber],
     ['http://ppa.launchpad.net/matthaeus123/mrw-gimp-svn/ubuntu', ['jaunty', 'karmic'], 'main', Gimp_Testing], 
     ['http://ppa.launchpad.net/gwibber-daily/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Gwibber_Daily],
@@ -258,7 +258,8 @@ SOURCES_DATA = [
 SOURCES_DEPENDENCIES = {
     Midori[0]: WebKitGtk[0],
     Liferea[0]: WebKitGtk[0],
-    Smplayer_Testing[0]: MplayerLibs[0],
+    Smplayer[0]: Mplayer[0],
+    Smplayer_Testing[0]: Mplayer[0],
     Moblin_Jaunty[0]: Moblin_Karmic[0],
 }
 
