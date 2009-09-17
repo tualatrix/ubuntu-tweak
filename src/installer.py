@@ -195,6 +195,7 @@ APPS = \
     'balanzan-theme': Theme,
     'dia': Image,
     'pitivi': Video,
+    'lyx': Text,
 }
 
 class AppView(gtk.TreeView):

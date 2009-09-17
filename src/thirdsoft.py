@@ -164,6 +164,7 @@ Bisigi = [_('Bisigi Theme Project'), 'bisigi', 'www.bisigi-project.org', 'bisigi
 Pitivi = [_('PiTiVi video editor'), 'pitivi', 'www.pitivi.org', 'pitivi.gpg']
 Kubuntu_update = [_('Kubuntu Update'), 'kubuntu-update', 'www.kubuntu.org', 'kubuntu.gpg']
 Kubuntu_backports = [_('Kubuntu Backports'), 'kubuntu-backports', 'www.kubuntu.org', 'kubuntu.gpg']
+Lyx = ['Lyx', 'lyx', 'www.lyx.org', 'lyx.gpg']
 
 SOURCES_DATA = [
     ['http://ppa.launchpad.net/reacocard-awn/ppa/ubuntu/', ['hardy','intrepid'], 'main', AWN],
@@ -257,6 +258,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/gstreamer-developers/ppa/ubuntu', 'jaunty', 'main', Pitivi],
     ['http://ppa.launchpad.net/kubuntu-ppa/ppa/ubuntu', 'jaunty', 'main', Kubuntu_update],
     ['http://ppa.launchpad.net/kubuntu-ppa/backports/ubuntu', 'jaunty', 'main', Kubuntu_backports],
+    ['http://ppa.launchpad.net/lyx/ppa/ubuntu', 'jaunty', 'main', Lyx],
 ]
 
 SOURCES_DEPENDENCIES = {

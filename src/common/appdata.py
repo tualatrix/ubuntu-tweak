@@ -183,6 +183,7 @@ APP_DATA = {
     'balanzan-theme': _('Balanzan theme contains a full theme for GNOME based system.'),
     'dia': _('Dia is an editor for diagrams, graphs, charts etc.'),
     'pitivi': _('non-linear audio/video editor using GStreamer'),
+    'lyx': _('LyX is an almost WYSIWYG-frontend for LaTeX.'),
 }
 
 SOURCE_DATA = {
