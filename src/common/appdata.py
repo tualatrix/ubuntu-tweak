@@ -184,6 +184,7 @@ APP_DATA = {
     'dia': _('Dia is an editor for diagrams, graphs, charts etc.'),
     'pitivi': _('non-linear audio/video editor using GStreamer'),
     'lyx': _('LyX is an almost WYSIWYG-frontend for LaTeX.'),
+    'texmaker': _('Texmaker is a clean, highly configurable LaTeX editor with good hot key support and extensive LaTeX documentation.'),
 }
 
 SOURCE_DATA = {

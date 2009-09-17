@@ -196,6 +196,7 @@ APPS = \
     'dia': Image,
     'pitivi': Video,
     'lyx': Text,
+    'texmaker': Text,
 }
 
 class AppView(gtk.TreeView):
