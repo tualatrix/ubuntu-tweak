@@ -426,7 +426,9 @@ class SourceEditor(TweakPage):
         model.set(iter, 1, 'sources.list')
 
         SOURCE_LIST_D = '/etc/apt/sources.list.d'
-        for file in os.listdir(SOURCE_LIST_D):
+        files = os.listdir(SOURCE_LIST_D)
+        files.sort()
+        for file in files:
             iter = model.append()
             model.set(iter, 0, os.path.join(SOURCE_LIST_D, file))
             model.set(iter, 1, os.path.basename(file))

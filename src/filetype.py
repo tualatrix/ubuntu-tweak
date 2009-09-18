@@ -159,10 +159,10 @@ class TypeView(gtk.TreeView):
         mainwindow = self.get_toplevel().window
         if mainwindow:
             mainwindow.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
-        for type in gio.content_types_get_registered():
-            while gtk.events_pending ():
-                gtk.main_iteration ()
+        while gtk.events_pending ():
+            gtk.main_iteration ()
 
+        for type in gio.content_types_get_registered():
             if filter and filter != type.split('/')[0]:
                 continue
 

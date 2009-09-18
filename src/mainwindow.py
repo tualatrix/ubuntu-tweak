@@ -388,6 +388,7 @@ class MainWindow(gtk.Window):
         hbox.pack_end(button, False, False, 0)
 
         self.get_gui_state()
+        self.set_icon_name('ubuntu-tweak')
         self.show_all()
 
 #        if TweakSettings.get_show_donate_notify():
