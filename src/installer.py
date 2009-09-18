@@ -20,6 +20,7 @@
 
 import os
 import gtk
+import urllib
 import gettext
 import gobject
 import pango
@@ -28,8 +29,11 @@ from common.consts import *
 from common.utils import *
 from common.appdata import APPS, CATES_DATA
 from common.widgets import TweakPage
-from common.widgets.dialogs import InfoDialog, ErrorDialog
+from common.widgets.dialogs import ErrorDialog, InfoDialog, QuestionDialog
+from common.widgets.utils import ProcessDialog
+from common.network.parser import Parser
 from common.appdata import get_app_logo, get_app_describ
+from common.config import TweakSettings
 from xdg.DesktopEntry import DesktopEntry
 
 try:
@@ -40,6 +44,10 @@ except ImportError:
 
 DESKTOP_DIR = '/usr/share/app-install/desktop/'
 ICON_DIR = os.path.join(DATA_DIR, 'applogos')
+REMOTE_APP_DATA = os.path.expanduser('~/.ubuntu-tweak/apps/data/apps.json')
+REMOTE_CATE_DATA = os.path.expanduser('~/.ubuntu-tweak/apps/data/cates.json')
+REMOTE_DATA_DIR = os.path.expanduser('~/.ubuntu-tweak/apps/data')
+REMOTE_LOGO_DIR = os.path.expanduser('~/.ubuntu-tweak/apps/logos')
 
 (
     COLUMN_INSTALLED,
@@ -278,11 +286,92 @@ class AppView(gtk.TreeView):
 
         self.emit('changed', len(self.to_add) + len(self.to_rm))
 
+class LogoHandler:
+    def __init__(self, dir):
+        self.dir = dir
+        if not os.path.exists(self.dir):
+            os.mkdir(self.dir)
+
+    def save_logo(self, name, url):
+        data = urllib.urlopen(url).read()
+        f = open(os.path.join(self.dir, '%s.png' % name), 'w')
+        f.write(data)
+        f.close()
+
+    def get_logo(self, name):
+        path = os.path.join(self.dir, '%s.png' % name)
+
+        try:
+            return gtk.gdk.pixbuf_new_from_file(path)
+        except:
+            return gtk.icon_theme_get_default().load_icon(gtk.STOCK_MISSING_IMAGE, 32, 0)
+
+    def is_exists(self, name):
+        return os.path.exists(os.path.join(self.dir, '%s.png' % name))
+
+class FetchingDialog(ProcessDialog):
+    def __init__(self, parent, caller):
+        self.caller = caller
+        self.done = False
+        self.message = None
+        self.user_action = False
+
+        super(FetchingDialog, self).__init__(parent=parent)
+        self.set_dialog_lable(_('Fetching online data...'))
+
+    def process_data(self):
+        import time
+        self.caller.model.clear()
+        for item in self.caller.get_items():
+            time.sleep(1)
+
+            try:
+                pkgname, category, pixbuf, desc, appname, is_installed = self.caller.parse_item(item)
+            except IOError:
+                self.message = _('Network is error')
+                break
+            except KeyError:
+                continue
+
+            self.caller.model.append((is_installed,
+                    pixbuf,
+                    pkgname,
+                    appname,
+                    desc,
+                    '<b>%s</b>\n%s' % (appname, desc),
+                    category))
+
+            if self.user_action == True:
+                break
+
+        self.done = True
+
+    def on_timeout(self):
+        self.pulse()
+
+        if not self.done:
+            return True
+        else:
+            self.destroy()
+
 class Installer(TweakPage):
     def __init__(self):
         TweakPage.__init__(self, 
                 _('Add/Remove Applications'),
                 _('A simple but more effecient method for finding and installing popular packages than the default Add/Remove.'))
+
+        if not os.path.exists(REMOTE_DATA_DIR):
+            os.makedirs(REMOTE_DATA_DIR)
+        if not os.path.exists(REMOTE_LOGO_DIR):
+            os.makedirs(REMOTE_LOGO_DIR)
+        self.app_logo_handler = LogoHandler(REMOTE_LOGO_DIR)
+        self.app_data_parser = Parser(REMOTE_APP_DATA, 'package')
+        self.app_cate_parser = Parser(REMOTE_CATE_DATA, 'name')
+        self.use_remote = TweakSettings.get_use_remote_data()
+        self.data_model = 'local'
+
+        self.to_add = []
+        self.to_rm = []
 
         self.package_worker = package_worker
 
@@ -321,6 +410,32 @@ class Installer(TweakPage):
 
         self.show_all()
 
+        gobject.idle_add(self.on_idle_check)
+
+    def on_idle_check(self):
+        gtk.gdk.threads_enter()
+        if self.check_update():
+            dialog = QuestionDialog(_('New application data available, would you like to update?'))
+            response = dialog.run()
+            dialog.destroy()
+
+            if response == gtk.RESPONSE_YES:
+                dialog = FetchingDialog(self.get_toplevel(), self)
+
+                if dialog.run() == gtk.RESPONSE_REJECT:
+                    dialog.destroy()
+
+                if dialog.message:
+                    ErrorDialog(dialog.message).launch()
+
+        gtk.gdk.threads_leave()
+
+    def check_update(self):
+        if os.path.exists(REMOTE_APP_DATA) and os.path.exists(REMOTE_CATE_DATA):
+            return True
+        else:
+            return False
+
     def create_category(self):
         self.cate_model = gtk.ListStore(gobject.TYPE_INT,
                                 gobject.TYPE_STRING,
@@ -345,24 +460,154 @@ class Installer(TweakPage):
                 CATE_NAME, _('All Categories'),
                 CATE_ICON, gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'appcates', 'all.png')))
 
-        for item in CATES_DATA:
+        for item in self.get_cate_items():
             iter = self.cate_model.append()
+            id, name, icon = self.parse_cate_item(item)
             self.cate_model.set(iter, 
-                    CATE_ID, item[0],
-                    CATE_NAME, item[1],
-                    CATE_ICON, gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'appcates', item[2])))
+                    CATE_ID, id,
+                    CATE_NAME, name,
+                    CATE_ICON, icon)
+
+    def get_cate_items(self):
+        if self.app_cate_parser.items() and self.use_remote:
+            return self.app_cate_parser.items()
+        else:
+            return CATES_DATA
+
+    def parse_cate_item(self, item):
+        '''
+        If item[1] == tuple, so it's local data, or the remote data
+        '''
+        if type(item) == list:
+            id = item[0]
+            name = item[1]
+            pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'appcates', item[2]))
+        elif type(item) == tuple:
+            catedata = item[1]
+            id = catedata['id']
+            name = catedata['name']
+            pixbuf = self.get_app_logo(catedata['name'], catedata['logo32'])
+
+        return id, name, pixbuf
 
     def on_category_changed(self, widget, data = None):
         index = widget.get_active()
         if index:
             liststore = widget.get_model()
             iter = liststore.get_iter(index)
-            self.treeview.filter = liststore.get_value(iter, 1)
+            if self.data_model == 'remote':
+                self.filter = liststore.get_value(iter, CATE_ID)
+            else:
+                self.filter = liststore.get_value(iter, CATE_NAME)
         else:
             self.treeview.filter = None
 
         self.treeview.clear_model()
         self.treeview.update_model(APPS.keys(), APPS)
+
+    def get_app_logo(self, pkgname, url=None):
+        if url and not self.app_logo_handler.is_exists(pkgname):
+            self.app_logo_handler.save_logo(pkgname, url)
+
+        if self.app_logo_handler.is_exists(pkgname):
+            return self.app_logo_handler.get_logo(pkgname)
+        else:
+            return get_app_logo(pkgname)
+
+    def get_app_describ(self, pkgname):
+        try:
+            if self.app_data_parser['pkgname'].has_key('summary'):
+                return self.app_data_parser['pkgname']['summary']
+        except:
+            pass
+        return get_app_describ(pkgname)
+
+    def get_app_meta(self, pkgname):
+        '''
+        Meta data is App's display name and install status
+        Need catch exception: KeyError
+        '''
+        package = PackageInfo(pkgname)
+        return package.get_name(), package.check_installed()
+
+    def get_items(self):
+        if self.app_data_parser.items() and self.use_remote:
+            self.data_model = 'remote'
+            return self.app_data_parser.items()
+        else:
+            self.data_model = 'local'
+            return APP_DATA
+
+    def parse_item(self, item):
+        '''
+        If item[1] == tuple, so it's local data, or the remote data
+        '''
+        if type(item[1]) == tuple:
+            pkgname = item[0]
+            category = item[-1][0] 
+
+            pixbuf = self.get_app_logo(pkgname)
+            desc = self.get_app_describ(pkgname)
+
+            appname, is_installed = self.get_app_meta(pkgname)
+        elif type(item[1]) == dict:
+            pkgname = item[0]
+            pkgdata = item[1]
+            appname = pkgdata['name']
+            desc = pkgdata['summary']
+            category = pkgdata['category']
+
+            pixbuf = self.get_app_logo(pkgname, pkgdata['logo32'])
+            appname, is_installed = self.get_app_meta(pkgname)
+
+        return pkgname, category, pixbuf, desc, appname, is_installed
+
+    def update_model(self):
+        self.model.clear()
+
+        icon = gtk.icon_theme_get_default()
+
+        for item in self.get_items():
+            try:
+                pkgname, category, pixbuf, desc, appname, is_installed = self.parse_item(item)
+            except KeyError:
+                continue
+
+            if self.filter == None:
+                if pkgname in self.to_add or pkgname in self.to_rm:
+                    self.model.append((not is_installed,
+                            pixbuf,
+                            pkgname,
+                            appname,
+                            desc,
+                            '<span foreground="#ffcc00"><b>%s</b>\n%s</span>' % (appname, desc),
+                            category))
+                else:
+                    self.model.append((is_installed,
+                            pixbuf,
+                            pkgname,
+                            appname,
+                            desc,
+                            '<b>%s</b>\n%s' % (appname, desc),
+                            category))
+            else:
+                if self.filter == category:
+                    if pkgname in self.to_add or pkgname in self.to_rm:
+                        self.model.append((not is_installed,
+                                pixbuf,
+                                pkgname,
+                                appname,
+                                desc,
+                                '<span foreground="#ffcc00"><b>%s</b>\n%s</span>' % (appname, desc),
+                                category))
+                    else:
+                        self.model.append((is_installed,
+                                pixbuf,
+                                pkgname,
+                                appname,
+                                desc,
+                                '<b>%s</b>\n%s' % (appname, desc),
+                                category))
 
     def deep_update(self):
         package_worker.update_apt_cache(True)

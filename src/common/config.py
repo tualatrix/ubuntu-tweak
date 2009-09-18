@@ -99,6 +99,7 @@ class TweakSettings:
     show_donate_notify = 'show_donate_notify'
     default_launch = 'default_launch'
     check_update = 'check_update'
+    use_remote_data = 'use_remote_data'
     separated_sources = 'separated_sources'
     need_save = True
 
@@ -169,6 +170,13 @@ class TweakSettings:
         return cls.config.get_value(cls.show_donate_notify, default = True)
 
     @classmethod
+    def set_use_remote_data(cls, bool):
+        return cls.config.set_value(cls.use_remote_data, bool)
+
+    @classmethod
+    def get_use_remote_data(cls):
+        return cls.config.get_value(cls.use_remote_data, default = True)
+
     def set_separated_sources(cls, bool):
         return cls.config.set_value(cls.separated_sources, bool)
 
