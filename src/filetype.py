@@ -488,6 +488,7 @@ class FileType(TweakPage):
         hbox.pack_start(self.cateview, False, False, 0)
 
         self.typeview = TypeView()
+        self.typeview.connect('row-activated', self.on_row_activated)
         self.type_selection = self.typeview.get_selection()
         self.type_selection.connect('changed', self.on_typeview_changed)
         sw = gtk.ScrolledWindow()
@@ -509,6 +510,9 @@ class FileType(TweakPage):
         self.pack_start(self.show_have_app, False, False, 5)
 
         self.show_all()
+
+    def on_row_activated(self, widget, path, col):
+        self.on_edit_clicked(widget)
 
     def on_show_all_toggled(self, widget):
         model, iter = self.cate_selection.get_selected()
