@@ -351,6 +351,7 @@ class AutoStart(TweakPage):
         hbox.pack_start(sw)
 
         self.treeview = AutoStartItem()
+        self.treeview.connect('row-activated', self.on_row_activated)
         sw.add(self.treeview)
         
         vbox = gtk.VBox(False, 5)
@@ -371,6 +372,9 @@ class AutoStart(TweakPage):
         button.connect("clicked", self.on_edit_item, self.treeview)
         vbox.pack_start(button, False, False, 0)
         self.treeview.set_data("edit", button)
+
+    def on_row_activated(self, widget, path, col):
+        self.on_edit_item(widget, widget)
 
     def on_show_all(self, widget, another):
         if widget.get_active():
