@@ -32,7 +32,7 @@ __all__ = (
 def get_app_describ(name):
     name = name.replace(' ', '-').lower()
     try:
-        desc = APP_DATA[name]
+        desc = APP_DICT[name]
     except KeyError:
         desc = 'Unknown Error'
 
@@ -41,7 +41,7 @@ def get_app_describ(name):
 def get_source_describ(name):
     name = name.replace(' ', '-').lower()
     try:
-        desc = SOURCE_DATA[name]
+        desc = SOURCE_DICT[name]
     except KeyError:
         desc = get_app_describ(name)
 
@@ -63,7 +63,7 @@ def get_app_logo(name):
 def get_source_logo(name):
     return get_app_logo(name)
 
-APP_DATA = {
+APP_DICT = {
     'agave': _('A color scheme designer'),
     'amarok-nightly': _('Development version of an audio player for KDE'),
     'amule': _('Client for the eD2k and Kad networks'),
@@ -173,7 +173,7 @@ APP_DATA = {
     'zim': _('Zim is a WYSIWYG text editor. It aims at bringing the concept of a wiki to your desktop.'),
 }
 
-SOURCE_DATA = {
+SOURCE_DICT = {
     'firefox': _('Development Version of Mozilla Firefox'),
     'compiz': _('Development version of Compiz'),
     'google': _("Google's Linux Repository"),
