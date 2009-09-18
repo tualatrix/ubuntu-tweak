@@ -18,6 +18,7 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
+import os
 from xml.sax import make_parser
 from xml.dom import minidom
 
@@ -47,7 +48,7 @@ def parse_distro():
 
 class DistroInfo:
     distributor = GnomeVersion.distributor
-    if GnomeVersion.distributor in ['Ubuntu', 'Linux Mint', 'Greenie']:
+    if GnomeVersion.distributor in ['Ubuntu', 'Linux Mint', 'Greenie', 'Jolicloud']:
         codename = parse_codename()
         distro = parse_distro()
     else:
@@ -105,7 +106,7 @@ class module_check:
 
     @classmethod
     def get_supported_ubuntu(cls):
-        return ['hardy', 'intrepid', 'jaunty']
+        return ['hardy', 'intrepid', 'jaunty', 'karmic', 'elyssa', 'Elyssa', 'felicia', 'Felicia', 'gloria', 'Gloria']
 
     @classmethod
     def is_hardy(cls):
@@ -117,7 +118,7 @@ class module_check:
 
     @classmethod
     def is_jaunty(cls):
-        return DistroInfo.codename in ['jaunty', 'gloria', 'Gloria']
+        return DistroInfo.codename in ['jaunty', 'gloria', 'Gloria', 'robby']
 
     @classmethod
     def is_karmic(cls):
@@ -144,6 +145,10 @@ class module_check:
             return True
         except:
             return False
+
+    @classmethod
+    def is_gnome(cls):
+        return os.getenv('GDMSESSION') and os.getenv('GDM_LANG')
             
 if __name__ == "__main__":
     print SystemInfo.distro

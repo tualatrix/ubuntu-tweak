@@ -22,7 +22,7 @@ import os
 import gtk
 import dbus
 import gobject
-from common.config import TweakSettings
+from dbusproxy import DbusProxy
 
 class PolkitAction(gobject.GObject):
     """
@@ -40,17 +40,24 @@ class PolkitAction(gobject.GObject):
 
         self.widget = widget
 
+    def is_authenticated(self):
+        try:
+            proxy = DbusProxy("/com/ubuntu_tweak/daemon/packageconfig")
+            return bool(proxy.is_authorized())
+        except:
+            return False
+
     def authenticate(self):
-        self.do_authenticate()
+        if self.is_authenticated():
+            self.__class__.result = 1
+            self.emit('changed', 1)
+        else:
+            self.do_authenticate()
 
     def get_authenticated(self):
         return self.result
 
     def do_authenticate(self):
-        if TweakSettings.get_power_user():
-            self.__class__.result = 1
-            self.emit('changed', 1)
-            return
         policykit = self.session_bus.get_object('org.freedesktop.PolicyKit.AuthenticationAgent', '/')
         xid = self.widget.get_toplevel().window.xid
 

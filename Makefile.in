@@ -34,8 +34,8 @@ host_triplet = @host@
 subdir = .
 DIST_COMMON = README $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/configure ABOUT-NLS \
-	AUTHORS COPYING ChangeLog INSTALL NEWS config.guess \
-	config.rpath config.sub install-sh ltmain.sh missing \
+	AUTHORS COPYING ChangeLog INSTALL NEWS compile config.guess \
+	config.rpath config.sub depcomp install-sh ltmain.sh missing \
 	py-compile
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/acinclude.m4 \
@@ -86,7 +86,12 @@ CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CPPFLAGS = @CPPFLAGS@
 CYGPATH_W = @CYGPATH_W@
+DAEMON_CFLAGS = @DAEMON_CFLAGS@
+DAEMON_LIBS = @DAEMON_LIBS@
 DATADIR = @DATADIR@
+DBUS_CFLAGS = @DBUS_CFLAGS@
+DBUS_LIBS = @DBUS_LIBS@
+DBUS_SYSTEMD_DIR = @DBUS_SYSTEMD_DIR@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
 ECHO_C = @ECHO_C@
@@ -125,6 +130,8 @@ PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PKG_CONFIG = @PKG_CONFIG@
+POLKIT_CFLAGS = @POLKIT_CFLAGS@
+POLKIT_LIBS = @POLKIT_LIBS@
 POSUB = @POSUB@
 PYGTK_CFLAGS = @PYGTK_CFLAGS@
 PYGTK_DEFS = @PYGTK_DEFS@
@@ -197,7 +204,7 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-SUBDIRS = po src scripts data policykit icons
+SUBDIRS = po src scripts data icons daemon
 ACLOCAL_AMFLAGS = -I m4
 all: all-recursive
 

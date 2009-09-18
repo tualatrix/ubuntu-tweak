@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# AUTHOR:	(c) Tony Mattsson <tony_mattsson@home.se>
+# VERSION:	1.0
+# LICENSE:	GPL (http://www.gnu.org/licenses/gpl.html)
+# REQUIRES:
+# NAME:		Make md5
+# DESCRIPTION:
+
+# Check that the user didn't select directories
+for File in "$@"
+do
+if [ -d "$File" ]; then
+zenity --error --text="'$File' is a directory.
+Make md5 cannot handle directories."
+exit
+fi
+done
+
+#Enter the checksum filename to create
+CheckName=`zenity --entry --title="Make md5" --entry-text "checksum.md5" --text="Enter the name of your md5 checksum file"`
+if [ "$?" == 1 ] ; then exit ; fi
+
+# 1 Check the md5 file
+(md5sum "$@" > "$CheckName") 2>&1 | zenity --progress --title "Make md5" --text "Making: $CheckName" --pulsate --auto-close

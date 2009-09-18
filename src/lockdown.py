@@ -21,9 +21,11 @@
 import os
 import gtk
 
-from common.policykit import proxy
+from common.policykit import PolkitButton, DbusProxy
 from common.factory import WidgetFactory
 from common.widgets import ListPack, TweakPage
+from backends import getconfig
+from backends import packageconfig
 
 ROOT_THEMES = '/root/.themes'
 ROOT_ICONS = '/root/.icons'
@@ -32,6 +34,7 @@ class LockDown(TweakPage):
     """Lock down some function"""
     def __init__(self):
         TweakPage.__init__(self)
+        self.get_proxy = DbusProxy(getconfig.PATH, getconfig.INTERFACE)
 
         box = ListPack(_("System Security options"), (
                     WidgetFactory.create("GconfCheckButton",
@@ -56,13 +59,22 @@ class LockDown(TweakPage):
 
         self.pack_start(box, False, False, 0)
 
-        button = gtk.CheckButton(_('Fix the theme appearance when grant the root privileges'))
-        if proxy.is_exists(ROOT_THEMES) and proxy.is_exists(ROOT_ICONS):
-            button.set_active(True)
+        self.fix_theme_button = gtk.CheckButton(_('Fix the theme appearance when grant the root privileges'))
+        if self.get_proxy.is_exists(ROOT_THEMES) and self.get_proxy.is_exists(ROOT_ICONS):
+            self.fix_theme_button.set_active(True)
 
-        button.connect('toggled', self.on_fix_theme_btn_taggled)
-        box = ListPack(_('Miscellaneous Options'), (button,))
+        self.fix_theme_button.connect('toggled', self.on_fix_theme_btn_taggled)
+        self.fix_theme_button.set_sensitive(False)
+        box = ListPack(_('Miscellaneous Options'), (self.fix_theme_button,))
         self.pack_start(box, False, False, 0)
+
+        # button
+        hbox = gtk.HBox(False, 0)
+        self.pack_end(hbox, False ,False, 5)
+
+        un_lock = PolkitButton()
+        un_lock.connect('changed', self.on_polkit_action)
+        hbox.pack_end(un_lock, False, False, 5)
 
     def on_fix_theme_btn_taggled(self, widget):
         if widget.get_active():
@@ -73,6 +85,14 @@ class LockDown(TweakPage):
             proxy.unlink_file(ROOT_ICONS)
             if proxy.is_exists(ROOT_THEMES) and proxy.is_exists(ROOT_ICONS):
                 widget.set_active(True)
+
+    def on_polkit_action(self, widget, action):
+        global proxy
+        if action:
+            self.fix_theme_button.set_sensitive(True)
+            proxy = DbusProxy(packageconfig.PATH)
+        else:
+            AuthenticateFailDialog().launch()
 
 if __name__ == "__main__":
     from utility import Test

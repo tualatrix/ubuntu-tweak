@@ -22,12 +22,18 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
 import os
-import subprocess
-from subprocess import PIPE
+import apt_pkg
 import dbus
+import dbus.glib
 import dbus.service
 import dbus.mainloop.glib
 import gobject
+import subprocess
+
+from subprocess import PIPE
+from aptsources.sourceslist import SourceEntry, SourcesList
+
+apt_pkg.init()
 
 #This class is modified from softwareproperty. Author: Michael Vogt <mvo@debian.org>
 class AptAuth:
@@ -74,29 +80,54 @@ class AptAuth:
         cmd.append(key)
         p = subprocess.Popen(cmd)
         return (p.wait() == 0)
-        
+
+INTERFACE = "com.ubuntu_tweak.daemon.packageconfig"
+PATH = "/com/ubuntu_tweak/daemon/packageconfig"
+
 class Daemon(dbus.service.Object):
-    INTERFACE = "com.ubuntu_tweak.daemon"
+    #TODO use signal
     liststate = None
+    list = SourcesList()
+
+    def __init__ (self, bus):
+        bus_name = dbus.service.BusName(INTERFACE, bus=bus)
+        dbus.service.Object.__init__(self, bus_name, PATH)
 
     @dbus.service.method(INTERFACE,
                          in_signature='ssssb', out_signature='s')
     def set_entry(self, url, distro, comps, comment, enabled):
-        import apt_pkg
-        from aptsources.sourceslist import SourceEntry, SourcesList
-        apt_pkg.init()
-        list = SourcesList()
-        self.liststate = "expire"
+        self.list.refresh()
+
         if enabled:
-            list.add('deb', url, distro, comps.split(' '), comment)
-            list.save()
+            self.list.add('deb', url, distro, comps.split(' '), comment)
+            self.list.save()
             return 'enabled'
         else:
-            for entry in list:
+            for entry in self.list:
                 if url in entry.str():
                     entry.disabled = True
 
-            list.save()
+            self.list.save()
+            return 'disabled'
+
+    @dbus.service.method(INTERFACE,
+                         in_signature='ssssbs', out_signature='s')
+    def set_separated_entry(self, url, distro, comps, comment, enabled, file):
+        self.list.refresh()
+
+        partsdir = apt_pkg.Config.FindDir("Dir::Etc::sourceparts")
+        file = os.path.join(partsdir, file+'.list')
+
+        if enabled:
+            self.list.add('deb', url, distro, comps.split(' '), comment, -1, file)
+            self.list.save()
+            return 'enabled'
+        else:
+            for entry in self.list:
+                if url in entry.str():
+                    entry.disabled = True
+
+            self.list.save()
             return 'disabled'
 
     @dbus.service.method(INTERFACE,
@@ -171,16 +202,18 @@ class Daemon(dbus.service.Object):
         return os.path.exists(path)
 
     @dbus.service.method(INTERFACE,
+                         in_signature='', out_signature='b')
+    def is_authorized(self):
+        return True
+
+    @dbus.service.method(INTERFACE,
                          in_signature='', out_signature='')
     def exit(self):
         mainloop.quit()
 
 if __name__ == '__main__':
     dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
-
-    system_bus = dbus.SystemBus()
-    name = dbus.service.BusName("com.ubuntu_tweak.daemon", system_bus)
-    object = Daemon(system_bus, '/com/ubuntu_tweak/daemon')
+    Daemon(dbus.SystemBus())
 
     mainloop = gobject.MainLoop()
     mainloop.run()

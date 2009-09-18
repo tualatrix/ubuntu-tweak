@@ -99,17 +99,9 @@ class TweakSettings:
     show_donate_notify = 'show_donate_notify'
     default_launch = 'default_launch'
     check_update = 'check_update'
-    power_user = 'power_user'
     use_remote_data = 'use_remote_data'
+    separated_sources = 'separated_sources'
     need_save = True
-
-    @classmethod
-    def get_power_user(cls):
-        return cls.config.get_value(cls.power_user, default=False)
-
-    @classmethod
-    def set_power_user(cls, bool):
-        cls.config.set_value(cls.power_user, bool)
 
     @classmethod
     def get_check_update(cls):
@@ -185,6 +177,13 @@ class TweakSettings:
     def get_use_remote_data(cls):
         return cls.config.get_value(cls.use_remote_data, default = True)
 
+    def set_separated_sources(cls, bool):
+        return cls.config.set_value(cls.separated_sources, bool)
+
+    @classmethod
+    def get_separated_sources(cls):
+        return cls.config.get_value(cls.separated_sources, default = True)
+
     @classmethod
     def set_url(cls, url):
         return cls.config.set_value(cls.url, url)
@@ -228,7 +227,7 @@ class TweakSettings:
             height, width = int(height), int(width)
             return (width, height)
         else:
-            return (740, 480)
+            return (800, 480)
 
     @classmethod
     def get_icon_theme(cls):

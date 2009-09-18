@@ -28,14 +28,24 @@ import gobject
 import apt_pkg
 import webbrowser
 
-from common.config import Config
+from common.config import Config, TweakSettings
 from common.consts import *
+from common.appdata import APP_DATA
+from common.appdata import get_app_logo, get_app_describ
 from common.appdata import get_source_logo, get_source_describ
-from common.policykit import PolkitButton, proxy
+from common.policykit import PolkitButton, DbusProxy
 from common.systeminfo import module_check
 from common.widgets import ListPack, TweakPage, GconfCheckButton
 from common.widgets.dialogs import *
+from common.package import package_worker, PackageInfo
+from common.notify import notify
+from installer import APPS
+from installer import AppView
+from backends.packageconfig import PATH
 from aptsources.sourceslist import SourceEntry, SourcesList
+
+BUILTIN_APPS = APP_DATA.keys()
+BUILTIN_APPS.extend(APPS.keys())
 
 (
     COLUMN_ENABLED,
@@ -71,6 +81,8 @@ AWN_TESTING = [_('Avant Window Navigator (Unstable Version)'), 'avant-window-nav
 Amarok = ['Amarok', 'amarok-nightly', 'amarok.kde.org', 'neon.gpg']
 AmuleRelease = [_('aMule (Stable Version)'), 'amule', 'www.amule.org', 'amule-release.gpg']
 Blueman = ['Blueman', 'blueman', 'blueman-project.org', 'blueman.gpg']
+Backintime = ['Back In Time', 'backintime-gnome', 'backintime.le-web.org', 'backintime.gpg']
+Breathe = [_('Breathe Icon Theme'), 'breathe-icon-theme', 'launchpad.net/breathe-icon-set', 'breathe-icon-theme.gpg']
 Opera = ['Opera', 'opera', 'www.opera.com', 'opera.gpg']
 Skype = ['Skype', 'skype', 'www.skype.com', '']
 PlayOnLinux = ['PlayOnLinux', 'playonlinux', 'www.playonlinux.com', 'pol.gpg']
@@ -83,13 +95,15 @@ IBus_Jaunty = [_('IBus 1.2 for jaunty'), 'ibus', 'code.google.com/p/ibus', 'ibus
 IBus_Karmic = [_('IBus 1.2 for karmic'), 'ibus', 'code.google.com/p/ibus', 'ibus-dev.gpg']
 Midori = ['Midori', 'midori', 'www.twotoasts.de', 'midori.gpg']
 Empathy = ['Empathy', 'empathy', 'launchpad.net/~telepathy', 'empathy.gpg']
+Exaile = ['Exaile', 'exaile', 'www.exaile.org', 'exaile.gpg']
 WebKitGtk = ['WebKitGtk', 'webkitgtk', 'webkitgtk.org', 'webkitgtk.gpg']
 Firefox = ['Firefox', 'firefox', 'www.mozilla.org', 'firefox.gpg']
 MozillaSecurity = [_('Ubuntu Mozilla Security Team'), 'mozilla-security', 'launchpad.net/~ubuntu-mozilla-security', 'mozilla-security.gpg']
-CompizFusion = ['Compiz Fusion', 'compiz-fusion', 'www.compiz-fusion.org', 'compiz-fusion.gpg']
+Compiz = ['Compiz', 'compiz', 'www.compiz.org', 'compiz.gpg']
 Christine = [_('Christine Media Player'), 'christine', 'www.christine-project.org', 'christine.gpg']
 ChromiumBrowser = ['Chromium Browser', 'chromium-browser', 'launchpad.net/chromium-project', 'chromium-browser.gpg']
 CairoDock = ['Cairo Dock', 'cairo-dock',  'cairo-dock.org', 'cairo-dock.gpg']
+Geany = ['Geany', 'geany', 'www.geany.org', 'geany.gpg']
 Gnote = ['Gnote', 'gnote', 'live.gnome.org/Gnote', 'gnote.gpg']
 GnomeDo = ['GNOME Do', 'gnome-do', 'do.davebsd.com', 'do.gpg']
 GnomeGames = [_('Experimental Gnome Games'), 'gnome-games', 'launchpad.net/~gnome-games-experimental', 'gnome-games.gpg']
@@ -100,6 +114,7 @@ GettingThingsGnome = ['Getting Things Gnome!', 'gtg', 'gtg.fritalk.com', 'gtg.gp
 GetDeb = [_('GetDeb.net (Mirror)'), 'getdeb', 'www.getdeb.net', '']
 Gwibber = ['Gwibber', 'gwibber', 'launchpad.net/gwibber', 'gwibber.gpg']
 Gwibber_Daily = [_('Gwibber (Daily Version)'), 'gwibber', 'launchpad.net/gwibber', 'gwibber-daily.gpg']
+Gimp_Testing = [_('GIMP (Testing Version)'), 'gimp', 'www.gimp.org', 'gimp-testing.gpg']
 Banshee_Stable = [_('Banshee (Stable Version)'), 'banshee', 'banshee-project.org', 'banshee-stable.gpg']
 Banshee_Unstable = [_('Banshee (Unstable Version)'), 'banshee', 'banshee-project.org', 'banshee-unstable.gpg']
 Google = [_('Google Repository'), 'google', 'www.google.com/linuxrepositories/index.html', 'google.gpg']
@@ -112,12 +127,15 @@ UbuntuTweakTesting = [_('Ubuntu Tweak (Unstable Version)'), 'ubuntu-tweak', 'ubu
 UbuDSL = ['UbuDSL', 'ubudsl', 'www.ubudsl.com', 'ubndsl.gpg']
 NautilusDropbox = ['Nautilus DropBox', 'nautilus-dropbox', 'www.getdropbox.com', '']
 Screenlets = ['Screenlets', 'screenlets', 'www.screenlets.org', 'screenlets.gpg']
+Spicebird = ['Spicebird', 'spicebird', 'www.spicebird.com', 'spicebird.gpg']
+Spicebird_Testing = [_('Spicebird (Testing Version)'), 'spicebird', 'www.spicebird.com', 'spicebird.gpg']
 Synapse = ['Synapse', 'synapse', 'synapse.im', 'synapse.gpg']
 Smplayer = ['SMPlayer', 'smplayer', 'smplayer.sourceforge.net', 'smplayer.gpg']
 MplayerLibs = [_('MPlayer Core Libraries'), 'mplayer', 'launchpad.net/~rvm/+archive/libs', 'mplayer-libs.gpg']
 Smplayer_Testing = [_('SMPlayer (Unstable Version)'), 'smplayer', 'smplayer.sourceforge.net', 'smplayer-testing.gpg']
 Wine = ['Wine', 'wine', 'www.winehq.org', 'wine.gpg']
 LXDE = ['LXDE', 'lxde', 'lxde.org', 'lxde.gpg']
+Mono = ['Mono', 'mono', 'www.mono-project.com', 'mono.gpg']
 Liferea = ['Liferea', 'liferea', 'liferea.sourceforge.net', 'liferea.gpg']
 Terminator = ['Terminator', 'terminator', 'www.tenshu.net/terminator/', 'terminator.gpg']
 Transmission_Stable = ['Transmission (Stable Version)', 'transmission-gtk', 'www.transmissionbt.com', 'transmission_stable.gpg']
@@ -127,14 +145,21 @@ VirtualBox = ['VirtualBox', 'virtualbox', 'www.virtualbox.org', 'virtualbox.gpg'
 VirtualBoxOse = [_('VirtualBox (Open Source Edition)'), 'virtualbox-ose', 'www.virtualbox.org', 'virtualboxose.gpg']
 Vlc = [_('VLC media player'), 'vlc', 'www.videolan.org/vlc/', 'vlc.gpg']
 Shutter = ['Shutter', 'shutter', 'launchpad.net/shutter', 'shutter.gpg']
+Qt = ['Qt', 'qt', 'qt.nokia.com', 'qt.gpg']
+Rednotebook = ['RedNoteBook', 'rednotebook', 'rednotebook.sourceforge.net', 'rednotebook.gpg']
 Pidgin = ['Pidgin', 'pidgin', 'pidgin.im', 'pidgin.gpg']
 Moovida = ['Moovida', 'moovida', 'www.moovida.com', 'moovida.gpg']
+Moblin_Jaunty = [_('Moblin Desktop for Ubuntu 9.04 Jaunty'), 'moblin', 'launchpad.net/~sudbury-team', 'moblin-jaunty.gpg']
+Moblin_Karmic = [_('Moblin Desktop for Ubuntu 9.10 Karmic'), 'moblin', 'launchpad.net/~moblin', 'moblin-karmic.gpg']
 Galaxium = ['Galaxium', 'galaxium', 'code.google.com/p/galaxium/', 'galaxium.gpg']
 Swiftweasel = ['Swiftweasel', 'swiftweasel', 'swiftweasel.tuxfamily.org', '']
 Medibuntu = ['Medibuntu', 'medibuntu', 'www.medibuntu.org', 'medibuntu.gpg']
 WineDoors = ['Wine Doors', 'wine-doors', 'www.wine-doors.org', 'wine-doors.gpg']
 XBMC = ['XBMC', 'xbmc', 'xbmc.org', 'xbmc.gpg']
 UbuntuX = ['Ubuntu X', 'ubuntu-x', 'launchpad.net/~ubuntu-x-swat', 'ubuntu-x.gpg']
+UbuntuX_Unstable = ['Ubuntu X (Unstable)', 'ubuntu-x', 'launchpad.net/~xorg-edgers', 'ubuntu-x-unstable.gpg']
+Clutter = ['Clutter', 'clutter', 'www.clutter-project.org', 'clutter.gpg']
+Gloobus = ['Gloobus', 'gloobus', 'gloobus.wordpress.com', 'tweak.gpg']
 
 SOURCES_DATA = [
     ['http://ppa.launchpad.net/reacocard-awn/ppa/ubuntu/', ['hardy','intrepid'], 'main', AWN],
@@ -142,8 +167,10 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/project-neon/ppa/ubuntu/', ['hardy', 'intrepid'], 'main', Amarok],
     ['http://ppa.launchpad.net/amule-releases/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', AmuleRelease],
     ['http://ppa.launchpad.net/blueman/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Blueman],
+    ['http://le-web.org/repository', 'stable', 'main', Backintime],
+    ['http://ppa.launchpad.net/breathe-dev/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Breathe],
     ['http://archive.ubuntu.org.cn/ubuntu-cn/', ['hardy', 'intrepid'], 'main restricted universe multiverse', Ubuntu_cn],
-    ['http://ppa.launchpad.net/openoffice-pkgs/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', OpenOffice],
+    ['http://ppa.launchpad.net/openoffice-pkgs/ppa/ubuntu', 'jaunty', 'main', OpenOffice],
     ['http://ppa.launchpad.net/globalmenu-team/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', GlobalMenu],
     ['http://ppa.launchpad.net/markuz/ppa/ubuntu', ['jaunty'], 'main', Christine],
     ['http://ppa.launchpad.net/chromium-daily/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', ChromiumBrowser],
@@ -151,8 +178,10 @@ SOURCES_DATA = [
 #    ['http://getdeb.masio.com.mx/', ['hardy', 'intrepid', 'jaunty'], '', GetDeb],
     ['http://ppa.launchpad.net/gnome-colors-packagers/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', GnomeColors],
     ['http://ppa.launchpad.net/gtg/ppa/ubuntu', ['intrepid', 'jaunty'], 'main', GettingThingsGnome],
+    ['http://ppa.launchpad.net/geany-dev/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Geany],
     ['http://ppa.launchpad.net/gnote/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Gnote],
     ['http://ppa.launchpad.net/telepathy/ppa/ubuntu', ['jaunty', 'karmic'], 'main', Empathy],
+    ['http://ppa.launchpad.net/exaile-devel/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Exaile],
     ['http://deb.opera.com/opera/', 'lenny', 'non-free', Opera],
     ['http://ppa.launchpad.net/firerabbit/ppa/ubuntu', ['intrepid','jaunty'], 'main', Synapse],
     ['http://download.skype.com/linux/repos/debian', 'stable', 'non-free', Skype],
@@ -160,9 +189,10 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/rvm/testing/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Smplayer_Testing],
     ['http://ppa.launchpad.net/rvm/libs/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', MplayerLibs],
     ['http://ppa.launchpad.net/gwibber-team/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Gwibber],
+    ['http://ppa.launchpad.net/matthaeus123/mrw-gimp-svn/ubuntu', ['jaunty', 'karmic'], 'main', Gimp_Testing], 
     ['http://ppa.launchpad.net/gwibber-daily/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Gwibber_Daily],
     ['http://ppa.launchpad.net/gmchess/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Gmchess],
-    ['http://playonlinux.botux.net/', 'hardy', 'main', PlayOnLinux],
+    ['http://deb.playonlinux.com/', ['hardy', 'intrepid', 'jaunty'], 'main', PlayOnLinux],
     ['http://ppa.launchpad.net/webkit-team/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', WebKitGtk],
     ['http://ppa.launchpad.net/midori/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Midori],
     ['http://ppa.launchpad.net/liferea/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Liferea],
@@ -170,11 +200,14 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/ibus-dev/ibus-1.2-jaunty/ubuntu', 'jaunty', 'main', IBus_Jaunty],
     ['http://ppa.launchpad.net/ibus-dev/ibus-1.2-karmic/ubuntu', 'karmic', 'main', IBus_Karmic],
     ['http://ppa.launchpad.net/ibus-dev/ppa/ubuntu', ['intrepid', 'jaunty'], 'main', IBus],
+    ['http://ppa.launchpad.net/mono-edge/ppa/ubuntu', ['intrepid', 'jaunty'], 'main', Mono],
     ['http://ppa.launchpad.net/ubuntu-mozilla-daily/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Firefox],
     ['http://ppa.launchpad.net/ubuntu-mozilla-security/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', MozillaSecurity],
-    ['http://ppa.launchpad.net/compiz/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', CompizFusion],
+    ['http://ppa.launchpad.net/compiz/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Compiz],
     ['http://ppa.launchpad.net/pidgin-developers/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Pidgin],
     ['http://ppa.launchpad.net/moovida-packagers/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Moovida],
+    ['http://ppa.launchpad.net/sudbury-team/ppa/ubuntu', 'jaunty', 'main', Moblin_Jaunty],
+    ['http://ppa.launchpad.net/moblin/ppa/ubuntu', ['jaunty', 'karmic'], 'main', Moblin_Karmic],
     ['http://repository.cairo-dock.org/ubuntu', ['hardy', 'intrepid'], 'cairo-dock', CairoDock],
     ['http://ppa.launchpad.net/do-core/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', GnomeDo],
     ['http://ppa.launchpad.net/banshee-team/ppa/ubuntu', ['hardy', 'intrepid'], 'main', Banshee_Stable],
@@ -182,17 +215,18 @@ SOURCES_DATA = [
     ['http://dl.google.com/linux/deb/', 'stable', 'non-free', Google],
     ['http://dl.google.com/linux/deb/', 'testing', 'non-free', Google_Testing],
     ['http://ppa.launchpad.net/googlegadgets/ppa/ubuntu', 'hardy', 'main', GoogleGadgets],
-    ['http://ppa.launchpad.net/lidaobing/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', ChmSee],
     ['http://ppa.launchpad.net/chmsee/hardy/ubuntu', 'hardy', 'main', ChmSee],
     ['http://ppa.launchpad.net/chmsee/intrepid/ubuntu', 'intrepid', 'main', ChmSee],
     ['http://ppa.launchpad.net/chmsee/jaunty/ubuntu', 'jaunty', 'main', ChmSee],
     ['http://ppa.launchpad.net/chmsee/karmic/ubuntu', 'karmic', 'main', ChmSee],
     ['http://ppa.launchpad.net/kubuntu-members-kde4/ppa/ubuntu', ['hardy', 'intrepid'], 'main', KDE4],
     ['http://linux.getdropbox.com/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', NautilusDropbox],
-    ['http://ppa.launchpad.net/tualatrix/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', UbuntuTweak],
+    ['http://ppa.launchpad.net/tualatrix/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', UbuntuTweak],
     ['http://ppa.launchpad.net/ubuntu-tweak-testing/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', UbuntuTweakTesting],
     ['http://ppa.launchpad.net/adrian5632/ppa/ubuntu', ['hardy', 'intrepid'], 'main', UbuDSL],
     ['http://ppa.launchpad.net/gilir/ppa/ubuntu', ['hardy', 'intrepid'], 'main', Screenlets],
+    ['http://ppa.launchpad.net/spicebird/ppa/ubuntu', ['intrepid', 'jaunty'], 'main', Spicebird],
+    ['http://ppa.launchpad.net/spicebird/test-build/ubuntu', ['jaunty', 'karmic'], 'main', Spicebird_Testing],
     ['http://wine.budgetdedicated.com/apt', ['hardy', 'intrepid', 'jaunty'], 'main', Wine],
     ['http://ppa.launchpad.net/lxde/ppa/ubuntu', 'hardy', 'main', LXDE],
     ['http://ppa.launchpad.net/gnome-terminator/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Terminator],
@@ -203,6 +237,8 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/debfx/virtualbox/ubuntu', ['intrepid', 'jaunty'], 'main', VirtualBoxOse],
     ['http://ppa.launchpad.net/c-korn/vlc/ubuntu', ['jaunty'], 'main', Vlc],
     ['http://ppa.launchpad.net/shutter/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Shutter],
+    ['http://ppa.launchpad.net/debfx/qt/ubuntu', 'jaunty', 'main', Qt],
+    ['http://robin.powdarrmonkey.net/ubuntu', 'jaunty', '', Rednotebook],
     ['http://ppa.launchpad.net/galaxium/ppa/ubuntu', ['intrepid', 'jaunty'], 'main', Galaxium],
     ['http://download.tuxfamily.org/swiftweasel', ['hardy', 'intrepid'], 'multiverse', Swiftweasel],
     ['http://packages.medibuntu.org/', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'free non-free', Medibuntu],
@@ -210,12 +246,16 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/team-xbmc/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', XBMC],
     ['http://ppa.launchpad.net/gnome-games-experimental/ppa/ubuntu', ['jaunty', 'karmic'], 'main', GnomeGames],
     ['http://ppa.launchpad.net/ubuntu-x-swat/x-updates/ubuntu', ['jaunty', 'karmic'], 'main', UbuntuX],
+    ['http://ppa.launchpad.net/xorg-edgers/ppa/ubuntu', ['jaunty', 'karmic'], 'main', UbuntuX_Unstable],
+    ['http://ppa.launchpad.net/njpatel/clutter-edgers/ubuntu', 'jaunty', 'main', Clutter],
+    ['http://ppa.launchpad.net/tualatrix/gloobus/ubuntu', 'jaunty', 'main', Gloobus],
 ]
 
 SOURCES_DEPENDENCIES = {
     Midori[0]: WebKitGtk[0],
     Liferea[0]: WebKitGtk[0],
     Smplayer_Testing[0]: MplayerLibs[0],
+    Moblin_Jaunty[0]: Moblin_Karmic[0],
 }
 
 SOURCES_CONFLICTS = {
@@ -246,6 +286,127 @@ def filter_sources():
     return newsource
 
 SOURCES_DATA = filter_sources()
+
+def refresh_source(parent):
+    dialog = UpdateCacheDialog(parent)
+    res = dialog.run()
+
+    proxy.set_list_state('normal')
+
+    new_pkg = []
+    for pkg in package_worker.get_new_package():
+        if pkg in BUILTIN_APPS:
+            new_pkg.append(pkg)
+
+    new_updates = list(package_worker.get_update_package())
+
+    if new_pkg or new_updates:
+        updateview = UpdateView()
+        updateview.set_headers_visible(False)
+
+        if new_pkg:
+            updateview.update_model(new_pkg)
+
+        if new_updates:
+            updateview.update_updates(package_worker.get_update_package())
+
+        dialog = QuestionDialog(_('You can install the new applications by selecting them and choose "Yes".\nOr you can install them at Add/Remove by choose "No".'),
+            title = _('New applications are available to update'))
+
+        vbox = dialog.vbox
+        sw = gtk.ScrolledWindow()
+        sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        sw.set_size_request(-1, 200)
+        vbox.pack_start(sw, False, False, 0)
+        sw.add(updateview)
+        sw.show_all()
+
+        res = dialog.run()
+        dialog.destroy()
+
+        if res == gtk.RESPONSE_YES:
+            to_rm = updateview.to_rm
+            to_add = updateview.to_add
+            package_worker.perform_action(parent, to_add, to_rm)
+
+            package_worker.update_apt_cache(True)
+
+            done = package_worker.get_install_status(to_add, to_rm)
+
+            if done:
+                InfoDialog(_('Update Successful!')).launch()
+            else:
+                ErrorDialog(_('Update Failed!')).launch()
+
+        return True
+    else:
+        dialog = InfoDialog(_("Your system is clean and there's no update yet."),
+            title = _('The software information is up-to-date now'))
+
+        dialog.launch()
+        return False
+
+class UpdateView(AppView):
+    def __init__(self):
+        AppView.__init__(self)
+
+    def update_model(self, apps, cates=None):
+        model = self.get_model()
+
+        model.append((None,
+                        None,
+                        None,
+                        None,
+                        None,
+                        '<span size="large" weight="bold">%s</span>' % _('Available New Applications'),
+                        None,
+                        None))
+
+        super(UpdateView, self).update_model(apps, cates)
+
+    def update_updates(self, pkgs):
+        '''apps is a list to iter pkgname,
+        cates is a dict to find what the category the pkg is
+        '''
+        model = self.get_model()
+
+        model.append((None,
+                        None,
+                        None,
+                        None,
+                        None,
+                        '<span size="large" weight="bold">%s</span>' % _('Available Package Updates'),
+                        None,
+                        None))
+
+        apps = []
+        updates = []
+        for pkg in pkgs:
+            if pkg in BUILTIN_APPS:
+                apps.append(pkg)
+            else:
+                updates.append(pkg)
+
+        for pkgname in apps:
+            pixbuf = get_app_logo(pkgname)
+
+            package = PackageInfo(pkgname)
+            appname = package.get_name()
+            desc = get_app_describ(pkgname)
+
+            self.append_app(True,
+                    pixbuf,
+                    pkgname,
+                    appname,
+                    desc,
+                    0,
+                    'update')
+            self.to_add.append(pkgname)
+
+        for pkgname in updates:
+            package = package_worker.get_cache()[pkgname]
+
+            self.append_update(True, package.name, package.summary)
 
 class UpdateCacheDialog:
     """This class is modified from Software-Properties"""
@@ -283,6 +444,7 @@ class UpdateCacheDialog:
         self.dialog.hide()
         if res == gtk.RESPONSE_YES:
             self.parent.set_sensitive(False)
+            self.parent.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
             lock = thread.allocate_lock()
             lock.acquire()
             t = thread.start_new_thread(self.update_cache,
@@ -292,6 +454,7 @@ class UpdateCacheDialog:
                     gtk.main_iteration()
                     time.sleep(0.05)
             self.parent.set_sensitive(True)
+            self.parent.window.set_cursor(None)
         return res
 
 class SourcesView(gtk.TreeView):
@@ -376,19 +539,21 @@ class SourcesView(gtk.TreeView):
                 if url in source.str() and source.type == 'deb':
                     enabled = not source.disabled
 
-            self.model.append((
-                enabled,
-                url,
-                distro,
-                comps,
-                package,
-                logo,
-                name,
-                comment,
-                '<b>%s</b>\n%s' % (name, comment),
-                home,
-                key,
-                ))
+            iter = self.model.append()
+
+            self.model.set(iter,
+                    COLUMN_ENABLED, enabled,
+                    COLUMN_URL, url,
+                    COLUMN_DISTRO, distro,
+                    COLUMN_COMPS, comps,
+                    COLUMN_COMMENT, comment,
+                    COLUMN_PACKAGE, package,
+                    COLUMN_NAME, name,
+                    COLUMN_DISPLAY, '<b>%s</b>\n%s' % (name, comment),
+                    COLUMN_LOGO, logo,
+                    COLUMN_HOME, home,
+                    COLUMN_KEY, key,
+                )
 
     def get_sourcelist_status(self, url):
         for source in self.get_sourceslist():
@@ -479,8 +644,10 @@ class SourcesView(gtk.TreeView):
         '''
 
         url = self.model.get_value(iter, COLUMN_URL)
+        icon = self.model.get_value(iter, COLUMN_LOGO)
         distro = self.model.get_value(iter, COLUMN_DISTRO)
-        name = self.model.get_value(iter, COLUMN_NAME)
+        comment = self.model.get_value(iter, COLUMN_NAME)
+        package = self.model.get_value(iter, COLUMN_PACKAGE)
         comps = self.model.get_value(iter, COLUMN_COMPS)
         key = self.model.get_value(iter, COLUMN_KEY)
 
@@ -489,10 +656,13 @@ class SourcesView(gtk.TreeView):
         if key:
             proxy.add_apt_key(key)
 
-        if comps:
-            result = proxy.set_entry(url, distro, comps, name, enable)
+        if not comps:
+            distro = distro + '/'
+
+        if TweakSettings.get_separated_sources():
+            result = proxy.set_separated_entry(url, distro, comps, comment, enable, package)
         else:
-            result = proxy.set_entry(url, distro + '/', comps, name, enable)
+            result = proxy.set_entry(url, distro, comps, comment, enable)
 
         if str(result) == 'enabled':
             self.model.set(iter, COLUMN_ENABLED, True)
@@ -501,6 +671,11 @@ class SourcesView(gtk.TreeView):
 
         if pre_status != enable:
             self.emit('sourcechanged')
+
+        if enable:
+            notify.update(_('New source has been enabled'), _('%s is enabled now, Please click the refresh button to update the application cache.') % comment)
+            notify.set_icon_from_pixbuf(icon)
+            notify.show()
 
 class SourceDetail(gtk.VBox):
     def __init__(self):
@@ -652,8 +827,12 @@ class ThirdSoft(TweakPage):
         self.sourcedetail.set_details(home, url, description)
 
     def on_polkit_action(self, widget, action):
+        global proxy
         if action:
-            if proxy.get_proxy():
+            self.refresh_button.set_sensitive(True)
+
+            proxy = DbusProxy(PATH)
+            if proxy.get_object():
                 self.treeview.set_sensitive(True)
                 self.expander.set_sensitive(True)
                 WARNING_KEY = '/apps/ubuntu-tweak/disable_thidparty_warning'
@@ -678,24 +857,11 @@ class ThirdSoft(TweakPage):
             AuthenticateFailDialog().launch()
 
     def colleague_changed(self, widget):
-        self.refresh_button.set_sensitive(True)
-        self.emit('update', 'sourceeditor', 'update_sourceslist')
+        self.emit('update', 'sourceeditor', 'update_source_combo')
     
     def on_refresh_button_clicked(self, widget):
-        dialog = UpdateCacheDialog(widget.get_toplevel())
-        res = dialog.run()
-
-        proxy.set_list_state('normal')
-        widget.set_sensitive(False)
-
-        dialog = QuestionDialog(_('You can install the new applications through Add/Remove.\nDo you want to go now?'),
-            title = _('The software information is up-to-date now'))
-        if dialog.run() == gtk.RESPONSE_YES:
-            self.emit('update', 'installer', 'deep_update')
-            self.emit('call', 'mainwindow', 'select_module', {'name': 'installer'})
-        else:
-            self.emit('update', 'installer', 'deep_update')
-        dialog.destroy()
+        if refresh_source(widget.get_toplevel()):
+            self.emit('update', 'installer', 'normal_update')
 
 if __name__ == '__main__':
     from utility import Test

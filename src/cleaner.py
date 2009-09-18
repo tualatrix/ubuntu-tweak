@@ -25,11 +25,12 @@ import gobject
 import gettext
 from common.utils import *
 from common.misc import filesizeformat
-from common.policykit import PolkitButton, proxy
+from common.policykit import PolkitButton, DbusProxy
 from common.package import package_worker
 from common.widgets import TweakPage
 from common.widgets.dialogs import *
 from common.widgets.utils import ProcessDialog
+from backends.packageconfig import PATH
 
 (
     COLUMN_CHECK,
@@ -158,6 +159,7 @@ class PackageView(gtk.TreeView):
         return self.__check_list
 
     def update_package_model(self):
+        self.set_busy()
         model = self.get_model()
         model.clear()
         self.mode = 'package'
@@ -168,17 +170,24 @@ class PackageView(gtk.TreeView):
         self.__column.set_title(_('Packages'))
 
         for pkg in list:
+            while gtk.events_pending():
+                gtk.main_iteration()
+
             desc = self.package_worker.get_pkgsummary(pkg)
 
-            model.append((
-                False,
-                icon,
-                pkg,
-                desc,
-                '<b>%s</b>\n%s' % (pkg, desc)
-                ))
+            iter = model.append()
+            model.set(iter,
+                   COLUMN_CHECK, False,
+                   COLUMN_ICON, icon,
+                   COLUMN_NAME, pkg,
+                   COLUMN_DESC, desc,
+                   COLUMN_DISPLAY, '<b>%s</b>\n%s' % (pkg, desc)
+                )
+
+        self.unset_busy()
 
     def update_kernel_model(self):
+        self.set_busy()
         model = self.get_model()
         model.clear()
         self.mode = 'kernel'
@@ -189,18 +198,23 @@ class PackageView(gtk.TreeView):
         self.__column.set_title(_('Packages'))
 
         for pkg in list:
+            while gtk.events_pending():
+                gtk.main_iteration()
+
             desc = self.package_worker.get_pkgsummary(pkg)
 
-            model.append((
-                False,
-                icon,
-                pkg,
-                desc,
-                '<b>%s</b>\n%s' % (pkg, desc)
-                ))
-
+            iter = model.append()
+            model.set(iter,
+                   COLUMN_CHECK, False,
+                   COLUMN_ICON, icon,
+                   COLUMN_NAME, pkg,
+                   COLUMN_DESC, desc,
+                   COLUMN_DISPLAY, '<b>%s</b>\n%s' % (pkg, desc)
+                )
+        self.unset_busy()
 
     def update_cache_model(self):
+        self.set_busy()
         model = self.get_model()
         model.clear()
         self.mode = 'cache'
@@ -213,17 +227,24 @@ class PackageView(gtk.TreeView):
         self.__column.set_title(_('Package Cache'))
 
         for pkg in list:
+            while gtk.events_pending():
+                gtk.main_iteration()
+
             size = str(os.path.getsize(pkg))
 
-            model.append((
-                False,
-                icon,
-                pkg,
-                size,
-                _('<b>%s</b>\nTake %s of disk space') % (os.path.basename(pkg), filesizeformat(size))
-                ))
+            iter = model.append()
+            model.set(iter,
+                   COLUMN_ICON, icon,
+                   COLUMN_CHECK, False,
+                   COLUMN_NAME, pkg,
+                   COLUMN_DESC, size,
+                   COLUMN_DISPLAY, _('<b>%s</b>\nTake %s of disk space') % (os.path.basename(pkg), filesizeformat(size)) 
+
+                )
+        self.unset_busy()
 
     def update_config_model(self):
+        self.set_busy()
         model = self.get_model()
         model.clear()
         self.mode = 'config'
@@ -246,13 +267,18 @@ class PackageView(gtk.TreeView):
         self.__column.set_title(_('Package Config'))
 
         for pkg in list:
-            model.append((
-                False,
-                icon,
-                pkg.name,
-                0,
-                '<b>%s</b>\n%s' % (pkg.name, pkg.des),
-                ))
+            while gtk.events_pending():
+                gtk.main_iteration()
+
+            iter = model.append()
+            model.set(iter,
+                   COLUMN_CHECK, False,
+                   COLUMN_ICON, icon,
+                   COLUMN_NAME, pkg.name,
+                   COLUMN_DESC, 0,
+                   COLUMN_DISPLAY, '<b>%s</b>\n%s' % (pkg.name, pkg.des),
+                )
+        self.unset_busy()
 
     def on_package_toggled(self, cell, path):
         model = self.get_model()
@@ -310,6 +336,7 @@ class PackageView(gtk.TreeView):
             self.__check_list.append(model.get_value(iter, COLUMN_NAME))
 
     def clean_selected_package(self):
+        self.set_busy()
         state = self.package_worker.perform_action(self.get_toplevel(), [],self.__check_list)
 
         if state == 0:
@@ -324,8 +351,10 @@ class PackageView(gtk.TreeView):
             self.update_kernel_model()
         self.__check_list = []
         self.emit('cleaned')
+        self.unset_busy()
 
     def clean_selected_cache(self):
+        self.set_busy()
         model = self.get_model()
 
         dialog = CleanCacheDailog(self.get_toplevel(), self.get_list())
@@ -342,8 +371,10 @@ class PackageView(gtk.TreeView):
 
         self.update_cache_model()
         self.emit('cleaned')
+        self.unset_busy()
 
     def clean_selected_config(self):
+        self.set_busy()
         model = self.get_model()
 
         dialog = CleanConfigDialog(self.get_toplevel(), self.get_list())
@@ -357,6 +388,7 @@ class PackageView(gtk.TreeView):
         package_worker.update_apt_cache(True)
         self.update_config_model()
         self.emit('cleaned')
+        self.unset_busy()
 
     def show_usercancel_dialog(self):
         InfoDialog(_('Canceled by user!')).launch()
@@ -366,6 +398,16 @@ class PackageView(gtk.TreeView):
 
     def show_failed_dialog(self):
         ErrorDialog(_('Clean up Failed!')).launch()
+
+    def set_busy(self):
+        window = self.get_toplevel().window
+        if window:
+            window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+
+    def unset_busy(self):
+        window = self.get_toplevel().window
+        if window:
+            window.set_cursor(None)
 
 class PackageCleaner(TweakPage):
     def __init__(self):
@@ -473,6 +515,8 @@ class PackageCleaner(TweakPage):
         self.clean_button.set_sensitive(False)
 
     def on_button_toggled(self, widget):
+        self.select_button.set_active(False)
+
         if self.current_button != self.button_list.index(widget):
             button = self.button_list[self.current_button]
 
@@ -499,12 +543,11 @@ class PackageCleaner(TweakPage):
             self.treeview.clean_selected_config()
 
     def on_polkit_action(self, widget, action):
+        global proxy
         if action:
-            if proxy.get_proxy():
-                self.treeview.set_sensitive(True)
-                self.select_button.set_sensitive(True)
-            else:
-                ServerErrorDialog().launch()
+            self.treeview.set_sensitive(True)
+            self.select_button.set_sensitive(True)
+            proxy = DbusProxy(PATH)
         else:
             AuthenticateFailDialog().launch()
 

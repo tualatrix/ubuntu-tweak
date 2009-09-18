@@ -23,19 +23,24 @@ import dbus
 class DbusProxy:
     INTERFACE = "com.ubuntu_tweak.daemon"
 
-    try:
-        __system_bus = dbus.SystemBus()
-        __proxy = __system_bus.get_object('com.ubuntu_tweak.daemon', '/com/ubuntu_tweak/daemon')
-    except dbus.exceptions.DBusException:
-        __proxy = None
+    __system_bus = dbus.SystemBus()
+
+    def __init__(self, path, interface=None):
+        #TODO deal with exception
+        self.path = path
+        if interface:
+            self.INTERFACE = interface
+
+        try:
+            self.__object = self.__system_bus.get_object(self.INTERFACE, self.path)
+        except:
+            self.__object = None
 
     def __getattr__(self, name):
-        return self.__proxy.get_dbus_method(name, dbus_interface = self.INTERFACE)
+        return self.__object.get_dbus_method(name, dbus_interface=self.INTERFACE)
 
-    def get_proxy(self):
-        return self.__proxy
-
-proxy = DbusProxy()
+    def get_object(self):
+        return self.__object
 
 if __name__ == '__main__':
     print proxy

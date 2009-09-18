@@ -13,7 +13,6 @@
 # PARTICULAR PURPOSE.
 
 @SET_MAKE@
-
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
@@ -32,9 +31,9 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-subdir = policykit
-DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
-	$(srcdir)/com.ubuntu_tweak.daemon.service.in
+subdir = src/backends
+DIST_COMMON = $(backends_PYTHON) $(srcdir)/Makefile.am \
+	$(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/acinclude.m4 \
 	$(top_srcdir)/m4/gettext.m4 $(top_srcdir)/m4/iconv.m4 \
@@ -45,7 +44,7 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/acinclude.m4 \
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
-CONFIG_CLEAN_FILES = com.ubuntu_tweak.daemon.service
+CONFIG_CLEAN_FILES =
 SOURCES =
 DIST_SOURCES =
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
@@ -54,12 +53,9 @@ am__vpath_adj = case $$p in \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-am__installdirs = "$(DESTDIR)$(dbusconfdir)" \
-	"$(DESTDIR)$(dbusservicedir)" "$(DESTDIR)$(policyconfdir)"
-dbusconfDATA_INSTALL = $(INSTALL_DATA)
-dbusserviceDATA_INSTALL = $(INSTALL_DATA)
-policyconfDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(dbusconf_DATA) $(dbusservice_DATA) $(policyconf_DATA)
+am__installdirs = "$(DESTDIR)$(backendsdir)"
+backendsPYTHON_INSTALL = $(INSTALL_DATA)
+py_compile = $(top_srcdir)/py-compile
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
@@ -72,7 +68,12 @@ CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CPPFLAGS = @CPPFLAGS@
 CYGPATH_W = @CYGPATH_W@
+DAEMON_CFLAGS = @DAEMON_CFLAGS@
+DAEMON_LIBS = @DAEMON_LIBS@
 DATADIR = @DATADIR@
+DBUS_CFLAGS = @DBUS_CFLAGS@
+DBUS_LIBS = @DBUS_LIBS@
+DBUS_SYSTEMD_DIR = @DBUS_SYSTEMD_DIR@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
 ECHO_C = @ECHO_C@
@@ -111,6 +112,8 @@ PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PKG_CONFIG = @PKG_CONFIG@
+POLKIT_CFLAGS = @POLKIT_CFLAGS@
+POLKIT_LIBS = @POLKIT_LIBS@
 POSUB = @POSUB@
 PYGTK_CFLAGS = @PYGTK_CFLAGS@
 PYGTK_DEFS = @PYGTK_DEFS@
@@ -183,16 +186,13 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-dbusconfdir = $(sysconfdir)/dbus-1/system.d
-dbusconf_DATA = ubuntu-tweak-daemon.conf
-dbusservicedir = $(datadir)/dbus-1/system-services
-dbusservice_DATA = com.ubuntu_tweak.daemon.service
-policyconfdir = $(datadir)/PolicyKit/policy
-policyconf_DATA = com.ubuntu-tweak.daemon.policy
-EXTRA_DIST = $(dbusconf_DATA) \
-			 $(policyconf_DATA) \
-			 com.ubuntu_tweak.daemon.service.in
+backends_PYTHON = \
+	./__init__.py \
+	./getconfig.py \
+	./packageconfig.py \
+	$(NULL)
 
+backendsdir = $(pkgdatadir)/backends
 all: all-am
 
 .SUFFIXES:
@@ -205,9 +205,9 @@ $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu  policykit/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu  src/backends/Makefile'; \
 	cd $(top_srcdir) && \
-	  $(AUTOMAKE) --gnu  policykit/Makefile
+	  $(AUTOMAKE) --gnu  src/backends/Makefile
 .PRECIOUS: Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \
@@ -225,58 +225,33 @@ $(top_srcdir)/configure:  $(am__configure_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
-com.ubuntu_tweak.daemon.service: $(top_builddir)/config.status $(srcdir)/com.ubuntu_tweak.daemon.service.in
-	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
-install-dbusconfDATA: $(dbusconf_DATA)
+install-backendsPYTHON: $(backends_PYTHON)
 	@$(NORMAL_INSTALL)
-	test -z "$(dbusconfdir)" || $(MKDIR_P) "$(DESTDIR)$(dbusconfdir)"
-	@list='$(dbusconf_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(dbusconfDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(dbusconfdir)/$$f'"; \
-	  $(dbusconfDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(dbusconfdir)/$$f"; \
-	done
+	test -z "$(backendsdir)" || $(MKDIR_P) "$(DESTDIR)$(backendsdir)"
+	@list='$(backends_PYTHON)'; dlist=''; for p in $$list; do\
+	  if test -f "$$p"; then b=; else b="$(srcdir)/"; fi; \
+	  if test -f $$b$$p; then \
+	    f=$(am__strip_dir) \
+	    dlist="$$dlist $$f"; \
+	    echo " $(backendsPYTHON_INSTALL) '$$b$$p' '$(DESTDIR)$(backendsdir)/$$f'"; \
+	    $(backendsPYTHON_INSTALL) "$$b$$p" "$(DESTDIR)$(backendsdir)/$$f"; \
+	  else :; fi; \
+	done; \
+	if test -n "$$dlist"; then \
+	  if test -z "$(DESTDIR)"; then \
+	    PYTHON=$(PYTHON) $(py_compile) --basedir "$(backendsdir)" $$dlist; \
+	  else \
+	    PYTHON=$(PYTHON) $(py_compile) --destdir "$(DESTDIR)" --basedir "$(backendsdir)" $$dlist; \
+	  fi; \
+	else :; fi
 
-uninstall-dbusconfDATA:
+uninstall-backendsPYTHON:
 	@$(NORMAL_UNINSTALL)
-	@list='$(dbusconf_DATA)'; for p in $$list; do \
+	@list='$(backends_PYTHON)'; dlist=''; for p in $$list; do\
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(dbusconfdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(dbusconfdir)/$$f"; \
-	done
-install-dbusserviceDATA: $(dbusservice_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(dbusservicedir)" || $(MKDIR_P) "$(DESTDIR)$(dbusservicedir)"
-	@list='$(dbusservice_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(dbusserviceDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(dbusservicedir)/$$f'"; \
-	  $(dbusserviceDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(dbusservicedir)/$$f"; \
-	done
-
-uninstall-dbusserviceDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(dbusservice_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(dbusservicedir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(dbusservicedir)/$$f"; \
-	done
-install-policyconfDATA: $(policyconf_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(policyconfdir)" || $(MKDIR_P) "$(DESTDIR)$(policyconfdir)"
-	@list='$(policyconf_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(policyconfDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(policyconfdir)/$$f'"; \
-	  $(policyconfDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(policyconfdir)/$$f"; \
-	done
-
-uninstall-policyconfDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(policyconf_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(policyconfdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(policyconfdir)/$$f"; \
+	  rm -f "$(DESTDIR)$(backendsdir)/$$f"; \
+	  rm -f "$(DESTDIR)$(backendsdir)/$${f}c"; \
+	  rm -f "$(DESTDIR)$(backendsdir)/$${f}o"; \
 	done
 tags: TAGS
 TAGS:
@@ -313,9 +288,9 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(DATA)
+all-am: Makefile
 installdirs:
-	for dir in "$(DESTDIR)$(dbusconfdir)" "$(DESTDIR)$(dbusservicedir)" "$(DESTDIR)$(policyconfdir)"; do \
+	for dir in "$(DESTDIR)$(backendsdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -360,8 +335,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-dbusconfDATA install-dbusserviceDATA \
-	install-policyconfDATA
+install-data-am: install-backendsPYTHON
 
 install-dvi: install-dvi-am
 
@@ -395,23 +369,21 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-dbusconfDATA uninstall-dbusserviceDATA \
-	uninstall-policyconfDATA
+uninstall-am: uninstall-backendsPYTHON
 
 .MAKE: install-am install-strip
 
 .PHONY: all all-am check check-am clean clean-generic distclean \
 	distclean-generic distdir dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am \
-	install-dbusconfDATA install-dbusserviceDATA install-dvi \
-	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-info install-info-am install-man \
-	install-pdf install-pdf-am install-policyconfDATA install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-generic pdf pdf-am ps ps-am uninstall \
-	uninstall-am uninstall-dbusconfDATA uninstall-dbusserviceDATA \
-	uninstall-policyconfDATA
+	install install-am install-backendsPYTHON install-data \
+	install-data-am install-dvi install-dvi-am install-exec \
+	install-exec-am install-html install-html-am install-info \
+	install-info-am install-man install-pdf install-pdf-am \
+	install-ps install-ps-am install-strip installcheck \
+	installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-generic pdf \
+	pdf-am ps ps-am uninstall uninstall-am \
+	uninstall-backendsPYTHON
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

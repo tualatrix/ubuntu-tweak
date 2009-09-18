@@ -127,15 +127,15 @@ class PreferencesDialog:
         vbox = self.worker.get_object('vbox5')
 
         button = WidgetFactory.create('GconfCheckButton', 
-                                      label = _('Enable Check Update'), 
-                                      key = 'check_update',
-                                      default = False)
+                                      label=_('Enable Check Update'), 
+                                      key='check_update',
+                                      default=False)
         vbox.pack_start(button, False, False, 0)
 
         button = WidgetFactory.create('GconfCheckButton', 
-                                      label = _('Enable PowerUser Mode'), 
-                                      key = 'power_user',
-                                      default = False)
+                                      label=_('Use Separated Sources'), 
+                                      key='separated_sources',
+                                      default=True)
         vbox.pack_start(button, False, False, 0)
 
         button = WidgetFactory.create('GconfCheckButton', 

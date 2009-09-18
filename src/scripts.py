@@ -46,10 +46,12 @@ class AbstractScripts:
 class DefaultScripts(AbstractScripts):
     '''This class use to create the default scripts'''
     scripts = {
+            'create-launcher': _('Create Launcher ...'),
             'copy-to': _('Copy to ...'),
             'copy-to-desktop': _('Copy to Desktop'),
             'copy-to-download': _('Copy to Download'),
             'copy-to-home': _('Copy to Home'),
+            'check-md5-sum': _('Check md5 sum'),
             'move-to': _('Move to ...'),
             'move-to-desktop': _('Move to Desktop'),
             'move-to-download': _('Move to Download'),

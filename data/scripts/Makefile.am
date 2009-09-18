@@ -1,5 +1,7 @@
 scriptsdir = $(pkgdatadir)/data/scripts
 scripts_DATA = \
+	create-launcher \
+	check-md5-sum \
 	move-to \
 	move-to-desktop \
 	move-to-download \

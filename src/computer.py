@@ -29,6 +29,8 @@ class Computer(TweakPage):
     def __init__(self):
         TweakPage.__init__(self)
 
+        cpumodel = _('Unknown')
+
         if os.uname()[4][0:3] == "ppc":
             for element in file("/proc/cpuinfo"):
                 if element.split(":")[0][0:3] == "cpu":
@@ -48,7 +50,7 @@ class Computer(TweakPage):
                     EntryBox(_("Desktop environment"), SystemInfo.gnome),
                     EntryBox(_("Kernel"), os.uname()[0]+" "+os.uname()[2]),
                     EntryBox(_("Platform"), os.uname()[-1]),
-                    EntryBox(_("CPU"), cpumodel[1:-1]),
+                    EntryBox(_("CPU"), cpumodel.strip()),
                     EntryBox(_("Memory"), filesizeformat(str(int(raminfo) * 1024))),
                 ))
         self.pack_start(box, False, False, 0)

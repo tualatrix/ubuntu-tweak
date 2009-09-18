@@ -23,7 +23,6 @@ pygtk.require('2.0')
 import os
 import gtk
 import sys
-import gconf
 import gobject
 import webbrowser
 
@@ -88,7 +87,7 @@ def Wait(parent = None):
     vbox = gtk.VBox(False, 0)
 
     label = gtk.Label()
-    label.set_markup(_("<span size=\"xx-large\">Please wait a moment...</span>"))
+    label.set_markup("<span size=\"xx-large\">%s</span>" % _('Please wait a moment...'))
     label.set_justify(gtk.JUSTIFY_FILL)
     vbox.pack_start(label, False, False, 50)
 
@@ -97,11 +96,11 @@ def Wait(parent = None):
         
     return vbox
 
-def Notice(parent = None):
+def Distro_Notice(parent=None):
     vbox = gtk.VBox(False, 0)
 
     label = gtk.Label()
-    label.set_markup(_("<span size=\"x-large\">This feature isn't currently available in your distribution</span>"))
+    label.set_markup('<span size="x-large">%s</span>' % _("This feature isn't currently available in your distribution"))
     label.set_justify(gtk.JUSTIFY_FILL)
     vbox.pack_start(label, False, False, 50)
 
@@ -110,11 +109,24 @@ def Notice(parent = None):
         
     return vbox
 
-def ErrorPage(parent = None):
+def Desktop_Notice(parent=None):
     vbox = gtk.VBox(False, 0)
 
     label = gtk.Label()
-    label.set_markup(_("<span size=\"x-large\">This module is error while loading.</span>"))
+    label.set_markup('<span size="x-large">%s</span>' % _("This feature is currently only available in GNOME Desktop Environment"))
+    label.set_justify(gtk.JUSTIFY_FILL)
+    vbox.pack_start(label, False, False, 50)
+
+    hbox = gtk.HBox(False, 0)
+    vbox.pack_start(hbox, False, False, 0)
+
+    return vbox
+
+def ErrorPage(parent=None):
+    vbox = gtk.VBox(False, 0)
+
+    label = gtk.Label()
+    label.set_markup("<span size=\"x-large\">%s</span>" % _("This module is error while loading."))
     label.set_justify(gtk.JUSTIFY_FILL)
     vbox.pack_start(label, False, False, 50)
 
@@ -139,20 +151,10 @@ def AptErrorPage(parent = None):
     return vbox
 
 from computer import Computer
-from session import Session
-from autostart import AutoStart
-from icons import Icon
 if module_check.has_right_compiz():
     from compiz import Compiz
 else:
-    Compiz = Notice
-
-if module_check.get_gnome_version() >= 20:
-    from userdir import UserDir
-    from templates import Templates
-else:
-    UserDir = Notice
-    Templates = Notice
+    Compiz = Distro_Notice
 
 if module_check.is_ubuntu():
     if package_worker.get_cache():
@@ -162,8 +164,8 @@ if module_check.is_ubuntu():
         Installer = AptErrorPage
         PackageCleaner = AptErrorPage
 else:
-    Installer = Notice
-    PackageCleaner = Notice
+    Installer = Distro_Notice
+    PackageCleaner = Distro_Notice
 
 if module_check.is_supported_ubuntu():
     from sourceeditor import SourceEditor
@@ -172,19 +174,40 @@ if module_check.is_supported_ubuntu():
     else:
         ThirdSoft = AptErrorPage
 else:
-    SourceEditor = Notice
-    ThirdSoft = Notice
-from scripts import Scripts
-from shortcuts import Shortcuts
-from powermanager import PowerManager
-from gnomesettings import Gnome
-from nautilus import Nautilus
-from lockdown import LockDown
-from metacity import Metacity
+    SourceEditor = Distro_Notice
+    ThirdSoft = Distro_Notice
+
+if module_check.is_gnome():
+    from session import Session
+    from autostart import AutoStart
+    from icons import Icon
+    from scripts import Scripts
+    from shortcuts import Shortcuts
+    from powermanager import PowerManager
+    from gnomesettings import Gnome
+    from nautilus import Nautilus
+    from lockdown import LockDown
+    from metacity import Metacity
+    from userdir import UserDir
+    from templates import Templates
+else:
+    Session = Desktop_Notice
+    AutoStart = Desktop_Notice
+    Icon = Desktop_Notice
+    UserDir = Desktop_Notice
+    Templates = Desktop_Notice
+    Scripts = Desktop_Notice
+    Shortcuts = Desktop_Notice
+    PowerManager = Desktop_Notice
+    Gnome = Desktop_Notice
+    Nautilus = Desktop_Notice
+    LockDown = Desktop_Notice
+    Metacity = Desktop_Notice
+
 if module_check.has_gio():
     from filetype import FileType
 else:
-    FileType = Notice
+    FileType = Distro_Notice
 
 (
     ID_COLUMN,
@@ -476,6 +499,7 @@ class MainWindow(gtk.Window):
                 else:
                     self.notebook.set_current_page(self.moduletable[id])
                     widget.select_iter(iter)
+        self.do_notify()
 
     def __shrink_for_each(self, model, path, iter, id):
         m_id = model.get_value(iter, ID_COLUMN)
@@ -609,15 +633,20 @@ You should have received a copy of the GNU General Public License along with Ubu
         gtk.gdk.threads_leave()
 
     def destroy(self, widget, data = None):
-        from common.policykit import proxy
-        if proxy.get_proxy():
-            state = proxy.get_list_state()
-            if state == "expire":
-                from thirdsoft import UpdateCacheDialog
-                dialog = UpdateCacheDialog(self)
-                res = dialog.run()
-
-            proxy.exit()
-
+        self.do_notify()
         self.save_gui_state()
         gtk.main_quit()
+
+    def prepare_notify(self, data):
+        self.notify_func = data
+
+    def get_notify(self):
+        if hasattr(self, 'notify_func') and self.notify_func:
+            notify_func = self.notify_func
+            self.notify_func = None
+            return notify_func
+
+    def do_notify(self):
+        notify_func = self.get_notify()
+        if notify_func:
+            notify_func()

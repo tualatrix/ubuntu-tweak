@@ -52,7 +52,10 @@ def get_app_logo(name):
         name = '%s.png' % name.replace(' ', '-').lower()
         path = os.path.join(DATA_DIR, 'applogos', name)
 
-        return gtk.gdk.pixbuf_new_from_file(path)
+        pixbuf = gtk.gdk.pixbuf_new_from_file(path)
+        if pixbuf.get_width() != 32 or pixbuf.get_height() != 32:
+            pixbuf = pixbuf.scale_simple(32, 32, gtk.gdk.INTERP_BILINEAR)
+        return pixbuf
     except:
         icon = gtk.icon_theme_get_default()
         return icon.load_icon(gtk.STOCK_MISSING_IMAGE, 32, 0)
@@ -65,6 +68,7 @@ APP_DATA = {
     'amarok-nightly': _('Development version of an audio player for KDE'),
     'amule': _('Client for the eD2k and Kad networks'),
     'anjuta': _('GNOME IDE for C/C++, Java, Python'),
+    'arc-colors': _('Arc-Colors is a set of wallpapers and GDM themes made to complement the Shiki-Colors GTK+ themes and the GNOME-Colors icon themes.'),
     'audacious': _('A skinned multimedia player for many platforms'),
     'audacity': _('Record and edit audio files'),
     'avant-window-navigator': _('Fully customisable dock-like window navigator'),
@@ -73,6 +77,9 @@ APP_DATA = {
     'azureus': _('BitTorrent client written in Java'),
     'banshee': _('Audio Management and Playback application'),
     'blueman': _('GTK+ Bluetooth Manager'),
+    'backintime-gnome': _('Simple backup system for GNOME Desktop'),
+    'backintime-kde4': _('Simple backup system for KDE4 Desktop'),
+    'breathe-icon-theme': _("The Breathe icon theme is a refresh of the Human icon theme using KDE's Oxygen icon set as an inspiration but with that distinctly Human feel."),
     'cairo-dock': _('A true dock for linux'),
     'chmsee': _('A chm file viewer written in GTK+'),
     'christine': _('Desired to be small and fast, christine is a simple media player, that let you play your favorite music and videos from one single application.'),
@@ -86,7 +93,7 @@ APP_DATA = {
     'eioffice-personal': _('EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw.com.'),
     'emesene': _('A client for the Windows Live Message network'),
     'empathy': _('Empathy consists of a rich set of reusable instant messaging widgets, and a GNOME client using those widgets.'),
-    'exaile': _('GTK+ based flexible audio player, similar to Amarok'),
+    'exaile': _('flexible audio player, similar to Amarok, but written in GTK+'),
     'filezilla': _('File transmission via ftp, sftp and ftps'),
     'pcmanfm': _('An extremly fast and lightweight file manager'),
     'galaxium': _('Galaxium is an instant messenger application designed for the GNOME desktop'),
@@ -94,14 +101,19 @@ APP_DATA = {
     'geany': _('A fast and lightweight IDE'),
     'gftp': _('A multithreaded FTP client'),
     'ghex': _('GNOME Hex editor'),
+    'gloobus-preview': _('Gloobus is an extension of Gnome designed to enable a full screen preview of any kind of file.'),
+    'gimp': _('The GNU Image Manipulation Program'),
+    'giver': _('A simple file sharing desktop application'),
     'gmail-notify': _('Notifies the user upon arrival of new mail in Gmail'),
     'gmchess': _('GMChess is chinese chess game write by gtkmm'),
     'gnome-do': _('A powerful, speedy, and sexy remote control for the GNOME Desktop'),
+    'gnome-do-plugins': _('Extra functionality for GNOME-Do launcher'),
     'gnome-globalmenu': _('Global Menu Bar for GNOME'),
-    'gnome-colors': _('the GNOME-Colors Icon Themes and Shiki-Colors GTK+/Metacity Themes for Debian and Ubuntu.'),
+    'gnome-colors': _('GNOME-Colors is a set of GNOME icon themes, with some inspiration from Tango, Elementary, Discovery, Tango Generator and others.'),
     'gnote': _('a C++ port of Tomboy'),
     'googleearth': _("A program that combines satellite imagery and maps to put the world's geographic information at your fingertips."),
     'google-gadgets': _('Platform for running Google Gadgets on Linux'),
+    'google-chrome-unstable': _('Google Chrome is a browser that combines a minimal design with sophisticated technology to make the web faster, safer, and easier.'),
     'gparted': _('GNOME partition editor'),
     'gpicview': _('Lightweight image viewer'),
     'gtk-recordmydesktop': _('Graphical frontend for recordmydesktop'),
@@ -111,6 +123,7 @@ APP_DATA = {
     'ibus': _('Intelligent Input Bus for Linux / Unix OS'),
     'ibus-pinyin': _('It is a PinYin engine for IBus.'),
     'ibus-table': _('IBus-Table is the IM Engine framework for table-based input methods, such as ZhengMa, WuBi, ErBi, ChangJie and so on.'),
+    'ibus-table-wubi': _('Wubi input method based on table engine of ibus'),
     'inkscape': _('Create and edit Scalable Vector Graphics images'),
     'kino': _('Non-linear editor for Digital Video data'),
     'lastfm': _('A music player for Last.fm personalized radio'),
@@ -123,17 +136,22 @@ APP_DATA = {
     'midori': _('Webkit based lightweight web browser'),
     'moovida': _('The free media player - play all your files'),
     'monodevelop': _('An IDE to Develop .NET applications.'),
+    'moblin': _('A moblin feature enabled environment for Ubuntu (Testing Only)'),
     'mplayer': _('The Ultimate Movie Player For Linux'),
     'netbeans': _('IDE for Java, C/C++, Ruby, UML, etc.'),
     'opera': _('The Opera Web Browser'),
     'pidgin': _('Pidgin is a graphical modular messaging client based on libpurple which is capable of connecting to AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, SIP/SIMPLE, Novell GroupWise, Lotus Sametime, Bonjour, Zephyr, MySpaceIM, Gadu-Gadu, and QQ all at once.'),
-    'playonlinux': _('Run your Windows programs on Linux'),
+    'playonlinux': _('PlayOnLinux is a front-end for wine. It permits you to install Windows Games and softwares on Linux.'),
     'picasa': _('Image management application from Google'),
+    'qt-creator': _('IDE for Development with Qt'),
+    'rednotebook': _('RedNotebook is a graphical diary and journal to keep track of notes and thoughts throughout the day. It includes a calendar navigation, customisable templates for each day, and a keyword search and cloud.'),
+    'shiki-colors': _('Shiki-Colors is a set of Metacity/GTK-2+ themes which mix the elegance of a dark theme with the usability of a light theme, resulting in a hybrid theme.'),
     'screenlets': _('A framework for desktop widgets'),
     'shutter': _('Feature-rich screenshot application(formerly known as GScrot)'),
     'skype': _('Make audio/video calls using this VoIP Software'),
     'smplayer': _('A great MPlayer front-end, written in QT4'),
     'soundconverter': _('Convert audio files into other formats'),
+    'spicebird': _('A fully integrated mail, PIM and instant messaging client'),
     'stardict': _('An international dictionary'),
     'swiftweasel': _('Swiftweasel is an optimized build of the Mozilla Firefox web browser for Linux'),
     'specto': _('A desktop application that will watch for events (website updates, emails, file and folder changes...)'),
@@ -152,13 +170,14 @@ APP_DATA = {
     'wine': _('A compatibility layer for running Windows programs'),
     'wine-doors': _('Wine-doors is an application designed to make installing windows software on Linux, Solaris or other Unix systems easier.'),
     'xbmc': _('XBMC is a free and open source software media player and entertainment hub'),
+    'zim': _('Zim is a WYSIWYG text editor. It aims at bringing the concept of a wiki to your desktop.'),
 }
 
 SOURCE_DATA = {
-    'firefox': _('Development Version of Mozilla Firefox 3.6, 4.0'),
-    'compiz-fusion': _('Development version of Compiz Fusion'),
+    'firefox': _('Development Version of Mozilla Firefox'),
+    'compiz': _('Development version of Compiz'),
     'google': _("Google's Linux Repository"),
-    'kde-4': _('K Desktop Environment 4.2'),
+    'kde-4': _('Development Version of K Desktop Environment'),
     'lxde': _('Lightweight X11 Desktop Environment: GPicView, PCManFM'),
     'webkitgtk': _('WebkitGtk+, Liferea (Webkit), Midori and other WebKit related projects.'),
     'medibuntu': _('Multimedia, Entertainment and Distraction In Ubuntu\nMedibuntu is a repository of packages that cannot be included into the Ubuntu distribution for legal reasons (copyright, license, patent, etc).'),
@@ -169,6 +188,10 @@ SOURCE_DATA = {
     'ubuntu-x': _('Updated versions of X.org drivers, libraries, etc. for Ubuntu.'),
     'gnome-games': _('Gnome Games built from Git, with all experimental features and staging games enabled.'),
     'mozilla-security': _('Ubuntu Mozilla Security Team provides beta and final stable/security updates for mozilla software in its PPA'),
+    'qt': _('A cross-platform application and UI framework'),
+    'mono': _('Mono is a cross platform, open source .NET development framework.'),
+    'clutter': _('Clutter is an OpenGL based interactive canvas library, designed for creating fast, mainly 2D single window applications such as media box UIs, presentations, kiosk style applications and so on.'),
+    'gloobus': _('Gloobus is an extension of Gnome designed to enable a full screen preview of any kind of file.'),
 }
 
 if __name__ == '__main__':
