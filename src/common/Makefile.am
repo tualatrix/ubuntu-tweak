@@ -9,6 +9,7 @@ common_PYTHON = \
 	./__init__.py \
 	./config.py \
 	./appdata.py \
+	./sourcedata.py \
 	./utils.py \
 	./consts.py \
 	./gui.py \

@@ -32,7 +32,7 @@ __all__ = (
 def get_app_describ(name):
     name = name.replace(' ', '-').lower()
     try:
-        desc = APP_DATA[name]
+        desc = APP_DICT[name]
     except KeyError:
         desc = 'Unknown Error'
 
@@ -41,7 +41,7 @@ def get_app_describ(name):
 def get_source_describ(name):
     name = name.replace(' ', '-').lower()
     try:
-        desc = SOURCE_DATA[name]
+        desc = SOURCE_DICT[name]
     except KeyError:
         desc = get_app_describ(name)
 
@@ -63,7 +63,7 @@ def get_app_logo(name):
 def get_source_logo(name):
     return get_app_logo(name)
 
-APP_DATA = {
+APP_DICT = {
     'agave': _('A color scheme designer'),
     'amarok-nightly': _('Development version of an audio player for KDE'),
     'amule': _('Client for the eD2k and Kad networks'),
@@ -187,7 +187,7 @@ APP_DATA = {
     'texmaker': _('Texmaker is a clean, highly configurable LaTeX editor with good hot key support and extensive LaTeX documentation.'),
 }
 
-SOURCE_DATA = {
+SOURCE_DICT = {
     'firefox': _('Development Version of Mozilla Firefox'),
     'compiz': _('Development version of Compiz'),
     'google': _("Google's Linux Repository"),
@@ -209,6 +209,148 @@ SOURCE_DATA = {
     'bisigi': _('Behind this African word, referring to the notion of imagination, you can find some themes for GNOME'),
     'kubuntu-update': _('Updates for Kubuntu releases which are due to go to Ubuntu Updates. Mostly KDE point releases.'),
     'kubuntu-backports': _('Backports of new versions of KDE for Kubuntu which are not yet tested enough to go to Ubuntu Backports.'),
+}
+
+P2P = (_('File-Sharing Clients'), 'p2p.png')
+Image = (_('Image Tools'), 'image.png')
+Sound = (_('Sound Tools'), 'sound.png')
+Video = (_('Video Tools'), 'video.png')
+Text = (_('Text Tools'), 'text.png')
+IM = (_('Instant Messengers'), 'im.png')
+Internet = (_('Internet Tools'), 'internet.png')
+FTP = (_('FTP Tools'), 'ftp.png')
+Desktop = (_('Desktop Tools'), 'desktop.png')
+Disk = (_('CD/Disk Tools'), 'cd.png')
+Develop = (_('Development'), 'develop.png')
+Emulator = (_('Emulators'), 'emulator.png')
+Theme = (_('Themes'), 'theme.png')
+Mail = (_('E-mail Tools'), 'mail.png')
+
+def create_cate(*items):
+    new = []
+    for i, item in enumerate(items):
+        list = [i]
+        list.extend(item)
+        new.append(list)
+    return new
+
+CATES_DATA = create_cate(P2P, Image, Sound, Video, Text, IM, Internet, FTP, Desktop, Disk, Develop, Emulator, Theme, Mail)
+
+APPS = \
+{
+    'agave': Image,
+    'amule': P2P,
+    'amarok-nightly': Sound,
+    'anjuta': Develop,
+    'audacious': Sound,
+    'audacity': Sound,
+    'avant-window-navigator': Desktop,
+    'avant-window-navigator-trunk': Desktop,
+    'avidemux': Video,
+    'azureus': P2P,
+    'banshee': Sound,
+    'blueman': P2P,
+    'backintime-gnome': Desktop,
+    'backintime-kde4': Desktop,
+    'breathe-icon-theme': Theme,
+    'cairo-dock': Desktop,
+    'chmsee': Text,
+    'christine': Sound,
+    'chromium-browser': Internet,
+    'compizconfig-settings-manager': Desktop,
+    'codeblocks': Develop,
+    'devhelp': Develop,
+    'deluge-torrent': P2P,
+    'eclipse': Develop,
+    'emesene': IM,
+    'empathy': IM,
+    'eioffice-personal': Text,
+    'exaile': Sound,
+    'filezilla': FTP,
+    'pcmanfm': Desktop,
+    'gimp': Image,
+    'gloobus-preview': Desktop,
+    'giver': P2P,
+    'galaxium': IM,
+    'gajim': IM,
+    'geany': Develop,
+    'gftp': FTP,
+    'ghex': Text,
+    'gmail-notify': Mail,
+    'gnote': Text,
+    'gnome-do': Desktop,
+    'gnome-do-plugins': Desktop,
+    'gnome-globalmenu': Desktop,
+    'gnome-colors': Theme,
+    'shiki-colors': Theme,
+    'arc-colors': Theme,
+    'googleearth': Internet,
+    'google-gadgets': Desktop,
+    'google-chrome-unstable': Internet,
+    'gparted': Disk,
+    'gpicview': Image,
+    'gtk-recordmydesktop': Video,
+    'gwibber': Internet,
+    'gtg': Text,
+    'isomaster': Disk,
+    'inkscape': Image,
+    'ibus-pinyin': Text,
+    'ibus-table-wubi': Text,
+    'kino': Video,
+    'lastfm': Internet,
+    'leafpad': Text,
+    'liferea': Internet,
+    'mail-notification': Mail,
+    'meld': Text,
+    'mirage': Image,
+    'miro': Video,
+    'midori': Internet,
+    'moovida': Sound,
+    'monodevelop': Develop,
+    'mplayer': Video,
+    'netbeans': Develop,
+    'nautilus-dropbox': Internet,
+    'opera': Internet,
+    'playonlinux': Emulator,
+    'picasa': Image,
+    'qt-creator': Develop,
+    'rednotebook': Text,
+    'screenlets': Desktop,
+    'specto': Desktop,
+    'shutter': Image,
+    'skype': IM,
+    'smplayer': Video,
+    'soundconverter': Sound,
+    'stardict': Desktop,
+    'synapse': IM,
+    'spicebird': Internet,
+    'tasque': Desktop,
+    'terminator': Emulator,
+    'transmission-gtk': P2P,
+    'ubudsl': Internet,
+    'ubuntu-restricted-extras': Desktop,
+    'virtualbox-ose': Emulator,
+    'virtualbox-3.0': Emulator,
+    'vlc': Video,
+    'vmware-player': Emulator,
+    'wine': Emulator,
+    'wine-doors': Emulator,
+    'xbmc': Desktop,
+    'zim': Text,
+    'step-into-freedom-theme': Theme,
+    'ubuntu-sunrise-theme': Theme,
+    'bamboo-zen-theme': Theme,
+    'exotic-theme': Theme,
+    'aquadreams-theme': Theme,
+    'showtime-theme': Theme,
+    'infinity-theme': Theme,
+    'tropical-theme': Theme,
+    'wild-shine-theme': Theme,
+    'balanzan-theme': Theme,
+    'dia': Image,
+    'pitivi': Video,
+    'lyx': Text,
+    'texmaker': Text,
 }
 
 if __name__ == '__main__':
