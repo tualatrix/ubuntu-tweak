@@ -194,6 +194,135 @@ SOURCE_DATA = {
     'gloobus': _('Gloobus is an extension of Gnome designed to enable a full screen preview of any kind of file.'),
 }
 
+P2P = (_('File-Sharing Clients'), 'p2p.png')
+Image = (_('Image Tools'), 'image.png')
+Sound = (_('Sound Tools'), 'sound.png')
+Video = (_('Video Tools'), 'video.png')
+Text = (_('Text Tools'), 'text.png')
+IM = (_('Instant Messengers'), 'im.png')
+Internet = (_('Internet Tools'), 'internet.png')
+FTP = (_('FTP Tools'), 'ftp.png')
+Desktop = (_('Desktop Tools'), 'desktop.png')
+Disk = (_('CD/Disk Tools'), 'cd.png')
+Develop = (_('Development'), 'develop.png')
+Emulator = (_('Emulators'), 'emulator.png')
+Theme = (_('Themes'), 'theme.png')
+Mail = (_('E-mail Tools'), 'mail.png')
+
+def create_cate(*items):
+    new = []
+    for i, item in enumerate(items):
+        list = [i]
+        list.extend(item)
+        new.append(list)
+    return new
+
+CATES_DATA = create_cate(P2P, Image, Sound, Video, Text, IM, Internet, FTP, Desktop, Disk, Develop, Emulator, Theme, Mail)
+
+APPS = \
+{
+    'agave': Image,
+    'amule': P2P,
+    'amarok-nightly': Sound,
+    'anjuta': Develop,
+    'audacious': Sound,
+    'audacity': Sound,
+    'avant-window-navigator': Desktop,
+    'avant-window-navigator-trunk': Desktop,
+    'avidemux': Video,
+    'azureus': P2P,
+    'banshee': Sound,
+    'blueman': P2P,
+    'backintime-gnome': Desktop,
+    'backintime-kde4': Desktop,
+    'breathe-icon-theme': Theme,
+    'cairo-dock': Desktop,
+    'chmsee': Text,
+    'christine': Sound,
+    'chromium-browser': Internet,
+    'compizconfig-settings-manager': Desktop,
+    'codeblocks': Develop,
+    'devhelp': Develop,
+    'deluge-torrent': P2P,
+    'eclipse': Develop,
+    'emesene': IM,
+    'empathy': IM,
+    'eioffice-personal': Text,
+    'exaile': Sound,
+    'filezilla': FTP,
+    'pcmanfm': Desktop,
+    'gimp': Image,
+    'gloobus-preview': Desktop,
+    'giver': P2P,
+    'galaxium': IM,
+    'gajim': IM,
+    'geany': Develop,
+    'gftp': FTP,
+    'ghex': Text,
+    'gmail-notify': Mail,
+    'gnote': Text,
+    'gnome-do': Desktop,
+    'gnome-do-plugins': Desktop,
+    'gnome-globalmenu': Desktop,
+    'gnome-colors': Theme,
+    'shiki-colors': Theme,
+    'arc-colors': Theme,
+    'googleearth': Internet,
+    'google-gadgets': Desktop,
+    'google-chrome-unstable': Internet,
+    'gparted': Disk,
+    'gpicview': Image,
+    'gtk-recordmydesktop': Video,
+    'gwibber': Internet,
+    'gtg': Text,
+    'isomaster': Disk,
+    'inkscape': Image,
+    'ibus-pinyin': Text,
+    'ibus-table-wubi': Text,
+    'kino': Video,
+    'lastfm': Internet,
+    'leafpad': Text,
+    'liferea': Internet,
+    'mail-notification': Mail,
+    'meld': Text,
+    'mirage': Image,
+    'miro': Video,
+    'midori': Internet,
+    'moovida': Sound,
+    'monodevelop': Develop,
+    'mplayer': Video,
+    'netbeans': Develop,
+    'nautilus-dropbox': Internet,
+    'opera': Internet,
+    'playonlinux': Emulator,
+    'picasa': Image,
+    'qt-creator': Develop,
+    'rednotebook': Text,
+    'screenlets': Desktop,
+    'specto': Desktop,
+    'shutter': Image,
+    'skype': IM,
+    'smplayer': Video,
+    'soundconverter': Sound,
+    'stardict': Desktop,
+    'synapse': IM,
+    'spicebird': Internet,
+    'tasque': Desktop,
+    'terminator': Emulator,
+    'transmission-gtk': P2P,
+    'ubudsl': Internet,
+    'ubuntu-restricted-extras': Desktop,
+    'virtualbox-ose': Emulator,
+    'virtualbox-3.0': Emulator,
+    'vlc': Video,
+    'vmware-player': Emulator,
+    'wine': Emulator,
+    'wine-doors': Emulator,
+    'xbmc': Desktop,
+    'zim': Text,
+}
+
+
 if __name__ == '__main__':
     print get_app_describ('Avant Window Navigator')
     print get_app_describ('Banshee')
