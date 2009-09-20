@@ -1,0 +1,104 @@
+#!/usr/bin/python
+
+# Ubuntu Tweak - PyGTK based desktop configure tool
+#
+# Copyright (C) 2007-2008 TualatriX <tualatrix@gmail.com>
+#
+# Ubuntu Tweak is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# Ubuntu Tweak is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
+
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
+import os
+import subprocess
+from subprocess import PIPE
+import dbus
+import dbus.service
+import dbus.mainloop.glib
+import gobject
+import ctypes
+
+polkit = ctypes.CDLL('/usr/lib/libpolkit-dbus.so')
+
+UBUNTU_TWEAK_DAEMON_NAME = 'com.ubuntu_tweak.daemon'
+UT_ACTION_ID = 'com.ubuntu-tweak.daemon'
+
+class Daemon(dbus.service.Object):
+    def __init__(self):
+        dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
+
+        self.bus = dbus.SystemBus()
+        bus_name = dbus.service.BusName(UBUNTU_TWEAK_DAEMON_NAME, self.bus)
+#        self.bus.request_name(UBUNTU_TWEAK_DAEMON_NAME)
+        dbus.service.Object.__init__(self, bus_name, '/com/ubuntu_tweak/daemon')
+
+        self.bus.add_match_string('')
+        self.bus.add_message_filter(self.msg_cb)
+
+    def msg_cb(self, _bus, msg):
+        if msg.get_interface() == UBUNTU_TWEAK_DAEMON_NAME or msg.get_interface() == 'org.freedesktop.DBus.Introspectable':
+            if msg.get_destination() != UBUNTU_TWEAK_DAEMON_NAME:
+                if msg.get_member() == 'set_pid':
+                    print 'WOOOOOOOOOOOOOOOOOOOOWOWOOW'
+                    self._pid = int(msg.get_args_list()[0])
+                    print int(msg.get_args_list()[0])
+                interface = self.get_destination(msg)
+
+                new = msg.copy()
+                if msg.get_interface() != 'org.freedesktop.DBus.Introspectable':
+                    new.set_interface(interface)
+                new.set_destination(interface)
+                pending_call = self.bus.send_message_with_reply(new, self.dispatch_reply, -1)
+                self._dest = msg.get_sender()
+                self._serial = msg.get_serial()
+                print self.can_call()
+        elif msg.get_interface() != UBUNTU_TWEAK_DAEMON_NAME and msg.get_interface().startswith(UBUNTU_TWEAK_DAEMON_NAME):
+            print 'forwoard the msg to', self._dest
+            msg.set_destination(self._dest)
+            msg.set_reply_serial(self._serial)
+            self.bus.send_message(msg)
+
+        self.print_msg(msg)
+
+    def get_destination(self, msg):
+        if len(msg.get_path_decomposed()) > 3:
+            return UBUNTU_TWEAK_DAEMON_NAME + '.' + msg.get_path_decomposed()[3]
+        else:
+            return '.'.join(msg.get_path_decomposed())
+
+    def dispatch_reply(self, msg):
+        print 'resend to ', self._dest, msg.get_member()
+        msg.set_destination(self._dest)
+        msg.set_reply_serial(self._serial)
+        self.bus.send_message(msg)
+
+    def can_call(self):
+#        action = polkit.polkit_action_new()
+#        member = msg.get_member()
+#        dest = self.get_destination(msg)
+#        polkit.polkit_action_set_action_id(action, ctypes.c_char_p(UT_ACTION_ID))
+#        return polkit.polkit_check_auth(ctypes.c_int(os.getpid()), ctypes.c_char_p(UT_ACTION_ID), None)
+        return polkit.polkit_check_auth(ctypes.c_int(14848), ctypes.c_char_p(UT_ACTION_ID), None)
+
+    def print_msg(self, msg):
+        print "== New message ==", msg.get_member(), msg.get_sender(), msg.get_destination(), msg.get_interface(), msg.get_path()
+
+    def run(self):
+        mainloop = gobject.MainLoop()
+        mainloop.run()
+
+if __name__ == '__main__':
+    daemon = Daemon()
+    daemon.run()
