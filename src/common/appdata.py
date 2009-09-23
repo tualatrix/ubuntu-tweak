@@ -185,6 +185,7 @@ APP_DICT = {
     'pitivi': _('non-linear audio/video editor using GStreamer'),
     'lyx': _('LyX is an almost WYSIWYG-frontend for LaTeX.'),
     'texmaker': _('Texmaker is a clean, highly configurable LaTeX editor with good hot key support and extensive LaTeX documentation.'),
+    'tomboy': _('Tomboy is a desktop note-taking application which is simple and easy to use.'),
 }
 
 SOURCE_DICT = {
@@ -351,6 +352,7 @@ APPS = \
     'pitivi': Video,
     'lyx': Text,
     'texmaker': Text,
+    'tomboy': Text,
 }
 
 if __name__ == '__main__':
