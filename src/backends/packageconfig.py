@@ -116,6 +116,8 @@ class Daemon(dbus.service.Object):
         self.list.refresh()
 
         partsdir = apt_pkg.Config.FindDir("Dir::Etc::sourceparts")
+        if not os.path.exists(partsdir):
+            os.mkdir(partsdir)
         file = os.path.join(partsdir, file+'.list')
 
         if enabled:
