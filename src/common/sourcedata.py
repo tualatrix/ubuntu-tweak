@@ -94,6 +94,7 @@ Lyx = ['Lyx', 'lyx', 'www.lyx.org', 'lyx.gpg']
 Tomboy_Stable = [_('Tomboy (Stable Version)'), 'tomboy', 'projects.gnome.org/tomboy/', 'tomboy.gpg']
 Tomboy_Unstable = [_('Tomboy (Unstable Version)'), 'tomboy', 'projects.gnome.org/tomboy/', 'tomboy.gpg']
 Inkscape_nightly = [_('Inkscape (Nightly Version)'), 'inkscape', 'www.inkscape.org', 'inkscape-nightly.gpg']
+Pdfmod = ['PDF Mod', 'pdfmod', 'live.gnome.org/PdfMod', 'pdfmod.gpg']
 
 SOURCES_DATA = [
     ['http://ppa.launchpad.net/reacocard-awn/ppa/ubuntu/', ['hardy','intrepid'], 'main', AWN],
@@ -191,6 +192,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/tomboy-packagers/stable/ubuntu', ['jaunty', 'karmic'], 'main', Tomboy_Stable],
     ['http://ppa.launchpad.net/tomboy-packagers/development/ubuntu', ['jaunty', 'karmic'], 'main', Tomboy_Unstable],
     ['http://ppa.launchpad.net/inkscape-nightly/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Inkscape_nightly],
+    ['http://ppa.launchpad.net/pdfmod-team/ppa/ubuntu', ['karmic'], 'main', Pdfmod],
 ]
 
 SOURCES_DEPENDENCIES = {
