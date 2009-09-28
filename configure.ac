@@ -1,4 +1,4 @@
-AC_INIT([ubuntu-tweak], [0.4.9], [tualatrix@gmail.com])
+AC_INIT([ubuntu-tweak], [0.4.9.1], [tualatrix@gmail.com])
 AM_INIT_AUTOMAKE
 
 AM_PROG_CC_C_O
