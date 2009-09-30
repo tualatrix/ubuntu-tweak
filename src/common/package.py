@@ -140,9 +140,12 @@ class PackageWorker:
                 break
 
         for pkg in to_rm:
-            if PackageInfo(pkg).check_installed():
-                done = False
-                break
+            try:
+                if PackageInfo(pkg).check_installed():
+                    done = False
+                    break
+            except:
+                pass
 
         return done
 
