@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# coding: utf-8
 
 # Ubuntu Tweak - PyGTK based desktop configure tool
 #
@@ -27,6 +28,7 @@ import pango
 import gobject
 import apt_pkg
 import webbrowser
+import urllib
 
 from common.config import Config, TweakSettings
 from common.consts import *
@@ -37,11 +39,16 @@ from common.appdata import get_source_logo, get_source_describ
 from common.policykit import PolkitButton, DbusProxy
 from common.widgets import ListPack, TweakPage, GconfCheckButton
 from common.widgets.dialogs import *
+from common.factory import WidgetFactory
 from common.package import package_worker, PackageInfo
 from common.notify import notify
+from common.misc import URLLister
 from installer import AppView
 from backends.packageconfig import PATH
 from aptsources.sourceslist import SourceEntry, SourcesList
+
+config = Config()
+ppas = []
 
 BUILTIN_APPS = APP_DICT.keys()
 BUILTIN_APPS.extend(APPS.keys())
@@ -341,6 +348,54 @@ class SourcesView(gtk.TreeView):
                     COLUMN_KEY, key,
                 )
 
+    def setup_ubuntu_cn_mirror(self):
+        global SOURCES_DATA
+        iter = self.model.get_iter_first()
+        sourceslist = self.get_sourceslist()
+
+        SOURCES_DATA = self.__filter_source_to_mirror()
+
+        window = self.get_toplevel().window
+        if window:
+            window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+
+        while iter:
+            while gtk.events_pending():
+                gtk.main_iteration()
+            url  = self.model.get_value(iter, COLUMN_URL)
+            name = self.model.get_value(iter, COLUMN_NAME)
+            enable = self.model.get_value(iter, COLUMN_ENABLED)
+
+            if self.has_mirror_ppa(url):
+                if enable:
+                    self.set_source_disable(name)
+
+                url = url.replace('ppa.launchpad.net', 'archive.ubuntu.org.cn/ubuntu-cn')
+                self.model.set_value(iter, COLUMN_URL, url)
+
+                if enable:
+                    self.set_source_enabled(name)
+
+            iter = self.model.iter_next(iter)
+
+        if window:
+            window.set_cursor(None)
+
+    def __filter_source_to_mirror(self):
+        newsource = []
+        for item in SOURCES_DATA:
+            url = item[0]
+            if self.has_mirror_ppa(url):
+                url = url.replace('ppa.launchpad.net', 'archive.ubuntu.org.cn/ubuntu-cn')
+                newsource.append([url, item[1], item[2], item[3]])
+        else:
+            newsource.append(item)
+
+        return newsource
+
+    def has_mirror_ppa(self, url):
+        return 'ppa.launchpad.net' in url and url.split('/')[3] in ppas
+
     def get_sourcelist_status(self, url):
         for source in self.get_sourceslist():
             if url in source.str() and source.type == 'deb':
@@ -423,6 +478,15 @@ class SourcesView(gtk.TreeView):
         self.model.foreach(self.on_source_foreach, name)
         self.do_source_enable(self._foreach_take, True)
 
+    def set_source_disable(self, name):
+        '''
+        Search source by name, then call do_source_enable
+        '''
+        self._foreach_mode = 'set'
+        self._foreach_status = None
+        self.model.foreach(self.on_source_foreach, name)
+        self.do_source_enable(self._foreach_take, False)
+
     def do_source_enable(self, iter, enable):
         '''
         Do the really source enable or disable action by iter
@@ -430,6 +494,7 @@ class SourcesView(gtk.TreeView):
         '''
 
         url = self.model.get_value(iter, COLUMN_URL)
+
         icon = self.model.get_value(iter, COLUMN_LOGO)
         distro = self.model.get_value(iter, COLUMN_DISTRO)
         comment = self.model.get_value(iter, COLUMN_NAME)
@@ -515,8 +580,6 @@ class ThirdSoft(TweakPage):
                 _('Third-Party Software Sources'), 
                 _('After every release of Ubuntu there comes a feature freeze.\nThis means only applications with bug-fixes get into the repository.\nBy using third-party DEB repositories, you can always keep up-to-date with the latest version.\nAfter adding these repositories, locate and install them using Add/Remove.'))
 
-        self.__config = Config()
-
         sw = gtk.ScrolledWindow()
         sw.set_shadow_type(gtk.SHADOW_ETCHED_IN)
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
@@ -549,6 +612,24 @@ class ThirdSoft(TweakPage):
 
         #FIXME close it when 0.5.0
         gobject.idle_add(self.check_ppa_entry)
+
+        if os.getenv('LANG').startswith('zh_CN') and TweakSettings.get_use_mirror_ppa():
+            thread.start_new_thread(self.start_check_cn_ppa, ())
+
+        config.get_client().notify_add('/apps/ubuntu-tweak/use_mirror_ppa', self.value_changed)
+
+    def value_changed(self, client, id, entry, data):
+        #FIXME Back to normal source data
+        self.start_check_cn_ppa()
+
+    def start_check_cn_ppa(self):
+        url = urllib.urlopen('http://archive.ubuntu.org.cn/ubuntu-cn/')
+
+        parse = URLLister(ppas)
+        data = url.read()
+        parse.feed(data)
+
+        self.treeview.setup_ubuntu_cn_mirror()
 
     def check_ppa_entry(self):
         if self.do_check_ppa_entry():
@@ -623,17 +704,13 @@ class ThirdSoft(TweakPage):
                 self.expander.set_sensitive(True)
                 WARNING_KEY = '/apps/ubuntu-tweak/disable_thidparty_warning'
 
-                if not self.__config.get_value(WARNING_KEY):
+                if not config.get_value(WARNING_KEY):
                     dialog = WarningDialog(_('It is a possible security risk to '
                         'use packages from Third-Party Sources.\n'
                         'Please be careful and use only sources you trust.'),
                         buttons = gtk.BUTTONS_OK, title = _('Warning'))
-                    vbox = dialog.get_child()
-                    hbox = gtk.HBox()
-                    vbox.pack_start(hbox, False, False, 0)
                     checkbutton = GconfCheckButton(_('Never show this dialog'), WARNING_KEY)
-                    hbox.pack_end(checkbutton, False, False, 0)
-                    hbox.show_all()
+                    dialog.add_option(checkbutton)
 
                     dialog.run()
                     dialog.destroy()

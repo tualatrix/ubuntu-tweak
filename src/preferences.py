@@ -1,5 +1,5 @@
 # Ubuntu Tweak - PyGTK based desktop configure tool
-#
+# coding: utf-8
 # Copyright (C) 2007-2008 TualatriX <tualatrix@gmail.com>
 #
 # Ubuntu Tweak is free software; you can redistribute it and/or modify
@@ -137,6 +137,13 @@ class PreferencesDialog:
                                       key='separated_sources',
                                       default=True)
         vbox.pack_start(button, False, False, 0)
+
+        if os.getenv('LANG').startswith('zh_CN'):
+            button = WidgetFactory.create('GconfCheckButton',
+                                          label='使用PPA镜像（如果可用）',
+                                          key='use_mirror_ppa',
+                                          default=False)
+            vbox.pack_start(button, False, False, 0)
 
         vbox.show_all()
 

@@ -27,6 +27,9 @@ class Config:
     #FIXME The class should be generic config getter and setter
     __client = gconf.Client()
 
+    def get_client(self):
+        return self.__client
+
     def set_value(self, key, value):
         if not key.startswith("/"):
             key = GconfKeys.keys[key]
@@ -100,6 +103,7 @@ class TweakSettings:
     default_launch = 'default_launch'
     check_update = 'check_update'
     separated_sources = 'separated_sources'
+    use_mirror_ppa = 'use_mirror_ppa'
     need_save = True
 
     @classmethod
@@ -167,6 +171,14 @@ class TweakSettings:
     @classmethod
     def get_show_donate_notify(cls):
         return cls.config.get_value(cls.show_donate_notify, default = True)
+
+    @classmethod
+    def set_use_mirror_ppa(cls, bool):
+        return cls.config.set_value(cls.use_mirror_ppa, bool)
+
+    @classmethod
+    def get_use_mirror_ppa(cls):
+        return cls.config.get_value(cls.use_mirror_ppa, default=True)
 
     @classmethod
     def set_separated_sources(cls, bool):
