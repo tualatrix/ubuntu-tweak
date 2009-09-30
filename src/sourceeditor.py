@@ -426,6 +426,9 @@ class SourceEditor(TweakPage):
         model.set(iter, 1, 'sources.list')
 
         SOURCE_LIST_D = '/etc/apt/sources.list.d'
+        if not os.path.exists(SOURCE_LIST_D):
+            self.source_combo.set_active(0)
+            return
         files = os.listdir(SOURCE_LIST_D)
         files.sort()
         for file in files:

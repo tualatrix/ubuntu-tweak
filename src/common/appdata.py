@@ -125,6 +125,7 @@ APP_DICT = {
     'ibus-table': _('IBus-Table is the IM Engine framework for table-based input methods, such as ZhengMa, WuBi, ErBi, ChangJie and so on.'),
     'ibus-table-wubi': _('Wubi input method based on table engine of ibus'),
     'inkscape': _('Create and edit Scalable Vector Graphics images'),
+    'inkscape-devel': _('Create and edit Scalable Vector Graphics images'),
     'kino': _('Non-linear editor for Digital Video data'),
     'lastfm': _('A music player for Last.fm personalized radio'),
     'leafpad': _('GTK+ based simple text editor'),
@@ -185,6 +186,8 @@ APP_DICT = {
     'pitivi': _('non-linear audio/video editor using GStreamer'),
     'lyx': _('LyX is an almost WYSIWYG-frontend for LaTeX.'),
     'texmaker': _('Texmaker is a clean, highly configurable LaTeX editor with good hot key support and extensive LaTeX documentation.'),
+    'tomboy': _('Tomboy is a desktop note-taking application which is simple and easy to use.'),
+    'pdfmod': _('PDF Mod is a simple tool for modifying PDF documents.'),
 }
 
 SOURCE_DICT = {
@@ -294,6 +297,7 @@ APPS = \
     'gtg': Text,
     'isomaster': Disk,
     'inkscape': Image,
+    'inkscape-devel': Image,
     'ibus-pinyin': Text,
     'ibus-table-wubi': Text,
     'kino': Video,
@@ -351,6 +355,8 @@ APPS = \
     'pitivi': Video,
     'lyx': Text,
     'texmaker': Text,
+    'tomboy': Text,
+    'pdfmod': Text,
 }
 
 if __name__ == '__main__':

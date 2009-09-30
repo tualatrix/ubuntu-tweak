@@ -13,7 +13,6 @@ common_PYTHON = \
 	./utils.py \
 	./consts.py \
 	./gui.py \
-	./misc.py \
 	./canvas.py \
 	./factory.py \
 	./systeminfo.py \

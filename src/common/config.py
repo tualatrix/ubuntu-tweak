@@ -27,6 +27,9 @@ class Config:
     #FIXME The class should be generic config getter and setter
     __client = gconf.Client()
 
+    def get_client(self):
+        return self.__client
+
     def set_value(self, key, value):
         if not key.startswith("/"):
             key = GconfKeys.keys[key]
@@ -101,6 +104,7 @@ class TweakSettings:
     check_update = 'check_update'
     use_remote_data = 'use_remote_data'
     separated_sources = 'separated_sources'
+    use_mirror_ppa = 'use_mirror_ppa'
     need_save = True
 
     @classmethod
@@ -177,6 +181,14 @@ class TweakSettings:
     def get_use_remote_data(cls):
         return cls.config.get_value(cls.use_remote_data, default = True)
 
+    def set_use_mirror_ppa(cls, bool):
+        return cls.config.set_value(cls.use_mirror_ppa, bool)
+
+    @classmethod
+    def get_use_mirror_ppa(cls):
+        return cls.config.get_value(cls.use_mirror_ppa, default=True)
+
+    @classmethod
     def set_separated_sources(cls, bool):
         return cls.config.set_value(cls.separated_sources, bool)
 
