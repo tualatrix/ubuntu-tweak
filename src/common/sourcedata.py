@@ -96,6 +96,7 @@ Tomboy_Unstable = [_('Tomboy (Unstable Version)'), 'tomboy', 'projects.gnome.org
 Inkscape_nightly = [_('Inkscape (Nightly Version)'), 'inkscape', 'www.inkscape.org', 'inkscape-nightly.gpg']
 Pdfmod = ['PDF Mod', 'pdfmod', 'live.gnome.org/PdfMod', 'pdfmod.gpg']
 Osdlyrics = [_('OSD Lyrics'), 'osdlyrics', 'code.google.com/p/osd-lyrics/', 'osdlyrics.gpg']
+OpenShot = [_('OpenShot Video Editor'), 'openshot', 'www.openshotvideo.com', 'openshot.gpg']
 
 SOURCES_DATA = [
     ['http://ppa.launchpad.net/reacocard-awn/ppa/ubuntu/', ['hardy','intrepid'], 'main', AWN],
@@ -195,6 +196,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/inkscape-nightly/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Inkscape_nightly],
     ['http://ppa.launchpad.net/pdfmod-team/ppa/ubuntu', ['karmic'], 'main', Pdfmod],
     ['http://ppa.launchpad.net/osd-lyrics/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Osdlyrics],
+    ['http://ppa.launchpad.net/openshot.developers/ppa/ubuntu', ['jaunty', 'karmic'], 'main', OpenShot],
 ]
 
 SOURCES_DEPENDENCIES = {
