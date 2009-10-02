@@ -474,7 +474,7 @@ class PackageCleaner(TweakPage):
         hbox.pack_end(un_lock, False, False, 5)
 
         self.clean_button = gtk.Button(stock=gtk.STOCK_CLEAR)
-        set_label_for_stock_button(self.clean_button, _('Clean_up'))
+        set_label_for_stock_button(self.clean_button, _('_Cleanup'))
         self.clean_button.connect('clicked', self.on_clean_button_clicked)
         self.clean_button.set_sensitive(False)
         hbox.pack_end(self.clean_button, False, False, 5)

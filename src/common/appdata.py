@@ -188,6 +188,8 @@ APP_DICT = {
     'texmaker': _('Texmaker is a clean, highly configurable LaTeX editor with good hot key support and extensive LaTeX documentation.'),
     'tomboy': _('Tomboy is a desktop note-taking application which is simple and easy to use.'),
     'pdfmod': _('PDF Mod is a simple tool for modifying PDF documents.'),
+    'osdlyrics': _('An OSD lyrics show compatible with various media players.'),
+    'openshot': _('OpenShot Video Editor is a free, open-source, non-linear video editor, based on Python, GTK, and MLT.'),
 }
 
 SOURCE_DICT = {
@@ -357,6 +359,8 @@ APPS = \
     'texmaker': Text,
     'tomboy': Text,
     'pdfmod': Text,
+    'osdlyrics': Sound,
+    'openshot': Video,
 }
 
 if __name__ == '__main__':
