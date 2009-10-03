@@ -558,7 +558,7 @@ class SourceDetail(gtk.VBox):
     def set_details(self, homepage = None, url = None, description = None):
         if homepage:
             self.homepage_button.destroy()
-            self.homepage_button = gtk.LinkButton(homepage)
+            self.homepage_button = gtk.LinkButton(homepage, homepage)
             self.homepage_button.show()
             self.table.attach(self.homepage_button, 1, 2, 0, 1)
 
@@ -567,7 +567,7 @@ class SourceDetail(gtk.VBox):
                 url_section = url.split('/')
                 url = 'https://launchpad.net/~%s/+archive/%s' % (url_section[3], url_section[4]) 
             self.url_button.destroy()
-            self.url_button = gtk.LinkButton(url)
+            self.url_button = gtk.LinkButton(url, url)
             self.url_button.show()
             self.table.attach(self.url_button, 1, 2, 1, 2)
 
