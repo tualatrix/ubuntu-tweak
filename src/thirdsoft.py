@@ -48,7 +48,12 @@ from backends.packageconfig import PATH
 from aptsources.sourceslist import SourceEntry, SourcesList
 
 config = Config()
-ppas = []
+PPA_MIRROR = []
+UNCONVERT = False
+LAUNCHPAD_STR = 'ppa.launchpad.net'
+UBUNTU_CN_STR = 'archive.ubuntu.org.cn/ubuntu-cn'
+UBUNTU_CN_URL = 'http://archive.ubuntu.org.cn/ubuntu-cn/'
+#UBUNTU_CN_URL = 'http://127.0.0.1:8000'
 
 BUILTIN_APPS = APP_DICT.keys()
 BUILTIN_APPS.extend(APPS.keys())
@@ -348,35 +353,50 @@ class SourcesView(gtk.TreeView):
                     COLUMN_KEY, key,
                 )
 
-    def setup_ubuntu_cn_mirror(self):
+    def update_ubuntu_cn_model(self):
         global SOURCES_DATA
-        iter = self.model.get_iter_first()
+        SOURCES_DATA = self.__filter_source_to_mirror()
+        self.update_model()
+
+    def unconver_ubuntu_cn_mirror(self):
+        global UNCONVERT
         sourceslist = self.get_sourceslist()
 
-        SOURCES_DATA = self.__filter_source_to_mirror()
+        for source in sourceslist:
+            if UBUNTU_CN_STR in source.str():
+                UNCONVERT = True
+                break
 
+    def setup_ubuntu_cn_mirror(self):
         window = self.get_toplevel().window
         if window:
             window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
 
-        while iter:
-            while gtk.events_pending():
-                gtk.main_iteration()
-            url  = self.model.get_value(iter, COLUMN_URL)
-            name = self.model.get_value(iter, COLUMN_NAME)
-            enable = self.model.get_value(iter, COLUMN_ENABLED)
+        if UNCONVERT:
+            import common.sourcedata
+            reload(common.sourcedata)
+            global SOURCES_DATA
+            from common.sourcedata import SOURCES_DATA
+            proxy.replace_entry(UBUNTU_CN_STR, LAUNCHPAD_STR)
+            self.update_model()
+            self.emit('sourcechanged')
+        else:
+            iter = self.model.get_iter_first()
+            while iter:
+                while gtk.events_pending():
+                    gtk.main_iteration()
 
-            if self.has_mirror_ppa(url):
-                if enable:
-                    self.set_source_disable(name)
+                url  = self.model.get_value(iter, COLUMN_URL)
 
-                url = url.replace('ppa.launchpad.net', 'archive.ubuntu.org.cn/ubuntu-cn')
-                self.model.set_value(iter, COLUMN_URL, url)
+                if self.has_mirror_ppa(url):
+                    new_url = url.replace(LAUNCHPAD_STR, UBUNTU_CN_STR)
+                    proxy.replace_entry(url, new_url)
+                    self.model.set_value(iter, COLUMN_URL, new_url)
 
-                if enable:
-                    self.set_source_enabled(name)
+                iter = self.model.iter_next(iter)
 
-            iter = self.model.iter_next(iter)
+            self.emit('sourcechanged')
+            self.update_ubuntu_cn_model()
 
         if window:
             window.set_cursor(None)
@@ -386,15 +406,21 @@ class SourcesView(gtk.TreeView):
         for item in SOURCES_DATA:
             url = item[0]
             if self.has_mirror_ppa(url):
-                url = url.replace('ppa.launchpad.net', 'archive.ubuntu.org.cn/ubuntu-cn')
+                url = url.replace(LAUNCHPAD_STR, UBUNTU_CN_STR)
                 newsource.append([url, item[1], item[2], item[3]])
-        else:
-            newsource.append(item)
+            else:
+                newsource.append(item)
 
         return newsource
 
     def has_mirror_ppa(self, url):
-        return 'ppa.launchpad.net' in url and url.split('/')[3] in ppas
+        if TweakSettings.get_use_mirror_ppa():
+            return LAUNCHPAD_STR in url and url.split('/')[3] in PPA_MIRROR
+        else:
+            return False
+
+    def is_mirror_ppa(self, url):
+        return UBUNTU_CN_STR in url
 
     def get_sourcelist_status(self, url):
         for source in self.get_sourceslist():
@@ -563,7 +589,7 @@ class SourceDetail(gtk.VBox):
             self.table.attach(self.homepage_button, 1, 2, 0, 1)
 
         if url:
-            if 'ppa.launchpad.net' in url:
+            if LAUNCHPAD_STR in url:
                 url_section = url.split('/')
                 url = 'https://launchpad.net/~%s/+archive/%s' % (url_section[3], url_section[4]) 
             self.url_button.destroy()
@@ -613,23 +639,26 @@ class ThirdSoft(TweakPage):
         #FIXME close it when 0.5.0
         gobject.idle_add(self.check_ppa_entry)
 
-        if os.getenv('LANG').startswith('zh_CN') and TweakSettings.get_use_mirror_ppa():
+        #FIXME China mirror hack
+        if os.getenv('LANG').startswith('zh_CN'):
             thread.start_new_thread(self.start_check_cn_ppa, ())
+        else:
+            self.treeview.unconver_ubuntu_cn_mirror()
 
         config.get_client().notify_add('/apps/ubuntu-tweak/use_mirror_ppa', self.value_changed)
 
     def value_changed(self, client, id, entry, data):
-        #FIXME Back to normal source data
-        self.start_check_cn_ppa()
+        global UNCONVERT
+        UNCONVERT = not entry.value.get_bool()
+        if globals().has_key('proxy'):
+            self.treeview.setup_ubuntu_cn_mirror()
 
     def start_check_cn_ppa(self):
-        url = urllib.urlopen('http://archive.ubuntu.org.cn/ubuntu-cn/')
+        url = urllib.urlopen(UBUNTU_CN_URL)
 
-        parse = URLLister(ppas)
+        parse = URLLister(PPA_MIRROR)
         data = url.read()
         parse.feed(data)
-
-        self.treeview.setup_ubuntu_cn_mirror()
 
     def check_ppa_entry(self):
         if self.do_check_ppa_entry():
@@ -700,6 +729,8 @@ class ThirdSoft(TweakPage):
 
             proxy = DbusProxy(PATH)
             if proxy.get_object():
+                if os.getenv('LANG').startswith('zh_CN'):
+                    self.treeview.setup_ubuntu_cn_mirror()
                 self.treeview.set_sensitive(True)
                 self.expander.set_sensitive(True)
                 WARNING_KEY = '/apps/ubuntu-tweak/disable_thidparty_warning'
