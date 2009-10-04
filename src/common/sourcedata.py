@@ -149,7 +149,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/do-core/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', GnomeDo],
     ['http://ppa.launchpad.net/banshee-team/ppa/ubuntu', ['hardy', 'intrepid'], 'main', Banshee_Stable],
     ['http://ppa.launchpad.net/banshee-unstable-team/ppa/ubuntu', ['hardy', 'intrepid', 'karmic'], 'main', Banshee_Unstable],
-    ['http://dl.google.com/linux/deb/', 'stable', 'non-free', Google],
+    ['http://dl.google.com/linux/deb/', 'stable', 'main non-free', Google],
     ['http://dl.google.com/linux/deb/', 'testing', 'non-free', Google_Testing],
     ['http://ppa.launchpad.net/googlegadgets/ppa/ubuntu', 'hardy', 'main', GoogleGadgets],
     ['http://ppa.launchpad.net/chmsee/hardy/ubuntu', 'hardy', 'main', ChmSee],

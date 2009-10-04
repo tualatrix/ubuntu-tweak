@@ -133,6 +133,19 @@ class Daemon(dbus.service.Object):
             return 'disabled'
 
     @dbus.service.method(INTERFACE,
+                         in_signature='ss', out_signature='')
+    def replace_entry(self, old_url, new_url):
+        self.list.refresh()
+
+        for entry in self.list:
+            if old_url in entry.uri:
+                entry.uri = entry.uri.replace(old_url, new_url)
+            elif new_url in entry.uri and entry.disabled:
+                self.list.remove(entry)
+
+        self.list.save()
+
+    @dbus.service.method(INTERFACE,
                          in_signature='', out_signature='s')
     def get_list_state(self):
         if self.liststate:

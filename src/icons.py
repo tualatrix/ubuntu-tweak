@@ -109,45 +109,23 @@ class Icon(TweakPage):
     def __init__(self):
         TweakPage.__init__(self, _("Desktop Icon settings"))
 
-        self.show_button = WidgetFactory.create("GconfCheckButton", 
-                                                label = _("Show desktop icons"), 
-                                                key = "show_desktop")
-        self.show_button.connect('toggled', self.colleague_changed)
-        self.pack_start(self.show_button, False, False, 10)
-
-        self.show_button_box = gtk.HBox(False, 10)
-        self.pack_start(self.show_button_box, False, False,0)
-
-        if not self.show_button.get_active():
-            self.show_button_box.set_sensitive(False)
-
-        label = gtk.Label(" ")
-        self.show_button_box.pack_start(label, False, False, 0)
-
-        vbox = gtk.VBox(False, 5)
-        self.show_button_box.pack_start(vbox, False, False, 0)
-
-        client = gconf.client_get_default()
         for item in desktop_icon:
-            vbox.pack_start(DesktopIcon(item), False, False, 0)
+            self.pack_start(DesktopIcon(item), False, False, 6)
 
         button = WidgetFactory.create("GconfCheckButton", 
                                       label = _("Show \"Network\" icon on desktop"), 
                                       key = "network_icon_visible")
-        vbox.pack_start(button, False, False, 0)
+        self.pack_start(button, False, False, 6)
 
         button = WidgetFactory.create("GconfCheckButton", 
                                       label = _("Show mounted volumes on desktop"),
                                       key = "volumes_visible")
-        vbox.pack_start(button, False, False, 0)
+        self.pack_start(button, False, False, 6)
 
         button = WidgetFactory.create("GconfCheckButton",
                                       label = _('Use "Home Folder" as desktop (Logout for changes to take effect)'),
                                       key = "desktop_is_home_dir")
-        vbox.pack_start(button, False, False, 0)
-
-    def colleague_changed(self, widget):
-        self.show_button_box.set_sensitive(self.show_button.get_active())
+        self.pack_start(button, False, False, 6)
 
 if __name__ == "__main__":
     from utility import Test
