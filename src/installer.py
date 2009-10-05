@@ -516,8 +516,8 @@ class Installer(TweakPage):
 
     def get_app_describ(self, pkgname):
         try:
-            if self.app_data_parser['pkgname'].has_key('summary'):
-                return self.app_data_parser['pkgname']['summary']
+            if self.app_data_parser[pkgname].has_key('summary'):
+                return self.app_data_parser[pkgname]['summary']
         except:
             pass
         return get_app_describ(pkgname)
