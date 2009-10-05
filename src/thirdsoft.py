@@ -641,9 +641,10 @@ class ThirdSoft(TweakPage):
 
         #FIXME China mirror hack
         if os.getenv('LANG').startswith('zh_CN'):
-            thread.start_new_thread(self.start_check_cn_ppa, ())
-        else:
-            self.treeview.unconver_ubuntu_cn_mirror()
+            if TweakSettings.get_use_mirror_ppa():
+                thread.start_new_thread(self.start_check_cn_ppa, ())
+            else:
+                self.treeview.unconver_ubuntu_cn_mirror()
 
         config.get_client().notify_add('/apps/ubuntu-tweak/use_mirror_ppa', self.value_changed)
 
