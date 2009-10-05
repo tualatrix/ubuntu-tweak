@@ -659,11 +659,14 @@ class ThirdSoft(TweakPage):
     def start_check_cn_ppa(self):
         import socket
         socket.setdefaulttimeout(3)
-        url = urllib.urlopen(UBUNTU_CN_URL)
+        try:
+            url = urllib.urlopen(UBUNTU_CN_URL)
 
-        parse = URLLister(PPA_MIRROR)
-        data = url.read()
-        parse.feed(data)
+            parse = URLLister(PPA_MIRROR)
+            data = url.read()
+            parse.feed(data)
+        except:
+            pass
 
     def check_ppa_entry(self):
         if self.do_check_ppa_entry():
