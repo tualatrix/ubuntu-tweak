@@ -4,8 +4,13 @@ import urllib
 
 class Parser(dict):
     def __init__(self, file, key):
-        self.__data = json.loads(open(file).read())
-        self.init_items(key)
+        try:
+            self.__data = json.loads(open(file).read())
+            self.init_items(key)
+        except:
+            self.is_available = False
+        else:
+            self.is_available = True
 
     def init_items(self, key):
         for item in self.__data:
