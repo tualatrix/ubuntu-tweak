@@ -47,18 +47,18 @@ def get_source_describ(name):
 
     return desc
 
-def get_app_logo(name):
+def get_app_logo(name, size=32):
     try:
         name = '%s.png' % name.replace(' ', '-').lower()
         path = os.path.join(DATA_DIR, 'applogos', name)
 
         pixbuf = gtk.gdk.pixbuf_new_from_file(path)
-        if pixbuf.get_width() != 32 or pixbuf.get_height() != 32:
-            pixbuf = pixbuf.scale_simple(32, 32, gtk.gdk.INTERP_BILINEAR)
+        if pixbuf.get_width() != size or pixbuf.get_height() != size:
+            pixbuf = pixbuf.scale_simple(size, size, gtk.gdk.INTERP_BILINEAR)
         return pixbuf
     except:
         icon = gtk.icon_theme_get_default()
-        return icon.load_icon(gtk.STOCK_MISSING_IMAGE, 32, 0)
+        return icon.load_icon(gtk.STOCK_MISSING_IMAGE, size, 0)
 
 def get_source_logo(name):
     return get_app_logo(name)

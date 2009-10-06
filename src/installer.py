@@ -21,12 +21,13 @@
 import os
 import gtk
 import urllib
+import urllib2
 import gettext
 import gobject
 import pango
 
 from common.consts import *
-from common.utils import *
+from common.utils import get_icon_with_file
 from common.gui import GuiWorker
 from common.appdata import APPS, CATES_DATA
 from common.widgets import TweakPage
@@ -73,6 +74,7 @@ class CategoryView(gtk.TreeView):
         gtk.TreeView.__init__(self)
 
         self.app_cate_parser = Parser(REMOTE_CATE_DATA, 'name')
+        self.app_logo_handler = LogoHandler(REMOTE_LOGO_DIR)
 
         self.set_headers_visible(False)
         self.set_rules_hint(True)
@@ -113,7 +115,7 @@ class CategoryView(gtk.TreeView):
         iter = self.model.append()
         self.model.set(iter, 
                 CATE_ID, 0,
-                CATE_ICON, gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'appcates', 'all.png')),
+                CATE_ICON, get_icon_with_file(os.path.join(DATA_DIR, 'appcates', 'all.png'), 16),
                 CATE_NAME, _('All Categories'))
 
         for item in self.get_cate_items():
@@ -142,9 +144,18 @@ class CategoryView(gtk.TreeView):
             catedata = item[1]
             id = catedata['id']
             name = catedata['name']
-            pixbuf = self.get_app_logo(catedata['name'], catedata['logo32'])
+            pixbuf = self.get_cate_logo(catedata['name'], catedata['logo'])
 
         return id, name, pixbuf
+
+    def get_cate_logo(self, pkgname, url=None):
+        if url and not self.app_logo_handler.is_exists(pkgname):
+            self.app_logo_handler.save_logo(pkgname, url)
+
+        if self.app_logo_handler.is_exists(pkgname):
+            return self.app_logo_handler.get_logo(pkgname)
+        else:
+            return get_app_logo(pkgname, 16)
 
     def use_remote_data(self):
         return self.app_cate_parser.is_available and TweakSettings.get_use_remote_data()
@@ -388,12 +399,58 @@ class LogoHandler:
         path = os.path.join(self.dir, '%s.png' % name)
 
         try:
-            return gtk.gdk.pixbuf_new_from_file(path)
+            pixbuf = gtk.gdk.pixbuf_new_from_file(path)
+            if pixbuf.get_width() != 16 or pixbuf.get_height() != 16:
+                pixbuf = pixbuf.scale_simple(16, 16, gtk.gdk.INTERP_BILINEAR)
+            return pixbuf
         except:
-            return gtk.icon_theme_get_default().load_icon(gtk.STOCK_MISSING_IMAGE, 32, 0)
+            return gtk.icon_theme_get_default().load_icon(gtk.STOCK_MISSING_IMAGE, 16, 0)
 
     def is_exists(self, name):
         return os.path.exists(os.path.join(self.dir, '%s.png' % name))
+
+class FetchingMetaDialog(ProcessDialog):
+    app_url = 'http://127.0.0.1:8000/app/featured/'
+    cate_url = 'http://127.0.0.1:8000/app/category/featured/'
+
+    url_mapping = (
+        (app_url, REMOTE_APP_DATA),
+        (cate_url, REMOTE_CATE_DATA),
+    )
+
+    def __init__(self, parent):
+        self.done = False
+        self.error = None
+        self.user_action = False
+
+        super(FetchingMetaDialog, self).__init__(parent=parent)
+        self.set_dialog_lable(_('Fetching online data...'))
+
+    def process_data(self):
+        for url, path in self.url_mapping:
+            try:
+                req = urllib2.Request(url=url)
+                #TODO get language from locale
+                req.add_header('Accept-Language', 'zh-cn')
+                data = urllib2.urlopen(req).read()
+                f = open(path, 'w')
+                f.write(data)
+                f.close()
+            except:
+                self.error = True
+                break
+
+        self.done = True
+
+    def on_timeout(self):
+        self.pulse()
+
+        if self.error:
+            self.destroy()
+        elif not self.done:
+            return True
+        else:
+            self.destroy()
 
 class FetchingDialog(ProcessDialog):
     def __init__(self, parent, caller):
@@ -479,9 +536,12 @@ class Installer(TweakPage):
         self.apply_button = worker.get_object('apply_button')
         self.apply_button.connect('clicked', self.on_apply_clicked)
 
+        self.refresh_button = worker.get_object('refresh_button')
+        self.refresh_button.connect('clicked', self.on_refresh_button_clicked)
+
         self.show_all()
 
-        gobject.idle_add(self.on_idle_check)
+#        gobject.idle_add(self.on_idle_check)
 
     def on_idle_check(self):
         gtk.gdk.threads_enter()
@@ -507,60 +567,6 @@ class Installer(TweakPage):
         else:
             return False
 
-    def create_category(self):
-        self.cate_model = gtk.ListStore(gobject.TYPE_INT,
-                                gobject.TYPE_STRING,
-                                gtk.gdk.Pixbuf)
-
-        combobox = gtk.ComboBox(self.cate_model)
-        textcell = gtk.CellRendererText()
-        pixbufcell = gtk.CellRendererPixbuf()
-        combobox.pack_start(pixbufcell, False)
-        combobox.pack_start(textcell, True)
-        combobox.add_attribute(textcell, 'text', CATE_NAME)
-        combobox.add_attribute(pixbufcell, 'pixbuf', CATE_ICON)
-
-        return combobox
-
-    def update_cate_model(self):
-        self.cate_model.clear()
-
-        iter = self.cate_model.append()
-        self.cate_model.set(iter, 
-                CATE_ID, 0,
-                CATE_NAME, _('All Categories'),
-                CATE_ICON, gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'appcates', 'all.png')))
-
-        for item in self.get_cate_items():
-            iter = self.cate_model.append()
-            id, name, icon = self.parse_cate_item(item)
-            self.cate_model.set(iter, 
-                    CATE_ID, id,
-                    CATE_NAME, name,
-                    CATE_ICON, icon)
-
-    def get_cate_items(self):
-        if self.use_remote_data():
-            return self.app_cate_parser.items()
-        else:
-            return CATES_DATA
-
-    def parse_cate_item(self, item):
-        '''
-        If item[1] == tuple, so it's local data, or the remote data
-        '''
-        if type(item) == list:
-            id = item[0]
-            name = item[1]
-            pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'appcates', item[2]))
-        elif type(item) == tuple:
-            catedata = item[1]
-            id = catedata['id']
-            name = catedata['name']
-            pixbuf = self.get_app_logo(catedata['name'], catedata['logo32'])
-
-        return id, name, pixbuf
-
     def on_category_changed(self, widget, data = None):
         model, iter = widget.get_selected()
 
@@ -582,7 +588,7 @@ class Installer(TweakPage):
         if self.app_logo_handler.is_exists(pkgname):
             return self.app_logo_handler.get_logo(pkgname)
         else:
-            return get_app_logo(pkgname)
+            return get_app_logo(pkgname, 16)
 
     def get_app_describ(self, pkgname):
         try:
@@ -705,6 +711,11 @@ class Installer(TweakPage):
         self.treeview.to_rm = []
         self.treeview.clear_model()
         self.treeview.update_model(APPS.keys(), APPS)
+
+    def on_refresh_button_clicked(self, widget):
+        dialog = FetchingMetaDialog(widget.get_toplevel())
+        dialog.run()
+        dialog.destroy()
 
     def on_app_status_changed(self, widget, i):
         if i:
