@@ -27,6 +27,7 @@ import pango
 
 from common.consts import *
 from common.utils import *
+from common.gui import GuiWorker
 from common.appdata import APPS, CATES_DATA
 from common.widgets import TweakPage
 from common.widgets.dialogs import ErrorDialog, InfoDialog, QuestionDialog
@@ -34,6 +35,7 @@ from common.widgets.utils import ProcessDialog
 from common.network.parser import Parser
 from common.appdata import get_app_logo, get_app_describ
 from common.config import TweakSettings
+from filetype import CateView
 from xdg.DesktopEntry import DesktopEntry
 
 try:
@@ -62,9 +64,90 @@ REMOTE_LOGO_DIR = os.path.expanduser('~/.ubuntu-tweak/apps/logos')
 
 (
     CATE_ID,
-    CATE_NAME,
     CATE_ICON,
+    CATE_NAME,
 ) = range(3)
+
+class CategoryView(gtk.TreeView):
+    def __init__(self):
+        gtk.TreeView.__init__(self)
+
+        self.app_cate_parser = Parser(REMOTE_CATE_DATA, 'name')
+
+        self.set_headers_visible(False)
+        self.set_rules_hint(True)
+        self.model = self.__create_model()
+        self.set_model(self.model)
+        self.__add_columns()
+        self.update_model()
+
+        selection = self.get_selection()
+        selection.select_iter(self.model.get_iter_first())
+
+    def __create_model(self):
+        '''The model is icon, title and the list reference'''
+        model = gtk.ListStore(
+                    gobject.TYPE_INT,
+                    gtk.gdk.Pixbuf,
+                    gobject.TYPE_STRING)
+        
+        return model
+
+    def __add_columns(self):
+        column = gtk.TreeViewColumn(_('Categories'))
+
+        renderer = gtk.CellRendererPixbuf()
+        column.pack_start(renderer, False)
+        column.set_attributes(renderer, pixbuf=CATE_ICON)
+
+        renderer = gtk.CellRendererText()
+        column.pack_start(renderer, True)
+        column.set_sort_column_id(CATE_NAME)
+        column.set_attributes(renderer, text=CATE_NAME)
+
+        self.append_column(column)
+
+    def update_model(self):
+        self.model.clear()
+
+        iter = self.model.append()
+        self.model.set(iter, 
+                CATE_ID, 0,
+                CATE_ICON, gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'appcates', 'all.png')),
+                CATE_NAME, _('All Categories'))
+
+        for item in self.get_cate_items():
+            iter = self.model.append()
+            id, name, icon = self.parse_cate_item(item)
+            self.model.set(iter, 
+                    CATE_ID, id,
+                    CATE_ICON, icon,
+                    CATE_NAME, name)
+
+    def get_cate_items(self):
+        if self.use_remote_data():
+            return self.app_cate_parser.items()
+        else:
+            return CATES_DATA
+
+    def parse_cate_item(self, item):
+        '''
+        If item[1] == tuple, so it's local data, or the remote data
+        '''
+        if type(item) == list:
+            id = item[0]
+            name = item[1]
+            pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'appcates', item[2]))
+        elif type(item) == tuple:
+            catedata = item[1]
+            id = catedata['id']
+            name = catedata['name']
+            pixbuf = self.get_app_logo(catedata['name'], catedata['logo32'])
+
+        return id, name, pixbuf
+
+    def use_remote_data(self):
+        return self.app_cate_parser.is_available and TweakSettings.get_use_remote_data()
 
 class AppView(gtk.TreeView):
     __gsignals__ = {
@@ -369,45 +452,32 @@ class Installer(TweakPage):
             os.makedirs(REMOTE_LOGO_DIR)
         self.app_logo_handler = LogoHandler(REMOTE_LOGO_DIR)
         self.app_data_parser = Parser(REMOTE_APP_DATA, 'package')
-        self.app_cate_parser = Parser(REMOTE_CATE_DATA, 'name')
 
         self.to_add = []
         self.to_rm = []
 
         self.package_worker = package_worker
 
-        vbox = gtk.VBox(False, 8)
-        self.pack_start(vbox)
+        worker = GuiWorker('installer.glade')
+        main_vbox = worker.get_object('main_vbox')
+        main_vbox.reparent(self.vbox)
 
-        hbox = gtk.HBox(False, 0)
-        vbox.pack_start(hbox, False, False, 0)
+        left_sw = worker.get_object('left_sw')
+        self.cateview = CategoryView()
+        self.cateview.update_model()
+        self.cate_selection = self.cateview.get_selection()
+        self.cate_selection.connect('changed', self.on_category_changed)
+        left_sw.add(self.cateview)
 
-        combobox = self.create_category()
-        self.update_cate_model()
-        combobox.set_active(0)
-        combobox.connect('changed', self.on_category_changed)
-        hbox.pack_end(combobox, False, False, 0)
-
-        sw = gtk.ScrolledWindow()
-        sw.set_shadow_type(gtk.SHADOW_ETCHED_IN)
-        sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        vbox.pack_start(sw)
-
-        # create tree view
+        right_sw = worker.get_object('right_sw')
         self.treeview = AppView()
         self.treeview.update_model(APPS.keys(), APPS)
         self.treeview.sort_model()
         self.treeview.connect('changed', self.on_app_status_changed)
-        sw.add(self.treeview)
+        right_sw.add(self.treeview)
 
-        # button
-        hbox = gtk.HBox(False, 0)
-        vbox.pack_end(hbox, False ,False, 0)
-
-        self.button = gtk.Button(stock = gtk.STOCK_APPLY)
-        self.button.connect('clicked', self.on_apply_clicked)
-        self.button.set_sensitive(False)
-        hbox.pack_end(self.button, False, False, 0)
+        self.apply_button = worker.get_object('apply_button')
+        self.apply_button.connect('clicked', self.on_apply_clicked)
 
         self.show_all()
 
@@ -492,14 +562,13 @@ class Installer(TweakPage):
         return id, name, pixbuf
 
     def on_category_changed(self, widget, data = None):
-        index = widget.get_active()
-        if index:
-            liststore = widget.get_model()
-            iter = liststore.get_iter(index)
+        model, iter = widget.get_selected()
+
+        if model.get_path(iter)[0] != 0:
             if self.use_remote_data():
-                self.treeview.set_filter(liststore.get_value(iter, CATE_ID))
+                self.treeview.set_filter(model.get_value(iter, CATE_ID))
             else:
-                self.treeview.set_filter(liststore.get_value(iter, CATE_NAME))
+                self.treeview.set_filter(model.get_value(iter, CATE_NAME))
         else:
             self.treeview.set_filter(None)
 
@@ -627,7 +696,7 @@ class Installer(TweakPage):
         done = package_worker.get_install_status(to_add, to_rm)
 
         if done:
-            self.button.set_sensitive(False)
+            self.apply_button.set_sensitive(False)
             InfoDialog(_('Update Successful!')).launch()
         else:
             ErrorDialog(_('Update Failed!')).launch()
@@ -639,12 +708,12 @@ class Installer(TweakPage):
 
     def on_app_status_changed(self, widget, i):
         if i:
-            self.button.set_sensitive(True)
+            self.apply_button.set_sensitive(True)
         else:
-            self.button.set_sensitive(False)
+            self.apply_button.set_sensitive(False)
 
     def use_remote_data(self):
-        return self.app_data_parser.is_available and self.app_cate_parser.is_available and TweakSettings.get_use_remote_data()
+        return self.app_data_parser.is_available and self.cateview.use_remote_data()
 
 if __name__ == '__main__':
     from utility import Test
