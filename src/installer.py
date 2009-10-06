@@ -286,6 +286,9 @@ class AppView(gtk.TreeView):
 
         self.emit('changed', len(self.to_add) + len(self.to_rm))
 
+    def set_filter(self, filter):
+        self.filter = filter
+
 class LogoHandler:
     def __init__(self, dir):
         self.dir = dir
@@ -367,8 +370,6 @@ class Installer(TweakPage):
         self.app_logo_handler = LogoHandler(REMOTE_LOGO_DIR)
         self.app_data_parser = Parser(REMOTE_APP_DATA, 'package')
         self.app_cate_parser = Parser(REMOTE_CATE_DATA, 'name')
-        self.use_remote = TweakSettings.get_use_remote_data()
-        self.data_model = 'local'
 
         self.to_add = []
         self.to_rm = []
@@ -469,7 +470,7 @@ class Installer(TweakPage):
                     CATE_ICON, icon)
 
     def get_cate_items(self):
-        if self.app_cate_parser.items() and self.use_remote:
+        if self.use_remote_data():
             return self.app_cate_parser.items()
         else:
             return CATES_DATA
@@ -495,12 +496,12 @@ class Installer(TweakPage):
         if index:
             liststore = widget.get_model()
             iter = liststore.get_iter(index)
-            if self.data_model == 'remote':
-                self.filter = liststore.get_value(iter, CATE_ID)
+            if self.use_remote_data():
+                self.treeview.set_filter(liststore.get_value(iter, CATE_ID))
             else:
-                self.filter = liststore.get_value(iter, CATE_NAME)
+                self.treeview.set_filter(liststore.get_value(iter, CATE_NAME))
         else:
-            self.treeview.filter = None
+            self.treeview.set_filter(None)
 
         self.treeview.clear_model()
         self.treeview.update_model(APPS.keys(), APPS)
@@ -531,11 +532,9 @@ class Installer(TweakPage):
         return package.get_name(), package.check_installed()
 
     def get_items(self):
-        if self.app_data_parser.items() and self.use_remote:
-            self.data_model = 'remote'
+        if self.use_remote_data():
             return self.app_data_parser.items()
         else:
-            self.data_model = 'local'
             return APP_DATA
 
     def parse_item(self, item):
@@ -643,6 +642,9 @@ class Installer(TweakPage):
             self.button.set_sensitive(True)
         else:
             self.button.set_sensitive(False)
+
+    def use_remote_data(self):
+        return self.app_data_parser.is_available and self.app_cate_parser.is_available and TweakSettings.get_use_remote_data()
 
 if __name__ == '__main__':
     from utility import Test
