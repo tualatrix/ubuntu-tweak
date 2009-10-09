@@ -432,9 +432,12 @@ class SourceEditor(TweakPage):
         files = os.listdir(SOURCE_LIST_D)
         files.sort()
         for file in files:
+            fullpath=os.path.join(SOURCE_LIST_D, file)
+            if os.path.isdir(fullpath):
+                continue
             iter = model.append()
-            model.set(iter, 0, os.path.join(SOURCE_LIST_D, file))
-            model.set(iter, 1, os.path.basename(file))
+            model.set(iter, 0, fullpath)
+            model.set(iter, 1, file)
 
         if i:
             iter = model.get_iter(i)
