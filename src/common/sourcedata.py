@@ -169,7 +169,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/transmissionbt/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Transmission_Stable],
     ['http://ppa.launchpad.net/transmissionbt-beta/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Transmission_Beta],
     ['http://ppa.launchpad.net/transmissionbt-nightly/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Transmission_Nightly],
-    ['http://download.virtualbox.org/virtualbox/debian', ['hardy', 'intrepid', 'jaunty'], 'non-free', VirtualBox],
+    ['http://download.virtualbox.org/virtualbox/debian', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'non-free', VirtualBox],
     ['http://ppa.launchpad.net/debfx/virtualbox/ubuntu', ['intrepid', 'jaunty'], 'main', VirtualBoxOse],
     ['http://ppa.launchpad.net/c-korn/vlc/ubuntu', ['jaunty'], 'main', Vlc],
     ['http://ppa.launchpad.net/shutter/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Shutter],
