@@ -186,7 +186,7 @@ class TweakSettings:
 
     @classmethod
     def get_use_mirror_ppa(cls):
-        return cls.config.get_value(cls.use_mirror_ppa, default=True)
+        return cls.config.get_value(cls.use_mirror_ppa, default=False)
 
     @classmethod
     def set_separated_sources(cls, bool):

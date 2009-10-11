@@ -88,7 +88,6 @@ Clutter = ['Clutter', 'clutter', 'www.clutter-project.org', 'clutter.gpg']
 Gloobus = ['Gloobus', 'gloobus', 'gloobus.wordpress.com', 'tweak.gpg']
 Bisigi = [_('Bisigi Theme Project'), 'bisigi', 'www.bisigi-project.org', 'bisigi.gpg']
 Pitivi = [_('PiTiVi video editor'), 'pitivi', 'www.pitivi.org', 'pitivi.gpg']
-Kubuntu_update = [_('Kubuntu Update'), 'kubuntu-update', 'www.kubuntu.org', 'kubuntu.gpg']
 Kubuntu_backports = [_('Kubuntu Backports'), 'kubuntu-backports', 'www.kubuntu.org', 'kubuntu.gpg']
 Lyx = ['Lyx', 'lyx', 'www.lyx.org', 'lyx.gpg']
 Tomboy_Stable = [_('Tomboy (Stable Version)'), 'tomboy', 'projects.gnome.org/tomboy/', 'tomboy.gpg']
@@ -170,7 +169,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/transmissionbt/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Transmission_Stable],
     ['http://ppa.launchpad.net/transmissionbt-beta/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Transmission_Beta],
     ['http://ppa.launchpad.net/transmissionbt-nightly/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Transmission_Nightly],
-    ['http://download.virtualbox.org/virtualbox/debian', ['hardy', 'intrepid', 'jaunty'], 'non-free', VirtualBox],
+    ['http://download.virtualbox.org/virtualbox/debian', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'non-free', VirtualBox],
     ['http://ppa.launchpad.net/debfx/virtualbox/ubuntu', ['intrepid', 'jaunty'], 'main', VirtualBoxOse],
     ['http://ppa.launchpad.net/c-korn/vlc/ubuntu', ['jaunty'], 'main', Vlc],
     ['http://ppa.launchpad.net/shutter/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Shutter],
@@ -188,7 +187,6 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/tualatrix/gloobus/ubuntu', 'jaunty', 'main', Gloobus],
     ['http://ppa.launchpad.net/bisigi/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Bisigi],
     ['http://ppa.launchpad.net/gstreamer-developers/ppa/ubuntu', 'jaunty', 'main', Pitivi],
-    ['http://ppa.launchpad.net/kubuntu-ppa/ppa/ubuntu', 'jaunty', 'main', Kubuntu_update],
     ['http://ppa.launchpad.net/kubuntu-ppa/backports/ubuntu', 'jaunty', 'main', Kubuntu_backports],
     ['http://ppa.launchpad.net/lyx/ppa/ubuntu', 'jaunty', 'main', Lyx],
     ['http://ppa.launchpad.net/tomboy-packagers/stable/ubuntu', ['jaunty', 'karmic'], 'main', Tomboy_Stable],

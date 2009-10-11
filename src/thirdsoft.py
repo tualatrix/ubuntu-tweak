@@ -641,24 +641,32 @@ class ThirdSoft(TweakPage):
 
         #FIXME China mirror hack
         if os.getenv('LANG').startswith('zh_CN'):
-            thread.start_new_thread(self.start_check_cn_ppa, ())
-        else:
-            self.treeview.unconver_ubuntu_cn_mirror()
+            if TweakSettings.get_use_mirror_ppa():
+                gobject.idle_add(self.start_check_cn_ppa)
+            else:
+                self.treeview.unconver_ubuntu_cn_mirror()
 
         config.get_client().notify_add('/apps/ubuntu-tweak/use_mirror_ppa', self.value_changed)
 
     def value_changed(self, client, id, entry, data):
         global UNCONVERT
         UNCONVERT = not entry.value.get_bool()
+        if len(PPA_MIRROR) == 0:
+            self.start_check_cn_ppa()
         if globals().has_key('proxy'):
             self.treeview.setup_ubuntu_cn_mirror()
 
     def start_check_cn_ppa(self):
-        url = urllib.urlopen(UBUNTU_CN_URL)
+        import socket
+        socket.setdefaulttimeout(3)
+        try:
+            url = urllib.urlopen(UBUNTU_CN_URL)
 
-        parse = URLLister(PPA_MIRROR)
-        data = url.read()
-        parse.feed(data)
+            parse = URLLister(PPA_MIRROR)
+            data = url.read()
+            parse.feed(data)
+        except:
+            pass
 
     def check_ppa_entry(self):
         if self.do_check_ppa_entry():
