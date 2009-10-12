@@ -71,6 +71,7 @@ CTAGS = ctags
 DIST_SUBDIRS = $(SUBDIRS)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
+ALL_LINGUAS = @ALL_LINGUAS@
 AMTAR = @AMTAR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -84,6 +85,7 @@ CYGPATH_W = @CYGPATH_W@
 DAEMON_CFLAGS = @DAEMON_CFLAGS@
 DAEMON_LIBS = @DAEMON_LIBS@
 DATADIR = @DATADIR@
+DATADIRNAME = @DATADIRNAME@
 DBUS_CFLAGS = @DBUS_CFLAGS@
 DBUS_LIBS = @DBUS_LIBS@
 DBUS_SYSTEMD_DIR = @DBUS_SYSTEMD_DIR@
@@ -102,6 +104,10 @@ INSTALL_PROGRAM = @INSTALL_PROGRAM@
 INSTALL_SCRIPT = @INSTALL_SCRIPT@
 INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
 INTLLIBS = @INTLLIBS@
+INTLTOOL_EXTRACT = @INTLTOOL_EXTRACT@
+INTLTOOL_MERGE = @INTLTOOL_MERGE@
+INTLTOOL_PERL = @INTLTOOL_PERL@
+INTLTOOL_UPDATE = @INTLTOOL_UPDATE@
 INTL_MACOSX_LIBS = @INTL_MACOSX_LIBS@
 LDFLAGS = @LDFLAGS@
 LIBICONV = @LIBICONV@
@@ -203,9 +209,11 @@ SUBDIRS = icons
 sysiconsdir = $(datadir)/pixmaps
 sysicons_DATA = ubuntu-tweak.png
 desktopdir = $(datadir)/applications
-desktop_DATA = ubuntu-tweak.desktop
+desktop_in_files = @PACKAGE@.desktop.in
+desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 EXTRA_DIST = \
 	$(sysicons_DATA) \
+	$(desktop_in_files) \
 	$(desktop_DATA)
 
 all: all-recursive
@@ -551,6 +559,7 @@ uninstall-am: uninstall-desktopDATA uninstall-sysiconsDATA
 	pdf-am ps ps-am tags tags-recursive uninstall uninstall-am \
 	uninstall-desktopDATA uninstall-sysiconsDATA
 
+@INTLTOOL_DESKTOP_RULE@
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
