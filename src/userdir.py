@@ -30,6 +30,7 @@ from common.consts import *
 from common.inifile import IniFile
 from common.widgets import TweakPage, EntryBox
 from common.widgets.dialogs import QuestionDialog, InfoDialog
+from common.utils import get_icon_with_name
 
 (
     COLUMN_ICON,
@@ -42,15 +43,26 @@ class UserdirFile(IniFile):
     """Class to parse userdir file"""
     filename = os.path.join(os.path.expanduser("~"), ".config/user-dirs.dirs")
     XDG_DIRS = {
-            "XDG_DESKTOP_DIR": _("Desktop"),
-            "XDG_DOWNLOAD_DIR": _("Download"),
-            "XDG_TEMPLATES_DIR": _("Templates"),
-            "XDG_PUBLICSHARE_DIR": _("Public"),
-            "XDG_DOCUMENTS_DIR": _("Document"),
-            "XDG_MUSIC_DIR": _("Music"),
-            "XDG_PICTURES_DIR": _("Pictures"),
-            "XDG_VIDEOS_DIR": _("Videos")
-            }
+        "XDG_DESKTOP_DIR": _("Desktop"),
+        "XDG_DOWNLOAD_DIR": _("Download"),
+        "XDG_TEMPLATES_DIR": _("Templates"),
+        "XDG_PUBLICSHARE_DIR": _("Public"),
+        "XDG_DOCUMENTS_DIR": _("Document"),
+        "XDG_MUSIC_DIR": _("Music"),
+        "XDG_PICTURES_DIR": _("Pictures"),
+        "XDG_VIDEOS_DIR": _("Videos")
+    }
+    XDG_ICONS = {
+        "XDG_DESKTOP_DIR": "desktop",
+        "XDG_DOWNLOAD_DIR": "folder-download",
+        "XDG_TEMPLATES_DIR": "folder-templates",
+        "XDG_PUBLICSHARE_DIR": "folder-publicshare",
+        "XDG_DOCUMENTS_DIR": "folder-documents",
+        "XDG_MUSIC_DIR": "folder-music",
+        "XDG_PICTURES_DIR": "folder-pictures",
+        "XDG_VIDEOS_DIR": "folder-videos",
+    }
+
     def __init__(self):
         IniFile.__init__(self, self.filename)
 
@@ -105,6 +117,9 @@ class UserdirFile(IniFile):
 
     def get_display(self, userdir):
         return self.XDG_DIRS[userdir]
+
+    def get_xdg_icon(self, userdir):
+        return get_icon_with_name(self.XDG_ICONS[userdir])
 
     def get_restorename(self, userdir):
         gettext.bindtextdomain('xdg-user-dirs')
@@ -187,13 +202,11 @@ class UserdirView(gtk.TreeView):
                             gobject.TYPE_STRING,
                             gobject.TYPE_STRING)
 
-        icontheme = gtk.icon_theme_get_default()
-        icon = icontheme.lookup_icon('gnome-fs-directory', 24, gtk.ICON_LOOKUP_NO_SVG).load_icon()
-
         for dir, path in self.uf.items():
+            pixbuf = self.uf.get_xdg_icon(dir)
             name = self.uf.get_display(dir)
 
-            model.append((icon, name, dir, path))
+            model.append((pixbuf, name, dir, path))
 
         return model
 

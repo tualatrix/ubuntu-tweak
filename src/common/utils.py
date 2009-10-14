@@ -19,7 +19,7 @@ def set_label_for_stock_button(button, text):
     label = button.get_child().get_child().get_children()[1]
     label.set_text_with_mnemonic(text)
 
-def get_icon_with_type(filepath, size):
+def get_icon_with_type(filepath, size=24):
     icon = ui.icon_lookup(icontheme, None, filepath)
 
     try:
@@ -28,14 +28,14 @@ def get_icon_with_type(filepath, size):
         return get_icon_with_name('gtk-execute', size)
 
     if pixbuf.get_height() != size:
-        return pixbuf.scale_simple(24, 24, gtk.gdk.INTERP_BILINEAR)
+        return pixbuf.scale_simple(size, size, gtk.gdk.INTERP_BILINEAR)
     
     return pixbuf
 
 def get_icon_with_cate(cate, size):
     pass
 
-def get_icon_with_name(name, size):
+def get_icon_with_name(name, size=24):
     try:
         pixbuf = icontheme.load_icon(name, size, 0)
     except:
