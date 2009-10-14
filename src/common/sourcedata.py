@@ -184,7 +184,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/ubuntu-x-swat/x-updates/ubuntu', ['jaunty', 'karmic'], 'main', UbuntuX],
     ['http://ppa.launchpad.net/xorg-edgers/ppa/ubuntu', ['jaunty', 'karmic'], 'main', UbuntuX_Unstable],
     ['http://ppa.launchpad.net/njpatel/clutter-edgers/ubuntu', 'jaunty', 'main', Clutter],
-    ['http://ppa.launchpad.net/tualatrix/gloobus/ubuntu', 'jaunty', 'main', Gloobus],
+    ['http://ppa.launchpad.net/tualatrix/gloobus/ubuntu', ['jaunty', 'karmic'], 'main', Gloobus],
     ['http://ppa.launchpad.net/bisigi/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Bisigi],
     ['http://ppa.launchpad.net/gstreamer-developers/ppa/ubuntu', 'jaunty', 'main', Pitivi],
     ['http://ppa.launchpad.net/kubuntu-ppa/backports/ubuntu', 'jaunty', 'main', Kubuntu_backports],
