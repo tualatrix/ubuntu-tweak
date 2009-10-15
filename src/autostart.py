@@ -243,7 +243,11 @@ class AutoStartItem(gtk.TreeView):
 
             icon = get_icon_with_name(iconname, 32)
 
-            name = desktopentry.getName()
+            try:
+                name = desktopentry.getName()
+            except:
+                name = desktopentry.get('Name', locale=False)
+
             if comment:
                 comment = desktopentry.getComment()
                 if not comment:
