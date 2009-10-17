@@ -26,6 +26,7 @@ import gettext
 import gobject
 import pango
 
+from tweak import TweakModule
 from common.consts import *
 from common.utils import get_icon_with_file
 from common.gui import GuiWorker
@@ -497,11 +498,12 @@ class FetchingDialog(ProcessDialog):
         else:
             self.destroy()
 
-class Installer(TweakPage):
+class Installer(TweakModule):
+    __name__ = _('Add/Remove Applications')
+    __desc__ = _('A simple but more effecient method for finding and installing popular packages than the default Add/Remove.')
+
     def __init__(self):
-        TweakPage.__init__(self, 
-                _('Add/Remove Applications'),
-                _('A simple but more effecient method for finding and installing popular packages than the default Add/Remove.'))
+        TweakModule.__init__(self, 'installer.glade')
 
         if not os.path.exists(REMOTE_DATA_DIR):
             os.makedirs(REMOTE_DATA_DIR)
@@ -515,33 +517,24 @@ class Installer(TweakPage):
 
         self.package_worker = package_worker
 
-        worker = GuiWorker('installer.glade')
-        main_vbox = worker.get_object('main_vbox')
-        main_vbox.reparent(self.vbox)
-
-        left_sw = worker.get_object('left_sw')
         self.cateview = CategoryView()
         self.cateview.update_model()
         self.cate_selection = self.cateview.get_selection()
         self.cate_selection.connect('changed', self.on_category_changed)
-        left_sw.add(self.cateview)
+        self.left_sw.add(self.cateview)
 
-        right_sw = worker.get_object('right_sw')
         self.treeview = AppView()
         self.treeview.update_model(APPS.keys(), APPS)
         self.treeview.sort_model()
         self.treeview.connect('changed', self.on_app_status_changed)
-        right_sw.add(self.treeview)
-
-        self.apply_button = worker.get_object('apply_button')
-        self.apply_button.connect('clicked', self.on_apply_clicked)
-
-        self.refresh_button = worker.get_object('refresh_button')
-        self.refresh_button.connect('clicked', self.on_refresh_button_clicked)
+        self.right_sw.add(self.treeview)
 
         self.show_all()
 
 #        gobject.idle_add(self.on_idle_check)
+
+    def reparent(self):
+        self.main_vbox.reparent(self.vbox)
 
     def on_idle_check(self):
         gtk.gdk.threads_enter()
@@ -692,7 +685,7 @@ class Installer(TweakPage):
         self.treeview.clear_model()
         self.treeview.update_model(APPS.keys(), APPS)
 
-    def on_apply_clicked(self, widget, data = None):
+    def on_apply_button_clicked(self, widget, data = None):
         to_rm = self.treeview.to_rm
         to_add = self.treeview.to_add
         self.package_worker.perform_action(widget.get_toplevel(), to_add, to_rm)
