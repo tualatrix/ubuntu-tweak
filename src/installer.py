@@ -501,6 +501,8 @@ class FetchingDialog(ProcessDialog):
 class Installer(TweakModule):
     __name__ = _('Add/Remove Applications')
     __desc__ = _('A simple but more effecient method for finding and installing popular packages than the default Add/Remove.')
+    __icon__ = 'installer.png'
+    __url__ = 'http://ubuntu-tweak.com'
 
     def __init__(self):
         TweakModule.__init__(self, 'installer.glade')
@@ -534,7 +536,8 @@ class Installer(TweakModule):
 #        gobject.idle_add(self.on_idle_check)
 
     def reparent(self):
-        self.main_vbox.reparent(self.vbox)
+        self.main_vbox.set_border_width(5)
+        self.main_vbox.reparent(self)
 
     def on_idle_check(self):
         gtk.gdk.threads_enter()

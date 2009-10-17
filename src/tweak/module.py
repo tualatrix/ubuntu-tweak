@@ -6,7 +6,7 @@ import gobject
 
 from common.consts import DATA_DIR
 
-class TweakModule(gtk.ScrolledWindow):
+class TweakModule(gtk.VBox):
     __name__ = ''
     __version__ = ''
     __icon__ = ''
@@ -22,19 +22,12 @@ class TweakModule(gtk.ScrolledWindow):
     def __init__(self, path=None, domain='ubuntu-tweak'):
         assert(self.__name__ and self.__desc__)
 
-        gtk.ScrolledWindow.__init__(self)
-        self.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-
-        self.vbox = gtk.VBox(False, 0)
-        self.add_with_viewport(self.vbox)
-        viewport = self.get_child()
-        viewport.set_shadow_type(gtk.SHADOW_NONE)
+        gtk.VBox.__init__(self)
 
         self.draw_title()
 
         self.inner_vbox = gtk.VBox(False, 6)
-        self.inner_vbox.set_border_width(6)
-        self.vbox.pack_start(self.inner_vbox, False, False, 0)
+        self.pack_start(self.inner_vbox, False, False, 0)
 
         if path:
             path = os.path.join(DATA_DIR, 'gui', path)
@@ -51,25 +44,42 @@ class TweakModule(gtk.ScrolledWindow):
                     print >>sys.stderr, "WARNING: can not get name for '%s'" % o
             self.reparent()
 
-    def pack_start(self, child, expand = True, fill = True, padding = 0):
-        self.inner_vbox.pack_start(child, expand, fill, padding)
-
-    def pack_end(self, child, expand = True, fill = True, padding = 0):
-        self.inner_vbox.pack_end(child, expand, fill, padding)
-
     def draw_title(self):
         eventbox = gtk.EventBox()
         eventbox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse('white'))
-        self.vbox.pack_start(eventbox, False, False, 0)
+        self.pack_start(eventbox, False, False, 0)
 
-        hbox = gtk.HBox(False, 12)
-        eventbox.add(hbox)
+        vbox = gtk.VBox()
+        eventbox.add(vbox)
 
-        vbox = gtk.VBox(False, 6)
-        hbox.pack_start(vbox)
+        align = gtk.Alignment(0.5, 0.5, 1.0, 1.0)
+        align.set_padding(5, 5, 5, 5)
+        vbox.pack_start(align)
 
-        vbox.pack_start(gtk.Label(self.__name__), False, False, 0)
-        vbox.pack_start(gtk.Label(self.__desc__), False, False, 0)
+        hbox = gtk.HBox(False, 6)
+        align.add(hbox)
+
+        inner_vbox = gtk.VBox(False, 6)
+        hbox.pack_start(inner_vbox)
+
+        name = gtk.Label()
+        name.set_markup('<b><big>%s</big></b>' % self.__name__)
+        name.set_alignment(0, 0.5)
+        inner_vbox.pack_start(name, False, False, 0)
+
+        desc = gtk.Label(self.__desc__)
+        desc.set_ellipsize(pango.ELLIPSIZE_END)
+        desc.set_alignment(0, 0.5)
+        inner_vbox.pack_start(desc, False, False, 0)
+
+        if self.__url__:
+            #TODO If there's url available
+            pass
+
+        if self.__icon__:
+            icon_path = os.path.join(DATA_DIR, 'pixmaps', self.__icon__)
+            image = gtk.image_new_from_file(icon_path)
+            hbox.pack_end(image, False, False, 0)
 
         vbox.pack_start(gtk.HSeparator(), False, False, 0)
 
