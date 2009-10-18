@@ -40,6 +40,7 @@
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
                     <property name="use_stock">True</property>
+                    <signal name="clicked" handler="on_update_button_clicked"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -55,6 +56,7 @@
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
                     <property name="use_stock">True</property>
+                    <signal name="clicked" handler="on_submit_button_clicked"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -82,6 +84,7 @@
             <child>
               <object class="GtkComboBox" id="source_combo">
                 <property name="visible">True</property>
+                <signal name="changed" handler="on_source_combo_changed"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -97,6 +100,7 @@
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_stock">True</property>
+                <signal name="clicked" handler="on_save_button_clicked"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -112,6 +116,7 @@
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_stock">True</property>
+                <signal name="clicked" handler="on_redo_button_clicked"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -127,6 +132,7 @@
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_stock">True</property>
+                <signal name="clicked" handler="on_delete_button_clicked"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -142,6 +148,7 @@
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_stock">True</property>
+                <signal name="clicked" handler="on_refresh_button_clicked"/>
               </object>
               <packing>
                 <property name="expand">False</property>

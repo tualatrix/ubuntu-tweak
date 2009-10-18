@@ -24,6 +24,8 @@ import thread
 import socket
 import gobject
 import gettext
+
+from tweak import TweakModule
 from thirdsoft import refresh_source
 from xmlrpclib import ServerProxy, Error
 from common.utils import *
@@ -347,61 +349,38 @@ class SourceView(gtk.TextView):
     def get_path(self):
         return self.path
 
-class SourceEditor(TweakPage):
-    def __init__(self):
-        super(SourceEditor, self).__init__(
-                _('Source Editor'),
-                _('Freely edit your software sources to fit your needs.\n'
+class SourceEditor(TweakModule):
+    __name__ = _('Source Editor')
+    __desc__ = _('Freely edit your software sources to fit your needs.\n'
                 'Click "Update Sources" if you want to change the sources.\n'
                 'Click "Submit Sources" if you want to share your sources with other people.')
-        )
+    __icon__ = 'system-software-update'
+
+    def __init__(self):
+        TweakModule.__init__(self, 'sourceeditor.glade')
 
         self.online_data = {}
 
-        worker = GuiWorker('sourceeditor.glade')
-
-        main_vbox = worker.get_object('main_vbox')
-        main_vbox.reparent(self.vbox)
-
-        self.update_button = worker.get_object('update_button')
         set_label_for_stock_button(self.update_button, _('Update Sources'))
-        self.update_button.connect('clicked', self.on_update_button_clicked)
 
-        self.submit_button = worker.get_object('submit_button')
         set_label_for_stock_button(self.submit_button, _('Submit Sources'))
-        self.submit_button.connect('clicked', self.on_submit_button_clicked)
 
         self.textview = SourceView(SOURCES_LIST)
         self.textview.set_sensitive(False)
-        sw1 = worker.get_object('sw1')
-        sw1.add(self.textview)
+        self.sw1.add(self.textview)
         buffer = self.textview.get_buffer()
         buffer.connect('changed', self.on_buffer_changed)
 
-        self.source_combo = worker.get_object('source_combo')
         self.setup_source_combo()
         self.update_source_combo()
-        self.source_combo.connect('changed', self.on_source_combo_changed)
 
-        self.save_button = worker.get_object('save_button')
-        self.save_button.connect('clicked', self.on_save_button_clicked)
-
-        self.redo_button = worker.get_object('redo_button')
-        self.redo_button.connect('clicked', self.on_redo_button_clicked)
-
-        self.delete_button = worker.get_object('delete_button')
-        self.delete_button.connect('clicked', self.on_delete_button_clicked)
-
-        self.refresh_button = worker.get_object('refresh_button')
-        self.refresh_button.connect('clicked', self.on_refresh_button_clicked)
-
-        hbox2 = worker.get_object('hbox2')
         un_lock = PolkitButton()
         un_lock.connect('changed', self.on_polkit_action)
-        hbox2.pack_end(un_lock, False, False, 0)
-        hbox2.reorder_child(un_lock, 1)
+        self.hbox2.pack_end(un_lock, False, False, 0)
+        self.hbox2.reorder_child(un_lock, 1)
 
-        self.show_all()
+    def reparent(self):
+        self.main_vbox.reparent(self.inner_vbox)
 
     def setup_source_combo(self):
         model = gtk.ListStore(gobject.TYPE_STRING,
