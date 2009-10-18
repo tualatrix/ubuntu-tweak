@@ -67,14 +67,32 @@ class TweakModule(gtk.VBox):
         name.set_alignment(0, 0.5)
         inner_vbox.pack_start(name, False, False, 0)
 
-        desc = gtk.Label(self.__desc__)
-        desc.set_ellipsize(pango.ELLIPSIZE_END)
-        desc.set_alignment(0, 0.5)
-        inner_vbox.pack_start(desc, False, False, 0)
-
         if self.__url__:
-            #TODO If there's url available
-            pass
+            align = gtk.Alignment(0.5, 0.5, 1.0, 1.0)
+            inner_vbox.pack_start(align)
+
+            inner_hbox = gtk.HBox(False, 0)
+            align.add(inner_hbox)
+
+            left_box = gtk.VBox(False, 6)
+            inner_hbox.pack_start(left_box)
+
+            right_box = gtk.VBox(False, 6)
+            inner_hbox.pack_start(right_box, False, False, 0)
+
+            desc = gtk.Label(self.__desc__)
+            desc.set_ellipsize(pango.ELLIPSIZE_END)
+            desc.set_alignment(0, 1)
+            left_box.pack_start(desc, False, False, 0)
+
+            more = gtk.Label()
+            more.set_markup('<a href="%s">%s</a>' % (self.__url__, 'More'))
+            right_box.pack_start(more, False, False, 0)
+        else:
+            desc = gtk.Label(self.__desc__)
+            desc.set_ellipsize(pango.ELLIPSIZE_END)
+            desc.set_alignment(0, 0.5)
+            inner_vbox.pack_start(desc, False, False, 0)
 
         if self.__icon__:
             icon_path = os.path.join(DATA_DIR, 'pixmaps', self.__icon__)
