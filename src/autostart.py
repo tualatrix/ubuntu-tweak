@@ -22,7 +22,9 @@ import os
 import gtk
 import shutil
 import gobject
+
 from xdg.DesktopEntry import DesktopEntry
+from tweak import TweakModule
 from common.widgets import TweakPage
 from common.widgets.dialogs import ErrorDialog
 from common.utils import *
@@ -329,23 +331,24 @@ class AutoStartItem(gtk.TreeView):
         elif os.path.basename(path) in os.listdir(self.gnome_dir):
             return self.gnome_dir
 
-class AutoStart(TweakPage):
-    """The box pack the autostart list"""
-    def __init__(self):
-        TweakPage.__init__(self,
-                _('Session Programs'),
-                _('Here you can manage what programs get started when you login.\n'
+class AutoStart(TweakModule):
+    __name__ = _('Session Programs'),
+    __desc__ = _('Here you can manage what programs get started when you login.\n'
                 'You can hide items from view by selecting and clicking "Remove"\n'
-                'To permanently delete an item, right-click and press "Delete".'))
+                'To permanently delete an item, right-click and press "Delete".')
+    __icon__ = 'session-properties'
+
+    def __init__(self):
+        TweakModule.__init__(self)
 
         hbox = gtk.HBox(False, 10)
-        self.pack_start(hbox, True, True, 10)
+        self.add_start(hbox, True, True, 0)
 
         #create the two checkbutton for extra options of auto run list
         self.show_comment_button = gtk.CheckButton(_("Show comments"))
-        self.pack_start(self.show_comment_button, False, False, 0)
+        self.add_start(self.show_comment_button, False, False, 0)
         self.show_all_button = gtk.CheckButton(_("Show all runnable programs"))
-        self.pack_start(self.show_all_button, False, False, 0)
+        self.add_start(self.show_all_button, False, False, 0)
 
         self.show_all_button.connect("toggled", self.on_show_all, self.show_comment_button)
         self.show_comment_button.connect("toggled", self.on_show_comment, self.show_all_button)
