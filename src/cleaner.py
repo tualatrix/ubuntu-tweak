@@ -23,6 +23,8 @@ import gtk
 import thread
 import gobject
 import gettext
+
+from tweak import TweakModule
 from common.utils import *
 from common.misc import filesizeformat
 from common.policykit import PolkitButton, DbusProxy
@@ -409,11 +411,13 @@ class PackageView(gtk.TreeView):
         if window:
             window.set_cursor(None)
 
-class PackageCleaner(TweakPage):
+class PackageCleaner(TweakModule):
+    __name__ = _('Package Cleaner')
+    __desc__ = _('Free up disk space by removing unneeded packages and cleaning the package download cache.')
+    __icon__ = 'edit-clear'
+
     def __init__(self):
-        super(PackageCleaner, self).__init__(
-                _('Package Cleaner'),
-                _('Free up disk space by removing unneeded packages and cleaning the package download cache.'))
+        TweakModule.__init__(self)
 
         self.to_add = []
         self.to_rm = []
@@ -421,7 +425,7 @@ class PackageCleaner(TweakPage):
         self.current_button = 0
 
         hbox = gtk.HBox(False, 0)
-        self.pack_start(hbox, True, True, 0)
+        self.add_start(hbox, True, True, 0)
 
         sw = gtk.ScrolledWindow()
         sw.set_shadow_type(gtk.SHADOW_ETCHED_IN)
@@ -463,7 +467,7 @@ class PackageCleaner(TweakPage):
         self.select_button = gtk.CheckButton(_('Select All'))
         self.select_button.set_sensitive(False)
         self.__handler_id = self.select_button.connect('toggled', self.on_select_all)
-        self.pack_start(self.select_button, False, False, 0)
+        self.add_start(self.select_button, False, False, 0)
 
         # button
         hbox = gtk.HBox(False, 0)
