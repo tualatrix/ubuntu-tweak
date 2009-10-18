@@ -5,6 +5,7 @@ import pango
 import gobject
 
 from common.consts import DATA_DIR
+from tweak.utils import icon
 
 class TweakModule(gtk.VBox):
     __name__ = ''
@@ -95,8 +96,12 @@ class TweakModule(gtk.VBox):
             inner_vbox.pack_start(desc, False, False, 0)
 
         if self.__icon__:
-            icon_path = os.path.join(DATA_DIR, 'pixmaps', self.__icon__)
-            image = gtk.image_new_from_file(icon_path)
+            if self.__icon__.endswith('.png'):
+                icon_path = os.path.join(DATA_DIR, 'pixmaps', self.__icon__)
+                image = gtk.image_new_from_file(icon_path)
+            else:
+                pixbuf = icon.get_with_name(self.__icon__, size=48)
+                image = gtk.image_new_from_pixbuf(pixbuf)
             hbox.pack_end(image, False, False, 0)
 
         vbox.pack_start(gtk.HSeparator(), False, False, 0)

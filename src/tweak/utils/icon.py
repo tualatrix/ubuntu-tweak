@@ -1,0 +1,19 @@
+import os
+import gtk
+
+__all__ = (
+    'get_with_name',
+)
+
+icontheme = gtk.icon_theme_get_default()
+
+def get_with_name(name, alter='gtk-execute', size=24):
+    try:
+        pixbuf = icontheme.load_icon(name, size, 0)
+    except:
+        pixbuf = icontheme.load_icon(alter, size, 0)
+
+    if pixbuf.get_height() != size:
+        return pixbuf.scale_simple(size, size, gtk.gdk.INTERP_BILINEAR)
+
+    return pixbuf

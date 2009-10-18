@@ -501,7 +501,7 @@ class FetchingDialog(ProcessDialog):
 class Installer(TweakModule):
     __name__ = _('Add/Remove Applications')
     __desc__ = _('A simple but more effecient method for finding and installing popular packages than the default Add/Remove.')
-    __icon__ = 'installer.png'
+    __icon__ = 'gnome-app-install'
     __url__ = 'http://ubuntu-tweak.com'
 
     def __init__(self):
