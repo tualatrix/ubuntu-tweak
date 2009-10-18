@@ -27,8 +27,15 @@ class TweakModule(gtk.VBox):
 
         self.draw_title()
 
+        self.scrolled_win = gtk.ScrolledWindow()
+        self.scrolled_win.set_border_width(5)
+        self.scrolled_win.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        self.pack_start(self.scrolled_win)
+
         self.inner_vbox = gtk.VBox(False, 6)
-        self.pack_start(self.inner_vbox, False, False, 0)
+        self.scrolled_win.add_with_viewport(self.inner_vbox)
+        viewport = self.scrolled_win.get_child()
+        viewport.set_shadow_type(gtk.SHADOW_NONE)
 
         if path:
             path = os.path.join(DATA_DIR, 'gui', path)
@@ -44,8 +51,6 @@ class TweakModule(gtk.VBox):
                 else:
                     print >>sys.stderr, "WARNING: can not get name for '%s'" % o
             self.reparent()
-        else:
-            self.inner_vbox.set_border_width(5)
 
     def add_start(self, child, expand=True, fill=True, padding=0):
         self.inner_vbox.pack_start(child, expand, fill, padding)

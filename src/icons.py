@@ -23,7 +23,7 @@ pygtk.require("2.0")
 import gtk
 import gconf
 
-from tweak.module import TweakModule
+from tweak import TweakModule
 from common.consts import *
 from common.widgets import TweakPage
 from common.factory import WidgetFactory

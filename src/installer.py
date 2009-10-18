@@ -536,8 +536,7 @@ class Installer(TweakModule):
 #        gobject.idle_add(self.on_idle_check)
 
     def reparent(self):
-        self.main_vbox.set_border_width(5)
-        self.main_vbox.reparent(self)
+        self.main_vbox.reparent(self.inner_vbox)
 
     def on_idle_check(self):
         gtk.gdk.threads_enter()

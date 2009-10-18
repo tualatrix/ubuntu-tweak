@@ -25,14 +25,19 @@ import os
 import gobject
 import gettext
 
+from tweak import TweakModule
 from common.factory import WidgetFactory
 from common.widgets import ListPack, TablePack, TweakPage
 from common.widgets.dialogs import InfoDialog
 
-class Metacity(TweakPage):
-    '''Some options about Metacity Window Manager'''
+class Metacity(TweakModule):
+    __name__ = _('Window Manager Settings')
+    __desc__ = _('Some options about Metacity Window Manager')
+    __icon__ = 'preferences-system-windows'
+    __url__ = 'http://ubuntu-tweak.com'
+
     def __init__(self):
-        TweakPage.__init__(self)
+        TweakModule.__init__(self)
 
         box = TablePack(_('Window Decorate Effect'), [
                 [WidgetFactory.create('GconfCheckButton', 
@@ -53,7 +58,7 @@ class Metacity(TweakPage):
                                          key = 'metacity_theme_opacity',
                                          min = 0, max = 1, digits = 2)],
             ])
-        self.pack_start(box, False, False, 0)
+        self.add_start(box, False, False, 0)
 
         table = TablePack(_('Window Titlebar Action'), [
                 [gtk.Label(_('Titlebar mouse wheel action')), 
@@ -78,7 +83,7 @@ class Metacity(TweakPage):
                                          values = ['none', 'toggle_maximize', 'minimize', 'toggle_shade', 'lower', 'menu'])],
                 ])
 
-        self.pack_start(table, False, False, 0)
+        self.add_start(table, False, False, 0)
 
         button = WidgetFactory.create('GconfCheckButton', 
                                       label = _("Enable Metacity's Compositing feature"), 
@@ -87,7 +92,7 @@ class Metacity(TweakPage):
             box = ListPack(_('Compositing Manager'), (button,))
             button.connect('toggled', self.on_compositing_button_toggled)
 
-            self.pack_start(box, False, False, 0)
+            self.add_start(box, False, False, 0)
 
     def on_compositing_button_toggled(self, widget):
         if widget.get_active():
