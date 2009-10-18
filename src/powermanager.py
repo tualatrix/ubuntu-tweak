@@ -25,14 +25,18 @@ import os
 import gconf
 import gettext
 
+from tweak import TweakModule
 from common.systeminfo import module_check
 from common.factory import WidgetFactory
 from common.widgets import HScaleBox, TablePack, TweakPage
 
-class PowerManager(TweakPage):
-    """Advanced Powermanager Settings"""
+class PowerManager(TweakModule):
+    __name__ = _('Advanced Powermanager Settings')
+    __desc__ = _('Control your computer\'s power managerment')
+    __icon__ = 'gnome-power-manager'
+
     def __init__(self):
-        TweakPage.__init__(self)
+        TweakModule.__init__(self)
 
         box = TablePack(_("Advanced Power Management Settings"), [
                 [WidgetFactory.create("GconfCheckButton", 
@@ -56,7 +60,7 @@ class PowerManager(TweakPage):
                                          texts = [_("Never display"), _("When charging"), _("Always display")], 
                                          values = ["never", "charge", "always"])],
         ]) 
-        self.pack_start(box, False, False, 0)
+        self.add_start(box, False, False, 0)
 
         if module_check.get_gnome_version() < 24:
             cpu_policy_text = [_("Normal"), _("On Demand"), _("Power Save"), _("Performance")]
@@ -86,7 +90,7 @@ class PowerManager(TweakPage):
                                              values = cpu_policy_value)],
             ])
                 
-            self.pack_start(box, False, False, 0)
+            self.add_start(box, False, False, 0)
 
 if __name__ == "__main__":
     from utility import Test

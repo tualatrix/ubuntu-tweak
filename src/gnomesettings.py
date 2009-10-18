@@ -34,7 +34,7 @@ from common.widgets.dialogs import ErrorDialog, QuestionDialog
 class Gnome(TweakModule):
     __name__ = _('GNOME Settings')
     __desc__ = _('A lot of GNOME settings about panel and others')
-    __icon__ = 'gnome-panel'
+    __icon__ = 'paprefs'
 
     def __init__(self):
         TweakModule.__init__(self)
