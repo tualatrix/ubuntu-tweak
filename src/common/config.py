@@ -94,8 +94,6 @@ class TweakSettings:
     url = 'tweak_url'
     version = 'tweak_version'
     toolbar_size = 'toolbar_size'
-    toolbar_color = 'toolbar_color'
-    toolbar_font_color = 'toolbar_font_color'
     window_size= 'window_size'
     window_height = 'window_height'
     window_width = 'window_width'
@@ -114,48 +112,6 @@ class TweakSettings:
     @classmethod
     def set_check_update(cls, bool):
         cls.config.set_value(cls.check_update, bool)
-
-    @classmethod
-    def get_toolbar_color(cls, instance = False):
-        color = cls.config.get_value(cls.toolbar_color)
-        if color == None:
-            if instance:
-                return gtk.gdk.Color(32767, 32767, 32767)
-            return (0.5, 0.5, 0.5)
-        else:
-            try:
-                color = gtk.gdk.color_parse(color)
-                if instance:
-                    return color
-                red, green, blue = color.red/65535.0, color.green/65535.0, color.blue/65535.0
-                return (red, green, blue)
-            except:
-                return (0.5, 0.5, 0.5)
-
-    @classmethod
-    def set_toolbar_color(cls, color):
-        cls.config.set_value(cls.toolbar_color, color)
-
-    @classmethod
-    def get_toolbar_font_color(cls, instance = False):
-        color = cls.config.get_value(cls.toolbar_font_color)
-        if color == None:
-            if instance:
-                return gtk.gdk.Color(65535, 65535, 65535)
-            return (1, 1, 1)
-        else:
-            try:
-                color = gtk.gdk.color_parse(color)
-                if instance:
-                    return color
-                red, green, blue = color.red/65535.0, color.green/65535.0, color.blue/65535.0
-                return (red, green, blue)
-            except:
-                return (1, 1, 1)
-
-    @classmethod
-    def set_toolbar_font_color(cls, color):
-        cls.config.set_value(cls.toolbar_font_color, color)
 
     @classmethod
     def set_default_launch(cls, id):
