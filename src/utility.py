@@ -63,3 +63,7 @@ class ManyTest:
         win.show_all()
 
         gtk.main()
+
+if __name__ == '__main__':
+    from tweak.module import ModuleLoader
+    ModuleLoader('modules')

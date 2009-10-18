@@ -2,10 +2,28 @@ import os
 import gtk
 import sys
 import pango
+import inspect
 import gobject
 
 from common.consts import DATA_DIR
 from tweak.utils import icon
+
+class ModuleLoader:
+    modules_list = []
+
+    def __init__(self, path):
+        for f in os.listdir(path):
+            if f.endswith('.py') and f != '__init__.py':
+                module = os.path.splitext(f)[0]
+                package = __import__('.'.join([path, module]))
+                for k, v in inspect.getmembers(getattr(package, module)):
+                    try:
+                        if k != 'TweakModule' and issubclass(v, TweakModule):
+                            self.modules_list.append(v)
+                    except:
+                        continue
+            else:
+                continue
 
 class TweakModule(gtk.VBox):
     __name__ = ''
