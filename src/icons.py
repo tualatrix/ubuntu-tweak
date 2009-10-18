@@ -23,6 +23,7 @@ pygtk.require("2.0")
 import gtk
 import gconf
 
+from tweak.module import TweakModule
 from common.consts import *
 from common.widgets import TweakPage
 from common.factory import WidgetFactory
@@ -103,29 +104,32 @@ class DesktopIcon(gtk.VBox):
             self.entry.get_gsetting().unset()
             self.entry.set_text(_("Unset"))
 
-class Icon(TweakPage):
-    """Desktop Icon settings"""
+class Icon(TweakModule):
+    __name__ = _('Desktop Icon settings')
+    __desc__ = _('Change your desktop icons behavir')
+    __icon__ = 'user-desktop'
+    __url__ = 'http://ubuntu-tweak.com'
 
     def __init__(self):
-        TweakPage.__init__(self, _("Desktop Icon settings"))
+        TweakModule.__init__(self)
 
         for item in desktop_icon:
-            self.pack_start(DesktopIcon(item), False, False, 6)
+            self.add_start(DesktopIcon(item), False, False, 0)
 
         button = WidgetFactory.create("GconfCheckButton", 
                                       label = _("Show \"Network\" icon on desktop"), 
                                       key = "network_icon_visible")
-        self.pack_start(button, False, False, 6)
+        self.add_start(button, False, False, 0)
 
         button = WidgetFactory.create("GconfCheckButton", 
                                       label = _("Show mounted volumes on desktop"),
                                       key = "volumes_visible")
-        self.pack_start(button, False, False, 6)
+        self.add_start(button, False, False, 0)
 
         button = WidgetFactory.create("GconfCheckButton",
                                       label = _('Use "Home Folder" as desktop (Logout for changes to take effect)'),
                                       key = "desktop_is_home_dir")
-        self.pack_start(button, False, False, 6)
+        self.add_start(button, False, False, 0)
 
 if __name__ == "__main__":
     from utility import Test

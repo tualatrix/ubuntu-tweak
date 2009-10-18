@@ -44,6 +44,14 @@ class TweakModule(gtk.VBox):
                 else:
                     print >>sys.stderr, "WARNING: can not get name for '%s'" % o
             self.reparent()
+        else:
+            self.inner_vbox.set_border_width(5)
+
+    def add_start(self, child, expand=True, fill=True, padding=0):
+        self.inner_vbox.pack_start(child, expand, fill, padding)
+
+    def add_end(self, child, expand=True, fill=True, padding=0):
+        self.inner_vbox.pack_end(child, expand, fill, padding)
 
     def draw_title(self):
         eventbox = gtk.EventBox()
