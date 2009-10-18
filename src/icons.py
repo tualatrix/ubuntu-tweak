@@ -25,7 +25,6 @@ import gconf
 
 from tweak import TweakModule
 from common.consts import *
-from common.widgets import TweakPage
 from common.factory import WidgetFactory
 
 computer_icon = \

@@ -31,7 +31,6 @@ from common.consts import *
 from common.utils import get_icon_with_file
 from common.gui import GuiWorker
 from common.appdata import APPS, CATES_DATA
-from common.widgets import TweakPage
 from common.widgets.dialogs import ErrorDialog, InfoDialog, QuestionDialog
 from common.widgets.utils import ProcessDialog
 from common.network.parser import Parser

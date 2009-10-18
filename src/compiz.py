@@ -27,7 +27,7 @@ import gobject
 
 from tweak import TweakModule
 from common.consts import DATA_DIR
-from common.widgets import ListPack, SinglePack, TweakPage
+from common.widgets import ListPack, SinglePack
 from common.widgets.dialogs import InfoDialog
 from common.systeminfo import module_check
 try:

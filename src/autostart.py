@@ -25,7 +25,6 @@ import gobject
 
 from xdg.DesktopEntry import DesktopEntry
 from tweak import TweakModule
-from common.widgets import TweakPage
 from common.widgets.dialogs import ErrorDialog
 from common.utils import *
 

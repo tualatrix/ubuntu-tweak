@@ -38,7 +38,7 @@ from common.appdata import APP_DICT, APPS
 from common.appdata import get_app_logo, get_app_describ
 from common.appdata import get_source_logo, get_source_describ
 from common.policykit import PolkitButton, DbusProxy
-from common.widgets import ListPack, TweakPage, GconfCheckButton
+from common.widgets import ListPack, GconfCheckButton
 from common.widgets.dialogs import *
 from common.factory import WidgetFactory
 from common.package import package_worker, PackageInfo

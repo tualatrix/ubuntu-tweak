@@ -26,9 +26,10 @@ import gconf
 import gettext
 import gobject
 
+from tweak import TweakModule
 from common.consts import *
 from common.inifile import IniFile
-from common.widgets import TweakPage, EntryBox
+from common.widgets import EntryBox
 from common.widgets.dialogs import QuestionDialog, InfoDialog
 from common.utils import get_icon_with_name
 
@@ -242,22 +243,23 @@ class UserdirView(gtk.TreeView):
 
         return menu
 
-class UserDir(TweakPage):
-    """Setting the user default dictories"""
+class UserDir(TweakModule):
+    __name__ = _("Default Folder Locations")
+    __desc__ = _("You can change the paths of the default folders here.\nDon't change the location of your desktop folder unless you know what you are doing.")
+    __icon__ = 'folder-home'
+
     def __init__(self):
-        TweakPage.__init__(self, 
-                _("Default Folder Locations"), 
-                _("You can change the paths of the default folders here.\nDon't change the location of your desktop folder unless you know what you are doing."))
+        TweakModule.__init__(self)
 
         sw = gtk.ScrolledWindow()
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        self.pack_start(sw, True, True, 5)
+        self.add_start(sw, True, True, 0)
 
         dirview = UserdirView()
         sw.add(dirview)
 
         hbox = gtk.HBox(False, 0)
-        self.pack_start(hbox, False, False, 5)
+        self.add_start(hbox, False, False, 0)
 
         button = gtk.Button(stock = gtk.STOCK_REFRESH)
         button.set_sensitive(False)

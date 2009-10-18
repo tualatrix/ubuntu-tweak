@@ -20,14 +20,18 @@
 
 import os
 import gtk
+from tweak import TweakModule
 from common.misc import filesizeformat
 from common.systeminfo import SystemInfo
-from common.widgets import EntryBox, ListPack, TweakPage
+from common.widgets import EntryBox, ListPack
 
-class Computer(TweakPage):
-    """Some options about current user"""
+class Computer(TweakModule):
+    __name__ = _('Computer Details')
+    __desc__ = _('Some useful information about your computer')
+    __icon__ = 'computer'
+
     def __init__(self):
-        TweakPage.__init__(self)
+        TweakModule.__init__(self)
 
         cpumodel = _('Unknown')
 
@@ -53,7 +57,7 @@ class Computer(TweakPage):
                     EntryBox(_("CPU"), cpumodel.strip()),
                     EntryBox(_("Memory"), filesizeformat(str(int(raminfo) * 1024))),
                 ))
-        self.pack_start(box, False, False, 0)
+        self.add_start(box, False, False, 0)
 
         box = ListPack(_("User information"),(
                     EntryBox(_("Current user"),     os.getenv("USER")),
@@ -62,7 +66,7 @@ class Computer(TweakPage):
                     EntryBox(_("Language"),     os.getenv("LANG")),
                 ))
             
-        self.pack_start(box, False, False, 0)
+        self.add_start(box, False, False, 0)
 
 if __name__ == "__main__":
     from utility import Test

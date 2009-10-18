@@ -27,9 +27,10 @@ import shutil
 import gobject
 import gettext
 import gnomevfs
+from tweak import TweakModule
 from common.consts import *
 from common.utils import get_icon_with_type
-from common.widgets import TweakPage, DirView, FlatView
+from common.widgets import DirView, FlatView
 from common.widgets.dialogs import WarningDialog
 
 (
@@ -128,18 +129,19 @@ class DisableScripts(FlatView, AbstractScripts):
     def __init__(self):
         FlatView.__init__(self, self.systemdir, self.userdir)
 
-class Scripts(TweakPage, AbstractScripts):
-    '''Freedom added your docmuent scripts'''
+class Scripts(TweakModule, AbstractScripts):
+    __name__  = _('Manage Scripts')
+    __desc__  = _("You can do all kinds of tasks with scripts.\nYou can drag and drop from File Manager.\n'Scripts' will be added to the context menu.")
+    __icon__ = 'text-x-script'
+
     def __init__(self):
-        TweakPage.__init__(self, 
-                _('Manage Scripts'),
-                _("You can do all kinds of tasks with scripts.\nYou can drag and drop from File Manager.\n'Scripts' will be added to the context menu."))
+        TweakModule.__init__(self)
 
         self.default = DefaultScripts()
         self.config_test()
 
         hbox = gtk.HBox(False, 10)
-        self.pack_start(hbox)
+        self.add_start(hbox)
 
         sw = gtk.ScrolledWindow()
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
@@ -156,7 +158,7 @@ class Scripts(TweakPage, AbstractScripts):
         sw.add(self.disable_scripts)
 
         hbox = gtk.HBox(False, 0)
-        self.pack_start(hbox, False, False, 10)
+        self.add_start(hbox, False, False, 0)
 
         button = gtk.Button(_('Rebuild System Scripts'))
         button.connect('clicked', self.on_rebuild_clicked)

@@ -29,7 +29,6 @@ from common.utils import *
 from common.misc import filesizeformat
 from common.policykit import PolkitButton, DbusProxy
 from common.package import package_worker
-from common.widgets import TweakPage
 from common.widgets.dialogs import *
 from common.widgets.utils import ProcessDialog
 from backends.packageconfig import PATH

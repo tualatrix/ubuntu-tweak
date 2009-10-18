@@ -27,7 +27,7 @@ import gettext
 
 from tweak import TweakModule
 from common.factory import WidgetFactory
-from common.widgets import ListPack, TablePack, TweakPage
+from common.widgets import ListPack, TablePack
 from common.widgets.dialogs import InfoDialog
 
 class Metacity(TweakModule):

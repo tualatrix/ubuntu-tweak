@@ -26,10 +26,10 @@ import sys
 import gobject
 import webbrowser
 
+from tweak import TweakModule
 from common.consts import *
 from common.canvas import RenderCell
 from common.debug import run_traceback
-from common.widgets import TweakPage
 from common.widgets.dialogs import QuestionDialog
 from common.systeminfo import module_check
 from common.config import TweakSettings
@@ -570,7 +570,7 @@ class MainWindow(gtk.Window):
             page = ErrorPage()
 
         page.show_all()
-        if isinstance(page, TweakPage):
+        if isinstance(page, TweakModule):
             page.connect('update', self.on_child_page_update)
             page.connect('call', self.on_child_page_call)
         self.modules[page.__module__] = page

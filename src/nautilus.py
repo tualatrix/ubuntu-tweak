@@ -35,9 +35,10 @@ try:
 except ImportError:
     DISABLE = True
 
+from tweak import TweakModule
 from common.misc import filesizeformat
 from common.factory import WidgetFactory
-from common.widgets import ListPack, TablePack, TweakPage
+from common.widgets import ListPack, TablePack
 from common.widgets.dialogs import InfoDialog, QuestionDialog
 from common.utils import set_label_for_stock_button
 
@@ -95,17 +96,20 @@ class EmblemsView(gtk.IconView):
     def update_model(self):
         pass
 
-class Nautilus(TweakPage):
-    """Nautilus Settings"""
+class Nautilus(TweakModule):
+    __name__ = _('Nautilus Settings')
+    __desc__ = _('Settings your default file manager')
+    __icon__ = 'nautilus'
+
     def __init__(self):
-        TweakPage.__init__(self)
+        TweakModule.__init__(self)
 
         button = WidgetFactory.create("GconfCheckButton", 
                                       label = _('Show advanced permissions in the Nautilus "File Properties" window'),
                                       key = "show_advanced_permissions")
 
         box = ListPack(_("File Browser"), (button, )) 
-        self.pack_start(box, False, False, 0)
+        self.add_start(box, False, False, 0)
 
         boxes = []
         hbox1 = gtk.HBox(False, 5)
@@ -148,7 +152,7 @@ class Nautilus(TweakPage):
         boxes.append(hbox4)
 
         box = ListPack(_('Thumbnails Settings'), boxes)
-        self.pack_start(box, False, False, 0)
+        self.add_start(box, False, False, 0)
 
 
         if not DISABLE:
@@ -174,7 +178,7 @@ class Nautilus(TweakPage):
 
             box.vbox.pack_start(hbox, False, False, 0)
 
-            self.pack_start(box, False, False, 0)
+            self.add_start(box, False, False, 0)
 
     def set_clean_button_label(self, button):
         try:

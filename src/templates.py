@@ -23,9 +23,10 @@ pygtk.require("2.0")
 import os
 import gtk
 import shutil
+from tweak import TweakModule
 from userdir import UserdirFile
 from common.consts import *
-from common.widgets import TweakPage, DirView, FlatView
+from common.widgets import DirView, FlatView
 from common.widgets.dialogs import WarningDialog, ErrorDialog
 from common.utils import set_label_for_stock_button
 
@@ -108,16 +109,20 @@ class DisableTemplate(FlatView):
     def __init__(self):
         FlatView.__init__(self, SYSTEM_DIR, USER_DIR)
 
-class Templates(TweakPage):
+class Templates(TweakModule):
     """Freedom added your docmuent templates"""
+    __name__ = _('Manage Templates')
+    __desc__ = _('Here you can freely manage your document templates.\nYou can add files as templates by dragging them onto this window.\nYou can create new documents based on these templates from the Nautilus right-click menu.')
+    __icon__ = 'x-office-document'
+
     def __init__(self):
-        TweakPage.__init__(self)
+        TweakModule.__init__(self)
 
         if not is_right_path():
             self.set_description(_('Templates path is wrong! The current path is point to "%s".\nPlease reset it to a folder under your Home Folder.') % USER_DIR)
 
             hbox = gtk.HBox(False, 0)
-            self.pack_start(hbox, False, False, 0)
+            self.add_start(hbox, False, False, 0)
 
             button = gtk.Button(stock = gtk.STOCK_GO_FORWARD)
             button.connect('clicked', self.on_go_button_clicked)
@@ -132,14 +137,12 @@ class Templates(TweakPage):
             self.create_interface()
 
     def create_interface(self):
-        self.set_title(_('Manage Templates'))
-        self.set_description(_('Here you can freely manage your document templates.\nYou can add files as templates by dragging them onto this window.\nYou can create new documents based on these templates from the Nautilus right-click menu.'))
 
         self.default = DefaultTemplates()
         self.config_test()
 
         hbox = gtk.HBox(False, 10)
-        self.pack_start(hbox)
+        self.add_start(hbox)
 
         sw = gtk.ScrolledWindow()
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
@@ -156,7 +159,7 @@ class Templates(TweakPage):
         sw.add(self.disable_templates)
 
         hbox = gtk.HBox(False, 0)
-        self.pack_start(hbox, False, False, 10)
+        self.add_start(hbox, False, False, 0)
 
         button = gtk.Button(_("Rebuild System Templates"))
         button.connect("clicked", self.on_rebuild_clicked)

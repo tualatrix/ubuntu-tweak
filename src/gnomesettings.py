@@ -28,7 +28,7 @@ from tweak import TweakModule
 from common.config import TweakSettings
 from common.factory import WidgetFactory
 from common.utils import get_icon_with_name
-from common.widgets import ListPack, TweakPage
+from common.widgets import ListPack
 from common.widgets.dialogs import ErrorDialog, QuestionDialog
 
 class Gnome(TweakModule):

@@ -25,7 +25,7 @@ import pango
 import gobject
 import thread
 
-from common.widgets import TweakPage
+from tweak import TweakModule
 from common.utils import get_icon_with_name, mime_type_get_icon, get_icon_with_app
 from common.gui import GuiWorker
 from common.widgets.dialogs import ErrorDialog
@@ -473,14 +473,16 @@ class TypeEditDialog(gobject.GObject):
     def __getattr__(self, key):
         return getattr(self.dialog, key)
 
-class FileType(TweakPage):
+class FileType(TweakModule):
+    __name__ = _('File Type Manager')
+    __desc__ = _('Here you can manage which application will open which filetypes.')
+    __icon__ = 'application-x-theme'
+
     def __init__(self):
-        TweakPage.__init__(self,
-                _('File Type Manager'),
-                _('Here you can manage which application will open which filetypes.'))
+        TweakModule.__init__(self)
 
         hbox = gtk.HBox(False, 5)
-        self.pack_start(hbox)
+        self.add_start(hbox)
 
         self.cateview = CateView()
         self.cate_selection = self.cateview.get_selection()
@@ -507,7 +509,7 @@ class FileType(TweakPage):
         self.show_have_app = gtk.CheckButton(_('Only show filetypes with an associated application'))
         self.show_have_app.set_active(True)
         self.show_have_app.connect('toggled', self.on_show_all_toggled)
-        self.pack_start(self.show_have_app, False, False, 5)
+        self.add_start(self.show_have_app, False, False, 5)
 
         self.show_all()
 

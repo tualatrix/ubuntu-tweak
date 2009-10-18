@@ -28,7 +28,7 @@ import gettext
 from tweak import TweakModule
 from common.systeminfo import module_check
 from common.factory import WidgetFactory
-from common.widgets import HScaleBox, TablePack, TweakPage
+from common.widgets import HScaleBox, TablePack
 
 class PowerManager(TweakModule):
     __name__ = _('Advanced Powermanager Settings')

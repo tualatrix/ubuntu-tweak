@@ -21,19 +21,24 @@
 import os
 import gtk
 
+from tweak import TweakModule
 from common.policykit import PolkitButton, DbusProxy
 from common.factory import WidgetFactory
-from common.widgets import ListPack, TweakPage
+from common.widgets import ListPack
 from backends import getconfig
 from backends import packageconfig
 
 ROOT_THEMES = '/root/.themes'
 ROOT_ICONS = '/root/.icons'
 
-class LockDown(TweakPage):
+class LockDown(TweakModule):
+    __name__ = _('Security Related')
+    __desc__ = _('Setup some security options')
+    __icon__ = 'stock_keyring'
+
     """Lock down some function"""
     def __init__(self):
-        TweakPage.__init__(self)
+        TweakModule.__init__(self)
         self.get_proxy = DbusProxy(getconfig.PATH, getconfig.INTERFACE)
 
         box = ListPack(_("System Security options"), (
@@ -57,7 +62,7 @@ class LockDown(TweakPage):
                                          key="disable_user_switching"),
             ))
 
-        self.pack_start(box, False, False, 0)
+        self.add_start(box, False, False, 0)
 
         self.fix_theme_button = gtk.CheckButton(_('Fix the theme appearance when grant the root privileges'))
         if self.get_proxy.is_exists(ROOT_THEMES) and self.get_proxy.is_exists(ROOT_ICONS):
@@ -66,7 +71,7 @@ class LockDown(TweakPage):
         self.fix_theme_button.connect('toggled', self.on_fix_theme_btn_taggled)
         self.fix_theme_button.set_sensitive(False)
         box = ListPack(_('Miscellaneous Options'), (self.fix_theme_button,))
-        self.pack_start(box, False, False, 0)
+        self.add_start(box, False, False, 0)
 
         # button
         hbox = gtk.HBox(False, 0)

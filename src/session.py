@@ -27,7 +27,7 @@ import gettext
 
 from tweak import TweakModule
 from common.consts import *
-from common.widgets import ListPack, SinglePack, TweakPage
+from common.widgets import ListPack, SinglePack
 from common.factory import WidgetFactory
 
 class Session(TweakModule):

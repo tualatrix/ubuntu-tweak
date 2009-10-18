@@ -34,7 +34,6 @@ from common.systeminfo import module_check
 from common.policykit import PolkitButton, DbusProxy
 from common.utils import set_label_for_stock_button
 from common.package import package_worker
-from common.widgets import TweakPage
 from common.widgets.dialogs import *
 from backends.packageconfig import PATH
 
