@@ -24,6 +24,8 @@ import os
 import gtk
 import gconf
 import gobject
+
+from tweak import TweakModule
 from common.consts import DATA_DIR
 from common.widgets import ListPack, SinglePack, TweakPage
 from common.widgets.dialogs import InfoDialog
@@ -216,11 +218,13 @@ class SnapWindow(gtk.CheckButton, CompizSetting):
 
         self.set_active(self.plugin.Enabled)
 
-class Compiz(TweakPage, CompizSetting):
-    """Compiz Fusion tweak"""
+class Compiz(TweakModule, CompizSetting):
+    __name__ = _('Compiz Settings')
+    __desc__ = _('Setting with your amazing eye-candy desktop')
+    __icon__ = 'wmtweaks'
 
     def __init__(self):
-        TweakPage.__init__(self)
+        TweakModule.__init__(self)
 
         self.create_interface()
 
@@ -242,19 +246,19 @@ class Compiz(TweakPage, CompizSetting):
             hbox = gtk.HBox(False, 0)
             hbox.pack_start(self.create_edge_setting(), True, False, 0)
             edge_setting = SinglePack(_('Edge Settings'), hbox)
-            self.pack_start(edge_setting, False, False, 0)
+            self.add_start(edge_setting, False, False, 0)
 
             self.snap = SnapWindow(_("Enable snapping windows"), self)
             self.wobbly_w = WobblyWindow(_("Enable wobbly windows"), self);
 
             box = ListPack(_("Window Effects"), (self.snap, self.wobbly_w))
-            self.pack_start(box, False, False, 0)
+            self.add_start(box, False, False, 0)
 
             button1 = OpacityMenu(_("Enable transparent menus"))
             self.wobbly_m = WobblyMenu(_("Enable wobbly menus"), self)
 
             box = ListPack(_("Menu Effects"), (button1, self.wobbly_m))
-            self.pack_start(box, False, False, 0)
+            self.add_start(box, False, False, 0)
 
             if module_check.has_apt() and package_worker.get_cache():
                 box = ListPack(_("Useful Extensions"), (
@@ -270,7 +274,7 @@ class Compiz(TweakPage, CompizSetting):
 
                 box.vbox.pack_start(hbox, False, False, 0)
 
-                self.pack_start(box, False, False, 0)
+                self.add_start(box, False, False, 0)
         else:
             box = ListPack(_("Prerequisite Conditions"), (
                 self.advanced_settings,
@@ -283,7 +287,7 @@ class Compiz(TweakPage, CompizSetting):
             hbox.pack_end(self.button, False, False, 0)
 
             box.vbox.pack_start(hbox, False, False, 0)
-            self.pack_start(box, False, False, 0)
+            self.add_start(box, False, False, 0)
 
     def combo_box_changed_cb(self, widget, edge):
         """If the previous setting is none, then select the add edge"""
