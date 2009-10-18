@@ -23,10 +23,12 @@ pygtk.require('2.0')
 import os
 import gtk
 import sys
+import pango
 import gobject
 import webbrowser
 
 from tweak import TweakModule, ModuleLoader
+from tweak.utils import icon
 from common.consts import *
 from common.debug import run_traceback
 from common.widgets.dialogs import QuestionDialog
@@ -181,12 +183,12 @@ def AptErrorPage(parent = None):
 ) = range(7)
 
 MODULES_TABLE = [
-    [WELCOME, 'welcome.png', _("Welcome"), Welcome, None],
-    [APPLICATIONS, 'applications.png', _("Applications"), None, 'application'],
-    [STARTUP, 'startup.png', _("Startup"), None, 'startup'],
-    [DESKTOP, 'desktop.png', _("Desktop"), None, 'desktop'],
-    [PERSONAL, 'personal.png', _("Personal"), None, 'personal'],
-    [SYSTEM, 'system.png', _("System"), None, 'system'],
+    [WELCOME, 'ubuntu-tweak', _("Welcome"), Welcome, None],
+    [APPLICATIONS, '', _("Applications"), None, 'application'],
+    [STARTUP, '', _("Startup"), None, 'startup'],
+    [DESKTOP, '', _("Desktop"), None, 'desktop'],
+    [PERSONAL, '', _("Personal"), None, 'personal'],
+    [SYSTEM, '', _("System"), None, 'system'],
 ]
 
 class MainWindow(gtk.Window):
@@ -216,9 +218,12 @@ class MainWindow(gtk.Window):
         self.model = self.__create_model()
         self.update_model()
         self.treeview = gtk.TreeView(self.model)
+        self.treeview.set_enable_tree_lines(True)
+
         self.__add_columns(self.treeview)
         selection = self.treeview.get_selection()
         selection.connect("changed", self.selection_cb)
+        self.treeview.expand_all()
 
         sw.add(self.treeview)
 
@@ -304,13 +309,16 @@ class MainWindow(gtk.Window):
         iter = None
 
         for i, module in enumerate(MODULES_TABLE):
-            pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'pixmaps', module[MODULE_LOGO]))
+            if module[MODULE_LOGO]:
+                pixbuf = icon.get_with_name(module[MODULE_LOGO], size=32)
+            else:
+                pixbuf = None
             title = module[MODULE_TITLE]
             iter = model.append(None)
             model.set(iter,
                 ID_COLUMN, module[MODULE_ID],
                 LOGO_COLUMN, pixbuf,
-                TITLE_COLUMN, title,
+                TITLE_COLUMN, "<b><big>%s</big></b>" % title,
             )
 
             if module[MODULE_TYPE]:
@@ -336,12 +344,13 @@ class MainWindow(gtk.Window):
                 iter = model.iter_children(iter)
                 id = model.get_value(iter, ID_COLUMN)
 
+                widget.select_iter(iter)
                 if id not in self.moduletable:
                     self.notebook.set_current_page(1)
 
                     gobject.timeout_add(5, self.__create_newpage, id)
                 else:
-                    self.__select_child_item(name)
+                    self.__select_child_item(id)
             else:
                 id = model.get_value(iter, ID_COLUMN)
 
@@ -394,16 +403,30 @@ class MainWindow(gtk.Window):
         treeview.append_column(column)
 
         column = gtk.TreeViewColumn("Title") 
-        column.set_spacing(5) 
+        column.set_spacing(3)
         renderer = gtk.CellRendererPixbuf()
         column.pack_start(renderer, False)
         column.set_attributes(renderer, pixbuf=LOGO_COLUMN)
+        column.set_cell_data_func(renderer, self.logo_column_view_func)
         renderer = gtk.CellRendererText()
+        renderer.set_property('ellipsize',  pango.ELLIPSIZE_END)
         column.pack_start(renderer, True)
-        column.set_attributes(renderer, text=TITLE_COLUMN)
+        column.set_attributes(renderer, markup=TITLE_COLUMN)
 
         treeview.set_headers_visible(False)
         treeview.append_column(column)
+
+        column = gtk.TreeViewColumn()
+        column.set_visible(False)
+        treeview.append_column(column)
+        treeview.set_expander_column(column)
+
+    def logo_column_view_func(self, cell_layout, renderer, model, iter):
+        icon = model.get_value(iter, LOGO_COLUMN)
+        if icon == None:
+            renderer.set_property("visible", False)
+        else:
+            renderer.set_property("visible", True)
 
     def create_notebook(self):
         """
