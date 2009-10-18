@@ -31,10 +31,11 @@ from common.widgets import ListPack, TablePack
 from common.widgets.dialogs import InfoDialog
 
 class Metacity(TweakModule):
-    __name__ = _('Window Manager Settings')
+    __title__ = _('Window Manager Settings')
     __desc__ = _('Some options about Metacity Window Manager')
     __icon__ = 'preferences-system-windows'
     __url__ = 'http://ubuntu-tweak.com'
+    __category__ = 'desktop'
 
     def __init__(self):
         TweakModule.__init__(self)
@@ -97,7 +98,3 @@ class Metacity(TweakModule):
     def on_compositing_button_toggled(self, widget):
         if widget.get_active():
             InfoDialog(_('To enable the compositing feature of metacity, you should manually disable Visual Effects in "Appearance".')).launch()
-
-if __name__ == '__main__':
-    from utility import Test
-    Test(Metacity)

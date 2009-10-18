@@ -32,9 +32,10 @@ ROOT_THEMES = '/root/.themes'
 ROOT_ICONS = '/root/.icons'
 
 class LockDown(TweakModule):
-    __name__ = _('Security Related')
+    __title__ = _('Security Related')
     __desc__ = _('Setup some security options')
     __icon__ = ['gtk-dialog-authentication', 'stock_keyring']
+    __category__ = 'system'
 
     """Lock down some function"""
     def __init__(self):
@@ -98,7 +99,3 @@ class LockDown(TweakModule):
             proxy = DbusProxy(packageconfig.PATH)
         else:
             AuthenticateFailDialog().launch()
-
-if __name__ == "__main__":
-    from utility import Test
-    Test(LockDown)

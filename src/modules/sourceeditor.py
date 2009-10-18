@@ -349,11 +349,12 @@ class SourceView(gtk.TextView):
         return self.path
 
 class SourceEditor(TweakModule):
-    __name__ = _('Source Editor')
+    __title__ = _('Source Editor')
     __desc__ = _('Freely edit your software sources to fit your needs.\n'
                 'Click "Update Sources" if you want to change the sources.\n'
                 'Click "Submit Sources" if you want to share your sources with other people.')
     __icon__ = 'system-software-update'
+    __category__ = 'application'
 
     def __init__(self):
         TweakModule.__init__(self, 'sourceeditor.glade')
@@ -557,7 +558,3 @@ class SourceEditor(TweakModule):
                 ServerErrorDialog().launch()
         else:
             AuthenticateFailDialog().launch()
-
-if __name__ == '__main__':
-    from utility import Test
-    Test(SourceEditor)

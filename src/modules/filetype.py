@@ -474,9 +474,10 @@ class TypeEditDialog(gobject.GObject):
         return getattr(self.dialog, key)
 
 class FileType(TweakModule):
-    __name__ = _('File Type Manager')
+    __title__ = _('File Type Manager')
     __desc__ = _('Here you can manage which application will open which filetypes.')
     __icon__ = 'application-x-theme'
+    __category__ = 'system'
 
     def __init__(self):
         TweakModule.__init__(self)
@@ -556,7 +557,3 @@ class FileType(TweakModule):
             self.typeview.update_model(all = not self.show_have_app.get_active())
         else:
             self.typeview.update_model(filter = type, all = not self.show_have_app.get_active())
-
-if __name__ == "__main__":
-    from utility import Test
-    Test(FileType)

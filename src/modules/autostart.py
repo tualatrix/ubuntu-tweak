@@ -331,11 +331,12 @@ class AutoStartItem(gtk.TreeView):
             return self.gnome_dir
 
 class AutoStart(TweakModule):
-    __name__ = _('Session Programs'),
+    __title__ = _('Session Programs')
     __desc__ = _('Here you can manage what programs get started when you login.\n'
                 'You can hide items from view by selecting and clicking "Remove"\n'
                 'To permanently delete an item, right-click and press "Delete".')
     __icon__ = 'session-properties'
+    __category__ = 'startup'
 
     def __init__(self):
         TweakModule.__init__(self)
@@ -472,7 +473,3 @@ class AutoStart(TweakModule):
                     dialog.destroy()
                     return
             dialog.destroy()
-
-if __name__ == "__main__":
-    from utility import Test
-    Test(AutoStart)

@@ -130,9 +130,10 @@ class DisableScripts(FlatView, AbstractScripts):
         FlatView.__init__(self, self.systemdir, self.userdir)
 
 class Scripts(TweakModule, AbstractScripts):
-    __name__  = _('Manage Scripts')
+    __title__  = _('Manage Scripts')
     __desc__  = _("You can do all kinds of tasks with scripts.\nYou can drag and drop from File Manager.\n'Scripts' will be added to the context menu.")
     __icon__ = 'text-x-script'
+    __category__ = 'personal'
 
     def __init__(self):
         TweakModule.__init__(self)
@@ -188,7 +189,3 @@ class Scripts(TweakModule, AbstractScripts):
     def config_test(self):
         if not os.path.exists(self.systemdir):
             self.default.create()
-
-if __name__ == '__main__':
-    from utility import Test
-    Test(Scripts)

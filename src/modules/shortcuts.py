@@ -43,9 +43,10 @@ from compiz import CompizSetting
 ) = range(7)
 
 class Shortcuts(TweakModule):
-    __name__  = _("Shortcut Commands")
+    __title__  = _("Shortcut Commands")
     __desc__  = _("By configuring keyboard shortcuts, you can access your favourite applications instantly.\nEnter the application's command and set the desired shortcut keys.")
     __icon__ = 'preferences-desktop-keyboard-shortcuts'
+    __category__ = 'personal'
 
     def __init__(self):
         TweakModule.__init__(self)
@@ -203,7 +204,3 @@ class Shortcuts(TweakModule):
             else:
                 model.set_value(iter, COLUMN_ICON, None)
                 model.set_value(iter, COLUMN_COMMAND, _("None"))
-
-if __name__ == "__main__":
-    from utility import Test
-    Test(Shortcuts)

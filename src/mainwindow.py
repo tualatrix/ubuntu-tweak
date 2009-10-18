@@ -26,7 +26,7 @@ import sys
 import gobject
 import webbrowser
 
-from tweak import TweakModule
+from tweak import TweakModule, ModuleLoader
 from common.consts import *
 from common.debug import run_traceback
 from common.widgets.dialogs import QuestionDialog
@@ -149,70 +149,11 @@ def AptErrorPage(parent = None):
 
     return vbox
 
-from computer import Computer
-if module_check.has_right_compiz():
-    from compiz import Compiz
-else:
-    Compiz = Distro_Notice
-
-if module_check.is_ubuntu():
-    if package_worker.get_cache():
-        from installer import Installer
-        from cleaner import PackageCleaner
-    else:
-        Installer = AptErrorPage
-        PackageCleaner = AptErrorPage
-else:
-    Installer = Distro_Notice
-    PackageCleaner = Distro_Notice
-
-if module_check.is_supported_ubuntu():
-    from sourceeditor import SourceEditor
-    if package_worker.get_cache():
-        from thirdsoft import ThirdSoft
-    else:
-        ThirdSoft = AptErrorPage
-else:
-    SourceEditor = Distro_Notice
-    ThirdSoft = Distro_Notice
-
-if module_check.is_gnome():
-    from session import Session
-    from autostart import AutoStart
-    from icons import Icon
-    from scripts import Scripts
-    from shortcuts import Shortcuts
-    from powermanager import PowerManager
-    from gnomesettings import Gnome
-    from nautilus import Nautilus
-    from lockdown import LockDown
-    from metacity import Metacity
-    from userdir import UserDir
-    from templates import Templates
-else:
-    Session = Desktop_Notice
-    AutoStart = Desktop_Notice
-    Icon = Desktop_Notice
-    UserDir = Desktop_Notice
-    Templates = Desktop_Notice
-    Scripts = Desktop_Notice
-    Shortcuts = Desktop_Notice
-    PowerManager = Desktop_Notice
-    Gnome = Desktop_Notice
-    Nautilus = Desktop_Notice
-    LockDown = Desktop_Notice
-    Metacity = Desktop_Notice
-
-if module_check.has_gio():
-    from filetype import FileType
-else:
-    FileType = Distro_Notice
-
 (
     ID_COLUMN,
     LOGO_COLUMN,
     TITLE_COLUMN,
-    MODULE_NAME_COLUMN,
+    MODULE_CLASS,
 ) = range(4)
 
 (
@@ -231,73 +172,28 @@ else:
 
 (
     WELCOME,
-    COMPUTER,
     APPLICATIONS,
-    INSTALLER,
-    SOURCEEDITOR,
-    THIRDSOFT,
-    PACKAGE,
     STARTUP,
-    SESSION,
-    AUTOSTART,
     DESKTOP,
-    ICON,
-    METACITY,
-    COMPIZ,
-    GNOME,
     PERSONAL,
-    USERDIR,
-    TEMPLATES,
-    SCRIPTS,
-    SHORTCUTS,
     SYSTEM,
-    FILETYPE,
-    NAUTILUS,
-    POWER,
-    SECU_OPTIONS,
     TOTAL
-) = range(26)
+) = range(7)
 
-MODULES_TABLE = {
-    APPLICATIONS: [INSTALLER, SOURCEEDITOR, THIRDSOFT, PACKAGE],
-    STARTUP: [SESSION, AUTOSTART],
-    DESKTOP: [ICON, METACITY, COMPIZ, GNOME],
-    PERSONAL: [USERDIR, TEMPLATES, SCRIPTS, SHORTCUTS],
-    SYSTEM: [FILETYPE, NAUTILUS, POWER, SECU_OPTIONS],
-}
-
-MODULES = \
-[
-    [WELCOME, 'welcome.png', _("Welcome"), Welcome, SHOW_ALWAYS],
-    [COMPUTER, 'computer.png', _("Computer"), Computer, SHOW_ALWAYS],
-    [APPLICATIONS, 'applications.png', _("Applications"), None, SHOW_CHILD],
-    [INSTALLER, 'installer.png', _("Add/Remove"), Installer, SHOW_NONE],
-    [SOURCEEDITOR, 'sourceeditor.png', _('Source Editor'), SourceEditor, SHOW_NONE],
-    [THIRDSOFT, 'third-soft.png', _("Third-Party Sources"), ThirdSoft, SHOW_NONE],
-    [PACKAGE, 'package.png', _("Package Cleaner"), PackageCleaner, SHOW_NONE],
-    [STARTUP, 'startup.png', _("Startup"), None, SHOW_CHILD],
-    [SESSION, 'session.png', _("Session Control"), Session, SHOW_NONE],
-    [AUTOSTART, 'autostart.png', _("Autostart"), AutoStart, SHOW_NONE],
-    [DESKTOP, 'desktop.png', _("Desktop"), None, SHOW_CHILD],
-    [ICON, 'icon.png', _("Icons"), Icon, SHOW_NONE],
-    [METACITY, 'metacity.png', _("Windows"), Metacity, SHOW_NONE],
-    [COMPIZ, 'compiz-fusion.png', _("Compiz Fusion"), Compiz, SHOW_NONE],
-    [GNOME, 'gnome.png', _("GNOME"), Gnome, SHOW_NONE],
-    [PERSONAL, 'personal.png', _("Personal"), None, SHOW_CHILD],
-    [USERDIR, 'userdir.png', _("Folders"), UserDir, SHOW_NONE],
-    [TEMPLATES, 'templates.png', _("Templates"), Templates, SHOW_NONE],
-    [SCRIPTS, 'scripts.png', _("Scripts"), Scripts, SHOW_NONE],
-    [SHORTCUTS, 'shortcuts.png', _("Shortcuts"), Shortcuts, SHOW_NONE],
-    [SYSTEM, 'system.png', _("System"), None, SHOW_CHILD],
-    [FILETYPE, 'filetype.png', _('File Type Manager'), FileType, SHOW_NONE],
-    [NAUTILUS, 'nautilus.png', _("Nautilus"), Nautilus, SHOW_NONE],
-    [POWER, 'powermanager.png', _("Power Management"), PowerManager, SHOW_NONE],
-    [SECU_OPTIONS, 'lockdown.png', _("Security"), LockDown, SHOW_NONE],
+MODULES_TABLE = [
+    [WELCOME, 'welcome.png', _("Welcome"), Welcome, None],
+    [APPLICATIONS, 'applications.png', _("Applications"), None, 'application'],
+    [STARTUP, 'startup.png', _("Startup"), None, 'startup'],
+    [DESKTOP, 'desktop.png', _("Desktop"), None, 'desktop'],
+    [PERSONAL, 'personal.png', _("Personal"), None, 'personal'],
+    [SYSTEM, 'system.png', _("System"), None, 'system'],
 ]
 
 class MainWindow(gtk.Window):
     def __init__(self):
         gtk.Window.__init__(self)
+
+        self.loader = ModuleLoader('modules')
 
         self.connect("destroy", self.destroy)
         self.set_title(APP)
@@ -327,7 +223,7 @@ class MainWindow(gtk.Window):
         sw.add(self.treeview)
 
         self.notebook = self.create_notebook()
-        self.moduletable = {0: 0}
+        self.moduletable = {'0': 0}
         self.modules = {}
         self.hpaned.pack2(self.notebook)
 
@@ -393,9 +289,8 @@ class MainWindow(gtk.Window):
 
     def __create_model(self):
         model = gtk.TreeStore(
-                    gobject.TYPE_INT,
-                    gtk.gdk.Pixbuf,
                     gobject.TYPE_STRING,
+                    gtk.gdk.Pixbuf,
                     gobject.TYPE_STRING)
 
         return model
@@ -408,40 +303,26 @@ class MainWindow(gtk.Window):
         child_iter = None
         iter = None
 
-        for i, module in enumerate(MODULES):
-            assert module[MODULE_ID] == i
-            if have_child == False:
-                pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'pixmaps', module[MODULE_LOGO]))
-                title = module[MODULE_TITLE]
-                iter = model.append(None)
-                model.set(iter,
-                    ID_COLUMN, module[MODULE_ID],
-                    LOGO_COLUMN, pixbuf,
-                    TITLE_COLUMN, title,
-                    MODULE_NAME_COLUMN, getattr(module[MODULE_FUNC], '__module__', None),
-                )
-                if module[MODULE_TYPE] == SHOW_CHILD:
-                    have_child = True
-                else:
-                    have_child = False
-            else:
-                try:
-                    if MODULES[module[MODULE_ID] + 1][MODULE_TYPE] == SHOW_CHILD:
-                        have_child = False
-                    else:
-                        have_child = True
-                except:
-                    pass
+        for i, module in enumerate(MODULES_TABLE):
+            pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'pixmaps', module[MODULE_LOGO]))
+            title = module[MODULE_TITLE]
+            iter = model.append(None)
+            model.set(iter,
+                ID_COLUMN, module[MODULE_ID],
+                LOGO_COLUMN, pixbuf,
+                TITLE_COLUMN, title,
+            )
 
-                pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'pixmaps', module[MODULE_LOGO]))
-                title = module[MODULE_TITLE]
-                child_iter = model.append(iter)
-                model.set(child_iter,
-                    ID_COLUMN, module[MODULE_ID],
-                    LOGO_COLUMN, pixbuf,
-                    TITLE_COLUMN, title,
-                    MODULE_NAME_COLUMN, getattr(module[MODULE_FUNC], '__module__', None),
-                )
+            if module[MODULE_TYPE]:
+                for module in self.loader.get_category(module[MODULE_TYPE]):
+
+                    child_iter = model.append(iter)
+
+                    model.set(child_iter,
+                        ID_COLUMN, module.__name__,
+                        LOGO_COLUMN, self.loader.get_pixbuf(module.__name__),
+                        TITLE_COLUMN, module.__title__,
+                    )
 
         return model
 
@@ -449,20 +330,21 @@ class MainWindow(gtk.Window):
         model, iter = widget.get_selected()
 
         if iter:
-            id = model.get_value(iter, ID_COLUMN)
-
             if model.iter_has_child(iter):
                 path = model.get_path(iter)
                 self.treeview.expand_row(path, True)
                 iter = model.iter_children(iter)
+                id = model.get_value(iter, ID_COLUMN)
 
                 if id not in self.moduletable:
                     self.notebook.set_current_page(1)
 
-                    gobject.timeout_add(5, self.__create_newpage, id + 1)
+                    gobject.timeout_add(5, self.__create_newpage, id)
                 else:
-                    self.__select_child_item(id + 1)
+                    self.__select_child_item(name)
             else:
+                id = model.get_value(iter, ID_COLUMN)
+
                 if id not in self.moduletable:
                     self.notebook.set_current_page(1)
                     gobject.timeout_add(5, self.__create_newpage, id)
@@ -479,14 +361,14 @@ class MainWindow(gtk.Window):
     def need_shrink(self, id):
         self.model.foreach(self.__shrink_for_each, id)
 
-    def __select_for_each(self, model, path, iter, id):
-        m_id = model.get_value(iter, ID_COLUMN)
-        if id == m_id:
+    def __select_for_each(self, model, path, iter, name):
+        m_name = model.get_value(iter, TITLE_COLUMN)
+        if name == m_name:
             selection = self.treeview.get_selection()
             selection.select_iter(iter)
 
     def __select_for_each_name(self, model, path, iter, name):
-        m_name = model.get_value(iter, MODULE_NAME_COLUMN)
+        m_name = model.get_value(iter, MODULE_CLASS)
         if name == m_name:
             selection = self.treeview.get_selection()
             selection.select_iter(iter)
@@ -494,8 +376,8 @@ class MainWindow(gtk.Window):
     def select_module(self, name):
         self.model.foreach(self.__select_for_each_name, name)
 
-    def __select_child_item(self, id):
-        self.model.foreach(self.__select_for_each, id)
+    def __select_child_item(self, name):
+        self.model.foreach(self.__select_for_each, name)
 
     def __create_newpage(self, id):
         self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
@@ -532,7 +414,7 @@ class MainWindow(gtk.Window):
         notebook.set_scrollable(True)
         notebook.set_show_tabs(False)
 
-        page = MODULES[WELCOME][MODULE_FUNC]
+        page = MODULES_TABLE[WELCOME][MODULE_FUNC]
         notebook.append_page(page())
         notebook.append_page(Wait())
 
@@ -540,8 +422,8 @@ class MainWindow(gtk.Window):
 
     def setup_notebook(self, id):
         try:
-            page = MODULES[id][MODULE_FUNC]
-            page = page()
+            module = self.loader.get_module(id)
+            page = module()
         except:
             run_traceback('error')
             page = ErrorPage()

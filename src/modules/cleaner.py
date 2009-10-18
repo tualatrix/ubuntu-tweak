@@ -411,9 +411,10 @@ class PackageView(gtk.TreeView):
             window.set_cursor(None)
 
 class PackageCleaner(TweakModule):
-    __name__ = _('Package Cleaner')
+    __title__ = _('Package Cleaner')
     __desc__ = _('Free up disk space by removing unneeded packages and cleaning the package download cache.')
     __icon__ = 'edit-clear'
+    __category__ = 'application'
 
     def __init__(self):
         TweakModule.__init__(self)
@@ -554,7 +555,3 @@ class PackageCleaner(TweakModule):
             proxy = DbusProxy(PATH)
         else:
             AuthenticateFailDialog().launch()
-
-if __name__ == '__main__':
-    from utility import Test
-    Test(PackageCleaner)

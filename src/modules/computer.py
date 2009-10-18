@@ -26,9 +26,10 @@ from common.systeminfo import SystemInfo
 from common.widgets import EntryBox, ListPack
 
 class Computer(TweakModule):
-    __name__ = _('Computer Details')
+    __title__ = _('Computer Details')
     __desc__ = _('Some useful information about your computer')
     __icon__ = 'computer'
+    __category__ = 'system'
 
     def __init__(self):
         TweakModule.__init__(self)
@@ -67,7 +68,3 @@ class Computer(TweakModule):
                 ))
             
         self.add_start(box, False, False, 0)
-
-if __name__ == "__main__":
-    from utility import Test
-    Test(Computer)

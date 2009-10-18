@@ -219,9 +219,10 @@ class SnapWindow(gtk.CheckButton, CompizSetting):
         self.set_active(self.plugin.Enabled)
 
 class Compiz(TweakModule, CompizSetting):
-    __name__ = _('Compiz Settings')
+    __title__ = _('Compiz Settings')
     __desc__ = _('Setting with your amazing eye-candy desktop')
     __icon__ = ['compiz', 'wmtweaks']
+    __category__ = 'desktop'
 
     def __init__(self):
         TweakModule.__init__(self)
@@ -426,7 +427,3 @@ class Compiz(TweakModule, CompizSetting):
                     self.button.set_sensitive(True)
         else:
             self.button.set_sensitive(False)
-
-if __name__ == "__main__":
-    from utility import Test
-    Test(Compiz)

@@ -602,9 +602,10 @@ class SourceDetail(gtk.VBox):
             self.description.set_text(description)
 
 class ThirdSoft(TweakModule):
-    __name__  = _('Third-Party Software Sources')
+    __title__  = _('Third-Party Software Sources')
     __desc__ = _('After every release of Ubuntu there comes a feature freeze.\nThis means only applications with bug-fixes get into the repository.\nBy using third-party DEB repositories, you can always keep up-to-date with the latest version.\nAfter adding these repositories, locate and install them using Add/Remove.')
     __icon__ = 'software-properties'
+    __category__ = 'application'
 
     def __init__(self):
         TweakModule.__init__(self)
@@ -767,7 +768,3 @@ class ThirdSoft(TweakModule):
     def on_refresh_button_clicked(self, widget):
         if refresh_source(widget.get_toplevel()):
             self.emit('update', 'installer', 'normal_update')
-
-if __name__ == '__main__':
-    from utility import Test
-    Test(ThirdSoft)

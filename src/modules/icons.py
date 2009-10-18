@@ -104,10 +104,11 @@ class DesktopIcon(gtk.VBox):
             self.entry.set_text(_("Unset"))
 
 class Icon(TweakModule):
-    __name__ = _('Desktop Icon settings')
+    __title__ = _('Desktop Icon settings')
     __desc__ = _('Change your desktop icons behavir')
     __icon__ = 'user-desktop'
     __url__ = 'http://ubuntu-tweak.com'
+    __category__ = 'desktop'
 
     def __init__(self):
         TweakModule.__init__(self)
@@ -129,7 +130,3 @@ class Icon(TweakModule):
                                       label = _('Use "Home Folder" as desktop (Logout for changes to take effect)'),
                                       key = "desktop_is_home_dir")
         self.add_start(button, False, False, 0)
-
-if __name__ == "__main__":
-    from utility import Test
-    Test(Icon)

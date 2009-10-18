@@ -1,4 +1,4 @@
-__all__ (
+__all__ = (
     'ModuleLoader',
     'TweakModule',
 )
@@ -13,7 +13,8 @@ from common.consts import DATA_DIR
 from tweak.utils import icon
 
 class ModuleLoader:
-    modules_list = []
+    module_table = {}
+    id_table = {}
 
     def __init__(self, path):
         for f in os.listdir(path):
@@ -23,14 +24,39 @@ class ModuleLoader:
                 for k, v in inspect.getmembers(getattr(package, module)):
                     try:
                         if k != 'TweakModule' and issubclass(v, TweakModule):
-                            self.modules_list.append(v)
+                            key = v.__category__
+                            if self.module_table.has_key(key):
+                                self.module_table[key].append(v)
+                            else:
+                                self.module_table[key] = [v]
+
+                            self.id_table[v.__name__] = v
                     except:
                         continue
+
+    def get_category(self, category):
+        return self.module_table[category]
+
+    def get_module(self, id):
+        return self.id_table[id]
+
+    def get_pixbuf(self, id):
+        module = self.get_module(id)
+
+        if module.__icon__:
+            if type(module.__icon__) != list:
+                if module.__icon__.endswith('.png'):
+                    icon_path = os.path.join(DATA_DIR, 'pixmaps', module.__icon__)
+                    pixbuf = gtk.gd.pixbuf_new_from_file(icon_path)
+                else:
+                    pixbuf = icon.get_with_name(module.__icon__, size=24)
             else:
-                continue
+                pixbuf = icon.get_with_list(module.__icon__, size=24)
+
+            return pixbuf
 
 class TweakModule(gtk.VBox):
-    __name__ = ''
+    __title__ = ''
     __version__ = ''
     __icon__ = ''
     __author__ = ''
@@ -43,7 +69,7 @@ class TweakModule(gtk.VBox):
     }
 
     def __init__(self, path=None, domain='ubuntu-tweak'):
-        assert(self.__name__ and self.__desc__)
+        assert(self.__title__ and self.__desc__)
 
         gtk.VBox.__init__(self)
 
@@ -99,7 +125,7 @@ class TweakModule(gtk.VBox):
         hbox.pack_start(inner_vbox)
 
         name = gtk.Label()
-        name.set_markup('<b><big>%s</big></b>' % self.__name__)
+        name.set_markup('<b><big>%s</big></b>' % self.__title__)
         name.set_alignment(0, 0.5)
         inner_vbox.pack_start(name, False, False, 0)
 

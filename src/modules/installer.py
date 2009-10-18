@@ -498,10 +498,11 @@ class FetchingDialog(ProcessDialog):
             self.destroy()
 
 class Installer(TweakModule):
-    __name__ = _('Add/Remove Applications')
+    __title__ = _('Add/Remove Applications')
     __desc__ = _('A simple but more effecient method for finding and installing popular packages than the default Add/Remove.')
     __icon__ = 'gnome-app-install'
     __url__ = 'http://ubuntu-tweak.com'
+    __category__ = 'application'
 
     def __init__(self):
         TweakModule.__init__(self, 'installer.glade')
@@ -719,7 +720,3 @@ class Installer(TweakModule):
 
     def use_remote_data(self):
         return self.app_data_parser.is_available and self.cateview.use_remote_data()
-
-if __name__ == '__main__':
-    from utility import Test
-    Test(Installer)

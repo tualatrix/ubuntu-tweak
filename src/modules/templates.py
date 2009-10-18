@@ -111,9 +111,10 @@ class DisableTemplate(FlatView):
 
 class Templates(TweakModule):
     """Freedom added your docmuent templates"""
-    __name__ = _('Manage Templates')
+    __title__ = _('Manage Templates')
     __desc__ = _('Here you can freely manage your document templates.\nYou can add files as templates by dragging them onto this window.\nYou can create new documents based on these templates from the Nautilus right-click menu.')
     __icon__ = 'x-office-document'
+    __category__ = 'personal'
 
     def __init__(self):
         TweakModule.__init__(self)
@@ -204,7 +205,3 @@ class Templates(TweakModule):
         #TODO need to test dir with os.R_OK | os.W_OK | os.X_OK
         if not os.path.exists(SYSTEM_DIR):
             self.default.create()
-
-if __name__ == "__main__":
-    from utility import Test
-    Test(Templates)

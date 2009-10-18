@@ -32,9 +32,10 @@ from common.widgets import ListPack
 from common.widgets.dialogs import ErrorDialog, QuestionDialog
 
 class Gnome(TweakModule):
-    __name__ = _('GNOME Settings')
+    __title__ = _('GNOME Settings')
     __desc__ = _('A lot of GNOME settings about panel and others')
     __icon__ = ['gnome-desktop-config', 'control-center2']
+    __category__ = 'desktop'
 
     def __init__(self):
         TweakModule.__init__(self)
@@ -174,7 +175,3 @@ class Gnome(TweakModule):
         else:
             os.system('rm -r %s' % file)
             os.system('mkdir %s' % file)
-
-if __name__ == "__main__":
-    from utility import Test
-    Test(Gnome)

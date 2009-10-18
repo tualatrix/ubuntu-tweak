@@ -97,9 +97,10 @@ class EmblemsView(gtk.IconView):
         pass
 
 class Nautilus(TweakModule):
-    __name__ = _('Nautilus Settings')
+    __title__ = _('Nautilus Settings')
     __desc__ = _('Settings your default file manager')
     __icon__ = ['file-manager', 'nautilus']
+    __category__ = 'system'
 
     def __init__(self):
         TweakModule.__init__(self)
@@ -231,7 +232,3 @@ class Nautilus(TweakModule):
                     self.button.set_sensitive(True)
         else:
             self.button.set_sensitive(False)
-
-if __name__ == "__main__":
-    from utility import Test
-    Test(Nautilus)

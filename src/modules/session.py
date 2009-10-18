@@ -31,9 +31,10 @@ from common.widgets import ListPack, SinglePack
 from common.factory import WidgetFactory
 
 class Session(TweakModule):
-    __name__ = _('GNOME Session control')
+    __title__ = _('Session control')
     __desc__ = _('Control your system session releated features')
     __icon__ = 'gnome-session-hibernate'
+    __category__ = 'startup'
 
     def __init__(self):
         TweakModule.__init__(self)
@@ -153,7 +154,3 @@ class Session(TweakModule):
             self.button.set_sensitive(True)
         else:
             self.button.set_sensitive(False)
-
-if __name__ == "__main__":
-    from utility import Test
-    Test(Session)

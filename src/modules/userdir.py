@@ -244,9 +244,10 @@ class UserdirView(gtk.TreeView):
         return menu
 
 class UserDir(TweakModule):
-    __name__ = _("Default Folder Locations")
+    __title__ = _("Default Folder Locations")
     __desc__ = _("You can change the paths of the default folders here.\nDon't change the location of your desktop folder unless you know what you are doing.")
     __icon__ = ['folder-home', 'gnome-fs-home']
+    __category__ = 'personal'
 
     def __init__(self):
         TweakModule.__init__(self)
@@ -275,7 +276,3 @@ class UserDir(TweakModule):
 
     def on_dirview_changed(self, widget, button):
         button.set_sensitive(True)
-
-if __name__ == "__main__":
-    from utility import Test
-    Test(UserDir)

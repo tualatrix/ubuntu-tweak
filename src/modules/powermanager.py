@@ -31,9 +31,10 @@ from common.factory import WidgetFactory
 from common.widgets import HScaleBox, TablePack
 
 class PowerManager(TweakModule):
-    __name__ = _('Advanced Powermanager Settings')
+    __title__ = _('Advanced Powermanager Settings')
     __desc__ = _('Control your computer\'s power managerment')
     __icon__ = 'gnome-power-manager'
+    __category__ = 'system'
 
     def __init__(self):
         TweakModule.__init__(self)
@@ -91,7 +92,3 @@ class PowerManager(TweakModule):
             ])
                 
             self.add_start(box, False, False, 0)
-
-if __name__ == "__main__":
-    from utility import Test
-    Test(PowerManager)
