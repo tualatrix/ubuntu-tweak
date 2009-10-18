@@ -25,19 +25,23 @@ import os
 import gconf
 import gettext
 
+from tweak import TweakModule
 from common.consts import *
 from common.widgets import ListPack, SinglePack, TweakPage
 from common.factory import WidgetFactory
 
-class Session(TweakPage):
-    """GNOME Session control"""
-    def __init__(self):
-        TweakPage.__init__(self)
+class Session(TweakModule):
+    __name__ = _('GNOME Session control')
+    __desc__ = _('Control your system session releated features')
+    __icon__ = 'gnome-session-hibernate'
 
-        self.pack_start(self.session_control_box(), False, False, 0)
+    def __init__(self):
+        TweakModule.__init__(self)
+
+        self.add_start(self.session_control_box(), False, False, 0)
 
         box = SinglePack(_('Splash Screen (Click On Image)'), self.splash_hbox())
-        self.pack_start(box, False, False, 0)
+        self.add_start(box, False, False, 0)
 
     def change_splash_cb(self, widget, data = None):
         dialog = gtk.FileChooserDialog(_("Choose a splash image"),action = gtk.FILE_CHOOSER_ACTION_OPEN, buttons = (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, gtk.STOCK_OPEN, gtk.RESPONSE_ACCEPT))
