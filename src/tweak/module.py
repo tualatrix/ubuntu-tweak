@@ -115,6 +115,7 @@ class TweakModule(gtk.VBox):
             else:
                 pixbuf = icon.get_with_name(self.__icon__, size=48)
                 image = gtk.image_new_from_pixbuf(pixbuf)
+            image.set_alignment(0, 0)
             hbox.pack_end(image, False, False, 0)
 
         vbox.pack_start(gtk.HSeparator(), False, False, 0)

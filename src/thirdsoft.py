@@ -30,6 +30,7 @@ import apt_pkg
 import webbrowser
 import urllib
 
+from tweak import TweakModule
 from common.config import Config, TweakSettings
 from common.consts import *
 from common.sourcedata import SOURCES_LIST, SOURCES_DATA, SOURCES_DEPENDENCIES, SOURCES_CONFLICTS
@@ -600,16 +601,18 @@ class SourceDetail(gtk.VBox):
         if description:
             self.description.set_text(description)
 
-class ThirdSoft(TweakPage):
+class ThirdSoft(TweakModule):
+    __name__  = _('Third-Party Software Sources')
+    __desc__ = _('After every release of Ubuntu there comes a feature freeze.\nThis means only applications with bug-fixes get into the repository.\nBy using third-party DEB repositories, you can always keep up-to-date with the latest version.\nAfter adding these repositories, locate and install them using Add/Remove.')
+    __icon__ = 'software-properties'
+
     def __init__(self):
-        TweakPage.__init__(self, 
-                _('Third-Party Software Sources'), 
-                _('After every release of Ubuntu there comes a feature freeze.\nThis means only applications with bug-fixes get into the repository.\nBy using third-party DEB repositories, you can always keep up-to-date with the latest version.\nAfter adding these repositories, locate and install them using Add/Remove.'))
+        TweakModule.__init__(self)
 
         sw = gtk.ScrolledWindow()
         sw.set_shadow_type(gtk.SHADOW_ETCHED_IN)
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        self.pack_start(sw)
+        self.add_start(sw)
 
         self.treeview = SourcesView()
         self.treeview.connect('sourcechanged', self.colleague_changed)
@@ -619,7 +622,7 @@ class ThirdSoft(TweakPage):
         sw.add(self.treeview)
 
         self.expander = gtk.Expander(_('Details'))
-        self.pack_start(self.expander, False, False, 0)
+        self.add_start(self.expander, False, False, 0)
         self.sourcedetail = SourceDetail()
         self.expander.set_sensitive(False)
         self.expander.add(self.sourcedetail)
