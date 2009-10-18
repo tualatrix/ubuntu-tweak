@@ -34,6 +34,9 @@ class ModuleLoader:
                     except:
                         continue
 
+        for k in self.module_table.keys():
+            self.module_table[k].sort()
+
     def get_category(self, category):
         return self.module_table[category]
 
