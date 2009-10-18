@@ -27,7 +27,6 @@ import gobject
 import webbrowser
 
 from common.consts import *
-from common.canvas import RenderCell
 from common.debug import run_traceback
 from common.widgets import TweakPage
 from common.widgets.dialogs import QuestionDialog
@@ -211,9 +210,9 @@ else:
 
 (
     ID_COLUMN,
-    DATA_COLUMN,
+    LOGO_COLUMN,
+    TITLE_COLUMN,
     MODULE_NAME_COLUMN,
-    CHILD_COLUMN,
 ) = range(4)
 
 (
@@ -296,42 +295,6 @@ MODULES = \
     [SECU_OPTIONS, 'lockdown.png', _("Security"), LockDown, SHOW_NONE],
 ]
 
-class ItemCellRenderer(gtk.GenericCellRenderer):
-    __gproperties__ = {
-        "data": (gobject.TYPE_PYOBJECT, "Data", "Data", gobject.PARAM_READWRITE ), 
-    }
-   
-    def __init__(self):
-        self.__gobject_init__()
-        self.height = 36
-        self.width = 120
-        self.set_fixed_size(self.width, self.height)
-        self.data = None
-        
-    def do_set_property(self, pspec, value):
-        setattr(self, pspec.name, value)
-        
-    def do_get_property(self, pspec):
-        return getattr(self, pspec.name)
-        
-    def on_render(self, window, widget, background_area, cell_area, expose_area, flags):
-        if not self.data: return
-        cairo = window.cairo_create()
-        icon, title, type = self.data
-        
-        x, y, width, height = expose_area
-        cell_area = gtk.gdk.Rectangle(x, y, width, height)
-
-        RenderCell(self,
-                   cairo, 
-                   title, 
-                   icon,
-                   type,
-                   cell_area)
-
-    def on_get_size(self, widget, cell_area = None ):
-        return (0, 0, self.width, self.height )
-        
 class MainWindow(gtk.Window):
     def __init__(self):
         gtk.Window.__init__(self)
@@ -429,14 +392,15 @@ class MainWindow(gtk.Window):
         self.hpaned.set_position(TweakSettings.get_paned_size())
 
     def __create_model(self):
-        model = gtk.ListStore(
+        model = gtk.TreeStore(
                     gobject.TYPE_INT,
-                    gobject.TYPE_PYOBJECT,
+                    gtk.gdk.Pixbuf,
+                    gobject.TYPE_STRING,
                     gobject.TYPE_STRING)
 
         return model
 
-    def update_model(self, id = None):
+    def update_model(self):
         model = self.model
         model.clear()
 
@@ -446,51 +410,56 @@ class MainWindow(gtk.Window):
 
         for i, module in enumerate(MODULES):
             assert module[MODULE_ID] == i
-
-            if module[MODULE_TYPE] in (SHOW_ALWAYS, SHOW_CHILD):
-                icon = os.path.join(DATA_DIR, 'pixmaps', module[MODULE_LOGO])
+            if have_child == False:
+                pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'pixmaps', module[MODULE_LOGO]))
                 title = module[MODULE_TITLE]
                 iter = model.append(None)
                 model.set(iter,
                     ID_COLUMN, module[MODULE_ID],
-                    DATA_COLUMN, (icon, title, module[MODULE_TYPE]),
+                    LOGO_COLUMN, pixbuf,
+                    TITLE_COLUMN, title,
                     MODULE_NAME_COLUMN, getattr(module[MODULE_FUNC], '__module__', None),
                 )
+                if module[MODULE_TYPE] == SHOW_CHILD:
+                    have_child = True
+                else:
+                    have_child = False
+            else:
+                try:
+                    if MODULES[module[MODULE_ID] + 1][MODULE_TYPE] == SHOW_CHILD:
+                        have_child = False
+                    else:
+                        have_child = True
+                except:
+                    pass
 
-            if i == id:
-                for child_id in MODULES_TABLE[id]:
-                    module = MODULES[child_id]
-                    icon = os.path.join(DATA_DIR, 'pixmaps', module[MODULE_LOGO])
-                    title = module[MODULE_TITLE]
-                    iter = model.append(None)
-                    model.set(iter,
-                        ID_COLUMN, module[MODULE_ID],
-                        DATA_COLUMN, (icon, title, module[MODULE_TYPE]),
-                        MODULE_NAME_COLUMN, getattr(module[MODULE_FUNC], '__module__', None),
-                    )
+                pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'pixmaps', module[MODULE_LOGO]))
+                title = module[MODULE_TITLE]
+                child_iter = model.append(iter)
+                model.set(child_iter,
+                    ID_COLUMN, module[MODULE_ID],
+                    LOGO_COLUMN, pixbuf,
+                    TITLE_COLUMN, title,
+                    MODULE_NAME_COLUMN, getattr(module[MODULE_FUNC], '__module__', None),
+                )
 
         return model
 
     def selection_cb(self, widget):
         model, iter = widget.get_selected()
+
         if iter:
             id = model.get_value(iter, ID_COLUMN)
-            data = model.get_value(iter, DATA_COLUMN)
 
-            if data[-1] == SHOW_CHILD:
-                self.shrink = False
-                self.need_shrink(id)
-                if self.shrink:
-                    self.update_model()
-                    return
+            if model.iter_has_child(iter):
+                path = model.get_path(iter)
+                self.treeview.expand_row(path, True)
+                iter = model.iter_children(iter)
 
-                self.update_model(id)
-                child_id =  id + 1
-
-                if child_id not in self.moduletable:
+                if id not in self.moduletable:
                     self.notebook.set_current_page(1)
 
-                    gobject.timeout_add(5, self.__create_newpage, child_id)
+                    gobject.timeout_add(5, self.__create_newpage, id + 1)
                 else:
                     self.__select_child_item(id + 1)
             else:
@@ -538,11 +507,19 @@ class MainWindow(gtk.Window):
         self.window.set_cursor(None)
 
     def __add_columns(self, treeview):
-        column = gtk.TreeViewColumn('ID', gtk.CellRendererText(),text = ID_COLUMN)
+        column = gtk.TreeViewColumn('ID', gtk.CellRendererText(), text=ID_COLUMN)
         column.set_visible(False)
         treeview.append_column(column)
 
-        column = gtk.TreeViewColumn('DATA', ItemCellRenderer(), data = DATA_COLUMN)
+        column = gtk.TreeViewColumn("Title") 
+        column.set_spacing(5) 
+        renderer = gtk.CellRendererPixbuf()
+        column.pack_start(renderer, False)
+        column.set_attributes(renderer, pixbuf=LOGO_COLUMN)
+        renderer = gtk.CellRendererText()
+        column.pack_start(renderer, True)
+        column.set_attributes(renderer, text=TITLE_COLUMN)
+
         treeview.set_headers_visible(False)
         treeview.append_column(column)
 

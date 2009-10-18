@@ -30,7 +30,6 @@ class PreferencesDialog:
         self.dialog = self.worker.get_object('preferences_dialog')
 
         self.setup_window_preference()
-        self.setup_color_preference()
         self.setup_launch_function()
         self.setup_other_features()
 
@@ -59,23 +58,6 @@ class PreferencesDialog:
         toolbar_size.show()
         toolbar_size.connect('value-changed', self.on_value_changed)
         table.attach(toolbar_size, 1, 3, 2, 3)
-
-    def setup_color_preference(self):
-        colorbutton = self.worker.get_object('colorbutton')
-        colorbutton.set_color(TweakSettings.get_toolbar_color(True))
-        colorbutton.connect('color-set', self.on_color_set)
-
-        reset_button = self.worker.get_object('reset_button')
-        set_label_for_stock_button(reset_button, _('Reset'))
-        reset_button.connect('clicked', self.on_reset_clicked, colorbutton)
-
-        font_colorbutton = self.worker.get_object('font_colorbutton')
-        font_colorbutton.set_color(TweakSettings.get_toolbar_font_color(True))
-        font_colorbutton.connect('color-set', self.on_font_color_set)
-
-        font_reset_button = self.worker.get_object('font_reset_button')
-        set_label_for_stock_button(font_reset_button, _('Reset'))
-        font_reset_button.connect('clicked', self.on_font_reset_clicked, font_colorbutton)
 
     def setup_launch_function(self):
         from mainwindow import MODULES
