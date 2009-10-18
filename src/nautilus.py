@@ -99,7 +99,7 @@ class EmblemsView(gtk.IconView):
 class Nautilus(TweakModule):
     __name__ = _('Nautilus Settings')
     __desc__ = _('Settings your default file manager')
-    __icon__ = 'nautilus'
+    __icon__ = ['file-manager', 'nautilus']
 
     def __init__(self):
         TweakModule.__init__(self)

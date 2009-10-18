@@ -34,7 +34,7 @@ ROOT_ICONS = '/root/.icons'
 class LockDown(TweakModule):
     __name__ = _('Security Related')
     __desc__ = _('Setup some security options')
-    __icon__ = 'stock_keyring'
+    __icon__ = ['gtk-dialog-authentication', 'stock_keyring']
 
     """Lock down some function"""
     def __init__(self):

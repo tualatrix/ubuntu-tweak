@@ -109,14 +109,19 @@ class TweakModule(gtk.VBox):
             inner_vbox.pack_start(desc, False, False, 0)
 
         if self.__icon__:
-            if self.__icon__.endswith('.png'):
-                icon_path = os.path.join(DATA_DIR, 'pixmaps', self.__icon__)
-                image = gtk.image_new_from_file(icon_path)
+            if type(self.__icon__) != list:
+                if self.__icon__.endswith('.png'):
+                    icon_path = os.path.join(DATA_DIR, 'pixmaps', self.__icon__)
+                    image = gtk.image_new_from_file(icon_path)
+                else:
+                    pixbuf = icon.get_with_name(self.__icon__, size=48)
+                    image = gtk.image_new_from_pixbuf(pixbuf)
             else:
-                pixbuf = icon.get_with_name(self.__icon__, size=48)
+                pixbuf = icon.get_with_list(self.__icon__, size=48)
                 image = gtk.image_new_from_pixbuf(pixbuf)
 
-            image.set_alignment(0, 0.2)
+            image.set_alignment(0, 0)
+            image.set_padding(5, 5)
             hbox.pack_end(image, False, False, 0)
 
         vbox.pack_start(gtk.HSeparator(), False, False, 0)

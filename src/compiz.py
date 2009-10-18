@@ -221,7 +221,7 @@ class SnapWindow(gtk.CheckButton, CompizSetting):
 class Compiz(TweakModule, CompizSetting):
     __name__ = _('Compiz Settings')
     __desc__ = _('Setting with your amazing eye-candy desktop')
-    __icon__ = 'wmtweaks'
+    __icon__ = ['compiz', 'wmtweaks']
 
     def __init__(self):
         TweakModule.__init__(self)

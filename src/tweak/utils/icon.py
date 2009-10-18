@@ -7,6 +7,19 @@ __all__ = (
 
 icontheme = gtk.icon_theme_get_default()
 
+def get_with_list(list, size):
+    pixbuf = None
+    for name in list:
+        try:
+            pixbuf = icontheme.load_icon(name, size, 0)
+        except:
+            continue
+
+    if pixbuf is None:
+        return get_with_name('name', size=size)
+    else:
+        return pixbuf
+
 def get_with_name(name, alter='gtk-execute', size=24):
     try:
         pixbuf = icontheme.load_icon(name, size, 0)
