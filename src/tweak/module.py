@@ -1,3 +1,7 @@
+__all__ (
+    'ModuleLoader',
+    'TweakModule',
+)
 import os
 import gtk
 import sys

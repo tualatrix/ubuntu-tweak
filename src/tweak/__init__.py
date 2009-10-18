@@ -1,1 +1,1 @@
-from module import TweakModule
+from module import *
