@@ -24,17 +24,20 @@ import os
 import gtk
 import gconf
 
+from tweak import TweakModule
 from common.config import TweakSettings
 from common.factory import WidgetFactory
 from common.utils import get_icon_with_name
 from common.widgets import ListPack, TweakPage
 from common.widgets.dialogs import ErrorDialog, QuestionDialog
 
-class Gnome(TweakPage):
-    """GNOME Settings"""
+class Gnome(TweakModule):
+    __name__ = _('GNOME Settings')
+    __desc__ = _('A lot of GNOME settings about panel and others')
+    __icon__ = 'gnome-panel'
 
     def __init__(self):
-        TweakPage.__init__(self)
+        TweakModule.__init__(self)
 
         self.__setting = TweakSettings()
 
@@ -60,14 +63,14 @@ class Gnome(TweakPage):
                     changeicon_hbox,
                     notify_hbox,
             ))
-        self.pack_start(box, False, False, 0)
+        self.add_start(box, False, False, 0)
 
         box = ListPack(_("Screensaver"), (
                     WidgetFactory.create("GconfCheckButton", 
                                          label = _("Enable user switching when screen is locked."), 
                                          key = "user_switch_enabled"),
             ))
-        self.pack_start(box, False, False, 0)
+        self.add_start(box, False, False, 0)
 
         self.recently_used = gtk.CheckButton(_('Enable system-wide "Recently Documents" list'))
         self.recently_used.connect('toggled', self.colleague_changed)
@@ -75,7 +78,7 @@ class Gnome(TweakPage):
         box = ListPack(_("History"), (
                     self.recently_used,
             ))
-        self.pack_start(box, False, False, 0)
+        self.add_start(box, False, False, 0)
 
     def create_notify_hbox(self):
         hbox = gtk.HBox(False, 10)
