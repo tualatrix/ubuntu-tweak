@@ -202,7 +202,6 @@ class MainWindow(gtk.Window):
         self.set_default_size(740, 480)
         self.set_position(gtk.WIN_POS_CENTER)
         self.set_border_width(10)
-        gtk.window_set_default_icon_from_file(os.path.join(DATA_DIR, 'pixmaps/ubuntu-tweak.png'))
 
         vbox = gtk.VBox(False, 0)
         self.add(vbox)
@@ -255,21 +254,12 @@ class MainWindow(gtk.Window):
         self.set_icon_name('ubuntu-tweak')
         self.show_all()
 
-#        if TweakSettings.get_show_donate_notify():
-#            gobject.timeout_add(3000, self.on_d_timeout, d_button)
         if TweakSettings.get_check_update():
             gobject.timeout_add(8000, self.on_timeout)
 
         launch = TweakSettings.get_default_launch()
         if launch:
             self.__create_newpage(launch)
-		
-    def on_d_timeout(self, widget):
-        from common.notify import notify
-        notify.update(_('Help the development of Ubuntu Tweak'), _('Ubuntu Tweak is a free-software, you can use it for free. If you like it, Please consider to donate for Ubuntu Tweak.'))
-        notify.add_action("never_show", _('Never Show This Again'), self.on_never_show)
-        notify.attach_to_widget(widget)
-        notify.show()
 		
     def on_d_clicked(self, widget):
         webbrowser.open('http://ubuntu-tweak.com/donate')
@@ -361,14 +351,6 @@ class MainWindow(gtk.Window):
                     self.notebook.set_current_page(self.moduletable[id])
                     widget.select_iter(iter)
         self.do_notify()
-
-    def __shrink_for_each(self, model, path, iter, id):
-        m_id = model.get_value(iter, ID_COLUMN)
-        if id + 1 == m_id:
-            self.shrink = True
-
-    def need_shrink(self, id):
-        self.model.foreach(self.__shrink_for_each, id)
 
     def __select_for_each(self, model, path, iter, name):
         m_name = model.get_value(iter, TITLE_COLUMN)
