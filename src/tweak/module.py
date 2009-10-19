@@ -17,25 +17,34 @@ class ModuleLoader:
     id_table = {}
 
     def __init__(self, path):
-        for f in os.listdir(path):
-            if f.endswith('.py') and f != '__init__.py':
-                module = os.path.splitext(f)[0]
-                package = __import__('.'.join([path, module]))
-                for k, v in inspect.getmembers(getattr(package, module)):
-                    try:
-                        if k != 'TweakModule' and issubclass(v, TweakModule):
-                            key = v.__category__
-                            if self.module_table.has_key(key):
-                                self.module_table[key].append(v)
-                            else:
-                                self.module_table[key] = [v]
-
-                            self.id_table[v.__name__] = v
-                    except:
-                        continue
+        if os.path.isdir(path):
+            for f in os.listdir(path):
+                if f.endswith('.py') and f != '__init__.py':
+                    module = os.path.splitext(f)[0]
+                    package = __import__('.'.join([path, module]))
+                    self.do_module_import(package, module)
+        else:
+            module = os.path.splitext(os.path.basename(path))[0]
+            folder = os.path.dirname(path)
+            package = __import__('.'.join([folder, module]))
+            self.do_module_import(package, module)
 
         for k in self.module_table.keys():
             self.module_table[k].sort()
+
+    def do_module_import(self, package, module):
+        for k, v in inspect.getmembers(getattr(package, module)):
+            try:
+                if k != 'TweakModule' and issubclass(v, TweakModule):
+                    key = v.__category__
+                    if self.module_table.has_key(key):
+                        self.module_table[key].append(v)
+                    else:
+                        self.module_table[key] = [v]
+
+                    self.id_table[v.__name__] = v
+            except:
+                continue
 
     def get_category(self, category):
         return self.module_table[category]

@@ -18,8 +18,8 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-import pygtk
-pygtk.require("2.0")
+import os
+import sys
 import gtk
 from common.consts import *
 
@@ -66,4 +66,5 @@ class ManyTest:
 
 if __name__ == '__main__':
     from tweak.module import ModuleLoader
-    ModuleLoader('modules')
+    loader = ModuleLoader(sys.argv[1])
+    Test(loader.id_table.values()[0])
