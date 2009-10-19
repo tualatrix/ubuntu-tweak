@@ -78,7 +78,11 @@ AC_CONFIG_FILES([
     src/common/consts.py
     src/common/widgets/Makefile
     src/common/policykit/Makefile
+    src/common/network/Makefile
     src/backends/Makefile
+    src/modules/Makefile
+    src/tweak/Makefile
+    src/tweak/utils/Makefile
     daemon/Makefile
     daemon/com.ubuntu_tweak.daemon.service
     daemon/com.ubuntu_tweak.daemon.packageconfig.service

@@ -1,4 +1,4 @@
-SUBDIRS = policykit widgets
+SUBDIRS = policykit widgets network
 
 common_PYTHON = \
 	./settings.py \
@@ -13,7 +13,6 @@ common_PYTHON = \
 	./utils.py \
 	./consts.py \
 	./gui.py \
-	./canvas.py \
 	./factory.py \
 	./systeminfo.py \
 	./misc.py \
