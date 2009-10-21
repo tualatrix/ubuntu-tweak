@@ -124,17 +124,20 @@ def Desktop_Notice(parent=None):
     return vbox
 
 def ErrorPage(parent=None):
-    vbox = gtk.VBox(False, 0)
+    align = gtk.Alignment(0.5, 0.3)
+
+    hbox = gtk.HBox(False, 12)
+    align.add(hbox)
+
+    image = gtk.image_new_from_pixbuf(icon.get_with_name('emblem-ohno', size=64))
+    hbox.pack_start(image, False, False, 0)
 
     label = gtk.Label()
     label.set_markup("<span size=\"x-large\">%s</span>" % _("This module is error while loading."))
     label.set_justify(gtk.JUSTIFY_FILL)
-    vbox.pack_start(label, False, False, 50)
-
-    hbox = gtk.HBox(False, 0)
-    vbox.pack_start(hbox, False, False, 0)
+    hbox.pack_start(label)
         
-    return vbox
+    return align
 
 def AptErrorPage(parent = None):
     vbox = gtk.VBox(False, 0)
