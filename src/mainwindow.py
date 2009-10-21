@@ -194,11 +194,11 @@ MODULES_TABLE = [
     [SYSTEM, '', _("System"), None, 'system'],
 ]
 
+module_loader = ModuleLoader('modules')
+
 class MainWindow(gtk.Window):
     def __init__(self):
         gtk.Window.__init__(self)
-
-        self.loader = ModuleLoader('modules')
 
         self.connect("destroy", self.destroy)
         self.set_title(APP)
@@ -315,13 +315,13 @@ class MainWindow(gtk.Window):
             )
 
             if module[MODULE_TYPE]:
-                for module in self.loader.get_category(module[MODULE_TYPE]):
+                for module in module_loader.get_category(module[MODULE_TYPE]):
 
                     child_iter = model.append(iter)
 
                     model.set(child_iter,
                         ID_COLUMN, module.__name__,
-                        LOGO_COLUMN, self.loader.get_pixbuf(module.__name__),
+                        LOGO_COLUMN, module_loader.get_pixbuf(module.__name__),
                         TITLE_COLUMN, module.__title__,
                     )
 
@@ -430,7 +430,7 @@ class MainWindow(gtk.Window):
 
     def setup_notebook(self, id):
         try:
-            module = self.loader.get_module(id)
+            module = module_loader.get_module(id)
             page = module()
         except:
             run_traceback('error')

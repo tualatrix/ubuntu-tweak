@@ -52,6 +52,9 @@ class ModuleLoader:
     def get_module(self, id):
         return self.id_table[id]
 
+    def get_all_module(self):
+        return self.id_table.values()
+
     def get_pixbuf(self, id):
         module = self.get_module(id)
 

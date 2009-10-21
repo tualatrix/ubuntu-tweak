@@ -60,35 +60,29 @@ class PreferencesDialog:
         table.attach(toolbar_size, 1, 3, 2, 3)
 
     def setup_launch_function(self):
-        from mainwindow import MODULES
-        from mainwindow import MODULE_ID, MODULE_LOGO, MODULE_TITLE
+        from mainwindow import module_loader
+        from mainwindow import ID_COLUMN, LOGO_COLUMN, TITLE_COLUMN
         function_box = self.worker.get_object('function_box')
 
-        module_list = []
-        for module in MODULES:
-            if module[-1] == 2:
-                module_list.append(module)
-
         model = gtk.ListStore(
-                gobject.TYPE_INT,
+                gobject.TYPE_STRING,
                 gtk.gdk.Pixbuf,
                 gobject.TYPE_STRING)
 
         iter = model.append(None)
         model.set(iter,
-                MODULE_ID, 0,
-                MODULE_LOGO, None,
-                MODULE_TITLE, _('None')
+                ID_COLUMN, 0,
+                LOGO_COLUMN, None,
+                TITLE_COLUMN, _('None')
         )
-        for module in module_list:
-            icon = gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'pixmaps', module[MODULE_LOGO])).scale_simple(18, 18, gtk.gdk.INTERP_NEAREST)
-
+        for module in module_loader.get_all_module():
             iter = model.append(None)
+            pixbuf = module_loader.get_pixbuf(module.__name__)
 
             model.set(iter,
-                    MODULE_ID, module[MODULE_ID],
-                    MODULE_LOGO, icon,
-                    MODULE_TITLE, module[MODULE_TITLE],
+                    ID_COLUMN, module.__name__,
+                    LOGO_COLUMN, pixbuf,
+                    TITLE_COLUMN, module.__title__,
             )
 
         function_box.set_model(model)
@@ -96,11 +90,11 @@ class PreferencesDialog:
         pixbufcell = gtk.CellRendererPixbuf()
         function_box.pack_start(pixbufcell, False)
         function_box.pack_start(textcell, True)
-        function_box.add_attribute(textcell, 'text', MODULE_TITLE)
-        function_box.add_attribute(pixbufcell, 'pixbuf', MODULE_LOGO)
+        function_box.add_attribute(textcell, 'text', TITLE_COLUMN)
+        function_box.add_attribute(pixbufcell, 'pixbuf', LOGO_COLUMN)
         id = TweakSettings.get_default_launch()
         for i, row in enumerate(model):
-            _id = model.get_value(row.iter, MODULE_ID)
+            _id = model.get_value(row.iter, ID_COLUMN)
             if id == _id:
                 function_box.set_active(i)
         function_box.connect('changed', self.on_launch_changed)
