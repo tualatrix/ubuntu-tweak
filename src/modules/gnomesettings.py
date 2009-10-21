@@ -42,7 +42,6 @@ class Gnome(TweakModule):
 
         self.__setting = TweakSettings()
 
-        notify_hbox = self.create_notify_hbox()
         changeicon_hbox = self.create_change_icon_hbox()
 
         box = ListPack(_("Panel and Menu"), (
@@ -80,22 +79,6 @@ class Gnome(TweakModule):
                     self.recently_used,
             ))
         self.add_start(box, False, False, 0)
-
-    def create_notify_hbox(self):
-        hbox = gtk.HBox(False, 10)
-        label = gtk.Label(_("Notification-daemon popup location"))
-        label.set_alignment(0, 0.5)
-        combobox = WidgetFactory.create("GconfComboBox", 
-                                  key = "popup_location", 
-                                  texts = [_("Top Left"), _("Top Right"), _("Bottom Left"), _("Bottom Right")], 
-                                  values= ["top_left", "top_right", "bottom_left", "bottom_right"])
-        if combobox:
-            hbox.pack_start(label, False, False, 0)
-            hbox.pack_start(combobox)
-
-            return hbox
-        else:
-            return None
 
     def create_change_icon_hbox(self):
         hbox = gtk.HBox(False, 10)
