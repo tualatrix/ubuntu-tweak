@@ -27,20 +27,21 @@ import pango
 import gobject
 import webbrowser
 
-from tweak import TweakModule, ModuleLoader
-from tweak.utils import icon
-from common.consts import *
-from common.debug import run_traceback
-from common.widgets.dialogs import QuestionDialog
-from common.systeminfo import module_check
-from common.config import TweakSettings
+from ubuntutweak.utils import icon
+from ubuntutweak import modules
+from ubuntutweak.modules import TweakModule, ModuleLoader
+from ubuntutweak.common.consts import *
+from ubuntutweak.common.debug import run_traceback
+from ubuntutweak.common.systeminfo import module_check
+from ubuntutweak.common.config import TweakSettings
+from ubuntutweak.widgets.dialogs import QuestionDialog
 try:
-    from common.package import package_worker
+    from ubuntutweak.common.package import package_worker
 except:
     package_worker = None
-from updatemanager import UpdateManager
-from preferences import PreferencesDialog
-from common.utils import set_label_for_stock_button
+from ubuntutweak.updatemanager import UpdateManager
+from ubuntutweak.preferences import PreferencesDialog
+from ubuntutweak.common.utils import set_label_for_stock_button
 
 class Tip(gtk.HBox):
     def __init__(self, tip):
@@ -75,7 +76,7 @@ def Welcome(parent = None):
             _('Tweak otherwise hidden settings.'),
             _('Clean up unneeded packages to free diskspace.'),
             _('Easily install up-to-date versions of many applications.'),
-            _('Configure file templates and shortcut scripts for easy access to common tasks.'),
+            _('Configure file templates and shortcut scripts for easy access to ubuntutweak.common tasks.'),
             _('And many more useful features!'),
             )
     align = gtk.Alignment(0.5)
@@ -194,7 +195,7 @@ MODULES_TABLE = [
     [SYSTEM, '', _("System"), None, 'system'],
 ]
 
-module_loader = ModuleLoader('modules')
+module_loader = ModuleLoader(modules.__path__[0])
 
 class MainWindow(gtk.Window):
     def __init__(self):
@@ -261,7 +262,7 @@ class MainWindow(gtk.Window):
             gobject.timeout_add(8000, self.on_timeout)
 
         launch = TweakSettings.get_default_launch()
-        if launch:
+        if launch and launch != '0':
             self.__create_newpage(launch)
 		
     def on_d_clicked(self, widget):
@@ -315,15 +316,16 @@ class MainWindow(gtk.Window):
             )
 
             if module[MODULE_TYPE]:
-                for module in module_loader.get_category(module[MODULE_TYPE]):
+                module_list = module_loader.get_category(module[MODULE_TYPE])
+                if module_list:
+                    for module in module_list:
+                        child_iter = model.append(iter)
 
-                    child_iter = model.append(iter)
-
-                    model.set(child_iter,
-                        ID_COLUMN, module.__name__,
-                        LOGO_COLUMN, module_loader.get_pixbuf(module.__name__),
-                        TITLE_COLUMN, module.__title__,
-                    )
+                        model.set(child_iter,
+                            ID_COLUMN, module.__name__,
+                            LOGO_COLUMN, module_loader.get_pixbuf(module.__name__),
+                            TITLE_COLUMN, module.__title__,
+                        )
 
         return model
 

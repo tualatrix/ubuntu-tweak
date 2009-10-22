@@ -18,12 +18,13 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-from consts import *
-from widgets import *
-from common.settings import *
-from systeminfo import GnomeVersion
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
+
+from ubuntutweak.widgets import *
+from ubuntutweak.common.settings import *
+from ubuntutweak.common.consts import *
+from ubuntutweak.common.systeminfo import GnomeVersion
 
 class KeysHandler(ContentHandler):
     def __init__(self, dict):

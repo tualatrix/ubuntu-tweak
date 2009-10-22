@@ -30,22 +30,22 @@ import apt_pkg
 import webbrowser
 import urllib
 
-from tweak import TweakModule
-from common.config import Config, TweakSettings
-from common.consts import *
-from common.sourcedata import SOURCES_LIST, SOURCES_DATA, SOURCES_DEPENDENCIES, SOURCES_CONFLICTS
-from common.appdata import APP_DICT, APPS
-from common.appdata import get_app_logo, get_app_describ
-from common.appdata import get_source_logo, get_source_describ
-from common.policykit import PolkitButton, DbusProxy
-from common.widgets import ListPack, GconfCheckButton
-from common.widgets.dialogs import *
-from common.factory import WidgetFactory
-from common.package import package_worker, PackageInfo
-from common.notify import notify
-from common.misc import URLLister
+from ubuntutweak.modules  import TweakModule
+from ubuntutweak.common.config import Config, TweakSettings
+from ubuntutweak.common.consts import *
+from ubuntutweak.common.sourcedata import SOURCES_LIST, SOURCES_DATA, SOURCES_DEPENDENCIES, SOURCES_CONFLICTS
+from ubuntutweak.common.appdata import APP_DICT, APPS
+from ubuntutweak.common.appdata import get_app_logo, get_app_describ
+from ubuntutweak.common.appdata import get_source_logo, get_source_describ
+from ubuntutweak.policykit import PolkitButton, DbusProxy
+from ubuntutweak.widgets import ListPack, GconfCheckButton
+from ubuntutweak.widgets.dialogs import *
+from ubuntutweak.common.factory import WidgetFactory
+from ubuntutweak.common.package import package_worker, PackageInfo
+from ubuntutweak.common.notify import notify
+from ubuntutweak.common.misc import URLLister
 from installer import AppView
-from backends.packageconfig import PATH
+from ubuntutweak.backends.packageconfig import PATH
 from aptsources.sourceslist import SourceEntry, SourcesList
 
 config = Config()
@@ -374,10 +374,10 @@ class SourcesView(gtk.TreeView):
             window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
 
         if UNCONVERT:
-            import common.sourcedata
-            reload(common.sourcedata)
+            import ubuntutweak.common.sourcedata
+            reload(ubuntutweak.common.sourcedata)
             global SOURCES_DATA
-            from common.sourcedata import SOURCES_DATA
+            from ubuntutweak.common.sourcedata import SOURCES_DATA
             proxy.replace_entry(UBUNTU_CN_STR, LAUNCHPAD_STR)
             self.update_model()
             self.emit('sourcechanged')

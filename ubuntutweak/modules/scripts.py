@@ -27,11 +27,11 @@ import shutil
 import gobject
 import gettext
 import gnomevfs
-from tweak import TweakModule
-from common.consts import *
-from common.utils import get_icon_with_type
-from common.widgets import DirView, FlatView
-from common.widgets.dialogs import WarningDialog
+from ubuntutweak.modules  import TweakModule
+from ubuntutweak.common.consts import *
+from ubuntutweak.common.utils import get_icon_with_type
+from ubuntutweak.widgets import DirView, FlatView
+from ubuntutweak.widgets.dialogs import WarningDialog
 
 (
     COLUMN_ICON,

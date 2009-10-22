@@ -26,21 +26,21 @@ import gettext
 import gobject
 import pango
 
-from tweak import TweakModule
-from common.consts import *
-from common.utils import get_icon_with_file
-from common.gui import GuiWorker
-from common.appdata import APPS, CATES_DATA
-from common.widgets.dialogs import ErrorDialog, InfoDialog, QuestionDialog
-from common.widgets.utils import ProcessDialog
-from common.network.parser import Parser
-from common.appdata import get_app_logo, get_app_describ
-from common.config import TweakSettings
+from ubuntutweak.modules  import TweakModule
+from ubuntutweak.common.consts import *
+from ubuntutweak.common.utils import get_icon_with_file
+from ubuntutweak.common.gui import GuiWorker
+from ubuntutweak.common.appdata import APPS, CATES_DATA
+from ubuntutweak.widgets.dialogs import ErrorDialog, InfoDialog, QuestionDialog
+from ubuntutweak.widgets.utils import ProcessDialog
+from ubuntutweak.network.parser import Parser
+from ubuntutweak.common.appdata import get_app_logo, get_app_describ
+from ubuntutweak.common.config import TweakSettings
 from filetype import CateView
 from xdg.DesktopEntry import DesktopEntry
 
 try:
-    from common.package import package_worker, PackageInfo
+    from ubuntutweak.common.package import package_worker, PackageInfo
     DISABLE = False
 except ImportError:
     DISABLE = True

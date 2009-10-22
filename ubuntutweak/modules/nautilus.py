@@ -27,7 +27,7 @@ import gettext
 import thread
 
 try:
-    from common.package import package_worker, AptCheckButton
+    from ubuntutweak.common.package import package_worker, AptCheckButton
     if package_worker.get_cache():
         DISABLE = False
     else:
@@ -35,12 +35,12 @@ try:
 except ImportError:
     DISABLE = True
 
-from tweak import TweakModule
-from common.misc import filesizeformat
-from common.factory import WidgetFactory
-from common.widgets import ListPack, TablePack
-from common.widgets.dialogs import InfoDialog, QuestionDialog
-from common.utils import set_label_for_stock_button
+from ubuntutweak.modules  import TweakModule
+from ubuntutweak.common.misc import filesizeformat
+from ubuntutweak.common.factory import WidgetFactory
+from ubuntutweak.widgets import ListPack, TablePack
+from ubuntutweak.widgets.dialogs import InfoDialog, QuestionDialog
+from ubuntutweak.common.utils import set_label_for_stock_button
 
 (
     COLUMN_ICON,

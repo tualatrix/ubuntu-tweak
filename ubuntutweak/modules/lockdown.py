@@ -21,12 +21,12 @@
 import os
 import gtk
 
-from tweak import TweakModule
-from common.policykit import PolkitButton, DbusProxy
-from common.factory import WidgetFactory
-from common.widgets import ListPack
-from backends import getconfig
-from backends import packageconfig
+from ubuntutweak.modules  import TweakModule
+from ubuntutweak.policykit import PolkitButton, DbusProxy
+from ubuntutweak.common.factory import WidgetFactory
+from ubuntutweak.widgets import ListPack
+from ubuntutweak.backends import getconfig
+from ubuntutweak.backends import packageconfig
 
 ROOT_THEMES = '/root/.themes'
 ROOT_ICONS = '/root/.icons'

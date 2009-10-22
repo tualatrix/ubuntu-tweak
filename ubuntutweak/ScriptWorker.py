@@ -29,10 +29,10 @@ import shutil
 import subprocess
 
 from userdir import UserdirFile
-from common.consts import *
-from common.debug import run_traceback
-from common.widgets import ErrorDialog
-from common.utils import get_command_for_type
+from ubuntutweak.common.consts import *
+from ubuntutweak.common.debug import run_traceback
+from ubuntutweak.widgets import ErrorDialog
+from ubuntutweak.common.utils import get_command_for_type
 
 class FileChooserDialog(gtk.FileChooserDialog):
     """Show a dialog to select a folder, or to do more thing

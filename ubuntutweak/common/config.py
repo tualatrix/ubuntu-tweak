@@ -20,8 +20,8 @@
 import os
 import gtk
 import gconf
-from common.settings import *
-from common.factory import GconfKeys
+from ubuntutweak.common.settings import *
+from ubuntutweak.common.factory import GconfKeys
 
 class Config:
     #FIXME The class should be generic config getter and setter

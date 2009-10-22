@@ -24,14 +24,14 @@ import thread
 import gobject
 import gettext
 
-from tweak import TweakModule
-from common.utils import *
-from common.misc import filesizeformat
-from common.policykit import PolkitButton, DbusProxy
-from common.package import package_worker
-from common.widgets.dialogs import *
-from common.widgets.utils import ProcessDialog
-from backends.packageconfig import PATH
+from ubuntutweak.modules  import TweakModule
+from ubuntutweak.common.utils import *
+from ubuntutweak.common.misc import filesizeformat
+from ubuntutweak.policykit import PolkitButton, DbusProxy
+from ubuntutweak.common.package import package_worker
+from ubuntutweak.widgets.dialogs import *
+from ubuntutweak.widgets.utils import ProcessDialog
+from ubuntutweak.backends.packageconfig import PATH
 
 (
     COLUMN_CHECK,

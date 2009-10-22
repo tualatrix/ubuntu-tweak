@@ -1,4 +1,4 @@
-from common.systeminfo import module_check
+from ubuntutweak.common.systeminfo import module_check
 
 SOURCES_LIST = '/etc/apt/sources.list'
 

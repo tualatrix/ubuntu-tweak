@@ -21,7 +21,7 @@
 import os
 import sys
 import gtk
-from common.consts import *
+from ubuntutweak.common.consts import *
 
 class Test:
     def __init__(self, model):

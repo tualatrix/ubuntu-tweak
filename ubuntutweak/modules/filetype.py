@@ -25,10 +25,10 @@ import pango
 import gobject
 import thread
 
-from tweak import TweakModule
-from common.utils import get_icon_with_name, mime_type_get_icon, get_icon_with_app
-from common.gui import GuiWorker
-from common.widgets.dialogs import ErrorDialog
+from ubuntutweak.modules  import TweakModule
+from ubuntutweak.common.utils import get_icon_with_name, mime_type_get_icon, get_icon_with_app
+from ubuntutweak.common.gui import GuiWorker
+from ubuntutweak.widgets.dialogs import ErrorDialog
 
 MIMETYPE = [
     (_('Audio'), 'audio', 'audio-x-generic'), 

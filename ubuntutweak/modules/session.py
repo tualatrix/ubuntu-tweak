@@ -25,10 +25,10 @@ import os
 import gconf
 import gettext
 
-from tweak import TweakModule
-from common.consts import *
-from common.widgets import ListPack, SinglePack
-from common.factory import WidgetFactory
+from ubuntutweak.modules  import TweakModule
+from ubuntutweak.common.consts import *
+from ubuntutweak.widgets import ListPack, SinglePack
+from ubuntutweak.common.factory import WidgetFactory
 
 class Session(TweakModule):
     __title__ = _('Session control')

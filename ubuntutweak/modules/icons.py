@@ -23,9 +23,9 @@ pygtk.require("2.0")
 import gtk
 import gconf
 
-from tweak import TweakModule
-from common.consts import *
-from common.factory import WidgetFactory
+from ubuntutweak.modules  import TweakModule
+from ubuntutweak.common.consts import *
+from ubuntutweak.common.factory import WidgetFactory
 
 computer_icon = \
 {

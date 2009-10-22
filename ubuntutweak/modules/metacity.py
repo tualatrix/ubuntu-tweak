@@ -25,10 +25,10 @@ import os
 import gobject
 import gettext
 
-from tweak import TweakModule
-from common.factory import WidgetFactory
-from common.widgets import ListPack, TablePack
-from common.widgets.dialogs import InfoDialog
+from ubuntutweak.modules  import TweakModule
+from ubuntutweak.common.factory import WidgetFactory
+from ubuntutweak.widgets import ListPack, TablePack
+from ubuntutweak.widgets.dialogs import InfoDialog
 
 class Metacity(TweakModule):
     __title__ = _('Window Manager Settings')

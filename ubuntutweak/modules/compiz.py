@@ -25,13 +25,13 @@ import gtk
 import gconf
 import gobject
 
-from tweak import TweakModule
-from common.consts import DATA_DIR
-from common.widgets import ListPack, SinglePack
-from common.widgets.dialogs import InfoDialog
-from common.systeminfo import module_check
+from ubuntutweak.modules  import TweakModule
+from ubuntutweak.common.consts import DATA_DIR
+from ubuntutweak.widgets import ListPack, SinglePack
+from ubuntutweak.widgets.dialogs import InfoDialog
+from ubuntutweak.common.systeminfo import module_check
 try:
-    from common.package import package_worker, AptCheckButton
+    from ubuntutweak.common.package import package_worker, AptCheckButton
 except:
     pass
 

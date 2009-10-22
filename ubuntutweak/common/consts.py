@@ -12,14 +12,14 @@ import gettext
 def applize(package):
     return ' '.join([a.capitalize() for a in package.split('-')])
 
-PACKAGE = '@PACKAGE@'
-VERSION = '@VERSION@'
-DATA_DIR = '@DATADIR@/@PACKAGE@/data'
+PACKAGE = 'ubuntu-tweak'
+VERSION = '0.5.0'
+DATA_DIR = '/usr/share/ubuntu-tweak/data'
 APP = applize(PACKAGE)
 
 if not os.path.exists(DATA_DIR):
-	datadir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
-	DATA_DIR = os.path.join(datadir, 'data')
+    datadir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+    DATA_DIR = os.path.join(datadir, 'data')
 
 def init_locale():
     global INIT

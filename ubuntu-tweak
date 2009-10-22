@@ -23,10 +23,10 @@ import gtk
 import thread
 import gobject
 
-from common.consts import DATA_DIR
-from common.debug import run_traceback
-from common.config import TweakSettings
-from common.widgets.dialogs import ErrorDialog
+from ubuntutweak.common.consts import DATA_DIR
+from ubuntutweak.common.debug import run_traceback
+from ubuntutweak.common.config import TweakSettings
+from ubuntutweak.widgets.dialogs import ErrorDialog
 
 try:
     import dl
@@ -39,7 +39,7 @@ class TweakLauncher:
     def __init__(self):
         thread.start_new_thread(self.show_splash, ())
 
-        from mainwindow import MainWindow
+        from ubuntutweak.mainwindow import MainWindow
         window = MainWindow()
 
     def show_splash(self):
@@ -65,14 +65,15 @@ class TweakLauncher:
     def main(self):
         gtk.gdk.threads_enter()
         if TweakSettings.get_check_update():
-            os.system("exec python updatemanager.py &")
+            pass
+#            os.system("exec python updatemanager.py &")
         gtk.main()
         gtk.gdk.threads_leave()
 
 if __name__ == "__main__":
-    try:
-        gobject.threads_init()
-        launcher = TweakLauncher()
-        launcher.main()
-    except:
-		run_traceback('fatal')
+#    try:
+    gobject.threads_init()
+    launcher = TweakLauncher()
+    launcher.main()
+#    except:
+#		run_traceback('fatal')

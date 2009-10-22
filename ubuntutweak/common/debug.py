@@ -23,7 +23,7 @@ import StringIO
 import traceback
 import webbrowser
 
-from common.gui import GuiWorker
+from ubuntutweak.common.gui import GuiWorker
 
 def run_traceback(level):
         output = StringIO.StringIO()

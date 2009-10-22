@@ -25,17 +25,17 @@ import socket
 import gobject
 import gettext
 
-from tweak import TweakModule
+from ubuntutweak.modules  import TweakModule
 from thirdsoft import refresh_source
 from xmlrpclib import ServerProxy, Error
-from common.utils import *
-from common.gui import GuiWorker
-from common.systeminfo import module_check
-from common.policykit import PolkitButton, DbusProxy
-from common.utils import set_label_for_stock_button
-from common.package import package_worker
-from common.widgets.dialogs import *
-from backends.packageconfig import PATH
+from ubuntutweak.common.utils import *
+from ubuntutweak.common.gui import GuiWorker
+from ubuntutweak.common.systeminfo import module_check
+from ubuntutweak.policykit import PolkitButton, DbusProxy
+from ubuntutweak.common.utils import set_label_for_stock_button
+from ubuntutweak.common.package import package_worker
+from ubuntutweak.widgets.dialogs import *
+from ubuntutweak.backends.packageconfig import PATH
 
 (
     COLUMN_CHECK,

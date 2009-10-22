@@ -26,10 +26,10 @@ import gconf
 import gettext
 import gobject
 
-from tweak import TweakModule
-from common.widgets import KeyGrabber, KeyModifier, CellRendererButton
-from common.utils import get_icon_with_name
-from common.systeminfo import module_check
+from ubuntutweak.modules  import TweakModule
+from ubuntutweak.widgets import KeyGrabber, KeyModifier, CellRendererButton
+from ubuntutweak.common.utils import get_icon_with_name
+from ubuntutweak.common.systeminfo import module_check
 from compiz import CompizSetting
 
 (

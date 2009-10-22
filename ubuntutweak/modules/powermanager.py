@@ -25,10 +25,10 @@ import os
 import gconf
 import gettext
 
-from tweak import TweakModule
-from common.systeminfo import module_check
-from common.factory import WidgetFactory
-from common.widgets import HScaleBox, TablePack
+from ubuntutweak.modules  import TweakModule
+from ubuntutweak.common.systeminfo import module_check
+from ubuntutweak.common.factory import WidgetFactory
+from ubuntutweak.widgets import HScaleBox, TablePack
 
 class PowerManager(TweakModule):
     __title__ = _('Advanced Powermanager Settings')

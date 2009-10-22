@@ -24,12 +24,12 @@ import os
 import gtk
 import gconf
 
-from tweak import TweakModule
-from common.config import TweakSettings
-from common.factory import WidgetFactory
-from common.utils import get_icon_with_name
-from common.widgets import ListPack
-from common.widgets.dialogs import ErrorDialog, QuestionDialog
+from ubuntutweak.modules  import TweakModule
+from ubuntutweak.common.config import TweakSettings
+from ubuntutweak.common.factory import WidgetFactory
+from ubuntutweak.common.utils import get_icon_with_name
+from ubuntutweak.widgets import ListPack
+from ubuntutweak.widgets.dialogs import ErrorDialog, QuestionDialog
 
 class Gnome(TweakModule):
     __title__ = _('GNOME Settings')
@@ -61,7 +61,6 @@ class Gnome(TweakModule):
                                     label = _("Show Unicode Method menu on the context menu"), 
                                     key = "show_unicode_menu"),
                     changeicon_hbox,
-                    notify_hbox,
             ))
         self.add_start(box, False, False, 0)
 

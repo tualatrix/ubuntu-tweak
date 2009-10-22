@@ -23,12 +23,12 @@ pygtk.require("2.0")
 import os
 import gtk
 import shutil
-from tweak import TweakModule
+from ubuntutweak.modules  import TweakModule
 from userdir import UserdirFile
-from common.consts import *
-from common.widgets import DirView, FlatView
-from common.widgets.dialogs import WarningDialog, ErrorDialog
-from common.utils import set_label_for_stock_button
+from ubuntutweak.common.consts import *
+from ubuntutweak.widgets import DirView, FlatView
+from ubuntutweak.widgets.dialogs import WarningDialog, ErrorDialog
+from ubuntutweak.common.utils import set_label_for_stock_button
 
 (
     COLUMN_ICON,

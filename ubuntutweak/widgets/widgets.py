@@ -26,7 +26,7 @@ import gconf
 import gobject
 import gettext
 import time
-from common.settings import *
+from ubuntutweak.common.settings import *
 
 class GconfCheckButton(gtk.CheckButton):
     def __init__(self, label = None, key = None, default = None, tooltip = None):

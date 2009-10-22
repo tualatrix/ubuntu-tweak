@@ -13,10 +13,10 @@ import socket
 import threading
 import gobject
 
-from common.consts import *
-from common.systeminfo import SystemInfo
+from ubuntutweak.common.consts import *
+from ubuntutweak.common.systeminfo import SystemInfo
 from xmlrpclib import ServerProxy, Error
-from common.config import TweakSettings
+from ubuntutweak.common.config import TweakSettings
 
 socket.setdefaulttimeout(10)
 

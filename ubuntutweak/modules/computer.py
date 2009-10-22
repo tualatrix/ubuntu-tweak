@@ -20,10 +20,10 @@
 
 import os
 import gtk
-from tweak import TweakModule
-from common.misc import filesizeformat
-from common.systeminfo import SystemInfo
-from common.widgets import EntryBox, ListPack
+from ubuntutweak.modules import TweakModule
+from ubuntutweak.common.misc import filesizeformat
+from ubuntutweak.common.systeminfo import SystemInfo
+from ubuntutweak.widgets import EntryBox, ListPack
 
 class Computer(TweakModule):
     __title__ = _('Computer Details')

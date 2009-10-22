@@ -5,7 +5,7 @@ import gobject
 import gnomevfs
 from gnome import ui
 from dialogs import ErrorDialog
-from common.utils import get_icon_with_type
+from ubuntutweak.common.utils import get_icon_with_type
 
 (
     DIR_ICON,

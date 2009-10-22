@@ -1,3 +1,4 @@
+import glob
 from setuptools import *
 
 setup(name='ubuntu-tweak',
@@ -6,18 +7,27 @@ setup(name='ubuntu-tweak',
       author="TualatriX",  
       author_email='tualatrix@gmail.com',
       url='http://ubuntu-tweak.com',
+      scripts=['ubuntu-tweak'],
       packages=[
           'ubuntutweak',
-          'ubuntutweak.backends',
           'ubuntutweak.common',
-          'ubuntutweak.common.network',
-          'ubuntutweak.common.policykit',
-          'ubuntutweak.common.widgets',
+          'ubuntutweak.backends',
+          'ubuntutweak.network',
+          'ubuntutweak.policykit',
+          'ubuntutweak.widgets',
           'ubuntutweak.modules',
-          'ubuntutweak.tweak',
+          'ubuntutweak.utils',
       ],
 #      scripts=["aptd", "aptdcon"],
-      data_files=[("../etc/dbus-1/system.d/", ["ubuntu-tweak-daemon.conf"]),
+      data_files=[
+          ("../etc/dbus-1/system.d/", ["daemon/ubuntu-tweak-daemon.conf"]),
+          ('share/ubuntu-tweak/appcates/', glob.glob("data/appcates/*.png")),
+          ('share/ubuntu-tweak/applogos/', glob.glob("data/applogos/*.png")),
+          ('share/ubuntu-tweak/gui/', glob.glob("data/appcates/*.glade")),
+          ('share/ubuntu-tweak/pixmaps/', glob.glob("data/pixmaps/*.png")),
+          ('share/ubuntu-tweak/status/', glob.glob("data/status/*.png")),
+          ('share/ubuntu-tweak/', ['data/keys.xml']),
           ],
       license = "GNU GPL",
+      platforms = 'linux',
 )

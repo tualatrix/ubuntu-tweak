@@ -17,7 +17,6 @@
 # You should have received a copy of the GNU General Public License
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
-
 import pygtk
 pygtk.require("2.0")
 import gtk
@@ -26,12 +25,12 @@ import gconf
 import gettext
 import gobject
 
-from tweak import TweakModule
-from common.consts import *
-from common.inifile import IniFile
-from common.widgets import EntryBox
-from common.widgets.dialogs import QuestionDialog, InfoDialog
-from common.utils import get_icon_with_name
+from ubuntutweak.modules import TweakModule
+from ubuntutweak.common.consts import *
+from ubuntutweak.common.inifile import IniFile
+from ubuntutweak.widgets import EntryBox
+from ubuntutweak.widgets.dialogs import QuestionDialog, InfoDialog
+from ubuntutweak.common.utils import get_icon_with_name
 
 (
     COLUMN_ICON,

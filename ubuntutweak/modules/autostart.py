@@ -24,9 +24,9 @@ import shutil
 import gobject
 
 from xdg.DesktopEntry import DesktopEntry
-from tweak import TweakModule
-from common.widgets.dialogs import ErrorDialog
-from common.utils import *
+from ubuntutweak.modules  import TweakModule
+from ubuntutweak.widgets.dialogs import ErrorDialog
+from ubuntutweak.common.utils import *
 
 (
     COLUMN_ACTIVE,

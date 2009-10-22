@@ -18,11 +18,11 @@
 import os
 import gtk
 import gobject
-from common.consts import *
-from common.gui import GuiWorker
-from common.config import TweakSettings
-from common.utils import set_label_for_stock_button
-from common.factory import WidgetFactory
+from ubuntutweak.common.consts import *
+from ubuntutweak.common.gui import GuiWorker
+from ubuntutweak.common.config import TweakSettings
+from ubuntutweak.common.utils import set_label_for_stock_button
+from ubuntutweak.common.factory import WidgetFactory
 
 class PreferencesDialog:
     def __init__(self):
