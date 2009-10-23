@@ -255,7 +255,7 @@ class MainWindow(gtk.Window):
         hbox.pack_end(button, False, False, 0)
 
         self.get_gui_state()
-        self.set_icon_name('ubuntu-tweak')
+        self.set_icon(icon.get_with_name('ubuntu-tweak', size=48))
         self.show_all()
 
         if TweakSettings.get_check_update():
@@ -467,7 +467,7 @@ class MainWindow(gtk.Window):
         about.set_version(VERSION)
         about.set_website("http://ubuntu-tweak.com")
         about.set_website_label(_('Ubuntu Tweak Website'))
-        about.set_logo(self.get_icon())
+        about.set_logo(icon.get_with_name('ubuntu-tweak', size=128))
         about.set_comments(_("Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your system and desktop settings."))
         about.set_authors(["TualatriX <tualatrix@gmail.com>", "",
             _("Contributors of 2007"),
