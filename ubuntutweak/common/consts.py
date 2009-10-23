@@ -14,7 +14,7 @@ def applize(package):
 
 PACKAGE = 'ubuntu-tweak'
 VERSION = '0.5.0'
-DATA_DIR = '/usr/share/ubuntu-tweak/data'
+DATA_DIR = '/usr/share/ubuntu-tweak/'
 APP = applize(PACKAGE)
 
 if not os.path.exists(DATA_DIR):
