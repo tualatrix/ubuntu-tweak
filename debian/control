@@ -2,7 +2,14 @@ Source: ubuntu-tweak
 Section: utils
 Priority: optional
 Maintainer: TualatriX <tualatrix@gmail.com>
-Build-Depends: cdbs, debhelper (>= 7), python, libgtk2.0-dev, python-gtk2-dev, python-gnome2-dev, autotools-dev, libdbus-glib-1-dev, libpolkit-dbus-dev
+Build-Depends: 
+	cdbs,
+	debhelper (>= 7),
+	quilt,
+	python,
+	python-support,
+	python-setuptools,
+	python-distutils-extra
 Standards-Version: 3.8.2
 Homepage: http://ubuntu-tweak.com
 
