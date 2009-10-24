@@ -32,7 +32,6 @@ class PolicyKitService(dbus.service.Object):
                 (granted, _, details) = kit.CheckAuthorization(
                                 ('system-bus-name', {'name': sender}),
                                 action, {}, dbus.UInt32(1), '', timeout=600)
-                logging.info('authorization of system bus name \'%s\': %r', sender, granted)
 
                 if not granted:
                     raise AccessDeniedException('Session not authorized by PolicyKit')
