@@ -32,6 +32,7 @@ import subprocess
 
 from subprocess import PIPE
 from aptsources.sourceslist import SourceEntry, SourcesList
+from ubuntutweak.backends import PolicyKitService
 
 apt_pkg.init()
 
@@ -81,17 +82,17 @@ class AptAuth:
         p = subprocess.Popen(cmd)
         return (p.wait() == 0)
 
-INTERFACE = "com.ubuntu_tweak.daemon.packageconfig"
-PATH = "/com/ubuntu_tweak/daemon/packageconfig"
+INTERFACE = "com.ubuntu_tweak.daemon"
+PATH = "/com/ubuntu_tweak/daemon/"
 
-class Daemon(dbus.service.Object):
+class Daemon(PolicyKitService):
     #TODO use signal
     liststate = None
     list = SourcesList()
 
     def __init__ (self, bus):
         bus_name = dbus.service.BusName(INTERFACE, bus=bus)
-        dbus.service.Object.__init__(self, bus_name, PATH)
+        PolicyKitService.__init__(self, bus_name, PATH)
 
     @dbus.service.method(INTERFACE,
                          in_signature='ssssb', out_signature='s')

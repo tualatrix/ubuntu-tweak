@@ -1,0 +1,11 @@
+#!/usr/bin/python
+
+import dbus
+import gobject
+from ubuntutweak.backends.daemon import Daemon
+
+dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
+Daemon(dbus.SystemBus())
+
+mainloop = gobject.MainLoop()
+mainloop.run()
