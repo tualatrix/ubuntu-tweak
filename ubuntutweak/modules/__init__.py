@@ -34,7 +34,7 @@ class ModuleLoader:
 
     def do_module_import(self, package):
         for k, v in inspect.getmembers(package):
-            if k != 'TweakModule' and inspect.isclass(v) and issubclass(v, TweakModule):
+            if k not in ('TweakModule', 'proxy') and inspect.isclass(v) and issubclass(v, TweakModule):
                 key = v.__category__
                 if self.module_table.has_key(key):
                     self.module_table[key].append(v)

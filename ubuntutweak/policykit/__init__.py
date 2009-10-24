@@ -1,2 +1,2 @@
 from polkitbutton import PolkitButton
-from dbusproxy import DbusProxy
+from dbusproxy import proxy

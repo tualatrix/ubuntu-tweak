@@ -95,8 +95,10 @@ class Daemon(PolicyKitService):
         PolicyKitService.__init__(self, bus_name, PATH)
 
     @dbus.service.method(INTERFACE,
-                         in_signature='ssssb', out_signature='s')
-    def set_entry(self, url, distro, comps, comment, enabled):
+                         in_signature='ssssb', out_signature='s',
+                         sender_keyword='sender')
+    def set_entry(self, url, distro, comps, comment, enabled, sender=None):
+        self._check_permission(sender)
         self.list.refresh()
 
         if enabled:
@@ -112,8 +114,12 @@ class Daemon(PolicyKitService):
             return 'disabled'
 
     @dbus.service.method(INTERFACE,
-                         in_signature='ssssbs', out_signature='s')
-    def set_separated_entry(self, url, distro, comps, comment, enabled, file):
+                         in_signature='ssssbs', out_signature='s',
+                         sender_keyword='sender')
+    def set_separated_entry(self, url, distro,
+                            comps, comment, enabled, file,
+                            sender=None):
+        self._check_permission(sender)
         self.list.refresh()
 
         partsdir = apt_pkg.Config.FindDir("Dir::Etc::sourceparts")
@@ -134,8 +140,10 @@ class Daemon(PolicyKitService):
             return 'disabled'
 
     @dbus.service.method(INTERFACE,
-                         in_signature='ss', out_signature='')
-    def replace_entry(self, old_url, new_url):
+                         in_signature='ss', out_signature='',
+                         sender_keyword='sender')
+    def replace_entry(self, old_url, new_url, sender=None):
+        self._check_permission(sender)
         self.list.refresh()
 
         for entry in self.list:
@@ -155,15 +163,19 @@ class Daemon(PolicyKitService):
             return "normal"
 
     @dbus.service.method(INTERFACE,
-                         in_signature='', out_signature='s')
-    def clean_apt_cache(self):
+                         in_signature='', out_signature='s',
+                         sender_keyword='sender')
+    def clean_apt_cache(self, sender=None):
+        self._check_permission(sender)
         os.system('apt-get clean')
 
         return 'done'
             
     @dbus.service.method(INTERFACE,
-                         in_signature='s', out_signature='s')
-    def delete_file(self, path):
+                         in_signature='s', out_signature='s',
+                         sender_keyword='sender')
+    def delete_file(self, path, sender=None):
+        self._check_permission(sender)
         os.system('rm "%s"' % path)
         if os.path.exists(path):
             return 'error'
@@ -171,43 +183,57 @@ class Daemon(PolicyKitService):
             return 'done'
 
     @dbus.service.method(INTERFACE,
-                         in_signature='ss', out_signature='')
-    def link_file(self, src, dst):
+                         in_signature='ss', out_signature='',
+                         sender_keyword='sender')
+    def link_file(self, src, dst, sender=None):
+        self._check_permission(sender)
         if not os.path.exists(dst):
             os.symlink(src, dst)
 
     @dbus.service.method(INTERFACE,
-                         in_signature='s', out_signature='')
-    def unlink_file(self, path):
+                         in_signature='s', out_signature='',
+                         sender_keyword='sender')
+    def unlink_file(self, path, sender=None):
+        self._check_permission(sender)
         if os.path.exists(path):
             os.unlink(path)
 
     @dbus.service.method(INTERFACE,
-                         in_signature='s', out_signature='')
-    def set_list_state(self, state):
+                         in_signature='s', out_signature='',
+                         sender_keyword='sender')
+    def set_list_state(self, state, sender=None):
+        self._check_permission(sender)
         self.liststate = state
 
     @dbus.service.method(INTERFACE,
-                         in_signature='ss', out_signature='')
-    def edit_file(self, path, content):
+                         in_signature='ss', out_signature='',
+                         sender_keyword='sender')
+    def edit_file(self, path, content, sender=None):
+        self._check_permission(sender)
         file = open(path, 'w')
         file.write(content)
         file.close()
 
     @dbus.service.method(INTERFACE,
-                         in_signature='s', out_signature='s')
-    def clean_config(self, pkg):
+                         in_signature='s', out_signature='s',
+                         sender_keyword='sender')
+    def clean_config(self, pkg, sender=None):
+        self._check_permission(sender)
         return str(os.system('sudo dpkg --purge %s' % pkg))
 
     @dbus.service.method(INTERFACE,
-                         in_signature='s', out_signature='')
-    def add_apt_key(self, filename):
+                         in_signature='s', out_signature='',
+                         sender_keyword='sender')
+    def add_apt_key(self, filename, sender=None):
+        self._check_permission(sender)
         apt_key = AptAuth()
         apt_key.add(filename)
 
     @dbus.service.method(INTERFACE,
-                         in_signature='ss', out_signature='')
-    def save_to_disk(self, text, filename):
+                         in_signature='ss', out_signature='',
+                         sender_keyword='sender')
+    def save_to_disk(self, text, filename, sender=None):
+        self._check_permission(sender)
         f = file(filename, 'w')
         f.write(text)
         f.close()

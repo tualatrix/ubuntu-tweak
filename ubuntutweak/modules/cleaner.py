@@ -27,11 +27,10 @@ import gettext
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.common.utils import *
 from ubuntutweak.common.misc import filesizeformat
-from ubuntutweak.policykit import PolkitButton, DbusProxy
+from ubuntutweak.policykit import PolkitButton, proxy
 from ubuntutweak.common.package import package_worker
 from ubuntutweak.widgets.dialogs import *
 from ubuntutweak.widgets.utils import ProcessDialog
-from ubuntutweak.backends.daemon import PATH
 
 (
     COLUMN_CHECK,
@@ -548,10 +547,8 @@ class PackageCleaner(TweakModule):
             self.treeview.clean_selected_config()
 
     def on_polkit_action(self, widget, action):
-        global proxy
         if action:
             self.treeview.set_sensitive(True)
             self.select_button.set_sensitive(True)
-            proxy = DbusProxy(PATH)
         else:
             AuthenticateFailDialog().launch()

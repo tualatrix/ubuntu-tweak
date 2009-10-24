@@ -37,7 +37,7 @@ from ubuntutweak.common.sourcedata import SOURCES_LIST, SOURCES_DATA, SOURCES_DE
 from ubuntutweak.common.appdata import APP_DICT, APPS
 from ubuntutweak.common.appdata import get_app_logo, get_app_describ
 from ubuntutweak.common.appdata import get_source_logo, get_source_describ
-from ubuntutweak.policykit import PolkitButton, DbusProxy
+from ubuntutweak.policykit import PolkitButton, proxy
 from ubuntutweak.widgets import ListPack, GconfCheckButton
 from ubuntutweak.widgets.dialogs import *
 from ubuntutweak.common.factory import WidgetFactory
@@ -735,12 +735,10 @@ class ThirdSoft(TweakModule):
         self.sourcedetail.set_details(home, url, description)
 
     def on_polkit_action(self, widget, action):
-        global proxy
         if action:
             self.refresh_button.set_sensitive(True)
 
-            proxy = DbusProxy(PATH)
-            if proxy.get_object():
+            if proxy.get_proxy():
                 if os.getenv('LANG').startswith('zh_CN'):
                     self.treeview.setup_ubuntu_cn_mirror()
                 self.treeview.set_sensitive(True)

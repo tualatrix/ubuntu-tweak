@@ -31,11 +31,10 @@ from xmlrpclib import ServerProxy, Error
 from ubuntutweak.common.utils import *
 from ubuntutweak.common.gui import GuiWorker
 from ubuntutweak.common.systeminfo import module_check
-from ubuntutweak.policykit import PolkitButton, DbusProxy
+from ubuntutweak.policykit import PolkitButton, proxy
 from ubuntutweak.common.utils import set_label_for_stock_button
 from ubuntutweak.common.package import package_worker
 from ubuntutweak.widgets.dialogs import *
-from ubuntutweak.backends.daemon import PATH
 
 (
     COLUMN_CHECK,
@@ -545,10 +544,8 @@ class SourceEditor(TweakModule):
             self.emit('update', 'thirdsoft', 'update_thirdparty')
 
     def on_polkit_action(self, widget, action):
-        global proxy
         if action:
-            proxy = DbusProxy(PATH)
-            if proxy.get_object():
+            if proxy.get_proxy():
                 self.textview.set_sensitive(True)
                 self.update_button.set_sensitive(True)
                 self.submit_button.set_sensitive(True)

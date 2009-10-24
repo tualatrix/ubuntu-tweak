@@ -22,7 +22,8 @@ import os
 import gtk
 import dbus
 import gobject
-from dbusproxy import DbusProxy
+
+from ubuntutweak.backends import POLICY_KIT_ACTION
 
 class PolkitAction(gobject.GObject):
     """
@@ -40,42 +41,30 @@ class PolkitAction(gobject.GObject):
 
         self.widget = widget
 
-    def is_authenticated(self):
-        try:
-            proxy = DbusProxy("/com/ubuntu_tweak/daemon/packageconfig")
-            return bool(proxy.is_authorized())
-        except:
-            return False
-
     def authenticate(self):
-        if self.is_authenticated():
-            self.__class__.result = 1
-            self.emit('changed', 1)
-        else:
-            self.do_authenticate()
+        self.do_authenticate()
 
     def get_authenticated(self):
         return self.result
 
     def do_authenticate(self):
-        policykit = self.session_bus.get_object('org.freedesktop.PolicyKit.AuthenticationAgent', '/')
-        xid = self.widget.get_toplevel().window.xid
+        service = dbus.SystemBus().get_object('org.freedesktop.PolicyKit1', '/org/freedesktop/PolicyKit1/Authority')
+        policykit = dbus.Interface(service, 'org.freedesktop.PolicyKit1.Authority')
 
         if self.__class__.result:
             self.emit('changed', 1)
             return
 
-        try:
-            granted = policykit.ObtainAuthorization('com.ubuntu-tweak.daemon', dbus.UInt32(xid), dbus.UInt32(os.getpid()))
-        except dbus.exceptions.DBusException:
-            self.emit('changed', 0)
-        else:
-            self.__class__.result = granted
+        (is_auth, _, details) = policykit.CheckAuthorization(
+            ('unix-process', {'pid': dbus.UInt32(os.getpid(), variant_level=1)}),
+            POLICY_KIT_ACTION, {}, dbus.UInt32(1), '', timeout=600)
 
-            if self.__class__.result == 1:
-                self.emit('changed', 1)
-            else:
-                self.emit('changed', 0)
+        self.__class__.result = is_auth
+
+        if self.__class__.result == 1:
+            self.emit('changed', 1)
+        else:
+            self.emit('changed', 0)
 
 class PolkitButton(gtk.Button):
     __gsignals__ = {
