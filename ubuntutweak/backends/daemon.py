@@ -83,7 +83,7 @@ class AptAuth:
         return (p.wait() == 0)
 
 INTERFACE = "com.ubuntu_tweak.daemon"
-PATH = "/com/ubuntu_tweak/daemon/"
+PATH = "/com/ubuntu_tweak/daemon"
 
 class Daemon(PolicyKitService):
     #TODO use signal
