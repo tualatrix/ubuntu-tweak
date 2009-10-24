@@ -25,8 +25,7 @@ from ubuntutweak.modules  import TweakModule
 from ubuntutweak.policykit import PolkitButton, DbusProxy
 from ubuntutweak.common.factory import WidgetFactory
 from ubuntutweak.widgets import ListPack
-from ubuntutweak.backends import getconfig
-from ubuntutweak.backends import packageconfig
+from ubuntutweak.backends import daemon
 
 ROOT_THEMES = '/root/.themes'
 ROOT_ICONS = '/root/.icons'
@@ -40,7 +39,7 @@ class LockDown(TweakModule):
     """Lock down some function"""
     def __init__(self):
         TweakModule.__init__(self)
-        self.get_proxy = DbusProxy(getconfig.PATH, getconfig.INTERFACE)
+        self.get_proxy = DbusProxy(daemon.PATH, daemon.INTERFACE)
 
         box = ListPack(_("System Security options"), (
                     WidgetFactory.create("GconfCheckButton",
@@ -96,6 +95,6 @@ class LockDown(TweakModule):
         global proxy
         if action:
             self.fix_theme_button.set_sensitive(True)
-            proxy = DbusProxy(packageconfig.PATH)
+            proxy = DbusProxy(daemon.PATH)
         else:
             AuthenticateFailDialog().launch()

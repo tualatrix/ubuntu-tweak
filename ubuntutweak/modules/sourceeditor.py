@@ -35,7 +35,7 @@ from ubuntutweak.policykit import PolkitButton, DbusProxy
 from ubuntutweak.common.utils import set_label_for_stock_button
 from ubuntutweak.common.package import package_worker
 from ubuntutweak.widgets.dialogs import *
-from ubuntutweak.backends.packageconfig import PATH
+from ubuntutweak.backends.daemon import PATH
 
 (
     COLUMN_CHECK,

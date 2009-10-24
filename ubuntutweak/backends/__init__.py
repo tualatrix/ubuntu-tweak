@@ -1,6 +1,12 @@
 import dbus
+import dbus.service
 
 POLICY_KIT_ACTION = 'com.ubuntu-tweak.daemon'
+
+class AccessDeniedException(dbus.DBusException):
+    '''This exception is raised when some operation is not permitted.'''
+
+    _dbus_error_name = 'com.ubuntu_tweak.daemon.AccessDeniedException'
 
 class PolicyKitService(dbus.service.Object):
     '''A D-BUS service that uses PolicyKit for authorization.'''

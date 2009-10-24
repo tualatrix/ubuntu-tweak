@@ -19,7 +19,7 @@ setup(name='ubuntu-tweak',
           'ubuntutweak.utils',
       ],
       data_files=[
-          ('../etc/dbus-1/system.d/', ['daemon/ubuntu-tweak-daemon.conf']),
+          ('../etc/dbus-1/system.d/', ['data/ubuntu-tweak-daemon.conf']),
           ('share/dbus-1/system-services', ['data/com.ubuntu_tweak.daemon.service']),
           ('share/ubuntu-tweak/appcates/', glob.glob('data/appcates/*.png')),
           ('share/ubuntu-tweak/applogos/', glob.glob('data/applogos/*.png')),

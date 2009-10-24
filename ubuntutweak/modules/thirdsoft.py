@@ -45,7 +45,7 @@ from ubuntutweak.common.package import package_worker, PackageInfo
 from ubuntutweak.common.notify import notify
 from ubuntutweak.common.misc import URLLister
 from installer import AppView
-from ubuntutweak.backends.packageconfig import PATH
+from ubuntutweak.backends.daemon import PATH
 from aptsources.sourceslist import SourceEntry, SourcesList
 
 config = Config()
