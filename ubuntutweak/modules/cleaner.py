@@ -538,13 +538,16 @@ class PackageCleaner(TweakModule):
             widget.set_active(True)
 
     def on_clean_button_clicked(self, widget):
-        mode = self.treeview.mode
-        if mode == 'package' or mode == 'kernel':
-            self.treeview.clean_selected_package()
-        elif mode == 'cache':
-            self.treeview.clean_selected_cache()
-        elif mode == 'config':
-            self.treeview.clean_selected_config()
+        if proxy.is_authorized():
+            mode = self.treeview.mode
+            if mode == 'package' or mode == 'kernel':
+                self.treeview.clean_selected_package()
+            elif mode == 'cache':
+                self.treeview.clean_selected_cache()
+            elif mode == 'config':
+                self.treeview.clean_selected_config()
+        else:
+            return
 
     def on_polkit_action(self, widget, action):
         if action:

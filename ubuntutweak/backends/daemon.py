@@ -244,8 +244,10 @@ class Daemon(PolicyKitService):
         return os.path.exists(path)
 
     @dbus.service.method(INTERFACE,
-                         in_signature='', out_signature='b')
-    def is_authorized(self):
+                         in_signature='', out_signature='b',
+                         sender_keyword='sender')
+    def is_authorized(self, sender=None):
+        self._check_permission(sender)
         return True
 
     @dbus.service.method(INTERFACE,

@@ -24,6 +24,7 @@ import dbus
 import gobject
 
 from ubuntutweak.backends import POLICY_KIT_ACTION
+from dbusproxy import proxy
 
 class PolkitAction(gobject.GObject):
     """
@@ -48,18 +49,12 @@ class PolkitAction(gobject.GObject):
         return self.result
 
     def do_authenticate(self):
-        service = dbus.SystemBus().get_object('org.freedesktop.PolicyKit1', '/org/freedesktop/PolicyKit1/Authority')
-        policykit = dbus.Interface(service, 'org.freedesktop.PolicyKit1.Authority')
-
-        if self.__class__.result:
-            self.emit('changed', 1)
+        try:
+            is_auth = proxy.is_authorized()
+        except:
             return
 
-        (is_auth, _, details) = policykit.CheckAuthorization(
-            ('unix-process', {'pid': dbus.UInt32(os.getpid(), variant_level=1)}),
-            POLICY_KIT_ACTION, {}, dbus.UInt32(1), '', timeout=600)
-
-        self.__class__.result = is_auth
+        self.__class__.result = bool(is_auth)
 
         if self.__class__.result == 1:
             self.emit('changed', 1)
