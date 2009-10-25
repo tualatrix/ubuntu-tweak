@@ -12,7 +12,6 @@ Breathe = [_('Breathe Icon Theme'), 'breathe-icon-theme', 'launchpad.net/breathe
 Opera = ['Opera', 'opera', 'www.opera.com', 'opera.gpg']
 Skype = ['Skype', 'skype', 'www.skype.com', '']
 PlayOnLinux = ['PlayOnLinux', 'playonlinux', 'www.playonlinux.com', 'pol.gpg']
-Ubuntu_cn = [_('Ubuntu Chinese Repository'), 'ubuntu-cn', 'www.ubuntu.org.cn', '']
 Specto = ['Specto', 'specto', 'specto.sourceforge.net', 'specto.gpg']
 OpenOffice = ['OpenOffice.org', 'openoffice', 'www.openoffice.org', 'ooo.gpg']
 IBus = [_('IBus (Old Version)'), 'ibus', 'code.google.com/p/ibus', 'ibus-dev.gpg']
@@ -51,7 +50,7 @@ KDE4 = ['KDE 4', 'kde-4', 'www.kde.org', 'kde4.gpg']
 UbuntuTweak = ['Ubuntu Tweak', 'ubuntu-tweak', 'ubuntu-tweak.com', 'tweak.gpg']
 UbuntuTweakTesting = [_('Ubuntu Tweak (Unstable Version)'), 'ubuntu-tweak', 'ubuntu-tweak.com', 'tweak-unstable.gpg']
 UbuDSL = ['UbuDSL', 'ubudsl', 'www.ubudsl.com', 'ubndsl.gpg']
-NautilusDropbox = ['Nautilus DropBox', 'nautilus-dropbox', 'www.getdropbox.com', '']
+NautilusDropbox = ['Nautilus DropBox', 'nautilus-dropbox', 'www.getdropbox.com', 'dropbox.gpg']
 Screenlets = ['Screenlets', 'screenlets', 'www.screenlets.org', 'screenlets.gpg']
 Spicebird = ['Spicebird', 'spicebird', 'www.spicebird.com', 'spicebird.gpg']
 Spicebird_Testing = [_('Spicebird (Testing Version)'), 'spicebird', 'www.spicebird.com', 'spicebird.gpg']
@@ -66,7 +65,6 @@ Liferea = ['Liferea', 'liferea', 'liferea.sourceforge.net', 'liferea.gpg']
 Terminator = ['Terminator', 'terminator', 'www.tenshu.net/terminator/', 'terminator.gpg']
 Transmission_Stable = ['Transmission (Stable Version)', 'transmission-gtk', 'www.transmissionbt.com', 'transmission_stable.gpg']
 Transmission_Beta = ['Transmission (Beta Version)', 'transmission-gtk', 'www.transmissionbt.com', 'transmission_beta.gpg']
-Transmission_Nightly = ['Transmission (Nightly Version)', 'transmission-gtk', 'www.transmissionbt.com', 'transmission_nightly.gpg']
 VirtualBox = ['VirtualBox', 'virtualbox', 'www.virtualbox.org', 'virtualbox.gpg']
 VirtualBoxOse = [_('VirtualBox (Open Source Edition)'), 'virtualbox-ose', 'www.virtualbox.org', 'virtualboxose.gpg']
 Vlc = [_('VLC media player'), 'vlc', 'www.videolan.org/vlc/', 'vlc.gpg']
@@ -100,15 +98,14 @@ OpenShot = [_('OpenShot Video Editor'), 'openshot', 'www.openshotvideo.com', 'op
 SOURCES_DATA = [
     ['http://ppa.launchpad.net/reacocard-awn/ppa/ubuntu/', ['hardy','intrepid'], 'main', AWN],
     ['http://ppa.launchpad.net/awn-testing/ppa/ubuntu', ['hardy','intrepid', 'jaunty', 'karmic'], 'main', AWN_TESTING],
-    ['http://ppa.launchpad.net/project-neon/ppa/ubuntu/', ['hardy', 'intrepid'], 'main', Amarok],
+    ['http://ppa.launchpad.net/project-neon/ppa/ubuntu/', ['jaunty'], 'main', Amarok],
     ['http://ppa.launchpad.net/amule-releases/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', AmuleRelease],
-    ['http://ppa.launchpad.net/blueman/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Blueman],
+    ['http://ppa.launchpad.net/blueman/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Blueman],
     ['http://le-web.org/repository', 'stable', 'main', Backintime],
     ['http://ppa.launchpad.net/breathe-dev/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Breathe],
-    ['http://archive.ubuntu.org.cn/ubuntu-cn/', ['hardy', 'intrepid'], 'main restricted universe multiverse', Ubuntu_cn],
     ['http://ppa.launchpad.net/openoffice-pkgs/ppa/ubuntu', 'jaunty', 'main', OpenOffice],
     ['http://ppa.launchpad.net/globalmenu-team/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', GlobalMenu],
-    ['http://ppa.launchpad.net/markuz/ppa/ubuntu', ['jaunty'], 'main', Christine],
+    ['http://ppa.launchpad.net/markuz/ppa/ubuntu', ['jaunty', 'karmic'], 'main', Christine],
     ['http://ppa.launchpad.net/chromium-daily/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', ChromiumBrowser],
     ['http://ppa.launchpad.net/specto/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Specto],
 #    ['http://getdeb.masio.com.mx/', ['hardy', 'intrepid', 'jaunty'], '', GetDeb],
@@ -121,14 +118,14 @@ SOURCES_DATA = [
     ['http://deb.opera.com/opera/', 'lenny', 'non-free', Opera],
     ['http://ppa.launchpad.net/firerabbit/ppa/ubuntu', ['intrepid','jaunty'], 'main', Synapse],
     ['http://download.skype.com/linux/repos/debian', 'stable', 'non-free', Skype],
-    ['http://ppa.launchpad.net/rvm/smplayer/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Smplayer],
+    ['http://ppa.launchpad.net/rvm/smplayer/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Smplayer],
     ['http://ppa.launchpad.net/rvm/testing/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Smplayer_Testing],
     ['http://ppa.launchpad.net/rvm/mplayer/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Mplayer],
     ['http://ppa.launchpad.net/gwibber-team/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Gwibber],
     ['http://ppa.launchpad.net/matthaeus123/mrw-gimp-svn/ubuntu', ['jaunty', 'karmic'], 'main', Gimp_Testing], 
     ['http://ppa.launchpad.net/gwibber-daily/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Gwibber_Daily],
     ['http://ppa.launchpad.net/gmchess/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Gmchess],
-    ['http://deb.playonlinux.com/', ['hardy', 'intrepid', 'jaunty'], 'main', PlayOnLinux],
+    ['http://deb.playonlinux.com/', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', PlayOnLinux],
     ['http://ppa.launchpad.net/webkit-team/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', WebKitGtk],
     ['http://ppa.launchpad.net/midori/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Midori],
     ['http://ppa.launchpad.net/liferea/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Liferea],
@@ -144,10 +141,10 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/moovida-packagers/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Moovida],
     ['http://ppa.launchpad.net/sudbury-team/ppa/ubuntu', 'jaunty', 'main', Moblin_Jaunty],
     ['http://ppa.launchpad.net/moblin/ppa/ubuntu', ['jaunty', 'karmic'], 'main', Moblin_Karmic],
-    ['http://repository.cairo-dock.org/ubuntu', ['hardy', 'intrepid'], 'cairo-dock', CairoDock],
+    ['http://repository.cairo-dock.org/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'cairo-dock', CairoDock],
     ['http://ppa.launchpad.net/do-core/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', GnomeDo],
-    ['http://ppa.launchpad.net/banshee-team/ppa/ubuntu', ['hardy', 'intrepid'], 'main', Banshee_Stable],
-    ['http://ppa.launchpad.net/banshee-unstable-team/ppa/ubuntu', ['hardy', 'intrepid', 'karmic'], 'main', Banshee_Unstable],
+    ['http://ppa.launchpad.net/banshee-team/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Banshee_Stable],
+    ['http://ppa.launchpad.net/banshee-unstable-team/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Banshee_Unstable],
     ['http://dl.google.com/linux/deb/', 'stable', 'main non-free', Google],
     ['http://dl.google.com/linux/deb/', 'testing', 'non-free', Google_Testing],
     ['http://ppa.launchpad.net/googlegadgets/ppa/ubuntu', 'hardy', 'main', GoogleGadgets],
@@ -156,7 +153,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/chmsee/jaunty/ubuntu', 'jaunty', 'main', ChmSee],
     ['http://ppa.launchpad.net/chmsee/karmic/ubuntu', 'karmic', 'main', ChmSee],
     ['http://ppa.launchpad.net/kubuntu-members-kde4/ppa/ubuntu', ['hardy', 'intrepid'], 'main', KDE4],
-    ['http://linux.getdropbox.com/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', NautilusDropbox],
+    ['http://linux.getdropbox.com/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', NautilusDropbox],
     ['http://ppa.launchpad.net/tualatrix/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', UbuntuTweak],
     ['http://ppa.launchpad.net/ubuntu-tweak-testing/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', UbuntuTweakTesting],
     ['http://ppa.launchpad.net/adrian5632/ppa/ubuntu', ['hardy', 'intrepid'], 'main', UbuDSL],
@@ -168,10 +165,9 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/gnome-terminator/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Terminator],
     ['http://ppa.launchpad.net/transmissionbt/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Transmission_Stable],
     ['http://ppa.launchpad.net/transmissionbt-beta/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Transmission_Beta],
-    ['http://ppa.launchpad.net/transmissionbt-nightly/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Transmission_Nightly],
     ['http://download.virtualbox.org/virtualbox/debian', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'non-free', VirtualBox],
     ['http://ppa.launchpad.net/debfx/virtualbox/ubuntu', ['intrepid', 'jaunty'], 'main', VirtualBoxOse],
-    ['http://ppa.launchpad.net/c-korn/vlc/ubuntu', ['jaunty'], 'main', Vlc],
+    ['http://ppa.launchpad.net/c-korn/vlc/ubuntu', ['jaunty', 'karmic'], 'main', Vlc],
     ['http://ppa.launchpad.net/shutter/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Shutter],
     ['http://ppa.launchpad.net/debfx/qt/ubuntu', 'jaunty', 'main', Qt],
     ['http://robin.powdarrmonkey.net/ubuntu', 'jaunty', '', Rednotebook],
@@ -179,13 +175,13 @@ SOURCES_DATA = [
     ['http://download.tuxfamily.org/swiftweasel', ['hardy', 'intrepid'], 'multiverse', Swiftweasel],
     ['http://packages.medibuntu.org/', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'free non-free', Medibuntu],
     ['http://ppa.launchpad.net/wine-doors-dev-team/ppa/ubuntu', 'intrepid', 'main', WineDoors],
-    ['http://ppa.launchpad.net/team-xbmc/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', XBMC],
-    ['http://ppa.launchpad.net/gnome-games-experimental/ppa/ubuntu', ['jaunty', 'karmic'], 'main', GnomeGames],
+    ['http://ppa.launchpad.net/team-xbmc/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', XBMC],
+    ['http://ppa.launchpad.net/gnome-games-experimental/ppa/ubuntu', ['jaunty'], 'main', GnomeGames],
     ['http://ppa.launchpad.net/ubuntu-x-swat/x-updates/ubuntu', ['jaunty', 'karmic'], 'main', UbuntuX],
     ['http://ppa.launchpad.net/xorg-edgers/ppa/ubuntu', ['jaunty', 'karmic'], 'main', UbuntuX_Unstable],
-    ['http://ppa.launchpad.net/njpatel/clutter-edgers/ubuntu', 'jaunty', 'main', Clutter],
-    ['http://ppa.launchpad.net/tualatrix/gloobus/ubuntu', 'jaunty', 'main', Gloobus],
-    ['http://ppa.launchpad.net/bisigi/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Bisigi],
+    ['http://ppa.launchpad.net/njpatel/clutter-edgers/ubuntu', ['jaunty', 'karmic'], 'main', Clutter],
+    ['http://ppa.launchpad.net/tualatrix/gloobus/ubuntu', ['jaunty', 'karmic'], 'main', Gloobus],
+    ['http://ppa.launchpad.net/bisigi/ppa/ubuntu', ['hardy', 'jaunty', 'karmic'], 'main', Bisigi],
     ['http://ppa.launchpad.net/gstreamer-developers/ppa/ubuntu', 'jaunty', 'main', Pitivi],
     ['http://ppa.launchpad.net/kubuntu-ppa/backports/ubuntu', 'jaunty', 'main', Kubuntu_backports],
     ['http://ppa.launchpad.net/lyx/ppa/ubuntu', 'jaunty', 'main', Lyx],
@@ -193,7 +189,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/tomboy-packagers/development/ubuntu', ['jaunty', 'karmic'], 'main', Tomboy_Unstable],
     ['http://ppa.launchpad.net/inkscape-nightly/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Inkscape_nightly],
     ['http://ppa.launchpad.net/pdfmod-team/ppa/ubuntu', ['karmic'], 'main', Pdfmod],
-    ['http://ppa.launchpad.net/osd-lyrics/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty'], 'main', Osdlyrics],
+    ['http://ppa.launchpad.net/osd-lyrics/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Osdlyrics],
     ['http://ppa.launchpad.net/openshot.developers/ppa/ubuntu', ['jaunty', 'karmic'], 'main', OpenShot],
 ]
 
