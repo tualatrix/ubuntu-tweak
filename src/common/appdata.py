@@ -190,6 +190,8 @@ APP_DICT = {
     'pdfmod': _('PDF Mod is a simple tool for modifying PDF documents.'),
     'osdlyrics': _('An OSD lyrics show compatible with various media players.'),
     'openshot': _('OpenShot Video Editor is a free, open-source, non-linear video editor, based on Python, GTK, and MLT.'),
+    'gnome-icon-theme-gartoon': _('This GTK+ theme provides an animated scalable group of icons to be used by GTK+ 2.x applications like GNOME 2.'),
+    'gnome-icon-theme-gartoon-redux': _('Gartoon Redux is an expanded version of the Gartoon theme, with dozens of new icons.'),
 }
 
 SOURCE_DICT = {
@@ -361,6 +363,8 @@ APPS = \
     'pdfmod': Text,
     'osdlyrics': Sound,
     'openshot': Video,
+    'gnome-icon-theme-gartoon': Theme,
+    'gnome-icon-theme-gartoon-redux': Theme,
 }
 
 if __name__ == '__main__':
