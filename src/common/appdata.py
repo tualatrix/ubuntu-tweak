@@ -194,6 +194,7 @@ APP_DICT = {
     'gnome-icon-theme-gartoon-redux': _('Gartoon Redux is an expanded version of the Gartoon theme, with dozens of new icons.'),
     'totem-pps': _('A ppstream plugin for totem player.'),
     'linuxqq': _('QQ - The most popular free instant messaging program in China.'),
+    'gmpc': _('Gnome Music Player Client (graphical interface to MPD)'),
 }
 
 SOURCE_DICT = {
@@ -370,6 +371,7 @@ APPS = \
     'gnome-icon-theme-gartoon-redux': Theme,
     'totem-pps': Video,
     'linuxqq': IM,
+    'gmpc': Sound,
 }
 
 if __name__ == '__main__':
