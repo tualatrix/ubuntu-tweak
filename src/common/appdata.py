@@ -192,6 +192,8 @@ APP_DICT = {
     'openshot': _('OpenShot Video Editor is a free, open-source, non-linear video editor, based on Python, GTK, and MLT.'),
     'gnome-icon-theme-gartoon': _('This GTK+ theme provides an animated scalable group of icons to be used by GTK+ 2.x applications like GNOME 2.'),
     'gnome-icon-theme-gartoon-redux': _('Gartoon Redux is an expanded version of the Gartoon theme, with dozens of new icons.'),
+    'totem-pps': _('A ppstream plugin for totem player.'),
+    'linuxqq': _('QQ - The most popular free instant messaging program in China.'),
 }
 
 SOURCE_DICT = {
@@ -216,6 +218,7 @@ SOURCE_DICT = {
     'bisigi': _('Behind this African word, referring to the notion of imagination, you can find some themes for GNOME'),
     'kubuntu-update': _('Updates for Kubuntu releases which are due to go to Ubuntu Updates. Mostly KDE point releases.'),
     'kubuntu-backports': _('Backports of new versions of KDE for Kubuntu which are not yet tested enough to go to Ubuntu Backports.'),
+    'mingming': _('PPA for Mingming, a lot of applications for Chinese users: totem-pps, linuxqq, gmlive, reciteword and so on'),
 }
 
 P2P = (_('File-Sharing Clients'), 'p2p.png')
@@ -365,6 +368,8 @@ APPS = \
     'openshot': Video,
     'gnome-icon-theme-gartoon': Theme,
     'gnome-icon-theme-gartoon-redux': Theme,
+    'totem-pps': Video,
+    'linuxqq': IM,
 }
 
 if __name__ == '__main__':

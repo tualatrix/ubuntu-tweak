@@ -95,6 +95,7 @@ Pdfmod = ['PDF Mod', 'pdfmod', 'live.gnome.org/PdfMod', 'pdfmod.gpg']
 Osdlyrics = [_('OSD Lyrics'), 'osdlyrics', 'code.google.com/p/osd-lyrics/', 'osdlyrics.gpg']
 OpenShot = [_('OpenShot Video Editor'), 'openshot', 'www.openshotvideo.com', 'openshot.gpg']
 GartoonRedux = ['Gartoon Redux', 'gnome-icon-theme-gartoon-redux', 'launchpad.net/gartoon-redux', 'gnome-icon-theme-gartoon-redux.gpg']
+Mingming = [_('PPA for Mingming'), 'mingming', 'launchpad.net/~portis25', 'mingming.gpg']
 
 SOURCES_DATA = [
     ['http://ppa.launchpad.net/reacocard-awn/ppa/ubuntu/', ['hardy','intrepid'], 'main', AWN],
@@ -193,6 +194,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/osd-lyrics/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Osdlyrics],
     ['http://ppa.launchpad.net/openshot.developers/ppa/ubuntu', ['jaunty', 'karmic'], 'main', OpenShot],
     ['http://ppa.launchpad.net/tweenk/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', GartoonRedux],
+    ['http://ppa.launchpad.net/portis25/ppa/ubuntu', ['karmic'], 'main', Mingming],
 ]
 
 SOURCES_DEPENDENCIES = {
