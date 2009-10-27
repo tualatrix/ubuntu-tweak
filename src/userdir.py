@@ -28,6 +28,7 @@ import gobject
 
 from common.consts import *
 from common.inifile import IniFile
+from common.utils import get_icon_with_name
 from common.widgets import TweakPage, EntryBox
 from common.widgets.dialogs import QuestionDialog, InfoDialog
 
@@ -187,13 +188,12 @@ class UserdirView(gtk.TreeView):
                             gobject.TYPE_STRING,
                             gobject.TYPE_STRING)
 
-        icontheme = gtk.icon_theme_get_default()
-        icon = icontheme.lookup_icon('gnome-fs-directory', 24, gtk.ICON_LOOKUP_NO_SVG).load_icon()
+        pixbuf = get_icon_with_name('folder', size=24)
 
         for dir, path in self.uf.items():
             name = self.uf.get_display(dir)
 
-            model.append((icon, name, dir, path))
+            model.append((pixbuf, name, dir, path))
 
         return model
 
