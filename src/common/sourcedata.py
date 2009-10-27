@@ -97,6 +97,7 @@ OpenShot = [_('OpenShot Video Editor'), 'openshot', 'www.openshotvideo.com', 'op
 GartoonRedux = ['Gartoon Redux', 'gnome-icon-theme-gartoon-redux', 'launchpad.net/gartoon-redux', 'gnome-icon-theme-gartoon-redux.gpg']
 Mingming = [_('PPA for Mingming'), 'mingming', 'launchpad.net/~portis25', 'mingming.gpg']
 Gmpc = ['GMPC', 'gmpc', 'gmpc.wikia.com', 'gmpc.gpg']
+Ricotz = [_('PPA for Rico Tzschichholz'), 'ricotz', 'launchpad.net/~ricotz', 'ricotz.gpg']
 
 SOURCES_DATA = [
     ['http://ppa.launchpad.net/reacocard-awn/ppa/ubuntu/', ['hardy','intrepid'], 'main', AWN],
@@ -197,6 +198,7 @@ SOURCES_DATA = [
     ['http://ppa.launchpad.net/tweenk/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', GartoonRedux],
     ['http://ppa.launchpad.net/portis25/ppa/ubuntu', ['karmic'], 'main', Mingming],
     ['http://ppa.launchpad.net/gmpc-trunk/ppa/ubuntu', ['hardy', 'intrepid', 'jaunty', 'karmic'], 'main', Gmpc],
+    ['http://ppa.launchpad.net/ricotz/testing/ubuntu', ['karmic'], 'main', Ricotz],
 ]
 
 SOURCES_DEPENDENCIES = {

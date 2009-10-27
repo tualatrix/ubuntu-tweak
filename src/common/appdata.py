@@ -195,6 +195,7 @@ APP_DICT = {
     'totem-pps': _('A ppstream plugin for totem player.'),
     'linuxqq': _('QQ - The most popular free instant messaging program in China.'),
     'gmpc': _('Gnome Music Player Client (graphical interface to MPD)'),
+    'gnome-shell': _('The GNOME Shell redefines user interactions with the GNOME desktop'),
 }
 
 SOURCE_DICT = {
@@ -220,6 +221,7 @@ SOURCE_DICT = {
     'kubuntu-update': _('Updates for Kubuntu releases which are due to go to Ubuntu Updates. Mostly KDE point releases.'),
     'kubuntu-backports': _('Backports of new versions of KDE for Kubuntu which are not yet tested enough to go to Ubuntu Backports.'),
     'mingming': _('PPA for Mingming, a lot of applications for Chinese users: totem-pps, linuxqq, gmlive, reciteword and so on'),
+    'ricotz': _('PPA for Rico Tzschichholz, some updated packages for testing purposes: gnome-shell, pulseaudio, inkscape, filezilla and docky'),
 }
 
 P2P = (_('File-Sharing Clients'), 'p2p.png')
@@ -372,6 +374,7 @@ APPS = \
     'totem-pps': Video,
     'linuxqq': IM,
     'gmpc': Sound,
+    'gnome-shell': Desktop,
 }
 
 if __name__ == '__main__':
