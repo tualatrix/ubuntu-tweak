@@ -3,58 +3,62 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2009-10-07 20:34+0800\n"
-"PO-Revision-Date: 2009-09-30 08:21+0000\n"
-"Last-Translator: Martin Lettner <m.lettner@gmail.com>\n"
+"POT-Creation-Date: 2009-10-27 20:08+0800\n"
+"PO-Revision-Date: 2009-10-28 09:36+0000\n"
+"Last-Translator: abo <Unknown>\n"
 "Language-Team: LL <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2009-10-07 12:24+0000\n"
+"X-Launchpad-Export-Date: 2009-10-29 11:08+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: GERMANY\n"
 "X-Poedit-Language: German\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "Generated-By: pygettext.py 1.5\n"
 
-#: src/userdir.py:45 src/mainwindow.py:282
+#: src/autostart.py:62
+msgid "Edit Startup Program"
+msgstr "Autostart-Programm bearbeiten"
+
+#: src/userdir.py:46 src/mainwindow.py:282
 msgid "Desktop"
 msgstr "Desktop"
 
-#: src/userdir.py:46
+#: src/userdir.py:47
 msgid "Download"
 msgstr "Download"
 
-#: src/userdir.py:47 src/mainwindow.py:289
+#: src/userdir.py:48 src/mainwindow.py:289
 msgid "Templates"
 msgstr "Dokumentvorlagen"
 
-#: src/userdir.py:48
+#: src/userdir.py:49
 msgid "Public"
 msgstr "Öffentlich"
 
-#: src/userdir.py:49
+#: src/userdir.py:50
 msgid "Document"
 msgstr "Dokument"
 
-#: src/userdir.py:50
+#: src/userdir.py:51
 msgid "Music"
 msgstr "Musik"
 
-#: src/userdir.py:51
+#: src/userdir.py:52
 msgid "Pictures"
 msgstr "Bilder"
 
-#: src/userdir.py:52
+#: src/userdir.py:53
 msgid "Videos"
 msgstr "Videos"
 
-#: src/userdir.py:146
+#: src/userdir.py:147
 msgid "Choose a folder"
 msgstr "Wählen Sie ein Verzeichnis"
 
-#: src/userdir.py:163
+#: src/userdir.py:164
 msgid ""
 "Ubuntu Tweak will restore the chosen directory to the default location.\n"
 "However, you must move your files back into place by yourself.\n"
@@ -278,11 +282,11 @@ msgstr "Quellen aktualisieren"
 msgid "Submit Sources"
 msgstr "Quellen übermitteln"
 
-#: src/sourceeditor.py:470
+#: src/sourceeditor.py:473
 msgid "Please input the correct information about sources!"
 msgstr "Geben Sie die korrekte Information über die Quellen an!"
 
-#: src/sourceeditor.py:483
+#: src/sourceeditor.py:486
 msgid ""
 "You can submit your sources to our server to help building the sources list, "
 "or you can use the official sources.\n"
@@ -292,11 +296,11 @@ msgstr ""
 "zu erstellen, oder Sie können die offiziellen Quellen verwenden.\n"
 "Wollen Sie die offiziellen Quellen verwenden?"
 
-#: src/sourceeditor.py:486
+#: src/sourceeditor.py:489
 msgid "No source data available"
 msgstr "Keine Quelldaten verfügbar"
 
-#: src/sourceeditor.py:503
+#: src/sourceeditor.py:506
 msgid ""
 "Your sources will be reviewed and made available for others soon.\n"
 "Thank you!"
@@ -304,11 +308,11 @@ msgstr ""
 "Ihre Quellen werden überprüft und für andere bald verfügbar gemacht.\n"
 "Danke!"
 
-#: src/sourceeditor.py:504
+#: src/sourceeditor.py:507
 msgid "Successfully submitted"
 msgstr "erfolgreich übertragen"
 
-#: src/sourceeditor.py:516
+#: src/sourceeditor.py:519
 msgid ""
 "You've changed the sources.list without saving it.\n"
 "Do you want to save it?"
@@ -316,15 +320,15 @@ msgstr ""
 "Die Datei sources.list hat ungesicherte Änderungen.\n"
 "Jetzt speichern?"
 
-#: src/sourceeditor.py:527 src/thirdsoft.py:713
+#: src/sourceeditor.py:530 src/thirdsoft.py:713
 msgid "Please check the permission of the sources.list file"
 msgstr "Überprüfen Sie die Zugriffsberechtigungen der Datei sources.list"
 
-#: src/sourceeditor.py:528 src/thirdsoft.py:714
+#: src/sourceeditor.py:531 src/thirdsoft.py:714
 msgid "Save failed!"
 msgstr "Speichern fehlgeschlagen!"
 
-#: src/sourceeditor.py:537
+#: src/sourceeditor.py:540
 msgid ""
 "The current content will be lost after reloading!\n"
 "Do you wish to continue?"
@@ -332,11 +336,11 @@ msgstr ""
 "Der aktuelle Inhalt geht nach dem Neuladen verloren!\n"
 "Wollen Sie fortfahren?"
 
-#: src/sourceeditor.py:548
+#: src/sourceeditor.py:551
 msgid "You can't delete sources.list!"
 msgstr "Die Datei sources.list kann nicht gelöscht werden!"
 
-#: src/sourceeditor.py:550
+#: src/sourceeditor.py:553
 #, python-format
 msgid ""
 "The \"%s\" will be deleted!\n"
@@ -747,7 +751,8 @@ msgstr "Versteckte Einstellungen ändern."
 
 #: src/mainwindow.py:75
 msgid "Clean up unneeded packages to free diskspace."
-msgstr "Nicht benötigte Pakete entfernen um freien Speicherplatz zu gewinnen."
+msgstr ""
+"Nicht benötigte Pakete entfernen um freien Speicherplatz zu gewinnen."
 
 #: src/mainwindow.py:76
 msgid "Easily install up-to-date versions of many applications."
@@ -771,7 +776,8 @@ msgstr "Bitte warten sie einen Moment..."
 
 #: src/mainwindow.py:103
 msgid "This feature isn't currently available in your distribution"
-msgstr "Diese Funktion steht in Ihrer Distribution derzeit nicht zur Verfügung"
+msgstr ""
+"Diese Funktion steht in Ihrer Distribution derzeit nicht zur Verfügung"
 
 #: src/mainwindow.py:116
 msgid "This feature is currently only available in GNOME Desktop Environment"
@@ -780,7 +786,7 @@ msgstr ""
 
 #: src/mainwindow.py:129
 msgid "This module is error while loading."
-msgstr ""
+msgstr "Beim Laden des Moduks ist ein Fehler aufgetreten."
 
 #: src/mainwindow.py:144
 msgid ""
@@ -906,7 +912,19 @@ msgstr ""
 "Ubuntu Tweak erlaubt Ihnen Ihr Ubuntu-System und den Desktop einfach "
 "anzupassen."
 
-#: src/mainwindow.py:609
+#: src/mainwindow.py:604
+msgid "Contributors of 2007"
+msgstr ""
+
+#: src/mainwindow.py:606
+msgid "Contributors of 2008"
+msgstr ""
+
+#: src/mainwindow.py:608
+msgid "Contributors of 2009"
+msgstr ""
+
+#: src/mainwindow.py:617
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
@@ -933,6 +951,7 @@ msgstr ""
 "  Thorsten Reinbold https://launchpad.net/~treinbold\n"
 "  Tschaka https://launchpad.net/~stuff4tschaka\n"
 "  TualatriX https://launchpad.net/~tualatrix\n"
+"  abo https://launchpad.net/~andreas-boettger\n"
 "  benste https://launchpad.net/~benste\n"
 "  dauerbaustelle https://launchpad.net/~dauerbaustelle\n"
 "  hello08 https://launchpad.net/~hello08\n"
@@ -944,7 +963,7 @@ msgstr ""
 "  soxs https://launchpad.net/~schuster-bernhard\n"
 "  staedtler-przyborski https://launchpad.net/~staedtler-przyborski"
 
-#: src/mainwindow.py:622
+#: src/mainwindow.py:630
 #, python-format
 msgid ""
 "A newer version: %s is available online.\n"
@@ -953,7 +972,7 @@ msgstr ""
 "Eine neuere Version ist verfügbar: %s\n"
 "Wollen sie aktualisieren?"
 
-#: src/mainwindow.py:623
+#: src/mainwindow.py:631
 msgid "Software Update"
 msgstr "Programmaktualisierung"
 
@@ -1307,7 +1326,8 @@ msgstr "Ein in PyGTK geschriebener Bittorrent-Client"
 
 #: src/common/appdata.py:91
 msgid "Store, Sync and Share your files online."
-msgstr "Speichere, synchronisiere und teile Deine Dateien online mit anderen."
+msgstr ""
+"Speichere, synchronisiere und teile Deine Dateien online mit anderen."
 
 #: src/common/appdata.py:92
 msgid "Extensible Tool Platform and Java IDE"
@@ -1315,11 +1335,11 @@ msgstr "Erweiterbare Werkzeugplattform und Java IDE"
 
 #: src/common/appdata.py:93
 msgid ""
-"EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
-"com."
+"EIOffice Personal 2009. Free for Chinese users. See "
+"http://www.evermoresw.com."
 msgstr ""
-"EIOffice Personal 2009. Kostenlos für chinesische Benutzer. Siehe http://www."
-"evermoresw.com"
+"EIOffice Personal 2009. Kostenlos für chinesische Benutzer. Siehe "
+"http://www.evermoresw.com"
 
 #: src/common/appdata.py:94
 msgid "A client for the Windows Live Message network"
@@ -1367,7 +1387,7 @@ msgstr "Ein multithreadfähiger FTP-Client"
 msgid "GNOME Hex editor"
 msgstr "GNOME Hexeditor"
 
-#: src/common/appdata.py:104 src/common/appdata.py:213
+#: src/common/appdata.py:104 src/common/appdata.py:219
 msgid ""
 "Gloobus is an extension of Gnome designed to enable a full screen preview of "
 "any kind of file."
@@ -1626,7 +1646,8 @@ msgstr "Ein internationales Wörterbuch"
 msgid ""
 "Swiftweasel is an optimized build of the Mozilla Firefox web browser for "
 "Linux"
-msgstr "Swiftweasel ist eine optimierte Version von Mozilla Firefox für Linux"
+msgstr ""
+"Swiftweasel ist eine optimierte Version von Mozilla Firefox für Linux"
 
 #: src/common/appdata.py:158
 msgid ""
@@ -1804,32 +1825,61 @@ msgid ""
 "on Python, GTK, and MLT."
 msgstr ""
 
+#: src/common/appdata.py:193
+msgid ""
+"This GTK+ theme provides an animated scalable group of icons to be used by "
+"GTK+ 2.x applications like GNOME 2."
+msgstr ""
+
+#: src/common/appdata.py:194
+msgid ""
+"Gartoon Redux is an expanded version of the Gartoon theme, with dozens of "
+"new icons."
+msgstr ""
+
+#: src/common/appdata.py:195
+msgid "A ppstream plugin for totem player."
+msgstr ""
+
 #: src/common/appdata.py:196
+msgid "QQ - The most popular free instant messaging program in China."
+msgstr ""
+
+#: src/common/appdata.py:197
+msgid "Gnome Music Player Client (graphical interface to MPD)"
+msgstr ""
+
+#: src/common/appdata.py:198
+msgid "The GNOME Shell redefines user interactions with the GNOME desktop"
+msgstr ""
+
+#: src/common/appdata.py:202
 msgid "Development Version of Mozilla Firefox"
 msgstr "Entwicklungs-Version von Mozilla Firefox"
 
-#: src/common/appdata.py:197
+#: src/common/appdata.py:203
 msgid "Development version of Compiz"
 msgstr "Entwicklungsversion von Compiz"
 
-#: src/common/appdata.py:198
+#: src/common/appdata.py:204
 msgid "Google's Linux Repository"
 msgstr "Googles Linux Repositorium"
 
-#: src/common/appdata.py:199
+#: src/common/appdata.py:205
 msgid "Development Version of K Desktop Environment"
 msgstr "Entwicklungs-Version der »K Desktop Environment«"
 
-#: src/common/appdata.py:200
+#: src/common/appdata.py:206
 msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
 msgstr "Leichtgewichtige X11-Desktopumgebung: GPicView, PCManFM"
 
-#: src/common/appdata.py:201
-msgid "WebkitGtk+, Liferea (Webkit), Midori and other WebKit related projects."
+#: src/common/appdata.py:207
+msgid ""
+"WebkitGtk+, Liferea (Webkit), Midori and other WebKit related projects."
 msgstr ""
 "WebkitGtk+, Liferea (Webkit), Midori und andere WebKit verwandte Projekte."
 
-#: src/common/appdata.py:202
+#: src/common/appdata.py:208
 msgid ""
 "Multimedia, Entertainment and Distraction In Ubuntu\n"
 "Medibuntu is a repository of packages that cannot be included into the "
@@ -1840,14 +1890,14 @@ msgstr ""
 "nicht in Ubuntu aufgenommen werden können (Urheberrecht, Lizenzen, Patente, "
 "usw.)."
 
-#: src/common/appdata.py:204
+#: src/common/appdata.py:210
 msgid ""
 "Ubuntu repository for Chinese users.\n"
 "Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and "
 "other softwares."
 msgstr "Ubuntu Repositorium für chinesische Benutzer."
 
-#: src/common/appdata.py:206
+#: src/common/appdata.py:212
 msgid ""
 "GetDeb extends the existing software options for Ubuntu (and derived) Linux "
 "distributions by providing major updates and software not yet available on "
@@ -1857,11 +1907,12 @@ msgstr ""
 "Derivat) Linux Distributionen, indem es größere Aktualisierungen und "
 "Software die noch nicht in den Ubuntu Repositories ist bereitstellt."
 
-#: src/common/appdata.py:207
+#: src/common/appdata.py:213
 msgid "Updated versions of X.org drivers, libraries, etc. for Ubuntu."
-msgstr "Aktuelle Versionen von X.org-Treibern, -Bibliotheken, etc. für Ubuntu."
+msgstr ""
+"Aktuelle Versionen von X.org-Treibern, -Bibliotheken, etc. für Ubuntu."
 
-#: src/common/appdata.py:208
+#: src/common/appdata.py:214
 msgid ""
 "Gnome Games built from Git, with all experimental features and staging games "
 "enabled."
@@ -1869,7 +1920,7 @@ msgstr ""
 "GNOME-Spiele gebaut von Git, mit allen experimentellen Neuheiten und in "
 "Entwicklung befindlichen Spielen aktiviert."
 
-#: src/common/appdata.py:209
+#: src/common/appdata.py:215
 msgid ""
 "Ubuntu Mozilla Security Team provides beta and final stable/security updates "
 "for mozilla software in its PPA"
@@ -1878,95 +1929,107 @@ msgstr ""
 "Sicherheitsaktualisierungen und allgemeine Aktualisierungen (Betastatus und "
 "stabil) für Mozilla-Software an"
 
-#: src/common/appdata.py:210
+#: src/common/appdata.py:216
 msgid "A cross-platform application and UI framework"
 msgstr ""
 "Ein plattformübergreifendes Programm und Benutzerschnittstellen-Framework"
 
-#: src/common/appdata.py:211
+#: src/common/appdata.py:217
 msgid "Mono is a cross platform, open source .NET development framework."
 msgstr ""
 "Mono ist ein plattformübergreifendes Open Source Framework für die .NET "
 "Entwicklung."
 
-#: src/common/appdata.py:212
+#: src/common/appdata.py:218
 msgid ""
 "Clutter is an OpenGL based interactive canvas library, designed for creating "
 "fast, mainly 2D single window applications such as media box UIs, "
 "presentations, kiosk style applications and so on."
 msgstr ""
 
-#: src/common/appdata.py:214
+#: src/common/appdata.py:220
 msgid ""
 "Behind this African word, referring to the notion of imagination, you can "
 "find some themes for GNOME"
 msgstr ""
 
-#: src/common/appdata.py:215
+#: src/common/appdata.py:221
 msgid ""
 "Updates for Kubuntu releases which are due to go to Ubuntu Updates. Mostly "
 "KDE point releases."
 msgstr ""
 
-#: src/common/appdata.py:216
+#: src/common/appdata.py:222
 msgid ""
 "Backports of new versions of KDE for Kubuntu which are not yet tested enough "
 "to go to Ubuntu Backports."
 msgstr ""
 
-#: src/common/appdata.py:219
+#: src/common/appdata.py:223
+msgid ""
+"PPA for Mingming, a lot of applications for Chinese users: totem-pps, "
+"linuxqq, gmlive, reciteword and so on"
+msgstr ""
+
+#: src/common/appdata.py:224
+msgid ""
+"PPA for Rico Tzschichholz, some updated packages for testing purposes: gnome-"
+"shell, pulseaudio, inkscape, filezilla and docky"
+msgstr ""
+
+#: src/common/appdata.py:227
 msgid "File-Sharing Clients"
 msgstr "Tauschbörse-Programme"
 
-#: src/common/appdata.py:220
+#: src/common/appdata.py:228
 msgid "Image Tools"
 msgstr "Grafikprogramme"
 
-#: src/common/appdata.py:221
+#: src/common/appdata.py:229
 msgid "Sound Tools"
 msgstr "Audiowerkzeuge"
 
-#: src/common/appdata.py:222
+#: src/common/appdata.py:230
 msgid "Video Tools"
 msgstr "Videobearbeitungs-Programme"
 
-#: src/common/appdata.py:223
+#: src/common/appdata.py:231
 msgid "Text Tools"
 msgstr "Texteditoren"
 
-#: src/common/appdata.py:224
+#: src/common/appdata.py:232
 msgid "Instant Messengers"
 msgstr "Sofortnachrichtendienste"
 
-#: src/common/appdata.py:225
+#: src/common/appdata.py:233
 msgid "Internet Tools"
 msgstr "Internetwerkzeuge"
 
-#: src/common/appdata.py:226
+#: src/common/appdata.py:234
 msgid "FTP Tools"
 msgstr "FTP-Werkzeuge"
 
-#: src/common/appdata.py:227
+#: src/common/appdata.py:235
 msgid "Desktop Tools"
 msgstr "Desktopwerkzeuge"
 
-#: src/common/appdata.py:228
+#: src/common/appdata.py:236
 msgid "CD/Disk Tools"
 msgstr "CD-/Datenträgerwerkzeuge"
 
-#: src/common/appdata.py:229
+#: src/common/appdata.py:237
 msgid "Development"
 msgstr "Softwareprogrammierung"
 
-#: src/common/appdata.py:230
+#: src/common/appdata.py:238
 msgid "Emulators"
 msgstr "Emulatoren"
 
-#: src/common/appdata.py:231
+#: src/common/appdata.py:239
 msgid "Themes"
 msgstr "Themes"
 
-#: src/common/appdata.py:232
+#: src/common/appdata.py:240
 msgid "E-mail Tools"
 msgstr "E-Mail Anwendungen"
 
@@ -1982,133 +2045,137 @@ msgstr "aMule (Stabile Version)"
 msgid "Breathe Icon Theme"
 msgstr "Breathe Symbolthema"
 
-#: src/common/sourcedata.py:15
-msgid "Ubuntu Chinese Repository"
-msgstr "Chinesisches Ubuntu-Repositorium"
-
-#: src/common/sourcedata.py:18
+#: src/common/sourcedata.py:17
 msgid "IBus (Old Version)"
 msgstr "IBus (Alte Version)"
 
-#: src/common/sourcedata.py:19
+#: src/common/sourcedata.py:18
 msgid "IBus 1.2 for intrepid"
 msgstr "IBus 1.2 für intrepid"
 
-#: src/common/sourcedata.py:20
+#: src/common/sourcedata.py:19
 msgid "IBus 1.2 for jaunty"
 msgstr "IBus 1.2 für jaunty"
 
-#: src/common/sourcedata.py:21
+#: src/common/sourcedata.py:20
 msgid "IBus 1.2 for karmic"
 msgstr "IBus 1.2 für karmic"
 
-#: src/common/sourcedata.py:27
+#: src/common/sourcedata.py:26
 msgid "Ubuntu Mozilla Security Team"
 msgstr "Ubuntu Mozilla Security Team"
 
-#: src/common/sourcedata.py:29
+#: src/common/sourcedata.py:28
 msgid "Christine Media Player"
 msgstr "Christine Media Player"
 
-#: src/common/sourcedata.py:35
+#: src/common/sourcedata.py:34
 msgid "Experimental Gnome Games"
 msgstr "Experimentelle GNOME-Spiele"
 
-#: src/common/sourcedata.py:37
+#: src/common/sourcedata.py:36
 msgid "Chinese Chess"
 msgstr ""
 
-#: src/common/sourcedata.py:38
+#: src/common/sourcedata.py:37
 msgid "Gnome Global Menu"
 msgstr "globales Gnome Menü"
 
-#: src/common/sourcedata.py:40
+#: src/common/sourcedata.py:39
 msgid "GetDeb.net (Mirror)"
 msgstr "GetDeb.net (Spiegelserver)"
 
-#: src/common/sourcedata.py:42
+#: src/common/sourcedata.py:41
 msgid "Gwibber (Daily Version)"
 msgstr "Gwibber (Täglich-aktualisierte Version)"
 
-#: src/common/sourcedata.py:43
+#: src/common/sourcedata.py:42
 msgid "GIMP (Testing Version)"
 msgstr "GIMP (Test-Version)"
 
-#: src/common/sourcedata.py:44
+#: src/common/sourcedata.py:43
 msgid "Banshee (Stable Version)"
 msgstr "Banshee (Stabile Version)"
 
-#: src/common/sourcedata.py:45
+#: src/common/sourcedata.py:44
 msgid "Banshee (Unstable Version)"
 msgstr "Banshee (Tesversion)"
 
-#: src/common/sourcedata.py:46
+#: src/common/sourcedata.py:45
 msgid "Google Repository"
 msgstr "Google Paketquellen"
 
-#: src/common/sourcedata.py:47
+#: src/common/sourcedata.py:46
 msgid "Google Testing Repository"
 msgstr "Google Test-Paketquellen"
 
-#: src/common/sourcedata.py:52
+#: src/common/sourcedata.py:51
 msgid "Ubuntu Tweak (Unstable Version)"
 msgstr "Justage von Ubuntu"
 
-#: src/common/sourcedata.py:57
+#: src/common/sourcedata.py:56
 msgid "Spicebird (Testing Version)"
 msgstr "Spicebird (Vorabversion)"
 
-#: src/common/sourcedata.py:61
+#: src/common/sourcedata.py:60
 msgid "SMPlayer (Unstable Version)"
 msgstr "SMPlayer (Instabile Version)"
 
-#: src/common/sourcedata.py:71
+#: src/common/sourcedata.py:69
 msgid "VirtualBox (Open Source Edition)"
 msgstr "VirtualBox (Open Source Version)"
 
-#: src/common/sourcedata.py:72
+#: src/common/sourcedata.py:70
 msgid "VLC media player"
 msgstr "VLC media player"
 
-#: src/common/sourcedata.py:78
+#: src/common/sourcedata.py:76
 msgid "Moblin Desktop for Ubuntu 9.04 Jaunty"
 msgstr ""
 
-#: src/common/sourcedata.py:79
+#: src/common/sourcedata.py:77
 msgid "Moblin Desktop for Ubuntu 9.10 Karmic"
 msgstr ""
 
-#: src/common/sourcedata.py:89
+#: src/common/sourcedata.py:87
 msgid "Bisigi Theme Project"
 msgstr ""
 
-#: src/common/sourcedata.py:90
+#: src/common/sourcedata.py:88
 msgid "PiTiVi video editor"
 msgstr ""
 
-#: src/common/sourcedata.py:91
+#: src/common/sourcedata.py:89
 msgid "Kubuntu Backports"
 msgstr ""
 
-#: src/common/sourcedata.py:93
+#: src/common/sourcedata.py:91
 msgid "Tomboy (Stable Version)"
 msgstr ""
 
-#: src/common/sourcedata.py:94
+#: src/common/sourcedata.py:92
 msgid "Tomboy (Unstable Version)"
 msgstr ""
 
-#: src/common/sourcedata.py:95
+#: src/common/sourcedata.py:93
 msgid "Inkscape (Nightly Version)"
 msgstr ""
 
-#: src/common/sourcedata.py:97
+#: src/common/sourcedata.py:95
 msgid "OSD Lyrics"
 msgstr ""
 
-#: src/common/sourcedata.py:98
+#: src/common/sourcedata.py:96
 msgid "OpenShot Video Editor"
 msgstr ""
+
+#: src/common/sourcedata.py:98
+msgid "PPA for Mingming"
+msgstr ""
+
+#: src/common/sourcedata.py:100
+msgid "PPA for Rico Tzschichholz"
+msgstr "PPA für Rico Tzschichholz"
 
 #: src/common/widgets/widgets.py:260
 msgid "Please press the new key combination"
@@ -2563,9 +2630,8 @@ msgid "Select All"
 msgstr "Alle auswählen"
 
 #: src/cleaner.py:477
-#, fuzzy
 msgid "_Cleanup"
-msgstr "Keine"
+msgstr ""
 
 #: src/shortcuts.py:49
 msgid "Shortcut Commands"
@@ -2614,10 +2680,6 @@ msgstr "_Name:"
 #: src/autostart.py:48
 msgid "Co_mmand:"
 msgstr "Be_fehl:"
-
-#: src/autostart.py:62
-msgid "Edit Startup Program"
-msgstr "Autostart-Programm bearbeiten"
 
 #: src/autostart.py:67
 msgid "New Startup Program"
@@ -2729,7 +2791,8 @@ msgstr "Nautilus-Erweiterungen"
 #: src/nautilus.py:185
 #, python-format
 msgid "Clean up the thumbnails cache (will free %s of disk space)"
-msgstr "den Zwischenspeicher aufräumen (wird %s des Speicherplatzes freigeben)"
+msgstr ""
+"den Zwischenspeicher aufräumen (wird %s des Speicherplatzes freigeben)"
 
 #: src/nautilus.py:188
 msgid "The thumbnails cache will be cleaned, Do you wish to continue?"
@@ -2773,7 +2836,8 @@ msgstr "Autostart Funktion"
 
 #: data/gui/traceback.glade:50
 msgid "<big><b>Oops... a fatal error occured</b></big>"
-msgstr "<big><b>Oops...es ist ein schwerwiegender Fehler aufgetreten</b></big>"
+msgstr ""
+"<big><b>Oops...es ist ein schwerwiegender Fehler aufgetreten</b></big>"
 
 #: data/gui/traceback.glade:64
 msgid ""
@@ -2830,9 +2894,6 @@ msgstr "_Benutzerdefinierten Befehl benutzen"
 #~ msgid "Show desktop icons"
 #~ msgstr "Desktop-Symbole anzeigen"
 
-#~ msgid "Kubuntu Update"
-#~ msgstr "Kubuntu Update"
-
 #~ msgid "Development version of Compiz Fusion"
 #~ msgstr "Entwicklerversion von Compiz Fusion"
 
@@ -2847,6 +2908,9 @@ msgstr "_Benutzerdefinierten Befehl benutzen"
 
 #~ msgid "<span size=\"xx-large\">Please wait a moment...</span>"
 #~ msgstr "<span size=\"xx-large\">Bitte warten Sie einen Moment...</span>"
+
+#~ msgid "Ubuntu Chinese Repository"
+#~ msgstr "Chinesisches Ubuntu-Repositorium"
 
 #~ msgid ""
 #~ "<span size=\"x-large\">This feature isn't currently available in your "
@@ -2892,3 +2956,6 @@ msgstr "_Benutzerdefinierten Befehl benutzen"
 
 #~ msgid "Enable PowerUser Mode"
 #~ msgstr "PowerUser-Modus aktivieren"
+
+#~ msgid "Kubuntu Update"
+#~ msgstr "Kubuntu Update"

@@ -7,54 +7,100 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2009-10-07 20:34+0800\n"
-"PO-Revision-Date: 2009-09-16 14:17+0000\n"
+"POT-Creation-Date: 2009-10-27 20:08+0800\n"
+"PO-Revision-Date: 2009-10-28 08:21+0000\n"
 "Last-Translator: Τάσος Παπανικολάου <paptas@gmail.com>\n"
 "Language-Team: Greek <el@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2009-10-07 12:24+0000\n"
+"X-Launchpad-Export-Date: 2009-10-29 11:08+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
-#: src/userdir.py:45 src/mainwindow.py:282
+#: src/computer.py:48
+msgid "Hostname"
+msgstr "Όνομα υπολογιστή"
+
+#: src/computer.py:49
+msgid "Distribution"
+msgstr "Διανομή"
+
+#: src/computer.py:50
+msgid "Desktop environment"
+msgstr "Περιβάλλον επιφάνειας εργασίας"
+
+#: src/computer.py:51
+msgid "Kernel"
+msgstr "Πυρήνας"
+
+#: src/computer.py:52
+msgid "Platform"
+msgstr "Πλατφόρμα"
+
+#: src/computer.py:53
+msgid "CPU"
+msgstr "Επεξεργαστής"
+
+#: src/computer.py:54
+msgid "Memory"
+msgstr "Μνήμη"
+
+#: src/computer.py:58
+msgid "User information"
+msgstr "Πληροφορίες χρήστη"
+
+#: src/lockdown.py:44
+msgid "Disable \"Lock Screen\""
+msgstr "Απενεργοποίηση \"Κλειδώμα Οθόνης\""
+
+#: src/lockdown.py:47
+msgid "Disable printing"
+msgstr "Απενεργοποίηση εκτύπωσης"
+
+#: src/cleaner.py:305
+#, python-format
+msgid "%d package selected to remove"
+msgid_plural "%d packages selected to remove"
+msgstr[0] "%d πακέτα έχετε επιλέξει για απομάκρυνση"
+
+#: src/userdir.py:46 src/mainwindow.py:282
 msgid "Desktop"
 msgstr "Επιφάνεια Eργασίας"
 
-#: src/userdir.py:46
+#: src/userdir.py:47
 msgid "Download"
 msgstr "Λήψη"
 
-#: src/userdir.py:47 src/mainwindow.py:289
+#: src/userdir.py:48 src/mainwindow.py:289
 msgid "Templates"
 msgstr "Πρότυπα"
 
-#: src/userdir.py:48
+#: src/userdir.py:49
 msgid "Public"
 msgstr "Κοινά"
 
-#: src/userdir.py:49
+#: src/userdir.py:50
 msgid "Document"
 msgstr "Έγγραφο"
 
-#: src/userdir.py:50
+#: src/userdir.py:51
 msgid "Music"
 msgstr "Μουσική"
 
-#: src/userdir.py:51
+#: src/userdir.py:52
 msgid "Pictures"
 msgstr "Εικόνες"
 
-#: src/userdir.py:52
+#: src/userdir.py:53
 msgid "Videos"
 msgstr "Βίντεο"
 
-#: src/userdir.py:146
+#: src/userdir.py:147
 msgid "Choose a folder"
 msgstr "Επιλογή φακέλου"
 
-#: src/userdir.py:163
+#: src/userdir.py:164
 msgid ""
 "Ubuntu Tweak will restore the chosen directory to the default location.\n"
 "However, you must move your files back into place by yourself.\n"
@@ -102,43 +148,11 @@ msgstr "Η ενημέρωση ήταν επιτυχής"
 
 #: src/computer.py:32
 msgid "Unknown"
-msgstr ""
+msgstr "Άγνωστο"
 
 #: src/computer.py:47
 msgid "System information"
 msgstr "Πληροφορίες συστήματος"
-
-#: src/computer.py:48
-msgid "Hostname"
-msgstr "Όνομα υπολογιστή"
-
-#: src/computer.py:49
-msgid "Distribution"
-msgstr "Διανομή"
-
-#: src/computer.py:50
-msgid "Desktop environment"
-msgstr "Περιβάλλον Εργασίας"
-
-#: src/computer.py:51
-msgid "Kernel"
-msgstr "Πυρήνας"
-
-#: src/computer.py:52
-msgid "Platform"
-msgstr "Πλατφόρμα"
-
-#: src/computer.py:53
-msgid "CPU"
-msgstr "CPU"
-
-#: src/computer.py:54
-msgid "Memory"
-msgstr "Μνήμη"
-
-#: src/computer.py:58
-msgid "User information"
-msgstr "Πληροφορίες χρήστη"
 
 #: src/computer.py:59
 msgid "Current user"
@@ -163,14 +177,6 @@ msgstr "Επιλογές Ασφαλείας Συστήματος"
 #: src/lockdown.py:41
 msgid "Disable \"Run Application\" dialog (Alt+F2)"
 msgstr "Απενεργοποίηση πλαισίου διαλόγου \"Εκτέλεση Εφαρμογής\" (Alt+F2)"
-
-#: src/lockdown.py:44
-msgid "Disable \"Lock Screen\""
-msgstr "Απενεργοποίηση \"Κλειδώματος Οθόνης\""
-
-#: src/lockdown.py:47
-msgid "Disable printing"
-msgstr "Απενεργοποίηση εκτύπωσης"
 
 #: src/lockdown.py:50
 msgid "Disable print setup"
@@ -280,56 +286,56 @@ msgstr "Ενημέρωση Πηγών"
 msgid "Submit Sources"
 msgstr "Στείλτε πηγές"
 
-#: src/sourceeditor.py:470
+#: src/sourceeditor.py:473
 msgid "Please input the correct information about sources!"
 msgstr "Παρακαλώ εισάγετε τις σωστές πληροφορίες για τις πηγές!"
 
-#: src/sourceeditor.py:483
+#: src/sourceeditor.py:486
 msgid ""
 "You can submit your sources to our server to help building the sources list, "
 "or you can use the official sources.\n"
 "Do you wish to use the official sources?"
 msgstr ""
 
-#: src/sourceeditor.py:486
+#: src/sourceeditor.py:489
 msgid "No source data available"
 msgstr "Καμία διαθέσιμη πηγή δεδομένων"
 
-#: src/sourceeditor.py:503
+#: src/sourceeditor.py:506
 msgid ""
 "Your sources will be reviewed and made available for others soon.\n"
 "Thank you!"
 msgstr ""
 
-#: src/sourceeditor.py:504
+#: src/sourceeditor.py:507
 msgid "Successfully submitted"
 msgstr "Υποβλήθηκαν επιτυχώς"
 
-#: src/sourceeditor.py:516
+#: src/sourceeditor.py:519
 msgid ""
 "You've changed the sources.list without saving it.\n"
 "Do you want to save it?"
 msgstr ""
 
-#: src/sourceeditor.py:527 src/thirdsoft.py:713
+#: src/sourceeditor.py:530 src/thirdsoft.py:713
 msgid "Please check the permission of the sources.list file"
 msgstr ""
 
-#: src/sourceeditor.py:528 src/thirdsoft.py:714
+#: src/sourceeditor.py:531 src/thirdsoft.py:714
 msgid "Save failed!"
 msgstr "Αποτυχές Σώσιμο!"
 
-#: src/sourceeditor.py:537
+#: src/sourceeditor.py:540
 msgid ""
 "The current content will be lost after reloading!\n"
 "Do you wish to continue?"
 msgstr ""
 
-#: src/sourceeditor.py:548
+#: src/sourceeditor.py:551
 msgid "You can't delete sources.list!"
 msgstr ""
 
-#: src/sourceeditor.py:550
+#: src/sourceeditor.py:553
 #, python-format
 msgid ""
 "The \"%s\" will be deleted!\n"
@@ -879,7 +885,19 @@ msgstr ""
 "Το Ubuntu Tweak είναι ένα εργαλείο για το Ubuntu το οποίο επιτρέπει την "
 "εύκολη διαμόρφωση ρυθμίσεων συστήματος και επιφάνειας εργασίας."
 
-#: src/mainwindow.py:609
+#: src/mainwindow.py:604
+msgid "Contributors of 2007"
+msgstr ""
+
+#: src/mainwindow.py:606
+msgid "Contributors of 2008"
+msgstr ""
+
+#: src/mainwindow.py:608
+msgid "Contributors of 2009"
+msgstr ""
+
+#: src/mainwindow.py:617
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
@@ -889,10 +907,11 @@ msgstr ""
 "  Vassilis Skoullis https://launchpad.net/~vaskoul\n"
 "  Yannis Kaskamanidis https://launchpad.net/~ttnfy17\n"
 "  ale3andro https://launchpad.net/~ale3andro\n"
+"  mixalns https://launchpad.net/~jhonnyglou\n"
 "  msrowley https://launchpad.net/~msrowley\n"
 "  Τάσος Παπανικολάου https://launchpad.net/~taspap"
 
-#: src/mainwindow.py:622
+#: src/mainwindow.py:630
 #, python-format
 msgid ""
 "A newer version: %s is available online.\n"
@@ -901,7 +920,7 @@ msgstr ""
 "Μια πιο καινούργια έκδοση : %s   διατίθεται online.\n"
 "Θέλετε να κάνετε αναβάθμιση;"
 
-#: src/mainwindow.py:623
+#: src/mainwindow.py:631
 msgid "Software Update"
 msgstr "Software Update"
 
@@ -1013,7 +1032,8 @@ msgstr "Απενεργοποίηση τον Διαχειριστή Δικτύο�
 
 #: src/powermanager.py:51
 msgid "Enable \"Lock screen\" when \"Blank Screen\" activates"
-msgstr "Ενεργοποιήση \"κλειδώματος οθόνης\" όταν ενεργοποιείται \"κενή οθόνη\""
+msgstr ""
+"Ενεργοποιήση \"κλειδώματος οθόνης\" όταν ενεργοποιείται \"κενή οθόνη\""
 
 #: src/powermanager.py:53
 msgid "Display \"Power Manager\" panel item"
@@ -1260,11 +1280,11 @@ msgstr "Επεκτάσιμο εργαλείο πλατφόργμα και Java I
 
 #: src/common/appdata.py:93
 msgid ""
-"EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
-"com."
+"EIOffice Personal 2009. Free for Chinese users. See "
+"http://www.evermoresw.com."
 msgstr ""
-"EIOffice Personal 2009. Δωρεάν για κινέζους χρήστες. Δείτε http://www."
-"evermoresw.com."
+"EIOffice Personal 2009. Δωρεάν για κινέζους χρήστες. Δείτε "
+"http://www.evermoresw.com."
 
 #: src/common/appdata.py:94
 msgid "A client for the Windows Live Message network"
@@ -1314,7 +1334,7 @@ msgstr "multithreaded FTP πελάτης"
 msgid "GNOME Hex editor"
 msgstr "Δεκαεξαδικός Διορθωτής για GNOME"
 
-#: src/common/appdata.py:104 src/common/appdata.py:213
+#: src/common/appdata.py:104 src/common/appdata.py:219
 msgid ""
 "Gloobus is an extension of Gnome designed to enable a full screen preview of "
 "any kind of file."
@@ -1713,31 +1733,60 @@ msgid ""
 "on Python, GTK, and MLT."
 msgstr ""
 
+#: src/common/appdata.py:193
+msgid ""
+"This GTK+ theme provides an animated scalable group of icons to be used by "
+"GTK+ 2.x applications like GNOME 2."
+msgstr ""
+
+#: src/common/appdata.py:194
+msgid ""
+"Gartoon Redux is an expanded version of the Gartoon theme, with dozens of "
+"new icons."
+msgstr ""
+
+#: src/common/appdata.py:195
+msgid "A ppstream plugin for totem player."
+msgstr ""
+
 #: src/common/appdata.py:196
-msgid "Development Version of Mozilla Firefox"
+msgid "QQ - The most popular free instant messaging program in China."
 msgstr ""
 
 #: src/common/appdata.py:197
-msgid "Development version of Compiz"
+msgid "Gnome Music Player Client (graphical interface to MPD)"
 msgstr ""
 
 #: src/common/appdata.py:198
-msgid "Google's Linux Repository"
-msgstr "Repository της Google για Linux"
-
-#: src/common/appdata.py:199
-msgid "Development Version of K Desktop Environment"
-msgstr ""
-
-#: src/common/appdata.py:200
-msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
-msgstr "Development Version of Mozilla Firefox 3.0/3.1, 4.0"
-
-#: src/common/appdata.py:201
-msgid "WebkitGtk+, Liferea (Webkit), Midori and other WebKit related projects."
+msgid "The GNOME Shell redefines user interactions with the GNOME desktop"
 msgstr ""
 
 #: src/common/appdata.py:202
+msgid "Development Version of Mozilla Firefox"
+msgstr ""
+
+#: src/common/appdata.py:203
+msgid "Development version of Compiz"
+msgstr ""
+
+#: src/common/appdata.py:204
+msgid "Google's Linux Repository"
+msgstr "Repository της Google για Linux"
+
+#: src/common/appdata.py:205
+msgid "Development Version of K Desktop Environment"
+msgstr ""
+
+#: src/common/appdata.py:206
+msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
+msgstr "Development Version of Mozilla Firefox 3.0/3.1, 4.0"
+
+#: src/common/appdata.py:207
+msgid ""
+"WebkitGtk+, Liferea (Webkit), Midori and other WebKit related projects."
+msgstr ""
+
+#: src/common/appdata.py:208
 msgid ""
 "Multimedia, Entertainment and Distraction In Ubuntu\n"
 "Medibuntu is a repository of packages that cannot be included into the "
@@ -1747,7 +1796,7 @@ msgstr ""
 "Το Medibuntu είναι ένα αποθετήριο πακέτων που δεν μπορούν να συμπεριληφθούν "
 "στην διανομή Ubuntu για νομικούς λόγους (copyright, άδειες, πατέντες, κτλ)"
 
-#: src/common/appdata.py:204
+#: src/common/appdata.py:210
 msgid ""
 "Ubuntu repository for Chinese users.\n"
 "Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and "
@@ -1757,115 +1806,127 @@ msgstr ""
 "Περιλαμβάνει τα Including EIOffice, Ubuntu Tweak, ibus input method, "
 "OpenOffice.org 3.0 και λοιπά προγράμματα."
 
-#: src/common/appdata.py:206
+#: src/common/appdata.py:212
 msgid ""
 "GetDeb extends the existing software options for Ubuntu (and derived) Linux "
 "distributions by providing major updates and software not yet available on "
 "the official Ubuntu repositories."
 msgstr ""
 
-#: src/common/appdata.py:207
+#: src/common/appdata.py:213
 msgid "Updated versions of X.org drivers, libraries, etc. for Ubuntu."
 msgstr ""
 
-#: src/common/appdata.py:208
+#: src/common/appdata.py:214
 msgid ""
 "Gnome Games built from Git, with all experimental features and staging games "
 "enabled."
 msgstr ""
 
-#: src/common/appdata.py:209
+#: src/common/appdata.py:215
 msgid ""
 "Ubuntu Mozilla Security Team provides beta and final stable/security updates "
 "for mozilla software in its PPA"
 msgstr ""
 
-#: src/common/appdata.py:210
+#: src/common/appdata.py:216
 msgid "A cross-platform application and UI framework"
 msgstr ""
 
-#: src/common/appdata.py:211
+#: src/common/appdata.py:217
 msgid "Mono is a cross platform, open source .NET development framework."
 msgstr ""
 
-#: src/common/appdata.py:212
+#: src/common/appdata.py:218
 msgid ""
 "Clutter is an OpenGL based interactive canvas library, designed for creating "
 "fast, mainly 2D single window applications such as media box UIs, "
 "presentations, kiosk style applications and so on."
 msgstr ""
 
-#: src/common/appdata.py:214
+#: src/common/appdata.py:220
 msgid ""
 "Behind this African word, referring to the notion of imagination, you can "
 "find some themes for GNOME"
 msgstr ""
 
-#: src/common/appdata.py:215
+#: src/common/appdata.py:221
 msgid ""
 "Updates for Kubuntu releases which are due to go to Ubuntu Updates. Mostly "
 "KDE point releases."
 msgstr ""
 
-#: src/common/appdata.py:216
+#: src/common/appdata.py:222
 msgid ""
 "Backports of new versions of KDE for Kubuntu which are not yet tested enough "
 "to go to Ubuntu Backports."
 msgstr ""
 
-#: src/common/appdata.py:219
+#: src/common/appdata.py:223
+msgid ""
+"PPA for Mingming, a lot of applications for Chinese users: totem-pps, "
+"linuxqq, gmlive, reciteword and so on"
+msgstr ""
+
+#: src/common/appdata.py:224
+msgid ""
+"PPA for Rico Tzschichholz, some updated packages for testing purposes: gnome-"
+"shell, pulseaudio, inkscape, filezilla and docky"
+msgstr ""
+
+#: src/common/appdata.py:227
 msgid "File-Sharing Clients"
 msgstr "Πελάτες Μοιράσματος Αρχείων"
 
-#: src/common/appdata.py:220
+#: src/common/appdata.py:228
 msgid "Image Tools"
 msgstr "Εργαλεία Εικόνων"
 
-#: src/common/appdata.py:221
+#: src/common/appdata.py:229
 msgid "Sound Tools"
 msgstr "Εργαλεία ´Ηχου"
 
-#: src/common/appdata.py:222
+#: src/common/appdata.py:230
 msgid "Video Tools"
 msgstr "Εργαλεία Βίντεο"
 
-#: src/common/appdata.py:223
+#: src/common/appdata.py:231
 msgid "Text Tools"
 msgstr "Εργαλεία κειμένου"
 
-#: src/common/appdata.py:224
+#: src/common/appdata.py:232
 msgid "Instant Messengers"
 msgstr "Προγρ'αμματα Στιγμιαίων Μυνημάτων"
 
-#: src/common/appdata.py:225
+#: src/common/appdata.py:233
 msgid "Internet Tools"
 msgstr "Εργαλεία Διαδικτύου"
 
-#: src/common/appdata.py:226
+#: src/common/appdata.py:234
 msgid "FTP Tools"
 msgstr "Εργαλία FTP"
 
-#: src/common/appdata.py:227
+#: src/common/appdata.py:235
 msgid "Desktop Tools"
 msgstr "Εργαλεία Επιφάνειας Εργασίας"
 
-#: src/common/appdata.py:228
+#: src/common/appdata.py:236
 msgid "CD/Disk Tools"
 msgstr "Εργαλεία CD/Δίσκων"
 
-#: src/common/appdata.py:229
+#: src/common/appdata.py:237
 msgid "Development"
 msgstr "Ανάπτυξη λογισμικού"
 
-#: src/common/appdata.py:230
+#: src/common/appdata.py:238
 msgid "Emulators"
 msgstr "Προσωμειωτές"
 
-#: src/common/appdata.py:231
+#: src/common/appdata.py:239
 msgid "Themes"
 msgstr ""
 
-#: src/common/appdata.py:232
+#: src/common/appdata.py:240
 msgid "E-mail Tools"
 msgstr "Εργαλία E-mail"
 
@@ -1881,132 +1942,136 @@ msgstr ""
 msgid "Breathe Icon Theme"
 msgstr ""
 
-#: src/common/sourcedata.py:15
-msgid "Ubuntu Chinese Repository"
-msgstr "Κινέζικο Αποθετήριο του Ubuntu"
-
-#: src/common/sourcedata.py:18
+#: src/common/sourcedata.py:17
 msgid "IBus (Old Version)"
 msgstr ""
 
-#: src/common/sourcedata.py:19
+#: src/common/sourcedata.py:18
 msgid "IBus 1.2 for intrepid"
 msgstr ""
 
-#: src/common/sourcedata.py:20
+#: src/common/sourcedata.py:19
 msgid "IBus 1.2 for jaunty"
 msgstr ""
 
-#: src/common/sourcedata.py:21
+#: src/common/sourcedata.py:20
 msgid "IBus 1.2 for karmic"
 msgstr ""
 
-#: src/common/sourcedata.py:27
+#: src/common/sourcedata.py:26
 msgid "Ubuntu Mozilla Security Team"
 msgstr ""
 
-#: src/common/sourcedata.py:29
+#: src/common/sourcedata.py:28
 msgid "Christine Media Player"
 msgstr ""
 
-#: src/common/sourcedata.py:35
+#: src/common/sourcedata.py:34
 msgid "Experimental Gnome Games"
 msgstr ""
 
-#: src/common/sourcedata.py:37
+#: src/common/sourcedata.py:36
 msgid "Chinese Chess"
 msgstr ""
 
-#: src/common/sourcedata.py:38
+#: src/common/sourcedata.py:37
 msgid "Gnome Global Menu"
 msgstr "Κεντρικό μενού Gnome"
 
-#: src/common/sourcedata.py:40
+#: src/common/sourcedata.py:39
 msgid "GetDeb.net (Mirror)"
 msgstr ""
 
-#: src/common/sourcedata.py:42
+#: src/common/sourcedata.py:41
 msgid "Gwibber (Daily Version)"
 msgstr "Gwibber(Ημερήσια Έκδοση)"
 
-#: src/common/sourcedata.py:43
+#: src/common/sourcedata.py:42
 msgid "GIMP (Testing Version)"
 msgstr ""
 
-#: src/common/sourcedata.py:44
+#: src/common/sourcedata.py:43
 msgid "Banshee (Stable Version)"
 msgstr "Banshee (σταθερή έκδοση)"
 
-#: src/common/sourcedata.py:45
+#: src/common/sourcedata.py:44
 msgid "Banshee (Unstable Version)"
 msgstr "Banshee (Ασταθής Έκδοση)"
 
-#: src/common/sourcedata.py:46
+#: src/common/sourcedata.py:45
 msgid "Google Repository"
 msgstr ""
 
-#: src/common/sourcedata.py:47
+#: src/common/sourcedata.py:46
 msgid "Google Testing Repository"
 msgstr ""
 
-#: src/common/sourcedata.py:52
+#: src/common/sourcedata.py:51
 msgid "Ubuntu Tweak (Unstable Version)"
 msgstr "Ubuntu Tweak (Ασταθής Έκδοση)"
 
-#: src/common/sourcedata.py:57
+#: src/common/sourcedata.py:56
 msgid "Spicebird (Testing Version)"
 msgstr ""
 
-#: src/common/sourcedata.py:61
+#: src/common/sourcedata.py:60
 msgid "SMPlayer (Unstable Version)"
 msgstr ""
 
-#: src/common/sourcedata.py:71
+#: src/common/sourcedata.py:69
 msgid "VirtualBox (Open Source Edition)"
 msgstr ""
 
-#: src/common/sourcedata.py:72
+#: src/common/sourcedata.py:70
 msgid "VLC media player"
 msgstr ""
 
-#: src/common/sourcedata.py:78
+#: src/common/sourcedata.py:76
 msgid "Moblin Desktop for Ubuntu 9.04 Jaunty"
 msgstr ""
 
-#: src/common/sourcedata.py:79
+#: src/common/sourcedata.py:77
 msgid "Moblin Desktop for Ubuntu 9.10 Karmic"
 msgstr ""
 
-#: src/common/sourcedata.py:89
+#: src/common/sourcedata.py:87
 msgid "Bisigi Theme Project"
 msgstr ""
 
-#: src/common/sourcedata.py:90
+#: src/common/sourcedata.py:88
 msgid "PiTiVi video editor"
 msgstr ""
 
-#: src/common/sourcedata.py:91
+#: src/common/sourcedata.py:89
 msgid "Kubuntu Backports"
 msgstr ""
 
-#: src/common/sourcedata.py:93
+#: src/common/sourcedata.py:91
 msgid "Tomboy (Stable Version)"
 msgstr ""
 
-#: src/common/sourcedata.py:94
+#: src/common/sourcedata.py:92
 msgid "Tomboy (Unstable Version)"
 msgstr ""
 
-#: src/common/sourcedata.py:95
+#: src/common/sourcedata.py:93
 msgid "Inkscape (Nightly Version)"
 msgstr ""
 
-#: src/common/sourcedata.py:97
+#: src/common/sourcedata.py:95
 msgid "OSD Lyrics"
 msgstr ""
 
-#: src/common/sourcedata.py:98
+#: src/common/sourcedata.py:96
 msgid "OpenShot Video Editor"
+msgstr ""
+
+#: src/common/sourcedata.py:98
+msgid "PPA for Mingming"
+msgstr ""
+
+#: src/common/sourcedata.py:100
+msgid "PPA for Rico Tzschichholz"
 msgstr ""
 
 #: src/common/widgets/widgets.py:260
@@ -2404,13 +2469,6 @@ msgstr ""
 msgid "Package Config"
 msgstr "Ρύθμιση προσωρινής μνήμης"
 
-#: src/cleaner.py:305
-#, python-format
-msgid "%d package selected to remove"
-msgid_plural "%d packages selected to remove"
-msgstr[0] "%d πακέτα έχετε επιλέξει για απομάκρυνση"
-msgstr[1] "%d πακέτα έχετε επιλέξει για απομάκρυνση"
-
 #: src/cleaner.py:309
 #, python-format
 msgid "%s of space will be freed"
@@ -2457,9 +2515,8 @@ msgid "Select All"
 msgstr "Επιλογή Όλων"
 
 #: src/cleaner.py:477
-#, fuzzy
 msgid "_Cleanup"
-msgstr "Καθάρισε"
+msgstr ""
 
 #: src/shortcuts.py:49
 msgid "Shortcut Commands"
@@ -2719,8 +2776,8 @@ msgstr "_Χρήση μιας προσαρμοσμένης εντολής"
 
 #~ msgid "<span size=\"x-large\">This module is error while loading.</span>"
 #~ msgstr ""
-#~ "<span size=\"x-large\">Αυτό το module παρουσιάζει σφάλμα κατά την φόρτωση."
-#~ "</span>"
+#~ "<span size=\"x-large\">Αυτό το module παρουσιάζει σφάλμα κατά την "
+#~ "φόρτωση.</span>"
 
 #~ msgid ""
 #~ "<span size=\"x-large\">This feature isn't currently available in your "
@@ -2735,17 +2792,19 @@ msgstr "_Χρήση μιας προσαρμοσμένης εντολής"
 #~ "Click \"Submit Sources\" if you want to share your sources with other "
 #~ "people.\n"
 #~ msgstr ""
-#~ "Ελεύθερα διορθώστε τις πηγές λογισμικού για να ταιριάξουν στις ανάγκες "
-#~ "σας.\n"
+#~ "Ελεύθερα διορθώστε τις πηγές λογισμικού για να ταιριάξουν στις ανάγκες σας.\n"
 #~ "Πατείστε \"Ανανέωση Πηγών\" αν θέλετε να αλλάξετε τις πηγές.\n"
-#~ "Πατείστε \"Αποστολή Πηγών\" αν θέλετε να μοιραστείτε τις πηγές σας με "
-#~ "άλλους ανθρώπους.\n"
+#~ "Πατείστε \"Αποστολή Πηγών\" αν θέλετε να μοιραστείτε τις πηγές σας με άλλους "
+#~ "ανθρώπους.\n"
 
 #~ msgid "A powerful screenshot tool"
 #~ msgstr "Δυνατό εργαλείο για screenshot"
 
 #~ msgid "GTK+ based flexible audio player, similar to Amarok"
 #~ msgstr "Ευέλικος player ήχου, βασισένο σε GTK+, παρόμοιος με το Amarok"
+
+#~ msgid "Ubuntu Chinese Repository"
+#~ msgstr "Κινέζικο Αποθετήριο του Ubuntu"
 
 #~ msgid ""
 #~ "You can install the new applications through Add/Remove.\n"

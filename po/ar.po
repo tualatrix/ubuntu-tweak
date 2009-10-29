@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: tualatrix@gmail.com\n"
-"POT-Creation-Date: 2009-10-07 20:34+0800\n"
-"PO-Revision-Date: 2009-09-26 11:35+0000\n"
+"POT-Creation-Date: 2009-10-27 20:08+0800\n"
+"PO-Revision-Date: 2009-10-28 08:18+0000\n"
 "Last-Translator: Dilmi Fethi <delphiexile@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,46 +18,50 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n % 100 >= "
 "3 && n % 100 <= 10 ? 3 : n % 100 >= 11 && n % 100 <= 99 ? 4 : 5;\n"
-"X-Launchpad-Export-Date: 2009-10-07 12:24+0000\n"
+"X-Launchpad-Export-Date: 2009-10-29 11:08+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
-#: src/userdir.py:45 src/mainwindow.py:282
+#: src/autostart.py:411 src/autostart.py:458
+msgid "Text was empty (or contained only whitespace)"
+msgstr "كان النص فارغا (أو كان يحتوي على فراغ أبيض)"
+
+#: src/userdir.py:46 src/mainwindow.py:282
 msgid "Desktop"
 msgstr "سطح المكتب"
 
-#: src/userdir.py:46
+#: src/userdir.py:47
 msgid "Download"
 msgstr "تنزيل"
 
-#: src/userdir.py:47 src/mainwindow.py:289
+#: src/userdir.py:48 src/mainwindow.py:289
 msgid "Templates"
 msgstr "قوالب"
 
-#: src/userdir.py:48
+#: src/userdir.py:49
 msgid "Public"
 msgstr "عام"
 
-#: src/userdir.py:49
+#: src/userdir.py:50
 msgid "Document"
 msgstr "مستند"
 
-#: src/userdir.py:50
+#: src/userdir.py:51
 msgid "Music"
 msgstr "موسيقى"
 
-#: src/userdir.py:51
+#: src/userdir.py:52
 msgid "Pictures"
 msgstr "صور"
 
-#: src/userdir.py:52
+#: src/userdir.py:53
 msgid "Videos"
 msgstr "فيديو"
 
-#: src/userdir.py:146
+#: src/userdir.py:147
 msgid "Choose a folder"
 msgstr "اختر مجلدًا"
 
-#: src/userdir.py:163
+#: src/userdir.py:164
 msgid ""
 "Ubuntu Tweak will restore the chosen directory to the default location.\n"
 "However, you must move your files back into place by yourself.\n"
@@ -276,11 +280,11 @@ msgstr "تحديث المصادر"
 msgid "Submit Sources"
 msgstr "إرسال المصادر"
 
-#: src/sourceeditor.py:470
+#: src/sourceeditor.py:473
 msgid "Please input the correct information about sources!"
 msgstr "من فضلك أدخل معلومات المصادر الصحيحة!"
 
-#: src/sourceeditor.py:483
+#: src/sourceeditor.py:486
 msgid ""
 "You can submit your sources to our server to help building the sources list, "
 "or you can use the official sources.\n"
@@ -290,11 +294,11 @@ msgstr ""
 "استخدام المصادر الرسمية.\n"
 "أتريد استخدام المصادر الرسمية؟"
 
-#: src/sourceeditor.py:486
+#: src/sourceeditor.py:489
 msgid "No source data available"
 msgstr "لا مصدر بيانات متاح"
 
-#: src/sourceeditor.py:503
+#: src/sourceeditor.py:506
 msgid ""
 "Your sources will be reviewed and made available for others soon.\n"
 "Thank you!"
@@ -302,11 +306,11 @@ msgstr ""
 "سوف تُراجع مصادرك وتكون متاحة للآخرين قريبا.\n"
 "شكرا لك!"
 
-#: src/sourceeditor.py:504
+#: src/sourceeditor.py:507
 msgid "Successfully submitted"
 msgstr "أرسلت بنجاح"
 
-#: src/sourceeditor.py:516
+#: src/sourceeditor.py:519
 msgid ""
 "You've changed the sources.list without saving it.\n"
 "Do you want to save it?"
@@ -314,15 +318,15 @@ msgstr ""
 "لقد غير ملف sources.list من غير حفظه.\n"
 "هل تريد حفظه ؟"
 
-#: src/sourceeditor.py:527 src/thirdsoft.py:713
+#: src/sourceeditor.py:530 src/thirdsoft.py:713
 msgid "Please check the permission of the sources.list file"
 msgstr "من فضلك التمس إذن ملف sources.list"
 
-#: src/sourceeditor.py:528 src/thirdsoft.py:714
+#: src/sourceeditor.py:531 src/thirdsoft.py:714
 msgid "Save failed!"
 msgstr "فشل الحفظ!"
 
-#: src/sourceeditor.py:537
+#: src/sourceeditor.py:540
 msgid ""
 "The current content will be lost after reloading!\n"
 "Do you wish to continue?"
@@ -330,11 +334,11 @@ msgstr ""
 "سوف يضيع المحتوى الحالي بعد إعادة التحميل!\n"
 "أتريد الاستمرار؟"
 
-#: src/sourceeditor.py:548
+#: src/sourceeditor.py:551
 msgid "You can't delete sources.list!"
 msgstr "لا يمكنك حذف sources.list!"
 
-#: src/sourceeditor.py:550
+#: src/sourceeditor.py:553
 #, python-format
 msgid ""
 "The \"%s\" will be deleted!\n"
@@ -442,6 +446,8 @@ msgid ""
 "%s is enabled now, Please click the refresh button to update the application "
 "cache."
 msgstr ""
+"%s مُفعل الآن، الرجاء النقر على زر التحديث من أجل تحديث ذاكرة التخزين المؤقت "
+"للبرنامج."
 
 #: src/thirdsoft.py:566
 msgid "Homepage"
@@ -763,11 +769,11 @@ msgstr "هذه الخاصية غير متوفرة في توزيعتك"
 
 #: src/mainwindow.py:116
 msgid "This feature is currently only available in GNOME Desktop Environment"
-msgstr ""
+msgstr "هذه الخاصية غير متوفرة حاليا في واجهة غنوم"
 
 #: src/mainwindow.py:129
 msgid "This module is error while loading."
-msgstr ""
+msgstr "هذه الوحدة تحتوي على خطأ أثناء التحميل."
 
 #: src/mainwindow.py:144
 msgid ""
@@ -891,7 +897,19 @@ msgid ""
 msgstr ""
 "تكييف أوبونتو هي أداة لأوبونتو تجعل من السهل تهيئة نظامك وإعدادات سطح مكتبك."
 
-#: src/mainwindow.py:609
+#: src/mainwindow.py:604
+msgid "Contributors of 2007"
+msgstr ""
+
+#: src/mainwindow.py:606
+msgid "Contributors of 2008"
+msgstr ""
+
+#: src/mainwindow.py:608
+msgid "Contributors of 2009"
+msgstr ""
+
+#: src/mainwindow.py:617
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
@@ -903,9 +921,10 @@ msgstr ""
 "  Osama https://launchpad.net/~osamak-wfm\n"
 "  TualatriX https://launchpad.net/~tualatrix\n"
 "  Zied ALAYA https://launchpad.net/~zied.alaya\n"
+"  mohamed 3atef https://launchpad.net/~therock-624\n"
 "  الـشـبـح https://launchpad.net/~the-ghost-live"
 
-#: src/mainwindow.py:622
+#: src/mainwindow.py:630
 #, python-format
 msgid ""
 "A newer version: %s is available online.\n"
@@ -914,7 +933,7 @@ msgstr ""
 "نسخة أحدث: %s متوفرة على الإنترنت.\n"
 "أتريد التحديث؟"
 
-#: src/mainwindow.py:623
+#: src/mainwindow.py:631
 msgid "Software Update"
 msgstr "تحديث البرمجيات"
 
@@ -1016,7 +1035,7 @@ msgstr "مكّن \"الاستعداد\""
 
 #: src/powermanager.py:45
 msgid "Show \"CPU frequency control option\" in Power Management Preferences"
-msgstr ""
+msgstr "إعرض \"خيار التحكم في تردد CPU \" في إعدادات إدارة الطاقة"
 
 #: src/powermanager.py:48
 msgid "Disable Network Manager when asleep"
@@ -1175,6 +1194,8 @@ msgid ""
 "Arc-Colors is a set of wallpapers and GDM themes made to complement the "
 "Shiki-Colors GTK+ themes and the GNOME-Colors icon themes."
 msgstr ""
+"Arc-Colors مجموعة من الخلفيات وGDM themes صنعت لتتكامل مع Shiki-Colors GTK+ "
+"themes و the GNOME-Colors icon themes."
 
 #: src/common/appdata.py:72
 msgid "A skinned multimedia player for many platforms"
@@ -1221,6 +1242,8 @@ msgid ""
 "The Breathe icon theme is a refresh of the Human icon theme using KDE's "
 "Oxygen icon set as an inspiration but with that distinctly Human feel."
 msgstr ""
+"The Breathe icon theme هو  إنتعاش لHuman icon theme بإستخدامKDE's Oxygen "
+"icon ولكن بنكهة الشعور اﻹنساني"
 
 #: src/common/appdata.py:83
 msgid "A true dock for linux"
@@ -1235,14 +1258,16 @@ msgid ""
 "Desired to be small and fast, christine is a simple media player, that let "
 "you play your favorite music and videos from one single application."
 msgstr ""
+"صمم ليكون صغير وسريع,كريستين هو مشغل وسائط متعددة بسيط , يتيح لك تشغيل "
+"الموسيقى والفيديو المفضلة لديك من خلال تطبيق واحد"
 
 #: src/common/appdata.py:86
 msgid ""
 "Chromium is an open-source browser project that aims to build a safer, "
 "faster, and more stable way for all Internet users to experience the web."
 msgstr ""
-"Chromium هو مشروع متصفح مفتوح-المصدر يهدف لبناء طريق آمن، سريع، و أكثر ثباتاً "
-"لكل مستخدمي الإنترنت."
+"Chromium هو مشروع متصفح مفتوح-المصدر يهدف لبناء طريق آمن، سريع، و أكثر "
+"ثباتاً لكل مستخدمي الإنترنت."
 
 #: src/common/appdata.py:87
 msgid "The open source, cross-platform IDE"
@@ -1270,11 +1295,11 @@ msgstr "أداة منصة قابلة للامتداد وبيئة تطوير جا
 
 #: src/common/appdata.py:93
 msgid ""
-"EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
-"com."
+"EIOffice Personal 2009. Free for Chinese users. See "
+"http://www.evermoresw.com."
 msgstr ""
-"EIOffice Personal 2009. مجاني للمستخدمين الصينين. راجع http://www.evermoresw."
-"com."
+"EIOffice Personal 2009. مجاني للمستخدمين الصينين. راجع "
+"http://www.evermoresw.com."
 
 #: src/common/appdata.py:94
 msgid "A client for the Windows Live Message network"
@@ -1284,7 +1309,7 @@ msgstr "عميل لشبكة مراسلة ويندوز لايف"
 msgid ""
 "Empathy consists of a rich set of reusable instant messaging widgets, and a "
 "GNOME client using those widgets."
-msgstr ""
+msgstr "إمباثي برنامج يستخدم للمحادثة الفورية وهو المعتمد لدى جنوم"
 
 #: src/common/appdata.py:96
 msgid "flexible audio player, similar to Amarok, but written in GTK+"
@@ -1313,17 +1338,17 @@ msgstr "بيئة تطوير متكاملة سريعة وخفيفية"
 
 #: src/common/appdata.py:102
 msgid "A multithreaded FTP client"
-msgstr ""
+msgstr "عميل FTP"
 
 #: src/common/appdata.py:103
 msgid "GNOME Hex editor"
 msgstr "محرّر جنوم هكس"
 
-#: src/common/appdata.py:104 src/common/appdata.py:213
+#: src/common/appdata.py:104 src/common/appdata.py:219
 msgid ""
 "Gloobus is an extension of Gnome designed to enable a full screen preview of "
 "any kind of file."
-msgstr ""
+msgstr "Gloobus هو تطبيق لجنوم صمم ليعرض أي نوع من الملفات بملئ الشاشة"
 
 #: src/common/appdata.py:105
 msgid "The GNU Image Manipulation Program"
@@ -1331,7 +1356,7 @@ msgstr "برنامج جنو للتعديل على الصور."
 
 #: src/common/appdata.py:106
 msgid "A simple file sharing desktop application"
-msgstr ""
+msgstr "ملف بسيط لتقاسم سطح المكتب"
 
 #: src/common/appdata.py:107
 msgid "Notifies the user upon arrival of new mail in Gmail"
@@ -1347,7 +1372,7 @@ msgstr "تحكم عن بعد قوي وسريع ومثير لسطح المكتب 
 
 #: src/common/appdata.py:110
 msgid "Extra functionality for GNOME-Do launcher"
-msgstr ""
+msgstr "وظائف إضافية لGNOME-Do launcher"
 
 #: src/common/appdata.py:111
 msgid "Global Menu Bar for GNOME"
@@ -1358,6 +1383,8 @@ msgid ""
 "GNOME-Colors is a set of GNOME icon themes, with some inspiration from "
 "Tango, Elementary, Discovery, Tango Generator and others."
 msgstr ""
+"GNOME-Colors مجموعة من أيقونات جنوم مع بعض الصبغات من Tango, Elementary, "
+"Discovery, Tango Generator إلخ....."
 
 #: src/common/appdata.py:113
 msgid "a C++ port of Tomboy"
@@ -1368,6 +1395,8 @@ msgid ""
 "A program that combines satellite imagery and maps to put the world's "
 "geographic information at your fingertips."
 msgstr ""
+"برنامج يجمع بين صور اﻷقمار الصناعية والخرائط لوضع المعلومات الجغرافية في "
+"العالم بين يديك"
 
 #: src/common/appdata.py:115
 msgid "Platform for running Google Gadgets on Linux"
@@ -1378,6 +1407,8 @@ msgid ""
 "Google Chrome is a browser that combines a minimal design with sophisticated "
 "technology to make the web faster, safer, and easier."
 msgstr ""
+"جوجل كروم متصفح يجمع بين بساطة التصميم وتطور التكتولوجيا ليجعل التصفح سريع "
+",آمن وسهل."
 
 #: src/common/appdata.py:117
 msgid "GNOME partition editor"
@@ -1396,6 +1427,8 @@ msgid ""
 "GTG is a personal organizer for the GNOME desktop environment, it focuses on "
 "ease of use and flexibility, while keeping things simple."
 msgstr ""
+"GTG هو منظم شخصي لبيئة سطح المكتب جنوم فهو يستهدف السهولة والمرونة مع الحفاظ "
+"على اﻷشياء البسيطة"
 
 #: src/common/appdata.py:121
 msgid "Gwibber is an open source microblogging client for GNOME"
@@ -1407,7 +1440,7 @@ msgstr "محرّر صورة اسطوانة رسومي"
 
 #: src/common/appdata.py:123
 msgid "Intelligent Input Bus for Linux / Unix OS"
-msgstr ""
+msgstr "مسار اﻹدخال الذكي ﻷنظمة لينوكس / يونكس"
 
 #: src/common/appdata.py:124
 msgid "It is a PinYin engine for IBus."
@@ -1418,10 +1451,12 @@ msgid ""
 "IBus-Table is the IM Engine framework for table-based input methods, such as "
 "ZhengMa, WuBi, ErBi, ChangJie and so on."
 msgstr ""
+"IBus-Table هو المحرك اﻷساسي للجداول المبنية على ZhengMa, WuBi, ErBi, "
+"ChangJie إلخ......."
 
 #: src/common/appdata.py:126
 msgid "Wubi input method based on table engine of ibus"
-msgstr ""
+msgstr "Wubi طريقة إدخال مبنية على جدول محرك من ibus"
 
 #: src/common/appdata.py:127 src/common/appdata.py:128
 msgid "Create and edit Scalable Vector Graphics images"
@@ -1429,7 +1464,7 @@ msgstr "أنشيء وحرٍّر صور رسوميات متّجهة متغيرة 
 
 #: src/common/appdata.py:129
 msgid "Non-linear editor for Digital Video data"
-msgstr ""
+msgstr "محرر غير خطي لبيانات الفيديو الرقمي"
 
 #: src/common/appdata.py:130
 msgid "A music player for Last.fm personalized radio"
@@ -1449,7 +1484,7 @@ msgstr "إشعار بريد في صينية النظام"
 
 #: src/common/appdata.py:134
 msgid "Adcal tool to diff and merge files"
-msgstr ""
+msgstr "Adcal أداة لفك ودمج الملفات"
 
 #: src/common/appdata.py:135
 msgid "A fast and simple GTK+ Image Viewer"
@@ -1494,12 +1529,18 @@ msgid ""
 "Novell GroupWise, Lotus Sametime, Bonjour, Zephyr, MySpaceIM, Gadu-Gadu, and "
 "QQ all at once."
 msgstr ""
+"بيدجين هو برنامج المحادثة الرسومي وهو عميل مبني على libpurple وهو قادر على "
+"اﻹتصال بـ AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, SIP/SIMPLE, Novell "
+"GroupWise, Lotus Sametime, Bonjour, Zephyr, MySpaceIM, Gadu-Gadu, and QQ all "
+"at once."
 
 #: src/common/appdata.py:145
 msgid ""
 "PlayOnLinux is a front-end for wine. It permits you to install Windows Games "
 "and softwares on Linux."
 msgstr ""
+"PlayOnLinux هو إمتداد لبرنامج wine . حيث يتيح لك تثبيت ألعاب وبرامج الويندوز "
+"على نظام التشغيل لينوكس"
 
 #: src/common/appdata.py:146
 msgid "Image management application from Google"
@@ -1507,7 +1548,7 @@ msgstr "تطبيق إدارة الصور من غوغل"
 
 #: src/common/appdata.py:147
 msgid "IDE for Development with Qt"
-msgstr ""
+msgstr "IDE للتطوير مع Qt"
 
 #: src/common/appdata.py:148
 msgid ""
@@ -1532,7 +1573,7 @@ msgstr ""
 
 #: src/common/appdata.py:152
 msgid "Make audio/video calls using this VoIP Software"
-msgstr ""
+msgstr "قم بمكالمات الصوت والصورة من خلال هذا البرنامج الذي يستعملVoIP"
 
 #: src/common/appdata.py:153
 msgid "A great MPlayer front-end, written in QT4"
@@ -1544,7 +1585,7 @@ msgstr "حوّل ملفات الصورت إلى هيئات أخرى"
 
 #: src/common/appdata.py:155
 msgid "A fully integrated mail, PIM and instant messaging client"
-msgstr ""
+msgstr "عميل متكامل للبريد وPIM ورسائل الدردشة"
 
 #: src/common/appdata.py:156
 msgid "An international dictionary"
@@ -1554,13 +1595,15 @@ msgstr "قاموس دولي"
 msgid ""
 "Swiftweasel is an optimized build of the Mozilla Firefox web browser for "
 "Linux"
-msgstr ""
+msgstr "Swiftweasel متصفح مبني على موزيلا فايرفوكس للينوكس"
 
 #: src/common/appdata.py:158
 msgid ""
 "A desktop application that will watch for events (website updates, emails, "
 "file and folder changes...)"
 msgstr ""
+"تطبيق لسطح المكتب حيث يراقب التغيرات في (تحديثات المواقع , والبريد اﻹلكتروني "
+", والملفات والمجلدات , إلخ.......)"
 
 #: src/common/appdata.py:159
 msgid "An instant messaging application powered by qt-mono-bindings"
@@ -1577,7 +1620,7 @@ msgstr "طرفيات جنوم متعددة في نافذة واحدة"
 #: src/common/appdata.py:162
 msgid ""
 "Transmission is a fast, easy, and free multi-platform BitTorrent client."
-msgstr ""
+msgstr "Transmission هو عميل التورنت الأسرع واﻷسهل والأأمن"
 
 #: src/common/appdata.py:163
 msgid "Ubuntu Tweak makes it easier to configure Ubuntu"
@@ -1589,12 +1632,12 @@ msgstr "الحزم المقيدة المستخدمة بشكل شائع"
 
 #: src/common/appdata.py:165
 msgid "configure your USB ADSL modem and connection easier than ever!"
-msgstr ""
+msgstr "إضبط إعدادات إتصالاتك وإعدادات USB ADSL modem بكل سهولة"
 
 #: src/common/appdata.py:166 src/common/appdata.py:167
 #: src/common/appdata.py:168
 msgid "A feature rich, high performance virtualization software"
-msgstr ""
+msgstr "برنامج محاكاة عالى اﻷداء وغني بالإختيارات"
 
 #: src/common/appdata.py:169
 msgid "Read, capture, broadcast your multimedia streams"
@@ -1619,7 +1662,7 @@ msgstr ""
 #: src/common/appdata.py:173
 msgid ""
 "XBMC is a free and open source software media player and entertainment hub"
-msgstr ""
+msgstr "XBMC برنامج تشغيل الوسائط المتعددة المجاني والمفتوح المصدر"
 
 #: src/common/appdata.py:174
 msgid ""
@@ -1629,11 +1672,11 @@ msgstr ""
 
 #: src/common/appdata.py:175
 msgid "Step-into-freedom theme contains a full theme for GNOME based system."
-msgstr ""
+msgstr "ثيم Step-into-freedom متكامل مع واجهة جنوم الرسومية"
 
 #: src/common/appdata.py:176
 msgid "Ubuntu-sunrise theme contains a full theme for GNOME based system."
-msgstr ""
+msgstr "ثيمUbuntu-sunrise متكامل مع واجهة جنوم الرسومية"
 
 #: src/common/appdata.py:177
 msgid "Bamboo-zen theme contains a full theme for GNOME based system."
@@ -1673,7 +1716,7 @@ msgstr ""
 
 #: src/common/appdata.py:186
 msgid "non-linear audio/video editor using GStreamer"
-msgstr ""
+msgstr "GStreamer محرر غير خطي لملفات الصوت والصورة"
 
 #: src/common/appdata.py:187
 msgid "LyX is an almost WYSIWYG-frontend for LaTeX."
@@ -1704,38 +1747,67 @@ msgid ""
 "on Python, GTK, and MLT."
 msgstr ""
 
+#: src/common/appdata.py:193
+msgid ""
+"This GTK+ theme provides an animated scalable group of icons to be used by "
+"GTK+ 2.x applications like GNOME 2."
+msgstr ""
+
+#: src/common/appdata.py:194
+msgid ""
+"Gartoon Redux is an expanded version of the Gartoon theme, with dozens of "
+"new icons."
+msgstr ""
+
+#: src/common/appdata.py:195
+msgid "A ppstream plugin for totem player."
+msgstr ""
+
 #: src/common/appdata.py:196
-msgid "Development Version of Mozilla Firefox"
+msgid "QQ - The most popular free instant messaging program in China."
 msgstr ""
 
 #: src/common/appdata.py:197
-msgid "Development version of Compiz"
+msgid "Gnome Music Player Client (graphical interface to MPD)"
 msgstr ""
 
 #: src/common/appdata.py:198
-msgid "Google's Linux Repository"
-msgstr "مستودع غوغل لينكس"
-
-#: src/common/appdata.py:199
-msgid "Development Version of K Desktop Environment"
-msgstr ""
-
-#: src/common/appdata.py:200
-msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
-msgstr "بيئة سطح المكتب X11: GPicView، PCManFM"
-
-#: src/common/appdata.py:201
-msgid "WebkitGtk+, Liferea (Webkit), Midori and other WebKit related projects."
+msgid "The GNOME Shell redefines user interactions with the GNOME desktop"
 msgstr ""
 
 #: src/common/appdata.py:202
+msgid "Development Version of Mozilla Firefox"
+msgstr "نسخة التطوير من موزيلا فايرقوكس"
+
+#: src/common/appdata.py:203
+msgid "Development version of Compiz"
+msgstr "نسخة التطوير من كومبيز"
+
+#: src/common/appdata.py:204
+msgid "Google's Linux Repository"
+msgstr "مستودع غوغل لينكس"
+
+#: src/common/appdata.py:205
+msgid "Development Version of K Desktop Environment"
+msgstr "نسخة التطوير من بيئة سطح المكتب K"
+
+#: src/common/appdata.py:206
+msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
+msgstr "بيئة سطح المكتب X11: GPicView، PCManFM"
+
+#: src/common/appdata.py:207
+msgid ""
+"WebkitGtk+, Liferea (Webkit), Midori and other WebKit related projects."
+msgstr ""
+
+#: src/common/appdata.py:208
 msgid ""
 "Multimedia, Entertainment and Distraction In Ubuntu\n"
 "Medibuntu is a repository of packages that cannot be included into the "
 "Ubuntu distribution for legal reasons (copyright, license, patent, etc)."
 msgstr ""
 
-#: src/common/appdata.py:204
+#: src/common/appdata.py:210
 msgid ""
 "Ubuntu repository for Chinese users.\n"
 "Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and "
@@ -1745,115 +1817,127 @@ msgstr ""
 "يتضمن EIOffice، وتكييف أوبونتو، و ibus input method، أوبن أوفيس.أورغ 3.0 "
 "وبرمجيات أخرى."
 
-#: src/common/appdata.py:206
+#: src/common/appdata.py:212
 msgid ""
 "GetDeb extends the existing software options for Ubuntu (and derived) Linux "
 "distributions by providing major updates and software not yet available on "
 "the official Ubuntu repositories."
 msgstr ""
 
-#: src/common/appdata.py:207
+#: src/common/appdata.py:213
 msgid "Updated versions of X.org drivers, libraries, etc. for Ubuntu."
 msgstr ""
 
-#: src/common/appdata.py:208
+#: src/common/appdata.py:214
 msgid ""
 "Gnome Games built from Git, with all experimental features and staging games "
 "enabled."
 msgstr ""
 
-#: src/common/appdata.py:209
+#: src/common/appdata.py:215
 msgid ""
 "Ubuntu Mozilla Security Team provides beta and final stable/security updates "
 "for mozilla software in its PPA"
 msgstr ""
 
-#: src/common/appdata.py:210
+#: src/common/appdata.py:216
 msgid "A cross-platform application and UI framework"
 msgstr ""
 
-#: src/common/appdata.py:211
+#: src/common/appdata.py:217
 msgid "Mono is a cross platform, open source .NET development framework."
 msgstr ""
 
-#: src/common/appdata.py:212
+#: src/common/appdata.py:218
 msgid ""
 "Clutter is an OpenGL based interactive canvas library, designed for creating "
 "fast, mainly 2D single window applications such as media box UIs, "
 "presentations, kiosk style applications and so on."
 msgstr ""
 
-#: src/common/appdata.py:214
+#: src/common/appdata.py:220
 msgid ""
 "Behind this African word, referring to the notion of imagination, you can "
 "find some themes for GNOME"
 msgstr ""
 
-#: src/common/appdata.py:215
+#: src/common/appdata.py:221
 msgid ""
 "Updates for Kubuntu releases which are due to go to Ubuntu Updates. Mostly "
 "KDE point releases."
 msgstr ""
 
-#: src/common/appdata.py:216
+#: src/common/appdata.py:222
 msgid ""
 "Backports of new versions of KDE for Kubuntu which are not yet tested enough "
 "to go to Ubuntu Backports."
 msgstr ""
 
-#: src/common/appdata.py:219
+#: src/common/appdata.py:223
+msgid ""
+"PPA for Mingming, a lot of applications for Chinese users: totem-pps, "
+"linuxqq, gmlive, reciteword and so on"
+msgstr ""
+
+#: src/common/appdata.py:224
+msgid ""
+"PPA for Rico Tzschichholz, some updated packages for testing purposes: gnome-"
+"shell, pulseaudio, inkscape, filezilla and docky"
+msgstr ""
+
+#: src/common/appdata.py:227
 msgid "File-Sharing Clients"
 msgstr "عملاء مشاركة الملفات"
 
-#: src/common/appdata.py:220
+#: src/common/appdata.py:228
 msgid "Image Tools"
 msgstr "أدوات الصور"
 
-#: src/common/appdata.py:221
+#: src/common/appdata.py:229
 msgid "Sound Tools"
 msgstr "أدوات الصوت"
 
-#: src/common/appdata.py:222
+#: src/common/appdata.py:230
 msgid "Video Tools"
 msgstr "أدوات الفيديو"
 
-#: src/common/appdata.py:223
+#: src/common/appdata.py:231
 msgid "Text Tools"
 msgstr "أدوات النص"
 
-#: src/common/appdata.py:224
+#: src/common/appdata.py:232
 msgid "Instant Messengers"
 msgstr "المراسلات الفورية"
 
-#: src/common/appdata.py:225
+#: src/common/appdata.py:233
 msgid "Internet Tools"
 msgstr "أدوات الإنترنت"
 
-#: src/common/appdata.py:226
+#: src/common/appdata.py:234
 msgid "FTP Tools"
 msgstr "أدوات FTP"
 
-#: src/common/appdata.py:227
+#: src/common/appdata.py:235
 msgid "Desktop Tools"
 msgstr "أدوات سطح المكتب"
 
-#: src/common/appdata.py:228
+#: src/common/appdata.py:236
 msgid "CD/Disk Tools"
 msgstr "أدوات الاسطوانات/الأقراص"
 
-#: src/common/appdata.py:229
+#: src/common/appdata.py:237
 msgid "Development"
 msgstr "تطوير"
 
-#: src/common/appdata.py:230
+#: src/common/appdata.py:238
 msgid "Emulators"
 msgstr "محاكيات"
 
-#: src/common/appdata.py:231
+#: src/common/appdata.py:239
 msgid "Themes"
 msgstr "السِمات"
 
-#: src/common/appdata.py:232
+#: src/common/appdata.py:240
 msgid "E-mail Tools"
 msgstr "أدوات البريد الإلكتروني"
 
@@ -1869,132 +1953,136 @@ msgstr ""
 msgid "Breathe Icon Theme"
 msgstr ""
 
-#: src/common/sourcedata.py:15
-msgid "Ubuntu Chinese Repository"
-msgstr "مستودع أوبونتو الصيني"
-
-#: src/common/sourcedata.py:18
+#: src/common/sourcedata.py:17
 msgid "IBus (Old Version)"
 msgstr "IBus (النسخة القديمة)"
 
-#: src/common/sourcedata.py:19
+#: src/common/sourcedata.py:18
 msgid "IBus 1.2 for intrepid"
 msgstr "IBus 1.2 من أجل intrepid"
 
-#: src/common/sourcedata.py:20
+#: src/common/sourcedata.py:19
 msgid "IBus 1.2 for jaunty"
 msgstr "IBus 1.2 من أجل jaunty"
 
-#: src/common/sourcedata.py:21
+#: src/common/sourcedata.py:20
 msgid "IBus 1.2 for karmic"
 msgstr ""
 
-#: src/common/sourcedata.py:27
+#: src/common/sourcedata.py:26
 msgid "Ubuntu Mozilla Security Team"
 msgstr "فريق أمن أوبونتو لموزيلا"
 
-#: src/common/sourcedata.py:29
+#: src/common/sourcedata.py:28
 msgid "Christine Media Player"
 msgstr "قارئ الملتيمديا Christine"
 
-#: src/common/sourcedata.py:35
+#: src/common/sourcedata.py:34
 msgid "Experimental Gnome Games"
 msgstr "ألعاب جينوم التجريبية"
 
-#: src/common/sourcedata.py:37
+#: src/common/sourcedata.py:36
 msgid "Chinese Chess"
 msgstr "الشطرنج الصيني"
 
-#: src/common/sourcedata.py:38
+#: src/common/sourcedata.py:37
 msgid "Gnome Global Menu"
 msgstr "Gnome Global Menu"
 
-#: src/common/sourcedata.py:40
+#: src/common/sourcedata.py:39
 msgid "GetDeb.net (Mirror)"
 msgstr "GetDeb.net (مرآة)"
 
-#: src/common/sourcedata.py:42
+#: src/common/sourcedata.py:41
 msgid "Gwibber (Daily Version)"
 msgstr "Gwibber (النسخة اليومية)"
 
-#: src/common/sourcedata.py:43
+#: src/common/sourcedata.py:42
 msgid "GIMP (Testing Version)"
 msgstr "جيمب (النسخة التجريبية)"
 
-#: src/common/sourcedata.py:44
+#: src/common/sourcedata.py:43
 msgid "Banshee (Stable Version)"
 msgstr "Banshee (النسخة المستقرة)"
 
-#: src/common/sourcedata.py:45
+#: src/common/sourcedata.py:44
 msgid "Banshee (Unstable Version)"
 msgstr "Banshee (النسخة غير المستقرة)"
 
-#: src/common/sourcedata.py:46
+#: src/common/sourcedata.py:45
 msgid "Google Repository"
 msgstr "مستودع جوجل"
 
-#: src/common/sourcedata.py:47
+#: src/common/sourcedata.py:46
 msgid "Google Testing Repository"
 msgstr "متودع جوجل التجريبي"
 
-#: src/common/sourcedata.py:52
+#: src/common/sourcedata.py:51
 msgid "Ubuntu Tweak (Unstable Version)"
 msgstr "Ubuntu Tweak (النسخة التجريبية)"
 
-#: src/common/sourcedata.py:57
+#: src/common/sourcedata.py:56
 msgid "Spicebird (Testing Version)"
 msgstr ""
 
-#: src/common/sourcedata.py:61
+#: src/common/sourcedata.py:60
 msgid "SMPlayer (Unstable Version)"
 msgstr "SMPlayer (نسخة غير مستقرة)"
 
-#: src/common/sourcedata.py:71
+#: src/common/sourcedata.py:69
 msgid "VirtualBox (Open Source Edition)"
 msgstr "VirtualBox (النسخة مفتوحة المصدر)"
 
-#: src/common/sourcedata.py:72
+#: src/common/sourcedata.py:70
 msgid "VLC media player"
 msgstr "قارئ الملتيمديا VLC"
 
-#: src/common/sourcedata.py:78
+#: src/common/sourcedata.py:76
 msgid "Moblin Desktop for Ubuntu 9.04 Jaunty"
 msgstr ""
 
-#: src/common/sourcedata.py:79
+#: src/common/sourcedata.py:77
 msgid "Moblin Desktop for Ubuntu 9.10 Karmic"
 msgstr ""
 
-#: src/common/sourcedata.py:89
+#: src/common/sourcedata.py:87
 msgid "Bisigi Theme Project"
 msgstr ""
 
-#: src/common/sourcedata.py:90
+#: src/common/sourcedata.py:88
 msgid "PiTiVi video editor"
 msgstr ""
 
-#: src/common/sourcedata.py:91
+#: src/common/sourcedata.py:89
 msgid "Kubuntu Backports"
 msgstr ""
 
-#: src/common/sourcedata.py:93
+#: src/common/sourcedata.py:91
 msgid "Tomboy (Stable Version)"
 msgstr ""
 
-#: src/common/sourcedata.py:94
+#: src/common/sourcedata.py:92
 msgid "Tomboy (Unstable Version)"
 msgstr ""
 
-#: src/common/sourcedata.py:95
+#: src/common/sourcedata.py:93
 msgid "Inkscape (Nightly Version)"
 msgstr ""
 
-#: src/common/sourcedata.py:97
+#: src/common/sourcedata.py:95
 msgid "OSD Lyrics"
 msgstr ""
 
-#: src/common/sourcedata.py:98
+#: src/common/sourcedata.py:96
 msgid "OpenShot Video Editor"
+msgstr ""
+
+#: src/common/sourcedata.py:98
+msgid "PPA for Mingming"
+msgstr ""
+
+#: src/common/sourcedata.py:100
+msgid "PPA for Rico Tzschichholz"
 msgstr ""
 
 #: src/common/widgets/widgets.py:260
@@ -2452,9 +2540,8 @@ msgid "Select All"
 msgstr "تحديد الكل"
 
 #: src/cleaner.py:477
-#, fuzzy
 msgid "_Cleanup"
-msgstr "امسح"
+msgstr ""
 
 #: src/shortcuts.py:49
 msgid "Shortcut Commands"
@@ -2559,10 +2646,6 @@ msgstr "أظهر كل البرامج القابلة للتشغيل"
 #: src/autostart.py:409 src/autostart.py:456
 msgid "The name of the startup program cannot be empty"
 msgstr "لا يمكن أن يكون اسم برنامج بدء التشغيل فارغًا"
-
-#: src/autostart.py:411 src/autostart.py:458
-msgid "Text was empty (or contained only whitespace)"
-msgstr "كان النص فارغا (أو كان يحتوي على فراغ أبيض)"
 
 #: src/nautilus.py:54
 msgid "Cleaning..."
@@ -2707,20 +2790,19 @@ msgstr "اختر تطبيقا لعرض وصفه."
 msgid "_Use a custom command"
 msgstr "ا_ستخدم أمرا مخصصا"
 
-#~ msgid "Show desktop icons"
-#~ msgstr "أظهر أيقونات سطح المكتب"
-
 #~ msgid "<span size=\"xx-large\">Please wait a moment...</span>"
 #~ msgstr "<span size=\"xx-large\">من فضلك انتظر لحظة...</span>"
 
 #~ msgid ""
 #~ "<span size=\"x-large\">This feature isn't currently available in your "
 #~ "distribution</span>"
-#~ msgstr ""
-#~ "<span size=\"x-large\">هذه الميزة غير متوفرة حاليا في توزيعتك</span>"
+#~ msgstr "<span size=\"x-large\">هذه الميزة غير متوفرة حاليا في توزيعتك</span>"
 
 #~ msgid "<span size=\"x-large\">This module is error while loading.</span>"
 #~ msgstr "<span size=\"x-large\">هذه الوحدة خطأ أثناء التحميل.</span>"
+
+#~ msgid "Show desktop icons"
+#~ msgstr "أظهر أيقونات سطح المكتب"
 
 #~ msgid "GTK+ based flexible audio player, similar to Amarok"
 #~ msgstr "مشغل صوت مرن مبني على جتك+، شبيه بأماروك"
@@ -2730,6 +2812,9 @@ msgstr "ا_ستخدم أمرا مخصصا"
 
 #~ msgid "Development version of Compiz Fusion"
 #~ msgstr "نسخة التطوير من Compiz Fusion"
+
+#~ msgid "Ubuntu Chinese Repository"
+#~ msgstr "مستودع أوبونتو الصيني"
 
 #~ msgid "A powerful screenshot tool"
 #~ msgstr "أداة لقطات شاشة قوية"
