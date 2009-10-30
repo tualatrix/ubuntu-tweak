@@ -17,7 +17,7 @@ VERSION = '0.5.0'
 DATA_DIR = '/usr/share/ubuntu-tweak/'
 APP = applize(PACKAGE)
 
-if not os.path.exists(DATA_DIR):
+if not __file__.startswith('/usr'):
     datadir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
     DATA_DIR = os.path.join(datadir, 'data')
 
