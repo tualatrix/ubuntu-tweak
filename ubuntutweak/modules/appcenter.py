@@ -26,31 +26,15 @@ import gettext
 import gobject
 import pango
 
+from ubuntutweak.conf import settings
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.common.consts import *
 from ubuntutweak.common.utils import get_icon_with_file
-from ubuntutweak.common.gui import GuiWorker
-from ubuntutweak.common.appdata import APPS, CATES_DATA
 from ubuntutweak.widgets.dialogs import ErrorDialog, InfoDialog, QuestionDialog
 from ubuntutweak.widgets.utils import ProcessDialog
-from ubuntutweak.network.parser import Parser
-from ubuntutweak.common.appdata import get_app_logo, get_app_describ
-from ubuntutweak.common.config import TweakSettings
-from filetype import CateView
-from xdg.DesktopEntry import DesktopEntry
+from ubuntutweak.utils.parser import AppParser, CateParser
 
-try:
-    from ubuntutweak.common.package import package_worker, PackageInfo
-    DISABLE = False
-except ImportError:
-    DISABLE = True
-
-DESKTOP_DIR = '/usr/share/app-install/desktop/'
-ICON_DIR = os.path.join(DATA_DIR, 'applogos')
-REMOTE_APP_DATA = os.path.expanduser('~/.ubuntu-tweak/apps/data/apps.json')
-REMOTE_CATE_DATA = os.path.expanduser('~/.ubuntu-tweak/apps/data/cates.json')
-REMOTE_DATA_DIR = os.path.expanduser('~/.ubuntu-tweak/apps/data')
-REMOTE_LOGO_DIR = os.path.expanduser('~/.ubuntu-tweak/apps/logos')
+from ubuntutweak.common.package import package_worker, PackageInfo
 
 (
     COLUMN_INSTALLED,
@@ -72,9 +56,7 @@ REMOTE_LOGO_DIR = os.path.expanduser('~/.ubuntu-tweak/apps/logos')
 class CategoryView(gtk.TreeView):
     def __init__(self):
         gtk.TreeView.__init__(self)
-
-        self.app_cate_parser = Parser(REMOTE_CATE_DATA, 'name')
-        self.app_logo_handler = LogoHandler(REMOTE_LOGO_DIR)
+        self.cate_parser = CateParser()
 
         self.set_headers_visible(False)
         self.set_rules_hint(True)
@@ -127,38 +109,27 @@ class CategoryView(gtk.TreeView):
                     CATE_NAME, name)
 
     def get_cate_items(self):
-        if self.use_remote_data():
-            return self.app_cate_parser.items()
-        else:
-            return CATES_DATA
+        for k in self.cate_parser.keys():
+            item = self.cate_parser[k]
+            item['name'] = self.cate_parser.get_name(k)
+            yield item
 
     def parse_cate_item(self, item):
-        '''
-        If item[1] == tuple, so it's local data, or the remote data
-        '''
-        if type(item) == list:
-            id = item[0]
-            name = item[1]
-            pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(DATA_DIR, 'appcates', item[2]))
-        elif type(item) == tuple:
-            catedata = item[1]
-            id = catedata['id']
-            name = catedata['name']
-            pixbuf = self.get_cate_logo(catedata['name'], catedata['logo'])
+        id = item['id']
+        name = item['name']
+        pixbuf = self.get_cate_logo(item['logo'])
 
         return id, name, pixbuf
 
-    def get_cate_logo(self, pkgname, url=None):
-        if url and not self.app_logo_handler.is_exists(pkgname):
-            self.app_logo_handler.save_logo(pkgname, url)
-
-        if self.app_logo_handler.is_exists(pkgname):
-            return self.app_logo_handler.get_logo(pkgname)
-        else:
-            return get_app_logo(pkgname, 16)
-
-    def use_remote_data(self):
-        return self.app_cate_parser.is_available and TweakSettings.get_use_remote_data()
+    def get_cate_logo(self, file):
+        path = os.path.join(settings.CONFIG_ROOT, file)
+        try:
+            pixbuf = gtk.gdk.pixbuf_new_from_file(path)
+            if pixbuf.get_width() != 16 or pixbuf.get_height() != 16:
+                pixbuf = pixbuf.scale_simple(16, 16, gtk.gdk.INTERP_BILINEAR)
+            return pixbuf
+        except:
+            return gtk.icon_theme_get_default().load_icon(gtk.STOCK_MISSING_IMAGE, 16, 0)
 
 class AppView(gtk.TreeView):
     __gsignals__ = {
@@ -167,6 +138,7 @@ class AppView(gtk.TreeView):
 
     def __init__(self):
         gtk.TreeView.__init__(self)
+        self.app_parser = AppParser()
 
         self.to_add = []
         self.to_rm = []
@@ -289,9 +261,8 @@ class AppView(gtk.TreeView):
                       None,
                       'update'))
 
-    def update_model(self, apps, cates=None):
+    def update_model(self, apps=None):
         '''apps is a list to iter pkgname,
-        cates is a dict to find what the category the pkg is
         '''
         def do_append(is_installed, pixbuf, pkgname, appname, desc, category):
             if pkgname in self.to_add or pkgname in self.to_rm:
@@ -313,19 +284,18 @@ class AppView(gtk.TreeView):
 
         icon = gtk.icon_theme_get_default()
 
-        for pkgname in apps:
-            if cates:
-                category = cates[pkgname][0]
-            else:
-                category = 0
+        if not apps:
+            apps = self.app_parser.keys()
 
-            pixbuf = get_app_logo(pkgname)
+        for pkgname in apps:
+            category = self.app_parser.get_category(pkgname)
+            pixbuf = self.get_app_logo(self.app_parser[pkgname]['logo'])
 
             try:
                 package = PackageInfo(pkgname)
                 is_installed = package.check_installed()
                 appname = package.get_name()
-                desc = get_app_describ(pkgname)
+                desc = self.app_parser.get_summary(pkgname)
             except KeyError:
                 continue
 
@@ -383,40 +353,19 @@ class AppView(gtk.TreeView):
     def set_filter(self, filter):
         self.filter = filter
 
-class LogoHandler:
-    def __init__(self, dir):
-        self.dir = dir
-        if not os.path.exists(self.dir):
-            os.mkdir(self.dir)
-
-    def save_logo(self, name, url):
-        data = urllib.urlopen(url).read()
-        f = open(os.path.join(self.dir, '%s.png' % name), 'w')
-        f.write(data)
-        f.close()
-
-    def get_logo(self, name):
-        path = os.path.join(self.dir, '%s.png' % name)
-
+    def get_app_logo(self, file):
+        path = os.path.join(settings.CONFIG_ROOT, file)
         try:
             pixbuf = gtk.gdk.pixbuf_new_from_file(path)
-            if pixbuf.get_width() != 16 or pixbuf.get_height() != 16:
-                pixbuf = pixbuf.scale_simple(16, 16, gtk.gdk.INTERP_BILINEAR)
+            if pixbuf.get_width() != 32 or pixbuf.get_height() != 32:
+                pixbuf = pixbuf.scale_simple(32, 32, gtk.gdk.INTERP_BILINEAR)
             return pixbuf
         except:
-            return gtk.icon_theme_get_default().load_icon(gtk.STOCK_MISSING_IMAGE, 16, 0)
-
-    def is_exists(self, name):
-        return os.path.exists(os.path.join(self.dir, '%s.png' % name))
+            return gtk.icon_theme_get_default().load_icon(gtk.STOCK_MISSING_IMAGE, 32, 0)
 
 class FetchingMetaDialog(ProcessDialog):
     app_url = 'http://127.0.0.1:8000/app/featured/'
     cate_url = 'http://127.0.0.1:8000/app/category/featured/'
-
-    url_mapping = (
-        (app_url, REMOTE_APP_DATA),
-        (cate_url, REMOTE_CATE_DATA),
-    )
 
     def __init__(self, parent):
         self.done = False
@@ -497,22 +446,15 @@ class FetchingDialog(ProcessDialog):
         else:
             self.destroy()
 
-class Installer(TweakModule):
-    __title__ = _('Add/Remove Applications')
+class AppCenter(TweakModule):
+    __title__ = _('Application Center')
     __desc__ = _('A simple but more effecient method for finding and installing popular packages than the default Add/Remove.')
     __icon__ = 'gnome-app-install'
     __url__ = 'http://ubuntu-tweak.com'
     __category__ = 'application'
 
     def __init__(self):
-        TweakModule.__init__(self, 'installer.glade')
-
-        if not os.path.exists(REMOTE_DATA_DIR):
-            os.makedirs(REMOTE_DATA_DIR)
-        if not os.path.exists(REMOTE_LOGO_DIR):
-            os.makedirs(REMOTE_LOGO_DIR)
-        self.app_logo_handler = LogoHandler(REMOTE_LOGO_DIR)
-        self.app_data_parser = Parser(REMOTE_APP_DATA, 'package')
+        TweakModule.__init__(self, 'appcenter.ui')
 
         self.to_add = []
         self.to_rm = []
@@ -520,13 +462,12 @@ class Installer(TweakModule):
         self.package_worker = package_worker
 
         self.cateview = CategoryView()
-        self.cateview.update_model()
         self.cate_selection = self.cateview.get_selection()
         self.cate_selection.connect('changed', self.on_category_changed)
         self.left_sw.add(self.cateview)
 
         self.treeview = AppView()
-        self.treeview.update_model(APPS.keys(), APPS)
+        self.treeview.update_model()
         self.treeview.sort_model()
         self.treeview.connect('changed', self.on_app_status_changed)
         self.right_sw.add(self.treeview)
@@ -566,15 +507,12 @@ class Installer(TweakModule):
         model, iter = widget.get_selected()
 
         if model.get_path(iter)[0] != 0:
-            if self.use_remote_data():
-                self.treeview.set_filter(model.get_value(iter, CATE_ID))
-            else:
-                self.treeview.set_filter(model.get_value(iter, CATE_NAME))
+            self.treeview.set_filter(model.get_value(iter, CATE_ID))
         else:
             self.treeview.set_filter(None)
 
         self.treeview.clear_model()
-        self.treeview.update_model(APPS.keys(), APPS)
+        self.treeview.update_model()
 
     def get_app_logo(self, pkgname, url=None):
         if url and not self.app_logo_handler.is_exists(pkgname):
@@ -602,10 +540,7 @@ class Installer(TweakModule):
         return package.get_name(), package.check_installed()
 
     def get_items(self):
-        if self.use_remote_data():
-            return self.app_data_parser.items()
-        else:
-            return APP_DATA
+        return self.app_data_parser.items()
 
     def parse_item(self, item):
         '''
@@ -705,7 +640,7 @@ class Installer(TweakModule):
         self.treeview.to_add = []
         self.treeview.to_rm = []
         self.treeview.clear_model()
-        self.treeview.update_model(APPS.keys(), APPS)
+        self.treeview.update_model()
 
     def on_refresh_button_clicked(self, widget):
         dialog = FetchingMetaDialog(widget.get_toplevel())
@@ -717,6 +652,3 @@ class Installer(TweakModule):
             self.apply_button.set_sensitive(True)
         else:
             self.apply_button.set_sensitive(False)
-
-    def use_remote_data(self):
-        return self.app_data_parser.is_available and self.cateview.use_remote_data()
