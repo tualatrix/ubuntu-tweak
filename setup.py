@@ -10,6 +10,7 @@ setup(name='ubuntu-tweak',
       scripts=['ubuntu-tweak', 'ubuntu-tweak-daemon'],
       packages=[
           'ubuntutweak',
+          'ubuntutweak.conf',
           'ubuntutweak.common',
           'ubuntutweak.backends',
           'ubuntutweak.network',
