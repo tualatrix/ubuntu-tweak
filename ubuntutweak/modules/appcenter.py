@@ -1,4 +1,3 @@
-#!/usr/bin/python
 
 # Ubuntu Tweak - PyGTK based desktop configure tool
 #
@@ -32,8 +31,7 @@ from ubuntutweak.common.consts import *
 from ubuntutweak.common.utils import get_icon_with_file
 from ubuntutweak.widgets.dialogs import ErrorDialog, InfoDialog, QuestionDialog
 from ubuntutweak.widgets.utils import ProcessDialog
-from ubuntutweak.utils.parser import AppParser, CateParser
-
+from ubuntutweak.utils.parser import Parser
 from ubuntutweak.common.package import package_worker, PackageInfo
 
 (
@@ -52,6 +50,34 @@ from ubuntutweak.common.package import package_worker, PackageInfo
     CATE_ICON,
     CATE_NAME,
 ) = range(3)
+
+APPCENTER_ROOT = os.path.join(settings.CONFIG_ROOT, 'appcenter')
+if not os.path.exists(APPCENTER_ROOT):
+    os.mkdir(APPCENTER_ROOT)
+
+class AppParser(Parser):
+    def __init__(self):
+        app_data = os.path.join(APPCENTER_ROOT, 'apps.json')
+
+        Parser.__init__(self, app_data, 'package')
+
+    def get_summary(self, key):
+        return self.get_by_lang(key, 'summary')
+
+    def get_name(self, key):
+        return self.get_by_lang(key, 'name')
+
+    def get_category(self, key):
+        return self[key]['category']
+
+class CateParser(Parser):
+    def __init__(self):
+        cate_data = os.path.join(APPCENTER_ROOT, 'cates.json')
+
+        Parser.__init__(self, cate_data , 'slug')
+
+    def get_name(self, key):
+        return self.get_by_lang(key, 'name')
 
 class CategoryView(gtk.TreeView):
     def __init__(self):
@@ -122,7 +148,7 @@ class CategoryView(gtk.TreeView):
         return id, name, pixbuf
 
     def get_cate_logo(self, file):
-        path = os.path.join(settings.CONFIG_ROOT, file)
+        path = os.path.join(APPCENTER_ROOT, file)
         try:
             pixbuf = gtk.gdk.pixbuf_new_from_file(path)
             if pixbuf.get_width() != 16 or pixbuf.get_height() != 16:
@@ -354,7 +380,7 @@ class AppView(gtk.TreeView):
         self.filter = filter
 
     def get_app_logo(self, file):
-        path = os.path.join(settings.CONFIG_ROOT, file)
+        path = os.path.join(APPCENTER_ROOT, file)
         try:
             pixbuf = gtk.gdk.pixbuf_new_from_file(path)
             if pixbuf.get_width() != 32 or pixbuf.get_height() != 32:

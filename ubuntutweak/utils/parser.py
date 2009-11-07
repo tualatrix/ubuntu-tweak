@@ -24,32 +24,3 @@ class Parser(dict):
             return value[settings.LANG]
         else:
             return value['raw']
-
-class AppParser(Parser):
-    def __init__(self):
-        app_data = os.path.join(settings.CONFIG_ROOT, 'apps.json')
-
-        Parser.__init__(self, app_data, 'package')
-
-    def get_summary(self, key):
-        return self.get_by_lang(key, 'summary')
-
-    def get_name(self, key):
-        return self.get_by_lang(key, 'name')
-
-    def get_category(self, key):
-        return self[key]['category']
-
-class CateParser(Parser):
-    def __init__(self):
-        cate_data = os.path.join(settings.CONFIG_ROOT, 'cates.json')
-
-        Parser.__init__(self, cate_data , 'slug')
-
-    def get_name(self, key):
-        return self.get_by_lang(key, 'name')
-
-if __name__ == '__main__':
-    parser = CateParser()
-    import pdb
-    pdb.set_trace()
