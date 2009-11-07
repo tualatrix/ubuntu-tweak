@@ -21,6 +21,8 @@
 import os
 import sys
 import gtk
+sys.path.insert(0, os.path.dirname(os.path.abspath('.')))
+
 from ubuntutweak.common.consts import *
 
 class Test:
@@ -65,6 +67,6 @@ class ManyTest:
         gtk.main()
 
 if __name__ == '__main__':
-    from tweak.module import ModuleLoader
+    from modules import ModuleLoader
     loader = ModuleLoader(sys.argv[1])
     Test(loader.id_table.values()[0])

@@ -22,7 +22,7 @@ class ModuleLoader:
                 if f.endswith('.py') and f != '__init__.py':
                     module = os.path.splitext(f)[0]
                     package = __import__('.'.join([__name__, module]), fromlist=['modules'])
-                    self.do_module_import(package)
+                    self.do_package_import(package)
         else:
             module = os.path.splitext(os.path.basename(path))[0]
             folder = os.path.dirname(path)
@@ -32,9 +32,20 @@ class ModuleLoader:
         for k in self.module_table.keys():
             self.module_table[k].sort()
 
-    def do_module_import(self, package):
+    def do_module_import(self, package, module):
+        for k, v in inspect.getmembers(getattr(package, module)):
+            if k not in ('TweakModule', 'proxy') and hasattr(v, '__utmodule__'):
+                key = v.__category__
+                if self.module_table.has_key(key):
+                    self.module_table[key].append(v)
+                else:
+                    self.module_table[key] = [v]
+
+                self.id_table[v.__name__] = v
+
+    def do_package_import(self, package):
         for k, v in inspect.getmembers(package):
-            if k not in ('TweakModule', 'proxy') and inspect.isclass(v) and issubclass(v, TweakModule):
+            if k not in ('TweakModule', 'proxy') and hasattr(v, '__utmodule__'):
                 key = v.__category__
                 if self.module_table.has_key(key):
                     self.module_table[key].append(v)
@@ -74,6 +85,8 @@ class TweakModule(gtk.VBox):
     __author__ = ''
     __desc__ = ''
     __url__ = ''
+    #Identify whether it is a ubuntu tweak module
+    __utmodule__ = ''
 
     __gsignals__ = {
             'update': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_STRING, gobject.TYPE_STRING)),
