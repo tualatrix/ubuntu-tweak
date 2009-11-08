@@ -39,7 +39,7 @@ try:
     from ubuntutweak.common.package import package_worker
 except:
     package_worker = None
-from ubuntutweak.updatemanager import UpdateManager
+from ubuntutweak.network.downloadmanager import DownloadDialog
 from ubuntutweak.preferences import PreferencesDialog
 from ubuntutweak.common.utils import set_label_for_stock_button
 
@@ -197,6 +197,16 @@ MODULES_TABLE = [
 
 module_loader = ModuleLoader(modules.__path__[0])
 
+class UpdateDialog(DownloadDialog):
+    def __init__(self, parent=None):
+        DownloadDialog.__init__(self, url=TweakSettings.get_url(),
+                            title=_('Download the Ubuntu Tweak %s') % TweakSettings.get_version(),
+                            parent=parent)
+
+    def on_downloaded(self, downloader):
+        super(UpdateDialog, self).on_downloaded(downloader)
+        os.system('xdg-open %s' % self.downloader.get_downloaded_file())
+
 class MainWindow(gtk.Window):
     def __init__(self):
         gtk.Window.__init__(self)
@@ -259,7 +269,7 @@ class MainWindow(gtk.Window):
         self.show_all()
 
         if TweakSettings.get_check_update():
-            gobject.timeout_add(8000, self.on_timeout)
+            gobject.timeout_add(5000, self.on_timeout)
 
         launch = TweakSettings.get_default_launch()
         if launch and launch != '0':
@@ -495,8 +505,8 @@ You should have received a copy of the GNU General Public License along with Ubu
         gtk.gdk.threads_enter()
 
         version = TweakSettings.get_version()
-        if version > VERSION:
-            dialog = QuestionDialog(_('A newer version: %s is available online.\nWould you like to update?' % version), 
+        if version < VERSION:
+            dialog = QuestionDialog(_('A newer version: %s is available online.\nWould you like to update?\n\nNote: if you prefer update from the source, you can disable this feature in Preference.') % version, 
                     title = _('Software Update'))
 
             update = False
@@ -506,7 +516,9 @@ You should have received a copy of the GNU General Public License along with Ubu
             dialog.destroy()
 
             if update: 
-                UpdateManager(self.get_toplevel())
+                dialog = UpdateDialog(parent=self.get_toplevel())
+                dialog.run()
+                dialog.destroy()
 
         gtk.gdk.threads_leave()
 

@@ -23,6 +23,33 @@ import pygtk
 pygtk.require("2.0")
 import gtk
 
+class BusyDialog(gtk.Dialog):
+    def __init__(self, parent=None):
+        gtk.Dialog.__init__(self, parent=parent)
+
+        if parent:
+            self.parent_window = parent
+        else:
+            self.parent_window = None
+
+    def set_busy(self):
+        if self.parent_window:
+            self.parent_window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+            self.parent_window.set_sensitive(False)
+
+    def unset_busy(self):
+        if self.parent_window:
+            self.parent_window.window.set_cursor(None)
+            self.parent_window.set_sensitive(True)
+
+    def run(self):
+        self.set_busy()
+        return super(BusyDialog, self).run()
+
+    def destroy(self):
+        self.unset_busy()
+        super(BusyDialog, self).destroy()
+
 class BaseMessageDialog(gtk.MessageDialog):
     def __init__(self, type, buttons):
         gtk.MessageDialog.__init__(self, None, gtk.DIALOG_MODAL, type, buttons)
