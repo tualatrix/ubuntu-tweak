@@ -61,7 +61,7 @@ class Downloader(gobject.GObject):
         percentage = float(blocks*block_size)/total_size
         if percentage < 1:
             self.emit('downloading', percentage)
-        else:
+        elif percentage >= 1:
             self.emit('downloaded')
 
     def get_downloaded_file(self):
@@ -69,6 +69,7 @@ class Downloader(gobject.GObject):
 
 class DownloadDialog(BusyDialog):
     time_count = 1
+    downloaded = False
 
     def __init__(self, url=None, title=None, parent=None):
         BusyDialog.__init__(self, parent=parent)
@@ -138,9 +139,13 @@ class DownloadDialog(BusyDialog):
         self.progress_bar.set_text(_('Downloaded!'))
         self.progress_bar.set_fraction(1)
         self.response(gtk.RESPONSE_DELETE_EVENT)
+        self.downloaded = True
 
     def _download_thread(self):
         self.downloader.start(self.url)
+
+    def get_downloaded_file(self):
+        return self.downloader.get_downloaded_file()
 
 def CheckVersion():
     server = ServerProxy("http://ubuntu-tweak.appspot.com/xmlrpc")

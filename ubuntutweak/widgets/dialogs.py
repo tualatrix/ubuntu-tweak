@@ -18,10 +18,10 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-
-import pygtk
-pygtk.require("2.0")
 import gtk
+import pango
+import gobject
+import thread
 
 class BusyDialog(gtk.Dialog):
     def __init__(self, parent=None):
@@ -49,6 +49,43 @@ class BusyDialog(gtk.Dialog):
     def destroy(self):
         self.unset_busy()
         super(BusyDialog, self).destroy()
+
+class ProcessDialog(BusyDialog):
+    def __init__(self, parent):
+        super(ProcessDialog, self).__init__(parent=parent)
+
+        vbox = gtk.VBox(False, 5)
+        self.vbox.add(vbox)
+        self.set_border_width(8)
+        self.set_title('')
+        self.set_has_separator(False)
+        self.set_position(gtk.WIN_POS_CENTER_ON_PARENT)
+
+        self.__label = gtk.Label()
+        vbox.pack_start(self.__label, False, False, 0)
+
+        self.__progressbar = gtk.ProgressBar()
+        self.__progressbar.set_ellipsize(pango.ELLIPSIZE_END)
+        vbox.pack_start(self.__progressbar, False, False, 0)
+
+        self.show_all()
+        gobject.timeout_add(100, self.on_timeout)
+        thread.start_new_thread(self.process_data, ())
+
+    def pulse(self):
+        self.__progressbar.pulse()
+
+    def set_dialog_lable(self, text):
+        self.__label.set_markup('<b><big>%s</big></b>' % text)
+
+    def set_progress_text(self, text):
+        self.__progressbar.set_text(text)
+
+    def process_data(self):
+        return NotImplemented
+
+    def on_timeout(self):
+        return NotImplemented
 
 class BaseMessageDialog(gtk.MessageDialog):
     def __init__(self, type, buttons):

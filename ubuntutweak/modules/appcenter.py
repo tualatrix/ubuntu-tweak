@@ -27,11 +27,14 @@ import pango
 
 from ubuntutweak.conf import settings
 from ubuntutweak.modules  import TweakModule
+from ubuntutweak.widgets.dialogs import ErrorDialog, InfoDialog, QuestionDialog
+from ubuntutweak.widgets.dialogs import ProcessDialog
+from ubuntutweak.utils.parser import Parser
+from ubuntutweak.network.downloadmanager import DownloadDialog
+
+#TODO old stuff
 from ubuntutweak.common.consts import *
 from ubuntutweak.common.utils import get_icon_with_file
-from ubuntutweak.widgets.dialogs import ErrorDialog, InfoDialog, QuestionDialog
-from ubuntutweak.widgets.utils import ProcessDialog
-from ubuntutweak.utils.parser import Parser
 from ubuntutweak.common.package import package_worker, PackageInfo
 
 (
@@ -52,6 +55,7 @@ from ubuntutweak.common.package import package_worker, PackageInfo
 ) = range(3)
 
 APPCENTER_ROOT = os.path.join(settings.CONFIG_ROOT, 'appcenter')
+
 if not os.path.exists(APPCENTER_ROOT):
     os.mkdir(APPCENTER_ROOT)
 
@@ -82,7 +86,6 @@ class CateParser(Parser):
 class CategoryView(gtk.TreeView):
     def __init__(self):
         gtk.TreeView.__init__(self)
-        self.cate_parser = CateParser()
 
         self.set_headers_visible(False)
         self.set_rules_hint(True)
@@ -135,9 +138,10 @@ class CategoryView(gtk.TreeView):
                     CATE_NAME, name)
 
     def get_cate_items(self):
-        for k in self.cate_parser.keys():
-            item = self.cate_parser[k]
-            item['name'] = self.cate_parser.get_name(k)
+        parser = CateParser()
+        for k in parser.keys():
+            item = parser[k]
+            item['name'] = parser.get_name(k)
             yield item
 
     def parse_cate_item(self, item):
@@ -164,7 +168,6 @@ class AppView(gtk.TreeView):
 
     def __init__(self):
         gtk.TreeView.__init__(self)
-        self.app_parser = AppParser()
 
         self.to_add = []
         self.to_rm = []
@@ -310,18 +313,20 @@ class AppView(gtk.TreeView):
 
         icon = gtk.icon_theme_get_default()
 
+        app_parser = AppParser()
+
         if not apps:
-            apps = self.app_parser.keys()
+            apps = app_parser.keys()
 
         for pkgname in apps:
-            category = self.app_parser.get_category(pkgname)
-            pixbuf = self.get_app_logo(self.app_parser[pkgname]['logo'])
+            category = app_parser.get_category(pkgname)
+            pixbuf = self.get_app_logo(app_parser[pkgname]['logo'])
 
             try:
                 package = PackageInfo(pkgname)
                 is_installed = package.check_installed()
                 appname = package.get_name()
-                desc = self.app_parser.get_summary(pkgname)
+                desc = app_parser.get_summary(pkgname)
             except KeyError:
                 continue
 
@@ -389,39 +394,6 @@ class AppView(gtk.TreeView):
         except:
             return gtk.icon_theme_get_default().load_icon(gtk.STOCK_MISSING_IMAGE, 32, 0)
 
-class FetchingMetaDialog(ProcessDialog):
-    app_url = 'http://127.0.0.1:8000/static/appcenter.tar.gz'
-
-    def __init__(self, parent):
-        self.done = False
-        self.error = None
-        self.user_action = False
-
-        super(FetchingMetaDialog, self).__init__(parent=parent)
-        self.set_dialog_lable(_('Fetching online data...'))
-
-    def process_data(self):
-        remote_ver = urllib.urlopen(self.version_url).read()
-        if os.path.exists(self.local_timestamp):
-            local_version = open(self.local_timestamp).read()
-        else:
-            local_version = '0'
-
-        if remote_ver > local_version:
-            return True
-        else:
-            return False
-
-    def on_timeout(self):
-        self.pulse()
-
-        if self.error:
-            self.destroy()
-        elif not self.done:
-            return True
-        else:
-            self.destroy()
-
 class CheckUpdateDialog(ProcessDialog):
     version_url = 'http://127.0.0.1:8000/app_version/'
     local_timestamp = os.path.join(APPCENTER_ROOT, 'timestamp')
@@ -467,50 +439,13 @@ class CheckUpdateDialog(ProcessDialog):
         else:
             self.destroy()
 
-class FetchingDialog(ProcessDialog):
-    def __init__(self, parent, caller):
-        self.caller = caller
-        self.done = False
-        self.message = None
-        self.user_action = False
+class FetchingDialog(DownloadDialog):
+    app_url = 'http://127.0.0.1:8000/static/appcenter.tar.gz'
 
-        super(FetchingDialog, self).__init__(parent=parent)
-        self.set_dialog_lable(_('Fetching online data...'))
-
-    def process_data(self):
-        import time
-        self.caller.model.clear()
-        for item in self.caller.get_items():
-            time.sleep(1)
-
-            try:
-                pkgname, category, pixbuf, desc, appname, is_installed = self.caller.parse_item(item)
-            except IOError:
-                self.message = _('Network is error')
-                break
-            except KeyError:
-                continue
-
-            self.caller.model.append((is_installed,
-                    pixbuf,
-                    pkgname,
-                    appname,
-                    desc,
-                    '<b>%s</b>\n%s' % (appname, desc),
-                    category))
-
-            if self.user_action == True:
-                break
-
-        self.done = True
-
-    def on_timeout(self):
-        self.pulse()
-
-        if not self.done:
-            return True
-        else:
-            self.destroy()
+    def __init__(self, parent=None):
+        super(FetchingDialog, self).__init__(url=self.app_url,
+                                    title=_('Fetching online data...'),
+                                    parent=parent)
 
 class AppCenter(TweakModule):
     __title__ = _('Application Center')
@@ -532,11 +467,11 @@ class AppCenter(TweakModule):
         self.cate_selection.connect('changed', self.on_category_changed)
         self.left_sw.add(self.cateview)
 
-        self.treeview = AppView()
-        self.treeview.update_model()
-        self.treeview.sort_model()
-        self.treeview.connect('changed', self.on_app_status_changed)
-        self.right_sw.add(self.treeview)
+        self.appview = AppView()
+        self.appview.update_model()
+        self.appview.sort_model()
+        self.appview.connect('changed', self.on_app_status_changed)
+        self.right_sw.add(self.appview)
 
         self.show_all()
 
@@ -572,13 +507,14 @@ class AppCenter(TweakModule):
     def on_category_changed(self, widget, data = None):
         model, iter = widget.get_selected()
 
-        if model.get_path(iter)[0] != 0:
-            self.treeview.set_filter(model.get_value(iter, CATE_ID))
-        else:
-            self.treeview.set_filter(None)
+        if iter:
+            if model.get_path(iter)[0] != 0:
+                self.appview.set_filter(model.get_value(iter, CATE_ID))
+            else:
+                self.appview.set_filter(None)
 
-        self.treeview.clear_model()
-        self.treeview.update_model()
+            self.appview.clear_model()
+            self.appview.update_model()
 
     def get_app_logo(self, pkgname, url=None):
         if url and not self.app_logo_handler.is_exists(pkgname):
@@ -681,16 +617,16 @@ class AppCenter(TweakModule):
 
     def deep_update(self):
         package_worker.update_apt_cache(True)
-        self.treeview.clear_model()
-        self.treeview.update_model(APPS.keys(), APPS)
+        self.appview.clear_model()
+        self.appview.update_model(APPS.keys(), APPS)
 
     def normal_update(self):
-        self.treeview.clear_model()
-        self.treeview.update_model(APPS.keys(), APPS)
+        self.appview.clear_model()
+        self.appview.update_model(APPS.keys(), APPS)
 
     def on_apply_button_clicked(self, widget, data = None):
-        to_rm = self.treeview.to_rm
-        to_add = self.treeview.to_add
+        to_rm = self.appview.to_rm
+        to_add = self.appview.to_add
         self.package_worker.perform_action(widget.get_toplevel(), to_add, to_rm)
 
         package_worker.update_apt_cache(True)
@@ -703,23 +639,39 @@ class AppCenter(TweakModule):
         else:
             ErrorDialog(_('Update Failed!')).launch()
 
-        self.treeview.to_add = []
-        self.treeview.to_rm = []
-        self.treeview.clear_model()
-        self.treeview.update_model()
+        self.appview.to_add = []
+        self.appview.to_rm = []
+        self.appview.clear_model()
+        self.appview.update_model()
 
     def on_refresh_button_clicked(self, widget):
         dialog = CheckUpdateDialog(widget.get_toplevel())
         dialog.run()
         dialog.destroy()
         if dialog.status == True:
-            dialog = QuestionDialog("Update available, Do you want update?")
+            dialog = QuestionDialog(_("Update available, Do you want to update?"))
+            dialog.run()
+            dialog.destroy()
+
+            dialog = FetchingDialog(self.get_toplevel())
+            dialog.connect('destroy', self.on_app_data_downloaded)
             dialog.run()
             dialog.destroy()
         elif dialog.error == True:
-            ErrorDialog("Network Error, Please check your network or the remote server going down").launch()
+            ErrorDialog(_("Network Error, Please check your network or the remote server going down")).launch()
         else:
-            InfoDialog("No update available").launch()
+            InfoDialog(_("No update available")).launch()
+
+    def on_app_data_downloaded(self, widget):
+        file = widget.get_downloaded_file()
+        #FIXME
+        if widget.downloaded:
+            os.system('tar zxf %s -C %s' % (file, settings.CONFIG_ROOT))
+            self.update_app_data()
+
+    def update_app_data(self):
+        self.cateview.update_model()
+        self.appview.update_model()
 
     def on_app_status_changed(self, widget, i):
         if i:
