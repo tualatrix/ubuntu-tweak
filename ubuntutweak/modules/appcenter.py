@@ -390,8 +390,7 @@ class AppView(gtk.TreeView):
             return gtk.icon_theme_get_default().load_icon(gtk.STOCK_MISSING_IMAGE, 32, 0)
 
 class FetchingMetaDialog(ProcessDialog):
-    app_url = 'http://127.0.0.1:8000/app/featured/'
-    cate_url = 'http://127.0.0.1:8000/app/category/featured/'
+    app_url = 'http://127.0.0.1:8000/static/appcenter.tar.gz'
 
     def __init__(self, parent):
         self.done = False
@@ -402,20 +401,61 @@ class FetchingMetaDialog(ProcessDialog):
         self.set_dialog_lable(_('Fetching online data...'))
 
     def process_data(self):
-        for url, path in self.url_mapping:
-            try:
-                req = urllib2.Request(url=url)
-                #TODO get language from locale
-                req.add_header('Accept-Language', 'zh-cn')
-                data = urllib2.urlopen(req).read()
-                f = open(path, 'w')
-                f.write(data)
-                f.close()
-            except:
-                self.error = True
-                break
+        remote_ver = urllib.urlopen(self.version_url).read()
+        if os.path.exists(self.local_timestamp):
+            local_version = open(self.local_timestamp).read()
+        else:
+            local_version = '0'
 
-        self.done = True
+        if remote_ver > local_version:
+            return True
+        else:
+            return False
+
+    def on_timeout(self):
+        self.pulse()
+
+        if self.error:
+            self.destroy()
+        elif not self.done:
+            return True
+        else:
+            self.destroy()
+
+class CheckUpdateDialog(ProcessDialog):
+    version_url = 'http://127.0.0.1:8000/app_version/'
+    local_timestamp = os.path.join(APPCENTER_ROOT, 'timestamp')
+
+    def __init__(self, parent):
+        self.status = None
+        self.done = False
+        self.error = None
+        self.user_action = False
+
+        super(CheckUpdateDialog, self).__init__(parent=parent)
+        self.set_dialog_lable(_('Checking update...'))
+
+    def process_data(self):
+        import time
+        time.sleep(1)
+        try:
+            self.status = self.get_updatable()
+        except IOError:
+            self.error = True
+        else:
+            self.done = True
+
+    def get_updatable(self):
+        remote_ver = urllib.urlopen(self.version_url).read()
+        if os.path.exists(self.local_timestamp):
+            local_version = open(self.local_timestamp).read()
+        else:
+            local_version = '0'
+
+        if remote_ver > local_version:
+            return True
+        else:
+            return False
 
     def on_timeout(self):
         self.pulse()
@@ -669,9 +709,17 @@ class AppCenter(TweakModule):
         self.treeview.update_model()
 
     def on_refresh_button_clicked(self, widget):
-        dialog = FetchingMetaDialog(widget.get_toplevel())
+        dialog = CheckUpdateDialog(widget.get_toplevel())
         dialog.run()
         dialog.destroy()
+        if dialog.status == True:
+            dialog = QuestionDialog("Update available, Do you want update?")
+            dialog.run()
+            dialog.destroy()
+        elif dialog.error == True:
+            ErrorDialog("Network Error, Please check your network or the remote server going down").launch()
+        else:
+            InfoDialog("No update available").launch()
 
     def on_app_status_changed(self, widget, i):
         if i:
