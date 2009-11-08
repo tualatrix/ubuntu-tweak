@@ -505,7 +505,7 @@ You should have received a copy of the GNU General Public License along with Ubu
         gtk.gdk.threads_enter()
 
         version = TweakSettings.get_version()
-        if version < VERSION:
+        if version > VERSION:
             dialog = QuestionDialog(_('A newer version: %s is available online.\nWould you like to update?\n\nNote: if you prefer update from the source, you can disable this feature in Preference.') % version, 
                     title = _('Software Update'))
 
