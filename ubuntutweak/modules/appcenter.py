@@ -29,12 +29,12 @@ from ubuntutweak.conf import settings
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.widgets.dialogs import ErrorDialog, InfoDialog, QuestionDialog
 from ubuntutweak.widgets.dialogs import ProcessDialog
+from ubuntutweak.utils import icon
 from ubuntutweak.utils.parser import Parser
 from ubuntutweak.network.downloadmanager import DownloadDialog
 
 #TODO old stuff
 from ubuntutweak.common.consts import *
-from ubuntutweak.common.utils import get_icon_with_file
 from ubuntutweak.common.package import package_worker, PackageInfo
 
 (
@@ -126,15 +126,15 @@ class CategoryView(gtk.TreeView):
         iter = self.model.append()
         self.model.set(iter, 
                 CATE_ID, 0,
-                CATE_ICON, get_icon_with_file(os.path.join(DATA_DIR, 'appcates', 'all.png'), 16),
+                CATE_ICON, icon.get_with_file(os.path.join(DATA_DIR, 'appcates', 'all.png'), size=16),
                 CATE_NAME, _('All Categories'))
 
         for item in self.get_cate_items():
             iter = self.model.append()
-            id, name, icon = self.parse_cate_item(item)
+            id, name, pixbuf = self.parse_cate_item(item)
             self.model.set(iter, 
                     CATE_ID, id,
-                    CATE_ICON, icon,
+                    CATE_ICON, pixbuf,
                     CATE_NAME, name)
 
     def get_cate_items(self):
@@ -394,9 +394,22 @@ class AppView(gtk.TreeView):
         except:
             return gtk.icon_theme_get_default().load_icon(gtk.STOCK_MISSING_IMAGE, 32, 0)
 
-class CheckUpdateDialog(ProcessDialog):
+def appcenter_check_update():
     version_url = 'http://127.0.0.1:8000/app_version/'
     local_timestamp = os.path.join(APPCENTER_ROOT, 'timestamp')
+
+    remote_version = urllib.urlopen(version_url).read()
+    if os.path.exists(local_timestamp):
+        local_version = open(local_timestamp).read()
+    else:
+        local_version = '0'
+
+    if remote_version > local_version:
+        return True
+    else:
+        return False
+
+class CheckUpdateDialog(ProcessDialog):
 
     def __init__(self, parent):
         self.status = None
@@ -418,16 +431,7 @@ class CheckUpdateDialog(ProcessDialog):
             self.done = True
 
     def get_updatable(self):
-        remote_ver = urllib.urlopen(self.version_url).read()
-        if os.path.exists(self.local_timestamp):
-            local_version = open(self.local_timestamp).read()
-        else:
-            local_version = '0'
-
-        if remote_ver > local_version:
-            return True
-        else:
-            return False
+        return appcenter_check_update()
 
     def on_timeout(self):
         self.pulse()
@@ -475,7 +479,7 @@ class AppCenter(TweakModule):
 
         self.show_all()
 
-#        gobject.idle_add(self.on_idle_check)
+        gobject.idle_add(self.on_idle_check)
 
     def reparent(self):
         self.main_vbox.reparent(self.inner_vbox)
@@ -499,10 +503,11 @@ class AppCenter(TweakModule):
         gtk.gdk.threads_leave()
 
     def check_update(self):
-        if os.path.exists(REMOTE_APP_DATA) and os.path.exists(REMOTE_CATE_DATA):
-            return True
-        else:
-            return False
+        try:
+            return appcenter_check_update()
+        except Exception, e:
+            #TODO use logging
+            print e
 
     def on_category_changed(self, widget, data = None):
         model, iter = widget.get_selected()
@@ -516,113 +521,12 @@ class AppCenter(TweakModule):
             self.appview.clear_model()
             self.appview.update_model()
 
-    def get_app_logo(self, pkgname, url=None):
-        if url and not self.app_logo_handler.is_exists(pkgname):
-            self.app_logo_handler.save_logo(pkgname, url)
-
-        if self.app_logo_handler.is_exists(pkgname):
-            return self.app_logo_handler.get_logo(pkgname)
-        else:
-            return get_app_logo(pkgname, 16)
-
-    def get_app_describ(self, pkgname):
-        try:
-            if self.app_data_parser[pkgname].has_key('summary'):
-                return self.app_data_parser[pkgname]['summary']
-        except:
-            pass
-        return get_app_describ(pkgname)
-
-    def get_app_meta(self, pkgname):
-        '''
-        Meta data is App's display name and install status
-        Need catch exception: KeyError
-        '''
-        package = PackageInfo(pkgname)
-        return package.get_name(), package.check_installed()
-
-    def get_items(self):
-        return self.app_data_parser.items()
-
-    def parse_item(self, item):
-        '''
-        If item[1] == tuple, so it's local data, or the remote data
-        '''
-        if type(item[1]) == tuple:
-            pkgname = item[0]
-            category = item[-1][0] 
-
-            pixbuf = self.get_app_logo(pkgname)
-            desc = self.get_app_describ(pkgname)
-
-            appname, is_installed = self.get_app_meta(pkgname)
-        elif type(item[1]) == dict:
-            pkgname = item[0]
-            pkgdata = item[1]
-            appname = pkgdata['name']
-            desc = pkgdata['summary']
-            category = pkgdata['category']
-
-            pixbuf = self.get_app_logo(pkgname, pkgdata['logo32'])
-            appname, is_installed = self.get_app_meta(pkgname)
-
-        return pkgname, category, pixbuf, desc, appname, is_installed
-
-    def update_model(self):
-        self.model.clear()
-
-        icon = gtk.icon_theme_get_default()
-
-        for item in self.get_items():
-            try:
-                pkgname, category, pixbuf, desc, appname, is_installed = self.parse_item(item)
-            except KeyError:
-                continue
-
-            if self.filter == None:
-                if pkgname in self.to_add or pkgname in self.to_rm:
-                    self.model.append((not is_installed,
-                            pixbuf,
-                            pkgname,
-                            appname,
-                            desc,
-                            '<span foreground="#ffcc00"><b>%s</b>\n%s</span>' % (appname, desc),
-                            category))
-                else:
-                    self.model.append((is_installed,
-                            pixbuf,
-                            pkgname,
-                            appname,
-                            desc,
-                            '<b>%s</b>\n%s' % (appname, desc),
-                            category))
-            else:
-                if self.filter == category:
-                    if pkgname in self.to_add or pkgname in self.to_rm:
-                        self.model.append((not is_installed,
-                                pixbuf,
-                                pkgname,
-                                appname,
-                                desc,
-                                '<span foreground="#ffcc00"><b>%s</b>\n%s</span>' % (appname, desc),
-                                category))
-                    else:
-                        self.model.append((is_installed,
-                                pixbuf,
-                                pkgname,
-                                appname,
-                                desc,
-                                '<b>%s</b>\n%s' % (appname, desc),
-                                category))
-
     def deep_update(self):
         package_worker.update_apt_cache(True)
-        self.appview.clear_model()
-        self.appview.update_model(APPS.keys(), APPS)
+        self.update_app_data()
 
     def normal_update(self):
-        self.appview.clear_model()
-        self.appview.update_model(APPS.keys(), APPS)
+        self.update_apt_cache()
 
     def on_apply_button_clicked(self, widget, data = None):
         to_rm = self.appview.to_rm

@@ -30,3 +30,9 @@ def get_with_name(name, alter='gtk-execute', size=24):
         return pixbuf.scale_simple(size, size, gtk.gdk.INTERP_BILINEAR)
 
     return pixbuf
+
+def get_with_file(file, size=24):
+    try:
+        return gtk.gdk.pixbuf_new_from_file_at_size(file, size, size)
+    except:
+        return get_with_name('gtk-execute', size)
