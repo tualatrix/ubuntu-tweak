@@ -12,6 +12,9 @@ import gobject
 from ubuntutweak.common.consts import DATA_DIR
 from ubuntutweak.utils import icon
 
+def module_cmp(m1, m2):
+    return cmp(m1.__title__, m2.__title__)
+
 class ModuleLoader:
     module_table = {}
     id_table = {}
@@ -30,7 +33,7 @@ class ModuleLoader:
             self.do_module_import(package, module)
 
         for k in self.module_table.keys():
-            self.module_table[k].sort()
+            self.module_table[k].sort(module_cmp)
 
     def do_module_import(self, package, module):
         for k, v in inspect.getmembers(getattr(package, module)):
