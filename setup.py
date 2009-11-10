@@ -3,7 +3,7 @@ from setuptools import *
 
 setup(name='ubuntu-tweak',
       version='0.5.0',
-      description='DBus driven daemon for APT',
+      description='magic tool to configure Ubuntu',
       author='TualatriX',  
       author_email='tualatrix@gmail.com',
       url='http://ubuntu-tweak.com',
@@ -29,6 +29,6 @@ setup(name='ubuntu-tweak',
           ('share/ubuntu-tweak/status/', glob.glob('data/status/*.png')),
           ('share/ubuntu-tweak/', ['data/keys.xml']),
           ],
-      license = 'GNU GPL',
-      platforms = 'linux',
+      license='GNU GPL',
+      platforms='linux',
 )
