@@ -24,7 +24,7 @@ from consts import DATA_DIR
 
 class GuiWorker(object):
     def __init__(self, file_name):
-        file_path = os.path.join(DATA_DIR, 'gui', file_name)
+        file_path = os.path.join(DATA_DIR, 'ui', file_name)
 
         self.builder = gtk.Builder()
         self.builder.set_translation_domain('ubuntu-tweak')

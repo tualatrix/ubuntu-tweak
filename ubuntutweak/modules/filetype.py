@@ -226,7 +226,7 @@ class AddAppDialog(gobject.GObject):
     def __init__(self, type, parent):
         super(AddAppDialog, self).__init__()
 
-        worker = GuiWorker('type_edit.glade')
+        worker = GuiWorker('type_edit.ui')
 
         self.dialog = worker.get_object('add_app_dialog') 
         self.dialog.set_modal(True)
@@ -346,7 +346,7 @@ class TypeEditDialog(gobject.GObject):
         self.type = type
 
         type_pixbuf = mime_type_get_icon(type, 64)
-        worker = GuiWorker('type_edit.glade')
+        worker = GuiWorker('type_edit.ui')
 
         self.dialog = worker.get_object('type_edit_dialog')
         self.dialog.set_transient_for(parent)

@@ -111,7 +111,7 @@ class TweakModule(gtk.VBox):
         viewport.set_shadow_type(gtk.SHADOW_NONE)
 
         if path:
-            path = os.path.join(DATA_DIR, 'gui', path)
+            path = os.path.join(DATA_DIR, 'ui', path)
 
             self.builder = gtk.Builder()
             self.builder.set_translation_domain(domain)

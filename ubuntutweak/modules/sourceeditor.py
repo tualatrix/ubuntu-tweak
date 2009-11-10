@@ -356,7 +356,7 @@ class SourceEditor(TweakModule):
     __category__ = 'application'
 
     def __init__(self):
-        TweakModule.__init__(self, 'sourceeditor.glade')
+        TweakModule.__init__(self, 'sourceeditor.ui')
 
         self.online_data = {}
 

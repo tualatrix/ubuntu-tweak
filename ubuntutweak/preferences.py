@@ -26,7 +26,7 @@ from ubuntutweak.common.factory import WidgetFactory
 
 class PreferencesDialog:
     def __init__(self):
-        self.worker = GuiWorker('preferences.glade')
+        self.worker = GuiWorker('preferences.ui')
         self.dialog = self.worker.get_object('preferences_dialog')
 
         self.setup_window_preference()

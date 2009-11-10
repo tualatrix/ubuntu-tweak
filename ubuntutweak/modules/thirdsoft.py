@@ -31,22 +31,24 @@ import webbrowser
 import urllib
 
 from ubuntutweak.modules  import TweakModule
+from ubuntutweak.policykit import PolkitButton, proxy
+from ubuntutweak.widgets import ListPack, GconfCheckButton
+from ubuntutweak.widgets.dialogs import *
+from ubuntutweak.backends.daemon import PATH
+from aptsources.sourceslist import SourceEntry, SourcesList
+from appcenter import AppView
+
+#TODO
 from ubuntutweak.common.config import Config, TweakSettings
 from ubuntutweak.common.consts import *
 from ubuntutweak.common.sourcedata import SOURCES_LIST, SOURCES_DATA, SOURCES_DEPENDENCIES, SOURCES_CONFLICTS
 from ubuntutweak.common.appdata import APP_DICT, APPS
 from ubuntutweak.common.appdata import get_app_logo, get_app_describ
 from ubuntutweak.common.appdata import get_source_logo, get_source_describ
-from ubuntutweak.policykit import PolkitButton, proxy
-from ubuntutweak.widgets import ListPack, GconfCheckButton
-from ubuntutweak.widgets.dialogs import *
 from ubuntutweak.common.factory import WidgetFactory
 from ubuntutweak.common.package import package_worker, PackageInfo
 from ubuntutweak.common.notify import notify
 from ubuntutweak.common.misc import URLLister
-from installer import AppView
-from ubuntutweak.backends.daemon import PATH
-from aptsources.sourceslist import SourceEntry, SourcesList
 
 config = Config()
 PPA_MIRROR = []

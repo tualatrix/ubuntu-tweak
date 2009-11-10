@@ -23,8 +23,8 @@ import gtk
 
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.policykit import PolkitButton, proxy
-from ubuntutweak.common.factory import WidgetFactory
 from ubuntutweak.widgets import ListPack
+from ubuntutweak.common.factory import WidgetFactory
 
 ROOT_THEMES = '/root/.themes'
 ROOT_ICONS = '/root/.icons'
@@ -63,7 +63,7 @@ class LockDown(TweakModule):
         self.add_start(box, False, False, 0)
 
         self.fix_theme_button = gtk.CheckButton(_('Fix the theme appearance when grant the root privileges'))
-        if self.get_proxy.is_exists(ROOT_THEMES) and self.get_proxy.is_exists(ROOT_ICONS):
+        if proxy.is_exists(ROOT_THEMES) and proxy.is_exists(ROOT_ICONS):
             self.fix_theme_button.set_active(True)
 
         self.fix_theme_button.connect('toggled', self.on_fix_theme_btn_taggled)

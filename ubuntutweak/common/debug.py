@@ -29,7 +29,7 @@ def run_traceback(level):
         output = StringIO.StringIO()
         exc = traceback.print_exc(file = output)
 
-        worker = GuiWorker('traceback.glade')
+        worker = GuiWorker('traceback.ui')
         dialog = worker.get_object('%sDialog' % level.capitalize())
         textview = worker.get_object('%s_view' % level)
         buffer = textview.get_buffer()

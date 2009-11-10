@@ -1,14 +1,15 @@
 data/ubuntu-tweak.desktop.in
 data/com.ubuntu-tweak.daemon.policy.in
-data/gui/preferences.glade
-data/gui/traceback.glade
-data/gui/installer.glade
-data/gui/type_edit.glade
-data/gui/sourceeditor.glade
+data/ui/preferences.ui
+data/ui/traceback.ui
+data/ui/appcenter.ui
+data/ui/type_edit.ui
+data/ui/sourceeditor.ui
+ubuntutweak/utils/parser.py
 ubuntutweak/utils/icon.py
 ubuntutweak/utils/__init__.py
-ubuntutweak/updatemanager.py
-ubuntutweak/utility.py
+ubuntutweak/conf/settings.py
+ubuntutweak/conf/__init__.py
 ubuntutweak/__init__.py
 ubuntutweak/mainwindow.py
 ubuntutweak/widgets/widgets.py
@@ -20,6 +21,7 @@ ubuntutweak/widgets/cellrendererbutton.py
 ubuntutweak/widgets/dialogs.py
 ubuntutweak/preferences.py
 ubuntutweak/network/parser.py
+ubuntutweak/network/downloadmanager.py
 ubuntutweak/network/__init__.py
 ubuntutweak/network/xmlrpc.py
 ubuntutweak/backends/daemon.py
@@ -48,7 +50,7 @@ ubuntutweak/modules/computer.py
 ubuntutweak/modules/lockdown.py
 ubuntutweak/modules/sourceeditor.py
 ubuntutweak/modules/thirdsoft.py
-ubuntutweak/modules/installer.py
+ubuntutweak/modules/appcenter.py
 ubuntutweak/modules/filetype.py
 ubuntutweak/modules/metacity.py
 ubuntutweak/modules/__init__.py
@@ -64,3 +66,4 @@ ubuntutweak/modules/shortcuts.py
 ubuntutweak/modules/autostart.py
 ubuntutweak/modules/nautilus.py
 ubuntutweak/ScriptWorker.py
+ubuntutweak/run_test.py
