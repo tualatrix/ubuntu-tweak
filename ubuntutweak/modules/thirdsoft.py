@@ -35,9 +35,11 @@ from ubuntutweak.modules  import TweakModule
 from ubuntutweak.policykit import PolkitButton, proxy
 from ubuntutweak.widgets import ListPack, GconfCheckButton
 from ubuntutweak.widgets.dialogs import *
+from ubuntutweak.utils.parser import Parser
 from ubuntutweak.backends.daemon import PATH
 from aptsources.sourceslist import SourceEntry, SourcesList
 from appcenter import AppView, CategoryView
+from appcenter import CheckUpdateDialog
 
 #TODO
 from ubuntutweak.common.config import Config, TweakSettings
@@ -67,7 +69,7 @@ BUILTIN_APPS.extend(APPS.keys())
     COLUMN_URL,
     COLUMN_DISTRO,
     COLUMN_COMPS,
-    COLUMN_PACKAGE,
+    COLUMN_SLUG,
     COLUMN_LOGO,
     COLUMN_NAME,
     COLUMN_COMMENT,
@@ -90,6 +92,7 @@ BUILTIN_APPS.extend(APPS.keys())
 ) = range(4)
 
 SOURCE_ROOT = os.path.join(settings.CONFIG_ROOT, 'sources')
+SOURCE_VERSION_URL = 'http://127.0.0.1:8000/sources_version/'
 
 def refresh_source(parent):
     dialog = UpdateCacheDialog(parent)
@@ -149,6 +152,34 @@ def refresh_source(parent):
 
         dialog.launch()
         return False
+
+class SourceParser(Parser):
+    def __init__(self):
+        Parser.__init__(self, os.path.join(SOURCE_ROOT, 'sources.json'), 'slug')
+
+    def get_summary(self, key):
+        return self.get_by_lang(key, 'summary')
+
+    def get_name(self, key):
+        return self.get_by_lang(key, 'name')
+
+    def get_category(self, key):
+        return self[key]['category']
+
+    def get_url(self, key):
+        return self[key]['url']
+
+    def get_key(self, key):
+        return self[key]['key']
+
+    def get_distro(self, key):
+        return self[key]['distro']
+
+    def get_comps(self, key):
+        return self[key]['component']
+
+    def get_website(self, key):
+        return self[key]['website']
 
 class UpdateView(AppView):
     def __init__(self):
@@ -321,23 +352,19 @@ class SourcesView(gtk.TreeView):
         self.model.clear()
         sourceslist = self.get_sourceslist()
 
-        for entry in SOURCES_DATA:
-            enabled = False
-            url = entry[ENTRY_URL]
-            comps = entry[ENTRY_COMPS]
-            distro = entry[ENTRY_DISTRO]
+        source_parser = SourceParser()
 
-            source = entry[-1]
-            name = source[SOURCE_NAME]
-            package = source[SOURCE_PACKAGE]
-            comment = get_source_describ(package)
-            logo = get_source_logo(package)
-            home = source[SOURCE_HOME]
-            if home:
-                home = 'http://' + home
-            key = source[SOURCE_KEY]
-            if key:
-                key = os.path.join(DATA_DIR, 'aptkeys', source[SOURCE_KEY])
+        for slug in source_parser:
+            enabled = False
+            url = source_parser.get_url(slug)
+            comps = source_parser.get_comps(slug)
+            distro = source_parser.get_distro(slug)
+
+            name = source_parser.get_name(slug)
+            comment = source_parser.get_summary(slug)
+            pixbuf = self.get_app_logo(source_parser[slug]['logo'])
+            website = source_parser.get_website(slug)
+            key = source_parser.get_key(slug)
 
             for source in sourceslist:
                 if url in source.str() and source.type == 'deb':
@@ -351,13 +378,23 @@ class SourcesView(gtk.TreeView):
                     COLUMN_DISTRO, distro,
                     COLUMN_COMPS, comps,
                     COLUMN_COMMENT, comment,
-                    COLUMN_PACKAGE, package,
+                    COLUMN_SLUG, slug,
                     COLUMN_NAME, name,
                     COLUMN_DISPLAY, '<b>%s</b>\n%s' % (name, comment),
-                    COLUMN_LOGO, logo,
-                    COLUMN_HOME, home,
+                    COLUMN_LOGO, pixbuf,
+                    COLUMN_HOME, website,
                     COLUMN_KEY, key,
                 )
+
+    def get_source_logo(self, file):
+        path = os.path.join(SOURCE_ROOT, file)
+        try:
+            pixbuf = gtk.gdk.pixbuf_new_from_file(path)
+            if pixbuf.get_width() != 32 or pixbuf.get_height() != 32:
+                pixbuf = pixbuf.scale_simple(32, 32, gtk.gdk.INTERP_BILINEAR)
+            return pixbuf
+        except:
+            return gtk.icon_theme_get_default().load_icon(gtk.STOCK_MISSING_IMAGE, 32, 0)
 
     def update_ubuntu_cn_model(self):
         global SOURCES_DATA
@@ -530,7 +567,7 @@ class SourcesView(gtk.TreeView):
         icon = self.model.get_value(iter, COLUMN_LOGO)
         distro = self.model.get_value(iter, COLUMN_DISTRO)
         comment = self.model.get_value(iter, COLUMN_NAME)
-        package = self.model.get_value(iter, COLUMN_PACKAGE)
+        package = self.model.get_value(iter, COLUMN_SLUG)
         comps = self.model.get_value(iter, COLUMN_COMPS)
         key = self.model.get_value(iter, COLUMN_KEY)
 
@@ -773,3 +810,22 @@ class ThirdSoft(TweakModule):
     def on_refresh_button_clicked(self, widget):
         if refresh_source(widget.get_toplevel()):
             self.emit('update', 'installer', 'normal_update')
+
+    def on_update_button_clicked(self, widget):
+        dialog = CheckUpdateDialog(widget.get_toplevel())
+        dialog.run()
+        dialog.destroy()
+        if dialog.status == True:
+            dialog = QuestionDialog(_("Update available, Do you want to update?"))
+            dialog.run()
+            dialog.destroy()
+
+            dialog = FetchingDialog(self.get_toplevel())
+            dialog.connect('destroy', self.on_app_data_downloaded)
+            dialog.run()
+            dialog.destroy()
+        elif dialog.error == True:
+            ErrorDialog(_("Network Error, Please check your network or the remote server going down")).launch()
+        else:
+            InfoDialog(_("No update available")).launch()
+

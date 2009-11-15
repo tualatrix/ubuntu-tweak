@@ -55,6 +55,7 @@ from ubuntutweak.common.package import package_worker, PackageInfo
 ) = range(3)
 
 APPCENTER_ROOT = os.path.join(settings.CONFIG_ROOT, 'appcenter')
+APP_VERSION_URL = 'http://127.0.0.1:8000/app_version/'
 
 if not os.path.exists(APPCENTER_ROOT):
     os.mkdir(APPCENTER_ROOT)
@@ -395,8 +396,7 @@ class AppView(gtk.TreeView):
         except:
             return gtk.icon_theme_get_default().load_icon(gtk.STOCK_MISSING_IMAGE, 32, 0)
 
-def appcenter_check_update():
-    version_url = 'http://127.0.0.1:8000/app_version/'
+def check_update_function(version_url):
     local_timestamp = os.path.join(APPCENTER_ROOT, 'timestamp')
 
     remote_version = urllib.urlopen(version_url).read()
@@ -412,11 +412,12 @@ def appcenter_check_update():
 
 class CheckUpdateDialog(ProcessDialog):
 
-    def __init__(self, parent):
+    def __init__(self, parent, url):
         self.status = None
         self.done = False
         self.error = None
         self.user_action = False
+        self.url = url
 
         super(CheckUpdateDialog, self).__init__(parent=parent)
         self.set_dialog_lable(_('Checking update...'))
@@ -432,7 +433,7 @@ class CheckUpdateDialog(ProcessDialog):
             self.done = True
 
     def get_updatable(self):
-        return appcenter_check_update()
+        return check_update_function(self.url)
 
     def on_timeout(self):
         self.pulse()
@@ -502,7 +503,7 @@ class AppCenter(TweakModule):
 
     def check_update(self):
         try:
-            return appcenter_check_update()
+            return check_update_function(APP_VERSION_URL)
         except Exception, e:
             #TODO use logging
             print e
@@ -547,7 +548,7 @@ class AppCenter(TweakModule):
         self.appview.update_model()
 
     def on_refresh_button_clicked(self, widget):
-        dialog = CheckUpdateDialog(widget.get_toplevel())
+        dialog = CheckUpdateDialog(widget.get_toplevel(), APP_VERSION_URL)
         dialog.run()
         dialog.destroy()
         if dialog.status == True:
