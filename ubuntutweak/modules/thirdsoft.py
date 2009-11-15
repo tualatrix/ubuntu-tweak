@@ -39,7 +39,7 @@ from ubuntutweak.utils.parser import Parser
 from ubuntutweak.backends.daemon import PATH
 from aptsources.sourceslist import SourceEntry, SourcesList
 from appcenter import AppView, CategoryView
-from appcenter import CheckUpdateDialog
+from appcenter import CheckUpdateDialog, FetchingDialog
 
 #TODO
 from ubuntutweak.common.config import Config, TweakSettings
@@ -93,6 +93,7 @@ BUILTIN_APPS.extend(APPS.keys())
 
 SOURCE_ROOT = os.path.join(settings.CONFIG_ROOT, 'sources')
 SOURCE_VERSION_URL = 'http://127.0.0.1:8000/sources_version/'
+SOURCE_URL = 'http://127.0.0.1:8000/static/sources.tar.gz'
 
 def refresh_source(parent):
     dialog = UpdateCacheDialog(parent)
@@ -360,7 +361,7 @@ class SourcesView(gtk.TreeView):
 
             name = source_parser.get_name(slug)
             comment = source_parser.get_summary(slug)
-            pixbuf = self.get_app_logo(source_parser[slug]['logo'])
+            pixbuf = self.get_source_logo(source_parser[slug]['logo'])
             website = source_parser.get_website(slug)
             key = source_parser.get_key(slug)
 
@@ -809,8 +810,19 @@ class ThirdSoft(TweakModule):
         if refresh_source(widget.get_toplevel()):
             self.emit('update', 'installer', 'normal_update')
 
+    def on_app_data_downloaded(self, widget):
+        file = widget.get_downloaded_file()
+        #FIXME
+        if widget.downloaded:
+            os.system('tar zxf %s -C %s' % (file, settings.CONFIG_ROOT))
+            self.update_source_data()
+
+    def update_source_data(self):
+        self.cateview.update_model()
+        self.sourceview.update_model()
+
     def on_update_button_clicked(self, widget):
-        dialog = CheckUpdateDialog(widget.get_toplevel())
+        dialog = CheckUpdateDialog(widget.get_toplevel(), SOURCE_VERSION_URL)
         dialog.run()
         dialog.destroy()
         if dialog.status == True:
@@ -818,7 +830,7 @@ class ThirdSoft(TweakModule):
             dialog.run()
             dialog.destroy()
 
-            dialog = FetchingDialog(self.get_toplevel())
+            dialog = FetchingDialog(parent=self.get_toplevel(), url=SOURCE_URL)
             dialog.connect('destroy', self.on_app_data_downloaded)
             dialog.run()
             dialog.destroy()
@@ -826,4 +838,3 @@ class ThirdSoft(TweakModule):
             ErrorDialog(_("Network Error, Please check your network or the remote server going down")).launch()
         else:
             InfoDialog(_("No update available")).launch()
-

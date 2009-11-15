@@ -56,6 +56,7 @@ from ubuntutweak.common.package import package_worker, PackageInfo
 
 APPCENTER_ROOT = os.path.join(settings.CONFIG_ROOT, 'appcenter')
 APP_VERSION_URL = 'http://127.0.0.1:8000/app_version/'
+APP_URL = 'http://127.0.0.1:8000/static/appcenter.tar.gz'
 
 if not os.path.exists(APPCENTER_ROOT):
     os.mkdir(APPCENTER_ROOT)
@@ -446,10 +447,8 @@ class CheckUpdateDialog(ProcessDialog):
             self.destroy()
 
 class FetchingDialog(DownloadDialog):
-    app_url = 'http://127.0.0.1:8000/static/appcenter.tar.gz'
-
-    def __init__(self, parent=None):
-        super(FetchingDialog, self).__init__(url=self.app_url,
+    def __init__(self, url, parent=None):
+        super(FetchingDialog, self).__init__(url=url,
                                     title=_('Fetching online data...'),
                                     parent=parent)
 
@@ -494,7 +493,7 @@ class AppCenter(TweakModule):
             dialog.destroy()
 
             if response == gtk.RESPONSE_YES:
-                dialog = FetchingDialog(self.get_toplevel())
+                dialog = FetchingDialog(APP_URL, self.get_toplevel())
                 dialog.connect('destroy', self.on_app_data_downloaded)
                 dialog.run()
                 dialog.destroy()
@@ -556,7 +555,7 @@ class AppCenter(TweakModule):
             dialog.run()
             dialog.destroy()
 
-            dialog = FetchingDialog(self.get_toplevel())
+            dialog = FetchingDialog(APP_URL, self.get_toplevel())
             dialog.connect('destroy', self.on_app_data_downloaded)
             dialog.run()
             dialog.destroy()
