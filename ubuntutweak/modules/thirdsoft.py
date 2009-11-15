@@ -95,6 +95,21 @@ SOURCE_ROOT = os.path.join(settings.CONFIG_ROOT, 'sources')
 SOURCE_VERSION_URL = 'http://127.0.0.1:8000/sources_version/'
 SOURCE_URL = 'http://127.0.0.1:8000/static/sources.tar.gz'
 
+def check_update_function(version_url):
+    local_timestamp = os.path.join(SOURCE_ROOT, 'timestamp')
+
+    remote_version = urllib.urlopen(version_url).read()
+    if os.path.exists(local_timestamp):
+        local_version = open(local_timestamp).read().split('.')[0].split('-')[-1]
+    else:
+        local_version = '0'
+
+    print remote_version, local_version
+    if remote_version > local_version:
+        return True
+    else:
+        return False
+
 def refresh_source(parent):
     dialog = UpdateCacheDialog(parent)
     res = dialog.run()
@@ -151,6 +166,10 @@ def refresh_source(parent):
 
         dialog.launch()
         return False
+
+class CheckSourceDialog(CheckUpdateDialog):
+    def get_updatable(self):
+        return check_update_function(self.url)
 
 class SourceParser(Parser):
     def __init__(self):
@@ -674,8 +693,6 @@ class ThirdSoft(TweakModule):
         self.hbox2.pack_end(un_lock, False, False, 0)
         self.hbox2.reorder_child(un_lock, 0)
 
-        #FIXME close it when 0.5.0
-        gobject.idle_add(self.check_ppa_entry)
 
         #FIXME China mirror hack
         if os.getenv('LANG').startswith('zh_CN'):
@@ -685,6 +702,30 @@ class ThirdSoft(TweakModule):
                 self.sourceview.unconver_ubuntu_cn_mirror()
 
         config.get_client().notify_add('/apps/ubuntu-tweak/use_mirror_ppa', self.value_changed)
+
+        gobject.idle_add(self.on_idle_check)
+
+    def on_idle_check(self):
+        gtk.gdk.threads_enter()
+        if self.check_update():
+            dialog = QuestionDialog(_('New sources data available, would you like to update?'))
+            response = dialog.run()
+            dialog.destroy()
+
+            if response == gtk.RESPONSE_YES:
+                dialog = FetchingDialog(SOURCE_URL, self.get_toplevel())
+                dialog.connect('destroy', self.on_source_data_downloaded)
+                dialog.run()
+                dialog.destroy()
+
+        gtk.gdk.threads_leave()
+
+    def check_update(self):
+        try:
+            return check_update_function(SOURCE_VERSION_URL)
+        except Exception, e:
+            #TODO use logging
+            print e
 
     def reparent(self):
         self.main_vbox.reparent(self.inner_vbox)
@@ -714,55 +755,6 @@ class ThirdSoft(TweakModule):
             parse.feed(data)
         except:
             pass
-
-    def check_ppa_entry(self):
-        if self.do_check_ppa_entry():
-            dialog = QuestionDialog(_('Some of your PPA Sources need to be updated.\nDo you wish to continue?'), title=_('PPA Sources has expired'))
-            UPDATE = False
-            if dialog.run() == gtk.RESPONSE_YES:
-                UPDATE = True
-            dialog.destroy()
-
-            if UPDATE:
-                self.do_update_ppa_entry()
-
-    def do_check_ppa_entry(self):
-        content = open(SOURCES_LIST).read()
-        for line in content.split('\n'):
-            if self.__is_expire_ppa(line):
-                return True
-        return False
-
-    def __is_expire_ppa(self, line):
-        '''http://ppa.launchpad.net/tualatrix/ppa/ubuntu is the new style
-        http://ppa.launchpad.net/tualatrix/ubuntu is the old style
-        length check is important
-        '''
-        try:
-            url = line.split()[1]
-            if url.startswith('http://ppa.launchpad.net') and \
-                    len(url.split('/')) == 5 and \
-                    'ppa/ubuntu' not in line:
-                return True
-        except:
-            pass
-
-    def do_update_ppa_entry(self):
-        content = open(SOURCES_LIST).read()
-        lines = []
-        for line in content.split('\n'):
-            if self.__is_expire_ppa(line):
-                lines.append(line.replace('/ubuntu ', '/ppa/ubuntu '))
-            else:
-                lines.append(line)
-
-        if proxy.edit_file(SOURCES_LIST, '\n'.join(lines)) == 'error':
-            ErrorDialog(_('Please check the permission of the sources.list file'),
-                    title=_('Save failed!')).launch()
-        else:
-            InfoDialog(_('Update Successful!')).launch()
-
-        self.update_thirdparty()
 
     def update_thirdparty(self):
         self.sourceview.update_model()
@@ -810,7 +802,7 @@ class ThirdSoft(TweakModule):
         if refresh_source(widget.get_toplevel()):
             self.emit('update', 'installer', 'normal_update')
 
-    def on_app_data_downloaded(self, widget):
+    def on_source_data_downloaded(self, widget):
         file = widget.get_downloaded_file()
         #FIXME
         if widget.downloaded:
@@ -822,7 +814,7 @@ class ThirdSoft(TweakModule):
         self.sourceview.update_model()
 
     def on_update_button_clicked(self, widget):
-        dialog = CheckUpdateDialog(widget.get_toplevel(), SOURCE_VERSION_URL)
+        dialog = CheckSourceDialog(widget.get_toplevel(), SOURCE_VERSION_URL)
         dialog.run()
         dialog.destroy()
         if dialog.status == True:
@@ -831,7 +823,7 @@ class ThirdSoft(TweakModule):
             dialog.destroy()
 
             dialog = FetchingDialog(parent=self.get_toplevel(), url=SOURCE_URL)
-            dialog.connect('destroy', self.on_app_data_downloaded)
+            dialog.connect('destroy', self.on_source_data_downloaded)
             dialog.run()
             dialog.destroy()
         elif dialog.error == True:
