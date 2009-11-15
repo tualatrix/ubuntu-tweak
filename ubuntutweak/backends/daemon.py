@@ -29,6 +29,7 @@ import dbus.service
 import dbus.mainloop.glib
 import gobject
 import subprocess
+import tempfile
 
 from subprocess import PIPE
 from aptsources.sourceslist import SourceEntry, SourcesList
@@ -228,6 +229,21 @@ class Daemon(PolicyKitService):
         self._check_permission(sender)
         apt_key = AptAuth()
         apt_key.add(filename)
+
+    @dbus.service.method(INTERFACE,
+                         in_signature='s', out_signature='',
+                         sender_keyword='sender')
+    def add_apt_key_from_content(self, content, sender=None):
+        #TODO leave only one method
+        self._check_permission(sender)
+
+        f = tempfile.NamedTemporaryFile()
+        f.write(content)
+        f.flush()
+
+        apt_key = AptAuth()
+        apt_key.add(f.name)
+        f.close()
 
     @dbus.service.method(INTERFACE,
                          in_signature='ss', out_signature='',

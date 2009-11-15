@@ -573,7 +573,7 @@ class SourcesView(gtk.TreeView):
         pre_status = self.get_sourcelist_status(url)
 
         if key:
-            proxy.add_apt_key(key)
+            proxy.add_apt_key_from_content(key)
 
         if not comps:
             distro = distro + '/'
