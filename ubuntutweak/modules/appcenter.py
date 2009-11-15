@@ -88,8 +88,7 @@ class CategoryView(gtk.TreeView):
     def __init__(self, path):
         gtk.TreeView.__init__(self)
 
-        self.parser = CateParser(path)
-
+        self.path = path
         self.set_headers_visible(False)
         self.set_rules_hint(True)
         self.model = self.__create_model()
@@ -125,6 +124,7 @@ class CategoryView(gtk.TreeView):
 
     def update_model(self):
         self.model.clear()
+        self.parser = CateParser(self.path)
 
         iter = self.model.append()
         self.model.set(iter, 
