@@ -75,17 +75,18 @@ class AppParser(Parser):
         return self[key]['category']
 
 class CateParser(Parser):
-    def __init__(self):
-        cate_data = os.path.join(APPCENTER_ROOT, 'cates.json')
-
-        Parser.__init__(self, cate_data , 'slug')
+    #TODO Maybe move to the common code pakcage
+    def __init__(self, path):
+        Parser.__init__(self, path, 'slug')
 
     def get_name(self, key):
         return self.get_by_lang(key, 'name')
 
 class CategoryView(gtk.TreeView):
-    def __init__(self):
+    def __init__(self, path):
         gtk.TreeView.__init__(self)
+
+        self.parser = CateParser(path)
 
         self.set_headers_visible(False)
         self.set_rules_hint(True)
@@ -138,10 +139,9 @@ class CategoryView(gtk.TreeView):
                     CATE_NAME, name)
 
     def get_cate_items(self):
-        parser = CateParser()
-        for k in parser.keys():
-            item = parser[k]
-            item['name'] = parser.get_name(k)
+        for k in self.parser.keys():
+            item = self.parser[k]
+            item['name'] = self.parser.get_name(k)
             yield item
 
     def parse_cate_item(self, item):
@@ -467,7 +467,7 @@ class AppCenter(TweakModule):
 
         self.package_worker = package_worker
 
-        self.cateview = CategoryView()
+        self.cateview = CategoryView(os.path.join(APPCENTER_ROOT, 'cates.json'))
         self.cate_selection = self.cateview.get_selection()
         self.cate_selection.connect('changed', self.on_category_changed)
         self.left_sw.add(self.cateview)
