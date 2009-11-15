@@ -30,13 +30,14 @@ import apt_pkg
 import webbrowser
 import urllib
 
+from ubuntutweak.conf import settings
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.policykit import PolkitButton, proxy
 from ubuntutweak.widgets import ListPack, GconfCheckButton
 from ubuntutweak.widgets.dialogs import *
 from ubuntutweak.backends.daemon import PATH
 from aptsources.sourceslist import SourceEntry, SourcesList
-from appcenter import AppView
+from appcenter import AppView, CategoryView
 
 #TODO
 from ubuntutweak.common.config import Config, TweakSettings
@@ -87,6 +88,8 @@ BUILTIN_APPS.extend(APPS.keys())
     SOURCE_HOME,
     SOURCE_KEY,
 ) = range(4)
+
+SOURCE_ROOT = os.path.join(settings.CONFIG_ROOT, 'sources')
 
 def refresh_source(parent):
     dialog = UpdateCacheDialog(parent)
@@ -612,6 +615,11 @@ class ThirdSoft(TweakModule):
     def __init__(self):
         TweakModule.__init__(self, 'thirdsoft.ui')
 
+        self.cateview = CategoryView(os.path.join(SOURCE_ROOT, 'cates.json'))
+        self.cate_selection = self.cateview.get_selection()
+        self.cate_selection.connect('changed', self.on_category_changed)
+        self.left_sw.add(self.cateview)
+
         self.sourceview = SourcesView()
         self.sourceview.connect('sourcechanged', self.colleague_changed)
         self.sourceview.selection.connect('changed', self.on_selection_changed)
@@ -644,6 +652,12 @@ class ThirdSoft(TweakModule):
 
     def reparent(self):
         self.main_vbox.reparent(self.inner_vbox)
+
+    def on_category_changed(self, widget, data = None):
+        model, iter = widget.get_selected()
+
+        if iter:
+            pass
 
     def value_changed(self, client, id, entry, data):
         global UNCONVERT
