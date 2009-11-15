@@ -104,7 +104,6 @@ def check_update_function(version_url):
     else:
         local_version = '0'
 
-    print remote_version, local_version
     if remote_version > local_version:
         return True
     else:
