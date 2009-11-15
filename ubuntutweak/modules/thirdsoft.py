@@ -98,8 +98,6 @@ def refresh_source(parent):
     dialog = UpdateCacheDialog(parent)
     res = dialog.run()
 
-    proxy.set_list_state('normal')
-
     new_pkg = []
     for pkg in package_worker.get_new_package():
         if pkg in BUILTIN_APPS:
