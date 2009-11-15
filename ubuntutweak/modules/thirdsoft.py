@@ -610,37 +610,25 @@ class ThirdSoft(TweakModule):
     __category__ = 'application'
 
     def __init__(self):
-        TweakModule.__init__(self)
+        TweakModule.__init__(self, 'thirdsoft.ui')
 
-        sw = gtk.ScrolledWindow()
-        sw.set_shadow_type(gtk.SHADOW_ETCHED_IN)
-        sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        self.add_start(sw)
-
-        self.treeview = SourcesView()
-        self.treeview.connect('sourcechanged', self.colleague_changed)
-        self.treeview.selection.connect('changed', self.on_selection_changed)
-        self.treeview.set_sensitive(False)
-        self.treeview.set_rules_hint(True)
-        sw.add(self.treeview)
+        self.sourceview = SourcesView()
+        self.sourceview.connect('sourcechanged', self.colleague_changed)
+        self.sourceview.selection.connect('changed', self.on_selection_changed)
+        self.sourceview.set_sensitive(False)
+        self.sourceview.set_rules_hint(True)
+        self.right_sw.add(self.sourceview)
 
         self.expander = gtk.Expander(_('Details'))
-        self.add_start(self.expander, False, False, 0)
+        self.vbox1.pack_start(self.expander, False, False, 0)
         self.sourcedetail = SourceDetail()
         self.expander.set_sensitive(False)
         self.expander.add(self.sourcedetail)
 
-        hbox = gtk.HBox(False, 5)
-        self.pack_end(hbox, False, False, 0)
-
         un_lock = PolkitButton()
         un_lock.connect('changed', self.on_polkit_action)
-        hbox.pack_end(un_lock, False, False, 0)
-
-        self.refresh_button = gtk.Button(stock = gtk.STOCK_REFRESH)
-        self.refresh_button.set_sensitive(False)
-        self.refresh_button.connect('clicked', self.on_refresh_button_clicked)
-        hbox.pack_end(self.refresh_button, False, False, 0)
+        self.hbox2.pack_end(un_lock, False, False, 0)
+        self.hbox2.reorder_child(un_lock, 0)
 
         #FIXME close it when 0.5.0
         gobject.idle_add(self.check_ppa_entry)
@@ -650,9 +638,12 @@ class ThirdSoft(TweakModule):
             if TweakSettings.get_use_mirror_ppa():
                 gobject.idle_add(self.start_check_cn_ppa)
             else:
-                self.treeview.unconver_ubuntu_cn_mirror()
+                self.sourceview.unconver_ubuntu_cn_mirror()
 
         config.get_client().notify_add('/apps/ubuntu-tweak/use_mirror_ppa', self.value_changed)
+
+    def reparent(self):
+        self.main_vbox.reparent(self.inner_vbox)
 
     def value_changed(self, client, id, entry, data):
         global UNCONVERT
@@ -660,7 +651,7 @@ class ThirdSoft(TweakModule):
         if len(PPA_MIRROR) == 0:
             self.start_check_cn_ppa()
         if globals().has_key('proxy'):
-            self.treeview.setup_ubuntu_cn_mirror()
+            self.sourceview.setup_ubuntu_cn_mirror()
 
     def start_check_cn_ppa(self):
         import socket
@@ -724,7 +715,7 @@ class ThirdSoft(TweakModule):
         self.update_thirdparty()
 
     def update_thirdparty(self):
-        self.treeview.update_model()
+        self.sourceview.update_model()
 
     def on_selection_changed(self, widget):
         model, iter = widget.get_selected()
@@ -742,8 +733,8 @@ class ThirdSoft(TweakModule):
 
             if proxy.get_proxy():
                 if os.getenv('LANG').startswith('zh_CN'):
-                    self.treeview.setup_ubuntu_cn_mirror()
-                self.treeview.set_sensitive(True)
+                    self.sourceview.setup_ubuntu_cn_mirror()
+                self.sourceview.set_sensitive(True)
                 self.expander.set_sensitive(True)
                 WARNING_KEY = '/apps/ubuntu-tweak/disable_thidparty_warning'
 
