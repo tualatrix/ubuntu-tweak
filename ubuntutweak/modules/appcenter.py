@@ -492,13 +492,10 @@ class AppCenter(TweakModule):
             dialog.destroy()
 
             if response == gtk.RESPONSE_YES:
-                dialog = FetchingDialog(self.get_toplevel(), self)
-
-                if dialog.run() == gtk.RESPONSE_REJECT:
-                    dialog.destroy()
-
-                if dialog.message:
-                    ErrorDialog(dialog.message).launch()
+                dialog = FetchingDialog(self.get_toplevel())
+                dialog.connect('destroy', self.on_app_data_downloaded)
+                dialog.run()
+                dialog.destroy()
 
         gtk.gdk.threads_leave()
 
