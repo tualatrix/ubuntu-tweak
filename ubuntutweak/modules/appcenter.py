@@ -310,6 +310,7 @@ class AppView(gtk.TreeView):
                         category)
 
         model = self.get_model()
+        model.clear()
 
         icon = gtk.icon_theme_get_default()
 
@@ -400,7 +401,7 @@ def appcenter_check_update():
 
     remote_version = urllib.urlopen(version_url).read()
     if os.path.exists(local_timestamp):
-        local_version = open(local_timestamp).read()
+        local_version = open(local_timestamp).read().split('.')[0].split('-')[-1]
     else:
         local_version = '0'
 
