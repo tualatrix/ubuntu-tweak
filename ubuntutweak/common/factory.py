@@ -75,10 +75,15 @@ class WidgetFactory:
     @classmethod
     def create(cls, widget, **kwargs):
         if 'key' in kwargs:
-            if kwargs['key'] not in cls.keys:
+            key = kwargs['key']
+
+            if not key.startswith('/'):
+                if key not in cls.keys:
                     return None
-            if not kwargs['key'].startswith('/'):
-                kwargs['key'] = cls.keys[kwargs['key']]
+                else:
+                    key = cls.keys[key]
+
+            kwargs['key'] = key
             return getattr(cls, 'do_create')(widget, **kwargs)
         else:
             return None

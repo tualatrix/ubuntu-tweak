@@ -21,13 +21,11 @@
 import pygtk
 pygtk.require("2.0")
 import gtk
-import os
-import gconf
-import gettext
 
 from ubuntutweak.modules  import TweakModule
+from ubuntutweak.widgets import ListPack
+
 from ubuntutweak.common.consts import *
-from ubuntutweak.widgets import ListPack, SinglePack
 from ubuntutweak.common.factory import WidgetFactory
 
 class Session(TweakModule):
@@ -43,14 +41,17 @@ class Session(TweakModule):
 
     def session_control_box(self):
         button = WidgetFactory.create("GconfCheckButton", 
-                                      label = _("Automatically save open applications when logging out"), 
-                                      key = "auto_save_session")
+                                      label=_("Automatically save open applications when logging out"),
+                                      key="auto_save_session")
         button2 = WidgetFactory.create("GconfCheckButton", 
-                                       label = _("Show logout prompt"), 
-                                       key = "logout_prompt")
+                                       label=_("Show logout prompt"),
+                                       key="logout_prompt")
         button3 = WidgetFactory.create("GconfCheckButton", 
-                                       label = _("Allow TCP Connections (Remote Desktop Connect)"), 
-                                       key = "allow_tcp_connections")
+                                       label=_("Allow TCP Connections (Remote Desktop Connect)"),
+                                       key="allow_tcp_connections")
+        button4 = WidgetFactory.create("GconfCheckButton",
+                                       label=_("Suppress the dialog to confirm logout, restart and shutdown action"),
+                                       key="/apps/indicator-session/suppress_logout_restart_shutdown")
 
-        box = ListPack(_("Session Control"), (button, button2, button3))
+        box = ListPack(_("Session Control"), (button, button2, button3, button4))
         return box
