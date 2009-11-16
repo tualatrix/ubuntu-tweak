@@ -29,9 +29,15 @@ import tempfile
 import subprocess
 import apt
 import apt_pkg
+from aptdaemon import client
+from aptdaemon.enums import *
+from aptdaemon.gtkwidgets import AptErrorDialog, AptProgressDialog, AptMessageDialog
+
 from xdg.DesktopEntry import DesktopEntry
 
 p_kernel = re.compile('\d')
+
+#TODO make different backedns
 
 class PackageWorker:
     basenames = ['linux-image', 'linux-headers', 'linux-image-debug',
@@ -42,6 +48,7 @@ class PackageWorker:
     def __init__(self):
         self.uname = os.uname()[2]
         self.uname_no_generic = '-'.join(self.uname.split('-')[:2])
+        self.ac = client.AptClient()
 
         self.cache = self.get_cache()
 
@@ -51,33 +58,13 @@ class PackageWorker:
                 return True
         return False
 
-    def run_synaptic(self, id, lock, to_add = None, to_rm = None):
-        cmd = []
-        if os.getuid() != 0:
-            cmd = ['/usr/bin/gksu',
-                   '--desktop', '/usr/share/applications/synaptic.desktop',
-                   '--']
-        cmd += ['/usr/sbin/synaptic',
-                '--hide-main-window',
-                '--non-interactive',
-                '-o', 'Synaptic::closeZvt=true',
-                '--parent-window-id', '%s' % (id) ]
-
-        f = tempfile.NamedTemporaryFile()
-
-        for item in to_add:
-            f.write('%s\tinstall\n' % item)
-
-        for item in to_rm:
-            f.write('%s\tuninstall\n' % item)
-
-        cmd.append('--set-selections-file')
-        cmd.append('%s' % f.name)
-        f.flush()
-
-        self.return_code = subprocess.call(cmd)
-        lock.release()
-        f.close()
+    def _show_messages(self, trans):
+        while gtk.events_pending():
+            gtk.main_iteration()
+        for msg in trans._messages:
+            d = AptMessageDialog(msg.enum, msg.details, parent=self.window_main)
+            d.run()
+            d.hide()
 
     def list_autoremovable(self):
         list = []
@@ -116,20 +103,25 @@ class PackageWorker:
     def get_pkgversion(self, pkg):
         return pkg in self.cache and self.cache[pkg].installedVersion or None
 
-    def perform_action(self, window_main, to_add = None, to_rm = None):
+    def perform_action(self, window_main, to_add=None, to_rm=None):
+        self.window_main = window_main
         window_main.set_sensitive(False)
         window_main.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
-        lock = thread.allocate_lock()
-        lock.acquire()
-        t = thread.start_new_thread(self.run_synaptic, (window_main.window.xid, lock, to_add, to_rm))
-        while lock.locked():
-            while gtk.events_pending():
-                gtk.main_iteration()
-            time.sleep(0.05)
+
+        t = self.ac.commit_packages(list(to_add), [], list(to_rm), [], [], exit_handler=self._on_exit)
+        dia = AptProgressDialog(t, parent=window_main)                
+        dia.run()
+        dia.hide()                     
+        self._show_messages(t)  
+
         window_main.set_sensitive(True)
         window_main.window.set_cursor(None)
 
-        return self.return_code
+    def _on_exit(self, trans, exit):
+        if exit == EXIT_FAILED:
+            d = AptErrorDialog(trans.get_error(), parent=self.window_main)
+            d.run()
+            d.hide()
 
     def get_install_status(self, to_add, to_rm):
         done = True

@@ -31,7 +31,7 @@ from ubuntutweak.widgets import ListPack, SinglePack
 from ubuntutweak.widgets.dialogs import InfoDialog
 from ubuntutweak.common.systeminfo import module_check
 try:
-    from ubuntutweak.common.package import package_worker, AptCheckButton
+    from ubuntutweak.package import package_worker, AptCheckButton
 except:
     pass
 

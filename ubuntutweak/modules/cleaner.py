@@ -28,7 +28,7 @@ from ubuntutweak.modules  import TweakModule
 from ubuntutweak.common.utils import *
 from ubuntutweak.common.misc import filesizeformat
 from ubuntutweak.policykit import PolkitButton, proxy
-from ubuntutweak.common.package import package_worker
+from ubuntutweak.package import package_worker
 from ubuntutweak.widgets.dialogs import *
 from ubuntutweak.widgets.utils import ProcessDialog
 

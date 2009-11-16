@@ -27,7 +27,7 @@ import gettext
 import thread
 
 try:
-    from ubuntutweak.common.package import package_worker, AptCheckButton
+    from ubuntutweak.package import package_worker, AptCheckButton
     if package_worker.get_cache():
         DISABLE = False
     else:

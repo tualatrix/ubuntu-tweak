@@ -21,6 +21,7 @@
 import os
 import sys
 import gtk
+import gobject
 sys.path.insert(0, os.path.dirname(os.path.abspath('.')))
 
 from ubuntutweak.common.consts import *
@@ -45,7 +46,9 @@ class Test:
             win.add(model)
         win.show_all()
 
+        gtk.gdk.threads_enter()
         gtk.main()
+        gtk.gdk.threads_leave()
 
 class ManyTest:
     def __init__(self, widgets):
@@ -68,5 +71,6 @@ class ManyTest:
 
 if __name__ == '__main__':
     from modules import ModuleLoader
+    gobject.threads_init()
     loader = ModuleLoader(sys.argv[1])
     Test(loader.id_table.values()[0])

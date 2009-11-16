@@ -32,10 +32,10 @@ from ubuntutweak.widgets.dialogs import ProcessDialog
 from ubuntutweak.utils import icon
 from ubuntutweak.utils.parser import Parser
 from ubuntutweak.network.downloadmanager import DownloadDialog
+from ubuntutweak.package import package_worker, PackageInfo
 
 #TODO old stuff
 from ubuntutweak.common.consts import *
-from ubuntutweak.common.package import package_worker, PackageInfo
 
 (
     COLUMN_INSTALLED,
@@ -529,22 +529,33 @@ class AppCenter(TweakModule):
     def on_apply_button_clicked(self, widget, data = None):
         to_rm = self.appview.to_rm
         to_add = self.appview.to_add
-        self.package_worker.perform_action(widget.get_toplevel(), to_add, to_rm)
+        if self.show_changes():
+            self.package_worker.perform_action(widget.get_toplevel(), to_add, to_rm)
 
-        package_worker.update_apt_cache(True)
+            package_worker.update_apt_cache(True)
 
-        done = package_worker.get_install_status(to_add, to_rm)
+            done = package_worker.get_install_status(to_add, to_rm)
 
-        if done:
-            self.apply_button.set_sensitive(False)
-            InfoDialog(_('Update Successful!')).launch()
+            if done:
+                self.apply_button.set_sensitive(False)
+                InfoDialog(_('Update Successful!')).launch()
+            else:
+                ErrorDialog(_('Update Failed!')).launch()
+
+            self.appview.to_add = []
+            self.appview.to_rm = []
+            self.appview.clear_model()
+            self.appview.update_model()
+
+    def show_changes(self):
+        dialog = QuestionDialog("Install ?")
+        res = dialog.run()
+        dialog.hide()
+
+        if res == gtk.RESPONSE_YES:
+            return True
         else:
-            ErrorDialog(_('Update Failed!')).launch()
-
-        self.appview.to_add = []
-        self.appview.to_rm = []
-        self.appview.clear_model()
-        self.appview.update_model()
+            return False
 
     def on_refresh_button_clicked(self, widget):
         dialog = CheckUpdateDialog(widget.get_toplevel(), APP_VERSION_URL)

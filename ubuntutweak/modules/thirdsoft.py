@@ -49,7 +49,7 @@ from ubuntutweak.common.appdata import APP_DICT, APPS
 from ubuntutweak.common.appdata import get_app_logo, get_app_describ
 from ubuntutweak.common.appdata import get_source_logo, get_source_describ
 from ubuntutweak.common.factory import WidgetFactory
-from ubuntutweak.common.package import package_worker, PackageInfo
+from ubuntutweak.package import package_worker, PackageInfo
 from ubuntutweak.common.notify import notify
 from ubuntutweak.common.misc import URLLister
 

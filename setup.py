@@ -18,6 +18,7 @@ setup(name='ubuntu-tweak',
           'ubuntutweak.widgets',
           'ubuntutweak.modules',
           'ubuntutweak.utils',
+          'ubuntutweak.package',
       ],
       data_files=[
           ('../etc/dbus-1/system.d/', ['data/ubuntu-tweak-daemon.conf']),

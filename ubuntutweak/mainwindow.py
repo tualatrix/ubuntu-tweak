@@ -36,7 +36,7 @@ from ubuntutweak.common.systeminfo import module_check
 from ubuntutweak.common.config import TweakSettings
 from ubuntutweak.widgets.dialogs import QuestionDialog
 try:
-    from ubuntutweak.common.package import package_worker
+    from ubuntutweak.package import package_worker
 except:
     package_worker = None
 from ubuntutweak.network.downloadmanager import DownloadDialog
