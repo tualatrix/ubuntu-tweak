@@ -18,6 +18,8 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
+import gconf
+
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 
@@ -71,13 +73,17 @@ class SettingFactory:
 
 class WidgetFactory:
     keys = GconfKeys.keys
+    client = gconf.client_get_default()
 
     @classmethod
     def create(cls, widget, **kwargs):
         if 'key' in kwargs:
             key = kwargs['key']
 
-            if not key.startswith('/'):
+            if key.startswith('/') and kwargs.get('dir_exists'):
+                if cls.client.dir_exists(os.path.dirname(key)) == False:
+                    return None
+            else:
                 if key not in cls.keys:
                     return None
                 else:
