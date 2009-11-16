@@ -98,27 +98,15 @@ class module_check:
 
     @classmethod
     def is_ubuntu(cls):
-        return cls.is_hardy() or cls.is_intrepid() or cls.is_jaunty() or cls.is_karmic()
+        return cls.is_karmic()
 
     @classmethod
     def is_supported_ubuntu(cls):
-        return cls.is_hardy() or cls.is_intrepid() or cls.is_jaunty() or cls.is_karmic()
+        return cls.is_karmic()
 
     @classmethod
     def get_supported_ubuntu(cls):
-        return ['hardy', 'intrepid', 'jaunty', 'karmic', 'elyssa', 'Elyssa', 'felicia', 'Felicia', 'gloria', 'Gloria']
-
-    @classmethod
-    def is_hardy(cls):
-        return DistroInfo.codename in ['hardy', 'elyssa', 'Elyssa']
-
-    @classmethod
-    def is_intrepid(cls):
-        return DistroInfo.codename in ['intrepid', 'felicia', 'Felicia']
-
-    @classmethod
-    def is_jaunty(cls):
-        return DistroInfo.codename in ['jaunty', 'gloria', 'Gloria', 'robby']
+        return ['karmic', 'helena', 'Helena']
 
     @classmethod
     def is_karmic(cls):
@@ -127,24 +115,10 @@ class module_check:
     @classmethod
     def get_codename(cls):
         '''Return the unique code name, e.g. no matter hardy or elyssa, return hardy'''
-        if cls.is_hardy():
-            return 'hardy'
-        elif cls.is_intrepid():
-            return 'intrepid'
-        elif cls.is_jaunty():
-            return 'jaunty'
-        elif cls.is_karmic():
+        if cls.is_karmic():
             return 'karmic'
         else:
             return ''
-
-    @classmethod
-    def has_gio(cls):
-        try:
-            import gio
-            return True
-        except:
-            return False
 
     @classmethod
     def is_gnome(cls):
@@ -156,6 +130,3 @@ if __name__ == "__main__":
     print 'has ccm', module_check.has_ccm()
     print 'has right compiz', module_check.has_right_compiz()
     print 'gnome version', module_check.get_gnome_version()
-    print 'is hardy', module_check.is_hardy()
-    print 'is intrepid', module_check.is_intrepid()
-    print 'is jaunty', module_check.is_jaunty()

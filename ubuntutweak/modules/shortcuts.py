@@ -51,7 +51,7 @@ class Shortcuts(TweakModule):
     def __init__(self):
         TweakModule.__init__(self)
 
-        if module_check.is_jaunty() and not CompizSetting.get_plugin_active('commands'):
+        if not CompizSetting.get_plugin_active('commands'):
             CompizSetting.set_plugin_active('commands', True)
 
         sw = gtk.ScrolledWindow()
