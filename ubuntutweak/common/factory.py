@@ -83,7 +83,7 @@ class WidgetFactory:
             if key.startswith('/') and kwargs.get('dir_exists'):
                 if cls.client.dir_exists(os.path.dirname(key)) == False:
                     return None
-            else:
+            elif not key.startswith('/'):
                 if key not in cls.keys:
                     return None
                 else:

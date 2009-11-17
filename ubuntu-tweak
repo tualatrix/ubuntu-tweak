@@ -71,9 +71,9 @@ class TweakLauncher:
         gtk.gdk.threads_leave()
 
 if __name__ == "__main__":
-#    try:
-    gobject.threads_init()
-    launcher = TweakLauncher()
-    launcher.main()
-#    except:
-#		run_traceback('fatal')
+    try:
+        gobject.threads_init()
+        launcher = TweakLauncher()
+        launcher.main()
+    except:
+		run_traceback('fatal')
