@@ -118,7 +118,7 @@ class GconfScale(gtk.HScale):
         self.__setting.set_num(widget.get_value())
 
 class GconfSpinButton(gtk.SpinButton):
-    def __init__(self, key, min = 0, max = 0, step = 0):
+    def __init__(self, key, min=0, max=0, step=0):
         self.__setting = IntSetting(key)
         init = self.__setting.get_int()
         adjust = gtk.Adjustment(init, min, max, step)

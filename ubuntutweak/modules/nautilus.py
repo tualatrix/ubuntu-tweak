@@ -22,25 +22,17 @@ pygtk.require("2.0")
 import gtk
 import os
 import gobject
-import gconf
-import gettext
 import thread
 
-try:
-    from ubuntutweak.common.package import package_worker, AptCheckButton
-    if package_worker.get_cache():
-        DISABLE = False
-    else:
-        DISABLE = True
-except ImportError:
-    DISABLE = True
-
 from ubuntutweak.modules  import TweakModule
-from ubuntutweak.common.misc import filesizeformat
-from ubuntutweak.common.factory import WidgetFactory
 from ubuntutweak.widgets import ListPack, TablePack
 from ubuntutweak.widgets.dialogs import InfoDialog, QuestionDialog
+
+#TODO
 from ubuntutweak.common.utils import set_label_for_stock_button
+from ubuntutweak.common.misc import filesizeformat
+from ubuntutweak.common.factory import WidgetFactory
+from ubuntutweak.common.package import package_worker, AptCheckButton
 
 (
     COLUMN_ICON,
@@ -49,7 +41,7 @@ from ubuntutweak.common.utils import set_label_for_stock_button
 
 class CleanDialog(gtk.Dialog):
     def __init__(self, parent):
-        super(CleanDialog, self).__init__(title = '', parent = parent)
+        super(CleanDialog, self).__init__(title='', parent=parent)
 
         self.progressbar = gtk.ProgressBar()
         self.progressbar.set_text(_('Cleaning...'))
@@ -70,32 +62,6 @@ class CleanDialog(gtk.Dialog):
         else:
             self.destroy()
 
-class EmblemsView(gtk.IconView):
-    def __init__(self):
-        gtk.IconView.__init__()
-
-        model = self.__create_model()
-        self.set_model(model)
-
-    def __create_model(self):
-        model = gtk.ListStore(
-                gtk.gdk.Pixbuf,
-                gobject.TYPE_STRING)
-
-        return model
-
-    def __add_colums(self):
-        renderer = gtk.CellRendererPixbuf()
-        self.pack_start(renderer, False)
-        self.set_attributes(renderer, pixbuf = COLUMN_ICON)
-
-        renderer = gtk.CellRendererText()
-        self.pack_start(renderer, True)
-        self.set_attributes(renderer, text = COLUMN_TITLE)
-
-    def update_model(self):
-        pass
-
 class Nautilus(TweakModule):
     __title__ = _('Nautilus Settings')
     __desc__ = _('Settings your default file manager')
@@ -106,44 +72,32 @@ class Nautilus(TweakModule):
         TweakModule.__init__(self)
 
         button = WidgetFactory.create("GconfCheckButton", 
-                                      label = _('Show advanced permissions in the Nautilus "File Properties" window'),
-                                      key = "show_advanced_permissions")
+                                      label=_('Show advanced permissions in the Nautilus "File Properties" window'),
+                                      key="show_advanced_permissions")
 
         box = ListPack(_("File Browser"), (button, )) 
         self.add_start(box, False, False, 0)
 
         boxes = []
-        hbox1 = gtk.HBox(False, 5)
-        label = gtk.Label(_('Default thumbnail icon size (pixels)'))
-        hbox1.pack_start(label, False, False, 0)
+
+        hbox1 = WidgetFactory.create('GconfSpinButton',
+                                      key='thumbnail_size',
+                                      min=16, max=512, step=16,
+                                      label=_('Default thumbnail icon size (pixels)'))
         boxes.append(hbox1)
 
-        button = WidgetFactory.create('GconfSpinButton', 
-                                      key = 'thumbnail_size',
-                                      min = 16, max = 512, step = 16)
-        hbox1.pack_end(button, False, False, 0)
+        hbox2 = WidgetFactory.create('GconfSpinButton',
+                                      key='maximum_size',
+                                      min=-1, max=512, step=1,
+                                      label=_('Maximum size of the thumbnail cache (megabytes)'))
+        boxes.append(hbox2)
 
-        button = WidgetFactory.create('GconfSpinButton', 
-                                      key = 'maximum_size',
-                                      min = -1, max = 512, step = 1)
-        if button:
-            hbox2 = gtk.HBox(False, 5)
-            label = gtk.Label(_('Maximum size of the thumbnail cache (megabytes)'))
+        hbox3 = WidgetFactory.create('GconfSpinButton',
+                                      key='maximum_age',
+                                      min=-1, max=180, step=1,
+                                      label=_('Maximum age for the thumbnail in the cache (days)'))
 
-            hbox2.pack_start(label, False, False, 0)
-            hbox2.pack_end(button, False, False, 0)
-            boxes.append(hbox2)
-
-        button = WidgetFactory.create('GconfSpinButton', 
-                                      key = 'maximum_age',
-                                      min = -1, max = 180, step = 1)
-
-        if button:
-            hbox3 = gtk.HBox(False, 5)
-            label = gtk.Label(_('Maximum age for the thumbnail in the cache (days)'))
-            hbox3.pack_start(label, False, False, 0)
-            hbox3.pack_end(button, False, False, 0)
-            boxes.append(hbox3)
+        boxes.append(hbox3)
 
         hbox4 = gtk.HBox(False, 5)
         button = gtk.Button(stock = gtk.STOCK_CLEAR)
@@ -155,31 +109,29 @@ class Nautilus(TweakModule):
         box = ListPack(_('Thumbnails Settings'), boxes)
         self.add_start(box, False, False, 0)
 
+        self.package_worker = package_worker
 
-        if not DISABLE:
-            self.package_worker = package_worker
+        self.nautilus_terminal = AptCheckButton(_('Nautilus with Open Terminal'), 'nautilus-open-terminal')
+        self.nautilus_terminal.connect('toggled', self.colleague_changed)
+        self.nautilus_root = AptCheckButton(_('Nautilus with Root Privileges'), 'nautilus-gksu')
+        self.nautilus_root.connect('toggled', self.colleague_changed)
+        self.nautilus_wallpaper = AptCheckButton(_('Nautilus with Wallpaper'), 'nautilus-wallpaper')
+        self.nautilus_wallpaper.connect('toggled', self.colleague_changed)
+        box = ListPack(_("Nautilus Extensions"), (
+            self.nautilus_terminal,
+            self.nautilus_root,
+            self.nautilus_wallpaper,
+        ))
 
-            self.nautilus_terminal = AptCheckButton(_('Nautilus with Open Terminal'), 'nautilus-open-terminal')
-            self.nautilus_terminal.connect('toggled', self.colleague_changed)
-            self.nautilus_root = AptCheckButton(_('Nautilus with Root Privileges'), 'nautilus-gksu')
-            self.nautilus_root.connect('toggled', self.colleague_changed)
-            self.nautilus_wallpaper = AptCheckButton(_('Nautilus with Wallpaper'), 'nautilus-wallpaper')
-            self.nautilus_wallpaper.connect('toggled', self.colleague_changed)
-            box = ListPack(_("Nautilus Extensions"), (
-                self.nautilus_terminal,
-                self.nautilus_root,
-                self.nautilus_wallpaper,
-            ))
+        self.button = gtk.Button(stock = gtk.STOCK_APPLY)
+        self.button.connect("clicked", self.on_apply_clicked, box)
+        self.button.set_sensitive(False)
+        hbox = gtk.HBox(False, 0)
+        hbox.pack_end(self.button, False, False, 0)
 
-            self.button = gtk.Button(stock = gtk.STOCK_APPLY)
-            self.button.connect("clicked", self.on_apply_clicked, box)
-            self.button.set_sensitive(False)
-            hbox = gtk.HBox(False, 0)
-            hbox.pack_end(self.button, False, False, 0)
+        box.vbox.pack_start(hbox, False, False, 0)
 
-            box.vbox.pack_start(hbox, False, False, 0)
-
-            self.add_start(box, False, False, 0)
+        self.add_start(box, False, False, 0)
 
     def set_clean_button_label(self, button):
         try:
