@@ -22,14 +22,15 @@ import pygtk
 pygtk.require("2.0")
 import os
 import gtk
-import gconf
 
 from ubuntutweak.modules  import TweakModule
+from ubuntutweak.widgets import ListPack
+from ubuntutweak.widgets.dialogs import ErrorDialog, QuestionDialog
+
+#TODO
 from ubuntutweak.common.config import TweakSettings
 from ubuntutweak.common.factory import WidgetFactory
 from ubuntutweak.common.utils import get_icon_with_name
-from ubuntutweak.widgets import ListPack
-from ubuntutweak.widgets.dialogs import ErrorDialog, QuestionDialog
 
 class Gnome(TweakModule):
     __title__ = _('GNOME Settings')
@@ -44,30 +45,43 @@ class Gnome(TweakModule):
 
         changeicon_hbox = self.create_change_icon_hbox()
 
-        box = ListPack(_("Panel and Menu"), (
+        box = ListPack(_("Panel Settings"), (
                     WidgetFactory.create("GconfCheckButton", 
-                                    label = _("Display warning when removing a panel"), 
-                                    key = "confirm_panel_remove"),
+                                    label=_("Display warning when removing a panel"),
+                                    key="confirm_panel_remove"),
                     WidgetFactory.create("GconfCheckButton", 
-                                    label = _("Complete lockdown of all panels"), 
-                                    key = "locked_down"),
+                                    label=_("Complete lockdown of all panels"),
+                                    key="locked_down"),
                     WidgetFactory.create("GconfCheckButton", 
-                                    label = _("Enable panel animations"), 
-                                    key = "enable_animations"),
+                                    label=_("Enable panel animations"),
+                                    key="enable_animations"),
+            ))
+        self.add_start(box, False, False, 0)
+
+        box = ListPack(_("Menu Settings"), (
                     WidgetFactory.create("GconfCheckButton", 
-                                    label = _("Show Input Method menu on the context menu"), 
-                                    key = "show_input_method_menu"),
+                                    label=_("Show Input Method menu on the context menu"),
+                                    key="show_input_method_menu"),
                     WidgetFactory.create("GconfCheckButton",
-                                    label = _("Show Unicode Method menu on the context menu"), 
-                                    key = "show_unicode_menu"),
+                                    label=_("Show Unicode Method menu on the context menu"),
+                                    key="show_unicode_menu"),
+                    WidgetFactory.create("GconfCheckButton",
+                                    label=_("Show Unicode Method menu on the context menu"),
+                                    key="show_unicode_menu"),
+                    WidgetFactory.create("GconfCheckButton",
+                                    label=_('Menus have icons'),
+                                    key='/desktop/gnome/interface/menus_have_icons'),
+                    WidgetFactory.create("GconfCheckButton",
+                                    label=_('Buttons have icons'),
+                                    key='/desktop/gnome/interface/buttons_have_icons'),
                     changeicon_hbox,
             ))
         self.add_start(box, False, False, 0)
 
         box = ListPack(_("Screensaver"), (
                     WidgetFactory.create("GconfCheckButton", 
-                                         label = _("Enable user switching when screen is locked."), 
-                                         key = "user_switch_enabled"),
+                                         label=_("Enable user switching when screen is locked."),
+                                         key="user_switch_enabled"),
             ))
         self.add_start(box, False, False, 0)
 
@@ -94,7 +108,11 @@ class Gnome(TweakModule):
         return hbox
 
     def on_change_icon_clicked(self, widget):
-        dialog = gtk.FileChooserDialog(_('Choose a new logo'),action = gtk.FILE_CHOOSER_ACTION_OPEN, buttons = (gtk.STOCK_REVERT_TO_SAVED, gtk.RESPONSE_DELETE_EVENT, gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, gtk.STOCK_OPEN, gtk.RESPONSE_ACCEPT))
+        dialog = gtk.FileChooserDialog(_('Choose a new logo'),
+                                        action=gtk.FILE_CHOOSER_ACTION_OPEN,
+                                        buttons=(gtk.STOCK_REVERT_TO_SAVED, gtk.RESPONSE_DELETE_EVENT,
+                                                 gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
+                                                 gtk.STOCK_OPEN, gtk.RESPONSE_ACCEPT))
         filter = gtk.FileFilter()
         filter.set_name(_("PNG image (*.png)"))
         filter.add_mime_type("image/png")
