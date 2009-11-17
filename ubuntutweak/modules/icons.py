@@ -113,20 +113,42 @@ class Icon(TweakModule):
     def __init__(self):
         TweakModule.__init__(self)
 
+        self.show_button = WidgetFactory.create("GconfCheckButton",
+                                                label = _("Show desktop icons"),
+                                                key = "show_desktop")
+        self.show_button.connect('toggled', self.colleague_changed)
+        self.add_start(self.show_button, False, False, 0)
+
+        self.show_button_box = gtk.HBox(False, 12)
+        self.add_start(self.show_button_box, False, False, 0)
+
+        if not self.show_button.get_active():
+            self.show_button_box.set_sensitive(False)
+
+        label = gtk.Label(" ")
+        self.show_button_box.pack_start(label, False, False, 0)
+
+        vbox = gtk.VBox(False, 6)
+        self.show_button_box.pack_start(vbox, False, False, 0)
+
         for item in desktop_icon:
-            self.add_start(DesktopIcon(item), False, False, 0)
+            vbox.pack_start(DesktopIcon(item), False, False, 0)
 
         button = WidgetFactory.create("GconfCheckButton", 
                                       label = _("Show \"Network\" icon on desktop"), 
                                       key = "network_icon_visible")
-        self.add_start(button, False, False, 0)
+        vbox.pack_start(button, False, False, 0)
 
         button = WidgetFactory.create("GconfCheckButton", 
                                       label = _("Show mounted volumes on desktop"),
                                       key = "volumes_visible")
-        self.add_start(button, False, False, 0)
+        vbox.pack_start(button, False, False, 0)
 
         button = WidgetFactory.create("GconfCheckButton",
                                       label = _('Use "Home Folder" as desktop (Logout for changes to take effect)'),
                                       key = "desktop_is_home_dir")
-        self.add_start(button, False, False, 0)
+        vbox.pack_start(button, False, False, 0)
+
+    def colleague_changed(self, widget):
+        self.show_button_box.set_sensitive(self.show_button.get_active())
+
