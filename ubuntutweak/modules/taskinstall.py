@@ -159,7 +159,7 @@ class TaskView(gtk.TreeView):
 
 class TaskInstall(TweakModule):
     __title__ = _('Task Install')
-    __desc__ = _('Setup a full-function environment in just one-click')
+    __desc__ = _('Setup a full-function environment with just one-click\nIf you want to remove a task, click the "Installed" button')
     __icon__ = ['application-x-deb']
     __category__ = 'system'
 
