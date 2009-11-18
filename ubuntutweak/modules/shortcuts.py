@@ -140,14 +140,15 @@ class Shortcuts(TweakModule):
         renderer = gtk.CellRendererText()
         renderer.connect("editing-started", self.on_editing_started)
         renderer.connect("edited", self.on_cell_edited, model)
-        column = gtk.TreeViewColumn(_("Key"), renderer, text = COLUMN_KEY, editable = COLUMN_EDITABLE)
+        column = gtk.TreeViewColumn(_("Key"))
+        column.pack_start(renderer, True)
+        column.set_attributes(renderer, text=COLUMN_KEY, editable=COLUMN_EDITABLE)
+        column.set_resizable(True)
         treeview.append_column(column)
 
-        column = gtk.TreeViewColumn("")
         renderer = CellRendererButton(_("Clean"))
         renderer.connect("clicked", self.on_clean_clicked)
         column.pack_end(renderer, False)
-        treeview.append_column (column)
 
     def on_clean_clicked(self, cell, path):
         iter = self.model.get_iter_from_string(path)
