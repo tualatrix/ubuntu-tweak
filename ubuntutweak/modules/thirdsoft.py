@@ -199,6 +199,7 @@ class SourceParser(Parser):
         return self[key]['website']
 
 class UpdateView(AppView):
+    #TODO options to deselect all
     def __init__(self):
         AppView.__init__(self)
 

@@ -88,6 +88,7 @@ def Welcome(parent = None):
 def Wait(parent = None):
     vbox = gtk.VBox(False, 0)
 
+    #TODO animation to wait
     label = gtk.Label()
     label.set_markup("<span size=\"xx-large\">%s</span>" % _('Please wait a moment...'))
     label.set_justify(gtk.JUSTIFY_FILL)

@@ -137,10 +137,11 @@ class Shortcuts(TweakModule):
         column.set_attributes(renderer, text = COLUMN_COMMAND, editable = COLUMN_EDITABLE)
         treeview.append_column(column)
 
+        column = gtk.TreeViewColumn(_("Key"))
+
         renderer = gtk.CellRendererText()
         renderer.connect("editing-started", self.on_editing_started)
         renderer.connect("edited", self.on_cell_edited, model)
-        column = gtk.TreeViewColumn(_("Key"))
         column.pack_start(renderer, True)
         column.set_attributes(renderer, text=COLUMN_KEY, editable=COLUMN_EDITABLE)
         column.set_resizable(True)
