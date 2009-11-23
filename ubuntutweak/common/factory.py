@@ -91,7 +91,7 @@ class WidgetFactory:
 
             kwargs['key'] = key
 
-            if widget in ('GconfSpinButton',) and kwargs.has_key('label'):
+            if widget in ('GconfSpinButton', 'GconfScale') and kwargs.has_key('label'):
                 return getattr(cls, 'do_composite_create')(widget, **kwargs)
             else:
                 return getattr(cls, 'do_create')(widget, **kwargs)
@@ -100,12 +100,20 @@ class WidgetFactory:
 
     @classmethod
     def do_composite_create(cls, widget, **kwargs):
-        hbox = gtk.HBox(False, 122)
+        hbox = gtk.HBox(False, 12)
         label = gtk.Label(kwargs.pop('label'))
         hbox.pack_start(label, False, False, 0)
 
+        if kwargs.has_key('expand'):
+            expand = kwargs.pop('expand')
+        else:
+            expand = False
+        if kwargs.has_key('fill'):
+            fill = kwargs.pop('fill')
+        else:
+            fill = False
         new_widget = globals().get(widget)(**kwargs)
-        hbox.pack_end(new_widget, False, False, 0)
+        hbox.pack_end(new_widget, expand, fill, 0)
 
         return hbox
 

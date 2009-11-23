@@ -18,17 +18,11 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-import pygtk
-pygtk.require("2.0")
-import gtk
-import os
-import gconf
-import gettext
-
 from ubuntutweak.modules  import TweakModule
-from ubuntutweak.common.systeminfo import module_check
+from ubuntutweak.widgets import HScaleBox, TablePack, ListPack
+
+#TODO
 from ubuntutweak.common.factory import WidgetFactory
-from ubuntutweak.widgets import HScaleBox, TablePack
 
 class PowerManager(TweakModule):
     __title__ = _('Advanced Powermanager Settings')
@@ -39,56 +33,26 @@ class PowerManager(TweakModule):
     def __init__(self):
         TweakModule.__init__(self)
 
-        box = TablePack(_("Advanced Power Management Settings"), [
-                [WidgetFactory.create("GconfCheckButton", 
-                                      label = _('Enable "Hibernation"'), 
-                                      key = "can_hibernate")],
-                [WidgetFactory.create("GconfCheckButton", 
-                                      label = _('Enable "Suspend"'), 
-                                      key = "can_suspend")],
-                [WidgetFactory.create("GconfCheckButton", 
-                                      label = _('Show "CPU frequency control option" in Power Management Preferences'), 
-                                      key = "cpufreq_show")],
-                [WidgetFactory.create("GconfCheckButton", 
-                                      label = _("Disable Network Manager when asleep"), 
-                                      key = "network_sleep")],
-                [WidgetFactory.create("GconfCheckButton", 
-                                      label = _('Enable "Lock screen" when "Blank Screen" activates'), 
-                                      key = "blank_screen")],
-                [gtk.Label(_('Display "Power Manager" panel item')), 
-                    WidgetFactory.create("GconfComboBox", 
-                                         key = "icon_policy", 
-                                         texts = [_("Never display"), _("When charging"), _("Always display")], 
-                                         values = ["never", "charge", "always"])],
-        ]) 
+        box = ListPack(_('Advanced Power Management Settings'), (
+                WidgetFactory.create('GconfCheckButton',
+                                      label=_('Enable "Lock screen" when "Blank Screen" activates'),
+                                      key='blank_screen'),
+                WidgetFactory.create('GconfCheckButton',
+                                      label=_('Lock screen on hibernate'),
+                                      key='/apps/gnome-power-manager/lock/hibernate'),
+                WidgetFactory.create('GconfCheckButton',
+                                      label=_('Lock screen on suspend'),
+                                      key='/apps/gnome-power-manager/lock/suspend'),
+                #TODO More beautiful
+                WidgetFactory.create('GconfScale',
+                                      label=_('LCD brightness when on AC'),
+                                      key='/apps/gnome-power-manager/backlight/brightness_ac',
+                                      min=0, max=100, digits=0,
+                                      expand=True, fill=True),
+                WidgetFactory.create('GconfScale',
+                                      label=_('LCD dimming amount when on battery'),
+                                      key='/apps/gnome-power-manager/backlight/brightness_dim_battery',
+                                      min=0, max=100, digits=0,
+                                      expand=True, fill=True),
+        ))
         self.add_start(box, False, False, 0)
-
-        if module_check.get_gnome_version() < 24:
-            cpu_policy_text = [_("Normal"), _("On Demand"), _("Power Save"), _("Performance")]
-            cpu_policy_value = ["nothing", "ondemand", "powersave", "performance"]
-            box = TablePack(_("CPU Policy"), [
-                    [gtk.Label(_("The Performance value when on AC power")), 
-                        WidgetFactory.create("GconfScale", 
-                                             key = "performance_ac", 
-                                             min = 0, 
-                                             max = 100, 
-                                             digits = 0)],
-                    [gtk.Label(_("The Performance value when on battery power")), 
-                        WidgetFactory.create("GconfScale", 
-                                             key = "performance_battery", 
-                                             min = 0, 
-                                             max = 100, 
-                                             digits = 0)],
-                    [gtk.Label(_("The CPU frequency policy when on AC power")), 
-                        WidgetFactory.create("GconfComboBox", 
-                                             key = "policy_ac", 
-                                             texts = cpu_policy_text, 
-                                             values = cpu_policy_value)],
-                    [gtk.Label(_("The CPU frequency policy when on battery power")), 
-                        WidgetFactory.create("GconfComboBox", 
-                                             key = "policy_battery", 
-                                             texts = cpu_policy_text, 
-                                             values = cpu_policy_value)],
-            ])
-                
-            self.add_start(box, False, False, 0)
