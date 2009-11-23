@@ -128,6 +128,7 @@ class TypeView(gtk.TreeView):
 
     def __add_columns(self):
         column = gtk.TreeViewColumn(_('File Type'))
+        column.set_resizable(True)
 
         renderer = gtk.CellRendererPixbuf()
         column.pack_start(renderer, False)
