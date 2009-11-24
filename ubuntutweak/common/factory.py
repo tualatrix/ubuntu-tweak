@@ -91,7 +91,7 @@ class WidgetFactory:
 
             kwargs['key'] = key
 
-            if widget in ('GconfSpinButton', 'GconfScale') and kwargs.has_key('label'):
+            if widget in ('GconfComboBox', 'GconfSpinButton', 'GconfScale') and kwargs.has_key('label'):
                 return getattr(cls, 'do_composite_create')(widget, **kwargs)
             else:
                 return getattr(cls, 'do_create')(widget, **kwargs)
