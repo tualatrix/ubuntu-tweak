@@ -19,7 +19,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 from ubuntutweak.modules  import TweakModule
-from ubuntutweak.widgets import HScaleBox, TablePack, ListPack
+from ubuntutweak.widgets import TablePack
 
 #TODO
 from ubuntutweak.common.factory import WidgetFactory
@@ -33,7 +33,7 @@ class PowerManager(TweakModule):
     def __init__(self):
         TweakModule.__init__(self)
 
-        box = ListPack(_('Advanced Power Management Settings'), (
+        box = TablePack(_('Advanced Power Management Settings'), (
                 WidgetFactory.create('GconfCheckButton',
                                       label=_('Enable "Lock screen" when "Blank Screen" activates'),
                                       key='blank_screen'),
@@ -43,16 +43,13 @@ class PowerManager(TweakModule):
                 WidgetFactory.create('GconfCheckButton',
                                       label=_('Lock screen on suspend'),
                                       key='/apps/gnome-power-manager/lock/suspend'),
-                #TODO More beautiful
                 WidgetFactory.create('GconfScale',
                                       label=_('LCD brightness when on AC'),
                                       key='/apps/gnome-power-manager/backlight/brightness_ac',
-                                      min=0, max=100, digits=0,
-                                      expand=True, fill=True),
+                                      min=0, max=100, digits=0),
                 WidgetFactory.create('GconfScale',
                                       label=_('LCD dimming amount when on battery'),
                                       key='/apps/gnome-power-manager/backlight/brightness_dim_battery',
-                                      min=0, max=100, digits=0,
-                                      expand=True, fill=True),
+                                      min=0, max=100, digits=0)
         ))
         self.add_start(box, False, False, 0)

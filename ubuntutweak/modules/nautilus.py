@@ -78,35 +78,27 @@ class Nautilus(TweakModule):
         box = ListPack(_("File Browser"), (button, )) 
         self.add_start(box, False, False, 0)
 
-        boxes = []
-
-        hbox1 = WidgetFactory.create('GconfSpinButton',
-                                      key='thumbnail_size',
-                                      min=16, max=512, step=16,
-                                      label=_('Default thumbnail icon size (pixels)'))
-        boxes.append(hbox1)
-
-        hbox2 = WidgetFactory.create('GconfSpinButton',
-                                      key='maximum_size',
-                                      min=-1, max=512, step=1,
-                                      label=_('Maximum size of the thumbnail cache (megabytes)'))
-        boxes.append(hbox2)
-
-        hbox3 = WidgetFactory.create('GconfSpinButton',
-                                      key='maximum_age',
-                                      min=-1, max=180, step=1,
-                                      label=_('Maximum age for the thumbnail in the cache (days)'))
-
-        boxes.append(hbox3)
-
-        hbox4 = gtk.HBox(False, 5)
+        hbox1 = gtk.HBox(False, 12)
         button = gtk.Button(stock = gtk.STOCK_CLEAR)
         self.set_clean_button_label(button)
         button.connect('clicked', self.on_clean_thumbnails_clicked)
-        hbox4.pack_end(button, False, False, 0)
-        boxes.append(hbox4)
+        hbox1.pack_end(button, False, False, 0)
 
-        box = ListPack(_('Thumbnails Settings'), boxes)
+        box = TablePack(_('Thumbnails Settings'), (
+                    WidgetFactory.create('GconfSpinButton',
+                                                  key='thumbnail_size',
+                                                  min=16, max=512, step=16,
+                                                  label=_('Default thumbnail icon size (pixels)')),
+                    WidgetFactory.create('GconfSpinButton',
+                                                  key='maximum_size',
+                                                  min=-1, max=512, step=1,
+                                                  label=_('Maximum size of the thumbnail cache (megabytes)')),
+                    WidgetFactory.create('GconfSpinButton',
+                                                  key='maximum_age',
+                                                  min=-1, max=180, step=1,
+                                                  label=_('Maximum age for the thumbnail in the cache (days)')),
+                    hbox1,
+            ))
         self.add_start(box, False, False, 0)
 
         self.package_worker = package_worker

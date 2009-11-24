@@ -41,7 +41,7 @@ class BaseListPack(BasePack):
     def __init__(self, title):
         BasePack.__init__(self, title)
 
-        hbox = gtk.HBox(False, 5)
+        hbox = gtk.HBox(False, 0)
         hbox.set_border_width(5)
         self.pack_start(hbox, True, False, 0)
 
@@ -59,7 +59,7 @@ class ListPack(BaseListPack):
         if widgets:
             for widget in widgets:
                 if widget: 
-                    self.vbox.pack_start(widget, False, False, 3)
+                    self.vbox.pack_start(widget, False, False, 6)
                     self.items.append(widget)
         else:
             self = None
@@ -68,20 +68,30 @@ class TablePack(BaseListPack):
     def __init__(self, title, items):
         BaseListPack.__init__(self, title)
 
-        table = gtk.Table(len(items), len(items[0]))
+        columns = 1
+        for i, item in enumerate(items):
+            rows = i + 1
+            if len(item) > columns:
+                columns = len(item)
+
+        table = gtk.Table(rows, columns)
 
         for item in items:
-            if not None in item:
-                for widget in item:
-                    left_attch = item.index(widget)
-                    top_attach = items.index(item)
+            if item is not None:
+                top_attach = items.index(item)
 
-                    if left_attch == 1:
-                        table.attach(widget, left_attch, left_attch + 1, top_attach, top_attach + 1, xpadding = 10, ypadding = 5)
-                    else:
-#                        if type(widget) == "gtk.Label":
-                        widget.set_alignment(0, 0.5)
-                        table.attach(widget, left_attch, left_attch + 1, top_attach, top_attach + 1, gtk.FILL, ypadding = 5)
+                if len(item) == 1:
+                    table.attach(item, 0, columns, top_attach, top_attach + 1, ypadding=6)
+                else:
+                    for widget in item:
+                        left_attch = item.index(widget)
+
+                        if left_attch == 1:
+                            table.attach(widget, left_attch, left_attch + 1, top_attach, top_attach + 1, xpadding=12, ypadding=6)
+                        else:
+    #                        if type(widget) == "gtk.Label":
+                            widget.set_alignment(0, 0.5)
+                            table.attach(widget, left_attch, left_attch + 1, top_attach, top_attach + 1, gtk.FILL, ypadding=6)
 
         self.vbox.pack_start(table)
         

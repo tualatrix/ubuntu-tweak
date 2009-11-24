@@ -100,22 +100,11 @@ class WidgetFactory:
 
     @classmethod
     def do_composite_create(cls, widget, **kwargs):
-        hbox = gtk.HBox(False, 12)
         label = gtk.Label(kwargs.pop('label'))
-        hbox.pack_start(label, False, False, 0)
 
-        if kwargs.has_key('expand'):
-            expand = kwargs.pop('expand')
-        else:
-            expand = False
-        if kwargs.has_key('fill'):
-            fill = kwargs.pop('fill')
-        else:
-            fill = False
         new_widget = globals().get(widget)(**kwargs)
-        hbox.pack_end(new_widget, expand, fill, 0)
 
-        return hbox
+        return label, new_widget
 
     @classmethod
     def do_create(cls, widget, **kwargs):
