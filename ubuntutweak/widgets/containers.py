@@ -84,14 +84,15 @@ class TablePack(BaseListPack):
                     table.attach(item, 0, columns, top_attach, top_attach + 1, ypadding=6)
                 else:
                     for widget in item:
-                        left_attch = item.index(widget)
+                        if widget:
+                            left_attch = item.index(widget)
 
-                        if left_attch == 1:
-                            table.attach(widget, left_attch, left_attch + 1, top_attach, top_attach + 1, xpadding=12, ypadding=6)
-                        else:
-    #                        if type(widget) == "gtk.Label":
-                            widget.set_alignment(0, 0.5)
-                            table.attach(widget, left_attch, left_attch + 1, top_attach, top_attach + 1, gtk.FILL, ypadding=6)
+                            if left_attch == 1:
+                                table.attach(widget, left_attch, left_attch + 1, top_attach, top_attach + 1, xpadding=12, ypadding=6)
+                            else:
+        #                        if type(widget) == "gtk.Label":
+                                widget.set_alignment(0, 0.5)
+                                table.attach(widget, left_attch, left_attch + 1, top_attach, top_attach + 1, gtk.FILL, ypadding=6)
 
         self.vbox.pack_start(table)
         

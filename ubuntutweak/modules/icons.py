@@ -85,6 +85,7 @@ class DesktopIcon(gtk.VBox):
 
         self.entry = WidgetFactory.create("GconfEntry", key = item["name"])
         self.entry.connect('focus-out-event', self.entry_focus_out)
+        self.entry.connect_activate_signal()
         if not self.rename_button.get_active():
             self.entry.set_sensitive(False)
         vbox.pack_start(self.entry, False, False, 0)

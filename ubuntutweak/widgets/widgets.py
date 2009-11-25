@@ -67,10 +67,20 @@ class GconfEntry(gtk.Entry):
         else:
             self.set_text(_("Unset"))
 
+    def is_changed(self):
+        return self.get_string_value() != self.get_text()
+
+    def get_string_value(self):
+        return self.__setting.get_string()
+
+    def connect_activate_signal(self):
         self.connect('activate', self.on_edit_finished_cb)
 
     def get_gsetting(self):
-         return self.__setting
+        return self.__setting
+
+    def reset(self):
+        self.set_text(self.get_string_value())
 
     def on_edit_finished_cb(self, widget):
         string = self.get_text()

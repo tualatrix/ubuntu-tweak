@@ -102,7 +102,12 @@ class WidgetFactory:
     def do_composite_create(cls, widget, **kwargs):
         label = gtk.Label(kwargs.pop('label'))
 
+        signal_dict = kwargs.pop('signal_dict', None)
         new_widget = globals().get(widget)(**kwargs)
+
+        if signal_dict:
+            for signal, method in signal_dict.items():
+                new_widget.connect(signal, method)
 
         return label, new_widget
 
