@@ -23,7 +23,7 @@ pygtk.require("2.0")
 import gtk
 
 from ubuntutweak.modules  import TweakModule
-from ubuntutweak.widgets import ListPack
+from ubuntutweak.widgets import ListPack, TablePack
 
 from ubuntutweak.common.consts import *
 from ubuntutweak.common.factory import WidgetFactory
@@ -37,21 +37,33 @@ class Session(TweakModule):
     def __init__(self):
         TweakModule.__init__(self)
 
-        self.add_start(self.session_control_box(), False, False, 0)
+        table = TablePack(_('Session Control'), (
+                    WidgetFactory.create('GconfEntry',
+                                         label=_('File Manager'),
+                                         key='/desktop/gnome/session/required_components/filemanager'),
+                    WidgetFactory.create('GconfEntry',
+                                         label=_('Panel'),
+                                         key='/desktop/gnome/session/required_components/panel'),
+                    WidgetFactory.create('GconfEntry',
+                                         label=_('Window Manager'),
+                                         key='/desktop/gnome/session/required_components/windowmanager'),
+                ))
 
-    def session_control_box(self):
-        button = WidgetFactory.create("GconfCheckButton", 
-                                      label=_("Automatically save open applications when logging out"),
-                                      key="auto_save_session")
-        button2 = WidgetFactory.create("GconfCheckButton", 
-                                       label=_("Show logout prompt"),
-                                       key="logout_prompt")
-        button3 = WidgetFactory.create("GconfCheckButton", 
-                                       label=_("Allow TCP Connections (Remote Desktop Connect)"),
-                                       key="allow_tcp_connections")
-        button4 = WidgetFactory.create("GconfCheckButton",
-                                       label=_("Suppress the dialog to confirm logout, restart and shutdown action"),
-                                       key="/apps/indicator-session/suppress_logout_restart_shutdown")
+        self.add_start(table, False, False, 0)
 
-        box = ListPack(_("Session Control"), (button, button2, button3, button4))
-        return box
+        box = ListPack(_("Session Options"), (
+                    WidgetFactory.create("GconfCheckButton",
+                                         label=_("Automatically save open applications when logging out"),
+                                         key="auto_save_session"),
+                    WidgetFactory.create("GconfCheckButton",
+                                         label=_("Show logout prompt"),
+                                         key="logout_prompt"),
+                    WidgetFactory.create("GconfCheckButton",
+                                         label=_("Allow TCP Connections (Remote Desktop Connect)"),
+                                         key="allow_tcp_connections"),
+                    WidgetFactory.create("GconfCheckButton",
+                                         label=_("Suppress the dialog to confirm logout, restart and shutdown action"),
+                                         key="/apps/indicator-session/suppress_logout_restart_shutdown"),
+                ))
+
+        self.add_start(box, False, False, 0)
