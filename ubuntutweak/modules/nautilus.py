@@ -89,6 +89,14 @@ class Nautilus(TweakModule):
                                                   key='thumbnail_size',
                                                   min=16, max=512, step=16,
                                                   label=_('Default thumbnail icon size (pixels)')),
+                    WidgetFactory.create('GconfSpinButton',
+                                                  key='maximum_size',
+                                                  min=-1, max=512, step=1,
+                                                  label=_('Maximum size of the thumbnail cache (megabytes)')),
+                    WidgetFactory.create('GconfSpinButton',
+                                                  key='maximum_age',
+                                                  min=-1, max=180, step=1,
+                                                  label=_('Maximum age for the thumbnail in the cache (days)')),
                     hbox1,
             ))
         self.add_start(box, False, False, 0)
