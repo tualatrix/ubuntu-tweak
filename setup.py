@@ -2,7 +2,7 @@ import glob
 from setuptools import *
 
 setup(name='ubuntu-tweak',
-      version='0.4.999.20091125',
+      version='0.4.999.20091126',
       description='magic tool to configure Ubuntu',
       author='TualatriX',  
       author_email='tualatrix@gmail.com',
@@ -25,7 +25,6 @@ setup(name='ubuntu-tweak',
           ('share/ubuntu-tweak/applogos/', glob.glob('data/applogos/*.png')),
           ('share/ubuntu-tweak/ui/', glob.glob('data/ui/*.ui')),
           ('share/ubuntu-tweak/pixmaps/', glob.glob('data/pixmaps/*.png')),
-          ('share/ubuntu-tweak/status/', glob.glob('data/status/*.png')),
           ('share/ubuntu-tweak/', ['data/keys.xml']),
           ('share/ubuntu-tweak/', ['data/ubuntu-tweak-daemon']),
           ],
