@@ -4,6 +4,7 @@ import dbus
 import gobject
 from ubuntutweak.backends.daemon import Daemon
 
+#TODO make it exist when timeout
 dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
 Daemon(dbus.SystemBus())
 
