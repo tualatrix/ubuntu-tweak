@@ -119,7 +119,7 @@ class Gnome(TweakModule):
         dialog.set_current_folder(os.path.expanduser('~'))
         dialog.add_filter(filter)
 
-        dest = os.path.expanduser('~/.icons/%s/24x24/places/start-here.png' % self.__setting.get_icon_theme())
+        dest = os.path.expanduser('~/.icons/%s/places/24/start-here.png' % self.__setting.get_icon_theme())
         revert_button = dialog.action_area.get_children()[-1]
         if not os.path.exists(dest):
             revert_button.set_sensitive(False)
