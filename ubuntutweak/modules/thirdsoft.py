@@ -122,7 +122,6 @@ def refresh_source(parent):
 
     if new_pkg or new_updates:
         updateview = UpdateView()
-        updateview.set_headers_visible(False)
 
         if new_pkg:
             updateview.update_model(new_pkg)
@@ -203,6 +202,8 @@ class UpdateView(AppView):
     def __init__(self):
         AppView.__init__(self)
 
+        self.set_headers_visible(False)
+
     def update_model(self, apps, cates=None):
         model = self.get_model()
 
@@ -247,7 +248,7 @@ class UpdateView(AppView):
             appname = package.get_name()
             desc = get_app_describ(pkgname)
 
-            self.append_app(True,
+            self.append_app(False,
                     pixbuf,
                     pkgname,
                     appname,
@@ -259,7 +260,7 @@ class UpdateView(AppView):
         for pkgname in updates:
             package = package_worker.get_cache()[pkgname]
 
-            self.append_update(True, package.name, package.summary)
+            self.append_update(False, package.name, package.summary)
 
 class UpdateCacheDialog:
     """This class is modified from Software-Properties"""
