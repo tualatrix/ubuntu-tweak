@@ -49,9 +49,12 @@ class UpdateManager(TweakModule):
     def on_refresh_button_clicked(self, widget):
         UpdateCacheDialog(widget.get_toplevel()).run()
 
+        package_worker.update_apt_cache(True)
+
         new_updates = list(package_worker.get_update_package())
         if new_updates:
             self.emit('update', 'thirdsoft', 'update_thirdparty')
+            self.updateview.get_model().clear()
             self.updateview.update_updates(new_updates)
         else:
             dialog = InfoDialog(_("Your system is clean and there's no update yet."),
@@ -74,3 +77,8 @@ class UpdateManager(TweakModule):
         package_worker.update_apt_cache(True)
 
         package_worker.show_installed_status(self.updateview.to_add, self.updateview.to_rm)
+
+        self.updateview.get_model().clear()
+        self.updateview.update_updates(list(package_worker.get_update_package()))
+        self.select_button.set_active(False)
+        self.updateview.select_all_action(False)
