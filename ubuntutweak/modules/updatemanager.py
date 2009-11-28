@@ -20,15 +20,14 @@
 
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.widgets import GconfCheckButton
-from thirdsoft import UpdateView, refresh_source
+from ubuntutweak.widgets.dialogs import InfoDialog
+from thirdsoft import UpdateView, refresh_source, UpdateCacheDialog
 
 from ubuntutweak.common.package import package_worker
 
-class SourceEditor(TweakModule):
+class UpdateManager(TweakModule):
     __title__ = _('Update Manager')
-    __desc__ = _('Freely edit your software sources to fit your needs.\n'
-                'Click "Update Sources" if you want to change the sources.\n'
-                'Click "Submit Sources" if you want to share your sources with other people.')
+    __desc__ = _('A simple and easy-to-use update manager')
     __icon__ = 'system-software-update'
     __category__ = 'application'
 
@@ -36,7 +35,8 @@ class SourceEditor(TweakModule):
         TweakModule.__init__(self, 'updatemanager.ui')
 
         self.updateview = UpdateView()
-        self.updateview.update_updates(package_worker.get_update_package())
+        self.updateview.update_updates(list(package_worker.get_update_package()))
+        self.updateview.connect('changed', self.on_update_status_changed)
         self.sw1.add(self.updateview)
 
         button = GconfCheckButton(label=_('Enable the auto launch of System Update Manager'), 
@@ -47,13 +47,30 @@ class SourceEditor(TweakModule):
         self.main_vbox.reparent(self.inner_vbox)
 
     def on_refresh_button_clicked(self, widget):
-        refresh_source(widget.get_toplevel())
+        UpdateCacheDialog(widget.get_toplevel()).run()
 
-        self.emit('update', 'thirdsoft', 'update_thirdparty')
+        new_updates = list(package_worker.get_update_package())
+        if new_updates:
+            self.emit('update', 'thirdsoft', 'update_thirdparty')
+            self.updateview.update_updates(new_updates)
+        else:
+            dialog = InfoDialog(_("Your system is clean and there's no update yet."),
+                        title=_('The software information is up-to-date now'))
+
+            dialog.launch()
 
     def on_select_button_clicked(self, widget):
-        model = self.updateview.get_model()
-        model.foreach(self.__select_foreach, widget.get_active())
+        self.updateview.select_all_action(widget.get_active())
 
-    def __select_foreach(self, model, path, iter, check):
-        model.set(iter, 0, check)
+    def on_update_status_changed(self, widget, i):
+        if i:
+            self.install_button.set_sensitive(True)
+        else:
+            self.install_button.set_sensitive(False)
+
+    def on_install_button_clicked(self, widget):
+        package_worker.perform_action(widget.get_toplevel(), self.updateview.to_add, self.updateview.to_rm)
+
+        package_worker.update_apt_cache(True)
+
+        package_worker.show_installed_status(self.updateview.to_add, self.updateview.to_rm)

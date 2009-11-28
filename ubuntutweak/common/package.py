@@ -29,7 +29,9 @@ import tempfile
 import subprocess
 import apt
 import apt_pkg
+
 from xdg.DesktopEntry import DesktopEntry
+from ubuntutweak.widgets.dialogs import InfoDialog, ErrorDialog
 
 p_kernel = re.compile('\d')
 
@@ -132,6 +134,7 @@ class PackageWorker:
         return self.return_code
 
     def get_install_status(self, to_add, to_rm):
+        #TODO make deprecated
         done = True
 
         for pkg in to_add:
@@ -148,6 +151,27 @@ class PackageWorker:
                 pass
 
         return done
+
+    def show_installed_status(self, to_add, to_rm):
+        done = True
+
+        for pkg in to_add:
+            if not PackageInfo(pkg).check_installed():
+                done = False
+                break
+
+        for pkg in to_rm:
+            try:
+                if PackageInfo(pkg).check_installed():
+                    done = False
+                    break
+            except:
+                pass
+
+        if done:
+            InfoDialog(_('Update Successful!')).launch()
+        else:
+            ErrorDialog(_('Update Failed!')).launch()
 
     def get_cache(self):
         try:

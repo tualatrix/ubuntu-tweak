@@ -111,7 +111,7 @@ def check_update_function(version_url):
 
 def refresh_source(parent):
     dialog = UpdateCacheDialog(parent)
-    res = dialog.run()
+    dialog.run()
 
     new_pkg = []
     for pkg in package_worker.get_new_package():
@@ -127,7 +127,7 @@ def refresh_source(parent):
             updateview.update_model(new_pkg)
 
         if new_updates:
-            updateview.update_updates(package_worker.get_update_package())
+            updateview.update_updates(new_updates)
 
         dialog = QuestionDialog(_('You can install the new applications by selecting them and choose "Yes".\nOr you can install them at Add/Remove by choose "No".'),
             title = _('New applications are available to update'))
@@ -224,54 +224,71 @@ class UpdateView(AppView):
         '''
         model = self.get_model()
 
-        model.append((None,
-                        None,
-                        None,
-                        None,
-                        None,
-                        '<span size="large" weight="bold">%s</span>' % _('Available Package Updates'),
-                        None,
-                        None))
+        if pkgs:
+            model.append((None,
+                            None,
+                            None,
+                            None,
+                            None,
+                            '<span size="large" weight="bold">%s</span>' % _('Available Package Updates'),
+                            None,
+                            None))
 
-        apps = []
-        updates = []
-        for pkg in pkgs:
-            if pkg in BUILTIN_APPS:
-                apps.append(pkg)
-            else:
-                updates.append(pkg)
+            apps = []
+            updates = []
+            for pkg in pkgs:
+                if pkg in BUILTIN_APPS:
+                    apps.append(pkg)
+                else:
+                    updates.append(pkg)
 
-        for pkgname in apps:
-            pixbuf = get_app_logo(pkgname)
+            for pkgname in apps:
+                pixbuf = get_app_logo(pkgname)
 
-            package = PackageInfo(pkgname)
-            appname = package.get_name()
-            desc = get_app_describ(pkgname)
+                package = PackageInfo(pkgname)
+                appname = package.get_name()
+                desc = get_app_describ(pkgname)
 
-            self.append_app(False,
-                    pixbuf,
-                    pkgname,
-                    appname,
-                    desc,
-                    0,
-                    'update')
-            self.to_add.append(pkgname)
+                self.append_app(False,
+                        pixbuf,
+                        pkgname,
+                        appname,
+                        desc,
+                        0,
+                        'update')
+                self.to_add.append(pkgname)
 
-        for pkgname in updates:
-            package = package_worker.get_cache()[pkgname]
+            for pkgname in updates:
+                package = package_worker.get_cache()[pkgname]
 
-            self.append_update(False, package.name, package.summary)
+                self.append_update(False, package.name, package.summary)
+        else:
+            model.append((None,
+                            None,
+                            None,
+                            None,
+                            None,
+                            '<span size="large" weight="bold">%s</span>' % _('No Available Package Updates'),
+                            None,
+                            None))
+
+    def select_all_action(self, active):
+        self.to_rm = []
+        self.to_add = []
+        model = self.get_model()
+        model.foreach(self.__select_foreach, active)
+        self.emit('changed', len(self.to_add))
+
+    def __select_foreach(self, model, path, iter, check):
+        model.set(iter, self.COLUMN_INSTALLED, check)
+        pkg = model.get_value(iter, self.COLUMN_PKG)
+        if pkg and check:
+            self.to_add.append(pkg)
 
 class UpdateCacheDialog:
     """This class is modified from Software-Properties"""
     def __init__(self, parent):
         self.parent = parent
-
-        self.dialog = QuestionDialog(_('To install software and updates from '
-            'newly added or changed sources, you have to reload the information '
-            'about available software.\n\n'
-            'You need a working internet connection to continue.'), 
-            title=_('The information about available software is out-of-date'))
 
     def update_cache(self, window_id, lock):
         """start synaptic to update the package cache"""
@@ -294,22 +311,18 @@ class UpdateCacheDialog:
 
     def run(self):
         """run the dialog, and if reload was pressed run synaptic"""
-        res = self.dialog.run()
-        self.dialog.hide()
-        if res == gtk.RESPONSE_YES:
-            self.parent.set_sensitive(False)
-            self.parent.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
-            lock = thread.allocate_lock()
-            lock.acquire()
-            t = thread.start_new_thread(self.update_cache,
-                                       (self.parent.window.xid, lock))
-            while lock.locked():
-                while gtk.events_pending():
-                    gtk.main_iteration()
-                    time.sleep(0.05)
-            self.parent.set_sensitive(True)
-            self.parent.window.set_cursor(None)
-        return res
+        self.parent.set_sensitive(False)
+        self.parent.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        lock = thread.allocate_lock()
+        lock.acquire()
+        t = thread.start_new_thread(self.update_cache,
+                                   (self.parent.window.xid, lock))
+        while lock.locked():
+            while gtk.events_pending():
+                gtk.main_iteration()
+                time.sleep(0.05)
+        self.parent.set_sensitive(True)
+        self.parent.window.set_cursor(None)
 
 class SourcesView(gtk.TreeView):
     __gsignals__ = {
