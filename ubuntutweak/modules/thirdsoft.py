@@ -138,14 +138,19 @@ def refresh_source(parent):
         sw.set_size_request(-1, 200)
         vbox.pack_start(sw, False, False, 0)
         sw.add(updateview)
-        sw.show_all()
+
+        select_button = gtk.CheckButton(_('Select All'))
+        select_button.connect('clicked', on_select_button_clicked, updateview)
+        vbox.pack_start(select_button, False, False, 0)
+        vbox.show_all()
 
         res = dialog.run()
         dialog.destroy()
 
-        if res == gtk.RESPONSE_YES:
-            to_rm = updateview.to_rm
-            to_add = updateview.to_add
+        to_rm = updateview.to_rm
+        to_add = updateview.to_add
+
+        if res == gtk.RESPONSE_YES and to_add:
             package_worker.perform_action(parent, to_add, to_rm)
 
             package_worker.update_apt_cache(True)
@@ -164,6 +169,9 @@ def refresh_source(parent):
 
         dialog.launch()
         return False
+
+def on_select_button_clicked(widget, updateview):
+    updateview.select_all_action(widget.get_active())
 
 class CheckSourceDialog(CheckUpdateDialog):
     def get_updatable(self):
