@@ -67,6 +67,7 @@ class Nautilus(TweakModule):
     __desc__ = _('Settings your default file manager')
     __icon__ = ['file-manager', 'nautilus']
     __category__ = 'system'
+    __desktop__ = 'gnome'
 
     def __init__(self):
         TweakModule.__init__(self)

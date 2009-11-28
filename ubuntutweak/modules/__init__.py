@@ -37,18 +37,15 @@ class ModuleLoader:
 
     def do_module_import(self, package, module):
         for k, v in inspect.getmembers(getattr(package, module)):
-            if k not in ('TweakModule', 'proxy') and hasattr(v, '__utmodule__'):
-                key = v.__category__
-                if self.module_table.has_key(key):
-                    self.module_table[key].append(v)
-                else:
-                    self.module_table[key] = [v]
-
-                self.id_table[v.__name__] = v
+            self._insert_moduel(k, v)
 
     def do_package_import(self, package):
         for k, v in inspect.getmembers(package):
-            if k not in ('TweakModule', 'proxy') and hasattr(v, '__utmodule__'):
+            self._insert_moduel(k, v)
+
+    def _insert_moduel(self, k, v):
+        if k not in ('TweakModule', 'proxy') and hasattr(v, '__utmodule__'):
+            if self.is_supported_desktop(v.__desktop__):
                 key = v.__category__
                 if self.module_table.has_key(key):
                     self.module_table[key].append(v)
@@ -81,6 +78,18 @@ class ModuleLoader:
 
             return pixbuf
 
+    def is_supported_desktop(self, desktop_name):
+        if desktop_name:
+            return desktop_name == self._get_desktop()
+        else:
+            return True
+
+    def _get_desktop(self):
+        if os.popen('pgrep gnome-session').read() != '':
+            return 'gnome'
+        else:
+            return ''
+
 class TweakModule(gtk.VBox):
     __title__ = ''
     __version__ = ''
@@ -90,6 +99,7 @@ class TweakModule(gtk.VBox):
     __url__ = ''
     #Identify whether it is a ubuntu tweak module
     __utmodule__ = ''
+    __desktop__ = ''
 
     __gsignals__ = {
             'update': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_STRING, gobject.TYPE_STRING)),

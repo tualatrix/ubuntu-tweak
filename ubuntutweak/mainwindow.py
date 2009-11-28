@@ -32,7 +32,6 @@ from ubuntutweak import modules
 from ubuntutweak.modules import TweakModule, ModuleLoader
 from ubuntutweak.common.consts import *
 from ubuntutweak.common.debug import run_traceback
-from ubuntutweak.common.systeminfo import module_check
 from ubuntutweak.common.config import TweakSettings
 from ubuntutweak.widgets.dialogs import QuestionDialog
 try:

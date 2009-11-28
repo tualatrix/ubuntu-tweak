@@ -134,6 +134,7 @@ class Scripts(TweakModule, AbstractScripts):
     __desc__  = _("You can do all kinds of tasks with scripts.\nYou can drag and drop from File Manager.\n'Scripts' will be added to the context menu.")
     __icon__ = 'text-x-script'
     __category__ = 'personal'
+    __desktop__ = 'gnome'
 
     def __init__(self):
         TweakModule.__init__(self)

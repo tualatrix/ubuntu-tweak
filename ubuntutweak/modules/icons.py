@@ -110,6 +110,7 @@ class Icon(TweakModule):
     __icon__ = 'user-desktop'
     __url__ = 'http://ubuntu-tweak.com'
     __category__ = 'desktop'
+    __desktop__ = 'gnome'
 
     def __init__(self):
         TweakModule.__init__(self)

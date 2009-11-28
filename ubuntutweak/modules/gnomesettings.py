@@ -37,6 +37,7 @@ class Gnome(TweakModule):
     __desc__ = _('A lot of GNOME settings about panel and others')
     __icon__ = ['gnome-desktop-config', 'control-center2']
     __category__ = 'desktop'
+    __desktop__ = 'gnome'
 
     def __init__(self):
         TweakModule.__init__(self)

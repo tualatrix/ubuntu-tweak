@@ -29,7 +29,6 @@ import gobject
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.widgets import KeyGrabber, KeyModifier, CellRendererButton
 from ubuntutweak.common.utils import get_icon_with_name
-from ubuntutweak.common.systeminfo import module_check
 from compiz import CompizSetting
 
 (
@@ -47,6 +46,7 @@ class Shortcuts(TweakModule):
     __desc__  = _("By configuring keyboard shortcuts, you can access your favourite applications instantly.\nEnter the application's command and set the desired shortcut keys.")
     __icon__ = 'preferences-desktop-keyboard-shortcuts'
     __category__ = 'personal'
+    __desktop__ = 'gnome'
 
     def __init__(self):
         TweakModule.__init__(self)
