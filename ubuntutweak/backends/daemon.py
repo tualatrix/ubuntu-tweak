@@ -267,6 +267,14 @@ class Daemon(PolicyKitService):
         return True
 
     @dbus.service.method(INTERFACE,
+                         in_signature='s', out_signature='s',
+                         sender_keyword='sender')
+    def exec_command(self, command, sender=None):
+        self._check_permission(sender)
+        cmd = os.popen(command)
+        return cmd.read()
+
+    @dbus.service.method(INTERFACE,
                          in_signature='', out_signature='')
     def exit(self):
         mainloop.quit()

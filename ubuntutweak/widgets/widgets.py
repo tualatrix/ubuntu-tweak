@@ -139,18 +139,6 @@ class GconfSpinButton(gtk.SpinButton):
     def on_value_changed(self, widget):
         self.__setting.set_int(widget.get_value())
 
-class EntryBox(gtk.HBox):
-    def __init__(self, label, text):
-        gtk.HBox.__init__(self)
-
-        label = gtk.Label(label)
-        self.pack_start(label, False, False,10)
-        entry = gtk.Entry()
-        if text: entry.set_text(text)
-        entry.set_editable(False)
-        entry.set_size_request(300, -1)
-        self.pack_end(entry, False, False, 0)
-
 class HScaleBox(gtk.HBox):
     def __init__(self, label, min, max, key, digits = 0):
         gtk.HBox.__init__(self)

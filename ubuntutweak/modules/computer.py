@@ -21,9 +21,13 @@
 import os
 import gtk
 from ubuntutweak.modules import TweakModule
+from ubuntutweak.widgets import TablePack
+from ubuntutweak.widgets.dialogs import QuestionDialog
+from ubuntutweak.policykit import proxy
+
+#TODO
 from ubuntutweak.common.misc import filesizeformat
 from ubuntutweak.common.systeminfo import SystemInfo
-from ubuntutweak.widgets import EntryBox, ListPack
 
 class Computer(TweakModule):
     __title__ = _('Computer Details')
@@ -49,22 +53,44 @@ class Computer(TweakModule):
             if element.split(" ")[0] == "MemTotal:":
                 raminfo = element.split(" ")[-2]
 
-        box = ListPack(_("System information"),(
-                    EntryBox(_("Hostname"), os.uname()[1]),
-                    EntryBox(_("Distribution"), SystemInfo.distro),
-                    EntryBox(_("Desktop environment"), SystemInfo.gnome),
-                    EntryBox(_("Kernel"), os.uname()[0]+" "+os.uname()[2]),
-                    EntryBox(_("Platform"), os.uname()[-1]),
-                    EntryBox(_("CPU"), cpumodel.strip()),
-                    EntryBox(_("Memory"), filesizeformat(str(int(raminfo) * 1024))),
+        hostname_label = gtk.Label(os.uname()[1])
+        hostname_button = gtk.Button(_('Change Hostname'))
+        hostname_button.connect('clicked', self.on_hostname_button_clicked, hostname_label)
+
+        box = TablePack(_("System information"),(
+                    (gtk.Label(_("Hostname")), hostname_label, hostname_button),
+                    (gtk.Label(_("Distribution")), gtk.Label(SystemInfo.distro)),
+                    (gtk.Label(_("Desktop environment")), gtk.Label(SystemInfo.gnome)),
+                    (gtk.Label(_("Kernel")), gtk.Label(os.uname()[0]+" "+os.uname()[2])),
+                    (gtk.Label(_("Platform")), gtk.Label(os.uname()[-1])),
+                    (gtk.Label(_("CPU")), gtk.Label(cpumodel.strip())),
+                    (gtk.Label(_("Memory")), gtk.Label(filesizeformat(str(int(raminfo) * 1024)))),
                 ))
         self.add_start(box, False, False, 0)
 
-        box = ListPack(_("User information"),(
-                    EntryBox(_("Current user"),     os.getenv("USER")),
-                    EntryBox(_("Home directory"),     os.getenv("HOME")),
-                    EntryBox(_("Shell"),         os.getenv("SHELL")),
-                    EntryBox(_("Language"),     os.getenv("LANG")),
+        box = TablePack(_("User information"),(
+                    (gtk.Label(_("Current user")),     gtk.Label(os.getenv("USER"))),
+                    (gtk.Label(_("Home directory")),     gtk.Label(os.getenv("HOME"))),
+                    (gtk.Label(_("Shell")),         gtk.Label(os.getenv("SHELL"))),
+                    (gtk.Label(_("Language")),     gtk.Label(os.getenv("LANG"))),
                 ))
             
         self.add_start(box, False, False, 0)
+
+    def on_hostname_button_clicked(self, widget, label):
+        dialog = QuestionDialog(_('Please enter your new hostname. It sould be non-blank characters.'),
+            title = _('New hostname'))
+
+        vbox = dialog.vbox
+        entry = gtk.Entry()
+        vbox.pack_start(entry, False, False, 0)
+        vbox.show_all()
+
+        res = dialog.run()
+        dialog.destroy()
+
+        if res == gtk.RESPONSE_YES:
+            new_name = entry.get_text()
+            proxy.exec_command('hostname %s' % new_name)
+            if os.popen('hostname').read().strip() == new_name:
+                label.set_label(new_name)

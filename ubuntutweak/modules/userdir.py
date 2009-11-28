@@ -28,7 +28,6 @@ import gobject
 from ubuntutweak.modules import TweakModule
 from ubuntutweak.common.consts import *
 from ubuntutweak.common.inifile import IniFile
-from ubuntutweak.widgets import EntryBox
 from ubuntutweak.widgets.dialogs import QuestionDialog, InfoDialog
 from ubuntutweak.common.utils import get_icon_with_name
 
