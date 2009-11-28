@@ -38,17 +38,6 @@ from ubuntutweak.common.consts import *
 from ubuntutweak.common.package import package_worker, PackageInfo
 
 (
-    COLUMN_INSTALLED,
-    COLUMN_ICON,
-    COLUMN_PKG,
-    COLUMN_NAME,
-    COLUMN_DESC,
-    COLUMN_DISPLAY,
-    COLUMN_CATE,
-    COLUMN_TYPE,
-) = range(8)
-
-(
     CATE_ID,
     CATE_ICON,
     CATE_NAME,
@@ -168,6 +157,17 @@ class AppView(gtk.TreeView):
         'changed': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_INT,))
     }
 
+    (
+        COLUMN_INSTALLED,
+        COLUMN_ICON,
+        COLUMN_PKG,
+        COLUMN_NAME,
+        COLUMN_DESC,
+        COLUMN_DISPLAY,
+        COLUMN_CATE,
+        COLUMN_TYPE,
+    ) = range(8)
+
     def __init__(self):
         gtk.TreeView.__init__(self)
 
@@ -180,7 +180,7 @@ class AppView(gtk.TreeView):
         self.set_model(model)
 
         self.set_rules_hint(True)
-        self.set_search_column(COLUMN_NAME)
+        self.set_search_column(self.COLUMN_NAME)
 
         self.show_all()
 
@@ -199,43 +199,43 @@ class AppView(gtk.TreeView):
 
     def sort_model(self):
         model = self.get_model()
-        model.set_sort_column_id(COLUMN_NAME, gtk.SORT_ASCENDING)
+        model.set_sort_column_id(self.COLUMN_NAME, gtk.SORT_ASCENDING)
 
     def __add_columns(self):
         renderer = gtk.CellRendererToggle()
         renderer.set_property("xpad", 6)
         renderer.connect('toggled', self.on_install_toggled)
 
-        column = gtk.TreeViewColumn(' ', renderer, active = COLUMN_INSTALLED)
+        column = gtk.TreeViewColumn(' ', renderer, active = self.COLUMN_INSTALLED)
         column.set_cell_data_func(renderer, self.install_column_view_func)
-        column.set_sort_column_id(COLUMN_INSTALLED)
+        column.set_sort_column_id(self.COLUMN_INSTALLED)
         self.append_column(column)
 
         column = gtk.TreeViewColumn('Applications')
-        column.set_sort_column_id(COLUMN_NAME)
+        column.set_sort_column_id(self.COLUMN_NAME)
         column.set_spacing(5)
         renderer = gtk.CellRendererPixbuf()
         column.pack_start(renderer, False)
         column.set_cell_data_func(renderer, self.icon_column_view_func)
-        column.set_attributes(renderer, pixbuf = COLUMN_ICON)
+        column.set_attributes(renderer, pixbuf = self.COLUMN_ICON)
 
         renderer = gtk.CellRendererText()
         renderer.set_property("xpad", 6)
         renderer.set_property("ypad", 6)
         renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
         column.pack_start(renderer, True)
-        column.add_attribute(renderer, 'markup', COLUMN_DISPLAY)
+        column.add_attribute(renderer, 'markup', self.COLUMN_DISPLAY)
         self.append_column(column)
 
     def install_column_view_func(self, cell_layout, renderer, model, iter):
-        package = model.get_value(iter, COLUMN_PKG)
+        package = model.get_value(iter, self.COLUMN_PKG)
         if package == None:
             renderer.set_property("visible", False)
         else:
             renderer.set_property("visible", True)
 
     def icon_column_view_func(self, cell_layout, renderer, model, iter):
-        icon = model.get_value(iter, COLUMN_ICON)
+        icon = model.get_value(iter, self.COLUMN_ICON)
         if icon == None:
             renderer.set_property("visible", False)
         else:
@@ -341,18 +341,18 @@ class AppView(gtk.TreeView):
 
     def on_install_toggled(self, cell, path):
         def do_app_changed(model, iter, appname, desc):
-                model.set(iter, COLUMN_DISPLAY, '<span style="italic" weight="bold"><b>%s</b>\n%s</span>' % (appname, desc))
+                model.set(iter, self.COLUMN_DISPLAY, '<span style="italic" weight="bold"><b>%s</b>\n%s</span>' % (appname, desc))
         def do_app_unchanged(model, iter, appname, desc):
-                model.set(iter, COLUMN_DISPLAY, '<b>%s</b>\n%s' % (appname, desc))
+                model.set(iter, self.COLUMN_DISPLAY, '<b>%s</b>\n%s' % (appname, desc))
 
         model = self.get_model()
 
         iter = model.get_iter((int(path),))
-        is_installed = model.get_value(iter, COLUMN_INSTALLED)
-        pkgname = model.get_value(iter, COLUMN_PKG)
-        appname = model.get_value(iter, COLUMN_NAME)
-        desc = model.get_value(iter, COLUMN_DESC)
-        type = model.get_value(iter, COLUMN_TYPE)
+        is_installed = model.get_value(iter, self.COLUMN_INSTALLED)
+        pkgname = model.get_value(iter, self.COLUMN_PKG)
+        appname = model.get_value(iter, self.COLUMN_NAME)
+        desc = model.get_value(iter, self.COLUMN_DESC)
+        type = model.get_value(iter, self.COLUMN_TYPE)
 
         if type == 'app':
             is_installed = not is_installed
@@ -371,7 +371,7 @@ class AppView(gtk.TreeView):
                     self.to_rm.append(pkgname)
                     do_app_changed(model, iter, appname, desc)
 
-            model.set(iter, COLUMN_INSTALLED, is_installed)
+            model.set(iter, self.COLUMN_INSTALLED, is_installed)
         else:
             to_installed = is_installed
             to_installed = not to_installed
@@ -380,7 +380,7 @@ class AppView(gtk.TreeView):
             else:
                 self.to_add.remove(pkgname)
 
-            model.set(iter, COLUMN_INSTALLED, to_installed)
+            model.set(iter, self.COLUMN_INSTALLED, to_installed)
 
         self.emit('changed', len(self.to_add) + len(self.to_rm))
 
