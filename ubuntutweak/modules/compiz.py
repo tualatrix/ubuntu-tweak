@@ -369,7 +369,7 @@ class Compiz(TweakModule, CompizSetting):
         client = gconf.client_get_default()
         wallpaper = client.get_string("/desktop/gnome/background/picture_filename")
 
-        system_wallpaper = os.path.join(DATA_DIR, "pixmaps/ubuntu-tweak.png")
+        system_wallpaper = os.path.join(DATA_DIR, "pixmaps/splash.png")
         if wallpaper:
             try:
                 pixbuf = gtk.gdk.pixbuf_new_from_file_at_size(wallpaper, 160, 100)
