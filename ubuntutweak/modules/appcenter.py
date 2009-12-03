@@ -37,12 +37,6 @@ from ubuntutweak.network.downloadmanager import DownloadDialog
 from ubuntutweak.common.consts import *
 from ubuntutweak.common.package import package_worker, PackageInfo
 
-(
-    CATE_ID,
-    CATE_ICON,
-    CATE_NAME,
-) = range(3)
-
 APPCENTER_ROOT = os.path.join(settings.CONFIG_ROOT, 'appcenter')
 APP_VERSION_URL = 'http://127.0.0.1:8000/app_version/'
 APP_URL = 'http://127.0.0.1:8000/static/appcenter.tar.gz'
@@ -74,6 +68,11 @@ class CateParser(Parser):
         return self.get_by_lang(key, 'name')
 
 class CategoryView(gtk.TreeView):
+    (
+        CATE_ID,
+        CATE_NAME,
+    ) = range(2)
+
     def __init__(self, path):
         gtk.TreeView.__init__(self)
 
@@ -92,7 +91,6 @@ class CategoryView(gtk.TreeView):
         '''The model is icon, title and the list reference'''
         model = gtk.ListStore(
                     gobject.TYPE_INT,
-                    gtk.gdk.Pixbuf,
                     gobject.TYPE_STRING)
         
         return model
@@ -100,14 +98,10 @@ class CategoryView(gtk.TreeView):
     def __add_columns(self):
         column = gtk.TreeViewColumn(_('Categories'))
 
-        renderer = gtk.CellRendererPixbuf()
-        column.pack_start(renderer, False)
-        column.set_attributes(renderer, pixbuf=CATE_ICON)
-
         renderer = gtk.CellRendererText()
         column.pack_start(renderer, True)
-        column.set_sort_column_id(CATE_NAME)
-        column.set_attributes(renderer, text=CATE_NAME)
+        column.set_sort_column_id(self.CATE_NAME)
+        column.set_attributes(renderer, text=self.CATE_NAME)
 
         self.append_column(column)
 
@@ -117,17 +111,15 @@ class CategoryView(gtk.TreeView):
 
         iter = self.model.append()
         self.model.set(iter, 
-                CATE_ID, 0,
-                CATE_ICON, icon.get_with_file(os.path.join(DATA_DIR, 'appcates', 'all.png'), size=16),
-                CATE_NAME, _('All Categories'))
+                self.CATE_ID, 0,
+                self.CATE_NAME, _('All Categories'))
 
         for item in self.get_cate_items():
             iter = self.model.append()
-            id, name, pixbuf = self.parse_cate_item(item)
+            id, name = self.parse_cate_item(item)
             self.model.set(iter, 
-                    CATE_ID, id,
-                    CATE_ICON, pixbuf,
-                    CATE_NAME, name)
+                    self.CATE_ID, id,
+                    self.CATE_NAME, name)
 
     def get_cate_items(self):
         for k in self.parser.keys():
@@ -138,19 +130,8 @@ class CategoryView(gtk.TreeView):
     def parse_cate_item(self, item):
         id = item['id']
         name = item['name']
-        pixbuf = self.get_cate_logo(item['logo'])
 
-        return id, name, pixbuf
-
-    def get_cate_logo(self, file):
-        path = os.path.join(APPCENTER_ROOT, file)
-        try:
-            pixbuf = gtk.gdk.pixbuf_new_from_file(path)
-            if pixbuf.get_width() != 16 or pixbuf.get_height() != 16:
-                pixbuf = pixbuf.scale_simple(16, 16, gtk.gdk.INTERP_BILINEAR)
-            return pixbuf
-        except:
-            return gtk.icon_theme_get_default().load_icon(gtk.STOCK_MISSING_IMAGE, 16, 0)
+        return id, name
 
 class AppView(gtk.TreeView):
     __gsignals__ = {
@@ -509,10 +490,11 @@ class AppCenter(TweakModule):
 
     def on_category_changed(self, widget, data = None):
         model, iter = widget.get_selected()
+        cateview = widget.get_tree_view()
 
         if iter:
             if model.get_path(iter)[0] != 0:
-                self.appview.set_filter(model.get_value(iter, CATE_ID))
+                self.appview.set_filter(model.get_value(iter, cateview.CATE_ID))
             else:
                 self.appview.set_filter(None)
 
