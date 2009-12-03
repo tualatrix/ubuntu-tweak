@@ -150,6 +150,7 @@ def refresh_source(parent):
         to_rm = updateview.to_rm
         to_add = updateview.to_add
 
+        #TODO Update update manager
         if res == gtk.RESPONSE_YES and to_add:
             package_worker.perform_action(parent, to_add, to_rm)
 
