@@ -114,16 +114,11 @@ class module_check:
 
     @classmethod
     def get_codename(cls):
-        '''Return the unique code name, e.g. no matter hardy or elyssa, return hardy'''
         if cls.is_karmic():
             return 'karmic'
         else:
             return ''
 
-    @classmethod
-    def is_gnome(cls):
-        return os.getenv('GDMSESSION') and os.getenv('GDM_LANG')
-            
 if __name__ == "__main__":
     print SystemInfo.distro
     print 'has pat', module_check.has_apt()
