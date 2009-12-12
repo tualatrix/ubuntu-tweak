@@ -21,9 +21,12 @@
 import gconf
 import gobject
 
+from ubuntutweak.policykit import proxy
+
 __all__ = (
     'Setting',
     'BoolSetting',
+    'SystemBoolSetting',
     'StringSetting',
     'IntSetting',
     'FloatSetting',
@@ -86,6 +89,23 @@ class BoolSetting(Setting):
 
     def get_bool(self):
         return bool(self.value)
+
+class SystemBoolSetting(object):
+    def __init__(self, key, default=None):
+        self.__key = key
+
+    def set_bool(self, value):
+        if value:
+            proxy.set_system_gconf(self.__key, 'true', 'bool', '')
+        else:
+            proxy.set_system_gconf(self.__key, 'false', 'bool', '')
+
+    def get_bool(self):
+        data = proxy.get_system_gconf(self.__key)
+        if str(data).startswith('true'):
+            return True
+        else:
+            return False
 
 class StringSetting(Setting):
     def __init__(self, key, default = None):

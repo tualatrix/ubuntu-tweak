@@ -26,7 +26,9 @@ import gconf
 import gobject
 import gettext
 import time
+
 from ubuntutweak.common.settings import *
+from ubuntutweak.policykit import PolkitButton, proxy
 
 class GconfCheckButton(gtk.CheckButton):
     def __init__(self, label = None, key = None, default = None, tooltip = None):
@@ -45,6 +47,21 @@ class GconfCheckButton(gtk.CheckButton):
         self.set_active(self.__setting.get_bool())
 
     def button_toggled(self, widget, data = None):
+        self.__setting.set_bool(self.get_active())
+
+class SystemGconfCheckButton(gtk.CheckButton):
+    def __init__(self, label=None, key=None, default=None, tooltip=None):
+        super(SystemGconfCheckButton, self).__init__()
+        self.__setting = SystemBoolSetting(key, default)
+
+        self.set_label(label)
+        self.set_active(self.__setting.get_bool())
+        if tooltip:
+            self.set_tooltip_text(tooltip)
+
+        self.connect('toggled', self.button_toggled)
+
+    def button_toggled(self, widget):
         self.__setting.set_bool(self.get_active())
         
 class StrGconfCheckButton(GconfCheckButton):

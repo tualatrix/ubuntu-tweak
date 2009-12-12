@@ -74,6 +74,7 @@ class SettingFactory:
 class WidgetFactory:
     keys = GconfKeys.keys
     client = gconf.client_get_default()
+    composite_capable = ('GconfEntry', 'GconfComboBox', 'GconfSpinButton', 'GconfScale')
 
     @classmethod
     def create(cls, widget, **kwargs):
@@ -91,7 +92,7 @@ class WidgetFactory:
 
             kwargs['key'] = key
 
-            if widget in ('GconfEntry', 'GconfComboBox', 'GconfSpinButton', 'GconfScale') and kwargs.has_key('label'):
+            if widget in cls.composite_capable and kwargs.has_key('label'):
                 return getattr(cls, 'do_composite_create')(widget, **kwargs)
             else:
                 return getattr(cls, 'do_create')(widget, **kwargs)
