@@ -26,7 +26,7 @@ import gobject
 from ubuntutweak.modules import TweakModule
 from ubuntutweak.widgets import CellRendererButton
 from ubuntutweak.widgets.dialogs import QuestionDialog, InfoDialog
-from ubuntutweak.modules.thirdsoft import UpdateView
+from ubuntutweak.modules.sourcecenter import UpdateView
 
 #TODO
 from ubuntutweak.common.package import package_worker

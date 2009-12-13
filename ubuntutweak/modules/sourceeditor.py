@@ -26,7 +26,7 @@ import gobject
 import gettext
 
 from ubuntutweak.modules  import TweakModule
-from thirdsoft import refresh_source
+from sourcecenter import refresh_source
 from xmlrpclib import ServerProxy, Error
 from ubuntutweak.common.utils import *
 from ubuntutweak.common.gui import GuiWorker
@@ -433,7 +433,7 @@ class SourceEditor(TweakModule):
     def on_refresh_button_clicked(self, widget):
         refresh_source(widget.get_toplevel())
 
-        self.emit('update', 'thirdsoft', 'update_thirdparty')
+        self.emit('update', 'sourcecenter', 'update_thirdparty')
 
     def update_sourceslist(self):
         self.textview.update_content()
@@ -512,7 +512,7 @@ class SourceEditor(TweakModule):
             self.redo_button.set_sensitive(False)
             self.refresh_button.set_sensitive(True)
             self.emit('call', 'mainwindow', 'get_notify', {})
-            self.emit('update', 'thirdsoft', 'update_thirdparty')
+            self.emit('update', 'sourcecenter', 'update_thirdparty')
 
     def on_redo_button_clicked(self, widget):
         dialog = QuestionDialog(_('The current content will be lost after reloading!\nDo you wish to continue?'))
@@ -541,7 +541,7 @@ class SourceEditor(TweakModule):
                 iter = model.get_iter(i-1)
                 self.source_combo.set_active_iter(iter)
             self.emit('call', 'mainwindow', 'get_notify', {})
-            self.emit('update', 'thirdsoft', 'update_thirdparty')
+            self.emit('update', 'sourcecenter', 'update_thirdparty')
 
     def on_polkit_action(self, widget, action):
         if action:

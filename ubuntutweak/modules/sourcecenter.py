@@ -66,36 +66,9 @@ UBUNTU_CN_URL = 'http://archive.ubuntu.org.cn/ubuntu-cn/'
 BUILTIN_APPS = APP_DICT.keys()
 BUILTIN_APPS.extend(APPS.keys())
 
-(
-    COLUMN_ENABLED,
-    COLUMN_URL,
-    COLUMN_DISTRO,
-    COLUMN_COMPS,
-    COLUMN_SLUG,
-    COLUMN_LOGO,
-    COLUMN_NAME,
-    COLUMN_COMMENT,
-    COLUMN_DISPLAY,
-    COLUMN_HOME,
-    COLUMN_KEY,
-) = range(11)
-
-(
-    ENTRY_URL,
-    ENTRY_DISTRO,
-    ENTRY_COMPS,
-) = range(3)
-
-(
-    SOURCE_NAME,
-    SOURCE_PACKAGE,
-    SOURCE_HOME,
-    SOURCE_KEY,
-) = range(4)
-
-SOURCE_ROOT = os.path.join(settings.CONFIG_ROOT, 'sources')
+SOURCE_ROOT = os.path.join(settings.CONFIG_ROOT, 'sourcecenter')
 SOURCE_VERSION_URL = urljoin(URL_PREFIX, '/sources_version/')
-SOURCE_URL = urljoin(URL_PREFIX, '/static/sources.tar.gz')
+SOURCE_URL = urljoin(URL_PREFIX, '/static/sourcecenter.tar.gz')
 
 def check_update_function(version_url):
     local_timestamp = os.path.join(SOURCE_ROOT, 'timestamp')
@@ -342,12 +315,29 @@ class SourcesView(gtk.TreeView):
     __gsignals__ = {
         'sourcechanged': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, ())
     }
+    (
+        COLUMN_ENABLED,
+        COLUMN_CATE,
+        COLUMN_URL,
+        COLUMN_DISTRO,
+        COLUMN_COMPS,
+        COLUMN_SLUG,
+        COLUMN_LOGO,
+        COLUMN_NAME,
+        COLUMN_COMMENT,
+        COLUMN_DISPLAY,
+        COLUMN_HOME,
+        COLUMN_KEY,
+    ) = range(12)
+
     def __init__(self):
         gtk.TreeView.__init__(self)
 
+        self.filter = None
+
         self.model = self.__create_model()
         self.set_model(self.model)
-        self.model.set_sort_column_id(COLUMN_NAME, gtk.SORT_ASCENDING)
+        self.model.set_sort_column_id(self.COLUMN_NAME, gtk.SORT_ASCENDING)
         self.__add_column()
 
         self.update_model()
@@ -364,6 +354,7 @@ class SourcesView(gtk.TreeView):
                 gobject.TYPE_STRING,
                 gobject.TYPE_STRING,
                 gobject.TYPE_STRING,
+                gobject.TYPE_STRING,
                 gtk.gdk.Pixbuf,
                 gobject.TYPE_STRING,
                 gobject.TYPE_STRING,
@@ -376,23 +367,26 @@ class SourcesView(gtk.TreeView):
     def __add_column(self):
         renderer = gtk.CellRendererToggle()
         renderer.connect('toggled', self.on_enable_toggled)
-        column = gtk.TreeViewColumn(' ', renderer, active = COLUMN_ENABLED)
-        column.set_sort_column_id(COLUMN_ENABLED)
+        column = gtk.TreeViewColumn(' ', renderer, active = self.COLUMN_ENABLED)
+        column.set_sort_column_id(self.COLUMN_ENABLED)
         self.append_column(column)
 
         column = gtk.TreeViewColumn(_('Third-Party Sources'))
-        column.set_sort_column_id(COLUMN_NAME)
+        column.set_sort_column_id(self.COLUMN_NAME)
         column.set_spacing(5)
         renderer = gtk.CellRendererPixbuf()
         column.pack_start(renderer, False)
-        column.set_attributes(renderer, pixbuf = COLUMN_LOGO)
+        column.set_attributes(renderer, pixbuf = self.COLUMN_LOGO)
 
         renderer = gtk.CellRendererText()
         renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
         column.pack_start(renderer, True)
-        column.set_attributes(renderer, markup = COLUMN_DISPLAY)
+        column.set_attributes(renderer, markup = self.COLUMN_DISPLAY)
 
         self.append_column(column)
+
+    def clear_model(self):
+        self.get_model().clear()
 
     def update_model(self):
         self.model.clear()
@@ -405,6 +399,7 @@ class SourcesView(gtk.TreeView):
             url = source_parser.get_url(slug)
             comps = source_parser.get_comps(slug)
             distro = source_parser.get_distro(slug)
+            category = source_parser.get_category(slug)
 
             name = source_parser.get_name(slug)
             comment = source_parser.get_summary(slug)
@@ -416,21 +411,22 @@ class SourcesView(gtk.TreeView):
                 if url in source.str() and source.type == 'deb':
                     enabled = not source.disabled
 
-            iter = self.model.append()
-
-            self.model.set(iter,
-                    COLUMN_ENABLED, enabled,
-                    COLUMN_URL, url,
-                    COLUMN_DISTRO, distro,
-                    COLUMN_COMPS, comps,
-                    COLUMN_COMMENT, comment,
-                    COLUMN_SLUG, slug,
-                    COLUMN_NAME, name,
-                    COLUMN_DISPLAY, '<b>%s</b>\n%s' % (name, comment),
-                    COLUMN_LOGO, pixbuf,
-                    COLUMN_HOME, website,
-                    COLUMN_KEY, key,
-                )
+            if self.filter == None or self.filter == category:
+                iter = self.model.append()
+                self.model.set(iter,
+                        self.COLUMN_ENABLED, enabled,
+                        self.COLUMN_CATE, category,
+                        self.COLUMN_URL, url,
+                        self.COLUMN_DISTRO, distro,
+                        self.COLUMN_COMPS, comps,
+                        self.COLUMN_COMMENT, comment,
+                        self.COLUMN_SLUG, slug,
+                        self.COLUMN_NAME, name,
+                        self.COLUMN_DISPLAY, '<b>%s</b>\n%s' % (name, comment),
+                        self.COLUMN_LOGO, pixbuf,
+                        self.COLUMN_HOME, website,
+                        self.COLUMN_KEY, key,
+                    )
 
     def get_source_logo(self, file):
         path = os.path.join(SOURCE_ROOT, file)
@@ -475,12 +471,12 @@ class SourcesView(gtk.TreeView):
                 while gtk.events_pending():
                     gtk.main_iteration()
 
-                url  = self.model.get_value(iter, COLUMN_URL)
+                url  = self.model.get_value(iter, self.COLUMN_URL)
 
                 if self.has_mirror_ppa(url):
                     new_url = url.replace(LAUNCHPAD_STR, UBUNTU_CN_STR)
                     proxy.replace_entry(url, new_url)
-                    self.model.set_value(iter, COLUMN_URL, new_url)
+                    self.model.set_value(iter, self.COLUMN_URL, new_url)
 
                 iter = self.model.iter_next(iter)
 
@@ -520,8 +516,8 @@ class SourcesView(gtk.TreeView):
     def on_enable_toggled(self, cell, path):
         iter = self.model.get_iter((int(path),))
 
-        name = self.model.get_value(iter, COLUMN_NAME)
-        enabled = self.model.get_value(iter, COLUMN_ENABLED)
+        name = self.model.get_value(iter, self.COLUMN_NAME)
+        enabled = self.model.get_value(iter, self.COLUMN_ENABLED)
 
         if enabled is False and name in SOURCES_DEPENDENCIES:
             #FIXME: If more than one dependency
@@ -535,7 +531,7 @@ class SourcesView(gtk.TreeView):
                     self.set_source_enabled(dependency)
                     self.set_source_enabled(name)
                 else:
-                    self.model.set(iter, COLUMN_ENABLED, enabled)
+                    self.model.set(iter, self.COLUMN_ENABLED, enabled)
 
                 dialog.destroy()
             else:
@@ -548,7 +544,7 @@ class SourcesView(gtk.TreeView):
                     HAVE_REVERSE_DEPENDENCY = True
                     break
             if HAVE_REVERSE_DEPENDENCY:
-                self.model.set(iter, COLUMN_ENABLED, enabled)
+                self.model.set(iter, self.COLUMN_ENABLED, enabled)
             else:
                 self.do_source_enable(iter, not enabled)
         elif not enabled and name in SOURCES_CONFLICTS.values() or name in SOURCES_CONFLICTS.keys():
@@ -561,17 +557,17 @@ class SourcesView(gtk.TreeView):
                         key = k
             if self.get_source_enabled(key):
                 ErrorDialog(_('You can\'t enable this Source because "%(SOURCE)s" conflicts with it.\nTo continue you need to disable "%(SOURCE)s" first.') % {'SOURCE': key}).launch()
-                self.model.set(iter, COLUMN_ENABLED, enabled)
+                self.model.set(iter, self.COLUMN_ENABLED, enabled)
             else:
                 self.do_source_enable(iter, not enabled)
         else:
             self.do_source_enable(iter, not enabled)
 
     def on_source_foreach(self, model, path, iter, name):
-        m_name = model.get_value(iter, COLUMN_NAME)
+        m_name = model.get_value(iter, self.COLUMN_NAME)
         if m_name == name:
             if self._foreach_mode == 'get':
-                self._foreach_take = model.get_value(iter, COLUMN_ENABLED)
+                self._foreach_take = model.get_value(iter, self.COLUMN_ENABLED)
             elif self._foreach_mode == 'set':
                 self._foreach_take = iter
 
@@ -608,14 +604,14 @@ class SourcesView(gtk.TreeView):
         Only emmit signal when source is changed
         '''
 
-        url = self.model.get_value(iter, COLUMN_URL)
+        url = self.model.get_value(iter, self.COLUMN_URL)
 
-        icon = self.model.get_value(iter, COLUMN_LOGO)
-        distro = self.model.get_value(iter, COLUMN_DISTRO)
-        comment = self.model.get_value(iter, COLUMN_NAME)
-        package = self.model.get_value(iter, COLUMN_SLUG)
-        comps = self.model.get_value(iter, COLUMN_COMPS)
-        key = self.model.get_value(iter, COLUMN_KEY)
+        icon = self.model.get_value(iter, self.COLUMN_LOGO)
+        distro = self.model.get_value(iter, self.COLUMN_DISTRO)
+        comment = self.model.get_value(iter, self.COLUMN_NAME)
+        package = self.model.get_value(iter, self.COLUMN_SLUG)
+        comps = self.model.get_value(iter, self.COLUMN_COMPS)
+        key = self.model.get_value(iter, self.COLUMN_KEY)
 
         pre_status = self.get_sourcelist_status(url)
 
@@ -631,9 +627,9 @@ class SourcesView(gtk.TreeView):
             result = proxy.set_entry(url, distro, comps, comment, enable)
 
         if str(result) == 'enabled':
-            self.model.set(iter, COLUMN_ENABLED, True)
+            self.model.set(iter, self.COLUMN_ENABLED, True)
         else:
-            self.model.set(iter, COLUMN_ENABLED, False)
+            self.model.set(iter, self.COLUMN_ENABLED, False)
 
         if pre_status != enable:
             self.emit('sourcechanged')
@@ -689,14 +685,14 @@ class SourceDetail(gtk.VBox):
         if description:
             self.description.set_text(description)
 
-class ThirdSoft(TweakModule):
-    __title__  = _('Third-Party Software Sources')
+class SourceCenter(TweakModule):
+    __title__  = _('Source Center')
     __desc__ = _('After every release of Ubuntu there comes a feature freeze.\nThis means only applications with bug-fixes get into the repository.\nBy using third-party DEB repositories, you can always keep up-to-date with the latest version.\nAfter adding these repositories, locate and install them using Add/Remove.')
     __icon__ = 'software-properties'
     __category__ = 'application'
 
     def __init__(self):
-        TweakModule.__init__(self, 'thirdsoft.ui')
+        TweakModule.__init__(self, 'sourcecenter.ui')
 
         self.cateview = CategoryView(os.path.join(SOURCE_ROOT, 'cates.json'))
         self.cate_selection = self.cateview.get_selection()
@@ -760,10 +756,16 @@ class ThirdSoft(TweakModule):
 
     def on_category_changed(self, widget, data = None):
         model, iter = widget.get_selected()
+        cateview = widget.get_tree_view()
 
         if iter:
-            #TODO
-            pass
+            if model.get_path(iter)[0] != 0:
+                self.sourceview.filter = model.get_value(iter, cateview.CATE_ID)
+            else:
+                self.sourceview.filter = None
+
+            self.sourceview.clear_model()
+            self.sourceview.update_model()
 
     def value_changed(self, client, id, entry, data):
         global UNCONVERT
@@ -792,9 +794,9 @@ class ThirdSoft(TweakModule):
         model, iter = widget.get_selected()
         if iter is None:
             return
-        home = model.get_value(iter, COLUMN_HOME)
-        url = model.get_value(iter, COLUMN_URL)
-        description = model.get_value(iter, COLUMN_COMMENT)
+        home = model.get_value(iter, self.sourceview.COLUMN_HOME)
+        url = model.get_value(iter, self.sourceview.COLUMN_URL)
+        description = model.get_value(iter, self.sourceview.COLUMN_COMMENT)
 
         self.sourcedetail.set_details(home, url, description)
 

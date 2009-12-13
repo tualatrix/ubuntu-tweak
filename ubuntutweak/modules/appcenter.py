@@ -316,11 +316,8 @@ class AppView(gtk.TreeView):
             except KeyError:
                 continue
 
-            if self.filter == None:
+            if self.filter == None or self.filter == category:
                 do_append(is_installed, pixbuf, pkgname, appname, desc, category)
-            else:
-                if self.filter == category:
-                    do_append(is_installed, pixbuf, pkgname, appname, desc, category)
 
     def on_install_toggled(self, cell, path):
         def do_app_changed(model, iter, appname, desc):

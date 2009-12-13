@@ -21,7 +21,7 @@
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.widgets import GconfCheckButton
 from ubuntutweak.widgets.dialogs import InfoDialog
-from thirdsoft import UpdateView, refresh_source, UpdateCacheDialog
+from sourcecenter import UpdateView, refresh_source, UpdateCacheDialog
 
 from ubuntutweak.common.package import package_worker
 
@@ -53,7 +53,7 @@ class UpdateManager(TweakModule):
 
         new_updates = list(package_worker.get_update_package())
         if new_updates:
-            self.emit('update', 'thirdsoft', 'update_thirdparty')
+            self.emit('update', 'sourcecenter', 'update_thirdparty')
             self.updateview.get_model().clear()
             self.updateview.update_updates(new_updates)
         else:
