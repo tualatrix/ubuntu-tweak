@@ -25,12 +25,14 @@ import gettext
 import gobject
 import pango
 
+from urlparse import urljoin
 from ubuntutweak.conf import settings
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.widgets.dialogs import ErrorDialog, InfoDialog, QuestionDialog
 from ubuntutweak.widgets.dialogs import ProcessDialog
 from ubuntutweak.utils import icon
 from ubuntutweak.utils.parser import Parser
+from ubuntutweak.network import URL_PREFIX
 from ubuntutweak.network.downloadmanager import DownloadDialog
 
 #TODO old stuff
@@ -38,8 +40,8 @@ from ubuntutweak.common.consts import *
 from ubuntutweak.common.package import package_worker, PackageInfo
 
 APPCENTER_ROOT = os.path.join(settings.CONFIG_ROOT, 'appcenter')
-APP_VERSION_URL = 'http://127.0.0.1:8000/app_version/'
-APP_URL = 'http://127.0.0.1:8000/static/appcenter.tar.gz'
+APP_VERSION_URL = urljoin(URL_PREFIX, '/app_version/')
+APP_URL = urljoin(URL_PREFIX, '/static/appcenter.tar.gz')
 
 if not os.path.exists(APPCENTER_ROOT):
     os.mkdir(APPCENTER_ROOT)
@@ -382,13 +384,16 @@ def check_update_function(version_url):
     local_timestamp = os.path.join(APPCENTER_ROOT, 'timestamp')
 
     remote_version = urllib.urlopen(version_url).read()
-    if os.path.exists(local_timestamp):
-        local_version = open(local_timestamp).read().split('.')[0].split('-')[-1]
-    else:
-        local_version = '0'
+    if remote_version.isdigit():
+        if os.path.exists(local_timestamp):
+            local_version = open(local_timestamp).read().split('.')[0].split('-')[-1]
+        else:
+            local_version = '0'
 
-    if remote_version > local_version:
-        return True
+        if remote_version > local_version:
+            return True
+        else:
+            return False
     else:
         return False
 

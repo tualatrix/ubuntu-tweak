@@ -30,12 +30,14 @@ import apt_pkg
 import webbrowser
 import urllib
 
+from urlparse import urljoin
 from ubuntutweak.conf import settings
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.policykit import PolkitButton, proxy
 from ubuntutweak.widgets import ListPack, GconfCheckButton
 from ubuntutweak.widgets.dialogs import *
 from ubuntutweak.utils.parser import Parser
+from ubuntutweak.network import URL_PREFIX
 from ubuntutweak.backends.daemon import PATH
 from aptsources.sourceslist import SourceEntry, SourcesList
 from appcenter import AppView, CategoryView
@@ -92,20 +94,23 @@ BUILTIN_APPS.extend(APPS.keys())
 ) = range(4)
 
 SOURCE_ROOT = os.path.join(settings.CONFIG_ROOT, 'sources')
-SOURCE_VERSION_URL = 'http://127.0.0.1:8000/sources_version/'
-SOURCE_URL = 'http://127.0.0.1:8000/static/sources.tar.gz'
+SOURCE_VERSION_URL = urljoin(URL_PREFIX, '/sources_version/')
+SOURCE_URL = urljoin(URL_PREFIX, '/static/sources.tar.gz')
 
 def check_update_function(version_url):
     local_timestamp = os.path.join(SOURCE_ROOT, 'timestamp')
 
     remote_version = urllib.urlopen(version_url).read()
-    if os.path.exists(local_timestamp):
-        local_version = open(local_timestamp).read().split('.')[0].split('-')[-1]
-    else:
-        local_version = '0'
+    if remote_version.isdigit():
+        if os.path.exists(local_timestamp):
+            local_version = open(local_timestamp).read().split('.')[0].split('-')[-1]
+        else:
+            local_version = '0'
 
-    if remote_version > local_version:
-        return True
+        if remote_version > local_version:
+            return True
+        else:
+            return False
     else:
         return False
 
