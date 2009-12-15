@@ -433,13 +433,13 @@ class SourceEditor(TweakModule):
     def on_refresh_button_clicked(self, widget):
         refresh_source(widget.get_toplevel())
 
-        self.emit('update', 'sourcecenter', 'update_thirdparty')
+        self.notify_sourcecenter()
 
     def update_sourceslist(self):
         self.textview.update_content()
         self.redo_button.set_sensitive(False)
         self.save_button.set_sensitive(False)
-        self.emit('call', 'mainwindow', 'get_notify', {})
+        self.notify_mainwindow()
 
     def on_submit_button_clicked(self, widget):
         dialog = SubmitDialog(widget.get_toplevel())
@@ -511,8 +511,8 @@ class SourceEditor(TweakModule):
             self.save_button.set_sensitive(False)
             self.redo_button.set_sensitive(False)
             self.refresh_button.set_sensitive(True)
-            self.emit('call', 'mainwindow', 'get_notify', {})
-            self.emit('update', 'sourcecenter', 'update_thirdparty')
+            self.notify_mainwindow()
+            self.notify_sourcecenter()
 
     def on_redo_button_clicked(self, widget):
         dialog = QuestionDialog(_('The current content will be lost after reloading!\nDo you wish to continue?'))
@@ -521,7 +521,7 @@ class SourceEditor(TweakModule):
             self.save_button.set_sensitive(False)
             self.redo_button.set_sensitive(False)
 
-        self.emit('call', 'mainwindow', 'get_notify', {})
+        self.notify_mainwindow()
         dialog.destroy()
 
     def on_delete_button_clicked(self, widget):
@@ -540,8 +540,14 @@ class SourceEditor(TweakModule):
 
                 iter = model.get_iter(i-1)
                 self.source_combo.set_active_iter(iter)
-            self.emit('call', 'mainwindow', 'get_notify', {})
-            self.emit('update', 'sourcecenter', 'update_thirdparty')
+            self.notify_mainwindow()
+            self.notify_sourcecenter()
+
+    def notify_sourcecenter(self):
+        self.emit('call', 'ubuntutweak.modules.sourcecenter', 'update_thirdparty', {})
+
+    def notify_mainwindow(self):
+        self.emit('call', 'mainwindow', 'get_notify', {})
 
     def on_polkit_action(self, widget, action):
         if action:

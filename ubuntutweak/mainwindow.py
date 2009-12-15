@@ -459,6 +459,9 @@ class MainWindow(gtk.Window):
         # FIXME: Need to combin with page update
         if target == 'mainwindow':
             getattr(self, action)(**params)
+        else:
+            if target in self.modules:
+                getattr(self.modules[target], action)()
 
     def on_child_page_update(self, widget, module, action):
         # FIXME: If the module hasn't load yet! 
