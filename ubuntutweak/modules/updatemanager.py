@@ -53,7 +53,7 @@ class UpdateManager(TweakModule):
 
         new_updates = list(package_worker.get_update_package())
         if new_updates:
-            self.emit('update', 'sourcecenter', 'update_thirdparty')
+            self.emit('call', 'ubuntutweak.modules.sourcecenter', 'update_thirdparty', {})
             self.updateview.get_model().clear()
             self.updateview.update_updates(new_updates)
         else:
