@@ -40,21 +40,20 @@ from ubuntutweak.utils.parser import Parser
 from ubuntutweak.network import URL_PREFIX
 from ubuntutweak.backends.daemon import PATH
 from aptsources.sourceslist import SourceEntry, SourcesList
-from appcenter import AppView, CategoryView
+from appcenter import AppView, CategoryView, AppParser
 from appcenter import CheckUpdateDialog, FetchingDialog
 
 #TODO
 from ubuntutweak.common.config import Config, TweakSettings
 from ubuntutweak.common.consts import *
-from ubuntutweak.common.sourcedata import SOURCES_LIST, SOURCES_DATA, SOURCES_DEPENDENCIES, SOURCES_CONFLICTS
-from ubuntutweak.common.appdata import APP_DICT, APPS
-from ubuntutweak.common.appdata import get_app_logo, get_app_describ
-from ubuntutweak.common.appdata import get_source_logo, get_source_describ
+#FIXME
+from ubuntutweak.common.sourcedata import SOURCES_DATA, SOURCES_DEPENDENCIES, SOURCES_CONFLICTS
 from ubuntutweak.common.factory import WidgetFactory
 from ubuntutweak.common.package import package_worker, PackageInfo
 from ubuntutweak.common.notify import notify
 from ubuntutweak.common.misc import URLLister
 
+app_parser = AppParser()
 config = Config()
 PPA_MIRROR = []
 UNCONVERT = False
@@ -62,9 +61,6 @@ LAUNCHPAD_STR = 'ppa.launchpad.net'
 UBUNTU_CN_STR = 'archive.ubuntu.org.cn/ubuntu-cn'
 UBUNTU_CN_URL = 'http://archive.ubuntu.org.cn/ubuntu-cn/'
 #UBUNTU_CN_URL = 'http://127.0.0.1:8000'
-
-BUILTIN_APPS = APP_DICT.keys()
-BUILTIN_APPS.extend(APPS.keys())
 
 SOURCE_ROOT = os.path.join(settings.CONFIG_ROOT, 'sourcecenter')
 SOURCE_VERSION_URL = urljoin(URL_PREFIX, '/sources_version/')
@@ -93,7 +89,7 @@ def refresh_source(parent):
 
     new_pkg = []
     for pkg in package_worker.get_new_package():
-        if pkg in BUILTIN_APPS:
+        if pkg in app_parser:
             new_pkg.append(pkg)
 
     new_updates = list(package_worker.get_update_package())
@@ -191,7 +187,7 @@ class UpdateView(AppView):
 
         self.set_headers_visible(False)
 
-    def update_model(self, apps, cates=None):
+    def update_model(self, apps):
         model = self.get_model()
 
         model.append((None,
@@ -203,7 +199,7 @@ class UpdateView(AppView):
                         None,
                         None))
 
-        super(UpdateView, self).update_model(apps, cates)
+        super(UpdateView, self).update_model(apps)
 
     def update_updates(self, pkgs):
         '''apps is a list to iter pkgname,
@@ -224,17 +220,17 @@ class UpdateView(AppView):
             apps = []
             updates = []
             for pkg in pkgs:
-                if pkg in BUILTIN_APPS:
+                if pkg in app_parser:
                     apps.append(pkg)
                 else:
                     updates.append(pkg)
 
             for pkgname in apps:
-                pixbuf = get_app_logo(pkgname)
+                pixbuf = self.get_app_logo(pkgname)
 
                 package = PackageInfo(pkgname)
                 appname = package.get_name()
-                desc = get_app_describ(pkgname)
+                desc = app_parser.get_summary(pkgname)
 
                 self.append_app(False,
                         pixbuf,
