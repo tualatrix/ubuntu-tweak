@@ -696,7 +696,7 @@ class SourceCenter(TweakModule):
         self.left_sw.add(self.cateview)
 
         self.sourceview = SourcesView()
-        self.sourceview.connect('sourcechanged', self.colleague_changed)
+        self.sourceview.connect('sourcechanged', self.on_source_changed)
         self.sourceview.selection.connect('changed', self.on_selection_changed)
         self.sourceview.set_sensitive(False)
         self.sourceview.set_rules_hint(True)
@@ -822,12 +822,12 @@ class SourceCenter(TweakModule):
         else:
             AuthenticateFailDialog().launch()
 
-    def colleague_changed(self, widget):
-        self.emit('update', 'sourceeditor', 'update_source_combo')
+    def on_source_changed(self, widget):
+        self.emit('call', 'ubuntutweak.modules.sourceeditor', 'update_source_combo', {})
     
     def on_refresh_button_clicked(self, widget):
         if refresh_source(widget.get_toplevel()):
-            self.emit('update', 'installer', 'normal_update')
+            self.emit('call', 'ubuntutweak.modules.appcenter', 'normal_update', {})
 
     def on_source_data_downloaded(self, widget):
         file = widget.get_downloaded_file()
