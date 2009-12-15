@@ -450,23 +450,16 @@ class MainWindow(gtk.Window):
 
         page.show_all()
         if isinstance(page, TweakModule):
-            page.connect('update', self.on_child_page_update)
             page.connect('call', self.on_child_page_call)
         self.modules[page.__module__] = page
         self.notebook.append_page(page)
 
     def on_child_page_call(self, widget, target, action, params):
-        # FIXME: Need to combin with page update
         if target == 'mainwindow':
             getattr(self, action)(**params)
         else:
             if target in self.modules:
                 getattr(self.modules[target], action)()
-
-    def on_child_page_update(self, widget, module, action):
-        # FIXME: If the module hasn't load yet! 
-        if module in self.modules:
-            getattr(self.modules[module], action)()
 
     def click_website(self, dialog, link, data = None):
         webbrowser.open(link)

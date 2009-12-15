@@ -101,8 +101,9 @@ class TweakModule(gtk.VBox):
     __utmodule__ = ''
     __desktop__ = ''
 
+    #update use internal, and call use between modules
     __gsignals__ = {
-            'update': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_STRING, gobject.TYPE_STRING)),
+            'update': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_STRING,)),
             'call': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_STRING, gobject.TYPE_STRING, gobject.TYPE_PYOBJECT)),
     }
 
