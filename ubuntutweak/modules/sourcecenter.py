@@ -124,7 +124,6 @@ def refresh_source(parent):
         to_rm = updateview.to_rm
         to_add = updateview.to_add
 
-        #TODO Update update manager
         if res == gtk.RESPONSE_YES and to_add:
             package_worker.perform_action(parent, to_add, to_rm)
 
@@ -239,7 +238,6 @@ class UpdateView(AppView):
                         desc,
                         0,
                         'update')
-                self.to_add.append(pkgname)
 
             for pkgname in updates:
                 package = package_worker.get_cache()[pkgname]
@@ -828,6 +826,7 @@ class SourceCenter(TweakModule):
     def on_refresh_button_clicked(self, widget):
         if refresh_source(widget.get_toplevel()):
             self.emit('call', 'ubuntutweak.modules.appcenter', 'normal_update', {})
+            self.emit('call', 'ubuntutweak.modules.updatemanager', 'update_list', {})
 
     def on_source_data_downloaded(self, widget):
         file = widget.get_downloaded_file()

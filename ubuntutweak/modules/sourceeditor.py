@@ -545,6 +545,7 @@ class SourceEditor(TweakModule):
 
     def notify_sourcecenter(self):
         self.emit('call', 'ubuntutweak.modules.sourcecenter', 'update_thirdparty', {})
+        self.emit('call', 'ubuntutweak.modules.updatemanager', 'update_list', {})
 
     def notify_mainwindow(self):
         self.emit('call', 'mainwindow', 'get_notify', {})

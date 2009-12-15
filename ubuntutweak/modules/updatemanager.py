@@ -35,8 +35,8 @@ class UpdateManager(TweakModule):
         TweakModule.__init__(self, 'updatemanager.ui')
 
         self.updateview = UpdateView()
-        self.updateview.update_updates(list(package_worker.get_update_package()))
         self.updateview.connect('changed', self.on_update_status_changed)
+        self.update_list()
         self.sw1.add(self.updateview)
 
         button = GconfCheckButton(label=_('Enable the auto launch of System Update Manager'), 
@@ -45,6 +45,11 @@ class UpdateManager(TweakModule):
 
     def reparent(self):
         self.main_vbox.reparent(self.inner_vbox)
+
+    def update_list(self):
+        package_worker.update_apt_cache(init=True)
+        self.updateview.get_model().clear()
+        self.updateview.update_updates(list(package_worker.get_update_package()))
 
     def on_refresh_button_clicked(self, widget):
         UpdateCacheDialog(widget.get_toplevel()).run()

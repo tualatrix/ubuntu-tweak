@@ -253,7 +253,6 @@ class AppView(gtk.TreeView):
 
     def append_update(self, status, pkgname, summary):
         model = self.get_model()
-        self.to_add.append(pkgname)
 
         icontheme = gtk.icon_theme_get_default()
         for icon_name in ['application-x-deb', 'package-x-generic', 'package']:
@@ -524,6 +523,8 @@ class AppCenter(TweakModule):
             InfoDialog(_('Update Successful!')).launch()
         else:
             ErrorDialog(_('Update Failed!')).launch()
+
+        self.emit('call', 'ubuntutweak.modules.updatemanager', 'normal_update', {})
 
         self.appview.to_add = []
         self.appview.to_rm = []
