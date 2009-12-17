@@ -52,6 +52,8 @@ from ubuntutweak.common.factory import WidgetFactory
 from ubuntutweak.common.package import package_worker, PackageInfo
 from ubuntutweak.common.notify import notify
 from ubuntutweak.common.misc import URLLister
+from ubuntutweak.common.settings import BoolSetting
+
 
 app_parser = AppParser()
 config = Config()
@@ -61,6 +63,7 @@ LAUNCHPAD_STR = 'ppa.launchpad.net'
 UBUNTU_CN_STR = 'archive.ubuntu.org.cn/ubuntu-cn'
 UBUNTU_CN_URL = 'http://archive.ubuntu.org.cn/ubuntu-cn/'
 #UBUNTU_CN_URL = 'http://127.0.0.1:8000'
+update_setting = BoolSetting('/apps/ubuntu-tweak/sourcecenter_update')
 
 SOURCE_ROOT = os.path.join(settings.CONFIG_ROOT, 'sourcecenter')
 SOURCE_VERSION_URL = urljoin(URL_PREFIX, '/sources_version/')
@@ -77,6 +80,7 @@ def check_update_function(version_url):
             local_version = '0'
 
         if remote_version > local_version:
+            update_setting.set_bool(True)
             return True
         else:
             return False
@@ -711,7 +715,6 @@ class SourceCenter(TweakModule):
         self.hbox2.pack_end(un_lock, False, False, 0)
         self.hbox2.reorder_child(un_lock, 0)
 
-
         #FIXME China mirror hack
         if os.getenv('LANG').startswith('zh_CN'):
             if TweakSettings.get_use_mirror_ppa():
@@ -721,22 +724,22 @@ class SourceCenter(TweakModule):
 
         config.get_client().notify_add('/apps/ubuntu-tweak/use_mirror_ppa', self.value_changed)
 
-        gobject.idle_add(self.on_idle_check)
+        update_setting.set_bool(False)
+        update_setting.connect_notify(self.on_have_update)
+        thread.start_new_thread(self.check_update, ())
 
-    def on_idle_check(self):
-        gtk.gdk.threads_enter()
-        if self.check_update():
-            dialog = QuestionDialog(_('New sources data available, would you like to update?'))
-            response = dialog.run()
-            dialog.destroy()
-
-            if response == gtk.RESPONSE_YES:
-                dialog = FetchingDialog(SOURCE_URL, self.get_toplevel())
-                dialog.connect('destroy', self.on_source_data_downloaded)
-                dialog.run()
+    def on_have_update(self, client, id, entry, data):
+        if entry.get_value().get_bool():
+            if self.check_update():
+                dialog = QuestionDialog(_('New sources data available, would you like to update?'))
+                response = dialog.run()
                 dialog.destroy()
 
-        gtk.gdk.threads_leave()
+                if response == gtk.RESPONSE_YES:
+                    dialog = FetchingDialog(SOURCE_URL, self.get_toplevel())
+                    dialog.connect('destroy', self.on_source_data_downloaded)
+                    dialog.run()
+                    dialog.destroy()
 
     def check_update(self):
         try:

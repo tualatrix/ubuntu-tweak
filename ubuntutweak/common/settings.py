@@ -80,6 +80,9 @@ class Setting(object):
     def unset(self):
         self.client.unset(self.key)
 
+    def connect_notify(self, func):
+        self.__client.notify_add(self.key, func)
+
 class BoolSetting(Setting):
     def __init__(self, key, default = None):
         super(BoolSetting, self).__init__(key, default)

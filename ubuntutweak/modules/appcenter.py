@@ -24,6 +24,7 @@ import urllib2
 import gettext
 import gobject
 import pango
+import thread
 
 from urlparse import urljoin
 from ubuntutweak.conf import settings
@@ -38,10 +39,12 @@ from ubuntutweak.network.downloadmanager import DownloadDialog
 #TODO old stuff
 from ubuntutweak.common.consts import *
 from ubuntutweak.common.package import package_worker, PackageInfo
+from ubuntutweak.common.settings import BoolSetting
 
 APPCENTER_ROOT = os.path.join(settings.CONFIG_ROOT, 'appcenter')
 APP_VERSION_URL = urljoin(URL_PREFIX, '/app_version/')
 APP_URL = urljoin(URL_PREFIX, '/static/appcenter.tar.gz')
+update_setting = BoolSetting('/apps/ubuntu-tweak/appcentert_update')
 
 if not os.path.exists(APPCENTER_ROOT):
     os.mkdir(APPCENTER_ROOT)
@@ -387,6 +390,7 @@ def check_update_function(version_url):
             local_version = '0'
 
         if remote_version > local_version:
+            update_setting.set_bool(True)
             return True
         else:
             return False
@@ -461,15 +465,16 @@ class AppCenter(TweakModule):
         self.right_sw.add(self.appview)
 
         self.show_all()
+        update_setting.set_bool(False)
+        update_setting.connect_notify(self.on_have_update)
 
-        gobject.idle_add(self.on_idle_check)
+        thread.start_new_thread(self.check_update, ())
 
     def reparent(self):
         self.main_vbox.reparent(self.inner_vbox)
 
-    def on_idle_check(self):
-        gtk.gdk.threads_enter()
-        if self.check_update():
+    def on_have_update(self, client, id, entry, data):
+        if entry.get_value().get_bool():
             dialog = QuestionDialog(_('New application data available, would you like to update?'))
             response = dialog.run()
             dialog.destroy()
@@ -479,8 +484,6 @@ class AppCenter(TweakModule):
                 dialog.connect('destroy', self.on_app_data_downloaded)
                 dialog.run()
                 dialog.destroy()
-
-        gtk.gdk.threads_leave()
 
     def check_update(self):
         try:
