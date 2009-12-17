@@ -85,8 +85,12 @@ class ModuleLoader:
             return True
 
     def _get_desktop(self):
-        if os.popen('pgrep gnome-session').read() != '':
+        if os.popen('xlsclients | grep -i gnome-session').read() != '':
             return 'gnome'
+        elif os.popen('xprop -root _DT_SAVE_MODE | grep xfce').read() != '':
+            return 'xfce'
+        elif os.environ.get('KDE_FULL_SESSION'):
+            return 'kde'
         else:
             return ''
 
