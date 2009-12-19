@@ -80,7 +80,7 @@ class ModuleLoader:
 
     def is_supported_desktop(self, desktop_name):
         if desktop_name:
-            return desktop_name == self._get_desktop()
+            return self._get_desktop() in desktop_name
         else:
             return True
 
