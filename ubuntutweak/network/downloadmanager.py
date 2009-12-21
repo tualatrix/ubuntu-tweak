@@ -22,6 +22,7 @@ class Downloader(gobject.GObject):
     __gsignals__ = {
       'downloading': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_FLOAT,)),
       'downloaded': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, ()),
+      'error': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, ()),
     }
 
     tempdir = os.path.join(settings.CONFIG_ROOT, 'temp')
@@ -59,10 +60,13 @@ class Downloader(gobject.GObject):
 
     def update_progress(self, blocks, block_size, total_size):
         percentage = float(blocks*block_size)/total_size
-        if percentage < 1:
-            self.emit('downloading', percentage)
-        elif percentage >= 1:
-            self.emit('downloaded')
+        if percentage > 0:
+            if percentage < 1:
+                self.emit('downloading', percentage)
+            elif percentage >= 1:
+                self.emit('downloaded')
+        else:
+            self.emit('error')
 
     def get_downloaded_file(self):
         return self.save_to
@@ -101,6 +105,7 @@ class DownloadDialog(BusyDialog):
 
         self.downloader.connect('downloading', self.on_downloading)
         self.downloader.connect('downloaded', self.on_downloaded)
+        self.downloader.connect('error', self.on_error_happen)
 
         self.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
         self.show_all()
@@ -140,6 +145,12 @@ class DownloadDialog(BusyDialog):
         self.progress_bar.set_fraction(1)
         self.response(gtk.RESPONSE_DELETE_EVENT)
         self.downloaded = True
+
+    def on_error_happen(self, widget):
+        self.progress_bar.set_text(_('Error happened!'))
+        self.progress_bar.set_fraction(1)
+        self.response(gtk.RESPONSE_DELETE_EVENT)
+        self.downloaded = False
 
     def _download_thread(self):
         self.downloader.start(self.url)

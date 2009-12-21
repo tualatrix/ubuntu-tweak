@@ -52,8 +52,7 @@ from ubuntutweak.common.factory import WidgetFactory
 from ubuntutweak.common.package import package_worker, PackageInfo
 from ubuntutweak.common.notify import notify
 from ubuntutweak.common.misc import URLLister
-from ubuntutweak.common.settings import BoolSetting
-
+from ubuntutweak.common.settings import BoolSetting, StringSetting
 
 app_parser = AppParser()
 config = Config()
@@ -64,10 +63,13 @@ UBUNTU_CN_STR = 'archive.ubuntu.org.cn/ubuntu-cn'
 UBUNTU_CN_URL = 'http://archive.ubuntu.org.cn/ubuntu-cn/'
 #UBUNTU_CN_URL = 'http://127.0.0.1:8000'
 update_setting = BoolSetting('/apps/ubuntu-tweak/sourcecenter_update')
+version_setting = StringSetting('/apps/ubuntu-tweak/sourcecenter_version')
 
 SOURCE_ROOT = os.path.join(settings.CONFIG_ROOT, 'sourcecenter')
-SOURCE_VERSION_URL = urljoin(URL_PREFIX, '/sources_version/')
-SOURCE_URL = urljoin(URL_PREFIX, '/static/sourcecenter.tar.gz')
+SOURCE_VERSION_URL = urljoin(URL_PREFIX, '/sourcecenter_version/')
+
+def get_source_data_url():
+    return urljoin(URL_PREFIX, '/static/utdata/sourcecenter-%s.tar.gz' % version_setting.get_string())
 
 def check_update_function(version_url):
     local_timestamp = os.path.join(SOURCE_ROOT, 'timestamp')
@@ -81,6 +83,7 @@ def check_update_function(version_url):
 
         if remote_version > local_version:
             update_setting.set_bool(True)
+            version_setting.set_string(remote_version)
             return True
         else:
             return False
@@ -736,7 +739,7 @@ class SourceCenter(TweakModule):
                 dialog.destroy()
 
                 if response == gtk.RESPONSE_YES:
-                    dialog = FetchingDialog(SOURCE_URL, self.get_toplevel())
+                    dialog = FetchingDialog(get_source_data_url(), self.get_toplevel())
                     dialog.connect('destroy', self.on_source_data_downloaded)
                     dialog.run()
                     dialog.destroy()
@@ -833,10 +836,11 @@ class SourceCenter(TweakModule):
 
     def on_source_data_downloaded(self, widget):
         file = widget.get_downloaded_file()
-        #FIXME
         if widget.downloaded:
             os.system('tar zxf %s -C %s' % (file, settings.CONFIG_ROOT))
             self.update_source_data()
+        else:
+            ErrorDialog(_('Some error happened while downloading the file')).launch()
 
     def update_source_data(self):
         self.cateview.update_model()
@@ -851,7 +855,7 @@ class SourceCenter(TweakModule):
             dialog.run()
             dialog.destroy()
 
-            dialog = FetchingDialog(parent=self.get_toplevel(), url=SOURCE_URL)
+            dialog = FetchingDialog(parent=self.get_toplevel(), url=get_source_data_url())
             dialog.connect('destroy', self.on_source_data_downloaded)
             dialog.run()
             dialog.destroy()

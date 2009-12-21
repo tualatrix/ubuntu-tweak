@@ -39,12 +39,15 @@ from ubuntutweak.network.downloadmanager import DownloadDialog
 #TODO old stuff
 from ubuntutweak.common.consts import *
 from ubuntutweak.common.package import package_worker, PackageInfo
-from ubuntutweak.common.settings import BoolSetting
+from ubuntutweak.common.settings import BoolSetting, StringSetting
 
 APPCENTER_ROOT = os.path.join(settings.CONFIG_ROOT, 'appcenter')
-APP_VERSION_URL = urljoin(URL_PREFIX, '/app_version/')
-APP_URL = urljoin(URL_PREFIX, '/static/appcenter.tar.gz')
-update_setting = BoolSetting('/apps/ubuntu-tweak/appcentert_update')
+APP_VERSION_URL = urljoin(URL_PREFIX, '/appcenter_version/')
+update_setting = BoolSetting('/apps/ubuntu-tweak/appcenter_update')
+version_setting = StringSetting('/apps/ubuntu-tweak/appcenter_version')
+
+def get_app_data_url():
+    return urljoin(URL_PREFIX, '/static/utdata/appcenter-%s.tar.gz' % version_setting.get_string())
 
 if not os.path.exists(APPCENTER_ROOT):
     os.mkdir(APPCENTER_ROOT)
@@ -391,6 +394,7 @@ def check_update_function(version_url):
 
         if remote_version > local_version:
             update_setting.set_bool(True)
+            version_setting.set_string(remote_version)
             return True
         else:
             return False
@@ -480,7 +484,7 @@ class AppCenter(TweakModule):
             dialog.destroy()
 
             if response == gtk.RESPONSE_YES:
-                dialog = FetchingDialog(APP_URL, self.get_toplevel())
+                dialog = FetchingDialog(get_app_data_url(), self.get_toplevel())
                 dialog.connect('destroy', self.on_app_data_downloaded)
                 dialog.run()
                 dialog.destroy()
@@ -543,7 +547,7 @@ class AppCenter(TweakModule):
             dialog.run()
             dialog.destroy()
 
-            dialog = FetchingDialog(APP_URL, self.get_toplevel())
+            dialog = FetchingDialog(get_app_data_url(), self.get_toplevel())
             dialog.connect('destroy', self.on_app_data_downloaded)
             dialog.run()
             dialog.destroy()
@@ -558,6 +562,8 @@ class AppCenter(TweakModule):
         if widget.downloaded:
             os.system('tar zxf %s -C %s' % (file, settings.CONFIG_ROOT))
             self.update_app_data()
+        else:
+            ErrorDialog(_('Some error happened while downloading the file')).launch()
 
     def update_app_data(self):
         self.cateview.update_model()
