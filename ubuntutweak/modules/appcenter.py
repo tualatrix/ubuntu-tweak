@@ -38,6 +38,7 @@ from ubuntutweak.network.downloadmanager import DownloadDialog
 
 #TODO old stuff
 from ubuntutweak.common.consts import *
+from ubuntutweak.common.utils import set_label_for_stock_button
 from ubuntutweak.common.package import package_worker, PackageInfo
 from ubuntutweak.common.settings import BoolSetting, StringSetting
 
@@ -452,6 +453,8 @@ class AppCenter(TweakModule):
     def __init__(self):
         TweakModule.__init__(self, 'appcenter.ui')
 
+        set_label_for_stock_button(self.sync_button, _('_Sync'))
+
         self.to_add = []
         self.to_rm = []
 
@@ -467,6 +470,7 @@ class AppCenter(TweakModule):
         self.appview.sort_model()
         self.appview.connect('changed', self.on_app_status_changed)
         self.right_sw.add(self.appview)
+
 
         self.show_all()
         update_setting.set_bool(False)
@@ -538,7 +542,7 @@ class AppCenter(TweakModule):
         self.appview.clear_model()
         self.appview.update_model()
 
-    def on_refresh_button_clicked(self, widget):
+    def on_sync_button_clicked(self, widget):
         dialog = CheckUpdateDialog(widget.get_toplevel(), APP_VERSION_URL)
         dialog.run()
         dialog.destroy()

@@ -45,6 +45,7 @@ from appcenter import CheckUpdateDialog, FetchingDialog
 
 #TODO
 from ubuntutweak.common.config import Config, TweakSettings
+from ubuntutweak.common.utils import set_label_for_stock_button
 from ubuntutweak.common.consts import *
 #FIXME
 from ubuntutweak.common.sourcedata import SOURCES_DATA, SOURCES_DEPENDENCIES, SOURCES_CONFLICTS
@@ -695,6 +696,8 @@ class SourceCenter(TweakModule):
     def __init__(self):
         TweakModule.__init__(self, 'sourcecenter.ui')
 
+        set_label_for_stock_button(self.sync_button, _('_Sync'))
+
         self.cateview = CategoryView(os.path.join(SOURCE_ROOT, 'cates.json'))
         self.cate_selection = self.cateview.get_selection()
         self.cate_selection.connect('changed', self.on_category_changed)
@@ -802,7 +805,7 @@ class SourceCenter(TweakModule):
 
     def on_polkit_action(self, widget, action):
         if action:
-            self.refresh_button.set_sensitive(True)
+            self.sync_button.set_sensitive(True)
 
             if proxy.get_proxy():
                 if os.getenv('LANG').startswith('zh_CN'):
@@ -829,7 +832,7 @@ class SourceCenter(TweakModule):
     def on_source_changed(self, widget):
         self.emit('call', 'ubuntutweak.modules.sourceeditor', 'update_source_combo', {})
     
-    def on_refresh_button_clicked(self, widget):
+    def on_sync_button_clicked(self, widget):
         if refresh_source(widget.get_toplevel()):
             self.emit('call', 'ubuntutweak.modules.appcenter', 'normal_update', {})
             self.emit('call', 'ubuntutweak.modules.updatemanager', 'update_list', {})
