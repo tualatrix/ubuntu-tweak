@@ -60,7 +60,7 @@ class Downloader(gobject.GObject):
 
     def update_progress(self, blocks, block_size, total_size):
         percentage = float(blocks*block_size)/total_size
-        if percentage > 0:
+        if percentage >= 0:
             if percentage < 1:
                 self.emit('downloading', percentage)
             elif percentage >= 1:

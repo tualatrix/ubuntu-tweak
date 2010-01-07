@@ -37,7 +37,7 @@ from ubuntutweak.policykit import PolkitButton, proxy
 from ubuntutweak.widgets import ListPack, GconfCheckButton
 from ubuntutweak.widgets.dialogs import *
 from ubuntutweak.utils.parser import Parser
-from ubuntutweak.network import URL_PREFIX
+from ubuntutweak.network import get_utdata_version_url, get_utdata_download_url
 from ubuntutweak.backends.daemon import PATH
 from aptsources.sourceslist import SourceEntry, SourcesList
 from appcenter import AppView, CategoryView, AppParser
@@ -67,10 +67,10 @@ update_setting = BoolSetting('/apps/ubuntu-tweak/sourcecenter_update')
 version_setting = StringSetting('/apps/ubuntu-tweak/sourcecenter_version')
 
 SOURCE_ROOT = os.path.join(settings.CONFIG_ROOT, 'sourcecenter')
-SOURCE_VERSION_URL = urljoin(URL_PREFIX, '/sourcecenter_version/')
+SOURCE_VERSION_URL = get_utdata_version_url('/sourcecenter_version/')
 
 def get_source_data_url():
-    return urljoin(URL_PREFIX, '/static/utdata/sourcecenter-%s.tar.gz' % version_setting.get_string())
+    return get_utdata_download_url('/static/utdata/sourcecenter-%s.tar.gz' % version_setting.get_string())
 
 def check_update_function(version_url):
     local_timestamp = os.path.join(SOURCE_ROOT, 'timestamp')

@@ -33,7 +33,7 @@ from ubuntutweak.widgets.dialogs import ErrorDialog, InfoDialog, QuestionDialog
 from ubuntutweak.widgets.dialogs import ProcessDialog
 from ubuntutweak.utils import icon
 from ubuntutweak.utils.parser import Parser
-from ubuntutweak.network import URL_PREFIX
+from ubuntutweak.network import get_utdata_version_url, get_utdata_download_url
 from ubuntutweak.network.downloadmanager import DownloadDialog
 
 #TODO old stuff
@@ -43,12 +43,12 @@ from ubuntutweak.common.package import package_worker, PackageInfo
 from ubuntutweak.common.settings import BoolSetting, StringSetting
 
 APPCENTER_ROOT = os.path.join(settings.CONFIG_ROOT, 'appcenter')
-APP_VERSION_URL = urljoin(URL_PREFIX, '/appcenter_version/')
+APP_VERSION_URL = get_utdata_version_url('/appcenter_version/')
 update_setting = BoolSetting('/apps/ubuntu-tweak/appcenter_update')
 version_setting = StringSetting('/apps/ubuntu-tweak/appcenter_version')
 
 def get_app_data_url():
-    return urljoin(URL_PREFIX, '/static/utdata/appcenter-%s.tar.gz' % version_setting.get_string())
+    return get_utdata_download_url('/static/utdata/appcenter-%s.tar.gz' % version_setting.get_string())
 
 if not os.path.exists(APPCENTER_ROOT):
     os.mkdir(APPCENTER_ROOT)
