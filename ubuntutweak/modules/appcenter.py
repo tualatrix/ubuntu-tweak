@@ -447,7 +447,7 @@ class AppCenter(TweakModule):
     __title__ = _('Application Center')
     __desc__ = _('A simple but more effecient method for finding and installing popular packages than the default Add/Remove.')
     __icon__ = 'gnome-app-install'
-    __url__ = 'http://ubuntu-tweak.com'
+    __url__ = 'http://ubuntu-tweak.com/app/'
     __category__ = 'application'
 
     def __init__(self):

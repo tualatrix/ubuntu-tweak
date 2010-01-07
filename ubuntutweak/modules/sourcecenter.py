@@ -691,6 +691,7 @@ class SourceCenter(TweakModule):
     __title__  = _('Source Center')
     __desc__ = _('After every release of Ubuntu there comes a feature freeze.\nThis means only applications with bug-fixes get into the repository.\nBy using third-party DEB repositories, you can always keep up-to-date with the latest version.\nAfter adding these repositories, locate and install them using Add/Remove.')
     __icon__ = 'software-properties'
+    __url__ = 'http://ubuntu-tweak.com/source/'
     __category__ = 'application'
 
     def __init__(self):
