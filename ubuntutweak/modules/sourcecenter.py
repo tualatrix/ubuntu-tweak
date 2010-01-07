@@ -832,9 +832,9 @@ class SourceCenter(TweakModule):
     def on_source_changed(self, widget):
         self.emit('call', 'ubuntutweak.modules.sourceeditor', 'update_source_combo', {})
     
-    def on_sync_button_clicked(self, widget):
+    def on_update_button_clicked(self, widget):
         if refresh_source(widget.get_toplevel()):
-            self.emit('call', 'ubuntutweak.modules.appcenter', 'normal_update', {})
+            self.emit('call', 'ubuntutweak.modules.appcenter', 'update_app_data', {})
             self.emit('call', 'ubuntutweak.modules.updatemanager', 'update_list', {})
 
     def on_source_data_downloaded(self, widget):
@@ -842,26 +842,26 @@ class SourceCenter(TweakModule):
         if widget.downloaded:
             os.system('tar zxf %s -C %s' % (file, settings.CONFIG_ROOT))
             self.update_source_data()
-        else:
+        elif widget.error:
             ErrorDialog(_('Some error happened while downloading the file')).launch()
 
     def update_source_data(self):
         self.cateview.update_model()
         self.sourceview.update_model()
 
-    def on_update_button_clicked(self, widget):
+    def on_sync_button_clicked(self, widget):
         dialog = CheckSourceDialog(widget.get_toplevel(), SOURCE_VERSION_URL)
         dialog.run()
         dialog.destroy()
         if dialog.status == True:
             dialog = QuestionDialog(_("Update available, Do you want to update?"))
-            dialog.run()
+            response = dialog.run()
             dialog.destroy()
-
-            dialog = FetchingDialog(parent=self.get_toplevel(), url=get_source_data_url())
-            dialog.connect('destroy', self.on_source_data_downloaded)
-            dialog.run()
-            dialog.destroy()
+            if response == gtk.RESPONSE_YES:
+                dialog = FetchingDialog(parent=self.get_toplevel(), url=get_source_data_url())
+                dialog.connect('destroy', self.on_source_data_downloaded)
+                dialog.run()
+                dialog.destroy()
         elif dialog.error == True:
             ErrorDialog(_("Network Error, Please check your network or the remote server going down")).launch()
         else:

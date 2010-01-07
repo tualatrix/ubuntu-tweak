@@ -74,6 +74,7 @@ class Downloader(gobject.GObject):
 class DownloadDialog(BusyDialog):
     time_count = 1
     downloaded = False
+    error = False
 
     def __init__(self, url=None, title=None, parent=None):
         BusyDialog.__init__(self, parent=parent)
@@ -151,6 +152,7 @@ class DownloadDialog(BusyDialog):
         self.progress_bar.set_fraction(1)
         self.response(gtk.RESPONSE_DELETE_EVENT)
         self.downloaded = False
+        self.error = True
 
     def _download_thread(self):
         self.downloader.start(self.url)

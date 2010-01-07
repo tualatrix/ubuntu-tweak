@@ -517,9 +517,6 @@ class AppCenter(TweakModule):
         package_worker.update_apt_cache(True)
         self.update_app_data()
 
-    def normal_update(self):
-        self.update_apt_cache()
-
     def on_apply_button_clicked(self, widget, data = None):
         to_rm = self.appview.to_rm
         to_add = self.appview.to_add
@@ -548,13 +545,13 @@ class AppCenter(TweakModule):
         dialog.destroy()
         if dialog.status == True:
             dialog = QuestionDialog(_("Update available, Do you want to update?"))
-            dialog.run()
+            response = dialog.run()
             dialog.destroy()
-
-            dialog = FetchingDialog(get_app_data_url(), self.get_toplevel())
-            dialog.connect('destroy', self.on_app_data_downloaded)
-            dialog.run()
-            dialog.destroy()
+            if response == gtk.RESPONSE_YES:
+                dialog = FetchingDialog(get_app_data_url(), self.get_toplevel())
+                dialog.connect('destroy', self.on_app_data_downloaded)
+                dialog.run()
+                dialog.destroy()
         elif dialog.error == True:
             ErrorDialog(_("Network Error, Please check your network or the remote server going down")).launch()
         else:
@@ -566,7 +563,7 @@ class AppCenter(TweakModule):
         if widget.downloaded:
             os.system('tar zxf %s -C %s' % (file, settings.CONFIG_ROOT))
             self.update_app_data()
-        else:
+        elif widget.error:
             ErrorDialog(_('Some error happened while downloading the file')).launch()
 
     def update_app_data(self):
