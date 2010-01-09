@@ -29,48 +29,47 @@ import gobject
 import apt_pkg
 import webbrowser
 import urllib
+from gettext import gettext as _
+from aptsources.sourceslist import SourcesList
 
-from urlparse import urljoin
 from ubuntutweak.conf import settings
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.policykit import PolkitButton, proxy
-from ubuntutweak.widgets import ListPack, GconfCheckButton
-from ubuntutweak.widgets.dialogs import *
+from ubuntutweak.widgets import GconfCheckButton
+from ubuntutweak.widgets.dialogs import QuestionDialog, ErrorDialog, InfoDialog
 from ubuntutweak.utils.parser import Parser
 from ubuntutweak.network import utdata
 from ubuntutweak.backends.daemon import PATH
-from aptsources.sourceslist import SourceEntry, SourcesList
 from appcenter import AppView, CategoryView, AppParser
 from appcenter import CheckUpdateDialog, FetchingDialog
 
-#TODO
 from ubuntutweak.common.config import Config, TweakSettings
 from ubuntutweak.common.utils import set_label_for_stock_button
-from ubuntutweak.common.consts import *
-#FIXME
+#TODO
 from ubuntutweak.common.sourcedata import SOURCES_DATA, SOURCES_DEPENDENCIES, SOURCES_CONFLICTS
-from ubuntutweak.common.factory import WidgetFactory
 from ubuntutweak.common.package import PACKAGE_WORKER, PackageInfo
 from ubuntutweak.common.notify import notify
 from ubuntutweak.common.misc import URLLister
 from ubuntutweak.common.settings import BoolSetting, StringSetting
 
-app_parser = AppParser()
-config = Config()
+APP_PARSER = AppParser()
+CONFIG = Config()
 PPA_MIRROR = []
 UNCONVERT = False
 LAUNCHPAD_STR = 'ppa.launchpad.net'
+WARNING_KEY = '/apps/ubuntu-tweak/disable_thidparty_warning'
 UBUNTU_CN_STR = 'archive.ubuntu.org.cn/ubuntu-cn'
 UBUNTU_CN_URL = 'http://archive.ubuntu.org.cn/ubuntu-cn/'
 #UBUNTU_CN_URL = 'http://127.0.0.1:8000'
-update_setting = BoolSetting('/apps/ubuntu-tweak/sourcecenter_update')
-version_setting = StringSetting('/apps/ubuntu-tweak/sourcecenter_version')
+UPDATE_SETTING = BoolSetting('/apps/ubuntu-tweak/sourcecenter_update')
+VERSION_SETTING = StringSetting('/apps/ubuntu-tweak/sourcecenter_version')
 
 SOURCE_ROOT = os.path.join(settings.CONFIG_ROOT, 'sourcecenter')
 SOURCE_VERSION_URL = utdata.get_version_url('/sourcecenter_version/')
 
 def get_source_data_url():
-    return utdata.get_download_url('/static/utdata/sourcecenter-%s.tar.gz' % version_setting.get_string())
+    return utdata.get_download_url('/static/utdata/sourcecenter-%s.tar.gz' %
+                                   VERSION_SETTING.get_string())
 
 def check_update_function(version_url):
     local_timestamp = os.path.join(SOURCE_ROOT, 'timestamp')
@@ -78,13 +77,13 @@ def check_update_function(version_url):
     remote_version = urllib.urlopen(version_url).read()
     if remote_version.isdigit():
         if os.path.exists(local_timestamp):
-            local_version = open(local_timestamp).read().split('.')[0].split('-')[-1]
+            local_version = open(local_timestamp).read().strip()
         else:
             local_version = '0'
 
         if remote_version > local_version:
-            update_setting.set_bool(True)
-            version_setting.set_string(remote_version)
+            UPDATE_SETTING.set_bool(True)
+            VERSION_SETTING.set_string(remote_version)
             return True
         else:
             return False
@@ -97,7 +96,7 @@ def refresh_source(parent):
 
     new_pkg = []
     for pkg in PACKAGE_WORKER.get_new_package():
-        if pkg in app_parser:
+        if pkg in APP_PARSER:
             new_pkg.append(pkg)
 
     new_updates = list(PACKAGE_WORKER.get_update_package())
@@ -112,7 +111,7 @@ def refresh_source(parent):
             updateview.update_updates(new_updates)
 
         dialog = QuestionDialog(_('You can install the new applications by selecting them and choose "Yes".\nOr you can install them at Add/Remove by choose "No".'),
-            title = _('New applications are available to update'))
+                title=_('New applications are available to update'))
 
         vbox = dialog.vbox
         sw = gtk.ScrolledWindow()
@@ -147,7 +146,7 @@ def refresh_source(parent):
         return True
     else:
         dialog = InfoDialog(_("Your system is clean and there's no update yet."),
-            title = _('The software information is up-to-date now'))
+                        title=_('The software information is up-to-date now'))
 
         dialog.launch()
         return False
@@ -202,7 +201,8 @@ class UpdateView(AppView):
                         None,
                         None,
                         None,
-                        '<span size="large" weight="bold">%s</span>' % _('Available New Applications'),
+                        '<span size="large" weight="bold">%s</span>' %
+                        _('Available New Applications'),
                         None,
                         None))
 
@@ -220,14 +220,15 @@ class UpdateView(AppView):
                             None,
                             None,
                             None,
-                            '<span size="large" weight="bold">%s</span>' % _('Available Package Updates'),
+                            '<span size="large" weight="bold">%s</span>' %
+                            _('Available Package Updates'),
                             None,
                             None))
 
             apps = []
             updates = []
             for pkg in pkgs:
-                if pkg in app_parser:
+                if pkg in APP_PARSER:
                     apps.append(pkg)
                 else:
                     updates.append(pkg)
@@ -237,7 +238,7 @@ class UpdateView(AppView):
 
                 package = PackageInfo(pkgname)
                 appname = package.get_name()
-                desc = app_parser.get_summary(pkgname)
+                desc = APP_PARSER.get_summary(pkgname)
 
                 self.append_app(False,
                         pixbuf,
@@ -257,7 +258,8 @@ class UpdateView(AppView):
                             None,
                             None,
                             None,
-                            '<span size="large" weight="bold">%s</span>' % _('No Available Package Updates'),
+                            '<span size="large" weight="bold">%s</span>' %
+                            _('No Available Package Updates'),
                             None,
                             None))
 
@@ -304,8 +306,8 @@ class UpdateCacheDialog:
         self.parent.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
         lock = thread.allocate_lock()
         lock.acquire()
-        t = thread.start_new_thread(self.update_cache,
-                                   (self.parent.window.xid, lock))
+        thread.start_new_thread(self.update_cache,
+                               (self.parent.window.xid, lock))
         while lock.locked():
             while gtk.events_pending():
                 gtk.main_iteration()
@@ -317,19 +319,18 @@ class SourcesView(gtk.TreeView):
     __gsignals__ = {
         'sourcechanged': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, ())
     }
-    (
-        COLUMN_ENABLED,
-        COLUMN_CATE,
-        COLUMN_URL,
-        COLUMN_DISTRO,
-        COLUMN_COMPS,
-        COLUMN_SLUG,
-        COLUMN_LOGO,
-        COLUMN_NAME,
-        COLUMN_COMMENT,
-        COLUMN_DISPLAY,
-        COLUMN_HOME,
-        COLUMN_KEY,
+    (COLUMN_ENABLED,
+     COLUMN_CATE,
+     COLUMN_URL,
+     COLUMN_DISTRO,
+     COLUMN_COMPS,
+     COLUMN_SLUG,
+     COLUMN_LOGO,
+     COLUMN_NAME,
+     COLUMN_COMMENT,
+     COLUMN_DISPLAY,
+     COLUMN_HOME,
+     COLUMN_KEY,
     ) = range(12)
 
     def __init__(self):
@@ -346,7 +347,6 @@ class SourcesView(gtk.TreeView):
         self.selection = self.get_selection()
 
     def get_sourceslist(self):
-        from aptsources.sourceslist import SourcesList
         return SourcesList()
 
     def __create_model(self):
@@ -430,8 +430,8 @@ class SourcesView(gtk.TreeView):
                         self.COLUMN_KEY, key,
                     )
 
-    def get_source_logo(self, file):
-        path = os.path.join(SOURCE_ROOT, file)
+    def get_source_logo(self, file_name):
+        path = os.path.join(SOURCE_ROOT, file_name)
         try:
             pixbuf = gtk.gdk.pixbuf_new_from_file(path)
             if pixbuf.get_width() != 32 or pixbuf.get_height() != 32:
@@ -539,17 +539,18 @@ class SourcesView(gtk.TreeView):
             else:
                 self.do_source_enable(iter, not enabled)
         elif enabled and name in SOURCES_DEPENDENCIES.values():
-            HAVE_REVERSE_DEPENDENCY = False
+            reverse_dependecy = False
             for k, v in SOURCES_DEPENDENCIES.items():
                 if v == name and self.get_source_enabled(k):
                     ErrorDialog(_('You can\'t disable this Source because "%(SOURCE)s" depends on it.\nTo continue you need to disable "%(SOURCE)s" first.') % {'SOURCE': k}).launch()
-                    HAVE_REVERSE_DEPENDENCY = True
+                    reverse_dependecy = True
                     break
-            if HAVE_REVERSE_DEPENDENCY:
+            if reverse_dependecy:
                 self.model.set(iter, self.COLUMN_ENABLED, enabled)
             else:
                 self.do_source_enable(iter, not enabled)
-        elif not enabled and name in SOURCES_CONFLICTS.values() or name in SOURCES_CONFLICTS.keys():
+        elif not enabled and name in SOURCES_CONFLICTS.values() or \
+                name in SOURCES_CONFLICTS.keys():
             key = None
             if name in SOURCES_CONFLICTS.keys():
                 key = SOURCES_CONFLICTS[name]
@@ -624,7 +625,8 @@ class SourcesView(gtk.TreeView):
             distro = distro + '/'
 
         if TweakSettings.get_separated_sources():
-            result = proxy.set_separated_entry(url, distro, comps, comment, enable, package)
+            result = proxy.set_separated_entry(url, distro, comps,
+                                               comment, enable, package)
         else:
             result = proxy.set_entry(url, distro, comps, comment, enable)
 
@@ -637,7 +639,8 @@ class SourcesView(gtk.TreeView):
             self.emit('sourcechanged')
 
         if enable:
-            notify.update(_('New source has been enabled'), _('%s is enabled now, Please click the refresh button to update the application cache.') % comment)
+            notify.update(_('New source has been enabled'),
+                          _('%s is enabled now, Please click the refresh button to update the application cache.') % comment)
             notify.set_icon_from_pixbuf(icon)
             notify.show()
 
@@ -655,7 +658,9 @@ class SourceDetail(gtk.VBox):
             label = gtk.Label()
             label.set_markup('<b>%s</b>' % text)
 
-            self.table.attach(label, 0, 1, i, i + 1, xoptions = gtk.FILL, xpadding = 10, ypadding = 5)
+            self.table.attach(label, 0, 1,
+                              i, i + 1,
+                              xoptions=gtk.FILL, xpadding=10, ypadding=5)
 
         self.homepage_button = gtk.LinkButton('http://ubuntu-tweak.com')
         self.table.attach(self.homepage_button, 1, 2, 0, 1)
@@ -678,7 +683,8 @@ class SourceDetail(gtk.VBox):
         if url:
             if LAUNCHPAD_STR in url:
                 url_section = url.split('/')
-                url = 'https://launchpad.net/~%s/+archive/%s' % (url_section[3], url_section[4]) 
+                url = 'https://launchpad.net/~%s/+archive/%s' % (
+                        url_section[3], url_section[4])
             self.url_button.destroy()
             self.url_button = gtk.LinkButton(url, url)
             self.url_button.show()
@@ -729,10 +735,11 @@ class SourceCenter(TweakModule):
             else:
                 self.sourceview.unconver_ubuntu_cn_mirror()
 
-        config.get_client().notify_add('/apps/ubuntu-tweak/use_mirror_ppa', self.value_changed)
+        CONFIG.get_client().notify_add('/apps/ubuntu-tweak/use_mirror_ppa',
+                                       self.value_changed)
 
-        update_setting.set_bool(False)
-        update_setting.connect_notify(self.on_have_update)
+        UPDATE_SETTING.set_bool(False)
+        UPDATE_SETTING.connect_notify(self.on_have_update)
         thread.start_new_thread(self.check_update, ())
 
         self.reparent(self.main_vbox)
@@ -745,7 +752,8 @@ class SourceCenter(TweakModule):
                 dialog.destroy()
 
                 if response == gtk.RESPONSE_YES:
-                    dialog = FetchingDialog(get_source_data_url(), self.get_toplevel())
+                    dialog = FetchingDialog(get_source_data_url(),
+                                            self.get_toplevel())
                     dialog.connect('destroy', self.on_source_data_downloaded)
                     dialog.run()
                     dialog.destroy()
@@ -753,9 +761,8 @@ class SourceCenter(TweakModule):
     def check_update(self):
         try:
             return check_update_function(SOURCE_VERSION_URL)
-        except Exception, e:
-            #TODO use logging
-            print e
+        except Exception, error:
+            print error
 
     def on_category_changed(self, widget, data = None):
         model, iter = widget.get_selected()
@@ -812,9 +819,8 @@ class SourceCenter(TweakModule):
                     self.sourceview.setup_ubuntu_cn_mirror()
                 self.sourceview.set_sensitive(True)
                 self.expander.set_sensitive(True)
-                WARNING_KEY = '/apps/ubuntu-tweak/disable_thidparty_warning'
 
-                if not config.get_value(WARNING_KEY):
+                if not CONFIG.get_value(WARNING_KEY):
                     dialog = WarningDialog(_('It is a possible security risk to '
                         'use packages from Third-Party Sources.\n'
                         'Please be careful and use only sources you trust.'),
@@ -854,7 +860,7 @@ class SourceCenter(TweakModule):
         dialog.run()
         dialog.destroy()
         if dialog.status == True:
-            dialog = QuestionDialog(_("Update available, Do you want to update?"))
+            dialog = QuestionDialog(_("Update available, Would you like to update?"))
             response = dialog.run()
             dialog.destroy()
             if response == gtk.RESPONSE_YES:
@@ -863,6 +869,6 @@ class SourceCenter(TweakModule):
                 dialog.run()
                 dialog.destroy()
         elif dialog.error == True:
-            ErrorDialog(_("Network Error, Please check your network or the remote server going down")).launch()
+            ErrorDialog(_("Network Error, Please check your network connection or the remote server is down.")).launch()
         else:
-            InfoDialog(_("No update available")).launch()
+            InfoDialog(_("No update available.")).launch()
