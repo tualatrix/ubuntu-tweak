@@ -20,35 +20,31 @@
 import os
 import gtk
 import urllib
-import urllib2
-import gettext
 import gobject
 import pango
 import thread
+from gettext import gettext as _
 
-from urlparse import urljoin
 from ubuntutweak.conf import settings
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.widgets.dialogs import ErrorDialog, InfoDialog, QuestionDialog
 from ubuntutweak.widgets.dialogs import ProcessDialog
-from ubuntutweak.utils import icon
 from ubuntutweak.utils.parser import Parser
-from ubuntutweak.network import get_utdata_version_url, get_utdata_download_url
+from ubuntutweak.network import utdata
 from ubuntutweak.network.downloadmanager import DownloadDialog
 
-#TODO old stuff
-from ubuntutweak.common.consts import *
 from ubuntutweak.common.utils import set_label_for_stock_button
 from ubuntutweak.common.package import PACKAGE_WORKER, PackageInfo
 from ubuntutweak.common.settings import BoolSetting, StringSetting
 
 APPCENTER_ROOT = os.path.join(settings.CONFIG_ROOT, 'appcenter')
-APP_VERSION_URL = get_utdata_version_url('/appcenter_version/')
-update_setting = BoolSetting('/apps/ubuntu-tweak/appcenter_update')
-version_setting = StringSetting('/apps/ubuntu-tweak/appcenter_version')
+APP_VERSION_URL = utdata.get_version_url('/appcenter_version/')
+UPDATE_SETTING = BoolSetting('/apps/ubuntu-tweak/appcenter_update')
+VERSION_SETTING = StringSetting('/apps/ubuntu-tweak/appcenter_version')
 
 def get_app_data_url():
-    return get_utdata_download_url('/static/utdata/appcenter-%s.tar.gz' % version_setting.get_string())
+    return utdata.get_download_url('/static/utdata/appcenter-%s.tar.gz' %
+                                   VERSION_SETTING.get_string())
 
 if not os.path.exists(APPCENTER_ROOT):
     os.mkdir(APPCENTER_ROOT)
@@ -86,6 +82,7 @@ class CategoryView(gtk.TreeView):
         gtk.TreeView.__init__(self)
 
         self.path = path
+        self.parser = CateParser(self.path)
         self.set_headers_visible(False)
         self.set_rules_hint(True)
         self.model = self.__create_model()
@@ -116,7 +113,6 @@ class CategoryView(gtk.TreeView):
 
     def update_model(self):
         self.model.clear()
-        self.parser = CateParser(self.path)
 
         iter = self.model.append()
         self.model.set(iter, 
@@ -144,18 +140,19 @@ class CategoryView(gtk.TreeView):
 
 class AppView(gtk.TreeView):
     __gsignals__ = {
-        'changed': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_INT,))
+        'changed': (gobject.SIGNAL_RUN_FIRST,
+                    gobject.TYPE_NONE,
+                    (gobject.TYPE_INT,))
     }
 
-    (
-        COLUMN_INSTALLED,
-        COLUMN_ICON,
-        COLUMN_PKG,
-        COLUMN_NAME,
-        COLUMN_DESC,
-        COLUMN_DISPLAY,
-        COLUMN_CATE,
-        COLUMN_TYPE,
+    (COLUMN_INSTALLED,
+     COLUMN_ICON,
+     COLUMN_PKG,
+     COLUMN_NAME,
+     COLUMN_DESC,
+     COLUMN_DISPLAY,
+     COLUMN_CATE,
+     COLUMN_TYPE,
     ) = range(8)
 
     def __init__(self):
@@ -196,7 +193,7 @@ class AppView(gtk.TreeView):
         renderer.set_property("xpad", 6)
         renderer.connect('toggled', self.on_install_toggled)
 
-        column = gtk.TreeViewColumn(' ', renderer, active = self.COLUMN_INSTALLED)
+        column = gtk.TreeViewColumn('', renderer, active=self.COLUMN_INSTALLED)
         column.set_cell_data_func(renderer, self.install_column_view_func)
         column.set_sort_column_id(self.COLUMN_INSTALLED)
         self.append_column(column)
@@ -225,8 +222,8 @@ class AppView(gtk.TreeView):
             renderer.set_property("visible", True)
 
     def icon_column_view_func(self, cell_layout, renderer, model, iter):
-        icon = model.get_value(iter, self.COLUMN_ICON)
-        if icon == None:
+        pixbuf = model.get_value(iter, self.COLUMN_ICON)
+        if pixbuf == None:
             renderer.set_property("visible", False)
         else:
             renderer.set_property("visible", True)
@@ -234,7 +231,8 @@ class AppView(gtk.TreeView):
     def clear_model(self):
         self.get_model().clear()
 
-    def append_app(self, status, pixbuf, pkgname, appname, desc, category, type='app'):
+    def append_app(self, status, pixbuf,
+                   pkgname, appname, desc, category, type='app'):
         model = self.get_model()
 
         model.append((status,
@@ -246,7 +244,8 @@ class AppView(gtk.TreeView):
                 category,
                 type))
 
-    def append_changed_app(self, status, pixbuf, pkgname, appname, desc, category):
+    def append_changed_app(self, status, pixbuf,
+                           pkgname, appname, desc, category):
         model = self.get_model()
 
         model.append((status,
@@ -254,7 +253,8 @@ class AppView(gtk.TreeView):
                 pkgname,
                 appname,
                 desc,
-                '<span foreground="#ffcc00"><b>%s</b>\n%s</span>' % (appname, desc),
+                '<span foreground="#ffcc00"><b>%s</b>\n%s</span>' % (
+                appname, desc),
                 category,
                 'app'))
 
@@ -263,12 +263,14 @@ class AppView(gtk.TreeView):
 
         icontheme = gtk.icon_theme_get_default()
         for icon_name in ['application-x-deb', 'package-x-generic', 'package']:
-            icon = icontheme.lookup_icon(icon_name, 32, gtk.ICON_LOOKUP_NO_SVG)
-            if icon:
+            icon_theme = icontheme.lookup_icon(icon_name,
+                                               size=32,
+                                               flags=gtk.ICON_LOOKUP_NO_SVG)
+            if icon_theme:
                 break
 
-        if icon:
-            pixbuf = icon.load_icon()
+        if icon_theme:
+            pixbuf = icon_theme.load_icon()
         else:
             pixbuf = icontheme.load_icon(gtk.STOCK_MISSING_IMAGE, 32, 0)
 
@@ -303,8 +305,6 @@ class AppView(gtk.TreeView):
         model = self.get_model()
         model.clear()
 
-        icon = gtk.icon_theme_get_default()
-
         app_parser = AppParser()
 
         if not apps:
@@ -323,13 +323,18 @@ class AppView(gtk.TreeView):
                 continue
 
             if self.filter == None or self.filter == category:
-                do_append(is_installed, pixbuf, pkgname, appname, desc, category)
+                do_append(is_installed, pixbuf,
+                          pkgname, appname, desc, category)
 
     def on_install_toggled(self, cell, path):
         def do_app_changed(model, iter, appname, desc):
-                model.set(iter, self.COLUMN_DISPLAY, '<span style="italic" weight="bold"><b>%s</b>\n%s</span>' % (appname, desc))
+            model.set(iter,
+                      self.COLUMN_DISPLAY,
+                      '<span style="italic" weight="bold"><b>%s</b>\n%s</span>' % (appname, desc))
         def do_app_unchanged(model, iter, appname, desc):
-                model.set(iter, self.COLUMN_DISPLAY, '<b>%s</b>\n%s' % (appname, desc))
+            model.set(iter,
+                      self.COLUMN_DISPLAY,
+                      '<b>%s</b>\n%s' % (appname, desc))
 
         model = self.get_model()
 
@@ -373,8 +378,8 @@ class AppView(gtk.TreeView):
     def set_filter(self, filter):
         self.filter = filter
 
-    def get_app_logo(self, file):
-        path = os.path.join(APPCENTER_ROOT, file)
+    def get_app_logo(self, file_name):
+        path = os.path.join(APPCENTER_ROOT, file_name)
         try:
             pixbuf = gtk.gdk.pixbuf_new_from_file(path)
             if pixbuf.get_width() != 32 or pixbuf.get_height() != 32:
@@ -394,8 +399,8 @@ def check_update_function(version_url):
             local_version = '0'
 
         if remote_version > local_version:
-            update_setting.set_bool(True)
-            version_setting.set_string(remote_version)
+            UPDATE_SETTING.set_bool(True)
+            VERSION_SETTING.set_string(remote_version)
             return True
         else:
             return False
@@ -473,8 +478,8 @@ class AppCenter(TweakModule):
 
 
         self.show_all()
-        update_setting.set_bool(False)
-        update_setting.connect_notify(self.on_have_update)
+        UPDATE_SETTING.set_bool(False)
+        UPDATE_SETTING.connect_notify(self.on_have_update)
 
         thread.start_new_thread(self.check_update, ())
 
@@ -495,9 +500,8 @@ class AppCenter(TweakModule):
     def check_update(self):
         try:
             return check_update_function(APP_VERSION_URL)
-        except Exception, e:
-            #TODO use logging
-            print e
+        except Exception, error:
+            print error
 
     def on_category_changed(self, widget, data = None):
         model, iter = widget.get_selected()
@@ -543,7 +547,7 @@ class AppCenter(TweakModule):
         dialog.run()
         dialog.destroy()
         if dialog.status == True:
-            dialog = QuestionDialog(_("Update available, Do you want to update?"))
+            dialog = QuestionDialog(_("Update available, Would you like to update?"))
             response = dialog.run()
             dialog.destroy()
             if response == gtk.RESPONSE_YES:
@@ -552,9 +556,9 @@ class AppCenter(TweakModule):
                 dialog.run()
                 dialog.destroy()
         elif dialog.error == True:
-            ErrorDialog(_("Network Error, Please check your network or the remote server going down")).launch()
+            ErrorDialog(_("Network Error, Please check your network connection or the remote server is down.")).launch()
         else:
-            InfoDialog(_("No update available")).launch()
+            InfoDialog(_("No update available.")).launch()
 
     def on_app_data_downloaded(self, widget):
         file = widget.get_downloaded_file()
@@ -563,7 +567,7 @@ class AppCenter(TweakModule):
             os.system('tar zxf %s -C %s' % (file, settings.CONFIG_ROOT))
             self.update_app_data()
         elif widget.error:
-            ErrorDialog(_('Some error happened while downloading the file')).launch()
+            ErrorDialog(_('Some error happened while downloading the file.')).launch()
 
     def update_app_data(self):
         self.cateview.update_model()
