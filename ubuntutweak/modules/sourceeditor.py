@@ -24,6 +24,7 @@ import thread
 import socket
 import gobject
 import gettext
+import glob
 
 from ubuntutweak.modules  import TweakModule
 from sourcecenter import refresh_source
@@ -406,15 +407,14 @@ class SourceEditor(TweakModule):
         if not os.path.exists(SOURCE_LIST_D):
             self.source_combo.set_active(0)
             return
-        files = os.listdir(SOURCE_LIST_D)
+        files = glob.glob(SOURCE_LIST_D + '/*.list')
         files.sort()
         for file in files:
-            fullpath=os.path.join(SOURCE_LIST_D, file)
-            if os.path.isdir(fullpath):
+            if os.path.isdir(file):
                 continue
             iter = model.append()
-            model.set(iter, 0, fullpath)
-            model.set(iter, 1, file)
+            model.set(iter, 0, file)
+            model.set(iter, 1, os.path.basename(file))
 
         if i:
             iter = model.get_iter(i)
