@@ -60,8 +60,8 @@ class PreferencesDialog:
         table.attach(toolbar_size, 1, 3, 2, 3)
 
     def setup_launch_function(self):
-        from mainwindow import module_loader
-        from mainwindow import ID_COLUMN, LOGO_COLUMN, TITLE_COLUMN
+        from ubuntutweak.mainwindow import MLOADER
+        from ubuntutweak.mainwindow import MainWindow as MW
         function_box = self.worker.get_object('function_box')
 
         model = gtk.ListStore(
@@ -71,18 +71,18 @@ class PreferencesDialog:
 
         iter = model.append(None)
         model.set(iter,
-                ID_COLUMN, 0,
-                LOGO_COLUMN, None,
-                TITLE_COLUMN, _('None')
+                MW.ID_COLUMN, 0,
+                MW.LOGO_COLUMN, None,
+                MW.TITLE_COLUMN, _('None')
         )
-        for module in module_loader.get_all_module():
+        for module in MLOADER.get_all_module():
             iter = model.append(None)
-            pixbuf = module_loader.get_pixbuf(module.__name__)
+            pixbuf = MLOADER.get_pixbuf(module.__name__)
 
             model.set(iter,
-                    ID_COLUMN, module.__name__,
-                    LOGO_COLUMN, pixbuf,
-                    TITLE_COLUMN, module.__title__,
+                    MW.ID_COLUMN, module.__name__,
+                    MW.LOGO_COLUMN, pixbuf,
+                    MW.TITLE_COLUMN, module.__title__,
             )
 
         function_box.set_model(model)
@@ -90,11 +90,11 @@ class PreferencesDialog:
         pixbufcell = gtk.CellRendererPixbuf()
         function_box.pack_start(pixbufcell, False)
         function_box.pack_start(textcell, True)
-        function_box.add_attribute(textcell, 'text', TITLE_COLUMN)
-        function_box.add_attribute(pixbufcell, 'pixbuf', LOGO_COLUMN)
+        function_box.add_attribute(textcell, 'text', MW.TITLE_COLUMN)
+        function_box.add_attribute(pixbufcell, 'pixbuf', MW.LOGO_COLUMN)
         id = TweakSettings.get_default_launch()
         for i, row in enumerate(model):
-            _id = model.get_value(row.iter, ID_COLUMN)
+            _id = model.get_value(row.iter, MW.ID_COLUMN)
             if id == _id:
                 function_box.set_active(i)
         function_box.connect('changed', self.on_launch_changed)

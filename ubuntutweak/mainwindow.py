@@ -166,7 +166,7 @@ class MainWindow(gtk.Window):
         self.set_position(gtk.WIN_POS_CENTER)
         self.set_border_width(10)
 
-        vbox = gtk.VBox(False, 0)
+        vbox = gtk.VBox(False, 6)
         self.add(vbox)
 
         self.hpaned = gtk.HPaned()
@@ -194,8 +194,8 @@ class MainWindow(gtk.Window):
         self.modules = {}
         self.hpaned.pack2(self.notebook)
 
-        hbox = gtk.HBox(False, 5)
-        vbox.pack_start(hbox, False, False, 5)
+        hbox = gtk.HBox(False, 12)
+        vbox.pack_start(hbox, False, False, 0)
         button = gtk.Button(stock=gtk.STOCK_ABOUT)
         button.connect("clicked", self.show_about)
         hbox.pack_start(button, False, False, 0)
@@ -409,7 +409,7 @@ class MainWindow(gtk.Window):
     def click_website(self, dialog, link):
         webbrowser.open(link)
     
-    def show_about(self):
+    def show_about(self, widget):
         gtk.about_dialog_set_url_hook(self.click_website)
 
         about = gtk.AboutDialog()
