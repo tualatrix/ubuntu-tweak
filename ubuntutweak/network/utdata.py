@@ -60,13 +60,13 @@ def get_last_synced(folder):
         hours, minutes = divmod(minutes, 60)
 
         if weeks:
-            return ngettext('%d weeks ago' % weeks, '%d week ago' % weeks, weeks)
+            return ngettext('%d week ago' % weeks, '%d weeks ago' % weeks, weeks)
         if days:
-            return ngettext('%d days ago' % days, '%d day ago' % days, days)
+            return ngettext('%d day ago' % days, '%d days ago' % days, days)
         if hours:
-            return ngettext('%d hours ago' % hours, '%d hour ago' % hours, hours)
+            return ngettext('%d hour ago' % hours, '%d hours ago' % hours, hours)
         if minutes:
-            return ngettext('%d minutes ago' % minutes, '%d minute ago' % minutes, minutes)
+            return ngettext('%d minute ago' % minutes, '%d minutes ago' % minutes, minutes)
         return _('Just Now')
     except IOError:
         return _('Never')

@@ -478,15 +478,18 @@ class AppCenter(TweakModule):
 
         self.update_timestamp()
         self.show_all()
+
         UPDATE_SETTING.set_bool(False)
         UPDATE_SETTING.connect_notify(self.on_have_update)
 
         thread.start_new_thread(self.check_update, ())
+        gobject.timeout_add(60000, self.update_timestamp)
 
         self.reparent(self.main_vbox)
 
     def update_timestamp(self):
         self.time_label.set_text(_('Last synced:') + ' ' + utdata.get_last_synced(APPCENTER_ROOT))
+        return True
 
     def on_have_update(self, client, id, entry, data):
         if entry.get_value().get_bool():

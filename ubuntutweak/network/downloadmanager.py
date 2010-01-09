@@ -12,7 +12,6 @@ from xmlrpclib import ServerProxy, Error
 from ubuntutweak.conf import settings
 from ubuntutweak.widgets.dialogs import BusyDialog
 
-#TODO old stuff
 from ubuntutweak.common.consts import *
 from ubuntutweak.common.config import TweakSettings
 
@@ -56,7 +55,10 @@ class Downloader(gobject.GObject):
             self.url = url
 
         self.save_to = os.path.join(self.tempdir, os.path.basename(self.url))
-        urllib.urlretrieve(self.url, self.save_to, self.update_progress)
+        try:
+            urllib.urlretrieve(self.url, self.save_to, self.update_progress)
+        except socket.timeout:
+            self.emit('error')
 
     def update_progress(self, blocks, block_size, total_size):
         percentage = float(blocks*block_size)/total_size
