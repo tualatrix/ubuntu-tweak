@@ -45,7 +45,7 @@ class ModuleLoader:
 
     def _insert_moduel(self, k, v):
         if k not in ('TweakModule', 'proxy') and hasattr(v, '__utmodule__'):
-            if self.is_supported_desktop(v.__desktop__):
+            if self.is_supported_desktop(v.__desktop__) and v.__utactive__:
                 key = v.__category__
                 if self.module_table.has_key(key):
                     self.module_table[key].append(v)
@@ -103,6 +103,7 @@ class TweakModule(gtk.VBox):
     __url__ = ''
     #Identify whether it is a ubuntu tweak module
     __utmodule__ = ''
+    __utactive__ = True
     __desktop__ = ''
 
     #update use internal, and call use between modules
