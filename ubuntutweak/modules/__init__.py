@@ -123,6 +123,7 @@ class TweakModule(gtk.VBox):
         self.pack_start(self.scrolled_win)
 
         self.inner_vbox = gtk.VBox(False, 6)
+        self.inner_vbox.set_border_width(5)
         self.scrolled_win.add_with_viewport(self.inner_vbox)
         viewport = self.scrolled_win.get_child()
         viewport.set_shadow_type(gtk.SHADOW_NONE)
