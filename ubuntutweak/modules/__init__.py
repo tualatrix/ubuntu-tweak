@@ -119,7 +119,6 @@ class TweakModule(gtk.VBox):
         self.draw_title()
 
         self.scrolled_win = gtk.ScrolledWindow()
-        self.scrolled_win.set_border_width(5)
         self.scrolled_win.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         self.pack_start(self.scrolled_win)
 
@@ -141,7 +140,6 @@ class TweakModule(gtk.VBox):
                     setattr(self, name, o)
                 else:
                     print >>sys.stderr, "WARNING: can not get name for '%s'" % o
-            self.reparent()
 
     def add_start(self, child, expand=True, fill=True, padding=0):
         self.inner_vbox.pack_start(child, expand, fill, padding)
@@ -217,5 +215,8 @@ class TweakModule(gtk.VBox):
 
         vbox.pack_start(gtk.HSeparator(), False, False, 0)
 
-    def reparent(self):
-        raise NotImplementedError
+    def reparent(self, widget):
+        '''
+        If module use glade, it must call this method to reparent the main frame
+        '''
+        widget.reparent(self.inner_vbox)

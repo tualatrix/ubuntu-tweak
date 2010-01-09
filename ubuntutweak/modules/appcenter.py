@@ -478,8 +478,7 @@ class AppCenter(TweakModule):
 
         thread.start_new_thread(self.check_update, ())
 
-    def reparent(self):
-        self.main_vbox.reparent(self.inner_vbox)
+        self.reparent(self.main_vbox)
 
     def on_have_update(self, client, id, entry, data):
         if entry.get_value().get_bool():

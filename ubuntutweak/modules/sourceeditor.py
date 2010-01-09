@@ -378,8 +378,7 @@ class SourceEditor(TweakModule):
         self.hbox2.pack_end(un_lock, False, False, 0)
         self.hbox2.reorder_child(un_lock, 1)
 
-    def reparent(self):
-        self.main_vbox.reparent(self.inner_vbox)
+        self.reparent(self.main_vbox)
 
     def setup_source_combo(self):
         model = gtk.ListStore(gobject.TYPE_STRING,

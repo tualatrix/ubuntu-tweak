@@ -43,8 +43,7 @@ class UpdateManager(TweakModule):
                                    key='/apps/update-notifier/auto_launch')
         self.vbox1.pack_start(button, False, False, 0)
 
-    def reparent(self):
-        self.main_vbox.reparent(self.inner_vbox)
+        self.reparent(self.main_vbox)
 
     def update_list(self):
         package_worker.update_apt_cache(init=True)

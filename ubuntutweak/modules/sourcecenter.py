@@ -735,6 +735,8 @@ class SourceCenter(TweakModule):
         update_setting.connect_notify(self.on_have_update)
         thread.start_new_thread(self.check_update, ())
 
+        self.reparent(self.main_vbox)
+
     def on_have_update(self, client, id, entry, data):
         if entry.get_value().get_bool():
             if self.check_update():
@@ -754,9 +756,6 @@ class SourceCenter(TweakModule):
         except Exception, e:
             #TODO use logging
             print e
-
-    def reparent(self):
-        self.main_vbox.reparent(self.inner_vbox)
 
     def on_category_changed(self, widget, data = None):
         model, iter = widget.get_selected()
