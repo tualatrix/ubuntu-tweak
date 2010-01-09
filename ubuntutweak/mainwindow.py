@@ -225,7 +225,7 @@ class MainWindow(gtk.Window):
             self.__create_newpage(launch)
 		
     def on_d_clicked(self, widget):
-        webbrowser.open('http://ubuntu-tweak.com/donate')
+        webbrowser.open('http://ubuntu-tweak.com/donate/')
 
     def on_preferences_clicked(self, widget):
         dialog = PreferencesDialog()
