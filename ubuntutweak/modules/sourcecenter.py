@@ -72,14 +72,9 @@ def get_source_data_url():
                                    VERSION_SETTING.get_string())
 
 def check_update_function(version_url):
-    local_timestamp = os.path.join(SOURCE_ROOT, 'timestamp')
-
     remote_version = urllib.urlopen(version_url).read()
     if remote_version.isdigit():
-        if os.path.exists(local_timestamp):
-            local_version = open(local_timestamp).read().strip()
-        else:
-            local_version = '0'
+        local_version = utdata.get_local_timestamp(SOURCE_ROOT)
 
         if remote_version > local_version:
             UPDATE_SETTING.set_bool(True)
@@ -695,9 +690,12 @@ class SourceDetail(gtk.VBox):
 
 class SourceCenter(TweakModule):
     __title__  = _('Source Center')
-    __desc__ = _('After every release of Ubuntu there comes a feature freeze.\nThis means only applications with bug-fixes get into the repository.\nBy using third-party DEB repositories, you can always keep up-to-date with the latest version.\nAfter adding these repositories, locate and install them using Add/Remove.')
+    __desc__ = _('A source center to keep your applications always up-to-date.\nYou can also get the application which isn\'t in the official repository.') + '\n' + \
+               _('Data will be automatically synchronized with the remote side.') + '\n' + \
+               _('You can click the "Sync" button to check the update manually.')
     __icon__ = 'software-properties'
     __url__ = 'http://ubuntu-tweak.com/source/'
+    __urltitle__ = _('Visit online Source Center')
     __category__ = 'application'
 
     def __init__(self):
@@ -734,6 +732,7 @@ class SourceCenter(TweakModule):
                 gobject.idle_add(self.start_check_cn_ppa)
             else:
                 self.sourceview.unconver_ubuntu_cn_mirror()
+        self.update_timestamp()
 
         CONFIG.get_client().notify_add('/apps/ubuntu-tweak/use_mirror_ppa',
                                        self.value_changed)
@@ -743,6 +742,9 @@ class SourceCenter(TweakModule):
         thread.start_new_thread(self.check_update, ())
 
         self.reparent(self.main_vbox)
+
+    def update_timestamp(self):
+        self.time_label.set_text(_('Last synced:') + ' ' + utdata.get_last_synced(SOURCE_ROOT))
 
     def on_have_update(self, client, id, entry, data):
         if entry.get_value().get_bool():
@@ -848,6 +850,8 @@ class SourceCenter(TweakModule):
         if widget.downloaded:
             os.system('tar zxf %s -C %s' % (file, settings.CONFIG_ROOT))
             self.update_source_data()
+            utdata.save_synced_timestamp(SOURCE_ROOT)
+            self.update_timestamp()
         elif widget.error:
             ErrorDialog(_('Some error happened while downloading the file')).launch()
 

@@ -20,6 +20,7 @@
 import os
 import gtk
 import urllib
+import time
 import gobject
 import pango
 import thread
@@ -82,7 +83,7 @@ class CategoryView(gtk.TreeView):
         gtk.TreeView.__init__(self)
 
         self.path = path
-        self.parser = CateParser(self.path)
+        self.parser = None
         self.set_headers_visible(False)
         self.set_rules_hint(True)
         self.model = self.__create_model()
@@ -113,6 +114,7 @@ class CategoryView(gtk.TreeView):
 
     def update_model(self):
         self.model.clear()
+        self.parser = CateParser(self.path)
 
         iter = self.model.append()
         self.model.set(iter, 
@@ -389,14 +391,9 @@ class AppView(gtk.TreeView):
             return gtk.icon_theme_get_default().load_icon(gtk.STOCK_MISSING_IMAGE, 32, 0)
 
 def check_update_function(version_url):
-    local_timestamp = os.path.join(APPCENTER_ROOT, 'timestamp')
-
     remote_version = urllib.urlopen(version_url).read()
     if remote_version.isdigit():
-        if os.path.exists(local_timestamp):
-            local_version = open(local_timestamp).read().split('.')[0].split('-')[-1]
-        else:
-            local_version = '0'
+        local_version = utdata.get_local_timestamp(APPCENTER_ROOT)
 
         if remote_version > local_version:
             UPDATE_SETTING.set_bool(True)
@@ -450,9 +447,12 @@ class FetchingDialog(DownloadDialog):
 
 class AppCenter(TweakModule):
     __title__ = _('Application Center')
-    __desc__ = _('A simple but more effecient method for finding and installing popular packages than the default Add/Remove.')
+    __desc__ = _('A simple but more effecient way for finding and installing popular applications.') + '\n' + \
+               _('Data will be automatically synchronized with the remote side.') + '\n' + \
+               _('You can click the "Sync" button to check the update manually.')
     __icon__ = 'gnome-app-install'
     __url__ = 'http://ubuntu-tweak.com/app/'
+    __urltitle__ = _('Visit Online Application Center')
     __category__ = 'application'
 
     def __init__(self):
@@ -476,7 +476,7 @@ class AppCenter(TweakModule):
         self.appview.connect('changed', self.on_app_status_changed)
         self.right_sw.add(self.appview)
 
-
+        self.update_timestamp()
         self.show_all()
         UPDATE_SETTING.set_bool(False)
         UPDATE_SETTING.connect_notify(self.on_have_update)
@@ -484,6 +484,9 @@ class AppCenter(TweakModule):
         thread.start_new_thread(self.check_update, ())
 
         self.reparent(self.main_vbox)
+
+    def update_timestamp(self):
+        self.time_label.set_text(_('Last synced:') + ' ' + utdata.get_last_synced(APPCENTER_ROOT))
 
     def on_have_update(self, client, id, entry, data):
         if entry.get_value().get_bool():
@@ -566,6 +569,8 @@ class AppCenter(TweakModule):
         if widget.downloaded:
             os.system('tar zxf %s -C %s' % (file, settings.CONFIG_ROOT))
             self.update_app_data()
+            utdata.save_synced_timestamp(APPCENTER_ROOT)
+            self.update_timestamp()
         elif widget.error:
             ErrorDialog(_('Some error happened while downloading the file.')).launch()
 

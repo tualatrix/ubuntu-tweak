@@ -101,6 +101,7 @@ class TweakModule(gtk.VBox):
     __author__ = ''
     __desc__ = ''
     __url__ = ''
+    __urltitle__ = _('More')
     #Identify whether it is a ubuntu tweak module
     __utmodule__ = ''
     __utactive__ = True
@@ -167,37 +168,26 @@ class TweakModule(gtk.VBox):
         inner_vbox = gtk.VBox(False, 6)
         hbox.pack_start(inner_vbox)
 
+        align = gtk.Alignment(0.5, 0.5, 1.0, 1.0)
+        inner_vbox.pack_start(align, False, False, 0)
+
+        inner_hbox = gtk.HBox(False, 0)
+        align.add(inner_hbox)
+
         name = gtk.Label()
         name.set_markup('<b><big>%s</big></b>' % self.__title__)
         name.set_alignment(0, 0.5)
-        inner_vbox.pack_start(name, False, False, 0)
+        inner_hbox.pack_start(name, False, False, 0)
 
         if self.__url__:
-            align = gtk.Alignment(0.5, 0.5, 1.0, 1.0)
-            inner_vbox.pack_start(align)
-
-            inner_hbox = gtk.HBox(False, 0)
-            align.add(inner_hbox)
-
-            left_box = gtk.VBox(False, 6)
-            inner_hbox.pack_start(left_box)
-
-            right_box = gtk.VBox(False, 6)
-            inner_hbox.pack_start(right_box, False, False, 0)
-
-            desc = gtk.Label(self.__desc__)
-            desc.set_ellipsize(pango.ELLIPSIZE_END)
-            desc.set_alignment(0, 1)
-            left_box.pack_start(desc, False, False, 0)
-
             more = gtk.Label()
-            more.set_markup('<a href="%s">%s</a>' % (self.__url__, 'More'))
-            right_box.pack_start(more, False, False, 0)
-        else:
-            desc = gtk.Label(self.__desc__)
-            desc.set_ellipsize(pango.ELLIPSIZE_END)
-            desc.set_alignment(0, 0.5)
-            inner_vbox.pack_start(desc, False, False, 0)
+            more.set_markup('<a href="%s">%s</a>' % (self.__url__, self.__urltitle__))
+            inner_hbox.pack_end(more, False, False, 0)
+
+        desc = gtk.Label(self.__desc__)
+        desc.set_ellipsize(pango.ELLIPSIZE_END)
+        desc.set_alignment(0, 0.5)
+        inner_vbox.pack_start(desc, False, False, 0)
 
         if self.__icon__:
             if type(self.__icon__) != list:

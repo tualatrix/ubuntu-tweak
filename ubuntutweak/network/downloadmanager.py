@@ -38,7 +38,7 @@ class Downloader(gobject.GObject):
         else:
             if not os.path.isdir(self.tempdir): 
                 os.remove(self.tempdir)
-                os.mkdir(self.tempdir)
+                os.makedirs(self.tempdir)
 
     def clean_tempdir(self):
         for root, dirs, files in os.walk(self.tempdir, topdown=False):
