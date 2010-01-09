@@ -29,7 +29,7 @@ from ubuntutweak.widgets.dialogs import QuestionDialog, InfoDialog
 from ubuntutweak.modules.sourcecenter import UpdateView
 
 #TODO
-from ubuntutweak.common.package import package_worker
+from ubuntutweak.common.package import PACKAGE_WORKER
 
 (
     COLUMN_ACTION,
@@ -116,8 +116,8 @@ class TaskView(gtk.TreeView):
             dialog.destroy()
 
             if res == gtk.RESPONSE_YES:
-                package_worker.perform_action(self.get_toplevel(), [task+'~'], [])
-                package_worker.update_apt_cache(True)
+                PACKAGE_WORKER.perform_action(self.get_toplevel(), [task+'~'], [])
+                PACKAGE_WORKER.update_apt_cache(True)
                 self.update_model()
 
         self.unset_busy()

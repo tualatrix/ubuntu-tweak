@@ -28,7 +28,7 @@ from ubuntutweak.modules  import TweakModule
 from ubuntutweak.common.utils import *
 from ubuntutweak.common.misc import filesizeformat
 from ubuntutweak.policykit import PolkitButton, proxy
-from ubuntutweak.common.package import package_worker
+from ubuntutweak.common.package import PACKAGE_WORKER
 from ubuntutweak.widgets.dialogs import *
 from ubuntutweak.widgets.utils import ProcessDialog
 
@@ -116,7 +116,7 @@ class PackageView(gtk.TreeView):
         model.set_sort_column_id(COLUMN_NAME, gtk.SORT_ASCENDING)
 
         self.__check_list = []
-        self.package_worker = package_worker
+        self.PACKAGE_WORKER = PACKAGE_WORKER
 
         self.__add_column()
 
@@ -165,7 +165,7 @@ class PackageView(gtk.TreeView):
         self.mode = 'package'
 
         icon = get_icon_with_name('deb', 24)
-        list = self.package_worker.list_autoremovable()
+        list = self.PACKAGE_WORKER.list_autoremovable()
         self.total_num = len(list)
         self.__column.set_title(_('Packages'))
 
@@ -173,7 +173,7 @@ class PackageView(gtk.TreeView):
             gtk.main_iteration()
 
         for pkg in list:
-            desc = self.package_worker.get_pkgsummary(pkg)
+            desc = self.PACKAGE_WORKER.get_pkgsummary(pkg)
 
             iter = model.append()
             model.set(iter,
@@ -193,7 +193,7 @@ class PackageView(gtk.TreeView):
         self.mode = 'kernel'
 
         icon = get_icon_with_name('deb', 24)
-        list = self.package_worker.list_unneeded_kerenl()
+        list = self.PACKAGE_WORKER.list_unneeded_kerenl()
         self.total_num = len(list)
         self.__column.set_title(_('Packages'))
 
@@ -201,7 +201,7 @@ class PackageView(gtk.TreeView):
             gtk.main_iteration()
 
         for pkg in list:
-            desc = self.package_worker.get_pkgsummary(pkg)
+            desc = self.PACKAGE_WORKER.get_pkgsummary(pkg)
 
             iter = model.append()
             model.set(iter,
@@ -337,14 +337,14 @@ class PackageView(gtk.TreeView):
 
     def clean_selected_package(self):
         self.set_busy()
-        state = self.package_worker.perform_action(self.get_toplevel(), [],self.__check_list)
+        state = self.PACKAGE_WORKER.perform_action(self.get_toplevel(), [],self.__check_list)
 
         if state == 0:
             self.show_success_dialog()
         else:
             self.show_failed_dialog()
 
-        package_worker.update_apt_cache(True)
+        PACKAGE_WORKER.update_apt_cache(True)
         if self.mode == 'package':
             self.update_package_model()
         else:
@@ -385,7 +385,7 @@ class PackageView(gtk.TreeView):
         else:
             self.show_success_dialog()
 
-        package_worker.update_apt_cache(True)
+        PACKAGE_WORKER.update_apt_cache(True)
         self.update_config_model()
         self.emit('cleaned')
         self.unset_busy()

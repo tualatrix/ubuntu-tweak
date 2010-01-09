@@ -31,7 +31,7 @@ from ubuntutweak.widgets import ListPack, SinglePack
 from ubuntutweak.widgets.dialogs import InfoDialog
 from ubuntutweak.common.systeminfo import module_check
 try:
-    from ubuntutweak.common.package import package_worker, AptCheckButton
+    from ubuntutweak.common.package import PACKAGE_WORKER, AptCheckButton
 except:
     pass
 
@@ -230,8 +230,8 @@ class Compiz(TweakModule, CompizSetting):
         self.create_interface()
 
     def create_interface(self):
-        if module_check.has_apt() and package_worker.get_cache():
-            self.package_worker = package_worker
+        if module_check.has_apt() and PACKAGE_WORKER.get_cache():
+            self.PACKAGE_WORKER = PACKAGE_WORKER
 
             self.advanced_settings = AptCheckButton(_("Install Advanced Desktop Effects Settings Manager"),
                     'compizconfig-settings-manager')
@@ -261,7 +261,7 @@ class Compiz(TweakModule, CompizSetting):
             box = ListPack(_("Menu Effects"), (button1, self.wobbly_m))
             self.add_start(box, False, False, 0)
 
-            if module_check.has_apt() and package_worker.get_cache():
+            if module_check.has_apt() and PACKAGE_WORKER.get_cache():
                 box = ListPack(_("Useful Extensions"), (
                     self.simple_settings,
                     self.screenlets,
@@ -401,10 +401,10 @@ class Compiz(TweakModule, CompizSetting):
             else:
                 to_rm.append(widget.pkgname)
 
-        self.package_worker.perform_action(widget.get_toplevel(), to_add, to_rm)
-        self.package_worker.update_apt_cache(True)
+        self.PACKAGE_WORKER.perform_action(widget.get_toplevel(), to_add, to_rm)
+        self.PACKAGE_WORKER.update_apt_cache(True)
 
-        done = package_worker.get_install_status(to_add, to_rm)
+        done = PACKAGE_WORKER.get_install_status(to_add, to_rm)
 
         if done:
             self.button.set_sensitive(False)

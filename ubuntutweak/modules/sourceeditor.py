@@ -33,7 +33,7 @@ from ubuntutweak.common.gui import GuiWorker
 from ubuntutweak.common.systeminfo import module_check
 from ubuntutweak.policykit import PolkitButton, proxy
 from ubuntutweak.common.utils import set_label_for_stock_button
-from ubuntutweak.common.package import package_worker
+from ubuntutweak.common.package import PACKAGE_WORKER
 from ubuntutweak.widgets.dialogs import *
 
 (

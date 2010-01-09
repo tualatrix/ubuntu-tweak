@@ -72,9 +72,9 @@ class ModuleLoader:
                     icon_path = os.path.join(DATA_DIR, 'pixmaps', module.__icon__)
                     pixbuf = gtk.gd.pixbuf_new_from_file(icon_path)
                 else:
-                    pixbuf = icon.get_with_name(module.__icon__, size=24)
+                    pixbuf = icon.get_from_name(module.__icon__, size=24)
             else:
-                pixbuf = icon.get_with_list(module.__icon__, size=24)
+                pixbuf = icon.get_from_list(module.__icon__, size=24)
 
             return pixbuf
 
@@ -204,10 +204,10 @@ class TweakModule(gtk.VBox):
                     icon_path = os.path.join(DATA_DIR, 'pixmaps', self.__icon__)
                     image = gtk.image_new_from_file(icon_path)
                 else:
-                    pixbuf = icon.get_with_name(self.__icon__, size=48)
+                    pixbuf = icon.get_from_name(self.__icon__, size=48)
                     image = gtk.image_new_from_pixbuf(pixbuf)
             else:
-                pixbuf = icon.get_with_list(self.__icon__, size=48)
+                pixbuf = icon.get_from_list(self.__icon__, size=48)
                 image = gtk.image_new_from_pixbuf(pixbuf)
 
             image.set_alignment(0, 0)

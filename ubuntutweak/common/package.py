@@ -199,7 +199,7 @@ class PackageWorker:
             if pkg.isUpgradable == 1:
                 yield pkg.name
 
-package_worker = PackageWorker()
+PACKAGE_WORKER = PackageWorker()
 
 class AptCheckButton(gtk.CheckButton):
     def __init__(self, label, pkgname, tooltip = None):
@@ -213,7 +213,7 @@ class AptCheckButton(gtk.CheckButton):
 
     def get_state(self):
         try:
-            pkg = package_worker.get_cache()[self.pkgname]
+            pkg = PACKAGE_WORKER.get_cache()[self.pkgname]
         except KeyError:
             self.set_sensitive(False)
             label = self.get_property('label')
@@ -234,7 +234,7 @@ class PackageInfo:
 
     def __init__(self, name):
         self.name = name
-        self.pkg = package_worker.get_cache()[name]
+        self.pkg = PACKAGE_WORKER.get_cache()[name]
         self.desktopentry = DesktopEntry(self.DESKTOP_DIR + name + '.desktop')
 
     def check_installed(self):

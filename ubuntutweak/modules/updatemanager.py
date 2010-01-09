@@ -23,7 +23,7 @@ from ubuntutweak.widgets import GconfCheckButton
 from ubuntutweak.widgets.dialogs import InfoDialog
 from sourcecenter import UpdateView, refresh_source, UpdateCacheDialog
 
-from ubuntutweak.common.package import package_worker
+from ubuntutweak.common.package import PACKAGE_WORKER
 
 class UpdateManager(TweakModule):
     __title__ = _('Update Manager')
@@ -46,16 +46,16 @@ class UpdateManager(TweakModule):
         self.reparent(self.main_vbox)
 
     def update_list(self):
-        package_worker.update_apt_cache(init=True)
+        PACKAGE_WORKER.update_apt_cache(init=True)
         self.updateview.get_model().clear()
-        self.updateview.update_updates(list(package_worker.get_update_package()))
+        self.updateview.update_updates(list(PACKAGE_WORKER.get_update_package()))
 
     def on_refresh_button_clicked(self, widget):
         UpdateCacheDialog(widget.get_toplevel()).run()
 
-        package_worker.update_apt_cache(True)
+        PACKAGE_WORKER.update_apt_cache(True)
 
-        new_updates = list(package_worker.get_update_package())
+        new_updates = list(PACKAGE_WORKER.get_update_package())
         if new_updates:
             self.emit('call', 'ubuntutweak.modules.sourcecenter', 'update_thirdparty', {})
             self.updateview.get_model().clear()
@@ -76,13 +76,13 @@ class UpdateManager(TweakModule):
             self.install_button.set_sensitive(False)
 
     def on_install_button_clicked(self, widget):
-        package_worker.perform_action(widget.get_toplevel(), self.updateview.to_add, self.updateview.to_rm)
+        PACKAGE_WORKER.perform_action(widget.get_toplevel(), self.updateview.to_add, self.updateview.to_rm)
 
-        package_worker.update_apt_cache(True)
+        PACKAGE_WORKER.update_apt_cache(True)
 
-        package_worker.show_installed_status(self.updateview.to_add, self.updateview.to_rm)
+        PACKAGE_WORKER.show_installed_status(self.updateview.to_add, self.updateview.to_rm)
 
         self.updateview.get_model().clear()
-        self.updateview.update_updates(list(package_worker.get_update_package()))
+        self.updateview.update_updates(list(PACKAGE_WORKER.get_update_package()))
         self.select_button.set_active(False)
         self.updateview.select_all_action(False)

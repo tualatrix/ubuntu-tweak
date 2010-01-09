@@ -2,12 +2,12 @@ import os
 import gtk
 
 __all__ = (
-    'get_with_name',
+    'get_from_name',
 )
 
 icontheme = gtk.icon_theme_get_default()
 
-def get_with_list(list, size):
+def get_from_list(list, size):
     pixbuf = None
     for name in list:
         try:
@@ -16,11 +16,11 @@ def get_with_list(list, size):
             continue
 
     if pixbuf is None:
-        return get_with_name('name', size=size)
+        return get_from_name('name', size=size)
     else:
         return pixbuf
 
-def get_with_name(name, alter='gtk-execute', size=24):
+def get_from_name(name, alter='gtk-execute', size=24):
     try:
         pixbuf = icontheme.load_icon(name, size, 0)
     except:
@@ -31,8 +31,8 @@ def get_with_name(name, alter='gtk-execute', size=24):
 
     return pixbuf
 
-def get_with_file(file, size=24):
+def get_from_file(file, size=24):
     try:
         return gtk.gdk.pixbuf_new_from_file_at_size(file, size, size)
     except:
-        return get_with_name('gtk-execute', size)
+        return get_from_name('gtk-execute', size)

@@ -32,7 +32,7 @@ from ubuntutweak.widgets.dialogs import InfoDialog, QuestionDialog
 from ubuntutweak.common.utils import set_label_for_stock_button
 from ubuntutweak.common.misc import filesizeformat
 from ubuntutweak.common.factory import WidgetFactory
-from ubuntutweak.common.package import package_worker, AptCheckButton
+from ubuntutweak.common.package import PACKAGE_WORKER, AptCheckButton
 
 (
     COLUMN_ICON,
@@ -102,7 +102,7 @@ class Nautilus(TweakModule):
             ))
         self.add_start(box, False, False, 0)
 
-        self.package_worker = package_worker
+        self.PACKAGE_WORKER = PACKAGE_WORKER
 
         self.nautilus_terminal = AptCheckButton(_('Nautilus with Open Terminal'), 'nautilus-open-terminal')
         self.nautilus_terminal.connect('toggled', self.colleague_changed)
@@ -157,10 +157,10 @@ class Nautilus(TweakModule):
             else:
                 to_rm.append(widget.pkgname)
 
-        self.package_worker.perform_action(widget.get_toplevel(), to_add, to_rm)
-        self.package_worker.update_apt_cache(True)
+        self.PACKAGE_WORKER.perform_action(widget.get_toplevel(), to_add, to_rm)
+        self.PACKAGE_WORKER.update_apt_cache(True)
 
-        done = package_worker.get_install_status(to_add, to_rm)
+        done = PACKAGE_WORKER.get_install_status(to_add, to_rm)
 
         if done:
             self.button.set_sensitive(False)

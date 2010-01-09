@@ -39,7 +39,7 @@ from ubuntutweak.network.downloadmanager import DownloadDialog
 #TODO old stuff
 from ubuntutweak.common.consts import *
 from ubuntutweak.common.utils import set_label_for_stock_button
-from ubuntutweak.common.package import package_worker, PackageInfo
+from ubuntutweak.common.package import PACKAGE_WORKER, PackageInfo
 from ubuntutweak.common.settings import BoolSetting, StringSetting
 
 APPCENTER_ROOT = os.path.join(settings.CONFIG_ROOT, 'appcenter')
@@ -458,7 +458,7 @@ class AppCenter(TweakModule):
         self.to_add = []
         self.to_rm = []
 
-        self.package_worker = package_worker
+        self.PACKAGE_WORKER = PACKAGE_WORKER
 
         self.cateview = CategoryView(os.path.join(APPCENTER_ROOT, 'cates.json'))
         self.cate_selection = self.cateview.get_selection()
@@ -513,17 +513,17 @@ class AppCenter(TweakModule):
             self.appview.update_model()
 
     def deep_update(self):
-        package_worker.update_apt_cache(True)
+        PACKAGE_WORKER.update_apt_cache(True)
         self.update_app_data()
 
     def on_apply_button_clicked(self, widget, data = None):
         to_rm = self.appview.to_rm
         to_add = self.appview.to_add
-        self.package_worker.perform_action(widget.get_toplevel(), to_add, to_rm)
+        self.PACKAGE_WORKER.perform_action(widget.get_toplevel(), to_add, to_rm)
 
-        package_worker.update_apt_cache(True)
+        PACKAGE_WORKER.update_apt_cache(True)
 
-        done = package_worker.get_install_status(to_add, to_rm)
+        done = PACKAGE_WORKER.get_install_status(to_add, to_rm)
 
         if done:
             self.apply_button.set_sensitive(False)

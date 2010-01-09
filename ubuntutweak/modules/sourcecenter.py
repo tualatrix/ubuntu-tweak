@@ -50,7 +50,7 @@ from ubuntutweak.common.consts import *
 #FIXME
 from ubuntutweak.common.sourcedata import SOURCES_DATA, SOURCES_DEPENDENCIES, SOURCES_CONFLICTS
 from ubuntutweak.common.factory import WidgetFactory
-from ubuntutweak.common.package import package_worker, PackageInfo
+from ubuntutweak.common.package import PACKAGE_WORKER, PackageInfo
 from ubuntutweak.common.notify import notify
 from ubuntutweak.common.misc import URLLister
 from ubuntutweak.common.settings import BoolSetting, StringSetting
@@ -96,11 +96,11 @@ def refresh_source(parent):
     dialog.run()
 
     new_pkg = []
-    for pkg in package_worker.get_new_package():
+    for pkg in PACKAGE_WORKER.get_new_package():
         if pkg in app_parser:
             new_pkg.append(pkg)
 
-    new_updates = list(package_worker.get_update_package())
+    new_updates = list(PACKAGE_WORKER.get_update_package())
 
     if new_pkg or new_updates:
         updateview = UpdateView()
@@ -133,11 +133,11 @@ def refresh_source(parent):
         to_add = updateview.to_add
 
         if res == gtk.RESPONSE_YES and to_add:
-            package_worker.perform_action(parent, to_add, to_rm)
+            PACKAGE_WORKER.perform_action(parent, to_add, to_rm)
 
-            package_worker.update_apt_cache(True)
+            PACKAGE_WORKER.update_apt_cache(True)
 
-            done = package_worker.get_install_status(to_add, to_rm)
+            done = PACKAGE_WORKER.get_install_status(to_add, to_rm)
 
             if done:
                 InfoDialog(_('Update Successful!')).launch()
@@ -248,7 +248,7 @@ class UpdateView(AppView):
                         'update')
 
             for pkgname in updates:
-                package = package_worker.get_cache()[pkgname]
+                package = PACKAGE_WORKER.get_cache()[pkgname]
 
                 self.append_update(False, package.name, package.summary)
         else:
