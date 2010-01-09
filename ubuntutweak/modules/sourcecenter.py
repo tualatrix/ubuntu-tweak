@@ -36,7 +36,7 @@ from ubuntutweak.conf import settings
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.policykit import PolkitButton, proxy
 from ubuntutweak.widgets import GconfCheckButton
-from ubuntutweak.widgets.dialogs import QuestionDialog, ErrorDialog, InfoDialog
+from ubuntutweak.widgets.dialogs import QuestionDialog, ErrorDialog, InfoDialog, WarningDialog
 from ubuntutweak.utils.parser import Parser
 from ubuntutweak.network import utdata
 from ubuntutweak.backends.daemon import PATH
@@ -740,6 +740,7 @@ class SourceCenter(TweakModule):
         UPDATE_SETTING.set_bool(False)
         UPDATE_SETTING.connect_notify(self.on_have_update)
         thread.start_new_thread(self.check_update, ())
+        gobject.timeout_add(60000, self.update_timestamp)
 
         self.reparent(self.main_vbox)
 
