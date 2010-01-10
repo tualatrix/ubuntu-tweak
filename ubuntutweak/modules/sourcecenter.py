@@ -737,18 +737,20 @@ class SourceCenter(TweakModule):
         self.hbox2.reorder_child(un_lock, 0)
 
         #FIXME China mirror hack
-        if os.getenv('LANG').startswith('zh_CN'):
-            if TweakSettings.get_use_mirror_ppa():
-                gobject.idle_add(self.start_check_cn_ppa)
-            else:
-                self.sourceview.unconver_ubuntu_cn_mirror()
-        self.update_timestamp()
+        try:
+            if os.getenv('LANG').startswith('zh_CN'):
+                if TweakSettings.get_use_mirror_ppa():
+                    gobject.idle_add(self.start_check_cn_ppa)
+                else:
+                    self.sourceview.unconver_ubuntu_cn_mirror()
+        except AttributeError:
+            pass
 
+        self.update_timestamp()
         CONFIG.get_client().notify_add('/apps/ubuntu-tweak/use_mirror_ppa',
                                        self.value_changed)
-
         UPDATE_SETTING.set_bool(False)
-        print UPDATE_SETTING.connect_notify(self.on_have_update)
+
         thread.start_new_thread(self.check_update, ())
         gobject.timeout_add(60000, self.update_timestamp)
 
