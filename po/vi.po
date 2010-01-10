@@ -7,47 +7,46 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 19:51+0800\n"
-"PO-Revision-Date: 2009-10-02 04:10+0000\n"
+"POT-Creation-Date: 2010-01-10 15:00+0800\n"
+"PO-Revision-Date: 2010-01-09 08:17+0000\n"
 "Last-Translator: Phan Trọng Khanh <phantrongkhanh87@gmail.com>\n"
 "Language-Team: Vietnamese <vi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2009-10-07 12:24+0000\n"
+"X-Launchpad-Export-Date: 2010-01-10 08:16+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
-#: ../src/updatemanager.py:69
-msgid "Update Manager"
-msgstr "Trình Quản lý Cập nhật"
+#: ../data/ubuntu-tweak.desktop.in.h:1
+msgid "Tweak ubuntu to what you like"
+msgstr ""
 
-#: ../src/updatemanager.py:86 ../src/updatemanager.py:114
-#, python-format
-msgid "Downloading...%d"
-msgstr "Đang tải...%d"
+#: ../data/com.ubuntu-tweak.daemon.policy.in.h:1
+msgid "System policy prevents the Ubuntu Tweak from Tweaking"
+msgstr ""
 
-#: ../src/updatemanager.py:119
-msgid "Finished"
-msgstr "Hoàn tất"
+#: ../data/com.ubuntu-tweak.daemon.policy.in.h:2
+msgid "Tweak"
+msgstr ""
 
-#: ../src/mainwindow.py:69
+#: ../ubuntutweak/mainwindow.py:67
 msgid "Welcome to"
 msgstr "Chào mừng tới"
 
-#: ../src/mainwindow.py:75
+#: ../ubuntutweak/mainwindow.py:73
 msgid "Tweak otherwise hidden settings."
 msgstr "Tùy chỉnh những cấu hình ẩn khác."
 
-#: ../src/mainwindow.py:76
+#: ../ubuntutweak/mainwindow.py:74
 msgid "Clean up unneeded packages to free diskspace."
 msgstr "Dọn dẹp những gói không cần thiết để tăng chỗ trống của đĩa."
 
-#: ../src/mainwindow.py:77
+#: ../ubuntutweak/mainwindow.py:75
 msgid "Easily install up-to-date versions of many applications."
 msgstr "Dễ dàng cài đặt phiên bản mới nhất của rất nhiều ứng dụng."
 
-#: ../src/mainwindow.py:78
+#: ../ubuntutweak/mainwindow.py:76
 msgid ""
 "Configure file templates and shortcut scripts for easy access to common "
 "tasks."
@@ -55,87 +54,56 @@ msgstr ""
 "Cấu hình các tệp mẫu và lỗi tắt để dễ dàng truy cập tới các tác vụ thông "
 "thường."
 
-#: ../src/mainwindow.py:79
+#: ../ubuntutweak/mainwindow.py:77
 msgid "And many more useful features!"
 msgstr "Và nhiều thành phần hữu ích khác!"
 
-#: ../src/mainwindow.py:91
+#: ../ubuntutweak/mainwindow.py:90
 msgid "Please wait a moment..."
 msgstr ""
 
-#: ../src/mainwindow.py:104
-msgid "This feature isn't currently available in your distribution"
-msgstr ""
-
-#: ../src/mainwindow.py:117
-msgid "This feature is currently only available in GNOME Desktop Environment"
-msgstr ""
-
-#: ../src/mainwindow.py:130
+#: ../ubuntutweak/mainwindow.py:110
 msgid "This module is error while loading."
 msgstr ""
 
-#: ../src/mainwindow.py:145
-msgid ""
-"This is a major failure of your software management system. Please check for "
-"broken packages with synaptic, check the file permissions and correctness of "
-"the file '/etc/apt/sources.list' and reload the software information with: "
-"'sudo apt-get update' and 'sudo apt-get install -f'."
-msgstr ""
-"Hệ thống quản lý phần mềm trên máy bạn bị lỗi. Xin hãy kiểm tra các gói phần "
-"mềm bị hỏng thông qua Synaptic, kiểm tra phân quyền và nội dung tập tin '/"
-"etc/apt/sources.list' và nạp lại thông tin về các gói phần mềm bằng lệnh: "
-"'sudo apt-get update' và 'sudo apt-get install -f'."
-
-#: ../src/mainwindow.py:186
+#: ../ubuntutweak/mainwindow.py:131
 msgid "Welcome"
 msgstr "Chào mừng"
 
-#: ../src/mainwindow.py:187
+#: ../ubuntutweak/mainwindow.py:132
 msgid "Applications"
 msgstr "Ứng dụng"
 
-#: ../src/mainwindow.py:188
+#: ../ubuntutweak/mainwindow.py:133
 msgid "Startup"
 msgstr "Khởi động"
 
-#: ../src/mainwindow.py:189 ../src/modules/userdir.py:47
+#: ../ubuntutweak/mainwindow.py:134 ../ubuntutweak/modules/userdir.py:45
 msgid "Desktop"
 msgstr "Màn hình nền"
 
-#: ../src/mainwindow.py:190
+#: ../ubuntutweak/mainwindow.py:135
 msgid "Personal"
 msgstr "Cá nhân"
 
-#: ../src/mainwindow.py:191
+#: ../ubuntutweak/mainwindow.py:136
 msgid "System"
 msgstr "Hệ thống"
 
-#: ../src/mainwindow.py:242
+#: ../ubuntutweak/mainwindow.py:144
+#, python-format
+msgid "Download the Ubuntu Tweak %s"
+msgstr ""
+
+#: ../ubuntutweak/mainwindow.py:204
 msgid "_Donate"
 msgstr "_Ủng hộ"
 
-#: ../src/mainwindow.py:269
-msgid "Help the development of Ubuntu Tweak"
-msgstr "Giúp sự phát triển của Ubuntu Tweak"
-
-#: ../src/mainwindow.py:269
-msgid ""
-"Ubuntu Tweak is a free-software, you can use it for free. If you like it, "
-"Please consider to donate for Ubuntu Tweak."
-msgstr ""
-"Ubuntu Tweak là phần mềm miễn phí, bạn có thể tự do sử dụng nó. Nếu bạn "
-"thích, vui lòng quyền góp cho Ubuntu Tweak."
-
-#: ../src/mainwindow.py:270
-msgid "Never Show This Again"
-msgstr "Đừng hiện nó lần nữa"
-
-#: ../src/mainwindow.py:482
+#: ../ubuntutweak/mainwindow.py:420
 msgid "Ubuntu Tweak Website"
 msgstr "Trang web Ubuntu Tweak"
 
-#: ../src/mainwindow.py:484
+#: ../ubuntutweak/mainwindow.py:422
 msgid ""
 "Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
 "system and desktop settings."
@@ -143,19 +111,19 @@ msgstr ""
 "Ubuntu Tweak là một công cụ cho Ubutnu để cấu hình hệ thống và sắp đặt bàn "
 "làm việc một cách dễ dàng."
 
-#: ../src/mainwindow.py:486
+#: ../ubuntutweak/mainwindow.py:424
 msgid "Contributors of 2007"
 msgstr ""
 
-#: ../src/mainwindow.py:488
+#: ../ubuntutweak/mainwindow.py:426
 msgid "Contributors of 2008"
 msgstr ""
 
-#: ../src/mainwindow.py:490
+#: ../ubuntutweak/mainwindow.py:428
 msgid "Contributors of 2009"
 msgstr ""
 
-#: ../src/mainwindow.py:499
+#: ../ubuntutweak/mainwindow.py:437
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
@@ -163,614 +131,145 @@ msgstr ""
 "  huanctv https://launchpad.net/~huanctv\n"
 "  zeratulbk https://launchpad.net/~congtumotsach"
 
-#: ../src/mainwindow.py:512
+#: ../ubuntutweak/mainwindow.py:451
 #, python-format
 msgid ""
 "A newer version: %s is available online.\n"
-"Would you like to update?"
+"Would you like to update?\n"
+"\n"
+"Note: if you prefer update from the source, you can disable this feature in "
+"Preference."
 msgstr ""
-"Một phiên bản mới: %s đã sẵn có trực tuyến.\n"
-"Bạn có muốn cập nhật?"
 
-#: ../src/mainwindow.py:513
+#: ../ubuntutweak/mainwindow.py:452
 msgid "Software Update"
 msgstr "Cập nhật phần mềm"
 
-#: ../src/preferences.py:81 ../src/modules/filetype.py:177
-#: ../src/modules/filetype.py:212 ../src/modules/metacity.py:68
-#: ../src/modules/metacity.py:73 ../src/modules/metacity.py:78
-#: ../src/modules/metacity.py:83 ../src/modules/shortcuts.py:98
-#: ../src/modules/shortcuts.py:206
+#: ../ubuntutweak/widgets/widgets.py:85 ../ubuntutweak/widgets/widgets.py:110
+#: ../ubuntutweak/modules/icons.py:105
+msgid "Unset"
+msgstr "Không đặt"
+
+#: ../ubuntutweak/widgets/widgets.py:275
+msgid "Please press the new key combination"
+msgstr "Vui lòng nhập tổ hợp phím mới"
+
+#: ../ubuntutweak/widgets/widgets.py:324
+msgid "Disabled"
+msgstr "Tắt"
+
+#: ../ubuntutweak/widgets/treeviews.py:69
+msgid "Create folder"
+msgstr "Tạo thư mục"
+
+#: ../ubuntutweak/widgets/treeviews.py:73 ../ubuntutweak/modules/icons.py:33
+#: ../ubuntutweak/modules/icons.py:42 ../ubuntutweak/modules/icons.py:51
+msgid "Rename"
+msgstr "Đổi tên"
+
+#: ../ubuntutweak/widgets/treeviews.py:77
+msgid "Delete"
+msgstr "Xóa"
+
+#: ../ubuntutweak/widgets/treeviews.py:99
+msgid "Input the dir name"
+msgstr "Nhập vào tên thư mục"
+
+#: ../ubuntutweak/widgets/treeviews.py:124
+msgid "Can't rename the root folder"
+msgstr "Không thể đổi tên thư mục gốc"
+
+#: ../ubuntutweak/widgets/treeviews.py:141
+msgid "Can't delete the root folder"
+msgstr "Không thể xóa thư mục gốc"
+
+#: ../ubuntutweak/widgets/treeviews.py:156
+msgid ""
+"Can't rename!\n"
+"\n"
+"There are files in it!"
+msgstr ""
+
+#: ../ubuntutweak/widgets/dialogs.py:139
+msgid "An unexpected error has occurred."
+msgstr "Gặp một lỗi bất thường."
+
+#: ../ubuntutweak/widgets/dialogs.py:140
+msgid "Could not authenticate"
+msgstr "Không thể xác thực"
+
+#: ../ubuntutweak/widgets/dialogs.py:145
+msgid "You need to restart your computer."
+msgstr "Bạn cần khởi động lại máy tính."
+
+#: ../ubuntutweak/widgets/dialogs.py:146
+msgid "Service hasn't initialized yet"
+msgstr "Dịch vụ chưa được khởi chạy"
+
+#: ../ubuntutweak/preferences.py:76 ../ubuntutweak/modules/filetype.py:178
+#: ../ubuntutweak/modules/filetype.py:213
+#: ../ubuntutweak/modules/metacity.py:64 ../ubuntutweak/modules/metacity.py:69
+#: ../ubuntutweak/modules/metacity.py:74 ../ubuntutweak/modules/metacity.py:79
+#: ../ubuntutweak/modules/shortcuts.py:99
+#: ../ubuntutweak/modules/shortcuts.py:209
 msgid "None"
 msgstr "Không"
 
-#: ../src/preferences.py:112
+#: ../ubuntutweak/preferences.py:106
 msgid "Enable Check Update"
 msgstr "Cho phép kiểm tra cập nhật"
 
-#: ../src/preferences.py:118
+#: ../ubuntutweak/preferences.py:112
 msgid "Use Separated Sources"
 msgstr ""
 
-#: ../src/preferences.py:124
+#: ../ubuntutweak/preferences.py:118
 msgid "Use Remote Data When Available"
 msgstr ""
 
-#: ../src/common/appdata.py:67
-msgid "A color scheme designer"
-msgstr "Thiết kế một lược đồ màu"
-
-#: ../src/common/appdata.py:68
-msgid "Development version of an audio player for KDE"
-msgstr "Phiên bản phát triển của một trình chơi nhạc cho KDE"
-
-#: ../src/common/appdata.py:69
-msgid "Client for the eD2k and Kad networks"
-msgstr "Phía khách cho mạng eD2k và Kad"
-
-#: ../src/common/appdata.py:70
-msgid "GNOME IDE for C/C++, Java, Python"
-msgstr "GNOME IDE cho C/C++, Java, Python"
-
-#: ../src/common/appdata.py:71
-msgid ""
-"Arc-Colors is a set of wallpapers and GDM themes made to complement the "
-"Shiki-Colors GTK+ themes and the GNOME-Colors icon themes."
-msgstr ""
-
-#: ../src/common/appdata.py:72
-msgid "A skinned multimedia player for many platforms"
-msgstr "Một vẻ ngoài trình chơi đa phương tiện cho rất nhiều kiến trúc"
-
-#: ../src/common/appdata.py:73
-msgid "Record and edit audio files"
-msgstr "Ghi và biên soạn tệp âm thanh"
-
-#: ../src/common/appdata.py:74
-msgid "Fully customisable dock-like window navigator"
-msgstr ""
-
-#: ../src/common/appdata.py:75
-msgid "Fully customisable dock-like window navigator(Unstable)"
-msgstr ""
-
-#: ../src/common/appdata.py:76
-msgid "A free video editor"
-msgstr "Một trình biên soạn Video miễn phí"
-
-#: ../src/common/appdata.py:77
-msgid "BitTorrent client written in Java"
-msgstr "Phần mềm BitTorrent trên máy khách viết bằng Java"
-
-#: ../src/common/appdata.py:78
-msgid "Audio Management and Playback application"
-msgstr "Ứng dụng quản lý và phát nhạc"
-
-#: ../src/common/appdata.py:79
-msgid "GTK+ Bluetooth Manager"
-msgstr ""
-
-#: ../src/common/appdata.py:80
-msgid "Simple backup system for GNOME Desktop"
-msgstr ""
-
-#: ../src/common/appdata.py:81
-msgid "Simple backup system for KDE4 Desktop"
-msgstr ""
-
-#: ../src/common/appdata.py:82
-msgid ""
-"The Breathe icon theme is a refresh of the Human icon theme using KDE's "
-"Oxygen icon set as an inspiration but with that distinctly Human feel."
-msgstr ""
-
-#: ../src/common/appdata.py:83
-msgid "A true dock for linux"
-msgstr "Dock thực sự cho Linux"
-
-#: ../src/common/appdata.py:84
-msgid "A chm file viewer written in GTK+"
-msgstr "Trình xem tệp chm viết bằng GTK+"
-
-#: ../src/common/appdata.py:85
-msgid ""
-"Desired to be small and fast, christine is a simple media player, that let "
-"you play your favorite music and videos from one single application."
-msgstr ""
-
-#: ../src/common/appdata.py:86
-msgid ""
-"Chromium is an open-source browser project that aims to build a safer, "
-"faster, and more stable way for all Internet users to experience the web."
-msgstr ""
-
-#: ../src/common/appdata.py:87
-msgid "The open source, cross-platform IDE"
-msgstr "IDE mã nguồn mở, đa kiến trúc"
-
-#: ../src/common/appdata.py:88
-msgid "Advanced Desktop Effects Settings Manager"
-msgstr "Quản lý cấu hình hiệu ứng máy tính nâng cao"
-
-#: ../src/common/appdata.py:89
-msgid "An API documentation browser for GNOME."
-msgstr "Trình duyện tài liệu API cho GNOME"
-
-#: ../src/common/appdata.py:90
-msgid "A Bittorrent client written in PyGTK"
-msgstr "Phần mềm BitTorent trên máy khách viết bằng PyGTK"
-
-#: ../src/common/appdata.py:91
-msgid "Store, Sync and Share your files online."
-msgstr "Lưu trữ, đồng bộ và chia sẻ tệp trực tuyến."
-
-#: ../src/common/appdata.py:92
-msgid "Extensible Tool Platform and Java IDE"
-msgstr ""
-
-#: ../src/common/appdata.py:93
-msgid ""
-"EIOffice Personal 2009. Free for Chinese users. See http://www.evermoresw."
-"com."
-msgstr ""
-
-#: ../src/common/appdata.py:94
-msgid "A client for the Windows Live Message network"
-msgstr "Một chương trình khách cho mạng Windows Live Messenge"
-
-#: ../src/common/appdata.py:95
-msgid ""
-"Empathy consists of a rich set of reusable instant messaging widgets, and a "
-"GNOME client using those widgets."
-msgstr ""
-
-#: ../src/common/appdata.py:96
-msgid "flexible audio player, similar to Amarok, but written in GTK+"
-msgstr ""
-
-#: ../src/common/appdata.py:97
-msgid "File transmission via ftp, sftp and ftps"
-msgstr "Truyền tệp qua ftp, sftp và ftps"
-
-#: ../src/common/appdata.py:98
-msgid "An extremly fast and lightweight file manager"
-msgstr "Một trình quản lý tệp cực nhanh và nhẹ"
-
-#: ../src/common/appdata.py:99
-msgid ""
-"Galaxium is an instant messenger application designed for the GNOME desktop"
-msgstr "Galaxium là một ứng dụng tin nhắn nhanh thiết kế cho môi trường GNOME"
-
-#: ../src/common/appdata.py:100
-msgid "A GTK+ jabber client"
-msgstr "Một trình khách jabber GTK+"
-
-#: ../src/common/appdata.py:101
-msgid "A fast and lightweight IDE"
-msgstr "Một IDE nhanh và nhẹ"
-
-#: ../src/common/appdata.py:102
-msgid "A multithreaded FTP client"
-msgstr ""
-
-#: ../src/common/appdata.py:103
-msgid "GNOME Hex editor"
-msgstr "Biên soạn Hex cho GNOME"
-
-#: ../src/common/appdata.py:104 ../src/common/appdata.py:213
-msgid ""
-"Gloobus is an extension of Gnome designed to enable a full screen preview of "
-"any kind of file."
-msgstr ""
-
-#: ../src/common/appdata.py:105
-msgid "The GNU Image Manipulation Program"
-msgstr ""
-
-#: ../src/common/appdata.py:106
-msgid "A simple file sharing desktop application"
-msgstr ""
-
-#: ../src/common/appdata.py:107
-msgid "Notifies the user upon arrival of new mail in Gmail"
-msgstr "Thông báo cho người dùng khi có thư mới trong Gmail"
-
-#: ../src/common/appdata.py:108
-msgid "GMChess is chinese chess game write by gtkmm"
-msgstr ""
-
-#: ../src/common/appdata.py:109
-msgid "A powerful, speedy, and sexy remote control for the GNOME Desktop"
-msgstr "Chương trình điều khiển máy tính từ xa mạnh, nhanh cho GNOME"
-
-#: ../src/common/appdata.py:110
-msgid "Extra functionality for GNOME-Do launcher"
-msgstr ""
-
-#: ../src/common/appdata.py:111
-msgid "Global Menu Bar for GNOME"
-msgstr ""
-
-#: ../src/common/appdata.py:112
-msgid ""
-"GNOME-Colors is a set of GNOME icon themes, with some inspiration from "
-"Tango, Elementary, Discovery, Tango Generator and others."
-msgstr ""
-
-#: ../src/common/appdata.py:113
-msgid "a C++ port of Tomboy"
-msgstr ""
-
-#: ../src/common/appdata.py:114
-msgid ""
-"A program that combines satellite imagery and maps to put the world's "
-"geographic information at your fingertips."
-msgstr ""
-
-#: ../src/common/appdata.py:115
-msgid "Platform for running Google Gadgets on Linux"
-msgstr "Cơ sở để chạy Google Gadgets trên  Linux"
-
-#: ../src/common/appdata.py:116
-msgid ""
-"Google Chrome is a browser that combines a minimal design with sophisticated "
-"technology to make the web faster, safer, and easier."
-msgstr ""
-
-#: ../src/common/appdata.py:117
-msgid "GNOME partition editor"
-msgstr "Hiệu chỉnh phân vùng trong GNOME"
-
-#: ../src/common/appdata.py:118
-msgid "Lightweight image viewer"
-msgstr "Trình xem ảnh nhỏ nhẹ"
-
-#: ../src/common/appdata.py:119
-msgid "Graphical frontend for recordmydesktop"
-msgstr ""
-
-#: ../src/common/appdata.py:120
-msgid ""
-"GTG is a personal organizer for the GNOME desktop environment, it focuses on "
-"ease of use and flexibility, while keeping things simple."
-msgstr ""
-
-#: ../src/common/appdata.py:121
-msgid "Gwibber is an open source microblogging client for GNOME"
-msgstr ""
-
-#: ../src/common/appdata.py:122
-msgid "A graphical CD image editor"
-msgstr "Biên soạn ảnh đĩa"
-
-#: ../src/common/appdata.py:123
-msgid "Intelligent Input Bus for Linux / Unix OS"
-msgstr ""
-
-#: ../src/common/appdata.py:124
-msgid "It is a PinYin engine for IBus."
-msgstr ""
-
-#: ../src/common/appdata.py:125
-msgid ""
-"IBus-Table is the IM Engine framework for table-based input methods, such as "
-"ZhengMa, WuBi, ErBi, ChangJie and so on."
-msgstr ""
-
-#: ../src/common/appdata.py:126
-msgid "Wubi input method based on table engine of ibus"
-msgstr ""
-
-#: ../src/common/appdata.py:127 ../src/common/appdata.py:128
-msgid "Create and edit Scalable Vector Graphics images"
-msgstr ""
-
-#: ../src/common/appdata.py:129
-msgid "Non-linear editor for Digital Video data"
-msgstr ""
-
-#: ../src/common/appdata.py:130
-msgid "A music player for Last.fm personalized radio"
-msgstr "Trình chơi nhạc cho đài cá nhân Last.fm"
-
-#: ../src/common/appdata.py:131
-msgid "GTK+ based simple text editor"
-msgstr "Soạn thảo văn bản đơn giản nền GTK+"
-
-#: ../src/common/appdata.py:132
-msgid "Feed aggregator for GNOME"
-msgstr ""
-
-#: ../src/common/appdata.py:133
-msgid "Mail notification in system tray"
-msgstr "Thông báo thư trong khay hệ thống"
-
-#: ../src/common/appdata.py:134
-msgid "Adcal tool to diff and merge files"
-msgstr "Công cụ Adcal để so sánh và nhập tệp"
-
-#: ../src/common/appdata.py:135
-msgid "A fast and simple GTK+ Image Viewer"
-msgstr "Trình xem ảnh nhanh và đơn giản"
-
-#: ../src/common/appdata.py:136
-msgid "Open internet TV, beyond anything else"
-msgstr ""
-
-#: ../src/common/appdata.py:137
-msgid "Webkit based lightweight web browser"
-msgstr "Trình duyệt web nhỏ gọn trên cơ sở Webkit"
-
-#: ../src/common/appdata.py:138
-msgid "The free media player - play all your files"
-msgstr ""
-
-#: ../src/common/appdata.py:139
-msgid "An IDE to Develop .NET applications."
-msgstr "Một IDE để phát triển các ứng dụng .NET"
-
-#: ../src/common/appdata.py:140
-msgid "A moblin feature enabled environment for Ubuntu (Testing Only)"
-msgstr ""
-
-#: ../src/common/appdata.py:141
-msgid "The Ultimate Movie Player For Linux"
-msgstr "Trình xem video cho Linux"
-
-#: ../src/common/appdata.py:142
-msgid "IDE for Java, C/C++, Ruby, UML, etc."
-msgstr "IDE cho Java, C/C++, Ruby, UML,..."
-
-#: ../src/common/appdata.py:143
-msgid "The Opera Web Browser"
-msgstr "Trình duyệt web Opera"
-
-#: ../src/common/appdata.py:144
-msgid ""
-"Pidgin is a graphical modular messaging client based on libpurple which is "
-"capable of connecting to AIM, MSN, Yahoo!, XMPP, ICQ, IRC, SILC, SIP/SIMPLE, "
-"Novell GroupWise, Lotus Sametime, Bonjour, Zephyr, MySpaceIM, Gadu-Gadu, and "
-"QQ all at once."
-msgstr ""
-"Pidgin là một ứng dụng khách gửi tin nhắn kiểu mô-đun đồ họa dựa vào thư "
-"viện livpurple mà có khả năng kết nối cùng lúc tới tất cả các mạng AIM, MSN, "
-"Yahoo!, XMPP, ICQ, IRC, SILC, SIP/SIMPLE, Novell GroupWise, Lotus Sametime, "
-"Bonjour, Zephyr, MySpaceIM, Gadu-Gadu, và QQ."
-
-#: ../src/common/appdata.py:145
-msgid ""
-"PlayOnLinux is a front-end for wine. It permits you to install Windows Games "
-"and softwares on Linux."
-msgstr ""
-
-#: ../src/common/appdata.py:146
-msgid "Image management application from Google"
-msgstr ""
-
-#: ../src/common/appdata.py:147
-msgid "IDE for Development with Qt"
-msgstr ""
-
-#: ../src/common/appdata.py:148
-msgid ""
-"RedNotebook is a graphical diary and journal to keep track of notes and "
-"thoughts throughout the day. It includes a calendar navigation, customisable "
-"templates for each day, and a keyword search and cloud."
-msgstr ""
-
-#: ../src/common/appdata.py:149
-msgid ""
-"Shiki-Colors is a set of Metacity/GTK-2+ themes which mix the elegance of a "
-"dark theme with the usability of a light theme, resulting in a hybrid theme."
-msgstr ""
-
-#: ../src/common/appdata.py:150
-msgid "A framework for desktop widgets"
-msgstr ""
-
-#: ../src/common/appdata.py:151
-msgid "Feature-rich screenshot application(formerly known as GScrot)"
-msgstr ""
-
-#: ../src/common/appdata.py:152
-msgid "Make audio/video calls using this VoIP Software"
-msgstr "Tạo cuộc gọi âm thanh/video sử dụng Phần mềm VoIP"
-
-#: ../src/common/appdata.py:153
-msgid "A great MPlayer front-end, written in QT4"
-msgstr ""
-
-#: ../src/common/appdata.py:154
-msgid "Convert audio files into other formats"
-msgstr "Chuyển đổi các tệp âm thanh sang các định dạng khác"
-
-#: ../src/common/appdata.py:155
-msgid "A fully integrated mail, PIM and instant messaging client"
-msgstr ""
-
-#: ../src/common/appdata.py:156
-msgid "An international dictionary"
-msgstr "Một từ điền đa ngôn ngữ"
-
-#: ../src/common/appdata.py:157
-msgid ""
-"Swiftweasel is an optimized build of the Mozilla Firefox web browser for "
-"Linux"
-msgstr ""
-"Swiftweasel là một bản xây dựng tối ưu của trình duyệt web Mozilla Firefox "
-"cho Linux"
-
-#: ../src/common/appdata.py:158
-msgid ""
-"A desktop application that will watch for events (website updates, emails, "
-"file and folder changes...)"
-msgstr ""
-
-#: ../src/common/appdata.py:159
-msgid "An instant messaging application powered by qt-mono-bindings"
-msgstr ""
-
-#: ../src/common/appdata.py:160
-msgid "A Useful Task List"
-msgstr ""
-
-#: ../src/common/appdata.py:161
-msgid "Multiple GNOME terminals in one window"
-msgstr "Nhiều vùng lệnh trong một cửa sổ"
-
-#: ../src/common/appdata.py:162
-msgid ""
-"Transmission is a fast, easy, and free multi-platform BitTorrent client."
-msgstr ""
-
-#: ../src/common/appdata.py:163
-msgid "Ubuntu Tweak makes it easier to configure Ubuntu"
-msgstr "Ubuntu Tweak giúp dễ dàng cấu hình Ubuntu"
-
-#: ../src/common/appdata.py:164
-msgid "Commonly used restricted packages"
-msgstr "Các gói hạn chế thường dùng"
-
-#: ../src/common/appdata.py:165
-msgid "configure your USB ADSL modem and connection easier than ever!"
-msgstr ""
-
-#: ../src/common/appdata.py:166 ../src/common/appdata.py:167
-#: ../src/common/appdata.py:168
-msgid "A feature rich, high performance virtualization software"
-msgstr ""
-
-#: ../src/common/appdata.py:169
-msgid "Read, capture, broadcast your multimedia streams"
-msgstr "Đọc, chụp, quảng bá luồng đa phương tiện của bạn"
-
-#: ../src/common/appdata.py:170
-msgid "Run Virtual Machines using VMware"
-msgstr "Chạy máy ảo sử dụng VMware"
-
-#: ../src/common/appdata.py:171
-msgid "A compatibility layer for running Windows programs"
-msgstr "Một lớp tương thích để chạy các chương trình Windows"
-
-#: ../src/common/appdata.py:172
-msgid ""
-"Wine-doors is an application designed to make installing windows software on "
-"Linux, Solaris or other Unix systems easier."
-msgstr ""
-
-#: ../src/common/appdata.py:173
-msgid ""
-"XBMC is a free and open source software media player and entertainment hub"
-msgstr ""
-
-#: ../src/common/appdata.py:174
-msgid ""
-"Zim is a WYSIWYG text editor. It aims at bringing the concept of a wiki to "
-"your desktop."
-msgstr ""
-
-#: ../src/common/appdata.py:175
-msgid "Step-into-freedom theme contains a full theme for GNOME based system."
-msgstr ""
-
-#: ../src/common/appdata.py:176
-msgid "Ubuntu-sunrise theme contains a full theme for GNOME based system."
-msgstr ""
-
-#: ../src/common/appdata.py:177
-msgid "Bamboo-zen theme contains a full theme for GNOME based system."
-msgstr ""
-
-#: ../src/common/appdata.py:178
-msgid "Exotic theme contains a full theme for GNOME based system."
-msgstr ""
-
-#: ../src/common/appdata.py:179
-msgid "Aquadreams theme contains a full theme for GNOME based system."
-msgstr ""
-
-#: ../src/common/appdata.py:180
-msgid "Showtime theme contains a full theme for GNOME based system."
-msgstr ""
-
-#: ../src/common/appdata.py:181
-msgid "Infinity theme contains a full theme for GNOME based system."
-msgstr ""
-
-#: ../src/common/appdata.py:182
-msgid "Tropical theme contains a full theme for GNOME based system."
-msgstr ""
-
-#: ../src/common/appdata.py:183
-msgid "Wild-shine theme contains a full theme for GNOME based system."
-msgstr ""
-
-#: ../src/common/appdata.py:184
-msgid "Balanzan theme contains a full theme for GNOME based system."
-msgstr ""
-
-#: ../src/common/appdata.py:185
-msgid "Dia is an editor for diagrams, graphs, charts etc."
-msgstr ""
-
-#: ../src/common/appdata.py:186
-msgid "non-linear audio/video editor using GStreamer"
-msgstr ""
-
-#: ../src/common/appdata.py:187
-msgid "LyX is an almost WYSIWYG-frontend for LaTeX."
-msgstr ""
-
-#: ../src/common/appdata.py:188
-msgid ""
-"Texmaker is a clean, highly configurable LaTeX editor with good hot key "
-"support and extensive LaTeX documentation."
+#: ../ubuntutweak/network/downloadmanager.py:98
+msgid "Connecting to server"
 msgstr ""
 
-#: ../src/common/appdata.py:189
-msgid ""
-"Tomboy is a desktop note-taking application which is simple and easy to use."
-msgstr ""
-
-#: ../src/common/appdata.py:190
-msgid "PDF Mod is a simple tool for modifying PDF documents."
-msgstr ""
+#: ../ubuntutweak/network/downloadmanager.py:143
+#, python-format
+msgid "Downloading...%d"
+msgstr "Đang tải...%d"
 
-#: ../src/common/appdata.py:191
-msgid "An OSD lyrics show compatible with various media players."
+#: ../ubuntutweak/network/downloadmanager.py:147
+msgid "Downloaded!"
 msgstr ""
 
-#: ../src/common/appdata.py:192
-msgid ""
-"OpenShot Video Editor is a free, open-source, non-linear video editor, based "
-"on Python, GTK, and MLT."
+#: ../ubuntutweak/network/downloadmanager.py:153
+msgid "Error happened!"
 msgstr ""
 
-#: ../src/common/appdata.py:196
+#: ../ubuntutweak/common/appdata.py:24
 msgid "Development Version of Mozilla Firefox"
 msgstr ""
 
-#: ../src/common/appdata.py:197
+#: ../ubuntutweak/common/appdata.py:25
 msgid "Development version of Compiz"
 msgstr ""
 
-#: ../src/common/appdata.py:198
+#: ../ubuntutweak/common/appdata.py:26
 msgid "Google's Linux Repository"
 msgstr "Kho lưu Linux của Google"
 
-#: ../src/common/appdata.py:199
+#: ../ubuntutweak/common/appdata.py:27
 msgid "Development Version of K Desktop Environment"
 msgstr ""
 
-#: ../src/common/appdata.py:200
+#: ../ubuntutweak/common/appdata.py:28
 msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
 msgstr "Lightweight X11 Desktop Environment: GPicView, PCManFM"
 
-#: ../src/common/appdata.py:201
-msgid "WebkitGtk+, Liferea (Webkit), Midori and other WebKit related projects."
+#: ../ubuntutweak/common/appdata.py:29
+msgid ""
+"WebkitGtk+, Liferea (Webkit), Midori and other WebKit related projects."
 msgstr ""
 
-#: ../src/common/appdata.py:202
+#: ../ubuntutweak/common/appdata.py:30
 msgid ""
 "Multimedia, Entertainment and Distraction In Ubuntu\n"
 "Medibuntu is a repository of packages that cannot be included into the "
@@ -780,389 +279,292 @@ msgstr ""
 "Medibuntu là một kho lưu những gói không được đi kèm trong bản phân phối "
 "Ubuntu vì lý do pháp luật (bản quyền, giấy phép, bằng sáng chế, ...)."
 
-#: ../src/common/appdata.py:204
+#: ../ubuntutweak/common/appdata.py:32
 msgid ""
 "Ubuntu repository for Chinese users.\n"
 "Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and "
 "other softwares."
 msgstr ""
 
-#: ../src/common/appdata.py:206
+#: ../ubuntutweak/common/appdata.py:34
 msgid ""
 "GetDeb extends the existing software options for Ubuntu (and derived) Linux "
 "distributions by providing major updates and software not yet available on "
 "the official Ubuntu repositories."
 msgstr ""
 
-#: ../src/common/appdata.py:207
+#: ../ubuntutweak/common/appdata.py:35
 msgid "Updated versions of X.org drivers, libraries, etc. for Ubuntu."
 msgstr ""
 
-#: ../src/common/appdata.py:208
+#: ../ubuntutweak/common/appdata.py:36
 msgid ""
 "Gnome Games built from Git, with all experimental features and staging games "
 "enabled."
 msgstr ""
 
-#: ../src/common/appdata.py:209
+#: ../ubuntutweak/common/appdata.py:37
 msgid ""
 "Ubuntu Mozilla Security Team provides beta and final stable/security updates "
 "for mozilla software in its PPA"
 msgstr ""
 
-#: ../src/common/appdata.py:210
+#: ../ubuntutweak/common/appdata.py:38
 msgid "A cross-platform application and UI framework"
 msgstr ""
 
-#: ../src/common/appdata.py:211
+#: ../ubuntutweak/common/appdata.py:39
 msgid "Mono is a cross platform, open source .NET development framework."
 msgstr ""
 
-#: ../src/common/appdata.py:212
+#: ../ubuntutweak/common/appdata.py:40
 msgid ""
 "Clutter is an OpenGL based interactive canvas library, designed for creating "
 "fast, mainly 2D single window applications such as media box UIs, "
 "presentations, kiosk style applications and so on."
 msgstr ""
 
-#: ../src/common/appdata.py:214
+#: ../ubuntutweak/common/appdata.py:41
+msgid ""
+"Gloobus is an extension of Gnome designed to enable a full screen preview of "
+"any kind of file."
+msgstr ""
+
+#: ../ubuntutweak/common/appdata.py:42
 msgid ""
 "Behind this African word, referring to the notion of imagination, you can "
 "find some themes for GNOME"
 msgstr ""
 
-#: ../src/common/appdata.py:215
+#: ../ubuntutweak/common/appdata.py:43
 msgid ""
 "Updates for Kubuntu releases which are due to go to Ubuntu Updates. Mostly "
 "KDE point releases."
 msgstr ""
 
-#: ../src/common/appdata.py:216
+#: ../ubuntutweak/common/appdata.py:44
 msgid ""
 "Backports of new versions of KDE for Kubuntu which are not yet tested enough "
 "to go to Ubuntu Backports."
 msgstr ""
 
-#: ../src/common/appdata.py:219
-msgid "File-Sharing Clients"
-msgstr "Chia sẻ tệp trên máy khách"
-
-#: ../src/common/appdata.py:220
-msgid "Image Tools"
-msgstr "Công cụ ảnh"
-
-#: ../src/common/appdata.py:221
-msgid "Sound Tools"
-msgstr "Công cụ âm thanh"
-
-#: ../src/common/appdata.py:222
-msgid "Video Tools"
-msgstr "Công cụ Video"
-
-#: ../src/common/appdata.py:223
-msgid "Text Tools"
-msgstr "Công cụ văn bản"
-
-#: ../src/common/appdata.py:224
-msgid "Instant Messengers"
-msgstr "Tin nhắn nhanh"
-
-#: ../src/common/appdata.py:225
-msgid "Internet Tools"
-msgstr "Công cụ mạng"
-
-#: ../src/common/appdata.py:226
-msgid "FTP Tools"
-msgstr "Công cụ FTP"
-
-#: ../src/common/appdata.py:227
-msgid "Desktop Tools"
-msgstr "Công cụ Bàn làm việc"
-
-#: ../src/common/appdata.py:228
-msgid "CD/Disk Tools"
-msgstr "Công cụ CD/Đĩa"
-
-#: ../src/common/appdata.py:229
-msgid "Development"
-msgstr "Phát triển"
-
-#: ../src/common/appdata.py:230
-msgid "Emulators"
-msgstr "Giả lập"
-
-#: ../src/common/appdata.py:231
-msgid "Themes"
-msgstr ""
-
-#: ../src/common/appdata.py:232
-msgid "E-mail Tools"
-msgstr "Công cụ Thư điện tử"
-
-#: ../src/common/sourcedata.py:6
+#: ../ubuntutweak/common/sourcedata.py:6
 msgid "Avant Window Navigator (Unstable Version)"
 msgstr "Avan Window Navigator (Phiên bản không ổn định)"
 
-#: ../src/common/sourcedata.py:8
+#: ../ubuntutweak/common/sourcedata.py:8
 msgid "aMule (Stable Version)"
 msgstr ""
 
-#: ../src/common/sourcedata.py:11
+#: ../ubuntutweak/common/sourcedata.py:11
 msgid "Breathe Icon Theme"
 msgstr ""
 
-#: ../src/common/sourcedata.py:15
+#: ../ubuntutweak/common/sourcedata.py:15
 msgid "Ubuntu Chinese Repository"
 msgstr "Kho lưu Ubuntu Trung Quốc"
 
-#: ../src/common/sourcedata.py:18
+#: ../ubuntutweak/common/sourcedata.py:18
 msgid "IBus (Old Version)"
 msgstr "IBus (Phiên bản cũ)"
 
-#: ../src/common/sourcedata.py:19
+#: ../ubuntutweak/common/sourcedata.py:19
 msgid "IBus 1.2 for intrepid"
 msgstr "IBus 1.2 cho intrepid"
 
-#: ../src/common/sourcedata.py:20
+#: ../ubuntutweak/common/sourcedata.py:20
 msgid "IBus 1.2 for jaunty"
 msgstr "IBus 1.2 cho jaunty"
 
-#: ../src/common/sourcedata.py:21
+#: ../ubuntutweak/common/sourcedata.py:21
 msgid "IBus 1.2 for karmic"
 msgstr ""
 
-#: ../src/common/sourcedata.py:27
+#: ../ubuntutweak/common/sourcedata.py:27
 msgid "Ubuntu Mozilla Security Team"
 msgstr ""
 
-#: ../src/common/sourcedata.py:29
+#: ../ubuntutweak/common/sourcedata.py:29
 msgid "Christine Media Player"
 msgstr ""
 
-#: ../src/common/sourcedata.py:35
+#: ../ubuntutweak/common/sourcedata.py:35
 msgid "Experimental Gnome Games"
 msgstr ""
 
-#: ../src/common/sourcedata.py:37
+#: ../ubuntutweak/common/sourcedata.py:37
 msgid "Chinese Chess"
 msgstr ""
 
-#: ../src/common/sourcedata.py:38
+#: ../ubuntutweak/common/sourcedata.py:38
 msgid "Gnome Global Menu"
 msgstr "Gnome Global Menu"
 
-#: ../src/common/sourcedata.py:40
+#: ../ubuntutweak/common/sourcedata.py:40
 msgid "GetDeb.net (Mirror)"
 msgstr ""
 
-#: ../src/common/sourcedata.py:42
+#: ../ubuntutweak/common/sourcedata.py:42
 msgid "Gwibber (Daily Version)"
 msgstr "Gwibber (Bản Hằng ngày)"
 
-#: ../src/common/sourcedata.py:43
+#: ../ubuntutweak/common/sourcedata.py:43
 msgid "GIMP (Testing Version)"
 msgstr ""
 
-#: ../src/common/sourcedata.py:44
+#: ../ubuntutweak/common/sourcedata.py:44
 msgid "Banshee (Stable Version)"
 msgstr "Banshee (Phiên bản ổn định)"
 
-#: ../src/common/sourcedata.py:45
+#: ../ubuntutweak/common/sourcedata.py:45
 msgid "Banshee (Unstable Version)"
 msgstr "Banshee (Phiên bản không ổn định)"
 
-#: ../src/common/sourcedata.py:46
+#: ../ubuntutweak/common/sourcedata.py:46
 msgid "Google Repository"
 msgstr ""
 
-#: ../src/common/sourcedata.py:47
+#: ../ubuntutweak/common/sourcedata.py:47
 msgid "Google Testing Repository"
 msgstr ""
 
-#: ../src/common/sourcedata.py:52
+#: ../ubuntutweak/common/sourcedata.py:52
 msgid "Ubuntu Tweak (Unstable Version)"
 msgstr "Ubuntu Tweak (Phiên bản không ổn định)"
 
-#: ../src/common/sourcedata.py:57
+#: ../ubuntutweak/common/sourcedata.py:57
 msgid "Spicebird (Testing Version)"
 msgstr ""
 
-#: ../src/common/sourcedata.py:61
+#: ../ubuntutweak/common/sourcedata.py:61
 msgid "SMPlayer (Unstable Version)"
 msgstr ""
 
-#: ../src/common/sourcedata.py:71
+#: ../ubuntutweak/common/sourcedata.py:71
 msgid "VirtualBox (Open Source Edition)"
 msgstr ""
 
-#: ../src/common/sourcedata.py:72
+#: ../ubuntutweak/common/sourcedata.py:72
 msgid "VLC media player"
 msgstr "Trình chơi nhạc VLC"
 
-#: ../src/common/sourcedata.py:78
+#: ../ubuntutweak/common/sourcedata.py:78
 msgid "Moblin Desktop for Ubuntu 9.04 Jaunty"
 msgstr ""
 
-#: ../src/common/sourcedata.py:79
+#: ../ubuntutweak/common/sourcedata.py:79
 msgid "Moblin Desktop for Ubuntu 9.10 Karmic"
 msgstr ""
 
-#: ../src/common/sourcedata.py:89
+#: ../ubuntutweak/common/sourcedata.py:89
 msgid "Bisigi Theme Project"
 msgstr ""
 
-#: ../src/common/sourcedata.py:90
+#: ../ubuntutweak/common/sourcedata.py:90
 msgid "PiTiVi video editor"
 msgstr ""
 
-#: ../src/common/sourcedata.py:91
+#: ../ubuntutweak/common/sourcedata.py:91
 msgid "Kubuntu Backports"
 msgstr ""
 
-#: ../src/common/sourcedata.py:93
+#: ../ubuntutweak/common/sourcedata.py:93
 msgid "Tomboy (Stable Version)"
 msgstr ""
 
-#: ../src/common/sourcedata.py:94
+#: ../ubuntutweak/common/sourcedata.py:94
 msgid "Tomboy (Unstable Version)"
 msgstr ""
 
-#: ../src/common/sourcedata.py:95
+#: ../ubuntutweak/common/sourcedata.py:95
 msgid "Inkscape (Nightly Version)"
 msgstr ""
 
-#: ../src/common/sourcedata.py:97
+#: ../ubuntutweak/common/sourcedata.py:97
 msgid "OSD Lyrics"
 msgstr ""
 
-#: ../src/common/sourcedata.py:98
+#: ../ubuntutweak/common/sourcedata.py:98
 msgid "OpenShot Video Editor"
 msgstr ""
 
-#: ../src/common/widgets/widgets.py:68 ../src/common/widgets/widgets.py:83
-#: ../src/modules/icons.py:104
-msgid "Unset"
-msgstr "Không đặt"
+#: ../ubuntutweak/common/package.py:172
+#: ../ubuntutweak/modules/sourcecenter.py:138
+#: ../ubuntutweak/modules/appcenter.py:543
+#: ../ubuntutweak/modules/compiz.py:411 ../ubuntutweak/modules/nautilus.py:167
+msgid "Update Successful!"
+msgstr "Cập nhật thành công"
 
-#: ../src/common/widgets/widgets.py:260
-msgid "Please press the new key combination"
-msgstr "Vui lòng nhập tổ hợp phím mới"
+#: ../ubuntutweak/common/package.py:174
+#: ../ubuntutweak/modules/sourcecenter.py:140
+#: ../ubuntutweak/modules/appcenter.py:545
+#: ../ubuntutweak/modules/compiz.py:413 ../ubuntutweak/modules/nautilus.py:169
+msgid "Update Failed!"
+msgstr "Cập nhật thất bại!"
 
-#: ../src/common/widgets/widgets.py:309
-msgid "Disabled"
-msgstr "Tắt"
-
-#: ../src/common/widgets/treeviews.py:69
-msgid "Create folder"
-msgstr "Tạo thư mục"
-
-#: ../src/common/widgets/treeviews.py:73 ../src/modules/icons.py:33
-#: ../src/modules/icons.py:42 ../src/modules/icons.py:51
-msgid "Rename"
-msgstr "Đổi tên"
-
-#: ../src/common/widgets/treeviews.py:77
-msgid "Delete"
-msgstr "Xóa"
-
-#: ../src/common/widgets/treeviews.py:99
-msgid "Input the dir name"
-msgstr "Nhập vào tên thư mục"
-
-#: ../src/common/widgets/treeviews.py:124
-msgid "Can't rename the root folder"
-msgstr "Không thể đổi tên thư mục gốc"
-
-#: ../src/common/widgets/treeviews.py:141
-msgid "Can't delete the root folder"
-msgstr "Không thể xóa thư mục gốc"
-
-#: ../src/common/widgets/treeviews.py:156
-msgid ""
-"Can't rename!\n"
-"\n"
-"There are files in it!"
-msgstr ""
-
-#: ../src/common/widgets/dialogs.py:75
-msgid "An unexpected error has occurred."
-msgstr "Gặp một lỗi bất thường."
-
-#: ../src/common/widgets/dialogs.py:76
-msgid "Could not authenticate"
-msgstr "Không thể xác thực"
-
-#: ../src/common/widgets/dialogs.py:81
-msgid "You need to restart your computer."
-msgstr "Bạn cần khởi động lại máy tính."
-
-#: ../src/common/widgets/dialogs.py:82
-msgid "Service hasn't initialized yet"
-msgstr "Dịch vụ chưa được khởi chạy"
-
-#: ../src/common/policykit/polkitbutton.py:88
-msgid "_Unlock"
-msgstr "_Gỡ khoá"
-
-#: ../src/common/package.py:196
+#: ../ubuntutweak/common/package.py:220
 msgid "(Not available)"
 msgstr "(Không sẵn có)"
 
-#: ../src/common/misc.py:16
+#: ../ubuntutweak/common/misc.py:16
 #, python-format
 msgid "%(size)d byte"
 msgid_plural "%(size)d bytes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/common/misc.py:18
+#: ../ubuntutweak/common/misc.py:18
 #, python-format
 msgid "%.1f KB"
 msgstr ""
 
-#: ../src/common/misc.py:20
+#: ../ubuntutweak/common/misc.py:20
 #, python-format
 msgid "%.1f MB"
 msgstr ""
 
-#: ../src/common/misc.py:21
+#: ../ubuntutweak/common/misc.py:21
 #, python-format
 msgid "%.1f GB"
 msgstr ""
 
-#: ../src/modules/userdir.py:48
+#: ../ubuntutweak/policykit/polkitbutton.py:72
+msgid "_Unlock"
+msgstr "_Gỡ khoá"
+
+#: ../ubuntutweak/modules/userdir.py:46
 msgid "Download"
 msgstr "Tảo về"
 
-#: ../src/modules/userdir.py:49
+#: ../ubuntutweak/modules/userdir.py:47
 msgid "Templates"
 msgstr "Mẫu"
 
-#: ../src/modules/userdir.py:50
+#: ../ubuntutweak/modules/userdir.py:48
 msgid "Public"
 msgstr "Công cộng"
 
-#: ../src/modules/userdir.py:51
+#: ../ubuntutweak/modules/userdir.py:49
 msgid "Document"
 msgstr "Tài liệu"
 
-#: ../src/modules/userdir.py:52
+#: ../ubuntutweak/modules/userdir.py:50
 msgid "Music"
 msgstr "Âm nhạc"
 
-#: ../src/modules/userdir.py:53
+#: ../ubuntutweak/modules/userdir.py:51
 msgid "Pictures"
 msgstr "Ảnh"
 
-#: ../src/modules/userdir.py:54
+#: ../ubuntutweak/modules/userdir.py:52
 msgid "Videos"
 msgstr "Phim"
 
-#: ../src/modules/userdir.py:162
+#: ../ubuntutweak/modules/userdir.py:160
 msgid "Choose a folder"
 msgstr "Chọn thư mục"
 
-#: ../src/modules/userdir.py:179
+#: ../ubuntutweak/modules/userdir.py:177
 msgid ""
 "Ubuntu Tweak will restore the chosen directory to the default location.\n"
 "However, you must move your files back into place by yourself.\n"
@@ -1172,27 +574,27 @@ msgstr ""
 "Ngoài ra, bạn phải tự mình di chuyển những tệp của bạn trở lại vị trí.\n"
 "Bạn có muốn tiếp tục?"
 
-#: ../src/modules/userdir.py:215
+#: ../ubuntutweak/modules/userdir.py:213
 msgid "Directory"
 msgstr "Thư mục"
 
-#: ../src/modules/userdir.py:229
+#: ../ubuntutweak/modules/userdir.py:227
 msgid "Path"
 msgstr "Đường dẫn"
 
-#: ../src/modules/userdir.py:236
+#: ../ubuntutweak/modules/userdir.py:234
 msgid "Change"
 msgstr "Thay đổi"
 
-#: ../src/modules/userdir.py:240
+#: ../ubuntutweak/modules/userdir.py:238
 msgid "Restore to default"
 msgstr "Khôi phục mặc định"
 
-#: ../src/modules/userdir.py:247
+#: ../ubuntutweak/modules/userdir.py:245
 msgid "Default Folder Locations"
 msgstr "Vị trí các thư mục mặc định"
 
-#: ../src/modules/userdir.py:248
+#: ../ubuntutweak/modules/userdir.py:246
 msgid ""
 "You can change the paths of the default folders here.\n"
 "Don't change the location of your desktop folder unless you know what you "
@@ -1202,213 +604,212 @@ msgstr ""
 "Đừng thay đổi vị trí thư mục Bàn làm việc trừ khi bạn biết rõ mình đang làm "
 "gì."
 
-#: ../src/modules/userdir.py:274
+#: ../ubuntutweak/modules/userdir.py:273
 msgid "Update successful!"
 msgstr "Cập nhật thành công!"
 
-#: ../src/modules/computer.py:29
-#, fuzzy
+#: ../ubuntutweak/modules/computer.py:33
 msgid "Computer Details"
-msgstr "Máy tính"
+msgstr ""
 
-#: ../src/modules/computer.py:30
+#: ../ubuntutweak/modules/computer.py:34
 msgid "Some useful information about your computer"
 msgstr ""
 
-#: ../src/modules/computer.py:37
+#: ../ubuntutweak/modules/computer.py:41
 msgid "Unknown"
 msgstr "Không rõ"
 
-#: ../src/modules/computer.py:52
+#: ../ubuntutweak/modules/computer.py:57
+msgid "Change Hostname"
+msgstr ""
+
+#: ../ubuntutweak/modules/computer.py:60
 msgid "System information"
 msgstr "Thông tin hệ thống"
 
-#: ../src/modules/computer.py:53
+#: ../ubuntutweak/modules/computer.py:61
 msgid "Hostname"
 msgstr "Tên máy"
 
-#: ../src/modules/computer.py:54
+#: ../ubuntutweak/modules/computer.py:62
 msgid "Distribution"
 msgstr "Bản phân phối"
 
-#: ../src/modules/computer.py:55
+#: ../ubuntutweak/modules/computer.py:63
 msgid "Desktop environment"
 msgstr "Môi trường làm việc"
 
-#: ../src/modules/computer.py:56
+#: ../ubuntutweak/modules/computer.py:64
 msgid "Kernel"
 msgstr "Nhân"
 
-#: ../src/modules/computer.py:57
+#: ../ubuntutweak/modules/computer.py:65
 msgid "Platform"
 msgstr "Kiến trúc"
 
-#: ../src/modules/computer.py:58
+#: ../ubuntutweak/modules/computer.py:66
 msgid "CPU"
 msgstr "CPU"
 
-#: ../src/modules/computer.py:59
+#: ../ubuntutweak/modules/computer.py:67
 msgid "Memory"
 msgstr "Bộ nhớ"
 
-#: ../src/modules/computer.py:63
+#: ../ubuntutweak/modules/computer.py:71
 msgid "User information"
 msgstr "Thông tin người dùng"
 
-#: ../src/modules/computer.py:64
+#: ../ubuntutweak/modules/computer.py:72
 msgid "Current user"
 msgstr "Người dùng hiện tại"
 
-#: ../src/modules/computer.py:65
+#: ../ubuntutweak/modules/computer.py:73
 msgid "Home directory"
 msgstr "Thư mục chính"
 
-#: ../src/modules/computer.py:66
+#: ../ubuntutweak/modules/computer.py:74
 msgid "Shell"
 msgstr "Shell"
 
-#: ../src/modules/computer.py:67
+#: ../ubuntutweak/modules/computer.py:75
 msgid "Language"
 msgstr "Ngôn ngữ"
 
-#: ../src/modules/lockdown.py:35
-#, fuzzy
+#: ../ubuntutweak/modules/computer.py:81
+msgid "Please enter your new hostname. It should be non-blank characters."
+msgstr ""
+
+#: ../ubuntutweak/modules/computer.py:82
+msgid "New hostname"
+msgstr ""
+
+#: ../ubuntutweak/modules/lockdown.py:33
 msgid "Security Related"
-msgstr "Bảo mật"
+msgstr ""
 
-#: ../src/modules/lockdown.py:36
-#, fuzzy
-msgid "Setup some security options"
-msgstr "Tùy chọn Bảo mật hệ thống"
+#: ../ubuntutweak/modules/lockdown.py:34
+msgid "Tweak some security options"
+msgstr ""
 
-#: ../src/modules/lockdown.py:45
+#: ../ubuntutweak/modules/lockdown.py:43
 msgid "System Security options"
 msgstr "Tùy chọn Bảo mật hệ thống"
 
-#: ../src/modules/lockdown.py:47
+#: ../ubuntutweak/modules/lockdown.py:45
 msgid "Disable \"Run Application\" dialog (Alt+F2)"
 msgstr "Vô hiệu hộp thoại \"Chạy Ứng dụng\" (Alt+F2)"
 
-#: ../src/modules/lockdown.py:50
+#: ../ubuntutweak/modules/lockdown.py:48
 msgid "Disable \"Lock Screen\""
 msgstr "Vô hiệu \"Khóa màn hình\""
 
-#: ../src/modules/lockdown.py:53
+#: ../ubuntutweak/modules/lockdown.py:51
 msgid "Disable printing"
 msgstr "Vô hiệu hoá in"
 
-#: ../src/modules/lockdown.py:56
+#: ../ubuntutweak/modules/lockdown.py:54
 msgid "Disable print setup"
 msgstr "Vô hiệu hoá thiết lập in"
 
-#: ../src/modules/lockdown.py:59
+#: ../ubuntutweak/modules/lockdown.py:57
 msgid "Disable save to disk"
 msgstr "Vô hiệu lưu vào đĩa"
 
-#: ../src/modules/lockdown.py:62
+#: ../ubuntutweak/modules/lockdown.py:60
 msgid "Disable \"Fast User Switching\""
 msgstr "Vô hiệu hóa \"Chuyển người dùng nhanh\""
 
-#: ../src/modules/lockdown.py:68
+#: ../ubuntutweak/modules/lockdown.py:66
 msgid "Fix the theme appearance when grant the root privileges"
 msgstr "Sửa sắc thái diện mạo khi đổi sang quyển root"
 
-#: ../src/modules/lockdown.py:74
+#: ../ubuntutweak/modules/lockdown.py:72
 msgid "Miscellaneous Options"
 msgstr "Các tùy chọn khác"
 
-#: ../src/modules/sourceeditor.py:65 ../src/modules/sourceeditor.py:70
+#: ../ubuntutweak/modules/sourceeditor.py:65
+#: ../ubuntutweak/modules/sourceeditor.py:70
 msgid "Choose the sources"
 msgstr "Chọn nguồn"
 
-#: ../src/modules/sourceeditor.py:71
+#: ../ubuntutweak/modules/sourceeditor.py:71
 msgid ""
 "You can read the title and comment to determine which source is suitable for "
 "you."
 msgstr ""
 "Bạn có thể đọc tiêu đề và chú thích để quyết định nguồn thích hợp với mình."
 
-#: ../src/modules/sourceeditor.py:87 ../src/modules/thirdsoft.py:625
+#: ../ubuntutweak/modules/sourceeditor.py:87
+#: ../ubuntutweak/modules/sourcecenter.py:728
 msgid "Details"
 msgstr "Chi tiết"
 
-#: ../src/modules/sourceeditor.py:106 ../src/modules/sourceeditor.py:111
+#: ../ubuntutweak/modules/sourceeditor.py:106
+#: ../ubuntutweak/modules/sourceeditor.py:111
 msgid "Submit your sources"
 msgstr "Đệ trình những nguồn của bạn"
 
-#: ../src/modules/sourceeditor.py:111
+#: ../ubuntutweak/modules/sourceeditor.py:111
 msgid "You can submit your sources to the server for other people to use."
 msgstr ""
 "Bạn có thể đưa các nguồn của bạn lên máy phục vụ cho những người khác sử "
 "dụng."
 
-#: ../src/modules/sourceeditor.py:116
+#: ../ubuntutweak/modules/sourceeditor.py:116
 msgid "_Source Title:"
 msgstr "_Tiêu đề nguồn:"
 
-#: ../src/modules/sourceeditor.py:119
+#: ../ubuntutweak/modules/sourceeditor.py:119
 msgid "_Locale:"
 msgstr "_Vị trí:"
 
-#: ../src/modules/sourceeditor.py:122 ../src/modules/autostart.py:52
+#: ../ubuntutweak/modules/sourceeditor.py:122
+#: ../ubuntutweak/modules/autostart.py:52
 msgid "Comm_ent:"
 msgstr "C_hú thích:"
 
-#: ../src/modules/sourceeditor.py:126
+#: ../ubuntutweak/modules/sourceeditor.py:126
 msgid "Enter the title of the source, e.g. \"Ubuntu Official Repostory\""
 msgstr "Nhập vào tiêu đề của nguồn, ví dụ. \"Kho chính thức Ubuntu\""
 
-#: ../src/modules/sourceeditor.py:128
+#: ../ubuntutweak/modules/sourceeditor.py:128
 msgid "If the locale isn't correct you can edit manually"
 msgstr "Nếu vị trí không đúng bạn có thể chỉnh sửa thủ công"
 
-#: ../src/modules/sourceeditor.py:143
+#: ../ubuntutweak/modules/sourceeditor.py:143
 msgid "Submit"
 msgstr "Chập nhận"
 
-#: ../src/modules/sourceeditor.py:191
+#: ../ubuntutweak/modules/sourceeditor.py:191
 msgid "Please check your network connection!"
 msgstr "Vui lòng kiểm tra kết nối mạng của bạn!"
 
-#: ../src/modules/sourceeditor.py:191
+#: ../ubuntutweak/modules/sourceeditor.py:191
 msgid "Network Error"
 msgstr "Lỗi mạng"
 
-#: ../src/modules/sourceeditor.py:198
+#: ../ubuntutweak/modules/sourceeditor.py:198
 msgid "Uploading..."
 msgstr "Đang tải lên..."
 
-#: ../src/modules/sourceeditor.py:214
+#: ../ubuntutweak/modules/sourceeditor.py:214
 msgid "Updating..."
 msgstr "Đang cập nhật..."
 
-#: ../src/modules/sourceeditor.py:352
+#: ../ubuntutweak/modules/sourceeditor.py:352
 msgid "Source Editor"
 msgstr "Chỉnh sửa nguồn"
 
-#: ../src/modules/sourceeditor.py:353
-msgid ""
-"Freely edit your software sources to fit your needs.\n"
-"Click \"Update Sources\" if you want to change the sources.\n"
-"Click \"Submit Sources\" if you want to share your sources with other people."
+#: ../ubuntutweak/modules/sourceeditor.py:353
+msgid "Freely edit your software sources to fit your needs."
 msgstr ""
-"Thoái mái chỉnh sửa nguồn phần mềm của bạn theo nhu cầu.\n"
-"Nhắp \"Cập nhật nguồn\" nếu bạn muốn thay đổi nguồn.\n"
-"Nhắp \"Tải lên nguồn\" nếu bạn muốn chia sẻ nguồn với những người khác."
 
-#: ../src/modules/sourceeditor.py:364
-msgid "Update Sources"
-msgstr "Cập nhật nguồn"
-
-#: ../src/modules/sourceeditor.py:366
-msgid "Submit Sources"
-msgstr "Đệ trình nguồn"
-
-#: ../src/modules/sourceeditor.py:452
+#: ../ubuntutweak/modules/sourceeditor.py:450
 msgid "Please input the correct information about sources!"
 msgstr "Vui lòng nhập vào thông tin đúng về các nguồn!"
 
-#: ../src/modules/sourceeditor.py:465
+#: ../ubuntutweak/modules/sourceeditor.py:463
 msgid ""
 "You can submit your sources to our server to help building the sources list, "
 "or you can use the official sources.\n"
@@ -1418,11 +819,11 @@ msgstr ""
 "danh sách nguồn, hoặc bạn có thể sử dụng các nguồn chính thức.\n"
 "Bạn có muốn sử dụng các nguồn chính thức?"
 
-#: ../src/modules/sourceeditor.py:468
+#: ../ubuntutweak/modules/sourceeditor.py:466
 msgid "No source data available"
 msgstr "Không sẵn có nguồn dữ liệu"
 
-#: ../src/modules/sourceeditor.py:485
+#: ../ubuntutweak/modules/sourceeditor.py:483
 msgid ""
 "Your sources will be reviewed and made available for others soon.\n"
 "Thank you!"
@@ -1430,179 +831,182 @@ msgstr ""
 "Nguồn của bạn sẽ được xem xét và sớm sẵn sàng cho mọi người.\n"
 "Cảm ơn!"
 
-#: ../src/modules/sourceeditor.py:486
+#: ../ubuntutweak/modules/sourceeditor.py:484
 msgid "Successfully submitted"
 msgstr "Đưa lên thanh công"
 
-#: ../src/modules/sourceeditor.py:498
+#: ../ubuntutweak/modules/sourceeditor.py:496
 msgid ""
 "You've changed the sources.list without saving it.\n"
 "Do you want to save it?"
 msgstr ""
+"Ban da thay doi sources.list khong kuu no\n"
+"Ban co muon luu no khong?"
 
-#: ../src/modules/sourceeditor.py:509 ../src/modules/thirdsoft.py:717
+#: ../ubuntutweak/modules/sourceeditor.py:507
 msgid "Please check the permission of the sources.list file"
-msgstr ""
+msgstr "Kiem tra su cho phep cua tai lieu sources.list"
 
-#: ../src/modules/sourceeditor.py:510 ../src/modules/thirdsoft.py:718
+#: ../ubuntutweak/modules/sourceeditor.py:508
 msgid "Save failed!"
 msgstr "Lưu thất bại!"
 
-#: ../src/modules/sourceeditor.py:519
+#: ../ubuntutweak/modules/sourceeditor.py:517
 msgid ""
 "The current content will be lost after reloading!\n"
 "Do you wish to continue?"
 msgstr ""
+"Nội dung hiện tại sẽ bị mất sau khi tải lại!\n"
+"Bạn có muốn tiếp tục?"
 
-#: ../src/modules/sourceeditor.py:530
+#: ../ubuntutweak/modules/sourceeditor.py:528
 msgid "You can't delete sources.list!"
-msgstr ""
+msgstr "Bạn không thể xóa sources.list!"
 
-#: ../src/modules/sourceeditor.py:532
+#: ../ubuntutweak/modules/sourceeditor.py:530
 #, python-format
 msgid ""
 "The \"%s\" will be deleted!\n"
 "Do you wish to continue?"
 msgstr ""
+"\"%s\" sẽ bị xóa!\n"
+"Bạn có muốn tiếp tục?"
 
-#: ../src/modules/thirdsoft.py:112
+#: ../ubuntutweak/modules/sourcecenter.py:109
 msgid ""
 "You can install the new applications by selecting them and choose \"Yes\".\n"
 "Or you can install them at Add/Remove by choose \"No\"."
 msgstr ""
+"Bạn có thể cài đặt ứng dụng mới bằng cách chọn chúng và chọn \"Có\".\n"
+"Hoặc bạn có thể cài đặt chúng tại Thêm/Gỡ bỏ bằng cách chọn \"Không\"."
 
-#: ../src/modules/thirdsoft.py:113
+#: ../ubuntutweak/modules/sourcecenter.py:110
 msgid "New applications are available to update"
-msgstr ""
+msgstr "Những ứng dụng sẵn sàng cập nhật"
 
-#: ../src/modules/thirdsoft.py:136 ../src/modules/thirdsoft.py:720
-#: ../src/modules/installer.py:701 ../src/modules/compiz.py:411
-#: ../src/modules/nautilus.py:222
-msgid "Update Successful!"
-msgstr "Cập nhật thành công"
+#. checkbutton
+#: ../ubuntutweak/modules/sourcecenter.py:119
+#: ../ubuntutweak/modules/cleaner.py:466
+msgid "Select All"
+msgstr "Chọn tất cả"
 
-#: ../src/modules/thirdsoft.py:138 ../src/modules/installer.py:703
-#: ../src/modules/compiz.py:413 ../src/modules/nautilus.py:224
-msgid "Update Failed!"
-msgstr "Cập nhật thất bại!"
-
-#: ../src/modules/thirdsoft.py:142
+#: ../ubuntutweak/modules/sourcecenter.py:144
+#: ../ubuntutweak/modules/updatemanager.py:64
 msgid "Your system is clean and there's no update yet."
-msgstr ""
+msgstr "Hệ thống của bạn sạch và không có bản cập nhật nào."
 
-#: ../src/modules/thirdsoft.py:143
+#: ../ubuntutweak/modules/sourcecenter.py:145
+#: ../ubuntutweak/modules/updatemanager.py:65
 msgid "The software information is up-to-date now"
 msgstr "Thông tin phần mềm đã được cập nhật."
 
-#: ../src/modules/thirdsoft.py:160
-msgid "Available New Applications"
+#: ../ubuntutweak/modules/sourcecenter.py:201
+#, python-format
+msgid "Available %d New Application"
+msgid_plural "Available %d New Applications"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:223
+#, python-format
+msgid "Available %d Package Update"
+msgid_plural "Available %d Package Updates"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:263
+msgid "No Available Package Update"
 msgstr ""
 
-#: ../src/modules/thirdsoft.py:177
-msgid "Available Package Updates"
-msgstr ""
-
-#: ../src/modules/thirdsoft.py:215
-msgid ""
-"To install software and updates from newly added or changed sources, you "
-"have to reload the information about available software.\n"
-"\n"
-"You need a working internet connection to continue."
-msgstr ""
-"Để cài đặt phần mềm và cập nhật từ những nguồn mới hoặc được thay đổi, bạn "
-"phải tải lại thông tin về những phần mềm sẵn có.\n"
-"\n"
-"Bạn cần một kết nối Internet đang hoạt động để tiếp tục."
-
-#: ../src/modules/thirdsoft.py:219
-msgid "The information about available software is out-of-date"
-msgstr "Thông tin về các phần mềm sẵn có đã lỗi thời"
-
-#: ../src/modules/thirdsoft.py:301
+#: ../ubuntutweak/modules/sourcecenter.py:377
 msgid "Third-Party Sources"
 msgstr "Nguồn từ bên thứ ba"
 
-#: ../src/modules/thirdsoft.py:443
+#: ../ubuntutweak/modules/sourcecenter.py:533
 #, python-format
 msgid ""
 "To enable this Source, You need to enable \"%s\" at first.\n"
 "Do you wish to continue?"
 msgstr ""
+"Để bật Nguồn này, Bạn cần bật \"%s\" trước.\n"
+"Bạn có muốn tiếp tục."
 
-#: ../src/modules/thirdsoft.py:445
+#: ../ubuntutweak/modules/sourcecenter.py:535
 msgid "Dependency Notice"
-msgstr ""
+msgstr "Thông báo Các phụ thuộc"
 
-#: ../src/modules/thirdsoft.py:459
+#: ../ubuntutweak/modules/sourcecenter.py:549
 #, python-format
 msgid ""
 "You can't disable this Source because \"%(SOURCE)s\" depends on it.\n"
 "To continue you need to disable \"%(SOURCE)s\" first."
 msgstr ""
 
-#: ../src/modules/thirdsoft.py:475
+#: ../ubuntutweak/modules/sourcecenter.py:566
 #, python-format
 msgid ""
 "You can't enable this Source because \"%(SOURCE)s\" conflicts with it.\n"
 "To continue you need to disable \"%(SOURCE)s\" first."
 msgstr ""
 
-#: ../src/modules/thirdsoft.py:554
+#: ../ubuntutweak/modules/sourcecenter.py:646
 msgid "New source has been enabled"
 msgstr ""
 
-#: ../src/modules/thirdsoft.py:554
+#: ../ubuntutweak/modules/sourcecenter.py:647
 #, python-format
 msgid ""
 "%s is enabled now, Please click the refresh button to update the application "
 "cache."
 msgstr ""
 
-#: ../src/modules/thirdsoft.py:567
+#: ../ubuntutweak/modules/sourcecenter.py:660
 msgid "Homepage"
 msgstr "Trang chủ"
 
-#: ../src/modules/thirdsoft.py:567
+#: ../ubuntutweak/modules/sourcecenter.py:660
 msgid "Source URL"
 msgstr "Nguồn URL"
 
-#: ../src/modules/thirdsoft.py:567
+#: ../ubuntutweak/modules/sourcecenter.py:660
 msgid "Description"
 msgstr "Mô tả"
 
-#: ../src/modules/thirdsoft.py:578
+#: ../ubuntutweak/modules/sourcecenter.py:673
 msgid "Description is here"
 msgstr "Mô tả tại đây"
 
-#: ../src/modules/thirdsoft.py:605
-msgid "Third-Party Software Sources"
-msgstr "Nguồn phần mềm bên thứ ba."
+#: ../ubuntutweak/modules/sourcecenter.py:701
+msgid "Source Center"
+msgstr ""
 
-#: ../src/modules/thirdsoft.py:606
+#: ../ubuntutweak/modules/sourcecenter.py:702
 msgid ""
-"After every release of Ubuntu there comes a feature freeze.\n"
-"This means only applications with bug-fixes get into the repository.\n"
-"By using third-party DEB repositories, you can always keep up-to-date with "
-"the latest version.\n"
-"After adding these repositories, locate and install them using Add/Remove."
-msgstr ""
-"Sau mỗi lần Ubuntu phát hành có chức năng đóng băng.\n"
-"Nó có nghĩa là chỉ ứng dụng với những bản sửa lỗi được đưa vào kho.\n"
-"Sử dụng kho DEB của bên thứ ba, bạn có thể luôn luôn cập nhật phiên bản mới "
-"nhất.\n"
-"Sau khi thêm những kho đó, tìm và cài đặt chúng sử dụng Thêm/Gỡ bỏ."
-
-#: ../src/modules/thirdsoft.py:677
-msgid ""
-"Some of your PPA Sources need to be updated.\n"
-"Do you wish to continue?"
+"A source center to keep your applications always up-to-date.\n"
+"You can also get the application which isn't in the official repository.\n"
+"Data will be automatically synchronized with the remote side.\n"
+"You can click the \"Sync\" button to check the update manually."
 msgstr ""
 
-#: ../src/modules/thirdsoft.py:677
-msgid "PPA Sources has expired"
+#: ../ubuntutweak/modules/sourcecenter.py:708
+msgid "Visit online Source Center"
 msgstr ""
 
-#: ../src/modules/thirdsoft.py:751
+#: ../ubuntutweak/modules/sourcecenter.py:714
+#: ../ubuntutweak/modules/appcenter.py:464
+msgid "_Sync"
+msgstr ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:760
+#: ../ubuntutweak/modules/appcenter.py:494
+msgid "Last synced:"
+msgstr ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:766
+msgid "New sources data available, would you like to update?"
+msgstr ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:840
 msgid ""
 "It is a possible security risk to use packages from Third-Party Sources.\n"
 "Please be careful and use only sources you trust."
@@ -1611,323 +1015,361 @@ msgstr ""
 "hãng thứ ba.\n"
 "Xin hãy cẩn thận và chỉ sử dụng các nguồn mà bạn tin tưởng."
 
-#: ../src/modules/thirdsoft.py:754 ../src/modules/nautilus.py:194
+#: ../ubuntutweak/modules/sourcecenter.py:843
+#: ../ubuntutweak/modules/nautilus.py:139
 msgid "Warning"
 msgstr "Cảnh báo"
 
-#: ../src/modules/thirdsoft.py:755
+#: ../ubuntutweak/modules/sourcecenter.py:844
 msgid "Never show this dialog"
 msgstr "Không hiện hộp thoại này nữa"
 
-#: ../src/modules/installer.py:99 ../src/modules/filetype.py:72
+#: ../ubuntutweak/modules/sourcecenter.py:870
+msgid "Some error happened while downloading the file"
+msgstr ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:881
+#: ../ubuntutweak/modules/appcenter.py:559
+msgid "Update available, Would you like to update?"
+msgstr ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:890
+#: ../ubuntutweak/modules/appcenter.py:568
+msgid ""
+"Network Error, Please check your network connection or the remote server is "
+"down."
+msgstr ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:892
+#: ../ubuntutweak/modules/appcenter.py:570
+msgid "No update available."
+msgstr ""
+
+#: ../ubuntutweak/modules/updatemanager.py:29
+msgid "Update Manager"
+msgstr "Trình Quản lý Cập nhật"
+
+#: ../ubuntutweak/modules/updatemanager.py:30
+msgid "A simple and easy-to-use update manager"
+msgstr ""
+
+#: ../ubuntutweak/modules/updatemanager.py:42
+msgid "Enable the auto launch of System Update Manager"
+msgstr ""
+
+#: ../ubuntutweak/modules/appcenter.py:106
+#: ../ubuntutweak/modules/filetype.py:72
 msgid "Categories"
 msgstr "Phân loại"
 
-#: ../src/modules/installer.py:119
+#: ../ubuntutweak/modules/appcenter.py:122
 msgid "All Categories"
 msgstr "Toàn bộ hạng mục"
 
-#: ../src/modules/installer.py:427 ../src/modules/installer.py:463
+#: ../ubuntutweak/modules/appcenter.py:420
+msgid "Checking update..."
+msgstr ""
+
+#: ../ubuntutweak/modules/appcenter.py:448
 msgid "Fetching online data..."
 msgstr ""
 
-#: ../src/modules/installer.py:474
-#, fuzzy
-msgid "Network is error"
-msgstr "Lỗi mạng"
-
-#: ../src/modules/installer.py:501
-msgid "Add/Remove Applications"
-msgstr "Thêm/Gỡ bỏ các Ứng dụng"
-
-#: ../src/modules/installer.py:502
-msgid ""
-"A simple but more effecient method for finding and installing popular "
-"packages than the default Add/Remove."
+#: ../ubuntutweak/modules/appcenter.py:452
+msgid "Application Center"
 msgstr ""
-"Một cách đơn giản nhưng hữu ích hơn Thêm/Gỡ bỏ... mặc định để tìm kiếm và "
-"cài đặt những gói phổ biến."
 
-#: ../src/modules/installer.py:544
-#, fuzzy
+#: ../ubuntutweak/modules/appcenter.py:453
+msgid ""
+"A simple but more effecient way for finding and installing popular "
+"applications.\n"
+"Data will be automatically synchronized with the remote side.\n"
+"You can click the \"Sync\" button to check the update manually."
+msgstr ""
+
+#: ../ubuntutweak/modules/appcenter.py:458
+msgid "Visit Online Application Center"
+msgstr ""
+
+#: ../ubuntutweak/modules/appcenter.py:499
 msgid "New application data available, would you like to update?"
 msgstr ""
-"Một phiên bản mới: %s đã sẵn có trực tuyến.\n"
-"Bạn có muốn cập nhật?"
 
-#: ../src/modules/filetype.py:34
+#: ../ubuntutweak/modules/appcenter.py:581
+msgid "Some error happened while downloading the file."
+msgstr ""
+
+#: ../ubuntutweak/modules/filetype.py:34
 msgid "Audio"
 msgstr "Âm thanh"
 
-#: ../src/modules/filetype.py:35
+#: ../ubuntutweak/modules/filetype.py:35
 msgid "Text"
 msgstr "Văn bản"
 
-#: ../src/modules/filetype.py:36
+#: ../ubuntutweak/modules/filetype.py:36
 msgid "Image"
 msgstr "Ảnh"
 
-#: ../src/modules/filetype.py:37
+#: ../ubuntutweak/modules/filetype.py:37
 msgid "Video"
 msgstr "Video"
 
-#: ../src/modules/filetype.py:38
+#: ../ubuntutweak/modules/filetype.py:38
 msgid "Application"
 msgstr "Ứng dụng"
 
-#: ../src/modules/filetype.py:39
+#: ../ubuntutweak/modules/filetype.py:39
 msgid "All"
 msgstr "Tất cả"
 
-#: ../src/modules/filetype.py:130
+#: ../ubuntutweak/modules/filetype.py:130
 msgid "File Type"
 msgstr "Kiểu tập tin"
 
-#: ../src/modules/filetype.py:144
+#: ../ubuntutweak/modules/filetype.py:145
 msgid "Associated Application"
 msgstr "Ứng dụng liên kết"
 
-#: ../src/modules/filetype.py:242
+#: ../ubuntutweak/modules/filetype.py:243
 #, python-format
 msgid "Open the files of type \"%s\" with:"
 msgstr "Mở tệp có kiểu \"%s\" với:"
 
-#: ../src/modules/filetype.py:271
+#: ../ubuntutweak/modules/filetype.py:272
 msgid "Choose an application"
 msgstr "Chọn một ứng dụng"
 
-#: ../src/modules/filetype.py:360
+#: ../ubuntutweak/modules/filetype.py:361
 #, python-format
 msgid "Select an application to open the type <b>%s</b>"
 msgstr "Chọn một ứng dụng để mở kiểu <b>%s</b>"
 
-#: ../src/modules/filetype.py:388
+#: ../ubuntutweak/modules/filetype.py:389
 #, python-format
 msgid "Could not find %s"
 msgstr "Không tìm thấy %s"
 
-#: ../src/modules/filetype.py:389
+#: ../ubuntutweak/modules/filetype.py:390
 msgid "Could not find application"
 msgstr "Không tìm thấy ứng dụng"
 
-#: ../src/modules/filetype.py:477
+#: ../ubuntutweak/modules/filetype.py:478
 msgid "File Type Manager"
 msgstr "Quản lý kiểu tập tin"
 
-#: ../src/modules/filetype.py:478
-msgid "Here you can manage which application will open which filetypes."
-msgstr "Tại đây bạn có thể quản lý ứng dụng để mở các kiểu tệp tin."
+#: ../ubuntutweak/modules/filetype.py:479
+msgid "Manage all of the registered file types"
+msgstr ""
 
-#: ../src/modules/filetype.py:510
+#: ../ubuntutweak/modules/filetype.py:511
 msgid "Only show filetypes with an associated application"
 msgstr "Chỉ hiện kiểu tệp tin với một ứng dụng liên kết"
 
-#: ../src/modules/metacity.py:34
-#, fuzzy
+#: ../ubuntutweak/modules/metacity.py:29
 msgid "Window Manager Settings"
-msgstr "Thiết lập quản lý điện năng nâng cao"
+msgstr ""
 
-#: ../src/modules/metacity.py:35
+#: ../ubuntutweak/modules/metacity.py:30
 msgid "Some options about Metacity Window Manager"
 msgstr ""
 
-#: ../src/modules/metacity.py:43
+#: ../ubuntutweak/modules/metacity.py:39
 msgid "Window Decorate Effect"
 msgstr "Hiệu ứng cho cửa sổ"
 
-#: ../src/modules/metacity.py:45
+#: ../ubuntutweak/modules/metacity.py:41
 msgid "Use Metacity window theme"
 msgstr "Sử dụng cửa sổ Metacity"
 
-#: ../src/modules/metacity.py:48
+#: ../ubuntutweak/modules/metacity.py:44
 msgid "Enable active window transparency"
 msgstr "Cho phép cửa sổ trong suốt có hiệu lực"
 
-#: ../src/modules/metacity.py:50
+#: ../ubuntutweak/modules/metacity.py:47
 msgid "Active window transparency level"
 msgstr "Kích hoạt mức trong suốt của cửa sổ"
 
-#: ../src/modules/metacity.py:55
+#: ../ubuntutweak/modules/metacity.py:51
 msgid "Enable inactive window transparency"
 msgstr "Cho phép bỏ hiệu lực cửa sổ trong suốt"
 
-#: ../src/modules/metacity.py:57
+#: ../ubuntutweak/modules/metacity.py:54
 msgid "Inactive window shade transparency level"
 msgstr "Bỏ kích hoạt mực độ trong suốt của cửa sổ"
 
-#: ../src/modules/metacity.py:64
+#: ../ubuntutweak/modules/metacity.py:60
 msgid "Window Titlebar Action"
 msgstr "Hành vi thanh tiêu để của cửa sổ"
 
-#: ../src/modules/metacity.py:65
+#: ../ubuntutweak/modules/metacity.py:62
 msgid "Titlebar mouse wheel action"
 msgstr "Hành vi chuột giữa trên tiêu đề cửa sổ"
 
-#: ../src/modules/metacity.py:68 ../src/modules/metacity.py:73
-#: ../src/modules/metacity.py:78 ../src/modules/metacity.py:83
+#: ../ubuntutweak/modules/metacity.py:64 ../ubuntutweak/modules/metacity.py:69
+#: ../ubuntutweak/modules/metacity.py:74 ../ubuntutweak/modules/metacity.py:79
 msgid "Roll up"
 msgstr "Cuộn lên"
 
-#: ../src/modules/metacity.py:70
+#: ../ubuntutweak/modules/metacity.py:67
 msgid "Titlebar double-click action"
 msgstr "Hành vi nhắp đúp vào tiêu đề"
 
-#: ../src/modules/metacity.py:73 ../src/modules/metacity.py:78
-#: ../src/modules/metacity.py:83
+#: ../ubuntutweak/modules/metacity.py:69 ../ubuntutweak/modules/metacity.py:74
+#: ../ubuntutweak/modules/metacity.py:79
 msgid "Maximize"
 msgstr "Cực đại hóa"
 
-#: ../src/modules/metacity.py:73 ../src/modules/metacity.py:78
-#: ../src/modules/metacity.py:83
+#: ../ubuntutweak/modules/metacity.py:69 ../ubuntutweak/modules/metacity.py:74
+#: ../ubuntutweak/modules/metacity.py:79
 msgid "Minimize"
 msgstr "Cực tiểu hóa"
 
-#: ../src/modules/metacity.py:73 ../src/modules/metacity.py:78
-#: ../src/modules/metacity.py:83
+#: ../ubuntutweak/modules/metacity.py:69 ../ubuntutweak/modules/metacity.py:74
+#: ../ubuntutweak/modules/metacity.py:79
 msgid "Lower"
 msgstr "Thấp"
 
-#: ../src/modules/metacity.py:73 ../src/modules/metacity.py:78
-#: ../src/modules/metacity.py:83
+#: ../ubuntutweak/modules/metacity.py:69 ../ubuntutweak/modules/metacity.py:74
+#: ../ubuntutweak/modules/metacity.py:79
 msgid "Menu"
 msgstr "Trình đơn"
 
-#: ../src/modules/metacity.py:75
+#: ../ubuntutweak/modules/metacity.py:72
 msgid "Titlebar middle-click action"
 msgstr "Hành vi nhắp chuột giữa trên thanh tiêu đề"
 
-#: ../src/modules/metacity.py:80
+#: ../ubuntutweak/modules/metacity.py:77
 msgid "Titlebar right-click action"
 msgstr "Hành vi nhắp phải chuột trên thanh tiêu đề"
 
-#: ../src/modules/metacity.py:90
+#: ../ubuntutweak/modules/metacity.py:86
 msgid "Enable Metacity's Compositing feature"
 msgstr "Bật  thành phần Metacity's Compositing"
 
-#: ../src/modules/metacity.py:93
+#: ../ubuntutweak/modules/metacity.py:89
 msgid "Compositing Manager"
 msgstr "Quản lý Compositing"
 
-#: ../src/modules/metacity.py:100
+#: ../ubuntutweak/modules/metacity.py:96
 msgid ""
 "To enable the compositing feature of metacity, you should manually disable "
 "Visual Effects in \"Appearance\"."
 msgstr ""
 
-#: ../src/modules/icons.py:32
+#: ../ubuntutweak/modules/__init__.py:104
+msgid "More"
+msgstr ""
+
+#: ../ubuntutweak/modules/icons.py:32
 msgid "Show \"Computer\" icon on desktop"
 msgstr "Hiện biểu tượng \"Máy tính\" ở nền màn hình"
 
-#: ../src/modules/icons.py:41
+#: ../ubuntutweak/modules/icons.py:41
 msgid "Show \"Home Folder\" icon on desktop"
 msgstr "Hiện biểu tượng \"Thư mục chính\" ở nền màn hình"
 
-#: ../src/modules/icons.py:50
+#: ../ubuntutweak/modules/icons.py:50
 msgid "Show \"Trash\" icon on desktop"
 msgstr "Hiện biểu tượng \"Thùng rác\" ở nền màn hình"
 
-#: ../src/modules/icons.py:107
-msgid "Desktop Icon settings"
-msgstr "Cài đặt biểu tượng nền màn hình"
+#: ../ubuntutweak/modules/icons.py:108
+msgid "Desktop Icon Settings"
+msgstr ""
 
-#: ../src/modules/icons.py:108
-#, fuzzy
-msgid "Change your desktop icons behavir"
+#: ../ubuntutweak/modules/icons.py:109
+msgid "Manage the desktop icon's name and visiable"
+msgstr ""
+
+#: ../ubuntutweak/modules/icons.py:118
+msgid "Show desktop icons"
 msgstr "Hiện biểu tượng ở nền màn hình"
 
-#: ../src/modules/icons.py:120
+#: ../ubuntutweak/modules/icons.py:139
 msgid "Show \"Network\" icon on desktop"
 msgstr "Hiện biểu tượng \"Mạng\" ở nền màn hình"
 
-#: ../src/modules/icons.py:125
+#: ../ubuntutweak/modules/icons.py:144
 msgid "Show mounted volumes on desktop"
 msgstr "Hiện các ổ đã gắn kết ở nền màn hình"
 
-#: ../src/modules/icons.py:130
+#: ../ubuntutweak/modules/icons.py:149
 msgid "Use \"Home Folder\" as desktop (Logout for changes to take effect)"
 msgstr ""
 
-#: ../src/modules/gnomesettings.py:35
+#: ../ubuntutweak/modules/gnomesettings.py:35
 msgid "GNOME Settings"
 msgstr ""
 
-#: ../src/modules/gnomesettings.py:36
-msgid "A lot of GNOME settings about panel and others"
+#: ../ubuntutweak/modules/gnomesettings.py:36
+msgid "A lot of GNOME settings about panel, menu and others"
 msgstr ""
 
-#: ../src/modules/gnomesettings.py:48
-msgid "Panel and Menu"
-msgstr "Panel và Menu"
+#: ../ubuntutweak/modules/gnomesettings.py:48
+msgid "Panel Settings"
+msgstr ""
 
-#: ../src/modules/gnomesettings.py:50
+#: ../ubuntutweak/modules/gnomesettings.py:50
 msgid "Display warning when removing a panel"
 msgstr "Hiển thị cảnh báo khi gỡ bỏ một panel"
 
-#: ../src/modules/gnomesettings.py:53
+#: ../ubuntutweak/modules/gnomesettings.py:53
 msgid "Complete lockdown of all panels"
 msgstr "Khóa hoàn toàn tất cả các panel"
 
-#: ../src/modules/gnomesettings.py:56
+#: ../ubuntutweak/modules/gnomesettings.py:56
 msgid "Enable panel animations"
 msgstr "Bật hoạt hóa panel"
 
-#: ../src/modules/gnomesettings.py:59
+#: ../ubuntutweak/modules/gnomesettings.py:61
+msgid "Menu Settings"
+msgstr ""
+
+#: ../ubuntutweak/modules/gnomesettings.py:63
 msgid "Show Input Method menu on the context menu"
 msgstr "Hiển thị Cách gõ trên trình đơn ngữ cảnh"
 
-#: ../src/modules/gnomesettings.py:62
+#: ../ubuntutweak/modules/gnomesettings.py:66
+#: ../ubuntutweak/modules/gnomesettings.py:69
 msgid "Show Unicode Method menu on the context menu"
 msgstr "Hiển thị Phương thức Unicode trên trình đơn ngữ cảnh"
 
-#: ../src/modules/gnomesettings.py:69
+#: ../ubuntutweak/modules/gnomesettings.py:72
+msgid "Menus have icons"
+msgstr ""
+
+#: ../ubuntutweak/modules/gnomesettings.py:75
+msgid "Buttons have icons"
+msgstr ""
+
+#: ../ubuntutweak/modules/gnomesettings.py:81
 msgid "Screensaver"
 msgstr "Bảo vệ màn hình"
 
-#: ../src/modules/gnomesettings.py:71
+#: ../ubuntutweak/modules/gnomesettings.py:83
 msgid "Enable user switching when screen is locked."
 msgstr "Cho phép chuyển người dùng khi màn hình bị khóa."
 
-#: ../src/modules/gnomesettings.py:76
+#: ../ubuntutweak/modules/gnomesettings.py:88
 msgid "Enable system-wide \"Recently Documents\" list"
 msgstr "Bật danh sách mở rộng \"Tài liệu vừa xem\""
 
-#: ../src/modules/gnomesettings.py:79
+#: ../ubuntutweak/modules/gnomesettings.py:91
 msgid "History"
 msgstr "Lịch sử"
 
-#: ../src/modules/gnomesettings.py:86
-msgid "Notification-daemon popup location"
-msgstr "Ví trí hiện bảng thông báo"
-
-#: ../src/modules/gnomesettings.py:90
-msgid "Top Left"
-msgstr "Góc trên bên trái"
-
-#: ../src/modules/gnomesettings.py:90
-msgid "Top Right"
-msgstr "Góc trên bên phải"
-
-#: ../src/modules/gnomesettings.py:90
-msgid "Bottom Left"
-msgstr "Góc dưới bên trái"
-
-#: ../src/modules/gnomesettings.py:90
-msgid "Bottom Right"
-msgstr "Góc dưới bên phải"
-
-#: ../src/modules/gnomesettings.py:102
+#: ../ubuntutweak/modules/gnomesettings.py:98
 msgid "Click the button to change the menu logo"
 msgstr "Nhắp vào nút để thay đổi biểu tượng trình đơn"
 
-#: ../src/modules/gnomesettings.py:115
+#: ../ubuntutweak/modules/gnomesettings.py:111
 msgid "Choose a new logo"
 msgstr "Chọn một biểu tượng mới"
 
-#: ../src/modules/gnomesettings.py:117 ../src/modules/session.py:50
+#: ../ubuntutweak/modules/gnomesettings.py:117
 msgid "PNG image (*.png)"
 msgstr "Ảnh PNG (*.png)"
 
-#: ../src/modules/gnomesettings.py:136
+#: ../ubuntutweak/modules/gnomesettings.py:136
 msgid ""
 "The size isn't suitable for the panel.\n"
 "It should be 24x24."
@@ -1935,275 +1377,219 @@ msgstr ""
 "Cỡ này không thích hợp cho panel.\n"
 "Nó nên là 24x24."
 
-#: ../src/modules/gnomesettings.py:153
+#: ../ubuntutweak/modules/gnomesettings.py:153
 msgid "Do you want your changes to take effect immediately?"
 msgstr ""
 
-#: ../src/modules/powermanager.py:34
-#, fuzzy
+#: ../ubuntutweak/modules/powermanager.py:28
 msgid "Advanced Powermanager Settings"
-msgstr "Thiết lập quản lý điện năng nâng cao"
+msgstr ""
 
-#: ../src/modules/powermanager.py:35
+#: ../ubuntutweak/modules/powermanager.py:29
 msgid "Control your computer's power managerment"
 msgstr ""
 
-#: ../src/modules/powermanager.py:42
+#: ../ubuntutweak/modules/powermanager.py:37
 msgid "Advanced Power Management Settings"
 msgstr "Thiết lập quản lý điện năng nâng cao"
 
-#: ../src/modules/powermanager.py:44
-msgid "Enable \"Hibernation\""
-msgstr "Bật \"Ngủ đông\""
-
-#: ../src/modules/powermanager.py:47
-msgid "Enable \"Suspend\""
-msgstr "Bật \"Nghỉ\""
-
-#: ../src/modules/powermanager.py:50
-msgid "Show \"CPU frequency control option\" in Power Management Preferences"
-msgstr ""
-"Hiển thịi \"Lựa chọn điều khiển tần số CPU\" trong Tùy chỉnh quản lý điện "
-"năng"
-
-#: ../src/modules/powermanager.py:53
-msgid "Disable Network Manager when asleep"
-msgstr "Tắt Quản lý mạng khi ngủ"
-
-#: ../src/modules/powermanager.py:56
+#: ../ubuntutweak/modules/powermanager.py:39
 msgid "Enable \"Lock screen\" when \"Blank Screen\" activates"
 msgstr "Bật \"Khóa màn hình\" khi kích hoạt \"Màn hình đen\""
 
-#: ../src/modules/powermanager.py:58
-msgid "Display \"Power Manager\" panel item"
-msgstr "Hiển thị mục panel \"Quản lý điện năng\""
+#: ../ubuntutweak/modules/powermanager.py:42
+msgid "Lock screen on hibernate"
+msgstr ""
 
-#: ../src/modules/powermanager.py:61
-msgid "Never display"
-msgstr "Không bao giờ hiện"
+#: ../ubuntutweak/modules/powermanager.py:45
+msgid "Lock screen on suspend"
+msgstr ""
 
-#: ../src/modules/powermanager.py:61
-msgid "When charging"
-msgstr "Khi sạc pin"
+#: ../ubuntutweak/modules/powermanager.py:48
+msgid "LCD brightness when on AC"
+msgstr ""
 
-#: ../src/modules/powermanager.py:61
-msgid "Always display"
-msgstr "Luôn luôn hiện"
+#: ../ubuntutweak/modules/powermanager.py:52
+msgid "LCD dimming amount when on battery"
+msgstr ""
 
-#: ../src/modules/powermanager.py:67
-msgid "Normal"
-msgstr "Bình thường"
-
-#: ../src/modules/powermanager.py:67
-msgid "On Demand"
-msgstr "Theo nhu cầu"
-
-#: ../src/modules/powermanager.py:67
-msgid "Power Save"
-msgstr "Tiết kiệm điện năng"
-
-#: ../src/modules/powermanager.py:67
-msgid "Performance"
-msgstr "Hiệu năng"
-
-#: ../src/modules/powermanager.py:69
-msgid "CPU Policy"
-msgstr "Chế độ CPU"
-
-#: ../src/modules/powermanager.py:70
-msgid "The Performance value when on AC power"
-msgstr "Đặt giá trị Hiệu năng khi cắm nguồn"
-
-#: ../src/modules/powermanager.py:76
-msgid "The Performance value when on battery power"
-msgstr "Đặt giá trị Hiệu năng khi dùng pin"
-
-#: ../src/modules/powermanager.py:82
-msgid "The CPU frequency policy when on AC power"
-msgstr "Chế độ tần số CPU kh cắm nguồn"
-
-#: ../src/modules/powermanager.py:87
-msgid "The CPU frequency policy when on battery power"
-msgstr "Chế độ tần số CPU khi dùng pin"
-
-#: ../src/modules/compiz.py:49
+#: ../ubuntutweak/modules/compiz.py:49
 msgid "Expo"
 msgstr "Triển lãm"
 
-#: ../src/modules/compiz.py:50
+#: ../ubuntutweak/modules/compiz.py:50
 msgid "Show Windows"
 msgstr "Hiện cửa sổ"
 
-#: ../src/modules/compiz.py:51
+#: ../ubuntutweak/modules/compiz.py:51
 msgid "Show Desktop"
 msgstr "Hiện màn hình nền"
 
-#: ../src/modules/compiz.py:52
+#: ../ubuntutweak/modules/compiz.py:52
 msgid "Widget"
 msgstr "Widget"
 
-#: ../src/modules/compiz.py:222
-#, fuzzy
+#: ../ubuntutweak/modules/compiz.py:222
 msgid "Compiz Settings"
-msgstr "Cấu hình Thumbnails"
+msgstr ""
 
-#: ../src/modules/compiz.py:223
+#: ../ubuntutweak/modules/compiz.py:223
 msgid "Setting with your amazing eye-candy desktop"
 msgstr ""
 
-#: ../src/modules/compiz.py:236
+#: ../ubuntutweak/modules/compiz.py:236
 msgid "Install Advanced Desktop Effects Settings Manager"
 msgstr "Cài đặt Quản lý hiệu ứng bàn làm việc nâng cao."
 
-#: ../src/modules/compiz.py:239
+#: ../ubuntutweak/modules/compiz.py:239
 msgid "Install Simple Desktop Effects Settings manager"
 msgstr "Cài đặt Quản lý hiệu ứng bàn làm việc đơn giản"
 
-#: ../src/modules/compiz.py:242
+#: ../ubuntutweak/modules/compiz.py:242
 msgid "Install Screenlets Widget Application"
 msgstr "Cài đặt Ứng dụng Screenlets Widget"
 
-#: ../src/modules/compiz.py:249
+#: ../ubuntutweak/modules/compiz.py:249
 msgid "Edge Settings"
 msgstr ""
 
-#: ../src/modules/compiz.py:252
+#: ../ubuntutweak/modules/compiz.py:252
 msgid "Enable snapping windows"
 msgstr "Bật bắt dính cửa sổ"
 
-#: ../src/modules/compiz.py:253
+#: ../ubuntutweak/modules/compiz.py:253
 msgid "Enable wobbly windows"
 msgstr "Bật cửa sổ rung rinh"
 
-#: ../src/modules/compiz.py:255
+#: ../ubuntutweak/modules/compiz.py:255
 msgid "Window Effects"
 msgstr "Hiệu ứng cửa sổ"
 
-#: ../src/modules/compiz.py:258
+#: ../ubuntutweak/modules/compiz.py:258
 msgid "Enable transparent menus"
 msgstr "Bật trình đơn trong suốt"
 
-#: ../src/modules/compiz.py:259
+#: ../ubuntutweak/modules/compiz.py:259
 msgid "Enable wobbly menus"
 msgstr "Bật trình đơn rung rinh"
 
-#: ../src/modules/compiz.py:261
+#: ../ubuntutweak/modules/compiz.py:261
 msgid "Menu Effects"
 msgstr "Hiệu ứng trình đơn"
 
-#: ../src/modules/compiz.py:265
+#: ../ubuntutweak/modules/compiz.py:265
 msgid "Useful Extensions"
 msgstr "Phần mở rộng hữu ích"
 
-#: ../src/modules/compiz.py:280
+#: ../ubuntutweak/modules/compiz.py:280
 msgid "Prerequisite Conditions"
 msgstr "Điều kiện tiên quyết"
 
-#: ../src/modules/scripts.py:50
+#: ../ubuntutweak/modules/scripts.py:50
 msgid "Create Launcher ..."
 msgstr ""
 
-#: ../src/modules/scripts.py:51
+#: ../ubuntutweak/modules/scripts.py:51
 msgid "Copy to ..."
 msgstr "Sao chép tới..."
 
-#: ../src/modules/scripts.py:52
+#: ../ubuntutweak/modules/scripts.py:52
 msgid "Copy to Desktop"
 msgstr "Chép tới Bàn làm việc"
 
-#: ../src/modules/scripts.py:53
+#: ../ubuntutweak/modules/scripts.py:53
 msgid "Copy to Download"
 msgstr "Chép tới Download"
 
-#: ../src/modules/scripts.py:54
+#: ../ubuntutweak/modules/scripts.py:54
 msgid "Copy to Home"
 msgstr "Chép tới Thư mục chính"
 
-#: ../src/modules/scripts.py:55
+#: ../ubuntutweak/modules/scripts.py:55
 msgid "Check md5 sum"
 msgstr ""
 
-#: ../src/modules/scripts.py:56
+#: ../ubuntutweak/modules/scripts.py:56
 msgid "Move to ..."
 msgstr "Di chuyển tới..."
 
-#: ../src/modules/scripts.py:57
+#: ../ubuntutweak/modules/scripts.py:57
 msgid "Move to Desktop"
 msgstr "Di chuyển tới Bàn làm việc"
 
-#: ../src/modules/scripts.py:58
+#: ../ubuntutweak/modules/scripts.py:58
 msgid "Move to Download"
 msgstr "Di chuyển tới Download"
 
-#: ../src/modules/scripts.py:59
+#: ../ubuntutweak/modules/scripts.py:59
 msgid "Move to Home"
 msgstr "Di chuyển tới Thư mục chính"
 
-#: ../src/modules/scripts.py:60
+#: ../ubuntutweak/modules/scripts.py:60
 msgid "Link to ..."
 msgstr "Liên kết tới..."
 
-#: ../src/modules/scripts.py:61
+#: ../ubuntutweak/modules/scripts.py:61
 msgid "Link to Desktop"
 msgstr "Liên kết tới Bàn làm việc"
 
-#: ../src/modules/scripts.py:62
+#: ../ubuntutweak/modules/scripts.py:62
 msgid "Link to Download"
 msgstr "Liên kết tới Download"
 
-#: ../src/modules/scripts.py:63
+#: ../ubuntutweak/modules/scripts.py:63
 msgid "Link to Home"
 msgstr "Liên kết tới Thư mục chính"
 
-#: ../src/modules/scripts.py:64
+#: ../ubuntutweak/modules/scripts.py:64
 msgid "Open with your favourite text editor"
 msgstr ""
 
-#: ../src/modules/scripts.py:65
+#: ../ubuntutweak/modules/scripts.py:65
 msgid "Open with your favourite text editor (as root)"
 msgstr ""
 
-#: ../src/modules/scripts.py:66
+#: ../ubuntutweak/modules/scripts.py:66
 msgid "Browse as root"
 msgstr "Duyệt với quyền root"
 
-#: ../src/modules/scripts.py:67
+#: ../ubuntutweak/modules/scripts.py:67
 msgid "Search in current folder"
 msgstr "Tìm kiếm trong thư mục hiện tại"
 
-#: ../src/modules/scripts.py:68
+#: ../ubuntutweak/modules/scripts.py:68
 msgid "Convert image to JPG"
 msgstr "Chuyển đổi ảnh thành JPG"
 
-#: ../src/modules/scripts.py:69
+#: ../ubuntutweak/modules/scripts.py:69
 msgid "Convert image to PNG"
 msgstr "Chuyển đổi ảnh thành PNG"
 
-#: ../src/modules/scripts.py:70
+#: ../ubuntutweak/modules/scripts.py:70
 msgid "Convert image to GIF"
 msgstr "Chuyển ảnh thành định dạng GIF"
 
-#: ../src/modules/scripts.py:71
+#: ../ubuntutweak/modules/scripts.py:71
 msgid "Set image as wallpaper"
 msgstr "Đặt ảnh làm ảnh nền"
 
-#: ../src/modules/scripts.py:72
+#: ../ubuntutweak/modules/scripts.py:72
 msgid "Make hard shadow to image"
 msgstr ""
 
-#: ../src/modules/scripts.py:99
+#: ../ubuntutweak/modules/scripts.py:99
 msgid "Enabled Scripts"
 msgstr "Bật tập lệnh"
 
-#: ../src/modules/scripts.py:127
+#: ../ubuntutweak/modules/scripts.py:127
 msgid "Disabled Scripts"
 msgstr "Tắt tập lệnh"
 
-#: ../src/modules/scripts.py:133
+#: ../ubuntutweak/modules/scripts.py:133
 msgid "Manage Scripts"
 msgstr "Quản lý tập lệnh"
 
-#: ../src/modules/scripts.py:134
+#: ../ubuntutweak/modules/scripts.py:134
 msgid ""
 "You can do all kinds of tasks with scripts.\n"
 "You can drag and drop from File Manager.\n"
@@ -2213,11 +1599,11 @@ msgstr ""
 "Bạn có thể kéo và thả từ Trình quản lý tệp tin.\n"
 "'Văn lệnh' sẽ được thêm vào trình đơn ngữ cảnh."
 
-#: ../src/modules/scripts.py:164
+#: ../ubuntutweak/modules/scripts.py:167
 msgid "Rebuild System Scripts"
 msgstr "Xây dựng lại hệ thống tập lệnh"
 
-#: ../src/modules/scripts.py:182
+#: ../ubuntutweak/modules/scripts.py:185
 msgid ""
 "This will delete all disabled scripts.\n"
 "Do you wish to continue?"
@@ -2225,55 +1611,55 @@ msgstr ""
 "Nó sẽ xóa tất cả các tập lệnh bị vô hiệu.\n"
 "Bạn có muốn tiếp tục?"
 
-#: ../src/modules/templates.py:65
+#: ../ubuntutweak/modules/templates.py:65
 msgid "HTML document"
 msgstr "Tài liệu HTML"
 
-#: ../src/modules/templates.py:66
+#: ../ubuntutweak/modules/templates.py:66
 msgid "ODB Database"
 msgstr "Cơ sở dữ liệu ODB"
 
-#: ../src/modules/templates.py:67
+#: ../ubuntutweak/modules/templates.py:67
 msgid "ODS Spreadsheet"
 msgstr "Văn bản ODS"
 
-#: ../src/modules/templates.py:68
+#: ../ubuntutweak/modules/templates.py:68
 msgid "ODT Document"
 msgstr "Văn bản ODT"
 
-#: ../src/modules/templates.py:69
+#: ../ubuntutweak/modules/templates.py:69
 msgid "Plain text document"
 msgstr "Văn bản thô"
 
-#: ../src/modules/templates.py:70
+#: ../ubuntutweak/modules/templates.py:70
 msgid "ODP Presentation"
 msgstr "Trình chiếu ODP"
 
-#: ../src/modules/templates.py:71
+#: ../ubuntutweak/modules/templates.py:71
 msgid "Python script"
 msgstr "Tập lệnh Python"
 
-#: ../src/modules/templates.py:72
+#: ../ubuntutweak/modules/templates.py:72
 msgid "Pygtk Example"
 msgstr "Ví dụ Pyngtk"
 
-#: ../src/modules/templates.py:73
+#: ../ubuntutweak/modules/templates.py:73
 msgid "Shell script"
 msgstr "Tập lệnh Shell"
 
-#: ../src/modules/templates.py:100
+#: ../ubuntutweak/modules/templates.py:100
 msgid "Enabled Templates"
 msgstr "Bật Biểu mẫu"
 
-#: ../src/modules/templates.py:107
+#: ../ubuntutweak/modules/templates.py:107
 msgid "Disabled Templates"
 msgstr "Tắt biểu mẫu"
 
-#: ../src/modules/templates.py:114
+#: ../ubuntutweak/modules/templates.py:114
 msgid "Manage Templates"
 msgstr "Quản lý BIểu mẫu"
 
-#: ../src/modules/templates.py:115
+#: ../ubuntutweak/modules/templates.py:115
 msgid ""
 "Here you can freely manage your document templates.\n"
 "You can add files as templates by dragging them onto this window.\n"
@@ -2285,7 +1671,7 @@ msgstr ""
 "Bạn có thể tạo tài liệu mới dựa trên những mẫu đó từ trình đơn chuột phải "
 "trong Nautilus."
 
-#: ../src/modules/templates.py:123
+#: ../ubuntutweak/modules/templates.py:126
 #, python-format
 msgid ""
 "Templates path is wrong! The current path is point to \"%s\".\n"
@@ -2294,23 +1680,23 @@ msgstr ""
 "Thư mục mẫu sai! Đường dẫn hiện tại chỉ đến \"%s\".\n"
 "Vui lòng đặt lại nó tới một thư mục trog Thư mục chính của bạn."
 
-#: ../src/modules/templates.py:130
+#: ../ubuntutweak/modules/templates.py:133
 msgid "Go And Set"
 msgstr "Đến và Đặt"
 
-#: ../src/modules/templates.py:135
+#: ../ubuntutweak/modules/templates.py:138
 msgid "Restart This Module"
 msgstr "Khởi chạy lại phần này"
 
-#: ../src/modules/templates.py:165
+#: ../ubuntutweak/modules/templates.py:168
 msgid "Rebuild System Templates"
 msgstr "Xây dựng lại hệ thống Mẫu"
 
-#: ../src/modules/templates.py:185
+#: ../ubuntutweak/modules/templates.py:188
 msgid "Templates path is still wrong, Please reset it!"
 msgstr "Đường dẫ đến thư mục Templates vẫn sai. Vui lòng đật lại nó!"
 
-#: ../src/modules/templates.py:197
+#: ../ubuntutweak/modules/templates.py:200
 msgid ""
 "This will delete all disabled templates.\n"
 "Do you wish to continue?"
@@ -2318,108 +1704,125 @@ msgstr ""
 "Nó sẽ xóa toàn bộ mẫu không dùng.\n"
 "Bạn có muốn tiếp tục?"
 
-#: ../src/modules/session.py:34
-#, fuzzy
+#: ../ubuntutweak/modules/session.py:34
 msgid "Session control"
-msgstr "Điều khiển phiên làm việc"
+msgstr ""
 
-#: ../src/modules/session.py:35
+#: ../ubuntutweak/modules/session.py:35
 msgid "Control your system session releated features"
 msgstr ""
 
-#: ../src/modules/session.py:44
-msgid "Splash Screen (Click On Image)"
+#: ../ubuntutweak/modules/session.py:47
+msgid "File Manager"
 msgstr ""
 
-#: ../src/modules/session.py:48
-msgid "Choose a splash image"
-msgstr "Chọn một ảnh splash"
-
-#: ../src/modules/session.py:136
-msgid "Automatically save open applications when logging out"
-msgstr "Tự động lưu ứng dụng được mở khi đăng xuất"
-
-#: ../src/modules/session.py:139
-msgid "Show logout prompt"
-msgstr "Hiện lời nhắc đăng xuất"
-
-#: ../src/modules/session.py:142
-msgid "Allow TCP Connections (Remote Desktop Connect)"
+#: ../ubuntutweak/modules/session.py:52
+msgid "Panel"
 msgstr ""
 
-#: ../src/modules/session.py:145
-msgid "Show splash screen"
-msgstr "Hiển thị hình splash"
+#: ../ubuntutweak/modules/session.py:56
+msgid "Window Manager"
+msgstr ""
 
-#: ../src/modules/session.py:149
+#: ../ubuntutweak/modules/session.py:67
 msgid "Session Control"
 msgstr "Điều khiển phiên làm việc"
 
-#: ../src/modules/cleaner.py:56
+#: ../ubuntutweak/modules/session.py:76
+msgid "Session Options"
+msgstr ""
+
+#: ../ubuntutweak/modules/session.py:78
+msgid "Automatically save open applications when logging out"
+msgstr "Tự động lưu ứng dụng được mở khi đăng xuất"
+
+#: ../ubuntutweak/modules/session.py:81
+msgid "Allow TCP Connections (Remote Desktop Connect)"
+msgstr ""
+
+#: ../ubuntutweak/modules/session.py:84
+msgid "Suppress the dialog to confirm logout, restart and shutdown action"
+msgstr ""
+
+#: ../ubuntutweak/modules/session.py:87
+msgid "Disable user list in gdm"
+msgstr ""
+
+#: ../ubuntutweak/modules/session.py:112
+msgid "Please enter a valid application command line."
+msgstr ""
+
+#: ../ubuntutweak/modules/session.py:112
+#, python-format
+msgid "\"%s\" is not available."
+msgstr ""
+
+#: ../ubuntutweak/modules/cleaner.py:55
 msgid "Cleaning Package Config"
 msgstr ""
 
-#: ../src/modules/cleaner.py:63 ../src/modules/cleaner.py:90
+#: ../ubuntutweak/modules/cleaner.py:62 ../ubuntutweak/modules/cleaner.py:89
 #, python-format
 msgid "Cleaning...%s"
 msgstr "Đang làm sạch...%s"
 
-#: ../src/modules/cleaner.py:83
+#: ../ubuntutweak/modules/cleaner.py:82
 msgid "Cleaning Package Cache"
 msgstr ""
 
-#: ../src/modules/cleaner.py:146
+#: ../ubuntutweak/modules/cleaner.py:145
 msgid "Package"
 msgstr "Gói"
 
-#: ../src/modules/cleaner.py:171 ../src/modules/cleaner.py:199
+#: ../ubuntutweak/modules/cleaner.py:170 ../ubuntutweak/modules/cleaner.py:198
 msgid "Packages"
 msgstr "Gói"
 
-#: ../src/modules/cleaner.py:228
+#: ../ubuntutweak/modules/cleaner.py:227
 msgid "Package Cache"
 msgstr "Gói lưu trữ"
 
-#: ../src/modules/cleaner.py:242
+#: ../ubuntutweak/modules/cleaner.py:241
 #, python-format
 msgid ""
 "<b>%s</b>\n"
 "Take %s of disk space"
 msgstr ""
 
-#: ../src/modules/cleaner.py:268
+#: ../ubuntutweak/modules/cleaner.py:267
 msgid "Package Config"
 msgstr "Cấu hình gói"
 
-#: ../src/modules/cleaner.py:306
+#: ../ubuntutweak/modules/cleaner.py:305
 #, python-format
 msgid "%d package selected to remove"
 msgid_plural "%d packages selected to remove"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/modules/cleaner.py:310
+#: ../ubuntutweak/modules/cleaner.py:309
 #, python-format
 msgid "%s of space will be freed"
 msgstr ""
 
-#: ../src/modules/cleaner.py:395
+#: ../ubuntutweak/modules/cleaner.py:394
 msgid "Canceled by user!"
 msgstr ""
 
-#: ../src/modules/cleaner.py:398 ../src/modules/nautilus.py:200
+#: ../ubuntutweak/modules/cleaner.py:397
+#: ../ubuntutweak/modules/nautilus.py:145
 msgid "Clean up Successful!"
 msgstr "Làm sạch xong!"
 
-#: ../src/modules/cleaner.py:401
+#: ../ubuntutweak/modules/cleaner.py:400
 msgid "Clean up Failed!"
 msgstr "Làm sạch thất bại!"
 
-#: ../src/modules/cleaner.py:414
+#: ../ubuntutweak/modules/cleaner.py:413
 msgid "Package Cleaner"
 msgstr "Trình dọn gói"
 
-#: ../src/modules/cleaner.py:415
+#: ../ubuntutweak/modules/cleaner.py:414
 msgid ""
 "Free up disk space by removing unneeded packages and cleaning the package "
 "download cache."
@@ -2428,37 +1831,31 @@ msgstr ""
 "làm sạch những gói tải về."
 
 #. create the button
-#: ../src/modules/cleaner.py:446
+#: ../ubuntutweak/modules/cleaner.py:445
 msgid "Clean Package"
 msgstr "Dọn gói"
 
-#: ../src/modules/cleaner.py:451
+#: ../ubuntutweak/modules/cleaner.py:450
 msgid "Clean Cache"
 msgstr "Làm sạch chỗ lưu trữ"
 
-#: ../src/modules/cleaner.py:456
+#: ../ubuntutweak/modules/cleaner.py:455
 msgid "Clean Config"
 msgstr "Làm sạch cấu hình"
 
-#: ../src/modules/cleaner.py:461
+#: ../ubuntutweak/modules/cleaner.py:460
 msgid "Clean Kernel"
 msgstr ""
 
-#. checkbutton
-#: ../src/modules/cleaner.py:467
-msgid "Select All"
-msgstr "Chọn tất cả"
-
-#: ../src/modules/cleaner.py:481
-#, fuzzy
+#: ../ubuntutweak/modules/cleaner.py:480
 msgid "_Cleanup"
-msgstr "Làm sạch"
+msgstr ""
 
-#: ../src/modules/shortcuts.py:46
+#: ../ubuntutweak/modules/shortcuts.py:45
 msgid "Shortcut Commands"
 msgstr "Lệnh gọi nhanh"
 
-#: ../src/modules/shortcuts.py:47
+#: ../ubuntutweak/modules/shortcuts.py:46
 msgid ""
 "By configuring keyboard shortcuts, you can access your favourite "
 "applications instantly.\n"
@@ -2467,76 +1864,77 @@ msgstr ""
 "Bằng cách đặt phím tắt, bạn có thể truy cập ứng dụng của bạn ngay lập tức.\n"
 "Nhập vào lệnh của ứng dụng và đặt phím tắt bạn thích."
 
-#: ../src/modules/shortcuts.py:93
+#: ../ubuntutweak/modules/shortcuts.py:94
 #, python-format
 msgid "Command %d"
 msgstr "Lệnh %d"
 
-#: ../src/modules/shortcuts.py:101 ../src/modules/shortcuts.py:155
+#: ../ubuntutweak/modules/shortcuts.py:102
+#: ../ubuntutweak/modules/shortcuts.py:158
 msgid "disabled"
 msgstr "vô hiệu"
 
-#: ../src/modules/shortcuts.py:117
+#: ../ubuntutweak/modules/shortcuts.py:118
 msgid "ID"
 msgstr "ID"
 
-#: ../src/modules/shortcuts.py:128
+#: ../ubuntutweak/modules/shortcuts.py:129
 msgid "Command"
 msgstr "Lệnh"
 
-#: ../src/modules/shortcuts.py:143
+#: ../ubuntutweak/modules/shortcuts.py:141
 msgid "Key"
 msgstr "Khoá"
 
-#: ../src/modules/shortcuts.py:147
+#: ../ubuntutweak/modules/shortcuts.py:151
 msgid "Clean"
 msgstr "Làm sạch"
 
-#: ../src/modules/autostart.py:46
+#: ../ubuntutweak/modules/autostart.py:46
 msgid "_Name:"
 msgstr "_Tên:"
 
-#: ../src/modules/autostart.py:49
+#: ../ubuntutweak/modules/autostart.py:49
 msgid "Co_mmand:"
 msgstr "Lệ_nh:"
 
-#: ../src/modules/autostart.py:63
+#: ../ubuntutweak/modules/autostart.py:63
 msgid "Edit Startup Program"
 msgstr "Sửa chương trình chạy khi khởi động"
 
-#: ../src/modules/autostart.py:68
+#: ../ubuntutweak/modules/autostart.py:68
 msgid "New Startup Program"
 msgstr "Chương trình khởi động mới"
 
-#: ../src/modules/autostart.py:70 ../data/gui/type_edit.glade.h:4
+#: ../ubuntutweak/modules/autostart.py:70
 msgid "_Browse..."
 msgstr "_Duyệt..."
 
-#: ../src/modules/autostart.py:99
+#: ../ubuntutweak/modules/autostart.py:99
 msgid "Choose a Program"
 msgstr "Chọn chương trình"
 
-#: ../src/modules/autostart.py:189
+#: ../ubuntutweak/modules/autostart.py:189
 msgid "Delete from Disk"
 msgstr "Xóa từ ổ đĩa"
 
-#: ../src/modules/autostart.py:203
+#: ../ubuntutweak/modules/autostart.py:203
 msgid "Can't delete the system item from disk."
 msgstr "Không thể xóa mục hệ thống từ đĩa"
 
-#: ../src/modules/autostart.py:255
+#: ../ubuntutweak/modules/autostart.py:255
 msgid "No description"
 msgstr "Không có mô tả"
 
-#: ../src/modules/autostart.py:275
+#: ../ubuntutweak/modules/autostart.py:275
 msgid "Program"
 msgstr "Chương trình"
 
-#: ../src/modules/autostart.py:334
-msgid "Session Programs"
-msgstr "Những chương trình thuộc phiên làm việc"
+#: ../ubuntutweak/modules/autostart.py:334
+msgid "Auto Start Programs"
+msgstr ""
 
-#: ../src/modules/autostart.py:335
+#: ../ubuntutweak/modules/autostart.py:335
 msgid ""
 "Here you can manage what programs get started when you login.\n"
 "You can hide items from view by selecting and clicking \"Remove\"\n"
@@ -2547,263 +1945,204 @@ msgstr ""
 "Để xóa hẳn một một, nhắp phải vào và chọn \"Xóa\"."
 
 #. create the two checkbutton for extra options of auto run list
-#: ../src/modules/autostart.py:348
+#: ../ubuntutweak/modules/autostart.py:348
 msgid "Show comments"
 msgstr "Hiện chú thích"
 
-#: ../src/modules/autostart.py:350
+#: ../ubuntutweak/modules/autostart.py:350
 msgid "Show all runnable programs"
 msgstr "Hiện tất cả chương trình có thể chạy"
 
-#: ../src/modules/autostart.py:416 ../src/modules/autostart.py:463
+#: ../ubuntutweak/modules/autostart.py:416
+#: ../ubuntutweak/modules/autostart.py:463
 msgid "The name of the startup program cannot be empty"
 msgstr "Tên của chương trình khởi động không thể là rỗng"
 
-#: ../src/modules/autostart.py:418 ../src/modules/autostart.py:465
+#: ../ubuntutweak/modules/autostart.py:418
+#: ../ubuntutweak/modules/autostart.py:465
 msgid "Text was empty (or contained only whitespace)"
 msgstr "Văn bản rỗng (hay chỉ chứa khoảng trắng)"
 
-#: ../src/modules/nautilus.py:55
+#: ../ubuntutweak/modules/nautilus.py:47
 msgid "Cleaning..."
 msgstr "Đang làm sạch..."
 
-#: ../src/modules/nautilus.py:100
-#, fuzzy
+#: ../ubuntutweak/modules/nautilus.py:66
 msgid "Nautilus Settings"
-msgstr "Cấu hình Thumbnails"
-
-#: ../src/modules/nautilus.py:101
-msgid "Settings your default file manager"
 msgstr ""
 
-#: ../src/modules/nautilus.py:109
+#: ../ubuntutweak/modules/nautilus.py:67
+msgid "Manage your default file manager"
+msgstr ""
+
+#: ../ubuntutweak/modules/nautilus.py:76
 msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
 msgstr ""
 "Hiện quyền truy cập nâng cao trong cửa sổ \"Thuộc tính tệp tin\" của Nautilus"
 
-#: ../src/modules/nautilus.py:112
+#: ../ubuntutweak/modules/nautilus.py:79
 msgid "File Browser"
 msgstr "Trình duyệt tập tin"
 
-#: ../src/modules/nautilus.py:117
-msgid "Default thumbnail icon size (pixels)"
-msgstr ""
-
-#: ../src/modules/nautilus.py:131
-msgid "Maximum size of the thumbnail cache (megabytes)"
-msgstr ""
-
-#: ../src/modules/nautilus.py:143
-msgid "Maximum age for the thumbnail in the cache (days)"
-msgstr ""
-
-#: ../src/modules/nautilus.py:155
+#: ../ubuntutweak/modules/nautilus.py:88
 msgid "Thumbnails Settings"
 msgstr "Cấu hình Thumbnails"
 
-#: ../src/modules/nautilus.py:162
+#: ../ubuntutweak/modules/nautilus.py:92
+msgid "Default thumbnail icon size (pixels)"
+msgstr ""
+
+#: ../ubuntutweak/modules/nautilus.py:96
+msgid "Maximum size of the thumbnail cache (megabytes)"
+msgstr ""
+
+#: ../ubuntutweak/modules/nautilus.py:100
+msgid "Maximum age for the thumbnail in the cache (days)"
+msgstr ""
+
+#: ../ubuntutweak/modules/nautilus.py:107
 msgid "Nautilus with Open Terminal"
 msgstr "Nautilus với Mở trong cửa sổ dòng lệnh"
 
-#: ../src/modules/nautilus.py:164
+#: ../ubuntutweak/modules/nautilus.py:109
 msgid "Nautilus with Root Privileges"
 msgstr "Nautilus với Quyền Root"
 
-#: ../src/modules/nautilus.py:166
+#: ../ubuntutweak/modules/nautilus.py:111
 msgid "Nautilus with Wallpaper"
 msgstr "Nautilus với Ảnh nền màn hình"
 
-#: ../src/modules/nautilus.py:168
+#: ../ubuntutweak/modules/nautilus.py:113
 msgid "Nautilus Extensions"
 msgstr "Phần mở rộng Nautilus"
 
-#: ../src/modules/nautilus.py:190
+#: ../ubuntutweak/modules/nautilus.py:135
 #, python-format
 msgid "Clean up the thumbnails cache (will free %s of disk space)"
 msgstr ""
 
-#: ../src/modules/nautilus.py:193
+#: ../ubuntutweak/modules/nautilus.py:138
 msgid "The thumbnails cache will be cleaned, Do you wish to continue?"
 msgstr ""
 
-#: ../src/ScriptWorker.py:56
+#: ../ubuntutweak/ScriptWorker.py:56
 #, python-format
 msgid "The file \"%s\" already exists!"
 msgstr "Tệp \"%s\" đã tồn tại!"
 
-#: ../src/ScriptWorker.py:61
+#: ../ubuntutweak/ScriptWorker.py:61
 #, python-format
 msgid "The folder \"%s\" already exists!"
 msgstr "Thư mục \"%s\" đã tồn tại!"
 
-#: ../src/ScriptWorker.py:68 ../src/ScriptWorker.py:75
+#: ../ubuntutweak/ScriptWorker.py:68 ../ubuntutweak/ScriptWorker.py:75
 #, python-format
 msgid "The target \"%s\" already exists!"
 msgstr "Vị trí \"%s\" đã tồn tại!"
 
-#: ../src/ScriptWorker.py:125 ../src/ScriptWorker.py:138
+#: ../ubuntutweak/ScriptWorker.py:125 ../ubuntutweak/ScriptWorker.py:138
 msgid "Enter your password to perform the administrative tasks"
 msgstr "Nhập vào mật khẩu để thực hiện lệnh với quyền quản trị"
 
-#: ../src/ScriptWorker.py:132
+#: ../ubuntutweak/ScriptWorker.py:132
 msgid "Coudn't find any text editor in your system!"
 msgstr "Không tìm thấy trình soạn thảo văn bản nào trong hệ thống!"
 
-#: ../src/ScriptWorker.py:159
+#: ../ubuntutweak/ScriptWorker.py:159
 msgid "Select a folder"
 msgstr "Chọn một thư mục"
 
-#: ../src/ScriptWorker.py:189
+#: ../ubuntutweak/ScriptWorker.py:189
 msgid "Please select a target (files or folders)."
 msgstr "Chọn một vị trí (tệp hoặc thư mục)."
 
-#: ../data/gui/preferences.glade.h:1
-msgid "<b>Features</b>"
+#: ../ubuntutweak/network/utdata.py:39 ../ubuntutweak/network/utdata.py:72
+msgid "Never"
 msgstr ""
 
-#: ../data/gui/preferences.glade.h:2
-msgid "<b>User Interface</b>"
+#: ../ubuntutweak/network/utdata.py:63
+#, python-format
+msgid "%d week ago"
+msgid_plural "%d weeks ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../ubuntutweak/network/utdata.py:65
+#, python-format
+msgid "%d day ago"
+msgid_plural "%d days ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../ubuntutweak/network/utdata.py:67
+#, python-format
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../ubuntutweak/network/utdata.py:69
+#, python-format
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../ubuntutweak/network/utdata.py:70
+msgid "Just Now"
 msgstr ""
 
-#: ../data/gui/preferences.glade.h:3
-msgid "Default Launch Function"
-msgstr ""
+#~ msgid "Session Programs"
+#~ msgstr "Những chương trình thuộc phiên làm việc"
 
-#: ../data/gui/preferences.glade.h:4
-msgid "Default Window Height"
-msgstr ""
+#~ msgid "Desktop Icon settings"
+#~ msgstr "Cài đặt biểu tượng nền màn hình"
 
-#: ../data/gui/preferences.glade.h:5
-msgid "Default Window Width"
-msgstr ""
+#~ msgid "Submit Sources"
+#~ msgstr "Đệ trình nguồn"
 
-#: ../data/gui/preferences.glade.h:6
-msgid "Left Menubar Width"
-msgstr ""
+#~ msgid "Update Sources"
+#~ msgstr "Cập nhật nguồn"
 
-#: ../data/gui/preferences.glade.h:7
-msgid "Ubuntu Tweak Preferences"
-msgstr ""
+#~ msgid ""
+#~ "A simple but more effecient method for finding and installing popular "
+#~ "packages than the default Add/Remove."
+#~ msgstr ""
+#~ "Một cách đơn giản nhưng hữu ích hơn Thêm/Gỡ bỏ... mặc định để tìm kiếm và "
+#~ "cài đặt những gói phổ biến."
 
-#: ../data/gui/traceback.glade.h:1
-msgid "<big><b>Oops... a fatal error occured</b></big>"
-msgstr ""
+#~ msgid "Here you can manage which application will open which filetypes."
+#~ msgstr "Tại đây bạn có thể quản lý ứng dụng để mở các kiểu tệp tin."
 
-#: ../data/gui/traceback.glade.h:2
-msgid "<big><b>Oops... an error occured</b></big>"
-msgstr ""
+#~ msgid ""
+#~ "After every release of Ubuntu there comes a feature freeze.\n"
+#~ "This means only applications with bug-fixes get into the repository.\n"
+#~ "By using third-party DEB repositories, you can always keep up-to-date with "
+#~ "the latest version.\n"
+#~ "After adding these repositories, locate and install them using Add/Remove."
+#~ msgstr ""
+#~ "Sau mỗi lần Ubuntu phát hành có chức năng đóng băng.\n"
+#~ "Nó có nghĩa là chỉ ứng dụng với những bản sửa lỗi được đưa vào kho.\n"
+#~ "Sử dụng kho DEB của bên thứ ba, bạn có thể luôn luôn cập nhật phiên bản mới "
+#~ "nhất.\n"
+#~ "Sau khi thêm những kho đó, tìm và cài đặt chúng sử dụng Thêm/Gỡ bỏ."
 
-#: ../data/gui/traceback.glade.h:3
-msgid "Error Message"
-msgstr ""
-
-#: ../data/gui/traceback.glade.h:4
-msgid ""
-"If you'd like to help us fix the problem, \n"
-"Please choose <i>Report</i> to file a new bug report. Make sure to include "
-"the error message below:"
-msgstr ""
-
-#: ../data/gui/traceback.glade.h:6
-msgid ""
-"Ubuntu Tweak need to turn off.\n"
-"If you'd like to help us fix the problem, \n"
-"Please choose <i>Report</i> to file a new bug report. Make sure to include "
-"the error message below:"
-msgstr ""
-
-#: ../data/gui/traceback.glade.h:9
-msgid "_Report"
-msgstr ""
-
-#: ../data/gui/type_edit.glade.h:1
-msgid "Add Application"
-msgstr "Thêm ứng dụng"
-
-#: ../data/gui/type_edit.glade.h:2
-msgid "Edit Type"
-msgstr "Sửa kiểu"
-
-#: ../data/gui/type_edit.glade.h:3
-msgid "Select an application to view its description."
-msgstr "Chọn một ứng dụng để xem mô tả của nó."
-
-#: ../data/gui/type_edit.glade.h:5
-msgid "_Use a custom command"
-msgstr "Dùng _lệnh tự chọn"
-
-#: ../icons/ubuntu-tweak.desktop.in.h:1
-msgid "Tweak ubuntu to what you like"
-msgstr ""
-
-#~ msgid "Add/Remove"
-#~ msgstr "Thêm/Gỡ bỏ"
-
-#~ msgid "Autostart"
-#~ msgstr "Tự khởi động"
-
-#~ msgid "Icons"
-#~ msgstr "Biểu tượng"
-
-#~ msgid "Windows"
-#~ msgstr "Cửa sổ"
-
-#~ msgid "Compiz Fusion"
-#~ msgstr "Compiz Fusion"
-
-#~ msgid "GNOME"
-#~ msgstr "GNOME"
-
-#~ msgid "Folders"
-#~ msgstr "Thư mục"
-
-#~ msgid "Scripts"
-#~ msgstr "Tập lệnh"
-
-#~ msgid "Shortcuts"
-#~ msgstr "Lối tắt"
-
-#~ msgid "Nautilus"
-#~ msgstr "Nautilus"
-
-#~ msgid "Power Management"
-#~ msgstr "Quản lý Điện năng"
-
-#~ msgid "Reset"
-#~ msgstr "Đặt lại"
-
-#~ msgid "<span size=\"xx-large\">Please wait a moment...</span>"
-#~ msgstr "<span size=\"xx-large\">Vui lòng chờ một chút...</span>"
+#~ msgid ""
+#~ "This is a major failure of your software management system. Please check for "
+#~ "broken packages with synaptic, check the file permissions and correctness of "
+#~ "the file '/etc/apt/sources.list' and reload the software information with: "
+#~ "'sudo apt-get update' and 'sudo apt-get install -f'."
+#~ msgstr ""
+#~ "Hệ thống quản lý phần mềm trên máy bạn bị lỗi. Xin hãy kiểm tra các gói phần "
+#~ "mềm bị hỏng thông qua Synaptic, kiểm tra phân quyền và nội dung tập tin "
+#~ "'/etc/apt/sources.list' và nạp lại thông tin về các gói phần mềm bằng lệnh: "
+#~ "'sudo apt-get update' và 'sudo apt-get install -f'."
 
 #~ msgid ""
 #~ "Freely edit your software sources to fit your needs.\n"
 #~ "Click \"Update Sources\" if you want to change the sources.\n"
-#~ "Click \"Submit Sources\" if you want to share your sources with other "
-#~ "people.\n"
+#~ "Click \"Submit Sources\" if you want to share your sources with other people."
 #~ msgstr ""
-#~ "Tự do sửa nguồn phần mềm của bạn để thích hợp với những gì bạn cần.\n"
+#~ "Thoái mái chỉnh sửa nguồn phần mềm của bạn theo nhu cầu.\n"
 #~ "Nhắp \"Cập nhật nguồn\" nếu bạn muốn thay đổi nguồn.\n"
-#~ "Nhắp \"Đệ trình nguồn\" nếu bạn muốn chia sẻ nguồn của bạn với những "
-#~ "người khác.\n"
-
-#~ msgid "GTK+ based flexible audio player, similar to Amarok"
-#~ msgstr "Trình chơi nhạc linh hoạt nền GTK+, tương tự như Amarok"
-
-#~ msgid "Development version of Compiz Fusion"
-#~ msgstr "Phiên bản phát triển của Compiz Fusion"
-
-#~ msgid "A powerful screenshot tool"
-#~ msgstr "Một công cụ mạnh để chụp ảnh màn hình"
-
-#~ msgid "Run your Windows programs on Linux"
-#~ msgstr "Chạy các chương trình Windows của bạn trên Linux"
-
-#~ msgid "<span size=\"x-large\">This module is error while loading.</span>"
-#~ msgstr "<span size=\"x-large\">Gặp lỗi khi nạp mo-đun.</span>"
-
-#~ msgid ""
-#~ "<span size=\"x-large\">This feature isn't currently available in your "
-#~ "distribution</span>"
-#~ msgstr ""
-#~ "<span size=\"x-large\">Hiện tại thành phần này không có trong bản phân "
-#~ "phối của bạn</span>"
+#~ "Nhắp \"Tải lên nguồn\" nếu bạn muốn chia sẻ nguồn với những người khác."
