@@ -43,7 +43,8 @@ from compiz import CompizSetting
 
 class Shortcuts(TweakModule):
     __title__  = _("Shortcut Commands")
-    __desc__  = _("By configuring keyboard shortcuts, you can access your favourite applications instantly.\nEnter the application's command and set the desired shortcut keys.")
+    __desc__  = _("By configuring keyboard shortcuts, you can access your favourite applications instantly.\n"
+                  "Enter the application's command and set the desired shortcut keys.")
     __icon__ = 'preferences-desktop-keyboard-shortcuts'
     __category__ = 'personal'
     __desktop__ = 'gnome'

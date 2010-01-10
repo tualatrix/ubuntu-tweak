@@ -78,7 +78,7 @@ class Computer(TweakModule):
         self.add_start(box, False, False, 0)
 
     def on_hostname_button_clicked(self, widget, label):
-        dialog = QuestionDialog(_('Please enter your new hostname. It sould be non-blank characters.'),
+        dialog = QuestionDialog(_('Please enter your new hostname. It should be non-blank characters.'),
             title = _('New hostname'))
 
         vbox = dialog.vbox

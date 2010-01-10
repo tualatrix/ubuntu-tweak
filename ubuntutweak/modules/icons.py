@@ -105,10 +105,9 @@ class DesktopIcon(gtk.VBox):
             self.entry.set_text(_("Unset"))
 
 class Icon(TweakModule):
-    __title__ = _('Desktop Icon settings')
-    __desc__ = _('Change your desktop icons behavir')
+    __title__ = _('Desktop Icon Settings')
+    __desc__ = _("Manage the desktop icon's name and visiable")
     __icon__ = 'user-desktop'
-    __url__ = 'http://ubuntu-tweak.com'
     __category__ = 'desktop'
     __desktop__ = 'gnome'
 

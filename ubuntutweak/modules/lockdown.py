@@ -31,7 +31,7 @@ ROOT_ICONS = '/root/.icons'
 
 class LockDown(TweakModule):
     __title__ = _('Security Related')
-    __desc__ = _('Setup some security options')
+    __desc__ = _('Tweak some security options')
     __icon__ = ['gtk-dialog-authentication', 'stock_keyring']
     __category__ = 'system'
     __desktop__ = 'gnome'

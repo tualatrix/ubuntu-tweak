@@ -350,9 +350,10 @@ class SourceView(gtk.TextView):
 
 class SourceEditor(TweakModule):
     __title__ = _('Source Editor')
-    __desc__ = _('Freely edit your software sources to fit your needs.\n'
-                'Click "Update Sources" if you want to change the sources.\n'
-                'Click "Submit Sources" if you want to share your sources with other people.')
+    __desc__ = _('Freely edit your software sources to fit your needs.')
+#TODO Enable in the next version
+#                'Click "Update Sources" if you want to change the sources.\n'
+#                'Click "Submit Sources" if you want to share your sources with other people.')
     __icon__ = 'system-software-update'
     __category__ = 'application'
 
@@ -361,9 +362,8 @@ class SourceEditor(TweakModule):
 
         self.online_data = {}
 
-        set_label_for_stock_button(self.update_button, _('Update Sources'))
-
-        set_label_for_stock_button(self.submit_button, _('Submit Sources'))
+#        set_label_for_stock_button(self.update_button, _('Update Sources'))
+#        set_label_for_stock_button(self.submit_button, _('Submit Sources'))
 
         self.textview = SourceView(SOURCES_LIST)
         self.textview.set_sensitive(False)
@@ -553,8 +553,8 @@ class SourceEditor(TweakModule):
         if action:
             if proxy.get_proxy():
                 self.textview.set_sensitive(True)
-                self.update_button.set_sensitive(True)
-                self.submit_button.set_sensitive(True)
+#                self.update_button.set_sensitive(True)
+#                self.submit_button.set_sensitive(True)
                 self.refresh_button.set_sensitive(True)
                 self.delete_button.set_sensitive(True)
             else:

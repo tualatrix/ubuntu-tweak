@@ -476,7 +476,7 @@ class TypeEditDialog(gobject.GObject):
 
 class FileType(TweakModule):
     __title__ = _('File Type Manager')
-    __desc__ = _('Here you can manage which application will open which filetypes.')
+    __desc__ = _('Manage all of the registered file types')
     __icon__ = 'application-x-theme'
     __category__ = 'system'
 

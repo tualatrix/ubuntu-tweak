@@ -331,7 +331,7 @@ class AutoStartItem(gtk.TreeView):
             return self.gnome_dir
 
 class AutoStart(TweakModule):
-    __title__ = _('Session Programs')
+    __title__ = _('Auto Start Programs')
     __desc__ = _('Here you can manage what programs get started when you login.\n'
                 'You can hide items from view by selecting and clicking "Remove"\n'
                 'To permanently delete an item, right-click and press "Delete".')

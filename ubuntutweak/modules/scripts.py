@@ -131,7 +131,9 @@ class DisableScripts(FlatView, AbstractScripts):
 
 class Scripts(TweakModule, AbstractScripts):
     __title__  = _('Manage Scripts')
-    __desc__  = _("You can do all kinds of tasks with scripts.\nYou can drag and drop from File Manager.\n'Scripts' will be added to the context menu.")
+    __desc__  = _("You can do all kinds of tasks with scripts.\n"
+                  "You can drag and drop from File Manager.\n"
+                  "'Scripts' will be added to the context menu.")
     __icon__ = 'text-x-script'
     __category__ = 'personal'
     __desktop__ = 'gnome'

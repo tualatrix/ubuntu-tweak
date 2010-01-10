@@ -447,9 +447,9 @@ class FetchingDialog(DownloadDialog):
 
 class AppCenter(TweakModule):
     __title__ = _('Application Center')
-    __desc__ = _('A simple but more effecient way for finding and installing popular applications.') + '\n' + \
-               _('Data will be automatically synchronized with the remote side.') + '\n' + \
-               _('You can click the "Sync" button to check the update manually.')
+    __desc__ = _('A simple but more effecient way for finding and installing popular applications.\n'
+                 'Data will be automatically synchronized with the remote side.\n'
+                 'You can click the "Sync" button to check the update manually.')
     __icon__ = 'gnome-app-install'
     __url__ = 'http://ubuntu-tweak.com/app/'
     __urltitle__ = _('Visit Online Application Center')

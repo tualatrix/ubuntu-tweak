@@ -64,7 +64,7 @@ class CleanDialog(gtk.Dialog):
 
 class Nautilus(TweakModule):
     __title__ = _('Nautilus Settings')
-    __desc__ = _('Settings your default file manager')
+    __desc__ = _('Manage your default file manager')
     __icon__ = ['file-manager', 'nautilus']
     __category__ = 'system'
     __desktop__ = 'gnome'

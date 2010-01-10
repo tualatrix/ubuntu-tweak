@@ -112,7 +112,9 @@ class DisableTemplate(FlatView):
 class Templates(TweakModule):
     """Freedom added your docmuent templates"""
     __title__ = _('Manage Templates')
-    __desc__ = _('Here you can freely manage your document templates.\nYou can add files as templates by dragging them onto this window.\nYou can create new documents based on these templates from the Nautilus right-click menu.')
+    __desc__ = _('Here you can freely manage your document templates.\n'
+                 'You can add files as templates by dragging them onto this window.\n'
+                 'You can create new documents based on these templates from the Nautilus right-click menu.')
     __icon__ = 'x-office-document'
     __category__ = 'personal'
     __desktop__ = ['gnome', 'xfce']

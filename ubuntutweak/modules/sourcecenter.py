@@ -690,9 +690,10 @@ class SourceDetail(gtk.VBox):
 
 class SourceCenter(TweakModule):
     __title__  = _('Source Center')
-    __desc__ = _('A source center to keep your applications always up-to-date.\nYou can also get the application which isn\'t in the official repository.') + '\n' + \
-               _('Data will be automatically synchronized with the remote side.') + '\n' + \
-               _('You can click the "Sync" button to check the update manually.')
+    __desc__ = _('A source center to keep your applications always up-to-date.\n'
+                 'You can also get the application which isn\'t in the official repository.'
+                 'Data will be automatically synchronized with the remote side.'
+                 'You can click the "Sync" button to check the update manually.')
     __icon__ = 'software-properties'
     __url__ = 'http://ubuntu-tweak.com/source/'
     __urltitle__ = _('Visit online Source Center')

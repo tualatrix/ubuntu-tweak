@@ -243,7 +243,8 @@ class UserdirView(gtk.TreeView):
 
 class UserDir(TweakModule):
     __title__ = _("Default Folder Locations")
-    __desc__ = _("You can change the paths of the default folders here.\nDon't change the location of your desktop folder unless you know what you are doing.")
+    __desc__ = _("You can change the paths of the default folders here.\n"
+                 "Don't change the location of your desktop folder unless you know what you are doing.")
     __icon__ = ['folder-home', 'gnome-fs-home']
     __category__ = 'personal'
 

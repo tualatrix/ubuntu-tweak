@@ -27,14 +27,13 @@ from ubuntutweak.modules  import TweakModule
 from ubuntutweak.widgets import ListPack
 from ubuntutweak.widgets.dialogs import ErrorDialog, QuestionDialog
 
-#TODO
 from ubuntutweak.common.config import TweakSettings
 from ubuntutweak.common.factory import WidgetFactory
 from ubuntutweak.common.utils import get_icon_with_name
 
 class Gnome(TweakModule):
     __title__ = _('GNOME Settings')
-    __desc__ = _('A lot of GNOME settings about panel and others')
+    __desc__ = _('A lot of GNOME settings about panel, menu and others')
     __icon__ = ['gnome-desktop-config', 'control-center2']
     __category__ = 'desktop'
     __desktop__ = 'gnome'
