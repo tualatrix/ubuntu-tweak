@@ -93,11 +93,12 @@
             </child>
             <child>
               <object class="GtkButton" id="update_button">
-                <property name="label" translatable="yes">_Update</property>
+                <property name="label">gtk-refresh</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_underline">True</property>
+                <property name="use_stock">True</property>
                 <signal name="clicked" handler="on_update_button_clicked"/>
               </object>
               <packing>

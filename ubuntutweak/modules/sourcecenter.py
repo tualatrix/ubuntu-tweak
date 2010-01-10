@@ -30,6 +30,7 @@ import apt_pkg
 import webbrowser
 import urllib
 from gettext import gettext as _
+from gettext import ngettext
 from aptsources.sourceslist import SourcesList
 
 from ubuntutweak.conf import settings
@@ -182,7 +183,6 @@ class SourceParser(Parser):
         return self[key]['website']
 
 class UpdateView(AppView):
-    #TODO options to deselect all
     def __init__(self):
         AppView.__init__(self)
 
@@ -191,15 +191,18 @@ class UpdateView(AppView):
     def update_model(self, apps):
         model = self.get_model()
 
+        length = len(apps)
         model.append((None,
-                        None,
-                        None,
-                        None,
-                        None,
-                        '<span size="large" weight="bold">%s</span>' %
-                        _('Available New Applications'),
-                        None,
-                        None))
+                      None,
+                      None,
+                      None,
+                      None,
+                      '<span size="large" weight="bold">%s</span>' %
+                      ngettext('Available %d New Application' % length,
+                               'Available %d New Applications' % length,
+                               length),
+                      None,
+                      None))
 
         super(UpdateView, self).update_model(apps)
 
@@ -208,17 +211,20 @@ class UpdateView(AppView):
         cates is a dict to find what the category the pkg is
         '''
         model = self.get_model()
+        length = len(pkgs)
 
         if pkgs:
             model.append((None,
-                            None,
-                            None,
-                            None,
-                            None,
-                            '<span size="large" weight="bold">%s</span>' %
-                            _('Available Package Updates'),
-                            None,
-                            None))
+                          None,
+                          None,
+                          None,
+                          None,
+                          '<span size="large" weight="bold">%s</span>' %
+                          ngettext('Available %d Package Update' % length,
+                                   'Available %d Package Updates' % length,
+                                   length),
+                          None,
+                          None))
 
             apps = []
             updates = []
@@ -229,7 +235,7 @@ class UpdateView(AppView):
                     updates.append(pkg)
 
             for pkgname in apps:
-                pixbuf = self.get_app_logo(pkgname)
+                pixbuf = self.get_app_logo(APP_PARSER[pkgname]['logo'])
 
                 package = PackageInfo(pkgname)
                 appname = package.get_name()
@@ -254,7 +260,7 @@ class UpdateView(AppView):
                             None,
                             None,
                             '<span size="large" weight="bold">%s</span>' %
-                            _('No Available Package Updates'),
+                            _('No Available Package Update'),
                             None,
                             None))
 
