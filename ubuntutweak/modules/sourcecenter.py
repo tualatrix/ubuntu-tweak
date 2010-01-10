@@ -749,7 +749,9 @@ class SourceCenter(TweakModule):
         self.update_timestamp()
         CONFIG.get_client().notify_add('/apps/ubuntu-tweak/use_mirror_ppa',
                                        self.value_changed)
+
         UPDATE_SETTING.set_bool(False)
+        UPDATE_SETTING.connect_notify(self.on_have_update)
 
         thread.start_new_thread(self.check_update, ())
         gobject.timeout_add(60000, self.update_timestamp)

@@ -33,7 +33,7 @@ class Downloader(gobject.GObject):
 
     def create_tempdir(self):
         if not os.path.exists(self.tempdir):
-            os.mkdir(self.tempdir)
+            os.makedirs(self.tempdir)
         else:
             if not os.path.isdir(self.tempdir): 
                 os.remove(self.tempdir)
