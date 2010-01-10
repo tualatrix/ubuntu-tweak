@@ -1,3 +1,54 @@
+Ubuntu Tweak 0.5
+================
+2010-01-10
+
+* Overview changes:
+ - Drop the support of Ubuntu 9.04 and before
+ - Use all native icon in UI
+ - Migrate from policykit to policykit-1, no C code any more
+ - Support dynamic-module, only load module what desktop supports
+ - Redesign the sidebar and titlebar
+
+* New features:
+ - Application Center: improve from Add/Remove, supports online data sync
+ - Source Center: improve from Third-Party Source, supports online data sync
+ - Update Manager: a simple but more human-readable update manager
+ - Improve the computer page, add "Change Hostname" feature (LP:
+ - Add indicator-session dialog control
+ - Add the menu and button icon options to gnomesettings
+ - Add the show desktop icon again
+ - Add the option to disable user list in gdm
+
+* Bugs fixed:
+ - LP: #464270 Migrate to policykit-1
+ - LP: #449370 Error message on "Security" menu with dbus error
+ - LP: #449857 Some repositories must be renewed
+ - LP: #464309 "Hibernation" and "Suspend" options in PowerManagement doesn't work
+ - LP: #502095 "Manage Templates" and "Security Related" aren't working on Mint 8
+ - LP: #447966 Ubuntu tweak doesn't recognize the desktop environment
+ - LP: #449428 file type manager cannot change width
+ - LP: #449435 thumbnails limited is useless?
+ - LP: #449964 autostart module is crashing
+ - LP: #467674 feature request: icons for menu & buttons
+ - LP: #467692 feature request: option update
+ - LP: #482423 Linux Mint 8: def get_supported_ubuntu(cls) & is_karmic(cls) Updates
+ - LP: #485399 feature request: 60 seconds for shutdown?
+ - LP: #486488 feature request: change name computer
+ - LP: #488693 "change the menu logo" does not work on Ubuntu 9.10
+ - LP: #490321 OpenShot PPA is out of date and breaks gstreamer
+ - LP: #495606 feature request: disable user list in gdm
+ - LP: #498218 Hard Coded Colors in UI
+ - LP: #499127 error during module loading
+ - LP: #501787 Skype repo shouldn't be in conflict with Medibuntu anymore
+ - LP: #502063 error message on clicking "manage scripts"
+ - LP: #502207 Error on switching to "session control" tab.
+ - LP: #504119 Manage Template module crashed on loading
+ - LP: #505305 third-party software sources not loading
+ - LP: #452152 Add Viewnior to Ubuntu Tweak
+ - LP: #463919 Typos in package summary: "Qucik install common usded applications"
+ - LP: #467454 ubuntu tweek cant gain sudo/root without gksu
+
+
 Ubuntu Tweak 0.4.9.2
 ====================
 2009-10-29
