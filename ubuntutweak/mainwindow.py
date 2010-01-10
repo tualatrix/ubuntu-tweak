@@ -73,7 +73,7 @@ def show_welcome():
             _('Tweak otherwise hidden settings.'),
             _('Clean up unneeded packages to free diskspace.'),
             _('Easily install up-to-date versions of many applications.'),
-            _('Configure file templates and shortcut scripts for easy access to ubuntutweak.common tasks.'),
+            _('Configure file templates and shortcut scripts for easy access to common tasks.'),
             _('And many more useful features!'),
             )
     align = gtk.Alignment(0.5)
