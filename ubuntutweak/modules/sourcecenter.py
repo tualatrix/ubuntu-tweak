@@ -44,9 +44,9 @@ from ubuntutweak.backends.daemon import PATH
 from appcenter import AppView, CategoryView, AppParser
 from appcenter import CheckUpdateDialog, FetchingDialog
 
+from ubuntutweak.common.consts import DATA_DIR
 from ubuntutweak.common.config import Config, TweakSettings
 from ubuntutweak.common.utils import set_label_for_stock_button
-#TODO
 from ubuntutweak.common.sourcedata import SOURCES_DATA, SOURCES_DEPENDENCIES, SOURCES_CONFLICTS
 from ubuntutweak.common.package import PACKAGE_WORKER, PackageInfo
 from ubuntutweak.common.notify import notify
@@ -433,6 +433,9 @@ class SourcesView(gtk.TreeView):
 
     def get_source_logo(self, file_name):
         path = os.path.join(SOURCE_ROOT, file_name)
+        if not os.path.exists(path) or file_name == '':
+            path = os.path.join(DATA_DIR, 'pixmaps/ppa-logo.png')
+
         try:
             pixbuf = gtk.gdk.pixbuf_new_from_file(path)
             if pixbuf.get_width() != 32 or pixbuf.get_height() != 32:

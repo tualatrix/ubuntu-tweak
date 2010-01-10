@@ -33,7 +33,7 @@ from ubuntutweak.widgets.dialogs import ProcessDialog
 from ubuntutweak.utils.parser import Parser
 from ubuntutweak.network import utdata
 from ubuntutweak.network.downloadmanager import DownloadDialog
-
+from ubuntutweak.common.consts import DATA_DIR
 from ubuntutweak.common.utils import set_label_for_stock_button
 from ubuntutweak.common.package import PACKAGE_WORKER, PackageInfo
 from ubuntutweak.common.settings import BoolSetting, StringSetting
@@ -382,6 +382,9 @@ class AppView(gtk.TreeView):
 
     def get_app_logo(self, file_name):
         path = os.path.join(APPCENTER_ROOT, file_name)
+        if not os.path.exists(path) or file_name == '':
+            path = os.path.join(DATA_DIR, 'pixmaps/common-logo.png')
+
         try:
             pixbuf = gtk.gdk.pixbuf_new_from_file(path)
             if pixbuf.get_width() != 32 or pixbuf.get_height() != 32:
