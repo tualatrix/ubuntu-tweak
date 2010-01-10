@@ -22,7 +22,6 @@ import os
 import gtk
 import pango
 import gobject
-from gettext import gettext as _
 
 from ubuntutweak.modules import TweakModule
 from ubuntutweak.widgets import CellRendererButton

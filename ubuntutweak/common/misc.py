@@ -1,5 +1,4 @@
 from gettext import ngettext
-from gettext import gettext as _
 from sgmllib import SGMLParser
 
 def filesizeformat(bytes):

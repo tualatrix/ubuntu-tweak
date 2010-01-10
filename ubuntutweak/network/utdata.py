@@ -1,9 +1,12 @@
 import os
 import time
 import datetime
-from urlparse import urljoin
+
+from ubuntutweak.common.consts import install_ngettext
 from gettext import ngettext
-from gettext import gettext as _
+from urlparse import urljoin
+
+install_ngettext()
 
 DEV_MODE = os.getenv('UT_DEV')
 
@@ -60,13 +63,13 @@ def get_last_synced(folder):
         hours, minutes = divmod(minutes, 60)
 
         if weeks:
-            return ngettext('%d week ago' % weeks, '%d weeks ago' % weeks, weeks)
+            return ngettext('%d week ago', '%d weeks ago', weeks) % weeks
         if days:
-            return ngettext('%d day ago' % days, '%d days ago' % days, days)
+            return ngettext('%d day ago', '%d days ago', days) % days
         if hours:
-            return ngettext('%d hour ago' % hours, '%d hours ago' % hours, hours)
+            return ngettext('%d hour ago', '%d hours ago', hours) % hours
         if minutes:
-            return ngettext('%d minute ago' % minutes, '%d minutes ago' % minutes, minutes)
+            return ngettext('%d minute ago', '%d minutes ago', minutes) % minutes
         return _('Just Now')
     except IOError:
         return _('Never')

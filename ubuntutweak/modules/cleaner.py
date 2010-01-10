@@ -22,8 +22,9 @@ import os
 import gtk
 import thread
 import gobject
-import gettext
+from gettext import ngettext
 
+from ubuntutweak.common.consts import install_ngettext
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.common.utils import *
 from ubuntutweak.common.misc import filesizeformat
@@ -39,6 +40,8 @@ from ubuntutweak.widgets.utils import ProcessDialog
     COLUMN_DESC,
     COLUMN_DISPLAY,
 ) = range(5)
+
+install_ngettext()
 
 class AbsPkg:
     def __init__(self, pkg, des):
@@ -301,9 +304,8 @@ class PackageView(gtk.TreeView):
     def set_column_title(self):
         if self.mode == 'package' or self.mode == 'kernel':
             n = len(self.__check_list)
-            self.__column.set_title(
-                    gettext.ngettext('%d package selected to remove' % n, 
-                                    '%d packages selected to remove' % n, n))
+            self.__column.set_title(ngettext('%d package selected to remove',
+                '%d packages selected to remove', n) % n)
         elif self.mode == 'cache':
             self.compute_cache_size()
             self.__column.set_title(_('%s of space will be freed') % filesizeformat(self.size))

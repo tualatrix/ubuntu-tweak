@@ -29,7 +29,7 @@ import gobject
 import apt_pkg
 import webbrowser
 import urllib
-from gettext import gettext as _
+import gettext
 from gettext import ngettext
 from aptsources.sourceslist import SourcesList
 
@@ -198,9 +198,9 @@ class UpdateView(AppView):
                       None,
                       None,
                       '<span size="large" weight="bold">%s</span>' %
-                      ngettext('Available %d New Application' % length,
-                               'Available %d New Applications' % length,
-                               length),
+                      ngettext('Available %d New Application',
+                               'Available %d New Applications',
+                               length) % length,
                       None,
                       None))
 
@@ -220,9 +220,9 @@ class UpdateView(AppView):
                           None,
                           None,
                           '<span size="large" weight="bold">%s</span>' %
-                          ngettext('Available %d Package Update' % length,
-                                   'Available %d Package Updates' % length,
-                                   length),
+                          ngettext('Available %d Package Update',
+                                   'Available %d Package Updates',
+                                   length) % length,
                           None,
                           None))
 

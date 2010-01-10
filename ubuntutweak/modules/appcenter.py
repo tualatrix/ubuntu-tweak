@@ -24,7 +24,6 @@ import time
 import gobject
 import pango
 import thread
-from gettext import gettext as _
 
 from ubuntutweak.conf import settings
 from ubuntutweak.modules  import TweakModule

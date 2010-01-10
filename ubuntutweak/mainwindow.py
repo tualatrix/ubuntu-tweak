@@ -26,7 +26,6 @@ import pango
 import gobject
 import webbrowser
 
-from gettext import gettext as _
 from ubuntutweak.utils import icon
 from ubuntutweak import modules
 from ubuntutweak.modules import TweakModule, ModuleLoader

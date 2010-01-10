@@ -26,7 +26,13 @@ def init_locale():
     try:
         INIT
     except:
-        gettext.install(PACKAGE, unicode = True)
+        gettext.install(PACKAGE, unicode=True)
+
         INIT = True
+
+def install_ngettext():
+    #FIXME
+    gettext.bindtextdomain(PACKAGE, "/usr/share/locale")
+    gettext.textdomain(PACKAGE)
 
 init_locale()
