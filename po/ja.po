@@ -7,28 +7,122 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-10 15:00+0800\n"
-"PO-Revision-Date: 2010-01-09 11:34+0000\n"
-"Last-Translator: TualatriX <Unknown>\n"
+"POT-Creation-Date: 2010-01-10 17:35+0800\n"
+"PO-Revision-Date: 2010-01-11 04:37+0000\n"
+"Last-Translator: Takahiro Sato <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2010-01-10 08:16+0000\n"
+"X-Launchpad-Export-Date: 2010-01-12 12:08+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../data/ubuntu-tweak.desktop.in.h:1
 msgid "Tweak ubuntu to what you like"
-msgstr ""
+msgstr "お好みに合わせてubuntuをカスタイズしてください"
 
 #: ../data/com.ubuntu-tweak.daemon.policy.in.h:1
 msgid "System policy prevents the Ubuntu Tweak from Tweaking"
-msgstr ""
+msgstr "システムポリシーをUbuntu Tweakの調整で防ぎます"
 
 #: ../data/com.ubuntu-tweak.daemon.policy.in.h:2
-msgid "Tweak"
+msgid "Ubuntu Tweak Daemon"
+msgstr "Ubuntu Tweak デーモン"
+
+#: ../data/ui/preferences.ui.h:1
+msgid "<b>Features</b>"
+msgstr "<b>機能</b>"
+
+#: ../data/ui/preferences.ui.h:2
+msgid "<b>User Interface</b>"
+msgstr "<b>ユーザーインターフェース</b>"
+
+#: ../data/ui/preferences.ui.h:3
+msgid "Default Launch Function"
+msgstr "既定で起動する機能"
+
+#: ../data/ui/preferences.ui.h:4
+msgid "Default Window Height"
+msgstr "既定ウィンドウの高さ"
+
+#: ../data/ui/preferences.ui.h:5
+msgid "Default Window Width"
+msgstr "既定ウィンドウの幅"
+
+#: ../data/ui/preferences.ui.h:6
+msgid "Left Menubar Width"
+msgstr "左ペインの幅"
+
+#: ../data/ui/preferences.ui.h:7
+msgid "Ubuntu Tweak Preferences"
+msgstr "Ubuntu Tweak の設定"
+
+#: ../data/ui/traceback.ui.h:1
+msgid "<big><b>Oops... a fatal error occured</b></big>"
+msgstr "<big><b>おっと！... 致命的なエラーが起きました</b></big>"
+
+#: ../data/ui/traceback.ui.h:2
+msgid "<big><b>Oops... an error occured</b></big>"
+msgstr "<big><b>おっと！... エラーが起きました</b></big>"
+
+#: ../data/ui/traceback.ui.h:3
+msgid "Error Message"
+msgstr "エラーメッセージ"
+
+#: ../data/ui/traceback.ui.h:4
+msgid ""
+"If you'd like to help us fix the problem, \n"
+"Please choose <i>Report</i> to file a new bug report. Make sure to include "
+"the error message below:"
 msgstr ""
+"もし問題解決を望んでいるのならば、  \n"
+"新規のバグレポート・ファイル  <i>レポート</i> を選択してください。以下のエラーメッセージを必ず含んでください:"
+
+#: ../data/ui/traceback.ui.h:6
+msgid ""
+"Ubuntu Tweak need to turn off.\n"
+"If you'd like to help us fix the problem, \n"
+"Please choose <i>Report</i> to file a new bug report. Make sure to include "
+"the error message below:"
+msgstr ""
+"Ubuntu Tweakを終了する必要があります。\n"
+"もし問題解決を望んでいるのならば、 \n"
+"新規のバグレポート・ファイル  <i>レポート</i> を選択してください。以下のエラーメッセージを必ず含んでください:"
+
+#: ../data/ui/traceback.ui.h:9
+msgid "_Report"
+msgstr "報告(_R)"
+
+#. checkbutton
+#: ../data/ui/updatemanager.ui.h:1 ../ubuntutweak/modules/sourcecenter.py:119
+#: ../ubuntutweak/modules/cleaner.py:466
+msgid "Select All"
+msgstr "すべて選択"
+
+#: ../data/ui/updatemanager.ui.h:2
+msgid "_Install Update"
+msgstr "アップデートをインストール(_I)"
+
+#: ../data/ui/type_edit.ui.h:1
+msgid "Add Application"
+msgstr "アプリケーションの追加"
+
+#: ../data/ui/type_edit.ui.h:2
+msgid "Edit Type"
+msgstr "編集する種類"
+
+#: ../data/ui/type_edit.ui.h:3
+msgid "Select an application to view its description."
+msgstr "アプリケーションを選択し記述を参照してください。"
+
+#: ../data/ui/type_edit.ui.h:4 ../ubuntutweak/modules/autostart.py:70
+msgid "_Browse..."
+msgstr "参照(_B)..."
+
+#: ../data/ui/type_edit.ui.h:5
+msgid "_Use a custom command"
+msgstr "カスタム・コマンドを使用(_U)"
 
 #: ../ubuntutweak/mainwindow.py:67
 msgid "Welcome to"
@@ -91,7 +185,7 @@ msgstr "システム"
 #: ../ubuntutweak/mainwindow.py:144
 #, python-format
 msgid "Download the Ubuntu Tweak %s"
-msgstr ""
+msgstr "Ubuntu Tweakで %s をダウンロード"
 
 #: ../ubuntutweak/mainwindow.py:204
 msgid "_Donate"
@@ -123,18 +217,7 @@ msgstr "2009年度の貢献者"
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
-"  José Lou Chang https://launchpad.net/~obake\n"
-"  Junichi Takahara https://launchpad.net/~ndoteko\n"
-"  Masatoshi Haraoka https://launchpad.net/~f99aq8ove\n"
-"  Nazo https://launchpad.net/~lovesyao\n"
-"  T.T.T https://launchpad.net/~t.t.t\n"
-"  TAS https://launchpad.net/~tas7\n"
-"  Takahiro https://launchpad.net/~tachan5963\n"
-"  Takahiro Sato https://launchpad.net/~taka-guwapo\n"
-"  Toshiya TSURU https://launchpad.net/~turutosiya\n"
-"  TualatriX https://launchpad.net/~tualatrix\n"
-"  booker https://launchpad.net/~zwl-zhcn\n"
-"  zwl.zhcn https://launchpad.net/~zwl-zhcn+launchpad"
+"  Takahiro Sato https://launchpad.net/~taka-guwapo"
 
 #: ../ubuntutweak/mainwindow.py:451
 #, python-format
@@ -145,6 +228,10 @@ msgid ""
 "Note: if you prefer update from the source, you can disable this feature in "
 "Preference."
 msgstr ""
+"新しいバージョン: %s はオンラインで入手可能です。\n"
+"アップデートしますか?\n"
+"\n"
+"注意: もしソースからアップデートをする場合、この機能を環境設定から無効にできます。"
 
 #: ../ubuntutweak/mainwindow.py:452
 msgid "Software Update"
@@ -233,11 +320,11 @@ msgstr "分離されたソースを使用"
 
 #: ../ubuntutweak/preferences.py:118
 msgid "Use Remote Data When Available"
-msgstr ""
+msgstr "利用可能な場合はリモートデータを使用"
 
 #: ../ubuntutweak/network/downloadmanager.py:98
 msgid "Connecting to server"
-msgstr ""
+msgstr "サーバーに接続"
 
 #: ../ubuntutweak/network/downloadmanager.py:143
 #, python-format
@@ -246,11 +333,11 @@ msgstr "ダウンロード中...%d"
 
 #: ../ubuntutweak/network/downloadmanager.py:147
 msgid "Downloaded!"
-msgstr ""
+msgstr "ダウンロードしました！"
 
 #: ../ubuntutweak/network/downloadmanager.py:153
 msgid "Error happened!"
-msgstr ""
+msgstr "エラーが発生しました！"
 
 #: ../ubuntutweak/common/appdata.py:24
 msgid "Development Version of Mozilla Firefox"
@@ -626,11 +713,11 @@ msgstr "アップデートが完了しました！"
 
 #: ../ubuntutweak/modules/computer.py:33
 msgid "Computer Details"
-msgstr ""
+msgstr "コンピューターの詳細"
 
 #: ../ubuntutweak/modules/computer.py:34
 msgid "Some useful information about your computer"
-msgstr ""
+msgstr "お使いのコンピューターに関する有益な情報"
 
 #: ../ubuntutweak/modules/computer.py:41
 msgid "Unknown"
@@ -638,7 +725,7 @@ msgstr "不明"
 
 #: ../ubuntutweak/modules/computer.py:57
 msgid "Change Hostname"
-msgstr ""
+msgstr "ホスト名の変更"
 
 #: ../ubuntutweak/modules/computer.py:60
 msgid "System information"
@@ -694,19 +781,19 @@ msgstr "言語"
 
 #: ../ubuntutweak/modules/computer.py:81
 msgid "Please enter your new hostname. It should be non-blank characters."
-msgstr ""
+msgstr "新しいホスト名を入力してください。これは空白以外の文字にする必要があります。"
 
 #: ../ubuntutweak/modules/computer.py:82
 msgid "New hostname"
-msgstr ""
+msgstr "新しいホスト名"
 
 #: ../ubuntutweak/modules/lockdown.py:33
 msgid "Security Related"
-msgstr ""
+msgstr "セキュリティ関連"
 
 #: ../ubuntutweak/modules/lockdown.py:34
 msgid "Tweak some security options"
-msgstr ""
+msgstr "いくつかのセキュリティオプションをカスタマイズ"
 
 #: ../ubuntutweak/modules/lockdown.py:43
 msgid "System Security options"
@@ -738,7 +825,7 @@ msgstr "ユーザの簡易切り替えを無効にする"
 
 #: ../ubuntutweak/modules/lockdown.py:66
 msgid "Fix the theme appearance when grant the root privileges"
-msgstr "root権限を付与して外観のテーマを修正して下さい"
+msgstr "root権限を付与して外観のテーマを修正"
 
 #: ../ubuntutweak/modules/lockdown.py:72
 msgid "Miscellaneous Options"
@@ -816,7 +903,7 @@ msgstr "ソースエディター"
 
 #: ../ubuntutweak/modules/sourceeditor.py:353
 msgid "Freely edit your software sources to fit your needs."
-msgstr ""
+msgstr "あなた自身のニーズに合わせてお使いのソフトウェアソースを編集してください。"
 
 #: ../ubuntutweak/modules/sourceeditor.py:450
 msgid "Please input the correct information about sources!"
@@ -896,12 +983,6 @@ msgstr ""
 msgid "New applications are available to update"
 msgstr "新しいアプリケーションはアップデートして利用可能です"
 
-#. checkbutton
-#: ../ubuntutweak/modules/sourcecenter.py:119
-#: ../ubuntutweak/modules/cleaner.py:466
-msgid "Select All"
-msgstr "すべて選択"
-
 #: ../ubuntutweak/modules/sourcecenter.py:144
 #: ../ubuntutweak/modules/updatemanager.py:64
 msgid "Your system is clean and there's no update yet."
@@ -916,19 +997,17 @@ msgstr "現在のソフトウェア情報は最新です"
 #, python-format
 msgid "Available %d New Application"
 msgid_plural "Available %d New Applications"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d 個の新しいアプリケーションが利用可能です"
 
 #: ../ubuntutweak/modules/sourcecenter.py:223
 #, python-format
 msgid "Available %d Package Update"
 msgid_plural "Available %d Package Updates"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d 個のパッケージのアップデートが利用可能です"
 
 #: ../ubuntutweak/modules/sourcecenter.py:263
 msgid "No Available Package Update"
-msgstr ""
+msgstr "利用可能なパッケージのアップデートはありません"
 
 #: ../ubuntutweak/modules/sourcecenter.py:377
 msgid "Third-Party Sources"
@@ -994,7 +1073,7 @@ msgstr "記述はここです"
 
 #: ../ubuntutweak/modules/sourcecenter.py:701
 msgid "Source Center"
-msgstr ""
+msgstr "ソースセンター"
 
 #: ../ubuntutweak/modules/sourcecenter.py:702
 msgid ""
@@ -1003,24 +1082,28 @@ msgid ""
 "Data will be automatically synchronized with the remote side.\n"
 "You can click the \"Sync\" button to check the update manually."
 msgstr ""
+"ソースセンターは、アプリケーションを常に最新の状態に保ちます。\n"
+"また、公式のリポジトリにないアプリケーションを取得できます。\n"
+"データは自動的にリモート側と同期されます。\n"
+"\"同期\"ボタンをクリックすることで更新の確認を手動で行うことが可能です。"
 
 #: ../ubuntutweak/modules/sourcecenter.py:708
 msgid "Visit online Source Center"
-msgstr ""
+msgstr "オンラインソースセンターを参照"
 
 #: ../ubuntutweak/modules/sourcecenter.py:714
 #: ../ubuntutweak/modules/appcenter.py:464
 msgid "_Sync"
-msgstr ""
+msgstr "同期(_S)"
 
 #: ../ubuntutweak/modules/sourcecenter.py:760
 #: ../ubuntutweak/modules/appcenter.py:494
 msgid "Last synced:"
-msgstr ""
+msgstr "最後に同期した詳細："
 
 #: ../ubuntutweak/modules/sourcecenter.py:766
 msgid "New sources data available, would you like to update?"
-msgstr ""
+msgstr "新しいソースのデータが利用可能です、更新しますか？"
 
 #: ../ubuntutweak/modules/sourcecenter.py:840
 msgid ""
@@ -1041,36 +1124,36 @@ msgstr "このダイアログを表示しない"
 
 #: ../ubuntutweak/modules/sourcecenter.py:870
 msgid "Some error happened while downloading the file"
-msgstr ""
+msgstr "ファイルのダウンロード中に何らかのエラーが発生しました"
 
 #: ../ubuntutweak/modules/sourcecenter.py:881
 #: ../ubuntutweak/modules/appcenter.py:559
 msgid "Update available, Would you like to update?"
-msgstr ""
+msgstr "利用可能なアップデートがあります、アップデートしますか？"
 
 #: ../ubuntutweak/modules/sourcecenter.py:890
 #: ../ubuntutweak/modules/appcenter.py:568
 msgid ""
 "Network Error, Please check your network connection or the remote server is "
 "down."
-msgstr ""
+msgstr "ネットワークエラー、ネットワーク接続またはリモートサーバがダウンしていないか確認してください。"
 
 #: ../ubuntutweak/modules/sourcecenter.py:892
 #: ../ubuntutweak/modules/appcenter.py:570
 msgid "No update available."
-msgstr ""
+msgstr "利用可能なアップデートはありません。"
 
 #: ../ubuntutweak/modules/updatemanager.py:29
 msgid "Update Manager"
-msgstr "アップデート・マネージャー"
+msgstr "アップデートマネージャー"
 
 #: ../ubuntutweak/modules/updatemanager.py:30
 msgid "A simple and easy-to-use update manager"
-msgstr ""
+msgstr "簡単で使いやすいアップデートマネージャー"
 
 #: ../ubuntutweak/modules/updatemanager.py:42
 msgid "Enable the auto launch of System Update Manager"
-msgstr ""
+msgstr "システムアップデートマネージャーの自動起動を有効"
 
 #: ../ubuntutweak/modules/appcenter.py:106
 #: ../ubuntutweak/modules/filetype.py:72
@@ -1083,15 +1166,15 @@ msgstr "全てのカテゴリ"
 
 #: ../ubuntutweak/modules/appcenter.py:420
 msgid "Checking update..."
-msgstr ""
+msgstr "アップデートを確認しています..."
 
 #: ../ubuntutweak/modules/appcenter.py:448
 msgid "Fetching online data..."
-msgstr ""
+msgstr "オンラインデータを取得しています..."
 
 #: ../ubuntutweak/modules/appcenter.py:452
 msgid "Application Center"
-msgstr ""
+msgstr "アプリケーションセンター"
 
 #: ../ubuntutweak/modules/appcenter.py:453
 msgid ""
@@ -1100,18 +1183,21 @@ msgid ""
 "Data will be automatically synchronized with the remote side.\n"
 "You can click the \"Sync\" button to check the update manually."
 msgstr ""
+"簡単でより効率的に人気のあるアプリケーションを検索してインストールできます。\n"
+"データは自動的にリモート側と同期されます。\n"
+"\"同期\"ボタンをクリックすることで更新の確認を手動で行うことが可能です。"
 
 #: ../ubuntutweak/modules/appcenter.py:458
 msgid "Visit Online Application Center"
-msgstr ""
+msgstr "オンラインアプリケーションセンターを参照"
 
 #: ../ubuntutweak/modules/appcenter.py:499
 msgid "New application data available, would you like to update?"
-msgstr ""
+msgstr "利用可能な新しいアプリケーションデータがあります、アップデートしますか？"
 
 #: ../ubuntutweak/modules/appcenter.py:581
 msgid "Some error happened while downloading the file."
-msgstr ""
+msgstr "ファイルのダウンロード中に何らかのエラーが発生しました。"
 
 #: ../ubuntutweak/modules/filetype.py:34
 msgid "Audio"
@@ -1174,7 +1260,7 @@ msgstr "ファイル・タイプ マネージャー"
 
 #: ../ubuntutweak/modules/filetype.py:479
 msgid "Manage all of the registered file types"
-msgstr ""
+msgstr "登録されているすべてのファイルの種類を管理します"
 
 #: ../ubuntutweak/modules/filetype.py:511
 msgid "Only show filetypes with an associated application"
@@ -1182,11 +1268,11 @@ msgstr "関連付けされているファイルだけ表示する。"
 
 #: ../ubuntutweak/modules/metacity.py:29
 msgid "Window Manager Settings"
-msgstr ""
+msgstr "ウィンドウマネージャーの設定"
 
 #: ../ubuntutweak/modules/metacity.py:30
 msgid "Some options about Metacity Window Manager"
-msgstr ""
+msgstr "Metacityウィンドウマネージャーの詳細オプション"
 
 #: ../ubuntutweak/modules/metacity.py:39
 msgid "Window Decorate Effect"
@@ -1263,7 +1349,7 @@ msgstr "Metacityのコンポジーティング機能を有効にする"
 
 #: ../ubuntutweak/modules/metacity.py:89
 msgid "Compositing Manager"
-msgstr "コンポジーティング・マネージャ"
+msgstr "コンポジーティング・マネージャー"
 
 #: ../ubuntutweak/modules/metacity.py:96
 msgid ""
@@ -1273,7 +1359,7 @@ msgstr "metacityのコンポジーティング機能を有効にするには、\
 
 #: ../ubuntutweak/modules/__init__.py:104
 msgid "More"
-msgstr ""
+msgstr "Ubuntu Tweak オフィシャルサイト"
 
 #: ../ubuntutweak/modules/icons.py:32
 msgid "Show \"Computer\" icon on desktop"
@@ -1289,11 +1375,11 @@ msgstr "\"ごみ箱\"アイコンをデスクトップに表示"
 
 #: ../ubuntutweak/modules/icons.py:108
 msgid "Desktop Icon Settings"
-msgstr ""
+msgstr "デスクトップアイコンの設定"
 
 #: ../ubuntutweak/modules/icons.py:109
 msgid "Manage the desktop icon's name and visiable"
-msgstr ""
+msgstr "デスクトップアイコンの名前および表示方法の管理"
 
 #: ../ubuntutweak/modules/icons.py:118
 msgid "Show desktop icons"
@@ -1313,15 +1399,15 @@ msgstr "\"ホームフォルダ\" をデスクトップで使用 (変更を適�
 
 #: ../ubuntutweak/modules/gnomesettings.py:35
 msgid "GNOME Settings"
-msgstr ""
+msgstr "GNOMEの設定"
 
 #: ../ubuntutweak/modules/gnomesettings.py:36
 msgid "A lot of GNOME settings about panel, menu and others"
-msgstr ""
+msgstr "GNOMEパネル、メニューおよびその他の詳細設定"
 
 #: ../ubuntutweak/modules/gnomesettings.py:48
 msgid "Panel Settings"
-msgstr ""
+msgstr "パネル設定"
 
 #: ../ubuntutweak/modules/gnomesettings.py:50
 msgid "Display warning when removing a panel"
@@ -1337,7 +1423,7 @@ msgstr "パネルのアニメーションを有効にする"
 
 #: ../ubuntutweak/modules/gnomesettings.py:61
 msgid "Menu Settings"
-msgstr ""
+msgstr "メニュー設定"
 
 #: ../ubuntutweak/modules/gnomesettings.py:63
 msgid "Show Input Method menu on the context menu"
@@ -1350,11 +1436,11 @@ msgstr "コンテキストメニューのUnicodeメソッドのメニューを�
 
 #: ../ubuntutweak/modules/gnomesettings.py:72
 msgid "Menus have icons"
-msgstr ""
+msgstr "メニューにアイコンを表示する"
 
 #: ../ubuntutweak/modules/gnomesettings.py:75
 msgid "Buttons have icons"
-msgstr ""
+msgstr "ボタンにアイコンを表示する"
 
 #: ../ubuntutweak/modules/gnomesettings.py:81
 msgid "Screensaver"
@@ -1398,15 +1484,15 @@ msgstr "今すぐに変更を反映させますか?"
 
 #: ../ubuntutweak/modules/powermanager.py:28
 msgid "Advanced Powermanager Settings"
-msgstr ""
+msgstr "高度な電源管理の設定"
 
 #: ../ubuntutweak/modules/powermanager.py:29
 msgid "Control your computer's power managerment"
-msgstr ""
+msgstr "コンピュータの電源管理を制御します"
 
 #: ../ubuntutweak/modules/powermanager.py:37
 msgid "Advanced Power Management Settings"
-msgstr "パワーマネージメントの高度な設定"
+msgstr "高度な電源管理の設定"
 
 #: ../ubuntutweak/modules/powermanager.py:39
 msgid "Enable \"Lock screen\" when \"Blank Screen\" activates"
@@ -1414,19 +1500,19 @@ msgstr "\"Blankスクリーン\" 起動中のときは \"Lockスクリーン\" �
 
 #: ../ubuntutweak/modules/powermanager.py:42
 msgid "Lock screen on hibernate"
-msgstr ""
+msgstr "ハイバーネートしたときはスクリーンをロックする"
 
 #: ../ubuntutweak/modules/powermanager.py:45
 msgid "Lock screen on suspend"
-msgstr ""
+msgstr "サスペンドしたときはスクリーンをロックする"
 
 #: ../ubuntutweak/modules/powermanager.py:48
 msgid "LCD brightness when on AC"
-msgstr ""
+msgstr "AC電源で使用した場合のLCDの明るさ"
 
 #: ../ubuntutweak/modules/powermanager.py:52
 msgid "LCD dimming amount when on battery"
-msgstr ""
+msgstr "バッテリーで使用した場合のLCDの暗さ"
 
 #: ../ubuntutweak/modules/compiz.py:49
 msgid "Expo"
@@ -1446,15 +1532,15 @@ msgstr "ウィジェット"
 
 #: ../ubuntutweak/modules/compiz.py:222
 msgid "Compiz Settings"
-msgstr ""
+msgstr "Compizの設定"
 
 #: ../ubuntutweak/modules/compiz.py:223
 msgid "Setting with your amazing eye-candy desktop"
-msgstr ""
+msgstr "素晴らしい魅力的なデスクトップを設定します"
 
 #: ../ubuntutweak/modules/compiz.py:236
 msgid "Install Advanced Desktop Effects Settings Manager"
-msgstr "高度なデスクトップ効果の設定マネージャをインストール"
+msgstr "高度なデスクトップ効果の設定マネージャーをインストール"
 
 #: ../ubuntutweak/modules/compiz.py:239
 msgid "Install Simple Desktop Effects Settings manager"
@@ -1611,7 +1697,7 @@ msgid ""
 "'Scripts' will be added to the context menu."
 msgstr ""
 "全種類のスクリプトの作業が可能です。\n"
-"ファイルマネージャからドラッグアンドドロップができます。\n"
+"ファイルマネージャーからドラッグアンドドロップができます。\n"
 "コンテキストメニューに 'スクリプト' が追加されます。"
 
 #: ../ubuntutweak/modules/scripts.py:167
@@ -1720,23 +1806,23 @@ msgstr ""
 
 #: ../ubuntutweak/modules/session.py:34
 msgid "Session control"
-msgstr ""
+msgstr "セッションコントロール"
 
 #: ../ubuntutweak/modules/session.py:35
 msgid "Control your system session releated features"
-msgstr ""
+msgstr "システムセッションに関連した機能を制御します"
 
 #: ../ubuntutweak/modules/session.py:47
 msgid "File Manager"
-msgstr ""
+msgstr "ファイルマネージャー"
 
 #: ../ubuntutweak/modules/session.py:52
 msgid "Panel"
-msgstr ""
+msgstr "パネル"
 
 #: ../ubuntutweak/modules/session.py:56
 msgid "Window Manager"
-msgstr ""
+msgstr "ウィンドウマネージャー"
 
 #: ../ubuntutweak/modules/session.py:67
 msgid "Session Control"
@@ -1744,7 +1830,7 @@ msgstr "セッションコントロール"
 
 #: ../ubuntutweak/modules/session.py:76
 msgid "Session Options"
-msgstr ""
+msgstr "セッションオプション"
 
 #: ../ubuntutweak/modules/session.py:78
 msgid "Automatically save open applications when logging out"
@@ -1756,20 +1842,20 @@ msgstr "TCP接続を許可する(リモートデスクトップ接続)"
 
 #: ../ubuntutweak/modules/session.py:84
 msgid "Suppress the dialog to confirm logout, restart and shutdown action"
-msgstr ""
+msgstr "ログアウト、再起動およびシャットダウンの動作を確認するダイアログを抑制する"
 
 #: ../ubuntutweak/modules/session.py:87
 msgid "Disable user list in gdm"
-msgstr ""
+msgstr "gdmのユーザーリストを無効にする"
 
 #: ../ubuntutweak/modules/session.py:112
 msgid "Please enter a valid application command line."
-msgstr ""
+msgstr "有効なアプリケーションのコマンドラインを入力してください。"
 
 #: ../ubuntutweak/modules/session.py:112
 #, python-format
 msgid "\"%s\" is not available."
-msgstr ""
+msgstr "\"%s\" は利用可能ではありません。"
 
 #: ../ubuntutweak/modules/cleaner.py:55
 msgid "Cleaning Package Config"
@@ -1919,10 +2005,6 @@ msgstr "自動起動するプログラムの編集"
 msgid "New Startup Program"
 msgstr "新しく自動起動するプログラム"
 
-#: ../ubuntutweak/modules/autostart.py:70
-msgid "_Browse..."
-msgstr "参照(_B)..."
-
 #: ../ubuntutweak/modules/autostart.py:99
 msgid "Choose a Program"
 msgstr "プログラムを選択"
@@ -1945,7 +2027,7 @@ msgstr "プログラム"
 
 #: ../ubuntutweak/modules/autostart.py:334
 msgid "Auto Start Programs"
-msgstr ""
+msgstr "自動起動するプログラム"
 
 #: ../ubuntutweak/modules/autostart.py:335
 msgid ""
@@ -1982,11 +2064,11 @@ msgstr "消去しています..."
 
 #: ../ubuntutweak/modules/nautilus.py:66
 msgid "Nautilus Settings"
-msgstr ""
+msgstr "Nautilusの設定"
 
 #: ../ubuntutweak/modules/nautilus.py:67
 msgid "Manage your default file manager"
-msgstr ""
+msgstr "既定のファイルマネージャーを管理します"
 
 #: ../ubuntutweak/modules/nautilus.py:76
 msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
@@ -2070,39 +2152,35 @@ msgstr "対象(ファイル・フォルダ)を選択して下さい。"
 
 #: ../ubuntutweak/network/utdata.py:39 ../ubuntutweak/network/utdata.py:72
 msgid "Never"
-msgstr ""
+msgstr "しない"
 
 #: ../ubuntutweak/network/utdata.py:63
 #, python-format
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d 週間前"
 
 #: ../ubuntutweak/network/utdata.py:65
 #, python-format
 msgid "%d day ago"
 msgid_plural "%d days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d 日前"
 
 #: ../ubuntutweak/network/utdata.py:67
 #, python-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d 時間前"
 
 #: ../ubuntutweak/network/utdata.py:69
 #, python-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d 分前"
 
 #: ../ubuntutweak/network/utdata.py:70
 msgid "Just Now"
-msgstr ""
+msgstr "今しがた"
 
 #~ msgid "Desktop Icon settings"
 #~ msgstr "デスクトップアイコンの設定"
