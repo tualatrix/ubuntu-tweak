@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-10 15:00+0800\n"
-"PO-Revision-Date: 2010-01-10 00:00+0000\n"
-"Last-Translator: Oleg Yermakov <epushiron@gmail.com>\n"
+"POT-Creation-Date: 2010-01-10 17:35+0800\n"
+"PO-Revision-Date: 2010-01-10 22:04+0000\n"
+"Last-Translator: nickkon <nickkon@yandex.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2010-01-10 08:16+0000\n"
+"X-Launchpad-Export-Date: 2010-01-12 11:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 "X-Poedit-Language: Russian\n"
@@ -30,8 +30,104 @@ msgid "System policy prevents the Ubuntu Tweak from Tweaking"
 msgstr "Настройки безопасности не позволяют Ubuntu Tweak настраивать систему"
 
 #: ../data/com.ubuntu-tweak.daemon.policy.in.h:2
-msgid "Tweak"
-msgstr "Настроить"
+msgid "Ubuntu Tweak Daemon"
+msgstr "Служба Ubuntu Tweak"
+
+#: ../data/ui/preferences.ui.h:1
+msgid "<b>Features</b>"
+msgstr "<b>Настройки</b>"
+
+#: ../data/ui/preferences.ui.h:2
+msgid "<b>User Interface</b>"
+msgstr "<b>Пользовательский интерфейс</b>"
+
+#: ../data/ui/preferences.ui.h:3
+msgid "Default Launch Function"
+msgstr "Открывать при запуске"
+
+#: ../data/ui/preferences.ui.h:4
+msgid "Default Window Height"
+msgstr "Высота окна по умолчанию"
+
+#: ../data/ui/preferences.ui.h:5
+msgid "Default Window Width"
+msgstr "Ширина окна по умолчанию"
+
+#: ../data/ui/preferences.ui.h:6
+msgid "Left Menubar Width"
+msgstr "Ширина Левой Панели"
+
+#: ../data/ui/preferences.ui.h:7
+msgid "Ubuntu Tweak Preferences"
+msgstr "Настройки Ubuntu Tweak"
+
+#: ../data/ui/traceback.ui.h:1
+msgid "<big><b>Oops... a fatal error occured</b></big>"
+msgstr "<big><b>Ой... возникла неустранимая ошибка</b></big>"
+
+#: ../data/ui/traceback.ui.h:2
+msgid "<big><b>Oops... an error occured</b></big>"
+msgstr "<big><b>Ой... возникла ошибка</b></big>"
+
+#: ../data/ui/traceback.ui.h:3
+msgid "Error Message"
+msgstr "Сообщение об ошибке"
+
+#: ../data/ui/traceback.ui.h:4
+msgid ""
+"If you'd like to help us fix the problem, \n"
+"Please choose <i>Report</i> to file a new bug report. Make sure to include "
+"the error message below:"
+msgstr ""
+"Если вы хотите помочь в решении этой проблемы, \n"
+"Нажмите <i>Отчёт</i> для отправки отчёта об ошибке. Не забудьте прикрепить "
+"следующее сообщение об ошибке:"
+
+#: ../data/ui/traceback.ui.h:6
+msgid ""
+"Ubuntu Tweak need to turn off.\n"
+"If you'd like to help us fix the problem, \n"
+"Please choose <i>Report</i> to file a new bug report. Make sure to include "
+"the error message below:"
+msgstr ""
+"Ubuntu Tweak вынуждена завершить работу.\n"
+"Если вы хотите помочь в решении этой проблемы,\n"
+"Нажмите <i>Отчёт</i> для отправки отчёта об ошибке. Не забудьте прикрепить "
+"следующее сообщение об ошибке:"
+
+#: ../data/ui/traceback.ui.h:9
+msgid "_Report"
+msgstr "_Отчёт"
+
+#. checkbutton
+#: ../data/ui/updatemanager.ui.h:1 ../ubuntutweak/modules/sourcecenter.py:119
+#: ../ubuntutweak/modules/cleaner.py:466
+msgid "Select All"
+msgstr "Выбрать все"
+
+#: ../data/ui/updatemanager.ui.h:2
+msgid "_Install Update"
+msgstr "_Установить обновление"
+
+#: ../data/ui/type_edit.ui.h:1
+msgid "Add Application"
+msgstr "Добавить приложение"
+
+#: ../data/ui/type_edit.ui.h:2
+msgid "Edit Type"
+msgstr "Редактировать тип"
+
+#: ../data/ui/type_edit.ui.h:3
+msgid "Select an application to view its description."
+msgstr "Выберите приложение для просмотра его описания."
+
+#: ../data/ui/type_edit.ui.h:4 ../ubuntutweak/modules/autostart.py:70
+msgid "_Browse..."
+msgstr "_Обзор..."
+
+#: ../data/ui/type_edit.ui.h:5
+msgid "_Use a custom command"
+msgstr "Использовать собственную команду"
 
 #: ../ubuntutweak/mainwindow.py:67
 msgid "Welcome to"
@@ -130,7 +226,8 @@ msgstr "Спонсоры 2009 года"
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
-"  Oleg Yermakov https://launchpad.net/~epushiron"
+"  Oleg Yermakov https://launchpad.net/~epushiron\n"
+"  nickkon https://launchpad.net/~nickkon"
 
 #: ../ubuntutweak/mainwindow.py:451
 #, python-format
@@ -144,8 +241,8 @@ msgstr ""
 "В интернете доступна более новая версия: %s\n"
 "Обновить?\n"
 "\n"
-"Если вы предпочитаете обновлять программу самостоятельно, отключите авто-"
-"обновление в «Параметрах»."
+"Если вы предпочитаете обновлять программу самостоятельно, отключите "
+"автообновление в «Параметрах»."
 
 #: ../ubuntutweak/mainwindow.py:452
 msgid "Software Update"
@@ -263,7 +360,7 @@ msgstr "Разрабатываемая версия Compiz"
 
 #: ../ubuntutweak/common/appdata.py:26
 msgid "Google's Linux Repository"
-msgstr "Репозиторий Google для linux"
+msgstr "Репозиторий Google для Linux"
 
 #: ../ubuntutweak/common/appdata.py:27
 msgid "Development Version of K Desktop Environment"
@@ -276,7 +373,7 @@ msgstr "Лёгкое окружение рабочего стола для X win
 #: ../ubuntutweak/common/appdata.py:29
 msgid ""
 "WebkitGtk+, Liferea (Webkit), Midori and other WebKit related projects."
-msgstr "WebkitGtk+, Liferea (Webkit), Midori и другие проекты на WebKit."
+msgstr "WebkitGtk+, Liferea, Midori и другие проекты на WebKit."
 
 #: ../ubuntutweak/common/appdata.py:30
 msgid ""
@@ -296,7 +393,7 @@ msgid ""
 msgstr ""
 "Репозиторий Ubuntu для китайских пользователей.\n"
 "Включает EIOffice, Ubuntu Tweak, метод ввода ibus, OpenOffice.org 3.0 и "
-"остальное."
+"другое."
 
 #: ../ubuntutweak/common/appdata.py:34
 msgid ""
@@ -352,8 +449,8 @@ msgid ""
 "Gloobus is an extension of Gnome designed to enable a full screen preview of "
 "any kind of file."
 msgstr ""
-"Gloobus - это расширение Gnome, разработанное для возможности полноэкранного "
-"предпросмотра любого типа файла."
+"Gloobus - это расширение Gnome, разработанное для полноэкранного "
+"предпросмотра любого типа файлов."
 
 #: ../ubuntutweak/common/appdata.py:42
 msgid ""
@@ -368,7 +465,7 @@ msgid ""
 "Updates for Kubuntu releases which are due to go to Ubuntu Updates. Mostly "
 "KDE point releases."
 msgstr ""
-"Обновления для Kubuntu, ещё не попавшие в систему обновлений Ubuntu, в "
+"Обновления для Kubuntu, ещё не попавшие в систему обновлений Ubuntu. В "
 "основном — свежие выпуски KDE."
 
 #: ../ubuntutweak/common/appdata.py:44
@@ -393,7 +490,7 @@ msgstr "Тема значков Breathe"
 
 #: ../ubuntutweak/common/sourcedata.py:15
 msgid "Ubuntu Chinese Repository"
-msgstr "Китайский репозиторий Ubunru"
+msgstr "Китайский репозиторий Ubuntu"
 
 #: ../ubuntutweak/common/sourcedata.py:18
 msgid "IBus (Old Version)"
@@ -409,7 +506,7 @@ msgstr "IBus 1.2 для Jaunty"
 
 #: ../ubuntutweak/common/sourcedata.py:21
 msgid "IBus 1.2 for karmic"
-msgstr "IBus 1.2 для Ubuntu Karmic"
+msgstr "IBus 1.2 для Karmic"
 
 #: ../ubuntutweak/common/sourcedata.py:27
 msgid "Ubuntu Mozilla Security Team"
@@ -489,7 +586,7 @@ msgstr "Moblin Desktop для Ubuntu 9.10 Karmic"
 
 #: ../ubuntutweak/common/sourcedata.py:89
 msgid "Bisigi Theme Project"
-msgstr "Проект тем \"Bisigi\"."
+msgstr "Проект тем Bisigi."
 
 #: ../ubuntutweak/common/sourcedata.py:90
 msgid "PiTiVi video editor"
@@ -710,7 +807,7 @@ msgstr "Язык"
 
 #: ../ubuntutweak/modules/computer.py:81
 msgid "Please enter your new hostname. It should be non-blank characters."
-msgstr ""
+msgstr "Введите новое название машины. Оно не должно содержать пробелов."
 
 #: ../ubuntutweak/modules/computer.py:82
 msgid "New hostname"
@@ -722,7 +819,7 @@ msgstr "Связанные с безопасностью"
 
 #: ../ubuntutweak/modules/lockdown.py:34
 msgid "Tweak some security options"
-msgstr ""
+msgstr "Изменить настройки, связанные с безопасностью"
 
 #: ../ubuntutweak/modules/lockdown.py:43
 msgid "System Security options"
@@ -816,7 +913,7 @@ msgstr "Передать"
 
 #: ../ubuntutweak/modules/sourceeditor.py:191
 msgid "Please check your network connection!"
-msgstr "Проверьте ваше подключение к сети"
+msgstr "Проверьте ваше подключение к сети!"
 
 #: ../ubuntutweak/modules/sourceeditor.py:191
 msgid "Network Error"
@@ -836,7 +933,7 @@ msgstr "Редактор репозиториев"
 
 #: ../ubuntutweak/modules/sourceeditor.py:353
 msgid "Freely edit your software sources to fit your needs."
-msgstr ""
+msgstr "Редактирование источников приложений"
 
 #: ../ubuntutweak/modules/sourceeditor.py:450
 msgid "Please input the correct information about sources!"
@@ -867,7 +964,7 @@ msgstr ""
 
 #: ../ubuntutweak/modules/sourceeditor.py:484
 msgid "Successfully submitted"
-msgstr "Успешно представили"
+msgstr "Передано успешно"
 
 #: ../ubuntutweak/modules/sourceeditor.py:496
 msgid ""
@@ -883,7 +980,7 @@ msgstr "Проверьте права доступа к файлу sources.list"
 
 #: ../ubuntutweak/modules/sourceeditor.py:508
 msgid "Save failed!"
-msgstr "Не удалось сохранить"
+msgstr "Не удалось сохранить!"
 
 #: ../ubuntutweak/modules/sourceeditor.py:517
 msgid ""
@@ -918,12 +1015,6 @@ msgstr ""
 msgid "New applications are available to update"
 msgstr "Доступно обновление для новых приложений"
 
-#. checkbutton
-#: ../ubuntutweak/modules/sourcecenter.py:119
-#: ../ubuntutweak/modules/cleaner.py:466
-msgid "Select All"
-msgstr "Выбрать все"
-
 #: ../ubuntutweak/modules/sourcecenter.py:144
 #: ../ubuntutweak/modules/updatemanager.py:64
 msgid "Your system is clean and there's no update yet."
@@ -938,19 +1029,21 @@ msgstr "Теперь информация о программах в актуа�
 #, python-format
 msgid "Available %d New Application"
 msgid_plural "Available %d New Applications"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Доступно %d новое приложение"
+msgstr[1] "Доступно %d новых приложения"
+msgstr[2] "Доступно %d новых приложений"
 
 #: ../ubuntutweak/modules/sourcecenter.py:223
 #, python-format
 msgid "Available %d Package Update"
 msgid_plural "Available %d Package Updates"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Доступно %d обновление пакетов"
+msgstr[1] "Доступно %d обновления пакетов"
+msgstr[2] "Доступно %d обновлений пакетов"
 
 #: ../ubuntutweak/modules/sourcecenter.py:263
 msgid "No Available Package Update"
-msgstr ""
+msgstr "Нет доступных обновлений пакетов"
 
 #: ../ubuntutweak/modules/sourcecenter.py:377
 msgid "Third-Party Sources"
@@ -1025,10 +1118,14 @@ msgid ""
 "Data will be automatically synchronized with the remote side.\n"
 "You can click the \"Sync\" button to check the update manually."
 msgstr ""
+"Центр источников позволяет поддерживать приложения в актуальном состоянии.\n"
+"Также можно установить программы, которых нет в официальном репозитории.\n"
+"Данные будут автоматически синхронизированы с удаленным сервером.\n"
+"Для ручной проверки обновлений нажмите «Синхронизация»."
 
 #: ../ubuntutweak/modules/sourcecenter.py:708
 msgid "Visit online Source Center"
-msgstr "Перейти на Центр источников в сети"
+msgstr "Посетить Центр источников в интернете"
 
 #: ../ubuntutweak/modules/sourcecenter.py:714
 #: ../ubuntutweak/modules/appcenter.py:464
@@ -1042,7 +1139,7 @@ msgstr "Последняя синхронизация:"
 
 #: ../ubuntutweak/modules/sourcecenter.py:766
 msgid "New sources data available, would you like to update?"
-msgstr "Доступна новая информация об источниках. Загрузить?"
+msgstr "Доступна новая информация об источниках. Обновить?"
 
 #: ../ubuntutweak/modules/sourcecenter.py:840
 msgid ""
@@ -1050,7 +1147,7 @@ msgid ""
 "Please be careful and use only sources you trust."
 msgstr ""
 "Использование сторонних репозиториев может быть небезопасным.\n"
-"Выбирайте только источники, которым вы доверяете."
+"Выбирайте только те источники, которым Вы доверяете."
 
 #: ../ubuntutweak/modules/sourcecenter.py:843
 #: ../ubuntutweak/modules/nautilus.py:139
@@ -1124,14 +1221,18 @@ msgid ""
 "Data will be automatically synchronized with the remote side.\n"
 "You can click the \"Sync\" button to check the update manually."
 msgstr ""
+"Простой, но более эффективный способ поиска и установки популярных "
+"программ.\n"
+"Данные будут автоматически синхронизированы с удаленным сервером.\n"
+"Для ручной проверки обновлений нажмите «Синхронизация»."
 
 #: ../ubuntutweak/modules/appcenter.py:458
 msgid "Visit Online Application Center"
-msgstr "Перейти в Центр приложений в сети"
+msgstr "Посетить Центр приложений в сети"
 
 #: ../ubuntutweak/modules/appcenter.py:499
 msgid "New application data available, would you like to update?"
-msgstr "Доступна новая информация о приложениях. Загрузить?"
+msgstr "Доступна новая информация о приложениях. Обновить?"
 
 #: ../ubuntutweak/modules/appcenter.py:581
 msgid "Some error happened while downloading the file."
@@ -1159,7 +1260,7 @@ msgstr "Приложение"
 
 #: ../ubuntutweak/modules/filetype.py:39
 msgid "All"
-msgstr "Всё"
+msgstr "Все"
 
 #: ../ubuntutweak/modules/filetype.py:130
 msgid "File Type"
@@ -1198,7 +1299,7 @@ msgstr "Управление типами файлов"
 
 #: ../ubuntutweak/modules/filetype.py:479
 msgid "Manage all of the registered file types"
-msgstr ""
+msgstr "Управление любыми зарегистрированными типами файлов"
 
 #: ../ubuntutweak/modules/filetype.py:511
 msgid "Only show filetypes with an associated application"
@@ -1211,7 +1312,7 @@ msgstr "Параметры оконного менеджера"
 
 #: ../ubuntutweak/modules/metacity.py:30
 msgid "Some options about Metacity Window Manager"
-msgstr "Немного параметров оконного менеджера Метасити"
+msgstr "Некоторые параметры оконного менеджера Metacity"
 
 #: ../ubuntutweak/modules/metacity.py:39
 msgid "Window Decorate Effect"
@@ -1223,7 +1324,7 @@ msgstr "Использовать тему Metacity"
 
 #: ../ubuntutweak/modules/metacity.py:44
 msgid "Enable active window transparency"
-msgstr "Прозрачная рамка у активного окна"
+msgstr "Прозрачная рамка активного окна"
 
 #: ../ubuntutweak/modules/metacity.py:47
 msgid "Active window transparency level"
@@ -1231,7 +1332,7 @@ msgstr "Непрозрачность рамки активного окна"
 
 #: ../ubuntutweak/modules/metacity.py:51
 msgid "Enable inactive window transparency"
-msgstr "Прозрачные рамки у неактивных окон"
+msgstr "Прозрачные рамки неактивных окон"
 
 #: ../ubuntutweak/modules/metacity.py:54
 msgid "Inactive window shade transparency level"
@@ -1316,11 +1417,11 @@ msgstr "Показывать значок «Корзина» на рабочем
 
 #: ../ubuntutweak/modules/icons.py:108
 msgid "Desktop Icon Settings"
-msgstr ""
+msgstr "Настройки значков рабочего стола"
 
 #: ../ubuntutweak/modules/icons.py:109
 msgid "Manage the desktop icon's name and visiable"
-msgstr ""
+msgstr "Изменение названий и видимости значков"
 
 #: ../ubuntutweak/modules/icons.py:118
 msgid "Show desktop icons"
@@ -1346,7 +1447,7 @@ msgstr "Настройки Gnome"
 
 #: ../ubuntutweak/modules/gnomesettings.py:36
 msgid "A lot of GNOME settings about panel, menu and others"
-msgstr ""
+msgstr "Множество настроек Gnome, связанных с панелями, меню и прочим."
 
 #: ../ubuntutweak/modules/gnomesettings.py:48
 msgid "Panel Settings"
@@ -1427,11 +1528,11 @@ msgstr "Применить изменения немедленно?"
 
 #: ../ubuntutweak/modules/powermanager.py:28
 msgid "Advanced Powermanager Settings"
-msgstr "Расширенный настройки управления питанием"
+msgstr "Расширенные настройки управления питанием"
 
 #: ../ubuntutweak/modules/powermanager.py:29
 msgid "Control your computer's power managerment"
-msgstr "Настройки системы управления питанием этого компьютера"
+msgstr "Настройки системы управления питанием вашего компьютера"
 
 #: ../ubuntutweak/modules/powermanager.py:37
 msgid "Advanced Power Management Settings"
@@ -1479,7 +1580,7 @@ msgstr "Настройки Compiz"
 
 #: ../ubuntutweak/modules/compiz.py:223
 msgid "Setting with your amazing eye-candy desktop"
-msgstr "Настройка эффектов и украшательств рабочего стола"
+msgstr "Настройка эффектов и украшений рабочего стола"
 
 #: ../ubuntutweak/modules/compiz.py:236
 msgid "Install Advanced Desktop Effects Settings Manager"
@@ -1710,10 +1811,10 @@ msgid ""
 "You can create new documents based on these templates from the Nautilus "
 "right-click menu."
 msgstr ""
-"Здесь вы можете полностью управлять вашими шаблонами документов.\n"
-"Вы можете добавлять файлы как шаблоны перетаскивая их в это окно.\n"
-"Вы можете создать новый документ на основе этих шаблонов из контекстным меню "
-"Nautilus."
+"Здесь вы можете полностью управлять шаблонами документов.\n"
+"Вы можете добавлять файлы как шаблоны, перетаскивая их в это окно.\n"
+"Вы можете создать новый документ на основе этих шаблонов из контекстного "
+"меню Nautilus."
 
 #: ../ubuntutweak/modules/templates.py:126
 #, python-format
@@ -1857,7 +1958,7 @@ msgstr "Освободится %s места"
 
 #: ../ubuntutweak/modules/cleaner.py:394
 msgid "Canceled by user!"
-msgstr "Отменено пользователем!"
+msgstr "Прервано пользователем!"
 
 #: ../ubuntutweak/modules/cleaner.py:397
 #: ../ubuntutweak/modules/nautilus.py:145
@@ -1899,7 +2000,7 @@ msgstr "Очистить ядро"
 
 #: ../ubuntutweak/modules/cleaner.py:480
 msgid "_Cleanup"
-msgstr "Очистка"
+msgstr "_Очистка"
 
 #: ../ubuntutweak/modules/shortcuts.py:45
 msgid "Shortcut Commands"
@@ -1952,19 +2053,15 @@ msgstr "Ко_манда:"
 
 #: ../ubuntutweak/modules/autostart.py:63
 msgid "Edit Startup Program"
-msgstr "Управление автозагрузкой"
+msgstr "Изменить приложения, запускаемые при старте"
 
 #: ../ubuntutweak/modules/autostart.py:68
 msgid "New Startup Program"
 msgstr "Новое приложение для автозагрузки"
 
-#: ../ubuntutweak/modules/autostart.py:70
-msgid "_Browse..."
-msgstr "_Обзор..."
-
 #: ../ubuntutweak/modules/autostart.py:99
 msgid "Choose a Program"
-msgstr "Выбрать программу"
+msgstr "Выберите приложение"
 
 #: ../ubuntutweak/modules/autostart.py:189
 msgid "Delete from Disk"
@@ -1980,11 +2077,11 @@ msgstr "Нет описания"
 
 #: ../ubuntutweak/modules/autostart.py:275
 msgid "Program"
-msgstr "Программа"
+msgstr "Приложение"
 
 #: ../ubuntutweak/modules/autostart.py:334
 msgid "Auto Start Programs"
-msgstr ""
+msgstr "Запускаемые приложения"
 
 #: ../ubuntutweak/modules/autostart.py:335
 msgid ""
@@ -2026,7 +2123,7 @@ msgstr "Настройки Наутилуса"
 
 #: ../ubuntutweak/modules/nautilus.py:67
 msgid "Manage your default file manager"
-msgstr ""
+msgstr "Управление стандартным диспетчером файлов"
 
 #: ../ubuntutweak/modules/nautilus.py:76
 msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
@@ -2046,7 +2143,7 @@ msgstr "Стандартный размер значков (в пикселях)
 
 #: ../ubuntutweak/modules/nautilus.py:96
 msgid "Maximum size of the thumbnail cache (megabytes)"
-msgstr "Максимальный размер кэша значков (в мегабайтах)"
+msgstr "Максимальный размер кэша эскизов (в Мб)"
 
 #: ../ubuntutweak/modules/nautilus.py:100
 msgid "Maximum age for the thumbnail in the cache (days)"
@@ -2209,3 +2306,6 @@ msgstr "Только что"
 #~ "Свободно редактируйте источники приложений по своему усмотрению.\n"
 #~ "Нажмите \"Обновить источники\" для их изменения.\n"
 #~ "Нажмите \"Отправить источники\", чтобы поделиться источниками с другими."
+
+#~ msgid "Tweak"
+#~ msgstr "Настроить"
