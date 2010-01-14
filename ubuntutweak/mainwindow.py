@@ -220,7 +220,7 @@ class MainWindow(gtk.Window):
             gobject.timeout_add(5000, self.on_timeout)
 
         launch = TweakSettings.get_default_launch()
-        if launch and launch != '0':
+        if launch and not launch.isdigit():
             self.__create_newpage(launch)
 		
     def on_d_clicked(self, widget):
