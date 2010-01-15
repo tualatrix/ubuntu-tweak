@@ -1,4 +1,5 @@
 import os
+import random
 import time
 import datetime
 
@@ -9,11 +10,15 @@ from urlparse import urljoin
 install_ngettext()
 
 DEV_MODE = os.getenv('UT_DEV')
+DATA_MIRRORS = (
+    'http://ubuntu-tweak.com/',
+    'http://ubuntu-tweak.lfeng.me/'
+)
 
 if DEV_MODE == 'local':
     URL_PREFIX = 'http://127.0.0.1:8000/'
 else:
-    URL_PREFIX = 'http://ubuntu-tweak.com/'
+    URL_PREFIX = DATA_MIRRORS[random.randint(0, len(DATA_MIRRORS)-1)]
 
 def get_version_url(version_url):
     if DEV_MODE:
