@@ -33,7 +33,7 @@ def get_local_timestamp(folder):
     local_timestamp = os.path.join(folder, 'timestamp')
 
     if os.path.exists(local_timestamp):
-        local_version = open(local_timestamp).read().split('.')[0].split('-')[-1]
+        local_version = open(local_timestamp).read()
     else:
         local_version = '0'
 
