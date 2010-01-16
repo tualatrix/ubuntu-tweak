@@ -220,8 +220,11 @@ class MainWindow(gtk.Window):
             gobject.timeout_add(5000, self.on_timeout)
 
         launch = TweakSettings.get_default_launch()
-        if launch and not launch.isdigit():
-            self.__create_newpage(launch)
+        try:
+            if launch and not launch.isdigit():
+                self.__create_newpage(launch)
+        except:
+            pass
 		
     def on_d_clicked(self, widget):
         webbrowser.open('http://ubuntu-tweak.com/donate/')
