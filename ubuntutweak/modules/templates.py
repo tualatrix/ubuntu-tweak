@@ -24,18 +24,11 @@ import os
 import gtk
 import shutil
 from ubuntutweak.modules  import TweakModule
-from userdir import UserdirFile
-from ubuntutweak.common.consts import *
+from ubuntutweak.modules.userdir import UserdirFile
+from ubuntutweak.common.consts import DATA_DIR
 from ubuntutweak.widgets import DirView, FlatView
 from ubuntutweak.widgets.dialogs import WarningDialog, ErrorDialog
 from ubuntutweak.common.utils import set_label_for_stock_button
-
-(
-    COLUMN_ICON,
-    COLUMN_TEMPINFO,
-    COLUMN_FILE,
-) = range(3)
-
 
 def update_dir():
     system_dir = os.path.expanduser('~/.ubuntu-tweak/templates')
@@ -76,10 +69,10 @@ class DefaultTemplates:
     def create(self):
         if not os.path.exists(SYSTEM_DIR):
             os.makedirs(SYSTEM_DIR)
-        for file, des in self.templates.items():
-            realname = "%s.%s" % (des, file.split('.')[1])
+        for path, des in self.templates.items():
+            realname = "%s.%s" % (des, path.split('.')[1])
             if not os.path.exists(os.path.join(SYSTEM_DIR, realname)):
-                shutil.copy(os.path.join(DATA_DIR, 'templates/%s' % file), os.path.join(SYSTEM_DIR, realname))
+                shutil.copy(os.path.join(DATA_DIR, 'templates/%s' % path), os.path.join(SYSTEM_DIR, realname))
 
     def remove(self):
         if not os.path.exists(SYSTEM_DIR):
@@ -123,10 +116,12 @@ class Templates(TweakModule):
         TweakModule.__init__(self)
 
         if not is_right_path():
-            self.set_description(_('Templates path is wrong! The current path is point to "%s".\nPlease reset it to a folder under your Home Folder.') % USER_DIR)
+            label = gtk.Label(_('Templates path is wrong! The current path is point to "%s".\nPlease reset it to a folder under your Home Folder.') % USER_DIR)
 
             hbox = gtk.HBox(False, 0)
             self.add_start(hbox, False, False, 0)
+
+            hbox.pack_start(label, False, False, 0)
 
             button = gtk.Button(stock = gtk.STOCK_GO_FORWARD)
             button.connect('clicked', self.on_go_button_clicked)
@@ -148,19 +143,19 @@ class Templates(TweakModule):
         hbox = gtk.HBox(False, 10)
         self.add_start(hbox)
 
-        sw = gtk.ScrolledWindow()
-        sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        hbox.pack_start(sw)
+        swindow = gtk.ScrolledWindow()
+        swindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        hbox.pack_start(swindow)
 
         self.enable_templates = EnableTemplate()
-        sw.add(self.enable_templates)
+        swindow.add(self.enable_templates)
 
-        sw = gtk.ScrolledWindow()
-        sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        hbox.pack_start(sw)
+        swindow = gtk.ScrolledWindow()
+        swindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        hbox.pack_start(swindow)
 
         self.disable_templates = DisableTemplate()
-        sw.add(self.disable_templates)
+        swindow.add(self.disable_templates)
 
         hbox = gtk.HBox(False, 0)
         self.add_start(hbox, False, False, 0)
@@ -171,12 +166,12 @@ class Templates(TweakModule):
 
         self.enable_templates.connect('drag_data_received', self.on_enable_drag_data_received)
         self.enable_templates.connect('deleted', self.on_enable_deleted)
-        self.disable_templates.connect('drag_data_received', self.on_disable_drag_data_received)
+        self.disable_templates.connect('drag_data_received', self.on_disable_recevied)
 
         self.show_all()
 
     def on_go_button_clicked(self, widget):
-        self.emit('call', 'mainwindow', 'select_module', {'name': 'userdir'})
+        self.emit('call', 'mainwindow', 'select_module', {'name': 'UserDir'})
 
     def on_restart_button_clicked(self, widget):
         global SYSTEM_DIR, USER_DIR 
@@ -197,7 +192,8 @@ class Templates(TweakModule):
         self.enable_templates.update_model()
 
     def on_rebuild_clicked(self, widget):
-        dialog = WarningDialog(_('This will delete all disabled templates.\nDo you wish to continue?'))
+        dialog = WarningDialog(_('This will delete all disabled templates.\n'
+                                 'Do you wish to continue?'))
         if dialog.run() == gtk.RESPONSE_YES:
             self.default.remove()
             self.default.create()

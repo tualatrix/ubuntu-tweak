@@ -321,7 +321,7 @@ class MainWindow(gtk.Window):
             selection.select_iter(iter)
 
     def __select_for_each_name(self, model, path, iter, name):
-        m_name = model.get_value(iter, self.MODULE_CLASS)
+        m_name = model.get_value(iter, self.ID_COLUMN)
         if name == m_name:
             selection = self.treeview.get_selection()
             selection.select_iter(iter)

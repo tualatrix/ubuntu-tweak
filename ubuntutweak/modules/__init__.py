@@ -207,6 +207,10 @@ class TweakModule(gtk.VBox):
 
         vbox.pack_start(gtk.HSeparator(), False, False, 0)
 
+    def remove_all_children(self):
+        for child in self.inner_vbox.get_children():
+            self.inner_vbox.remove(child) 
+
     def reparent(self, widget):
         '''
         If module use glade, it must call this method to reparent the main frame
