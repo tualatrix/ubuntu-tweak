@@ -472,6 +472,14 @@ You should have received a copy of the GNU General Public License along with Ubu
         self.do_notify()
         self.save_gui_state()
         gtk.main_quit()
+        self.quit_daemon()
+
+    def quit_daemon(self):
+        try:
+            from ubuntutweak.policykit import proxy
+            proxy.exit()
+        except:
+            pass
 
     def prepare_notify(self, data):
         self.notify_func = data
