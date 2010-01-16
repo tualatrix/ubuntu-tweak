@@ -1,3 +1,9 @@
+# This class is modified from gnome-lirc-properties project
+# the original file is gnome_lirc_properties/backend.py
+# GPL v2+
+# Copyright (C) 2008 Fluendo Embedded S.L.
+# Copyright (C) 2010 TualatriX <tualatrix@gmail.com>
+
 import dbus
 import dbus.service
 
