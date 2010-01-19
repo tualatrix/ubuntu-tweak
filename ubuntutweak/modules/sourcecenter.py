@@ -40,7 +40,6 @@ from ubuntutweak.widgets import GconfCheckButton
 from ubuntutweak.widgets.dialogs import QuestionDialog, ErrorDialog, InfoDialog, WarningDialog
 from ubuntutweak.utils.parser import Parser
 from ubuntutweak.network import utdata
-from ubuntutweak.backends.daemon import PATH
 from appcenter import AppView, CategoryView, AppParser
 from appcenter import CheckUpdateDialog, FetchingDialog
 
