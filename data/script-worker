@@ -3,7 +3,7 @@
 
 # Ubuntu Tweak - PyGTK based desktop configure tool
 #
-# Copyright (C) 2007-2008 TualatriX <tualatrix@gmail.com>
+# Copyright (C) 2007-2010 TualatriX <tualatrix@gmail.com>
 #
 # Ubuntu Tweak is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,14 +22,14 @@
 import os
 import sys
 import gtk
+import gio
 import gobject
-import gnomevfs
 import gettext
 import shutil
 import subprocess
 
-from userdir import UserdirFile
 from ubuntutweak.common.consts import *
+from ubuntutweak.modules.userdir import UserdirFile
 from ubuntutweak.common.debug import run_traceback
 from ubuntutweak.widgets import ErrorDialog
 from ubuntutweak.common.utils import get_command_for_type
@@ -146,7 +146,8 @@ class FileOperation:
     @classmethod
     def get_local_path(cls, uri):
         """Convert the URI to local path"""
-        return gnomevfs.get_local_path_from_uri(uri)
+        vfs = gio.vfs_get_default()
+        return vfs.get_file_for_uri(uri).get_path()
 
 class Worker:
     """The worker to do the real operation, with getattr to instrospect the operation"""
