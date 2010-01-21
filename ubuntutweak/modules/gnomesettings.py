@@ -123,28 +123,29 @@ class Gnome(TweakModule):
 
         filename = ''
         response = dialog.run()
+
         if response == gtk.RESPONSE_ACCEPT:
             filename = dialog.get_filename()
+            dialog.destroy()
 
             if filename:
                 pixbuf = gtk.gdk.pixbuf_new_from_file(filename)
                 w, h = pixbuf.get_width(), pixbuf.get_height()
                 if w != 24 or h != 24:
                     ErrorDialog(_("The size isn't suitable for the panel.\nIt should be 24x24.")).launch()
+                    return
                 else:
                     os.system('mkdir -p %s' % os.path.dirname(dest))
                     os.system('cp %s %s' % (filename, dest))
 
                     image = gtk.image_new_from_file(dest)
                     widget.set_image(image)
-            dialog.destroy()
         elif response == gtk.RESPONSE_DELETE_EVENT:
+            dialog.destroy()
             os.remove(dest)
             image = gtk.image_new_from_pixbuf(get_icon_with_name('start-here', 24))
             widget.set_image(image)
-            dialog.destroy()
         else:
-            dialog.destroy()
             return
 
         dialog = QuestionDialog(_('Do you want your changes to take effect immediately?'))
