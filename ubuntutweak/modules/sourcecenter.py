@@ -155,7 +155,16 @@ class CheckSourceDialog(CheckUpdateDialog):
 
 class SourceParser(Parser):
     def __init__(self):
-        Parser.__init__(self, os.path.join(SOURCE_ROOT, 'sources.json'), 'slug')
+        Parser.__init__(self, os.path.join(SOURCE_ROOT, 'sources.json'), 'id')
+
+    def get_slug(self, key):
+        return self[key]['slug']
+
+    def get_conflicts(self, key):
+        return self[key]['conflicts']
+
+    def get_dependencies(self, key):
+        return self[key]['dependencies']
 
     def get_summary(self, key):
         return self.get_by_lang(key, 'summary')
@@ -320,6 +329,7 @@ class SourcesView(gtk.TreeView):
         'sourcechanged': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, ())
     }
     (COLUMN_ENABLED,
+     COLUMN_ID,
      COLUMN_CATE,
      COLUMN_URL,
      COLUMN_DISTRO,
@@ -331,7 +341,7 @@ class SourcesView(gtk.TreeView):
      COLUMN_DISPLAY,
      COLUMN_HOME,
      COLUMN_KEY,
-    ) = range(12)
+    ) = range(13)
 
     def __init__(self):
         gtk.TreeView.__init__(self)
@@ -352,6 +362,7 @@ class SourcesView(gtk.TreeView):
     def __create_model(self):
         model = gtk.ListStore(
                 gobject.TYPE_BOOLEAN,
+                gobject.TYPE_INT,
                 gobject.TYPE_STRING,
                 gobject.TYPE_STRING,
                 gobject.TYPE_STRING,
@@ -369,7 +380,7 @@ class SourcesView(gtk.TreeView):
     def __add_column(self):
         renderer = gtk.CellRendererToggle()
         renderer.connect('toggled', self.on_enable_toggled)
-        column = gtk.TreeViewColumn(' ', renderer, active = self.COLUMN_ENABLED)
+        column = gtk.TreeViewColumn(' ', renderer, active=self.COLUMN_ENABLED)
         column.set_sort_column_id(self.COLUMN_ENABLED)
         self.append_column(column)
 
@@ -378,12 +389,12 @@ class SourcesView(gtk.TreeView):
         column.set_spacing(5)
         renderer = gtk.CellRendererPixbuf()
         column.pack_start(renderer, False)
-        column.set_attributes(renderer, pixbuf = self.COLUMN_LOGO)
+        column.set_attributes(renderer, pixbuf=self.COLUMN_LOGO)
 
         renderer = gtk.CellRendererText()
         renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
         column.pack_start(renderer, True)
-        column.set_attributes(renderer, markup = self.COLUMN_DISPLAY)
+        column.set_attributes(renderer, markup=self.COLUMN_DISPLAY)
 
         self.append_column(column)
 
@@ -396,18 +407,19 @@ class SourcesView(gtk.TreeView):
 
         source_parser = SourceParser()
 
-        for slug in source_parser:
+        for id in source_parser:
             enabled = False
-            url = source_parser.get_url(slug)
-            comps = source_parser.get_comps(slug)
-            distro = source_parser.get_distro(slug)
-            category = source_parser.get_category(slug)
+            url = source_parser.get_url(id)
+            slug = source_parser.get_slug(id)
+            comps = source_parser.get_comps(id)
+            distro = source_parser.get_distro(id)
+            category = source_parser.get_category(id)
 
-            name = source_parser.get_name(slug)
-            comment = source_parser.get_summary(slug)
-            pixbuf = self.get_source_logo(source_parser[slug]['logo'])
-            website = source_parser.get_website(slug)
-            key = source_parser.get_key(slug)
+            name = source_parser.get_name(id)
+            comment = source_parser.get_summary(id)
+            pixbuf = self.get_source_logo(source_parser[id]['logo'])
+            website = source_parser.get_website(id)
+            key = source_parser.get_key(id)
 
             for source in sourceslist:
                 if url in source.str() and source.type == 'deb':
@@ -417,6 +429,7 @@ class SourcesView(gtk.TreeView):
                 iter = self.model.append()
                 self.model.set(iter,
                         self.COLUMN_ENABLED, enabled,
+                        self.COLUMN_ID, id,
                         self.COLUMN_CATE, category,
                         self.COLUMN_URL, url,
                         self.COLUMN_DISTRO, distro,
@@ -521,12 +534,17 @@ class SourcesView(gtk.TreeView):
     def on_enable_toggled(self, cell, path):
         iter = self.model.get_iter((int(path),))
 
+        id = self.model.get_value(iter, self.COLUMN_ID)
         name = self.model.get_value(iter, self.COLUMN_NAME)
         enabled = self.model.get_value(iter, self.COLUMN_ENABLED)
 
-        if enabled is False and name in SOURCES_DEPENDENCIES:
+        source_parser = SourceParser()
+
+        conflicts = source_parser.get_conflicts(id)
+        dependencies = source_parser.get_dependencies(id)
+
+        if enabled is False and dependencies:
             #FIXME: If more than one dependency
-            dependency = SOURCES_DEPENDENCIES[name]
             if self.get_source_enabled(dependency) is False:
                 dialog = QuestionDialog(\
                             _('To enable this Source, You need to enable "%s" at first.\nDo you wish to continue?') \
@@ -569,39 +587,39 @@ class SourcesView(gtk.TreeView):
         else:
             self.do_source_enable(iter, not enabled)
 
-    def on_source_foreach(self, model, path, iter, name):
-        m_name = model.get_value(iter, self.COLUMN_NAME)
-        if m_name == name:
+    def on_source_foreach(self, model, path, iter, id):
+        m_id = model.get_value(iter, self.COLUMN_ID)
+        if m_id == id:
             if self._foreach_mode == 'get':
                 self._foreach_take = model.get_value(iter, self.COLUMN_ENABLED)
             elif self._foreach_mode == 'set':
                 self._foreach_take = iter
 
-    def get_source_enabled(self, name):
+    def get_source_enabled(self, id):
         '''
-        Search source by name, then get status from model
+        Search source by id, then get status from model
         '''
         self._foreach_mode = 'get'
         self._foreach_take = None
-        self.model.foreach(self.on_source_foreach, name)
+        self.model.foreach(self.on_source_foreach, id)
         return self._foreach_take
 
-    def set_source_enabled(self, name):
+    def set_source_enabled(self, id):
         '''
-        Search source by name, then call do_source_enable
+        Search source by id, then call do_source_enable
         '''
         self._foreach_mode = 'set'
         self._foreach_status = None
-        self.model.foreach(self.on_source_foreach, name)
+        self.model.foreach(self.on_source_foreach, id)
         self.do_source_enable(self._foreach_take, True)
 
-    def set_source_disable(self, name):
+    def set_source_disable(self, id):
         '''
-        Search source by name, then call do_source_enable
+        Search source by id, then call do_source_enable
         '''
         self._foreach_mode = 'set'
         self._foreach_status = None
-        self.model.foreach(self.on_source_foreach, name)
+        self.model.foreach(self.on_source_foreach, id)
         self.do_source_enable(self._foreach_take, False)
 
     def do_source_enable(self, iter, enable):
