@@ -157,6 +157,24 @@ class SourceParser(Parser):
     def __init__(self):
         Parser.__init__(self, os.path.join(SOURCE_ROOT, 'sources.json'), 'id')
 
+        self.reverse_depends = {}
+        for id, item in self.items():
+            if item['dependencies']:
+                for depend_id in item['dependencies']:
+                    if self.reverse_depends.has_key(depend_id):
+                        self.reverse_depends[depend_id].append(id)
+                    else:
+                        self.reverse_depends[depend_id] = [id]
+
+    def has_reverse_depends(self, id):
+        if id in self.reverse_depends.keys():
+            return True
+        else:
+            return False
+
+    def get_reverse_depends(self, id):
+        return self.reverse_depends[id]
+
     def get_slug(self, key):
         return self[key]['slug']
 
@@ -189,6 +207,8 @@ class SourceParser(Parser):
 
     def get_website(self, key):
         return self[key]['website']
+
+SOURCE_PARSER = SourceParser()
 
 class UpdateView(AppView):
     def __init__(self):
@@ -347,10 +367,15 @@ class SourcesView(gtk.TreeView):
         gtk.TreeView.__init__(self)
 
         self.filter = None
+        self.modelfilter = None
 
         self.model = self.__create_model()
-        self.set_model(self.model)
         self.model.set_sort_column_id(self.COLUMN_NAME, gtk.SORT_ASCENDING)
+
+        self.modelfilter = self.model.filter_new()
+        self.modelfilter.set_visible_func(self.on_visible_filter, None)
+        self.set_model(self.modelfilter)
+
         self.__add_column()
 
         self.update_model()
@@ -363,7 +388,7 @@ class SourcesView(gtk.TreeView):
         model = gtk.ListStore(
                 gobject.TYPE_BOOLEAN,
                 gobject.TYPE_INT,
-                gobject.TYPE_STRING,
+                gobject.TYPE_INT,
                 gobject.TYPE_STRING,
                 gobject.TYPE_STRING,
                 gobject.TYPE_STRING,
@@ -376,6 +401,17 @@ class SourcesView(gtk.TreeView):
                 gobject.TYPE_STRING)
 
         return model
+
+    def on_visible_filter(self, model, iter, data=None):
+        category = self.model.get_value(iter, self.COLUMN_CATE)
+        if self.filter == None or self.filter == category:
+            return True
+        else:
+            return False
+
+    def refilter(self):
+        self.modelfilter.refilter()
+        self.scroll_to_cell(0)
 
     def __add_column(self):
         renderer = gtk.CellRendererToggle()
@@ -398,50 +434,43 @@ class SourcesView(gtk.TreeView):
 
         self.append_column(column)
 
-    def clear_model(self):
-        self.get_model().clear()
-
     def update_model(self):
-        self.model.clear()
         sourceslist = self.get_sourceslist()
 
-        source_parser = SourceParser()
-
-        for id in source_parser:
+        for id in SOURCE_PARSER:
             enabled = False
-            url = source_parser.get_url(id)
-            slug = source_parser.get_slug(id)
-            comps = source_parser.get_comps(id)
-            distro = source_parser.get_distro(id)
-            category = source_parser.get_category(id)
+            url = SOURCE_PARSER.get_url(id)
+            slug = SOURCE_PARSER.get_slug(id)
+            comps = SOURCE_PARSER.get_comps(id)
+            distro = SOURCE_PARSER.get_distro(id)
+            category = SOURCE_PARSER.get_category(id)
 
-            name = source_parser.get_name(id)
-            comment = source_parser.get_summary(id)
-            pixbuf = self.get_source_logo(source_parser[id]['logo'])
-            website = source_parser.get_website(id)
-            key = source_parser.get_key(id)
+            name = SOURCE_PARSER.get_name(id)
+            comment = SOURCE_PARSER.get_summary(id)
+            pixbuf = self.get_source_logo(SOURCE_PARSER[id]['logo'])
+            website = SOURCE_PARSER.get_website(id)
+            key = SOURCE_PARSER.get_key(id)
 
             for source in sourceslist:
                 if url in source.str() and source.type == 'deb':
                     enabled = not source.disabled
 
-            if self.filter == None or self.filter == category:
-                iter = self.model.append()
-                self.model.set(iter,
-                        self.COLUMN_ENABLED, enabled,
-                        self.COLUMN_ID, id,
-                        self.COLUMN_CATE, category,
-                        self.COLUMN_URL, url,
-                        self.COLUMN_DISTRO, distro,
-                        self.COLUMN_COMPS, comps,
-                        self.COLUMN_COMMENT, comment,
-                        self.COLUMN_SLUG, slug,
-                        self.COLUMN_NAME, name,
-                        self.COLUMN_DISPLAY, '<b>%s</b>\n%s' % (name, comment),
-                        self.COLUMN_LOGO, pixbuf,
-                        self.COLUMN_HOME, website,
-                        self.COLUMN_KEY, key,
-                    )
+            iter = self.model.append()
+            self.model.set(iter,
+                    self.COLUMN_ENABLED, enabled,
+                    self.COLUMN_ID, id,
+                    self.COLUMN_CATE, category,
+                    self.COLUMN_URL, url,
+                    self.COLUMN_DISTRO, distro,
+                    self.COLUMN_COMPS, comps,
+                    self.COLUMN_COMMENT, comment,
+                    self.COLUMN_SLUG, slug,
+                    self.COLUMN_NAME, name,
+                    self.COLUMN_DISPLAY, '<b>%s</b>\n%s' % (name, comment),
+                    self.COLUMN_LOGO, pixbuf,
+                    self.COLUMN_HOME, website,
+                    self.COLUMN_KEY, key,
+                )
 
     def get_source_logo(self, file_name):
         path = os.path.join(SOURCE_ROOT, file_name)
@@ -532,42 +561,66 @@ class SourcesView(gtk.TreeView):
         return False
 
     def on_enable_toggled(self, cell, path):
-        iter = self.model.get_iter((int(path),))
+        model = self.get_model()
+        iter = model.get_iter((int(path),))
 
-        id = self.model.get_value(iter, self.COLUMN_ID)
-        name = self.model.get_value(iter, self.COLUMN_NAME)
-        enabled = self.model.get_value(iter, self.COLUMN_ENABLED)
+        id = model.get_value(iter, self.COLUMN_ID)
+        name = model.get_value(iter, self.COLUMN_NAME)
+        enabled = model.get_value(iter, self.COLUMN_ENABLED)
 
-        source_parser = SourceParser()
+        conflicts = SOURCE_PARSER.get_conflicts(id)
+        dependencies = SOURCE_PARSER.get_dependencies(id)
 
-        conflicts = source_parser.get_conflicts(id)
-        dependencies = source_parser.get_dependencies(id)
+        #Convert to real model, because will have set method
+        iter = model.convert_iter_to_child_iter(iter)
+        model = model.get_model()
 
         if enabled is False and dependencies:
-            #FIXME: If more than one dependency
-            if self.get_source_enabled(dependency) is False:
+            depend_list = []
+            depend_name_list = []
+            for depend_id in dependencies:
+                if self.get_source_enabled(depend_id) is False:
+                    depend_list.append(depend_id)
+                    name_list = [r[self.COLUMN_NAME] for r in model if r[self.COLUMN_ID] == depend_id]
+                    if name_list:
+                            depend_name_list.extend(name_list)
+
+            if depend_list and depend_name_list:
+                full_name = ', '.join(depend_name_list)
+
                 dialog = QuestionDialog(\
-                            _('To enable this Source, You need to enable "%s" at first.\nDo you wish to continue?') \
-                            % dependency,
+                            _('To enable this Source, You need to enable <b>"%s"</b> at first.\nDo you wish to continue?') \
+                            % full_name,
                             title=_('Dependency Notice'))
                 if dialog.run() == gtk.RESPONSE_YES:
-                    self.set_source_enabled(dependency)
-                    self.set_source_enabled(name)
+                    for depend_id in depend_list:
+                        self.set_source_enabled(depend_id)
+                    self.set_source_enabled(id)
                 else:
-                    self.model.set(iter, self.COLUMN_ENABLED, enabled)
+                    model.set(iter, self.COLUMN_ENABLED, enabled)
 
                 dialog.destroy()
             else:
                 self.do_source_enable(iter, not enabled)
-        elif enabled and name in SOURCES_DEPENDENCIES.values():
-            reverse_dependecy = False
-            for k, v in SOURCES_DEPENDENCIES.items():
-                if v == name and self.get_source_enabled(k):
-                    ErrorDialog(_('You can\'t disable this Source because "%(SOURCE)s" depends on it.\nTo continue you need to disable "%(SOURCE)s" first.') % {'SOURCE': k}).launch()
-                    reverse_dependecy = True
-                    break
-            if reverse_dependecy:
-                self.model.set(iter, self.COLUMN_ENABLED, enabled)
+        elif enabled and SOURCE_PARSER.has_reverse_depends(id):
+            depend_list = []
+            depend_name_list = []
+            for depend_id in SOURCE_PARSER.get_reverse_depends(id):
+                if self.get_source_enabled(depend_id):
+                    depend_list.append(depend_id)
+                    name_list = [r[self.COLUMN_NAME] for r in model if r[self.COLUMN_ID] == depend_id]
+                    if name_list:
+                            depend_name_list.extend(name_list)
+
+            if depend_list and depend_name_list:
+                full_name = ', '.join(depend_name_list)
+
+                ErrorDialog(_('You can\'t disable this Source because '
+                            '<b>"%(SOURCE)s"</b> depends on it.\nTo continue '
+                            'you need to disable <b>"%(SOURCE)s"</b> first.') \
+                                 % {'SOURCE': full_name}).launch()
+
+                model.set(iter, self.COLUMN_ENABLED, enabled)
             else:
                 self.do_source_enable(iter, not enabled)
         elif not enabled and name in SOURCES_CONFLICTS.values() or \
@@ -581,7 +634,7 @@ class SourcesView(gtk.TreeView):
                         key = k
             if self.get_source_enabled(key):
                 ErrorDialog(_('You can\'t enable this Source because "%(SOURCE)s" conflicts with it.\nTo continue you need to disable "%(SOURCE)s" first.') % {'SOURCE': key}).launch()
-                self.model.set(iter, self.COLUMN_ENABLED, enabled)
+                model.set(iter, self.COLUMN_ENABLED, enabled)
             else:
                 self.do_source_enable(iter, not enabled)
         else:
@@ -594,6 +647,11 @@ class SourcesView(gtk.TreeView):
                 self._foreach_take = model.get_value(iter, self.COLUMN_ENABLED)
             elif self._foreach_mode == 'set':
                 self._foreach_take = iter
+
+    def on_source_name_foreach(self, model, path, iter, id):
+        m_id = model.get_value(iter, self.COLUMN_ID)
+        if m_id == id:
+            self._foreach_name_take = model.get_value(iter, self.COLUMN_NAME)
 
     def get_source_enabled(self, id):
         '''
@@ -627,15 +685,15 @@ class SourcesView(gtk.TreeView):
         Do the really source enable or disable action by iter
         Only emmit signal when source is changed
         '''
+        model = self.modelfilter.get_model()
 
-        url = self.model.get_value(iter, self.COLUMN_URL)
-
-        icon = self.model.get_value(iter, self.COLUMN_LOGO)
-        distro = self.model.get_value(iter, self.COLUMN_DISTRO)
-        comment = self.model.get_value(iter, self.COLUMN_NAME)
-        package = self.model.get_value(iter, self.COLUMN_SLUG)
-        comps = self.model.get_value(iter, self.COLUMN_COMPS)
-        key = self.model.get_value(iter, self.COLUMN_KEY)
+        url = model.get_value(iter, self.COLUMN_URL)
+        icon = model.get_value(iter, self.COLUMN_LOGO)
+        distro = model.get_value(iter, self.COLUMN_DISTRO)
+        comment = model.get_value(iter, self.COLUMN_NAME)
+        package = model.get_value(iter, self.COLUMN_SLUG)
+        comps = model.get_value(iter, self.COLUMN_COMPS)
+        key = model.get_value(iter, self.COLUMN_KEY)
 
         pre_status = self.get_sourcelist_status(url)
 
@@ -652,9 +710,9 @@ class SourcesView(gtk.TreeView):
             result = proxy.set_entry(url, distro, comps, comment, enable)
 
         if str(result) == 'enabled':
-            self.model.set(iter, self.COLUMN_ENABLED, True)
+            model.set(iter, self.COLUMN_ENABLED, True)
         else:
-            self.model.set(iter, self.COLUMN_ENABLED, False)
+            model.set(iter, self.COLUMN_ENABLED, False)
 
         if pre_status != enable:
             self.emit('sourcechanged')
@@ -809,8 +867,7 @@ class SourceCenter(TweakModule):
             else:
                 self.sourceview.filter = None
 
-            self.sourceview.clear_model()
-            self.sourceview.update_model()
+            self.sourceview.refilter()
 
     def value_changed(self, client, id, entry, data):
         global UNCONVERT
@@ -872,7 +929,7 @@ class SourceCenter(TweakModule):
 
     def on_source_changed(self, widget):
         self.emit('call', 'ubuntutweak.modules.sourceeditor', 'update_source_combo', {})
-    
+
     def on_update_button_clicked(self, widget):
         if refresh_source(widget.get_toplevel()):
             self.emit('call', 'ubuntutweak.modules.appcenter', 'update_app_data', {})
