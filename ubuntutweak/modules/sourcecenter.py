@@ -373,6 +373,7 @@ class SourcesView(gtk.TreeView):
         self.modelfilter = self.model.filter_new()
         self.modelfilter.set_visible_func(self.on_visible_filter, None)
         self.set_model(self.modelfilter)
+        self.set_search_column(self.COLUMN_NAME)
 
         self.__add_column()
 
