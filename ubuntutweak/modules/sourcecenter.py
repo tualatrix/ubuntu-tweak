@@ -949,6 +949,10 @@ class SourceCenter(TweakModule):
             ErrorDialog(_('Some error happened while downloading the file')).launch()
 
     def update_source_data(self):
+        global SOURCE_PARSER
+        SOURCE_PARSER = SourceParser()
+
+        self.sourceview.model.clear()
         self.cateview.update_model()
         self.sourceview.update_model()
 
