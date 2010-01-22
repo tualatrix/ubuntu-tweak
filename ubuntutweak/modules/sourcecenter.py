@@ -571,9 +571,29 @@ class SourcesView(gtk.TreeView):
         conflicts = SOURCE_PARSER.get_conflicts(id)
         dependencies = SOURCE_PARSER.get_dependencies(id)
 
-        #Convert to real model, because will have set method
+        #Convert to real model, because will involke the set method
         iter = model.convert_iter_to_child_iter(iter)
         model = model.get_model()
+
+        if not enabled and conflicts:
+            conflict_list = []
+            conflict_name_list = []
+            for conflict_id in conflicts:
+                if self.get_source_enabled(conflict_id):
+                    conflict_list.append(conflict_id)
+                    name_list = [r[self.COLUMN_NAME] for r in model if r[self.COLUMN_ID] == conflict_id]
+                    if name_list:
+                            conflict_name_list.extend(name_list)
+
+            if conflict_list and conflict_name_list:
+                full_name = ', '.join(conflict_name_list)
+                ErrorDialog(_('You can\'t enable this Source because'
+                              '<b>"%(SOURCE)s"</b> conflicts with it.\nTo '
+                              'continue you need to disable <b>"%(SOURCE)s"</b>' \
+                              'first.') % {'SOURCE': full_name}).launch()
+
+                model.set(iter, self.COLUMN_ENABLED, enabled)
+                return
 
         if enabled is False and dependencies:
             depend_list = []
@@ -600,9 +620,9 @@ class SourcesView(gtk.TreeView):
                     model.set(iter, self.COLUMN_ENABLED, enabled)
 
                 dialog.destroy()
-            else:
-                self.do_source_enable(iter, not enabled)
-        elif enabled and SOURCE_PARSER.has_reverse_depends(id):
+                return
+
+        if enabled and SOURCE_PARSER.has_reverse_depends(id):
             depend_list = []
             depend_name_list = []
             for depend_id in SOURCE_PARSER.get_reverse_depends(id):
@@ -621,24 +641,9 @@ class SourcesView(gtk.TreeView):
                                  % {'SOURCE': full_name}).launch()
 
                 model.set(iter, self.COLUMN_ENABLED, enabled)
-            else:
-                self.do_source_enable(iter, not enabled)
-        elif not enabled and name in SOURCES_CONFLICTS.values() or \
-                name in SOURCES_CONFLICTS.keys():
-            key = None
-            if name in SOURCES_CONFLICTS.keys():
-                key = SOURCES_CONFLICTS[name]
-            if name in SOURCES_CONFLICTS.values():
-                for k, v in SOURCES_CONFLICTS.items():
-                    if v == name:
-                        key = k
-            if self.get_source_enabled(key):
-                ErrorDialog(_('You can\'t enable this Source because "%(SOURCE)s" conflicts with it.\nTo continue you need to disable "%(SOURCE)s" first.') % {'SOURCE': key}).launch()
-                model.set(iter, self.COLUMN_ENABLED, enabled)
-            else:
-                self.do_source_enable(iter, not enabled)
-        else:
-            self.do_source_enable(iter, not enabled)
+                return
+
+        self.do_source_enable(iter, not enabled)
 
     def on_source_foreach(self, model, path, iter, id):
         m_id = model.get_value(iter, self.COLUMN_ID)
