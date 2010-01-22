@@ -29,7 +29,6 @@ import gobject
 import apt_pkg
 import webbrowser
 import urllib
-import gettext
 from gettext import ngettext
 from aptsources.sourceslist import SourcesList
 
@@ -46,7 +45,6 @@ from appcenter import CheckUpdateDialog, FetchingDialog
 from ubuntutweak.common.consts import DATA_DIR
 from ubuntutweak.common.config import Config, TweakSettings
 from ubuntutweak.common.utils import set_label_for_stock_button
-from ubuntutweak.common.sourcedata import SOURCES_DATA, SOURCES_DEPENDENCIES, SOURCES_CONFLICTS
 from ubuntutweak.common.package import PACKAGE_WORKER, PackageInfo
 from ubuntutweak.common.notify import notify
 from ubuntutweak.common.misc import URLLister
@@ -816,20 +814,20 @@ class SourceCenter(TweakModule):
         self.hbox2.pack_end(un_lock, False, False, 0)
         self.hbox2.reorder_child(un_lock, 0)
 
-        #FIXME China mirror hack
-        try:
-            if os.getenv('LANG').startswith('zh_CN'):
-                if TweakSettings.get_use_mirror_ppa():
-                    gobject.idle_add(self.start_check_cn_ppa)
-                else:
-                    self.sourceview.unconver_ubuntu_cn_mirror()
-        except AttributeError:
-            pass
+        #TODO when server is ready, work on it again
+#        try:
+#            if os.getenv('LANG').startswith('zh_CN'):
+#                if TweakSettings.get_use_mirror_ppa():
+#                    gobject.idle_add(self.start_check_cn_ppa)
+#                else:
+#                    self.sourceview.unconver_ubuntu_cn_mirror()
+#        except AttributeError:
+#            pass
+
+#        CONFIG.get_client().notify_add('/apps/ubuntu-tweak/use_mirror_ppa',
+#                                       self.value_changed)
 
         self.update_timestamp()
-        CONFIG.get_client().notify_add('/apps/ubuntu-tweak/use_mirror_ppa',
-                                       self.value_changed)
-
         UPDATE_SETTING.set_bool(False)
         UPDATE_SETTING.connect_notify(self.on_have_update)
 
@@ -912,8 +910,8 @@ class SourceCenter(TweakModule):
             self.sync_button.set_sensitive(True)
 
             if proxy.get_proxy():
-                if os.getenv('LANG').startswith('zh_CN'):
-                    self.sourceview.setup_ubuntu_cn_mirror()
+#                if os.getenv('LANG').startswith('zh_CN'):
+#                    self.sourceview.setup_ubuntu_cn_mirror()
                 self.sourceview.set_sensitive(True)
                 self.expander.set_sensitive(True)
 
