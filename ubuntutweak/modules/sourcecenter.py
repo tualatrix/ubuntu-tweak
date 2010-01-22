@@ -157,7 +157,7 @@ class SourceParser(Parser):
 
         self.reverse_depends = {}
         for id, item in self.items():
-            if item['dependencies']:
+            if item.has_key('dependencies') and item['dependencies']:
                 for depend_id in item['dependencies']:
                     if self.reverse_depends.has_key(depend_id):
                         self.reverse_depends[depend_id].append(id)
