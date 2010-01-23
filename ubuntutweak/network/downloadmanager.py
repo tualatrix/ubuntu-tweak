@@ -12,7 +12,7 @@ from xmlrpclib import ServerProxy, Error
 from ubuntutweak.conf import settings
 from ubuntutweak.widgets.dialogs import BusyDialog
 
-from ubuntutweak.common.consts import *
+from ubuntutweak.common import consts
 from ubuntutweak.common.config import TweakSettings
 
 socket.setdefaulttimeout(10)
@@ -24,7 +24,7 @@ class Downloader(gobject.GObject):
       'error': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, ()),
     }
 
-    tempdir = os.path.join(settings.CONFIG_ROOT, 'temp')
+    tempdir = os.path.join(consts.CONFIG_ROOT, 'temp')
 
     def __init__(self, url=None):
         if url:

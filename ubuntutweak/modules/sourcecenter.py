@@ -32,7 +32,6 @@ import urllib
 from gettext import ngettext
 from aptsources.sourceslist import SourcesList
 
-from ubuntutweak.conf import settings
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.policykit import PolkitButton, proxy
 from ubuntutweak.widgets import GconfCheckButton
@@ -42,7 +41,7 @@ from ubuntutweak.network import utdata
 from appcenter import AppView, CategoryView, AppParser
 from appcenter import CheckUpdateDialog, FetchingDialog
 
-from ubuntutweak.common.consts import DATA_DIR
+from ubuntutweak.common import consts
 from ubuntutweak.common.config import Config, TweakSettings
 from ubuntutweak.common.utils import set_label_for_stock_button
 from ubuntutweak.common.package import PACKAGE_WORKER, PackageInfo
@@ -62,7 +61,7 @@ UBUNTU_CN_URL = 'http://archive.ubuntu.org.cn/ubuntu-cn/'
 UPDATE_SETTING = BoolSetting('/apps/ubuntu-tweak/sourcecenter_update')
 VERSION_SETTING = StringSetting('/apps/ubuntu-tweak/sourcecenter_version')
 
-SOURCE_ROOT = os.path.join(settings.CONFIG_ROOT, 'sourcecenter')
+SOURCE_ROOT = os.path.join(consts.CONFIG_ROOT, 'sourcecenter')
 SOURCE_VERSION_URL = utdata.get_version_url('/sourcecenter_version/')
 
 def get_source_data_url():
@@ -474,7 +473,7 @@ class SourcesView(gtk.TreeView):
     def get_source_logo(self, file_name):
         path = os.path.join(SOURCE_ROOT, file_name)
         if not os.path.exists(path) or file_name == '':
-            path = os.path.join(DATA_DIR, 'pixmaps/ppa-logo.png')
+            path = os.path.join(consts.DATA_DIR, 'pixmaps/ppa-logo.png')
 
         try:
             pixbuf = gtk.gdk.pixbuf_new_from_file(path)
@@ -942,7 +941,7 @@ class SourceCenter(TweakModule):
     def on_source_data_downloaded(self, widget):
         file = widget.get_downloaded_file()
         if widget.downloaded:
-            os.system('tar zxf %s -C %s' % (file, settings.CONFIG_ROOT))
+            os.system('tar zxf %s -C %s' % (file, consts.CONFIG_ROOT))
             self.update_source_data()
             utdata.save_synced_timestamp(SOURCE_ROOT)
             self.update_timestamp()

@@ -25,19 +25,18 @@ import gobject
 import pango
 import thread
 
-from ubuntutweak.conf import settings
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.widgets.dialogs import ErrorDialog, InfoDialog, QuestionDialog
 from ubuntutweak.widgets.dialogs import ProcessDialog
 from ubuntutweak.utils.parser import Parser
 from ubuntutweak.network import utdata
 from ubuntutweak.network.downloadmanager import DownloadDialog
-from ubuntutweak.common.consts import DATA_DIR
+from ubuntutweak.common import consts
 from ubuntutweak.common.utils import set_label_for_stock_button
 from ubuntutweak.common.package import PACKAGE_WORKER, PackageInfo
 from ubuntutweak.common.settings import BoolSetting, StringSetting
 
-APPCENTER_ROOT = os.path.join(settings.CONFIG_ROOT, 'appcenter')
+APPCENTER_ROOT = os.path.join(consts.CONFIG_ROOT, 'appcenter')
 APP_VERSION_URL = utdata.get_version_url('/appcenter_version/')
 UPDATE_SETTING = BoolSetting('/apps/ubuntu-tweak/appcenter_update')
 VERSION_SETTING = StringSetting('/apps/ubuntu-tweak/appcenter_version')
@@ -383,7 +382,7 @@ class AppView(gtk.TreeView):
     def get_app_logo(self, file_name):
         path = os.path.join(APPCENTER_ROOT, file_name)
         if not os.path.exists(path) or file_name == '':
-            path = os.path.join(DATA_DIR, 'pixmaps/common-logo.png')
+            path = os.path.join(consts.DATA_DIR, 'pixmaps/common-logo.png')
 
         try:
             pixbuf = gtk.gdk.pixbuf_new_from_file(path)
@@ -573,7 +572,7 @@ class AppCenter(TweakModule):
         file = widget.get_downloaded_file()
         #FIXME
         if widget.downloaded:
-            os.system('tar zxf %s -C %s' % (file, settings.CONFIG_ROOT))
+            os.system('tar zxf %s -C %s' % (file, consts.CONFIG_ROOT))
             self.update_app_data()
             utdata.save_synced_timestamp(APPCENTER_ROOT)
             self.update_timestamp()
