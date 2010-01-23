@@ -91,7 +91,7 @@ class DesktopIcon(gtk.VBox):
         vbox.pack_start(self.entry, False, False, 0)
 
     def entry_focus_out(self, widget, event):
-        self.entry.get_gsetting().set_string(self.entry.get_text())
+        self.entry.get_gsetting().set_value(self.entry.get_text())
 
     def colleague_changed(self, widget):
         self.show_hbox.set_sensitive(self.show_button.get_active())

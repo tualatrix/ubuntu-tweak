@@ -31,19 +31,19 @@ from ubuntutweak.widgets.dialogs import ProcessDialog
 from ubuntutweak.utils.parser import Parser
 from ubuntutweak.network import utdata
 from ubuntutweak.network.downloadmanager import DownloadDialog
+from ubuntutweak.conf import GconfSetting
 from ubuntutweak.common import consts
 from ubuntutweak.common.utils import set_label_for_stock_button
 from ubuntutweak.common.package import PACKAGE_WORKER, PackageInfo
-from ubuntutweak.common.settings import BoolSetting, StringSetting
 
 APPCENTER_ROOT = os.path.join(consts.CONFIG_ROOT, 'appcenter')
 APP_VERSION_URL = utdata.get_version_url('/appcenter_version/')
-UPDATE_SETTING = BoolSetting('/apps/ubuntu-tweak/appcenter_update')
-VERSION_SETTING = StringSetting('/apps/ubuntu-tweak/appcenter_version')
+UPDATE_SETTING = GconfSetting(key='/apps/ubuntu-tweak/appcenter_update', type=bool)
+VERSION_SETTING = GconfSetting(key='/apps/ubuntu-tweak/appcenter_version', type=str)
 
 def get_app_data_url():
     return utdata.get_download_url('/static/utdata/appcenter-%s.tar.gz' %
-                                   VERSION_SETTING.get_string())
+                                   VERSION_SETTING.get_value())
 
 if not os.path.exists(APPCENTER_ROOT):
     os.mkdir(APPCENTER_ROOT)
@@ -398,8 +398,8 @@ def check_update_function(version_url):
         local_version = utdata.get_local_timestamp(APPCENTER_ROOT)
 
         if remote_version > local_version:
-            UPDATE_SETTING.set_bool(True)
-            VERSION_SETTING.set_string(remote_version)
+            UPDATE_SETTING.set_value(True)
+            VERSION_SETTING.set_value(remote_version)
             return True
         else:
             return False
@@ -481,8 +481,8 @@ class AppCenter(TweakModule):
         self.update_timestamp()
         self.show_all()
 
-        UPDATE_SETTING.set_bool(False)
-        UPDATE_SETTING.connect_notify(self.on_have_update)
+        UPDATE_SETTING.set_value(False)
+        UPDATE_SETTING.connect_notify(self.on_have_update, data=None)
 
         thread.start_new_thread(self.check_update, ())
         gobject.timeout_add(60000, self.update_timestamp)

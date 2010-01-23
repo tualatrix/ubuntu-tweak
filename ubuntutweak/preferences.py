@@ -18,6 +18,7 @@
 import os
 import gtk
 import gobject
+
 from ubuntutweak.common.consts import *
 from ubuntutweak.common.gui import GuiWorker
 from ubuntutweak.common.config import TweakSettings
@@ -36,25 +37,23 @@ class PreferencesDialog:
     def setup_window_preference(self):
         table = self.worker.get_object('table1')
 
-        height, width = TweakSettings.get_window_size()
-
         win_width = WidgetFactory.create('GconfSpinButton',
-                                        key = 'window_width', 
-                                        min = 640, max = 1280, step = 1)
+                                        key='window_width', 
+                                        min=640, max=1280, step=1)
         win_width.show()
         win_width.connect('value-changed', self.on_value_changed)
         table.attach(win_width, 1, 3, 0, 1)
 
         win_height = WidgetFactory.create('GconfSpinButton',
-                                          key = 'window_height', 
-                                          min = 480, max = 1280, step = 1)
+                                          key='window_height', 
+                                          min=480, max=1280, step=1)
         win_height.show()
         win_height.connect('value-changed', self.on_value_changed)
         table.attach(win_height, 1, 3, 1, 2)
 
         toolbar_size = WidgetFactory.create('GconfSpinButton',
-                                            key = 'toolbar_size', 
-                                            min = 100, max = 500, step = 1)
+                                            key='toolbar_size',
+                                            min=100, max=500, step=1)
         toolbar_size.show()
         toolbar_size.connect('value-changed', self.on_value_changed)
         table.attach(toolbar_size, 1, 3, 2, 3)
@@ -129,28 +128,12 @@ class PreferencesDialog:
 
         vbox.show_all()
 
-    def on_launch_changed(self, widget):
+    def on_launch_changed(self, widget, data=None):
         index = widget.get_active()
         liststore = widget.get_model()
         iter = liststore.get_iter(index)
         id = liststore.get_value(iter, 0)
         TweakSettings.set_default_launch(id)
-
-    def on_color_set(self, widget):
-        TweakSettings.set_toolbar_color(widget.get_color().to_string())
-    
-    def on_reset_clicked(self, widget, colorbutton):
-        color = gtk.gdk.Color(32767, 32767, 32767)
-        colorbutton.set_color(color)
-        TweakSettings.set_toolbar_color(color.to_string())
-
-    def on_font_color_set(self, widget):
-        TweakSettings.set_toolbar_font_color(widget.get_color().to_string())
-    
-    def on_font_reset_clicked(self, widget, colorbutton):
-        color = gtk.gdk.Color(65535, 65535, 65535)
-        colorbutton.set_color(color)
-        TweakSettings.set_toolbar_font_color(color.to_string())
 
     def on_value_changed(self, widget):
         TweakSettings.need_save = False
