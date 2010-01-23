@@ -1,9 +1,8 @@
 import os
 import gtk
+import gio
 import shutil
 import gobject
-import gnomevfs
-from gnome import ui
 from dialogs import ErrorDialog
 from ubuntutweak.common.utils import get_icon_with_type
 
@@ -13,6 +12,9 @@ from ubuntutweak.common.utils import get_icon_with_type
     DIR_PATH,
     DIR_EDITABLE,
 ) = range(4)
+
+def get_local_path(url):
+    return gio.file_parse_name(url.strip()).get_path()
 
 class DirView(gtk.TreeView):
     TARGETS = [
@@ -200,8 +202,7 @@ class DirView(gtk.TreeView):
             context.finish(False, False)
 
     def file_operate(self, source, dir_action, file_action, target):
-        if source.startswith('file:///'):
-            source = gnomevfs.format_uri_for_display(source.strip())
+        source = get_local_path(source)
 
         if os.path.isdir(target) and not os.path.isdir(source):
             if os.path.dirname(source) != target:
@@ -343,12 +344,9 @@ class FlatView(gtk.TreeView):
                 iter = self.model.append(None)
 
             target = self.dir
-
+            source = get_local_path(source)
             file_action = 'move'
             dir_action = 'move'
-
-            if source.startswith('file:///'):
-                source = gnomevfs.format_uri_for_display(source.strip())
 
             if source in os.listdir(self.dir):
                 os.remove(source)
@@ -357,7 +355,11 @@ class FlatView(gtk.TreeView):
                     if os.path.isdir(source):
                         getattr(shutil, dir_action)(source, target)
                     else:
-                        getattr(shutil, file_action)(source, target)
+                        if file_action == 'move' and os.path.exists(os.path.join
+                                (target, os.path.basename(source))):
+                            os.remove(source)
+                        else:
+                            getattr(shutil, file_action)(source, target)
             elif os.path.isdir(target) and os.path.isdir(source):
                 target = os.path.join(target, os.path.basename(source))
                 getattr(shutil, dir_action)(source, target)

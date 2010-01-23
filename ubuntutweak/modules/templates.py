@@ -166,7 +166,7 @@ class Templates(TweakModule):
 
         self.enable_templates.connect('drag_data_received', self.on_enable_drag_data_received)
         self.enable_templates.connect('deleted', self.on_enable_deleted)
-        self.disable_templates.connect('drag_data_received', self.on_disable_recevied)
+        self.disable_templates.connect('drag_data_received', self.on_disable_drag_data_received)
 
         self.show_all()
 
