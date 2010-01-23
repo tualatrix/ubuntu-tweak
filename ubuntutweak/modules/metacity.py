@@ -66,18 +66,42 @@ class Metacity(TweakModule):
                     WidgetFactory.create('GconfComboBox', 
                                          label=_('Titlebar double-click action'),
                                          key='action_double_click_titlebar',
-                                         texts=[_('None'), _('Maximize'), _('Minimize'), _('Roll up'), _('Lower'), _('Menu')],
-                                         values=['none', 'toggle_maximize', 'minimize', 'toggle_shade', 'lower', 'menu']),
+                                         texts=[_('None'), _('Maximize'), \
+                                                 _('Maximize Horizontally'), \
+                                                 _('Maximize Vertically'), \
+                                                 _('Minimize'), _('Roll up'), \
+                                                 _('Lower'), _('Menu')],
+                                         values=['none', 'toggle_maximize', \
+                                                 'toggle_maximize_horizontally', \
+                                                 'toggle_maximize_vertically', \
+                                                 'minimize', 'toggle_shade', \
+                                                 'lower', 'menu']),
                     WidgetFactory.create('GconfComboBox',
                                          label=_('Titlebar middle-click action'),
                                          key='action_middle_click_titlebar',
-                                         texts=[_('None'), _('Maximize'), _('Minimize'), _('Roll up'), _('Lower'), _('Menu')],
-                                         values=['none', 'toggle_maximize', 'minimize', 'toggle_shade', 'lower', 'menu']),
+                                         texts=[_('None'), _('Maximize'), \
+                                                 _('Maximize Horizontally'), \
+                                                 _('Maximize Vertically'), \
+                                                 _('Minimize'), _('Roll up'), \
+                                                 _('Lower'), _('Menu')],
+                                         values=['none', 'toggle_maximize', \
+                                                 'toggle_maximize_horizontally', \
+                                                 'toggle_maximize_vertically', \
+                                                 'minimize', 'toggle_shade', \
+                                                 'lower', 'menu']),
                     WidgetFactory.create('GconfComboBox', 
                                          label=_('Titlebar right-click action'),
                                          key='action_right_click_titlebar',
-                                         texts=[_('None'), _('Maximize'), _('Minimize'), _('Roll up'), _('Lower'), _('Menu')],
-                                         values=['none', 'toggle_maximize', 'minimize', 'toggle_shade', 'lower', 'menu']),
+                                         texts=[_('None'), _('Maximize'), \
+                                                 _('Maximize Horizontally'), \
+                                                 _('Maximize Vertically'), \
+                                                 _('Minimize'), _('Roll up'), \
+                                                 _('Lower'), _('Menu')],
+                                         values=['none', 'toggle_maximize', \
+                                                 'toggle_maximize_horizontally', \
+                                                 'toggle_maximize_vertically', \
+                                                 'minimize', 'toggle_shade', \
+                                                 'lower', 'menu']),
                 ))
 
         self.add_start(table, False, False, 0)
