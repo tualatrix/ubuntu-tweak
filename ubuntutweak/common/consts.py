@@ -7,6 +7,7 @@ __all__ = (
         )
 
 import os
+import glib
 import gettext
 
 def applize(package):
@@ -16,6 +17,12 @@ PACKAGE = 'ubuntu-tweak'
 VERSION = '0.5.0'
 DATA_DIR = '/usr/share/ubuntu-tweak/'
 APP = applize(PACKAGE)
+CONFIG_ROOT = os.path.join(glib.get_user_config_dir(), 'ubuntu-tweak')
+
+if not os.path.exists(CONFIG_ROOT):
+    os.mkdir(CONFIG_ROOT)
+
+LANG = os.getenv('LANG').split('.')[0].lower().replace('_','-')
 
 if not __file__.startswith('/usr'):
     datadir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))

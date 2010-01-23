@@ -1,7 +1,8 @@
 import os
 import json
 import urllib
-from ubuntutweak.conf import settings
+
+from ubuntutweak.common import consts
 
 class Parser(dict):
     def __init__(self, file, key):
@@ -20,7 +21,7 @@ class Parser(dict):
 
     def get_by_lang(self, key, field):
         value = self[key][field]
-        if settings.LANG in value.keys():
-            return value[settings.LANG]
+        if consts.LANG in value.keys():
+            return value[consts.LANG]
         else:
             return value['raw']

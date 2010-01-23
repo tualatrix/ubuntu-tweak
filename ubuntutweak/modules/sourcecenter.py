@@ -32,7 +32,6 @@ import urllib
 from gettext import ngettext
 from aptsources.sourceslist import SourcesList
 
-from ubuntutweak.conf import settings
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.policykit import PolkitButton, proxy
 from ubuntutweak.widgets import GconfCheckButton
@@ -41,14 +40,13 @@ from ubuntutweak.utils.parser import Parser
 from ubuntutweak.network import utdata
 from appcenter import AppView, CategoryView, AppParser
 from appcenter import CheckUpdateDialog, FetchingDialog
-
-from ubuntutweak.common.consts import DATA_DIR
+from ubuntutweak.conf import GconfSetting
+from ubuntutweak.common import consts
 from ubuntutweak.common.config import Config, TweakSettings
 from ubuntutweak.common.utils import set_label_for_stock_button
 from ubuntutweak.common.package import PACKAGE_WORKER, PackageInfo
 from ubuntutweak.common.notify import notify
 from ubuntutweak.common.misc import URLLister
-from ubuntutweak.common.settings import BoolSetting, StringSetting
 
 APP_PARSER = AppParser()
 CONFIG = Config()
@@ -59,15 +57,15 @@ WARNING_KEY = '/apps/ubuntu-tweak/disable_thidparty_warning'
 UBUNTU_CN_STR = 'archive.ubuntu.org.cn/ubuntu-cn'
 UBUNTU_CN_URL = 'http://archive.ubuntu.org.cn/ubuntu-cn/'
 #UBUNTU_CN_URL = 'http://127.0.0.1:8000'
-UPDATE_SETTING = BoolSetting('/apps/ubuntu-tweak/sourcecenter_update')
-VERSION_SETTING = StringSetting('/apps/ubuntu-tweak/sourcecenter_version')
+UPDATE_SETTING = GconfSetting(key='/apps/ubuntu-tweak/sourcecenter_update', type=bool)
+VERSION_SETTING = GconfSetting(key='/apps/ubuntu-tweak/sourcecenter_version', type=str)
 
-SOURCE_ROOT = os.path.join(settings.CONFIG_ROOT, 'sourcecenter')
+SOURCE_ROOT = os.path.join(consts.CONFIG_ROOT, 'sourcecenter')
 SOURCE_VERSION_URL = utdata.get_version_url('/sourcecenter_version/')
 
 def get_source_data_url():
     return utdata.get_download_url('/static/utdata/sourcecenter-%s.tar.gz' %
-                                   VERSION_SETTING.get_string())
+                                   VERSION_SETTING.get_value())
 
 def check_update_function(version_url):
     remote_version = urllib.urlopen(version_url).read()
@@ -75,8 +73,8 @@ def check_update_function(version_url):
         local_version = utdata.get_local_timestamp(SOURCE_ROOT)
 
         if remote_version > local_version:
-            UPDATE_SETTING.set_bool(True)
-            VERSION_SETTING.set_string(remote_version)
+            UPDATE_SETTING.set_value(True)
+            VERSION_SETTING.set_value(remote_version)
             return True
         else:
             return False
@@ -474,7 +472,7 @@ class SourcesView(gtk.TreeView):
     def get_source_logo(self, file_name):
         path = os.path.join(SOURCE_ROOT, file_name)
         if not os.path.exists(path) or file_name == '':
-            path = os.path.join(DATA_DIR, 'pixmaps/ppa-logo.png')
+            path = os.path.join(consts.DATA_DIR, 'pixmaps/ppa-logo.png')
 
         try:
             pixbuf = gtk.gdk.pixbuf_new_from_file(path)
@@ -829,8 +827,8 @@ class SourceCenter(TweakModule):
 #                                       self.value_changed)
 
         self.update_timestamp()
-        UPDATE_SETTING.set_bool(False)
-        UPDATE_SETTING.connect_notify(self.on_have_update)
+        UPDATE_SETTING.set_value(False)
+        UPDATE_SETTING.connect_notify(self.on_have_update, data=None)
 
         thread.start_new_thread(self.check_update, ())
         gobject.timeout_add(60000, self.update_timestamp)
@@ -916,7 +914,7 @@ class SourceCenter(TweakModule):
                 self.sourceview.set_sensitive(True)
                 self.expander.set_sensitive(True)
 
-                if not CONFIG.get_value(WARNING_KEY):
+                if not CONFIG.get_value_from_key(WARNING_KEY):
                     dialog = WarningDialog(_('It is a possible security risk to '
                         'use packages from Third-Party Sources.\n'
                         'Please be careful and use only sources you trust.'),
@@ -942,7 +940,7 @@ class SourceCenter(TweakModule):
     def on_source_data_downloaded(self, widget):
         file = widget.get_downloaded_file()
         if widget.downloaded:
-            os.system('tar zxf %s -C %s' % (file, settings.CONFIG_ROOT))
+            os.system('tar zxf %s -C %s' % (file, consts.CONFIG_ROOT))
             self.update_source_data()
             utdata.save_synced_timestamp(SOURCE_ROOT)
             self.update_timestamp()

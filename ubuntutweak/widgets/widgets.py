@@ -22,47 +22,45 @@ import pygtk
 pygtk.require("2.0")
 import os
 import gtk
-import gconf
 import gobject
-import gettext
 import time
 
-from ubuntutweak.common.settings import *
+from ubuntutweak.conf import GconfSetting, SystemGconfSetting
 from ubuntutweak.policykit import PolkitButton, proxy
 
 class GconfCheckButton(gtk.CheckButton):
-    def __init__(self, label = None, key = None, default = None, tooltip = None):
+    def __init__(self, label=None, key=None, default=None, tooltip=None):
         super(GconfCheckButton, self).__init__()
-        self.__setting = BoolSetting(key, default)
+        self.__setting = GconfSetting(key=key, default=default, type=bool)
 
         self.set_label(label)
-        self.set_active(self.__setting.get_bool())
+        self.set_active(self.__setting.get_value())
         if tooltip:
             self.set_tooltip_text(tooltip)
 
-        self.__setting.client.notify_add(key, self.value_changed)
+        self.__setting.get_client().notify_add(key, self.value_changed)
         self.connect('toggled', self.button_toggled)
 
-    def value_changed(self, client, id, entry, data = None):
-        self.set_active(self.__setting.get_bool())
+    def value_changed(self, client, id, entry, data=None):
+        self.set_active(self.__setting.get_value())
 
-    def button_toggled(self, widget, data = None):
-        self.__setting.set_bool(self.get_active())
+    def button_toggled(self, widget, data=None):
+        self.__setting.set_value(self.get_active())
 
 class SystemGconfCheckButton(gtk.CheckButton):
     def __init__(self, label=None, key=None, default=None, tooltip=None):
         super(SystemGconfCheckButton, self).__init__()
-        self.__setting = SystemBoolSetting(key, default)
+        self.__setting = SystemGconfSetting(key, default)
 
         self.set_label(label)
-        self.set_active(self.__setting.get_bool())
+        self.set_active(self.__setting.get_value())
         if tooltip:
             self.set_tooltip_text(tooltip)
 
         self.connect('toggled', self.button_toggled)
 
     def button_toggled(self, widget):
-        self.__setting.set_bool(self.get_active())
+        self.__setting.set_value(self.get_active())
         
 class StrGconfCheckButton(GconfCheckButton):
     '''This class use to moniter the key with StringSetting, nothing else'''
@@ -74,11 +72,11 @@ class StrGconfCheckButton(GconfCheckButton):
         pass
 
 class GconfEntry(gtk.Entry):
-    def __init__(self, key = None, default = None):
+    def __init__(self, key=None, default=None):
         gtk.Entry.__init__(self)
-        self.__setting = StringSetting(key, default)
+        self.__setting = GconfSetting(key=key, default=default, type=str)
 
-        string = self.__setting.get_string()
+        string = self.__setting.get_value()
         if string:
             self.set_text(string)
         else:
@@ -88,7 +86,7 @@ class GconfEntry(gtk.Entry):
         return self.get_string_value() != self.get_text()
 
     def get_string_value(self):
-        return self.__setting.get_string()
+        return self.__setting.get_value()
 
     def connect_activate_signal(self):
         self.connect('activate', self.on_edit_finished_cb)
@@ -101,114 +99,59 @@ class GconfEntry(gtk.Entry):
 
     def on_edit_finished_cb(self, widget):
         string = self.get_text()
-        client = self.__setting.client
-        key = self.__setting.key
+        client = self.__setting.get_client()
+        key = self.__setting.get_key()
         if string:
             client.set_string(key, self.get_text())
         else:
             client.unset(key)
             self.set_text(_("Unset"))
 
-def GconfComboBox(key = None, texts = None, values = None):
+def GconfComboBox(key=None, texts=None, values=None):
     def value_changed_cb(widget, setting):
         text = widget.get_active_text()
-        client = setting.client
-        key = setting.key
 
-        client.set_string(key, setting.values[setting.texts.index(text)])
+        setting.get_client().set_value(setting.get_key(), \
+                                setting.values[setting.texts.index(text)])
 
     combobox = gtk.combo_box_new_text()
-    setting = ConstStringSetting(key, values)
+    setting = GconfSetting(key=key)
     setting.texts = texts
+    setting.values = values
 
     for text in texts:
         combobox.append_text(text)
 
-    if setting.get_string() in values:
-        combobox.set_active(values.index(setting.get_string()))
+    if setting.get_value() in values:
+        combobox.set_active(values.index(setting.get_value()))
     combobox.connect("changed", value_changed_cb, setting)
 
     return combobox
 
 class GconfScale(gtk.HScale):
-    def __init__(self, key = None, min = None, max = None, digits = 0):
+    def __init__(self, key=None, min=None, max=None, digits=0):
         gtk.HScale.__init__(self)
-        self.__setting = NumSetting(key)
+        self.__setting = GconfSetting(key=key, type=int)
         
         self.set_range(min, max)
         self.set_digits(digits)
         self.set_value_pos(gtk.POS_RIGHT)
         self.connect("value-changed", self.on_value_changed) 
-        self.set_value(self.__setting.get_num())
+        self.set_value(self.__setting.get_value())
 
-    def on_value_changed(self, widget, data = None):
-        self.__setting.set_num(widget.get_value())
+    def on_value_changed(self, widget, data=None):
+        self.__setting.set_value(widget.get_value())
 
 class GconfSpinButton(gtk.SpinButton):
     def __init__(self, key, min=0, max=0, step=0):
-        self.__setting = IntSetting(key)
-        init = self.__setting.get_int()
-        adjust = gtk.Adjustment(init, min, max, step)
+        self.__setting = GconfSetting(key=key, type=int)
+        adjust = gtk.Adjustment(self.__setting.get_value(), min, max, step)
 
         gtk.SpinButton.__init__(self, adjust)
         self.connect('value-changed', self.on_value_changed) 
 
     def on_value_changed(self, widget):
-        self.__setting.set_int(widget.get_value())
-
-class HScaleBox(gtk.HBox):
-    def __init__(self, label, min, max, key, digits = 0):
-        gtk.HBox.__init__(self)
-        self.pack_start(gtk.Label(label), False, False, 0)
-        
-        hscale = gtk.HScale()
-        hscale.set_size_request(150, -1)
-        hscale.set_range(min, max)
-        hscale.set_digits(digits)
-        hscale.set_value_pos(gtk.POS_RIGHT)
-        self.pack_end(hscale, False, False, 0)
-        hscale.connect("value-changed", self.hscale_value_changed_cb, key)
-
-        client = gconf.client_get_default()
-        value = client.get(key)
-
-        if value:
-            if value.type == gconf.VALUE_INT:
-                hscale.set_value(client.get_int(key))
-            elif value.type == gconf.VALUE_FLOAT:
-                hscale.set_value(client.get_float(key))
-
-    def hscale_value_changed_cb(self, widget, data = None):
-        client = gconf.client_get_default()
-        value = client.get(data)
-        if value.type == gconf.VALUE_INT:
-            client.set_int(data, int(widget.get_value()))
-        elif value.type == gconf.VALUE_FLOAT:
-            client.set_float(data, widget.get_value())
-
-class ComboboxItem(gtk.HBox):
-    def __init__(self, label, texts, values, key):
-        gtk.HBox.__init__(self)
-        self.pack_start(gtk.Label(label), False, False, 0)    
-
-        combobox = gtk.combo_box_new_text()
-        combobox.texts = texts
-        combobox.values = values
-        combobox.connect("changed", self.value_changed_cb, key)
-        self.pack_end(combobox, False, False, 0)
-
-        for element in texts:
-            combobox.append_text(element)
-
-        client = gconf.client_get_default()
-
-        if client.get_string(key) in values:
-            combobox.set_active(values.index(client.get_string(key)))
-
-    def value_changed_cb(self, widget, data = None):
-        client = gconf.client_get_default()
-        text = widget.get_active_text()
-        client.set_string(data, widget.values[widget.texts.index(text)]) 
+        self.__setting.set_value(widget.get_value())
 
 """Popup and KeyGrabber come from ccsm"""
 KeyModifier = ["Shift", "Control", "Mod1", "Mod2", "Mod3", "Mod4",

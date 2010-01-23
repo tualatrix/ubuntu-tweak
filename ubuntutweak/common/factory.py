@@ -20,56 +20,9 @@
 
 import gconf
 
-from xml.sax import make_parser
-from xml.sax.handler import ContentHandler
-
 from ubuntutweak.widgets import *
-from ubuntutweak.common.settings import *
 from ubuntutweak.common.consts import *
-from ubuntutweak.common.systeminfo import GnomeVersion
-
-class KeysHandler(ContentHandler):
-    def __init__(self, dict):
-        self.dict = dict
-
-    def startElement(self, name, attrs):
-        if name == 'key':
-            if attrs.has_key('version'):
-                version = attrs['version']
-
-                if len(version.split(':')) == 2:
-                        start, end = version.split(':')
-                        if int(start) <= int(GnomeVersion.minor) <= int(end):
-                            self.dict[attrs['name']] = attrs['value']
-                else:
-                    if GnomeVersion.minor == version:
-                        self.dict[attrs['name']] = attrs['value']
-            else:
-                self.dict[attrs['name']] = attrs['value']
-
-class GconfKeys:
-    '''This class used to store the keys, it will create for only once'''
-    keys = {}
-    parser = make_parser()
-    handler = KeysHandler(keys)
-    parser.setContentHandler(handler)
-    parser.parse('%s/keys.xml' % DATA_DIR)
-
-class SettingFactory:
-    keys = GconfKeys.keys
-
-    @classmethod
-    def create(cls, setting, **kwargs):
-        if 'key' in kwargs:
-            if not kwargs['key'].startswith('/'):
-                kwargs['key'] = cls.keys[kwargs['key']]
-            return getattr(cls, 'do_create')(setting, **kwargs)
-        else:
-            return None
-
-    @classmethod
-    def do_create(cls, **kwargs):
-        return globals().get(setting)(**kwargs)
+from ubuntutweak.conf import GconfKeys
 
 class WidgetFactory:
     keys = GconfKeys.keys

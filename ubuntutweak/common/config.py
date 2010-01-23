@@ -20,72 +20,19 @@
 import os
 import gtk
 import gconf
-from ubuntutweak.common.settings import *
+
+from ubuntutweak.conf import GconfSetting
 from ubuntutweak.common.factory import GconfKeys
 
-class Config:
-    #FIXME The class should be generic config getter and setter
-    __client = gconf.Client()
+class Config(GconfSetting):
+    def set_value_from_key(self, key, value):
+        self.set_key(key)
+        self.set_value(value)
 
-    def get_client(self):
-        return self.__client
-
-    def set_value(self, key, value):
-        if not key.startswith("/"):
-            key = GconfKeys.keys[key]
-
-        if type(value) == int:
-            self.__client.set_int(key, value)
-        elif type(value) == float:
-            self.__client.set_float(key, value)
-        elif type(value) == str:
-            self.__client.set_string(key, value)
-        elif type(value) == bool:
-            self.__client.set_bool(key, value)
-
-    def get_value(self, key, default = None):
-        if not key.startswith("/"):
-            key = GconfKeys.keys[key]
-		
-        try:
-            value = self.__client.get_value(key)
-        except:
-            if default is not None:
-                self.set_value(key, default)
-                return default
-            else:
-                return None
-        else:
-            return value
-
-    def set_pair(self, key, type1, type2, value1, value2):
-        if not key.startswith("/"):
-            key = GconfKeys.keys[key]
-		
-        self.__client.set_pair(key, type1, type2, value1, value2)
-
-    def get_pair(self, key):
-        if not key.startswith("/"):
-            key = GconfKeys.keys[key]
-
-        value = self.__client.get(key)
-        if value:
-            return value.to_string().strip('()').split(',')
-        else:
-            return (0, 0)
-
-    def get_string(self, key):
-        if not key.startswith("/"):
-            key = GconfKeys.keys[key]
-
-        string = self.get_value(key)
-        if string: 
-            return string
-        else: 
-            return '0'
-
-    def get_client(self):
-        return self.__client
+    def get_value_from_key(self, key, default=None):
+        self.set_key(key)
+        self.set_default(default)
+        return self.get_value()
 
 class TweakSettings:
     '''Manage the settings of ubuntu tweak'''
@@ -107,74 +54,74 @@ class TweakSettings:
 
     @classmethod
     def get_check_update(cls):
-        return cls.config.get_value(cls.check_update, default = True)
+        return cls.config.get_value_from_key(cls.check_update, default = True)
 
     @classmethod
     def set_check_update(cls, bool):
-        cls.config.set_value(cls.check_update, bool)
+        cls.config.set_value_from_key(cls.check_update, bool)
 
     @classmethod
     def set_default_launch(cls, id):
-        cls.config.set_value(cls.default_launch, id)
+        cls.config.set_value_from_key(cls.default_launch, id)
 
     @classmethod
     def get_default_launch(cls):
-        return cls.config.get_value(cls.default_launch)
+        return cls.config.get_value_from_key(cls.default_launch)
 
     @classmethod
     def set_show_donate_notify(cls, bool):
-        return cls.config.set_value(cls.show_donate_notify, bool)
+        return cls.config.set_value_from_key(cls.show_donate_notify, bool)
 
     @classmethod
     def get_show_donate_notify(cls):
-        return cls.config.get_value(cls.show_donate_notify, default = True)
+        return cls.config.get_value_from_key(cls.show_donate_notify, default = True)
 
     @classmethod
     def set_use_remote_data(cls, bool):
-        return cls.config.set_value(cls.use_remote_data, bool)
+        return cls.config.set_value_from_key(cls.use_remote_data, bool)
 
     @classmethod
     def get_use_remote_data(cls):
-        return cls.config.get_value(cls.use_remote_data, default = True)
+        return cls.config.get_value_from_key(cls.use_remote_data, default = True)
 
     def set_use_mirror_ppa(cls, bool):
-        return cls.config.set_value(cls.use_mirror_ppa, bool)
+        return cls.config.set_value_from_key(cls.use_mirror_ppa, bool)
 
     @classmethod
     def get_use_mirror_ppa(cls):
-        return cls.config.get_value(cls.use_mirror_ppa, default=False)
+        return cls.config.get_value_from_key(cls.use_mirror_ppa, default=False)
 
     @classmethod
     def set_separated_sources(cls, bool):
-        return cls.config.set_value(cls.separated_sources, bool)
+        return cls.config.set_value_from_key(cls.separated_sources, bool)
 
     @classmethod
     def get_separated_sources(cls):
-        return cls.config.get_value(cls.separated_sources, default = True)
+        return cls.config.get_value_from_key(cls.separated_sources, default = True)
 
     @classmethod
     def set_url(cls, url):
-        return cls.config.set_value(cls.url, url)
+        return cls.config.set_value_from_key(cls.url, url)
 
     @classmethod
     def get_url(cls):
-        return cls.config.get_string(cls.url)
+        return cls.config.get_value_from_key(cls.url)
 
     @classmethod
     def set_version(cls, version):
-        return cls.config.set_value(cls.version, version)
+        return cls.config.set_value_from_key(cls.version, version)
 
     @classmethod
     def get_version(cls):
-        return cls.config.get_string(cls.version)
+        return cls.config.get_value_from_key(cls.version)
 
     @classmethod
     def set_paned_size(cls, size):
-        cls.config.set_value(cls.toolbar_size, size)
+        cls.config.set_value_from_key(cls.toolbar_size, size)
 
     @classmethod
     def get_paned_size(cls):
-        position = cls.config.get_value(cls.toolbar_size)
+        position = cls.config.get_value_from_key(cls.toolbar_size)
 
         if position:
             return position
@@ -183,23 +130,19 @@ class TweakSettings:
 
     @classmethod
     def set_window_size(cls, width, height):
-        cls.config.set_value(cls.window_width, width)
-        cls.config.set_value(cls.window_height, height)
+        cls.config.set_value_from_key(cls.window_width, width)
+        cls.config.set_value_from_key(cls.window_height, height)
 
     @classmethod
     def get_window_size(cls):
-        width = cls.config.get_value(cls.window_width)
-        height = cls.config.get_value(cls.window_height)
+        width = cls.config.get_value_from_key(cls.window_width, default=900)
+        height = cls.config.get_value_from_key(cls.window_height, default=500)
 
-        if width and height:
-            height, width = int(height), int(width)
-            return (width, height)
-        else:
-            return (800, 480)
+        return (width, height)
 
     @classmethod
     def get_icon_theme(cls):
-        return cls.config.get_value('/desktop/gnome/interface/icon_theme')
+        return cls.config.get_value_from_key('/desktop/gnome/interface/icon_theme')
 
 if __name__ == '__main__':
-    print Config().get_value('show_donate_notify')
+    print Config().get_value_from_key('show_donate_notify')
