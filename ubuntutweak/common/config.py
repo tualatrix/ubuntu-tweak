@@ -47,14 +47,14 @@ class TweakSettings:
     show_donate_notify = 'show_donate_notify'
     default_launch = 'default_launch'
     check_update = 'check_update'
-    use_remote_data = 'use_remote_data'
+    sync_notify = 'sync_notify'
     separated_sources = 'separated_sources'
     use_mirror_ppa = 'use_mirror_ppa'
     need_save = True
 
     @classmethod
     def get_check_update(cls):
-        return cls.config.get_value_from_key(cls.check_update, default = True)
+        return cls.config.get_value_from_key(cls.check_update, default=True)
 
     @classmethod
     def set_check_update(cls, bool):
@@ -74,15 +74,15 @@ class TweakSettings:
 
     @classmethod
     def get_show_donate_notify(cls):
-        return cls.config.get_value_from_key(cls.show_donate_notify, default = True)
+        return cls.config.get_value_from_key(cls.show_donate_notify, default=True)
 
     @classmethod
-    def set_use_remote_data(cls, bool):
-        return cls.config.set_value_from_key(cls.use_remote_data, bool)
+    def set_sync_notify(cls, bool):
+        return cls.config.set_value_from_key(cls.sync_notify, bool)
 
     @classmethod
-    def get_use_remote_data(cls):
-        return cls.config.get_value_from_key(cls.use_remote_data, default = True)
+    def get_sync_notify(cls):
+        return cls.config.get_value_from_key(cls.sync_notify, default=True)
 
     def set_use_mirror_ppa(cls, bool):
         return cls.config.set_value_from_key(cls.use_mirror_ppa, bool)
@@ -97,7 +97,7 @@ class TweakSettings:
 
     @classmethod
     def get_separated_sources(cls):
-        return cls.config.get_value_from_key(cls.separated_sources, default = True)
+        return cls.config.get_value_from_key(cls.separated_sources, default=True)
 
     @classmethod
     def set_url(cls, url):

@@ -1,5 +1,6 @@
 import os
 import random
+import urllib
 import time
 import datetime
 
@@ -78,3 +79,18 @@ def get_last_synced(folder):
         return _('Just Now')
     except IOError:
         return _('Never')
+
+def check_update_function(url, folder, update_setter, version_setter, auto):
+    remote_version = urllib.urlopen(url).read()
+    if remote_version.isdigit():
+        local_version = get_local_timestamp(folder)
+
+        if remote_version > local_version:
+            if auto:
+                update_setter.set_value(True)
+            version_setter.set_value(remote_version)
+            return True
+        else:
+            return False
+    else:
+        return False

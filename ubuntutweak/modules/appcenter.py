@@ -19,7 +19,6 @@
 
 import os
 import gtk
-import urllib
 import time
 import gobject
 import pango
@@ -33,6 +32,7 @@ from ubuntutweak.network import utdata
 from ubuntutweak.network.downloadmanager import DownloadDialog
 from ubuntutweak.conf import GconfSetting
 from ubuntutweak.common import consts
+from ubuntutweak.common.config import TweakSettings
 from ubuntutweak.common.utils import set_label_for_stock_button
 from ubuntutweak.common.package import PACKAGE_WORKER, PackageInfo
 
@@ -392,20 +392,6 @@ class AppView(gtk.TreeView):
         except:
             return gtk.icon_theme_get_default().load_icon(gtk.STOCK_MISSING_IMAGE, 32, 0)
 
-def check_update_function(version_url):
-    remote_version = urllib.urlopen(version_url).read()
-    if remote_version.isdigit():
-        local_version = utdata.get_local_timestamp(APPCENTER_ROOT)
-
-        if remote_version > local_version:
-            UPDATE_SETTING.set_value(True)
-            VERSION_SETTING.set_value(remote_version)
-            return True
-        else:
-            return False
-    else:
-        return False
-
 class CheckUpdateDialog(ProcessDialog):
 
     def __init__(self, parent, url):
@@ -429,7 +415,9 @@ class CheckUpdateDialog(ProcessDialog):
             self.done = True
 
     def get_updatable(self):
-        return check_update_function(self.url)
+        return utdata.check_update_function(self.url, APPCENTER_ROOT, \
+                                            UPDATE_SETTING, VERSION_SETTING, \
+                                            auto=False)
 
     def on_timeout(self):
         self.pulse()
@@ -465,7 +453,8 @@ class AppCenter(TweakModule):
         self.to_add = []
         self.to_rm = []
 
-        self.PACKAGE_WORKER = PACKAGE_WORKER
+        self.package_worker = PACKAGE_WORKER
+        self.url = APP_VERSION_URL
 
         self.cateview = CategoryView(os.path.join(APPCENTER_ROOT, 'cates.json'))
         self.cate_selection = self.cateview.get_selection()
@@ -484,7 +473,8 @@ class AppCenter(TweakModule):
         UPDATE_SETTING.set_value(False)
         UPDATE_SETTING.connect_notify(self.on_have_update, data=None)
 
-        thread.start_new_thread(self.check_update, ())
+        if TweakSettings.get_sync_notify():
+            thread.start_new_thread(self.check_update, ())
         gobject.timeout_add(60000, self.update_timestamp)
 
         self.reparent(self.main_vbox)
@@ -507,7 +497,9 @@ class AppCenter(TweakModule):
 
     def check_update(self):
         try:
-            return check_update_function(APP_VERSION_URL)
+            return utdata.check_update_function(self.url, APPCENTER_ROOT, \
+                                            UPDATE_SETTING, VERSION_SETTING, \
+                                            auto=True)
         except Exception, error:
             print error
 
@@ -525,17 +517,17 @@ class AppCenter(TweakModule):
             self.appview.update_model()
 
     def deep_update(self):
-        PACKAGE_WORKER.update_apt_cache(True)
+        self.package_worker.update_apt_cache(True)
         self.update_app_data()
 
     def on_apply_button_clicked(self, widget, data = None):
         to_rm = self.appview.to_rm
         to_add = self.appview.to_add
-        self.PACKAGE_WORKER.perform_action(widget.get_toplevel(), to_add, to_rm)
+        self.package_worker.perform_action(widget.get_toplevel(), to_add, to_rm)
 
-        PACKAGE_WORKER.update_apt_cache(True)
+        self.package_worker.update_apt_cache(True)
 
-        done = PACKAGE_WORKER.get_install_status(to_add, to_rm)
+        done = self.package_worker.get_install_status(to_add, to_rm)
 
         if done:
             self.apply_button.set_sensitive(False)
@@ -551,7 +543,7 @@ class AppCenter(TweakModule):
         self.appview.update_model()
 
     def on_sync_button_clicked(self, widget):
-        dialog = CheckUpdateDialog(widget.get_toplevel(), APP_VERSION_URL)
+        dialog = CheckUpdateDialog(widget.get_toplevel(), self.url)
         dialog.run()
         dialog.destroy()
         if dialog.status == True:

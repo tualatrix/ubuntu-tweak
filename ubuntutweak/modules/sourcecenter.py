@@ -67,20 +67,6 @@ def get_source_data_url():
     return utdata.get_download_url('/static/utdata/sourcecenter-%s.tar.gz' %
                                    VERSION_SETTING.get_value())
 
-def check_update_function(version_url):
-    remote_version = urllib.urlopen(version_url).read()
-    if remote_version.isdigit():
-        local_version = utdata.get_local_timestamp(SOURCE_ROOT)
-
-        if remote_version > local_version:
-            UPDATE_SETTING.set_value(True)
-            VERSION_SETTING.set_value(remote_version)
-            return True
-        else:
-            return False
-    else:
-        return False
-
 def refresh_source(parent):
     dialog = UpdateCacheDialog(parent)
     dialog.run()
@@ -147,7 +133,9 @@ def on_select_button_clicked(widget, updateview):
 
 class CheckSourceDialog(CheckUpdateDialog):
     def get_updatable(self):
-        return check_update_function(self.url)
+        return utdata.check_update_function(self.url, SOURCE_ROOT, \
+                                            UPDATE_SETTING, VERSION_SETTING, \
+                                            auto=False)
 
 class SourceParser(Parser):
     def __init__(self):
@@ -794,6 +782,7 @@ class SourceCenter(TweakModule):
     def __init__(self):
         TweakModule.__init__(self, 'sourcecenter.ui')
 
+        self.url = SOURCE_VERSION_URL
         set_label_for_stock_button(self.sync_button, _('_Sync'))
 
         self.cateview = CategoryView(os.path.join(SOURCE_ROOT, 'cates.json'))
@@ -836,7 +825,8 @@ class SourceCenter(TweakModule):
         UPDATE_SETTING.set_value(False)
         UPDATE_SETTING.connect_notify(self.on_have_update, data=None)
 
-        thread.start_new_thread(self.check_update, ())
+        if TweakSettings.get_sync_notify():
+            thread.start_new_thread(self.check_update, ())
         gobject.timeout_add(60000, self.update_timestamp)
 
         self.reparent(self.main_vbox)
@@ -861,7 +851,9 @@ class SourceCenter(TweakModule):
 
     def check_update(self):
         try:
-            return check_update_function(SOURCE_VERSION_URL)
+            return utdata.check_update_function(self.url, SOURCE_ROOT, \
+                                            UPDATE_SETTING, VERSION_SETTING, \
+                                            auto=True)
         except Exception, error:
             print error
 
@@ -962,7 +954,7 @@ class SourceCenter(TweakModule):
         self.sourceview.update_model()
 
     def on_sync_button_clicked(self, widget):
-        dialog = CheckSourceDialog(widget.get_toplevel(), SOURCE_VERSION_URL)
+        dialog = CheckSourceDialog(widget.get_toplevel(), self.url)
         dialog.run()
         dialog.destroy()
         if dialog.status == True:
