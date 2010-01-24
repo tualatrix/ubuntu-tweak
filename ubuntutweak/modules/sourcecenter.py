@@ -175,10 +175,16 @@ class SourceParser(Parser):
         return self[key]['slug']
 
     def get_conflicts(self, key):
-        return self[key]['conflicts']
+        if self[key].has_key('conflicts'):
+            return self[key]['conflicts']
+        else:
+            return None
 
     def get_dependencies(self, key):
-        return self[key]['dependencies']
+        if self[key].has_key('dependencies'):
+            return self[key]['dependencies']
+        else:
+            return None
 
     def get_summary(self, key):
         return self.get_by_lang(key, 'summary')
