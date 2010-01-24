@@ -54,6 +54,7 @@ class UpdateManager(TweakModule):
         UpdateCacheDialog(widget.get_toplevel()).run()
 
         PACKAGE_WORKER.update_apt_cache(True)
+        self.select_button.set_active(False)
 
         new_updates = list(PACKAGE_WORKER.get_update_package())
         if new_updates:
