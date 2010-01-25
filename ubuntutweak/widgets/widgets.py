@@ -131,7 +131,10 @@ def GconfComboBox(key=None, texts=None, values=None):
 class GconfScale(gtk.HScale):
     def __init__(self, key=None, min=None, max=None, digits=0):
         gtk.HScale.__init__(self)
-        self.__setting = GconfSetting(key=key, type=int)
+        if digits > 0:
+            self.__setting = GconfSetting(key=key, type=float)
+        else:
+            self.__setting = GconfSetting(key=key, type=int)
         
         self.set_range(min, max)
         self.set_digits(digits)
