@@ -21,7 +21,6 @@
 import gtk
 import gobject
 
-
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.widgets import ListPack, TablePack
 from ubuntutweak.widgets.dialogs import InfoDialog
@@ -39,7 +38,8 @@ class ButtonView(gtk.IconView):
         ':': _('Title'),
         'maximize': _('Maximize'),
         'minimize': _('Minimize'),
-        'close': _('Close')
+        'close': _('Close'),
+        'spacer': _('Spacer'),
     }
 
     def __init__(self):
@@ -48,9 +48,9 @@ class ButtonView(gtk.IconView):
         self.config = GconfSetting(key='/apps/metacity/general/button_layout')
         model = self.__create_model()
         self.set_model(model)
+        self.update_model()
 
         self.set_text_column(self.COLUMN_LABEL)
-        self.set_size_request(-1, 48)
         self.set_reorderable(True)
         self.set_orientation(gtk.ORIENTATION_HORIZONTAL)
         self.connect('selection-changed', self.on_button_changed)
@@ -58,7 +58,14 @@ class ButtonView(gtk.IconView):
     def __create_model(self):
         model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
 
-        list = self.config.get_value().replace(':', ',:,').split(',')
+        return model
+
+    def update_model(self, default=None):
+        model = self.get_model()
+        model.clear()
+
+        value = default or self.config.get_value()
+        list = value.replace(':', ',:,').split(',')
 
         for k in list:
             iter = model.append()
@@ -74,6 +81,29 @@ class ButtonView(gtk.IconView):
         value = value.replace(',:', ':').replace(':,', ':')
         self.config.set_value(value)
 
+    def add_spacer(self):
+        model = self.get_model()
+        iter = model.append()
+        model.set(iter,
+                  self.COLUMN_KEY, 'spacer',
+                  self.COLUMN_LABEL, self.values['spacer'])
+        self.on_button_changed(self)
+
+    def remove_spacer(self):
+        model = self.get_model()
+        for i, row in enumerate(model):
+            if row[self.COLUMN_KEY] == 'spacer':
+                del model[i, self.COLUMN_KEY]
+                break
+        self.on_button_changed(self)
+
+    def has_spacer(self):
+        model = self.get_model()
+        for i, row in enumerate(model):
+            if row[self.COLUMN_KEY] == 'spacer':
+                return True
+        return False
+
 class Metacity(TweakModule):
     __title__ = _('Window Manager Settings')
     __desc__ = _('Some options about Metacity Window Manager')
@@ -82,13 +112,36 @@ class Metacity(TweakModule):
     __category__ = 'desktop'
     __desktop__ = 'gnome'
 
+    ADD_SPACER = _('Add Spacer')
+    REMOVE_SPACER = _('Remove Spacer')
+
     def __init__(self):
         TweakModule.__init__(self)
 
         label = gtk.Label(_('Arrange the buttons on the titlebar by dragging and dropping'))
         label.set_alignment(0, 0.5)
+
+        swindow = gtk.ScrolledWindow()
+        swindow.set_size_request(-1, 54)
+        swindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         buttonview1 = ButtonView()
-        box = ListPack(_('Window Titlebar Button Layout'), (label, buttonview1))
+        swindow.add(buttonview1)
+
+        hbox = gtk.HBox(False, 12)
+        button1 = gtk.Button(stock=gtk.STOCK_REDO)
+        hbox.pack_end(button1, False, False, 0)
+        button2 = gtk.Button()
+        if buttonview1.has_spacer():
+            button2.set_label(self.REMOVE_SPACER)
+        else:
+            button2.set_label(self.ADD_SPACER)
+        button2.connect('clicked', self.on_spacer_clicked, buttonview1)
+        button1.connect('clicked', self.on_redo_clicked, (button2, buttonview1))
+        hbox.pack_end(button2, False, False, 0)
+
+        box = ListPack(_('Window Titlebar Button Layout'), (label,
+                                                            swindow,
+                                                            hbox))
         self.add_start(box, False, False, 0)
 
         table = TablePack(_('Window Titlebar Action'), (
@@ -169,6 +222,20 @@ class Metacity(TweakModule):
             button.connect('toggled', self.on_compositing_button_toggled)
 
             self.add_start(box, False, False, 0)
+
+    def on_redo_clicked(self, widget, data):
+        button, view = data
+        view.update_model(default='menu:minimize,maximize,close')
+        view.on_button_changed(view)
+        button.set_label(self.ADD_SPACER)
+
+    def on_spacer_clicked(self, widget, view):
+        if view.has_spacer():
+            view.remove_spacer()
+            widget.set_label(self.ADD_SPACER)
+        else:
+            view.add_spacer()
+            widget.set_label(self.REMOVE_SPACER)
 
     def on_compositing_button_toggled(self, widget):
         if widget.get_active():
