@@ -14,6 +14,9 @@ class Parser(dict):
         else:
             self.is_available = True
 
+    def get_data(self):
+        return self.__data
+
     def init_items(self, key):
         for item in self.__data:
             item['fields']['id'] = item['pk']

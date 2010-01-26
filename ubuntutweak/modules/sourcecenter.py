@@ -139,12 +139,20 @@ class CheckSourceDialog(CheckUpdateDialog):
 
 class SourceParser(Parser):
     def __init__(self):
-        Parser.__init__(self, os.path.join(SOURCE_ROOT, 'sources.json'), 'id')
+        super(SourceParser, self).__init__(os.path.join(SOURCE_ROOT, 'sources.json'), 'id')
 
+    def init_items(self, key):
         self.reverse_depends = {}
-        for id, item in self.items():
-            if item.has_key('dependencies') and item['dependencies']:
-                for depend_id in item['dependencies']:
+
+        for item in self.get_data():
+            item['fields']['id'] = item['pk']
+            self[item['fields'][key]] = item['fields']
+
+            id = item['pk']
+            fields = item['fields']
+
+            if fields.has_key('dependencies') and fields['dependencies']:
+                for depend_id in fields['dependencies']:
                     if self.reverse_depends.has_key(depend_id):
                         self.reverse_depends[depend_id].append(id)
                     else:
