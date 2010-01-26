@@ -47,6 +47,7 @@ from ubuntutweak.common.utils import set_label_for_stock_button
 from ubuntutweak.common.package import PACKAGE_WORKER, PackageInfo
 from ubuntutweak.common.notify import notify
 from ubuntutweak.common.misc import URLLister
+from ubuntutweak.common.systeminfo import module_check
 
 APP_PARSER = AppParser()
 CONFIG = Config()
@@ -145,7 +146,16 @@ class SourceParser(Parser):
         self.reverse_depends = {}
 
         for item in self.get_data():
+            distro = item['fields']['distro']
+
+            if module_check.is_ubuntu(distro):
+                if module_check.get_codename() in distro:
+                    distro = module_check.get_codename()
+                else:
+                    continue
+
             item['fields']['id'] = item['pk']
+            item['fields']['distro'] = distro
             self[item['fields'][key]] = item['fields']
 
             id = item['pk']

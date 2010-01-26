@@ -106,7 +106,7 @@ class module_check:
 
     @classmethod
     def get_supported_ubuntu(cls):
-        return ['karmic', 'helena', 'Helena']
+        return ['karmic', 'helena', 'Helena', 'lucid']
 
     @classmethod
     def is_karmic(cls):
@@ -118,6 +118,18 @@ class module_check:
             return 'karmic'
         else:
             return ''
+
+    @classmethod
+    def is_ubuntu(cls, distro):
+        if type(distro) == list:
+            for dis in distro:
+                if dis in cls.get_supported_ubuntu():
+                    return True
+                return False
+        else:
+            if distro in cls.get_supported_ubuntu():
+                return True
+            return False
 
 if __name__ == "__main__":
     print SystemInfo.distro
