@@ -379,10 +379,10 @@ class SourcesView(gtk.TreeView):
 
         self.model = self.__create_model()
         self.model.set_sort_column_id(self.COLUMN_NAME, gtk.SORT_ASCENDING)
+        self.set_model(self.model)
 
         self.modelfilter = self.model.filter_new()
         self.modelfilter.set_visible_func(self.on_visible_filter, None)
-        self.set_model(self.modelfilter)
         self.set_search_column(self.COLUMN_NAME)
 
         self.__add_column()
@@ -419,6 +419,10 @@ class SourcesView(gtk.TreeView):
             return False
 
     def refilter(self):
+        if self.filter:
+            self.set_model(self.modelfilter)
+        else:
+            self.set_model(self.model)
         self.modelfilter.refilter()
         self.scroll_to_cell(0)
 
@@ -581,8 +585,9 @@ class SourcesView(gtk.TreeView):
         dependencies = SOURCE_PARSER.get_dependencies(id)
 
         #Convert to real model, because will involke the set method
-        iter = model.convert_iter_to_child_iter(iter)
-        model = model.get_model()
+        if type(model) == gtk.TreeModelFilter:
+            iter = model.convert_iter_to_child_iter(iter)
+            model = model.get_model()
 
         if not enabled and conflicts:
             conflict_list = []
