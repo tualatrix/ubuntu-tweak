@@ -148,11 +148,8 @@ class SourceParser(Parser):
         for item in self.get_data():
             distro = item['fields']['distro']
 
-            if module_check.is_ubuntu(distro):
-                if module_check.get_codename() in distro:
-                    distro = module_check.get_codename()
-                else:
-                    continue
+            if module_check.is_ubuntu(distro) and module_check.get_codename() not in distro:
+                continue
 
             item['fields']['id'] = item['pk']
             item['fields']['distro'] = distro
