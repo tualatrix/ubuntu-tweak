@@ -33,15 +33,15 @@ class GnomeVersion:
     description = "GNOME %s.%s.%s (%s %s)" % (platform, minor, micro, distributor, date)
 
 def parse_codename():
-    data = open('/etc/lsb-release').read()
-    dict = {}
-    for line in data.split('\n'):
-        try:
-            key, value = line.split('=')
-            dict[key] = value
-        except:
-            pass
-    return dict['DISTRIB_CODENAME']
+    try:
+        codename = os.popen('lsb_release -cs').read()
+        if codename in ['karmic', 'helena', 'Helena']:
+            return 'karmic'
+        elif codename in ['lucid']:
+            return 'lucid'
+    except:
+        pass
+    return ''
 
 def parse_distro():
     return file('/etc/issue.net').readline()[:-1]
@@ -60,6 +60,9 @@ class SystemInfo:
     distro = DistroInfo.distro
 
 class module_check:
+    codename = DistroInfo.codename
+    distribution = DistroInfo.distro
+
     @classmethod
     def has_apt(cls):
         try:
@@ -97,31 +100,16 @@ class module_check:
         return int(GnomeVersion.minor)
 
     @classmethod
-    def is_ubuntu(cls):
-        return cls.is_karmic()
-
-    @classmethod
     def is_supported_ubuntu(cls):
-        return cls.is_karmic()
+        return cls.codename in ['karmic', 'lucid']
 
     @classmethod
     def get_supported_ubuntu(cls):
         return ['karmic', 'lucid']
 
     @classmethod
-    def is_karmic(cls):
-        return DistroInfo.codename in ['karmic', 'helena', 'Helena']
-
-    @classmethod
-    def is_lucid(cls):
-        return DistroInfo.codename in ['lucid']
-
-    @classmethod
     def get_codename(cls):
-        if cls.is_karmic():
-            return 'karmic'
-        elif cls.is_lucid():
-            return 'lucid'
+        return cls.codename
 
     @classmethod
     def is_ubuntu(cls, distro):
