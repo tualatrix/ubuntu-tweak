@@ -322,7 +322,7 @@ class AppView(gtk.TreeView):
                 is_installed = package.check_installed()
                 appname = package.get_name()
                 desc = app_parser.get_summary(pkgname)
-            except KeyError:
+            except:
                 continue
 
             if self.filter == None or self.filter == category:
