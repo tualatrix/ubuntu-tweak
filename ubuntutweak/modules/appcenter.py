@@ -85,7 +85,6 @@ class CategoryView(gtk.TreeView):
         self.set_headers_visible(False)
         self.set_rules_hint(True)
         self.model = self.__create_model()
-        self.model.set_sort_column_id(self.CATE_NAME, gtk.SORT_ASCENDING)
         self.set_model(self.model)
         self.__add_columns()
         self.update_model()
@@ -128,7 +127,10 @@ class CategoryView(gtk.TreeView):
                     self.CATE_NAME, name)
 
     def get_cate_items(self):
-        for k in self.parser.keys():
+        keys = self.parser.keys()
+        keys.sort()
+
+        for k in keys:
             item = self.parser[k]
             item['name'] = self.parser.get_name(k)
             yield item
