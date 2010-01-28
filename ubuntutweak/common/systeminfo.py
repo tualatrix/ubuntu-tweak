@@ -106,18 +106,22 @@ class module_check:
 
     @classmethod
     def get_supported_ubuntu(cls):
-        return ['karmic', 'helena', 'Helena', 'lucid']
+        return ['karmic', 'lucid']
 
     @classmethod
     def is_karmic(cls):
-        return DistroInfo.codename in ['karmic']
+        return DistroInfo.codename in ['karmic', 'helena', 'Helena']
+
+    @classmethod
+    def is_lucid(cls):
+        return DistroInfo.codename in ['lucid']
 
     @classmethod
     def get_codename(cls):
         if cls.is_karmic():
             return 'karmic'
-        else:
-            return ''
+        elif cls.is_lucid():
+            return 'lucid'
 
     @classmethod
     def is_ubuntu(cls, distro):
