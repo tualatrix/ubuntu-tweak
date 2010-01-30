@@ -155,12 +155,10 @@ class SourceParser(Parser):
         distro_parser = DistroParser()
 
         for item in self.get_data():
-            #TODO Remove in the future release, only leave distros
-            distro_values = item['fields']['distro']
-
             if item['fields'].has_key('distros'):
                 distros = item['fields']['distros']
-                distro_values == ''
+                distro_values = ''
+
                 if len(distros) > 1:
                     # If the item in distros is more than 1, so it's a PPA.
                     # Try to parse its real codename, when match the local
@@ -169,9 +167,14 @@ class SourceParser(Parser):
                         if module_check.get_codename() == distro_parser.get_codename(id):
                             distro_values = distro_parser.get_codename(id)
                             break
-                    continue
+
+                    if distro_values == '':
+                        continue
                 elif len(distros) == 1:
                     distro_values = distro_parser.get_codename(distros[0])
+            else:
+                #TODO Remove in the future release, only leave distros
+                distro_values = item['fields']['distro']
 
             if module_check.is_ubuntu(distro_values) and \
                     module_check.get_codename() not in distro_values:
