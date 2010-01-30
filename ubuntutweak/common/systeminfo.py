@@ -34,7 +34,7 @@ class GnomeVersion:
 
 def parse_codename():
     try:
-        codename = os.popen('lsb_release -cs').read()
+        codename = os.popen('lsb_release -cs').read().strip()
         if codename in ['karmic', 'helena', 'Helena']:
             return 'karmic'
         elif codename in ['lucid']:

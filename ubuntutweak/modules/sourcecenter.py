@@ -138,6 +138,13 @@ class CheckSourceDialog(CheckUpdateDialog):
                                             UPDATE_SETTING, VERSION_SETTING, \
                                             auto=False)
 
+class DistroParser(Parser):
+    def __init__(self):
+        super(DistroParser, self).__init__(os.path.join(SOURCE_ROOT, 'distros.json'), 'id')
+
+    def get_codename(self, key):
+        return self[key]['codename']
+
 class SourceParser(Parser):
     def __init__(self):
         super(SourceParser, self).__init__(os.path.join(SOURCE_ROOT, 'sources.json'), 'id')
@@ -145,14 +152,34 @@ class SourceParser(Parser):
     def init_items(self, key):
         self.reverse_depends = {}
 
-        for item in self.get_data():
-            distro = item['fields']['distro']
+        distro_parser = DistroParser()
 
-            if module_check.is_ubuntu(distro) and module_check.get_codename() not in distro:
+        for item in self.get_data():
+            #TODO Remove in the future release, only leave distros
+            distro_values = item['fields']['distro']
+
+            if item['fields'].has_key('distros'):
+                distros = item['fields']['distros']
+                distro_values == ''
+                if len(distros) > 1:
+                    # If the item in distros is more than 1, so it's a PPA.
+                    # Try to parse its real codename, when match the local
+                    # Get it, or continue
+                    for id in distros:
+                        if module_check.get_codename() == distro_parser.get_codename(id):
+                            distro_values = distro_parser.get_codename(id)
+                            break
+                    continue
+                elif len(distros) == 1:
+                    distro_values = distro_parser.get_codename(distros[0])
+
+            if module_check.is_ubuntu(distro_values) and \
+                    module_check.get_codename() not in distro_values:
                 continue
 
             item['fields']['id'] = item['pk']
-            item['fields']['distro'] = distro
+            # But here, always be distro, the only distro correspond with current
+            item['fields']['distro'] = distro_values
             self[item['fields'][key]] = item['fields']
 
             id = item['pk']
@@ -716,8 +743,10 @@ class SourcesView(gtk.TreeView):
         if key:
             proxy.add_apt_key_from_content(key)
 
-        if not comps:
+        if not comps and distro:
             distro = distro + '/'
+        elif not comps and not distro:
+            distro = './'
 
         if TweakSettings.get_separated_sources():
             result = proxy.set_separated_entry(url, distro, comps,
