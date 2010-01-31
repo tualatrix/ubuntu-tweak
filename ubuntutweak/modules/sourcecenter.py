@@ -475,6 +475,7 @@ class SourcesView(gtk.TreeView):
         self.append_column(column)
 
     def update_model(self):
+        self.model.clear()
         sourceslist = self.get_sourceslist()
 
         for id in SOURCE_PARSER:
