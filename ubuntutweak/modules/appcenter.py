@@ -101,7 +101,7 @@ class CategoryView(gtk.TreeView):
         return model
 
     def __add_columns(self):
-        column = gtk.TreeViewColumn(_('Categories'))
+        column = gtk.TreeViewColumn(_('Category'))
 
         renderer = gtk.CellRendererText()
         column.pack_start(renderer, True)
