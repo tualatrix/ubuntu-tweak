@@ -7,19 +7,35 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak 0.24\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-10 15:00+0800\n"
-"PO-Revision-Date: 2010-01-09 12:54+0000\n"
-"Last-Translator: stampe <Unknown>\n"
+"POT-Creation-Date: 2010-02-02 10:25+0800\n"
+"PO-Revision-Date: 2010-01-17 17:54+0000\n"
+"Last-Translator: Simon Hammarström <hammarstrom.simon@gmail.com>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2010-01-10 08:16+0000\n"
+"X-Launchpad-Export-Date: 2010-02-02 09:49+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: SWEDEN\n"
 "X-Poedit-Language: Swedish\n"
 "X-Poedit-SourceCharset: utf-8\n"
+
+#: ../data/script-worker:125 ../data/script-worker:138
+msgid "Enter your password to perform the administrative tasks"
+msgstr "Ange ditt lösenord för att genomföra administrativa åtgärder"
+
+#: ../data/script-worker:132
+msgid "Coudn't find any text editor in your system!"
+msgstr "Kunde inte hitta någon textredigerare på datorn!"
+
+#: ../data/script-worker:160
+msgid "Select a folder"
+msgstr "Välj en mapp"
+
+#: ../data/script-worker:190
+msgid "Please select a target (files or folders)."
+msgstr "Välj ett mål (filer eller mappar)."
 
 #: ../data/ubuntu-tweak.desktop.in.h:1
 msgid "Tweak ubuntu to what you like"
@@ -30,26 +46,122 @@ msgid "System policy prevents the Ubuntu Tweak from Tweaking"
 msgstr ""
 
 #: ../data/com.ubuntu-tweak.daemon.policy.in.h:2
-msgid "Tweak"
+msgid "Ubuntu Tweak Daemon"
 msgstr ""
 
-#: ../ubuntutweak/mainwindow.py:67
+#: ../data/ui/preferences.ui.h:1
+msgid "<b>Features</b>"
+msgstr "<b>Funktioner</b>"
+
+#: ../data/ui/preferences.ui.h:2
+msgid "<b>User Interface</b>"
+msgstr "<b>Användargränssnitt</b>"
+
+#: ../data/ui/preferences.ui.h:3
+msgid "Default Launch Function"
+msgstr "Standardfunktion att starta"
+
+#: ../data/ui/preferences.ui.h:4
+msgid "Default Window Height"
+msgstr "Standardhöjd för fönster"
+
+#: ../data/ui/preferences.ui.h:5
+msgid "Default Window Width"
+msgstr "Standardbredd för fönster"
+
+#: ../data/ui/preferences.ui.h:6
+msgid "Left Menubar Width"
+msgstr "Bredd för vänster menyrad"
+
+#: ../data/ui/preferences.ui.h:7
+msgid "Ubuntu Tweak Preferences"
+msgstr "Ubuntu Tweak inställningar"
+
+#: ../data/ui/traceback.ui.h:1
+msgid "<big><b>Oops... a fatal error occured</b></big>"
+msgstr "<big><b>Oops... ett allvarligt fel har uppstått</b></big>"
+
+#: ../data/ui/traceback.ui.h:2
+msgid "<big><b>Oops... an error occured</b></big>"
+msgstr "<big><b>Oops... ett fel har uppstått</b></big>"
+
+#: ../data/ui/traceback.ui.h:3
+msgid "Error Message"
+msgstr "Felmeddelande"
+
+#: ../data/ui/traceback.ui.h:4
+msgid ""
+"If you'd like to help us fix the problem, \n"
+"Please choose <i>Report</i> to file a new bug report. Make sure to include "
+"the error message below:"
+msgstr ""
+"Om du vill hjälpa oss med att rätta till problemet, \n"
+"Välj <i>Rapportera</i> för att skicka in en ny felrapport. Försäkra dig om "
+"att inkludera felmeddelandet nedan:"
+
+#: ../data/ui/traceback.ui.h:6
+msgid ""
+"Ubuntu Tweak need to turn off.\n"
+"If you'd like to help us fix the problem, \n"
+"Please choose <i>Report</i> to file a new bug report. Make sure to include "
+"the error message below:"
+msgstr ""
+"Ubuntu Tweak behöver stängas.\n"
+"Om du vill hjälpa oss att fixa detta problem,\n"
+"var vänlig välj <i>Rapportera</i> för att fylla i en ny buggrapportering. "
+"Tänk på att inkludera felmeddelandet här under:"
+
+#: ../data/ui/traceback.ui.h:9
+msgid "_Report"
+msgstr "_Rapportera"
+
+#. checkbutton
+#: ../data/ui/updatemanager.ui.h:1 ../ubuntutweak/modules/sourcecenter.py:101
+#: ../ubuntutweak/modules/cleaner.py:468
+msgid "Select All"
+msgstr "Markera alla"
+
+#: ../data/ui/updatemanager.ui.h:2
+msgid "_Install Update"
+msgstr "Installera Uppdatering"
+
+#: ../data/ui/type_edit.ui.h:1
+msgid "Add Application"
+msgstr "Lägg till program"
+
+#: ../data/ui/type_edit.ui.h:2
+msgid "Edit Type"
+msgstr "Redigera typ"
+
+#: ../data/ui/type_edit.ui.h:3
+msgid "Select an application to view its description."
+msgstr "Välj ett program för att visa dess beskrivning."
+
+#: ../data/ui/type_edit.ui.h:4 ../ubuntutweak/modules/autostart.py:70
+msgid "_Browse..."
+msgstr "_Bläddra..."
+
+#: ../data/ui/type_edit.ui.h:5
+msgid "_Use a custom command"
+msgstr "A_nvänd ett anpassat kommando"
+
+#: ../ubuntutweak/mainwindow.py:66
 msgid "Welcome to"
 msgstr "Välkommen till"
 
-#: ../ubuntutweak/mainwindow.py:73
+#: ../ubuntutweak/mainwindow.py:72
 msgid "Tweak otherwise hidden settings."
 msgstr "Ändra inställningar som vanligtvis är dolda."
 
-#: ../ubuntutweak/mainwindow.py:74
+#: ../ubuntutweak/mainwindow.py:73
 msgid "Clean up unneeded packages to free diskspace."
 msgstr "Rensa paket som inte behövs för att frigöra diskutrymme."
 
-#: ../ubuntutweak/mainwindow.py:75
+#: ../ubuntutweak/mainwindow.py:74
 msgid "Easily install up-to-date versions of many applications."
 msgstr "Installera enkelt nya uppdaterade versioner av populära program."
 
-#: ../ubuntutweak/mainwindow.py:76
+#: ../ubuntutweak/mainwindow.py:75
 msgid ""
 "Configure file templates and shortcut scripts for easy access to common "
 "tasks."
@@ -57,56 +169,56 @@ msgstr ""
 "Konfigurera filmallar och genvägsskript för enkel åtkomst till vanliga "
 "uppgifter."
 
-#: ../ubuntutweak/mainwindow.py:77
+#: ../ubuntutweak/mainwindow.py:76
 msgid "And many more useful features!"
 msgstr "Och många fler användbara funktioner!"
 
-#: ../ubuntutweak/mainwindow.py:90
+#: ../ubuntutweak/mainwindow.py:89
 msgid "Please wait a moment..."
 msgstr "Var god vänta..."
 
-#: ../ubuntutweak/mainwindow.py:110
+#: ../ubuntutweak/mainwindow.py:109
 msgid "This module is error while loading."
-msgstr ""
+msgstr "Modulen kunde inte laddas"
 
-#: ../ubuntutweak/mainwindow.py:131
+#: ../ubuntutweak/mainwindow.py:130
 msgid "Welcome"
 msgstr "Välkommen"
 
-#: ../ubuntutweak/mainwindow.py:132
+#: ../ubuntutweak/mainwindow.py:131
 msgid "Applications"
 msgstr "Program"
 
-#: ../ubuntutweak/mainwindow.py:133
+#: ../ubuntutweak/mainwindow.py:132
 msgid "Startup"
 msgstr "Uppstart"
 
-#: ../ubuntutweak/mainwindow.py:134 ../ubuntutweak/modules/userdir.py:45
+#: ../ubuntutweak/mainwindow.py:133 ../ubuntutweak/modules/userdir.py:45
 msgid "Desktop"
 msgstr "Skrivbord"
 
-#: ../ubuntutweak/mainwindow.py:135
+#: ../ubuntutweak/mainwindow.py:134
 msgid "Personal"
 msgstr "Personlig"
 
-#: ../ubuntutweak/mainwindow.py:136
+#: ../ubuntutweak/mainwindow.py:135
 msgid "System"
 msgstr "System"
 
-#: ../ubuntutweak/mainwindow.py:144
+#: ../ubuntutweak/mainwindow.py:143
 #, python-format
 msgid "Download the Ubuntu Tweak %s"
 msgstr ""
 
-#: ../ubuntutweak/mainwindow.py:204
+#: ../ubuntutweak/mainwindow.py:203
 msgid "_Donate"
 msgstr "_Donera"
 
-#: ../ubuntutweak/mainwindow.py:420
+#: ../ubuntutweak/mainwindow.py:422
 msgid "Ubuntu Tweak Website"
 msgstr "Ubuntu Tweaks hemsida"
 
-#: ../ubuntutweak/mainwindow.py:422
+#: ../ubuntutweak/mainwindow.py:424
 msgid ""
 "Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
 "system and desktop settings."
@@ -114,44 +226,29 @@ msgstr ""
 "Ubuntu Tweak är ett verktyg för Ubuntu som gör det enkelt att konfigurera "
 "dina system- och skrivbordsinställningar."
 
-#: ../ubuntutweak/mainwindow.py:424
-msgid "Contributors of 2007"
-msgstr ""
-
 #: ../ubuntutweak/mainwindow.py:426
-msgid "Contributors of 2008"
-msgstr ""
+msgid "Contributors of 2007"
+msgstr "2007 års bidragare"
 
 #: ../ubuntutweak/mainwindow.py:428
+msgid "Contributors of 2008"
+msgstr "2008 års bidragare"
+
+#: ../ubuntutweak/mainwindow.py:430
 msgid "Contributors of 2009"
+msgstr "2009 års bidragare"
+
+#: ../ubuntutweak/mainwindow.py:433
+msgid "Contributors of 2010"
 msgstr ""
 
-#: ../ubuntutweak/mainwindow.py:437
+#: ../ubuntutweak/mainwindow.py:441
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
-"  Anders Grandt https://launchpad.net/~a.grandt\n"
-"  AndrewJ https://launchpad.net/~andrew-jonsson\n"
-"  André Arvidsson https://launchpad.net/~andrearvidsson\n"
-"  Christian Widell https://launchpad.net/~christian.w\n"
-"  Daniel Holm https://launchpad.net/~danielholm\n"
-"  Daniel Nylander https://launchpad.net/~yeager\n"
-"  Dostojevskji https://launchpad.net/~darkangel-nr1\n"
-"  Fredrik Forsmo https://launchpad.net/~frippe\n"
-"  Gustaf Gustafsson https://launchpad.net/~gustafgustafsson\n"
-"  Gustaf Johansson https://launchpad.net/~gustaf-joh\n"
-"  Martin Karlsson https://launchpad.net/~martin-rb-karlsson\n"
-"  Mattias Ohlsson https://launchpad.net/~mattias-oh\n"
-"  P_cool https://launchpad.net/~petruslundberg\n"
-"  Ragnar Moberg https://launchpad.net/~ragnar-moberg\n"
-"  Sebastian https://launchpad.net/~bastiq\n"
-"  TualatriX https://launchpad.net/~tualatrix\n"
-"  blittan https://launchpad.net/~blittan\n"
-"  daoo https://launchpad.net/~daoo314\n"
-"  nairobie https://launchpad.net/~samuel-ostman\n"
-"  stampe https://launchpad.net/~mikael-carlsson"
+"  Simon Hammarström https://launchpad.net/~fuze"
 
-#: ../ubuntutweak/mainwindow.py:451
+#: ../ubuntutweak/mainwindow.py:455
 #, python-format
 msgid ""
 "A newer version: %s is available online.\n"
@@ -161,49 +258,49 @@ msgid ""
 "Preference."
 msgstr ""
 
-#: ../ubuntutweak/mainwindow.py:452
+#: ../ubuntutweak/mainwindow.py:456
 msgid "Software Update"
 msgstr "Programuppdatering"
 
-#: ../ubuntutweak/widgets/widgets.py:85 ../ubuntutweak/widgets/widgets.py:110
+#: ../ubuntutweak/widgets/widgets.py:83 ../ubuntutweak/widgets/widgets.py:108
 #: ../ubuntutweak/modules/icons.py:105
 msgid "Unset"
 msgstr "Inte inställt"
 
-#: ../ubuntutweak/widgets/widgets.py:275
+#: ../ubuntutweak/widgets/widgets.py:221
 msgid "Please press the new key combination"
 msgstr "Tryck en ny tangentkombination"
 
-#: ../ubuntutweak/widgets/widgets.py:324
+#: ../ubuntutweak/widgets/widgets.py:270
 msgid "Disabled"
 msgstr "Inaktiverad"
 
-#: ../ubuntutweak/widgets/treeviews.py:69
+#: ../ubuntutweak/widgets/treeviews.py:71
 msgid "Create folder"
 msgstr "Skapa mapp"
 
-#: ../ubuntutweak/widgets/treeviews.py:73 ../ubuntutweak/modules/icons.py:33
+#: ../ubuntutweak/widgets/treeviews.py:75 ../ubuntutweak/modules/icons.py:33
 #: ../ubuntutweak/modules/icons.py:42 ../ubuntutweak/modules/icons.py:51
 msgid "Rename"
 msgstr "Byt namn"
 
-#: ../ubuntutweak/widgets/treeviews.py:77
+#: ../ubuntutweak/widgets/treeviews.py:79
 msgid "Delete"
 msgstr "Ta bort"
 
-#: ../ubuntutweak/widgets/treeviews.py:99
+#: ../ubuntutweak/widgets/treeviews.py:101
 msgid "Input the dir name"
 msgstr "Mata in katalognamnet"
 
-#: ../ubuntutweak/widgets/treeviews.py:124
+#: ../ubuntutweak/widgets/treeviews.py:126
 msgid "Can't rename the root folder"
 msgstr "Kan inte byta namn på rotmappen"
 
-#: ../ubuntutweak/widgets/treeviews.py:141
+#: ../ubuntutweak/widgets/treeviews.py:143
 msgid "Can't delete the root folder"
 msgstr "Kan inte ta bort rotmappen"
 
-#: ../ubuntutweak/widgets/treeviews.py:156
+#: ../ubuntutweak/widgets/treeviews.py:158
 msgid ""
 "Can't rename!\n"
 "\n"
@@ -228,51 +325,89 @@ msgstr "Du måste starta om din dator."
 msgid "Service hasn't initialized yet"
 msgstr "Tjänsten har inte initierats än"
 
-#: ../ubuntutweak/preferences.py:76 ../ubuntutweak/modules/filetype.py:178
+#: ../ubuntutweak/preferences.py:75 ../ubuntutweak/modules/filetype.py:178
 #: ../ubuntutweak/modules/filetype.py:213
-#: ../ubuntutweak/modules/metacity.py:64 ../ubuntutweak/modules/metacity.py:69
-#: ../ubuntutweak/modules/metacity.py:74 ../ubuntutweak/modules/metacity.py:79
+#: ../ubuntutweak/modules/metacity.py:151
+#: ../ubuntutweak/modules/metacity.py:156
+#: ../ubuntutweak/modules/metacity.py:169
+#: ../ubuntutweak/modules/metacity.py:182
 #: ../ubuntutweak/modules/shortcuts.py:99
 #: ../ubuntutweak/modules/shortcuts.py:209
 msgid "None"
 msgstr "Ingen"
 
-#: ../ubuntutweak/preferences.py:106
+#: ../ubuntutweak/preferences.py:105
 msgid "Enable Check Update"
 msgstr "Aktivera uppdateringskontroll"
 
-#: ../ubuntutweak/preferences.py:112
+#: ../ubuntutweak/preferences.py:111
 msgid "Use Separated Sources"
 msgstr "Använd separata källor"
 
-#: ../ubuntutweak/preferences.py:118
-msgid "Use Remote Data When Available"
+#: ../ubuntutweak/preferences.py:117
+msgid "Enable the synchronous notification"
 msgstr ""
 
-#: ../ubuntutweak/network/downloadmanager.py:98
+#: ../ubuntutweak/network/downloadmanager.py:97
 msgid "Connecting to server"
-msgstr ""
+msgstr "Ansluter till server"
 
-#: ../ubuntutweak/network/downloadmanager.py:143
+#: ../ubuntutweak/network/downloadmanager.py:142
 #, python-format
 msgid "Downloading...%d"
 msgstr "Hämtar...%d"
 
-#: ../ubuntutweak/network/downloadmanager.py:147
+#: ../ubuntutweak/network/downloadmanager.py:146
 msgid "Downloaded!"
+msgstr "Nerladdad!"
+
+#: ../ubuntutweak/network/downloadmanager.py:152
+msgid "Error happened!"
+msgstr "Ett fel inträffade!"
+
+#: ../ubuntutweak/network/utdata.py:48 ../ubuntutweak/network/utdata.py:81
+msgid "Never"
 msgstr ""
 
-#: ../ubuntutweak/network/downloadmanager.py:153
-msgid "Error happened!"
+#: ../ubuntutweak/network/utdata.py:72
+#, python-format
+msgid "%d week ago"
+msgid_plural "%d weeks ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../ubuntutweak/network/utdata.py:74
+#, python-format
+msgid "%d day ago"
+msgid_plural "%d days ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../ubuntutweak/network/utdata.py:76
+#, python-format
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../ubuntutweak/network/utdata.py:78
+#, python-format
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../ubuntutweak/network/utdata.py:79
+msgid "Just Now"
 msgstr ""
 
 #: ../ubuntutweak/common/appdata.py:24
 msgid "Development Version of Mozilla Firefox"
-msgstr ""
+msgstr "Utvecklingsversion av Mozilla Firefox"
 
 #: ../ubuntutweak/common/appdata.py:25
 msgid "Development version of Compiz"
-msgstr ""
+msgstr "Utvecklingsversion av Compiz"
 
 #: ../ubuntutweak/common/appdata.py:26
 msgid "Google's Linux Repository"
@@ -280,7 +415,7 @@ msgstr "Googles Linux-förråd"
 
 #: ../ubuntutweak/common/appdata.py:27
 msgid "Development Version of K Desktop Environment"
-msgstr ""
+msgstr "Utvecklingsversion av K Desktop Environment"
 
 #: ../ubuntutweak/common/appdata.py:28
 msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
@@ -290,6 +425,7 @@ msgstr "Lightweight X11 Desktop Environment: GPicView, PCManFM"
 msgid ""
 "WebkitGtk+, Liferea (Webkit), Midori and other WebKit related projects."
 msgstr ""
+"WebkitGtk+, Liferea (Webkit), Midori och andra WebKitrelaterade projekt"
 
 #: ../ubuntutweak/common/appdata.py:30
 msgid ""
@@ -318,22 +454,30 @@ msgid ""
 "distributions by providing major updates and software not yet available on "
 "the official Ubuntu repositories."
 msgstr ""
+"GetDeb utökar mjukvarumöjligheterna för Ubuntu (med derivat) "
+"Linuxdistributioner genom att förse ditt system med större uppdateringar som "
+"ännu inte finns i de officiella Ubuntuförråden."
 
 #: ../ubuntutweak/common/appdata.py:35
 msgid "Updated versions of X.org drivers, libraries, etc. for Ubuntu."
 msgstr ""
+"Uppdaterade versioner av X.org drivrutiner, bibliotek etc. för Ubuntu."
 
 #: ../ubuntutweak/common/appdata.py:36
 msgid ""
 "Gnome Games built from Git, with all experimental features and staging games "
 "enabled."
 msgstr ""
+"Gnomespel, byggda från Git med alla experimentella funktioner och "
+"plattformsspel aktiverade."
 
 #: ../ubuntutweak/common/appdata.py:37
 msgid ""
 "Ubuntu Mozilla Security Team provides beta and final stable/security updates "
 "for mozilla software in its PPA"
 msgstr ""
+"Ubuntu Mozilla säkerhetsteams PPA förser ditt system med beta och stabila "
+"uppdateringar för dina Mozillaapplikationer"
 
 #: ../ubuntutweak/common/appdata.py:38
 msgid "A cross-platform application and UI framework"
@@ -342,6 +486,7 @@ msgstr ""
 #: ../ubuntutweak/common/appdata.py:39
 msgid "Mono is a cross platform, open source .NET development framework."
 msgstr ""
+"Mono är ett plattformsoberoende, öppen källkods .NET utvecklingsramverk"
 
 #: ../ubuntutweak/common/appdata.py:40
 msgid ""
@@ -355,6 +500,8 @@ msgid ""
 "Gloobus is an extension of Gnome designed to enable a full screen preview of "
 "any kind of file."
 msgstr ""
+"Gloobus är ett plugin för Gnome som låter dig förhandsgranska en fil i "
+"fullskärm."
 
 #: ../ubuntutweak/common/appdata.py:42
 msgid ""
@@ -374,157 +521,19 @@ msgid ""
 "to go to Ubuntu Backports."
 msgstr ""
 
-#: ../ubuntutweak/common/sourcedata.py:6
-msgid "Avant Window Navigator (Unstable Version)"
-msgstr "Avant Window Navigator (ostabil version)"
-
-#: ../ubuntutweak/common/sourcedata.py:8
-msgid "aMule (Stable Version)"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:11
-msgid "Breathe Icon Theme"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:15
-msgid "Ubuntu Chinese Repository"
-msgstr "Ubuntu Kinesiskt förråd"
-
-#: ../ubuntutweak/common/sourcedata.py:18
-msgid "IBus (Old Version)"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:19
-msgid "IBus 1.2 for intrepid"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:20
-msgid "IBus 1.2 for jaunty"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:21
-msgid "IBus 1.2 for karmic"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:27
-msgid "Ubuntu Mozilla Security Team"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:29
-msgid "Christine Media Player"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:35
-msgid "Experimental Gnome Games"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:37
-msgid "Chinese Chess"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:38
-msgid "Gnome Global Menu"
-msgstr "Gnome Global Menu"
-
-#: ../ubuntutweak/common/sourcedata.py:40
-msgid "GetDeb.net (Mirror)"
-msgstr "GetDeb.net (Kopia)"
-
-#: ../ubuntutweak/common/sourcedata.py:42
-msgid "Gwibber (Daily Version)"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:43
-msgid "GIMP (Testing Version)"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:44
-msgid "Banshee (Stable Version)"
-msgstr "Banshee (stabil version)"
-
-#: ../ubuntutweak/common/sourcedata.py:45
-msgid "Banshee (Unstable Version)"
-msgstr "Banshee (ostabil version)"
-
-#: ../ubuntutweak/common/sourcedata.py:46
-msgid "Google Repository"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:47
-msgid "Google Testing Repository"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:52
-msgid "Ubuntu Tweak (Unstable Version)"
-msgstr "Ubuntu Tweak (ostabil version)"
-
-#: ../ubuntutweak/common/sourcedata.py:57
-msgid "Spicebird (Testing Version)"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:61
-msgid "SMPlayer (Unstable Version)"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:71
-msgid "VirtualBox (Open Source Edition)"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:72
-msgid "VLC media player"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:78
-msgid "Moblin Desktop for Ubuntu 9.04 Jaunty"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:79
-msgid "Moblin Desktop for Ubuntu 9.10 Karmic"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:89
-msgid "Bisigi Theme Project"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:90
-msgid "PiTiVi video editor"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:91
-msgid "Kubuntu Backports"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:93
-msgid "Tomboy (Stable Version)"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:94
-msgid "Tomboy (Unstable Version)"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:95
-msgid "Inkscape (Nightly Version)"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:97
-msgid "OSD Lyrics"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:98
-msgid "OpenShot Video Editor"
-msgstr ""
-
 #: ../ubuntutweak/common/package.py:172
-#: ../ubuntutweak/modules/sourcecenter.py:138
-#: ../ubuntutweak/modules/appcenter.py:543
-#: ../ubuntutweak/modules/compiz.py:411 ../ubuntutweak/modules/nautilus.py:167
+#: ../ubuntutweak/modules/appcenter.py:536
+#: ../ubuntutweak/modules/compiz.py:411
+#: ../ubuntutweak/modules/sourcecenter.py:120
+#: ../ubuntutweak/modules/nautilus.py:167
 msgid "Update Successful!"
 msgstr "Uppdatering slutförd!"
 
 #: ../ubuntutweak/common/package.py:174
-#: ../ubuntutweak/modules/sourcecenter.py:140
-#: ../ubuntutweak/modules/appcenter.py:545
-#: ../ubuntutweak/modules/compiz.py:413 ../ubuntutweak/modules/nautilus.py:169
+#: ../ubuntutweak/modules/appcenter.py:538
+#: ../ubuntutweak/modules/compiz.py:413
+#: ../ubuntutweak/modules/sourcecenter.py:122
+#: ../ubuntutweak/modules/nautilus.py:169
 msgid "Update Failed!"
 msgstr "Uppdatering misslyckades!"
 
@@ -532,24 +541,24 @@ msgstr "Uppdatering misslyckades!"
 msgid "(Not available)"
 msgstr "(Inte tillgänglig)"
 
-#: ../ubuntutweak/common/misc.py:16
+#: ../ubuntutweak/common/misc.py:15
 #, python-format
 msgid "%(size)d byte"
 msgid_plural "%(size)d bytes"
 msgstr[0] "%(size)d byte"
 msgstr[1] "%(size)d bytes"
 
-#: ../ubuntutweak/common/misc.py:18
+#: ../ubuntutweak/common/misc.py:17
 #, python-format
 msgid "%.1f KB"
 msgstr "%.1f kB"
 
-#: ../ubuntutweak/common/misc.py:20
+#: ../ubuntutweak/common/misc.py:19
 #, python-format
 msgid "%.1f MB"
 msgstr "%.1f MB"
 
-#: ../ubuntutweak/common/misc.py:21
+#: ../ubuntutweak/common/misc.py:20
 #, python-format
 msgid "%.1f GB"
 msgstr "%.1f GB"
@@ -768,7 +777,7 @@ msgstr ""
 "dig."
 
 #: ../ubuntutweak/modules/sourceeditor.py:87
-#: ../ubuntutweak/modules/sourcecenter.py:728
+#: ../ubuntutweak/modules/sourcecenter.py:853
 msgid "Details"
 msgstr "Detaljer"
 
@@ -898,214 +907,27 @@ msgstr ""
 "\"%s\" kommer att bli tasbort!\n"
 "Vill du fortsätta?"
 
-#: ../ubuntutweak/modules/sourcecenter.py:109
-msgid ""
-"You can install the new applications by selecting them and choose \"Yes\".\n"
-"Or you can install them at Add/Remove by choose \"No\"."
-msgstr ""
-"Du kan installera nya program genom att markera dem och välja \"Ja\".\n"
-"Eller du kan installera dem på Lägg till / ta bort genom att välja \"Nej\"."
-
-#: ../ubuntutweak/modules/sourcecenter.py:110
-msgid "New applications are available to update"
-msgstr "Nya program finns tillgängliga för att uppdatera"
-
-#. checkbutton
-#: ../ubuntutweak/modules/sourcecenter.py:119
-#: ../ubuntutweak/modules/cleaner.py:466
-msgid "Select All"
-msgstr "Markera alla"
-
-#: ../ubuntutweak/modules/sourcecenter.py:144
-#: ../ubuntutweak/modules/updatemanager.py:64
-msgid "Your system is clean and there's no update yet."
-msgstr "Ditt system är rent och det finns inga uppdateringar än."
-
-#: ../ubuntutweak/modules/sourcecenter.py:145
-#: ../ubuntutweak/modules/updatemanager.py:65
-msgid "The software information is up-to-date now"
-msgstr "Programvaruinformationen är nu uppdaterad"
-
-#: ../ubuntutweak/modules/sourcecenter.py:201
-#, python-format
-msgid "Available %d New Application"
-msgid_plural "Available %d New Applications"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:223
-#, python-format
-msgid "Available %d Package Update"
-msgid_plural "Available %d Package Updates"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:263
-msgid "No Available Package Update"
+#: ../ubuntutweak/modules/appcenter.py:104
+msgid "Category"
 msgstr ""
 
-#: ../ubuntutweak/modules/sourcecenter.py:377
-msgid "Third-Party Sources"
-msgstr "Tredjepartskällor"
-
-#: ../ubuntutweak/modules/sourcecenter.py:533
-#, python-format
-msgid ""
-"To enable this Source, You need to enable \"%s\" at first.\n"
-"Do you wish to continue?"
-msgstr ""
-"För att aktivera denna Källa, Du måste aktivera \"%s\" först.\n"
-"Vill du fortsätta?"
-
-#: ../ubuntutweak/modules/sourcecenter.py:535
-msgid "Dependency Notice"
-msgstr ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:549
-#, python-format
-msgid ""
-"You can't disable this Source because \"%(SOURCE)s\" depends on it.\n"
-"To continue you need to disable \"%(SOURCE)s\" first."
-msgstr ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:566
-#, python-format
-msgid ""
-"You can't enable this Source because \"%(SOURCE)s\" conflicts with it.\n"
-"To continue you need to disable \"%(SOURCE)s\" first."
-msgstr ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:646
-msgid "New source has been enabled"
-msgstr "Ny källa har aktiverats"
-
-#: ../ubuntutweak/modules/sourcecenter.py:647
-#, python-format
-msgid ""
-"%s is enabled now, Please click the refresh button to update the application "
-"cache."
-msgstr ""
-"%s är nu aktiverad, Tryck på uppdateringsknappen för att uppdatera "
-"programmets cache."
-
-#: ../ubuntutweak/modules/sourcecenter.py:660
-msgid "Homepage"
-msgstr "Hemsida"
-
-#: ../ubuntutweak/modules/sourcecenter.py:660
-msgid "Source URL"
-msgstr "Käll-URL"
-
-#: ../ubuntutweak/modules/sourcecenter.py:660
-msgid "Description"
-msgstr "Beskrivning"
-
-#: ../ubuntutweak/modules/sourcecenter.py:673
-msgid "Description is here"
-msgstr "Beskrivningen är här"
-
-#: ../ubuntutweak/modules/sourcecenter.py:701
-msgid "Source Center"
-msgstr ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:702
-msgid ""
-"A source center to keep your applications always up-to-date.\n"
-"You can also get the application which isn't in the official repository.\n"
-"Data will be automatically synchronized with the remote side.\n"
-"You can click the \"Sync\" button to check the update manually."
-msgstr ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:708
-msgid "Visit online Source Center"
-msgstr ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:714
-#: ../ubuntutweak/modules/appcenter.py:464
-msgid "_Sync"
-msgstr ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:760
-#: ../ubuntutweak/modules/appcenter.py:494
-msgid "Last synced:"
-msgstr ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:766
-msgid "New sources data available, would you like to update?"
-msgstr ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:840
-msgid ""
-"It is a possible security risk to use packages from Third-Party Sources.\n"
-"Please be careful and use only sources you trust."
-msgstr ""
-"Det är en möjlig säkerhetsrisk att använda paket från tredje parts källor.\n"
-"Var försiktig och endast använda källor du litar på."
-
-#: ../ubuntutweak/modules/sourcecenter.py:843
-#: ../ubuntutweak/modules/nautilus.py:139
-msgid "Warning"
-msgstr "Varning"
-
-#: ../ubuntutweak/modules/sourcecenter.py:844
-msgid "Never show this dialog"
-msgstr "Visa aldrig denna dialog"
-
-#: ../ubuntutweak/modules/sourcecenter.py:870
-msgid "Some error happened while downloading the file"
-msgstr ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:881
-#: ../ubuntutweak/modules/appcenter.py:559
-msgid "Update available, Would you like to update?"
-msgstr ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:890
-#: ../ubuntutweak/modules/appcenter.py:568
-msgid ""
-"Network Error, Please check your network connection or the remote server is "
-"down."
-msgstr ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:892
-#: ../ubuntutweak/modules/appcenter.py:570
-msgid "No update available."
-msgstr ""
-
-#: ../ubuntutweak/modules/updatemanager.py:29
-msgid "Update Manager"
-msgstr "Uppdateringshanterare"
-
-#: ../ubuntutweak/modules/updatemanager.py:30
-msgid "A simple and easy-to-use update manager"
-msgstr ""
-
-#: ../ubuntutweak/modules/updatemanager.py:42
-msgid "Enable the auto launch of System Update Manager"
-msgstr ""
-
-#: ../ubuntutweak/modules/appcenter.py:106
-#: ../ubuntutweak/modules/filetype.py:72
-msgid "Categories"
-msgstr "Kategorier"
-
-#: ../ubuntutweak/modules/appcenter.py:122
+#: ../ubuntutweak/modules/appcenter.py:120
 msgid "All Categories"
 msgstr "Alla kategorier"
 
-#: ../ubuntutweak/modules/appcenter.py:420
+#: ../ubuntutweak/modules/appcenter.py:407
 msgid "Checking update..."
 msgstr ""
 
-#: ../ubuntutweak/modules/appcenter.py:448
+#: ../ubuntutweak/modules/appcenter.py:437
 msgid "Fetching online data..."
 msgstr ""
 
-#: ../ubuntutweak/modules/appcenter.py:452
+#: ../ubuntutweak/modules/appcenter.py:441
 msgid "Application Center"
 msgstr ""
 
-#: ../ubuntutweak/modules/appcenter.py:453
+#: ../ubuntutweak/modules/appcenter.py:442
 msgid ""
 "A simple but more effecient way for finding and installing popular "
 "applications.\n"
@@ -1113,15 +935,42 @@ msgid ""
 "You can click the \"Sync\" button to check the update manually."
 msgstr ""
 
-#: ../ubuntutweak/modules/appcenter.py:458
+#: ../ubuntutweak/modules/appcenter.py:447
 msgid "Visit Online Application Center"
 msgstr ""
 
-#: ../ubuntutweak/modules/appcenter.py:499
+#: ../ubuntutweak/modules/appcenter.py:453
+#: ../ubuntutweak/modules/sourcecenter.py:839
+msgid "_Sync"
+msgstr ""
+
+#: ../ubuntutweak/modules/appcenter.py:485
+#: ../ubuntutweak/modules/sourcecenter.py:888
+msgid "Last synced:"
+msgstr ""
+
+#: ../ubuntutweak/modules/appcenter.py:490
 msgid "New application data available, would you like to update?"
 msgstr ""
 
-#: ../ubuntutweak/modules/appcenter.py:581
+#: ../ubuntutweak/modules/appcenter.py:552
+#: ../ubuntutweak/modules/sourcecenter.py:1014
+msgid "Update available, Would you like to update?"
+msgstr ""
+
+#: ../ubuntutweak/modules/appcenter.py:561
+#: ../ubuntutweak/modules/sourcecenter.py:1023
+msgid ""
+"Network Error, Please check your network connection or the remote server is "
+"down."
+msgstr ""
+
+#: ../ubuntutweak/modules/appcenter.py:563
+#: ../ubuntutweak/modules/sourcecenter.py:1025
+msgid "No update available."
+msgstr ""
+
+#: ../ubuntutweak/modules/appcenter.py:574
 msgid "Some error happened while downloading the file."
 msgstr ""
 
@@ -1148,6 +997,10 @@ msgstr "Program"
 #: ../ubuntutweak/modules/filetype.py:39
 msgid "All"
 msgstr "Alla"
+
+#: ../ubuntutweak/modules/filetype.py:72
+msgid "Categories"
+msgstr "Kategorier"
 
 #: ../ubuntutweak/modules/filetype.py:130
 msgid "File Type"
@@ -1192,92 +1045,163 @@ msgstr ""
 msgid "Only show filetypes with an associated application"
 msgstr "Visa endast filtyper tillsammans med en associerad applikation"
 
-#: ../ubuntutweak/modules/metacity.py:29
-msgid "Window Manager Settings"
+#: ../ubuntutweak/modules/updatemanager.py:29
+msgid "Update Manager"
+msgstr "Uppdateringshanterare"
+
+#: ../ubuntutweak/modules/updatemanager.py:30
+msgid "A simple and easy-to-use update manager"
 msgstr ""
 
-#: ../ubuntutweak/modules/metacity.py:30
-msgid "Some options about Metacity Window Manager"
+#: ../ubuntutweak/modules/updatemanager.py:42
+msgid "Enable the auto launch of System Update Manager"
 msgstr ""
 
-#: ../ubuntutweak/modules/metacity.py:39
-msgid "Window Decorate Effect"
-msgstr "Effekt för fönsterdekorationer"
+#: ../ubuntutweak/modules/updatemanager.py:65
+#: ../ubuntutweak/modules/sourcecenter.py:126
+msgid "Your system is clean and there's no update yet."
+msgstr "Ditt system är rent och det finns inga uppdateringar än."
 
-#: ../ubuntutweak/modules/metacity.py:41
-msgid "Use Metacity window theme"
-msgstr "Använd Metacity-fönstertema"
+#: ../ubuntutweak/modules/updatemanager.py:66
+#: ../ubuntutweak/modules/sourcecenter.py:127
+msgid "The software information is up-to-date now"
+msgstr "Programvaruinformationen är nu uppdaterad"
 
-#: ../ubuntutweak/modules/metacity.py:44
-msgid "Enable active window transparency"
-msgstr "Aktivera genomskinlighet för aktiva fönster"
-
-#: ../ubuntutweak/modules/metacity.py:47
-msgid "Active window transparency level"
-msgstr "Genomskinlighet för aktivt fönster"
-
-#: ../ubuntutweak/modules/metacity.py:51
-msgid "Enable inactive window transparency"
-msgstr "Aktivera genomskinlighet för inaktiva fönster"
-
-#: ../ubuntutweak/modules/metacity.py:54
-msgid "Inactive window shade transparency level"
-msgstr "Inaktivera genomskinlighet för fönsterskugga"
-
-#: ../ubuntutweak/modules/metacity.py:60
-msgid "Window Titlebar Action"
-msgstr "Åtgärd för fönstrets titellist"
-
-#: ../ubuntutweak/modules/metacity.py:62
-msgid "Titlebar mouse wheel action"
-msgstr "Åtgärd för mushjul på titellist"
-
-#: ../ubuntutweak/modules/metacity.py:64 ../ubuntutweak/modules/metacity.py:69
-#: ../ubuntutweak/modules/metacity.py:74 ../ubuntutweak/modules/metacity.py:79
-msgid "Roll up"
-msgstr "Rulla upp"
-
-#: ../ubuntutweak/modules/metacity.py:67
-msgid "Titlebar double-click action"
-msgstr "Åtgärd för dubbelklick på titellist"
-
-#: ../ubuntutweak/modules/metacity.py:69 ../ubuntutweak/modules/metacity.py:74
-#: ../ubuntutweak/modules/metacity.py:79
-msgid "Maximize"
-msgstr "Maximera"
-
-#: ../ubuntutweak/modules/metacity.py:69 ../ubuntutweak/modules/metacity.py:74
-#: ../ubuntutweak/modules/metacity.py:79
-msgid "Minimize"
-msgstr "Minimera"
-
-#: ../ubuntutweak/modules/metacity.py:69 ../ubuntutweak/modules/metacity.py:74
-#: ../ubuntutweak/modules/metacity.py:79
-msgid "Lower"
-msgstr "Sänk"
-
-#: ../ubuntutweak/modules/metacity.py:69 ../ubuntutweak/modules/metacity.py:74
-#: ../ubuntutweak/modules/metacity.py:79
+#: ../ubuntutweak/modules/metacity.py:37
+#: ../ubuntutweak/modules/metacity.py:160
+#: ../ubuntutweak/modules/metacity.py:173
+#: ../ubuntutweak/modules/metacity.py:186
 msgid "Menu"
 msgstr "Meny"
 
-#: ../ubuntutweak/modules/metacity.py:72
+#: ../ubuntutweak/modules/metacity.py:38
+msgid "Title"
+msgstr ""
+
+#: ../ubuntutweak/modules/metacity.py:39
+#: ../ubuntutweak/modules/metacity.py:156
+#: ../ubuntutweak/modules/metacity.py:169
+#: ../ubuntutweak/modules/metacity.py:182
+msgid "Maximize"
+msgstr "Maximera"
+
+#: ../ubuntutweak/modules/metacity.py:40
+#: ../ubuntutweak/modules/metacity.py:159
+#: ../ubuntutweak/modules/metacity.py:172
+#: ../ubuntutweak/modules/metacity.py:185
+msgid "Minimize"
+msgstr "Minimera"
+
+#: ../ubuntutweak/modules/metacity.py:41
+msgid "Close"
+msgstr ""
+
+#: ../ubuntutweak/modules/metacity.py:42
+msgid "Spacer"
+msgstr ""
+
+#: ../ubuntutweak/modules/metacity.py:108
+msgid "Window Manager Settings"
+msgstr ""
+
+#: ../ubuntutweak/modules/metacity.py:109
+msgid "Some options about Metacity Window Manager"
+msgstr ""
+
+#: ../ubuntutweak/modules/metacity.py:115
+msgid "Add Spacer"
+msgstr ""
+
+#: ../ubuntutweak/modules/metacity.py:116
+msgid "Remove Spacer"
+msgstr ""
+
+#: ../ubuntutweak/modules/metacity.py:121
+msgid "Arrange the buttons on the titlebar by dragging and dropping"
+msgstr ""
+
+#: ../ubuntutweak/modules/metacity.py:142
+msgid "Window Titlebar Button Layout"
+msgstr ""
+
+#: ../ubuntutweak/modules/metacity.py:147
+msgid "Window Titlebar Action"
+msgstr "Åtgärd för fönstrets titellist"
+
+#: ../ubuntutweak/modules/metacity.py:149
+msgid "Titlebar mouse wheel action"
+msgstr "Åtgärd för mushjul på titellist"
+
+#: ../ubuntutweak/modules/metacity.py:151
+#: ../ubuntutweak/modules/metacity.py:159
+#: ../ubuntutweak/modules/metacity.py:172
+#: ../ubuntutweak/modules/metacity.py:185
+msgid "Roll up"
+msgstr "Rulla upp"
+
+#: ../ubuntutweak/modules/metacity.py:154
+msgid "Titlebar double-click action"
+msgstr "Åtgärd för dubbelklick på titellist"
+
+#: ../ubuntutweak/modules/metacity.py:157
+#: ../ubuntutweak/modules/metacity.py:170
+#: ../ubuntutweak/modules/metacity.py:183
+msgid "Maximize Horizontally"
+msgstr ""
+
+#: ../ubuntutweak/modules/metacity.py:158
+#: ../ubuntutweak/modules/metacity.py:171
+#: ../ubuntutweak/modules/metacity.py:184
+msgid "Maximize Vertically"
+msgstr ""
+
+#: ../ubuntutweak/modules/metacity.py:160
+#: ../ubuntutweak/modules/metacity.py:173
+#: ../ubuntutweak/modules/metacity.py:186
+msgid "Lower"
+msgstr "Sänk"
+
+#: ../ubuntutweak/modules/metacity.py:167
 msgid "Titlebar middle-click action"
 msgstr "Åtgärd för mittenklick på titellist"
 
-#: ../ubuntutweak/modules/metacity.py:77
+#: ../ubuntutweak/modules/metacity.py:180
 msgid "Titlebar right-click action"
 msgstr "Åtgärd för högerklick på titellist"
 
-#: ../ubuntutweak/modules/metacity.py:86
+#: ../ubuntutweak/modules/metacity.py:196
+msgid "Window Decorate Effect"
+msgstr "Effekt för fönsterdekorationer"
+
+#: ../ubuntutweak/modules/metacity.py:198
+msgid "Use Metacity window theme"
+msgstr "Använd Metacity-fönstertema"
+
+#: ../ubuntutweak/modules/metacity.py:201
+msgid "Enable active window transparency"
+msgstr "Aktivera genomskinlighet för aktiva fönster"
+
+#: ../ubuntutweak/modules/metacity.py:204
+msgid "Active window transparency level"
+msgstr "Genomskinlighet för aktivt fönster"
+
+#: ../ubuntutweak/modules/metacity.py:208
+msgid "Enable inactive window transparency"
+msgstr "Aktivera genomskinlighet för inaktiva fönster"
+
+#: ../ubuntutweak/modules/metacity.py:211
+msgid "Inactive window shade transparency level"
+msgstr "Inaktivera genomskinlighet för fönsterskugga"
+
+#: ../ubuntutweak/modules/metacity.py:218
 msgid "Enable Metacity's Compositing feature"
 msgstr "Aktivera Metacitys compositingfunktion"
 
-#: ../ubuntutweak/modules/metacity.py:89
+#: ../ubuntutweak/modules/metacity.py:221
 msgid "Compositing Manager"
 msgstr "Compositinghanterare"
 
-#: ../ubuntutweak/modules/metacity.py:96
+#: ../ubuntutweak/modules/metacity.py:242
 msgid ""
 "To enable the compositing feature of metacity, you should manually disable "
 "Visual Effects in \"Appearance\"."
@@ -1360,47 +1284,46 @@ msgid "Show Input Method menu on the context menu"
 msgstr "Visa menyn för inmatingsmetod i sammanhangsmenyn"
 
 #: ../ubuntutweak/modules/gnomesettings.py:66
-#: ../ubuntutweak/modules/gnomesettings.py:69
 msgid "Show Unicode Method menu on the context menu"
 msgstr "Visa menyn för Unicode-metod i sammanhangsmenyn"
 
-#: ../ubuntutweak/modules/gnomesettings.py:72
+#: ../ubuntutweak/modules/gnomesettings.py:69
 msgid "Menus have icons"
 msgstr ""
 
-#: ../ubuntutweak/modules/gnomesettings.py:75
+#: ../ubuntutweak/modules/gnomesettings.py:72
 msgid "Buttons have icons"
 msgstr ""
 
-#: ../ubuntutweak/modules/gnomesettings.py:81
+#: ../ubuntutweak/modules/gnomesettings.py:78
 msgid "Screensaver"
 msgstr "Skärmsläckare"
 
-#: ../ubuntutweak/modules/gnomesettings.py:83
+#: ../ubuntutweak/modules/gnomesettings.py:80
 msgid "Enable user switching when screen is locked."
 msgstr "Aktivera användarbyte när skärmen är låst."
 
-#: ../ubuntutweak/modules/gnomesettings.py:88
+#: ../ubuntutweak/modules/gnomesettings.py:85
 msgid "Enable system-wide \"Recently Documents\" list"
 msgstr "Aktivera \"Senaste dokument\"-listan för hela systemet"
 
-#: ../ubuntutweak/modules/gnomesettings.py:91
+#: ../ubuntutweak/modules/gnomesettings.py:88
 msgid "History"
 msgstr "Historik"
 
-#: ../ubuntutweak/modules/gnomesettings.py:98
+#: ../ubuntutweak/modules/gnomesettings.py:95
 msgid "Click the button to change the menu logo"
 msgstr "Klicka på knappen för att byta menylogotyp"
 
-#: ../ubuntutweak/modules/gnomesettings.py:111
+#: ../ubuntutweak/modules/gnomesettings.py:108
 msgid "Choose a new logo"
 msgstr "Välj en ny logotyp"
 
-#: ../ubuntutweak/modules/gnomesettings.py:117
+#: ../ubuntutweak/modules/gnomesettings.py:114
 msgid "PNG image (*.png)"
 msgstr "PNG-bild (*.png)"
 
-#: ../ubuntutweak/modules/gnomesettings.py:136
+#: ../ubuntutweak/modules/gnomesettings.py:135
 msgid ""
 "The size isn't suitable for the panel.\n"
 "It should be 24x24."
@@ -1408,7 +1331,7 @@ msgstr ""
 "Storleken är inte lämplig för panelen.\n"
 "Bör vara 24x24."
 
-#: ../ubuntutweak/modules/gnomesettings.py:153
+#: ../ubuntutweak/modules/gnomesettings.py:151
 msgid "Do you want your changes to take effect immediately?"
 msgstr "Vill du att dina ändringar ska börja gälla omedelbart?"
 
@@ -1515,6 +1438,136 @@ msgstr "Användbara tillägg"
 #: ../ubuntutweak/modules/compiz.py:280
 msgid "Prerequisite Conditions"
 msgstr "Nödvändiga förutsättningar"
+
+#: ../ubuntutweak/modules/sourcecenter.py:91
+msgid ""
+"You can install the new applications by selecting them and choose \"Yes\".\n"
+"Or you can install them at Add/Remove by choose \"No\"."
+msgstr ""
+"Du kan installera nya program genom att markera dem och välja \"Ja\".\n"
+"Eller du kan installera dem på Lägg till / ta bort genom att välja \"Nej\"."
+
+#: ../ubuntutweak/modules/sourcecenter.py:92
+msgid "New applications are available to update"
+msgstr "Nya program finns tillgängliga för att uppdatera"
+
+#: ../ubuntutweak/modules/sourcecenter.py:264
+#, python-format
+msgid "Available %d New Application"
+msgid_plural "Available %d New Applications"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:286
+#, python-format
+msgid "Available %d Package Update"
+msgid_plural "Available %d Package Updates"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:326
+msgid "No Available Package Update"
+msgstr ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:463
+msgid "Third-Party Sources"
+msgstr "Tredjepartskällor"
+
+#: ../ubuntutweak/modules/sourcecenter.py:632
+#, python-format
+msgid ""
+"You can't enable this Source because<b>\"%(SOURCE)s\"</b> conflicts with "
+"it.\n"
+"To continue you need to disable <b>\"%(SOURCE)s\"</b>first."
+msgstr ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:654
+#, python-format
+msgid ""
+"To enable this Source, You need to enable <b>\"%s\"</b> at first.\n"
+"Do you wish to continue?"
+msgstr ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:656
+msgid "Dependency Notice"
+msgstr ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:680
+#, python-format
+msgid ""
+"You can't disable this Source because <b>\"%(SOURCE)s\"</b> depends on it.\n"
+"To continue you need to disable <b>\"%(SOURCE)s\"</b> first."
+msgstr ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:770
+msgid "New source has been enabled"
+msgstr "Ny källa har aktiverats"
+
+#: ../ubuntutweak/modules/sourcecenter.py:771
+#, python-format
+msgid ""
+"%s is enabled now, Please click the refresh button to update the application "
+"cache."
+msgstr ""
+"%s är nu aktiverad, Tryck på uppdateringsknappen för att uppdatera "
+"programmets cache."
+
+#: ../ubuntutweak/modules/sourcecenter.py:784
+msgid "Homepage"
+msgstr "Hemsida"
+
+#: ../ubuntutweak/modules/sourcecenter.py:784
+msgid "Source URL"
+msgstr "Käll-URL"
+
+#: ../ubuntutweak/modules/sourcecenter.py:784
+msgid "Description"
+msgstr "Beskrivning"
+
+#: ../ubuntutweak/modules/sourcecenter.py:797
+msgid "Description is here"
+msgstr "Beskrivningen är här"
+
+#: ../ubuntutweak/modules/sourcecenter.py:825
+msgid "Source Center"
+msgstr ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:826
+msgid ""
+"A source center to keep your applications always up-to-date.\n"
+"You can also get the application which isn't in the official repository.\n"
+"Data will be automatically synchronized with the remote side.\n"
+"You can click the \"Sync\" button to check the update manually."
+msgstr ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:832
+msgid "Visit online Source Center"
+msgstr ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:894
+msgid "New sources data available, would you like to update?"
+msgstr ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:969
+msgid ""
+"It is a possible security risk to use packages from Third-Party Sources.\n"
+"Please be careful and use only sources you trust."
+msgstr ""
+"Det är en möjlig säkerhetsrisk att använda paket från tredje parts källor.\n"
+"Var försiktig och endast använda källor du litar på."
+
+#: ../ubuntutweak/modules/sourcecenter.py:972
+#: ../ubuntutweak/modules/nautilus.py:139
+msgid "Warning"
+msgstr "Varning"
+
+#: ../ubuntutweak/modules/sourcecenter.py:973
+msgid "Never show this dialog"
+msgstr "Visa aldrig denna dialog"
+
+#: ../ubuntutweak/modules/sourcecenter.py:999
+msgid "Some error happened while downloading the file"
+msgstr ""
 
 #: ../ubuntutweak/modules/scripts.py:50
 msgid "Create Launcher ..."
@@ -1642,55 +1695,55 @@ msgstr ""
 "Detta kommer att ta bort alla inaktiverade skript.\n"
 "Vill du fortsätta?"
 
-#: ../ubuntutweak/modules/templates.py:65
+#: ../ubuntutweak/modules/templates.py:58
 msgid "HTML document"
 msgstr "HTML-dokument"
 
-#: ../ubuntutweak/modules/templates.py:66
+#: ../ubuntutweak/modules/templates.py:59
 msgid "ODB Database"
 msgstr "ODB-databas"
 
-#: ../ubuntutweak/modules/templates.py:67
+#: ../ubuntutweak/modules/templates.py:60
 msgid "ODS Spreadsheet"
 msgstr "ODS-kalkylark"
 
-#: ../ubuntutweak/modules/templates.py:68
+#: ../ubuntutweak/modules/templates.py:61
 msgid "ODT Document"
 msgstr "ODT-dokument"
 
-#: ../ubuntutweak/modules/templates.py:69
+#: ../ubuntutweak/modules/templates.py:62
 msgid "Plain text document"
 msgstr "Vanligt text-dokument"
 
-#: ../ubuntutweak/modules/templates.py:70
+#: ../ubuntutweak/modules/templates.py:63
 msgid "ODP Presentation"
 msgstr "ODP-presentation"
 
-#: ../ubuntutweak/modules/templates.py:71
+#: ../ubuntutweak/modules/templates.py:64
 msgid "Python script"
 msgstr "Pythonskript"
 
-#: ../ubuntutweak/modules/templates.py:72
+#: ../ubuntutweak/modules/templates.py:65
 msgid "Pygtk Example"
 msgstr "Pygtk-exempel"
 
-#: ../ubuntutweak/modules/templates.py:73
+#: ../ubuntutweak/modules/templates.py:66
 msgid "Shell script"
 msgstr "Skalskript"
 
-#: ../ubuntutweak/modules/templates.py:100
+#: ../ubuntutweak/modules/templates.py:93
 msgid "Enabled Templates"
 msgstr "Aktivera mallar"
 
-#: ../ubuntutweak/modules/templates.py:107
+#: ../ubuntutweak/modules/templates.py:100
 msgid "Disabled Templates"
 msgstr "Inaktivera mallar"
 
-#: ../ubuntutweak/modules/templates.py:114
+#: ../ubuntutweak/modules/templates.py:107
 msgid "Manage Templates"
 msgstr "Hantera mallar"
 
-#: ../ubuntutweak/modules/templates.py:115
+#: ../ubuntutweak/modules/templates.py:108
 msgid ""
 "Here you can freely manage your document templates.\n"
 "You can add files as templates by dragging them onto this window.\n"
@@ -1702,7 +1755,7 @@ msgstr ""
 "Du kan också skapa nya dokument baserade på dessa mallar från Nautilus "
 "högerklick-meny."
 
-#: ../ubuntutweak/modules/templates.py:126
+#: ../ubuntutweak/modules/templates.py:119
 #, python-format
 msgid ""
 "Templates path is wrong! The current path is point to \"%s\".\n"
@@ -1711,23 +1764,23 @@ msgstr ""
 "Genvägen till Mallar är fel! Nuvarande genväg är satt till \"%s\".\n"
 "Vänligen ändra till en mapp under din hemkatalog."
 
-#: ../ubuntutweak/modules/templates.py:133
+#: ../ubuntutweak/modules/templates.py:128
 msgid "Go And Set"
 msgstr "Gå dit och ställ in"
 
-#: ../ubuntutweak/modules/templates.py:138
+#: ../ubuntutweak/modules/templates.py:133
 msgid "Restart This Module"
 msgstr "Starta om denna modul"
 
-#: ../ubuntutweak/modules/templates.py:168
+#: ../ubuntutweak/modules/templates.py:163
 msgid "Rebuild System Templates"
 msgstr "Bygg om systemmallar"
 
-#: ../ubuntutweak/modules/templates.py:188
+#: ../ubuntutweak/modules/templates.py:183
 msgid "Templates path is still wrong, Please reset it!"
 msgstr "Genvägen till Mallar är fortfarande fel. Vänligen ändra!"
 
-#: ../ubuntutweak/modules/templates.py:200
+#: ../ubuntutweak/modules/templates.py:195
 msgid ""
 "This will delete all disabled templates.\n"
 "Do you wish to continue?"
@@ -1788,32 +1841,32 @@ msgstr ""
 msgid "\"%s\" is not available."
 msgstr ""
 
-#: ../ubuntutweak/modules/cleaner.py:55
+#: ../ubuntutweak/modules/cleaner.py:58
 msgid "Cleaning Package Config"
 msgstr ""
 
-#: ../ubuntutweak/modules/cleaner.py:62 ../ubuntutweak/modules/cleaner.py:89
+#: ../ubuntutweak/modules/cleaner.py:65 ../ubuntutweak/modules/cleaner.py:92
 #, python-format
 msgid "Cleaning...%s"
 msgstr "Rensar...%s"
 
-#: ../ubuntutweak/modules/cleaner.py:82
+#: ../ubuntutweak/modules/cleaner.py:85
 msgid "Cleaning Package Cache"
 msgstr "Städar paket cachen"
 
-#: ../ubuntutweak/modules/cleaner.py:145
+#: ../ubuntutweak/modules/cleaner.py:148
 msgid "Package"
 msgstr "Paket"
 
-#: ../ubuntutweak/modules/cleaner.py:170 ../ubuntutweak/modules/cleaner.py:198
+#: ../ubuntutweak/modules/cleaner.py:173 ../ubuntutweak/modules/cleaner.py:201
 msgid "Packages"
 msgstr "Paket"
 
-#: ../ubuntutweak/modules/cleaner.py:227
+#: ../ubuntutweak/modules/cleaner.py:230
 msgid "Package Cache"
 msgstr "Paketcache"
 
-#: ../ubuntutweak/modules/cleaner.py:241
+#: ../ubuntutweak/modules/cleaner.py:244
 #, python-format
 msgid ""
 "<b>%s</b>\n"
@@ -1822,40 +1875,40 @@ msgstr ""
 "<b>%s</b>\n"
 "Tar %s av disk utrymmet"
 
-#: ../ubuntutweak/modules/cleaner.py:267
+#: ../ubuntutweak/modules/cleaner.py:270
 msgid "Package Config"
 msgstr "Paketkonfigurationer"
 
-#: ../ubuntutweak/modules/cleaner.py:305
+#: ../ubuntutweak/modules/cleaner.py:307
 #, python-format
 msgid "%d package selected to remove"
 msgid_plural "%d packages selected to remove"
 msgstr[0] "%d paket är markerade för borttagning"
 msgstr[1] "%d paket är markerade för borttagning"
 
-#: ../ubuntutweak/modules/cleaner.py:309
+#: ../ubuntutweak/modules/cleaner.py:311
 #, python-format
 msgid "%s of space will be freed"
 msgstr "%s av utrymmet kommer att frigöras"
 
-#: ../ubuntutweak/modules/cleaner.py:394
+#: ../ubuntutweak/modules/cleaner.py:396
 msgid "Canceled by user!"
 msgstr "Avbryten av användaren!"
 
-#: ../ubuntutweak/modules/cleaner.py:397
+#: ../ubuntutweak/modules/cleaner.py:399
 #: ../ubuntutweak/modules/nautilus.py:145
 msgid "Clean up Successful!"
 msgstr "Rensning slutförd!"
 
-#: ../ubuntutweak/modules/cleaner.py:400
+#: ../ubuntutweak/modules/cleaner.py:402
 msgid "Clean up Failed!"
 msgstr "Rensning slutfördes ej!"
 
-#: ../ubuntutweak/modules/cleaner.py:413
+#: ../ubuntutweak/modules/cleaner.py:415
 msgid "Package Cleaner"
 msgstr "Paketrensare"
 
-#: ../ubuntutweak/modules/cleaner.py:414
+#: ../ubuntutweak/modules/cleaner.py:416
 msgid ""
 "Free up disk space by removing unneeded packages and cleaning the package "
 "download cache."
@@ -1864,23 +1917,23 @@ msgstr ""
 "pakethanterarens temporära filer."
 
 #. create the button
-#: ../ubuntutweak/modules/cleaner.py:445
+#: ../ubuntutweak/modules/cleaner.py:447
 msgid "Clean Package"
 msgstr "Rensa paket"
 
-#: ../ubuntutweak/modules/cleaner.py:450
+#: ../ubuntutweak/modules/cleaner.py:452
 msgid "Clean Cache"
 msgstr "Rensa cachen"
 
-#: ../ubuntutweak/modules/cleaner.py:455
+#: ../ubuntutweak/modules/cleaner.py:457
 msgid "Clean Config"
 msgstr "Rensa konfigurationer"
 
-#: ../ubuntutweak/modules/cleaner.py:460
+#: ../ubuntutweak/modules/cleaner.py:462
 msgid "Clean Kernel"
 msgstr "Städar kärnan"
 
-#: ../ubuntutweak/modules/cleaner.py:480
+#: ../ubuntutweak/modules/cleaner.py:482
 msgid "_Cleanup"
 msgstr ""
 
@@ -1939,10 +1992,6 @@ msgstr "Redigera startprogram"
 #: ../ubuntutweak/modules/autostart.py:68
 msgid "New Startup Program"
 msgstr "Nytt startprogram"
-
-#: ../ubuntutweak/modules/autostart.py:70
-msgid "_Browse..."
-msgstr "_Bläddra..."
 
 #: ../ubuntutweak/modules/autostart.py:99
 msgid "Choose a Program"
@@ -2060,78 +2109,20 @@ msgstr "Städa upp miniatyrbilderna cache (%s diskutrymme kommer bli fritt)"
 msgid "The thumbnails cache will be cleaned, Do you wish to continue?"
 msgstr "Miniatyrbilderna cache kommer att rengöras, Vill du fortsätta?"
 
-#: ../ubuntutweak/ScriptWorker.py:56
-#, python-format
-msgid "The file \"%s\" already exists!"
-msgstr "Filen \"%s\" finns redan!"
+#~ msgid "Ubuntu Chinese Repository"
+#~ msgstr "Ubuntu Kinesiskt förråd"
 
-#: ../ubuntutweak/ScriptWorker.py:61
-#, python-format
-msgid "The folder \"%s\" already exists!"
-msgstr "Mappen \"%s\" finns redan!"
-
-#: ../ubuntutweak/ScriptWorker.py:68 ../ubuntutweak/ScriptWorker.py:75
-#, python-format
-msgid "The target \"%s\" already exists!"
-msgstr "Målet \"%s\" finns redan!"
-
-#: ../ubuntutweak/ScriptWorker.py:125 ../ubuntutweak/ScriptWorker.py:138
-msgid "Enter your password to perform the administrative tasks"
-msgstr "Ange ditt lösenord för att genomföra administrativa åtgärder"
-
-#: ../ubuntutweak/ScriptWorker.py:132
-msgid "Coudn't find any text editor in your system!"
-msgstr "Kunde inte hitta någon textredigerare på datorn!"
-
-#: ../ubuntutweak/ScriptWorker.py:159
-msgid "Select a folder"
-msgstr "Välj en mapp"
-
-#: ../ubuntutweak/ScriptWorker.py:189
-msgid "Please select a target (files or folders)."
-msgstr "Välj ett mål (filer eller mappar)."
-
-#: ../ubuntutweak/network/utdata.py:39 ../ubuntutweak/network/utdata.py:72
-msgid "Never"
-msgstr ""
-
-#: ../ubuntutweak/network/utdata.py:63
-#, python-format
-msgid "%d week ago"
-msgid_plural "%d weeks ago"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../ubuntutweak/network/utdata.py:65
-#, python-format
-msgid "%d day ago"
-msgid_plural "%d days ago"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../ubuntutweak/network/utdata.py:67
-#, python-format
-msgid "%d hour ago"
-msgid_plural "%d hours ago"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../ubuntutweak/network/utdata.py:69
-#, python-format
-msgid "%d minute ago"
-msgid_plural "%d minutes ago"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../ubuntutweak/network/utdata.py:70
-msgid "Just Now"
-msgstr ""
+#~ msgid "Banshee (Unstable Version)"
+#~ msgstr "Banshee (ostabil version)"
 
 #~ msgid "Update Sources"
 #~ msgstr "Uppdatera källor"
 
 #~ msgid "Session Programs"
 #~ msgstr "Sessionsprogram"
+
+#~ msgid "Banshee (Stable Version)"
+#~ msgstr "Banshee (stabil version)"
 
 #~ msgid "Desktop Icon settings"
 #~ msgstr "Inställningar för skrivbordsikoner"
@@ -2148,6 +2139,27 @@ msgstr ""
 
 #~ msgid "Here you can manage which application will open which filetypes."
 #~ msgstr "Här kan du hantera vilka filtyper som ska öppnas av vilka program."
+
+#~ msgid "Avant Window Navigator (Unstable Version)"
+#~ msgstr "Avant Window Navigator (ostabil version)"
+
+#~ msgid "Gnome Global Menu"
+#~ msgstr "Gnome Global Menu"
+
+#~ msgid "Ubuntu Tweak (Unstable Version)"
+#~ msgstr "Ubuntu Tweak (ostabil version)"
+
+#, python-format
+#~ msgid "The target \"%s\" already exists!"
+#~ msgstr "Målet \"%s\" finns redan!"
+
+#, python-format
+#~ msgid "The folder \"%s\" already exists!"
+#~ msgstr "Mappen \"%s\" finns redan!"
+
+#, python-format
+#~ msgid "The file \"%s\" already exists!"
+#~ msgstr "Filen \"%s\" finns redan!"
 
 #~ msgid ""
 #~ "After every release of Ubuntu there comes a feature freeze.\n"
@@ -2175,6 +2187,9 @@ msgstr ""
 #~ "\"/etc/apt/sources.list\" är korrekt. Läs sedan om programinformationen med "
 #~ "\"sudo apt-get update\" och \"sudo apt-get install -f\"."
 
+#~ msgid "GetDeb.net (Mirror)"
+#~ msgstr "GetDeb.net (Kopia)"
+
 #~ msgid ""
 #~ "Freely edit your software sources to fit your needs.\n"
 #~ "Click \"Update Sources\" if you want to change the sources.\n"
@@ -2186,6 +2201,14 @@ msgstr ""
 
 #~ msgid "Available Package Updates"
 #~ msgstr "Tillgängliga Paket Uppdateringar"
+
+#, python-format
+#~ msgid ""
+#~ "To enable this Source, You need to enable \"%s\" at first.\n"
+#~ "Do you wish to continue?"
+#~ msgstr ""
+#~ "För att aktivera denna Källa, Du måste aktivera \"%s\" först.\n"
+#~ "Vill du fortsätta?"
 
 #~ msgid "Available New Applications"
 #~ msgstr "Nya tillgängliga program"

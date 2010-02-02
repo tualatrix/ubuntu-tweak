@@ -2,19 +2,35 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-10 15:00+0800\n"
-"PO-Revision-Date: 2010-01-09 08:02+0000\n"
+"POT-Creation-Date: 2010-02-02 10:25+0800\n"
+"PO-Revision-Date: 2010-01-10 11:01+0000\n"
 "Last-Translator: Peter Chen <petercpg@gmail.com>\n"
 "Language-Team: TualatriX <tualatrix@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2010-01-10 08:16+0000\n"
+"X-Launchpad-Export-Date: 2010-02-02 09:48+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: TAIWAN\n"
 "X-Poedit-Language: Chinese\n"
 "X-Poedit-SourceCharset: utf-8\n"
+
+#: ../data/script-worker:125 ../data/script-worker:138
+msgid "Enter your password to perform the administrative tasks"
+msgstr "輸入你的密碼以執行管理工作"
+
+#: ../data/script-worker:132
+msgid "Coudn't find any text editor in your system!"
+msgstr "在你的系统中未找到任何文本编辑器！"
+
+#: ../data/script-worker:160
+msgid "Select a folder"
+msgstr "選擇資料夾"
+
+#: ../data/script-worker:190
+msgid "Please select a target (files or folders)."
+msgstr "請選擇一個目標（檔案或資料夾）。"
 
 #: ../data/ubuntu-tweak.desktop.in.h:1
 msgid "Tweak ubuntu to what you like"
@@ -25,99 +41,197 @@ msgid "System policy prevents the Ubuntu Tweak from Tweaking"
 msgstr ""
 
 #: ../data/com.ubuntu-tweak.daemon.policy.in.h:2
-msgid "Tweak"
+msgid "Ubuntu Tweak Daemon"
 msgstr ""
 
-#: ../ubuntutweak/mainwindow.py:67
+#: ../data/ui/preferences.ui.h:1
+msgid "<b>Features</b>"
+msgstr "<b>功能</b>"
+
+#: ../data/ui/preferences.ui.h:2
+msgid "<b>User Interface</b>"
+msgstr "<b>使用者介面</b>"
+
+#: ../data/ui/preferences.ui.h:3
+msgid "Default Launch Function"
+msgstr "預設的啟動功能"
+
+#: ../data/ui/preferences.ui.h:4
+msgid "Default Window Height"
+msgstr "預設視窗高度"
+
+#: ../data/ui/preferences.ui.h:5
+msgid "Default Window Width"
+msgstr "預設視窗寬度"
+
+#: ../data/ui/preferences.ui.h:6
+msgid "Left Menubar Width"
+msgstr "左邊選單的寬度"
+
+#: ../data/ui/preferences.ui.h:7
+msgid "Ubuntu Tweak Preferences"
+msgstr "Ubuntu Tweak 偏好設定"
+
+#: ../data/ui/traceback.ui.h:1
+msgid "<big><b>Oops... a fatal error occured</b></big>"
+msgstr "<big><b>喔喔... 發生一個嚴重的錯誤</b></big>"
+
+#: ../data/ui/traceback.ui.h:2
+msgid "<big><b>Oops... an error occured</b></big>"
+msgstr "<big><b>喔喔... 發生一個錯誤</b></big>"
+
+#: ../data/ui/traceback.ui.h:3
+msgid "Error Message"
+msgstr "錯誤訊息"
+
+#: ../data/ui/traceback.ui.h:4
+msgid ""
+"If you'd like to help us fix the problem, \n"
+"Please choose <i>Report</i> to file a new bug report. Make sure to include "
+"the error message below:"
+msgstr ""
+"如果你想要幫忙修正這個問題， \n"
+"請選擇 <i>報告</i> 來傳送錯誤報告。請確定包含以下的錯誤訊息："
+
+#: ../data/ui/traceback.ui.h:6
+msgid ""
+"Ubuntu Tweak need to turn off.\n"
+"If you'd like to help us fix the problem, \n"
+"Please choose <i>Report</i> to file a new bug report. Make sure to include "
+"the error message below:"
+msgstr ""
+"Ubuntu Tweak 必須關閉。\n"
+"如果你想要幫忙修正這個問題， \n"
+"請選擇 <i>報告</i> 來傳送錯誤報告。請確定包含以下的錯誤訊息："
+
+#: ../data/ui/traceback.ui.h:9
+msgid "_Report"
+msgstr "報告(_R)"
+
+#. checkbutton
+#: ../data/ui/updatemanager.ui.h:1 ../ubuntutweak/modules/sourcecenter.py:101
+#: ../ubuntutweak/modules/cleaner.py:468
+msgid "Select All"
+msgstr "全選/全不選"
+
+#: ../data/ui/updatemanager.ui.h:2
+msgid "_Install Update"
+msgstr ""
+
+#: ../data/ui/type_edit.ui.h:1
+msgid "Add Application"
+msgstr "新增應用程式"
+
+#: ../data/ui/type_edit.ui.h:2
+msgid "Edit Type"
+msgstr "編輯類型"
+
+#: ../data/ui/type_edit.ui.h:3
+msgid "Select an application to view its description."
+msgstr "選取一程式來檢視它的描述。"
+
+#: ../data/ui/type_edit.ui.h:4 ../ubuntutweak/modules/autostart.py:70
+msgid "_Browse..."
+msgstr "瀏覽(_B)..."
+
+#: ../data/ui/type_edit.ui.h:5
+msgid "_Use a custom command"
+msgstr "使用自訂指令(_U)"
+
+#: ../ubuntutweak/mainwindow.py:66
 msgid "Welcome to"
 msgstr "歡迎來到"
 
-#: ../ubuntutweak/mainwindow.py:73
+#: ../ubuntutweak/mainwindow.py:72
 msgid "Tweak otherwise hidden settings."
 msgstr "調校其他隱藏設定。"
 
-#: ../ubuntutweak/mainwindow.py:74
+#: ../ubuntutweak/mainwindow.py:73
 msgid "Clean up unneeded packages to free diskspace."
 msgstr "清除不需要的套件以釋放磁碟空間"
 
-#: ../ubuntutweak/mainwindow.py:75
+#: ../ubuntutweak/mainwindow.py:74
 msgid "Easily install up-to-date versions of many applications."
 msgstr "簡單地安裝許多應用程式的最新版本。"
 
-#: ../ubuntutweak/mainwindow.py:76
+#: ../ubuntutweak/mainwindow.py:75
 msgid ""
 "Configure file templates and shortcut scripts for easy access to common "
 "tasks."
 msgstr "設定檔案範本和指令稿讓常進行的工作更加簡便。"
 
-#: ../ubuntutweak/mainwindow.py:77
+#: ../ubuntutweak/mainwindow.py:76
 msgid "And many more useful features!"
 msgstr "其他更多有用的功能！"
 
-#: ../ubuntutweak/mainwindow.py:90
+#: ../ubuntutweak/mainwindow.py:89
 msgid "Please wait a moment..."
 msgstr "請稍候"
 
-#: ../ubuntutweak/mainwindow.py:110
+#: ../ubuntutweak/mainwindow.py:109
 msgid "This module is error while loading."
 msgstr "模組載入時發生錯誤"
 
-#: ../ubuntutweak/mainwindow.py:131
+#: ../ubuntutweak/mainwindow.py:130
 msgid "Welcome"
 msgstr "歡迎使用"
 
-#: ../ubuntutweak/mainwindow.py:132
+#: ../ubuntutweak/mainwindow.py:131
 msgid "Applications"
 msgstr "應用程式"
 
-#: ../ubuntutweak/mainwindow.py:133
+#: ../ubuntutweak/mainwindow.py:132
 msgid "Startup"
 msgstr "啟動控制"
 
-#: ../ubuntutweak/mainwindow.py:134 ../ubuntutweak/modules/userdir.py:45
+#: ../ubuntutweak/mainwindow.py:133 ../ubuntutweak/modules/userdir.py:45
 msgid "Desktop"
 msgstr "桌面設定"
 
-#: ../ubuntutweak/mainwindow.py:135
+#: ../ubuntutweak/mainwindow.py:134
 msgid "Personal"
 msgstr "個人設定"
 
-#: ../ubuntutweak/mainwindow.py:136
+#: ../ubuntutweak/mainwindow.py:135
 msgid "System"
 msgstr "系統設定"
 
-#: ../ubuntutweak/mainwindow.py:144
+#: ../ubuntutweak/mainwindow.py:143
 #, python-format
 msgid "Download the Ubuntu Tweak %s"
 msgstr ""
 
-#: ../ubuntutweak/mainwindow.py:204
+#: ../ubuntutweak/mainwindow.py:203
 msgid "_Donate"
 msgstr "贊助(_D)"
 
-#: ../ubuntutweak/mainwindow.py:420
+#: ../ubuntutweak/mainwindow.py:422
 msgid "Ubuntu Tweak Website"
 msgstr "Ubuntu Tweak 網站"
 
-#: ../ubuntutweak/mainwindow.py:422
+#: ../ubuntutweak/mainwindow.py:424
 msgid ""
 "Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
 "system and desktop settings."
 msgstr "Ubuntu Tweak 是一個能讓你輕鬆設定系統與桌面設定的工具。"
 
-#: ../ubuntutweak/mainwindow.py:424
+#: ../ubuntutweak/mainwindow.py:426
 msgid "Contributors of 2007"
 msgstr "2007年的貢獻者"
 
-#: ../ubuntutweak/mainwindow.py:426
+#: ../ubuntutweak/mainwindow.py:428
 msgid "Contributors of 2008"
 msgstr "2008年的貢獻者"
 
-#: ../ubuntutweak/mainwindow.py:428
+#: ../ubuntutweak/mainwindow.py:430
 msgid "Contributors of 2009"
 msgstr "2009年的貢獻者"
 
-#: ../ubuntutweak/mainwindow.py:437
+#: ../ubuntutweak/mainwindow.py:433
+msgid "Contributors of 2010"
+msgstr ""
+
+#: ../ubuntutweak/mainwindow.py:441
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
@@ -131,7 +245,7 @@ msgstr ""
 "  arisaka https://launchpad.net/~chia0418\n"
 "  蔡查理 https://launchpad.net/~charlie-tsai"
 
-#: ../ubuntutweak/mainwindow.py:451
+#: ../ubuntutweak/mainwindow.py:455
 #, python-format
 msgid ""
 "A newer version: %s is available online.\n"
@@ -141,49 +255,49 @@ msgid ""
 "Preference."
 msgstr ""
 
-#: ../ubuntutweak/mainwindow.py:452
+#: ../ubuntutweak/mainwindow.py:456
 msgid "Software Update"
 msgstr "軟體更新"
 
-#: ../ubuntutweak/widgets/widgets.py:85 ../ubuntutweak/widgets/widgets.py:110
+#: ../ubuntutweak/widgets/widgets.py:83 ../ubuntutweak/widgets/widgets.py:108
 #: ../ubuntutweak/modules/icons.py:105
 msgid "Unset"
 msgstr "未設定"
 
-#: ../ubuntutweak/widgets/widgets.py:275
+#: ../ubuntutweak/widgets/widgets.py:221
 msgid "Please press the new key combination"
 msgstr "請按下新的组合键"
 
-#: ../ubuntutweak/widgets/widgets.py:324
+#: ../ubuntutweak/widgets/widgets.py:270
 msgid "Disabled"
 msgstr "禁用"
 
-#: ../ubuntutweak/widgets/treeviews.py:69
+#: ../ubuntutweak/widgets/treeviews.py:71
 msgid "Create folder"
 msgstr "建立資料夾"
 
-#: ../ubuntutweak/widgets/treeviews.py:73 ../ubuntutweak/modules/icons.py:33
+#: ../ubuntutweak/widgets/treeviews.py:75 ../ubuntutweak/modules/icons.py:33
 #: ../ubuntutweak/modules/icons.py:42 ../ubuntutweak/modules/icons.py:51
 msgid "Rename"
 msgstr "重新命名"
 
-#: ../ubuntutweak/widgets/treeviews.py:77
+#: ../ubuntutweak/widgets/treeviews.py:79
 msgid "Delete"
 msgstr "刪除"
 
-#: ../ubuntutweak/widgets/treeviews.py:99
+#: ../ubuntutweak/widgets/treeviews.py:101
 msgid "Input the dir name"
 msgstr "輸入資料夾名稱"
 
-#: ../ubuntutweak/widgets/treeviews.py:124
+#: ../ubuntutweak/widgets/treeviews.py:126
 msgid "Can't rename the root folder"
 msgstr "不能重命名根目錄"
 
-#: ../ubuntutweak/widgets/treeviews.py:141
+#: ../ubuntutweak/widgets/treeviews.py:143
 msgid "Can't delete the root folder"
 msgstr "不能刪除根目錄"
 
-#: ../ubuntutweak/widgets/treeviews.py:156
+#: ../ubuntutweak/widgets/treeviews.py:158
 msgid ""
 "Can't rename!\n"
 "\n"
@@ -209,42 +323,80 @@ msgstr "你需要重新啟動電腦"
 msgid "Service hasn't initialized yet"
 msgstr "服務尚未初始化"
 
-#: ../ubuntutweak/preferences.py:76 ../ubuntutweak/modules/filetype.py:178
+#: ../ubuntutweak/preferences.py:75 ../ubuntutweak/modules/filetype.py:178
 #: ../ubuntutweak/modules/filetype.py:213
-#: ../ubuntutweak/modules/metacity.py:64 ../ubuntutweak/modules/metacity.py:69
-#: ../ubuntutweak/modules/metacity.py:74 ../ubuntutweak/modules/metacity.py:79
+#: ../ubuntutweak/modules/metacity.py:151
+#: ../ubuntutweak/modules/metacity.py:156
+#: ../ubuntutweak/modules/metacity.py:169
+#: ../ubuntutweak/modules/metacity.py:182
 #: ../ubuntutweak/modules/shortcuts.py:99
 #: ../ubuntutweak/modules/shortcuts.py:209
 msgid "None"
 msgstr "沒有"
 
-#: ../ubuntutweak/preferences.py:106
+#: ../ubuntutweak/preferences.py:105
 msgid "Enable Check Update"
 msgstr "啟用檢查更新"
 
-#: ../ubuntutweak/preferences.py:112
+#: ../ubuntutweak/preferences.py:111
 msgid "Use Separated Sources"
 msgstr ""
 
-#: ../ubuntutweak/preferences.py:118
-msgid "Use Remote Data When Available"
+#: ../ubuntutweak/preferences.py:117
+msgid "Enable the synchronous notification"
 msgstr ""
 
-#: ../ubuntutweak/network/downloadmanager.py:98
+#: ../ubuntutweak/network/downloadmanager.py:97
 msgid "Connecting to server"
 msgstr ""
 
-#: ../ubuntutweak/network/downloadmanager.py:143
+#: ../ubuntutweak/network/downloadmanager.py:142
 #, python-format
 msgid "Downloading...%d"
 msgstr "正在下載...%d"
 
-#: ../ubuntutweak/network/downloadmanager.py:147
+#: ../ubuntutweak/network/downloadmanager.py:146
 msgid "Downloaded!"
 msgstr ""
 
-#: ../ubuntutweak/network/downloadmanager.py:153
+#: ../ubuntutweak/network/downloadmanager.py:152
 msgid "Error happened!"
+msgstr ""
+
+#: ../ubuntutweak/network/utdata.py:48 ../ubuntutweak/network/utdata.py:81
+msgid "Never"
+msgstr ""
+
+#: ../ubuntutweak/network/utdata.py:72
+#, python-format
+msgid "%d week ago"
+msgid_plural "%d weeks ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../ubuntutweak/network/utdata.py:74
+#, python-format
+msgid "%d day ago"
+msgid_plural "%d days ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../ubuntutweak/network/utdata.py:76
+#, python-format
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../ubuntutweak/network/utdata.py:78
+#, python-format
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../ubuntutweak/network/utdata.py:79
+msgid "Just Now"
 msgstr ""
 
 #: ../ubuntutweak/common/appdata.py:24
@@ -352,157 +504,19 @@ msgid ""
 "to go to Ubuntu Backports."
 msgstr ""
 
-#: ../ubuntutweak/common/sourcedata.py:6
-msgid "Avant Window Navigator (Unstable Version)"
-msgstr "Avant Window Navigator (不穩定版本)"
-
-#: ../ubuntutweak/common/sourcedata.py:8
-msgid "aMule (Stable Version)"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:11
-msgid "Breathe Icon Theme"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:15
-msgid "Ubuntu Chinese Repository"
-msgstr "Ubuntu 中文套件庫"
-
-#: ../ubuntutweak/common/sourcedata.py:18
-msgid "IBus (Old Version)"
-msgstr "IBus (舊版本)"
-
-#: ../ubuntutweak/common/sourcedata.py:19
-msgid "IBus 1.2 for intrepid"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:20
-msgid "IBus 1.2 for jaunty"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:21
-msgid "IBus 1.2 for karmic"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:27
-msgid "Ubuntu Mozilla Security Team"
-msgstr "Ubuntu Mozilla 安全團隊"
-
-#: ../ubuntutweak/common/sourcedata.py:29
-msgid "Christine Media Player"
-msgstr "Christine 媒體播放器"
-
-#: ../ubuntutweak/common/sourcedata.py:35
-msgid "Experimental Gnome Games"
-msgstr "實驗中的 Gnome 遊戲"
-
-#: ../ubuntutweak/common/sourcedata.py:37
-msgid "Chinese Chess"
-msgstr "象棋"
-
-#: ../ubuntutweak/common/sourcedata.py:38
-msgid "Gnome Global Menu"
-msgstr "Gnome Global Menu"
-
-#: ../ubuntutweak/common/sourcedata.py:40
-msgid "GetDeb.net (Mirror)"
-msgstr "GetDeb.net (镜象服务器)"
-
-#: ../ubuntutweak/common/sourcedata.py:42
-msgid "Gwibber (Daily Version)"
-msgstr "Gwibber（每日版本）"
-
-#: ../ubuntutweak/common/sourcedata.py:43
-msgid "GIMP (Testing Version)"
-msgstr "GIMP (測試版)"
-
-#: ../ubuntutweak/common/sourcedata.py:44
-msgid "Banshee (Stable Version)"
-msgstr "Banshee (正式版)"
-
-#: ../ubuntutweak/common/sourcedata.py:45
-msgid "Banshee (Unstable Version)"
-msgstr "Banshee (測試版)"
-
-#: ../ubuntutweak/common/sourcedata.py:46
-msgid "Google Repository"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:47
-msgid "Google Testing Repository"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:52
-msgid "Ubuntu Tweak (Unstable Version)"
-msgstr "Ubuntu Tweak (不穩定版本)"
-
-#: ../ubuntutweak/common/sourcedata.py:57
-msgid "Spicebird (Testing Version)"
-msgstr "Spicebird (測試版)"
-
-#: ../ubuntutweak/common/sourcedata.py:61
-msgid "SMPlayer (Unstable Version)"
-msgstr "SMPlayer (不穩定版)"
-
-#: ../ubuntutweak/common/sourcedata.py:71
-msgid "VirtualBox (Open Source Edition)"
-msgstr "VirtualBox (開放原始碼版本)"
-
-#: ../ubuntutweak/common/sourcedata.py:72
-msgid "VLC media player"
-msgstr "VLC 媒體播放器"
-
-#: ../ubuntutweak/common/sourcedata.py:78
-msgid "Moblin Desktop for Ubuntu 9.04 Jaunty"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:79
-msgid "Moblin Desktop for Ubuntu 9.10 Karmic"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:89
-msgid "Bisigi Theme Project"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:90
-msgid "PiTiVi video editor"
-msgstr "PiTiVi影片編輯器"
-
-#: ../ubuntutweak/common/sourcedata.py:91
-msgid "Kubuntu Backports"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:93
-msgid "Tomboy (Stable Version)"
-msgstr "Tomboy (穩定版)"
-
-#: ../ubuntutweak/common/sourcedata.py:94
-msgid "Tomboy (Unstable Version)"
-msgstr "Tomboy (不穩定版)"
-
-#: ../ubuntutweak/common/sourcedata.py:95
-msgid "Inkscape (Nightly Version)"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:97
-msgid "OSD Lyrics"
-msgstr ""
-
-#: ../ubuntutweak/common/sourcedata.py:98
-msgid "OpenShot Video Editor"
-msgstr "OpenShot影片編輯器"
-
 #: ../ubuntutweak/common/package.py:172
-#: ../ubuntutweak/modules/sourcecenter.py:138
-#: ../ubuntutweak/modules/appcenter.py:543
-#: ../ubuntutweak/modules/compiz.py:411 ../ubuntutweak/modules/nautilus.py:167
+#: ../ubuntutweak/modules/appcenter.py:536
+#: ../ubuntutweak/modules/compiz.py:411
+#: ../ubuntutweak/modules/sourcecenter.py:120
+#: ../ubuntutweak/modules/nautilus.py:167
 msgid "Update Successful!"
 msgstr "更新成功！"
 
 #: ../ubuntutweak/common/package.py:174
-#: ../ubuntutweak/modules/sourcecenter.py:140
-#: ../ubuntutweak/modules/appcenter.py:545
-#: ../ubuntutweak/modules/compiz.py:413 ../ubuntutweak/modules/nautilus.py:169
+#: ../ubuntutweak/modules/appcenter.py:538
+#: ../ubuntutweak/modules/compiz.py:413
+#: ../ubuntutweak/modules/sourcecenter.py:122
+#: ../ubuntutweak/modules/nautilus.py:169
 msgid "Update Failed!"
 msgstr "更新失敗！"
 
@@ -510,23 +524,23 @@ msgstr "更新失敗！"
 msgid "(Not available)"
 msgstr "（不可用）"
 
-#: ../ubuntutweak/common/misc.py:16
+#: ../ubuntutweak/common/misc.py:15
 #, python-format
 msgid "%(size)d byte"
 msgid_plural "%(size)d bytes"
 msgstr[0] "%(size)d 位元組"
 
-#: ../ubuntutweak/common/misc.py:18
+#: ../ubuntutweak/common/misc.py:17
 #, python-format
 msgid "%.1f KB"
 msgstr "%.1f KB"
 
-#: ../ubuntutweak/common/misc.py:20
+#: ../ubuntutweak/common/misc.py:19
 #, python-format
 msgid "%.1f MB"
 msgstr "%.1f MB"
 
-#: ../ubuntutweak/common/misc.py:21
+#: ../ubuntutweak/common/misc.py:20
 #, python-format
 msgid "%.1f GB"
 msgstr "%.1f GB"
@@ -742,7 +756,7 @@ msgid ""
 msgstr "您可以閱讀標題和說明來了解哪些軟體來源適合您"
 
 #: ../ubuntutweak/modules/sourceeditor.py:87
-#: ../ubuntutweak/modules/sourcecenter.py:728
+#: ../ubuntutweak/modules/sourcecenter.py:853
 msgid "Details"
 msgstr "詳細資料"
 
@@ -868,214 +882,27 @@ msgstr ""
 "\"%s\"將會被刪除!\n"
 "您是否要繼續?"
 
-#: ../ubuntutweak/modules/sourcecenter.py:109
-msgid ""
-"You can install the new applications by selecting them and choose \"Yes\".\n"
-"Or you can install them at Add/Remove by choose \"No\"."
+#: ../ubuntutweak/modules/appcenter.py:104
+msgid "Category"
 msgstr ""
 
-#: ../ubuntutweak/modules/sourcecenter.py:110
-msgid "New applications are available to update"
-msgstr ""
-
-#. checkbutton
-#: ../ubuntutweak/modules/sourcecenter.py:119
-#: ../ubuntutweak/modules/cleaner.py:466
-msgid "Select All"
-msgstr "全選/全不選"
-
-#: ../ubuntutweak/modules/sourcecenter.py:144
-#: ../ubuntutweak/modules/updatemanager.py:64
-msgid "Your system is clean and there's no update yet."
-msgstr ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:145
-#: ../ubuntutweak/modules/updatemanager.py:65
-msgid "The software information is up-to-date now"
-msgstr "軟體資訊已經更新"
-
-#: ../ubuntutweak/modules/sourcecenter.py:201
-#, python-format
-msgid "Available %d New Application"
-msgid_plural "Available %d New Applications"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:223
-#, python-format
-msgid "Available %d Package Update"
-msgid_plural "Available %d Package Updates"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:263
-msgid "No Available Package Update"
-msgstr ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:377
-msgid "Third-Party Sources"
-msgstr "第三方軟體來源"
-
-#: ../ubuntutweak/modules/sourcecenter.py:533
-#, python-format
-msgid ""
-"To enable this Source, You need to enable \"%s\" at first.\n"
-"Do you wish to continue?"
-msgstr ""
-"如果要啟用這個軟體來源，你必須先啟用 \"%s\"。\n"
-"確定要繼續？"
-
-#: ../ubuntutweak/modules/sourcecenter.py:535
-msgid "Dependency Notice"
-msgstr "軟體相依性通知"
-
-#: ../ubuntutweak/modules/sourcecenter.py:549
-#, python-format
-msgid ""
-"You can't disable this Source because \"%(SOURCE)s\" depends on it.\n"
-"To continue you need to disable \"%(SOURCE)s\" first."
-msgstr ""
-"你不能停用這個軟體來源，因為 \"%(SOURCE)s\" 需要它。\n"
-"必須先停用 \"%(SOURCE)s\" 才能繼續。"
-
-#: ../ubuntutweak/modules/sourcecenter.py:566
-#, python-format
-msgid ""
-"You can't enable this Source because \"%(SOURCE)s\" conflicts with it.\n"
-"To continue you need to disable \"%(SOURCE)s\" first."
-msgstr ""
-"你不能啟用這個軟體來源，因為 \"%(SOURCE)s\" 與它相衝突。\n"
-"必須先停用 \"%(SOURCE)s\" 才能繼續。"
-
-#: ../ubuntutweak/modules/sourcecenter.py:646
-msgid "New source has been enabled"
-msgstr "新的源碼已被啟用"
-
-#: ../ubuntutweak/modules/sourcecenter.py:647
-#, python-format
-msgid ""
-"%s is enabled now, Please click the refresh button to update the application "
-"cache."
-msgstr "%s 已被啟用,請按重新整理以更新應用程式快取"
-
-#: ../ubuntutweak/modules/sourcecenter.py:660
-msgid "Homepage"
-msgstr "主頁"
-
-#: ../ubuntutweak/modules/sourcecenter.py:660
-msgid "Source URL"
-msgstr "來源位址"
-
-#: ../ubuntutweak/modules/sourcecenter.py:660
-msgid "Description"
-msgstr "描述"
-
-#: ../ubuntutweak/modules/sourcecenter.py:673
-msgid "Description is here"
-msgstr "描述在這裏"
-
-#: ../ubuntutweak/modules/sourcecenter.py:701
-msgid "Source Center"
-msgstr ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:702
-msgid ""
-"A source center to keep your applications always up-to-date.\n"
-"You can also get the application which isn't in the official repository.\n"
-"Data will be automatically synchronized with the remote side.\n"
-"You can click the \"Sync\" button to check the update manually."
-msgstr ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:708
-msgid "Visit online Source Center"
-msgstr ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:714
-#: ../ubuntutweak/modules/appcenter.py:464
-msgid "_Sync"
-msgstr ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:760
-#: ../ubuntutweak/modules/appcenter.py:494
-msgid "Last synced:"
-msgstr ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:766
-msgid "New sources data available, would you like to update?"
-msgstr ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:840
-msgid ""
-"It is a possible security risk to use packages from Third-Party Sources.\n"
-"Please be careful and use only sources you trust."
-msgstr ""
-"從第三方來源使用的套件可能會有安全問題。\n"
-"請注意。"
-
-#: ../ubuntutweak/modules/sourcecenter.py:843
-#: ../ubuntutweak/modules/nautilus.py:139
-msgid "Warning"
-msgstr "警告"
-
-#: ../ubuntutweak/modules/sourcecenter.py:844
-msgid "Never show this dialog"
-msgstr "不再顯示這個提示"
-
-#: ../ubuntutweak/modules/sourcecenter.py:870
-msgid "Some error happened while downloading the file"
-msgstr ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:881
-#: ../ubuntutweak/modules/appcenter.py:559
-msgid "Update available, Would you like to update?"
-msgstr ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:890
-#: ../ubuntutweak/modules/appcenter.py:568
-msgid ""
-"Network Error, Please check your network connection or the remote server is "
-"down."
-msgstr ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:892
-#: ../ubuntutweak/modules/appcenter.py:570
-msgid "No update available."
-msgstr ""
-
-#: ../ubuntutweak/modules/updatemanager.py:29
-msgid "Update Manager"
-msgstr "更新管理員"
-
-#: ../ubuntutweak/modules/updatemanager.py:30
-msgid "A simple and easy-to-use update manager"
-msgstr ""
-
-#: ../ubuntutweak/modules/updatemanager.py:42
-msgid "Enable the auto launch of System Update Manager"
-msgstr ""
-
-#: ../ubuntutweak/modules/appcenter.py:106
-#: ../ubuntutweak/modules/filetype.py:72
-msgid "Categories"
-msgstr "類別"
-
-#: ../ubuntutweak/modules/appcenter.py:122
+#: ../ubuntutweak/modules/appcenter.py:120
 msgid "All Categories"
 msgstr "所有分類"
 
-#: ../ubuntutweak/modules/appcenter.py:420
+#: ../ubuntutweak/modules/appcenter.py:407
 msgid "Checking update..."
 msgstr ""
 
-#: ../ubuntutweak/modules/appcenter.py:448
+#: ../ubuntutweak/modules/appcenter.py:437
 msgid "Fetching online data..."
 msgstr ""
 
-#: ../ubuntutweak/modules/appcenter.py:452
+#: ../ubuntutweak/modules/appcenter.py:441
 msgid "Application Center"
 msgstr ""
 
-#: ../ubuntutweak/modules/appcenter.py:453
+#: ../ubuntutweak/modules/appcenter.py:442
 msgid ""
 "A simple but more effecient way for finding and installing popular "
 "applications.\n"
@@ -1083,15 +910,42 @@ msgid ""
 "You can click the \"Sync\" button to check the update manually."
 msgstr ""
 
-#: ../ubuntutweak/modules/appcenter.py:458
+#: ../ubuntutweak/modules/appcenter.py:447
 msgid "Visit Online Application Center"
 msgstr ""
 
-#: ../ubuntutweak/modules/appcenter.py:499
+#: ../ubuntutweak/modules/appcenter.py:453
+#: ../ubuntutweak/modules/sourcecenter.py:839
+msgid "_Sync"
+msgstr ""
+
+#: ../ubuntutweak/modules/appcenter.py:485
+#: ../ubuntutweak/modules/sourcecenter.py:888
+msgid "Last synced:"
+msgstr ""
+
+#: ../ubuntutweak/modules/appcenter.py:490
 msgid "New application data available, would you like to update?"
 msgstr ""
 
-#: ../ubuntutweak/modules/appcenter.py:581
+#: ../ubuntutweak/modules/appcenter.py:552
+#: ../ubuntutweak/modules/sourcecenter.py:1014
+msgid "Update available, Would you like to update?"
+msgstr ""
+
+#: ../ubuntutweak/modules/appcenter.py:561
+#: ../ubuntutweak/modules/sourcecenter.py:1023
+msgid ""
+"Network Error, Please check your network connection or the remote server is "
+"down."
+msgstr ""
+
+#: ../ubuntutweak/modules/appcenter.py:563
+#: ../ubuntutweak/modules/sourcecenter.py:1025
+msgid "No update available."
+msgstr ""
+
+#: ../ubuntutweak/modules/appcenter.py:574
 msgid "Some error happened while downloading the file."
 msgstr ""
 
@@ -1118,6 +972,10 @@ msgstr "應用程式"
 #: ../ubuntutweak/modules/filetype.py:39
 msgid "All"
 msgstr "全部"
+
+#: ../ubuntutweak/modules/filetype.py:72
+msgid "Categories"
+msgstr "類別"
 
 #: ../ubuntutweak/modules/filetype.py:130
 msgid "File Type"
@@ -1162,92 +1020,163 @@ msgstr ""
 msgid "Only show filetypes with an associated application"
 msgstr "只顯示已與某個應用程式有關聯的檔案類型"
 
-#: ../ubuntutweak/modules/metacity.py:29
-msgid "Window Manager Settings"
+#: ../ubuntutweak/modules/updatemanager.py:29
+msgid "Update Manager"
+msgstr "更新管理員"
+
+#: ../ubuntutweak/modules/updatemanager.py:30
+msgid "A simple and easy-to-use update manager"
 msgstr ""
 
-#: ../ubuntutweak/modules/metacity.py:30
-msgid "Some options about Metacity Window Manager"
+#: ../ubuntutweak/modules/updatemanager.py:42
+msgid "Enable the auto launch of System Update Manager"
 msgstr ""
 
-#: ../ubuntutweak/modules/metacity.py:39
-msgid "Window Decorate Effect"
-msgstr "視窗裝飾效果"
+#: ../ubuntutweak/modules/updatemanager.py:65
+#: ../ubuntutweak/modules/sourcecenter.py:126
+msgid "Your system is clean and there's no update yet."
+msgstr ""
 
-#: ../ubuntutweak/modules/metacity.py:41
-msgid "Use Metacity window theme"
-msgstr "使用Metacity視窗主題"
+#: ../ubuntutweak/modules/updatemanager.py:66
+#: ../ubuntutweak/modules/sourcecenter.py:127
+msgid "The software information is up-to-date now"
+msgstr "軟體資訊已經更新"
 
-#: ../ubuntutweak/modules/metacity.py:44
-msgid "Enable active window transparency"
-msgstr "啟用使用中視窗透明度"
-
-#: ../ubuntutweak/modules/metacity.py:47
-msgid "Active window transparency level"
-msgstr "使用中視窗的陰影透明度"
-
-#: ../ubuntutweak/modules/metacity.py:51
-msgid "Enable inactive window transparency"
-msgstr "啟用非使用中的視窗透明度"
-
-#: ../ubuntutweak/modules/metacity.py:54
-msgid "Inactive window shade transparency level"
-msgstr "非使用中視窗的陰影透明度"
-
-#: ../ubuntutweak/modules/metacity.py:60
-msgid "Window Titlebar Action"
-msgstr "視窗標題列動作"
-
-#: ../ubuntutweak/modules/metacity.py:62
-msgid "Titlebar mouse wheel action"
-msgstr "滾動滾輪"
-
-#: ../ubuntutweak/modules/metacity.py:64 ../ubuntutweak/modules/metacity.py:69
-#: ../ubuntutweak/modules/metacity.py:74 ../ubuntutweak/modules/metacity.py:79
-msgid "Roll up"
-msgstr "捲起"
-
-#: ../ubuntutweak/modules/metacity.py:67
-msgid "Titlebar double-click action"
-msgstr "左鍵雙擊"
-
-#: ../ubuntutweak/modules/metacity.py:69 ../ubuntutweak/modules/metacity.py:74
-#: ../ubuntutweak/modules/metacity.py:79
-msgid "Maximize"
-msgstr "最大化"
-
-#: ../ubuntutweak/modules/metacity.py:69 ../ubuntutweak/modules/metacity.py:74
-#: ../ubuntutweak/modules/metacity.py:79
-msgid "Minimize"
-msgstr "最小化"
-
-#: ../ubuntutweak/modules/metacity.py:69 ../ubuntutweak/modules/metacity.py:74
-#: ../ubuntutweak/modules/metacity.py:79
-msgid "Lower"
-msgstr "降至最下層"
-
-#: ../ubuntutweak/modules/metacity.py:69 ../ubuntutweak/modules/metacity.py:74
-#: ../ubuntutweak/modules/metacity.py:79
+#: ../ubuntutweak/modules/metacity.py:37
+#: ../ubuntutweak/modules/metacity.py:160
+#: ../ubuntutweak/modules/metacity.py:173
+#: ../ubuntutweak/modules/metacity.py:186
 msgid "Menu"
 msgstr "彈出選單"
 
-#: ../ubuntutweak/modules/metacity.py:72
+#: ../ubuntutweak/modules/metacity.py:38
+msgid "Title"
+msgstr ""
+
+#: ../ubuntutweak/modules/metacity.py:39
+#: ../ubuntutweak/modules/metacity.py:156
+#: ../ubuntutweak/modules/metacity.py:169
+#: ../ubuntutweak/modules/metacity.py:182
+msgid "Maximize"
+msgstr "最大化"
+
+#: ../ubuntutweak/modules/metacity.py:40
+#: ../ubuntutweak/modules/metacity.py:159
+#: ../ubuntutweak/modules/metacity.py:172
+#: ../ubuntutweak/modules/metacity.py:185
+msgid "Minimize"
+msgstr "最小化"
+
+#: ../ubuntutweak/modules/metacity.py:41
+msgid "Close"
+msgstr ""
+
+#: ../ubuntutweak/modules/metacity.py:42
+msgid "Spacer"
+msgstr ""
+
+#: ../ubuntutweak/modules/metacity.py:108
+msgid "Window Manager Settings"
+msgstr ""
+
+#: ../ubuntutweak/modules/metacity.py:109
+msgid "Some options about Metacity Window Manager"
+msgstr ""
+
+#: ../ubuntutweak/modules/metacity.py:115
+msgid "Add Spacer"
+msgstr ""
+
+#: ../ubuntutweak/modules/metacity.py:116
+msgid "Remove Spacer"
+msgstr ""
+
+#: ../ubuntutweak/modules/metacity.py:121
+msgid "Arrange the buttons on the titlebar by dragging and dropping"
+msgstr ""
+
+#: ../ubuntutweak/modules/metacity.py:142
+msgid "Window Titlebar Button Layout"
+msgstr ""
+
+#: ../ubuntutweak/modules/metacity.py:147
+msgid "Window Titlebar Action"
+msgstr "視窗標題列動作"
+
+#: ../ubuntutweak/modules/metacity.py:149
+msgid "Titlebar mouse wheel action"
+msgstr "滾動滾輪"
+
+#: ../ubuntutweak/modules/metacity.py:151
+#: ../ubuntutweak/modules/metacity.py:159
+#: ../ubuntutweak/modules/metacity.py:172
+#: ../ubuntutweak/modules/metacity.py:185
+msgid "Roll up"
+msgstr "捲起"
+
+#: ../ubuntutweak/modules/metacity.py:154
+msgid "Titlebar double-click action"
+msgstr "左鍵雙擊"
+
+#: ../ubuntutweak/modules/metacity.py:157
+#: ../ubuntutweak/modules/metacity.py:170
+#: ../ubuntutweak/modules/metacity.py:183
+msgid "Maximize Horizontally"
+msgstr ""
+
+#: ../ubuntutweak/modules/metacity.py:158
+#: ../ubuntutweak/modules/metacity.py:171
+#: ../ubuntutweak/modules/metacity.py:184
+msgid "Maximize Vertically"
+msgstr ""
+
+#: ../ubuntutweak/modules/metacity.py:160
+#: ../ubuntutweak/modules/metacity.py:173
+#: ../ubuntutweak/modules/metacity.py:186
+msgid "Lower"
+msgstr "降至最下層"
+
+#: ../ubuntutweak/modules/metacity.py:167
 msgid "Titlebar middle-click action"
 msgstr "中鍵點擊"
 
-#: ../ubuntutweak/modules/metacity.py:77
+#: ../ubuntutweak/modules/metacity.py:180
 msgid "Titlebar right-click action"
 msgstr "右鍵點擊"
 
-#: ../ubuntutweak/modules/metacity.py:86
+#: ../ubuntutweak/modules/metacity.py:196
+msgid "Window Decorate Effect"
+msgstr "視窗裝飾效果"
+
+#: ../ubuntutweak/modules/metacity.py:198
+msgid "Use Metacity window theme"
+msgstr "使用Metacity視窗主題"
+
+#: ../ubuntutweak/modules/metacity.py:201
+msgid "Enable active window transparency"
+msgstr "啟用使用中視窗透明度"
+
+#: ../ubuntutweak/modules/metacity.py:204
+msgid "Active window transparency level"
+msgstr "使用中視窗的陰影透明度"
+
+#: ../ubuntutweak/modules/metacity.py:208
+msgid "Enable inactive window transparency"
+msgstr "啟用非使用中的視窗透明度"
+
+#: ../ubuntutweak/modules/metacity.py:211
+msgid "Inactive window shade transparency level"
+msgstr "非使用中視窗的陰影透明度"
+
+#: ../ubuntutweak/modules/metacity.py:218
 msgid "Enable Metacity's Compositing feature"
 msgstr "啟用Metacity的合成視窗特效"
 
-#: ../ubuntutweak/modules/metacity.py:89
+#: ../ubuntutweak/modules/metacity.py:221
 msgid "Compositing Manager"
 msgstr "視窗管理程式"
 
-#: ../ubuntutweak/modules/metacity.py:96
+#: ../ubuntutweak/modules/metacity.py:242
 msgid ""
 "To enable the compositing feature of metacity, you should manually disable "
 "Visual Effects in \"Appearance\"."
@@ -1307,7 +1236,7 @@ msgstr ""
 
 #: ../ubuntutweak/modules/gnomesettings.py:50
 msgid "Display warning when removing a panel"
-msgstr "當移除面版時顯示警告"
+msgstr "當移除面板時顯示警告"
 
 #: ../ubuntutweak/modules/gnomesettings.py:53
 msgid "Complete lockdown of all panels"
@@ -1315,7 +1244,7 @@ msgstr "完全鎖定所有的面版"
 
 #: ../ubuntutweak/modules/gnomesettings.py:56
 msgid "Enable panel animations"
-msgstr "啟用面版動畫"
+msgstr "啟用面板動畫"
 
 #: ../ubuntutweak/modules/gnomesettings.py:61
 msgid "Menu Settings"
@@ -1326,47 +1255,46 @@ msgid "Show Input Method menu on the context menu"
 msgstr "顯示輸入法選單到右鍵選單"
 
 #: ../ubuntutweak/modules/gnomesettings.py:66
-#: ../ubuntutweak/modules/gnomesettings.py:69
 msgid "Show Unicode Method menu on the context menu"
 msgstr "在右鍵選單中顯示Unicode選單"
 
-#: ../ubuntutweak/modules/gnomesettings.py:72
+#: ../ubuntutweak/modules/gnomesettings.py:69
 msgid "Menus have icons"
 msgstr ""
 
-#: ../ubuntutweak/modules/gnomesettings.py:75
+#: ../ubuntutweak/modules/gnomesettings.py:72
 msgid "Buttons have icons"
 msgstr ""
 
-#: ../ubuntutweak/modules/gnomesettings.py:81
+#: ../ubuntutweak/modules/gnomesettings.py:78
 msgid "Screensaver"
 msgstr "螢幕保護程式"
 
-#: ../ubuntutweak/modules/gnomesettings.py:83
+#: ../ubuntutweak/modules/gnomesettings.py:80
 msgid "Enable user switching when screen is locked."
 msgstr "螢幕鎖定後啟用切換使用者功能"
 
-#: ../ubuntutweak/modules/gnomesettings.py:88
+#: ../ubuntutweak/modules/gnomesettings.py:85
 msgid "Enable system-wide \"Recently Documents\" list"
 msgstr "開啟系統的 \"最近存取文件\" 列表"
 
-#: ../ubuntutweak/modules/gnomesettings.py:91
+#: ../ubuntutweak/modules/gnomesettings.py:88
 msgid "History"
 msgstr "歷史"
 
-#: ../ubuntutweak/modules/gnomesettings.py:98
+#: ../ubuntutweak/modules/gnomesettings.py:95
 msgid "Click the button to change the menu logo"
 msgstr "點擊按鈕來改變選單圖示"
 
-#: ../ubuntutweak/modules/gnomesettings.py:111
+#: ../ubuntutweak/modules/gnomesettings.py:108
 msgid "Choose a new logo"
 msgstr "選擇一個新的圖示"
 
-#: ../ubuntutweak/modules/gnomesettings.py:117
+#: ../ubuntutweak/modules/gnomesettings.py:114
 msgid "PNG image (*.png)"
 msgstr "PNG圖像格式(*.png)"
 
-#: ../ubuntutweak/modules/gnomesettings.py:136
+#: ../ubuntutweak/modules/gnomesettings.py:135
 msgid ""
 "The size isn't suitable for the panel.\n"
 "It should be 24x24."
@@ -1374,7 +1302,7 @@ msgstr ""
 "尺寸不適合面板。\n"
 "它應該為24x24。"
 
-#: ../ubuntutweak/modules/gnomesettings.py:153
+#: ../ubuntutweak/modules/gnomesettings.py:151
 msgid "Do you want your changes to take effect immediately?"
 msgstr "你希望立刻套用變更嗎？"
 
@@ -1481,6 +1409,132 @@ msgstr "實用的擴充套件"
 #: ../ubuntutweak/modules/compiz.py:280
 msgid "Prerequisite Conditions"
 msgstr "先決條件"
+
+#: ../ubuntutweak/modules/sourcecenter.py:91
+msgid ""
+"You can install the new applications by selecting them and choose \"Yes\".\n"
+"Or you can install them at Add/Remove by choose \"No\"."
+msgstr ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:92
+msgid "New applications are available to update"
+msgstr ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:264
+#, python-format
+msgid "Available %d New Application"
+msgid_plural "Available %d New Applications"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:286
+#, python-format
+msgid "Available %d Package Update"
+msgid_plural "Available %d Package Updates"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:326
+msgid "No Available Package Update"
+msgstr ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:463
+msgid "Third-Party Sources"
+msgstr "第三方軟體來源"
+
+#: ../ubuntutweak/modules/sourcecenter.py:632
+#, python-format
+msgid ""
+"You can't enable this Source because<b>\"%(SOURCE)s\"</b> conflicts with "
+"it.\n"
+"To continue you need to disable <b>\"%(SOURCE)s\"</b>first."
+msgstr ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:654
+#, python-format
+msgid ""
+"To enable this Source, You need to enable <b>\"%s\"</b> at first.\n"
+"Do you wish to continue?"
+msgstr ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:656
+msgid "Dependency Notice"
+msgstr "軟體相依性通知"
+
+#: ../ubuntutweak/modules/sourcecenter.py:680
+#, python-format
+msgid ""
+"You can't disable this Source because <b>\"%(SOURCE)s\"</b> depends on it.\n"
+"To continue you need to disable <b>\"%(SOURCE)s\"</b> first."
+msgstr ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:770
+msgid "New source has been enabled"
+msgstr "新的源碼已被啟用"
+
+#: ../ubuntutweak/modules/sourcecenter.py:771
+#, python-format
+msgid ""
+"%s is enabled now, Please click the refresh button to update the application "
+"cache."
+msgstr "%s 已被啟用,請按重新整理以更新應用程式快取"
+
+#: ../ubuntutweak/modules/sourcecenter.py:784
+msgid "Homepage"
+msgstr "主頁"
+
+#: ../ubuntutweak/modules/sourcecenter.py:784
+msgid "Source URL"
+msgstr "來源位址"
+
+#: ../ubuntutweak/modules/sourcecenter.py:784
+msgid "Description"
+msgstr "描述"
+
+#: ../ubuntutweak/modules/sourcecenter.py:797
+msgid "Description is here"
+msgstr "描述在這裏"
+
+#: ../ubuntutweak/modules/sourcecenter.py:825
+msgid "Source Center"
+msgstr ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:826
+msgid ""
+"A source center to keep your applications always up-to-date.\n"
+"You can also get the application which isn't in the official repository.\n"
+"Data will be automatically synchronized with the remote side.\n"
+"You can click the \"Sync\" button to check the update manually."
+msgstr ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:832
+msgid "Visit online Source Center"
+msgstr ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:894
+msgid "New sources data available, would you like to update?"
+msgstr ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:969
+msgid ""
+"It is a possible security risk to use packages from Third-Party Sources.\n"
+"Please be careful and use only sources you trust."
+msgstr ""
+"從第三方來源使用的套件可能會有安全問題。\n"
+"請注意。"
+
+#: ../ubuntutweak/modules/sourcecenter.py:972
+#: ../ubuntutweak/modules/nautilus.py:139
+msgid "Warning"
+msgstr "警告"
+
+#: ../ubuntutweak/modules/sourcecenter.py:973
+msgid "Never show this dialog"
+msgstr "不再顯示這個提示"
+
+#: ../ubuntutweak/modules/sourcecenter.py:999
+msgid "Some error happened while downloading the file"
+msgstr ""
 
 #: ../ubuntutweak/modules/scripts.py:50
 msgid "Create Launcher ..."
@@ -1608,55 +1662,55 @@ msgstr ""
 "這將會刪除所有停用的指令稿。\n"
 "您要繼續嗎？"
 
-#: ../ubuntutweak/modules/templates.py:65
+#: ../ubuntutweak/modules/templates.py:58
 msgid "HTML document"
 msgstr "HTML 文件"
 
-#: ../ubuntutweak/modules/templates.py:66
+#: ../ubuntutweak/modules/templates.py:59
 msgid "ODB Database"
 msgstr "ODB資料庫"
 
-#: ../ubuntutweak/modules/templates.py:67
+#: ../ubuntutweak/modules/templates.py:60
 msgid "ODS Spreadsheet"
 msgstr "ODS工作表"
 
-#: ../ubuntutweak/modules/templates.py:68
+#: ../ubuntutweak/modules/templates.py:61
 msgid "ODT Document"
 msgstr "ODT文字"
 
-#: ../ubuntutweak/modules/templates.py:69
+#: ../ubuntutweak/modules/templates.py:62
 msgid "Plain text document"
 msgstr "純文字檔"
 
-#: ../ubuntutweak/modules/templates.py:70
+#: ../ubuntutweak/modules/templates.py:63
 msgid "ODP Presentation"
 msgstr "ODP簡報"
 
-#: ../ubuntutweak/modules/templates.py:71
+#: ../ubuntutweak/modules/templates.py:64
 msgid "Python script"
 msgstr "Python 描述語言檔"
 
-#: ../ubuntutweak/modules/templates.py:72
+#: ../ubuntutweak/modules/templates.py:65
 msgid "Pygtk Example"
 msgstr "Pygtk範本"
 
-#: ../ubuntutweak/modules/templates.py:73
+#: ../ubuntutweak/modules/templates.py:66
 msgid "Shell script"
 msgstr "Shell 描述語言檔"
 
-#: ../ubuntutweak/modules/templates.py:100
+#: ../ubuntutweak/modules/templates.py:93
 msgid "Enabled Templates"
 msgstr "已啟用的樣本"
 
-#: ../ubuntutweak/modules/templates.py:107
+#: ../ubuntutweak/modules/templates.py:100
 msgid "Disabled Templates"
 msgstr "已禁用的樣本"
 
-#: ../ubuntutweak/modules/templates.py:114
+#: ../ubuntutweak/modules/templates.py:107
 msgid "Manage Templates"
 msgstr "管理範本"
 
-#: ../ubuntutweak/modules/templates.py:115
+#: ../ubuntutweak/modules/templates.py:108
 msgid ""
 "Here you can freely manage your document templates.\n"
 "You can add files as templates by dragging them onto this window.\n"
@@ -1667,7 +1721,7 @@ msgstr ""
 "你可以拖拉文件到這個視窗來新增範本檔案。\n"
 "你可以在Nautilus的右鍵選單中使用這些範本來建立新的文件。"
 
-#: ../ubuntutweak/modules/templates.py:126
+#: ../ubuntutweak/modules/templates.py:119
 #, python-format
 msgid ""
 "Templates path is wrong! The current path is point to \"%s\".\n"
@@ -1676,23 +1730,23 @@ msgstr ""
 "範本路徑錯誤！目前的路徑指向\"%s\"。\n"
 "請在你的家目錄底下重新設定一個資料夾。"
 
-#: ../ubuntutweak/modules/templates.py:133
+#: ../ubuntutweak/modules/templates.py:128
 msgid "Go And Set"
 msgstr ""
 
-#: ../ubuntutweak/modules/templates.py:138
+#: ../ubuntutweak/modules/templates.py:133
 msgid "Restart This Module"
 msgstr "重新啟動這個模組"
 
-#: ../ubuntutweak/modules/templates.py:168
+#: ../ubuntutweak/modules/templates.py:163
 msgid "Rebuild System Templates"
 msgstr "重新建立系統範本"
 
-#: ../ubuntutweak/modules/templates.py:188
+#: ../ubuntutweak/modules/templates.py:183
 msgid "Templates path is still wrong, Please reset it!"
 msgstr "範本路徑依然是錯誤的，請重新設定！"
 
-#: ../ubuntutweak/modules/templates.py:200
+#: ../ubuntutweak/modules/templates.py:195
 msgid ""
 "This will delete all disabled templates.\n"
 "Do you wish to continue?"
@@ -1753,32 +1807,32 @@ msgstr ""
 msgid "\"%s\" is not available."
 msgstr ""
 
-#: ../ubuntutweak/modules/cleaner.py:55
+#: ../ubuntutweak/modules/cleaner.py:58
 msgid "Cleaning Package Config"
 msgstr "清理套件設定"
 
-#: ../ubuntutweak/modules/cleaner.py:62 ../ubuntutweak/modules/cleaner.py:89
+#: ../ubuntutweak/modules/cleaner.py:65 ../ubuntutweak/modules/cleaner.py:92
 #, python-format
 msgid "Cleaning...%s"
 msgstr "清除%s中..."
 
-#: ../ubuntutweak/modules/cleaner.py:82
+#: ../ubuntutweak/modules/cleaner.py:85
 msgid "Cleaning Package Cache"
 msgstr "清除套件快取"
 
-#: ../ubuntutweak/modules/cleaner.py:145
+#: ../ubuntutweak/modules/cleaner.py:148
 msgid "Package"
 msgstr "套件"
 
-#: ../ubuntutweak/modules/cleaner.py:170 ../ubuntutweak/modules/cleaner.py:198
+#: ../ubuntutweak/modules/cleaner.py:173 ../ubuntutweak/modules/cleaner.py:201
 msgid "Packages"
 msgstr "套件"
 
-#: ../ubuntutweak/modules/cleaner.py:227
+#: ../ubuntutweak/modules/cleaner.py:230
 msgid "Package Cache"
 msgstr "套件快取"
 
-#: ../ubuntutweak/modules/cleaner.py:241
+#: ../ubuntutweak/modules/cleaner.py:244
 #, python-format
 msgid ""
 "<b>%s</b>\n"
@@ -1787,62 +1841,62 @@ msgstr ""
 "<b>%s</b>\n"
 "使用 %s 硬碟空間"
 
-#: ../ubuntutweak/modules/cleaner.py:267
+#: ../ubuntutweak/modules/cleaner.py:270
 msgid "Package Config"
 msgstr "套件設定"
 
-#: ../ubuntutweak/modules/cleaner.py:305
+#: ../ubuntutweak/modules/cleaner.py:307
 #, python-format
 msgid "%d package selected to remove"
 msgid_plural "%d packages selected to remove"
 msgstr[0] "%d 套件已選擇要移除"
 
-#: ../ubuntutweak/modules/cleaner.py:309
+#: ../ubuntutweak/modules/cleaner.py:311
 #, python-format
 msgid "%s of space will be freed"
 msgstr "%s 的空間將被釋放"
 
-#: ../ubuntutweak/modules/cleaner.py:394
+#: ../ubuntutweak/modules/cleaner.py:396
 msgid "Canceled by user!"
 msgstr "被使用者取消！"
 
-#: ../ubuntutweak/modules/cleaner.py:397
+#: ../ubuntutweak/modules/cleaner.py:399
 #: ../ubuntutweak/modules/nautilus.py:145
 msgid "Clean up Successful!"
 msgstr "清除成功！"
 
-#: ../ubuntutweak/modules/cleaner.py:400
+#: ../ubuntutweak/modules/cleaner.py:402
 msgid "Clean up Failed!"
 msgstr "清除失敗"
 
-#: ../ubuntutweak/modules/cleaner.py:413
+#: ../ubuntutweak/modules/cleaner.py:415
 msgid "Package Cleaner"
 msgstr "套件清理"
 
-#: ../ubuntutweak/modules/cleaner.py:414
+#: ../ubuntutweak/modules/cleaner.py:416
 msgid ""
 "Free up disk space by removing unneeded packages and cleaning the package "
 "download cache."
 msgstr "移除不需要的套件和清除套件下載快取來釋放磁碟空間。"
 
 #. create the button
-#: ../ubuntutweak/modules/cleaner.py:445
+#: ../ubuntutweak/modules/cleaner.py:447
 msgid "Clean Package"
 msgstr "清理套件"
 
-#: ../ubuntutweak/modules/cleaner.py:450
+#: ../ubuntutweak/modules/cleaner.py:452
 msgid "Clean Cache"
 msgstr "清理快取"
 
-#: ../ubuntutweak/modules/cleaner.py:455
+#: ../ubuntutweak/modules/cleaner.py:457
 msgid "Clean Config"
 msgstr "清除設定"
 
-#: ../ubuntutweak/modules/cleaner.py:460
+#: ../ubuntutweak/modules/cleaner.py:462
 msgid "Clean Kernel"
 msgstr "清理核心"
 
-#: ../ubuntutweak/modules/cleaner.py:480
+#: ../ubuntutweak/modules/cleaner.py:482
 msgid "_Cleanup"
 msgstr ""
 
@@ -1900,10 +1954,6 @@ msgstr "修改初始啟動程式"
 #: ../ubuntutweak/modules/autostart.py:68
 msgid "New Startup Program"
 msgstr "新增初始啟動程式"
-
-#: ../ubuntutweak/modules/autostart.py:70
-msgid "_Browse..."
-msgstr "瀏覽(_B)..."
 
 #: ../ubuntutweak/modules/autostart.py:99
 msgid "Choose a Program"
@@ -2019,75 +2069,17 @@ msgstr "清理縮圖快取（釋放%s硬碟空間）"
 msgid "The thumbnails cache will be cleaned, Do you wish to continue?"
 msgstr "縮圖的快取將被清理，你想要繼續嗎？"
 
-#: ../ubuntutweak/ScriptWorker.py:56
-#, python-format
-msgid "The file \"%s\" already exists!"
-msgstr "檔案“%s”已存在！"
-
-#: ../ubuntutweak/ScriptWorker.py:61
-#, python-format
-msgid "The folder \"%s\" already exists!"
-msgstr "資料夾“%s”已存在！"
-
-#: ../ubuntutweak/ScriptWorker.py:68 ../ubuntutweak/ScriptWorker.py:75
-#, python-format
-msgid "The target \"%s\" already exists!"
-msgstr "目標“%s”已存在！"
-
-#: ../ubuntutweak/ScriptWorker.py:125 ../ubuntutweak/ScriptWorker.py:138
-msgid "Enter your password to perform the administrative tasks"
-msgstr "輸入你的密碼以執行管理工作"
-
-#: ../ubuntutweak/ScriptWorker.py:132
-msgid "Coudn't find any text editor in your system!"
-msgstr "在你的系统中未找到任何文本编辑器！"
-
-#: ../ubuntutweak/ScriptWorker.py:159
-msgid "Select a folder"
-msgstr "選擇資料夾"
-
-#: ../ubuntutweak/ScriptWorker.py:189
-msgid "Please select a target (files or folders)."
-msgstr "請選擇一個目標（檔案或資料夾）。"
-
-#: ../ubuntutweak/network/utdata.py:39 ../ubuntutweak/network/utdata.py:72
-msgid "Never"
-msgstr ""
-
-#: ../ubuntutweak/network/utdata.py:63
-#, python-format
-msgid "%d week ago"
-msgid_plural "%d weeks ago"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../ubuntutweak/network/utdata.py:65
-#, python-format
-msgid "%d day ago"
-msgid_plural "%d days ago"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../ubuntutweak/network/utdata.py:67
-#, python-format
-msgid "%d hour ago"
-msgid_plural "%d hours ago"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../ubuntutweak/network/utdata.py:69
-#, python-format
-msgid "%d minute ago"
-msgid_plural "%d minutes ago"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../ubuntutweak/network/utdata.py:70
-msgid "Just Now"
-msgstr ""
-
 #~ msgid "Desktop Icon settings"
 #~ msgstr "桌面圖示設定"
+
+#~ msgid "Banshee (Stable Version)"
+#~ msgstr "Banshee (正式版)"
+
+#~ msgid "Ubuntu Chinese Repository"
+#~ msgstr "Ubuntu 中文套件庫"
+
+#~ msgid "Banshee (Unstable Version)"
+#~ msgstr "Banshee (測試版)"
 
 #~ msgid "Submit Sources"
 #~ msgstr "送出來源"
@@ -2105,6 +2097,30 @@ msgstr ""
 
 #~ msgid "Here you can manage which application will open which filetypes."
 #~ msgstr "你可以在這裡管理哪個類型的檔案要使用哪個應用程式來開啟。"
+
+#~ msgid "Avant Window Navigator (Unstable Version)"
+#~ msgstr "Avant Window Navigator (不穩定版本)"
+
+#~ msgid "Gnome Global Menu"
+#~ msgstr "Gnome Global Menu"
+
+#~ msgid "Ubuntu Tweak (Unstable Version)"
+#~ msgstr "Ubuntu Tweak (不穩定版本)"
+
+#, python-format
+#~ msgid "The target \"%s\" already exists!"
+#~ msgstr "目標“%s”已存在！"
+
+#, python-format
+#~ msgid "The folder \"%s\" already exists!"
+#~ msgstr "資料夾“%s”已存在！"
+
+#, python-format
+#~ msgid "The file \"%s\" already exists!"
+#~ msgstr "檔案“%s”已存在！"
+
+#~ msgid "Gwibber (Daily Version)"
+#~ msgstr "Gwibber（每日版本）"
 
 #~ msgid ""
 #~ "After every release of Ubuntu there comes a feature freeze.\n"
@@ -2126,3 +2142,72 @@ msgstr ""
 #~ msgstr ""
 #~ "這是您的軟體管理系統的一個主要故障，請使用 synaptic 檢查破損的套件，檢查檔案 ‘/etc/apt/sources.list’ "
 #~ "的權限和內容是否正確，然後使用命令 ‘sudo apt-get update’ 和 ‘sudo apt-get install -f’ 重新載入軟體資訊。"
+
+#~ msgid "GetDeb.net (Mirror)"
+#~ msgstr "GetDeb.net (镜象服务器)"
+
+#~ msgid "VirtualBox (Open Source Edition)"
+#~ msgstr "VirtualBox (開放原始碼版本)"
+
+#, python-format
+#~ msgid ""
+#~ "To enable this Source, You need to enable \"%s\" at first.\n"
+#~ "Do you wish to continue?"
+#~ msgstr ""
+#~ "如果要啟用這個軟體來源，你必須先啟用 \"%s\"。\n"
+#~ "確定要繼續？"
+
+#~ msgid "Christine Media Player"
+#~ msgstr "Christine 媒體播放器"
+
+#~ msgid "VLC media player"
+#~ msgstr "VLC 媒體播放器"
+
+#~ msgid "IBus (Old Version)"
+#~ msgstr "IBus (舊版本)"
+
+#~ msgid "Ubuntu Mozilla Security Team"
+#~ msgstr "Ubuntu Mozilla 安全團隊"
+
+#~ msgid "Experimental Gnome Games"
+#~ msgstr "實驗中的 Gnome 遊戲"
+
+#, python-format
+#~ msgid ""
+#~ "You can't enable this Source because \"%(SOURCE)s\" conflicts with it.\n"
+#~ "To continue you need to disable \"%(SOURCE)s\" first."
+#~ msgstr ""
+#~ "你不能啟用這個軟體來源，因為 \"%(SOURCE)s\" 與它相衝突。\n"
+#~ "必須先停用 \"%(SOURCE)s\" 才能繼續。"
+
+#, python-format
+#~ msgid ""
+#~ "You can't disable this Source because \"%(SOURCE)s\" depends on it.\n"
+#~ "To continue you need to disable \"%(SOURCE)s\" first."
+#~ msgstr ""
+#~ "你不能停用這個軟體來源，因為 \"%(SOURCE)s\" 需要它。\n"
+#~ "必須先停用 \"%(SOURCE)s\" 才能繼續。"
+
+#~ msgid "GIMP (Testing Version)"
+#~ msgstr "GIMP (測試版)"
+
+#~ msgid "Chinese Chess"
+#~ msgstr "象棋"
+
+#~ msgid "Spicebird (Testing Version)"
+#~ msgstr "Spicebird (測試版)"
+
+#~ msgid "PiTiVi video editor"
+#~ msgstr "PiTiVi影片編輯器"
+
+#~ msgid "SMPlayer (Unstable Version)"
+#~ msgstr "SMPlayer (不穩定版)"
+
+#~ msgid "Tomboy (Stable Version)"
+#~ msgstr "Tomboy (穩定版)"
+
+#~ msgid "OpenShot Video Editor"
+#~ msgstr "OpenShot影片編輯器"
+
+#~ msgid "Tomboy (Unstable Version)"
+#~ msgstr "Tomboy (不穩定版)"

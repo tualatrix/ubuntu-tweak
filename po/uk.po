@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-10 15:00+0800\n"
-"PO-Revision-Date: 2010-01-09 07:41+0000\n"
+"POT-Creation-Date: 2010-02-02 10:25+0800\n"
+"PO-Revision-Date: 2010-02-02 08:39+0000\n"
 "Last-Translator: Sergio Gavrylov <sergiovana@bigmir.net>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,38 +16,150 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2010-01-10 08:16+0000\n"
+"X-Launchpad-Export-Date: 2010-02-02 09:48+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
+
+#: ../data/script-worker:125 ../data/script-worker:138
+msgid "Enter your password to perform the administrative tasks"
+msgstr "Введіть пароль для виконання адміністративних завдань"
+
+#: ../data/script-worker:132
+msgid "Coudn't find any text editor in your system!"
+msgstr "Не вдається знайти текстовий редактор!"
+
+#: ../data/script-worker:160
+msgid "Select a folder"
+msgstr "Виберіть теку"
+
+#: ../data/script-worker:190
+msgid "Please select a target (files or folders)."
+msgstr "Будь ласка, виберіть об'єкт (файли або теки)."
 
 #: ../data/ubuntu-tweak.desktop.in.h:1
 msgid "Tweak ubuntu to what you like"
-msgstr ""
+msgstr "Налаштуйте Ubuntu за власним смаком"
 
 #: ../data/com.ubuntu-tweak.daemon.policy.in.h:1
 msgid "System policy prevents the Ubuntu Tweak from Tweaking"
-msgstr ""
+msgstr "Системна політика перешкоджає Ubuntu Tweak налаштування системи"
 
 #: ../data/com.ubuntu-tweak.daemon.policy.in.h:2
-msgid "Tweak"
-msgstr ""
+msgid "Ubuntu Tweak Daemon"
+msgstr "Служба Ubuntu Tweak"
 
-#: ../ubuntutweak/mainwindow.py:67
+#: ../data/ui/preferences.ui.h:1
+msgid "<b>Features</b>"
+msgstr "<b>Налаштування</b>"
+
+#: ../data/ui/preferences.ui.h:2
+msgid "<b>User Interface</b>"
+msgstr "<b>Інтерфейс користувача</b>"
+
+#: ../data/ui/preferences.ui.h:3
+msgid "Default Launch Function"
+msgstr "Відкривати під час запуску"
+
+#: ../data/ui/preferences.ui.h:4
+msgid "Default Window Height"
+msgstr "Типова висота вікна"
+
+#: ../data/ui/preferences.ui.h:5
+msgid "Default Window Width"
+msgstr "Типова ширина вікна"
+
+#: ../data/ui/preferences.ui.h:6
+msgid "Left Menubar Width"
+msgstr "Ширина лівої панелі"
+
+#: ../data/ui/preferences.ui.h:7
+msgid "Ubuntu Tweak Preferences"
+msgstr "Налаштування Ubuntu Tweak"
+
+#: ../data/ui/traceback.ui.h:1
+msgid "<big><b>Oops... a fatal error occured</b></big>"
+msgstr "<big><b>На жаль... виникла фатальна помилка</b></big>"
+
+#: ../data/ui/traceback.ui.h:2
+msgid "<big><b>Oops... an error occured</b></big>"
+msgstr "<big><b>На жаль... виникла помилка</b></big>"
+
+#: ../data/ui/traceback.ui.h:3
+msgid "Error Message"
+msgstr "Повідомлення про помилку"
+
+#: ../data/ui/traceback.ui.h:4
+msgid ""
+"If you'd like to help us fix the problem, \n"
+"Please choose <i>Report</i> to file a new bug report. Make sure to include "
+"the error message below:"
+msgstr ""
+"Якщо ви хочете допомогти вирішити цю проблему, \n"
+"Будь ласка, натисніть <i>Звіт</i>, щоб передати звіт про помилку. "
+"Обов'язково вкажіть таке повідомлення про помилку:"
+
+#: ../data/ui/traceback.ui.h:6
+msgid ""
+"Ubuntu Tweak need to turn off.\n"
+"If you'd like to help us fix the problem, \n"
+"Please choose <i>Report</i> to file a new bug report. Make sure to include "
+"the error message below:"
+msgstr ""
+"Ubuntu Tweak вимушена завершити роботу.\n"
+"Якщо ви хочете допомогти вирішити цю проблему,\n"
+"Будь ласка, натисніть <i>Звіт</i>, щоб передати звіт про помилку. "
+"Обов'язково вкажіть таке повідомлення про помилку:"
+
+#: ../data/ui/traceback.ui.h:9
+msgid "_Report"
+msgstr "_Звіт"
+
+#. checkbutton
+#: ../data/ui/updatemanager.ui.h:1 ../ubuntutweak/modules/sourcecenter.py:101
+#: ../ubuntutweak/modules/cleaner.py:468
+msgid "Select All"
+msgstr "Вибрати все"
+
+#: ../data/ui/updatemanager.ui.h:2
+msgid "_Install Update"
+msgstr "_Встановити оновлення"
+
+#: ../data/ui/type_edit.ui.h:1
+msgid "Add Application"
+msgstr "Додати програму"
+
+#: ../data/ui/type_edit.ui.h:2
+msgid "Edit Type"
+msgstr "Редагувати тип"
+
+#: ../data/ui/type_edit.ui.h:3
+msgid "Select an application to view its description."
+msgstr "Виберіть програму, щоб переглянути її опис."
+
+#: ../data/ui/type_edit.ui.h:4 ../ubuntutweak/modules/autostart.py:70
+msgid "_Browse..."
+msgstr "_Огляд..."
+
+#: ../data/ui/type_edit.ui.h:5
+msgid "_Use a custom command"
+msgstr "_Використовувати власну команду"
+
+#: ../ubuntutweak/mainwindow.py:66
 msgid "Welcome to"
-msgstr "Вітаємо в"
+msgstr "Запрошуємо до"
+
+#: ../ubuntutweak/mainwindow.py:72
+msgid "Tweak otherwise hidden settings."
+msgstr "Удосконалення прихованих налаштувань."
 
 #: ../ubuntutweak/mainwindow.py:73
-msgid "Tweak otherwise hidden settings."
-msgstr "Зміна прихованих налаштувань."
+msgid "Clean up unneeded packages to free diskspace."
+msgstr "Вилучення непотрібних пакунків для вивільнення місця на диску."
 
 #: ../ubuntutweak/mainwindow.py:74
-msgid "Clean up unneeded packages to free diskspace."
-msgstr "Видалити непотрібні пакунки для вивільнення місця на диску"
+msgid "Easily install up-to-date versions of many applications."
+msgstr "Зручне встановлення оновлених версій багатьох програм."
 
 #: ../ubuntutweak/mainwindow.py:75
-msgid "Easily install up-to-date versions of many applications."
-msgstr "Проста установка оновлених версій багатьох програм."
-
-#: ../ubuntutweak/mainwindow.py:76
 msgid ""
 "Configure file templates and shortcut scripts for easy access to common "
 "tasks."
@@ -55,86 +167,87 @@ msgstr ""
 "Додавання шаблонів нових файлів та сценаріїв для автоматизації різних "
 "завдань."
 
-#: ../ubuntutweak/mainwindow.py:77
+#: ../ubuntutweak/mainwindow.py:76
 msgid "And many more useful features!"
 msgstr "Та багато інших корисних функцій!"
 
-#: ../ubuntutweak/mainwindow.py:90
+#: ../ubuntutweak/mainwindow.py:89
 msgid "Please wait a moment..."
 msgstr "Будь ласка, зачекайте..."
 
-#: ../ubuntutweak/mainwindow.py:110
+#: ../ubuntutweak/mainwindow.py:109
 msgid "This module is error while loading."
 msgstr "Помилка під час завантаження модуля."
 
-#: ../ubuntutweak/mainwindow.py:131
+#: ../ubuntutweak/mainwindow.py:130
 msgid "Welcome"
-msgstr "Вітаємо"
+msgstr "Ласкаво просимо!"
+
+#: ../ubuntutweak/mainwindow.py:131
+msgid "Applications"
+msgstr "Програми"
 
 #: ../ubuntutweak/mainwindow.py:132
-msgid "Applications"
-msgstr "Додатки"
-
-#: ../ubuntutweak/mainwindow.py:133
 msgid "Startup"
-msgstr "Запуск"
+msgstr "Автозапуск"
 
-#: ../ubuntutweak/mainwindow.py:134 ../ubuntutweak/modules/userdir.py:45
+#: ../ubuntutweak/mainwindow.py:133 ../ubuntutweak/modules/userdir.py:45
 msgid "Desktop"
 msgstr "Стільниця"
 
-#: ../ubuntutweak/mainwindow.py:135
+#: ../ubuntutweak/mainwindow.py:134
 msgid "Personal"
 msgstr "Особисте"
 
-#: ../ubuntutweak/mainwindow.py:136
+#: ../ubuntutweak/mainwindow.py:135
 msgid "System"
 msgstr "Система"
 
-#: ../ubuntutweak/mainwindow.py:144
+#: ../ubuntutweak/mainwindow.py:143
 #, python-format
 msgid "Download the Ubuntu Tweak %s"
-msgstr ""
+msgstr "Завантажити Ubuntu Tweak %s"
 
-#: ../ubuntutweak/mainwindow.py:204
+#: ../ubuntutweak/mainwindow.py:203
 msgid "_Donate"
-msgstr "_Пожертвувати"
+msgstr "П_ожертвувати"
 
-#: ../ubuntutweak/mainwindow.py:420
+#: ../ubuntutweak/mainwindow.py:422
 msgid "Ubuntu Tweak Website"
 msgstr "Вебсайт Ubuntu Tweak"
 
-#: ../ubuntutweak/mainwindow.py:422
+#: ../ubuntutweak/mainwindow.py:424
 msgid ""
 "Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
 "system and desktop settings."
 msgstr ""
-"Утиліта для Убунту, яка дає можливість легко налаштувати параметри вашої "
-"системи та стільниці."
+"Ubuntu Tweak — програма, яка дає змогу легко налаштувати параметри системи "
+"та стільниці."
 
-#: ../ubuntutweak/mainwindow.py:424
+#: ../ubuntutweak/mainwindow.py:426
 msgid "Contributors of 2007"
 msgstr "Спонсори 2007 року"
 
-#: ../ubuntutweak/mainwindow.py:426
+#: ../ubuntutweak/mainwindow.py:428
 msgid "Contributors of 2008"
 msgstr "Спонсори 2008 року"
 
-#: ../ubuntutweak/mainwindow.py:428
+#: ../ubuntutweak/mainwindow.py:430
 msgid "Contributors of 2009"
 msgstr "Спонсори 2009 року"
 
-#: ../ubuntutweak/mainwindow.py:437
+#: ../ubuntutweak/mainwindow.py:433
+msgid "Contributors of 2010"
+msgstr "Спонсори 2010 року"
+
+#: ../ubuntutweak/mainwindow.py:441
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
-"  Eugene Babiy https://launchpad.net/~eugene-babiy\n"
-"  Sergio Gavrylov https://launchpad.net/~gavro\n"
-"  TualatriX https://launchpad.net/~tualatrix\n"
-"  Volodymyr Volkov https://launchpad.net/~volodymyr-volkov\n"
-"  mikhalek https://launchpad.net/~mikhalek"
+"  CrabMan https://launchpad.net/~oleg-min\n"
+"  Sergio Gavrylov https://launchpad.net/~gavro"
 
-#: ../ubuntutweak/mainwindow.py:451
+#: ../ubuntutweak/mainwindow.py:455
 #, python-format
 msgid ""
 "A newer version: %s is available online.\n"
@@ -143,50 +256,55 @@ msgid ""
 "Note: if you prefer update from the source, you can disable this feature in "
 "Preference."
 msgstr ""
+"Наявна новіша версія: %s .\n"
+"Бажаєте оновити?\n"
+"\n"
+"Зверніть увагу: якщо ви віддаєте перевагу самостійному оновленню, вимкніть "
+"автооновлення в налаштуваннях."
 
-#: ../ubuntutweak/mainwindow.py:452
+#: ../ubuntutweak/mainwindow.py:456
 msgid "Software Update"
 msgstr "Оновлення програмного забезпечення"
 
-#: ../ubuntutweak/widgets/widgets.py:85 ../ubuntutweak/widgets/widgets.py:110
+#: ../ubuntutweak/widgets/widgets.py:83 ../ubuntutweak/widgets/widgets.py:108
 #: ../ubuntutweak/modules/icons.py:105
 msgid "Unset"
 msgstr "Не встановлено"
 
-#: ../ubuntutweak/widgets/widgets.py:275
+#: ../ubuntutweak/widgets/widgets.py:221
 msgid "Please press the new key combination"
 msgstr "Будь ласка, натисніть нову комбінацію клавіш"
 
-#: ../ubuntutweak/widgets/widgets.py:324
+#: ../ubuntutweak/widgets/widgets.py:270
 msgid "Disabled"
 msgstr "Вимкнено"
 
-#: ../ubuntutweak/widgets/treeviews.py:69
+#: ../ubuntutweak/widgets/treeviews.py:71
 msgid "Create folder"
 msgstr "Створити теку"
 
-#: ../ubuntutweak/widgets/treeviews.py:73 ../ubuntutweak/modules/icons.py:33
+#: ../ubuntutweak/widgets/treeviews.py:75 ../ubuntutweak/modules/icons.py:33
 #: ../ubuntutweak/modules/icons.py:42 ../ubuntutweak/modules/icons.py:51
 msgid "Rename"
 msgstr "Перейменувати"
 
-#: ../ubuntutweak/widgets/treeviews.py:77
+#: ../ubuntutweak/widgets/treeviews.py:79
 msgid "Delete"
 msgstr "Видалити"
 
-#: ../ubuntutweak/widgets/treeviews.py:99
+#: ../ubuntutweak/widgets/treeviews.py:101
 msgid "Input the dir name"
 msgstr "Введіть назву теки"
 
-#: ../ubuntutweak/widgets/treeviews.py:124
+#: ../ubuntutweak/widgets/treeviews.py:126
 msgid "Can't rename the root folder"
 msgstr "Неможливо перейменувати системну теку"
 
-#: ../ubuntutweak/widgets/treeviews.py:141
+#: ../ubuntutweak/widgets/treeviews.py:143
 msgid "Can't delete the root folder"
 msgstr "Неможливо видалити системну теку"
 
-#: ../ubuntutweak/widgets/treeviews.py:156
+#: ../ubuntutweak/widgets/treeviews.py:158
 msgid ""
 "Can't rename!\n"
 "\n"
@@ -206,49 +324,91 @@ msgstr "Не вдалось пройти автентифікацію"
 
 #: ../ubuntutweak/widgets/dialogs.py:145
 msgid "You need to restart your computer."
-msgstr "Необхідно перезавантажити ваш комп'ютер"
+msgstr "Необхідно перезавантажити комп'ютер"
 
 #: ../ubuntutweak/widgets/dialogs.py:146
 msgid "Service hasn't initialized yet"
 msgstr "Сервіс ще не сформовано"
 
-#: ../ubuntutweak/preferences.py:76 ../ubuntutweak/modules/filetype.py:178
+#: ../ubuntutweak/preferences.py:75 ../ubuntutweak/modules/filetype.py:178
 #: ../ubuntutweak/modules/filetype.py:213
-#: ../ubuntutweak/modules/metacity.py:64 ../ubuntutweak/modules/metacity.py:69
-#: ../ubuntutweak/modules/metacity.py:74 ../ubuntutweak/modules/metacity.py:79
+#: ../ubuntutweak/modules/metacity.py:151
+#: ../ubuntutweak/modules/metacity.py:156
+#: ../ubuntutweak/modules/metacity.py:169
+#: ../ubuntutweak/modules/metacity.py:182
 #: ../ubuntutweak/modules/shortcuts.py:99
 #: ../ubuntutweak/modules/shortcuts.py:209
 msgid "None"
 msgstr "Відсутній"
 
-#: ../ubuntutweak/preferences.py:106
+#: ../ubuntutweak/preferences.py:105
 msgid "Enable Check Update"
 msgstr "Перевіряти оновлення"
 
-#: ../ubuntutweak/preferences.py:112
+#: ../ubuntutweak/preferences.py:111
 msgid "Use Separated Sources"
 msgstr "Використовувати розділені джерела"
 
-#: ../ubuntutweak/preferences.py:118
-msgid "Use Remote Data When Available"
-msgstr ""
+#: ../ubuntutweak/preferences.py:117
+msgid "Enable the synchronous notification"
+msgstr "Дозволити синхроні повідомлення"
 
-#: ../ubuntutweak/network/downloadmanager.py:98
+#: ../ubuntutweak/network/downloadmanager.py:97
 msgid "Connecting to server"
-msgstr ""
+msgstr "З'єднання з сервером"
 
-#: ../ubuntutweak/network/downloadmanager.py:143
+#: ../ubuntutweak/network/downloadmanager.py:142
 #, python-format
 msgid "Downloading...%d"
 msgstr "Завантаження...%d"
 
-#: ../ubuntutweak/network/downloadmanager.py:147
+#: ../ubuntutweak/network/downloadmanager.py:146
 msgid "Downloaded!"
-msgstr ""
+msgstr "Завантажено!"
 
-#: ../ubuntutweak/network/downloadmanager.py:153
+#: ../ubuntutweak/network/downloadmanager.py:152
 msgid "Error happened!"
-msgstr ""
+msgstr "Виникла помилка!"
+
+#: ../ubuntutweak/network/utdata.py:48 ../ubuntutweak/network/utdata.py:81
+msgid "Never"
+msgstr "Ніколи"
+
+#: ../ubuntutweak/network/utdata.py:72
+#, python-format
+msgid "%d week ago"
+msgid_plural "%d weeks ago"
+msgstr[0] "%d тиждень тому"
+msgstr[1] "%d тижні тому"
+msgstr[2] "%d тижнів тому"
+
+#: ../ubuntutweak/network/utdata.py:74
+#, python-format
+msgid "%d day ago"
+msgid_plural "%d days ago"
+msgstr[0] "%d день тому"
+msgstr[1] "%d дні тому"
+msgstr[2] "%d днів тому"
+
+#: ../ubuntutweak/network/utdata.py:76
+#, python-format
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] "%d годину тому"
+msgstr[1] "%d години тому"
+msgstr[2] "%d годин тому"
+
+#: ../ubuntutweak/network/utdata.py:78
+#, python-format
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] "%d хвилину тому"
+msgstr[1] "%d хвилини тому"
+msgstr[2] "%d хвилин тому"
+
+#: ../ubuntutweak/network/utdata.py:79
+msgid "Just Now"
+msgstr "Щойно"
 
 #: ../ubuntutweak/common/appdata.py:24
 msgid "Development Version of Mozilla Firefox"
@@ -365,7 +525,9 @@ msgstr ""
 msgid ""
 "Updates for Kubuntu releases which are due to go to Ubuntu Updates. Mostly "
 "KDE point releases."
-msgstr "Оновлення для релізів Kubuntu які підійдуть і для оновлення Ubuntu."
+msgstr ""
+"Оновлення для випусків Kubuntu які підійдуть і для оновлення Ubuntu. "
+"Головним чином — свіжі випуски KDE."
 
 #: ../ubuntutweak/common/appdata.py:44
 msgid ""
@@ -375,157 +537,19 @@ msgstr ""
 "Backports нових версій KDE для Kubuntu, які ще не протестовані досить, щоб "
 "увійти в Ubuntu Backports."
 
-#: ../ubuntutweak/common/sourcedata.py:6
-msgid "Avant Window Navigator (Unstable Version)"
-msgstr "Avant Window Navigator (нестабільна версія)"
-
-#: ../ubuntutweak/common/sourcedata.py:8
-msgid "aMule (Stable Version)"
-msgstr "aMule (стабільна версія)"
-
-#: ../ubuntutweak/common/sourcedata.py:11
-msgid "Breathe Icon Theme"
-msgstr "Тема піктограм Breathe"
-
-#: ../ubuntutweak/common/sourcedata.py:15
-msgid "Ubuntu Chinese Repository"
-msgstr "Китайський репозитарій Ubuntu"
-
-#: ../ubuntutweak/common/sourcedata.py:18
-msgid "IBus (Old Version)"
-msgstr "IBus (Стара версія)"
-
-#: ../ubuntutweak/common/sourcedata.py:19
-msgid "IBus 1.2 for intrepid"
-msgstr "IBus 1.2 для Intrepid"
-
-#: ../ubuntutweak/common/sourcedata.py:20
-msgid "IBus 1.2 for jaunty"
-msgstr "IBus 1.2 для Jaunty"
-
-#: ../ubuntutweak/common/sourcedata.py:21
-msgid "IBus 1.2 for karmic"
-msgstr "IBus 1.2 для Ubuntu Karmic"
-
-#: ../ubuntutweak/common/sourcedata.py:27
-msgid "Ubuntu Mozilla Security Team"
-msgstr "Ubuntu Mozilla Security Team"
-
-#: ../ubuntutweak/common/sourcedata.py:29
-msgid "Christine Media Player"
-msgstr "Медіаплеєр Christine"
-
-#: ../ubuntutweak/common/sourcedata.py:35
-msgid "Experimental Gnome Games"
-msgstr "Експериментальні ігри для Gnome"
-
-#: ../ubuntutweak/common/sourcedata.py:37
-msgid "Chinese Chess"
-msgstr "Китайскі шахи"
-
-#: ../ubuntutweak/common/sourcedata.py:38
-msgid "Gnome Global Menu"
-msgstr "Глобальне меню Gnome"
-
-#: ../ubuntutweak/common/sourcedata.py:40
-msgid "GetDeb.net (Mirror)"
-msgstr "GetDeb.net (Зеркало)"
-
-#: ../ubuntutweak/common/sourcedata.py:42
-msgid "Gwibber (Daily Version)"
-msgstr "Gwibber (щоденні збірки)"
-
-#: ../ubuntutweak/common/sourcedata.py:43
-msgid "GIMP (Testing Version)"
-msgstr "GIMP (тестова версія)"
-
-#: ../ubuntutweak/common/sourcedata.py:44
-msgid "Banshee (Stable Version)"
-msgstr "Banshee (Стабільна версія)"
-
-#: ../ubuntutweak/common/sourcedata.py:45
-msgid "Banshee (Unstable Version)"
-msgstr "Banshee (Нестабільна версія)"
-
-#: ../ubuntutweak/common/sourcedata.py:46
-msgid "Google Repository"
-msgstr "Репозиторій Google"
-
-#: ../ubuntutweak/common/sourcedata.py:47
-msgid "Google Testing Repository"
-msgstr "Тестовий репозиторій Google"
-
-#: ../ubuntutweak/common/sourcedata.py:52
-msgid "Ubuntu Tweak (Unstable Version)"
-msgstr "Ubuntu Tweak (нестабильна версія)"
-
-#: ../ubuntutweak/common/sourcedata.py:57
-msgid "Spicebird (Testing Version)"
-msgstr "Spicebird (тестова версія)"
-
-#: ../ubuntutweak/common/sourcedata.py:61
-msgid "SMPlayer (Unstable Version)"
-msgstr "SMPlayer (нестабільна версія)"
-
-#: ../ubuntutweak/common/sourcedata.py:71
-msgid "VirtualBox (Open Source Edition)"
-msgstr "VirtualBox (версія Open Source)"
-
-#: ../ubuntutweak/common/sourcedata.py:72
-msgid "VLC media player"
-msgstr "Медіаплеєр VLC"
-
-#: ../ubuntutweak/common/sourcedata.py:78
-msgid "Moblin Desktop for Ubuntu 9.04 Jaunty"
-msgstr "Moblin Desktop для Ubuntu 9.04 Jaunty"
-
-#: ../ubuntutweak/common/sourcedata.py:79
-msgid "Moblin Desktop for Ubuntu 9.10 Karmic"
-msgstr "Moblin Desktop для Ubuntu 9.10 Karmic"
-
-#: ../ubuntutweak/common/sourcedata.py:89
-msgid "Bisigi Theme Project"
-msgstr "Теми проекту Bisigi"
-
-#: ../ubuntutweak/common/sourcedata.py:90
-msgid "PiTiVi video editor"
-msgstr "Відео редактор PiTiVi"
-
-#: ../ubuntutweak/common/sourcedata.py:91
-msgid "Kubuntu Backports"
-msgstr "Kubuntu Backports"
-
-#: ../ubuntutweak/common/sourcedata.py:93
-msgid "Tomboy (Stable Version)"
-msgstr "Tomboy (Стабільна версія)"
-
-#: ../ubuntutweak/common/sourcedata.py:94
-msgid "Tomboy (Unstable Version)"
-msgstr "Tomboy (Нестабільна версія)"
-
-#: ../ubuntutweak/common/sourcedata.py:95
-msgid "Inkscape (Nightly Version)"
-msgstr "Inkscape (Nightly Version)"
-
-#: ../ubuntutweak/common/sourcedata.py:97
-msgid "OSD Lyrics"
-msgstr "OSD Lyrics"
-
-#: ../ubuntutweak/common/sourcedata.py:98
-msgid "OpenShot Video Editor"
-msgstr "OpenShot Video Editor"
-
 #: ../ubuntutweak/common/package.py:172
-#: ../ubuntutweak/modules/sourcecenter.py:138
-#: ../ubuntutweak/modules/appcenter.py:543
-#: ../ubuntutweak/modules/compiz.py:411 ../ubuntutweak/modules/nautilus.py:167
+#: ../ubuntutweak/modules/appcenter.py:536
+#: ../ubuntutweak/modules/compiz.py:411
+#: ../ubuntutweak/modules/sourcecenter.py:120
+#: ../ubuntutweak/modules/nautilus.py:167
 msgid "Update Successful!"
 msgstr "Оновлено успішно!"
 
 #: ../ubuntutweak/common/package.py:174
-#: ../ubuntutweak/modules/sourcecenter.py:140
-#: ../ubuntutweak/modules/appcenter.py:545
-#: ../ubuntutweak/modules/compiz.py:413 ../ubuntutweak/modules/nautilus.py:169
+#: ../ubuntutweak/modules/appcenter.py:538
+#: ../ubuntutweak/modules/compiz.py:413
+#: ../ubuntutweak/modules/sourcecenter.py:122
+#: ../ubuntutweak/modules/nautilus.py:169
 msgid "Update Failed!"
 msgstr "Оновлення не вдалось!"
 
@@ -533,7 +557,7 @@ msgstr "Оновлення не вдалось!"
 msgid "(Not available)"
 msgstr "(Не доступно)"
 
-#: ../ubuntutweak/common/misc.py:16
+#: ../ubuntutweak/common/misc.py:15
 #, python-format
 msgid "%(size)d byte"
 msgid_plural "%(size)d bytes"
@@ -541,17 +565,17 @@ msgstr[0] "%(size)d байт"
 msgstr[1] "%(size)d байта"
 msgstr[2] "%(size)d байтів"
 
-#: ../ubuntutweak/common/misc.py:18
+#: ../ubuntutweak/common/misc.py:17
 #, python-format
 msgid "%.1f KB"
 msgstr "%.1f КБ"
 
-#: ../ubuntutweak/common/misc.py:20
+#: ../ubuntutweak/common/misc.py:19
 #, python-format
 msgid "%.1f MB"
 msgstr "%.1f МБ"
 
-#: ../ubuntutweak/common/misc.py:21
+#: ../ubuntutweak/common/misc.py:20
 #, python-format
 msgid "%.1f GB"
 msgstr "%.1f ГБ"
@@ -598,9 +622,9 @@ msgid ""
 "However, you must move your files back into place by yourself.\n"
 "Do you wish to continue?"
 msgstr ""
-"Ubuntu Tweak відновить для вибраної теки розміщення за замовчуванням.\n"
-"Проте, Ви повинні перемістити файли назад на місце власноруч.\n"
-"Чи бажаєте продовжити?"
+"Ubuntu Tweak відновить типову адресу вибраної теки.\n"
+"Проте, ви маєте перемістити файли до неї власноруч.\n"
+"Бажаєте продовжити?"
 
 #: ../ubuntutweak/modules/userdir.py:213
 msgid "Directory"
@@ -620,7 +644,7 @@ msgstr "Відновити стандартні налаштування"
 
 #: ../ubuntutweak/modules/userdir.py:245
 msgid "Default Folder Locations"
-msgstr "Розміщення теки за замовчуванням"
+msgstr "Адреси типових тек"
 
 #: ../ubuntutweak/modules/userdir.py:246
 msgid ""
@@ -628,7 +652,7 @@ msgid ""
 "Don't change the location of your desktop folder unless you know what you "
 "are doing."
 msgstr ""
-"Тут можна змінити шляхи до стандартних папок.\n"
+"Тут можна змінити шляхи до стандартних тек.\n"
 "Не змінюйте ці шляхи, якщо ви не впевнені в своїх діях."
 
 #: ../ubuntutweak/modules/userdir.py:273
@@ -637,11 +661,11 @@ msgstr "Оновлено успішно!"
 
 #: ../ubuntutweak/modules/computer.py:33
 msgid "Computer Details"
-msgstr ""
+msgstr "Подробиці про комп'ютер"
 
 #: ../ubuntutweak/modules/computer.py:34
 msgid "Some useful information about your computer"
-msgstr ""
+msgstr "Деякі корисні відомості про ваш комп'ютер"
 
 #: ../ubuntutweak/modules/computer.py:41
 msgid "Unknown"
@@ -649,7 +673,7 @@ msgstr "Невідомо"
 
 #: ../ubuntutweak/modules/computer.py:57
 msgid "Change Hostname"
-msgstr ""
+msgstr "Змінити ім'я комп'ютера"
 
 #: ../ubuntutweak/modules/computer.py:60
 msgid "System information"
@@ -689,7 +713,7 @@ msgstr "Інформація про користувача"
 
 #: ../ubuntutweak/modules/computer.py:72
 msgid "Current user"
-msgstr "Поточний користувач"
+msgstr "Чинний користувач"
 
 #: ../ubuntutweak/modules/computer.py:73
 msgid "Home directory"
@@ -705,23 +729,23 @@ msgstr "Мова"
 
 #: ../ubuntutweak/modules/computer.py:81
 msgid "Please enter your new hostname. It should be non-blank characters."
-msgstr ""
+msgstr "Введіть нове ім'я комп'ютера. Воно не повинно містити пропусків."
 
 #: ../ubuntutweak/modules/computer.py:82
 msgid "New hostname"
-msgstr ""
+msgstr "Нове ім'я комп'ютера"
 
 #: ../ubuntutweak/modules/lockdown.py:33
 msgid "Security Related"
-msgstr ""
+msgstr "Пов'язані з безпекою"
 
 #: ../ubuntutweak/modules/lockdown.py:34
 msgid "Tweak some security options"
-msgstr ""
+msgstr "Змінити налаштування, пов'язані з безпекою"
 
 #: ../ubuntutweak/modules/lockdown.py:43
 msgid "System Security options"
-msgstr "Налаштування Системи Безпеки"
+msgstr "Налаштування безпеки системи"
 
 #: ../ubuntutweak/modules/lockdown.py:45
 msgid "Disable \"Run Application\" dialog (Alt+F2)"
@@ -769,7 +793,7 @@ msgstr ""
 "Вас влаштовує."
 
 #: ../ubuntutweak/modules/sourceeditor.py:87
-#: ../ubuntutweak/modules/sourcecenter.py:728
+#: ../ubuntutweak/modules/sourcecenter.py:853
 msgid "Details"
 msgstr "Подробиці"
 
@@ -832,6 +856,7 @@ msgstr "Редактор коду"
 #: ../ubuntutweak/modules/sourceeditor.py:353
 msgid "Freely edit your software sources to fit your needs."
 msgstr ""
+"Редагуйте джерела програмного забезпечення відповідно до своїх потреб."
 
 #: ../ubuntutweak/modules/sourceeditor.py:450
 msgid "Please input the correct information about sources!"
@@ -868,8 +893,8 @@ msgid ""
 "You've changed the sources.list without saving it.\n"
 "Do you want to save it?"
 msgstr ""
-"Ви змінили файл sources.list без збереження.\n"
-"Чи Ви хочете зберегти його?"
+"Файл sources.list змінений і не збережений.\n"
+"Ви хочете зберегти його?"
 
 #: ../ubuntutweak/modules/sourceeditor.py:507
 msgid "Please check the permission of the sources.list file"
@@ -900,238 +925,77 @@ msgstr ""
 "Файл \"%s\" буде видалений!\n"
 "Ви хочете продовжити?"
 
-#: ../ubuntutweak/modules/sourcecenter.py:109
-msgid ""
-"You can install the new applications by selecting them and choose \"Yes\".\n"
-"Or you can install them at Add/Remove by choose \"No\"."
-msgstr ""
-"Щоб встановити нові програми, виберіть їх і натисніть «Так».\n"
-"Щоб встановити їх через «Установку/видалення», натисніть «Ні»."
+#: ../ubuntutweak/modules/appcenter.py:104
+msgid "Category"
+msgstr "Категорія"
 
-#: ../ubuntutweak/modules/sourcecenter.py:110
-msgid "New applications are available to update"
-msgstr "Доступне оновлення для нових додатків"
-
-#. checkbutton
-#: ../ubuntutweak/modules/sourcecenter.py:119
-#: ../ubuntutweak/modules/cleaner.py:466
-msgid "Select All"
-msgstr "Вибрати все"
-
-#: ../ubuntutweak/modules/sourcecenter.py:144
-#: ../ubuntutweak/modules/updatemanager.py:64
-msgid "Your system is clean and there's no update yet."
-msgstr "Ваша система очищена, та непотребує оновлення."
-
-#: ../ubuntutweak/modules/sourcecenter.py:145
-#: ../ubuntutweak/modules/updatemanager.py:65
-msgid "The software information is up-to-date now"
-msgstr "Інформація про програми вже оновлена."
-
-#: ../ubuntutweak/modules/sourcecenter.py:201
-#, python-format
-msgid "Available %d New Application"
-msgid_plural "Available %d New Applications"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:223
-#, python-format
-msgid "Available %d Package Update"
-msgid_plural "Available %d Package Updates"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:263
-msgid "No Available Package Update"
-msgstr ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:377
-msgid "Third-Party Sources"
-msgstr "Код третьої сторони"
-
-#: ../ubuntutweak/modules/sourcecenter.py:533
-#, python-format
-msgid ""
-"To enable this Source, You need to enable \"%s\" at first.\n"
-"Do you wish to continue?"
-msgstr ""
-"Щоб додати цей репозиторій необхідно ввімкнути \"%s\" спочатку.\n"
-"Хочете продовжити?"
-
-#: ../ubuntutweak/modules/sourcecenter.py:535
-msgid "Dependency Notice"
-msgstr "Відстежувати залежності"
-
-#: ../ubuntutweak/modules/sourcecenter.py:549
-#, python-format
-msgid ""
-"You can't disable this Source because \"%(SOURCE)s\" depends on it.\n"
-"To continue you need to disable \"%(SOURCE)s\" first."
-msgstr ""
-"Ви не можете відключити цей репозиторій тому що \"%(SOURCE)s\" залежить від "
-"нього.\n"
-"Щоб продовжити Ви маєте відключити \"%(SOURCE)s\" спочатку."
-
-#: ../ubuntutweak/modules/sourcecenter.py:566
-#, python-format
-msgid ""
-"You can't enable this Source because \"%(SOURCE)s\" conflicts with it.\n"
-"To continue you need to disable \"%(SOURCE)s\" first."
-msgstr ""
-"Ви не можете відключити цей репозиторій тому що \"%(SOURCE)s\" конфліктує з "
-"ним.\n"
-"Щоб продовжити Ви маєте відключити \"%(SOURCE)s\" спочатку."
-
-#: ../ubuntutweak/modules/sourcecenter.py:646
-msgid "New source has been enabled"
-msgstr "Новий репозиторій був включений"
-
-#: ../ubuntutweak/modules/sourcecenter.py:647
-#, python-format
-msgid ""
-"%s is enabled now, Please click the refresh button to update the application "
-"cache."
-msgstr ""
-"%s зараз вимкнено, Будь ласка, натисніть кнопку \"Оновити\" для оновлення "
-"кешу програм."
-
-#: ../ubuntutweak/modules/sourcecenter.py:660
-msgid "Homepage"
-msgstr "Домашня сторінка"
-
-#: ../ubuntutweak/modules/sourcecenter.py:660
-msgid "Source URL"
-msgstr "Вихідні посилання"
-
-#: ../ubuntutweak/modules/sourcecenter.py:660
-msgid "Description"
-msgstr "Опис"
-
-#: ../ubuntutweak/modules/sourcecenter.py:673
-msgid "Description is here"
-msgstr "Опис тут"
-
-#: ../ubuntutweak/modules/sourcecenter.py:701
-msgid "Source Center"
-msgstr ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:702
-msgid ""
-"A source center to keep your applications always up-to-date.\n"
-"You can also get the application which isn't in the official repository.\n"
-"Data will be automatically synchronized with the remote side.\n"
-"You can click the \"Sync\" button to check the update manually."
-msgstr ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:708
-msgid "Visit online Source Center"
-msgstr ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:714
-#: ../ubuntutweak/modules/appcenter.py:464
-msgid "_Sync"
-msgstr ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:760
-#: ../ubuntutweak/modules/appcenter.py:494
-msgid "Last synced:"
-msgstr ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:766
-msgid "New sources data available, would you like to update?"
-msgstr ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:840
-msgid ""
-"It is a possible security risk to use packages from Third-Party Sources.\n"
-"Please be careful and use only sources you trust."
-msgstr ""
-"Використання сторонніх репозиторіїв може бути небезпечним.\n"
-"Використовуйте тільки ті джерела, яким ви довіряєте."
-
-#: ../ubuntutweak/modules/sourcecenter.py:843
-#: ../ubuntutweak/modules/nautilus.py:139
-msgid "Warning"
-msgstr "Попередження"
-
-#: ../ubuntutweak/modules/sourcecenter.py:844
-msgid "Never show this dialog"
-msgstr "Ніколи не показувати цей діалог"
-
-#: ../ubuntutweak/modules/sourcecenter.py:870
-msgid "Some error happened while downloading the file"
-msgstr ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:881
-#: ../ubuntutweak/modules/appcenter.py:559
-msgid "Update available, Would you like to update?"
-msgstr ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:890
-#: ../ubuntutweak/modules/appcenter.py:568
-msgid ""
-"Network Error, Please check your network connection or the remote server is "
-"down."
-msgstr ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:892
-#: ../ubuntutweak/modules/appcenter.py:570
-msgid "No update available."
-msgstr ""
-
-#: ../ubuntutweak/modules/updatemanager.py:29
-msgid "Update Manager"
-msgstr "Менеджер оновлення"
-
-#: ../ubuntutweak/modules/updatemanager.py:30
-msgid "A simple and easy-to-use update manager"
-msgstr ""
-
-#: ../ubuntutweak/modules/updatemanager.py:42
-msgid "Enable the auto launch of System Update Manager"
-msgstr ""
-
-#: ../ubuntutweak/modules/appcenter.py:106
-#: ../ubuntutweak/modules/filetype.py:72
-msgid "Categories"
-msgstr "Категорії"
-
-#: ../ubuntutweak/modules/appcenter.py:122
+#: ../ubuntutweak/modules/appcenter.py:120
 msgid "All Categories"
 msgstr "Всі категорії"
 
-#: ../ubuntutweak/modules/appcenter.py:420
+#: ../ubuntutweak/modules/appcenter.py:407
 msgid "Checking update..."
-msgstr ""
+msgstr "Перевірка оновлень..."
 
-#: ../ubuntutweak/modules/appcenter.py:448
+#: ../ubuntutweak/modules/appcenter.py:437
 msgid "Fetching online data..."
-msgstr ""
+msgstr "Завантаження даних з мережі..."
 
-#: ../ubuntutweak/modules/appcenter.py:452
+#: ../ubuntutweak/modules/appcenter.py:441
 msgid "Application Center"
-msgstr ""
+msgstr "Центр програм"
 
-#: ../ubuntutweak/modules/appcenter.py:453
+#: ../ubuntutweak/modules/appcenter.py:442
 msgid ""
 "A simple but more effecient way for finding and installing popular "
 "applications.\n"
 "Data will be automatically synchronized with the remote side.\n"
 "You can click the \"Sync\" button to check the update manually."
 msgstr ""
+"Простий, та більш ефективний спосіб пошуку і встановлення популярних "
+"програм.\n"
+"Дані будуть автоматично синхронізовані з віддаленим сервером.\n"
+"Натисніть кнопку \"Синхронізувати\" для перевірки оновлень вручну."
 
-#: ../ubuntutweak/modules/appcenter.py:458
+#: ../ubuntutweak/modules/appcenter.py:447
 msgid "Visit Online Application Center"
-msgstr ""
+msgstr "Відвідати центр програм в інтернеті"
 
-#: ../ubuntutweak/modules/appcenter.py:499
+#: ../ubuntutweak/modules/appcenter.py:453
+#: ../ubuntutweak/modules/sourcecenter.py:839
+msgid "_Sync"
+msgstr "_Синхронізувати"
+
+#: ../ubuntutweak/modules/appcenter.py:485
+#: ../ubuntutweak/modules/sourcecenter.py:888
+msgid "Last synced:"
+msgstr "Остання синхронізація:"
+
+#: ../ubuntutweak/modules/appcenter.py:490
 msgid "New application data available, would you like to update?"
-msgstr ""
+msgstr "Наявні нові дані програм. Бажаєте оновити?"
 
-#: ../ubuntutweak/modules/appcenter.py:581
-msgid "Some error happened while downloading the file."
+#: ../ubuntutweak/modules/appcenter.py:552
+#: ../ubuntutweak/modules/sourcecenter.py:1014
+msgid "Update available, Would you like to update?"
+msgstr "Наявні оновлення. Оновити?"
+
+#: ../ubuntutweak/modules/appcenter.py:561
+#: ../ubuntutweak/modules/sourcecenter.py:1023
+msgid ""
+"Network Error, Please check your network connection or the remote server is "
+"down."
 msgstr ""
+"Помилка мережі. Перевірте з'єднання з мережею або з віддаленим сервером."
+
+#: ../ubuntutweak/modules/appcenter.py:563
+#: ../ubuntutweak/modules/sourcecenter.py:1025
+msgid "No update available."
+msgstr "Немає доступних оновлень."
+
+#: ../ubuntutweak/modules/appcenter.py:574
+msgid "Some error happened while downloading the file."
+msgstr "Під час завантаження файла сталася помилка."
 
 #: ../ubuntutweak/modules/filetype.py:34
 msgid "Audio"
@@ -1157,13 +1021,17 @@ msgstr "Програма"
 msgid "All"
 msgstr "Все"
 
+#: ../ubuntutweak/modules/filetype.py:72
+msgid "Categories"
+msgstr "Категорії"
+
 #: ../ubuntutweak/modules/filetype.py:130
 msgid "File Type"
-msgstr "Тип файлу"
+msgstr "Тип файла"
 
 #: ../ubuntutweak/modules/filetype.py:145
 msgid "Associated Application"
-msgstr "Пов'язаний додаток"
+msgstr "Пов'язана програма"
 
 #: ../ubuntutweak/modules/filetype.py:243
 #, python-format
@@ -1194,99 +1062,170 @@ msgstr "Управління типами файлів"
 
 #: ../ubuntutweak/modules/filetype.py:479
 msgid "Manage all of the registered file types"
-msgstr ""
+msgstr "Керування всіма зареєстрованими типами файлів"
 
 #: ../ubuntutweak/modules/filetype.py:511
 msgid "Only show filetypes with an associated application"
 msgstr ""
 "Показувати тільки типи файлів, з якими пов'язана яка-небудь програма."
 
-#: ../ubuntutweak/modules/metacity.py:29
-msgid "Window Manager Settings"
-msgstr ""
+#: ../ubuntutweak/modules/updatemanager.py:29
+msgid "Update Manager"
+msgstr "Менеджер оновлення"
 
-#: ../ubuntutweak/modules/metacity.py:30
-msgid "Some options about Metacity Window Manager"
-msgstr ""
+#: ../ubuntutweak/modules/updatemanager.py:30
+msgid "A simple and easy-to-use update manager"
+msgstr "Простий і зручний у використанні менеджер оновлень"
 
-#: ../ubuntutweak/modules/metacity.py:39
-msgid "Window Decorate Effect"
-msgstr "Ефект декорацій вікон"
+#: ../ubuntutweak/modules/updatemanager.py:42
+msgid "Enable the auto launch of System Update Manager"
+msgstr "Ввімкнути автоматичний запуск менеджер оновлення системи"
 
-#: ../ubuntutweak/modules/metacity.py:41
-msgid "Use Metacity window theme"
-msgstr "Використовувати тему вікон Metacity"
+#: ../ubuntutweak/modules/updatemanager.py:65
+#: ../ubuntutweak/modules/sourcecenter.py:126
+msgid "Your system is clean and there's no update yet."
+msgstr "Ваша система очищена, та непотребує оновлення."
 
-#: ../ubuntutweak/modules/metacity.py:44
-msgid "Enable active window transparency"
-msgstr "Ввімкнути прозорість активних вікон"
+#: ../ubuntutweak/modules/updatemanager.py:66
+#: ../ubuntutweak/modules/sourcecenter.py:127
+msgid "The software information is up-to-date now"
+msgstr "Інформація про програми вже оновлена."
 
-#: ../ubuntutweak/modules/metacity.py:47
-msgid "Active window transparency level"
-msgstr "Рівень прозорості активних вікон"
-
-#: ../ubuntutweak/modules/metacity.py:51
-msgid "Enable inactive window transparency"
-msgstr "Ввімкнути прозорість неактивних вікон"
-
-#: ../ubuntutweak/modules/metacity.py:54
-msgid "Inactive window shade transparency level"
-msgstr "Рівень прозорості тіні неактивних вікон"
-
-#: ../ubuntutweak/modules/metacity.py:60
-msgid "Window Titlebar Action"
-msgstr "Дія на заголовку вікон"
-
-#: ../ubuntutweak/modules/metacity.py:62
-msgid "Titlebar mouse wheel action"
-msgstr "Дія колеса миші на заголовку вікон"
-
-#: ../ubuntutweak/modules/metacity.py:64 ../ubuntutweak/modules/metacity.py:69
-#: ../ubuntutweak/modules/metacity.py:74 ../ubuntutweak/modules/metacity.py:79
-msgid "Roll up"
-msgstr "Згорнути в заголовок"
-
-#: ../ubuntutweak/modules/metacity.py:67
-msgid "Titlebar double-click action"
-msgstr "Подвійний клік на заголовку вікна"
-
-#: ../ubuntutweak/modules/metacity.py:69 ../ubuntutweak/modules/metacity.py:74
-#: ../ubuntutweak/modules/metacity.py:79
-msgid "Maximize"
-msgstr "Розгорнути"
-
-#: ../ubuntutweak/modules/metacity.py:69 ../ubuntutweak/modules/metacity.py:74
-#: ../ubuntutweak/modules/metacity.py:79
-msgid "Minimize"
-msgstr "Згорнути"
-
-#: ../ubuntutweak/modules/metacity.py:69 ../ubuntutweak/modules/metacity.py:74
-#: ../ubuntutweak/modules/metacity.py:79
-msgid "Lower"
-msgstr "Знизити"
-
-#: ../ubuntutweak/modules/metacity.py:69 ../ubuntutweak/modules/metacity.py:74
-#: ../ubuntutweak/modules/metacity.py:79
+#: ../ubuntutweak/modules/metacity.py:37
+#: ../ubuntutweak/modules/metacity.py:160
+#: ../ubuntutweak/modules/metacity.py:173
+#: ../ubuntutweak/modules/metacity.py:186
 msgid "Menu"
 msgstr "Меню"
 
-#: ../ubuntutweak/modules/metacity.py:72
+#: ../ubuntutweak/modules/metacity.py:38
+msgid "Title"
+msgstr "Заголовок"
+
+#: ../ubuntutweak/modules/metacity.py:39
+#: ../ubuntutweak/modules/metacity.py:156
+#: ../ubuntutweak/modules/metacity.py:169
+#: ../ubuntutweak/modules/metacity.py:182
+msgid "Maximize"
+msgstr "Розгорнути"
+
+#: ../ubuntutweak/modules/metacity.py:40
+#: ../ubuntutweak/modules/metacity.py:159
+#: ../ubuntutweak/modules/metacity.py:172
+#: ../ubuntutweak/modules/metacity.py:185
+msgid "Minimize"
+msgstr "Згорнути"
+
+#: ../ubuntutweak/modules/metacity.py:41
+msgid "Close"
+msgstr "Закрити"
+
+#: ../ubuntutweak/modules/metacity.py:42
+msgid "Spacer"
+msgstr "Розпірка"
+
+#: ../ubuntutweak/modules/metacity.py:108
+msgid "Window Manager Settings"
+msgstr "Параметри менеджера вікон"
+
+#: ../ubuntutweak/modules/metacity.py:109
+msgid "Some options about Metacity Window Manager"
+msgstr "Деякі параметри віконного менеджера Metacity"
+
+#: ../ubuntutweak/modules/metacity.py:115
+msgid "Add Spacer"
+msgstr "Додати розпірку"
+
+#: ../ubuntutweak/modules/metacity.py:116
+msgid "Remove Spacer"
+msgstr "Вилучити розпірку"
+
+#: ../ubuntutweak/modules/metacity.py:121
+msgid "Arrange the buttons on the titlebar by dragging and dropping"
+msgstr "Упорядкувати кнопки на панелі заголовка перетягуванням"
+
+#: ../ubuntutweak/modules/metacity.py:142
+msgid "Window Titlebar Button Layout"
+msgstr "Розташування кнопок на панелі заголовка вікна"
+
+#: ../ubuntutweak/modules/metacity.py:147
+msgid "Window Titlebar Action"
+msgstr "Дія на заголовку вікна"
+
+#: ../ubuntutweak/modules/metacity.py:149
+msgid "Titlebar mouse wheel action"
+msgstr "Дія колеса миші на заголовку вікна"
+
+#: ../ubuntutweak/modules/metacity.py:151
+#: ../ubuntutweak/modules/metacity.py:159
+#: ../ubuntutweak/modules/metacity.py:172
+#: ../ubuntutweak/modules/metacity.py:185
+msgid "Roll up"
+msgstr "Згорнути в заголовок"
+
+#: ../ubuntutweak/modules/metacity.py:154
+msgid "Titlebar double-click action"
+msgstr "Подвійний клік на заголовку вікна"
+
+#: ../ubuntutweak/modules/metacity.py:157
+#: ../ubuntutweak/modules/metacity.py:170
+#: ../ubuntutweak/modules/metacity.py:183
+msgid "Maximize Horizontally"
+msgstr "Збільшити по горизонталі"
+
+#: ../ubuntutweak/modules/metacity.py:158
+#: ../ubuntutweak/modules/metacity.py:171
+#: ../ubuntutweak/modules/metacity.py:184
+msgid "Maximize Vertically"
+msgstr "Збільшити по вертикалі"
+
+#: ../ubuntutweak/modules/metacity.py:160
+#: ../ubuntutweak/modules/metacity.py:173
+#: ../ubuntutweak/modules/metacity.py:186
+msgid "Lower"
+msgstr "Знизити"
+
+#: ../ubuntutweak/modules/metacity.py:167
 msgid "Titlebar middle-click action"
 msgstr "Клік середньою кнопкою на заголовку вікна"
 
-#: ../ubuntutweak/modules/metacity.py:77
+#: ../ubuntutweak/modules/metacity.py:180
 msgid "Titlebar right-click action"
 msgstr "Клік правою кнопкою на заголовку вікна"
 
-#: ../ubuntutweak/modules/metacity.py:86
+#: ../ubuntutweak/modules/metacity.py:196
+msgid "Window Decorate Effect"
+msgstr "Ефект декорацій вікон"
+
+#: ../ubuntutweak/modules/metacity.py:198
+msgid "Use Metacity window theme"
+msgstr "Використовувати тему вікон Metacity"
+
+#: ../ubuntutweak/modules/metacity.py:201
+msgid "Enable active window transparency"
+msgstr "Ввімкнути прозорість активних вікон"
+
+#: ../ubuntutweak/modules/metacity.py:204
+msgid "Active window transparency level"
+msgstr "Рівень прозорості активних вікон"
+
+#: ../ubuntutweak/modules/metacity.py:208
+msgid "Enable inactive window transparency"
+msgstr "Ввімкнути прозорість неактивних вікон"
+
+#: ../ubuntutweak/modules/metacity.py:211
+msgid "Inactive window shade transparency level"
+msgstr "Рівень прозорості тіні неактивних вікон"
+
+#: ../ubuntutweak/modules/metacity.py:218
 msgid "Enable Metacity's Compositing feature"
 msgstr "Ввімкнути композитний Metacity (тіні та прозорість)"
 
-#: ../ubuntutweak/modules/metacity.py:89
+#: ../ubuntutweak/modules/metacity.py:221
 msgid "Compositing Manager"
 msgstr "Менеджер композиції"
 
-#: ../ubuntutweak/modules/metacity.py:96
+#: ../ubuntutweak/modules/metacity.py:242
 msgid ""
 "To enable the compositing feature of metacity, you should manually disable "
 "Visual Effects in \"Appearance\"."
@@ -1296,39 +1235,39 @@ msgstr ""
 
 #: ../ubuntutweak/modules/__init__.py:104
 msgid "More"
-msgstr ""
+msgstr "Більше"
 
 #: ../ubuntutweak/modules/icons.py:32
 msgid "Show \"Computer\" icon on desktop"
-msgstr "Показати значок \"Комп'ютер\" на робочому столі"
+msgstr "Показати піктограму \"Комп'ютер\" на стільниці"
 
 #: ../ubuntutweak/modules/icons.py:41
 msgid "Show \"Home Folder\" icon on desktop"
-msgstr "Показувати іконку \"Домашня тека\" на стільниці"
+msgstr "Показувати піктограму \"Домашня тека\" на стільниці"
 
 #: ../ubuntutweak/modules/icons.py:50
 msgid "Show \"Trash\" icon on desktop"
-msgstr "Показати значок \"Смітник\" на робочому столі"
+msgstr "Показати піктограму \"Смітник\" на стільниці"
 
 #: ../ubuntutweak/modules/icons.py:108
 msgid "Desktop Icon Settings"
-msgstr ""
+msgstr "Налаштування піктограм на стільниці"
 
 #: ../ubuntutweak/modules/icons.py:109
 msgid "Manage the desktop icon's name and visiable"
-msgstr ""
+msgstr "Керування піктограмами на стільниці"
 
 #: ../ubuntutweak/modules/icons.py:118
 msgid "Show desktop icons"
-msgstr "Показати іконки робочого столу"
+msgstr "Показувати піктограми на стільниці"
 
 #: ../ubuntutweak/modules/icons.py:139
 msgid "Show \"Network\" icon on desktop"
-msgstr "Показати значок \"Мережа\" на робочому столі"
+msgstr "Показувати піктограму \"Мережа\" на стільниці"
 
 #: ../ubuntutweak/modules/icons.py:144
 msgid "Show mounted volumes on desktop"
-msgstr "Показувати примонтовані томи на стільниці"
+msgstr "Показувати під’єднані томи на стільниці"
 
 #: ../ubuntutweak/modules/icons.py:149
 msgid "Use \"Home Folder\" as desktop (Logout for changes to take effect)"
@@ -1338,15 +1277,15 @@ msgstr ""
 
 #: ../ubuntutweak/modules/gnomesettings.py:35
 msgid "GNOME Settings"
-msgstr ""
+msgstr "Параметри GNOME"
 
 #: ../ubuntutweak/modules/gnomesettings.py:36
 msgid "A lot of GNOME settings about panel, menu and others"
-msgstr ""
+msgstr "Налаштування панелей, меню і такого іншого в середовищі GNOME"
 
 #: ../ubuntutweak/modules/gnomesettings.py:48
 msgid "Panel Settings"
-msgstr ""
+msgstr "Параметри панелі"
 
 #: ../ubuntutweak/modules/gnomesettings.py:50
 msgid "Display warning when removing a panel"
@@ -1362,72 +1301,71 @@ msgstr "Дозволити анімацію панелей"
 
 #: ../ubuntutweak/modules/gnomesettings.py:61
 msgid "Menu Settings"
-msgstr ""
+msgstr "Параметри меню"
 
 #: ../ubuntutweak/modules/gnomesettings.py:63
 msgid "Show Input Method menu on the context menu"
 msgstr "Показувати «Метод вводу» в контекстному меню"
 
 #: ../ubuntutweak/modules/gnomesettings.py:66
-#: ../ubuntutweak/modules/gnomesettings.py:69
 msgid "Show Unicode Method menu on the context menu"
 msgstr "Показувати «Вставити символ Юнікод» в контекстному меню"
 
-#: ../ubuntutweak/modules/gnomesettings.py:72
+#: ../ubuntutweak/modules/gnomesettings.py:69
 msgid "Menus have icons"
-msgstr ""
+msgstr "Піктограми в меню"
 
-#: ../ubuntutweak/modules/gnomesettings.py:75
+#: ../ubuntutweak/modules/gnomesettings.py:72
 msgid "Buttons have icons"
-msgstr ""
+msgstr "Піктограми на кнопках"
 
-#: ../ubuntutweak/modules/gnomesettings.py:81
+#: ../ubuntutweak/modules/gnomesettings.py:78
 msgid "Screensaver"
 msgstr "Зберігач екрану"
 
-#: ../ubuntutweak/modules/gnomesettings.py:83
+#: ../ubuntutweak/modules/gnomesettings.py:80
 msgid "Enable user switching when screen is locked."
 msgstr "Дозволити перемикати користувачів, коли екран заблокований"
 
-#: ../ubuntutweak/modules/gnomesettings.py:88
+#: ../ubuntutweak/modules/gnomesettings.py:85
 msgid "Enable system-wide \"Recently Documents\" list"
 msgstr "Ввімкнути список недавніх документів для всіх користувачів"
 
-#: ../ubuntutweak/modules/gnomesettings.py:91
+#: ../ubuntutweak/modules/gnomesettings.py:88
 msgid "History"
 msgstr "Історія"
 
-#: ../ubuntutweak/modules/gnomesettings.py:98
+#: ../ubuntutweak/modules/gnomesettings.py:95
 msgid "Click the button to change the menu logo"
 msgstr "Натисніть кнопку для зміни логотипу меню"
 
-#: ../ubuntutweak/modules/gnomesettings.py:111
+#: ../ubuntutweak/modules/gnomesettings.py:108
 msgid "Choose a new logo"
 msgstr "Виберіть новий логотип"
 
-#: ../ubuntutweak/modules/gnomesettings.py:117
+#: ../ubuntutweak/modules/gnomesettings.py:114
 msgid "PNG image (*.png)"
 msgstr "PNG зображення (*.png)"
 
-#: ../ubuntutweak/modules/gnomesettings.py:136
+#: ../ubuntutweak/modules/gnomesettings.py:135
 msgid ""
 "The size isn't suitable for the panel.\n"
 "It should be 24x24."
 msgstr ""
-"Розмір значка не підходить для панелі.\n"
-"Значок має бути 24x24 пікселя."
+"Розмір не підходить для панелі.\n"
+"Розмір має бути 24x24."
 
-#: ../ubuntutweak/modules/gnomesettings.py:153
+#: ../ubuntutweak/modules/gnomesettings.py:151
 msgid "Do you want your changes to take effect immediately?"
 msgstr "Застосувати зміни негайно?"
 
 #: ../ubuntutweak/modules/powermanager.py:28
 msgid "Advanced Powermanager Settings"
-msgstr ""
+msgstr "Розширені налаштування керування живленням."
 
 #: ../ubuntutweak/modules/powermanager.py:29
 msgid "Control your computer's power managerment"
-msgstr ""
+msgstr "Налаштування системи керування живленням комп'ютера"
 
 #: ../ubuntutweak/modules/powermanager.py:37
 msgid "Advanced Power Management Settings"
@@ -1439,19 +1377,19 @@ msgstr "Дозволити «Блокувати екран» коли актив
 
 #: ../ubuntutweak/modules/powermanager.py:42
 msgid "Lock screen on hibernate"
-msgstr ""
+msgstr "Блокувати екран при переході у режим сну"
 
 #: ../ubuntutweak/modules/powermanager.py:45
 msgid "Lock screen on suspend"
-msgstr ""
+msgstr "Блокувати екран при переході в режим очікування"
 
 #: ../ubuntutweak/modules/powermanager.py:48
 msgid "LCD brightness when on AC"
-msgstr ""
+msgstr "Яскравість LCD при живленні від електромережі"
 
 #: ../ubuntutweak/modules/powermanager.py:52
 msgid "LCD dimming amount when on battery"
-msgstr ""
+msgstr "Згасання LCD при живленні від акумулятора"
 
 #: ../ubuntutweak/modules/compiz.py:49
 msgid "Expo"
@@ -1471,11 +1409,11 @@ msgstr "Віджети"
 
 #: ../ubuntutweak/modules/compiz.py:222
 msgid "Compiz Settings"
-msgstr ""
+msgstr "Параметри Compiz"
 
 #: ../ubuntutweak/modules/compiz.py:223
 msgid "Setting with your amazing eye-candy desktop"
-msgstr ""
+msgstr "Налаштування вигляду та ефектів стільниці"
 
 #: ../ubuntutweak/modules/compiz.py:236
 msgid "Install Advanced Desktop Effects Settings Manager"
@@ -1524,6 +1462,150 @@ msgstr "Корисні додатки"
 #: ../ubuntutweak/modules/compiz.py:280
 msgid "Prerequisite Conditions"
 msgstr "Необхідні умови"
+
+#: ../ubuntutweak/modules/sourcecenter.py:91
+msgid ""
+"You can install the new applications by selecting them and choose \"Yes\".\n"
+"Or you can install them at Add/Remove by choose \"No\"."
+msgstr ""
+"Щоб встановити нові програми, виберіть їх і натисніть «Так».\n"
+"Щоб встановити їх через «Установку/видалення», натисніть «Ні»."
+
+#: ../ubuntutweak/modules/sourcecenter.py:92
+msgid "New applications are available to update"
+msgstr "Доступне оновлення для нових програм"
+
+#: ../ubuntutweak/modules/sourcecenter.py:264
+#, python-format
+msgid "Available %d New Application"
+msgid_plural "Available %d New Applications"
+msgstr[0] "Наявна %d нова програма"
+msgstr[1] "Наявні %d нові програми"
+msgstr[2] "Наявні %d нових програм"
+
+#: ../ubuntutweak/modules/sourcecenter.py:286
+#, python-format
+msgid "Available %d Package Update"
+msgid_plural "Available %d Package Updates"
+msgstr[0] "Наявний %d пакунок для оновлення"
+msgstr[1] "Наявні %d пакунки для оновлення"
+msgstr[2] "Наявні %d пакунків для оновлення"
+
+#: ../ubuntutweak/modules/sourcecenter.py:326
+msgid "No Available Package Update"
+msgstr "Немає пакунків для оновлення"
+
+#: ../ubuntutweak/modules/sourcecenter.py:463
+msgid "Third-Party Sources"
+msgstr "Джерела третьої сторони"
+
+#: ../ubuntutweak/modules/sourcecenter.py:632
+#, python-format
+msgid ""
+"You can't enable this Source because<b>\"%(SOURCE)s\"</b> conflicts with "
+"it.\n"
+"To continue you need to disable <b>\"%(SOURCE)s\"</b>first."
+msgstr ""
+"Це джерело не можна під’єднати тому, що воно конфліктує з "
+"<b>\"%(SOURCE)s\"</b>.\n"
+"Вам потрібно спочатку вимкнути <b>\"%(SOURCE)s\"</b>, щоб продовжити."
+
+#: ../ubuntutweak/modules/sourcecenter.py:654
+#, python-format
+msgid ""
+"To enable this Source, You need to enable <b>\"%s\"</b> at first.\n"
+"Do you wish to continue?"
+msgstr ""
+"Щоб під’єднати це джерело, спочатку потрібно ввімкнути <b>\"%s\"</b>.\n"
+"Бажаєте продовжити?"
+
+#: ../ubuntutweak/modules/sourcecenter.py:656
+msgid "Dependency Notice"
+msgstr "Відстежувати залежності"
+
+#: ../ubuntutweak/modules/sourcecenter.py:680
+#, python-format
+msgid ""
+"You can't disable this Source because <b>\"%(SOURCE)s\"</b> depends on it.\n"
+"To continue you need to disable <b>\"%(SOURCE)s\"</b> first."
+msgstr ""
+"Це джерело не можна від’єднати тому, що воно залежить від "
+"<b>\"%(SOURCE)s\"</b>.\n"
+"Вам потрібно спочатку від’єднати <b>\"%(SOURCE)s\"</b>, щоб продовжити."
+
+#: ../ubuntutweak/modules/sourcecenter.py:770
+msgid "New source has been enabled"
+msgstr "Новий репозиторій був включений"
+
+#: ../ubuntutweak/modules/sourcecenter.py:771
+#, python-format
+msgid ""
+"%s is enabled now, Please click the refresh button to update the application "
+"cache."
+msgstr ""
+"%s зараз вимкнено, Будь ласка, натисніть кнопку \"Оновити\" для оновлення "
+"кешу програм."
+
+#: ../ubuntutweak/modules/sourcecenter.py:784
+msgid "Homepage"
+msgstr "Домашня сторінка"
+
+#: ../ubuntutweak/modules/sourcecenter.py:784
+msgid "Source URL"
+msgstr "Вихідні посилання"
+
+#: ../ubuntutweak/modules/sourcecenter.py:784
+msgid "Description"
+msgstr "Опис"
+
+#: ../ubuntutweak/modules/sourcecenter.py:797
+msgid "Description is here"
+msgstr "Опис тут"
+
+#: ../ubuntutweak/modules/sourcecenter.py:825
+msgid "Source Center"
+msgstr "Центр програмного забезпечення"
+
+#: ../ubuntutweak/modules/sourcecenter.py:826
+msgid ""
+"A source center to keep your applications always up-to-date.\n"
+"You can also get the application which isn't in the official repository.\n"
+"Data will be automatically synchronized with the remote side.\n"
+"You can click the \"Sync\" button to check the update manually."
+msgstr ""
+"Центр ПЗ дає змогу тримати програми завжди оновленими.\n"
+"Також наявні програми, які не входить в офіційний репозиторій.\n"
+"Дані автоматично будуть синхронізовані з віддаленим сервером.\n"
+"Натисніть кнопку \"Синхронізувати\", щоб перевірити оновлення вручну."
+
+#: ../ubuntutweak/modules/sourcecenter.py:832
+msgid "Visit online Source Center"
+msgstr "Відвідайте центр програмного забезпечення в інтернеті"
+
+#: ../ubuntutweak/modules/sourcecenter.py:894
+msgid "New sources data available, would you like to update?"
+msgstr "Наявні нові дані в джерелах. Бажаєте оновити?"
+
+#: ../ubuntutweak/modules/sourcecenter.py:969
+msgid ""
+"It is a possible security risk to use packages from Third-Party Sources.\n"
+"Please be careful and use only sources you trust."
+msgstr ""
+"Використання сторонніх репозиторіїв може бути небезпечним.\n"
+"Використовуйте тільки ті джерела, яким ви довіряєте."
+
+#: ../ubuntutweak/modules/sourcecenter.py:972
+#: ../ubuntutweak/modules/nautilus.py:139
+msgid "Warning"
+msgstr "Попередження"
+
+#: ../ubuntutweak/modules/sourcecenter.py:973
+msgid "Never show this dialog"
+msgstr "Ніколи не показувати цей діалог"
+
+#: ../ubuntutweak/modules/sourcecenter.py:999
+msgid "Some error happened while downloading the file"
+msgstr "Під час завантаження файла сталася помилка"
 
 #: ../ubuntutweak/modules/scripts.py:50
 msgid "Create Launcher ..."
@@ -1595,7 +1677,7 @@ msgstr "Подивитися з правами користувача root"
 
 #: ../ubuntutweak/modules/scripts.py:67
 msgid "Search in current folder"
-msgstr "Шукати в поточній папці"
+msgstr "Шукати в чинній теці"
 
 #: ../ubuntutweak/modules/scripts.py:68
 msgid "Convert image to JPG"
@@ -1619,15 +1701,15 @@ msgstr "Надати зображенню різку тінь"
 
 #: ../ubuntutweak/modules/scripts.py:99
 msgid "Enabled Scripts"
-msgstr "Включити скрипти"
+msgstr "Активні сценарії"
 
 #: ../ubuntutweak/modules/scripts.py:127
 msgid "Disabled Scripts"
-msgstr "Відключити скрипти"
+msgstr "Неактивні сценарії"
 
 #: ../ubuntutweak/modules/scripts.py:133
 msgid "Manage Scripts"
-msgstr "Управління скриптами"
+msgstr "Керування сценаріями"
 
 #: ../ubuntutweak/modules/scripts.py:134
 msgid ""
@@ -1635,142 +1717,142 @@ msgid ""
 "You can drag and drop from File Manager.\n"
 "'Scripts' will be added to the context menu."
 msgstr ""
-"За допомогою скриптів можете виконувати будь-які завдання.\n"
-"Ви можете перетягти нові скрипти в це вікно з файлового менеджера.\n"
-"Активні скрипти будуть доступні через контекстне меню файлу."
+"За допомогою сценаріїв можна виконувати будь-які завдання.\n"
+"Перетягніть нові сценарії в це вікно з файлового менеджера.\n"
+"Активні сценарії будуть доступні через контекстне меню."
 
 #: ../ubuntutweak/modules/scripts.py:167
 msgid "Rebuild System Scripts"
-msgstr "Перезібрати системні скрипти"
+msgstr "Перезібрати системні сценарії"
 
 #: ../ubuntutweak/modules/scripts.py:185
 msgid ""
 "This will delete all disabled scripts.\n"
 "Do you wish to continue?"
 msgstr ""
-"Всі неактивні скрипти будуть видалені.\n"
+"Всі неактивні сценарії будуть вилучені.\n"
 "Ви хочете продовжити?"
 
-#: ../ubuntutweak/modules/templates.py:65
+#: ../ubuntutweak/modules/templates.py:58
 msgid "HTML document"
 msgstr "Документ HTML"
 
-#: ../ubuntutweak/modules/templates.py:66
+#: ../ubuntutweak/modules/templates.py:59
 msgid "ODB Database"
-msgstr "ODB База даних"
+msgstr "База даних ODB"
 
-#: ../ubuntutweak/modules/templates.py:67
+#: ../ubuntutweak/modules/templates.py:60
 msgid "ODS Spreadsheet"
 msgstr "Таблиця ODS"
 
-#: ../ubuntutweak/modules/templates.py:68
+#: ../ubuntutweak/modules/templates.py:61
 msgid "ODT Document"
-msgstr "ODT Документ"
+msgstr "Документ ODT"
 
-#: ../ubuntutweak/modules/templates.py:69
+#: ../ubuntutweak/modules/templates.py:62
 msgid "Plain text document"
 msgstr "Текстовий документ"
 
-#: ../ubuntutweak/modules/templates.py:70
+#: ../ubuntutweak/modules/templates.py:63
 msgid "ODP Presentation"
-msgstr "ODP Презентація"
+msgstr "Презентація ODP"
 
-#: ../ubuntutweak/modules/templates.py:71
+#: ../ubuntutweak/modules/templates.py:64
 msgid "Python script"
 msgstr "Скрипт Python"
 
-#: ../ubuntutweak/modules/templates.py:72
+#: ../ubuntutweak/modules/templates.py:65
 msgid "Pygtk Example"
 msgstr "Приклад на PyGtk"
 
-#: ../ubuntutweak/modules/templates.py:73
+#: ../ubuntutweak/modules/templates.py:66
 msgid "Shell script"
 msgstr "Скрипт оболонки"
 
-#: ../ubuntutweak/modules/templates.py:100
+#: ../ubuntutweak/modules/templates.py:93
 msgid "Enabled Templates"
 msgstr "Активні шаблони"
 
-#: ../ubuntutweak/modules/templates.py:107
+#: ../ubuntutweak/modules/templates.py:100
 msgid "Disabled Templates"
 msgstr "Неактивні шаблони"
 
-#: ../ubuntutweak/modules/templates.py:114
+#: ../ubuntutweak/modules/templates.py:107
 msgid "Manage Templates"
 msgstr "Керування шаблонами"
 
-#: ../ubuntutweak/modules/templates.py:115
+#: ../ubuntutweak/modules/templates.py:108
 msgid ""
 "Here you can freely manage your document templates.\n"
 "You can add files as templates by dragging them onto this window.\n"
 "You can create new documents based on these templates from the Nautilus "
 "right-click menu."
 msgstr ""
-"Тут ви можете повністю керувати вашими шаблонами документів.\n"
-"Ви можете додавати файли як шаблони перетягуючи їх у це вікно.\n"
-"Ви можете створити новий документ на основі цих шаблонів з контекстним меню "
-"Nautilus."
+"Тут ви можете повністю керувати шаблонами документів.\n"
+"Ви можете додавати файли як шаблони, перетягуючи їх у це вікно.\n"
+"Ви можете створити новий документ на основі цих шаблонів через контекстне "
+"меню Nautilus."
 
-#: ../ubuntutweak/modules/templates.py:126
+#: ../ubuntutweak/modules/templates.py:119
 #, python-format
 msgid ""
 "Templates path is wrong! The current path is point to \"%s\".\n"
 "Please reset it to a folder under your Home Folder."
 msgstr ""
-"Помилковий шлях до шаблонів! Поточний шлях \"%s\".\n"
-"Будь ласка, скиньте його в теку у Вашому домашньому каталозі."
+"Помилковий шлях до шаблонів! Цей шлях вказує \"%s\".\n"
+"Використовуйте для шаблонів теку в домашньому каталозі."
 
-#: ../ubuntutweak/modules/templates.py:133
+#: ../ubuntutweak/modules/templates.py:128
 msgid "Go And Set"
 msgstr "Налаштувати"
 
-#: ../ubuntutweak/modules/templates.py:138
+#: ../ubuntutweak/modules/templates.py:133
 msgid "Restart This Module"
 msgstr "Перезапустити цей модуль"
 
-#: ../ubuntutweak/modules/templates.py:168
+#: ../ubuntutweak/modules/templates.py:163
 msgid "Rebuild System Templates"
 msgstr "Перезібрати системні шаблони"
 
-#: ../ubuntutweak/modules/templates.py:188
+#: ../ubuntutweak/modules/templates.py:183
 msgid "Templates path is still wrong, Please reset it!"
-msgstr "Шлях до шаблонів все ще помилковий. Будь ласка, відкоригуюте його!"
+msgstr "Шлях до шаблонів все ще помилковий. Будь ласка, відкоригуйте його!"
 
-#: ../ubuntutweak/modules/templates.py:200
+#: ../ubuntutweak/modules/templates.py:195
 msgid ""
 "This will delete all disabled templates.\n"
 "Do you wish to continue?"
 msgstr ""
-"Всі неактивні шаблони будуть видалені.\n"
-"Чи Ви хочете продовжити?"
+"Всі неактивні шаблони будуть вилучені.\n"
+"Ви хочете продовжити?"
 
 #: ../ubuntutweak/modules/session.py:34
 msgid "Session control"
-msgstr ""
+msgstr "Керування сеансом"
 
 #: ../ubuntutweak/modules/session.py:35
 msgid "Control your system session releated features"
-msgstr ""
+msgstr "Властивості засобів керування сеансом"
 
 #: ../ubuntutweak/modules/session.py:47
 msgid "File Manager"
-msgstr ""
+msgstr "Менеджер файлів"
 
 #: ../ubuntutweak/modules/session.py:52
 msgid "Panel"
-msgstr ""
+msgstr "Панель"
 
 #: ../ubuntutweak/modules/session.py:56
 msgid "Window Manager"
-msgstr ""
+msgstr "Менеджер вікон"
 
 #: ../ubuntutweak/modules/session.py:67
 msgid "Session Control"
-msgstr "Контроль сессії"
+msgstr "Керування сеансом"
 
 #: ../ubuntutweak/modules/session.py:76
 msgid "Session Options"
-msgstr ""
+msgstr "Параметри сеансу"
 
 #: ../ubuntutweak/modules/session.py:78
 msgid "Automatically save open applications when logging out"
@@ -1778,51 +1860,53 @@ msgstr "Автоматично запам'ятовувати запущені п
 
 #: ../ubuntutweak/modules/session.py:81
 msgid "Allow TCP Connections (Remote Desktop Connect)"
-msgstr "Дозволити TCP з'єднання (віддалені підключення до Вашої стільниці)"
+msgstr "Дозволити TCP з'єднання (віддалені під’єднання до стільниці)"
 
 #: ../ubuntutweak/modules/session.py:84
 msgid "Suppress the dialog to confirm logout, restart and shutdown action"
 msgstr ""
+"Не показувати діалог підтвердження завершення сеансу, перезавантаження та "
+"вимикання комп’ютера"
 
 #: ../ubuntutweak/modules/session.py:87
 msgid "Disable user list in gdm"
-msgstr ""
+msgstr "Не показувати список користувачів у gdm"
 
 #: ../ubuntutweak/modules/session.py:112
 msgid "Please enter a valid application command line."
-msgstr ""
+msgstr "Введіть коректний рядок запуску програми."
 
 #: ../ubuntutweak/modules/session.py:112
 #, python-format
 msgid "\"%s\" is not available."
-msgstr ""
+msgstr "\"%s\" не доступно."
 
-#: ../ubuntutweak/modules/cleaner.py:55
+#: ../ubuntutweak/modules/cleaner.py:58
 msgid "Cleaning Package Config"
-msgstr "Очистити налаштування пакетів"
+msgstr "Очистити налаштування пакунків"
 
-#: ../ubuntutweak/modules/cleaner.py:62 ../ubuntutweak/modules/cleaner.py:89
+#: ../ubuntutweak/modules/cleaner.py:65 ../ubuntutweak/modules/cleaner.py:92
 #, python-format
 msgid "Cleaning...%s"
 msgstr "Очистка ...%s"
 
-#: ../ubuntutweak/modules/cleaner.py:82
+#: ../ubuntutweak/modules/cleaner.py:85
 msgid "Cleaning Package Cache"
-msgstr "Очистити кеш пакетів"
+msgstr "Очистити кеш пакунків"
 
-#: ../ubuntutweak/modules/cleaner.py:145
+#: ../ubuntutweak/modules/cleaner.py:148
 msgid "Package"
 msgstr "Пакунок"
 
-#: ../ubuntutweak/modules/cleaner.py:170 ../ubuntutweak/modules/cleaner.py:198
+#: ../ubuntutweak/modules/cleaner.py:173 ../ubuntutweak/modules/cleaner.py:201
 msgid "Packages"
 msgstr "Пакунки"
 
-#: ../ubuntutweak/modules/cleaner.py:227
+#: ../ubuntutweak/modules/cleaner.py:230
 msgid "Package Cache"
 msgstr "Кеш пакунків"
 
-#: ../ubuntutweak/modules/cleaner.py:241
+#: ../ubuntutweak/modules/cleaner.py:244
 #, python-format
 msgid ""
 "<b>%s</b>\n"
@@ -1831,68 +1915,68 @@ msgstr ""
 "<b>%s</b>\n"
 "Займає %s місця на диску"
 
-#: ../ubuntutweak/modules/cleaner.py:267
+#: ../ubuntutweak/modules/cleaner.py:270
 msgid "Package Config"
 msgstr "Налаштування пакунків"
 
-#: ../ubuntutweak/modules/cleaner.py:305
+#: ../ubuntutweak/modules/cleaner.py:307
 #, python-format
 msgid "%d package selected to remove"
 msgid_plural "%d packages selected to remove"
-msgstr[0] "%d пакет вибраний для видалення"
-msgstr[1] "%d пакета вибрано для видалення"
-msgstr[2] "%d пакетів вибрано для видалення"
+msgstr[0] "%d пакунок вибраний для вилучення"
+msgstr[1] "%d пакунки вибрано для вилучення"
+msgstr[2] "%d пакунків вибрано для вилучення"
 
-#: ../ubuntutweak/modules/cleaner.py:309
+#: ../ubuntutweak/modules/cleaner.py:311
 #, python-format
 msgid "%s of space will be freed"
 msgstr "%s місця вивільниться"
 
-#: ../ubuntutweak/modules/cleaner.py:394
+#: ../ubuntutweak/modules/cleaner.py:396
 msgid "Canceled by user!"
-msgstr "Скасовано користувачем"
+msgstr "Скасовано користувачем!"
 
-#: ../ubuntutweak/modules/cleaner.py:397
+#: ../ubuntutweak/modules/cleaner.py:399
 #: ../ubuntutweak/modules/nautilus.py:145
 msgid "Clean up Successful!"
 msgstr "Очищення вдале"
 
-#: ../ubuntutweak/modules/cleaner.py:400
+#: ../ubuntutweak/modules/cleaner.py:402
 msgid "Clean up Failed!"
 msgstr "Невдалося очистити"
 
-#: ../ubuntutweak/modules/cleaner.py:413
+#: ../ubuntutweak/modules/cleaner.py:415
 msgid "Package Cleaner"
 msgstr "Прибиральник пакунків"
 
-#: ../ubuntutweak/modules/cleaner.py:414
+#: ../ubuntutweak/modules/cleaner.py:416
 msgid ""
 "Free up disk space by removing unneeded packages and cleaning the package "
 "download cache."
 msgstr ""
-"Звільнення місця на диску шляхом видалення непотрібних пакетів та очищення "
-"кешу завантажених пакетів."
+"Звільнення місця на диску шляхом вилучення непотрібних пакунків та очищення "
+"кешу завантажених пакунків."
 
 #. create the button
-#: ../ubuntutweak/modules/cleaner.py:445
+#: ../ubuntutweak/modules/cleaner.py:447
 msgid "Clean Package"
 msgstr "Очистити пакунки"
 
-#: ../ubuntutweak/modules/cleaner.py:450
+#: ../ubuntutweak/modules/cleaner.py:452
 msgid "Clean Cache"
 msgstr "Очистити кеш"
 
-#: ../ubuntutweak/modules/cleaner.py:455
+#: ../ubuntutweak/modules/cleaner.py:457
 msgid "Clean Config"
-msgstr "Очистити Config"
+msgstr "Очистити налаштування"
 
-#: ../ubuntutweak/modules/cleaner.py:460
+#: ../ubuntutweak/modules/cleaner.py:462
 msgid "Clean Kernel"
 msgstr "Очистити ядро"
 
-#: ../ubuntutweak/modules/cleaner.py:480
+#: ../ubuntutweak/modules/cleaner.py:482
 msgid "_Cleanup"
-msgstr "Авточищення (_C)"
+msgstr "_Очищення"
 
 #: ../ubuntutweak/modules/shortcuts.py:45
 msgid "Shortcut Commands"
@@ -1904,7 +1988,7 @@ msgid ""
 "applications instantly.\n"
 "Enter the application's command and set the desired shortcut keys."
 msgstr ""
-"Налаштування комбінації клавіш дозволяє здійснювати швидкий доступ до ваших "
+"Налаштування комбінацій клавіш дозволяє здійснювати швидкий доступ до ваших "
 "улюблених програм.\n"
 "Введіть команду для запуску програми, та призначте комбінацію клавіш для її "
 "виконання."
@@ -1945,15 +2029,11 @@ msgstr "Ко_манда:"
 
 #: ../ubuntutweak/modules/autostart.py:63
 msgid "Edit Startup Program"
-msgstr "Змінити програму, яка стартує під час завантаження"
+msgstr "Змінити програми, які запускаються під час завантаження"
 
 #: ../ubuntutweak/modules/autostart.py:68
 msgid "New Startup Program"
 msgstr "Нова програма, яка стартує під час завантаження"
-
-#: ../ubuntutweak/modules/autostart.py:70
-msgid "_Browse..."
-msgstr "_Огляд..."
 
 #: ../ubuntutweak/modules/autostart.py:99
 msgid "Choose a Program"
@@ -1961,11 +2041,11 @@ msgstr "Виберіть програму"
 
 #: ../ubuntutweak/modules/autostart.py:189
 msgid "Delete from Disk"
-msgstr "Видалити з диску"
+msgstr "Вилучити з диска"
 
 #: ../ubuntutweak/modules/autostart.py:203
 msgid "Can't delete the system item from disk."
-msgstr "Неможливо видалити системний файл з диску."
+msgstr "Неможливо вилучити системний елемент з диска."
 
 #: ../ubuntutweak/modules/autostart.py:255
 msgid "No description"
@@ -1977,7 +2057,7 @@ msgstr "Програма"
 
 #: ../ubuntutweak/modules/autostart.py:334
 msgid "Auto Start Programs"
-msgstr ""
+msgstr "Програми автозапуску"
 
 #: ../ubuntutweak/modules/autostart.py:335
 msgid ""
@@ -1985,10 +2065,11 @@ msgid ""
 "You can hide items from view by selecting and clicking \"Remove\"\n"
 "To permanently delete an item, right-click and press \"Delete\"."
 msgstr ""
-"Тут Ви можете керувати програмами, що автоматично запускаються при вході.\n"
+"Тут можна керувати програмами, які автоматично запускаються під час входу в "
+"систему.\n"
 "Ви можете сховати записи від перегляду вибравши та натиснувши \"Вилучити\"\n"
-"Для повного видалення запису, натисніть праву кнопку миші та виберіть "
-"\"Видалити\""
+"Для повного вилучення запису, натисніть праву кнопку миші та виберіть "
+"\"Вилучити з диска\""
 
 #. create the two checkbutton for extra options of auto run list
 #: ../ubuntutweak/modules/autostart.py:348
@@ -2002,7 +2083,7 @@ msgstr "Показати всі доступні програми"
 #: ../ubuntutweak/modules/autostart.py:416
 #: ../ubuntutweak/modules/autostart.py:463
 msgid "The name of the startup program cannot be empty"
-msgstr "Назва програми початкового запуску не може бути порожньою"
+msgstr "Поле з назвою програми автозапуску не може бути порожнім"
 
 #: ../ubuntutweak/modules/autostart.py:418
 #: ../ubuntutweak/modules/autostart.py:465
@@ -2011,15 +2092,15 @@ msgstr "Текст порожній (чи містить лише пропуск
 
 #: ../ubuntutweak/modules/nautilus.py:47
 msgid "Cleaning..."
-msgstr "Очистка..."
+msgstr "Очищення..."
 
 #: ../ubuntutweak/modules/nautilus.py:66
 msgid "Nautilus Settings"
-msgstr ""
+msgstr "Налаштування Nautilus"
 
 #: ../ubuntutweak/modules/nautilus.py:67
 msgid "Manage your default file manager"
-msgstr ""
+msgstr "Керування типовим файловим менеджером"
 
 #: ../ubuntutweak/modules/nautilus.py:76
 msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
@@ -2027,27 +2108,27 @@ msgstr "Показувати розширені права у вікні Nautilu
 
 #: ../ubuntutweak/modules/nautilus.py:79
 msgid "File Browser"
-msgstr "Оглядач файлів"
+msgstr "Перегляд файлів"
 
 #: ../ubuntutweak/modules/nautilus.py:88
 msgid "Thumbnails Settings"
-msgstr "Налаштування ескізів"
+msgstr "Налаштування мініатюр"
 
 #: ../ubuntutweak/modules/nautilus.py:92
 msgid "Default thumbnail icon size (pixels)"
-msgstr "Стандартний розмір значків (в пікселях)"
+msgstr "Стандартний розмір піктограм (в пікселях)"
 
 #: ../ubuntutweak/modules/nautilus.py:96
 msgid "Maximum size of the thumbnail cache (megabytes)"
-msgstr "Максимальний розмір кешу значків (в мегабайтах)"
+msgstr "Максимальний розмір кешу піктограм (в мегабайтах)"
 
 #: ../ubuntutweak/modules/nautilus.py:100
 msgid "Maximum age for the thumbnail in the cache (days)"
-msgstr "Максимальний час життя кешу ескізів (днів)"
+msgstr "Максимальний час існування кешу піктограм (днів)"
 
 #: ../ubuntutweak/modules/nautilus.py:107
 msgid "Nautilus with Open Terminal"
-msgstr "Nautilus з Відкритим терміналом"
+msgstr "Nautilus з відкритим терміналом"
 
 #: ../ubuntutweak/modules/nautilus.py:109
 msgid "Nautilus with Root Privileges"
@@ -2064,86 +2145,34 @@ msgstr "Розширення для Nautilus"
 #: ../ubuntutweak/modules/nautilus.py:135
 #, python-format
 msgid "Clean up the thumbnails cache (will free %s of disk space)"
-msgstr "Очистити кеш ескізів (звільниться %s місця на диску)"
+msgstr "Очистити кеш мініатюр (звільниться %s місця на диску)"
 
 #: ../ubuntutweak/modules/nautilus.py:138
 msgid "The thumbnails cache will be cleaned, Do you wish to continue?"
-msgstr ""
-"Кеш ескізів буде очищений.\r\n"
-"Чи Ви хочете продовжити?"
-
-#: ../ubuntutweak/ScriptWorker.py:56
-#, python-format
-msgid "The file \"%s\" already exists!"
-msgstr "Файл \"%s\" вже існує!"
-
-#: ../ubuntutweak/ScriptWorker.py:61
-#, python-format
-msgid "The folder \"%s\" already exists!"
-msgstr "Папка \"%s\" вже існує!"
-
-#: ../ubuntutweak/ScriptWorker.py:68 ../ubuntutweak/ScriptWorker.py:75
-#, python-format
-msgid "The target \"%s\" already exists!"
-msgstr "Об'єкт \"%s\" вже існує!"
-
-#: ../ubuntutweak/ScriptWorker.py:125 ../ubuntutweak/ScriptWorker.py:138
-msgid "Enter your password to perform the administrative tasks"
-msgstr "Введіть Ваш пароль для виконання адміністративних задач"
-
-#: ../ubuntutweak/ScriptWorker.py:132
-msgid "Coudn't find any text editor in your system!"
-msgstr "Не можу знайти жодного текстового редактора!"
-
-#: ../ubuntutweak/ScriptWorker.py:159
-msgid "Select a folder"
-msgstr "Виберіть теку"
-
-#: ../ubuntutweak/ScriptWorker.py:189
-msgid "Please select a target (files or folders)."
-msgstr "Будь ласка, виберіть об'єкт (файли або теки)."
-
-#: ../ubuntutweak/network/utdata.py:39 ../ubuntutweak/network/utdata.py:72
-msgid "Never"
-msgstr ""
-
-#: ../ubuntutweak/network/utdata.py:63
-#, python-format
-msgid "%d week ago"
-msgid_plural "%d weeks ago"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../ubuntutweak/network/utdata.py:65
-#, python-format
-msgid "%d day ago"
-msgid_plural "%d days ago"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../ubuntutweak/network/utdata.py:67
-#, python-format
-msgid "%d hour ago"
-msgid_plural "%d hours ago"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../ubuntutweak/network/utdata.py:69
-#, python-format
-msgid "%d minute ago"
-msgid_plural "%d minutes ago"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../ubuntutweak/network/utdata.py:70
-msgid "Just Now"
-msgstr ""
+msgstr "Кеш мініатюр буде очищений. Продовжити?"
 
 #~ msgid "Session Programs"
 #~ msgstr "Програми сессії"
 
+#~ msgid "Banshee (Unstable Version)"
+#~ msgstr "Banshee (Нестабільна версія)"
+
+#~ msgid "Banshee (Stable Version)"
+#~ msgstr "Banshee (Стабільна версія)"
+
+#~ msgid "Ubuntu Chinese Repository"
+#~ msgstr "Китайський репозитарій Ubuntu"
+
 #~ msgid "Desktop Icon settings"
 #~ msgstr "Налаштування іконки стільниці"
+
+#, python-format
+#~ msgid "The file \"%s\" already exists!"
+#~ msgstr "Файл \"%s\" вже існує!"
+
+#, python-format
+#~ msgid "The target \"%s\" already exists!"
+#~ msgstr "Об'єкт \"%s\" вже існує!"
 
 #~ msgid ""
 #~ "This is a major failure of your software management system. Please check for "
@@ -2161,8 +2190,97 @@ msgstr ""
 #~ msgstr ""
 #~ "Тут можна призначати, які програми будуть відкривати різні типи файлів."
 
+#~ msgid "Breathe Icon Theme"
+#~ msgstr "Тема піктограм Breathe"
+
+#~ msgid "Avant Window Navigator (Unstable Version)"
+#~ msgstr "Avant Window Navigator (нестабільна версія)"
+
+#~ msgid "IBus 1.2 for intrepid"
+#~ msgstr "IBus 1.2 для Intrepid"
+
+#~ msgid "IBus (Old Version)"
+#~ msgstr "IBus (Стара версія)"
+
+#~ msgid "aMule (Stable Version)"
+#~ msgstr "aMule (стабільна версія)"
+
+#~ msgid "Gwibber (Daily Version)"
+#~ msgstr "Gwibber (щоденні збірки)"
+
+#~ msgid "Christine Media Player"
+#~ msgstr "Медіаплеєр Christine"
+
+#~ msgid "Ubuntu Mozilla Security Team"
+#~ msgstr "Ubuntu Mozilla Security Team"
+
+#~ msgid "IBus 1.2 for jaunty"
+#~ msgstr "IBus 1.2 для Jaunty"
+
+#~ msgid "Experimental Gnome Games"
+#~ msgstr "Експериментальні ігри для Gnome"
+
+#~ msgid "GIMP (Testing Version)"
+#~ msgstr "GIMP (тестова версія)"
+
+#~ msgid "Gnome Global Menu"
+#~ msgstr "Глобальне меню Gnome"
+
+#~ msgid "GetDeb.net (Mirror)"
+#~ msgstr "GetDeb.net (Зеркало)"
+
+#~ msgid "Chinese Chess"
+#~ msgstr "Китайскі шахи"
+
+#~ msgid "IBus 1.2 for karmic"
+#~ msgstr "IBus 1.2 для Ubuntu Karmic"
+
+#~ msgid "Spicebird (Testing Version)"
+#~ msgstr "Spicebird (тестова версія)"
+
+#~ msgid "VirtualBox (Open Source Edition)"
+#~ msgstr "VirtualBox (версія Open Source)"
+
+#~ msgid "VLC media player"
+#~ msgstr "Медіаплеєр VLC"
+
+#~ msgid "Google Repository"
+#~ msgstr "Репозиторій Google"
+
+#~ msgid "Google Testing Repository"
+#~ msgstr "Тестовий репозиторій Google"
+
+#~ msgid "SMPlayer (Unstable Version)"
+#~ msgstr "SMPlayer (нестабільна версія)"
+
+#~ msgid "Ubuntu Tweak (Unstable Version)"
+#~ msgstr "Ubuntu Tweak (нестабильна версія)"
+
+#~ msgid "Moblin Desktop for Ubuntu 9.10 Karmic"
+#~ msgstr "Moblin Desktop для Ubuntu 9.10 Karmic"
+
+#~ msgid "Moblin Desktop for Ubuntu 9.04 Jaunty"
+#~ msgstr "Moblin Desktop для Ubuntu 9.04 Jaunty"
+
 #~ msgid "Available Package Updates"
 #~ msgstr "Доступні оновлення пакунків"
+
+#, python-format
+#~ msgid ""
+#~ "You can't disable this Source because \"%(SOURCE)s\" depends on it.\n"
+#~ "To continue you need to disable \"%(SOURCE)s\" first."
+#~ msgstr ""
+#~ "Ви не можете відключити цей репозиторій тому що \"%(SOURCE)s\" залежить від "
+#~ "нього.\n"
+#~ "Щоб продовжити Ви маєте відключити \"%(SOURCE)s\" спочатку."
+
+#, python-format
+#~ msgid ""
+#~ "To enable this Source, You need to enable \"%s\" at first.\n"
+#~ "Do you wish to continue?"
+#~ msgstr ""
+#~ "Щоб додати цей репозиторій необхідно ввімкнути \"%s\" спочатку.\n"
+#~ "Хочете продовжити?"
 
 #~ msgid "Available New Applications"
 #~ msgstr "Доступні нові програми"
@@ -2201,3 +2319,24 @@ msgstr ""
 
 #~ msgid "This feature isn't currently available in your distribution"
 #~ msgstr "Ця можливість не доступна у вашому дистрибутиві"
+
+#~ msgid "PiTiVi video editor"
+#~ msgstr "Відео редактор PiTiVi"
+
+#~ msgid "Kubuntu Backports"
+#~ msgstr "Kubuntu Backports"
+
+#~ msgid "Bisigi Theme Project"
+#~ msgstr "Теми проекту Bisigi"
+
+#~ msgid "OSD Lyrics"
+#~ msgstr "OSD Lyrics"
+
+#~ msgid "Tomboy (Unstable Version)"
+#~ msgstr "Tomboy (Нестабільна версія)"
+
+#~ msgid "Tomboy (Stable Version)"
+#~ msgstr "Tomboy (Стабільна версія)"
+
+#~ msgid "Inkscape (Nightly Version)"
+#~ msgstr "Inkscape (Nightly Version)"
