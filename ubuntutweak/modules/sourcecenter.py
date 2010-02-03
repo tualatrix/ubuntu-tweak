@@ -307,7 +307,7 @@ class UpdateView(AppView):
                 self.append_app(False,
                         pixbuf,
                         pkgname,
-                        appname,
+                        '%s (%s)' % (appname, package.get_version()),
                         desc,
                         0,
                         'update')

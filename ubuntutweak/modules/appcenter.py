@@ -20,6 +20,7 @@
 import os
 import gtk
 import time
+import json
 import gobject
 import pango
 import thread
@@ -48,6 +49,74 @@ def get_app_data_url():
 if not os.path.exists(APPCENTER_ROOT):
     os.mkdir(APPCENTER_ROOT)
 
+class AppStatus(object):
+    def __init__(self):
+        self.__path = os.path.join(consts.CONFIG_ROOT, 'appstatus.json')
+        self.__first = False
+        try:
+            self.__data = json.loads(open(self.__path).read())
+        except:
+            self.__data = {'apps': {}, 'cates': {}}
+            self.__first = True
+
+        self.__appdict = self.__data['apps']
+        self.__catedict = self.__data['cates']
+
+    def save(self):
+        file = open(self.__path, 'w')
+        file.write(json.dumps(self.__data))
+        file.close()
+
+    def load_from_app(self, parser):
+        for pkg in parser.keys():
+            if self.__first:
+                self.__appdict[pkg] = {}
+                self.__appdict[pkg]['read'] = True
+                self.__appdict[pkg]['cate'] = parser.get_category(pkg)
+            else:
+                if pkg not in self.__appdict:
+                    self.__appdict[pkg] = False
+
+        self.__first = False
+        self.save()
+
+    def count_unread(self, cate):
+        i = 0
+        for pkg in self.__appdict:
+            if self.__appdict[pkg]['cate'] == cate and not self.__appdict[pkg]['read']:
+                i += 1
+        return i
+
+    def load_from_cate(self, parser):
+        for cate in parser.keys():
+            id = parser.get_id(cate)
+            if self.__first:
+                self.__catedict[id] = 0
+            else:
+                self.__catedict[id] = self.count_unread(id)
+
+        self.__first = False
+        self.save()
+
+    def get_cate_unread_count(self, id):
+        try:
+            return self.__catedict[id]
+        except:
+            return 0
+
+    def get_app_readed(self, package):
+        try:
+            return self.__appdict[package]
+        except:
+            return True
+
+    def set_app_readed(self, package):
+        try:
+            self.__appdict[package] = True
+        except:
+            pass
+        self.save()
+
 class AppParser(Parser):
     def __init__(self):
         app_data = os.path.join(APPCENTER_ROOT, 'apps.json')
@@ -71,16 +140,20 @@ class CateParser(Parser):
     def get_name(self, key):
         return self.get_by_lang(key, 'name')
 
+    def get_id(self, key):
+        return self[key]['id']
+
 class CategoryView(gtk.TreeView):
     (
         CATE_ID,
         CATE_NAME,
     ) = range(2)
 
-    def __init__(self, path):
+    def __init__(self, path, status=None):
         gtk.TreeView.__init__(self)
 
         self.path = path
+        self.status = status
         self.parser = None
         self.set_headers_visible(False)
         self.set_rules_hint(True)
@@ -106,40 +179,49 @@ class CategoryView(gtk.TreeView):
         renderer = gtk.CellRendererText()
         column.pack_start(renderer, True)
         column.set_sort_column_id(self.CATE_NAME)
+        if self.status:
+            column.set_cell_data_func(renderer, self.cate_status_column_func)
         column.set_attributes(renderer, text=self.CATE_NAME)
 
         self.append_column(column)
 
+    def cate_status_column_func(self, cell_layout, renderer, model, iter):
+        '''Set the categor status'''
+        id = model.get_value(iter, self.CATE_ID)
+        name = model.get_value(iter, self.CATE_NAME)
+        print id, name
+        return
+        if self.status:
+            count = self.status.get_cate_unread_count(id)
+            print count
+            if count:
+                model.set_value(iter,
+                                self.CATE_NAME,
+                                name)
+#                                '<b>%s (%d)</b>' % (name, count))
+            return True
+
     def update_model(self):
         self.model.clear()
         self.parser = CateParser(self.path)
+        if self.status:
+            self.status.load_from_cate(self.parser)
 
         iter = self.model.append()
         self.model.set(iter, 
                 self.CATE_ID, 0,
                 self.CATE_NAME, _('All Categories'))
 
-        for item in self.get_cate_items():
+        for slug in self.get_cate_items():
             iter = self.model.append()
-            id, name = self.parse_cate_item(item)
             self.model.set(iter, 
-                    self.CATE_ID, id,
-                    self.CATE_NAME, name)
+                    self.CATE_ID, self.parser.get_id(slug),
+                    self.CATE_NAME, self.parser.get_name(slug))
 
     def get_cate_items(self):
         keys = self.parser.keys()
         keys.sort()
-
-        for k in keys:
-            item = self.parser[k]
-            item['name'] = self.parser.get_name(k)
-            yield item
-
-    def parse_cate_item(self, item):
-        id = item['id']
-        name = item['name']
-
-        return id, name
+        return keys
 
 class AppView(gtk.TreeView):
     __gsignals__ = {
@@ -158,12 +240,13 @@ class AppView(gtk.TreeView):
      COLUMN_TYPE,
     ) = range(8)
 
-    def __init__(self):
+    def __init__(self, status=None):
         gtk.TreeView.__init__(self)
 
         self.to_add = []
         self.to_rm = []
         self.filter = None
+        self.status = status
 
         model = self.__create_model()
         self.__add_columns()
@@ -207,6 +290,8 @@ class AppView(gtk.TreeView):
         renderer = gtk.CellRendererPixbuf()
         column.pack_start(renderer, False)
         column.set_cell_data_func(renderer, self.icon_column_view_func)
+        if self.status:
+            column.set_cell_data_func(renderer, self.app_status_column_func)
         column.set_attributes(renderer, pixbuf = self.COLUMN_ICON)
 
         renderer = gtk.CellRendererText()
@@ -216,6 +301,23 @@ class AppView(gtk.TreeView):
         column.pack_start(renderer, True)
         column.add_attribute(renderer, 'markup', self.COLUMN_DISPLAY)
         self.append_column(column)
+
+    def app_status_column_func(self, cell_layout, renderer, model, iter):
+        '''Set the app status'''
+        package = model.get_value(iter, self.COLUMN_PKG)
+        if not self.status.get_app_readed(package):
+            appname = model.get_value(iter, self.COLUMN_NAME)
+            desc = model.get_value(iter, self.COLUMN_DESC)
+            model.set_value(iter, self.COLUMN_DISPLAY,
+                            '<b>%s <span foreground="#ff0000">(New!!!)</span>\n%s</b>' % (appname, desc))
+
+    def set_as_read(self, iter, model):
+        package = model.get_value(iter, self.COLUMN_PKG)
+        if self.status and self.status.get_app_readed(package):
+            appname = model.get_value(iter, self.COLUMN_NAME)
+            desc = model.get_value(iter, self.COLUMN_DESC)
+            self.status.set_app_readed(package)
+            model.set_value(iter, self.COLUMN_DISPLAY, '<b>%s</b>\n%s' % (appname, desc))
 
     def install_column_view_func(self, cell_layout, renderer, model, iter):
         package = model.get_value(iter, self.COLUMN_PKG)
@@ -289,6 +391,8 @@ class AppView(gtk.TreeView):
     def update_model(self, apps=None):
         '''apps is a list to iter pkgname,
         '''
+        global app_parser
+
         def do_append(is_installed, pixbuf, pkgname, appname, desc, category):
             if pkgname in self.to_add or pkgname in self.to_rm:
                 self.append_changed_app(not is_installed,
@@ -309,6 +413,8 @@ class AppView(gtk.TreeView):
         model.clear()
 
         app_parser = AppParser()
+        if self.status:
+            self.status.load_from_app(app_parser)
 
         if not apps:
             apps = app_parser.keys()
@@ -456,18 +562,23 @@ class AppCenter(TweakModule):
         self.to_rm = []
 
         self.package_worker = PACKAGE_WORKER
+        self.appstatus = AppStatus()
         self.url = APP_VERSION_URL
 
-        self.cateview = CategoryView(os.path.join(APPCENTER_ROOT, 'cates.json'))
+        self.appview = AppView(self.appstatus)
+        self.appview.update_model()
+        self.appview.sort_model()
+        self.appview.connect('changed', self.on_app_status_changed)
+        self.app_selection = self.appview.get_selection()
+        self.app_selection.connect('changed', self.on_app_selection)
+        self.right_sw.add(self.appview)
+
+        self.cateview = CategoryView(os.path.join(APPCENTER_ROOT, 'cates.json'),
+                                     self.appstatus)
         self.cate_selection = self.cateview.get_selection()
         self.cate_selection.connect('changed', self.on_category_changed)
         self.left_sw.add(self.cateview)
 
-        self.appview = AppView()
-        self.appview.update_model()
-        self.appview.sort_model()
-        self.appview.connect('changed', self.on_app_status_changed)
-        self.right_sw.add(self.appview)
 
         self.update_timestamp()
         self.show_all()
@@ -505,7 +616,13 @@ class AppCenter(TweakModule):
         except Exception, error:
             print error
 
-    def on_category_changed(self, widget, data = None):
+    def on_app_selection(self, widget, data=None):
+        model, iter = widget.get_selected()
+        if iter:
+            appview = widget.get_tree_view()
+            appview.set_as_read(iter, model)
+
+    def on_category_changed(self, widget, data=None):
         model, iter = widget.get_selected()
         cateview = widget.get_tree_view()
 

@@ -250,6 +250,12 @@ class PackageInfo:
 
         return appname
 
+    def get_version(self):
+        try:
+            return self.pkg.versions[0].version
+        except:
+            return ''
+
 if __name__ == '__main__':
     update_apt_cache()
     print worker.list_unneeded_kerenl()
