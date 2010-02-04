@@ -100,7 +100,7 @@ class AppStatus(object):
 
     def get_cate_unread_count(self, id):
         try:
-            return self.__catedict[id]
+            return self.__catedict.pop(id)
         except:
             return 0
 
@@ -147,7 +147,8 @@ class CategoryView(gtk.TreeView):
     (
         CATE_ID,
         CATE_NAME,
-    ) = range(2)
+        CATE_DISPLAY,
+    ) = range(3)
 
     def __init__(self, path, status=None):
         gtk.TreeView.__init__(self)
@@ -169,6 +170,7 @@ class CategoryView(gtk.TreeView):
         '''The model is icon, title and the list reference'''
         model = gtk.ListStore(
                     gobject.TYPE_INT,
+                    gobject.TYPE_STRING,
                     gobject.TYPE_STRING)
         
         return model
@@ -179,9 +181,9 @@ class CategoryView(gtk.TreeView):
         renderer = gtk.CellRendererText()
         column.pack_start(renderer, True)
         column.set_sort_column_id(self.CATE_NAME)
+        column.set_attributes(renderer, markup=self.CATE_DISPLAY)
         if self.status:
             column.set_cell_data_func(renderer, self.cate_status_column_func)
-        column.set_attributes(renderer, text=self.CATE_NAME)
 
         self.append_column(column)
 
@@ -189,17 +191,13 @@ class CategoryView(gtk.TreeView):
         '''Set the categor status'''
         id = model.get_value(iter, self.CATE_ID)
         name = model.get_value(iter, self.CATE_NAME)
-        print id, name
-        return
+
         if self.status:
             count = self.status.get_cate_unread_count(id)
-            print count
             if count:
-                model.set_value(iter,
-                                self.CATE_NAME,
-                                name)
-#                                '<b>%s (%d)</b>' % (name, count))
-            return True
+                model.set(iter,
+                         self.CATE_DISPLAY,
+                         '<b>%s (%d)</b>' % (name, count))
 
     def update_model(self):
         self.model.clear()
@@ -210,13 +208,15 @@ class CategoryView(gtk.TreeView):
         iter = self.model.append()
         self.model.set(iter, 
                 self.CATE_ID, 0,
-                self.CATE_NAME, _('All Categories'))
+                self.CATE_NAME, 'all-category',
+                self.CATE_DISPLAY, _('All Categories'))
 
         for slug in self.get_cate_items():
             iter = self.model.append()
             self.model.set(iter, 
                     self.CATE_ID, self.parser.get_id(slug),
-                    self.CATE_NAME, self.parser.get_name(slug))
+                    self.CATE_NAME, self.parser.get_name(slug),
+                    self.CATE_DISPLAY, self.parser.get_name(slug))
 
     def get_cate_items(self):
         keys = self.parser.keys()
