@@ -73,6 +73,18 @@ class GconfSetting(object):
         else:
             return None
 
+    def __get_none_value_by_type(self):
+        if self.__type == int:
+            return 0
+        elif self.__type == float:
+            return 0.0
+        elif self.__type == bool:
+            return False
+        elif self.__type == str:
+            return ''
+        else:
+            return None
+
     def get_value(self):
         try:
             if self.__type:
@@ -84,10 +96,7 @@ class GconfSetting(object):
                 self.set_value(self.__default)
                 return self.__default
             else:
-                if self.__type:
-                    return self.__type(None)
-                else:
-                    return None
+                return self.__get_none_value_by_type()
 
     def set_value(self, value):
         if self.__type:
