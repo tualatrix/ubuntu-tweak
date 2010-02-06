@@ -439,9 +439,9 @@ class FetchingDialog(DownloadDialog):
 
 class AppCenter(TweakModule):
     __title__ = _('Application Center')
-    __desc__ = _('A simple but more effecient way for finding and installing popular applications.\n'
-                 'Data will be automatically synchronized with the remote side.\n'
-                 'You can click the "Sync" button to check the update manually.')
+    __desc__ = _('A simple but more efficient way for finding and installing popular applications.\n'
+                 'Data will be automatically synchronized with the remote server.\n'
+                 'You can click the "Sync" button to perform a manual check for updates.')
     __icon__ = 'gnome-app-install'
     __url__ = 'http://ubuntu-tweak.com/app/'
     __urltitle__ = _('Visit Online Application Center')
@@ -549,7 +549,7 @@ class AppCenter(TweakModule):
         dialog.run()
         dialog.destroy()
         if dialog.status == True:
-            dialog = QuestionDialog(_("Update available, Would you like to update?"))
+            dialog = QuestionDialog(_("Update available, would you like to update?"))
             response = dialog.run()
             dialog.destroy()
             if response == gtk.RESPONSE_YES:
@@ -558,7 +558,7 @@ class AppCenter(TweakModule):
                 dialog.run()
                 dialog.destroy()
         elif dialog.error == True:
-            ErrorDialog(_("Network Error, Please check your network connection or the remote server is down.")).launch()
+            ErrorDialog(_("Network Error, please check your network connection - or the remote server may be down.")).launch()
         else:
             InfoDialog(_("No update available.")).launch()
 
@@ -571,7 +571,7 @@ class AppCenter(TweakModule):
             utdata.save_synced_timestamp(APPCENTER_ROOT)
             self.update_timestamp()
         elif widget.error:
-            ErrorDialog(_('Some error happened while downloading the file.')).launch()
+            ErrorDialog(_('An error occurred while downloading the file.')).launch()
 
     def update_app_data(self):
         self.cateview.update_model()

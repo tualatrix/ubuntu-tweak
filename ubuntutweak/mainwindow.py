@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# Ubuntu Tweak - PyGTK based desktop configure tool
+# Ubuntu Tweak - PyGTK based desktop configuration tool
 #
 # Copyright (C) 2007-2008 TualatriX <tualatrix@gmail.com>
 #
@@ -70,10 +70,10 @@ def show_welcome():
 
     tips = TipsFactory(
             _('Tweak otherwise hidden settings.'),
-            _('Clean up unneeded packages to free diskspace.'),
+            _('Clean up unneeded packages to free up diskspace.'),
             _('Easily install up-to-date versions of many applications.'),
             _('Configure file templates and shortcut scripts for easy access to common tasks.'),
-            _('And many more useful features!'),
+            _('Many more useful features!'),
             )
     align = gtk.Alignment(0.5)
     align.add(tips)
@@ -106,7 +106,7 @@ def show_error_page():
 
     label = gtk.Label()
     label.set_markup("<span size=\"x-large\">%s</span>" % 
-                     _("This module is error while loading."))
+                     _("This module encountered an error while loading."))
     label.set_justify(gtk.JUSTIFY_FILL)
     hbox.pack_start(label)
         
@@ -140,7 +140,7 @@ MLOADER = ModuleLoader(modules.__path__[0])
 class UpdateDialog(DownloadDialog):
     def __init__(self, parent=None):
         DownloadDialog.__init__(self, url=TweakSettings.get_url(),
-                                title=_('Download the Ubuntu Tweak %s') %
+                                title=_('Download Ubuntu Tweak %s') %
                                 TweakSettings.get_version(),
                                 parent=parent)
 
@@ -452,7 +452,7 @@ You should have received a copy of the GNU General Public License along with Ubu
 
         version = TweakSettings.get_version()
         if version > VERSION:
-            dialog = QuestionDialog(_('A newer version: %s is available online.\nWould you like to update?\n\nNote: if you prefer update from the source, you can disable this feature in Preference.') % version, 
+            dialog = QuestionDialog(_('A newer version: %s is available online.\nWould you like to update?\n\nNote: if you prefer to update from the source code, you can disable this feature in Preferences.') % version, 
                                     title=_('Software Update'))
 
             update = False

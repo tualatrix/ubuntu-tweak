@@ -332,7 +332,7 @@ class AutoStartItem(gtk.TreeView):
 
 class AutoStart(TweakModule):
     __title__ = _('Auto Start Programs')
-    __desc__ = _('Here you can manage what programs get started when you login.\n'
+    __desc__ = _('Here you can manage which programs are started upon login.\n'
                 'You can hide items from view by selecting and clicking "Remove"\n'
                 'To permanently delete an item, right-click and press "Delete".')
     __icon__ = 'session-properties'
@@ -415,7 +415,7 @@ class AutoStart(TweakModule):
             if not name:
                 ErrorDialog(_("The name of the startup program cannot be empty")).launch()
             elif not cmd:
-                ErrorDialog(_("Text was empty (or contained only whitespace)")).launch()
+                ErrorDialog(_("Text field was empty (or contained only whitespace)")).launch()
             else:
                 path = os.path.join(treeview.userdir, os.path.basename(cmd) + ".desktop")
                 desktopentry = DesktopEntry(path)
@@ -462,7 +462,7 @@ class AutoStart(TweakModule):
                 if not name:
                     ErrorDialog(_("The name of the startup program cannot be empty")).launch()
                 elif not cmd:
-                    ErrorDialog(_("Text was empty (or contained only whitespace)")).launch()
+                    ErrorDialog(_("Text field was empty (or contained only whitespace)")).launch()
                 else:
                     desktopentry = DesktopEntry(path)
                     desktopentry.set("Name", name, locale = True)

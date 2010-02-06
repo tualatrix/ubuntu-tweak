@@ -85,7 +85,7 @@ class Nautilus(TweakModule):
         button.connect('clicked', self.on_clean_thumbnails_clicked)
         hbox1.pack_end(button, False, False, 0)
 
-        box = TablePack(_('Thumbnails Settings'), (
+        box = TablePack(_('Thumbnail Settings'), (
                     WidgetFactory.create('GconfSpinButton',
                                                   key='thumbnail_size',
                                                   min=16, max=512, step=16,
@@ -93,20 +93,20 @@ class Nautilus(TweakModule):
                     WidgetFactory.create('GconfSpinButton',
                                                   key='maximum_size',
                                                   min=-1, max=512, step=1,
-                                                  label=_('Maximum size of the thumbnail cache (megabytes)')),
+                                                  label=_('Maximum thumbnail cache size (megabytes)')),
                     WidgetFactory.create('GconfSpinButton',
                                                   key='maximum_age',
                                                   min=-1, max=180, step=1,
-                                                  label=_('Maximum age for the thumbnail in the cache (days)')),
+                                                  label=_('Thumbnail cache time (days)')),
                     hbox1,
             ))
         self.add_start(box, False, False, 0)
 
         self.PACKAGE_WORKER = PACKAGE_WORKER
 
-        self.nautilus_terminal = AptCheckButton(_('Nautilus with Open Terminal'), 'nautilus-open-terminal')
+        self.nautilus_terminal = AptCheckButton(_('Open in terminal option'), 'nautilus-open-terminal')
         self.nautilus_terminal.connect('toggled', self.colleague_changed)
-        self.nautilus_root = AptCheckButton(_('Nautilus with Root Privileges'), 'nautilus-gksu')
+        self.nautilus_root = AptCheckButton(_('Open with root priveleges option'), 'nautilus-gksu')
         self.nautilus_root.connect('toggled', self.colleague_changed)
         self.nautilus_wallpaper = AptCheckButton(_('Nautilus with Wallpaper'), 'nautilus-wallpaper')
         self.nautilus_wallpaper.connect('toggled', self.colleague_changed)
