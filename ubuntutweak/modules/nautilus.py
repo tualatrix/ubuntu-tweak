@@ -64,7 +64,7 @@ class CleanDialog(gtk.Dialog):
 
 class Nautilus(TweakModule):
     __title__ = _('Nautilus Settings')
-    __desc__ = _('Manage your default file manager')
+    __desc__ = _('Manage the default file manager')
     __icon__ = ['file-manager', 'nautilus']
     __category__ = 'system'
     __desktop__ = 'gnome'
@@ -104,9 +104,9 @@ class Nautilus(TweakModule):
 
         self.PACKAGE_WORKER = PACKAGE_WORKER
 
-        self.nautilus_terminal = AptCheckButton(_('Open in terminal option'), 'nautilus-open-terminal')
+        self.nautilus_terminal = AptCheckButton(_('Open folder in terminal'), 'nautilus-open-terminal')
         self.nautilus_terminal.connect('toggled', self.colleague_changed)
-        self.nautilus_root = AptCheckButton(_('Open with root priveleges option'), 'nautilus-gksu')
+        self.nautilus_root = AptCheckButton(_('Open folder with root priveleges'), 'nautilus-gksu')
         self.nautilus_root.connect('toggled', self.colleague_changed)
         self.nautilus_wallpaper = AptCheckButton(_('Nautilus with Wallpaper'), 'nautilus-wallpaper')
         self.nautilus_wallpaper.connect('toggled', self.colleague_changed)
@@ -132,10 +132,10 @@ class Nautilus(TweakModule):
         except:
             size = '0'
             button.set_sensitive(False)
-        set_label_for_stock_button(button, _('Clean up the thumbnails cache (will free %s of disk space)') % filesizeformat(size))
+        set_label_for_stock_button(button, _('Delete thumbnail cache (will free %s of disk space)') % filesizeformat(size))
 
     def on_clean_thumbnails_clicked(self, widget):
-        question = QuestionDialog(_('The thumbnails cache will be cleaned, Do you wish to continue?'), 
+        question = QuestionDialog(_('The thumbnail cache will be deleted, Do you wish to continue?'),
             title = _('Warning'))
         if question.run() == gtk.RESPONSE_YES:
             question.destroy()
