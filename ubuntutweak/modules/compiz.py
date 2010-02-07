@@ -46,10 +46,10 @@ load_ccm()
 
 plugins = \
 {
-    'expo': _('Expo'),
+    'expo': _('Show Workspaces'),
     'scale': _('Show Windows'),
     'core': _('Show Desktop'),
-    'widget': _('Widget'),
+    'widget': _('Show Widgets'),
 }
 
 plugins_settings = \
@@ -220,7 +220,7 @@ class SnapWindow(gtk.CheckButton, CompizSetting):
 
 class Compiz(TweakModule, CompizSetting):
     __title__ = _('Compiz Settings')
-    __desc__ = _('Setting with your amazing eye-candy desktop')
+    __desc__ = _('Settings for some amazing desktop eye-candy')
     __icon__ = ['compiz', 'wmtweaks']
     __category__ = 'desktop'
 
@@ -236,7 +236,7 @@ class Compiz(TweakModule, CompizSetting):
             self.advanced_settings = AptCheckButton(_("Install Advanced Desktop Effects Settings Manager"),
                     'compizconfig-settings-manager')
             self.advanced_settings.connect('toggled', self.colleague_changed)
-            self.simple_settings = AptCheckButton(_("Install Simple Desktop Effects Settings manager"),
+            self.simple_settings = AptCheckButton(_("Install Simple Desktop Effects Settings Manager"),
                     'simple-ccsm')
             self.simple_settings.connect('toggled', self.colleague_changed)
             self.screenlets = AptCheckButton(_("Install Screenlets Widget Application"),
@@ -246,7 +246,7 @@ class Compiz(TweakModule, CompizSetting):
         if self.context:
             hbox = gtk.HBox(False, 0)
             hbox.pack_start(self.create_edge_setting(), True, False, 0)
-            edge_setting = SinglePack(_('Edge Settings'), hbox)
+            edge_setting = SinglePack(_(' Workspace Edge Settings'), hbox)
             self.add_start(edge_setting, False, False, 0)
 
             self.snap = SnapWindow(_("Enable snapping windows"), self)

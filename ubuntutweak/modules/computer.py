@@ -31,7 +31,7 @@ from ubuntutweak.common.systeminfo import SystemInfo
 
 class Computer(TweakModule):
     __title__ = _('Computer Details')
-    __desc__ = _('Some useful information about your computer')
+    __desc__ = _('Some useful system information)
     __icon__ = 'computer'
     __category__ = 'system'
 
@@ -78,7 +78,7 @@ class Computer(TweakModule):
         self.add_start(box, False, False, 0)
 
     def on_hostname_button_clicked(self, widget, label):
-        dialog = QuestionDialog(_('Please enter your new hostname. It should be non-blank characters.'),
+        dialog = QuestionDialog(_('Please enter your new hostname. Blank characters should not be used.'),
             title = _('New hostname'))
 
         vbox = dialog.vbox

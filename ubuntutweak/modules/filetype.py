@@ -240,7 +240,7 @@ class AddAppDialog(gobject.GObject):
         self.info_label = worker.get_object('info_label')
         self.description_label = worker.get_object('description_label')
 
-        self.info_label.set_markup(_('Open the files of type "%s" with:') % gio.content_type_get_description(type))
+        self.info_label.set_markup(_('Open files of type "%s" with:') % gio.content_type_get_description(type))
 
         self.add_button = worker.get_object('add_button')
         self.add_button.connect('clicked', self.on_add_button_clicked)
@@ -358,7 +358,7 @@ class TypeEditDialog(gobject.GObject):
         type_logo.set_from_pixbuf(type_pixbuf)
 
         type_label = worker.get_object('type_edit_label')
-        type_label.set_markup(_('Select an application to open the type <b>%s</b>') % gio.content_type_get_description(type))
+        type_label.set_markup(_('Select an application to open files of type: <b>%s</b>') % gio.content_type_get_description(type))
 
         self.type_edit_view = worker.get_object('type_edit_view')
         self.setup_treeview()
@@ -508,7 +508,7 @@ class FileType(TweakModule):
         self.edit_button.set_sensitive(False)
         vbox.pack_start(self.edit_button, False, False, 0)
 
-        self.show_have_app = gtk.CheckButton(_('Only show filetypes with an associated application'))
+        self.show_have_app = gtk.CheckButton(_('Only show filetypes with associated applications'))
         self.show_have_app.set_active(True)
         self.show_have_app.connect('toggled', self.on_show_all_toggled)
         self.add_start(self.show_have_app, False, False, 5)
