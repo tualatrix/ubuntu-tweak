@@ -31,7 +31,7 @@ ROOT_ICONS = '/root/.icons'
 
 class LockDown(TweakModule):
     __title__ = _('Security Related')
-    __desc__ = _('Tweak some security options')
+    __desc__ = _('Tweak some security settings')
     __icon__ = ['gtk-dialog-authentication', 'stock_keyring']
     __category__ = 'system'
     __desktop__ = 'gnome'
@@ -51,7 +51,7 @@ class LockDown(TweakModule):
                                          label=_("Disable printing"),
                                          key="disable_printing"),
                     WidgetFactory.create("GconfCheckButton",
-                                         label=_("Disable print setup"),
+                                         label=_("Disable printer settings"),
                                          key="disable_print_setup"),
                     WidgetFactory.create("GconfCheckButton",
                                          label=_("Disable save to disk"),
@@ -63,7 +63,7 @@ class LockDown(TweakModule):
 
         self.add_start(box, False, False, 0)
 
-        self.fix_theme_button = gtk.CheckButton(_('Fix the theme appearance when grant the root privileges'))
+        self.fix_theme_button = gtk.CheckButton(_('Fix the appearance of themes when granted root priveleges'))
         if proxy.is_exists(ROOT_THEMES) and proxy.is_exists(ROOT_ICONS):
             self.fix_theme_button.set_active(True)
 
