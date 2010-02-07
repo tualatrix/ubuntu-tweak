@@ -33,7 +33,7 @@ from ubuntutweak.common.utils import get_icon_with_name
 
 class Gnome(TweakModule):
     __title__ = _('GNOME Settings')
-    __desc__ = _('A lot of GNOME settings about panel, menu and others')
+    __desc__ = _('A lot of GNOME settings for panels, menus and other desktop elements')
     __icon__ = ['gnome-desktop-config', 'control-center2']
     __category__ = 'desktop'
     __desktop__ = 'gnome'
@@ -60,16 +60,16 @@ class Gnome(TweakModule):
 
         box = ListPack(_("Menu Settings"), (
                     WidgetFactory.create("GconfCheckButton", 
-                                    label=_("Show Input Method menu on the context menu"),
+                                    label=_("Show Input Method menu in the context menu"),
                                     key="show_input_method_menu"),
                     WidgetFactory.create("GconfCheckButton",
-                                    label=_("Show Unicode Method menu on the context menu"),
+                                    label=_("Show Unicode Control Character menu in the context menu"),
                                     key="show_unicode_menu"),
                     WidgetFactory.create("GconfCheckButton",
-                                    label=_('Menus have icons'),
+                                    label=_('Show icons in menus'),
                                     key='/desktop/gnome/interface/menus_have_icons'),
                     WidgetFactory.create("GconfCheckButton",
-                                    label=_('Buttons have icons'),
+                                    label=_('Show icons on buttons'),
                                     key='/desktop/gnome/interface/buttons_have_icons'),
                     changeicon_hbox,
             ))
@@ -82,7 +82,7 @@ class Gnome(TweakModule):
             ))
         self.add_start(box, False, False, 0)
 
-        self.recently_used = gtk.CheckButton(_('Enable system-wide "Recently Documents" list'))
+        self.recently_used = gtk.CheckButton(_('Enable system-wide "Recent Documents" list'))
         self.recently_used.connect('toggled', self.colleague_changed)
         self.recently_used.set_active(self.get_state())
         box = ListPack(_("History"), (
@@ -92,7 +92,7 @@ class Gnome(TweakModule):
 
     def create_change_icon_hbox(self):
         hbox = gtk.HBox(False, 10)
-        label = gtk.Label(_('Click the button to change the menu logo'))
+        label = gtk.Label(_('Click this button to change the menu logo image'))
         label.set_alignment(0, 0.5)
         hbox.pack_start(label, False, False, 0)
 
@@ -105,7 +105,7 @@ class Gnome(TweakModule):
         return hbox
 
     def on_change_icon_clicked(self, widget):
-        dialog = gtk.FileChooserDialog(_('Choose a new logo'),
+        dialog = gtk.FileChooserDialog(_('Choose a new logo image'),
                                         action=gtk.FILE_CHOOSER_ACTION_OPEN,
                                         buttons=(gtk.STOCK_REVERT_TO_SAVED, gtk.RESPONSE_DELETE_EVENT,
                                                  gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
@@ -132,7 +132,7 @@ class Gnome(TweakModule):
                 pixbuf = gtk.gdk.pixbuf_new_from_file(filename)
                 w, h = pixbuf.get_width(), pixbuf.get_height()
                 if w != 24 or h != 24:
-                    ErrorDialog(_("The size isn't suitable for the panel.\nIt should be 24x24.")).launch()
+                    ErrorDialog(_("This image size isn't suitable for the panel.\nIt should be 24x24.")).launch()
                     return
                 else:
                     os.system('mkdir -p %s' % os.path.dirname(dest))
