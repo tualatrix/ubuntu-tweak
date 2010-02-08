@@ -31,7 +31,7 @@ from ubuntutweak.common.systeminfo import SystemInfo
 
 class Computer(TweakModule):
     __title__ = _('Computer Details')
-    __desc__ = _('Some useful system information)
+    __desc__ = _('Some useful system information')
     __icon__ = 'computer'
     __category__ = 'system'
 
