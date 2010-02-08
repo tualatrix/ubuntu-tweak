@@ -22,7 +22,10 @@ CONFIG_ROOT = os.path.join(glib.get_user_config_dir(), 'ubuntu-tweak')
 if not os.path.exists(CONFIG_ROOT):
     os.mkdir(CONFIG_ROOT)
 
-LANG = os.getenv('LANG').split('.')[0].lower().replace('_','-')
+try:
+    LANG = os.getenv('LANG').split('.')[0].lower().replace('_','-')
+except:
+    LANG = 'en-us'
 
 if not __file__.startswith('/usr'):
     datadir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
