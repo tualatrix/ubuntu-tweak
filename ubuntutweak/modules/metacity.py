@@ -65,7 +65,10 @@ class ButtonView(gtk.IconView):
         model.clear()
 
         value = default or self.config.get_value()
-        list = value.replace(':', ',:,').split(',')
+        if value:
+            list = value.replace(':', ',:,').split(',')
+        else:
+            return model
 
         for k in list:
             k = k.strip()
