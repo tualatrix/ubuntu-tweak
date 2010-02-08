@@ -77,7 +77,7 @@ def get_last_synced(folder):
         if minutes:
             return ngettext('%d minute ago', '%d minutes ago', minutes) % minutes
         return _('Just Now')
-    except IOError:
+    except:
         return _('Never')
 
 def check_update_function(url, folder, update_setter, version_setter, auto):
