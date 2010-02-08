@@ -68,10 +68,14 @@ class ButtonView(gtk.IconView):
         list = value.replace(':', ',:,').split(',')
 
         for k in list:
+            k = k.strip()
             iter = model.append()
-            model.set(iter,
-                      self.COLUMN_KEY, k,
-                      self.COLUMN_LABEL, self.values[k])
+            if k in self.values:
+                model.set(iter,
+                          self.COLUMN_KEY, k,
+                          self.COLUMN_LABEL, self.values[k])
+            else:
+                continue
 
         return model
 
