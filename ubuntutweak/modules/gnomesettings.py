@@ -146,6 +146,7 @@ class Gnome(TweakModule):
             image = gtk.image_new_from_pixbuf(get_icon_with_name('start-here', 24))
             widget.set_image(image)
         else:
+            dialog.destroy()
             return
 
         dialog = QuestionDialog(_('Do you want your changes to take effect immediately?'))
