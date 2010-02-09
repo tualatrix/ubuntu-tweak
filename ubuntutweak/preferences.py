@@ -1,4 +1,4 @@
-# Ubuntu Tweak - PyGTK based desktop configure tool
+# Ubuntu Tweak - PyGTK based desktop configuration tool
 # coding: utf-8
 # Copyright (C) 2007-2008 TualatriX <tualatrix@gmail.com>
 #

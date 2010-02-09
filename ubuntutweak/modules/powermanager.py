@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# Ubuntu Tweak - PyGTK based desktop configure tool
+# Ubuntu Tweak - PyGTK based desktop configuration tool
 #
 # Copyright (C) 2007-2008 TualatriX <tualatrix@gmail.com>
 #
@@ -25,7 +25,7 @@ from ubuntutweak.widgets import TablePack
 from ubuntutweak.common.factory import WidgetFactory
 
 class PowerManager(TweakModule):
-    __title__ = _('Advanced Powermanager Settings')
+    __title__ = _('Advanced Power Manager Settings')
     __desc__ = _('Control your computer\'s power managerment')
     __icon__ = 'gnome-power-manager'
     __category__ = 'system'
@@ -45,11 +45,11 @@ class PowerManager(TweakModule):
                                       label=_('Lock screen on suspend'),
                                       key='/apps/gnome-power-manager/lock/suspend'),
                 WidgetFactory.create('GconfScale',
-                                      label=_('LCD brightness when on AC'),
+                                      label=_('LCD brightness when using AC power'),
                                       key='/apps/gnome-power-manager/backlight/brightness_ac',
                                       min=0, max=100, digits=0),
                 WidgetFactory.create('GconfScale',
-                                      label=_('LCD dimming amount when on battery'),
+                                      label=_('LCD brightness when using battery'),
                                       key='/apps/gnome-power-manager/backlight/brightness_dim_battery',
                                       min=0, max=100, digits=0)
         ))

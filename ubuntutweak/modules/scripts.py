@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# Ubuntu Tweak - PyGTK based desktop configure tool
+# Ubuntu Tweak - PyGTK based desktop configuration tool
 #
 # Copyright (C) 2007-2008 TualatriX <tualatrix@gmail.com>
 #
@@ -131,9 +131,9 @@ class DisableScripts(FlatView, AbstractScripts):
 
 class Scripts(TweakModule, AbstractScripts):
     __title__  = _('Manage Scripts')
-    __desc__  = _("You can do all kinds of tasks with scripts.\n"
-                  "You can drag and drop from File Manager.\n"
-                  "'Scripts' will be added to the context menu.")
+    __desc__  = _("Scripts can be used to complete all kinds of tasks.\n"
+                  "You can drag and drop scripts from File Manager.\n"
+                  "'Scripts' will then be added to the context menu.")
     __icon__ = 'text-x-script'
     __category__ = 'personal'
     __desktop__ = 'gnome'

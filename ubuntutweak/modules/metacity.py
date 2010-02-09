@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# Ubuntu Tweak - PyGTK based desktop configure tool
+# Ubuntu Tweak - PyGTK based desktop configuration tool
 #
 # Copyright (C) 2007-2010 TualatriX <tualatrix@gmail.com>
 #
@@ -65,13 +65,20 @@ class ButtonView(gtk.IconView):
         model.clear()
 
         value = default or self.config.get_value()
-        list = value.replace(':', ',:,').split(',')
+        if value:
+            list = value.replace(':', ',:,').split(',')
+        else:
+            return model
 
         for k in list:
+            k = k.strip()
             iter = model.append()
-            model.set(iter,
-                      self.COLUMN_KEY, k,
-                      self.COLUMN_LABEL, self.values[k])
+            if k in self.values:
+                model.set(iter,
+                          self.COLUMN_KEY, k,
+                          self.COLUMN_LABEL, self.values[k])
+            else:
+                continue
 
         return model
 
@@ -106,7 +113,7 @@ class ButtonView(gtk.IconView):
 
 class Metacity(TweakModule):
     __title__ = _('Window Manager Settings')
-    __desc__ = _('Some options about Metacity Window Manager')
+    __desc__ = _('Manage Metacity Window Manager settings')
     __icon__ = 'preferences-system-windows'
     __url__ = 'http://ubuntu-tweak.com'
     __category__ = 'desktop'
@@ -144,7 +151,7 @@ class Metacity(TweakModule):
                                                             hbox))
         self.add_start(box, False, False, 0)
 
-        table = TablePack(_('Window Titlebar Action'), (
+        table = TablePack(_('Window Titlebar Actions'), (
                     WidgetFactory.create('GconfComboBox',
                                          label=_('Titlebar mouse wheel action'),
                                          key='mouse_wheel_action',
@@ -193,7 +200,7 @@ class Metacity(TweakModule):
 
         self.add_start(table, False, False, 0)
 
-        box = TablePack(_('Window Decorate Effect'), (
+        box = TablePack(_('Window Decoration Effects'), (
                     WidgetFactory.create('GconfCheckButton',
                                           label=_('Use Metacity window theme'),
                                           key='use_metacity_theme'),
@@ -215,7 +222,7 @@ class Metacity(TweakModule):
         self.add_start(box, False, False, 0)
 
         button = WidgetFactory.create('GconfCheckButton', 
-                                      label=_("Enable Metacity's Compositing feature"),
+                                      label=_("Enable Metacity's compositing feature"),
                                       key='compositing_manager')
         if button:
             box = ListPack(_('Compositing Manager'), (button,))
@@ -239,4 +246,4 @@ class Metacity(TweakModule):
 
     def on_compositing_button_toggled(self, widget):
         if widget.get_active():
-            InfoDialog(_('To enable the compositing feature of metacity, you should manually disable Visual Effects in "Appearance".')).launch()
+            InfoDialog(_('To enable Metacity\'s compositing feature, you should manually disable Visual Effects in "Appearance".')).launch()

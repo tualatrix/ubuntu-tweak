@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Ubuntu Tweak - PyGTK based desktop configure tool
+# Ubuntu Tweak - PyGTK based desktop configuration tool
 #
 # Copyright (C) 2007-2008 TualatriX <tualatrix@gmail.com>
 #
@@ -64,7 +64,7 @@ class CleanDialog(gtk.Dialog):
 
 class Nautilus(TweakModule):
     __title__ = _('Nautilus Settings')
-    __desc__ = _('Manage your default file manager')
+    __desc__ = _('Manage the default file manager')
     __icon__ = ['file-manager', 'nautilus']
     __category__ = 'system'
     __desktop__ = 'gnome'
@@ -85,7 +85,7 @@ class Nautilus(TweakModule):
         button.connect('clicked', self.on_clean_thumbnails_clicked)
         hbox1.pack_end(button, False, False, 0)
 
-        box = TablePack(_('Thumbnails Settings'), (
+        box = TablePack(_('Thumbnail Settings'), (
                     WidgetFactory.create('GconfSpinButton',
                                                   key='thumbnail_size',
                                                   min=16, max=512, step=16,
@@ -93,20 +93,20 @@ class Nautilus(TweakModule):
                     WidgetFactory.create('GconfSpinButton',
                                                   key='maximum_size',
                                                   min=-1, max=512, step=1,
-                                                  label=_('Maximum size of the thumbnail cache (megabytes)')),
+                                                  label=_('Maximum thumbnail cache size (megabytes)')),
                     WidgetFactory.create('GconfSpinButton',
                                                   key='maximum_age',
                                                   min=-1, max=180, step=1,
-                                                  label=_('Maximum age for the thumbnail in the cache (days)')),
+                                                  label=_('Thumbnail cache time (days)')),
                     hbox1,
             ))
         self.add_start(box, False, False, 0)
 
         self.PACKAGE_WORKER = PACKAGE_WORKER
 
-        self.nautilus_terminal = AptCheckButton(_('Nautilus with Open Terminal'), 'nautilus-open-terminal')
+        self.nautilus_terminal = AptCheckButton(_('Open folder in terminal'), 'nautilus-open-terminal')
         self.nautilus_terminal.connect('toggled', self.colleague_changed)
-        self.nautilus_root = AptCheckButton(_('Nautilus with Root Privileges'), 'nautilus-gksu')
+        self.nautilus_root = AptCheckButton(_('Open folder with root priveleges'), 'nautilus-gksu')
         self.nautilus_root.connect('toggled', self.colleague_changed)
         self.nautilus_wallpaper = AptCheckButton(_('Nautilus with Wallpaper'), 'nautilus-wallpaper')
         self.nautilus_wallpaper.connect('toggled', self.colleague_changed)
@@ -132,10 +132,10 @@ class Nautilus(TweakModule):
         except:
             size = '0'
             button.set_sensitive(False)
-        set_label_for_stock_button(button, _('Clean up the thumbnails cache (will free %s of disk space)') % filesizeformat(size))
+        set_label_for_stock_button(button, _('Delete thumbnail cache (will free %s of disk space)') % filesizeformat(size))
 
     def on_clean_thumbnails_clicked(self, widget):
-        question = QuestionDialog(_('The thumbnails cache will be cleaned, Do you wish to continue?'), 
+        question = QuestionDialog(_('The thumbnail cache will be deleted. Do you wish to continue?'),
             title = _('Warning'))
         if question.run() == gtk.RESPONSE_YES:
             question.destroy()

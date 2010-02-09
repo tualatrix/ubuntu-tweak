@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# Ubuntu Tweak - PyGTK based desktop configure tool
+# Ubuntu Tweak - PyGTK based desktop configuration tool
 #
 # Copyright (C) 2007-2008 TualatriX <tualatrix@gmail.com>
 #
@@ -106,7 +106,7 @@ class DesktopIcon(gtk.VBox):
 
 class Icon(TweakModule):
     __title__ = _('Desktop Icon Settings')
-    __desc__ = _("Manage the desktop icon's name and visiable")
+    __desc__ = _("Change the name and toggle visibilty of desktop icons")
     __icon__ = 'user-desktop'
     __category__ = 'desktop'
     __desktop__ = 'gnome'
@@ -146,7 +146,7 @@ class Icon(TweakModule):
         vbox.pack_start(button, False, False, 0)
 
         button = WidgetFactory.create("GconfCheckButton",
-                                      label = _('Use "Home Folder" as desktop (Logout for changes to take effect)'),
+                                      label = _('Show contents of "Home Folder" on desktop (Logout for changes to take effect)'),
                                       key = "desktop_is_home_dir")
         vbox.pack_start(button, False, False, 0)
 

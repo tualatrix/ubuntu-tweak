@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# Ubuntu Tweak - PyGTK based desktop configure tool
+# Ubuntu Tweak - PyGTK based desktop configuration tool
 #
 # Copyright (C) 2007-2008 TualatriX <tualatrix@gmail.com>
 #
@@ -55,7 +55,7 @@ class CleanConfigDialog(ProcessDialog):
         self.user_action = False
 
         super(CleanConfigDialog, self).__init__(parent = parent)
-        self.set_dialog_lable(_('Cleaning Package Config'))
+        self.set_dialog_lable(_('Cleaning Configuration Files'))
         self.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT)
 
     def process_data(self):
@@ -241,7 +241,7 @@ class PackageView(gtk.TreeView):
                    COLUMN_CHECK, False,
                    COLUMN_NAME, pkg,
                    COLUMN_DESC, size,
-                   COLUMN_DISPLAY, _('<b>%s</b>\nTake %s of disk space') % (os.path.basename(pkg), filesizeformat(size)) 
+                   COLUMN_DISPLAY, _('<b>%s</b>\nOccupies %s of disk space') % (os.path.basename(pkg), filesizeformat(size)) 
 
                 )
         self.unset_busy()
@@ -267,7 +267,7 @@ class PackageView(gtk.TreeView):
                 pass
 
         self.total_num = len(list)
-        self.__column.set_title(_('Package Config'))
+        self.__column.set_title(_('Package Configuration Files'))
 
         while gtk.events_pending():
             gtk.main_iteration()
@@ -304,11 +304,11 @@ class PackageView(gtk.TreeView):
     def set_column_title(self):
         if self.mode == 'package' or self.mode == 'kernel':
             n = len(self.__check_list)
-            self.__column.set_title(ngettext('%d package selected to remove',
-                '%d packages selected to remove', n) % n)
+            self.__column.set_title(ngettext('%d package selected for removal',
+                '%d packages selected for removal', n) % n)
         elif self.mode == 'cache':
             self.compute_cache_size()
-            self.__column.set_title(_('%s of space will be freed') % filesizeformat(self.size))
+            self.__column.set_title(_('%s of disk space will be freed') % filesizeformat(self.size))
 
     def compute_cache_size(self):
         self.size = 0
@@ -393,13 +393,13 @@ class PackageView(gtk.TreeView):
         self.unset_busy()
 
     def show_usercancel_dialog(self):
-        InfoDialog(_('Canceled by user!')).launch()
+        InfoDialog(_('Cancelled by user!')).launch()
 
     def show_success_dialog(self):
-        InfoDialog(_('Clean up Successful!')).launch()
+        InfoDialog(_('Clean up successful!')).launch()
 
     def show_failed_dialog(self):
-        ErrorDialog(_('Clean up Failed!')).launch()
+        ErrorDialog(_('Clean up failed!')).launch()
 
     def set_busy(self):
         window = self.get_toplevel().window
@@ -413,7 +413,7 @@ class PackageView(gtk.TreeView):
 
 class PackageCleaner(TweakModule):
     __title__ = _('Package Cleaner')
-    __desc__ = _('Free up disk space by removing unneeded packages and cleaning the package download cache.')
+    __desc__ = _('Free up disk space by removing redundant packages and cleaning the package download cache.')
     __icon__ = 'edit-clear'
     __category__ = 'application'
 
@@ -444,7 +444,7 @@ class PackageCleaner(TweakModule):
         sw.add(self.treeview)
 
         # create the button
-        self.pkg_button = self.create_button(_('Clean Package'), 
+        self.pkg_button = self.create_button(_('Clean Packages'),
                 gtk.image_new_from_pixbuf(get_icon_with_name('deb', 24)),
                 self.treeview.update_package_model)
         vbox.pack_start(self.pkg_button, False, False, 0)
@@ -454,12 +454,12 @@ class PackageCleaner(TweakModule):
                 self.treeview.update_cache_model)
         vbox.pack_start(self.cache_button, False, False, 0)
 
-        self.config_button = self.create_button(_('Clean Config'), 
+        self.config_button = self.create_button(_('Clean Config'),
                 gtk.image_new_from_stock(gtk.STOCK_PREFERENCES, gtk.ICON_SIZE_BUTTON),
                 self.treeview.update_config_model)
         vbox.pack_start(self.config_button, False, False, 0)
 
-        self.kernel_button = self.create_button(_('Clean Kernel'), 
+        self.kernel_button = self.create_button(_('Clean Kernels'),
                 gtk.image_new_from_pixbuf(get_icon_with_name('start-here', 24)),
                 self.treeview.update_kernel_model)
         vbox.pack_start(self.kernel_button, False, False, 0)
