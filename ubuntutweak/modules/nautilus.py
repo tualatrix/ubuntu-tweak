@@ -135,7 +135,7 @@ class Nautilus(TweakModule):
         set_label_for_stock_button(button, _('Delete thumbnail cache (will free %s of disk space)') % filesizeformat(size))
 
     def on_clean_thumbnails_clicked(self, widget):
-        question = QuestionDialog(_('The thumbnail cache will be deleted, Do you wish to continue?'),
+        question = QuestionDialog(_('The thumbnail cache will be deleted. Do you wish to continue?'),
             title = _('Warning'))
         if question.run() == gtk.RESPONSE_YES:
             question.destroy()
