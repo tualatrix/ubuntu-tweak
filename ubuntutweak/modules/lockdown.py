@@ -63,7 +63,7 @@ class LockDown(TweakModule):
 
         self.add_start(box, False, False, 0)
 
-        self.fix_theme_button = gtk.CheckButton(_('Fix the appearance of themes when granted root priveleges'))
+        self.fix_theme_button = gtk.CheckButton(_('Fix the appearance of themes when granted root privileges'))
         if proxy.is_exists(ROOT_THEMES) and proxy.is_exists(ROOT_ICONS):
             self.fix_theme_button.set_active(True)
 
