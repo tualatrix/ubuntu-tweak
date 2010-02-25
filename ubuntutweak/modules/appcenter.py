@@ -336,33 +336,6 @@ class AppView(gtk.TreeView):
     def clear_model(self):
         self.get_model().clear()
 
-    def append_app(self, status, pixbuf,
-                   pkgname, appname, desc, category, type='app'):
-        model = self.get_model()
-
-        model.append((status,
-                pixbuf,
-                pkgname,
-                appname,
-                desc,
-                '<b>%s</b>\n%s' % (appname, desc),
-                category,
-                type))
-
-    def append_changed_app(self, status, pixbuf,
-                           pkgname, appname, desc, category):
-        model = self.get_model()
-
-        model.append((status,
-                pixbuf,
-                pkgname,
-                appname,
-                desc,
-                '<span foreground="#ffcc00"><b>%s</b>\n%s</span>' % (
-                appname, desc),
-                category,
-                'app'))
-
     def append_update(self, status, pkgname, summary):
         model = self.get_model()
 
@@ -379,35 +352,20 @@ class AppView(gtk.TreeView):
         else:
             pixbuf = icontheme.load_icon(gtk.STOCK_MISSING_IMAGE, 32, 0)
 
-        model.append((status,
-                      pixbuf,
-                      pkgname,
-                      pkgname,
-                      summary,
-                      '<b>%s</b>\n%s' % (pkgname, summary),
-                      None,
-                      'update'))
+        iter = model.append()
+        model.set(iter,
+                  self.COLUMN_INSTALLED, status,
+                  self.COLUMN_ICON, pixbuf,
+                  self.COLUMN_PKG, pkgname,
+                  self.COLUMN_NAME, pkgname,
+                  self.COLUMN_DESC, summary,
+                  self.COLUMN_DISPLAY, '<b>%s</b>\n%s' % (pkgname, summary),
+                  self.COLUMN_TYPE, 'update')
 
     def update_model(self, apps=None):
         '''apps is a list to iter pkgname,
         '''
         global app_parser
-
-        def do_append(is_installed, pixbuf, pkgname, appname, desc, category):
-            if pkgname in self.to_add or pkgname in self.to_rm:
-                self.append_changed_app(not is_installed,
-                        pixbuf,
-                        pkgname,
-                        appname,
-                        desc,
-                        category)
-            else:
-                self.append_app(is_installed,
-                        pixbuf,
-                        pkgname,
-                        appname,
-                        desc,
-                        category)
 
         model = self.get_model()
         model.clear()
@@ -432,14 +390,31 @@ class AppView(gtk.TreeView):
                 continue
 
             if self.filter == None or self.filter == category:
-                do_append(is_installed, pixbuf,
-                          pkgname, appname, desc, category)
+                iter = model.append()
+                if pkgname in self.to_add or pkgname in self.to_rm:
+                    status = not is_installed
+                    display = self.__fill_changed_display(appname, desc)
+                else:
+                    status = is_installed
+                    display = '<b>%s</b>\n%s' % (appname, desc)
+
+                model.set(iter,
+                          self.COLUMN_INSTALLED, status,
+                          self.COLUMN_ICON, pixbuf,
+                          self.COLUMN_PKG, pkgname,
+                          self.COLUMN_NAME, appname,
+                          self.COLUMN_DESC, desc,
+                          self.COLUMN_DISPLAY, display,
+                          self.COLUMN_CATE, category,
+                          self.COLUMN_TYPE, 'app')
+
+    def __fill_changed_display(self, appname, desc):
+        return '<span style="italic" weight="bold"><b>%s</b>\n%s</span>' % (appname, desc)
 
     def on_install_toggled(self, cell, path):
         def do_app_changed(model, iter, appname, desc):
             model.set(iter,
-                      self.COLUMN_DISPLAY,
-                      '<span style="italic" weight="bold"><b>%s</b>\n%s</span>' % (appname, desc))
+                      self.COLUMN_DISPLAY, self.__fill_changed_display(appname, desc))
         def do_app_unchanged(model, iter, appname, desc):
             model.set(iter,
                       self.COLUMN_DISPLAY,
