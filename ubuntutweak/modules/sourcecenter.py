@@ -277,17 +277,13 @@ class UpdateView(AppView):
         length = len(pkgs)
 
         if pkgs:
-            model.append((None,
-                          None,
-                          None,
-                          None,
-                          None,
-                          '<span size="large" weight="bold">%s</span>' %
-                          ngettext('Available %d Package Update',
-                                   'Available %d Package Updates',
-                                   length) % length,
-                          None,
-                          None))
+            iter = model.append()
+            model.set(iter,
+                      self.COLUMN_DISPLAY,
+                      '<span size="large" weight="bold">%s</span>' %
+                      ngettext('Available %d Package Update',
+                               'Available %d Package Updates',
+                               length) % length)
 
             apps = []
             updates = []
@@ -304,28 +300,26 @@ class UpdateView(AppView):
                 appname = package.get_name()
                 desc = APP_PARSER.get_summary(pkgname)
 
-                self.append_app(False,
-                        pixbuf,
-                        pkgname,
-                        appname,
-                        desc,
-                        0,
-                        'update')
+                iter = model.append()
+                model.set(iter,
+                          self.COLUMN_INSTALLED, False,
+                          self.COLUMN_ICON, pixbuf,
+                          self.COLUMN_PKG, pkgname,
+                          self.COLUMN_NAME, appname,
+                          self.COLUMN_DESC, desc,
+                          self.COLUMN_DISPLAY, '<b>%s</b>\n%s' % (appname, desc),
+                          self.COLUMN_TYPE, 'update')
 
             for pkgname in updates:
                 package = PACKAGE_WORKER.get_cache()[pkgname]
 
                 self.append_update(False, package.name, package.summary)
         else:
-            model.append((None,
-                            None,
-                            None,
-                            None,
-                            None,
-                            '<span size="large" weight="bold">%s</span>' %
-                            _('No Available Package Update'),
-                            None,
-                            None))
+            iter = model.append()
+            model.set(iter,
+                      self.COLUMN_DISPLAY,
+                        '<span size="large" weight="bold">%s</span>' %
+                        _('No Available Package Update'))
 
     def select_all_action(self, active):
         self.to_rm = []
