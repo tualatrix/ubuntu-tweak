@@ -59,9 +59,6 @@ class AppStatus(object):
             self.__data = {'apps': {}, 'cates': {}}
             self.__first = True
 
-        self.__appdict = self.__data['apps']
-        self.__catedict = self.__data['cates']
-
     def save(self):
         file = open(self.__path, 'w')
         file.write(json.dumps(self.__data))
@@ -70,20 +67,20 @@ class AppStatus(object):
     def load_from_app(self, parser):
         for pkg in parser.keys():
             if self.__first:
-                self.__appdict[pkg] = {}
-                self.__appdict[pkg]['read'] = True
-                self.__appdict[pkg]['cate'] = parser.get_category(pkg)
+                self.__data['apps'][pkg] = {}
+                self.__data['apps'][pkg]['read'] = True
+                self.__data['apps'][pkg]['cate'] = parser.get_category(pkg)
             else:
-                if pkg not in self.__appdict:
-                    self.__appdict[pkg] = False
+                if pkg not in self.__data['apps']:
+                    self.__data['apps'][pkg]['read'] = False
 
         self.__first = False
         self.save()
 
     def count_unread(self, cate):
         i = 0
-        for pkg in self.__appdict:
-            if self.__appdict[pkg]['cate'] == cate and not self.__appdict[pkg]['read']:
+        for pkg in self.__data['apps']:
+            if self.__data['apps'][pkg]['cate'] == cate and not self.__data['apps'][pkg]['read']:
                 i += 1
         return i
 
@@ -91,28 +88,28 @@ class AppStatus(object):
         for cate in parser.keys():
             id = parser.get_id(cate)
             if self.__first:
-                self.__catedict[id] = 0
+                self.__data['cates'][id] = 0
             else:
-                self.__catedict[id] = self.count_unread(id)
+                self.__data['cates'][id] = self.count_unread(id)
 
         self.__first = False
         self.save()
 
     def get_cate_unread_count(self, id):
         try:
-            return self.__catedict.pop(id)
+            return self.__data['cates'].pop(id)
         except:
             return 0
 
     def get_app_readed(self, package):
         try:
-            return self.__appdict[package]
+            return self.__data['apps'][package]
         except:
             return True
 
     def set_app_readed(self, package):
         try:
-            self.__appdict[package] = True
+            self.__data['apps'][package] = True
         except:
             pass
         self.save()
