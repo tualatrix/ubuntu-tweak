@@ -179,22 +179,7 @@ class CategoryView(gtk.TreeView):
         column.pack_start(renderer, True)
         column.set_sort_column_id(self.CATE_NAME)
         column.set_attributes(renderer, markup=self.CATE_DISPLAY)
-        if self.status:
-            column.set_cell_data_func(renderer, self.cate_status_column_func)
-
         self.append_column(column)
-
-    def cate_status_column_func(self, cell_layout, renderer, model, iter):
-        '''Set the categor status'''
-        id = model.get_value(iter, self.CATE_ID)
-        name = model.get_value(iter, self.CATE_NAME)
-
-        if self.status:
-            count = self.status.get_cate_unread_count(id)
-            if count:
-                model.set(iter,
-                         self.CATE_DISPLAY,
-                         '<b>%s (%d)</b>' % (name, count))
 
     def update_model(self):
         self.model.clear()
@@ -210,10 +195,19 @@ class CategoryView(gtk.TreeView):
 
         for slug in self.get_cate_items():
             iter = self.model.append()
+            id = self.parser.get_id(slug)
+            name = self.parser.get_name(slug)
+            display = name
+
+            if self.status:
+                count = self.status.get_cate_unread_count(id)
+                if count:
+                    display = '<b>%s (%d)</b>' % (name, count)
+
             self.model.set(iter, 
-                    self.CATE_ID, self.parser.get_id(slug),
-                    self.CATE_NAME, self.parser.get_name(slug),
-                    self.CATE_DISPLAY, self.parser.get_name(slug))
+                           self.CATE_ID, id,
+                           self.CATE_NAME, name,
+                           self.CATE_DISPLAY, display)
 
     def get_cate_items(self):
         keys = self.parser.keys()
