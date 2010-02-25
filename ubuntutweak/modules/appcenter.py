@@ -72,7 +72,9 @@ class AppStatus(object):
                 self.__data['apps'][pkg]['cate'] = parser.get_category(pkg)
             else:
                 if pkg not in self.__data['apps']:
+                    self.__data['apps'][pkg] = {}
                     self.__data['apps'][pkg]['read'] = False
+                    self.__data['apps'][pkg]['cate'] = parser.get_category(pkg)
 
         self.__first = False
         self.save()
@@ -366,6 +368,10 @@ class AppView(gtk.TreeView):
                 appname = package.get_name()
                 desc = app_parser.get_summary(pkgname)
             except:
+                # Confirm the invalid package isn't in the count
+                # But in the future, Ubuntu Tweak should display the invalid package too
+                if self.status and not self.status.get_app_readed(pkgname):
+                    self.status.set_app_readed(pkgname)
                 continue
 
             if self.filter == None or self.filter == category:
