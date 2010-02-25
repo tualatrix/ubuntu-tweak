@@ -103,13 +103,13 @@ class AppStatus(object):
 
     def get_app_readed(self, package):
         try:
-            return self.__data['apps'][package]
+            return self.__data['apps'][package]['read']
         except:
             return True
 
     def set_app_readed(self, package):
         try:
-            self.__data['apps'][package] = True
+            self.__data['apps'][package]['read'] = True
         except:
             pass
         self.save()
@@ -184,8 +184,6 @@ class CategoryView(gtk.TreeView):
     def update_model(self):
         self.model.clear()
         self.parser = CateParser(self.path)
-        if self.status:
-            self.status.load_from_cate(self.parser)
 
         iter = self.model.append()
         self.model.set(iter, 
@@ -200,6 +198,7 @@ class CategoryView(gtk.TreeView):
             display = name
 
             if self.status:
+                self.status.load_from_cate(self.parser)
                 count = self.status.get_cate_unread_count(id)
                 if count:
                     display = '<b>%s (%d)</b>' % (name, count)
@@ -281,9 +280,7 @@ class AppView(gtk.TreeView):
         renderer = gtk.CellRendererPixbuf()
         column.pack_start(renderer, False)
         column.set_cell_data_func(renderer, self.icon_column_view_func)
-        if self.status:
-            column.set_cell_data_func(renderer, self.app_status_column_func)
-        column.set_attributes(renderer, pixbuf = self.COLUMN_ICON)
+        column.set_attributes(renderer, pixbuf=self.COLUMN_ICON)
 
         renderer = gtk.CellRendererText()
         renderer.set_property("xpad", 6)
@@ -293,18 +290,9 @@ class AppView(gtk.TreeView):
         column.add_attribute(renderer, 'markup', self.COLUMN_DISPLAY)
         self.append_column(column)
 
-    def app_status_column_func(self, cell_layout, renderer, model, iter):
-        '''Set the app status'''
-        package = model.get_value(iter, self.COLUMN_PKG)
-        if not self.status.get_app_readed(package):
-            appname = model.get_value(iter, self.COLUMN_NAME)
-            desc = model.get_value(iter, self.COLUMN_DESC)
-            model.set_value(iter, self.COLUMN_DISPLAY,
-                            '<b>%s <span foreground="#ff0000">(New!!!)</span>\n%s</b>' % (appname, desc))
-
     def set_as_read(self, iter, model):
         package = model.get_value(iter, self.COLUMN_PKG)
-        if self.status and self.status.get_app_readed(package):
+        if self.status and not self.status.get_app_readed(package):
             appname = model.get_value(iter, self.COLUMN_NAME)
             desc = model.get_value(iter, self.COLUMN_DESC)
             self.status.set_app_readed(package)
@@ -387,7 +375,10 @@ class AppView(gtk.TreeView):
                     display = self.__fill_changed_display(appname, desc)
                 else:
                     status = is_installed
-                    display = '<b>%s</b>\n%s' % (appname, desc)
+                    if self.status and not self.status.get_app_readed(pkgname):
+                        display = '<b>%s <span foreground="#ff0000">(New!!!)</span>\n%s</b>' % (appname, desc)
+                    else:
+                        display = '<b>%s</b>\n%s' % (appname, desc)
 
                 model.set(iter,
                           self.COLUMN_INSTALLED, status,
@@ -587,6 +578,7 @@ class AppCenter(TweakModule):
         if iter:
             appview = widget.get_tree_view()
             appview.set_as_read(iter, model)
+            self.cateview.update_model()
 
     def on_category_changed(self, widget, data=None):
         model, iter = widget.get_selected()
