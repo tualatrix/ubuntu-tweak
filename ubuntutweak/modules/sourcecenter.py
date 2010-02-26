@@ -38,7 +38,7 @@ from ubuntutweak.widgets import GconfCheckButton
 from ubuntutweak.widgets.dialogs import QuestionDialog, ErrorDialog, InfoDialog, WarningDialog
 from ubuntutweak.utils.parser import Parser
 from ubuntutweak.network import utdata
-from appcenter import AppView, CategoryView, AppParser
+from appcenter import AppView, CategoryView, AppParser, AppStatus
 from appcenter import CheckUpdateDialog, FetchingDialog
 from ubuntutweak.conf import GconfSetting
 from ubuntutweak.common import consts
@@ -392,11 +392,12 @@ class SourcesView(gtk.TreeView):
      COLUMN_KEY,
     ) = range(13)
 
-    def __init__(self):
+    def __init__(self, status=None):
         gtk.TreeView.__init__(self)
 
         self.filter = None
         self.modelfilter = None
+        self.status = status
 
         self.model = self.__create_model()
         self.model.set_sort_column_id(self.COLUMN_NAME, gtk.SORT_ASCENDING)
@@ -472,6 +473,9 @@ class SourcesView(gtk.TreeView):
         self.model.clear()
         sourceslist = self.get_sourceslist()
 
+        if self.status:
+            self.status.load_from_app(SOURCE_PARSER)
+
         for id in SOURCE_PARSER:
             enabled = False
             url = SOURCE_PARSER.get_url(id)
@@ -490,22 +494,28 @@ class SourcesView(gtk.TreeView):
                 if url in source.str() and source.type == 'deb':
                     enabled = not source.disabled
 
+            if self.status and not self.status.get_app_readed(slug):
+                self.status.set_app_readed(slug)
+                display = '<b>%s <span foreground="#ff0000">(New!!!)</span>\n%s</b>' % (name, comment)
+            else:
+                display = '<b>%s</b>\n%s' % (name, comment)
+
             iter = self.model.append()
             self.model.set(iter,
-                    self.COLUMN_ENABLED, enabled,
-                    self.COLUMN_ID, id,
-                    self.COLUMN_CATE, category,
-                    self.COLUMN_URL, url,
-                    self.COLUMN_DISTRO, distro,
-                    self.COLUMN_COMPS, comps,
-                    self.COLUMN_COMMENT, comment,
-                    self.COLUMN_SLUG, slug,
-                    self.COLUMN_NAME, name,
-                    self.COLUMN_DISPLAY, '<b>%s</b>\n%s' % (name, comment),
-                    self.COLUMN_LOGO, pixbuf,
-                    self.COLUMN_HOME, website,
-                    self.COLUMN_KEY, key,
-                )
+                           self.COLUMN_ENABLED, enabled,
+                           self.COLUMN_ID, id,
+                           self.COLUMN_CATE, category,
+                           self.COLUMN_URL, url,
+                           self.COLUMN_DISTRO, distro,
+                           self.COLUMN_COMPS, comps,
+                           self.COLUMN_COMMENT, comment,
+                           self.COLUMN_SLUG, slug,
+                           self.COLUMN_NAME, name,
+                           self.COLUMN_DISPLAY, display,
+                           self.COLUMN_LOGO, pixbuf,
+                           self.COLUMN_HOME, website,
+                           self.COLUMN_KEY, key,
+            )
 
     def get_source_logo(self, file_name):
         path = os.path.join(SOURCE_ROOT, file_name)
@@ -831,18 +841,20 @@ class SourceCenter(TweakModule):
 
         self.url = SOURCE_VERSION_URL
         set_label_for_stock_button(self.sync_button, _('_Sync'))
+        self.sourcestatus = AppStatus(name='sourcestatus.json')
 
-        self.cateview = CategoryView(os.path.join(SOURCE_ROOT, 'cates.json'))
-        self.cate_selection = self.cateview.get_selection()
-        self.cate_selection.connect('changed', self.on_category_changed)
-        self.left_sw.add(self.cateview)
-
-        self.sourceview = SourcesView()
+        self.sourceview = SourcesView(self.sourcestatus)
         self.sourceview.connect('sourcechanged', self.on_source_changed)
         self.sourceview.selection.connect('changed', self.on_selection_changed)
         self.sourceview.set_sensitive(False)
         self.sourceview.set_rules_hint(True)
         self.right_sw.add(self.sourceview)
+
+        self.cateview = CategoryView(os.path.join(SOURCE_ROOT, 'cates.json'),
+                                     self.sourcestatus)
+        self.cate_selection = self.cateview.get_selection()
+        self.cate_selection.connect('changed', self.on_category_changed)
+        self.left_sw.add(self.cateview)
 
         self.expander = gtk.Expander(_('Details'))
         self.vbox1.pack_start(self.expander, False, False, 0)

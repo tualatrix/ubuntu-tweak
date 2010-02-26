@@ -50,9 +50,14 @@ if not os.path.exists(APPCENTER_ROOT):
     os.mkdir(APPCENTER_ROOT)
 
 class AppStatus(object):
-    def __init__(self):
-        self.__path = os.path.join(consts.CONFIG_ROOT, 'appstatus.json')
+    def __init__(self, name=None):
+        if name:
+            path = os.path.join(consts.CONFIG_ROOT, name)
+        else:
+            path = os.path.join(consts.CONFIG_ROOT, 'appstatus.json')
+        self.__path = path
         self.__first = False
+
         try:
             self.__data = json.loads(open(self.__path).read())
         except:
@@ -149,21 +154,17 @@ class CategoryView(gtk.TreeView):
         CATE_DISPLAY,
     ) = range(3)
 
-    def __init__(self, path, status=None):
+    def __init__(self, path):
         gtk.TreeView.__init__(self)
 
         self.path = path
-        self.status = status
+        self.__status = None
         self.parser = None
         self.set_headers_visible(False)
         self.set_rules_hint(True)
         self.model = self.__create_model()
         self.set_model(self.model)
         self.__add_columns()
-        self.update_model()
-
-        selection = self.get_selection()
-        selection.select_iter(self.model.get_iter_first())
 
     def __create_model(self):
         '''The model is icon, title and the list reference'''
@@ -183,6 +184,9 @@ class CategoryView(gtk.TreeView):
         column.set_attributes(renderer, markup=self.CATE_DISPLAY)
         self.append_column(column)
 
+    def set_status_from_view(self, view):
+        self.__status = view.get_status()
+
     def update_model(self):
         self.model.clear()
         self.parser = CateParser(self.path)
@@ -199,9 +203,9 @@ class CategoryView(gtk.TreeView):
             name = self.parser.get_name(slug)
             display = name
 
-            if self.status:
-                self.status.load_from_cate(self.parser)
-                count = self.status.get_cate_unread_count(id)
+            if self.__status:
+                self.__status.load_from_cate(self.parser)
+                count = self.__status.get_cate_unread_count(id)
                 if count:
                     display = '<b>%s (%d)</b>' % (name, count)
 
@@ -232,13 +236,13 @@ class AppView(gtk.TreeView):
      COLUMN_TYPE,
     ) = range(8)
 
-    def __init__(self, status=None):
+    def __init__(self):
         gtk.TreeView.__init__(self)
 
         self.to_add = []
         self.to_rm = []
         self.filter = None
-        self.status = status
+        self.__status = None
 
         model = self.__create_model()
         self.__add_columns()
@@ -294,10 +298,10 @@ class AppView(gtk.TreeView):
 
     def set_as_read(self, iter, model):
         package = model.get_value(iter, self.COLUMN_PKG)
-        if self.status and not self.status.get_app_readed(package):
+        if self.__status and not self.__status.get_app_readed(package):
             appname = model.get_value(iter, self.COLUMN_NAME)
             desc = model.get_value(iter, self.COLUMN_DESC)
-            self.status.set_app_readed(package)
+            self.__status.set_app_readed(package)
             model.set_value(iter, self.COLUMN_DISPLAY, '<b>%s</b>\n%s' % (appname, desc))
 
     def install_column_view_func(self, cell_layout, renderer, model, iter):
@@ -343,17 +347,22 @@ class AppView(gtk.TreeView):
                   self.COLUMN_DISPLAY, '<b>%s</b>\n%s' % (pkgname, summary),
                   self.COLUMN_TYPE, 'update')
 
+    def set_status_active(self, active):
+        if active:
+            self.__status = AppStatus()
+
+    def get_status(self):
+        return self.__status
+
     def update_model(self, apps=None):
         '''apps is a list to iter pkgname,
         '''
-        global app_parser
-
         model = self.get_model()
         model.clear()
 
         app_parser = AppParser()
-        if self.status:
-            self.status.load_from_app(app_parser)
+        if self.__status:
+            self.__status.load_from_app(app_parser)
 
         if not apps:
             apps = app_parser.keys()
@@ -370,8 +379,8 @@ class AppView(gtk.TreeView):
             except:
                 # Confirm the invalid package isn't in the count
                 # But in the future, Ubuntu Tweak should display the invalid package too
-                if self.status and not self.status.get_app_readed(pkgname):
-                    self.status.set_app_readed(pkgname)
+                if self.__status and not self.__status.get_app_readed(pkgname):
+                    self.__status.set_app_readed(pkgname)
                 continue
 
             if self.filter == None or self.filter == category:
@@ -381,7 +390,7 @@ class AppView(gtk.TreeView):
                     display = self.__fill_changed_display(appname, desc)
                 else:
                     status = is_installed
-                    if self.status and not self.status.get_app_readed(pkgname):
+                    if self.__status and not self.__status.get_app_readed(pkgname):
                         display = '<b>%s <span foreground="#ff0000">(New!!!)</span>\n%s</b>' % (appname, desc)
                     else:
                         display = '<b>%s</b>\n%s' % (appname, desc)
@@ -525,10 +534,10 @@ class AppCenter(TweakModule):
         self.to_rm = []
 
         self.package_worker = PACKAGE_WORKER
-        self.appstatus = AppStatus()
         self.url = APP_VERSION_URL
 
-        self.appview = AppView(self.appstatus)
+        self.appview = AppView()
+        self.appview.set_status_active(True)
         self.appview.update_model()
         self.appview.sort_model()
         self.appview.connect('changed', self.on_app_status_changed)
@@ -536,12 +545,12 @@ class AppCenter(TweakModule):
         self.app_selection.connect('changed', self.on_app_selection)
         self.right_sw.add(self.appview)
 
-        self.cateview = CategoryView(os.path.join(APPCENTER_ROOT, 'cates.json'),
-                                     self.appstatus)
+        self.cateview = CategoryView(os.path.join(APPCENTER_ROOT, 'cates.json'))
+        self.cateview.set_status_from_view(self.appview)
+        self.cateview.update_model()
         self.cate_selection = self.cateview.get_selection()
         self.cate_selection.connect('changed', self.on_category_changed)
         self.left_sw.add(self.cateview)
-
 
         self.update_timestamp()
         self.show_all()
