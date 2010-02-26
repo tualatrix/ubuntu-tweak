@@ -49,13 +49,9 @@ def get_app_data_url():
 if not os.path.exists(APPCENTER_ROOT):
     os.mkdir(APPCENTER_ROOT)
 
-class AppStatus(object):
-    def __init__(self, name=None):
-        if name:
-            path = os.path.join(consts.CONFIG_ROOT, name)
-        else:
-            path = os.path.join(consts.CONFIG_ROOT, 'appstatus.json')
-        self.__path = path
+class StatusProvider(object):
+    def __init__(self, name):
+        self.__path = os.path.join(consts.CONFIG_ROOT, name)
         self.__first = False
 
         try:
@@ -69,17 +65,17 @@ class AppStatus(object):
         file.write(json.dumps(self.__data))
         file.close()
 
-    def load_from_app(self, parser):
-        for pkg in parser.keys():
+    def load_objects_from_parser(self, parser):
+        for key in parser.keys():
             if self.__first:
-                self.__data['apps'][pkg] = {}
-                self.__data['apps'][pkg]['read'] = True
-                self.__data['apps'][pkg]['cate'] = parser.get_category(pkg)
+                self.__data['apps'][key] = {}
+                self.__data['apps'][key]['read'] = True
+                self.__data['apps'][key]['cate'] = parser.get_category(key)
             else:
-                if pkg not in self.__data['apps']:
-                    self.__data['apps'][pkg] = {}
-                    self.__data['apps'][pkg]['read'] = False
-                    self.__data['apps'][pkg]['cate'] = parser.get_category(pkg)
+                if key not in self.__data['apps']:
+                    self.__data['apps'][key] = {}
+                    self.__data['apps'][key]['read'] = False
+                    self.__data['apps'][key]['cate'] = parser.get_category(key)
 
         self.__first = False
         self.save()
@@ -91,7 +87,7 @@ class AppStatus(object):
                 i += 1
         return i
 
-    def load_from_cate(self, parser):
+    def load_category_from_parser(self, parser):
         for cate in parser.keys():
             id = parser.get_id(cate)
             if self.__first:
@@ -204,7 +200,7 @@ class CategoryView(gtk.TreeView):
             display = name
 
             if self.__status:
-                self.__status.load_from_cate(self.parser)
+                self.__status.load_category_from_parser(self.parser)
                 count = self.__status.get_cate_unread_count(id)
                 if count:
                     display = '<b>%s (%d)</b>' % (name, count)
@@ -349,7 +345,7 @@ class AppView(gtk.TreeView):
 
     def set_status_active(self, active):
         if active:
-            self.__status = AppStatus()
+            self.__status = StatusProvider('appstatus.json')
 
     def get_status(self):
         return self.__status
@@ -361,8 +357,9 @@ class AppView(gtk.TreeView):
         model.clear()
 
         app_parser = AppParser()
+
         if self.__status:
-            self.__status.load_from_app(app_parser)
+            self.__status.load_objects_from_parser(app_parser)
 
         if not apps:
             apps = app_parser.keys()

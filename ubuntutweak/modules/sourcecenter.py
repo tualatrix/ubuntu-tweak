@@ -38,7 +38,7 @@ from ubuntutweak.widgets import GconfCheckButton
 from ubuntutweak.widgets.dialogs import QuestionDialog, ErrorDialog, InfoDialog, WarningDialog
 from ubuntutweak.utils.parser import Parser
 from ubuntutweak.network import utdata
-from appcenter import AppView, CategoryView, AppParser, AppStatus
+from appcenter import AppView, CategoryView, AppParser, StatusProvider
 from appcenter import CheckUpdateDialog, FetchingDialog
 from ubuntutweak.conf import GconfSetting
 from ubuntutweak.common import consts
@@ -392,12 +392,12 @@ class SourcesView(gtk.TreeView):
      COLUMN_KEY,
     ) = range(13)
 
-    def __init__(self, status=None):
+    def __init__(self):
         gtk.TreeView.__init__(self)
 
         self.filter = None
         self.modelfilter = None
-        self.status = status
+        self.__status = None
 
         self.model = self.__create_model()
         self.model.set_sort_column_id(self.COLUMN_NAME, gtk.SORT_ASCENDING)
@@ -469,12 +469,19 @@ class SourcesView(gtk.TreeView):
 
         self.append_column(column)
 
+    def set_status_active(self, active):
+        if active:
+            self.__status = StatusProvider('sourcestatus.json')
+
+    def get_status(self):
+        return self.__status
+
     def update_model(self):
         self.model.clear()
         sourceslist = self.get_sourceslist()
 
-        if self.status:
-            self.status.load_from_app(SOURCE_PARSER)
+        if self.__status:
+            self.__status.load_from_app(SOURCE_PARSER)
 
         for id in SOURCE_PARSER:
             enabled = False
@@ -494,8 +501,8 @@ class SourcesView(gtk.TreeView):
                 if url in source.str() and source.type == 'deb':
                     enabled = not source.disabled
 
-            if self.status and not self.status.get_app_readed(slug):
-                self.status.set_app_readed(slug)
+            if self.__status and not self.__status.get_app_readed(slug):
+                self.__status.set_app_readed(slug)
                 display = '<b>%s <span foreground="#ff0000">(New!!!)</span>\n%s</b>' % (name, comment)
             else:
                 display = '<b>%s</b>\n%s' % (name, comment)
@@ -841,17 +848,18 @@ class SourceCenter(TweakModule):
 
         self.url = SOURCE_VERSION_URL
         set_label_for_stock_button(self.sync_button, _('_Sync'))
-        self.sourcestatus = AppStatus(name='sourcestatus.json')
 
-        self.sourceview = SourcesView(self.sourcestatus)
+        self.sourceview = SourcesView()
+        self.sourceview.set_status_active(True)
         self.sourceview.connect('sourcechanged', self.on_source_changed)
         self.sourceview.selection.connect('changed', self.on_selection_changed)
         self.sourceview.set_sensitive(False)
         self.sourceview.set_rules_hint(True)
         self.right_sw.add(self.sourceview)
 
-        self.cateview = CategoryView(os.path.join(SOURCE_ROOT, 'cates.json'),
-                                     self.sourcestatus)
+        self.cateview = CategoryView(os.path.join(SOURCE_ROOT, 'cates.json'))
+        self.cateview.set_status_from_view(self.sourceview)
+        self.cateview.update_model()
         self.cate_selection = self.cateview.get_selection()
         self.cate_selection.connect('changed', self.on_category_changed)
         self.left_sw.add(self.cateview)
