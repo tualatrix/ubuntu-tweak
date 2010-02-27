@@ -114,8 +114,14 @@ class PreferencesDialog:
         vbox.pack_start(button, False, False, 0)
 
         button = WidgetFactory.create('GconfCheckButton', 
-                                      label = _('Enable the synchronous notification'),
+                                      label=_('Enable the synchronous notification'),
                                       key='sync_notify',
+                                      default=True)
+        vbox.pack_start(button, False, False, 0)
+
+        button = WidgetFactory.create('GconfCheckButton',
+                                      label=_('Enable new item highlight in App and Source Center'),
+                                      key='enable_new_item',
                                       default=True)
         vbox.pack_start(button, False, False, 0)
 

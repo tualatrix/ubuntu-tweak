@@ -894,7 +894,8 @@ class SourceCenter(TweakModule):
         set_label_for_stock_button(self.sync_button, _('_Sync'))
 
         self.sourceview = SourcesView()
-        self.sourceview.set_status_active(True)
+
+        self.sourceview.set_status_active(TweakSettings.get_enable_new_item())
         self.sourceview.update_model()
         self.sourceview.connect('sourcechanged', self.on_source_changed)
         self.sourceview.selection.connect('changed', self.on_selection_changed)

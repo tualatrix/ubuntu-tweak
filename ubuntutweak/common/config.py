@@ -50,7 +50,16 @@ class TweakSettings:
     sync_notify = 'sync_notify'
     separated_sources = 'separated_sources'
     use_mirror_ppa = 'use_mirror_ppa'
+    enable_new_item = 'enable_new_item'
     need_save = True
+
+    @classmethod
+    def get_enable_new_item(cls):
+        return cls.config.get_value_from_key(cls.enable_new_item, default=True)
+
+    @classmethod
+    def set_enable_new_item(cls, bool):
+        cls.config.set_value_from_key(cls.enable_new_item, bool)
 
     @classmethod
     def get_check_update(cls):

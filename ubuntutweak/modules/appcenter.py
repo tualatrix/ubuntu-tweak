@@ -544,7 +544,7 @@ class AppCenter(TweakModule):
         self.url = APP_VERSION_URL
 
         self.appview = AppView()
-        self.appview.set_status_active(True)
+        self.appview.set_status_active(TweakSettings.get_enable_new_item())
         self.appview.update_model()
         self.appview.sort_model()
         self.appview.connect('changed', self.on_app_status_changed)
