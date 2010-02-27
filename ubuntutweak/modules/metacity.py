@@ -88,26 +88,26 @@ class ButtonView(gtk.IconView):
         value = value.replace(',:', ':').replace(':,', ':')
         self.config.set_value(value)
 
-    def add_spacer(self):
+    def add_button(self, text):
         model = self.get_model()
         iter = model.append()
         model.set(iter,
-                  self.COLUMN_KEY, 'spacer',
-                  self.COLUMN_LABEL, self.values['spacer'])
+                  self.COLUMN_KEY, text,
+                  self.COLUMN_LABEL, self.values[text])
         self.on_button_changed(self)
 
-    def remove_spacer(self):
+    def remove_button(self, text):
         model = self.get_model()
         for i, row in enumerate(model):
-            if row[self.COLUMN_KEY] == 'spacer':
+            if row[self.COLUMN_KEY] == text:
                 del model[i, self.COLUMN_KEY]
                 break
         self.on_button_changed(self)
 
-    def has_spacer(self):
+    def has_button(self, text):
         model = self.get_model()
         for i, row in enumerate(model):
-            if row[self.COLUMN_KEY] == 'spacer':
+            if row[self.COLUMN_KEY] == text:
                 return True
         return False
 
@@ -138,7 +138,7 @@ class Metacity(TweakModule):
         button1 = gtk.Button(stock=gtk.STOCK_REDO)
         hbox.pack_end(button1, False, False, 0)
         button2 = gtk.Button()
-        if buttonview1.has_spacer():
+        if buttonview1.has_button('spacer'):
             button2.set_label(self.REMOVE_SPACER)
         else:
             button2.set_label(self.ADD_SPACER)
@@ -237,11 +237,11 @@ class Metacity(TweakModule):
         button.set_label(self.ADD_SPACER)
 
     def on_spacer_clicked(self, widget, view):
-        if view.has_spacer():
-            view.remove_spacer()
+        if view.has_button('spacer'):
+            view.remove_button('spacer')
             widget.set_label(self.ADD_SPACER)
         else:
-            view.add_spacer()
+            view.add_button('spacer')
             widget.set_label(self.REMOVE_SPACER)
 
     def on_compositing_button_toggled(self, widget):
