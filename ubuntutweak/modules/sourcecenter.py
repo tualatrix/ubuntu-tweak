@@ -245,6 +245,38 @@ class SourceParser(Parser):
 
 SOURCE_PARSER = SourceParser()
 
+class SourceStatus(StatusProvider):
+    def load_objects_from_parser(self, parser):
+        for key in parser.keys():
+            id = key
+            slug = parser.get_slug(key)
+            key = slug
+            if self.get_init():
+                self.get_data()['apps'][key] = {}
+                self.get_data()['apps'][key]['read'] = True
+                self.get_data()['apps'][key]['cate'] = parser.get_category(id)
+            else:
+                if key not in self.get_data()['apps']:
+                    self.get_data()['apps'][key] = {}
+                    self.get_data()['apps'][key]['read'] = False
+                    self.get_data()['apps'][key]['cate'] = parser.get_category(id)
+
+        self.set_init(False)
+        self.save()
+
+    def get_read_status(self, key):
+        try:
+            return self.get_data()['apps'][key]['read']
+        except:
+            return True
+
+    def set_as_read(self, key):
+        try:
+            self.get_data()['apps'][key]['read'] = True
+        except:
+            pass
+        self.save()
+
 class UpdateView(AppView):
     def __init__(self):
         AppView.__init__(self)
@@ -409,7 +441,6 @@ class SourcesView(gtk.TreeView):
 
         self.__add_column()
 
-        self.update_model()
         self.selection = self.get_selection()
 
     def get_sourceslist(self):
@@ -471,7 +502,7 @@ class SourcesView(gtk.TreeView):
 
     def set_status_active(self, active):
         if active:
-            self.__status = StatusProvider('sourcestatus.json')
+            self.__status = SourceStatus('sourcestatus.json')
 
     def get_status(self):
         return self.__status
@@ -481,7 +512,7 @@ class SourcesView(gtk.TreeView):
         sourceslist = self.get_sourceslist()
 
         if self.__status:
-            self.__status.load_from_app(SOURCE_PARSER)
+            self.__status.load_objects_from_parser(SOURCE_PARSER)
 
         for id in SOURCE_PARSER:
             enabled = False
@@ -501,8 +532,7 @@ class SourcesView(gtk.TreeView):
                 if url in source.str() and source.type == 'deb':
                     enabled = not source.disabled
 
-            if self.__status and not self.__status.get_app_readed(slug):
-                self.__status.set_app_readed(slug)
+            if self.__status and not self.__status.get_read_status(slug):
                 display = '<b>%s <span foreground="#ff0000">(New!!!)</span>\n%s</b>' % (name, comment)
             else:
                 display = '<b>%s</b>\n%s' % (name, comment)
@@ -523,6 +553,20 @@ class SourcesView(gtk.TreeView):
                            self.COLUMN_HOME, website,
                            self.COLUMN_KEY, key,
             )
+
+    def set_as_read(self, iter, model):
+        if type(model) == gtk.TreeModelFilter:
+            iter = model.convert_iter_to_child_iter(iter)
+            model = model.get_model()
+        id = model.get_value(iter, self.COLUMN_ID)
+        slug = model.get_value(iter, self.COLUMN_SLUG)
+        if self.__status and not self.__status.get_read_status(slug):
+            name = model.get_value(iter, self.COLUMN_NAME)
+            comment = model.get_value(iter, self.COLUMN_COMMENT)
+            self.__status.set_as_read(slug)
+            model.set_value(iter,
+                            self.COLUMN_DISPLAY,
+                            '<b>%s</b>\n%s' % (name, comment))
 
     def get_source_logo(self, file_name):
         path = os.path.join(SOURCE_ROOT, file_name)
@@ -851,10 +895,13 @@ class SourceCenter(TweakModule):
 
         self.sourceview = SourcesView()
         self.sourceview.set_status_active(True)
+        self.sourceview.update_model()
         self.sourceview.connect('sourcechanged', self.on_source_changed)
         self.sourceview.selection.connect('changed', self.on_selection_changed)
         self.sourceview.set_sensitive(False)
         self.sourceview.set_rules_hint(True)
+        self.source_selection = self.sourceview.get_selection()
+        self.source_selection.connect('changed', self.on_source_selection)
         self.right_sw.add(self.sourceview)
 
         self.cateview = CategoryView(os.path.join(SOURCE_ROOT, 'cates.json'))
@@ -924,7 +971,14 @@ class SourceCenter(TweakModule):
         except Exception, error:
             print error
 
-    def on_category_changed(self, widget, data = None):
+    def on_source_selection(self, widget, data=None):
+        model, iter = widget.get_selected()
+        if iter:
+            sourceview = widget.get_tree_view()
+            sourceview.set_as_read(iter, model)
+            self.cateview.update_model()
+
+    def on_category_changed(self, widget, data=None):
         model, iter = widget.get_selected()
         cateview = widget.get_tree_view()
 

@@ -52,13 +52,22 @@ if not os.path.exists(APPCENTER_ROOT):
 class StatusProvider(object):
     def __init__(self, name):
         self.__path = os.path.join(consts.CONFIG_ROOT, name)
-        self.__first = False
+        self.__init = False
 
         try:
             self.__data = json.loads(open(self.__path).read())
         except:
             self.__data = {'apps': {}, 'cates': {}}
-            self.__first = True
+            self.__init = True
+
+    def set_init(self, active):
+        self.__init = active
+
+    def get_init(self):
+        return self.__init
+
+    def get_data(self):
+        return self.__data
 
     def save(self):
         file = open(self.__path, 'w')
@@ -67,7 +76,8 @@ class StatusProvider(object):
 
     def load_objects_from_parser(self, parser):
         for key in parser.keys():
-            if self.__first:
+            #FIXME because of source id
+            if self.get_init():
                 self.__data['apps'][key] = {}
                 self.__data['apps'][key]['read'] = True
                 self.__data['apps'][key]['cate'] = parser.get_category(key)
@@ -77,25 +87,25 @@ class StatusProvider(object):
                     self.__data['apps'][key]['read'] = False
                     self.__data['apps'][key]['cate'] = parser.get_category(key)
 
-        self.__first = False
+        self.set_init(False)
         self.save()
 
     def count_unread(self, cate):
         i = 0
-        for pkg in self.__data['apps']:
-            if self.__data['apps'][pkg]['cate'] == cate and not self.__data['apps'][pkg]['read']:
+        for key in self.__data['apps']:
+            if self.__data['apps'][key]['cate'] == cate and not self.__data['apps'][key]['read']:
                 i += 1
         return i
 
     def load_category_from_parser(self, parser):
         for cate in parser.keys():
             id = parser.get_id(cate)
-            if self.__first:
+            if self.__init:
                 self.__data['cates'][id] = 0
             else:
                 self.__data['cates'][id] = self.count_unread(id)
 
-        self.__first = False
+        self.__init = False
         self.save()
 
     def get_cate_unread_count(self, id):
@@ -104,15 +114,15 @@ class StatusProvider(object):
         except:
             return 0
 
-    def get_app_readed(self, package):
+    def get_read_status(self, key):
         try:
-            return self.__data['apps'][package]['read']
+            return self.__data['apps'][key]['read']
         except:
             return True
 
-    def set_app_readed(self, package):
+    def set_as_read(self, key):
         try:
-            self.__data['apps'][package]['read'] = True
+            self.__data['apps'][key]['read'] = True
         except:
             pass
         self.save()
@@ -294,10 +304,10 @@ class AppView(gtk.TreeView):
 
     def set_as_read(self, iter, model):
         package = model.get_value(iter, self.COLUMN_PKG)
-        if self.__status and not self.__status.get_app_readed(package):
+        if self.__status and not self.__status.get_read_status(package):
             appname = model.get_value(iter, self.COLUMN_NAME)
             desc = model.get_value(iter, self.COLUMN_DESC)
-            self.__status.set_app_readed(package)
+            self.__status.set_as_read(package)
             model.set_value(iter, self.COLUMN_DISPLAY, '<b>%s</b>\n%s' % (appname, desc))
 
     def install_column_view_func(self, cell_layout, renderer, model, iter):
@@ -376,8 +386,8 @@ class AppView(gtk.TreeView):
             except:
                 # Confirm the invalid package isn't in the count
                 # But in the future, Ubuntu Tweak should display the invalid package too
-                if self.__status and not self.__status.get_app_readed(pkgname):
-                    self.__status.set_app_readed(pkgname)
+                if self.__status and not self.__status.get_read_status(pkgname):
+                    self.__status.set_as_read(pkgname)
                 continue
 
             if self.filter == None or self.filter == category:
@@ -387,7 +397,7 @@ class AppView(gtk.TreeView):
                     display = self.__fill_changed_display(appname, desc)
                 else:
                     status = is_installed
-                    if self.__status and not self.__status.get_app_readed(pkgname):
+                    if self.__status and not self.__status.get_read_status(pkgname):
                         display = '<b>%s <span foreground="#ff0000">(New!!!)</span>\n%s</b>' % (appname, desc)
                     else:
                         display = '<b>%s</b>\n%s' % (appname, desc)
