@@ -671,8 +671,8 @@ class AppCenter(TweakModule):
             ErrorDialog(_('An error occurred while downloading the file.')).launch()
 
     def update_app_data(self):
-        self.cateview.update_model()
         self.appview.update_model()
+        self.cateview.update_model()
 
     def on_app_status_changed(self, widget, i):
         if i:

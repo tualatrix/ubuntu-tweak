@@ -1072,8 +1072,8 @@ class SourceCenter(TweakModule):
         SOURCE_PARSER = SourceParser()
 
         self.sourceview.model.clear()
-        self.cateview.update_model()
         self.sourceview.update_model()
+        self.cateview.update_model()
 
     def on_sync_button_clicked(self, widget):
         dialog = CheckSourceDialog(widget.get_toplevel(), self.url)
