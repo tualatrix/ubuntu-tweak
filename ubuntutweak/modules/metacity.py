@@ -29,7 +29,7 @@ from ubuntutweak.common.factory import WidgetFactory
 from ubuntutweak.conf import GconfSetting
 
 class ButtonView(gtk.IconView):
-    (COLUMN_KEY,
+    (COLUMN_VALUE,
      COLUMN_LABEL,
     ) = range(2)
 
@@ -42,10 +42,11 @@ class ButtonView(gtk.IconView):
         'spacer': _('Spacer'),
     }
 
+    config = GconfSetting(key='/apps/metacity/general/button_layout')
+
     def __init__(self):
         gtk.IconView.__init__(self)
 
-        self.config = GconfSetting(key='/apps/metacity/general/button_layout')
         model = self.__create_model()
         self.set_model(model)
         self.update_model()
@@ -53,12 +54,25 @@ class ButtonView(gtk.IconView):
         self.set_text_column(self.COLUMN_LABEL)
         self.set_reorderable(True)
         self.set_orientation(gtk.ORIENTATION_HORIZONTAL)
-        self.connect('selection-changed', self.on_button_changed)
+        self.connect('selection-changed', self.on_selection_changed)
 
     def __create_model(self):
         model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
 
         return model
+
+    @classmethod
+    def get_control_items(cls):
+        dict = cls.values.copy()
+        dict.pop(':')
+        return dict.items()
+
+    @classmethod
+    def is_value(cls, value):
+        if value == cls.config.get_value():
+            return True
+        else:
+            return False
 
     def update_model(self, default=None):
         model = self.get_model()
@@ -72,44 +86,68 @@ class ButtonView(gtk.IconView):
 
         for k in list:
             k = k.strip()
-            iter = model.append()
             if k in self.values:
+                iter = model.append()
                 model.set(iter,
-                          self.COLUMN_KEY, k,
+                          self.COLUMN_VALUE, k,
                           self.COLUMN_LABEL, self.values[k])
             else:
                 continue
 
         return model
 
-    def on_button_changed(self, widget, data=None):
+    def on_selection_changed(self, widget, data=None):
         model = widget.get_model()
-        value = ','.join([i[self.COLUMN_KEY] for i in model])
+        value = ','.join([i[self.COLUMN_VALUE] for i in model])
         value = value.replace(',:', ':').replace(':,', ':')
         self.config.set_value(value)
 
-    def add_button(self, text):
+    def add_button(self, value):
         model = self.get_model()
         iter = model.append()
         model.set(iter,
-                  self.COLUMN_KEY, text,
-                  self.COLUMN_LABEL, self.values[text])
-        self.on_button_changed(self)
+                  self.COLUMN_VALUE, value,
+                  self.COLUMN_LABEL, self.values[value])
+        self.on_selection_changed(self)
 
-    def remove_button(self, text):
+    def remove_button(self, value):
         model = self.get_model()
         for i, row in enumerate(model):
-            if row[self.COLUMN_KEY] == text:
-                del model[i, self.COLUMN_KEY]
+            if row[self.COLUMN_VALUE] == value:
+                del model[i, self.COLUMN_VALUE]
                 break
-        self.on_button_changed(self)
+        self.on_selection_changed(self)
 
-    def has_button(self, text):
+    def has_button(self, value):
         model = self.get_model()
         for i, row in enumerate(model):
-            if row[self.COLUMN_KEY] == text:
+            if row[self.COLUMN_VALUE] == value:
                 return True
         return False
+
+class WindowControlButton(gtk.CheckButton):
+    '''The individual checkbutton to control window control'''
+
+    def __init__(self, label, value, view):
+        '''Init the button, the view must be the ButtonView'''
+        self.__label = label
+        self.__value = value
+        self.__view = view
+
+        gtk.CheckButton.__init__(self, self.__label)
+        self.set_active(self.__view.has_button(self.__value))
+
+        self.connect('toggled', self.on_toggled)
+
+    def on_toggled(self, widget):
+        '''Emit extra signal when toggle button'''
+        if widget.get_active():
+            self.__view.add_button(self.__value)
+        else:
+            self.__view.remove_button(self.__value)
+
+    def update_status(self):
+        self.set_active(self.__view.has_button(self.__value))
 
 class Metacity(TweakModule):
     __title__ = _('Window Manager Settings')
@@ -119,37 +157,26 @@ class Metacity(TweakModule):
     __category__ = 'desktop'
     __desktop__ = 'gnome'
 
-    ADD_SPACER = _('Add Spacer')
-    REMOVE_SPACER = _('Remove Spacer')
+    left_default = 'close,minimize,maximize:menu'
+    right_default = 'menu:minimize,maximize,close'
 
     def __init__(self):
-        TweakModule.__init__(self)
-
-        label = gtk.Label(_('Arrange the buttons on the titlebar by dragging and dropping'))
-        label.set_alignment(0, 0.5)
+        TweakModule.__init__(self, 'metacity.ui')
 
         swindow = gtk.ScrolledWindow()
         swindow.set_size_request(-1, 54)
         swindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        buttonview1 = ButtonView()
-        swindow.add(buttonview1)
+        self.buttonview = ButtonView()
+        swindow.add(self.buttonview)
+        self.vbox2.pack_start(swindow, False, False, 0)
 
-        hbox = gtk.HBox(False, 12)
-        button1 = gtk.Button(stock=gtk.STOCK_REDO)
-        hbox.pack_end(button1, False, False, 0)
-        button2 = gtk.Button()
-        if buttonview1.has_button('spacer'):
-            button2.set_label(self.REMOVE_SPACER)
-        else:
-            button2.set_label(self.ADD_SPACER)
-        button2.connect('clicked', self.on_spacer_clicked, buttonview1)
-        button1.connect('clicked', self.on_redo_clicked, (button2, buttonview1))
-        hbox.pack_end(button2, False, False, 0)
+        for value, label in ButtonView.get_control_items():
+            button = WindowControlButton(label, value, self.buttonview)
+            self.control_hbox.pack_start(button, False, False, 0)
 
-        box = ListPack(_('Window Titlebar Button Layout'), (label,
-                                                            swindow,
-                                                            hbox))
+        box = ListPack(_('Window Titlebar Button Layout'), [child for child in self.main_vbox.get_children()])
         self.add_start(box, False, False, 0)
+        self.init_control_buttons()
 
         table = TablePack(_('Window Titlebar Actions'), (
                     WidgetFactory.create('GconfComboBox',
@@ -230,19 +257,42 @@ class Metacity(TweakModule):
 
             self.add_start(box, False, False, 0)
 
-    def on_redo_clicked(self, widget, data):
-        button, view = data
-        view.update_model(default='menu:minimize,maximize,close')
-        view.on_button_changed(view)
-        button.set_label(self.ADD_SPACER)
-
-    def on_spacer_clicked(self, widget, view):
-        if view.has_button('spacer'):
-            view.remove_button('spacer')
-            widget.set_label(self.ADD_SPACER)
+    def init_control_buttons(self):
+        if ButtonView.is_value(self.left_default):
+            self.left_radio.set_active(True)
+        elif ButtonView.is_value(self.right_default):
+            self.right_radio.set_active(True)
         else:
-            view.add_button('spacer')
-            widget.set_label(self.REMOVE_SPACER)
+            self.place_hbox.set_sensitive(False)
+            self.custom_button.set_active(True)
+            self.custom_hbox.set_sensitive(True)
+
+    def on_custom_button_toggled(self, widget, data=None):
+        if not widget.get_active():
+            self.place_hbox.set_sensitive(True)
+            self.custom_button.set_active(False)
+            self.custom_hbox.set_sensitive(False)
+        else:
+            self.place_hbox.set_sensitive(False)
+            self.custom_button.set_active(True)
+            self.custom_hbox.set_sensitive(True)
+
+    def on_right_radio_toggled(self, widget, data=None):
+        if widget.get_active():
+            self.buttonview.update_model(default=self.right_default)
+            self.buttonview.on_selection_changed(self.buttonview)
+            self.update_control_buttons()
+
+    def on_left_radio_toggled(self, widget, data=None):
+        if widget.get_active():
+            self.buttonview.update_model(default=self.left_default)
+            self.buttonview.on_selection_changed(self.buttonview)
+            self.update_control_buttons()
+
+    def update_control_buttons(self):
+        for button in self.control_hbox.get_children():
+            if type(button) == WindowControlButton:
+                button.update_status()
 
     def on_compositing_button_toggled(self, widget):
         if widget.get_active():

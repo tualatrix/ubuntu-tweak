@@ -59,6 +59,8 @@ class ListPack(BaseListPack):
         if widgets:
             for widget in widgets:
                 if widget: 
+                    if widget.get_parent():
+                        widget.unparent()
                     self.vbox.pack_start(widget, False, False, 6)
                     self.items.append(widget)
         else:
