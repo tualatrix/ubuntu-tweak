@@ -46,8 +46,10 @@ class Tip(gtk.HBox):
         self.pack_start(image, False, False, 15)
 
         label = gtk.Label()
+        label.set_alignment(0.0, 0.5)
+        label.set_ellipsize(pango.ELLIPSIZE_END)
         label.set_markup(tip)
-        self.pack_start(label, False, False, 0)
+        self.pack_start(label)
 
 class TipsFactory(gtk.VBox):
     def __init__(self, *tips):
@@ -75,9 +77,7 @@ def show_welcome():
             _('Configure file templates and shortcut scripts for easy access to common tasks.'),
             _('Many more useful features!'),
             )
-    align = gtk.Alignment(0.5)
-    align.add(tips)
-    vbox.pack_start(align, False, False, 10)
+    vbox.pack_start(tips, False, False, 10)
 
     return vbox
 
