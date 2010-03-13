@@ -75,6 +75,14 @@ class FileOperation:
             ErrorDialog(_('The target "%s" already exists!') % dest).launch()
 
     @classmethod
+    def do_hard_link(cls, source, dest):
+        if not os.path.exists(dest):
+            os.link(source, dest)
+        else:
+            ErrorDialog(_('The target "%s" already exists!') % dest).launch()
+
+
+    @classmethod
     def copy(cls, source, dest):
         """Copy the file or folder with necessary notice"""
         dest = os.path.join(dest, os.path.basename(source))
@@ -107,6 +115,12 @@ class FileOperation:
         """Link the file or folder with necessary notice"""
         dest = os.path.join(dest, os.path.basename(source))
         cls.do_link(source, dest)
+
+    @classmethod
+    def hardlink(cls, source, dest):
+        """Link the file or folder with necessary notice"""
+        dest = os.path.join(dest, os.path.basename(source))
+        cls.do_hard_link(source, dest)
 
     @classmethod
     def link_to_xdg(cls, source, xdg):
@@ -156,7 +170,7 @@ class Worker:
             command = argv[1]
             paras = argv[2:]
 
-            if command in ('copy', 'move', 'link'):
+            if command in ('copy', 'move', 'link', 'hardlink'):
                 dialog = FileChooserDialog(_("Select a folder"))
                 dialog.set_current_folder(os.path.expanduser('~'))
                 if dialog.run() == gtk.RESPONSE_ACCEPT:

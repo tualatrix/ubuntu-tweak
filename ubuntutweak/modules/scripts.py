@@ -57,6 +57,7 @@ class DefaultScripts(AbstractScripts):
             'move-to-desktop': _('Move to Desktop'),
             'move-to-download': _('Move to Download'),
             'move-to-home': _('Move to Home'),
+            'hardlink-to': _('Create hardlink to ...'),
             'link-to': _('Link to ...'),
             'link-to-desktop': _('Link to Desktop'),
             'link-to-download': _('Link to Download'),
