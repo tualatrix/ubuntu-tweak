@@ -7,30 +7,30 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-01 19:01+0800\n"
-"PO-Revision-Date: 2010-01-12 16:28+0000\n"
-"Last-Translator: TualatriX <Unknown>\n"
+"POT-Creation-Date: 2010-03-13 20:59+0800\n"
+"PO-Revision-Date: 2010-03-02 12:19+0000\n"
+"Last-Translator: Takahiro Sato <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2010-03-01 12:12+0000\n"
+"X-Launchpad-Export-Date: 2010-03-14 01:16+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
-#: ../data/script-worker:125 ../data/script-worker:138
+#: ../data/script-worker:139 ../data/script-worker:152
 msgid "Enter your password to perform the administrative tasks"
 msgstr "管理タスクを行う為にパスワードを入力して下さい。"
 
-#: ../data/script-worker:132
+#: ../data/script-worker:146
 msgid "Coudn't find any text editor in your system!"
 msgstr "システムからどのテキストエディタも見つけられませんでした!"
 
-#: ../data/script-worker:160
+#: ../data/script-worker:174
 msgid "Select a folder"
 msgstr "フォルダを選択して下さい"
 
-#: ../data/script-worker:190
+#: ../data/script-worker:204
 msgid "Please select a target (files or folders)."
 msgstr "対象(ファイル・フォルダ)を選択して下さい。"
 
@@ -110,6 +110,31 @@ msgstr ""
 msgid "_Report"
 msgstr "報告(_R)"
 
+#: ../data/ui/metacity.ui.h:1
+msgid " "
+msgstr ""
+
+#: ../data/ui/metacity.ui.h:2
+msgid ""
+"Custom: (arrange the buttons on the titlebar by dragging and dropping)"
+msgstr ""
+
+#: ../data/ui/metacity.ui.h:3
+msgid "Enable control:"
+msgstr ""
+
+#: ../data/ui/metacity.ui.h:4
+msgid "Left"
+msgstr ""
+
+#: ../data/ui/metacity.ui.h:5
+msgid "Place:"
+msgstr ""
+
+#: ../data/ui/metacity.ui.h:6
+msgid "Right"
+msgstr ""
+
 #. checkbutton
 #: ../data/ui/updatemanager.ui.h:1 ../ubuntutweak/modules/sourcecenter.py:101
 #: ../ubuntutweak/modules/cleaner.py:468
@@ -150,7 +175,7 @@ msgstr "隠された設定をカスタマイズ。"
 
 #: ../ubuntutweak/mainwindow.py:73
 msgid "Clean up unneeded packages to free up diskspace."
-msgstr ""
+msgstr "不要なパッケージを削除してディスクの空き容量を確保。"
 
 #: ../ubuntutweak/mainwindow.py:74
 msgid "Easily install up-to-date versions of many applications."
@@ -164,7 +189,7 @@ msgstr "ファイルテンプレートやショートカットスクリプトを
 
 #: ../ubuntutweak/mainwindow.py:76
 msgid "Many more useful features!"
-msgstr ""
+msgstr "実用的な多くの機能!"
 
 #: ../ubuntutweak/mainwindow.py:89
 msgid "Please wait a moment..."
@@ -172,7 +197,7 @@ msgstr "しばらくお待ちください..."
 
 #: ../ubuntutweak/mainwindow.py:109
 msgid "This module encountered an error while loading."
-msgstr ""
+msgstr "このモジュールは読み込み中に遭遇したエラーです。"
 
 #: ../ubuntutweak/mainwindow.py:130
 msgid "Welcome"
@@ -201,7 +226,7 @@ msgstr "システム"
 #: ../ubuntutweak/mainwindow.py:143
 #, python-format
 msgid "Download Ubuntu Tweak %s"
-msgstr ""
+msgstr "Ubuntu Tweakで %s をダウンロード"
 
 #: ../ubuntutweak/mainwindow.py:203
 msgid "_Donate"
@@ -231,15 +256,15 @@ msgstr "2009年度の貢献者"
 
 #: ../ubuntutweak/mainwindow.py:433
 msgid "Contributors of 2010"
-msgstr ""
+msgstr "2010年度の貢献者"
 
-#: ../ubuntutweak/mainwindow.py:442
+#: ../ubuntutweak/mainwindow.py:443
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
 "  Takahiro Sato https://launchpad.net/~taka-guwapo"
 
-#: ../ubuntutweak/mainwindow.py:456
+#: ../ubuntutweak/mainwindow.py:457
 #, python-format
 msgid ""
 "A newer version: %s is available online.\n"
@@ -248,8 +273,12 @@ msgid ""
 "Note: if you prefer to update from the source code, you can disable this "
 "feature in Preferences."
 msgstr ""
+"新しいバージョン: %s はオンラインで入手可能です。\n"
+"アップデートしますか?\n"
+"\n"
+"注意: もしソースからアップデートをする場合、この機能を環境設定から無効にできます。"
 
-#: ../ubuntutweak/mainwindow.py:457
+#: ../ubuntutweak/mainwindow.py:458
 msgid "Software Update"
 msgstr "ソフトウェアの更新"
 
@@ -319,10 +348,10 @@ msgstr "まだサービスが初期化していません"
 
 #: ../ubuntutweak/preferences.py:75 ../ubuntutweak/modules/filetype.py:178
 #: ../ubuntutweak/modules/filetype.py:213
-#: ../ubuntutweak/modules/metacity.py:158
-#: ../ubuntutweak/modules/metacity.py:163
-#: ../ubuntutweak/modules/metacity.py:176
-#: ../ubuntutweak/modules/metacity.py:189
+#: ../ubuntutweak/modules/metacity.py:185
+#: ../ubuntutweak/modules/metacity.py:190
+#: ../ubuntutweak/modules/metacity.py:203
+#: ../ubuntutweak/modules/metacity.py:216
 #: ../ubuntutweak/modules/shortcuts.py:99
 #: ../ubuntutweak/modules/shortcuts.py:209
 msgid "None"
@@ -338,11 +367,11 @@ msgstr "分離されたソースを使用"
 
 #: ../ubuntutweak/preferences.py:117
 msgid "Enable the synchronous notification"
-msgstr ""
+msgstr "同期の通知を有効にする"
 
 #: ../ubuntutweak/preferences.py:123
 msgid "Enable new item highlight in App and Source Center"
-msgstr ""
+msgstr "アプリケーション/ソースセンターで新しいアイテムのハイライト表示を有効にする"
 
 #: ../ubuntutweak/network/downloadmanager.py:97
 msgid "Connecting to server"
@@ -633,7 +662,7 @@ msgstr "コンピューターの詳細"
 
 #: ../ubuntutweak/modules/computer.py:34
 msgid "Some useful system information"
-msgstr ""
+msgstr "便利なシステム情報"
 
 #: ../ubuntutweak/modules/computer.py:41
 msgid "Unknown"
@@ -697,7 +726,7 @@ msgstr "言語"
 
 #: ../ubuntutweak/modules/computer.py:81
 msgid "Please enter your new hostname. Blank characters should not be used."
-msgstr ""
+msgstr "新しいホスト名を入力してください。空白(スペース)は使用しないでください。"
 
 #: ../ubuntutweak/modules/computer.py:82
 msgid "New hostname"
@@ -709,7 +738,7 @@ msgstr "セキュリティ関連"
 
 #: ../ubuntutweak/modules/lockdown.py:34
 msgid "Tweak some security settings"
-msgstr ""
+msgstr "いくつかのセキュリティ設定をカスタマイズ"
 
 #: ../ubuntutweak/modules/lockdown.py:43
 msgid "System Security options"
@@ -729,7 +758,7 @@ msgstr "印刷を無効にする"
 
 #: ../ubuntutweak/modules/lockdown.py:54
 msgid "Disable printer settings"
-msgstr ""
+msgstr "プリンターの設定を無効にする"
 
 #: ../ubuntutweak/modules/lockdown.py:57
 msgid "Disable save to disk"
@@ -741,7 +770,7 @@ msgstr "ユーザの簡易切り替えを無効にする"
 
 #: ../ubuntutweak/modules/lockdown.py:66
 msgid "Fix the appearance of themes when granted root privileges"
-msgstr ""
+msgstr "管理者権限で外観のテーマを修正"
 
 #: ../ubuntutweak/modules/lockdown.py:72
 msgid "Miscellaneous Options"
@@ -889,7 +918,7 @@ msgstr ""
 
 #: ../ubuntutweak/modules/appcenter.py:185
 msgid "Category"
-msgstr ""
+msgstr "カテゴリー"
 
 #: ../ubuntutweak/modules/appcenter.py:204
 msgid "All Categories"
@@ -914,6 +943,9 @@ msgid ""
 "Data will be automatically synchronized with the remote server.\n"
 "You can click the \"Sync\" button to perform a manual check for updates."
 msgstr ""
+"簡単でより効率的に人気のあるアプリケーションを検索してインストールできます。\n"
+"データは自動的にリモートサーバーと同期されます。\n"
+"\"同期\"ボタンをクリックすることで更新の確認を手動で実行できます。"
 
 #: ../ubuntutweak/modules/appcenter.py:532
 msgid "Visit Online Application Center"
@@ -935,13 +967,13 @@ msgstr "利用可能な新しいアプリケーションデータがあります
 
 #: ../ubuntutweak/modules/appcenter.py:649
 msgid "Update available, would you like to update?"
-msgstr ""
+msgstr "利用可能なアップデートがあります、アップデートしますか？"
 
 #: ../ubuntutweak/modules/appcenter.py:658
 msgid ""
 "Network Error, please check your network connection - or the remote server "
 "may be down."
-msgstr ""
+msgstr "ネットワークエラー、ネットワーク接続の確認 - または多分リモートサーバがダウンしていると思われます。"
 
 #: ../ubuntutweak/modules/appcenter.py:660
 #: ../ubuntutweak/modules/sourcecenter.py:1094
@@ -950,7 +982,7 @@ msgstr "利用可能なアップデートはありません。"
 
 #: ../ubuntutweak/modules/appcenter.py:671
 msgid "An error occurred while downloading the file."
-msgstr ""
+msgstr "ファイルのダウンロード中にエラーが発生しました。"
 
 #: ../ubuntutweak/modules/filetype.py:34
 msgid "Audio"
@@ -991,7 +1023,7 @@ msgstr "関連付け"
 #: ../ubuntutweak/modules/filetype.py:243
 #, python-format
 msgid "Open files of type \"%s\" with:"
-msgstr ""
+msgstr "\"%s\" 形式のファイルを開く:"
 
 #: ../ubuntutweak/modules/filetype.py:272
 msgid "Choose an application"
@@ -1000,7 +1032,7 @@ msgstr "アプリケーションを選択"
 #: ../ubuntutweak/modules/filetype.py:361
 #, python-format
 msgid "Select an application to open files of type: <b>%s</b>"
-msgstr ""
+msgstr "下記から <b>%s</b> ファイルを開くアプリケーションを選択して下さい"
 
 #: ../ubuntutweak/modules/filetype.py:389
 #, python-format
@@ -1017,11 +1049,11 @@ msgstr "ファイル・タイプ マネージャー"
 
 #: ../ubuntutweak/modules/filetype.py:479
 msgid "Manage all registered file types"
-msgstr ""
+msgstr "登録されているすべてのファイルの種類を管理"
 
 #: ../ubuntutweak/modules/filetype.py:511
 msgid "Only show filetypes with associated applications"
-msgstr ""
+msgstr "関連付けされているファイルだけを表示"
 
 #: ../ubuntutweak/modules/updatemanager.py:29
 msgid "Update Manager"
@@ -1046,144 +1078,132 @@ msgid "The software information is up-to-date now"
 msgstr "現在のソフトウェア情報は最新です"
 
 #: ../ubuntutweak/modules/metacity.py:37
-#: ../ubuntutweak/modules/metacity.py:167
-#: ../ubuntutweak/modules/metacity.py:180
-#: ../ubuntutweak/modules/metacity.py:193
+#: ../ubuntutweak/modules/metacity.py:194
+#: ../ubuntutweak/modules/metacity.py:207
+#: ../ubuntutweak/modules/metacity.py:220
 msgid "Menu"
 msgstr "メニュー"
 
 #: ../ubuntutweak/modules/metacity.py:38
 msgid "Title"
-msgstr ""
+msgstr "タイトル"
 
 #: ../ubuntutweak/modules/metacity.py:39
-#: ../ubuntutweak/modules/metacity.py:163
-#: ../ubuntutweak/modules/metacity.py:176
-#: ../ubuntutweak/modules/metacity.py:189
+#: ../ubuntutweak/modules/metacity.py:190
+#: ../ubuntutweak/modules/metacity.py:203
+#: ../ubuntutweak/modules/metacity.py:216
 msgid "Maximize"
 msgstr "最大化"
 
 #: ../ubuntutweak/modules/metacity.py:40
-#: ../ubuntutweak/modules/metacity.py:166
-#: ../ubuntutweak/modules/metacity.py:179
-#: ../ubuntutweak/modules/metacity.py:192
+#: ../ubuntutweak/modules/metacity.py:193
+#: ../ubuntutweak/modules/metacity.py:206
+#: ../ubuntutweak/modules/metacity.py:219
 msgid "Minimize"
 msgstr "最小化"
 
 #: ../ubuntutweak/modules/metacity.py:41
 msgid "Close"
-msgstr ""
+msgstr "閉じる"
 
 #: ../ubuntutweak/modules/metacity.py:42
 msgid "Spacer"
-msgstr ""
+msgstr "スペース"
 
-#: ../ubuntutweak/modules/metacity.py:115
+#: ../ubuntutweak/modules/metacity.py:153
 msgid "Window Manager Settings"
 msgstr "ウィンドウマネージャーの設定"
 
-#: ../ubuntutweak/modules/metacity.py:116
-msgid "Manage Metacity Window Manager settings"
-msgstr ""
-
-#: ../ubuntutweak/modules/metacity.py:122
-msgid "Add Spacer"
-msgstr ""
-
-#: ../ubuntutweak/modules/metacity.py:123
-msgid "Remove Spacer"
-msgstr ""
-
-#: ../ubuntutweak/modules/metacity.py:128
-msgid "Arrange the buttons on the titlebar by dragging and dropping"
-msgstr ""
-
-#: ../ubuntutweak/modules/metacity.py:149
-msgid "Window Titlebar Button Layout"
-msgstr ""
-
 #: ../ubuntutweak/modules/metacity.py:154
-msgid "Window Titlebar Actions"
-msgstr ""
+msgid "Manage Metacity Window Manager settings"
+msgstr "Metacityウィンドウマネージャーの設定を管理"
 
-#: ../ubuntutweak/modules/metacity.py:156
+#: ../ubuntutweak/modules/metacity.py:177
+msgid "Window Titlebar Button Layout"
+msgstr "タイトルバーボタンの配置"
+
+#: ../ubuntutweak/modules/metacity.py:181
+msgid "Window Titlebar Actions"
+msgstr "タイトルバーの動作"
+
+#: ../ubuntutweak/modules/metacity.py:183
 msgid "Titlebar mouse wheel action"
 msgstr "タイトルバーのマウスホイール動作"
 
-#: ../ubuntutweak/modules/metacity.py:158
-#: ../ubuntutweak/modules/metacity.py:166
-#: ../ubuntutweak/modules/metacity.py:179
-#: ../ubuntutweak/modules/metacity.py:192
+#: ../ubuntutweak/modules/metacity.py:185
+#: ../ubuntutweak/modules/metacity.py:193
+#: ../ubuntutweak/modules/metacity.py:206
+#: ../ubuntutweak/modules/metacity.py:219
 msgid "Roll up"
 msgstr "ロールアップ"
 
-#: ../ubuntutweak/modules/metacity.py:161
+#: ../ubuntutweak/modules/metacity.py:188
 msgid "Titlebar double-click action"
 msgstr "タイトルバーをダブルクリックしたときの動作"
 
-#: ../ubuntutweak/modules/metacity.py:164
-#: ../ubuntutweak/modules/metacity.py:177
-#: ../ubuntutweak/modules/metacity.py:190
-msgid "Maximize Horizontally"
-msgstr ""
-
-#: ../ubuntutweak/modules/metacity.py:165
-#: ../ubuntutweak/modules/metacity.py:178
 #: ../ubuntutweak/modules/metacity.py:191
-msgid "Maximize Vertically"
-msgstr ""
+#: ../ubuntutweak/modules/metacity.py:204
+#: ../ubuntutweak/modules/metacity.py:217
+msgid "Maximize Horizontally"
+msgstr "水平方向に最大化"
 
-#: ../ubuntutweak/modules/metacity.py:167
-#: ../ubuntutweak/modules/metacity.py:180
-#: ../ubuntutweak/modules/metacity.py:193
+#: ../ubuntutweak/modules/metacity.py:192
+#: ../ubuntutweak/modules/metacity.py:205
+#: ../ubuntutweak/modules/metacity.py:218
+msgid "Maximize Vertically"
+msgstr "縦方向に最大化"
+
+#: ../ubuntutweak/modules/metacity.py:194
+#: ../ubuntutweak/modules/metacity.py:207
+#: ../ubuntutweak/modules/metacity.py:220
 msgid "Lower"
 msgstr "背面に"
 
-#: ../ubuntutweak/modules/metacity.py:174
+#: ../ubuntutweak/modules/metacity.py:201
 msgid "Titlebar middle-click action"
 msgstr "タイトルバーをセンタークリックしたときの動作"
 
-#: ../ubuntutweak/modules/metacity.py:187
+#: ../ubuntutweak/modules/metacity.py:214
 msgid "Titlebar right-click action"
 msgstr "タイトルバーを右クリックしたときの動作"
 
-#: ../ubuntutweak/modules/metacity.py:203
+#: ../ubuntutweak/modules/metacity.py:230
 msgid "Window Decoration Effects"
-msgstr ""
+msgstr "装飾効果"
 
-#: ../ubuntutweak/modules/metacity.py:205
+#: ../ubuntutweak/modules/metacity.py:232
 msgid "Use Metacity window theme"
 msgstr "ウィンドウテーマにMetacityを使用する"
 
-#: ../ubuntutweak/modules/metacity.py:208
+#: ../ubuntutweak/modules/metacity.py:235
 msgid "Enable active window transparency"
 msgstr "アクティブウィンドウの透過を有効にする"
 
-#: ../ubuntutweak/modules/metacity.py:211
+#: ../ubuntutweak/modules/metacity.py:238
 msgid "Active window transparency level"
 msgstr "アクティブウィンドウの透過度"
 
-#: ../ubuntutweak/modules/metacity.py:215
+#: ../ubuntutweak/modules/metacity.py:242
 msgid "Enable inactive window transparency"
-msgstr "アクティブウィンドウの透過を有効にする"
+msgstr "非アクティブウィンドウの透過を有効にする"
 
-#: ../ubuntutweak/modules/metacity.py:218
+#: ../ubuntutweak/modules/metacity.py:245
 msgid "Inactive window shade transparency level"
 msgstr "非アクティブウィンドウの透過度"
 
-#: ../ubuntutweak/modules/metacity.py:225
+#: ../ubuntutweak/modules/metacity.py:252
 msgid "Enable Metacity's compositing feature"
-msgstr ""
+msgstr "Metacityのコンポジーティング機能を有効にする"
 
-#: ../ubuntutweak/modules/metacity.py:228
+#: ../ubuntutweak/modules/metacity.py:255
 msgid "Compositing Manager"
 msgstr "コンポジーティング・マネージャー"
 
-#: ../ubuntutweak/modules/metacity.py:249
+#: ../ubuntutweak/modules/metacity.py:299
 msgid ""
 "To enable Metacity's compositing feature, you should manually disable Visual "
 "Effects in \"Appearance\"."
-msgstr ""
+msgstr "Metacityのコンポジーティング機能を有効にするには、\"外観の設定\" から手動で視覚効果を無効にします。"
 
 #: ../ubuntutweak/modules/__init__.py:104
 msgid "More"
@@ -1207,7 +1227,7 @@ msgstr "デスクトップアイコンの設定"
 
 #: ../ubuntutweak/modules/icons.py:109
 msgid "Change the name and toggle visibilty of desktop icons"
-msgstr ""
+msgstr "デスクトップアイコンの名前を変更および表示の切り替え"
 
 #: ../ubuntutweak/modules/icons.py:118
 msgid "Show desktop icons"
@@ -1225,7 +1245,7 @@ msgstr "マウントしたボリュームをデスクトップに表示"
 msgid ""
 "Show contents of \"Home Folder\" on desktop (Logout for changes to take "
 "effect)"
-msgstr ""
+msgstr "\"ホームフォルダ\" の内容をデスクトップに表示 (変更を適用するにはログアウトして下さい)"
 
 #: ../ubuntutweak/modules/gnomesettings.py:35
 msgid "GNOME Settings"
@@ -1233,7 +1253,7 @@ msgstr "GNOMEの設定"
 
 #: ../ubuntutweak/modules/gnomesettings.py:36
 msgid "A lot of GNOME settings for panels, menus and other desktop elements"
-msgstr ""
+msgstr "GNOMEパネル、メニューおよびその他デスクトップ要素の詳細設定"
 
 #: ../ubuntutweak/modules/gnomesettings.py:48
 msgid "Panel Settings"
@@ -1257,19 +1277,19 @@ msgstr "メニュー設定"
 
 #: ../ubuntutweak/modules/gnomesettings.py:63
 msgid "Show Input Method menu in the context menu"
-msgstr ""
+msgstr "コンテキストメニューのインプットメソッドのメニューを表示する"
 
 #: ../ubuntutweak/modules/gnomesettings.py:66
 msgid "Show Unicode Control Character menu in the context menu"
-msgstr ""
+msgstr "コンテキストメニューのUnicode制御文字のメニューを表示する"
 
 #: ../ubuntutweak/modules/gnomesettings.py:69
 msgid "Show icons in menus"
-msgstr ""
+msgstr "メニューにアイコンを表示する"
 
 #: ../ubuntutweak/modules/gnomesettings.py:72
 msgid "Show icons on buttons"
-msgstr ""
+msgstr "ボタンにアイコンを表示する"
 
 #: ../ubuntutweak/modules/gnomesettings.py:78
 msgid "Screensaver"
@@ -1281,7 +1301,7 @@ msgstr "画面がロックしたときにユーザの切り換えを有効にす
 
 #: ../ubuntutweak/modules/gnomesettings.py:85
 msgid "Enable system-wide \"Recent Documents\" list"
-msgstr ""
+msgstr "\"Documentsの履歴\" リストの情報管理を有効にする"
 
 #: ../ubuntutweak/modules/gnomesettings.py:88
 msgid "History"
@@ -1289,11 +1309,11 @@ msgstr "履歴"
 
 #: ../ubuntutweak/modules/gnomesettings.py:95
 msgid "Click this button to change the menu logo image"
-msgstr ""
+msgstr "メニューロゴを変更するときは右のボタンをクリックして下さい"
 
 #: ../ubuntutweak/modules/gnomesettings.py:108
 msgid "Choose a new logo image"
-msgstr ""
+msgstr "新しいロゴ画像を選択"
 
 #: ../ubuntutweak/modules/gnomesettings.py:114
 msgid "PNG image (*.png)"
@@ -1304,6 +1324,8 @@ msgid ""
 "This image size isn't suitable for the panel.\n"
 "It should be 24x24."
 msgstr ""
+"この画像サイズはパネルに適応しません。\n"
+"24×24であるべきです。"
 
 #: ../ubuntutweak/modules/gnomesettings.py:152
 msgid "Do you want your changes to take effect immediately?"
@@ -1311,7 +1333,7 @@ msgstr "今すぐに変更を反映させますか?"
 
 #: ../ubuntutweak/modules/powermanager.py:28
 msgid "Advanced Power Manager Settings"
-msgstr ""
+msgstr "高度な電源管理の設定"
 
 #: ../ubuntutweak/modules/powermanager.py:29
 msgid "Control your computer's power managerment"
@@ -1335,15 +1357,15 @@ msgstr "サスペンドしたときはスクリーンをロックする"
 
 #: ../ubuntutweak/modules/powermanager.py:48
 msgid "LCD brightness when using AC power"
-msgstr ""
+msgstr "AC電源を使用した場合のLCDの明るさ"
 
 #: ../ubuntutweak/modules/powermanager.py:52
 msgid "LCD brightness when using battery"
-msgstr ""
+msgstr "バッテリーを使用した場合のLCDの明るさ"
 
 #: ../ubuntutweak/modules/compiz.py:49
 msgid "Show Workspaces"
-msgstr ""
+msgstr "ワークスペースを表示する"
 
 #: ../ubuntutweak/modules/compiz.py:50
 msgid "Show Windows"
@@ -1355,7 +1377,7 @@ msgstr "デスクトップの表示"
 
 #: ../ubuntutweak/modules/compiz.py:52
 msgid "Show Widgets"
-msgstr ""
+msgstr "ウィジェットを表示する"
 
 #: ../ubuntutweak/modules/compiz.py:222
 msgid "Compiz Settings"
@@ -1363,7 +1385,7 @@ msgstr "Compizの設定"
 
 #: ../ubuntutweak/modules/compiz.py:223
 msgid "Settings for some amazing desktop eye-candy"
-msgstr ""
+msgstr "素晴らしい魅力的なデスクトップを設定"
 
 #: ../ubuntutweak/modules/compiz.py:236
 msgid "Install Advanced Desktop Effects Settings Manager"
@@ -1371,7 +1393,7 @@ msgstr "高度なデスクトップ効果の設定マネージャーをインス
 
 #: ../ubuntutweak/modules/compiz.py:239
 msgid "Install Simple Desktop Effects Settings Manager"
-msgstr ""
+msgstr "シンプルなデスクトップ効果の設定マネージャーをインストール"
 
 #: ../ubuntutweak/modules/compiz.py:242
 msgid "Install Screenlets Widget Application"
@@ -1379,7 +1401,7 @@ msgstr "Screenlets Widgetアプリケーションをインストール"
 
 #: ../ubuntutweak/modules/compiz.py:249
 msgid " Workspace Edge Settings"
-msgstr ""
+msgstr " ワークスペースのエッジ設定"
 
 #: ../ubuntutweak/modules/compiz.py:252
 msgid "Enable snapping windows"
@@ -1452,6 +1474,8 @@ msgid ""
 "it.\n"
 "To continue you need to disable <b>\"%(SOURCE)s\"</b>first."
 msgstr ""
+"<b>\"%(SOURCE)s\"</b> がそれと競合するので、このソースを有効にすることができません。\n"
+"続行するには、最初に <b>\"%(SOURCE)s\"</b> を無効にする必要があります。"
 
 #: ../ubuntutweak/modules/sourcecenter.py:709
 #, python-format
@@ -1459,6 +1483,8 @@ msgid ""
 "To enable this Source, You need to enable <b>\"%s\"</b> at first.\n"
 "Do you wish to continue?"
 msgstr ""
+"このソースを有効にするには、最初に <b>\"%s\"</b> を有効にする必要があります。\n"
+"続行しますか？"
 
 #: ../ubuntutweak/modules/sourcecenter.py:711
 msgid "Dependency Notice"
@@ -1470,6 +1496,8 @@ msgid ""
 "You can't disable this Source because <b>\"%(SOURCE)s\"</b> depends on it.\n"
 "To continue you need to disable <b>\"%(SOURCE)s\"</b> first."
 msgstr ""
+"<b>\"%(SOURCE)s\"</b> に依存しているので、このソースを無効にすることができません。\n"
+"続行するには、最初に <b>\"%(SOURCE)s\"</b> を無効にする必要があります。"
 
 #: ../ubuntutweak/modules/sourcecenter.py:825
 msgid "New source has been enabled"
@@ -1594,81 +1622,88 @@ msgid "Move to Home"
 msgstr "Home に移動"
 
 #: ../ubuntutweak/modules/scripts.py:60
+msgid "Create hardlink to ..."
+msgstr ""
+
+#: ../ubuntutweak/modules/scripts.py:61
 msgid "Link to ..."
 msgstr "他へリンク..."
 
-#: ../ubuntutweak/modules/scripts.py:61
+#: ../ubuntutweak/modules/scripts.py:62
 msgid "Link to Desktop"
 msgstr "Desktop にリンク"
 
-#: ../ubuntutweak/modules/scripts.py:62
+#: ../ubuntutweak/modules/scripts.py:63
 msgid "Link to Download"
 msgstr "Download にリンク"
 
-#: ../ubuntutweak/modules/scripts.py:63
+#: ../ubuntutweak/modules/scripts.py:64
 msgid "Link to Home"
 msgstr "Home にリンク"
 
-#: ../ubuntutweak/modules/scripts.py:64
+#: ../ubuntutweak/modules/scripts.py:65
 msgid "Open with your favourite text editor"
 msgstr "お気に入りのテキストエディタで開く"
 
-#: ../ubuntutweak/modules/scripts.py:65
+#: ../ubuntutweak/modules/scripts.py:66
 msgid "Open with your favourite text editor (as root)"
 msgstr "お気に入りのテキストエディタで開く (root権限)"
 
-#: ../ubuntutweak/modules/scripts.py:66
+#: ../ubuntutweak/modules/scripts.py:67
 msgid "Browse as root"
 msgstr "管理者として参照"
 
-#: ../ubuntutweak/modules/scripts.py:67
+#: ../ubuntutweak/modules/scripts.py:68
 msgid "Search in current folder"
 msgstr "現在のフォルダに検索"
 
-#: ../ubuntutweak/modules/scripts.py:68
+#: ../ubuntutweak/modules/scripts.py:69
 msgid "Convert image to JPG"
 msgstr "画像をJPG形式に変換する"
 
-#: ../ubuntutweak/modules/scripts.py:69
+#: ../ubuntutweak/modules/scripts.py:70
 msgid "Convert image to PNG"
 msgstr "画像をPNG形式に変換する"
 
-#: ../ubuntutweak/modules/scripts.py:70
+#: ../ubuntutweak/modules/scripts.py:71
 msgid "Convert image to GIF"
 msgstr "画像をGIF形式に変換する"
 
-#: ../ubuntutweak/modules/scripts.py:71
+#: ../ubuntutweak/modules/scripts.py:72
 msgid "Set image as wallpaper"
 msgstr "画像を壁紙として設定"
 
-#: ../ubuntutweak/modules/scripts.py:72
+#: ../ubuntutweak/modules/scripts.py:73
 msgid "Make hard shadow to image"
 msgstr "画像にハードな影を作成"
 
-#: ../ubuntutweak/modules/scripts.py:99
+#: ../ubuntutweak/modules/scripts.py:100
 msgid "Enabled Scripts"
 msgstr "有効なスクリプト"
 
-#: ../ubuntutweak/modules/scripts.py:127
+#: ../ubuntutweak/modules/scripts.py:128
 msgid "Disabled Scripts"
 msgstr "無効なスクリプト"
 
-#: ../ubuntutweak/modules/scripts.py:133
+#: ../ubuntutweak/modules/scripts.py:134
 msgid "Manage Scripts"
 msgstr "スクリプトの管理"
 
-#: ../ubuntutweak/modules/scripts.py:134
+#: ../ubuntutweak/modules/scripts.py:135
 msgid ""
 "Scripts can be used to complete all kinds of tasks.\n"
 "You can drag and drop scripts from File Manager.\n"
 "'Scripts' will then be added to the context menu."
 msgstr ""
+"全種類のスクリプトの作業を完了させるために使用することができます。\n"
+"ファイルマネージャーからスクリプトをドラッグ&ドロップできます。\n"
+"コンテキストメニューに 'スクリプト' が追加されます。"
 
-#: ../ubuntutweak/modules/scripts.py:167
+#: ../ubuntutweak/modules/scripts.py:168
 msgid "Rebuild System Scripts"
 msgstr "システムスクリプトを再構築"
 
-#: ../ubuntutweak/modules/scripts.py:185
+#: ../ubuntutweak/modules/scripts.py:186
 msgid ""
 "This will delete all disabled scripts.\n"
 "Do you wish to continue?"
@@ -1823,7 +1858,7 @@ msgstr "\"%s\" は利用可能ではありません。"
 
 #: ../ubuntutweak/modules/cleaner.py:58
 msgid "Cleaning Configuration Files"
-msgstr ""
+msgstr "設定ファイルを消去"
 
 #: ../ubuntutweak/modules/cleaner.py:65 ../ubuntutweak/modules/cleaner.py:92
 #, python-format
@@ -1852,34 +1887,35 @@ msgid ""
 "<b>%s</b>\n"
 "Occupies %s of disk space"
 msgstr ""
+"<b>%s</b>\n"
+" %s のディスク容量を占有しています"
 
 #: ../ubuntutweak/modules/cleaner.py:270
 msgid "Package Configuration Files"
-msgstr ""
+msgstr "パッケージの設定ファイル"
 
 #: ../ubuntutweak/modules/cleaner.py:307
 #, python-format
 msgid "%d package selected for removal"
 msgid_plural "%d packages selected for removal"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "選択した %d のパッケージを削除"
 
 #: ../ubuntutweak/modules/cleaner.py:311
 #, python-format
 msgid "%s of disk space will be freed"
-msgstr ""
+msgstr "%s のディスクスペースが解放されます"
 
 #: ../ubuntutweak/modules/cleaner.py:396
 msgid "Cancelled by user!"
-msgstr ""
+msgstr "ユーザによってキャンセルされました!"
 
 #: ../ubuntutweak/modules/cleaner.py:399
 msgid "Clean up successful!"
-msgstr ""
+msgstr "消去が完了しました！"
 
 #: ../ubuntutweak/modules/cleaner.py:402
 msgid "Clean up failed!"
-msgstr ""
+msgstr "消去に失敗しました！"
 
 #: ../ubuntutweak/modules/cleaner.py:415
 msgid "Package Cleaner"
@@ -1889,12 +1925,12 @@ msgstr "パッケージクリーナー"
 msgid ""
 "Free up disk space by removing redundant packages and cleaning the package "
 "download cache."
-msgstr ""
+msgstr "不要なパッケージの消去・ダウンロードパッケージキャッシュを消去して、ディスクの空き容量を確保します。"
 
 #. create the button
 #: ../ubuntutweak/modules/cleaner.py:447
 msgid "Clean Packages"
-msgstr ""
+msgstr "不要なパッケージを消去"
 
 #: ../ubuntutweak/modules/cleaner.py:452
 msgid "Clean Cache"
@@ -1906,7 +1942,7 @@ msgstr "不要な設定を消去"
 
 #: ../ubuntutweak/modules/cleaner.py:462
 msgid "Clean Kernels"
-msgstr ""
+msgstr "不要なカーネルを消去"
 
 #: ../ubuntutweak/modules/cleaner.py:482
 msgid "_Cleanup"
@@ -1997,6 +2033,9 @@ msgid ""
 "You can hide items from view by selecting and clicking \"Remove\"\n"
 "To permanently delete an item, right-click and press \"Delete\"."
 msgstr ""
+"ここでログイン時に起動するプログラムを管理することできます。\n"
+"項目を選択し \"削除\" をクリックすることで、アイテムを非表示にできます。\n"
+"完全に削除するには、項目を選択> 右クリック> \"ディスクから削除\" をクリックして下さい。"
 
 #. create the two checkbutton for extra options of auto run list
 #: ../ubuntutweak/modules/autostart.py:348
@@ -2015,7 +2054,7 @@ msgstr "自動起動するプログラムの名前は空にはできません。
 #: ../ubuntutweak/modules/autostart.py:418
 #: ../ubuntutweak/modules/autostart.py:465
 msgid "Text field was empty (or contained only whitespace)"
-msgstr ""
+msgstr "テキスト領域は空でした (または空白のみです)"
 
 #: ../ubuntutweak/modules/nautilus.py:47
 msgid "Cleaning..."
@@ -2027,7 +2066,7 @@ msgstr "Nautilusの設定"
 
 #: ../ubuntutweak/modules/nautilus.py:67
 msgid "Manage the default file manager"
-msgstr ""
+msgstr "既定のファイルマネージャーの管理"
 
 #: ../ubuntutweak/modules/nautilus.py:76
 msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
@@ -2039,7 +2078,7 @@ msgstr "ファイル ブラウザ"
 
 #: ../ubuntutweak/modules/nautilus.py:88
 msgid "Thumbnail Settings"
-msgstr ""
+msgstr "サムネイルの設定"
 
 #: ../ubuntutweak/modules/nautilus.py:92
 msgid "Default thumbnail icon size (pixels)"
@@ -2047,19 +2086,19 @@ msgstr "既定の サムネイルアイコンサイズ (ピクセル)"
 
 #: ../ubuntutweak/modules/nautilus.py:96
 msgid "Maximum thumbnail cache size (megabytes)"
-msgstr ""
+msgstr "サムネイルの最大キャッシュサイズ (メガバイト)"
 
 #: ../ubuntutweak/modules/nautilus.py:100
 msgid "Thumbnail cache time (days)"
-msgstr ""
+msgstr "サムネイルのキャッシュ保存期間 (日数)"
 
 #: ../ubuntutweak/modules/nautilus.py:107
 msgid "Open folder in terminal"
-msgstr ""
+msgstr "端末でフォルダを開く"
 
 #: ../ubuntutweak/modules/nautilus.py:109
 msgid "Open folder with root priveleges"
-msgstr ""
+msgstr "管理者権限でフォルダを開く"
 
 #: ../ubuntutweak/modules/nautilus.py:111
 msgid "Nautilus with Wallpaper"
@@ -2072,11 +2111,11 @@ msgstr "Nautilus の拡張"
 #: ../ubuntutweak/modules/nautilus.py:135
 #, python-format
 msgid "Delete thumbnail cache (will free %s of disk space)"
-msgstr ""
+msgstr "サムネイルキャッシュを削除 ( %s の空き容量ができます)"
 
 #: ../ubuntutweak/modules/nautilus.py:138
 msgid "The thumbnail cache will be deleted. Do you wish to continue?"
-msgstr ""
+msgstr "サムネイルキャッシュを削除します、続行しますか?"
 
 #: ../ubuntutweak/modules/nautilus.py:145
 msgid "Clean up Successful!"

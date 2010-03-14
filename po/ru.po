@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-01 19:01+0800\n"
-"PO-Revision-Date: 2010-02-27 21:48+0000\n"
+"POT-Creation-Date: 2010-03-13 20:59+0800\n"
+"PO-Revision-Date: 2010-03-13 14:58+0000\n"
 "Last-Translator: Oleg Yermakov <epushiron@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,24 +16,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2010-03-01 12:12+0000\n"
+"X-Launchpad-Export-Date: 2010-03-14 01:16+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 "X-Poedit-Language: Russian\n"
 
-#: ../data/script-worker:125 ../data/script-worker:138
+#: ../data/script-worker:139 ../data/script-worker:152
 msgid "Enter your password to perform the administrative tasks"
 msgstr "Введите пароль для выполнения административных задач"
 
-#: ../data/script-worker:132
+#: ../data/script-worker:146
 msgid "Coudn't find any text editor in your system!"
 msgstr "Не удаётся найти установленный текстовый редактор"
 
-#: ../data/script-worker:160
+#: ../data/script-worker:174
 msgid "Select a folder"
 msgstr "Выберите каталог"
 
-#: ../data/script-worker:190
+#: ../data/script-worker:204
 msgid "Please select a target (files or folders)."
 msgstr "Выберите объект (файлы или каталоги)."
 
@@ -114,6 +114,33 @@ msgstr ""
 #: ../data/ui/traceback.ui.h:9
 msgid "_Report"
 msgstr "_Отчёт"
+
+#: ../data/ui/metacity.ui.h:1
+msgid " "
+msgstr " "
+
+#: ../data/ui/metacity.ui.h:2
+msgid ""
+"Custom: (arrange the buttons on the titlebar by dragging and dropping)"
+msgstr ""
+"Расширенная настройка: (перетаскивайте кнопки, чтобы расставить их в нужном "
+"порядке)"
+
+#: ../data/ui/metacity.ui.h:3
+msgid "Enable control:"
+msgstr "Активные кнопки:"
+
+#: ../data/ui/metacity.ui.h:4
+msgid "Left"
+msgstr "Слева"
+
+#: ../data/ui/metacity.ui.h:5
+msgid "Place:"
+msgstr "Положение:"
+
+#: ../data/ui/metacity.ui.h:6
+msgid "Right"
+msgstr "Справа"
 
 #. checkbutton
 #: ../data/ui/updatemanager.ui.h:1 ../ubuntutweak/modules/sourcecenter.py:101
@@ -242,16 +269,18 @@ msgstr "Спонсоры 2009 года"
 msgid "Contributors of 2010"
 msgstr "Участники 2010"
 
-#: ../ubuntutweak/mainwindow.py:442
+#: ../ubuntutweak/mainwindow.py:443
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
+"  AlexHawk https://launchpad.net/~alexhawk\n"
+"  Anton Lashkov https://launchpad.net/~onto\n"
 "  Oleg \"Nightwing\" Lomakin https://launchpad.net/~nightwing666\n"
 "  Oleg Yermakov https://launchpad.net/~epushiron\n"
 "  Sergey Sedov https://launchpad.net/~serg-sedov\n"
 "  nickkon https://launchpad.net/~nickkon"
 
-#: ../ubuntutweak/mainwindow.py:456
+#: ../ubuntutweak/mainwindow.py:457
 #, python-format
 msgid ""
 "A newer version: %s is available online.\n"
@@ -266,7 +295,7 @@ msgstr ""
 "Примечание: если вы предпочитаете обновления из исходного кода, вы можете "
 "отключить эту функцию в настройках."
 
-#: ../ubuntutweak/mainwindow.py:457
+#: ../ubuntutweak/mainwindow.py:458
 msgid "Software Update"
 msgstr "Обновление программ"
 
@@ -336,10 +365,10 @@ msgstr "Сервис ещё не готов"
 
 #: ../ubuntutweak/preferences.py:75 ../ubuntutweak/modules/filetype.py:178
 #: ../ubuntutweak/modules/filetype.py:213
-#: ../ubuntutweak/modules/metacity.py:158
-#: ../ubuntutweak/modules/metacity.py:163
-#: ../ubuntutweak/modules/metacity.py:176
-#: ../ubuntutweak/modules/metacity.py:189
+#: ../ubuntutweak/modules/metacity.py:185
+#: ../ubuntutweak/modules/metacity.py:190
+#: ../ubuntutweak/modules/metacity.py:203
+#: ../ubuntutweak/modules/metacity.py:216
 #: ../ubuntutweak/modules/shortcuts.py:99
 #: ../ubuntutweak/modules/shortcuts.py:209
 msgid "None"
@@ -355,11 +384,11 @@ msgstr "Использовать раздельные источники"
 
 #: ../ubuntutweak/preferences.py:117
 msgid "Enable the synchronous notification"
-msgstr "Включить синхронные уведомления"
+msgstr "Предлагать синхронизацию с сайтом ubuntu-tweak"
 
 #: ../ubuntutweak/preferences.py:123
 msgid "Enable new item highlight in App and Source Center"
-msgstr ""
+msgstr "Выделять новинки в центре приложений и центре источников"
 
 #: ../ubuntutweak/network/downloadmanager.py:97
 msgid "Connecting to server"
@@ -673,7 +702,7 @@ msgstr "Инфоромация"
 
 #: ../ubuntutweak/modules/computer.py:34
 msgid "Some useful system information"
-msgstr ""
+msgstr "Системная информация"
 
 #: ../ubuntutweak/modules/computer.py:41
 msgid "Unknown"
@@ -737,8 +766,7 @@ msgstr "Язык"
 
 #: ../ubuntutweak/modules/computer.py:81
 msgid "Please enter your new hostname. Blank characters should not be used."
-msgstr ""
-"Пожалуйста, введите новое имя хоста. Пустве символы не должны использоваться."
+msgstr "Введите новое имя компьютера. Имя не должно содержать пробелов."
 
 #: ../ubuntutweak/modules/computer.py:82
 msgid "New hostname"
@@ -783,6 +811,7 @@ msgstr "Отключить быстрое переключение между п
 #: ../ubuntutweak/modules/lockdown.py:66
 msgid "Fix the appearance of themes when granted root privileges"
 msgstr ""
+"Исправить внешний вид программ, запущенных с правами суперпользователя"
 
 #: ../ubuntutweak/modules/lockdown.py:72
 msgid "Miscellaneous Options"
@@ -964,7 +993,7 @@ msgstr ""
 "Простой, но более эффективный способ поиска и установки популярных "
 "программ.\n"
 "Данные будут автоматически синхронизированы с удаленным сервером\n"
-"Нажмите \"Синхронизовать\" для ручной проверки обновлений"
+"Нажмите «Синхронизировать» для ручной проверки обновлений"
 
 #: ../ubuntutweak/modules/appcenter.py:532
 msgid "Visit Online Application Center"
@@ -1099,9 +1128,9 @@ msgid "The software information is up-to-date now"
 msgstr "Теперь информация о программах в актуальном состоянии"
 
 #: ../ubuntutweak/modules/metacity.py:37
-#: ../ubuntutweak/modules/metacity.py:167
-#: ../ubuntutweak/modules/metacity.py:180
-#: ../ubuntutweak/modules/metacity.py:193
+#: ../ubuntutweak/modules/metacity.py:194
+#: ../ubuntutweak/modules/metacity.py:207
+#: ../ubuntutweak/modules/metacity.py:220
 msgid "Menu"
 msgstr "Меню"
 
@@ -1110,16 +1139,16 @@ msgid "Title"
 msgstr "Заголовок"
 
 #: ../ubuntutweak/modules/metacity.py:39
-#: ../ubuntutweak/modules/metacity.py:163
-#: ../ubuntutweak/modules/metacity.py:176
-#: ../ubuntutweak/modules/metacity.py:189
+#: ../ubuntutweak/modules/metacity.py:190
+#: ../ubuntutweak/modules/metacity.py:203
+#: ../ubuntutweak/modules/metacity.py:216
 msgid "Maximize"
 msgstr "Развернуть"
 
 #: ../ubuntutweak/modules/metacity.py:40
-#: ../ubuntutweak/modules/metacity.py:166
-#: ../ubuntutweak/modules/metacity.py:179
-#: ../ubuntutweak/modules/metacity.py:192
+#: ../ubuntutweak/modules/metacity.py:193
+#: ../ubuntutweak/modules/metacity.py:206
+#: ../ubuntutweak/modules/metacity.py:219
 msgid "Minimize"
 msgstr "Свернуть"
 
@@ -1131,108 +1160,96 @@ msgstr "Закрыть"
 msgid "Spacer"
 msgstr "Разделитель"
 
-#: ../ubuntutweak/modules/metacity.py:115
+#: ../ubuntutweak/modules/metacity.py:153
 msgid "Window Manager Settings"
 msgstr "Оконный менеджер"
 
-#: ../ubuntutweak/modules/metacity.py:116
+#: ../ubuntutweak/modules/metacity.py:154
 msgid "Manage Metacity Window Manager settings"
 msgstr "Управление настройками менеджера окон Metacity"
 
-#: ../ubuntutweak/modules/metacity.py:122
-msgid "Add Spacer"
-msgstr "Добавить разделитель"
-
-#: ../ubuntutweak/modules/metacity.py:123
-msgid "Remove Spacer"
-msgstr "Удалить разделитель"
-
-#: ../ubuntutweak/modules/metacity.py:128
-msgid "Arrange the buttons on the titlebar by dragging and dropping"
-msgstr "Упорядочить кнопки на заголовках окон перетаскиванием"
-
-#: ../ubuntutweak/modules/metacity.py:149
+#: ../ubuntutweak/modules/metacity.py:177
 msgid "Window Titlebar Button Layout"
 msgstr "Расположение кнопок заголовков окон"
 
-#: ../ubuntutweak/modules/metacity.py:154
+#: ../ubuntutweak/modules/metacity.py:181
 msgid "Window Titlebar Actions"
 msgstr "Поведение заголовков окон"
 
-#: ../ubuntutweak/modules/metacity.py:156
+#: ../ubuntutweak/modules/metacity.py:183
 msgid "Titlebar mouse wheel action"
 msgstr "Действие при вращении колесика мыши"
 
-#: ../ubuntutweak/modules/metacity.py:158
-#: ../ubuntutweak/modules/metacity.py:166
-#: ../ubuntutweak/modules/metacity.py:179
-#: ../ubuntutweak/modules/metacity.py:192
+#: ../ubuntutweak/modules/metacity.py:185
+#: ../ubuntutweak/modules/metacity.py:193
+#: ../ubuntutweak/modules/metacity.py:206
+#: ../ubuntutweak/modules/metacity.py:219
 msgid "Roll up"
 msgstr "Свернуть в заголовок"
 
-#: ../ubuntutweak/modules/metacity.py:161
+#: ../ubuntutweak/modules/metacity.py:188
 msgid "Titlebar double-click action"
 msgstr "Действие при двойном щелчке"
 
-#: ../ubuntutweak/modules/metacity.py:164
-#: ../ubuntutweak/modules/metacity.py:177
-#: ../ubuntutweak/modules/metacity.py:190
+#: ../ubuntutweak/modules/metacity.py:191
+#: ../ubuntutweak/modules/metacity.py:204
+#: ../ubuntutweak/modules/metacity.py:217
 msgid "Maximize Horizontally"
 msgstr "Растянуть по горизонтали"
 
-#: ../ubuntutweak/modules/metacity.py:165
-#: ../ubuntutweak/modules/metacity.py:178
-#: ../ubuntutweak/modules/metacity.py:191
+#: ../ubuntutweak/modules/metacity.py:192
+#: ../ubuntutweak/modules/metacity.py:205
+#: ../ubuntutweak/modules/metacity.py:218
 msgid "Maximize Vertically"
 msgstr "Растянуть по вертикали"
 
-#: ../ubuntutweak/modules/metacity.py:167
-#: ../ubuntutweak/modules/metacity.py:180
-#: ../ubuntutweak/modules/metacity.py:193
+#: ../ubuntutweak/modules/metacity.py:194
+#: ../ubuntutweak/modules/metacity.py:207
+#: ../ubuntutweak/modules/metacity.py:220
 msgid "Lower"
 msgstr "Опустить вниз"
 
-#: ../ubuntutweak/modules/metacity.py:174
+#: ../ubuntutweak/modules/metacity.py:201
 msgid "Titlebar middle-click action"
 msgstr "Действие при щелчке средней кнопкой"
 
-#: ../ubuntutweak/modules/metacity.py:187
+#: ../ubuntutweak/modules/metacity.py:214
 msgid "Titlebar right-click action"
 msgstr "Действие при щелчке правой кнопкой"
 
-#: ../ubuntutweak/modules/metacity.py:203
+#: ../ubuntutweak/modules/metacity.py:230
 msgid "Window Decoration Effects"
 msgstr "Эффекты декоратора окон"
 
-#: ../ubuntutweak/modules/metacity.py:205
+#: ../ubuntutweak/modules/metacity.py:232
 msgid "Use Metacity window theme"
 msgstr "Использовать тему Metacity"
 
-#: ../ubuntutweak/modules/metacity.py:208
+#: ../ubuntutweak/modules/metacity.py:235
 msgid "Enable active window transparency"
 msgstr "Прозрачная рамка активного окна"
 
-#: ../ubuntutweak/modules/metacity.py:211
+#: ../ubuntutweak/modules/metacity.py:238
 msgid "Active window transparency level"
 msgstr "Непрозрачность рамки активного окна"
 
-#: ../ubuntutweak/modules/metacity.py:215
+#: ../ubuntutweak/modules/metacity.py:242
 msgid "Enable inactive window transparency"
 msgstr "Прозрачные рамки неактивных окон"
 
-#: ../ubuntutweak/modules/metacity.py:218
+#: ../ubuntutweak/modules/metacity.py:245
 msgid "Inactive window shade transparency level"
 msgstr "Непрозрачность рамки неактивных окон"
 
-#: ../ubuntutweak/modules/metacity.py:225
+#: ../ubuntutweak/modules/metacity.py:252
 msgid "Enable Metacity's compositing feature"
 msgstr "Включить композитный режим Metacity"
 
-#: ../ubuntutweak/modules/metacity.py:228
+#: ../ubuntutweak/modules/metacity.py:255
 msgid "Compositing Manager"
 msgstr "Композитный менеджер"
 
-#: ../ubuntutweak/modules/metacity.py:249
+#: ../ubuntutweak/modules/metacity.py:299
 msgid ""
 "To enable Metacity's compositing feature, you should manually disable Visual "
 "Effects in \"Appearance\"."
@@ -1258,7 +1275,7 @@ msgstr "Показывать значок «Корзина» на рабочем
 
 #: ../ubuntutweak/modules/icons.py:108
 msgid "Desktop Icon Settings"
-msgstr "Настройки значков рабочего стола"
+msgstr "Значки рабочего стола"
 
 #: ../ubuntutweak/modules/icons.py:109
 msgid "Change the name and toggle visibilty of desktop icons"
@@ -1281,8 +1298,8 @@ msgid ""
 "Show contents of \"Home Folder\" on desktop (Logout for changes to take "
 "effect)"
 msgstr ""
-"Показывать содеражимое домашней папки на рабочем столе(Завершите сеанс, для "
-"вступления изменений в силу)"
+"Показывать содержимое домашней папки на рабочем столе (вступит в силу поле "
+"завершения сеанса)"
 
 #: ../ubuntutweak/modules/gnomesettings.py:35
 msgid "GNOME Settings"
@@ -1547,7 +1564,7 @@ msgstr ""
 
 #: ../ubuntutweak/modules/sourcecenter.py:825
 msgid "New source has been enabled"
-msgstr "Был включен новый репозиторий"
+msgstr "Был включен новый источник"
 
 #: ../ubuntutweak/modules/sourcecenter.py:826
 #, python-format
@@ -1670,70 +1687,74 @@ msgid "Move to Home"
 msgstr "Переместить в домашнюю папку"
 
 #: ../ubuntutweak/modules/scripts.py:60
+msgid "Create hardlink to ..."
+msgstr "Создать жёсткую ссылку на …"
+
+#: ../ubuntutweak/modules/scripts.py:61
 msgid "Link to ..."
 msgstr "Создать ссылку в ..."
 
-#: ../ubuntutweak/modules/scripts.py:61
+#: ../ubuntutweak/modules/scripts.py:62
 msgid "Link to Desktop"
 msgstr "Создать ссылку на рабочем столе"
 
-#: ../ubuntutweak/modules/scripts.py:62
+#: ../ubuntutweak/modules/scripts.py:63
 msgid "Link to Download"
 msgstr "Создать ссылку в папке \"Загрузки\""
 
-#: ../ubuntutweak/modules/scripts.py:63
+#: ../ubuntutweak/modules/scripts.py:64
 msgid "Link to Home"
 msgstr "Создать ссылку в домашней папке"
 
-#: ../ubuntutweak/modules/scripts.py:64
+#: ../ubuntutweak/modules/scripts.py:65
 msgid "Open with your favourite text editor"
 msgstr "Открыть в текстовом редакторе"
 
-#: ../ubuntutweak/modules/scripts.py:65
+#: ../ubuntutweak/modules/scripts.py:66
 msgid "Open with your favourite text editor (as root)"
 msgstr "Открыть в текстовом редакторе (как суперпользователь)"
 
-#: ../ubuntutweak/modules/scripts.py:66
+#: ../ubuntutweak/modules/scripts.py:67
 msgid "Browse as root"
 msgstr "Просмотреть с правами суперпользователя"
 
-#: ../ubuntutweak/modules/scripts.py:67
+#: ../ubuntutweak/modules/scripts.py:68
 msgid "Search in current folder"
 msgstr "Искать в этой папке"
 
-#: ../ubuntutweak/modules/scripts.py:68
+#: ../ubuntutweak/modules/scripts.py:69
 msgid "Convert image to JPG"
 msgstr "Преобразовать изображение в JPG"
 
-#: ../ubuntutweak/modules/scripts.py:69
+#: ../ubuntutweak/modules/scripts.py:70
 msgid "Convert image to PNG"
 msgstr "Преобразовать изображение в PNG"
 
-#: ../ubuntutweak/modules/scripts.py:70
+#: ../ubuntutweak/modules/scripts.py:71
 msgid "Convert image to GIF"
 msgstr "Преобразовать изображение в GIF"
 
-#: ../ubuntutweak/modules/scripts.py:71
+#: ../ubuntutweak/modules/scripts.py:72
 msgid "Set image as wallpaper"
 msgstr "Сделать фоном рабочего стола"
 
-#: ../ubuntutweak/modules/scripts.py:72
+#: ../ubuntutweak/modules/scripts.py:73
 msgid "Make hard shadow to image"
 msgstr "Придать изображению резкую тень"
 
-#: ../ubuntutweak/modules/scripts.py:99
+#: ../ubuntutweak/modules/scripts.py:100
 msgid "Enabled Scripts"
 msgstr "Активные сценарии"
 
-#: ../ubuntutweak/modules/scripts.py:127
+#: ../ubuntutweak/modules/scripts.py:128
 msgid "Disabled Scripts"
 msgstr "Неактивные сценарии"
 
-#: ../ubuntutweak/modules/scripts.py:133
+#: ../ubuntutweak/modules/scripts.py:134
 msgid "Manage Scripts"
 msgstr "Сценарии"
 
-#: ../ubuntutweak/modules/scripts.py:134
+#: ../ubuntutweak/modules/scripts.py:135
 msgid ""
 "Scripts can be used to complete all kinds of tasks.\n"
 "You can drag and drop scripts from File Manager.\n"
@@ -1743,11 +1764,11 @@ msgstr ""
 "Для добавления новых сценариев их нужно перетащить в это окно.\n"
 "При активации сценария он появится в контекстном меню файла."
 
-#: ../ubuntutweak/modules/scripts.py:167
+#: ../ubuntutweak/modules/scripts.py:168
 msgid "Rebuild System Scripts"
 msgstr "Пересобрать системные сценарии"
 
-#: ../ubuntutweak/modules/scripts.py:185
+#: ../ubuntutweak/modules/scripts.py:186
 msgid ""
 "This will delete all disabled scripts.\n"
 "Do you wish to continue?"
@@ -1810,10 +1831,9 @@ msgid ""
 "You can create new documents based on these templates from the Nautilus "
 "right-click menu."
 msgstr ""
-"Здесь вы можете полностью управлять шаблонами документов.\n"
-"Вы можете добавлять файлы как шаблоны, перетаскивая их в это окно.\n"
-"Вы можете создать новый документ на основе этих шаблонов из контекстного "
-"меню Nautilus."
+"Здесь можно управлять шаблонами для новых документов.\n"
+"Для добавления файла как шаблона, перетащите файл в это окно.\n"
+"Добавленные шаблоны будут доступны из контекстного меню Nautilus."
 
 #: ../ubuntutweak/modules/templates.py:119
 #, python-format
@@ -1821,8 +1841,8 @@ msgid ""
 "Templates path is wrong! The current path is point to \"%s\".\n"
 "Please reset it to a folder under your Home Folder."
 msgstr ""
-"Неверный путь к шаблонам! Текущий путь \"%s\".\n"
-"Пожалуйста, выберите каталог в Вашей домашней папке."
+"Неверный путь к шаблонам! Текущий путь: «%s».\n"
+"Исправьте его на папку, находящуюся в вашей домашней папке."
 
 #: ../ubuntutweak/modules/templates.py:128
 msgid "Go And Set"
@@ -2169,7 +2189,7 @@ msgstr "Очистить кэш эскизов (освободится %s мес
 
 #: ../ubuntutweak/modules/nautilus.py:138
 msgid "The thumbnail cache will be deleted. Do you wish to continue?"
-msgstr ""
+msgstr "Кэш эскизов  будет очищен. Продолжить?"
 
 #: ../ubuntutweak/modules/nautilus.py:145
 msgid "Clean up Successful!"
@@ -2627,3 +2647,12 @@ msgstr "Очистка успешно завершена!"
 
 #~ msgid "Please enter your new hostname. It should be non-blank characters."
 #~ msgstr "Введите новое имя компьютера. Оно не должно содержать пробелов."
+
+#~ msgid "Arrange the buttons on the titlebar by dragging and dropping"
+#~ msgstr "Упорядочить кнопки на заголовках окон перетаскиванием"
+
+#~ msgid "Add Spacer"
+#~ msgstr "Добавить разделитель"
+
+#~ msgid "Remove Spacer"
+#~ msgstr "Удалить разделитель"

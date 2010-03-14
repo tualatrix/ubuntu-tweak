@@ -3,34 +3,34 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-01 19:01+0800\n"
-"PO-Revision-Date: 2010-02-23 03:45+0000\n"
-"Last-Translator: Carlos Alberto Ospina <Unknown>\n"
+"POT-Creation-Date: 2010-03-13 20:59+0800\n"
+"PO-Revision-Date: 2010-03-13 10:58+0000\n"
+"Last-Translator: soker <soker.portalubuntu@gmail.com>\n"
 "Language-Team: LL <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2010-03-01 12:12+0000\n"
+"X-Launchpad-Export-Date: 2010-03-14 01:16+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: SPANISH\n"
 "X-Poedit-Language: Spanish\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "Generated-By: pygettext.py 1.5\n"
 
-#: ../data/script-worker:125 ../data/script-worker:138
+#: ../data/script-worker:139 ../data/script-worker:152
 msgid "Enter your password to perform the administrative tasks"
 msgstr "Introduzca su contraseña para realizar tareas administrativas"
 
-#: ../data/script-worker:132
+#: ../data/script-worker:146
 msgid "Coudn't find any text editor in your system!"
-msgstr "¡No existe ningún editor de texto en su sistema!"
+msgstr "No se encuentra ningún editor de texto en su sistema!"
 
-#: ../data/script-worker:160
+#: ../data/script-worker:174
 msgid "Select a folder"
 msgstr "Seleccione una carpeta"
 
-#: ../data/script-worker:190
+#: ../data/script-worker:204
 msgid "Please select a target (files or folders)."
 msgstr "Por favor seleccione un objetivo (archivos o carpetas)"
 
@@ -40,11 +40,11 @@ msgstr "Modifica Ubuntu como quieras"
 
 #: ../data/com.ubuntu-tweak.daemon.policy.in.h:1
 msgid "System policy prevents the Ubuntu Tweak from Tweaking"
-msgstr "La política del sistema impide que Ubuntu Tweak trabaje"
+msgstr "La política del sistema impide que Ubuntu Tweak realice los cambios"
 
 #: ../data/com.ubuntu-tweak.daemon.policy.in.h:2
 msgid "Ubuntu Tweak Daemon"
-msgstr "Ubuntu Tweak Daemon"
+msgstr "Demonio de Ubuntu Tweak"
 
 #: ../data/ui/preferences.ui.h:1
 msgid "<b>Features</b>"
@@ -60,11 +60,11 @@ msgstr "Función de lanzamiento predeterminada"
 
 #: ../data/ui/preferences.ui.h:4
 msgid "Default Window Height"
-msgstr "Altura predeterminada de ventana"
+msgstr "Altura de ventana predeterminada"
 
 #: ../data/ui/preferences.ui.h:5
 msgid "Default Window Width"
-msgstr "Ancho predeterminado de ventana"
+msgstr "Ancho de ventana predeterminado"
 
 #: ../data/ui/preferences.ui.h:6
 msgid "Left Menubar Width"
@@ -111,6 +111,33 @@ msgstr ""
 #: ../data/ui/traceback.ui.h:9
 msgid "_Report"
 msgstr "_Informar"
+
+#: ../data/ui/metacity.ui.h:1
+msgid " "
+msgstr " "
+
+#: ../data/ui/metacity.ui.h:2
+msgid ""
+"Custom: (arrange the buttons on the titlebar by dragging and dropping)"
+msgstr ""
+"Personalizado: (organiza los botones en la barra de titulo arrastrando y "
+"soltando)"
+
+#: ../data/ui/metacity.ui.h:3
+msgid "Enable control:"
+msgstr "Habilitar control:"
+
+#: ../data/ui/metacity.ui.h:4
+msgid "Left"
+msgstr "Izquierda"
+
+#: ../data/ui/metacity.ui.h:5
+msgid "Place:"
+msgstr "Lugar:"
+
+#: ../data/ui/metacity.ui.h:6
+msgid "Right"
+msgstr "Derecha"
 
 #. checkbutton
 #: ../data/ui/updatemanager.ui.h:1 ../ubuntutweak/modules/sourcecenter.py:101
@@ -240,7 +267,7 @@ msgstr "Contribuidores del 2009"
 msgid "Contributors of 2010"
 msgstr "Contribuyentes del 2010"
 
-#: ../ubuntutweak/mainwindow.py:442
+#: ../ubuntutweak/mainwindow.py:443
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
@@ -249,10 +276,12 @@ msgstr ""
 "  Lucio Mora https://launchpad.net/~lhmorah\n"
 "  Monkey https://launchpad.net/~monkey-libre\n"
 "  Rodrigo Testa https://launchpad.net/~rod-95\n"
+"  Shkkar https://launchpad.net/~dg-dave\n"
 "  sebikul https://launchpad.net/~sebikul\n"
+"  soker https://launchpad.net/~soker\n"
 "  waltmenz https://launchpad.net/~waltmenz"
 
-#: ../ubuntutweak/mainwindow.py:456
+#: ../ubuntutweak/mainwindow.py:457
 #, python-format
 msgid ""
 "A newer version: %s is available online.\n"
@@ -267,7 +296,7 @@ msgstr ""
 "Nota: si prefiere actualizar desde el código fuente, puede desactivar esta "
 "característica en Preferencias."
 
-#: ../ubuntutweak/mainwindow.py:457
+#: ../ubuntutweak/mainwindow.py:458
 msgid "Software Update"
 msgstr "Actualización de software"
 
@@ -337,10 +366,10 @@ msgstr "El servicio aún no se ha inicializado"
 
 #: ../ubuntutweak/preferences.py:75 ../ubuntutweak/modules/filetype.py:178
 #: ../ubuntutweak/modules/filetype.py:213
-#: ../ubuntutweak/modules/metacity.py:158
-#: ../ubuntutweak/modules/metacity.py:163
-#: ../ubuntutweak/modules/metacity.py:176
-#: ../ubuntutweak/modules/metacity.py:189
+#: ../ubuntutweak/modules/metacity.py:185
+#: ../ubuntutweak/modules/metacity.py:190
+#: ../ubuntutweak/modules/metacity.py:203
+#: ../ubuntutweak/modules/metacity.py:216
 #: ../ubuntutweak/modules/shortcuts.py:99
 #: ../ubuntutweak/modules/shortcuts.py:209
 msgid "None"
@@ -361,6 +390,8 @@ msgstr "Habilitar la notificación sincrónica."
 #: ../ubuntutweak/preferences.py:123
 msgid "Enable new item highlight in App and Source Center"
 msgstr ""
+"Habilitar destacar objetos nuevos aparecidos en el Centro de aplicaciones y "
+"el Centro de fuentes"
 
 #: ../ubuntutweak/network/downloadmanager.py:97
 msgid "Connecting to server"
@@ -679,7 +710,7 @@ msgstr "Datos del equipo"
 
 #: ../ubuntutweak/modules/computer.py:34
 msgid "Some useful system information"
-msgstr ""
+msgstr "Alguna información útil del sistema"
 
 #: ../ubuntutweak/modules/computer.py:41
 msgid "Unknown"
@@ -789,7 +820,7 @@ msgstr "Descativar \"Cambio rápido de usuario\""
 
 #: ../ubuntutweak/modules/lockdown.py:66
 msgid "Fix the appearance of themes when granted root privileges"
-msgstr ""
+msgstr "Mantener la apariencia al correr aplicaciones como root"
 
 #: ../ubuntutweak/modules/lockdown.py:72
 msgid "Miscellaneous Options"
@@ -1110,9 +1141,9 @@ msgid "The software information is up-to-date now"
 msgstr "La información sobre el software está actualizada."
 
 #: ../ubuntutweak/modules/metacity.py:37
-#: ../ubuntutweak/modules/metacity.py:167
-#: ../ubuntutweak/modules/metacity.py:180
-#: ../ubuntutweak/modules/metacity.py:193
+#: ../ubuntutweak/modules/metacity.py:194
+#: ../ubuntutweak/modules/metacity.py:207
+#: ../ubuntutweak/modules/metacity.py:220
 msgid "Menu"
 msgstr "Menú"
 
@@ -1121,16 +1152,16 @@ msgid "Title"
 msgstr "Título"
 
 #: ../ubuntutweak/modules/metacity.py:39
-#: ../ubuntutweak/modules/metacity.py:163
-#: ../ubuntutweak/modules/metacity.py:176
-#: ../ubuntutweak/modules/metacity.py:189
+#: ../ubuntutweak/modules/metacity.py:190
+#: ../ubuntutweak/modules/metacity.py:203
+#: ../ubuntutweak/modules/metacity.py:216
 msgid "Maximize"
 msgstr "Maximizar"
 
 #: ../ubuntutweak/modules/metacity.py:40
-#: ../ubuntutweak/modules/metacity.py:166
-#: ../ubuntutweak/modules/metacity.py:179
-#: ../ubuntutweak/modules/metacity.py:192
+#: ../ubuntutweak/modules/metacity.py:193
+#: ../ubuntutweak/modules/metacity.py:206
+#: ../ubuntutweak/modules/metacity.py:219
 msgid "Minimize"
 msgstr "Minimizar"
 
@@ -1142,109 +1173,96 @@ msgstr "Cerrar"
 msgid "Spacer"
 msgstr "Espaciador"
 
-#: ../ubuntutweak/modules/metacity.py:115
+#: ../ubuntutweak/modules/metacity.py:153
 msgid "Window Manager Settings"
 msgstr "Configuración del Gestor de Ventanas"
 
-#: ../ubuntutweak/modules/metacity.py:116
+#: ../ubuntutweak/modules/metacity.py:154
 msgid "Manage Metacity Window Manager settings"
 msgstr "Administrar la configuración del gestor de ventanas Metacity"
 
-#: ../ubuntutweak/modules/metacity.py:122
-msgid "Add Spacer"
-msgstr "Añadir espaciador"
-
-#: ../ubuntutweak/modules/metacity.py:123
-msgid "Remove Spacer"
-msgstr "Remover Espaciador"
-
-#: ../ubuntutweak/modules/metacity.py:128
-msgid "Arrange the buttons on the titlebar by dragging and dropping"
-msgstr ""
-"Organize los botones en la barra de titulo arrastrando y colocandolos"
-
-#: ../ubuntutweak/modules/metacity.py:149
+#: ../ubuntutweak/modules/metacity.py:177
 msgid "Window Titlebar Button Layout"
 msgstr "Formato de botones en la barra de titulo de la ventana"
 
-#: ../ubuntutweak/modules/metacity.py:154
+#: ../ubuntutweak/modules/metacity.py:181
 msgid "Window Titlebar Actions"
 msgstr "Ventana de Acciones de la barra de título"
 
-#: ../ubuntutweak/modules/metacity.py:156
+#: ../ubuntutweak/modules/metacity.py:183
 msgid "Titlebar mouse wheel action"
 msgstr "Acción de la rueda del ratón en la barra de título"
 
-#: ../ubuntutweak/modules/metacity.py:158
-#: ../ubuntutweak/modules/metacity.py:166
-#: ../ubuntutweak/modules/metacity.py:179
-#: ../ubuntutweak/modules/metacity.py:192
+#: ../ubuntutweak/modules/metacity.py:185
+#: ../ubuntutweak/modules/metacity.py:193
+#: ../ubuntutweak/modules/metacity.py:206
+#: ../ubuntutweak/modules/metacity.py:219
 msgid "Roll up"
 msgstr "Enrollar"
 
-#: ../ubuntutweak/modules/metacity.py:161
+#: ../ubuntutweak/modules/metacity.py:188
 msgid "Titlebar double-click action"
 msgstr "Acción de pulsación doble sobre la barra de título"
 
-#: ../ubuntutweak/modules/metacity.py:164
-#: ../ubuntutweak/modules/metacity.py:177
-#: ../ubuntutweak/modules/metacity.py:190
+#: ../ubuntutweak/modules/metacity.py:191
+#: ../ubuntutweak/modules/metacity.py:204
+#: ../ubuntutweak/modules/metacity.py:217
 msgid "Maximize Horizontally"
 msgstr "Maximizar ventana horizontalmente"
 
-#: ../ubuntutweak/modules/metacity.py:165
-#: ../ubuntutweak/modules/metacity.py:178
-#: ../ubuntutweak/modules/metacity.py:191
+#: ../ubuntutweak/modules/metacity.py:192
+#: ../ubuntutweak/modules/metacity.py:205
+#: ../ubuntutweak/modules/metacity.py:218
 msgid "Maximize Vertically"
 msgstr "Maximizar ventana verticalmente"
 
-#: ../ubuntutweak/modules/metacity.py:167
-#: ../ubuntutweak/modules/metacity.py:180
-#: ../ubuntutweak/modules/metacity.py:193
+#: ../ubuntutweak/modules/metacity.py:194
+#: ../ubuntutweak/modules/metacity.py:207
+#: ../ubuntutweak/modules/metacity.py:220
 msgid "Lower"
 msgstr "Inferior"
 
-#: ../ubuntutweak/modules/metacity.py:174
+#: ../ubuntutweak/modules/metacity.py:201
 msgid "Titlebar middle-click action"
 msgstr "Acción del botón central sobre la barra de título"
 
-#: ../ubuntutweak/modules/metacity.py:187
+#: ../ubuntutweak/modules/metacity.py:214
 msgid "Titlebar right-click action"
 msgstr "Acción del botón derecho sobre la barra de título"
 
-#: ../ubuntutweak/modules/metacity.py:203
+#: ../ubuntutweak/modules/metacity.py:230
 msgid "Window Decoration Effects"
 msgstr "Efectos de decoración de ventana"
 
-#: ../ubuntutweak/modules/metacity.py:205
+#: ../ubuntutweak/modules/metacity.py:232
 msgid "Use Metacity window theme"
 msgstr "Usar tema de ventana Metacity"
 
-#: ../ubuntutweak/modules/metacity.py:208
+#: ../ubuntutweak/modules/metacity.py:235
 msgid "Enable active window transparency"
 msgstr "Habilitar transparencia de ventana activa"
 
-#: ../ubuntutweak/modules/metacity.py:211
+#: ../ubuntutweak/modules/metacity.py:238
 msgid "Active window transparency level"
 msgstr "Activar nivel de trasparencia de las ventanas"
 
-#: ../ubuntutweak/modules/metacity.py:215
+#: ../ubuntutweak/modules/metacity.py:242
 msgid "Enable inactive window transparency"
 msgstr "Habilitar transparencia de ventana inactiva"
 
-#: ../ubuntutweak/modules/metacity.py:218
+#: ../ubuntutweak/modules/metacity.py:245
 msgid "Inactive window shade transparency level"
 msgstr "Desactivar nivel de trasparencia de las ventanas"
 
-#: ../ubuntutweak/modules/metacity.py:225
+#: ../ubuntutweak/modules/metacity.py:252
 msgid "Enable Metacity's compositing feature"
 msgstr "Habilitar función de composición de Metacity"
 
-#: ../ubuntutweak/modules/metacity.py:228
+#: ../ubuntutweak/modules/metacity.py:255
 msgid "Compositing Manager"
 msgstr "Gestor de composición"
 
-#: ../ubuntutweak/modules/metacity.py:249
+#: ../ubuntutweak/modules/metacity.py:299
 msgid ""
 "To enable Metacity's compositing feature, you should manually disable Visual "
 "Effects in \"Appearance\"."
@@ -1447,6 +1465,7 @@ msgstr "Instalar configurador avanzada de los efectos de escritorio"
 #: ../ubuntutweak/modules/compiz.py:239
 msgid "Install Simple Desktop Effects Settings Manager"
 msgstr ""
+"Instalar el Ayudante Simple de Configuración de los Efectos de Escritorio"
 
 #: ../ubuntutweak/modules/compiz.py:242
 msgid "Install Screenlets Widget Application"
@@ -1684,70 +1703,74 @@ msgid "Move to Home"
 msgstr "Mover a la carpeta personal"
 
 #: ../ubuntutweak/modules/scripts.py:60
+msgid "Create hardlink to ..."
+msgstr ""
+
+#: ../ubuntutweak/modules/scripts.py:61
 msgid "Link to ..."
 msgstr "Enlazar a..."
 
-#: ../ubuntutweak/modules/scripts.py:61
+#: ../ubuntutweak/modules/scripts.py:62
 msgid "Link to Desktop"
 msgstr "Enlazar al escritorio"
 
-#: ../ubuntutweak/modules/scripts.py:62
+#: ../ubuntutweak/modules/scripts.py:63
 msgid "Link to Download"
 msgstr "Enlazar a descargas"
 
-#: ../ubuntutweak/modules/scripts.py:63
+#: ../ubuntutweak/modules/scripts.py:64
 msgid "Link to Home"
 msgstr "Enlazar a la carpeta personal"
 
-#: ../ubuntutweak/modules/scripts.py:64
+#: ../ubuntutweak/modules/scripts.py:65
 msgid "Open with your favourite text editor"
 msgstr "Abrir con su editor de texto preferido"
 
-#: ../ubuntutweak/modules/scripts.py:65
+#: ../ubuntutweak/modules/scripts.py:66
 msgid "Open with your favourite text editor (as root)"
 msgstr "Abrir con su editor de texto preferido (como root)"
 
-#: ../ubuntutweak/modules/scripts.py:66
+#: ../ubuntutweak/modules/scripts.py:67
 msgid "Browse as root"
 msgstr "Examinar como administrador"
 
-#: ../ubuntutweak/modules/scripts.py:67
+#: ../ubuntutweak/modules/scripts.py:68
 msgid "Search in current folder"
 msgstr "Buscar en la carpeta actual"
 
-#: ../ubuntutweak/modules/scripts.py:68
+#: ../ubuntutweak/modules/scripts.py:69
 msgid "Convert image to JPG"
 msgstr "Convertir imagen a JPG"
 
-#: ../ubuntutweak/modules/scripts.py:69
+#: ../ubuntutweak/modules/scripts.py:70
 msgid "Convert image to PNG"
 msgstr "Convertir imagen a PNG"
 
-#: ../ubuntutweak/modules/scripts.py:70
+#: ../ubuntutweak/modules/scripts.py:71
 msgid "Convert image to GIF"
 msgstr "Convertir imagen a GIF"
 
-#: ../ubuntutweak/modules/scripts.py:71
+#: ../ubuntutweak/modules/scripts.py:72
 msgid "Set image as wallpaper"
 msgstr "Colocar imagen como fondo de escritorio"
 
-#: ../ubuntutweak/modules/scripts.py:72
+#: ../ubuntutweak/modules/scripts.py:73
 msgid "Make hard shadow to image"
 msgstr "Colocar sombra fuerte a la imagen"
 
-#: ../ubuntutweak/modules/scripts.py:99
+#: ../ubuntutweak/modules/scripts.py:100
 msgid "Enabled Scripts"
 msgstr "Scripts habilitados"
 
-#: ../ubuntutweak/modules/scripts.py:127
+#: ../ubuntutweak/modules/scripts.py:128
 msgid "Disabled Scripts"
 msgstr "Scripts deshabilitados"
 
-#: ../ubuntutweak/modules/scripts.py:133
+#: ../ubuntutweak/modules/scripts.py:134
 msgid "Manage Scripts"
 msgstr "Administrar Scripts"
 
-#: ../ubuntutweak/modules/scripts.py:134
+#: ../ubuntutweak/modules/scripts.py:135
 msgid ""
 "Scripts can be used to complete all kinds of tasks.\n"
 "You can drag and drop scripts from File Manager.\n"
@@ -1757,11 +1780,11 @@ msgstr ""
 "Usted puede arrastrar y soltar scripts desde el administrador de archivos\n"
 "Los scripts serán agregados al menu contextual."
 
-#: ../ubuntutweak/modules/scripts.py:167
+#: ../ubuntutweak/modules/scripts.py:168
 msgid "Rebuild System Scripts"
 msgstr "Reconstruir scripts del sistema"
 
-#: ../ubuntutweak/modules/scripts.py:185
+#: ../ubuntutweak/modules/scripts.py:186
 msgid ""
 "This will delete all disabled scripts.\n"
 "Do you wish to continue?"
@@ -2143,11 +2166,11 @@ msgstr ""
 
 #: ../ubuntutweak/modules/nautilus.py:79
 msgid "File Browser"
-msgstr "Navegador de archivos"
+msgstr "Explorador de archivos"
 
 #: ../ubuntutweak/modules/nautilus.py:88
 msgid "Thumbnail Settings"
-msgstr "Configuración de miniaturas"
+msgstr "Preferencias de miniaturas"
 
 #: ../ubuntutweak/modules/nautilus.py:92
 msgid "Default thumbnail icon size (pixels)"
@@ -2180,11 +2203,12 @@ msgstr "Complementos de Nautilus"
 #: ../ubuntutweak/modules/nautilus.py:135
 #, python-format
 msgid "Delete thumbnail cache (will free %s of disk space)"
-msgstr "Borrar el cache de miniaturas (será liberado %s espacio de disco)"
+msgstr ""
+"Borrar el cache de miniaturas (serán liberados %s de espacio en disco)"
 
 #: ../ubuntutweak/modules/nautilus.py:138
 msgid "The thumbnail cache will be deleted. Do you wish to continue?"
-msgstr ""
+msgstr "La cache de miniaturas será eliminada. ¿Desea continuar?"
 
 #: ../ubuntutweak/modules/nautilus.py:145
 msgid "Clean up Successful!"
@@ -2637,3 +2661,13 @@ msgstr "¡Se limpió con éxito!"
 
 #~ msgid "Setting with your amazing eye-candy desktop"
 #~ msgstr "Configure cosas atractivas de su escritorio pero inútiles"
+
+#~ msgid "Arrange the buttons on the titlebar by dragging and dropping"
+#~ msgstr ""
+#~ "Organize los botones en la barra de titulo arrastrando y colocandolos"
+
+#~ msgid "Add Spacer"
+#~ msgstr "Añadir espaciador"
+
+#~ msgid "Remove Spacer"
+#~ msgstr "Remover Espaciador"
