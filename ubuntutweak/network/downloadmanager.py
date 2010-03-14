@@ -14,7 +14,7 @@ from ubuntutweak.widgets.dialogs import BusyDialog
 from ubuntutweak.common import consts
 from ubuntutweak.common.config import TweakSettings
 
-socket.setdefaulttimeout(10)
+socket.setdefaulttimeout(60)
 
 class Downloader(gobject.GObject):
     __gsignals__ = {
