@@ -75,9 +75,11 @@ class StatusProvider(object):
         file.close()
 
     def load_objects_from_parser(self, parser):
+        init = self.get_init()
+
         for key in parser.keys():
             #FIXME because of source id
-            if self.get_init():
+            if init:
                 self.__data['apps'][key] = {}
                 self.__data['apps'][key]['read'] = True
                 self.__data['apps'][key]['cate'] = parser.get_category(key)
@@ -87,7 +89,9 @@ class StatusProvider(object):
                     self.__data['apps'][key]['read'] = False
                     self.__data['apps'][key]['cate'] = parser.get_category(key)
 
-        self.set_init(False)
+            if init:
+                self.set_init(False)
+
         self.save()
 
     def count_unread(self, cate):

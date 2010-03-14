@@ -247,11 +247,13 @@ SOURCE_PARSER = SourceParser()
 
 class SourceStatus(StatusProvider):
     def load_objects_from_parser(self, parser):
+        init = self.get_init()
+
         for key in parser.keys():
             id = key
             slug = parser.get_slug(key)
             key = slug
-            if self.get_init():
+            if init:
                 self.get_data()['apps'][key] = {}
                 self.get_data()['apps'][key]['read'] = True
                 self.get_data()['apps'][key]['cate'] = parser.get_category(id)
@@ -261,7 +263,9 @@ class SourceStatus(StatusProvider):
                     self.get_data()['apps'][key]['read'] = False
                     self.get_data()['apps'][key]['cate'] = parser.get_category(id)
 
-        self.set_init(False)
+            if init:
+                self.set_init(False)
+
         self.save()
 
     def get_read_status(self, key):
