@@ -94,8 +94,6 @@ class ButtonView(gtk.IconView):
             else:
                 continue
 
-        return model
-
     def on_selection_changed(self, widget, data=None):
         model = widget.get_model()
         value = ','.join([i[self.COLUMN_VALUE] for i in model])
@@ -115,7 +113,6 @@ class ButtonView(gtk.IconView):
         for i, row in enumerate(model):
             if row[self.COLUMN_VALUE] == value:
                 del model[i, self.COLUMN_VALUE]
-                break
         self.on_selection_changed(self)
 
     def has_button(self, value):
@@ -137,7 +134,7 @@ class WindowControlButton(gtk.CheckButton):
         gtk.CheckButton.__init__(self, self.__label)
         self.set_active(self.__view.has_button(self.__value))
 
-        self.connect('toggled', self.on_toggled)
+        self.__handle_id = self.connect('toggled', self.on_toggled)
 
     def on_toggled(self, widget):
         '''Emit extra signal when toggle button'''
@@ -147,7 +144,10 @@ class WindowControlButton(gtk.CheckButton):
             self.__view.remove_button(self.__value)
 
     def update_status(self):
+        '''Update status is called from others, not user, so need to block the handler'''
+        self.handler_block(self.__handle_id)
         self.set_active(self.__view.has_button(self.__value))
+        self.handler_unblock(self.__handle_id)
 
 class Metacity(TweakModule):
     __title__ = _('Window Manager Settings')
