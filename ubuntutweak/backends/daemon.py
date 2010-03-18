@@ -11,6 +11,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
 import os
+import apt
 import apt_pkg
 import dbus
 import dbus.glib
@@ -78,6 +79,7 @@ class Daemon(PolicyKitService):
     #TODO use signal
     liststate = None
     list = SourcesList()
+    cache = apt.Cache()
 
     def __init__ (self, bus, mainloop):
         bus_name = dbus.service.BusName(INTERFACE, bus=bus)
@@ -160,7 +162,16 @@ class Daemon(PolicyKitService):
         os.system('apt-get clean')
 
         return 'done'
-            
+
+    @dbus.service.method(INTERFACE,
+                         in_signature='s', out_signature='b')
+    def get_package_status(self, package):
+        try:
+            pkg = self.cache[pkg]
+            return pkg.isInstalled
+        except:
+            return False
+
     @dbus.service.method(INTERFACE,
                          in_signature='s', out_signature='s',
                          sender_keyword='sender')
