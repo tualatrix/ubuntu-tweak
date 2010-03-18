@@ -1,0 +1,53 @@
+#!/usr/bin/python
+
+# Ubuntu Tweak - PyGTK based desktop configuration tool
+#
+# Copyright (C) 2007-2010 TualatriX <tualatrix@gmail.com>
+#
+# Ubuntu Tweak is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# Ubuntu Tweak is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
+
+import sys
+
+from ubuntutweak.policykit import proxy
+from ubuntutweak.common.notify import notify
+from ubuntutweak.modules import TweakModule
+
+class UtUrl(TweakModule):
+    __title__ = 'UT Url'
+    __desc__ = 'A easy way to install application from utcom'
+
+    def __init__(self, package):
+        TweakModule.__init__(self, 'uturl.ui')
+
+        self.header_label.set_markup('<big>Install additional software?</big>')
+        self.body_label.set_text('Do you want to install package "%s"?' % package)
+
+    def run(self):
+        self.confirmation_dialog.run()
+
+    def destroy(self):
+        self.confirmation_dialog.destroy()
+
+package = sys.argv[1].split(':')[1]
+
+installed = proxy.get_package_status(package)
+
+if installed:
+    notify.update('"%s" is already installed.' % package)
+    notify.show()
+else:
+    uturl = UtUrl(package)
+    response = uturl.run()
+    uturl.destroy()

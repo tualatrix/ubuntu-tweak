@@ -7,7 +7,7 @@ setup(name='ubuntu-tweak',
       author='TualatriX',  
       author_email='tualatrix@gmail.com',
       url='http://ubuntu-tweak.com',
-      scripts=['ubuntu-tweak'],
+      scripts=['ubuntu-tweak', 'uturl'],
       packages=[
           'ubuntutweak',
           'ubuntutweak.conf',

@@ -167,9 +167,11 @@ class Daemon(PolicyKitService):
                          in_signature='s', out_signature='b')
     def get_package_status(self, package):
         try:
-            pkg = self.cache[pkg]
+            pkg = self.cache[package]
             return pkg.isInstalled
-        except:
+        except Exception, e:
+            print e
+        else:
             return False
 
     @dbus.service.method(INTERFACE,
