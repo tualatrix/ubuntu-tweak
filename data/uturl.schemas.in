@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<gconfschemafile>
+  <schemalist>
+    <schema>
+      <key>/schemas/desktop/gnome/url-handlers/ut/enabled</key>
+      <applyto>/desktop/gnome/url-handlers/ut/enabled</applyto>
+      <owner>uturl</owner>
+      <type>bool</type>
+      <default>true</default>
+      <locale name="C">
+        <short>Whether the specified command should handle "ut" URLs</short>
+        <long>True if the command specified in the "command" key should handle "ut" URLs.</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/desktop/gnome/url-handlers/ut/command</key>
+      <applyto>/desktop/gnome/url-handlers/ut/command</applyto>
+      <owner>uturl</owner>
+      <type>string</type>
+      <default>uturl "%s"</default>
+      <locale name="C">
+        <short>The handler for "ut" URLs</short>
+        <long>The command used to handle "ut" URLs, if enabled.</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/desktop/gnome/url-handlers/ut/needs_terminal</key>
+      <applyto>/desktop/gnome/url-handlers/ut/needs_terminal</applyto>
+      <owner>uturl</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Run the command in a terminal</short>
+        <long>True if the command used to handle this type of URL should be run in a terminal.</long>
+      </locale>
+    </schema>
+  </schemalist>
+</gconfschemafile>

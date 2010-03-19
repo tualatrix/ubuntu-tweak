@@ -2,20 +2,30 @@ Source: ubuntu-tweak
 Section: utils
 Priority: optional
 Maintainer: TualatriX <tualatrix@gmail.com>
-Build-Depends: 
-	cdbs,
-	debhelper (>= 7),
-	quilt,
-	python,
-	python-support,
-	python-setuptools,
-	python-distutils-extra
-Standards-Version: 3.8.2
+Build-Depends: debhelper (>= 7.0.50~),
+ intltool,
+ python-central (>= 0.5.6),
+ python-dev,
+ python-setuptools,
+ python-distutils-extra
+Standards-Version: 3.8.4
 Homepage: http://ubuntu-tweak.com
 
 Package: ubuntu-tweak
 Architecture: all
-Depends: python, python-gtk2, python-apt, python-gconf, python-gnome2, python-dbus, python-xdg, gnome-desktop-data, policykit-1-gnome | policykit-1-qt, python-notify
+Depends: python,
+ python-gtk2,
+ python-apt,
+ python-gconf,
+ python-gnome2,
+ python-dbus,
+ python-xdg,
+ gnome-desktop-data,
+ policykit-1-gnome | policykit-1-qt,
+ python-notify,
+ ${python:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends}
 Description: config Ubuntu tool
  Ubuntu Tweak is an application designed to config Ubuntu easier for everyone.
  .
