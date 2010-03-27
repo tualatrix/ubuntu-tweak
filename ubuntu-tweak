@@ -19,14 +19,20 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import os
+import sys
 import gtk
-import thread
 import gobject
+import dbus
+import dbus.service
+import dbus.mainloop.glib
+
+gobject.threads_init()
+dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
+dbus.mainloop.glib.threads_init()
 
 from ubuntutweak.common.consts import DATA_DIR
 from ubuntutweak.common.debug import run_traceback
 from ubuntutweak.common.config import TweakSettings
-from ubuntutweak.widgets.dialogs import ErrorDialog
 
 try:
     import dl
@@ -35,32 +41,34 @@ try:
 except:
     pass
 
-class TweakLauncher:
-    def __init__(self):
-        thread.start_new_thread(self.show_splash, ())
+LAUNCHER_DBUS_IFACE = 'com.ubuntu_tweak.TweakLauncher'
+LAUNCHER_DBUS_PATH = '/com/ubuntu_tweak/TweakLauncher'
 
-        from ubuntutweak.mainwindow import MainWindow
-        window = MainWindow()
+def show_splash():
+    win = gtk.Window(gtk.WINDOW_POPUP)
+    win.set_position(gtk.WIN_POS_CENTER)
 
-    def show_splash(self):
-        gtk.gdk.threads_enter()
-        win = gtk.Window(gtk.WINDOW_POPUP)
-        win.set_position(gtk.WIN_POS_CENTER)
+    vbox = gtk.VBox(False, 0)
+    image = gtk.Image()
+    image.set_from_file(os.path.join(DATA_DIR, 'pixmaps/splash.png'))
 
-        vbox = gtk.VBox(False, 0)
-        image = gtk.Image()
-        image.set_from_file(os.path.join(DATA_DIR, 'pixmaps/splash.png'))
+    vbox.pack_start(image)
+    win.add(vbox)
 
-        vbox.pack_start(image)
-        win.add(vbox)
+    win.show_all()
 
-        win.show_all()
+    while gtk.events_pending():
+        gtk.main_iteration()
 
-        while gtk.events_pending():
-            gtk.main_iteration()
+    win.destroy()
 
-        win.destroy()
-        gtk.gdk.threads_leave()
+class TweakLauncher(dbus.service.Object):
+    def __init__(self, session_bus, window):
+
+        bus_name = dbus.service.BusName(LAUNCHER_DBUS_IFACE, bus=session_bus)
+        dbus.service.Object.__init__(self, bus_name, LAUNCHER_DBUS_PATH)
+
+        self.window = window
 
     def main(self):
         gtk.gdk.threads_enter()
@@ -70,10 +78,25 @@ class TweakLauncher:
         gtk.main()
         gtk.gdk.threads_leave()
 
+    @dbus.service.method(dbus_interface=LAUNCHER_DBUS_IFACE)
+    def show_window(self):
+        self.window.present()
+
 if __name__ == "__main__":
-    try:
-        gobject.threads_init()
-        launcher = TweakLauncher()
-        launcher.main()
-    except:
-		run_traceback('fatal')
+    show_splash()
+    session_bus = dbus.SessionBus()
+
+    if session_bus.request_name(LAUNCHER_DBUS_IFACE) != \
+            dbus.bus.REQUEST_NAME_REPLY_PRIMARY_OWNER:
+        method = session_bus.get_object(LAUNCHER_DBUS_IFACE,
+                                        LAUNCHER_DBUS_PATH)\
+                                                .get_dbus_method("show_window")
+        method()
+        sys.exit(1)
+    else:
+        try:
+            from ubuntutweak.mainwindow import MainWindow
+            launcher = TweakLauncher(session_bus, MainWindow())
+            launcher.main()
+        except:
+            run_traceback('fatal')
