@@ -25,7 +25,9 @@ import gtk
 import gobject
 import time
 
-from ubuntutweak.conf import GconfSetting, SystemGconfSetting
+from ubuntutweak.conf import GconfSetting
+from ubuntutweak.conf import SystemGconfSetting
+from ubuntutweak.conf import UserGconfSetting
 from ubuntutweak.policykit import PolkitButton, proxy
 
 class GconfCheckButton(gtk.CheckButton):
@@ -62,6 +64,22 @@ class SystemGconfCheckButton(gtk.CheckButton):
     def button_toggled(self, widget):
         self.__setting.set_value(self.get_active())
         
+class UserGconfCheckButton(gtk.CheckButton):
+    def __init__(self, user=None, label=None, key=None, default=None, tooltip=None):
+        super(UserGconfCheckButton, self).__init__()
+        self.__setting = UserGconfSetting(key, default)
+        self.__user = user
+
+        self.set_label(label)
+        self.set_active(self.__setting.get_value(self.__user))
+        if tooltip:
+            self.set_tooltip_text(tooltip)
+
+        self.connect('toggled', self.button_toggled)
+
+    def button_toggled(self, widget):
+        self.__setting.set_value(self.__user, self.get_active())
+
 class StrGconfCheckButton(GconfCheckButton):
     '''This class use to moniter the key with StringSetting, nothing else'''
     def __init__(self, **kwargs):

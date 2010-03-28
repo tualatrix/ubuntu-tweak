@@ -126,3 +126,17 @@ class SystemGconfSetting(GconfSetting):
             proxy.set_system_gconf(self.get_key(), 'true', 'bool', '')
         else:
             proxy.set_system_gconf(self.get_key(), 'false', 'bool', '')
+
+class UserGconfSetting(GconfSetting):
+    def get_value(self, user):
+        data = proxy.get_user_gconf(user, self.get_key())
+        if str(data).startswith('true'):
+            return True
+        else:
+            return False
+
+    def set_value(self, user, value):
+        if value:
+            proxy.set_user_gconf(user, self.get_key(), 'true', 'bool', '')
+        else:
+            proxy.set_user_gconf(user, self.get_key(), 'false', 'bool', '')

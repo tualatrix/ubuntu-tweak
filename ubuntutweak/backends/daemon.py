@@ -277,6 +277,28 @@ class Daemon(PolicyKitService):
         return cmd.read()
 
     @dbus.service.method(INTERFACE,
+                         in_signature='ss', out_signature='s')
+    def get_user_gconf(self, user, key):
+        command = 'sudo -u %s gconftool-2 --get %s' % (user, key)
+        cmd = os.popen(command)
+        return cmd.read()
+
+    @dbus.service.method(INTERFACE,
+                         in_signature='sssss', out_signature='s',
+                         sender_keyword='sender')
+    def set_user_gconf(self, user, key, value, type, list_type='', sender=None):
+        self._check_permission(sender)
+        command = 'sudo -u %s gconftool-2 --type %s' % (user, type)
+        if list_type == '':
+            command = '%s --set %s %s' % (command, key, value)
+        else:
+            command = '%s --type %s --list-type %s --set %s %s' % (command,
+                                                                   list_type,
+                                                                   key, value)
+        cmd = os.popen(command)
+        return cmd.read()
+
+    @dbus.service.method(INTERFACE,
                          in_signature='s', out_signature='s')
     def get_system_gconf(self, key):
         command = 'gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults --get %s' % key
