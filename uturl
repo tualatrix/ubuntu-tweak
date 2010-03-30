@@ -30,6 +30,7 @@ class UtUrl(TweakModule):
 
     def __init__(self, package):
         TweakModule.__init__(self, 'uturl.ui')
+        self.confirmation_dialog.set_keep_above(True)
 
         self.header_label.set_markup('<big>Install additional software?</big>')
         self.body_label.set_text('Do you want to install package "%s"?' % package)
