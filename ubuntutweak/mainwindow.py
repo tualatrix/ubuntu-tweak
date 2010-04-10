@@ -28,6 +28,7 @@ import webbrowser
 
 from ubuntutweak.utils import icon
 from ubuntutweak import modules
+from ubuntutweak.policykit import proxy
 from ubuntutweak.modules import TweakModule, ModuleLoader
 from ubuntutweak.common.consts import APP, VERSION
 from ubuntutweak.common.debug import run_traceback
@@ -225,6 +226,8 @@ class MainWindow(gtk.Window):
                 self.__create_newpage(launch)
         except:
             pass
+
+        proxy.enable_stable_source()
 		
     def on_d_clicked(self, widget):
         webbrowser.open('http://ubuntu-tweak.com/donate/')
@@ -473,15 +476,8 @@ You should have received a copy of the GNU General Public License along with Ubu
     def destroy(self, widget):
         self.do_notify()
         self.save_gui_state()
+        proxy.exit()
         gtk.main_quit()
-        self.quit_daemon()
-
-    def quit_daemon(self):
-        try:
-            from ubuntutweak.policykit import proxy
-            proxy.exit()
-        except:
-            pass
 
     def prepare_notify(self, data):
         self.notify_func = data

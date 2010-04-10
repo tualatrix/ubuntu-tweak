@@ -24,6 +24,7 @@ import tempfile
 from subprocess import PIPE
 from aptsources.sourceslist import SourceEntry, SourcesList
 from ubuntutweak.backends import PolicyKitService
+from ubuntutweak.common.systeminfo import module_check
 
 apt_pkg.init()
 
@@ -145,6 +146,20 @@ class Daemon(PolicyKitService):
                 self.list.remove(entry)
 
         self.list.save()
+
+    @dbus.service.method(INTERFACE,
+                         in_signature='', out_signature='')
+    def enable_stable_source(self):
+        self.list.refresh()
+        stable_url = 'http://ppa.launchpad.net/tualatrix/ppa/ubuntu'
+
+        for source in self.list:
+            if stable_url in source.str() and source.type == 'deb':
+                return
+
+        self.set_separated_entry(stable_url, module_check.get_codename(),
+                                 'main', 'Ubuntu Tweak Stable Source', True,
+                                 'ubuntu-tweak-stable')
 
     @dbus.service.method(INTERFACE,
                          in_signature='', out_signature='s')
