@@ -539,6 +539,7 @@ class SourceEditor(TweakModule):
 
                 iter = model.get_iter(i-1)
                 self.source_combo.set_active_iter(iter)
+                self.update_source_combo()
             self.notify_mainwindow()
             self.notify_sourcecenter()
 
