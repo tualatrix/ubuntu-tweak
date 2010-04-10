@@ -19,36 +19,79 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import sys
+import dbus
+import dbus.service
+import dbus.mainloop.glib
+import gobject
+import pynotify
+
+gobject.threads_init()
+dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
+dbus.mainloop.glib.threads_init()
 
 from ubuntutweak.policykit import proxy
 from ubuntutweak.common.notify import notify
-from ubuntutweak.modules import TweakModule
+from ubuntutweak.common.gui import GuiWorker
+from ubuntutweak.widgets.dialogs import InfoDialog
 
-class UtUrl(TweakModule):
-    __title__ = 'UT Url'
-    __desc__ = 'A easy way to install application from utcom'
+UTURL_DBUS_IFACE = 'com.ubuntu_tweak.UtUrl'
+UTURL_DBUS_PATH = '/com/ubuntu_tweak/UtUrl'
 
-    def __init__(self, package):
-        TweakModule.__init__(self, 'uturl.ui')
-        self.confirmation_dialog.set_keep_above(True)
+class UtUrl(dbus.service.Object):
+    to_add = []
 
-        self.header_label.set_markup('<big>Install additional software?</big>')
-        self.body_label.set_text('Do you want to install package "%s"?' % package)
+    def __init__(self, session_bus):
+        bus_name = dbus.service.BusName(UTURL_DBUS_IFACE, bus=session_bus)
+        dbus.service.Object.__init__(self, bus_name, UTURL_DBUS_PATH)
+
+        self.window = GuiWorker('uturl.ui')
+        self.window.confirmation_dialog.set_keep_above(True)
+        self.window.header_label.set_markup('<big>Install additional software?</big>')
+        self.notify = notify
+
+    @dbus.service.method(dbus_interface=UTURL_DBUS_IFACE,
+                         in_signature='s', out_signature='')
+    def add_package(self, package):
+        self.to_add.append(package)
+        self.show_notify('"%s" is adding to the install list.' % package)
+
+    @dbus.service.method(dbus_interface=UTURL_DBUS_IFACE,
+                         in_signature='s', out_signature='')
+    def show_notify(self, message):
+        notify = pynotify.Notification(_('Ubuntu Tweak'), message,
+        'ubuntu-tweak')
+        notify.set_hint_string ("x-canonical-append", "");
+        notify.show()
 
     def run(self):
-        self.confirmation_dialog.run()
+        self.window.body_label.set_text('Do you want to install package "%s"?' % 
+                                 ', '.join(self.to_add))
+        self.window.confirmation_dialog.run()
 
     def destroy(self):
-        self.confirmation_dialog.destroy()
+        self.window.confirmation_dialog.destroy()
 
-package = sys.argv[1].split(':')[1]
+if __name__ == "__main__":
+    package = sys.argv[1].split(':')[1]
 
-installed = proxy.get_package_status(package)
+    installed = proxy.get_package_status(package)
 
-if installed:
-    notify.update('"%s" is already installed.' % package)
-    notify.show()
-else:
-    uturl = UtUrl(package)
-    response = uturl.run()
-    uturl.destroy()
+    session_bus = dbus.SessionBus()
+
+    if session_bus.request_name(UTURL_DBUS_IFACE) != \
+            dbus.bus.REQUEST_NAME_REPLY_PRIMARY_OWNER:
+        uturl = session_bus.get_object(UTURL_DBUS_IFACE, UTURL_DBUS_PATH)
+        if installed:
+            uturl.show_notify('"%s" is already installed.' % package)
+        else:
+            uturl.add_package(package)
+    else:
+        uturl = UtUrl(session_bus)
+
+        if installed:
+            dialog = InfoDialog('"%s" is already installed.' % package)
+            dialog.launch()
+        else:
+            uturl.add_package(package)
+            response = uturl.run()
+            uturl.destroy()

@@ -9,6 +9,7 @@ __all__ = (
 import os
 import glib
 import gettext
+import pynotify
 
 def applize(package):
     return ' '.join([a.capitalize() for a in package.split('-')])
@@ -46,3 +47,6 @@ def install_ngettext():
     gettext.textdomain(PACKAGE)
 
 init_locale()
+
+if not pynotify.init('ubuntu-tweak'):
+    sys.exit (1)

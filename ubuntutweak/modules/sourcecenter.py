@@ -28,6 +28,7 @@ import pango
 import gobject
 import apt_pkg
 import webbrowser
+import pynotify
 import urllib
 from gettext import ngettext
 from aptsources.sourceslist import SourcesList
@@ -826,9 +827,10 @@ class SourcesView(gtk.TreeView):
             self.emit('sourcechanged')
 
         if enable:
-            notify.update(_('New source has been enabled'),
-                          _('%s is enabled now, Please click the refresh button to update the application cache.') % comment)
+            notify = pynotify.Notification(_('New source has been enabled'),
+                    _('%s is enabled now, Please click the refresh button to update the application cache.') % comment)
             notify.set_icon_from_pixbuf(icon)
+            notify.set_hint_string ("x-canonical-append", "");
             notify.show()
 
 class SourceDetail(gtk.VBox):

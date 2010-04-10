@@ -6,5 +6,6 @@ class Notify(pynotify.Notification):
             return
 
         super(Notify, self).__init__('Notify')
+        self.set_hint_string('x-canonical-append', "")
 
 notify = Notify()
