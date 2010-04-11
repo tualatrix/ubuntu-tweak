@@ -37,7 +37,7 @@ def parse_codename():
         codename = os.popen('lsb_release -cs').read().strip()
         if codename in ['karmic', 'helena', 'Helena']:
             return 'karmic'
-        elif codename in ['lucid']:
+        elif codename in ['lucid', 'isadora', 'Isadora']:
             return 'lucid'
     except:
         pass
