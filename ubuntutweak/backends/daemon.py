@@ -81,6 +81,8 @@ class Daemon(PolicyKitService):
     liststate = None
     list = SourcesList()
     cache = apt.Cache()
+    PPA_URL = 'ppa.launchpad.net'
+    ppa_list = []
 
     def __init__ (self, bus, mainloop):
         bus_name = dbus.service.BusName(INTERFACE, bus=bus)
@@ -144,6 +146,31 @@ class Daemon(PolicyKitService):
                 entry.uri = entry.uri.replace(old_url, new_url)
             elif new_url in entry.uri and entry.disabled:
                 self.list.remove(entry)
+
+        self.list.save()
+
+    @dbus.service.method(INTERFACE,
+                         in_signature='', out_signature='')
+    def disable_ppa(self):
+        self.list.refresh()
+        self.ppa_list = []
+
+        for source in self.list:
+            if self.PPA_URL in source.uri and not source.disabled:
+                self.ppa_list.append(source.uri)
+                source.set_enabled(False)
+
+        self.list.save()
+
+    @dbus.service.method(INTERFACE,
+                         in_signature='', out_signature='')
+    def enable_ppa(self):
+        self.list.refresh()
+
+        for source in self.list:
+            url = source.uri
+            if self.PPA_URL in url and url in self.ppa_list:
+                source.set_enabled(True)
 
         self.list.save()
 

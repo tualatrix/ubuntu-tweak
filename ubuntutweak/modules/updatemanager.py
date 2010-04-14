@@ -18,10 +18,13 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
+from aptsources.sourceslist import SourcesList
+
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.widgets import GconfCheckButton
 from ubuntutweak.widgets.dialogs import InfoDialog
 from sourcecenter import UpdateView, refresh_source, UpdateCacheDialog
+from ubuntutweak.policykit import proxy
 
 from ubuntutweak.common.package import PACKAGE_WORKER
 
@@ -43,6 +46,11 @@ class UpdateManager(TweakModule):
                                    key='/apps/update-notifier/auto_launch')
         self.vbox1.pack_start(button, False, False, 0)
 
+        self.ppa_button = GconfCheckButton(
+                            label=_('Temporary disable PPA sources while refreshing'),
+                            key='/apps/ubuntu-tweak/disable_ppa')
+        self.vbox1.pack_start(self.ppa_button, False, False, 0)
+
         self.reparent(self.main_vbox)
 
     def update_list(self):
@@ -51,6 +59,9 @@ class UpdateManager(TweakModule):
         self.updateview.update_updates(list(PACKAGE_WORKER.get_update_package()))
 
     def on_refresh_button_clicked(self, widget):
+        if self.ppa_button.get_active():
+            proxy.disable_ppa()
+
         UpdateCacheDialog(widget.get_toplevel()).run()
 
         PACKAGE_WORKER.update_apt_cache(True)
@@ -58,9 +69,12 @@ class UpdateManager(TweakModule):
 
         new_updates = list(PACKAGE_WORKER.get_update_package())
         if new_updates:
-            self.emit('call', 'ubuntutweak.modules.sourcecenter', 'update_thirdparty', {})
             self.updateview.get_model().clear()
             self.updateview.update_updates(new_updates)
+            if self.ppa_button.get_active():
+                proxy.enable_ppa()
+            self.emit('call', 'ubuntutweak.modules.sourcecenter', 'update_thirdparty', {})
+            self.emit('call', 'ubuntutweak.modules.sourceeditor', 'update_source_combo', {})
         else:
             dialog = InfoDialog(_("Your system is clean and there's no update yet."),
                         title=_('The software information is up-to-date now'))
