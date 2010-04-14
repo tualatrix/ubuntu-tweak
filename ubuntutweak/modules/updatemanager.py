@@ -59,8 +59,10 @@ class UpdateManager(TweakModule):
         self.updateview.update_updates(list(PACKAGE_WORKER.get_update_package()))
 
     def on_refresh_button_clicked(self, widget):
+        do_ppa_disable = False
         if self.ppa_button.get_active():
             proxy.disable_ppa()
+            do_ppa_disable = True
 
         UpdateCacheDialog(widget.get_toplevel()).run()
 
@@ -71,15 +73,16 @@ class UpdateManager(TweakModule):
         if new_updates:
             self.updateview.get_model().clear()
             self.updateview.update_updates(new_updates)
-            if self.ppa_button.get_active():
-                proxy.enable_ppa()
-            self.emit('call', 'ubuntutweak.modules.sourcecenter', 'update_thirdparty', {})
-            self.emit('call', 'ubuntutweak.modules.sourceeditor', 'update_source_combo', {})
         else:
             dialog = InfoDialog(_("Your system is clean and there's no update yet."),
                         title=_('The software information is up-to-date now'))
 
             dialog.launch()
+
+        if do_ppa_disable:
+            proxy.enable_ppa()
+        self.emit('call', 'ubuntutweak.modules.sourcecenter', 'update_thirdparty', {})
+        self.emit('call', 'ubuntutweak.modules.sourceeditor', 'update_source_combo', {})
 
     def on_select_button_clicked(self, widget):
         self.updateview.select_all_action(widget.get_active())
