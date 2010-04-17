@@ -48,38 +48,51 @@ class FileChooserDialog(gtk.FileChooserDialog):
 class FileOperation:
     """Do the real operation"""
     @classmethod
+    def permission_test(cls, dest):
+        dirname = os.path.dirname(dest)
+        if not os.access(dirname, os.R_OK | os.W_OK | os.X_OK):
+            ErrorDialog(_("You don't have permission to write in %s") % dirname).launch()
+            return False
+        else:
+            return True
+
+    @classmethod
     def do_copy(cls, source, dest):
-        if os.path.isfile(source):
-            if not os.path.exists(dest):
-                shutil.copy(source, dest)
-            else:
-                ErrorDialog(_('The file "%s" already exists!') % dest).launch()
-        elif os.path.isdir(source):
-            if not os.path.exists(dest):
-                shutil.copytree(source, dest)
-            else:
-                ErrorDialog(_('The folder "%s" already exists!') % dest).launch()
+        if cls.permission_test(dest):
+            if os.path.isfile(source):
+                if not os.path.exists(dest):
+                    shutil.copy(source, dest)
+                else:
+                    ErrorDialog(_('The file "%s" already exists!') % dest).launch()
+            elif os.path.isdir(source):
+                if not os.path.exists(dest):
+                    shutil.copytree(source, dest)
+                else:
+                    ErrorDialog(_('The folder "%s" already exists!') % dest).launch()
 
     @classmethod
     def do_move(cls, source, dest):
-        if not os.path.exists(dest):
-            shutil.move(source, dest)
-        else:
-            ErrorDialog(_('The target "%s" already exists!') % dest).launch()
+        if cls.permission_test(dest):
+            if not os.path.exists(dest):
+                shutil.move(source, dest)
+            else:
+                ErrorDialog(_('The target "%s" already exists!') % dest).launch()
 
     @classmethod
     def do_link(cls, source, dest):
-        if not os.path.exists(dest):
-            os.symlink(source, dest)
-        else:
-            ErrorDialog(_('The target "%s" already exists!') % dest).launch()
+        if cls.permission_test(dest):
+            if not os.path.exists(dest):
+                os.symlink(source, dest)
+            else:
+                ErrorDialog(_('The target "%s" already exists!') % dest).launch()
 
     @classmethod
     def do_hard_link(cls, source, dest):
-        if not os.path.exists(dest):
-            os.link(source, dest)
-        else:
-            ErrorDialog(_('The target "%s" already exists!') % dest).launch()
+        if cls.permission_test(dest):
+            if not os.path.exists(dest):
+                os.link(source, dest)
+            else:
+                ErrorDialog(_('The target "%s" already exists!') % dest).launch()
 
 
     @classmethod
