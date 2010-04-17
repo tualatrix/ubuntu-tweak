@@ -28,6 +28,19 @@ from ubuntutweak.common.systeminfo import module_check
 
 apt_pkg.init()
 
+PPA_KEY = '''-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: SKS 1.0.10
+
+mI0ESXTUHwEEAMtdNPmcgQcoPN3JcUcRrmdm1chJSmX6gj28OamOgE3Nxp3XgkDdg/vLFPv6
+Tk8zIMxQnvuSpuG1YGp3x8atcKlQAlEHncAo27Vlio6pk8jG+qipDBKq7X7FyXE6X9Peg/k7
+t7eXMLwH6ZJFN6IEmvPRTsiiQEd/dXRRuIRhPHirABEBAAG0G0xhdW5jaHBhZCBQUEEgZm9y
+IFR1YWxhdHJpWIi2BBMBAgAgBQJJdNQfAhsDBgsJCAcDAgQVAggDBBYCAwECHgECF4AACgkQ
+avDhlAYkoiC8mAQAmaxr4Kw/R2WZKde7MfbTPy7O9YoL/NQeThYGwxX6ICVr0IZUj9nxFQ/v
+tmhZ59p53bpdR8jpPXjdDwjZIIlxTf72Fky6Ri3/zsC4YRD6idS4c4L50dTy74W6IabCt8GQ
+LtJy5YASlEp5OGwRNptRSFxVE59LuOPRo2kvLIAa0Dc=
+=3itC
+-----END PGP PUBLIC KEY BLOCK-----'''
+
 class AptAuth:
     def __init__(self):
         self.gpg = ["/usr/bin/gpg"]
@@ -187,6 +200,7 @@ class Daemon(PolicyKitService):
         self.set_separated_entry(stable_url, module_check.get_codename(),
                                  'main', 'Ubuntu Tweak Stable Source', True,
                                  'ubuntu-tweak-stable')
+        self.add_apt_key_from_content(PPA_KEY)
 
     @dbus.service.method(INTERFACE,
                          in_signature='', out_signature='s')
