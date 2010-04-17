@@ -105,10 +105,8 @@ class OpacityMenu(gtk.CheckButton, CompizSetting):
     def __init__(self, label):
         gtk.CheckButton.__init__(self, label)
 
-        if ccm.Version > '0.7.6':
-            self.plugin = self.get_plugin('obs')
-        else:
-            self.plugin = self.get_plugin('core')
+        self.plugin = self.get_plugin('obs')
+
         if not self.plugin.Enabled:
             self.plugin.Enabled = 1
             self.context.Write()
@@ -318,6 +316,9 @@ class Compiz(TweakModule, CompizSetting):
             widget.previous = None
         else:
             plugin = self.context.Plugins[text]
+            if not plugin.Enabled:
+                plugin.Enabled = True
+                self.context.Write()
             setting = plugin.Display[plugins_settings[text]]
             setting.Value = edge
             self.context.Write()
@@ -334,9 +335,6 @@ class Compiz(TweakModule, CompizSetting):
             if self.context.Plugins.has_key(k):
                 plugin = self.context.Plugins[k]
                 combobox.append_text(plugins[k])
-                if not plugin.Enabled:
-                    plugin.Enabled = True
-                    self.context.Write()
                 setting = plugin.Display[v]
                 if setting.Value == edge:
                     combobox.previous = k
