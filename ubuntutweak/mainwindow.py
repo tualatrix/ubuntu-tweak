@@ -25,6 +25,7 @@ import gtk
 import pango
 import gobject
 import webbrowser
+import logging
 
 from ubuntutweak.utils import icon
 from ubuntutweak import modules
@@ -37,6 +38,8 @@ from ubuntutweak.widgets.dialogs import QuestionDialog
 from ubuntutweak.network.downloadmanager import DownloadDialog
 from ubuntutweak.preferences import PreferencesDialog
 from ubuntutweak.common.utils import set_label_for_stock_button
+
+log = logging.getLogger("MainWindow")
 
 class Tip(gtk.HBox):
     def __init__(self, tip):
@@ -218,6 +221,7 @@ class MainWindow(gtk.Window):
         self.show_all()
 
         if TweakSettings.get_check_update():
+            log.debug("get_check_update will start after 5 seconds")
             gobject.timeout_add(5000, self.on_timeout)
 
         launch = TweakSettings.get_default_launch()

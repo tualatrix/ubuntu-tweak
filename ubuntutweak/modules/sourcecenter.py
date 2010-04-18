@@ -27,6 +27,7 @@ import subprocess
 import pango
 import gobject
 import apt_pkg
+import logging
 import webbrowser
 import pynotify
 import urllib
@@ -49,6 +50,8 @@ from ubuntutweak.common.package import PACKAGE_WORKER, PackageInfo
 from ubuntutweak.common.notify import notify
 from ubuntutweak.common.misc import URLLister
 from ubuntutweak.common.systeminfo import module_check
+
+log = logging.getLogger("SourceCenter")
 
 APP_PARSER = AppParser()
 CONFIG = Config()
@@ -950,6 +953,7 @@ class SourceCenter(TweakModule):
         UPDATE_SETTING.connect_notify(self.on_have_update, data=None)
 
         if TweakSettings.get_sync_notify():
+            log.debug('Start check update')
             thread.start_new_thread(self.check_update, ())
         gobject.timeout_add(60000, self.update_timestamp)
 

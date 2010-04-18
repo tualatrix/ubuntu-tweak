@@ -24,6 +24,9 @@ import gtk
 sys.path.insert(0, os.path.dirname(os.path.abspath('.')))
 
 from ubuntutweak.common.consts import *
+from ubuntutweak.common.debug import enable_debugging
+
+enable_debugging()
 
 class Test:
     def __init__(self, model):

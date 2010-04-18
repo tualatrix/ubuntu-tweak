@@ -19,6 +19,7 @@ VERSION = '0.5.3'
 DATA_DIR = '/usr/share/ubuntu-tweak/'
 APP = applize(PACKAGE)
 CONFIG_ROOT = os.path.join(glib.get_user_config_dir(), 'ubuntu-tweak')
+IS_INSTALLED = True
 
 if not os.path.exists(CONFIG_ROOT):
     os.mkdir(CONFIG_ROOT)
@@ -31,6 +32,7 @@ except:
 if not __file__.startswith('/usr'):
     datadir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
     DATA_DIR = os.path.join(datadir, 'data')
+    IS_INSTALLED = False
 
 def init_locale():
     global INIT

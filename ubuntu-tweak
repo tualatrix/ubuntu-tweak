@@ -22,6 +22,7 @@ import os
 import sys
 import gtk
 import gobject
+import optparse
 import dbus
 import dbus.service
 import dbus.mainloop.glib
@@ -30,8 +31,8 @@ gobject.threads_init()
 dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
 dbus.mainloop.glib.threads_init()
 
-from ubuntutweak.common.consts import DATA_DIR
-from ubuntutweak.common.debug import run_traceback
+from ubuntutweak.common.consts import DATA_DIR, IS_INSTALLED, VERSION
+from ubuntutweak.common.debug import run_traceback, enable_debugging
 from ubuntutweak.common.config import TweakSettings
 
 try:
@@ -83,6 +84,16 @@ class TweakLauncher(dbus.service.Object):
         self.window.present()
 
 if __name__ == "__main__":
+    parser = optparse.OptionParser(prog="ubuntu-tweak",
+                                   version="%%prog %s" % VERSION,
+                                   description="Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your system and desktop settings.")
+    parser.add_option("-d", "--debug", action="store_true", default=False,
+                      help="Generate more debugging information.  [default: %default]")
+    options, args = parser.parse_args()
+
+    if options.debug or not IS_INSTALLED:
+        enable_debugging()
+
     show_splash()
     session_bus = dbus.SessionBus()
 
