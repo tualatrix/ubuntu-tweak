@@ -188,6 +188,19 @@ class Daemon(PolicyKitService):
         self.list.save()
 
     @dbus.service.method(INTERFACE,
+                         in_signature='v', out_signature='')
+    def upgrade_sources(self, source_dict):
+        self.list.refresh()
+
+        for source in self.list:
+            if source.uri in source_dict:
+                source.dist = source_dict[source.uri]
+                source.comment = source.comment.split(' disabled on upgrade')[0]
+                source.set_enabled(True)
+
+        self.list.save()
+
+    @dbus.service.method(INTERFACE,
                          in_signature='', out_signature='')
     def enable_stable_source(self):
         self.list.refresh()

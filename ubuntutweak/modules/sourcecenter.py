@@ -64,6 +64,7 @@ VERSION_SETTING = GconfSetting(key='/apps/ubuntu-tweak/sourcecenter_version', ty
 
 SOURCE_ROOT = os.path.join(consts.CONFIG_ROOT, 'sourcecenter')
 SOURCE_VERSION_URL = utdata.get_version_url('/sourcecenter_version/')
+UPGRADE_DICT = {}
 
 def get_source_data_url():
     return utdata.get_download_url('/static/utdata/sourcecenter-%s.tar.gz' %
@@ -185,6 +186,8 @@ class SourceParser(Parser):
             # But here, always be distro, the only distro correspond with current
             item['fields']['distro'] = distro_values
             self[item['fields'][key]] = item['fields']
+
+            UPGRADE_DICT[item['fields']['url']] = distro_values
 
             id = item['pk']
             fields = item['fields']
@@ -950,11 +953,37 @@ class SourceCenter(TweakModule):
             thread.start_new_thread(self.check_update, ())
         gobject.timeout_add(60000, self.update_timestamp)
 
+        if self.check_source_upgradable() and UPGRADE_DICT:
+            gobject.idle_add(self.upgrade_sources)
+
         self.reparent(self.main_vbox)
+
+    def check_source_upgradable(self):
+        for source in SourcesList():
+            if 'disabled on upgrade to' in source.str() and source.disabled:
+                return True
+
+        return False
 
     def update_timestamp(self):
         self.time_label.set_text(_('Last synced:') + ' ' + utdata.get_last_synced(SOURCE_ROOT))
         return True
+
+    def upgrade_sources(self):
+        dialog = QuestionDialog(_('After a successful distribution upgrade, '
+            'the third-party sources are still remain disabled.\n'
+            'Would you like to enable the sources which disabled by Update Manager?'),
+            title=_('Some sources can be upgraded'))
+        response = dialog.run()
+        dialog.destroy()
+        if response == gtk.RESPONSE_YES:
+            proxy.upgrade_sources(UPGRADE_DICT)
+            if not self.check_source_upgradable():
+                InfoDialog(_('Upgrade Successful!')).launch()
+            else:
+                ErrorDialog(_('Upgrade Failed!')).launch()
+            self.emit('call', 'ubuntutweak.modules.sourceeditor', 'update_source_combo', {})
+            self.update_thirdparty()
 
     def on_have_update(self, client, id, entry, data):
         if entry.get_value().get_bool():
