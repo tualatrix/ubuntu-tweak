@@ -157,8 +157,8 @@ class Metacity(TweakModule):
     __category__ = 'desktop'
     __desktop__ = 'gnome'
 
-    left_default = 'close,minimize,maximize:menu'
-    right_default = 'menu:minimize,maximize,close'
+    left_default = 'close,minimize,maximize:'
+    right_default = ':minimize,maximize,close'
 
     def __init__(self):
         TweakModule.__init__(self, 'metacity.ui')
