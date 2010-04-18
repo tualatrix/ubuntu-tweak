@@ -24,6 +24,7 @@ import json
 import gobject
 import pango
 import thread
+import logging
 
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.widgets.dialogs import ErrorDialog, InfoDialog, QuestionDialog
@@ -36,6 +37,8 @@ from ubuntutweak.common import consts
 from ubuntutweak.common.config import TweakSettings
 from ubuntutweak.common.utils import set_label_for_stock_button
 from ubuntutweak.common.package import PACKAGE_WORKER, PackageInfo
+
+log = logging.getLogger("AppCenter")
 
 APPCENTER_ROOT = os.path.join(consts.CONFIG_ROOT, 'appcenter')
 APP_VERSION_URL = utdata.get_version_url('/appcenter_version/')
@@ -57,6 +60,7 @@ class StatusProvider(object):
         try:
             self.__data = json.loads(open(self.__path).read())
         except:
+            log.debug('No Status data available, set init to True')
             self.__data = {'apps': {}, 'cates': {}}
             self.__init = True
 
@@ -89,8 +93,8 @@ class StatusProvider(object):
                     self.__data['apps'][key]['read'] = False
                     self.__data['apps'][key]['cate'] = parser.get_category(key)
 
-            if init:
-                self.set_init(False)
+        if init and parser.keys():
+            self.set_init(False)
 
         self.save()
 

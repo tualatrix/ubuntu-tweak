@@ -261,6 +261,7 @@ class SourceStatus(StatusProvider):
             slug = parser.get_slug(key)
             key = slug
             if init:
+                log.debug('SourceStatus first init, set %s as read' % id)
                 self.get_data()['apps'][key] = {}
                 self.get_data()['apps'][key]['read'] = True
                 self.get_data()['apps'][key]['cate'] = parser.get_category(id)
@@ -270,8 +271,9 @@ class SourceStatus(StatusProvider):
                     self.get_data()['apps'][key]['read'] = False
                     self.get_data()['apps'][key]['cate'] = parser.get_category(id)
 
-            if init:
-                self.set_init(False)
+        if init and parser.keys():
+            log.debug('Init finish, SourceStatus set init to False')
+            self.set_init(False)
 
         self.save()
 
