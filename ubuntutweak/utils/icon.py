@@ -20,7 +20,10 @@ def get_from_list(list, size):
     else:
         return pixbuf
 
-def get_from_name(name, alter='gtk-execute', size=24):
+def get_from_name(name, alter='gtk-execute', size=24, force_reload=False):
+    if force_reload:
+        global icontheme
+        icontheme = gtk.icon_theme_get_default()
     try:
         pixbuf = icontheme.load_icon(name, size, 0)
     except:

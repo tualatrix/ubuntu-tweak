@@ -27,9 +27,10 @@ from ubuntutweak.modules  import TweakModule
 from ubuntutweak.widgets import ListPack
 from ubuntutweak.widgets.dialogs import ErrorDialog, QuestionDialog
 
+from ubuntutweak.common.systeminfo import module_check
 from ubuntutweak.common.config import TweakSettings
 from ubuntutweak.common.factory import WidgetFactory
-from ubuntutweak.common.utils import get_icon_with_name
+from ubuntutweak.utils import icon
 
 class Gnome(TweakModule):
     __title__ = _('GNOME Settings')
@@ -98,7 +99,7 @@ class Gnome(TweakModule):
 
         button = gtk.Button()
         button.connect('clicked', self.on_change_icon_clicked)
-        image = gtk.image_new_from_pixbuf(get_icon_with_name('start-here', 24))
+        image = gtk.image_new_from_pixbuf(icon.get_from_name('start-here', size=24))
         button.set_image(image)
         hbox.pack_end(button, False, False, 0)
 
@@ -116,7 +117,11 @@ class Gnome(TweakModule):
         dialog.set_current_folder(os.path.expanduser('~'))
         dialog.add_filter(filter)
 
-        dest = os.path.expanduser('~/.icons/%s/places/24/start-here.png' % self.__setting.get_icon_theme())
+        if module_check.get_codename() == 'karmic':
+            dest = os.path.expanduser('~/.icons/%s/places/24/start-here.png' % self.__setting.get_icon_theme())
+        else:
+            dest = os.path.expanduser('~/.icons/%s/apps/24/start-here.png' % self.__setting.get_icon_theme())
+
         revert_button = dialog.action_area.get_children()[-1]
         if not os.path.exists(dest):
             revert_button.set_sensitive(False)
@@ -143,7 +148,7 @@ class Gnome(TweakModule):
         elif response == gtk.RESPONSE_DELETE_EVENT:
             dialog.destroy()
             os.remove(dest)
-            image = gtk.image_new_from_pixbuf(get_icon_with_name('start-here', 24))
+            image = gtk.image_new_from_pixbuf(icon.get_from_name('start-here', size=24, force_reload=True))
             widget.set_image(image)
         else:
             dialog.destroy()
