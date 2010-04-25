@@ -1,3 +1,4 @@
+import logging
 import gconf
 
 from xml.sax import make_parser
@@ -5,6 +6,8 @@ from xml.sax.handler import ContentHandler
 from ubuntutweak.common import consts
 from ubuntutweak.policykit import proxy
 from ubuntutweak.common.systeminfo import GnomeVersion
+
+log = logging.getLogger("gconfsetting")
 
 class KeysHandler(ContentHandler):
     def __init__(self, dict):
@@ -129,14 +132,20 @@ class SystemGconfSetting(GconfSetting):
 
 class UserGconfSetting(GconfSetting):
     def get_value(self, user):
-        data = proxy.get_user_gconf(user, self.get_key())
-        if str(data).startswith('true'):
+        data = str(proxy.get_user_gconf(user, self.get_key()))
+        log.debug('UserGconfSetting get the value from proxy: %s', data)
+        if data == 'true':
             return True
-        else:
+        elif data == 'false':
             return False
+        else:
+            return data
 
     def set_value(self, user, value):
         if value:
-            proxy.set_user_gconf(user, self.get_key(), 'true', 'bool', '')
+            if type(value) == bool:
+                proxy.set_user_gconf(user, self.get_key(), 'true', 'bool', '')
+            elif type(value) == str:
+                proxy.set_user_gconf(user, self.get_key(), value, 'string', '')
         else:
             proxy.set_user_gconf(user, self.get_key(), 'false', 'bool', '')

@@ -83,18 +83,6 @@ class Session(TweakModule):
                     WidgetFactory.create("GconfCheckButton",
                                          label=_("Suppress the dialog to confirm logout, restart and shutdown action"),
                                          key="/apps/indicator-session/suppress_logout_restart_shutdown"),
-                    WidgetFactory.create("UserGconfCheckButton",
-                                         user='gdm',
-                                         label=_("Disable user list in gdm"),
-                                         key="/apps/gdm/simple-greeter/disable_user_list"),
-                    WidgetFactory.create("UserGconfCheckButton",
-                                         user='gdm',
-                                         label=_("Play sound at login"),
-                                         key="/desktop/gnome/sound/event_sounds"),
-                    WidgetFactory.create("UserGconfCheckButton",
-                                         user='gdm',
-                                         label=_("Disable showing the restart buttons"),
-                                         key="/apps/gdm/simple-greeter/disable_restart_buttons"),
                 ))
 
         self.add_start(box, False, False, 0)

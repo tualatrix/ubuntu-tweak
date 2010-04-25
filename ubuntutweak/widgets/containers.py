@@ -21,6 +21,9 @@
 import gtk
 import pango
 import gobject
+import logging
+
+log = logging.getLogger('containers')
 
 class BasePack(gtk.VBox):
     def __init__(self, title):

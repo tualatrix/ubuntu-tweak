@@ -23,12 +23,15 @@ pygtk.require("2.0")
 import os
 import gtk
 import gobject
+import logging
 import time
 
 from ubuntutweak.conf import GconfSetting
 from ubuntutweak.conf import SystemGconfSetting
 from ubuntutweak.conf import UserGconfSetting
 from ubuntutweak.policykit import PolkitButton, proxy
+
+log = logging.getLogger('widgets')
 
 class GconfCheckButton(gtk.CheckButton):
     def __init__(self, label=None, key=None, default=None, tooltip=None):

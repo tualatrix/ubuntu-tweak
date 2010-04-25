@@ -343,14 +343,23 @@ class Daemon(PolicyKitService):
     def exec_command(self, command, sender=None):
         self._check_permission(sender)
         cmd = os.popen(command)
-        return cmd.read()
+        return cmd.read().strip()
+
+    @dbus.service.method(INTERFACE,
+                         in_signature='s', out_signature='s')
+    def get_as_tempfile(self, path):
+        f = tempfile.NamedTemporaryFile()
+        new_path = f.name
+        f.close()
+        os.popen('cp %s %s' % (path, new_path))
+        return new_path
 
     @dbus.service.method(INTERFACE,
                          in_signature='ss', out_signature='s')
     def get_user_gconf(self, user, key):
         command = 'sudo -u %s gconftool-2 --get %s' % (user, key)
         cmd = os.popen(command)
-        return cmd.read()
+        return cmd.read().strip()
 
     @dbus.service.method(INTERFACE,
                          in_signature='sssss', out_signature='s',
@@ -365,14 +374,14 @@ class Daemon(PolicyKitService):
                                                                    list_type,
                                                                    key, value)
         cmd = os.popen(command)
-        return cmd.read()
+        return cmd.read().strip()
 
     @dbus.service.method(INTERFACE,
                          in_signature='s', out_signature='s')
     def get_system_gconf(self, key):
         command = 'gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults --get %s' % key
         cmd = os.popen(command)
-        return cmd.read()
+        return cmd.read().strip()
 
     @dbus.service.method(INTERFACE,
                          in_signature='ssss', out_signature='s',
@@ -384,7 +393,7 @@ class Daemon(PolicyKitService):
         else:
             command = 'gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults --type %s --list-type %s --set %s %s' % (type, list_type, key, value)
         cmd = os.popen(command)
-        return cmd.read()
+        return cmd.read().strip()
 
     @dbus.service.method(INTERFACE,
                          in_signature='', out_signature='')
