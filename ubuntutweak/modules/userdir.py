@@ -131,9 +131,7 @@ class UserdirFile(IniFile):
         return gettext.gettext(string.title())
 
 class UserdirView(gtk.TreeView):
-    __gsignals__ = {
-            'changed': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, ())
-            }
+
     def __init__(self):
         gtk.TreeView.__init__(self)
 
@@ -166,7 +164,6 @@ class UserdirView(gtk.TreeView):
             fullpath = dialog.get_filename()
             folder = self.uf.set_userdir(userdir, fullpath)
             model.set_value(iter, COLUMN_PATH, folder)
-            self.emit('changed')
 
         dialog.destroy()
 
@@ -189,8 +186,6 @@ class UserdirView(gtk.TreeView):
             elif os.path.isfile(newdir):
                 os.remove(newdir)
                 os.mkdir(newdir)
-
-            self.emit('changed')
 
         dialog.destroy()
 
@@ -255,23 +250,30 @@ class UserDir(TweakModule):
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         self.add_start(sw, True, True, 0)
 
-        dirview = UserdirView()
-        sw.add(dirview)
+        self.dirview = UserdirView()
+        self.dirview.get_selection().connect('changed', self.on_selection_changed)
+        sw.add(self.dirview)
 
-        hbox = gtk.HBox(False, 0)
+        hbox = gtk.HBox(False, 12)
         self.add_start(hbox, False, False, 0)
 
-        button = gtk.Button(stock = gtk.STOCK_REFRESH)
-        button.set_sensitive(False)
-        button.connect("clicked", self.on_refresh_clicked)
-        hbox.pack_end(button, False, False, 0)
+        self.restore_button = gtk.Button(_('_Restore'))
+        self.restore_button.set_sensitive(False)
+        self.restore_button.connect('clicked', self.on_restore_button_clicked)
+        hbox.pack_end(self.restore_button, False, False, 0)
 
-        dirview.connect('changed', self.on_dirview_changed, button)
+        self.change_button = gtk.Button(_('_Change'))
+        self.change_button.set_sensitive(False)
+        self.change_button.connect('clicked', self.on_change_button_clicked)
+        hbox.pack_end(self.change_button, False, False, 0)
 
-    def on_refresh_clicked(self, widget):
-        os.system('xdg-user-dirs-gtk-update &')
-        InfoDialog(_("Update successful!")).launch()
-        widget.set_sensitive(False)
+    def on_change_button_clicked(self, widget):
+        self.dirview.on_change_directory(widget)
 
-    def on_dirview_changed(self, widget, button):
-        button.set_sensitive(True)
+    def on_restore_button_clicked(self, widget):
+        self.dirview.on_restore_directory(widget)
+
+    def on_selection_changed(self, widget):
+        if widget.get_selected():
+            self.change_button.set_sensitive(True)
+            self.restore_button.set_sensitive(True)
