@@ -93,8 +93,8 @@ def refresh_source(parent):
         if new_updates:
             updateview.update_updates(new_updates)
 
-        dialog = QuestionDialog(_('You can install the new applications by selecting them and choose "Yes".\nOr you can install them at Add/Remove by choose "No".'),
-                title=_('New applications are available to update'))
+        dialog = QuestionDialog(_('You can install new applications by selecting them and choosing "Yes".\nOr you can install them at Add/Remove by choosing "No".'),
+                title=_('New applications are available'))
 
         vbox = dialog.vbox
         sw = gtk.ScrolledWindow()
@@ -128,8 +128,8 @@ def refresh_source(parent):
 
         return True
     else:
-        dialog = InfoDialog(_("Your system is clean and there's no update yet."),
-                        title=_('The software information is up-to-date now'))
+        dialog = InfoDialog(_("Your system is clean and there are no updates yet."),
+                        title=_('Software information is now up-to-date'))
 
         dialog.launch()
         return False
@@ -364,7 +364,7 @@ class UpdateView(AppView):
             model.set(iter,
                       self.COLUMN_DISPLAY,
                         '<span size="large" weight="bold">%s</span>' %
-                        _('No Available Package Update'))
+                        _('No Available Package Updates'))
 
     def select_all_action(self, active):
         self.to_rm = []
@@ -892,10 +892,10 @@ class SourceDetail(gtk.VBox):
 
 class SourceCenter(TweakModule):
     __title__  = _('Source Center')
-    __desc__ = _('A source center to keep your applications always up-to-date.\n'
-                 'You can also get the application which isn\'t in the official repository.\n'
-                 'Data will be automatically synchronized with the remote side.\n'
-                 'You can click the "Sync" button to check the update manually.')
+    __desc__ = _('A collection of software sources to ensure your applications are always up-to-date.\n'
+                 'Here you can also add applications which are unavailable in the offical repositories.\n'
+                 'The list of available sources will be obtained automatically from a remote server.\n'
+                 'You can click the "Sync" button to manually check for updates')
     __icon__ = 'software-properties'
     __url__ = 'http://ubuntu-tweak.com/source/'
     __urltitle__ = _('Visit online Source Center')
@@ -979,8 +979,8 @@ class SourceCenter(TweakModule):
 
     def upgrade_sources(self):
         dialog = QuestionDialog(_('After a successful distribution upgrade, '
-            'the third-party sources are still remain disabled.\n'
-            'Would you like to enable the sources which disabled by Update Manager?'),
+            'any third-party sources you use will be disabled by default.\n'
+            'Would you like to re-enable any sources disabled by Update Manager?'),
             title=_('Some sources can be upgraded'))
         response = dialog.run()
         dialog.destroy()
@@ -996,7 +996,7 @@ class SourceCenter(TweakModule):
     def on_have_update(self, client, id, entry, data):
         if entry.get_value().get_bool():
             if self.check_update():
-                dialog = QuestionDialog(_('New sources data available, would you like to update?'))
+                dialog = QuestionDialog(_('New source data available, would you like to update?'))
                 response = dialog.run()
                 dialog.destroy()
 
@@ -1108,7 +1108,7 @@ class SourceCenter(TweakModule):
             utdata.save_synced_timestamp(SOURCE_ROOT)
             self.update_timestamp()
         elif widget.error:
-            ErrorDialog(_('Some error happened while downloading the file')).launch()
+            ErrorDialog(_('An error occurred whilst downloading the file')).launch()
 
     def update_source_data(self):
         global SOURCE_PARSER

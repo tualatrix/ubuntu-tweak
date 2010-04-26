@@ -1,4 +1,4 @@
-#!/usr/bin/python
+n#!/usr/bin/python
 
 # Ubuntu Tweak - PyGTK based desktop configuration tool
 #
@@ -42,12 +42,12 @@ class UpdateManager(TweakModule):
         self.update_list()
         self.sw1.add(self.updateview)
 
-        button = GconfCheckButton(label=_('Enable the auto launch of System Update Manager'), 
+        button = GconfCheckButton(label=_('Enable auto-start of System Update Manager'), 
                                    key='/apps/update-notifier/auto_launch')
         self.vbox1.pack_start(button, False, False, 0)
 
         self.ppa_button = GconfCheckButton(
-                            label=_('Temporary disable PPA sources while refreshing'),
+                            label=_('Temporarily disable PPA sources whilst refreshing'),
                             key='/apps/ubuntu-tweak/disable_ppa')
         self.vbox1.pack_start(self.ppa_button, False, False, 0)
 
@@ -74,8 +74,8 @@ class UpdateManager(TweakModule):
             self.updateview.get_model().clear()
             self.updateview.update_updates(new_updates)
         else:
-            dialog = InfoDialog(_("Your system is clean and there's no update yet."),
-                        title=_('The software information is up-to-date now'))
+            dialog = InfoDialog(_("Your system is clean and no updates are available."),
+                        title=_('Software information is now up-to-date'))
 
             dialog.launch()
 
