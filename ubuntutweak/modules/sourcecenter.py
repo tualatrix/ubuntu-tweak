@@ -966,7 +966,9 @@ class SourceCenter(TweakModule):
 
     def check_source_upgradable(self):
         for source in SourcesList():
-            if 'disabled on upgrade to' in source.str() and source.disabled:
+            if 'disabled on upgrade to' in source.str() and \
+                    source.uri in UPGRADE_DICT and \
+                    source.disabled:
                 return True
 
         return False
