@@ -47,7 +47,7 @@ class UpdateManager(TweakModule):
         self.vbox1.pack_start(button, False, False, 0)
 
         self.ppa_button = GconfCheckButton(
-                            label=_('Temporarily disable PPA sources whilst refreshing'),
+                            label=_('Temporarily disable third-party PPA sources whilst refreshing'),
                             key='/apps/ubuntu-tweak/disable_ppa')
         self.vbox1.pack_start(self.ppa_button, False, False, 0)
 
