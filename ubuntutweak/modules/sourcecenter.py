@@ -93,7 +93,7 @@ def refresh_source(parent):
         if new_updates:
             updateview.update_updates(new_updates)
 
-        dialog = QuestionDialog(_('You can install new applications by selecting them and choosing "Yes".\nOr you can install them at Add/Remove by choosing "No".'),
+        dialog = QuestionDialog(_('You can install new applications by selecting them and choosing "Yes".\nOr you can install them at Application Center by choosing "No".'),
                 title=_('New applications are available'))
 
         vbox = dialog.vbox
