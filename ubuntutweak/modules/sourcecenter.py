@@ -981,7 +981,7 @@ class SourceCenter(TweakModule):
         dialog = QuestionDialog(_('After a successful distribution upgrade, '
             'any third-party sources you use will be disabled by default.\n'
             'Would you like to re-enable any sources disabled by Update Manager?'),
-            title=_('Some sources can be upgraded'))
+            title=_('Upgrade Third Party Sources'))
         response = dialog.run()
         dialog.destroy()
         if response == gtk.RESPONSE_YES:

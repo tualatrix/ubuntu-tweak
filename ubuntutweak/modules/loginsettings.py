@@ -36,7 +36,7 @@ log = logging.getLogger('LoginSettings')
 
 class LoginSettings(TweakModule):
     __title__ = _('Login Settings')
-    __desc__ = _('Control your login screen\'s theme and behavior')
+    __desc__ = _('Control the appearance and behaviour of your login screen')
     __icon__ = 'gdm-setup'
     __category__ = 'startup'
     __desktop__ = 'gnome'
