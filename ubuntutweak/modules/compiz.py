@@ -221,6 +221,7 @@ class Compiz(TweakModule, CompizSetting):
     __desc__ = _('Settings for some amazing desktop eye-candy')
     __icon__ = ['compiz', 'wmtweaks']
     __category__ = 'desktop'
+    __desktop__ = 'gnome'
 
     def __init__(self):
         TweakModule.__init__(self)
