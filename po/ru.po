@@ -7,33 +7,38 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-13 20:59+0800\n"
-"PO-Revision-Date: 2010-03-13 14:58+0000\n"
-"Last-Translator: Oleg Yermakov <epushiron@gmail.com>\n"
+"POT-Creation-Date: 2010-04-27 19:56+0800\n"
+"PO-Revision-Date: 2010-04-29 08:05+0000\n"
+"Last-Translator: Maxim Prokopyev <jazzelastic@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2010-03-14 01:16+0000\n"
+"X-Launchpad-Export-Date: 2010-04-29 11:40+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 "X-Poedit-Language: Russian\n"
 
-#: ../data/script-worker:139 ../data/script-worker:152
+#: ../data/script-worker:54
+#, c-format
+msgid "You don't have permission to write in %s"
+msgstr "У вас нет прав на запись в %s"
+
+#: ../data/script-worker:152 ../data/script-worker:165
 msgid "Enter your password to perform the administrative tasks"
 msgstr "Введите пароль для выполнения административных задач"
 
-#: ../data/script-worker:146
+#: ../data/script-worker:159
 msgid "Coudn't find any text editor in your system!"
-msgstr "Не удаётся найти установленный текстовый редактор"
+msgstr "Не удаётся найти установленный текстовый редактор!"
 
-#: ../data/script-worker:174
+#: ../data/script-worker:187
 msgid "Select a folder"
 msgstr "Выберите каталог"
 
-#: ../data/script-worker:204
+#: ../data/script-worker:217
 msgid "Please select a target (files or folders)."
 msgstr "Выберите объект (файлы или каталоги)."
 
@@ -96,7 +101,7 @@ msgid ""
 "the error message below:"
 msgstr ""
 "Если вы хотите помочь в решении этой проблемы, \n"
-"Нажмите <i>Отчёт</i> для отправки отчёта об ошибке. Не забудьте прикрепить "
+"нажмите <i>Отчёт</i> для отправки отчёта об ошибке. Не забудьте прикрепить "
 "следующее сообщение об ошибке:"
 
 #: ../data/ui/traceback.ui.h:6
@@ -108,7 +113,7 @@ msgid ""
 msgstr ""
 "Ubuntu Tweak вынуждена завершить работу.\n"
 "Если вы хотите помочь в решении этой проблемы,\n"
-"Нажмите <i>Отчёт</i> для отправки отчёта об ошибке. Не забудьте прикрепить "
+"нажмите <i>Отчёт</i> для отправки отчёта об ошибке. Не забудьте прикрепить "
 "следующее сообщение об ошибке:"
 
 #: ../data/ui/traceback.ui.h:9
@@ -143,7 +148,7 @@ msgid "Right"
 msgstr "Справа"
 
 #. checkbutton
-#: ../data/ui/updatemanager.ui.h:1 ../ubuntutweak/modules/sourcecenter.py:101
+#: ../data/ui/updatemanager.ui.h:1 ../ubuntutweak/modules/sourcecenter.py:106
 #: ../ubuntutweak/modules/cleaner.py:468
 msgid "Select All"
 msgstr "Выбрать все"
@@ -172,23 +177,31 @@ msgstr "_Обзор..."
 msgid "_Use a custom command"
 msgstr "Использовать собственную команду"
 
-#: ../ubuntutweak/mainwindow.py:66
+#: ../data/ui/loginsettings.ui.h:1
+msgid "Click the button to change the login screen background"
+msgstr "Нажмите кнопку, чтобы изменить фон окна входа в систему"
+
+#: ../data/ui/loginsettings.ui.h:2
+msgid "Click the button to change the login screen logo"
+msgstr "Нажмите кнопку, чтобы изменить логотип окна входа в систему"
+
+#: ../ubuntutweak/mainwindow.py:72
 msgid "Welcome to"
 msgstr "Добро пожаловать в"
 
-#: ../ubuntutweak/mainwindow.py:72
+#: ../ubuntutweak/mainwindow.py:78
 msgid "Tweak otherwise hidden settings."
 msgstr "Изменение скрытых настроек."
 
-#: ../ubuntutweak/mainwindow.py:73
+#: ../ubuntutweak/mainwindow.py:79
 msgid "Clean up unneeded packages to free up diskspace."
 msgstr "Удалите ненужные пакеты для освобождения места на диске"
 
-#: ../ubuntutweak/mainwindow.py:74
+#: ../ubuntutweak/mainwindow.py:80
 msgid "Easily install up-to-date versions of many applications."
 msgstr "Облегчённая установка обновлений многих программ."
 
-#: ../ubuntutweak/mainwindow.py:75
+#: ../ubuntutweak/mainwindow.py:81
 msgid ""
 "Configure file templates and shortcut scripts for easy access to common "
 "tasks."
@@ -196,91 +209,93 @@ msgstr ""
 "Добавление шаблонов новых файлов и сценариев для автоматизации рутинных "
 "задач."
 
-#: ../ubuntutweak/mainwindow.py:76
+#: ../ubuntutweak/mainwindow.py:82
 msgid "Many more useful features!"
 msgstr "Множество других полезных возможностей!"
 
-#: ../ubuntutweak/mainwindow.py:89
+#: ../ubuntutweak/mainwindow.py:93
 msgid "Please wait a moment..."
 msgstr "Пожалуйста, подождите..."
 
-#: ../ubuntutweak/mainwindow.py:109
+#: ../ubuntutweak/mainwindow.py:113
 msgid "This module encountered an error while loading."
 msgstr "Произошла ошибка при загрузке этого модуля."
 
-#: ../ubuntutweak/mainwindow.py:130
+#: ../ubuntutweak/mainwindow.py:134
 msgid "Welcome"
 msgstr "Приветствие"
 
-#: ../ubuntutweak/mainwindow.py:131
+#: ../ubuntutweak/mainwindow.py:135
 msgid "Applications"
 msgstr "Приложения"
 
-#: ../ubuntutweak/mainwindow.py:132
+#: ../ubuntutweak/mainwindow.py:136
 msgid "Startup"
 msgstr "Автозапуск"
 
-#: ../ubuntutweak/mainwindow.py:133 ../ubuntutweak/modules/userdir.py:45
+#: ../ubuntutweak/mainwindow.py:137 ../ubuntutweak/modules/userdir.py:45
 msgid "Desktop"
 msgstr "Рабочий стол"
 
-#: ../ubuntutweak/mainwindow.py:134
+#: ../ubuntutweak/mainwindow.py:138
 msgid "Personal"
 msgstr "Личные"
 
-#: ../ubuntutweak/mainwindow.py:135
+#: ../ubuntutweak/mainwindow.py:139
 msgid "System"
 msgstr "Система"
 
-#: ../ubuntutweak/mainwindow.py:143
+#: ../ubuntutweak/mainwindow.py:147
 #, python-format
 msgid "Download Ubuntu Tweak %s"
 msgstr "Загрузить Ubuntu Tweak %s"
 
-#: ../ubuntutweak/mainwindow.py:203
+#: ../ubuntutweak/mainwindow.py:207
 msgid "_Donate"
 msgstr "_Пожертвовать"
 
-#: ../ubuntutweak/mainwindow.py:422
+#: ../ubuntutweak/mainwindow.py:429
 msgid "Ubuntu Tweak Website"
 msgstr "Сайт Ubuntu Tweak"
 
-#: ../ubuntutweak/mainwindow.py:424
+#: ../ubuntutweak/mainwindow.py:431
 msgid ""
 "Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
 "system and desktop settings."
 msgstr ""
-"Ubuntu Tweak — это инструмент для Ubuntu, который позволяет настроить вашу "
+"Ubuntu Tweak — инструмент для Ubuntu, который позволяет настроить вашу "
 "систему и установки рабочего стола."
 
-#: ../ubuntutweak/mainwindow.py:426
-msgid "Contributors of 2007"
-msgstr "Спонсоры 2007 года"
-
-#: ../ubuntutweak/mainwindow.py:428
-msgid "Contributors of 2008"
-msgstr "Спонсоры 2008 года"
-
-#: ../ubuntutweak/mainwindow.py:430
-msgid "Contributors of 2009"
-msgstr "Спонсоры 2009 года"
-
 #: ../ubuntutweak/mainwindow.py:433
+msgid "Contributors of 2007"
+msgstr "Участники 2007 года"
+
+#: ../ubuntutweak/mainwindow.py:435
+msgid "Contributors of 2008"
+msgstr "Участники 2008 года"
+
+#: ../ubuntutweak/mainwindow.py:437
+msgid "Contributors of 2009"
+msgstr "Участники 2009 года"
+
+#: ../ubuntutweak/mainwindow.py:440
 msgid "Contributors of 2010"
 msgstr "Участники 2010"
 
-#: ../ubuntutweak/mainwindow.py:443
+#: ../ubuntutweak/mainwindow.py:450
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
 "  AlexHawk https://launchpad.net/~alexhawk\n"
 "  Anton Lashkov https://launchpad.net/~onto\n"
+"  Maxim Prokopyev https://launchpad.net/~xjazz\n"
 "  Oleg \"Nightwing\" Lomakin https://launchpad.net/~nightwing666\n"
 "  Oleg Yermakov https://launchpad.net/~epushiron\n"
 "  Sergey Sedov https://launchpad.net/~serg-sedov\n"
+"  jeder https://launchpad.net/~i-jeder\n"
 "  nickkon https://launchpad.net/~nickkon"
 
-#: ../ubuntutweak/mainwindow.py:457
+#: ../ubuntutweak/mainwindow.py:464
 #, python-format
 msgid ""
 "A newer version: %s is available online.\n"
@@ -295,26 +310,26 @@ msgstr ""
 "Примечание: если вы предпочитаете обновления из исходного кода, вы можете "
 "отключить эту функцию в настройках."
 
-#: ../ubuntutweak/mainwindow.py:458
+#: ../ubuntutweak/mainwindow.py:465
 msgid "Software Update"
 msgstr "Обновление программ"
 
-#: ../ubuntutweak/widgets/widgets.py:83 ../ubuntutweak/widgets/widgets.py:108
+#: ../ubuntutweak/widgets/widgets.py:104 ../ubuntutweak/widgets/widgets.py:129
 #: ../ubuntutweak/modules/icons.py:105
 msgid "Unset"
 msgstr "Не установлено"
 
-#: ../ubuntutweak/widgets/widgets.py:221
+#: ../ubuntutweak/widgets/widgets.py:242
 msgid "Please press the new key combination"
 msgstr "Нажмите новую комбинацию клавиш"
 
-#: ../ubuntutweak/widgets/widgets.py:270
+#: ../ubuntutweak/widgets/widgets.py:291
 msgid "Disabled"
 msgstr "Отключено"
 
 #: ../ubuntutweak/widgets/treeviews.py:71
 msgid "Create folder"
-msgstr "Создать папку"
+msgstr "Создать каталог"
 
 #: ../ubuntutweak/widgets/treeviews.py:75 ../ubuntutweak/modules/icons.py:33
 #: ../ubuntutweak/modules/icons.py:42 ../ubuntutweak/modules/icons.py:51
@@ -331,11 +346,11 @@ msgstr "Введите имя папки"
 
 #: ../ubuntutweak/widgets/treeviews.py:126
 msgid "Can't rename the root folder"
-msgstr "Невозможно переименовать корневую папку"
+msgstr "Невозможно переименовать корневой каталог"
 
 #: ../ubuntutweak/widgets/treeviews.py:143
 msgid "Can't delete the root folder"
-msgstr "Невозможно удалить корневую папку"
+msgstr "Невозможно удалить корневой каталог"
 
 #: ../ubuntutweak/widgets/treeviews.py:158
 msgid ""
@@ -361,7 +376,7 @@ msgstr "Вам необходимо перезагрузить компьюте�
 
 #: ../ubuntutweak/widgets/dialogs.py:146
 msgid "Service hasn't initialized yet"
-msgstr "Сервис ещё не готов"
+msgstr "Служба ещё не готова"
 
 #: ../ubuntutweak/preferences.py:75 ../ubuntutweak/modules/filetype.py:178
 #: ../ubuntutweak/modules/filetype.py:213
@@ -384,7 +399,7 @@ msgstr "Использовать раздельные источники"
 
 #: ../ubuntutweak/preferences.py:117
 msgid "Enable the synchronous notification"
-msgstr "Предлагать синхронизацию с сайтом ubuntu-tweak"
+msgstr "Предлагать синхронизацию с сайтом"
 
 #: ../ubuntutweak/preferences.py:123
 msgid "Enable new item highlight in App and Source Center"
@@ -574,17 +589,17 @@ msgstr ""
 "для включения в репозиторий Ubuntu Backports."
 
 #: ../ubuntutweak/common/package.py:172
-#: ../ubuntutweak/modules/appcenter.py:633
-#: ../ubuntutweak/modules/compiz.py:411
-#: ../ubuntutweak/modules/sourcecenter.py:120
+#: ../ubuntutweak/modules/appcenter.py:641
+#: ../ubuntutweak/modules/compiz.py:409
+#: ../ubuntutweak/modules/sourcecenter.py:125
 #: ../ubuntutweak/modules/nautilus.py:167
 msgid "Update Successful!"
 msgstr "Обновление успешно завершено!"
 
 #: ../ubuntutweak/common/package.py:174
-#: ../ubuntutweak/modules/appcenter.py:635
-#: ../ubuntutweak/modules/compiz.py:413
-#: ../ubuntutweak/modules/sourcecenter.py:122
+#: ../ubuntutweak/modules/appcenter.py:643
+#: ../ubuntutweak/modules/compiz.py:411
+#: ../ubuntutweak/modules/sourcecenter.py:127
 #: ../ubuntutweak/modules/nautilus.py:169
 msgid "Update Failed!"
 msgstr "Обновление неудачно!"
@@ -648,57 +663,61 @@ msgstr "Изображения"
 msgid "Videos"
 msgstr "Видео"
 
-#: ../ubuntutweak/modules/userdir.py:160
+#: ../ubuntutweak/modules/userdir.py:158
 msgid "Choose a folder"
 msgstr "Укажите папку"
 
-#: ../ubuntutweak/modules/userdir.py:177
+#: ../ubuntutweak/modules/userdir.py:174
 msgid ""
 "Ubuntu Tweak will restore the chosen directory to the default location.\n"
 "However, you must move your files back into place by yourself.\n"
 "Do you wish to continue?"
 msgstr ""
-"Ubuntu Tweak восстановит стандартный путь к выбранной папке.\n"
+"Ubuntu Tweak восстановит стандартный путь к выбранному каталогу.\n"
 "Тем не менее, вам придётся самостоятельно переместить файлы на старое "
 "место.\n"
 "Выполнить операцию?"
 
-#: ../ubuntutweak/modules/userdir.py:213
+#: ../ubuntutweak/modules/userdir.py:208
 msgid "Directory"
-msgstr "Папка"
+msgstr "Каталог"
 
-#: ../ubuntutweak/modules/userdir.py:227
+#: ../ubuntutweak/modules/userdir.py:222
 msgid "Path"
 msgstr "Путь"
 
-#: ../ubuntutweak/modules/userdir.py:234
+#: ../ubuntutweak/modules/userdir.py:229
 msgid "Change"
 msgstr "Изменить"
 
-#: ../ubuntutweak/modules/userdir.py:238
+#: ../ubuntutweak/modules/userdir.py:233
 msgid "Restore to default"
 msgstr "Восстановить стандартные настройки"
 
-#: ../ubuntutweak/modules/userdir.py:245
+#: ../ubuntutweak/modules/userdir.py:240
 msgid "Default Folder Locations"
-msgstr "Пути к стандартным папкам"
+msgstr "Пути к стандартным каталогам"
 
-#: ../ubuntutweak/modules/userdir.py:246
+#: ../ubuntutweak/modules/userdir.py:241
 msgid ""
 "You can change the paths of the default folders here.\n"
 "Don't change the location of your desktop folder unless you know what you "
 "are doing."
 msgstr ""
-"Здесь можно изменить пути к стандартным папкам.\n"
+"Здесь можно изменить пути к стандартным каталогам.\n"
 "Не изменяйте эти пути, если вы не уверены в своих действиях."
 
-#: ../ubuntutweak/modules/userdir.py:273
-msgid "Update successful!"
-msgstr "Успешно обновлено!"
+#: ../ubuntutweak/modules/userdir.py:260
+msgid "_Restore"
+msgstr "_Восстановить"
+
+#: ../ubuntutweak/modules/userdir.py:265
+msgid "_Change"
+msgstr "_Изменить"
 
 #: ../ubuntutweak/modules/computer.py:33
 msgid "Computer Details"
-msgstr "Инфоромация"
+msgstr "Информация"
 
 #: ../ubuntutweak/modules/computer.py:34
 msgid "Some useful system information"
@@ -754,7 +773,7 @@ msgstr "Текущий пользователь"
 
 #: ../ubuntutweak/modules/computer.py:73
 msgid "Home directory"
-msgstr "Домашняя папка"
+msgstr "Домашний каталог"
 
 #: ../ubuntutweak/modules/computer.py:74
 msgid "Shell"
@@ -831,7 +850,7 @@ msgstr ""
 "приложений вам подходит."
 
 #: ../ubuntutweak/modules/sourceeditor.py:87
-#: ../ubuntutweak/modules/sourcecenter.py:915
+#: ../ubuntutweak/modules/sourcecenter.py:929
 msgid "Details"
 msgstr "Подробности"
 
@@ -889,7 +908,7 @@ msgstr "Обновление..."
 
 #: ../ubuntutweak/modules/sourceeditor.py:352
 msgid "Source Editor"
-msgstr "Редактор репозиториев"
+msgstr "Редактор источников приложений"
 
 #: ../ubuntutweak/modules/sourceeditor.py:353
 msgid "Freely edit your software sources to fit your needs."
@@ -905,7 +924,7 @@ msgid ""
 "or you can use the official sources.\n"
 "Do you wish to use the official sources?"
 msgstr ""
-"Вы можете предоставить свои источники на наш сервер, чтобы помочь в создании "
+"Вы можете отправить свои источники на наш сервер, чтобы помочь в создании "
 "списка источников, либо вы можете использовать официальные источники.\n"
 "Вы желаете использовать официальные источники?"
 
@@ -963,27 +982,27 @@ msgstr ""
 "Файл \"%s\" будет удалён!\n"
 "Продолжить?"
 
-#: ../ubuntutweak/modules/appcenter.py:185
+#: ../ubuntutweak/modules/appcenter.py:193
 msgid "Category"
 msgstr "Категория"
 
-#: ../ubuntutweak/modules/appcenter.py:204
+#: ../ubuntutweak/modules/appcenter.py:212
 msgid "All Categories"
 msgstr "Все категории"
 
-#: ../ubuntutweak/modules/appcenter.py:492
+#: ../ubuntutweak/modules/appcenter.py:500
 msgid "Checking update..."
 msgstr "Проверка обновлений…"
 
-#: ../ubuntutweak/modules/appcenter.py:522
+#: ../ubuntutweak/modules/appcenter.py:530
 msgid "Fetching online data..."
 msgstr "Загрузка данных из сети…"
 
-#: ../ubuntutweak/modules/appcenter.py:526
+#: ../ubuntutweak/modules/appcenter.py:534
 msgid "Application Center"
 msgstr "Центр приложений"
 
-#: ../ubuntutweak/modules/appcenter.py:527
+#: ../ubuntutweak/modules/appcenter.py:535
 msgid ""
 "A simple but more efficient way for finding and installing popular "
 "applications.\n"
@@ -995,42 +1014,42 @@ msgstr ""
 "Данные будут автоматически синхронизированы с удаленным сервером\n"
 "Нажмите «Синхронизировать» для ручной проверки обновлений"
 
-#: ../ubuntutweak/modules/appcenter.py:532
+#: ../ubuntutweak/modules/appcenter.py:540
 msgid "Visit Online Application Center"
 msgstr "Посетить Центр приложений в интернете"
 
-#: ../ubuntutweak/modules/appcenter.py:538
-#: ../ubuntutweak/modules/sourcecenter.py:894
+#: ../ubuntutweak/modules/appcenter.py:546
+#: ../ubuntutweak/modules/sourcecenter.py:908
 msgid "_Sync"
 msgstr "_Синхронизировать"
 
-#: ../ubuntutweak/modules/appcenter.py:575
-#: ../ubuntutweak/modules/sourcecenter.py:950
+#: ../ubuntutweak/modules/appcenter.py:583
+#: ../ubuntutweak/modules/sourcecenter.py:977
 msgid "Last synced:"
 msgstr "Последняя синхронизация:"
 
-#: ../ubuntutweak/modules/appcenter.py:580
+#: ../ubuntutweak/modules/appcenter.py:588
 msgid "New application data available, would you like to update?"
-msgstr "Доступна новая информация о приложениях. Обновить?"
+msgstr "Доступна новая информация о приложениях, хотите обновить?"
 
-#: ../ubuntutweak/modules/appcenter.py:649
+#: ../ubuntutweak/modules/appcenter.py:657
 msgid "Update available, would you like to update?"
 msgstr "Обновления доступны, хотите обновить?"
 
-#: ../ubuntutweak/modules/appcenter.py:658
+#: ../ubuntutweak/modules/appcenter.py:666
 msgid ""
 "Network Error, please check your network connection - or the remote server "
 "may be down."
 msgstr ""
-"Ошибка сети, пожалуйста проверьте ваше подключение - или удаленный сервер "
-"может быть недоступен."
+"Ошибка сети. Проверьте ваше подключение, или удаленный сервер может быть "
+"недоступен."
 
-#: ../ubuntutweak/modules/appcenter.py:660
-#: ../ubuntutweak/modules/sourcecenter.py:1094
+#: ../ubuntutweak/modules/appcenter.py:668
+#: ../ubuntutweak/modules/sourcecenter.py:1137
 msgid "No update available."
 msgstr "Нет доступных обновлений"
 
-#: ../ubuntutweak/modules/appcenter.py:671
+#: ../ubuntutweak/modules/appcenter.py:679
 msgid "An error occurred while downloading the file."
 msgstr "Произошла ошибка в процессе загрузки файла."
 
@@ -1103,29 +1122,32 @@ msgstr "Управление любыми зарегистрированными
 
 #: ../ubuntutweak/modules/filetype.py:511
 msgid "Only show filetypes with associated applications"
-msgstr "Показывать только типы файлов ассоциированные с приложениями"
+msgstr "Показывать только типы файлов, сопоставленные с приложениями"
 
-#: ../ubuntutweak/modules/updatemanager.py:29
+#: ../ubuntutweak/modules/updatemanager.py:32
 msgid "Update Manager"
 msgstr "Менеджер обновлений"
 
-#: ../ubuntutweak/modules/updatemanager.py:30
+#: ../ubuntutweak/modules/updatemanager.py:33
 msgid "A simple and easy-to-use update manager"
 msgstr "Простой в использовании менеджер обновлений"
 
-#: ../ubuntutweak/modules/updatemanager.py:42
-msgid "Enable the auto launch of System Update Manager"
-msgstr "Разрешить автоматический запуск системного «Менеджера обновлений»"
+#: ../ubuntutweak/modules/updatemanager.py:45
+msgid "Enable auto-start of System Update Manager"
+msgstr "Включить автозапуск Менеджера Обновления Системы"
 
-#: ../ubuntutweak/modules/updatemanager.py:65
-#: ../ubuntutweak/modules/sourcecenter.py:126
-msgid "Your system is clean and there's no update yet."
-msgstr "Ваша система очищена и обновления отсутствуют."
+#: ../ubuntutweak/modules/updatemanager.py:50
+msgid "Temporarily disable third-party PPA sources whilst refreshing"
+msgstr "Пока обновляется, временно отключить сторонние источники PPA"
 
-#: ../ubuntutweak/modules/updatemanager.py:66
-#: ../ubuntutweak/modules/sourcecenter.py:127
-msgid "The software information is up-to-date now"
-msgstr "Теперь информация о программах в актуальном состоянии"
+#: ../ubuntutweak/modules/updatemanager.py:77
+msgid "Your system is clean and no updates are available."
+msgstr "Система очищена и нет новых обновлений."
+
+#: ../ubuntutweak/modules/updatemanager.py:78
+#: ../ubuntutweak/modules/sourcecenter.py:132
+msgid "Software information is now up-to-date"
+msgstr "Информация о программном обеспечении обновлена"
 
 #: ../ubuntutweak/modules/metacity.py:37
 #: ../ubuntutweak/modules/metacity.py:194
@@ -1301,90 +1323,91 @@ msgstr ""
 "Показывать содержимое домашней папки на рабочем столе (вступит в силу поле "
 "завершения сеанса)"
 
-#: ../ubuntutweak/modules/gnomesettings.py:35
+#: ../ubuntutweak/modules/gnomesettings.py:36
 msgid "GNOME Settings"
 msgstr "Настройки Gnome"
 
-#: ../ubuntutweak/modules/gnomesettings.py:36
+#: ../ubuntutweak/modules/gnomesettings.py:37
 msgid "A lot of GNOME settings for panels, menus and other desktop elements"
 msgstr ""
-"Множество настроек GNOME связанных с  панелями, меню и другими элементов "
+"Множество настроек GNOME, связанных с  панелями, меню и другими элементами "
 "рабочего стола"
 
-#: ../ubuntutweak/modules/gnomesettings.py:48
+#: ../ubuntutweak/modules/gnomesettings.py:49
 msgid "Panel Settings"
 msgstr "Настройки панели"
 
-#: ../ubuntutweak/modules/gnomesettings.py:50
+#: ../ubuntutweak/modules/gnomesettings.py:51
 msgid "Display warning when removing a panel"
 msgstr "Показывать предупреждение при удалении панели"
 
-#: ../ubuntutweak/modules/gnomesettings.py:53
+#: ../ubuntutweak/modules/gnomesettings.py:54
 msgid "Complete lockdown of all panels"
 msgstr "Заблокировать все панели"
 
-#: ../ubuntutweak/modules/gnomesettings.py:56
+#: ../ubuntutweak/modules/gnomesettings.py:57
 msgid "Enable panel animations"
 msgstr "Анимировать панели"
 
-#: ../ubuntutweak/modules/gnomesettings.py:61
+#: ../ubuntutweak/modules/gnomesettings.py:62
 msgid "Menu Settings"
 msgstr "Настройки меню"
 
-#: ../ubuntutweak/modules/gnomesettings.py:63
+#: ../ubuntutweak/modules/gnomesettings.py:64
 msgid "Show Input Method menu in the context menu"
 msgstr "Показать меню \"Метод ввода\" в контекстном меню"
 
-#: ../ubuntutweak/modules/gnomesettings.py:66
+#: ../ubuntutweak/modules/gnomesettings.py:67
 msgid "Show Unicode Control Character menu in the context menu"
 msgstr ""
 "Показать меню \"Вставить управляющий символ Юникод\" в контекстном меню"
 
-#: ../ubuntutweak/modules/gnomesettings.py:69
+#: ../ubuntutweak/modules/gnomesettings.py:70
 msgid "Show icons in menus"
 msgstr "Показывать значки в меню"
 
-#: ../ubuntutweak/modules/gnomesettings.py:72
+#: ../ubuntutweak/modules/gnomesettings.py:73
 msgid "Show icons on buttons"
 msgstr "Показывать значки на кнопках"
 
-#: ../ubuntutweak/modules/gnomesettings.py:78
+#: ../ubuntutweak/modules/gnomesettings.py:79
 msgid "Screensaver"
 msgstr "Хранитель экрана"
 
-#: ../ubuntutweak/modules/gnomesettings.py:80
+#: ../ubuntutweak/modules/gnomesettings.py:81
 msgid "Enable user switching when screen is locked."
 msgstr "Разрешить переключение пользователей, когда экран заблокирован"
 
-#: ../ubuntutweak/modules/gnomesettings.py:85
+#: ../ubuntutweak/modules/gnomesettings.py:86
 msgid "Enable system-wide \"Recent Documents\" list"
-msgstr "Включить общесистемный список «недавних документов»"
+msgstr "Включить общесистемный список недавних документов"
 
-#: ../ubuntutweak/modules/gnomesettings.py:88
+#: ../ubuntutweak/modules/gnomesettings.py:89
 msgid "History"
 msgstr "История"
 
-#: ../ubuntutweak/modules/gnomesettings.py:95
+#: ../ubuntutweak/modules/gnomesettings.py:96
 msgid "Click this button to change the menu logo image"
-msgstr "Нажмите эту кнопку для того, чтобы изменить изображение логотипа"
+msgstr "Нажмите эту кнопку для изменения изображения логотипа"
 
-#: ../ubuntutweak/modules/gnomesettings.py:108
+#: ../ubuntutweak/modules/gnomesettings.py:109
+#: ../ubuntutweak/modules/loginsettings.py:121
 msgid "Choose a new logo image"
 msgstr "Выберите новое изображение для логотипа"
 
-#: ../ubuntutweak/modules/gnomesettings.py:114
+#: ../ubuntutweak/modules/gnomesettings.py:115
 msgid "PNG image (*.png)"
 msgstr "Изображение в формате PNG (*.png)"
 
-#: ../ubuntutweak/modules/gnomesettings.py:135
+#: ../ubuntutweak/modules/gnomesettings.py:140
 msgid ""
 "This image size isn't suitable for the panel.\n"
 "It should be 24x24."
 msgstr ""
 "Размер этого значка не подходит для панели.\n"
-"Размер должен быть ровно 24x24 пикс."
+"Размер должен быть 24x24 пикс."
 
-#: ../ubuntutweak/modules/gnomesettings.py:152
+#: ../ubuntutweak/modules/gnomesettings.py:157
 msgid "Do you want your changes to take effect immediately?"
 msgstr "Применить изменения немедленно?"
 
@@ -1414,11 +1437,11 @@ msgstr "Блокировать экран при переходе в ждущи�
 
 #: ../ubuntutweak/modules/powermanager.py:48
 msgid "LCD brightness when using AC power"
-msgstr "Яркость экрана при использовании электросети"
+msgstr "Яркость экрана при питании от сети"
 
 #: ../ubuntutweak/modules/powermanager.py:52
 msgid "LCD brightness when using battery"
-msgstr "Яркость экрана при использовании батареи"
+msgstr "Яркость экрана при питании от батареи"
 
 #: ../ubuntutweak/modules/compiz.py:49
 msgid "Show Workspaces"
@@ -1436,75 +1459,79 @@ msgstr "Показать рабочий стол"
 msgid "Show Widgets"
 msgstr "Показать виджеты"
 
-#: ../ubuntutweak/modules/compiz.py:222
+#: ../ubuntutweak/modules/compiz.py:220
 msgid "Compiz Settings"
 msgstr "Настройки Compiz"
 
-#: ../ubuntutweak/modules/compiz.py:223
+#: ../ubuntutweak/modules/compiz.py:221
 msgid "Settings for some amazing desktop eye-candy"
 msgstr "Настройка нескольких замечательных украшательств"
 
-#: ../ubuntutweak/modules/compiz.py:236
+#: ../ubuntutweak/modules/compiz.py:234
 msgid "Install Advanced Desktop Effects Settings Manager"
-msgstr "Установить Advanced Desktop Effects Settings Manager"
+msgstr "Установить расширенный менеджер настроек эффектов рабочего стола"
 
-#: ../ubuntutweak/modules/compiz.py:239
+#: ../ubuntutweak/modules/compiz.py:237
 msgid "Install Simple Desktop Effects Settings Manager"
 msgstr "Установить простой менеджер настроек эффектов рабочего стола"
 
-#: ../ubuntutweak/modules/compiz.py:242
+#: ../ubuntutweak/modules/compiz.py:240
 msgid "Install Screenlets Widget Application"
 msgstr "Установить систему виджетов Screenlets"
 
-#: ../ubuntutweak/modules/compiz.py:249
+#: ../ubuntutweak/modules/compiz.py:247
 msgid " Workspace Edge Settings"
 msgstr " Настройка краёв рабочих мест"
 
-#: ../ubuntutweak/modules/compiz.py:252
+#: ../ubuntutweak/modules/compiz.py:250
 msgid "Enable snapping windows"
 msgstr "Сделать границы окон «липкими»"
 
-#: ../ubuntutweak/modules/compiz.py:253
+#: ../ubuntutweak/modules/compiz.py:251
 msgid "Enable wobbly windows"
 msgstr "Сделать окна «резиновыми»"
 
-#: ../ubuntutweak/modules/compiz.py:255
+#: ../ubuntutweak/modules/compiz.py:253
 msgid "Window Effects"
 msgstr "Эффекты для окон"
 
-#: ../ubuntutweak/modules/compiz.py:258
+#: ../ubuntutweak/modules/compiz.py:256
 msgid "Enable transparent menus"
 msgstr "Сделать меню полупрозрачным"
 
-#: ../ubuntutweak/modules/compiz.py:259
+#: ../ubuntutweak/modules/compiz.py:257
 msgid "Enable wobbly menus"
 msgstr "Сделать меню «резиновым»"
 
-#: ../ubuntutweak/modules/compiz.py:261
+#: ../ubuntutweak/modules/compiz.py:259
 msgid "Menu Effects"
 msgstr "Эффекты для меню"
 
-#: ../ubuntutweak/modules/compiz.py:265
+#: ../ubuntutweak/modules/compiz.py:263
 msgid "Useful Extensions"
 msgstr "Полезные дополнения"
 
-#: ../ubuntutweak/modules/compiz.py:280
+#: ../ubuntutweak/modules/compiz.py:278
 msgid "Prerequisite Conditions"
 msgstr "Необходимые условия"
 
-#: ../ubuntutweak/modules/sourcecenter.py:91
+#: ../ubuntutweak/modules/sourcecenter.py:96
 msgid ""
-"You can install the new applications by selecting them and choose \"Yes\".\n"
-"Or you can install them at Add/Remove by choose \"No\"."
+"You can install new applications by selecting them and choosing \"Yes\".\n"
+"Or you can install them at Application Center by choosing \"No\"."
 msgstr ""
-"Чтобы установить новые приложения, выберите их и нажмите «Да».\n"
-"Чтобы установить их через «Установку/удаление программ», нажмите «Нет»."
+"Вы можете установить новое приложение, отметив его и нажав на  \"Да\".\n"
+"Или вы можете установить в центре приложений, нажав на \"Нет\"."
 
-#: ../ubuntutweak/modules/sourcecenter.py:92
-msgid "New applications are available to update"
-msgstr "Доступны обновления для новых приложений"
+#: ../ubuntutweak/modules/sourcecenter.py:97
+msgid "New applications are available"
+msgstr "Доступны новые приложения"
 
-#: ../ubuntutweak/modules/sourcecenter.py:296
+#: ../ubuntutweak/modules/sourcecenter.py:131
+msgid "Your system is clean and there are no updates yet."
+msgstr "Ваша система очищена, новых обновлений пока нет."
+
+#: ../ubuntutweak/modules/sourcecenter.py:309
 #, python-format
 msgid "Available %d New Application"
 msgid_plural "Available %d New Applications"
@@ -1512,7 +1539,7 @@ msgstr[0] "Доступно %d новое приложение"
 msgstr[1] "Доступно %d новых приложения"
 msgstr[2] "Доступно %d новых приложений"
 
-#: ../ubuntutweak/modules/sourcecenter.py:316
+#: ../ubuntutweak/modules/sourcecenter.py:329
 #, python-format
 msgid "Available %d Package Update"
 msgid_plural "Available %d Package Updates"
@@ -1520,15 +1547,15 @@ msgstr[0] "Доступно %d обновление пакетов"
 msgstr[1] "Доступно %d обновления пакетов"
 msgstr[2] "Доступно %d обновлений пакетов"
 
-#: ../ubuntutweak/modules/sourcecenter.py:354
-msgid "No Available Package Update"
-msgstr "Нет доступных обновлений пакетов"
+#: ../ubuntutweak/modules/sourcecenter.py:367
+msgid "No Available Package Updates"
+msgstr "Нет доступных обновлений пактеов"
 
-#: ../ubuntutweak/modules/sourcecenter.py:489
+#: ../ubuntutweak/modules/sourcecenter.py:502
 msgid "Third-Party Sources"
-msgstr "Репозитории третьих сторон"
+msgstr "Источники третьих сторон"
 
-#: ../ubuntutweak/modules/sourcecenter.py:687
+#: ../ubuntutweak/modules/sourcecenter.py:700
 #, python-format
 msgid ""
 "You can't enable this Source because<b>\"%(SOURCE)s\"</b> conflicts with "
@@ -1539,7 +1566,7 @@ msgstr ""
 "<b>\"%(SOURCE)s\"</b>.\n"
 "Для продолжения вам придётся отключить <b>\"%(SOURCE)s\"</b>."
 
-#: ../ubuntutweak/modules/sourcecenter.py:709
+#: ../ubuntutweak/modules/sourcecenter.py:722
 #, python-format
 msgid ""
 "To enable this Source, You need to enable <b>\"%s\"</b> at first.\n"
@@ -1548,11 +1575,11 @@ msgstr ""
 "Для подключения этого источника необходимо подключить <b>\"%s\"</b>.\n"
 "Подключить их совместно?"
 
-#: ../ubuntutweak/modules/sourcecenter.py:711
+#: ../ubuntutweak/modules/sourcecenter.py:724
 msgid "Dependency Notice"
 msgstr "Отслеживать зависимости"
 
-#: ../ubuntutweak/modules/sourcecenter.py:735
+#: ../ubuntutweak/modules/sourcecenter.py:748
 #, python-format
 msgid ""
 "You can't disable this Source because <b>\"%(SOURCE)s\"</b> depends on it.\n"
@@ -1562,89 +1589,118 @@ msgstr ""
 "<b>\"%(SOURCE)s\"</b>.\n"
 "Для продолжения вам придётся отключить <b>\"%(SOURCE)s\"</b>."
 
-#: ../ubuntutweak/modules/sourcecenter.py:825
+#: ../ubuntutweak/modules/sourcecenter.py:838
 msgid "New source has been enabled"
 msgstr "Был включен новый источник"
 
-#: ../ubuntutweak/modules/sourcecenter.py:826
+#: ../ubuntutweak/modules/sourcecenter.py:839
 #, python-format
 msgid ""
 "%s is enabled now, Please click the refresh button to update the application "
 "cache."
 msgstr "Репозиторий %s включен. Нажмите кнопку Обновить для обновления кэша."
 
-#: ../ubuntutweak/modules/sourcecenter.py:839
+#: ../ubuntutweak/modules/sourcecenter.py:853
 msgid "Homepage"
 msgstr "Домашняя страница"
 
-#: ../ubuntutweak/modules/sourcecenter.py:839
+#: ../ubuntutweak/modules/sourcecenter.py:853
 msgid "Source URL"
 msgstr "Адрес источника"
 
-#: ../ubuntutweak/modules/sourcecenter.py:839
+#: ../ubuntutweak/modules/sourcecenter.py:853
 msgid "Description"
 msgstr "Описание"
 
-#: ../ubuntutweak/modules/sourcecenter.py:852
+#: ../ubuntutweak/modules/sourcecenter.py:866
 msgid "Description is here"
 msgstr "Описание здесь"
 
-#: ../ubuntutweak/modules/sourcecenter.py:880
+#: ../ubuntutweak/modules/sourcecenter.py:894
 msgid "Source Center"
 msgstr "Центр источников"
 
-#: ../ubuntutweak/modules/sourcecenter.py:881
+#: ../ubuntutweak/modules/sourcecenter.py:895
 msgid ""
-"A source center to keep your applications always up-to-date.\n"
-"You can also get the application which isn't in the official repository.\n"
-"Data will be automatically synchronized with the remote side.\n"
-"You can click the \"Sync\" button to check the update manually."
+"A collection of software sources to ensure your applications are always up-"
+"to-date.\n"
+"Here you can also add applications which are unavailable in the offical "
+"repositories.\n"
+"The list of available sources will be obtained automatically from a remote "
+"server.\n"
+"You can click the \"Sync\" button to manually check for updates"
 msgstr ""
-"Центр источников позволяет поддерживать приложения в актуальном состоянии.\n"
-"Также можно установить программы, которых нет в официальном репозитории.\n"
-"Данные будут автоматически синхронизированы с удалённым сервером.\n"
-"Для ручной проверки обновлений нажмите «Синхронизировать»."
+"A collection of software sources to ensure your applications are always up-"
+"to-date.\n"
+"Here you can also add applications which are unavailable in the offical "
+"repositories.\n"
+"The list of available sources will be obtained automatically from a remote "
+"server.\n"
+"You can click the \"Sync\" button to manually check for updates"
 
-#: ../ubuntutweak/modules/sourcecenter.py:887
+#: ../ubuntutweak/modules/sourcecenter.py:901
 msgid "Visit online Source Center"
 msgstr "Посетить Центр источников в интернете"
 
-#: ../ubuntutweak/modules/sourcecenter.py:956
-msgid "New sources data available, would you like to update?"
-msgstr "Доступна новая информация об источниках. Обновить?"
+#: ../ubuntutweak/modules/sourcecenter.py:981
+msgid ""
+"After a successful distribution upgrade, any third-party sources you use "
+"will be disabled by default.\n"
+"Would you like to re-enable any sources disabled by Update Manager?"
+msgstr ""
+"После успешного обновления дистрибутива, все сторонние источники приложений, "
+"которые вы используете, будут отключены по умолчанию.\n"
+"Хотите ли вы включить какие-либо источники приложений отключенные Менеджером "
+"Обновлений?"
 
-#: ../ubuntutweak/modules/sourcecenter.py:1038
+#: ../ubuntutweak/modules/sourcecenter.py:984
+msgid "Upgrade Third Party Sources"
+msgstr "Обновить сторонние источники приложений"
+
+#: ../ubuntutweak/modules/sourcecenter.py:990
+msgid "Upgrade Successful!"
+msgstr "Обновление успешно!"
+
+#: ../ubuntutweak/modules/sourcecenter.py:992
+msgid "Upgrade Failed!"
+msgstr "Обновление неудачно!"
+
+#: ../ubuntutweak/modules/sourcecenter.py:999
+msgid "New source data available, would you like to update?"
+msgstr "Доступны новые источники данных, хотите обновить?"
+
+#: ../ubuntutweak/modules/sourcecenter.py:1081
 msgid ""
 "It is a possible security risk to use packages from Third-Party Sources.\n"
 "Please be careful and use only sources you trust."
 msgstr ""
-"Использование сторонних репозиториев может быть небезопасным.\n"
-"Выбирайте только те источники, которым Вы доверяете."
+"Использование сторонних источников может быть небезопасным.\n"
+"Выбирайте только те источники, которым вы доверяете."
 
-#: ../ubuntutweak/modules/sourcecenter.py:1041
+#: ../ubuntutweak/modules/sourcecenter.py:1084
 #: ../ubuntutweak/modules/nautilus.py:139
 msgid "Warning"
 msgstr "Предупреждение"
 
-#: ../ubuntutweak/modules/sourcecenter.py:1042
+#: ../ubuntutweak/modules/sourcecenter.py:1085
 msgid "Never show this dialog"
 msgstr "Не показывать этот диалог"
 
-#: ../ubuntutweak/modules/sourcecenter.py:1068
-msgid "Some error happened while downloading the file"
-msgstr "При загрузке файла произошла ошибка"
+#: ../ubuntutweak/modules/sourcecenter.py:1111
+msgid "An error occurred whilst downloading the file"
+msgstr "Во время скачивания файла произошла ошибка"
 
-#: ../ubuntutweak/modules/sourcecenter.py:1083
+#: ../ubuntutweak/modules/sourcecenter.py:1126
 msgid "Update available, Would you like to update?"
-msgstr "Доступны обновления. Обновить?"
+msgstr "Доступны обновления, хотите обновить?"
 
-#: ../ubuntutweak/modules/sourcecenter.py:1092
+#: ../ubuntutweak/modules/sourcecenter.py:1135
 msgid ""
 "Network Error, Please check your network connection or the remote server is "
 "down."
 msgstr ""
-"Ошибка сети. Проверьте ваше соединение с сетью. Возможно, удалённый сервер "
-"не работает."
+"Ошибка сети. Проверьте ваше подключение, или удаленный сервер может быть "
+"недоступен."
 
 #: ../ubuntutweak/modules/scripts.py:50
 msgid "Create Launcher ..."
@@ -1684,7 +1740,7 @@ msgstr "Переместить в папку \"Загрузки\""
 
 #: ../ubuntutweak/modules/scripts.py:59
 msgid "Move to Home"
-msgstr "Переместить в домашнюю папку"
+msgstr "Переместить в домашний каталог"
 
 #: ../ubuntutweak/modules/scripts.py:60
 msgid "Create hardlink to ..."
@@ -1704,7 +1760,7 @@ msgstr "Создать ссылку в папке \"Загрузки\""
 
 #: ../ubuntutweak/modules/scripts.py:64
 msgid "Link to Home"
-msgstr "Создать ссылку в домашней папке"
+msgstr "Создать ссылку в домашнем каталоге"
 
 #: ../ubuntutweak/modules/scripts.py:65
 msgid "Open with your favourite text editor"
@@ -1720,7 +1776,7 @@ msgstr "Просмотреть с правами суперпользовате�
 
 #: ../ubuntutweak/modules/scripts.py:68
 msgid "Search in current folder"
-msgstr "Искать в этой папке"
+msgstr "Искать в этом каталоге"
 
 #: ../ubuntutweak/modules/scripts.py:69
 msgid "Convert image to JPG"
@@ -1842,7 +1898,7 @@ msgid ""
 "Please reset it to a folder under your Home Folder."
 msgstr ""
 "Неверный путь к шаблонам! Текущий путь: «%s».\n"
-"Исправьте его на папку, находящуюся в вашей домашней папке."
+"Исправьте его на каталог, находящийся в вашем домашнем каталоге."
 
 #: ../ubuntutweak/modules/templates.py:128
 msgid "Go And Set"
@@ -1911,15 +1967,11 @@ msgstr ""
 "Не показывать диалог подтверждения при завершении сеанса, выключении и "
 "перезагрузке"
 
-#: ../ubuntutweak/modules/session.py:87
-msgid "Disable user list in gdm"
-msgstr "Не показывать  список пользователей в GDM"
-
-#: ../ubuntutweak/modules/session.py:112
+#: ../ubuntutweak/modules/session.py:109
 msgid "Please enter a valid application command line."
 msgstr "Введите корректную строку запуска программы."
 
-#: ../ubuntutweak/modules/session.py:112
+#: ../ubuntutweak/modules/session.py:109
 #, python-format
 msgid "\"%s\" is not available."
 msgstr "«%s» не доступно."
@@ -2195,6 +2247,54 @@ msgstr "Кэш эскизов  будет очищен. Продолжить?"
 msgid "Clean up Successful!"
 msgstr "Очистка успешно завершена!"
 
+#: ../ubuntutweak/modules/loginsettings.py:38
+msgid "Login Settings"
+msgstr "Настройки окна входа в систему"
+
+#: ../ubuntutweak/modules/loginsettings.py:39
+msgid "Control the appearance and behaviour of your login screen"
+msgstr "Управление внешним видом и поведением окна входа в систему"
+
+#: ../ubuntutweak/modules/loginsettings.py:48
+msgid "Login Options"
+msgstr "Параметры входа в систему"
+
+#: ../ubuntutweak/modules/loginsettings.py:51
+msgid "Disable user list in gdm"
+msgstr "Не показывать  список пользователей в GDM"
+
+#: ../ubuntutweak/modules/loginsettings.py:55
+msgid "Play sound at login"
+msgstr "Воспроизводить звук при входе в систему"
+
+#: ../ubuntutweak/modules/loginsettings.py:59
+msgid "Disable showing the restart buttons"
+msgstr "Отключить отображение кнопок перезагрузки"
+
+#: ../ubuntutweak/modules/loginsettings.py:76
+msgid "Login Theme"
+msgstr "Тема окна входа в систему"
+
+#: ../ubuntutweak/modules/loginsettings.py:127
+msgid "PNG image with 64x64 size (*.png)"
+msgstr "Изображение в формате PNG размером 64x64 (*.png)"
+
+#: ../ubuntutweak/modules/loginsettings.py:151
+msgid ""
+"This image size isn't suitable for the logo.\n"
+"It should be 64x64."
+msgstr ""
+"Размер изображения не подходит для логотипа.\n"
+"Он должен быть 64x64."
+
+#: ../ubuntutweak/modules/loginsettings.py:168
+msgid "Choose a new background image"
+msgstr "Выберите новое изображение для фона"
+
+#: ../ubuntutweak/modules/loginsettings.py:174
+msgid "All images"
+msgstr "Все изображения"
+
 #~ msgid "Install Simple Desktop Effects Settings manager"
 #~ msgstr "Установить Simple Desktop Effects Settings manager"
 
@@ -2234,6 +2334,9 @@ msgstr "Очистка успешно завершена!"
 #, python-format
 #~ msgid "The file \"%s\" already exists!"
 #~ msgstr "Файл \"%s\" уже существует!"
+
+#~ msgid "Update successful!"
+#~ msgstr "Успешно обновлено!"
 
 #~ msgid "Clean Kernel"
 #~ msgstr "Очистить ядро"
@@ -2306,13 +2409,11 @@ msgstr "Очистка успешно завершена!"
 #~ msgid "Gwibber (Daily Version)"
 #~ msgstr "Gwibber (ежедневные сборки)"
 
+#~ msgid "The software information is up-to-date now"
+#~ msgstr "Теперь информация о программах в актуальном состоянии"
+
 #~ msgid "Desktop Icon settings"
 #~ msgstr "Настройка значков рабочего стола"
-
-#~ msgid "Use \"Home Folder\" as desktop (Logout for changes to take effect)"
-#~ msgstr ""
-#~ "Использовать домашнюю папку как рабочий стол (вступит в силу после "
-#~ "завершения сеанса)"
 
 #~ msgid "Window Titlebar Action"
 #~ msgstr "Действия с заголовком окна"
@@ -2414,18 +2515,6 @@ msgstr "Очистка успешно завершена!"
 #~ msgid "Clean Package"
 #~ msgstr "Очистить пакеты"
 
-#~ msgid ""
-#~ "This is a major failure of your software management system. Please check for "
-#~ "broken packages with synaptic, check the file permissions and correctness of "
-#~ "the file '/etc/apt/sources.list' and reload the software information with: "
-#~ "'sudo apt-get update' and 'sudo apt-get install -f'."
-#~ msgstr ""
-#~ "Это серьёзная ошибка в вашей системе управления программным обеспечением. "
-#~ "Проверьте наличие повреждённых пакетов при помощи synaptic, права доступа на "
-#~ "файлы и корректность содержимого файла '/etc/apt/sources.list' и обновите "
-#~ "информацию о программном обеспечении при помощи: 'sudo apt-get update' и "
-#~ "'sudo apt-get install -f'."
-
 #~ msgid "VLC media player"
 #~ msgstr "Медиаплеер VLC"
 
@@ -2434,14 +2523,6 @@ msgstr "Очистка успешно завершена!"
 
 #~ msgid "Ubuntu Mozilla Security Team"
 #~ msgstr "Ubuntu Mozilla Security Team"
-
-#, python-format
-#~ msgid ""
-#~ "To enable this Source, You need to enable \"%s\" at first.\n"
-#~ "Do you wish to continue?"
-#~ msgstr ""
-#~ "Для добавления этого репозитория необходимо включить \"%s\".\n"
-#~ "Продолжить?"
 
 #~ msgid "VirtualBox (Open Source Edition)"
 #~ msgstr "VirtualBox (версия Open Source)"
@@ -2454,22 +2535,6 @@ msgstr "Очистка успешно завершена!"
 
 #~ msgid "IBus 1.2 for jaunty"
 #~ msgstr "IBus 1.2 для Jaunty"
-
-#, python-format
-#~ msgid ""
-#~ "You can't disable this Source because \"%(SOURCE)s\" depends on it.\n"
-#~ "To continue you need to disable \"%(SOURCE)s\" first."
-#~ msgstr ""
-#~ "Не удалось отключить этот репозиторий по зависимостям: \"%(SOURCE)s\".\n"
-#~ "Для продолжения необходимо сначала отключить  \"%(SOURCE)s\"."
-
-#, python-format
-#~ msgid ""
-#~ "You can't enable this Source because \"%(SOURCE)s\" conflicts with it.\n"
-#~ "To continue you need to disable \"%(SOURCE)s\" first."
-#~ msgstr ""
-#~ "Не удалось подключить этот репозиторий по из-за конфликта с\"%(SOURCE)s\".\n"
-#~ "Для продолжения необходимо сначала отключить \"%(SOURCE)s\"."
 
 #~ msgid "Edge Settings"
 #~ msgstr "Жесты мышью"
@@ -2537,6 +2602,9 @@ msgstr "Очистка успешно завершена!"
 #~ msgid "OSD Lyrics"
 #~ msgstr "OSD-показ текстов."
 
+#~ msgid "Your system is clean and there's no update yet."
+#~ msgstr "Ваша система очищена и обновления отсутствуют."
+
 #~ msgid "Only show filetypes with an associated application"
 #~ msgstr ""
 #~ "Показать только типы файлов, для которых сопоставлено какое-либо приложение."
@@ -2566,6 +2634,12 @@ msgstr "Очистка успешно завершена!"
 #~ msgid "Use Remote Data When Available"
 #~ msgstr "По возможности использовать данные из сети"
 
+#~ msgid "Some error happened while downloading the file"
+#~ msgstr "При загрузке файла произошла ошибка"
+
+#~ msgid "Enable the auto launch of System Update Manager"
+#~ msgstr "Разрешить автоматический запуск системного «Менеджера обновлений»"
+
 #~ msgid "Some error happened while downloading the file."
 #~ msgstr "При загрузке файла произошла ошибка."
 
@@ -2583,6 +2657,9 @@ msgstr "Очистка успешно завершена!"
 
 #~ msgid "Tweak some security options"
 #~ msgstr "Изменить настройки, связанные с безопасностью"
+
+#~ msgid "No Available Package Update"
+#~ msgstr "Нет доступных обновлений пакетов"
 
 #~ msgid "Manage all of the registered file types"
 #~ msgstr "Управление любыми зарегистрированными типами файлов"
@@ -2648,6 +2725,16 @@ msgstr "Очистка успешно завершена!"
 #~ msgid "Please enter your new hostname. It should be non-blank characters."
 #~ msgstr "Введите новое имя компьютера. Оно не должно содержать пробелов."
 
+#~ msgid ""
+#~ "You can install the new applications by selecting them and choose \"Yes\".\n"
+#~ "Or you can install them at Add/Remove by choose \"No\"."
+#~ msgstr ""
+#~ "Чтобы установить новые приложения, выберите их и нажмите «Да».\n"
+#~ "Чтобы установить их через «Установку/удаление программ», нажмите «Нет»."
+
+#~ msgid "New applications are available to update"
+#~ msgstr "Доступны обновления для новых приложений"
+
 #~ msgid "Arrange the buttons on the titlebar by dragging and dropping"
 #~ msgstr "Упорядочить кнопки на заголовках окон перетаскиванием"
 
@@ -2656,3 +2743,14 @@ msgstr "Очистка успешно завершена!"
 
 #~ msgid "Remove Spacer"
 #~ msgstr "Удалить разделитель"
+
+#~ msgid ""
+#~ "A source center to keep your applications always up-to-date.\n"
+#~ "You can also get the application which isn't in the official repository.\n"
+#~ "Data will be automatically synchronized with the remote side.\n"
+#~ "You can click the \"Sync\" button to check the update manually."
+#~ msgstr ""
+#~ "Центр источников позволяет поддерживать приложения в актуальном состоянии.\n"
+#~ "Также можно установить программы, которых нет в официальном репозитории.\n"
+#~ "Данные будут автоматически синхронизированы с удалённым сервером.\n"
+#~ "Для ручной проверки обновлений нажмите «Синхронизировать»."

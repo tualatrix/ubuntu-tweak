@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-13 20:59+0800\n"
-"PO-Revision-Date: 2010-03-01 21:06+0000\n"
+"POT-Creation-Date: 2010-04-27 19:56+0800\n"
+"PO-Revision-Date: 2010-04-27 14:36+0000\n"
 "Last-Translator: TualatriX <Unknown>\n"
 "Language-Team: Serbian <sr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,22 +16,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2010-03-14 01:16+0000\n"
+"X-Launchpad-Export-Date: 2010-04-29 11:40+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
-#: ../data/script-worker:139 ../data/script-worker:152
+#: ../data/script-worker:54
+#, c-format
+msgid "You don't have permission to write in %s"
+msgstr ""
+
+#: ../data/script-worker:152 ../data/script-worker:165
 msgid "Enter your password to perform the administrative tasks"
 msgstr "Унесите своју лозинку ради обављања администраторских задатака"
 
-#: ../data/script-worker:146
+#: ../data/script-worker:159
 msgid "Coudn't find any text editor in your system!"
 msgstr "Не могу да нађем ниједан уређивач текста на вашем систему"
 
-#: ../data/script-worker:174
+#: ../data/script-worker:187
 msgid "Select a folder"
 msgstr "Одаберите фасциклу"
 
-#: ../data/script-worker:204
+#: ../data/script-worker:217
 msgid "Please select a target (files or folders)."
 msgstr "Молим вас, одаберите циљану фасциклу или датотеку"
 
@@ -115,31 +120,31 @@ msgstr "_Извештај"
 
 #: ../data/ui/metacity.ui.h:1
 msgid " "
-msgstr ""
+msgstr " "
 
 #: ../data/ui/metacity.ui.h:2
 msgid ""
 "Custom: (arrange the buttons on the titlebar by dragging and dropping)"
-msgstr ""
+msgstr "Прилагођено: ( преуреди дугмад у наслову превлачењем )"
 
 #: ../data/ui/metacity.ui.h:3
 msgid "Enable control:"
-msgstr ""
+msgstr "Омогући контролу:"
 
 #: ../data/ui/metacity.ui.h:4
 msgid "Left"
-msgstr ""
+msgstr "Лево"
 
 #: ../data/ui/metacity.ui.h:5
 msgid "Place:"
-msgstr ""
+msgstr "Место:"
 
 #: ../data/ui/metacity.ui.h:6
 msgid "Right"
-msgstr ""
+msgstr "Десно"
 
 #. checkbutton
-#: ../data/ui/updatemanager.ui.h:1 ../ubuntutweak/modules/sourcecenter.py:101
+#: ../data/ui/updatemanager.ui.h:1 ../ubuntutweak/modules/sourcecenter.py:106
 #: ../ubuntutweak/modules/cleaner.py:468
 msgid "Select All"
 msgstr "Означи све"
@@ -168,23 +173,31 @@ msgstr "_Разгледај..."
 msgid "_Use a custom command"
 msgstr "Користи _произвољну наредбу"
 
-#: ../ubuntutweak/mainwindow.py:66
+#: ../data/ui/loginsettings.ui.h:1
+msgid "Click the button to change the login screen background"
+msgstr ""
+
+#: ../data/ui/loginsettings.ui.h:2
+msgid "Click the button to change the login screen logo"
+msgstr ""
+
+#: ../ubuntutweak/mainwindow.py:72
 msgid "Welcome to"
 msgstr "Добродошли у"
 
-#: ../ubuntutweak/mainwindow.py:72
+#: ../ubuntutweak/mainwindow.py:78
 msgid "Tweak otherwise hidden settings."
 msgstr "Наштимај иначе сакривена подешавања"
 
-#: ../ubuntutweak/mainwindow.py:73
+#: ../ubuntutweak/mainwindow.py:79
 msgid "Clean up unneeded packages to free up diskspace."
 msgstr "Очисти непотребне пакете да ослободиш простор на диску."
 
-#: ../ubuntutweak/mainwindow.py:74
+#: ../ubuntutweak/mainwindow.py:80
 msgid "Easily install up-to-date versions of many applications."
 msgstr "Једноставно инсталирај најсвежије верзије многих програма"
 
-#: ../ubuntutweak/mainwindow.py:75
+#: ../ubuntutweak/mainwindow.py:81
 msgid ""
 "Configure file templates and shortcut scripts for easy access to common "
 "tasks."
@@ -192,56 +205,56 @@ msgstr ""
 "Подеси шаблоне датотека и скрипте пречица ради лакшег приступања општим "
 "пословима."
 
-#: ../ubuntutweak/mainwindow.py:76
+#: ../ubuntutweak/mainwindow.py:82
 msgid "Many more useful features!"
 msgstr "Још много корисних могућности!"
 
-#: ../ubuntutweak/mainwindow.py:89
+#: ../ubuntutweak/mainwindow.py:93
 msgid "Please wait a moment..."
 msgstr "Молим вас, сачекајте..."
 
-#: ../ubuntutweak/mainwindow.py:109
+#: ../ubuntutweak/mainwindow.py:113
 msgid "This module encountered an error while loading."
 msgstr "Овај модул је наишао на проблем током учитавања."
 
-#: ../ubuntutweak/mainwindow.py:130
+#: ../ubuntutweak/mainwindow.py:134
 msgid "Welcome"
 msgstr "Добродошли"
 
-#: ../ubuntutweak/mainwindow.py:131
+#: ../ubuntutweak/mainwindow.py:135
 msgid "Applications"
 msgstr "Програми"
 
-#: ../ubuntutweak/mainwindow.py:132
+#: ../ubuntutweak/mainwindow.py:136
 msgid "Startup"
 msgstr "Покретање"
 
-#: ../ubuntutweak/mainwindow.py:133 ../ubuntutweak/modules/userdir.py:45
+#: ../ubuntutweak/mainwindow.py:137 ../ubuntutweak/modules/userdir.py:45
 msgid "Desktop"
 msgstr "Радна површ"
 
-#: ../ubuntutweak/mainwindow.py:134
+#: ../ubuntutweak/mainwindow.py:138
 msgid "Personal"
 msgstr "Лично"
 
-#: ../ubuntutweak/mainwindow.py:135
+#: ../ubuntutweak/mainwindow.py:139
 msgid "System"
 msgstr "Систем"
 
-#: ../ubuntutweak/mainwindow.py:143
+#: ../ubuntutweak/mainwindow.py:147
 #, python-format
 msgid "Download Ubuntu Tweak %s"
 msgstr "Преузми Убунту Штимунг %s"
 
-#: ../ubuntutweak/mainwindow.py:203
+#: ../ubuntutweak/mainwindow.py:207
 msgid "_Donate"
 msgstr "_Донирај"
 
-#: ../ubuntutweak/mainwindow.py:422
+#: ../ubuntutweak/mainwindow.py:429
 msgid "Ubuntu Tweak Website"
 msgstr "Интернет страница Убунту штимунга"
 
-#: ../ubuntutweak/mainwindow.py:424
+#: ../ubuntutweak/mainwindow.py:431
 msgid ""
 "Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
 "system and desktop settings."
@@ -249,32 +262,33 @@ msgstr ""
 "Убунту штимунг је алатка за Убунту која вам омогућава лако подешавање "
 "система и поставки радне површи."
 
-#: ../ubuntutweak/mainwindow.py:426
+#: ../ubuntutweak/mainwindow.py:433
 msgid "Contributors of 2007"
 msgstr "Сарадници за 2007."
 
-#: ../ubuntutweak/mainwindow.py:428
+#: ../ubuntutweak/mainwindow.py:435
 msgid "Contributors of 2008"
 msgstr "Сарадници за 2008."
 
-#: ../ubuntutweak/mainwindow.py:430
+#: ../ubuntutweak/mainwindow.py:437
 msgid "Contributors of 2009"
 msgstr "Сарадници за 2009."
 
-#: ../ubuntutweak/mainwindow.py:433
+#: ../ubuntutweak/mainwindow.py:440
 msgid "Contributors of 2010"
 msgstr "Сарадници за 2010."
 
-#: ../ubuntutweak/mainwindow.py:443
+#: ../ubuntutweak/mainwindow.py:450
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
 "  TualatriX https://launchpad.net/~tualatrix\n"
-"  dalibordjuric https://launchpad.net/~daliborddjuric\n"
+"  Zoran Olujic https://launchpad.net/~olujicz\n"
 "  maletaski https://launchpad.net/~maletaski-gmail\n"
-"  Љубиша Радовановић https://launchpad.net/~prevod"
+"  Љубиша Радовановић https://launchpad.net/~prevod\n"
+"  Далибор Ђурић https://launchpad.net/~dalibor"
 
-#: ../ubuntutweak/mainwindow.py:457
+#: ../ubuntutweak/mainwindow.py:464
 #, python-format
 msgid ""
 "A newer version: %s is available online.\n"
@@ -289,20 +303,20 @@ msgstr ""
 "Напомена: уколико више волите да надограђујете из изворног кода, можете "
 "искључити ову могућност у  поставкама."
 
-#: ../ubuntutweak/mainwindow.py:458
+#: ../ubuntutweak/mainwindow.py:465
 msgid "Software Update"
 msgstr "Ажурирање програма"
 
-#: ../ubuntutweak/widgets/widgets.py:83 ../ubuntutweak/widgets/widgets.py:108
+#: ../ubuntutweak/widgets/widgets.py:104 ../ubuntutweak/widgets/widgets.py:129
 #: ../ubuntutweak/modules/icons.py:105
 msgid "Unset"
-msgstr ""
+msgstr "Неодређено."
 
-#: ../ubuntutweak/widgets/widgets.py:221
+#: ../ubuntutweak/widgets/widgets.py:242
 msgid "Please press the new key combination"
 msgstr "Молимо вас притисните нову комбинацију тастера"
 
-#: ../ubuntutweak/widgets/widgets.py:270
+#: ../ubuntutweak/widgets/widgets.py:291
 msgid "Disabled"
 msgstr "Искључено"
 
@@ -383,6 +397,7 @@ msgstr "Укључите синхронизовано обавештење"
 #: ../ubuntutweak/preferences.py:123
 msgid "Enable new item highlight in App and Source Center"
 msgstr ""
+"Омогући наглашавање нових ставки у Програмском центру и центру извора"
 
 #: ../ubuntutweak/network/downloadmanager.py:97
 msgid "Connecting to server"
@@ -569,17 +584,17 @@ msgstr ""
 "би ушле на Убунтуова задња врата"
 
 #: ../ubuntutweak/common/package.py:172
-#: ../ubuntutweak/modules/appcenter.py:633
-#: ../ubuntutweak/modules/compiz.py:411
-#: ../ubuntutweak/modules/sourcecenter.py:120
+#: ../ubuntutweak/modules/appcenter.py:641
+#: ../ubuntutweak/modules/compiz.py:409
+#: ../ubuntutweak/modules/sourcecenter.py:125
 #: ../ubuntutweak/modules/nautilus.py:167
 msgid "Update Successful!"
 msgstr "Ажурирање успешно!"
 
 #: ../ubuntutweak/common/package.py:174
-#: ../ubuntutweak/modules/appcenter.py:635
-#: ../ubuntutweak/modules/compiz.py:413
-#: ../ubuntutweak/modules/sourcecenter.py:122
+#: ../ubuntutweak/modules/appcenter.py:643
+#: ../ubuntutweak/modules/compiz.py:411
+#: ../ubuntutweak/modules/sourcecenter.py:127
 #: ../ubuntutweak/modules/nautilus.py:169
 msgid "Update Failed!"
 msgstr "Ажурирање није успело!"
@@ -592,8 +607,9 @@ msgstr "(Недоступно)"
 #, python-format
 msgid "%(size)d byte"
 msgid_plural "%(size)d bytes"
-msgstr[0] "%(size)d бајта"
+msgstr[0] "%(size)d бајт"
 msgstr[1] "%(size)d бајта"
+msgstr[2] "%(size)d бајтова"
 
 #: ../ubuntutweak/common/misc.py:17
 #, python-format
@@ -642,11 +658,11 @@ msgstr "Слике"
 msgid "Videos"
 msgstr "Видео снимци"
 
-#: ../ubuntutweak/modules/userdir.py:160
+#: ../ubuntutweak/modules/userdir.py:158
 msgid "Choose a folder"
 msgstr "Одабери фасциклу"
 
-#: ../ubuntutweak/modules/userdir.py:177
+#: ../ubuntutweak/modules/userdir.py:174
 msgid ""
 "Ubuntu Tweak will restore the chosen directory to the default location.\n"
 "However, you must move your files back into place by yourself.\n"
@@ -656,27 +672,27 @@ msgstr ""
 "Ипак, морате сами да вратите датотеке на право место.\n"
 "Желите ли да наставите?"
 
-#: ../ubuntutweak/modules/userdir.py:213
+#: ../ubuntutweak/modules/userdir.py:208
 msgid "Directory"
 msgstr "Директоријум"
 
-#: ../ubuntutweak/modules/userdir.py:227
+#: ../ubuntutweak/modules/userdir.py:222
 msgid "Path"
 msgstr "Путања"
 
-#: ../ubuntutweak/modules/userdir.py:234
+#: ../ubuntutweak/modules/userdir.py:229
 msgid "Change"
 msgstr "Промени"
 
-#: ../ubuntutweak/modules/userdir.py:238
+#: ../ubuntutweak/modules/userdir.py:233
 msgid "Restore to default"
 msgstr "Вратити на подразумевано"
 
-#: ../ubuntutweak/modules/userdir.py:245
+#: ../ubuntutweak/modules/userdir.py:240
 msgid "Default Folder Locations"
 msgstr "Подразумевана локација фасцикле"
 
-#: ../ubuntutweak/modules/userdir.py:246
+#: ../ubuntutweak/modules/userdir.py:241
 msgid ""
 "You can change the paths of the default folders here.\n"
 "Don't change the location of your desktop folder unless you know what you "
@@ -686,9 +702,13 @@ msgstr ""
 "Немојте да мењате локацију своје фасцикле радне површи уколико не знате шта "
 "радите."
 
-#: ../ubuntutweak/modules/userdir.py:273
-msgid "Update successful!"
-msgstr "Ажурирање успешно!"
+#: ../ubuntutweak/modules/userdir.py:260
+msgid "_Restore"
+msgstr ""
+
+#: ../ubuntutweak/modules/userdir.py:265
+msgid "_Change"
+msgstr ""
 
 #: ../ubuntutweak/modules/computer.py:33
 msgid "Computer Details"
@@ -696,7 +716,7 @@ msgstr "Подаци о рачунару"
 
 #: ../ubuntutweak/modules/computer.py:34
 msgid "Some useful system information"
-msgstr ""
+msgstr "Неки корисни подаци о систему"
 
 #: ../ubuntutweak/modules/computer.py:41
 msgid "Unknown"
@@ -807,6 +827,7 @@ msgstr "Искључу \"Брзу промену корисника\""
 #: ../ubuntutweak/modules/lockdown.py:66
 msgid "Fix the appearance of themes when granted root privileges"
 msgstr ""
+"Исправи изглед тема приликом обезбеђивања администраторских овлашћења"
 
 #: ../ubuntutweak/modules/lockdown.py:72
 msgid "Miscellaneous Options"
@@ -825,7 +846,7 @@ msgstr ""
 "Можете прочитати назив и коментар да одредите који извор вам одговара."
 
 #: ../ubuntutweak/modules/sourceeditor.py:87
-#: ../ubuntutweak/modules/sourcecenter.py:915
+#: ../ubuntutweak/modules/sourcecenter.py:929
 msgid "Details"
 msgstr "Детаљи"
 
@@ -955,27 +976,27 @@ msgstr ""
 "\"%s\" ће бити избрисан!\n"
 "Желите ли да наставите?"
 
-#: ../ubuntutweak/modules/appcenter.py:185
+#: ../ubuntutweak/modules/appcenter.py:193
 msgid "Category"
 msgstr "Категорија"
 
-#: ../ubuntutweak/modules/appcenter.py:204
+#: ../ubuntutweak/modules/appcenter.py:212
 msgid "All Categories"
 msgstr "Све категорије"
 
-#: ../ubuntutweak/modules/appcenter.py:492
+#: ../ubuntutweak/modules/appcenter.py:500
 msgid "Checking update..."
 msgstr "Провера ажурирања..."
 
-#: ../ubuntutweak/modules/appcenter.py:522
+#: ../ubuntutweak/modules/appcenter.py:530
 msgid "Fetching online data..."
 msgstr "Привлачење података са везе.."
 
-#: ../ubuntutweak/modules/appcenter.py:526
+#: ../ubuntutweak/modules/appcenter.py:534
 msgid "Application Center"
 msgstr "Програмски центар"
 
-#: ../ubuntutweak/modules/appcenter.py:527
+#: ../ubuntutweak/modules/appcenter.py:535
 msgid ""
 "A simple but more efficient way for finding and installing popular "
 "applications.\n"
@@ -988,29 +1009,29 @@ msgstr ""
 "Притиском на на дугме \"Синхронизуј\" можете покренути ручну проверу "
 "ажурирања."
 
-#: ../ubuntutweak/modules/appcenter.py:532
+#: ../ubuntutweak/modules/appcenter.py:540
 msgid "Visit Online Application Center"
 msgstr "Посетите Програмски центар на мрежи"
 
-#: ../ubuntutweak/modules/appcenter.py:538
-#: ../ubuntutweak/modules/sourcecenter.py:894
+#: ../ubuntutweak/modules/appcenter.py:546
+#: ../ubuntutweak/modules/sourcecenter.py:908
 msgid "_Sync"
 msgstr "_Синхронизуј"
 
-#: ../ubuntutweak/modules/appcenter.py:575
-#: ../ubuntutweak/modules/sourcecenter.py:950
+#: ../ubuntutweak/modules/appcenter.py:583
+#: ../ubuntutweak/modules/sourcecenter.py:977
 msgid "Last synced:"
 msgstr "Последња синхронизација"
 
-#: ../ubuntutweak/modules/appcenter.py:580
+#: ../ubuntutweak/modules/appcenter.py:588
 msgid "New application data available, would you like to update?"
 msgstr "Нови подаци о програмима су доступни, желите ли да ажурирате?"
 
-#: ../ubuntutweak/modules/appcenter.py:649
+#: ../ubuntutweak/modules/appcenter.py:657
 msgid "Update available, would you like to update?"
 msgstr "Ажурирања су доступна, желите ли да ажурирате?"
 
-#: ../ubuntutweak/modules/appcenter.py:658
+#: ../ubuntutweak/modules/appcenter.py:666
 msgid ""
 "Network Error, please check your network connection - or the remote server "
 "may be down."
@@ -1018,12 +1039,12 @@ msgstr ""
 "Мрежна грешка, молимо вас, проверите своју интернет конекцију - или је "
 "удаљени сервер недоступан."
 
-#: ../ubuntutweak/modules/appcenter.py:660
-#: ../ubuntutweak/modules/sourcecenter.py:1094
+#: ../ubuntutweak/modules/appcenter.py:668
+#: ../ubuntutweak/modules/sourcecenter.py:1137
 msgid "No update available."
 msgstr "Ниједно ажурирање није доступно."
 
-#: ../ubuntutweak/modules/appcenter.py:671
+#: ../ubuntutweak/modules/appcenter.py:679
 msgid "An error occurred while downloading the file."
 msgstr "Грешка при преузимању фајла."
 
@@ -1098,27 +1119,30 @@ msgstr "Управљај свим регистрованим типовима д
 msgid "Only show filetypes with associated applications"
 msgstr "Показуј датотеке типа само сродним програмима"
 
-#: ../ubuntutweak/modules/updatemanager.py:29
+#: ../ubuntutweak/modules/updatemanager.py:32
 msgid "Update Manager"
 msgstr "Управник ажурирања"
 
-#: ../ubuntutweak/modules/updatemanager.py:30
+#: ../ubuntutweak/modules/updatemanager.py:33
 msgid "A simple and easy-to-use update manager"
 msgstr "Управник ажурирања једноставан и лак за употребу"
 
-#: ../ubuntutweak/modules/updatemanager.py:42
-msgid "Enable the auto launch of System Update Manager"
-msgstr "Укључи аутоматско покретање системског управника ажурирања"
+#: ../ubuntutweak/modules/updatemanager.py:45
+msgid "Enable auto-start of System Update Manager"
+msgstr ""
 
-#: ../ubuntutweak/modules/updatemanager.py:65
-#: ../ubuntutweak/modules/sourcecenter.py:126
-msgid "Your system is clean and there's no update yet."
-msgstr "Ваш систем је чист и још увек нема ажурирања за њега."
+#: ../ubuntutweak/modules/updatemanager.py:50
+msgid "Temporarily disable third-party PPA sources whilst refreshing"
+msgstr ""
 
-#: ../ubuntutweak/modules/updatemanager.py:66
-#: ../ubuntutweak/modules/sourcecenter.py:127
-msgid "The software information is up-to-date now"
-msgstr "Информације о софтверу сада су ажуриране"
+#: ../ubuntutweak/modules/updatemanager.py:77
+msgid "Your system is clean and no updates are available."
+msgstr ""
+
+#: ../ubuntutweak/modules/updatemanager.py:78
+#: ../ubuntutweak/modules/sourcecenter.py:132
+msgid "Software information is now up-to-date"
+msgstr ""
 
 #: ../ubuntutweak/modules/metacity.py:37
 #: ../ubuntutweak/modules/metacity.py:194
@@ -1294,80 +1318,81 @@ msgstr ""
 "Прикажи садржај домаће фасцикле на радној површи. (Одјавите се да би дошло "
 "до промене)"
 
-#: ../ubuntutweak/modules/gnomesettings.py:35
+#: ../ubuntutweak/modules/gnomesettings.py:36
 msgid "GNOME Settings"
 msgstr "Подешавања ГНОМА"
 
-#: ../ubuntutweak/modules/gnomesettings.py:36
+#: ../ubuntutweak/modules/gnomesettings.py:37
 msgid "A lot of GNOME settings for panels, menus and other desktop elements"
 msgstr ""
 "Многа подешавања ГНОМА за панел,мение и остале елемената радне површи"
 
-#: ../ubuntutweak/modules/gnomesettings.py:48
+#: ../ubuntutweak/modules/gnomesettings.py:49
 msgid "Panel Settings"
 msgstr "Поставке панела"
 
-#: ../ubuntutweak/modules/gnomesettings.py:50
+#: ../ubuntutweak/modules/gnomesettings.py:51
 msgid "Display warning when removing a panel"
 msgstr "Прикажи упозорење приликом уклањања панела"
 
-#: ../ubuntutweak/modules/gnomesettings.py:53
+#: ../ubuntutweak/modules/gnomesettings.py:54
 msgid "Complete lockdown of all panels"
 msgstr "Потпуно закључај све панеле"
 
-#: ../ubuntutweak/modules/gnomesettings.py:56
+#: ../ubuntutweak/modules/gnomesettings.py:57
 msgid "Enable panel animations"
 msgstr "Омогући анимације панела"
 
-#: ../ubuntutweak/modules/gnomesettings.py:61
+#: ../ubuntutweak/modules/gnomesettings.py:62
 msgid "Menu Settings"
 msgstr "Подешавања менија"
 
-#: ../ubuntutweak/modules/gnomesettings.py:63
+#: ../ubuntutweak/modules/gnomesettings.py:64
 msgid "Show Input Method menu in the context menu"
 msgstr "Прикажи мени метода уноса у контекстном менију"
 
-#: ../ubuntutweak/modules/gnomesettings.py:66
+#: ../ubuntutweak/modules/gnomesettings.py:67
 msgid "Show Unicode Control Character menu in the context menu"
 msgstr "Прикажи мени уноса уникод знакова у контекстном менију"
 
-#: ../ubuntutweak/modules/gnomesettings.py:69
+#: ../ubuntutweak/modules/gnomesettings.py:70
 msgid "Show icons in menus"
 msgstr "Прикажи иконице у менију"
 
-#: ../ubuntutweak/modules/gnomesettings.py:72
+#: ../ubuntutweak/modules/gnomesettings.py:73
 msgid "Show icons on buttons"
 msgstr "Прикажи иконе на дугмићима"
 
-#: ../ubuntutweak/modules/gnomesettings.py:78
+#: ../ubuntutweak/modules/gnomesettings.py:79
 msgid "Screensaver"
 msgstr "Чувар екрана"
 
-#: ../ubuntutweak/modules/gnomesettings.py:80
+#: ../ubuntutweak/modules/gnomesettings.py:81
 msgid "Enable user switching when screen is locked."
 msgstr "Дозволи промену корисника кад је екран закључан"
 
-#: ../ubuntutweak/modules/gnomesettings.py:85
+#: ../ubuntutweak/modules/gnomesettings.py:86
 msgid "Enable system-wide \"Recent Documents\" list"
 msgstr "Укључи листу скорашњих докумената у целом систему"
 
-#: ../ubuntutweak/modules/gnomesettings.py:88
+#: ../ubuntutweak/modules/gnomesettings.py:89
 msgid "History"
 msgstr "Историјат"
 
-#: ../ubuntutweak/modules/gnomesettings.py:95
+#: ../ubuntutweak/modules/gnomesettings.py:96
 msgid "Click this button to change the menu logo image"
 msgstr "Притисните ово дугме да промените лого менија"
 
-#: ../ubuntutweak/modules/gnomesettings.py:108
+#: ../ubuntutweak/modules/gnomesettings.py:109
+#: ../ubuntutweak/modules/loginsettings.py:121
 msgid "Choose a new logo image"
 msgstr "Изаберите нови лого"
 
-#: ../ubuntutweak/modules/gnomesettings.py:114
+#: ../ubuntutweak/modules/gnomesettings.py:115
 msgid "PNG image (*.png)"
 msgstr "ПНГ слика (*.png)"
 
-#: ../ubuntutweak/modules/gnomesettings.py:135
+#: ../ubuntutweak/modules/gnomesettings.py:140
 msgid ""
 "This image size isn't suitable for the panel.\n"
 "It should be 24x24."
@@ -1375,7 +1400,7 @@ msgstr ""
 "Величина ове слике не одговара овом панелу.\n"
 "Требала би да буде 24x24."
 
-#: ../ubuntutweak/modules/gnomesettings.py:152
+#: ../ubuntutweak/modules/gnomesettings.py:157
 msgid "Do you want your changes to take effect immediately?"
 msgstr "Желите да се промене примењују одмах?"
 
@@ -1427,76 +1452,78 @@ msgstr "прикажи Радну површ"
 msgid "Show Widgets"
 msgstr "Прикажи виџете"
 
-#: ../ubuntutweak/modules/compiz.py:222
+#: ../ubuntutweak/modules/compiz.py:220
 msgid "Compiz Settings"
 msgstr "Подешавања Компиза"
 
-#: ../ubuntutweak/modules/compiz.py:223
+#: ../ubuntutweak/modules/compiz.py:221
 msgid "Settings for some amazing desktop eye-candy"
 msgstr "Поставке неких сјаних слаткиша радне површи"
 
-#: ../ubuntutweak/modules/compiz.py:236
+#: ../ubuntutweak/modules/compiz.py:234
 msgid "Install Advanced Desktop Effects Settings Manager"
 msgstr "Инсталирај Управник подешавања напредних ефеката радне површи"
 
-#: ../ubuntutweak/modules/compiz.py:239
+#: ../ubuntutweak/modules/compiz.py:237
 msgid "Install Simple Desktop Effects Settings Manager"
 msgstr ""
 "Инсталирај Једноставни управник подешавања напредних ефеката радне површи"
 
-#: ../ubuntutweak/modules/compiz.py:242
+#: ../ubuntutweak/modules/compiz.py:240
 msgid "Install Screenlets Widget Application"
 msgstr "Инсталирај Скринлет виџет програм"
 
-#: ../ubuntutweak/modules/compiz.py:249
+#: ../ubuntutweak/modules/compiz.py:247
 msgid " Workspace Edge Settings"
 msgstr " Подешавање ивица радне површине"
 
-#: ../ubuntutweak/modules/compiz.py:252
+#: ../ubuntutweak/modules/compiz.py:250
 msgid "Enable snapping windows"
 msgstr "Укључи шкљоцање прозора"
 
-#: ../ubuntutweak/modules/compiz.py:253
+#: ../ubuntutweak/modules/compiz.py:251
 msgid "Enable wobbly windows"
 msgstr "Укључи лелујаве прозоре"
 
-#: ../ubuntutweak/modules/compiz.py:255
+#: ../ubuntutweak/modules/compiz.py:253
 msgid "Window Effects"
 msgstr "Ефекти прозора"
 
-#: ../ubuntutweak/modules/compiz.py:258
+#: ../ubuntutweak/modules/compiz.py:256
 msgid "Enable transparent menus"
 msgstr "Укључи транспарентност менија"
 
-#: ../ubuntutweak/modules/compiz.py:259
+#: ../ubuntutweak/modules/compiz.py:257
 msgid "Enable wobbly menus"
 msgstr "Укључи лелујаве меније"
 
-#: ../ubuntutweak/modules/compiz.py:261
+#: ../ubuntutweak/modules/compiz.py:259
 msgid "Menu Effects"
 msgstr "Ефекти менија"
 
-#: ../ubuntutweak/modules/compiz.py:265
+#: ../ubuntutweak/modules/compiz.py:263
 msgid "Useful Extensions"
 msgstr "Корисна проширења"
 
-#: ../ubuntutweak/modules/compiz.py:280
+#: ../ubuntutweak/modules/compiz.py:278
 msgid "Prerequisite Conditions"
 msgstr "Потребни услови"
 
-#: ../ubuntutweak/modules/sourcecenter.py:91
+#: ../ubuntutweak/modules/sourcecenter.py:96
 msgid ""
-"You can install the new applications by selecting them and choose \"Yes\".\n"
-"Or you can install them at Add/Remove by choose \"No\"."
+"You can install new applications by selecting them and choosing \"Yes\".\n"
+"Or you can install them at Application Center by choosing \"No\"."
 msgstr ""
-"Можете инсталирати нове програме изабравши их и затим изабрати \"Да\".\n"
-"Или их можете инсталирати из Додај/Уклони ако изаберете \"Не\"."
 
-#: ../ubuntutweak/modules/sourcecenter.py:92
-msgid "New applications are available to update"
-msgstr "Доступна су нова ажуриарања за програме"
+#: ../ubuntutweak/modules/sourcecenter.py:97
+msgid "New applications are available"
+msgstr ""
 
-#: ../ubuntutweak/modules/sourcecenter.py:296
+#: ../ubuntutweak/modules/sourcecenter.py:131
+msgid "Your system is clean and there are no updates yet."
+msgstr ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:309
 #, python-format
 msgid "Available %d New Application"
 msgid_plural "Available %d New Applications"
@@ -1504,7 +1531,7 @@ msgstr[0] "Доступан %d нови програм"
 msgstr[1] "Доступна %d нова програма"
 msgstr[2] "Доступно %d нових програма"
 
-#: ../ubuntutweak/modules/sourcecenter.py:316
+#: ../ubuntutweak/modules/sourcecenter.py:329
 #, python-format
 msgid "Available %d Package Update"
 msgid_plural "Available %d Package Updates"
@@ -1512,15 +1539,15 @@ msgstr[0] "Доступно %d ажурирање пакета"
 msgstr[1] "Доступна %d ажурирања пакета"
 msgstr[2] "Доступно %d ажурирања пакета"
 
-#: ../ubuntutweak/modules/sourcecenter.py:354
-msgid "No Available Package Update"
-msgstr "Освежавња листе програма нису доступна"
+#: ../ubuntutweak/modules/sourcecenter.py:367
+msgid "No Available Package Updates"
+msgstr ""
 
-#: ../ubuntutweak/modules/sourcecenter.py:489
+#: ../ubuntutweak/modules/sourcecenter.py:502
 msgid "Third-Party Sources"
 msgstr "Извори из треће руке"
 
-#: ../ubuntutweak/modules/sourcecenter.py:687
+#: ../ubuntutweak/modules/sourcecenter.py:700
 #, python-format
 msgid ""
 "You can't enable this Source because<b>\"%(SOURCE)s\"</b> conflicts with "
@@ -1531,7 +1558,7 @@ msgstr ""
 "њим.\n"
 "Да наставите претходно морате искључити <b>\"%(SOURCE)s\"</b>"
 
-#: ../ubuntutweak/modules/sourcecenter.py:709
+#: ../ubuntutweak/modules/sourcecenter.py:722
 #, python-format
 msgid ""
 "To enable this Source, You need to enable <b>\"%s\"</b> at first.\n"
@@ -1540,11 +1567,11 @@ msgstr ""
 "Да укључите овај извор, претходно морате укључити <b>\"%s\"</b> .\n"
 "Желите ли да наставите?"
 
-#: ../ubuntutweak/modules/sourcecenter.py:711
+#: ../ubuntutweak/modules/sourcecenter.py:724
 msgid "Dependency Notice"
 msgstr "Напомена о зависностима"
 
-#: ../ubuntutweak/modules/sourcecenter.py:735
+#: ../ubuntutweak/modules/sourcecenter.py:748
 #, python-format
 msgid ""
 "You can't disable this Source because <b>\"%(SOURCE)s\"</b> depends on it.\n"
@@ -1553,11 +1580,11 @@ msgstr ""
 "Не можете искључити овај извор пошто <b>\"%(SOURCE)s\"</b> зависи од њега.\n"
 "Да наставите морате претходно искључити <b>\"%(SOURCE)s\"</b> ."
 
-#: ../ubuntutweak/modules/sourcecenter.py:825
+#: ../ubuntutweak/modules/sourcecenter.py:838
 msgid "New source has been enabled"
 msgstr "Нови извор је укључен"
 
-#: ../ubuntutweak/modules/sourcecenter.py:826
+#: ../ubuntutweak/modules/sourcecenter.py:839
 #, python-format
 msgid ""
 "%s is enabled now, Please click the refresh button to update the application "
@@ -1566,48 +1593,65 @@ msgstr ""
 "%s је активиран сада. Молимо вас, притисните дугме освежи да ажурирате кеш "
 "програма."
 
-#: ../ubuntutweak/modules/sourcecenter.py:839
+#: ../ubuntutweak/modules/sourcecenter.py:853
 msgid "Homepage"
 msgstr "Почетна страна"
 
-#: ../ubuntutweak/modules/sourcecenter.py:839
+#: ../ubuntutweak/modules/sourcecenter.py:853
 msgid "Source URL"
 msgstr "Извор УРЛ"
 
-#: ../ubuntutweak/modules/sourcecenter.py:839
+#: ../ubuntutweak/modules/sourcecenter.py:853
 msgid "Description"
 msgstr "Опис"
 
-#: ../ubuntutweak/modules/sourcecenter.py:852
+#: ../ubuntutweak/modules/sourcecenter.py:866
 msgid "Description is here"
 msgstr "Опис је овде"
 
-#: ../ubuntutweak/modules/sourcecenter.py:880
+#: ../ubuntutweak/modules/sourcecenter.py:894
 msgid "Source Center"
 msgstr "Центар извора"
 
-#: ../ubuntutweak/modules/sourcecenter.py:881
+#: ../ubuntutweak/modules/sourcecenter.py:895
 msgid ""
-"A source center to keep your applications always up-to-date.\n"
-"You can also get the application which isn't in the official repository.\n"
-"Data will be automatically synchronized with the remote side.\n"
-"You can click the \"Sync\" button to check the update manually."
+"A collection of software sources to ensure your applications are always up-"
+"to-date.\n"
+"Here you can also add applications which are unavailable in the offical "
+"repositories.\n"
+"The list of available sources will be obtained automatically from a remote "
+"server.\n"
+"You can click the \"Sync\" button to manually check for updates"
 msgstr ""
-"Центар извора да ваши програми увек буду ажурирани.\n"
-"Такође вам омогућава да инсталирате програме који нису у званичним "
-"складиштима.\n"
-"Подаци ће бити аутоматски синхронизовани са удаљеним сајтом.\n"
-"Можете ручно ажурирати притиском на дугме \"Синхронизуј\"."
 
-#: ../ubuntutweak/modules/sourcecenter.py:887
+#: ../ubuntutweak/modules/sourcecenter.py:901
 msgid "Visit online Source Center"
 msgstr "Посетите центар извора на мрежи"
 
-#: ../ubuntutweak/modules/sourcecenter.py:956
-msgid "New sources data available, would you like to update?"
-msgstr "Нови подаци за изворе су доступни, желите ли  да их ажурирате?"
+#: ../ubuntutweak/modules/sourcecenter.py:981
+msgid ""
+"After a successful distribution upgrade, any third-party sources you use "
+"will be disabled by default.\n"
+"Would you like to re-enable any sources disabled by Update Manager?"
+msgstr ""
 
-#: ../ubuntutweak/modules/sourcecenter.py:1038
+#: ../ubuntutweak/modules/sourcecenter.py:984
+msgid "Upgrade Third Party Sources"
+msgstr ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:990
+msgid "Upgrade Successful!"
+msgstr ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:992
+msgid "Upgrade Failed!"
+msgstr ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:999
+msgid "New source data available, would you like to update?"
+msgstr ""
+
+#: ../ubuntutweak/modules/sourcecenter.py:1081
 msgid ""
 "It is a possible security risk to use packages from Third-Party Sources.\n"
 "Please be careful and use only sources you trust."
@@ -1615,24 +1659,24 @@ msgstr ""
 "Кориштење извора треће руке може да буде несигурна.\n"
 "Молимо вас, будите опрезни и користите само изворе којима верујете."
 
-#: ../ubuntutweak/modules/sourcecenter.py:1041
+#: ../ubuntutweak/modules/sourcecenter.py:1084
 #: ../ubuntutweak/modules/nautilus.py:139
 msgid "Warning"
 msgstr "Упозорење"
 
-#: ../ubuntutweak/modules/sourcecenter.py:1042
+#: ../ubuntutweak/modules/sourcecenter.py:1085
 msgid "Never show this dialog"
 msgstr "Никад не приказуј овај дијалог"
 
-#: ../ubuntutweak/modules/sourcecenter.py:1068
-msgid "Some error happened while downloading the file"
-msgstr "Дошло је до грешке приликом преузимања датотеке"
+#: ../ubuntutweak/modules/sourcecenter.py:1111
+msgid "An error occurred whilst downloading the file"
+msgstr ""
 
-#: ../ubuntutweak/modules/sourcecenter.py:1083
+#: ../ubuntutweak/modules/sourcecenter.py:1126
 msgid "Update available, Would you like to update?"
 msgstr "Ажурирња су доступна, жлите ли да их примените?"
 
-#: ../ubuntutweak/modules/sourcecenter.py:1092
+#: ../ubuntutweak/modules/sourcecenter.py:1135
 msgid ""
 "Network Error, Please check your network connection or the remote server is "
 "down."
@@ -1682,7 +1726,7 @@ msgstr "Премести у домаћу фасциклу"
 
 #: ../ubuntutweak/modules/scripts.py:60
 msgid "Create hardlink to ..."
-msgstr ""
+msgstr "Направи тврду везу до ..."
 
 #: ../ubuntutweak/modules/scripts.py:61
 msgid "Link to ..."
@@ -1714,7 +1758,7 @@ msgstr "Прегледај као администратор"
 
 #: ../ubuntutweak/modules/scripts.py:68
 msgid "Search in current folder"
-msgstr "Тражи у офвој фасцикли"
+msgstr "Тражи у овој фасцикли"
 
 #: ../ubuntutweak/modules/scripts.py:69
 msgid "Convert image to JPG"
@@ -1903,15 +1947,11 @@ msgstr "Дозволи ТЦП конекције (конектовање уда�
 msgid "Suppress the dialog to confirm logout, restart and shutdown action"
 msgstr "Заобиђи прозор за потврду одјаве, ресетовања и гашења рачунара"
 
-#: ../ubuntutweak/modules/session.py:87
-msgid "Disable user list in gdm"
-msgstr "Искључи листу корисника у гдм"
-
-#: ../ubuntutweak/modules/session.py:112
+#: ../ubuntutweak/modules/session.py:109
 msgid "Please enter a valid application command line."
 msgstr "Молимо вас унесите исправну командну линију програма."
 
-#: ../ubuntutweak/modules/session.py:112
+#: ../ubuntutweak/modules/session.py:109
 #, python-format
 msgid "\"%s\" is not available."
 msgstr "\"%s\" није доступан."
@@ -2182,11 +2222,60 @@ msgstr "Обриши кеш умањених сличица (ослободић�
 
 #: ../ubuntutweak/modules/nautilus.py:138
 msgid "The thumbnail cache will be deleted. Do you wish to continue?"
-msgstr ""
+msgstr "Keш сличица ће бити обрисан. Да ли желите да наставите?"
 
 #: ../ubuntutweak/modules/nautilus.py:145
 msgid "Clean up Successful!"
 msgstr "Чишћење успешно!"
+
+#: ../ubuntutweak/modules/loginsettings.py:38
+msgid "Login Settings"
+msgstr ""
+
+#: ../ubuntutweak/modules/loginsettings.py:39
+msgid "Control the appearance and behaviour of your login screen"
+msgstr ""
+
+#: ../ubuntutweak/modules/loginsettings.py:48
+msgid "Login Options"
+msgstr ""
+
+#: ../ubuntutweak/modules/loginsettings.py:51
+msgid "Disable user list in gdm"
+msgstr "Искључи листу корисника у гдм"
+
+#: ../ubuntutweak/modules/loginsettings.py:55
+msgid "Play sound at login"
+msgstr ""
+
+#: ../ubuntutweak/modules/loginsettings.py:59
+msgid "Disable showing the restart buttons"
+msgstr ""
+
+#: ../ubuntutweak/modules/loginsettings.py:76
+msgid "Login Theme"
+msgstr ""
+
+#: ../ubuntutweak/modules/loginsettings.py:127
+msgid "PNG image with 64x64 size (*.png)"
+msgstr ""
+
+#: ../ubuntutweak/modules/loginsettings.py:151
+msgid ""
+"This image size isn't suitable for the logo.\n"
+"It should be 64x64."
+msgstr ""
+
+#: ../ubuntutweak/modules/loginsettings.py:168
+msgid "Choose a new background image"
+msgstr ""
+
+#: ../ubuntutweak/modules/loginsettings.py:174
+msgid "All images"
+msgstr ""
+
+#~ msgid "Update successful!"
+#~ msgstr "Ажурирање успешно!"
 
 #~ msgid "Arrange the buttons on the titlebar by dragging and dropping"
 #~ msgstr "Организуј дугмиће на насловној траци помоћу повлачења и пуштања"
@@ -2196,3 +2285,43 @@ msgstr "Чишћење успешно!"
 
 #~ msgid "Remove Spacer"
 #~ msgstr "Уклони размак"
+
+#~ msgid "Some error happened while downloading the file"
+#~ msgstr "Дошло је до грешке приликом преузимања датотеке"
+
+#~ msgid "Your system is clean and there's no update yet."
+#~ msgstr "Ваш систем је чист и још увек нема ажурирања за њега."
+
+#~ msgid "No Available Package Update"
+#~ msgstr "Освежавња листе програма нису доступна"
+
+#~ msgid "New sources data available, would you like to update?"
+#~ msgstr "Нови подаци за изворе су доступни, желите ли  да их ажурирате?"
+
+#~ msgid ""
+#~ "You can install the new applications by selecting them and choose \"Yes\".\n"
+#~ "Or you can install them at Add/Remove by choose \"No\"."
+#~ msgstr ""
+#~ "Можете инсталирати нове програме изабравши их и затим изабрати \"Да\".\n"
+#~ "Или их можете инсталирати из Додај/Уклони ако изаберете \"Не\"."
+
+#~ msgid "The software information is up-to-date now"
+#~ msgstr "Информације о софтверу сада су ажуриране"
+
+#~ msgid "Enable the auto launch of System Update Manager"
+#~ msgstr "Укључи аутоматско покретање системског управника ажурирања"
+
+#~ msgid "New applications are available to update"
+#~ msgstr "Доступна су нова ажуриарања за програме"
+
+#~ msgid ""
+#~ "A source center to keep your applications always up-to-date.\n"
+#~ "You can also get the application which isn't in the official repository.\n"
+#~ "Data will be automatically synchronized with the remote side.\n"
+#~ "You can click the \"Sync\" button to check the update manually."
+#~ msgstr ""
+#~ "Центар извора да ваши програми увек буду ажурирани.\n"
+#~ "Такође вам омогућава да инсталирате програме који нису у званичним "
+#~ "складиштима.\n"
+#~ "Подаци ће бити аутоматски синхронизовани са удаљеним сајтом.\n"
+#~ "Можете ручно ажурирати притиском на дугме \"Синхронизуј\"."

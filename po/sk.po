@@ -7,31 +7,36 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-13 20:59+0800\n"
-"PO-Revision-Date: 2010-03-13 15:49+0000\n"
+"POT-Creation-Date: 2010-04-27 19:56+0800\n"
+"PO-Revision-Date: 2010-04-28 06:54+0000\n"
 "Last-Translator: milboy <Unknown>\n"
 "Language-Team: Slovak <sk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Launchpad-Export-Date: 2010-03-14 01:16+0000\n"
+"X-Launchpad-Export-Date: 2010-04-29 11:41+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
-#: ../data/script-worker:139 ../data/script-worker:152
+#: ../data/script-worker:54
+#, c-format
+msgid "You don't have permission to write in %s"
+msgstr "Nemáte práva na zapisovanie do %s"
+
+#: ../data/script-worker:152 ../data/script-worker:165
 msgid "Enter your password to perform the administrative tasks"
 msgstr ""
 "Aby ste mohli vykonávať úlohy s oprávnením správcu, zadajte svoje heslo"
 
-#: ../data/script-worker:146
+#: ../data/script-worker:159
 msgid "Coudn't find any text editor in your system!"
 msgstr "Vo vašom systéme sa nepodarilo sa nájsť textový editor!"
 
-#: ../data/script-worker:174
+#: ../data/script-worker:187
 msgid "Select a folder"
 msgstr "Vyberte priečinok"
 
-#: ../data/script-worker:204
+#: ../data/script-worker:217
 msgid "Please select a target (files or folders)."
 msgstr "Prosím, vyberte cieľ (súbory alebo priečinky)."
 
@@ -140,7 +145,7 @@ msgid "Right"
 msgstr "Vpravo"
 
 #. checkbutton
-#: ../data/ui/updatemanager.ui.h:1 ../ubuntutweak/modules/sourcecenter.py:101
+#: ../data/ui/updatemanager.ui.h:1 ../ubuntutweak/modules/sourcecenter.py:106
 #: ../ubuntutweak/modules/cleaner.py:468
 msgid "Select All"
 msgstr "Vybrať všetko"
@@ -169,23 +174,31 @@ msgstr "_Prehliadať..."
 msgid "_Use a custom command"
 msgstr "Po_užiť vlastný príkaz"
 
-#: ../ubuntutweak/mainwindow.py:66
+#: ../data/ui/loginsettings.ui.h:1
+msgid "Click the button to change the login screen background"
+msgstr "Kliknite na tlačítko pre zmenu pozadia obrazovky"
+
+#: ../data/ui/loginsettings.ui.h:2
+msgid "Click the button to change the login screen logo"
+msgstr "Kliknite na tlačítko pre zmenu loga prihlasovacej obrazovky"
+
+#: ../ubuntutweak/mainwindow.py:72
 msgid "Welcome to"
 msgstr "Vitajte v"
 
-#: ../ubuntutweak/mainwindow.py:72
+#: ../ubuntutweak/mainwindow.py:78
 msgid "Tweak otherwise hidden settings."
 msgstr "Vylepšiť inak skryté nastavenia."
 
-#: ../ubuntutweak/mainwindow.py:73
+#: ../ubuntutweak/mainwindow.py:79
 msgid "Clean up unneeded packages to free up diskspace."
 msgstr "Vyčisťiť nepotrebné balíčky, aby sa uvoľnilo miesto na disku."
 
-#: ../ubuntutweak/mainwindow.py:74
+#: ../ubuntutweak/mainwindow.py:80
 msgid "Easily install up-to-date versions of many applications."
 msgstr "Jednoducho nainštalovať aktuálne verzie mnohých aplikácií."
 
-#: ../ubuntutweak/mainwindow.py:75
+#: ../ubuntutweak/mainwindow.py:81
 msgid ""
 "Configure file templates and shortcut scripts for easy access to common "
 "tasks."
@@ -193,56 +206,56 @@ msgstr ""
 "Nakonfigurovať šablóny súborov a skratky skriptov na zjednodušenie prístupu "
 "k bežným úlohám."
 
-#: ../ubuntutweak/mainwindow.py:76
+#: ../ubuntutweak/mainwindow.py:82
 msgid "Many more useful features!"
 msgstr "Množstvo ďalších užitočných funkcií !"
 
-#: ../ubuntutweak/mainwindow.py:89
+#: ../ubuntutweak/mainwindow.py:93
 msgid "Please wait a moment..."
 msgstr "Prosím, počkajte chvíľu ..."
 
-#: ../ubuntutweak/mainwindow.py:109
+#: ../ubuntutweak/mainwindow.py:113
 msgid "This module encountered an error while loading."
 msgstr "Došlo ku chybe pri načítaní tohoto modulu."
 
-#: ../ubuntutweak/mainwindow.py:130
+#: ../ubuntutweak/mainwindow.py:134
 msgid "Welcome"
 msgstr "Vitajte"
 
-#: ../ubuntutweak/mainwindow.py:131
+#: ../ubuntutweak/mainwindow.py:135
 msgid "Applications"
 msgstr "Aplikácie"
 
-#: ../ubuntutweak/mainwindow.py:132
+#: ../ubuntutweak/mainwindow.py:136
 msgid "Startup"
 msgstr "Spustenie"
 
-#: ../ubuntutweak/mainwindow.py:133 ../ubuntutweak/modules/userdir.py:45
+#: ../ubuntutweak/mainwindow.py:137 ../ubuntutweak/modules/userdir.py:45
 msgid "Desktop"
 msgstr "Plocha"
 
-#: ../ubuntutweak/mainwindow.py:134
+#: ../ubuntutweak/mainwindow.py:138
 msgid "Personal"
 msgstr "Osobné"
 
-#: ../ubuntutweak/mainwindow.py:135
+#: ../ubuntutweak/mainwindow.py:139
 msgid "System"
 msgstr "Systém"
 
-#: ../ubuntutweak/mainwindow.py:143
+#: ../ubuntutweak/mainwindow.py:147
 #, python-format
 msgid "Download Ubuntu Tweak %s"
 msgstr "Stiahnuť Ubuntu Tweak %s"
 
-#: ../ubuntutweak/mainwindow.py:203
+#: ../ubuntutweak/mainwindow.py:207
 msgid "_Donate"
 msgstr "_Prispejte"
 
-#: ../ubuntutweak/mainwindow.py:422
+#: ../ubuntutweak/mainwindow.py:429
 msgid "Ubuntu Tweak Website"
 msgstr "Webstránka Ubuntu Tweak"
 
-#: ../ubuntutweak/mainwindow.py:424
+#: ../ubuntutweak/mainwindow.py:431
 msgid ""
 "Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
 "system and desktop settings."
@@ -250,30 +263,30 @@ msgstr ""
 "Ubuntu Tweak je nástroj pre Ubuntu, ktorý umožňuje jednoducho meniť "
 "nastavenia."
 
-#: ../ubuntutweak/mainwindow.py:426
+#: ../ubuntutweak/mainwindow.py:433
 msgid "Contributors of 2007"
 msgstr "Prispievatelia roka 2007"
 
-#: ../ubuntutweak/mainwindow.py:428
+#: ../ubuntutweak/mainwindow.py:435
 msgid "Contributors of 2008"
 msgstr "Prispievatelia roka 2008"
 
-#: ../ubuntutweak/mainwindow.py:430
+#: ../ubuntutweak/mainwindow.py:437
 msgid "Contributors of 2009"
 msgstr "Prispievatelia roka 2009"
 
-#: ../ubuntutweak/mainwindow.py:433
+#: ../ubuntutweak/mainwindow.py:440
 msgid "Contributors of 2010"
 msgstr "Prispievatelia roku 2010"
 
-#: ../ubuntutweak/mainwindow.py:443
+#: ../ubuntutweak/mainwindow.py:450
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
 "  helix84 https://launchpad.net/~helix84\n"
 "  milboy https://launchpad.net/~milboys"
 
-#: ../ubuntutweak/mainwindow.py:457
+#: ../ubuntutweak/mainwindow.py:464
 #, python-format
 msgid ""
 "A newer version: %s is available online.\n"
@@ -288,20 +301,20 @@ msgstr ""
 "Poznámka: ak chcete aktualizovať zo zdrojového kódu, môžete túto funkciu "
 "vypnúť v nastavení."
 
-#: ../ubuntutweak/mainwindow.py:458
+#: ../ubuntutweak/mainwindow.py:465
 msgid "Software Update"
 msgstr "Aktualizácia softvéru"
 
-#: ../ubuntutweak/widgets/widgets.py:83 ../ubuntutweak/widgets/widgets.py:108
+#: ../ubuntutweak/widgets/widgets.py:104 ../ubuntutweak/widgets/widgets.py:129
 #: ../ubuntutweak/modules/icons.py:105
 msgid "Unset"
 msgstr "Nenastavené"
 
-#: ../ubuntutweak/widgets/widgets.py:221
+#: ../ubuntutweak/widgets/widgets.py:242
 msgid "Please press the new key combination"
 msgstr "Stlačte novú kombináciu kláves"
 
-#: ../ubuntutweak/widgets/widgets.py:270
+#: ../ubuntutweak/widgets/widgets.py:291
 msgid "Disabled"
 msgstr "Vypnuté"
 
@@ -567,17 +580,17 @@ msgstr ""
 "testované aby mohli ísť do Ubuntu backports."
 
 #: ../ubuntutweak/common/package.py:172
-#: ../ubuntutweak/modules/appcenter.py:633
-#: ../ubuntutweak/modules/compiz.py:411
-#: ../ubuntutweak/modules/sourcecenter.py:120
+#: ../ubuntutweak/modules/appcenter.py:641
+#: ../ubuntutweak/modules/compiz.py:409
+#: ../ubuntutweak/modules/sourcecenter.py:125
 #: ../ubuntutweak/modules/nautilus.py:167
 msgid "Update Successful!"
 msgstr "Aktualizácia prebehla úspešne"
 
 #: ../ubuntutweak/common/package.py:174
-#: ../ubuntutweak/modules/appcenter.py:635
-#: ../ubuntutweak/modules/compiz.py:413
-#: ../ubuntutweak/modules/sourcecenter.py:122
+#: ../ubuntutweak/modules/appcenter.py:643
+#: ../ubuntutweak/modules/compiz.py:411
+#: ../ubuntutweak/modules/sourcecenter.py:127
 #: ../ubuntutweak/modules/nautilus.py:169
 msgid "Update Failed!"
 msgstr "Aktualizácia zlyhala!"
@@ -641,11 +654,11 @@ msgstr "Obrázky"
 msgid "Videos"
 msgstr "Videá"
 
-#: ../ubuntutweak/modules/userdir.py:160
+#: ../ubuntutweak/modules/userdir.py:158
 msgid "Choose a folder"
 msgstr "Vybrať priečinok"
 
-#: ../ubuntutweak/modules/userdir.py:177
+#: ../ubuntutweak/modules/userdir.py:174
 msgid ""
 "Ubuntu Tweak will restore the chosen directory to the default location.\n"
 "However, you must move your files back into place by yourself.\n"
@@ -655,27 +668,27 @@ msgstr ""
 "Svoje súbory však musíte späť na miesto presunúť sami.\n"
 "Chcete pokračovať?"
 
-#: ../ubuntutweak/modules/userdir.py:213
+#: ../ubuntutweak/modules/userdir.py:208
 msgid "Directory"
 msgstr "Adresár"
 
-#: ../ubuntutweak/modules/userdir.py:227
+#: ../ubuntutweak/modules/userdir.py:222
 msgid "Path"
 msgstr "Cesta"
 
-#: ../ubuntutweak/modules/userdir.py:234
+#: ../ubuntutweak/modules/userdir.py:229
 msgid "Change"
 msgstr "Zmeniť"
 
-#: ../ubuntutweak/modules/userdir.py:238
+#: ../ubuntutweak/modules/userdir.py:233
 msgid "Restore to default"
 msgstr "Obnoviť na predvolené"
 
-#: ../ubuntutweak/modules/userdir.py:245
+#: ../ubuntutweak/modules/userdir.py:240
 msgid "Default Folder Locations"
 msgstr "Predvolené umiestnenie priečinkov"
 
-#: ../ubuntutweak/modules/userdir.py:246
+#: ../ubuntutweak/modules/userdir.py:241
 msgid ""
 "You can change the paths of the default folders here.\n"
 "Don't change the location of your desktop folder unless you know what you "
@@ -684,9 +697,13 @@ msgstr ""
 "Tu môžete zmeniť predvolené umiestnenie priečinkov.\n"
 "Nemeňte umiestnenie priečinku Plocha ak neviete čo robíte."
 
-#: ../ubuntutweak/modules/userdir.py:273
-msgid "Update successful!"
-msgstr "Aktualizácia prebehla úspešne!"
+#: ../ubuntutweak/modules/userdir.py:260
+msgid "_Restore"
+msgstr "_Obnoviť"
+
+#: ../ubuntutweak/modules/userdir.py:265
+msgid "_Change"
+msgstr "_Zmeniť"
 
 #: ../ubuntutweak/modules/computer.py:33
 msgid "Computer Details"
@@ -823,7 +840,7 @@ msgstr ""
 "vhodné."
 
 #: ../ubuntutweak/modules/sourceeditor.py:87
-#: ../ubuntutweak/modules/sourcecenter.py:915
+#: ../ubuntutweak/modules/sourcecenter.py:929
 msgid "Details"
 msgstr "Podrobnosti"
 
@@ -865,7 +882,7 @@ msgstr "Odoslať"
 
 #: ../ubuntutweak/modules/sourceeditor.py:191
 msgid "Please check your network connection!"
-msgstr ""
+msgstr "Prosím skontrolujte svoje pripojenie k internetu"
 
 #: ../ubuntutweak/modules/sourceeditor.py:191
 msgid "Network Error"
@@ -877,7 +894,7 @@ msgstr "Uploadovanie..."
 
 #: ../ubuntutweak/modules/sourceeditor.py:214
 msgid "Updating..."
-msgstr ""
+msgstr "Aktualizácia..."
 
 #: ../ubuntutweak/modules/sourceeditor.py:352
 msgid "Source Editor"
@@ -954,27 +971,27 @@ msgstr ""
 "\"%s\" bude odstránený!\n"
 "Chcete pokračovať?"
 
-#: ../ubuntutweak/modules/appcenter.py:185
+#: ../ubuntutweak/modules/appcenter.py:193
 msgid "Category"
 msgstr "Kategória"
 
-#: ../ubuntutweak/modules/appcenter.py:204
+#: ../ubuntutweak/modules/appcenter.py:212
 msgid "All Categories"
 msgstr "Všetky kategórie"
 
-#: ../ubuntutweak/modules/appcenter.py:492
+#: ../ubuntutweak/modules/appcenter.py:500
 msgid "Checking update..."
 msgstr "Kontrola aktualizácií..."
 
-#: ../ubuntutweak/modules/appcenter.py:522
+#: ../ubuntutweak/modules/appcenter.py:530
 msgid "Fetching online data..."
 msgstr "Sťahujem súbory online..."
 
-#: ../ubuntutweak/modules/appcenter.py:526
+#: ../ubuntutweak/modules/appcenter.py:534
 msgid "Application Center"
 msgstr "Centrum aplikácií"
 
-#: ../ubuntutweak/modules/appcenter.py:527
+#: ../ubuntutweak/modules/appcenter.py:535
 msgid ""
 "A simple but more efficient way for finding and installing popular "
 "applications.\n"
@@ -987,29 +1004,29 @@ msgstr ""
 "Môžete kliknúť na tlačidlo \"Sync\" pre vykonanie manuálnej kontroly "
 "aktualizácií."
 
-#: ../ubuntutweak/modules/appcenter.py:532
+#: ../ubuntutweak/modules/appcenter.py:540
 msgid "Visit Online Application Center"
 msgstr "Navštíviť centrum aplikácií online"
 
-#: ../ubuntutweak/modules/appcenter.py:538
-#: ../ubuntutweak/modules/sourcecenter.py:894
+#: ../ubuntutweak/modules/appcenter.py:546
+#: ../ubuntutweak/modules/sourcecenter.py:908
 msgid "_Sync"
 msgstr "_Sync"
 
-#: ../ubuntutweak/modules/appcenter.py:575
-#: ../ubuntutweak/modules/sourcecenter.py:950
+#: ../ubuntutweak/modules/appcenter.py:583
+#: ../ubuntutweak/modules/sourcecenter.py:977
 msgid "Last synced:"
 msgstr "Posledná synchronizácia:"
 
-#: ../ubuntutweak/modules/appcenter.py:580
+#: ../ubuntutweak/modules/appcenter.py:588
 msgid "New application data available, would you like to update?"
 msgstr "Sú dostupné nové údaje, chcete ich aktualizovať?"
 
-#: ../ubuntutweak/modules/appcenter.py:649
+#: ../ubuntutweak/modules/appcenter.py:657
 msgid "Update available, would you like to update?"
 msgstr "Aktualizácie sú k dispozícii, chcete ich aktualizovať?"
 
-#: ../ubuntutweak/modules/appcenter.py:658
+#: ../ubuntutweak/modules/appcenter.py:666
 msgid ""
 "Network Error, please check your network connection - or the remote server "
 "may be down."
@@ -1017,12 +1034,12 @@ msgstr ""
 "Chyba siete, prosím skontrolujte vaše sieťové pripojenie - alebo je spadnutý "
 "vzdialený server."
 
-#: ../ubuntutweak/modules/appcenter.py:660
-#: ../ubuntutweak/modules/sourcecenter.py:1094
+#: ../ubuntutweak/modules/appcenter.py:668
+#: ../ubuntutweak/modules/sourcecenter.py:1137
 msgid "No update available."
 msgstr "Nie je k dispozícii žiadna aktualizácia."
 
-#: ../ubuntutweak/modules/appcenter.py:671
+#: ../ubuntutweak/modules/appcenter.py:679
 msgid "An error occurred while downloading the file."
 msgstr "Došlo ku chybe pri sťahovaní súboru."
 
@@ -1097,26 +1114,29 @@ msgstr "Spravovať všetky typy registrovaných súborov"
 msgid "Only show filetypes with associated applications"
 msgstr "Zobraziť len typy súborov s pridruženými aplikáciami"
 
-#: ../ubuntutweak/modules/updatemanager.py:29
+#: ../ubuntutweak/modules/updatemanager.py:32
 msgid "Update Manager"
 msgstr "Správca aktualizácií"
 
-#: ../ubuntutweak/modules/updatemanager.py:30
+#: ../ubuntutweak/modules/updatemanager.py:33
 msgid "A simple and easy-to-use update manager"
 msgstr "Jednoduchý a jednoducho použiteľný manažér aktualizácií"
 
-#: ../ubuntutweak/modules/updatemanager.py:42
-msgid "Enable the auto launch of System Update Manager"
-msgstr "Povoliť automatické spustenie systémového manažéra aktualizácií"
+#: ../ubuntutweak/modules/updatemanager.py:45
+msgid "Enable auto-start of System Update Manager"
+msgstr "Povoliť auto-štart Správcu aktualizácií systému"
 
-#: ../ubuntutweak/modules/updatemanager.py:65
-#: ../ubuntutweak/modules/sourcecenter.py:126
-msgid "Your system is clean and there's no update yet."
-msgstr "Váš systém je čistý a nie je žiadna aktualizácia."
+#: ../ubuntutweak/modules/updatemanager.py:50
+msgid "Temporarily disable third-party PPA sources whilst refreshing"
+msgstr "Dočasne zakázať zdroje PPA tretej-strany pri obnovovaní"
 
-#: ../ubuntutweak/modules/updatemanager.py:66
-#: ../ubuntutweak/modules/sourcecenter.py:127
-msgid "The software information is up-to-date now"
+#: ../ubuntutweak/modules/updatemanager.py:77
+msgid "Your system is clean and no updates are available."
+msgstr "Váš systém je čistý a žiadna aktualizácia nie je k dispozícii."
+
+#: ../ubuntutweak/modules/updatemanager.py:78
+#: ../ubuntutweak/modules/sourcecenter.py:132
+msgid "Software information is now up-to-date"
 msgstr "Informácie o softvéri sú teraz aktuálne"
 
 #: ../ubuntutweak/modules/metacity.py:37
@@ -1293,79 +1313,80 @@ msgstr ""
 "Zobraziť obsah „Domovského priečinka“ na ploche (zmeny sa prejavia po "
 "odhlásení)"
 
-#: ../ubuntutweak/modules/gnomesettings.py:35
+#: ../ubuntutweak/modules/gnomesettings.py:36
 msgid "GNOME Settings"
 msgstr "GNOME nastavenia"
 
-#: ../ubuntutweak/modules/gnomesettings.py:36
+#: ../ubuntutweak/modules/gnomesettings.py:37
 msgid "A lot of GNOME settings for panels, menus and other desktop elements"
 msgstr "Veľa nastavení GNOME pre panely, menu a ďalšie prvky plochy"
 
-#: ../ubuntutweak/modules/gnomesettings.py:48
+#: ../ubuntutweak/modules/gnomesettings.py:49
 msgid "Panel Settings"
 msgstr "Nastavenia panelu"
 
-#: ../ubuntutweak/modules/gnomesettings.py:50
+#: ../ubuntutweak/modules/gnomesettings.py:51
 msgid "Display warning when removing a panel"
 msgstr "Zobraziť upozornenie pri odstraňovaní panelu"
 
-#: ../ubuntutweak/modules/gnomesettings.py:53
+#: ../ubuntutweak/modules/gnomesettings.py:54
 msgid "Complete lockdown of all panels"
 msgstr "Uzamknúť všetky panely"
 
-#: ../ubuntutweak/modules/gnomesettings.py:56
+#: ../ubuntutweak/modules/gnomesettings.py:57
 msgid "Enable panel animations"
 msgstr "Zapnúť animácie panelov"
 
-#: ../ubuntutweak/modules/gnomesettings.py:61
+#: ../ubuntutweak/modules/gnomesettings.py:62
 msgid "Menu Settings"
 msgstr "Ponuka nastavení"
 
-#: ../ubuntutweak/modules/gnomesettings.py:63
+#: ../ubuntutweak/modules/gnomesettings.py:64
 msgid "Show Input Method menu in the context menu"
 msgstr "Zobraziť menu „Metódy vstupu“ v kontextovej ponuke"
 
-#: ../ubuntutweak/modules/gnomesettings.py:66
+#: ../ubuntutweak/modules/gnomesettings.py:67
 msgid "Show Unicode Control Character menu in the context menu"
 msgstr "Zobraziť menu riadiaceho znaku Unicode v kontextovom menu"
 
-#: ../ubuntutweak/modules/gnomesettings.py:69
+#: ../ubuntutweak/modules/gnomesettings.py:70
 msgid "Show icons in menus"
 msgstr "Zobraziť ikony v ponukách"
 
-#: ../ubuntutweak/modules/gnomesettings.py:72
+#: ../ubuntutweak/modules/gnomesettings.py:73
 msgid "Show icons on buttons"
 msgstr "Zobraziť ikony na tlačítkach"
 
-#: ../ubuntutweak/modules/gnomesettings.py:78
+#: ../ubuntutweak/modules/gnomesettings.py:79
 msgid "Screensaver"
 msgstr "Šetrič obrazovky"
 
-#: ../ubuntutweak/modules/gnomesettings.py:80
+#: ../ubuntutweak/modules/gnomesettings.py:81
 msgid "Enable user switching when screen is locked."
 msgstr "Povoliť prepnutie používateľa pri zamknutej obrazovke"
 
-#: ../ubuntutweak/modules/gnomesettings.py:85
+#: ../ubuntutweak/modules/gnomesettings.py:86
 msgid "Enable system-wide \"Recent Documents\" list"
 msgstr "Povoliť systémový zoznam \"Nedávne dokumenty\""
 
-#: ../ubuntutweak/modules/gnomesettings.py:88
+#: ../ubuntutweak/modules/gnomesettings.py:89
 msgid "History"
 msgstr "História"
 
-#: ../ubuntutweak/modules/gnomesettings.py:95
+#: ../ubuntutweak/modules/gnomesettings.py:96
 msgid "Click this button to change the menu logo image"
 msgstr "Kliknutím na toto tlačidlo zmeníte obrázok loga zoznam aplikácií"
 
-#: ../ubuntutweak/modules/gnomesettings.py:108
+#: ../ubuntutweak/modules/gnomesettings.py:109
+#: ../ubuntutweak/modules/loginsettings.py:121
 msgid "Choose a new logo image"
 msgstr "Vyberte nový obrázok pre logo"
 
-#: ../ubuntutweak/modules/gnomesettings.py:114
+#: ../ubuntutweak/modules/gnomesettings.py:115
 msgid "PNG image (*.png)"
 msgstr "Obrázok PNG (*.png)"
 
-#: ../ubuntutweak/modules/gnomesettings.py:135
+#: ../ubuntutweak/modules/gnomesettings.py:140
 msgid ""
 "This image size isn't suitable for the panel.\n"
 "It should be 24x24."
@@ -1373,7 +1394,7 @@ msgstr ""
 "Táto veľkosť obrázku nie je vhodná pre panel.\n"
 "Malo by byť 24x24."
 
-#: ../ubuntutweak/modules/gnomesettings.py:152
+#: ../ubuntutweak/modules/gnomesettings.py:157
 msgid "Do you want your changes to take effect immediately?"
 msgstr "Chcete, aby sa zmeny prejavili okamžite?"
 
@@ -1425,75 +1446,79 @@ msgstr "Zobraziť plochu"
 msgid "Show Widgets"
 msgstr "Zobraziť widgety"
 
-#: ../ubuntutweak/modules/compiz.py:222
+#: ../ubuntutweak/modules/compiz.py:220
 msgid "Compiz Settings"
 msgstr "Nastavenia compiz"
 
-#: ../ubuntutweak/modules/compiz.py:223
+#: ../ubuntutweak/modules/compiz.py:221
 msgid "Settings for some amazing desktop eye-candy"
 msgstr "Nastavenia pre niektoré oku lahodiace vylepšenia plochy"
 
-#: ../ubuntutweak/modules/compiz.py:236
+#: ../ubuntutweak/modules/compiz.py:234
 msgid "Install Advanced Desktop Effects Settings Manager"
 msgstr "Nainštalovať Správcu pokročilých efektov plochy"
 
-#: ../ubuntutweak/modules/compiz.py:239
+#: ../ubuntutweak/modules/compiz.py:237
 msgid "Install Simple Desktop Effects Settings Manager"
 msgstr "Inštalovať Jednoduchého Správcu nastavenia efektov"
 
-#: ../ubuntutweak/modules/compiz.py:242
+#: ../ubuntutweak/modules/compiz.py:240
 msgid "Install Screenlets Widget Application"
 msgstr "Nainštalovať aplikáciu screenletov"
 
-#: ../ubuntutweak/modules/compiz.py:249
+#: ../ubuntutweak/modules/compiz.py:247
 msgid " Workspace Edge Settings"
 msgstr " Nastavenie okrajov pracovnej plochy"
 
-#: ../ubuntutweak/modules/compiz.py:252
+#: ../ubuntutweak/modules/compiz.py:250
 msgid "Enable snapping windows"
 msgstr "Povoliť prichytávanie okien"
 
-#: ../ubuntutweak/modules/compiz.py:253
+#: ../ubuntutweak/modules/compiz.py:251
 msgid "Enable wobbly windows"
 msgstr "Povoliť vlniace sa okná"
 
-#: ../ubuntutweak/modules/compiz.py:255
+#: ../ubuntutweak/modules/compiz.py:253
 msgid "Window Effects"
 msgstr "Efekty okien"
 
-#: ../ubuntutweak/modules/compiz.py:258
+#: ../ubuntutweak/modules/compiz.py:256
 msgid "Enable transparent menus"
 msgstr "Povoliť priesvitné ponuky"
 
-#: ../ubuntutweak/modules/compiz.py:259
+#: ../ubuntutweak/modules/compiz.py:257
 msgid "Enable wobbly menus"
 msgstr "Povoliť vlniace sa ponuky"
 
-#: ../ubuntutweak/modules/compiz.py:261
+#: ../ubuntutweak/modules/compiz.py:259
 msgid "Menu Effects"
 msgstr "Efekty ponúk"
 
-#: ../ubuntutweak/modules/compiz.py:265
+#: ../ubuntutweak/modules/compiz.py:263
 msgid "Useful Extensions"
 msgstr "Užitočné rozšírenia"
 
-#: ../ubuntutweak/modules/compiz.py:280
+#: ../ubuntutweak/modules/compiz.py:278
 msgid "Prerequisite Conditions"
 msgstr "Požiadavky"
 
-#: ../ubuntutweak/modules/sourcecenter.py:91
+#: ../ubuntutweak/modules/sourcecenter.py:96
 msgid ""
-"You can install the new applications by selecting them and choose \"Yes\".\n"
-"Or you can install them at Add/Remove by choose \"No\"."
+"You can install new applications by selecting them and choosing \"Yes\".\n"
+"Or you can install them at Application Center by choosing \"No\"."
 msgstr ""
-"Môžete nainštalovať nové aplikácie ich vybraním a zvoľte \"Áno\".\n"
-"Alebo môžete nainštalovať na Pridať/Odstrániť ak zvolíte \"Nie\"."
+"Môžete inštalovať nové aplikácie vybraním voľby \"Áno\".\n"
+"Alebo môžete nainštalovať v Centre aplikácií zvolením \"Nie\"."
 
-#: ../ubuntutweak/modules/sourcecenter.py:92
-msgid "New applications are available to update"
-msgstr "Nové aplikácie sú k dispozícii pre aktualizáciu"
+#: ../ubuntutweak/modules/sourcecenter.py:97
+msgid "New applications are available"
+msgstr "Sú k dispozícii nové aplikácie"
 
-#: ../ubuntutweak/modules/sourcecenter.py:296
+#: ../ubuntutweak/modules/sourcecenter.py:131
+msgid "Your system is clean and there are no updates yet."
+msgstr "Váš systém je čistý a nie sú k dispozícii žiadne aktualizácie."
+
+#: ../ubuntutweak/modules/sourcecenter.py:309
 #, python-format
 msgid "Available %d New Application"
 msgid_plural "Available %d New Applications"
@@ -1501,7 +1526,7 @@ msgstr[0] "Je dostupná %d nová aplikácia"
 msgstr[1] "Sú dostupné %d nové aplikácie"
 msgstr[2] "Je dostupných %d nových aplikácií"
 
-#: ../ubuntutweak/modules/sourcecenter.py:316
+#: ../ubuntutweak/modules/sourcecenter.py:329
 #, python-format
 msgid "Available %d Package Update"
 msgid_plural "Available %d Package Updates"
@@ -1509,15 +1534,15 @@ msgstr[0] "Je dostupná %d nová aktualizácia balíčka"
 msgstr[1] "Sú dostupné %d nové aktualizácie balíčkov"
 msgstr[2] "Je dostupných %d nových aktualizácií balíčkov"
 
-#: ../ubuntutweak/modules/sourcecenter.py:354
-msgid "No Available Package Update"
-msgstr "Nie je dostupná aktualizácia balíčka"
+#: ../ubuntutweak/modules/sourcecenter.py:367
+msgid "No Available Package Updates"
+msgstr "Nie je k dispozícii žiaden balíček aktualizácií"
 
-#: ../ubuntutweak/modules/sourcecenter.py:489
+#: ../ubuntutweak/modules/sourcecenter.py:502
 msgid "Third-Party Sources"
 msgstr "Zdroje tretích strán"
 
-#: ../ubuntutweak/modules/sourcecenter.py:687
+#: ../ubuntutweak/modules/sourcecenter.py:700
 #, python-format
 msgid ""
 "You can't enable this Source because<b>\"%(SOURCE)s\"</b> conflicts with "
@@ -1528,7 +1553,7 @@ msgstr ""
 "konflikte.\n"
 "Pre pokračovanie je potrebné zakázať <b>\"%(SOURCE)s\"</b>ako prvý."
 
-#: ../ubuntutweak/modules/sourcecenter.py:709
+#: ../ubuntutweak/modules/sourcecenter.py:722
 #, python-format
 msgid ""
 "To enable this Source, You need to enable <b>\"%s\"</b> at first.\n"
@@ -1537,11 +1562,11 @@ msgstr ""
 "K povoleniu tohoto zdroja, musíte povoliť <b>\"%s\"</b> ako prvé.\n"
 "Chcete pokračovať?"
 
-#: ../ubuntutweak/modules/sourcecenter.py:711
+#: ../ubuntutweak/modules/sourcecenter.py:724
 msgid "Dependency Notice"
 msgstr "Oznámenie závislosti"
 
-#: ../ubuntutweak/modules/sourcecenter.py:735
+#: ../ubuntutweak/modules/sourcecenter.py:748
 #, python-format
 msgid ""
 "You can't disable this Source because <b>\"%(SOURCE)s\"</b> depends on it.\n"
@@ -1551,11 +1576,11 @@ msgstr ""
 "závislý.\n"
 "Pre pokračovanie je potrebné zakázať <b>\"%(SOURCE)s\"</b>ako prvý."
 
-#: ../ubuntutweak/modules/sourcecenter.py:825
+#: ../ubuntutweak/modules/sourcecenter.py:838
 msgid "New source has been enabled"
 msgstr "Sú povolené nové zdroje"
 
-#: ../ubuntutweak/modules/sourcecenter.py:826
+#: ../ubuntutweak/modules/sourcecenter.py:839
 #, python-format
 msgid ""
 "%s is enabled now, Please click the refresh button to update the application "
@@ -1564,47 +1589,74 @@ msgstr ""
 "%s je teraz povolený, Prosím kliknite na tlačitko obnoviť, pre aktualizáciu "
 "pamäte aplikácie."
 
-#: ../ubuntutweak/modules/sourcecenter.py:839
+#: ../ubuntutweak/modules/sourcecenter.py:853
 msgid "Homepage"
 msgstr "Domovská stránka"
 
-#: ../ubuntutweak/modules/sourcecenter.py:839
+#: ../ubuntutweak/modules/sourcecenter.py:853
 msgid "Source URL"
 msgstr "Zdrojový URL"
 
-#: ../ubuntutweak/modules/sourcecenter.py:839
+#: ../ubuntutweak/modules/sourcecenter.py:853
 msgid "Description"
 msgstr "Popis"
 
-#: ../ubuntutweak/modules/sourcecenter.py:852
+#: ../ubuntutweak/modules/sourcecenter.py:866
 msgid "Description is here"
 msgstr "Popis je tu"
 
-#: ../ubuntutweak/modules/sourcecenter.py:880
+#: ../ubuntutweak/modules/sourcecenter.py:894
 msgid "Source Center"
 msgstr "Centrum zdroja"
 
-#: ../ubuntutweak/modules/sourcecenter.py:881
+#: ../ubuntutweak/modules/sourcecenter.py:895
 msgid ""
-"A source center to keep your applications always up-to-date.\n"
-"You can also get the application which isn't in the official repository.\n"
-"Data will be automatically synchronized with the remote side.\n"
-"You can click the \"Sync\" button to check the update manually."
+"A collection of software sources to ensure your applications are always up-"
+"to-date.\n"
+"Here you can also add applications which are unavailable in the offical "
+"repositories.\n"
+"The list of available sources will be obtained automatically from a remote "
+"server.\n"
+"You can click the \"Sync\" button to manually check for updates"
 msgstr ""
-"Centrum zdroja, aby boli vaše aplikácie vždy aktuálne.\n"
-"Môžete tiež získať aplikáciu, ktorá nie je v oficiálnom repozitári.\n"
-"Údaje budú automaticky synchronizované s protistranou.\n"
-"Môžete kliknúť na tlačidlo \"Sync\" pre kontrolu aktualizácií ručne."
+"Zbierka zdrojov softvéru, aby boli vaše aplikácie vždy aktuálne.\n"
+"Tu tiež môžete pridať aplikácie, ktoré sú k dispozícii v oficiálnych "
+"repozitároch.\n"
+"Zoznam dostupných zdrojov bude možné získať automaticky zo vzdialeného "
+"servera.\n"
+"Môžete kliknúť na tlačidlo \"Sync\" pre ručnú kontrolu aktualizácií"
 
-#: ../ubuntutweak/modules/sourcecenter.py:887
+#: ../ubuntutweak/modules/sourcecenter.py:901
 msgid "Visit online Source Center"
 msgstr "Navštíviť centrum zdroja"
 
-#: ../ubuntutweak/modules/sourcecenter.py:956
-msgid "New sources data available, would you like to update?"
-msgstr "Sú k dispozícii nové zdroje údajov, chcete ich aktualizovať?"
+#: ../ubuntutweak/modules/sourcecenter.py:981
+msgid ""
+"After a successful distribution upgrade, any third-party sources you use "
+"will be disabled by default.\n"
+"Would you like to re-enable any sources disabled by Update Manager?"
+msgstr ""
+"Po úspešnom upgrade distribúcie, bude využívanie zdrojov tretej strany v "
+"predvolenom nastavení vypnuté.\n"
+"Chcete, znovu aktivovať zdroje zakázané Správcom aktualizácií?"
 
-#: ../ubuntutweak/modules/sourcecenter.py:1038
+#: ../ubuntutweak/modules/sourcecenter.py:984
+msgid "Upgrade Third Party Sources"
+msgstr "Aktualizovať zdroje softvéru tretej strany"
+
+#: ../ubuntutweak/modules/sourcecenter.py:990
+msgid "Upgrade Successful!"
+msgstr "Aktualizácia úspešná!"
+
+#: ../ubuntutweak/modules/sourcecenter.py:992
+msgid "Upgrade Failed!"
+msgstr "Aktualizácia zlyhala!"
+
+#: ../ubuntutweak/modules/sourcecenter.py:999
+msgid "New source data available, would you like to update?"
+msgstr "Sú k dispozícii nové údaje, chcete ich aktualizovať?"
+
+#: ../ubuntutweak/modules/sourcecenter.py:1081
 msgid ""
 "It is a possible security risk to use packages from Third-Party Sources.\n"
 "Please be careful and use only sources you trust."
@@ -1613,24 +1665,24 @@ msgstr ""
 "riziko.\n"
 "Používajte iba zdroje softvéru, ktorým dôverujete."
 
-#: ../ubuntutweak/modules/sourcecenter.py:1041
+#: ../ubuntutweak/modules/sourcecenter.py:1084
 #: ../ubuntutweak/modules/nautilus.py:139
 msgid "Warning"
 msgstr "Upozornenie"
 
-#: ../ubuntutweak/modules/sourcecenter.py:1042
+#: ../ubuntutweak/modules/sourcecenter.py:1085
 msgid "Never show this dialog"
 msgstr "Nikdy nezobrazovať tento dialóg"
 
-#: ../ubuntutweak/modules/sourcecenter.py:1068
-msgid "Some error happened while downloading the file"
-msgstr "Došlo k nejakej chybe pri sťahovaní súboru"
+#: ../ubuntutweak/modules/sourcecenter.py:1111
+msgid "An error occurred whilst downloading the file"
+msgstr "Došlo ku chybe pri sťahovaní súboru"
 
-#: ../ubuntutweak/modules/sourcecenter.py:1083
+#: ../ubuntutweak/modules/sourcecenter.py:1126
 msgid "Update available, Would you like to update?"
 msgstr "Dostupná aktualizácia, chcete aktualizovať?"
 
-#: ../ubuntutweak/modules/sourcecenter.py:1092
+#: ../ubuntutweak/modules/sourcecenter.py:1135
 msgid ""
 "Network Error, Please check your network connection or the remote server is "
 "down."
@@ -1903,15 +1955,11 @@ msgid "Suppress the dialog to confirm logout, restart and shutdown action"
 msgstr ""
 "Nezobraziť dialóg na potvrdenie akcie odhlásenia, reštartu a vypnutia"
 
-#: ../ubuntutweak/modules/session.py:87
-msgid "Disable user list in gdm"
-msgstr "Zakázať zoznam používateľov v gdm"
-
-#: ../ubuntutweak/modules/session.py:112
+#: ../ubuntutweak/modules/session.py:109
 msgid "Please enter a valid application command line."
 msgstr "Prosím, zadajte platnú aplikáciu príkazového riadka."
 
-#: ../ubuntutweak/modules/session.py:112
+#: ../ubuntutweak/modules/session.py:109
 #, python-format
 msgid "\"%s\" is not available."
 msgstr "\"%s\" nie je dostupná."
@@ -2187,6 +2235,54 @@ msgstr "Vyrovnávacia pamäť náhľadov bude odstránená. Chcete pokračovať 
 msgid "Clean up Successful!"
 msgstr "Čistenie dokončené!"
 
+#: ../ubuntutweak/modules/loginsettings.py:38
+msgid "Login Settings"
+msgstr "Nastavenie prihlásenia"
+
+#: ../ubuntutweak/modules/loginsettings.py:39
+msgid "Control the appearance and behaviour of your login screen"
+msgstr "Ovládanie vzhľadu a správania svojej prihlasovacej obrazovky"
+
+#: ../ubuntutweak/modules/loginsettings.py:48
+msgid "Login Options"
+msgstr "Predvoľby prihlásenia"
+
+#: ../ubuntutweak/modules/loginsettings.py:51
+msgid "Disable user list in gdm"
+msgstr "Zakázať zoznam používateľov v gdm"
+
+#: ../ubuntutweak/modules/loginsettings.py:55
+msgid "Play sound at login"
+msgstr "Prehrať zvuk pri prihlásení"
+
+#: ../ubuntutweak/modules/loginsettings.py:59
+msgid "Disable showing the restart buttons"
+msgstr "Zakázať zobrazenie tlačidiel reštart"
+
+#: ../ubuntutweak/modules/loginsettings.py:76
+msgid "Login Theme"
+msgstr "Téma prihlásenia"
+
+#: ../ubuntutweak/modules/loginsettings.py:127
+msgid "PNG image with 64x64 size (*.png)"
+msgstr "PNG obrázok s veľkosťou 64x64 (*.png)"
+
+#: ../ubuntutweak/modules/loginsettings.py:151
+msgid ""
+"This image size isn't suitable for the logo.\n"
+"It should be 64x64."
+msgstr ""
+"Táto veľkosť obrázku nie je vhodná pre logo.\n"
+"Mala by byť 64x64."
+
+#: ../ubuntutweak/modules/loginsettings.py:168
+msgid "Choose a new background image"
+msgstr "Vyberte nový obrázok pozadia"
+
+#: ../ubuntutweak/modules/loginsettings.py:174
+msgid "All images"
+msgstr "Všetky obrázky"
+
 #~ msgid "Text was empty (or contained only whitespace)"
 #~ msgstr "Text bol prázdny (alebo obsahoval iba medzery)"
 
@@ -2281,6 +2377,9 @@ msgstr "Čistenie dokončené!"
 #~ msgid "Ubuntu Tweak (Unstable Version)"
 #~ msgstr "Ubuntu Tweak (nestabilná verzia)"
 
+#~ msgid "The software information is up-to-date now"
+#~ msgstr "Informácie o softvéri sú teraz aktuálne"
+
 #~ msgid "Enable Metacity's Compositing feature"
 #~ msgstr "Povoliť kompozitné efekty Metacity"
 
@@ -2353,6 +2452,9 @@ msgstr "Čistenie dokončené!"
 #~ msgstr[0] "Vybraný %d balík na odstránenie"
 #~ msgstr[1] "Vybrané %d balíky na odstránenie"
 #~ msgstr[2] "Vybraných %d balíkov na odstránenie"
+
+#~ msgid "Update successful!"
+#~ msgstr "Aktualizácia prebehla úspešne!"
 
 #~ msgid ""
 #~ "After every release of Ubuntu there comes a feature freeze.\n"
@@ -2521,6 +2623,19 @@ msgstr "Čistenie dokončené!"
 #~ msgid "SMPlayer (Unstable Version)"
 #~ msgstr "SMPlayer  (Nestabilná verzia)"
 
+#~ msgid ""
+#~ "You can install the new applications by selecting them and choose \"Yes\".\n"
+#~ "Or you can install them at Add/Remove by choose \"No\"."
+#~ msgstr ""
+#~ "Môžete nainštalovať nové aplikácie ich vybraním a zvoľte \"Áno\".\n"
+#~ "Alebo môžete nainštalovať na Pridať/Odstrániť ak zvolíte \"Nie\"."
+
+#~ msgid "New applications are available to update"
+#~ msgstr "Nové aplikácie sú k dispozícii pre aktualizáciu"
+
+#~ msgid "Your system is clean and there's no update yet."
+#~ msgstr "Váš systém je čistý a nie je žiadna aktualizácia."
+
 #~ msgid "Available New Applications"
 #~ msgstr "Dostupné nové aplikácie"
 
@@ -2593,6 +2708,15 @@ msgstr "Čistenie dokončené!"
 #~ msgid "Some useful information about your computer"
 #~ msgstr "Niektoré užitočné informácie o počítači"
 
+#~ msgid "New sources data available, would you like to update?"
+#~ msgstr "Sú k dispozícii nové zdroje údajov, chcete ich aktualizovať?"
+
+#~ msgid "No Available Package Update"
+#~ msgstr "Nie je dostupná aktualizácia balíčka"
+
+#~ msgid "Some error happened while downloading the file"
+#~ msgstr "Došlo k nejakej chybe pri sťahovaní súboru"
+
 #~ msgid ""
 #~ "A simple but more effecient way for finding and installing popular "
 #~ "applications.\n"
@@ -2603,6 +2727,9 @@ msgstr "Čistenie dokončené!"
 #~ "aplikácií.\n"
 #~ "Údaje budú automaticky synchronizované s protistranou .\n"
 #~ "Môžete kliknúť na tlačítko \"Sync\" a skontrolovať aktualizácie manuálne."
+
+#~ msgid "Enable the auto launch of System Update Manager"
+#~ msgstr "Povoliť automatické spustenie systémového manažéra aktualizácií"
 
 #~ msgid "Some options about Metacity Window Manager"
 #~ msgstr "Niektoré nastavenia Metacity Window Manager"
@@ -2645,3 +2772,14 @@ msgstr "Čistenie dokončené!"
 
 #~ msgid "Remove Spacer"
 #~ msgstr "Odstrániť medzerník"
+
+#~ msgid ""
+#~ "A source center to keep your applications always up-to-date.\n"
+#~ "You can also get the application which isn't in the official repository.\n"
+#~ "Data will be automatically synchronized with the remote side.\n"
+#~ "You can click the \"Sync\" button to check the update manually."
+#~ msgstr ""
+#~ "Centrum zdroja, aby boli vaše aplikácie vždy aktuálne.\n"
+#~ "Môžete tiež získať aplikáciu, ktorá nie je v oficiálnom repozitári.\n"
+#~ "Údaje budú automaticky synchronizované s protistranou.\n"
+#~ "Môžete kliknúť na tlačidlo \"Sync\" pre kontrolu aktualizácií ručne."
