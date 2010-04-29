@@ -2,7 +2,7 @@ import glob
 from setuptools import *
 
 setup(name='ubuntu-tweak',
-      version='0.5.3',
+      version='0.5.4',
       description='magic tool to configure Ubuntu',
       author='TualatriX',  
       author_email='tualatrix@gmail.com',
