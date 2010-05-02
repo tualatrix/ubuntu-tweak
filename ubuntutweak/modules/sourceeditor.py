@@ -350,7 +350,7 @@ class SourceView(gtk.TextView):
 
 class SourceEditor(TweakModule):
     __title__ = _('Source Editor')
-    __desc__ = _('Freely edit your software sources to fit your needs.')
+    __desc__ = _('Freely edit your software sources to suit your needs.')
 #TODO Enable in the next version
 #                'Click "Update Sources" if you want to change the sources.\n'
 #                'Click "Submit Sources" if you want to share your sources with other people.')
