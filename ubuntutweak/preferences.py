@@ -102,7 +102,7 @@ class PreferencesDialog:
         vbox = self.worker.get_object('vbox5')
 
         button = WidgetFactory.create('GconfCheckButton', 
-                                      label=_('Enable Check Update'), 
+                                      label=_('Check for Updates'),
                                       key='check_update',
                                       default=False)
         vbox.pack_start(button, False, False, 0)
@@ -114,13 +114,13 @@ class PreferencesDialog:
         vbox.pack_start(button, False, False, 0)
 
         button = WidgetFactory.create('GconfCheckButton', 
-                                      label=_('Enable the synchronous notification'),
+                                      label=_('Enable Synchronous notifications'),
                                       key='sync_notify',
                                       default=True)
         vbox.pack_start(button, False, False, 0)
 
         button = WidgetFactory.create('GconfCheckButton',
-                                      label=_('Enable new item highlight in App and Source Center'),
+                                      label=_('Highlight new items in App and Source Center'),
                                       key='enable_new_item',
                                       default=True)
         vbox.pack_start(button, False, False, 0)
