@@ -42,7 +42,7 @@ class UpdateManager(TweakModule):
         self.update_list()
         self.sw1.add(self.updateview)
 
-        button = GconfCheckButton(label=_('Enable auto-start of System Update Manager'), 
+        button = GconfCheckButton(label=_('Automatically run System Update Manager'), 
                                    key='/apps/update-notifier/auto_launch')
         self.vbox1.pack_start(button, False, False, 0)
 
