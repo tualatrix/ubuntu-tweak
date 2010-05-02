@@ -76,7 +76,7 @@ class module_check:
         try:
             import ccm
             return True
-        except ImportError:
+        except:
             return False
 
     @classmethod
