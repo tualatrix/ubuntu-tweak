@@ -38,6 +38,8 @@
                     <signal name="clicked" handler="on_logo_button_clicked"/>
                     <child>
                       <object class="GtkImage" id="logo_image">
+                        <property name="width_request">64</property>
+                        <property name="height_request">64</property>
                         <property name="visible">True</property>
                         <property name="stock">gtk-missing-image</property>
                       </object>
@@ -83,6 +85,8 @@
                         <signal name="clicked" handler="on_background_button_clicked"/>
                         <child>
                           <object class="GtkImage" id="background_image">
+                            <property name="width_request">160</property>
+                            <property name="height_request">120</property>
                             <property name="visible">True</property>
                             <property name="stock">gtk-missing-image</property>
                           </object>

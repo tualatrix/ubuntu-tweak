@@ -102,9 +102,12 @@ class LoginSettings(TweakModule):
     def __setup_background_image(self):
         self.background_setting = UserGconfSetting('/desktop/gnome/background/picture_filename')
         background_path = self.background_setting.get_value(user='gdm')
-        pixbuf = gtk.gdk.pixbuf_new_from_file(background_path)
-        pixbuf = pixbuf.scale_simple(160, 120, gtk.gdk.INTERP_NEAREST)
-        self.background_image.set_from_pixbuf(pixbuf)
+        try:
+            pixbuf = gtk.gdk.pixbuf_new_from_file(background_path)
+            pixbuf = pixbuf.scale_simple(160, 120, gtk.gdk.INTERP_NEAREST)
+            self.background_image.set_from_pixbuf(pixbuf)
+        except:
+            pass
 
     def on_polkit_action(self, widget, action):
         if action:
