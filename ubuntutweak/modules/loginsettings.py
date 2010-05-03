@@ -97,7 +97,10 @@ class LoginSettings(TweakModule):
         else:
             icontheme = gtk.IconTheme()
             icontheme.set_custom_theme(self.icon_theme_setting.get_value(user='gdm'))
-            self.logo_image.set_from_pixbuf(icontheme.load_icon(icon_name, 64, 0))
+            try:
+                self.logo_image.set_from_pixbuf(icontheme.load_icon('icon_name', 64, 0))
+            except:
+                pass
 
     def __setup_background_image(self):
         self.background_setting = UserGconfSetting('/desktop/gnome/background/picture_filename')
