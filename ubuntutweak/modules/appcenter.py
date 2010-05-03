@@ -237,7 +237,10 @@ class AppView(gtk.TreeView):
     __gsignals__ = {
         'changed': (gobject.SIGNAL_RUN_FIRST,
                     gobject.TYPE_NONE,
-                    (gobject.TYPE_INT,))
+                    (gobject.TYPE_INT,)),
+        'select': (gobject.SIGNAL_RUN_FIRST,
+                    gobject.TYPE_NONE,
+                    (gobject.TYPE_BOOLEAN,))
     }
 
     (COLUMN_INSTALLED,
@@ -290,7 +293,6 @@ class AppView(gtk.TreeView):
         renderer.connect('toggled', self.on_install_toggled)
 
         column = gtk.TreeViewColumn('', renderer, active=self.COLUMN_INSTALLED)
-        column.set_cell_data_func(renderer, self.install_column_view_func)
         column.set_sort_column_id(self.COLUMN_INSTALLED)
         self.append_column(column)
 
@@ -317,13 +319,6 @@ class AppView(gtk.TreeView):
             desc = model.get_value(iter, self.COLUMN_DESC)
             self.__status.set_as_read(package)
             model.set_value(iter, self.COLUMN_DISPLAY, '<b>%s</b>\n%s' % (appname, desc))
-
-    def install_column_view_func(self, cell_layout, renderer, model, iter):
-        package = model.get_value(iter, self.COLUMN_PKG)
-        if package == None:
-            renderer.set_property("visible", False)
-        else:
-            renderer.set_property("visible", True)
 
     def icon_column_view_func(self, cell_layout, renderer, model, iter):
         pixbuf = model.get_value(iter, self.COLUMN_ICON)
@@ -441,35 +436,39 @@ class AppView(gtk.TreeView):
         desc = model.get_value(iter, self.COLUMN_DESC)
         type = model.get_value(iter, self.COLUMN_TYPE)
 
-        if type == 'app':
-            is_installed = not is_installed
-            if is_installed:
-                if pkgname in self.to_rm:
-                    self.to_rm.remove(pkgname)
-                    do_app_unchanged(model, iter, appname, desc)
+        if pkgname:
+            if type == 'app':
+                is_installed = not is_installed
+                if is_installed:
+                    if pkgname in self.to_rm:
+                        self.to_rm.remove(pkgname)
+                        do_app_unchanged(model, iter, appname, desc)
+                    else:
+                        self.to_add.append(pkgname)
+                        do_app_changed(model, iter, appname, desc)
                 else:
+                    if pkgname in self.to_add:
+                        self.to_add.remove(pkgname)
+                        do_app_unchanged(model, iter, appname, desc)
+                    else:
+                        self.to_rm.append(pkgname)
+                        do_app_changed(model, iter, appname, desc)
+
+                model.set(iter, self.COLUMN_INSTALLED, is_installed)
+            else:
+                to_installed = is_installed
+                to_installed = not to_installed
+                if to_installed == True:
                     self.to_add.append(pkgname)
-                    do_app_changed(model, iter, appname, desc)
-            else:
-                if pkgname in self.to_add:
-                    self.to_add.remove(pkgname)
-                    do_app_unchanged(model, iter, appname, desc)
                 else:
-                    self.to_rm.append(pkgname)
-                    do_app_changed(model, iter, appname, desc)
+                    self.to_add.remove(pkgname)
 
-            model.set(iter, self.COLUMN_INSTALLED, is_installed)
+                model.set(iter, self.COLUMN_INSTALLED, to_installed)
+
+            self.emit('changed', len(self.to_add) + len(self.to_rm))
         else:
-            to_installed = is_installed
-            to_installed = not to_installed
-            if to_installed == True:
-                self.to_add.append(pkgname)
-            else:
-                self.to_add.remove(pkgname)
-
-            model.set(iter, self.COLUMN_INSTALLED, to_installed)
-
-        self.emit('changed', len(self.to_add) + len(self.to_rm))
+            model.set(iter, self.COLUMN_INSTALLED, not is_installed)
+            self.emit('select', not is_installed)
 
     def set_filter(self, filter):
         self.filter = filter

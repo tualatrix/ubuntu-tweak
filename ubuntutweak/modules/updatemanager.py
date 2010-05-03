@@ -18,6 +18,7 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
+from gettext import ngettext
 from aptsources.sourceslist import SourcesList
 
 from ubuntutweak.modules  import TweakModule
@@ -39,11 +40,12 @@ class UpdateManager(TweakModule):
 
         self.updateview = UpdateView()
         self.updateview.connect('changed', self.on_update_status_changed)
+        self.updateview.connect('select', self.on_select_action)
         self.update_list()
         self.sw1.add(self.updateview)
 
         button = GconfCheckButton(label=_('Automatically run System Update Manager'), 
-                                   key='/apps/update-notifier/auto_launch')
+                                  key='/apps/update-notifier/auto_launch')
         self.vbox1.pack_start(button, False, False, 0)
 
         self.ppa_button = GconfCheckButton(
@@ -57,6 +59,7 @@ class UpdateManager(TweakModule):
         PACKAGE_WORKER.update_apt_cache(init=True)
         self.updateview.get_model().clear()
         self.updateview.update_updates(list(PACKAGE_WORKER.get_update_package()))
+        self.install_button.set_sensitive(False)
 
     def on_refresh_button_clicked(self, widget):
         do_ppa_disable = False
@@ -67,7 +70,6 @@ class UpdateManager(TweakModule):
         UpdateCacheDialog(widget.get_toplevel()).run()
 
         PACKAGE_WORKER.update_apt_cache(True)
-        self.select_button.set_active(False)
 
         new_updates = list(PACKAGE_WORKER.get_update_package())
         if new_updates:
@@ -84,11 +86,13 @@ class UpdateManager(TweakModule):
         self.emit('call', 'ubuntutweak.modules.sourcecenter', 'update_thirdparty', {})
         self.emit('call', 'ubuntutweak.modules.sourceeditor', 'update_source_combo', {})
 
-    def on_select_button_clicked(self, widget):
-        self.updateview.select_all_action(widget.get_active())
+    def on_select_action(self, widget, active):
+        self.updateview.select_all_action(active)
 
-    def on_update_status_changed(self, widget, i):
-        if i:
+    def on_update_status_changed(self, widget, count):
+        self.install_button.set_label(ngettext('Install Update',
+                                               'Install Updates', count))
+        if count:
             self.install_button.set_sensitive(True)
         else:
             self.install_button.set_sensitive(False)

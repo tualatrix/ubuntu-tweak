@@ -86,6 +86,7 @@ def refresh_source(parent):
 
     if new_pkg or new_updates:
         updateview = UpdateView()
+        updateview.connect('select', on_select_action)
 
         if new_pkg:
             updateview.update_model(new_pkg)
@@ -136,6 +137,9 @@ def refresh_source(parent):
 
 def on_select_button_clicked(widget, updateview):
     updateview.select_all_action(widget.get_active())
+
+def on_select_action(widget, active):
+    widget.select_all_action(active)
 
 class CheckSourceDialog(CheckUpdateDialog):
     def get_updatable(self):
@@ -300,17 +304,14 @@ class UpdateView(AppView):
         model = self.get_model()
 
         length = len(apps)
-        model.append((None,
-                      None,
-                      None,
-                      None,
-                      None,
+        iter = model.append()
+        model.set(iter,
+                  self.COLUMN_INSTALLED, False,
+                  self.COLUMN_DISPLAY,
                       '<span size="large" weight="bold">%s</span>' %
-                      ngettext('Available %d New Application',
-                               'Available %d New Applications',
-                               length) % length,
-                      None,
-                      None))
+                          ngettext('Available %d New Application',
+                                   'Available %d New Applications', length) % length,
+                  )
 
         super(UpdateView, self).update_model(apps)
 
@@ -1096,9 +1097,9 @@ class SourceCenter(TweakModule):
         self.emit('call', 'ubuntutweak.modules.sourceeditor', 'update_source_combo', {})
 
     def on_update_button_clicked(self, widget):
-        if refresh_source(widget.get_toplevel()):
-            self.emit('call', 'ubuntutweak.modules.appcenter', 'update_app_data', {})
-            self.emit('call', 'ubuntutweak.modules.updatemanager', 'update_list', {})
+        refresh_source(widget.get_toplevel())
+        self.emit('call', 'ubuntutweak.modules.appcenter', 'update_app_data', {})
+        self.emit('call', 'ubuntutweak.modules.updatemanager', 'update_list', {})
 
     def on_source_data_downloaded(self, widget):
         file = widget.get_downloaded_file()
