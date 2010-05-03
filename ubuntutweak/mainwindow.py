@@ -272,24 +272,25 @@ class MainWindow(gtk.Window):
             else:
                 pixbuf = None
             title = module[MODULE_TITLE]
-            iter = model.append(None)
-            model.set(iter,
-                self.ID_COLUMN, module[MODULE_ID],
-                self.LOGO_COLUMN, pixbuf,
-                self.TITLE_COLUMN, "<b><big>%s</big></b>" % title,
-            )
+            type = module[MODULE_TYPE]
+            module_list = MLOADER.get_category(type)
 
-            if module[MODULE_TYPE]:
-                module_list = MLOADER.get_category(module[MODULE_TYPE])
-                if module_list:
-                    for module in module_list:
-                        child_iter = model.append(iter)
+            if module_list:
+                iter = model.append(None)
+                model.set(iter,
+                    self.ID_COLUMN, module[MODULE_ID],
+                    self.LOGO_COLUMN, pixbuf,
+                    self.TITLE_COLUMN, "<b><big>%s</big></b>" % title,
+                )
 
-                        model.set(child_iter,
-                            self.ID_COLUMN, module.__name__,
-                            self.LOGO_COLUMN, MLOADER.get_pixbuf(module.__name__),
-                            self.TITLE_COLUMN, module.__title__,
-                        )
+                for module in module_list:
+                    child_iter = model.append(iter)
+
+                    model.set(child_iter,
+                        self.ID_COLUMN, module.__name__,
+                        self.LOGO_COLUMN, MLOADER.get_pixbuf(module.__name__),
+                        self.TITLE_COLUMN, module.__title__,
+                    )
 
         return model
 
