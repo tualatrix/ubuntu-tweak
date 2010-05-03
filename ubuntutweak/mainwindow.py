@@ -275,7 +275,7 @@ class MainWindow(gtk.Window):
             type = module[MODULE_TYPE]
             module_list = MLOADER.get_category(type)
 
-            if module_list:
+            if module_list or module[MODULE_ID] == 0:
                 iter = model.append(None)
                 model.set(iter,
                     self.ID_COLUMN, module[MODULE_ID],

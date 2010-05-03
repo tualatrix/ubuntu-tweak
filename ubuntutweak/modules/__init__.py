@@ -55,7 +55,7 @@ class ModuleLoader:
                 self.id_table[v.__name__] = v
 
     def get_category(self, category):
-        return self.module_table.get(category, None)
+        return self.module_table.get(category, [])
 
     def get_module(self, id):
         return self.id_table[id]
