@@ -309,8 +309,8 @@ class UpdateView(AppView):
                   self.COLUMN_INSTALLED, False,
                   self.COLUMN_DISPLAY,
                       '<span size="large" weight="bold">%s</span>' %
-                          ngettext('Available %d New Application',
-                                   'Available %d New Applications', length) % length,
+                          ngettext('%d New Application Available',
+                                   '%d New Applications Available', length) % length,
                   )
 
         super(UpdateView, self).update_model(apps)
@@ -327,8 +327,8 @@ class UpdateView(AppView):
             model.set(iter,
                       self.COLUMN_DISPLAY,
                       '<span size="large" weight="bold">%s</span>' %
-                      ngettext('Available %d Package Update',
-                               'Available %d Package Updates',
+                      ngettext('%d Package Update Available',
+                               '%d Package Updates Available',
                                length) % length)
 
             apps = []
