@@ -106,5 +106,4 @@ class UpdateManager(TweakModule):
 
         self.updateview.get_model().clear()
         self.updateview.update_updates(list(PACKAGE_WORKER.get_update_package()))
-        self.select_button.set_active(False)
         self.updateview.select_all_action(False)
