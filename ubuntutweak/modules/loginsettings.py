@@ -39,7 +39,7 @@ class LoginSettings(TweakModule):
     __desc__ = _('Control the appearance and behaviour of your login screen')
     __icon__ = 'gdm-setup'
     __category__ = 'startup'
-    __desktop__ = 'gnome'
+    __desktop__ = ['gnome', 'xfce']
 
     def __init__(self):
         TweakModule.__init__(self, 'loginsettings.ui')
