@@ -15,7 +15,7 @@ def applize(package):
     return ' '.join([a.capitalize() for a in package.split('-')])
 
 PACKAGE = 'ubuntu-tweak'
-VERSION = '0.5.4'
+VERSION = '0.5.4.1'
 DATA_DIR = '/usr/share/ubuntu-tweak/'
 APP = applize(PACKAGE)
 CONFIG_ROOT = os.path.join(glib.get_user_config_dir(), 'ubuntu-tweak')
