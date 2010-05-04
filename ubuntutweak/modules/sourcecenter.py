@@ -28,6 +28,7 @@ import pango
 import gobject
 import apt_pkg
 import logging
+import gettext
 import webbrowser
 import pynotify
 import urllib
@@ -966,13 +967,26 @@ class SourceCenter(TweakModule):
         self.reparent(self.main_vbox)
 
     def check_source_upgradable(self):
+        log.debug("The check source string is: \"%s\"" % self.__get_disable_string())
         for source in SourcesList():
-            if 'disabled on upgrade to' in source.str() and \
+            if self.__get_disable_string() in source.str() and \
                     source.uri in UPGRADE_DICT and \
                     source.disabled:
                 return True
 
         return False
+
+    def __get_disable_string(self):
+        APP="update-manager"
+        DIR="/usr/share/locale"
+
+        gettext.bindtextdomain(APP, DIR)
+        gettext.textdomain(APP)
+
+        #the "%s" is in front, some is the end, so just return the long one
+        translated = gettext.gettext("disabled on upgrade to %s")
+        a, b = translated.split('%s')
+        return a.strip() or b.strip()
 
     def update_timestamp(self):
         self.time_label.set_text(_('Last synced:') + ' ' + utdata.get_last_synced(SOURCE_ROOT))
@@ -986,7 +1000,7 @@ class SourceCenter(TweakModule):
         response = dialog.run()
         dialog.destroy()
         if response == gtk.RESPONSE_YES:
-            proxy.upgrade_sources(UPGRADE_DICT)
+            proxy.upgrade_sources(self.__get_disable_string(), UPGRADE_DICT)
             if not self.check_source_upgradable():
                 InfoDialog(_('Upgrade Successful!')).launch()
             else:
