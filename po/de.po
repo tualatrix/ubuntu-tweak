@@ -3,15 +3,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-27 19:56+0800\n"
-"PO-Revision-Date: 2010-04-27 14:07+0000\n"
-"Last-Translator: TomTasche <tomtasche@ymail.com>\n"
+"POT-Creation-Date: 2010-05-03 22:35+0800\n"
+"PO-Revision-Date: 2010-05-03 22:01+0000\n"
+"Last-Translator: Jan-Christoph Borchardt <jan@inquata.com>\n"
 "Language-Team: LL <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2010-04-29 11:41+0000\n"
+"X-Launchpad-Export-Date: 2010-05-04 12:08+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: GERMANY\n"
 "X-Poedit-Language: German\n"
@@ -21,7 +21,7 @@ msgstr ""
 #: ../data/script-worker:54
 #, c-format
 msgid "You don't have permission to write in %s"
-msgstr ""
+msgstr "Sie haben keine Schreibrechte für %s"
 
 #: ../data/script-worker:152 ../data/script-worker:165
 msgid "Enter your password to perform the administrative tasks"
@@ -147,13 +147,7 @@ msgstr "Ort:"
 msgid "Right"
 msgstr "Rechts"
 
-#. checkbutton
-#: ../data/ui/updatemanager.ui.h:1 ../ubuntutweak/modules/sourcecenter.py:106
-#: ../ubuntutweak/modules/cleaner.py:468
-msgid "Select All"
-msgstr "Alle auswählen"
-
-#: ../data/ui/updatemanager.ui.h:2
+#: ../data/ui/updatemanager.ui.h:1
 msgid "_Install Update"
 msgstr "Aktualisierung _installieren"
 
@@ -254,11 +248,11 @@ msgstr "Ubuntu Tweak %s herunterladen"
 msgid "_Donate"
 msgstr "_Spenden"
 
-#: ../ubuntutweak/mainwindow.py:429
+#: ../ubuntutweak/mainwindow.py:430
 msgid "Ubuntu Tweak Website"
 msgstr "Ubuntu Tweak-Webseite"
 
-#: ../ubuntutweak/mainwindow.py:431
+#: ../ubuntutweak/mainwindow.py:432
 msgid ""
 "Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
 "system and desktop settings."
@@ -266,27 +260,28 @@ msgstr ""
 "Ubuntu Tweak ist ein Werkzeug für Ubuntu, dass es Ihnen erleichtert, Ihr "
 "System und Ihre Arbeitsfläche einzurichten."
 
-#: ../ubuntutweak/mainwindow.py:433
+#: ../ubuntutweak/mainwindow.py:434
 msgid "Contributors of 2007"
 msgstr "Mitwirkende 2007"
 
-#: ../ubuntutweak/mainwindow.py:435
+#: ../ubuntutweak/mainwindow.py:436
 msgid "Contributors of 2008"
 msgstr "Mitwirkende 2008"
 
-#: ../ubuntutweak/mainwindow.py:437
+#: ../ubuntutweak/mainwindow.py:438
 msgid "Contributors of 2009"
 msgstr "Mitwirkende 2009"
 
-#: ../ubuntutweak/mainwindow.py:440
+#: ../ubuntutweak/mainwindow.py:441
 msgid "Contributors of 2010"
 msgstr "Mitwirkende 2010"
 
-#: ../ubuntutweak/mainwindow.py:450
+#: ../ubuntutweak/mainwindow.py:451
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
 "  Daniel Schury https://launchpad.net/~surst\n"
+"  Jan-Christoph Borchardt https://launchpad.net/~inquata\n"
 "  JanMalte https://launchpad.net/~janmalte\n"
 "  Martin Lettner https://launchpad.net/~m.lettner\n"
 "  Matthias Fasching https://launchpad.net/~fasmat\n"
@@ -296,7 +291,7 @@ msgstr ""
 "  TomTasche https://launchpad.net/~tomtasche\n"
 "  mucku https://launchpad.net/~dereinsameberg"
 
-#: ../ubuntutweak/mainwindow.py:464
+#: ../ubuntutweak/mainwindow.py:465
 #, python-format
 msgid ""
 "A newer version: %s is available online.\n"
@@ -311,7 +306,7 @@ msgstr ""
 "Hinweis: Wenn Sie es bevorzugen aus dem Quellcode zu aktualisieren, können "
 "Sie diese Funktion in den Einstellungen deaktivieren."
 
-#: ../ubuntutweak/mainwindow.py:465
+#: ../ubuntutweak/mainwindow.py:466
 msgid "Software Update"
 msgstr "Programmaktualisierung"
 
@@ -391,22 +386,20 @@ msgid "None"
 msgstr "Keine"
 
 #: ../ubuntutweak/preferences.py:105
-msgid "Enable Check Update"
-msgstr "Automatisch auf Aktualisierungen prüfen"
+msgid "Check for Updates"
+msgstr ""
 
 #: ../ubuntutweak/preferences.py:111
 msgid "Use Separated Sources"
 msgstr "Getrennte Quellen verwenden"
 
 #: ../ubuntutweak/preferences.py:117
-msgid "Enable the synchronous notification"
-msgstr "Synchrone Benachrichtigung aktivieren"
+msgid "Enable Synchronous notifications"
+msgstr ""
 
 #: ../ubuntutweak/preferences.py:123
-msgid "Enable new item highlight in App and Source Center"
+msgid "Highlight new items in App and Source Center"
 msgstr ""
-"Aktiviere das Hervorheben neuer Einträge in der Anwendungs- und "
-"Quellenverwaltung"
 
 #: ../ubuntutweak/network/downloadmanager.py:97
 msgid "Connecting to server"
@@ -595,17 +588,17 @@ msgstr ""
 "getestet wurden, um in die Ubuntu-Backports aufgenommen zu werden."
 
 #: ../ubuntutweak/common/package.py:172
-#: ../ubuntutweak/modules/appcenter.py:641
-#: ../ubuntutweak/modules/compiz.py:409
-#: ../ubuntutweak/modules/sourcecenter.py:125
+#: ../ubuntutweak/modules/appcenter.py:640
+#: ../ubuntutweak/modules/compiz.py:410
+#: ../ubuntutweak/modules/sourcecenter.py:126
 #: ../ubuntutweak/modules/nautilus.py:167
 msgid "Update Successful!"
 msgstr "Aktualisierung erfolgreich!"
 
 #: ../ubuntutweak/common/package.py:174
-#: ../ubuntutweak/modules/appcenter.py:643
-#: ../ubuntutweak/modules/compiz.py:411
-#: ../ubuntutweak/modules/sourcecenter.py:127
+#: ../ubuntutweak/modules/appcenter.py:642
+#: ../ubuntutweak/modules/compiz.py:412
+#: ../ubuntutweak/modules/sourcecenter.py:128
 #: ../ubuntutweak/modules/nautilus.py:169
 msgid "Update Failed!"
 msgstr "Aktualisierung fehlgeschlagen!"
@@ -715,11 +708,11 @@ msgstr ""
 
 #: ../ubuntutweak/modules/userdir.py:260
 msgid "_Restore"
-msgstr ""
+msgstr "_Wiederherstellen"
 
 #: ../ubuntutweak/modules/userdir.py:265
 msgid "_Change"
-msgstr ""
+msgstr "Än_dern"
 
 #: ../ubuntutweak/modules/computer.py:33
 msgid "Computer Details"
@@ -859,7 +852,7 @@ msgstr ""
 "Quellen Sie benötigen."
 
 #: ../ubuntutweak/modules/sourceeditor.py:87
-#: ../ubuntutweak/modules/sourcecenter.py:929
+#: ../ubuntutweak/modules/sourcecenter.py:930
 msgid "Details"
 msgstr "Details"
 
@@ -923,8 +916,8 @@ msgid "Source Editor"
 msgstr "Quelleneditor"
 
 #: ../ubuntutweak/modules/sourceeditor.py:353
-msgid "Freely edit your software sources to fit your needs."
-msgstr "Passen Sie die Softwarequellen Ihren Bedürfnissen an."
+msgid "Freely edit your software sources to suit your needs."
+msgstr ""
 
 #: ../ubuntutweak/modules/sourceeditor.py:450
 msgid "Please input the correct information about sources!"
@@ -1001,19 +994,19 @@ msgstr "Kategorie"
 msgid "All Categories"
 msgstr "Alle Kategorien"
 
-#: ../ubuntutweak/modules/appcenter.py:500
+#: ../ubuntutweak/modules/appcenter.py:499
 msgid "Checking update..."
 msgstr "Prüfe auf Aktualisierungen …"
 
-#: ../ubuntutweak/modules/appcenter.py:530
+#: ../ubuntutweak/modules/appcenter.py:529
 msgid "Fetching online data..."
 msgstr "Hole Onlinedaten …"
 
-#: ../ubuntutweak/modules/appcenter.py:534
+#: ../ubuntutweak/modules/appcenter.py:533
 msgid "Application Center"
 msgstr "Software-Center"
 
-#: ../ubuntutweak/modules/appcenter.py:535
+#: ../ubuntutweak/modules/appcenter.py:534
 msgid ""
 "A simple but more efficient way for finding and installing popular "
 "applications.\n"
@@ -1026,29 +1019,29 @@ msgstr ""
 "Sie können die »Synchronisieren« Schaltfläche anklicken, um manuell nach "
 "Updates zu suchen."
 
-#: ../ubuntutweak/modules/appcenter.py:540
+#: ../ubuntutweak/modules/appcenter.py:539
 msgid "Visit Online Application Center"
 msgstr "Das Software-Center online besuchen"
 
-#: ../ubuntutweak/modules/appcenter.py:546
-#: ../ubuntutweak/modules/sourcecenter.py:908
+#: ../ubuntutweak/modules/appcenter.py:545
+#: ../ubuntutweak/modules/sourcecenter.py:909
 msgid "_Sync"
 msgstr "_Synchronisieren"
 
-#: ../ubuntutweak/modules/appcenter.py:583
-#: ../ubuntutweak/modules/sourcecenter.py:977
+#: ../ubuntutweak/modules/appcenter.py:582
+#: ../ubuntutweak/modules/sourcecenter.py:978
 msgid "Last synced:"
 msgstr "Zuletzt synchronisiert:"
 
-#: ../ubuntutweak/modules/appcenter.py:588
+#: ../ubuntutweak/modules/appcenter.py:587
 msgid "New application data available, would you like to update?"
 msgstr "Neue Anwendungsdaten sind verfügbar, möchten Sie aktualisieren?"
 
-#: ../ubuntutweak/modules/appcenter.py:657
+#: ../ubuntutweak/modules/appcenter.py:656
 msgid "Update available, would you like to update?"
 msgstr "Eine Aktualisierung ist verfügbar. Möchten Sie aktualisieren?"
 
-#: ../ubuntutweak/modules/appcenter.py:666
+#: ../ubuntutweak/modules/appcenter.py:665
 msgid ""
 "Network Error, please check your network connection - or the remote server "
 "may be down."
@@ -1056,12 +1049,12 @@ msgstr ""
 "Netzwerkfehler, bitte prüfen Sie Ihre Netzwerkverbindung - oder der "
 "entfernte Server ist ausgefallen."
 
-#: ../ubuntutweak/modules/appcenter.py:668
-#: ../ubuntutweak/modules/sourcecenter.py:1137
+#: ../ubuntutweak/modules/appcenter.py:667
+#: ../ubuntutweak/modules/sourcecenter.py:1138
 msgid "No update available."
 msgstr "Kein Aktualisierung verfügbar."
 
-#: ../ubuntutweak/modules/appcenter.py:679
+#: ../ubuntutweak/modules/appcenter.py:678
 msgid "An error occurred while downloading the file."
 msgstr "Beim Herunterladen der Datei ist ein Fehler aufgetreten."
 
@@ -1136,30 +1129,36 @@ msgstr "Verwalten Sie alle registrierten Dateitypen"
 msgid "Only show filetypes with associated applications"
 msgstr "Zeige nur Dateitypen, die mit Anwendungen verknüpft sind"
 
-#: ../ubuntutweak/modules/updatemanager.py:32
+#: ../ubuntutweak/modules/updatemanager.py:33
 msgid "Update Manager"
 msgstr "Aktualisierungsverwaltung"
 
-#: ../ubuntutweak/modules/updatemanager.py:33
+#: ../ubuntutweak/modules/updatemanager.py:34
 msgid "A simple and easy-to-use update manager"
 msgstr "Ein einfach und leicht zu benutzender Aktualisierungsmanager"
 
-#: ../ubuntutweak/modules/updatemanager.py:45
-msgid "Enable auto-start of System Update Manager"
+#: ../ubuntutweak/modules/updatemanager.py:47
+msgid "Automatically run System Update Manager"
 msgstr ""
 
-#: ../ubuntutweak/modules/updatemanager.py:50
+#: ../ubuntutweak/modules/updatemanager.py:52
 msgid "Temporarily disable third-party PPA sources whilst refreshing"
 msgstr ""
 
-#: ../ubuntutweak/modules/updatemanager.py:77
+#: ../ubuntutweak/modules/updatemanager.py:79
 msgid "Your system is clean and no updates are available."
 msgstr ""
 
-#: ../ubuntutweak/modules/updatemanager.py:78
-#: ../ubuntutweak/modules/sourcecenter.py:132
+#: ../ubuntutweak/modules/updatemanager.py:80
+#: ../ubuntutweak/modules/sourcecenter.py:133
 msgid "Software information is now up-to-date"
 msgstr ""
+
+#: ../ubuntutweak/modules/updatemanager.py:93
+msgid "Install Update"
+msgid_plural "Install Updates"
+msgstr[0] "Aktualisierung installieren"
+msgstr[1] "Aktualisierungen installieren"
 
 #: ../ubuntutweak/modules/metacity.py:37
 #: ../ubuntutweak/modules/metacity.py:194
@@ -1402,7 +1401,7 @@ msgid "Click this button to change the menu logo image"
 msgstr "Diese Schaltfläche klicken, um das Menülogo zu ändern"
 
 #: ../ubuntutweak/modules/gnomesettings.py:109
-#: ../ubuntutweak/modules/loginsettings.py:121
+#: ../ubuntutweak/modules/loginsettings.py:127
 msgid "Choose a new logo image"
 msgstr "Wählen Sie ein neues Logo aus"
 
@@ -1479,92 +1478,98 @@ msgstr "Compiz-Einstellungen"
 msgid "Settings for some amazing desktop eye-candy"
 msgstr "Einstellungen für einige beeindruckende Arbeitsflächeneffekte"
 
-#: ../ubuntutweak/modules/compiz.py:234
+#: ../ubuntutweak/modules/compiz.py:235
 msgid "Install Advanced Desktop Effects Settings Manager"
 msgstr ""
 "Den erweiterten Arbeitsflächeneffekte-Einstellungsmanager installieren"
 
-#: ../ubuntutweak/modules/compiz.py:237
+#: ../ubuntutweak/modules/compiz.py:238
 msgid "Install Simple Desktop Effects Settings Manager"
 msgstr "Den einfachen Arbeitsflächeneffekte-Einstellungsmanager installieren"
 
-#: ../ubuntutweak/modules/compiz.py:240
+#: ../ubuntutweak/modules/compiz.py:241
 msgid "Install Screenlets Widget Application"
 msgstr "Screenlets Widget-Anwendung aktivieren"
 
-#: ../ubuntutweak/modules/compiz.py:247
+#: ../ubuntutweak/modules/compiz.py:248
 msgid " Workspace Edge Settings"
 msgstr " Einstellungen der Arbeitsflächenkanten"
 
-#: ../ubuntutweak/modules/compiz.py:250
+#: ../ubuntutweak/modules/compiz.py:251
 msgid "Enable snapping windows"
 msgstr "Einrastende Fenster aktivieren"
 
-#: ../ubuntutweak/modules/compiz.py:251
+#: ../ubuntutweak/modules/compiz.py:252
 msgid "Enable wobbly windows"
 msgstr "Wabbelnde Fenster aktivieren"
 
-#: ../ubuntutweak/modules/compiz.py:253
+#: ../ubuntutweak/modules/compiz.py:254
 msgid "Window Effects"
 msgstr "Fenstereffekte"
 
-#: ../ubuntutweak/modules/compiz.py:256
+#: ../ubuntutweak/modules/compiz.py:257
 msgid "Enable transparent menus"
 msgstr "Transparente Menüs aktivieren"
 
-#: ../ubuntutweak/modules/compiz.py:257
+#: ../ubuntutweak/modules/compiz.py:258
 msgid "Enable wobbly menus"
 msgstr "Wabbelnde Menüs aktivieren"
 
-#: ../ubuntutweak/modules/compiz.py:259
+#: ../ubuntutweak/modules/compiz.py:260
 msgid "Menu Effects"
 msgstr "Menüeffekte"
 
-#: ../ubuntutweak/modules/compiz.py:263
+#: ../ubuntutweak/modules/compiz.py:264
 msgid "Useful Extensions"
 msgstr "Nützliche Erweiterungen"
 
-#: ../ubuntutweak/modules/compiz.py:278
+#: ../ubuntutweak/modules/compiz.py:279
 msgid "Prerequisite Conditions"
 msgstr "Grundvorraussetzungen"
 
-#: ../ubuntutweak/modules/sourcecenter.py:96
+#: ../ubuntutweak/modules/sourcecenter.py:97
 msgid ""
 "You can install new applications by selecting them and choosing \"Yes\".\n"
 "Or you can install them at Application Center by choosing \"No\"."
 msgstr ""
 
-#: ../ubuntutweak/modules/sourcecenter.py:97
+#: ../ubuntutweak/modules/sourcecenter.py:98
 msgid "New applications are available"
-msgstr ""
+msgstr "Neue Anwendungen sind verfügbar"
 
-#: ../ubuntutweak/modules/sourcecenter.py:131
+#. checkbutton
+#: ../ubuntutweak/modules/sourcecenter.py:107
+#: ../ubuntutweak/modules/cleaner.py:468
+msgid "Select All"
+msgstr "Alle auswählen"
+
+#: ../ubuntutweak/modules/sourcecenter.py:132
 msgid "Your system is clean and there are no updates yet."
 msgstr ""
 
-#: ../ubuntutweak/modules/sourcecenter.py:309
+#: ../ubuntutweak/modules/sourcecenter.py:312
 #, python-format
-msgid "Available %d New Application"
-msgid_plural "Available %d New Applications"
-msgstr[0] "%d neue Anwendung ist verfügbar"
-msgstr[1] "%d neue Anwendungen sind verfügbar"
+msgid "%d New Application Available"
+msgid_plural "%d New Applications Available"
+msgstr[0] "%d neue Anwendung verfügbar"
+msgstr[1] "%d neue Anwendungen verfügbar"
 
-#: ../ubuntutweak/modules/sourcecenter.py:329
+#: ../ubuntutweak/modules/sourcecenter.py:330
 #, python-format
-msgid "Available %d Package Update"
-msgid_plural "Available %d Package Updates"
-msgstr[0] "%d Paketaktualisierung ist verfügbar"
-msgstr[1] "%d Paketaktualisierungen sind verfügbar"
+msgid "%d Package Update Available"
+msgid_plural "%d Package Updates Available"
+msgstr[0] "%d Paket-Aktualisierung verfügbar"
+msgstr[1] "%d Paket-Aktualisierungen verfügbar"
 
-#: ../ubuntutweak/modules/sourcecenter.py:367
+#: ../ubuntutweak/modules/sourcecenter.py:368
 msgid "No Available Package Updates"
 msgstr "Keine Paketaktualisierungen verfügbar"
 
-#: ../ubuntutweak/modules/sourcecenter.py:502
+#: ../ubuntutweak/modules/sourcecenter.py:503
 msgid "Third-Party Sources"
 msgstr "Paketquellen von Drittanbietern"
 
-#: ../ubuntutweak/modules/sourcecenter.py:700
+#: ../ubuntutweak/modules/sourcecenter.py:701
 #, python-format
 msgid ""
 "You can't enable this Source because<b>\"%(SOURCE)s\"</b> conflicts with "
@@ -1575,7 +1580,7 @@ msgstr ""
 "Konflikt steht.\n"
 "Um fortzufahren, müssen Sie <b>»%(SOURCE)s«</b> erst deaktivieren."
 
-#: ../ubuntutweak/modules/sourcecenter.py:722
+#: ../ubuntutweak/modules/sourcecenter.py:723
 #, python-format
 msgid ""
 "To enable this Source, You need to enable <b>\"%s\"</b> at first.\n"
@@ -1584,11 +1589,11 @@ msgstr ""
 "Um diese Quelle zu aktivieren, müssen Sie zuerst <b>»%s«<b> aktivieren.\n"
 "Möchten Sie fortfahren?"
 
-#: ../ubuntutweak/modules/sourcecenter.py:724
+#: ../ubuntutweak/modules/sourcecenter.py:725
 msgid "Dependency Notice"
 msgstr "Abhängigkeitshinweis"
 
-#: ../ubuntutweak/modules/sourcecenter.py:748
+#: ../ubuntutweak/modules/sourcecenter.py:749
 #, python-format
 msgid ""
 "You can't disable this Source because <b>\"%(SOURCE)s\"</b> depends on it.\n"
@@ -1598,11 +1603,11 @@ msgstr ""
 "abhängt.\n"
 "Um fortzufahren, müssen Sie <b>»%(SOURCE)s«</b> zuerst deaktivieren."
 
-#: ../ubuntutweak/modules/sourcecenter.py:838
+#: ../ubuntutweak/modules/sourcecenter.py:839
 msgid "New source has been enabled"
 msgstr "Eine neue Quelle wurde aktiviert"
 
-#: ../ubuntutweak/modules/sourcecenter.py:839
+#: ../ubuntutweak/modules/sourcecenter.py:840
 #, python-format
 msgid ""
 "%s is enabled now, Please click the refresh button to update the application "
@@ -1611,27 +1616,27 @@ msgstr ""
 "%s ist nun aktiviert. Bitte klicken die »Aktualisieren« Schaltfläche, um den "
 "Programmzwischenspeicher zu aktualisieren."
 
-#: ../ubuntutweak/modules/sourcecenter.py:853
+#: ../ubuntutweak/modules/sourcecenter.py:854
 msgid "Homepage"
 msgstr "Homepage"
 
-#: ../ubuntutweak/modules/sourcecenter.py:853
+#: ../ubuntutweak/modules/sourcecenter.py:854
 msgid "Source URL"
 msgstr "Quelladresse"
 
-#: ../ubuntutweak/modules/sourcecenter.py:853
+#: ../ubuntutweak/modules/sourcecenter.py:854
 msgid "Description"
 msgstr "Beschreibung"
 
-#: ../ubuntutweak/modules/sourcecenter.py:866
+#: ../ubuntutweak/modules/sourcecenter.py:867
 msgid "Description is here"
 msgstr "Hier Beschreibung"
 
-#: ../ubuntutweak/modules/sourcecenter.py:894
+#: ../ubuntutweak/modules/sourcecenter.py:895
 msgid "Source Center"
 msgstr "Quellenverwaltung"
 
-#: ../ubuntutweak/modules/sourcecenter.py:895
+#: ../ubuntutweak/modules/sourcecenter.py:896
 msgid ""
 "A collection of software sources to ensure your applications are always up-"
 "to-date.\n"
@@ -1642,34 +1647,34 @@ msgid ""
 "You can click the \"Sync\" button to manually check for updates"
 msgstr ""
 
-#: ../ubuntutweak/modules/sourcecenter.py:901
+#: ../ubuntutweak/modules/sourcecenter.py:902
 msgid "Visit online Source Center"
 msgstr "Die Quellenverwaltung online besuchen"
 
-#: ../ubuntutweak/modules/sourcecenter.py:981
+#: ../ubuntutweak/modules/sourcecenter.py:982
 msgid ""
 "After a successful distribution upgrade, any third-party sources you use "
 "will be disabled by default.\n"
 "Would you like to re-enable any sources disabled by Update Manager?"
 msgstr ""
 
-#: ../ubuntutweak/modules/sourcecenter.py:984
+#: ../ubuntutweak/modules/sourcecenter.py:985
 msgid "Upgrade Third Party Sources"
 msgstr ""
 
-#: ../ubuntutweak/modules/sourcecenter.py:990
+#: ../ubuntutweak/modules/sourcecenter.py:991
 msgid "Upgrade Successful!"
-msgstr ""
+msgstr "Upgrade erfolgreich!"
 
-#: ../ubuntutweak/modules/sourcecenter.py:992
+#: ../ubuntutweak/modules/sourcecenter.py:993
 msgid "Upgrade Failed!"
-msgstr ""
+msgstr "Upgrade fehlgeschlagen!"
 
-#: ../ubuntutweak/modules/sourcecenter.py:999
+#: ../ubuntutweak/modules/sourcecenter.py:1000
 msgid "New source data available, would you like to update?"
 msgstr ""
 
-#: ../ubuntutweak/modules/sourcecenter.py:1081
+#: ../ubuntutweak/modules/sourcecenter.py:1082
 msgid ""
 "It is a possible security risk to use packages from Third-Party Sources.\n"
 "Please be careful and use only sources you trust."
@@ -1678,24 +1683,24 @@ msgstr ""
 "zu verwenden.\n"
 "Seien Sie vorsichtig und verwenden Sie nur Quellen, denen Sie vertrauen."
 
-#: ../ubuntutweak/modules/sourcecenter.py:1084
+#: ../ubuntutweak/modules/sourcecenter.py:1085
 #: ../ubuntutweak/modules/nautilus.py:139
 msgid "Warning"
 msgstr "Warnung"
 
-#: ../ubuntutweak/modules/sourcecenter.py:1085
+#: ../ubuntutweak/modules/sourcecenter.py:1086
 msgid "Never show this dialog"
 msgstr "Diesen Dialog nicht mehr anzeigen"
 
-#: ../ubuntutweak/modules/sourcecenter.py:1111
+#: ../ubuntutweak/modules/sourcecenter.py:1112
 msgid "An error occurred whilst downloading the file"
-msgstr ""
+msgstr "Beim Herunterladen der Datei ist ein Fehler aufgetreten"
 
-#: ../ubuntutweak/modules/sourcecenter.py:1126
+#: ../ubuntutweak/modules/sourcecenter.py:1127
 msgid "Update available, Would you like to update?"
 msgstr "Aktualisierung verfügbar, möchten Sie aktualisieren?"
 
-#: ../ubuntutweak/modules/sourcecenter.py:1135
+#: ../ubuntutweak/modules/sourcecenter.py:1136
 msgid ""
 "Network Error, Please check your network connection or the remote server is "
 "down."
@@ -2255,15 +2260,15 @@ msgstr "Säubern erfolgreich!"
 
 #: ../ubuntutweak/modules/loginsettings.py:38
 msgid "Login Settings"
-msgstr ""
+msgstr "Login Einstellungen"
 
 #: ../ubuntutweak/modules/loginsettings.py:39
 msgid "Control the appearance and behaviour of your login screen"
-msgstr ""
+msgstr "Aussehen und Verhalten des Login Fensters verändern"
 
 #: ../ubuntutweak/modules/loginsettings.py:48
 msgid "Login Options"
-msgstr ""
+msgstr "Anmeldeoptionen"
 
 #: ../ubuntutweak/modules/loginsettings.py:51
 msgid "Disable user list in gdm"
@@ -2271,33 +2276,33 @@ msgstr "Keine Benutzerliste in GDM anzeigen"
 
 #: ../ubuntutweak/modules/loginsettings.py:55
 msgid "Play sound at login"
-msgstr ""
+msgstr "Sound beim Anmelden abspielen"
 
 #: ../ubuntutweak/modules/loginsettings.py:59
 msgid "Disable showing the restart buttons"
-msgstr ""
+msgstr "Anzeige des Knopfes »Neustart« deaktivieren"
 
 #: ../ubuntutweak/modules/loginsettings.py:76
 msgid "Login Theme"
-msgstr ""
+msgstr "Login Thema"
 
-#: ../ubuntutweak/modules/loginsettings.py:127
+#: ../ubuntutweak/modules/loginsettings.py:133
 msgid "PNG image with 64x64 size (*.png)"
-msgstr ""
+msgstr "PNG-Bild der Größe 64x64 (*.png)"
 
-#: ../ubuntutweak/modules/loginsettings.py:151
+#: ../ubuntutweak/modules/loginsettings.py:157
 msgid ""
 "This image size isn't suitable for the logo.\n"
 "It should be 64x64."
 msgstr ""
 
-#: ../ubuntutweak/modules/loginsettings.py:168
-msgid "Choose a new background image"
-msgstr ""
-
 #: ../ubuntutweak/modules/loginsettings.py:174
+msgid "Choose a new background image"
+msgstr "Wählen Sie ein neues Hintergrundbild aus"
+
+#: ../ubuntutweak/modules/loginsettings.py:180
 msgid "All images"
-msgstr ""
+msgstr "Alle Bilder"
 
 #~ msgid "Expo"
 #~ msgstr "Expo"
@@ -2429,6 +2434,9 @@ msgstr ""
 
 #~ msgid "Avant Window Navigator (Unstable Version)"
 #~ msgstr "Avant Fensternavigator (instabile Version)"
+
+#~ msgid "Enable Check Update"
+#~ msgstr "Automatisch auf Aktualisierungen prüfen"
 
 #~ msgid "Here you can manage which application will open which filetypes."
 #~ msgstr "Hier können Sie Anwendungen entsprechende Dateitypen zuordnen."
@@ -2726,6 +2734,12 @@ msgstr ""
 #~ msgstr "Benutzte Remotedaten wenn verfügbar"
 
 #, python-format
+#~ msgid "Available %d New Application"
+#~ msgid_plural "Available %d New Applications"
+#~ msgstr[0] "%d neue Anwendung ist verfügbar"
+#~ msgstr[1] "%d neue Anwendungen sind verfügbar"
+
+#, python-format
 #~ msgid "Download the Ubuntu Tweak %s"
 #~ msgstr "Ubuntu Tweak %s herunterladen"
 
@@ -2760,8 +2774,14 @@ msgstr ""
 #~ msgid "A lot of GNOME settings about panel, menu and others"
 #~ msgstr "Einstellungen für Panel, Menü und weitere GNOME-Bestandteile"
 
+#~ msgid "Enable the synchronous notification"
+#~ msgstr "Synchrone Benachrichtigung aktivieren"
+
 #~ msgid "Update successful!"
 #~ msgstr "Aktualisierung erfolgreich!"
+
+#~ msgid "Freely edit your software sources to fit your needs."
+#~ msgstr "Passen Sie die Softwarequellen Ihren Bedürfnissen an."
 
 #~ msgid "Enable the auto launch of System Update Manager"
 #~ msgstr "Die Autostartfunktion des Aktualisierungsmanagers aktivieren"
@@ -2775,6 +2795,12 @@ msgstr ""
 
 #~ msgid "Remove Spacer"
 #~ msgstr "Abstandshalter entfernen"
+
+#, python-format
+#~ msgid "Available %d Package Update"
+#~ msgid_plural "Available %d Package Updates"
+#~ msgstr[0] "%d Paketaktualisierung ist verfügbar"
+#~ msgstr[1] "%d Paketaktualisierungen sind verfügbar"
 
 #~ msgid ""
 #~ "You can install the new applications by selecting them and choose \"Yes\".\n"
@@ -2805,3 +2831,8 @@ msgstr ""
 #~ "offiziellen Paketquellen sind.\n"
 #~ "Die Daten werden automatisch mit einer entfernten Seite abgeglichen.\n"
 #~ "Klicken Sie auf »Synchronisieren«, um manuell auf Aktualisierungen zu prüfen."
+
+#~ msgid "Enable new item highlight in App and Source Center"
+#~ msgstr ""
+#~ "Aktiviere das Hervorheben neuer Einträge in der Anwendungs- und "
+#~ "Quellenverwaltung"
