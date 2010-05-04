@@ -98,7 +98,7 @@ class LoginSettings(TweakModule):
             icontheme = gtk.IconTheme()
             icontheme.set_custom_theme(self.icon_theme_setting.get_value(user='gdm'))
             try:
-                self.logo_image.set_from_pixbuf(icontheme.load_icon('icon_name', 64, 0))
+                self.logo_image.set_from_pixbuf(icontheme.load_icon(icon_name, 64, 0))
             except:
                 pass
 
@@ -140,8 +140,6 @@ class LoginSettings(TweakModule):
                                     self.icon_setting.get_value(user='gdm')))
 
         revert_button = dialog.action_area.get_children()[-1]
-        if not proxy.is_exists(dest):
-            revert_button.set_sensitive(False)
 
         filename = ''
         response = dialog.run()
@@ -189,8 +187,6 @@ class LoginSettings(TweakModule):
             orignal_background = '/usr/share/backgrounds/warty-final-ubuntu.png'
 
         revert_button = dialog.action_area.get_children()[-1]
-        if not proxy.is_exists(orignal_background):
-            revert_button.set_sensitive(False)
 
         filename = ''
         response = dialog.run()
