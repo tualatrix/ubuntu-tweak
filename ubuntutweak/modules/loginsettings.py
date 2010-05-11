@@ -157,7 +157,7 @@ class LoginSettings(TweakModule):
                 else:
                     proxy.exec_command('mkdir -p %s' % os.path.dirname(dest))
                     log.debug('Copy %s to %s' % (filename, dest))
-                    proxy.exec_command('cp %s %s' % (filename, dest))
+                    proxy.exec_command('cp "%s" "%s"' % (filename, dest))
 
                     self.logo_image.set_from_pixbuf(gtk.gdk.pixbuf_new_from_file(filename))
         elif response == gtk.RESPONSE_DELETE_EVENT:
