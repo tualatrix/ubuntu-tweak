@@ -19,6 +19,16 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import dbus
+import logging
+
+log = logging.getLogger("DbusProxy")
+
+def show_message():
+    from ubuntutweak.widgets.dialogs import ErrorDialog
+    message = _('The daemon of Ubuntu Tweak doesn\'t start correctly, that means some '
+            'advanced features may not work.\n'
+            'If you want to help developer to debug, try to run "<b>sudo ubuntu-tweak-daemon</b>" under terminal.')
+    ErrorDialog(message).launch()
 
 class DbusProxy:
     INTERFACE = "com.ubuntu_tweak.daemon"
@@ -26,11 +36,15 @@ class DbusProxy:
     try:
         __system_bus = dbus.SystemBus()
         __proxy = __system_bus.get_object('com.ubuntu_tweak.daemon', '/com/ubuntu_tweak/daemon')
-    except dbus.exceptions.DBusException:
+    except Exception, e:
         __proxy = None
 
     def __getattr__(self, name):
-        return self.__proxy.get_dbus_method(name, dbus_interface = self.INTERFACE)
+        try:
+            return self.__proxy.get_dbus_method(name, dbus_interface=self.INTERFACE)
+        except Exception, e:
+            log.error(e)
+            return show_message
 
     def get_proxy(self):
         return self.__proxy
