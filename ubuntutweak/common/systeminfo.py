@@ -39,6 +39,8 @@ def parse_codename():
             return 'karmic'
         elif codename in ['lucid', 'isadora', 'Isadora']:
             return 'lucid'
+        elif codename in ['maverick']:
+            return 'maverick'
     except:
         pass
     return ''
@@ -101,11 +103,11 @@ class module_check:
 
     @classmethod
     def is_supported_ubuntu(cls):
-        return cls.codename in ['karmic', 'lucid']
+        return cls.codename in ['karmic', 'lucid', 'maverick']
 
     @classmethod
     def get_supported_ubuntu(cls):
-        return ['karmic', 'lucid']
+        return ['karmic', 'lucid', 'maverick']
 
     @classmethod
     def get_codename(cls):
