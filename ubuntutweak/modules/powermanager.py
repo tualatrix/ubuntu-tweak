@@ -51,6 +51,6 @@ class PowerManager(TweakModule):
                 WidgetFactory.create('GconfScale',
                                       label=_('LCD brightness when using battery'),
                                       key='/apps/gnome-power-manager/backlight/brightness_dim_battery',
-                                      min=0, max=100, digits=0)
+                                      min=0, max=100, digits=0, reversed=True)
         ))
         self.add_start(box, False, False, 0)

@@ -150,21 +150,32 @@ def GconfComboBox(key=None, texts=None, values=None):
     return combobox
 
 class GconfScale(gtk.HScale):
-    def __init__(self, key=None, min=None, max=None, digits=0):
+    def __init__(self, key=None, min=None, max=None, digits=0, reversed=False):
         gtk.HScale.__init__(self)
         if digits > 0:
             self.__setting = GconfSetting(key=key, type=float)
         else:
             self.__setting = GconfSetting(key=key, type=int)
+
+        if reversed:
+            self.__reversed = True
+        else:
+            self.__reversed = False
         
         self.set_range(min, max)
         self.set_digits(digits)
         self.set_value_pos(gtk.POS_RIGHT)
         self.connect("value-changed", self.on_value_changed) 
-        self.set_value(self.__setting.get_value())
+        if self.__reversed:
+            self.set_value(max - self.__setting.get_value())
+        else:
+            self.set_value(self.__setting.get_value())
 
     def on_value_changed(self, widget, data=None):
-        self.__setting.set_value(widget.get_value())
+        if self.__reversed:
+            self.__setting.set_value(100 - widget.get_value())
+        else:
+            self.__setting.set_value(widget.get_value())
 
 class GconfSpinButton(gtk.SpinButton):
     def __init__(self, key, min=0, max=0, step=0):
