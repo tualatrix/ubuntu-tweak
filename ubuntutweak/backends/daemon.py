@@ -96,6 +96,7 @@ class Daemon(PolicyKitService):
     list = SourcesList()
     cache = apt.Cache()
     PPA_URL = 'ppa.launchpad.net'
+    stable_url = 'http://ppa.launchpad.net/tualatrix/ppa/ubuntu'
     ppa_list = []
 
     def __init__ (self, bus, mainloop):
@@ -205,16 +206,26 @@ class Daemon(PolicyKitService):
                          in_signature='', out_signature='')
     def enable_stable_source(self):
         self.list.refresh()
-        stable_url = 'http://ppa.launchpad.net/tualatrix/ppa/ubuntu'
 
         for source in self.list:
-            if stable_url in source.str() and source.type == 'deb':
+            if self.stable_url in source.str() and source.type == 'deb' and not source.disabled:
                 return
 
-        self.set_separated_entry(stable_url, module_check.get_codename(),
+        self.set_separated_entry(self.stable_url, module_check.get_codename(),
                                  'main', 'Ubuntu Tweak Stable Source', True,
                                  'ubuntu-tweak-stable')
         self.add_apt_key_from_content(PPA_KEY)
+
+    @dbus.service.method(INTERFACE,
+                         in_signature='', out_signature='b')
+    def get_stable_source_enabled(self):
+        self.list.refresh()
+
+        for source in self.list:
+            if self.stable_url in source.str() and source.type == 'deb' and not source.disabled:
+                return True
+
+        return False
 
     @dbus.service.method(INTERFACE,
                          in_signature='', out_signature='s')

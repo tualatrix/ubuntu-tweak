@@ -36,10 +36,15 @@ from ubuntutweak.common.debug import run_traceback
 from ubuntutweak.common.config import TweakSettings
 from ubuntutweak.widgets.dialogs import QuestionDialog
 from ubuntutweak.network.downloadmanager import DownloadDialog
+from ubuntutweak.widgets.dialogs import WarningDialog
+from ubuntutweak.widgets import GconfCheckButton
 from ubuntutweak.preferences import PreferencesDialog
 from ubuntutweak.common.utils import set_label_for_stock_button
+from ubuntutweak.common.config import Config
 
 log = logging.getLogger("MainWindow")
+WARNING_KEY = '/apps/ubuntu-tweak/disable_stable_source_warning'
+CONFIG = Config()
 
 class Tip(gtk.HBox):
     def __init__(self, tip):
@@ -231,7 +236,26 @@ class MainWindow(gtk.Window):
         except:
             pass
 
-        proxy.enable_stable_source()
+        gobject.idle_add(self.notify_stable_source)
+
+    def notify_stable_source(self):
+        log.debug("Stable Source Warning is %s", CONFIG.get_value_from_key(WARNING_KEY))
+        log.debug("The Stable Source enabling is %s", proxy.get_stable_source_enabled())
+        if not CONFIG.get_value_from_key(WARNING_KEY) and not proxy.get_stable_source_enabled():
+            dialog = WarningDialog(_('It is highly recommend to enable the stable source of Ubuntu Tweak to get security and normal update.\n'
+                'If you don\'t enable the source, you will need to update manually.\n\n'
+                'Would you like to enable the stable source?'),
+                                   title=_('Warning'))
+            checkbutton = GconfCheckButton(_('Never show this dialog'), WARNING_KEY)
+            dialog.add_option(checkbutton)
+
+            response = dialog.run()
+            dialog.destroy()
+
+            if response == gtk.RESPONSE_YES:
+                log.debug("Start enable the source")
+                proxy.enable_stable_source()
+                log.debug("Finish enable the source, now it's %s", proxy.get_stable_source_enabled())
 		
     def on_d_clicked(self, widget):
         webbrowser.open('http://ubuntu-tweak.com/donate/')
