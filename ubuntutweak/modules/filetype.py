@@ -342,11 +342,11 @@ class TypeEditDialog(gobject.GObject):
         'update': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_STRING,))
     }
 
-    def __init__(self, type, parent):
+    def __init__(self, types, parent):
         super(TypeEditDialog, self).__init__()
-        self.type = type
+        self.types = types
 
-        type_pixbuf = mime_type_get_icon(type, 64)
+        type_pixbuf = mime_type_get_icon(self.types[0], 64)
         worker = GuiWorker('type_edit.ui')
 
         self.dialog = worker.get_object('type_edit_dialog')
@@ -358,7 +358,8 @@ class TypeEditDialog(gobject.GObject):
         type_logo.set_from_pixbuf(type_pixbuf)
 
         type_label = worker.get_object('type_edit_label')
-        type_label.set_markup(_('Select an application to open files of type: <b>%s</b>') % gio.content_type_get_description(type))
+        markup_text = ", ".join([gio.content_type_get_description(filetype) for filetype in self.types])
+        type_label.set_markup(_('Select an application to open files of type: <b>%s</b>') % markup_text)
 
         self.type_edit_view = worker.get_object('type_edit_view')
         self.setup_treeview()
@@ -367,13 +368,17 @@ class TypeEditDialog(gobject.GObject):
         add_button.connect('clicked', self.on_add_button_clicked)
 
         remove_button = worker.get_object('type_edit_remove_button')
+        # remove button should not available in multiple selection
+        if len(self.types) > 1:
+            add_button.set_sensitive(False)
+            remove_button.set_sensitive(False)
         remove_button.connect('clicked', self.on_remove_button_clicked)
 
         close_button = worker.get_object('type_edit_close_button')
         close_button.connect('clicked', self.on_dialog_destroy)
 
     def on_add_button_clicked(self, widget):
-        dialog = AddAppDialog(self.type, widget.get_toplevel())
+        dialog = AddAppDialog(self.types[0], widget.get_toplevel())
         if dialog.run() == gtk.RESPONSE_ACCEPT:
             if dialog.get_command_runable():
                 we = dialog.get_command_or_appinfo()
@@ -381,10 +386,11 @@ class TypeEditDialog(gobject.GObject):
                     app = we
                 else:
                     app = gio.AppInfo(we)
-                app.set_as_default_for_type(self.type)
+                for filetype in self.types:
+                    app.set_as_default_for_type(filetype)
 
                 self.update_model()
-                self.emit('update', self.type)
+                self.emit('update', self.types)
             else:
                 ErrorDialog(_('Could not find %s') % dialog.get_command_or_appinfo(),
                         title = _('Could not find application')).launch()
@@ -439,18 +445,41 @@ class TypeEditDialog(gobject.GObject):
     def update_model(self):
         self.model.clear()
 
-        def_app = gio.app_info_get_default_for_type(self.type, False)
-        for appinfo in gio.app_info_get_all_for_type(self.type):
-            applogo = get_icon_with_app(appinfo, 24)
-            appname = appinfo.get_name()
+        if len(self.types) > 1:
+            app_dict = {}
+            for type in self.types:
+                def_app = gio.app_info_get_default_for_type(type, False)
 
-            iter = self.model.append()
-            self.model.set(iter, 
-                    TYPE_EDIT_ENABLE, def_app.get_name() == appname,
-                    TYPE_EDIT_TYPE, self.type,
-                    TYPE_EDIT_APPINFO, appinfo,
-                    TYPE_EDIT_APPLOGO, applogo,
-                    TYPE_EDIT_APPNAME, appname)
+                for appinfo in gio.app_info_get_all_for_type(type):
+                    appname = appinfo.get_name()
+                    if not app_dict.has_key(appname):
+                        app_dict[appname] = appinfo
+
+            for appname, appinfo in app_dict.items():
+                applogo = get_icon_with_app(appinfo, 24)
+                iter = self.model.append()
+
+                self.model.set(iter, 
+                        TYPE_EDIT_ENABLE, False,
+                        TYPE_EDIT_TYPE, '',
+                        TYPE_EDIT_APPINFO, appinfo,
+                        TYPE_EDIT_APPLOGO, applogo,
+                        TYPE_EDIT_APPNAME, appname)
+        else:
+            type = self.types[0]
+            def_app = gio.app_info_get_default_for_type(type, False)
+
+            for appinfo in gio.app_info_get_all_for_type(type):
+                applogo = get_icon_with_app(appinfo, 24)
+                appname = appinfo.get_name()
+
+                iter = self.model.append()
+                self.model.set(iter, 
+                        TYPE_EDIT_ENABLE, def_app.get_name() == appname,
+                        TYPE_EDIT_TYPE, type,
+                        TYPE_EDIT_APPINFO, appinfo,
+                        TYPE_EDIT_APPLOGO, applogo,
+                        TYPE_EDIT_APPNAME, appname)
 
     def on_renderer_toggled(self, widget, path):
         model = self.type_edit_view.get_model()
@@ -459,9 +488,10 @@ class TypeEditDialog(gobject.GObject):
         enable, type, appinfo = model.get(iter, TYPE_EDIT_ENABLE, TYPE_EDIT_TYPE, TYPE_EDIT_APPINFO)
         if not enable:
             model.foreach(self.cancenl_last_toggle)
-            appinfo.set_as_default_for_type(type)
+            for filetype in self.types:
+                appinfo.set_as_default_for_type(filetype)
             model.set(iter, TYPE_EDIT_ENABLE, not enable)
-            self.emit('update', type)
+            self.emit('update', self.types)
 
     def cancenl_last_toggle(self, model, path, iter):
         enable = model.get(iter, TYPE_EDIT_ENABLE)
@@ -494,6 +524,7 @@ class FileType(TweakModule):
         self.typeview = TypeView()
         self.typeview.connect('row-activated', self.on_row_activated)
         self.type_selection = self.typeview.get_selection()
+        self.type_selection.set_mode(gtk.SELECTION_MULTIPLE)
         self.type_selection.connect('changed', self.on_typeview_changed)
         sw = gtk.ScrolledWindow()
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
@@ -532,26 +563,37 @@ class FileType(TweakModule):
             self.set_update_mode(type)
 
     def on_typeview_changed(self, widget):
-        model, iter = widget.get_selected()
-        if iter:
+        model, rows = widget.get_selected_rows()
+        if len(rows) > 0:
             self.edit_button.set_sensitive(True)
         else:
             self.edit_button.set_sensitive(False)
 
     def on_edit_clicked(self, widget):
-        model, iter = self.type_selection.get_selected()
-        if iter:
-            type = model.get_value(iter, TYPE_MIME)
+        model, rows = self.type_selection.get_selected_rows()
+        if len(rows) > 0:
+            types = []
+            for path in rows:
+                iter = model.get_iter(path)
+                types.append(model.get_value(iter, TYPE_MIME))
 
-            dialog = TypeEditDialog(type, self.get_toplevel())
+            dialog = TypeEditDialog(types, self.get_toplevel())
             dialog.connect('update', self.on_mime_type_update)
 
             dialog.show_all()
         else:
             return
 
-    def on_mime_type_update(self, widget, type):
-        self.typeview.update_for_type(type)
+    def on_mime_type_update(self, widget, types):
+        # types maybe just a string in single selection
+        # and a list object format string in multiple selection
+        if types[0] != "[" and types[-1] != "]":
+            self.typeview.update_for_type(types)
+        else:
+            # convert string back to list object
+            types = eval(types)
+            for filetype in types:
+                self.typeview.update_for_type(filetype)
 
     def set_update_mode(self, type):
         if type == 'all':
