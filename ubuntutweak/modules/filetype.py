@@ -24,6 +24,7 @@ import gio
 import pango
 import gobject
 import thread
+from gettext import ngettext
 
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.common.utils import get_icon_with_name, mime_type_get_icon, get_icon_with_app
@@ -358,8 +359,15 @@ class TypeEditDialog(gobject.GObject):
         type_logo.set_from_pixbuf(type_pixbuf)
 
         type_label = worker.get_object('type_edit_label')
-        markup_text = ", ".join([gio.content_type_get_description(filetype) for filetype in self.types])
-        type_label.set_markup(_('Select an application to open files of type: <b>%s</b>') % markup_text)
+
+        if len(self.types) > 1:
+            markup_text = ", ".join([gio.content_type_get_description(filetype) for filetype in self.types])
+        else:
+            markup_text = self.types[0]
+
+        type_label.set_markup(ngettext('Select an application to open files of type: <b>%s</b>',
+                              'Select an application to open files for these types: <b>%s</b>',
+                              len(self.types)) % markup_text)
 
         self.type_edit_view = worker.get_object('type_edit_view')
         self.setup_treeview()
