@@ -378,8 +378,8 @@ class TypeEditDialog(gobject.GObject):
         remove_button = worker.get_object('type_edit_remove_button')
         # remove button should not available in multiple selection
         if len(self.types) > 1:
-            add_button.set_sensitive(False)
-            remove_button.set_sensitive(False)
+            add_button.hide()
+            remove_button.hide()
         remove_button.connect('clicked', self.on_remove_button_clicked)
 
         close_button = worker.get_object('type_edit_close_button')
@@ -596,7 +596,7 @@ class FileType(TweakModule):
             dialog = TypeEditDialog(types, self.get_toplevel())
             dialog.connect('update', self.on_mime_type_update)
 
-            dialog.show_all()
+            dialog.show()
         else:
             return
 

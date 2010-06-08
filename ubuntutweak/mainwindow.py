@@ -469,6 +469,7 @@ class MainWindow(gtk.Window):
             "lfeng <lfeng@vip.qq.com>",
             "Jonathan Lumb <jonolumb@gmail.com>",
             "Stepan Martiyanov <martiyanov@gmail.com>",
+            "muzuiget <muzuiget@gmail.com>",
             ])
         about.set_copyright("Copyright © 2007-2010 TualatriX")
         about.set_wrap_license(True)
