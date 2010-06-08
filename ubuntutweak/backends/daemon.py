@@ -211,10 +211,13 @@ class Daemon(PolicyKitService):
             if self.stable_url in source.str() and source.type == 'deb' and not source.disabled:
                 return
 
-        self.set_separated_entry(self.stable_url, module_check.get_codename(),
-                                 'main', 'Ubuntu Tweak Stable Source', True,
-                                 'ubuntu-tweak-stable')
-        self.add_apt_key_from_content(PPA_KEY)
+        distro = module_check.get_codename()
+
+        if distro:
+            self.set_separated_entry(self.stable_url, distro, 'main',
+                                     'Ubuntu Tweak Stable Source', True,
+                                     'ubuntu-tweak-stable')
+            self.add_apt_key_from_content(PPA_KEY)
 
     @dbus.service.method(INTERFACE,
                          in_signature='', out_signature='b')
