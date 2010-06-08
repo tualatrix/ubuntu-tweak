@@ -455,20 +455,28 @@ class TypeEditDialog(gobject.GObject):
 
         if len(self.types) > 1:
             app_dict = {}
+            default_list = []
             for type in self.types:
                 def_app = gio.app_info_get_default_for_type(type, False)
 
                 for appinfo in gio.app_info_get_all_for_type(type):
                     appname = appinfo.get_name()
+                    if def_app.get_name() == appname and appname not in default_list:
+                        default_list.append(appname)
+
                     if not app_dict.has_key(appname):
                         app_dict[appname] = appinfo
 
             for appname, appinfo in app_dict.items():
                 applogo = get_icon_with_app(appinfo, 24)
                 iter = self.model.append()
+                if len(default_list) == 1 and appname in default_list:
+                    enabled = True
+                else:
+                    enabled = False
 
                 self.model.set(iter, 
-                        TYPE_EDIT_ENABLE, False,
+                        TYPE_EDIT_ENABLE, enabled,
                         TYPE_EDIT_TYPE, '',
                         TYPE_EDIT_APPINFO, appinfo,
                         TYPE_EDIT_APPLOGO, applogo,
