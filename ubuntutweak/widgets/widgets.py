@@ -74,7 +74,7 @@ class UserGconfCheckButton(gtk.CheckButton):
         self.__user = user
 
         self.set_label(label)
-        self.set_active(self.__setting.get_value(self.__user))
+        self.set_active(bool(self.__setting.get_value(self.__user)))
         if tooltip:
             self.set_tooltip_text(tooltip)
 
