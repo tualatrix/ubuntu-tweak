@@ -1,0 +1,234 @@
+<?xml version="1.0"?>
+<interface>
+  <requires lib="gtk+" version="2.16"/>
+  <!-- interface-naming-policy project-wide -->
+  <object class="GtkListStore" id="scheme_liststore">
+    <columns>
+      <!-- column-name gchararray1 -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkListStore" id="check_status_liststore">
+    <columns>
+      <!-- column-name gchararray1 -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkWindow" id="window1">
+    <child>
+      <object class="GtkVBox" id="main_vbox">
+        <property name="visible">True</property>
+        <property name="border_width">6</property>
+        <property name="spacing">6</property>
+        <child>
+          <object class="GtkHBox" id="hbox1">
+            <property name="visible">True</property>
+            <property name="spacing">4</property>
+            <child>
+              <object class="GtkLabel" id="label2">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Show:</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkComboBox" id="check_status_combobox">
+                <property name="visible">True</property>
+                <property name="model">check_status_liststore</property>
+                <signal name="changed" handler="on_check_status_combobox_changed"/>
+              </object>
+              <packing>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label3">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Search:</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="search_entry">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="invisible_char">&#x25CF;</property>
+                <property name="primary_icon_stock">gtk-find</property>
+                <property name="secondary_icon_stock">gtk-clear</property>
+                <signal name="activate" handler="on_search_entry_activate"/>
+                <signal name="icon_press" handler="on_search_entry_icon_press"/>
+              </object>
+              <packing>
+                <property name="position">3</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkHPaned" id="hpaned1">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="position">200</property>
+            <property name="position_set">True</property>
+            <child>
+              <object class="GtkScrolledWindow" id="scrolledwindow1">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="hscrollbar_policy">automatic</property>
+                <property name="vscrollbar_policy">automatic</property>
+                <property name="shadow_type">in</property>
+                <child>
+                  <object class="GtkTreeView" id="region_treeview">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="rules_hint">True</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="resize">False</property>
+                <property name="shrink">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkScrolledWindow" id="scrolledwindow2">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="hscrollbar_policy">automatic</property>
+                <property name="vscrollbar_policy">automatic</property>
+                <property name="shadow_type">in</property>
+                <child>
+                  <object class="GtkTreeView" id="mirror_treeview">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="rules_hint">True</property>
+                    <signal name="button_press_event" handler="on_mirror_treeview_button_press_event"/>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="resize">True</property>
+                <property name="shrink">True</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="position">200</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkHButtonBox" id="hbuttonbox1">
+            <property name="visible">True</property>
+            <property name="spacing">4</property>
+            <property name="layout_style">end</property>
+            <child>
+              <object class="GtkButton" id="test_button">
+                <property name="label">_Test</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_underline">True</property>
+                <signal name="clicked" handler="on_test_button_clicked"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="stop_button">
+                <property name="label">_Stop</property>
+                <property name="visible">True</property>
+                <property name="sensitive">False</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_underline">True</property>
+                <signal name="clicked" handler="on_stop_button_clicked"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="change_button">
+                <property name="label">_Change</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_underline">True</property>
+                <signal name="clicked" handler="on_change_button_clicked"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="pack_type">end</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkMenu" id="treeview_menu">
+    <property name="visible">True</property>
+    <signal name="selection_done" handler="on_treeview_menu_selection_done"/>
+    <child>
+      <object class="GtkMenuItem" id="check_menuitem">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">Check selected items</property>
+        <property name="use_underline">True</property>
+        <signal name="activate" handler="on_check_menuitem_activate"/>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="uncheck_menuitem">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">Uncheck selected items</property>
+        <property name="use_underline">True</property>
+        <signal name="activate" handler="on_uncheck_menuitem_activate"/>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="select_all_menuitem">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">Select all</property>
+        <property name="use_underline">True</property>
+        <signal name="activate" handler="on_select_all_menuitem_activate"/>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="select_none_menuitem">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">Select none</property>
+        <property name="use_underline">True</property>
+        <signal name="activate" handler="on_select_none_menuitem_activate"/>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="invert_selection">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">Invert selection</property>
+        <property name="use_underline">True</property>
+        <signal name="activate" handler="on_invert_selection_activate"/>
+      </object>
+    </child>
+  </object>
+</interface>
