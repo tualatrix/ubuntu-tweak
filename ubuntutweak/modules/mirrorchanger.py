@@ -2,7 +2,8 @@
 
 # Ubuntu Tweak - PyGTK based desktop configuration tool
 #
-# Copyright (C) 2007-2008 TualatriX <tualatrix@gmail.com>
+# Copyright (C) 2010 muzuiget <muzuiget@gmail.com>
+# Copyright (C) 2007-2010 TualatriX <tualatrix@gmail.com>
 #
 # Ubuntu Tweak is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,20 +19,21 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-from gettext import ngettext
-from ubuntutweak.modules  import TweakModule
-from ubuntutweak.policykit import proxy
-from ubuntutweak.common.region import CONTINENT_DICT, REGION_TABLE
-from ubuntutweak.common.consts import DATA_DIR
-import aptsources.distro
-import aptsources.sourceslist
-import Queue
 import os
 import re
 import gtk
+import Queue
+import logging
 import gobject
 import subprocess
 import threading
+import aptsources.distro
+import aptsources.sourceslist
+
+from ubuntutweak.policykit import proxy
+from ubuntutweak.modules  import TweakModule
+from ubuntutweak.common.region import CONTINENT_DICT, REGION_TABLE
+from ubuntutweak.common.consts import DATA_DIR
 
 STRING_ALL = "All"
 STRING_CHECKED = "Checked"
@@ -39,6 +41,8 @@ STRING_NOT_CHECKED = "Not checked"
 STRING_HOSTNAME = "hostname"
 STRING_PROTOCOL = "protocol"
 STRING_PING = "ping"
+
+log = logging.getLogger('MirrorChanger')
 
 class MirrorChanger(TweakModule):
     __title__ = _('Mirror Changer')
@@ -511,6 +515,7 @@ class Mirror():
         mirror_set = Mirror.distro.source_template.mirror_set
         mirror_list = []
         for mirror in mirror_set.values():
+            print mirror.hostname, mirror.location, mirror.repositories[0].get_info()
             m = Mirror(mirror.hostname, mirror.location, mirror.repositories[0].get_info())
             mirror_list.append(m)
         return mirror_list
@@ -559,7 +564,7 @@ class MirrorTest(threading.Thread):
                     hostname = mirror.hostname
                 except:
                     continue
-                print "Thread %02d pinging %s..." % (self.id , hostname)
+                log.debug("Thread %02d pinging %s..." % (self.id , hostname))
                 mirror.ping = "testing"
                 cmd = "ping -q -c 2 -W 1 -i 0.5 %s" % hostname
                 pipe = subprocess.Popen(args=cmd, shell=True, stdout=subprocess.PIPE)
@@ -578,7 +583,7 @@ class MirrorTest(threading.Thread):
                 if MirrorTest.completed % 5 == 0:
                     self.parent.redraw_parent_treeview()
                 MirrorTest.completed_lock.release()
-            print "Thread %02d stoped" % self.id
+            log.debug("Thread %02d stoped" % self.id)
 
     
     def __init__(self, mirror_list, running, parent):
@@ -602,7 +607,7 @@ class MirrorTest(threading.Thread):
         for id in range(thread_num):
             t = MirrorTest.PingWorker(id, jobs, self)
             self.thread_list.append(t)
-            print "Thread %02d starting..." % id
+            log.debug("Thread %02d starting..." % id)
             t.start()             
 
         for t in self.thread_list:
