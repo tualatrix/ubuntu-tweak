@@ -58,7 +58,7 @@ APP_PARSER = AppParser()
 CONFIG = Config()
 PPA_MIRROR = []
 UNCONVERT = False
-LAUNCHPAD_STR = 'ppa.launchpad.net'
+PPA_URL = 'ppa.launchpad.net'
 WARNING_KEY = '/apps/ubuntu-tweak/disable_thidparty_warning'
 UBUNTU_CN_STR = 'archive.ubuntu.org.cn/ubuntu-cn'
 UBUNTU_CN_URL = 'http://archive.ubuntu.org.cn/ubuntu-cn/'
@@ -73,6 +73,23 @@ UPGRADE_DICT = {}
 def get_source_data_url():
     return utdata.get_download_url('/static/utdata/sourcecenter-%s.tar.gz' %
                                    VERSION_SETTING.get_value())
+
+def get_source_logo_from_filename(file_name):
+    path = os.path.join(SOURCE_ROOT, file_name)
+    if not os.path.exists(path) or file_name == '':
+        path = os.path.join(consts.DATA_DIR, 'pixmaps/ppa-logo.png')
+
+    try:
+        pixbuf = gtk.gdk.pixbuf_new_from_file(path)
+        if pixbuf.get_width() != 32 or pixbuf.get_height() != 32:
+            pixbuf = pixbuf.scale_simple(32, 32, gtk.gdk.INTERP_BILINEAR)
+        return pixbuf
+    except:
+        return gtk.icon_theme_get_default().load_icon(gtk.STOCK_MISSING_IMAGE, 32, 0)
+
+def get_ppa_homepage(url):
+    section = url.split('/')
+    return 'https://launchpad.net/~%s/+archive/%s' % (section[3], section[4])
 
 def refresh_source(parent):
     dialog = UpdateCacheDialog(parent)
@@ -539,7 +556,7 @@ class SourcesView(gtk.TreeView):
 
             name = SOURCE_PARSER.get_name(id)
             comment = SOURCE_PARSER.get_summary(id)
-            pixbuf = self.get_source_logo(SOURCE_PARSER[id]['logo'])
+            pixbuf = get_source_logo_from_filename(SOURCE_PARSER[id]['logo'])
             website = SOURCE_PARSER.get_website(id)
             key = SOURCE_PARSER.get_key(id)
 
@@ -583,19 +600,6 @@ class SourcesView(gtk.TreeView):
                             self.COLUMN_DISPLAY,
                             '<b>%s</b>\n%s' % (name, comment))
 
-    def get_source_logo(self, file_name):
-        path = os.path.join(SOURCE_ROOT, file_name)
-        if not os.path.exists(path) or file_name == '':
-            path = os.path.join(consts.DATA_DIR, 'pixmaps/ppa-logo.png')
-
-        try:
-            pixbuf = gtk.gdk.pixbuf_new_from_file(path)
-            if pixbuf.get_width() != 32 or pixbuf.get_height() != 32:
-                pixbuf = pixbuf.scale_simple(32, 32, gtk.gdk.INTERP_BILINEAR)
-            return pixbuf
-        except:
-            return gtk.icon_theme_get_default().load_icon(gtk.STOCK_MISSING_IMAGE, 32, 0)
-
     def update_ubuntu_cn_model(self):
         global SOURCES_DATA
         SOURCES_DATA = self.__filter_source_to_mirror()
@@ -620,7 +624,7 @@ class SourcesView(gtk.TreeView):
             reload(ubuntutweak.common.sourcedata)
             global SOURCES_DATA
             from ubuntutweak.common.sourcedata import SOURCES_DATA
-            proxy.replace_entry(UBUNTU_CN_STR, LAUNCHPAD_STR)
+            proxy.replace_entry(UBUNTU_CN_STR, PPA_URL)
             self.update_model()
             self.emit('sourcechanged')
         else:
@@ -632,7 +636,7 @@ class SourcesView(gtk.TreeView):
                 url  = self.model.get_value(iter, self.COLUMN_URL)
 
                 if self.has_mirror_ppa(url):
-                    new_url = url.replace(LAUNCHPAD_STR, UBUNTU_CN_STR)
+                    new_url = url.replace(PPA_URL, UBUNTU_CN_STR)
                     proxy.replace_entry(url, new_url)
                     self.model.set_value(iter, self.COLUMN_URL, new_url)
 
@@ -649,7 +653,7 @@ class SourcesView(gtk.TreeView):
         for item in SOURCES_DATA:
             url = item[0]
             if self.has_mirror_ppa(url):
-                url = url.replace(LAUNCHPAD_STR, UBUNTU_CN_STR)
+                url = url.replace(PPA_URL, UBUNTU_CN_STR)
                 newsource.append([url, item[1], item[2], item[3]])
             else:
                 newsource.append(item)
@@ -658,7 +662,7 @@ class SourcesView(gtk.TreeView):
 
     def has_mirror_ppa(self, url):
         if TweakSettings.get_use_mirror_ppa():
-            return LAUNCHPAD_STR in url and url.split('/')[3] in PPA_MIRROR
+            return PPA_URL in url and url.split('/')[3] in PPA_MIRROR
         else:
             return False
 
@@ -880,10 +884,8 @@ class SourceDetail(gtk.VBox):
             self.table.attach(self.homepage_button, 1, 2, 0, 1)
 
         if url:
-            if LAUNCHPAD_STR in url:
-                url_section = url.split('/')
-                url = 'https://launchpad.net/~%s/+archive/%s' % (
-                        url_section[3], url_section[4])
+            if PPA_URL in url:
+                url = get_ppa_homepage(url)
             self.url_button.destroy()
             self.url_button = gtk.LinkButton(url, url)
             self.url_button.show()

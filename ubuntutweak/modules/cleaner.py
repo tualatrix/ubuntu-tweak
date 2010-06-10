@@ -22,6 +22,7 @@ import os
 import gtk
 import thread
 import gobject
+from aptsources.sourceslist import SourcesList
 from gettext import ngettext
 
 from ubuntutweak.common.consts import install_ngettext
@@ -32,6 +33,9 @@ from ubuntutweak.policykit import PolkitButton, proxy
 from ubuntutweak.common.package import PACKAGE_WORKER
 from ubuntutweak.widgets.dialogs import *
 from ubuntutweak.widgets.utils import ProcessDialog
+from ubuntutweak.modules.sourcecenter import SOURCE_PARSER, PPA_URL
+from ubuntutweak.modules.sourcecenter import get_source_logo_from_filename
+from ubuntutweak.modules.sourcecenter import get_ppa_homepage
 
 (
     COLUMN_CHECK,
@@ -127,6 +131,9 @@ class PackageView(gtk.TreeView):
         self.update_package_model()
         self.selection = self.get_selection()
         self.set_sensitive(False)
+
+    def get_sourceslist(self):
+        return SourcesList()
 
     def __create_model(self):
         model = gtk.ListStore(
@@ -246,6 +253,39 @@ class PackageView(gtk.TreeView):
                 )
         self.unset_busy()
 
+    def update_ppa_model(self):
+        self.set_busy()
+        model = self.get_model()
+        model.clear()
+        self.mode = 'ppa'
+
+        ppa_source_dict = {}
+        for id in SOURCE_PARSER:
+            url = SOURCE_PARSER.get_url(id)
+            ppa_source_dict[url] = id
+
+        for source in self.get_sourceslist():
+            if PPA_URL in source.str() and source.type == 'deb' and not source.disabled:
+                try:
+                    id = ppa_source_dict[source.uri]
+                    pixbuf = get_source_logo_from_filename(SOURCE_PARSER[id]['logo'])
+                    name = SOURCE_PARSER.get_name(id)
+                    comment = SOURCE_PARSER.get_summary(id)
+                except KeyError:
+                    pixbuf = get_source_logo_from_filename('')
+                    name = source.uri
+                    comment = get_source_logo_from_filename(source.uri)
+
+                iter = model.append()
+                model.set(iter,
+                       COLUMN_ICON, pixbuf,
+                       COLUMN_CHECK, False,
+                       COLUMN_NAME, name,
+                       COLUMN_DESC, '',
+                       COLUMN_DISPLAY, '<b>%s</b>\n%s' % (name, comment),
+                    )
+        self.unset_busy()
+
     def update_config_model(self):
         self.set_busy()
         model = self.get_model()
@@ -300,6 +340,9 @@ class PackageView(gtk.TreeView):
             self.emit('checked', False)
 
         self.set_column_title()
+
+    def get_downupgrade_packages(self, ppa):
+        pass
 
     def set_column_title(self):
         if self.mode == 'package' or self.mode == 'kernel':
@@ -392,6 +435,9 @@ class PackageView(gtk.TreeView):
         self.emit('cleaned')
         self.unset_busy()
 
+    def clean_selected_ppa(self):
+        QuestionDialog(','.join(self.get_list())).launch()
+
     def show_usercancel_dialog(self):
         InfoDialog(_('Cancelled by user!')).launch()
 
@@ -463,6 +509,11 @@ class PackageCleaner(TweakModule):
                 gtk.image_new_from_pixbuf(get_icon_with_name('start-here', 24)),
                 self.treeview.update_kernel_model)
         vbox.pack_start(self.kernel_button, False, False, 0)
+
+        self.ppa_button = self.create_button(_('Purge PPAs'),
+                gtk.image_new_from_pixbuf(get_icon_with_name('start-here', 24)),
+                self.treeview.update_ppa_model)
+        vbox.pack_start(self.ppa_button, False, False, 0)
 
         # checkbutton
         self.select_button = gtk.CheckButton(_('Select All'))
@@ -548,6 +599,8 @@ class PackageCleaner(TweakModule):
                 self.treeview.clean_selected_cache()
             elif mode == 'config':
                 self.treeview.clean_selected_config()
+            elif mode == 'ppa':
+                self.treeview.clean_selected_ppa()
         else:
             return
 
