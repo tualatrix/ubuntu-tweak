@@ -21,7 +21,9 @@
 import os
 import gtk
 import thread
+import glob
 import gobject
+import logging
 from aptsources.sourceslist import SourcesList
 from gettext import ngettext
 
@@ -37,6 +39,8 @@ from ubuntutweak.modules.sourcecenter import SOURCE_PARSER, PPA_URL
 from ubuntutweak.modules.sourcecenter import get_source_logo_from_filename
 from ubuntutweak.modules.sourcecenter import get_ppa_homepage
 
+log = logging.getLogger("Cleaner") 
+
 (
     COLUMN_CHECK,
     COLUMN_ICON,
@@ -46,6 +50,16 @@ from ubuntutweak.modules.sourcecenter import get_ppa_homepage
 ) = range(5)
 
 install_ngettext()
+
+def get_ppa_list_name(url):
+    section = url.split('/')
+    log.debug("The ppa sections is %s", str(section))
+    name = '/var/lib/apt/lists/ppa.launchpad.net_%s_%s_*_Packages' % (section[3], section[4])
+    names = glob.glob(name)
+    if len(names) == 1:
+        return names[0]
+    else:
+        return ''
 
 class AbsPkg:
     def __init__(self, pkg, des):
@@ -107,6 +121,60 @@ class CleanCacheDailog(ProcessDialog):
             return True
         else:
             self.destroy()
+
+class DowngradeView(gtk.TreeView):
+    __gsignals__ = {
+        'checked': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, 
+                    (gobject.TYPE_BOOLEAN,)),
+        'cleaned': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, ())
+    }
+
+    (COLUMN_PKG,
+     COLUMN_PPA_VERSION,
+     COLUMN_SYSTEM_VERSION) = range(3)
+
+    def __init__(self):
+        super(DowngradeView, self).__init__()
+
+        model = self.__create_model()
+        self.set_model(model)
+        model.set_sort_column_id(self.COLUMN_PKG, gtk.SORT_ASCENDING)
+
+        self.PACKAGE_WORKER = PACKAGE_WORKER
+
+        self.__add_column()
+
+    def __create_model(self):
+        model = gtk.ListStore(gobject.TYPE_STRING,
+                              gobject.TYPE_STRING,
+                              gobject.TYPE_STRING)
+
+        return model
+
+    def __add_column(self):
+        renderer = gtk.CellRendererText()
+        column = gtk.TreeViewColumn(_('Package'), renderer, text=self.COLUMN_PKG)
+        column.set_sort_column_id(self.COLUMN_PKG)
+        self.append_column(column)
+
+        renderer = gtk.CellRendererText()
+        column = gtk.TreeViewColumn(_('Previous Version'), renderer, text=self.COLUMN_PPA_VERSION)
+        self.append_column(column)
+
+        renderer = gtk.CellRendererText()
+        column = gtk.TreeViewColumn(_('System Version'), renderer, text=self.COLUMN_SYSTEM_VERSION)
+        self.append_column(column)
+
+    def update_model(self, ppas):
+        pkg_dict = {}
+        for ppa in ppas:
+            path = get_ppa_list_name(ppa)
+            if path:
+                for line in open(path):
+                    if line.startswith('Package:'):
+                        pkg = line.split()[1].strip()
+                        pkg_dict[pkg] = ppa
+                        print PACKAGE_WORKER.get_downgradeable_pkgs(pkg_dict)
 
 class PackageView(gtk.TreeView):
     __gsignals__ = {
@@ -272,15 +340,16 @@ class PackageView(gtk.TreeView):
                     name = SOURCE_PARSER.get_name(id)
                     comment = SOURCE_PARSER.get_summary(id)
                 except KeyError:
+                    id = name = source.uri
+                    comment = get_ppa_homepage(source.uri)
                     pixbuf = get_source_logo_from_filename('')
-                    name = source.uri
-                    comment = get_source_logo_from_filename(source.uri)
 
                 iter = model.append()
+                print name
                 model.set(iter,
                        COLUMN_ICON, pixbuf,
                        COLUMN_CHECK, False,
-                       COLUMN_NAME, name,
+                       COLUMN_NAME, id,
                        COLUMN_DESC, '',
                        COLUMN_DISPLAY, '<b>%s</b>\n%s' % (name, comment),
                     )
@@ -340,9 +409,6 @@ class PackageView(gtk.TreeView):
             self.emit('checked', False)
 
         self.set_column_title()
-
-    def get_downupgrade_packages(self, ppa):
-        pass
 
     def set_column_title(self):
         if self.mode == 'package' or self.mode == 'kernel':
@@ -436,7 +502,19 @@ class PackageView(gtk.TreeView):
         self.unset_busy()
 
     def clean_selected_ppa(self):
-        QuestionDialog(','.join(self.get_list())).launch()
+        name_list = []
+        url_list = []
+        for id in self.get_list():
+            #TODO
+            name_list.append(SOURCE_PARSER.get_name(int(id)))
+            url_list.append(SOURCE_PARSER.get_url(int(id)))
+
+        dialog = QuestionDialog(_("You're going to purge: %s") % ', '.join(name_list))
+        package_view = DowngradeView()
+        package_view.update_model(url_list)
+        dialog.vbox.pack_start(package_view, False, False, 0)
+
+        dialog.launch()
 
     def show_usercancel_dialog(self):
         InfoDialog(_('Cancelled by user!')).launch()

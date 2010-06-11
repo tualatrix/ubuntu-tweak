@@ -27,6 +27,7 @@ import time
 import thread
 import tempfile
 import subprocess
+import logging
 import apt
 import apt_pkg
 
@@ -34,6 +35,8 @@ from xdg.DesktopEntry import DesktopEntry
 from ubuntutweak.widgets.dialogs import InfoDialog, ErrorDialog
 
 p_kernel = re.compile('\d')
+
+log = logging.getLogger('PackageWorker')
 
 class PackageWorker:
     basenames = ['linux-image', 'linux-headers', 'linux-image-debug',
@@ -198,6 +201,36 @@ class PackageWorker:
         for pkg in self.get_cache():
             if pkg.isUpgradable == 1:
                 yield pkg.name
+
+    def get_downgradeable_pkgs(self, ppa_dict):
+        def is_system_origin(version):
+            return version.origins[0].origin == 'Ubuntu'
+
+        log.debug("Check downgrade information")
+        #TODO dict should take archive information
+        downgrade_dict = {}
+        for pkg, url in ppa_dict.items():
+            log.debug("The package is: %s, PPA URL is: %s" % (pkg, url))
+            pkg = self.get_cache()[pkg]
+            versions = pkg.versions
+
+            ppa_version = 0
+            system_version = 0
+            for version in versions:
+                log.debug("The version is %s" % str(version))
+                log.debug("Version uri is %s" % version.uri)
+                if url in version.uri:
+                    ppa_version = version.version
+                    continue
+
+                if is_system_origin(version):
+                    system_version = version.version
+
+                if ppa_version and system_version:
+                    downgrade_dict[pkg] = (ppa_version, system_version)
+                    break
+            log.debug("\n")
+        return downgrade_dict
 
 PACKAGE_WORKER = PackageWorker()
 
