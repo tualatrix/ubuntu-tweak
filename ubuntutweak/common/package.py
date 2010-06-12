@@ -56,7 +56,7 @@ class PackageWorker:
                 return True
         return False
 
-    def run_synaptic(self, id, lock, to_add = None, to_rm = None):
+    def run_synaptic(self, id, lock, to_add=[], to_rm=[]):
         cmd = []
         if os.getuid() != 0:
             cmd = ['/usr/bin/gksu',
@@ -121,7 +121,7 @@ class PackageWorker:
     def get_pkgversion(self, pkg):
         return pkg in self.cache and self.cache[pkg].installedVersion or None
 
-    def perform_action(self, window_main, to_add = None, to_rm = None):
+    def perform_action(self, window_main, to_add=[], to_rm=[]):
         window_main.set_sensitive(False)
         window_main.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
         lock = thread.allocate_lock()
@@ -204,6 +204,7 @@ class PackageWorker:
 
     def get_downgradeable_pkgs(self, ppa_dict):
         def is_system_origin(version):
+            #TODO if has two or more origins
             return version.origins[0].origin == 'Ubuntu'
 
         log.debug("Check downgrade information")
@@ -227,7 +228,7 @@ class PackageWorker:
                     system_version = version.version
 
                 if ppa_version and system_version:
-                    downgrade_dict[pkg] = (ppa_version, system_version)
+                    downgrade_dict[pkg.name] = (ppa_version, system_version)
                     break
             log.debug("\n")
         return downgrade_dict

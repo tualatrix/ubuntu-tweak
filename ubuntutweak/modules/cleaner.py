@@ -61,6 +61,11 @@ def get_ppa_list_name(url):
     else:
         return ''
 
+def get_ppa_short_name(url):
+    section = url.split('/')
+    log.debug("The ppa sections is %s", str(section))
+    return 'ppa:%s/%s' % (section[3], section[4])
+
 class AbsPkg:
     def __init__(self, pkg, des):
         self.name = pkg
@@ -122,6 +127,33 @@ class CleanCacheDailog(ProcessDialog):
         else:
             self.destroy()
 
+class CleanPpaDialog(ProcessDialog):
+    def __init__(self, parent, pkgs):
+        self.pkgs = pkgs
+        self.done = False
+        self.error = False
+        self.user_action = False
+
+        super(CleanPpaDialog, self).__init__(parent=parent)
+        self.set_dialog_lable(_('Purge PPA and Downgrade Packages'))
+        self.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT)
+
+    def process_data(self):
+        self.set_progress_text(_('Purge...'))
+        result = proxy.install_select_pkgs(' '.join(self.pkgs))
+        log.debug("Clean PPA result is %s" % result)
+        if result == 'error':
+            self.error = True
+        self.done = True
+
+    def on_timeout(self):
+        self.pulse()
+
+        if not self.done:
+            return True
+        else:
+            self.destroy()
+
 class DowngradeView(gtk.TreeView):
     __gsignals__ = {
         'checked': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, 
@@ -166,6 +198,7 @@ class DowngradeView(gtk.TreeView):
         self.append_column(column)
 
     def update_model(self, ppas):
+        model = self.get_model()
         pkg_dict = {}
         for ppa in ppas:
             path = get_ppa_list_name(ppa)
@@ -174,7 +207,22 @@ class DowngradeView(gtk.TreeView):
                     if line.startswith('Package:'):
                         pkg = line.split()[1].strip()
                         pkg_dict[pkg] = ppa
-                        print PACKAGE_WORKER.get_downgradeable_pkgs(pkg_dict)
+
+                pkg_map = PACKAGE_WORKER.get_downgradeable_pkgs(pkg_dict)
+                if pkg_map:
+                    for pkg, (p_verion, s_verion) in pkg_map.items():
+                        model.append((pkg, p_verion, s_verion))
+                else:
+                    model.append(("No package need to be downgraded", "", ""))
+
+    def get_downgrade_packages(self):
+        model = self.get_model()
+        downgrade_list = []
+        for row in model:
+            pkg, version = row[self.COLUMN_PKG], row[self.COLUMN_SYSTEM_VERSION]
+            downgrade_list.append("%s=%s" % (pkg, version))
+        log.debug("The package to downgrade is %s" % str(downgrade_list))
+        return downgrade_list
 
 class PackageView(gtk.TreeView):
     __gsignals__ = {
@@ -333,14 +381,15 @@ class PackageView(gtk.TreeView):
             ppa_source_dict[url] = id
 
         for source in self.get_sourceslist():
-            if PPA_URL in source.str() and source.type == 'deb' and not source.disabled:
+            if PPA_URL in source.uri and source.type == 'deb' and not source.disabled:
                 try:
                     id = ppa_source_dict[source.uri]
                     pixbuf = get_source_logo_from_filename(SOURCE_PARSER[id]['logo'])
                     name = SOURCE_PARSER.get_name(id)
                     comment = SOURCE_PARSER.get_summary(id)
                 except KeyError:
-                    id = name = source.uri
+                    id = source.uri
+                    name = get_ppa_short_name(source.uri)
                     comment = get_ppa_homepage(source.uri)
                     pixbuf = get_source_logo_from_filename('')
 
@@ -506,15 +555,38 @@ class PackageView(gtk.TreeView):
         url_list = []
         for id in self.get_list():
             #TODO
-            name_list.append(SOURCE_PARSER.get_name(int(id)))
-            url_list.append(SOURCE_PARSER.get_url(int(id)))
+            try:
+                name_list.append(SOURCE_PARSER.get_name(int(id)))
+                url_list.append(SOURCE_PARSER.get_url(int(id)))
+            except:
+                name_list.append(get_ppa_short_name(id))
+                url_list.append(id)
 
         dialog = QuestionDialog(_("You're going to purge: %s") % ', '.join(name_list))
         package_view = DowngradeView()
         package_view.update_model(url_list)
+        select_pkgs = package_view.get_downgrade_packages()
         dialog.vbox.pack_start(package_view, False, False, 0)
+        dialog.show_all()
 
-        dialog.launch()
+        response = dialog.run()
+        dialog.destroy()
+
+        if response == gtk.RESPONSE_YES:
+            self.set_busy()
+            dialog = CleanPpaDialog(self.get_toplevel(), select_pkgs)
+            dialog.run()
+            dialog.destroy()
+            if dialog.error == False:
+                self.show_success_dialog()
+            else:
+                self.show_failed_dialog()
+            self.update_ppa_model()
+            self.emit('cleaned')
+            self.unset_busy()
+        else:
+            #TODO unselect
+            pass
 
     def show_usercancel_dialog(self):
         InfoDialog(_('Cancelled by user!')).launch()
