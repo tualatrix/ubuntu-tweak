@@ -137,13 +137,14 @@ class CleanPpaDialog(ProcessDialog):
         super(CleanPpaDialog, self).__init__(parent=parent)
         self.set_dialog_lable(_('Purge PPA and Downgrade Packages'))
         self.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT)
+        proxy.install_select_pkgs(' '.join(self.pkgs))
 
     def process_data(self):
         self.set_progress_text(_('Purge...'))
-        result = proxy.install_select_pkgs(' '.join(self.pkgs))
-        log.debug("Clean PPA result is %s" % result)
-        if result == 'error':
-            self.error = True
+        returncode = 'None'
+        while returncode == 'None':
+            line, returncode = proxy.get_install_status()
+            log.debug("Clean PPA result is: %s" % line)
         self.done = True
 
     def on_timeout(self):
@@ -199,6 +200,7 @@ class DowngradeView(gtk.TreeView):
 
     def update_model(self, ppas):
         model = self.get_model()
+        model.clear()
         pkg_dict = {}
         for ppa in ppas:
             path = get_ppa_list_name(ppa)

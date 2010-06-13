@@ -309,19 +309,20 @@ class Daemon(PolicyKitService):
         return str(os.system('sudo dpkg --purge %s' % pkg))
 
     @dbus.service.method(INTERFACE,
-                         in_signature='s', out_signature='s',
+                         in_signature='s', out_signature='',
                          sender_keyword='sender')
     def install_select_pkgs(self, pkgs, sender=None):
         self._check_permission(sender)
-        return str(os.system('sudo apt-get -y --force-yes install %s' % pkgs))
+        self.p = subprocess.Popen(['sudo', 'apt-get', '-y', '--force-yes', 'install', pkgs], stdout=PIPE)
 
     @dbus.service.method(INTERFACE,
-                         in_signature='s', out_signature='',
-                         sender_keyword='sender')
-    def add_apt_key(self, filename, sender=None):
-        self._check_permission(sender)
-        apt_key = AptAuth()
-        apt_key.add(filename)
+                         in_signature='', out_signature='v')
+    def get_install_status(self):
+        terminaled = self.p.poll()
+        if terminaled == None:
+            return self.p.stdout.readline(), str(terminaled)
+        else:
+            return ''.join(self.p.stdout.readlines()), str(terminaled)
 
     @dbus.service.method(INTERFACE,
                          in_signature='s', out_signature='',
