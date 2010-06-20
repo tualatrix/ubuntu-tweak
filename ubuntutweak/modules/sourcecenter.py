@@ -255,6 +255,32 @@ class SourceParser(Parser):
     def get_website(self, key):
         return self[key]['website']
 
+    def set_enable(self, key, enable):
+        # To make other module use the source enable feature, move the logical to here
+        # So that other module can call
+        gpg_key = self.get_key(key)
+        url = self.get_url(key)
+        distro = self.get_distro(key)
+        comps = self.get_comps(key)
+        comment = self.get_name(key)
+        package = self.get_slug(key)
+
+        if gpg_key:
+            proxy.add_apt_key_from_content(gpg_key)
+
+        if not comps and distro:
+            distro = distro + '/'
+        elif not comps and not distro:
+            distro = './'
+
+        if TweakSettings.get_separated_sources():
+            result = proxy.set_separated_entry(url, distro, comps,
+                                               comment, enable, package)
+        else:
+            result = proxy.set_entry(url, distro, comps, comment, enable)
+
+        return str(result)
+
 SOURCE_PARSER = SourceParser()
 
 class SourceStatus(StatusProvider):
@@ -804,31 +830,16 @@ class SourcesView(gtk.TreeView):
         '''
         model = self.modelfilter.get_model()
 
+        id = model.get_value(iter, self.COLUMN_ID)
         url = model.get_value(iter, self.COLUMN_URL)
         icon = model.get_value(iter, self.COLUMN_LOGO)
-        distro = model.get_value(iter, self.COLUMN_DISTRO)
         comment = model.get_value(iter, self.COLUMN_NAME)
-        package = model.get_value(iter, self.COLUMN_SLUG)
-        comps = model.get_value(iter, self.COLUMN_COMPS)
-        key = model.get_value(iter, self.COLUMN_KEY)
-
         pre_status = self.get_sourcelist_status(url)
+        result = SOURCE_PARSER.set_enable(id, enable)
 
-        if key:
-            proxy.add_apt_key_from_content(key)
+        log.debug("Setting source %s (%d) to %s, result is %s" % (comment, id, str(enable), result))
 
-        if not comps and distro:
-            distro = distro + '/'
-        elif not comps and not distro:
-            distro = './'
-
-        if TweakSettings.get_separated_sources():
-            result = proxy.set_separated_entry(url, distro, comps,
-                                               comment, enable, package)
-        else:
-            result = proxy.set_entry(url, distro, comps, comment, enable)
-
-        if str(result) == 'enabled':
+        if result == 'enabled':
             model.set(iter, self.COLUMN_ENABLED, True)
         else:
             model.set(iter, self.COLUMN_ENABLED, False)
