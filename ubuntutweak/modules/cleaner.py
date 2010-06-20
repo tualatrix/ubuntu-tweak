@@ -573,6 +573,9 @@ class PackageView(gtk.TreeView):
 
         response = dialog.run()
         dialog.destroy()
+        # Workflow
+        # 1. Downgrade all the PPA packages to offical packages #TODO Maybe not official? Because anther ppa which is enabled may have newer packages then offical
+        # 2. If succeed, disable PPA, or keep it
 
         if response == gtk.RESPONSE_YES:
             self.set_busy()
