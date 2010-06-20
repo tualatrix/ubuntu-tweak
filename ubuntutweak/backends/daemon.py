@@ -21,6 +21,7 @@ import gobject
 import gettext
 import subprocess
 import tempfile
+import logging
 
 from subprocess import PIPE
 from aptsources.sourceslist import SourceEntry, SourcesList
@@ -28,6 +29,8 @@ from ubuntutweak.backends import PolicyKitService
 from ubuntutweak.common.systeminfo import module_check
 
 apt_pkg.init()
+
+log = logging.getLogger('Daemon')
 
 PPA_KEY = '''-----BEGIN PGP PUBLIC KEY BLOCK-----
 Version: SKS 1.0.10
@@ -103,6 +106,23 @@ class Daemon(PolicyKitService):
         bus_name = dbus.service.BusName(INTERFACE, bus=bus)
         PolicyKitService.__init__(self, bus_name, PATH)
         self.mainloop = mainloop
+
+    @dbus.service.method(INTERFACE,
+                         in_signature='sb', out_signature='b',
+                         sender_keyword='sender')
+    def set_source_enable(self, url, enable, sender=None):
+        self._check_permission(sender)
+        self.list.refresh()
+
+        for source in self.list:
+            if url in source.str() and source.type == 'deb':
+                source.disabled = not enable
+
+        self.list.save()
+
+        for source in self.list:
+            if url in source.str() and source.type == 'deb':
+                return not source.disabled
 
     @dbus.service.method(INTERFACE,
                          in_signature='ssssb', out_signature='s',
@@ -313,7 +333,9 @@ class Daemon(PolicyKitService):
                          sender_keyword='sender')
     def install_select_pkgs(self, pkgs, sender=None):
         self._check_permission(sender)
-        self.p = subprocess.Popen(['sudo', 'apt-get', '-y', '--force-yes', 'install', pkgs], stdout=PIPE)
+        cmd = ['sudo', 'apt-get', '-y', '--force-yes', 'install', pkgs]
+        log.debug("The install command is %s" % ' '.join(cmd))
+        self.p = subprocess.Popen(cmd, stdout=PIPE)
 
     @dbus.service.method(INTERFACE,
                          in_signature='', out_signature='v')

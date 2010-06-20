@@ -24,6 +24,7 @@ import thread
 import glob
 import gobject
 import logging
+import pango
 from aptsources.sourceslist import SourcesList
 from gettext import ngettext
 
@@ -186,15 +187,19 @@ class DowngradeView(gtk.TreeView):
 
     def __add_column(self):
         renderer = gtk.CellRendererText()
+        renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
         column = gtk.TreeViewColumn(_('Package'), renderer, text=self.COLUMN_PKG)
+        column.set_resizable(True)
         column.set_sort_column_id(self.COLUMN_PKG)
         self.append_column(column)
 
         renderer = gtk.CellRendererText()
+        renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
         column = gtk.TreeViewColumn(_('Previous Version'), renderer, text=self.COLUMN_PPA_VERSION)
         self.append_column(column)
 
         renderer = gtk.CellRendererText()
+        renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
         column = gtk.TreeViewColumn(_('System Version'), renderer, text=self.COLUMN_SYSTEM_VERSION)
         self.append_column(column)
 
@@ -389,14 +394,14 @@ class PackageView(gtk.TreeView):
                     pixbuf = get_source_logo_from_filename(SOURCE_PARSER[id]['logo'])
                     name = SOURCE_PARSER.get_name(id)
                     comment = SOURCE_PARSER.get_summary(id)
-                except KeyError:
+                except:
                     id = source.uri
                     name = get_ppa_short_name(source.uri)
                     comment = get_ppa_homepage(source.uri)
                     pixbuf = get_source_logo_from_filename('')
 
                 iter = model.append()
-                print name
+                log.debug("Found an enalbed PPA: %s" % name)
                 model.set(iter,
                        COLUMN_ICON, pixbuf,
                        COLUMN_CHECK, False,
@@ -553,6 +558,9 @@ class PackageView(gtk.TreeView):
         self.unset_busy()
 
     def clean_selected_ppa(self):
+        self.set_busy()
+        # name_list is to display the name of PPA
+        # url_list is to identify the ppa
         name_list = []
         url_list = []
         for id in self.get_list():
@@ -565,10 +573,15 @@ class PackageView(gtk.TreeView):
                 url_list.append(id)
 
         dialog = QuestionDialog(_("You're going to purge: %s") % ', '.join(name_list))
+        sw = gtk.ScrolledWindow()
+        sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        sw.set_size_request(350, 200)
+        dialog.vbox.pack_start(sw, False, False, 0)
+
         package_view = DowngradeView()
         package_view.update_model(url_list)
         select_pkgs = package_view.get_downgrade_packages()
-        dialog.vbox.pack_start(package_view, False, False, 0)
+        sw.add(package_view)
         dialog.show_all()
 
         response = dialog.run()
@@ -583,6 +596,9 @@ class PackageView(gtk.TreeView):
             dialog.run()
             dialog.destroy()
             if dialog.error == False:
+                for url in url_list:
+                    result = proxy.set_source_enable(url, False)
+                    log.debug("Set source: %s to %s" % (url, str(result)))
                 self.show_success_dialog()
             else:
                 self.show_failed_dialog()
@@ -590,8 +606,11 @@ class PackageView(gtk.TreeView):
             self.emit('cleaned')
             self.unset_busy()
         else:
-            #TODO unselect
-            pass
+            self.update_ppa_model()
+        # TODO refresh source?
+        self.__check_list = []
+        self.emit('cleaned')
+        self.unset_busy()
 
     def show_usercancel_dialog(self):
         InfoDialog(_('Cancelled by user!')).launch()

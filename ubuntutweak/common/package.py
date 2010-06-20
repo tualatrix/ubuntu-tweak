@@ -208,7 +208,6 @@ class PackageWorker:
             return version.origins[0].origin == 'Ubuntu'
 
         log.debug("Check downgrade information")
-        #TODO dict should take archive information
         downgrade_dict = {}
         for pkg, url in ppa_dict.items():
             log.debug("The package is: %s, PPA URL is: %s" % (pkg, url))
@@ -218,18 +217,23 @@ class PackageWorker:
             ppa_version = 0
             system_version = 0
             for version in versions:
-                log.debug("The version is %s" % str(version))
-                log.debug("Version uri is %s" % version.uri)
-                if url in version.uri:
-                    ppa_version = version.version
-                    continue
+                try:
+                    #FIXME option to remove the package
+                    log.debug("The version is %s" % str(version))
+                    log.debug("Version uri is %s" % version.uri)
+                    if url in version.uri:
+                        ppa_version = version.version
+                        log.debug("Found match url, now iter to system version")
+                        continue
 
-                if is_system_origin(version):
-                    system_version = version.version
+                    if is_system_origin(version):
+                        system_version = version.version
 
-                if ppa_version and system_version:
-                    downgrade_dict[pkg.name] = (ppa_version, system_version)
-                    break
+                    if ppa_version and system_version:
+                        downgrade_dict[pkg.name] = (ppa_version, system_version)
+                        break
+                except StopIteration:
+                    pass
             log.debug("\n")
         return downgrade_dict
 

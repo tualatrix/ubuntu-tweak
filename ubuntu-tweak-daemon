@@ -2,10 +2,25 @@
 
 import dbus
 import gobject
+import optparse
 from ubuntutweak.backends.daemon import Daemon
+from ubuntutweak.common.consts import VERSION
+from ubuntutweak.common.debug import enable_debugging
 
-#TODO make it exist when timeout
-dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
-mainloop = gobject.MainLoop()
-Daemon(dbus.SystemBus(), mainloop)
-mainloop.run()
+if __name__ == '__main__':
+    parser = optparse.OptionParser(prog="ubuntu-tweak-daemon",
+                                   version="%%prog %s" % VERSION,
+                                   description="Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your system and desktop settings.")
+
+    parser.add_option("-d", "--debug", action="store_true", default=False,
+                      help="Generate more debugging information.  [default: %default]")
+    options, args = parser.parse_args()
+
+    if options.debug:
+        enable_debugging()
+
+    #TODO make it exist when timeout
+    dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
+    mainloop = gobject.MainLoop()
+    Daemon(dbus.SystemBus(), mainloop)
+    mainloop.run()
