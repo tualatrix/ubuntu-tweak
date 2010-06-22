@@ -221,7 +221,7 @@ class PackageWorker:
                     #FIXME option to remove the package
                     log.debug("The version is %s" % str(version))
                     log.debug("Version uri is %s" % version.uri)
-                    if url in version.uri:
+                    if url in version.uri and version == pkg.installed:
                         ppa_version = version.version
                         log.debug("Found match url, now iter to system version")
                         continue

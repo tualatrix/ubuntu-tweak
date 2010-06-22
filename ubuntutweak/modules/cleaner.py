@@ -25,6 +25,7 @@ import glob
 import gobject
 import logging
 import pango
+from dbus.exceptions import DBusException
 from aptsources.sourceslist import SourcesList
 from gettext import ngettext
 
@@ -138,14 +139,18 @@ class CleanPpaDialog(ProcessDialog):
         super(CleanPpaDialog, self).__init__(parent=parent)
         self.set_dialog_lable(_('Purge PPA and Downgrade Packages'))
         self.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT)
-        proxy.install_select_pkgs(' '.join(self.pkgs))
+        proxy.install_select_pkgs(self.pkgs)
 
     def process_data(self):
         self.set_progress_text(_('Purge...'))
         returncode = 'None'
         while returncode == 'None':
-            line, returncode = proxy.get_install_status()
-            log.debug("Clean PPA result is: %s" % line)
+            try:
+                line, returncode = proxy.get_install_status()
+                self.set_progress_text(_('Purge...(%s)') % line)
+                log.debug("Clean PPA result is: %s" % line)
+            except DBusException, e:
+                log.debug("No response, maybe timeout, error code: %s" % str(e))
         self.done = True
 
     def on_timeout(self):

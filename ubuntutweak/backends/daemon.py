@@ -101,6 +101,7 @@ class Daemon(PolicyKitService):
     PPA_URL = 'ppa.launchpad.net'
     stable_url = 'http://ppa.launchpad.net/tualatrix/ppa/ubuntu'
     ppa_list = []
+    p = None
 
     def __init__ (self, bus, mainloop):
         bus_name = dbus.service.BusName(INTERFACE, bus=bus)
@@ -329,11 +330,12 @@ class Daemon(PolicyKitService):
         return str(os.system('sudo dpkg --purge %s' % pkg))
 
     @dbus.service.method(INTERFACE,
-                         in_signature='s', out_signature='',
+                         in_signature='as', out_signature='',
                          sender_keyword='sender')
     def install_select_pkgs(self, pkgs, sender=None):
         self._check_permission(sender)
-        cmd = ['sudo', 'apt-get', '-y', '--force-yes', 'install', pkgs]
+        cmd = ['sudo', 'apt-get', '-y', '--force-yes', 'install']
+        cmd.extend(pkgs)
         log.debug("The install command is %s" % ' '.join(cmd))
         self.p = subprocess.Popen(cmd, stdout=PIPE)
 
