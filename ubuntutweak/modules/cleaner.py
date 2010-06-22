@@ -138,8 +138,20 @@ class CleanPpaDialog(ProcessDialog):
 
         super(CleanPpaDialog, self).__init__(parent=parent)
         self.set_dialog_lable(_('Purge PPA and Downgrade Packages'))
+        self.expendar = gtk.Expander()
+        self.expendar.set_spacing(6)
+        self.expendar.set_label(_('Details'))
+        self.vbox.pack_start(self.expendar, False, False, 6)
+        self.textbuffer = gtk.TextBuffer()
+        self.textview = gtk.TextView(self.textbuffer)
+        sw = gtk.ScrolledWindow()
+        sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        sw.set_size_request(350, 200)
+        sw.add(self.textview)
+        self.expendar.add(sw)
         self.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT)
         proxy.install_select_pkgs(self.pkgs)
+        self.vbox.show_all()
 
     def process_data(self):
         self.set_progress_text(_('Purge...'))
@@ -147,8 +159,11 @@ class CleanPpaDialog(ProcessDialog):
         while returncode == 'None':
             try:
                 line, returncode = proxy.get_install_status()
-                self.set_progress_text(_('Purge...(%s)') % line)
                 log.debug("Clean PPA result is: %s" % line)
+                iter = self.textbuffer.get_end_iter()
+                self.textbuffer.insert(iter, line)
+                iter = self.textbuffer.get_end_iter()
+                self.textview.scroll_to_iter(iter, 0.0)
             except DBusException, e:
                 log.debug("No response, maybe timeout, error code: %s" % str(e))
         self.done = True
@@ -405,6 +420,7 @@ class PackageView(gtk.TreeView):
                     comment = get_ppa_homepage(source.uri)
                     pixbuf = get_source_logo_from_filename('')
 
+                self.total_num += 1
                 iter = model.append()
                 log.debug("Found an enalbed PPA: %s" % name)
                 model.set(iter,
@@ -608,7 +624,6 @@ class PackageView(gtk.TreeView):
             else:
                 self.show_failed_dialog()
             self.update_ppa_model()
-            self.emit('cleaned')
             self.unset_busy()
         else:
             self.update_ppa_model()
