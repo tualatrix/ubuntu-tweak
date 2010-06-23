@@ -22,7 +22,7 @@ CONFIG_ROOT = os.path.join(glib.get_user_config_dir(), 'ubuntu-tweak')
 IS_INSTALLED = True
 
 if not os.path.exists(CONFIG_ROOT):
-    os.mkdir(CONFIG_ROOT)
+    os.makedirs(CONFIG_ROOT)
 
 try:
     LANG = os.getenv('LANG').split('.')[0].lower().replace('_','-')
