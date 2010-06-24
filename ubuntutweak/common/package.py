@@ -179,7 +179,8 @@ class PackageWorker:
     def get_cache(self):
         try:
             self.update_apt_cache()
-        except:
+        except Exception, e:
+            log.error("Error happened when get_cache(): %s" % str(e))
             return None
         else:
             return self.cache
