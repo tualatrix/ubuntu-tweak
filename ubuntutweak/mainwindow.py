@@ -461,7 +461,7 @@ class MainWindow(gtk.Window):
             _("Contributors of 2007"),
             "Super Jamie <jamie@superjamie.net>", "",
             _("Contributors of 2008"),
-            "Lee Jarratt <lee.jarratt@googlemail.com>", "",
+            "Lee Jarratt <lee.jarratt@gmail.com>", "",
             _("Contributors of 2009"),
             "Iven <ivenvd@gmail.com>",
             "Dig Ge <Dig.Ge.CN@Gmail.com>", "",
