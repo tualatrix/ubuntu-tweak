@@ -149,14 +149,16 @@ class CleanPpaDialog(ProcessDialog):
         sw.set_size_request(350, 200)
         sw.add(self.textview)
         self.expendar.add(sw)
-        self.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT)
         proxy.install_select_pkgs(self.pkgs)
         self.vbox.show_all()
 
     def process_data(self):
+        gtk.gdk.threads_enter()
         self.set_progress_text(_('Purge...'))
         returncode = 'None'
         while returncode == 'None':
+            while gtk.events_pending():
+                gtk.main_iteration()
             try:
                 line, returncode = proxy.get_install_status()
                 log.debug("Clean PPA result is: %s" % line)
@@ -167,6 +169,7 @@ class CleanPpaDialog(ProcessDialog):
             except DBusException, e:
                 log.debug("No response, maybe timeout, error code: %s" % str(e))
         self.done = True
+        gtk.gdk.threads_leave()
 
     def on_timeout(self):
         self.pulse()
