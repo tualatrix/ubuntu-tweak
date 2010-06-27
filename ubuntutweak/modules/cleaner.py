@@ -210,20 +210,20 @@ class DowngradeView(gtk.TreeView):
 
     def __add_column(self):
         renderer = gtk.CellRendererText()
-        renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
         column = gtk.TreeViewColumn(_('Package'), renderer, text=self.COLUMN_PKG)
-        column.set_resizable(True)
         column.set_sort_column_id(self.COLUMN_PKG)
         self.append_column(column)
 
         renderer = gtk.CellRendererText()
         renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
         column = gtk.TreeViewColumn(_('Previous Version'), renderer, text=self.COLUMN_PPA_VERSION)
+        column.set_resizable(True)
         self.append_column(column)
 
         renderer = gtk.CellRendererText()
         renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
         column = gtk.TreeViewColumn(_('System Version'), renderer, text=self.COLUMN_SYSTEM_VERSION)
+        column.set_resizable(True)
         self.append_column(column)
 
     def update_model(self, ppas):
@@ -597,9 +597,10 @@ class PackageView(gtk.TreeView):
                 url_list.append(id)
 
         dialog = QuestionDialog(_("You're going to purge: %s") % ', '.join(name_list))
+        dialog.set_resizable(True)
         sw = gtk.ScrolledWindow()
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        sw.set_size_request(350, 200)
+        sw.set_size_request(550, 200)
         dialog.vbox.pack_start(sw, False, False, 0)
 
         package_view = DowngradeView()
