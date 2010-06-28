@@ -147,7 +147,7 @@ class Scripts(TweakModule, AbstractScripts):
                   "'Scripts' will then be added to the context menu.")
     __icon__ = 'text-x-script'
     __category__ = 'personal'
-    __desktop__ = 'gnome'
+    __desktop__ = ['gnome', 'une']
 
     def __init__(self):
         TweakModule.__init__(self)

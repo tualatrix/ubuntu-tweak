@@ -29,7 +29,7 @@ class PowerManager(TweakModule):
     __desc__ = _('Control your computer\'s power managerment')
     __icon__ = 'gnome-power-manager'
     __category__ = 'system'
-    __desktop__ = ['gnome', 'xfce']
+    __desktop__ = ['gnome', 'xfce', 'une']
 
     def __init__(self):
         TweakModule.__init__(self)

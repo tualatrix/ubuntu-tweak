@@ -47,7 +47,7 @@ class Shortcuts(TweakModule):
                   "Enter the application's command and set the desired shortcut keys.")
     __icon__ = 'preferences-desktop-keyboard-shortcuts'
     __category__ = 'personal'
-    __desktop__ = 'gnome'
+    __desktop__ = ['gnome', 'une']
 
     def __init__(self):
         TweakModule.__init__(self)

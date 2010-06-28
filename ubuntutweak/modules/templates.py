@@ -119,7 +119,7 @@ class Templates(TweakModule):
                  'You can create new documents based on these templates from the Nautilus right-click menu.')
     __icon__ = 'x-office-document'
     __category__ = 'personal'
-    __desktop__ = ['gnome', 'xfce']
+    __desktop__ = ['gnome', 'xfce', 'une']
 
     def __init__(self):
         TweakModule.__init__(self)

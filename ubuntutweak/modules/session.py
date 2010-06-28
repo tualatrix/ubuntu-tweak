@@ -35,7 +35,7 @@ class Session(TweakModule):
     __desc__ = _('Control your system session releated features')
     __icon__ = 'gnome-session-hibernate'
     __category__ = 'startup'
-    __desktop__ = 'gnome'
+    __desktop__ = ['gnome', 'une']
 
     def __init__(self):
         TweakModule.__init__(self)
