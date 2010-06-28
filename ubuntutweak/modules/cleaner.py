@@ -75,6 +75,7 @@ class AbsPkg:
 
 class CleanConfigDialog(ProcessDialog):
     def __init__(self, parent, pkgs):
+        #TODO uniform dialog
         self.pkgs = pkgs
         self.done = False
         self.user_action = False
@@ -82,13 +83,18 @@ class CleanConfigDialog(ProcessDialog):
         super(CleanConfigDialog, self).__init__(parent = parent)
         self.set_dialog_lable(_('Cleaning Configuration Files'))
         self.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT)
+        proxy.clean_configs(self.pkgs)
 
     def process_data(self):
-        for pkg in self.pkgs:
+        returncode = 'None'
+        while returncode == 'None':
             if self.user_action == True:
                 break
-            self.set_progress_text(_('Cleaning...%s') % pkg)
-            proxy.clean_config(pkg)
+            try:
+                line, returncode = proxy.get_cmd_pipe()
+                self.set_progress_text(_('Cleaning...%s') % line)
+            except DBusException, e:
+                log.debug("No response, maybe timeout, error code: %s" % str(e))
         self.done = True
         
     def on_timeout(self):
@@ -160,7 +166,7 @@ class CleanPpaDialog(ProcessDialog):
             while gtk.events_pending():
                 gtk.main_iteration()
             try:
-                line, returncode = proxy.get_install_status()
+                line, returncode = proxy.get_cmd_pipe()
                 log.debug("Clean PPA result is: %s" % line)
                 iter = self.textbuffer.get_end_iter()
                 self.textbuffer.insert(iter, line)

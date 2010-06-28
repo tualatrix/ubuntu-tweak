@@ -323,11 +323,13 @@ class Daemon(PolicyKitService):
         file.close()
 
     @dbus.service.method(INTERFACE,
-                         in_signature='s', out_signature='s',
+                         in_signature='as', out_signature='',
                          sender_keyword='sender')
-    def clean_config(self, pkg, sender=None):
+    def clean_configs(self, pkgs, sender=None):
         self._check_permission(sender)
-        return str(os.system('sudo dpkg --purge %s' % pkg))
+        cmd = ['sudo', 'dpkg', '--purge']
+        cmd.extend(pkgs)
+        self.p = subprocess.Popen(cmd, stdout=PIPE)
 
     @dbus.service.method(INTERFACE,
                          in_signature='as', out_signature='',
@@ -341,12 +343,17 @@ class Daemon(PolicyKitService):
 
     @dbus.service.method(INTERFACE,
                          in_signature='', out_signature='v')
-    def get_install_status(self):
-        terminaled = self.p.poll()
-        if terminaled == None:
-            return self.p.stdout.readline(), str(terminaled)
+    def get_cmd_pipe(self):
+        if self.p:
+            terminaled = self.p.poll()
+            if terminaled == None:
+                return self.p.stdout.readline(), str(terminaled)
+            else:
+                strings, returncode = ''.join(self.p.stdout.readlines()), str(terminaled)
+                self.p = None
+                return strings, returncode
         else:
-            return ''.join(self.p.stdout.readlines()), str(terminaled)
+            return '', 'None'
 
     @dbus.service.method(INTERFACE,
                          in_signature='s', out_signature='',
