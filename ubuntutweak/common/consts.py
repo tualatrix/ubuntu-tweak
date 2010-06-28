@@ -56,5 +56,6 @@ if not pynotify.init('ubuntu-tweak'):
 
 
 #TODO remove this in the future
-if not glob.glob(os.path.expanduser('~/.ubuntu-tweak/*')):
-    os.rmdir(os.path.expanduser('~/.ubuntu-tweak/'))
+OLD_CONFIG_ROOT = os.path.expanduser('~/.ubuntu-tweak/')
+if not glob.glob(os.path.expanduser('~/.ubuntu-tweak/*')) and os.path.exists(OLD_CONFIG_ROOT):
+    os.rmdir(OLD_CONFIG_ROOT)
