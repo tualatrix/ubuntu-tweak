@@ -23,15 +23,24 @@ pygtk.require("2.0")
 import os
 import gtk
 import shutil
+import logging
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.modules.userdir import UserdirFile
-from ubuntutweak.common.consts import DATA_DIR
+from ubuntutweak.common.consts import DATA_DIR, CONFIG_ROOT
 from ubuntutweak.widgets import DirView, FlatView
 from ubuntutweak.widgets.dialogs import WarningDialog, ErrorDialog
 from ubuntutweak.common.utils import set_label_for_stock_button
 
+log = logging.getLogger("Templates")
+
 def update_dir():
-    system_dir = os.path.expanduser('~/.ubuntu-tweak/templates')
+    system_dir = os.path.join(CONFIG_ROOT, 'templates')
+
+    #TODO maybe remove these code in the future
+    old_system_dir = os.path.expanduser('~/.ubuntu-tweak/templates')
+    if os.path.exists(old_system_dir) and not os.path.exists(system_dir):
+        log.debug('Move the old_system_dir to new system_dir')
+        shutil.move(old_system_dir, system_dir)
 
     __uf = UserdirFile()
     __template_dir = __uf['XDG_TEMPLATES_DIR']

@@ -617,6 +617,7 @@ class PackageView(gtk.TreeView):
 
         if response == gtk.RESPONSE_YES:
             self.set_busy()
+            log.debug("The select pkgs is: %s", str(select_pkgs))
             dialog = CleanPpaDialog(self.get_toplevel(), select_pkgs)
             dialog.run()
             dialog.destroy()

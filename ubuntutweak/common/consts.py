@@ -8,6 +8,7 @@ __all__ = (
 
 import os
 import glib
+import glob
 import gettext
 import pynotify
 
@@ -52,3 +53,8 @@ init_locale()
 
 if not pynotify.init('ubuntu-tweak'):
     sys.exit (1)
+
+
+#TODO remove this in the future
+if not glob.glob(os.path.expanduser('~/.ubuntu-tweak/*')):
+    os.rmdir(os.path.expanduser('~/.ubuntu-tweak/'))

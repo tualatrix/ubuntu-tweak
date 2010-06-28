@@ -27,11 +27,14 @@ import shutil
 import gobject
 import gettext
 import gnomevfs
+import logging
 from ubuntutweak.modules  import TweakModule
-from ubuntutweak.common.consts import *
+from ubuntutweak.common.consts import DATA_DIR, CONFIG_ROOT
 from ubuntutweak.common.utils import get_icon_with_type
 from ubuntutweak.widgets import DirView, FlatView
 from ubuntutweak.widgets.dialogs import WarningDialog
+
+log = logging.getLogger('Script')
 
 (
     COLUMN_ICON,
@@ -41,8 +44,15 @@ from ubuntutweak.widgets.dialogs import WarningDialog
 ) = range(4)
 
 class AbstractScripts:
-    systemdir = os.path.join(os.path.expanduser('~'), '.ubuntu-tweak/scripts')
-    userdir = os.path.join(os.getenv('HOME'), '.gnome2', 'nautilus-scripts')
+    system_dir = os.path.join(CONFIG_ROOT, 'scripts')
+
+    #TODO maybe remove these code in the future
+    old_system_dir = os.path.join(os.path.expanduser('~'), '.ubuntu-tweak/scripts')
+    if os.path.exists(old_system_dir) and not os.path.exists(system_dir):
+        log.debug('Move the old_system_dir to new system_dir')
+        shutil.move(old_system_dir, system_dir)
+
+    user_dir = os.path.join(os.getenv('HOME'), '.gnome2', 'nautilus-scripts')
 
 class DefaultScripts(AbstractScripts):
     '''This class use to create the default scripts'''
@@ -74,25 +84,25 @@ class DefaultScripts(AbstractScripts):
             }
 
     def create(self):
-        if not os.path.exists(self.systemdir):
-            os.makedirs(self.systemdir)
+        if not os.path.exists(self.system_dir):
+            os.makedirs(self.system_dir)
         for file, des in self.scripts.items():
             realname = '%s' % des
-            if not os.path.exists(os.path.join(self.systemdir,realname)):
-                shutil.copy(os.path.join(DATA_DIR, 'scripts/%s' % file), os.path.join(self.systemdir,realname))
+            if not os.path.exists(os.path.join(self.system_dir,realname)):
+                shutil.copy(os.path.join(DATA_DIR, 'scripts/%s' % file), os.path.join(self.system_dir,realname))
 
     def remove(self):
-        if not os.path.exists(self.systemdir):
+        if not os.path.exists(self.system_dir):
             return 
-        if os.path.isdir(self.systemdir): 
-            for root, dirs, files in os.walk(self.systemdir, topdown=False):
+        if os.path.isdir(self.system_dir):
+            for root, dirs, files in os.walk(self.system_dir, topdown=False):
                 for name in files:
                     os.remove(os.path.join(root, name))
                 for name in dirs:
                     os.rmdir(os.path.join(root, name))
-                    os.rmdir(self.systemdir)
+                    os.rmdir(self.system_dir)
         else:
-            os.unlink(self.systemdir)
+            os.unlink(self.system_dir)
         return
 
 class EnableScripts(DirView, AbstractScripts):
@@ -100,7 +110,7 @@ class EnableScripts(DirView, AbstractScripts):
     type = _('Enabled Scripts')
 
     def __init__(self):
-        DirView.__init__(self, self.userdir)
+        DirView.__init__(self, self.user_dir)
 
     def do_update_model(self, dir, iter):
         for item in os.listdir(dir):
@@ -128,7 +138,7 @@ class DisableScripts(FlatView, AbstractScripts):
     type = _('Disabled Scripts')
 
     def __init__(self):
-        FlatView.__init__(self, self.systemdir, self.userdir)
+        FlatView.__init__(self, self.system_dir, self.user_dir)
 
 class Scripts(TweakModule, AbstractScripts):
     __title__  = _('Manage Scripts')
@@ -191,5 +201,5 @@ class Scripts(TweakModule, AbstractScripts):
         dialog.destroy()
 
     def config_test(self):
-        if not os.path.exists(self.systemdir):
+        if not os.path.exists(self.system_dir):
             self.default.create()
