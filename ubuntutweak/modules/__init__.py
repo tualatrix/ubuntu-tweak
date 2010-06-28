@@ -89,8 +89,10 @@ class ModuleLoader:
             return 'gnome'
         elif os.popen('xprop -root _DT_SAVE_MODE | grep xfce').read() != '':
             return 'xfce'
-        elif os.environ.get('KDE_FULL_SESSION'):
+        elif os.getenv('KDE_FULL_SESSION'):
             return 'kde'
+        elif os.getenv('DESKTOP_SESSION') == 'Lubuntu':
+            return 'lxde'
         else:
             return ''
 
