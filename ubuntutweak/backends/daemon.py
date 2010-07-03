@@ -331,15 +331,28 @@ class Daemon(PolicyKitService):
         cmd.extend(pkgs)
         self.p = subprocess.Popen(cmd, stdout=PIPE)
 
-    @dbus.service.method(INTERFACE,
-                         in_signature='as', out_signature='',
-                         sender_keyword='sender')
-    def install_select_pkgs(self, pkgs, sender=None):
-        self._check_permission(sender)
+    @dbus.service.signal(INTERFACE, signature='as')
+    def install_select_pkgs(self, pkgs):
         cmd = ['sudo', 'apt-get', '-y', '--force-yes', 'install']
         cmd.extend(pkgs)
         log.debug("The install command is %s" % ' '.join(cmd))
         self.p = subprocess.Popen(cmd, stdout=PIPE)
+
+        terminaled = self.p.poll()
+        log.debug("Check daemon status, %d" % int(terminaled))
+
+        while terminaled == None:
+            self.cmd_pipe_signal(self.p.stdout.readline())
+
+        self.cmd_pipe_signal(''.join(self.p.stdout.readlines()))
+        self.terminaled_signal(terminaled)
+
+    @dbus.service.method(INTERFACE,
+                         in_signature='as', out_signature='',
+                         sender_keyword='sender')
+    def start_install_pkgs(self, pkgs, sender=None):
+        self._check_permission(sender)
+        self.install_select_pkgs(pkgs)
 
     @dbus.service.method(INTERFACE,
                          in_signature='', out_signature='v')

@@ -155,7 +155,7 @@ class CleanPpaDialog(ProcessDialog):
         sw.set_size_request(350, 200)
         sw.add(self.textview)
         self.expendar.add(sw)
-        proxy.install_select_pkgs(self.pkgs)
+        proxy.start_install_pkgs(self.pkgs)
         real_proxy = proxy.get_proxy()
         real_proxy.connect_to_signal("cmd_pipe_signal", self.handle_the_pipe, dbus_interface=INTERFACE)
         real_proxy.connect_to_signal("terminaled_signal", self.handle_terminaled_signal, dbus_interface=INTERFACE)
