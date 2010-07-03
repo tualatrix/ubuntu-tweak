@@ -20,7 +20,6 @@
 
 import os
 import gtk
-import thread
 import glob
 import gobject
 import logging
@@ -40,6 +39,7 @@ from ubuntutweak.widgets.utils import ProcessDialog
 from ubuntutweak.modules.sourcecenter import SOURCE_PARSER, PPA_URL
 from ubuntutweak.modules.sourcecenter import get_source_logo_from_filename
 from ubuntutweak.modules.sourcecenter import get_ppa_homepage
+from ubuntutweak.backends.daemon import INTERFACE
 
 log = logging.getLogger("Cleaner") 
 
@@ -156,26 +156,25 @@ class CleanPpaDialog(ProcessDialog):
         sw.add(self.textview)
         self.expendar.add(sw)
         proxy.install_select_pkgs(self.pkgs)
+        real_proxy = proxy.get_proxy()
+        real_proxy.connect_to_signal("cmd_pipe_signal", self.handle_the_pipe, dbus_interface=INTERFACE)
+        real_proxy.connect_to_signal("terminaled_signal", self.handle_terminaled_signal, dbus_interface=INTERFACE)
         self.vbox.show_all()
 
-    def process_data(self):
-        gtk.gdk.threads_enter()
-        self.set_progress_text(_('Purge...'))
-        returncode = 'None'
-        while returncode == 'None':
-            while gtk.events_pending():
-                gtk.main_iteration()
-            try:
-                line, returncode = proxy.get_cmd_pipe()
-                log.debug("Clean PPA result is: %s" % line)
-                iter = self.textbuffer.get_end_iter()
-                self.textbuffer.insert(iter, line)
-                iter = self.textbuffer.get_end_iter()
-                self.textview.scroll_to_iter(iter, 0.0)
-            except DBusException, e:
-                log.debug("No response, maybe timeout, error code: %s" % str(e))
+    def handle_the_pipe(self, line):
+        log.debug("Clean PPA result is: %s" % line)
+        iter = self.textbuffer.get_end_iter()
+        self.textbuffer.insert(iter, line)
+        iter = self.textbuffer.get_end_iter()
+        self.textview.scroll_to_iter(iter, 0.0)
+
+    def handle_terminaled_signal(self, returncode):
         self.done = True
-        gtk.gdk.threads_leave()
+        if returncode == 0:
+            self.error = True
+
+    def process_data(self):
+        pass
 
     def on_timeout(self):
         self.pulse()

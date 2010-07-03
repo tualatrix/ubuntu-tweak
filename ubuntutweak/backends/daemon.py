@@ -355,6 +355,14 @@ class Daemon(PolicyKitService):
         else:
             return '', 'None'
 
+    @dbus.service.signal(INTERFACE)
+    def cmd_pipe_signal(self, message):
+        pass
+
+    @dbus.service.signal(INTERFACE)
+    def terminaled_signal(self, returncode):
+        pass
+
     @dbus.service.method(INTERFACE,
                          in_signature='s', out_signature='',
                          sender_keyword='sender')
@@ -457,5 +465,6 @@ class Daemon(PolicyKitService):
 if __name__ == '__main__':
     dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
     mainloop = gobject.MainLoop()
-    Daemon(dbus.SystemBus(), mainloop)
+    daemon = Daemon(dbus.SystemBus(), mainloop)
+    gobject.timeout_add(100, check_status, daemon)
     mainloop.run()

@@ -1,10 +1,32 @@
 #!/usr/bin/python
 
+import time
 import dbus
+import thread
 import gobject
 import optparse
+import datetime
 from ubuntutweak.common.consts import VERSION
 from ubuntutweak.common.debug import enable_debugging
+
+def check_status(daemon):
+    import logging
+    log = logging.getLogger('Daemon')
+    while True:
+        time.sleep(0.3)
+        if daemon.p != None:
+            terminaled = daemon.p.poll()
+            log.debug("Check daemon status, %d" % int(terminaled))
+        else:
+            timestamp = datetime.datetime.now().isoformat()
+            daemon.cmd_pipe_signal("No information from ubuntu-tweak-daemon, %s" % timestamp)
+            log.debug("Check daemon status, no process is running now. %s" % timestamp)
+
+        if not terminaled:
+            daemon.cmd_pipe_signal(daemon.p.stdout.readline())
+        else:
+            daemon.cmd_pipe_signal(''.join(daemon.p.stdout.readlines()))
+            daemon.terminaled_signal(terminaled)
 
 if __name__ == '__main__':
     parser = optparse.OptionParser(prog="ubuntu-tweak-daemon",
@@ -22,5 +44,6 @@ if __name__ == '__main__':
     from ubuntutweak.backends.daemon import Daemon
     dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
     mainloop = gobject.MainLoop()
-    Daemon(dbus.SystemBus(), mainloop)
+    daemon = Daemon(dbus.SystemBus(), mainloop)
+    thread.start_new_thread(check_status, (daemon,))
     mainloop.run()
