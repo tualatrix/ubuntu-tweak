@@ -146,6 +146,7 @@ class CleanPpaDialog(ProcessDialog):
         self.set_dialog_lable(_('Purge PPA and Downgrade Packages'))
         self.expendar = gtk.Expander()
         self.expendar.set_spacing(6)
+        self.set_progress_text(_('Purge...'))
         self.expendar.set_label(_('Details'))
         self.vbox.pack_start(self.expendar, False, False, 6)
         self.textbuffer = gtk.TextBuffer()
@@ -159,22 +160,17 @@ class CleanPpaDialog(ProcessDialog):
 
     def process_data(self):
         proxy.install_select_pkgs(self.pkgs)
-        self.set_progress_text(_('Purge...'))
-        returncode = 'None'
-        while returncode == 'None':
-            try:
-                line, returncode = proxy.get_object().get_cmd_pipe(dbus_interface=proxy.INTERFACE, timeout=MAX_DBUS_TIMEOUT)
-                log.debug("Clean PPA result is: %s" % line)
-                iter = self.textbuffer.get_end_iter()
-                self.textbuffer.insert(iter, line)
-                iter = self.textbuffer.get_end_iter()
-                self.textview.scroll_to_iter(iter, 0.0)
-            except DBusException, e:
-                log.debug("No response, maybe timeout, error code: %s" % str(e))
-        self.done = True
 
     def on_timeout(self):
         self.pulse()
+        line, returncode = proxy.get_cmd_pipe()
+        log.debug("Clean PPA result is: %s" % line)
+        iter = self.textbuffer.get_end_iter()
+        self.textbuffer.insert(iter, line)
+        iter = self.textbuffer.get_end_iter()
+        self.textview.scroll_to_iter(iter, 0.0)
+        if returncode != 'None':
+            self.done = True
 
         if not self.done:
             return True

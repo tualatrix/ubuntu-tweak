@@ -12,6 +12,7 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 import os
 import apt
+import fcntl
 import apt_pkg
 import dbus
 import dbus.glib
@@ -341,13 +342,20 @@ class Daemon(PolicyKitService):
         log.debug("The install command is %s" % ' '.join(cmd))
         self.p = subprocess.Popen(cmd, stdout=PIPE)
 
+        outfd = self.p.stdout.fileno()
+        file_flags = fcntl.fcntl(outfd, fcntl.F_GETFL)
+        fcntl.fcntl(outfd, fcntl.F_SETFL, file_flags | os.O_NDELAY)
+
     @dbus.service.method(INTERFACE,
                          in_signature='', out_signature='v')
     def get_cmd_pipe(self):
         if self.p:
             terminaled = self.p.poll()
             if terminaled == None:
-                return self.p.stdout.readline(), str(terminaled)
+                try:
+                    return self.p.stdout.readline(), str(terminaled)
+                except:
+                    return '', 'None'
             else:
                 strings, returncode = ''.join(self.p.stdout.readlines()), str(terminaled)
                 self.p = None
