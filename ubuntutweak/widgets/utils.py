@@ -17,13 +17,14 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import gtk
+import vte
 import thread
 import gobject
 import pango
 
 class ProcessDialog(gtk.Dialog):
     def __init__(self, parent):
-        super(ProcessDialog, self).__init__(title = '', parent = parent)
+        super(ProcessDialog, self).__init__(title = '', parent=parent)
 
         vbox = gtk.VBox(False, 5)
         self.vbox.add(vbox)
@@ -56,3 +57,15 @@ class ProcessDialog(gtk.Dialog):
         
     def on_timeout(self):
         return NotImplemented
+
+class SmartTerminal(vte.Terminal):
+    def insert(self, string):
+        column_count = self.get_column_count ()
+        column, row = self.get_cursor_position()
+        if column == 0:
+            column = column_count
+        if column != column_count:
+            self.feed(' ' * (column_count - column))
+        space_length = column_count - len(string)
+        string = string + ' ' * space_length
+        self.feed(string)

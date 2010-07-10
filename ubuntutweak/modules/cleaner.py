@@ -36,7 +36,7 @@ from ubuntutweak.common.misc import filesizeformat
 from ubuntutweak.policykit import PolkitButton, proxy, MAX_DBUS_TIMEOUT
 from ubuntutweak.common.package import PACKAGE_WORKER
 from ubuntutweak.widgets.dialogs import *
-from ubuntutweak.widgets.utils import ProcessDialog
+from ubuntutweak.widgets.utils import ProcessDialog, SmartTerminal
 from ubuntutweak.modules.sourcecenter import SOURCE_PARSER, PPA_URL
 from ubuntutweak.modules.sourcecenter import get_source_logo_from_filename
 from ubuntutweak.modules.sourcecenter import get_ppa_homepage
@@ -149,13 +149,11 @@ class CleanPpaDialog(ProcessDialog):
         self.set_progress_text(_('Purge...'))
         self.expendar.set_label(_('Details'))
         self.vbox.pack_start(self.expendar, False, False, 6)
-        self.textbuffer = gtk.TextBuffer()
-        self.textview = gtk.TextView(self.textbuffer)
-        sw = gtk.ScrolledWindow()
-        sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        sw.set_size_request(350, 200)
-        sw.add(self.textview)
-        self.expendar.add(sw)
+
+        self.terminal = SmartTerminal()
+        self.terminal.set_size_request(562, 362)
+        self.expendar.add(self.terminal)
+
         self.vbox.show_all()
 
     def process_data(self):
@@ -165,10 +163,12 @@ class CleanPpaDialog(ProcessDialog):
         self.pulse()
         line, returncode = proxy.get_cmd_pipe()
         log.debug("Clean PPA result is: %s" % line)
-        iter = self.textbuffer.get_end_iter()
-        self.textbuffer.insert(iter, line)
-        iter = self.textbuffer.get_end_iter()
-        self.textview.scroll_to_iter(iter, 0.0)
+        if line != '':
+            line = line.rstrip()
+            if line:
+                self.terminal.insert(line)
+            else:
+                self.terminal.insert('\n')
         if returncode != 'None':
             self.done = True
 
@@ -621,8 +621,9 @@ class PackageView(gtk.TreeView):
             dialog.destroy()
             if dialog.error == False:
                 for url in url_list:
-                    result = proxy.set_source_enable(url, False)
-                    log.debug("Set source: %s to %s" % (url, str(result)))
+                    pass
+#                    result = proxy.set_source_enable(url, False)
+#                    log.debug("Set source: %s to %s" % (url, str(result)))
                 self.show_success_dialog()
             else:
                 self.show_failed_dialog()
