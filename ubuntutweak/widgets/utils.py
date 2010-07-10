@@ -30,6 +30,7 @@ class ProcessDialog(gtk.Dialog):
         self.vbox.add(vbox)
         self.set_border_width(8)
         self.set_has_separator(False)
+        self.set_resizable(False)
         self.set_position(gtk.WIN_POS_CENTER_ON_PARENT)
 
         self.__label = gtk.Label()
