@@ -1099,7 +1099,7 @@ class SourceCenter(TweakModule):
         if action:
             self.sync_button.set_sensitive(True)
 
-            if proxy.get_proxy():
+            if proxy.get_object():
 #                if os.getenv('LANG').startswith('zh_CN'):
 #                    self.sourceview.setup_ubuntu_cn_mirror()
                 self.sourceview.set_sensitive(True)

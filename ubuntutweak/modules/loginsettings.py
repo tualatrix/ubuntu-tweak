@@ -114,7 +114,7 @@ class LoginSettings(TweakModule):
 
     def on_polkit_action(self, widget, action):
         if action:
-            if proxy.get_proxy():
+            if proxy.get_object():
                 for item in self.options_box.items:
                     item.set_sensitive(True)
                 self.vbox1.set_sensitive(True)

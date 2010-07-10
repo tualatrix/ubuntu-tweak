@@ -552,7 +552,7 @@ class SourceEditor(TweakModule):
 
     def on_polkit_action(self, widget, action):
         if action:
-            if proxy.get_proxy():
+            if proxy.get_object():
                 self.textview.set_sensitive(True)
 #                self.update_button.set_sensitive(True)
 #                self.submit_button.set_sensitive(True)

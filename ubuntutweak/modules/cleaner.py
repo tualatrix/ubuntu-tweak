@@ -33,7 +33,7 @@ from ubuntutweak.common.consts import install_ngettext
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.common.utils import *
 from ubuntutweak.common.misc import filesizeformat
-from ubuntutweak.policykit import PolkitButton, proxy
+from ubuntutweak.policykit import PolkitButton, proxy, MAX_DBUS_TIMEOUT
 from ubuntutweak.common.package import PACKAGE_WORKER
 from ubuntutweak.widgets.dialogs import *
 from ubuntutweak.widgets.utils import ProcessDialog
@@ -155,18 +155,15 @@ class CleanPpaDialog(ProcessDialog):
         sw.set_size_request(350, 200)
         sw.add(self.textview)
         self.expendar.add(sw)
-        proxy.install_select_pkgs(self.pkgs)
         self.vbox.show_all()
 
     def process_data(self):
-        gtk.gdk.threads_enter()
+        proxy.install_select_pkgs(self.pkgs)
         self.set_progress_text(_('Purge...'))
         returncode = 'None'
         while returncode == 'None':
-            while gtk.events_pending():
-                gtk.main_iteration()
             try:
-                line, returncode = proxy.get_cmd_pipe()
+                line, returncode = proxy.get_object().get_cmd_pipe(dbus_interface=proxy.INTERFACE, timeout=MAX_DBUS_TIMEOUT)
                 log.debug("Clean PPA result is: %s" % line)
                 iter = self.textbuffer.get_end_iter()
                 self.textbuffer.insert(iter, line)
@@ -175,7 +172,6 @@ class CleanPpaDialog(ProcessDialog):
             except DBusException, e:
                 log.debug("No response, maybe timeout, error code: %s" % str(e))
         self.done = True
-        gtk.gdk.threads_leave()
 
     def on_timeout(self):
         self.pulse()

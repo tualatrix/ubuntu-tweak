@@ -21,6 +21,10 @@
 import dbus
 import logging
 
+from IN import INT_MAX
+
+MAX_DBUS_TIMEOUT = INT_MAX / 1000.0
+
 log = logging.getLogger("DbusProxy")
 
 SHOWED = False
@@ -40,14 +44,14 @@ class DbusProxy:
 
     try:
         __system_bus = dbus.SystemBus()
-        __proxy = __system_bus.get_object('com.ubuntu_tweak.daemon', '/com/ubuntu_tweak/daemon')
+        __object = __system_bus.get_object('com.ubuntu_tweak.daemon', '/com/ubuntu_tweak/daemon')
     except Exception, e:
-        __proxy = None
+        __object = None
 
     def __getattr__(self, name):
         global SHOWED
         try:
-            return self.__proxy.get_dbus_method(name, dbus_interface=self.INTERFACE)
+            return self.__object.get_dbus_method(name, dbus_interface=self.INTERFACE)
         except Exception, e:
             log.error(e)
             if not SHOWED:
@@ -56,8 +60,8 @@ class DbusProxy:
             else:
                 return nothing
 
-    def get_proxy(self):
-        return self.__proxy
+    def get_object(self):
+        return self.__object
 
 proxy = DbusProxy()
 
