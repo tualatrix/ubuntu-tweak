@@ -36,7 +36,7 @@ from ubuntutweak.common.misc import filesizeformat
 from ubuntutweak.policykit import PolkitButton, proxy, MAX_DBUS_TIMEOUT
 from ubuntutweak.common.package import PACKAGE_WORKER
 from ubuntutweak.widgets.dialogs import *
-from ubuntutweak.widgets.utils import ProcessDialog, SmartTerminal
+from ubuntutweak.widgets.utils import ProcessDialog, SmartTerminal, TerminalDialog
 from ubuntutweak.modules.sourcecenter import SOURCE_PARSER, PPA_URL
 from ubuntutweak.modules.sourcecenter import get_source_logo_from_filename
 from ubuntutweak.modules.sourcecenter import get_ppa_homepage
@@ -135,7 +135,7 @@ class CleanCacheDailog(ProcessDialog):
         else:
             self.destroy()
 
-class CleanPpaDialog(ProcessDialog):
+class CleanPpaDialog(TerminalDialog):
     def __init__(self, parent, pkgs):
         super(CleanPpaDialog, self).__init__(parent=parent)
         self.pkgs = pkgs
@@ -144,17 +144,8 @@ class CleanPpaDialog(ProcessDialog):
         self.user_action = False
 
         self.set_dialog_lable(_('Purge PPA and Downgrade Packages'))
-        self.expendar = gtk.Expander()
-        self.expendar.set_spacing(6)
         self.set_progress_text(_('Purge...'))
         self.expendar.set_label(_('Details'))
-        self.vbox.pack_start(self.expendar, False, False, 6)
-
-        self.terminal = SmartTerminal()
-        self.terminal.set_size_request(562, 362)
-        self.expendar.add(self.terminal)
-
-        self.vbox.show_all()
 
     def process_data(self):
         proxy.install_select_pkgs(self.pkgs)
@@ -165,6 +156,12 @@ class CleanPpaDialog(ProcessDialog):
         log.debug("Clean PPA result is: %s" % line)
         if line != '':
             line = line.rstrip()
+            if '.deb' in line:
+                try:
+                    package = line.split('.../')[1].split('_')[0]
+                    self.set_progress_text(_('Purge...%s') % package)
+                except:
+                    pass
             if line:
                 self.terminal.insert(line)
             else:

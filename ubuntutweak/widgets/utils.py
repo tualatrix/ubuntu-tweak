@@ -34,6 +34,7 @@ class ProcessDialog(gtk.Dialog):
         self.set_position(gtk.WIN_POS_CENTER_ON_PARENT)
 
         self.__label = gtk.Label()
+        self.__label.set_alignment(0, 0.5)
         vbox.pack_start(self.__label, False, False, 0)
 
         self.__progressbar = gtk.ProgressBar()
@@ -73,3 +74,17 @@ class SmartTerminal(vte.Terminal):
         space_length = column_count - len(string)
         string = string + ' ' * space_length
         self.feed(string)
+
+class TerminalDialog(ProcessDialog):
+    def __init__(self, parent):
+        super(TerminalDialog, self).__init__(parent=parent)
+        self.expendar = gtk.Expander()
+        self.expendar.set_spacing(6)
+        self.expendar.set_label(_('Terminal'))
+        self.vbox.pack_start(self.expendar, False, False, 6)
+
+        self.terminal = SmartTerminal()
+        self.terminal.set_size_request(562, 362)
+        self.expendar.add(self.terminal)
+
+        self.vbox.show_all()
