@@ -75,12 +75,12 @@ class AbsPkg:
 
 class CleanConfigDialog(ProcessDialog):
     def __init__(self, parent, pkgs):
+        super(CleanConfigDialog, self).__init__(parent = parent)
         #TODO uniform dialog
         self.pkgs = pkgs
         self.done = False
         self.user_action = False
 
-        super(CleanConfigDialog, self).__init__(parent = parent)
         self.set_dialog_lable(_('Cleaning Configuration Files'))
         self.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT)
         proxy.clean_configs(self.pkgs)
@@ -107,12 +107,12 @@ class CleanConfigDialog(ProcessDialog):
 
 class CleanCacheDailog(ProcessDialog):
     def __init__(self, parent, files):
+        super(CleanCacheDailog, self).__init__(parent=parent)
         self.files = files
         self.done = False
         self.error = False
         self.user_action = False
 
-        super(CleanCacheDailog, self).__init__(parent=parent)
         self.set_dialog_lable(_('Cleaning Package Cache'))
         self.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT)
 
@@ -137,12 +137,12 @@ class CleanCacheDailog(ProcessDialog):
 
 class CleanPpaDialog(ProcessDialog):
     def __init__(self, parent, pkgs):
+        super(CleanPpaDialog, self).__init__(parent=parent)
         self.pkgs = pkgs
         self.done = False
         self.error = False
         self.user_action = False
 
-        super(CleanPpaDialog, self).__init__(parent=parent)
         self.set_dialog_lable(_('Purge PPA and Downgrade Packages'))
         self.expendar = gtk.Expander()
         self.expendar.set_spacing(6)

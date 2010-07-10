@@ -24,7 +24,7 @@ import pango
 
 class ProcessDialog(gtk.Dialog):
     def __init__(self, parent):
-        super(ProcessDialog, self).__init__(title = '', parent=parent)
+        super(ProcessDialog, self).__init__(title='', parent=parent)
 
         vbox = gtk.VBox(False, 5)
         self.vbox.add(vbox)
@@ -41,8 +41,11 @@ class ProcessDialog(gtk.Dialog):
         vbox.pack_start(self.__progressbar, False, False, 0)
 
         self.show_all()
-        gobject.timeout_add(100, self.on_timeout)
+
+    def run(self):
         thread.start_new_thread(self.process_data, ())
+        gobject.timeout_add(100, self.on_timeout)
+        super(ProcessDialog, self).run()
 
     def pulse(self):
         self.__progressbar.pulse()
