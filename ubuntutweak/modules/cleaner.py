@@ -33,7 +33,7 @@ from ubuntutweak.common.consts import install_ngettext
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.common.utils import *
 from ubuntutweak.common.misc import filesizeformat
-from ubuntutweak.policykit import PolkitButton, proxy, MAX_DBUS_TIMEOUT
+from ubuntutweak.policykit import PolkitButton, proxy
 from ubuntutweak.common.package import PACKAGE_WORKER
 from ubuntutweak.widgets.dialogs import *
 from ubuntutweak.widgets.utils import ProcessDialog, SmartTerminal, TerminalDialog
@@ -73,32 +73,35 @@ class AbsPkg:
         self.name = pkg
         self.des = des
 
-class CleanConfigDialog(ProcessDialog):
+class CleanConfigDialog(TerminalDialog):
     def __init__(self, parent, pkgs):
-        super(CleanConfigDialog, self).__init__(parent = parent)
-        #TODO uniform dialog
+        super(CleanConfigDialog, self).__init__(parent=parent)
         self.pkgs = pkgs
         self.done = False
-        self.user_action = False
+        self.error = False
 
         self.set_dialog_lable(_('Cleaning Configuration Files'))
-        self.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT)
-        proxy.clean_configs(self.pkgs)
 
     def process_data(self):
-        returncode = 'None'
-        while returncode == 'None':
-            if self.user_action == True:
-                break
-            try:
-                line, returncode = proxy.get_cmd_pipe()
-                self.set_progress_text(_('Cleaning...%s') % line)
-            except DBusException, e:
-                log.debug("No response, maybe timeout, error code: %s" % str(e))
-        self.done = True
+        proxy.clean_configs(self.pkgs)
         
     def on_timeout(self):
         self.pulse()
+        self.set_progress_text(_('Cleaning...%s') % line)
+
+        line, returncode = proxy.get_cmd_pipe()
+        log.debug("Clean config result is: %s" % line)
+        if line != '':
+            line = line.rstrip()
+            if line:
+                self.terminal.insert(line)
+            else:
+                self.terminal.insert('\n')
+
+        if returncode != 'None':
+            self.done = True
+            if returncode != '0':
+                self.error = False
 
         if not self.done:
             return True
@@ -564,10 +567,10 @@ class PackageView(gtk.TreeView):
         model = self.get_model()
 
         dialog = CleanConfigDialog(self.get_toplevel(), self.get_list())
-        if dialog.run() == gtk.RESPONSE_REJECT:
-            dialog.destroy()
-            dialog.user_action = True
-            self.show_usercancel_dialog()
+        dialog.run()
+        dialog.destroy()
+        if dialog.error == True:
+            self.show_failed_dialog()
         else:
             self.show_success_dialog()
 
@@ -618,9 +621,8 @@ class PackageView(gtk.TreeView):
             dialog.destroy()
             if dialog.error == False:
                 for url in url_list:
-                    pass
-#                    result = proxy.set_source_enable(url, False)
-#                    log.debug("Set source: %s to %s" % (url, str(result)))
+                    result = proxy.set_source_enable(url, False)
+                    log.debug("Set source: %s to %s" % (url, str(result)))
                 self.show_success_dialog()
             else:
                 self.show_failed_dialog()
