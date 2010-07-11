@@ -213,6 +213,9 @@ class PackageWorker:
         for pkg, url in ppa_dict.items():
             log.debug("The package is: %s, PPA URL is: %s" % (pkg, url))
             pkg = self.get_cache()[pkg]
+            if not pkg.isInstalled:
+                log.debug("    package isn't installed, continue next...\n")
+                continue
             versions = pkg.versions
 
             ppa_version = 0
@@ -220,8 +223,8 @@ class PackageWorker:
             for version in versions:
                 try:
                     #FIXME option to remove the package
-                    log.debug("The version is %s" % str(version))
                     log.debug("Version uri is %s" % version.uri)
+
                     if url in version.uri and version == pkg.installed:
                         ppa_version = version.version
                         log.debug("Found match url, now iter to system version")
