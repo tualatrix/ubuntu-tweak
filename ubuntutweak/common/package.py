@@ -40,7 +40,11 @@ log = logging.getLogger('PackageWorker')
 
 def get_ppa_origin_name(url):
     section = url.split('/')
-    return 'LP-PPA-%s-%s' % (section[3], section[4])
+    # Due to the policy of ppa orgin naming, if an ppa is end with "ppa", so ignore it
+    if section[4] == 'ppa':
+        return 'LP-PPA-%s' % section[3]
+    else:
+        return 'LP-PPA-%s-%s' % (section[3], section[4])
 
 class NoNeedDowngradeException(Exception):
     pass
@@ -211,13 +215,26 @@ class PackageWorker:
                 yield pkg.name
 
     def get_downgradeable_pkgs(self, ppa_dict):
-        def is_system_origin(version):
-            #TODO if has two or more origins
-            return version.origins[0].origin == 'Ubuntu'
+        def is_system_origin(version, urls):
+            origins = [get_ppa_origin_name(url) for url in urls]
+            system_version = 0
+            match = False
+
+            for origin in version.origins:
+                if origin.origin:
+                    if origin.origin not in origins:
+                        log.debug("The origin %s is not in %s, so end the loop" % (origin.origin, str(origins)))
+                        match = True
+                        break
+
+            if match:
+                system_version = version.version
+                log.debug("Found match url, the system_version is %s, now iter to system version" % system_version)
+
+            return system_version
 
         def is_full_match_ppa_origin(pkg, version, urls):
-            #Dirty hack! Because the orgin ppa name is not uniform, some has "ppa" in end. Some're not.
-            origins = ' '.join([get_ppa_origin_name(url) for url in urls])
+            origins = [get_ppa_origin_name(url) for url in urls]
             ppa_version = 0
             match = True
 
@@ -261,8 +278,7 @@ class PackageWorker:
                             if ppa_version == 0:
                                 raise NoNeedDowngradeException
                         else:
-                            if is_system_origin(version):
-                                system_version = version.version
+                            system_version = is_system_origin(version, urls)
 
                         if ppa_version and system_version:
                             downgrade_dict[pkg.name] = (ppa_version, system_version)
