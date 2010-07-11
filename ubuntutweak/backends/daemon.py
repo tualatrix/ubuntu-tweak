@@ -274,7 +274,7 @@ class Daemon(PolicyKitService):
     def get_package_status(self, package):
         try:
             pkg = self.cache[package]
-            return pkg.isInstalled
+            return pkg.is_installed
         except Exception, e:
             print e
         else:
