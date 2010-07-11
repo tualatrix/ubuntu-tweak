@@ -87,12 +87,12 @@ class CleanConfigDialog(TerminalDialog):
         
     def on_timeout(self):
         self.pulse()
-        self.set_progress_text(_('Cleaning...%s') % line)
 
         line, returncode = proxy.get_cmd_pipe()
         log.debug("Clean config result is: %s" % line)
         if line != '':
             line = line.rstrip()
+            self.set_progress_text(_('Cleaning...%s') % line)
             if line:
                 self.terminal.insert(line)
             else:
