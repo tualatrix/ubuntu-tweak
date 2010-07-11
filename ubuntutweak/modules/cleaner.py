@@ -246,8 +246,6 @@ class DowngradeView(gtk.TreeView):
             log.debug("Start insert pkg_map to model: %s\n" % str(pkg_map))
             for pkg, (p_verion, s_verion) in pkg_map.items():
                 model.append((pkg, p_verion, s_verion))
-        else:
-            model.append(("No package need to be downgraded", "", ""))
 
     def get_downgrade_packages(self):
         model = self.get_model()
@@ -611,7 +609,11 @@ class PackageView(gtk.TreeView):
         package_view.update_model(url_list)
         select_pkgs = package_view.get_downgrade_packages()
         sw.add(package_view)
-        dialog.show_all()
+        if not select_pkgs:
+            sw.hide()
+        else:
+            sw.show_all()
+        dialog.show()
 
         response = dialog.run()
         dialog.destroy()
