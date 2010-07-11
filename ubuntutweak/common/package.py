@@ -38,6 +38,13 @@ p_kernel = re.compile('\d')
 
 log = logging.getLogger('PackageWorker')
 
+def get_ppa_origin_name(url):
+    section = url.split('/')
+    return 'LP-PPA-%s-%s' % (section[3], section[4])
+
+class NoNeedDowngradeException(Exception):
+    pass
+
 class PackageWorker:
     basenames = ['linux-image', 'linux-headers', 'linux-image-debug',
                   'linux-ubuntu-modules', 'linux-header-lum',
@@ -208,10 +215,30 @@ class PackageWorker:
             #TODO if has two or more origins
             return version.origins[0].origin == 'Ubuntu'
 
+        def is_full_match_ppa_origin(pkg, version, urls):
+            #Dirty hack! Because the orgin ppa name is not uniform, some has "ppa" in end. Some're not.
+            origins = ' '.join([get_ppa_origin_name(url) for url in urls])
+            ppa_version = 0
+            match = True
+
+            if version == pkg.installed:
+                for origin in version.origins:
+                    if origin.origin:
+                        if origin.origin not in origins:
+                            log.debug("The origin %s is not in %s, so end the loop" % (origin.origin, str(origins)))
+                            match = False
+                            break
+
+                if match:
+                    ppa_version = version.version
+                    log.debug("Found match url, the ppa_version is %s, now iter to system version" % ppa_version)
+
+            return ppa_version
+
         log.debug("Check downgrade information")
         downgrade_dict = {}
-        for pkg, url in ppa_dict.items():
-            log.debug("The package is: %s, PPA URL is: %s" % (pkg, url))
+        for pkg, urls in ppa_dict.items():
+            log.debug("The package is: %s, PPA URL is: %s" % (pkg, str(urls)))
             pkg = self.get_cache()[pkg]
             if not pkg.isInstalled:
                 log.debug("    package isn't installed, continue next...\n")
@@ -220,24 +247,31 @@ class PackageWorker:
 
             ppa_version = 0
             system_version = 0
-            for version in versions:
-                try:
-                    #FIXME option to remove the package
-                    log.debug("Version uri is %s" % version.uri)
+            FLAG = 'PPA'
+            try:
+                for version in versions:
+                    try:
+                        #FIXME option to remove the package
+                        log.debug("Version uri is %s" % version.uri)
 
-                    if url in version.uri and version == pkg.installed:
-                        ppa_version = version.version
-                        log.debug("Found match url, now iter to system version")
-                        continue
+                        # Switch FLAG
+                        if FLAG == 'PPA':
+                            ppa_version = is_full_match_ppa_origin(pkg, version, urls)
+                            FLAG = 'SYSTEM'
+                            if ppa_version == 0:
+                                raise NoNeedDowngradeException
+                        else:
+                            if is_system_origin(version):
+                                system_version = version.version
 
-                    if is_system_origin(version):
-                        system_version = version.version
-
-                    if ppa_version and system_version:
-                        downgrade_dict[pkg.name] = (ppa_version, system_version)
-                        break
-                except StopIteration:
-                    pass
+                        if ppa_version and system_version:
+                            downgrade_dict[pkg.name] = (ppa_version, system_version)
+                            break
+                    except StopIteration:
+                        pass
+            except NoNeedDowngradeException:
+                log.debug("Catch NoNeedDowngradeException, so pass this package: %s" % pkg)
+                continue
             log.debug("\n")
         return downgrade_dict
 

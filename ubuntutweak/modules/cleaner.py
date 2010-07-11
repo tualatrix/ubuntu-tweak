@@ -55,7 +55,6 @@ install_ngettext()
 
 def get_ppa_list_name(url):
     section = url.split('/')
-    log.debug("The ppa sections is %s", str(section))
     name = '/var/lib/apt/lists/ppa.launchpad.net_%s_%s_*_Packages' % (section[3], section[4])
     names = glob.glob(name)
     if len(names) == 1:
@@ -65,7 +64,6 @@ def get_ppa_list_name(url):
 
 def get_ppa_short_name(url):
     section = url.split('/')
-    log.debug("The ppa sections is %s", str(section))
     return 'ppa:%s/%s' % (section[3], section[4])
 
 class AbsPkg:
@@ -230,18 +228,26 @@ class DowngradeView(gtk.TreeView):
         pkg_dict = {}
         for ppa in ppas:
             path = get_ppa_list_name(ppa)
+            log.debug('Find the PPA path name: %s', path)
             if path:
                 for line in open(path):
                     if line.startswith('Package:'):
                         pkg = line.split()[1].strip()
-                        pkg_dict[pkg] = ppa
+                        if pkg in pkg_dict:
+                            # Join another ppa info to the pkg dict, so that
+                            # later we can know if more than two ppa provide
+                            # the pkg
+                            pkg_dict[pkg].extend([ppa])
+                        else:
+                            pkg_dict[pkg] = [ppa]
 
-                pkg_map = PACKAGE_WORKER.get_downgradeable_pkgs(pkg_dict)
-                if pkg_map:
-                    for pkg, (p_verion, s_verion) in pkg_map.items():
-                        model.append((pkg, p_verion, s_verion))
-                else:
-                    model.append(("No package need to be downgraded", "", ""))
+        pkg_map = PACKAGE_WORKER.get_downgradeable_pkgs(pkg_dict)
+        if pkg_map:
+            log.debug("Start insert pkg_map to model: %s\n" % str(pkg_map))
+            for pkg, (p_verion, s_verion) in pkg_map.items():
+                model.append((pkg, p_verion, s_verion))
+        else:
+            model.append(("No package need to be downgraded", "", ""))
 
     def get_downgrade_packages(self):
         model = self.get_model()
