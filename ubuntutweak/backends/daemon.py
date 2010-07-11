@@ -98,7 +98,7 @@ class Daemon(PolicyKitService):
     #TODO use signal
     liststate = None
     list = SourcesList()
-    cache = apt.Cache()
+#    cache = apt.Cache()
     PPA_URL = 'ppa.launchpad.net'
     stable_url = 'http://ppa.launchpad.net/tualatrix/ppa/ubuntu'
     ppa_list = []
@@ -269,16 +269,17 @@ class Daemon(PolicyKitService):
 
         return 'done'
 
-    @dbus.service.method(INTERFACE,
-                         in_signature='s', out_signature='b')
-    def get_package_status(self, package):
-        try:
-            pkg = self.cache[package]
-            return pkg.is_installed
-        except Exception, e:
-            print e
-        else:
-            return False
+#TODO enable it in the future for UTURL
+#    @dbus.service.method(INTERFACE,
+#                         in_signature='s', out_signature='b')
+#    def get_package_status(self, package):
+#        try:
+#            pkg = self.cache[package]
+#            return pkg.is_installed
+#        except Exception, e:
+#            print e
+#        else:
+#            return False
 
     @dbus.service.method(INTERFACE,
                          in_signature='s', out_signature='s',
