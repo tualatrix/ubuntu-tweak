@@ -78,6 +78,8 @@ class SmartTerminal(vte.Terminal):
 class TerminalDialog(ProcessDialog):
     def __init__(self, parent):
         super(TerminalDialog, self).__init__(parent=parent)
+
+        self.set_position(gtk.WIN_POS_CENTER_ALWAYS)
         self.expendar = gtk.Expander()
         self.expendar.set_spacing(6)
         self.expendar.set_label(_('Terminal'))

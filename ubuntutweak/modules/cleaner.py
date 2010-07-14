@@ -145,7 +145,7 @@ class CleanPpaDialog(TerminalDialog):
         self.user_action = False
 
         self.set_dialog_lable(_('Purge PPA and Downgrade Packages'))
-        self.set_progress_text(_('Purge...'))
+        self.set_progress_text(_('Downloading Packages...'))
         self.expendar.set_label(_('Details'))
 
     def process_data(self):
@@ -160,7 +160,7 @@ class CleanPpaDialog(TerminalDialog):
             if '.deb' in line:
                 try:
                     package = line.split('.../')[1].split('_')[0]
-                    self.set_progress_text(_('Purge...%s') % package)
+                    self.set_progress_text(_('Downgrading...%s') % package)
                 except:
                     pass
             if line:
