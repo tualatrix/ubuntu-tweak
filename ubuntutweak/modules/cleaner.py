@@ -598,21 +598,25 @@ class PackageView(gtk.TreeView):
                 name_list.append(get_ppa_short_name(id))
                 url_list.append(id)
 
-        dialog = QuestionDialog(_("You're going to purge: %s") % ', '.join(name_list))
-        dialog.set_resizable(True)
+        package_view = DowngradeView()
+        package_view.update_model(url_list)
         sw = gtk.ScrolledWindow()
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         sw.set_size_request(550, 200)
-        dialog.vbox.pack_start(sw, False, False, 0)
-
-        package_view = DowngradeView()
-        package_view.update_model(url_list)
         select_pkgs = package_view.get_downgrade_packages()
         sw.add(package_view)
+
+        #TODO the logic is a little ugly, need to improve the BaseMessageDialog
         if not select_pkgs:
+            message = _("It's safe to purge the PPA, there's no package need to be downgraded.")
             sw.hide()
         else:
+            message = _("To safely purge the PPA, the following packages need to be downgraded.")
             sw.show_all()
+
+        dialog = QuestionDialog(message, title=_("You're going to purge: %s") % ', '.join(name_list))
+        dialog.set_resizable(True)
+        dialog.vbox.pack_start(sw, False, False, 0)
         dialog.show()
 
         response = dialog.run()
