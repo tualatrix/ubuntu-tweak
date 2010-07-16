@@ -99,7 +99,12 @@ class PackageWorker:
         list = []
         for pkg in self.cache.keys():
             p = self.cache[pkg]
-            if p.is_auto_removable:
+            try:
+                need_remove = getattr(p, 'isAutoRemovable')
+            except:
+                need_remove = p.isInstalled and p._depcache.IsGarbage(p._pkg)
+
+            if need_remove:
                 list.append(pkg)
 
         return list
@@ -115,7 +120,7 @@ class PackageWorker:
     def list_unneeded_kerenl(self):
         list = []
         for pkg in self.cache.keys():
-            if self.cache[pkg].is_installed:
+            if self.cache[pkg].isInstalled:
                 for base in self.basenames:
                     if pkg.startswith(base) and p_kernel.findall(pkg) and not self.is_current_kernel(pkg):
                         list.append(pkg)
@@ -252,7 +257,7 @@ class PackageWorker:
         for pkg, urls in ppa_dict.items():
             log.debug("The package is: %s, PPA URL is: %s" % (pkg, str(urls)))
             pkg = self.get_cache()[pkg]
-            if not pkg.is_installed:
+            if not pkg.isInstalled:
                 log.debug("    package isn't installed, continue next...\n")
                 continue
             versions = pkg.versions
@@ -263,6 +268,7 @@ class PackageWorker:
             try:
                 for version in versions:
                     try:
+                        #FIXME option to remove the package
                         log.debug("Version uri is %s" % version.uri)
 
                         # Switch FLAG
@@ -307,7 +313,7 @@ class AptCheckButton(gtk.CheckButton):
             self.set_property('label', label)
             return False
 
-        return pkg.is_installed
+        return pkg.isInstalled
 
     def button_toggled(self, widget, data = None):
         pass
@@ -324,7 +330,7 @@ class PackageInfo:
         self.desktopentry = DesktopEntry(self.DESKTOP_DIR + name + '.desktop')
 
     def check_installed(self):
-        return self.pkg.is_installed
+        return self.pkg.isInstalled
 
     def get_comment(self):
         return self.desktopentry.getComment()
