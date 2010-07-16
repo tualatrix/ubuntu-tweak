@@ -206,7 +206,7 @@ class PackageWorker:
 
     def get_update_package(self):
         for pkg in self.get_cache():
-            if pkg.is_upgradable == 1:
+            if pkg.isUpgradable == 1:
                 yield pkg.name
 
     def get_downgradeable_pkgs(self, ppa_dict):
