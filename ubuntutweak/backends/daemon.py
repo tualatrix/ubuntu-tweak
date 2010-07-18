@@ -109,6 +109,11 @@ class Daemon(PolicyKitService):
         PolicyKitService.__init__(self, bus_name, PATH)
         self.mainloop = mainloop
 
+    def __setup_non_block_io(self, io):
+        outfd = io.fileno()
+        file_flags = fcntl.fcntl(outfd, fcntl.F_GETFL)
+        fcntl.fcntl(outfd, fcntl.F_SETFL, file_flags | os.O_NDELAY)
+
     @dbus.service.method(INTERFACE,
                          in_signature='sb', out_signature='b',
                          sender_keyword='sender')
@@ -332,6 +337,7 @@ class Daemon(PolicyKitService):
         cmd = ['sudo', 'dpkg', '--purge']
         cmd.extend(pkgs)
         self.p = subprocess.Popen(cmd, stdout=PIPE)
+        self.__setup_non_block_io(self.p.stdout)
 
     @dbus.service.method(INTERFACE,
                          in_signature='as', out_signature='',
@@ -342,10 +348,7 @@ class Daemon(PolicyKitService):
         cmd.extend(pkgs)
         log.debug("The install command is %s" % ' '.join(cmd))
         self.p = subprocess.Popen(cmd, stdout=PIPE)
-
-        outfd = self.p.stdout.fileno()
-        file_flags = fcntl.fcntl(outfd, fcntl.F_GETFL)
-        fcntl.fcntl(outfd, fcntl.F_SETFL, file_flags | os.O_NDELAY)
+        self.__setup_non_block_io(self.p.stdout)
 
     @dbus.service.method(INTERFACE,
                          in_signature='', out_signature='v')

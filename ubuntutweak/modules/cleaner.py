@@ -90,7 +90,7 @@ class CleanConfigDialog(TerminalDialog):
         log.debug("Clean config result is: %s" % line)
         if line != '':
             line = line.rstrip()
-            self.set_progress_text(_('Cleaning...%s') % line)
+            self.set_progress_text(line)
             if line:
                 self.terminal.insert(line)
             else:
