@@ -86,14 +86,29 @@ class LoginSettings(TweakModule):
         icon_name = self.icon_setting.get_value(user='gdm')
         log.debug('Get icon_name from user: gdm, icon name: %s' % icon_name)
 
-        path = os.path.expanduser('~gdm/.icons/%s/apps/64/%s.png' % (
+        path = os.path.expanduser('~gdm/.icons/%s/apps/64/%s' % (
                                     self.icon_theme_setting.get_value(user='gdm'),
                                     self.icon_setting.get_value(user='gdm')))
+        EXIST = False
+        FORMAT = ''
+        if proxy.is_exists(path + '.png'):
+            path = path + '.png'
+            EXIST = True
+            FORMAT = '.png'
+        elif proxy.is_exists(path + '.svg'):
+            path = path + '.svg'
+            EXIST = True
+            FORMAT = '.svg'
 
-        if proxy.is_exists(path):
+        if EXIST:
             path = proxy.get_as_tempfile(path)
             log.debug('Custom log is exits, the tempfile is %s' % path)
-            self.logo_image.set_from_file(path)
+            if FORMAT == '.svg':
+                pixbuf = gtk.gdk.pixbuf_new_from_file(path)
+                pixbuf = pixbuf.scale_simple(64, 64, gtk.gdk.INTERP_BILINEAR)
+                self.logo_image.set_from_pixbuf(pixbuf)
+            else:
+                self.logo_image.set_from_file(path)
         else:
             icontheme = gtk.IconTheme()
             icontheme.set_custom_theme(self.icon_theme_setting.get_value(user='gdm'))
@@ -130,16 +145,22 @@ class LoginSettings(TweakModule):
                                                  gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
                                                  gtk.STOCK_OPEN, gtk.RESPONSE_ACCEPT))
         filter = gtk.FileFilter()
-        filter.set_name(_("PNG image with 64x64 size (*.png)"))
-        filter.add_mime_type("image/png")
+        filter.set_name(_("PNG images with 64x64 size or SVG images"))
+        filter.add_pattern('*.png')
+        filter.add_pattern('*.svg')
         dialog.set_current_folder(os.path.expanduser('~'))
         dialog.add_filter(filter)
 
-        dest = os.path.expanduser('~gdm/.icons/%s/apps/64/%s.png' % (
+        dest = os.path.expanduser('~gdm/.icons/%s/apps/64/%s' % (
                                     self.icon_theme_setting.get_value(user='gdm'),
                                     self.icon_setting.get_value(user='gdm')))
 
         revert_button = dialog.action_area.get_children()[-1]
+
+        HAVE_ICON = proxy.is_exists(dest + '.png') or proxy.is_exists(dest + '.svg')
+
+        if not HAVE_ICON:
+            revert_button.set_sensitive(False)
 
         filename = ''
         response = dialog.run()
@@ -149,20 +170,27 @@ class LoginSettings(TweakModule):
             dialog.destroy()
 
             if filename:
+                ext = os.path.splitext(filename)[1]
                 pixbuf = gtk.gdk.pixbuf_new_from_file(filename)
                 w, h = pixbuf.get_width(), pixbuf.get_height()
-                if w != 64 or h != 64:
+
+                if ext == '.png' and (w != 64 or h != 64):
                     ErrorDialog(_("This image size isn't suitable for the logo.\nIt should be 64x64.")).launch()
                     return
                 else:
                     proxy.exec_command('mkdir -p %s' % os.path.dirname(dest))
+                    proxy.exec_command('rm -rf %s.*' % dest)
+                    dest = dest + ext
                     log.debug('Copy %s to %s' % (filename, dest))
                     proxy.exec_command('cp "%s" "%s"' % (filename, dest))
+
+                    if ext == '.svg':
+                        pixbuf = pixbuf.scale_simple(64, 64, gtk.gdk.INTERP_BILINEAR)
 
                     self.logo_image.set_from_pixbuf(gtk.gdk.pixbuf_new_from_file(filename))
         elif response == gtk.RESPONSE_DELETE_EVENT:
             dialog.destroy()
-            proxy.exec_command('rm -rf %s' % dest)
+            proxy.exec_command('rm -rf %s.*' % dest)
             self.__setup_logo_image()
         else:
             dialog.destroy()
