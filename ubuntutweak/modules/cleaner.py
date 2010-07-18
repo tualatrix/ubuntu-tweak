@@ -146,7 +146,6 @@ class CleanPpaDialog(TerminalDialog):
 
         self.set_dialog_lable(_('Purge PPA and Downgrade Packages'))
         self.set_progress_text(_('Downloading Packages...'))
-        self.expendar.set_label(_('Details'))
 
     def process_data(self):
         proxy.install_select_pkgs(self.pkgs)

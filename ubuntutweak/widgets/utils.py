@@ -82,7 +82,7 @@ class TerminalDialog(ProcessDialog):
         self.set_position(gtk.WIN_POS_CENTER_ALWAYS)
         self.expendar = gtk.Expander()
         self.expendar.set_spacing(6)
-        self.expendar.set_label(_('Terminal'))
+        self.expendar.set_label(_('Details'))
         self.vbox.pack_start(self.expendar, False, False, 6)
 
         self.terminal = SmartTerminal()
