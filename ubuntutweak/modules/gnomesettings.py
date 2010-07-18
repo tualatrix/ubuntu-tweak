@@ -116,10 +116,9 @@ class Gnome(TweakModule):
                                                  gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
                                                  gtk.STOCK_OPEN, gtk.RESPONSE_ACCEPT))
         filter = gtk.FileFilter()
-        filter.set_name(_("Supported images (*.png, *.svg)"))
+        filter.set_name(_("PNG images with 24x24 size or SVG images"))
         filter.add_pattern('*.png')
         filter.add_pattern('*.svg')
-
         dialog.set_current_folder(os.path.expanduser('~'))
         dialog.add_filter(filter)
 
@@ -130,7 +129,9 @@ class Gnome(TweakModule):
 
         revert_button = dialog.action_area.get_children()[-1]
 
-        if not glob.glob(dest + '*'):
+        HAVE_ICON = os.path.exists(dest + '.png') or os.path.exists(dest + '.svg')
+
+        if not HAVE_ICON:
             revert_button.set_sensitive(False)
 
         filename = ''
