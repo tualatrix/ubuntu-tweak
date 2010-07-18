@@ -22,6 +22,8 @@ import pygtk
 pygtk.require("2.0")
 import os
 import gtk
+import glob
+import logging
 
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.widgets import ListPack
@@ -31,6 +33,8 @@ from ubuntutweak.common.systeminfo import module_check
 from ubuntutweak.common.config import TweakSettings
 from ubuntutweak.common.factory import WidgetFactory
 from ubuntutweak.utils import icon
+
+log = logging.getLogger("Gnome")
 
 class Gnome(TweakModule):
     __title__ = _('GNOME Settings')
@@ -112,18 +116,21 @@ class Gnome(TweakModule):
                                                  gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
                                                  gtk.STOCK_OPEN, gtk.RESPONSE_ACCEPT))
         filter = gtk.FileFilter()
-        filter.set_name(_("PNG image (*.png)"))
-        filter.add_mime_type("image/png")
+        filter.set_name(_("Supported images (*.png, *.svg)"))
+        filter.add_pattern('*.png')
+        filter.add_pattern('*.svg')
+
         dialog.set_current_folder(os.path.expanduser('~'))
         dialog.add_filter(filter)
 
         if module_check.get_codename() == 'karmic':
-            dest = os.path.expanduser('~/.icons/%s/places/24/start-here.png' % self.__setting.get_icon_theme())
+            dest = os.path.expanduser('~/.icons/%s/places/24/start-here' % self.__setting.get_icon_theme())
         else:
-            dest = os.path.expanduser('~/.icons/%s/apps/24/start-here.png' % self.__setting.get_icon_theme())
+            dest = os.path.expanduser('~/.icons/%s/apps/24/start-here' % self.__setting.get_icon_theme())
 
         revert_button = dialog.action_area.get_children()[-1]
-        if not os.path.exists(dest):
+
+        if not glob.glob(dest + '*'):
             revert_button.set_sensitive(False)
 
         filename = ''
@@ -134,20 +141,27 @@ class Gnome(TweakModule):
             dialog.destroy()
 
             if filename:
+                ext = os.path.splitext(filename)[1]
+                log.debug('The select file name is: %s' % ext)
                 pixbuf = gtk.gdk.pixbuf_new_from_file(filename)
                 w, h = pixbuf.get_width(), pixbuf.get_height()
-                if w != 24 or h != 24:
+                dest = dest + ext
+
+                if ext == '.png' and (w != 24 or h != 24):
                     ErrorDialog(_("This image size isn't suitable for the panel.\nIt should be 24x24.")).launch()
                     return
                 else:
                     os.system('mkdir -p %s' % os.path.dirname(dest))
                     os.system('cp %s %s' % (filename, dest))
 
-                    image = gtk.image_new_from_file(dest)
+                    if ext == '.svg':
+                        pixbuf = pixbuf.scale_simple(24, 24, gtk.gdk.INTERP_BILINEAR)
+                    image = gtk.image_new_from_pixbuf(pixbuf)
                     widget.set_image(image)
         elif response == gtk.RESPONSE_DELETE_EVENT:
             dialog.destroy()
-            os.remove(dest)
+            for dest in glob.glob(dest + '*'):
+                os.remove(dest)
             image = gtk.image_new_from_pixbuf(icon.get_from_name('start-here', size=24, force_reload=True))
             widget.set_image(image)
         else:

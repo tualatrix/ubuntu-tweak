@@ -41,7 +41,7 @@ from ubuntutweak.modules.sourcecenter import SOURCE_PARSER, PPA_URL
 from ubuntutweak.modules.sourcecenter import get_source_logo_from_filename
 from ubuntutweak.modules.sourcecenter import get_ppa_homepage
 
-log = logging.getLogger("Cleaner") 
+log = logging.getLogger("Cleaner")
 
 (
     COLUMN_CHECK,
