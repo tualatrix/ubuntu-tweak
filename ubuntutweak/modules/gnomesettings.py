@@ -27,7 +27,7 @@ import logging
 
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.widgets import ListPack
-from ubuntutweak.widgets.dialogs import ErrorDialog, QuestionDialog
+from ubuntutweak.widgets.dialogs import ErrorDialog, QuestionDialog, WarningDialog
 
 from ubuntutweak.common.systeminfo import module_check
 from ubuntutweak.common.config import TweakSettings
@@ -192,5 +192,11 @@ class Gnome(TweakModule):
             os.system('rm -r %s' % file)
             os.system('touch %s' % file)
         else:
-            os.system('rm -r %s' % file)
-            os.system('mkdir %s' % file)
+            dialog = WarningDialog(_('By disabling the "Recent Documents", it may break other software such as VMware Player\'s history feature.'),
+                                   title=_("Warning"))
+            if dialog.run() == gtk.RESPONSE_YES:
+                os.system('rm -r %s' % file)
+                os.system('mkdir %s' % file)
+            else:
+                widget.set_active(True)
+            dialog.destroy()
