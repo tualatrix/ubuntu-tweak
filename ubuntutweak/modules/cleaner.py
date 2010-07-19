@@ -600,7 +600,7 @@ class PackageView(gtk.TreeView):
         package_view = DowngradeView()
         package_view.update_model(url_list)
         sw = gtk.ScrolledWindow()
-        sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        sw.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
         select_pkgs = package_view.get_downgrade_packages()
         sw.add(package_view)
 

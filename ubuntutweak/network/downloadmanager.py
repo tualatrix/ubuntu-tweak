@@ -80,8 +80,9 @@ class DownloadDialog(BusyDialog):
     def __init__(self, url=None, title=None, parent=None):
         BusyDialog.__init__(self, parent=parent)
 
-        self.set_default_size(320, -1)
+        self.set_size_request(320, -1)
         self.set_title('')
+        self.set_resizable(False)
         self.set_has_separator(False)
         self.set_border_width(8)
 
