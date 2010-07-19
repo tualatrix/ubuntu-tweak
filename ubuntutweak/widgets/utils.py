@@ -39,6 +39,7 @@ class ProcessDialog(gtk.Dialog):
 
         self.__progressbar = gtk.ProgressBar()
         self.__progressbar.set_ellipsize(pango.ELLIPSIZE_END)
+        self.__progressbar.set_size_request(320, -1)
         vbox.pack_start(self.__progressbar, False, False, 0)
 
         self.show_all()
