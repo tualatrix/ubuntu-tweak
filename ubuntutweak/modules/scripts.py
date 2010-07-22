@@ -63,6 +63,7 @@ class DefaultScripts(AbstractScripts):
             'copy-to-download': _('Copy to Download'),
             'copy-to-home': _('Copy to Home'),
             'check-md5-sum': _('Check md5 sum'),
+            'compress-pdf': _('Compress PDF'),
             'move-to': _('Move to ...'),
             'move-to-desktop': _('Move to Desktop'),
             'move-to-download': _('Move to Download'),

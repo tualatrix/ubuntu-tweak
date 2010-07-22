@@ -1,0 +1,161 @@
+#! /bin/bash
+# A Nautilus script to compress PDF files.
+#
+# Author: Ricardo Ferreira
+# Website: https://launchpad.net/compress-pdf
+#
+# To install move it to ~/.gnome/nautilus-scripts and chmod +x it.
+# Dependencies: zenity, ghostscript
+
+# Messages
+		# English (en-US)
+		error_nofiles="No file selected."
+		error_noquality="No optimization level selected."
+		error_ghostscript="PDF Compress requires the ghostscript package, which is not installed. Please install it and try again."
+		error_nopdf="The selected file is not a valid PDF archive."
+		label_filename="Save PDF as..."
+		label_level="Please choose an optimization level below."
+		optimization_level="Optimization Level"
+		level_default="Default"
+		level_screen="Screen-view only"
+		level_low="Low Quality"
+		level_high="High Quality"
+		level_color="High Quality (Color Preserving)"
+
+case $LANG in
+
+	pt* )
+		# Portuguese (pt-PT)
+		error_nofiles="Nenhum ficheiro seleccionado."
+		error_noquality="Nenhum nível de optimização escolhido."
+		error_ghostscript="O PDF Compress necessita do pacote ghostscript, que não está instalado. Por favor instale-o e tente novamente."
+		error_nopdf="O ficheiro seleccionado não é um ficheiro PDF válido."
+		label_filename="Guardar PDF como..."
+		label_level="Por favor escolha um nível de optimização abaixo."
+		optimization_level="Nível de Optimização"
+		level_default="Normal"
+		level_screen="Visualização no Ecrã"
+		level_low="Baixa Qualidade"
+		level_high="Alta Qualidade"
+		level_color="Alta Qualidade (Preservação de Cores)";;
+
+
+	es* )
+		# Spanish (es-AR) by Eduardo Battaglia
+		error_nofiles="Ningún archivo seleccionado."
+		error_noquality="Ningún nivel de optimización escogido."
+		error_ghostscript="Compress PDF necesita el paquete ghostscript, que no está instalado. Por favor instálelo e intente nuevamente."
+		label_filename="Guardar PDF como..."
+		label_level="Por favor escoja un nivel de optimización debajo."
+		optimization_level="Nivel de Optimización"
+		level_default="Normal"
+		level_screen="Sólo visualización"
+		level_low="Baja calidad"
+		level_high="Alta calidad"
+		level_color="Alta calidad (Preservación de Colores)";;
+
+
+	cs*)
+﻿		# Czech (cz-CZ) by Martin Pavlík
+		error_nofiles="Nebyl vybrán žádný soubor."
+		error_noquality="Nebyla zvolena úroveň optimalizace."
+		error_ghostscript="PDF Compress vyžaduje balíček ghostscript, který není nainstalován. Nainstalujte jej prosím a opakujte akci."
+		label_filename="Uložit PDF jako..."
+		label_level="Prosím vyberte úroveň optimalizace z níže uvedených."
+		optimization_level="Úroveň optimalizace"
+		level_default="Výchozí"
+		level_screen="Pouze pro čtení na obrazovce"
+		level_low="Nízká kvalita"
+		level_high="Vysoká kvalita"
+		level_color="Vysoká kvalita (se zachováním barev)";;
+
+
+	fr*)
+﻿		# French (fr-FR) by Astromb
+		error_nofiles="Aucun fichier sélectionné"
+		error_noquality="Aucun niveau d'optimisation sélectionné"
+		error_ghostscript="PDF Compress a besoin du paquet ghostscript, mais il n'est pas installé. Merci de l'installer et d'essayer à nouveau."
+		error_nopdf="Le fichier que vous avez sélectionné n'est pas un PDF valide."
+		label_filename="Sauvegarder le PDF sous..."
+		label_level="Merci de choisir, ci-dessous, un niveau d'optimisation."
+		optimization_level="Niveau d'optimisation"
+		level_default="Défaut"
+		level_screen="Affichage à l'écran"
+		level_low="Basse qualité"
+		level_high="Haute qualité"
+		level_color="Haute qualité (Couleurs préservées)";;
+
+	zh_CN*)
+		# Simplified Chinese  (zh_CN)
+		error_nofiles="没有选择文件。"
+		error_noquality="没有优化优化等级。"
+		error_ghostscript="PDF压缩需要ghostscript软件包，但是它没有安装。请先安装然后再重试。"
+		error_nopdf="选择的文件不是一个有效的PDF文件"
+		label_filename="另存为PDF..."
+		label_level="请在下面选择优化等级"
+		optimization_level="优化等级"
+		level_default="默认"
+		level_screen="仅在屏幕上浏览"
+		level_low="低品质"
+		level_high="高品质"
+		level_color="高品质（护色） "
+
+esac
+
+VERSION="1.1"
+ZENITY=$(which zenity)
+
+# Check if we have Ghostscript installed...
+GS="/usr/bin/ghostscript"
+if [ ! -x $GS ]; then
+        $ZENITY --error --title="Compress PDF "$VERSION"" --text="$error_ghostscript"
+        exit 0;
+fi
+
+# Check if we have selected any files...
+if [ -z "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS" ]; then
+        $ZENITY --error --title="Compress PDF "$VERSION"" --text="$error_nofiles"
+        exit 0;
+fi
+
+# Check if the selected file is a PDF...
+mimetype=$(file -b -i "$1")
+if [ -z "`echo $mimetype | grep -i 'pdf' `" ]; then
+	$ZENITY --error --title="Compress PDF "$VERSION"" --text="$error_nopdf"
+        exit 0;
+fi
+
+# Ask the user to select a compressing format
+selected_level=$($ZENITY  --list  --title="Compress PDF "$VERSION"" --text "$label_level" --radiolist  --column "" --column "$optimization_level" TRUE "$level_default" FALSE "$level_screen" FALSE "$level_low" FALSE "$level_high" FALSE "$level_color")
+if [ -z "$selected_level" ]; then
+        $ZENITY --error --title="Compress PDF "$VERSION"" --text="$error_noquality"
+        exit 0;
+fi
+
+# Select the optimization level to use
+case $selected_level in
+        "$level_default")
+                COMP_COMMAND="/default"
+        ;;
+        "$level_screen")
+                COMP_COMMAND="/screen"
+        ;;
+        "$level_low")
+                COMP_COMMAND="/ebook"
+        ;;
+        "$level_high")
+                COMP_COMMAND="/printer"
+        ;;
+        "$level_color")
+                COMP_COMMAND="/prepress"
+        ;;
+esac
+
+# Ask for output file name
+output_filename=compressed-"$1"
+output_filename=$($ZENITY --file-selection --save --confirm-overwrite --filename="$output_filename" --title="$label_filename")
+
+# Execute the command while showing a progress bar.
+(echo "0" ;
+ gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=$COMP_COMMAND -dNOPAUSE -dQUIET -dBATCH -sOutputFile="$output_filename" "$1"
+ echo "100") | $ZENITY --progress --pulsate --title="Compress PDF "$VERSION""
