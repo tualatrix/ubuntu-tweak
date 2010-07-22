@@ -213,6 +213,7 @@ class DowngradeView(gtk.TreeView):
         renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
         column = gtk.TreeViewColumn(_('Previous Version'), renderer, text=self.COLUMN_PPA_VERSION)
         column.set_resizable(True)
+        column.set_min_width(180)
         self.append_column(column)
 
         renderer = gtk.CellRendererText()
@@ -611,6 +612,7 @@ class PackageView(gtk.TreeView):
         else:
             message = _("To safely purge the PPA, the following packages need to be downgraded.")
             sw.show_all()
+            sw.set_size_request(500, 100)
 
         dialog = QuestionDialog(message, title=_("You're going to purge: %s") % ', '.join(name_list))
         dialog.set_resizable(True)
