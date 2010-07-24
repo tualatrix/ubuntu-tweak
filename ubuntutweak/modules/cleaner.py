@@ -403,6 +403,7 @@ class PackageView(gtk.TreeView):
 
     def update_ppa_model(self):
         self.set_busy()
+        self.__column.set_title('PPA')
         model = self.get_model()
         model.clear()
         self.mode = 'ppa'
