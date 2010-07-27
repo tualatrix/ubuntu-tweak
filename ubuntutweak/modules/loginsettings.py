@@ -120,12 +120,13 @@ class LoginSettings(TweakModule):
     def __setup_background_image(self):
         self.background_setting = UserGconfSetting('/desktop/gnome/background/picture_filename')
         background_path = self.background_setting.get_value(user='gdm')
+        log.debug("Setup the background file: %s" % background_path)
         try:
             pixbuf = gtk.gdk.pixbuf_new_from_file(background_path)
             pixbuf = pixbuf.scale_simple(160, 120, gtk.gdk.INTERP_NEAREST)
             self.background_image.set_from_pixbuf(pixbuf)
-        except:
-            pass
+        except Exception, e:
+            log.error("Loading background failed, message is %s" % e)
 
     def on_polkit_action(self, widget, action):
         if action:
@@ -221,6 +222,7 @@ class LoginSettings(TweakModule):
 
         if response == gtk.RESPONSE_ACCEPT:
             filename = dialog.get_filename()
+            log.debug("Get background file, the path is: %s" % filename)
             dialog.destroy()
 
             if filename:

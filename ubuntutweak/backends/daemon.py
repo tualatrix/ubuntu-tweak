@@ -433,10 +433,11 @@ class Daemon(PolicyKitService):
     def set_user_gconf(self, user, key, value, type, list_type='', sender=None):
         self._check_permission(sender)
         command = 'sudo -u %s gconftool-2 --type %s' % (user, type)
+        # Use "" to make sure the value with space will be set correctly
         if list_type == '':
-            command = '%s --set %s %s' % (command, key, value)
+            command = '%s --set %s "%s"' % (command, key, value)
         else:
-            command = '%s --type %s --list-type %s --set %s %s' % (command,
+            command = '%s --type %s --list-type %s --set %s "%s"' % (command,
                                                                    list_type,
                                                                    key, value)
         cmd = os.popen(command)
