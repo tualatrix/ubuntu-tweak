@@ -171,9 +171,9 @@ class UserdirView(gtk.TreeView):
         model, iter = self.get_selection().get_selected()
         userdir = model.get_value(iter, COLUMN_DIR)
 
-        dialog = QuestionDialog(_('Ubuntu Tweak will restore the chosen '
-            'directory to the default location.\n'
-            'However, you must move your files back into place by yourself.\n'
+        dialog = QuestionDialog(_('Ubuntu Tweak will restore the selected '
+            'directory to it\'s default location.\n'
+            'However, you must move your files back into place manually.\n'
             'Do you wish to continue?'))
 
         if dialog.run() == gtk.RESPONSE_YES:
@@ -238,7 +238,7 @@ class UserdirView(gtk.TreeView):
 
 class UserDir(TweakModule):
     __title__ = _("Default Folder Locations")
-    __desc__ = _("You can change the paths of the default folders here.\n"
+    __desc__ = _("You can change the paths of default folders here.\n"
                  "Don't change the location of your desktop folder unless you know what you are doing.")
     __icon__ = ['folder-home', 'gnome-fs-home']
     __category__ = 'personal'
