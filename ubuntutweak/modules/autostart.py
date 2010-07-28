@@ -200,7 +200,7 @@ class AutoStartItem(gtk.TreeView):
         if iter:
             path = model.get_value(iter, COLUMN_PATH)
             if self.is_defaultitem(path):
-                ErrorDialog(_("Can't delete the system item from disk.")).launch()
+                ErrorDialog(_("Can't delete system item from disk.")).launch()
             else:
                 os.remove(path)
 
