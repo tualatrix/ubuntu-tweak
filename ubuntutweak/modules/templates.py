@@ -105,9 +105,9 @@ class DisableTemplate(FlatView):
 class Templates(TweakModule):
     """Freedom added your docmuent templates"""
     __title__ = _('Manage Templates')
-    __desc__ = _('Here you can freely manage your document templates.\n'
-                 'You can add files as templates by dragging them onto this window.\n'
-                 'You can create new documents based on these templates from the Nautilus right-click menu.')
+    __desc__ = _('Here you can manage your document templates.\n'
+                 'You can add files as templates by dragging them into this window.\n'
+                 'You can then create new documents based on these templates from the Nautilus right-click menu.')
     __icon__ = 'x-office-document'
     __category__ = 'personal'
     __desktop__ = ['gnome', 'xfce']
@@ -116,7 +116,7 @@ class Templates(TweakModule):
         TweakModule.__init__(self)
 
         if not is_right_path():
-            label = gtk.Label(_('Templates path is wrong! The current path is point to "%s".\nPlease reset it to a folder under your Home Folder.') % USER_DIR)
+            label = gtk.Label(_('The templates path is incorrect! The current path points to "%s".\nPlease reset it to a location within your Home Folder.') % USER_DIR)
 
             hbox = gtk.HBox(False, 0)
             self.add_start(hbox, False, False, 0)
@@ -180,7 +180,7 @@ class Templates(TweakModule):
             self.remove_all_children()
             self.create_interface()
         else:
-            ErrorDialog(_('Templates path is still wrong, Please reset it!')).launch()
+            ErrorDialog(_('The templates path is still incorrect, please reset it!')).launch()
 
     def on_enable_deleted(self, widget):
         self.disable_templates.update_model()
