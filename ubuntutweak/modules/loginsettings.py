@@ -48,7 +48,7 @@ class LoginSettings(TweakModule):
         self.options_box = ListPack(_("Login Options"), (
                     WidgetFactory.create("UserGconfCheckButton",
                                          user='gdm',
-                                         label=_("Disable user list in gdm"),
+                                         label=_("Disable user list in GDM"),
                                          key="/apps/gdm/simple-greeter/disable_user_list"),
                     WidgetFactory.create("UserGconfCheckButton",
                                          user='gdm',
@@ -56,7 +56,7 @@ class LoginSettings(TweakModule):
                                          key="/desktop/gnome/sound/event_sounds"),
                     WidgetFactory.create("UserGconfCheckButton",
                                          user='gdm',
-                                         label=_("Disable showing the restart buttons"),
+                                         label=_("Disable showing the restart button"),
                                          key="/apps/gdm/simple-greeter/disable_restart_buttons"),
             ))
         for item in self.options_box.items:
