@@ -133,7 +133,7 @@ class DisableScripts(FlatView, AbstractScripts):
 class Scripts(TweakModule, AbstractScripts):
     __title__  = _('Manage Scripts')
     __desc__  = _("Scripts can be used to complete all kinds of tasks.\n"
-                  "You can drag and drop scripts from File Manager.\n"
+                  "You can drag and drop scripts here from File Manager.\n"
                   "'Scripts' will then be added to the context menu.")
     __icon__ = 'text-x-script'
     __category__ = 'personal'
