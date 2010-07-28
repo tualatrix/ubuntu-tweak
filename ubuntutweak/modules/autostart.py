@@ -332,9 +332,9 @@ class AutoStartItem(gtk.TreeView):
 
 class AutoStart(TweakModule):
     __title__ = _('Auto Start Programs')
-    __desc__ = _('Here you can manage which programs are started upon login.\n'
-                'You can hide items from view by selecting and clicking "Remove"\n'
-                'To permanently delete an item, right-click and press "Delete".')
+    __desc__ = _('Here you can manage which programs are run upon login.\n'
+                'You can hide items from view by selecting them and clicking "Remove"\n'
+                'To permanently delete an item, right-click and select "Delete".')
     __icon__ = 'session-properties'
     __category__ = 'startup'
 
