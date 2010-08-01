@@ -82,7 +82,7 @@ def show_welcome():
 
     tips = TipsFactory(
             _('Tweak otherwise hidden settings.'),
-            _('Clean up unneeded packages to free up diskspace.'),
+            _('Clean up unused packages to free up diskspace.'),
             _('Easily install up-to-date versions of many applications.'),
             _('Configure file templates and shortcut scripts for easy access to common tasks.'),
             _('Many more useful features!'),
@@ -245,9 +245,9 @@ class MainWindow(gtk.Window):
         log.debug("Stable Source Warning is %s", CONFIG.get_value_from_key(WARNING_KEY))
         log.debug("The Stable Source enabling is %s", proxy.get_stable_source_enabled())
         if not CONFIG.get_value_from_key(WARNING_KEY) and not proxy.get_stable_source_enabled():
-            dialog = WarningDialog(_('It is highly recommend to enable the stable source of Ubuntu Tweak to get security and normal update.\n'
-                'If you don\'t enable the source, you will need to update manually.\n\n'
-                'Would you like to enable the stable source?'),
+            dialog = WarningDialog(_('It is highly recommended that you enable the Ubuntu Tweak stable repository to get security and maintenance updates.\n'
+                'If you don\'t enable this repository, you will need to update manually.\n\n'
+                'Would you like to enable this repository?'),
                                    title=_('Warning'))
             checkbutton = GconfCheckButton(_('Never show this dialog'), WARNING_KEY)
             dialog.add_option(checkbutton)
