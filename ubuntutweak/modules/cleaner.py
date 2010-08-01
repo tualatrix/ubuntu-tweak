@@ -608,10 +608,10 @@ class PackageView(gtk.TreeView):
 
         #TODO the logic is a little ugly, need to improve the BaseMessageDialog
         if not select_pkgs:
-            message = _("It's safe to purge the PPA, there's no package need to be downgraded.")
+            message = _("It's safe to purge the PPA, no packages need to be downgraded.")
             sw.hide()
         else:
-            message = _("To safely purge the PPA, the following packages need to be downgraded.")
+            message = _("To safely purge the PPA, the following packages must be downgraded.")
             sw.show_all()
             sw.set_size_request(500, 100)
 
