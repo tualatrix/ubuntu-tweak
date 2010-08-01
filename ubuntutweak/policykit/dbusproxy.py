@@ -31,9 +31,9 @@ SHOWED = False
 
 def show_message():
     from ubuntutweak.widgets.dialogs import ErrorDialog
-    message = _('The daemon of Ubuntu Tweak doesn\'t start correctly, that means some '
+    message = _('The Ubuntu Tweak daemon didn\'t start correctly. This means that some '
             'advanced features may not work.\n'
-            'If you want to help developer to debug, try to run "<b>sudo ubuntu-tweak-daemon</b>" under terminal.')
+            'If you want to help developers debugging, try to run "<b>sudo ubuntu-tweak-daemon</b>" in a terminal.')
     ErrorDialog(message).launch()
 
 def nothing():
