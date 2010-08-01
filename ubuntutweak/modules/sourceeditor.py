@@ -350,7 +350,7 @@ class SourceView(gtk.TextView):
 
 class SourceEditor(TweakModule):
     __title__ = _('Source Editor')
-    __desc__ = _('Freely edit your software sources to suit your needs.')
+    __desc__ = _('Manually edit your software sources to suit your needs.')
 #TODO Enable in the next version
 #                'Click "Update Sources" if you want to change the sources.\n'
 #                'Click "Submit Sources" if you want to share your sources with other people.')
@@ -447,7 +447,7 @@ class SourceEditor(TweakModule):
             if dialog.check_fill_data():
                 source_data = dialog.get_source_data()
             else:
-                ErrorDialog(_('Please input the correct information about sources!')).launch()
+                ErrorDialog(_('Please input the correct source information!')).launch()
         dialog.destroy()
 
         if source_data:
@@ -460,7 +460,7 @@ class SourceEditor(TweakModule):
             if 'SOURCES_DATA' in globals() and SOURCES_DATA:
                     self.open_source_select_dialog()
             else:
-                dialog = QuestionDialog(_('You can submit your sources to our server to help building the sources list, '
+                dialog = QuestionDialog(_('You can submit your sources to our server to help expand the sources list, '
                         'or you can use the official sources.\n'
                         'Do you wish to use the official sources?'), 
                         title = _('No source data available'))
@@ -493,7 +493,7 @@ class SourceEditor(TweakModule):
             self.redo_button.set_sensitive(False)
 
     def notify_save(self):
-        dialog = QuestionDialog(_("You've changed the sources.list without saving it.\nDo you want to save it?"))
+        dialog = QuestionDialog(_("You've edited sources.list without saving changes.\nDo you want to save changes?"))
 
         response = dialog.run()
         dialog.destroy()

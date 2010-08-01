@@ -669,7 +669,7 @@ class PackageView(gtk.TreeView):
 
 class PackageCleaner(TweakModule):
     __title__ = _('Package Cleaner')
-    __desc__ = _('Free up disk space by removing redundant packages and cleaning the package download cache.')
+    __desc__ = _('Free up disk space by removing redundant packages and cleaning package download cache.')
     __icon__ = 'edit-clear'
     __category__ = 'application'
 

@@ -108,7 +108,7 @@ class Nautilus(TweakModule):
         self.nautilus_terminal.connect('toggled', self.colleague_changed)
         self.nautilus_root = AptCheckButton(_('Open folder with root priveleges'), 'nautilus-gksu')
         self.nautilus_root.connect('toggled', self.colleague_changed)
-        self.nautilus_wallpaper = AptCheckButton(_('Nautilus with Wallpaper'), 'nautilus-wallpaper')
+        self.nautilus_wallpaper = AptCheckButton(_('Nautilus with wallpaper'), 'nautilus-wallpaper')
         self.nautilus_wallpaper.connect('toggled', self.colleague_changed)
         box = ListPack(_("Nautilus Extensions"), (
             self.nautilus_terminal,
@@ -132,7 +132,7 @@ class Nautilus(TweakModule):
         except:
             size = '0'
             button.set_sensitive(False)
-        set_label_for_stock_button(button, _('Delete thumbnail cache (will free %s of disk space)') % filesizeformat(size))
+        set_label_for_stock_button(button, _('Delete thumbnail cache (Frees %s of disk space)') % filesizeformat(size))
 
     def on_clean_thumbnails_clicked(self, widget):
         question = QuestionDialog(_('The thumbnail cache will be deleted. Do you wish to continue?'),

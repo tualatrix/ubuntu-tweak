@@ -82,7 +82,7 @@ class Gnome(TweakModule):
 
         box = ListPack(_("Screensaver"), (
                     WidgetFactory.create("GconfCheckButton", 
-                                         label=_("Enable user switching when screen is locked."),
+                                         label=_("Enable user switching whilst screen is locked."),
                                          key="user_switch_enabled"),
             ))
         self.add_start(box, False, False, 0)

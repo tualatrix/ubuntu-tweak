@@ -81,7 +81,7 @@ class Session(TweakModule):
                                          label=_("Allow TCP Connections (Remote Desktop Connect)"),
                                          key="allow_tcp_connections"),
                     WidgetFactory.create("GconfCheckButton",
-                                         label=_("Suppress the dialog to confirm logout, restart and shutdown action"),
+                                         label=_("Suppress the logout, restart and shutdown confirmation dialogue box."),
                                          key="/apps/indicator-session/suppress_logout_restart_shutdown"),
                 ))
 

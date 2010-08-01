@@ -908,8 +908,8 @@ class SourceDetail(gtk.VBox):
 class SourceCenter(TweakModule):
     __title__  = _('Source Center')
     __desc__ = _('A collection of software sources to ensure your applications are always up-to-date.\n'
-                 'Here you can also add applications which are unavailable in the offical repositories.\n'
-                 'The list of available sources will be obtained automatically from a remote server.\n'
+                 'Here you can add applications unavailable in the official repositories.\n'
+                 'A list of available software sources will be obtained automatically from a remote server.\n'
                  'You can click the "Sync" button to manually check for updates')
     __icon__ = 'software-properties'
     __url__ = 'http://ubuntu-tweak.com/source/'

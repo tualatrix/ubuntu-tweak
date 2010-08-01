@@ -106,7 +106,7 @@ class DesktopIcon(gtk.VBox):
 
 class Icon(TweakModule):
     __title__ = _('Desktop Icon Settings')
-    __desc__ = _("Change the name and toggle visibilty of desktop icons")
+    __desc__ = _("Rename and toggle visibilty of desktop icons")
     __icon__ = 'user-desktop'
     __category__ = 'desktop'
     __desktop__ = 'gnome'
