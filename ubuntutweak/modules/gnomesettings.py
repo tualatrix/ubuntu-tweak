@@ -149,7 +149,7 @@ class Gnome(TweakModule):
                 dest = dest + ext
 
                 if ext == '.png' and (w != 24 or h != 24):
-                    ErrorDialog(_("This image size isn't suitable for the panel.\nIt should be 24x24.")).launch()
+                    ErrorDialog(_("This image size isn't suitable for the panel.\nIt should measure 24x24.")).launch()
                     return
                 else:
                     os.system('mkdir -p %s' % os.path.dirname(dest))
@@ -192,7 +192,7 @@ class Gnome(TweakModule):
             os.system('rm -r %s' % file)
             os.system('touch %s' % file)
         else:
-            dialog = WarningDialog(_('By disabling the "Recent Documents", it may break other software such as VMware Player\'s history feature.'),
+            dialog = WarningDialog(_('Disabling "Recent Documents" may break other software, for example the history feature in VMware Player.'),
                                    title=_("Warning"))
             if dialog.run() == gtk.RESPONSE_YES:
                 os.system('rm -r %s' % file)
