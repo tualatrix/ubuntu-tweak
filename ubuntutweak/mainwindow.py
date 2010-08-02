@@ -244,7 +244,7 @@ class MainWindow(gtk.Window):
     def notify_stable_source(self):
         log.debug("Stable Source Warning is %s", CONFIG.get_value_from_key(WARNING_KEY))
         log.debug("The Stable Source enabling is %s", proxy.get_stable_source_enabled())
-        if not CONFIG.get_value_from_key(WARNING_KEY) and not proxy.get_stable_source_enabled():
+        if proxy.get_object() and not CONFIG.get_value_from_key(WARNING_KEY) and not proxy.get_stable_source_enabled():
             dialog = WarningDialog(_('It is highly recommended that you enable the Ubuntu Tweak stable repository to get security and maintenance updates.\n'
                 'If you don\'t enable this repository, you will need to update manually.\n\n'
                 'Would you like to enable this repository?'),

@@ -33,7 +33,7 @@ def show_message():
     from ubuntutweak.widgets.dialogs import ErrorDialog
     message = _('The Ubuntu Tweak daemon didn\'t start correctly. This means that some '
             'advanced features may not work.\n'
-            'If you want to help developers debugging, try to run "<b>sudo ubuntu-tweak-daemon</b>" in a terminal.')
+            'If you want to help developers debugging, try to run "<b>sudo /usr/share/ubuntu-tweak/ubuntu-tweak-daemon</b>" in a terminal.')
     ErrorDialog(message).launch()
 
 def nothing():
