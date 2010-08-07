@@ -49,14 +49,17 @@ class LoginSettings(TweakModule):
                     WidgetFactory.create("UserGconfCheckButton",
                                          user='gdm',
                                          label=_("Disable user list in GDM"),
+                                         reset=True,
                                          key="/apps/gdm/simple-greeter/disable_user_list"),
                     WidgetFactory.create("UserGconfCheckButton",
                                          user='gdm',
                                          label=_("Play sound at login"),
+                                         reset=True,
                                          key="/desktop/gnome/sound/event_sounds"),
                     WidgetFactory.create("UserGconfCheckButton",
                                          user='gdm',
                                          label=_("Disable showing the restart button"),
+                                         reset=True,
                                          key="/apps/gdm/simple-greeter/disable_restart_buttons"),
             ))
         for item in self.options_box.items:
