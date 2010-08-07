@@ -53,12 +53,15 @@ class Gnome(TweakModule):
         box = ListPack(_("Panel Settings"), (
                     WidgetFactory.create("GconfCheckButton", 
                                     label=_("Display warning when removing a panel"),
+                                    reset=True,
                                     key="confirm_panel_remove"),
                     WidgetFactory.create("GconfCheckButton", 
                                     label=_("Complete lockdown of all panels"),
+                                    reset=True,
                                     key="locked_down"),
                     WidgetFactory.create("GconfCheckButton", 
                                     label=_("Enable panel animations"),
+                                    reset=True,
                                     key="enable_animations"),
             ))
         self.add_start(box, False, False, 0)
@@ -66,15 +69,19 @@ class Gnome(TweakModule):
         box = ListPack(_("Menu Settings"), (
                     WidgetFactory.create("GconfCheckButton", 
                                     label=_("Show Input Method menu in the context menu"),
+                                    reset=True,
                                     key="show_input_method_menu"),
                     WidgetFactory.create("GconfCheckButton",
                                     label=_("Show Unicode Control Character menu in the context menu"),
+                                    reset=True,
                                     key="show_unicode_menu"),
                     WidgetFactory.create("GconfCheckButton",
                                     label=_('Show icons in menus'),
+                                    reset=True,
                                     key='/desktop/gnome/interface/menus_have_icons'),
                     WidgetFactory.create("GconfCheckButton",
                                     label=_('Show icons on buttons'),
+                                    reset=True,
                                     key='/desktop/gnome/interface/buttons_have_icons'),
                     changeicon_hbox,
             ))
@@ -83,6 +90,7 @@ class Gnome(TweakModule):
         box = ListPack(_("Screensaver"), (
                     WidgetFactory.create("GconfCheckButton", 
                                          label=_("Enable user switching whilst screen is locked."),
+                                         reset=True,
                                          key="user_switch_enabled"),
             ))
         self.add_start(box, False, False, 0)
