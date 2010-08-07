@@ -79,12 +79,11 @@ class Session(TweakModule):
         box = ListPack(_("Session Options"), (
                     WidgetFactory.create("GconfCheckButton",
                                          label=_("Automatically save open applications when logging out"),
+                                         reset=True,
                                          key="auto_save_session"),
                     WidgetFactory.create("GconfCheckButton",
-                                         label=_("Allow TCP Connections (Remote Desktop Connect)"),
-                                         key="allow_tcp_connections"),
-                    WidgetFactory.create("GconfCheckButton",
                                          label=_("Suppress the logout, restart and shutdown confirmation dialogue box."),
+                                         reset=True,
                                          key="/apps/indicator-session/suppress_logout_restart_shutdown"),
                 ))
 
