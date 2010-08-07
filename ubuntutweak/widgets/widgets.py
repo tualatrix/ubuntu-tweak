@@ -33,6 +33,19 @@ from ubuntutweak.policykit import PolkitButton, proxy
 
 log = logging.getLogger('widgets')
 
+class GconfResetButton(gtk.Button):
+    def __init__(self, key):
+        super(gtk.Button, self).__init__()
+
+        self.__setting = GconfSetting(key=key)
+
+        reset_image = gtk.image_new_from_stock(gtk.STOCK_REVERT_TO_SAVED, gtk.ICON_SIZE_MENU)
+        self.set_property('image', reset_image)
+        self.set_tooltip_text(_('Reset setting to default value: %s') % self.__setting.get_schema_value())
+
+    def get_default_value(self):
+        return self.__setting.get_schema_value()
+
 class GconfCheckButton(gtk.CheckButton):
     def __init__(self, label=None, key=None, default=None, tooltip=None):
         super(GconfCheckButton, self).__init__()

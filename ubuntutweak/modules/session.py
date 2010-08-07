@@ -43,17 +43,20 @@ class Session(TweakModule):
         data = {
              'changed': self.on_entry_changed,
          }
-        label1, entry1 = WidgetFactory.create('GconfEntry',
+        label1, entry1, reset1 = WidgetFactory.create('GconfEntry',
                                          label=_('File Manager'),
                                          key='/desktop/gnome/session/required_components/filemanager',
+                                         reset=True,
                                          signal_dict=data,
                                          )
-        label2, entry2 = WidgetFactory.create('GconfEntry',
+        label2, entry2, reset2 = WidgetFactory.create('GconfEntry',
                                          label=_('Panel'),
+                                         reset=True,
                                          signal_dict=data,
                                          key='/desktop/gnome/session/required_components/panel')
-        label3, entry3 = WidgetFactory.create('GconfEntry',
+        label3, entry3, reset3 = WidgetFactory.create('GconfEntry',
                                          label=_('Window Manager'),
+                                         reset=True,
                                          signal_dict=data,
                                          key='/desktop/gnome/session/required_components/windowmanager')
 
@@ -65,9 +68,9 @@ class Session(TweakModule):
         hbox1.pack_end(self.apply_button, False, False, 0)
 
         table = TablePack(_('Session Control'), (
-                    (label1, entry1),
-                    (label2, entry2),
-                    (label3, entry3),
+                    (label1, entry1, reset1),
+                    (label2, entry2, reset2),
+                    (label3, entry3, reset3),
                     hbox1,
                 ))
 

@@ -43,23 +43,29 @@ class LockDown(TweakModule):
         box = ListPack(_("System Security options"), (
                     WidgetFactory.create("GconfCheckButton",
                                          label=_("Disable \"Run Application\" dialog (Alt+F2)"),
-                                         key="disable_command_line"),
+                                         key="disable_command_line",
+                                         reset=True),
                     WidgetFactory.create("GconfCheckButton",
                                          label=_('Disable "Lock Screen"'),
-                                         key="disable_lock_screen"),
+                                         key="disable_lock_screen",
+                                         reset=True),
                     WidgetFactory.create("GconfCheckButton",
                                          label=_("Disable printing"),
-                                         key="disable_printing"),
+                                         key="disable_printing",
+                                         reset=True),
                     WidgetFactory.create("GconfCheckButton",
                                          label=_("Disable printer settings"),
-                                         key="disable_print_setup"),
+                                         key="disable_print_setup",
+                                         reset=True),
                     WidgetFactory.create("GconfCheckButton",
                                          label=_("Disable save to disk"),
-                                         key="disable_save_to_disk"),
+                                         key="disable_save_to_disk",
+                                         reset=True),
                     WidgetFactory.create("GconfCheckButton",
                                          label=_('Disable "Fast User Switching"'),
-                                         key="disable_user_switching"),
-            ))
+                                         key="disable_user_switching",
+                                         reset=True),
+            ), padding=2)
 
         self.add_start(box, False, False, 0)
 

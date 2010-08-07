@@ -116,6 +116,17 @@ class GconfSetting(object):
     def connect_notify(self, func, data=None):
         self.__client.notify_add(self.__key, func, data)
 
+    def get_schema_value(self):
+        value = self.__client.get_default_from_schema(self.__key)
+        if value.type == gconf.VALUE_BOOL:
+            return value.get_bool()
+        elif value.type == gconf.VALUE_STRING:
+            return value.get_string()
+        elif value.type == gconf.VALUE_INT:
+            return value.get_int()
+        elif value.type == gconf.VALUE_FLOAT:
+            return value.get_float()
+
 class SystemGconfSetting(GconfSetting):
     def get_value(self):
         data = proxy.get_system_gconf(self.get_key())

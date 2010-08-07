@@ -24,6 +24,12 @@ from ubuntutweak.widgets import *
 from ubuntutweak.common.consts import *
 from ubuntutweak.conf import GconfKeys
 
+def on_reset_button_clicked(widget, reset_target):
+    if issubclass(reset_target.__class__, gtk.CheckButton):
+        reset_target.set_active(widget.get_default_value())
+    elif issubclass(reset_target.__class__, gtk.Entry):
+        reset_target.set_text(widget.get_default_value())
+
 class WidgetFactory:
     keys = GconfKeys.keys
     client = gconf.client_get_default()
@@ -55,19 +61,43 @@ class WidgetFactory:
     @classmethod
     def do_composite_create(cls, widget, **kwargs):
         label = gtk.Label(kwargs.pop('label'))
-
         signal_dict = kwargs.pop('signal_dict', None)
+
+        has_reset = kwargs.has_key('reset')
+        if has_reset:
+            kwargs.pop('reset')
+
         new_widget = globals().get(widget)(**kwargs)
 
         if signal_dict:
             for signal, method in signal_dict.items():
                 new_widget.connect(signal, method)
 
-        return label, new_widget
+        if has_reset:
+            reset_button = GconfResetButton(kwargs['key'])
+            reset_button.connect('clicked', on_reset_button_clicked, new_widget)
+
+            return label, new_widget, reset_button
+        else:
+            return label, new_widget
 
     @classmethod
     def do_create(cls, widget, **kwargs):
-        return globals().get(widget)(**kwargs)
+        if kwargs.has_key('reset'):
+            kwargs.pop('reset')
+
+            hbox = gtk.HBox(False, 0)
+
+            new_widget = globals().get(widget)(**kwargs)
+            hbox.pack_start(new_widget, False, False, 0)
+
+            reset_button = GconfResetButton(kwargs['key'])
+            reset_button.connect('clicked', on_reset_button_clicked, new_widget)
+            hbox.pack_end(reset_button, False, False, 0)
+
+            return hbox
+        else:
+            return globals().get(widget)(**kwargs)
 
 if __name__ == '__main__':
     for k,v in GconfKeys.keys.items():

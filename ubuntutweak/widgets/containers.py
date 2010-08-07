@@ -55,7 +55,7 @@ class BaseListPack(BasePack):
         hbox.pack_start(self.vbox, True, True, 0)
 
 class ListPack(BaseListPack):
-    def __init__(self, title, widgets):
+    def __init__(self, title, widgets, padding=6):
         BaseListPack.__init__(self, title)
         self.items = []
 
@@ -64,7 +64,7 @@ class ListPack(BaseListPack):
                 if widget: 
                     if widget.get_parent():
                         widget.unparent()
-                    self.vbox.pack_start(widget, False, False, 6)
+                    self.vbox.pack_start(widget, False, False, padding)
                     self.items.append(widget)
         else:
             self = None
