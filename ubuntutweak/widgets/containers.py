@@ -85,7 +85,7 @@ class TablePack(BaseListPack):
             if item is not None:
                 top_attach = items.index(item)
 
-                if len(item) == 1:
+                if issubclass(item.__class__, gtk.Widget):
                     table.attach(item, 0, columns, top_attach, top_attach + 1, ypadding=6)
                 else:
                     for widget in item:

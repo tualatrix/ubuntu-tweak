@@ -25,8 +25,11 @@ from ubuntutweak.common.consts import *
 from ubuntutweak.conf import GconfKeys
 
 def on_reset_button_clicked(widget, reset_target):
+    log.debug("Reset value for %s" % reset_target)
     if issubclass(reset_target.__class__, gtk.CheckButton):
         reset_target.set_active(widget.get_default_value())
+    elif issubclass(reset_target.__class__, gtk.Scale):
+        reset_target.set_value(widget.get_default_value())
     elif issubclass(reset_target.__class__, gtk.SpinButton):
         reset_target.set_value(widget.get_default_value())
     elif issubclass(reset_target.__class__, gtk.Entry):
