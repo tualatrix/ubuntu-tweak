@@ -74,6 +74,7 @@ class Nautilus(TweakModule):
 
         button = WidgetFactory.create("GconfCheckButton", 
                                       label=_('Show advanced permissions in the Nautilus "File Properties" window'),
+                                      reset=True,
                                       key="show_advanced_permissions")
 
         box = ListPack(_("File Browser"), (button, )) 
@@ -88,14 +89,17 @@ class Nautilus(TweakModule):
         box = TablePack(_('Thumbnail Settings'), (
                     WidgetFactory.create('GconfSpinButton',
                                                   key='thumbnail_size',
+                                                  reset=True,
                                                   min=16, max=512, step=16,
                                                   label=_('Default thumbnail icon size (pixels)')),
                     WidgetFactory.create('GconfSpinButton',
                                                   key='maximum_size',
+                                                  reset=True,
                                                   min=-1, max=512, step=1,
                                                   label=_('Maximum thumbnail cache size (megabytes)')),
                     WidgetFactory.create('GconfSpinButton',
                                                   key='maximum_age',
+                                                  reset=True,
                                                   min=-1, max=180, step=1,
                                                   label=_('Thumbnail cache time (days)')),
                     hbox1,
