@@ -182,13 +182,13 @@ class Metacity(TweakModule):
                     WidgetFactory.create('GconfComboBox',
                                          label=_('Titlebar mouse wheel action'),
                                          key='mouse_wheel_action',
-                                         reset=True,
+                                         enable_reset=True,
                                          texts=[_('None'), _('Roll up')],
                                          values=['none', 'shade']),
                     WidgetFactory.create('GconfComboBox', 
                                          label=_('Titlebar double-click action'),
                                          key='action_double_click_titlebar',
-                                         reset=True,
+                                         enable_reset=True,
                                          texts=[_('None'), _('Maximize'), \
                                                  _('Maximize Horizontally'), \
                                                  _('Maximize Vertically'), \
@@ -202,7 +202,7 @@ class Metacity(TweakModule):
                     WidgetFactory.create('GconfComboBox',
                                          label=_('Titlebar middle-click action'),
                                          key='action_middle_click_titlebar',
-                                         reset=True,
+                                         enable_reset=True,
                                          texts=[_('None'), _('Maximize'), \
                                                  _('Maximize Horizontally'), \
                                                  _('Maximize Vertically'), \
@@ -216,7 +216,7 @@ class Metacity(TweakModule):
                     WidgetFactory.create('GconfComboBox', 
                                          label=_('Titlebar right-click action'),
                                          key='action_right_click_titlebar',
-                                         reset=True,
+                                         enable_reset=True,
                                          texts=[_('None'), _('Maximize'), \
                                                  _('Maximize Horizontally'), \
                                                  _('Maximize Vertically'), \
@@ -234,32 +234,32 @@ class Metacity(TweakModule):
         box = TablePack(_('Window Decoration Effects'), (
                     WidgetFactory.create('GconfCheckButton',
                                           label=_('Use Metacity window theme'),
-                                          reset=True,
+                                          enable_reset=True,
                                           key='use_metacity_theme'),
                     WidgetFactory.create('GconfCheckButton',
                                           label=_('Enable active window transparency'),
-                                          reset=True,
+                                          enable_reset=True,
                                           key='metacity_theme_active_shade_opacity'),
                     WidgetFactory.create('GconfScale',
                                           label=_('Active window transparency level'),
                                           key='metacity_theme_active_opacity',
-                                          reset=True,
+                                          enable_reset=True,
                                           min=0, max=1, digits=2),
                     WidgetFactory.create('GconfCheckButton',
                                           label=_('Enable inactive window transparency'),
-                                          reset=True,
+                                          enable_reset=True,
                                           key='metacity_theme_shade_opacity'),
                     WidgetFactory.create('GconfScale',
                                           label=_('Inactive window shade transparency level'),
                                           key='metacity_theme_opacity',
-                                          reset=True,
+                                          enable_reset=True,
                                           min=0, max=1, digits=2),
             ))
         self.add_start(box, False, False, 0)
 
         button = WidgetFactory.create('GconfCheckButton', 
                                       label=_("Enable Metacity's compositing feature"),
-                                      reset=True,
+                                      enable_reset=True,
                                       signal_dict={'toggled': self.on_compositing_button_toggled},
                                       key='compositing_manager')
         if button:

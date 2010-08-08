@@ -46,17 +46,17 @@ class Session(TweakModule):
         label1, entry1, reset1 = WidgetFactory.create('GconfEntry',
                                          label=_('File Manager'),
                                          key='/desktop/gnome/session/required_components/filemanager',
-                                         reset=True,
+                                         enable_reset=True,
                                          signal_dict=data,
                                          )
         label2, entry2, reset2 = WidgetFactory.create('GconfEntry',
                                          label=_('Panel'),
-                                         reset=True,
+                                         enable_reset=True,
                                          signal_dict=data,
                                          key='/desktop/gnome/session/required_components/panel')
         label3, entry3, reset3 = WidgetFactory.create('GconfEntry',
                                          label=_('Window Manager'),
-                                         reset=True,
+                                         enable_reset=True,
                                          signal_dict=data,
                                          key='/desktop/gnome/session/required_components/windowmanager')
 
@@ -79,11 +79,11 @@ class Session(TweakModule):
         box = ListPack(_("Session Options"), (
                     WidgetFactory.create("GconfCheckButton",
                                          label=_("Automatically save open applications when logging out"),
-                                         reset=True,
+                                         enable_reset=True,
                                          key="auto_save_session"),
                     WidgetFactory.create("GconfCheckButton",
                                          label=_("Suppress the logout, restart and shutdown confirmation dialogue box."),
-                                         reset=True,
+                                         enable_reset=True,
                                          key="/apps/indicator-session/suppress_logout_restart_shutdown"),
                 ))
 

@@ -77,9 +77,9 @@ class WidgetFactory:
         label = gtk.Label(kwargs.pop('label'))
         signal_dict = kwargs.pop('signal_dict', None)
 
-        has_reset = kwargs.has_key('reset')
-        if has_reset:
-            kwargs.pop('reset')
+        enable_reset = kwargs.has_key('enable_reset')
+        if enable_reset:
+            kwargs.pop('enable_reset')
 
         new_widget = globals().get(widget)(**kwargs)
 
@@ -87,7 +87,7 @@ class WidgetFactory:
             for signal, method in signal_dict.items():
                 new_widget.connect(signal, method)
 
-        if has_reset:
+        if enable_reset:
             reset_button = GconfResetButton(kwargs['key'])
             reset_button.connect('clicked', on_reset_button_clicked, new_widget)
 
@@ -99,9 +99,9 @@ class WidgetFactory:
     def do_create(cls, widget, **kwargs):
         signal_dict = kwargs.pop('signal_dict', None)
 
-        has_reset = kwargs.has_key('reset')
-        if has_reset:
-            kwargs.pop('reset')
+        enable_reset = kwargs.has_key('enable_reset')
+        if enable_reset:
+            kwargs.pop('enable_reset')
 
         new_widget = globals().get(widget)(**kwargs)
 
@@ -109,7 +109,7 @@ class WidgetFactory:
             for signal, method in signal_dict.items():
                 new_widget.connect(signal, method)
 
-        if has_reset:
+        if enable_reset:
             hbox = gtk.HBox(False, 0)
 
             hbox.pack_start(new_widget, False, False, 0)
