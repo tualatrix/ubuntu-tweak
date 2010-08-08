@@ -310,7 +310,7 @@ class Daemon(PolicyKitService):
                          sender_keyword='sender')
     def unlink_file(self, path, sender=None):
         self._check_permission(sender)
-        if os.path.exists(path):
+        if os.path.exists(path) and os.path.islink(path):
             os.unlink(path)
 
     @dbus.service.method(INTERFACE,
@@ -395,6 +395,11 @@ class Daemon(PolicyKitService):
                          in_signature='s', out_signature='b')
     def is_exists(self, path):
         return os.path.exists(path)
+
+    @dbus.service.method(INTERFACE,
+                         in_signature='s', out_signature='b')
+    def is_link(self, path):
+        return os.path.islink(path)
 
     @dbus.service.method(INTERFACE,
                          in_signature='', out_signature='b',
