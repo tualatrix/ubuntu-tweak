@@ -141,26 +141,34 @@ class GconfEntry(gtk.Entry):
             client.unset(key)
             self.set_text(_("Unset"))
 
-def GconfComboBox(key=None, texts=None, values=None):
-    def value_changed_cb(widget, setting):
-        text = widget.get_active_text()
+class GconfComboBox(gtk.ComboBox):
+    def __init__(self, key=None, texts=None, values=None):
+        super(GconfComboBox, self).__init__()
 
-        setting.get_client().set_value(setting.get_key(), \
-                                setting.values[setting.texts.index(text)])
+        self.__setting = GconfSetting(key=key)
+        model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
+        self.set_model(model)
 
-    combobox = gtk.combo_box_new_text()
-    setting = GconfSetting(key=key)
-    setting.texts = texts
-    setting.values = values
+        cell = gtk.CellRendererText()
+        self.pack_start(cell, True)
+        self.add_attribute(cell, 'text', 0)
 
-    for text in texts:
-        combobox.append_text(text)
+        current_value = self.__setting.get_value()
 
-    if setting.get_value() in values:
-        combobox.set_active(values.index(setting.get_value()))
-    combobox.connect("changed", value_changed_cb, setting)
+        for text, value in dict(zip(texts, values)).items():
+            iter = model.append(None)
+            model.set(iter, 0, text, 1, value)
+            if current_value == value:
+                self.set_active_iter(iter)
 
-    return combobox
+        self.connect("changed", self.value_changed_cb)
+
+    def value_changed_cb(self, widget):
+        iter = widget.get_active_iter()
+        text = self.get_model().get_value(iter, 1)
+        log.debug("GconfComboBox value changed to %s" % text)
+
+        self.__setting.get_client().set_value(self.__setting.get_key(), text)
 
 class GconfScale(gtk.HScale):
     def __init__(self, key=None, min=None, max=None, digits=0, reversed=False):

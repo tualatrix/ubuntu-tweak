@@ -28,6 +28,15 @@ def on_reset_button_clicked(widget, reset_target):
     log.debug("Reset value for %s" % reset_target)
     if issubclass(reset_target.__class__, gtk.CheckButton):
         reset_target.set_active(widget.get_default_value())
+    elif issubclass(reset_target.__class__, gtk.ComboBox):
+        model = reset_target.get_model()
+        iter = model.get_iter_first()
+        default_value = widget.get_default_value()
+        while iter:
+            if model.get_value(iter, 1) == default_value:
+                reset_target.set_active_iter(iter)
+                break
+            iter = model.iter_next(iter)
     elif issubclass(reset_target.__class__, gtk.Scale):
         reset_target.set_value(widget.get_default_value())
     elif issubclass(reset_target.__class__, gtk.SpinButton):
@@ -88,12 +97,21 @@ class WidgetFactory:
 
     @classmethod
     def do_create(cls, widget, **kwargs):
-        if kwargs.has_key('reset'):
+        signal_dict = kwargs.pop('signal_dict', None)
+
+        has_reset = kwargs.has_key('reset')
+        if has_reset:
             kwargs.pop('reset')
 
+        new_widget = globals().get(widget)(**kwargs)
+
+        if signal_dict:
+            for signal, method in signal_dict.items():
+                new_widget.connect(signal, method)
+
+        if has_reset:
             hbox = gtk.HBox(False, 0)
 
-            new_widget = globals().get(widget)(**kwargs)
             hbox.pack_start(new_widget, False, False, 0)
 
             reset_button = GconfResetButton(kwargs['key'])
@@ -102,7 +120,7 @@ class WidgetFactory:
 
             return hbox
         else:
-            return globals().get(widget)(**kwargs)
+            return new_widget
 
 if __name__ == '__main__':
     for k,v in GconfKeys.keys.items():
