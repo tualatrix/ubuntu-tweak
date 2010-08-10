@@ -7,23 +7,25 @@ __all__ = (
         )
 
 import os
+import sys
 import glib
 import glob
 import gettext
 import pynotify
 
+from ubuntutweak import __version__
+
 def applize(package):
     return ' '.join([a.capitalize() for a in package.split('-')])
 
 PACKAGE = 'ubuntu-tweak'
-VERSION = '0.5.6'
+VERSION = __version__
 DATA_DIR = '/usr/share/ubuntu-tweak/'
 APP = applize(PACKAGE)
 CONFIG_ROOT = os.path.join(glib.get_user_config_dir(), 'ubuntu-tweak')
 IS_INSTALLED = True
 
-# The os.access is hack for fakeroot deb build
-if not os.path.exists(CONFIG_ROOT) and os.access(glib.get_user_config_dir(), os.W_OK):
+if not os.path.exists(CONFIG_ROOT):
     os.makedirs(CONFIG_ROOT)
 
 try:
@@ -53,8 +55,7 @@ def install_ngettext():
 init_locale()
 
 if not pynotify.init('ubuntu-tweak'):
-    sys.exit (1)
-
+    pass
 
 #TODO remove this in the future
 OLD_CONFIG_ROOT = os.path.expanduser('~/.ubuntu-tweak/')

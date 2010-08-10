@@ -1,9 +1,9 @@
 import glob
 from setuptools import setup, find_packages
-from ubuntutweak.common.consts import VERSION
+from ubuntutweak import __version__
 
 setup(name='ubuntu-tweak',
-      version=VERSION,
+      version=__version__,
       description='magic tool to configure Ubuntu',
       author='TualatriX',  
       author_email='tualatrix@gmail.com',
