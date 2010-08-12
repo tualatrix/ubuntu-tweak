@@ -41,7 +41,8 @@ class GconfResetButton(gtk.Button):
 
         reset_image = gtk.image_new_from_stock(gtk.STOCK_REVERT_TO_SAVED, gtk.ICON_SIZE_MENU)
         self.set_property('image', reset_image)
-        self.set_tooltip_text(_('Reset setting to default value: %s') % self.__setting.get_schema_value())
+
+        self.set_tooltip_text(_('Reset setting to default value: %s') % self.get_default_value())
 
     def get_default_value(self):
         return self.__setting.get_schema_value()

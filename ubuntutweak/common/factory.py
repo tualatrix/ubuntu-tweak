@@ -88,12 +88,15 @@ class WidgetFactory:
                 new_widget.connect(signal, method)
 
         if enable_reset:
-            reset_button = GconfResetButton(kwargs['key'])
-            reset_button.connect('clicked', on_reset_button_clicked, new_widget)
+            try:
+                reset_button = GconfResetButton(kwargs['key'])
+                reset_button.connect('clicked', on_reset_button_clicked, new_widget)
 
-            return label, new_widget, reset_button
-        else:
-            return label, new_widget
+                return label, new_widget, reset_button
+            except Exception, e:
+                log.error(e)
+
+        return label, new_widget
 
     @classmethod
     def do_create(cls, widget, **kwargs):
@@ -110,17 +113,20 @@ class WidgetFactory:
                 new_widget.connect(signal, method)
 
         if enable_reset:
-            hbox = gtk.HBox(False, 0)
+            try:
+                reset_button = GconfResetButton(kwargs['key'])
+                reset_button.connect('clicked', on_reset_button_clicked, new_widget)
 
-            hbox.pack_start(new_widget, False, False, 0)
+                hbox = gtk.HBox(False, 0)
 
-            reset_button = GconfResetButton(kwargs['key'])
-            reset_button.connect('clicked', on_reset_button_clicked, new_widget)
-            hbox.pack_end(reset_button, False, False, 0)
+                hbox.pack_start(new_widget, False, False, 0)
+                hbox.pack_end(reset_button, False, False, 0)
 
-            return hbox
-        else:
-            return new_widget
+                return hbox
+            except Exception, e:
+                log.error(e)
+
+        return new_widget
 
 if __name__ == '__main__':
     for k,v in GconfKeys.keys.items():

@@ -89,7 +89,7 @@ class UbuntuTweakLogger(logging.Logger):
         #create the single file appending handler
         if UbuntuTweakLogger.LOG_FILE_HANDLER == None:
             filename = os.path.join(CONFIG_ROOT,'ubuntu-tweak.log')
-            UbuntuTweakLogger.LOG_FILE_HANDLER = logging.FileHandler(filename,'w')
+            UbuntuTweakLogger.LOG_FILE_HANDLER = logging.FileHandler(filename, 'w')
             UbuntuTweakLogger.LOG_FILE_HANDLER.setFormatter(no_color_formatter)
 
         console = logging.StreamHandler()

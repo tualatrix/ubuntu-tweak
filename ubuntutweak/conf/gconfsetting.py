@@ -118,14 +118,17 @@ class GconfSetting(object):
 
     def get_schema_value(self):
         value = self.__client.get_default_from_schema(self.__key)
-        if value.type == gconf.VALUE_BOOL:
-            return value.get_bool()
-        elif value.type == gconf.VALUE_STRING:
-            return value.get_string()
-        elif value.type == gconf.VALUE_INT:
-            return value.get_int()
-        elif value.type == gconf.VALUE_FLOAT:
-            return value.get_float()
+        if value:
+            if value.type == gconf.VALUE_BOOL:
+                return value.get_bool()
+            elif value.type == gconf.VALUE_STRING:
+                return value.get_string()
+            elif value.type == gconf.VALUE_INT:
+                return value.get_int()
+            elif value.type == gconf.VALUE_FLOAT:
+                return value.get_float()
+        else:
+            raise Exception("No schema value for %s" % self.__key)
 
 class SystemGconfSetting(GconfSetting):
     def get_value(self):
