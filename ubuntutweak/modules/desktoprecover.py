@@ -19,6 +19,7 @@
 import os
 import gtk
 import glob
+import time
 import gobject
 import logging
 
@@ -28,6 +29,7 @@ from ubuntutweak.utils import icon
 from ubuntutweak.common.consts import CONFIG_ROOT
 from ubuntutweak.common.gui import GuiWorker
 from ubuntutweak.modules  import TweakModule
+from ubuntutweak.widgets.dialogs import InfoDialog
 
 log = logging.getLogger('DesktopRecover')
 
@@ -191,23 +193,36 @@ class DesktopRecover(TweakModule):
         self.backup_combobox.pack_start(cell, True)
         self.backup_combobox.add_attribute(cell, 'text', 0)
 
+    def build_backup_prefix(self, dir):
+        dirs = dir.split('/')
+        if len(dirs) == 2:
+            name_prefix = os.path.join(CONFIG_ROOT, 'desktoprecover', dirs[1])
+        else:
+            name_prefix = os.path.join(CONFIG_ROOT, 'desktoprecover', dirs[1], dirs[2])
+
+        if not os.path.exists(name_prefix):
+            os.makedirs(name_prefix)
+        return name_prefix
+
     def update_backup_model(self, dir):
         model = self.backup_combobox.get_model()
         model.clear()
 
-        dirs = dir.split('/')
-        if len(dirs) == 2:
-            name_pattern = os.path.join(CONFIG_ROOT, 'desktoprecover', dirs[1])
-        else:
-            name_pattern = os.path.join(CONFIG_ROOT, 'desktoprecover', dirs[1], dirs[2])
+        name_prefix = self.build_backup_prefix(dir)
 
-        log.debug('Use glob to find the name_pattern: %s' % name_pattern)
-        file_lsit = glob.glob(name_pattern + '*.xml')
+        file_lsit = glob.glob(name_prefix + '*.xml')
+        file_lsit.sort(reverse=True)
+        log.debug('Use glob to find the name_prefix: %s with result: %s' % (name_prefix, str(file_lsit)))
         if file_lsit:
-            for file in glob.glob(name_pattern + '*.xml'):
+            first_iter = None
+            for file in file_lsit:
                 iter = model.append(None)
-                model.set(iter, 0, file, 1, file)
-                self.backup_combobox.set_active_iter(iter)
+                if first_iter == None:
+                    first_iter = iter
+                model.set(iter,
+                          0, os.path.basename(file),
+                          1, file)
+            self.backup_combobox.set_active_iter(first_iter)
             self.delete_button.set_sensitive(True)
         else:
             iter = model.append(None)
@@ -230,17 +245,33 @@ class DesktopRecover(TweakModule):
     def on_keydirview_changed(self, widget):
         model, rows = widget.get_selected_rows()
         if len(rows) > 2:
+            #TODO
             pass
         elif len(rows) == 1:
             model, iter = widget.get_selected()
 
             dir = model.get_value(iter, self.keydirview.COLUMN_DIR)
             self.dir_label.set_text(dir)
+            self.update_backup_model(dir)
         else:
+            #TODO
             pass
 
     def on_backup_button_clicked(self, widget):
-        print 'backup'
+        dir = self.dir_label.get_text()
+        log.debug("Start backup the dir: %s" % dir)
+        name_prefix = self.build_backup_prefix(dir)
+        backup_name = name_prefix + time.strftime('-%Y-%m-%d-%H-%M-%S.xml', time.localtime(time.time()))
+        log.debug(">>> the backup path is %s" % backup_name)
+        backup_file = open(backup_name, 'w')
+        process = Popen(['gconftool-2', '--dump', dir], stdout=backup_file)
+        stdout, stderr = process.communicate()
+
+        if stderr is None:
+            InfoDialog("Backuped Successfully").launch()
+            self.update_backup_model(dir)
+        else:
+            log.debug("Backup error: %s" % stderr)
 
     def on_recover_button_clicked(self, widget):
         print 'recover'
