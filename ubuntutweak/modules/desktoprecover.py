@@ -82,7 +82,7 @@ class CateView(gtk.TreeView):
 
     def update_model(self):
         for path, title in self.path_dict.items():
-            pixbuf = icon.get_from_name('ubuntu-tweak', size=24)
+            pixbuf = icon.get_from_name('folder', size=24)
             iter = self.model.append(None)
             self.model.set(iter,
                            self.COLUMN_ICON, pixbuf,
@@ -139,7 +139,7 @@ class KeyDirView(gtk.TreeView):
         for dir in dirlist:
             title = dir.split('/')[-1]
 
-            pixbuf = icon.get_from_name(title, size=24)
+            pixbuf = icon.get_from_name(title, alter='folder', size=24)
             iter = self.model.append(None)
             self.model.set(iter,
                            self.COLUMN_ICON, pixbuf,
@@ -220,7 +220,7 @@ class DesktopRecover(TweakModule):
                 if first_iter == None:
                     first_iter = iter
                 model.set(iter,
-                          0, os.path.basename(file),
+                        0, os.path.basename(file)[:-4],
                           1, file)
             self.backup_combobox.set_active_iter(first_iter)
             self.delete_button.set_sensitive(True)
