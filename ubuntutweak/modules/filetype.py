@@ -547,18 +547,18 @@ class FileType(TweakModule):
         sw.add(self.typeview)
         hbox.pack_start(sw)
 
-        vbox = gtk.VBox(False, 5)
-        hbox.pack_start(vbox, False, False, 0)
+        hbox = gtk.HBox(False, 5)
+        self.add_start(hbox, False, False, 0)
 
-        self.edit_button = gtk.Button(stock = gtk.STOCK_EDIT)
+        self.edit_button = gtk.Button(stock=gtk.STOCK_EDIT)
         self.edit_button.connect('clicked', self.on_edit_clicked)
         self.edit_button.set_sensitive(False)
-        vbox.pack_start(self.edit_button, False, False, 0)
+        hbox.pack_end(self.edit_button, False, False, 0)
 
         self.show_have_app = gtk.CheckButton(_('Only show filetypes with associated applications'))
         self.show_have_app.set_active(True)
         self.show_have_app.connect('toggled', self.on_show_all_toggled)
-        self.add_start(self.show_have_app, False, False, 5)
+        hbox.pack_start(self.show_have_app, False, False, 5)
 
         self.show_all()
 
