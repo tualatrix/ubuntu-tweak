@@ -151,15 +151,15 @@ class DesktopRecover(TweakModule):
     __category__ = 'system'
 
     def __init__(self):
-        TweakModule.__init__(self)
+        TweakModule.__init__(self, 'desktoprecover.ui')
 
-        self.guiworker = GuiWorker('desktoprecover.ui')
         self.setup_backup_model()
 
         hbox = gtk.HBox(False, 5)
         self.add_start(hbox)
 
         self.cateview = CateView()
+        self.cateview.connect('row-activated', self.on_cateview_row_activated)
         self.cate_selection = self.cateview.get_selection()
         self.cate_selection.connect('changed', self.on_cateview_changed)
         hbox.pack_start(self.cateview, False, False, 0)
@@ -175,8 +175,8 @@ class DesktopRecover(TweakModule):
         sw.add(self.keydirview)
         vpaned.pack1(sw, True, False)
 
-        self.guiworker.window1.remove(self.guiworker.recover_box)
-        vpaned.pack2(self.guiworker.recover_box, False, False)
+        self.window1.remove(self.recover_box)
+        vpaned.pack2(self.recover_box, False, False)
 
         self.on_cateview_changed(self.cate_selection)
         self.show_all()
@@ -184,17 +184,15 @@ class DesktopRecover(TweakModule):
     def setup_backup_model(self):
         model = gtk.ListStore(gobject.TYPE_STRING,
                               gobject.TYPE_STRING)
-        backup_combobox = self.guiworker.backup_combobox
 
-        backup_combobox.set_model(model)
+        self.backup_combobox.set_model(model)
 
         cell = gtk.CellRendererText()
-        backup_combobox.pack_start(cell, True)
-        backup_combobox.add_attribute(cell, 'text', 0)
+        self.backup_combobox.pack_start(cell, True)
+        self.backup_combobox.add_attribute(cell, 'text', 0)
 
     def update_backup_model(self, dir):
-        backup_combobox = self.guiworker.backup_combobox
-        model = backup_combobox.get_model()
+        model = self.backup_combobox.get_model()
         model.clear()
 
         dirs = dir.split('/')
@@ -209,13 +207,13 @@ class DesktopRecover(TweakModule):
             for file in glob.glob(name_pattern + '*.xml'):
                 iter = model.append(None)
                 model.set(iter, 0, file, 1, file)
-                backup_combobox.set_active_iter(iter)
-            self.guiworker.delete_button.set_sensitive(True)
+                self.backup_combobox.set_active_iter(iter)
+            self.delete_button.set_sensitive(True)
         else:
             iter = model.append(None)
             model.set(iter, 0, _('No Backup yet'), 1, '')
-            backup_combobox.set_active_iter(iter)
-            self.guiworker.delete_button.set_sensitive(False)
+            self.backup_combobox.set_active_iter(iter)
+            self.delete_button.set_sensitive(False)
 
     def on_cateview_changed(self, widget):
         model, iter = widget.get_selected()
@@ -223,8 +221,11 @@ class DesktopRecover(TweakModule):
             dir = model.get_value(iter, self.cateview.COLUMN_DIR)
             self.keydirview.update_model(dir)
 
-            self.guiworker.dir_label.set_text(dir)
+            self.dir_label.set_text(dir)
             self.update_backup_model(dir)
+
+    def on_cateview_row_activated(self, widget, column):
+        self.on_cateview_changed(self.cate_selection)
 
     def on_keydirview_changed(self, widget):
         model, rows = widget.get_selected_rows()
@@ -234,6 +235,15 @@ class DesktopRecover(TweakModule):
             model, iter = widget.get_selected()
 
             dir = model.get_value(iter, self.keydirview.COLUMN_DIR)
-            self.guiworker.dir_label.set_text(dir)
+            self.dir_label.set_text(dir)
         else:
             pass
+
+    def on_backup_button_clicked(self, widget):
+        print 'backup'
+
+    def on_recover_button_clicked(self, widget):
+        print 'recover'
+
+    def on_reset_all_button_clicked(self, widget):
+        print 'reset_all'
