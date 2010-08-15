@@ -161,7 +161,8 @@ class DesktopRecover(TweakModule):
         self.add_start(hbox)
 
         self.cateview = CateView()
-        self.cateview.connect('row-activated', self.on_cateview_row_activated)
+        #FIXME it will cause two callback for cateview changed
+        self.cateview.connect('button_press_event', self.on_cateview_button_press_event)
         self.cate_selection = self.cateview.get_selection()
         self.cate_selection.connect('changed', self.on_cateview_changed)
         hbox.pack_start(self.cateview, False, False, 0)
@@ -239,8 +240,9 @@ class DesktopRecover(TweakModule):
             self.dir_label.set_text(dir)
             self.update_backup_model(dir)
 
-    def on_cateview_row_activated(self, widget, column):
-        self.on_cateview_changed(self.cate_selection)
+    def on_cateview_button_press_event(self, widget, event):
+        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
+            self.on_cateview_changed(self.cate_selection)
 
     def on_keydirview_changed(self, widget):
         model, rows = widget.get_selected_rows()
