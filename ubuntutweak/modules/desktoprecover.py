@@ -29,7 +29,7 @@ from ubuntutweak.utils import icon
 from ubuntutweak.common.consts import CONFIG_ROOT
 from ubuntutweak.common.gui import GuiWorker
 from ubuntutweak.modules  import TweakModule
-from ubuntutweak.widgets.dialogs import InfoDialog, QuestionDialog
+from ubuntutweak.widgets.dialogs import InfoDialog, QuestionDialog, ErrorDialog
 
 log = logging.getLogger('DesktopRecover')
 
@@ -319,6 +319,45 @@ class DesktopRecover(TweakModule):
                 self.update_backup_model(dir)
             else:
                 log.debug("Backup error: %s" % stderr)
+
+    def on_delete_button_clicked(self, widget):
+        def try_remove_record_in_root_backup(dir, path):
+            rootpath = self.build_backup_prefix('/'.join(dir.split('/')[:2])) + os.path.basename(path)
+            if os.path.exists(rootpath):
+                lines = open(rootpath).read().split()
+                lines.remove(path)
+
+                if len(lines) == 0:
+                    os.remove(rootpath)
+                else:
+                    new = open(rootpath, 'w')
+                    new.write('\n'.join(lines))
+                    new.close()
+
+        def try_remove_all_subback(path):
+            for line in open(path):
+                os.remove(line.strip())
+
+        iter = self.backup_combobox.get_active_iter()
+        model = self.backup_combobox.get_model()
+
+        dir = self.dir_label.get_text()
+
+        path = model.get_value(iter, 1)
+        if dir.count('/') == 2:
+            dialog = QuestionDialog(_('Would you like to delete the backup record: %s, %s ?') % (dir, os.path.basename(path)))
+        else:
+            dialog = QuestionDialog(_('Would you like to delete the backup record set under %s with time %s ?') % (dir, os.path.basename(path)))
+        response = dialog.run()
+        dialog.destroy()
+        if response == gtk.RESPONSE_YES:
+            if dir.count('/') == 2:
+                try_remove_record_in_root_backup(dir, path)
+            else:
+                try_remove_all_subback(path)
+
+            os.remove(path)
+            self.update_backup_model(dir)
 
     def on_recover_button_clicked(self, widget):
         print 'recover'
