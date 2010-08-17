@@ -29,7 +29,7 @@ from ubuntutweak.utils import icon
 from ubuntutweak.common.consts import CONFIG_ROOT
 from ubuntutweak.common.gui import GuiWorker
 from ubuntutweak.modules  import TweakModule
-from ubuntutweak.widgets.dialogs import InfoDialog
+from ubuntutweak.widgets.dialogs import InfoDialog, QuestionDialog
 
 log = logging.getLogger('DesktopRecover')
 
@@ -195,15 +195,18 @@ class DesktopRecover(TweakModule):
         self.backup_combobox.add_attribute(cell, 'text', 0)
 
     def build_backup_prefix(self, dir):
-        dirs = dir.split('/')
-        if len(dirs) == 2:
-            name_prefix = os.path.join(CONFIG_ROOT, 'desktoprecover', dirs[1])
-        else:
-            name_prefix = os.path.join(CONFIG_ROOT, 'desktoprecover', dirs[1], dirs[2])
+        name_prefix = os.path.join(CONFIG_ROOT, 'desktoprecover', dir[1:]) + '/'
+
+        log.debug("build_backup_prefix: %s" % name_prefix)
 
         if not os.path.exists(name_prefix):
             os.makedirs(name_prefix)
         return name_prefix
+
+    def build_backup_path(self, dir):
+        name_prefix = self.build_backup_prefix(dir)
+        timeformat = '%Y-%m-%d-%H-%M.xml'
+        return name_prefix + time.strftime(timeformat, time.localtime(time.time()))
 
     def update_backup_model(self, dir):
         model = self.backup_combobox.get_model()
@@ -259,21 +262,63 @@ class DesktopRecover(TweakModule):
             #TODO
             pass
 
+    def do_backup_task(self, dir):
+        backup_name = self.build_backup_path(dir)
+        log.debug("the backup path is %s" % backup_name)
+        backup_file = open(backup_name, 'w')
+        process = Popen(['gconftool-2', '--dump', dir], stdout=backup_file)
+        return process.communicate()
+
+    def do_recover_task(self, dir):
+        pass
+
     def on_backup_button_clicked(self, widget):
         dir = self.dir_label.get_text()
         log.debug("Start backup the dir: %s" % dir)
-        name_prefix = self.build_backup_prefix(dir)
-        backup_name = name_prefix + time.strftime('-%Y-%m-%d-%H-%M-%S.xml', time.localtime(time.time()))
-        log.debug(">>> the backup path is %s" % backup_name)
-        backup_file = open(backup_name, 'w')
-        process = Popen(['gconftool-2', '--dump', dir], stdout=backup_file)
-        stdout, stderr = process.communicate()
 
-        if stderr is None:
-            InfoDialog("Backuped Successfully").launch()
-            self.update_backup_model(dir)
+        # if 1, then root dir
+        if dir.count('/') == 1:
+            dialog = QuestionDialog(_('Will start to backup all the settings under <b>%s</b>.\nWould you like to continue?') % dir)
+            response = dialog.run()
+            dialog.destroy()
+
+            if response == gtk.RESPONSE_YES:
+                process = Popen(['gconftool-2', '--all-dirs', dir], stdout=PIPE)
+                stdout, sterror = process.communicate()
+                if sterror:
+                    log.error(sterror)
+                    #TODO raise error or others
+                    return
+
+                dirlist = stdout.split()
+                dirlist.sort()
+                totol_backuped = []
+
+                for subdir in dirlist:
+                    stdout, stderr = self.do_backup_task(subdir)
+                    if stderr is not None:
+                        break
+                    else:
+                        totol_backuped.append(self.build_backup_path(subdir))
+
+                if stderr is None:
+                    backup_name = self.build_backup_path(dir)
+                    sum_file = open(backup_name, 'w')
+                    sum_file.write('\n'.join(totol_backuped))
+                    sum_file.close()
+
+                    InfoDialog("Backuped Successfully").launch()
+                    self.update_backup_model(dir)
+                else:
+                    log.debug("Backup error: %s" % stderr)
         else:
-            log.debug("Backup error: %s" % stderr)
+            stdout, stderr = self.do_backup_task(dir)
+
+            if stderr is None:
+                InfoDialog("Backuped Successfully").launch()
+                self.update_backup_model(dir)
+            else:
+                log.debug("Backup error: %s" % stderr)
 
     def on_recover_button_clicked(self, widget):
         print 'recover'
