@@ -128,9 +128,9 @@ class KeyDirView(gtk.TreeView):
         self.model.clear()
         
         process = Popen(['gconftool-2', '--all-dirs', dir], stdout=PIPE)
-        stdout, sterror = process.communicate()
-        if sterror:
-            log.error(sterror)
+        stdout, stderr = process.communicate()
+        if stderr:
+            log.error(stderr)
             #TODO raise error or others
             return
 
@@ -269,8 +269,10 @@ class DesktopRecover(TweakModule):
         process = Popen(['gconftool-2', '--dump', dir], stdout=backup_file)
         return process.communicate()
 
-    def do_recover_task(self, dir):
-        pass
+    def do_recover_task(self, path):
+        process = Popen(['gconftool-2', '--load', path])
+        log.debug('Start recover the setting: %s' % path)
+        return process.communicate()
 
     def on_backup_button_clicked(self, widget):
         dir = self.dir_label.get_text()
@@ -284,9 +286,9 @@ class DesktopRecover(TweakModule):
 
             if response == gtk.RESPONSE_YES:
                 process = Popen(['gconftool-2', '--all-dirs', dir], stdout=PIPE)
-                stdout, sterror = process.communicate()
-                if sterror:
-                    log.error(sterror)
+                stdout, stderr = process.communicate()
+                if stderr:
+                    log.error(stderr)
                     #TODO raise error or others
                     return
 
@@ -360,7 +362,34 @@ class DesktopRecover(TweakModule):
             self.update_backup_model(dir)
 
     def on_recover_button_clicked(self, widget):
-        print 'recover'
+        iter = self.backup_combobox.get_active_iter()
+        model = self.backup_combobox.get_model()
+        dir = self.dir_label.get_text()
+        path = model.get_value(iter, 1)
+
+        if dir.count('/') == 2:
+            message = _('Would you like to recover the backup record: %s, %s ?') % (dir, os.path.basename(path))
+        else:
+            message = _('Would you like to recover all the backup record set under %s with time %s ?') % (dir, os.path.basename(path))
+
+        addon_message = _('<b>Notes:</b>While recovery, your desktop will enter a short time no-reponse, please be standby')
+
+        dialog = QuestionDialog(message + '\n\n' + addon_message)
+        response = dialog.run()
+        dialog.destroy()
+
+        if response == gtk.RESPONSE_YES:
+            if dir.count('/') == 1:
+                for line in open(path):
+                    stdout, stderr = self.do_recover_task(line.strip())
+            else:
+                stdout, stderr = self.do_recover_task(path)
+
+            if stderr:
+                log.error(stderr)
+                #TODO raise error or others
+                return
+            InfoDialog(_('Recover successfully!\nYou may need to restart your desktop to take effect')).launch()
 
     def on_reset_all_button_clicked(self, widget):
         print 'reset_all'
