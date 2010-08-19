@@ -228,11 +228,13 @@ class DesktopRecover(TweakModule):
                           1, file)
             self.backup_combobox.set_active_iter(first_iter)
             self.delete_button.set_sensitive(True)
+            self.edit_button.set_sensitive(True)
         else:
             iter = model.append(None)
             model.set(iter, 0, _('No Backup yet'), 1, '')
             self.backup_combobox.set_active_iter(iter)
             self.delete_button.set_sensitive(False)
+            self.edit_button.set_sensitive(False)
 
     def on_cateview_changed(self, widget):
         model, iter = widget.get_selected()
@@ -424,3 +426,28 @@ class DesktopRecover(TweakModule):
                 #TODO raise error or others
                 return
             InfoDialog(_('Reset successfully!\nYou may need to restart your desktop to take effect')).launch()
+
+    def on_edit_button_clicked(self, widget):
+        iter = self.backup_combobox.get_active_iter()
+        model = self.backup_combobox.get_model()
+        dir = self.dir_label.get_text()
+        path = model.get_value(iter, 1)
+
+        dialog = QuestionDialog(_('Please enter the new name for the backup:'),
+            title = _('New Backup Name'))
+
+        vbox = dialog.vbox
+        entry = gtk.Entry()
+        vbox.pack_start(entry, False, False, 0)
+        vbox.show_all()
+
+        res = dialog.run()
+        new_name = entry.get_text()
+        dialog.destroy()
+
+        if new_name:
+            dirname = os.path.dirname(path)
+            new_path = os.path.join(dirname, new_name + '.xml')
+            log.debug('Rename backup file from "%s" to "%s"' % (path, new_path))
+            os.rename(path, new_path)
+        self.update_backup_model(dir)
