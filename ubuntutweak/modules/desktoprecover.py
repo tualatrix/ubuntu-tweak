@@ -170,6 +170,9 @@ class GetTextDialog(QuestionDialog):
         self.text = self.entry.get_text()
         super(GetTextDialog, self).destroy()
 
+    def set_text(self, text):
+        self.entry.set_text(text)
+
     def get_text(self):
         return self.text
 
@@ -230,10 +233,9 @@ class DesktopRecover(TweakModule):
             os.makedirs(name_prefix)
         return name_prefix
 
-    def build_backup_path(self, dir):
+    def build_backup_path(self, dir, name):
         name_prefix = self.build_backup_prefix(dir)
-        timeformat = '%Y-%m-%d-%H-%M.xml'
-        return name_prefix + time.strftime(timeformat, time.localtime(time.time()))
+        return name_prefix + name + '.xml'
 
     def update_backup_model(self, dir):
         model = self.backup_combobox.get_model()
@@ -291,8 +293,8 @@ class DesktopRecover(TweakModule):
             #TODO
             pass
 
-    def do_backup_task(self, dir):
-        backup_name = self.build_backup_path(dir)
+    def do_backup_task(self, dir, name):
+        backup_name = self.build_backup_path(dir, name)
         log.debug("the backup path is %s" % backup_name)
         backup_file = open(backup_name, 'w')
         process = Popen(['gconftool-2', '--dump', dir], stdout=backup_file)
@@ -309,31 +311,22 @@ class DesktopRecover(TweakModule):
         return process.communicate()
 
     def on_backup_button_clicked(self, widget):
-        def add_backup_name_entry(dialog):
-            vbox = dialog.vbox
-
-            hbox = gtk.HBox(False, 12)
-            label = gtk.Label(_('Backup Name'))
-            hbox.pack_start(label, False, False, 0)
-
-            entry = gtk.Entry()
-            entry.set_text(time.strftime('%Y-%m-%d-%H-%M', time.localtime(time.time())))
-            hbox.pack_start(entry)
-
-            vbox.pack_start(hbox)
-            vbox.show_all()
+        def get_time_stamp():
+            return time.strftime('%Y-%m-%d-%H-%M', time.localtime(time.time()))
 
         dir = self.dir_label.get_text()
         log.debug("Start backup the dir: %s" % dir)
 
         # if 1, then root dir
         if dir.count('/') == 1:
-            dialog = QuestionDialog(_('Will start to backup all the settings under <b>%s</b>.\nWould you like to continue?') % dir)
-            add_backup_name_entry(dialog)
+            dialog = GetTextDialog(message=_('Will start to backup all the settings under <b>%s</b>.\nWould you like to continue?' % dir),
+                                   text=get_time_stamp())
+
             response = dialog.run()
             dialog.destroy()
+            name = dialog.get_text()
 
-            if response == gtk.RESPONSE_YES:
+            if response == gtk.RESPONSE_YES and name:
                 process = Popen(['gconftool-2', '--all-dirs', dir], stdout=PIPE)
                 stdout, stderr = process.communicate()
                 if stderr:
@@ -346,14 +339,14 @@ class DesktopRecover(TweakModule):
                 totol_backuped = []
 
                 for subdir in dirlist:
-                    stdout, stderr = self.do_backup_task(subdir)
+                    stdout, stderr = self.do_backup_task(subdir, name)
                     if stderr is not None:
                         break
                     else:
-                        totol_backuped.append(self.build_backup_path(subdir))
+                        totol_backuped.append(self.build_backup_path(subdir, name))
 
                 if stderr is None:
-                    backup_name = self.build_backup_path(dir)
+                    backup_name = self.build_backup_path(dir, name)
                     sum_file = open(backup_name, 'w')
                     sum_file.write('\n'.join(totol_backuped))
                     sum_file.close()
@@ -363,13 +356,14 @@ class DesktopRecover(TweakModule):
                 else:
                     log.debug("Backup error: %s" % stderr)
         else:
-            dialog = QuestionDialog(_('Will start to backup the setting <b>%s</b>.\nWould you like to continue?' % dir))
-            add_backup_name_entry(dialog)
+            dialog = GetTextDialog(message=_('Will start to backup the setting <b>%s</b>.\nWould you like to continue?' % dir),
+                                   text=get_time_stamp())
             response = dialog.run()
             dialog.destroy()
+            name = dialog.get_text()
 
-            if response == gtk.RESPONSE_YES:
-                stdout, stderr = self.do_backup_task(dir)
+            if response == gtk.RESPONSE_YES and name:
+                stdout, stderr = self.do_backup_task(dir, name)
 
                 if stderr is None:
                     InfoDialog("Backuped Successfully").launch()
@@ -484,6 +478,7 @@ class DesktopRecover(TweakModule):
         dialog = GetTextDialog(title='New Backup Name',
                                message=_('Please enter the new name for the backup:'))
 
+        dialog.set_text(os.path.basename(path)[:-4])
         res = dialog.run()
         dialog.destroy()
         new_name = dialog.get_text()
@@ -496,6 +491,7 @@ class DesktopRecover(TweakModule):
                     line = line.strip()
                     dirname = os.path.dirname(line)
                     new_path = os.path.join(dirname, new_name + '.xml')
+                    log.debug('Rename backup file from "%s" to "%s"' % (line, new_path))
                     os.rename(line, new_path)
 
             dirname = os.path.dirname(path)
