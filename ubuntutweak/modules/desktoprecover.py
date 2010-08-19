@@ -146,6 +146,33 @@ class KeyDirView(gtk.TreeView):
                            self.COLUMN_DIR, dir,
                            self.COLUMN_TITLE, title)
 
+class GetTextDialog(QuestionDialog):
+    def __init__(self, title='', message='', text=''):
+        super(GetTextDialog, self).__init__(title=title, message=message)
+
+        self.text = text
+
+        vbox = self.vbox
+
+        hbox = gtk.HBox(False, 12)
+        label = gtk.Label(_('Backup Name'))
+        hbox.pack_start(label, False, False, 0)
+
+        self.entry = gtk.Entry()
+        if text:
+            self.entry.set_text(text)
+        hbox.pack_start(self.entry)
+
+        vbox.pack_start(hbox)
+        vbox.show_all()
+
+    def destroy(self):
+        self.text = self.entry.get_text()
+        super(GetTextDialog, self).destroy()
+
+    def get_text(self):
+        return self.text
+
 class DesktopRecover(TweakModule):
     __title__ = _('Desktop Recover')
     __desc__ = _('Backup and recover your desktop and applications setting easily')
@@ -282,12 +309,27 @@ class DesktopRecover(TweakModule):
         return process.communicate()
 
     def on_backup_button_clicked(self, widget):
+        def add_backup_name_entry(dialog):
+            vbox = dialog.vbox
+
+            hbox = gtk.HBox(False, 12)
+            label = gtk.Label(_('Backup Name'))
+            hbox.pack_start(label, False, False, 0)
+
+            entry = gtk.Entry()
+            entry.set_text(time.strftime('%Y-%m-%d-%H-%M', time.localtime(time.time())))
+            hbox.pack_start(entry)
+
+            vbox.pack_start(hbox)
+            vbox.show_all()
+
         dir = self.dir_label.get_text()
         log.debug("Start backup the dir: %s" % dir)
 
         # if 1, then root dir
         if dir.count('/') == 1:
             dialog = QuestionDialog(_('Will start to backup all the settings under <b>%s</b>.\nWould you like to continue?') % dir)
+            add_backup_name_entry(dialog)
             response = dialog.run()
             dialog.destroy()
 
@@ -321,13 +363,19 @@ class DesktopRecover(TweakModule):
                 else:
                     log.debug("Backup error: %s" % stderr)
         else:
-            stdout, stderr = self.do_backup_task(dir)
+            dialog = QuestionDialog(_('Will start to backup the setting <b>%s</b>.\nWould you like to continue?' % dir))
+            add_backup_name_entry(dialog)
+            response = dialog.run()
+            dialog.destroy()
 
-            if stderr is None:
-                InfoDialog("Backuped Successfully").launch()
-                self.update_backup_model(dir)
-            else:
-                log.debug("Backup error: %s" % stderr)
+            if response == gtk.RESPONSE_YES:
+                stdout, stderr = self.do_backup_task(dir)
+
+                if stderr is None:
+                    InfoDialog("Backuped Successfully").launch()
+                    self.update_backup_model(dir)
+                else:
+                    log.debug("Backup error: %s" % stderr)
 
     def on_delete_button_clicked(self, widget):
         def try_remove_record_in_root_backup(dir, path):
@@ -433,19 +481,23 @@ class DesktopRecover(TweakModule):
         dir = self.dir_label.get_text()
         path = model.get_value(iter, 1)
 
-        dialog = QuestionDialog(_('Please enter the new name for the backup:'),
-            title = _('New Backup Name'))
-
-        vbox = dialog.vbox
-        entry = gtk.Entry()
-        vbox.pack_start(entry, False, False, 0)
-        vbox.show_all()
+        dialog = GetTextDialog(title='New Backup Name',
+                               message=_('Please enter the new name for the backup:'))
 
         res = dialog.run()
-        new_name = entry.get_text()
         dialog.destroy()
+        new_name = dialog.get_text()
+        log.debug('Get the new backup name: %s' % new_name)
 
-        if new_name:
+        if res == gtk.RESPONSE_YES and new_name:
+            # If is root, try to rename all the subdir, then rename itself
+            if dir.count('/') == 1:
+                for line in open(path):
+                    line = line.strip()
+                    dirname = os.path.dirname(line)
+                    new_path = os.path.join(dirname, new_name + '.xml')
+                    os.rename(line, new_path)
+
             dirname = os.path.dirname(path)
             new_path = os.path.join(dirname, new_name + '.xml')
             log.debug('Rename backup file from "%s" to "%s"' % (path, new_path))
