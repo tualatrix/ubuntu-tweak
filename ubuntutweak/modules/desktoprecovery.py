@@ -31,7 +31,7 @@ from ubuntutweak.common.gui import GuiWorker
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.widgets.dialogs import InfoDialog, QuestionDialog, ErrorDialog
 
-log = logging.getLogger('DesktopRecover')
+log = logging.getLogger('DesktopRecovery')
 
 class CateView(gtk.TreeView):
     (COLUMN_ICON,
@@ -111,7 +111,7 @@ class KeyDirView(gtk.TreeView):
         return model
 
     def __add_columns(self):
-        column = gtk.TreeViewColumn(_('KeyDir'))
+        column = gtk.TreeViewColumn(_('Settings'))
 
         renderer = gtk.CellRendererPixbuf()
         column.pack_start(renderer, False)
@@ -155,7 +155,7 @@ class GetTextDialog(QuestionDialog):
         vbox = self.vbox
 
         hbox = gtk.HBox(False, 12)
-        label = gtk.Label(_('Backup Name'))
+        label = gtk.Label(_('Backup Name:'))
         hbox.pack_start(label, False, False, 0)
 
         self.entry = gtk.Entry()
@@ -176,14 +176,14 @@ class GetTextDialog(QuestionDialog):
     def get_text(self):
         return self.text
 
-class DesktopRecover(TweakModule):
-    __title__ = _('Desktop Recover')
-    __desc__ = _('Backup and recover your desktop and applications setting easily')
+class DesktopRecovery(TweakModule):
+    __title__ = _('Desktop Recovery')
+    __desc__ = _('Backup, recover or reset your desktop and applications settings easily')
     __icon__ = 'gconf-editor'
-    __category__ = 'system'
+    __category__ = 'desktop'
 
     def __init__(self):
-        TweakModule.__init__(self, 'desktoprecover.ui')
+        TweakModule.__init__(self, 'desktoprecovery.ui')
 
         self.setup_backup_model()
 
@@ -260,7 +260,7 @@ class DesktopRecover(TweakModule):
             self.edit_button.set_sensitive(True)
         else:
             iter = model.append(None)
-            model.set(iter, 0, _('No Backup yet'), 1, '')
+            model.set(iter, 0, _('No Backup Yet'), 1, '')
             self.backup_combobox.set_active_iter(iter)
             self.delete_button.set_sensitive(False)
             self.edit_button.set_sensitive(False)
