@@ -35,8 +35,8 @@ from ubuntutweak.common.utils import *
 from ubuntutweak.common.misc import filesizeformat
 from ubuntutweak.policykit import PolkitButton, proxy
 from ubuntutweak.common.package import PACKAGE_WORKER
-from ubuntutweak.widgets.dialogs import *
-from ubuntutweak.widgets.utils import ProcessDialog, SmartTerminal, TerminalDialog
+from ubuntutweak.widgets.dialogs import QuestionDialog, InfoDialog, ErrorDialog
+from ubuntutweak.widgets.dialogs import AuthenticateFailDialog, ProcessDialog, TerminalDialog
 from ubuntutweak.modules.sourcecenter import SOURCE_PARSER, PPA_URL
 from ubuntutweak.modules.sourcecenter import get_source_logo_from_filename
 from ubuntutweak.modules.sourcecenter import get_ppa_homepage

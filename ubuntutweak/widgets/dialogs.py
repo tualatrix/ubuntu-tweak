@@ -19,9 +19,10 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import gtk
-import pango
-import gobject
+import vte
 import thread
+import gobject
+import pango
 
 class BusyDialog(gtk.Dialog):
     def __init__(self, parent=None):
@@ -59,18 +60,24 @@ class ProcessDialog(BusyDialog):
         self.set_border_width(8)
         self.set_title('')
         self.set_has_separator(False)
-        self.set_position(gtk.WIN_POS_CENTER_ON_PARENT)
+        self.set_resizable(False)
 
         self.__label = gtk.Label()
+        self.__label.set_alignment(0, 0.5)
         vbox.pack_start(self.__label, False, False, 0)
 
         self.__progressbar = gtk.ProgressBar()
         self.__progressbar.set_ellipsize(pango.ELLIPSIZE_END)
+        self.__progressbar.set_size_request(320, -1)
         vbox.pack_start(self.__progressbar, False, False, 0)
 
+        self.set_position(gtk.WIN_POS_CENTER_ON_PARENT)
         self.show_all()
-        gobject.timeout_add(100, self.on_timeout)
+
+    def run(self):
         thread.start_new_thread(self.process_data, ())
+        gobject.timeout_add(100, self.on_timeout)
+        super(ProcessDialog, self).run()
 
     def pulse(self):
         self.__progressbar.pulse()
@@ -144,3 +151,31 @@ class ServerErrorDialog(ErrorDialog):
         ErrorDialog.__init__(self,
                 _('You need to restart your computer.'), 
                 title = _("Service hasn't initialized yet"))
+
+class SmartTerminal(vte.Terminal):
+    def insert(self, string):
+        column_count = self.get_column_count ()
+        column, row = self.get_cursor_position()
+        if column == 0:
+            column = column_count
+        if column != column_count:
+            self.feed(' ' * (column_count - column))
+        space_length = column_count - len(string)
+        string = string + ' ' * space_length
+        self.feed(string)
+
+class TerminalDialog(ProcessDialog):
+    def __init__(self, parent):
+        super(TerminalDialog, self).__init__(parent=parent)
+
+        self.set_position(gtk.WIN_POS_CENTER_ALWAYS)
+        self.expendar = gtk.Expander()
+        self.expendar.set_spacing(6)
+        self.expendar.set_label(_('Details'))
+        self.vbox.pack_start(self.expendar, False, False, 6)
+
+        self.terminal = SmartTerminal()
+        self.terminal.set_size_request(562, 362)
+        self.expendar.add(self.terminal)
+
+        self.vbox.show_all()
