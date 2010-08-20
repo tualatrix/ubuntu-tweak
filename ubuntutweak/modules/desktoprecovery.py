@@ -261,7 +261,8 @@ class BackupProgressDialog(ProcessDialog):
 
 class DesktopRecovery(TweakModule):
     __title__ = _('Desktop Recovery')
-    __desc__ = _('Backup, recover or reset your desktop and applications settings easily')
+    __desc__ = _('Backup and recover your desktop and applications settings easily.\n'
+                 'You can also use "Reset" to reset to system default settings')
     __icon__ = 'gconf-editor'
     __category__ = 'desktop'
 
