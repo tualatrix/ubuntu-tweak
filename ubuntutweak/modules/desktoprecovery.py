@@ -215,7 +215,6 @@ class BackupProgressDialog(ProcessDialog):
         self.error = False
 
         super(BackupProgressDialog, self).__init__(parent=parent)
-        self.set_dialog_lable(_('Backup settings...'))
 
     def process_data(self):
         dir = self.dir
@@ -329,12 +328,14 @@ class DesktopRecovery(TweakModule):
             self.backup_combobox.set_active_iter(first_iter)
             self.delete_button.set_sensitive(True)
             self.edit_button.set_sensitive(True)
+            self.recover_button.set_sensitive(True)
         else:
             iter = model.append(None)
             model.set(iter, 0, _('No Backup Yet'), 1, '')
             self.backup_combobox.set_active_iter(iter)
             self.delete_button.set_sensitive(False)
             self.edit_button.set_sensitive(False)
+            self.recover_button.set_sensitive(False)
 
     def on_cateview_changed(self, widget):
         model, iter = widget.get_selected()
@@ -373,7 +374,7 @@ class DesktopRecovery(TweakModule):
 
         # if 1, then root dir
         if dir.count('/') == 1:
-            dialog = GetTextDialog(message=_('Will start to backup all the settings under <b>%s</b>.\nWould you like to continue?' % dir),
+            dialog = GetTextDialog(message=_('Backup all the settings under <b>%s</b>.\nWould you like to continue?' % dir),
                                    text=get_time_stamp())
 
             response = dialog.run()
@@ -387,12 +388,12 @@ class DesktopRecovery(TweakModule):
                 dialog.destroy()
 
                 if dialog.error == False:
-                    InfoDialog("Backuped Successfully!").launch()
+                    self.show_backup_successful_dialog()
                     self.update_backup_model(dir)
                 else:
-                    InfoDialog("Backuped Failed!").launch()
+                    self.show_backup_failed_dialog()
         else:
-            dialog = GetTextDialog(message=_('Will start to backup the setting <b>%s</b>.\nWould you like to continue?' % dir),
+            dialog = GetTextDialog(message=_('Backup the setting: <b>%s</b>.\nWould you like to continue?' % dir),
                                    text=get_time_stamp())
             response = dialog.run()
             dialog.destroy()
@@ -402,9 +403,10 @@ class DesktopRecovery(TweakModule):
                 stdout, stderr = do_backup_task(dir, name)
 
                 if stderr is None:
-                    InfoDialog("Backuped Successfully").launch()
+                    self.show_backup_successful_dialog()
                     self.update_backup_model(dir)
                 else:
+                    self.show_backup_failed_dialog()
                     log.debug("Backup error: %s" % stderr)
 
     def on_delete_button_clicked(self, widget):
@@ -432,9 +434,9 @@ class DesktopRecovery(TweakModule):
 
         path = model.get_value(iter, 1)
         if dir.count('/') == 2:
-            dialog = QuestionDialog(_('Would you like to delete the backup record: %s, %s ?') % (dir, os.path.basename(path)))
+            dialog = QuestionDialog(_('Would you like to delete the backup <b>%s/%s</b>?') % (dir, os.path.basename(path)[:-4]))
         else:
-            dialog = QuestionDialog(_('Would you like to delete the backup record set under %s with time %s ?') % (dir, os.path.basename(path)))
+            dialog = QuestionDialog(_('Would you like to delete all backup under <b>%s</b> with name <b>%s</b>?') % (dir, os.path.basename(path)[:-4]))
         response = dialog.run()
         dialog.destroy()
         if response == gtk.RESPONSE_YES:
@@ -453,11 +455,11 @@ class DesktopRecovery(TweakModule):
         path = model.get_value(iter, 1)
 
         if dir.count('/') == 2:
-            message = _('Would you like to recover the backup record: %s, %s ?') % (dir, os.path.basename(path))
+            message = _('Would you like to recover the backup <b>%s/%s</b>?') % (dir, os.path.basename(path)[:-4])
         else:
-            message = _('Would you like to recover all the backup record set under %s with time %s ?') % (dir, os.path.basename(path))
+            message = _('Would you like to recover all backup under <b>%s</b> with name <b>%s</b>?') % (dir, os.path.basename(path)[:-4])
 
-        addon_message = _('<b>Notes:</b>While recovery, your desktop will enter a short time no-reponse, please be standby')
+        addon_message = _('<b>NOTES</b>: While recovering, your desktop will have no response for a short time.')
 
         dialog = QuestionDialog(message + '\n\n' + addon_message)
         response = dialog.run()
@@ -474,7 +476,7 @@ class DesktopRecovery(TweakModule):
                 log.error(stderr)
                 #TODO raise error or others
                 return
-            InfoDialog(_('Recover successfully!\nYou may need to restart your desktop to take effect')).launch()
+            InfoDialog(_('Recover Successful!\nYou may need to restart your desktop to take effect')).launch()
 
     def on_reset_button_clicked(self, widget):
         iter = self.backup_combobox.get_active_iter()
@@ -482,11 +484,11 @@ class DesktopRecovery(TweakModule):
         dir = self.dir_label.get_text()
 
         if dir.count('/') == 2:
-            message = _('Would you like to reset the setting: %s ?' % dir)
+            message = _('Would you like to reset the setting <b>%s</b>?') % dir
         else:
-            message = _('Would you like to reset all the settings under %s?' % dir)
+            message = _('Would you like to reset all the settings under <b>%s</b>?') % dir
 
-        addon_message = _('<b>Notes:</b>While reset, your desktop will enter a short time no-reponse, please be standby')
+        addon_message = _('<b>NOTES</b>: While reseting, your desktop will have no response for a short time.')
 
         dialog = QuestionDialog(message + '\n\n' + addon_message)
         response = dialog.run()
@@ -503,7 +505,7 @@ class DesktopRecovery(TweakModule):
                 log.error(stderr)
                 #TODO raise error or others
                 return
-            InfoDialog(_('Reset successfully!\nYou may need to restart your desktop to take effect')).launch()
+            InfoDialog(_('Reset Successful!\nYou may need to restart your desktop to take effect')).launch()
 
     def on_edit_button_clicked(self, widget):
         def try_rename_record_in_root_backup(dir, old_path, new_path):
@@ -521,7 +523,7 @@ class DesktopRecovery(TweakModule):
         dir = self.dir_label.get_text()
         path = model.get_value(iter, 1)
 
-        dialog = GetTextDialog(title='New Backup Name',
+        dialog = GetTextDialog(title=_('New Backup Name'),
                                message=_('Please enter the new name for the backup:'))
 
         dialog.set_text(os.path.basename(path)[:-4])
@@ -552,3 +554,9 @@ class DesktopRecovery(TweakModule):
             try_rename_record_in_root_backup(dir, path, new_path)
 
         self.update_backup_model(dir)
+
+    def show_backup_successful_dialog(self):
+        InfoDialog(_("Backup Successful!")).launch()
+
+    def show_backup_failed_dialog(self):
+        ErrorDialog(_("Backup Failed!")).launch()
