@@ -470,6 +470,16 @@ class DesktopRecovery(TweakModule):
             InfoDialog(_('Reset successfully!\nYou may need to restart your desktop to take effect')).launch()
 
     def on_edit_button_clicked(self, widget):
+        def try_rename_record_in_root_backup(dir, old_path, new_path):
+            rootpath = self.build_backup_prefix('/'.join(dir.split('/')[:2])) + os.path.basename(path)
+            if os.path.exists(rootpath):
+                lines = open(rootpath).read().split()
+                lines.remove(old_path)
+                lines.append(new_path)
+
+                new = open(rootpath, 'w')
+                new.write('\n'.join(lines))
+                new.close()
         iter = self.backup_combobox.get_active_iter()
         model = self.backup_combobox.get_model()
         dir = self.dir_label.get_text()
@@ -487,15 +497,22 @@ class DesktopRecovery(TweakModule):
         if res == gtk.RESPONSE_YES and new_name:
             # If is root, try to rename all the subdir, then rename itself
             if dir.count('/') == 1:
+                totol_renamed = []
                 for line in open(path):
                     line = line.strip()
                     dirname = os.path.dirname(line)
                     new_path = os.path.join(dirname, new_name + '.xml')
                     log.debug('Rename backup file from "%s" to "%s"' % (line, new_path))
                     os.rename(line, new_path)
+                    totol_renamed.append(new_path)
+                sum_file = open(path, 'w')
+                sum_file.write('\n'.join(totol_renamed))
+                sum_file.close()
 
             dirname = os.path.dirname(path)
             new_path = os.path.join(dirname, new_name + '.xml')
             log.debug('Rename backup file from "%s" to "%s"' % (path, new_path))
             os.rename(path, new_path)
+            try_rename_record_in_root_backup(dir, path, new_path)
+
         self.update_backup_model(dir)
