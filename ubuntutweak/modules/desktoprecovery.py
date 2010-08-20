@@ -30,8 +30,39 @@ from ubuntutweak.common.consts import CONFIG_ROOT
 from ubuntutweak.common.gui import GuiWorker
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.widgets.dialogs import InfoDialog, QuestionDialog, ErrorDialog
+from ubuntutweak.widgets.dialogs import ProcessDialog
 
 log = logging.getLogger('DesktopRecovery')
+
+def build_backup_prefix(dir):
+    name_prefix = os.path.join(CONFIG_ROOT, 'desktoprecover', dir[1:]) + '/'
+
+    log.debug("build_backup_prefix: %s" % name_prefix)
+
+    if not os.path.exists(name_prefix):
+        os.makedirs(name_prefix)
+    return name_prefix
+
+def build_backup_path(dir, name):
+    name_prefix = build_backup_prefix(dir)
+    return name_prefix + name + '.xml'
+
+def do_backup_task(dir, name):
+    backup_name = build_backup_path(dir, name)
+    log.debug("the backup path is %s" % backup_name)
+    backup_file = open(backup_name, 'w')
+    process = Popen(['gconftool-2', '--dump', dir], stdout=backup_file)
+    return process.communicate()
+
+def do_recover_task(path):
+    process = Popen(['gconftool-2', '--load', path])
+    log.debug('Start recover the setting: %s' % path)
+    return process.communicate()
+
+def do_reset_task(dir):
+    process = Popen(['gconftool-2', '--recursive-unset', dir])
+    log.debug('Start reset the setting: %s' % dir)
+    return process.communicate()
 
 class CateView(gtk.TreeView):
     (COLUMN_ICON,
@@ -176,6 +207,59 @@ class GetTextDialog(QuestionDialog):
     def get_text(self):
         return self.text
 
+class BackupProgressDialog(ProcessDialog):
+    def __init__(self, parent, name, dir):
+        self.file_name = name
+        self.dir = dir
+        self.done = False
+        self.error = False
+
+        super(BackupProgressDialog, self).__init__(parent=parent)
+        self.set_dialog_lable(_('Backup settings...'))
+
+    def process_data(self):
+        dir = self.dir
+        name = self.file_name
+
+        process = Popen(['gconftool-2', '--all-dirs', dir], stdout=PIPE)
+        stdout, stderr = process.communicate()
+        if stderr:
+            log.error(stderr)
+            #TODO raise error or others
+            self.error = True
+            self.done = True
+            return
+
+        dirlist = stdout.split()
+        dirlist.sort()
+        totol_backuped = []
+
+        for subdir in dirlist:
+            self.set_progress_text(_('Backuping...%s') % subdir)
+            stdout, stderr = do_backup_task(subdir, name)
+            if stderr is not None:
+                log.error(stderr)
+                self.error = True
+                break
+            else:
+                totol_backuped.append(build_backup_path(subdir, name))
+
+        if stderr is None:
+            backup_name = build_backup_path(dir, name)
+            sum_file = open(backup_name, 'w')
+            sum_file.write('\n'.join(totol_backuped))
+            sum_file.close()
+
+        self.done = True
+
+    def on_timeout(self):
+        self.pulse()
+
+        if not self.done:
+            return True
+        else:
+            self.destroy()
+
 class DesktopRecovery(TweakModule):
     __title__ = _('Desktop Recovery')
     __desc__ = _('Backup, recover or reset your desktop and applications settings easily')
@@ -224,24 +308,11 @@ class DesktopRecovery(TweakModule):
         self.backup_combobox.pack_start(cell, True)
         self.backup_combobox.add_attribute(cell, 'text', 0)
 
-    def build_backup_prefix(self, dir):
-        name_prefix = os.path.join(CONFIG_ROOT, 'desktoprecover', dir[1:]) + '/'
-
-        log.debug("build_backup_prefix: %s" % name_prefix)
-
-        if not os.path.exists(name_prefix):
-            os.makedirs(name_prefix)
-        return name_prefix
-
-    def build_backup_path(self, dir, name):
-        name_prefix = self.build_backup_prefix(dir)
-        return name_prefix + name + '.xml'
-
     def update_backup_model(self, dir):
         model = self.backup_combobox.get_model()
         model.clear()
 
-        name_prefix = self.build_backup_prefix(dir)
+        name_prefix = build_backup_prefix(dir)
 
         file_lsit = glob.glob(name_prefix + '*.xml')
         file_lsit.sort(reverse=True)
@@ -293,23 +364,6 @@ class DesktopRecovery(TweakModule):
             #TODO
             pass
 
-    def do_backup_task(self, dir, name):
-        backup_name = self.build_backup_path(dir, name)
-        log.debug("the backup path is %s" % backup_name)
-        backup_file = open(backup_name, 'w')
-        process = Popen(['gconftool-2', '--dump', dir], stdout=backup_file)
-        return process.communicate()
-
-    def do_recover_task(self, path):
-        process = Popen(['gconftool-2', '--load', path])
-        log.debug('Start recover the setting: %s' % path)
-        return process.communicate()
-
-    def do_reset_task(self, dir):
-        process = Popen(['gconftool-2', '--recursive-unset', dir])
-        log.debug('Start reset the setting: %s' % dir)
-        return process.communicate()
-
     def on_backup_button_clicked(self, widget):
         def get_time_stamp():
             return time.strftime('%Y-%m-%d-%H-%M', time.localtime(time.time()))
@@ -327,34 +381,16 @@ class DesktopRecovery(TweakModule):
             name = dialog.get_text()
 
             if response == gtk.RESPONSE_YES and name:
-                process = Popen(['gconftool-2', '--all-dirs', dir], stdout=PIPE)
-                stdout, stderr = process.communicate()
-                if stderr:
-                    log.error(stderr)
-                    #TODO raise error or others
-                    return
+                dialog = BackupProgressDialog(self.get_toplevel(), name, dir)
 
-                dirlist = stdout.split()
-                dirlist.sort()
-                totol_backuped = []
+                dialog.run()
+                dialog.destroy()
 
-                for subdir in dirlist:
-                    stdout, stderr = self.do_backup_task(subdir, name)
-                    if stderr is not None:
-                        break
-                    else:
-                        totol_backuped.append(self.build_backup_path(subdir, name))
-
-                if stderr is None:
-                    backup_name = self.build_backup_path(dir, name)
-                    sum_file = open(backup_name, 'w')
-                    sum_file.write('\n'.join(totol_backuped))
-                    sum_file.close()
-
-                    InfoDialog("Backuped Successfully").launch()
+                if dialog.error == False:
+                    InfoDialog("Backuped Successfully!").launch()
                     self.update_backup_model(dir)
                 else:
-                    log.debug("Backup error: %s" % stderr)
+                    InfoDialog("Backuped Failed!").launch()
         else:
             dialog = GetTextDialog(message=_('Will start to backup the setting <b>%s</b>.\nWould you like to continue?' % dir),
                                    text=get_time_stamp())
@@ -363,7 +399,7 @@ class DesktopRecovery(TweakModule):
             name = dialog.get_text()
 
             if response == gtk.RESPONSE_YES and name:
-                stdout, stderr = self.do_backup_task(dir, name)
+                stdout, stderr = do_backup_task(dir, name)
 
                 if stderr is None:
                     InfoDialog("Backuped Successfully").launch()
@@ -373,7 +409,7 @@ class DesktopRecovery(TweakModule):
 
     def on_delete_button_clicked(self, widget):
         def try_remove_record_in_root_backup(dir, path):
-            rootpath = self.build_backup_prefix('/'.join(dir.split('/')[:2])) + os.path.basename(path)
+            rootpath = build_backup_prefix('/'.join(dir.split('/')[:2])) + os.path.basename(path)
             if os.path.exists(rootpath):
                 lines = open(rootpath).read().split()
                 lines.remove(path)
@@ -430,9 +466,9 @@ class DesktopRecovery(TweakModule):
         if response == gtk.RESPONSE_YES:
             if dir.count('/') == 1:
                 for line in open(path):
-                    stdout, stderr = self.do_recover_task(line.strip())
+                    stdout, stderr = do_recover_task(line.strip())
             else:
-                stdout, stderr = self.do_recover_task(path)
+                stdout, stderr = do_recover_task(path)
 
             if stderr:
                 log.error(stderr)
@@ -459,9 +495,9 @@ class DesktopRecovery(TweakModule):
         if response == gtk.RESPONSE_YES:
             if dir.count('/') == 1:
                 for line in open(path):
-                    stdout, stderr = self.do_reset_task(line.strip())
+                    stdout, stderr = do_reset_task(line.strip())
             else:
-                stdout, stderr = self.do_reset_task(dir)
+                stdout, stderr = do_reset_task(dir)
 
             if stderr:
                 log.error(stderr)
@@ -471,7 +507,7 @@ class DesktopRecovery(TweakModule):
 
     def on_edit_button_clicked(self, widget):
         def try_rename_record_in_root_backup(dir, old_path, new_path):
-            rootpath = self.build_backup_prefix('/'.join(dir.split('/')[:2])) + os.path.basename(path)
+            rootpath = build_backup_prefix('/'.join(dir.split('/')[:2])) + os.path.basename(path)
             if os.path.exists(rootpath):
                 lines = open(rootpath).read().split()
                 lines.remove(old_path)
