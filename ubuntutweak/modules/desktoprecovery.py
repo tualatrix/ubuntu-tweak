@@ -98,7 +98,7 @@ class CateView(gtk.TreeView):
         return model
 
     def __add_columns(self):
-        column = gtk.TreeViewColumn(_('Categories'))
+        column = gtk.TreeViewColumn(_('Category'))
 
         renderer = gtk.CellRendererPixbuf()
         column.pack_start(renderer, False)
@@ -142,7 +142,7 @@ class KeyDirView(gtk.TreeView):
         return model
 
     def __add_columns(self):
-        column = gtk.TreeViewColumn(_('Settings'))
+        column = gtk.TreeViewColumn(_('Setting'))
 
         renderer = gtk.CellRendererPixbuf()
         column.pack_start(renderer, False)
