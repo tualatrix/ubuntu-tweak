@@ -14,7 +14,6 @@ Homepage: http://ubuntu-tweak.com
 Package: ubuntu-tweak
 Architecture: all
 Depends: python,
- python-gobject,
  python-gtk2,
  python-apt,
  python-gconf,
@@ -28,27 +27,7 @@ Depends: python,
  ${python:Depends},
  ${shlibs:Depends},
  ${misc:Depends}
-Description: config Ubuntu tool
- Ubuntu Tweak is an application designed to config Ubuntu easier for everyone.
- .
- It provided many useful desktop and system options that the default desktop
- environment isn’t provided.
- .
- Features of Ubuntu Tweak:
-  * View of Basic System Information(Distribution, Kernel, CPU, Memory, etc.)
-  * GNOME Session Control
-  * Auto Start Program Control
-  * Quick install common usded applications
-  * A lot of third-party sources to keep application up-to-date
-  * Clean unneeded packages or cache to free the disk space
-  * Show/Hide and Change Splash screen
-  * Show/Hide desktop icons or Mounted Volumes
-  * Show/Hide/Rename Computer, Home, Trash icon or Network icon
-  * Tweak Metacity Window Manager’s Style and Behavior
-  * Compiz Fusion settings, Screen Edge Settings, Window Effects Settings, Menu
-    Effect Settings
-  * Set the Shortcuts to let qucikly access your favourite applications
-  * GNOME Panel Settings
-  * Nautilus Settings
-  * Advanced Power Management Settings
-  * System Security Settings
+Description: Ubuntu Configuration Tool
+ Ubuntu Tweak is an application which makes configuring Ubuntu easier for
+ everyone. It allows tweaking of many useful desktop and system configuration
+ options which are unavailable via native system tools.
