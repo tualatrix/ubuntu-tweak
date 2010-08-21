@@ -263,7 +263,7 @@ class DesktopRecovery(TweakModule):
     __title__ = _('Desktop Recovery')
     __desc__ = _('Backup and recover your desktop and application settings with ease.\n'
                  'You can also use "Reset" to reset to the system default settings.')
-    __icon__ = 'gconf-editor'
+    __icon__ = 'gnome-control-center'
     __category__ = 'desktop'
 
     def __init__(self):
