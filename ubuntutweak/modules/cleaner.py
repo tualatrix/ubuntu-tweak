@@ -325,7 +325,7 @@ class PackageView(gtk.TreeView):
         icon = get_icon_with_name('deb', 24)
         list = self.PACKAGE_WORKER.list_autoremovable()
         self.total_num = len(list)
-        self.__column.set_title(_('Packages'))
+        self.__column.set_title(_('Unneeded Packages'))
 
         while gtk.events_pending():
             gtk.main_iteration()
@@ -353,7 +353,7 @@ class PackageView(gtk.TreeView):
         icon = get_icon_with_name('deb', 24)
         list = self.PACKAGE_WORKER.list_unneeded_kerenl()
         self.total_num = len(list)
-        self.__column.set_title(_('Packages'))
+        self.__column.set_title(_('Kernel Packages'))
 
         while gtk.events_pending():
             gtk.main_iteration()
@@ -382,7 +382,7 @@ class PackageView(gtk.TreeView):
         list = map(lambda file: '%s/%s' % (cache_dir, file),
                     filter(lambda x:x.endswith('deb'), os.listdir(cache_dir))) 
         self.total_num = len(list)
-        self.__column.set_title(_('Package Cache'))
+        self.__column.set_title(_('Cached Package Files'))
 
         while gtk.events_pending():
             gtk.main_iteration()
@@ -403,7 +403,7 @@ class PackageView(gtk.TreeView):
 
     def update_ppa_model(self):
         self.set_busy()
-        self.__column.set_title('PPA')
+        self.__column.set_title('PPA Sources')
         model = self.get_model()
         model.clear()
         self.mode = 'ppa'
