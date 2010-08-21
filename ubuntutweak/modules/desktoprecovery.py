@@ -35,7 +35,7 @@ from ubuntutweak.widgets.dialogs import ProcessDialog
 log = logging.getLogger('DesktopRecovery')
 
 def build_backup_prefix(dir):
-    name_prefix = os.path.join(CONFIG_ROOT, 'desktoprecover', dir[1:]) + '/'
+    name_prefix = os.path.join(CONFIG_ROOT, 'desktoprecovery', dir[1:]) + '/'
 
     log.debug("build_backup_prefix: %s" % name_prefix)
 
