@@ -10,6 +10,7 @@ import inspect
 import gobject
 
 from ubuntutweak.common.consts import DATA_DIR
+from ubuntutweak.common.systeminfo import SystemInfo
 from ubuntutweak.utils import icon
 
 def module_cmp(m1, m2):
@@ -80,23 +81,9 @@ class ModuleLoader:
 
     def is_supported_desktop(self, desktop_name):
         if desktop_name:
-            return self._get_desktop() in desktop_name
+            return SystemInfo.desktop in desktop_name
         else:
             return True
-
-    def _get_desktop(self):
-        if os.popen('xprop -root _DT_SAVE_MODE | grep xfce').read() != '':
-            return 'xfce'
-        elif os.getenv('KDE_FULL_SESSION'):
-            return 'kde'
-        elif os.getenv('DESKTOP_SESSION') == 'Lubuntu':
-            return 'lxde'
-        elif os.getenv('GDMSESSION') == 'une':
-            return 'une'
-        elif os.popen('xlsclients | grep -i gnome-session').read() != '':
-            return 'gnome'
-        else:
-            return ''
 
 class TweakModule(gtk.VBox):
     __title__ = ''

@@ -19,8 +19,10 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import os
+
 from xml.sax import make_parser
 from xml.dom import minidom
+from ubuntutweak.common.consts import APP, VERSION
 
 class GnomeVersion:
     _xmldoc = minidom.parse("/usr/share/gnome-about/gnome-version.xml")
@@ -45,6 +47,20 @@ def parse_codename():
         pass
     return ''
 
+def get_desktop():
+    if os.popen('xprop -root _DT_SAVE_MODE | grep xfce').read() != '':
+        return 'xfce'
+    elif os.getenv('KDE_FULL_SESSION'):
+        return 'kde'
+    elif os.getenv('DESKTOP_SESSION') == 'Lubuntu':
+        return 'lxde'
+    elif os.getenv('GDMSESSION') == 'une':
+        return 'une'
+    elif os.popen('xlsclients | grep -i gnome-session').read() != '':
+        return 'gnome'
+    else:
+        return ''
+
 def parse_distro():
     return file('/etc/issue.net').readline()[:-1]
 
@@ -60,6 +76,8 @@ class DistroInfo:
 class SystemInfo:
     gnome = GnomeVersion.description
     distro = DistroInfo.distro
+    app = " ".join([APP, VERSION])
+    desktop = get_desktop()
 
 class module_check:
     codename = DistroInfo.codename

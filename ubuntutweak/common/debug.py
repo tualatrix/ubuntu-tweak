@@ -29,6 +29,7 @@ import webbrowser
 
 from ubuntutweak.common.gui import GuiWorker
 from ubuntutweak.common.consts import CONFIG_ROOT
+from ubuntutweak.common.systeminfo import SystemInfo
 
 #The terminal has 8 colors with codes from 0 to 7
 BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE = range(8)
@@ -57,7 +58,14 @@ def run_traceback(level):
         textview = worker.get_object('%s_view' % level)
         buffer = textview.get_buffer()
 
-        buffer.set_text(output.getvalue())
+        buffer.set_text("Distribution: %s\n"
+                        "Application: %s\n"
+                        "Desktop: %s\n"
+                        "\n"
+                        "%s" % (SystemInfo.distro,
+                                SystemInfo.app,
+                                SystemInfo.desktop,
+                                output.getvalue()))
         if dialog.run() == gtk.RESPONSE_YES:
             webbrowser.open('https://bugs.launchpad.net/ubuntu-tweak/+filebug')
         dialog.destroy()
