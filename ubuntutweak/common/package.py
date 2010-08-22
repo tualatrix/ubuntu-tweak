@@ -32,6 +32,7 @@ import apt
 import apt_pkg
 
 from xdg.DesktopEntry import DesktopEntry
+from ubuntutweak.common.debug import run_traceback
 from ubuntutweak.widgets.dialogs import InfoDialog, ErrorDialog
 
 p_kernel = re.compile('\d')
@@ -97,15 +98,19 @@ class PackageWorker:
 
     def list_autoremovable(self):
         list = []
-        for pkg in self.cache.keys():
-            p = self.cache[pkg]
-            try:
-                need_remove = getattr(p, 'isAutoRemovable')
-            except:
-                need_remove = p.isInstalled and p._depcache.IsGarbage(p._pkg)
+        try:
+            for pkg in self.cache.keys():
+                p = self.cache[pkg]
+                try:
+                    need_remove = getattr(p, 'isAutoRemovable')
+                except:
+                    need_remove = p.isInstalled and p._depcache.IsGarbage(p._pkg)
 
-            if need_remove:
-                list.append(pkg)
+                if need_remove:
+                    list.append(pkg)
+        except Exception, e:
+            log.error(e)
+            run_traceback('error')
 
         return list
 
@@ -119,11 +124,16 @@ class PackageWorker:
 
     def list_unneeded_kerenl(self):
         list = []
-        for pkg in self.cache.keys():
-            if self.cache[pkg].isInstalled:
-                for base in self.basenames:
-                    if pkg.startswith(base) and p_kernel.findall(pkg) and not self.is_current_kernel(pkg):
-                        list.append(pkg)
+        try:
+            for pkg in self.cache.keys():
+                if self.cache[pkg].isInstalled:
+                    for base in self.basenames:
+                        if pkg.startswith(base) and p_kernel.findall(pkg) and not self.is_current_kernel(pkg):
+                            list.append(pkg)
+        except Exception, e:
+            log.error(e)
+            run_traceback('error')
+
         return list
 
     def get_pkgsummary(self, pkg):
