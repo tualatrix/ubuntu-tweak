@@ -120,7 +120,7 @@ class CateView(gtk.TreeView):
                            self.COLUMN_DIR, path,
                            self.COLUMN_TITLE, title)
 
-class KeyDirView(gtk.TreeView):
+class SettingView(gtk.TreeView):
     (COLUMN_ICON,
      COLUMN_DIR,
      COLUMN_TITLE
@@ -284,12 +284,12 @@ class DesktopRecovery(TweakModule):
         vpaned = gtk.VPaned()
         hbox.pack_start(vpaned)
 
-        self.keydirview = KeyDirView()
-        self.keydir_selection = self.keydirview.get_selection()
-        self.keydir_selection.connect('changed', self.on_keydirview_changed)
+        self.settingview = SettingView()
+        self.setting_selection = self.settingview.get_selection()
+        self.setting_selection.connect('changed', self.on_settingview_changed)
         sw = gtk.ScrolledWindow()
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        sw.add(self.keydirview)
+        sw.add(self.settingview)
         vpaned.pack1(sw, True, False)
 
         self.window1.remove(self.recover_box)
@@ -342,7 +342,7 @@ class DesktopRecovery(TweakModule):
         model, iter = widget.get_selected()
         if iter:
             dir = model.get_value(iter, self.cateview.COLUMN_DIR)
-            self.keydirview.update_model(dir)
+            self.settingview.update_model(dir)
 
             self.dir_label.set_text(dir)
             self.update_backup_model(dir)
@@ -351,20 +351,12 @@ class DesktopRecovery(TweakModule):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
             self.on_cateview_changed(self.cate_selection)
 
-    def on_keydirview_changed(self, widget):
-        model, rows = widget.get_selected_rows()
-        if len(rows) > 2:
-            #TODO
-            pass
-        elif len(rows) == 1:
-            model, iter = widget.get_selected()
-
-            dir = model.get_value(iter, self.keydirview.COLUMN_DIR)
+    def on_settingview_changed(self, widget):
+        model, iter = widget.get_selected()
+        if iter:
+            dir = model.get_value(iter, self.settingview.COLUMN_DIR)
             self.dir_label.set_text(dir)
             self.update_backup_model(dir)
-        else:
-            #TODO
-            pass
 
     def on_backup_button_clicked(self, widget):
         def get_time_stamp():
