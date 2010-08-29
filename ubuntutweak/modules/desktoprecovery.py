@@ -368,7 +368,7 @@ class DesktopRecovery(TweakModule):
 
         # if 1, then root dir
         if dir.count('/') == 1:
-            dialog = GetTextDialog(message=_('Backup all settings under: <b>%s</b>\nWould you like to continue?' % dir),
+            dialog = GetTextDialog(message=_('Backup all settings under: <b>%s</b>\nWould you like to continue?') % dir,
                                    text=get_time_stamp())
 
             response = dialog.run()
@@ -387,7 +387,7 @@ class DesktopRecovery(TweakModule):
                 else:
                     self.show_backup_failed_dialog()
         else:
-            dialog = GetTextDialog(message=_('Backup settings under: <b>%s</b>\nWould you like to continue?' % dir),
+            dialog = GetTextDialog(message=_('Backup settings under: <b>%s</b>\nWould you like to continue?') % dir,
                                    text=get_time_stamp())
             response = dialog.run()
             dialog.destroy()
@@ -517,8 +517,7 @@ class DesktopRecovery(TweakModule):
         dir = self.dir_label.get_text()
         path = model.get_value(iter, 1)
 
-        dialog = GetTextDialog(title=_('New Backup Name'),
-                               message=_('Please enter a new name for your backup:'))
+        dialog = GetTextDialog(message=_('Please enter a new name for your backup:'))
 
         dialog.set_text(os.path.basename(path)[:-4])
         res = dialog.run()
