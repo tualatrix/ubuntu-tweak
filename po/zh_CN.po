@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-22 22:56+0800\n"
-"PO-Revision-Date: 2010-07-23 03:48+0000\n"
+"POT-Creation-Date: 2010-08-21 19:49+0800\n"
+"PO-Revision-Date: 2010-08-25 14:26+0000\n"
 "Last-Translator: TualatriX <Unknown>\n"
 "Language-Team: TualatriX <tualatrix@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2010-07-24 02:40+0000\n"
+"X-Launchpad-Export-Date: 2010-08-28 06:16+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: CHINA\n"
 "X-Poedit-Language: Chinese\n"
@@ -167,6 +167,26 @@ msgstr "点击按钮来更改登录屏幕的背景"
 msgid "Click the button to change the login screen logo"
 msgstr "点击按钮来更改登录屏幕的Logo"
 
+#: ../data/ui/desktoprecovery.ui.h:1
+msgid "Backup History:"
+msgstr "备份历史："
+
+#: ../data/ui/desktoprecovery.ui.h:2
+msgid "R_eset"
+msgstr "重置(_E)"
+
+#: ../data/ui/desktoprecovery.ui.h:3
+msgid "Setting Name:"
+msgstr "设置名称："
+
+#: ../data/ui/desktoprecovery.ui.h:4
+msgid "_Backup"
+msgstr "备份(_B)"
+
+#: ../data/ui/desktoprecovery.ui.h:5
+msgid "_Recover"
+msgstr "恢复(_R)"
+
 #: ../ubuntutweak/mainwindow.py:78
 msgid "Welcome to"
 msgstr "欢迎来到"
@@ -176,8 +196,8 @@ msgid "Tweak otherwise hidden settings."
 msgstr "设定大量隐藏设置"
 
 #: ../ubuntutweak/mainwindow.py:85
-msgid "Clean up unneeded packages to free up diskspace."
-msgstr "清理不必要的软件包来释放磁盘空间。"
+msgid "Clean up unused packages to free up diskspace."
+msgstr "清理未使用的包以便释放磁盘空间。"
 
 #: ../ubuntutweak/mainwindow.py:86
 msgid "Easily install up-to-date versions of many applications."
@@ -206,6 +226,7 @@ msgid "Welcome"
 msgstr "欢迎使用"
 
 #: ../ubuntutweak/mainwindow.py:141
+#: ../ubuntutweak/modules/desktoprecovery.py:74
 msgid "Applications"
 msgstr "应用程序"
 
@@ -214,6 +235,7 @@ msgid "Startup"
 msgstr "启动控制"
 
 #: ../ubuntutweak/mainwindow.py:143 ../ubuntutweak/modules/userdir.py:45
+#: ../ubuntutweak/modules/desktoprecovery.py:75
 msgid "Desktop"
 msgstr "桌面"
 
@@ -222,6 +244,7 @@ msgid "Personal"
 msgstr "个人设定"
 
 #: ../ubuntutweak/mainwindow.py:145
+#: ../ubuntutweak/modules/desktoprecovery.py:76
 msgid "System"
 msgstr "系统"
 
@@ -236,21 +259,21 @@ msgstr "捐助(_D)"
 
 #: ../ubuntutweak/mainwindow.py:248
 msgid ""
-"It is highly recommend to enable the stable source of Ubuntu Tweak to get "
-"security and normal update.\n"
-"If you don't enable the source, you will need to update manually.\n"
+"It is highly recommended that you enable the Ubuntu Tweak stable repository "
+"to get security and maintenance updates.\n"
+"If you don't enable this repository, you will need to update manually.\n"
 "\n"
-"Would you like to enable the stable source?"
+"Would you like to enable this repository?"
 msgstr ""
-"强烈推荐您启用Ubuntu Tweak的稳定源以便及时取得安全和常规更新。\n"
-"如果不启用该源，您将只能手动更新Ubuntu Tweak。\n"
+"强烈推荐您启用 Ubuntu Tweak 的稳定源以取得安全和常规更新。\n"
+"如果您不启用该源，则需要手动更新。\n"
 "\n"
-"您想要自动启用稳定源吗？"
+"您想要启用该源吗？"
 
 #: ../ubuntutweak/mainwindow.py:251
-#: ../ubuntutweak/modules/gnomesettings.py:196
+#: ../ubuntutweak/modules/gnomesettings.py:204
 #: ../ubuntutweak/modules/sourcecenter.py:1112
-#: ../ubuntutweak/modules/nautilus.py:139
+#: ../ubuntutweak/modules/nautilus.py:143
 msgid "Warning"
 msgstr "警告"
 
@@ -293,7 +316,8 @@ msgstr ""
 "  GrayWaLL https://launchpad.net/~graywall\n"
 "  TualatriX https://launchpad.net/~tualatrix\n"
 "  leaeasy https://launchpad.net/~leaeasy\n"
-"  sxdhaoren https://launchpad.net/~hupengnihao"
+"  sxdhaoren https://launchpad.net/~hupengnihao\n"
+"  wrchiu https://launchpad.net/~wrchiu"
 
 #: ../ubuntutweak/mainwindow.py:493
 #, python-format
@@ -311,24 +335,23 @@ msgstr ""
 msgid "Software Update"
 msgstr "软件更新"
 
-#: ../ubuntutweak/widgets/widgets.py:104 ../ubuntutweak/widgets/widgets.py:129
+#: ../ubuntutweak/widgets/widgets.py:45
+#, python-format
+msgid "Reset setting to default value: %s"
+msgstr "重置设置为默认值：%s"
+
+#: ../ubuntutweak/widgets/widgets.py:118 ../ubuntutweak/widgets/widgets.py:143
 #: ../ubuntutweak/modules/icons.py:105
 msgid "Unset"
 msgstr "未设置"
 
-#: ../ubuntutweak/widgets/widgets.py:253
+#: ../ubuntutweak/widgets/widgets.py:275
 msgid "Please press the new key combination"
 msgstr "请按下你的新组合键"
 
-#: ../ubuntutweak/widgets/widgets.py:302
+#: ../ubuntutweak/widgets/widgets.py:324
 msgid "Disabled"
 msgstr "禁用"
-
-#: ../ubuntutweak/widgets/utils.py:86
-#: ../ubuntutweak/modules/sourceeditor.py:87
-#: ../ubuntutweak/modules/sourcecenter.py:944
-msgid "Details"
-msgstr "详细"
 
 #: ../ubuntutweak/widgets/treeviews.py:71
 msgid "Create folder"
@@ -365,28 +388,34 @@ msgstr ""
 "\n"
 "里面包含文件!"
 
-#: ../ubuntutweak/widgets/dialogs.py:139
+#: ../ubuntutweak/widgets/dialogs.py:146
 msgid "An unexpected error has occurred."
 msgstr "发生了未预期的错误。"
 
-#: ../ubuntutweak/widgets/dialogs.py:140
+#: ../ubuntutweak/widgets/dialogs.py:147
 msgid "Could not authenticate"
 msgstr "无法授权"
 
-#: ../ubuntutweak/widgets/dialogs.py:145
+#: ../ubuntutweak/widgets/dialogs.py:152
 msgid "You need to restart your computer."
 msgstr "你需要重启你的电脑。"
 
-#: ../ubuntutweak/widgets/dialogs.py:146
+#: ../ubuntutweak/widgets/dialogs.py:153
 msgid "Service hasn't initialized yet"
 msgstr "服务尚未初始化"
 
+#: ../ubuntutweak/widgets/dialogs.py:174
+#: ../ubuntutweak/modules/sourceeditor.py:87
+#: ../ubuntutweak/modules/sourcecenter.py:944
+msgid "Details"
+msgstr "详细"
+
 #: ../ubuntutweak/preferences.py:75 ../ubuntutweak/modules/filetype.py:179
 #: ../ubuntutweak/modules/filetype.py:214
-#: ../ubuntutweak/modules/metacity.py:185
-#: ../ubuntutweak/modules/metacity.py:190
-#: ../ubuntutweak/modules/metacity.py:203
-#: ../ubuntutweak/modules/metacity.py:216
+#: ../ubuntutweak/modules/metacity.py:186
+#: ../ubuntutweak/modules/metacity.py:192
+#: ../ubuntutweak/modules/metacity.py:206
+#: ../ubuntutweak/modules/metacity.py:220
 #: ../ubuntutweak/modules/shortcuts.py:99
 #: ../ubuntutweak/modules/shortcuts.py:209
 msgid "None"
@@ -457,117 +486,11 @@ msgstr[0] "%d 分钟前"
 msgid "Just Now"
 msgstr "刚刚"
 
-#: ../ubuntutweak/common/appdata.py:24
-msgid "Development Version of Mozilla Firefox"
-msgstr "Mozilla Firefox 开发版本"
-
-#: ../ubuntutweak/common/appdata.py:25
-msgid "Development version of Compiz"
-msgstr "Compiz的开发版本"
-
-#: ../ubuntutweak/common/appdata.py:26
-msgid "Google's Linux Repository"
-msgstr "Google 的 Linux 软件源"
-
-#: ../ubuntutweak/common/appdata.py:27
-msgid "Development Version of K Desktop Environment"
-msgstr "KDE 桌面环境开发版本"
-
-#: ../ubuntutweak/common/appdata.py:28
-msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
-msgstr "轻量级 X11 桌面环境：GPicView，PCManFM"
-
-#: ../ubuntutweak/common/appdata.py:29
-msgid ""
-"WebkitGtk+, Liferea (Webkit), Midori and other WebKit related projects."
-msgstr "WebkitGtk+, Liferea (Webkit), Midori和其他与WebKit相关的工程。"
-
-#: ../ubuntutweak/common/appdata.py:30
-msgid ""
-"Multimedia, Entertainment and Distraction In Ubuntu\n"
-"Medibuntu is a repository of packages that cannot be included into the "
-"Ubuntu distribution for legal reasons (copyright, license, patent, etc)."
-msgstr ""
-"Ubuntu 下的多媒体与娱乐。\n"
-"Medibuntu 是一个软件仓库，它包含那些因为法律（版权，许可证，专利等等）原因而不能包含在 Ubuntu 配置中的软件包。"
-
-#: ../ubuntutweak/common/appdata.py:32
-msgid ""
-"Ubuntu repository for Chinese users.\n"
-"Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and "
-"other softwares."
-msgstr ""
-"为中文用户准备的 Ubuntu 软件源。\n"
-"包括了永中 Office、Ubuntu Tweak、iBus 输入法、OpenOffice.org 3.0 和其他软件。"
-
-#: ../ubuntutweak/common/appdata.py:34
-msgid ""
-"GetDeb extends the existing software options for Ubuntu (and derived) Linux "
-"distributions by providing major updates and software not yet available on "
-"the official Ubuntu repositories."
-msgstr ""
-"GetDeb 扩大 Ubuntu (和由 Ubuntu 衍生的) Linux 发行版现有的软件选择，提供 Ubuntu 官方软件源尚未推行的软件与更新。"
-
-#: ../ubuntutweak/common/appdata.py:35
-msgid "Updated versions of X.org drivers, libraries, etc. for Ubuntu."
-msgstr "更新Ubuntu的X.org驱动、系统库等版本"
-
-#: ../ubuntutweak/common/appdata.py:36
-msgid ""
-"Gnome Games built from Git, with all experimental features and staging games "
-"enabled."
-msgstr "基于最新Git源码的GNOME游戏"
-
-#: ../ubuntutweak/common/appdata.py:37
-msgid ""
-"Ubuntu Mozilla Security Team provides beta and final stable/security updates "
-"for mozilla software in its PPA"
-msgstr "Ubuntu Mozilla Security Team提供Mozilla软件测试和稳定版本的安全更新。"
-
-#: ../ubuntutweak/common/appdata.py:38
-msgid "A cross-platform application and UI framework"
-msgstr "一款跨平台应用程序及用户界面框架"
-
-#: ../ubuntutweak/common/appdata.py:39
-msgid "Mono is a cross platform, open source .NET development framework."
-msgstr "。Mono 是一款跨平台、开源的 .NET 开发框架。"
-
-#: ../ubuntutweak/common/appdata.py:40
-msgid ""
-"Clutter is an OpenGL based interactive canvas library, designed for creating "
-"fast, mainly 2D single window applications such as media box UIs, "
-"presentations, kiosk style applications and so on."
-msgstr "Clutter是一套基于OpenGL的图形库，设计为创建快速的、具备丰富视觉效果的单窗口的应用程序。"
-
-#: ../ubuntutweak/common/appdata.py:41
-msgid ""
-"Gloobus is an extension of Gnome designed to enable a full screen preview of "
-"any kind of file."
-msgstr "Gloobus是GNOME桌面的一个扩展，它可以为任何种类的文件启用快速全屏预览。"
-
-#: ../ubuntutweak/common/appdata.py:42
-msgid ""
-"Behind this African word, referring to the notion of imagination, you can "
-"find some themes for GNOME"
-msgstr "在这个非洲词语背后，隐含着想象力的概念，您可以找到一些针对 GNOME 的主题"
-
-#: ../ubuntutweak/common/appdata.py:43
-msgid ""
-"Updates for Kubuntu releases which are due to go to Ubuntu Updates. Mostly "
-"KDE point releases."
-msgstr "将要进入“Ubuntu 更新”源的 Kubuntu 更新。主要是 KDE 的正式版。"
-
-#: ../ubuntutweak/common/appdata.py:44
-msgid ""
-"Backports of new versions of KDE for Kubuntu which are not yet tested enough "
-"to go to Ubuntu Backports."
-msgstr "最新版本的KDE桌面"
-
 #: ../ubuntutweak/common/package.py:186
 #: ../ubuntutweak/modules/appcenter.py:640
 #: ../ubuntutweak/modules/compiz.py:410
 #: ../ubuntutweak/modules/sourcecenter.py:144
-#: ../ubuntutweak/modules/nautilus.py:167
+#: ../ubuntutweak/modules/nautilus.py:171
 msgid "Update Successful!"
 msgstr "更新成功！"
 
@@ -575,7 +498,7 @@ msgstr "更新成功！"
 #: ../ubuntutweak/modules/appcenter.py:642
 #: ../ubuntutweak/modules/compiz.py:412
 #: ../ubuntutweak/modules/sourcecenter.py:146
-#: ../ubuntutweak/modules/nautilus.py:169
+#: ../ubuntutweak/modules/nautilus.py:173
 msgid "Update Failed!"
 msgstr "更新失败！"
 
@@ -610,13 +533,14 @@ msgstr "解锁(_U)"
 
 #: ../ubuntutweak/policykit/dbusproxy.py:34
 msgid ""
-"The daemon of Ubuntu Tweak doesn't start correctly, that means some advanced "
-"features may not work.\n"
-"If you want to help developer to debug, try to run \"<b>sudo ubuntu-tweak-"
-"daemon</b>\" under terminal."
+"The Ubuntu Tweak daemon didn't start correctly. This means that some "
+"advanced features may not work.\n"
+"If you want to help developers debugging, try to run \"<b>sudo "
+"/usr/share/ubuntu-tweak/ubuntu-tweak-daemon</b>\" in a terminal."
 msgstr ""
-"Ubuntu Tweak的守护程序无法正常启动，这意味着一些高级特性可能无法工作。\n"
-"如果您想要帮助开发者进行除错，请在终端运行：<b>sudo ubuntu-tweak-daemon</b>。"
+"Ubuntu Tweak 的守护程序无法正常启动，这意味着一些高级特性可能无法工作。\n"
+"如果您想要帮助开发者进行除错，请在终端运行：<b>sudo /usr/share/ubuntu-tweak/ubuntu-tweak-"
+"daemon</b>。"
 
 #: ../ubuntutweak/modules/userdir.py:46
 msgid "Download"
@@ -652,13 +576,13 @@ msgstr "选择文件夹"
 
 #: ../ubuntutweak/modules/userdir.py:174
 msgid ""
-"Ubuntu Tweak will restore the chosen directory to the default location.\n"
-"However, you must move your files back into place by yourself.\n"
+"Ubuntu Tweak will restore the selected directory to it's default location.\n"
+"However, you must move your files back into place manually.\n"
 "Do you wish to continue?"
 msgstr ""
 "Ubuntu Tweak 会将所选的文件夹还原到默认的位置。\n"
-"但是，你必须手动将你的文件移动至新的位置。\n"
-"你是否要继续？"
+"但是，您必须手动将你的文件移动至新的位置。\n"
+"您是否要继续？"
 
 #: ../ubuntutweak/modules/userdir.py:208
 msgid "Directory"
@@ -682,7 +606,7 @@ msgstr "默认目录位置"
 
 #: ../ubuntutweak/modules/userdir.py:241
 msgid ""
-"You can change the paths of the default folders here.\n"
+"You can change the paths of default folders here.\n"
 "Don't change the location of your desktop folder unless you know what you "
 "are doing."
 msgstr ""
@@ -789,31 +713,31 @@ msgstr "系统安全选项"
 msgid "Disable \"Run Application\" dialog (Alt+F2)"
 msgstr "禁用\"运行应用程序\"对话框(Alt+F2)"
 
-#: ../ubuntutweak/modules/lockdown.py:48
+#: ../ubuntutweak/modules/lockdown.py:49
 msgid "Disable \"Lock Screen\""
 msgstr "禁用\"锁定屏幕\""
 
-#: ../ubuntutweak/modules/lockdown.py:51
+#: ../ubuntutweak/modules/lockdown.py:53
 msgid "Disable printing"
 msgstr "禁用打印"
 
-#: ../ubuntutweak/modules/lockdown.py:54
+#: ../ubuntutweak/modules/lockdown.py:57
 msgid "Disable printer settings"
 msgstr "禁用打印机设置"
 
-#: ../ubuntutweak/modules/lockdown.py:57
+#: ../ubuntutweak/modules/lockdown.py:61
 msgid "Disable save to disk"
 msgstr "禁用保存到硬盘"
 
-#: ../ubuntutweak/modules/lockdown.py:60
+#: ../ubuntutweak/modules/lockdown.py:65
 msgid "Disable \"Fast User Switching\""
 msgstr "禁用“快速用户切换”"
 
-#: ../ubuntutweak/modules/lockdown.py:66
+#: ../ubuntutweak/modules/lockdown.py:72
 msgid "Fix the appearance of themes when granted root privileges"
 msgstr "修正当获得root权限后的主题问题"
 
-#: ../ubuntutweak/modules/lockdown.py:72
+#: ../ubuntutweak/modules/lockdown.py:78
 msgid "Miscellaneous Options"
 msgstr "其它选项"
 
@@ -883,16 +807,16 @@ msgid "Source Editor"
 msgstr "软件源编辑器"
 
 #: ../ubuntutweak/modules/sourceeditor.py:353
-msgid "Freely edit your software sources to suit your needs."
-msgstr "自由地编辑软件源以适应你的需要"
+msgid "Manually edit your software sources to suit your needs."
+msgstr "手工编辑你的软件源以符合你的需要。"
 
 #: ../ubuntutweak/modules/sourceeditor.py:450
-msgid "Please input the correct information about sources!"
+msgid "Please input the correct source information!"
 msgstr "请输入正确的软件源信息！"
 
 #: ../ubuntutweak/modules/sourceeditor.py:463
 msgid ""
-"You can submit your sources to our server to help building the sources list, "
+"You can submit your sources to our server to help expand the sources list, "
 "or you can use the official sources.\n"
 "Do you wish to use the official sources?"
 msgstr ""
@@ -917,10 +841,10 @@ msgstr "提交成功"
 
 #: ../ubuntutweak/modules/sourceeditor.py:496
 msgid ""
-"You've changed the sources.list without saving it.\n"
-"Do you want to save it?"
+"You've edited sources.list without saving changes.\n"
+"Do you want to save changes?"
 msgstr ""
-"您更改了sources.list但是没有保存它。\n"
+"您更改了 sources.list 但是没有保存它。\n"
 "您想要现在保存么？"
 
 #: ../ubuntutweak/modules/sourceeditor.py:507
@@ -953,6 +877,7 @@ msgstr ""
 "您确定要继续吗？"
 
 #: ../ubuntutweak/modules/appcenter.py:193
+#: ../ubuntutweak/modules/desktoprecovery.py:101
 msgid "Category"
 msgstr "分类"
 
@@ -974,14 +899,13 @@ msgstr "软件中心"
 
 #: ../ubuntutweak/modules/appcenter.py:534
 msgid ""
-"A simple but more efficient way for finding and installing popular "
-"applications.\n"
-"Data will be automatically synchronized with the remote server.\n"
+"A simple but efficient way for finding and installing popular applications.\n"
+"Data will be synchronized automatically with the remote server.\n"
 "You can click the \"Sync\" button to perform a manual check for updates."
 msgstr ""
-"一种简单高效的寻找安装流行应用程序的方法、\n"
+"一种简单高效的寻找安装流行应用程序的方法。\n"
 "本地数据将会自动与远程服务器同步。\n"
-"当然你也可以单击\"同步\"按钮手动进行同步。"
+"当然您也可以单击“同步”按钮手动进行同步。"
 
 #: ../ubuntutweak/modules/appcenter.py:539
 msgid "Visit Online Application Center"
@@ -1123,9 +1047,9 @@ msgid_plural "Install Updates"
 msgstr[0] "安装更新"
 
 #: ../ubuntutweak/modules/metacity.py:37
-#: ../ubuntutweak/modules/metacity.py:194
-#: ../ubuntutweak/modules/metacity.py:207
-#: ../ubuntutweak/modules/metacity.py:220
+#: ../ubuntutweak/modules/metacity.py:196
+#: ../ubuntutweak/modules/metacity.py:210
+#: ../ubuntutweak/modules/metacity.py:224
 msgid "Menu"
 msgstr "弹出菜单"
 
@@ -1134,16 +1058,16 @@ msgid "Title"
 msgstr "标题"
 
 #: ../ubuntutweak/modules/metacity.py:39
-#: ../ubuntutweak/modules/metacity.py:190
-#: ../ubuntutweak/modules/metacity.py:203
-#: ../ubuntutweak/modules/metacity.py:216
+#: ../ubuntutweak/modules/metacity.py:192
+#: ../ubuntutweak/modules/metacity.py:206
+#: ../ubuntutweak/modules/metacity.py:220
 msgid "Maximize"
 msgstr "最大化"
 
 #: ../ubuntutweak/modules/metacity.py:40
-#: ../ubuntutweak/modules/metacity.py:193
-#: ../ubuntutweak/modules/metacity.py:206
-#: ../ubuntutweak/modules/metacity.py:219
+#: ../ubuntutweak/modules/metacity.py:195
+#: ../ubuntutweak/modules/metacity.py:209
+#: ../ubuntutweak/modules/metacity.py:223
 msgid "Minimize"
 msgstr "最小化"
 
@@ -1175,76 +1099,76 @@ msgstr "窗口标题栏触发动作"
 msgid "Titlebar mouse wheel action"
 msgstr "标题栏鼠标滚轮动作"
 
-#: ../ubuntutweak/modules/metacity.py:185
-#: ../ubuntutweak/modules/metacity.py:193
-#: ../ubuntutweak/modules/metacity.py:206
-#: ../ubuntutweak/modules/metacity.py:219
+#: ../ubuntutweak/modules/metacity.py:186
+#: ../ubuntutweak/modules/metacity.py:195
+#: ../ubuntutweak/modules/metacity.py:209
+#: ../ubuntutweak/modules/metacity.py:223
 msgid "Roll up"
 msgstr "卷起"
 
-#: ../ubuntutweak/modules/metacity.py:188
+#: ../ubuntutweak/modules/metacity.py:189
 msgid "Titlebar double-click action"
 msgstr "标题栏双击动作"
 
-#: ../ubuntutweak/modules/metacity.py:191
-#: ../ubuntutweak/modules/metacity.py:204
-#: ../ubuntutweak/modules/metacity.py:217
+#: ../ubuntutweak/modules/metacity.py:193
+#: ../ubuntutweak/modules/metacity.py:207
+#: ../ubuntutweak/modules/metacity.py:221
 msgid "Maximize Horizontally"
 msgstr "水平方向最大化"
 
-#: ../ubuntutweak/modules/metacity.py:192
-#: ../ubuntutweak/modules/metacity.py:205
-#: ../ubuntutweak/modules/metacity.py:218
+#: ../ubuntutweak/modules/metacity.py:194
+#: ../ubuntutweak/modules/metacity.py:208
+#: ../ubuntutweak/modules/metacity.py:222
 msgid "Maximize Vertically"
 msgstr "垂直方向最大化"
 
-#: ../ubuntutweak/modules/metacity.py:194
-#: ../ubuntutweak/modules/metacity.py:207
-#: ../ubuntutweak/modules/metacity.py:220
+#: ../ubuntutweak/modules/metacity.py:196
+#: ../ubuntutweak/modules/metacity.py:210
+#: ../ubuntutweak/modules/metacity.py:224
 msgid "Lower"
 msgstr "降至最下层"
 
-#: ../ubuntutweak/modules/metacity.py:201
+#: ../ubuntutweak/modules/metacity.py:203
 msgid "Titlebar middle-click action"
 msgstr "标题栏中键点击动作"
 
-#: ../ubuntutweak/modules/metacity.py:214
+#: ../ubuntutweak/modules/metacity.py:217
 msgid "Titlebar right-click action"
 msgstr "标题栏右键点击动作"
 
-#: ../ubuntutweak/modules/metacity.py:230
+#: ../ubuntutweak/modules/metacity.py:234
 msgid "Window Decoration Effects"
 msgstr "窗口装饰效果"
 
-#: ../ubuntutweak/modules/metacity.py:232
+#: ../ubuntutweak/modules/metacity.py:236
 msgid "Use Metacity window theme"
 msgstr "使用 Metacity 窗口主题"
 
-#: ../ubuntutweak/modules/metacity.py:235
+#: ../ubuntutweak/modules/metacity.py:240
 msgid "Enable active window transparency"
 msgstr "启用活动窗口透明功能"
 
-#: ../ubuntutweak/modules/metacity.py:238
+#: ../ubuntutweak/modules/metacity.py:244
 msgid "Active window transparency level"
 msgstr "活动窗口的透明度"
 
-#: ../ubuntutweak/modules/metacity.py:242
+#: ../ubuntutweak/modules/metacity.py:249
 msgid "Enable inactive window transparency"
 msgstr "启用非活动窗口透明功能"
 
-#: ../ubuntutweak/modules/metacity.py:245
+#: ../ubuntutweak/modules/metacity.py:253
 msgid "Inactive window shade transparency level"
 msgstr "非活动窗口的阴影透明度"
 
-#: ../ubuntutweak/modules/metacity.py:252
+#: ../ubuntutweak/modules/metacity.py:261
 msgid "Enable Metacity's compositing feature"
 msgstr "启用Metacity的混合特性"
 
-#: ../ubuntutweak/modules/metacity.py:255
+#: ../ubuntutweak/modules/metacity.py:266
 msgid "Compositing Manager"
 msgstr "复合管理器"
 
-#: ../ubuntutweak/modules/metacity.py:299
+#: ../ubuntutweak/modules/metacity.py:308
 msgid ""
 "To enable Metacity's compositing feature, you should manually disable Visual "
 "Effects in \"Appearance\"."
@@ -1271,8 +1195,8 @@ msgid "Desktop Icon Settings"
 msgstr "桌面图标设置"
 
 #: ../ubuntutweak/modules/icons.py:109
-msgid "Change the name and toggle visibilty of desktop icons"
-msgstr "修改桌面图标的名字及按钮的可见度"
+msgid "Rename and toggle visibilty of desktop icons"
+msgstr "重命名并设置桌面图标的可见性"
 
 #: ../ubuntutweak/modules/icons.py:118
 msgid "Show desktop icons"
@@ -1308,80 +1232,80 @@ msgstr "面板设置"
 msgid "Display warning when removing a panel"
 msgstr "移除面板时显示警告"
 
-#: ../ubuntutweak/modules/gnomesettings.py:58
+#: ../ubuntutweak/modules/gnomesettings.py:59
 msgid "Complete lockdown of all panels"
 msgstr "完全锁定所有面板"
 
-#: ../ubuntutweak/modules/gnomesettings.py:61
+#: ../ubuntutweak/modules/gnomesettings.py:63
 msgid "Enable panel animations"
 msgstr "启用面板动画"
 
-#: ../ubuntutweak/modules/gnomesettings.py:66
+#: ../ubuntutweak/modules/gnomesettings.py:69
 msgid "Menu Settings"
 msgstr "菜单设置"
 
-#: ../ubuntutweak/modules/gnomesettings.py:68
+#: ../ubuntutweak/modules/gnomesettings.py:71
 msgid "Show Input Method menu in the context menu"
 msgstr "在上下文菜单显示输入法工具条"
 
-#: ../ubuntutweak/modules/gnomesettings.py:71
+#: ../ubuntutweak/modules/gnomesettings.py:75
 msgid "Show Unicode Control Character menu in the context menu"
 msgstr "在上下文菜单中使用万国码字符"
 
-#: ../ubuntutweak/modules/gnomesettings.py:74
+#: ../ubuntutweak/modules/gnomesettings.py:79
 msgid "Show icons in menus"
 msgstr "在菜单中显示图标"
 
-#: ../ubuntutweak/modules/gnomesettings.py:77
+#: ../ubuntutweak/modules/gnomesettings.py:83
 msgid "Show icons on buttons"
 msgstr "在按钮中显示图标"
 
-#: ../ubuntutweak/modules/gnomesettings.py:83
+#: ../ubuntutweak/modules/gnomesettings.py:90
 msgid "Screensaver"
 msgstr "屏幕保护程序"
 
-#: ../ubuntutweak/modules/gnomesettings.py:85
-msgid "Enable user switching when screen is locked."
-msgstr "当屏幕被锁定时启用用户切换"
+#: ../ubuntutweak/modules/gnomesettings.py:92
+msgid "Enable user switching whilst screen is locked."
+msgstr "登出、重启或关机时禁止弹出确认对话框"
 
-#: ../ubuntutweak/modules/gnomesettings.py:90
+#: ../ubuntutweak/modules/gnomesettings.py:98
 msgid "Enable system-wide \"Recent Documents\" list"
 msgstr "启用系统通用的”最近的文档“列表"
 
-#: ../ubuntutweak/modules/gnomesettings.py:93
+#: ../ubuntutweak/modules/gnomesettings.py:101
 msgid "History"
 msgstr "历史记录"
 
-#: ../ubuntutweak/modules/gnomesettings.py:100
+#: ../ubuntutweak/modules/gnomesettings.py:108
 msgid "Click this button to change the menu logo image"
 msgstr "单击这个按钮来修改菜单栏的Logo图像"
 
-#: ../ubuntutweak/modules/gnomesettings.py:113
-#: ../ubuntutweak/modules/loginsettings.py:142
+#: ../ubuntutweak/modules/gnomesettings.py:121
+#: ../ubuntutweak/modules/loginsettings.py:146
 msgid "Choose a new logo image"
 msgstr "选择一张新的Logo图像"
 
-#: ../ubuntutweak/modules/gnomesettings.py:119
+#: ../ubuntutweak/modules/gnomesettings.py:127
 msgid "PNG images with 24x24 size or SVG images"
 msgstr "24x24大小的PNG图像或者SVG图像"
 
-#: ../ubuntutweak/modules/gnomesettings.py:152
+#: ../ubuntutweak/modules/gnomesettings.py:160
 msgid ""
 "This image size isn't suitable for the panel.\n"
-"It should be 24x24."
+"It should measure 24x24."
 msgstr ""
-"这张图像的大小不适合用在这个菜单栏上。\n"
-"它应该一张是24X24大小的图像。"
+"当前图像的尺寸不适合面板。\n"
+"它应该为24x24大小。"
 
-#: ../ubuntutweak/modules/gnomesettings.py:172
+#: ../ubuntutweak/modules/gnomesettings.py:180
 msgid "Do you want your changes to take effect immediately?"
 msgstr "是否要立即生效？"
 
-#: ../ubuntutweak/modules/gnomesettings.py:195
+#: ../ubuntutweak/modules/gnomesettings.py:203
 msgid ""
-"By disabling the \"Recent Documents\", it may break other software such as "
-"VMware Player's history feature."
-msgstr "如果禁用“最近文档“，这可能会破坏一些软件如VMware Player的历史特性。"
+"Disabling \"Recent Documents\" may break other software, for example the "
+"history feature in VMware Player."
+msgstr "禁用“最近文档“可能会破坏其他软件，比如VMware Player的的历史功能。"
 
 #: ../ubuntutweak/modules/powermanager.py:28
 msgid "Advanced Power Manager Settings"
@@ -1399,19 +1323,19 @@ msgstr "高级电源管理设置"
 msgid "Enable \"Lock screen\" when \"Blank Screen\" activates"
 msgstr "当“黑屏”时启用“锁定屏幕”"
 
-#: ../ubuntutweak/modules/powermanager.py:42
+#: ../ubuntutweak/modules/powermanager.py:43
 msgid "Lock screen on hibernate"
 msgstr "休眠时锁定屏幕"
 
-#: ../ubuntutweak/modules/powermanager.py:45
+#: ../ubuntutweak/modules/powermanager.py:47
 msgid "Lock screen on suspend"
 msgstr "挂起时锁定屏幕"
 
-#: ../ubuntutweak/modules/powermanager.py:48
+#: ../ubuntutweak/modules/powermanager.py:51
 msgid "LCD brightness when using AC power"
 msgstr "使用交流电源时提升LCD屏幕亮度"
 
-#: ../ubuntutweak/modules/powermanager.py:52
+#: ../ubuntutweak/modules/powermanager.py:56
 msgid "LCD brightness when using battery"
 msgstr "使用电池时降低LCD屏幕亮度"
 
@@ -1501,7 +1425,7 @@ msgstr "有新的软件可用"
 
 #. checkbutton
 #: ../ubuntutweak/modules/sourcecenter.py:125
-#: ../ubuntutweak/modules/cleaner.py:728
+#: ../ubuntutweak/modules/cleaner.py:729
 msgid "Select All"
 msgstr "全选/全不选"
 
@@ -1596,10 +1520,9 @@ msgstr "软件源中心"
 msgid ""
 "A collection of software sources to ensure your applications are always up-"
 "to-date.\n"
-"Here you can also add applications which are unavailable in the offical "
-"repositories.\n"
-"The list of available sources will be obtained automatically from a remote "
-"server.\n"
+"Here you can add applications unavailable in the official repositories.\n"
+"A list of available software sources will be obtained automatically from a "
+"remote server.\n"
 "You can click the \"Sync\" button to manually check for updates"
 msgstr ""
 "一些精心收集的软件源使你的应用程序时刻保持最新。\n"
@@ -1615,7 +1538,7 @@ msgstr "访问在线软件源中心"
 #: ../ubuntutweak/modules/sourcecenter.py:1000
 #, python-format
 msgid "disabled on upgrade to %s"
-msgstr ""
+msgstr "无法升级到%s"
 
 #: ../ubuntutweak/modules/sourcecenter.py:1009
 msgid ""
@@ -1779,7 +1702,7 @@ msgstr "管理脚本"
 #: ../ubuntutweak/modules/scripts.py:146
 msgid ""
 "Scripts can be used to complete all kinds of tasks.\n"
-"You can drag and drop scripts from File Manager.\n"
+"You can drag and drop scripts here from File Manager.\n"
 "'Scripts' will then be added to the context menu."
 msgstr ""
 "脚本可以用来完成各种任务。\n"
@@ -1848,9 +1771,9 @@ msgstr "管理模板"
 
 #: ../ubuntutweak/modules/templates.py:117
 msgid ""
-"Here you can freely manage your document templates.\n"
-"You can add files as templates by dragging them onto this window.\n"
-"You can create new documents based on these templates from the Nautilus "
+"Here you can manage your document templates.\n"
+"You can add files as templates by dragging them into this window.\n"
+"You can then create new documents based on these templates from the Nautilus "
 "right-click menu."
 msgstr ""
 "在此可以管理你的文档模板。\n"
@@ -1860,11 +1783,11 @@ msgstr ""
 #: ../ubuntutweak/modules/templates.py:128
 #, python-format
 msgid ""
-"Templates path is wrong! The current path is point to \"%s\".\n"
-"Please reset it to a folder under your Home Folder."
+"The templates path is incorrect! The current path points to \"%s\".\n"
+"Please reset it to a location within your Home Folder."
 msgstr ""
 "模板路径错误！当前路径指为 “%s”。\n"
-"请重设为在你首目录下的文件夹。"
+"请重设为在主目录下的文件夹。"
 
 #: ../ubuntutweak/modules/templates.py:137
 msgid "Go And Set"
@@ -1879,8 +1802,8 @@ msgid "Rebuild System Templates"
 msgstr "重建系统模板"
 
 #: ../ubuntutweak/modules/templates.py:192
-msgid "Templates path is still wrong, Please reset it!"
-msgstr "模板路径依旧错误，请重新设置！"
+msgid "The templates path is still incorrect, please reset it!"
+msgstr "模板的路径依然有错误，请重新设置！"
 
 #: ../ubuntutweak/modules/templates.py:204
 msgid ""
@@ -1902,39 +1825,35 @@ msgstr "控制系统会话相关的特性"
 msgid "File Manager"
 msgstr "文件管理器"
 
-#: ../ubuntutweak/modules/session.py:52
+#: ../ubuntutweak/modules/session.py:53
 msgid "Panel"
 msgstr "面板"
 
-#: ../ubuntutweak/modules/session.py:56
+#: ../ubuntutweak/modules/session.py:58
 msgid "Window Manager"
 msgstr "窗口管理器"
 
-#: ../ubuntutweak/modules/session.py:67
+#: ../ubuntutweak/modules/session.py:70
 msgid "Session Control"
 msgstr "会话控制"
 
-#: ../ubuntutweak/modules/session.py:76
+#: ../ubuntutweak/modules/session.py:79
 msgid "Session Options"
 msgstr "会话选项"
 
-#: ../ubuntutweak/modules/session.py:78
+#: ../ubuntutweak/modules/session.py:81
 msgid "Automatically save open applications when logging out"
 msgstr "登出时记住已打开的应用程序"
 
-#: ../ubuntutweak/modules/session.py:81
-msgid "Allow TCP Connections (Remote Desktop Connect)"
-msgstr "允许 TCP 连接（远程桌面连接）"
-
-#: ../ubuntutweak/modules/session.py:84
-msgid "Suppress the dialog to confirm logout, restart and shutdown action"
+#: ../ubuntutweak/modules/session.py:85
+msgid "Suppress the logout, restart and shutdown confirmation dialogue box."
 msgstr "登出、重启或关机时禁止弹出确认对话框"
 
-#: ../ubuntutweak/modules/session.py:109
+#: ../ubuntutweak/modules/session.py:111
 msgid "Please enter a valid application command line."
 msgstr "请输入正确的应用程序命令行"
 
-#: ../ubuntutweak/modules/session.py:109
+#: ../ubuntutweak/modules/session.py:111
 #, python-format
 msgid "\"%s\" is not available."
 msgstr "\"%s\" 并不存在。"
@@ -1977,13 +1896,17 @@ msgstr "先前版本"
 msgid "System Version"
 msgstr "系统版本"
 
-#: ../ubuntutweak/modules/cleaner.py:328 ../ubuntutweak/modules/cleaner.py:356
-msgid "Packages"
-msgstr "软件包"
+#: ../ubuntutweak/modules/cleaner.py:328
+msgid "Unneeded Packages"
+msgstr "不需要的软件包"
+
+#: ../ubuntutweak/modules/cleaner.py:356
+msgid "Kernel Packages"
+msgstr "内核软件包"
 
 #: ../ubuntutweak/modules/cleaner.py:385
-msgid "Package Cache"
-msgstr "软件包缓存"
+msgid "Cached Package Files"
+msgstr "已缓存的软件包文件"
 
 #: ../ubuntutweak/modules/cleaner.py:399
 #, python-format
@@ -1994,79 +1917,78 @@ msgstr ""
 "<b>%s</b>\n"
 "占用 %s 的磁盘空间"
 
-#: ../ubuntutweak/modules/cleaner.py:461
+#: ../ubuntutweak/modules/cleaner.py:462
 msgid "Package Configuration Files"
 msgstr "软件包的配置文件"
 
-#: ../ubuntutweak/modules/cleaner.py:498
+#: ../ubuntutweak/modules/cleaner.py:499
 #, python-format
 msgid "%d package selected for removal"
 msgid_plural "%d packages selected for removal"
 msgstr[0] "%d 个软件包将被移除"
 
-#: ../ubuntutweak/modules/cleaner.py:502
+#: ../ubuntutweak/modules/cleaner.py:503
 #, python-format
 msgid "%s of disk space will be freed"
 msgstr "%s 的磁盘空间将会得到释放"
 
-#: ../ubuntutweak/modules/cleaner.py:610
-msgid "It's safe to purge the PPA, there's no package need to be downgraded."
-msgstr "现在您可以安全地清除该PPA，没有任何软件需要降级。"
+#: ../ubuntutweak/modules/cleaner.py:611
+msgid "It's safe to purge the PPA, no packages need to be downgraded."
+msgstr "现在您可以安全地清除该 PPA，没有任何软件需要降级。"
 
-#: ../ubuntutweak/modules/cleaner.py:613
-msgid ""
-"To safely purge the PPA, the following packages need to be downgraded."
-msgstr "为了安全地清除该PPA，下述软件包软件被降级。"
+#: ../ubuntutweak/modules/cleaner.py:614
+msgid "To safely purge the PPA, the following packages must be downgraded."
+msgstr "为了安全地清除该 PPA，下述软件包软件被降级。"
 
-#: ../ubuntutweak/modules/cleaner.py:617
+#: ../ubuntutweak/modules/cleaner.py:618
 #, python-format
 msgid "You're going to purge: %s"
 msgstr "您正将清除以下PPA：%s"
 
-#: ../ubuntutweak/modules/cleaner.py:651
+#: ../ubuntutweak/modules/cleaner.py:652
 msgid "Cancelled by user!"
 msgstr "被用户取消"
 
-#: ../ubuntutweak/modules/cleaner.py:654
+#: ../ubuntutweak/modules/cleaner.py:655
 msgid "Clean up successful!"
 msgstr "清除成功！"
 
-#: ../ubuntutweak/modules/cleaner.py:657
+#: ../ubuntutweak/modules/cleaner.py:658
 msgid "Clean up failed!"
 msgstr "清除失败！"
 
-#: ../ubuntutweak/modules/cleaner.py:670
+#: ../ubuntutweak/modules/cleaner.py:671
 msgid "Package Cleaner"
 msgstr "软件包清理"
 
-#: ../ubuntutweak/modules/cleaner.py:671
+#: ../ubuntutweak/modules/cleaner.py:672
 msgid ""
-"Free up disk space by removing redundant packages and cleaning the package "
+"Free up disk space by removing redundant packages and cleaning package "
 "download cache."
-msgstr "通过移除孤立的软件包以及清除软件包下载缓存来得到额外的磁盘空间"
+msgstr "通过移除孤立的软件包以及清除软件包下载缓存来得到额外的磁盘空间。"
 
 #. create the button
-#: ../ubuntutweak/modules/cleaner.py:702
+#: ../ubuntutweak/modules/cleaner.py:703
 msgid "Clean Packages"
 msgstr "清除多余的软件包"
 
-#: ../ubuntutweak/modules/cleaner.py:707
+#: ../ubuntutweak/modules/cleaner.py:708
 msgid "Clean Cache"
 msgstr "清理缓存"
 
-#: ../ubuntutweak/modules/cleaner.py:712
+#: ../ubuntutweak/modules/cleaner.py:713
 msgid "Clean Config"
 msgstr "清理配置"
 
-#: ../ubuntutweak/modules/cleaner.py:717
+#: ../ubuntutweak/modules/cleaner.py:718
 msgid "Clean Kernels"
 msgstr "清除多余的内核"
 
-#: ../ubuntutweak/modules/cleaner.py:722
+#: ../ubuntutweak/modules/cleaner.py:723
 msgid "Purge PPAs"
 msgstr "清除PPA"
 
-#: ../ubuntutweak/modules/cleaner.py:742
+#: ../ubuntutweak/modules/cleaner.py:743
 msgid "_Cleanup"
 msgstr "清除(_C)"
 
@@ -2078,9 +2000,10 @@ msgstr "快捷命令"
 msgid ""
 "By configuring keyboard shortcuts, you can access your favourite "
 "applications instantly.\n"
-"Enter the application's command and set the desired shortcut keys."
+"Enter the command to run the application and choose a shortcut key "
+"combination."
 msgstr ""
-"通过配置键盘快捷键，可快速启动你喜欢的应用程序。\n"
+"通过配置键盘快捷键，可快速启动您喜欢的应用程序。\n"
 "输入应用程序的命令并设置所想要的快捷键。"
 
 #: ../ubuntutweak/modules/shortcuts.py:94
@@ -2134,8 +2057,8 @@ msgid "Delete from Disk"
 msgstr "从硬盘上删除"
 
 #: ../ubuntutweak/modules/autostart.py:203
-msgid "Can't delete the system item from disk."
-msgstr "无法从硬盘上删除系统选项"
+msgid "Can't delete system item from disk."
+msgstr "无法从硬盘上删除系统条目。"
 
 #: ../ubuntutweak/modules/autostart.py:255
 msgid "No description"
@@ -2151,12 +2074,12 @@ msgstr "自启动程序"
 
 #: ../ubuntutweak/modules/autostart.py:335
 msgid ""
-"Here you can manage which programs are started upon login.\n"
-"You can hide items from view by selecting and clicking \"Remove\"\n"
-"To permanently delete an item, right-click and press \"Delete\"."
+"Here you can manage which programs are run upon login.\n"
+"You can hide items from view by selecting them and clicking \"Remove\"\n"
+"To permanently delete an item, right-click and select \"Delete\"."
 msgstr ""
 "此处你可以设置在登录时的启动程序。\n"
-"您可以通过在视图中选择隐藏，然后点击“卸载”\n"
+"您可以通过在视图中选择隐藏，然后点击“卸载”。\n"
 "要永久删除一个项目，右键单击，然后按“删除”。"
 
 #. create the two checkbutton for extra options of auto run list
@@ -2194,52 +2117,52 @@ msgstr "定制默认的文件管理器"
 msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
 msgstr "在文件属性页中显示高级权限控制"
 
-#: ../ubuntutweak/modules/nautilus.py:79
+#: ../ubuntutweak/modules/nautilus.py:80
 msgid "File Browser"
 msgstr "文件浏览器"
 
-#: ../ubuntutweak/modules/nautilus.py:88
+#: ../ubuntutweak/modules/nautilus.py:89
 msgid "Thumbnail Settings"
 msgstr "缩略图设置"
 
-#: ../ubuntutweak/modules/nautilus.py:92
+#: ../ubuntutweak/modules/nautilus.py:94
 msgid "Default thumbnail icon size (pixels)"
 msgstr "默认缩略图大小（像素）"
 
-#: ../ubuntutweak/modules/nautilus.py:96
+#: ../ubuntutweak/modules/nautilus.py:99
 msgid "Maximum thumbnail cache size (megabytes)"
 msgstr "最大缩略图缓存(MB)"
 
-#: ../ubuntutweak/modules/nautilus.py:100
+#: ../ubuntutweak/modules/nautilus.py:104
 msgid "Thumbnail cache time (days)"
 msgstr "缩略图缓存时间（天）"
 
-#: ../ubuntutweak/modules/nautilus.py:107
+#: ../ubuntutweak/modules/nautilus.py:111
 msgid "Open folder in terminal"
 msgstr "在终端中打开文件夹"
 
-#: ../ubuntutweak/modules/nautilus.py:109
+#: ../ubuntutweak/modules/nautilus.py:113
 msgid "Open folder with root priveleges"
 msgstr "以 root 权限打开文件夹"
 
-#: ../ubuntutweak/modules/nautilus.py:111
-msgid "Nautilus with Wallpaper"
+#: ../ubuntutweak/modules/nautilus.py:115
+msgid "Nautilus with wallpaper"
 msgstr "Nautilus 的设定壁纸功能"
 
-#: ../ubuntutweak/modules/nautilus.py:113
+#: ../ubuntutweak/modules/nautilus.py:117
 msgid "Nautilus Extensions"
 msgstr "Nautilus 扩展"
 
-#: ../ubuntutweak/modules/nautilus.py:135
+#: ../ubuntutweak/modules/nautilus.py:139
 #, python-format
-msgid "Delete thumbnail cache (will free %s of disk space)"
-msgstr "删除缩略图缓存(将会释放 %s的磁盘空间)"
+msgid "Delete thumbnail cache (Frees %s of disk space)"
+msgstr "删除缩略图缓存(将会释放 %s 的磁盘空间)"
 
-#: ../ubuntutweak/modules/nautilus.py:138
+#: ../ubuntutweak/modules/nautilus.py:142
 msgid "The thumbnail cache will be deleted. Do you wish to continue?"
 msgstr "缩略图缓存将会被删除，你想要继续吗？"
 
-#: ../ubuntutweak/modules/nautilus.py:145
+#: ../ubuntutweak/modules/nautilus.py:149
 msgid "Clean up Successful!"
 msgstr "清理成功！"
 
@@ -2256,26 +2179,26 @@ msgid "Login Options"
 msgstr "登录选项"
 
 #: ../ubuntutweak/modules/loginsettings.py:51
-msgid "Disable user list in gdm"
-msgstr "在GDM中禁用用户列表"
+msgid "Disable user list in GDM"
+msgstr "在 GDM 中禁用用户列表"
 
-#: ../ubuntutweak/modules/loginsettings.py:55
+#: ../ubuntutweak/modules/loginsettings.py:56
 msgid "Play sound at login"
 msgstr "登录时播放声音"
 
-#: ../ubuntutweak/modules/loginsettings.py:59
-msgid "Disable showing the restart buttons"
-msgstr "禁止显示重启动按钮"
+#: ../ubuntutweak/modules/loginsettings.py:61
+msgid "Disable showing the restart button"
+msgstr "禁止显示重启按钮"
 
-#: ../ubuntutweak/modules/loginsettings.py:76
+#: ../ubuntutweak/modules/loginsettings.py:79
 msgid "Login Theme"
 msgstr "登录主题"
 
-#: ../ubuntutweak/modules/loginsettings.py:148
+#: ../ubuntutweak/modules/loginsettings.py:152
 msgid "PNG images with 64x64 size or SVG images"
 msgstr "64x64大小的PNG图像或者SVG图像"
 
-#: ../ubuntutweak/modules/loginsettings.py:178
+#: ../ubuntutweak/modules/loginsettings.py:182
 msgid ""
 "This image size isn't suitable for the logo.\n"
 "It should be 64x64."
@@ -2283,13 +2206,138 @@ msgstr ""
 "图像尺寸不符合Logo大小。\n"
 "它应该为64x64。"
 
-#: ../ubuntutweak/modules/loginsettings.py:200
+#: ../ubuntutweak/modules/loginsettings.py:204
 msgid "Choose a new background image"
 msgstr "选择一张新的背景图像"
 
-#: ../ubuntutweak/modules/loginsettings.py:206
+#: ../ubuntutweak/modules/loginsettings.py:210
 msgid "All images"
 msgstr "所有图像"
+
+#: ../ubuntutweak/modules/desktoprecovery.py:145
+msgid "Setting"
+msgstr "设置"
+
+#: ../ubuntutweak/modules/desktoprecovery.py:189
+msgid "Backup Name:"
+msgstr "备份名称："
+
+#: ../ubuntutweak/modules/desktoprecovery.py:237
+#, python-format
+msgid "Backing up...%s"
+msgstr "正在备份……%s"
+
+#: ../ubuntutweak/modules/desktoprecovery.py:263
+msgid "Desktop Recovery"
+msgstr "桌面恢复器"
+
+#: ../ubuntutweak/modules/desktoprecovery.py:264
+msgid ""
+"Backup and recover your desktop and application settings with ease.\n"
+"You can also use \"Reset\" to reset to the system default settings."
+msgstr ""
+"轻松地备份和恢复您的桌面和软件设置。\n"
+"您也可以使用“重置”来还原为系统默认设置。"
+
+#: ../ubuntutweak/modules/desktoprecovery.py:335
+msgid "No Backup Yet"
+msgstr "当前还没有备份"
+
+#: ../ubuntutweak/modules/desktoprecovery.py:378
+#, python-format
+msgid ""
+"Backup all settings under: <b>%s</b>\n"
+"Would you like to continue?"
+msgstr ""
+"备份在 <b>%s</b> 下的所有设置。\n"
+"您想要继续吗？"
+
+#: ../ubuntutweak/modules/desktoprecovery.py:397
+#, python-format
+msgid ""
+"Backup settings under: <b>%s</b>\n"
+"Would you like to continue?"
+msgstr ""
+"备份在 <b>%s</b> 下的设置。\n"
+"您想要继续吗？"
+
+#: ../ubuntutweak/modules/desktoprecovery.py:438
+#, python-format
+msgid "Would you like to delete the backup: <b>%s/%s</b>?"
+msgstr "您想要删除这个备份吗：<b>%s/%s</b>？"
+
+#: ../ubuntutweak/modules/desktoprecovery.py:440
+#, python-format
+msgid ""
+"Would you like to delete the backup of all <b>%s</b> settings named "
+"<b>%s</b>?"
+msgstr "您想要删除所有在 <b>%s</b> 下名为 <b>%s</b> 的设置吗？"
+
+#: ../ubuntutweak/modules/desktoprecovery.py:459
+#, python-format
+msgid "Would you like to recover the backup: <b>%s/%s</b>?"
+msgstr "您想要恢复这个备份吗: <b>%s/%s</b>？"
+
+#: ../ubuntutweak/modules/desktoprecovery.py:461
+#, python-format
+msgid ""
+"Would you like to recover the backup of all <b>%s</b> settings named "
+"<b>%s</b>?"
+msgstr "您想要恢复所有在 <b>%s</b> 下名为 <b>%s</b> 的设置吗？"
+
+#: ../ubuntutweak/modules/desktoprecovery.py:463
+msgid ""
+"<b>NOTES</b>: While recovering, your desktop may be unresponsive for a "
+"moment."
+msgstr "<b>注意</b>：恢复过程中，您的桌面可能会有短暂的无响应情况发生。"
+
+#: ../ubuntutweak/modules/desktoprecovery.py:480
+msgid ""
+"Recovery Successful!\n"
+"You may need to restart your desktop for changes to take effect"
+msgstr ""
+"恢复成功！\n"
+"您可能需要重启桌面以使变更生效。"
+
+#: ../ubuntutweak/modules/desktoprecovery.py:488
+#, python-format
+msgid "Would you like to reset settings for: <b>%s</b>?"
+msgstr "您想要重置该设置吗：<b>%s</b>?"
+
+#: ../ubuntutweak/modules/desktoprecovery.py:490
+#, python-format
+msgid "Would you like to reset all settings under: <b>%s</b>?"
+msgstr "您想要重置所有在 <b>%s</b> 之下的设定吗？"
+
+#: ../ubuntutweak/modules/desktoprecovery.py:492
+msgid ""
+"<b>NOTES</b>: Whilst resetting, your desktop may be unresponsive for a "
+"moment."
+msgstr "<b>注意</b>：重置过程中，您的桌面可能会发生短暂的无响应情况。"
+
+#: ../ubuntutweak/modules/desktoprecovery.py:509
+msgid ""
+"Reset Successful!\n"
+"You may need to restart your desktop for changes to take effect"
+msgstr ""
+"重置成功！\n"
+"您可能需要重启桌面以使变更生效。"
+
+#: ../ubuntutweak/modules/desktoprecovery.py:527
+msgid "New Backup Name"
+msgstr "新的备份名称"
+
+#: ../ubuntutweak/modules/desktoprecovery.py:528
+msgid "Please enter a new name for your backup:"
+msgstr "请输入新的备份名称："
+
+#: ../ubuntutweak/modules/desktoprecovery.py:560
+msgid "Backup Successful!"
+msgstr "备份成功！"
+
+#: ../ubuntutweak/modules/desktoprecovery.py:563
+msgid "Backup Failed!"
+msgstr "备份失败！"
 
 #~ msgid "Expo"
 #~ msgstr "展示桌面"
@@ -2309,6 +2357,12 @@ msgstr "所有图像"
 #~ msgid "Window Decorate Effect"
 #~ msgstr "窗口装饰效果"
 
+#~ msgid "Packages"
+#~ msgstr "软件包"
+
+#~ msgid "Package Cache"
+#~ msgstr "软件包缓存"
+
 #~ msgid "Clean Package"
 #~ msgstr "清理软件包"
 
@@ -2323,6 +2377,9 @@ msgstr "所有图像"
 
 #~ msgid "Clean up unneeded packages to free diskspace."
 #~ msgstr "清理不需要的软件包来释放硬盘空间。"
+
+#~ msgid "Enable user switching when screen is locked."
+#~ msgstr "当屏幕被锁定时启用用户切换"
 
 #~ msgid "Click the button to change the menu logo"
 #~ msgstr "点击按钮来改变菜单标志"
@@ -2349,6 +2406,9 @@ msgstr "所有图像"
 
 #~ msgid "Avant Window Navigator (Unstable Version)"
 #~ msgstr "Avant Window Navigator（不稳定版本）"
+
+#~ msgid "Templates path is still wrong, Please reset it!"
+#~ msgstr "模板路径依旧错误，请重新设置！"
 
 #~ msgid "Ubuntu Tweak (Unstable Version)"
 #~ msgstr "Ubuntu Tweak（不稳定版本）"
@@ -2381,6 +2441,13 @@ msgstr "所有图像"
 #~ msgstr "GetDeb.net (镜象服务器)"
 
 #~ msgid ""
+#~ "GetDeb extends the existing software options for Ubuntu (and derived) Linux "
+#~ "distributions by providing major updates and software not yet available on "
+#~ "the official Ubuntu repositories."
+#~ msgstr ""
+#~ "GetDeb 扩大 Ubuntu (和由 Ubuntu 衍生的) Linux 发行版现有的软件选择，提供 Ubuntu 官方软件源尚未推行的软件与更新。"
+
+#~ msgid ""
 #~ "Here you can manage what programs get started when you login.\n"
 #~ "You can hide items from view by selecting and clicking \"Remove\"\n"
 #~ "To permanently delete an item, right-click and press \"Delete\"."
@@ -2400,6 +2467,14 @@ msgstr "所有图像"
 #, python-format
 #~ msgid "The target \"%s\" already exists!"
 #~ msgstr "目标 “%s” 已经存在！"
+
+#~ msgid ""
+#~ "You can change the paths of the default folders here.\n"
+#~ "Don't change the location of your desktop folder unless you know what you "
+#~ "are doing."
+#~ msgstr ""
+#~ "在此可以改变默认文件夹的位置。\n"
+#~ "除非你有足够经验，不要改变桌面文件夹的路径。"
 
 #~ msgid "Here you can manage which application will open which filetypes."
 #~ msgstr "在此可设定所需打开文件类型相应的应用程序。"
@@ -2421,6 +2496,27 @@ msgstr "所有图像"
 #~ "因此，只有那些因为 Bug 而被补丁的应用程序才会得到软件源更新。\n"
 #~ "而使用第三方源的话，你将可以总是享用最新版本的应用程序。\n"
 #~ "在启用这些软件源后，可在“添加/删除”安装相应的软件。"
+
+#~ msgid "Allow TCP Connections (Remote Desktop Connect)"
+#~ msgstr "允许 TCP 连接（远程桌面连接）"
+
+#~ msgid ""
+#~ "Here you can freely manage your document templates.\n"
+#~ "You can add files as templates by dragging them onto this window.\n"
+#~ "You can create new documents based on these templates from the Nautilus "
+#~ "right-click menu."
+#~ msgstr ""
+#~ "在此可以管理你的文档模板。\n"
+#~ "你可以将文件拖进此窗口作为模板。\n"
+#~ "你可以在文件管理器的右键菜单中建立基于这些模板的文档。"
+
+#~ msgid ""
+#~ "By configuring keyboard shortcuts, you can access your favourite "
+#~ "applications instantly.\n"
+#~ "Enter the application's command and set the desired shortcut keys."
+#~ msgstr ""
+#~ "通过配置键盘快捷键，可快速启动你喜欢的应用程序。\n"
+#~ "输入应用程序的命令并设置所想要的快捷键。"
 
 #, python-format
 #~ msgid ""
@@ -2464,6 +2560,12 @@ msgstr "所有图像"
 #~ msgid "Show Unicode Method menu on the context menu"
 #~ msgstr "在右键菜单中显示 Unicode 菜单"
 
+#~ msgid "Nautilus with Wallpaper"
+#~ msgstr "Nautilus 的设定壁纸功能"
+
+#~ msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
+#~ msgstr "轻量级 X11 桌面环境：GPicView，PCManFM"
+
 #~ msgid "Use \"Home Folder\" as desktop (Logout for changes to take effect)"
 #~ msgstr "将 “首目录” 作为桌面（需要登出生效）"
 
@@ -2471,6 +2573,36 @@ msgstr "所有图像"
 #~ "To enable the compositing feature of metacity, you should manually disable "
 #~ "Visual Effects in \"Appearance\"."
 #~ msgstr "为了启用 Metacity 的复合功能，你需要打在“外观”，手动禁用视觉效果。"
+
+#, python-format
+#~ msgid ""
+#~ "Templates path is wrong! The current path is point to \"%s\".\n"
+#~ "Please reset it to a folder under your Home Folder."
+#~ msgstr ""
+#~ "模板路径错误！当前路径指为 “%s”。\n"
+#~ "请重设为在你首目录下的文件夹。"
+
+#~ msgid "Please input the correct information about sources!"
+#~ msgstr "请输入正确的软件源信息！"
+
+#~ msgid ""
+#~ "You can submit your sources to our server to help building the sources list, "
+#~ "or you can use the official sources.\n"
+#~ "Do you wish to use the official sources?"
+#~ msgstr ""
+#~ "为了帮助建立软件源列表，你可以将你的软件源提交至我们的服务器，也可以用官方的软件源。\n"
+#~ "你是否想使用官方软件源？"
+
+#~ msgid ""
+#~ "Multimedia, Entertainment and Distraction In Ubuntu\n"
+#~ "Medibuntu is a repository of packages that cannot be included into the "
+#~ "Ubuntu distribution for legal reasons (copyright, license, patent, etc)."
+#~ msgstr ""
+#~ "Ubuntu 下的多媒体与娱乐。\n"
+#~ "Medibuntu 是一个软件仓库，它包含那些因为法律（版权，许可证，专利等等）原因而不能包含在 Ubuntu 配置中的软件包。"
+
+#~ msgid "Can't delete the system item from disk."
+#~ msgstr "无法从硬盘上删除系统选项"
 
 #~ msgid "Fix the theme appearance when grant the root privileges"
 #~ msgstr "当有管理权限时修改主题外观"
@@ -2486,6 +2618,15 @@ msgstr "所有图像"
 #~ msgstr ""
 #~ "你的软件管理器存在着严重的问题。请打开新立得软件包管理器寻找损坏的软件包并核对 '/etc/apt/sources.list' 的内容及文件权限，再用 "
 #~ "'sudo apt-get update' 与 'sudo apt-get install -f' 来重载软件信息。"
+
+#~ msgid ""
+#~ "Ubuntu Tweak will restore the chosen directory to the default location.\n"
+#~ "However, you must move your files back into place by yourself.\n"
+#~ "Do you wish to continue?"
+#~ msgstr ""
+#~ "Ubuntu Tweak 会将所选的文件夹还原到默认的位置。\n"
+#~ "但是，你必须手动将你的文件移动至新的位置。\n"
+#~ "你是否要继续？"
 
 #, python-format
 #~ msgid "Open the files of type \"%s\" with:"
@@ -2529,8 +2670,22 @@ msgstr "所有图像"
 #~ msgid "Submit Sources"
 #~ msgstr "提交软件源"
 
+#~ msgid "Google's Linux Repository"
+#~ msgstr "Google 的 Linux 软件源"
+
+#~ msgid ""
+#~ "Ubuntu repository for Chinese users.\n"
+#~ "Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and "
+#~ "other softwares."
+#~ msgstr ""
+#~ "为中文用户准备的 Ubuntu 软件源。\n"
+#~ "包括了永中 Office、Ubuntu Tweak、iBus 输入法、OpenOffice.org 3.0 和其他软件。"
+
 #~ msgid "Experimental Gnome Games"
 #~ msgstr "实验性的GNOME游戏"
+
+#~ msgid "Updated versions of X.org drivers, libraries, etc. for Ubuntu."
+#~ msgstr "更新Ubuntu的X.org驱动、系统库等版本"
 
 #~ msgid "VLC media player"
 #~ msgstr "VLC媒体播放器"
@@ -2553,8 +2708,22 @@ msgstr "所有图像"
 #~ msgid "VirtualBox (Open Source Edition)"
 #~ msgstr "VirtualBox（开源版本）"
 
+#~ msgid ""
+#~ "Gnome Games built from Git, with all experimental features and staging games "
+#~ "enabled."
+#~ msgstr "基于最新Git源码的GNOME游戏"
+
 #~ msgid "Edge Settings"
 #~ msgstr "边角设置"
+
+#~ msgid ""
+#~ "WebkitGtk+, Liferea (Webkit), Midori and other WebKit related projects."
+#~ msgstr "WebkitGtk+, Liferea (Webkit), Midori和其他与WebKit相关的工程。"
+
+#~ msgid ""
+#~ "Ubuntu Mozilla Security Team provides beta and final stable/security updates "
+#~ "for mozilla software in its PPA"
+#~ msgstr "Ubuntu Mozilla Security Team提供Mozilla软件测试和稳定版本的安全更新。"
 
 #, python-format
 #~ msgid ""
@@ -2594,6 +2763,13 @@ msgstr "所有图像"
 #~ "点击“升级软件源”如果你想要更改软件源。\n"
 #~ "点击“提交软件源”如果你想和其他人分享你的软件源。"
 
+#~ msgid ""
+#~ "You've changed the sources.list without saving it.\n"
+#~ "Do you want to save it?"
+#~ msgstr ""
+#~ "您更改了sources.list但是没有保存它。\n"
+#~ "您想要现在保存么？"
+
 #~ msgid "Chinese Chess"
 #~ msgstr "象棋"
 
@@ -2605,6 +2781,12 @@ msgstr "所有图像"
 
 #~ msgid "aMule (Stable Version)"
 #~ msgstr "aMule (稳定版)"
+
+#~ msgid "Development Version of K Desktop Environment"
+#~ msgstr "KDE 桌面环境开发版本"
+
+#~ msgid "Development Version of Mozilla Firefox"
+#~ msgstr "Mozilla Firefox 开发版本"
 
 #~ msgid "Breathe Icon Theme"
 #~ msgstr "Breathe图标主题"
@@ -2628,6 +2810,12 @@ msgstr "所有图像"
 #~ "您可以通过选择“是”来安装新应用程序。\n"
 #~ "或者您可以选择“否”来在添加/删除中自行安装。"
 
+#~ msgid "A cross-platform application and UI framework"
+#~ msgstr "一款跨平台应用程序及用户界面框架"
+
+#~ msgid "Mono is a cross platform, open source .NET development framework."
+#~ msgstr "。Mono 是一款跨平台、开源的 .NET 开发框架。"
+
 #~ msgid "Google Repository"
 #~ msgstr "Google 软件源"
 
@@ -2649,11 +2837,25 @@ msgstr "所有图像"
 #~ msgid "This feature isn't currently available in your distribution"
 #~ msgstr "这项特性当前在你的发行版上不可用"
 
+#~ msgid ""
+#~ "Gloobus is an extension of Gnome designed to enable a full screen preview of "
+#~ "any kind of file."
+#~ msgstr "Gloobus是GNOME桌面的一个扩展，它可以为任何种类的文件启用快速全屏预览。"
+
 #~ msgid "Moblin Desktop for Ubuntu 9.10 Karmic"
 #~ msgstr "Ubuntu 9.10 Karmic的Moblin桌面"
 
 #~ msgid "Moblin Desktop for Ubuntu 9.04 Jaunty"
 #~ msgstr "Ubuntu 9.04 Jaunty的Moblin桌面"
+
+#~ msgid ""
+#~ "Clutter is an OpenGL based interactive canvas library, designed for creating "
+#~ "fast, mainly 2D single window applications such as media box UIs, "
+#~ "presentations, kiosk style applications and so on."
+#~ msgstr "Clutter是一套基于OpenGL的图形库，设计为创建快速的、具备丰富视觉效果的单窗口的应用程序。"
+
+#~ msgid "Development version of Compiz"
+#~ msgstr "Compiz的开发版本"
 
 #~ msgid "OSD Lyrics"
 #~ msgstr "OSD歌词显示"
@@ -2678,6 +2880,16 @@ msgstr "所有图像"
 
 #~ msgid "Kubuntu Backports"
 #~ msgstr "Kubuntu Backports"
+
+#~ msgid ""
+#~ "Backports of new versions of KDE for Kubuntu which are not yet tested enough "
+#~ "to go to Ubuntu Backports."
+#~ msgstr "最新版本的KDE桌面"
+
+#~ msgid ""
+#~ "Behind this African word, referring to the notion of imagination, you can "
+#~ "find some themes for GNOME"
+#~ msgstr "在这个非洲词语背后，隐含着想象力的概念，您可以找到一些针对 GNOME 的主题"
 
 #~ msgid "Tweak some security options"
 #~ msgstr "调整一些安全相关的选项"
@@ -2715,6 +2927,12 @@ msgstr "所有图像"
 
 #~ msgid "LCD dimming amount when on battery"
 #~ msgstr "使用电池时减低LCD亮度"
+
+#~ msgid "Disable user list in gdm"
+#~ msgstr "在GDM中禁用用户列表"
+
+#~ msgid "Suppress the dialog to confirm logout, restart and shutdown action"
+#~ msgstr "登出、重启或关机时禁止弹出确认对话框"
 
 #~ msgid "Tweak"
 #~ msgstr "调整"
@@ -2793,6 +3011,11 @@ msgstr "所有图像"
 #~ "数据将会自动与远程同步。\n"
 #~ "你可以点击“同步”按钮来进行手工同步。"
 
+#~ msgid ""
+#~ "Updates for Kubuntu releases which are due to go to Ubuntu Updates. Mostly "
+#~ "KDE point releases."
+#~ msgstr "将要进入“Ubuntu 更新”源的 Kubuntu 更新。主要是 KDE 的正式版。"
+
 #~ msgid "Arrange the buttons on the titlebar by dragging and dropping"
 #~ msgstr "通过拖拽的方式来重新组件标题栏的按钮"
 
@@ -2805,11 +3028,114 @@ msgstr "所有图像"
 #~ msgid "Remove Spacer"
 #~ msgstr "移除间距"
 
+#~ msgid "Clean up unneeded packages to free up diskspace."
+#~ msgstr "清理不必要的软件包来释放磁盘空间。"
+
+#~ msgid ""
+#~ "This image size isn't suitable for the panel.\n"
+#~ "It should be 24x24."
+#~ msgstr ""
+#~ "这张图像的大小不适合用在这个菜单栏上。\n"
+#~ "它应该一张是24X24大小的图像。"
+
+#~ msgid "Change the name and toggle visibilty of desktop icons"
+#~ msgstr "修改桌面图标的名字及按钮的可见度"
+
+#~ msgid ""
+#~ "Free up disk space by removing redundant packages and cleaning the package "
+#~ "download cache."
+#~ msgstr "通过移除孤立的软件包以及清除软件包下载缓存来得到额外的磁盘空间"
+
+#, python-format
+#~ msgid "Delete thumbnail cache (will free %s of disk space)"
+#~ msgstr "删除缩略图缓存(将会释放 %s的磁盘空间)"
+
+#~ msgid ""
+#~ "A simple but more efficient way for finding and installing popular "
+#~ "applications.\n"
+#~ "Data will be automatically synchronized with the remote server.\n"
+#~ "You can click the \"Sync\" button to perform a manual check for updates."
+#~ msgstr ""
+#~ "一种简单高效的寻找安装流行应用程序的方法、\n"
+#~ "本地数据将会自动与远程服务器同步。\n"
+#~ "当然你也可以单击\"同步\"按钮手动进行同步。"
+
+#~ msgid ""
+#~ "Here you can manage which programs are started upon login.\n"
+#~ "You can hide items from view by selecting and clicking \"Remove\"\n"
+#~ "To permanently delete an item, right-click and press \"Delete\"."
+#~ msgstr ""
+#~ "此处你可以设置在登录时的启动程序。\n"
+#~ "您可以通过在视图中选择隐藏，然后点击“卸载”\n"
+#~ "要永久删除一个项目，右键单击，然后按“删除”。"
+
+#~ msgid ""
+#~ "Scripts can be used to complete all kinds of tasks.\n"
+#~ "You can drag and drop scripts from File Manager.\n"
+#~ "'Scripts' will then be added to the context menu."
+#~ msgstr ""
+#~ "脚本可以用来完成各种任务。\n"
+#~ "你可以从文件管理器拖拽外部脚本进来。\n"
+#~ "它将被加入至右键菜单。"
+
 #~ msgid "Enable new item highlight in App and Source Center"
 #~ msgstr "在软件和软件源中心启用新项目高亮"
 
 #~ msgid "Enable auto-start of System Update Manager"
 #~ msgstr "开启系统更新管理器的自动启动功能"
 
+#~ msgid "Disable showing the restart buttons"
+#~ msgstr "禁止显示重启动按钮"
+
 #~ msgid "PNG image with 64x64 size (*.png)"
 #~ msgstr "64x64大小的PNG图像"
+
+#~ msgid ""
+#~ "A collection of software sources to ensure your applications are always up-"
+#~ "to-date.\n"
+#~ "Here you can also add applications which are unavailable in the offical "
+#~ "repositories.\n"
+#~ "The list of available sources will be obtained automatically from a remote "
+#~ "server.\n"
+#~ "You can click the \"Sync\" button to manually check for updates"
+#~ msgstr ""
+#~ "一些精心收集的软件源使你的应用程序时刻保持最新。\n"
+#~ "在这里你也可以安装一些默认没有包含在官方源里的软件。\n"
+#~ "这个源列表将从远程服务器自动更新。\n"
+#~ "你也可以点击“同步”来进行手动检查。"
+
+#~ msgid "Freely edit your software sources to suit your needs."
+#~ msgstr "自由地编辑软件源以适应你的需要"
+
+#~ msgid ""
+#~ "It is highly recommend to enable the stable source of Ubuntu Tweak to get "
+#~ "security and normal update.\n"
+#~ "If you don't enable the source, you will need to update manually.\n"
+#~ "\n"
+#~ "Would you like to enable the stable source?"
+#~ msgstr ""
+#~ "强烈推荐您启用Ubuntu Tweak的稳定源以便及时取得安全和常规更新。\n"
+#~ "如果不启用该源，您将只能手动更新Ubuntu Tweak。\n"
+#~ "\n"
+#~ "您想要自动启用稳定源吗？"
+
+#~ msgid ""
+#~ "By disabling the \"Recent Documents\", it may break other software such as "
+#~ "VMware Player's history feature."
+#~ msgstr "如果禁用“最近文档“，这可能会破坏一些软件如VMware Player的历史特性。"
+
+#~ msgid ""
+#~ "The daemon of Ubuntu Tweak doesn't start correctly, that means some advanced "
+#~ "features may not work.\n"
+#~ "If you want to help developer to debug, try to run \"<b>sudo ubuntu-tweak-"
+#~ "daemon</b>\" under terminal."
+#~ msgstr ""
+#~ "Ubuntu Tweak的守护程序无法正常启动，这意味着一些高级特性可能无法工作。\n"
+#~ "如果您想要帮助开发者进行除错，请在终端运行：<b>sudo ubuntu-tweak-daemon</b>。"
+
+#~ msgid "It's safe to purge the PPA, there's no package need to be downgraded."
+#~ msgstr "现在您可以安全地清除该PPA，没有任何软件需要降级。"
+
+#~ msgid ""
+#~ "To safely purge the PPA, the following packages need to be downgraded."
+#~ msgstr "为了安全地清除该PPA，下述软件包软件被降级。"

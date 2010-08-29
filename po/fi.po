@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-22 22:56+0800\n"
-"PO-Revision-Date: 2010-07-22 16:05+0000\n"
-"Last-Translator: TualatriX <Unknown>\n"
+"POT-Creation-Date: 2010-08-21 19:49+0800\n"
+"PO-Revision-Date: 2010-07-24 19:21+0000\n"
+"Last-Translator: Jiri Grönroos <Unknown>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2010-07-24 02:40+0000\n"
+"X-Launchpad-Export-Date: 2010-08-28 06:16+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../data/script-worker:54
@@ -175,6 +175,26 @@ msgstr "Napsauta painiketta vaihtaaksesi kirjautumisikkunan taustakuvan"
 msgid "Click the button to change the login screen logo"
 msgstr "Napsauta painiketta vaihtaaksesi kirjautumisikkunan logon"
 
+#: ../data/ui/desktoprecovery.ui.h:1
+msgid "Backup History:"
+msgstr ""
+
+#: ../data/ui/desktoprecovery.ui.h:2
+msgid "R_eset"
+msgstr ""
+
+#: ../data/ui/desktoprecovery.ui.h:3
+msgid "Setting Name:"
+msgstr ""
+
+#: ../data/ui/desktoprecovery.ui.h:4
+msgid "_Backup"
+msgstr ""
+
+#: ../data/ui/desktoprecovery.ui.h:5
+msgid "_Recover"
+msgstr ""
+
 #: ../ubuntutweak/mainwindow.py:78
 msgid "Welcome to"
 msgstr "Tervetuloa -"
@@ -184,8 +204,8 @@ msgid "Tweak otherwise hidden settings."
 msgstr "Säädä muuten piilotettuja asetuksia."
 
 #: ../ubuntutweak/mainwindow.py:85
-msgid "Clean up unneeded packages to free up diskspace."
-msgstr "Siivoa ylimääräiset paketit vapauttaaksesi levytilaa."
+msgid "Clean up unused packages to free up diskspace."
+msgstr ""
 
 #: ../ubuntutweak/mainwindow.py:86
 msgid "Easily install up-to-date versions of many applications."
@@ -216,6 +236,7 @@ msgid "Welcome"
 msgstr "Tervetuloa"
 
 #: ../ubuntutweak/mainwindow.py:141
+#: ../ubuntutweak/modules/desktoprecovery.py:74
 msgid "Applications"
 msgstr "Sovellukset"
 
@@ -224,6 +245,7 @@ msgid "Startup"
 msgstr "Käynnistys"
 
 #: ../ubuntutweak/mainwindow.py:143 ../ubuntutweak/modules/userdir.py:45
+#: ../ubuntutweak/modules/desktoprecovery.py:75
 msgid "Desktop"
 msgstr "Työpöytä"
 
@@ -232,6 +254,7 @@ msgid "Personal"
 msgstr "Henkilökohtainen"
 
 #: ../ubuntutweak/mainwindow.py:145
+#: ../ubuntutweak/modules/desktoprecovery.py:76
 msgid "System"
 msgstr "Järjestelmä"
 
@@ -246,22 +269,17 @@ msgstr "_Lahjoita"
 
 #: ../ubuntutweak/mainwindow.py:248
 msgid ""
-"It is highly recommend to enable the stable source of Ubuntu Tweak to get "
-"security and normal update.\n"
-"If you don't enable the source, you will need to update manually.\n"
+"It is highly recommended that you enable the Ubuntu Tweak stable repository "
+"to get security and maintenance updates.\n"
+"If you don't enable this repository, you will need to update manually.\n"
 "\n"
-"Would you like to enable the stable source?"
+"Would you like to enable this repository?"
 msgstr ""
-"On erittäin suositeltavaa että otat vakaan ohjelmistolähteen käyttöön Ubuntu "
-"Tweak:issa jotta saisit turvallisuus ja normaalit päivitykset.\n"
-"Jos et ota lähdettä käyttöön sinun pitää päivittää Ubuntu Tweak käsin-\n"
-"\n"
-"Haluatko ottaa vakaan ohjelmistolähteen käyttöön?"
 
 #: ../ubuntutweak/mainwindow.py:251
-#: ../ubuntutweak/modules/gnomesettings.py:196
+#: ../ubuntutweak/modules/gnomesettings.py:204
 #: ../ubuntutweak/modules/sourcecenter.py:1112
-#: ../ubuntutweak/modules/nautilus.py:139
+#: ../ubuntutweak/modules/nautilus.py:143
 msgid "Warning"
 msgstr "Varoitus"
 
@@ -326,24 +344,23 @@ msgstr ""
 msgid "Software Update"
 msgstr "Ohjelmapäivitys"
 
-#: ../ubuntutweak/widgets/widgets.py:104 ../ubuntutweak/widgets/widgets.py:129
+#: ../ubuntutweak/widgets/widgets.py:45
+#, python-format
+msgid "Reset setting to default value: %s"
+msgstr ""
+
+#: ../ubuntutweak/widgets/widgets.py:118 ../ubuntutweak/widgets/widgets.py:143
 #: ../ubuntutweak/modules/icons.py:105
 msgid "Unset"
 msgstr "Poista valinta"
 
-#: ../ubuntutweak/widgets/widgets.py:253
+#: ../ubuntutweak/widgets/widgets.py:275
 msgid "Please press the new key combination"
 msgstr "Paina uutta näppäinyhdistelmää"
 
-#: ../ubuntutweak/widgets/widgets.py:302
+#: ../ubuntutweak/widgets/widgets.py:324
 msgid "Disabled"
 msgstr "Poistettu käytöstä"
-
-#: ../ubuntutweak/widgets/utils.py:86
-#: ../ubuntutweak/modules/sourceeditor.py:87
-#: ../ubuntutweak/modules/sourcecenter.py:944
-msgid "Details"
-msgstr "Tiedot"
 
 #: ../ubuntutweak/widgets/treeviews.py:71
 msgid "Create folder"
@@ -380,28 +397,34 @@ msgstr ""
 "\n"
 "Kansio sisältää tiedostoja!"
 
-#: ../ubuntutweak/widgets/dialogs.py:139
+#: ../ubuntutweak/widgets/dialogs.py:146
 msgid "An unexpected error has occurred."
 msgstr "Tapahtui odottamaton virhe."
 
-#: ../ubuntutweak/widgets/dialogs.py:140
+#: ../ubuntutweak/widgets/dialogs.py:147
 msgid "Could not authenticate"
 msgstr "Ei voitu tunnistautua"
 
-#: ../ubuntutweak/widgets/dialogs.py:145
+#: ../ubuntutweak/widgets/dialogs.py:152
 msgid "You need to restart your computer."
 msgstr "Tietokone täytyy käynnistää uudelleen."
 
-#: ../ubuntutweak/widgets/dialogs.py:146
+#: ../ubuntutweak/widgets/dialogs.py:153
 msgid "Service hasn't initialized yet"
 msgstr "Palvelu ei ole vielä käynnistynyt"
 
+#: ../ubuntutweak/widgets/dialogs.py:174
+#: ../ubuntutweak/modules/sourceeditor.py:87
+#: ../ubuntutweak/modules/sourcecenter.py:944
+msgid "Details"
+msgstr "Tiedot"
+
 #: ../ubuntutweak/preferences.py:75 ../ubuntutweak/modules/filetype.py:179
 #: ../ubuntutweak/modules/filetype.py:214
-#: ../ubuntutweak/modules/metacity.py:185
-#: ../ubuntutweak/modules/metacity.py:190
-#: ../ubuntutweak/modules/metacity.py:203
-#: ../ubuntutweak/modules/metacity.py:216
+#: ../ubuntutweak/modules/metacity.py:186
+#: ../ubuntutweak/modules/metacity.py:192
+#: ../ubuntutweak/modules/metacity.py:206
+#: ../ubuntutweak/modules/metacity.py:220
 #: ../ubuntutweak/modules/shortcuts.py:99
 #: ../ubuntutweak/modules/shortcuts.py:209
 msgid "None"
@@ -476,128 +499,11 @@ msgstr[1] "%d minuuttia sitten"
 msgid "Just Now"
 msgstr "Juuri nyt"
 
-#: ../ubuntutweak/common/appdata.py:24
-msgid "Development Version of Mozilla Firefox"
-msgstr "Kehitysversio Mozilla Firefoxista"
-
-#: ../ubuntutweak/common/appdata.py:25
-msgid "Development version of Compiz"
-msgstr "Kehitysversio Compizista"
-
-#: ../ubuntutweak/common/appdata.py:26
-msgid "Google's Linux Repository"
-msgstr "Googlen Linux-ohjelmalähde"
-
-#: ../ubuntutweak/common/appdata.py:27
-msgid "Development Version of K Desktop Environment"
-msgstr "Kehitysversio Kde-työpöytäympäristöstä"
-
-#: ../ubuntutweak/common/appdata.py:28
-msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
-msgstr "Kevyt LXDE-työpöytäympäristö: GPicView, PCManFM"
-
-#: ../ubuntutweak/common/appdata.py:29
-msgid ""
-"WebkitGtk+, Liferea (Webkit), Midori and other WebKit related projects."
-msgstr "WebkitGtk+, Liferea (Webkit), Midori ja muut WebKit-projektit."
-
-#: ../ubuntutweak/common/appdata.py:30
-msgid ""
-"Multimedia, Entertainment and Distraction In Ubuntu\n"
-"Medibuntu is a repository of packages that cannot be included into the "
-"Ubuntu distribution for legal reasons (copyright, license, patent, etc)."
-msgstr ""
-"Multimediaa ja viihdettä Ubuntuun\n"
-"Mediubuntu on ohjelmistolähde, joka sisältää paketteja, joita ei laillista "
-"syistä voi sisällyttää Ubuntuun\n"
-"(tekijänoikeudellisista sekä lisenssi- ja patenttisyistä johtuen)"
-
-#: ../ubuntutweak/common/appdata.py:32
-msgid ""
-"Ubuntu repository for Chinese users.\n"
-"Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and "
-"other softwares."
-msgstr ""
-"Ubuntu-ohjelmalähde kiinalaisille käyttäjille.\n"
-"Sisältää sovellukset EIOffice, Ubuntu Tweak, ibus-syöttötekniikka, "
-"OpenOffice.org 3.0, ja paljon muuta."
-
-#: ../ubuntutweak/common/appdata.py:34
-msgid ""
-"GetDeb extends the existing software options for Ubuntu (and derived) Linux "
-"distributions by providing major updates and software not yet available on "
-"the official Ubuntu repositories."
-msgstr ""
-"GetDeb lisää asennettavien ohjelmiston valikoimaa Ubuntu-pohjaisille Linux-"
-"jakeluille. GetDeb tarjoaa uusia ohjelmistoversioita, joita ei välttämättä "
-"löydy Ubuntun omista ohjelmistolähteistä."
-
-#: ../ubuntutweak/common/appdata.py:35
-msgid "Updated versions of X.org drivers, libraries, etc. for Ubuntu."
-msgstr "Päivitetyt versiot X.org-ajureista, kirjastoista jne. Ubuntulle."
-
-#: ../ubuntutweak/common/appdata.py:36
-msgid ""
-"Gnome Games built from Git, with all experimental features and staging games "
-"enabled."
-msgstr "Viimeisimmät versiot Gnome-peleistä (suoraan Gitistä)."
-
-#: ../ubuntutweak/common/appdata.py:37
-msgid ""
-"Ubuntu Mozilla Security Team provides beta and final stable/security updates "
-"for mozilla software in its PPA"
-msgstr ""
-"Ubuntun Mozilla-tietoturvaryhmä tarjoaa viimeisimmät beta- ja "
-"tietoturvapäivitykset omasta PPA-ohjelmalähteestään"
-
-#: ../ubuntutweak/common/appdata.py:38
-msgid "A cross-platform application and UI framework"
-msgstr ""
-
-#: ../ubuntutweak/common/appdata.py:39
-msgid "Mono is a cross platform, open source .NET development framework."
-msgstr ""
-"Mono on monen käyttöjärjestelmän avoimen lähdekoodin \".NETdevelopment "
-"framework\" korvike"
-
-#: ../ubuntutweak/common/appdata.py:40
-msgid ""
-"Clutter is an OpenGL based interactive canvas library, designed for creating "
-"fast, mainly 2D single window applications such as media box UIs, "
-"presentations, kiosk style applications and so on."
-msgstr ""
-
-#: ../ubuntutweak/common/appdata.py:41
-msgid ""
-"Gloobus is an extension of Gnome designed to enable a full screen preview of "
-"any kind of file."
-msgstr ""
-"Gloobus on Gnome liitännäinen joka on suunniteltu hyväksymään kokoruutu "
-"esikatselu mille tahansa tiedostolle."
-
-#: ../ubuntutweak/common/appdata.py:42
-msgid ""
-"Behind this African word, referring to the notion of imagination, you can "
-"find some themes for GNOME"
-msgstr ""
-
-#: ../ubuntutweak/common/appdata.py:43
-msgid ""
-"Updates for Kubuntu releases which are due to go to Ubuntu Updates. Mostly "
-"KDE point releases."
-msgstr ""
-
-#: ../ubuntutweak/common/appdata.py:44
-msgid ""
-"Backports of new versions of KDE for Kubuntu which are not yet tested enough "
-"to go to Ubuntu Backports."
-msgstr ""
-
 #: ../ubuntutweak/common/package.py:186
 #: ../ubuntutweak/modules/appcenter.py:640
 #: ../ubuntutweak/modules/compiz.py:410
 #: ../ubuntutweak/modules/sourcecenter.py:144
-#: ../ubuntutweak/modules/nautilus.py:167
+#: ../ubuntutweak/modules/nautilus.py:171
 msgid "Update Successful!"
 msgstr "Päivitys onnistui!"
 
@@ -605,7 +511,7 @@ msgstr "Päivitys onnistui!"
 #: ../ubuntutweak/modules/appcenter.py:642
 #: ../ubuntutweak/modules/compiz.py:412
 #: ../ubuntutweak/modules/sourcecenter.py:146
-#: ../ubuntutweak/modules/nautilus.py:169
+#: ../ubuntutweak/modules/nautilus.py:173
 msgid "Update Failed!"
 msgstr "Päivitys epäonnistui!"
 
@@ -641,15 +547,11 @@ msgstr "Avaa l_ukitus"
 
 #: ../ubuntutweak/policykit/dbusproxy.py:34
 msgid ""
-"The daemon of Ubuntu Tweak doesn't start correctly, that means some advanced "
-"features may not work.\n"
-"If you want to help developer to debug, try to run \"<b>sudo ubuntu-tweak-"
-"daemon</b>\" under terminal."
+"The Ubuntu Tweak daemon didn't start correctly. This means that some "
+"advanced features may not work.\n"
+"If you want to help developers debugging, try to run \"<b>sudo "
+"/usr/share/ubuntu-tweak/ubuntu-tweak-daemon</b>\" in a terminal."
 msgstr ""
-"Ubuntu Tweakin taustaprosessi ei käynnistynyt odotetusti tarkoittaen, että "
-"kaikki ominaisuudet eivät saata toimia.\n"
-"Jos haluat auttaa kehittäjiä korjaamaan tämän vian, aja tämä komento "
-"\"<b>sudo ubuntu-tweak-daemon</b>\" päätteessä."
 
 #: ../ubuntutweak/modules/userdir.py:46
 msgid "Download"
@@ -685,13 +587,10 @@ msgstr "Valitse kansio"
 
 #: ../ubuntutweak/modules/userdir.py:174
 msgid ""
-"Ubuntu Tweak will restore the chosen directory to the default location.\n"
-"However, you must move your files back into place by yourself.\n"
+"Ubuntu Tweak will restore the selected directory to it's default location.\n"
+"However, you must move your files back into place manually.\n"
 "Do you wish to continue?"
 msgstr ""
-"Ubunut Tweak palauttaa valitun hakemiston vakiosijaintiinsa.\n"
-"Sinun täytyy kuitenkin siirtää tiedosto(t) paikalleen itse.\n"
-"Haluatko jatkaa?"
 
 #: ../ubuntutweak/modules/userdir.py:208
 msgid "Directory"
@@ -715,12 +614,10 @@ msgstr "Hakemistojen oletussijainnit"
 
 #: ../ubuntutweak/modules/userdir.py:241
 msgid ""
-"You can change the paths of the default folders here.\n"
+"You can change the paths of default folders here.\n"
 "Don't change the location of your desktop folder unless you know what you "
 "are doing."
 msgstr ""
-"Voit vaihtaa kansioiden polkuja.\n"
-"Älä vaihda työpöytäkansion sijaintia, ellet tiedä mitä olet tekemässä."
 
 #: ../ubuntutweak/modules/userdir.py:260
 msgid "_Restore"
@@ -822,31 +719,31 @@ msgstr "Järjestelmän tietoturva-asetukset"
 msgid "Disable \"Run Application\" dialog (Alt+F2)"
 msgstr "Poista \"Suorita sovellus\"-toiminto (Alt+F2) käytöstä"
 
-#: ../ubuntutweak/modules/lockdown.py:48
+#: ../ubuntutweak/modules/lockdown.py:49
 msgid "Disable \"Lock Screen\""
 msgstr "Poista \"Lukitse näyttö\"-toiminto käytöstä"
 
-#: ../ubuntutweak/modules/lockdown.py:51
+#: ../ubuntutweak/modules/lockdown.py:53
 msgid "Disable printing"
 msgstr "Poista tulostus käytöstä"
 
-#: ../ubuntutweak/modules/lockdown.py:54
+#: ../ubuntutweak/modules/lockdown.py:57
 msgid "Disable printer settings"
 msgstr "Poista tulostinasetusten muokkaus pois käytöstä"
 
-#: ../ubuntutweak/modules/lockdown.py:57
+#: ../ubuntutweak/modules/lockdown.py:61
 msgid "Disable save to disk"
 msgstr "Poista levylle tallentaminen käytöstä"
 
-#: ../ubuntutweak/modules/lockdown.py:60
+#: ../ubuntutweak/modules/lockdown.py:65
 msgid "Disable \"Fast User Switching\""
 msgstr "Poista \"Nopea käyttäjän vaihto\"-toiminto käytöstä"
 
-#: ../ubuntutweak/modules/lockdown.py:66
+#: ../ubuntutweak/modules/lockdown.py:72
 msgid "Fix the appearance of themes when granted root privileges"
 msgstr "Korjaa teemojen ulkoasu, kun ohjelmia käytetään ylläpito-oikeuksin"
 
-#: ../ubuntutweak/modules/lockdown.py:72
+#: ../ubuntutweak/modules/lockdown.py:78
 msgid "Miscellaneous Options"
 msgstr "Muut asetukset"
 
@@ -917,22 +814,19 @@ msgid "Source Editor"
 msgstr "Ohjelmalähteiden muokkaus"
 
 #: ../ubuntutweak/modules/sourceeditor.py:353
-msgid "Freely edit your software sources to suit your needs."
-msgstr "Muokkaa ohjelmistolähteet vastaamaan tarpeitasi."
+msgid "Manually edit your software sources to suit your needs."
+msgstr ""
 
 #: ../ubuntutweak/modules/sourceeditor.py:450
-msgid "Please input the correct information about sources!"
-msgstr "Syötä oikeaa tietoa lähdekoodista!"
+msgid "Please input the correct source information!"
+msgstr ""
 
 #: ../ubuntutweak/modules/sourceeditor.py:463
 msgid ""
-"You can submit your sources to our server to help building the sources list, "
+"You can submit your sources to our server to help expand the sources list, "
 "or you can use the official sources.\n"
 "Do you wish to use the official sources?"
 msgstr ""
-"Voit lähettää ohjelmistolähteesi palvelimelle auttaaksesi sources.list-"
-"tiedoston muokkauksessa, tai voit käyttää virallisia ohjelmistolähteitä.\n"
-"Haluatko käyttää virallisia ohjelmistolähteitä?"
 
 #: ../ubuntutweak/modules/sourceeditor.py:466
 msgid "No source data available"
@@ -952,11 +846,9 @@ msgstr "Onnistuneesti lähetetty"
 
 #: ../ubuntutweak/modules/sourceeditor.py:496
 msgid ""
-"You've changed the sources.list without saving it.\n"
-"Do you want to save it?"
+"You've edited sources.list without saving changes.\n"
+"Do you want to save changes?"
 msgstr ""
-"Olet muokannut sources.list-tiedostoa, mutta muutoksia ei ole tallennettu.\n"
-"Haluatko tallentaa muutokset?"
 
 #: ../ubuntutweak/modules/sourceeditor.py:507
 msgid "Please check the permission of the sources.list file"
@@ -988,6 +880,7 @@ msgstr ""
 "Haluatko jatkaa?"
 
 #: ../ubuntutweak/modules/appcenter.py:193
+#: ../ubuntutweak/modules/desktoprecovery.py:101
 msgid "Category"
 msgstr "Luokka"
 
@@ -1009,14 +902,10 @@ msgstr "Sovelluskeskus"
 
 #: ../ubuntutweak/modules/appcenter.py:534
 msgid ""
-"A simple but more efficient way for finding and installing popular "
-"applications.\n"
-"Data will be automatically synchronized with the remote server.\n"
+"A simple but efficient way for finding and installing popular applications.\n"
+"Data will be synchronized automatically with the remote server.\n"
 "You can click the \"Sync\" button to perform a manual check for updates."
 msgstr ""
-"Yksinkertainen ja tehokas tapa uusien sovellusten löytämiseksi.\n"
-"Tiedot synkronoidaan etäpalvelimen kanssa automaattisesti.\n"
-"Jos haluat synkronoida tiedot itse, napsauta \"Synkronoi\"-painiketta."
 
 #: ../ubuntutweak/modules/appcenter.py:539
 msgid "Visit Online Application Center"
@@ -1165,9 +1054,9 @@ msgstr[0] "Asenna päivitys"
 msgstr[1] "Asenna päivitykset"
 
 #: ../ubuntutweak/modules/metacity.py:37
-#: ../ubuntutweak/modules/metacity.py:194
-#: ../ubuntutweak/modules/metacity.py:207
-#: ../ubuntutweak/modules/metacity.py:220
+#: ../ubuntutweak/modules/metacity.py:196
+#: ../ubuntutweak/modules/metacity.py:210
+#: ../ubuntutweak/modules/metacity.py:224
 msgid "Menu"
 msgstr "Valikko"
 
@@ -1176,16 +1065,16 @@ msgid "Title"
 msgstr "Ikkunan nimi"
 
 #: ../ubuntutweak/modules/metacity.py:39
-#: ../ubuntutweak/modules/metacity.py:190
-#: ../ubuntutweak/modules/metacity.py:203
-#: ../ubuntutweak/modules/metacity.py:216
+#: ../ubuntutweak/modules/metacity.py:192
+#: ../ubuntutweak/modules/metacity.py:206
+#: ../ubuntutweak/modules/metacity.py:220
 msgid "Maximize"
 msgstr "Suurenna"
 
 #: ../ubuntutweak/modules/metacity.py:40
-#: ../ubuntutweak/modules/metacity.py:193
-#: ../ubuntutweak/modules/metacity.py:206
-#: ../ubuntutweak/modules/metacity.py:219
+#: ../ubuntutweak/modules/metacity.py:195
+#: ../ubuntutweak/modules/metacity.py:209
+#: ../ubuntutweak/modules/metacity.py:223
 msgid "Minimize"
 msgstr "Pienennä"
 
@@ -1217,76 +1106,76 @@ msgstr "Ikkunareunuksen toiminnot"
 msgid "Titlebar mouse wheel action"
 msgstr "Hiiren rullan vieritys ikkunareunuksessa"
 
-#: ../ubuntutweak/modules/metacity.py:185
-#: ../ubuntutweak/modules/metacity.py:193
-#: ../ubuntutweak/modules/metacity.py:206
-#: ../ubuntutweak/modules/metacity.py:219
+#: ../ubuntutweak/modules/metacity.py:186
+#: ../ubuntutweak/modules/metacity.py:195
+#: ../ubuntutweak/modules/metacity.py:209
+#: ../ubuntutweak/modules/metacity.py:223
 msgid "Roll up"
 msgstr "Vieritä ylös"
 
-#: ../ubuntutweak/modules/metacity.py:188
+#: ../ubuntutweak/modules/metacity.py:189
 msgid "Titlebar double-click action"
 msgstr "Hiiren tuplanapsautus ikkunareunuksessa"
 
-#: ../ubuntutweak/modules/metacity.py:191
-#: ../ubuntutweak/modules/metacity.py:204
-#: ../ubuntutweak/modules/metacity.py:217
+#: ../ubuntutweak/modules/metacity.py:193
+#: ../ubuntutweak/modules/metacity.py:207
+#: ../ubuntutweak/modules/metacity.py:221
 msgid "Maximize Horizontally"
 msgstr "Suurenna vaakatasossa"
 
-#: ../ubuntutweak/modules/metacity.py:192
-#: ../ubuntutweak/modules/metacity.py:205
-#: ../ubuntutweak/modules/metacity.py:218
+#: ../ubuntutweak/modules/metacity.py:194
+#: ../ubuntutweak/modules/metacity.py:208
+#: ../ubuntutweak/modules/metacity.py:222
 msgid "Maximize Vertically"
 msgstr "Suurenna pystytasossa"
 
-#: ../ubuntutweak/modules/metacity.py:194
-#: ../ubuntutweak/modules/metacity.py:207
-#: ../ubuntutweak/modules/metacity.py:220
+#: ../ubuntutweak/modules/metacity.py:196
+#: ../ubuntutweak/modules/metacity.py:210
+#: ../ubuntutweak/modules/metacity.py:224
 msgid "Lower"
 msgstr "Laske"
 
-#: ../ubuntutweak/modules/metacity.py:201
+#: ../ubuntutweak/modules/metacity.py:203
 msgid "Titlebar middle-click action"
 msgstr "Hiiren keskimmäisen painikkeen toiminta ikkunareunuksessa"
 
-#: ../ubuntutweak/modules/metacity.py:214
+#: ../ubuntutweak/modules/metacity.py:217
 msgid "Titlebar right-click action"
 msgstr "Hiiren oikean painikkeen toiminta ikkunareunuksessa"
 
-#: ../ubuntutweak/modules/metacity.py:230
+#: ../ubuntutweak/modules/metacity.py:234
 msgid "Window Decoration Effects"
 msgstr "Ikkunatehosteet"
 
-#: ../ubuntutweak/modules/metacity.py:232
+#: ../ubuntutweak/modules/metacity.py:236
 msgid "Use Metacity window theme"
 msgstr "Käytä Metacity-ikkunateemaa"
 
-#: ../ubuntutweak/modules/metacity.py:235
+#: ../ubuntutweak/modules/metacity.py:240
 msgid "Enable active window transparency"
 msgstr "Käytä aktiivista ikkunan läpinäkyvyyttä"
 
-#: ../ubuntutweak/modules/metacity.py:238
+#: ../ubuntutweak/modules/metacity.py:244
 msgid "Active window transparency level"
 msgstr "Aktiivisen ikkunan läpinäkyvyystaso"
 
-#: ../ubuntutweak/modules/metacity.py:242
+#: ../ubuntutweak/modules/metacity.py:249
 msgid "Enable inactive window transparency"
 msgstr "Käytä aktiivisen ikkunan läpinäkyvyyttä"
 
-#: ../ubuntutweak/modules/metacity.py:245
+#: ../ubuntutweak/modules/metacity.py:253
 msgid "Inactive window shade transparency level"
 msgstr "Passiivisen ikkunan läpinäkyvyys"
 
-#: ../ubuntutweak/modules/metacity.py:252
+#: ../ubuntutweak/modules/metacity.py:261
 msgid "Enable Metacity's compositing feature"
 msgstr "Käytä Metacityn kiihdytystoimintoa"
 
-#: ../ubuntutweak/modules/metacity.py:255
+#: ../ubuntutweak/modules/metacity.py:266
 msgid "Compositing Manager"
 msgstr "Kiihdytyksen hallintaohjelma"
 
-#: ../ubuntutweak/modules/metacity.py:299
+#: ../ubuntutweak/modules/metacity.py:308
 msgid ""
 "To enable Metacity's compositing feature, you should manually disable Visual "
 "Effects in \"Appearance\"."
@@ -1315,8 +1204,8 @@ msgid "Desktop Icon Settings"
 msgstr "Työpöydän kuvakkeiden asetukset"
 
 #: ../ubuntutweak/modules/icons.py:109
-msgid "Change the name and toggle visibilty of desktop icons"
-msgstr "Vaihda työpöydällä näkyvien kuvakkeiden asetuksia"
+msgid "Rename and toggle visibilty of desktop icons"
+msgstr ""
 
 #: ../ubuntutweak/modules/icons.py:118
 msgid "Show desktop icons"
@@ -1355,80 +1244,78 @@ msgstr "Paneeliasetukset"
 msgid "Display warning when removing a panel"
 msgstr "Näytä varoitus poistaessa paneelia"
 
-#: ../ubuntutweak/modules/gnomesettings.py:58
+#: ../ubuntutweak/modules/gnomesettings.py:59
 msgid "Complete lockdown of all panels"
 msgstr "Estä paneeleihin tehtävät muutokset"
 
-#: ../ubuntutweak/modules/gnomesettings.py:61
+#: ../ubuntutweak/modules/gnomesettings.py:63
 msgid "Enable panel animations"
 msgstr "Ota käyttöön paneelianimaatiot"
 
-#: ../ubuntutweak/modules/gnomesettings.py:66
+#: ../ubuntutweak/modules/gnomesettings.py:69
 msgid "Menu Settings"
 msgstr "Valikon asetukset"
 
-#: ../ubuntutweak/modules/gnomesettings.py:68
+#: ../ubuntutweak/modules/gnomesettings.py:71
 msgid "Show Input Method menu in the context menu"
 msgstr ""
 
-#: ../ubuntutweak/modules/gnomesettings.py:71
+#: ../ubuntutweak/modules/gnomesettings.py:75
 msgid "Show Unicode Control Character menu in the context menu"
 msgstr ""
 
-#: ../ubuntutweak/modules/gnomesettings.py:74
+#: ../ubuntutweak/modules/gnomesettings.py:79
 msgid "Show icons in menus"
 msgstr "Näytä kuvakkeet valikoissa"
 
-#: ../ubuntutweak/modules/gnomesettings.py:77
+#: ../ubuntutweak/modules/gnomesettings.py:83
 msgid "Show icons on buttons"
 msgstr "Näytä kuvakkeet painikkeissa"
 
-#: ../ubuntutweak/modules/gnomesettings.py:83
+#: ../ubuntutweak/modules/gnomesettings.py:90
 msgid "Screensaver"
 msgstr "Näytönsäästäjä"
 
-#: ../ubuntutweak/modules/gnomesettings.py:85
-msgid "Enable user switching when screen is locked."
-msgstr "Salli käyttäjän vaihto näytön ollessa lukittu."
+#: ../ubuntutweak/modules/gnomesettings.py:92
+msgid "Enable user switching whilst screen is locked."
+msgstr ""
 
-#: ../ubuntutweak/modules/gnomesettings.py:90
+#: ../ubuntutweak/modules/gnomesettings.py:98
 msgid "Enable system-wide \"Recent Documents\" list"
 msgstr "Ota käyttöön järjestelmänlaajuinen Viimeisimmät asiakirjat -luettelo"
 
-#: ../ubuntutweak/modules/gnomesettings.py:93
+#: ../ubuntutweak/modules/gnomesettings.py:101
 msgid "History"
 msgstr "Historia"
 
-#: ../ubuntutweak/modules/gnomesettings.py:100
+#: ../ubuntutweak/modules/gnomesettings.py:108
 msgid "Click this button to change the menu logo image"
 msgstr ""
 "Napsauta vieressä olevaa painiketta vaihtaaksesi valikon logokuvakkeen"
 
-#: ../ubuntutweak/modules/gnomesettings.py:113
-#: ../ubuntutweak/modules/loginsettings.py:142
+#: ../ubuntutweak/modules/gnomesettings.py:121
+#: ../ubuntutweak/modules/loginsettings.py:146
 msgid "Choose a new logo image"
 msgstr "Valitse uusi logokuvake"
 
-#: ../ubuntutweak/modules/gnomesettings.py:119
+#: ../ubuntutweak/modules/gnomesettings.py:127
 msgid "PNG images with 24x24 size or SVG images"
-msgstr ""
+msgstr "PNG-kuvatiedostot kokoa 24x24 tai SVG-kuvatiedostot"
 
-#: ../ubuntutweak/modules/gnomesettings.py:152
+#: ../ubuntutweak/modules/gnomesettings.py:160
 msgid ""
 "This image size isn't suitable for the panel.\n"
-"It should be 24x24."
+"It should measure 24x24."
 msgstr ""
-"Kuva ei ole paneeliin sopiva.\n"
-"Kuvan koon tulee olla 24x24 pikseliä."
 
-#: ../ubuntutweak/modules/gnomesettings.py:172
+#: ../ubuntutweak/modules/gnomesettings.py:180
 msgid "Do you want your changes to take effect immediately?"
 msgstr "Haluatko ottaa muutokset käyttöön heti?"
 
-#: ../ubuntutweak/modules/gnomesettings.py:195
+#: ../ubuntutweak/modules/gnomesettings.py:203
 msgid ""
-"By disabling the \"Recent Documents\", it may break other software such as "
-"VMware Player's history feature."
+"Disabling \"Recent Documents\" may break other software, for example the "
+"history feature in VMware Player."
 msgstr ""
 
 #: ../ubuntutweak/modules/powermanager.py:28
@@ -1447,19 +1334,19 @@ msgstr "Virranhallinnan lisäasetukset"
 msgid "Enable \"Lock screen\" when \"Blank Screen\" activates"
 msgstr "Ota käyttöön \"Lukitse näyttö\" kun \"tyhjäruutu) aktivoituu"
 
-#: ../ubuntutweak/modules/powermanager.py:42
+#: ../ubuntutweak/modules/powermanager.py:43
 msgid "Lock screen on hibernate"
 msgstr "Lukitse näyttö lepotilassa"
 
-#: ../ubuntutweak/modules/powermanager.py:45
+#: ../ubuntutweak/modules/powermanager.py:47
 msgid "Lock screen on suspend"
 msgstr "Lukitse näyttö keskeytystilassa"
 
-#: ../ubuntutweak/modules/powermanager.py:48
+#: ../ubuntutweak/modules/powermanager.py:51
 msgid "LCD brightness when using AC power"
 msgstr "LCD-näytön kirkkaus, kun kone käyttää verkkovirtaa"
 
-#: ../ubuntutweak/modules/powermanager.py:52
+#: ../ubuntutweak/modules/powermanager.py:56
 msgid "LCD brightness when using battery"
 msgstr "LCD-näytön kirkkaus, kun kone käyttää akkua"
 
@@ -1547,7 +1434,7 @@ msgstr "Uusia sovelluksia saatavilla"
 
 #. checkbutton
 #: ../ubuntutweak/modules/sourcecenter.py:125
-#: ../ubuntutweak/modules/cleaner.py:728
+#: ../ubuntutweak/modules/cleaner.py:729
 msgid "Select All"
 msgstr "Valitse kaikki"
 
@@ -1651,18 +1538,11 @@ msgstr "Ohjelmistolähdekeskus"
 msgid ""
 "A collection of software sources to ensure your applications are always up-"
 "to-date.\n"
-"Here you can also add applications which are unavailable in the offical "
-"repositories.\n"
-"The list of available sources will be obtained automatically from a remote "
-"server.\n"
+"Here you can add applications unavailable in the official repositories.\n"
+"A list of available software sources will be obtained automatically from a "
+"remote server.\n"
 "You can click the \"Sync\" button to manually check for updates"
 msgstr ""
-"Kokoelma sovellus lähteitä jotka varmistaa että sovelluksesi on aina ajan "
-"tasalla.\n"
-"Täältä voi myös asentaa sovelluksia jotka ei ole saatavilla virallisista "
-"ohjelmalähteistä.\n"
-"Ohjelmalista saatavilla olevista haetaan aina serveriltämme.\n"
-"Paina \"Synkronoi\" nappia hakeaksesi uudet päivitykset"
 
 #: ../ubuntutweak/modules/sourcecenter.py:916
 msgid "Visit online Source Center"
@@ -1752,7 +1632,7 @@ msgstr "Tarkista md5-summa"
 
 #: ../ubuntutweak/modules/scripts.py:66
 msgid "Compress PDF"
-msgstr ""
+msgstr "Pakkaa PDF"
 
 #: ../ubuntutweak/modules/scripts.py:67
 msgid "Move to ..."
@@ -1841,12 +1721,9 @@ msgstr "Hallitse skriptejä"
 #: ../ubuntutweak/modules/scripts.py:146
 msgid ""
 "Scripts can be used to complete all kinds of tasks.\n"
-"You can drag and drop scripts from File Manager.\n"
+"You can drag and drop scripts here from File Manager.\n"
 "'Scripts' will then be added to the context menu."
 msgstr ""
-"Komentosarjatiedostojen avulla voi automatisoida kaikenlaisia toimintoja.\n"
-"You can drag and drop scripts from File Manager.\n"
-"'Scripts' will then be added to the context menu."
 
 #: ../ubuntutweak/modules/scripts.py:179
 msgid "Rebuild System Scripts"
@@ -1910,20 +1787,18 @@ msgstr "Hallitse asiakirjamalleja"
 
 #: ../ubuntutweak/modules/templates.py:117
 msgid ""
-"Here you can freely manage your document templates.\n"
-"You can add files as templates by dragging them onto this window.\n"
-"You can create new documents based on these templates from the Nautilus "
+"Here you can manage your document templates.\n"
+"You can add files as templates by dragging them into this window.\n"
+"You can then create new documents based on these templates from the Nautilus "
 "right-click menu."
 msgstr ""
 
 #: ../ubuntutweak/modules/templates.py:128
 #, python-format
 msgid ""
-"Templates path is wrong! The current path is point to \"%s\".\n"
-"Please reset it to a folder under your Home Folder."
+"The templates path is incorrect! The current path points to \"%s\".\n"
+"Please reset it to a location within your Home Folder."
 msgstr ""
-"Asiakirjamallien polku on virheellinen! Nykyinen polku on  \"%s\".\n"
-"Aseta uusi polku, joka viittaa kotikansiossasi olevaan kansioon."
 
 #: ../ubuntutweak/modules/templates.py:137
 msgid "Go And Set"
@@ -1938,8 +1813,8 @@ msgid "Rebuild System Templates"
 msgstr "Uudelleenrakenna järjestelmän asiakirjamallit"
 
 #: ../ubuntutweak/modules/templates.py:192
-msgid "Templates path is still wrong, Please reset it!"
-msgstr "Asiakirjamallien polku on yhä väärä, korjaa se!"
+msgid "The templates path is still incorrect, please reset it!"
+msgstr ""
 
 #: ../ubuntutweak/modules/templates.py:204
 msgid ""
@@ -1961,41 +1836,35 @@ msgstr "Hallitse istuntoihin liittyviä asetuksia"
 msgid "File Manager"
 msgstr "Tiedostoselain"
 
-#: ../ubuntutweak/modules/session.py:52
+#: ../ubuntutweak/modules/session.py:53
 msgid "Panel"
 msgstr "Paneeli"
 
-#: ../ubuntutweak/modules/session.py:56
+#: ../ubuntutweak/modules/session.py:58
 msgid "Window Manager"
 msgstr "Ikkunamanageri"
 
-#: ../ubuntutweak/modules/session.py:67
+#: ../ubuntutweak/modules/session.py:70
 msgid "Session Control"
 msgstr "Istuntojen hallinta"
 
-#: ../ubuntutweak/modules/session.py:76
+#: ../ubuntutweak/modules/session.py:79
 msgid "Session Options"
 msgstr "Istunnon asetukset"
 
-#: ../ubuntutweak/modules/session.py:78
+#: ../ubuntutweak/modules/session.py:81
 msgid "Automatically save open applications when logging out"
 msgstr "Tallenna avoinna olevat ohjelmat automaattisesti kirjautuessa ulos"
 
-#: ../ubuntutweak/modules/session.py:81
-msgid "Allow TCP Connections (Remote Desktop Connect)"
-msgstr "Salli TCP-yhteydet (Etätyöpöytäyhteydet)"
-
-#: ../ubuntutweak/modules/session.py:84
-msgid "Suppress the dialog to confirm logout, restart and shutdown action"
+#: ../ubuntutweak/modules/session.py:85
+msgid "Suppress the logout, restart and shutdown confirmation dialogue box."
 msgstr ""
-"Estä uloskirjautumis-, uudelleenkäynnistys- ja sammuttamistoimintojen "
-"erillisen valinta-ikkunan näkyminen"
 
-#: ../ubuntutweak/modules/session.py:109
+#: ../ubuntutweak/modules/session.py:111
 msgid "Please enter a valid application command line."
 msgstr ""
 
-#: ../ubuntutweak/modules/session.py:109
+#: ../ubuntutweak/modules/session.py:111
 #, python-format
 msgid "\"%s\" is not available."
 msgstr "\"%s\" ei ole saatavilla."
@@ -2015,11 +1884,11 @@ msgstr "Puhdistetaan...%s"
 
 #: ../ubuntutweak/modules/cleaner.py:147
 msgid "Purge PPA and Downgrade Packages"
-msgstr ""
+msgstr "Hävitä PPA-ohjelmistolähteet ja asenna vanhemmat paketit"
 
 #: ../ubuntutweak/modules/cleaner.py:148
 msgid "Downloading Packages..."
-msgstr ""
+msgstr "Ladataan paketteja..."
 
 #: ../ubuntutweak/modules/cleaner.py:162
 #, python-format
@@ -2032,19 +1901,23 @@ msgstr "Paketti"
 
 #: ../ubuntutweak/modules/cleaner.py:214
 msgid "Previous Version"
-msgstr ""
+msgstr "Aiempi versio"
 
 #: ../ubuntutweak/modules/cleaner.py:221
 msgid "System Version"
 msgstr ""
 
-#: ../ubuntutweak/modules/cleaner.py:328 ../ubuntutweak/modules/cleaner.py:356
-msgid "Packages"
-msgstr "Paketit"
+#: ../ubuntutweak/modules/cleaner.py:328
+msgid "Unneeded Packages"
+msgstr ""
+
+#: ../ubuntutweak/modules/cleaner.py:356
+msgid "Kernel Packages"
+msgstr ""
 
 #: ../ubuntutweak/modules/cleaner.py:385
-msgid "Package Cache"
-msgstr "Pakettivälimuisti"
+msgid "Cached Package Files"
+msgstr ""
 
 #: ../ubuntutweak/modules/cleaner.py:399
 #, python-format
@@ -2055,82 +1928,79 @@ msgstr ""
 "<b>%s</b>\n"
 "Vie tilaa levyltä %s"
 
-#: ../ubuntutweak/modules/cleaner.py:461
+#: ../ubuntutweak/modules/cleaner.py:462
 msgid "Package Configuration Files"
 msgstr ""
 
-#: ../ubuntutweak/modules/cleaner.py:498
+#: ../ubuntutweak/modules/cleaner.py:499
 #, python-format
 msgid "%d package selected for removal"
 msgid_plural "%d packages selected for removal"
 msgstr[0] "%d paketti valittu poistettavaksi"
 msgstr[1] "%d pakettia valittu poistettavaksi"
 
-#: ../ubuntutweak/modules/cleaner.py:502
+#: ../ubuntutweak/modules/cleaner.py:503
 #, python-format
 msgid "%s of disk space will be freed"
 msgstr "Levytilaa vapautuu %s"
 
-#: ../ubuntutweak/modules/cleaner.py:610
-msgid "It's safe to purge the PPA, there's no package need to be downgraded."
+#: ../ubuntutweak/modules/cleaner.py:611
+msgid "It's safe to purge the PPA, no packages need to be downgraded."
 msgstr ""
 
-#: ../ubuntutweak/modules/cleaner.py:613
-msgid ""
-"To safely purge the PPA, the following packages need to be downgraded."
+#: ../ubuntutweak/modules/cleaner.py:614
+msgid "To safely purge the PPA, the following packages must be downgraded."
 msgstr ""
 
-#: ../ubuntutweak/modules/cleaner.py:617
+#: ../ubuntutweak/modules/cleaner.py:618
 #, python-format
 msgid "You're going to purge: %s"
 msgstr ""
 
-#: ../ubuntutweak/modules/cleaner.py:651
+#: ../ubuntutweak/modules/cleaner.py:652
 msgid "Cancelled by user!"
 msgstr "Toiminto peruttiin käyttäjän toimesta!"
 
-#: ../ubuntutweak/modules/cleaner.py:654
+#: ../ubuntutweak/modules/cleaner.py:655
 msgid "Clean up successful!"
 msgstr "Siivottu onnistuneesti!"
 
-#: ../ubuntutweak/modules/cleaner.py:657
+#: ../ubuntutweak/modules/cleaner.py:658
 msgid "Clean up failed!"
 msgstr "Siivous epäonnistui!"
 
-#: ../ubuntutweak/modules/cleaner.py:670
+#: ../ubuntutweak/modules/cleaner.py:671
 msgid "Package Cleaner"
 msgstr "Pakettisiivooja"
 
-#: ../ubuntutweak/modules/cleaner.py:671
+#: ../ubuntutweak/modules/cleaner.py:672
 msgid ""
-"Free up disk space by removing redundant packages and cleaning the package "
+"Free up disk space by removing redundant packages and cleaning package "
 "download cache."
 msgstr ""
-"Vapauta levytilaa poistamalla turhat paketit ja siivoamalla "
-"pakettivälimuisti."
 
 #. create the button
-#: ../ubuntutweak/modules/cleaner.py:702
+#: ../ubuntutweak/modules/cleaner.py:703
 msgid "Clean Packages"
 msgstr "Siivoa paketit"
 
-#: ../ubuntutweak/modules/cleaner.py:707
+#: ../ubuntutweak/modules/cleaner.py:708
 msgid "Clean Cache"
 msgstr "Siivoa välimuisti"
 
-#: ../ubuntutweak/modules/cleaner.py:712
+#: ../ubuntutweak/modules/cleaner.py:713
 msgid "Clean Config"
 msgstr "Siivoa tarpeettomat asetustiedostot"
 
-#: ../ubuntutweak/modules/cleaner.py:717
+#: ../ubuntutweak/modules/cleaner.py:718
 msgid "Clean Kernels"
 msgstr "Siivoa ytimet"
 
-#: ../ubuntutweak/modules/cleaner.py:722
+#: ../ubuntutweak/modules/cleaner.py:723
 msgid "Purge PPAs"
-msgstr ""
+msgstr "Hävitä PPA-ohjelmistolähteitä"
 
-#: ../ubuntutweak/modules/cleaner.py:742
+#: ../ubuntutweak/modules/cleaner.py:743
 msgid "_Cleanup"
 msgstr "_Puhdista"
 
@@ -2142,10 +2012,9 @@ msgstr "Pikanäppäinkomennot"
 msgid ""
 "By configuring keyboard shortcuts, you can access your favourite "
 "applications instantly.\n"
-"Enter the application's command and set the desired shortcut keys."
+"Enter the command to run the application and choose a shortcut key "
+"combination."
 msgstr ""
-"Voit määrittää haluamasi sovellukset käynnistymään pikanäppäinkomennoilla.\n"
-"Kirjoita sovelluksen nimi ja aseta haluttu pikanäppäinkomento."
 
 #: ../ubuntutweak/modules/shortcuts.py:94
 #, python-format
@@ -2198,8 +2067,8 @@ msgid "Delete from Disk"
 msgstr "Poista levyltä"
 
 #: ../ubuntutweak/modules/autostart.py:203
-msgid "Can't delete the system item from disk."
-msgstr "Järjestelmäkohdetta ei voi poistaa levyltä."
+msgid "Can't delete system item from disk."
+msgstr ""
 
 #: ../ubuntutweak/modules/autostart.py:255
 msgid "No description"
@@ -2215,16 +2084,10 @@ msgstr "Käynnistettävät ohjelmat"
 
 #: ../ubuntutweak/modules/autostart.py:335
 msgid ""
-"Here you can manage which programs are started upon login.\n"
-"You can hide items from view by selecting and clicking \"Remove\"\n"
-"To permanently delete an item, right-click and press \"Delete\"."
+"Here you can manage which programs are run upon login.\n"
+"You can hide items from view by selecting them and clicking \"Remove\"\n"
+"To permanently delete an item, right-click and select \"Delete\"."
 msgstr ""
-"Täältä voit hallita niitä ohjelmia jotka käynnistäteen kirjauduttuessa "
-"sisään.\n"
-"Voit poistaa sovelluksia sisäänkirjauduttuessa käynnistyvien sovellusten "
-"listalla painamalla \"Poista\"\n"
-"Poistaaksesi pysyvästi sovelluksen listalta, paina oikealla napilla ja paina "
-"\"Poista levyltä\"."
 
 #. create the two checkbutton for extra options of auto run list
 #: ../ubuntutweak/modules/autostart.py:348
@@ -2262,52 +2125,52 @@ msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
 msgstr ""
 "Näytä Nautiluksen \"Ominaisuudet\"-ikkunassa edistyneet käyttöoikeusvalinnat."
 
-#: ../ubuntutweak/modules/nautilus.py:79
+#: ../ubuntutweak/modules/nautilus.py:80
 msgid "File Browser"
 msgstr "Tiedostoselain"
 
-#: ../ubuntutweak/modules/nautilus.py:88
+#: ../ubuntutweak/modules/nautilus.py:89
 msgid "Thumbnail Settings"
 msgstr "Esikatselukuvien asetukset"
 
-#: ../ubuntutweak/modules/nautilus.py:92
+#: ../ubuntutweak/modules/nautilus.py:94
 msgid "Default thumbnail icon size (pixels)"
 msgstr "Esikatselukuvien kuvakkeiden koko (pikseleissä)"
 
-#: ../ubuntutweak/modules/nautilus.py:96
+#: ../ubuntutweak/modules/nautilus.py:99
 msgid "Maximum thumbnail cache size (megabytes)"
 msgstr "Esikatselukuvien välimuistin suurin sallittu koko (megatavuissa)"
 
-#: ../ubuntutweak/modules/nautilus.py:100
+#: ../ubuntutweak/modules/nautilus.py:104
 msgid "Thumbnail cache time (days)"
 msgstr "Esikatselukuvat säilytetään välimuistissa (päivissä)"
 
-#: ../ubuntutweak/modules/nautilus.py:107
+#: ../ubuntutweak/modules/nautilus.py:111
 msgid "Open folder in terminal"
 msgstr "Avaa kansio päätteessä"
 
-#: ../ubuntutweak/modules/nautilus.py:109
+#: ../ubuntutweak/modules/nautilus.py:113
 msgid "Open folder with root priveleges"
 msgstr "Avaa kansio ylläpito-oikeuksin"
 
-#: ../ubuntutweak/modules/nautilus.py:111
-msgid "Nautilus with Wallpaper"
-msgstr "Näytä valinta taustakuvan asettamiseen Nautiluksen valikossa"
+#: ../ubuntutweak/modules/nautilus.py:115
+msgid "Nautilus with wallpaper"
+msgstr ""
 
-#: ../ubuntutweak/modules/nautilus.py:113
+#: ../ubuntutweak/modules/nautilus.py:117
 msgid "Nautilus Extensions"
 msgstr "Nautiluksen laajennukset"
 
-#: ../ubuntutweak/modules/nautilus.py:135
+#: ../ubuntutweak/modules/nautilus.py:139
 #, python-format
-msgid "Delete thumbnail cache (will free %s of disk space)"
-msgstr "Tyhjennä esikatselukuvien välimuisti (tilaa vapautuu %s)"
+msgid "Delete thumbnail cache (Frees %s of disk space)"
+msgstr ""
 
-#: ../ubuntutweak/modules/nautilus.py:138
+#: ../ubuntutweak/modules/nautilus.py:142
 msgid "The thumbnail cache will be deleted. Do you wish to continue?"
 msgstr "Esikatselukuvien välimuisti tyhjennetään. Haluatko jatkaa?"
 
-#: ../ubuntutweak/modules/nautilus.py:145
+#: ../ubuntutweak/modules/nautilus.py:149
 msgid "Clean up Successful!"
 msgstr "Puhdistus onnistui!"
 
@@ -2324,26 +2187,26 @@ msgid "Login Options"
 msgstr "Sisäänkirjautumisvalinnat"
 
 #: ../ubuntutweak/modules/loginsettings.py:51
-msgid "Disable user list in gdm"
-msgstr "Älä näytä käyttäjäluetteloa sisäänkirjautumisnäkymässä"
+msgid "Disable user list in GDM"
+msgstr ""
 
-#: ../ubuntutweak/modules/loginsettings.py:55
+#: ../ubuntutweak/modules/loginsettings.py:56
 msgid "Play sound at login"
 msgstr "Toista kirjautumis ääni"
 
-#: ../ubuntutweak/modules/loginsettings.py:59
-msgid "Disable showing the restart buttons"
-msgstr "Älä näytä uudelleenkäynnistyspainikkeita"
+#: ../ubuntutweak/modules/loginsettings.py:61
+msgid "Disable showing the restart button"
+msgstr ""
 
-#: ../ubuntutweak/modules/loginsettings.py:76
+#: ../ubuntutweak/modules/loginsettings.py:79
 msgid "Login Theme"
 msgstr "Kirjautumis teema"
 
-#: ../ubuntutweak/modules/loginsettings.py:148
+#: ../ubuntutweak/modules/loginsettings.py:152
 msgid "PNG images with 64x64 size or SVG images"
-msgstr ""
+msgstr "PNG-kuvatiedostot kokoa 64x64 tai SVG-kuvatiedostot"
 
-#: ../ubuntutweak/modules/loginsettings.py:178
+#: ../ubuntutweak/modules/loginsettings.py:182
 msgid ""
 "This image size isn't suitable for the logo.\n"
 "It should be 64x64."
@@ -2351,13 +2214,128 @@ msgstr ""
 "Tämä kuva ei ole sopiva kirjautumis logoksi kokonsa takia.\n"
 "Koon pitäisi olla 64x64."
 
-#: ../ubuntutweak/modules/loginsettings.py:200
+#: ../ubuntutweak/modules/loginsettings.py:204
 msgid "Choose a new background image"
 msgstr "Valitse uusi taustakuva"
 
-#: ../ubuntutweak/modules/loginsettings.py:206
+#: ../ubuntutweak/modules/loginsettings.py:210
 msgid "All images"
 msgstr "Kaikki kuvat"
+
+#: ../ubuntutweak/modules/desktoprecovery.py:145
+msgid "Setting"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:189
+msgid "Backup Name:"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:237
+#, python-format
+msgid "Backing up...%s"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:263
+msgid "Desktop Recovery"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:264
+msgid ""
+"Backup and recover your desktop and application settings with ease.\n"
+"You can also use \"Reset\" to reset to the system default settings."
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:335
+msgid "No Backup Yet"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:378
+#, python-format
+msgid ""
+"Backup all settings under: <b>%s</b>\n"
+"Would you like to continue?"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:397
+#, python-format
+msgid ""
+"Backup settings under: <b>%s</b>\n"
+"Would you like to continue?"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:438
+#, python-format
+msgid "Would you like to delete the backup: <b>%s/%s</b>?"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:440
+#, python-format
+msgid ""
+"Would you like to delete the backup of all <b>%s</b> settings named "
+"<b>%s</b>?"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:459
+#, python-format
+msgid "Would you like to recover the backup: <b>%s/%s</b>?"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:461
+#, python-format
+msgid ""
+"Would you like to recover the backup of all <b>%s</b> settings named "
+"<b>%s</b>?"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:463
+msgid ""
+"<b>NOTES</b>: While recovering, your desktop may be unresponsive for a "
+"moment."
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:480
+msgid ""
+"Recovery Successful!\n"
+"You may need to restart your desktop for changes to take effect"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:488
+#, python-format
+msgid "Would you like to reset settings for: <b>%s</b>?"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:490
+#, python-format
+msgid "Would you like to reset all settings under: <b>%s</b>?"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:492
+msgid ""
+"<b>NOTES</b>: Whilst resetting, your desktop may be unresponsive for a "
+"moment."
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:509
+msgid ""
+"Reset Successful!\n"
+"You may need to restart your desktop for changes to take effect"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:527
+msgid "New Backup Name"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:528
+msgid "Please enter a new name for your backup:"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:560
+msgid "Backup Successful!"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:563
+msgid "Backup Failed!"
+msgstr ""
 
 #~ msgid "Text was empty (or contained only whitespace)"
 #~ msgstr "Teksti oli tyhjä (tai sisälsi vain tyhjiä merkkejä)"
@@ -2402,6 +2380,9 @@ msgstr "Kaikki kuvat"
 
 #~ msgid "Expo"
 #~ msgstr "Expo"
+
+#~ msgid "Packages"
+#~ msgstr "Paketit"
 
 #~ msgid "Choose a new logo"
 #~ msgstr "Valitse uusi logo"
@@ -2563,14 +2544,120 @@ msgstr "Kaikki kuvat"
 #~ "Huom: jos mielummin päivität itse lähteistä voit poistaa ominaisuuden "
 #~ "asetuksista."
 
+#~ msgid "Please input the correct information about sources!"
+#~ msgstr "Syötä oikeaa tietoa lähdekoodista!"
+
 #~ msgid "Enable new item highlight in App and Source Center"
 #~ msgstr "Hyväksy uuden sovelluksen korostus sovellukset kohdassa"
+
+#~ msgid "Updated versions of X.org drivers, libraries, etc. for Ubuntu."
+#~ msgstr "Päivitetyt versiot X.org-ajureista, kirjastoista jne. Ubuntulle."
+
+#~ msgid ""
+#~ "Gloobus is an extension of Gnome designed to enable a full screen preview of "
+#~ "any kind of file."
+#~ msgstr ""
+#~ "Gloobus on Gnome liitännäinen joka on suunniteltu hyväksymään kokoruutu "
+#~ "esikatselu mille tahansa tiedostolle."
+
+#~ msgid "Mono is a cross platform, open source .NET development framework."
+#~ msgstr ""
+#~ "Mono on monen käyttöjärjestelmän avoimen lähdekoodin \".NETdevelopment "
+#~ "framework\" korvike"
+
+#~ msgid "Clean up unneeded packages to free up diskspace."
+#~ msgstr "Siivoa ylimääräiset paketit vapauttaaksesi levytilaa."
+
+#~ msgid "Development Version of Mozilla Firefox"
+#~ msgstr "Kehitysversio Mozilla Firefoxista"
+
+#~ msgid "Development version of Compiz"
+#~ msgstr "Kehitysversio Compizista"
+
+#~ msgid "Google's Linux Repository"
+#~ msgstr "Googlen Linux-ohjelmalähde"
+
+#~ msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
+#~ msgstr "Kevyt LXDE-työpöytäympäristö: GPicView, PCManFM"
+
+#~ msgid ""
+#~ "Ubuntu repository for Chinese users.\n"
+#~ "Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and "
+#~ "other softwares."
+#~ msgstr ""
+#~ "Ubuntu-ohjelmalähde kiinalaisille käyttäjille.\n"
+#~ "Sisältää sovellukset EIOffice, Ubuntu Tweak, ibus-syöttötekniikka, "
+#~ "OpenOffice.org 3.0, ja paljon muuta."
+
+#~ msgid "Development Version of K Desktop Environment"
+#~ msgstr "Kehitysversio Kde-työpöytäympäristöstä"
+
+#~ msgid ""
+#~ "Ubuntu Mozilla Security Team provides beta and final stable/security updates "
+#~ "for mozilla software in its PPA"
+#~ msgstr ""
+#~ "Ubuntun Mozilla-tietoturvaryhmä tarjoaa viimeisimmät beta- ja "
+#~ "tietoturvapäivitykset omasta PPA-ohjelmalähteestään"
+
+#~ msgid ""
+#~ "WebkitGtk+, Liferea (Webkit), Midori and other WebKit related projects."
+#~ msgstr "WebkitGtk+, Liferea (Webkit), Midori ja muut WebKit-projektit."
+
+#~ msgid ""
+#~ "Gnome Games built from Git, with all experimental features and staging games "
+#~ "enabled."
+#~ msgstr "Viimeisimmät versiot Gnome-peleistä (suoraan Gitistä)."
 
 #~ msgid "Enable Check Update"
 #~ msgstr "Tarkista uudet päivitykset"
 
+#~ msgid ""
+#~ "Ubuntu Tweak will restore the chosen directory to the default location.\n"
+#~ "However, you must move your files back into place by yourself.\n"
+#~ "Do you wish to continue?"
+#~ msgstr ""
+#~ "Ubunut Tweak palauttaa valitun hakemiston vakiosijaintiinsa.\n"
+#~ "Sinun täytyy kuitenkin siirtää tiedosto(t) paikalleen itse.\n"
+#~ "Haluatko jatkaa?"
+
+#~ msgid ""
+#~ "Multimedia, Entertainment and Distraction In Ubuntu\n"
+#~ "Medibuntu is a repository of packages that cannot be included into the "
+#~ "Ubuntu distribution for legal reasons (copyright, license, patent, etc)."
+#~ msgstr ""
+#~ "Multimediaa ja viihdettä Ubuntuun\n"
+#~ "Mediubuntu on ohjelmistolähde, joka sisältää paketteja, joita ei laillista "
+#~ "syistä voi sisällyttää Ubuntuun\n"
+#~ "(tekijänoikeudellisista sekä lisenssi- ja patenttisyistä johtuen)"
+
+#~ msgid ""
+#~ "You can submit your sources to our server to help building the sources list, "
+#~ "or you can use the official sources.\n"
+#~ "Do you wish to use the official sources?"
+#~ msgstr ""
+#~ "Voit lähettää ohjelmistolähteesi palvelimelle auttaaksesi sources.list-"
+#~ "tiedoston muokkauksessa, tai voit käyttää virallisia ohjelmistolähteitä.\n"
+#~ "Haluatko käyttää virallisia ohjelmistolähteitä?"
+
 #~ msgid "Freely edit your software sources to fit your needs."
 #~ msgstr "Muokkaa ohjelmistolähteesi vastaamaan tarpeitasi"
+
+#~ msgid ""
+#~ "You've changed the sources.list without saving it.\n"
+#~ "Do you want to save it?"
+#~ msgstr ""
+#~ "Olet muokannut sources.list-tiedostoa, mutta muutoksia ei ole tallennettu.\n"
+#~ "Haluatko tallentaa muutokset?"
+
+#~ msgid "Enable user switching when screen is locked."
+#~ msgstr "Salli käyttäjän vaihto näytön ollessa lukittu."
+
+#~ msgid ""
+#~ "This image size isn't suitable for the panel.\n"
+#~ "It should be 24x24."
+#~ msgstr ""
+#~ "Kuva ei ole paneeliin sopiva.\n"
+#~ "Kuvan koon tulee olla 24x24 pikseliä."
 
 #, python-format
 #~ msgid "Available %d New Application"
@@ -2583,3 +2670,141 @@ msgstr "Kaikki kuvat"
 #~ msgid_plural "Available %d Package Updates"
 #~ msgstr[0] "Saatavilla %d pakettipäivitys"
 #~ msgstr[1] "Saatavilla %d pakettipäivitystä"
+
+#~ msgid "Disable user list in gdm"
+#~ msgstr "Älä näytä käyttäjäluetteloa sisäänkirjautumisnäkymässä"
+
+#~ msgid "Suppress the dialog to confirm logout, restart and shutdown action"
+#~ msgstr ""
+#~ "Estä uloskirjautumis-, uudelleenkäynnistys- ja sammuttamistoimintojen "
+#~ "erillisen valinta-ikkunan näkyminen"
+
+#~ msgid "Allow TCP Connections (Remote Desktop Connect)"
+#~ msgstr "Salli TCP-yhteydet (Etätyöpöytäyhteydet)"
+
+#~ msgid "Package Cache"
+#~ msgstr "Pakettivälimuisti"
+
+#~ msgid ""
+#~ "Free up disk space by removing redundant packages and cleaning the package "
+#~ "download cache."
+#~ msgstr ""
+#~ "Vapauta levytilaa poistamalla turhat paketit ja siivoamalla "
+#~ "pakettivälimuisti."
+
+#~ msgid ""
+#~ "By configuring keyboard shortcuts, you can access your favourite "
+#~ "applications instantly.\n"
+#~ "Enter the application's command and set the desired shortcut keys."
+#~ msgstr ""
+#~ "Voit määrittää haluamasi sovellukset käynnistymään pikanäppäinkomennoilla.\n"
+#~ "Kirjoita sovelluksen nimi ja aseta haluttu pikanäppäinkomento."
+
+#~ msgid "Can't delete the system item from disk."
+#~ msgstr "Järjestelmäkohdetta ei voi poistaa levyltä."
+
+#~ msgid ""
+#~ "You can change the paths of the default folders here.\n"
+#~ "Don't change the location of your desktop folder unless you know what you "
+#~ "are doing."
+#~ msgstr ""
+#~ "Voit vaihtaa kansioiden polkuja.\n"
+#~ "Älä vaihda työpöytäkansion sijaintia, ellet tiedä mitä olet tekemässä."
+
+#, python-format
+#~ msgid "Delete thumbnail cache (will free %s of disk space)"
+#~ msgstr "Tyhjennä esikatselukuvien välimuisti (tilaa vapautuu %s)"
+
+#~ msgid ""
+#~ "Scripts can be used to complete all kinds of tasks.\n"
+#~ "You can drag and drop scripts from File Manager.\n"
+#~ "'Scripts' will then be added to the context menu."
+#~ msgstr ""
+#~ "Komentosarjatiedostojen avulla voi automatisoida kaikenlaisia toimintoja.\n"
+#~ "You can drag and drop scripts from File Manager.\n"
+#~ "'Scripts' will then be added to the context menu."
+
+#~ msgid "Templates path is still wrong, Please reset it!"
+#~ msgstr "Asiakirjamallien polku on yhä väärä, korjaa se!"
+
+#~ msgid "Nautilus with Wallpaper"
+#~ msgstr "Näytä valinta taustakuvan asettamiseen Nautiluksen valikossa"
+
+#~ msgid "Change the name and toggle visibilty of desktop icons"
+#~ msgstr "Vaihda työpöydällä näkyvien kuvakkeiden asetuksia"
+
+#~ msgid ""
+#~ "A simple but more efficient way for finding and installing popular "
+#~ "applications.\n"
+#~ "Data will be automatically synchronized with the remote server.\n"
+#~ "You can click the \"Sync\" button to perform a manual check for updates."
+#~ msgstr ""
+#~ "Yksinkertainen ja tehokas tapa uusien sovellusten löytämiseksi.\n"
+#~ "Tiedot synkronoidaan etäpalvelimen kanssa automaattisesti.\n"
+#~ "Jos haluat synkronoida tiedot itse, napsauta \"Synkronoi\"-painiketta."
+
+#~ msgid "Freely edit your software sources to suit your needs."
+#~ msgstr "Muokkaa ohjelmistolähteet vastaamaan tarpeitasi."
+
+#~ msgid ""
+#~ "It is highly recommend to enable the stable source of Ubuntu Tweak to get "
+#~ "security and normal update.\n"
+#~ "If you don't enable the source, you will need to update manually.\n"
+#~ "\n"
+#~ "Would you like to enable the stable source?"
+#~ msgstr ""
+#~ "On erittäin suositeltavaa että otat vakaan ohjelmistolähteen käyttöön Ubuntu "
+#~ "Tweak:issa jotta saisit turvallisuus ja normaalit päivitykset.\n"
+#~ "Jos et ota lähdettä käyttöön sinun pitää päivittää Ubuntu Tweak käsin-\n"
+#~ "\n"
+#~ "Haluatko ottaa vakaan ohjelmistolähteen käyttöön?"
+
+#~ msgid ""
+#~ "The daemon of Ubuntu Tweak doesn't start correctly, that means some advanced "
+#~ "features may not work.\n"
+#~ "If you want to help developer to debug, try to run \"<b>sudo ubuntu-tweak-"
+#~ "daemon</b>\" under terminal."
+#~ msgstr ""
+#~ "Ubuntu Tweakin taustaprosessi ei käynnistynyt odotetusti tarkoittaen, että "
+#~ "kaikki ominaisuudet eivät saata toimia.\n"
+#~ "Jos haluat auttaa kehittäjiä korjaamaan tämän vian, aja tämä komento "
+#~ "\"<b>sudo ubuntu-tweak-daemon</b>\" päätteessä."
+
+#~ msgid "Disable showing the restart buttons"
+#~ msgstr "Älä näytä uudelleenkäynnistyspainikkeita"
+
+#~ msgid ""
+#~ "A collection of software sources to ensure your applications are always up-"
+#~ "to-date.\n"
+#~ "Here you can also add applications which are unavailable in the offical "
+#~ "repositories.\n"
+#~ "The list of available sources will be obtained automatically from a remote "
+#~ "server.\n"
+#~ "You can click the \"Sync\" button to manually check for updates"
+#~ msgstr ""
+#~ "Kokoelma sovellus lähteitä jotka varmistaa että sovelluksesi on aina ajan "
+#~ "tasalla.\n"
+#~ "Täältä voi myös asentaa sovelluksia jotka ei ole saatavilla virallisista "
+#~ "ohjelmalähteistä.\n"
+#~ "Ohjelmalista saatavilla olevista haetaan aina serveriltämme.\n"
+#~ "Paina \"Synkronoi\" nappia hakeaksesi uudet päivitykset"
+
+#~ msgid ""
+#~ "Here you can manage which programs are started upon login.\n"
+#~ "You can hide items from view by selecting and clicking \"Remove\"\n"
+#~ "To permanently delete an item, right-click and press \"Delete\"."
+#~ msgstr ""
+#~ "Täältä voit hallita niitä ohjelmia jotka käynnistäteen kirjauduttuessa "
+#~ "sisään.\n"
+#~ "Voit poistaa sovelluksia sisäänkirjauduttuessa käynnistyvien sovellusten "
+#~ "listalla painamalla \"Poista\"\n"
+#~ "Poistaaksesi pysyvästi sovelluksen listalta, paina oikealla napilla ja paina "
+#~ "\"Poista levyltä\"."
+
+#, python-format
+#~ msgid ""
+#~ "Templates path is wrong! The current path is point to \"%s\".\n"
+#~ "Please reset it to a folder under your Home Folder."
+#~ msgstr ""
+#~ "Asiakirjamallien polku on virheellinen! Nykyinen polku on  \"%s\".\n"
+#~ "Aseta uusi polku, joka viittaa kotikansiossasi olevaan kansioon."

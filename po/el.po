@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-22 22:56+0800\n"
+"POT-Creation-Date: 2010-08-21 19:49+0800\n"
 "PO-Revision-Date: 2010-04-29 18:47+0000\n"
 "Last-Translator: George Kontis <giormatsis@gmail.com>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2010-07-24 02:40+0000\n"
+"X-Launchpad-Export-Date: 2010-08-28 06:16+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../data/script-worker:54
@@ -176,6 +176,26 @@ msgstr ""
 msgid "Click the button to change the login screen logo"
 msgstr ""
 
+#: ../data/ui/desktoprecovery.ui.h:1
+msgid "Backup History:"
+msgstr ""
+
+#: ../data/ui/desktoprecovery.ui.h:2
+msgid "R_eset"
+msgstr ""
+
+#: ../data/ui/desktoprecovery.ui.h:3
+msgid "Setting Name:"
+msgstr ""
+
+#: ../data/ui/desktoprecovery.ui.h:4
+msgid "_Backup"
+msgstr ""
+
+#: ../data/ui/desktoprecovery.ui.h:5
+msgid "_Recover"
+msgstr ""
+
 #: ../ubuntutweak/mainwindow.py:78
 msgid "Welcome to"
 msgstr "Καλως Ήρθατε στο"
@@ -185,8 +205,8 @@ msgid "Tweak otherwise hidden settings."
 msgstr "Ρύθμιση κρυμμένων ρυθμίσεων"
 
 #: ../ubuntutweak/mainwindow.py:85
-msgid "Clean up unneeded packages to free up diskspace."
-msgstr "Καθαρίστε τα αχρείαστα πακέτα για να ελευθερώσετε χώρο στον δίσκο."
+msgid "Clean up unused packages to free up diskspace."
+msgstr ""
 
 #: ../ubuntutweak/mainwindow.py:86
 msgid "Easily install up-to-date versions of many applications."
@@ -217,6 +237,7 @@ msgid "Welcome"
 msgstr "Καλωσορίσατε"
 
 #: ../ubuntutweak/mainwindow.py:141
+#: ../ubuntutweak/modules/desktoprecovery.py:74
 msgid "Applications"
 msgstr "Εφαρμογές"
 
@@ -225,6 +246,7 @@ msgid "Startup"
 msgstr "Εκκίνηση"
 
 #: ../ubuntutweak/mainwindow.py:143 ../ubuntutweak/modules/userdir.py:45
+#: ../ubuntutweak/modules/desktoprecovery.py:75
 msgid "Desktop"
 msgstr "Επιφάνεια Eργασίας"
 
@@ -233,6 +255,7 @@ msgid "Personal"
 msgstr "Προσωπικά"
 
 #: ../ubuntutweak/mainwindow.py:145
+#: ../ubuntutweak/modules/desktoprecovery.py:76
 msgid "System"
 msgstr "Σύστημα"
 
@@ -247,17 +270,17 @@ msgstr "_Κάντε δωρεά"
 
 #: ../ubuntutweak/mainwindow.py:248
 msgid ""
-"It is highly recommend to enable the stable source of Ubuntu Tweak to get "
-"security and normal update.\n"
-"If you don't enable the source, you will need to update manually.\n"
+"It is highly recommended that you enable the Ubuntu Tweak stable repository "
+"to get security and maintenance updates.\n"
+"If you don't enable this repository, you will need to update manually.\n"
 "\n"
-"Would you like to enable the stable source?"
+"Would you like to enable this repository?"
 msgstr ""
 
 #: ../ubuntutweak/mainwindow.py:251
-#: ../ubuntutweak/modules/gnomesettings.py:196
+#: ../ubuntutweak/modules/gnomesettings.py:204
 #: ../ubuntutweak/modules/sourcecenter.py:1112
-#: ../ubuntutweak/modules/nautilus.py:139
+#: ../ubuntutweak/modules/nautilus.py:143
 msgid "Warning"
 msgstr "Προειδοποίηση"
 
@@ -323,24 +346,23 @@ msgstr ""
 msgid "Software Update"
 msgstr "Ενημέρωση Λογισμικού"
 
-#: ../ubuntutweak/widgets/widgets.py:104 ../ubuntutweak/widgets/widgets.py:129
+#: ../ubuntutweak/widgets/widgets.py:45
+#, python-format
+msgid "Reset setting to default value: %s"
+msgstr ""
+
+#: ../ubuntutweak/widgets/widgets.py:118 ../ubuntutweak/widgets/widgets.py:143
 #: ../ubuntutweak/modules/icons.py:105
 msgid "Unset"
 msgstr "Αναίρεση"
 
-#: ../ubuntutweak/widgets/widgets.py:253
+#: ../ubuntutweak/widgets/widgets.py:275
 msgid "Please press the new key combination"
 msgstr "Παρακαλώ πιέστε το νέο συνδιασμό πλήκτρων"
 
-#: ../ubuntutweak/widgets/widgets.py:302
+#: ../ubuntutweak/widgets/widgets.py:324
 msgid "Disabled"
 msgstr "Απενεργοποιημένο"
-
-#: ../ubuntutweak/widgets/utils.py:86
-#: ../ubuntutweak/modules/sourceeditor.py:87
-#: ../ubuntutweak/modules/sourcecenter.py:944
-msgid "Details"
-msgstr "Λεπτομέρειες"
 
 #: ../ubuntutweak/widgets/treeviews.py:71
 msgid "Create folder"
@@ -377,28 +399,34 @@ msgstr ""
 "\n"
 "Δεν υπάρχουν αρχεία μέσα!"
 
-#: ../ubuntutweak/widgets/dialogs.py:139
+#: ../ubuntutweak/widgets/dialogs.py:146
 msgid "An unexpected error has occurred."
 msgstr "Συνέβη ένα απρόσμενο σφάλμα"
 
-#: ../ubuntutweak/widgets/dialogs.py:140
+#: ../ubuntutweak/widgets/dialogs.py:147
 msgid "Could not authenticate"
 msgstr "Αδυναμία πιστοποίησης"
 
-#: ../ubuntutweak/widgets/dialogs.py:145
+#: ../ubuntutweak/widgets/dialogs.py:152
 msgid "You need to restart your computer."
 msgstr "Πρέπει να επανεκινήσετε τον υπολογιστή σας."
 
-#: ../ubuntutweak/widgets/dialogs.py:146
+#: ../ubuntutweak/widgets/dialogs.py:153
 msgid "Service hasn't initialized yet"
 msgstr "Η υπηρεσία δεν έχει ξεκινήσει ακόμα."
 
+#: ../ubuntutweak/widgets/dialogs.py:174
+#: ../ubuntutweak/modules/sourceeditor.py:87
+#: ../ubuntutweak/modules/sourcecenter.py:944
+msgid "Details"
+msgstr "Λεπτομέρειες"
+
 #: ../ubuntutweak/preferences.py:75 ../ubuntutweak/modules/filetype.py:179
 #: ../ubuntutweak/modules/filetype.py:214
-#: ../ubuntutweak/modules/metacity.py:185
-#: ../ubuntutweak/modules/metacity.py:190
-#: ../ubuntutweak/modules/metacity.py:203
-#: ../ubuntutweak/modules/metacity.py:216
+#: ../ubuntutweak/modules/metacity.py:186
+#: ../ubuntutweak/modules/metacity.py:192
+#: ../ubuntutweak/modules/metacity.py:206
+#: ../ubuntutweak/modules/metacity.py:220
 #: ../ubuntutweak/modules/shortcuts.py:99
 #: ../ubuntutweak/modules/shortcuts.py:209
 msgid "None"
@@ -473,141 +501,11 @@ msgstr[1] "%d λεπτά πριν"
 msgid "Just Now"
 msgstr "Ακριβώς τώρα"
 
-#: ../ubuntutweak/common/appdata.py:24
-msgid "Development Version of Mozilla Firefox"
-msgstr "Έκδοση του Mozilla Firefox σε εξέλιξη"
-
-#: ../ubuntutweak/common/appdata.py:25
-msgid "Development version of Compiz"
-msgstr "Έκδοση του Compiz σε εξέλιξη"
-
-#: ../ubuntutweak/common/appdata.py:26
-msgid "Google's Linux Repository"
-msgstr "Αποθετήριο Google για Λίνουξ"
-
-#: ../ubuntutweak/common/appdata.py:27
-msgid "Development Version of K Desktop Environment"
-msgstr "Έκδοση του K Desktop Enviroment σε εξέλιξη"
-
-#: ../ubuntutweak/common/appdata.py:28
-msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
-msgstr "Ελαφρύ περιβάλον εργασίας X11: GPicView, PCManFM"
-
-#: ../ubuntutweak/common/appdata.py:29
-msgid ""
-"WebkitGtk+, Liferea (Webkit), Midori and other WebKit related projects."
-msgstr ""
-"WebkitGtk+, Liferea (Webkit), Midori και άλλα πακέτα σχετιζόμενα με το WebKit"
-
-#: ../ubuntutweak/common/appdata.py:30
-msgid ""
-"Multimedia, Entertainment and Distraction In Ubuntu\n"
-"Medibuntu is a repository of packages that cannot be included into the "
-"Ubuntu distribution for legal reasons (copyright, license, patent, etc)."
-msgstr ""
-"Πολυμέσα, Ψυχαγωγία, Περισπασμός στο Ubuntu\n"
-"Το Medibuntu είναι ένα αποθετήριο πακέτων που δεν μπορούν να συμπεριληφθούν "
-"στην διανομή Ubuntu για νομικούς λόγους (αντιγραφή, άδειες, πατέντες, κτλ)"
-
-#: ../ubuntutweak/common/appdata.py:32
-msgid ""
-"Ubuntu repository for Chinese users.\n"
-"Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and "
-"other softwares."
-msgstr ""
-"Αποθετήρια Ubuntu για Κινέζους χρήστες.\n"
-"Περιλαμβάνει τα  EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org "
-"3.0 και άλλα προγράμματα."
-
-#: ../ubuntutweak/common/appdata.py:34
-msgid ""
-"GetDeb extends the existing software options for Ubuntu (and derived) Linux "
-"distributions by providing major updates and software not yet available on "
-"the official Ubuntu repositories."
-msgstr ""
-"Το GetDeb επεκτείνει τις υφιστάμενες εναλλακτικές λύσεις λογισμικού για το "
-"Ubuntu (και τις παράγωγες), διανομές Linux, παρέχοντας σημαντικές "
-"ενημερωμένες εκδόσεις και  λογισμικό που δεν είναι ακόμα διαθέσιμα από τα "
-"επίσημα αποθετήρια Ubuntu."
-
-#: ../ubuntutweak/common/appdata.py:35
-msgid "Updated versions of X.org drivers, libraries, etc. for Ubuntu."
-msgstr ""
-"Ενημερωμένες εκδόσεις οδηγών, βιβλιοθηκών κ.λ.π του X.org για το Ubuntu"
-
-#: ../ubuntutweak/common/appdata.py:36
-msgid ""
-"Gnome Games built from Git, with all experimental features and staging games "
-"enabled."
-msgstr ""
-"Παιχνίδια του Gnome φτιαγμένα απο το Git, με ενεργοποιημένα όλα τα "
-"πειραματικά χαρακτηριστικά."
-
-#: ../ubuntutweak/common/appdata.py:37
-msgid ""
-"Ubuntu Mozilla Security Team provides beta and final stable/security updates "
-"for mozilla software in its PPA"
-msgstr ""
-"Η ομάδα ασφαλείας του Ubuntu Mozilla παρέχει δοκιμαστικές και τελικές "
-"σταθερές εκδόσεις ασφαλείας για το λογισμικό mozilla και κάθε PPA"
-
-#: ../ubuntutweak/common/appdata.py:38
-msgid "A cross-platform application and UI framework"
-msgstr "Μία διαλειτουργική εφαρμογή πλαισίου και διεπαφή χρήστη"
-
-#: ../ubuntutweak/common/appdata.py:39
-msgid "Mono is a cross platform, open source .NET development framework."
-msgstr ""
-"Το Mono είναι ένα διαλειτουργικό πλαίσιο ανάπτυξης .NET ανοικτού κώδικα."
-
-#: ../ubuntutweak/common/appdata.py:40
-msgid ""
-"Clutter is an OpenGL based interactive canvas library, designed for creating "
-"fast, mainly 2D single window applications such as media box UIs, "
-"presentations, kiosk style applications and so on."
-msgstr ""
-"Το Clutter είναι μία διαδραστική βιβλιοθήκη OpenGL βασισμένη στο  canvas, "
-"σχεδιασμένη για τη δημιουργία γρήγορων, κυρίως 2D παραθυρικών εφαρμογών όπως "
-" UIS κουτιά, παρουσιάσεις , εφαρμογές kiosk και ούτω καθεξής."
-
-#: ../ubuntutweak/common/appdata.py:41
-msgid ""
-"Gloobus is an extension of Gnome designed to enable a full screen preview of "
-"any kind of file."
-msgstr ""
-"Το Gloobus είναι μια επέκταση του Gnome που έχει ως στόχο να επιτρέψει μια "
-"προεπισκόπηση πλήρους οθόνης  των κάθε είδους αρχείων."
-
-#: ../ubuntutweak/common/appdata.py:42
-msgid ""
-"Behind this African word, referring to the notion of imagination, you can "
-"find some themes for GNOME"
-msgstr ""
-"Πίσω από αυτή την αφρικανική λέξη,η οποία αναφέρεται στην έννοια της "
-"φαντασίας, μπορείτε να βρείτε μερικά θέματα για το GNOME"
-
-#: ../ubuntutweak/common/appdata.py:43
-msgid ""
-"Updates for Kubuntu releases which are due to go to Ubuntu Updates. Mostly "
-"KDE point releases."
-msgstr ""
-"Αναβαθμίσεις για τις εκδόσεις Kubuntu οι οποίες πρόκειται να μεταφερθούν στο "
-"Ubuntu Updates. Κυρίως KDE κυκλοφορίες."
-
-#: ../ubuntutweak/common/appdata.py:44
-msgid ""
-"Backports of new versions of KDE for Kubuntu which are not yet tested enough "
-"to go to Ubuntu Backports."
-msgstr ""
-"Ανεπίσημα αποθετήρια των νέων εκδόσεων του KDE για το Kubuntu τα οποία δεν "
-"έχουν δοκιμαστεί ακόμα αρκετά ώστε να προσαρτηθούν στα ανεπίσημα αποθετήρια "
-"του Ubuntu."
-
 #: ../ubuntutweak/common/package.py:186
 #: ../ubuntutweak/modules/appcenter.py:640
 #: ../ubuntutweak/modules/compiz.py:410
 #: ../ubuntutweak/modules/sourcecenter.py:144
-#: ../ubuntutweak/modules/nautilus.py:167
+#: ../ubuntutweak/modules/nautilus.py:171
 msgid "Update Successful!"
 msgstr "Ενημερώθηκε με επιτυχία"
 
@@ -615,7 +513,7 @@ msgstr "Ενημερώθηκε με επιτυχία"
 #: ../ubuntutweak/modules/appcenter.py:642
 #: ../ubuntutweak/modules/compiz.py:412
 #: ../ubuntutweak/modules/sourcecenter.py:146
-#: ../ubuntutweak/modules/nautilus.py:169
+#: ../ubuntutweak/modules/nautilus.py:173
 msgid "Update Failed!"
 msgstr "Η Ενημέρωση Απέτυχε!"
 
@@ -651,10 +549,10 @@ msgstr "_Ξεκλείδωμα"
 
 #: ../ubuntutweak/policykit/dbusproxy.py:34
 msgid ""
-"The daemon of Ubuntu Tweak doesn't start correctly, that means some advanced "
-"features may not work.\n"
-"If you want to help developer to debug, try to run \"<b>sudo ubuntu-tweak-"
-"daemon</b>\" under terminal."
+"The Ubuntu Tweak daemon didn't start correctly. This means that some "
+"advanced features may not work.\n"
+"If you want to help developers debugging, try to run \"<b>sudo "
+"/usr/share/ubuntu-tweak/ubuntu-tweak-daemon</b>\" in a terminal."
 msgstr ""
 
 #: ../ubuntutweak/modules/userdir.py:46
@@ -691,14 +589,10 @@ msgstr "Επιλογή φακέλου"
 
 #: ../ubuntutweak/modules/userdir.py:174
 msgid ""
-"Ubuntu Tweak will restore the chosen directory to the default location.\n"
-"However, you must move your files back into place by yourself.\n"
+"Ubuntu Tweak will restore the selected directory to it's default location.\n"
+"However, you must move your files back into place manually.\n"
 "Do you wish to continue?"
 msgstr ""
-"Το Ubuntu Tweak θα επαναφέρει τον επιλεγμένο φάκελο στην προεπιλεγμένη "
-"τοποθεσία.\n"
-"Παρ' όλα 'αυτά, πρέπει να μετακινήσετε τα αρχεία σας πίσω χειροκίνητα.\n"
-"Θέλετε να συνεχίσετε?"
 
 #: ../ubuntutweak/modules/userdir.py:208
 msgid "Directory"
@@ -722,13 +616,10 @@ msgstr "Προεπιλεγμένες τοποθεσίες φακέλων"
 
 #: ../ubuntutweak/modules/userdir.py:241
 msgid ""
-"You can change the paths of the default folders here.\n"
+"You can change the paths of default folders here.\n"
 "Don't change the location of your desktop folder unless you know what you "
 "are doing."
 msgstr ""
-"Μπορείτε να αλλάξετε τις διαδρομές για τους προεπιλεγμένους φακέλους εδώ.\n"
-"Μην αλλάξετε την τοποθεσία του φακέλου επιφάνειας εργασίας εκτός αν ξέρετε "
-"τι κάνετε."
 
 #: ../ubuntutweak/modules/userdir.py:260
 msgid "_Restore"
@@ -832,32 +723,32 @@ msgstr "Επιλογές Ασφαλείας Συστήματος"
 msgid "Disable \"Run Application\" dialog (Alt+F2)"
 msgstr "Απενεργοποίηση πλαισίου διαλόγου \"Εκτέλεση Εφαρμογής\" (Alt+F2)"
 
-#: ../ubuntutweak/modules/lockdown.py:48
+#: ../ubuntutweak/modules/lockdown.py:49
 msgid "Disable \"Lock Screen\""
 msgstr "Απενεργοποίηση \"Κλειδώματος Οθόνης\""
 
-#: ../ubuntutweak/modules/lockdown.py:51
+#: ../ubuntutweak/modules/lockdown.py:53
 msgid "Disable printing"
 msgstr "Απενεργοποίηση εκτύπωσης"
 
-#: ../ubuntutweak/modules/lockdown.py:54
+#: ../ubuntutweak/modules/lockdown.py:57
 msgid "Disable printer settings"
 msgstr "Απενεργοποίηση ρυθμίσεων του εκτυπωτή"
 
-#: ../ubuntutweak/modules/lockdown.py:57
+#: ../ubuntutweak/modules/lockdown.py:61
 msgid "Disable save to disk"
 msgstr "Απενεργοποίηση αποθήκευσης στο δίσκο"
 
-#: ../ubuntutweak/modules/lockdown.py:60
+#: ../ubuntutweak/modules/lockdown.py:65
 msgid "Disable \"Fast User Switching\""
 msgstr "Απενεργοποίση \"Γρήγορης Εναλλαγής Χρηστών\""
 
-#: ../ubuntutweak/modules/lockdown.py:66
+#: ../ubuntutweak/modules/lockdown.py:72
 msgid "Fix the appearance of themes when granted root privileges"
 msgstr ""
 "Καθορίστε την εμφάνιση των θεμάτων όταν χορηγούνται δικαιώματα υπερχρήστη"
 
-#: ../ubuntutweak/modules/lockdown.py:72
+#: ../ubuntutweak/modules/lockdown.py:78
 msgid "Miscellaneous Options"
 msgstr "Διάφορες Επιλογές"
 
@@ -933,23 +824,19 @@ msgid "Source Editor"
 msgstr "Διαμορφωτής Πηγών"
 
 #: ../ubuntutweak/modules/sourceeditor.py:353
-msgid "Freely edit your software sources to suit your needs."
+msgid "Manually edit your software sources to suit your needs."
 msgstr ""
 
 #: ../ubuntutweak/modules/sourceeditor.py:450
-msgid "Please input the correct information about sources!"
-msgstr "Παρακαλώ εισάγετε τις σωστές πληροφορίες για τις πηγές!"
+msgid "Please input the correct source information!"
+msgstr ""
 
 #: ../ubuntutweak/modules/sourceeditor.py:463
 msgid ""
-"You can submit your sources to our server to help building the sources list, "
+"You can submit your sources to our server to help expand the sources list, "
 "or you can use the official sources.\n"
 "Do you wish to use the official sources?"
 msgstr ""
-"Μπορείτε να υποβάλετε τις πηγές σας στον κεντρικό υπολογιστή  μας για να "
-"βοηθήσετε στην οικοδόμηση της λίστας πηγών, ή μπορείτε να χρησιμοποιήσετε "
-"τις επίσημες πηγές.\n"
-"Θέλετε να χρησιμοποιήσετε τις επίσημες πηγές;"
 
 #: ../ubuntutweak/modules/sourceeditor.py:466
 msgid "No source data available"
@@ -969,11 +856,9 @@ msgstr "Καταχωρήθηκαν επιτυχώς"
 
 #: ../ubuntutweak/modules/sourceeditor.py:496
 msgid ""
-"You've changed the sources.list without saving it.\n"
-"Do you want to save it?"
+"You've edited sources.list without saving changes.\n"
+"Do you want to save changes?"
 msgstr ""
-"Έχετε αλλάξει την Λίστα των Πηγών χωρίς να τις αποθηκεύσετε. \n"
-"Θέλετε να τις αποθηκεύσετε;"
 
 #: ../ubuntutweak/modules/sourceeditor.py:507
 msgid "Please check the permission of the sources.list file"
@@ -1005,6 +890,7 @@ msgstr ""
 "Θέλετε να συνεχίσετε?"
 
 #: ../ubuntutweak/modules/appcenter.py:193
+#: ../ubuntutweak/modules/desktoprecovery.py:101
 msgid "Category"
 msgstr "Κατηγορία"
 
@@ -1026,16 +912,10 @@ msgstr "Κέντρο εφαρμογών"
 
 #: ../ubuntutweak/modules/appcenter.py:534
 msgid ""
-"A simple but more efficient way for finding and installing popular "
-"applications.\n"
-"Data will be automatically synchronized with the remote server.\n"
+"A simple but efficient way for finding and installing popular applications.\n"
+"Data will be synchronized automatically with the remote server.\n"
 "You can click the \"Sync\" button to perform a manual check for updates."
 msgstr ""
-"Ένας απλός αλλά πιο αποτελεσματικός τρόπος για την εύρεση και την "
-"εγκατάσταση δημοφιλών εφαρμογών.\n"
-"Τα δεδομένα θα συγχρονιστούν αυτόματα με τον απομακρυσμένο διακομιστή.\n"
-"Μπορείτε να κάνετε κλικ στο κουμπί  \"Συνχρ.\" για να εκτελέσετε χειροκίνητο "
-"έλεγχο για ενημερώσεις."
 
 #: ../ubuntutweak/modules/appcenter.py:539
 msgid "Visit Online Application Center"
@@ -1181,9 +1061,9 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: ../ubuntutweak/modules/metacity.py:37
-#: ../ubuntutweak/modules/metacity.py:194
-#: ../ubuntutweak/modules/metacity.py:207
-#: ../ubuntutweak/modules/metacity.py:220
+#: ../ubuntutweak/modules/metacity.py:196
+#: ../ubuntutweak/modules/metacity.py:210
+#: ../ubuntutweak/modules/metacity.py:224
 msgid "Menu"
 msgstr "Κατάλογος"
 
@@ -1192,16 +1072,16 @@ msgid "Title"
 msgstr "Τίτλος"
 
 #: ../ubuntutweak/modules/metacity.py:39
-#: ../ubuntutweak/modules/metacity.py:190
-#: ../ubuntutweak/modules/metacity.py:203
-#: ../ubuntutweak/modules/metacity.py:216
+#: ../ubuntutweak/modules/metacity.py:192
+#: ../ubuntutweak/modules/metacity.py:206
+#: ../ubuntutweak/modules/metacity.py:220
 msgid "Maximize"
 msgstr "Μεγιστοποίηση"
 
 #: ../ubuntutweak/modules/metacity.py:40
-#: ../ubuntutweak/modules/metacity.py:193
-#: ../ubuntutweak/modules/metacity.py:206
-#: ../ubuntutweak/modules/metacity.py:219
+#: ../ubuntutweak/modules/metacity.py:195
+#: ../ubuntutweak/modules/metacity.py:209
+#: ../ubuntutweak/modules/metacity.py:223
 msgid "Minimize"
 msgstr "Ελαχιστοποίηση"
 
@@ -1233,76 +1113,76 @@ msgstr "Ενέργειες παραθύρου τίτλων"
 msgid "Titlebar mouse wheel action"
 msgstr "Δράση για ροδέλα ποντικιού στον τίτλο μπάρας"
 
-#: ../ubuntutweak/modules/metacity.py:185
-#: ../ubuntutweak/modules/metacity.py:193
-#: ../ubuntutweak/modules/metacity.py:206
-#: ../ubuntutweak/modules/metacity.py:219
+#: ../ubuntutweak/modules/metacity.py:186
+#: ../ubuntutweak/modules/metacity.py:195
+#: ../ubuntutweak/modules/metacity.py:209
+#: ../ubuntutweak/modules/metacity.py:223
 msgid "Roll up"
 msgstr "Δίπλωση πάνω"
 
-#: ../ubuntutweak/modules/metacity.py:188
+#: ../ubuntutweak/modules/metacity.py:189
 msgid "Titlebar double-click action"
 msgstr "Δράση για διπλό κλίκ στον τίτλο μπάρας"
 
-#: ../ubuntutweak/modules/metacity.py:191
-#: ../ubuntutweak/modules/metacity.py:204
-#: ../ubuntutweak/modules/metacity.py:217
+#: ../ubuntutweak/modules/metacity.py:193
+#: ../ubuntutweak/modules/metacity.py:207
+#: ../ubuntutweak/modules/metacity.py:221
 msgid "Maximize Horizontally"
 msgstr "Οριζόντια μεγιστοποίηση"
 
-#: ../ubuntutweak/modules/metacity.py:192
-#: ../ubuntutweak/modules/metacity.py:205
-#: ../ubuntutweak/modules/metacity.py:218
+#: ../ubuntutweak/modules/metacity.py:194
+#: ../ubuntutweak/modules/metacity.py:208
+#: ../ubuntutweak/modules/metacity.py:222
 msgid "Maximize Vertically"
 msgstr "Κάθετη μεγιστοποίηση"
 
-#: ../ubuntutweak/modules/metacity.py:194
-#: ../ubuntutweak/modules/metacity.py:207
-#: ../ubuntutweak/modules/metacity.py:220
+#: ../ubuntutweak/modules/metacity.py:196
+#: ../ubuntutweak/modules/metacity.py:210
+#: ../ubuntutweak/modules/metacity.py:224
 msgid "Lower"
 msgstr "Πεζά"
 
-#: ../ubuntutweak/modules/metacity.py:201
+#: ../ubuntutweak/modules/metacity.py:203
 msgid "Titlebar middle-click action"
 msgstr "Δράση για μεσαίο κλίκ στον τίτλο μπάρας"
 
-#: ../ubuntutweak/modules/metacity.py:214
+#: ../ubuntutweak/modules/metacity.py:217
 msgid "Titlebar right-click action"
 msgstr "Δράση για δεξί κλίκ στον τίτλο μπάρας"
 
-#: ../ubuntutweak/modules/metacity.py:230
+#: ../ubuntutweak/modules/metacity.py:234
 msgid "Window Decoration Effects"
 msgstr "Εφέ του Παραθύρου Διακοσμήσεων"
 
-#: ../ubuntutweak/modules/metacity.py:232
+#: ../ubuntutweak/modules/metacity.py:236
 msgid "Use Metacity window theme"
 msgstr "Χρησιμοποίηστε το διακοσμητικό θέμα παραθύρων Metacity"
 
-#: ../ubuntutweak/modules/metacity.py:235
+#: ../ubuntutweak/modules/metacity.py:240
 msgid "Enable active window transparency"
 msgstr "Ενεργοποίηση διαφάνειας ενεργού παραθύρου."
 
-#: ../ubuntutweak/modules/metacity.py:238
+#: ../ubuntutweak/modules/metacity.py:244
 msgid "Active window transparency level"
 msgstr "επίπεδο διαφάνειας ενεργού παραθύρου"
 
-#: ../ubuntutweak/modules/metacity.py:242
+#: ../ubuntutweak/modules/metacity.py:249
 msgid "Enable inactive window transparency"
 msgstr "Ενεργοποίηση διαφάνειας ανενεργού παραθύρου"
 
-#: ../ubuntutweak/modules/metacity.py:245
+#: ../ubuntutweak/modules/metacity.py:253
 msgid "Inactive window shade transparency level"
 msgstr "Απερνεγοποιημένο επίπεδο διαφάνειας σκιάς παραθύρου"
 
-#: ../ubuntutweak/modules/metacity.py:252
+#: ../ubuntutweak/modules/metacity.py:261
 msgid "Enable Metacity's compositing feature"
 msgstr "Ενεργοποίηση της δυνατότητας Compositing στο Metacity"
 
-#: ../ubuntutweak/modules/metacity.py:255
+#: ../ubuntutweak/modules/metacity.py:266
 msgid "Compositing Manager"
 msgstr "Διαχειριστής Compositing"
 
-#: ../ubuntutweak/modules/metacity.py:299
+#: ../ubuntutweak/modules/metacity.py:308
 msgid ""
 "To enable Metacity's compositing feature, you should manually disable Visual "
 "Effects in \"Appearance\"."
@@ -1331,10 +1211,8 @@ msgid "Desktop Icon Settings"
 msgstr "Ρυθμίσεις εικονίδιου της επιφάνειας εργασίας"
 
 #: ../ubuntutweak/modules/icons.py:109
-msgid "Change the name and toggle visibilty of desktop icons"
+msgid "Rename and toggle visibilty of desktop icons"
 msgstr ""
-"Αλλάξτε το όνομα και την εναλλαγή ορατότητας των εικονιδίων της επιφάνειας "
-"εργασίας"
 
 #: ../ubuntutweak/modules/icons.py:118
 msgid "Show desktop icons"
@@ -1374,80 +1252,78 @@ msgstr "Ρυθμίσεις πλαισίου"
 msgid "Display warning when removing a panel"
 msgstr "Εμφάνιση προειδοποίησης όταν αφαιρείται ένα πλαίσιο"
 
-#: ../ubuntutweak/modules/gnomesettings.py:58
+#: ../ubuntutweak/modules/gnomesettings.py:59
 msgid "Complete lockdown of all panels"
 msgstr "Ολοκληρωτικό κλείδωμα όλων των πλαισίων"
 
-#: ../ubuntutweak/modules/gnomesettings.py:61
+#: ../ubuntutweak/modules/gnomesettings.py:63
 msgid "Enable panel animations"
 msgstr "Ενεργοποίηση κινούμενων πλαισίων"
 
-#: ../ubuntutweak/modules/gnomesettings.py:66
+#: ../ubuntutweak/modules/gnomesettings.py:69
 msgid "Menu Settings"
 msgstr "Ρυθμίσεις καταλόγου"
 
-#: ../ubuntutweak/modules/gnomesettings.py:68
+#: ../ubuntutweak/modules/gnomesettings.py:71
 msgid "Show Input Method menu in the context menu"
 msgstr "Εμφάνιση της μεθόδου εισαγωγής λίστας στη λίστα περιεχόμενων"
 
-#: ../ubuntutweak/modules/gnomesettings.py:71
+#: ../ubuntutweak/modules/gnomesettings.py:75
 msgid "Show Unicode Control Character menu in the context menu"
 msgstr "Εμφάνιση χαρακτήρα ελέγχου Unicode στη λίστα περιεχομένων"
 
-#: ../ubuntutweak/modules/gnomesettings.py:74
+#: ../ubuntutweak/modules/gnomesettings.py:79
 msgid "Show icons in menus"
 msgstr "Εμφάνιση εικονιδίων στα μενού"
 
-#: ../ubuntutweak/modules/gnomesettings.py:77
+#: ../ubuntutweak/modules/gnomesettings.py:83
 msgid "Show icons on buttons"
 msgstr "Εμφάνιση εικονιδίων στα κουμπιά"
 
-#: ../ubuntutweak/modules/gnomesettings.py:83
+#: ../ubuntutweak/modules/gnomesettings.py:90
 msgid "Screensaver"
 msgstr "Προφύλαξη οθόνης"
 
-#: ../ubuntutweak/modules/gnomesettings.py:85
-msgid "Enable user switching when screen is locked."
-msgstr "Ενεργοποίση εναλλαγής χρηστών όταν η οθόνη είναι κλειδωμένη"
+#: ../ubuntutweak/modules/gnomesettings.py:92
+msgid "Enable user switching whilst screen is locked."
+msgstr ""
 
-#: ../ubuntutweak/modules/gnomesettings.py:90
+#: ../ubuntutweak/modules/gnomesettings.py:98
 msgid "Enable system-wide \"Recent Documents\" list"
 msgstr "Ενεργοποίηση της λίστας  \"Πρόσφατα έγγραφα\" σε όλο το σύστημα"
 
-#: ../ubuntutweak/modules/gnomesettings.py:93
+#: ../ubuntutweak/modules/gnomesettings.py:101
 msgid "History"
 msgstr "Ιστορικό"
 
-#: ../ubuntutweak/modules/gnomesettings.py:100
+#: ../ubuntutweak/modules/gnomesettings.py:108
 msgid "Click this button to change the menu logo image"
 msgstr ""
 "Κάντε κλικ στο κουμπί για να αλλάξετε την εικόνα λογότυπου της λίστας"
 
-#: ../ubuntutweak/modules/gnomesettings.py:113
-#: ../ubuntutweak/modules/loginsettings.py:142
+#: ../ubuntutweak/modules/gnomesettings.py:121
+#: ../ubuntutweak/modules/loginsettings.py:146
 msgid "Choose a new logo image"
 msgstr "Επιλέξτε μια νέα εικόνα λογότυπου"
 
-#: ../ubuntutweak/modules/gnomesettings.py:119
+#: ../ubuntutweak/modules/gnomesettings.py:127
 msgid "PNG images with 24x24 size or SVG images"
 msgstr ""
 
-#: ../ubuntutweak/modules/gnomesettings.py:152
+#: ../ubuntutweak/modules/gnomesettings.py:160
 msgid ""
 "This image size isn't suitable for the panel.\n"
-"It should be 24x24."
+"It should measure 24x24."
 msgstr ""
-"Αυτό το μέγεθος της εικόνας δεν είναι κατάλληλο για τον πίνακα.\n"
-"Θα πρέπει να είναι 24x24."
 
-#: ../ubuntutweak/modules/gnomesettings.py:172
+#: ../ubuntutweak/modules/gnomesettings.py:180
 msgid "Do you want your changes to take effect immediately?"
 msgstr "Θέλετε οι αλλαγές να εφαρμοστούν αμέσως;"
 
-#: ../ubuntutweak/modules/gnomesettings.py:195
+#: ../ubuntutweak/modules/gnomesettings.py:203
 msgid ""
-"By disabling the \"Recent Documents\", it may break other software such as "
-"VMware Player's history feature."
+"Disabling \"Recent Documents\" may break other software, for example the "
+"history feature in VMware Player."
 msgstr ""
 
 #: ../ubuntutweak/modules/powermanager.py:28
@@ -1467,19 +1343,19 @@ msgid "Enable \"Lock screen\" when \"Blank Screen\" activates"
 msgstr ""
 "Ενεργοποιήση \"κλειδώματος οθόνης\" όταν ενεργοποιείται \"κενή οθόνη\""
 
-#: ../ubuntutweak/modules/powermanager.py:42
+#: ../ubuntutweak/modules/powermanager.py:43
 msgid "Lock screen on hibernate"
 msgstr "Κλείδωμα οθόνης όταν γίνεται αδρανοποίηση"
 
-#: ../ubuntutweak/modules/powermanager.py:45
+#: ../ubuntutweak/modules/powermanager.py:47
 msgid "Lock screen on suspend"
 msgstr "Κλείδωμα οθόνης όταν γίνεται αναστολή"
 
-#: ../ubuntutweak/modules/powermanager.py:48
+#: ../ubuntutweak/modules/powermanager.py:51
 msgid "LCD brightness when using AC power"
 msgstr "Φωτεινότητα οθόνης LCD όταν χρησιμοποιήται φορτιστής AC"
 
-#: ../ubuntutweak/modules/powermanager.py:52
+#: ../ubuntutweak/modules/powermanager.py:56
 msgid "LCD brightness when using battery"
 msgstr "Φωτεινότητα οθόνης LCD όταν χρησιμοποιήται μπαταρία"
 
@@ -1567,7 +1443,7 @@ msgstr ""
 
 #. checkbutton
 #: ../ubuntutweak/modules/sourcecenter.py:125
-#: ../ubuntutweak/modules/cleaner.py:728
+#: ../ubuntutweak/modules/cleaner.py:729
 msgid "Select All"
 msgstr "Επιλογή Όλων"
 
@@ -1670,10 +1546,9 @@ msgstr "Κέντρο Πηγών"
 msgid ""
 "A collection of software sources to ensure your applications are always up-"
 "to-date.\n"
-"Here you can also add applications which are unavailable in the offical "
-"repositories.\n"
-"The list of available sources will be obtained automatically from a remote "
-"server.\n"
+"Here you can add applications unavailable in the official repositories.\n"
+"A list of available software sources will be obtained automatically from a "
+"remote server.\n"
 "You can click the \"Sync\" button to manually check for updates"
 msgstr ""
 
@@ -1851,13 +1726,9 @@ msgstr "Διαχείριση Σεναρίων Εντολών"
 #: ../ubuntutweak/modules/scripts.py:146
 msgid ""
 "Scripts can be used to complete all kinds of tasks.\n"
-"You can drag and drop scripts from File Manager.\n"
+"You can drag and drop scripts here from File Manager.\n"
 "'Scripts' will then be added to the context menu."
 msgstr ""
-"Τα σενάρια εντολών μπορούν να χρησιμοποιηθούν για την ολοκλήρωση όλων των "
-"ειδών των εργασιών.\n"
-"Μπορείτε να σύρετε και να αποθέσετε σενάρια από τον Διαχειρηστή Αρχείων.\n"
-"Τα «Σενάρια», στη συνέχεια θα προστεθούν στις επιλογές πλαισίου περιεχομένων."
 
 #: ../ubuntutweak/modules/scripts.py:179
 msgid "Rebuild System Scripts"
@@ -1921,25 +1792,18 @@ msgstr "Διαχείριση προτύπων"
 
 #: ../ubuntutweak/modules/templates.py:117
 msgid ""
-"Here you can freely manage your document templates.\n"
-"You can add files as templates by dragging them onto this window.\n"
-"You can create new documents based on these templates from the Nautilus "
+"Here you can manage your document templates.\n"
+"You can add files as templates by dragging them into this window.\n"
+"You can then create new documents based on these templates from the Nautilus "
 "right-click menu."
 msgstr ""
-"Εδώ μπορείτε ελεύθερα να διαχειριστήτε τα πρότυπα εγγράφων.\n"
-"Μπορείτε να προσθέσετε αρχεία ως πρότυπα σύροντάς τα στο παράθυρο.\n"
-"Μπορείτε να δημιουργήσετε νέα έγγραφα βασισμένα σε αυτά τα έγγραφα από τον "
-"κατάλογο του δεξιού-πλήκτρου του Nautilus."
 
 #: ../ubuntutweak/modules/templates.py:128
 #, python-format
 msgid ""
-"Templates path is wrong! The current path is point to \"%s\".\n"
-"Please reset it to a folder under your Home Folder."
+"The templates path is incorrect! The current path points to \"%s\".\n"
+"Please reset it to a location within your Home Folder."
 msgstr ""
-"Η πρότυπη διαδρομή είναι λάθος! Η τωρινή διαδρομή είναι το σημείο στο \"% "
-"s\".\n"
-"Παρακαλώ να  την επαναφέρετε σε ένα φάκελο μέσα στον κεντρικό σας φάκελο."
 
 #: ../ubuntutweak/modules/templates.py:137
 msgid "Go And Set"
@@ -1954,9 +1818,8 @@ msgid "Rebuild System Templates"
 msgstr "Ξανακτίσε τα πρότυπα συστήματος"
 
 #: ../ubuntutweak/modules/templates.py:192
-msgid "Templates path is still wrong, Please reset it!"
+msgid "The templates path is still incorrect, please reset it!"
 msgstr ""
-"Η πρότυπη διαδρομή εξακολουθεί να είναι λάθος, παρακαλώ επαναφέρετέ την!"
 
 #: ../ubuntutweak/modules/templates.py:204
 msgid ""
@@ -1978,42 +1841,35 @@ msgstr "Ελέγξτε τα χαρακτηρηστικά της συνεδρία
 msgid "File Manager"
 msgstr "Διαχειριστής αρχείων"
 
-#: ../ubuntutweak/modules/session.py:52
+#: ../ubuntutweak/modules/session.py:53
 msgid "Panel"
 msgstr "Πίνακας"
 
-#: ../ubuntutweak/modules/session.py:56
+#: ../ubuntutweak/modules/session.py:58
 msgid "Window Manager"
 msgstr "Διαχειριστής Παραθύρων"
 
-#: ../ubuntutweak/modules/session.py:67
+#: ../ubuntutweak/modules/session.py:70
 msgid "Session Control"
 msgstr "Έλεγχος Συνεδρίας"
 
-#: ../ubuntutweak/modules/session.py:76
+#: ../ubuntutweak/modules/session.py:79
 msgid "Session Options"
 msgstr "Επιλογές Συνεδρίας"
 
-#: ../ubuntutweak/modules/session.py:78
+#: ../ubuntutweak/modules/session.py:81
 msgid "Automatically save open applications when logging out"
 msgstr "Αποθήκευσε αυτόματα τις ανοικτές εφαρμογές όταν γίνεται αποσύνδεση"
 
-#: ../ubuntutweak/modules/session.py:81
-msgid "Allow TCP Connections (Remote Desktop Connect)"
+#: ../ubuntutweak/modules/session.py:85
+msgid "Suppress the logout, restart and shutdown confirmation dialogue box."
 msgstr ""
-"Να επιτρέπονται οι συνδέσεις TCP (Σύνδεση Απομακρυσμένης Επιφάνειας Εργασίας)"
 
-#: ../ubuntutweak/modules/session.py:84
-msgid "Suppress the dialog to confirm logout, restart and shutdown action"
-msgstr ""
-"Μη εμφάνιση του διαλόγου επιβεβαίωσης για τις ενέργειες αποσύνδεσης, "
-"επαννεκίνησης και τερματισμού"
-
-#: ../ubuntutweak/modules/session.py:109
+#: ../ubuntutweak/modules/session.py:111
 msgid "Please enter a valid application command line."
 msgstr "Παρακαλώ εισάγετε μια έγκυρη γραμμή εντολών της εφαρμογής."
 
-#: ../ubuntutweak/modules/session.py:109
+#: ../ubuntutweak/modules/session.py:111
 #, python-format
 msgid "\"%s\" is not available."
 msgstr "\"%s\" δεν είναι διαθέσιμο"
@@ -2056,13 +1912,17 @@ msgstr ""
 msgid "System Version"
 msgstr ""
 
-#: ../ubuntutweak/modules/cleaner.py:328 ../ubuntutweak/modules/cleaner.py:356
-msgid "Packages"
-msgstr "Πακέτα"
+#: ../ubuntutweak/modules/cleaner.py:328
+msgid "Unneeded Packages"
+msgstr ""
+
+#: ../ubuntutweak/modules/cleaner.py:356
+msgid "Kernel Packages"
+msgstr ""
 
 #: ../ubuntutweak/modules/cleaner.py:385
-msgid "Package Cache"
-msgstr "προσωρινή μνήμη πακέτων"
+msgid "Cached Package Files"
+msgstr ""
 
 #: ../ubuntutweak/modules/cleaner.py:399
 #, python-format
@@ -2073,82 +1933,79 @@ msgstr ""
 "<b>%s</ b>\n"
 "Καταλαμβάνει % s του χώρου στο δίσκο"
 
-#: ../ubuntutweak/modules/cleaner.py:461
+#: ../ubuntutweak/modules/cleaner.py:462
 msgid "Package Configuration Files"
 msgstr "Αρχεία ρυθμίσεων πακέτων"
 
-#: ../ubuntutweak/modules/cleaner.py:498
+#: ../ubuntutweak/modules/cleaner.py:499
 #, python-format
 msgid "%d package selected for removal"
 msgid_plural "%d packages selected for removal"
 msgstr[0] "%d πακέτο επιλέχθηκε για αφαίρεση"
 msgstr[1] "%d πακέτα επιλέχθηκε για αφαίρεση"
 
-#: ../ubuntutweak/modules/cleaner.py:502
+#: ../ubuntutweak/modules/cleaner.py:503
 #, python-format
 msgid "%s of disk space will be freed"
 msgstr "%s του χώρου στο δίσκο θα ελευθερωθεί"
 
-#: ../ubuntutweak/modules/cleaner.py:610
-msgid "It's safe to purge the PPA, there's no package need to be downgraded."
+#: ../ubuntutweak/modules/cleaner.py:611
+msgid "It's safe to purge the PPA, no packages need to be downgraded."
 msgstr ""
 
-#: ../ubuntutweak/modules/cleaner.py:613
-msgid ""
-"To safely purge the PPA, the following packages need to be downgraded."
+#: ../ubuntutweak/modules/cleaner.py:614
+msgid "To safely purge the PPA, the following packages must be downgraded."
 msgstr ""
 
-#: ../ubuntutweak/modules/cleaner.py:617
+#: ../ubuntutweak/modules/cleaner.py:618
 #, python-format
 msgid "You're going to purge: %s"
 msgstr ""
 
-#: ../ubuntutweak/modules/cleaner.py:651
+#: ../ubuntutweak/modules/cleaner.py:652
 msgid "Cancelled by user!"
 msgstr "Ακυρώθηκε από το χρήστη!"
 
-#: ../ubuntutweak/modules/cleaner.py:654
+#: ../ubuntutweak/modules/cleaner.py:655
 msgid "Clean up successful!"
 msgstr "Επιτυχής Καθαρισμός!"
 
-#: ../ubuntutweak/modules/cleaner.py:657
+#: ../ubuntutweak/modules/cleaner.py:658
 msgid "Clean up failed!"
 msgstr "Ο καθαρισμός απέτυχε!"
 
-#: ../ubuntutweak/modules/cleaner.py:670
+#: ../ubuntutweak/modules/cleaner.py:671
 msgid "Package Cleaner"
 msgstr "Εκκαθαριστής Πακέτων"
 
-#: ../ubuntutweak/modules/cleaner.py:671
+#: ../ubuntutweak/modules/cleaner.py:672
 msgid ""
-"Free up disk space by removing redundant packages and cleaning the package "
+"Free up disk space by removing redundant packages and cleaning package "
 "download cache."
 msgstr ""
-"Ελευθερώσετε χώρο στο δίσκο καταργώντας περιττά πακέτα και καθαρίστε την "
-"αποθηκευμένη μνήμη ληφθέντων πακέτων."
 
 #. create the button
-#: ../ubuntutweak/modules/cleaner.py:702
+#: ../ubuntutweak/modules/cleaner.py:703
 msgid "Clean Packages"
 msgstr "Καθαρισμός Πακέτων"
 
-#: ../ubuntutweak/modules/cleaner.py:707
+#: ../ubuntutweak/modules/cleaner.py:708
 msgid "Clean Cache"
 msgstr "Εκκαθάριση λανθάνουσας μνήμης"
 
-#: ../ubuntutweak/modules/cleaner.py:712
+#: ../ubuntutweak/modules/cleaner.py:713
 msgid "Clean Config"
 msgstr "Εκκαθάριση Ρυθμίσεων"
 
-#: ../ubuntutweak/modules/cleaner.py:717
+#: ../ubuntutweak/modules/cleaner.py:718
 msgid "Clean Kernels"
 msgstr "Καθαρισμός Πυρήνων"
 
-#: ../ubuntutweak/modules/cleaner.py:722
+#: ../ubuntutweak/modules/cleaner.py:723
 msgid "Purge PPAs"
 msgstr ""
 
-#: ../ubuntutweak/modules/cleaner.py:742
+#: ../ubuntutweak/modules/cleaner.py:743
 msgid "_Cleanup"
 msgstr "_Εκκαθάριση"
 
@@ -2160,12 +2017,9 @@ msgstr "Συντομεύσεις Εντολών"
 msgid ""
 "By configuring keyboard shortcuts, you can access your favourite "
 "applications instantly.\n"
-"Enter the application's command and set the desired shortcut keys."
+"Enter the command to run the application and choose a shortcut key "
+"combination."
 msgstr ""
-"Διαμορφώνοντας τις συντομεύσεις του πληκτρολογίου, μπορείτε να έχετε "
-"πρόσβαση στις αγαπημένες σας εφαρμογές άμεσα.\n"
-"Εισάγετε την εντολή της εφαρμογής και ρυθμίστε τα επιθυμητά πλήκτρα "
-"συντόμευσης."
 
 #: ../ubuntutweak/modules/shortcuts.py:94
 #, python-format
@@ -2218,8 +2072,8 @@ msgid "Delete from Disk"
 msgstr "Διαγραφή απο τον Δίσκο"
 
 #: ../ubuntutweak/modules/autostart.py:203
-msgid "Can't delete the system item from disk."
-msgstr "Αδύνατη η διαγραφή αρχείου Συστήματος απο τον Δίσκο"
+msgid "Can't delete system item from disk."
+msgstr ""
 
 #: ../ubuntutweak/modules/autostart.py:255
 msgid "No description"
@@ -2235,16 +2089,10 @@ msgstr "Αυτόματη Έναρξη Προγραμμάτων"
 
 #: ../ubuntutweak/modules/autostart.py:335
 msgid ""
-"Here you can manage which programs are started upon login.\n"
-"You can hide items from view by selecting and clicking \"Remove\"\n"
-"To permanently delete an item, right-click and press \"Delete\"."
+"Here you can manage which programs are run upon login.\n"
+"You can hide items from view by selecting them and clicking \"Remove\"\n"
+"To permanently delete an item, right-click and select \"Delete\"."
 msgstr ""
-"Εδώ μπορείτε να διαχειριστείτε τα προγράμματα που έχουν αρχίσει με την "
-"είσοδο στο σύστημα.\n"
-"Μπορείτε να κρύψετε αντικείμενα από την προβολή πατώντας και κάνοντας κλικ "
-"στο \"Αφαίρεση\"\n"
-"Για να διαγράψετε οριστικά ένα στοιχείο, κάντε δεξί κλικ και πατήστε "
-"\"Διαγραφή\"."
 
 #. create the two checkbutton for extra options of auto run list
 #: ../ubuntutweak/modules/autostart.py:348
@@ -2283,56 +2131,54 @@ msgstr ""
 "Εμφάνιση προχωρημένων δικαιωμάτων στο παράθυρο \"Ιδιότητες αρχείου\" του "
 "Nautilus"
 
-#: ../ubuntutweak/modules/nautilus.py:79
+#: ../ubuntutweak/modules/nautilus.py:80
 msgid "File Browser"
 msgstr "Περιηγητής Αρχείων"
 
-#: ../ubuntutweak/modules/nautilus.py:88
+#: ../ubuntutweak/modules/nautilus.py:89
 msgid "Thumbnail Settings"
 msgstr "Ρυθμίσεις σμίκρυνσης εικόνιδίων"
 
-#: ../ubuntutweak/modules/nautilus.py:92
+#: ../ubuntutweak/modules/nautilus.py:94
 msgid "Default thumbnail icon size (pixels)"
 msgstr "Προεπιλεγμένο μέγεθος μικρογραφίας (pixels)"
 
-#: ../ubuntutweak/modules/nautilus.py:96
+#: ../ubuntutweak/modules/nautilus.py:99
 msgid "Maximum thumbnail cache size (megabytes)"
 msgstr "Μέγιστο μέγεθος της μνήμης αποθήκευσης σμικρυμένων εικονιδίων (ΜΒ)"
 
-#: ../ubuntutweak/modules/nautilus.py:100
+#: ../ubuntutweak/modules/nautilus.py:104
 msgid "Thumbnail cache time (days)"
 msgstr "Χρόνος μνήμης αποθήκευσης σμικρυμένων εικονιδίων (ημέρες)"
 
-#: ../ubuntutweak/modules/nautilus.py:107
+#: ../ubuntutweak/modules/nautilus.py:111
 msgid "Open folder in terminal"
 msgstr "Άνοιγμα φακέλου σε τερματικό"
 
-#: ../ubuntutweak/modules/nautilus.py:109
+#: ../ubuntutweak/modules/nautilus.py:113
 msgid "Open folder with root priveleges"
 msgstr "Άνοιγμα φακέλου με προνόμοια υπερχρήστη"
 
-#: ../ubuntutweak/modules/nautilus.py:111
-msgid "Nautilus with Wallpaper"
-msgstr "Nautilus με Wallpaper"
+#: ../ubuntutweak/modules/nautilus.py:115
+msgid "Nautilus with wallpaper"
+msgstr ""
 
-#: ../ubuntutweak/modules/nautilus.py:113
+#: ../ubuntutweak/modules/nautilus.py:117
 msgid "Nautilus Extensions"
 msgstr "Επεκτάσεις Ναυτίλου"
 
-#: ../ubuntutweak/modules/nautilus.py:135
+#: ../ubuntutweak/modules/nautilus.py:139
 #, python-format
-msgid "Delete thumbnail cache (will free %s of disk space)"
+msgid "Delete thumbnail cache (Frees %s of disk space)"
 msgstr ""
-"Διαγραφή της μνήμης αποθήκευσης σμικρυμένων εικονιδίων (θα ελεύθερωθεί %s "
-"του χώρου στο δίσκο)"
 
-#: ../ubuntutweak/modules/nautilus.py:138
+#: ../ubuntutweak/modules/nautilus.py:142
 msgid "The thumbnail cache will be deleted. Do you wish to continue?"
 msgstr ""
 "Η μνήμη αποθήκευσης σμικρύνσεων εικονιδίων θα διαγραφεί. Θέλετε να "
 "συνεχίσετε;"
 
-#: ../ubuntutweak/modules/nautilus.py:145
+#: ../ubuntutweak/modules/nautilus.py:149
 msgid "Clean up Successful!"
 msgstr "Η εκκαθάριση έγινε με επιτυχία!"
 
@@ -2349,38 +2195,156 @@ msgid "Login Options"
 msgstr ""
 
 #: ../ubuntutweak/modules/loginsettings.py:51
-msgid "Disable user list in gdm"
-msgstr "Απενεργοποιήστε την λίστα χρηστών στο gdm"
+msgid "Disable user list in GDM"
+msgstr ""
 
-#: ../ubuntutweak/modules/loginsettings.py:55
+#: ../ubuntutweak/modules/loginsettings.py:56
 msgid "Play sound at login"
 msgstr ""
 
-#: ../ubuntutweak/modules/loginsettings.py:59
-msgid "Disable showing the restart buttons"
+#: ../ubuntutweak/modules/loginsettings.py:61
+msgid "Disable showing the restart button"
 msgstr ""
 
-#: ../ubuntutweak/modules/loginsettings.py:76
+#: ../ubuntutweak/modules/loginsettings.py:79
 msgid "Login Theme"
 msgstr ""
 
-#: ../ubuntutweak/modules/loginsettings.py:148
+#: ../ubuntutweak/modules/loginsettings.py:152
 msgid "PNG images with 64x64 size or SVG images"
 msgstr ""
 
-#: ../ubuntutweak/modules/loginsettings.py:178
+#: ../ubuntutweak/modules/loginsettings.py:182
 msgid ""
 "This image size isn't suitable for the logo.\n"
 "It should be 64x64."
 msgstr ""
 
-#: ../ubuntutweak/modules/loginsettings.py:200
+#: ../ubuntutweak/modules/loginsettings.py:204
 msgid "Choose a new background image"
 msgstr ""
 
-#: ../ubuntutweak/modules/loginsettings.py:206
+#: ../ubuntutweak/modules/loginsettings.py:210
 msgid "All images"
 msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:145
+msgid "Setting"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:189
+msgid "Backup Name:"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:237
+#, python-format
+msgid "Backing up...%s"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:263
+msgid "Desktop Recovery"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:264
+msgid ""
+"Backup and recover your desktop and application settings with ease.\n"
+"You can also use \"Reset\" to reset to the system default settings."
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:335
+msgid "No Backup Yet"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:378
+#, python-format
+msgid ""
+"Backup all settings under: <b>%s</b>\n"
+"Would you like to continue?"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:397
+#, python-format
+msgid ""
+"Backup settings under: <b>%s</b>\n"
+"Would you like to continue?"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:438
+#, python-format
+msgid "Would you like to delete the backup: <b>%s/%s</b>?"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:440
+#, python-format
+msgid ""
+"Would you like to delete the backup of all <b>%s</b> settings named "
+"<b>%s</b>?"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:459
+#, python-format
+msgid "Would you like to recover the backup: <b>%s/%s</b>?"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:461
+#, python-format
+msgid ""
+"Would you like to recover the backup of all <b>%s</b> settings named "
+"<b>%s</b>?"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:463
+msgid ""
+"<b>NOTES</b>: While recovering, your desktop may be unresponsive for a "
+"moment."
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:480
+msgid ""
+"Recovery Successful!\n"
+"You may need to restart your desktop for changes to take effect"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:488
+#, python-format
+msgid "Would you like to reset settings for: <b>%s</b>?"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:490
+#, python-format
+msgid "Would you like to reset all settings under: <b>%s</b>?"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:492
+msgid ""
+"<b>NOTES</b>: Whilst resetting, your desktop may be unresponsive for a "
+"moment."
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:509
+msgid ""
+"Reset Successful!\n"
+"You may need to restart your desktop for changes to take effect"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:527
+msgid "New Backup Name"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:528
+msgid "Please enter a new name for your backup:"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:560
+msgid "Backup Successful!"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:563
+msgid "Backup Failed!"
+msgstr ""
+
+#~ msgid "Can't delete the system item from disk."
+#~ msgstr "Αδύνατη η διαγραφή αρχείου Συστήματος απο τον Δίσκο"
 
 #~ msgid "Text was empty (or contained only whitespace)"
 #~ msgstr "Το κείμενο ήταν άδειο (ή περιέχει μόνο κενά)"
@@ -2403,6 +2367,9 @@ msgstr ""
 
 #~ msgid "Disable print setup"
 #~ msgstr "Απενεργοποίηση Εγκατάστασης Εκτυπωτών"
+
+#~ msgid "Packages"
+#~ msgstr "Πακέτα"
 
 #~ msgid "And many more useful features!"
 #~ msgstr "Και πολλά ακόμη χρήσιμα χαρακτηριστικά!"
@@ -2447,8 +2414,14 @@ msgstr ""
 #~ msgid "Thumbnails Settings"
 #~ msgstr "Ρυθμίσεις Thumbnails"
 
+#~ msgid "Package Cache"
+#~ msgstr "προσωρινή μνήμη πακέτων"
+
 #~ msgid "Package Config"
 #~ msgstr "Ρύθμιση προσωρινής μνήμης"
+
+#~ msgid "Nautilus with Wallpaper"
+#~ msgstr "Nautilus με Wallpaper"
 
 #~ msgid "Nautilus with Root Privileges"
 #~ msgstr "Nautilus με δικαιώματα root"
@@ -2462,6 +2435,9 @@ msgstr ""
 #~ msgid "Enable system-wide \"Recently Documents\" list"
 #~ msgstr "Ενεργοποίση system-wide λίστας \"πρόσφατα έγγραφα\""
 
+#~ msgid "Enable user switching when screen is locked."
+#~ msgstr "Ενεργοποίση εναλλαγής χρηστών όταν η οθόνη είναι κλειδωμένη"
+
 #~ msgid "Ubuntu Chinese Repository"
 #~ msgstr "Κινέζικο Αποθετήριο του Ubuntu"
 
@@ -2470,6 +2446,16 @@ msgstr ""
 
 #~ msgid "Ubuntu Tweak (Unstable Version)"
 #~ msgstr "Ubuntu Tweak (Ασταθής Έκδοση)"
+
+#~ msgid ""
+#~ "By configuring keyboard shortcuts, you can access your favourite "
+#~ "applications instantly.\n"
+#~ "Enter the application's command and set the desired shortcut keys."
+#~ msgstr ""
+#~ "Διαμορφώνοντας τις συντομεύσεις του πληκτρολογίου, μπορείτε να έχετε "
+#~ "πρόσβαση στις αγαπημένες σας εφαρμογές άμεσα.\n"
+#~ "Εισάγετε την εντολή της εφαρμογής και ρυθμίστε τα επιθυμητά πλήκτρα "
+#~ "συντόμευσης."
 
 #~ msgid "Clean up Failed!"
 #~ msgstr "Η εκκαθάριση απέτυχε!"
@@ -2493,6 +2479,10 @@ msgstr ""
 #~ msgstr ""
 #~ "Χρησιμοποίησε το φάκελο  \"Home\" σαν  Επιφάνεια Εργασίας. (Αποσύνδεση  για "
 #~ "να λάβουν χώρα οι αλλαγές)"
+
+#~ msgid "Allow TCP Connections (Remote Desktop Connect)"
+#~ msgstr ""
+#~ "Να επιτρέπονται οι συνδέσεις TCP (Σύνδεση Απομακρυσμένης Επιφάνειας Εργασίας)"
 
 #, python-format
 #~ msgid "%s of space will be freed"
@@ -2522,6 +2512,9 @@ msgstr ""
 #~ msgid "Gnome Global Menu"
 #~ msgstr "Κεντρικό μενού Gnome"
 
+#~ msgid "Please input the correct information about sources!"
+#~ msgstr "Παρακαλώ εισάγετε τις σωστές πληροφορίες για τις πηγές!"
+
 #, python-format
 #~ msgid "%d package selected to remove"
 #~ msgid_plural "%d packages selected to remove"
@@ -2531,6 +2524,9 @@ msgstr ""
 #, python-format
 #~ msgid "Download the Ubuntu Tweak %s"
 #~ msgstr "Μεταφορτώστε το Ubuntu Tweak %s"
+
+#~ msgid "Development Version of Mozilla Firefox"
+#~ msgstr "Έκδοση του Mozilla Firefox σε εξέλιξη"
 
 #, python-format
 #~ msgid ""
@@ -2546,12 +2542,82 @@ msgstr ""
 #~ "Σημείωση: εάν επιθυμείτε ενημέρωση απο την πηγή, μπορείτε να "
 #~ "απενεργοποιήσετε αυτή τη δυνατότητα από τις Επιλογές."
 
+#~ msgid ""
+#~ "WebkitGtk+, Liferea (Webkit), Midori and other WebKit related projects."
+#~ msgstr ""
+#~ "WebkitGtk+, Liferea (Webkit), Midori και άλλα πακέτα σχετιζόμενα με το WebKit"
+
+#~ msgid "Development version of Compiz"
+#~ msgstr "Έκδοση του Compiz σε εξέλιξη"
+
+#~ msgid "Development Version of K Desktop Environment"
+#~ msgstr "Έκδοση του K Desktop Enviroment σε εξέλιξη"
+
+#~ msgid ""
+#~ "GetDeb extends the existing software options for Ubuntu (and derived) Linux "
+#~ "distributions by providing major updates and software not yet available on "
+#~ "the official Ubuntu repositories."
+#~ msgstr ""
+#~ "Το GetDeb επεκτείνει τις υφιστάμενες εναλλακτικές λύσεις λογισμικού για το "
+#~ "Ubuntu (και τις παράγωγες), διανομές Linux, παρέχοντας σημαντικές "
+#~ "ενημερωμένες εκδόσεις και  λογισμικό που δεν είναι ακόμα διαθέσιμα από τα "
+#~ "επίσημα αποθετήρια Ubuntu."
+
+#~ msgid "Updated versions of X.org drivers, libraries, etc. for Ubuntu."
+#~ msgstr ""
+#~ "Ενημερωμένες εκδόσεις οδηγών, βιβλιοθηκών κ.λ.π του X.org για το Ubuntu"
+
+#~ msgid ""
+#~ "You can submit your sources to our server to help building the sources list, "
+#~ "or you can use the official sources.\n"
+#~ "Do you wish to use the official sources?"
+#~ msgstr ""
+#~ "Μπορείτε να υποβάλετε τις πηγές σας στον κεντρικό υπολογιστή  μας για να "
+#~ "βοηθήσετε στην οικοδόμηση της λίστας πηγών, ή μπορείτε να χρησιμοποιήσετε "
+#~ "τις επίσημες πηγές.\n"
+#~ "Θέλετε να χρησιμοποιήσετε τις επίσημες πηγές;"
+
 #~ msgid "Fix the theme appearance when grant the root privileges"
 #~ msgstr ""
 #~ "Διαμόρφωστε την εμφάνιση του θέματος όταν αποκτήσετε δικαιώματα διαχειριστή"
 
+#~ msgid ""
+#~ "Gloobus is an extension of Gnome designed to enable a full screen preview of "
+#~ "any kind of file."
+#~ msgstr ""
+#~ "Το Gloobus είναι μια επέκταση του Gnome που έχει ως στόχο να επιτρέψει μια "
+#~ "προεπισκόπηση πλήρους οθόνης  των κάθε είδους αρχείων."
+
 #~ msgid "Enable the synchronous notification"
 #~ msgstr "Ενεργοποίηση συγχρονισμένων ειδοποιήσεων"
+
+#~ msgid ""
+#~ "Behind this African word, referring to the notion of imagination, you can "
+#~ "find some themes for GNOME"
+#~ msgstr ""
+#~ "Πίσω από αυτή την αφρικανική λέξη,η οποία αναφέρεται στην έννοια της "
+#~ "φαντασίας, μπορείτε να βρείτε μερικά θέματα για το GNOME"
+
+#~ msgid ""
+#~ "You've changed the sources.list without saving it.\n"
+#~ "Do you want to save it?"
+#~ msgstr ""
+#~ "Έχετε αλλάξει την Λίστα των Πηγών χωρίς να τις αποθηκεύσετε. \n"
+#~ "Θέλετε να τις αποθηκεύσετε;"
+
+#~ msgid ""
+#~ "Ubuntu Mozilla Security Team provides beta and final stable/security updates "
+#~ "for mozilla software in its PPA"
+#~ msgstr ""
+#~ "Η ομάδα ασφαλείας του Ubuntu Mozilla παρέχει δοκιμαστικές και τελικές "
+#~ "σταθερές εκδόσεις ασφαλείας για το λογισμικό mozilla και κάθε PPA"
+
+#~ msgid ""
+#~ "Gnome Games built from Git, with all experimental features and staging games "
+#~ "enabled."
+#~ msgstr ""
+#~ "Παιχνίδια του Gnome φτιαγμένα απο το Git, με ενεργοποιημένα όλα τα "
+#~ "πειραματικά χαρακτηριστικά."
 
 #~ msgid "Please enter your new hostname. It should be non-blank characters."
 #~ msgstr ""
@@ -2656,8 +2722,30 @@ msgstr ""
 #~ msgid "New applications are available to update"
 #~ msgstr "Νέες εφαρμογές είναι διαθέσιμες για ενημέρωση"
 
+#~ msgid "A cross-platform application and UI framework"
+#~ msgstr "Μία διαλειτουργική εφαρμογή πλαισίου και διεπαφή χρήστη"
+
+#~ msgid "Mono is a cross platform, open source .NET development framework."
+#~ msgstr ""
+#~ "Το Mono είναι ένα διαλειτουργικό πλαίσιο ανάπτυξης .NET ανοικτού κώδικα."
+
 #~ msgid "Enable the auto launch of System Update Manager"
 #~ msgstr "Ενεργοποιήστε την αυτόματη έναρξη του Διαχειρηστή Ενημερώσεων"
+
+#~ msgid ""
+#~ "Updates for Kubuntu releases which are due to go to Ubuntu Updates. Mostly "
+#~ "KDE point releases."
+#~ msgstr ""
+#~ "Αναβαθμίσεις για τις εκδόσεις Kubuntu οι οποίες πρόκειται να μεταφερθούν στο "
+#~ "Ubuntu Updates. Κυρίως KDE κυκλοφορίες."
+
+#~ msgid ""
+#~ "Backports of new versions of KDE for Kubuntu which are not yet tested enough "
+#~ "to go to Ubuntu Backports."
+#~ msgstr ""
+#~ "Ανεπίσημα αποθετήρια των νέων εκδόσεων του KDE για το Kubuntu τα οποία δεν "
+#~ "έχουν δοκιμαστεί ακόμα αρκετά ώστε να προσαρτηθούν στα ανεπίσημα αποθετήρια "
+#~ "του Ubuntu."
 
 #~ msgid "Some error happened while downloading the file"
 #~ msgstr "Κάποιο σφάλμα προέκυψε κατά την λήψη του αρχείου"
@@ -2678,8 +2766,81 @@ msgstr ""
 #~ "Μπορείτε να κάνετε κλικ στο κουμπί \"Sync\"  για να ελέγξετε για "
 #~ "ενημερωμένες εκδόσεις αυτόματα."
 
+#~ msgid "Disable user list in gdm"
+#~ msgstr "Απενεργοποιήστε την λίστα χρηστών στο gdm"
+
+#~ msgid "Suppress the dialog to confirm logout, restart and shutdown action"
+#~ msgstr ""
+#~ "Μη εμφάνιση του διαλόγου επιβεβαίωσης για τις ενέργειες αποσύνδεσης, "
+#~ "επαννεκίνησης και τερματισμού"
+
+#~ msgid "Templates path is still wrong, Please reset it!"
+#~ msgstr ""
+#~ "Η πρότυπη διαδρομή εξακολουθεί να είναι λάθος, παρακαλώ επαναφέρετέ την!"
+
+#, python-format
+#~ msgid ""
+#~ "Templates path is wrong! The current path is point to \"%s\".\n"
+#~ "Please reset it to a folder under your Home Folder."
+#~ msgstr ""
+#~ "Η πρότυπη διαδρομή είναι λάθος! Η τωρινή διαδρομή είναι το σημείο στο \"% "
+#~ "s\".\n"
+#~ "Παρακαλώ να  την επαναφέρετε σε ένα φάκελο μέσα στον κεντρικό σας φάκελο."
+
 #~ msgid "Enable Check Update"
 #~ msgstr "Ενεργοποίηση Έλεγχου Ενημερώσεων"
+
+#~ msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
+#~ msgstr "Ελαφρύ περιβάλον εργασίας X11: GPicView, PCManFM"
+
+#~ msgid ""
+#~ "Ubuntu repository for Chinese users.\n"
+#~ "Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and "
+#~ "other softwares."
+#~ msgstr ""
+#~ "Αποθετήρια Ubuntu για Κινέζους χρήστες.\n"
+#~ "Περιλαμβάνει τα  EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org "
+#~ "3.0 και άλλα προγράμματα."
+
+#~ msgid "Google's Linux Repository"
+#~ msgstr "Αποθετήριο Google για Λίνουξ"
+
+#~ msgid ""
+#~ "Multimedia, Entertainment and Distraction In Ubuntu\n"
+#~ "Medibuntu is a repository of packages that cannot be included into the "
+#~ "Ubuntu distribution for legal reasons (copyright, license, patent, etc)."
+#~ msgstr ""
+#~ "Πολυμέσα, Ψυχαγωγία, Περισπασμός στο Ubuntu\n"
+#~ "Το Medibuntu είναι ένα αποθετήριο πακέτων που δεν μπορούν να συμπεριληφθούν "
+#~ "στην διανομή Ubuntu για νομικούς λόγους (αντιγραφή, άδειες, πατέντες, κτλ)"
+
+#~ msgid ""
+#~ "Clutter is an OpenGL based interactive canvas library, designed for creating "
+#~ "fast, mainly 2D single window applications such as media box UIs, "
+#~ "presentations, kiosk style applications and so on."
+#~ msgstr ""
+#~ "Το Clutter είναι μία διαδραστική βιβλιοθήκη OpenGL βασισμένη στο  canvas, "
+#~ "σχεδιασμένη για τη δημιουργία γρήγορων, κυρίως 2D παραθυρικών εφαρμογών όπως "
+#~ " UIS κουτιά, παρουσιάσεις , εφαρμογές kiosk και ούτω καθεξής."
+
+#~ msgid ""
+#~ "Ubuntu Tweak will restore the chosen directory to the default location.\n"
+#~ "However, you must move your files back into place by yourself.\n"
+#~ "Do you wish to continue?"
+#~ msgstr ""
+#~ "Το Ubuntu Tweak θα επαναφέρει τον επιλεγμένο φάκελο στην προεπιλεγμένη "
+#~ "τοποθεσία.\n"
+#~ "Παρ' όλα 'αυτά, πρέπει να μετακινήσετε τα αρχεία σας πίσω χειροκίνητα.\n"
+#~ "Θέλετε να συνεχίσετε?"
+
+#~ msgid ""
+#~ "You can change the paths of the default folders here.\n"
+#~ "Don't change the location of your desktop folder unless you know what you "
+#~ "are doing."
+#~ msgstr ""
+#~ "Μπορείτε να αλλάξετε τις διαδρομές για τους προεπιλεγμένους φακέλους εδώ.\n"
+#~ "Μην αλλάξετε την τοποθεσία του φακέλου επιφάνειας εργασίας εκτός αν ξέρετε "
+#~ "τι κάνετε."
 
 #~ msgid "Update successful!"
 #~ msgstr "Επιτυχής Ενημέρωση!"
@@ -2687,7 +2848,80 @@ msgstr ""
 #~ msgid "The software information is up-to-date now"
 #~ msgstr "Οι πληροφορίες του λογισμικού είναι ενημερωμένες"
 
+#~ msgid ""
+#~ "Here you can freely manage your document templates.\n"
+#~ "You can add files as templates by dragging them onto this window.\n"
+#~ "You can create new documents based on these templates from the Nautilus "
+#~ "right-click menu."
+#~ msgstr ""
+#~ "Εδώ μπορείτε ελεύθερα να διαχειριστήτε τα πρότυπα εγγράφων.\n"
+#~ "Μπορείτε να προσθέσετε αρχεία ως πρότυπα σύροντάς τα στο παράθυρο.\n"
+#~ "Μπορείτε να δημιουργήσετε νέα έγγραφα βασισμένα σε αυτά τα έγγραφα από τον "
+#~ "κατάλογο του δεξιού-πλήκτρου του Nautilus."
+
+#~ msgid "Clean up unneeded packages to free up diskspace."
+#~ msgstr "Καθαρίστε τα αχρείαστα πακέτα για να ελευθερώσετε χώρο στον δίσκο."
+
 #~ msgid "Enable new item highlight in App and Source Center"
 #~ msgstr ""
 #~ "Ενεργοποίηση υπερτονισμού νέου αντικειμένου στο Κέντρο εφαρμογών και Διαχ. "
 #~ "Πηγών"
+
+#~ msgid ""
+#~ "A simple but more efficient way for finding and installing popular "
+#~ "applications.\n"
+#~ "Data will be automatically synchronized with the remote server.\n"
+#~ "You can click the \"Sync\" button to perform a manual check for updates."
+#~ msgstr ""
+#~ "Ένας απλός αλλά πιο αποτελεσματικός τρόπος για την εύρεση και την "
+#~ "εγκατάσταση δημοφιλών εφαρμογών.\n"
+#~ "Τα δεδομένα θα συγχρονιστούν αυτόματα με τον απομακρυσμένο διακομιστή.\n"
+#~ "Μπορείτε να κάνετε κλικ στο κουμπί  \"Συνχρ.\" για να εκτελέσετε χειροκίνητο "
+#~ "έλεγχο για ενημερώσεις."
+
+#~ msgid "Change the name and toggle visibilty of desktop icons"
+#~ msgstr ""
+#~ "Αλλάξτε το όνομα και την εναλλαγή ορατότητας των εικονιδίων της επιφάνειας "
+#~ "εργασίας"
+
+#~ msgid ""
+#~ "This image size isn't suitable for the panel.\n"
+#~ "It should be 24x24."
+#~ msgstr ""
+#~ "Αυτό το μέγεθος της εικόνας δεν είναι κατάλληλο για τον πίνακα.\n"
+#~ "Θα πρέπει να είναι 24x24."
+
+#~ msgid ""
+#~ "Scripts can be used to complete all kinds of tasks.\n"
+#~ "You can drag and drop scripts from File Manager.\n"
+#~ "'Scripts' will then be added to the context menu."
+#~ msgstr ""
+#~ "Τα σενάρια εντολών μπορούν να χρησιμοποιηθούν για την ολοκλήρωση όλων των "
+#~ "ειδών των εργασιών.\n"
+#~ "Μπορείτε να σύρετε και να αποθέσετε σενάρια από τον Διαχειρηστή Αρχείων.\n"
+#~ "Τα «Σενάρια», στη συνέχεια θα προστεθούν στις επιλογές πλαισίου περιεχομένων."
+
+#~ msgid ""
+#~ "Free up disk space by removing redundant packages and cleaning the package "
+#~ "download cache."
+#~ msgstr ""
+#~ "Ελευθερώσετε χώρο στο δίσκο καταργώντας περιττά πακέτα και καθαρίστε την "
+#~ "αποθηκευμένη μνήμη ληφθέντων πακέτων."
+
+#~ msgid ""
+#~ "Here you can manage which programs are started upon login.\n"
+#~ "You can hide items from view by selecting and clicking \"Remove\"\n"
+#~ "To permanently delete an item, right-click and press \"Delete\"."
+#~ msgstr ""
+#~ "Εδώ μπορείτε να διαχειριστείτε τα προγράμματα που έχουν αρχίσει με την "
+#~ "είσοδο στο σύστημα.\n"
+#~ "Μπορείτε να κρύψετε αντικείμενα από την προβολή πατώντας και κάνοντας κλικ "
+#~ "στο \"Αφαίρεση\"\n"
+#~ "Για να διαγράψετε οριστικά ένα στοιχείο, κάντε δεξί κλικ και πατήστε "
+#~ "\"Διαγραφή\"."
+
+#, python-format
+#~ msgid "Delete thumbnail cache (will free %s of disk space)"
+#~ msgstr ""
+#~ "Διαγραφή της μνήμης αποθήκευσης σμικρυμένων εικονιδίων (θα ελεύθερωθεί %s "
+#~ "του χώρου στο δίσκο)"

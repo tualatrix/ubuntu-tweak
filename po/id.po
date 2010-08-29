@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-22 22:56+0800\n"
-"PO-Revision-Date: 2010-07-22 16:26+0000\n"
-"Last-Translator: La Ode Adam Saputra <laode.saputra@gmail.com>\n"
+"POT-Creation-Date: 2010-08-21 19:49+0800\n"
+"PO-Revision-Date: 2010-08-28 02:55+0000\n"
+"Last-Translator: CANDRA SETIAWAN <Unknown>\n"
 "Language-Team: Indonesian <id@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2010-07-24 02:40+0000\n"
+"X-Launchpad-Export-Date: 2010-08-28 06:16+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../data/script-worker:54
@@ -98,6 +98,9 @@ msgid ""
 "Please choose <i>Report</i> to file a new bug report. Make sure to include "
 "the error message below:"
 msgstr ""
+"Jika Anda ingin membantu kami mengatasi masalah, \n"
+"Silakan memilih <i>Laporkan</i> ke file laporan bug baru. Pastikan untuk "
+"menyertakan pesan kesalahan berikut:"
 
 #: ../data/ui/traceback.ui.h:6
 msgid ""
@@ -106,6 +109,10 @@ msgid ""
 "Please choose <i>Report</i> to file a new bug report. Make sure to include "
 "the error message below:"
 msgstr ""
+"Ubuntu Tweak perlu dinonaktifkan.\n"
+"Jika Anda ingin membantu kami mengatasi masalah, \n"
+"Silakan memilih <i> Laporan </ i> ke file laporan bug baru. Pastikan untuk "
+"menyertakan pesan kesalahan di bawah ini:"
 
 #: ../data/ui/traceback.ui.h:9
 msgid "_Report"
@@ -119,6 +126,8 @@ msgstr " "
 msgid ""
 "Custom: (arrange the buttons on the titlebar by dragging and dropping)"
 msgstr ""
+"Custom: (mengatur tombol-tombol pada Titlebar dengan menyeret dan "
+"menjatuhkan)"
 
 #: ../data/ui/metacity.ui.h:3
 msgid "Enable control:"
@@ -126,15 +135,15 @@ msgstr "Hidupkan Kontrol:"
 
 #: ../data/ui/metacity.ui.h:4
 msgid "Left"
-msgstr ""
+msgstr "Kiri"
 
 #: ../data/ui/metacity.ui.h:5
 msgid "Place:"
-msgstr ""
+msgstr "Tempat:"
 
 #: ../data/ui/metacity.ui.h:6
 msgid "Right"
-msgstr ""
+msgstr "Kanan"
 
 #: ../data/ui/updatemanager.ui.h:1
 msgid "_Install Update"
@@ -168,6 +177,26 @@ msgstr "Klik pada tombol untuk mengubah latar belakang layar pembuka"
 msgid "Click the button to change the login screen logo"
 msgstr "Klik pada tombol untuk mengubah logo layar pembuka"
 
+#: ../data/ui/desktoprecovery.ui.h:1
+msgid "Backup History:"
+msgstr "Riwayat Backup:"
+
+#: ../data/ui/desktoprecovery.ui.h:2
+msgid "R_eset"
+msgstr "R_eset"
+
+#: ../data/ui/desktoprecovery.ui.h:3
+msgid "Setting Name:"
+msgstr "Nama Pengaturan:"
+
+#: ../data/ui/desktoprecovery.ui.h:4
+msgid "_Backup"
+msgstr "_Backup"
+
+#: ../data/ui/desktoprecovery.ui.h:5
+msgid "_Recover"
+msgstr "_Pulihkan"
+
 #: ../ubuntutweak/mainwindow.py:78
 msgid "Welcome to"
 msgstr "Selamat Datang di"
@@ -177,8 +206,9 @@ msgid "Tweak otherwise hidden settings."
 msgstr "Atur pengaturan lain yang tersembunyi."
 
 #: ../ubuntutweak/mainwindow.py:85
-msgid "Clean up unneeded packages to free up diskspace."
-msgstr "Bersihkan paket yang tidak diperlukan untuk membebaskan ruang disk"
+msgid "Clean up unused packages to free up diskspace."
+msgstr ""
+"Bersihkan paket yang tidak digunakan untuk membebaskan ruang penyimpanan."
 
 #: ../ubuntutweak/mainwindow.py:86
 msgid "Easily install up-to-date versions of many applications."
@@ -209,6 +239,7 @@ msgid "Welcome"
 msgstr "Selamat Datang"
 
 #: ../ubuntutweak/mainwindow.py:141
+#: ../ubuntutweak/modules/desktoprecovery.py:74
 msgid "Applications"
 msgstr "Aplikasi"
 
@@ -217,6 +248,7 @@ msgid "Startup"
 msgstr "Awalan"
 
 #: ../ubuntutweak/mainwindow.py:143 ../ubuntutweak/modules/userdir.py:45
+#: ../ubuntutweak/modules/desktoprecovery.py:75
 msgid "Desktop"
 msgstr "Tampilan"
 
@@ -225,6 +257,7 @@ msgid "Personal"
 msgstr "Pribadi"
 
 #: ../ubuntutweak/mainwindow.py:145
+#: ../ubuntutweak/modules/desktoprecovery.py:76
 msgid "System"
 msgstr "Sistem"
 
@@ -239,17 +272,23 @@ msgstr "_Sumbangan"
 
 #: ../ubuntutweak/mainwindow.py:248
 msgid ""
-"It is highly recommend to enable the stable source of Ubuntu Tweak to get "
-"security and normal update.\n"
-"If you don't enable the source, you will need to update manually.\n"
+"It is highly recommended that you enable the Ubuntu Tweak stable repository "
+"to get security and maintenance updates.\n"
+"If you don't enable this repository, you will need to update manually.\n"
 "\n"
-"Would you like to enable the stable source?"
+"Would you like to enable this repository?"
 msgstr ""
+"Sangat direkomendasikan bagi Anda untuk mengaktifkan repositori Ubuntu Tweak "
+"stabil untuk mendapatkan keamanan dan memperbarui pemeliharaan.\n"
+"Jika Anda tidak mengaktifkan repositori ini, Anda akan harus memperbarui "
+"secara manual.\n"
+"\n"
+"Apakah Anda ingin mengaktifkan repositori ini?"
 
 #: ../ubuntutweak/mainwindow.py:251
-#: ../ubuntutweak/modules/gnomesettings.py:196
+#: ../ubuntutweak/modules/gnomesettings.py:204
 #: ../ubuntutweak/modules/sourcecenter.py:1112
-#: ../ubuntutweak/modules/nautilus.py:139
+#: ../ubuntutweak/modules/nautilus.py:143
 msgid "Warning"
 msgstr "Peringatan"
 
@@ -290,6 +329,7 @@ msgstr "Contributors tahun 2010"
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
+"  CANDRA SETIAWAN https://launchpad.net/~cansetya\n"
 "  La Ode Adam Saputra https://launchpad.net/~laode-saputra\n"
 "  Purinta Dedi Setiyawan https://launchpad.net/~supermanisdeady\n"
 "  TualatriX https://launchpad.net/~tualatrix\n"
@@ -315,24 +355,23 @@ msgstr ""
 msgid "Software Update"
 msgstr "Pembaharuan Perangkat Lunak"
 
-#: ../ubuntutweak/widgets/widgets.py:104 ../ubuntutweak/widgets/widgets.py:129
+#: ../ubuntutweak/widgets/widgets.py:45
+#, python-format
+msgid "Reset setting to default value: %s"
+msgstr "Kembalikan ke nilai pengaturan awal: %s"
+
+#: ../ubuntutweak/widgets/widgets.py:118 ../ubuntutweak/widgets/widgets.py:143
 #: ../ubuntutweak/modules/icons.py:105
 msgid "Unset"
 msgstr "Belum diatur"
 
-#: ../ubuntutweak/widgets/widgets.py:253
+#: ../ubuntutweak/widgets/widgets.py:275
 msgid "Please press the new key combination"
 msgstr "Harap tekan kombinasi kunci baru"
 
-#: ../ubuntutweak/widgets/widgets.py:302
+#: ../ubuntutweak/widgets/widgets.py:324
 msgid "Disabled"
 msgstr "Dinonaktifkan"
-
-#: ../ubuntutweak/widgets/utils.py:86
-#: ../ubuntutweak/modules/sourceeditor.py:87
-#: ../ubuntutweak/modules/sourcecenter.py:944
-msgid "Details"
-msgstr "Rincian"
 
 #: ../ubuntutweak/widgets/treeviews.py:71
 msgid "Create folder"
@@ -369,28 +408,34 @@ msgstr ""
 "\n"
 "Ada beberapa berkas didalamnya!"
 
-#: ../ubuntutweak/widgets/dialogs.py:139
+#: ../ubuntutweak/widgets/dialogs.py:146
 msgid "An unexpected error has occurred."
 msgstr "Terjadi kesalahan tidak diharapkan."
 
-#: ../ubuntutweak/widgets/dialogs.py:140
+#: ../ubuntutweak/widgets/dialogs.py:147
 msgid "Could not authenticate"
 msgstr "Tidak bisa memperoleh ijin"
 
-#: ../ubuntutweak/widgets/dialogs.py:145
+#: ../ubuntutweak/widgets/dialogs.py:152
 msgid "You need to restart your computer."
 msgstr "Anda perlu menjalankan ulang komputer"
 
-#: ../ubuntutweak/widgets/dialogs.py:146
+#: ../ubuntutweak/widgets/dialogs.py:153
 msgid "Service hasn't initialized yet"
 msgstr "Pelayanan belum bisa dimulai"
 
+#: ../ubuntutweak/widgets/dialogs.py:174
+#: ../ubuntutweak/modules/sourceeditor.py:87
+#: ../ubuntutweak/modules/sourcecenter.py:944
+msgid "Details"
+msgstr "Rincian"
+
 #: ../ubuntutweak/preferences.py:75 ../ubuntutweak/modules/filetype.py:179
 #: ../ubuntutweak/modules/filetype.py:214
-#: ../ubuntutweak/modules/metacity.py:185
-#: ../ubuntutweak/modules/metacity.py:190
-#: ../ubuntutweak/modules/metacity.py:203
-#: ../ubuntutweak/modules/metacity.py:216
+#: ../ubuntutweak/modules/metacity.py:186
+#: ../ubuntutweak/modules/metacity.py:192
+#: ../ubuntutweak/modules/metacity.py:206
+#: ../ubuntutweak/modules/metacity.py:220
 #: ../ubuntutweak/modules/shortcuts.py:99
 #: ../ubuntutweak/modules/shortcuts.py:209
 msgid "None"
@@ -461,131 +506,11 @@ msgstr[0] "%d menit yang lalu"
 msgid "Just Now"
 msgstr "Baru saja"
 
-#: ../ubuntutweak/common/appdata.py:24
-msgid "Development Version of Mozilla Firefox"
-msgstr "Versi Pengembangan Mozilla Firefox"
-
-#: ../ubuntutweak/common/appdata.py:25
-msgid "Development version of Compiz"
-msgstr "Versi pengembangan dari Compiz"
-
-#: ../ubuntutweak/common/appdata.py:26
-msgid "Google's Linux Repository"
-msgstr "Repositori Linux milik Google"
-
-#: ../ubuntutweak/common/appdata.py:27
-msgid "Development Version of K Desktop Environment"
-msgstr "Versi Pengembangan dari K Desktop Environment"
-
-#: ../ubuntutweak/common/appdata.py:28
-msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
-msgstr ""
-
-#: ../ubuntutweak/common/appdata.py:29
-msgid ""
-"WebkitGtk+, Liferea (Webkit), Midori and other WebKit related projects."
-msgstr "WebkitGtk+, Liferea (Webkit), Midori and proyek lain WebKit terkait"
-
-#: ../ubuntutweak/common/appdata.py:30
-msgid ""
-"Multimedia, Entertainment and Distraction In Ubuntu\n"
-"Medibuntu is a repository of packages that cannot be included into the "
-"Ubuntu distribution for legal reasons (copyright, license, patent, etc)."
-msgstr ""
-"Multimedia, Hiburan dan Selingan Pada Ubuntu\n"
-"Medibuntu adalah gudang paket yang tidak dapat dimasukkan ke dalam "
-"distribusi Ubuntu karena alasan hukum (hak cipta, lisensi, paten, dll)."
-
-#: ../ubuntutweak/common/appdata.py:32
-msgid ""
-"Ubuntu repository for Chinese users.\n"
-"Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and "
-"other softwares."
-msgstr ""
-"Repositori Ubuntu untuk pengguna Cina.\n"
-"Termasuk EIOffice, Ubuntu Tweak, metode input ibus, OpenOffice.org 3.0 dan "
-"software lain."
-
-#: ../ubuntutweak/common/appdata.py:34
-msgid ""
-"GetDeb extends the existing software options for Ubuntu (and derived) Linux "
-"distributions by providing major updates and software not yet available on "
-"the official Ubuntu repositories."
-msgstr ""
-"GetDeb memperluas pilihan perangkat lunak yang ada untuk Ubuntu (dan "
-"turunan) Linux distribusi dengan memberikan update perangkat lunak yang "
-"besar dan belum tersedia di repositori resmi Ubuntu."
-
-#: ../ubuntutweak/common/appdata.py:35
-msgid "Updated versions of X.org drivers, libraries, etc. for Ubuntu."
-msgstr "Pembaharuan versi driver dari X.org, perpustakaan, dll untuk Ubuntu."
-
-#: ../ubuntutweak/common/appdata.py:36
-msgid ""
-"Gnome Games built from Git, with all experimental features and staging games "
-"enabled."
-msgstr ""
-"Gnome Games dibangun dari Git, dengan semua fitur eksperimental dan "
-"permainan stadium yang diaktifkan."
-
-#: ../ubuntutweak/common/appdata.py:37
-msgid ""
-"Ubuntu Mozilla Security Team provides beta and final stable/security updates "
-"for mozilla software in its PPA"
-msgstr ""
-"Tim Keamanan Ubuntu Mozilla menyediakan beta dan kestabilan/keamanan "
-"pemutakhiran terakhir untuk perangkat lunak mozilla dan itu adalah PPA"
-
-#: ../ubuntutweak/common/appdata.py:38
-msgid "A cross-platform application and UI framework"
-msgstr "Sebuah aplikasi cross-platform dan kerangka UI"
-
-#: ../ubuntutweak/common/appdata.py:39
-msgid "Mono is a cross platform, open source .NET development framework."
-msgstr ""
-"Mono adalah lintas platform, pengembangan open source .NET framework."
-
-#: ../ubuntutweak/common/appdata.py:40
-msgid ""
-"Clutter is an OpenGL based interactive canvas library, designed for creating "
-"fast, mainly 2D single window applications such as media box UIs, "
-"presentations, kiosk style applications and so on."
-msgstr ""
-"Clutter adalah berbasis OpenGL kanvas perpustakaan interaktif, yang "
-"dirancang untuk menciptakan kecepatan, terutama jendela 2D aplikasi tunggal "
-"seperti kotak media UI, aplikasi presentasi kios mode dan sebagainya."
-
-#: ../ubuntutweak/common/appdata.py:41
-msgid ""
-"Gloobus is an extension of Gnome designed to enable a full screen preview of "
-"any kind of file."
-msgstr ""
-"Gloobus adalah sebuah ekstesi gnome yang menampilkan berbagai jenis file "
-"dalam bentuk full screen"
-
-#: ../ubuntutweak/common/appdata.py:42
-msgid ""
-"Behind this African word, referring to the notion of imagination, you can "
-"find some themes for GNOME"
-msgstr ""
-
-#: ../ubuntutweak/common/appdata.py:43
-msgid ""
-"Updates for Kubuntu releases which are due to go to Ubuntu Updates. Mostly "
-"KDE point releases."
-msgstr ""
-
-#: ../ubuntutweak/common/appdata.py:44
-msgid ""
-"Backports of new versions of KDE for Kubuntu which are not yet tested enough "
-"to go to Ubuntu Backports."
-msgstr ""
-
 #: ../ubuntutweak/common/package.py:186
 #: ../ubuntutweak/modules/appcenter.py:640
 #: ../ubuntutweak/modules/compiz.py:410
 #: ../ubuntutweak/modules/sourcecenter.py:144
-#: ../ubuntutweak/modules/nautilus.py:167
+#: ../ubuntutweak/modules/nautilus.py:171
 msgid "Update Successful!"
 msgstr "Pembaruan berhasil!"
 
@@ -593,7 +518,7 @@ msgstr "Pembaruan berhasil!"
 #: ../ubuntutweak/modules/appcenter.py:642
 #: ../ubuntutweak/modules/compiz.py:412
 #: ../ubuntutweak/modules/sourcecenter.py:146
-#: ../ubuntutweak/modules/nautilus.py:169
+#: ../ubuntutweak/modules/nautilus.py:173
 msgid "Update Failed!"
 msgstr "Update gagal"
 
@@ -605,23 +530,22 @@ msgstr "(Belum tersedia)"
 #, python-format
 msgid "%(size)d byte"
 msgid_plural "%(size)d bytes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(size)d byte"
 
 #: ../ubuntutweak/common/misc.py:17
 #, python-format
 msgid "%.1f KB"
-msgstr ""
+msgstr "%.1f KB"
 
 #: ../ubuntutweak/common/misc.py:19
 #, python-format
 msgid "%.1f MB"
-msgstr ""
+msgstr "%.1f MB"
 
 #: ../ubuntutweak/common/misc.py:20
 #, python-format
 msgid "%.1f GB"
-msgstr ""
+msgstr "%.1f GB"
 
 #: ../ubuntutweak/policykit/polkitbutton.py:72
 msgid "_Unlock"
@@ -629,11 +553,15 @@ msgstr "_Buka kunci"
 
 #: ../ubuntutweak/policykit/dbusproxy.py:34
 msgid ""
-"The daemon of Ubuntu Tweak doesn't start correctly, that means some advanced "
-"features may not work.\n"
-"If you want to help developer to debug, try to run \"<b>sudo ubuntu-tweak-"
-"daemon</b>\" under terminal."
+"The Ubuntu Tweak daemon didn't start correctly. This means that some "
+"advanced features may not work.\n"
+"If you want to help developers debugging, try to run \"<b>sudo "
+"/usr/share/ubuntu-tweak/ubuntu-tweak-daemon</b>\" in a terminal."
 msgstr ""
+"Ubuntu Tweak daemon tidak berjalan dengan benar. Ini berarti bahwa beberapa "
+"fitur canggih mungkin tidak bekerja.\n"
+"Jika Anda ingin membantu pengembang debugging, coba jalankan \"<b>sudo "
+"/usr/share/ubuntu-tweak/ubuntu-tweak-daemon</b>\" dalam terminal."
 
 #: ../ubuntutweak/modules/userdir.py:46
 msgid "Download"
@@ -669,13 +597,13 @@ msgstr "Pilih sebuah direktori"
 
 #: ../ubuntutweak/modules/userdir.py:174
 msgid ""
-"Ubuntu Tweak will restore the chosen directory to the default location.\n"
-"However, you must move your files back into place by yourself.\n"
+"Ubuntu Tweak will restore the selected directory to it's default location.\n"
+"However, you must move your files back into place manually.\n"
 "Do you wish to continue?"
 msgstr ""
-"Ubuntu Tweak akan mengembalikan direktori yang dipilih ke tempat semula.\n"
-"Tetapi, anda harus memindahkan kembali ke tempat yang dipilih.\n"
-"Apakah anda ingin melanjutkan?"
+"Ubuntu Tweak akan mengembalikan direktori yang terpilih ke lokasi awalnya.\n"
+"Namun, Anda harus memindahkan file Anda kembali ke tempatnya secara manual.\n"
+"Apakah Anda ingin melanjutkan?"
 
 #: ../ubuntutweak/modules/userdir.py:208
 msgid "Directory"
@@ -699,24 +627,25 @@ msgstr "Lokasi Direktori Asal"
 
 #: ../ubuntutweak/modules/userdir.py:241
 msgid ""
-"You can change the paths of the default folders here.\n"
+"You can change the paths of default folders here.\n"
 "Don't change the location of your desktop folder unless you know what you "
 "are doing."
 msgstr ""
-"Anda dapat mengganti lokasi folder asli disini.\n"
-"Jangan ganti lokasi asli folder desktop sampai anda mengerti yang terjadi."
+"Anda dapat mengubah alamat folder standar di sini.\n"
+"Jangan mengubah lokasi folder desktop Anda kecuali Anda tahu apa yang Anda "
+"lakukan."
 
 #: ../ubuntutweak/modules/userdir.py:260
 msgid "_Restore"
-msgstr ""
+msgstr "_Kembalikan"
 
 #: ../ubuntutweak/modules/userdir.py:265
 msgid "_Change"
-msgstr ""
+msgstr "_Ubah"
 
 #: ../ubuntutweak/modules/computer.py:33
 msgid "Computer Details"
-msgstr ""
+msgstr "Rincian Komputer"
 
 #: ../ubuntutweak/modules/computer.py:34
 msgid "Some useful system information"
@@ -792,7 +721,7 @@ msgstr "hostname baru"
 
 #: ../ubuntutweak/modules/lockdown.py:33
 msgid "Security Related"
-msgstr ""
+msgstr "Keamanan Terkait"
 
 #: ../ubuntutweak/modules/lockdown.py:34
 msgid "Tweak some security settings"
@@ -806,31 +735,31 @@ msgstr "Pilihan Sistem Keamanan"
 msgid "Disable \"Run Application\" dialog (Alt+F2)"
 msgstr "Nonaktifkan dialog \"Jalankan Aplikasi\""
 
-#: ../ubuntutweak/modules/lockdown.py:48
+#: ../ubuntutweak/modules/lockdown.py:49
 msgid "Disable \"Lock Screen\""
 msgstr "Dilarang \"Kunci Layar\""
 
-#: ../ubuntutweak/modules/lockdown.py:51
+#: ../ubuntutweak/modules/lockdown.py:53
 msgid "Disable printing"
 msgstr "Dilarang mencetak"
 
-#: ../ubuntutweak/modules/lockdown.py:54
-msgid "Disable printer settings"
-msgstr ""
-
 #: ../ubuntutweak/modules/lockdown.py:57
+msgid "Disable printer settings"
+msgstr "Menonaktifkan pengaturan printer"
+
+#: ../ubuntutweak/modules/lockdown.py:61
 msgid "Disable save to disk"
 msgstr "Dilarang menyimpan ke disk"
 
-#: ../ubuntutweak/modules/lockdown.py:60
+#: ../ubuntutweak/modules/lockdown.py:65
 msgid "Disable \"Fast User Switching\""
 msgstr "Nonanktifkan \"Fast User Switching\""
 
-#: ../ubuntutweak/modules/lockdown.py:66
-msgid "Fix the appearance of themes when granted root privileges"
-msgstr ""
-
 #: ../ubuntutweak/modules/lockdown.py:72
+msgid "Fix the appearance of themes when granted root privileges"
+msgstr "Perbaiki tampilan tema ketika diberikan hak akses root"
+
+#: ../ubuntutweak/modules/lockdown.py:78
 msgid "Miscellaneous Options"
 msgstr "Pilihan Lainnya"
 
@@ -903,22 +832,23 @@ msgid "Source Editor"
 msgstr "Penyunting Sumber"
 
 #: ../ubuntutweak/modules/sourceeditor.py:353
-msgid "Freely edit your software sources to suit your needs."
-msgstr "Bebas rubah sumber perangkat lunak, sesuai kebutuhan anda"
+msgid "Manually edit your software sources to suit your needs."
+msgstr ""
+"Edit secara manual sumber perangkat lunak Anda sesuai dengan kebutuhan Anda."
 
 #: ../ubuntutweak/modules/sourceeditor.py:450
-msgid "Please input the correct information about sources!"
-msgstr "Silahkan masukkan informasi akurat untuk sumber!"
+msgid "Please input the correct source information!"
+msgstr "Silahkan masukan sumber informasi yang benar!"
 
 #: ../ubuntutweak/modules/sourceeditor.py:463
 msgid ""
-"You can submit your sources to our server to help building the sources list, "
+"You can submit your sources to our server to help expand the sources list, "
 "or you can use the official sources.\n"
 "Do you wish to use the official sources?"
 msgstr ""
-"Anda dapat menghantar sumber anda pada server kami untuk membantu membangun "
-"daftar sumber, atau anda dapat menggunakan sumber resmi. Apakah anda akan "
-"menggunakan sumber resmi?"
+"Anda bisa mengirimkan sumber Anda ke server kami untuk membantu memperluas "
+"daftar sumber, atau Anda dapat menggunakan sumber-sumber resmi.\n"
+"Apakah Anda ingin menggunakan sumber-sumber resmi?"
 
 #: ../ubuntutweak/modules/sourceeditor.py:466
 msgid "No source data available"
@@ -939,11 +869,11 @@ msgstr "Berhasil dikirim"
 
 #: ../ubuntutweak/modules/sourceeditor.py:496
 msgid ""
-"You've changed the sources.list without saving it.\n"
-"Do you want to save it?"
+"You've edited sources.list without saving changes.\n"
+"Do you want to save changes?"
 msgstr ""
-"Anda telah merubah berkas sources.list tetapi belum menyimpannya.\n"
-"Apakah anda ingin menyimpannya?"
+"Anda sudah mengedit sources.list tanpa menyimpan perubahan.\n"
+"Apakah Anda ingin menyimpan perubahan?"
 
 #: ../ubuntutweak/modules/sourceeditor.py:507
 msgid "Please check the permission of the sources.list file"
@@ -975,6 +905,7 @@ msgstr ""
 "Apakah anda akan melanjutkan?"
 
 #: ../ubuntutweak/modules/appcenter.py:193
+#: ../ubuntutweak/modules/desktoprecovery.py:101
 msgid "Category"
 msgstr "Kategori"
 
@@ -988,7 +919,7 @@ msgstr "Periksa update..."
 
 #: ../ubuntutweak/modules/appcenter.py:529
 msgid "Fetching online data..."
-msgstr ""
+msgstr "Mengambil data online..."
 
 #: ../ubuntutweak/modules/appcenter.py:533
 msgid "Application Center"
@@ -996,14 +927,15 @@ msgstr "Pusat Aplikasi"
 
 #: ../ubuntutweak/modules/appcenter.py:534
 msgid ""
-"A simple but more efficient way for finding and installing popular "
-"applications.\n"
-"Data will be automatically synchronized with the remote server.\n"
+"A simple but efficient way for finding and installing popular applications.\n"
+"Data will be synchronized automatically with the remote server.\n"
 "You can click the \"Sync\" button to perform a manual check for updates."
 msgstr ""
-"Simple tapi lebih efisien untuk menemukan dan menginstall aplikasi ternama\n"
-"Data akan disinkronkan otomatis melalui server remote\n"
-"Anda dapat menekan tombol \"Sync\" untuk memulai update manual"
+"Cara yang sederhana namun efisien untuk menemukan dan memasang aplikasi "
+"populer.\n"
+"Data akan secara otomatis disinkronisasi dengan remote server.\n"
+"Anda bisa mengklik tombol \"Sync\" untuk melakukan pemeriksaan manual untuk "
+"pembaruan."
 
 #: ../ubuntutweak/modules/appcenter.py:539
 msgid "Visit Online Application Center"
@@ -1093,8 +1025,7 @@ msgstr "Pilih aplikasi"
 #, python-format
 msgid "Select an application to open files of type: <b>%s</b>"
 msgid_plural "Select an application to open files for these types: <b>%s</b>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Pilih aplikasi untuk membuka file untuk jenis: <b>%s</b>"
 
 #: ../ubuntutweak/modules/filetype.py:403
 #, python-format
@@ -1131,7 +1062,7 @@ msgstr "Sistem secara otomatis menjalankan Update Manager"
 
 #: ../ubuntutweak/modules/updatemanager.py:52
 msgid "Temporarily disable third-party PPA sources whilst refreshing"
-msgstr ""
+msgstr "Menonaktifkan sementara sumber PPA pihak ketiga sambil menyegarkan"
 
 #: ../ubuntutweak/modules/updatemanager.py:79
 msgid "Your system is clean and no updates are available."
@@ -1145,31 +1076,30 @@ msgstr "Informasi Perangkat Lunak sekarang up-to-date"
 #: ../ubuntutweak/modules/updatemanager.py:93
 msgid "Install Update"
 msgid_plural "Install Updates"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Pasang Pembaruan"
 
 #: ../ubuntutweak/modules/metacity.py:37
-#: ../ubuntutweak/modules/metacity.py:194
-#: ../ubuntutweak/modules/metacity.py:207
-#: ../ubuntutweak/modules/metacity.py:220
+#: ../ubuntutweak/modules/metacity.py:196
+#: ../ubuntutweak/modules/metacity.py:210
+#: ../ubuntutweak/modules/metacity.py:224
 msgid "Menu"
 msgstr "Menu"
 
 #: ../ubuntutweak/modules/metacity.py:38
 msgid "Title"
-msgstr ""
+msgstr "Judul"
 
 #: ../ubuntutweak/modules/metacity.py:39
-#: ../ubuntutweak/modules/metacity.py:190
-#: ../ubuntutweak/modules/metacity.py:203
-#: ../ubuntutweak/modules/metacity.py:216
+#: ../ubuntutweak/modules/metacity.py:192
+#: ../ubuntutweak/modules/metacity.py:206
+#: ../ubuntutweak/modules/metacity.py:220
 msgid "Maximize"
 msgstr "Maksimalkan"
 
 #: ../ubuntutweak/modules/metacity.py:40
-#: ../ubuntutweak/modules/metacity.py:193
-#: ../ubuntutweak/modules/metacity.py:206
-#: ../ubuntutweak/modules/metacity.py:219
+#: ../ubuntutweak/modules/metacity.py:195
+#: ../ubuntutweak/modules/metacity.py:209
+#: ../ubuntutweak/modules/metacity.py:223
 msgid "Minimize"
 msgstr "Minimalkan"
 
@@ -1179,7 +1109,7 @@ msgstr "Tutup"
 
 #: ../ubuntutweak/modules/metacity.py:42
 msgid "Spacer"
-msgstr ""
+msgstr "Pengatur Jarak"
 
 #: ../ubuntutweak/modules/metacity.py:153
 msgid "Window Manager Settings"
@@ -1191,94 +1121,96 @@ msgstr "Mengatur pengaturan Metacity Window Manager"
 
 #: ../ubuntutweak/modules/metacity.py:177
 msgid "Window Titlebar Button Layout"
-msgstr ""
+msgstr "Susunan Tombol Judul Jendela"
 
 #: ../ubuntutweak/modules/metacity.py:181
 msgid "Window Titlebar Actions"
-msgstr ""
+msgstr "Tindakan Judul Jendela"
 
 #: ../ubuntutweak/modules/metacity.py:183
 msgid "Titlebar mouse wheel action"
 msgstr "Kotak judul aksi roda tetikus"
 
-#: ../ubuntutweak/modules/metacity.py:185
-#: ../ubuntutweak/modules/metacity.py:193
-#: ../ubuntutweak/modules/metacity.py:206
-#: ../ubuntutweak/modules/metacity.py:219
+#: ../ubuntutweak/modules/metacity.py:186
+#: ../ubuntutweak/modules/metacity.py:195
+#: ../ubuntutweak/modules/metacity.py:209
+#: ../ubuntutweak/modules/metacity.py:223
 msgid "Roll up"
 msgstr "Gulung"
 
-#: ../ubuntutweak/modules/metacity.py:188
+#: ../ubuntutweak/modules/metacity.py:189
 msgid "Titlebar double-click action"
 msgstr "Kotak judul aksi klik ganda"
 
-#: ../ubuntutweak/modules/metacity.py:191
-#: ../ubuntutweak/modules/metacity.py:204
-#: ../ubuntutweak/modules/metacity.py:217
+#: ../ubuntutweak/modules/metacity.py:193
+#: ../ubuntutweak/modules/metacity.py:207
+#: ../ubuntutweak/modules/metacity.py:221
 msgid "Maximize Horizontally"
 msgstr "Besarkan secara Horisontal"
 
-#: ../ubuntutweak/modules/metacity.py:192
-#: ../ubuntutweak/modules/metacity.py:205
-#: ../ubuntutweak/modules/metacity.py:218
+#: ../ubuntutweak/modules/metacity.py:194
+#: ../ubuntutweak/modules/metacity.py:208
+#: ../ubuntutweak/modules/metacity.py:222
 msgid "Maximize Vertically"
 msgstr "Besarkan secara vertikal"
 
-#: ../ubuntutweak/modules/metacity.py:194
-#: ../ubuntutweak/modules/metacity.py:207
-#: ../ubuntutweak/modules/metacity.py:220
+#: ../ubuntutweak/modules/metacity.py:196
+#: ../ubuntutweak/modules/metacity.py:210
+#: ../ubuntutweak/modules/metacity.py:224
 msgid "Lower"
 msgstr "Terbawah"
 
-#: ../ubuntutweak/modules/metacity.py:201
+#: ../ubuntutweak/modules/metacity.py:203
 msgid "Titlebar middle-click action"
 msgstr "Kotak judul aksi klik tengah"
 
-#: ../ubuntutweak/modules/metacity.py:214
+#: ../ubuntutweak/modules/metacity.py:217
 msgid "Titlebar right-click action"
 msgstr "Kotak judul aksi klik kanan"
 
-#: ../ubuntutweak/modules/metacity.py:230
+#: ../ubuntutweak/modules/metacity.py:234
 msgid "Window Decoration Effects"
-msgstr ""
+msgstr "Efek Dekorasi Jendela"
 
-#: ../ubuntutweak/modules/metacity.py:232
+#: ../ubuntutweak/modules/metacity.py:236
 msgid "Use Metacity window theme"
 msgstr "Gunakan tema window Metacity"
 
-#: ../ubuntutweak/modules/metacity.py:235
+#: ../ubuntutweak/modules/metacity.py:240
 msgid "Enable active window transparency"
 msgstr "Aktifkan transparansi window"
 
-#: ../ubuntutweak/modules/metacity.py:238
+#: ../ubuntutweak/modules/metacity.py:244
 msgid "Active window transparency level"
 msgstr "Tingkat transparansi jendela yang aktif"
 
-#: ../ubuntutweak/modules/metacity.py:242
+#: ../ubuntutweak/modules/metacity.py:249
 msgid "Enable inactive window transparency"
 msgstr "Mengaktifkan transparansi jendela yang tidak aktif"
 
-#: ../ubuntutweak/modules/metacity.py:245
+#: ../ubuntutweak/modules/metacity.py:253
 msgid "Inactive window shade transparency level"
 msgstr "Tingkat bayangan transparansi jendela yang tidak aktif"
 
-#: ../ubuntutweak/modules/metacity.py:252
+#: ../ubuntutweak/modules/metacity.py:261
 msgid "Enable Metacity's compositing feature"
-msgstr ""
+msgstr "Aktifkan fitur penggabungan Metacity"
 
-#: ../ubuntutweak/modules/metacity.py:255
+#: ../ubuntutweak/modules/metacity.py:266
 msgid "Compositing Manager"
 msgstr "Pengelola Komposit"
 
-#: ../ubuntutweak/modules/metacity.py:299
+#: ../ubuntutweak/modules/metacity.py:308
 msgid ""
 "To enable Metacity's compositing feature, you should manually disable Visual "
 "Effects in \"Appearance\"."
 msgstr ""
+"Untuk mengaktifkan fitur gabungan Metacity, Anda harus secara manual "
+"menonaktifkan Efek Visual pada \"Tampilan\"."
 
 #: ../ubuntutweak/modules/__init__.py:108
 msgid "More"
-msgstr ""
+msgstr "Lainnya"
 
 #: ../ubuntutweak/modules/icons.py:32
 msgid "Show \"Computer\" icon on desktop"
@@ -1294,11 +1226,11 @@ msgstr "Tampilkan ikon 'Tempat Sampah' pada desktop"
 
 #: ../ubuntutweak/modules/icons.py:108
 msgid "Desktop Icon Settings"
-msgstr ""
+msgstr "Pengaturan Icon Destop"
 
 #: ../ubuntutweak/modules/icons.py:109
-msgid "Change the name and toggle visibilty of desktop icons"
-msgstr ""
+msgid "Rename and toggle visibilty of desktop icons"
+msgstr "Ubah nama dan pindah visibilty dari ikon desktop"
 
 #: ../ubuntutweak/modules/icons.py:118
 msgid "Show desktop icons"
@@ -1317,10 +1249,12 @@ msgid ""
 "Show contents of \"Home Folder\" on desktop (Logout for changes to take "
 "effect)"
 msgstr ""
+"Tampilkan isi dari \"Folder Home\" pada destop (Keluar untuk perubahan "
+"hasilnya)"
 
 #: ../ubuntutweak/modules/gnomesettings.py:40
 msgid "GNOME Settings"
-msgstr ""
+msgstr "Pengaturan GNOME"
 
 #: ../ubuntutweak/modules/gnomesettings.py:41
 msgid "A lot of GNOME settings for panels, menus and other desktop elements"
@@ -1334,80 +1268,82 @@ msgstr "Pengaturan Panel"
 msgid "Display warning when removing a panel"
 msgstr "Tampilkan peringatan ketika menghilangkan sebuah panel"
 
-#: ../ubuntutweak/modules/gnomesettings.py:58
+#: ../ubuntutweak/modules/gnomesettings.py:59
 msgid "Complete lockdown of all panels"
 msgstr "Selesai menutup semua panel yang ada"
 
-#: ../ubuntutweak/modules/gnomesettings.py:61
+#: ../ubuntutweak/modules/gnomesettings.py:63
 msgid "Enable panel animations"
 msgstr "Aktifkan animasi panel"
 
-#: ../ubuntutweak/modules/gnomesettings.py:66
+#: ../ubuntutweak/modules/gnomesettings.py:69
 msgid "Menu Settings"
 msgstr "Menu Pengaturan"
 
-#: ../ubuntutweak/modules/gnomesettings.py:68
-msgid "Show Input Method menu in the context menu"
-msgstr ""
-
 #: ../ubuntutweak/modules/gnomesettings.py:71
-msgid "Show Unicode Control Character menu in the context menu"
-msgstr ""
+msgid "Show Input Method menu in the context menu"
+msgstr "Tampilkan menu Metode Input dalam konteks menu"
 
-#: ../ubuntutweak/modules/gnomesettings.py:74
+#: ../ubuntutweak/modules/gnomesettings.py:75
+msgid "Show Unicode Control Character menu in the context menu"
+msgstr "Tampilkan menu Karakter Kontrol Unicode dalam konteks menu"
+
+#: ../ubuntutweak/modules/gnomesettings.py:79
 msgid "Show icons in menus"
 msgstr "Tampilkan ikon pada menu"
 
-#: ../ubuntutweak/modules/gnomesettings.py:77
+#: ../ubuntutweak/modules/gnomesettings.py:83
 msgid "Show icons on buttons"
 msgstr "Tampilkan ikon pada tombol"
 
-#: ../ubuntutweak/modules/gnomesettings.py:83
+#: ../ubuntutweak/modules/gnomesettings.py:90
 msgid "Screensaver"
 msgstr "Screensaver"
 
-#: ../ubuntutweak/modules/gnomesettings.py:85
-msgid "Enable user switching when screen is locked."
-msgstr "Mengaktifkan penggantian pengguna ketika layar terkunci."
+#: ../ubuntutweak/modules/gnomesettings.py:92
+msgid "Enable user switching whilst screen is locked."
+msgstr "Aktifkan pemindah pengguna selagi layar terkunci."
 
-#: ../ubuntutweak/modules/gnomesettings.py:90
+#: ../ubuntutweak/modules/gnomesettings.py:98
 msgid "Enable system-wide \"Recent Documents\" list"
-msgstr ""
+msgstr "Aktifkan semua sistem daftar \"Dokumen Terbaru\""
 
-#: ../ubuntutweak/modules/gnomesettings.py:93
+#: ../ubuntutweak/modules/gnomesettings.py:101
 msgid "History"
 msgstr "Riwayat"
 
-#: ../ubuntutweak/modules/gnomesettings.py:100
+#: ../ubuntutweak/modules/gnomesettings.py:108
 msgid "Click this button to change the menu logo image"
 msgstr "Klik tombol ini untuk mengubah gambar logo menu"
 
-#: ../ubuntutweak/modules/gnomesettings.py:113
-#: ../ubuntutweak/modules/loginsettings.py:142
+#: ../ubuntutweak/modules/gnomesettings.py:121
+#: ../ubuntutweak/modules/loginsettings.py:146
 msgid "Choose a new logo image"
 msgstr "Pilih gambar logo"
 
-#: ../ubuntutweak/modules/gnomesettings.py:119
+#: ../ubuntutweak/modules/gnomesettings.py:127
 msgid "PNG images with 24x24 size or SVG images"
-msgstr ""
+msgstr "Gambar PNG dengan ukuran 24x24 atau gambar SVG"
 
-#: ../ubuntutweak/modules/gnomesettings.py:152
+#: ../ubuntutweak/modules/gnomesettings.py:160
 msgid ""
 "This image size isn't suitable for the panel.\n"
-"It should be 24x24."
+"It should measure 24x24."
 msgstr ""
-"Ukuran gambar tidak cocok untuk panel tersebut.\n"
-"Harus ukuran 24x24."
+"Ukuran gambar tidak cocok untuk panel.\n"
+"Seharusnya berukuran 24x24."
 
-#: ../ubuntutweak/modules/gnomesettings.py:172
+#: ../ubuntutweak/modules/gnomesettings.py:180
 msgid "Do you want your changes to take effect immediately?"
 msgstr "Apakah anda ingin menerapkan perubahan sekarang juga?"
 
-#: ../ubuntutweak/modules/gnomesettings.py:195
+#: ../ubuntutweak/modules/gnomesettings.py:203
 msgid ""
-"By disabling the \"Recent Documents\", it may break other software such as "
-"VMware Player's history feature."
+"Disabling \"Recent Documents\" may break other software, for example the "
+"history feature in VMware Player."
 msgstr ""
+"Nonaktifkan \"Dokumen Terbaru\" bisa mengganggu perangkat lunak lain, "
+"misalnya fitur sejarah dalam VMware Player."
 
 #: ../ubuntutweak/modules/powermanager.py:28
 msgid "Advanced Power Manager Settings"
@@ -1415,7 +1351,7 @@ msgstr "Pengaturan lanjutan Power Manager"
 
 #: ../ubuntutweak/modules/powermanager.py:29
 msgid "Control your computer's power managerment"
-msgstr ""
+msgstr "Kontrol menejemen daya komputer Anda"
 
 #: ../ubuntutweak/modules/powermanager.py:37
 msgid "Advanced Power Management Settings"
@@ -1425,19 +1361,19 @@ msgstr "Pengaturan Lanjut Pengelolaan Daya"
 msgid "Enable \"Lock screen\" when \"Blank Screen\" activates"
 msgstr "Aktifkan \"Kunci layar\" ketika \"Blank Screen\" diaktifkan"
 
-#: ../ubuntutweak/modules/powermanager.py:42
+#: ../ubuntutweak/modules/powermanager.py:43
 msgid "Lock screen on hibernate"
 msgstr "Kunci layar saat hibernate"
 
-#: ../ubuntutweak/modules/powermanager.py:45
+#: ../ubuntutweak/modules/powermanager.py:47
 msgid "Lock screen on suspend"
 msgstr "Kunci layar saat suspend"
 
-#: ../ubuntutweak/modules/powermanager.py:48
+#: ../ubuntutweak/modules/powermanager.py:51
 msgid "LCD brightness when using AC power"
 msgstr "LCD brightness bila menggunakan listrik AC"
 
-#: ../ubuntutweak/modules/powermanager.py:52
+#: ../ubuntutweak/modules/powermanager.py:56
 msgid "LCD brightness when using battery"
 msgstr "LCD brightness bila menggunakan baterai"
 
@@ -1459,11 +1395,11 @@ msgstr "Tampilkan widgets"
 
 #: ../ubuntutweak/modules/compiz.py:220
 msgid "Compiz Settings"
-msgstr ""
+msgstr "Pengaturan Compiz"
 
 #: ../ubuntutweak/modules/compiz.py:221
 msgid "Settings for some amazing desktop eye-candy"
-msgstr ""
+msgstr "Setting untuk beberapa destop eye-candy yang menakjubkan"
 
 #: ../ubuntutweak/modules/compiz.py:235
 msgid "Install Advanced Desktop Effects Settings Manager"
@@ -1471,7 +1407,7 @@ msgstr "instal pengatur setting efek dekstop tahap lanjut"
 
 #: ../ubuntutweak/modules/compiz.py:238
 msgid "Install Simple Desktop Effects Settings Manager"
-msgstr ""
+msgstr "Pasang Manager Pengaturan Efek Destop Sederhana"
 
 #: ../ubuntutweak/modules/compiz.py:241
 msgid "Install Screenlets Widget Application"
@@ -1479,7 +1415,7 @@ msgstr "instal aplikasi widget screenlet"
 
 #: ../ubuntutweak/modules/compiz.py:248
 msgid " Workspace Edge Settings"
-msgstr ""
+msgstr " Pengaturan ruang kerja Edge"
 
 #: ../ubuntutweak/modules/compiz.py:251
 msgid "Enable snapping windows"
@@ -1518,6 +1454,8 @@ msgid ""
 "You can install new applications by selecting them and choosing \"Yes\".\n"
 "Or you can install them at Application Center by choosing \"No\"."
 msgstr ""
+"Anda bisa memasang aplikasi baru dengan memilihnya dan memilih \"Ya\".\n"
+"Atau Anda bisa memasangnya di Pusat Aplikasi dengan memilih \"Tidak\"."
 
 #: ../ubuntutweak/modules/sourcecenter.py:116
 msgid "New applications are available"
@@ -1525,7 +1463,7 @@ msgstr "aplikasi baru yang tersedia"
 
 #. checkbutton
 #: ../ubuntutweak/modules/sourcecenter.py:125
-#: ../ubuntutweak/modules/cleaner.py:728
+#: ../ubuntutweak/modules/cleaner.py:729
 msgid "Select All"
 msgstr "Pilih Semua"
 
@@ -1560,6 +1498,9 @@ msgid ""
 "it.\n"
 "To continue you need to disable <b>\"%(SOURCE)s\"</b>first."
 msgstr ""
+"Anda tidak bisa mengaktifkan Sumber ini karena <b>\"%(SOURCE)s\"<b> konflik "
+"dengannya.\n"
+"Untuk melanjutkan Anda harus menonaktifkan <b>\"%(SOURCE)s\"<b> dahulu."
 
 #: ../ubuntutweak/modules/sourcecenter.py:754
 #, python-format
@@ -1581,6 +1522,9 @@ msgid ""
 "You can't disable this Source because <b>\"%(SOURCE)s\"</b> depends on it.\n"
 "To continue you need to disable <b>\"%(SOURCE)s\"</b> first."
 msgstr ""
+"Anda tidak bisa mengaktifkan Sumber ini karena <b>\"%(SOURCE)s\"<b> "
+"bergantung padanya.\n"
+"Untuk melanjutkan Anda harus menonaktifkan <b>\"%(SOURCE)s\"<b> dahulu."
 
 #: ../ubuntutweak/modules/sourcecenter.py:855
 msgid "New source has been enabled"
@@ -1613,18 +1557,24 @@ msgstr "Diskripsi di sini"
 
 #: ../ubuntutweak/modules/sourcecenter.py:909
 msgid "Source Center"
-msgstr ""
+msgstr "Pusat Sumber"
 
 #: ../ubuntutweak/modules/sourcecenter.py:910
 msgid ""
 "A collection of software sources to ensure your applications are always up-"
 "to-date.\n"
-"Here you can also add applications which are unavailable in the offical "
-"repositories.\n"
-"The list of available sources will be obtained automatically from a remote "
-"server.\n"
+"Here you can add applications unavailable in the official repositories.\n"
+"A list of available software sources will be obtained automatically from a "
+"remote server.\n"
 "You can click the \"Sync\" button to manually check for updates"
 msgstr ""
+"Sebuah koleksi sumber aplikasi untuk memastikan perangkat lunak Anda selalu "
+"terbarui.\n"
+"Di sini Anda dapat menambahkan aplikasi yang tidak tersedia di repositori "
+"resmi.\n"
+"Sebuah daftar sumber perangkat lunak yang tersedia akan diperoleh secara "
+"otomatis dari sebuah server pengendali.\n"
+"Anda bisa mengklik \"Sync\" tombol untuk memeriksa pembaruan secara manual"
 
 #: ../ubuntutweak/modules/sourcecenter.py:916
 msgid "Visit online Source Center"
@@ -1634,7 +1584,7 @@ msgstr "Kunjungi Pusat Sumber online"
 #: ../ubuntutweak/modules/sourcecenter.py:1000
 #, python-format
 msgid "disabled on upgrade to %s"
-msgstr ""
+msgstr "dinonaktifkan untuk melakukan peningkatan ke %s"
 
 #: ../ubuntutweak/modules/sourcecenter.py:1009
 msgid ""
@@ -1642,22 +1592,26 @@ msgid ""
 "will be disabled by default.\n"
 "Would you like to re-enable any sources disabled by Update Manager?"
 msgstr ""
+"Setelah sukses melakukan peningkatan distribusi, setiap sumber pihak ketiga "
+"yang Anda gunakan akan dinonaktifkan secara default.\n"
+"Apakah Anda ingin mengaktifkan kembali setiap sumber yang dinonaktifkan oleh "
+"Update Manager?"
 
 #: ../ubuntutweak/modules/sourcecenter.py:1012
 msgid "Upgrade Third Party Sources"
-msgstr ""
+msgstr "Lakukan Peningkatan Sumber Pihak Ketiga"
 
 #: ../ubuntutweak/modules/sourcecenter.py:1018
 msgid "Upgrade Successful!"
-msgstr ""
+msgstr "Peningkatan Sukses!"
 
 #: ../ubuntutweak/modules/sourcecenter.py:1020
 msgid "Upgrade Failed!"
-msgstr ""
+msgstr "Peningkatan Gagal!"
 
 #: ../ubuntutweak/modules/sourcecenter.py:1027
 msgid "New source data available, would you like to update?"
-msgstr ""
+msgstr "Sumber data baru tersedia, apa Anda ingin memperbarui?"
 
 #: ../ubuntutweak/modules/sourcecenter.py:1109
 msgid ""
@@ -1669,21 +1623,23 @@ msgstr ""
 
 #: ../ubuntutweak/modules/sourcecenter.py:1139
 msgid "An error occurred whilst downloading the file"
-msgstr ""
+msgstr "Terjadi kesalahan selagi mengunduh file"
 
 #: ../ubuntutweak/modules/sourcecenter.py:1154
 msgid "Update available, Would you like to update?"
-msgstr ""
+msgstr "Pembaruan tersedia, apa Anda ingin melakukan pembaruan?"
 
 #: ../ubuntutweak/modules/sourcecenter.py:1163
 msgid ""
 "Network Error, Please check your network connection or the remote server is "
 "down."
 msgstr ""
+"Jaringan rusak, Silahkan periksa koneksi jaringan Anda atau server pemindai "
+"sedang sibuk."
 
 #: ../ubuntutweak/modules/scripts.py:60
 msgid "Create Launcher ..."
-msgstr ""
+msgstr "Buat Peluncur ..."
 
 #: ../ubuntutweak/modules/scripts.py:61
 msgid "Copy to ..."
@@ -1691,23 +1647,23 @@ msgstr "Salin ke ..."
 
 #: ../ubuntutweak/modules/scripts.py:62
 msgid "Copy to Desktop"
-msgstr ""
+msgstr "Salin ke Destop"
 
 #: ../ubuntutweak/modules/scripts.py:63
 msgid "Copy to Download"
-msgstr ""
+msgstr "Salin ke Unduhan"
 
 #: ../ubuntutweak/modules/scripts.py:64
 msgid "Copy to Home"
-msgstr ""
+msgstr "Salin ke Rumah"
 
 #: ../ubuntutweak/modules/scripts.py:65
 msgid "Check md5 sum"
-msgstr ""
+msgstr "Cek jumlah md5"
 
 #: ../ubuntutweak/modules/scripts.py:66
 msgid "Compress PDF"
-msgstr ""
+msgstr "Kompres PDF"
 
 #: ../ubuntutweak/modules/scripts.py:67
 msgid "Move to ..."
@@ -1715,19 +1671,19 @@ msgstr "Pindahkan ke ..."
 
 #: ../ubuntutweak/modules/scripts.py:68
 msgid "Move to Desktop"
-msgstr ""
+msgstr "Pindah ke Destop"
 
 #: ../ubuntutweak/modules/scripts.py:69
 msgid "Move to Download"
-msgstr ""
+msgstr "Pindah ke Unduhan"
 
 #: ../ubuntutweak/modules/scripts.py:70
 msgid "Move to Home"
-msgstr ""
+msgstr "Pindah ke Rumah"
 
 #: ../ubuntutweak/modules/scripts.py:71
 msgid "Create hardlink to ..."
-msgstr ""
+msgstr "Buat tautan rumit ke ..."
 
 #: ../ubuntutweak/modules/scripts.py:72
 msgid "Link to ..."
@@ -1735,23 +1691,23 @@ msgstr "Hubungkan ke ..."
 
 #: ../ubuntutweak/modules/scripts.py:73
 msgid "Link to Desktop"
-msgstr ""
+msgstr "Tautan ke Destop"
 
 #: ../ubuntutweak/modules/scripts.py:74
 msgid "Link to Download"
-msgstr ""
+msgstr "Tautan ke Unduhan"
 
 #: ../ubuntutweak/modules/scripts.py:75
 msgid "Link to Home"
-msgstr ""
+msgstr "Tautan ke Rumah"
 
 #: ../ubuntutweak/modules/scripts.py:76
 msgid "Open with your favourite text editor"
-msgstr ""
+msgstr "Buka dengan editor teks kesayangan Anda"
 
 #: ../ubuntutweak/modules/scripts.py:77
 msgid "Open with your favourite text editor (as root)"
-msgstr ""
+msgstr "Buka dengan editor teks kesayangan Anda (sebagai root)"
 
 #: ../ubuntutweak/modules/scripts.py:78
 msgid "Browse as root"
@@ -1763,23 +1719,23 @@ msgstr "Cari di direktori ini"
 
 #: ../ubuntutweak/modules/scripts.py:80
 msgid "Convert image to JPG"
-msgstr ""
+msgstr "Konversi gambar ke JPG"
 
 #: ../ubuntutweak/modules/scripts.py:81
 msgid "Convert image to PNG"
-msgstr ""
+msgstr "Konversi gambar ke PNG"
 
 #: ../ubuntutweak/modules/scripts.py:82
 msgid "Convert image to GIF"
-msgstr ""
+msgstr "Konversi gambar ke GIF"
 
 #: ../ubuntutweak/modules/scripts.py:83
 msgid "Set image as wallpaper"
-msgstr ""
+msgstr "Gunakan gambar sebagai latar belakang"
 
 #: ../ubuntutweak/modules/scripts.py:84
 msgid "Make hard shadow to image"
-msgstr ""
+msgstr "Buat bayangan keras untuk gambar"
 
 #: ../ubuntutweak/modules/scripts.py:111
 msgid "Enabled Scripts"
@@ -1791,24 +1747,29 @@ msgstr "Skrip yang dinonaktifkan"
 
 #: ../ubuntutweak/modules/scripts.py:145
 msgid "Manage Scripts"
-msgstr ""
+msgstr "Mengelola Skrip"
 
 #: ../ubuntutweak/modules/scripts.py:146
 msgid ""
 "Scripts can be used to complete all kinds of tasks.\n"
-"You can drag and drop scripts from File Manager.\n"
+"You can drag and drop scripts here from File Manager.\n"
 "'Scripts' will then be added to the context menu."
 msgstr ""
+"Script dapat digunakan untuk menyelesaikan segala macam tugas.\n"
+"Anda dapat menyeret dan menurunkan skrip di sini dari File Manager.\n"
+"'Skrip' kemudian akan ditambahkan ke konteks menu."
 
 #: ../ubuntutweak/modules/scripts.py:179
 msgid "Rebuild System Scripts"
-msgstr ""
+msgstr "Membangun kembali Skrip Sistem"
 
 #: ../ubuntutweak/modules/scripts.py:197
 msgid ""
 "This will delete all disabled scripts.\n"
 "Do you wish to continue?"
 msgstr ""
+"Ini akan menghapus semua skrip yang dinonaktifkan.\n"
+"Apakah Anda ingin melanjutkan?"
 
 #: ../ubuntutweak/modules/templates.py:67
 msgid "HTML document"
@@ -1860,22 +1821,29 @@ msgstr "Mengatur Template"
 
 #: ../ubuntutweak/modules/templates.py:117
 msgid ""
-"Here you can freely manage your document templates.\n"
-"You can add files as templates by dragging them onto this window.\n"
-"You can create new documents based on these templates from the Nautilus "
+"Here you can manage your document templates.\n"
+"You can add files as templates by dragging them into this window.\n"
+"You can then create new documents based on these templates from the Nautilus "
 "right-click menu."
 msgstr ""
+"Di sini Anda dapat mengatur template dokumen Anda.\n"
+"Anda dapat menambahkan file sebagai template dengan menyeretnya ke dalam "
+"jendela ini.\n"
+"Anda kemudian dapat membuat dokumen baru berdasarkan template tersebut dari "
+"menu klik kanan Nautilus."
 
 #: ../ubuntutweak/modules/templates.py:128
 #, python-format
 msgid ""
-"Templates path is wrong! The current path is point to \"%s\".\n"
-"Please reset it to a folder under your Home Folder."
+"The templates path is incorrect! The current path points to \"%s\".\n"
+"Please reset it to a location within your Home Folder."
 msgstr ""
+"Jalur template tidak benar! Titik jalan saat ini ke \"% s\".\n"
+"Silahkan reset ke lokasi di dalam Folder Rumah Anda."
 
 #: ../ubuntutweak/modules/templates.py:137
 msgid "Go And Set"
-msgstr ""
+msgstr "Pergi Dan Setel"
 
 #: ../ubuntutweak/modules/templates.py:142
 msgid "Restart This Module"
@@ -1883,74 +1851,72 @@ msgstr "Restart Modul Ini"
 
 #: ../ubuntutweak/modules/templates.py:172
 msgid "Rebuild System Templates"
-msgstr ""
+msgstr "Membangun kembali Template Sistem"
 
 #: ../ubuntutweak/modules/templates.py:192
-msgid "Templates path is still wrong, Please reset it!"
-msgstr ""
+msgid "The templates path is still incorrect, please reset it!"
+msgstr "Jalur Template masih tidak benar, silahkan me-resetnya!"
 
 #: ../ubuntutweak/modules/templates.py:204
 msgid ""
 "This will delete all disabled templates.\n"
 "Do you wish to continue?"
 msgstr ""
+"Ini akan menghapus semua template yang dinonaktifkan.\n"
+"Apakah Anda ingin melanjutkan?"
 
 #: ../ubuntutweak/modules/session.py:34
 msgid "Session control"
-msgstr ""
+msgstr "Sesi Kontrol"
 
 #: ../ubuntutweak/modules/session.py:35
 msgid "Control your system session releated features"
-msgstr ""
+msgstr "Kontrol sistem sesi Anda termasuk fitur"
 
 #: ../ubuntutweak/modules/session.py:47
 msgid "File Manager"
-msgstr ""
+msgstr "Manajer Berkas"
 
-#: ../ubuntutweak/modules/session.py:52
+#: ../ubuntutweak/modules/session.py:53
 msgid "Panel"
-msgstr ""
+msgstr "Panel"
 
-#: ../ubuntutweak/modules/session.py:56
+#: ../ubuntutweak/modules/session.py:58
 msgid "Window Manager"
-msgstr ""
+msgstr "Manajer Jendela"
 
-#: ../ubuntutweak/modules/session.py:67
+#: ../ubuntutweak/modules/session.py:70
 msgid "Session Control"
 msgstr "Kontrol Sesi"
 
-#: ../ubuntutweak/modules/session.py:76
+#: ../ubuntutweak/modules/session.py:79
 msgid "Session Options"
-msgstr ""
-
-#: ../ubuntutweak/modules/session.py:78
-msgid "Automatically save open applications when logging out"
-msgstr ""
+msgstr "Pilihan Sesi"
 
 #: ../ubuntutweak/modules/session.py:81
-msgid "Allow TCP Connections (Remote Desktop Connect)"
-msgstr ""
+msgid "Automatically save open applications when logging out"
+msgstr "Secara otomatis menyimpan aplikasi yang terbuka ketika keluar"
 
-#: ../ubuntutweak/modules/session.py:84
-msgid "Suppress the dialog to confirm logout, restart and shutdown action"
-msgstr ""
+#: ../ubuntutweak/modules/session.py:85
+msgid "Suppress the logout, restart and shutdown confirmation dialogue box."
+msgstr "Menekan kotak dialog konfirmasi keluar, mulai kembali dan nonaktif."
 
-#: ../ubuntutweak/modules/session.py:109
+#: ../ubuntutweak/modules/session.py:111
 msgid "Please enter a valid application command line."
-msgstr ""
+msgstr "Harap masukkan baris perintah aplikasi yang sesuai."
 
-#: ../ubuntutweak/modules/session.py:109
+#: ../ubuntutweak/modules/session.py:111
 #, python-format
 msgid "\"%s\" is not available."
-msgstr ""
+msgstr "\"%s\" tidak tersedia."
 
 #: ../ubuntutweak/modules/cleaner.py:81
 msgid "Cleaning Configuration Files"
-msgstr ""
+msgstr "Membersihkan berkas konfigurasi."
 
 #: ../ubuntutweak/modules/cleaner.py:117
 msgid "Cleaning Package Cache"
-msgstr ""
+msgstr "Menghapus Chace Paket"
 
 #: ../ubuntutweak/modules/cleaner.py:124
 #, python-format
@@ -1959,16 +1925,16 @@ msgstr "Membersihkan...%s"
 
 #: ../ubuntutweak/modules/cleaner.py:147
 msgid "Purge PPA and Downgrade Packages"
-msgstr ""
+msgstr "Mencuci PPA dan Menurunkan Tingkat Paket"
 
 #: ../ubuntutweak/modules/cleaner.py:148
 msgid "Downloading Packages..."
-msgstr ""
+msgstr "Mengunduh Paket..."
 
 #: ../ubuntutweak/modules/cleaner.py:162
 #, python-format
 msgid "Downgrading...%s"
-msgstr ""
+msgstr "Menurunkan Tingkat... %s"
 
 #: ../ubuntutweak/modules/cleaner.py:208 ../ubuntutweak/modules/cleaner.py:303
 msgid "Package"
@@ -1976,19 +1942,23 @@ msgstr "Paket"
 
 #: ../ubuntutweak/modules/cleaner.py:214
 msgid "Previous Version"
-msgstr ""
+msgstr "Versi Sebelumnya"
 
 #: ../ubuntutweak/modules/cleaner.py:221
 msgid "System Version"
-msgstr ""
+msgstr "Versi Sistem"
 
-#: ../ubuntutweak/modules/cleaner.py:328 ../ubuntutweak/modules/cleaner.py:356
-msgid "Packages"
-msgstr "Paket"
+#: ../ubuntutweak/modules/cleaner.py:328
+msgid "Unneeded Packages"
+msgstr "Paket yang tidak dibutuhkan"
+
+#: ../ubuntutweak/modules/cleaner.py:356
+msgid "Kernel Packages"
+msgstr "Paket Kernel"
 
 #: ../ubuntutweak/modules/cleaner.py:385
-msgid "Package Cache"
-msgstr ""
+msgid "Cached Package Files"
+msgstr "Berkas Paket Cache"
 
 #: ../ubuntutweak/modules/cleaner.py:399
 #, python-format
@@ -1996,84 +1966,89 @@ msgid ""
 "<b>%s</b>\n"
 "Occupies %s of disk space"
 msgstr ""
+"<b>%s</b>\n"
+"Menempati %s dari ruang penyimpan"
 
-#: ../ubuntutweak/modules/cleaner.py:461
+#: ../ubuntutweak/modules/cleaner.py:462
 msgid "Package Configuration Files"
-msgstr ""
+msgstr "Paket Konfigurasi berkas"
 
-#: ../ubuntutweak/modules/cleaner.py:498
+#: ../ubuntutweak/modules/cleaner.py:499
 #, python-format
 msgid "%d package selected for removal"
 msgid_plural "%d packages selected for removal"
 msgstr[0] "%d paket yang dipilih untuk dihapus"
 
-#: ../ubuntutweak/modules/cleaner.py:502
+#: ../ubuntutweak/modules/cleaner.py:503
 #, python-format
 msgid "%s of disk space will be freed"
 msgstr "%s dari ruang disk yang akan dibebaskan"
 
-#: ../ubuntutweak/modules/cleaner.py:610
-msgid "It's safe to purge the PPA, there's no package need to be downgraded."
+#: ../ubuntutweak/modules/cleaner.py:611
+msgid "It's safe to purge the PPA, no packages need to be downgraded."
 msgstr ""
+"Ini aman untuk membersihkan PPA, tidak ada paket yang perlu diturunkan "
+"tingkat."
 
-#: ../ubuntutweak/modules/cleaner.py:613
-msgid ""
-"To safely purge the PPA, the following packages need to be downgraded."
+#: ../ubuntutweak/modules/cleaner.py:614
+msgid "To safely purge the PPA, the following packages must be downgraded."
 msgstr ""
+"Untuk keamanan pencucian PPA, paket-paket berikut ini harus diturunkan "
+"tingkatnya."
 
-#: ../ubuntutweak/modules/cleaner.py:617
+#: ../ubuntutweak/modules/cleaner.py:618
 #, python-format
 msgid "You're going to purge: %s"
-msgstr ""
+msgstr "Anda akan mencuci: %s"
 
-#: ../ubuntutweak/modules/cleaner.py:651
+#: ../ubuntutweak/modules/cleaner.py:652
 msgid "Cancelled by user!"
 msgstr "Dibatalkan oleh user!"
 
-#: ../ubuntutweak/modules/cleaner.py:654
+#: ../ubuntutweak/modules/cleaner.py:655
 msgid "Clean up successful!"
 msgstr "Pembersihan berhasil!"
 
-#: ../ubuntutweak/modules/cleaner.py:657
+#: ../ubuntutweak/modules/cleaner.py:658
 msgid "Clean up failed!"
 msgstr "Pembersihan gagal!"
 
-#: ../ubuntutweak/modules/cleaner.py:670
+#: ../ubuntutweak/modules/cleaner.py:671
 msgid "Package Cleaner"
 msgstr "Pembersih Paket"
 
-#: ../ubuntutweak/modules/cleaner.py:671
+#: ../ubuntutweak/modules/cleaner.py:672
 msgid ""
-"Free up disk space by removing redundant packages and cleaning the package "
+"Free up disk space by removing redundant packages and cleaning package "
 "download cache."
 msgstr ""
-"Membebaskan ruang disk dengan menghapus paket berlebihan dan membersihkan "
-"cache download paket."
+"Membebaskan ruang penyimpanan dengan menghapus paket berlebihan dan "
+"membersihkan cache unduhan paket."
 
 #. create the button
-#: ../ubuntutweak/modules/cleaner.py:702
+#: ../ubuntutweak/modules/cleaner.py:703
 msgid "Clean Packages"
-msgstr ""
+msgstr "Membersihkan Paket"
 
-#: ../ubuntutweak/modules/cleaner.py:707
+#: ../ubuntutweak/modules/cleaner.py:708
 msgid "Clean Cache"
-msgstr ""
+msgstr "Membersihkan Cache"
 
-#: ../ubuntutweak/modules/cleaner.py:712
+#: ../ubuntutweak/modules/cleaner.py:713
 msgid "Clean Config"
 msgstr "Bersihkan Config"
 
-#: ../ubuntutweak/modules/cleaner.py:717
+#: ../ubuntutweak/modules/cleaner.py:718
 msgid "Clean Kernels"
 msgstr "Bersihkan Kernel"
 
-#: ../ubuntutweak/modules/cleaner.py:722
+#: ../ubuntutweak/modules/cleaner.py:723
 msgid "Purge PPAs"
-msgstr ""
+msgstr "Mencuci PPAs"
 
-#: ../ubuntutweak/modules/cleaner.py:742
+#: ../ubuntutweak/modules/cleaner.py:743
 msgid "_Cleanup"
-msgstr ""
+msgstr "_Membersihkan"
 
 #: ../ubuntutweak/modules/shortcuts.py:45
 msgid "Shortcut Commands"
@@ -2083,11 +2058,13 @@ msgstr "Perintah Shortcut"
 msgid ""
 "By configuring keyboard shortcuts, you can access your favourite "
 "applications instantly.\n"
-"Enter the application's command and set the desired shortcut keys."
+"Enter the command to run the application and choose a shortcut key "
+"combination."
 msgstr ""
-"Dengan mengkonfigurasi shortcut keyboard, Anda dapat mengakses aplikasi "
-"favorit Anda secara langsung.\n"
-"Masukkan perintah aplikasi dan mengatur tombol pintas yang diinginkan."
+"Dengan mengkonfigurasi jalan pintas papan ketik, Anda dapat mengakses "
+"aplikasi favorit Anda langsung.\n"
+"Masukkan perintah untuk menjalankan aplikasi dan memilih jalan pintas "
+"kombinasi tombol."
 
 #: ../ubuntutweak/modules/shortcuts.py:94
 #, python-format
@@ -2140,8 +2117,8 @@ msgid "Delete from Disk"
 msgstr "Hapus dari Disk"
 
 #: ../ubuntutweak/modules/autostart.py:203
-msgid "Can't delete the system item from disk."
-msgstr "Tak dapat menghapus item sistem dari disk"
+msgid "Can't delete system item from disk."
+msgstr "Tidak bisa menghapus item sistem dari media penyimpan."
 
 #: ../ubuntutweak/modules/autostart.py:255
 msgid "No description"
@@ -2157,14 +2134,15 @@ msgstr "Auto Start Programs"
 
 #: ../ubuntutweak/modules/autostart.py:335
 msgid ""
-"Here you can manage which programs are started upon login.\n"
-"You can hide items from view by selecting and clicking \"Remove\"\n"
-"To permanently delete an item, right-click and press \"Delete\"."
+"Here you can manage which programs are run upon login.\n"
+"You can hide items from view by selecting them and clicking \"Remove\"\n"
+"To permanently delete an item, right-click and select \"Delete\"."
 msgstr ""
-"Di sini Anda dapat mengatur program mana yang dimulai pada saat login.\n"
-"Anda dapat menyembunyikan item dari tampilan dengan memilih dan mengklik "
-"\"Hapus\"\n"
-"Untuk menghapus secara permanen, klik kanan item dan tekan \"Hapus\"."
+"Di sini Anda dapat mengatur program-program yang dijalankan pada saat "
+"masuk.\n"
+"Anda dapat menyembunyikan item dari tampilan dengan memilih mereka dan "
+"mengklik \"Hapus\"\n"
+"Untuk menghapus item secara permanen, klik kanan dan pilih \"Hapus\"."
 
 #. create the two checkbutton for extra options of auto run list
 #: ../ubuntutweak/modules/autostart.py:348
@@ -2201,52 +2179,52 @@ msgstr "Mengelola default file manager"
 msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
 msgstr "Show advanced permissions in the Nautilus \"File Properties\" window"
 
-#: ../ubuntutweak/modules/nautilus.py:79
+#: ../ubuntutweak/modules/nautilus.py:80
 msgid "File Browser"
 msgstr "Perambah Berkas"
 
-#: ../ubuntutweak/modules/nautilus.py:88
+#: ../ubuntutweak/modules/nautilus.py:89
 msgid "Thumbnail Settings"
 msgstr "Pengaturan Thumbnail"
 
-#: ../ubuntutweak/modules/nautilus.py:92
+#: ../ubuntutweak/modules/nautilus.py:94
 msgid "Default thumbnail icon size (pixels)"
 msgstr "Ukuran default icon thumbnail (pixel)"
 
-#: ../ubuntutweak/modules/nautilus.py:96
+#: ../ubuntutweak/modules/nautilus.py:99
 msgid "Maximum thumbnail cache size (megabytes)"
 msgstr "Maksimum ukuran thumbnail cache (megabyte)"
 
-#: ../ubuntutweak/modules/nautilus.py:100
+#: ../ubuntutweak/modules/nautilus.py:104
 msgid "Thumbnail cache time (days)"
 msgstr "Waktu Cache thumbnail (hari)"
 
-#: ../ubuntutweak/modules/nautilus.py:107
+#: ../ubuntutweak/modules/nautilus.py:111
 msgid "Open folder in terminal"
 msgstr "Buka folder di terminal"
 
-#: ../ubuntutweak/modules/nautilus.py:109
+#: ../ubuntutweak/modules/nautilus.py:113
 msgid "Open folder with root priveleges"
 msgstr "Buka folder dengan hak akses root"
 
-#: ../ubuntutweak/modules/nautilus.py:111
-msgid "Nautilus with Wallpaper"
-msgstr "Nautilus dengan Wallpaper"
+#: ../ubuntutweak/modules/nautilus.py:115
+msgid "Nautilus with wallpaper"
+msgstr "Nautilus dengan Latar Belakang"
 
-#: ../ubuntutweak/modules/nautilus.py:113
+#: ../ubuntutweak/modules/nautilus.py:117
 msgid "Nautilus Extensions"
 msgstr "Ekstensi Nautilus"
 
-#: ../ubuntutweak/modules/nautilus.py:135
+#: ../ubuntutweak/modules/nautilus.py:139
 #, python-format
-msgid "Delete thumbnail cache (will free %s of disk space)"
-msgstr "Hapus cache thumbnail (akan% s bebas dari ruang disk)"
+msgid "Delete thumbnail cache (Frees %s of disk space)"
+msgstr "Hapus cache thumbnail (Membebaskan %s dari ruang penyimpan)"
 
-#: ../ubuntutweak/modules/nautilus.py:138
+#: ../ubuntutweak/modules/nautilus.py:142
 msgid "The thumbnail cache will be deleted. Do you wish to continue?"
 msgstr "Cache thumbnail akan dihapus. Apakah Anda ingin melanjutkan?"
 
-#: ../ubuntutweak/modules/nautilus.py:145
+#: ../ubuntutweak/modules/nautilus.py:149
 msgid "Clean up Successful!"
 msgstr "Pembersihan Berhasil!"
 
@@ -2263,26 +2241,26 @@ msgid "Login Options"
 msgstr "Pilihan Login"
 
 #: ../ubuntutweak/modules/loginsettings.py:51
-msgid "Disable user list in gdm"
-msgstr "Nonaktifkan daftar pengguna di gdm"
+msgid "Disable user list in GDM"
+msgstr "Nonaktifkan daftar pengguna pada GDM"
 
-#: ../ubuntutweak/modules/loginsettings.py:55
+#: ../ubuntutweak/modules/loginsettings.py:56
 msgid "Play sound at login"
 msgstr "Putar suara saat login"
 
-#: ../ubuntutweak/modules/loginsettings.py:59
-msgid "Disable showing the restart buttons"
-msgstr "Jangan tampilkan tombol start ulang"
+#: ../ubuntutweak/modules/loginsettings.py:61
+msgid "Disable showing the restart button"
+msgstr "Nonaktifkan Menampilkan tombol mulai kembali"
 
-#: ../ubuntutweak/modules/loginsettings.py:76
+#: ../ubuntutweak/modules/loginsettings.py:79
 msgid "Login Theme"
 msgstr "Login Theme"
 
-#: ../ubuntutweak/modules/loginsettings.py:148
+#: ../ubuntutweak/modules/loginsettings.py:152
 msgid "PNG images with 64x64 size or SVG images"
-msgstr ""
+msgstr "Gambar PNG dengan ukuran 64x64 atau gambar SVG"
 
-#: ../ubuntutweak/modules/loginsettings.py:178
+#: ../ubuntutweak/modules/loginsettings.py:182
 msgid ""
 "This image size isn't suitable for the logo.\n"
 "It should be 64x64."
@@ -2290,13 +2268,139 @@ msgstr ""
 "Ukuran gambar tidak cocok untuk logo.\n"
 "Ini harus 64x64."
 
-#: ../ubuntutweak/modules/loginsettings.py:200
+#: ../ubuntutweak/modules/loginsettings.py:204
 msgid "Choose a new background image"
 msgstr "Pilih gambar latar belakang baru"
 
-#: ../ubuntutweak/modules/loginsettings.py:206
+#: ../ubuntutweak/modules/loginsettings.py:210
 msgid "All images"
 msgstr "Semua gambar"
+
+#: ../ubuntutweak/modules/desktoprecovery.py:145
+msgid "Setting"
+msgstr "Pengaturan"
+
+#: ../ubuntutweak/modules/desktoprecovery.py:189
+msgid "Backup Name:"
+msgstr "Nama Backup:"
+
+#: ../ubuntutweak/modules/desktoprecovery.py:237
+#, python-format
+msgid "Backing up...%s"
+msgstr "Membackup...%s"
+
+#: ../ubuntutweak/modules/desktoprecovery.py:263
+msgid "Desktop Recovery"
+msgstr "Pemulihan Destop"
+
+#: ../ubuntutweak/modules/desktoprecovery.py:264
+msgid ""
+"Backup and recover your desktop and application settings with ease.\n"
+"You can also use \"Reset\" to reset to the system default settings."
+msgstr ""
+"Backup dan pulihkan destop Anda dan pengaturan aplikasi dengan mudah.\n"
+"Anda juga dapat menggunakan \"Reset\" untuk mereset sistem ke pengaturan "
+"default."
+
+#: ../ubuntutweak/modules/desktoprecovery.py:335
+msgid "No Backup Yet"
+msgstr "Tidak ada Backup"
+
+#: ../ubuntutweak/modules/desktoprecovery.py:378
+#, python-format
+msgid ""
+"Backup all settings under: <b>%s</b>\n"
+"Would you like to continue?"
+msgstr ""
+"Backup semua pengaturan di bawah: <b>%s</ b>\n"
+"Apakah Anda ingin melanjutkan?"
+
+#: ../ubuntutweak/modules/desktoprecovery.py:397
+#, python-format
+msgid ""
+"Backup settings under: <b>%s</b>\n"
+"Would you like to continue?"
+msgstr ""
+"Backup pengaturan di bawah: <b>%s</ b>\n"
+"Apakah Anda ingin melanjutkan?"
+
+#: ../ubuntutweak/modules/desktoprecovery.py:438
+#, python-format
+msgid "Would you like to delete the backup: <b>%s/%s</b>?"
+msgstr "Apakah Anda ingin menghapus backup: <b>%s/%s</b>?"
+
+#: ../ubuntutweak/modules/desktoprecovery.py:440
+#, python-format
+msgid ""
+"Would you like to delete the backup of all <b>%s</b> settings named "
+"<b>%s</b>?"
+msgstr ""
+"Apakah Anda ingin menghapus backup semua <b>%s</b> pengaturan bernama "
+"<b>%s</b>?"
+
+#: ../ubuntutweak/modules/desktoprecovery.py:459
+#, python-format
+msgid "Would you like to recover the backup: <b>%s/%s</b>?"
+msgstr "Apakah Anda ingin memulihkan Backup: <b>%s/%s</b>?"
+
+#: ../ubuntutweak/modules/desktoprecovery.py:461
+#, python-format
+msgid ""
+"Would you like to recover the backup of all <b>%s</b> settings named "
+"<b>%s</b>?"
+msgstr ""
+"Apakah Anda ingin memulihkan semua backup <b>%s</b> pengaturan bernama "
+"<b>%s</b>?"
+
+#: ../ubuntutweak/modules/desktoprecovery.py:463
+msgid ""
+"<b>NOTES</b>: While recovering, your desktop may be unresponsive for a "
+"moment."
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:480
+msgid ""
+"Recovery Successful!\n"
+"You may need to restart your desktop for changes to take effect"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:488
+#, python-format
+msgid "Would you like to reset settings for: <b>%s</b>?"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:490
+#, python-format
+msgid "Would you like to reset all settings under: <b>%s</b>?"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:492
+msgid ""
+"<b>NOTES</b>: Whilst resetting, your desktop may be unresponsive for a "
+"moment."
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:509
+msgid ""
+"Reset Successful!\n"
+"You may need to restart your desktop for changes to take effect"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:527
+msgid "New Backup Name"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:528
+msgid "Please enter a new name for your backup:"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:560
+msgid "Backup Successful!"
+msgstr ""
+
+#: ../ubuntutweak/modules/desktoprecovery.py:563
+msgid "Backup Failed!"
+msgstr ""
 
 #~ msgid "Install Simple Desktop Effects Settings manager"
 #~ msgstr "instal pengatur setting efek dekstop sederhana"
@@ -2309,6 +2413,9 @@ msgstr "Semua gambar"
 
 #~ msgid "Text was empty (or contained only whitespace)"
 #~ msgstr "Teksnya kosong (atau hanya berisi whitespace)"
+
+#~ msgid "Nautilus with Wallpaper"
+#~ msgstr "Nautilus dengan Wallpaper"
 
 #~ msgid "Nautilus with Root Privileges"
 #~ msgstr "Nautilus dengan Hak Istimewa Root"
@@ -2348,6 +2455,9 @@ msgstr "Semua gambar"
 
 #~ msgid "The software information is up-to-date now"
 #~ msgstr "Informasi perangkat lunak sudah si mutakhirkan"
+
+#~ msgid "Can't delete the system item from disk."
+#~ msgstr "Tak dapat menghapus item sistem dari disk"
 
 #~ msgid "Session Programs"
 #~ msgstr "Sesi Program"
@@ -2389,14 +2499,53 @@ msgstr "Semua gambar"
 #~ msgid "Gnome Global Menu"
 #~ msgstr "Gnome Menu Global"
 
+#~ msgid "Packages"
+#~ msgstr "Paket"
+
 #~ msgid "Only show filetypes with an associated application"
 #~ msgstr "Hanya menampilkan tipe fle kumpulan aplikasi"
+
+#~ msgid ""
+#~ "Ubuntu Tweak will restore the chosen directory to the default location.\n"
+#~ "However, you must move your files back into place by yourself.\n"
+#~ "Do you wish to continue?"
+#~ msgstr ""
+#~ "Ubuntu Tweak akan mengembalikan direktori yang dipilih ke tempat semula.\n"
+#~ "Tetapi, anda harus memindahkan kembali ke tempat yang dipilih.\n"
+#~ "Apakah anda ingin melanjutkan?"
 
 #~ msgid "Choose a new logo"
 #~ msgstr "Pilih sebuah logo baru"
 
+#~ msgid ""
+#~ "You can change the paths of the default folders here.\n"
+#~ "Don't change the location of your desktop folder unless you know what you "
+#~ "are doing."
+#~ msgstr ""
+#~ "Anda dapat mengganti lokasi folder asli disini.\n"
+#~ "Jangan ganti lokasi asli folder desktop sampai anda mengerti yang terjadi."
+
 #~ msgid "Fix the theme appearance when grant the root privileges"
 #~ msgstr "Sempurnakan tampilan tema dengan kebijakan root"
+
+#~ msgid ""
+#~ "You can submit your sources to our server to help building the sources list, "
+#~ "or you can use the official sources.\n"
+#~ "Do you wish to use the official sources?"
+#~ msgstr ""
+#~ "Anda dapat menghantar sumber anda pada server kami untuk membantu membangun "
+#~ "daftar sumber, atau anda dapat menggunakan sumber resmi. Apakah anda akan "
+#~ "menggunakan sumber resmi?"
+
+#~ msgid ""
+#~ "You've changed the sources.list without saving it.\n"
+#~ "Do you want to save it?"
+#~ msgstr ""
+#~ "Anda telah merubah berkas sources.list tetapi belum menyimpannya.\n"
+#~ "Apakah anda ingin menyimpannya?"
+
+#~ msgid "Please input the correct information about sources!"
+#~ msgstr "Silahkan masukkan informasi akurat untuk sumber!"
 
 #, python-format
 #~ msgid ""
@@ -2468,6 +2617,9 @@ msgstr "Semua gambar"
 #~ msgid "Click the button to change the menu logo"
 #~ msgstr "Klik tombol untuk merubah logo menu"
 
+#~ msgid "Enable user switching when screen is locked."
+#~ msgstr "Mengaktifkan penggantian pengguna ketika layar terkunci."
+
 #~ msgid "Show Input Method menu on the context menu"
 #~ msgstr "Tampilkan menu Metode Masukan pada menu konteks"
 
@@ -2483,3 +2635,145 @@ msgstr "Semua gambar"
 
 #~ msgid "Clean up Failed!"
 #~ msgstr "Pembersihan Gagal!"
+
+#~ msgid "Clean up unneeded packages to free up diskspace."
+#~ msgstr "Bersihkan paket yang tidak diperlukan untuk membebaskan ruang disk"
+
+#~ msgid "Development Version of Mozilla Firefox"
+#~ msgstr "Versi Pengembangan Mozilla Firefox"
+
+#~ msgid ""
+#~ "Ubuntu repository for Chinese users.\n"
+#~ "Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and "
+#~ "other softwares."
+#~ msgstr ""
+#~ "Repositori Ubuntu untuk pengguna Cina.\n"
+#~ "Termasuk EIOffice, Ubuntu Tweak, metode input ibus, OpenOffice.org 3.0 dan "
+#~ "software lain."
+
+#~ msgid "Development Version of K Desktop Environment"
+#~ msgstr "Versi Pengembangan dari K Desktop Environment"
+
+#~ msgid "Development version of Compiz"
+#~ msgstr "Versi pengembangan dari Compiz"
+
+#~ msgid ""
+#~ "WebkitGtk+, Liferea (Webkit), Midori and other WebKit related projects."
+#~ msgstr "WebkitGtk+, Liferea (Webkit), Midori and proyek lain WebKit terkait"
+
+#~ msgid "Updated versions of X.org drivers, libraries, etc. for Ubuntu."
+#~ msgstr "Pembaharuan versi driver dari X.org, perpustakaan, dll untuk Ubuntu."
+
+#~ msgid ""
+#~ "Gnome Games built from Git, with all experimental features and staging games "
+#~ "enabled."
+#~ msgstr ""
+#~ "Gnome Games dibangun dari Git, dengan semua fitur eksperimental dan "
+#~ "permainan stadium yang diaktifkan."
+
+#~ msgid "Google's Linux Repository"
+#~ msgstr "Repositori Linux milik Google"
+
+#~ msgid ""
+#~ "Multimedia, Entertainment and Distraction In Ubuntu\n"
+#~ "Medibuntu is a repository of packages that cannot be included into the "
+#~ "Ubuntu distribution for legal reasons (copyright, license, patent, etc)."
+#~ msgstr ""
+#~ "Multimedia, Hiburan dan Selingan Pada Ubuntu\n"
+#~ "Medibuntu adalah gudang paket yang tidak dapat dimasukkan ke dalam "
+#~ "distribusi Ubuntu karena alasan hukum (hak cipta, lisensi, paten, dll)."
+
+#~ msgid ""
+#~ "GetDeb extends the existing software options for Ubuntu (and derived) Linux "
+#~ "distributions by providing major updates and software not yet available on "
+#~ "the official Ubuntu repositories."
+#~ msgstr ""
+#~ "GetDeb memperluas pilihan perangkat lunak yang ada untuk Ubuntu (dan "
+#~ "turunan) Linux distribusi dengan memberikan update perangkat lunak yang "
+#~ "besar dan belum tersedia di repositori resmi Ubuntu."
+
+#~ msgid ""
+#~ "Clutter is an OpenGL based interactive canvas library, designed for creating "
+#~ "fast, mainly 2D single window applications such as media box UIs, "
+#~ "presentations, kiosk style applications and so on."
+#~ msgstr ""
+#~ "Clutter adalah berbasis OpenGL kanvas perpustakaan interaktif, yang "
+#~ "dirancang untuk menciptakan kecepatan, terutama jendela 2D aplikasi tunggal "
+#~ "seperti kotak media UI, aplikasi presentasi kios mode dan sebagainya."
+
+#~ msgid ""
+#~ "Ubuntu Mozilla Security Team provides beta and final stable/security updates "
+#~ "for mozilla software in its PPA"
+#~ msgstr ""
+#~ "Tim Keamanan Ubuntu Mozilla menyediakan beta dan kestabilan/keamanan "
+#~ "pemutakhiran terakhir untuk perangkat lunak mozilla dan itu adalah PPA"
+
+#~ msgid "Mono is a cross platform, open source .NET development framework."
+#~ msgstr ""
+#~ "Mono adalah lintas platform, pengembangan open source .NET framework."
+
+#~ msgid "A cross-platform application and UI framework"
+#~ msgstr "Sebuah aplikasi cross-platform dan kerangka UI"
+
+#~ msgid ""
+#~ "Gloobus is an extension of Gnome designed to enable a full screen preview of "
+#~ "any kind of file."
+#~ msgstr ""
+#~ "Gloobus adalah sebuah ekstesi gnome yang menampilkan berbagai jenis file "
+#~ "dalam bentuk full screen"
+
+#~ msgid "Freely edit your software sources to suit your needs."
+#~ msgstr "Bebas rubah sumber perangkat lunak, sesuai kebutuhan anda"
+
+#~ msgid ""
+#~ "A simple but more efficient way for finding and installing popular "
+#~ "applications.\n"
+#~ "Data will be automatically synchronized with the remote server.\n"
+#~ "You can click the \"Sync\" button to perform a manual check for updates."
+#~ msgstr ""
+#~ "Simple tapi lebih efisien untuk menemukan dan menginstall aplikasi ternama\n"
+#~ "Data akan disinkronkan otomatis melalui server remote\n"
+#~ "Anda dapat menekan tombol \"Sync\" untuk memulai update manual"
+
+#~ msgid ""
+#~ "This image size isn't suitable for the panel.\n"
+#~ "It should be 24x24."
+#~ msgstr ""
+#~ "Ukuran gambar tidak cocok untuk panel tersebut.\n"
+#~ "Harus ukuran 24x24."
+
+#~ msgid "Disable user list in gdm"
+#~ msgstr "Nonaktifkan daftar pengguna di gdm"
+
+#~ msgid "Disable showing the restart buttons"
+#~ msgstr "Jangan tampilkan tombol start ulang"
+
+#, python-format
+#~ msgid "Delete thumbnail cache (will free %s of disk space)"
+#~ msgstr "Hapus cache thumbnail (akan% s bebas dari ruang disk)"
+
+#~ msgid ""
+#~ "By configuring keyboard shortcuts, you can access your favourite "
+#~ "applications instantly.\n"
+#~ "Enter the application's command and set the desired shortcut keys."
+#~ msgstr ""
+#~ "Dengan mengkonfigurasi shortcut keyboard, Anda dapat mengakses aplikasi "
+#~ "favorit Anda secara langsung.\n"
+#~ "Masukkan perintah aplikasi dan mengatur tombol pintas yang diinginkan."
+
+#~ msgid ""
+#~ "Free up disk space by removing redundant packages and cleaning the package "
+#~ "download cache."
+#~ msgstr ""
+#~ "Membebaskan ruang disk dengan menghapus paket berlebihan dan membersihkan "
+#~ "cache download paket."
+
+#~ msgid ""
+#~ "Here you can manage which programs are started upon login.\n"
+#~ "You can hide items from view by selecting and clicking \"Remove\"\n"
+#~ "To permanently delete an item, right-click and press \"Delete\"."
+#~ msgstr ""
+#~ "Di sini Anda dapat mengatur program mana yang dimulai pada saat login.\n"
+#~ "Anda dapat menyembunyikan item dari tampilan dengan memilih dan mengklik "
+#~ "\"Hapus\"\n"
+#~ "Untuk menghapus secara permanen, klik kanan item dan tekan \"Hapus\"."
