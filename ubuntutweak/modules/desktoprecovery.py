@@ -310,13 +310,16 @@ class DesktopRecovery(TweakModule):
         self.backup_combobox.add_attribute(cell, 'text', 0)
 
     def update_backup_model(self, dir):
+        def file_cmp(f1, f2):
+            return cmp(os.stat(f1).st_ctime, os.stat(f2).st_ctime)
+
         model = self.backup_combobox.get_model()
         model.clear()
 
         name_prefix = build_backup_prefix(dir)
 
         file_lsit = glob.glob(name_prefix + '*.xml')
-        file_lsit.sort(reverse=True)
+        file_lsit.sort(cmp=file_cmp, reverse=True)
         log.debug('Use glob to find the name_prefix: %s with result: %s' % (name_prefix, str(file_lsit)))
         if file_lsit:
             first_iter = None
