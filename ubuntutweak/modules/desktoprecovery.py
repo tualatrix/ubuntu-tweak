@@ -20,6 +20,7 @@ import os
 import gtk
 import glob
 import time
+import dbus
 import gobject
 import logging
 
@@ -473,7 +474,16 @@ class DesktopRecovery(TweakModule):
                 log.error(stderr)
                 #TODO raise error or others
                 return
-            InfoDialog(_('Recovery Successful!\nYou may need to restart your desktop for changes to take effect')).launch()
+            self.__show_successful_with_logout_button(_('Recovery Successful!\nYou may need to restart your desktop for changes to take effect'))
+
+    def __show_successful_with_logout_button(self, message):
+        dialog = InfoDialog(message)
+
+        button = gtk.Button(_('_Logout'))
+        button.connect('clicked', self.on_logout_button_clicked, dialog)
+        dialog.add_option_button(button)
+
+        dialog.launch()
 
     def on_reset_button_clicked(self, widget):
         iter = self.backup_combobox.get_active_iter()
@@ -498,7 +508,14 @@ class DesktopRecovery(TweakModule):
                 log.error(stderr)
                 #TODO raise error or others
                 return
-            InfoDialog(_('Reset Successful!\nYou may need to restart your desktop for changes to take effect')).launch()
+            self.__show_successful_with_logout_button(_('Reset Successful!\nYou may need to restart your desktop for changes to take effect'))
+
+    def on_logout_button_clicked(self, widget, dialog):
+        bus = dbus.SessionBus()
+        object = bus.get_object('org.gnome.SessionManager', '/org/gnome/SessionManager')
+        object.get_dbus_method('Logout', 'org.gnome.SessionManager')(True)
+        dialog.destroy()
+        self.emit('call', 'mainwindow', 'destroy', {})
 
     def on_edit_button_clicked(self, widget):
         def try_rename_record_in_root_backup(dir, old_path, new_path):

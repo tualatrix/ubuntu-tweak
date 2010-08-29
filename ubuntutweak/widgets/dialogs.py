@@ -120,6 +120,25 @@ class BaseMessageDialog(gtk.MessageDialog):
         self.run()
         self.destroy()
 
+    def add_option_button(self, button):
+        vbox = self.get_child()
+        hbuttonbox = vbox.get_children()[-1]
+
+        hbox = gtk.HBox(False, 12)
+        vbox.pack_start(hbox, False, False, 0)
+        vbox.remove(hbuttonbox)
+
+        new_hbuttonbox = gtk.HButtonBox()
+        new_hbuttonbox.set_layout(gtk.BUTTONBOX_START)
+        new_hbuttonbox.pack_start(button)
+
+        hbox.pack_start(new_hbuttonbox)
+        hbox.pack_start(hbuttonbox)
+
+        hbuttonbox.get_children()[-1].grab_focus()
+
+        vbox.show_all()
+
 class InfoDialog(BaseMessageDialog):
     def __init__(self, message, type = gtk.MESSAGE_INFO, buttons = gtk.BUTTONS_OK, title = None):
         BaseMessageDialog.__init__(self, type, buttons)
