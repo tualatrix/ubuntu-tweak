@@ -492,11 +492,7 @@ class DesktopRecovery(TweakModule):
         dialog.destroy()
 
         if response == gtk.RESPONSE_YES:
-            if dir.count('/') == 1:
-                for line in open(path):
-                    stdout, stderr = do_reset_task(line.strip())
-            else:
-                stdout, stderr = do_reset_task(dir)
+            stdout, stderr = do_reset_task(dir)
 
             if stderr:
                 log.error(stderr)
