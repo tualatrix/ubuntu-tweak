@@ -25,7 +25,7 @@ from ubuntutweak.widgets import TablePack
 from ubuntutweak.common.factory import WidgetFactory
 
 class PowerManager(TweakModule):
-    __title__ = _('Advanced Power Manager Settings')
+    __title__ = _('Power Manager Settings')
     __desc__ = _('Control your computer\'s power managerment')
     __icon__ = 'gnome-power-manager'
     __category__ = 'system'
