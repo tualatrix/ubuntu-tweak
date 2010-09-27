@@ -231,6 +231,8 @@ class CategoryView(gtk.TreeView):
     def get_cate_items(self):
         keys = self.parser.keys()
         keys.sort()
+        keys.remove(u'other')
+        keys.append(u'other')
         return keys
 
 class AppView(gtk.TreeView):
