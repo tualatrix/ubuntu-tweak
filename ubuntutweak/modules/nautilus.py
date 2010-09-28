@@ -110,7 +110,7 @@ class Nautilus(TweakModule):
 
         self.nautilus_terminal = AptCheckButton(_('Open folder in terminal'), 'nautilus-open-terminal')
         self.nautilus_terminal.connect('toggled', self.colleague_changed)
-        self.nautilus_root = AptCheckButton(_('Open folder with root priveleges'), 'nautilus-gksu')
+        self.nautilus_root = AptCheckButton(_('Open folder with root privileges'), 'nautilus-gksu')
         self.nautilus_root.connect('toggled', self.colleague_changed)
         self.nautilus_wallpaper = AptCheckButton(_('Nautilus with wallpaper'), 'nautilus-wallpaper')
         self.nautilus_wallpaper.connect('toggled', self.colleague_changed)
