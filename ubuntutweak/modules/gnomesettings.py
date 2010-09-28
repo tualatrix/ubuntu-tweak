@@ -33,6 +33,7 @@ from ubuntutweak.common.systeminfo import module_check
 from ubuntutweak.common.config import TweakSettings
 from ubuntutweak.common.factory import WidgetFactory
 from ubuntutweak.utils import icon
+from ubuntutweak.conf.gconfsetting import GconfSetting
 
 log = logging.getLogger("Gnome")
 
@@ -92,6 +93,17 @@ class Gnome(TweakModule):
                                          label=_("Enable user switching whilst screen is locked."),
                                          enable_reset=True,
                                          key="user_switch_enabled"),
+            ))
+        self.add_start(box, False, False, 0)
+
+        current_terminal_profile_key = GconfSetting('/apps/gnome-terminal/global/default_profile')
+        current_terminal_profile = current_terminal_profile_key.get_value()
+        default_show_menubar_key = '/apps/gnome-terminal/profiles/%s/default_show_menubar' % current_terminal_profile
+        box = ListPack(_("Terminal"), (
+                    WidgetFactory.create("GconfCheckButton", 
+                                         label=_("Display menubar when Terminal starts up (for current profile)"),
+                                         enable_reset=True,
+                                         key=default_show_menubar_key),
             ))
         self.add_start(box, False, False, 0)
 
