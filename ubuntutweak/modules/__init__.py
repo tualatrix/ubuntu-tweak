@@ -73,9 +73,9 @@ class ModuleLoader:
                     icon_path = os.path.join(DATA_DIR, 'pixmaps', module.__icon__)
                     pixbuf = gtk.gd.pixbuf_new_from_file(icon_path)
                 else:
-                    pixbuf = icon.get_from_name(module.__icon__, size=24)
+                    pixbuf = icon.get_from_name(module.__icon__)
             else:
-                pixbuf = icon.get_from_list(module.__icon__, size=24)
+                pixbuf = icon.get_from_list(module.__icon__)
 
             return pixbuf
 

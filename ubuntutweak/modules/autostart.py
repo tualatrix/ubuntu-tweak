@@ -26,7 +26,7 @@ import gobject
 from xdg.DesktopEntry import DesktopEntry
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.widgets.dialogs import ErrorDialog
-from ubuntutweak.common.utils import *
+from ubuntutweak.utils import icon
 
 (
     COLUMN_ACTIVE,
@@ -242,7 +242,7 @@ class AutoStartItem(gtk.TreeView):
                if not iconname:
                    iconname = desktopentry.getName()
 
-            icon = get_icon_with_name(iconname, 32)
+            pixbuf = icon.get_from_name(iconname, size=32)
 
             try:
                 name = desktopentry.getName()
@@ -259,7 +259,7 @@ class AutoStartItem(gtk.TreeView):
 
             model.set(iter,
                       COLUMN_ACTIVE, enable,
-                      COLUMN_ICON, icon,
+                      COLUMN_ICON, pixbuf,
                       COLUMN_PROGRAM, description,
                       COLUMN_PATH, item)
 

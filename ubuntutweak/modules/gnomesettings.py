@@ -123,7 +123,7 @@ class Gnome(TweakModule):
 
         button = gtk.Button()
         button.connect('clicked', self.on_change_icon_clicked)
-        image = gtk.image_new_from_pixbuf(icon.get_from_name('start-here', size=24))
+        image = gtk.image_new_from_pixbuf(icon.get_from_name('start-here'))
         button.set_image(image)
         hbox.pack_end(button, False, False, 0)
 
@@ -183,7 +183,7 @@ class Gnome(TweakModule):
             dialog.destroy()
             for dest in glob.glob(dest + '*'):
                 os.remove(dest)
-            image = gtk.image_new_from_pixbuf(icon.get_from_name('start-here', size=24, force_reload=True))
+            image = gtk.image_new_from_pixbuf(icon.get_from_name('start-here', force_reload=True))
             widget.set_image(image)
         else:
             dialog.destroy()

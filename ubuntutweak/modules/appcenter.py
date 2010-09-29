@@ -33,9 +33,9 @@ from ubuntutweak.utils.parser import Parser
 from ubuntutweak.network import utdata
 from ubuntutweak.network.downloadmanager import DownloadDialog
 from ubuntutweak.conf import GconfSetting
+from ubuntutweak.utils import set_label_for_stock_button
 from ubuntutweak.common import consts
 from ubuntutweak.common.config import TweakSettings
-from ubuntutweak.common.utils import set_label_for_stock_button
 from ubuntutweak.common.package import PACKAGE_WORKER, PackageInfo
 
 log = logging.getLogger("AppCenter")

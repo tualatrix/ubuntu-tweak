@@ -44,9 +44,9 @@ from ubuntutweak.network import utdata
 from appcenter import AppView, CategoryView, AppParser, StatusProvider
 from appcenter import CheckUpdateDialog, FetchingDialog
 from ubuntutweak.conf import GconfSetting
+from ubuntutweak.utils import set_label_for_stock_button
 from ubuntutweak.common import consts
 from ubuntutweak.common.config import Config, TweakSettings
-from ubuntutweak.common.utils import set_label_for_stock_button
 from ubuntutweak.common.package import PACKAGE_WORKER, PackageInfo
 from ubuntutweak.common.notify import notify
 from ubuntutweak.common.misc import URLLister

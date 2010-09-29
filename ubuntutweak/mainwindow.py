@@ -40,7 +40,7 @@ from ubuntutweak.network.downloadmanager import DownloadDialog
 from ubuntutweak.widgets.dialogs import WarningDialog
 from ubuntutweak.widgets import GconfCheckButton
 from ubuntutweak.preferences import PreferencesDialog
-from ubuntutweak.common.utils import set_label_for_stock_button
+from ubuntutweak.utils import set_label_for_stock_button
 from ubuntutweak.common.config import Config
 
 log = logging.getLogger("MainWindow")

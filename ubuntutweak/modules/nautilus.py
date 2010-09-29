@@ -29,7 +29,7 @@ from ubuntutweak.widgets import ListPack, TablePack
 from ubuntutweak.widgets.dialogs import InfoDialog, QuestionDialog
 
 #TODO
-from ubuntutweak.common.utils import set_label_for_stock_button
+from ubuntutweak.utils import set_label_for_stock_button
 from ubuntutweak.common.misc import filesizeformat
 from ubuntutweak.common.factory import WidgetFactory
 from ubuntutweak.common.package import PACKAGE_WORKER, AptCheckButton

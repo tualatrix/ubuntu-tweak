@@ -28,7 +28,7 @@ import gobject
 
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.widgets import KeyGrabber, KeyModifier, CellRendererButton
-from ubuntutweak.common.utils import get_icon_with_name
+from ubuntutweak.utils import icon
 from compiz import CompizSetting
 
 (
@@ -85,7 +85,7 @@ class Shortcuts(TweakModule):
                 )
 
         client = gconf.client_get_default()
-        logo = get_icon_with_name('gnome-terminal', 24)
+        logo = icon.get_from_name('gnome-terminal')
 
         for id in range(12):
             iter = model.append()
@@ -97,7 +97,9 @@ class Shortcuts(TweakModule):
 
             if not command:
                 command = _("None")
-            icon = get_icon_with_name(command, 24)
+
+            pixbuf = icon.get_from_name(command)
+
             if key == "disabled":
                 key = _("disabled")
 
@@ -105,7 +107,7 @@ class Shortcuts(TweakModule):
                     COLUMN_ID, id,
                     COLUMN_LOGO, logo,
                     COLUMN_TITLE, title,
-                    COLUMN_ICON, icon,
+                    COLUMN_ICON, pixbuf,
                     COLUMN_COMMAND, command,
                     COLUMN_KEY, key,
                     COLUMN_EDITABLE, True)
@@ -198,11 +200,9 @@ class Shortcuts(TweakModule):
         if old != new_text:
             client.set_string("/apps/metacity/keybinding_commands/command_%d" % id, new_text)
             if new_text:
-                icontheme = gtk.icon_theme_get_default()
-                icon = icontheme.lookup_icon(new_text, 24, gtk.ICON_LOOKUP_NO_SVG)
-                if icon: icon = icon.load_icon()
+                pixbuf = icon.get_from_name(new_text)
 
-                model.set_value(iter, COLUMN_ICON, icon)
+                model.set_value(iter, COLUMN_ICON, pixbuf)
                 model.set_value(iter, COLUMN_COMMAND, new_text)
             else:
                 model.set_value(iter, COLUMN_ICON, None)

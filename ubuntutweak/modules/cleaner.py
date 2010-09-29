@@ -31,7 +31,7 @@ from gettext import ngettext
 
 from ubuntutweak.common.consts import install_ngettext
 from ubuntutweak.modules  import TweakModule
-from ubuntutweak.common.utils import *
+from ubuntutweak.utils import icon, set_label_for_stock_button
 from ubuntutweak.common.misc import filesizeformat
 from ubuntutweak.policykit import PolkitButton, proxy
 from ubuntutweak.common.package import PACKAGE_WORKER
@@ -322,7 +322,7 @@ class PackageView(gtk.TreeView):
         model.clear()
         self.mode = 'package'
 
-        icon = get_icon_with_name('deb', 24)
+        pixbuf = icon.get_from_name('deb')
         list = self.PACKAGE_WORKER.list_autoremovable()
         self.total_num = len(list)
         self.__column.set_title(_('Unneeded Packages'))
@@ -336,7 +336,7 @@ class PackageView(gtk.TreeView):
             iter = model.append()
             model.set(iter,
                    COLUMN_CHECK, False,
-                   COLUMN_ICON, icon,
+                   COLUMN_ICON, pixbuf,
                    COLUMN_NAME, pkg,
                    COLUMN_DESC, desc,
                    COLUMN_DISPLAY, '<b>%s</b>\n%s' % (pkg, desc)
@@ -350,7 +350,7 @@ class PackageView(gtk.TreeView):
         model.clear()
         self.mode = 'kernel'
 
-        icon = get_icon_with_name('deb', 24)
+        pixbuf = icon.get_from_name('deb')
         list = self.PACKAGE_WORKER.list_unneeded_kerenl()
         self.total_num = len(list)
         self.__column.set_title(_('Kernel Packages'))
@@ -364,7 +364,7 @@ class PackageView(gtk.TreeView):
             iter = model.append()
             model.set(iter,
                    COLUMN_CHECK, False,
-                   COLUMN_ICON, icon,
+                   COLUMN_ICON, pixbuf,
                    COLUMN_NAME, pkg,
                    COLUMN_DESC, desc,
                    COLUMN_DISPLAY, '<b>%s</b>\n%s' % (pkg, desc)
@@ -378,7 +378,7 @@ class PackageView(gtk.TreeView):
         self.mode = 'cache'
 
         cache_dir = '/var/cache/apt/archives' 
-        icon = get_icon_with_name('deb', 24)
+        pixbuf = icon.get_from_name('deb')
         list = map(lambda file: '%s/%s' % (cache_dir, file),
                     filter(lambda x:x.endswith('deb'), os.listdir(cache_dir))) 
         self.total_num = len(list)
@@ -392,7 +392,7 @@ class PackageView(gtk.TreeView):
 
             iter = model.append()
             model.set(iter,
-                   COLUMN_ICON, icon,
+                   COLUMN_ICON, pixbuf,
                    COLUMN_CHECK, False,
                    COLUMN_NAME, pkg,
                    COLUMN_DESC, size,
@@ -444,7 +444,7 @@ class PackageView(gtk.TreeView):
         model.clear()
         self.mode = 'config'
 #        command = "dpkg -l |awk '/^rc/ {print $2}'"
-        icon = get_icon_with_name('text', 24)
+        pixbuf = icon.get_from_name('text')
 
         list = []
         for line in os.popen('dpkg -l'):
@@ -468,7 +468,7 @@ class PackageView(gtk.TreeView):
             iter = model.append()
             model.set(iter,
                    COLUMN_CHECK, False,
-                   COLUMN_ICON, icon,
+                   COLUMN_ICON, pixbuf,
                    COLUMN_NAME, pkg.name,
                    COLUMN_DESC, 0,
                    COLUMN_DISPLAY, '<b>%s</b>\n%s' % (pkg.name, pkg.des),
@@ -701,7 +701,7 @@ class PackageCleaner(TweakModule):
 
         # create the button
         self.pkg_button = self.create_button(_('Clean Packages'),
-                gtk.image_new_from_pixbuf(get_icon_with_name('deb', 24)),
+                gtk.image_new_from_pixbuf(icon.get_from_name('deb')),
                 self.treeview.update_package_model)
         vbox.pack_start(self.pkg_button, False, False, 0)
 
@@ -716,12 +716,12 @@ class PackageCleaner(TweakModule):
         vbox.pack_start(self.config_button, False, False, 0)
 
         self.kernel_button = self.create_button(_('Clean Kernels'),
-                gtk.image_new_from_pixbuf(get_icon_with_name('start-here', 24)),
+                gtk.image_new_from_pixbuf(icon.get_from_name('start-here')),
                 self.treeview.update_kernel_model)
         vbox.pack_start(self.kernel_button, False, False, 0)
 
         self.ppa_button = self.create_button(_('Purge PPAs'),
-                gtk.image_new_from_pixbuf(get_icon_with_name('start-here', 24)),
+                gtk.image_new_from_pixbuf(icon.get_from_name('start-here')),
                 self.treeview.update_ppa_model)
         vbox.pack_start(self.ppa_button, False, False, 0)
 

@@ -29,11 +29,10 @@ import glob
 from ubuntutweak.modules  import TweakModule
 from sourcecenter import refresh_source
 from xmlrpclib import ServerProxy, Error
-from ubuntutweak.common.utils import *
 from ubuntutweak.common.gui import GuiWorker
 from ubuntutweak.common.systeminfo import module_check
 from ubuntutweak.policykit import PolkitButton, proxy
-from ubuntutweak.common.utils import set_label_for_stock_button
+from ubuntutweak.utils import set_label_for_stock_button
 from ubuntutweak.common.package import PACKAGE_WORKER
 from ubuntutweak.widgets.dialogs import *
 

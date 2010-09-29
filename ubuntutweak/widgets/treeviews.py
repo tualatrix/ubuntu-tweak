@@ -4,7 +4,7 @@ import gio
 import shutil
 import gobject
 from dialogs import ErrorDialog
-from ubuntutweak.common.utils import get_icon_with_type
+from ubuntutweak.utils import icon
 
 (
     DIR_ICON,
@@ -105,7 +105,7 @@ class DirView(gtk.TreeView):
         os.mkdir(newdir)
 
         self.model.set(iter,
-                DIR_ICON, get_icon_with_type(newdir, 24),
+                DIR_ICON, icon.get_from_name('folder', 24),
                 DIR_TITLE, filename,
                 DIR_PATH, newdir,
                 DIR_EDITABLE, True)
@@ -242,7 +242,7 @@ class DirView(gtk.TreeView):
 
     def __setup_root_model(self):
         iter = self.model.append(None)
-        pixbuf = get_icon_with_type(self.dir, 24)
+        pixbuf = icon.guess_from_path(self.dir, 24)
 
         self.model.set(iter,
                 DIR_ICON, pixbuf,
@@ -255,7 +255,7 @@ class DirView(gtk.TreeView):
     def do_update_model(self, dir, iter):
         for item in os.listdir(dir):
             fullname = os.path.join(dir, item)
-            pixbuf = get_icon_with_type(fullname, 24)
+            pixbuf = icon.guess_from_path(fullname, 24)
 
             child_iter = self.model.append(iter)
             self.model.set(child_iter,
@@ -392,7 +392,7 @@ class FlatView(gtk.TreeView):
             fullname = os.path.join(dir, item)
             title = os.path.basename(fullname)
             if title in self.exist_lsit: continue
-            pixbuf = get_icon_with_type(fullname, 24)
+            pixbuf = icon.guess_from_path(fullname, 24)
 
             iter = self.model.append(None)
             self.model.set(iter,

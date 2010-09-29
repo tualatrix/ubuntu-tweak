@@ -29,7 +29,7 @@ from ubuntutweak.modules import TweakModule
 from ubuntutweak.common.consts import *
 from ubuntutweak.common.inifile import IniFile
 from ubuntutweak.widgets.dialogs import QuestionDialog, InfoDialog
-from ubuntutweak.common.utils import get_icon_with_name
+from ubuntutweak.utils import icon
 
 (
     COLUMN_ICON,
@@ -118,7 +118,7 @@ class UserdirFile(IniFile):
         return self.XDG_DIRS[userdir]
 
     def get_xdg_icon(self, userdir):
-        return get_icon_with_name(self.XDG_ICONS[userdir])
+        return icon.get_from_name(self.XDG_ICONS[userdir])
 
     def get_restorename(self, userdir):
         gettext.bindtextdomain('xdg-user-dirs')

@@ -114,7 +114,7 @@ class CateView(gtk.TreeView):
 
     def update_model(self):
         for path, title in self.path_dict.items():
-            pixbuf = icon.get_from_name('folder', size=24)
+            pixbuf = icon.get_from_name('folder')
             iter = self.model.append(None)
             self.model.set(iter,
                            self.COLUMN_ICON, pixbuf,
@@ -171,7 +171,7 @@ class SettingView(gtk.TreeView):
         for dir in dirlist:
             title = dir.split('/')[-1]
 
-            pixbuf = icon.get_from_name(title, alter='folder', size=24)
+            pixbuf = icon.get_from_name(title, alter='folder')
             iter = self.model.append(None)
             self.model.set(iter,
                            self.COLUMN_ICON, pixbuf,

@@ -29,7 +29,7 @@ from ubuntutweak.modules.userdir import UserdirFile
 from ubuntutweak.common.consts import DATA_DIR, CONFIG_ROOT
 from ubuntutweak.widgets import DirView, FlatView
 from ubuntutweak.widgets.dialogs import WarningDialog, ErrorDialog
-from ubuntutweak.common.utils import set_label_for_stock_button
+from ubuntutweak.utils import set_label_for_stock_button
 
 log = logging.getLogger("Templates")
 

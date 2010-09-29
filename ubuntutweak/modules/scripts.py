@@ -26,11 +26,10 @@ import stat
 import shutil
 import gobject
 import gettext
-import gnomevfs
 import logging
 from ubuntutweak.modules  import TweakModule
+from ubuntutweak.utils import icon
 from ubuntutweak.common.consts import DATA_DIR, CONFIG_ROOT
-from ubuntutweak.common.utils import get_icon_with_type
 from ubuntutweak.widgets import DirView, FlatView
 from ubuntutweak.widgets.dialogs import WarningDialog
 
@@ -116,7 +115,7 @@ class EnableScripts(DirView, AbstractScripts):
     def do_update_model(self, dir, iter):
         for item in os.listdir(dir):
             fullname = os.path.join(dir, item)
-            pixbuf = get_icon_with_type(fullname, 24)
+            pixbuf = icon.guess_from_path(fullname)
 
             child_iter = self.model.append(iter)
             self.model.set(child_iter,

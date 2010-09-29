@@ -27,7 +27,7 @@ import thread
 from gettext import ngettext
 
 from ubuntutweak.modules  import TweakModule
-from ubuntutweak.common.utils import get_icon_with_name, mime_type_get_icon, get_icon_with_app
+from ubuntutweak.utils import icon
 from ubuntutweak.common.gui import GuiWorker
 from ubuntutweak.widgets.dialogs import ErrorDialog
 
@@ -84,8 +84,8 @@ class CateView(gtk.TreeView):
         self.append_column(column)
 
     def update_model(self):
-        for title, cate, icon in MIMETYPE:
-            pixbuf = get_icon_with_name(icon, 24)
+        for title, cate, icon_name in MIMETYPE:
+            pixbuf = icon.get_from_name(icon_name)
             iter = self.model.append(None)
             self.model.set(iter, 
                     COLUMN_ICON, pixbuf, 
@@ -168,13 +168,13 @@ class TypeView(gtk.TreeView):
             if filter and filter != type.split('/')[0]:
                 continue
 
-            pixbuf = mime_type_get_icon(type, 24)
+            pixbuf = icon.get_from_mime_type(type)
             description = gio.content_type_get_description(type)
             app = gio.app_info_get_default_for_type(type, False)
 
             if app:
                 appname = app.get_name()
-                applogo = get_icon_with_app(app, 24)
+                applogo = icon.get_from_app(app)
             elif all and not app:
                 appname = _('None')
                 applogo = None
@@ -203,7 +203,7 @@ class TypeView(gtk.TreeView):
 
             if app:
                 appname = app.get_name()
-                applogo = get_icon_with_app(app, 24)
+                applogo = icon.get_from_app(app)
                 
                 model.set(iter, 
                         TYPE_APPICON, applogo,
@@ -318,7 +318,7 @@ class AddAppDialog(gobject.GObject):
 
         for appinfo in gio.app_info_get_all():
             if appinfo.supports_files() or appinfo.supports_uris():
-                applogo = get_icon_with_app(appinfo, 24)
+                applogo = icon.get_from_app(appinfo)
                 appname = appinfo.get_name()
 
                 iter = model.append()
@@ -468,7 +468,7 @@ class TypeEditDialog(gobject.GObject):
                         app_dict[appname] = appinfo
 
             for appname, appinfo in app_dict.items():
-                applogo = get_icon_with_app(appinfo, 24)
+                applogo = icon.get_from_app(appinfo)
                 iter = self.model.append()
                 if len(default_list) == 1 and appname in default_list:
                     enabled = True
@@ -486,7 +486,7 @@ class TypeEditDialog(gobject.GObject):
             def_app = gio.app_info_get_default_for_type(type, False)
 
             for appinfo in gio.app_info_get_all_for_type(type):
-                applogo = get_icon_with_app(appinfo, 24)
+                applogo = icon.get_from_app(appinfo)
                 appname = appinfo.get_name()
 
                 iter = self.model.append()
