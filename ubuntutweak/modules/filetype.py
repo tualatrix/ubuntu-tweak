@@ -347,7 +347,7 @@ class TypeEditDialog(gobject.GObject):
         super(TypeEditDialog, self).__init__()
         self.types = types
 
-        type_pixbuf = mime_type_get_icon(self.types[0], 64)
+        type_pixbuf = icon.get_from_mime_type(self.types[0], 64)
         worker = GuiWorker('type_edit.ui')
 
         self.dialog = worker.get_object('type_edit_dialog')
