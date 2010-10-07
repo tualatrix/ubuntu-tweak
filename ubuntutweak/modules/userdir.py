@@ -254,18 +254,20 @@ class UserDir(TweakModule):
         self.dirview.get_selection().connect('changed', self.on_selection_changed)
         sw.add(self.dirview)
 
-        hbox = gtk.HBox(False, 12)
-        self.add_start(hbox, False, False, 0)
+        hbuttonbox = gtk.HButtonBox()
+        hbuttonbox.set_spacing(12)
+        hbuttonbox.set_layout(gtk.BUTTONBOX_END)
+        self.add_start(hbuttonbox, False, False, 0)
 
         self.restore_button = gtk.Button(_('_Restore'))
         self.restore_button.set_sensitive(False)
         self.restore_button.connect('clicked', self.on_restore_button_clicked)
-        hbox.pack_end(self.restore_button, False, False, 0)
+        hbuttonbox.pack_end(self.restore_button, False, False, 0)
 
         self.change_button = gtk.Button(_('_Change'))
         self.change_button.set_sensitive(False)
         self.change_button.connect('clicked', self.on_change_button_clicked)
-        hbox.pack_end(self.change_button, False, False, 0)
+        hbuttonbox.pack_end(self.change_button, False, False, 0)
 
     def on_change_button_clicked(self, widget):
         self.dirview.on_change_directory(widget)

@@ -205,22 +205,31 @@ class MainWindow(gtk.Window):
 
         hbox = gtk.HBox(False, 12)
         vbox.pack_start(hbox, False, False, 0)
+
+        l_hbutton_box = gtk.HButtonBox()
+        l_hbutton_box.set_spacing(12)
+        hbox.pack_start(l_hbutton_box, False, False, 0)
+
         button = gtk.Button(stock=gtk.STOCK_ABOUT)
         button.connect("clicked", self.show_about)
-        hbox.pack_start(button, False, False, 0)
+        l_hbutton_box.pack_start(button, False, False, 0)
 
         d_button = gtk.Button(stock=gtk.STOCK_YES)
         set_label_for_stock_button(d_button, _('_Donate'))
         d_button.connect("clicked", self.on_d_clicked)
-        hbox.pack_start(d_button, False, False, 0)
+        l_hbutton_box.pack_start(d_button, False, False, 0)
 
-        button = gtk.Button(stock=gtk.STOCK_QUIT)
-        button.connect("clicked", self.destroy)
-        hbox.pack_end(button, False, False, 0)
+        r_hbutton_box = gtk.HButtonBox()
+        r_hbutton_box.set_spacing(12)
+        hbox.pack_end(r_hbutton_box, False, False, 0)
 
         button = gtk.Button(stock=gtk.STOCK_PREFERENCES)
         button.connect('clicked', self.on_preferences_clicked)
-        hbox.pack_end(button, False, False, 0)
+        r_hbutton_box.pack_end(button, False, False, 0)
+
+        button = gtk.Button(stock=gtk.STOCK_QUIT)
+        button.connect("clicked", self.destroy)
+        r_hbutton_box.pack_end(button, False, False, 0)
 
         self.get_gui_state()
         self.set_icon(icon.get_from_name('ubuntu-tweak', size=48))

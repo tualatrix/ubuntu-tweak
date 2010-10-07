@@ -123,17 +123,21 @@
           </packing>
         </child>
         <child>
-          <object class="GtkHBox" id="hbox1">
+          <placeholder/>
+        </child>
+        <child>
+          <object class="GtkHButtonBox" id="hbuttonbox1">
             <property name="visible">True</property>
             <property name="spacing">12</property>
+            <property name="layout_style">end</property>
             <child>
-              <object class="GtkButton" id="recover_button">
-                <property name="label" translatable="yes">_Recover</property>
+              <object class="GtkButton" id="reset_button">
+                <property name="label" translatable="yes">R_eset</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_underline">True</property>
-                <signal name="clicked" handler="on_recover_button_clicked"/>
+                <signal name="clicked" handler="on_reset_button_clicked"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -159,13 +163,13 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="reset_button">
-                <property name="label" translatable="yes">R_eset</property>
+              <object class="GtkButton" id="recover_button">
+                <property name="label" translatable="yes">_Recover</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_underline">True</property>
-                <signal name="clicked" handler="on_reset_button_clicked"/>
+                <signal name="clicked" handler="on_recover_button_clicked"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -178,7 +182,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">False</property>
-            <property name="position">1</property>
+            <property name="position">2</property>
           </packing>
         </child>
       </object>

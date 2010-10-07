@@ -375,8 +375,7 @@ class SourceEditor(TweakModule):
 
         un_lock = PolkitButton()
         un_lock.connect('changed', self.on_polkit_action)
-        self.hbox2.pack_end(un_lock, False, False, 0)
-        self.hbox2.reorder_child(un_lock, 1)
+        self.hbuttonbox2.pack_end(un_lock, False, False, 0)
 
         self.reparent(self.main_vbox)
 

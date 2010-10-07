@@ -681,7 +681,7 @@ class PackageCleaner(TweakModule):
         self.button_list = []
         self.current_button = 0
 
-        hbox = gtk.HBox(False, 0)
+        hbox = gtk.HBox(False, 12)
         self.add_start(hbox, True, True, 0)
 
         sw = gtk.ScrolledWindow()
@@ -689,8 +689,8 @@ class PackageCleaner(TweakModule):
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         hbox.pack_start(sw)
 
-        vbox = gtk.VBox(False, 8)
-        hbox.pack_start(vbox, False, False, 5)
+        vbox = gtk.VBox(False, 6)
+        hbox.pack_start(vbox, False, False, 0)
 
         # create tree view
         self.treeview = PackageView()
@@ -732,18 +732,20 @@ class PackageCleaner(TweakModule):
         self.add_start(self.select_button, False, False, 0)
 
         # button
-        hbox = gtk.HBox(False, 0)
-        self.pack_end(hbox, False ,False, 5)
-
-        un_lock = PolkitButton()
-        un_lock.connect('changed', self.on_polkit_action)
-        hbox.pack_end(un_lock, False, False, 5)
+        hbuttonbox = gtk.HButtonBox()
+        hbuttonbox.set_spacing(12)
+        hbuttonbox.set_layout(gtk.BUTTONBOX_END)
+        self.add_end(hbuttonbox, False ,False, 0)
 
         self.clean_button = gtk.Button(stock=gtk.STOCK_CLEAR)
         set_label_for_stock_button(self.clean_button, _('_Cleanup'))
         self.clean_button.connect('clicked', self.on_clean_button_clicked)
         self.clean_button.set_sensitive(False)
-        hbox.pack_end(self.clean_button, False, False, 5)
+        hbuttonbox.pack_end(self.clean_button, False, False, 0)
+
+        un_lock = PolkitButton()
+        un_lock.connect('changed', self.on_polkit_action)
+        hbuttonbox.pack_end(un_lock, False, False, 0)
 
         self.show_all()
 
