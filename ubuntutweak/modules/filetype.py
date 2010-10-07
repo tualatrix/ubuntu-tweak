@@ -378,7 +378,6 @@ class TypeEditDialog(gobject.GObject):
         remove_button = worker.get_object('type_edit_remove_button')
         # remove button should not available in multiple selection
         if len(self.types) > 1:
-            add_button.hide()
             remove_button.hide()
         remove_button.connect('clicked', self.on_remove_button_clicked)
 
