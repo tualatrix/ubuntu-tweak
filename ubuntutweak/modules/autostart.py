@@ -337,6 +337,7 @@ class AutoStart(TweakModule):
                 'To permanently delete an item, right-click and select "Delete".')
     __icon__ = 'session-properties'
     __category__ = 'startup'
+    __utactive__ = False
 
     def __init__(self):
         TweakModule.__init__(self)
