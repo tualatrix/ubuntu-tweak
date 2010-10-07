@@ -1161,4 +1161,6 @@ class SourceCenter(TweakModule):
         elif dialog.error == True:
             ErrorDialog(_("Network Error, Please check your network connection or the remote server is down.")).launch()
         else:
+            utdata.save_synced_timestamp(SOURCE_ROOT)
+            self.update_timestamp()
             InfoDialog(_("No update available.")).launch()

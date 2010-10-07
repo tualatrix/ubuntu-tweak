@@ -668,6 +668,8 @@ class AppCenter(TweakModule):
         elif dialog.error == True:
             ErrorDialog(_("Network Error, please check your network connection - or the remote server may be down.")).launch()
         else:
+            utdata.save_synced_timestamp(APPCENTER_ROOT)
+            self.update_timestamp()
             InfoDialog(_("No update available.")).launch()
 
     def on_app_data_downloaded(self, widget):
