@@ -142,12 +142,11 @@ class TweakModule(gtk.VBox):
         self.inner_vbox.pack_end(child, expand, fill, padding)
 
     def draw_title(self):
-        eventbox = gtk.EventBox()
-        eventbox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse('white'))
-        self.pack_start(eventbox, False, False, 0)
+        style = gtk.MenuItem().rc_get_style()
 
         vbox = gtk.VBox()
-        eventbox.add(vbox)
+        vbox.set_style(style)
+        self.pack_start(vbox, False, False, 0)
 
         align = gtk.Alignment(0.5, 0.5, 1.0, 1.0)
         align.set_padding(5, 5, 5, 5)
