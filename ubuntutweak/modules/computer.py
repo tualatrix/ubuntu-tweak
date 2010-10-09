@@ -20,6 +20,8 @@
 
 import os
 import gtk
+import logging
+
 from ubuntutweak.modules import TweakModule
 from ubuntutweak.widgets import TablePack
 from ubuntutweak.widgets.dialogs import QuestionDialog
@@ -28,6 +30,8 @@ from ubuntutweak.policykit import proxy
 #TODO
 from ubuntutweak.common.misc import filesizeformat
 from ubuntutweak.common.systeminfo import SystemInfo
+
+log = logging.getLogger("AppCenter")
 
 class Computer(TweakModule):
     __title__ = _('Computer Details')
@@ -87,10 +91,11 @@ class Computer(TweakModule):
         vbox.show_all()
 
         res = dialog.run()
+        new_name = entry.get_text()
         dialog.destroy()
 
         if res == gtk.RESPONSE_YES:
-            new_name = entry.get_text()
-            proxy.exec_command('hostname %s' % new_name)
+            ret = proxy.exec_command('hostname %s' % new_name)
+            log.debug("New name is: %s, The ret is: %s" % (new_name, ret))
             if os.popen('hostname').read().strip() == new_name:
                 label.set_label(new_name)
