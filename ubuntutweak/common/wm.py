@@ -55,7 +55,7 @@ class WindowManager(object):
         Check the DESKTOP_SESSION variable to distinguish window manager.
         """
         wm_value = getenv('DESKTOP_SESSION')
-        if wm_value in ('gnome','kde','lxde','LXDE','wmaker'):
+        if wm_value in ('gnome','kde','lxde','LXDE','wmaker','une'):
             return wm_value.lower()
         elif wm_value in ('xfce.desktop','xfce'):
             return 'xfce'
@@ -68,7 +68,10 @@ class WindowManager(object):
         Check the existence of window manager unique variable.
         """
         if getenv('GNOME_DESKTOP_SESSION_ID'):
-            return 'gnome'
+            if getenv('GDMSESSION') == 'une':
+                return 'une'
+            else:
+                return 'gnome'
         elif getenv('KDE_FULL_SESSION'):
             return 'kde'
         elif getenv('_LXSESSION_PID'):

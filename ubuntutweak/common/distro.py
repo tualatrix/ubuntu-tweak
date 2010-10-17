@@ -55,6 +55,7 @@ class Distribution(object):
             self._reduce_version()
             self.codename = self.codename.lower()
             self._reduce_ut_codename()
+            self._get_is_supported()
         elif self.system == 'Darwin':
             self.name = 'macosx'
             self.version = platform.mac_ver()[0]
@@ -126,5 +127,15 @@ class Distribution(object):
                 self.ut_codename = 'lucid'
         else:
             self.ut_codename = self.codename
+
+    def _get_is_supported(self):
+        if self.name == 'ubuntu':
+            if self.codename in ['karmic', 'lucid', 'maverick']:
+                self.is_supported = True
+        elif self.name == 'linuxmint':
+            if self.codename in ['helena', 'isadora']:
+                self.is_supported = True
+        else:
+            self.is_supported = False
 
 pass
