@@ -101,19 +101,22 @@ class module_check:
 
     @classmethod
     def has_right_compiz(cls):
+        '''Return 1 if OK, return 0 if no ccm, return -1 if compiz broken'''
         try:
+            compiz_pkg = os.popen("dpkg -l compiz|grep compiz|awk '{print $3}'").read().strip()
+            if compiz_pkg.split(':')[1] > '0.9':
+                return -1
+
             if cls.has_ccm():
                 import ccm
                 if ccm.Version >= '0.7.4':
-                    return True
+                    return 1
                 else:
-                    return False
-            elif cls.has_apt():
-                return True
+                    return 0
             else:
-                return False
+                return 0
         except:
-            return False
+            return 0
 
     @classmethod
     def get_gnome_version(cls):

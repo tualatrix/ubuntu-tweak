@@ -61,11 +61,15 @@ plugins_settings = \
 }
 
 class CompizSetting:
-    if module_check.has_ccm() and module_check.has_right_compiz():
+    if module_check.has_ccm() and module_check.has_right_compiz() == 1:
         import compizconfig as ccs
         context = ccs.Context()
-    else:
+    elif module_check.has_right_compiz() == 0:
         context = None
+        error = False
+    elif module_check.has_right_compiz() == -1:
+        context = None
+        error = True
 
     @classmethod
     def update_context(cls):
@@ -275,7 +279,7 @@ class Compiz(TweakModule, CompizSetting):
                 box.vbox.pack_start(hbox, False, False, 0)
 
                 self.add_start(box, False, False, 0)
-        else:
+        elif self.context == None and self.error == False:
             box = ListPack(_("Prerequisite Conditions"), (
                 self.advanced_settings,
             ))
@@ -288,6 +292,9 @@ class Compiz(TweakModule, CompizSetting):
 
             box.vbox.pack_start(hbox, False, False, 0)
             self.add_start(box, False, False, 0)
+        elif self.context == None and self.error == True:
+            label = gtk.Label(_('Compiz is broken, Please go to "Package Cleaner" -> "Purge PPAs" to cleanup the "Compiz Packagers PPA" or "ppa:compiz/ppa".'))
+            self.add_start(label, False, False, 0)
 
     def combo_box_changed_cb(self, widget, edge):
         """If the previous setting is none, then select the add edge"""
