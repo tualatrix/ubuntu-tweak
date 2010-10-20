@@ -31,7 +31,7 @@ from ubuntutweak.common.consts import *
 from ubuntutweak.common.factory import WidgetFactory
 
 class Session(TweakModule):
-    __title__ = _('Session control')
+    __title__ = _('Session Control')
     __desc__ = _('Control your system session releated features')
     __icon__ = 'gnome-session-hibernate'
     __category__ = 'startup'
