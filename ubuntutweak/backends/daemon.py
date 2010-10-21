@@ -383,6 +383,15 @@ class Daemon(PolicyKitService):
         f.close()
 
     @dbus.service.method(INTERFACE,
+                         in_signature='s', out_signature='',
+                         sender_keyword='sender')
+    def rm_apt_key(self, key_id, sender=None):
+        self._check_permission(sender)
+
+        apt_key = AptAuth()
+        apt_key.rm(key_id)
+
+    @dbus.service.method(INTERFACE,
                          in_signature='ss', out_signature='',
                          sender_keyword='sender')
     def save_to_disk(self, text, filename, sender=None):
