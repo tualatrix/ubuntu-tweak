@@ -110,7 +110,6 @@ class PackageWorker:
                     list.append(pkg)
         except Exception, e:
             log.error(e)
-            run_traceback('error')
 
         return list
 
