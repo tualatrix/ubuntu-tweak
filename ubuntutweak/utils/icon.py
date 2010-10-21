@@ -15,21 +15,25 @@ icontheme = gtk.icon_theme_get_default()
 DEFAULT_SIZE = 24
 
 def get_from_name(name='gtk-execute', alter='gtk-execute', size=DEFAULT_SIZE, force_reload=False):
+    pixbuf = None
+
     if force_reload:
         global icontheme
         icontheme = gtk.icon_theme_get_default()
+
     try:
         pixbuf = icontheme.load_icon(name, size, 0)
     except Exception, e:
         log.error(e)
         # if the alter name isn't here, so use random icon
 
-        try:
-            pixbuf = icontheme.load_icon(alter, size, 0)
-        except Exception, e:
-            log.error(e)
-            icons = icontheme.list_icons()
-            pixbuf = icontheme.load_icon(icons[random.randint(0, len(icons) - 1)], size, 0)
+        while not pixbuf:
+            try:
+                pixbuf = icontheme.load_icon(alter, size, 0)
+            except Exception, e:
+                log.error(e)
+                icons = icontheme.list_icons()
+                alter = icons[random.randint(0, len(icons) - 1)]
 
     if pixbuf.get_height() != size:
         return pixbuf.scale_simple(size, size, gtk.gdk.INTERP_BILINEAR)
@@ -106,3 +110,6 @@ def guess_from_path(filepath, size=DEFAULT_SIZE):
     except Exception, e:
         print e
         return get_from_name(size=size)
+
+if __name__ == '__main__':
+    print get_from_name('ok', alter='ko')
