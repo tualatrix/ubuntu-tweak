@@ -263,6 +263,12 @@ class SourceParser(Parser):
     def get_key(self, key):
         return self[key]['key']
 
+    def get_key_fingerprint(self, key):
+        if self[key].has_key('key_fingerprint'):
+            return self[key]['key_fingerprint']
+        else:
+            return ''
+
     def get_distro(self, key):
         return self[key]['distro']
 

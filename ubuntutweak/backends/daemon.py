@@ -15,6 +15,7 @@ import apt
 import fcntl
 import apt_pkg
 import dbus
+import glob
 import dbus.glib
 import dbus.service
 import dbus.mainloop.glib
@@ -130,6 +131,43 @@ class Daemon(PolicyKitService):
         for source in self.list:
             if url in source.str() and source.type == 'deb':
                 return not source.disabled
+
+    @dbus.service.method(INTERFACE,
+                         in_signature='ss', out_signature='b',
+                         sender_keyword='sender')
+    def purge_source(self, url, key_fingerprint='', sender=None):
+        self._check_permission(sender)
+        self.list.refresh()
+        to_remove = []
+
+        for source in self.list:
+            if url in source.str() and source.type == 'deb':
+                to_remove.extend(glob.glob(source.file))
+
+        for file in to_remove:
+            os.remove(file)
+
+        # Must refresh! Because the sources.list.d has been changed
+        self.list.refresh()
+
+        # Search for whether there's other source from the same owner, if exists,
+        # don't remove the apt-key
+        owner_url = "http://" + self.PPA_URL + "/" + url.split('/')[3]
+        need_remove_key = True
+
+        for source in self.list:
+            if owner_url in source.str() and source.type == 'deb':
+                need_remove_key = False
+                break
+
+        if key_fingerprint and need_remove_key:
+            self.rm_apt_key(key_fingerprint)
+
+        for source in self.list:
+            if url in source.str() and source.type == 'deb':
+                return True
+
+        return False
 
     @dbus.service.method(INTERFACE,
                          in_signature='ssssb', out_signature='s',

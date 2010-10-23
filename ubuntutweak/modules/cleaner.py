@@ -24,7 +24,10 @@ import thread
 import glob
 import gobject
 import logging
+import simplejson
 import pango
+
+from urllib2 import urlopen, Request, URLError
 from dbus.exceptions import DBusException
 from aptsources.sourceslist import SourcesList
 from gettext import ngettext
@@ -401,6 +404,14 @@ class PackageView(gtk.TreeView):
                 )
         self.unset_busy()
 
+    def __get_ppa_source_dict(self):
+        ppa_source_dict = {}
+        for id in SOURCE_PARSER:
+            url = SOURCE_PARSER.get_url(id)
+            ppa_source_dict[url] = id
+
+        return ppa_source_dict
+
     def update_ppa_model(self):
         self.set_busy()
         self.__column.set_title('PPA Sources')
@@ -408,10 +419,7 @@ class PackageView(gtk.TreeView):
         model.clear()
         self.mode = 'ppa'
 
-        ppa_source_dict = {}
-        for id in SOURCE_PARSER:
-            url = SOURCE_PARSER.get_url(id)
-            ppa_source_dict[url] = id
+        ppa_source_dict = self.__get_ppa_source_dict()
 
         for source in self.get_sourceslist():
             if PPA_URL in source.uri and source.type == 'deb' and not source.disabled:
@@ -633,8 +641,32 @@ class PackageView(gtk.TreeView):
             dialog.run()
             dialog.destroy()
             if dialog.error == False:
+                ppa_source_dict = self.__get_ppa_source_dict()
+                log.debug("The id-ppa mapping dict %s", ppa_source_dict)
+
                 for url in url_list:
-                    result = proxy.set_source_enable(url, False)
+                    key_fingerprint = ''
+
+                    if url in ppa_source_dict:
+                        id = ppa_source_dict[url]
+                        key_fingerprint = SOURCE_PARSER.get_key_fingerprint(id)
+
+                    if not key_fingerprint:
+                        try:
+                            #TODO wrap the LP API or use library
+                            owner, ppa = url.split('/')[3:5]
+                            lp_url = 'https://launchpad.net/api/beta/~%s/+archive/%s' % (owner, ppa)
+                            req =  Request(lp_url)
+                            req.add_header("Accept","application/json")
+                            lp_page = urlopen(req).read()
+                            data = simplejson.loads(lp_page)
+                            key_fingerprint = data['signing_key_fingerprint']
+                        except Exception, e:
+                            key_fingerprint = ''
+                            log.error(e)
+
+                    log.debug("Get the key fingerprint: %s", key_fingerprint)
+                    result = proxy.purge_source(url, key_fingerprint)
                     log.debug("Set source: %s to %s" % (url, str(result)))
                 self.show_success_dialog()
             else:
