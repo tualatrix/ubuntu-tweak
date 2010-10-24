@@ -432,6 +432,7 @@ class Daemon(PolicyKitService):
         new_path = f.name
         f.close()
         os.popen('cp %s %s' % (path, new_path))
+        os.chmod(new_path, 777)
         return new_path
 
     @dbus.service.method(INTERFACE,
