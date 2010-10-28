@@ -315,7 +315,7 @@ class AptCheckButton(gtk.CheckButton):
     def get_state(self):
         try:
             pkg = PACKAGE_WORKER.get_cache()[self.pkgname]
-        except KeyError:
+        except:
             self.set_sensitive(False)
             label = self.get_property('label')
             label = label + _('(Not available)')
