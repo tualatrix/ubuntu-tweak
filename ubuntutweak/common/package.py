@@ -265,6 +265,11 @@ class PackageWorker:
         downgrade_dict = {}
         for pkg, urls in ppa_dict.items():
             log.debug("The package is: %s, PPA URL is: %s" % (pkg, str(urls)))
+
+            if pkg not in self.get_cache():
+                log.debug("    package isn't available, continue next...\n")
+                continue
+
             pkg = self.get_cache()[pkg]
             if not pkg.isInstalled:
                 log.debug("    package isn't installed, continue next...\n")
