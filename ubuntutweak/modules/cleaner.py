@@ -69,6 +69,14 @@ def get_ppa_short_name(url):
     section = url.split('/')
     return 'ppa:%s/%s' % (section[3], section[4])
 
+def get_ppa_source_dict():
+    ppa_source_dict = {}
+    for id in SOURCE_PARSER:
+        url = SOURCE_PARSER.get_url(id)
+        ppa_source_dict[url] = id
+
+    return ppa_source_dict
+
 class AbsPkg:
     def __init__(self, pkg, des):
         self.name = pkg
@@ -140,10 +148,12 @@ class CleanCacheDailog(ProcessDialog):
             self.destroy()
 
 class CleanPpaDialog(TerminalDialog):
-    def __init__(self, parent, pkgs):
+    def __init__(self, parent, pkgs, urls):
         super(CleanPpaDialog, self).__init__(parent=parent)
         self.pkgs = pkgs
-        self.done = False
+        self.urls = urls
+        self.downgrade_done = False
+        self.removekey_done = False
         self.error = False
         self.user_action = False
 
@@ -151,28 +161,75 @@ class CleanPpaDialog(TerminalDialog):
         self.set_progress_text(_('Downloading Packages...'))
 
     def process_data(self):
-        proxy.install_select_pkgs(self.pkgs)
+        if self.pkgs:
+            proxy.install_select_pkgs(self.pkgs)
+        else:
+            self.downgrade_done = True
+
+        ppa_source_dict = get_ppa_source_dict()
+
+        # Sort out the unique owner urls, so that the PPAs from same owner will only fetch key fingerprint only once
+        key_fingerprint_dict = {}
+        for url in self.urls:
+            if url in ppa_source_dict:
+                id = ppa_source_dict[url]
+                key_fingerprint = SOURCE_PARSER.get_key_fingerprint(id)
+            else:
+                key_fingerprint = ''
+
+            owner, ppa = url.split('/')[3:5]
+
+            if owner not in key_fingerprint_dict:
+                key_fingerprint_dict[owner] = key_fingerprint
+
+        for url in self.urls:
+            owner, ppa = url.split('/')[3:5]
+            key_fingerprint = key_fingerprint_dict[owner]
+
+            self.set_progress_text(_('Removing key files...'))
+            if not key_fingerprint:
+                try:
+                    #TODO wrap the LP API or use library
+                    owner, ppa = url.split('/')[3:5]
+                    lp_url = 'https://launchpad.net/api/beta/~%s/+archive/%s' % (owner, ppa)
+                    req =  Request(lp_url)
+                    req.add_header("Accept","application/json")
+                    lp_page = urlopen(req).read()
+                    data = simplejson.loads(lp_page)
+                    key_fingerprint = data['signing_key_fingerprint']
+                except Exception, e:
+                    log.error(e)
+                    continue
+
+            log.debug("Get the key fingerprint: %s", key_fingerprint)
+            result = proxy.purge_source(url, key_fingerprint)
+            log.debug("Set source: %s to %s" % (url, str(result)))
+
+        self.removekey_done = True
 
     def on_timeout(self):
         self.pulse()
-        line, returncode = proxy.get_cmd_pipe()
-        log.debug("Clean PPA result is: %s" % line)
-        if line != '':
-            line = line.rstrip()
-            if '.deb' in line:
-                try:
-                    package = line.split('.../')[1].split('_')[0]
-                    self.set_progress_text(_('Downgrading...%s') % package)
-                except:
-                    pass
-            if line:
-                self.terminal.insert(line)
-            else:
-                self.terminal.insert('\n')
-        if returncode != 'None':
-            self.done = True
+        if not self.downgrade_done:
+            line, returncode = proxy.get_cmd_pipe()
+            log.debug("Clean PPA result is: %s, returncode is: %s" % (line, returncode))
+            if line != '':
+                line = line.rstrip()
+                if '.deb' in line:
+                    try:
+                        package = line.split('.../')[1].split('_')[0]
+                        self.set_progress_text(_('Downgrading...%s') % package)
+                    except:
+                        pass
+                if line:
+                    self.terminal.insert(line)
+                else:
+                    self.terminal.insert('\n')
 
-        if not self.done:
+            # TODO if returncode isn't 0?
+            if returncode != 'None':
+                self.downgrade_done = True
+
+        if not self.removekey_done:
             return True
         else:
             self.destroy()
@@ -404,14 +461,6 @@ class PackageView(gtk.TreeView):
                 )
         self.unset_busy()
 
-    def __get_ppa_source_dict(self):
-        ppa_source_dict = {}
-        for id in SOURCE_PARSER:
-            url = SOURCE_PARSER.get_url(id)
-            ppa_source_dict[url] = id
-
-        return ppa_source_dict
-
     def update_ppa_model(self):
         self.set_busy()
         self.__column.set_title('PPA Sources')
@@ -419,7 +468,7 @@ class PackageView(gtk.TreeView):
         model.clear()
         self.mode = 'ppa'
 
-        ppa_source_dict = self.__get_ppa_source_dict()
+        ppa_source_dict = get_ppa_source_dict()
 
         for source in self.get_sourceslist():
             if PPA_URL in source.uri and source.type == 'deb' and not source.disabled:
@@ -637,37 +686,10 @@ class PackageView(gtk.TreeView):
         if response == gtk.RESPONSE_YES:
             self.set_busy()
             log.debug("The select pkgs is: %s", str(select_pkgs))
-            dialog = CleanPpaDialog(self.get_toplevel(), select_pkgs)
+            dialog = CleanPpaDialog(self.get_toplevel(), select_pkgs, url_list)
             dialog.run()
             dialog.destroy()
             if dialog.error == False:
-                ppa_source_dict = self.__get_ppa_source_dict()
-                log.debug("The id-ppa mapping dict %s", ppa_source_dict)
-
-                for url in url_list:
-                    key_fingerprint = ''
-
-                    if url in ppa_source_dict:
-                        id = ppa_source_dict[url]
-                        key_fingerprint = SOURCE_PARSER.get_key_fingerprint(id)
-
-                    if not key_fingerprint:
-                        try:
-                            #TODO wrap the LP API or use library
-                            owner, ppa = url.split('/')[3:5]
-                            lp_url = 'https://launchpad.net/api/beta/~%s/+archive/%s' % (owner, ppa)
-                            req =  Request(lp_url)
-                            req.add_header("Accept","application/json")
-                            lp_page = urlopen(req).read()
-                            data = simplejson.loads(lp_page)
-                            key_fingerprint = data['signing_key_fingerprint']
-                        except Exception, e:
-                            key_fingerprint = ''
-                            log.error(e)
-
-                    log.debug("Get the key fingerprint: %s", key_fingerprint)
-                    result = proxy.purge_source(url, key_fingerprint)
-                    log.debug("Set source: %s to %s" % (url, str(result)))
                 self.show_success_dialog()
             else:
                 self.show_failed_dialog()
