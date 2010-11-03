@@ -27,6 +27,7 @@ import logging
 
 from subprocess import PIPE
 from aptsources.sourceslist import SourceEntry, SourcesList
+from ubuntutweak.utils import ppa
 from ubuntutweak.backends import PolicyKitService
 from ubuntutweak.common.systeminfo import module_check
 
@@ -100,7 +101,6 @@ class Daemon(PolicyKitService):
     liststate = None
     list = SourcesList()
 #    cache = apt.Cache()
-    PPA_URL = 'ppa.launchpad.net'
     stable_url = 'http://ppa.launchpad.net/tualatrix/ppa/ubuntu'
     ppa_list = []
     p = None
@@ -152,7 +152,7 @@ class Daemon(PolicyKitService):
 
         # Search for whether there's other source from the same owner, if exists,
         # don't remove the apt-key
-        owner_url = "http://" + self.PPA_URL + "/" + url.split('/')[3]
+        owner_url = "http://" + ppa.PPA_URL + "/" + url.split('/')[3]
         need_remove_key = True
 
         for source in self.list:
@@ -236,7 +236,7 @@ class Daemon(PolicyKitService):
         self.ppa_list = []
 
         for source in self.list:
-            if self.PPA_URL in source.uri and not source.disabled:
+            if ppa.is_ppa(source.uri) and not source.disabled:
                 self.ppa_list.append(source.uri)
                 source.set_enabled(False)
 
@@ -249,7 +249,7 @@ class Daemon(PolicyKitService):
 
         for source in self.list:
             url = source.uri
-            if self.PPA_URL in url and url in self.ppa_list:
+            if ppa.is_ppa(url) and url in self.ppa_list:
                 source.set_enabled(True)
 
         self.list.save()

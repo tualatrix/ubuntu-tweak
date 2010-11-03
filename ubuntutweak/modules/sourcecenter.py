@@ -45,6 +45,7 @@ from appcenter import AppView, CategoryView, AppParser, StatusProvider
 from appcenter import CheckUpdateDialog, FetchingDialog
 from ubuntutweak.conf import GconfSetting
 from ubuntutweak.utils import set_label_for_stock_button
+from ubuntutweak.utils import ppa
 from ubuntutweak.common import consts
 from ubuntutweak.common.config import Config, TweakSettings
 from ubuntutweak.common.package import PACKAGE_WORKER, PackageInfo
@@ -58,7 +59,6 @@ APP_PARSER = AppParser()
 CONFIG = Config()
 PPA_MIRROR = []
 UNCONVERT = False
-PPA_URL = 'ppa.launchpad.net'
 WARNING_KEY = '/apps/ubuntu-tweak/disable_thidparty_warning'
 UBUNTU_CN_STR = 'archive.ubuntu.org.cn/ubuntu-cn'
 UBUNTU_CN_URL = 'http://archive.ubuntu.org.cn/ubuntu-cn/'
@@ -86,10 +86,6 @@ def get_source_logo_from_filename(file_name):
         return pixbuf
     except:
         return gtk.icon_theme_get_default().load_icon(gtk.STOCK_MISSING_IMAGE, 32, 0)
-
-def get_ppa_homepage(url):
-    section = url.split('/')
-    return 'https://launchpad.net/~%s/+archive/%s' % (section[3], section[4])
 
 def refresh_source(parent):
     dialog = UpdateCacheDialog(parent)
@@ -656,7 +652,7 @@ class SourcesView(gtk.TreeView):
             reload(ubuntutweak.common.sourcedata)
             global SOURCES_DATA
             from ubuntutweak.common.sourcedata import SOURCES_DATA
-            proxy.replace_entry(UBUNTU_CN_STR, PPA_URL)
+            proxy.replace_entry(UBUNTU_CN_STR, ppa.PPA_URL)
             self.update_model()
             self.emit('sourcechanged')
         else:
@@ -668,7 +664,7 @@ class SourcesView(gtk.TreeView):
                 url  = self.model.get_value(iter, self.COLUMN_URL)
 
                 if self.has_mirror_ppa(url):
-                    new_url = url.replace(PPA_URL, UBUNTU_CN_STR)
+                    new_url = url.replace(ppa.PPA_URL, UBUNTU_CN_STR)
                     proxy.replace_entry(url, new_url)
                     self.model.set_value(iter, self.COLUMN_URL, new_url)
 
@@ -685,7 +681,7 @@ class SourcesView(gtk.TreeView):
         for item in SOURCES_DATA:
             url = item[0]
             if self.has_mirror_ppa(url):
-                url = url.replace(PPA_URL, UBUNTU_CN_STR)
+                url = url.replace(ppa.PPA_URL, UBUNTU_CN_STR)
                 newsource.append([url, item[1], item[2], item[3]])
             else:
                 newsource.append(item)
@@ -694,7 +690,7 @@ class SourcesView(gtk.TreeView):
 
     def has_mirror_ppa(self, url):
         if TweakSettings.get_use_mirror_ppa():
-            return PPA_URL in url and url.split('/')[3] in PPA_MIRROR
+            return ppa.is_ppa(url) and url.split('/')[3] in PPA_MIRROR
         else:
             return False
 
@@ -901,8 +897,8 @@ class SourceDetail(gtk.VBox):
             self.table.attach(self.homepage_button, 1, 2, 0, 1)
 
         if url:
-            if PPA_URL in url:
-                url = get_ppa_homepage(url)
+            if ppa.is_ppa(url):
+                url = ppa.get_homepage(url)
             self.url_button.destroy()
             self.url_button = gtk.LinkButton(url, url)
             self.url_button.show()

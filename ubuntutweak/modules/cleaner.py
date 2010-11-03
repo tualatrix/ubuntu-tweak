@@ -21,7 +21,6 @@
 import os
 import gtk
 import thread
-import glob
 import gobject
 import logging
 import simplejson
@@ -34,15 +33,14 @@ from gettext import ngettext
 
 from ubuntutweak.common.consts import install_ngettext
 from ubuntutweak.modules  import TweakModule
-from ubuntutweak.utils import icon, set_label_for_stock_button
+from ubuntutweak.utils import icon, set_label_for_stock_button, ppa
 from ubuntutweak.common.misc import filesizeformat
 from ubuntutweak.policykit import PolkitButton, proxy
 from ubuntutweak.common.package import PACKAGE_WORKER
 from ubuntutweak.widgets.dialogs import QuestionDialog, InfoDialog, ErrorDialog
 from ubuntutweak.widgets.dialogs import AuthenticateFailDialog, ProcessDialog, TerminalDialog
-from ubuntutweak.modules.sourcecenter import SOURCE_PARSER, PPA_URL
+from ubuntutweak.modules.sourcecenter import SOURCE_PARSER
 from ubuntutweak.modules.sourcecenter import get_source_logo_from_filename
-from ubuntutweak.modules.sourcecenter import get_ppa_homepage
 
 log = logging.getLogger("Cleaner")
 
@@ -55,19 +53,6 @@ log = logging.getLogger("Cleaner")
 ) = range(5)
 
 install_ngettext()
-
-def get_ppa_list_name(url):
-    section = url.split('/')
-    name = '/var/lib/apt/lists/ppa.launchpad.net_%s_%s_*_Packages' % (section[3], section[4])
-    names = glob.glob(name)
-    if len(names) == 1:
-        return names[0]
-    else:
-        return ''
-
-def get_ppa_short_name(url):
-    section = url.split('/')
-    return 'ppa:%s/%s' % (section[3], section[4])
 
 def get_ppa_source_dict():
     ppa_source_dict = {}
@@ -287,7 +272,7 @@ class DowngradeView(gtk.TreeView):
         model.clear()
         pkg_dict = {}
         for ppa in ppas:
-            path = get_ppa_list_name(ppa)
+            path = ppa.get_list_name(ppa)
             log.debug('Find the PPA path name: %s', path)
             if path:
                 for line in open(path):
@@ -471,7 +456,7 @@ class PackageView(gtk.TreeView):
         ppa_source_dict = get_ppa_source_dict()
 
         for source in self.get_sourceslist():
-            if PPA_URL in source.uri and source.type == 'deb' and not source.disabled:
+            if ppa.is_ppa(source.uri) and source.type == 'deb' and not source.disabled:
                 try:
                     id = ppa_source_dict[source.uri]
                     pixbuf = get_source_logo_from_filename(SOURCE_PARSER[id]['logo'])
@@ -479,8 +464,8 @@ class PackageView(gtk.TreeView):
                     comment = SOURCE_PARSER.get_summary(id)
                 except:
                     id = source.uri
-                    name = get_ppa_short_name(source.uri)
-                    comment = get_ppa_homepage(source.uri)
+                    name = ppa.get_short_name(source.uri)
+                    comment = ppa.get_homepage(source.uri)
                     pixbuf = get_source_logo_from_filename('')
 
                 self.total_num += 1
@@ -653,7 +638,7 @@ class PackageView(gtk.TreeView):
                 name_list.append(SOURCE_PARSER.get_name(int(id)))
                 url_list.append(SOURCE_PARSER.get_url(int(id)))
             except:
-                name_list.append(get_ppa_short_name(id))
+                name_list.append(ppa.get_short_name(id))
                 url_list.append(id)
 
         package_view = DowngradeView()
