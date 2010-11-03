@@ -22,4 +22,5 @@ setup(name='ubuntu-tweak',
           ],
       license='GNU GPL',
       platforms='linux',
+      test_suite='tests',
 )
