@@ -340,7 +340,7 @@ class Compiz(TweakModule, CompizSetting):
         enable = False
         count = 0
         for k, v in plugins_settings.items():
-            if self.context.Plugins.has_key(k):
+            if self.context.Plugins.has_key(k) and self.context.Plugins[k].Display.has_key(v):
                 plugin = self.context.Plugins[k]
                 combobox.append_text(plugins[k])
                 setting = plugin.Display[v]
