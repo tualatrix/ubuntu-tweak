@@ -86,7 +86,7 @@ case $LANG in
 		level_color="Haute qualité (Couleurs préservées)";;
 
 	zh_CN*)
-		# Simplified Chinese  (zh_CN)
+		# Simplified Chinese  (zh_CN) by TualatriX Chou
 		error_nofiles="没有选择文件。"
 		error_noquality="没有优化优化等级。"
 		error_ghostscript="PDF压缩需要ghostscript软件包，但是它没有安装。请先安装然后再重试。"
@@ -98,11 +98,41 @@ case $LANG in
 		level_screen="仅在屏幕上浏览"
 		level_low="低品质"
 		level_high="高品质"
-		level_color="高品质（护色） "
+		level_color="高品质（护色） ";;
+
+        ar*)
+                # Arabic (ar) by Mohammed hasan Taha
+		error_nofiles="لم يتم اختيار ملف"
+		error_noquality="لم يتم اختيار درجة الضغط"
+		error_ghostscript="هذا السكربت يحتاج حزمة ghostscript package لذا يرجى تنصيبها ثم اعادة المحاولة"
+		error_nopdf="الملف الذي تم اختياره ليس ملف pdf  صالح"
+		label_filename="حفظ الملف باسم"
+		label_level="الرجاء اختيار درجة الضغط"
+		optimization_level="درجة الضغط"
+		level_default="افتراضي"
+		level_screen="عرض للشاشة فقط(الدرجة الأكثر انخفاضا)"
+		level_low="جودة منخفضة"
+		level_high="جودة مرتفعة"
+		level_color="جودة عالية جدا";;
+
+	ml_IN*)
+		# Malayalam (ml_IN) by Hrishikesh K B
+		error_nofiles="ഒരു ഫയലും  തിരഞ്ഞെടുത്തിട്ടില്ല."
+		error_noquality="യാതൊരു ഒപ്റ്റിമൈസേഷന്‍ ലെവലും  തിരഞ്ഞെടുത്തിട്ടില്ല."
+		error_ghostscript="പി ഡി എഫ് കംപ്രസ്സറിന് ഗോസ്റ്റ് സ്ക്രിപ്റ്റ് പാക്കേജ് ആവശ്യമാണ്. ആ പാക്കേജ് ഇന്‍സ്റ്റാള്‍ ചെയ്‌‌ത ശേഷം  ദയവായി വീണ്ടും  ശ്രമിക്കുക."
+		error_nopdf="തിരഞ്ഞെടുത്ത ഫയല്‍ സാധുവായ ഒരു പിഡിഎഫ് ആര്‍ച്ചീവ് അല്ല."
+		label_filename="പിഡിഎഫ് ഇങ്ങിനെ സംരക്ഷിക്കുക..."
+		label_level="ദയവായി താഴെ നിന്നും  ഒരു ഒപ്റ്റിമൈസേഷന്‍ ലെവല്‍ തിരഞ്ഞെടുക്കുക."
+		optimization_level="ഒപ്റ്റിമൈസേഷന്‍ ലെവല്‍ "
+		level_default="ഡീഫാള്‍ട്ട്"
+		level_screen="സ്ക്രീനില്‍ കാണാന്‍ മാത്രം  "
+		level_low="കുറഞ്ഞ നിലവാരം"
+		level_high="കൂടിയ നിലവാരം "
+		level_color="കൂടിയ നിലവാരം (നിറം  സംരക്ഷിച്ചിട്ടുള്ളത്)"
 
 esac
 
-VERSION="1.1"
+VERSION="1.2"
 ZENITY=$(which zenity)
 
 # Check if we have Ghostscript installed...
@@ -113,7 +143,7 @@ if [ ! -x $GS ]; then
 fi
 
 # Check if we have selected any files...
-if [ -z "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS" ]; then
+if [ -z "$1" ]; then
         $ZENITY --error --title="Compress PDF "$VERSION"" --text="$error_nofiles"
         exit 0;
 fi
@@ -155,7 +185,14 @@ esac
 output_filename=compressed-"$1"
 output_filename=$($ZENITY --file-selection --save --confirm-overwrite --filename="$output_filename" --title="$label_filename")
 
+# Extract metadata from the original PDF
+# Somehow messy but easier to debug
+pdfinfo "$1" | sed -e 's/^ *//;s/ *$//;s/ \{1,\}/ /g' -e 's/^/  \//' -e '/CreationDate/,$d' -e 's/$/)/' -e 's/: / (/' > pdfmarks
+sed -i '1s/^ /[/' pdfmarks
+sed -i '/:)$/d' pdfmarks
+echo "  /DOCINFO pdfmark" >> pdfmarks
+
 # Execute the command while showing a progress bar.
 (echo "0" ;
- gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=$COMP_COMMAND -dNOPAUSE -dQUIET -dBATCH -sOutputFile="$output_filename" "$1"
- echo "100") | $ZENITY --progress --pulsate --title="Compress PDF "$VERSION""
+ gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=$COMP_COMMAND -dNOPAUSE -dQUIET -dBATCH -sOutputFile="$output_filename" "$1" pdfmarks
+ echo "100" ) | $ZENITY --progress --pulsate --title="Compress PDF "$VERSION""
