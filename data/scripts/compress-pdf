@@ -21,6 +21,7 @@
 		level_low="Low Quality"
 		level_high="High Quality"
 		level_color="High Quality (Color Preserving)"
+		job_done="has been successfully compressed"
 
 case $LANG in
 
@@ -37,7 +38,8 @@ case $LANG in
 		level_screen="Visualização no Ecrã"
 		level_low="Baixa Qualidade"
 		level_high="Alta Qualidade"
-		level_color="Alta Qualidade (Preservação de Cores)";;
+		level_color="Alta Qualidade (Preservação de Cores)"
+		job_done="foi comprimido com sucesso";;
 
 
 	es* )
@@ -132,7 +134,7 @@ case $LANG in
 
 esac
 
-VERSION="1.2"
+VERSION="1.3"
 ZENITY=$(which zenity)
 
 # Check if we have Ghostscript installed...
@@ -143,7 +145,7 @@ if [ ! -x $GS ]; then
 fi
 
 # Check if we have selected any files...
-if [ -z "$1" ]; then
+if [ -z "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS" ]; then
         $ZENITY --error --title="Compress PDF "$VERSION"" --text="$error_nofiles"
         exit 0;
 fi
@@ -181,18 +183,32 @@ case $selected_level in
         ;;
 esac
 
-# Ask for output file name
-output_filename=compressed-"$1"
-output_filename=$($ZENITY --file-selection --save --confirm-overwrite --filename="$output_filename" --title="$label_filename")
+# Choose output file name, where the magic happens
+temp_filename=.temp-"$1"
+suggested_filename=compressed-"$1"
+output_filename=$($ZENITY --file-selection --save --confirm-overwrite --filename="$suggested_filename" --title="$label_filename")
+
+if [ "$?" = 1 ] ; then
+        exit 0;
+fi
 
 # Extract metadata from the original PDF
 # Somehow messy but easier to debug
-pdfinfo "$1" | sed -e 's/^ *//;s/ *$//;s/ \{1,\}/ /g' -e 's/^/  \//' -e '/CreationDate/,$d' -e 's/$/)/' -e 's/: / (/' > pdfmarks
-sed -i '1s/^ /[/' pdfmarks
-sed -i '/:)$/d' pdfmarks
-echo "  /DOCINFO pdfmark" >> pdfmarks
+pdfinfo "$1" | sed -e 's/^ *//;s/ *$//;s/ \{1,\}/ /g' -e 's/^/  \//' -e '/CreationDate/,$d' -e 's/$/)/' -e 's/: / (/' > .pdfmarks
+sed -i '1s/^ /[/' .pdfmarks
+sed -i '/:)$/d' .pdfmarks
+echo "  /DOCINFO pdfmark" >> .pdfmarks
 
 # Execute the command while showing a progress bar.
 (echo "0" ;
- gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=$COMP_COMMAND -dNOPAUSE -dQUIET -dBATCH -sOutputFile="$output_filename" "$1" pdfmarks
- echo "100" ) | $ZENITY --progress --pulsate --title="Compress PDF "$VERSION""
+ gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=$COMP_COMMAND -dNOPAUSE -dQUIET -dBATCH -sOutputFile="$temp_filename" "$1" .pdfmarks
+ rm .pdfmarks
+ echo "100") | (if `$ZENITY --progress --pulsate --auto-close --title="Compress PDF "$VERSION""`;
+                 then
+                     mv -f "$temp_filename" "$output_filename" &
+                     notify-send "Compress PDF" "$1 $job_done"
+                 else
+                     killall gs
+                     rm "$temp_filename"
+                     exit
+                 fi)
