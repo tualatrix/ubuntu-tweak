@@ -162,21 +162,21 @@ class CleanPpaDialog(TerminalDialog):
             else:
                 key_fingerprint = ''
 
-            owner, ppa = url.split('/')[3:5]
+            owner, ppa_name = url.split('/')[3:5]
 
             if owner not in key_fingerprint_dict:
                 key_fingerprint_dict[owner] = key_fingerprint
 
         for url in self.urls:
-            owner, ppa = url.split('/')[3:5]
+            owner, ppa_name = url.split('/')[3:5]
             key_fingerprint = key_fingerprint_dict[owner]
 
             self.set_progress_text(_('Removing key files...'))
             if not key_fingerprint:
                 try:
                     #TODO wrap the LP API or use library
-                    owner, ppa = url.split('/')[3:5]
-                    lp_url = 'https://launchpad.net/api/beta/~%s/+archive/%s' % (owner, ppa)
+                    owner, ppa_name = url.split('/')[3:5]
+                    lp_url = 'https://launchpad.net/api/beta/~%s/+archive/%s' % (owner, ppa_name)
                     req =  Request(lp_url)
                     req.add_header("Accept","application/json")
                     lp_page = urlopen(req).read()
@@ -271,8 +271,8 @@ class DowngradeView(gtk.TreeView):
         model = self.get_model()
         model.clear()
         pkg_dict = {}
-        for ppa in ppas:
-            path = ppa.get_list_name(ppa)
+        for ppa_url in ppas:
+            path = ppa.get_list_name(ppa_url)
             log.debug('Find the PPA path name: %s', path)
             if path:
                 for line in open(path):
@@ -282,9 +282,9 @@ class DowngradeView(gtk.TreeView):
                             # Join another ppa info to the pkg dict, so that
                             # later we can know if more than two ppa provide
                             # the pkg
-                            pkg_dict[pkg].extend([ppa])
+                            pkg_dict[pkg].extend([ppa_url])
                         else:
-                            pkg_dict[pkg] = [ppa]
+                            pkg_dict[pkg] = [ppa_url]
 
         pkg_map = PACKAGE_WORKER.get_downgradeable_pkgs(pkg_dict)
         if pkg_map:
