@@ -28,7 +28,6 @@ import thread
 import tempfile
 import subprocess
 import logging
-import apt
 import apt_pkg
 
 from xdg.DesktopEntry import DesktopEntry
@@ -60,6 +59,8 @@ class PackageWorker:
         self.uname = os.uname()[2]
         self.uname_no_generic = '-'.join(self.uname.split('-')[:2])
 
+        self.is_apt_broken = False
+        self.apt_broken_message = ''
         self.cache = self.get_cache()
 
     def is_current_kernel(self, pkg):
@@ -200,6 +201,8 @@ class PackageWorker:
         try:
             self.update_apt_cache()
         except Exception, e:
+            self.is_apt_broken = True
+            self.apt_broken_message = e
             log.error("Error happened when get_cache(): %s" % str(e))
             return None
         else:
@@ -208,6 +211,7 @@ class PackageWorker:
     def update_apt_cache(self, init=False):
         '''if init is true, force to update, or it will update only once'''
         if init or not hasattr(self, 'cache'):
+            import apt
             apt_pkg.init()
             self.cache = apt.Cache()
 

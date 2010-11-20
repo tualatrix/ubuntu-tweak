@@ -8,10 +8,13 @@ import sys
 import pango
 import inspect
 import gobject
+import logging
 
 from ubuntutweak import system
 from ubuntutweak.common.consts import DATA_DIR
 from ubuntutweak.utils import icon
+
+log = logging.getLogger('ModuleLoader')
 
 def module_cmp(m1, m2):
     return cmp(m1.__title__, m2.__title__)
@@ -25,8 +28,14 @@ class ModuleLoader:
             for f in os.listdir(path):
                 if f.endswith('.py') and f != '__init__.py':
                     module = os.path.splitext(f)[0]
-                    package = __import__('.'.join([__name__, module]), fromlist=['modules'])
-                    self.do_package_import(package)
+                    log.debug("Try to load module: %s" % module)
+                    try:
+                        package = __import__('.'.join([__name__, module]), fromlist=['modules'])
+                    except Exception, e:
+                        log.error("Module import error: %s", str(e))
+                        continue
+                    else:
+                        self.do_package_import(package)
         else:
             module = os.path.splitext(os.path.basename(path))[0]
             folder = os.path.dirname(path)
