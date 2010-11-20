@@ -322,10 +322,11 @@ class MainWindow(gtk.Window):
                 for module in module_list:
                     child_iter = model.append(iter)
 
+                    log.debug("Insert module: name: %s, title: %s" % (module.get_name(), module.get_title()))
                     model.set(child_iter,
-                        self.ID_COLUMN, module.__name__,
-                        self.LOGO_COLUMN, MLOADER.get_pixbuf(module.__name__),
-                        self.TITLE_COLUMN, module.__title__,
+                        self.ID_COLUMN, module.get_name(),
+                        self.LOGO_COLUMN, module.get_pixbuf(),
+                        self.TITLE_COLUMN, module.get_title(),
                     )
 
         return model

@@ -17,7 +17,7 @@ from ubuntutweak.utils import icon
 log = logging.getLogger('ModuleLoader')
 
 def module_cmp(m1, m2):
-    return cmp(m1.__title__, m2.__title__)
+    return cmp(m1.get_title(), m2.get_title())
 
 class ModuleLoader:
     module_table = {}
@@ -72,21 +72,6 @@ class ModuleLoader:
 
     def get_all_module(self):
         return self.id_table.values()
-
-    def get_pixbuf(self, id):
-        module = self.get_module(id)
-
-        if module.__icon__:
-            if type(module.__icon__) != list:
-                if module.__icon__.endswith('.png'):
-                    icon_path = os.path.join(DATA_DIR, 'pixmaps', module.__icon__)
-                    pixbuf = gtk.gd.pixbuf_new_from_file(icon_path)
-                else:
-                    pixbuf = icon.get_from_name(module.__icon__)
-            else:
-                pixbuf = icon.get_from_list(module.__icon__)
-
-            return pixbuf
 
     def is_supported_desktop(self, desktop_name):
         if desktop_name:
@@ -213,3 +198,33 @@ class TweakModule(gtk.VBox):
         If module use glade, it must call this method to reparent the main frame
         '''
         widget.reparent(self.inner_vbox)
+
+    @classmethod
+    def get_name(cls):
+        '''Return the module name
+        class Computer(TweakModule):
+            pass
+        the "Computer" is the module name
+        '''
+        return cls.__name__
+
+    @classmethod
+    def get_title(cls):
+        '''Return the module title, it is for human read with i18n support
+        '''
+        return cls.__title__
+
+    @classmethod
+    def get_pixbuf(cls):
+        '''Return gtk Pixbuf'''
+        if cls.__icon__:
+            if type(cls.__icon__) != list:
+                if cls.__icon__.endswith('.png'):
+                    icon_path = os.path.join(DATA_DIR, 'pixmaps', cls.__icon__)
+                    pixbuf = gtk.gd.pixbuf_new_from_file(icon_path)
+                else:
+                    pixbuf = icon.get_from_name(cls.__icon__)
+            else:
+                pixbuf = icon.get_from_list(cls.__icon__)
+
+            return pixbuf
