@@ -3,13 +3,17 @@ import gconf
 
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
+
+from ubuntutweak import system
 from ubuntutweak.common import consts
 from ubuntutweak.policykit import proxy
-from ubuntutweak.common.systeminfo import GnomeVersion
 
 log = logging.getLogger("gconfsetting")
 
 class KeysHandler(ContentHandler):
+    #TODO Because not support old version, so this can be easy
+    gnome_version = system.get_desktop_version()[1]
+
     def __init__(self, dict):
         self.dict = dict
 
@@ -20,10 +24,10 @@ class KeysHandler(ContentHandler):
 
                 if len(version.split(':')) == 2:
                         start, end = version.split(':')
-                        if int(start) <= int(GnomeVersion.minor) <= int(end):
+                        if int(start) <= int(self.gnome_version) <= int(end):
                             self.dict[attrs['name']] = attrs['value']
                 else:
-                    if GnomeVersion.minor == version:
+                    if self.gnome_version == version:
                         self.dict[attrs['name']] = attrs['value']
             else:
                 self.dict[attrs['name']] = attrs['value']

@@ -23,13 +23,13 @@ import glib
 import logging
 import subprocess
 
+from ubuntutweak import system
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.widgets import ListPack, TablePack
 from ubuntutweak.widgets.dialogs import ErrorDialog
 from ubuntutweak.policykit import PolkitButton, proxy
 
 from ubuntutweak.common.factory import WidgetFactory
-from ubuntutweak.common.systeminfo import module_check
 from ubuntutweak.conf.gconfsetting import UserGconfSetting
 
 log = logging.getLogger('LoginSettings')
@@ -213,7 +213,7 @@ class LoginSettings(TweakModule):
         dialog.set_current_folder('/usr/share/backgrounds')
         dialog.add_filter(filter)
 
-        if module_check.get_codename() == 'karmic':
+        if system.get_codename() == 'karmic':
             orignal_background = '/usr/share/images/xsplash/bg_2560x1600.jpg'
         else:
             orignal_background = '/usr/share/backgrounds/warty-final-ubuntu.png'

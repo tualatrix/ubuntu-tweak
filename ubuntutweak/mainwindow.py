@@ -29,12 +29,12 @@ import logging
 
 from ubuntutweak.utils import icon
 from ubuntutweak import modules
+from ubuntutweak import system
 from ubuntutweak.policykit import proxy
 from ubuntutweak.modules import TweakModule, ModuleLoader
 from ubuntutweak.common.consts import APP, VERSION
 from ubuntutweak.common.debug import run_traceback
 from ubuntutweak.common.config import TweakSettings
-from ubuntutweak.common.systeminfo import module_check
 from ubuntutweak.widgets.dialogs import QuestionDialog
 from ubuntutweak.network.downloadmanager import DownloadDialog
 from ubuntutweak.widgets.dialogs import WarningDialog
@@ -247,7 +247,7 @@ class MainWindow(gtk.Window):
             pass
 
         # Only check if the distribution is supported
-        if module_check.get_codename():
+        if system.is_supported():
             gobject.idle_add(self.notify_stable_source)
 
     def notify_stable_source(self):

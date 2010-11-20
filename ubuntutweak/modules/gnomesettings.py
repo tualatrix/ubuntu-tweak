@@ -25,11 +25,11 @@ import gtk
 import glob
 import logging
 
+from ubuntutweak import system
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.widgets import ListPack
 from ubuntutweak.widgets.dialogs import ErrorDialog, QuestionDialog, WarningDialog
 
-from ubuntutweak.common.systeminfo import module_check
 from ubuntutweak.common.config import TweakSettings
 from ubuntutweak.common.factory import WidgetFactory
 from ubuntutweak.utils import icon
@@ -142,7 +142,7 @@ class Gnome(TweakModule):
         dialog.set_current_folder(os.path.expanduser('~'))
         dialog.add_filter(filter)
 
-        if module_check.get_codename() == 'karmic':
+        if system.get_codename() == 'karmic':
             dest = os.path.expanduser('~/.icons/%s/places/24/start-here' % self.__setting.get_icon_theme())
         else:
             dest = os.path.expanduser('~/.icons/%s/apps/24/start-here' % self.__setting.get_icon_theme())

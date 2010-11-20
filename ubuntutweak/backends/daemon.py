@@ -27,9 +27,9 @@ import logging
 
 from subprocess import PIPE
 from aptsources.sourceslist import SourceEntry, SourcesList
+from ubuntutweak import system
 from ubuntutweak.utils import ppa
 from ubuntutweak.backends import PolicyKitService
-from ubuntutweak.common.systeminfo import module_check
 
 apt_pkg.init()
 
@@ -276,7 +276,7 @@ class Daemon(PolicyKitService):
             if self.stable_url in source.str() and source.type == 'deb' and not source.disabled:
                 return
 
-        distro = module_check.get_codename()
+        distro = system.get_codename()
 
         if distro:
             self.set_separated_entry(self.stable_url, distro, 'main',

@@ -22,6 +22,7 @@ import os
 import gtk
 import logging
 
+from ubuntutweak import system
 from ubuntutweak.modules import TweakModule
 from ubuntutweak.widgets import TablePack
 from ubuntutweak.widgets.dialogs import QuestionDialog
@@ -29,7 +30,6 @@ from ubuntutweak.policykit import proxy
 
 #TODO
 from ubuntutweak.common.misc import filesizeformat
-from ubuntutweak.common.systeminfo import SystemInfo
 
 log = logging.getLogger("AppCenter")
 
@@ -63,8 +63,8 @@ class Computer(TweakModule):
 
         box = TablePack(_("System information"),(
                     (gtk.Label(_("Hostname")), hostname_label, hostname_button),
-                    (gtk.Label(_("Distribution")), gtk.Label(SystemInfo.distro)),
-                    (gtk.Label(_("Desktop environment")), gtk.Label(SystemInfo.gnome)),
+                    (gtk.Label(_("Distribution")), gtk.Label(system.get_distro())),
+                    (gtk.Label(_("Desktop environment")), gtk.Label(system.get_desktop_fullname())),
                     (gtk.Label(_("Kernel")), gtk.Label(os.uname()[0]+" "+os.uname()[2])),
                     (gtk.Label(_("Platform")), gtk.Label(os.uname()[-1])),
                     (gtk.Label(_("CPU")), gtk.Label(cpumodel.strip())),

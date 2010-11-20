@@ -9,8 +9,8 @@ import pango
 import inspect
 import gobject
 
+from ubuntutweak import system
 from ubuntutweak.common.consts import DATA_DIR
-from ubuntutweak.common.systeminfo import SystemInfo
 from ubuntutweak.utils import icon
 
 def module_cmp(m1, m2):
@@ -81,7 +81,7 @@ class ModuleLoader:
 
     def is_supported_desktop(self, desktop_name):
         if desktop_name:
-            return SystemInfo.desktop in desktop_name
+            return system.get_desktop() in desktop_name
         else:
             return True
 
