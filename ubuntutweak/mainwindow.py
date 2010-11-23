@@ -105,23 +105,6 @@ def show_wait():
         
     return vbox
 
-def show_error_page():
-    align = gtk.Alignment(0.5, 0.3)
-
-    hbox = gtk.HBox(False, 12)
-    align.add(hbox)
-
-    image = gtk.image_new_from_pixbuf(icon.get_from_name('emblem-ohno', size=64))
-    hbox.pack_start(image, False, False, 0)
-
-    label = gtk.Label()
-    label.set_markup("<span size=\"x-large\">%s</span>" % 
-                     _("This module encountered an error while loading."))
-    label.set_justify(gtk.JUSTIFY_FILL)
-    hbox.pack_start(label)
-        
-    return align
-
 (MODULE_ID,
  MODULE_LOGO,
  MODULE_TITLE,
@@ -129,15 +112,17 @@ def show_error_page():
  MODULE_TYPE) = range(5)
 
 (WELCOME,
+ BROKEN,
  APPLICATIONS,
  STARTUP,
  DESKTOP,
  PERSONAL,
  SYSTEM,
- TOTAL) = range(7)
+ TOTAL) = range(8)
 
 MODULES_TABLE = [
     [WELCOME, 'ubuntu-tweak', _("Welcome"), show_welcome, None],
+    [BROKEN, '', _("Broken Modules"), None, 'broken'],
     [APPLICATIONS, '', _("Applications"), None, 'application'],
     [STARTUP, '', _("Startup"), None, 'startup'],
     [DESKTOP, '', _("Desktop"), None, 'desktop'],

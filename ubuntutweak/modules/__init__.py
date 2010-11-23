@@ -10,9 +10,12 @@ import inspect
 import gobject
 import logging
 
+from new import classobj
+
 from ubuntutweak import system
-from ubuntutweak.common.consts import DATA_DIR
 from ubuntutweak.utils import icon
+from ubuntutweak.common.consts import DATA_DIR
+from ubuntutweak.common.debug import run_traceback
 
 log = logging.getLogger('ModuleLoader')
 
@@ -20,7 +23,7 @@ def module_cmp(m1, m2):
     return cmp(m1.get_title(), m2.get_title())
 
 class ModuleLoader:
-    module_table = {}
+    module_table = {'broken': []}
     id_table = {}
 
     def __init__(self, path):
@@ -32,6 +35,13 @@ class ModuleLoader:
                     try:
                         package = __import__('.'.join([__name__, module]), fromlist=['modules'])
                     except Exception, e:
+                        broken_class_name = 'Broken%s' % module.title()
+                        Broken = classobj(broken_class_name, (BrokenModule,), {'__name__': module,
+                 '__title__': module,
+                 '__error__': str(e),
+                 'textview': run_traceback('error', textview_only=True)})
+                        self.module_table['broken'].append(Broken)
+                        self.id_table[broken_class_name] = Broken
                         log.error("Module import error: %s", str(e))
                         continue
                     else:
@@ -99,12 +109,11 @@ class TweakModule(gtk.VBox):
     }
 
     def __init__(self, path=None, domain='ubuntu-tweak'):
-        assert(self.__title__ and self.__desc__)
-
         gtk.VBox.__init__(self)
         self.set_border_width(6)
 
-        self.draw_title()
+        if self.__title__ and self.__desc__:
+            self.draw_title()
 
         self.scrolled_win = gtk.ScrolledWindow()
         self.scrolled_win.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
@@ -228,3 +237,48 @@ class TweakModule(gtk.VBox):
                 pixbuf = icon.get_from_list(cls.__icon__)
 
             return pixbuf
+
+def show_error_page():
+    align = gtk.Alignment(0.5, 0.3)
+
+    hbox = gtk.HBox(False, 12)
+    align.add(hbox)
+
+    image = gtk.image_new_from_pixbuf(icon.get_from_name('emblem-ohno', size=64))
+    hbox.pack_start(image, False, False, 0)
+
+    label = gtk.Label()
+    label.set_markup("<span size=\"x-large\">%s</span>" % 
+                     _("This module encountered an error while loading."))
+    label.set_justify(gtk.JUSTIFY_FILL)
+    hbox.pack_start(label)
+        
+    return align
+
+class BrokenModule(TweakModule):
+    __icon__ = 'gtk-dialog-error'
+
+    def __init__(self):
+        super(BrokenModule, self).__init__()
+        align = gtk.Alignment(0.5, 0.3)
+
+        vbox = gtk.VBox(True, 6)
+        align.add(vbox)
+
+        hbox = gtk.HBox(False, 12)
+        vbox.pack_start(hbox, False, False, 0)
+
+        image = gtk.image_new_from_pixbuf(icon.get_from_name('emblem-ohno', size=64))
+        hbox.pack_start(image, False, False, 0)
+
+        label = gtk.Label()
+        label.set_markup("<span size=\"x-large\">%s</span>" % 
+                         _("This module encountered an error while loading."))
+        label.set_justify(gtk.JUSTIFY_FILL)
+        hbox.pack_start(label)
+
+        scrolled_win = gtk.ScrolledWindow()
+        vbox.pack_start(scrolled_win)
+        self.textview.reparent(scrolled_win)
+
+        self.add_start(align)

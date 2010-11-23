@@ -49,23 +49,28 @@ COLORS = {
     'ERROR':    COLOR_SEQ % (30 + RED) + 'ERROR' + RESET_SEQ,
 }
 
-def run_traceback(level):
-        output = StringIO.StringIO()
-        exc = traceback.print_exc(file = output)
+def run_traceback(level, textview_only=False):
+    '''Two level: fatal and error'''
+    output = StringIO.StringIO()
+    exc = traceback.print_exc(file=output)
 
-        worker = GuiWorker('traceback.ui')
+    worker = GuiWorker('traceback.ui')
+
+    textview = worker.get_object('%s_view' % level)
+    buffer = textview.get_buffer()
+
+    buffer.set_text("Distribution: %s\n"
+                    "Application: %s\n"
+                    "Desktop: %s\n"
+                    "\n"
+                    "%s" % (system.get_distro(),
+                            system.get_app(),
+                            system.get_desktop(),
+                            output.getvalue()))
+    if textview_only:
+        return textview
+    else:
         dialog = worker.get_object('%sDialog' % level.capitalize())
-        textview = worker.get_object('%s_view' % level)
-        buffer = textview.get_buffer()
-
-        buffer.set_text("Distribution: %s\n"
-                        "Application: %s\n"
-                        "Desktop: %s\n"
-                        "\n"
-                        "%s" % (system.get_distro(),
-                                system.get_app(),
-                                system.get_desktop(),
-                                output.getvalue()))
         if dialog.run() == gtk.RESPONSE_YES:
             webbrowser.open('https://bugs.launchpad.net/ubuntu-tweak/+filebug')
         dialog.destroy()
