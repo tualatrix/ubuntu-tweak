@@ -36,10 +36,12 @@ class ModuleLoader:
                         package = __import__('.'.join([__name__, module]), fromlist=['modules'])
                     except Exception, e:
                         broken_class_name = 'Broken%s' % module.title()
-                        Broken = classobj(broken_class_name, (BrokenModule,), {'__name__': module,
-                 '__title__': module,
-                 '__error__': str(e),
-                 'textview': run_traceback('error', textview_only=True)})
+                        Broken = classobj(broken_class_name,
+                                          (BrokenModule,),
+                                          {'__name__': module,
+                                           '__title__': module,
+                                           '__error__': str(e),
+                                           'textview': run_traceback('error', textview_only=True)})
                         self.module_table['broken'].append(Broken)
                         self.id_table[broken_class_name] = Broken
                         log.error("Module import error: %s", str(e))
@@ -260,25 +262,7 @@ class BrokenModule(TweakModule):
 
     def __init__(self):
         super(BrokenModule, self).__init__()
-        align = gtk.Alignment(0.5, 0.3)
 
-        vbox = gtk.VBox(True, 6)
-        align.add(vbox)
-
-        hbox = gtk.HBox(False, 12)
-        vbox.pack_start(hbox, False, False, 0)
-
-        image = gtk.image_new_from_pixbuf(icon.get_from_name('emblem-ohno', size=64))
-        hbox.pack_start(image, False, False, 0)
-
-        label = gtk.Label()
-        label.set_markup("<span size=\"x-large\">%s</span>" % 
-                         _("This module encountered an error while loading."))
-        label.set_justify(gtk.JUSTIFY_FILL)
-        hbox.pack_start(label)
-
-        scrolled_win = gtk.ScrolledWindow()
-        vbox.pack_start(scrolled_win)
-        self.textview.reparent(scrolled_win)
+        align = show_error_page()
 
         self.add_start(align)

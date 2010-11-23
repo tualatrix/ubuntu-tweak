@@ -31,7 +31,7 @@ from ubuntutweak.utils import icon
 from ubuntutweak import modules
 from ubuntutweak import system
 from ubuntutweak.policykit import proxy
-from ubuntutweak.modules import TweakModule, ModuleLoader
+from ubuntutweak.modules import TweakModule, ModuleLoader, show_error_page
 from ubuntutweak.common.consts import APP, VERSION
 from ubuntutweak.common.debug import run_traceback
 from ubuntutweak.common.config import TweakSettings
