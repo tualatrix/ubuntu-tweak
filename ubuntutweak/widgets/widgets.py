@@ -143,11 +143,14 @@ class GconfEntry(gtk.Entry):
             self.set_text(_("Unset"))
 
 class GconfComboBox(gtk.ComboBox):
-    def __init__(self, key=None, texts=None, values=None):
+    def __init__(self, key=None, texts=None, values=None, type="string"):
         super(GconfComboBox, self).__init__()
 
         self.__setting = GconfSetting(key=key)
-        model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
+        if type == 'int':
+            model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_INT)
+        else:
+            model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
         self.set_model(model)
 
         cell = gtk.CellRendererText()

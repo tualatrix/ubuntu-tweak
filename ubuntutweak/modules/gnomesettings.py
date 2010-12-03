@@ -26,7 +26,7 @@ import glob
 import logging
 
 from ubuntutweak.modules  import TweakModule
-from ubuntutweak.widgets import ListPack
+from ubuntutweak.widgets import ListPack, TablePack
 from ubuntutweak.widgets.dialogs import ErrorDialog, QuestionDialog, WarningDialog
 
 from ubuntutweak.common.systeminfo import module_check
@@ -51,7 +51,7 @@ class Gnome(TweakModule):
 
         changeicon_hbox = self.create_change_icon_hbox()
 
-        box = ListPack(_("Panel Settings"), (
+        box = TablePack(_("Panel Settings"), (
                     WidgetFactory.create("GconfCheckButton", 
                                     label=_("Display warning when removing a panel"),
                                     enable_reset=True,
@@ -64,6 +64,12 @@ class Gnome(TweakModule):
                                     label=_("Enable panel animations"),
                                     enable_reset=True,
                                     key="enable_animations"),
+                    WidgetFactory.create('GconfComboBox',
+                                         label=_('Me Menu Setting'),
+                                         key='/system/indicator/me/display',
+                                         texts=[_("Don't Display"), _('Display user name'), _('Display real name')],
+                                         values=[0, 1, 2],
+                                         type='int')
             ))
         self.add_start(box, False, False, 0)
 

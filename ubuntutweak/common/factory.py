@@ -19,10 +19,13 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import gconf
+import logging
 
 from ubuntutweak.widgets import *
 from ubuntutweak.common.consts import *
 from ubuntutweak.conf import GconfKeys
+
+log = logging.getLogger('factory')
 
 def on_reset_button_clicked(widget, reset_target):
     log.debug("Reset value for %s" % reset_target)
