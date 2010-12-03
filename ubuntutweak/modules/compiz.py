@@ -24,12 +24,16 @@ import os
 import gtk
 import gconf
 import gobject
+import logging
 
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.common.consts import DATA_DIR
 from ubuntutweak.widgets import ListPack, SinglePack
 from ubuntutweak.widgets.dialogs import InfoDialog
 from ubuntutweak.common.systeminfo import module_check
+
+log = logging.getLogger('compoiz')
+
 try:
     from ubuntutweak.common.package import PACKAGE_WORKER, AptCheckButton
 except:
@@ -40,6 +44,7 @@ def load_ccm():
     try:
         import ccm
     except:
+        log.error('No ccm available')
         pass
 
 load_ccm()
@@ -220,6 +225,37 @@ class SnapWindow(gtk.CheckButton, CompizSetting):
 
         self.set_active(self.plugin.Enabled)
 
+class ViewpointSwitcher(gtk.CheckButton, CompizSetting):
+    def __init__(self, label):
+        gtk.CheckButton.__init__(self, label)
+
+        self.plugin = self.context.Plugins['vpswitch']
+        self.set_active(self.__get_setting_enabled())
+
+        self.connect("toggled", self.on_button_toggled)
+
+    def on_button_toggled(self, widget):
+        if self.get_active():
+            log.debug("The viewport button is enabled")
+            conflicts = self.plugin.Enabled and self.plugin.DisableConflicts or self.plugin.EnableConflicts
+            conflict = ccm.PluginConflict(self.plugin, conflicts)
+            if conflict.Resolve():
+                self.plugin.Enabled = True
+                self.plugin.Display['left_button'].Value = 'Button4'
+                self.plugin.Display['right_button'].Value = 'Button5'
+        else:
+            log.debug("The viewport button is disabled")
+            self.plugin.Enabled = False
+
+        self.context.Write()
+
+    def __get_setting_enabled(self):
+        if self.plugin.Enabled and self.plugin.Display['left_button'].Value == 'Button4' \
+                and self.plugin.Display['right_button'].Value == 'Button5':
+                    return True
+        else:
+            return False
+
 class Compiz(TweakModule, CompizSetting):
     __title__ = _('Compiz Settings')
     __desc__ = _('Settings for some amazing desktop eye-candy')
@@ -254,8 +290,9 @@ class Compiz(TweakModule, CompizSetting):
 
             self.snap = SnapWindow(_("Enable snapping windows"), self)
             self.wobbly_w = WobblyWindow(_("Enable wobbly windows"), self);
+            self.viewport = ViewpointSwitcher(_('Enable workspace switching with mouse wheel'))
 
-            box = ListPack(_("Window Effects"), (self.snap, self.wobbly_w))
+            box = ListPack(_("Desktop Effects"), (self.snap, self.wobbly_w, self.viewport))
             self.add_start(box, False, False, 0)
 
             button1 = OpacityMenu(_("Enable transparent menus"))
