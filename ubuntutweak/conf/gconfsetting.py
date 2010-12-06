@@ -12,7 +12,7 @@ log = logging.getLogger("gconfsetting")
 
 class KeysHandler(ContentHandler):
     #TODO Because not support old version, so this can be easy
-    gnome_version = system.get_desktop_version()[1]
+    gnome_version = system.DESKTOP_VERSION[1]
 
     def __init__(self, dict):
         self.dict = dict

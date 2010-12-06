@@ -188,7 +188,7 @@ class SourceParser(Parser):
                     # Get it, or continue
                     for id in distros:
                         codename = distro_parser.get_codename(id)
-                        if system.get_codename() == codename:
+                        if system.CODENAME == codename:
                             distro_values = codename
                             break
 

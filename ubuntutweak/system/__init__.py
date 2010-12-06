@@ -28,9 +28,6 @@ def get_codename():
         pass
     return ''
 
-def is_supported(codename=get_codename()):
-    return codename in ('karmic', 'lucid', 'maverick')
-
 def has_ccm():
     try:
         import ccm
@@ -85,3 +82,13 @@ def get_desktop_fullname():
 def get_app():
     '''Ubuntu Tweak 0.5.x'''
     return " ".join([APP, VERSION])
+
+DISTRO = get_distro()
+CODENAME = get_codename()
+DESKTOP = get_desktop()
+DESKTOP_FULLNAME = get_desktop_fullname()
+DESKTOP_VERSION = get_desktop_version()
+APP = get_app()
+
+def is_supported(codename=CODENAME):
+    return codename in ('karmic', 'lucid', 'maverick')

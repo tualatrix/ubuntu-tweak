@@ -63,9 +63,9 @@ def run_traceback(level, textview_only=False):
                     "Application: %s\n"
                     "Desktop: %s\n"
                     "\n"
-                    "%s" % (system.get_distro(),
-                            system.get_app(),
-                            system.get_desktop(),
+                    "%s" % (system.DISTRO,
+                            system.APP,
+                            system.DESKTOP,
                             output.getvalue()))
     if textview_only:
         return textview

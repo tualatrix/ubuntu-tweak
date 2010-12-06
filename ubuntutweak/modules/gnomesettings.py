@@ -142,7 +142,7 @@ class Gnome(TweakModule):
         dialog.set_current_folder(os.path.expanduser('~'))
         dialog.add_filter(filter)
 
-        if system.get_codename() == 'karmic':
+        if system.CODENAME == 'karmic':
             dest = os.path.expanduser('~/.icons/%s/places/24/start-here' % self.__setting.get_icon_theme())
         else:
             dest = os.path.expanduser('~/.icons/%s/apps/24/start-here' % self.__setting.get_icon_theme())

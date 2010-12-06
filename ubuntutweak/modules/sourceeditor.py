@@ -55,7 +55,7 @@ deb-src http://archive.ubuntu.com/ubuntu/ %(distro)s main restricted universe mu
 deb-src http://archive.ubuntu.com/ubuntu/ %(distro)s-security main restricted universe multiverse
 deb-src http://archive.ubuntu.com/ubuntu/ %(distro)s-updates main restricted universe multiverse
 deb-src http://archive.ubuntu.com/ubuntu/ %(distro)s-proposed main restricted universe multiverse
-deb-src http://archive.ubuntu.com/ubuntu/ %(distro)s-backports main restricted universe multiverse''' % {'distro': system.get_codename()}
+deb-src http://archive.ubuntu.com/ubuntu/ %(distro)s-backports main restricted universe multiverse''' % {'distro': system.CODENAME}
 
 SOURCES_LIST = '/etc/apt/sources.list'
 
@@ -202,7 +202,7 @@ class UploadDialog(ProcessDialog):
         self.processing = True
         try:
             title, locale, comment, source = data
-            self.server.putsource(title, locale, comment, system.get_codename(), source)
+            self.server.putsource(title, locale, comment, system.CODENAME, source)
         except:
             self.error = True
 
@@ -218,7 +218,7 @@ class UpdateDialog(ProcessDialog):
         global SOURCES_DATA
         self.processing = True
         try:
-            SOURCES_DATA = self.server.getsource(os.getenv('LANG'), system.get_codename())
+            SOURCES_DATA = self.server.getsource(os.getenv('LANG'), system.CODENAME)
         except:
             self.error = True
 

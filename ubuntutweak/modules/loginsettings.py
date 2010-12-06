@@ -213,7 +213,7 @@ class LoginSettings(TweakModule):
         dialog.set_current_folder('/usr/share/backgrounds')
         dialog.add_filter(filter)
 
-        if system.get_codename() == 'karmic':
+        if system.CODENAME == 'karmic':
             orignal_background = '/usr/share/images/xsplash/bg_2560x1600.jpg'
         else:
             orignal_background = '/usr/share/backgrounds/warty-final-ubuntu.png'

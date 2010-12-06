@@ -63,8 +63,8 @@ class Computer(TweakModule):
 
         box = TablePack(_("System information"),(
                     (gtk.Label(_("Hostname")), hostname_label, hostname_button),
-                    (gtk.Label(_("Distribution")), gtk.Label(system.get_distro())),
-                    (gtk.Label(_("Desktop environment")), gtk.Label(system.get_desktop_fullname())),
+                    (gtk.Label(_("Distribution")), gtk.Label(system.DISTRO)),
+                    (gtk.Label(_("Desktop environment")), gtk.Label(system.DESKTOP_FULLNAME)),
                     (gtk.Label(_("Kernel")), gtk.Label(os.uname()[0]+" "+os.uname()[2])),
                     (gtk.Label(_("Platform")), gtk.Label(os.uname()[-1])),
                     (gtk.Label(_("CPU")), gtk.Label(cpumodel.strip())),
