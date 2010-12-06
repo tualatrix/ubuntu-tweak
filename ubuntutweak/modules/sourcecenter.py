@@ -178,30 +178,21 @@ class SourceParser(Parser):
         distro_parser = DistroParser()
 
         for item in self.get_data():
+            distro_values = ''
+
             if item['fields'].has_key('distros'):
                 distros = item['fields']['distros']
-                distro_values = ''
 
-                if len(distros) > 1:
-                    # If the item in distros is more than 1, so it's a PPA.
-                    # Try to parse its real codename, when match the local
-                    # Get it, or continue
-                    for id in distros:
-                        codename = distro_parser.get_codename(id)
-                        if system.CODENAME == codename:
-                            distro_values = codename
-                            break
+                for id in distros:
+                    codename = distro_parser.get_codename(id)
+                    if system.CODENAME == codename:
+                        distro_values = codename
+                        break
 
-                    if distro_values == '':
-                        continue
-                elif len(distros) == 1:
-                    distro_values = distro_parser.get_codename(distros[0])
-            else:
-                #TODO Remove in the future release, only leave distros
-                distro_values = item['fields']['distro']
+                if distro_values == '':
+                    continue
 
             item['fields']['id'] = item['pk']
-            # But here, always be distro, the only distro correspond with current
             item['fields']['distro'] = distro_values
             self[item['fields'][key]] = item['fields']
 
