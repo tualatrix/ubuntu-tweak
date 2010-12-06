@@ -26,13 +26,14 @@ import gconf
 import gobject
 import logging
 
+from ubuntutweak import system
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.common.consts import DATA_DIR
 from ubuntutweak.widgets import ListPack, SinglePack
 from ubuntutweak.widgets.dialogs import InfoDialog
 from ubuntutweak.common.systeminfo import module_check
 
-log = logging.getLogger('compoiz')
+log = logging.getLogger('compiz')
 
 try:
     from ubuntutweak.common.package import PACKAGE_WORKER, AptCheckButton
@@ -66,19 +67,19 @@ plugins_settings = \
 }
 
 class CompizSetting:
-    if module_check.has_ccm() and module_check.has_right_compiz() == 1:
+    if system.has_ccm() and system.has_right_compiz() == 1:
         import compizconfig as ccs
         context = ccs.Context()
-    elif module_check.has_right_compiz() == 0:
+    elif system.has_right_compiz() == 0:
         context = None
         error = False
-    elif module_check.has_right_compiz() == -1:
+    elif system.has_right_compiz() == -1:
         context = None
         error = True
 
     @classmethod
     def update_context(cls):
-        if module_check.has_ccm() and module_check.has_right_compiz():
+        if system.has_ccm() and system.has_right_compiz():
             import compizconfig as ccs
             load_ccm()
             cls.context = ccs.Context()
@@ -269,7 +270,7 @@ class Compiz(TweakModule, CompizSetting):
         self.create_interface()
 
     def create_interface(self):
-        if module_check.has_apt() and PACKAGE_WORKER.get_cache():
+        if system.has_apt() and PACKAGE_WORKER.get_cache():
             self.PACKAGE_WORKER = PACKAGE_WORKER
 
             self.advanced_settings = AptCheckButton(_("Install Advanced Desktop Effects Settings Manager"),
@@ -301,7 +302,7 @@ class Compiz(TweakModule, CompizSetting):
             box = ListPack(_("Menu Effects"), (button1, self.wobbly_m))
             self.add_start(box, False, False, 0)
 
-            if module_check.has_apt() and PACKAGE_WORKER.get_cache():
+            if system.has_apt() and PACKAGE_WORKER.get_cache():
                 box = ListPack(_("Useful Extensions"), (
                     self.simple_settings,
                     self.screenlets,

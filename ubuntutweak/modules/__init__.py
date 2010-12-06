@@ -8,16 +8,22 @@ import sys
 import pango
 import inspect
 import gobject
+import logging
 
-from ubuntutweak.common.consts import DATA_DIR
-from ubuntutweak.common.systeminfo import SystemInfo
+from new import classobj
+
+from ubuntutweak import system
 from ubuntutweak.utils import icon
+from ubuntutweak.common.consts import DATA_DIR
+from ubuntutweak.common.debug import run_traceback
+
+log = logging.getLogger('ModuleLoader')
 
 def module_cmp(m1, m2):
-    return cmp(m1.__title__, m2.__title__)
+    return cmp(m1.get_title(), m2.get_title())
 
 class ModuleLoader:
-    module_table = {}
+    module_table = {'broken': []}
     id_table = {}
 
     def __init__(self, path):
@@ -25,8 +31,23 @@ class ModuleLoader:
             for f in os.listdir(path):
                 if f.endswith('.py') and f != '__init__.py':
                     module = os.path.splitext(f)[0]
-                    package = __import__('.'.join([__name__, module]), fromlist=['modules'])
-                    self.do_package_import(package)
+                    log.debug("Try to load module: %s" % module)
+                    try:
+                        package = __import__('.'.join([__name__, module]), fromlist=['modules'])
+                    except Exception, e:
+                        broken_class_name = 'Broken%s' % module.title()
+                        Broken = classobj(broken_class_name,
+                                          (BrokenModule,),
+                                          {'__name__': module,
+                                           '__title__': module,
+                                           '__error__': str(e),
+                                           'textview': run_traceback('error', textview_only=True)})
+                        self.module_table['broken'].append(Broken)
+                        self.id_table[broken_class_name] = Broken
+                        log.error("Module import error: %s", str(e))
+                        continue
+                    else:
+                        self.do_package_import(package)
         else:
             module = os.path.splitext(os.path.basename(path))[0]
             folder = os.path.dirname(path)
@@ -64,24 +85,9 @@ class ModuleLoader:
     def get_all_module(self):
         return self.id_table.values()
 
-    def get_pixbuf(self, id):
-        module = self.get_module(id)
-
-        if module.__icon__:
-            if type(module.__icon__) != list:
-                if module.__icon__.endswith('.png'):
-                    icon_path = os.path.join(DATA_DIR, 'pixmaps', module.__icon__)
-                    pixbuf = gtk.gd.pixbuf_new_from_file(icon_path)
-                else:
-                    pixbuf = icon.get_from_name(module.__icon__)
-            else:
-                pixbuf = icon.get_from_list(module.__icon__)
-
-            return pixbuf
-
     def is_supported_desktop(self, desktop_name):
         if desktop_name:
-            return SystemInfo.desktop in desktop_name
+            return system.DESKTOP in desktop_name
         else:
             return True
 
@@ -105,12 +111,11 @@ class TweakModule(gtk.VBox):
     }
 
     def __init__(self, path=None, domain='ubuntu-tweak'):
-        assert(self.__title__ and self.__desc__)
-
         gtk.VBox.__init__(self)
         self.set_border_width(6)
 
-        self.draw_title()
+        if self.__title__ and self.__desc__:
+            self.draw_title()
 
         self.scrolled_win = gtk.ScrolledWindow()
         self.scrolled_win.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
@@ -204,3 +209,60 @@ class TweakModule(gtk.VBox):
         If module use glade, it must call this method to reparent the main frame
         '''
         widget.reparent(self.inner_vbox)
+
+    @classmethod
+    def get_name(cls):
+        '''Return the module name
+        class Computer(TweakModule):
+            pass
+        the "Computer" is the module name
+        '''
+        return cls.__name__
+
+    @classmethod
+    def get_title(cls):
+        '''Return the module title, it is for human read with i18n support
+        '''
+        return cls.__title__
+
+    @classmethod
+    def get_pixbuf(cls):
+        '''Return gtk Pixbuf'''
+        if cls.__icon__:
+            if type(cls.__icon__) != list:
+                if cls.__icon__.endswith('.png'):
+                    icon_path = os.path.join(DATA_DIR, 'pixmaps', cls.__icon__)
+                    pixbuf = gtk.gd.pixbuf_new_from_file(icon_path)
+                else:
+                    pixbuf = icon.get_from_name(cls.__icon__)
+            else:
+                pixbuf = icon.get_from_list(cls.__icon__)
+
+            return pixbuf
+
+def show_error_page():
+    align = gtk.Alignment(0.5, 0.3)
+
+    hbox = gtk.HBox(False, 12)
+    align.add(hbox)
+
+    image = gtk.image_new_from_pixbuf(icon.get_from_name('emblem-ohno', size=64))
+    hbox.pack_start(image, False, False, 0)
+
+    label = gtk.Label()
+    label.set_markup("<span size=\"x-large\">%s</span>" % 
+                     _("This module encountered an error while loading."))
+    label.set_justify(gtk.JUSTIFY_FILL)
+    hbox.pack_start(label)
+        
+    return align
+
+class BrokenModule(TweakModule):
+    __icon__ = 'gtk-dialog-error'
+
+    def __init__(self):
+        super(BrokenModule, self).__init__()
+
+        align = show_error_page()
+
+        self.add_start(align)

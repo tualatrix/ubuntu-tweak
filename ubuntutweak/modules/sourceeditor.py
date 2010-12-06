@@ -20,21 +20,23 @@
 
 import os
 import gtk
+import glob
 import thread
 import socket
 import gobject
 import gettext
-import glob
 
-from ubuntutweak.modules  import TweakModule
-from sourcecenter import refresh_source
 from xmlrpclib import ServerProxy, Error
+
+from ubuntutweak import system
 from ubuntutweak.common.gui import GuiWorker
-from ubuntutweak.common.systeminfo import module_check
 from ubuntutweak.policykit import PolkitButton, proxy
 from ubuntutweak.utils import set_label_for_stock_button
 from ubuntutweak.common.package import PACKAGE_WORKER
 from ubuntutweak.widgets.dialogs import *
+from ubuntutweak.modules  import TweakModule
+from ubuntutweak.modules.sourcecenter import refresh_source
+
 
 (
     COLUMN_CHECK,
@@ -53,7 +55,7 @@ deb-src http://archive.ubuntu.com/ubuntu/ %(distro)s main restricted universe mu
 deb-src http://archive.ubuntu.com/ubuntu/ %(distro)s-security main restricted universe multiverse
 deb-src http://archive.ubuntu.com/ubuntu/ %(distro)s-updates main restricted universe multiverse
 deb-src http://archive.ubuntu.com/ubuntu/ %(distro)s-proposed main restricted universe multiverse
-deb-src http://archive.ubuntu.com/ubuntu/ %(distro)s-backports main restricted universe multiverse''' % {'distro': module_check.get_codename()}
+deb-src http://archive.ubuntu.com/ubuntu/ %(distro)s-backports main restricted universe multiverse''' % {'distro': system.CODENAME}
 
 SOURCES_LIST = '/etc/apt/sources.list'
 
@@ -200,7 +202,7 @@ class UploadDialog(ProcessDialog):
         self.processing = True
         try:
             title, locale, comment, source = data
-            self.server.putsource(title, locale, comment, module_check.get_codename(), source)
+            self.server.putsource(title, locale, comment, system.CODENAME, source)
         except:
             self.error = True
 
@@ -216,7 +218,7 @@ class UpdateDialog(ProcessDialog):
         global SOURCES_DATA
         self.processing = True
         try:
-            SOURCES_DATA = self.server.getsource(os.getenv('LANG'), module_check.get_codename())
+            SOURCES_DATA = self.server.getsource(os.getenv('LANG'), system.CODENAME)
         except:
             self.error = True
 

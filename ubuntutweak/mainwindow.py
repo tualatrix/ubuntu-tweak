@@ -29,12 +29,12 @@ import logging
 
 from ubuntutweak.utils import icon
 from ubuntutweak import modules
+from ubuntutweak import system
 from ubuntutweak.policykit import proxy
-from ubuntutweak.modules import TweakModule, ModuleLoader
+from ubuntutweak.modules import TweakModule, ModuleLoader, show_error_page
 from ubuntutweak.common.consts import APP, VERSION
 from ubuntutweak.common.debug import run_traceback
 from ubuntutweak.common.config import TweakSettings
-from ubuntutweak.common.systeminfo import module_check
 from ubuntutweak.widgets.dialogs import QuestionDialog
 from ubuntutweak.network.downloadmanager import DownloadDialog
 from ubuntutweak.widgets.dialogs import WarningDialog
@@ -105,23 +105,6 @@ def show_wait():
         
     return vbox
 
-def show_error_page():
-    align = gtk.Alignment(0.5, 0.3)
-
-    hbox = gtk.HBox(False, 12)
-    align.add(hbox)
-
-    image = gtk.image_new_from_pixbuf(icon.get_from_name('emblem-ohno', size=64))
-    hbox.pack_start(image, False, False, 0)
-
-    label = gtk.Label()
-    label.set_markup("<span size=\"x-large\">%s</span>" % 
-                     _("This module encountered an error while loading."))
-    label.set_justify(gtk.JUSTIFY_FILL)
-    hbox.pack_start(label)
-        
-    return align
-
 (MODULE_ID,
  MODULE_LOGO,
  MODULE_TITLE,
@@ -129,15 +112,17 @@ def show_error_page():
  MODULE_TYPE) = range(5)
 
 (WELCOME,
+ BROKEN,
  APPLICATIONS,
  STARTUP,
  DESKTOP,
  PERSONAL,
  SYSTEM,
- TOTAL) = range(7)
+ TOTAL) = range(8)
 
 MODULES_TABLE = [
     [WELCOME, 'ubuntu-tweak', _("Welcome"), show_welcome, None],
+    [BROKEN, '', _("Broken Modules"), None, 'broken'],
     [APPLICATIONS, '', _("Applications"), None, 'application'],
     [STARTUP, '', _("Startup"), None, 'startup'],
     [DESKTOP, '', _("Desktop"), None, 'desktop'],
@@ -247,7 +232,7 @@ class MainWindow(gtk.Window):
             pass
 
         # Only check if the distribution is supported
-        if module_check.get_codename():
+        if system.is_supported():
             gobject.idle_add(self.notify_stable_source)
 
     def notify_stable_source(self):
@@ -322,10 +307,11 @@ class MainWindow(gtk.Window):
                 for module in module_list:
                     child_iter = model.append(iter)
 
+                    log.debug("Insert module: name: %s, title: %s" % (module.get_name(), module.get_title()))
                     model.set(child_iter,
-                        self.ID_COLUMN, module.__name__,
-                        self.LOGO_COLUMN, MLOADER.get_pixbuf(module.__name__),
-                        self.TITLE_COLUMN, module.__title__,
+                        self.ID_COLUMN, module.get_name(),
+                        self.LOGO_COLUMN, module.get_pixbuf(),
+                        self.TITLE_COLUMN, module.get_title(),
                     )
 
         return model

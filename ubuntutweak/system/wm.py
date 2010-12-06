@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding=utf8 -*-
 #
-# Copyright © 2010 Zhe-Wei Lin
+# Copyright (C) 2010 Zhe-Wei Lin
 #
 # Lazyscripts is a free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -127,8 +127,3 @@ class WindowManager(object):
             return self.wm_var_check()
         else:
             return 'unknown'
-
-
-
-
-#END

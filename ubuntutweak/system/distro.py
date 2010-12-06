@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding=utf8 -*-
 #
-# Copyright © 2010 Hsin Yi Chen
+# Copyright (C) 2010 Hsin Yi Chen
 #
 # Lazyscripts is a free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,7 +18,6 @@
 # Place, Suite 330, Boston, MA 02111-1307 USA
 import commands
 import platform
-
 
 class DistrobutionNotFound(Exception):
     "The distrobution can not be detected."

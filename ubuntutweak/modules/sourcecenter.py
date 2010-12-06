@@ -35,6 +35,7 @@ import urllib
 from gettext import ngettext
 from aptsources.sourceslist import SourcesList
 
+from ubuntutweak import system
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.policykit import PolkitButton, proxy
 from ubuntutweak.widgets import GconfCheckButton
@@ -51,7 +52,6 @@ from ubuntutweak.common.config import Config, TweakSettings
 from ubuntutweak.common.package import PACKAGE_WORKER, PackageInfo
 from ubuntutweak.common.notify import notify
 from ubuntutweak.common.misc import URLLister
-from ubuntutweak.common.systeminfo import module_check
 
 log = logging.getLogger("SourceCenter")
 
@@ -187,8 +187,9 @@ class SourceParser(Parser):
                     # Try to parse its real codename, when match the local
                     # Get it, or continue
                     for id in distros:
-                        if module_check.get_codename() == distro_parser.get_codename(id):
-                            distro_values = distro_parser.get_codename(id)
+                        codename = distro_parser.get_codename(id)
+                        if system.CODENAME == codename:
+                            distro_values = codename
                             break
 
                     if distro_values == '':
@@ -198,10 +199,6 @@ class SourceParser(Parser):
             else:
                 #TODO Remove in the future release, only leave distros
                 distro_values = item['fields']['distro']
-
-            if module_check.is_ubuntu(distro_values) and \
-                    module_check.get_codename() not in distro_values:
-                continue
 
             item['fields']['id'] = item['pk']
             # But here, always be distro, the only distro correspond with current
