@@ -22,8 +22,7 @@ def get_codename():
             return 'karmic'
         elif codename in ['lucid', 'isadora', 'Isadora']:
             return 'lucid'
-        elif codename in ['maverick']:
-            return 'maverick'
+        return codename
     except:
         pass
     return ''
@@ -91,4 +90,4 @@ DESKTOP_VERSION = get_desktop_version()
 APP = get_app()
 
 def is_supported(codename=CODENAME):
-    return codename in ('karmic', 'lucid', 'maverick')
+    return codename in ('karmic', 'lucid', 'maverick', 'natty')
