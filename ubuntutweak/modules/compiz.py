@@ -139,7 +139,8 @@ class CompizSetting:
         return self.__setting.Value
 
     def is_default_and_enabled(self):
-        return self.__setting.Value == self.__setting.DefaultValue and self.plugin.get_enabled()
+        return self.__setting.Value == self.__setting.DefaultValue and \
+                self.__plugin.get_enabled()
 
     def reset(self):
         self.__setting.Reset()
