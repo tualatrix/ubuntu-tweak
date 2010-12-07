@@ -65,16 +65,64 @@ plugins_settings = \
     'widget': 'toggle_edge',
 }
 
-class CompizSetting:
+class CompizPlugin:
     if system.has_ccm() and system.has_right_compiz() == 1:
         import compizconfig as ccs
         context = ccs.Context()
     elif system.has_right_compiz() == 0:
         context = None
         error = False
-    elif system.has_right_compiz() == -1:
-        context = None
-        error = True
+
+    def __init__(self, name):
+        self.__plugin = self.context.Plugins[name]
+
+    def set_enabled(self, bool):
+        self.__plugin.Enabled = int(bool)
+        self.save()
+
+    def get_enabled(self):
+        return self.__plugin.Enabled
+
+    def save(self):
+        self.context.Write()
+
+    def resolve_conflict(self):
+        conflicts = self.get_enabled() and self.__plugin.DisableConflicts \
+                                       or self.__plugin.EnableConflicts
+        conflict = ccm.PluginConflict(self.__plugin, conflicts)
+        return conflict.Resolve()
+
+    @classmethod
+    def is_available(cls, name, setting):
+        if ccm.Version >= '0.9.2':
+            target = 'Screen'
+        else:
+            target = 'Display'
+
+        return cls.context.Plugins.has_key(name) and \
+                getattr(cls.context.Plugins[name], target).has_key(setting)
+
+    def create_setting(self, key, target):
+        settings = (self.__plugin, target)
+
+        #TODO remove it in the future
+        if ccm.Version >= '0.9.2':
+            target = 'Screen'
+        else:
+            if not target:
+                target = 'Display'
+
+        settings = getattr(self.__plugin, target)
+
+        if type(settings) == list:
+            return settings[0][key]
+        else:
+            return settings[key]
+
+class CompizSetting:
+    def __init__(self, plugin, key, target=''):
+        self.__plugin = plugin
+        self.__setting = self.__plugin.create_setting(key, target)
 
     @classmethod
     def update_context(cls):
@@ -82,15 +130,6 @@ class CompizSetting:
             import compizconfig as ccs
             load_ccm()
             cls.context = ccs.Context()
-
-    @classmethod
-    def get_plugin(cls, name):
-        try:
-            plugin = cls.context.Plugins[name]
-        except KeyError:
-            return None
-        else:
-            return plugin
 
     @classmethod
     def set_plugin_active(cls, name, active):
@@ -109,154 +148,170 @@ class CompizSetting:
         except:
             return False
 
-class OpacityMenu(gtk.CheckButton, CompizSetting):
+    def get_value(self, key, target='', plugin=None):
+        if target:
+            if plugin:
+                display = getattr(plugin, target)
+            else:
+                display = getattr(self.plugin, target)
+        else:
+            if ccm.Version >= '0.9.2':
+                target = 'Screen'
+            else:
+                target = 'Display'
+
+        if type(display) == list:
+            return display[0][key].Value
+        else:
+            return display.Value
+
+    def set_value(self, value):
+        self.__setting.Value = value
+        self.__plugin.save()
+
+    def get_default_value(self, key, value, target='', plugin=None):
+        pass
+
+    def get_value(self):
+        return self.__setting.Value
+
+    def is_default_and_enabled(self):
+        return self.__setting.Value == self.__setting.DefaultValue and self.plugin.get_enabled()
+
+    def reset(self):
+        self.__setting.Reset()
+        self.__plugin.save()
+
+class OpacityMenu(gtk.CheckButton):
     menu_match = 'Tooltip | Menu | PopupMenu | DropdownMenu'
+
     def __init__(self, label):
         gtk.CheckButton.__init__(self, label)
 
-        self.plugin = self.get_plugin('obs')
+        self.plugin = CompizPlugin('obs')
 
-        if not self.plugin.Enabled:
-            self.plugin.Enabled = 1
-            self.context.Write()
-        self.setting_matches = self.plugin.Screens[0]['opacity_matches']
-        self.setting_values = self.plugin.Screens[0]['opacity_values']
+        if not self.plugin.get_enabled():
+            self.plugin.set_enabled(True)
+        self.setting_matches = CompizSetting(self.plugin, 'opacity_matches', target='Screens')
+        self.setting_values = CompizSetting(self.plugin, 'opacity_values', target='Screens')
 
-        if self.menu_match in self.setting_matches.Value:
+        if self.menu_match in self.setting_matches.get_value():
             self.set_active(True)
-
-        self.connect("toggled", self.on_button_toggled)
-
-    def on_button_toggled(self, widget, data = None):
-        if self.get_active():
-            self.setting_matches.Value = [self.menu_match]
-            self.setting_values.Value = [90]
-        else:
-            index = self.setting_matches.Value.index(self.menu_match)
-            self.setting_matches.Value = []
-            self.setting_values.Value = []
-        self.context.Write()
-
-class WobblyMenu(gtk.CheckButton, CompizSetting):
-    def __init__(self, label, mediator):
-        gtk.CheckButton.__init__(self, label)
-
-        self.mediator = mediator
-        self.plugin = self.context.Plugins['wobbly']
-        self.setting = self.plugin.Screens[0]['map_window_match']
-
-        if self.setting.Value == self.setting.DefaultValue and self.plugin.Enabled:
-            self.set_active(True)
-
-        self.connect("toggled", self.on_button_toggled)
-
-    def on_button_toggled(self, widget, data = None):
-        if self.get_active():
-            conflicts = self.plugin.Enabled and self.plugin.DisableConflicts or self.plugin.EnableConflicts
-            conflict = ccm.PluginConflict(self.plugin, conflicts)
-            if conflict.Resolve():
-                self.mediator.snap.set_active(False)
-                if not self.plugin.Enabled: self.plugin.Enabled = True
-                self.setting.Reset()
-        else:
-            self.setting.Value = ""
-
-        self.context.Write()
-
-        if self.setting.Value == self.setting.DefaultValue and self.plugin.Enabled:
-            self.set_active(True)
-        else:
-            self.set_active(False)
-
-class WobblyWindow(gtk.CheckButton, CompizSetting):
-    def __init__(self, label, mediator):
-        gtk.CheckButton.__init__(self, label)
-
-        self.mediator = mediator
-        self.plugin = self.context.Plugins['wobbly']
-        self.setting = self.plugin.Screens[0]['move_window_match']
-        
-        if self.setting.Value == self.setting.DefaultValue and self.plugin.Enabled:
-            self.set_active(True)
-
-        self.connect("toggled", self.on_button_toggled)
-
-    def on_button_toggled(self, widget, data = None):
-        if self.get_active():
-            conflicts = self.plugin.Enabled and self.plugin.DisableConflicts or self.plugin.EnableConflicts
-            conflict = ccm.PluginConflict(self.plugin, conflicts)
-            if conflict.Resolve():
-                self.mediator.snap.set_active(False)
-                if not self.plugin.Enabled: self.plugin.Enabled = True
-                self.setting.Reset()
-        else:
-            self.setting.Value = ""
-
-        self.context.Write()
-
-        if self.setting.Value == self.setting.DefaultValue and self.plugin.Enabled:
-            self.set_active(True)
-        else:
-            self.set_active(False)
-
-class SnapWindow(gtk.CheckButton, CompizSetting):
-    def __init__(self, label, mediator):
-        gtk.CheckButton.__init__(self, label)
-
-        self.mediator = mediator
-        self.plugin = self.context.Plugins['snap']
-
-        self.set_active(self.plugin.Enabled)
-
-        self.connect("toggled", self.on_button_toggled)
-
-    def on_button_toggled(self, widget, data = None):
-        if self.get_active():
-            conflicts = self.plugin.Enabled and self.plugin.DisableConflicts or self.plugin.EnableConflicts
-            conflict = ccm.PluginConflict(self.plugin, conflicts)
-            if conflict.Resolve():
-                self.plugin.Enabled = True
-                self.mediator.wobbly_w.set_active(False)
-                self.mediator.wobbly_m.set_active(False)
-        else:
-            self.plugin.Enabled = False
-
-        self.context.Write()
-
-        self.set_active(self.plugin.Enabled)
-
-class ViewpointSwitcher(gtk.CheckButton, CompizSetting):
-    def __init__(self, label):
-        gtk.CheckButton.__init__(self, label)
-
-        self.plugin = self.context.Plugins['vpswitch']
-        self.set_active(self.__get_setting_enabled())
 
         self.connect("toggled", self.on_button_toggled)
 
     def on_button_toggled(self, widget):
         if self.get_active():
+            self.setting_matches.set_value([self.menu_match])
+            self.setting_values.set_value([90])
+        else:
+            self.setting_matches.set_value([])
+            self.setting_values.set_value([])
+
+class WobblyMenu(gtk.CheckButton):
+    def __init__(self, label, mediator):
+        gtk.CheckButton.__init__(self, label)
+
+        self.mediator = mediator
+        self.plugin = CompizPlugin('wobbly')
+        self.setting = CompizSetting(self.plugin, 'map_window_match', target='Screens')
+
+        if self.setting.is_default_and_enabled():
+            self.set_active(True)
+
+        self.connect("toggled", self.on_button_toggled)
+
+    def on_button_toggled(self, widget):
+        if self.get_active():
+            if self.plugin.resolve_conflict():
+                self.mediator.snap.set_active(False)
+                self.plugin.set_enabled(True)
+                self.setting.reset()
+        else:
+            self.setting.set_value("")
+
+        if self.setting.is_default_and_enabled():
+            self.set_active(True)
+        else:
+            self.set_active(False)
+
+class WobblyWindow(gtk.CheckButton):
+    def __init__(self, label, mediator):
+        gtk.CheckButton.__init__(self, label)
+
+        self.mediator = mediator
+        self.plugin = CompizPlugin('wobbly')
+        self.setting = CompizSetting(self.plugin, 'move_window_match', target='Screens')
+        
+        if self.setting.is_default_and_enabled():
+            self.set_active(True)
+
+        self.connect("toggled", self.on_button_toggled)
+
+    def on_button_toggled(self, widget):
+        if self.get_active():
+            if self.plugin.resolve_conflict():
+                self.mediator.snap.set_active(False)
+                self.plugin.set_enabled(True)
+                self.setting.reset()
+        else:
+            self.setting.set_value("")
+
+        if self.setting.is_default_and_enabled():
+            self.set_active(True)
+        else:
+            self.set_active(False)
+
+class SnapWindow(gtk.CheckButton):
+    def __init__(self, label, mediator):
+        gtk.CheckButton.__init__(self, label)
+
+        self.mediator = mediator
+        self.plugin = CompizPlugin('snap')
+
+        self.set_active(self.plugin.get_enabled())
+
+        self.connect("toggled", self.on_button_toggled)
+
+    def on_button_toggled(self, widget):
+        if self.get_active():
+            if self.plugin.resolve_conflict():
+                self.plugin.set_enabled(True)
+                self.mediator.wobbly_w.set_active(False)
+                self.mediator.wobbly_m.set_active(False)
+        else:
+            self.plugin.set_enabled(False)
+
+class ViewpointSwitcher(gtk.CheckButton):
+    def __init__(self, label):
+        gtk.CheckButton.__init__(self, label)
+
+        self.plugin = CompizPlugin('vpswitch')
+        self.left_button_setting = CompizSetting(self.plugin, 'left_button')
+        self.right_button_setting = CompizSetting(self.plugin, 'right_button')
+
+        self.set_active(self.__get_setting_enabled())
+        self.connect("toggled", self.on_button_toggled)
+
+    def on_button_toggled(self, widget):
+        if self.get_active():
             log.debug("The viewport button is enabled")
-            conflicts = self.plugin.Enabled and self.plugin.DisableConflicts or self.plugin.EnableConflicts
-            conflict = ccm.PluginConflict(self.plugin, conflicts)
-            if conflict.Resolve():
-                self.plugin.Enabled = True
-                self.plugin.Display['left_button'].Value = 'Button4'
-                self.plugin.Display['right_button'].Value = 'Button5'
+            if self.plugin.resolve_conflict():
+                self.plugin.set_enabled(True)
+                self.left_button_setting.set_value('Button4')
+                self.right_button_setting.set_value('Button5')
         else:
             log.debug("The viewport button is disabled")
-            self.plugin.Enabled = False
-
-        self.context.Write()
+            self.plugin.set_enabled(False)
 
     def __get_setting_enabled(self):
-        if self.plugin.Enabled and self.plugin.Display['left_button'].Value == 'Button4' \
-                and self.plugin.Display['right_button'].Value == 'Button5':
+        if self.plugin.get_enabled() and self.left_button_setting.get_value() == 'Button4' \
+                and self.right_button_setting.get_value() == 'Button5':
                     return True
         else:
             return False
 
-class Compiz(TweakModule, CompizSetting):
+class Compiz(TweakModule):
     __title__ = _('Compiz Settings')
     __desc__ = _('Settings for some amazing desktop eye-candy')
     __icon__ = ['compiz', 'wmtweaks']
@@ -282,7 +337,7 @@ class Compiz(TweakModule, CompizSetting):
                     'screenlets')
             self.screenlets.connect('toggled', self.colleague_changed)
 
-        if self.context:
+        if CompizPlugin.context:
             hbox = gtk.HBox(False, 0)
             hbox.pack_start(self.create_edge_setting(), True, False, 0)
             edge_setting = SinglePack(_(' Workspace Edge Settings'), hbox)
@@ -316,7 +371,7 @@ class Compiz(TweakModule, CompizSetting):
                 box.vbox.pack_start(hbox, False, False, 0)
 
                 self.add_start(box, False, False, 0)
-        elif self.context == None and self.error == False:
+        elif CompizSetting.context == None:
             box = ListPack(_("Prerequisite Conditions"), (
                 self.advanced_settings,
             ))
@@ -329,9 +384,6 @@ class Compiz(TweakModule, CompizSetting):
 
             box.vbox.pack_start(hbox, False, False, 0)
             self.add_start(box, False, False, 0)
-        elif self.context == None and self.error == True:
-            label = gtk.Label(_('Compiz is broken, Please go to "Package Cleaner" -> "Purge PPAs" to cleanup the "Compiz Packagers PPA" or "ppa:compiz/ppa".'))
-            self.add_start(label, False, False, 0)
 
     def combo_box_changed_cb(self, widget, edge):
         """If the previous setting is none, then select the add edge"""
@@ -343,10 +395,7 @@ class Compiz(TweakModule, CompizSetting):
     def change_edge(self, widget, edge):
         previous = widget.previous
 
-        plugin = self.context.Plugins[previous]
-        setting = plugin.Display[plugins_settings[previous]]
-        setting.Value = ""
-        self.context.Write()
+        CompizSetting(CompizPlugin(previous), plugins_settings[previous]).set_value('')
 
         self.add_edge(widget, edge)    
 
@@ -360,13 +409,10 @@ class Compiz(TweakModule, CompizSetting):
         if text == '-':
             widget.previous = None
         else:
-            plugin = self.context.Plugins[text]
-            if not plugin.Enabled:
-                plugin.Enabled = True
-                self.context.Write()
-            setting = plugin.Display[plugins_settings[text]]
-            setting.Value = edge
-            self.context.Write()
+            plugin = CompizPlugin(text)
+            plugin.set_enabled(True)
+            setting = CompizSetting(plugin, plugins_settings[text])
+            setting.set_value(edge)
             widget.previous = text
 
     def create_edge_combo_box(self, edge):
@@ -377,11 +423,10 @@ class Compiz(TweakModule, CompizSetting):
         enable = False
         count = 0
         for k, v in plugins_settings.items():
-            if self.context.Plugins.has_key(k) and self.context.Plugins[k].Display.has_key(v):
-                plugin = self.context.Plugins[k]
+            if CompizPlugin.is_available(k, v):
+                plugin = CompizPlugin(k)
                 combobox.append_text(plugins[k])
-                setting = plugin.Display[v]
-                if setting.Value == edge:
+                if CompizSetting(plugin, v).get_value() == edge:
                     combobox.previous = k
                     combobox.set_active(count)
                     enable = True

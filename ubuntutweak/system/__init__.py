@@ -37,10 +37,6 @@ def has_ccm():
 def has_right_compiz():
     '''Return 1 if OK, return 0 if no ccm, return -1 if compiz broken'''
     try:
-        compiz_pkg = os.popen("dpkg -l compiz|grep compiz|awk '{print $3}'").read().strip()
-        if compiz_pkg.split(':')[1] > '0.9':
-            return -1
-
         if has_ccm():
             import ccm
             if ccm.Version >= '0.7.4':
