@@ -41,7 +41,7 @@ def has_right_compiz():
         if compiz_pkg.split(':')[1] > '0.9':
             return -1
 
-        if cls.has_ccm():
+        if has_ccm():
             import ccm
             if ccm.Version >= '0.7.4':
                 return 1

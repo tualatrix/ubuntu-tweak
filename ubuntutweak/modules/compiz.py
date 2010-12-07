@@ -31,7 +31,6 @@ from ubuntutweak.modules  import TweakModule
 from ubuntutweak.common.consts import DATA_DIR
 from ubuntutweak.widgets import ListPack, SinglePack
 from ubuntutweak.widgets.dialogs import InfoDialog
-from ubuntutweak.common.systeminfo import module_check
 
 log = logging.getLogger('compiz')
 
