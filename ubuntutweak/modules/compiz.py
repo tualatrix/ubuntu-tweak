@@ -178,9 +178,10 @@ class WobblyMenu(gtk.CheckButton):
 
         self.mediator = mediator
         self.plugin = CompizPlugin('wobbly')
-        self.setting = CompizSetting(self.plugin, 'map_window_match', target='Screens')
+        self.map_window_setting = CompizSetting(self.plugin, 'map_window_match', target='Screens')
+        self.map_effect_setting = CompizSetting(self.plugin, 'map_effect', target='Screens')
 
-        if self.setting.is_default_and_enabled():
+        if self.map_window_setting.is_default_and_enabled() and self.map_effect_setting.get_value() == 1:
             self.set_active(True)
 
         self.connect("toggled", self.on_button_toggled)
@@ -190,11 +191,13 @@ class WobblyMenu(gtk.CheckButton):
             if self.plugin.resolve_conflict():
                 self.mediator.snap.set_active(False)
                 self.plugin.set_enabled(True)
-                self.setting.reset()
+                self.map_window_setting.reset()
+                self.map_effect_setting.set_value(1)
         else:
-            self.setting.set_value("")
+            self.map_window_setting.set_value("")
+            self.map_effect_setting.set_value(0)
 
-        if self.setting.is_default_and_enabled():
+        if self.map_window_setting.is_default_and_enabled():
             self.set_active(True)
         else:
             self.set_active(False)
