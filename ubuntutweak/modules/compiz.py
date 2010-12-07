@@ -73,6 +73,13 @@ class CompizPlugin:
         context = None
         error = False
 
+    @classmethod
+    def update_context(cls):
+        if system.has_ccm() and system.has_right_compiz():
+            import compizconfig as ccs
+            load_ccm()
+            cls.context = ccs.Context()
+
     def __init__(self, name):
         self.__plugin = self.context.Plugins[name]
 
@@ -124,53 +131,9 @@ class CompizSetting:
         self.__plugin = plugin
         self.__setting = self.__plugin.create_setting(key, target)
 
-    @classmethod
-    def update_context(cls):
-        if system.has_ccm() and system.has_right_compiz():
-            import compizconfig as ccs
-            load_ccm()
-            cls.context = ccs.Context()
-
-    @classmethod
-    def set_plugin_active(cls, name, active):
-        try:
-            plugin = cls.context.Plugins[name]
-            plugin.Enabled = int(active)
-            cls.context.Write()
-        except:
-            pass
-
-    @classmethod
-    def get_plugin_active(cls, name):
-        try:
-            plugin = cls.context.Plugins[name]
-            return bool(plugin.Enabled)
-        except:
-            return False
-
-    def get_value(self, key, target='', plugin=None):
-        if target:
-            if plugin:
-                display = getattr(plugin, target)
-            else:
-                display = getattr(self.plugin, target)
-        else:
-            if ccm.Version >= '0.9.2':
-                target = 'Screen'
-            else:
-                target = 'Display'
-
-        if type(display) == list:
-            return display[0][key].Value
-        else:
-            return display.Value
-
     def set_value(self, value):
         self.__setting.Value = value
         self.__plugin.save()
-
-    def get_default_value(self, key, value, target='', plugin=None):
-        pass
 
     def get_value(self):
         return self.__setting.Value
@@ -502,7 +465,7 @@ class Compiz(TweakModule):
             for widget in box.items:
                 widget.reset_active()
 
-        CompizSetting.update_context()
+        CompizPlugin.update_context()
         self.remove_all_children()
         self.create_interface()
 
