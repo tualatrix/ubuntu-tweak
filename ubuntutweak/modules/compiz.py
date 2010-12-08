@@ -353,39 +353,52 @@ class Compiz(TweakModule):
             self.add_start(box, False, False, 0)
 
     def combo_box_changed_cb(self, widget, edge):
-        """If the previous setting is none, then select the add edge"""
-        if widget.previous:
-            self.change_edge(widget, edge)
-        else:
-            self.add_edge(widget, edge)
-
-    def change_edge(self, widget, edge):
-        previous = widget.previous
-
-        CompizSetting(CompizPlugin(previous), plugins_settings[previous]).set_value('')
-
-        self.add_edge(widget, edge)    
-
-    def add_edge(self, widget, edge):
+        """If the current setting is none, then select the add edge"""
+        current = widget.current
         text = widget.get_active_text()
         for k, v in plugins.items():
             if v == text:
                 text = k
                 break
 
+        log.debug("The current value: %s and next value: %s" % (current, text))
+
+        if current:
+            # Clean old data
+            log.debug("Clean old data from the same box")
+            self.set_data(current, None)
+            CompizSetting(CompizPlugin(current), plugins_settings[current]).set_value('')
+
+        if self.get_data(text):
+            log.debug("Clean old data from the other box")
+            current_combox = self.get_data(text)
+
+            if current_combox and current_combox != widget:
+                # Set the current value holder to -, and set the current value to None
+                current_combox.handler_block_by_func(self.combo_box_changed_cb)
+                current_combox.current = None
+                self.set_data(text, None)
+                current_combox.set_active(self.get_data('max_index'))
+                current_combox.handler_unblock_by_func(self.combo_box_changed_cb)
+
+            log.debug("Clean old value, set %s to None" % text)
+
         if text == '-':
-            widget.previous = None
+            self.set_data(widget.current, None)
+            widget.current = None
         else:
             plugin = CompizPlugin(text)
             plugin.set_enabled(True)
             setting = CompizSetting(plugin, plugins_settings[text])
             setting.set_value(edge)
-            widget.previous = text
+            widget.current = text
+            self.set_data(text, widget)
+            log.debug("set the current %s" % text)
 
     def create_edge_combo_box(self, edge):
         global plugins_settings, plugins
         combobox = gtk.combo_box_new_text()
-        combobox.previous = None
+        combobox.current = None
 
         enable = False
         count = 0
@@ -394,9 +407,11 @@ class Compiz(TweakModule):
                 plugin = CompizPlugin(k)
                 combobox.append_text(plugins[k])
                 if CompizSetting(plugin, v).get_value() == edge:
-                    combobox.previous = k
+                    combobox.current = k
                     combobox.set_active(count)
                     enable = True
+                    self.set_data(k, combobox)
+                    log.info("The %s is holding %s" % (edge, k))
                 count = count + 1
             else:
                 plugins.pop(k)
@@ -405,6 +420,7 @@ class Compiz(TweakModule):
         combobox.append_text("-")
         if not enable:
             combobox.set_active(count)
+        self.set_data('max_index', count)
         combobox.connect("changed", self.combo_box_changed_cb, edge)
 
         return combobox
@@ -415,11 +431,11 @@ class Compiz(TweakModule):
         vbox = gtk.VBox(False, 0)
         hbox.pack_start(vbox, False, False, 0)
 
-        combobox = self.create_edge_combo_box("TopLeft")
-        vbox.pack_start(combobox, False, False, 0)
+        self.TopLeft = self.create_edge_combo_box("TopLeft")
+        vbox.pack_start(self.TopLeft, False, False, 0)
 
-        combobox = self.create_edge_combo_box("BottomLeft")
-        vbox.pack_end(combobox, False, False, 0)
+        self.BottomLeft = self.create_edge_combo_box("BottomLeft")
+        vbox.pack_end(self.BottomLeft, False, False, 0)
 
         client = gconf.client_get_default()
         wallpaper = client.get_string("/desktop/gnome/background/picture_filename")
@@ -438,11 +454,11 @@ class Compiz(TweakModule):
         vbox = gtk.VBox(False, 0)
         hbox.pack_start(vbox, False, False, 0)
         
-        combobox = self.create_edge_combo_box("TopRight")
-        vbox.pack_start(combobox, False, False, 0)
+        self.TopRight = self.create_edge_combo_box("TopRight")
+        vbox.pack_start(self.TopRight, False, False, 0)
 
-        combobox = self.create_edge_combo_box("BottomRight")
-        vbox.pack_end(combobox, False, False, 0)
+        self.BottomRight = self.create_edge_combo_box("BottomRight")
+        vbox.pack_end(self.BottomRight, False, False, 0)
 
         return hbox
 
