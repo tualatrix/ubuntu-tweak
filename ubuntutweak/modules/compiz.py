@@ -80,6 +80,23 @@ class CompizPlugin:
             load_ccm()
             cls.context = ccs.Context()
 
+    @classmethod
+    def set_plugin_active(cls, name, active):
+        try:
+            plugin = cls.context.Plugins[name]
+            plugin.Enabled = int(active)
+            cls.context.Write()
+        except:
+            pass
+
+    @classmethod
+    def get_plugin_active(cls, name):
+        try:
+            plugin = cls.context.Plugins[name]
+            return bool(plugin.Enabled)
+        except:
+            return False
+
     def __init__(self, name):
         self.__plugin = self.context.Plugins[name]
 
@@ -338,7 +355,7 @@ class Compiz(TweakModule):
                 box.vbox.pack_start(hbox, False, False, 0)
 
                 self.add_start(box, False, False, 0)
-        elif CompizSetting.context == None:
+        elif CompizPlugin.context == None:
             box = ListPack(_("Prerequisite Conditions"), (
                 self.advanced_settings,
             ))

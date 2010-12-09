@@ -29,7 +29,7 @@ import gobject
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.widgets import KeyGrabber, KeyModifier, CellRendererButton
 from ubuntutweak.utils import icon
-from compiz import CompizSetting
+from compiz import CompizPlugin
 
 (
     COLUMN_ID,
@@ -52,8 +52,8 @@ class Shortcuts(TweakModule):
     def __init__(self):
         TweakModule.__init__(self)
 
-        if not CompizSetting.get_plugin_active('commands'):
-            CompizSetting.set_plugin_active('commands', True)
+        if not CompizPlugin.get_plugin_active('commands'):
+            CompizPlugin.set_plugin_active('commands', True)
 
         sw = gtk.ScrolledWindow()
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
