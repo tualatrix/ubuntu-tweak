@@ -41,14 +41,13 @@ class Session(TweakModule):
         TweakModule.__init__(self)
 
         data = {
-             'changed': self.on_entry_changed,
-         }
+            'changed': self.on_entry_changed,
+        }
         label1, entry1, reset1 = WidgetFactory.create('GconfEntry',
                                          label=_('File Manager'),
                                          key='/desktop/gnome/session/required_components/filemanager',
                                          enable_reset=True,
-                                         signal_dict=data,
-                                         )
+                                         signal_dict=data)
         label2, entry2, reset2 = WidgetFactory.create('GconfEntry',
                                          label=_('Panel'),
                                          enable_reset=True,

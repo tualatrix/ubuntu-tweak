@@ -95,9 +95,11 @@ class WidgetFactory:
                 reset_button = GconfResetButton(kwargs['key'])
                 reset_button.connect('clicked', on_reset_button_clicked, new_widget)
 
-                return label, new_widget, reset_button
             except Exception, e:
                 log.error(e)
+                reset_button = None
+            finally:
+                return label, new_widget, reset_button
 
         return label, new_widget
 
