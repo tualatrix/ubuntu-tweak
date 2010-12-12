@@ -76,12 +76,11 @@ class PreferencesDialog:
         )
         for module in MLOADER.get_all_module():
             iter = model.append(None)
-            pixbuf = MLOADER.get_pixbuf(module.__name__)
 
             model.set(iter,
-                    MW.ID_COLUMN, module.__name__,
-                    MW.LOGO_COLUMN, pixbuf,
-                    MW.TITLE_COLUMN, module.__title__,
+                    MW.ID_COLUMN, module.get_name(),
+                    MW.LOGO_COLUMN, module.get_pixbuf(),
+                    MW.TITLE_COLUMN, module.get_title(),
             )
 
         function_box.set_model(model)
