@@ -22,6 +22,9 @@ log = logging.getLogger('ModuleLoader')
 def module_cmp(m1, m2):
     return cmp(m1.get_title(), m2.get_title())
 
+class ModuleKeyError(Exception):
+    pass
+
 class ModuleLoader:
     module_table = {'broken': []}
     id_table = {}
@@ -80,7 +83,10 @@ class ModuleLoader:
         return self.module_table.get(category, [])
 
     def get_module(self, id):
-        return self.id_table[id]
+        if not self.id_table.has_key(id):
+            raise ModuleKeyError('No module with id "%s"' % id)
+        else:
+            return self.id_table[id]
 
     def get_all_module(self):
         return self.id_table.values()
