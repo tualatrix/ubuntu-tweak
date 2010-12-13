@@ -21,3 +21,7 @@ def get_short_name(url):
 def get_homepage(url):
     section = url.split('/')
     return 'https://launchpad.net/~%s/+archive/%s' % (section[3], section[4])
+
+def get_source_file_name(url):
+    section = url.split('/')
+    return '%s-%s' % (section[3], section[4])

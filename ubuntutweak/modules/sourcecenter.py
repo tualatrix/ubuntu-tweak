@@ -270,7 +270,11 @@ class SourceParser(Parser):
         distro = self.get_distro(key)
         comps = self.get_comps(key)
         comment = self.get_name(key)
-        package = self.get_slug(key)
+
+        if ppa.is_ppa(url):
+            file_name = '%s-%s' % (ppa.get_source_file_name(url), distro)
+        else:
+            file_name = self.get_slug(key)
 
         if gpg_key:
             proxy.add_apt_key_from_content(gpg_key)
@@ -282,7 +286,7 @@ class SourceParser(Parser):
 
         if TweakSettings.get_separated_sources():
             result = proxy.set_separated_entry(url, distro, comps,
-                                               comment, enable, package)
+                                               comment, enable, file_name)
         else:
             result = proxy.set_entry(url, distro, comps, comment, enable)
 
@@ -560,7 +564,7 @@ class SourcesView(gtk.TreeView):
         sourceslist = self.get_sourceslist()
         enabled_list = []
 
-        for source in sourceslist:
+        for source in sourceslist.list:
             if source.type == 'deb' and not source.disabled:
                 enabled_list.append(source.uri)
 
