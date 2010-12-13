@@ -558,6 +558,11 @@ class SourcesView(gtk.TreeView):
     def update_model(self):
         self.model.clear()
         sourceslist = self.get_sourceslist()
+        enabled_list = []
+
+        for source in sourceslist:
+            if source.type == 'deb' and not source.disabled:
+                enabled_list.append(source.uri)
 
         if self.__status:
             self.__status.load_objects_from_parser(SOURCE_PARSER)
@@ -575,10 +580,7 @@ class SourcesView(gtk.TreeView):
             pixbuf = get_source_logo_from_filename(SOURCE_PARSER[id]['logo'])
             website = SOURCE_PARSER.get_website(id)
             key = SOURCE_PARSER.get_key(id)
-
-            for source in sourceslist:
-                if url in source.str() and source.type == 'deb':
-                    enabled = not source.disabled
+            enabled = url in enabled_list
 
             if self.__status and not self.__status.get_read_status(slug):
                 display = '<b>%s <span foreground="#ff0000">(New!!!)</span>\n%s</b>' % (name, comment)
