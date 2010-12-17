@@ -645,7 +645,7 @@ class AppCenter(TweakModule):
         else:
             ErrorDialog(_('Update Failed!')).launch()
 
-        self.emit('call', 'ubuntutweak.modules.updatemanager', 'normal_update', {})
+        self.emit('call', 'ubuntutweak.modules.updatemanager', 'update_list', {})
 
         self.appview.to_add = []
         self.appview.to_rm = []
