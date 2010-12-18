@@ -33,7 +33,7 @@ from ubuntutweak.utils.parser import Parser
 from ubuntutweak.network import utdata
 from ubuntutweak.network.downloadmanager import DownloadDialog
 from ubuntutweak.conf import GconfSetting
-from ubuntutweak.utils import set_label_for_stock_button
+from ubuntutweak.utils import set_label_for_stock_button, icon
 from ubuntutweak.common import consts
 from ubuntutweak.common.config import TweakSettings
 from ubuntutweak.common.package import PACKAGE_WORKER, PackageInfo
@@ -348,7 +348,7 @@ class AppView(gtk.TreeView):
         if icon_theme:
             pixbuf = icon_theme.load_icon()
         else:
-            pixbuf = icontheme.load_icon(gtk.STOCK_MISSING_IMAGE, 32, 0)
+            pixbuf = icon.get_from_name(size=32)
 
         iter = model.append()
         model.set(iter,
