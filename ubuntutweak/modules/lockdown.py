@@ -24,6 +24,7 @@ import gtk
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.policykit import PolkitButton, proxy
 from ubuntutweak.widgets import ListPack
+from ubuntutweak.widgets.dialogs import AuthenticateFailDialog
 from ubuntutweak.common.factory import WidgetFactory
 
 ROOT_THEMES = '/root/.themes'

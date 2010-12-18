@@ -40,6 +40,7 @@ from ubuntutweak.modules  import TweakModule
 from ubuntutweak.policykit import PolkitButton, proxy
 from ubuntutweak.widgets import GconfCheckButton
 from ubuntutweak.widgets.dialogs import QuestionDialog, ErrorDialog, InfoDialog, WarningDialog
+from ubuntutweak.widgets.dialogs import ServerErrorDialog, AuthenticateFailDialog
 from ubuntutweak.utils.parser import Parser
 from ubuntutweak.network import utdata
 from appcenter import AppView, CategoryView, AppParser, StatusProvider

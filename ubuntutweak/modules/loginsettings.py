@@ -26,7 +26,7 @@ import subprocess
 from ubuntutweak import system
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.widgets import ListPack, TablePack
-from ubuntutweak.widgets.dialogs import ErrorDialog
+from ubuntutweak.widgets.dialogs import ErrorDialog, AuthenticateFailDialog, ServerErrorDialog
 from ubuntutweak.policykit import PolkitButton, proxy
 
 from ubuntutweak.common.factory import WidgetFactory
