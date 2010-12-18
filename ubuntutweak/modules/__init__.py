@@ -2,6 +2,7 @@ __all__ = (
     'ModuleLoader',
     'TweakModule',
 )
+import re
 import os
 import gtk
 import sys
@@ -9,6 +10,7 @@ import pango
 import inspect
 import gobject
 import logging
+import webbrowser
 
 from new import classobj
 
@@ -38,15 +40,9 @@ class ModuleLoader:
                     try:
                         package = __import__('.'.join([__name__, module]), fromlist=['modules'])
                     except Exception, e:
-                        broken_class_name = 'Broken%s' % module.title()
-                        Broken = classobj(broken_class_name,
-                                          (BrokenModule,),
-                                          {'__name__': module,
-                                           '__title__': module,
-                                           '__error__': str(e),
-                                           'textview': run_traceback('error', textview_only=True)})
+                        Broken = create_broken_module_class(module)
                         self.module_table['broken'].append(Broken)
-                        self.id_table[broken_class_name] = Broken
+                        self.id_table['Broken%s' % module.title()] = Broken
                         log.error("Module import error: %s", str(e))
                         continue
                     else:
@@ -232,6 +228,10 @@ class TweakModule(gtk.VBox):
         return cls.__title__
 
     @classmethod
+    def get_error(cls):
+        return cls.__error__
+
+    @classmethod
     def get_pixbuf(cls):
         '''Return gtk Pixbuf'''
         if cls.__icon__:
@@ -263,12 +263,32 @@ def show_error_page():
         
     return align
 
+def create_broken_module_class(name):
+    return classobj('Broken%s' % name.title(),
+                    (BrokenModule,),
+                    {'__name__': name,
+                     '__title__': name,
+                     '__error__': run_traceback('error', text_only=True),
+                     'error_view': run_traceback('error', textview_only=True)})
+
 class BrokenModule(TweakModule):
     __icon__ = 'gtk-dialog-error'
 
     def __init__(self):
-        super(BrokenModule, self).__init__()
+        super(BrokenModule, self).__init__('brokenmodule.ui')
 
-        align = show_error_page()
+        if '/etc/apt/apt.conf.d' in self.get_error():
+            p = re.compile('(/etc/apt/apt.conf.d/[\w-]+)')
+            broken_file = p.findall(self.get_error())[0]
+            self.message_label.set_text(_("Ubuntu Tweak has detected that your apt configuration is broken.\nTry to fix by following steps:\n\n\t1. Open your terminal\n\t2. Invoke the command to fix:\n\n\t\tsudo chmod 644 %(broken_file)s\n\t\tsudo chown root:root %(broken_file)s\n\nOr you can submit the Error Message to the developer for help:" % {'broken_file': broken_file}))
+        elif '/etc/apt/sources.list.d/' in self.get_error():
+            p = re.compile('(/etc/apt/sources.list.d/[\w-]+)')
+            broken_file = p.findall(self.get_error())[0]
 
-        self.add_start(align)
+            self.message_label.set_text(_("Ubuntu Tweak has detected that your apt list file is broken.\nTry to fix by following steps:\n\n\t1. Open your terminal\n\t2. Invoke the command to fix:\n\n\t\tsudo gedit %s\n\n\t3. Edit the list to make it correctly\n\nOr you can submit the Error Message to the developer for help:" % broken_file))
+
+        self.error_view.reparent(self.scrolled_window)
+        self.reparent(self.alignment1)
+
+    def on_report_button_clicked(self, widget):
+        webbrowser.open('https://bugs.launchpad.net/ubuntu-tweak/+filebug')

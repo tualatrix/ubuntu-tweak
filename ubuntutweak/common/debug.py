@@ -22,6 +22,7 @@
 
 import os
 import gtk
+import pynotify
 import logging
 import StringIO
 import traceback
@@ -49,7 +50,14 @@ COLORS = {
     'ERROR':    COLOR_SEQ % (30 + RED) + 'ERROR' + RESET_SEQ,
 }
 
-def run_traceback(level, textview_only=False):
+def on_copy_button_clicked(widget, text):
+    gtk.Clipboard().set_text(text)
+    notify = pynotify.Notification(_('Error message has been copied'),
+            _('Now click "Report" to enter the bug report website. Make sure to attach the error message in "Further information".'))
+    notify.set_hint_string ("x-canonical-append", "");
+    notify.show()
+
+def run_traceback(level, textview_only=False, text_only=False):
     '''Two level: fatal and error'''
     output = StringIO.StringIO()
     exc = traceback.print_exc(file=output)
@@ -57,16 +65,26 @@ def run_traceback(level, textview_only=False):
     worker = GuiWorker('traceback.ui')
 
     textview = worker.get_object('%s_view' % level)
-    buffer = textview.get_buffer()
 
-    buffer.set_text("Distribution: %s\n"
-                    "Application: %s\n"
-                    "Desktop: %s\n"
-                    "\n"
-                    "%s" % (system.DISTRO,
-                            system.APP,
-                            system.DESKTOP,
-                            output.getvalue()))
+    buffer = textview.get_buffer()
+    iter = buffer.get_start_iter()
+    anchor = buffer.create_child_anchor(iter)
+    button = gtk.Button(_('Copy Error Message'))
+    button.show()
+
+    textview.add_child_at_anchor(button, anchor)
+
+    error_text = "\nDistribution: %s\nApplication: %s\nDesktop: %s\n\n%s" % (system.DISTRO,
+                         system.APP,
+                         system.DESKTOP,
+                         output.getvalue())
+
+    buffer.insert(iter, error_text)
+    button.connect('clicked', on_copy_button_clicked, error_text)
+
+    if text_only:
+        return error_text
+
     if textview_only:
         return textview
     else:
