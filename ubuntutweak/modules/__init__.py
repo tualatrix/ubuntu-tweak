@@ -280,12 +280,12 @@ class BrokenModule(TweakModule):
         if '/etc/apt/apt.conf.d' in self.get_error():
             p = re.compile('(/etc/apt/apt.conf.d/[\w-]+)')
             broken_file = p.findall(self.get_error())[0]
-            self.message_label.set_text(_("Ubuntu Tweak has detected that your apt configuration is broken.\nTry to fix by following steps:\n\n\t1. Open your terminal\n\t2. Invoke the command to fix:\n\n\t\tsudo chmod 644 %(broken_file)s\n\t\tsudo chown root:root %(broken_file)s\n\nOr you can submit the Error Message to the developer for help:" % {'broken_file': broken_file}))
+            self.message_label.set_text(_("Ubuntu Tweak has detected that your apt configuration is broken.\nTry to fix by following steps:\n\n\t1. Open your terminal\n\t2. Run the commands to fix:\n\n\t\tsudo chmod 644 %(broken_file)s\n\t\tsudo chown root:root %(broken_file)s\n\nOr you can submit the Error Message to the developer for help:" % {'broken_file': broken_file}))
         elif '/etc/apt/sources.list.d/' in self.get_error():
             p = re.compile('(/etc/apt/sources.list.d/[\w-]+)')
             broken_file = p.findall(self.get_error())[0]
 
-            self.message_label.set_text(_("Ubuntu Tweak has detected that your apt list file is broken.\nTry to fix by following steps:\n\n\t1. Open your terminal\n\t2. Invoke the command to fix:\n\n\t\tsudo gedit %s\n\n\t3. Edit the list to make it correctly\n\nOr you can submit the Error Message to the developer for help:" % broken_file))
+            self.message_label.set_text(_("Ubuntu Tweak has detected that your apt list file is broken.\nTry to fix by following steps:\n\n\t1. Open your terminal\n\t2. Run the command to open apt list file:\n\n\t\tsudo gedit %s\n\n\t3. Edit the list to make it correctly\n\nOr you can submit the Error Message to the developer for help:" % broken_file))
 
         self.error_view.reparent(self.scrolled_window)
         self.reparent(self.alignment1)
