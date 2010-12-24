@@ -186,7 +186,11 @@ class SourceParser(Parser):
 
                 for id in distros:
                     codename = distro_parser.get_codename(id)
-                    if system.CODENAME == codename:
+                    if codename in system.UBUNTU_CODENAMES:
+                        if system.CODENAME == codename:
+                            distro_values = codename
+                            break
+                    else:
                         distro_values = codename
                         break
 

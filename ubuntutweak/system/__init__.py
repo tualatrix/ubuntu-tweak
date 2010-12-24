@@ -86,6 +86,7 @@ DESKTOP = get_desktop()
 DESKTOP_FULLNAME = get_desktop_fullname()
 DESKTOP_VERSION = get_desktop_version()
 APP = get_app()
+UBUNTU_CODENAMES = ('dapper', 'edgy', 'feisty', 'gutsy', 'hardy', 'intrepid', 'jaunty', 'karmic', 'lucid', 'maverick', 'natty')
 
 def is_supported(codename=CODENAME):
     return codename in ('karmic', 'lucid', 'maverick', 'natty')
