@@ -124,6 +124,8 @@ class Daemon(PolicyKitService):
 
         for entry in self.list:
             print(entry.uri, entry.type, entry.file)
+            if os.path.basename(entry.file) == 'sources.list':
+                continue
             if ppa.is_ppa(entry.uri):
                 filename = '%s-%s.list' % (ppa.get_source_file_name(entry.uri), entry.dist)
                 if filename != os.path.basename(entry.file):
