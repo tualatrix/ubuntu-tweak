@@ -36,6 +36,7 @@ from ubuntutweak.policykit import proxy
 from ubuntutweak.modules import TweakModule, ModuleLoader
 from ubuntutweak.modules import show_error_page, ModuleKeyError, create_broken_module_class
 from ubuntutweak.common.consts import APP, VERSION
+from ubuntutweak.common.debug import run_traceback
 from ubuntutweak.common.config import TweakSettings
 from ubuntutweak.widgets.dialogs import QuestionDialog
 from ubuntutweak.network.downloadmanager import DownloadDialog

@@ -227,9 +227,8 @@ class TweakModule(gtk.VBox):
         '''
         return cls.__title__
 
-    @classmethod
-    def get_error(cls):
-        return cls.__error__
+    def get_error(self):
+        return self.error_view.get_buffer().get_property('text')
 
     @classmethod
     def get_pixbuf(cls):
@@ -268,7 +267,6 @@ def create_broken_module_class(name):
                     (BrokenModule,),
                     {'__name__': name,
                      '__title__': name,
-                     '__error__': run_traceback('error', text_only=True),
                      'error_view': run_traceback('error', textview_only=True)})
 
 class BrokenModule(TweakModule):
