@@ -109,13 +109,13 @@ class Daemon(PolicyKitService):
         PolicyKitService.__init__(self, bus_name, PATH)
         self.mainloop = mainloop
 
-        self.convert_to_standard_source_name()
-
     def __setup_non_block_io(self, io):
         outfd = io.fileno()
         file_flags = fcntl.fcntl(outfd, fcntl.F_GETFL)
         fcntl.fcntl(outfd, fcntl.F_SETFL, file_flags | os.O_NDELAY)
 
+    @dbus.service.method(INTERFACE,
+                         in_signature='', out_signature='')
     def convert_to_standard_source_name(self):
         '''Convert to the standard source name if possible'''
         self.list.refresh()
@@ -123,22 +123,22 @@ class Daemon(PolicyKitService):
         to_rm_entry = []
 
         for entry in self.list:
-            print(entry.uri, entry.type, entry.file)
             if os.path.basename(entry.file) == 'sources.list':
                 continue
+            log.debug("Check for url: %s, type: %s, filename: %s" % (entry.uri, entry.type, entry.file))
             if ppa.is_ppa(entry.uri):
                 filename = '%s-%s.list' % (ppa.get_source_file_name(entry.uri), entry.dist)
                 if filename != os.path.basename(entry.file):
-                    print("[%s] %s need rename to %s" % (entry.type, entry.file, filename))
+                    log.debug("[%s] %s need rename to %s" % (entry.type, entry.file, filename))
                     to_rm_entry.append(entry)
                     if os.path.exists(entry.file):
-                        print("File is exists, so remove it")
+                        log.debug("%s is exists, so remove it" % entry.file)
                         os.remove(entry.file)
                     entry.file = os.path.join(os.path.dirname(entry.file), filename)
                     to_add_entry.append(entry)
 
         for entry in to_rm_entry:
-            print("To remove:", entry.uri, entry.type, entry.file)
+            log.debug("To remove: ", entry.uri, entry.type, entry.file)
             self.list.remove(entry)
 
         self.list.list.extend(to_add_entry)

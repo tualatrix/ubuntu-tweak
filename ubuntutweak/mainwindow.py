@@ -226,6 +226,13 @@ class MainWindow(gtk.Window):
             log.debug("get_check_update will start after 5 seconds")
             gobject.timeout_add(5000, self.on_timeout)
 
+        if TweakSettings.get_separated_sources():
+            try:
+                log.debug("The separated sources feature is enabled, try to convert the old name")
+                proxy.convert_to_standard_source_name()
+            except Exception, e:
+                log.error(e)
+
         launch = TweakSettings.get_default_launch()
         try:
             if launch and not launch.isdigit():
