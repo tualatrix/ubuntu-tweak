@@ -4,14 +4,14 @@ msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-12-19 20:29+0800\n"
-"PO-Revision-Date: 2010-12-20 18:15+0000\n"
+"PO-Revision-Date: 2010-12-27 17:51+0000\n"
 "Last-Translator: Fitoschido <Unknown>\n"
 "Language-Team: LL <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2010-12-25 12:24+0000\n"
+"X-Launchpad-Export-Date: 2010-12-28 12:24+0000\n"
 "X-Generator: Launchpad (build 12138)\n"
 "X-Poedit-Country: SPANISH\n"
 "X-Poedit-Language: Spanish\n"
@@ -353,6 +353,7 @@ msgstr ""
 "  Fitoschido https://launchpad.net/~fitoschido\n"
 "  Jose Varela https://launchpad.net/~tsduv1994\n"
 "  Lucio Mora https://launchpad.net/~lhmorah\n"
+"  Martín V. https://launchpad.net/~martinvukovic\n"
 "  Milosev https://launchpad.net/~indramilo\n"
 "  Mizo_Mizo https://launchpad.net/~mizo0mizo\n"
 "  Monkey https://launchpad.net/~monkey-libre\n"
@@ -1288,6 +1289,16 @@ msgid ""
 "\n"
 "Or you can submit the Error Message to the developer for help:"
 msgstr ""
+"Ubuntu Tweak ha detectado que su configuración de apt está dañada.\n"
+"Intente corregirla siguiendo estos pasos:\n"
+"\n"
+"\t1. Abra un terminal\n"
+"\t2. Ejecute los siguientes comandos:\n"
+"\n"
+"\t\tsudo chmod 644 %(broken_file)s\n"
+"\t\tsudo chown root:root %(broken_file)s\n"
+"\n"
+"O bien puede enviar el mensaje de error al desarrollador para obtener ayuda."
 
 #: ../ubuntutweak/modules/__init__.py:288
 #, python-format
@@ -1304,6 +1315,17 @@ msgid ""
 "\n"
 "Or you can submit the Error Message to the developer for help:"
 msgstr ""
+"Ubuntu Tweak ha detectado que su archivo de lista de apt está dañado.\n"
+"Intente arreglarlo siguiendo estos pasos:\n"
+"\n"
+"\t1. Abra un terminal.\n"
+"\t2. Ejecute el comando para abrir el archivo de lista de apt::\n"
+"\n"
+"\t\tsudo gedit %s\n"
+"\n"
+"\t3. Edítelo para corregir los errores.\n"
+"\n"
+"O bien puede enviar el mensaje de error al desarrollador para obtener ayuda."
 
 #: ../ubuntutweak/modules/icons.py:32
 msgid "Show \"Computer\" icon on desktop"
@@ -1373,11 +1395,11 @@ msgstr "Habilitar animaciones en el panel"
 
 #: ../ubuntutweak/modules/gnomesettings.py:68
 msgid "Me Menu Setting"
-msgstr ""
+msgstr "Configuración del menú Yo"
 
 #: ../ubuntutweak/modules/gnomesettings.py:70
 msgid "Don't Display"
-msgstr ""
+msgstr "No mostrar"
 
 #: ../ubuntutweak/modules/gnomesettings.py:70
 msgid "Display user name"
@@ -2059,7 +2081,7 @@ msgstr "Descargando paquetes..."
 
 #: ../ubuntutweak/modules/cleaner.py:174
 msgid "Removing key files..."
-msgstr ""
+msgstr "Eliminando archivos de clave..."
 
 #: ../ubuntutweak/modules/cleaner.py:205
 #, python-format

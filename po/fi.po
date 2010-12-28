@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-12-19 20:29+0800\n"
-"PO-Revision-Date: 2010-10-23 09:11+0000\n"
+"PO-Revision-Date: 2010-12-28 07:23+0000\n"
 "Last-Translator: Jiri Grönroos <Unknown>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2010-12-25 12:24+0000\n"
+"X-Launchpad-Export-Date: 2010-12-28 12:24+0000\n"
 "X-Generator: Launchpad (build 12138)\n"
 
 #: ../data/script-worker:54
@@ -198,6 +198,7 @@ msgstr "_Palauta"
 #: ../data/ui/brokenmodule.ui.h:1
 msgid "<big><b>This module encountered an error while loading.</b></big>"
 msgstr ""
+"<big><b>Tämän moduulin latauksen yhteydessä tapahtui virhe.</b></big>"
 
 #: ../data/ui/brokenmodule.ui.h:3
 msgid ""
@@ -205,6 +206,9 @@ msgid ""
 "Please choose <i>Report</i> to file a new bug report. Make sure to include "
 "the error message below:"
 msgstr ""
+"Jos haluat auttaa tämän ongelman korjaamisessa,\n"
+"valitse <i>Raportoi</i> ilmoittaaksesi ohjelmavirheestä. Sisällytä alla "
+"oleva virheilmoitus raporttiin:"
 
 #: ../ubuntutweak/mainwindow.py:80
 msgid "Welcome to"
@@ -244,7 +248,7 @@ msgstr "Tervetuloa"
 
 #: ../ubuntutweak/mainwindow.py:127
 msgid "Broken Modules"
-msgstr ""
+msgstr "Rikkinäiset moduulit"
 
 #: ../ubuntutweak/mainwindow.py:128
 #: ../ubuntutweak/modules/desktoprecovery.py:75
@@ -518,7 +522,7 @@ msgstr "Juuri nyt"
 
 #: ../ubuntutweak/common/debug.py:55
 msgid "Error message has been copied"
-msgstr ""
+msgstr "Virheilmoitus on kopioitu"
 
 #: ../ubuntutweak/common/debug.py:56
 msgid ""
@@ -528,7 +532,7 @@ msgstr ""
 
 #: ../ubuntutweak/common/debug.py:72
 msgid "Copy Error Message"
-msgstr ""
+msgstr "Kopioi virheilmoitus"
 
 #: ../ubuntutweak/common/package.py:196
 #: ../ubuntutweak/modules/appcenter.py:644
@@ -1246,6 +1250,16 @@ msgid ""
 "\n"
 "Or you can submit the Error Message to the developer for help:"
 msgstr ""
+"Ubuntu Tweak havaitsi apt-asetusten olevan rikki.\n"
+"Koeta korjata ongelma seuraavasti:\n"
+"\n"
+"\t1. Avaa pääte\n"
+"\t2. Suorita seuraavat komennot:\n"
+"\n"
+"\t\tsudo chmod 644 %(broken_file)s\n"
+"\t\tsudo chown root:root %(broken_file)s\n"
+"\n"
+"Vaihtoehtoisesti voit lähettää virheilmoituksen kehittäjille apua varten:"
 
 #: ../ubuntutweak/modules/__init__.py:288
 #, python-format
@@ -1262,6 +1276,17 @@ msgid ""
 "\n"
 "Or you can submit the Error Message to the developer for help:"
 msgstr ""
+"Ubuntu Tweak havaitsi apt-listatiedoston olevan rikki.\n"
+"Koeta korjata ongelma seuraavasti:\n"
+"\n"
+"\t1. Avaa pääte\n"
+"\t2. Suorita seuraava komento avataksesi apt-listatiedoston:\n"
+"\n"
+"\t\tsudo gedit %s\n"
+"\n"
+"\t3. Korjaa lista muokkaamalla sitä\n"
+"\n"
+"Vaihtoehtoisesti voit lähettää virheilmoituksen kehittäjille apua varten:"
 
 #: ../ubuntutweak/modules/icons.py:32
 msgid "Show \"Computer\" icon on desktop"
@@ -1331,19 +1356,19 @@ msgstr "Ota käyttöön paneelianimaatiot"
 
 #: ../ubuntutweak/modules/gnomesettings.py:68
 msgid "Me Menu Setting"
-msgstr ""
+msgstr "Me-valikon asetukset"
 
 #: ../ubuntutweak/modules/gnomesettings.py:70
 msgid "Don't Display"
-msgstr ""
+msgstr "Poista näkyvistä"
 
 #: ../ubuntutweak/modules/gnomesettings.py:70
 msgid "Display user name"
-msgstr ""
+msgstr "Näytä käyttäjätunnus"
 
 #: ../ubuntutweak/modules/gnomesettings.py:70
 msgid "Display real name"
-msgstr ""
+msgstr "Näytä koko nimi"
 
 #: ../ubuntutweak/modules/gnomesettings.py:76
 msgid "Menu Settings"
@@ -1503,11 +1528,11 @@ msgstr "Käytä huojuvia ikkunoita"
 
 #: ../ubuntutweak/modules/compiz.py:332
 msgid "Enable workspace switching with mouse wheel"
-msgstr ""
+msgstr "Vaihda työtilaa käyttämällä hiiren rullaa taustakuvan päällä"
 
 #: ../ubuntutweak/modules/compiz.py:334
 msgid "Desktop Effects"
-msgstr ""
+msgstr "Työpöytätehosteet"
 
 #: ../ubuntutweak/modules/compiz.py:337
 msgid "Enable transparent menus"
@@ -2253,7 +2278,7 @@ msgstr "Hallitse Nautilus-tiedostoselaimen asetuksia"
 #: ../ubuntutweak/modules/nautilus.py:76
 msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
 msgstr ""
-"Näytä Nautiluksen \"Ominaisuudet\"-ikkunassa edistyneet käyttöoikeusvalinnat."
+"Näytä Nautiluksen Ominaisuudet-ikkunassa laajennetut käyttöoikeusvalinnat."
 
 #: ../ubuntutweak/modules/nautilus.py:80
 msgid "File Browser"
