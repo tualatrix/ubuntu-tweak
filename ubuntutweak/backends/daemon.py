@@ -493,13 +493,13 @@ class Daemon(PolicyKitService):
         return cmd.read().strip()
 
     @dbus.service.method(INTERFACE,
-                         in_signature='s', out_signature='s')
-    def get_as_tempfile(self, path):
+                         in_signature='si', out_signature='s')
+    def get_as_tempfile(self, path, uid):
         f = tempfile.NamedTemporaryFile()
         new_path = f.name
         f.close()
         os.popen('cp %s %s' % (path, new_path))
-        os.chmod(new_path, 777)
+        os.chown(new_path, uid, uid)
         return new_path
 
     @dbus.service.method(INTERFACE,

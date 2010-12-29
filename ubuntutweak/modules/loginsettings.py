@@ -87,7 +87,7 @@ class LoginSettings(TweakModule):
 
     def __setup_logo_image(self):
         icon_name = self.icon_setting.get_value(user='gdm')
-        log.debug('Get icon_name from user: gdm, icon name: %s' % icon_name)
+        log.info('Get icon_name from user: gdm, icon name: %s' % icon_name)
 
         path = os.path.expanduser('~gdm/.icons/%s/apps/64/%s' % (
                                     self.icon_theme_setting.get_value(user='gdm'),
@@ -104,7 +104,8 @@ class LoginSettings(TweakModule):
             FORMAT = '.svg'
 
         if EXIST:
-            path = proxy.get_as_tempfile(path)
+            log.info("The icon path is: %s" % path)
+            path = proxy.get_as_tempfile(path, os.getuid())
             log.debug('Custom log is exits, the tempfile is %s' % path)
             if FORMAT == '.svg':
                 pixbuf = gtk.gdk.pixbuf_new_from_file(path)
