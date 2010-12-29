@@ -20,11 +20,11 @@
 
 import os
 import gtk
+import json
+import pango
 import thread
 import gobject
 import logging
-import simplejson
-import pango
 
 from urllib2 import urlopen, Request, URLError
 from dbus.exceptions import DBusException
@@ -180,7 +180,7 @@ class CleanPpaDialog(TerminalDialog):
                     req =  Request(lp_url)
                     req.add_header("Accept","application/json")
                     lp_page = urlopen(req).read()
-                    data = simplejson.loads(lp_page)
+                    data = json.loads(lp_page)
                     key_fingerprint = data['signing_key_fingerprint']
                 except Exception, e:
                     log.error(e)
