@@ -116,9 +116,30 @@ class BaseMessageDialog(gtk.MessageDialog):
 
         hbox.show_all()
 
+    def add_widget_with_scrolledwindow(self, widget, width=-1, height=200):
+        vbox = self.get_child()
+
+        sw = gtk.ScrolledWindow()
+        sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        sw.set_size_request(width, height)
+        vbox.pack_start(sw, False, False, 0)
+        sw.add(widget)
+
+        vbox.show_all()
+
     def launch(self):
         self.run()
         self.destroy()
+
+    def add_new_button(self, button):
+        vbox = self.get_child()
+        hbuttonbox = vbox.get_children()[-1]
+
+        hbuttonbox.pack_start(button)
+
+        hbuttonbox.get_children()[0].grab_focus()
+
+        vbox.show_all()
 
     def add_option_button(self, button):
         vbox = self.get_child()

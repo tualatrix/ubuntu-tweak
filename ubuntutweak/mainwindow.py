@@ -25,6 +25,7 @@ import gtk
 import pango
 import gobject
 import webbrowser
+import subprocess
 import logging
 
 from new import classobj
@@ -146,6 +147,59 @@ class UpdateDialog(DownloadDialog):
         super(UpdateDialog, self).on_downloaded(downloader)
         os.system('xdg-open %s' % self.downloader.get_downloaded_file())
 
+class ErrorListView(gtk.TreeView):
+    (COLUMN_PATH,) = range(1)
+
+    def __init__(self, files):
+        gtk.TreeView.__init__(self)
+        self.set_rules_hint(True)
+
+        self.files = files
+
+        if os.access('/usr/bin/gedit', os.R_OK | os.X_OK):
+            self.connect('row-activated', self.row_activated_cb)
+            self.__column_title = _('Double click for editing the sources')
+        else:
+            self.__column_title = ''
+            self.set_headers_visible(False)
+
+        self.model = gtk.ListStore(gobject.TYPE_STRING)
+        self.__add_columns()
+        self.set_model(self.model)
+
+        self.update_model()
+
+    def row_activated_cb(self, treeview, path, column):
+        iter = self.model.get_iter(path)
+
+        file_path = self.model.get_value(iter, self.COLUMN_PATH)
+
+        cmd = ['/usr/bin/gksu',
+               '--desktop', '/usr/share/applications/gedit.desktop',
+               '--', '/usr/bin/gedit']
+        cmd.append(file_path)
+
+        subprocess.call(cmd)
+
+    def update_model(self):
+        self.model.clear()
+
+        for path in self.files:
+            iter = self.model.append(None)
+
+            self.model.set(iter,
+                           self.COLUMN_PATH, path)
+
+    def __add_columns(self):
+        column = gtk.TreeViewColumn(self.__column_title)
+
+        column.set_spacing(5)
+        renderer = gtk.CellRendererText()
+        column.pack_start(renderer, True)
+        column.set_attributes(renderer, text=self.COLUMN_PATH)
+
+        self.append_column(column)
+
 class MainWindow(gtk.Window):
     (ID_COLUMN,
      LOGO_COLUMN,
@@ -227,13 +281,6 @@ class MainWindow(gtk.Window):
             log.debug("get_check_update will start after 5 seconds")
             gobject.timeout_add(5000, self.on_timeout)
 
-        if TweakSettings.get_separated_sources():
-            try:
-                log.debug("The separated sources feature is enabled, try to convert the old name")
-                proxy.convert_to_standard_source_name()
-            except Exception, e:
-                log.error(e)
-
         launch = TweakSettings.get_default_launch()
         try:
             if launch and not launch.isdigit():
@@ -244,6 +291,26 @@ class MainWindow(gtk.Window):
         # Only check if the distribution is supported
         if system.is_supported():
             gobject.idle_add(self.notify_stable_source)
+
+        try:
+            log.debug("The separated sources feature is enabled, try to convert the old name")
+            valid, disabled_list = proxy.check_sources_is_valid(TweakSettings.get_separated_sources())
+            if not valid:
+                gobject.idle_add(self.notify_invalid_sources, disabled_list)
+        except Exception, e:
+            log.error(e)
+
+    def notify_invalid_sources(self, disabled_list):
+        treeview = ErrorListView(disabled_list)
+        dialog = WarningDialog(_('To make the package manager work, Ubuntu Tweak has disabled these broken sources.\n\nIf you want to re-open these sources, Please correct it by yourself or click "Help" to see the guide.\n\nIt is safe to keep it as disabled.'),
+                    title=_("The software sources list is broken"),
+                    buttons=gtk.BUTTONS_CLOSE)
+        #TODO write the guide and add link
+        dialog.add_widget_with_scrolledwindow(treeview, height=100)
+        dialog.add_new_button(gtk.Button(stock=gtk.STOCK_HELP))
+
+        dialog.run()
+        dialog.destroy()
 
     def notify_stable_source(self):
         log.debug("Stable Source Warning is %s", CONFIG.get_value_from_key(WARNING_KEY))

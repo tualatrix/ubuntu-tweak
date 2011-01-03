@@ -103,46 +103,66 @@ class Daemon(PolicyKitService):
     stable_url = 'http://ppa.launchpad.net/tualatrix/ppa/ubuntu'
     ppa_list = []
     p = None
+    SOURCES_LIST = '/etc/apt/sources.list'
 
     def __init__ (self, bus, mainloop):
         bus_name = dbus.service.BusName(INTERFACE, bus=bus)
         PolicyKitService.__init__(self, bus_name, PATH)
         self.mainloop = mainloop
 
-    def __setup_non_block_io(self, io):
-        outfd = io.fileno()
-        file_flags = fcntl.fcntl(outfd, fcntl.F_GETFL)
-        fcntl.fcntl(outfd, fcntl.F_SETFL, file_flags | os.O_NDELAY)
-
     @dbus.service.method(INTERFACE,
-                         in_signature='', out_signature='')
-    def convert_to_standard_source_name(self):
-        '''Convert to the standard source name if possible'''
+                         in_signature='b', out_signature='bv')
+    def check_sources_is_valid(self, convert_source):
+        try:
+            if not os.path.exists(self.SOURCES_LIST):
+                os.system('touch %s' % self.SOURCES_LIST)
+        except Exception, e:
+            log.error(e)
+
         self.list.refresh()
         to_add_entry = []
         to_rm_entry = []
+        disabled_list = ['']
 
         for entry in self.list:
-            if os.path.basename(entry.file) == 'sources.list':
+            if entry.invalid and entry.type != '' and not entry.disabled:
+                entry.set_enabled(False)
+                disabled_list.append(entry.file)
                 continue
-            log.debug("Check for url: %s, type: %s, filename: %s" % (entry.uri, entry.type, entry.file))
-            if ppa.is_ppa(entry.uri):
-                filename = '%s-%s.list' % (ppa.get_source_file_name(entry.uri), entry.dist)
-                if filename != os.path.basename(entry.file):
-                    log.debug("[%s] %s need rename to %s" % (entry.type, entry.file, filename))
-                    to_rm_entry.append(entry)
-                    if os.path.exists(entry.file):
-                        log.debug("%s is exists, so remove it" % entry.file)
-                        os.remove(entry.file)
-                    entry.file = os.path.join(os.path.dirname(entry.file), filename)
-                    to_add_entry.append(entry)
+
+            if convert_source:
+                if os.path.basename(entry.file) == 'sources.list':
+                    continue
+                log.debug("Check for url: %s, type: %s, filename: %s" % (entry.uri, entry.type, entry.file))
+                if ppa.is_ppa(entry.uri):
+                    filename = '%s-%s.list' % (ppa.get_source_file_name(entry.uri), entry.dist)
+                    if filename != os.path.basename(entry.file):
+                        log.debug("[%s] %s need rename to %s" % (entry.type, entry.file, filename))
+                        to_rm_entry.append(entry)
+                        if os.path.exists(entry.file):
+                            log.debug("%s is exists, so remove it" % entry.file)
+                            os.remove(entry.file)
+                        entry.file = os.path.join(os.path.dirname(entry.file), filename)
+                        to_add_entry.append(entry)
 
         for entry in to_rm_entry:
             log.debug("To remove: ", entry.uri, entry.type, entry.file)
             self.list.remove(entry)
 
+
+        valid = len(disabled_list) == 1
+        if '' in disabled_list and not valid:
+            disabled_list.remove('')
+
         self.list.list.extend(to_add_entry)
         self.list.save()
+
+        return valid, disabled_list
+
+    def __setup_non_block_io(self, io):
+        outfd = io.fileno()
+        file_flags = fcntl.fcntl(outfd, fcntl.F_GETFL)
+        fcntl.fcntl(outfd, fcntl.F_SETFL, file_flags | os.O_NDELAY)
 
     @dbus.service.method(INTERFACE,
                          in_signature='sb', out_signature='b',
