@@ -520,7 +520,10 @@ You should have received a copy of the GNU General Public License along with Ubu
     def destroy(self, widget=None):
         self.do_notify()
         self.save_gui_state()
-        proxy.exit()
+        try:
+            proxy.exit()
+        except Exception, e:
+            log.error(e)
         gtk.main_quit()
 
     def prepare_notify(self, data):
