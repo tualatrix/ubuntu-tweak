@@ -302,15 +302,17 @@ class MainWindow(gtk.Window):
 
     def notify_invalid_sources(self, disabled_list):
         treeview = ErrorListView(disabled_list)
-        dialog = WarningDialog(_('To make the package manager work, Ubuntu Tweak has disabled these broken sources.\n\nIf you want to re-open these sources, Please correct it by yourself or click "Help" to see the guide.\n\nIt is safe to keep it as disabled.'),
+        dialog = WarningDialog(_('To keep the package manager work, Ubuntu Tweak has disabled these broken sources.\n\nIf you want to re-open these sources, Please correct it by yourself or click "Help" to see the guide.'),
                     title=_("The software sources list is broken"),
                     buttons=gtk.BUTTONS_CLOSE)
-        #TODO write the guide and add link
-        dialog.add_widget_with_scrolledwindow(treeview, height=100)
-        dialog.add_new_button(gtk.Button(stock=gtk.STOCK_HELP))
 
-        dialog.run()
+        dialog.add_widget_with_scrolledwindow(treeview, height=100)
+        dialog.add_button(_('_Help'), gtk.RESPONSE_YES)
+
+        response = dialog.run()
         dialog.destroy()
+        if response == gtk.RESPONSE_YES:
+            webbrowser.open('http://blog.ubuntu-tweak.com/guide/how-to-fix-the-source-list-files')
 
     def notify_stable_source(self):
         log.debug("Stable Source Warning is %s", CONFIG.get_value_from_key(WARNING_KEY))

@@ -131,16 +131,6 @@ class BaseMessageDialog(gtk.MessageDialog):
         self.run()
         self.destroy()
 
-    def add_new_button(self, button):
-        vbox = self.get_child()
-        hbuttonbox = vbox.get_children()[-1]
-
-        hbuttonbox.pack_start(button)
-
-        hbuttonbox.get_children()[0].grab_focus()
-
-        vbox.show_all()
-
     def add_option_button(self, button):
         vbox = self.get_child()
         hbuttonbox = vbox.get_children()[-1]
