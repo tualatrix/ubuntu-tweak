@@ -125,9 +125,14 @@ class Daemon(PolicyKitService):
         disabled_list = ['']
 
         for entry in self.list:
-            if entry.invalid and entry.type != '' and not entry.disabled:
-                entry.set_enabled(False)
-                disabled_list.append(entry.file)
+            entry_line = entry.str().strip()
+            if entry.invalid and not entry.disabled and entry_line and not entry_line.startswith('#'):
+                try:
+                    entry.set_enabled(False)
+                except Exception, e:
+                    log.error(e)
+                if entry.file not in disabled_list:
+                    disabled_list.append(entry.file)
                 continue
 
             if convert_source:

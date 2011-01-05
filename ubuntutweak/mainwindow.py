@@ -293,7 +293,7 @@ class MainWindow(gtk.Window):
             gobject.idle_add(self.notify_stable_source)
 
         try:
-            log.debug("The separated sources feature is enabled, try to convert the old name")
+            log.debug("Check the sources list to make it valid")
             valid, disabled_list = proxy.check_sources_is_valid(TweakSettings.get_separated_sources())
             if not valid:
                 gobject.idle_add(self.notify_invalid_sources, disabled_list)
