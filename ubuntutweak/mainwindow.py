@@ -302,7 +302,7 @@ class MainWindow(gtk.Window):
 
     def notify_invalid_sources(self, disabled_list):
         treeview = ErrorListView(disabled_list)
-        dialog = WarningDialog(_('To keep the package manager work, Ubuntu Tweak has disabled these broken sources.\n\nIf you want to re-open these sources, Please correct it by yourself or click "Help" to see the guide.'),
+        dialog = WarningDialog(_('To keep the package manager work, Ubuntu Tweak has disabled these broken sources.\n\nIf you want to re-open these sources, Please try to correct it.\n\nYou can click "Help" to see the guide, then edit these sources at Source Editor.'),
                     title=_("The software sources list is broken"),
                     buttons=gtk.BUTTONS_CLOSE)
 
