@@ -6,16 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-19 20:29+0800\n"
-"PO-Revision-Date: 2010-10-21 12:21+0000\n"
+"POT-Creation-Date: 2011-01-06 00:01+0800\n"
+"PO-Revision-Date: 2011-01-08 02:24+0000\n"
 "Last-Translator: Pin-hsien Li <pspeter9931@gmail.com>\n"
 "Language-Team: TualatriX <tualatrix@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2010-12-28 12:25+0000\n"
-"X-Generator: Launchpad (build 12138)\n"
+"X-Launchpad-Export-Date: 2011-01-09 13:16+0000\n"
+"X-Generator: Launchpad (build 12161)\n"
 "X-Poedit-Country: TAIWAN\n"
 "X-Poedit-Language: Chinese\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -196,7 +196,7 @@ msgstr "復原(_R)"
 
 #: ../data/ui/brokenmodule.ui.h:1
 msgid "<big><b>This module encountered an error while loading.</b></big>"
-msgstr ""
+msgstr "<big><b>此模組在載入時發生一個錯誤。</b></big>"
 
 #: ../data/ui/brokenmodule.ui.h:3
 msgid ""
@@ -204,78 +204,108 @@ msgid ""
 "Please choose <i>Report</i> to file a new bug report. Make sure to include "
 "the error message below:"
 msgstr ""
+"如果您願意幫忙修正這個問題，\n"
+"請選擇 <i>報告</i> 來傳送錯誤報告。請確認包含以下的錯誤訊息："
 
-#: ../ubuntutweak/mainwindow.py:80
+#: ../ubuntutweak/mainwindow.py:82
 msgid "Welcome to"
 msgstr "歡迎來到"
 
-#: ../ubuntutweak/mainwindow.py:86
+#: ../ubuntutweak/mainwindow.py:88
 msgid "Tweak otherwise hidden settings."
 msgstr "調整其他隱藏設定。"
 
-#: ../ubuntutweak/mainwindow.py:87
+#: ../ubuntutweak/mainwindow.py:89
 msgid "Clean up unused packages to free up diskspace."
 msgstr "清除不需要的套件以釋放磁碟空間"
 
-#: ../ubuntutweak/mainwindow.py:88
+#: ../ubuntutweak/mainwindow.py:90
 msgid "Easily install up-to-date versions of many applications."
 msgstr "簡單地安裝許多應用程式的最新版本。"
 
-#: ../ubuntutweak/mainwindow.py:89
+#: ../ubuntutweak/mainwindow.py:91
 msgid ""
 "Configure file templates and shortcut scripts for easy access to common "
 "tasks."
 msgstr "設定檔案範本和指令稿，讓常進行的工作更加簡便。"
 
-#: ../ubuntutweak/mainwindow.py:90
+#: ../ubuntutweak/mainwindow.py:92
 msgid "Many more useful features!"
 msgstr "更多更實用的功能！"
 
-#: ../ubuntutweak/mainwindow.py:101
+#: ../ubuntutweak/mainwindow.py:103
 msgid "Please wait a moment..."
 msgstr "請稍候..."
 
-#: ../ubuntutweak/mainwindow.py:126
+#: ../ubuntutweak/mainwindow.py:128
 msgid "Welcome"
 msgstr "歡迎使用"
 
-#: ../ubuntutweak/mainwindow.py:127
+#: ../ubuntutweak/mainwindow.py:129
 msgid "Broken Modules"
-msgstr ""
+msgstr "損毀的模組"
 
-#: ../ubuntutweak/mainwindow.py:128
+#: ../ubuntutweak/mainwindow.py:130
 #: ../ubuntutweak/modules/desktoprecovery.py:75
 msgid "Applications"
 msgstr "應用程式"
 
-#: ../ubuntutweak/mainwindow.py:129
+#: ../ubuntutweak/mainwindow.py:131
 msgid "Startup"
 msgstr "啟動控制"
 
-#: ../ubuntutweak/mainwindow.py:130 ../ubuntutweak/modules/userdir.py:45
+#: ../ubuntutweak/mainwindow.py:132 ../ubuntutweak/modules/userdir.py:45
 #: ../ubuntutweak/modules/desktoprecovery.py:76
 msgid "Desktop"
 msgstr "桌面設定"
 
-#: ../ubuntutweak/mainwindow.py:131
+#: ../ubuntutweak/mainwindow.py:133
 msgid "Personal"
 msgstr "個人"
 
-#: ../ubuntutweak/mainwindow.py:132
+#: ../ubuntutweak/mainwindow.py:134
 #: ../ubuntutweak/modules/desktoprecovery.py:77
 msgid "System"
 msgstr "系統設定"
 
-#: ../ubuntutweak/mainwindow.py:140
+#: ../ubuntutweak/mainwindow.py:142
 #, python-format
 msgid "Download Ubuntu Tweak %s"
 msgstr "下載 Ubuntu Tweak %s"
 
-#: ../ubuntutweak/mainwindow.py:205
+#: ../ubuntutweak/mainwindow.py:161
+msgid "Double click for editing the sources"
+msgstr "雙擊以編輯來源"
+
+#: ../ubuntutweak/mainwindow.py:260
 msgid "_Donate"
 msgstr "贊助(_D)"
 
-#: ../ubuntutweak/mainwindow.py:244
+#: ../ubuntutweak/mainwindow.py:305
+msgid ""
+"To keep the package manager work, Ubuntu Tweak has disabled these broken "
+"sources.\n"
+"\n"
+"If you want to re-open these sources, Please try to correct it.\n"
+"\n"
+"You can click \"Help\" to see the guide, then edit these sources at Source "
+"Editor."
+msgstr ""
+"為了讓套件管理員運作，Ubuntu Tweak 已經禁用了損毀的來源。\n"
+"\n"
+"若您要重新啟用這些來源，請嘗試修正它。\n"
+"\n"
+"點擊「幫助」以查看指南，接著在「軟體來源」中編輯它們。"
+
+#: ../ubuntutweak/mainwindow.py:306
+msgid "The software sources list is broken"
+msgstr "軟體來源列表已經損毀"
+
+#: ../ubuntutweak/mainwindow.py:310
+msgid "_Help"
+msgstr "幫助(_H)"
+
+#: ../ubuntutweak/mainwindow.py:321
 msgid ""
 "It is highly recommended that you enable the Ubuntu Tweak stable repository "
 "to get security and maintenance updates.\n"
@@ -288,45 +318,45 @@ msgstr ""
 "\n"
 "您想要啟用該源嗎？"
 
-#: ../ubuntutweak/mainwindow.py:247
+#: ../ubuntutweak/mainwindow.py:324
 #: ../ubuntutweak/modules/gnomesettings.py:222
-#: ../ubuntutweak/modules/sourcecenter.py:1108
+#: ../ubuntutweak/modules/sourcecenter.py:1112
 #: ../ubuntutweak/modules/nautilus.py:143
 msgid "Warning"
 msgstr "評分"
 
-#: ../ubuntutweak/mainwindow.py:248
-#: ../ubuntutweak/modules/sourcecenter.py:1109
+#: ../ubuntutweak/mainwindow.py:325
+#: ../ubuntutweak/modules/sourcecenter.py:1113
 msgid "Never show this dialog"
 msgstr "不再顯示這個提示"
 
-#: ../ubuntutweak/mainwindow.py:458
+#: ../ubuntutweak/mainwindow.py:535
 msgid "Ubuntu Tweak Website"
 msgstr "Ubuntu Tweak 網站"
 
-#: ../ubuntutweak/mainwindow.py:460
+#: ../ubuntutweak/mainwindow.py:537
 msgid ""
 "Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
 "system and desktop settings."
 msgstr "Ubuntu Tweak 是一個能讓您輕鬆設定系統與桌面設定的工具。"
 
-#: ../ubuntutweak/mainwindow.py:462
+#: ../ubuntutweak/mainwindow.py:539
 msgid "Contributors of 2007"
 msgstr "2007 年的貢獻者"
 
-#: ../ubuntutweak/mainwindow.py:464
+#: ../ubuntutweak/mainwindow.py:541
 msgid "Contributors of 2008"
 msgstr "2008 年的貢獻者"
 
-#: ../ubuntutweak/mainwindow.py:466
+#: ../ubuntutweak/mainwindow.py:543
 msgid "Contributors of 2009"
 msgstr "2009 年的貢獻者"
 
-#: ../ubuntutweak/mainwindow.py:469
+#: ../ubuntutweak/mainwindow.py:546
 msgid "Contributors of 2010"
 msgstr "2010 年的貢獻者"
 
-#: ../ubuntutweak/mainwindow.py:482
+#: ../ubuntutweak/mainwindow.py:559
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
@@ -337,7 +367,7 @@ msgstr ""
 "  Wayne Su https://launchpad.net/~mstarmstar\n"
 "  Yu - Sian , Liu https://launchpad.net/~thomasysliu"
 
-#: ../ubuntutweak/mainwindow.py:496
+#: ../ubuntutweak/mainwindow.py:573
 #, python-format
 msgid ""
 "A newer version: %s is available online.\n"
@@ -351,7 +381,7 @@ msgstr ""
 "\n"
 "提示：如果您喜歡用原始碼升級，可以在偏好設定停用此功能。"
 
-#: ../ubuntutweak/mainwindow.py:497
+#: ../ubuntutweak/mainwindow.py:574
 msgid "Software Update"
 msgstr "軟體更新"
 
@@ -408,25 +438,25 @@ msgstr ""
 "\n"
 "裏面還有檔案！"
 
-#: ../ubuntutweak/widgets/dialogs.py:165
+#: ../ubuntutweak/widgets/dialogs.py:176
 msgid "An unexpected error has occurred."
 msgstr "發生了未預期的錯誤。"
 
-#: ../ubuntutweak/widgets/dialogs.py:166
+#: ../ubuntutweak/widgets/dialogs.py:177
 msgid "Could not authenticate"
 msgstr "無法驗證"
 
-#: ../ubuntutweak/widgets/dialogs.py:171
+#: ../ubuntutweak/widgets/dialogs.py:182
 msgid "You need to restart your computer."
 msgstr "您需要重新啟動電腦"
 
-#: ../ubuntutweak/widgets/dialogs.py:172
+#: ../ubuntutweak/widgets/dialogs.py:183
 msgid "Service hasn't initialized yet"
 msgstr "服務尚未初始化"
 
-#: ../ubuntutweak/widgets/dialogs.py:193
+#: ../ubuntutweak/widgets/dialogs.py:204
 #: ../ubuntutweak/modules/sourceeditor.py:88
-#: ../ubuntutweak/modules/sourcecenter.py:941
+#: ../ubuntutweak/modules/sourcecenter.py:945
 msgid "Details"
 msgstr "詳細資料"
 
@@ -508,21 +538,21 @@ msgstr "就是現在"
 
 #: ../ubuntutweak/common/debug.py:55
 msgid "Error message has been copied"
-msgstr ""
+msgstr "已經複製錯誤訊息"
 
 #: ../ubuntutweak/common/debug.py:56
 msgid ""
 "Now click \"Report\" to enter the bug report website. Make sure to attach "
 "the error message in \"Further information\"."
-msgstr ""
+msgstr "點擊「報告」以進入 bug 回報網站。記得在「Further information」欄內附加上錯誤訊息。"
 
 #: ../ubuntutweak/common/debug.py:72
 msgid "Copy Error Message"
-msgstr ""
+msgstr "複製錯誤訊息"
 
 #: ../ubuntutweak/common/package.py:196
 #: ../ubuntutweak/modules/appcenter.py:644
-#: ../ubuntutweak/modules/compiz.py:499
+#: ../ubuntutweak/modules/compiz.py:523
 #: ../ubuntutweak/modules/sourcecenter.py:141
 #: ../ubuntutweak/modules/nautilus.py:171
 msgid "Update Successful!"
@@ -530,7 +560,7 @@ msgstr "更新成功！"
 
 #: ../ubuntutweak/common/package.py:198
 #: ../ubuntutweak/modules/appcenter.py:646
-#: ../ubuntutweak/modules/compiz.py:501
+#: ../ubuntutweak/modules/compiz.py:525
 #: ../ubuntutweak/modules/sourcecenter.py:143
 #: ../ubuntutweak/modules/nautilus.py:173
 msgid "Update Failed!"
@@ -946,12 +976,12 @@ msgid "Visit Online Application Center"
 msgstr "瀏覽線上應用程式中心"
 
 #: ../ubuntutweak/modules/appcenter.py:549
-#: ../ubuntutweak/modules/sourcecenter.py:920
+#: ../ubuntutweak/modules/sourcecenter.py:924
 msgid "_Sync"
 msgstr "同步(_S)"
 
 #: ../ubuntutweak/modules/appcenter.py:586
-#: ../ubuntutweak/modules/sourcecenter.py:1001
+#: ../ubuntutweak/modules/sourcecenter.py:1005
 msgid "Last synced:"
 msgstr "上一次同步："
 
@@ -970,7 +1000,7 @@ msgid ""
 msgstr "網路錯誤，請檢查您的網路設定 - 或是遠端伺服器正好停機了。"
 
 #: ../ubuntutweak/modules/appcenter.py:673
-#: ../ubuntutweak/modules/sourcecenter.py:1163
+#: ../ubuntutweak/modules/sourcecenter.py:1167
 msgid "No update available."
 msgstr "沒有可用的更新。"
 
@@ -1212,11 +1242,11 @@ msgstr "要啟用 Metacity 的 Composite 視窗特效，您必須手動停用「
 msgid "More"
 msgstr "更多"
 
-#: ../ubuntutweak/modules/__init__.py:260
+#: ../ubuntutweak/modules/__init__.py:259
 msgid "This module encountered an error while loading."
 msgstr "在讀取這個模組的時候遇到錯誤。"
 
-#: ../ubuntutweak/modules/__init__.py:283
+#: ../ubuntutweak/modules/__init__.py:281
 #, python-format
 msgid ""
 "Ubuntu Tweak has detected that your apt configuration is broken.\n"
@@ -1230,8 +1260,18 @@ msgid ""
 "\n"
 "Or you can submit the Error Message to the developer for help:"
 msgstr ""
+"Ubuntu Tweak 偵測到您的 apt 設置已經損毀。\n"
+"請嘗試照下列步驟修復：\n"
+"\n"
+"\t1. 開啟終端機\n"
+"\t2. 執行修正指令：\n"
+"\n"
+"\t\tsudo chmod 644 %(broken_file)s\n"
+"\t\tsudo chown root:root %(broken_file)s\n"
+"\n"
+"或者您也可以將錯誤訊息寄給開發者以尋求協助："
 
-#: ../ubuntutweak/modules/__init__.py:288
+#: ../ubuntutweak/modules/__init__.py:286
 #, python-format
 msgid ""
 "Ubuntu Tweak has detected that your apt list file is broken.\n"
@@ -1246,6 +1286,17 @@ msgid ""
 "\n"
 "Or you can submit the Error Message to the developer for help:"
 msgstr ""
+"Ubuntu Tweak 偵測到您的 apt 列表已經損毀。\n"
+"請嘗試照下列步驟修復：\n"
+"\n"
+"\t1. 開啟終端機\n"
+"\t2. 執行指令，開啟 apt 列表檔：\n"
+"\n"
+"\t\tsudo gedit %s\n"
+"\n"
+"\t3. 編輯並修正檔案\n"
+"\n"
+"或者您也可以將錯誤訊息寄給開發者以尋求協助："
 
 #: ../ubuntutweak/modules/icons.py:32
 msgid "Show \"Computer\" icon on desktop"
@@ -1311,19 +1362,19 @@ msgstr "啟用面板動畫"
 
 #: ../ubuntutweak/modules/gnomesettings.py:68
 msgid "Me Menu Setting"
-msgstr ""
+msgstr "Me 選單設定"
 
 #: ../ubuntutweak/modules/gnomesettings.py:70
 msgid "Don't Display"
-msgstr ""
+msgstr "不要顯示"
 
 #: ../ubuntutweak/modules/gnomesettings.py:70
 msgid "Display user name"
-msgstr ""
+msgstr "顯示使用者名稱"
 
 #: ../ubuntutweak/modules/gnomesettings.py:70
 msgid "Display real name"
-msgstr ""
+msgstr "顯示真實名稱"
 
 #: ../ubuntutweak/modules/gnomesettings.py:76
 msgid "Menu Settings"
@@ -1374,7 +1425,7 @@ msgid "Click this button to change the menu logo image"
 msgstr "點這個按鈕來變更您的選單圖示"
 
 #: ../ubuntutweak/modules/gnomesettings.py:139
-#: ../ubuntutweak/modules/loginsettings.py:146
+#: ../ubuntutweak/modules/loginsettings.py:147
 msgid "Choose a new logo image"
 msgstr "選擇新的圖示檔案"
 
@@ -1448,63 +1499,67 @@ msgstr "顯示桌面"
 msgid "Show Widgets"
 msgstr "顯示桌面小程式"
 
-#: ../ubuntutweak/modules/compiz.py:299
+#: ../ubuntutweak/modules/compiz.py:316
 msgid "Compiz Settings"
 msgstr "Compiz 特效管理員設定"
 
-#: ../ubuntutweak/modules/compiz.py:300
+#: ../ubuntutweak/modules/compiz.py:317
 msgid "Settings for some amazing desktop eye-candy"
 msgstr "一些令人驚豔的好看桌面的設定"
 
-#: ../ubuntutweak/modules/compiz.py:314
+#: ../ubuntutweak/modules/compiz.py:331
 msgid "Install Advanced Desktop Effects Settings Manager"
 msgstr "安裝進階桌面特效設定管理員"
 
-#: ../ubuntutweak/modules/compiz.py:317
+#: ../ubuntutweak/modules/compiz.py:334
 msgid "Install Simple Desktop Effects Settings Manager"
 msgstr "安裝簡易桌面特效設定管理員"
 
-#: ../ubuntutweak/modules/compiz.py:320
+#: ../ubuntutweak/modules/compiz.py:337
 msgid "Install Screenlets Widget Application"
 msgstr "安裝 Screenlets 桌面小程式應用程式"
 
-#: ../ubuntutweak/modules/compiz.py:327
+#: ../ubuntutweak/modules/compiz.py:344
 msgid " Workspace Edge Settings"
 msgstr " 工作區邊界設定"
 
-#: ../ubuntutweak/modules/compiz.py:330
+#: ../ubuntutweak/modules/compiz.py:347
 msgid "Enable snapping windows"
 msgstr "啟用視窗自動貼齊邊緣"
 
-#: ../ubuntutweak/modules/compiz.py:331
+#: ../ubuntutweak/modules/compiz.py:348
 msgid "Enable wobbly windows"
 msgstr "啟用搖擺視窗"
 
-#: ../ubuntutweak/modules/compiz.py:332
+#: ../ubuntutweak/modules/compiz.py:349
 msgid "Enable workspace switching with mouse wheel"
+msgstr "啟用滑鼠滾輪切換工作區"
+
+#: ../ubuntutweak/modules/compiz.py:351
+msgid "Make the launcher hide automatically after some time inactive"
 msgstr ""
 
-#: ../ubuntutweak/modules/compiz.py:334
+#: ../ubuntutweak/modules/compiz.py:355
 msgid "Desktop Effects"
-msgstr ""
+msgstr "桌面效果"
 
-#: ../ubuntutweak/modules/compiz.py:337
+#: ../ubuntutweak/modules/compiz.py:361
 msgid "Enable transparent menus"
 msgstr "啟用透明選單"
 
-#: ../ubuntutweak/modules/compiz.py:338
+#: ../ubuntutweak/modules/compiz.py:362
 msgid "Enable wobbly menus"
 msgstr "啟用搖擺選單"
 
-#: ../ubuntutweak/modules/compiz.py:340
+#: ../ubuntutweak/modules/compiz.py:364
 msgid "Menu Effects"
 msgstr "選單特效"
 
-#: ../ubuntutweak/modules/compiz.py:344
+#: ../ubuntutweak/modules/compiz.py:368
 msgid "Useful Extensions"
 msgstr "實用的擴充套件"
 
-#: ../ubuntutweak/modules/compiz.py:359
+#: ../ubuntutweak/modules/compiz.py:383
 msgid "Prerequisite Conditions"
 msgstr "先決條件"
 
@@ -1530,27 +1585,27 @@ msgstr "全選/全不選"
 msgid "Your system is clean and there are no updates yet."
 msgstr "您的系統很乾淨且目前沒有可用的更新。"
 
-#: ../ubuntutweak/modules/sourcecenter.py:351
+#: ../ubuntutweak/modules/sourcecenter.py:355
 #, python-format
 msgid "%d New Application Available"
 msgid_plural "%d New Applications Available"
 msgstr[0] "有 %d 個新應用程式"
 
-#: ../ubuntutweak/modules/sourcecenter.py:369
+#: ../ubuntutweak/modules/sourcecenter.py:373
 #, python-format
 msgid "%d Package Update Available"
 msgid_plural "%d Package Updates Available"
 msgstr[0] "有 %d 個更新套件"
 
-#: ../ubuntutweak/modules/sourcecenter.py:407
+#: ../ubuntutweak/modules/sourcecenter.py:411
 msgid "No Available Package Updates"
 msgstr "沒有更新套件"
 
-#: ../ubuntutweak/modules/sourcecenter.py:542
+#: ../ubuntutweak/modules/sourcecenter.py:546
 msgid "Third-Party Sources"
 msgstr "第三方軟體來源"
 
-#: ../ubuntutweak/modules/sourcecenter.py:729
+#: ../ubuntutweak/modules/sourcecenter.py:733
 #, python-format
 msgid ""
 "You can't enable this Source because<b>\"%(SOURCE)s\"</b> conflicts with "
@@ -1560,7 +1615,7 @@ msgstr ""
 "您不能啟用這個來源，因為「<b>%(SOURCE)s</b>」與它相衝突。\n"
 "請先停用「<b>%(SOURCE)s</b>」才可以繼續。"
 
-#: ../ubuntutweak/modules/sourcecenter.py:751
+#: ../ubuntutweak/modules/sourcecenter.py:755
 #, python-format
 msgid ""
 "To enable this Source, You need to enable <b>\"%s\"</b> at first.\n"
@@ -1569,11 +1624,11 @@ msgstr ""
 "要啟用這個來源，您必須先啟用 「<b>%s</b>」。\n"
 "您想要繼續嗎？"
 
-#: ../ubuntutweak/modules/sourcecenter.py:753
+#: ../ubuntutweak/modules/sourcecenter.py:757
 msgid "Dependency Notice"
 msgstr "軟體相依性通知"
 
-#: ../ubuntutweak/modules/sourcecenter.py:777
+#: ../ubuntutweak/modules/sourcecenter.py:781
 #, python-format
 msgid ""
 "You can't disable this Source because <b>\"%(SOURCE)s\"</b> depends on it.\n"
@@ -1582,38 +1637,38 @@ msgstr ""
 "您不能停用這個來源，因為「<b>%(SOURCE)s</b>」與它相依。\n"
 "請先停用「<b>%(SOURCE)s</b>」才可以繼續。"
 
-#: ../ubuntutweak/modules/sourcecenter.py:852
+#: ../ubuntutweak/modules/sourcecenter.py:856
 msgid "New source has been enabled"
 msgstr "已啟用新的來源"
 
-#: ../ubuntutweak/modules/sourcecenter.py:853
+#: ../ubuntutweak/modules/sourcecenter.py:857
 #, python-format
 msgid ""
 "%s is enabled now, Please click the refresh button to update the application "
 "cache."
 msgstr "已啟用 %s，請按重新整理以更新應用程式快取。"
 
-#: ../ubuntutweak/modules/sourcecenter.py:867
+#: ../ubuntutweak/modules/sourcecenter.py:871
 msgid "Homepage"
 msgstr "網頁"
 
-#: ../ubuntutweak/modules/sourcecenter.py:867
+#: ../ubuntutweak/modules/sourcecenter.py:871
 msgid "Source URL"
 msgstr "來源網址"
 
-#: ../ubuntutweak/modules/sourcecenter.py:867
+#: ../ubuntutweak/modules/sourcecenter.py:871
 msgid "Description"
 msgstr "說明"
 
-#: ../ubuntutweak/modules/sourcecenter.py:880
+#: ../ubuntutweak/modules/sourcecenter.py:884
 msgid "Description is here"
 msgstr "說明在這裏"
 
-#: ../ubuntutweak/modules/sourcecenter.py:906
+#: ../ubuntutweak/modules/sourcecenter.py:910
 msgid "Source Center"
 msgstr "來源中心"
 
-#: ../ubuntutweak/modules/sourcecenter.py:907
+#: ../ubuntutweak/modules/sourcecenter.py:911
 msgid ""
 "A collection of software sources to ensure your applications are always up-"
 "to-date.\n"
@@ -1627,17 +1682,17 @@ msgstr ""
 "可用的軟體來源清單將會自動從遠端伺服器獲取。\n"
 "您也可以點擊「同步」按鈕來手動檢查更新。"
 
-#: ../ubuntutweak/modules/sourcecenter.py:913
+#: ../ubuntutweak/modules/sourcecenter.py:917
 msgid "Visit online Source Center"
 msgstr "瀏覽線上來源中心"
 
 #. the "%s" is in front, some is the end, so just return the long one
-#: ../ubuntutweak/modules/sourcecenter.py:996
+#: ../ubuntutweak/modules/sourcecenter.py:1000
 #, python-format
 msgid "disabled on upgrade to %s"
 msgstr "發行版本升級至 %s 後被停用"
 
-#: ../ubuntutweak/modules/sourcecenter.py:1005
+#: ../ubuntutweak/modules/sourcecenter.py:1009
 msgid ""
 "After a successful distribution upgrade, any third-party sources you use "
 "will be disabled by default.\n"
@@ -1646,23 +1701,23 @@ msgstr ""
 "在升級成功後，預設會停用您的第三方來源。\n"
 "您想要重新啟用更新管理員停用的這些來源嗎？"
 
-#: ../ubuntutweak/modules/sourcecenter.py:1008
+#: ../ubuntutweak/modules/sourcecenter.py:1012
 msgid "Upgrade Third Party Sources"
 msgstr "升級第三方來源"
 
-#: ../ubuntutweak/modules/sourcecenter.py:1014
+#: ../ubuntutweak/modules/sourcecenter.py:1018
 msgid "Upgrade Successful!"
 msgstr "升級成功！"
 
-#: ../ubuntutweak/modules/sourcecenter.py:1016
+#: ../ubuntutweak/modules/sourcecenter.py:1020
 msgid "Upgrade Failed!"
 msgstr "升級失敗！"
 
-#: ../ubuntutweak/modules/sourcecenter.py:1023
+#: ../ubuntutweak/modules/sourcecenter.py:1027
 msgid "New source data available, would you like to update?"
 msgstr "有新的來源資料，您想要更新嗎？"
 
-#: ../ubuntutweak/modules/sourcecenter.py:1105
+#: ../ubuntutweak/modules/sourcecenter.py:1109
 msgid ""
 "It is a possible security risk to use packages from Third-Party Sources.\n"
 "Please be careful and use only sources you trust."
@@ -1670,15 +1725,15 @@ msgstr ""
 "使用第三方來源的套件可能會有安全問題。\n"
 "小心，請儘量只使用您信得過的來源。"
 
-#: ../ubuntutweak/modules/sourcecenter.py:1135
+#: ../ubuntutweak/modules/sourcecenter.py:1139
 msgid "An error occurred whilst downloading the file"
 msgstr "下載檔案時發生錯誤"
 
-#: ../ubuntutweak/modules/sourcecenter.py:1150
+#: ../ubuntutweak/modules/sourcecenter.py:1154
 msgid "Update available, Would you like to update?"
 msgstr "已有更新可使用，您現在要更新嗎？"
 
-#: ../ubuntutweak/modules/sourcecenter.py:1159
+#: ../ubuntutweak/modules/sourcecenter.py:1163
 msgid ""
 "Network Error, Please check your network connection or the remote server is "
 "down."
@@ -1974,7 +2029,7 @@ msgstr "正在下載套件..."
 
 #: ../ubuntutweak/modules/cleaner.py:174
 msgid "Removing key files..."
-msgstr ""
+msgstr "正在移除密鑰檔案..."
 
 #: ../ubuntutweak/modules/cleaner.py:205
 #, python-format
@@ -2291,11 +2346,11 @@ msgstr "不要顯示重新啟動按鈕"
 msgid "Login Theme"
 msgstr "登入主題"
 
-#: ../ubuntutweak/modules/loginsettings.py:152
+#: ../ubuntutweak/modules/loginsettings.py:153
 msgid "PNG images with 64x64 size or SVG images"
 msgstr "64x64 大小的 PNG 圖檔，或是 SVG 圖檔"
 
-#: ../ubuntutweak/modules/loginsettings.py:182
+#: ../ubuntutweak/modules/loginsettings.py:183
 msgid ""
 "This image size isn't suitable for the logo.\n"
 "It should be 64x64."
@@ -2303,11 +2358,11 @@ msgstr ""
 "圖示尺寸不符合 logo 大小。\n"
 "大小應為 64x64 像素。"
 
-#: ../ubuntutweak/modules/loginsettings.py:204
+#: ../ubuntutweak/modules/loginsettings.py:205
 msgid "Choose a new background image"
 msgstr "選擇新的背景圖片"
 
-#: ../ubuntutweak/modules/loginsettings.py:210
+#: ../ubuntutweak/modules/loginsettings.py:211
 msgid "All images"
 msgstr "所有圖片"
 
