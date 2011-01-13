@@ -378,7 +378,7 @@ class MainWindow(gtk.Window):
             if module_list or module[MODULE_ID] == 0:
                 iter = model.append(None)
                 model.set(iter,
-                    self.ID_COLUMN, module[MODULE_ID],
+                    self.ID_COLUMN, str(module[MODULE_ID]),
                     self.LOGO_COLUMN, pixbuf,
                     self.TITLE_COLUMN, "<b><big>%s</big></b>" % title,
                 )

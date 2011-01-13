@@ -474,7 +474,7 @@ class PackageView(gtk.TreeView):
                 model.set(iter,
                        COLUMN_ICON, pixbuf,
                        COLUMN_CHECK, False,
-                       COLUMN_NAME, id,
+                       COLUMN_NAME, str(id),
                        COLUMN_DESC, '',
                        COLUMN_DISPLAY, '<b>%s</b>\n%s' % (name, comment),
                     )
@@ -512,7 +512,7 @@ class PackageView(gtk.TreeView):
                    COLUMN_CHECK, False,
                    COLUMN_ICON, pixbuf,
                    COLUMN_NAME, pkg.name,
-                   COLUMN_DESC, 0,
+                   COLUMN_DESC, '',
                    COLUMN_DISPLAY, '<b>%s</b>\n%s' % (pkg.name, pkg.des),
                 )
         self.unset_busy()

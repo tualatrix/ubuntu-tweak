@@ -416,7 +416,7 @@ class AppView(gtk.TreeView):
                           self.COLUMN_NAME, appname,
                           self.COLUMN_DESC, desc,
                           self.COLUMN_DISPLAY, display,
-                          self.COLUMN_CATE, category,
+                          self.COLUMN_CATE, str(category),
                           self.COLUMN_TYPE, 'app')
 
     def __fill_changed_display(self, appname, desc):
