@@ -70,7 +70,7 @@ class PreferencesDialog:
 
         iter = model.append(None)
         model.set(iter,
-                MW.ID_COLUMN, 0,
+                MW.ID_COLUMN, '',
                 MW.LOGO_COLUMN, None,
                 MW.TITLE_COLUMN, _('None')
         )
