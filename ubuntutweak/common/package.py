@@ -34,7 +34,8 @@ from xdg.DesktopEntry import DesktopEntry
 from ubuntutweak.common.debug import run_traceback
 from ubuntutweak.widgets.dialogs import InfoDialog, ErrorDialog
 
-p_kernel = re.compile('\d')
+p_kernel_version = re.compile('[.\d]+-\d+')
+p_kernel_package = re.compile('linux-[a-z\-]+')
 
 log = logging.getLogger('PackageWorker')
 
@@ -56,18 +57,13 @@ class PackageWorker:
                   'linux-header-lbm', 'linux-restricted-modules']
 
     def __init__(self):
-        self.uname = os.uname()[2]
-        self.uname_no_generic = '-'.join(self.uname.split('-')[:2])
+        # E.G. 2.6.35-24
+        self.current_kernel_version = '-'.join(os.uname()[2].split('-')[:2])
+        log.debug("The current_kernel_version is: %s" % self.current_kernel_version)
 
         self.is_apt_broken = False
         self.apt_broken_message = ''
         self.cache = self.get_cache()
-
-    def is_current_kernel(self, pkg):
-        for base in self.basenames:
-            if pkg == '%s-%s' % (base, self.uname) or pkg == '%s-%s' % (base, self.uname_no_generic):
-                return True
-        return False
 
     def run_synaptic(self, id, lock, to_add=[], to_rm=[]):
         cmd = []
@@ -126,15 +122,27 @@ class PackageWorker:
         list = []
         try:
             for pkg in self.cache.keys():
-                if self.cache[pkg].isInstalled:
-                    for base in self.basenames:
-                        if pkg.startswith(base) and p_kernel.findall(pkg) and not self.is_current_kernel(pkg):
-                            list.append(pkg)
+                if self.cache[pkg].isInstalled and self.is_old_kernel_package(pkg):
+                    list.append(pkg)
         except Exception, e:
             log.error(e)
             run_traceback('error')
 
         return list
+
+    def is_old_kernel_package(self, pkg):
+        if pkg.startswith('linux'):
+            package = p_kernel_package.findall(pkg)
+            if package:
+                package = package[0].rstrip('-')
+            else:
+                return False
+
+            if package in self.basenames:
+                kernel_match = p_kernel_version.findall(pkg)
+                if kernel_match and kernel_match[0] < self.current_kernel_version:
+                    return True
+        return False
 
     def get_pkgsummary(self, pkg):
         return self.cache[pkg].summary
