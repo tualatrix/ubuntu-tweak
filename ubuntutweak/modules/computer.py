@@ -82,6 +82,7 @@ class Computer(TweakModule):
         self.add_start(box, False, False, 0)
 
     def on_hostname_button_clicked(self, widget, label):
+        old_name = os.uname()[1]
         dialog = QuestionDialog(_('Please enter your new hostname. Blank characters should not be used.'),
             title = _('New hostname'))
 
@@ -95,6 +96,7 @@ class Computer(TweakModule):
         if res == gtk.RESPONSE_YES:
             ret = proxy.exec_command('hostname %s' % new_name)
             ret = proxy.exec_command('echo %s > /etc/hostname' % new_name)
+            ret = proxy.exec_command("sed -i 's/%s/%s/g' /etc/hosts" % (old_name, new_name))
             log.debug("New name is: %s, The ret is: %s" % (new_name, ret))
             if os.popen('hostname').read().strip() == new_name:
                 label.set_label(new_name)
