@@ -21,7 +21,7 @@
 import gconf
 import logging
 
-from ubuntutweak.widgets import *
+from ubuntutweak.ui import *
 from ubuntutweak.common.consts import *
 from ubuntutweak.conf import GconfKeys
 

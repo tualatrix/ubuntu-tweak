@@ -9,7 +9,7 @@ import socket
 import gobject
 
 from xmlrpclib import ServerProxy, Error
-from ubuntutweak.widgets.dialogs import BusyDialog
+from ubuntutweak.ui.dialogs import BusyDialog
 
 from ubuntutweak.common import consts
 from ubuntutweak.common.config import TweakSettings

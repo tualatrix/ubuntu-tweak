@@ -24,8 +24,8 @@ import logging
 
 from ubuntutweak import system
 from ubuntutweak.modules import TweakModule
-from ubuntutweak.widgets import TablePack
-from ubuntutweak.widgets.dialogs import QuestionDialog
+from ubuntutweak.ui import TablePack
+from ubuntutweak.ui.dialogs import QuestionDialog
 from ubuntutweak.policykit import proxy
 
 #TODO
@@ -86,7 +86,7 @@ class Computer(TweakModule):
             title = _('New hostname'))
 
         entry = gtk.Entry()
-        dialog.add_option(entry)
+        dialog.add_widget(entry)
 
         res = dialog.run()
         new_name = entry.get_text()

@@ -27,8 +27,8 @@ import thread
 import logging
 
 from ubuntutweak.modules  import TweakModule
-from ubuntutweak.widgets.dialogs import ErrorDialog, InfoDialog, QuestionDialog
-from ubuntutweak.widgets.dialogs import ProcessDialog
+from ubuntutweak.ui.dialogs import ErrorDialog, InfoDialog, QuestionDialog
+from ubuntutweak.ui.dialogs import ProcessDialog
 from ubuntutweak.utils.parser import Parser
 from ubuntutweak.network import utdata
 from ubuntutweak.network.downloadmanager import DownloadDialog

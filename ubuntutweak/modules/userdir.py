@@ -28,7 +28,7 @@ import gobject
 from ubuntutweak.modules import TweakModule
 from ubuntutweak.common.consts import *
 from ubuntutweak.common.inifile import IniFile
-from ubuntutweak.widgets.dialogs import QuestionDialog, InfoDialog
+from ubuntutweak.ui.dialogs import QuestionDialog, InfoDialog
 from ubuntutweak.utils import icon
 
 (

@@ -27,7 +27,7 @@ import gettext
 import gobject
 
 from ubuntutweak.modules  import TweakModule
-from ubuntutweak.widgets import KeyGrabber, KeyModifier, CellRendererButton
+from ubuntutweak.ui import KeyGrabber, KeyModifier, CellRendererButton
 from ubuntutweak.utils import icon
 from compiz import CompizPlugin
 

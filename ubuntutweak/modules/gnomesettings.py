@@ -27,8 +27,8 @@ import logging
 
 from ubuntutweak import system
 from ubuntutweak.modules  import TweakModule
-from ubuntutweak.widgets import ListPack, TablePack
-from ubuntutweak.widgets.dialogs import ErrorDialog, QuestionDialog, WarningDialog
+from ubuntutweak.ui import ListPack, TablePack
+from ubuntutweak.ui.dialogs import ErrorDialog, QuestionDialog, WarningDialog
 
 from ubuntutweak.common.config import TweakSettings
 from ubuntutweak.common.factory import WidgetFactory

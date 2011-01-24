@@ -24,8 +24,8 @@ import gtk
 import os
 
 from ubuntutweak.modules  import TweakModule
-from ubuntutweak.widgets import ListPack, TablePack
-from ubuntutweak.widgets.dialogs import ErrorDialog
+from ubuntutweak.ui import ListPack, TablePack
+from ubuntutweak.ui.dialogs import ErrorDialog
 
 from ubuntutweak.common.consts import *
 from ubuntutweak.common.factory import WidgetFactory

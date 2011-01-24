@@ -22,8 +22,8 @@ from gettext import ngettext
 from aptsources.sourceslist import SourcesList
 
 from ubuntutweak.modules  import TweakModule
-from ubuntutweak.widgets import GconfCheckButton
-from ubuntutweak.widgets.dialogs import InfoDialog
+from ubuntutweak.ui import GconfCheckButton
+from ubuntutweak.ui.dialogs import InfoDialog
 from sourcecenter import UpdateView, refresh_source, UpdateCacheDialog
 from ubuntutweak.policykit import proxy
 

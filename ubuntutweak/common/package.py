@@ -32,7 +32,7 @@ import apt_pkg
 
 from xdg.DesktopEntry import DesktopEntry
 from ubuntutweak.common.debug import run_traceback
-from ubuntutweak.widgets.dialogs import InfoDialog, ErrorDialog
+from ubuntutweak.ui.dialogs import InfoDialog, ErrorDialog
 
 p_kernel_version = re.compile('[.\d]+-\d+')
 p_kernel_package = re.compile('linux-[a-z\-]+')

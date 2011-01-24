@@ -25,7 +25,7 @@ import gobject
 
 from xdg.DesktopEntry import DesktopEntry
 from ubuntutweak.modules  import TweakModule
-from ubuntutweak.widgets.dialogs import ErrorDialog
+from ubuntutweak.ui.dialogs import ErrorDialog
 from ubuntutweak.utils import icon
 
 (

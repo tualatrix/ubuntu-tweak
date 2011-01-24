@@ -22,8 +22,8 @@ import gtk
 import gobject
 
 from ubuntutweak.modules  import TweakModule
-from ubuntutweak.widgets import ListPack, TablePack
-from ubuntutweak.widgets.dialogs import InfoDialog
+from ubuntutweak.ui import ListPack, TablePack
+from ubuntutweak.ui.dialogs import InfoDialog
 
 from ubuntutweak.common.factory import WidgetFactory
 from ubuntutweak.conf import GconfSetting

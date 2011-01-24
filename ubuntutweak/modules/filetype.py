@@ -29,7 +29,7 @@ from gettext import ngettext
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.utils import icon
 from ubuntutweak.common.gui import GuiWorker
-from ubuntutweak.widgets.dialogs import ErrorDialog
+from ubuntutweak.ui.dialogs import ErrorDialog
 
 MIMETYPE = [
     (_('Audio'), 'audio', 'audio-x-generic'), 

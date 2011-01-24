@@ -30,8 +30,8 @@ import logging
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.utils import icon
 from ubuntutweak.common.consts import DATA_DIR, CONFIG_ROOT
-from ubuntutweak.widgets import DirView, FlatView
-from ubuntutweak.widgets.dialogs import WarningDialog
+from ubuntutweak.ui import DirView, FlatView
+from ubuntutweak.ui.dialogs import WarningDialog
 
 log = logging.getLogger('Script')
 

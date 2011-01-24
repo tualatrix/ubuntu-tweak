@@ -25,8 +25,8 @@ import gobject
 import thread
 
 from ubuntutweak.modules  import TweakModule
-from ubuntutweak.widgets import ListPack, TablePack
-from ubuntutweak.widgets.dialogs import InfoDialog, QuestionDialog
+from ubuntutweak.ui import ListPack, TablePack
+from ubuntutweak.ui.dialogs import InfoDialog, QuestionDialog
 
 #TODO
 from ubuntutweak.utils import set_label_for_stock_button

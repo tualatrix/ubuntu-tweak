@@ -30,7 +30,7 @@ log = logging.getLogger("DbusProxy")
 SHOWED = False
 
 def show_message(*args):
-    from ubuntutweak.widgets.dialogs import ErrorDialog
+    from ubuntutweak.ui.dialogs import ErrorDialog
     message = _('The Ubuntu Tweak daemon didn\'t start correctly. This means that some '
             'advanced features may not work.\n'
             'If you want to help developers debugging, try to run "<b>sudo /usr/share/ubuntu-tweak/ubuntu-tweak-daemon</b>" in a terminal.')

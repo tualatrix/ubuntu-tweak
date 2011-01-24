@@ -24,8 +24,8 @@ import pango
 import gobject
 
 from ubuntutweak.modules import TweakModule
-from ubuntutweak.widgets import CellRendererButton
-from ubuntutweak.widgets.dialogs import QuestionDialog, InfoDialog, WarningDialog
+from ubuntutweak.ui import CellRendererButton
+from ubuntutweak.ui.dialogs import QuestionDialog, InfoDialog, WarningDialog
 from ubuntutweak.modules.sourcecenter import UpdateView
 from ubuntutweak.common.package import PACKAGE_WORKER, PackageInfo
 

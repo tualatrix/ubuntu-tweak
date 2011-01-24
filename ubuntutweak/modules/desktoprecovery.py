@@ -30,8 +30,8 @@ from ubuntutweak.utils import icon
 from ubuntutweak.common.consts import CONFIG_ROOT
 from ubuntutweak.common.gui import GuiWorker
 from ubuntutweak.modules  import TweakModule
-from ubuntutweak.widgets.dialogs import InfoDialog, QuestionDialog, ErrorDialog
-from ubuntutweak.widgets.dialogs import ProcessDialog
+from ubuntutweak.ui.dialogs import InfoDialog, QuestionDialog, ErrorDialog
+from ubuntutweak.ui.dialogs import ProcessDialog
 
 log = logging.getLogger('DesktopRecovery')
 

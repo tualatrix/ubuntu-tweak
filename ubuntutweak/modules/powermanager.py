@@ -19,7 +19,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 from ubuntutweak.modules  import TweakModule
-from ubuntutweak.widgets import TablePack
+from ubuntutweak.ui import TablePack
 
 #TODO
 from ubuntutweak.common.factory import WidgetFactory

@@ -38,9 +38,9 @@ from aptsources.sourceslist import SourcesList
 from ubuntutweak import system
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.policykit import PolkitButton, proxy
-from ubuntutweak.widgets import GconfCheckButton
-from ubuntutweak.widgets.dialogs import QuestionDialog, ErrorDialog, InfoDialog, WarningDialog
-from ubuntutweak.widgets.dialogs import ServerErrorDialog, AuthenticateFailDialog
+from ubuntutweak.ui import GconfCheckButton
+from ubuntutweak.ui.dialogs import QuestionDialog, ErrorDialog, InfoDialog, WarningDialog
+from ubuntutweak.ui.dialogs import ServerErrorDialog, AuthenticateFailDialog
 from ubuntutweak.utils.parser import Parser
 from ubuntutweak.network import utdata
 from appcenter import AppView, CategoryView, AppParser, StatusProvider
@@ -1111,7 +1111,7 @@ class SourceCenter(TweakModule):
                         'Please be careful and use only sources you trust.'),
                         buttons = gtk.BUTTONS_OK, title = _('Warning'))
                     checkbutton = GconfCheckButton(_('Never show this dialog'), WARNING_KEY)
-                    dialog.add_option(checkbutton)
+                    dialog.add_widget(checkbutton)
 
                     dialog.run()
                     dialog.destroy()

@@ -29,8 +29,8 @@ import logging
 from ubuntutweak import system
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.common.consts import DATA_DIR
-from ubuntutweak.widgets import ListPack, SinglePack
-from ubuntutweak.widgets.dialogs import InfoDialog
+from ubuntutweak.ui import ListPack, SinglePack
+from ubuntutweak.ui.dialogs import InfoDialog
 
 log = logging.getLogger('compiz')
 

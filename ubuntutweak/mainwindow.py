@@ -39,10 +39,10 @@ from ubuntutweak.modules import show_error_page, ModuleKeyError, create_broken_m
 from ubuntutweak.common.consts import APP, VERSION
 from ubuntutweak.common.debug import run_traceback
 from ubuntutweak.common.config import TweakSettings
-from ubuntutweak.widgets.dialogs import QuestionDialog
+from ubuntutweak.ui.dialogs import QuestionDialog
 from ubuntutweak.network.downloadmanager import DownloadDialog
-from ubuntutweak.widgets.dialogs import WarningDialog
-from ubuntutweak.widgets import GconfCheckButton
+from ubuntutweak.ui.dialogs import WarningDialog
+from ubuntutweak.ui import GconfCheckButton
 from ubuntutweak.preferences import PreferencesDialog
 from ubuntutweak.utils import set_label_for_stock_button
 from ubuntutweak.common.config import Config
@@ -323,7 +323,7 @@ class MainWindow(gtk.Window):
                 'Would you like to enable this repository?'),
                                    title=_('Warning'))
             checkbutton = GconfCheckButton(_('Never show this dialog'), WARNING_KEY)
-            dialog.add_option(checkbutton)
+            dialog.add_widget(checkbutton)
 
             response = dialog.run()
             dialog.destroy()

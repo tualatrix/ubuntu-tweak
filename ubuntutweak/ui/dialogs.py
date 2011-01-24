@@ -108,7 +108,8 @@ class BaseMessageDialog(gtk.MessageDialog):
         else:
             self.set_markup(message)
 
-    def add_option(self, widget):
+    def add_widget(self, widget):
+        '''Add a widget to serve more actions, such as an Entry to get text input'''
         vbox = self.get_child()
         hbox = gtk.HBox()
         vbox.pack_start(hbox, False, False, 0)
@@ -132,6 +133,7 @@ class BaseMessageDialog(gtk.MessageDialog):
         self.destroy()
 
     def add_option_button(self, button):
+        '''Add an option button to the left. It will not grab the default response.'''
         vbox = self.get_child()
         hbuttonbox = vbox.get_children()[-1]
 
