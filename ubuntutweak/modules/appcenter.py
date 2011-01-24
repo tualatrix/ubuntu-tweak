@@ -673,14 +673,15 @@ class AppCenter(TweakModule):
             InfoDialog(_("No update available.")).launch()
 
     def on_app_data_downloaded(self, widget):
-        file = widget.get_downloaded_file()
-        #FIXME
-        if widget.downloaded:
-            os.system('tar zxf %s -C %s' % (file, consts.CONFIG_ROOT))
+        path = widget.get_downloaded_file()
+        tarfile = utdata.create_tarfile(path)
+
+        if tarfile.is_valid():
+            tarfile.extract(consts.CONFIG_ROOT)
             self.update_app_data()
             utdata.save_synced_timestamp(APPCENTER_ROOT)
             self.update_timestamp()
-        elif widget.error:
+        else:
             ErrorDialog(_('An error occurred while downloading the file.')).launch()
 
     def update_app_data(self):

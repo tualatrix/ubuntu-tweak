@@ -4,9 +4,11 @@ import urllib
 import time
 import datetime
 
-from ubuntutweak.common.consts import install_ngettext
 from gettext import ngettext
 from urlparse import urljoin
+
+from ubuntutweak.common.consts import install_ngettext
+from ubuntutweak.utils.tar import TarFile
 
 install_ngettext()
 
@@ -94,3 +96,6 @@ def check_update_function(url, folder, update_setter, version_setter, auto):
             return False
     else:
         return False
+
+def create_tarfile(path):
+    return TarFile(path)

@@ -1129,13 +1129,15 @@ class SourceCenter(TweakModule):
         self.emit('call', 'ubuntutweak.modules.updatemanager', 'update_list', {})
 
     def on_source_data_downloaded(self, widget):
-        file = widget.get_downloaded_file()
-        if widget.downloaded:
-            os.system('tar zxf %s -C %s' % (file, consts.CONFIG_ROOT))
+        path = widget.get_downloaded_file()
+        tarfile = utdata.create_tarfile(path)
+
+        if tarfile.is_valid():
+            tarfile.extract(consts.CONFIG_ROOT)
             self.update_source_data()
             utdata.save_synced_timestamp(SOURCE_ROOT)
             self.update_timestamp()
-        elif widget.error:
+        else:
             ErrorDialog(_('An error occurred whilst downloading the file')).launch()
 
     def update_source_data(self):
