@@ -85,10 +85,8 @@ class Computer(TweakModule):
         dialog = QuestionDialog(_('Please enter your new hostname. Blank characters should not be used.'),
             title = _('New hostname'))
 
-        vbox = dialog.vbox
         entry = gtk.Entry()
-        vbox.pack_start(entry, False, False, 0)
-        vbox.show_all()
+        dialog.add_option(entry)
 
         res = dialog.run()
         new_name = entry.get_text()

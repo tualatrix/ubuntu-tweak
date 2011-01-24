@@ -112,7 +112,7 @@ class BaseMessageDialog(gtk.MessageDialog):
         vbox = self.get_child()
         hbox = gtk.HBox()
         vbox.pack_start(hbox, False, False, 0)
-        hbox.pack_end(widget, False, False, 0)
+        hbox.pack_end(widget, True, True, 0)
 
         hbox.show_all()
 
