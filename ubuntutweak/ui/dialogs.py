@@ -110,7 +110,7 @@ class BaseMessageDialog(gtk.MessageDialog):
 
     def add_widget(self, widget):
         '''Add a widget to serve more actions, such as an Entry to get text input'''
-        vbox = self.get_child()
+        vbox = self.get_content_area()
         hbox = gtk.HBox()
         vbox.pack_start(hbox, False, False, 0)
         hbox.pack_end(widget, True, True, 0)
@@ -118,7 +118,8 @@ class BaseMessageDialog(gtk.MessageDialog):
         hbox.show_all()
 
     def add_widget_with_scrolledwindow(self, widget, width=-1, height=200):
-        vbox = self.get_child()
+        '''Add a widget with a scrolled window, it is often used to add a TreeView'''
+        vbox = self.get_content_area()
 
         sw = gtk.ScrolledWindow()
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
