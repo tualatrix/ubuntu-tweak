@@ -551,7 +551,7 @@ class MainWindow(gtk.Window):
             "DaNmarner <danmarner@gmail.com>",
             "billy3321 <billy3321@gmail.com>",
             ])
-        about.set_copyright("Copyright © 2007-2010 TualatriX")
+        about.set_copyright("Copyright © 2007-2011 TualatriX")
         about.set_wrap_license(True)
         about.set_license("Ubuntu Tweak is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n\
 Ubuntu Tweak is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\
