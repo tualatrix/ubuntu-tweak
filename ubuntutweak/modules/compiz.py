@@ -347,10 +347,10 @@ class Compiz(TweakModule):
             self.snap = SnapWindow(_("Enable snapping windows"), self)
             self.wobbly_w = WobblyWindow(_("Enable wobbly windows"), self);
             self.viewport = ViewpointSwitcher(_('Enable workspace switching with mouse wheel'))
-            if system.CODENAME == 'natty':
-                self.launcher_autohide = UnityLauncherAutoHide(_('Make the launcher hide automatically after some time inactive'))
-            else:
-                self.launcher_autohide = None
+#            if system.CODENAME == 'natty':
+#                self.launcher_autohide = UnityLauncherAutoHide(_('Make the launcher hide automatically after some time inactive'))
+#            else:
+            self.launcher_autohide = None
 
             box = ListPack(_("Desktop Effects"), (self.snap,
                                                   self.wobbly_w,
