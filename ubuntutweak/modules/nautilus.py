@@ -72,12 +72,17 @@ class Nautilus(TweakModule):
     def __init__(self):
         TweakModule.__init__(self)
 
-        button = WidgetFactory.create("GconfCheckButton", 
+        permission_button = WidgetFactory.create("GconfCheckButton",
                                       label=_('Show advanced permissions in the Nautilus "File Properties" window'),
                                       enable_reset=True,
                                       key="show_advanced_permissions")
 
-        box = ListPack(_("File Browser"), (button, )) 
+        location_button = WidgetFactory.create("GconfCheckButton",
+                                      label=_('Always use the location entry, instead of the pathbar'),
+                                      enable_reset=True,
+                                      key="/apps/nautilus/preferences/always_use_location_entry")
+
+        box = ListPack(_("File Browser"), (permission_button, location_button))
         self.add_start(box, False, False, 0)
 
         hbox1 = gtk.HBox(False, 12)
