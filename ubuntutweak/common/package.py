@@ -89,7 +89,9 @@ class PackageWorker:
         cmd.append('%s' % f.name)
         f.flush()
 
+        log.debug("The cmd is: %s" % ' '.join(cmd))
         self.return_code = subprocess.call(cmd)
+        log.debug("The return code is: %s" % self.return_code)
         lock.release()
         f.close()
 
