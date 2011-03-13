@@ -20,17 +20,18 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import os
-import gtk
+from gi.repository import Gdk
+from gi.repository import Gtk
 import time
 import thread
 import subprocess
-import pango
+from gi.repository import Pango
 import gobject
 import apt_pkg
 import logging
 import gettext
 import webbrowser
-import pynotify
+from gi.repository import Notify
 import urllib
 from gettext import ngettext
 from aptsources.sourceslist import SourcesList
@@ -81,12 +82,12 @@ def get_source_logo_from_filename(file_name):
         path = os.path.join(consts.DATA_DIR, 'pixmaps/ppa-logo.png')
 
     try:
-        pixbuf = gtk.gdk.pixbuf_new_from_file(path)
+        pixbuf = GdkPixbuf.Pixbuf.new_from_file(path)
         if pixbuf.get_width() != 32 or pixbuf.get_height() != 32:
-            pixbuf = pixbuf.scale_simple(32, 32, gtk.gdk.INTERP_BILINEAR)
+            pixbuf = pixbuf.scale_simple(32, 32, GdkPixbuf.InterpType.BILINEAR)
         return pixbuf
     except:
-        return gtk.icon_theme_get_default().load_icon(gtk.STOCK_MISSING_IMAGE, 32, 0)
+        return Gtk.IconTheme.get_default().load_icon(Gtk.STOCK_MISSING_IMAGE, 32, 0)
 
 def refresh_source(parent):
     dialog = UpdateCacheDialog(parent)
@@ -113,13 +114,13 @@ def refresh_source(parent):
                 title=_('New applications are available'))
 
         vbox = dialog.vbox
-        sw = gtk.ScrolledWindow()
-        sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        sw = Gtk.ScrolledWindow()
+        sw.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         sw.set_size_request(-1, 200)
         vbox.pack_start(sw, False, False, 0)
         sw.add(updateview)
 
-        select_button = gtk.CheckButton(_('Select All'))
+        select_button = Gtk.CheckButton(_('Select All'))
         select_button.connect('clicked', on_select_button_clicked, updateview)
         vbox.pack_start(select_button, False, False, 0)
         vbox.show_all()
@@ -130,7 +131,7 @@ def refresh_source(parent):
         to_rm = updateview.to_rm
         to_add = updateview.to_add
 
-        if res == gtk.RESPONSE_YES and to_add:
+        if res == Gtk.ResponseType.YES and to_add:
             PACKAGE_WORKER.perform_action(parent, to_add, to_rm)
 
             PACKAGE_WORKER.update_apt_cache(True)
@@ -450,19 +451,19 @@ class UpdateCacheDialog:
     def run(self):
         """run the dialog, and if reload was pressed run synaptic"""
         self.parent.set_sensitive(False)
-        self.parent.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        self.parent.window.set_cursor(Gdk.Cursor.new(Gdk.WATCH))
         lock = thread.allocate_lock()
         lock.acquire()
         thread.start_new_thread(self.update_cache,
                                (self.parent.window.xid, lock))
         while lock.locked():
-            while gtk.events_pending():
-                gtk.main_iteration()
+            while Gtk.events_pending():
+                Gtk.main_iteration()
                 time.sleep(0.05)
         self.parent.set_sensitive(True)
         self.parent.window.set_cursor(None)
 
-class SourcesView(gtk.TreeView):
+class SourcesView(Gtk.TreeView):
     __gsignals__ = {
         'sourcechanged': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, ())
     }
@@ -482,14 +483,14 @@ class SourcesView(gtk.TreeView):
     ) = range(13)
 
     def __init__(self):
-        gtk.TreeView.__init__(self)
+        gobject.GObject.__init__(self)
 
         self.filter = None
         self.modelfilter = None
         self.__status = None
 
         self.model = self.__create_model()
-        self.model.set_sort_column_id(self.COLUMN_NAME, gtk.SORT_ASCENDING)
+        self.model.set_sort_column_id(self.COLUMN_NAME, Gtk.SortType.ASCENDING)
         self.set_model(self.model)
 
         self.modelfilter = self.model.filter_new()
@@ -504,7 +505,7 @@ class SourcesView(gtk.TreeView):
         return SourcesList()
 
     def __create_model(self):
-        model = gtk.ListStore(
+        model = Gtk.ListStore(
                 gobject.TYPE_BOOLEAN,
                 gobject.TYPE_INT,
                 gobject.TYPE_INT,
@@ -512,7 +513,7 @@ class SourcesView(gtk.TreeView):
                 gobject.TYPE_STRING,
                 gobject.TYPE_STRING,
                 gobject.TYPE_STRING,
-                gtk.gdk.Pixbuf,
+                GdkPixbuf.Pixbuf,
                 gobject.TYPE_STRING,
                 gobject.TYPE_STRING,
                 gobject.TYPE_STRING,
@@ -537,21 +538,21 @@ class SourcesView(gtk.TreeView):
         self.scroll_to_cell(0)
 
     def __add_column(self):
-        renderer = gtk.CellRendererToggle()
+        renderer = Gtk.CellRendererToggle()
         renderer.connect('toggled', self.on_enable_toggled)
-        column = gtk.TreeViewColumn(' ', renderer, active=self.COLUMN_ENABLED)
+        column = Gtk.TreeViewColumn(' ', renderer, active=self.COLUMN_ENABLED)
         column.set_sort_column_id(self.COLUMN_ENABLED)
         self.append_column(column)
 
-        column = gtk.TreeViewColumn(_('Third-Party Sources'))
+        column = Gtk.TreeViewColumn(_('Third-Party Sources'))
         column.set_sort_column_id(self.COLUMN_NAME)
         column.set_spacing(5)
-        renderer = gtk.CellRendererPixbuf()
+        renderer = Gtk.CellRendererPixbuf()
         column.pack_start(renderer, False)
         column.set_attributes(renderer, pixbuf=self.COLUMN_LOGO)
 
-        renderer = gtk.CellRendererText()
-        renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
+        renderer = Gtk.CellRendererText()
+        renderer.set_property('ellipsize', Pango.EllipsizeMode.END)
         column.pack_start(renderer, True)
         column.set_attributes(renderer, markup=self.COLUMN_DISPLAY)
 
@@ -614,7 +615,7 @@ class SourcesView(gtk.TreeView):
             )
 
     def set_as_read(self, iter, model):
-        if type(model) == gtk.TreeModelFilter:
+        if type(model) == Gtk.TreeModelFilter:
             iter = model.convert_iter_to_child_iter(iter)
             model = model.get_model()
         id = model.get_value(iter, self.COLUMN_ID)
@@ -644,7 +645,7 @@ class SourcesView(gtk.TreeView):
     def setup_ubuntu_cn_mirror(self):
         window = self.get_toplevel().window
         if window:
-            window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+            window.set_cursor(Gdk.Cursor.new(Gdk.WATCH))
 
         if UNCONVERT:
             import ubuntutweak.common.sourcedata
@@ -657,8 +658,8 @@ class SourcesView(gtk.TreeView):
         else:
             iter = self.model.get_iter_first()
             while iter:
-                while gtk.events_pending():
-                    gtk.main_iteration()
+                while Gtk.events_pending():
+                    Gtk.main_iteration()
 
                 url  = self.model.get_value(iter, self.COLUMN_URL)
 
@@ -714,7 +715,7 @@ class SourcesView(gtk.TreeView):
         dependencies = SOURCE_PARSER.get_dependencies(id)
 
         #Convert to real model, because will involke the set method
-        if type(model) == gtk.TreeModelFilter:
+        if type(model) == Gtk.TreeModelFilter:
             iter = model.convert_iter_to_child_iter(iter)
             model = model.get_model()
 
@@ -755,7 +756,7 @@ class SourcesView(gtk.TreeView):
                             _('To enable this Source, You need to enable <b>"%s"</b> at first.\nDo you wish to continue?') \
                             % full_name,
                             title=_('Dependency Notice'))
-                if dialog.run() == gtk.RESPONSE_YES:
+                if dialog.run() == Gtk.ResponseType.YES:
                     for depend_id in depend_list:
                         self.set_source_enabled(depend_id)
                     self.set_source_enabled(id)
@@ -853,35 +854,35 @@ class SourcesView(gtk.TreeView):
             self.emit('sourcechanged')
 
         if enable:
-            notify = pynotify.Notification(_('New source has been enabled'),
+            notify = Notify.Notification(_('New source has been enabled'),
                     _('%s is enabled now, Please click the refresh button to update the application cache.') % comment)
             notify.set_icon_from_pixbuf(icon)
             notify.set_hint_string ("x-canonical-append", "");
             notify.show()
 
-class SourceDetail(gtk.VBox):
+class SourceDetail(Gtk.VBox):
     def __init__(self):
-        gtk.VBox.__init__(self)
+        gobject.GObject.__init__(self)
 
-        self.table = gtk.Table(2, 2)
-        self.pack_start(self.table)
+        self.table = Gtk.Table(2, 2)
+        self.pack_start(self.table, True, True, 0)
 
-        gtk.link_button_set_uri_hook(self.click_website)
+        Gtk.link_button_set_uri_hook(self.click_website)
 
         items = [_('Homepage'), _('Source URL'), _('Description')]
         for i, text in enumerate(items):
-            label = gtk.Label()
+            label = Gtk.Label()
             label.set_markup('<b>%s</b>' % text)
 
             self.table.attach(label, 0, 1,
                               i, i + 1,
-                              xoptions=gtk.FILL, xpadding=10, ypadding=5)
+                              xoptions=Gtk.AttachOptions.FILL, xpadding=10, ypadding=5)
 
-        self.homepage_button = gtk.LinkButton('http://ubuntu-tweak.com')
+        self.homepage_button = Gtk.LinkButton('http://ubuntu-tweak.com')
         self.table.attach(self.homepage_button, 1, 2, 0, 1)
-        self.url_button = gtk.LinkButton('http://ubuntu-tweak.com')
+        self.url_button = Gtk.LinkButton('http://ubuntu-tweak.com')
         self.table.attach(self.url_button, 1, 2, 1, 2)
-        self.description = gtk.Label(_('Description is here'))
+        self.description = Gtk.Label(label=_('Description is here'))
         self.description.set_line_wrap(True)
         self.table.attach(self.description, 1, 2, 2, 3)
 
@@ -891,7 +892,7 @@ class SourceDetail(gtk.VBox):
     def set_details(self, homepage = None, url = None, description = None):
         if homepage:
             self.homepage_button.destroy()
-            self.homepage_button = gtk.LinkButton(homepage, homepage)
+            self.homepage_button = Gtk.LinkButton(homepage, homepage)
             self.homepage_button.show()
             self.table.attach(self.homepage_button, 1, 2, 0, 1)
 
@@ -899,7 +900,7 @@ class SourceDetail(gtk.VBox):
             if ppa.is_ppa(url):
                 url = ppa.get_homepage(url)
             self.url_button.destroy()
-            self.url_button = gtk.LinkButton(url, url)
+            self.url_button = Gtk.LinkButton(url, url)
             self.url_button.show()
             self.table.attach(self.url_button, 1, 2, 1, 2)
 
@@ -942,7 +943,7 @@ class SourceCenter(TweakModule):
         self.cate_selection.connect('changed', self.on_category_changed)
         self.left_sw.add(self.cateview)
 
-        self.expander = gtk.Expander(_('Details'))
+        self.expander = Gtk.Expander(_('Details'))
         self.vbox1.pack_start(self.expander, False, False, 0)
         self.sourcedetail = SourceDetail()
         self.expander.set_sensitive(False)
@@ -1012,7 +1013,7 @@ class SourceCenter(TweakModule):
             title=_('Upgrade Third Party Sources'))
         response = dialog.run()
         dialog.destroy()
-        if response == gtk.RESPONSE_YES:
+        if response == Gtk.ResponseType.YES:
             proxy.upgrade_sources(self.__get_disable_string(), UPGRADE_DICT)
             if not self.check_source_upgradable():
                 InfoDialog(_('Upgrade Successful!')).launch()
@@ -1028,7 +1029,7 @@ class SourceCenter(TweakModule):
                 response = dialog.run()
                 dialog.destroy()
 
-                if response == gtk.RESPONSE_YES:
+                if response == Gtk.ResponseType.YES:
                     dialog = FetchingDialog(get_source_data_url(),
                                             self.get_toplevel())
                     dialog.connect('destroy', self.on_source_data_downloaded)
@@ -1109,7 +1110,7 @@ class SourceCenter(TweakModule):
                     dialog = WarningDialog(_('It is a possible security risk to '
                         'use packages from Third-Party Sources.\n'
                         'Please be careful and use only sources you trust.'),
-                        buttons = gtk.BUTTONS_OK, title = _('Warning'))
+                        buttons = Gtk.ButtonsType.OK, title = _('Warning'))
                     checkbutton = GconfCheckButton(_('Never show this dialog'), WARNING_KEY)
                     dialog.add_widget(checkbutton)
 
@@ -1156,7 +1157,7 @@ class SourceCenter(TweakModule):
             dialog = QuestionDialog(_("Update available, Would you like to update?"))
             response = dialog.run()
             dialog.destroy()
-            if response == gtk.RESPONSE_YES:
+            if response == Gtk.ResponseType.YES:
                 dialog = FetchingDialog(parent=self.get_toplevel(), url=get_source_data_url())
                 dialog.connect('destroy', self.on_source_data_downloaded)
                 dialog.run()

@@ -19,8 +19,8 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import pygtk
-pygtk.require('2.0')
-import gtk
+pyGtk.require('2.0')
+from gi.repository import Gtk
 import os
 import stat
 import shutil
@@ -155,27 +155,27 @@ class Scripts(TweakModule, AbstractScripts):
         self.default = DefaultScripts()
         self.config_test()
 
-        hbox = gtk.HBox(False, 10)
+        hbox = Gtk.HBox(False, 10)
         self.add_start(hbox)
 
-        sw = gtk.ScrolledWindow()
-        sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        hbox.pack_start(sw)
+        sw = Gtk.ScrolledWindow()
+        sw.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
+        hbox.pack_start(sw, True, True, 0)
 
         self.enable_scripts = EnableScripts()
         sw.add(self.enable_scripts)
 
-        sw = gtk.ScrolledWindow()
-        sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        hbox.pack_start(sw)
+        sw = Gtk.ScrolledWindow()
+        sw.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
+        hbox.pack_start(sw, True, True, 0)
 
         self.disable_scripts = DisableScripts()
         sw.add(self.disable_scripts)
 
-        hbox = gtk.HBox(False, 0)
+        hbox = Gtk.HBox(False, 0)
         self.add_start(hbox, False, False, 0)
 
-        button = gtk.Button(_('Rebuild System Scripts'))
+        button = Gtk.Button(_('Rebuild System Scripts'))
         button.connect('clicked', self.on_rebuild_clicked)
         hbox.pack_end(button, False, False, 5)
         
@@ -194,7 +194,7 @@ class Scripts(TweakModule, AbstractScripts):
 
     def on_rebuild_clicked(self, widget):
         dialog = WarningDialog(_('This will delete all disabled scripts.\nDo you wish to continue?'))
-        if dialog.run() == gtk.RESPONSE_YES:
+        if dialog.run() == Gtk.ResponseType.YES:
             self.default.remove()
             self.default.create()
             self.disable_scripts.update_model()

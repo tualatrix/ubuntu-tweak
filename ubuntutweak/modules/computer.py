@@ -19,7 +19,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import os
-import gtk
+from gi.repository import Gtk
 import logging
 
 from ubuntutweak import system
@@ -57,26 +57,26 @@ class Computer(TweakModule):
             if element.split(" ")[0] == "MemTotal:":
                 raminfo = element.split(" ")[-2]
 
-        hostname_label = gtk.Label(os.uname()[1])
-        hostname_button = gtk.Button(_('Change Hostname'))
+        hostname_label = Gtk.Label(label=os.uname()[1])
+        hostname_button = Gtk.Button(_('Change Hostname'))
         hostname_button.connect('clicked', self.on_hostname_button_clicked, hostname_label)
 
         box = TablePack(_("System information"),(
-                    (gtk.Label(_("Hostname")), hostname_label, hostname_button),
-                    (gtk.Label(_("Distribution")), gtk.Label(system.DISTRO)),
-                    (gtk.Label(_("Desktop environment")), gtk.Label(system.DESKTOP_FULLNAME)),
-                    (gtk.Label(_("Kernel")), gtk.Label(os.uname()[0]+" "+os.uname()[2])),
-                    (gtk.Label(_("Platform")), gtk.Label(os.uname()[-1])),
-                    (gtk.Label(_("CPU")), gtk.Label(cpumodel.strip())),
-                    (gtk.Label(_("Memory")), gtk.Label(filesizeformat(str(int(raminfo) * 1024)))),
+                    (Gtk.Label(label=_("Hostname")), hostname_label, hostname_button),
+                    (Gtk.Label(label=_("Distribution")), Gtk.Label(label=system.DISTRO)),
+                    (Gtk.Label(label=_("Desktop environment")), Gtk.Label(label=system.DESKTOP_FULLNAME)),
+                    (Gtk.Label(label=_("Kernel")), Gtk.Label(label=os.uname()[0]+" "+os.uname()[2])),
+                    (Gtk.Label(label=_("Platform")), Gtk.Label(label=os.uname()[-1])),
+                    (Gtk.Label(label=_("CPU")), Gtk.Label(label=cpumodel.strip())),
+                    (Gtk.Label(label=_("Memory")), Gtk.Label(label=filesizeformat(str(int(raminfo) * 1024)))),
                 ))
         self.add_start(box, False, False, 0)
 
         box = TablePack(_("User information"),(
-                    (gtk.Label(_("Current user")),     gtk.Label(os.getenv("USER"))),
-                    (gtk.Label(_("Home directory")),     gtk.Label(os.getenv("HOME"))),
-                    (gtk.Label(_("Shell")),         gtk.Label(os.getenv("SHELL"))),
-                    (gtk.Label(_("Language")),     gtk.Label(os.getenv("LANG"))),
+                    (Gtk.Label(label=_("Current user")),     Gtk.Label(label=os.getenv("USER"))),
+                    (Gtk.Label(label=_("Home directory")),     Gtk.Label(label=os.getenv("HOME"))),
+                    (Gtk.Label(label=_("Shell")),         Gtk.Label(label=os.getenv("SHELL"))),
+                    (Gtk.Label(label=_("Language")),     Gtk.Label(label=os.getenv("LANG"))),
                 ))
             
         self.add_start(box, False, False, 0)
@@ -86,14 +86,14 @@ class Computer(TweakModule):
         dialog = QuestionDialog(_('Please enter your new hostname. Blank characters should not be used.'),
             title = _('New hostname'))
 
-        entry = gtk.Entry()
+        entry = Gtk.Entry()
         dialog.add_widget(entry)
 
         res = dialog.run()
         new_name = entry.get_text()
         dialog.destroy()
 
-        if res == gtk.RESPONSE_YES:
+        if res == Gtk.ResponseType.YES:
             ret = proxy.exec_command('hostname %s' % new_name)
             ret = proxy.exec_command('echo %s > /etc/hostname' % new_name)
             ret = proxy.exec_command("sed -i 's/%s/%s/g' /etc/hosts" % (old_name, new_name))

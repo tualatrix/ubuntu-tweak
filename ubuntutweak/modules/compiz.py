@@ -19,10 +19,11 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import pygtk
-pygtk.require("2.0")
+pyGtk.require("2.0")
 import os
-import gtk
-import gconf
+from gi.repository import Gdk
+from gi.repository import Gtk
+from gi.repository import GConf
 import gobject
 import logging
 
@@ -163,11 +164,11 @@ class CompizSetting:
         self.__setting.Reset()
         self.__plugin.save()
 
-class OpacityMenu(gtk.CheckButton):
+class OpacityMenu(Gtk.CheckButton):
     menu_match = 'Tooltip | Menu | PopupMenu | DropdownMenu'
 
     def __init__(self, label):
-        gtk.CheckButton.__init__(self, label)
+        gobject.GObject.__init__(self, label)
 
         self.plugin = CompizPlugin('obs')
 
@@ -189,9 +190,9 @@ class OpacityMenu(gtk.CheckButton):
             self.setting_matches.set_value([])
             self.setting_values.set_value([])
 
-class WobblyMenu(gtk.CheckButton):
+class WobblyMenu(Gtk.CheckButton):
     def __init__(self, label, mediator):
-        gtk.CheckButton.__init__(self, label)
+        gobject.GObject.__init__(self, label)
 
         self.mediator = mediator
         self.plugin = CompizPlugin('wobbly')
@@ -219,9 +220,9 @@ class WobblyMenu(gtk.CheckButton):
         else:
             self.set_active(False)
 
-class WobblyWindow(gtk.CheckButton):
+class WobblyWindow(Gtk.CheckButton):
     def __init__(self, label, mediator):
-        gtk.CheckButton.__init__(self, label)
+        gobject.GObject.__init__(self, label)
 
         self.mediator = mediator
         self.plugin = CompizPlugin('wobbly')
@@ -246,9 +247,9 @@ class WobblyWindow(gtk.CheckButton):
         else:
             self.set_active(False)
 
-class SnapWindow(gtk.CheckButton):
+class SnapWindow(Gtk.CheckButton):
     def __init__(self, label, mediator):
-        gtk.CheckButton.__init__(self, label)
+        gobject.GObject.__init__(self, label)
 
         self.mediator = mediator
         self.plugin = CompizPlugin('snap')
@@ -266,9 +267,9 @@ class SnapWindow(gtk.CheckButton):
         else:
             self.plugin.set_enabled(False)
 
-class UnityLauncherAutoHide(gtk.CheckButton):
+class UnityLauncherAutoHide(Gtk.CheckButton):
     def __init__(self, label):
-        gtk.CheckButton.__init__(self, label)
+        gobject.GObject.__init__(self, label)
 
         self.plugin = CompizPlugin('unityshell')
         self.autohide_setting = CompizSetting(self.plugin, 'launcher_autohide')
@@ -283,9 +284,9 @@ class UnityLauncherAutoHide(gtk.CheckButton):
         else:
             self.autohide_setting.set_value(False)
 
-class ViewpointSwitcher(gtk.CheckButton):
+class ViewpointSwitcher(Gtk.CheckButton):
     def __init__(self, label):
-        gtk.CheckButton.__init__(self, label)
+        gobject.GObject.__init__(self, label)
 
         self.plugin = CompizPlugin('vpswitch')
         self.left_button_setting = CompizSetting(self.plugin, 'left_button')
@@ -339,8 +340,8 @@ class Compiz(TweakModule):
             self.screenlets.connect('toggled', self.colleague_changed)
 
         if CompizPlugin.context:
-            hbox = gtk.HBox(False, 0)
-            hbox.pack_start(self.create_edge_setting(), True, False, 0)
+            hbox = Gtk.HBox(False, 0)
+            hbox.pack_start(self.create_edge_setting(, True, True, 0), True, False, 0)
             edge_setting = SinglePack(_(' Workspace Edge Settings'), hbox)
             self.add_start(edge_setting, False, False, 0)
 
@@ -370,10 +371,10 @@ class Compiz(TweakModule):
                     self.screenlets,
                 ))
 
-                self.button = gtk.Button(stock = gtk.STOCK_APPLY)
+                self.button = Gtk.Button(stock = Gtk.STOCK_APPLY)
                 self.button.connect("clicked", self.on_apply_clicked, box)
                 self.button.set_sensitive(False)
-                hbox = gtk.HBox(False, 0)
+                hbox = Gtk.HBox(False, 0)
                 hbox.pack_end(self.button, False, False, 0)
 
                 box.vbox.pack_start(hbox, False, False, 0)
@@ -384,10 +385,10 @@ class Compiz(TweakModule):
                 self.advanced_settings,
             ))
 
-            self.button = gtk.Button(stock = gtk.STOCK_APPLY)
+            self.button = Gtk.Button(stock = Gtk.STOCK_APPLY)
             self.button.connect("clicked", self.on_apply_clicked, box)
             self.button.set_sensitive(False)
-            hbox = gtk.HBox(False, 0)
+            hbox = Gtk.HBox(False, 0)
             hbox.pack_end(self.button, False, False, 0)
 
             box.vbox.pack_start(hbox, False, False, 0)
@@ -438,7 +439,7 @@ class Compiz(TweakModule):
 
     def create_edge_combo_box(self, edge):
         global plugins_settings, plugins
-        combobox = gtk.combo_box_new_text()
+        combobox = Gtk.ComboBoxText()
         combobox.current = None
 
         enable = False
@@ -467,9 +468,9 @@ class Compiz(TweakModule):
         return combobox
 
     def create_edge_setting(self):
-        hbox = gtk.HBox(False, 0)
+        hbox = Gtk.HBox(False, 0)
 
-        vbox = gtk.VBox(False, 0)
+        vbox = Gtk.VBox(False, 0)
         hbox.pack_start(vbox, False, False, 0)
 
         self.TopLeft = self.create_edge_combo_box("TopLeft")
@@ -478,21 +479,21 @@ class Compiz(TweakModule):
         self.BottomLeft = self.create_edge_combo_box("BottomLeft")
         vbox.pack_end(self.BottomLeft, False, False, 0)
 
-        client = gconf.client_get_default()
+        client = GConf.Client.get_default()
         wallpaper = client.get_string("/desktop/gnome/background/picture_filename")
 
         system_wallpaper = os.path.join(DATA_DIR, "pixmaps/splash.png")
         if wallpaper:
             try:
-                pixbuf = gtk.gdk.pixbuf_new_from_file_at_size(wallpaper, 160, 100)
+                pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(wallpaper, 160, 100)
             except gobject.GError:
-                pixbuf = gtk.gdk.pixbuf_new_from_file_at_size(system_wallpaper, 160, 100)
+                pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(system_wallpaper, 160, 100)
         else:
-            pixbuf = gtk.gdk.pixbuf_new_from_file_at_size(system_wallpaper, 160, 100)
-        image = gtk.image_new_from_pixbuf(pixbuf)
+            pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(system_wallpaper, 160, 100)
+        image = Gtk.image_new_from_pixbuf(pixbuf)
         hbox.pack_start(image, False, False, 0)
         
-        vbox = gtk.VBox(False, 0)
+        vbox = Gtk.VBox(False, 0)
         hbox.pack_start(vbox, False, False, 0)
         
         self.TopRight = self.create_edge_combo_box("TopRight")

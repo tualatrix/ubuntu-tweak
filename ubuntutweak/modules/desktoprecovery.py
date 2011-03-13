@@ -17,7 +17,8 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import os
-import gtk
+from gi.repository import Gdk
+from gi.repository import Gtk
 import glob
 import time
 import dbus
@@ -65,7 +66,7 @@ def do_reset_task(dir):
     log.debug('Start setting reset: %s' % dir)
     return process.communicate()
 
-class CateView(gtk.TreeView):
+class CateView(Gtk.TreeView):
     (COLUMN_ICON,
      COLUMN_DIR,
      COLUMN_TITLE
@@ -78,7 +79,7 @@ class CateView(gtk.TreeView):
     }
 
     def __init__(self):
-        gtk.TreeView.__init__(self)
+        gobject.GObject.__init__(self)
 
         self.set_rules_hint(True)
         self.model = self.__create_model()
@@ -91,21 +92,21 @@ class CateView(gtk.TreeView):
 
     def __create_model(self):
         '''The model is icon, title and the list reference'''
-        model = gtk.ListStore(
-                    gtk.gdk.Pixbuf,
+        model = Gtk.ListStore(
+                    GdkPixbuf.Pixbuf,
                     gobject.TYPE_STRING,
                     gobject.TYPE_STRING)
 
         return model
 
     def __add_columns(self):
-        column = gtk.TreeViewColumn(_('Category'))
+        column = Gtk.TreeViewColumn(_('Category'))
 
-        renderer = gtk.CellRendererPixbuf()
+        renderer = Gtk.CellRendererPixbuf()
         column.pack_start(renderer, False)
         column.set_attributes(renderer, pixbuf=self.COLUMN_ICON)
 
-        renderer = gtk.CellRendererText()
+        renderer = Gtk.CellRendererText()
         column.pack_start(renderer, True)
         column.set_sort_column_id(self.COLUMN_TITLE)
         column.set_attributes(renderer, text=self.COLUMN_TITLE)
@@ -121,14 +122,14 @@ class CateView(gtk.TreeView):
                            self.COLUMN_DIR, path,
                            self.COLUMN_TITLE, title)
 
-class SettingView(gtk.TreeView):
+class SettingView(Gtk.TreeView):
     (COLUMN_ICON,
      COLUMN_DIR,
      COLUMN_TITLE
     ) = range(3)
 
     def __init__(self):
-        gtk.TreeView.__init__(self)
+        gobject.GObject.__init__(self)
 
         self.model = self.__create_model()
         self.set_model(self.model)
@@ -136,20 +137,20 @@ class SettingView(gtk.TreeView):
 
     def __create_model(self):
         ''' The first is for icon, second is for real path, second is for title (if available)'''
-        model = gtk.ListStore(gtk.gdk.Pixbuf,
+        model = Gtk.ListStore(GdkPixbuf.Pixbuf,
                               gobject.TYPE_STRING,
                               gobject.TYPE_STRING)
 
         return model
 
     def __add_columns(self):
-        column = gtk.TreeViewColumn(_('Setting'))
+        column = Gtk.TreeViewColumn(_('Setting'))
 
-        renderer = gtk.CellRendererPixbuf()
+        renderer = Gtk.CellRendererPixbuf()
         column.pack_start(renderer, False)
         column.set_attributes(renderer, pixbuf=self.COLUMN_ICON)
 
-        renderer = gtk.CellRendererText()
+        renderer = Gtk.CellRendererText()
         column.pack_start(renderer, True)
         column.set_sort_column_id(self.COLUMN_TITLE)
         column.set_attributes(renderer, text=self.COLUMN_TITLE)
@@ -186,16 +187,16 @@ class GetTextDialog(QuestionDialog):
 
         vbox = self.vbox
 
-        hbox = gtk.HBox(False, 12)
-        label = gtk.Label(_('Backup Name:'))
+        hbox = Gtk.HBox(False, 12)
+        label = Gtk.Label(label=_('Backup Name:'))
         hbox.pack_start(label, False, False, 0)
 
-        self.entry = gtk.Entry()
+        self.entry = Gtk.Entry()
         if text:
             self.entry.set_text(text)
-        hbox.pack_start(self.entry)
+        hbox.pack_start(self.entry, True, True, 0)
 
-        vbox.pack_start(hbox)
+        vbox.pack_start(hbox, True, True, 0)
         vbox.show_all()
 
     def destroy(self):
@@ -273,7 +274,7 @@ class DesktopRecovery(TweakModule):
 
         self.setup_backup_model()
 
-        hbox = gtk.HBox(False, 5)
+        hbox = Gtk.HBox(False, 5)
         self.add_start(hbox)
 
         self.cateview = CateView()
@@ -283,14 +284,14 @@ class DesktopRecovery(TweakModule):
         self.cate_selection.connect('changed', self.on_cateview_changed)
         hbox.pack_start(self.cateview, False, False, 0)
 
-        vpaned = gtk.VPaned()
-        hbox.pack_start(vpaned)
+        vpaned = Gtk.VPaned()
+        hbox.pack_start(vpaned, True, True, 0)
 
         self.settingview = SettingView()
         self.setting_selection = self.settingview.get_selection()
         self.setting_selection.connect('changed', self.on_settingview_changed)
-        sw = gtk.ScrolledWindow()
-        sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        sw = Gtk.ScrolledWindow()
+        sw.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         sw.add(self.settingview)
         vpaned.pack1(sw, True, False)
 
@@ -301,12 +302,12 @@ class DesktopRecovery(TweakModule):
         self.show_all()
 
     def setup_backup_model(self):
-        model = gtk.ListStore(gobject.TYPE_STRING,
+        model = Gtk.ListStore(gobject.TYPE_STRING,
                               gobject.TYPE_STRING)
 
         self.backup_combobox.set_model(model)
 
-        cell = gtk.CellRendererText()
+        cell = Gtk.CellRendererText()
         self.backup_combobox.pack_start(cell, True)
         self.backup_combobox.add_attribute(cell, 'text', 0)
 
@@ -353,7 +354,7 @@ class DesktopRecovery(TweakModule):
             self.update_backup_model(dir)
 
     def on_cateview_button_press_event(self, widget, event):
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
+        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 1:
             self.on_cateview_changed(self.cate_selection)
 
     def on_settingview_changed(self, widget):
@@ -379,7 +380,7 @@ class DesktopRecovery(TweakModule):
             dialog.destroy()
             name = dialog.get_text()
 
-            if response == gtk.RESPONSE_YES and name:
+            if response == Gtk.ResponseType.YES and name:
                 dialog = BackupProgressDialog(self.get_toplevel(), name, dir)
 
                 dialog.run()
@@ -397,7 +398,7 @@ class DesktopRecovery(TweakModule):
             dialog.destroy()
             name = dialog.get_text()
 
-            if response == gtk.RESPONSE_YES and name:
+            if response == Gtk.ResponseType.YES and name:
                 stdout, stderr = do_backup_task(dir, name)
 
                 if stderr is None:
@@ -437,7 +438,7 @@ class DesktopRecovery(TweakModule):
             dialog = QuestionDialog(_('Would you like to delete the backup of all <b>%s</b> settings named <b>%s</b>?') % (dir, os.path.basename(path)[:-4]))
         response = dialog.run()
         dialog.destroy()
-        if response == gtk.RESPONSE_YES:
+        if response == Gtk.ResponseType.YES:
             if dir.count('/') == 2:
                 try_remove_record_in_root_backup(dir, path)
             else:
@@ -463,7 +464,7 @@ class DesktopRecovery(TweakModule):
         response = dialog.run()
         dialog.destroy()
 
-        if response == gtk.RESPONSE_YES:
+        if response == Gtk.ResponseType.YES:
             if dir.count('/') == 1:
                 for line in open(path):
                     stdout, stderr = do_recover_task(line.strip())
@@ -479,7 +480,7 @@ class DesktopRecovery(TweakModule):
     def __show_successful_with_logout_button(self, message):
         dialog = InfoDialog(message)
 
-        button = gtk.Button(_('_Logout'))
+        button = Gtk.Button(_('_Logout'))
         button.connect('clicked', self.on_logout_button_clicked, dialog)
         dialog.add_option_button(button)
 
@@ -501,7 +502,7 @@ class DesktopRecovery(TweakModule):
         response = dialog.run()
         dialog.destroy()
 
-        if response == gtk.RESPONSE_YES:
+        if response == Gtk.ResponseType.YES:
             stdout, stderr = do_reset_task(dir)
 
             if stderr:
@@ -541,7 +542,7 @@ class DesktopRecovery(TweakModule):
         new_name = dialog.get_text()
         log.debug('Get the new backup name: %s' % new_name)
 
-        if res == gtk.RESPONSE_YES and new_name:
+        if res == Gtk.ResponseType.YES and new_name:
             # If is root, try to rename all the subdir, then rename itself
             if dir.count('/') == 1:
                 totol_renamed = []

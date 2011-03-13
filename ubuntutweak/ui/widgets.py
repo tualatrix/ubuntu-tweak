@@ -18,10 +18,12 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-import pygtk
-pygtk.require("2.0")
+import gi
+gi.require_version('Gtk', '2.0')
+
 import os
-import gtk
+from gi.repository import Gdk
+from gi.repository import Gtk
 import gobject
 import logging
 import time
@@ -33,13 +35,13 @@ from ubuntutweak.policykit import PolkitButton, proxy
 
 log = logging.getLogger('widgets')
 
-class GconfResetButton(gtk.Button):
+class GconfResetButton(Gtk.Button):
     def __init__(self, key):
-        super(gtk.Button, self).__init__()
+        gobject.GObject.__init__()
 
         self.__setting = GconfSetting(key=key)
 
-        reset_image = gtk.image_new_from_stock(gtk.STOCK_REVERT_TO_SAVED, gtk.ICON_SIZE_MENU)
+        reset_image = Gtk.Image.new_from_stock(Gtk.STOCK_REVERT_TO_SAVED, Gtk.IconSize.MENU)
         self.set_property('image', reset_image)
 
         self.set_tooltip_text(_('Reset setting to default value: %s') % self.get_default_value())
@@ -47,7 +49,7 @@ class GconfResetButton(gtk.Button):
     def get_default_value(self):
         return self.__setting.get_schema_value()
 
-class GconfCheckButton(gtk.CheckButton):
+class GconfCheckButton(Gtk.CheckButton):
     def __init__(self, label=None, key=None, default=None, tooltip=None):
         super(GconfCheckButton, self).__init__()
         self.__setting = GconfSetting(key=key, default=default, type=bool)
@@ -66,7 +68,7 @@ class GconfCheckButton(gtk.CheckButton):
     def button_toggled(self, widget, data=None):
         self.__setting.set_value(self.get_active())
 
-class SystemGconfCheckButton(gtk.CheckButton):
+class SystemGconfCheckButton(Gtk.CheckButton):
     def __init__(self, label=None, key=None, default=None, tooltip=None):
         super(SystemGconfCheckButton, self).__init__()
         self.__setting = SystemGconfSetting(key, default)
@@ -81,7 +83,7 @@ class SystemGconfCheckButton(gtk.CheckButton):
     def button_toggled(self, widget):
         self.__setting.set_value(self.get_active())
         
-class UserGconfCheckButton(gtk.CheckButton):
+class UserGconfCheckButton(Gtk.CheckButton):
     def __init__(self, user=None, label=None, key=None, default=None, tooltip=None):
         super(UserGconfCheckButton, self).__init__()
         self.__setting = UserGconfSetting(key, default)
@@ -106,9 +108,9 @@ class StrGconfCheckButton(GconfCheckButton):
         '''rewrite the toggled function, it do nothing with the setting'''
         pass
 
-class GconfEntry(gtk.Entry):
+class GconfEntry(Gtk.Entry):
     def __init__(self, key=None, default=None):
-        gtk.Entry.__init__(self)
+        gobject.GObject.__init__(self)
         self.__setting = GconfSetting(key=key, default=default, type=str)
 
         string = self.__setting.get_value()
@@ -142,18 +144,18 @@ class GconfEntry(gtk.Entry):
             client.unset(key)
             self.set_text(_("Unset"))
 
-class GconfComboBox(gtk.ComboBox):
+class GconfComboBox(Gtk.ComboBox):
     def __init__(self, key=None, texts=None, values=None, type="string"):
         super(GconfComboBox, self).__init__()
 
         self.__setting = GconfSetting(key=key)
         if type == 'int':
-            model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_INT)
+            model = Gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_INT)
         else:
-            model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
+            model = Gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
         self.set_model(model)
 
-        cell = gtk.CellRendererText()
+        cell = Gtk.CellRendererText()
         self.pack_start(cell, True)
         self.add_attribute(cell, 'text', 0)
 
@@ -174,9 +176,9 @@ class GconfComboBox(gtk.ComboBox):
 
         self.__setting.get_client().set_value(self.__setting.get_key(), text)
 
-class GconfScale(gtk.HScale):
+class GconfScale(Gtk.HScale):
     def __init__(self, key=None, min=None, max=None, digits=0, reversed=False):
-        gtk.HScale.__init__(self)
+        gobject.GObject.__init__(self)
         if digits > 0:
             self.__setting = GconfSetting(key=key, type=float)
         else:
@@ -189,7 +191,7 @@ class GconfScale(gtk.HScale):
         
         self.set_range(min, max)
         self.set_digits(digits)
-        self.set_value_pos(gtk.POS_RIGHT)
+        self.set_value_pos(Gtk.PositionType.RIGHT)
         self.connect("value-changed", self.on_value_changed) 
         if self.__reversed:
             self.set_value(max - self.__setting.get_value())
@@ -202,12 +204,12 @@ class GconfScale(gtk.HScale):
         else:
             self.__setting.set_value(widget.get_value())
 
-class GconfSpinButton(gtk.SpinButton):
+class GconfSpinButton(Gtk.SpinButton):
     def __init__(self, key, min=0, max=0, step=0):
         self.__setting = GconfSetting(key=key, type=int)
-        adjust = gtk.Adjustment(self.__setting.get_value(), min, max, step)
+        adjust = Gtk.Adjustment(self.__setting.get_value(), min, max, step)
 
-        gtk.SpinButton.__init__(self, adjust)
+        gobject.GObject.__init__(self, adjust)
         self.connect('value-changed', self.on_value_changed) 
 
     def on_value_changed(self, widget):
@@ -217,34 +219,34 @@ class GconfSpinButton(gtk.SpinButton):
 KeyModifier = ["Shift", "Control", "Mod1", "Mod2", "Mod3", "Mod4",
                "Mod5", "Alt", "Meta", "Super", "Hyper", "ModeSwitch"]
 
-class Popup (gtk.Window):
+class Popup (Gtk.Window):
     def __init__ (self, parent, text=None, child=None, decorated=True, mouse=False, modal=True):
-        gtk.Window.__init__ (self, gtk.WINDOW_TOPLEVEL)
-        self.set_type_hint (gtk.gdk.WINDOW_TYPE_HINT_UTILITY)
-        self.set_position (mouse and gtk.WIN_POS_MOUSE or gtk.WIN_POS_CENTER_ALWAYS)
+        gobject.GObject.__init__ (self, Gtk.WindowType.TOPLEVEL)
+        self.set_type_hint (Gdk.WindowTypeHint.UTILITY)
+        self.set_position (mouse and Gtk.WindowPosition.MOUSE or Gtk.WindowPosition.CENTER_ALWAYS)
         if parent:
             self.set_transient_for (parent.get_toplevel ())
         self.set_modal (modal)
         self.set_decorated (decorated)
         self.set_title("")
         if text:
-            label = gtk.Label (text)
-            align = gtk.Alignment ()
+            label = Gtk.Label(label=text)
+            align = Gtk.Alignment ()
             align.set_padding (20, 20, 20, 20)
             align.add (label)
             self.add (align)
         elif child:
             self.add (child)
-        while gtk.events_pending ():
-            gtk.main_iteration ()
+        while Gtk.events_pending ():
+            Gtk.main_iteration ()
 
 
     def destroy (self):
-        gtk.Window.destroy (self)
-        while gtk.events_pending ():
-            gtk.main_iteration ()
+        Gtk.Window.destroy (self)
+        while Gtk.events_pending ():
+            Gtk.main_iteration ()
 
-class KeyGrabber(gtk.Button):
+class KeyGrabber(Gtk.Button):
 
     __gsignals__ = {"changed" : (gobject.SIGNAL_RUN_FIRST,
                             gobject.TYPE_NONE,
@@ -274,36 +276,36 @@ class KeyGrabber(gtk.Button):
         self.set_label ()
 
     def begin_key_grab (self, widget):
-        self.add_events (gtk.gdk.KEY_PRESS_MASK)
+        self.add_events (Gdk.EventMask.KEY_PRESS_MASK)
         self.popup = Popup (self.main_window, _("Please press the new key combination"))
         self.popup.show_all()
         self.handler = self.popup.connect ("key-press-event",
                            self.on_key_press_event)
-        while gtk.gdk.keyboard_grab (self.popup.window) != gtk.gdk.GRAB_SUCCESS:
+        while Gdk.keyboard_grab (self.popup.window) != Gdk.GrabStatus.SUCCESS:
             time.sleep (0.1)
 
     def end_key_grab (self):
-        gtk.gdk.keyboard_ungrab (gtk.get_current_event_time ())
+        Gdk.keyboard_ungrab (Gtk.get_current_event_time ())
         self.popup.disconnect (self.handler)
         self.popup.destroy ()
 
     def on_key_press_event (self, widget, event):
-        mods = event.state & gtk.accelerator_get_default_mod_mask ()
+        mods = event.get_state() & Gtk.accelerator_get_default_mod_mask ()
 
-        if event.keyval in (gtk.keysyms.Escape, gtk.keysyms.Return) \
+        if event.keyval in (Gdk.KEY_Escape, Gdk.KEY_Return) \
             and not mods:
-            if event.keyval == gtk.keysyms.Escape:
+            if event.keyval == Gdk.KEY_Escape:
                 self.emit ("changed", self.key, self.mods)
             self.end_key_grab ()
             self.set_label ()
             return
 
-        key = gtk.gdk.keyval_to_lower (event.keyval)
-        if (key == gtk.keysyms.ISO_Left_Tab):
-            key = gtk.keysyms.Tab
+        key = Gdk.keyval_to_lower (event.keyval)
+        if (key == Gdk.KEY_ISO_Left_Tab):
+            key = Gdk.KEY_Tab
 
-        if gtk.accelerator_valid (key, mods) \
-            or (key == gtk.keysyms.Tab and mods):
+        if Gtk.accelerator_valid (key, mods) \
+            or (key == Gdk.KEY_Tab and mods):
             self.set_label (key, mods)
             self.end_key_grab ()
             self.key = key
@@ -317,12 +319,12 @@ class KeyGrabber(gtk.Button):
         if self.label:
             if key != None and mods != None:
                 self.emit ("current-changed", key, mods)
-            gtk.Button.set_label (self, self.label)
+            Gtk.Button.set_label (self, self.label)
             return
         if key == None and mods == None:
             key = self.key
             mods = self.mods
-        label = gtk.accelerator_name (key, mods)
+        label = Gtk.accelerator_name (key, mods)
         if not len (label):
             label = _("Disabled")
-        gtk.Button.set_label (self, label)
+        Gtk.Button.set_label (self, label)

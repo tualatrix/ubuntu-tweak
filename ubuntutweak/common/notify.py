@@ -1,8 +1,8 @@
-import pynotify
+from gi.repository import Notify
 
-class Notify(pynotify.Notification):
+class Notify(Notify.Notification):
     def __init__(self):
-        if not pynotify.init('ubuntu-tweak'):
+        if not Notify.init('ubuntu-tweak'):
             return
 
         super(Notify, self).__init__('Notify')

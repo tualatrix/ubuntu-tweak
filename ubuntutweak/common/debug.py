@@ -21,8 +21,8 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import os
-import gtk
-import pynotify
+from gi.repository import Gtk
+from gi.repository import Notify
 import logging
 import StringIO
 import traceback
@@ -51,8 +51,8 @@ COLORS = {
 }
 
 def on_copy_button_clicked(widget, text):
-    gtk.Clipboard().set_text(text)
-    notify = pynotify.Notification(_('Error message has been copied'),
+    Gtk.Clipboard().set_text(text)
+    notify = Notify.Notification(_('Error message has been copied'),
             _('Now click "Report" to enter the bug report website. Make sure to attach the error message in "Further information".'))
     notify.set_hint_string ("x-canonical-append", "");
     notify.show()
@@ -69,7 +69,7 @@ def run_traceback(level, textview_only=False, text_only=False):
     buffer = textview.get_buffer()
     iter = buffer.get_start_iter()
     anchor = buffer.create_child_anchor(iter)
-    button = gtk.Button(_('Copy Error Message'))
+    button = Gtk.Button(_('Copy Error Message'))
     button.show()
 
     textview.add_child_at_anchor(button, anchor)
@@ -89,7 +89,7 @@ def run_traceback(level, textview_only=False, text_only=False):
         return textview
     else:
         dialog = worker.get_object('%sDialog' % level.capitalize())
-        if dialog.run() == gtk.RESPONSE_YES:
+        if dialog.run() == Gtk.ResponseType.YES:
             webbrowser.open('https://bugs.launchpad.net/ubuntu-tweak/+filebug')
         dialog.destroy()
         output.close()

@@ -19,9 +19,10 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import pygtk
-pygtk.require("2.0")
-import gtk
-import gconf
+pyGtk.require("2.0")
+import gobject
+from gi.repository import Gtk
+from gi.repository import GConf
 
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.common.consts import *
@@ -56,9 +57,9 @@ trash_icon = \
 
 desktop_icon = (computer_icon, home_icon, trash_icon)
 
-class DesktopIcon(gtk.VBox):
+class DesktopIcon(Gtk.VBox):
     def __init__(self, item):
-        gtk.VBox.__init__(self)
+        gobject.GObject.__init__(self)
 
         self.show_button = WidgetFactory.create("GconfCheckButton", 
                                                 label = item["label"], 
@@ -66,20 +67,20 @@ class DesktopIcon(gtk.VBox):
         self.show_button.connect('toggled', self.colleague_changed)
         self.pack_start(self.show_button, False, False, 0)
 
-        self.show_hbox = gtk.HBox(False, 10)
+        self.show_hbox = Gtk.HBox(False, 10)
         self.pack_start(self.show_hbox, False, False, 0)
 
         if not self.show_button.get_active():
             self.show_hbox.set_sensitive(False)
 
-        icon = gtk.image_new_from_icon_name(item["icon"], gtk.ICON_SIZE_DIALOG)
+        icon = Gtk.Image.new_from_icon_name(item["icon"], Gtk.IconSize.DIALOG)
         self.show_hbox.pack_start(icon, False, False, 0)
 
         self.rename_button = WidgetFactory.create("StrGconfCheckButton", 
                                                   label = item["rename"], 
                                                   key = item["name"])
         self.rename_button.connect('toggled', self.colleague_changed)
-        vbox = gtk.VBox(False, 5)
+        vbox = Gtk.VBox(False, 5)
         self.show_hbox.pack_start(vbox, False, False, 0)
         vbox.pack_start(self.rename_button, False, False, 0)
 
@@ -120,20 +121,20 @@ class Icon(TweakModule):
         self.show_button.connect('toggled', self.colleague_changed)
         self.add_start(self.show_button, False, False, 0)
 
-        self.show_button_box = gtk.HBox(False, 12)
+        self.show_button_box = Gtk.HBox(False, 12)
         self.add_start(self.show_button_box, False, False, 0)
 
         if not self.show_button.get_active():
             self.show_button_box.set_sensitive(False)
 
-        label = gtk.Label(" ")
+        label = Gtk.Label(label=" ")
         self.show_button_box.pack_start(label, False, False, 0)
 
-        vbox = gtk.VBox(False, 6)
+        vbox = Gtk.VBox(False, 6)
         self.show_button_box.pack_start(vbox, False, False, 0)
 
         for item in desktop_icon:
-            vbox.pack_start(DesktopIcon(item), False, False, 0)
+            vbox.pack_start(DesktopIcon(item, True, True, 0), False, False, 0)
 
         button = WidgetFactory.create("GconfCheckButton", 
                                       label = _("Show \"Network\" icon on desktop"), 

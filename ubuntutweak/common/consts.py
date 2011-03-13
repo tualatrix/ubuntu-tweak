@@ -11,7 +11,7 @@ import sys
 import glib
 import glob
 import gettext
-import pynotify
+from gi.repository import Notify
 
 from ubuntutweak import __version__
 
@@ -54,7 +54,7 @@ def install_ngettext():
 
 init_locale()
 
-if not pynotify.init('ubuntu-tweak'):
+if not Notify.init('ubuntu-tweak'):
     pass
 
 #TODO remove this in the future

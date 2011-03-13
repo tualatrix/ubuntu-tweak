@@ -18,7 +18,7 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-import gconf
+from gi.repository import GConf
 import logging
 
 from ubuntutweak.ui import *
@@ -29,9 +29,9 @@ log = logging.getLogger('factory')
 
 def on_reset_button_clicked(widget, reset_target):
     log.debug("Reset value for %s" % reset_target)
-    if issubclass(reset_target.__class__, gtk.CheckButton):
+    if issubclass(reset_target.__class__, Gtk.CheckButton):
         reset_target.set_active(widget.get_default_value())
-    elif issubclass(reset_target.__class__, gtk.ComboBox):
+    elif issubclass(reset_target.__class__, Gtk.ComboBox):
         model = reset_target.get_model()
         iter = model.get_iter_first()
         default_value = widget.get_default_value()
@@ -40,16 +40,16 @@ def on_reset_button_clicked(widget, reset_target):
                 reset_target.set_active_iter(iter)
                 break
             iter = model.iter_next(iter)
-    elif issubclass(reset_target.__class__, gtk.Scale):
+    elif issubclass(reset_target.__class__, Gtk.Scale):
         reset_target.set_value(widget.get_default_value())
-    elif issubclass(reset_target.__class__, gtk.SpinButton):
+    elif issubclass(reset_target.__class__, Gtk.SpinButton):
         reset_target.set_value(widget.get_default_value())
-    elif issubclass(reset_target.__class__, gtk.Entry):
+    elif issubclass(reset_target.__class__, Gtk.Entry):
         reset_target.set_text(widget.get_default_value())
 
 class WidgetFactory:
     keys = GconfKeys.keys
-    client = gconf.client_get_default()
+    client = GConf.Client.get_default()
     composite_capable = ('GconfEntry', 'GconfComboBox', 'GconfSpinButton', 'GconfScale')
 
     @classmethod
@@ -77,7 +77,7 @@ class WidgetFactory:
 
     @classmethod
     def do_composite_create(cls, widget, **kwargs):
-        label = gtk.Label(kwargs.pop('label'))
+        label = Gtk.Label(label=kwargs.pop('label'))
         signal_dict = kwargs.pop('signal_dict', None)
 
         enable_reset = kwargs.has_key('enable_reset')
@@ -122,7 +122,7 @@ class WidgetFactory:
                 reset_button = GconfResetButton(kwargs['key'])
                 reset_button.connect('clicked', on_reset_button_clicked, new_widget)
 
-                hbox = gtk.HBox(False, 0)
+                hbox = Gtk.HBox(False, 0)
 
                 hbox.pack_start(new_widget, False, False, 0)
                 hbox.pack_end(reset_button, False, False, 0)

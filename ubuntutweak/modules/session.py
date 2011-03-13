@@ -19,8 +19,8 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import pygtk
-pygtk.require("2.0")
-import gtk
+pyGtk.require("2.0")
+from gi.repository import Gtk
 import os
 
 from ubuntutweak.modules  import TweakModule
@@ -59,8 +59,8 @@ class Session(TweakModule):
                                          signal_dict=data,
                                          key='/desktop/gnome/session/required_components/windowmanager')
 
-        hbox1 = gtk.HBox(False, 12)
-        self.apply_button = gtk.Button(stock=gtk.STOCK_APPLY)
+        hbox1 = Gtk.HBox(False, 12)
+        self.apply_button = Gtk.Button(stock=Gtk.STOCK_APPLY)
         self.apply_button.changed_table = {}
         self.apply_button.set_sensitive(False)
         self.apply_button.connect('clicked', self.on_apply_clicked, (entry1, entry2, entry3))

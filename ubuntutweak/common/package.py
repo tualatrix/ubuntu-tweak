@@ -21,7 +21,9 @@
 import re
 import os
 import sys
-import gtk
+import gobject
+from gi.repository import Gdk
+from gi.repository import Gtk
 import gettext
 import time
 import thread
@@ -154,13 +156,13 @@ class PackageWorker:
 
     def perform_action(self, window_main, to_add=[], to_rm=[]):
         window_main.set_sensitive(False)
-        window_main.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        window_main.window.set_cursor(Gdk.Cursor.new(Gdk.WATCH))
         lock = thread.allocate_lock()
         lock.acquire()
         t = thread.start_new_thread(self.run_synaptic, (window_main.window.xid, lock, to_add, to_rm))
         while lock.locked():
-            while gtk.events_pending():
-                gtk.main_iteration()
+            while Gtk.events_pending():
+                Gtk.main_iteration()
             time.sleep(0.05)
         window_main.set_sensitive(True)
         window_main.window.set_cursor(None)
@@ -321,9 +323,9 @@ class PackageWorker:
 
 PACKAGE_WORKER = PackageWorker()
 
-class AptCheckButton(gtk.CheckButton):
+class AptCheckButton(Gtk.CheckButton):
     def __init__(self, label, pkgname, tooltip = None):
-        gtk.CheckButton.__init__(self, label)
+        gobject.GObject.__init__(self, label)
 
         self.pkgname = pkgname
         if tooltip:

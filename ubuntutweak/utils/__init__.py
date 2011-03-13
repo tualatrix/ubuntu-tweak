@@ -1,8 +1,8 @@
-import gio
+from gi.repository import Gio
 
 def get_command_for_type(mime):
     try:
-        return gio.app_info_get_default_for_type('text/plain', False).get_executable()
+        return Gio.app_info_get_default_for_type('text/plain', False).get_executable()
     except:
         if os.path.exists('/usr/bin/gedit'):
             return 'gedit'

@@ -19,9 +19,10 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import os
-import gtk
-import gio
-import pango
+from gi.repository import Gdk
+from gi.repository import Gtk
+from gi.repository import Gio
+from gi.repository import Pango
 import gobject
 import thread
 from gettext import ngettext
@@ -46,9 +47,9 @@ MIMETYPE = [
     COLUMN_CATE,
 ) = range(3)
 
-class CateView(gtk.TreeView):
+class CateView(Gtk.TreeView):
     def __init__(self):
-        gtk.TreeView.__init__(self)
+        gobject.GObject.__init__(self)
 
         self.set_rules_hint(True)
         self.model = self.__create_model()
@@ -62,21 +63,21 @@ class CateView(gtk.TreeView):
 
     def __create_model(self):
         '''The model is icon, title and the list reference'''
-        model = gtk.ListStore(
-                    gtk.gdk.Pixbuf,
+        model = Gtk.ListStore(
+                    GdkPixbuf.Pixbuf,
                     gobject.TYPE_STRING,
                     gobject.TYPE_STRING)
         
         return model
 
     def __add_columns(self):
-        column = gtk.TreeViewColumn(_('Categories'))
+        column = Gtk.TreeViewColumn(_('Categories'))
 
-        renderer = gtk.CellRendererPixbuf()
+        renderer = Gtk.CellRendererPixbuf()
         column.pack_start(renderer, False)
         column.set_attributes(renderer, pixbuf = COLUMN_ICON)
 
-        renderer = gtk.CellRendererText()
+        renderer = Gtk.CellRendererText()
         column.pack_start(renderer, True)
         column.set_sort_column_id(COLUMN_TITLE)
         column.set_attributes(renderer, text = COLUMN_TITLE)
@@ -100,56 +101,56 @@ class CateView(gtk.TreeView):
     TYPE_APP,
 ) = range(5)
 
-class TypeView(gtk.TreeView):
+class TypeView(Gtk.TreeView):
     update = False
     def __init__(self):
-        gtk.TreeView.__init__(self)
+        gobject.GObject.__init__(self)
 
         self.model = self.__create_model()
         self.set_search_column(TYPE_DESCRIPTION)
         self.set_model(self.model)
         self.set_rules_hint(True)
         self.__add_columns()
-        self.model.set_sort_column_id(TYPE_DESCRIPTION, gtk.SORT_ASCENDING)
+        self.model.set_sort_column_id(TYPE_DESCRIPTION, Gtk.SortType.ASCENDING)
 
 #        self.set_size_request(200, -1)
         self.update_model(filter = 'audio')
 
     def __create_model(self):
         '''The model is icon, title and the list reference'''
-        model = gtk.ListStore(
+        model = Gtk.ListStore(
                     gobject.TYPE_STRING,
-                    gtk.gdk.Pixbuf,
+                    GdkPixbuf.Pixbuf,
                     gobject.TYPE_STRING,
-                    gtk.gdk.Pixbuf,
+                    GdkPixbuf.Pixbuf,
                     gobject.TYPE_STRING,
                     )
         
         return model
 
     def __add_columns(self):
-        column = gtk.TreeViewColumn(_('File Type'))
+        column = Gtk.TreeViewColumn(_('File Type'))
         column.set_resizable(True)
 
-        renderer = gtk.CellRendererPixbuf()
+        renderer = Gtk.CellRendererPixbuf()
         column.pack_start(renderer, False)
         column.set_attributes(renderer, pixbuf = TYPE_ICON)
 
-        renderer = gtk.CellRendererText()
+        renderer = Gtk.CellRendererText()
         renderer.set_fixed_size(180, -1)
-        renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
+        renderer.set_property('ellipsize', Pango.EllipsizeMode.END)
         column.pack_start(renderer, False)
         column.set_attributes(renderer, text = TYPE_DESCRIPTION)
         column.set_sort_column_id(TYPE_DESCRIPTION)
         self.append_column(column)
 
-        column = gtk.TreeViewColumn(_('Associated Application'))
+        column = Gtk.TreeViewColumn(_('Associated Application'))
 
-        renderer = gtk.CellRendererPixbuf()
+        renderer = Gtk.CellRendererPixbuf()
         column.pack_start(renderer, False)
         column.set_attributes(renderer, pixbuf = TYPE_APPICON)
 
-        renderer = gtk.CellRendererText()
+        renderer = Gtk.CellRendererText()
         column.pack_start(renderer, False)
         column.set_sort_column_id(TYPE_APP)
         column.set_attributes(renderer, text = TYPE_APP)
@@ -160,17 +161,17 @@ class TypeView(gtk.TreeView):
         self.model.clear()
         mainwindow = self.get_toplevel().window
         if mainwindow:
-            mainwindow.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
-        while gtk.events_pending ():
-            gtk.main_iteration ()
+            mainwindow.set_cursor(Gdk.Cursor.new(Gdk.WATCH))
+        while Gtk.events_pending ():
+            Gtk.main_iteration ()
 
-        for type in gio.content_types_get_registered():
+        for type in Gio.content_types_get_registered():
             if filter and filter != type.split('/')[0]:
                 continue
 
             pixbuf = icon.get_from_mime_type(type)
-            description = gio.content_type_get_description(type)
-            app = gio.app_info_get_default_for_type(type, False)
+            description = Gio.content_type_get_description(type)
+            app = Gio.app_info_get_default_for_type(type, False)
 
             if app:
                 appname = app.get_name()
@@ -199,7 +200,7 @@ class TypeView(gtk.TreeView):
         this_type = model.get_value(iter, TYPE_MIME)
 
         if this_type == type:
-            app = gio.app_info_get_default_for_type(type, False)
+            app = Gio.app_info_get_default_for_type(type, False)
 
             if app:
                 appname = app.get_name()
@@ -241,7 +242,7 @@ class AddAppDialog(gobject.GObject):
         self.info_label = worker.get_object('info_label')
         self.description_label = worker.get_object('description_label')
 
-        self.info_label.set_markup(_('Open files of type "%s" with:') % gio.content_type_get_description(type))
+        self.info_label.set_markup(_('Open files of type "%s" with:') % Gio.content_type_get_description(type))
 
         self.add_button = worker.get_object('add_button')
         self.add_button.connect('clicked', self.on_add_button_clicked)
@@ -270,13 +271,13 @@ class AddAppDialog(gobject.GObject):
             return True
 
     def on_browse_button_clicked(self, widget):
-        dialog = gtk.FileChooserDialog(_('Choose an application'),
-                action = gtk.FILE_CHOOSER_ACTION_OPEN, 
-                buttons = (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, 
-                    gtk.STOCK_OPEN, gtk.RESPONSE_ACCEPT))
+        dialog = Gtk.FileChooserDialog(_('Choose an application'),
+                action = Gtk.FileChooserAction.OPEN, 
+                buttons = (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, 
+                    Gtk.STOCK_OPEN, Gtk.ResponseType.ACCEPT))
         dialog.set_current_folder('/usr/bin')
 
-        if dialog.run() == gtk.RESPONSE_ACCEPT:
+        if dialog.run() == Gtk.ResponseType.ACCEPT:
             self.command_entry.set_text(dialog.get_filename())
 
         dialog.destroy()
@@ -298,25 +299,25 @@ class AddAppDialog(gobject.GObject):
         pass
 
     def setup_treeview(self):
-        model = gtk.ListStore(gobject.GObject,
-                              gtk.gdk.Pixbuf,
+        model = Gtk.ListStore(gobject.GObject,
+                              GdkPixbuf.Pixbuf,
                               gobject.TYPE_STRING)
 
         self.app_view.set_model(model)
         self.app_view.set_headers_visible(False)
 
-        column = gtk.TreeViewColumn()
-        renderer = gtk.CellRendererPixbuf()
+        column = Gtk.TreeViewColumn()
+        renderer = Gtk.CellRendererPixbuf()
         column.pack_start(renderer, False)
         column.set_attributes(renderer, pixbuf = TYPE_ADD_APPLOGO)
         
-        renderer = gtk.CellRendererText()
+        renderer = Gtk.CellRendererText()
         column.pack_start(renderer, False)
         column.set_attributes(renderer, text = TYPE_ADD_APPNAME)
         column.set_sort_column_id(TYPE_DESCRIPTION)
         self.app_view.append_column(column)
 
-        for appinfo in gio.app_info_get_all():
+        for appinfo in Gio.app_info_get_all():
             if appinfo.supports_files() or appinfo.supports_uris():
                 applogo = icon.get_from_app(appinfo)
                 appname = appinfo.get_name()
@@ -361,7 +362,7 @@ class TypeEditDialog(gobject.GObject):
         type_label = worker.get_object('type_edit_label')
 
         if len(self.types) > 1:
-            markup_text = ", ".join([gio.content_type_get_description(filetype) for filetype in self.types])
+            markup_text = ", ".join([Gio.content_type_get_description(filetype) for filetype in self.types])
         else:
             markup_text = self.types[0]
 
@@ -386,13 +387,13 @@ class TypeEditDialog(gobject.GObject):
 
     def on_add_button_clicked(self, widget):
         dialog = AddAppDialog(self.types[0], widget.get_toplevel())
-        if dialog.run() == gtk.RESPONSE_ACCEPT:
+        if dialog.run() == Gtk.ResponseType.ACCEPT:
             if dialog.get_command_runable():
                 we = dialog.get_command_or_appinfo()
-                if type(we) == gio.unix.DesktopAppInfo:
+                if type(we) == Gio.unix.DesktopAppInfo:
                     app = we
                 else:
-                    app = gio.AppInfo(we)
+                    app = Gio.AppInfo(we)
                 for filetype in self.types:
                     app.set_as_default_for_type(filetype)
 
@@ -416,11 +417,11 @@ class TypeEditDialog(gobject.GObject):
         self.emit('update', type)
 
     def setup_treeview(self):
-        model = gtk.ListStore(
+        model = Gtk.ListStore(
                 gobject.TYPE_BOOLEAN,
                 gobject.TYPE_STRING,
                 gobject.GObject,
-                gtk.gdk.Pixbuf,
+                GdkPixbuf.Pixbuf,
                 gobject.TYPE_STRING)
 
         self.type_edit_view.set_model(model)
@@ -428,20 +429,20 @@ class TypeEditDialog(gobject.GObject):
 
         self.model = model
 
-        column = gtk.TreeViewColumn()
-        renderer = gtk.CellRendererToggle()
+        column = Gtk.TreeViewColumn()
+        renderer = Gtk.CellRendererToggle()
         renderer.connect('toggled', self.on_renderer_toggled)
         renderer.set_radio(True)
         column.pack_start(renderer, False)
         column.set_attributes(renderer, active = TYPE_EDIT_ENABLE)
         self.type_edit_view.append_column(column)
 
-        column = gtk.TreeViewColumn()
-        renderer = gtk.CellRendererPixbuf()
+        column = Gtk.TreeViewColumn()
+        renderer = Gtk.CellRendererPixbuf()
         column.pack_start(renderer, False)
         column.set_attributes(renderer, pixbuf = TYPE_EDIT_APPLOGO)
         
-        renderer = gtk.CellRendererText()
+        renderer = Gtk.CellRendererText()
         column.pack_start(renderer, False)
         column.set_attributes(renderer, text = TYPE_EDIT_APPNAME)
         column.set_sort_column_id(TYPE_DESCRIPTION)
@@ -456,9 +457,9 @@ class TypeEditDialog(gobject.GObject):
             app_dict = {}
             default_list = []
             for type in self.types:
-                def_app = gio.app_info_get_default_for_type(type, False)
+                def_app = Gio.app_info_get_default_for_type(type, False)
 
-                for appinfo in gio.app_info_get_all_for_type(type):
+                for appinfo in Gio.app_info_get_all_for_type(type):
                     appname = appinfo.get_name()
                     if def_app.get_name() == appname and appname not in default_list:
                         default_list.append(appname)
@@ -482,9 +483,9 @@ class TypeEditDialog(gobject.GObject):
                         TYPE_EDIT_APPNAME, appname)
         else:
             type = self.types[0]
-            def_app = gio.app_info_get_default_for_type(type, False)
+            def_app = Gio.app_info_get_default_for_type(type, False)
 
-            for appinfo in gio.app_info_get_all_for_type(type):
+            for appinfo in Gio.app_info_get_all_for_type(type):
                 applogo = icon.get_from_app(appinfo)
                 appname = appinfo.get_name()
 
@@ -528,7 +529,7 @@ class FileType(TweakModule):
     def __init__(self):
         TweakModule.__init__(self)
 
-        hbox = gtk.HBox(False, 5)
+        hbox = Gtk.HBox(False, 5)
         self.add_start(hbox)
 
         self.cateview = CateView()
@@ -539,22 +540,22 @@ class FileType(TweakModule):
         self.typeview = TypeView()
         self.typeview.connect('row-activated', self.on_row_activated)
         self.type_selection = self.typeview.get_selection()
-        self.type_selection.set_mode(gtk.SELECTION_MULTIPLE)
+        self.type_selection.set_mode(Gtk.SelectionMode.MULTIPLE)
         self.type_selection.connect('changed', self.on_typeview_changed)
-        sw = gtk.ScrolledWindow()
-        sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        sw = Gtk.ScrolledWindow()
+        sw.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         sw.add(self.typeview)
-        hbox.pack_start(sw)
+        hbox.pack_start(sw, True, True, 0)
 
-        hbox = gtk.HBox(False, 5)
+        hbox = Gtk.HBox(False, 5)
         self.add_start(hbox, False, False, 0)
 
-        self.edit_button = gtk.Button(stock=gtk.STOCK_EDIT)
+        self.edit_button = Gtk.Button(stock=Gtk.STOCK_EDIT)
         self.edit_button.connect('clicked', self.on_edit_clicked)
         self.edit_button.set_sensitive(False)
         hbox.pack_end(self.edit_button, False, False, 0)
 
-        self.show_have_app = gtk.CheckButton(_('Only show filetypes with associated applications'))
+        self.show_have_app = Gtk.CheckButton(_('Only show filetypes with associated applications'))
         self.show_have_app.set_active(True)
         self.show_have_app.connect('toggled', self.on_show_all_toggled)
         hbox.pack_start(self.show_have_app, False, False, 5)

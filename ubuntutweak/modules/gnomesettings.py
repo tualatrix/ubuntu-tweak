@@ -19,9 +19,10 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import pygtk
-pygtk.require("2.0")
+pyGtk.require("2.0")
 import os
-import gtk
+from gi.repository import Gdk
+from gi.repository import Gtk
 import glob
 import logging
 
@@ -113,7 +114,7 @@ class Gnome(TweakModule):
             ))
         self.add_start(box, False, False, 0)
 
-        self.recently_used = gtk.CheckButton(_('Enable system-wide "Recent Documents" list'))
+        self.recently_used = Gtk.CheckButton(_('Enable system-wide "Recent Documents" list'))
         self.recently_used.connect('toggled', self.colleague_changed)
         self.recently_used.set_active(self.get_state())
         box = ListPack(_("History"), (
@@ -122,26 +123,26 @@ class Gnome(TweakModule):
         self.add_start(box, False, False, 0)
 
     def create_change_icon_hbox(self):
-        hbox = gtk.HBox(False, 10)
-        label = gtk.Label(_('Click this button to change the menu logo image'))
+        hbox = Gtk.HBox(False, 10)
+        label = Gtk.Label(label=_('Click this button to change the menu logo image'))
         label.set_alignment(0, 0.5)
         hbox.pack_start(label, False, False, 0)
 
-        button = gtk.Button()
+        button = Gtk.Button()
         button.connect('clicked', self.on_change_icon_clicked)
-        image = gtk.image_new_from_pixbuf(icon.get_from_name('start-here'))
+        image = Gtk.image_new_from_pixbuf(icon.get_from_name('start-here'))
         button.set_image(image)
         hbox.pack_end(button, False, False, 0)
 
         return hbox
 
     def on_change_icon_clicked(self, widget):
-        dialog = gtk.FileChooserDialog(_('Choose a new logo image'),
-                                        action=gtk.FILE_CHOOSER_ACTION_OPEN,
-                                        buttons=(gtk.STOCK_REVERT_TO_SAVED, gtk.RESPONSE_DELETE_EVENT,
-                                                 gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
-                                                 gtk.STOCK_OPEN, gtk.RESPONSE_ACCEPT))
-        filter = gtk.FileFilter()
+        dialog = Gtk.FileChooserDialog(_('Choose a new logo image'),
+                                        action=Gtk.FileChooserAction.OPEN,
+                                        buttons=(Gtk.STOCK_REVERT_TO_SAVED, Gtk.ResponseType.DELETE_EVENT,
+                                                 Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+                                                 Gtk.STOCK_OPEN, Gtk.ResponseType.ACCEPT))
+        filter = Gtk.FileFilter()
         filter.set_name(_("PNG images with 24x24 size or SVG images"))
         filter.add_pattern('*.png')
         filter.add_pattern('*.svg')
@@ -163,14 +164,14 @@ class Gnome(TweakModule):
         filename = ''
         response = dialog.run()
 
-        if response == gtk.RESPONSE_ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT:
             filename = dialog.get_filename()
             dialog.destroy()
 
             if filename:
                 ext = os.path.splitext(filename)[1]
                 log.debug('The select file name is: %s' % ext)
-                pixbuf = gtk.gdk.pixbuf_new_from_file(filename)
+                pixbuf = GdkPixbuf.Pixbuf.new_from_file(filename)
                 w, h = pixbuf.get_width(), pixbuf.get_height()
                 dest = dest + ext
 
@@ -182,21 +183,21 @@ class Gnome(TweakModule):
                     os.system('cp %s %s' % (filename, dest))
 
                     if ext == '.svg':
-                        pixbuf = pixbuf.scale_simple(24, 24, gtk.gdk.INTERP_BILINEAR)
-                    image = gtk.image_new_from_pixbuf(pixbuf)
+                        pixbuf = pixbuf.scale_simple(24, 24, GdkPixbuf.InterpType.BILINEAR)
+                    image = Gtk.image_new_from_pixbuf(pixbuf)
                     widget.set_image(image)
-        elif response == gtk.RESPONSE_DELETE_EVENT:
+        elif response == Gtk.ResponseType.DELETE_EVENT:
             dialog.destroy()
             for dest in glob.glob(dest + '*'):
                 os.remove(dest)
-            image = gtk.image_new_from_pixbuf(icon.get_from_name('start-here', force_reload=True))
+            image = Gtk.image_new_from_pixbuf(icon.get_from_name('start-here', force_reload=True))
             widget.set_image(image)
         else:
             dialog.destroy()
             return
 
         dialog = QuestionDialog(_('Do you want your changes to take effect immediately?'))
-        if dialog.run() == gtk.RESPONSE_YES:
+        if dialog.run() == Gtk.ResponseType.YES:
             os.system('killall gnome-panel')
 
         dialog.destroy()
@@ -220,7 +221,7 @@ class Gnome(TweakModule):
         else:
             dialog = WarningDialog(_('Disabling "Recent Documents" may break other software, for example the history feature in VMware Player.'),
                                    title=_("Warning"))
-            if dialog.run() == gtk.RESPONSE_YES:
+            if dialog.run() == Gtk.ResponseType.YES:
                 os.system('rm -r %s' % file)
                 os.system('mkdir %s' % file)
             else:

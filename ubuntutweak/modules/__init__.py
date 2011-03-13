@@ -4,9 +4,9 @@ __all__ = (
 )
 import re
 import os
-import gtk
+from gi.repository import Gtk
 import sys
-import pango
+from gi.repository import Pango
 import inspect
 import gobject
 import logging
@@ -93,7 +93,7 @@ class ModuleLoader:
         else:
             return True
 
-class TweakModule(gtk.VBox):
+class TweakModule(Gtk.VBox):
     __title__ = ''
     __version__ = ''
     __icon__ = ''
@@ -113,17 +113,17 @@ class TweakModule(gtk.VBox):
     }
 
     def __init__(self, path=None, domain='ubuntu-tweak'):
-        gtk.VBox.__init__(self)
+        gobject.GObject.__init__(self)
         self.set_border_width(6)
 
         if self.__title__ and self.__desc__:
             self.draw_title()
 
-        self.scrolled_win = gtk.ScrolledWindow()
-        self.scrolled_win.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        self.pack_start(self.scrolled_win)
+        self.scrolled_win = Gtk.ScrolledWindow()
+        self.scrolled_win.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
+        self.pack_start(self.scrolled_win, True, True, 0)
 
-        self.inner_vbox = gtk.VBox(False, 6)
+        self.inner_vbox = Gtk.VBox(False, 6)
         self.inner_vbox.set_border_width(6)
         self.scrolled_win.add_with_viewport(self.inner_vbox)
         viewport = self.scrolled_win.get_child()
@@ -131,13 +131,13 @@ class TweakModule(gtk.VBox):
         if path:
             path = os.path.join(DATA_DIR, 'ui', path)
 
-            self.builder = gtk.Builder()
+            self.builder = Gtk.Builder()
             self.builder.set_translation_domain(domain)
             self.builder.add_from_file(path)
             self.builder.connect_signals(self)
             for o in self.builder.get_objects():
-                if issubclass(type(o), gtk.Buildable):
-                    name = gtk.Buildable.get_name(o)
+                if issubclass(type(o), Gtk.Buildable):
+                    name = Gtk.Buildable.get_name(o)
                     setattr(self, name, o)
                 else:
                     print >>sys.stderr, "WARNING: can not get name for '%s'" % o
@@ -149,40 +149,40 @@ class TweakModule(gtk.VBox):
         self.inner_vbox.pack_end(child, expand, fill, padding)
 
     def draw_title(self):
-        style = gtk.MenuItem().rc_get_style()
+        style = Gtk.MenuItem().rc_get_style()
 
-        vbox = gtk.VBox()
+        vbox = Gtk.VBox()
         vbox.set_style(style)
         self.pack_start(vbox, False, False, 0)
 
-        align = gtk.Alignment(0.5, 0.5, 1.0, 1.0)
+        align = Gtk.Alignment.new(0.5, 0.5, 1.0, 1.0)
         align.set_padding(5, 5, 5, 5)
-        vbox.pack_start(align)
+        vbox.pack_start(align, True, True, 0)
 
-        hbox = gtk.HBox(False, 6)
+        hbox = Gtk.HBox(False, 6)
         align.add(hbox)
 
-        inner_vbox = gtk.VBox(False, 6)
-        hbox.pack_start(inner_vbox)
+        inner_vbox = Gtk.VBox(False, 6)
+        hbox.pack_start(inner_vbox, True, True, 0)
 
-        align = gtk.Alignment(0.5, 0.5, 1.0, 1.0)
+        align = Gtk.Alignment.new(0.5, 0.5, 1.0, 1.0)
         inner_vbox.pack_start(align, False, False, 0)
 
-        inner_hbox = gtk.HBox(False, 0)
+        inner_hbox = Gtk.HBox(False, 0)
         align.add(inner_hbox)
 
-        name = gtk.Label()
+        name = Gtk.Label()
         name.set_markup('<b><big>%s</big></b>' % self.__title__)
         name.set_alignment(0, 0.5)
         inner_hbox.pack_start(name, False, False, 0)
 
         if self.__url__:
-            more = gtk.Label()
+            more = Gtk.Label()
             more.set_markup('<a href="%s">%s</a>' % (self.__url__, self.__urltitle__))
             inner_hbox.pack_end(more, False, False, 0)
 
-        desc = gtk.Label(self.__desc__)
-        desc.set_ellipsize(pango.ELLIPSIZE_END)
+        desc = Gtk.Label(label=self.__desc__)
+        desc.set_ellipsize(Pango.EllipsizeMode.END)
         desc.set_alignment(0, 0.5)
         inner_vbox.pack_start(desc, False, False, 0)
 
@@ -190,13 +190,13 @@ class TweakModule(gtk.VBox):
             if type(self.__icon__) != list:
                 if self.__icon__.endswith('.png'):
                     icon_path = os.path.join(DATA_DIR, 'pixmaps', self.__icon__)
-                    image = gtk.image_new_from_file(icon_path)
+                    image = Gtk.image_new_from_file(icon_path)
                 else:
                     pixbuf = icon.get_from_name(self.__icon__, size=48)
-                    image = gtk.image_new_from_pixbuf(pixbuf)
+                    image = Gtk.image_new_from_pixbuf(pixbuf)
             else:
                 pixbuf = icon.get_from_list(self.__icon__, size=48)
-                image = gtk.image_new_from_pixbuf(pixbuf)
+                image = Gtk.image_new_from_pixbuf(pixbuf)
 
             image.set_alignment(0, 0)
             image.set_padding(5, 5)
@@ -237,7 +237,7 @@ class TweakModule(gtk.VBox):
             if type(cls.__icon__) != list:
                 if cls.__icon__.endswith('.png'):
                     icon_path = os.path.join(DATA_DIR, 'pixmaps', cls.__icon__)
-                    pixbuf = gtk.gd.pixbuf_new_from_file(icon_path)
+                    pixbuf = Gtk.gd.pixbuf_new_from_file(icon_path)
                 else:
                     pixbuf = icon.get_from_name(cls.__icon__)
             else:
@@ -246,19 +246,19 @@ class TweakModule(gtk.VBox):
             return pixbuf
 
 def show_error_page():
-    align = gtk.Alignment(0.5, 0.3)
+    align = Gtk.Alignment.new(0.5, 0.3)
 
-    hbox = gtk.HBox(False, 12)
+    hbox = Gtk.HBox(False, 12)
     align.add(hbox)
 
-    image = gtk.image_new_from_pixbuf(icon.get_from_name('emblem-ohno', size=64))
+    image = Gtk.image_new_from_pixbuf(icon.get_from_name('emblem-ohno', size=64))
     hbox.pack_start(image, False, False, 0)
 
-    label = gtk.Label()
+    label = Gtk.Label()
     label.set_markup("<span size=\"x-large\">%s</span>" % 
                      _("This module encountered an error while loading."))
-    label.set_justify(gtk.JUSTIFY_FILL)
-    hbox.pack_start(label)
+    label.set_justify(Gtk.Justification.FILL)
+    hbox.pack_start(label, True, True, 0)
         
     return align
 

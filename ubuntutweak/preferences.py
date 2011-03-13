@@ -16,7 +16,8 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 
 import os
-import gtk
+from gi.repository import Gdk
+from gi.repository import Gtk
 import gobject
 
 from ubuntutweak.utils import set_label_for_stock_button
@@ -63,9 +64,9 @@ class PreferencesDialog:
         from ubuntutweak.mainwindow import MainWindow as MW
         function_box = self.worker.get_object('function_box')
 
-        model = gtk.ListStore(
+        model = Gtk.ListStore(
                 gobject.TYPE_STRING,
-                gtk.gdk.Pixbuf,
+                GdkPixbuf.Pixbuf,
                 gobject.TYPE_STRING)
 
         iter = model.append(None)
@@ -84,8 +85,8 @@ class PreferencesDialog:
             )
 
         function_box.set_model(model)
-        textcell = gtk.CellRendererText()
-        pixbufcell = gtk.CellRendererPixbuf()
+        textcell = Gtk.CellRendererText()
+        pixbufcell = Gtk.CellRendererPixbuf()
         function_box.pack_start(pixbufcell, False)
         function_box.pack_start(textcell, True)
         function_box.add_attribute(textcell, 'text', MW.TITLE_COLUMN)

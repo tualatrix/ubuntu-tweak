@@ -18,15 +18,17 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-import gtk
+from gi.repository import Gdk
+from gi.repository import Gtk
+from gi.repository import Pango
+
 import vte
 import thread
 import gobject
-import pango
 
-class BusyDialog(gtk.Dialog):
+class BusyDialog(Gtk.Dialog):
     def __init__(self, parent=None):
-        gtk.Dialog.__init__(self, parent=parent)
+        gobject.GObject.__init__(self, parent=parent)
 
         if parent:
             self.parent_window = parent
@@ -35,7 +37,7 @@ class BusyDialog(gtk.Dialog):
 
     def set_busy(self):
         if self.parent_window:
-            self.parent_window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+            self.parent_window.window.set_cursor(Gdk.Cursor.new(Gdk.WATCH))
             self.parent_window.set_sensitive(False)
 
     def unset_busy(self):
@@ -55,23 +57,23 @@ class ProcessDialog(BusyDialog):
     def __init__(self, parent):
         super(ProcessDialog, self).__init__(parent=parent)
 
-        vbox = gtk.VBox(False, 5)
+        vbox = Gtk.VBox(False, 5)
         self.vbox.add(vbox)
         self.set_border_width(8)
         self.set_title('')
         self.set_has_separator(False)
         self.set_resizable(False)
 
-        self.__label = gtk.Label()
+        self.__label = Gtk.Label()
         self.__label.set_alignment(0, 0.5)
         vbox.pack_start(self.__label, False, False, 0)
 
-        self.__progressbar = gtk.ProgressBar()
-        self.__progressbar.set_ellipsize(pango.ELLIPSIZE_END)
+        self.__progressbar = Gtk.ProgressBar()
+        self.__progressbar.set_ellipsize(Pango.EllipsizeMode.END)
         self.__progressbar.set_size_request(320, -1)
         vbox.pack_start(self.__progressbar, False, False, 0)
 
-        self.set_position(gtk.WIN_POS_CENTER_ON_PARENT)
+        self.set_position(Gtk.WindowPosition.CENTER_ON_PARENT)
         self.show_all()
 
     def run(self):
@@ -94,9 +96,9 @@ class ProcessDialog(BusyDialog):
     def on_timeout(self):
         return NotImplemented
 
-class BaseMessageDialog(gtk.MessageDialog):
+class BaseMessageDialog(Gtk.MessageDialog):
     def __init__(self, type, buttons):
-        gtk.MessageDialog.__init__(self, None, gtk.DIALOG_MODAL, type, buttons)
+        gobject.GObject.__init__(self, None, Gtk.DialogFlags.MODAL, type, buttons)
 
     def set_title(self, title):
         self.set_markup('<big><b>%s</b></big>' % title)
@@ -111,7 +113,7 @@ class BaseMessageDialog(gtk.MessageDialog):
     def add_widget(self, widget):
         '''Add a widget to serve more actions, such as an Entry to get text input'''
         vbox = self.get_content_area()
-        hbox = gtk.HBox()
+        hbox = Gtk.HBox()
         vbox.pack_start(hbox, False, False, 0)
         hbox.pack_end(widget, True, True, 0)
 
@@ -121,8 +123,8 @@ class BaseMessageDialog(gtk.MessageDialog):
         '''Add a widget with a scrolled window, it is often used to add a TreeView'''
         vbox = self.get_content_area()
 
-        sw = gtk.ScrolledWindow()
-        sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        sw = Gtk.ScrolledWindow()
+        sw.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         sw.set_size_request(width, height)
         vbox.pack_start(sw, False, False, 0)
         sw.add(widget)
@@ -138,38 +140,38 @@ class BaseMessageDialog(gtk.MessageDialog):
         vbox = self.get_child()
         hbuttonbox = vbox.get_children()[-1]
 
-        hbox = gtk.HBox(False, 12)
+        hbox = Gtk.HBox(False, 12)
         vbox.pack_start(hbox, False, False, 0)
         vbox.remove(hbuttonbox)
 
-        new_hbuttonbox = gtk.HButtonBox()
-        new_hbuttonbox.set_layout(gtk.BUTTONBOX_START)
-        new_hbuttonbox.pack_start(button)
+        new_hbuttonbox = Gtk.HButtonBox()
+        new_hbuttonbox.set_layout(Gtk.ButtonBoxStyle.START)
+        new_hbuttonbox.pack_start(button, True, True, 0)
 
-        hbox.pack_start(new_hbuttonbox)
-        hbox.pack_start(hbuttonbox)
+        hbox.pack_start(new_hbuttonbox, True, True, 0)
+        hbox.pack_start(hbuttonbox, True, True, 0)
 
         hbuttonbox.get_children()[-1].grab_focus()
 
         vbox.show_all()
 
 class InfoDialog(BaseMessageDialog):
-    def __init__(self, message, type = gtk.MESSAGE_INFO, buttons = gtk.BUTTONS_OK, title = None):
+    def __init__(self, message, type = Gtk.MessageType.INFO, buttons = Gtk.ButtonsType.OK, title = None):
         BaseMessageDialog.__init__(self, type, buttons)
         self.set_content(message, title)
 
 class QuestionDialog(BaseMessageDialog):
-    def __init__(self, message, type = gtk.MESSAGE_QUESTION, buttons = gtk.BUTTONS_YES_NO, title = None):
+    def __init__(self, message, type = Gtk.MessageType.QUESTION, buttons = Gtk.ButtonsType.YES_NO, title = None):
         BaseMessageDialog.__init__(self, type, buttons)
         self.set_content(message, title)
 
 class ErrorDialog(BaseMessageDialog):
-    def __init__(self, message, type = gtk.MESSAGE_ERROR, buttons = gtk.BUTTONS_OK, title = None):
+    def __init__(self, message, type = Gtk.MessageType.ERROR, buttons = Gtk.ButtonsType.OK, title = None):
         BaseMessageDialog.__init__(self, type, buttons)
         self.set_content(message, title)
 
 class WarningDialog(BaseMessageDialog):
-    def __init__(self, message, type = gtk.MESSAGE_WARNING, buttons = gtk.BUTTONS_YES_NO, title = None):
+    def __init__(self, message, type = Gtk.MessageType.WARNING, buttons = Gtk.ButtonsType.YES_NO, title = None):
         BaseMessageDialog.__init__(self, type, buttons)
         self.set_content(message, title)
 
@@ -201,8 +203,8 @@ class TerminalDialog(ProcessDialog):
     def __init__(self, parent):
         super(TerminalDialog, self).__init__(parent=parent)
 
-        self.set_position(gtk.WIN_POS_CENTER_ALWAYS)
-        self.expendar = gtk.Expander()
+        self.set_position(Gtk.WindowPosition.CENTER_ALWAYS)
+        self.expendar = Gtk.Expander()
         self.expendar.set_spacing(6)
         self.expendar.set_label(_('Details'))
         self.vbox.pack_start(self.expendar, False, False, 6)

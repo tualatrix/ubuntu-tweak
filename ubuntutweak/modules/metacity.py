@@ -18,7 +18,7 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-import gtk
+from gi.repository import Gtk
 import gobject
 
 from ubuntutweak.modules  import TweakModule
@@ -28,7 +28,7 @@ from ubuntutweak.ui.dialogs import InfoDialog
 from ubuntutweak.common.factory import WidgetFactory
 from ubuntutweak.conf import GconfSetting
 
-class ButtonView(gtk.IconView):
+class ButtonView(Gtk.IconView):
     (COLUMN_VALUE,
      COLUMN_LABEL,
     ) = range(2)
@@ -45,7 +45,7 @@ class ButtonView(gtk.IconView):
     config = GconfSetting(key='/apps/metacity/general/button_layout')
 
     def __init__(self):
-        gtk.IconView.__init__(self)
+        gobject.GObject.__init__(self)
 
         model = self.__create_model()
         self.set_model(model)
@@ -53,11 +53,11 @@ class ButtonView(gtk.IconView):
 
         self.set_text_column(self.COLUMN_LABEL)
         self.set_reorderable(True)
-        self.set_orientation(gtk.ORIENTATION_HORIZONTAL)
+        self.set_orientation(Gtk.ORIENTATION_HORIZONTAL)
         self.connect('selection-changed', self.on_selection_changed)
 
     def __create_model(self):
-        model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
+        model = Gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
 
         return model
 
@@ -122,7 +122,7 @@ class ButtonView(gtk.IconView):
                 return True
         return False
 
-class WindowControlButton(gtk.CheckButton):
+class WindowControlButton(Gtk.CheckButton):
     '''The individual checkbutton to control window control'''
 
     def __init__(self, label, value, view):
@@ -131,7 +131,7 @@ class WindowControlButton(gtk.CheckButton):
         self.__value = value
         self.__view = view
 
-        gtk.CheckButton.__init__(self, self.__label)
+        gobject.GObject.__init__(self, self.__label)
         self.set_active(self.__view.has_button(self.__value))
 
         self.__handle_id = self.connect('toggled', self.on_toggled)
@@ -163,9 +163,9 @@ class Metacity(TweakModule):
     def __init__(self):
         TweakModule.__init__(self, 'metacity.ui')
 
-        swindow = gtk.ScrolledWindow()
+        swindow = Gtk.ScrolledWindow()
         swindow.set_size_request(-1, 54)
-        swindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        swindow.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         self.buttonview = ButtonView()
         swindow.add(self.buttonview)
         self.vbox2.pack_start(swindow, False, False, 0)

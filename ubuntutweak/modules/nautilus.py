@@ -18,8 +18,8 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import pygtk
-pygtk.require("2.0")
-import gtk
+pyGtk.require("2.0")
+from gi.repository import Gtk
 import os
 import gobject
 import thread
@@ -39,11 +39,11 @@ from ubuntutweak.common.package import PACKAGE_WORKER, AptCheckButton
     COLUMN_TITLE,
 ) = range(2)
 
-class CleanDialog(gtk.Dialog):
+class CleanDialog(Gtk.Dialog):
     def __init__(self, parent):
         super(CleanDialog, self).__init__(title='', parent=parent)
 
-        self.progressbar = gtk.ProgressBar()
+        self.progressbar = Gtk.ProgressBar()
         self.progressbar.set_text(_('Cleaning...'))
         self.vbox.add(self.progressbar)
 
@@ -85,8 +85,8 @@ class Nautilus(TweakModule):
         box = ListPack(_("File Browser"), (permission_button, location_button))
         self.add_start(box, False, False, 0)
 
-        hbox1 = gtk.HBox(False, 12)
-        button = gtk.Button(stock = gtk.STOCK_CLEAR)
+        hbox1 = Gtk.HBox(False, 12)
+        button = Gtk.Button(stock = Gtk.STOCK_CLEAR)
         self.set_clean_button_label(button)
         button.connect('clicked', self.on_clean_thumbnails_clicked)
         hbox1.pack_end(button, False, False, 0)
@@ -125,10 +125,10 @@ class Nautilus(TweakModule):
             self.nautilus_wallpaper,
         ))
 
-        self.button = gtk.Button(stock = gtk.STOCK_APPLY)
+        self.button = Gtk.Button(stock = Gtk.STOCK_APPLY)
         self.button.connect("clicked", self.on_apply_clicked, box)
         self.button.set_sensitive(False)
-        hbox = gtk.HBox(False, 0)
+        hbox = Gtk.HBox(False, 0)
         hbox.pack_end(self.button, False, False, 0)
 
         box.vbox.pack_start(hbox, False, False, 0)
@@ -146,7 +146,7 @@ class Nautilus(TweakModule):
     def on_clean_thumbnails_clicked(self, widget):
         question = QuestionDialog(_('The thumbnail cache will be deleted. Do you wish to continue?'),
             title = _('Warning'))
-        if question.run() == gtk.RESPONSE_YES:
+        if question.run() == Gtk.ResponseType.YES:
             question.destroy()
 
             dialog = CleanDialog(widget.get_toplevel())

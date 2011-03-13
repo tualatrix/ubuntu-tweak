@@ -18,11 +18,12 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import os
-import gtk
+from gi.repository import Gdk
+from gi.repository import Gtk
 import time
 import json
 import gobject
-import pango
+from gi.repository import Pango
 import thread
 import logging
 
@@ -161,7 +162,7 @@ class CateParser(Parser):
     def get_id(self, key):
         return self[key]['id']
 
-class CategoryView(gtk.TreeView):
+class CategoryView(Gtk.TreeView):
     (
         CATE_ID,
         CATE_NAME,
@@ -169,7 +170,7 @@ class CategoryView(gtk.TreeView):
     ) = range(3)
 
     def __init__(self, path):
-        gtk.TreeView.__init__(self)
+        gobject.GObject.__init__(self)
 
         self.path = path
         self.__status = None
@@ -182,7 +183,7 @@ class CategoryView(gtk.TreeView):
 
     def __create_model(self):
         '''The model is icon, title and the list reference'''
-        model = gtk.ListStore(
+        model = Gtk.ListStore(
                     gobject.TYPE_INT,
                     gobject.TYPE_STRING,
                     gobject.TYPE_STRING)
@@ -190,9 +191,9 @@ class CategoryView(gtk.TreeView):
         return model
 
     def __add_columns(self):
-        column = gtk.TreeViewColumn(_('Category'))
+        column = Gtk.TreeViewColumn(_('Category'))
 
-        renderer = gtk.CellRendererText()
+        renderer = Gtk.CellRendererText()
         column.pack_start(renderer, True)
         column.set_sort_column_id(self.CATE_NAME)
         column.set_attributes(renderer, markup=self.CATE_DISPLAY)
@@ -237,7 +238,7 @@ class CategoryView(gtk.TreeView):
             keys.append(OTHER)
         return keys
 
-class AppView(gtk.TreeView):
+class AppView(Gtk.TreeView):
     __gsignals__ = {
         'changed': (gobject.SIGNAL_RUN_FIRST,
                     gobject.TYPE_NONE,
@@ -258,7 +259,7 @@ class AppView(gtk.TreeView):
     ) = range(8)
 
     def __init__(self):
-        gtk.TreeView.__init__(self)
+        gobject.GObject.__init__(self)
 
         self.to_add = []
         self.to_rm = []
@@ -275,9 +276,9 @@ class AppView(gtk.TreeView):
         self.show_all()
 
     def __create_model(self):
-        model = gtk.ListStore(
+        model = Gtk.ListStore(
                         gobject.TYPE_BOOLEAN,
-                        gtk.gdk.Pixbuf,
+                        GdkPixbuf.Pixbuf,
                         gobject.TYPE_STRING,
                         gobject.TYPE_STRING,
                         gobject.TYPE_STRING,
@@ -289,29 +290,29 @@ class AppView(gtk.TreeView):
 
     def sort_model(self):
         model = self.get_model()
-        model.set_sort_column_id(self.COLUMN_NAME, gtk.SORT_ASCENDING)
+        model.set_sort_column_id(self.COLUMN_NAME, Gtk.SortType.ASCENDING)
 
     def __add_columns(self):
-        renderer = gtk.CellRendererToggle()
+        renderer = Gtk.CellRendererToggle()
         renderer.set_property("xpad", 6)
         renderer.connect('toggled', self.on_install_toggled)
 
-        column = gtk.TreeViewColumn('', renderer, active=self.COLUMN_INSTALLED)
+        column = Gtk.TreeViewColumn('', renderer, active=self.COLUMN_INSTALLED)
         column.set_sort_column_id(self.COLUMN_INSTALLED)
         self.append_column(column)
 
-        column = gtk.TreeViewColumn('Applications')
+        column = Gtk.TreeViewColumn('Applications')
         column.set_sort_column_id(self.COLUMN_NAME)
         column.set_spacing(5)
-        renderer = gtk.CellRendererPixbuf()
+        renderer = Gtk.CellRendererPixbuf()
         column.pack_start(renderer, False)
         column.set_cell_data_func(renderer, self.icon_column_view_func)
         column.set_attributes(renderer, pixbuf=self.COLUMN_ICON)
 
-        renderer = gtk.CellRendererText()
+        renderer = Gtk.CellRendererText()
         renderer.set_property("xpad", 6)
         renderer.set_property("ypad", 6)
-        renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
+        renderer.set_property('ellipsize', Pango.EllipsizeMode.END)
         column.pack_start(renderer, True)
         column.add_attribute(renderer, 'markup', self.COLUMN_DISPLAY)
         self.append_column(column)
@@ -337,11 +338,11 @@ class AppView(gtk.TreeView):
     def append_update(self, status, pkgname, summary):
         model = self.get_model()
 
-        icontheme = gtk.icon_theme_get_default()
+        icontheme = Gtk.IconTheme.get_default()
         for icon_name in ['application-x-deb', 'package-x-generic', 'package']:
             icon_theme = icontheme.lookup_icon(icon_name,
                                                size=32,
-                                               flags=gtk.ICON_LOOKUP_NO_SVG)
+                                               flags=Gtk.IconLookupFlags.NO_SVG)
             if icon_theme:
                 break
 
@@ -483,12 +484,12 @@ class AppView(gtk.TreeView):
             path = os.path.join(consts.DATA_DIR, 'pixmaps/common-logo.png')
 
         try:
-            pixbuf = gtk.gdk.pixbuf_new_from_file(path)
+            pixbuf = GdkPixbuf.Pixbuf.new_from_file(path)
             if pixbuf.get_width() != 32 or pixbuf.get_height() != 32:
-                pixbuf = pixbuf.scale_simple(32, 32, gtk.gdk.INTERP_BILINEAR)
+                pixbuf = pixbuf.scale_simple(32, 32, GdkPixbuf.InterpType.BILINEAR)
             return pixbuf
         except:
-            return gtk.icon_theme_get_default().load_icon(gtk.STOCK_MISSING_IMAGE, 32, 0)
+            return Gtk.IconTheme.get_default().load_icon(Gtk.STOCK_MISSING_IMAGE, 32, 0)
 
 class CheckUpdateDialog(ProcessDialog):
 
@@ -592,7 +593,7 @@ class AppCenter(TweakModule):
             response = dialog.run()
             dialog.destroy()
 
-            if response == gtk.RESPONSE_YES:
+            if response == Gtk.ResponseType.YES:
                 dialog = FetchingDialog(get_app_data_url(), self.get_toplevel())
                 dialog.connect('destroy', self.on_app_data_downloaded)
                 dialog.run()
@@ -660,7 +661,7 @@ class AppCenter(TweakModule):
             dialog = QuestionDialog(_("Update available, would you like to update?"))
             response = dialog.run()
             dialog.destroy()
-            if response == gtk.RESPONSE_YES:
+            if response == Gtk.ResponseType.YES:
                 dialog = FetchingDialog(get_app_data_url(), self.get_toplevel())
                 dialog.connect('destroy', self.on_app_data_downloaded)
                 dialog.run()

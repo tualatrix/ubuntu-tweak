@@ -19,7 +19,8 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import os
-import gtk
+from gi.repository import Gdk
+from gi.repository import Gtk
 import glob
 import thread
 import socket
@@ -59,7 +60,7 @@ deb-src http://archive.ubuntu.com/ubuntu/ %(distro)s-backports main restricted u
 
 SOURCES_LIST = '/etc/apt/sources.list'
 
-class SelectSourceDialog(gtk.Dialog):
+class SelectSourceDialog(Gtk.Dialog):
     def __init__(self, parent):
         super(SelectSourceDialog, self).__init__(parent = parent)
 
@@ -67,30 +68,30 @@ class SelectSourceDialog(gtk.Dialog):
         self.set_border_width(10)
         self.set_resizable(False)
 
-        label = gtk.Label()
+        label = Gtk.Label()
         label.set_markup('<b><big>%s</big></b>\n\n%s' % (_('Choose the sources'),
             _('You can read the title and comment to determine which source is suitable for you.')))
         label.set_alignment(0, 0)
         self.vbox.pack_start(label, False, False, 5)
 
         group = None
-        self.detail = gtk.Label()
+        self.detail = Gtk.Label()
 
         for i, (k, v) in enumerate(SOURCES_DATA.items()):
             title, comment = k.split('\n')
-            button = gtk.RadioButton(group = group, label = "%s: %s" % (title, comment))
+            button = Gtk.RadioButton(group = group, label = "%s: %s" % (title, comment))
             button.connect('toggled', self.on_button_toggled, v)
             if i == 0:
                 group = button
                 self.detail.set_text(v)
             self.vbox.pack_start(button, False, False, 5)
 
-        self.expander = gtk.Expander(_('Details'))
-        self.vbox.pack_start(self.expander)
+        self.expander = Gtk.Expander(_('Details'))
+        self.vbox.pack_start(self.expander, True, True, 0)
         self.expander.add(self.detail)
 
-        self.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
-        self.add_button(gtk.STOCK_OK, gtk.RESPONSE_YES)
+        self.add_button(Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL)
+        self.add_button(Gtk.STOCK_OK, Gtk.ResponseType.YES)
 
         self.show_all()
 
@@ -100,50 +101,50 @@ class SelectSourceDialog(gtk.Dialog):
     def get_source_data(self):
         return self.detail.get_text()
 
-class SubmitDialog(gtk.Dialog):
+class SubmitDialog(Gtk.Dialog):
     def __init__(self, parent):
         super(SubmitDialog, self).__init__(parent = parent)
 
         self.set_title(_('Submit your sources'))
         self.set_border_width(5)
 
-        label = gtk.Label()
+        label = Gtk.Label()
         label.set_markup('<big><b>%s</b></big>\n\n%s'  % 
             (_('Submit your sources'), _('You can submit your sources to the server '
             'for other people to use.')))
         self.vbox.pack_start(label, False, False, 5)
 
-        l_title = gtk.Label()
+        l_title = Gtk.Label()
         l_title.set_text_with_mnemonic(_('_Source Title:'))
         l_title.set_alignment(0, 0)
-        l_locale = gtk.Label()
+        l_locale = Gtk.Label()
         l_locale.set_text_with_mnemonic(_('_Locale:'))
         l_locale.set_alignment(0, 0)
-        l_comment = gtk.Label()
+        l_comment = Gtk.Label()
         l_comment.set_text_with_mnemonic(_('Comm_ent:'))
         l_comment.set_alignment(0, 0)
 
-        self.e_title = gtk.Entry();
+        self.e_title = Gtk.Entry();
         self.e_title.set_tooltip_text(_('Enter the title of the source, e.g. "Ubuntu Official Repostory"'))
-        self.e_locale = gtk.Entry ();
+        self.e_locale = Gtk.Entry ();
         self.e_locale.set_tooltip_text(_("If the locale isn't correct you can edit manually"))
         self.e_locale.set_text(os.getenv('LANG'))
-        self.e_comment = gtk.Entry ();
+        self.e_comment = Gtk.Entry ();
 
-        table = gtk.Table(3, 2)
-        table.attach(l_title, 0, 1, 0, 1, xoptions = gtk.FILL, xpadding = 10, ypadding = 10)
-        table.attach(l_locale, 0, 1, 1, 2, xoptions = gtk.FILL, xpadding = 10, ypadding = 10)
-        table.attach(l_comment, 0, 1, 2, 3, xoptions = gtk.FILL, xpadding = 10, ypadding = 10)
+        table = Gtk.Table(3, 2)
+        table.attach(l_title, 0, 1, 0, 1, xoptions = Gtk.AttachOptions.FILL, xpadding = 10, ypadding = 10)
+        table.attach(l_locale, 0, 1, 1, 2, xoptions = Gtk.AttachOptions.FILL, xpadding = 10, ypadding = 10)
+        table.attach(l_comment, 0, 1, 2, 3, xoptions = Gtk.AttachOptions.FILL, xpadding = 10, ypadding = 10)
         table.attach(self.e_title, 1, 2, 0, 1)
         table.attach(self.e_locale, 1, 2, 1, 2)
         table.attach(self.e_comment, 1, 2, 2, 3)
 
         self.vbox.pack_start(table, True, False, 5)
 
-        self.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
-        self.add_button(_('Submit'), gtk.RESPONSE_YES)
+        self.add_button(Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL)
+        self.add_button(_('Submit'), Gtk.ResponseType.YES)
 
-        self.set_default_response(gtk.RESPONSE_YES)
+        self.set_default_response(Gtk.ResponseType.YES)
 
         self.show_all()
 
@@ -158,7 +159,7 @@ class SubmitDialog(gtk.Dialog):
                 and self.e_locale.get_text().strip() \
                 and self.e_comment.get_text().strip()
 
-class ProcessDialog(gtk.Dialog):
+class ProcessDialog(Gtk.Dialog):
     def __init__(self, data, parent):
         super(ProcessDialog, self).__init__(title = '', parent = parent)
 
@@ -169,7 +170,7 @@ class ProcessDialog(gtk.Dialog):
 #        self.server = ServerProxy("http://localhost:8080/xmlrpc")
         self.server = ServerProxy("http://ubuntu-tweak.appspot.com/xmlrpc")
 
-        self.progressbar = gtk.ProgressBar()
+        self.progressbar = Gtk.ProgressBar()
         self.vbox.add(self.progressbar)
 
         self.show_all()
@@ -188,9 +189,9 @@ class ProcessDialog(gtk.Dialog):
             return True
 
     def show_error(self):
-        gtk.gdk.threads_enter()
+        Gdk.threads_enter()
         ErrorDialog(_('Please check your network connection!'), title = _('Network Error')).launch()
-        gtk.gdk.threads_leave()
+        Gdk.threads_leave()
 
 class UploadDialog(ProcessDialog):
     def __init__(self, data, parent):
@@ -224,7 +225,7 @@ class UpdateDialog(ProcessDialog):
 
         self.processing = False
 
-class SourceView(gtk.TextView):
+class SourceView(Gtk.TextView):
     def __init__(self, path):
         super(SourceView, self).__init__()
 
@@ -306,13 +307,13 @@ class SourceView(gtk.TextView):
             buffer.insert(iter, line)
 
     def create_tags(self):
-        import pango
+        from gi.repository import Pango
         buffer = self.get_buffer()
 
         buffer.create_tag('full_comment', foreground = "blue")
-        buffer.create_tag('type', weight = pango.WEIGHT_BOLD)
-        buffer.create_tag('uri', underline = pango.UNDERLINE_SINGLE, foreground = 'blue')
-        buffer.create_tag('distro', weight = pango.WEIGHT_BOLD)
+        buffer.create_tag('type', weight = Pango.Weight.BOLD)
+        buffer.create_tag('uri', underline = Pango.Underline.SINGLE, foreground = 'blue')
+        buffer.create_tag('distro', weight = Pango.Weight.BOLD)
         buffer.create_tag('component', foreground = "red")
         buffer.create_tag('addon_comment', foreground = "blue")
 
@@ -382,11 +383,11 @@ class SourceEditor(TweakModule):
         self.reparent(self.main_vbox)
 
     def setup_source_combo(self):
-        model = gtk.ListStore(gobject.TYPE_STRING,
+        model = Gtk.ListStore(gobject.TYPE_STRING,
                         gobject.TYPE_STRING)
         self.source_combo.set_model(model)
 
-        textcell = gtk.CellRendererText()
+        textcell = Gtk.CellRendererText()
         self.source_combo.pack_start(textcell, True)
         self.source_combo.add_attribute(textcell, 'text', 1)
 
@@ -443,7 +444,7 @@ class SourceEditor(TweakModule):
     def on_submit_button_clicked(self, widget):
         dialog = SubmitDialog(widget.get_toplevel())
         source_data = ()
-        if dialog.run() == gtk.RESPONSE_YES:
+        if dialog.run() == Gtk.ResponseType.YES:
             if dialog.check_fill_data():
                 source_data = dialog.get_source_data()
             else:
@@ -464,14 +465,14 @@ class SourceEditor(TweakModule):
                         'or you can use the official sources.\n'
                         'Do you wish to use the official sources?'), 
                         title = _('No source data available'))
-                if dialog.run() == gtk.RESPONSE_YES:
+                if dialog.run() == Gtk.ResponseType.YES:
                     self.textview.update_content(DEFAULT_SOURCE)
 
                 dialog.destroy()
 
     def open_source_select_dialog(self):
         dialog = SelectSourceDialog(self.get_toplevel())
-        if dialog.run() == gtk.RESPONSE_YES:
+        if dialog.run() == Gtk.ResponseType.YES:
             content = dialog.get_source_data()
             self.textview.update_content(content)
         dialog.destroy()
@@ -498,7 +499,7 @@ class SourceEditor(TweakModule):
         response = dialog.run()
         dialog.destroy()
 
-        if response == gtk.RESPONSE_YES:
+        if response == Gtk.ResponseType.YES:
             self.emit('call', 'mainwindow', 'select_module', {'name': 'sourceeditor'})
 
     def on_save_button_clicked(self, wiget):
@@ -515,7 +516,7 @@ class SourceEditor(TweakModule):
 
     def on_redo_button_clicked(self, widget):
         dialog = QuestionDialog(_('The current content will be lost after reloading!\nDo you wish to continue?'))
-        if dialog.run() == gtk.RESPONSE_YES:
+        if dialog.run() == Gtk.ResponseType.YES:
             self.textview.update_content()
             self.save_button.set_sensitive(False)
             self.redo_button.set_sensitive(False)
@@ -530,7 +531,7 @@ class SourceEditor(TweakModule):
             dialog = QuestionDialog(_('The "%s" will be deleted!\nDo you wish to continue?') % self.textview.get_path())
             response = dialog.run()
             dialog.destroy()
-            if response == gtk.RESPONSE_YES:
+            if response == Gtk.ResponseType.YES:
                 model = self.source_combo.get_model()
                 iter = self.source_combo.get_active_iter()
                 (i, ) = model.get_path(iter)

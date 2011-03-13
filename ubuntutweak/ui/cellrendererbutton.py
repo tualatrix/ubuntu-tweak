@@ -15,14 +15,15 @@ __copyright__= "Copyright (C) 2009 by Mingxi Wu <fengshenx@gmail.com>."
 # 2009-11-18
 # TualatriX, make it can accept text data
 
-import pygtk
-pygtk.require("2.0")
-import gtk
+import gi
+gi.require_version('Gtk', '2.0')
+
+from gi.repository import Gtk
 import gobject
-import pango
+from gi.repository import Pango
 import cairo
 
-class CellRendererButton(gtk.CellRenderer):
+class CellRendererButton(Gtk.CellRenderer):
     __gsignals__ = {
         'clicked': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_STRING,))
     }
@@ -37,7 +38,7 @@ class CellRendererButton(gtk.CellRenderer):
         self.text = text
         self._xpad = 6
         self._ypad = 2
-        self.set_property('mode',gtk.CELL_RENDERER_MODE_ACTIVATABLE)
+        self.set_property('mode',Gtk.CellRendererMode.ACTIVATABLE)
 
     def do_set_property(self, pspec, value):
         setattr(self, pspec.name, value)
@@ -50,7 +51,7 @@ class CellRendererButton(gtk.CellRenderer):
         metrics = context.get_metrics(widget.style.font_desc, 
                     context.get_language())
         row_height = metrics.get_ascent() + metrics.get_descent()
-        height = pango.PIXELS(row_height) + self._ypad * 2
+        height = Pango.PIXELS(row_height) + self._ypad * 2
 
         layout = widget.create_pango_layout(self.text)
         (row_width, layout_height) = layout.get_pixel_size()
@@ -63,7 +64,7 @@ class CellRendererButton(gtk.CellRenderer):
         (layout_width, layout_height) = layout.get_pixel_size()
         layout_xoffset = (cell_area.width - layout_width) / 2 + cell_area.x
         layout_yoffset = (cell_area.height - layout_height) /2 + cell_area.y
-        widget.style.paint_box (window, widget.state, gtk.SHADOW_OUT, 
+        widget.style.paint_box (window, widget.state, Gtk.ShadowType.OUT, 
                                expose_area, widget, 'button',
                                cell_area.x, cell_area.y, cell_area.width, cell_area.height)
         widget.style.paint_layout(window, widget.state, True, expose_area,

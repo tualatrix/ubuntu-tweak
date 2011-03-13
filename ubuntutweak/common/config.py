@@ -18,8 +18,8 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 
 import os
-import gtk
-import gconf
+from gi.repository import Gtk
+from gi.repository import GConf
 
 from ubuntutweak.conf import GconfSetting
 from ubuntutweak.common.factory import GconfKeys

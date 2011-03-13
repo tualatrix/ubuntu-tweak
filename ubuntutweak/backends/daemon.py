@@ -553,7 +553,7 @@ class Daemon(PolicyKitService):
     @dbus.service.method(INTERFACE,
                          in_signature='s', out_signature='s')
     def get_system_gconf(self, key):
-        command = 'gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults --get %s' % key
+        command = 'gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/GConf.xml.defaults --get %s' % key
         cmd = os.popen(command)
         return cmd.read().strip()
 
@@ -563,9 +563,9 @@ class Daemon(PolicyKitService):
     def set_system_gconf(self, key, value, type, list_type='', sender=None):
         self._check_permission(sender)
         if list_type == '':
-            command = 'gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults --type %s --set %s %s' % (type, key, value)
+            command = 'gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/GConf.xml.defaults --type %s --set %s %s' % (type, key, value)
         else:
-            command = 'gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults --type %s --list-type %s --set %s %s' % (type, list_type, key, value)
+            command = 'gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/GConf.xml.defaults --type %s --list-type %s --set %s %s' % (type, list_type, key, value)
         cmd = os.popen(command)
         return cmd.read().strip()
 

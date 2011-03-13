@@ -19,10 +19,11 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import pygtk
-pygtk.require("2.0")
-import gtk
+pyGtk.require("2.0")
+from gi.repository import Gdk
+from gi.repository import Gtk
 import os
-import gconf
+from gi.repository import GConf
 import gettext
 import gobject
 
@@ -55,15 +56,15 @@ class Shortcuts(TweakModule):
         if not CompizPlugin.get_plugin_active('commands'):
             CompizPlugin.set_plugin_active('commands', True)
 
-        sw = gtk.ScrolledWindow()
-        sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        sw = Gtk.ScrolledWindow()
+        sw.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         self.add_start(sw)
 
         treeview = self.create_treeview()
         sw.add(treeview)
     
     def create_treeview(self):
-        treeview = gtk.TreeView()
+        treeview = Gtk.TreeView()
 
         self.model = self.__create_model()
 
@@ -74,17 +75,17 @@ class Shortcuts(TweakModule):
         return treeview
 
     def __create_model(self):
-        model = gtk.ListStore(
+        model = Gtk.ListStore(
                     gobject.TYPE_INT,
-                    gtk.gdk.Pixbuf,
+                    GdkPixbuf.Pixbuf,
                     gobject.TYPE_STRING,
-                    gtk.gdk.Pixbuf,
+                    GdkPixbuf.Pixbuf,
                     gobject.TYPE_STRING,
                     gobject.TYPE_STRING,
                     gobject.TYPE_BOOLEAN,
                 )
 
-        client = gconf.client_get_default()
+        client = GConf.Client.get_default()
         logo = icon.get_from_name('gnome-terminal')
 
         for id in range(12):
@@ -117,32 +118,32 @@ class Shortcuts(TweakModule):
     def __add_columns(self, treeview):
         model = treeview.get_model()
 
-        column = gtk.TreeViewColumn(_("ID"))
+        column = Gtk.TreeViewColumn(_("ID"))
 
-        renderer = gtk.CellRendererPixbuf()
+        renderer = Gtk.CellRendererPixbuf()
         column.pack_start(renderer, False)
         column.set_attributes(renderer, pixbuf = COLUMN_LOGO)
 
-        renderer = gtk.CellRendererText()
+        renderer = Gtk.CellRendererText()
         column.pack_start(renderer, True)
         column.set_attributes(renderer, text = COLUMN_TITLE)
         treeview.append_column(column)
 
-        column = gtk.TreeViewColumn(_("Command"))
+        column = Gtk.TreeViewColumn(_("Command"))
 
-        renderer = gtk.CellRendererPixbuf()
+        renderer = Gtk.CellRendererPixbuf()
         column.pack_start(renderer, False)
         column.set_attributes(renderer, pixbuf = COLUMN_ICON)
 
-        renderer = gtk.CellRendererText()
+        renderer = Gtk.CellRendererText()
         renderer.connect("edited", self.on_cell_edited, model)
         column.pack_start(renderer, True)
         column.set_attributes(renderer, text = COLUMN_COMMAND, editable = COLUMN_EDITABLE)
         treeview.append_column(column)
 
-        column = gtk.TreeViewColumn(_("Key"))
+        column = Gtk.TreeViewColumn(_("Key"))
 
-        renderer = gtk.CellRendererText()
+        renderer = Gtk.CellRendererText()
         renderer.connect("editing-started", self.on_editing_started)
         renderer.connect("edited", self.on_cell_edited, model)
         column.pack_start(renderer, True)
@@ -158,11 +159,11 @@ class Shortcuts(TweakModule):
         iter = self.model.get_iter_from_string(path)
         id = self.model.get_value(iter, COLUMN_ID)
         self.model.set_value(iter, COLUMN_KEY, _("disabled"))
-        client = gconf.client_get_default()
+        client = GConf.Client.get_default()
         client.set_string("/apps/metacity/global_keybindings/run_command_%d" % id, "disabled")
 
     def on_got_key(self, widget, key, mods, cell):
-        new = gtk.accelerator_name (key, mods)
+        new = Gtk.accelerator_name (key, mods)
         for mod in KeyModifier:
             if "%s_L" % mod in new:
                 new = new.replace ("%s_L" % mod, "<%s>" % mod)
@@ -171,7 +172,7 @@ class Shortcuts(TweakModule):
 
         widget.destroy()
 
-        client = gconf.client_get_default()
+        client = GConf.Client.get_default()
         column = cell.get_data("id")
         iter = self.model.get_iter_from_string(cell.get_data("path_string"))
 
@@ -191,7 +192,7 @@ class Shortcuts(TweakModule):
     def on_cell_edited(self, cell, path_string, new_text, model):
         iter = model.get_iter_from_string(path_string)
 
-        client = gconf.client_get_default()
+        client = GConf.Client.get_default()
         column = cell.get_data("id")
 
         id = model.get_value(iter, COLUMN_ID)

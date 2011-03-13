@@ -20,9 +20,13 @@
 
 import os
 import sys
-import gtk
-import gobject
+import gi
+gi.require_version('Gtk', '2.0')
+from gi.repository import Gtk
+from gi.repository import Gdk
+
 import optparse
+import gobject
 import dbus
 import dbus.service
 import dbus.mainloop.glib
@@ -46,20 +50,20 @@ LAUNCHER_DBUS_IFACE = 'com.ubuntu_tweak.TweakLauncher'
 LAUNCHER_DBUS_PATH = '/com/ubuntu_tweak/TweakLauncher'
 
 def show_splash():
-    win = gtk.Window(gtk.WINDOW_POPUP)
-    win.set_position(gtk.WIN_POS_CENTER)
+    win = Gtk.Window(type=Gtk.WindowType.POPUP)
+    win.set_position(Gtk.WindowPosition.CENTER)
 
-    vbox = gtk.VBox(False, 0)
-    image = gtk.Image()
+    vbox = Gtk.VBox(False, 0)
+    image = Gtk.Image()
     image.set_from_file(os.path.join(DATA_DIR, 'pixmaps/splash.png'))
 
-    vbox.pack_start(image)
+    vbox.pack_start(image, True, True, 0)
     win.add(vbox)
 
     win.show_all()
 
-    while gtk.events_pending():
-        gtk.main_iteration()
+    while Gtk.events_pending():
+        Gtk.main_iteration()
 
     win.destroy()
 
@@ -72,12 +76,12 @@ class TweakLauncher(dbus.service.Object):
         self.window = window
 
     def main(self):
-        gtk.gdk.threads_enter()
+        Gdk.threads_enter()
         if TweakSettings.get_check_update():
             pass
 #            os.system("exec python updatemanager.py &")
-        gtk.main()
-        gtk.gdk.threads_leave()
+        Gtk.main()
+        Gdk.threads_leave()
 
     @dbus.service.method(dbus_interface=LAUNCHER_DBUS_IFACE)
     def show_window(self):

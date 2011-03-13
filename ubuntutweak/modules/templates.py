@@ -19,9 +19,9 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import pygtk
-pygtk.require("2.0")
+pyGtk.require("2.0")
 import os
-import gtk
+from gi.repository import Gtk
 import shutil
 import logging
 from ubuntutweak.modules  import TweakModule
@@ -125,19 +125,19 @@ class Templates(TweakModule):
         TweakModule.__init__(self)
 
         if not is_right_path():
-            label = gtk.Label(_('The templates path is incorrect! The current path points to "%s".\nPlease reset it to a location within your Home Folder.') % USER_DIR)
+            label = Gtk.Label(label=_('The templates path is incorrect! The current path points to "%s".\nPlease reset it to a location within your Home Folder.') % USER_DIR)
 
-            hbox = gtk.HBox(False, 0)
+            hbox = Gtk.HBox(False, 0)
             self.add_start(hbox, False, False, 0)
 
             hbox.pack_start(label, False, False, 0)
 
-            button = gtk.Button(stock = gtk.STOCK_GO_FORWARD)
+            button = Gtk.Button(stock = Gtk.STOCK_GO_FORWARD)
             button.connect('clicked', self.on_go_button_clicked)
             set_label_for_stock_button(button, _('Go And Set'))
             hbox.pack_end(button, False, False, 0)
 
-            button = gtk.Button(stock = gtk.STOCK_EXECUTE)
+            button = Gtk.Button(stock = Gtk.STOCK_EXECUTE)
             button.connect('clicked', self.on_restart_button_clicked)
             set_label_for_stock_button(button, _('Restart This Module'))
             hbox.pack_end(button, False, False, 0)
@@ -149,27 +149,27 @@ class Templates(TweakModule):
         self.default = DefaultTemplates()
         self.config_test()
 
-        hbox = gtk.HBox(False, 10)
+        hbox = Gtk.HBox(False, 10)
         self.add_start(hbox)
 
-        swindow = gtk.ScrolledWindow()
-        swindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        hbox.pack_start(swindow)
+        swindow = Gtk.ScrolledWindow()
+        swindow.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
+        hbox.pack_start(swindow, True, True, 0)
 
         self.enable_templates = EnableTemplate()
         swindow.add(self.enable_templates)
 
-        swindow = gtk.ScrolledWindow()
-        swindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        hbox.pack_start(swindow)
+        swindow = Gtk.ScrolledWindow()
+        swindow.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
+        hbox.pack_start(swindow, True, True, 0)
 
         self.disable_templates = DisableTemplate()
         swindow.add(self.disable_templates)
 
-        hbox = gtk.HBox(False, 0)
+        hbox = Gtk.HBox(False, 0)
         self.add_start(hbox, False, False, 0)
 
-        button = gtk.Button(_("Rebuild System Templates"))
+        button = Gtk.Button(_("Rebuild System Templates"))
         button.connect("clicked", self.on_rebuild_clicked)
         hbox.pack_end(button, False, False, 5)
 
@@ -203,7 +203,7 @@ class Templates(TweakModule):
     def on_rebuild_clicked(self, widget):
         dialog = WarningDialog(_('This will delete all disabled templates.\n'
                                  'Do you wish to continue?'))
-        if dialog.run() == gtk.RESPONSE_YES:
+        if dialog.run() == Gtk.ResponseType.YES:
             self.default.remove()
             self.default.create()
             self.disable_templates.update_model()

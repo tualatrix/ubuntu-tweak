@@ -19,21 +19,21 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import os
-import gtk
+from gi.repository import Gtk
 from consts import DATA_DIR
 
 class GuiWorker(object):
     def __init__(self, file_name):
         file_path = os.path.join(DATA_DIR, 'ui', file_name)
 
-        self.builder = gtk.Builder()
+        self.builder = Gtk.Builder()
         self.builder.set_translation_domain('ubuntu-tweak')
         self.builder.add_from_file(file_path)
         self.builder.connect_signals(self)
 
         for o in self.builder.get_objects():
-            if issubclass(type(o), gtk.Buildable):
-                name = gtk.Buildable.get_name(o)
+            if issubclass(type(o), Gtk.Buildable):
+                name = Gtk.Buildable.get_name(o)
                 setattr(self, name, o)
             else:
                 print >>sys.stderr, "WARNING: can not get name for '%s'" % o

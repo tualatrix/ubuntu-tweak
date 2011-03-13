@@ -17,7 +17,8 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import os
-import gtk
+from gi.repository import Gdk
+from gi.repository import Gtk
 import glob
 import glib
 import logging
@@ -79,7 +80,7 @@ class LoginSettings(TweakModule):
         box = ListPack(_('Login Theme'), (self.vbox1))
         self.add_start(box, False, False, 0)
 
-        hbox = gtk.HBox(False, 12)
+        hbox = Gtk.HBox(False, 12)
         polkit_button = PolkitButton()
         polkit_button.connect('changed', self.on_polkit_action)
         hbox.pack_end(polkit_button, False, False, 0)
@@ -108,13 +109,13 @@ class LoginSettings(TweakModule):
             path = proxy.get_as_tempfile(path, os.getuid())
             log.debug('Custom log is exits, the tempfile is %s' % path)
             if FORMAT == '.svg':
-                pixbuf = gtk.gdk.pixbuf_new_from_file(path)
-                pixbuf = pixbuf.scale_simple(64, 64, gtk.gdk.INTERP_BILINEAR)
+                pixbuf = GdkPixbuf.Pixbuf.new_from_file(path)
+                pixbuf = pixbuf.scale_simple(64, 64, GdkPixbuf.InterpType.BILINEAR)
                 self.logo_image.set_from_pixbuf(pixbuf)
             else:
                 self.logo_image.set_from_file(path)
         else:
-            icontheme = gtk.IconTheme()
+            icontheme = Gtk.IconTheme()
             icontheme.set_custom_theme(self.icon_theme_setting.get_value(user='gdm'))
             try:
                 self.logo_image.set_from_pixbuf(icontheme.load_icon(icon_name, 64, 0))
@@ -126,8 +127,8 @@ class LoginSettings(TweakModule):
         background_path = self.background_setting.get_value(user='gdm')
         log.debug("Setup the background file: %s" % background_path)
         try:
-            pixbuf = gtk.gdk.pixbuf_new_from_file(background_path)
-            pixbuf = pixbuf.scale_simple(160, 120, gtk.gdk.INTERP_NEAREST)
+            pixbuf = GdkPixbuf.Pixbuf.new_from_file(background_path)
+            pixbuf = pixbuf.scale_simple(160, 120, GdkPixbuf.InterpType.NEAREST)
             self.background_image.set_from_pixbuf(pixbuf)
         except Exception, e:
             log.error("Loading background failed, message is %s" % e)
@@ -144,12 +145,12 @@ class LoginSettings(TweakModule):
             AuthenticateFailDialog().launch()
 
     def on_logo_button_clicked(self, widget):
-        dialog = gtk.FileChooserDialog(_('Choose a new logo image'),
-                                        action=gtk.FILE_CHOOSER_ACTION_OPEN,
-                                        buttons=(gtk.STOCK_REVERT_TO_SAVED, gtk.RESPONSE_DELETE_EVENT,
-                                                 gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
-                                                 gtk.STOCK_OPEN, gtk.RESPONSE_ACCEPT))
-        filter = gtk.FileFilter()
+        dialog = Gtk.FileChooserDialog(_('Choose a new logo image'),
+                                        action=Gtk.FileChooserAction.OPEN,
+                                        buttons=(Gtk.STOCK_REVERT_TO_SAVED, Gtk.ResponseType.DELETE_EVENT,
+                                                 Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+                                                 Gtk.STOCK_OPEN, Gtk.ResponseType.ACCEPT))
+        filter = Gtk.FileFilter()
         filter.set_name(_("PNG images with 64x64 size or SVG images"))
         filter.add_pattern('*.png')
         filter.add_pattern('*.svg')
@@ -170,13 +171,13 @@ class LoginSettings(TweakModule):
         filename = ''
         response = dialog.run()
 
-        if response == gtk.RESPONSE_ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT:
             filename = dialog.get_filename()
             dialog.destroy()
 
             if filename:
                 ext = os.path.splitext(filename)[1]
-                pixbuf = gtk.gdk.pixbuf_new_from_file(filename)
+                pixbuf = GdkPixbuf.Pixbuf.new_from_file(filename)
                 w, h = pixbuf.get_width(), pixbuf.get_height()
 
                 if ext == '.png' and (w != 64 or h != 64):
@@ -190,10 +191,10 @@ class LoginSettings(TweakModule):
                     proxy.exec_command('cp "%s" "%s"' % (filename, dest))
 
                     if ext == '.svg':
-                        pixbuf = pixbuf.scale_simple(64, 64, gtk.gdk.INTERP_BILINEAR)
+                        pixbuf = pixbuf.scale_simple(64, 64, GdkPixbuf.InterpType.BILINEAR)
 
-                    self.logo_image.set_from_pixbuf(gtk.gdk.pixbuf_new_from_file(filename))
-        elif response == gtk.RESPONSE_DELETE_EVENT:
+                    self.logo_image.set_from_pixbuf(GdkPixbuf.Pixbuf.new_from_file(filename))
+        elif response == Gtk.ResponseType.DELETE_EVENT:
             dialog.destroy()
             proxy.exec_command('rm -rf %s.*' % dest)
             self.__setup_logo_image()
@@ -202,12 +203,12 @@ class LoginSettings(TweakModule):
             return
 
     def on_background_button_clicked(self, widget):
-        dialog = gtk.FileChooserDialog(_('Choose a new background image'),
-                                        action=gtk.FILE_CHOOSER_ACTION_OPEN,
-                                        buttons=(gtk.STOCK_REVERT_TO_SAVED, gtk.RESPONSE_DELETE_EVENT,
-                                                 gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
-                                                 gtk.STOCK_OPEN, gtk.RESPONSE_ACCEPT))
-        filter = gtk.FileFilter()
+        dialog = Gtk.FileChooserDialog(_('Choose a new background image'),
+                                        action=Gtk.FileChooserAction.OPEN,
+                                        buttons=(Gtk.STOCK_REVERT_TO_SAVED, Gtk.ResponseType.DELETE_EVENT,
+                                                 Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+                                                 Gtk.STOCK_OPEN, Gtk.ResponseType.ACCEPT))
+        filter = Gtk.FileFilter()
         filter.set_name(_('All images'))
         filter.add_pattern('*.jpg')
         filter.add_pattern('*.png')
@@ -224,7 +225,7 @@ class LoginSettings(TweakModule):
         filename = ''
         response = dialog.run()
 
-        if response == gtk.RESPONSE_ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT:
             filename = dialog.get_filename()
             log.debug("Get background file, the path is: %s" % filename)
             dialog.destroy()
@@ -232,7 +233,7 @@ class LoginSettings(TweakModule):
             if filename:
                 self.background_setting.set_value(user='gdm', value=filename)
                 self.__setup_background_image()
-        elif response == gtk.RESPONSE_DELETE_EVENT:
+        elif response == Gtk.ResponseType.DELETE_EVENT:
             dialog.destroy()
             self.background_setting.set_value(user='gdm',
                                               value=orignal_background)

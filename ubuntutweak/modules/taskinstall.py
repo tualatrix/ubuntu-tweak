@@ -19,8 +19,9 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import os
-import gtk
-import pango
+from gi.repository import Gdk
+from gi.repository import Gtk
+from gi.repository import Pango
 import gobject
 
 from ubuntutweak.modules import TweakModule
@@ -73,7 +74,7 @@ TASKS = {
     'xubuntu-live': (_('Xubuntu live CD'), _('This task provides the extra packages installed on the Xubuntu live CD. It is neither useful nor recommended to install this task in other environments.')),
 }
 
-class TaskView(gtk.TreeView):
+class TaskView(Gtk.TreeView):
     (COLUMN_ACTION,
      COLUMN_TASK,
      COLUMN_NAME,
@@ -81,7 +82,7 @@ class TaskView(gtk.TreeView):
     ) = range(4)
 
     def __init__(self):
-        gtk.TreeView.__init__(self)
+        gobject.GObject.__init__(self)
 
         self.set_headers_visible(False)
         self.set_rules_hint(True)
@@ -95,7 +96,7 @@ class TaskView(gtk.TreeView):
 
     def __create_model(self):
         '''The model is icon, title and the list reference'''
-        model = gtk.ListStore(
+        model = Gtk.ListStore(
                     gobject.TYPE_STRING, #Install status
                     gobject.TYPE_STRING,  #package name
                     gobject.TYPE_STRING,  #task name
@@ -105,11 +106,11 @@ class TaskView(gtk.TreeView):
         return model
 
     def __add_columns(self):
-        column = gtk.TreeViewColumn(_('Categories'))
+        column = Gtk.TreeViewColumn(_('Categories'))
 
-        renderer = gtk.CellRendererText()
-        renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
-        renderer.set_property('mode', gtk.CELL_RENDERER_MODE_ACTIVATABLE)
+        renderer = Gtk.CellRendererText()
+        renderer.set_property('ellipsize', Pango.EllipsizeMode.END)
+        renderer.set_property('mode', Gtk.CellRendererMode.ACTIVATABLE)
         column.pack_start(renderer, True)
         column.set_sort_column_id(self.COLUMN_NAME)
         column.set_attributes(renderer, markup=self.COLUMN_DESC)
@@ -124,8 +125,8 @@ class TaskView(gtk.TreeView):
     def create_task_dialog(self, title, desc, updateview):
         dialog = QuestionDialog(desc, title=title)
         vbox = dialog.vbox
-        swindow = gtk.ScrolledWindow()
-        swindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        swindow = Gtk.ScrolledWindow()
+        swindow.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         swindow.set_size_request(-1, 200)
         vbox.pack_start(swindow, False, False, 0)
         swindow.add(updateview)
@@ -155,16 +156,16 @@ class TaskView(gtk.TreeView):
 
         if installed == 'Installed':
             dialog = InfoDialog(_('You\'ve installed the <b>"%s"</b> task.' % name))
-            dialog.add_button(_('Remove'), gtk.RESPONSE_YES)
+            dialog.add_button(_('Remove'), Gtk.ResponseType.YES)
             res = dialog.run()
             dialog.destroy()
-            if res == gtk.RESPONSE_YES:
+            if res == Gtk.ResponseType.YES:
                 dialog = WarningDialog(_('It is dangerous to remove a task, it may remove the desktop related packages.\nPlease only continue when you know what you are doing.'),
                          title=_("Dangerous!"))
                 res = dialog.run()
                 dialog.destroy()
 
-                if res == gtk.RESPONSE_YES:
+                if res == Gtk.ResponseType.YES:
                     data = os.popen('tasksel -t remove %s' % task).read()
                     pkgs = self.filter_remove_packages(data)
                     updateview.update_updates(pkgs)
@@ -177,7 +178,7 @@ class TaskView(gtk.TreeView):
                     res = dialog.run()
                     dialog.destroy()
 
-                    if res == gtk.RESPONSE_YES:
+                    if res == Gtk.ResponseType.YES:
                         PACKAGE_WORKER.perform_action(self.get_toplevel(), [], updateview.to_add)
                         PACKAGE_WORKER.update_apt_cache(True)
                         self.update_model()
@@ -195,7 +196,7 @@ class TaskView(gtk.TreeView):
             res = dialog.run()
             dialog.destroy()
 
-            if res == gtk.RESPONSE_YES:
+            if res == Gtk.ResponseType.YES:
                 PACKAGE_WORKER.perform_action(self.get_toplevel(), updateview.to_add, [])
                 PACKAGE_WORKER.update_apt_cache(True)
                 self.update_model()
@@ -231,7 +232,7 @@ class TaskView(gtk.TreeView):
     def set_busy(self):
         window = self.get_toplevel().window
         if window:
-            window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+            window.set_cursor(Gdk.Cursor.new(Gdk.WATCH))
 
     def unset_busy(self):
         window = self.get_toplevel().window

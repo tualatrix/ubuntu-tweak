@@ -18,11 +18,12 @@
 # You should have received a copy of the GNU General Public License
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 
-import pygtk
-pygtk.require('2.0')
 import os
-import gtk
-import pango
+import gi
+gi.require_version('Gtk', '2.0')
+from gi.repository import Gdk
+from gi.repository import Gtk
+from gi.repository import Pango
 import gobject
 import webbrowser
 import subprocess
@@ -51,32 +52,32 @@ log = logging.getLogger("MainWindow")
 WARNING_KEY = '/apps/ubuntu-tweak/disable_stable_source_warning'
 CONFIG = Config()
 
-class Tip(gtk.HBox):
+class Tip(Gtk.HBox):
     def __init__(self, tip):
-        gtk.HBox.__init__(self)
+        gobject.GObject.__init__(self)
 
-        image = gtk.image_new_from_stock(gtk.STOCK_GO_FORWARD,
-                                         gtk.ICON_SIZE_BUTTON)
+        image = Gtk.Image.new_from_stock(Gtk.STOCK_GO_FORWARD,
+                                         Gtk.IconSize.BUTTON)
         self.pack_start(image, False, False, 15)
 
-        label = gtk.Label()
+        label = Gtk.Label()
         label.set_alignment(0.0, 0.5)
-        label.set_ellipsize(pango.ELLIPSIZE_END)
+        label.set_ellipsize(Pango.EllipsizeMode.END)
         label.set_markup(tip)
-        self.pack_start(label)
+        self.pack_start(label, True, True, 0)
 
-class TipsFactory(gtk.VBox):
+class TipsFactory(Gtk.VBox):
     def __init__(self, *tips):
-        gtk.VBox.__init__(self)
+        gobject.GObject.__init__(self)
 
         for tip in tips:
-            self.pack_start(Tip(tip), False, False, 10)
+            self.pack_start(Tip(tip, True, True, 0), False, False, 10)
 
 def show_welcome():
-    vbox = gtk.VBox(False, 0)
+    vbox = Gtk.VBox(False, 0)
     vbox.set_border_width(20)
 
-    title = gtk.MenuItem('')
+    title = Gtk.MenuItem('')
     label = title.get_child()
     label.set_markup('\n<span size="xx-large">%s <b>%s!</b></span>\n' % (
                      _('Welcome to'), APP))
@@ -96,15 +97,15 @@ def show_welcome():
     return vbox
 
 def show_wait():
-    vbox = gtk.VBox(False, 0)
+    vbox = Gtk.VBox(False, 0)
 
-    label = gtk.Label()
+    label = Gtk.Label()
     label.set_markup("<span size=\"xx-large\">%s</span>" %
                      _('Please wait a moment...'))
-    label.set_justify(gtk.JUSTIFY_FILL)
+    label.set_justify(Gtk.Justification.FILL)
     vbox.pack_start(label, False, False, 50)
 
-    hbox = gtk.HBox(False, 0)
+    hbox = Gtk.HBox(False, 0)
     vbox.pack_start(hbox, False, False, 0)
         
     return vbox
@@ -147,11 +148,11 @@ class UpdateDialog(DownloadDialog):
         super(UpdateDialog, self).on_downloaded(downloader)
         os.system('xdg-open %s' % self.downloader.get_downloaded_file())
 
-class ErrorListView(gtk.TreeView):
+class ErrorListView(Gtk.TreeView):
     (COLUMN_PATH,) = range(1)
 
     def __init__(self, files):
-        gtk.TreeView.__init__(self)
+        gobject.GObject.__init__(self)
         self.set_rules_hint(True)
 
         self.files = files
@@ -163,7 +164,7 @@ class ErrorListView(gtk.TreeView):
             self.__column_title = ''
             self.set_headers_visible(False)
 
-        self.model = gtk.ListStore(gobject.TYPE_STRING)
+        self.model = Gtk.ListStore(gobject.TYPE_STRING)
         self.__add_columns()
         self.set_model(self.model)
 
@@ -191,46 +192,46 @@ class ErrorListView(gtk.TreeView):
                            self.COLUMN_PATH, path)
 
     def __add_columns(self):
-        column = gtk.TreeViewColumn(self.__column_title)
+        column = Gtk.TreeViewColumn(self.__column_title)
 
         column.set_spacing(5)
-        renderer = gtk.CellRendererText()
+        renderer = Gtk.CellRendererText()
         column.pack_start(renderer, True)
         column.set_attributes(renderer, text=self.COLUMN_PATH)
 
         self.append_column(column)
 
-class MainWindow(gtk.Window):
+class MainWindow(Gtk.Window):
     (ID_COLUMN,
      LOGO_COLUMN,
      TITLE_COLUMN,
      MODULE_CLASS) = range(4)
 
     def __init__(self):
-        gtk.Window.__init__(self)
+        gobject.GObject.__init__(self)
 
         self.notify_func = None
 
         self.connect("destroy", self.destroy)
         self.set_title(APP)
         self.set_default_size(740, 480)
-        self.set_position(gtk.WIN_POS_CENTER)
+        self.set_position(Gtk.WindowPosition.CENTER)
         self.set_border_width(10)
 
-        vbox = gtk.VBox(False, 6)
+        vbox = Gtk.VBox(False, 6)
         self.add(vbox)
 
-        self.hpaned = gtk.HPaned()
+        self.hpaned = Gtk.HPaned()
         vbox.pack_start(self.hpaned, True, True, 0)
 
-        swindow = gtk.ScrolledWindow()
-        swindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        swindow = Gtk.ScrolledWindow()
+        swindow.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         swindow.set_size_request(150, -1)
         self.hpaned.pack1(swindow)
 
         self.model = self.__create_model()
         self.update_model()
-        self.treeview = gtk.TreeView(self.model)
+        self.treeview = Gtk.TreeView(self.model)
         self.treeview.set_enable_tree_lines(True)
 
         self.__add_columns(self.treeview)
@@ -245,31 +246,31 @@ class MainWindow(gtk.Window):
         self.modules = {}
         self.hpaned.pack2(self.notebook)
 
-        hbox = gtk.HBox(False, 12)
+        hbox = Gtk.HBox(False, 12)
         vbox.pack_start(hbox, False, False, 0)
 
-        l_hbutton_box = gtk.HButtonBox()
+        l_hbutton_box = Gtk.HButtonBox()
         l_hbutton_box.set_spacing(12)
         hbox.pack_start(l_hbutton_box, False, False, 0)
 
-        button = gtk.Button(stock=gtk.STOCK_ABOUT)
+        button = Gtk.Button(stock=Gtk.STOCK_ABOUT)
         button.connect("clicked", self.show_about)
         l_hbutton_box.pack_start(button, False, False, 0)
 
-        d_button = gtk.Button(stock=gtk.STOCK_YES)
+        d_button = Gtk.Button(stock=Gtk.STOCK_YES)
         set_label_for_stock_button(d_button, _('_Donate'))
         d_button.connect("clicked", self.on_d_clicked)
         l_hbutton_box.pack_start(d_button, False, False, 0)
 
-        r_hbutton_box = gtk.HButtonBox()
+        r_hbutton_box = Gtk.HButtonBox()
         r_hbutton_box.set_spacing(12)
         hbox.pack_end(r_hbutton_box, False, False, 0)
 
-        button = gtk.Button(stock=gtk.STOCK_PREFERENCES)
+        button = Gtk.Button(stock=Gtk.STOCK_PREFERENCES)
         button.connect('clicked', self.on_preferences_clicked)
         r_hbutton_box.pack_end(button, False, False, 0)
 
-        button = gtk.Button(stock=gtk.STOCK_QUIT)
+        button = Gtk.Button(stock=Gtk.STOCK_QUIT)
         button.connect("clicked", self.destroy)
         r_hbutton_box.pack_end(button, False, False, 0)
 
@@ -304,14 +305,14 @@ class MainWindow(gtk.Window):
         treeview = ErrorListView(disabled_list)
         dialog = WarningDialog(_('To keep the package manager work, Ubuntu Tweak has disabled these broken sources.\n\nIf you want to re-open these sources, Please try to correct it.\n\nYou can click "Help" to see the guide, then edit these sources at Source Editor.'),
                     title=_("The software sources list is broken"),
-                    buttons=gtk.BUTTONS_CLOSE)
+                    buttons=Gtk.ButtonsType.CLOSE)
 
         dialog.add_widget_with_scrolledwindow(treeview, height=100)
-        dialog.add_button(_('_Help'), gtk.RESPONSE_YES)
+        dialog.add_button(_('_Help'), Gtk.ResponseType.YES)
 
         response = dialog.run()
         dialog.destroy()
-        if response == gtk.RESPONSE_YES:
+        if response == Gtk.ResponseType.YES:
             webbrowser.open('http://blog.ubuntu-tweak.com/guide/how-to-fix-the-source-list-files')
 
     def notify_stable_source(self):
@@ -328,7 +329,7 @@ class MainWindow(gtk.Window):
             response = dialog.run()
             dialog.destroy()
 
-            if response == gtk.RESPONSE_YES:
+            if response == Gtk.ResponseType.YES:
                 log.debug("Start enable the source")
                 proxy.enable_stable_source()
                 log.debug("Finish enable the source, now it's %s", proxy.get_stable_source_enabled())
@@ -352,9 +353,9 @@ class MainWindow(gtk.Window):
         self.hpaned.set_position(TweakSettings.get_paned_size())
 
     def __create_model(self):
-        model = gtk.TreeStore(
+        model = Gtk.TreeStore(
                     gobject.TYPE_STRING,
-                    gtk.gdk.Pixbuf,
+                    GdkPixbuf.Pixbuf,
                     gobject.TYPE_STRING)
 
         return model
@@ -449,27 +450,27 @@ class MainWindow(gtk.Window):
         self.__select_child_item(id)
 
     def __add_columns(self, treeview):
-        column = gtk.TreeViewColumn('ID',
-                                    gtk.CellRendererText(),
+        column = Gtk.TreeViewColumn('ID',
+                                    Gtk.CellRendererText(),
                                     text=self.ID_COLUMN)
         column.set_visible(False)
         treeview.append_column(column)
 
-        column = gtk.TreeViewColumn("Title") 
+        column = Gtk.TreeViewColumn("Title") 
         column.set_spacing(3)
-        renderer = gtk.CellRendererPixbuf()
+        renderer = Gtk.CellRendererPixbuf()
         column.pack_start(renderer, False)
         column.set_attributes(renderer, pixbuf=self.LOGO_COLUMN)
         column.set_cell_data_func(renderer, self.logo_column_view_func)
-        renderer = gtk.CellRendererText()
-        renderer.set_property('ellipsize',  pango.ELLIPSIZE_END)
+        renderer = Gtk.CellRendererText()
+        renderer.set_property('ellipsize',  Pango.EllipsizeMode.END)
         column.pack_start(renderer, True)
         column.set_attributes(renderer, markup=self.TITLE_COLUMN)
 
         treeview.set_headers_visible(False)
         treeview.append_column(column)
 
-        column = gtk.TreeViewColumn()
+        column = Gtk.TreeViewColumn()
         column.set_visible(False)
         treeview.append_column(column)
         treeview.set_expander_column(column)
@@ -486,7 +487,7 @@ class MainWindow(gtk.Window):
         Create the notebook with welcome page.
         the remain page will be created when request.
         """
-        notebook = gtk.Notebook()
+        notebook = Gtk.Notebook()
         notebook.set_scrollable(True)
         notebook.set_show_tabs(False)
 
@@ -525,9 +526,9 @@ class MainWindow(gtk.Window):
         webbrowser.open(link)
     
     def show_about(self, widget):
-        gtk.about_dialog_set_url_hook(self.click_website)
+        Gtk.about_dialog_set_url_hook(self.click_website)
 
-        about = gtk.AboutDialog()
+        about = Gtk.AboutDialog()
         about.set_transient_for(self)
         about.set_name(APP)
         about.set_version(VERSION)
@@ -566,7 +567,7 @@ You should have received a copy of the GNU General Public License along with Ubu
         gobject.idle_add(self.check_version)
 
     def check_version(self):
-        gtk.gdk.threads_enter()
+        Gdk.threads_enter()
 
         version = TweakSettings.get_version()
         if version > VERSION:
@@ -575,7 +576,7 @@ You should have received a copy of the GNU General Public License along with Ubu
 
             update = False
 
-            if dialog.run() == gtk.RESPONSE_YES:
+            if dialog.run() == Gtk.ResponseType.YES:
                 update = True
             dialog.destroy()
 
@@ -584,7 +585,7 @@ You should have received a copy of the GNU General Public License along with Ubu
                 dialog.run()
                 dialog.destroy()
 
-        gtk.gdk.threads_leave()
+        Gdk.threads_leave()
 
     def destroy(self, widget=None):
         self.do_notify()
@@ -593,7 +594,7 @@ You should have received a copy of the GNU General Public License along with Ubu
             proxy.exit()
         except Exception, e:
             log.error(e)
-        gtk.main_quit()
+        Gtk.main_quit()
 
     def prepare_notify(self, data):
         self.notify_func = data

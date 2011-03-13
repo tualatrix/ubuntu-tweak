@@ -19,7 +19,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import os
-import gtk
+from gi.repository import Gtk
 import dbus
 import gobject
 
@@ -61,7 +61,7 @@ class PolkitAction(gobject.GObject):
         else:
             self.emit('changed', 0)
 
-class PolkitButton(gtk.Button):
+class PolkitButton(Gtk.Button):
     __gsignals__ = {
         'changed': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_INT,)),
     }
@@ -70,7 +70,7 @@ class PolkitButton(gtk.Button):
         super(PolkitButton, self).__init__()
 
         self.set_label(_('_Unlock'))
-        image = gtk.image_new_from_stock(gtk.STOCK_DIALOG_AUTHENTICATION, gtk.ICON_SIZE_BUTTON)
+        image = Gtk.Image.new_from_stock(Gtk.STOCK_DIALOG_AUTHENTICATION, Gtk.IconSize.BUTTON)
         self.set_image(image)
 
         self.action = PolkitAction(self)
@@ -87,6 +87,6 @@ class PolkitButton(gtk.Button):
         self.emit('changed', self.action.get_authenticated())
 
     def change_button_state(self):
-        image = gtk.image_new_from_stock(gtk.STOCK_YES, gtk.ICON_SIZE_BUTTON)
+        image = Gtk.Image.new_from_stock(Gtk.STOCK_YES, Gtk.IconSize.BUTTON)
         self.set_image(image)
         self.set_sensitive(False)

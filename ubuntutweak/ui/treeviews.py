@@ -1,6 +1,7 @@
 import os
-import gtk
-import gio
+from gi.repository import Gdk
+from gi.repository import Gtk
+from gi.repository import Gio
 import shutil
 import gobject
 from dialogs import ErrorDialog
@@ -14,9 +15,9 @@ from ubuntutweak.utils import icon
 ) = range(4)
 
 def get_local_path(url):
-    return gio.file_parse_name(url.strip()).get_path()
+    return Gio.file_parse_name(url.strip()).get_path()
 
-class DirView(gtk.TreeView):
+class DirView(Gtk.TreeView):
     TARGETS = [
             ('text/plain', 0, 1),
             ('TEXT', 0, 2),
@@ -27,7 +28,7 @@ class DirView(gtk.TreeView):
                     }
 
     def __init__(self, dir):
-        gtk.TreeView.__init__(self)
+        gobject.GObject.__init__(self)
         self.set_rules_hint(True)
         self.dir = dir
         if not os.path.exists(self.dir):
@@ -43,10 +44,10 @@ class DirView(gtk.TreeView):
         self.set_size_request(180, -1)
         self.expand_all()
 
-        self.enable_model_drag_source(gtk.gdk.BUTTON1_MASK, 
+        self.enable_model_drag_source(Gdk.EventMask.BUTTON1_MASK, 
                                         self.TARGETS,
-                                        gtk.gdk.ACTION_DEFAULT| gtk.gdk.ACTION_MOVE)
-        self.enable_model_drag_dest(self.TARGETS, gtk.gdk.ACTION_DEFAULT)
+                                        Gdk.DragAction.DEFAULT| Gdk.DragAction.MOVE)
+        self.enable_model_drag_dest(self.TARGETS, Gdk.DragAction.DEFAULT)
 
         self.connect('drag_data_get', self.on_drag_data_get)
         self.connect('drag_data_received', self.on_drag_data_received)
@@ -61,22 +62,22 @@ class DirView(gtk.TreeView):
             self.on_delete_item(widget)
 
     def button_press_event(self, widget, event, menu):
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3:
             menu.popup(None, None, None, event.button, event.time)
         return False
 
     def __create_popup_menu(self):
-        menu = gtk.Menu()
+        menu = Gtk.Menu()
 
-        change_item = gtk.MenuItem(_('Create folder'))
+        change_item = Gtk.MenuItem(_('Create folder'))
         menu.append(change_item)
         change_item.connect('activate', self.on_create_folder)
 
-        change_item = gtk.MenuItem(_('Rename'))
+        change_item = Gtk.MenuItem(_('Rename'))
         menu.append(change_item)
         change_item.connect('activate', self.on_rename_item)
 
-        change_item = gtk.MenuItem(_('Delete'))
+        change_item = Gtk.MenuItem(_('Delete'))
         menu.append(change_item)
         change_item.connect('activate', self.on_delete_item)
 
@@ -232,8 +233,8 @@ class DirView(gtk.TreeView):
         self.expand_all()
 
     def __create_model(self):
-        model = gtk.TreeStore(
-                        gtk.gdk.Pixbuf,
+        model = Gtk.TreeStore(
+                        GdkPixbuf.Pixbuf,
                         gobject.TYPE_STRING,
                         gobject.TYPE_STRING,
                         gobject.TYPE_BOOLEAN)
@@ -271,17 +272,17 @@ class DirView(gtk.TreeView):
         try:
             self.type
         except:
-            column = gtk.TreeViewColumn()
+            column = Gtk.TreeViewColumn()
         else:
-            column = gtk.TreeViewColumn(self.type)
+            column = Gtk.TreeViewColumn(self.type)
 
         column.set_spacing(5)
 
-        renderer = gtk.CellRendererPixbuf()
+        renderer = Gtk.CellRendererPixbuf()
         column.pack_start(renderer, False)
         column.set_attributes(renderer, pixbuf = DIR_ICON)
 
-        renderer = gtk.CellRendererText()
+        renderer = Gtk.CellRendererText()
         renderer.connect('edited', self.on_cellrenderer_edited)
         column.pack_start(renderer, True)
         column.set_attributes(renderer, text = DIR_TITLE, editable = DIR_EDITABLE)
@@ -294,7 +295,7 @@ class DirView(gtk.TreeView):
     FLAT_PATH,
 ) = range(3)
 
-class FlatView(gtk.TreeView):
+class FlatView(Gtk.TreeView):
     TARGETS = [
         ('text/plain', 0, 1),
         ('TEXT', 0, 2),
@@ -302,13 +303,13 @@ class FlatView(gtk.TreeView):
         ]
 
     def __init__(self, dir, exclude_dir = None):
-        gtk.TreeView.__init__(self)
+        gobject.GObject.__init__(self)
         self.set_rules_hint(True)
         self.dir = dir
         self.exclude_dir = exclude_dir
 
-        self.model = gtk.ListStore(
-                        gtk.gdk.Pixbuf,
+        self.model = Gtk.ListStore(
+                        GdkPixbuf.Pixbuf,
                         gobject.TYPE_STRING,
                         gobject.TYPE_STRING)
 
@@ -316,12 +317,12 @@ class FlatView(gtk.TreeView):
         self.update_model()
         self.__add_columns()
 
-        self.enable_model_drag_source( gtk.gdk.BUTTON1_MASK,
+        self.enable_model_drag_source( Gdk.EventMask.BUTTON1_MASK,
                         self.TARGETS,
-                        gtk.gdk.ACTION_DEFAULT|
-                        gtk.gdk.ACTION_MOVE)
+                        Gdk.DragAction.DEFAULT|
+                        Gdk.DragAction.MOVE)
         self.enable_model_drag_dest(self.TARGETS,
-                        gtk.gdk.ACTION_DEFAULT)
+                        Gdk.DragAction.DEFAULT)
 
         self.connect("drag_data_get", self.on_drag_data_get_data)
         self.connect("drag_data_received", self.on_drag_data_received_data)
@@ -404,17 +405,17 @@ class FlatView(gtk.TreeView):
         try:
             self.type
         except:
-            column = gtk.TreeViewColumn()
+            column = Gtk.TreeViewColumn()
         else:
-            column = gtk.TreeViewColumn(self.type)
+            column = Gtk.TreeViewColumn(self.type)
 
         column.set_spacing(5)
 
-        renderer = gtk.CellRendererPixbuf()
+        renderer = Gtk.CellRendererPixbuf()
         column.pack_start(renderer, False)
         column.set_attributes(renderer, pixbuf = FLAT_ICON)
 
-        renderer = gtk.CellRendererText()
+        renderer = Gtk.CellRendererText()
         column.pack_start(renderer, True)
         column.set_attributes(renderer, text = FLAT_TITLE)
 

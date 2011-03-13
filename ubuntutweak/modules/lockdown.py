@@ -19,7 +19,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import os
-import gtk
+from gi.repository import Gtk
 
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.policykit import PolkitButton, proxy
@@ -70,7 +70,7 @@ class LockDown(TweakModule):
 
         self.add_start(box, False, False, 0)
 
-        self.fix_theme_button = gtk.CheckButton(_('Fix the appearance of themes when granted root privileges'))
+        self.fix_theme_button = Gtk.CheckButton(_('Fix the appearance of themes when granted root privileges'))
         if proxy.is_exists(ROOT_THEMES) and proxy.is_exists(ROOT_ICONS):
             self.fix_theme_button.set_active(True)
 
@@ -80,7 +80,7 @@ class LockDown(TweakModule):
         self.add_start(box, False, False, 0)
 
         # button
-        hbox = gtk.HBox(False, 0)
+        hbox = Gtk.HBox(False, 0)
         self.pack_end(hbox, False ,False, 5)
 
         un_lock = PolkitButton()

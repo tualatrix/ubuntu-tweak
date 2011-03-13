@@ -1,5 +1,5 @@
 import logging
-import gconf
+from gi.repository import GConf
 
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
@@ -46,7 +46,7 @@ class GconfSetting(object):
     Every Setting hold a key and a value
     """
 
-    __client = gconf.client_get_default()
+    __client = GConf.Client.get_default()
 
     def __init__(self, key=None, default=None, type=None):
         self.__key = key
@@ -57,7 +57,7 @@ class GconfSetting(object):
             self.set_value(default)
 
         if self.get_dir():
-            self.get_client().add_dir(self.get_dir(), gconf.CLIENT_PRELOAD_NONE)
+            self.get_client().add_dir(self.get_dir(), GConf.ClientPreloadType.PRELOAD_NONE)
 
     def get_default(self):
         return self.__default
@@ -123,13 +123,13 @@ class GconfSetting(object):
     def get_schema_value(self):
         value = self.__client.get_default_from_schema(self.__key)
         if value:
-            if value.type == gconf.VALUE_BOOL:
+            if value.type == GConf.ValueType.BOOL:
                 return value.get_bool()
-            elif value.type == gconf.VALUE_STRING:
+            elif value.type == GConf.ValueType.STRING:
                 return value.get_string()
-            elif value.type == gconf.VALUE_INT:
+            elif value.type == GConf.ValueType.INT:
                 return value.get_int()
-            elif value.type == gconf.VALUE_FLOAT:
+            elif value.type == GConf.ValueType.FLOAT:
                 return value.get_float()
         else:
             raise Exception("No schema value for %s" % self.__key)

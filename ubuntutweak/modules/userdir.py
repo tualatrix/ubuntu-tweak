@@ -18,10 +18,11 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 import pygtk
-pygtk.require("2.0")
-import gtk
+pyGtk.require("2.0")
+from gi.repository import Gdk
+from gi.repository import Gtk
 import os
-import gconf
+from gi.repository import GConf
 import gettext
 import gobject
 
@@ -130,10 +131,10 @@ class UserdirFile(IniFile):
 
         return gettext.gettext(string.title())
 
-class UserdirView(gtk.TreeView):
+class UserdirView(Gtk.TreeView):
 
     def __init__(self):
-        gtk.TreeView.__init__(self)
+        gobject.GObject.__init__(self)
 
         self.uf = UserdirFile()
 
@@ -147,7 +148,7 @@ class UserdirView(gtk.TreeView):
         self.connect('button_press_event', self.button_press_event, menu)
 
     def button_press_event(self, widget, event, menu):
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3:
             menu.popup(None, None, None, event.button, event.time)
         return False
 
@@ -155,12 +156,12 @@ class UserdirView(gtk.TreeView):
         model, iter = self.get_selection().get_selected()
         userdir = model.get_value(iter, COLUMN_DIR)
 
-        dialog = gtk.FileChooserDialog(_("Choose a folder"), 
-                                       action = gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER,
-                                       buttons = (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, gtk.STOCK_OPEN, gtk.RESPONSE_ACCEPT))
+        dialog = Gtk.FileChooserDialog(_("Choose a folder"), 
+                                       action = Gtk.FileChooserAction.SELECT_FOLDER,
+                                       buttons = (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.ACCEPT))
         dialog.set_current_folder(os.getenv("HOME"))
 
-        if dialog.run() == gtk.RESPONSE_ACCEPT:
+        if dialog.run() == Gtk.ResponseType.ACCEPT:
             fullpath = dialog.get_filename()
             folder = self.uf.set_userdir(userdir, fullpath)
             model.set_value(iter, COLUMN_PATH, folder)
@@ -176,7 +177,7 @@ class UserdirView(gtk.TreeView):
             'However, you must move your files back into place manually.\n'
             'Do you wish to continue?'))
 
-        if dialog.run() == gtk.RESPONSE_YES:
+        if dialog.run() == Gtk.ResponseType.YES:
             newdir = os.path.join(os.getenv("HOME"), self.uf.get_restorename(userdir))
             self.uf.set_userdir(userdir, newdir)
             model.set_value(iter, COLUMN_PATH, newdir)
@@ -190,8 +191,8 @@ class UserdirView(gtk.TreeView):
         dialog.destroy()
 
     def __create_model(self):
-        model = gtk.ListStore(
-                            gtk.gdk.Pixbuf,
+        model = Gtk.ListStore(
+                            GdkPixbuf.Pixbuf,
                             gobject.TYPE_STRING,
                             gobject.TYPE_STRING,
                             gobject.TYPE_STRING)
@@ -205,32 +206,32 @@ class UserdirView(gtk.TreeView):
         return model
 
     def __add_columns(self):
-        column = gtk.TreeViewColumn(_('Directory'))
+        column = Gtk.TreeViewColumn(_('Directory'))
         column.set_spacing(5)
         column.set_sort_column_id(COLUMN_NAME)
         self.append_column(column)
 
-        renderer = gtk.CellRendererPixbuf()
+        renderer = Gtk.CellRendererPixbuf()
         column.pack_start(renderer, False)
         column.set_attributes(renderer, pixbuf = COLUMN_ICON)
 
-        renderer = gtk.CellRendererText()
+        renderer = Gtk.CellRendererText()
         column.pack_start(renderer, True)
         column.set_attributes(renderer, text = COLUMN_NAME)
         
-        renderer = gtk.CellRendererText()
-        column = gtk.TreeViewColumn(_('Path'), renderer, text = COLUMN_PATH)
+        renderer = Gtk.CellRendererText()
+        column = Gtk.TreeViewColumn(_('Path'), renderer, text = COLUMN_PATH)
         column.set_sort_column_id(COLUMN_PATH)
         self.append_column(column)
 
     def __create_popup_menu(self):
-        menu = gtk.Menu()
+        menu = Gtk.Menu()
 
-        change_item = gtk.MenuItem(_('Change'))
+        change_item = Gtk.MenuItem(_('Change'))
         menu.append(change_item)
         change_item.connect('activate', self.on_change_directory)
 
-        restore_item = gtk.MenuItem(_('Restore to default'))
+        restore_item = Gtk.MenuItem(_('Restore to default'))
         menu.append(restore_item)
         restore_item.connect('activate', self.on_restore_directory)
 
@@ -246,25 +247,25 @@ class UserDir(TweakModule):
     def __init__(self):
         TweakModule.__init__(self)
 
-        sw = gtk.ScrolledWindow()
-        sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        sw = Gtk.ScrolledWindow()
+        sw.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         self.add_start(sw, True, True, 0)
 
         self.dirview = UserdirView()
         self.dirview.get_selection().connect('changed', self.on_selection_changed)
         sw.add(self.dirview)
 
-        hbuttonbox = gtk.HButtonBox()
+        hbuttonbox = Gtk.HButtonBox()
         hbuttonbox.set_spacing(12)
-        hbuttonbox.set_layout(gtk.BUTTONBOX_END)
+        hbuttonbox.set_layout(Gtk.ButtonBoxStyle.END)
         self.add_start(hbuttonbox, False, False, 0)
 
-        self.restore_button = gtk.Button(_('_Restore'))
+        self.restore_button = Gtk.Button(_('_Restore'))
         self.restore_button.set_sensitive(False)
         self.restore_button.connect('clicked', self.on_restore_button_clicked)
         hbuttonbox.pack_end(self.restore_button, False, False, 0)
 
-        self.change_button = gtk.Button(_('_Change'))
+        self.change_button = Gtk.Button(_('_Change'))
         self.change_button.set_sensitive(False)
         self.change_button.connect('clicked', self.on_change_button_clicked)
         hbuttonbox.pack_end(self.change_button, False, False, 0)

@@ -2,7 +2,7 @@
 # coding: utf-8
 
 import os
-import gtk
+from gi.repository import Gtk
 import urllib
 import thread
 import socket
@@ -90,13 +90,13 @@ class DownloadDialog(BusyDialog):
         vbox.set_spacing(6)
 
         if title:
-            label = gtk.Label()
+            label = Gtk.Label()
             label.set_alignment(0, 0.5)
             label.set_markup('<big><b>%s</b></big>' % title)
             vbox.pack_start(label, False, False, 0)
 
         self.wait_text = _('Connecting to server')
-        self.progress_bar = gtk.ProgressBar()
+        self.progress_bar = Gtk.ProgressBar()
         self.progress_bar.set_text(self.wait_text)
         vbox.pack_start(self.progress_bar, True, False, 0)
 
@@ -110,7 +110,7 @@ class DownloadDialog(BusyDialog):
         self.downloader.connect('downloaded', self.on_downloaded)
         self.downloader.connect('error', self.on_error_happen)
 
-        self.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
+        self.add_button(Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL)
         self.show_all()
 
         gobject.timeout_add(1000, self.on_network_connect)
@@ -146,13 +146,13 @@ class DownloadDialog(BusyDialog):
     def on_downloaded(self, widget):
         self.progress_bar.set_text(_('Downloaded!'))
         self.progress_bar.set_fraction(1)
-        self.response(gtk.RESPONSE_DELETE_EVENT)
+        self.response(Gtk.ResponseType.DELETE_EVENT)
         self.downloaded = True
 
     def on_error_happen(self, widget):
         self.progress_bar.set_text(_('Error happened!'))
         self.progress_bar.set_fraction(1)
-        self.response(gtk.RESPONSE_DELETE_EVENT)
+        self.response(Gtk.ResponseType.DELETE_EVENT)
         self.downloaded = False
         self.error = True
 
