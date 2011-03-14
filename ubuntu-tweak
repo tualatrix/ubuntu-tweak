@@ -53,7 +53,7 @@ def show_splash():
     win = Gtk.Window(type=Gtk.WindowType.POPUP)
     win.set_position(Gtk.WindowPosition.CENTER)
 
-    vbox = Gtk.VBox(False, 0)
+    vbox = Gtk.VBox()
     image = Gtk.Image()
     image.set_from_file(os.path.join(DATA_DIR, 'pixmaps/splash.png'))
 
