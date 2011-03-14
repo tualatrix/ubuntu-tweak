@@ -17,8 +17,6 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-import pygtk
-pyGtk.require("2.0")
 from gi.repository import Gtk
 import os
 import gobject

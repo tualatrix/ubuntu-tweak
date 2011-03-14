@@ -17,14 +17,14 @@
 # You should have received a copy of the GNU General Public License
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
-import pygtk
-pyGtk.require("2.0")
-from gi.repository import Gdk
-from gi.repository import Gtk
+
 import os
-from gi.repository import GConf
 import gettext
 import gobject
+
+from gi.repository import Gdk
+from gi.repository import Gtk
+from gi.repository import GConf
 
 from ubuntutweak.modules import TweakModule
 from ubuntutweak.common.consts import *
