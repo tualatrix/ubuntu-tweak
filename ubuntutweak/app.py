@@ -18,44 +18,23 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-import os
-
 from gi.repository import Gtk, Unique
 
-from ubuntutweak.app import App, MainWindow
-from ubuntutweak.common.consts import DATA_DIR
-
-def show_splash():
-    win = Gtk.Window(type=Gtk.WindowType.POPUP)
-    win.set_position(Gtk.WindowPosition.CENTER)
-
-    vbox = Gtk.VBox()
-    image = Gtk.Image()
-    image.set_from_file(os.path.join(DATA_DIR, 'pixmaps/splash.png'))
-
-    vbox.pack_start(image, True, True, 0)
-    win.add(vbox)
-
-    win.show_all()
-
-    while Gtk.events_pending():
-        Gtk.main_iteration()
-
-    win.destroy()
+class MainWindow(Gtk.Window):
+    pass
 
 
-if __name__ == "__main__":
-    show_splash()
+class App(Unique.App):
+    def __init__(self, name='com.ubuntu-tweak.main', startup_id=''):
+        Unique.App.__init__(self, name=name, startup_id=startup_id)
 
-    app = App()
+        self.connect('message-received', self.on_message_received)
 
-    if app.is_running():
-        app.send_message(Unique.Command.ACTIVATE, Unique.MessageData())
-    else:
-        window = MainWindow()
-        app.watch_window(window)
-        app.set_main_window(window)
-        window.connect("destroy", Gtk.main_quit)
+    def set_main_window(self, window):
+        self._window = window
 
-        window.show_all()
-        Gtk.main()
+    def on_message_received(self, app, command, message, time):
+        if command == Unique.Command.ACTIVATE:
+            self._window.present()
+
+        return False
