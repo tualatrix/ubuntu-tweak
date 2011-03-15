@@ -19,6 +19,7 @@
 import gobject
 from gi.repository import Gtk, Unique, Pango
 
+from ubuntutweak.common.consts import VERSION
 from ubuntutweak.gui import GuiBuilder
 
 
@@ -73,6 +74,12 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
 
     def on_mainwindow_destroy(self, widget):
         Gtk.main_quit()
+
+    def on_about_button_clicked(self, widget):
+        self.aboutdialog.set_version(VERSION)
+        self.aboutdialog.set_transient_for(self.mainwindow)
+        self.aboutdialog.run()
+        self.aboutdialog.destroy()
 
     def on_message_received(self, app, command, message, time):
         if command == Unique.Command.ACTIVATE:
