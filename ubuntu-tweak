@@ -22,7 +22,7 @@ import os
 
 from gi.repository import Gtk, Unique
 
-from ubuntutweak.app import App, MainWindow
+from ubuntutweak.app import UbuntuTweakApp
 from ubuntutweak.common.consts import DATA_DIR
 
 def show_splash():
@@ -47,15 +47,9 @@ def show_splash():
 if __name__ == "__main__":
     show_splash()
 
-    app = App()
+    app = UbuntuTweakApp()
 
     if app.is_running():
         app.send_message(Unique.Command.ACTIVATE, Unique.MessageData())
     else:
-        window = MainWindow()
-        app.watch_window(window)
-        app.set_main_window(window)
-        window.connect("destroy", Gtk.main_quit)
-
-        window.show_all()
-        Gtk.main()
+        app.run()

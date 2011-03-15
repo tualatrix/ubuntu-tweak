@@ -1,8 +1,6 @@
-#!/usr/bin/python
-
-# Ubuntu Tweak - PyGTK based desktop configuration tool
+# Ubuntu Tweak - Ubuntu Configuration Tool
 #
-# Copyright (C) 2007-2008 TualatriX <tualatrix@gmail.com>
+# Copyright (C) 2007-2011 Tualatrix Chou <tualatrix@gmail.com>
 #
 # Ubuntu Tweak is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,21 +17,23 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import os
-import gtk
-from consts import DATA_DIR
 
-class GuiWorker(object):
+from gi.repository import Gtk, Unique
+
+from ubuntutweak.common.consts import DATA_DIR
+
+class GuiBuilder(object):
     def __init__(self, file_name):
         file_path = os.path.join(DATA_DIR, 'ui', file_name)
 
-        self.builder = gtk.Builder()
+        self.builder = Gtk.Builder()
         self.builder.set_translation_domain('ubuntu-tweak')
         self.builder.add_from_file(file_path)
         self.builder.connect_signals(self)
 
         for o in self.builder.get_objects():
-            if issubclass(type(o), gtk.Buildable):
-                name = gtk.Buildable.get_name(o)
+            if issubclass(type(o), Gtk.Buildable):
+                name = Gtk.Buildable.get_name(o)
                 setattr(self, name, o)
             else:
                 print >>sys.stderr, "WARNING: can not get name for '%s'" % o

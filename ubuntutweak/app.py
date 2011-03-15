@@ -1,5 +1,3 @@
-#!/usr/bin/python
-
 # Ubuntu Tweak - Ubuntu Configuration Tool
 #
 # Copyright (C) 2007-2011 Tualatrix Chou <tualatrix@gmail.com>
@@ -20,21 +18,26 @@
 
 from gi.repository import Gtk, Unique
 
-class MainWindow(Gtk.Window):
-    pass
+from ubuntutweak.gui import GuiBuilder
 
-
-class App(Unique.App):
+class UbuntuTweakApp(Unique.App, GuiBuilder):
     def __init__(self, name='com.ubuntu-tweak.main', startup_id=''):
         Unique.App.__init__(self, name=name, startup_id=startup_id)
+        GuiBuilder.__init__(self, file_name='mainwindow.ui')
 
+        self.watch_window(self.mainwindow)
         self.connect('message-received', self.on_message_received)
 
-    def set_main_window(self, window):
-        self._window = window
+        self.mainwindow.show_all()
+
+    def on_mainwindow_destroy(self, widget):
+        Gtk.main_quit()
 
     def on_message_received(self, app, command, message, time):
         if command == Unique.Command.ACTIVATE:
-            self._window.present()
+            self.mainwindow.present()
 
         return False
+
+    def run(self):
+        Gtk.main()
