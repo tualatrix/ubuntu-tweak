@@ -20,21 +20,17 @@
 
 import os
 import sys
-import gtk
 sys.path.insert(0, os.path.dirname(os.path.abspath('.')))
 
-from ubuntutweak.common.consts import *
-from ubuntutweak.common.debug import enable_debugging
+from gi.repository import Gtk, Gdk
 
-enable_debugging()
+from ubuntutweak.common.consts import *
 
 class Test:
     def __init__(self, model):
-        gtk.gdk.threads_init()
-
-        win = gtk.Window()
-        win.connect('destroy', lambda *w: gtk.main_quit())
-        win.set_position(gtk.WIN_POS_CENTER)
+        win = Gtk.Window()
+        win.connect('destroy', lambda *w: Gtk.main_quit())
+        win.set_position(Gtk.WindowPosition.CENTER)
         win.set_default_size(640, 400)
 
         if getattr(model, "__name__", None):
@@ -48,18 +44,18 @@ class Test:
             win.add(model)
         win.show_all()
 
-        gtk.main()
+        Gtk.main()
 
 class ManyTest:
     def __init__(self, widgets):
-        win = gtk.Window()
+        win = Gtk.Window()
 
-        win.connect('destroy', lambda *w: gtk.main_quit())
-        win.set_position(gtk.WIN_POS_CENTER)
+        win.connect('destroy', lambda *w: Gtk.main_quit())
+        win.set_position(Gtk.WindowPosition.CENTER)
 
         win.set_title("Many test")
         
-        vbox = gtk.VBox(False, 10)
+        vbox = Gtk.VBox(False, 10)
         win.add(vbox)
 
         for widget in widgets:
@@ -67,7 +63,7 @@ class ManyTest:
 
         win.show_all()
 
-        gtk.main()
+        Gtk.main()
 
 if __name__ == '__main__':
     from modules import ModuleLoader

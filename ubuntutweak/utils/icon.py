@@ -1,8 +1,9 @@
 import os
-import gio
-import gtk
 import random
 import logging
+
+from gi.repository import Gdk
+from gi.repository import Gtk, Gdk, Gio
 
 log = logging.getLogger("utils.icon")
 
@@ -10,7 +11,7 @@ __all__ = (
     'get_from_name',
 )
 
-icontheme = gtk.icon_theme_get_default()
+icontheme = Gtk.IconTheme.get_default()
 
 DEFAULT_SIZE = 24
 
@@ -19,7 +20,7 @@ def get_from_name(name='gtk-execute', alter='gtk-execute', size=DEFAULT_SIZE, fo
 
     if force_reload:
         global icontheme
-        icontheme = gtk.icon_theme_get_default()
+        icontheme = Gtk.IconTheme.get_default()
 
     try:
         pixbuf = icontheme.load_icon(name, size, 0)
@@ -36,7 +37,7 @@ def get_from_name(name='gtk-execute', alter='gtk-execute', size=DEFAULT_SIZE, fo
                 alter = icons[random.randint(0, len(icons) - 1)]
 
     if pixbuf.get_height() != size:
-        return pixbuf.scale_simple(size, size, gtk.gdk.INTERP_BILINEAR)
+        return pixbuf.scale_simple(size, size, GdkPixbuf.InterpType.BILINEAR)
 
     return pixbuf
 
@@ -55,15 +56,15 @@ def get_from_list(list, size=DEFAULT_SIZE):
 
 def get_from_mime_type(mime, size=DEFAULT_SIZE):
     try:
-        gicon = gio.content_type_get_icon(mime)
-        iconinfo = icontheme.choose_icon(gicon.get_names(), size, gtk.ICON_LOOKUP_USE_BUILTIN)
+        gicon = Gio.content_type_get_icon(mime)
+        iconinfo = icontheme.choose_icon(gicon.get_names(), size, Gtk.IconLookupFlags.USE_BUILTIN)
         if not iconinfo:
             pixbuf = get_icon_with_name('application-x-executable', size)
         else:
             pixbuf = iconinfo.load_icon()
 
         if pixbuf.get_width() != size:
-            return pixbuf.scale_simple(size, size, gtk.gdk.INTERP_BILINEAR)
+            return pixbuf.scale_simple(size, size, GdkPixbuf.InterpType.BILINEAR)
     except:
         return get_from_name(size=size)
 
@@ -71,7 +72,7 @@ def get_from_mime_type(mime, size=DEFAULT_SIZE):
 
 def get_from_file(file, size):
     try:
-        return gtk.gdk.pixbuf_new_from_file_at_size(file, size, size)
+        return GdkPixbuf.Pixbuf.new_from_file_at_size(file, size, size)
     except:
         return get_from_name(size=size)
 
@@ -80,7 +81,7 @@ def get_from_app(app, size=DEFAULT_SIZE):
         gicon = app.get_icon()
 
         if gicon:
-            if isinstance(gicon, gio.ThemedIcon):
+            if isinstance(gicon, Gio.ThemedIcon):
                 names = gicon.get_names()
                 names_list = []
                 for name in names:
@@ -89,10 +90,10 @@ def get_from_app(app, size=DEFAULT_SIZE):
                     else:
                         names_list.append(name)
 
-                iconinfo = icontheme.choose_icon(names_list, size, gtk.ICON_LOOKUP_USE_BUILTIN)
+                iconinfo = icontheme.choose_icon(names_list, size, Gtk.IconLookupFlags.USE_BUILTIN)
                 if iconinfo:
                     return iconinfo.load_icon()
-            elif isinstance(gicon, gio.FileIcon):
+            elif isinstance(gicon, Gio.FileIcon):
                 file = app.get_icon().get_file().get_path()
                 return get_from_file(file, size)
 
@@ -105,7 +106,7 @@ def guess_from_path(filepath, size=DEFAULT_SIZE):
         return get_from_name('folder', size)
 
     try:
-        mime_type = gio.content_type_guess(filepath, open(filepath).read(10))
+        mime_type = Gio.content_type_guess(filepath, open(filepath).read(10))
         return get_from_mime_type(mime_type, size)
     except Exception, e:
         print e
