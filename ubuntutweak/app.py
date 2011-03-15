@@ -16,11 +16,35 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
+import os
+import logging
+
 import gobject
 from gi.repository import Gtk, Unique, Pango
 
-from ubuntutweak.common.consts import VERSION
+from ubuntutweak.common.consts import VERSION, DATA_DIR
 from ubuntutweak.gui import GuiBuilder
+
+log = logging.getLogger('app')
+
+
+def show_splash():
+    win = Gtk.Window(type=Gtk.WindowType.POPUP)
+    win.set_position(Gtk.WindowPosition.CENTER)
+
+    vbox = Gtk.VBox()
+    image = Gtk.Image()
+    image.set_from_file(os.path.join(DATA_DIR, 'pixmaps/splash.png'))
+
+    vbox.pack_start(image, True, True, 0)
+    win.add(vbox)
+
+    win.show_all()
+
+    while Gtk.events_pending():
+        Gtk.main_iteration()
+
+    win.destroy()
 
 
 class WelcomePage(Gtk.VBox):
@@ -61,7 +85,7 @@ class WelcomePage(Gtk.VBox):
 
 
 class UbuntuTweakApp(Unique.App, GuiBuilder):
-    def __init__(self, name='com.ubuntu-tweak.main', startup_id=''):
+    def __init__(self, name='com.ubuntu-tweak.Tweak', startup_id=''):
         Unique.App.__init__(self, name=name, startup_id=startup_id)
         GuiBuilder.__init__(self, file_name='mainwindow.ui')
 
@@ -82,6 +106,8 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
         self.aboutdialog.destroy()
 
     def on_message_received(self, app, command, message, time):
+        log.debug("on_message_received: command: %s, message: %s, time: %s" % (
+            command, message, time))
         if command == Unique.Command.ACTIVATE:
             self.mainwindow.present()
 

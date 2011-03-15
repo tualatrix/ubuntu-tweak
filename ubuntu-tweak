@@ -19,34 +19,28 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import os
+import optparse
 
-from gi.repository import Gtk, Unique
+from gi.repository import Unique
 
-from ubuntutweak.app import UbuntuTweakApp
-from ubuntutweak.common.consts import DATA_DIR
-
-def show_splash():
-    win = Gtk.Window(type=Gtk.WindowType.POPUP)
-    win.set_position(Gtk.WindowPosition.CENTER)
-
-    vbox = Gtk.VBox()
-    image = Gtk.Image()
-    image.set_from_file(os.path.join(DATA_DIR, 'pixmaps/splash.png'))
-
-    vbox.pack_start(image, True, True, 0)
-    win.add(vbox)
-
-    win.show_all()
-
-    while Gtk.events_pending():
-        Gtk.main_iteration()
-
-    win.destroy()
+from ubuntutweak.common.consts import VERSION, IS_INSTALLED
+from ubuntutweak.common.debug import enable_debugging
 
 
 if __name__ == "__main__":
-    show_splash()
+    parser = optparse.OptionParser(prog="ubuntu-tweak",
+                                   version="%%prog %s" % VERSION,
+                                   description="Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your system and desktop settings.")
+    parser.add_option("-d", "--debug", action="store_true", default=False,
+                      help="Generate more debugging information.  [default: %default]")
+    options, args = parser.parse_args()
 
+    if options.debug or not IS_INSTALLED:
+        enable_debugging()
+
+    from ubuntutweak.app import UbuntuTweakApp, show_splash
+
+    show_splash()
     app = UbuntuTweakApp()
 
     if app.is_running():

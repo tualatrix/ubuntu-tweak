@@ -21,15 +21,15 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import os
-import gtk
-import pynotify
 import logging
 import StringIO
 import traceback
 import webbrowser
 
+from gi.repository import Gtk, Notify
+
 from ubuntutweak import system
-from ubuntutweak.common.gui import GuiWorker
+from ubuntutweak.gui import GuiBuilder
 from ubuntutweak.common.consts import CONFIG_ROOT
 
 #The terminal has 8 colors with codes from 0 to 7
@@ -50,26 +50,28 @@ COLORS = {
     'ERROR':    COLOR_SEQ % (30 + RED) + 'ERROR' + RESET_SEQ,
 }
 
+
 def on_copy_button_clicked(widget, text):
-    gtk.Clipboard().set_text(text)
-    notify = pynotify.Notification(_('Error message has been copied'),
+    Gtk.Clipboard().set_text(text)
+    notify = Notify.Notification(_('Error message has been copied'),
             _('Now click "Report" to enter the bug report website. Make sure to attach the error message in "Further information".'))
     notify.set_hint_string ("x-canonical-append", "");
     notify.show()
+
 
 def run_traceback(level, textview_only=False, text_only=False):
     '''Two level: fatal and error'''
     output = StringIO.StringIO()
     exc = traceback.print_exc(file=output)
 
-    worker = GuiWorker('traceback.ui')
+    worker = GuiBuilder('traceback.ui')
 
     textview = worker.get_object('%s_view' % level)
 
     buffer = textview.get_buffer()
     iter = buffer.get_start_iter()
     anchor = buffer.create_child_anchor(iter)
-    button = gtk.Button(_('Copy Error Message'))
+    button = Gtk.Button(label=_('Copy Error Message'))
     button.show()
 
     textview.add_child_at_anchor(button, anchor)
@@ -89,10 +91,11 @@ def run_traceback(level, textview_only=False, text_only=False):
         return textview
     else:
         dialog = worker.get_object('%sDialog' % level.capitalize())
-        if dialog.run() == gtk.RESPONSE_YES:
+        if dialog.run() == Gtk.ResponseType.YES:
             webbrowser.open('https://bugs.launchpad.net/ubuntu-tweak/+filebug')
         dialog.destroy()
         output.close()
+
 
 class ColoredFormatter(logging.Formatter):
     def __init__(self, msg, use_color=True):
@@ -104,7 +107,7 @@ class ColoredFormatter(logging.Formatter):
             record.levelname = COLORS.get(record.levelname, record.levelname)
         return logging.Formatter.format(self, record)
 
-# Custom logger class with multiple destinations
+
 class UbuntuTweakLogger(logging.Logger):
     COLOR_FORMAT = "["+BOLD_SEQ+"%(name)s"+RESET_SEQ+"][%(levelname)s] %(message)s ("+BOLD_SEQ+"%(filename)s"+RESET_SEQ+":%(lineno)d)"
     NO_COLOR_FORMAT = "[%(name)s][%(levelname)s] %(message)s (%(filename)s:%(lineno)d)"
@@ -119,7 +122,7 @@ class UbuntuTweakLogger(logging.Logger):
 
         #create the single file appending handler
         if UbuntuTweakLogger.LOG_FILE_HANDLER == None:
-            filename = os.path.join(CONFIG_ROOT,'ubuntu-tweak.log')
+            filename = os.path.join(CONFIG_ROOT, 'ubuntu-tweak.log')
             UbuntuTweakLogger.LOG_FILE_HANDLER = logging.FileHandler(filename, 'w')
             UbuntuTweakLogger.LOG_FILE_HANDLER.setFormatter(no_color_formatter)
 
@@ -130,13 +133,16 @@ class UbuntuTweakLogger(logging.Logger):
         self.addHandler(console)
         return
 
+
 def enable_debugging():
     logging.getLogger().setLevel(logging.DEBUG)
+
 
 def disable_debugging():
     logging.getLogger().setLevel(logging.INFO)
 
+
 def disable_logging():
-    logging.getLogger().setLevel(logging.CRITICAL+1)
+    logging.getLogger().setLevel(logging.CRITICAL + 1)
 
 logging.setLoggerClass(UbuntuTweakLogger)
