@@ -98,11 +98,11 @@ class ModuleTreeView(Gtk.TreeView):
     def __init__(self):
         gobject.GObject.__init__(self)
 
-        model = self._create_model()
-
+        self.set_headers_visible(False)
         self._add_columns()
-        self.set_model(model)
 
+        model = self._create_model()
+        self.set_model(model)
         self.update_model()
 
         self.connect('realize', lambda tv: tv.expand_all())
