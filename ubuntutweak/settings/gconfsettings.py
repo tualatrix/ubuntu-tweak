@@ -1,4 +1,8 @@
+import logging
+
 from gi.repository import GConf
+
+log = logging.getLogger('GconfSetting')
 
 class GconfSetting(object):
     """
@@ -27,15 +31,34 @@ class GconfSetting(object):
 
     def get_value(self):
         gconfvalue = self.client.get(self.key)
-        if gconfvalue.type == GConf.ValueType.BOOL:
-            return gconfvalue.get_bool()
+        if gconfvalue:
+            if gconfvalue.type == GConf.ValueType.BOOL:
+                return gconfvalue.get_bool()
+            if gconfvalue.type == GConf.ValueType.STRING:
+                return gconfvalue.get_string()
+        else:
+            if self.type == int:
+                return 0
+            elif self.type == float:
+                return 0.0
+            elif self.type == bool:
+                return False
+            elif self.type == str:
+                return ''
+            else:
+                return None
 
     def set_value(self, value):
+        gconfvalue = GConf.Value()
+
         if type(value) == bool:
-            gconfvalue = GConf.Value()
             gconfvalue.type = GConf.ValueType.BOOL
             gconfvalue.set_bool(value)
-            self.client.set(self.key, gconfvalue)
+        elif type(value) == str:
+            gconfvalue.type = GConf.ValueType.STRING
+            gconfvalue.set_string(value)
+
+        self.client.set(self.key, gconfvalue)
 
     def unset(self):
         self.client.unset(self.key)
