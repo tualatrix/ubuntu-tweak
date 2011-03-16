@@ -24,7 +24,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath('.')))
 
 from gi.repository import Gtk, Gdk
 
-from ubuntutweak.common.consts import *
+from ubuntutweak.common.debug import enable_debugging
 
 class Test:
     def __init__(self, model):
@@ -66,6 +66,8 @@ class ManyTest:
         Gtk.main()
 
 if __name__ == '__main__':
+    enable_debugging()
+
     from modules import ModuleLoader
     loader = ModuleLoader(sys.argv[1])
     Test(loader.id_table.values()[0])
