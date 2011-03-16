@@ -20,12 +20,17 @@ import os
 import logging
 
 import gobject
-from gi.repository import Gtk, Unique, Pango
+from gi.repository import Gtk, Unique, Pango, GdkPixbuf
 
-from ubuntutweak.common.consts import VERSION, DATA_DIR
+from ubuntutweak import modules
 from ubuntutweak.gui import GuiBuilder
+from ubuntutweak.utils import icon
+from ubuntutweak.common.consts import VERSION, DATA_DIR
+from ubuntutweak.modules import ModuleLoader
 
 log = logging.getLogger('app')
+
+MODULE_LOADER = ModuleLoader(modules.__path__[0])
 
 
 def show_splash():
@@ -84,10 +89,96 @@ class WelcomePage(Gtk.VBox):
             self.pack_start(hbox, False, False, 10)
 
 
+class ModuleTreeView(Gtk.TreeView):
+    (NAME_COLUMN,
+     LOGO_COLUMN,
+     TITLE_COLUMN,
+     MODULE_CLASS) = range(4)
+
+    def __init__(self):
+        gobject.GObject.__init__(self)
+
+        model = self._create_model()
+
+        self._add_columns()
+        self.set_model(model)
+
+        self.update_model()
+
+        self.connect('realize', lambda tv: tv.expand_all())
+
+    def _create_model(self):
+        '''
+        Module class name, module icon and module title
+        '''
+        model = Gtk.TreeStore(gobject.TYPE_STRING,
+                              GdkPixbuf.Pixbuf,
+                              gobject.TYPE_STRING)
+
+        return model
+
+    def update_model(self):
+        model = self.get_model()
+        model.append(None, (None,
+                            icon.get_from_name('ubuntu-tweak', size=32),
+                            "<b><big>%s</big></b>" % _('Welcome')))
+
+        for category, category_name in MODULE_LOADER.get_categories():
+            module_list = MODULE_LOADER.get_modules_by_category(category)
+
+            if module_list:
+                iter = model.append(None, (None,
+                                           None,
+                                           "<b><big>%s</big></b>" % category_name))
+
+                for module in module_list:
+                    log.debug("Insert module: name: %s" % module.get_name())
+
+                    model.append(iter, (module.get_name(),
+                                        module.get_pixbuf(),
+                                        module.get_title()))
+
+    def _add_columns(self):
+        column = Gtk.TreeViewColumn('ID',
+                                    Gtk.CellRendererText(),
+                                    text=self.NAME_COLUMN)
+        column.set_visible(False)
+        self.append_column(column)
+
+        renderer = Gtk.CellRendererPixbuf()
+        column = Gtk.TreeViewColumn("Title")
+        column.pack_start(renderer, False)
+        column.add_attribute(renderer, 'pixbuf', self.LOGO_COLUMN)
+        column.set_spacing(3)
+        column.set_cell_data_func(renderer, self.logo_column_view_func, None)
+
+        renderer = Gtk.CellRendererText()
+        renderer.set_property('ellipsize', Pango.EllipsizeMode.END)
+        column.pack_start(renderer, True)
+        column.add_attribute(renderer, 'markup', self.TITLE_COLUMN)
+        self.append_column(column)
+
+        column = Gtk.TreeViewColumn()
+        column.set_visible(False)
+        self.append_column(column)
+        self.set_expander_column(column)
+
+    def logo_column_view_func(self, cell_layout, renderer, model, iter, data=None):
+        pixbuf = model.get_value(iter, self.LOGO_COLUMN)
+
+        if pixbuf == None:
+            renderer.set_property("visible", False)
+        else:
+            renderer.set_property("visible", True)
+
+
 class UbuntuTweakApp(Unique.App, GuiBuilder):
     def __init__(self, name='com.ubuntu-tweak.Tweak', startup_id=''):
         Unique.App.__init__(self, name=name, startup_id=startup_id)
         GuiBuilder.__init__(self, file_name='mainwindow.ui')
+
+        module_view = ModuleTreeView()
+        self.scrolledwindow1.add(module_view)
 
         self.tweaknotebook.append_page(WelcomePage(), Gtk.Label(label=_('Welcome')))
 

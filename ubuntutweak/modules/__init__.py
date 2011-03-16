@@ -1,8 +1,9 @@
 import os
 import logging
 import inspect
-import gobject
+import webbrowser
 
+import gobject
 from gi.repository import Gtk, Pango
 
 from ubuntutweak.utils import icon
@@ -14,64 +15,73 @@ def module_cmp(m1, m2):
 
 
 class ModuleLoader:
-    module_table = {'broken': []}
-    id_table = {}
+    # the key will like this: 'Compiz': <class 'ubuntutweak.modules.compiz.Compiz'
+    module_table = {}
+
+    category_table = (
+        ('broken', _('Broken Modules')),
+        ('application', _('Applications')),
+        ('startup', _('Startup')),
+        ('desktop', _('Desktop')),
+        ('personal', _('Personal')),
+        ('system', _('System')),
+        )
 
     def __init__(self, path):
+        for k, v in self.category_table:
+            self.module_table[k] = []
+
         if os.path.isdir(path):
-            for f in os.listdir(path):
-                if f.endswith('.py') and f != '__init__.py':
-                    module = os.path.splitext(f)[0]
-                    log.debug("Try to load module: %s" % module)
-                    try:
-                        package = __import__('.'.join([__name__, module]), fromlist=['modules'])
-                    except Exception, e:
-                        Broken = create_broken_module_class(module)
-                        self.module_table['broken'].append(Broken)
-                        self.id_table['Broken%s' % module.title()] = Broken
-                        log.error("Module import error: %s", str(e))
-                        continue
-                    else:
-                        self.do_package_import(package)
+            self.do_package_import(path)
         else:
-            module = os.path.splitext(os.path.basename(path))[0]
-            folder = os.path.dirname(path)
-            package = __import__('.'.join([folder, module]))
-            self.do_module_import(package, module)
+            self.do_module_import(path)
 
         for k in self.module_table.keys():
             self.module_table[k].sort(module_cmp)
 
-    def do_module_import(self, package, module):
+    def do_module_import(self, path):
+        module = os.path.splitext(os.path.basename(path))[0]
+        folder = os.path.dirname(path)
+        package = __import__('.'.join([folder, module]))
+
         for k, v in inspect.getmembers(getattr(package, module)):
             self._insert_moduel(k, v)
 
-    def do_package_import(self, package):
-        for k, v in inspect.getmembers(package):
-            self._insert_moduel(k, v)
+    def do_package_import(self, path):
+        for f in os.listdir(path):
+            if f.endswith('.py') and f != '__init__.py':
+                module = os.path.splitext(f)[0]
+                log.debug("Try to load module: %s" % module)
+                try:
+                    package = __import__('.'.join([__name__, module]), fromlist=['modules'])
+                except Exception, e:
+                    Broken = create_broken_module_class(module)
+                    self.module_table['broken'].append(Broken)
+                    log.error("Module import error: %s", str(e))
+                    continue
+                else:
+                    for k, v in inspect.getmembers(package):
+                        self._insert_moduel(k, v)
 
     def _insert_moduel(self, k, v):
         if k not in ('TweakModule', 'proxy') and hasattr(v, '__utmodule__'):
             if v.__utactive__:
-                key = v.__category__
-                if self.module_table.has_key(key):
-                    self.module_table[key].append(v)
-                else:
-                    self.module_table[key] = [v]
+                self.module_table[v.__category__].append(v)
 
-                self.id_table[v.__name__] = v
+    def get_categories(self):
+        for k, v in self.category_table:
+            yield k, v
 
-    def get_category(self, category):
-        return self.module_table.get(category, [])
+    def get_modules_by_category(self, category):
+        modules = self.module_table.get(category)
+
+        return modules
 
     def get_module(self, id):
-        if not self.id_table.has_key(id):
+        if not self.module_table.has_key(id):
             raise ModuleKeyError('No module with id "%s"' % id)
         else:
-            return self.id_table[id]
-
-    def get_all_module(self):
-        return self.id_table.values()
+            return self.module_table[id]
 
 
 class TweakModule(Gtk.VBox):
@@ -222,3 +232,46 @@ class TweakModule(Gtk.VBox):
                 pixbuf = icon.get_from_list(cls.__icon__)
 
             return pixbuf
+
+
+def create_broken_module_class(name):
+    module_name = 'Broken%s' % name.title()
+
+    return classobj(module_name,
+                    (BrokenModule,),
+                    {'__name__': module_name,
+                     '__title__': name,
+                     'error_view': run_traceback('error', textview_only=True)})
+
+
+class BrokenModule(TweakModule):
+    __icon__ = 'gtk-dialog-error'
+
+    def __init__(self):
+        TweakModule.__init__(self, 'brokenmodule.ui')
+
+        if '/etc/apt/apt.conf.d' in self.get_error():
+            p = re.compile('(/etc/apt/apt.conf.d/[\w-]+)')
+            broken_file = p.findall(self.get_error())[0]
+            self.message_label.set_text(_("Ubuntu Tweak has detected that your"
+             " apt configuration is broken.\nTry to fix by following steps:\n"
+             "\n\t1. Open your terminal\n\t2. Run the commands to fix:\n\n\t"
+             "\tsudo chmod 644 %(broken_file)s\n\t\tsudo chown root:root "
+             "%(broken_file)s\n\nOr you can submit the Error Message to the "
+             "developer for help:" % {'broken_file': broken_file}))
+        elif '/etc/apt/sources.list.d/' in self.get_error():
+            p = re.compile('(/etc/apt/sources.list.d/[\w-]+)')
+            broken_file = p.findall(self.get_error())[0]
+
+            self.message_label.set_text(_("Ubuntu Tweak has detected that your"
+             "apt list file is broken.\nTry to fix by following steps:\n\n\t1."
+             "Open your terminal\n\t2. Run the command to open apt list file:"
+             "\n\n\t\tsudo gedit %s\n\n\t3. Edit the list to make it correctly"
+             "\n\nOr you can submit the Error Message to the developer for"
+             "help:" % broken_file))
+
+        self.error_view.reparent(self.scrolled_window)
+        self.reparent(self.alignment1)
+
+    def on_report_button_clicked(self, widget):
+        webbrowser.open('https://bugs.launchpad.net/ubuntu-tweak/+filebug')
