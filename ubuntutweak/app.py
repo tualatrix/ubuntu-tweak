@@ -105,6 +105,7 @@ class ModuleTreeView(Gtk.TreeView):
         self.set_model(model)
         self.update_model()
 
+        self.get_selection().connect('changed', self.on_select_module)
         self.connect('realize', lambda tv: tv.expand_all())
 
     def _create_model(self):
@@ -171,6 +172,22 @@ class ModuleTreeView(Gtk.TreeView):
         else:
             renderer.set_property("visible", True)
 
+    def on_select_module(self, widget):
+        model, iter = widget.get_selected()
+        print model, iter
+
+        if iter:
+            if model.iter_has_child(iter):
+                path = model.get_path(iter)
+                self.expand_row(path, True)
+                child_iter = model.iter_children(iter)
+                name = model.get_value(child_iter, self.NAME_COLUMN)
+
+                widget.select_iter(child_iter)
+            else:
+                name = model.get_value(iter, self.NAME_COLUMN)
+
+                widget.select_iter(iter)
 
 class UbuntuTweakApp(Unique.App, GuiBuilder):
     def __init__(self, name='com.ubuntu-tweak.Tweak', startup_id=''):
@@ -180,10 +197,12 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
         module_view = ModuleTreeView()
         self.scrolledwindow1.add(module_view)
 
-        self.tweaknotebook.append_page(WelcomePage(), Gtk.Label(label=_('Welcome')))
+        self.tweaknotebook.insert_page(WelcomePage(), Gtk.Label(label='Welcome'), 0)
 
         self.watch_window(self.mainwindow)
         self.connect('message-received', self.on_message_received)
+        # Always show welcome page at first
+        self.mainwindow.connect('realize', lambda f: self.tweaknotebook.set_current_page(0))
 
         self.mainwindow.show_all()
 
