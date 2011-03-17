@@ -128,7 +128,7 @@ class ModuleTreeView(Gtk.TreeView):
 
     def update_model(self):
         model = self.get_model()
-        model.append(None, (None, None,
+        model.append(None, (None, 'welcome',
                             icon.get_from_name('ubuntu-tweak', size=32),
                             "<b><big>%s</big></b>" % _('Welcome')))
 
@@ -202,6 +202,9 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
         module_view = ModuleTreeView()
         self.scrolledwindow1.add(module_view)
 
+        # the module name and page index: 'Compiz': 2
+        self._loaded_modules = {'welcome': 0}
+
         self.tweaknotebook.insert_page(WelcomePage(), Gtk.Label(label='Welcome'), 0)
 
         self.watch_window(self.mainwindow)
@@ -230,9 +233,13 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
         return False
 
     def on_module_selected(self, widget, category, name):
-        self.create_or_launch_module(category, name)
+        if name in self._loaded_modules:
+            self.tweaknotebook.set_current_page(self._loaded_modules[name])
+        else:
+            self.tweaknotebook.set_current_page(1)
+            self.create_module(category, name)
 
-    def create_or_launch_module(self, category, name):
+    def create_module(self, category, name):
         module = MODULE_LOADER.get_module(category, name)
         page = module()
 
@@ -240,6 +247,7 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
         page.show_all()
         index = self.tweaknotebook.append_page(page, Gtk.Label(label=name))
         self.tweaknotebook.set_current_page(index)
+        self._loaded_modules[name] = index
 
     def run(self):
         Gtk.main()
