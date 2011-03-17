@@ -29,15 +29,12 @@ class ModuleLoader:
 
     def __init__(self, path):
         for k, v in self.category_table:
-            self.module_table[k] = []
+            self.module_table[k] = {}
 
         if os.path.isdir(path):
             self.do_package_import(path)
         else:
             self.do_module_import(path)
-
-        for k in self.module_table.keys():
-            self.module_table[k].sort(module_cmp)
 
     def do_module_import(self, path):
         module = os.path.splitext(os.path.basename(path))[0]
@@ -56,7 +53,7 @@ class ModuleLoader:
                     package = __import__('.'.join([__name__, module]), fromlist=['modules'])
                 except Exception, e:
                     Broken = create_broken_module_class(module)
-                    self.module_table['broken'].append(Broken)
+                    self.module_table['broken'][Broken.get_name()] = Broken
                     log.error("Module import error: %s", str(e))
                     continue
                 else:
@@ -66,22 +63,19 @@ class ModuleLoader:
     def _insert_moduel(self, k, v):
         if k not in ('TweakModule', 'proxy') and hasattr(v, '__utmodule__'):
             if v.__utactive__:
-                self.module_table[v.__category__].append(v)
+                self.module_table[v.__category__][v.get_name()] = v
 
     def get_categories(self):
         for k, v in self.category_table:
             yield k, v
 
     def get_modules_by_category(self, category):
-        modules = self.module_table.get(category)
-
+        modules = self.module_table.get(category).values()
+        modules.sort(module_cmp)
         return modules
 
-    def get_module(self, id):
-        if not self.module_table.has_key(id):
-            raise ModuleKeyError('No module with id "%s"' % id)
-        else:
-            return self.module_table[id]
+    def get_module(self, category, name):
+        return self.module_table[category][name]
 
 
 class TweakModule(Gtk.VBox):
@@ -95,6 +89,7 @@ class TweakModule(Gtk.VBox):
     #Identify whether it is a ubuntu tweak module
     __utmodule__ = ''
     __utactive__ = True
+    __category__ = ''
 
     #update use internal, and call use between modules
     __gsignals__ = {
@@ -214,6 +209,10 @@ class TweakModule(Gtk.VBox):
         '''Return the module title, it is for human read with i18n support
         '''
         return cls.__title__
+
+    @classmethod
+    def get_category(cls):
+        return cls.__category__
 
     def get_error(self):
         return self.error_view.get_buffer().get_property('text')

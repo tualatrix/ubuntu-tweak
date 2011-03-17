@@ -90,10 +90,17 @@ class WelcomePage(Gtk.VBox):
 
 
 class ModuleTreeView(Gtk.TreeView):
-    (NAME_COLUMN,
+    __gsignals__ = {
+        'module_selected': (gobject.SIGNAL_RUN_FIRST,
+                            gobject.TYPE_NONE,
+                            (gobject.TYPE_STRING, gobject.TYPE_STRING))
+        }
+
+    (CATEGORY_COLUMN,
+     NAME_COLUMN,
      LOGO_COLUMN,
      TITLE_COLUMN,
-     MODULE_CLASS) = range(4)
+     MODULE_CLASS) = range(5)
 
     def __init__(self):
         gobject.GObject.__init__(self)
@@ -113,6 +120,7 @@ class ModuleTreeView(Gtk.TreeView):
         Module class name, module icon and module title
         '''
         model = Gtk.TreeStore(gobject.TYPE_STRING,
+                              gobject.TYPE_STRING,
                               GdkPixbuf.Pixbuf,
                               gobject.TYPE_STRING)
 
@@ -120,22 +128,22 @@ class ModuleTreeView(Gtk.TreeView):
 
     def update_model(self):
         model = self.get_model()
-        model.append(None, (None,
+        model.append(None, (None, None,
                             icon.get_from_name('ubuntu-tweak', size=32),
                             "<b><big>%s</big></b>" % _('Welcome')))
 
         for category, category_name in MODULE_LOADER.get_categories():
-            module_list = MODULE_LOADER.get_modules_by_category(category)
+            modules = MODULE_LOADER.get_modules_by_category(category)
 
-            if module_list:
-                iter = model.append(None, (None,
-                                           None,
+            if modules:
+                iter = model.append(None, (None, None, None,
                                            "<b><big>%s</big></b>" % category_name))
 
-                for module in module_list:
+                for module in modules:
                     log.debug("Insert module: name: %s" % module.get_name())
 
-                    model.append(iter, (module.get_name(),
+                    model.append(iter, (module.get_category(),
+                                        module.get_name(),
                                         module.get_pixbuf(),
                                         module.get_title()))
 
@@ -174,20 +182,17 @@ class ModuleTreeView(Gtk.TreeView):
 
     def on_select_module(self, widget):
         model, iter = widget.get_selected()
-        print model, iter
 
         if iter:
             if model.iter_has_child(iter):
                 path = model.get_path(iter)
-                self.expand_row(path, True)
-                child_iter = model.iter_children(iter)
-                name = model.get_value(child_iter, self.NAME_COLUMN)
+                iter = model.iter_children(iter)
 
-                widget.select_iter(child_iter)
-            else:
-                name = model.get_value(iter, self.NAME_COLUMN)
+            category = model.get_value(iter, self.CATEGORY_COLUMN)
+            name = model.get_value(iter, self.NAME_COLUMN)
 
-                widget.select_iter(iter)
+            widget.select_iter(iter)
+            self.emit('module_selected', category, name)
 
 class UbuntuTweakApp(Unique.App, GuiBuilder):
     def __init__(self, name='com.ubuntu-tweak.Tweak', startup_id=''):
@@ -203,6 +208,7 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
         self.connect('message-received', self.on_message_received)
         # Always show welcome page at first
         self.mainwindow.connect('realize', lambda f: self.tweaknotebook.set_current_page(0))
+        module_view.connect('module_selected', self.on_module_selected)
 
         self.mainwindow.show_all()
 
@@ -222,6 +228,18 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
             self.mainwindow.present()
 
         return False
+
+    def on_module_selected(self, widget, category, name):
+        self.create_or_launch_module(category, name)
+
+    def create_or_launch_module(self, category, name):
+        module = MODULE_LOADER.get_module(category, name)
+        page = module()
+
+        #TODO
+        page.show_all()
+        index = self.tweaknotebook.append_page(page, Gtk.Label(label=name))
+        self.tweaknotebook.set_current_page(index)
 
     def run(self):
         Gtk.main()
