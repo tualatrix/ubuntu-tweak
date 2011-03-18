@@ -51,3 +51,9 @@ class ErrorDialog(BaseDialog):
                  type=Gtk.MessageType.ERROR, buttons=Gtk.ButtonsType.OK):
         BaseDialog.__init__(self, title=title, message=message,
                             parent=parent, type=type, buttons=buttons)
+
+class InfoDialog(BaseDialog):
+    def __init__(self, title='', message='', parent=None,
+                 type=Gtk.MessageType.INFO, buttons=Gtk.ButtonsType.OK):
+        BaseDialog.__init__(self, title=title, message=message,
+                            parent=parent, type=type, buttons=buttons)

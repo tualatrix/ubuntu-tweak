@@ -18,21 +18,22 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-import re
 import os
+import re
 import sys
-import gtk
-import gettext
 import time
 import thread
 import tempfile
 import subprocess
 import logging
-import apt_pkg
 
+import apt_pkg
+import gobject
+from gi.repository import Gtk, Gdk
 from xdg.DesktopEntry import DesktopEntry
+
 from ubuntutweak.common.debug import run_traceback
-from ubuntutweak.ui.dialogs import InfoDialog, ErrorDialog
+from ubuntutweak.gui.dialogs import InfoDialog, ErrorDialog
 
 p_kernel_version = re.compile('[.\d]+-\d+')
 p_kernel_package = re.compile('linux-[a-z\-]+')
@@ -154,13 +155,13 @@ class PackageWorker:
 
     def perform_action(self, window_main, to_add=[], to_rm=[]):
         window_main.set_sensitive(False)
-        window_main.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        window_main.window.set_cursor(Gdk.Cursor.new(Gdk.WATCH))
         lock = thread.allocate_lock()
         lock.acquire()
         t = thread.start_new_thread(self.run_synaptic, (window_main.window.xid, lock, to_add, to_rm))
         while lock.locked():
-            while gtk.events_pending():
-                gtk.main_iteration()
+            while Gtk.events_pending():
+                Gtk.main_iteration()
             time.sleep(0.05)
         window_main.set_sensitive(True)
         window_main.window.set_cursor(None)
@@ -321,9 +322,9 @@ class PackageWorker:
 
 PACKAGE_WORKER = PackageWorker()
 
-class AptCheckButton(gtk.CheckButton):
-    def __init__(self, label, pkgname, tooltip = None):
-        gtk.CheckButton.__init__(self, label)
+class AptCheckButton(Gtk.CheckButton):
+    def __init__(self, label, pkgname, tooltip=None):
+        gobject.GObject.__init__(self, label=label)
 
         self.pkgname = pkgname
         if tooltip:
