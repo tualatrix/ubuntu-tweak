@@ -29,13 +29,46 @@ def on_reset_button_clicked(widget, reset_target):
 
     if issubclass(reset_target.__class__, Gtk.CheckButton):
         reset_target.set_active(widget.get_default_value())
+    elif issubclass(reset_target.__class__, Gtk.SpinButton):
+        reset_target.set_value(widget.get_default_value())
 
 
 class WidgetFactory:
+    composite_capable = ('SpinButton',)
 
     @classmethod
     def create(cls, widget, **kwargs):
-        return getattr(cls, 'do_create')(widget, **kwargs)
+        if widget in cls.composite_capable and kwargs.has_key('label'):
+            return getattr(cls, 'do_composite_create')(widget, **kwargs)
+        else:
+            return getattr(cls, 'do_create')(widget, **kwargs)
+
+    @classmethod
+    def do_composite_create(cls, widget, **kwargs):
+        label = Gtk.Label(kwargs.pop('label'))
+        signal_dict = kwargs.pop('signal_dict', None)
+
+        enable_reset = kwargs.has_key('enable_reset')
+        if enable_reset:
+            kwargs.pop('enable_reset')
+
+        new_widget = globals().get(widget)(**kwargs)
+
+        if signal_dict:
+            for signal, method in signal_dict.items():
+                new_widget.connect(signal, method)
+
+        if enable_reset:
+            try:
+                reset_button = ResetButton(kwargs['key'])
+                reset_button.connect('clicked', on_reset_button_clicked, new_widget)
+            except Exception, e:
+                log.error(e)
+                reset_button = None
+            finally:
+                return label, new_widget, reset_button
+
+        return label, new_widget
 
     @classmethod
     def do_create(cls, widget, **kwargs):

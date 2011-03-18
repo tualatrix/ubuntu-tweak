@@ -85,9 +85,24 @@ class Entry(Gtk.Entry):
         if self.get_text():
             self.setting.set_value(self.get_text())
         else:
-            print 'uset'
             self.setting.client.unset(self.setting.key)
             self.set_text(_("Unset"))
+
+
+class SpinButton(Gtk.SpinButton):
+    def __init__(self, key, min=0, max=0, step=0, backend=GConf):
+        if backend == GConf:
+            self.setting = GconfSetting(key=key, type=int)
+        else:
+            #TODO Gio
+            pass
+
+        adjust = Gtk.Adjustment(self.setting.get_value(), min, max, step)
+        gobject.GObject.__init__(self, adjustment=adjust)
+        self.connect('value-changed', self.on_value_changed)
+
+    def on_value_changed(self, widget):
+        self.setting.set_value(widget.get_value())
 
 
 """Popup and KeyGrabber come from ccsm"""

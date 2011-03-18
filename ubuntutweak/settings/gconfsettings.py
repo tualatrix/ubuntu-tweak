@@ -36,6 +36,10 @@ class GconfSetting(object):
                 return gconfvalue.get_bool()
             if gconfvalue.type == GConf.ValueType.STRING:
                 return gconfvalue.get_string()
+            if gconfvalue.type == GConf.ValueType.INT:
+                return gconfvalue.get_int()
+            if gconfvalue.type == GConf.ValueType.FLOAT:
+                return gconfvalue.get_float()
         else:
             if self.type == int:
                 return 0
@@ -57,6 +61,12 @@ class GconfSetting(object):
         elif type(value) == str:
             gconfvalue.type = GConf.ValueType.STRING
             gconfvalue.set_string(value)
+        elif type(value) == int:
+            gconfvalue.type = GConf.ValueType.INT
+            gconfvalue.set_int(value)
+        elif type(value) == float:
+            gconfvalue.type = GConf.ValueType.FLOAT
+            gconfvalue.set_float(value)
 
         self.client.set(self.key, gconfvalue)
 

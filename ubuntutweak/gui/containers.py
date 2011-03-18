@@ -47,3 +47,44 @@ class ListPack(BaseListPack):
                     self.items.append(widget)
         else:
             self = None
+
+
+class TablePack(BaseListPack):
+    def __init__(self, title, items):
+        BaseListPack.__init__(self, title)
+
+        columns = 1
+        for i, item in enumerate(items):
+            rows = i + 1
+            if len(item) > columns:
+                columns = len(item)
+
+        table = Gtk.Table(rows, columns)
+
+        for item in items:
+            if item is not None:
+                top_attach = items.index(item)
+
+                if issubclass(item.__class__, Gtk.Widget):
+                    table.attach(item, 0, columns, top_attach,
+                                 top_attach + 1, ypadding=6)
+                else:
+                    for widget in item:
+                        if widget:
+                            left_attch = item.index(widget)
+
+                            if type(widget) == Gtk.Label:
+                                widget.set_alignment(0, 0.5)
+
+                            if left_attch == 1:
+                                table.attach(widget, left_attch,
+                                             left_attch + 1, top_attach,
+                                             top_attach + 1, xpadding=12,
+                                             ypadding=6)
+                            else:
+                                table.attach(widget, left_attch,
+                                             left_attch + 1, top_attach,
+                                             top_attach + 1, Gtk.AttachOptions.FILL,
+                                             ypadding=6)
+
+        self.vbox.pack_start(table, True, True, 0)
