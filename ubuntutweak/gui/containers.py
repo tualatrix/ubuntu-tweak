@@ -10,6 +10,7 @@ class BasePack(Gtk.VBox):
         title.select()
         self.pack_start(title, False, False, 0)
 
+
 class BaseListPack(BasePack):
     def __init__(self, title):
         BasePack.__init__(self, title)
@@ -23,6 +24,14 @@ class BaseListPack(BasePack):
 
         self.vbox = Gtk.VBox()
         hbox.pack_start(self.vbox, True, True, 0)
+
+
+class SinglePack(BasePack):
+    def __init__(self, title, widget):
+        BasePack.__init__(self, title)
+
+        self.pack_start(widget, True, True, 10)
+
 
 class ListPack(BaseListPack):
     def __init__(self, title, widgets, padding=6):
