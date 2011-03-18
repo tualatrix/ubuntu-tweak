@@ -26,7 +26,7 @@ from ubuntutweak import modules
 from ubuntutweak.gui import GuiBuilder
 from ubuntutweak.utils import icon
 from ubuntutweak.common.consts import VERSION, DATA_DIR
-from ubuntutweak.modules import ModuleLoader
+from ubuntutweak.modules import ModuleLoader, create_broken_module_class
 
 log = logging.getLogger('app')
 
@@ -242,8 +242,11 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
             self.create_module(category, name)
 
     def create_module(self, category, name):
-        module = MODULE_LOADER.get_module(category, name)
-        page = module()
+        try:
+            module = MODULE_LOADER.get_module(category, name)
+            page = module()
+        except:
+            page = create_broken_module_class(name)()
 
         #TODO
         page.show_all()
