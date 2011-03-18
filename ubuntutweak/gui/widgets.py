@@ -1,5 +1,7 @@
+import time
+
 import gobject
-from gi.repository import Gtk, GConf
+from gi.repository import Gtk, Gdk, GConf
 
 from ubuntutweak.settings.gconfsettings import GconfSetting
 
@@ -86,3 +88,127 @@ class Entry(Gtk.Entry):
             print 'uset'
             self.setting.client.unset(self.setting.key)
             self.set_text(_("Unset"))
+
+
+"""Popup and KeyGrabber come from ccsm"""
+KeyModifier = ["Shift", "Control", "Mod1", "Mod2", "Mod3", "Mod4",
+               "Mod5", "Alt", "Meta", "Super", "Hyper", "ModeSwitch"]
+
+
+class Popup(Gtk.Window):
+    def __init__(self, parent, text=None, child=None,
+                 decorated=True, mouse=False, modal=True):
+        gobject.GObject.__init__(self, type=Gtk.WindowType.TOPLEVEL)
+        self.set_type_hint(Gdk.WindowTypeHint.UTILITY)
+        self.set_position(mouse and Gtk.WindowPosition.MOUSE or
+                          Gtk.WindowPosition.CENTER_ALWAYS)
+
+        if parent:
+            self.set_transient_for(parent.get_toplevel())
+
+        self.set_modal(modal)
+        self.set_decorated(decorated)
+        self.set_title("")
+
+        if text:
+            label = Gtk.Label(label=text)
+            align = Gtk.Alignment()
+            align.set_padding(20, 20, 20, 20)
+            align.add(label)
+            self.add(align)
+        elif child:
+            self.add(child)
+
+        while Gtk.events_pending():
+            Gtk.main_iteration()
+
+    def destroy(self):
+        Gtk.Window.destroy(self)
+        while Gtk.events_pending():
+            Gtk.main_iteration()
+
+
+class KeyGrabber(Gtk.Button):
+    __gsignals__ = {
+        "changed": (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE,
+                    (gobject.TYPE_INT, gobject.TYPE_INT)),
+        "current-changed": (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE,
+                            (gobject.TYPE_INT, Gdk.ModifierType))
+    }
+
+    key = 0
+    mods = 0
+    handler = None
+    popup = None
+
+    label = None
+
+    def __init__ (self, parent=None, key=0, mods=0, label=None):
+        '''Prepare widget'''
+        gobject.GObject.__init__(self)
+
+        self.main_window = parent
+        self.key = key
+        self.mods = mods
+
+        self.label = label
+
+        self.connect("clicked", self.begin_key_grab)
+        self.set_label()
+
+    def begin_key_grab(self, widget):
+        self.add_events(Gdk.EventMask.KEY_PRESS_MASK)
+        self.popup = Popup(self.main_window,
+                           _("Please press the new key combination"))
+        self.popup.show_all()
+
+        self.handler = self.popup.connect("key-press-event",
+                                          self.on_key_press_event)
+        while Gdk.keyboard_grab(self.popup.window,
+                                True,
+                                Gtk.get_current_event_time()) != Gdk.GrabStatus.SUCCESS:
+            time.sleep (0.1)
+
+    def end_key_grab(self):
+        Gdk.keyboard_ungrab(Gtk.get_current_event_time())
+        self.popup.disconnect(self.handler)
+        self.popup.destroy()
+
+    def on_key_press_event(self, widget, event):
+        #mods = event.get_state() & Gtk.accelerator_get_default_mod_mask()
+        mods = event.get_state()
+
+        if event.keyval in (Gdk.KEY_Escape, Gdk.KEY_Return) and not mods:
+            if event.keyval == Gdk.KEY_Escape:
+                self.emit("changed", self.key, self.mods)
+            self.end_key_grab()
+            self.set_label()
+            return
+
+        key = Gdk.keyval_to_lower(event.keyval)
+        if (key == Gdk.KEY_ISO_Left_Tab):
+            key = Gdk.KEY_Tab
+
+        if Gtk.accelerator_valid(key, mods) or (key == Gdk.KEY_Tab and mods):
+            self.set_label(key, mods)
+            self.end_key_grab()
+            self.key = key
+            self.mods = mods
+            self.emit("changed", self.key, self.mods)
+            return
+
+        self.set_label(key, mods)
+
+    def set_label(self, key=None, mods=None):
+        if self.label:
+            if key != None and mods != None:
+                self.emit("current-changed", key, mods)
+            Gtk.Button.set_label(self, self.label)
+            return
+        if key == None and mods == None:
+            key = self.key
+            mods = self.mods
+        label = Gtk.accelerator_name(key, mods)
+        if not len(label):
+            label = _("Disabled")
+        Gtk.Button.set_label(self, label)

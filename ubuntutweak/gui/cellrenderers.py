@@ -15,29 +15,29 @@ __copyright__= "Copyright (C) 2009 by Mingxi Wu <fengshenx@gmail.com>."
 # 2009-11-18
 # TualatriX, make it can accept text data
 
-import pygtk
-pygtk.require("2.0")
-import gtk
-import gobject
-import pango
 import cairo
+import gobject
+from gi.repository import Gtk, Pango
 
-class CellRendererButton(gtk.CellRenderer):
+class CellRendererButton(Gtk.CellRenderer):
     __gsignals__ = {
-        'clicked': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_STRING,))
+        'clicked': (gobject.SIGNAL_RUN_FIRST,
+                    gobject.TYPE_NONE,
+                    (gobject.TYPE_STRING,))
     }
 
     __gproperties__ = {
-        'text': (gobject.TYPE_STRING, 'Text', 'Text for button', '', gobject.PARAM_READWRITE)
+        'text': (gobject.TYPE_STRING, 'Text',
+                 'Text for button', '', gobject.PARAM_READWRITE)
     }
 
     def __init__(self, text=None):
-        self.__gobject_init__()
+        gobject.GObject.__init__(self)
 
         self.text = text
         self._xpad = 6
         self._ypad = 2
-        self.set_property('mode',gtk.CELL_RENDERER_MODE_ACTIVATABLE)
+        self.set_property('mode', Gtk.CellRendererMode.ACTIVATABLE)
 
     def do_set_property(self, pspec, value):
         setattr(self, pspec.name, value)
@@ -45,35 +45,37 @@ class CellRendererButton(gtk.CellRenderer):
     def do_get_property(self, pspec):
         return getattr(self, pspec.name)
 
-    def do_get_size (self, widget, cell_area):
+    def do_get_size (self, widget, x, y, width, height, data):
         context = widget.get_pango_context()
         metrics = context.get_metrics(widget.style.font_desc, 
-                    context.get_language())
+                                      context.get_language())
         row_height = metrics.get_ascent() + metrics.get_descent()
-        height = pango.PIXELS(row_height) + self._ypad * 2
+        height = (row_height + 512 >> 10) + self._ypad * 2
 
         layout = widget.create_pango_layout(self.text)
         (row_width, layout_height) = layout.get_pixel_size()
         width = row_width + self._xpad * 2
+        print width, height
         
         return (0, 0, width, height)
 
-    def do_render(self, window, widget, background_area, cell_area, expose_area, flags):
+    def do_render(self, window, widget,
+                  background_area, cell_area, expose_area, flags):
         layout = widget.create_pango_layout(self.text)
         (layout_width, layout_height) = layout.get_pixel_size()
         layout_xoffset = (cell_area.width - layout_width) / 2 + cell_area.x
-        layout_yoffset = (cell_area.height - layout_height) /2 + cell_area.y
-        widget.style.paint_box (window, widget.state, gtk.SHADOW_OUT, 
-                               expose_area, widget, 'button',
-                               cell_area.x, cell_area.y, cell_area.width, cell_area.height)
-        widget.style.paint_layout(window, widget.state, True, expose_area,
-                                  widget, "cellrenderertext", layout_xoffset, layout_yoffset,
-                                  layout)
+        layout_yoffset = (cell_area.height - layout_height) / 2 + cell_area.y
 
-    def do_activate(self, event, widget, path, background_area, cell_area, flags):
+        Gtk.paint_box(widget.style, window, widget.state, Gtk.ShadowType.OUT, 
+                               expose_area, widget, 'button',
+                               cell_area.x, cell_area.y,
+                               cell_area.width, cell_area.height)
+        Gtk.paint_layout(widget.style, window, widget.state, True, expose_area,
+                                  widget, "cellrenderertext", layout_xoffset,
+                                  layout_yoffset, layout)
+
+    def do_activate(self, event, widget, path,
+                    background_area, cell_area, flags):
         self.emit('clicked', path)
 
 gobject.type_register(CellRendererButton)
-
-if __name__=="__main__":
-    pass

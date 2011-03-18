@@ -36,6 +36,23 @@ class CompizPlugin:
     def __init__(self, name):
         self._plugin = self.context.Plugins[name]
 
+    @classmethod
+    def set_plugin_active(cls, name, active):
+        try:
+            plugin = cls.context.Plugins[name]
+            plugin.Enabled = int(active)
+            cls.context.Write()
+        except:
+            pass
+
+    @classmethod
+    def get_plugin_active(cls, name):
+        try:
+            plugin = cls.context.Plugins[name]
+            return bool(plugin.Enabled)
+        except:
+            return False
+
     def set_enabled(self, bool):
         self._plugin.Enabled = int(bool)
         self.save()
