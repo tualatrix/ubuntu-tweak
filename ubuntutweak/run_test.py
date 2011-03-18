@@ -20,6 +20,7 @@
 
 import os
 import sys
+import inspect
 sys.path.insert(0, os.path.dirname(os.path.abspath('.')))
 
 from gi.repository import Gtk, Gdk
@@ -68,6 +69,11 @@ class ManyTest:
 if __name__ == '__main__':
     enable_debugging()
 
-    from modules import ModuleLoader
-    loader = ModuleLoader(sys.argv[1])
-    Test(loader.id_table.values()[0])
+    module = os.path.splitext(os.path.basename(sys.argv[1]))[0]
+    folder = os.path.dirname(sys.argv[1])
+    package = __import__('.'.join([folder, module]))
+
+    for k, v in inspect.getmembers(getattr(package, module)):
+        if k not in ('TweakModule', 'proxy') and hasattr(v, '__utmodule__'):
+            module = v
+            Test(module)
