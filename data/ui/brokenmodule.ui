@@ -3,21 +3,26 @@
   <requires lib="gtk+" version="2.16"/>
   <!-- interface-naming-policy project-wide -->
   <object class="GtkWindow" id="window1">
+    <property name="can_focus">False</property>
     <child>
       <object class="GtkAlignment" id="alignment1">
         <property name="visible">True</property>
+        <property name="can_focus">False</property>
         <property name="xalign">1</property>
         <child>
           <object class="GtkHBox" id="main_hbox">
             <property name="visible">True</property>
+            <property name="can_focus">False</property>
             <property name="border_width">7</property>
             <property name="spacing">7</property>
             <child>
               <object class="GtkVBox" id="vbox3">
                 <property name="visible">True</property>
+                <property name="can_focus">False</property>
                 <child>
                   <object class="GtkImage" id="image1">
                     <property name="visible">True</property>
+                    <property name="can_focus">False</property>
                     <property name="pixel_size">64</property>
                     <property name="icon_name">emblem-ohno</property>
                     <property name="icon-size">6</property>
@@ -38,10 +43,12 @@
             <child>
               <object class="GtkVBox" id="vbox2">
                 <property name="visible">True</property>
+                <property name="can_focus">False</property>
                 <property name="spacing">7</property>
                 <child>
                   <object class="GtkLabel" id="title_label">
                     <property name="visible">True</property>
+                    <property name="can_focus">False</property>
                     <property name="xalign">0</property>
                     <property name="label" translatable="yes">&lt;big&gt;&lt;b&gt;This module encountered an error while loading.&lt;/b&gt;&lt;/big&gt;</property>
                     <property name="use_markup">True</property>
@@ -55,6 +62,7 @@
                 <child>
                   <object class="GtkLabel" id="message_label">
                     <property name="visible">True</property>
+                    <property name="can_focus">False</property>
                     <property name="xalign">0</property>
                     <property name="yalign">0.30000001192092896</property>
                     <property name="label" translatable="yes">If you'd like to help us fix the problem,
@@ -65,6 +73,7 @@ Please choose &lt;i&gt;Report&lt;/i&gt; to file a new bug report. Make sure to i
                   </object>
                   <packing>
                     <property name="expand">False</property>
+                    <property name="fill">True</property>
                     <property name="position">1</property>
                   </packing>
                 </child>
@@ -79,6 +88,7 @@ Please choose &lt;i&gt;Report&lt;/i&gt; to file a new bug report. Make sure to i
                         <property name="can_focus">True</property>
                         <property name="hscrollbar_policy">automatic</property>
                         <property name="vscrollbar_policy">automatic</property>
+                        <property name="shadow_type">in</property>
                         <child>
                           <placeholder/>
                         </child>
@@ -87,19 +97,21 @@ Please choose &lt;i&gt;Report&lt;/i&gt; to file a new bug report. Make sure to i
                     <child type="label">
                       <object class="GtkLabel" id="label3">
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Error Message</property>
                       </object>
                     </child>
                   </object>
                   <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">False</property>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
                     <property name="position">2</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkHButtonBox" id="hbuttonbox1">
                     <property name="visible">True</property>
+                    <property name="can_focus">False</property>
                     <property name="spacing">12</property>
                     <property name="layout_style">end</property>
                     <child>
@@ -107,26 +119,34 @@ Please choose &lt;i&gt;Report&lt;/i&gt; to file a new bug report. Make sure to i
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <signal name="clicked" handler="on_report_button_clicked"/>
+                        <property name="use_action_appearance">False</property>
+                        <signal name="clicked" handler="on_report_button_clicked" swapped="no"/>
                         <child>
                           <object class="GtkHBox" id="hbox1">
                             <property name="visible">True</property>
+                            <property name="can_focus">False</property>
                             <child>
                               <object class="GtkImage" id="image2">
                                 <property name="visible">True</property>
+                                <property name="can_focus">False</property>
                                 <property name="stock">gtk-yes</property>
                               </object>
                               <packing>
+                                <property name="expand">True</property>
+                                <property name="fill">True</property>
                                 <property name="position">0</property>
                               </packing>
                             </child>
                             <child>
                               <object class="GtkLabel" id="label1">
                                 <property name="visible">True</property>
+                                <property name="can_focus">False</property>
                                 <property name="label" translatable="yes">_Report</property>
                                 <property name="use_underline">True</property>
                               </object>
                               <packing>
+                                <property name="expand">True</property>
+                                <property name="fill">True</property>
                                 <property name="position">1</property>
                               </packing>
                             </child>
@@ -148,6 +168,8 @@ Please choose &lt;i&gt;Report&lt;/i&gt; to file a new bug report. Make sure to i
                 </child>
               </object>
               <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
                 <property name="position">1</property>
               </packing>
             </child>

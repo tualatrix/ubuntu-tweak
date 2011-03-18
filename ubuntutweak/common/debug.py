@@ -52,10 +52,13 @@ COLORS = {
 
 
 def on_copy_button_clicked(widget, text):
-    Gtk.Clipboard().set_text(text)
-    notify = Notify.Notification(_('Error message has been copied'),
-            _('Now click "Report" to enter the bug report website. Make sure to attach the error message in "Further information".'))
-    notify.set_hint_string ("x-canonical-append", "");
+    #TODO enable this in the future
+#    Gtk.Clipboard().set_text(text, -1)
+    notify = Notify.Notification(summary=_('Error message has been copied'))
+    notify.set_property('body', _('Now click "Report" to enter the bug ' \
+                                'report website. Make sure to attach the ' \
+                                'error message in "Further information".'))
+    notify.set_hint_string("x-canonical-append", "");
     notify.show()
 
 
@@ -76,10 +79,9 @@ def run_traceback(level, textview_only=False, text_only=False):
 
     textview.add_child_at_anchor(button, anchor)
 
-    error_text = "\nDistribution: %s\nApplication: %s\nDesktop: %s\n\n%s" % (system.DISTRO,
-                         system.APP,
-                         system.DESKTOP,
-                         output.getvalue())
+    error_text = "\nDistribution: %s\nApplication: %s\n\n%s" % (system.DISTRO,
+                                                                system.APP,
+                                                                output.getvalue())
 
     buffer.insert(iter, error_text)
     button.connect('clicked', on_copy_button_clicked, error_text)
@@ -108,28 +110,32 @@ class ColoredFormatter(logging.Formatter):
         return logging.Formatter.format(self, record)
 
 
-class UbuntuTweakLogger(logging.Logger):
-    COLOR_FORMAT = "["+BOLD_SEQ+"%(name)s"+RESET_SEQ+"][%(levelname)s] %(message)s ("+BOLD_SEQ+"%(filename)s"+RESET_SEQ+":%(lineno)d)"
-    NO_COLOR_FORMAT = "[%(name)s][%(levelname)s] %(message)s (%(filename)s:%(lineno)d)"
+class TweakLogger(logging.Logger):
+    COLOR_FORMAT = "[" + BOLD_SEQ + "%(name)s" + RESET_SEQ + \
+                   "][%(levelname)s] %(message)s (" + BOLD_SEQ + \
+                   "%(filename)s" + RESET_SEQ + ":%(lineno)d)"
+    NO_COLOR_FORMAT = "[%(name)s][%(levelname)s] %(message)s " \
+                      "(%(filename)s:%(lineno)d)"
     LOG_FILE_HANDLER = None
 
     def __init__(self, name):
         logging.Logger.__init__(self, name)
 
         #Add two handlers, a stderr one, and a file one
-        color_formatter = ColoredFormatter(UbuntuTweakLogger.COLOR_FORMAT)
-        no_color_formatter = ColoredFormatter(UbuntuTweakLogger.NO_COLOR_FORMAT, False)
+        color_formatter = ColoredFormatter(TweakLogger.COLOR_FORMAT)
+        no_color_formatter = ColoredFormatter(TweakLogger.NO_COLOR_FORMAT,
+                                              False)
 
         #create the single file appending handler
-        if UbuntuTweakLogger.LOG_FILE_HANDLER == None:
+        if TweakLogger.LOG_FILE_HANDLER == None:
             filename = os.path.join(CONFIG_ROOT, 'ubuntu-tweak.log')
-            UbuntuTweakLogger.LOG_FILE_HANDLER = logging.FileHandler(filename, 'w')
-            UbuntuTweakLogger.LOG_FILE_HANDLER.setFormatter(no_color_formatter)
+            TweakLogger.LOG_FILE_HANDLER = logging.FileHandler(filename, 'w')
+            TweakLogger.LOG_FILE_HANDLER.setFormatter(no_color_formatter)
 
         console = logging.StreamHandler()
         console.setFormatter(color_formatter)
 
-        self.addHandler(UbuntuTweakLogger.LOG_FILE_HANDLER)
+        self.addHandler(TweakLogger.LOG_FILE_HANDLER)
         self.addHandler(console)
         return
 
@@ -145,4 +151,4 @@ def disable_debugging():
 def disable_logging():
     logging.getLogger().setLevel(logging.CRITICAL + 1)
 
-logging.setLoggerClass(UbuntuTweakLogger)
+logging.setLoggerClass(TweakLogger)

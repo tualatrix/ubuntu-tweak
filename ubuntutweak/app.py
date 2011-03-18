@@ -233,6 +233,8 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
         return False
 
     def on_module_selected(self, widget, category, name):
+        log.debug('Select the %s in category %s' % (name, category))
+
         if name in self._loaded_modules:
             self.tweaknotebook.set_current_page(self._loaded_modules[name])
         else:

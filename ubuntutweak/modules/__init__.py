@@ -2,11 +2,14 @@ import os
 import logging
 import inspect
 import webbrowser
+from new import classobj
 
 import gobject
 from gi.repository import Gtk, Pango
 
 from ubuntutweak.utils import icon
+from ubuntutweak.common.consts import DATA_DIR
+from ubuntutweak.common.debug import run_traceback
 
 log = logging.getLogger('ModuleLoader')
 
@@ -240,6 +243,7 @@ def create_broken_module_class(name):
                     (BrokenModule,),
                     {'__name__': module_name,
                      '__title__': name,
+                     '__category__': 'broken',
                      'error_view': run_traceback('error', textview_only=True)})
 
 
