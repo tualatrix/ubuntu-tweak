@@ -221,11 +221,10 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
         Gtk.main_quit()
 
     def on_preference_button_clicked(self, widget):
-        #TODO
+        #TODO and FIXME, it can only show once
         self.aboutdialog.set_version(VERSION)
         self.aboutdialog.set_transient_for(self.mainwindow)
         self.aboutdialog.run()
-        self.aboutdialog.destroy()
 
     def on_message_received(self, app, command, message, time):
         log.debug("on_message_received: command: %s, message: %s, time: %s" % (
