@@ -199,6 +199,8 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
         Unique.App.__init__(self, name=name, startup_id=startup_id)
         GuiBuilder.__init__(self, file_name='mainwindow.ui')
 
+        Gtk.rc_parse(os.path.join(DATA_DIR, 'theme/ubuntu-tweak.rc'))
+
         module_view = ModuleTreeView()
         self.scrolledwindow1.add(module_view)
 
