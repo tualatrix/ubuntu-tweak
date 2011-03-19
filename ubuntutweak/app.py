@@ -220,7 +220,8 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
     def on_mainwindow_destroy(self, widget):
         Gtk.main_quit()
 
-    def on_about_button_clicked(self, widget):
+    def on_preference_button_clicked(self, widget):
+        #TODO
         self.aboutdialog.set_version(VERSION)
         self.aboutdialog.set_transient_for(self.mainwindow)
         self.aboutdialog.run()
@@ -255,6 +256,10 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
         index = self.tweaknotebook.append_page(page, Gtk.Label(label=name))
         self.tweaknotebook.set_current_page(index)
         self._loaded_modules[name] = index
+
+    def on_back_button_clicked(self, widget):
+        #TODO
+        print 'back clicked'
 
     def run(self):
         Gtk.main()
