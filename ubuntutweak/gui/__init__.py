@@ -7,7 +7,7 @@ from ubuntutweak.common.consts import DATA_DIR
 
 class GuiBuilder(object):
     def __init__(self, file_name):
-        file_path = os.path.join(DATA_DIR, 'ui', file_name)
+        file_path = os.path.join(DATA_DIR, file_name)
 
         self.builder = Gtk.Builder()
         self.builder.set_translation_domain('ubuntu-tweak')

@@ -27,6 +27,7 @@ from ubuntutweak.gui import GuiBuilder
 from ubuntutweak.utils import icon
 from ubuntutweak.common.consts import VERSION, DATA_DIR
 from ubuntutweak.modules import ModuleLoader, create_broken_module_class
+from ubuntutweak.clips import ClipPage
 
 log = logging.getLogger('app')
 
@@ -197,7 +198,7 @@ class ModuleTreeView(Gtk.TreeView):
 class UbuntuTweakApp(Unique.App, GuiBuilder):
     def __init__(self, name='com.ubuntu-tweak.Tweak', startup_id=''):
         Unique.App.__init__(self, name=name, startup_id=startup_id)
-        GuiBuilder.__init__(self, file_name='mainwindow.ui')
+        GuiBuilder.__init__(self, file_name='ui/mainwindow.ui')
 
         Gtk.rc_parse(os.path.join(DATA_DIR, 'theme/ubuntu-tweak.rc'))
 
@@ -207,15 +208,22 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
         # the module name and page index: 'Compiz': 2
         self._loaded_modules = {'welcome': 0}
 
+        self.mainnotebook.insert_page(ClipPage().get_object('hbox1'), Gtk.Label(label='Overview'), 0)
         self.tweaknotebook.insert_page(WelcomePage(), Gtk.Label(label='Welcome'), 0)
 
         self.watch_window(self.mainwindow)
         self.connect('message-received', self.on_message_received)
         # Always show welcome page at first
-        self.mainwindow.connect('realize', lambda f: self.tweaknotebook.set_current_page(0))
+        self.mainwindow.connect('realize', self._initialize_ui_states)
         module_view.connect('module_selected', self.on_module_selected)
 
         self.mainwindow.show_all()
+
+    def _initialize_ui_states(self, widget):
+        self.tweaknotebook.set_current_page(0)
+        self.mainnotebook.set_current_page(0)
+        self.overview_button.set_active(True)
+        self.search_entry.grab_focus()
 
     def on_mainwindow_destroy(self, widget):
         Gtk.main_quit()
@@ -259,6 +267,10 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
     def on_back_button_clicked(self, widget):
         #TODO
         print 'back clicked'
+
+    def on_next_button_clicked(self, widget):
+        #TODO
+        print 'next clicked'
 
     def run(self):
         Gtk.main()
