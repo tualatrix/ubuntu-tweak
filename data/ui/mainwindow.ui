@@ -216,6 +216,7 @@ Medical-Wei &lt;a790407@hotmail.com&gt; Artwork of 0.1</property>
                             <property name="active">True</property>
                             <property name="draw_indicator">False</property>
                             <property name="group">tweaks_button</property>
+                            <signal name="toggled" handler="on_overview_button_toggled" swapped="no"/>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -232,6 +233,7 @@ Medical-Wei &lt;a790407@hotmail.com&gt; Artwork of 0.1</property>
                             <property name="use_action_appearance">False</property>
                             <property name="draw_indicator">False</property>
                             <property name="group">overview_button</property>
+                            <signal name="toggled" handler="on_tweaks_button_toggled" swapped="no"/>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -281,7 +283,6 @@ Medical-Wei &lt;a790407@hotmail.com&gt; Artwork of 0.1</property>
                 <property name="position">1</property>
                 <child>
                   <object class="GtkScrolledWindow" id="scrolledwindow1">
-                    <property name="width_request">150</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="hscrollbar_policy">automatic</property>

@@ -221,7 +221,6 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
 
     def _initialize_ui_states(self, widget):
         self.tweaknotebook.set_current_page(0)
-        self.mainnotebook.set_current_page(0)
         self.overview_button.set_active(True)
         self.search_entry.grab_focus()
 
@@ -271,6 +270,14 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
     def on_next_button_clicked(self, widget):
         #TODO
         print 'next clicked'
+
+    def on_overview_button_toggled(self, widget):
+        if widget.get_active():
+            self.mainnotebook.set_current_page(0)
+
+    def on_tweaks_button_toggled(self, widget):
+        if widget.get_active():
+            self.mainnotebook.set_current_page(1)
 
     def run(self):
         Gtk.main()
