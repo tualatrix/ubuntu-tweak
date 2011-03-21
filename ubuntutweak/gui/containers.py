@@ -49,9 +49,9 @@ class ListPack(BaseListPack):
             self = None
 
 
-class TablePack(BaseListPack):
-    def __init__(self, title, items):
-        BaseListPack.__init__(self, title)
+class EasyTable(Gtk.Table):
+    def __init__(self, items=[], xpadding=6, ypadding=6):
+        gobject.GObject.__init__(self)
 
         columns = 1
         for i, item in enumerate(items):
@@ -59,15 +59,16 @@ class TablePack(BaseListPack):
             if len(item) > columns:
                 columns = len(item)
 
-        table = Gtk.Table(rows, columns)
+        self.set_property('n-rows', rows)
+        self.set_property('n-columns', columns)
 
         for item in items:
             if item is not None:
                 top_attach = items.index(item)
 
                 if issubclass(item.__class__, Gtk.Widget):
-                    table.attach(item, 0, columns, top_attach,
-                                 top_attach + 1, ypadding=6)
+                    self.attach(item, 0, columns, top_attach,
+                                top_attach + 1, ypadding=ypadding)
                 else:
                     for widget in item:
                         if widget:
@@ -77,14 +78,22 @@ class TablePack(BaseListPack):
                                 widget.set_alignment(0, 0.5)
 
                             if left_attch == 1:
-                                table.attach(widget, left_attch,
-                                             left_attch + 1, top_attach,
-                                             top_attach + 1, xpadding=12,
-                                             ypadding=6)
+                                self.attach(widget, left_attch,
+                                            left_attch + 1, top_attach,
+                                            top_attach + 1, xpadding=xpadding,
+                                            ypadding=ypadding)
                             else:
-                                table.attach(widget, left_attch,
-                                             left_attch + 1, top_attach,
-                                             top_attach + 1, Gtk.AttachOptions.FILL,
-                                             ypadding=6)
+                                self.attach(widget, left_attch,
+                                            left_attch + 1, top_attach,
+                                            top_attach + 1, Gtk.AttachOptions.FILL,
+                                            ypadding=ypadding)
+
+
+
+class TablePack(BaseListPack):
+    def __init__(self, title, items):
+        BaseListPack.__init__(self, title)
+
+        table = EasyTable(items, xpadding=12)
 
         self.vbox.pack_start(table, True, True, 0)
