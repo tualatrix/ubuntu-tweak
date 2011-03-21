@@ -45,7 +45,7 @@ def get_from_list(list, size=DEFAULT_SIZE):
                                          size,
                                          Gtk.IconLookupFlags.USE_BUILTIN)
         except Exception, e:
-            log.error('get_from_list for %s failed, try next' % name)
+            log.warning('get_from_list for %s failed, try next' % name)
             continue
 
     if pixbuf:
