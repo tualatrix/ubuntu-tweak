@@ -1,3 +1,4 @@
+import os
 from gi.repository import Gtk
 
 from ubuntutweak import system
@@ -13,6 +14,8 @@ class SystemInfo(Clip):
         self.set_title(_('Ubuntu Desktop Information'))
 
         self.table = EasyTable(items=(
+                        (Gtk.Label(label=_('Hostname:')),
+                         Gtk.Label(label=os.uname()[1])),
                         (Gtk.Label(label=_('Distribution:')),
                          Gtk.Label(label=system.DISTRO)),
                         (Gtk.Label(label=_('Desktop Environment:')),
