@@ -104,8 +104,8 @@ class TweakModule(Gtk.VBox):
         gobject.GObject.__init__(self)
         self.set_border_width(6)
 
-        if self.__title__ and self.__desc__:
-            self.draw_title()
+#        if self.__title__ and self.__desc__:
+#            self.draw_title()
 
         self.scrolled_win = Gtk.ScrolledWindow()
         self.scrolled_win.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)

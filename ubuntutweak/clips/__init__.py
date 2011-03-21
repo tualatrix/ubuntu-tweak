@@ -26,6 +26,8 @@ class Clip(Gtk.VBox):
         label.set_markup('<b>%s</b>' % title)
 
         self.inner_vbox.pack_start(label, False, False, 0)
+        # Force reorder the title label, because sometime it will be called later
+        self.inner_vbox.reorder_child(label, 0)
 
     def set_content(self, content):
         self.inner_vbox.pack_start(content, False, False, 6)
@@ -40,7 +42,9 @@ class ClipPage(Gtk.VBox, GuiBuilder):
         from hardwareinfo import HardwareInfo
         from updateinfo import UpdateInfo
         from systeminfo import SystemInfo
+        from cleanerinfo import CleanerInfo
 
         self.clipvbox.pack_start(UpdateInfo(), False, False, 0)
         self.clipvbox.pack_start(SystemInfo(), False, False, 0)
         self.clipvbox.pack_start(HardwareInfo(), False, False, 0)
+        self.clipvbox.pack_start(CleanerInfo(), False, False, 0)
