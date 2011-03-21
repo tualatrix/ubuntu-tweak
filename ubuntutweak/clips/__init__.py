@@ -37,10 +37,10 @@ class ClipPage(Gtk.VBox, GuiBuilder):
         GuiBuilder.__init__(self, 'clips/clippage.ui')
 
         #TODO
-        from diskspace import DiskSpace
+        from hardwareinfo import HardwareInfo
         from updateinfo import UpdateInfo
         from systeminfo import SystemInfo
 
-        self.clipvbox.pack_start(DiskSpace().selfvbox, False, False, 0)
         self.clipvbox.pack_start(UpdateInfo(), False, False, 0)
         self.clipvbox.pack_start(SystemInfo(), False, False, 0)
+        self.clipvbox.pack_start(HardwareInfo(), False, False, 0)

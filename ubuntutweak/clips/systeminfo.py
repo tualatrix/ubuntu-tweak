@@ -16,6 +16,8 @@ class SystemInfo(Clip):
         self.table = EasyTable(items=(
                         (Gtk.Label(label=_('Hostname:')),
                          Gtk.Label(label=os.uname()[1])),
+                        (Gtk.Label(label=_('Platform:')),
+                         Gtk.Label(label=os.uname()[-1])),
                         (Gtk.Label(label=_('Distribution:')),
                          Gtk.Label(label=system.DISTRO)),
                         (Gtk.Label(label=_('Desktop Environment:')),
