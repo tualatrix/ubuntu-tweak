@@ -217,6 +217,7 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
     _overview_index = None
     _module_window_index = None
     _wait_page_index = None
+    _current_module_index = None
 
     def __init__(self, name='com.ubuntu-tweak.Tweak', startup_id=''):
         Unique.App.__init__(self, name=name, startup_id=startup_id)
@@ -289,6 +290,7 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
 
         if name in self._loaded_modules:
             self.notebook.set_current_page(self._loaded_modules[name])
+            self._current_module_index = self._loaded_modules[name]
         else:
             self.notebook.set_current_page(self._wait_page_index)
             self.create_module(category, name)
@@ -323,6 +325,7 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
         index = self.notebook.append_page(page, Gtk.Label(label=name))
         self.notebook.set_current_page(index)
         self._loaded_modules[name] = index
+        self._current_module_index = index
         self._modules_index[index] = module
 
     def on_back_button_clicked(self, widget):
@@ -341,10 +344,10 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
 
     def on_tweaks_button_toggled(self, widget):
         if widget.get_active():
-            self.notebook.set_current_page(self._module_window_index)
-            index = self.notebook.get_current_page()
-            if index:
-                self.set_module_title(self._modules_index[index])
+            self.notebook.set_current_page(self._current_module_index or \
+                                           self._module_window_index)
+            if self._current_module_index:
+                self.set_module_title(self._modules_index[self._current_module_index])
 
     def run(self):
         Gtk.main()
