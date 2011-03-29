@@ -48,7 +48,7 @@ class Shortcuts(TweakModule):
         if not CompizPlugin.get_plugin_active('commands'):
             CompizPlugin.set_plugin_active('commands', True)
 
-        sw = Gtk.ScrolledWindow()
+        sw = Gtk.ScrolledWindow(shadow_type=Gtk.ShadowType.IN)
         sw.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         self.add_start(sw)
 

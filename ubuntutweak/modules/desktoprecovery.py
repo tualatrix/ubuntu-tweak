@@ -272,16 +272,20 @@ class DesktopRecovery(TweakModule):
 
         self.setup_backup_model()
 
-        hbox = Gtk.HBox()
+        hbox = Gtk.HBox(spacing=12)
         self.add_start(hbox)
 
         self.cateview = CateView()
+        sw = Gtk.ScrolledWindow(shadow_type=Gtk.ShadowType.IN)
+        sw.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+        sw.add(self.cateview)
+
         #FIXME it will cause two callback for cateview changed
         self.cateview.connect('button_press_event',
                               self.on_cateview_button_press_event)
         self.cate_selection = self.cateview.get_selection()
         self.cate_selection.connect('changed', self.on_cateview_changed)
-        hbox.pack_start(self.cateview, False, False, 0)
+        hbox.pack_start(sw, False, False, 0)
 
         vpaned = Gtk.VPaned()
         hbox.pack_start(vpaned, True, True, 0)
@@ -289,7 +293,7 @@ class DesktopRecovery(TweakModule):
         self.settingview = SettingView()
         self.setting_selection = self.settingview.get_selection()
         self.setting_selection.connect('changed', self.on_settingview_changed)
-        sw = Gtk.ScrolledWindow()
+        sw = Gtk.ScrolledWindow(shadow_type=Gtk.ShadowType.IN)
         sw.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         sw.add(self.settingview)
         vpaned.pack1(sw, True, False)
