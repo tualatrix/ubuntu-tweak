@@ -21,7 +21,7 @@ def get_from_name(name='gtk-execute', alter='gtk-execute',
     try:
         pixbuf = icontheme.load_icon(name, size, 0)
     except Exception, e:
-        log.error(e)
+        log.warning(e)
         # if the alter name isn't here, so use random icon
 
         while not pixbuf:
