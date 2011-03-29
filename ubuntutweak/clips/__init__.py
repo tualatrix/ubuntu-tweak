@@ -41,10 +41,8 @@ class ClipPage(Gtk.VBox, GuiBuilder):
         #TODO
         from hardwareinfo import HardwareInfo
         from updateinfo import UpdateInfo
-        from systeminfo import SystemInfo
-        from cleanerinfo import CleanerInfo
+        from userinfo import UserInfo
 
         self.clipvbox.pack_start(UpdateInfo(), False, False, 0)
-        self.clipvbox.pack_start(SystemInfo(), False, False, 0)
+        self.clipvbox.pack_start(UserInfo(), False, False, 0)
         self.clipvbox.pack_start(HardwareInfo(), False, False, 0)
-        self.clipvbox.pack_start(CleanerInfo(), False, False, 0)
