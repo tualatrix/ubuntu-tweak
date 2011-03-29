@@ -36,7 +36,7 @@ class Clip(Gtk.VBox):
 class ClipPage(Gtk.VBox, GuiBuilder):
     def __init__(self):
         gobject.GObject.__init__(self)
-        GuiBuilder.__init__(self, 'clips/clippage.ui')
+        GuiBuilder.__init__(self, 'clippage.ui')
 
         #TODO
         from hardwareinfo import HardwareInfo

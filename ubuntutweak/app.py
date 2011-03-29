@@ -198,7 +198,7 @@ class ModuleTreeView(Gtk.TreeView):
 class UbuntuTweakApp(Unique.App, GuiBuilder):
     def __init__(self, name='com.ubuntu-tweak.Tweak', startup_id=''):
         Unique.App.__init__(self, name=name, startup_id=startup_id)
-        GuiBuilder.__init__(self, file_name='ui/mainwindow.ui')
+        GuiBuilder.__init__(self, file_name='mainwindow.ui')
 
         Gtk.rc_parse(os.path.join(DATA_DIR, 'theme/ubuntu-tweak.rc'))
 
