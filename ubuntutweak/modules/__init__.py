@@ -88,7 +88,7 @@ class TweakModule(Gtk.VBox):
     __author__ = ''
     __desc__ = ''
     __url__ = ''
-    __urltitle__ = _('More')
+    __url_title__ = _('More')
     #Identify whether it is a ubuntu tweak module
     __utmodule__ = ''
     __utactive__ = True
@@ -103,9 +103,6 @@ class TweakModule(Gtk.VBox):
     def __init__(self, path=None, domain='ubuntu-tweak'):
         gobject.GObject.__init__(self)
         self.set_border_width(6)
-
-#        if self.__title__ and self.__desc__:
-#            self.draw_title()
 
         self.scrolled_win = Gtk.ScrolledWindow()
         self.scrolled_win.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
@@ -136,58 +133,6 @@ class TweakModule(Gtk.VBox):
     def add_end(self, child, expand=True, fill=True, padding=0):
         self.inner_vbox.pack_end(child, expand, fill, padding)
 
-    def draw_title(self):
-        vbox = Gtk.VBox()
-        vbox.set_style(Gtk.MenuItem().style)
-        self.pack_start(vbox, False, False, 0)
-
-        align = Gtk.Alignment.new(0.5, 0.5, 1.0, 1.0)
-        align.set_padding(5, 5, 5, 5)
-        vbox.pack_start(align, True, True, 0)
-
-        hbox = Gtk.HBox(spacing=6)
-        align.add(hbox)
-
-        inner_vbox = Gtk.VBox(spacing=6)
-        hbox.pack_start(inner_vbox, True, True, 0)
-
-        align = Gtk.Alignment.new(0.5, 0.5, 1.0, 1.0)
-        inner_vbox.pack_start(align, False, False, 0)
-
-        inner_hbox = Gtk.HBox()
-        align.add(inner_hbox)
-
-        name = Gtk.Label()
-        name.set_markup('<b><big>%s</big></b>' % self.__title__)
-        name.set_alignment(0, 0.5)
-        inner_hbox.pack_start(name, False, False, 0)
-
-        if self.__url__:
-            more = Gtk.Label()
-            more.set_markup('<a href="%s">%s</a>' % (self.__url__, self.__urltitle__))
-            inner_hbox.pack_end(more, False, False, 0)
-
-        desc = Gtk.Label(label=self.__desc__)
-        desc.set_ellipsize(Pango.EllipsizeMode.END)
-        desc.set_alignment(0, 0.5)
-        inner_vbox.pack_start(desc, False, False, 0)
-
-        if self.__icon__:
-            if type(self.__icon__) != list:
-                if self.__icon__.endswith('.png'):
-                    icon_path = os.path.join(DATA_DIR, 'pixmaps', self.__icon__)
-                    image = Gtk.image_new_from_file(icon_path)
-                else:
-                    pixbuf = icon.get_from_name(self.__icon__, size=48)
-                    image = Gtk.Image.new_from_pixbuf(pixbuf)
-            else:
-                pixbuf = icon.get_from_list(self.__icon__, size=48)
-                image = Gtk.Image.new_from_pixbuf(pixbuf)
-
-            image.set_alignment(0, 0)
-            image.set_padding(5, 5)
-            hbox.pack_end(image, False, False, 0)
-
     def remove_all_children(self):
         for child in self.inner_vbox.get_children():
             self.inner_vbox.remove(child) 
@@ -214,6 +159,20 @@ class TweakModule(Gtk.VBox):
         return cls.__title__
 
     @classmethod
+    def get_url(cls):
+        return cls.__url__
+
+    @classmethod
+    def get_url_title(cls):
+        return cls.__url_title__
+
+    @classmethod
+    def get_description(cls):
+        '''Return the module description, it is for human read with i18n support
+        '''
+        return cls.__desc__
+
+    @classmethod
     def get_category(cls):
         return cls.__category__
 
@@ -221,7 +180,7 @@ class TweakModule(Gtk.VBox):
         return self.error_view.get_buffer().get_property('text')
 
     @classmethod
-    def get_pixbuf(cls):
+    def get_pixbuf(cls, size=32):
         '''Return gtk Pixbuf'''
         if cls.__icon__:
             if type(cls.__icon__) != list:
@@ -229,9 +188,9 @@ class TweakModule(Gtk.VBox):
                     icon_path = os.path.join(DATA_DIR, 'pixmaps', cls.__icon__)
                     pixbuf = Gtk.gd.pixbuf_new_from_file(icon_path)
                 else:
-                    pixbuf = icon.get_from_name(cls.__icon__)
+                    pixbuf = icon.get_from_name(cls.__icon__, size=size)
             else:
-                pixbuf = icon.get_from_list(cls.__icon__)
+                pixbuf = icon.get_from_list(cls.__icon__, size=size)
 
             return pixbuf
 

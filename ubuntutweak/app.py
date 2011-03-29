@@ -53,171 +53,191 @@ def show_splash():
     win.destroy()
 
 
-class WelcomePage(Gtk.VBox):
-    def __init__(self):
+class ModuleButton(Gtk.Button):
+
+    _module = None
+
+    def __init__(self, module):
         gobject.GObject.__init__(self)
 
-        self.set_border_width(20)
+        log.info('Creating ModuleButton: %s' % module)
 
-        title = Gtk.MenuItem(label='')
-        label = title.get_child()
-        label.set_markup(_('\n<span size="xx-large">Welcome to <b>Ubuntu Tweak!</b></span>\n'))
-        label.set_alignment(0.5, 0.5)
-        title.select()
-        self.pack_start(title, False, False, 10)
+        self.set_relief(Gtk.ReliefStyle.NONE)
 
-        tips = self.create_tips(
-                _('Tweak otherwise hidden settings.'),
-                _('Clean up unused packages to free up diskspace.'),
-                _('Easily install up-to-date versions of many applications.'),
-                _('Configure file templates and shortcut scripts for easy access to common tasks.'),
-                _('Many more useful features!'),
-                )
+        self._module = module
 
-    def create_tips(self, *tips):
-        for tip in tips:
-            hbox = Gtk.HBox()
-            image = Gtk.Image.new_from_stock(Gtk.STOCK_GO_FORWARD,
-                                             Gtk.IconSize.BUTTON)
-            hbox.pack_start(image, False, False, 15)
+        vbox = Gtk.VBox(spacing=6)
+        self.add(vbox)
 
-            label = Gtk.Label()
-            label.set_alignment(0.0, 0.5)
-            label.set_ellipsize(Pango.EllipsizeMode.END)
-            label.set_markup(tip)
-            hbox.pack_start(label, True, True, 0)
+        image = Gtk.Image.new_from_pixbuf(module.get_pixbuf())
+        vbox.pack_start(image, False, False, 0)
 
-            self.pack_start(hbox, False, False, 10)
+        label = Gtk.Label(label=module.get_title())
+        vbox.pack_start(label, False, False, 0)
+
+    def get_module(self):
+        return self._module
 
 
-class ModuleTreeView(Gtk.TreeView):
+class CategoryBox(Gtk.VBox):
+    _modules = None
+    _buttons = None
+    _current_cols = 0
+    _current_modules = 0
+
+    def __init__(self, modules=None, category='', category_name=''):
+        gobject.GObject.__init__(self)
+
+        self._modules = modules
+
+        self.set_spacing(6)
+
+        header = Gtk.HBox()
+        header.set_spacing(12)
+        label = Gtk.Label()
+        label.set_markup("<span color='#aaa' size='x-large' weight='800'>%s</span>" % category_name)
+        header.pack_start(label, False, False, 0)
+
+        self._table = Gtk.Table()
+
+        self._buttons = []
+        for module in self._modules:
+            self._buttons.append(ModuleButton(module))
+
+        self.pack_start(header, False, False, 0)
+        self.pack_start(self._table, False, False, 0)
+
+    def get_modules(self):
+        return self._modules
+
+    def get_buttons(self):
+        return self._buttons
+
+    def rebuild_table (self, ncols, force=False):
+        if (not force and ncols == self._current_cols and
+                len(self._modules) == self._current_modules):
+            return
+        self._current_cols = ncols
+        self._current_modules = len(self._modules)
+
+        children = self._table.get_children()
+        if children:
+            for child in children:
+                self._table.remove(child)
+
+        row = 0
+        col = 0
+        for button in self._buttons:
+            if button.get_module() in self._modules:
+                self._table.attach(button, col, col + 1, row, row + 1, 0,
+                                   xpadding=4, ypadding=2)
+                col += 1
+                if col == ncols:
+                    col = 0
+                    row += 1
+        self.show_all()
+
+
+class ModuleWindow(Gtk.ScrolledWindow):
+
     __gsignals__ = {
         'module_selected': (gobject.SIGNAL_RUN_FIRST,
                             gobject.TYPE_NONE,
                             (gobject.TYPE_STRING, gobject.TYPE_STRING))
         }
 
-    (CATEGORY_COLUMN,
-     NAME_COLUMN,
-     LOGO_COLUMN,
-     TITLE_COLUMN,
-     MODULE_CLASS) = range(5)
+    _categories = None
+    _boxes = []
 
     def __init__(self):
-        gobject.GObject.__init__(self)
+        gobject.GObject.__init__(self,
+                                 shadow_type=Gtk.ShadowType.NONE,
+                                 hscrollbar_policy=Gtk.PolicyType.NEVER,
+                                 vscrollbar_policy=Gtk.PolicyType.AUTOMATIC)
 
-        self.set_headers_visible(False)
-        self._add_columns()
+        self.set_border_width(12)
 
-        model = self._create_model()
-        self.set_model(model)
-        self.update_model()
+        self._categories = {}
+        self._boxes = []
 
-        self.get_selection().connect('changed', self.on_select_module)
-        self.connect('realize', lambda tv: tv.expand_all())
+        self.connect('size-allocate', self.rebuild_boxes)
 
-    def _create_model(self):
-        '''
-        Module class name, module icon and module title
-        '''
-        model = Gtk.TreeStore(gobject.TYPE_STRING,
-                              gobject.TYPE_STRING,
-                              GdkPixbuf.Pixbuf,
-                              gobject.TYPE_STRING)
-
-        return model
-
-    def update_model(self):
-        model = self.get_model()
-        model.append(None, (None, 'welcome',
-                            icon.get_from_name('ubuntu-tweak', size=32),
-                            "<b><big>%s</big></b>" % _('Welcome')))
+        self._box = Gtk.VBox(spacing=6)
 
         for category, category_name in MODULE_LOADER.get_categories():
             modules = MODULE_LOADER.get_modules_by_category(category)
-
             if modules:
-                iter = model.append(None, (None, None, None,
-                                           "<b><big>%s</big></b>" % category_name))
+                category_box = CategoryBox(modules=modules, category_name=category_name)
+                self._connect_signals(category_box)
+                self._boxes.append(category_box)
+                self._box.pack_start(category_box, False, False, 0)
 
-                for module in modules:
-                    log.debug("Insert module: name: %s" % module.get_name())
+        viewport = Gtk.Viewport(shadow_type=Gtk.ShadowType.NONE)
+        viewport.add(self._box)
+        self.add(viewport)
 
-                    model.append(iter, (module.get_category(),
-                                        module.get_name(),
-                                        module.get_pixbuf(),
-                                        module.get_title()))
+    def _connect_signals(self, category_box):
+        for button in category_box.get_buttons():
+            button.connect('clicked', self.on_button_clicked)
 
-    def _add_columns(self):
-        column = Gtk.TreeViewColumn('ID',
-                                    Gtk.CellRendererText(),
-                                    text=self.NAME_COLUMN)
-        column.set_visible(False)
-        self.append_column(column)
+    def on_button_clicked(self, widget):
+        log.info('Button clicked')
+        module = widget.get_module()
+        self.emit('module_selected', module.get_category(), module.get_name())
 
-        renderer = Gtk.CellRendererPixbuf()
-        column = Gtk.TreeViewColumn("Title")
-        column.pack_start(renderer, False)
-        column.add_attribute(renderer, 'pixbuf', self.LOGO_COLUMN)
-        column.set_spacing(3)
-        column.set_cell_data_func(renderer, self.logo_column_view_func, None)
 
-        renderer = Gtk.CellRendererText()
-        renderer.set_property('ellipsize', Pango.EllipsizeMode.END)
-        column.pack_start(renderer, True)
-        column.add_attribute(renderer, 'markup', self.TITLE_COLUMN)
-        self.append_column(column)
+    def rebuild_boxes(self, widget, request):
+        ncols = request.width / 220
+        width = ncols * (220 + 2 * 4) + 40
+        if width > request.width:
+            ncols -= 1
 
-        column = Gtk.TreeViewColumn()
-        column.set_visible(False)
-        self.append_column(column)
-        self.set_expander_column(column)
+        pos = 0
+        last_box = None
+        children = self._box.get_children()
+        for box in self._boxes:
+            modules = box.get_modules()
+            if len (modules) == 0:
+                if box in children:
+                    self._box.remove(box)
+            else:
+                if box not in children:
+                    self._box.pack_start(box, False, False, 0)
+                    self._box.reorder_child(box, pos)
+                box.rebuild_table(ncols)
+                pos += 1
 
-    def logo_column_view_func(self, cell_layout, renderer, model, iter, data=None):
-        pixbuf = model.get_value(iter, self.LOGO_COLUMN)
+                last_box = box
 
-        if pixbuf == None:
-            renderer.set_property("visible", False)
-        else:
-            renderer.set_property("visible", True)
-
-    def on_select_module(self, widget):
-        model, iter = widget.get_selected()
-
-        if iter:
-            if model.iter_has_child(iter):
-                path = model.get_path(iter)
-                iter = model.iter_children(iter)
-
-            category = model.get_value(iter, self.CATEGORY_COLUMN)
-            name = model.get_value(iter, self.NAME_COLUMN)
-
-            widget.select_iter(iter)
-            self.emit('module_selected', category, name)
 
 class UbuntuTweakApp(Unique.App, GuiBuilder):
+
+    _loaded_modules = None
+    _modules_index = None
+
     def __init__(self, name='com.ubuntu-tweak.Tweak', startup_id=''):
         Unique.App.__init__(self, name=name, startup_id=startup_id)
         GuiBuilder.__init__(self, file_name='mainwindow.ui')
 
         Gtk.rc_parse(os.path.join(DATA_DIR, 'theme/ubuntu-tweak.rc'))
 
-        module_view = ModuleTreeView()
-        self.scrolledwindow1.add(module_view)
+        module_window = ModuleWindow()
 
         # the module name and page index: 'Compiz': 2
         self._loaded_modules = {'welcome': 0}
+        self._modules_index = {}
 
         self.mainnotebook.insert_page(ClipPage().get_object('hbox1'), Gtk.Label(label='Overview'), 0)
-        self.tweaknotebook.insert_page(WelcomePage(), Gtk.Label(label='Welcome'), 0)
+        self.tweaknotebook.insert_page(module_window, Gtk.Label(label='Modules'), 0)
 
         self.watch_window(self.mainwindow)
         self.connect('message-received', self.on_message_received)
         # Always show welcome page at first
         self.mainwindow.connect('realize', self._initialize_ui_states)
-        module_view.connect('module_selected', self.on_module_selected)
+        module_window.connect('module_selected', self.on_module_selected)
 
         self.mainwindow.show_all()
+        self.link_button.hide()
 
     def _initialize_ui_states(self, widget):
         self.tweaknotebook.set_current_page(0)
@@ -244,11 +264,32 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
     def on_module_selected(self, widget, category, name):
         log.debug('Select the %s in category %s' % (name, category))
 
+        module = MODULE_LOADER.get_module(category, name)
+        self.set_module_title(module)
+
         if name in self._loaded_modules:
             self.tweaknotebook.set_current_page(self._loaded_modules[name])
         else:
             self.tweaknotebook.set_current_page(1)
             self.create_module(category, name)
+
+    def set_module_title(self, module=None):
+        if module:
+            self.module_image.set_from_pixbuf(module.get_pixbuf(size=48))
+            self.title_label.set_markup('<b><big>%s</big></b>' % module.get_title())
+            self.description_label.set_text(module.get_description())
+            if module.get_url():
+                self.link_button.set_uri(module.get_url())
+                self.link_button.set_label(module.get_url_title())
+                self.link_button.show()
+            else:
+                self.link_button.hide()
+        else:
+            # no module, so back to logo
+            self.module_image.set_from_pixbuf(icon.get_from_name('ubuntu-tweak', size=48))
+            self.title_label.set_markup('')
+            self.description_label.set_text('')
+            self.link_button.hide()
 
     def create_module(self, category, name):
         try:
@@ -262,10 +303,12 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
         index = self.tweaknotebook.append_page(page, Gtk.Label(label=name))
         self.tweaknotebook.set_current_page(index)
         self._loaded_modules[name] = index
+        self._modules_index[index] = module
 
     def on_back_button_clicked(self, widget):
         #TODO
-        print 'back clicked'
+        self.tweaknotebook.set_current_page(0)
+        self.set_module_title(None)
 
     def on_next_button_clicked(self, widget):
         #TODO
@@ -273,11 +316,15 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
 
     def on_overview_button_toggled(self, widget):
         if widget.get_active():
+            self.set_module_title(None)
             self.mainnotebook.set_current_page(0)
 
     def on_tweaks_button_toggled(self, widget):
         if widget.get_active():
             self.mainnotebook.set_current_page(1)
+            index = self.tweaknotebook.get_current_page()
+            if index:
+                self.set_module_title(self._modules_index[index])
 
     def run(self):
         Gtk.main()

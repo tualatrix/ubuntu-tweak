@@ -360,6 +360,8 @@ class Compiz(TweakModule):
     __desc__ = _('Settings for some amazing desktop eye-candy')
     __icon__ = ['compiz', 'wmtweaks']
     __category__ = 'desktop'
+    __url__ = 'http://ubuntu-tweak.com'
+    __url_title__ = _('Compiz Page')
 
     def __init__(self):
         TweakModule.__init__(self)
