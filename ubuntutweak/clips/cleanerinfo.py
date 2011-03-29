@@ -23,3 +23,20 @@ class CleanerInfo(Clip):
         label.set_alignment(0, 0.5)
 
         self.set_content(label)
+
+        try:
+            size = int(os.popen('du -bs ~/.thumbnails').read().split()[0])
+        except:
+            size = 0
+
+        if size:
+
+            label = Gtk.Label(label=_('%s thumbnails cache can be cleaned.') % \
+                    GLib.format_size_for_display(size))
+            label.set_alignment(0, 0.5)
+
+            self.set_content(label)
+
+        button = Gtk.Button(label=_('Start Clenaer'))
+        #TODO the action to start cleaner
+        self.add_action_button(button)

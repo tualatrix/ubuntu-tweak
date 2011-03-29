@@ -18,7 +18,10 @@ class UpdateInfo(Clip):
                                                       size=48))
         self.set_title(_('Your system is up-to-date'))
 
-        self.set_content(Gtk.Label(label=self._get_last_apt_get_update_text()))
+        label = Gtk.Label(label=self._get_last_apt_get_update_text())
+        label.set_alignment(0, 0.5)
+
+        self.set_content(label)
 
     # The following two function are copyed from UpdateManager/UpdateManager.py
     def _get_last_apt_get_update_hours(self):
