@@ -54,9 +54,9 @@ COLORS = {
 def on_copy_button_clicked(widget, text):
     #TODO enable this in the future
 #    Gtk.Clipboard().set_text(text, -1)
-    notify = Notify.Notification(summary=_('Error message has been copied'))
-    notify.set_property('body', _('Now click "Report" to enter the bug ' \
-                                'report website. Make sure to attach the ' \
+    notify = Notify.Notification(summary=_('Error message has been copied'),
+                                 body=_('Now click "Report" to enter the bug '
+                                'report website. Make sure to attach the '
                                 'error message in "Further information".'))
     notify.set_hint_string("x-canonical-append", "");
     notify.show()
