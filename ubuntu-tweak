@@ -33,17 +33,25 @@ if __name__ == "__main__":
                                    description="Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your system and desktop settings.")
     parser.add_option("-d", "--debug", action="store_true", default=False,
                       help="Generate more debugging information.  [default: %default]")
+    parser.add_option("-m", "--module", dest="module", default='',
+                      help="Start module directly.  [default: %default]")
     options, args = parser.parse_args()
 
     if options.debug or not IS_INSTALLED:
         enable_debugging()
 
-    from ubuntutweak.app import UbuntuTweakApp, show_splash
+    from ubuntutweak.app import UbuntuTweakApp, UbuntuTweakWindow, show_splash
 
     show_splash()
     app = UbuntuTweakApp()
 
     if app.is_running():
         app.send_message(Unique.Command.ACTIVATE, Unique.MessageData())
+        if options.module:
+            message = Unique.MessageData()
+            message.set_text(options.module, -1)
+            app.send_message(Unique.Command.OPEN, message)
     else:
+        window = UbuntuTweakWindow(module=options.module)
+        app.set_window(window)
         app.run()

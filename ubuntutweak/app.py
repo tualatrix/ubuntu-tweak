@@ -27,6 +27,7 @@ from ubuntutweak.gui import GuiBuilder
 from ubuntutweak.utils import icon
 from ubuntutweak.common.consts import VERSION, DATA_DIR
 from ubuntutweak.modules import ModuleLoader, create_broken_module_class
+from ubuntutweak.gui.dialogs import ErrorDialog
 from ubuntutweak.clips import ClipPage
 
 log = logging.getLogger('app')
@@ -237,13 +238,15 @@ class JumpManager(object):
     def module_is_loaded(self, name):
         return name in self._loaded_modules
 
-    def set_current_module(self, name, module, index):
+    def store_current_module(self, name, module, index):
         self._loaded_modules[name] = index
         self._current_module_index = index
         self._modules_index[index] = module
 
-    def get_module_index(self, name):
-        return self._loaded_modules[name]
+    def get_module_and_index(self, name):
+        index = self._loaded_modules[name]
+
+        return self._modules_index[index], index
 
     def get_current_module(self):
         return self._modules_index[self.current_module_index]
@@ -281,9 +284,33 @@ class JumpManager(object):
         self._current_module_index = index
 
 
-class UbuntuTweakApp(Unique.App, GuiBuilder):
+class UbuntuTweakApp(Unique.App):
+    _window = None
+
     def __init__(self, name='com.ubuntu-tweak.Tweak', startup_id=''):
         Unique.App.__init__(self, name=name, startup_id=startup_id)
+        self.connect('message-received', self.on_message_received)
+
+    def set_window(self, window):
+        self._window = window
+        self.watch_window(self._window.mainwindow)
+
+    def on_message_received(self, app, command, message, time):
+        log.debug("on_message_received: command: %s, message: %s, time: %s" % (
+            command, message, time))
+        if command == Unique.Command.ACTIVATE:
+            self._window.present()
+        elif command == Unique.Command.OPEN:
+            self._window.create_module(message.get_text())
+
+        return False
+
+    def run(self):
+        Gtk.main()
+
+
+class UbuntuTweakWindow(GuiBuilder):
+    def __init__(self, module=''):
         GuiBuilder.__init__(self, file_name='mainwindow.ui')
 
         Gtk.rc_parse(os.path.join(DATA_DIR, 'theme/ubuntu-tweak.rc'))
@@ -298,14 +325,16 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
         self.jumper.wait_index = self.notebook.append_page(self._crete_wait_page(),
                                                            Gtk.Label())
 
-        self.watch_window(self.mainwindow)
-        self.connect('message-received', self.on_message_received)
         # Always show welcome page at first
         self.mainwindow.connect('realize', self._initialize_ui_states)
         module_window.connect('module_selected', self.on_module_selected)
 
         self.mainwindow.show_all()
         self.link_button.hide()
+
+        if module:
+            self.tweaks_button.set_active(True)
+            self.create_module(module)
 
     def _initialize_ui_states(self, widget):
         self.notebook.set_current_page(self.jumper.overview_index)
@@ -334,29 +363,21 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
         self.aboutdialog.set_transient_for(self.mainwindow)
         self.aboutdialog.run()
 
-    def on_message_received(self, app, command, message, time):
-        log.debug("on_message_received: command: %s, message: %s, time: %s" % (
-            command, message, time))
-        if command == Unique.Command.ACTIVATE:
-            self.mainwindow.present()
-
-        return False
-
     def on_module_selected(self, widget, name):
         log.debug('Select module: %s' % name)
 
-        module = MODULE_LOADER.get_module(name)
-        self.set_module_title(module)
-
         if self.jumper.module_is_loaded(name):
-            index = self.jumper.get_module_index(name)
-            self.notebook.set_current_page(index)
-            self.set_current_module(name, module, index)
+            module, index = self.jumper.get_module_and_index(name)
+            self.jumper.store_current_module(name, module, index)
+            self.set_current_module(module, index)
         else:
             self.notebook.set_current_page(self.jumper.wait_index)
             self.create_module(name)
 
-    def set_module_title(self, module=None):
+    def set_current_module(self, module=None, index=None):
+        if index:
+            self.notebook.set_current_page(index)
+
         if module:
             self.module_image.set_from_pixbuf(module.get_pixbuf(size=48))
             self.title_label.set_markup('<b><big>%s</big></b>' % module.get_title())
@@ -379,19 +400,26 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
         try:
             module = MODULE_LOADER.get_module(name)
             page = module()
-        except:
-            page = create_broken_module_class(name)()
+        except KeyError, e:
+            dialog = ErrorDialog(title=_('No module named "%s"') % name,
+                                 message=_('Please ensure you have entered the correct module name.'))
+            dialog.launch()
+            return False
+        except Exception, e:
+            log.error(e)
+            module = create_broken_module_class(name)
+            page = module()
 
         #TODO
         page.show_all()
         index = self.notebook.append_page(page, Gtk.Label(label=name))
-        self.notebook.set_current_page(index)
-        self.jumper.set_current_module(name, module, index)
+        self.set_current_module(module, index)
+        self.jumper.store_current_module(name, module, index)
 
     def on_back_button_clicked(self, widget):
         #TODO
         self.notebook.set_current_page(self.jumper.tweaks_index)
-        self.set_module_title(None)
+        self.set_current_module(None)
 
     def on_next_button_clicked(self, widget):
         #TODO
@@ -399,15 +427,16 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
 
     def on_overview_button_toggled(self, widget):
         if widget.get_active():
-            self.set_module_title(None)
+            self.set_current_module(None)
             self.notebook.set_current_page(self.jumper.overview_index)
 
     def on_tweaks_button_toggled(self, widget):
         if widget.get_active():
-            self.notebook.set_current_page(self.jumper.current_module_index or \
-                                           self.jumper.tweaks_index)
             if self.jumper.current_module_index:
-                self.set_module_title(self.jumper.get_current_module())
+                self.set_current_module(self.jumper.get_current_module(),
+                                        self.jumper.current_module_index)
+            else:
+                self.notebook.set_current_page(self.jumper.tweaks_index)
 
-    def run(self):
-        Gtk.main()
+    def present(self):
+        self.mainwindow.present()
