@@ -4,23 +4,38 @@ _Comment=Tweak ubuntu to what you like
 Exec=ubuntu-tweak
 Icon=ubuntu-tweak
 Terminal=false
-X-MultipleArgs=false
 Type=Application
-StartupNotify=true
 Categories=GNOME;GTK;System;
-X-Ayatana-Desktop-Shortcuts=Window;Icons;DesktopRecovery
+StartupNotify=true
+X-Ayatana-Desktop-Shortcuts=Compiz;Icon;DesktopRecovery;FileType;Shortcuts;Nautilus
+X-Ayatana-Appmenu-Show-Stubs=False
 
-[Window Shortcut Group]
-Name=Compiz Settings
+[Compiz Shortcut Group]
+_Name=Compiz Settings
 Exec=ubuntu-tweak -m Compiz
-OnlyShowIn=Unity
+TargetEnvironment=Unity
 
-[Icons Shortcut Group]
-Name=Icon Settings
-Exec=ubuntu-tweak -m Icons
-OnlyShowIn=Unity
+[Icon Shortcut Group]
+_Name=Desktop Icon Settings
+Exec=ubuntu-tweak -m Icon
+TargetEnvironment=Unity
 
 [DesktopRecovery Shortcut Group]
-Name=Desktop Recovery
+_Name=Desktop Recovery
 Exec=ubuntu-tweak -m DesktopRecovery
-OnlyShowIn=Unity
+TargetEnvironment=Unity
+
+[FileType Shortcut Group]
+_Name=File Type Manager
+Exec=ubuntu-tweak -m FileType
+TargetEnvironment=Unity
+
+[Shortcuts Shortcut Group]
+_Name=Shortcut Commands
+Exec=ubuntu-tweak -m Shortcuts
+TargetEnvironment=Unity
+
+[Nautilus Shortcut Group]
+_Name=Nautilus Settings
+Exec=ubuntu-tweak -m Nautilus
+TargetEnvironment=Unity
