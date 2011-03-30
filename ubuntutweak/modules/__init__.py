@@ -20,8 +20,9 @@ def module_cmp(m1, m2):
 class ModuleLoader:
     # the key will like this: 'Compiz': <class 'ubuntutweak.modules.compiz.Compiz'
     module_table = {}
+    category_table = {}
 
-    category_table = (
+    category_names = (
         ('broken', _('Broken Modules')),
         ('application', _('Applications')),
         ('startup', _('Startup')),
@@ -31,8 +32,8 @@ class ModuleLoader:
         )
 
     def __init__(self, path):
-        for k, v in self.category_table:
-            self.module_table[k] = {}
+        for k, v in self.category_names:
+            self.category_table[k] = {}
 
         if os.path.isdir(path):
             self.do_package_import(path)
@@ -56,7 +57,8 @@ class ModuleLoader:
                     package = __import__('.'.join([__name__, module]), fromlist=['modules'])
                 except Exception, e:
                     Broken = create_broken_module_class(module)
-                    self.module_table['broken'][Broken.get_name()] = Broken
+                    self.module_table[Broken.get_name()] = Broken
+                    self.category_table['broken'][Broken.get_name()] = Broken
                     log.error("Module import error: %s", str(e))
                     continue
                 else:
@@ -66,19 +68,20 @@ class ModuleLoader:
     def _insert_moduel(self, k, v):
         if k not in ('TweakModule', 'proxy') and hasattr(v, '__utmodule__'):
             if v.__utactive__:
-                self.module_table[v.__category__][v.get_name()] = v
+                self.module_table[v.get_name()] = v
+                self.category_table[v.__category__][v.get_name()] = v
 
     def get_categories(self):
-        for k, v in self.category_table:
+        for k, v in self.category_names:
             yield k, v
 
     def get_modules_by_category(self, category):
-        modules = self.module_table.get(category).values()
+        modules = self.category_table.get(category).values()
         modules.sort(module_cmp)
         return modules
 
-    def get_module(self, category, name):
-        return self.module_table[category][name]
+    def get_module(self, name):
+        return self.module_table[name]
 
 
 class TweakModule(Gtk.VBox):

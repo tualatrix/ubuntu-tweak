@@ -143,7 +143,7 @@ class ModuleWindow(Gtk.ScrolledWindow):
     __gsignals__ = {
         'module_selected': (gobject.SIGNAL_RUN_FIRST,
                             gobject.TYPE_NONE,
-                            (gobject.TYPE_STRING, gobject.TYPE_STRING))
+                            (gobject.TYPE_STRING,))
         }
 
     _categories = None
@@ -183,7 +183,7 @@ class ModuleWindow(Gtk.ScrolledWindow):
     def on_button_clicked(self, widget):
         log.info('Button clicked')
         module = widget.get_module()
-        self.emit('module_selected', module.get_category(), module.get_name())
+        self.emit('module_selected', module.get_name())
 
 
     def rebuild_boxes(self, widget, request):
@@ -342,10 +342,10 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
 
         return False
 
-    def on_module_selected(self, widget, category, name):
-        log.debug('Select the %s in category %s' % (name, category))
+    def on_module_selected(self, widget, name):
+        log.debug('Select module: %s' % name)
 
-        module = MODULE_LOADER.get_module(category, name)
+        module = MODULE_LOADER.get_module(name)
         self.set_module_title(module)
 
         if self.jumper.module_is_loaded(name):
@@ -354,7 +354,7 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
             self.set_current_module(name, module, index)
         else:
             self.notebook.set_current_page(self.jumper.wait_index)
-            self.create_module(category, name)
+            self.create_module(name)
 
     def set_module_title(self, module=None):
         if module:
@@ -374,9 +374,10 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
             self.description_label.set_text('')
             self.link_button.hide()
 
-    def create_module(self, category, name):
+    def create_module(self, name):
+        log.debug('Create module: %s' % name)
         try:
-            module = MODULE_LOADER.get_module(category, name)
+            module = MODULE_LOADER.get_module(name)
             page = module()
         except:
             page = create_broken_module_class(name)()
