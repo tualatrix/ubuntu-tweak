@@ -210,15 +210,78 @@ class ModuleWindow(Gtk.ScrolledWindow):
                 last_box = box
 
 
+class JumpManager(object):
+    '''Manage the page and modules, they are all in the notebook'''
+
+    def __init__(self):
+        self._index_list = []
+        # the module name and page index: 'Compiz': 2
+        self._loaded_modules = {}
+        # reversed dict: 2: 'CompizClass'
+        self._modules_index = {}
+        self._current_module_index = None
+
+        self._overview_index = None
+        self._tweaks_index = None
+        self._wait_index = None
+
+    def get_current_index(self):
+        pass
+
+    def get_backwards_index(self):
+        pass
+
+    def get_forward_index(self):
+        pass
+
+    def module_is_loaded(self, name):
+        return name in self._loaded_modules
+
+    def set_current_module(self, name, module, index):
+        self._loaded_modules[name] = index
+        self._current_module_index = index
+        self._modules_index[index] = module
+
+    def get_module_index(self, name):
+        return self._loaded_modules[name]
+
+    def get_current_module(self):
+        return self._modules_index[self.current_module_index]
+
+    @property
+    def overview_index(self):
+        return self._overview_index
+
+    @overview_index.setter
+    def overview_index(self, index):
+        self._overview_index = index
+
+    @property
+    def tweaks_index(self):
+        return self._tweaks_index
+
+    @tweaks_index.setter
+    def tweaks_index(self, index):
+        self._tweaks_index = index
+
+    @property
+    def wait_index(self):
+        return self._wait_index
+
+    @wait_index.setter
+    def wait_index(self, index):
+        self._wait_index = index
+
+    @property
+    def current_module_index(self):
+        return self._current_module_index
+
+    @current_module_index.setter
+    def current_module_index(self, index):
+        self._current_module_index = index
+
+
 class UbuntuTweakApp(Unique.App, GuiBuilder):
-
-    _loaded_modules = None
-    _modules_index = None
-    _overview_index = None
-    _module_window_index = None
-    _wait_page_index = None
-    _current_module_index = None
-
     def __init__(self, name='com.ubuntu-tweak.Tweak', startup_id=''):
         Unique.App.__init__(self, name=name, startup_id=startup_id)
         GuiBuilder.__init__(self, file_name='mainwindow.ui')
@@ -228,15 +291,12 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
         module_window = ModuleWindow()
         clip_page = ClipPage().get_object('hbox1')
 
-        # the module name and page index: 'Compiz': 2
-        self._loaded_modules = {'welcome': 0}
-        # reversed dict: 2: 'CompizClass'
-        self._modules_index = {}
+        self.jumper = JumpManager()
 
-        self._overview_index = self.notebook.append_page(clip_page, Gtk.Label())
-        self._module_window_index = self.notebook.append_page(module_window, Gtk.Label())
-        self._wait_page_index = self.notebook.append_page(self._crete_wait_page(),
-                                                          Gtk.Label())
+        self.jumper.overview_index = self.notebook.append_page(clip_page, Gtk.Label())
+        self.jumper.tweaks_index = self.notebook.append_page(module_window, Gtk.Label())
+        self.jumper.wait_index = self.notebook.append_page(self._crete_wait_page(),
+                                                           Gtk.Label())
 
         self.watch_window(self.mainwindow)
         self.connect('message-received', self.on_message_received)
@@ -248,7 +308,7 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
         self.link_button.hide()
 
     def _initialize_ui_states(self, widget):
-        self.notebook.set_current_page(self._overview_index)
+        self.notebook.set_current_page(self.jumper.overview_index)
         self.overview_button.set_active(True)
         self.search_entry.grab_focus()
 
@@ -288,11 +348,12 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
         module = MODULE_LOADER.get_module(category, name)
         self.set_module_title(module)
 
-        if name in self._loaded_modules:
-            self.notebook.set_current_page(self._loaded_modules[name])
-            self._current_module_index = self._loaded_modules[name]
+        if self.jumper.module_is_loaded(name):
+            index = self.jumper.get_module_index(name)
+            self.notebook.set_current_page(index)
+            self.set_current_module(name, module, index)
         else:
-            self.notebook.set_current_page(self._wait_page_index)
+            self.notebook.set_current_page(self.jumper.wait_index)
             self.create_module(category, name)
 
     def set_module_title(self, module=None):
@@ -324,13 +385,11 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
         page.show_all()
         index = self.notebook.append_page(page, Gtk.Label(label=name))
         self.notebook.set_current_page(index)
-        self._loaded_modules[name] = index
-        self._current_module_index = index
-        self._modules_index[index] = module
+        self.jumper.set_current_module(name, module, index)
 
     def on_back_button_clicked(self, widget):
         #TODO
-        self.notebook.set_current_page(self._module_window_index)
+        self.notebook.set_current_page(self.jumper.tweaks_index)
         self.set_module_title(None)
 
     def on_next_button_clicked(self, widget):
@@ -340,14 +399,14 @@ class UbuntuTweakApp(Unique.App, GuiBuilder):
     def on_overview_button_toggled(self, widget):
         if widget.get_active():
             self.set_module_title(None)
-            self.notebook.set_current_page(self._overview_index)
+            self.notebook.set_current_page(self.jumper.overview_index)
 
     def on_tweaks_button_toggled(self, widget):
         if widget.get_active():
-            self.notebook.set_current_page(self._current_module_index or \
-                                           self._module_window_index)
-            if self._current_module_index:
-                self.set_module_title(self._modules_index[self._current_module_index])
+            self.notebook.set_current_page(self.jumper.current_module_index or \
+                                           self.jumper.tweaks_index)
+            if self.jumper.current_module_index:
+                self.set_module_title(self.jumper.get_current_module())
 
     def run(self):
         Gtk.main()
