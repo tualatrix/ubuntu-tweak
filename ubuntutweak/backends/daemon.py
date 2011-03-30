@@ -22,7 +22,6 @@ from subprocess import PIPE
 
 import apt_pkg
 import dbus
-import dbus.glib
 import dbus.service
 import dbus.mainloop.glib
 import gobject
@@ -558,19 +557,23 @@ class Daemon(PolicyKitService):
     def get_system_gconf(self, key):
         command = 'gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults --get %s' % key
         cmd = os.popen(command)
-        return cmd.read().strip()
+        output = cmd.read().strip()
+        log.debug('get_system_gconf: %s is %s' % (key, output))
+        return output
 
     @dbus.service.method(INTERFACE,
                          in_signature='ssss', out_signature='s',
                          sender_keyword='sender')
     def set_system_gconf(self, key, value, type, list_type='', sender=None):
         self._check_permission(sender)
+        log.debug('set_system_gconf: %s to %s' % (key, value))
         if list_type == '':
             command = 'gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults --type %s --set %s %s' % (type, key, value)
         else:
             command = 'gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults --type %s --list-type %s --set %s %s' % (type, list_type, key, value)
         cmd = os.popen(command)
-        return cmd.read().strip()
+        output = cmd.read().strip()
+        return output
 
     @dbus.service.method(INTERFACE,
                          in_signature='', out_signature='')

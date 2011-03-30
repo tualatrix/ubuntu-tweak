@@ -29,6 +29,7 @@ from ubuntutweak.common.consts import VERSION, DATA_DIR
 from ubuntutweak.modules import ModuleLoader, create_broken_module_class
 from ubuntutweak.gui.dialogs import ErrorDialog
 from ubuntutweak.clips import ClipPage
+from ubuntutweak.policykit import proxy
 
 log = logging.getLogger('app')
 
@@ -374,6 +375,10 @@ class UbuntuTweakWindow(GuiBuilder):
 
     def on_mainwindow_destroy(self, widget):
         Gtk.main_quit()
+        try:
+            proxy.exit()
+        except Exception, e:
+            log.error(e)
 
     def on_preference_button_clicked(self, widget):
         #TODO and FIXME, it can only show once
