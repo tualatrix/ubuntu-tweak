@@ -2,6 +2,8 @@ import logging
 
 from gi.repository import GConf
 
+from ubuntutweak.policykit import proxy
+
 log = logging.getLogger('GconfSetting')
 
 class GconfSetting(object):
@@ -89,3 +91,24 @@ class GconfSetting(object):
                 return value.get_float()
         else:
             raise Exception("No schema value for %s" % self.key)
+
+
+class UserGconfSetting(GconfSetting):
+    def get_value(self, user):
+        data = str(proxy.get_user_gconf(user, self.key))
+        log.debug('UserGconfSetting get the value from proxy: %s', data)
+        if data == 'true':
+            return True
+        elif data == 'false':
+            return False
+        else:
+            return data
+
+    def set_value(self, user, value):
+        if value:
+            if type(value) == bool:
+                proxy.set_user_gconf(user, self.key, 'true', 'bool', '')
+            elif type(value) == str:
+                proxy.set_user_gconf(user, self.key, value, 'string', '')
+        else:
+            proxy.set_user_gconf(user, self.key, 'false', 'bool', '')

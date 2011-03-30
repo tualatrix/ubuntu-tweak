@@ -1,8 +1,6 @@
-#!/usr/bin/python
-
-# Ubuntu Tweak - PyGTK based desktop configuration tool
+# Ubuntu Tweak - Ubuntu Configuration Tool
 #
-# Copyright (C) 2007-2008 TualatriX <tualatrix@gmail.com>
+# Copyright (C) 2007-2011 Tualatrix Chou <tualatrix@gmail.com>
 #
 # Ubuntu Tweak is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,12 +16,10 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-import os
-import gtk
 import dbus
 import gobject
+from gi.repository import Gtk
 
-from ubuntutweak.backends import POLICY_KIT_ACTION
 from dbusproxy import proxy
 
 class PolkitAction(gobject.GObject):
@@ -34,11 +30,12 @@ class PolkitAction(gobject.GObject):
     result = 0
     session_bus = dbus.SessionBus()
     __gsignals__ = {
-        'changed': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_INT,)),
+        'changed': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE,
+                    (gobject.TYPE_INT,)),
     }
 
     def __init__(self, widget):
-        super(PolkitAction, self).__init__()
+        gobject.GObject.__init__(self)
 
         self.widget = widget
 
@@ -61,16 +58,20 @@ class PolkitAction(gobject.GObject):
         else:
             self.emit('changed', 0)
 
-class PolkitButton(gtk.Button):
+
+class PolkitButton(Gtk.Button):
     __gsignals__ = {
-        'changed': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_INT,)),
+        'changed': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE,
+                    (gobject.TYPE_INT,)),
     }
 
     def __init__(self):
-        super(PolkitButton, self).__init__()
+        gobject.GObject.__init__(self)
 
         self.set_label(_('_Unlock'))
-        image = gtk.image_new_from_stock(gtk.STOCK_DIALOG_AUTHENTICATION, gtk.ICON_SIZE_BUTTON)
+        self.set_use_underline(True)
+        image = Gtk.Image.new_from_stock(Gtk.STOCK_DIALOG_AUTHENTICATION,
+                                         Gtk.IconSize.BUTTON)
         self.set_image(image)
 
         self.action = PolkitAction(self)
@@ -87,6 +88,6 @@ class PolkitButton(gtk.Button):
         self.emit('changed', self.action.get_authenticated())
 
     def change_button_state(self):
-        image = gtk.image_new_from_stock(gtk.STOCK_YES, gtk.ICON_SIZE_BUTTON)
+        image = Gtk.Image.new_from_stock(Gtk.STOCK_YES, Gtk.IconSize.BUTTON)
         self.set_image(image)
         self.set_sensitive(False)

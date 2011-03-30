@@ -1,8 +1,6 @@
-#!/usr/bin/python
-
-# Ubuntu Tweak - PyGTK based desktop configuration tool
+# Ubuntu Tweak - Ubuntu Configuration Tool
 #
-# Copyright (C) 2007-2008 TualatriX <tualatrix@gmail.com>
+# Copyright (C) 2007-2011 Tualatrix Chou <tualatrix@gmail.com>
 #
 # Ubuntu Tweak is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,11 +28,11 @@ log = logging.getLogger("DbusProxy")
 SHOWED = False
 
 def show_message(*args):
-    from ubuntutweak.ui.dialogs import ErrorDialog
+    from ubuntutweak.gui.dialogs import ErrorDialog
     message = _('The Ubuntu Tweak daemon didn\'t start correctly. This means that some '
             'advanced features may not work.\n'
             'If you want to help developers debugging, try to run "<b>sudo /usr/share/ubuntu-tweak/ubuntu-tweak-daemon</b>" in a terminal.')
-    ErrorDialog(message).launch()
+    ErrorDialog(message=message).launch()
 
 def nothing(*args):
     return None

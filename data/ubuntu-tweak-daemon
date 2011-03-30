@@ -1,7 +1,14 @@
 #!/usr/bin/python
 
 import dbus
+import dbus.mainloop.glib
 import gobject
+import optparse
+
+gobject.threads_init()
+dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
+dbus.mainloop.glib.threads_init()
+
 import optparse
 from ubuntutweak.common.consts import VERSION
 from ubuntutweak.common.debug import enable_debugging
@@ -20,7 +27,6 @@ if __name__ == '__main__':
 
     #TODO make it exist when timeout
     from ubuntutweak.backends.daemon import Daemon
-    dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
     mainloop = gobject.MainLoop()
     Daemon(dbus.SystemBus(), mainloop)
     mainloop.run()

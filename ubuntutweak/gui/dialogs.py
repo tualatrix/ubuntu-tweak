@@ -160,3 +160,17 @@ class ProcessDialog(BusyDialog):
 
     def on_timeout(self):
         return NotImplemented
+
+
+class AuthenticateFailDialog(ErrorDialog):
+    def __init__(self):
+        ErrorDialog.__init__(self,
+                             title=_('Could not authenticate'),
+                             message=_('An unexpected error has occurred.'))
+
+
+class ServerErrorDialog(ErrorDialog):
+    def __init__(self):
+        ErrorDialog.__init__(self,
+                             title=_("Service hasn't initialized yet"),
+                             message=_('You need to restart your computer.'))

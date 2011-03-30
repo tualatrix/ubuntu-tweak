@@ -3,7 +3,7 @@ import time
 import gobject
 from gi.repository import Gtk, Gdk, GConf
 
-from ubuntutweak.settings.gconfsettings import GconfSetting
+from ubuntutweak.settings.gconfsettings import GconfSetting, UserGconfSetting
 
 
 class CheckButton(Gtk.CheckButton):
@@ -28,6 +28,28 @@ class CheckButton(Gtk.CheckButton):
 
     def on_button_toggled(self, widget):
         self.setting.set_value(self.get_active())
+
+
+class UserCheckButton(Gtk.CheckButton):
+    def __init__(self, user=None, label=None, key=None, default=None,
+                 tooltip=None, backend=GConf):
+        gobject.GObject.__init__(self, label=label)
+
+        if backend == GConf:
+            self.setting = UserGconfSetting(key=key, default=default, type=bool)
+        else:
+            #TODO Gio
+            pass
+        self.user = user
+
+        self.set_active(bool(self.setting.get_value(self.user)))
+        if tooltip:
+            self.set_tooltip_text(tooltip)
+
+        self.connect('toggled', self.button_toggled)
+
+    def button_toggled(self, widget):
+        self.setting.set_value(self.user, self.get_active())
 
 
 class ResetButton(Gtk.Button):

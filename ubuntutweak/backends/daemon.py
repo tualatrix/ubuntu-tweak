@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# Copyright (C) 2007-2010 TualatriX <tualatrix@gmail.com>
+# Copyright (C) 2007-2011 Tualatrix Chou <tualatrix@gmail.com>
 #
 # The class AptAuth is modified from softwareproperty. Author: Michael Vogt <mvo@debian.org>
 # The original file is: softwareproperties/AptAuth.py
@@ -11,21 +11,24 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
 import os
+import glob
 import fcntl
+import gettext
+import logging
+import tempfile
+import subprocess
+
+from subprocess import PIPE
+
 import apt_pkg
 import dbus
-import glob
 import dbus.glib
 import dbus.service
 import dbus.mainloop.glib
 import gobject
-import gettext
-import subprocess
-import tempfile
-import logging
 
-from subprocess import PIPE
 from aptsources.sourceslist import SourceEntry, SourcesList
+
 from ubuntutweak import system
 from ubuntutweak.utils import ppa
 from ubuntutweak.backends import PolicyKitService
