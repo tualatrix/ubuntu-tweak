@@ -42,7 +42,6 @@ if __name__ == "__main__":
 
     from ubuntutweak.app import UbuntuTweakApp, UbuntuTweakWindow, show_splash
 
-    show_splash()
     app = UbuntuTweakApp()
 
     if app.is_running():
@@ -52,6 +51,7 @@ if __name__ == "__main__":
             message.set_text(options.module, -1)
             app.send_message(Unique.Command.OPEN, message)
     else:
+        show_splash()
         window = UbuntuTweakWindow(module=options.module)
         app.set_window(window)
         app.run()
