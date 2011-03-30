@@ -8,3 +8,19 @@ X-MultipleArgs=false
 Type=Application
 StartupNotify=true
 Categories=GNOME;GTK;System;
+X-Ayatana-Desktop-Shortcuts=Window;Icons;DesktopRecovery
+
+[Window Shortcut Group]
+Name=Compiz Settings
+Exec=ubuntu-tweak -m Compiz
+OnlyShowIn=Unity
+
+[Icons Shortcut Group]
+Name=Icon Settings
+Exec=ubuntu-tweak -m Icons
+OnlyShowIn=Unity
+
+[DesktopRecovery Shortcut Group]
+Name=Desktop Recovery
+Exec=ubuntu-tweak -m DesktopRecovery
+OnlyShowIn=Unity
