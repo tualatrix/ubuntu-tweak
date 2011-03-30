@@ -1,8 +1,6 @@
-#!/usr/bin/python
-
-# Ubuntu Tweak - PyGTK based desktop configuration tool
+# Ubuntu Tweak - Ubuntu Configuration Tool
 #
-# Copyright (C) 2007-2008 TualatriX <tualatrix@gmail.com>
+# Copyright (C) 2007-2011 Tualatrix Chou <tualatrix@gmail.com>
 #
 # Ubuntu Tweak is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,24 +16,20 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-import pygtk
-pygtk.require("2.0")
-import gtk
 import os
 
-from ubuntutweak.modules  import TweakModule
-from ubuntutweak.ui import ListPack, TablePack
-from ubuntutweak.ui.dialogs import ErrorDialog
+from gi.repository import Gtk, GConf
 
-from ubuntutweak.common.consts import *
-from ubuntutweak.common.factory import WidgetFactory
+from ubuntutweak.modules  import TweakModule
+from ubuntutweak.factory import WidgetFactory
+from ubuntutweak.gui.containers import ListPack, TablePack
+from ubuntutweak.gui.dialogs import ErrorDialog
 
 class Session(TweakModule):
     __title__ = _('Session Control')
     __desc__ = _('Control your system session releated features')
     __icon__ = 'gnome-session-hibernate'
     __category__ = 'startup'
-    __desktop__ = ['gnome', 'une']
 
     def __init__(self):
         TweakModule.__init__(self)
@@ -43,24 +37,27 @@ class Session(TweakModule):
         data = {
             'changed': self.on_entry_changed,
         }
-        label1, entry1, reset1 = WidgetFactory.create('GconfEntry',
-                                         label=_('File Manager'),
-                                         key='/desktop/gnome/session/required_components/filemanager',
-                                         enable_reset=True,
-                                         signal_dict=data)
-        label2, entry2, reset2 = WidgetFactory.create('GconfEntry',
-                                         label=_('Panel'),
-                                         enable_reset=True,
-                                         signal_dict=data,
-                                         key='/desktop/gnome/session/required_components/panel')
-        label3, entry3, reset3 = WidgetFactory.create('GconfEntry',
-                                         label=_('Window Manager'),
-                                         enable_reset=True,
-                                         signal_dict=data,
-                                         key='/desktop/gnome/session/required_components/windowmanager')
+        label1, entry1, reset1 = WidgetFactory.create('Entry',
+            label=_('File Manager'),
+            key='/desktop/gnome/session/required_components/filemanager',
+            enable_reset=True,
+            backend=GConf,
+            signal_dict=data)
+        label2, entry2, reset2 = WidgetFactory.create('Entry',
+            label=_('Panel'),
+            enable_reset=True,
+            signal_dict=data,
+            backend=GConf,
+            key='/desktop/gnome/session/required_components/panel')
+        label3, entry3, reset3 = WidgetFactory.create('Entry',
+            label=_('Window Manager'),
+            enable_reset=True,
+            signal_dict=data,
+            backend=GConf,
+            key='/desktop/gnome/session/required_components/windowmanager')
 
-        hbox1 = gtk.HBox(False, 12)
-        self.apply_button = gtk.Button(stock=gtk.STOCK_APPLY)
+        hbox1 = Gtk.HBox(spacing=12)
+        self.apply_button = Gtk.Button(stock=Gtk.STOCK_APPLY)
         self.apply_button.changed_table = {}
         self.apply_button.set_sensitive(False)
         self.apply_button.connect('clicked', self.on_apply_clicked, (entry1, entry2, entry3))
@@ -75,15 +72,18 @@ class Session(TweakModule):
 
         self.add_start(table, False, False, 0)
 
+        #TODO add more options from /apps/indicator-session
         box = ListPack(_("Session Options"), (
-                    WidgetFactory.create("GconfCheckButton",
-                                         label=_("Automatically save open applications when logging out"),
-                                         enable_reset=True,
-                                         key="auto_save_session"),
-                    WidgetFactory.create("GconfCheckButton",
-                                         label=_("Suppress the logout, restart and shutdown confirmation dialogue box."),
-                                         enable_reset=True,
-                                         key="/apps/indicator-session/suppress_logout_restart_shutdown"),
+                  WidgetFactory.create("CheckButton",
+                      label=_("Automatically save open applications when logging out"),
+                      enable_reset=True,
+                      backend=GConf,
+                      key="/apps/gnome-session/options/auto_save_session"),
+                  WidgetFactory.create("CheckButton",
+                      label=_("Suppress the logout, restart and shutdown confirmation dialogue box."),
+                      enable_reset=True,
+                      backend=GConf,
+                      key="/apps/indicator-session/suppress_logout_restart_shutdown"),
                 ))
 
         self.add_start(box, False, False, 0)
@@ -103,10 +103,11 @@ class Session(TweakModule):
 
     def on_apply_clicked(self, widget, entrys):
         for entry in entrys:
-            if entry.is_changed():
+            if entry.is_changed() and entry.get_text() != 'Unset':
                 if os.popen('which %s' % entry.get_text()).read():
                     entry.on_edit_finished_cb(entry)
                 else:
-                    ErrorDialog(_('Please enter a valid application command line.'), title=_('"%s" is not available.') % entry.get_text()).launch()
+                    ErrorDialog(title=_('"%s" is not available.') % entry.get_text(),
+                                message=_('Please enter a valid application command line.')).launch()
                     entry.reset()
         self.apply_button.set_sensitive(False)

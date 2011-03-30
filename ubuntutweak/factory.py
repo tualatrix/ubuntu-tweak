@@ -34,7 +34,7 @@ def on_reset_button_clicked(widget, reset_target):
 
 
 class WidgetFactory:
-    composite_capable = ('SpinButton',)
+    composite_capable = ('SpinButton', 'Entry')
 
     @classmethod
     def create(cls, widget, **kwargs):

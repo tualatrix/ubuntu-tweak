@@ -75,6 +75,9 @@ class Entry(Gtk.Entry):
         else:
             self.set_text(_("Unset"))
 
+    def is_changed(self):
+        return self.setting.get_value() != self.get_text()
+
     def connect_activate_signal(self):
         self.connect('activate', self.on_edit_finished_cb)
 
