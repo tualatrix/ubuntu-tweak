@@ -103,7 +103,7 @@ class Session(TweakModule):
 
     def on_apply_clicked(self, widget, entrys):
         for entry in entrys:
-            if entry.is_changed() and entry.get_text() != 'Unset':
+            if entry.is_changed() and entry.get_text().decode('utf-8') != _('Unset'):
                 if os.popen('which %s' % entry.get_text()).read():
                     entry.on_edit_finished_cb(entry)
                 else:
