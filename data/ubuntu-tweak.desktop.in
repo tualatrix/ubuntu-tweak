@@ -7,7 +7,7 @@ Terminal=false
 Type=Application
 Categories=GNOME;GTK;System;
 StartupNotify=true
-X-Ayatana-Desktop-Shortcuts=Compiz;Icon;DesktopRecovery;FileType;LoginSettings;Shortcuts;Nautilus;Session;Metacity
+X-Ayatana-Desktop-Shortcuts=Compiz;Icon;DesktopRecovery;FileType;Gnome;LoginSettings;Shortcuts;Nautilus;Session;Metacity
 X-Ayatana-Appmenu-Show-Stubs=False
 
 [Compiz Shortcut Group]
@@ -28,6 +28,11 @@ TargetEnvironment=Unity
 [FileType Shortcut Group]
 _Name=File Type Manager
 Exec=ubuntu-tweak -m FileType
+TargetEnvironment=Unity
+
+[Gnome Shortcut Group]
+_Name=GNOME Settings
+Exec=ubuntu-tweak -m Gnome
 TargetEnvironment=Unity
 
 [LoginSettings Shortcut Group]

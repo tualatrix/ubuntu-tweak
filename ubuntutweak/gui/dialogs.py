@@ -83,6 +83,13 @@ class InfoDialog(BaseDialog):
                             parent=parent, type=type, buttons=buttons)
 
 
+class WarningDialog(BaseDialog):
+    def __init__(self, title='', message='', parent=None,
+                 type=Gtk.MessageType.WARNING, buttons=Gtk.ButtonsType.OK):
+        BaseDialog.__init__(self, title=title, message=message,
+                            parent=parent, type=type, buttons=buttons)
+
+
 class QuestionDialog(BaseDialog):
     def __init__(self, title='', message='', parent=None,
                  type=Gtk.MessageType.QUESTION, buttons=Gtk.ButtonsType.YES_NO):
