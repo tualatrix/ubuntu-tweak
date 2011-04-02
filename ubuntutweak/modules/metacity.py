@@ -1,8 +1,6 @@
-#!/usr/bin/python
-
-# Ubuntu Tweak - PyGTK based desktop configuration tool
+# Ubuntu Tweak - Ubuntu Configuration Tool
 #
-# Copyright (C) 2007-2010 TualatriX <tualatrix@gmail.com>
+# Copyright (C) 2007-2011 Tualatrix Chou <tualatrix@gmail.com>
 #
 # Ubuntu Tweak is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,17 +16,17 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-import gtk
 import gobject
+from gi.repository import Gtk, GConf
 
 from ubuntutweak.modules  import TweakModule
-from ubuntutweak.ui import ListPack, TablePack
-from ubuntutweak.ui.dialogs import InfoDialog
+from ubuntutweak.gui.dialogs import InfoDialog
+from ubuntutweak.gui.containers import ListPack, TablePack
+from ubuntutweak.factory import WidgetFactory
+from ubuntutweak.settings.gconfsettings import GconfSetting
 
-from ubuntutweak.common.factory import WidgetFactory
-from ubuntutweak.conf import GconfSetting
 
-class ButtonView(gtk.IconView):
+class ButtonView(Gtk.IconView):
     (COLUMN_VALUE,
      COLUMN_LABEL,
     ) = range(2)
@@ -45,19 +43,19 @@ class ButtonView(gtk.IconView):
     config = GconfSetting(key='/apps/metacity/general/button_layout')
 
     def __init__(self):
-        gtk.IconView.__init__(self)
+        gobject.GObject.__init__(self)
 
-        model = self.__create_model()
+        model = self._create_model()
         self.set_model(model)
         self.update_model()
 
         self.set_text_column(self.COLUMN_LABEL)
         self.set_reorderable(True)
-        self.set_orientation(gtk.ORIENTATION_HORIZONTAL)
+        self.set_orientation(Gtk.Orientation.HORIZONTAL)
         self.connect('selection-changed', self.on_selection_changed)
 
-    def __create_model(self):
-        model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
+    def _create_model(self):
+        model = Gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
 
         return model
 
@@ -87,10 +85,7 @@ class ButtonView(gtk.IconView):
         for k in list:
             k = k.strip()
             if k in self.values:
-                iter = model.append()
-                model.set(iter,
-                          self.COLUMN_VALUE, k,
-                          self.COLUMN_LABEL, self.values[k])
+                model.append((k, self.values[k]))
             else:
                 continue
 
@@ -102,10 +97,7 @@ class ButtonView(gtk.IconView):
 
     def add_button(self, value):
         model = self.get_model()
-        iter = model.append()
-        model.set(iter,
-                  self.COLUMN_VALUE, value,
-                  self.COLUMN_LABEL, self.values[value])
+        model.append((value, self.values[value]))
         self.on_selection_changed(self)
 
     def remove_button(self, value):
@@ -122,32 +114,34 @@ class ButtonView(gtk.IconView):
                 return True
         return False
 
-class WindowControlButton(gtk.CheckButton):
+
+class WindowControlButton(Gtk.CheckButton):
     '''The individual checkbutton to control window control'''
 
     def __init__(self, label, value, view):
         '''Init the button, the view must be the ButtonView'''
-        self.__label = label
-        self.__value = value
-        self.__view = view
+        self._label = label
+        self._value = value
+        self._view = view
 
-        gtk.CheckButton.__init__(self, self.__label)
-        self.set_active(self.__view.has_button(self.__value))
+        gobject.GObject.__init__(self, label=self._label)
+        self.set_active(self._view.has_button(self._value))
 
-        self.__handle_id = self.connect('toggled', self.on_toggled)
+        self._handle_id = self.connect('toggled', self.on_toggled)
 
     def on_toggled(self, widget):
         '''Emit extra signal when toggle button'''
         if widget.get_active():
-            self.__view.add_button(self.__value)
+            self._view.add_button(self._value)
         else:
-            self.__view.remove_button(self.__value)
+            self._view.remove_button(self._value)
 
     def update_status(self):
         '''Update status is called from others, not user, so need to block the handler'''
-        self.handler_block(self.__handle_id)
-        self.set_active(self.__view.has_button(self.__value))
-        self.handler_unblock(self.__handle_id)
+        self.handler_block(self._handle_id)
+        self.set_active(self._view.has_button(self._value))
+        self.handler_unblock(self._handle_id)
+
 
 class Metacity(TweakModule):
     __title__ = _('Window Manager Settings')
@@ -155,7 +149,6 @@ class Metacity(TweakModule):
     __icon__ = 'preferences-system-windows'
     __url__ = 'http://ubuntu-tweak.com'
     __category__ = 'desktop'
-    __desktop__ = ['gnome', 'une']
 
     left_default = 'close,minimize,maximize:'
     right_default = ':minimize,maximize,close'
@@ -163,9 +156,9 @@ class Metacity(TweakModule):
     def __init__(self):
         TweakModule.__init__(self, 'metacity.ui')
 
-        swindow = gtk.ScrolledWindow()
+        swindow = Gtk.ScrolledWindow()
         swindow.set_size_request(-1, 54)
-        swindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        swindow.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         self.buttonview = ButtonView()
         swindow.add(self.buttonview)
         self.vbox2.pack_start(swindow, False, False, 0)
@@ -174,21 +167,25 @@ class Metacity(TweakModule):
             button = WindowControlButton(label, value, self.buttonview)
             self.control_hbox.pack_start(button, False, False, 0)
 
-        box = ListPack(_('Window Titlebar Button Layout'), [child for child in self.main_vbox.get_children()])
+        box = ListPack(_('Window Titlebar Button Layout'),
+                       [child for child in self.main_vbox.get_children()])
         self.add_start(box, False, False, 0)
         self.init_control_buttons()
 
         table = TablePack(_('Window Titlebar Actions'), (
-                    WidgetFactory.create('GconfComboBox',
+                    WidgetFactory.create('ComboBox',
                                          label=_('Titlebar mouse wheel action'),
-                                         key='mouse_wheel_action',
+                                         key='/apps/gwd/mouse_wheel_action',
                                          enable_reset=True,
+                                         backend=GConf,
                                          texts=[_('None'), _('Roll up')],
                                          values=['none', 'shade']),
-                    WidgetFactory.create('GconfComboBox', 
+                    #TODO the toggle_maximize_horizontally and vertically may not work
+                    WidgetFactory.create('ComboBox',
                                          label=_('Titlebar double-click action'),
-                                         key='action_double_click_titlebar',
+                                         key='/apps/metacity/general/action_double_click_titlebar',
                                          enable_reset=True,
+                                         backend=GConf,
                                          texts=[_('None'), _('Maximize'), \
                                                  _('Maximize Horizontally'), \
                                                  _('Maximize Vertically'), \
@@ -199,10 +196,11 @@ class Metacity(TweakModule):
                                                  'toggle_maximize_vertically', \
                                                  'minimize', 'toggle_shade', \
                                                  'lower', 'menu']),
-                    WidgetFactory.create('GconfComboBox',
+                    WidgetFactory.create('ComboBox',
                                          label=_('Titlebar middle-click action'),
-                                         key='action_middle_click_titlebar',
+                                         key='/apps/metacity/general/action_middle_click_titlebar',
                                          enable_reset=True,
+                                         backend=GConf,
                                          texts=[_('None'), _('Maximize'), \
                                                  _('Maximize Horizontally'), \
                                                  _('Maximize Vertically'), \
@@ -213,10 +211,11 @@ class Metacity(TweakModule):
                                                  'toggle_maximize_vertically', \
                                                  'minimize', 'toggle_shade', \
                                                  'lower', 'menu']),
-                    WidgetFactory.create('GconfComboBox', 
+                    WidgetFactory.create('ComboBox',
                                          label=_('Titlebar right-click action'),
-                                         key='action_right_click_titlebar',
+                                         key='/apps/metacity/general/action_right_click_titlebar',
                                          enable_reset=True,
+                                         backend=GConf,
                                          texts=[_('None'), _('Maximize'), \
                                                  _('Maximize Horizontally'), \
                                                  _('Maximize Vertically'), \
@@ -232,36 +231,42 @@ class Metacity(TweakModule):
         self.add_start(table, False, False, 0)
 
         box = TablePack(_('Window Decoration Effects'), (
-                    WidgetFactory.create('GconfCheckButton',
+                    WidgetFactory.create('CheckButton',
                                           label=_('Use Metacity window theme'),
                                           enable_reset=True,
-                                          key='use_metacity_theme'),
-                    WidgetFactory.create('GconfCheckButton',
+                                          backend=GConf,
+                                          key='/apps/gwd/use_metacity_theme'),
+                    WidgetFactory.create('CheckButton',
                                           label=_('Enable active window transparency'),
+                                          backend=GConf,
                                           enable_reset=True,
-                                          key='metacity_theme_active_shade_opacity'),
-                    WidgetFactory.create('GconfScale',
+                                          key='/apps/gwd/metacity_theme_active_shade_opacity'),
+                    WidgetFactory.create('Scale',
                                           label=_('Active window transparency level'),
-                                          key='metacity_theme_active_opacity',
+                                          key='/apps/gwd/metacity_theme_active_opacity',
+                                          backend=GConf,
                                           enable_reset=True,
                                           min=0, max=1, digits=2),
-                    WidgetFactory.create('GconfCheckButton',
+                    WidgetFactory.create('CheckButton',
                                           label=_('Enable inactive window transparency'),
                                           enable_reset=True,
-                                          key='metacity_theme_shade_opacity'),
-                    WidgetFactory.create('GconfScale',
+                                          backend=GConf,
+                                          key='/apps/gwd/metacity_theme_shade_opacity'),
+                    WidgetFactory.create('Scale',
                                           label=_('Inactive window shade transparency level'),
-                                          key='metacity_theme_opacity',
+                                          backend=GConf,
+                                          key='/apps/gwd/metacity_theme_opacity',
                                           enable_reset=True,
                                           min=0, max=1, digits=2),
             ))
         self.add_start(box, False, False, 0)
 
-        button = WidgetFactory.create('GconfCheckButton', 
+        button = WidgetFactory.create('CheckButton',
                                       label=_("Enable Metacity's compositing feature"),
                                       enable_reset=True,
+                                      backend=GConf,
                                       signal_dict={'toggled': self.on_compositing_button_toggled},
-                                      key='compositing_manager')
+                                      key='/apps/metacity/general/compositing_manager')
         if button:
             box = ListPack(_('Compositing Manager'), (button,))
             self.add_start(box, False, False, 0)
@@ -305,4 +310,5 @@ class Metacity(TweakModule):
 
     def on_compositing_button_toggled(self, widget):
         if widget.get_active():
-            InfoDialog(_('To enable Metacity\'s compositing feature, you should manually disable Visual Effects in "Appearance".')).launch()
+            InfoDialog(message=_('To enable Metacity\'s compositing feature, '
+                       'you should manually disable Visual Effects in "Appearance".')).launch()

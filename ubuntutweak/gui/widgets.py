@@ -1,9 +1,12 @@
 import time
+import logging
 
 import gobject
 from gi.repository import Gtk, Gdk, GConf
 
 from ubuntutweak.settings.gconfsettings import GconfSetting, UserGconfSetting
+
+log = logging.getLogger('widgets')
 
 
 class CheckButton(Gtk.CheckButton):
@@ -112,6 +115,81 @@ class Entry(Gtk.Entry):
         else:
             self.setting.client.unset(self.setting.key)
             self.set_text(_("Unset"))
+
+
+class ComboBox(Gtk.ComboBox):
+    def __init__(self, key=None, texts=None, values=None,
+                 type="string", backend=GConf):
+        gobject.GObject.__init__(self)
+
+        if backend == GConf:
+            self.setting = GconfSetting(key=key, type=str)
+        else:
+            #TODO Gio
+            pass
+
+        if type == 'int':
+            model = Gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_INT)
+        else:
+            model = Gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
+        self.set_model(model)
+
+        cell = Gtk.CellRendererText()
+        self.pack_start(cell, True)
+        self.add_attribute(cell, 'text', 0)
+
+        current_value = self.setting.get_value()
+
+        for text, value in dict(zip(texts, values)).items():
+            iter = model.append((text, value))
+            if current_value == value:
+                self.set_active_iter(iter)
+
+        self.connect("changed", self.value_changed_cb)
+
+    def value_changed_cb(self, widget):
+        iter = widget.get_active_iter()
+        text = self.get_model().get_value(iter, 1)
+        log.debug("ComboBox value changed to %s" % text)
+
+        self.setting.set_value(text)
+
+
+class Scale(Gtk.HScale):
+    def __init__(self, key=None, min=None, max=None, digits=0,
+                 reversed=False, backend=GConf):
+        gobject.GObject.__init__(self)
+
+        if digits > 0:
+            type = float
+        else:
+            type = int
+
+        if backend == GConf:
+            self.setting = GconfSetting(key=key, type=type)
+        else:
+            #TODO Gio
+            pass
+
+        if reversed:
+            self._reversed = True
+        else:
+            self._reversed = False
+
+        self.set_range(min, max)
+        self.set_digits(digits)
+        self.set_value_pos(Gtk.PositionType.RIGHT)
+        self.connect("value-changed", self.on_value_changed)
+        if self._reversed:
+            self.set_value(max - self.setting.get_value())
+        else:
+            self.set_value(self.setting.get_value())
+
+    def on_value_changed(self, widget, data=None):
+        if self._reversed:
+            self.setting.set_value(100 - widget.get_value())
+        else:
+            self.setting.set_value(widget.get_value())
 
 
 class SpinButton(Gtk.SpinButton):

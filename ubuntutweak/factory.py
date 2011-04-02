@@ -31,10 +31,12 @@ def on_reset_button_clicked(widget, reset_target):
         reset_target.set_active(widget.get_default_value())
     elif issubclass(reset_target.__class__, Gtk.SpinButton):
         reset_target.set_value(widget.get_default_value())
+    elif issubclass(reset_target.__class__, Gtk.Scale):
+        reset_target.set_value(widget.get_default_value())
 
 
 class WidgetFactory:
-    composite_capable = ('SpinButton', 'Entry')
+    composite_capable = ('SpinButton', 'Entry', 'ComboBox', 'Scale')
 
     @classmethod
     def create(cls, widget, **kwargs):
