@@ -68,14 +68,17 @@ class ModuleButton(Gtk.Button):
 
         self._module = module
 
-        vbox = Gtk.VBox(spacing=6)
-        self.add(vbox)
+        hbox = Gtk.HBox(spacing=6)
+        self.add(hbox)
 
         image = Gtk.Image.new_from_pixbuf(module.get_pixbuf())
-        vbox.pack_start(image, False, False, 0)
+        hbox.pack_start(image, False, False, 0)
 
         label = Gtk.Label(label=module.get_title())
-        vbox.pack_start(label, False, False, 0)
+        label.set_line_wrap(True)
+        label.set_line_wrap_mode(Pango.WrapMode.WORD)
+        label.set_size_request(120, -1)
+        hbox.pack_start(label, False, False, 0)
 
     def get_module(self):
         return self._module
@@ -97,7 +100,7 @@ class CategoryBox(Gtk.VBox):
         header = Gtk.HBox()
         header.set_spacing(12)
         label = Gtk.Label()
-        label.set_markup("<span color='#aaa' size='x-large' weight='800'>%s</span>" % category_name)
+        label.set_markup("<span color='#aaa' size='x-large' weight='640'>%s</span>" % category_name)
         header.pack_start(label, False, False, 0)
 
         self._table = Gtk.Table()
@@ -162,8 +165,6 @@ class ModuleWindow(Gtk.ScrolledWindow):
         self._categories = {}
         self._boxes = []
 
-        self.connect('size-allocate', self.rebuild_boxes)
-
         self._box = Gtk.VBox(spacing=6)
 
         for category, category_name in MODULE_LOADER.get_categories():
@@ -177,6 +178,7 @@ class ModuleWindow(Gtk.ScrolledWindow):
         viewport = Gtk.Viewport(shadow_type=Gtk.ShadowType.NONE)
         viewport.add(self._box)
         self.add(viewport)
+        self.connect('size-allocate', self.rebuild_boxes)
 
     def _connect_signals(self, category_box):
         for button in category_box.get_buttons():
@@ -189,8 +191,8 @@ class ModuleWindow(Gtk.ScrolledWindow):
 
 
     def rebuild_boxes(self, widget, request):
-        ncols = request.width / 220
-        width = ncols * (220 + 2 * 4) + 40
+        ncols = request.width / 164 # 32 + 120 + 6 + 4
+        width = ncols * (164 + 2 * 4) + 40
         if width > request.width:
             ncols -= 1
 
