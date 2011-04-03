@@ -7,7 +7,7 @@ Terminal=false
 Type=Application
 Categories=GNOME;GTK;System;
 StartupNotify=true
-X-Ayatana-Desktop-Shortcuts=Compiz;Icon;DesktopRecovery;FileType;Gnome;LoginSettings;Shortcuts;Nautilus;Session;Metacity
+X-Ayatana-Desktop-Shortcuts=Compiz;Icon;DesktopRecovery;FileType;Gnome;LoginSettings;Shortcuts;Nautilus;Session;Metacity;PowerManager
 X-Ayatana-Appmenu-Show-Stubs=False
 
 [Compiz Shortcut Group]
@@ -58,4 +58,9 @@ TargetEnvironment=Unity
 [Metacity Shortcut Group]
 _Name=Window Manager Settings
 Exec=ubuntu-tweak -m Metacity
+TargetEnvironment=Unity
+
+[PowerManager Shortcut Group]
+_Name=Power Manager Settings
+Exec=ubuntu-tweak -m PowerManager
 TargetEnvironment=Unity

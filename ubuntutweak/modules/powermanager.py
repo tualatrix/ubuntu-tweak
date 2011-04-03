@@ -1,8 +1,6 @@
-#!/usr/bin/python
-
-# Ubuntu Tweak - PyGTK based desktop configuration tool
+# Ubuntu Tweak - Ubuntu Configuration Tool
 #
-# Copyright (C) 2007-2008 TualatriX <tualatrix@gmail.com>
+# Copyright (C) 2007-2011 Tualatrix Chou <tualatrix@gmail.com>
 #
 # Ubuntu Tweak is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,43 +16,48 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-from ubuntutweak.modules  import TweakModule
-from ubuntutweak.ui import TablePack
+from gi.repository import GConf
 
-#TODO
-from ubuntutweak.common.factory import WidgetFactory
+from ubuntutweak.modules  import TweakModule
+from ubuntutweak.gui.containers import TablePack
+from ubuntutweak.factory import WidgetFactory
+
 
 class PowerManager(TweakModule):
     __title__ = _('Power Manager Settings')
     __desc__ = _('Control your computer\'s power managerment')
     __icon__ = 'gnome-power-manager'
     __category__ = 'system'
-    __desktop__ = ['gnome', 'xfce', 'une']
 
     def __init__(self):
         TweakModule.__init__(self)
 
         box = TablePack(_('Advanced Power Management Settings'), (
-                WidgetFactory.create('GconfCheckButton',
+                WidgetFactory.create('CheckButton',
                                       label=_('Enable "Lock screen" when "Blank Screen" activates'),
                                       enable_reset=True,
-                                      key='blank_screen'),
-                WidgetFactory.create('GconfCheckButton',
+                                      backend=GConf,
+                                      key='/apps/gnome-power-manager/lock/blank_screen'),
+                WidgetFactory.create('CheckButton',
                                       label=_('Lock screen on hibernate'),
                                       enable_reset=True,
+                                      backend=GConf,
                                       key='/apps/gnome-power-manager/lock/hibernate'),
-                WidgetFactory.create('GconfCheckButton',
+                WidgetFactory.create('CheckButton',
                                       label=_('Lock screen on suspend'),
                                       enable_reset=True,
+                                      backend=GConf,
                                       key='/apps/gnome-power-manager/lock/suspend'),
-                WidgetFactory.create('GconfScale',
+                WidgetFactory.create('Scale',
                                       label=_('LCD brightness when using AC power'),
                                       enable_reset=True,
+                                      backend=GConf,
                                       key='/apps/gnome-power-manager/backlight/brightness_ac',
                                       min=0, max=100, digits=0),
-                WidgetFactory.create('GconfScale',
+                WidgetFactory.create('Scale',
                                       label=_('LCD brightness when using battery'),
                                       enable_reset=True,
+                                      backend=GConf,
                                       key='/apps/gnome-power-manager/backlight/brightness_dim_battery',
                                       min=0, max=100, digits=0, reversed=True)
         ))
