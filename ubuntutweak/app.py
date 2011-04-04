@@ -143,7 +143,7 @@ class CategoryBox(Gtk.VBox):
         self.show_all()
 
 
-class ModuleWindow(Gtk.ScrolledWindow):
+class TweaksPage(Gtk.ScrolledWindow):
 
     __gsignals__ = {
         'module_selected': (gobject.SIGNAL_RUN_FIRST,
@@ -336,19 +336,19 @@ class UbuntuTweakWindow(GuiBuilder):
 
         Gtk.rc_parse(os.path.join(DATA_DIR, 'theme/ubuntu-tweak.rc'))
 
-        module_window = ModuleWindow()
+        tweaks_page = TweaksPage()
         clip_page = ClipPage().get_object('hbox1')
 
         self.jumper = JumpManager()
 
         self.jumper.overview_index = self.notebook.append_page(clip_page, Gtk.Label())
-        self.jumper.tweaks_index = self.notebook.append_page(module_window, Gtk.Label())
+        self.jumper.tweaks_index = self.notebook.append_page(tweaks_page, Gtk.Label())
         self.jumper.wait_index = self.notebook.append_page(self._crete_wait_page(),
                                                            Gtk.Label())
 
         # Always show welcome page at first
         self.mainwindow.connect('realize', self._initialize_ui_states)
-        module_window.connect('module_selected', self.on_module_selected)
+        tweaks_page.connect('module_selected', self.on_module_selected)
 
         self.mainwindow.show_all()
         self.link_button.hide()
