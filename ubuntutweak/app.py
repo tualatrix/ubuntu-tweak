@@ -218,11 +218,12 @@ class JumpManager(object):
     '''Manage the page and modules, they are all in the notebook'''
 
     def __init__(self):
-        self._overview_index = None
-        self._tweaks_index = None
-        self._wait_index = None
-        self.__next_module = None
-        self._current_module_index = None
+        self.overview_index = None
+        self.app_index = None
+        self.tweaks_index = None
+        self.wait_index = None
+        self._next_module = None
+        self.current_module_index = None
 
         # the module name and page index: 'Compiz': 2
         self._loaded_modules = {}
@@ -234,21 +235,21 @@ class JumpManager(object):
 
     def can_backwards(self):
         return self.current_module_index != None and \
-               self._current_module_index != self._tweaks_index
+               self.current_module_index != self.tweaks_index
 
     def can_forward(self):
-        return self.__next_module != None and \
-               self.__next_module != self._current_module_index
+        return self._next_module != None and \
+               self._next_module != self.current_module_index
 
     def get_backwards_index(self):
-        self.__next_module = self._current_module_index
-        self._current_module_index = self._tweaks_index
-        return self._tweaks_index
+        self._next_module = self.current_module_index
+        self.current_module_index = self.tweaks_index
+        return self.tweaks_index
 
     def get_forward_index(self):
-        index = self.__next_module
-        self.__next_module = None
-        self._current_module_index = index
+        index = self._next_module
+        self._next_module = None
+        self.current_module_index = index
         return index
 
     def module_is_loaded(self, name):
@@ -257,9 +258,9 @@ class JumpManager(object):
     def store_current_module(self, name, module, index):
         log.info('store_current_module: %s, %s, %s' % (name, module, index))
         self._loaded_modules[name] = index
-        self._current_module_index = index
+        self.current_module_index = index
         self._modules_index[index] = module
-        self.__next_module = index
+        self._next_module = index
 
     def get_module_and_index(self, name):
         index = self._loaded_modules[name]
@@ -271,38 +272,6 @@ class JumpManager(object):
 
     def get_current_module(self):
         return self._modules_index[self.current_module_index]
-
-    @property
-    def overview_index(self):
-        return self._overview_index
-
-    @overview_index.setter
-    def overview_index(self, index):
-        self._overview_index = index
-
-    @property
-    def tweaks_index(self):
-        return self._tweaks_index
-
-    @tweaks_index.setter
-    def tweaks_index(self, index):
-        self._tweaks_index = index
-
-    @property
-    def wait_index(self):
-        return self._wait_index
-
-    @wait_index.setter
-    def wait_index(self, index):
-        self._wait_index = index
-
-    @property
-    def current_module_index(self):
-        return self._current_module_index
-
-    @current_module_index.setter
-    def current_module_index(self, index):
-        self._current_module_index = index
 
 
 class UbuntuTweakApp(Unique.App):
