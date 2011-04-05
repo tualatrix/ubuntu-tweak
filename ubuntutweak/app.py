@@ -290,6 +290,8 @@ class UbuntuTweakApp(Unique.App):
             command, message, time))
         if command == Unique.Command.ACTIVATE:
             self._window.present()
+            if message.get_text():
+                self._window.select_target_feature(message.get_text())
         elif command == Unique.Command.OPEN:
             self._window.create_module(message.get_text())
 
@@ -300,7 +302,7 @@ class UbuntuTweakApp(Unique.App):
 
 
 class UbuntuTweakWindow(GuiBuilder):
-    def __init__(self, module=''):
+    def __init__(self, feature='', module=''):
         GuiBuilder.__init__(self, file_name='mainwindow.ui')
 
         Gtk.rc_parse(os.path.join(DATA_DIR, 'theme/ubuntu-tweak.rc'))
@@ -325,6 +327,13 @@ class UbuntuTweakWindow(GuiBuilder):
         if module:
             self.tweaks_button.set_active(True)
             self.create_module(module)
+        elif feature:
+            self.select_target_feature(feature)
+
+    def select_target_feature(self, text):
+        toggle_button = getattr(self, '%s_button' % text, None)
+        if toggle_button:
+            toggle_button.set_active(True)
 
     def _initialize_ui_states(self, widget):
         self.notebook.set_current_page(self.jumper.overview_index)

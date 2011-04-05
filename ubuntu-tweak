@@ -35,6 +35,8 @@ if __name__ == "__main__":
                       help="Generate more debugging information.  [default: %default]")
     parser.add_option("-m", "--module", dest="module", default='',
                       help="Start module directly.  [default: %default]")
+    parser.add_option("-f", "--feature", dest="feature", default='',
+                      help="Start feature directly.  [default: %default]")
     options, args = parser.parse_args()
 
     if options.debug or not IS_INSTALLED:
@@ -45,13 +47,18 @@ if __name__ == "__main__":
     app = UbuntuTweakApp()
 
     if app.is_running():
-        app.send_message(Unique.Command.ACTIVATE, Unique.MessageData())
+        message = Unique.MessageData()
+        if options.feature:
+            message.set_text(options.feature, -1)
+
+        app.send_message(Unique.Command.ACTIVATE, message)
+
         if options.module:
             message = Unique.MessageData()
             message.set_text(options.module, -1)
             app.send_message(Unique.Command.OPEN, message)
     else:
         show_splash()
-        window = UbuntuTweakWindow(module=options.module)
+        window = UbuntuTweakWindow(feature=options.feature, module=options.module)
         app.set_window(window)
         app.run()
