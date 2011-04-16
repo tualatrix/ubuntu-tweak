@@ -179,11 +179,12 @@ class Scale(Gtk.HScale):
         self.set_range(min, max)
         self.set_digits(digits)
         self.set_value_pos(Gtk.PositionType.RIGHT)
-        self.connect("value-changed", self.on_value_changed)
         if self._reversed:
             self.set_value(max - self.setting.get_value())
         else:
             self.set_value(self.setting.get_value())
+
+        self.connect("value-changed", self.on_value_changed)
 
     def on_value_changed(self, widget, data=None):
         if self._reversed:

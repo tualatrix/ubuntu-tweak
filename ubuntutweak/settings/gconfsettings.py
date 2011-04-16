@@ -65,7 +65,7 @@ class GconfSetting(object):
             gconfvalue.set_string(value)
         elif type(value) == int:
             gconfvalue.type = GConf.ValueType.INT
-            gconfvalue.set_int(value)
+            gconfvalue.set_int(int(value))
         elif type(value) == float:
             gconfvalue.type = GConf.ValueType.FLOAT
             gconfvalue.set_float(value)
