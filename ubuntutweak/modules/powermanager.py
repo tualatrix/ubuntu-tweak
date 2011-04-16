@@ -48,17 +48,5 @@ class PowerManager(TweakModule):
                                       enable_reset=True,
                                       backend=GConf,
                                       key='/apps/gnome-power-manager/lock/suspend'),
-                WidgetFactory.create('Scale',
-                                      label=_('LCD brightness when using AC power'),
-                                      enable_reset=True,
-                                      backend=GConf,
-                                      key='/apps/gnome-power-manager/backlight/brightness_ac',
-                                      min=0, max=100, digits=0),
-                WidgetFactory.create('Scale',
-                                      label=_('LCD brightness when using battery'),
-                                      enable_reset=True,
-                                      backend=GConf,
-                                      key='/apps/gnome-power-manager/backlight/brightness_dim_battery',
-                                      min=0, max=100, digits=0, reversed=True)
         ))
         self.add_start(box, False, False, 0)
