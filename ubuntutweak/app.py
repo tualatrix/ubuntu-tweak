@@ -361,10 +361,11 @@ class UbuntuTweakWindow(GuiBuilder):
             log.error(e)
 
     def on_preference_button_clicked(self, widget):
-        #TODO and FIXME, it can only show once
+        #TODO it's show, not preference
         self.aboutdialog.set_version(VERSION)
         self.aboutdialog.set_transient_for(self.mainwindow)
         self.aboutdialog.run()
+        self.aboutdialog.hide()
 
     def on_module_selected(self, widget, name):
         log.debug('Select module: %s' % name)
