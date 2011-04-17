@@ -1,4 +1,6 @@
 import os
+import sys
+import logging
 
 from gi.repository import Gtk
 
@@ -7,6 +9,8 @@ from ubuntutweak.common.consts import DATA_DIR
 
 class GuiBuilder(object):
     def __init__(self, file_name):
+        log = logging.getLogger('gui.GuiBuilder')
+
         file_path = os.path.join(DATA_DIR, 'ui', file_name)
 
         self.builder = Gtk.Builder()
@@ -19,7 +23,7 @@ class GuiBuilder(object):
                 name = Gtk.Buildable.get_name(o)
                 setattr(self, name, o)
             else:
-                print >>sys.stderr, "WARNING: can not get name for '%s'" % o
+                log.warn("WARNING: can not set name for non Buildable object: %s" % o)
 
     def get_object(self, name):
         return self.builder.get_object(name)
