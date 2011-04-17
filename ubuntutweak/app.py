@@ -29,6 +29,7 @@ from ubuntutweak.common.consts import VERSION, DATA_DIR
 from ubuntutweak.modules import ModuleLoader, create_broken_module_class
 from ubuntutweak.gui.dialogs import ErrorDialog
 from ubuntutweak.clips import ClipPage
+from ubuntutweak.apps import AppsPage
 from ubuntutweak.policykit import proxy
 
 log = logging.getLogger('app')
@@ -309,10 +310,12 @@ class UbuntuTweakWindow(GuiBuilder):
 
         tweaks_page = TweaksPage()
         clip_page = ClipPage().get_object('hbox1')
+        apps_page = AppsPage()
 
         self.jumper = JumpManager()
 
         self.jumper.overview_index = self.notebook.append_page(clip_page, Gtk.Label())
+        self.jumper.apps_index = self.notebook.append_page(apps_page, Gtk.Label())
         self.jumper.tweaks_index = self.notebook.append_page(tweaks_page, Gtk.Label())
         self.jumper.wait_index = self.notebook.append_page(self._crete_wait_page(),
                                                            Gtk.Label())
@@ -468,6 +471,14 @@ class UbuntuTweakWindow(GuiBuilder):
             self.update_jump_buttons(disable=True)
             self.set_current_module(None)
             self.notebook.set_current_page(self.jumper.overview_index)
+
+    def on_apps_button_toggled(self, widget):
+        if widget.get_active():
+            self.update_jump_buttons()
+            if self.jumper.current_module_index:
+                self.set_current_module(index=self.jumper.current_module_index)
+            else:
+                self.notebook.set_current_page(self.jumper.apps_index)
 
     def on_tweaks_button_toggled(self, widget):
         if widget.get_active():
