@@ -160,7 +160,6 @@ class TweaksPage(Gtk.ScrolledWindow):
                                  shadow_type=Gtk.ShadowType.NONE,
                                  hscrollbar_policy=Gtk.PolicyType.NEVER,
                                  vscrollbar_policy=Gtk.PolicyType.AUTOMATIC)
-
         self.set_border_width(12)
 
         self._categories = {}
