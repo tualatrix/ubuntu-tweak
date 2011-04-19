@@ -271,17 +271,20 @@ class UnityLauncherAutoHide(gtk.CheckButton):
         gtk.CheckButton.__init__(self, label)
 
         self.plugin = CompizPlugin('unityshell')
-        self.autohide_setting = CompizSetting(self.plugin, 'launcher_autohide')
-        self.set_active(self.autohide_setting.get_value())
+        self.autohide_setting = CompizSetting(self.plugin, 'launcher_hide_mode')
+        if self.autohide_setting.get_value()!=0:
+          self.set_active(True)
+        else:
+          self.set_active(False)
 
         self.connect("toggled", self.on_button_toggled)
 
     def on_button_toggled(self, widget):
         if self.get_active():
             if self.plugin.resolve_conflict():
-                self.autohide_setting.set_value(True)
+                self.autohide_setting.set_value(2)
         else:
-            self.autohide_setting.set_value(False)
+            self.autohide_setting.set_value(0)
 
 class ViewpointSwitcher(gtk.CheckButton):
     def __init__(self, label):
@@ -347,10 +350,10 @@ class Compiz(TweakModule):
             self.snap = SnapWindow(_("Enable snapping windows"), self)
             self.wobbly_w = WobblyWindow(_("Enable wobbly windows"), self);
             self.viewport = ViewpointSwitcher(_('Enable workspace switching with mouse wheel'))
-#            if system.CODENAME == 'natty':
-#                self.launcher_autohide = UnityLauncherAutoHide(_('Make the launcher hide automatically after some time inactive'))
-#            else:
-            self.launcher_autohide = None
+            if system.CODENAME == 'natty':
+                self.launcher_autohide = UnityLauncherAutoHide(_('Make the launcher hide automatically after some time inactive'))
+            else:
+              self.launcher_autohide = None
 
             box = ListPack(_("Desktop Effects"), (self.snap,
                                                   self.wobbly_w,
