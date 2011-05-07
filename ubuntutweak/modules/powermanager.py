@@ -25,7 +25,7 @@ from ubuntutweak.factory import WidgetFactory
 
 class PowerManager(TweakModule):
     __title__ = _('Power Manager Settings')
-    __desc__ = _('Control your computer\'s power managerment')
+    __desc__ = _('Control your computer\'s power management')
     __icon__ = 'gnome-power-manager'
     __category__ = 'system'
 
