@@ -110,17 +110,21 @@ class OpacityMenu(Gtk.CheckButton):
     def __init__(self, label):
         gobject.GObject.__init__(self, label=label)
 
-        self.plugin = CompizPlugin('obs')
+        try:
+            self.plugin = CompizPlugin('obs')
+        except KeyError, e:
+            log.error(e)
+            self.set_sensitive(False)
+        else:
+            if not self.plugin.get_enabled():
+                self.plugin.set_enabled(True)
+            self.setting_matches = CompizSetting(self.plugin, 'opacity_matches', target='Screens')
+            self.setting_values = CompizSetting(self.plugin, 'opacity_values', target='Screens')
 
-        if not self.plugin.get_enabled():
-            self.plugin.set_enabled(True)
-        self.setting_matches = CompizSetting(self.plugin, 'opacity_matches', target='Screens')
-        self.setting_values = CompizSetting(self.plugin, 'opacity_values', target='Screens')
+            if self.menu_match in self.setting_matches.get_value():
+                self.set_active(True)
 
-        if self.menu_match in self.setting_matches.get_value():
-            self.set_active(True)
-
-        self.connect("toggled", self.on_button_toggled)
+            self.connect("toggled", self.on_button_toggled)
 
     def on_button_toggled(self, widget):
         if self.get_active():
@@ -136,14 +140,19 @@ class WobblyMenu(Gtk.CheckButton):
         gobject.GObject.__init__(self, label=label)
 
         self.mediator = mediator
-        self.plugin = CompizPlugin('wobbly')
-        self.map_window_setting = CompizSetting(self.plugin, 'map_window_match', target='Screens')
-        self.map_effect_setting = CompizSetting(self.plugin, 'map_effect', target='Screens')
+        try:
+            self.plugin = CompizPlugin('wobbly')
+        except KeyError, e:
+            log.error(e)
+            self.set_sensitive(False)
+        else:
+            self.map_window_setting = CompizSetting(self.plugin, 'map_window_match', target='Screens')
+            self.map_effect_setting = CompizSetting(self.plugin, 'map_effect', target='Screens')
 
-        if self.map_window_setting.is_default_and_enabled() and self.map_effect_setting.get_value() == 1:
-            self.set_active(True)
+            if self.map_window_setting.is_default_and_enabled() and self.map_effect_setting.get_value() == 1:
+                self.set_active(True)
 
-        self.connect("toggled", self.on_button_toggled)
+            self.connect("toggled", self.on_button_toggled)
 
     def on_button_toggled(self, widget):
         if self.get_active():
@@ -167,13 +176,18 @@ class WobblyWindow(Gtk.CheckButton):
         gobject.GObject.__init__(self, label=label)
 
         self.mediator = mediator
-        self.plugin = CompizPlugin('wobbly')
-        self.setting = CompizSetting(self.plugin, 'move_window_match', target='Screens')
+        try:
+            self.plugin = CompizPlugin('wobbly')
+        except KeyError, e:
+            log.error(e)
+            self.set_sensitive(False)
+        else:
+            self.setting = CompizSetting(self.plugin, 'move_window_match', target='Screens')
 
-        if self.setting.is_default_and_enabled():
-            self.set_active(True)
+            if self.setting.is_default_and_enabled():
+                self.set_active(True)
 
-        self.connect("toggled", self.on_button_toggled)
+            self.connect("toggled", self.on_button_toggled)
 
     def on_button_toggled(self, widget):
         if self.get_active():
@@ -195,11 +209,14 @@ class SnapWindow(Gtk.CheckButton):
         gobject.GObject.__init__(self, label=label)
 
         self.mediator = mediator
-        self.plugin = CompizPlugin('snap')
-
-        self.set_active(self.plugin.get_enabled())
-
-        self.connect("toggled", self.on_button_toggled)
+        try:
+            self.plugin = CompizPlugin('snap')
+        except KeyError, e:
+            log.error(e)
+            self.set_sensitive(False)
+        else:
+            self.set_active(self.plugin.get_enabled())
+            self.connect("toggled", self.on_button_toggled)
 
     def on_button_toggled(self, widget):
         if self.get_active():
@@ -215,11 +232,19 @@ class UnityLauncherAutoHide(Gtk.CheckButton):
     def __init__(self, label):
         gobject.GObject.__init__(self, label=label)
 
-        self.plugin = CompizPlugin('unityshell')
-        self.autohide_setting = CompizSetting(self.plugin, 'launcher_autohide')
-        self.set_active(self.autohide_setting.get_value())
+        try:
+            self.plugin = CompizPlugin('unityshell')
+        except KeyError, e:
+            log.error(e)
+            self.set_sensitive(False)
+        else:
+            self.autohide_setting = CompizSetting(self.plugin, 'launcher_hide_mode')
+            if self.autohide_setting.get_value()!=0:
+              self.set_active(True)
+            else:
+              self.set_active(False)
 
-        self.connect("toggled", self.on_button_toggled)
+            self.connect("toggled", self.on_button_toggled)
 
     def on_button_toggled(self, widget):
         if self.get_active():
@@ -233,12 +258,17 @@ class ViewpointSwitcher(Gtk.CheckButton):
     def __init__(self, label):
         gobject.GObject.__init__(self, label=label)
 
-        self.plugin = CompizPlugin('vpswitch')
-        self.left_button_setting = CompizSetting(self.plugin, 'left_button')
-        self.right_button_setting = CompizSetting(self.plugin, 'right_button')
+        try:
+            self.plugin = CompizPlugin('vpswitch')
+        except KeyError, e:
+            log.error(e)
+            self.set_sensitive(False)
+        else:
+            self.left_button_setting = CompizSetting(self.plugin, 'left_button')
+            self.right_button_setting = CompizSetting(self.plugin, 'right_button')
 
-        self.set_active(self._get_setting_enabled())
-        self.connect("toggled", self.on_button_toggled)
+            self.set_active(self._get_setting_enabled())
+            self.connect("toggled", self.on_button_toggled)
 
     def on_button_toggled(self, widget):
         if self.get_active():
@@ -377,8 +407,7 @@ class Compiz(TweakModule):
         self.snap = SnapWindow(_("Enable snapping windows"), self)
         self.wobbly_w = WobblyWindow(_("Enable wobbly windows"), self);
         self.viewport = ViewpointSwitcher(_('Enable workspace switching with mouse wheel'))
-#                self.launcher_autohide = UnityLauncherAutoHide(_('Make the launcher hide automatically after some time inactive'))
-        self.launcher_autohide = None
+        self.launcher_autohide = UnityLauncherAutoHide(_('Make the launcher hide automatically after some time inactive'))
 
         box = ListPack(_("Desktop Effects"), (self.snap,
                                               self.wobbly_w,
