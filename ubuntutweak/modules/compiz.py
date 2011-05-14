@@ -388,7 +388,7 @@ class EdgeComboBox(Gtk.ComboBox):
 class Compiz(TweakModule):
     __title__ = _('Compiz Settings')
     __desc__ = _('Settings for some amazing desktop eye-candy')
-    __icon__ = ['compiz', 'wmtweaks']
+    __icon__ = ['ccsm', 'compiz', 'wmtweaks']
     __category__ = 'desktop'
     __url__ = 'http://ubuntu-tweak.com'
     __url_title__ = _('Compiz Page')
