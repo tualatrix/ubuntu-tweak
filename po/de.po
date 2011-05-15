@@ -3,16 +3,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-06 00:01+0800\n"
-"PO-Revision-Date: 2010-12-25 22:02+0000\n"
-"Last-Translator: Daniel Schury <das.surst@googlemail.com>\n"
+"POT-Creation-Date: 2011-05-07 22:04+0800\n"
+"PO-Revision-Date: 2011-03-11 19:17+0000\n"
+"Last-Translator: Christian Flasche <Unknown>\n"
 "Language-Team: LL <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2011-01-09 13:16+0000\n"
-"X-Generator: Launchpad (build 12161)\n"
+"X-Launchpad-Export-Date: 2011-05-14 18:52+0000\n"
+"X-Generator: Launchpad (build 13037)\n"
 "X-Poedit-Country: GERMANY\n"
 "X-Poedit-Language: German\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -21,7 +21,7 @@ msgstr ""
 #: ../data/script-worker:54
 #, c-format
 msgid "You don't have permission to write in %s"
-msgstr "Sie sind nicht befugt in %s zu schreiben"
+msgstr "Sie sind nicht berechtigt, in %s zu schreiben"
 
 #: ../data/script-worker:152 ../data/script-worker:165
 msgid "Enter your password to perform the administrative tasks"
@@ -34,11 +34,11 @@ msgstr "Auf Ihrem System konnte kein Texteditor gefunden werden!"
 
 #: ../data/script-worker:187
 msgid "Select a folder"
-msgstr "Verzeichnis auswählen"
+msgstr "Ordner auswählen"
 
 #: ../data/script-worker:217
 msgid "Please select a target (files or folders)."
-msgstr "Wählen Sie bitte ein Ziel (Datei oder Verzeichnis)."
+msgstr "Bitte wählen Sie ein Ziel (Datei oder Ordner)."
 
 #: ../data/ubuntu-tweak.desktop.in.h:1
 msgid "Tweak ubuntu to what you like"
@@ -169,7 +169,7 @@ msgstr "_Durchsuchen …"
 
 #: ../data/ui/type_edit.ui.h:5
 msgid "_Use a custom command"
-msgstr "Be_nutzerdefinierten Befehl verwende"
+msgstr "Be_nutzerdefinierten Befehl verwenden"
 
 #: ../data/ui/loginsettings.ui.h:1
 msgid "Click the button to change the login screen background"
@@ -205,6 +205,7 @@ msgstr "Wiede_rherstellen"
 #: ../data/ui/brokenmodule.ui.h:1
 msgid "<big><b>This module encountered an error while loading.</b></big>"
 msgstr ""
+"<big><b>Beim Laden dieses Moduls ist ein Fehler aufgetreten.</b></big>"
 
 #: ../data/ui/brokenmodule.ui.h:3
 msgid ""
@@ -212,6 +213,9 @@ msgid ""
 "Please choose <i>Report</i> to file a new bug report. Make sure to include "
 "the error message below:"
 msgstr ""
+"Wenn Sie uns dabei helfen wollen, dieses Problem zu beheben,\n"
+"wählen Sie <i>Melden</i>, um einen neuen Fehlerbericht zu schreiben. Stellen "
+"Sie sicher, dass Sie die untenstehende Fehlernachricht anfügen:"
 
 #: ../ubuntutweak/mainwindow.py:82
 msgid "Welcome to"
@@ -251,7 +255,7 @@ msgstr "Willkommen"
 
 #: ../ubuntutweak/mainwindow.py:129
 msgid "Broken Modules"
-msgstr ""
+msgstr "Beschädigte Module"
 
 #: ../ubuntutweak/mainwindow.py:130
 #: ../ubuntutweak/modules/desktoprecovery.py:75
@@ -283,7 +287,7 @@ msgstr "Ubuntu Tweak %s herunterladen"
 
 #: ../ubuntutweak/mainwindow.py:161
 msgid "Double click for editing the sources"
-msgstr ""
+msgstr "Doppelklick, um die Paketquellen zu bearbeiten"
 
 #: ../ubuntutweak/mainwindow.py:260
 msgid "_Donate"
@@ -299,14 +303,22 @@ msgid ""
 "You can click \"Help\" to see the guide, then edit these sources at Source "
 "Editor."
 msgstr ""
+"Damit der Paketmanager arbeiten kann, hat Ubuntu Tweak diese beschädigten "
+"Quellen deaktiviert.\n"
+"\n"
+"Wenn Sie diese Quellen erneut öffnen möchten, versuchen Sie bitte diese zu "
+"korrigieren.\n"
+"\n"
+"Sie können unter »Hilfe« die Anleitung einsehen und anschließend die Quellen "
+"im Quellen-Editor bearbeiten."
 
 #: ../ubuntutweak/mainwindow.py:306
 msgid "The software sources list is broken"
-msgstr ""
+msgstr "Die Liste der Paketquellen ist beschädigt"
 
 #: ../ubuntutweak/mainwindow.py:310
 msgid "_Help"
-msgstr ""
+msgstr "_Hilfe"
 
 #: ../ubuntutweak/mainwindow.py:321
 msgid ""
@@ -327,7 +339,7 @@ msgstr ""
 #: ../ubuntutweak/mainwindow.py:324
 #: ../ubuntutweak/modules/gnomesettings.py:222
 #: ../ubuntutweak/modules/sourcecenter.py:1112
-#: ../ubuntutweak/modules/nautilus.py:143
+#: ../ubuntutweak/modules/nautilus.py:148
 msgid "Warning"
 msgstr "Warnung"
 
@@ -364,14 +376,20 @@ msgstr "Mitwirkende 2009"
 msgid "Contributors of 2010"
 msgstr "Mitwirkende 2010"
 
-#: ../ubuntutweak/mainwindow.py:559
+#: ../ubuntutweak/mainwindow.py:553
+msgid "Contributors of 2011"
+msgstr ""
+
+#: ../ubuntutweak/mainwindow.py:561
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
 "  Christian Flasche https://launchpad.net/~alpina\n"
 "  Daniel Schury https://launchpad.net/~surst\n"
+"  Dennis Baudys https://launchpad.net/~thecondordb\n"
 "  Fallen Dark https://launchpad.net/~maroba\n"
 "  Georg Engelmann https://launchpad.net/~georg-engelmann\n"
+"  Jakob Kramer https://launchpad.net/~jakobk\n"
 "  Jan-Christoph Borchardt https://launchpad.net/~jancborchardt\n"
 "  JanMalte https://launchpad.net/~janmalte\n"
 "  Johannes Haupt https://launchpad.net/~haupt-johannes\n"
@@ -383,12 +401,15 @@ msgstr ""
 "  RichardLancelot https://launchpad.net/~richardlancelot\n"
 "  Schnell https://launchpad.net/~g-schnell\n"
 "  SpaceCafé https://launchpad.net/~spacecafe\n"
+"  Thomas Worofsky https://launchpad.net/~thowo\n"
+"  Thoralf Backhaus https://launchpad.net/~zwulf\n"
 "  Tim O. https://launchpad.net/~timstoaster\n"
 "  TomTasche https://launchpad.net/~tomtasche\n"
 "  Valentin https://launchpad.net/~valentin-stn\n"
+"  gagsibubu https://launchpad.net/~gagsibubu\n"
 "  mucku https://launchpad.net/~dereinsameberg"
 
-#: ../ubuntutweak/mainwindow.py:573
+#: ../ubuntutweak/mainwindow.py:575
 #, python-format
 msgid ""
 "A newer version: %s is available online.\n"
@@ -403,54 +424,54 @@ msgstr ""
 "Hinweis: Wenn Sie es bevorzugen aus dem Quellcode zu aktualisieren, können "
 "Sie diese Funktion in den Einstellungen deaktivieren."
 
-#: ../ubuntutweak/mainwindow.py:574
+#: ../ubuntutweak/mainwindow.py:576
 msgid "Software Update"
 msgstr "Programmaktualisierung"
 
-#: ../ubuntutweak/widgets/widgets.py:45
+#: ../ubuntutweak/ui/widgets.py:45
 #, python-format
 msgid "Reset setting to default value: %s"
 msgstr "Einstellung auf Standard zurücksetzen: %s"
 
-#: ../ubuntutweak/widgets/widgets.py:118 ../ubuntutweak/widgets/widgets.py:143
+#: ../ubuntutweak/ui/widgets.py:118 ../ubuntutweak/ui/widgets.py:143
 #: ../ubuntutweak/modules/icons.py:105
 msgid "Unset"
 msgstr "Zurücksetzen"
 
-#: ../ubuntutweak/widgets/widgets.py:278
+#: ../ubuntutweak/ui/widgets.py:278
 msgid "Please press the new key combination"
 msgstr "Bitte die neue Tastenkombination eingeben"
 
-#: ../ubuntutweak/widgets/widgets.py:327
+#: ../ubuntutweak/ui/widgets.py:327
 msgid "Disabled"
 msgstr "Deaktiviert"
 
-#: ../ubuntutweak/widgets/treeviews.py:71
+#: ../ubuntutweak/ui/treeviews.py:71
 msgid "Create folder"
 msgstr "Verzeichnis erstellen"
 
-#: ../ubuntutweak/widgets/treeviews.py:75 ../ubuntutweak/modules/icons.py:33
+#: ../ubuntutweak/ui/treeviews.py:75 ../ubuntutweak/modules/icons.py:33
 #: ../ubuntutweak/modules/icons.py:42 ../ubuntutweak/modules/icons.py:51
 msgid "Rename"
 msgstr "Umbenennen"
 
-#: ../ubuntutweak/widgets/treeviews.py:79
+#: ../ubuntutweak/ui/treeviews.py:79
 msgid "Delete"
 msgstr "Löschen"
 
-#: ../ubuntutweak/widgets/treeviews.py:101
+#: ../ubuntutweak/ui/treeviews.py:101
 msgid "Input the dir name"
 msgstr "Geben Sie den Verzeichnisnamen an"
 
-#: ../ubuntutweak/widgets/treeviews.py:126
+#: ../ubuntutweak/ui/treeviews.py:126
 msgid "Can't rename the root folder"
 msgstr "Kann das Wurzelverzeichnis nicht umbenennen"
 
-#: ../ubuntutweak/widgets/treeviews.py:143
+#: ../ubuntutweak/ui/treeviews.py:143
 msgid "Can't delete the root folder"
 msgstr "Kann das Stammverzeichnis nicht löschen"
 
-#: ../ubuntutweak/widgets/treeviews.py:158
+#: ../ubuntutweak/ui/treeviews.py:158
 msgid ""
 "Can't rename!\n"
 "\n"
@@ -460,24 +481,23 @@ msgstr ""
 "\n"
 "Es befinden sich noch Dateien darin!"
 
-#: ../ubuntutweak/widgets/dialogs.py:176
+#: ../ubuntutweak/ui/dialogs.py:179
 msgid "An unexpected error has occurred."
 msgstr "Ein unerwarteter Fehler ist aufgetreten."
 
-#: ../ubuntutweak/widgets/dialogs.py:177
+#: ../ubuntutweak/ui/dialogs.py:180
 msgid "Could not authenticate"
 msgstr "Authentifizierung fehlgeschlagen"
 
-#: ../ubuntutweak/widgets/dialogs.py:182
+#: ../ubuntutweak/ui/dialogs.py:185
 msgid "You need to restart your computer."
 msgstr "Sie müssen Ihren Rechner neu starten."
 
-#: ../ubuntutweak/widgets/dialogs.py:183
+#: ../ubuntutweak/ui/dialogs.py:186
 msgid "Service hasn't initialized yet"
 msgstr "Der Service wurde noch nicht gestartet"
 
-#: ../ubuntutweak/widgets/dialogs.py:204
-#: ../ubuntutweak/modules/sourceeditor.py:88
+#: ../ubuntutweak/ui/dialogs.py:207 ../ubuntutweak/modules/sourceeditor.py:88
 #: ../ubuntutweak/modules/sourcecenter.py:945
 msgid "Details"
 msgstr "Details"
@@ -526,73 +546,76 @@ msgstr "Download abgeschlossen!"
 msgid "Error happened!"
 msgstr "Es ist ein Fehler aufgetreten!"
 
-#: ../ubuntutweak/network/utdata.py:48 ../ubuntutweak/network/utdata.py:81
+#: ../ubuntutweak/network/utdata.py:50 ../ubuntutweak/network/utdata.py:83
 msgid "Never"
 msgstr "Nie"
 
-#: ../ubuntutweak/network/utdata.py:72
+#: ../ubuntutweak/network/utdata.py:74
 #, python-format
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
 msgstr[0] "Vor %d Woche"
 msgstr[1] "Vor %d Wochen"
 
-#: ../ubuntutweak/network/utdata.py:74
+#: ../ubuntutweak/network/utdata.py:76
 #, python-format
 msgid "%d day ago"
 msgid_plural "%d days ago"
 msgstr[0] "Vor %d Tag"
 msgstr[1] "Vor %d Tagen"
 
-#: ../ubuntutweak/network/utdata.py:76
+#: ../ubuntutweak/network/utdata.py:78
 #, python-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
 msgstr[0] "Vor %d Stunde"
 msgstr[1] "Vor %d Stunden"
 
-#: ../ubuntutweak/network/utdata.py:78
+#: ../ubuntutweak/network/utdata.py:80
 #, python-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
 msgstr[0] "Vor %d Minute"
 msgstr[1] "Vor %d Minuten"
 
-#: ../ubuntutweak/network/utdata.py:79
+#: ../ubuntutweak/network/utdata.py:81
 msgid "Just Now"
-msgstr "Nur jetzt"
+msgstr "Gerade eben"
 
 #: ../ubuntutweak/common/debug.py:55
 msgid "Error message has been copied"
-msgstr ""
+msgstr "Die Fehlermeldung wurde kopiert"
 
 #: ../ubuntutweak/common/debug.py:56
 msgid ""
 "Now click \"Report\" to enter the bug report website. Make sure to attach "
 "the error message in \"Further information\"."
 msgstr ""
+"Bitte klicken Sie auf »Melden«, um zur Bugtracker-Webseite zu gelangen. "
+"Stellen Sie sicher, die Fehlermeldung im Feld \"Weitere Informationen\" "
+"anzuhängen."
 
 #: ../ubuntutweak/common/debug.py:72
 msgid "Copy Error Message"
-msgstr ""
+msgstr "Fehlermeldung kopieren"
 
-#: ../ubuntutweak/common/package.py:196
+#: ../ubuntutweak/common/package.py:206
 #: ../ubuntutweak/modules/appcenter.py:644
-#: ../ubuntutweak/modules/compiz.py:523
+#: ../ubuntutweak/modules/compiz.py:526
 #: ../ubuntutweak/modules/sourcecenter.py:141
-#: ../ubuntutweak/modules/nautilus.py:171
+#: ../ubuntutweak/modules/nautilus.py:176
 msgid "Update Successful!"
 msgstr "Aktualisierung erfolgreich!"
 
-#: ../ubuntutweak/common/package.py:198
+#: ../ubuntutweak/common/package.py:208
 #: ../ubuntutweak/modules/appcenter.py:646
-#: ../ubuntutweak/modules/compiz.py:525
+#: ../ubuntutweak/modules/compiz.py:528
 #: ../ubuntutweak/modules/sourcecenter.py:143
-#: ../ubuntutweak/modules/nautilus.py:173
+#: ../ubuntutweak/modules/nautilus.py:178
 msgid "Update Failed!"
 msgstr "Aktualisierung fehlgeschlagen!"
 
-#: ../ubuntutweak/common/package.py:330
+#: ../ubuntutweak/common/package.py:340
 msgid "(Not available)"
 msgstr "(Nicht verfügbar)"
 
@@ -784,13 +807,13 @@ msgstr "Befehlszeile"
 msgid "Language"
 msgstr "Sprache"
 
-#: ../ubuntutweak/modules/computer.py:85
+#: ../ubuntutweak/modules/computer.py:86
 msgid "Please enter your new hostname. Blank characters should not be used."
 msgstr ""
 "Bitte geben Sie Ihren neuen Hostnamen ein. Es sollten keine Leerzeichen "
 "verwendet werden."
 
-#: ../ubuntutweak/modules/computer.py:86
+#: ../ubuntutweak/modules/computer.py:87
 msgid "New hostname"
 msgstr "Neuer Hostname"
 
@@ -1050,11 +1073,11 @@ msgstr ""
 "entfernte Server ist ausgefallen."
 
 #: ../ubuntutweak/modules/appcenter.py:673
-#: ../ubuntutweak/modules/sourcecenter.py:1167
+#: ../ubuntutweak/modules/sourcecenter.py:1169
 msgid "No update available."
 msgstr "Kein Aktualisierung verfügbar."
 
-#: ../ubuntutweak/modules/appcenter.py:684
+#: ../ubuntutweak/modules/appcenter.py:685
 msgid "An error occurred while downloading the file."
 msgstr "Beim Herunterladen der Datei ist ein Fehler aufgetreten."
 
@@ -1317,6 +1340,18 @@ msgid ""
 "\n"
 "Or you can submit the Error Message to the developer for help:"
 msgstr ""
+"Ubuntu Tweak hat auf Ihrem System eine fehlerhafte Konfiguration von apt "
+"festgestellt.\n"
+"Folgen Sie diesen Anweisungen, um dies zu beheben:\n"
+"\n"
+"\t1. Öffnen Sie ein Terminal\n"
+"\t2. Führen Sie folgende Befehle aus:\n"
+"\n"
+"\t\tsudo chmod 644 %(broken_file)s\n"
+"\t\tsudo chown root:root %(broken_file)s\n"
+"\n"
+"Oder schicken Sie diese Fehlermeldung an den Entwickler, um Hilfe zu "
+"erhalten:"
 
 #: ../ubuntutweak/modules/__init__.py:286
 #, python-format
@@ -1333,6 +1368,18 @@ msgid ""
 "\n"
 "Or you can submit the Error Message to the developer for help:"
 msgstr ""
+"Ubuntu Tweak hat eine fehlerhafte apt-Listendatei festgestellt.\n"
+"Folgen Sie diesen Anweisungen, um dies zu beheben:\n"
+"\n"
+"\t1. Öffnen Sie ein Terminal\n"
+"\t2. Führen Sie den Befehl zum Öffnen der Listendatei aus:\n"
+"\n"
+"\t\tgksu gedit %s\n"
+"\n"
+"\t3. Korrigieren Sie die Liste\n"
+"\n"
+"Oder schicken Sie diese Fehlermeldung an den Entwickler, um Hilfe zu "
+"erhalten:"
 
 #: ../ubuntutweak/modules/icons.py:32
 msgid "Show \"Computer\" icon on desktop"
@@ -1402,19 +1449,19 @@ msgstr "Animationen von Panels aktivieren"
 
 #: ../ubuntutweak/modules/gnomesettings.py:68
 msgid "Me Menu Setting"
-msgstr ""
+msgstr "Einstellungen für Benachrichtigungsanzeige"
 
 #: ../ubuntutweak/modules/gnomesettings.py:70
 msgid "Don't Display"
-msgstr ""
+msgstr "Nicht anzeigen"
 
 #: ../ubuntutweak/modules/gnomesettings.py:70
 msgid "Display user name"
-msgstr ""
+msgstr "Benutzernamen anzeigen"
 
 #: ../ubuntutweak/modules/gnomesettings.py:70
 msgid "Display real name"
-msgstr ""
+msgstr "Vollen Namen anzeigen"
 
 #: ../ubuntutweak/modules/gnomesettings.py:76
 msgid "Menu Settings"
@@ -1498,8 +1545,8 @@ msgid "Power Manager Settings"
 msgstr "Energieverwaltung"
 
 #: ../ubuntutweak/modules/powermanager.py:29
-msgid "Control your computer's power managerment"
-msgstr "Verwalten Sie die Energieeinstellungen Ihres Rechners"
+msgid "Control your computer's power management"
+msgstr ""
 
 #: ../ubuntutweak/modules/powermanager.py:37
 msgid "Advanced Power Management Settings"
@@ -1542,68 +1589,68 @@ msgstr "Arbeitsfläche anzeigen"
 msgid "Show Widgets"
 msgstr "Widgets anzeigen"
 
-#: ../ubuntutweak/modules/compiz.py:316
+#: ../ubuntutweak/modules/compiz.py:319
 msgid "Compiz Settings"
 msgstr "Compiz-Einstellungen"
 
-#: ../ubuntutweak/modules/compiz.py:317
+#: ../ubuntutweak/modules/compiz.py:320
 msgid "Settings for some amazing desktop eye-candy"
 msgstr "Einstellungen für einige beeindruckende Arbeitsflächeneffekte"
 
-#: ../ubuntutweak/modules/compiz.py:331
+#: ../ubuntutweak/modules/compiz.py:334
 msgid "Install Advanced Desktop Effects Settings Manager"
 msgstr ""
 "Den erweiterten Arbeitsflächeneffekte-Einstellungsmanager installieren"
 
-#: ../ubuntutweak/modules/compiz.py:334
+#: ../ubuntutweak/modules/compiz.py:337
 msgid "Install Simple Desktop Effects Settings Manager"
 msgstr "Den einfachen Arbeitsflächeneffekte-Einstellungsmanager installieren"
 
-#: ../ubuntutweak/modules/compiz.py:337
+#: ../ubuntutweak/modules/compiz.py:340
 msgid "Install Screenlets Widget Application"
 msgstr "Screenlets Widget-Anwendung aktivieren"
 
-#: ../ubuntutweak/modules/compiz.py:344
+#: ../ubuntutweak/modules/compiz.py:347
 msgid " Workspace Edge Settings"
 msgstr " Einstellungen der Arbeitsflächenkanten"
 
-#: ../ubuntutweak/modules/compiz.py:347
+#: ../ubuntutweak/modules/compiz.py:350
 msgid "Enable snapping windows"
 msgstr "Einrastende Fenster aktivieren"
 
-#: ../ubuntutweak/modules/compiz.py:348
+#: ../ubuntutweak/modules/compiz.py:351
 msgid "Enable wobbly windows"
 msgstr "Wabbelnde Fenster aktivieren"
 
-#: ../ubuntutweak/modules/compiz.py:349
+#: ../ubuntutweak/modules/compiz.py:352
 msgid "Enable workspace switching with mouse wheel"
-msgstr ""
+msgstr "Arbeitsflächenwechsel per Mausrad ermöglichen"
 
-#: ../ubuntutweak/modules/compiz.py:351
+#: ../ubuntutweak/modules/compiz.py:354
 msgid "Make the launcher hide automatically after some time inactive"
 msgstr ""
 
-#: ../ubuntutweak/modules/compiz.py:355
+#: ../ubuntutweak/modules/compiz.py:358
 msgid "Desktop Effects"
-msgstr ""
+msgstr "Visuelle Effekte"
 
-#: ../ubuntutweak/modules/compiz.py:361
+#: ../ubuntutweak/modules/compiz.py:364
 msgid "Enable transparent menus"
 msgstr "Transparente Menüs aktivieren"
 
-#: ../ubuntutweak/modules/compiz.py:362
+#: ../ubuntutweak/modules/compiz.py:365
 msgid "Enable wobbly menus"
 msgstr "Wabbelnde Menüs aktivieren"
 
-#: ../ubuntutweak/modules/compiz.py:364
+#: ../ubuntutweak/modules/compiz.py:367
 msgid "Menu Effects"
 msgstr "Menüeffekte"
 
-#: ../ubuntutweak/modules/compiz.py:368
+#: ../ubuntutweak/modules/compiz.py:371
 msgid "Useful Extensions"
 msgstr "Nützliche Erweiterungen"
 
-#: ../ubuntutweak/modules/compiz.py:383
+#: ../ubuntutweak/modules/compiz.py:386
 msgid "Prerequisite Conditions"
 msgstr "Grundvorraussetzungen"
 
@@ -1785,15 +1832,15 @@ msgstr ""
 "zu verwenden.\n"
 "Seien Sie vorsichtig und verwenden Sie nur Quellen, denen Sie vertrauen."
 
-#: ../ubuntutweak/modules/sourcecenter.py:1139
+#: ../ubuntutweak/modules/sourcecenter.py:1141
 msgid "An error occurred whilst downloading the file"
 msgstr "Beim Herunterladen der Datei ist ein Fehler aufgetreten"
 
-#: ../ubuntutweak/modules/sourcecenter.py:1154
+#: ../ubuntutweak/modules/sourcecenter.py:1156
 msgid "Update available, Would you like to update?"
 msgstr "Aktualisierung verfügbar, möchten Sie aktualisieren?"
 
-#: ../ubuntutweak/modules/sourcecenter.py:1163
+#: ../ubuntutweak/modules/sourcecenter.py:1165
 msgid ""
 "Network Error, Please check your network connection or the remote server is "
 "down."
@@ -2094,7 +2141,7 @@ msgstr "Downloade Pakete..."
 
 #: ../ubuntutweak/modules/cleaner.py:174
 msgid "Removing key files..."
-msgstr ""
+msgstr "Schlüsseldateien werden entfernt …"
 
 #: ../ubuntutweak/modules/cleaner.py:205
 #, python-format
@@ -2346,53 +2393,57 @@ msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
 msgstr ""
 "Erweiterte Benutzerrechte in Nautilus' »Dateieigenschaften«-Fenster anzeigen"
 
-#: ../ubuntutweak/modules/nautilus.py:80
+#: ../ubuntutweak/modules/nautilus.py:81
+msgid "Always use the location entry, instead of the pathbar"
+msgstr "Immer das Adressfeld anstatt der Pfadleiste verwenden"
+
+#: ../ubuntutweak/modules/nautilus.py:85
 msgid "File Browser"
 msgstr "Dateimanager"
 
-#: ../ubuntutweak/modules/nautilus.py:89
+#: ../ubuntutweak/modules/nautilus.py:94
 msgid "Thumbnail Settings"
 msgstr "Bildvorschaueinstellungen"
 
-#: ../ubuntutweak/modules/nautilus.py:94
+#: ../ubuntutweak/modules/nautilus.py:99
 msgid "Default thumbnail icon size (pixels)"
 msgstr "Größe der Vorschaubilder (in Pixel)"
 
-#: ../ubuntutweak/modules/nautilus.py:99
+#: ../ubuntutweak/modules/nautilus.py:104
 msgid "Maximum thumbnail cache size (megabytes)"
 msgstr "Maximale Größe des Bildvorschauzwischenspeichers (in Megabyte)"
 
-#: ../ubuntutweak/modules/nautilus.py:104
+#: ../ubuntutweak/modules/nautilus.py:109
 msgid "Thumbnail cache time (days)"
 msgstr "Speicherdauer des Bildvorschauzwischenspeichers (in Tagen)"
 
-#: ../ubuntutweak/modules/nautilus.py:111
+#: ../ubuntutweak/modules/nautilus.py:116
 msgid "Open folder in terminal"
 msgstr "Verzeichnis im Terminal öffnen"
 
-#: ../ubuntutweak/modules/nautilus.py:113
+#: ../ubuntutweak/modules/nautilus.py:118
 msgid "Open folder with root privileges"
 msgstr "Ordner mit root-Rechten öffnen"
 
-#: ../ubuntutweak/modules/nautilus.py:115
+#: ../ubuntutweak/modules/nautilus.py:120
 msgid "Nautilus with wallpaper"
 msgstr "Nautilus mit Hintergrundbild"
 
-#: ../ubuntutweak/modules/nautilus.py:117
+#: ../ubuntutweak/modules/nautilus.py:122
 msgid "Nautilus Extensions"
 msgstr "Nautilus-Erweiterungen"
 
-#: ../ubuntutweak/modules/nautilus.py:139
+#: ../ubuntutweak/modules/nautilus.py:144
 #, python-format
 msgid "Delete thumbnail cache (Frees %s of disk space)"
 msgstr "Vorschaubilder löschen (%s Speicher wird frei)"
 
-#: ../ubuntutweak/modules/nautilus.py:142
+#: ../ubuntutweak/modules/nautilus.py:147
 msgid "The thumbnail cache will be deleted. Do you wish to continue?"
 msgstr ""
 "Der Vorschaubildzwischenspeicher wird gelöscht. Möchten Sie fortfahren?"
 
-#: ../ubuntutweak/modules/nautilus.py:149
+#: ../ubuntutweak/modules/nautilus.py:154
 msgid "Clean up Successful!"
 msgstr "Säubern erfolgreich!"
 
@@ -3438,6 +3489,9 @@ msgstr "Sicherung fehlgeschlagen!"
 
 #~ msgid "Remove Spacer"
 #~ msgstr "Abstandshalter entfernen"
+
+#~ msgid "Control your computer's power managerment"
+#~ msgstr "Verwalten Sie die Energieeinstellungen Ihres Rechners"
 
 #~ msgid ""
 #~ "This image size isn't suitable for the panel.\n"

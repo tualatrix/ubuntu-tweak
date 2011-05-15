@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-06 00:01+0800\n"
+"POT-Creation-Date: 2011-05-07 22:04+0800\n"
 "PO-Revision-Date: 2010-10-10 16:38+0000\n"
 "Last-Translator: Jorel <d_dymon@yahoo.com>\n"
 "Language-Team: Romanian <ro@li.org>\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 1 ? 0: (((n % 100 > 19) || ((n % 100 "
 "== 0) && (n != 0))) ? 2: 1));\n"
-"X-Launchpad-Export-Date: 2011-01-09 13:16+0000\n"
-"X-Generator: Launchpad (build 12161)\n"
+"X-Launchpad-Export-Date: 2011-05-14 18:52+0000\n"
+"X-Generator: Launchpad (build 13037)\n"
 
 #: ../ubuntutweak/mainwindow.py:82
 msgid "Welcome to"
@@ -317,7 +317,7 @@ msgstr ""
 #: ../ubuntutweak/mainwindow.py:324
 #: ../ubuntutweak/modules/gnomesettings.py:222
 #: ../ubuntutweak/modules/sourcecenter.py:1112
-#: ../ubuntutweak/modules/nautilus.py:143
+#: ../ubuntutweak/modules/nautilus.py:148
 msgid "Warning"
 msgstr "Avertisment"
 
@@ -354,18 +354,24 @@ msgstr "Contribuitori din 2009"
 msgid "Contributors of 2010"
 msgstr "Contribuitori din 2010"
 
-#: ../ubuntutweak/mainwindow.py:559
+#: ../ubuntutweak/mainwindow.py:553
+msgid "Contributors of 2011"
+msgstr ""
+
+#: ../ubuntutweak/mainwindow.py:561
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
+"  Andy C. Candet https://launchpad.net/~andycandet\n"
 "  George Dumitrescu https://launchpad.net/~geod\n"
+"  Ghiorghe Ionel Răzvan https://launchpad.net/~gir861\n"
 "  Jorel https://launchpad.net/~d-dymon\n"
 "  Lucian Adrian Grijincu https://launchpad.net/~lucian.grijincu\n"
 "  Octi https://launchpad.net/~octavianiolu\n"
 "  Tualatrix Chou https://launchpad.net/~tualatrix\n"
 "  marianvasile https://launchpad.net/~marianvasile-upcmail"
 
-#: ../ubuntutweak/mainwindow.py:573
+#: ../ubuntutweak/mainwindow.py:575
 #, python-format
 msgid ""
 "A newer version: %s is available online.\n"
@@ -380,54 +386,54 @@ msgstr ""
 "Notă: dacă preferați să actualizați din cod sursă, puteți dezactiva această "
 "funcție în Preferințe."
 
-#: ../ubuntutweak/mainwindow.py:574
+#: ../ubuntutweak/mainwindow.py:576
 msgid "Software Update"
 msgstr "Actualizare program"
 
-#: ../ubuntutweak/widgets/widgets.py:45
+#: ../ubuntutweak/ui/widgets.py:45
 #, python-format
 msgid "Reset setting to default value: %s"
 msgstr "Revenire la configurare inițială: %s"
 
-#: ../ubuntutweak/widgets/widgets.py:118 ../ubuntutweak/widgets/widgets.py:143
+#: ../ubuntutweak/ui/widgets.py:118 ../ubuntutweak/ui/widgets.py:143
 #: ../ubuntutweak/modules/icons.py:105
 msgid "Unset"
 msgstr "Nestabilit"
 
-#: ../ubuntutweak/widgets/widgets.py:278
+#: ../ubuntutweak/ui/widgets.py:278
 msgid "Please press the new key combination"
 msgstr "Apăsați o combinație nouă de taste"
 
-#: ../ubuntutweak/widgets/widgets.py:327
+#: ../ubuntutweak/ui/widgets.py:327
 msgid "Disabled"
 msgstr "Dezactivat"
 
-#: ../ubuntutweak/widgets/treeviews.py:71
+#: ../ubuntutweak/ui/treeviews.py:71
 msgid "Create folder"
 msgstr "Creează dosar"
 
-#: ../ubuntutweak/widgets/treeviews.py:75 ../ubuntutweak/modules/icons.py:33
+#: ../ubuntutweak/ui/treeviews.py:75 ../ubuntutweak/modules/icons.py:33
 #: ../ubuntutweak/modules/icons.py:42 ../ubuntutweak/modules/icons.py:51
 msgid "Rename"
 msgstr "Redenumește"
 
-#: ../ubuntutweak/widgets/treeviews.py:79
+#: ../ubuntutweak/ui/treeviews.py:79
 msgid "Delete"
 msgstr "Șterge"
 
-#: ../ubuntutweak/widgets/treeviews.py:101
+#: ../ubuntutweak/ui/treeviews.py:101
 msgid "Input the dir name"
 msgstr "Introduceți numele directorului"
 
-#: ../ubuntutweak/widgets/treeviews.py:126
+#: ../ubuntutweak/ui/treeviews.py:126
 msgid "Can't rename the root folder"
 msgstr "Nu pot redenumi directorul rădăcină"
 
-#: ../ubuntutweak/widgets/treeviews.py:143
+#: ../ubuntutweak/ui/treeviews.py:143
 msgid "Can't delete the root folder"
 msgstr "Nu pot șterge directorul rădăcină"
 
-#: ../ubuntutweak/widgets/treeviews.py:158
+#: ../ubuntutweak/ui/treeviews.py:158
 msgid ""
 "Can't rename!\n"
 "\n"
@@ -437,24 +443,23 @@ msgstr ""
 "\n"
 "Sunt fișiere in el!"
 
-#: ../ubuntutweak/widgets/dialogs.py:176
+#: ../ubuntutweak/ui/dialogs.py:179
 msgid "An unexpected error has occurred."
 msgstr "A apărut o eroare neașteptată"
 
-#: ../ubuntutweak/widgets/dialogs.py:177
+#: ../ubuntutweak/ui/dialogs.py:180
 msgid "Could not authenticate"
 msgstr "Nu s-a putut autentifica"
 
-#: ../ubuntutweak/widgets/dialogs.py:182
+#: ../ubuntutweak/ui/dialogs.py:185
 msgid "You need to restart your computer."
 msgstr "Trebuie să reporniți calculatorul."
 
-#: ../ubuntutweak/widgets/dialogs.py:183
+#: ../ubuntutweak/ui/dialogs.py:186
 msgid "Service hasn't initialized yet"
 msgstr "Serviciul nu s-a inițializat încă"
 
-#: ../ubuntutweak/widgets/dialogs.py:204
-#: ../ubuntutweak/modules/sourceeditor.py:88
+#: ../ubuntutweak/ui/dialogs.py:207 ../ubuntutweak/modules/sourceeditor.py:88
 #: ../ubuntutweak/modules/sourcecenter.py:945
 msgid "Details"
 msgstr "Detalii"
@@ -503,11 +508,11 @@ msgstr "Descărcat!"
 msgid "Error happened!"
 msgstr "S-a întâmplat o eroare!"
 
-#: ../ubuntutweak/network/utdata.py:48 ../ubuntutweak/network/utdata.py:81
+#: ../ubuntutweak/network/utdata.py:50 ../ubuntutweak/network/utdata.py:83
 msgid "Never"
 msgstr "Niciodată"
 
-#: ../ubuntutweak/network/utdata.py:72
+#: ../ubuntutweak/network/utdata.py:74
 #, python-format
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
@@ -515,7 +520,7 @@ msgstr[0] "acum %d săptămână"
 msgstr[1] "acum %d săptămâni"
 msgstr[2] "acum %d săptămâni"
 
-#: ../ubuntutweak/network/utdata.py:74
+#: ../ubuntutweak/network/utdata.py:76
 #, python-format
 msgid "%d day ago"
 msgid_plural "%d days ago"
@@ -523,7 +528,7 @@ msgstr[0] "acum %d zi"
 msgstr[1] "acum %d zile"
 msgstr[2] "acum %d zile"
 
-#: ../ubuntutweak/network/utdata.py:76
+#: ../ubuntutweak/network/utdata.py:78
 #, python-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
@@ -531,7 +536,7 @@ msgstr[0] "acum %d oră"
 msgstr[1] "acum %d ore"
 msgstr[2] "acum %d ore"
 
-#: ../ubuntutweak/network/utdata.py:78
+#: ../ubuntutweak/network/utdata.py:80
 #, python-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
@@ -539,7 +544,7 @@ msgstr[0] "acum %d minut"
 msgstr[1] "acum %d minute"
 msgstr[2] "acum %d minute"
 
-#: ../ubuntutweak/network/utdata.py:79
+#: ../ubuntutweak/network/utdata.py:81
 msgid "Just Now"
 msgstr "Chiar Acum"
 
@@ -557,23 +562,23 @@ msgstr ""
 msgid "Copy Error Message"
 msgstr ""
 
-#: ../ubuntutweak/common/package.py:196
+#: ../ubuntutweak/common/package.py:206
 #: ../ubuntutweak/modules/appcenter.py:644
-#: ../ubuntutweak/modules/compiz.py:523
+#: ../ubuntutweak/modules/compiz.py:526
 #: ../ubuntutweak/modules/sourcecenter.py:141
-#: ../ubuntutweak/modules/nautilus.py:171
+#: ../ubuntutweak/modules/nautilus.py:176
 msgid "Update Successful!"
 msgstr "Actualizare terminată cu succes!"
 
-#: ../ubuntutweak/common/package.py:198
+#: ../ubuntutweak/common/package.py:208
 #: ../ubuntutweak/modules/appcenter.py:646
-#: ../ubuntutweak/modules/compiz.py:525
+#: ../ubuntutweak/modules/compiz.py:528
 #: ../ubuntutweak/modules/sourcecenter.py:143
-#: ../ubuntutweak/modules/nautilus.py:173
+#: ../ubuntutweak/modules/nautilus.py:178
 msgid "Update Failed!"
 msgstr "Actualizare eșuata!"
 
-#: ../ubuntutweak/common/package.py:330
+#: ../ubuntutweak/common/package.py:340
 msgid "(Not available)"
 msgstr "(Nedisponibil)"
 
@@ -759,11 +764,11 @@ msgstr "Consolă"
 msgid "Language"
 msgstr "Limbă"
 
-#: ../ubuntutweak/modules/computer.py:85
+#: ../ubuntutweak/modules/computer.py:86
 msgid "Please enter your new hostname. Blank characters should not be used."
 msgstr "Te rog introduce numele tău de gazdă. Spațiile nu trebuie folosite."
 
-#: ../ubuntutweak/modules/computer.py:86
+#: ../ubuntutweak/modules/computer.py:87
 msgid "New hostname"
 msgstr "Nume de gazdă nou"
 
@@ -1006,11 +1011,11 @@ msgstr ""
 "distanță s-ar putea să fie picat."
 
 #: ../ubuntutweak/modules/appcenter.py:673
-#: ../ubuntutweak/modules/sourcecenter.py:1167
+#: ../ubuntutweak/modules/sourcecenter.py:1169
 msgid "No update available."
 msgstr "Nici o actualizare disponibilă."
 
-#: ../ubuntutweak/modules/appcenter.py:684
+#: ../ubuntutweak/modules/appcenter.py:685
 msgid "An error occurred while downloading the file."
 msgstr "A intervenit o eroare la descărcarea fișierului."
 
@@ -1455,8 +1460,8 @@ msgid "Power Manager Settings"
 msgstr ""
 
 #: ../ubuntutweak/modules/powermanager.py:29
-msgid "Control your computer's power managerment"
-msgstr "Controlează gestiunea de alimentare a calculatorului tău"
+msgid "Control your computer's power management"
+msgstr ""
 
 #: ../ubuntutweak/modules/powermanager.py:37
 msgid "Advanced Power Management Settings"
@@ -1498,67 +1503,67 @@ msgstr "Afişează spaţiul de lucru"
 msgid "Show Widgets"
 msgstr "Arată Widget-urile"
 
-#: ../ubuntutweak/modules/compiz.py:316
+#: ../ubuntutweak/modules/compiz.py:319
 msgid "Compiz Settings"
 msgstr "Setări Compiz"
 
-#: ../ubuntutweak/modules/compiz.py:317
+#: ../ubuntutweak/modules/compiz.py:320
 msgid "Settings for some amazing desktop eye-candy"
 msgstr "Setări pentru unele efecte uimitoare de desktop"
 
-#: ../ubuntutweak/modules/compiz.py:331
+#: ../ubuntutweak/modules/compiz.py:334
 msgid "Install Advanced Desktop Effects Settings Manager"
 msgstr "Instalează managerul de efecte desktop avansate"
 
-#: ../ubuntutweak/modules/compiz.py:334
+#: ../ubuntutweak/modules/compiz.py:337
 msgid "Install Simple Desktop Effects Settings Manager"
 msgstr "Instalează Simple Desktop Effects Settings Manager"
 
-#: ../ubuntutweak/modules/compiz.py:337
+#: ../ubuntutweak/modules/compiz.py:340
 msgid "Install Screenlets Widget Application"
 msgstr "Instalează aplicația pentru widget-uri"
 
-#: ../ubuntutweak/modules/compiz.py:344
+#: ../ubuntutweak/modules/compiz.py:347
 msgid " Workspace Edge Settings"
 msgstr " Setări Margine Spatiu de lucru"
 
-#: ../ubuntutweak/modules/compiz.py:347
+#: ../ubuntutweak/modules/compiz.py:350
 msgid "Enable snapping windows"
 msgstr "Activează lipirea ferestrelor"
 
-#: ../ubuntutweak/modules/compiz.py:348
+#: ../ubuntutweak/modules/compiz.py:351
 msgid "Enable wobbly windows"
 msgstr "Activează efectul de legănare a ferestrelor"
 
-#: ../ubuntutweak/modules/compiz.py:349
+#: ../ubuntutweak/modules/compiz.py:352
 msgid "Enable workspace switching with mouse wheel"
 msgstr ""
 
-#: ../ubuntutweak/modules/compiz.py:351
+#: ../ubuntutweak/modules/compiz.py:354
 msgid "Make the launcher hide automatically after some time inactive"
 msgstr ""
 
-#: ../ubuntutweak/modules/compiz.py:355
+#: ../ubuntutweak/modules/compiz.py:358
 msgid "Desktop Effects"
 msgstr ""
 
-#: ../ubuntutweak/modules/compiz.py:361
+#: ../ubuntutweak/modules/compiz.py:364
 msgid "Enable transparent menus"
 msgstr "Activează meniuri transparente"
 
-#: ../ubuntutweak/modules/compiz.py:362
+#: ../ubuntutweak/modules/compiz.py:365
 msgid "Enable wobbly menus"
 msgstr "Activează efectul de legănare a meniurilor"
 
-#: ../ubuntutweak/modules/compiz.py:364
+#: ../ubuntutweak/modules/compiz.py:367
 msgid "Menu Effects"
 msgstr "Efecte de meniu"
 
-#: ../ubuntutweak/modules/compiz.py:368
+#: ../ubuntutweak/modules/compiz.py:371
 msgid "Useful Extensions"
 msgstr "Extensii folositoare"
 
-#: ../ubuntutweak/modules/compiz.py:383
+#: ../ubuntutweak/modules/compiz.py:386
 msgid "Prerequisite Conditions"
 msgstr "Condiții esențiale"
 
@@ -1727,15 +1732,15 @@ msgstr ""
 "Există riscuri de securitate în a folosi surse terțe.\n"
 "Vă rugăm să folosiți doar surse de incredere."
 
-#: ../ubuntutweak/modules/sourcecenter.py:1139
+#: ../ubuntutweak/modules/sourcecenter.py:1141
 msgid "An error occurred whilst downloading the file"
 msgstr "O eroare s-a produs în timp ce descărcam fișierul"
 
-#: ../ubuntutweak/modules/sourcecenter.py:1154
+#: ../ubuntutweak/modules/sourcecenter.py:1156
 msgid "Update available, Would you like to update?"
 msgstr "Actualizare disponibilă, dorești să actualizezi?"
 
-#: ../ubuntutweak/modules/sourcecenter.py:1163
+#: ../ubuntutweak/modules/sourcecenter.py:1165
 msgid ""
 "Network Error, Please check your network connection or the remote server is "
 "down."
@@ -2263,52 +2268,56 @@ msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
 msgstr ""
 "Arată permisiuni avansate in fereastra „Proprietăți fișier” din Nautilus"
 
-#: ../ubuntutweak/modules/nautilus.py:80
+#: ../ubuntutweak/modules/nautilus.py:81
+msgid "Always use the location entry, instead of the pathbar"
+msgstr ""
+
+#: ../ubuntutweak/modules/nautilus.py:85
 msgid "File Browser"
 msgstr "Navigator fișiere"
 
-#: ../ubuntutweak/modules/nautilus.py:89
+#: ../ubuntutweak/modules/nautilus.py:94
 msgid "Thumbnail Settings"
 msgstr "Setări Miniaturi"
 
-#: ../ubuntutweak/modules/nautilus.py:94
+#: ../ubuntutweak/modules/nautilus.py:99
 msgid "Default thumbnail icon size (pixels)"
 msgstr "Mărimea implicită a miniaturilor iconițelor (în pixeli)"
 
-#: ../ubuntutweak/modules/nautilus.py:99
+#: ../ubuntutweak/modules/nautilus.py:104
 msgid "Maximum thumbnail cache size (megabytes)"
 msgstr "Dimensiunea maxima a cache-ului pentru miniaturi (megaocteți)"
 
-#: ../ubuntutweak/modules/nautilus.py:104
+#: ../ubuntutweak/modules/nautilus.py:109
 msgid "Thumbnail cache time (days)"
 msgstr "Timpul cache-ului pentru miniaturi"
 
-#: ../ubuntutweak/modules/nautilus.py:111
+#: ../ubuntutweak/modules/nautilus.py:116
 msgid "Open folder in terminal"
 msgstr "Deschide dosar în terminal"
 
-#: ../ubuntutweak/modules/nautilus.py:113
+#: ../ubuntutweak/modules/nautilus.py:118
 msgid "Open folder with root privileges"
 msgstr ""
 
-#: ../ubuntutweak/modules/nautilus.py:115
+#: ../ubuntutweak/modules/nautilus.py:120
 msgid "Nautilus with wallpaper"
 msgstr "Nautilus cu imagine de fundal"
 
-#: ../ubuntutweak/modules/nautilus.py:117
+#: ../ubuntutweak/modules/nautilus.py:122
 msgid "Nautilus Extensions"
 msgstr "Extensii Nautilus"
 
-#: ../ubuntutweak/modules/nautilus.py:139
+#: ../ubuntutweak/modules/nautilus.py:144
 #, python-format
 msgid "Delete thumbnail cache (Frees %s of disk space)"
 msgstr ""
 
-#: ../ubuntutweak/modules/nautilus.py:142
+#: ../ubuntutweak/modules/nautilus.py:147
 msgid "The thumbnail cache will be deleted. Do you wish to continue?"
 msgstr "Cache-ul pentru miniaturi va fi șters. Dorești să continui?"
 
-#: ../ubuntutweak/modules/nautilus.py:149
+#: ../ubuntutweak/modules/nautilus.py:154
 msgid "Clean up Successful!"
 msgstr "Curățire terminată cu succes!"
 
@@ -2977,6 +2986,9 @@ msgstr ""
 
 #~ msgid "Enable the auto launch of System Update Manager"
 #~ msgstr "Activeaza lansarea automata a Gestionarului de Actualizari Sistem"
+
+#~ msgid "Control your computer's power managerment"
+#~ msgstr "Controlează gestiunea de alimentare a calculatorului tău"
 
 #~ msgid "Change the name and toggle visibilty of desktop icons"
 #~ msgstr ""
