@@ -345,7 +345,7 @@ class ViewpointSwitcher(gtk.CheckButton):
 class Compiz(TweakModule):
     __title__ = _('Compiz Settings')
     __desc__ = _('Settings for some amazing desktop eye-candy')
-    __icon__ = ['compiz', 'wmtweaks']
+    __icon__ = ['ccsm', 'compiz', 'wmtweaks']
     __category__ = 'desktop'
     __desktop__ = 'gnome'
 

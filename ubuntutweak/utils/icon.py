@@ -45,11 +45,15 @@ def get_from_list(list, size=DEFAULT_SIZE):
     for name in list:
         try:
             pixbuf = icontheme.load_icon(name, size, 0)
-        except:
+        except Exception, e:
+            log.error(e)
             continue
 
+        if pixbuf:
+            break
+
     if pixbuf is None:
-        return get_from_name('name', size=size)
+        return get_from_name(size=size)
     else:
         return pixbuf
 
