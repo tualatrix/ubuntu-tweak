@@ -361,9 +361,6 @@ class Compiz(TweakModule):
             self.advanced_settings = AptCheckButton(_("Install Advanced Desktop Effects Settings Manager"),
                     'compizconfig-settings-manager')
             self.advanced_settings.connect('toggled', self.colleague_changed)
-            self.simple_settings = AptCheckButton(_("Install Simple Desktop Effects Settings Manager"),
-                    'simple-ccsm')
-            self.simple_settings.connect('toggled', self.colleague_changed)
             self.screenlets = AptCheckButton(_("Install Screenlets Widget Application"),
                     'screenlets')
             self.screenlets.connect('toggled', self.colleague_changed)
@@ -396,7 +393,6 @@ class Compiz(TweakModule):
 
             if system.has_apt() and PACKAGE_WORKER.get_cache():
                 box = ListPack(_("Useful Extensions"), (
-                    self.simple_settings,
                     self.screenlets,
                 ))
 
@@ -564,7 +560,6 @@ class Compiz(TweakModule):
 
     def colleague_changed(self, widget):
         if self.advanced_settings.get_state() != self.advanced_settings.get_active() or\
-                self.simple_settings.get_state() != self.simple_settings.get_active() or\
                 self.screenlets.get_state() != self.screenlets.get_active():
                     self.button.set_sensitive(True)
         else:
