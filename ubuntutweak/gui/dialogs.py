@@ -18,8 +18,8 @@
 
 import thread
 
-import gobject
-from gi.repository import Gtk, Gdk
+from gi.repository import GObject
+from gi.repository import Gtk, Gdk, Vte
 
 
 class BaseDialog(Gtk.MessageDialog):
@@ -27,7 +27,7 @@ class BaseDialog(Gtk.MessageDialog):
         title = kwargs.pop('title', '')
         message = kwargs.pop('message', '')
 
-        gobject.GObject.__init__(self, **kwargs)
+        GObject.GObject.__init__(self, **kwargs)
 
         if title:
             self.set_title(title)
@@ -99,7 +99,7 @@ class QuestionDialog(BaseDialog):
 
 class BusyDialog(Gtk.Dialog):
     def __init__(self, parent=None):
-        gobject.GObject.__init__(self, parent=parent)
+        GObject.GObject.__init__(self, parent=parent)
 
         if parent:
             self.parent_window = parent
@@ -150,7 +150,7 @@ class ProcessDialog(BusyDialog):
 
     def run(self):
         thread.start_new_thread(self.process_data, ())
-        gobject.timeout_add(100, self.on_timeout)
+        GObject.timeout_add(100, self.on_timeout)
         super(ProcessDialog, self).run()
 
     def pulse(self):
@@ -181,3 +181,33 @@ class ServerErrorDialog(ErrorDialog):
         ErrorDialog.__init__(self,
                              title=_("Service hasn't initialized yet"),
                              message=_('You need to restart your computer.'))
+
+
+class SmartTerminal(Vte.Terminal):
+    def insert(self, string):
+        column_count = self.get_column_count()
+        column, row = self.get_cursor_position()
+        if column == 0:
+            column = column_count
+        if column != column_count:
+            self.feed(' ' * (column_count - column))
+        space_length = column_count - len(string)
+        string = string + ' ' * space_length
+        self.feed(string)
+
+
+class TerminalDialog(ProcessDialog):
+    def __init__(self, parent):
+        super(TerminalDialog, self).__init__(parent=parent)
+
+        self.set_position(Gtk.WindowPosition.CENTER_ALWAYS)
+        self.expendar = Gtk.Expander()
+        self.expendar.set_spacing(6)
+        self.expendar.set_label(_('Details'))
+        self.vbox.pack_start(self.expendar, False, False, 6)
+
+        self.terminal = SmartTerminal()
+        self.terminal.set_size_request(562, 362)
+        self.expendar.add(self.terminal)
+
+        self.vbox.show_all()

@@ -155,7 +155,7 @@ class PackageWorker:
 
     def perform_action(self, window_main, to_add=[], to_rm=[]):
         window_main.set_sensitive(False)
-        window_main.window.set_cursor(Gdk.Cursor.new(Gdk.WATCH))
+        window_main.window.set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
         lock = thread.allocate_lock()
         lock.acquire()
         t = thread.start_new_thread(self.run_synaptic, (window_main.window.xid, lock, to_add, to_rm))

@@ -99,5 +99,18 @@ def guess_from_path(filepath, size=DEFAULT_SIZE):
         log.error('guess_from_path failed: %s' % e)
         return get_from_name(size=size)
 
+def get_source_logo_from_filename(file_name):
+    path = os.path.join(SOURCE_ROOT, file_name)
+    if not os.path.exists(path) or file_name == '':
+        path = os.path.join(consts.DATA_DIR, 'pixmaps/ppa-logo.png')
+
+    try:
+        pixbuf = GdkPixbuf.Pixbuf.new_from_file(path)
+        if pixbuf.get_width() != 32 or pixbuf.get_height() != 32:
+            pixbuf = pixbuf.scale_simple(32, 32, GdkPixbuf.InterpType.BILINEAR)
+        return pixbuf
+    except:
+        return Gtk.IconTheme.get_default().load_icon(Gtk.STOCK_MISSING_IMAGE, 32, 0)
+
 if __name__ == '__main__':
     print get_from_name('ok', alter='ko')

@@ -1,8 +1,6 @@
-#!/usr/bin/python
-
-# Ubuntu Tweak - PyGTK based desktop configuration tool
+# Ubuntu Tweak - Ubuntu Configuration Tool
 #
-# Copyright (C) 2007-2008 TualatriX <tualatrix@gmail.com>
+# Copyright (C) 2007-2011 Tualatrix Chou <tualatrix@gmail.com>
 #
 # Ubuntu Tweak is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,17 +17,18 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import os
-import gtk
 import json
-import pango
 import thread
-import gobject
 import logging
 
-from urllib2 import urlopen, Request, URLError
-from dbus.exceptions import DBusException
-from aptsources.sourceslist import SourcesList
 from gettext import ngettext
+from urllib2 import urlopen, Request, URLError
+
+import gobject
+
+from dbus.exceptions import DBusException
+from gi.repository import Gtk, Gdk, Pango, GObject, GdkPixbuf
+from aptsources.sourceslist import SourcesList
 
 from ubuntutweak.common.consts import install_ngettext
 from ubuntutweak.modules  import TweakModule
@@ -37,35 +36,20 @@ from ubuntutweak.utils import icon, set_label_for_stock_button, ppa
 from ubuntutweak.common.misc import filesizeformat
 from ubuntutweak.policykit import PolkitButton, proxy
 from ubuntutweak.common.package import PACKAGE_WORKER
-from ubuntutweak.ui.dialogs import QuestionDialog, InfoDialog, ErrorDialog
-from ubuntutweak.ui.dialogs import AuthenticateFailDialog, ProcessDialog, TerminalDialog
-from ubuntutweak.modules.sourcecenter import SOURCE_PARSER
-from ubuntutweak.modules.sourcecenter import get_source_logo_from_filename
+from ubuntutweak.gui.dialogs import QuestionDialog, InfoDialog, ErrorDialog
+from ubuntutweak.gui.dialogs import AuthenticateFailDialog, ProcessDialog, TerminalDialog
+
 
 log = logging.getLogger("Cleaner")
 
-(
-    COLUMN_CHECK,
-    COLUMN_ICON,
-    COLUMN_NAME,
-    COLUMN_DESC,
-    COLUMN_DISPLAY,
-) = range(5)
-
 install_ngettext()
 
-def get_ppa_source_dict():
-    ppa_source_dict = {}
-    for id in SOURCE_PARSER:
-        url = SOURCE_PARSER.get_url(id)
-        ppa_source_dict[url] = id
-
-    return ppa_source_dict
 
 class AbsPkg:
     def __init__(self, pkg, des):
         self.name = pkg
         self.des = des
+
 
 class CleanConfigDialog(TerminalDialog):
     def __init__(self, parent, pkgs):
@@ -102,6 +86,7 @@ class CleanConfigDialog(TerminalDialog):
         else:
             self.destroy()
 
+
 class CleanCacheDailog(ProcessDialog):
     def __init__(self, parent, files):
         super(CleanCacheDailog, self).__init__(parent=parent)
@@ -111,7 +96,7 @@ class CleanCacheDailog(ProcessDialog):
         self.user_action = False
 
         self.set_dialog_lable(_('Cleaning Package Cache'))
-        self.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT)
+        self.add_button(Gtk.STOCK_CANCEL, Gtk.ResponseType.REJECT)
 
     def process_data(self):
         for file in self.files:
@@ -132,6 +117,7 @@ class CleanCacheDailog(ProcessDialog):
         else:
             self.destroy()
 
+
 class CleanPpaDialog(TerminalDialog):
     def __init__(self, parent, pkgs, urls):
         super(CleanPpaDialog, self).__init__(parent=parent)
@@ -151,16 +137,11 @@ class CleanPpaDialog(TerminalDialog):
         else:
             self.downgrade_done = True
 
-        ppa_source_dict = get_ppa_source_dict()
-
         # Sort out the unique owner urls, so that the PPAs from same owner will only fetch key fingerprint only once
         key_fingerprint_dict = {}
         for url in self.urls:
-            if url in ppa_source_dict:
-                id = ppa_source_dict[url]
-                key_fingerprint = SOURCE_PARSER.get_key_fingerprint(id)
-            else:
-                key_fingerprint = ''
+            #TODO remove the key_fingerprint
+            key_fingerprint = ''
 
             owner, ppa_name = url.split('/')[3:5]
 
@@ -219,11 +200,12 @@ class CleanPpaDialog(TerminalDialog):
         else:
             self.destroy()
 
-class DowngradeView(gtk.TreeView):
+
+class DowngradeView(Gtk.TreeView):
     __gsignals__ = {
-        'checked': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, 
-                    (gobject.TYPE_BOOLEAN,)),
-        'cleaned': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, ())
+        'checked': (GObject.SignalFlags.RUN_FIRST, None, 
+                    (GObject.TYPE_BOOLEAN,)),
+        'cleaned': (GObject.SignalFlags.RUN_FIRST, None, ())
     }
 
     (COLUMN_PKG,
@@ -233,37 +215,37 @@ class DowngradeView(gtk.TreeView):
     def __init__(self):
         super(DowngradeView, self).__init__()
 
-        model = self.__create_model()
+        model = self._create_model()
         self.set_model(model)
-        model.set_sort_column_id(self.COLUMN_PKG, gtk.SORT_ASCENDING)
+        model.set_sort_column_id(self.COLUMN_PKG, Gtk.SortType.ASCENDING)
 
         self.PACKAGE_WORKER = PACKAGE_WORKER
 
-        self.__add_column()
+        self._add_column()
 
-    def __create_model(self):
-        model = gtk.ListStore(gobject.TYPE_STRING,
-                              gobject.TYPE_STRING,
-                              gobject.TYPE_STRING)
+    def _create_model(self):
+        model = Gtk.ListStore(GObject.TYPE_STRING,
+                              GObject.TYPE_STRING,
+                              GObject.TYPE_STRING)
 
         return model
 
-    def __add_column(self):
-        renderer = gtk.CellRendererText()
-        column = gtk.TreeViewColumn(_('Package'), renderer, text=self.COLUMN_PKG)
+    def _add_column(self):
+        renderer = Gtk.CellRendererText()
+        column = Gtk.TreeViewColumn(_('Package'), renderer, text=self.COLUMN_PKG)
         column.set_sort_column_id(self.COLUMN_PKG)
         self.append_column(column)
 
-        renderer = gtk.CellRendererText()
-        renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
-        column = gtk.TreeViewColumn(_('Previous Version'), renderer, text=self.COLUMN_PPA_VERSION)
+        renderer = Gtk.CellRendererText()
+        renderer.set_property('ellipsize', Pango.EllipsizeMode.END)
+        column = Gtk.TreeViewColumn(_('Previous Version'), renderer, text=self.COLUMN_PPA_VERSION)
         column.set_resizable(True)
         column.set_min_width(180)
         self.append_column(column)
 
-        renderer = gtk.CellRendererText()
-        renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
-        column = gtk.TreeViewColumn(_('System Version'), renderer, text=self.COLUMN_SYSTEM_VERSION)
+        renderer = Gtk.CellRendererText()
+        renderer.set_property('ellipsize', Pango.EllipsizeMode.END)
+        column = Gtk.TreeViewColumn(_('System Version'), renderer, text=self.COLUMN_SYSTEM_VERSION)
         column.set_resizable(True)
         self.append_column(column)
 
@@ -301,24 +283,32 @@ class DowngradeView(gtk.TreeView):
         log.debug("The package to downgrade is %s" % str(downgrade_list))
         return downgrade_list
 
-class PackageView(gtk.TreeView):
+
+class PackageView(Gtk.TreeView):
     __gsignals__ = {
-        'checked': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, 
-                    (gobject.TYPE_BOOLEAN,)),
-        'cleaned': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, ())
+        'checked': (GObject.SignalFlags.RUN_FIRST, None, 
+                    (GObject.TYPE_BOOLEAN,)),
+        'cleaned': (GObject.SignalFlags.RUN_FIRST, None, ())
     }
 
+    (COLUMN_CHECK,
+     COLUMN_ICON,
+     COLUMN_NAME,
+     COLUMN_DESC,
+     COLUMN_DISPLAY,
+    ) = range(5)
+
     def __init__(self):
-        super(PackageView, self).__init__()
+        gobject.GObject.__init__(self)
 
-        model = self.__create_model()
+        model = self._create_model()
         self.set_model(model)
-        model.set_sort_column_id(COLUMN_NAME, gtk.SORT_ASCENDING)
+        model.set_sort_column_id(self.COLUMN_NAME, Gtk.SortType.ASCENDING)
 
-        self.__check_list = []
+        self._check_list = []
         self.PACKAGE_WORKER = PACKAGE_WORKER
 
-        self.__add_column()
+        self._add_column()
 
         self.mode = 'package'
         self.update_package_model()
@@ -328,38 +318,38 @@ class PackageView(gtk.TreeView):
     def get_sourceslist(self):
         return SourcesList()
 
-    def __create_model(self):
-        model = gtk.ListStore(
-                gobject.TYPE_BOOLEAN,
-                gtk.gdk.Pixbuf,
-                gobject.TYPE_STRING,
-                gobject.TYPE_STRING,
-                gobject.TYPE_STRING)
+    def _create_model(self):
+        model = Gtk.ListStore(
+                GObject.TYPE_BOOLEAN,
+                GdkPixbuf.Pixbuf,
+                GObject.TYPE_STRING,
+                GObject.TYPE_STRING,
+                GObject.TYPE_STRING)
 
         return model
 
-    def __add_column(self):
-        renderer = gtk.CellRendererToggle()
+    def _add_column(self):
+        renderer = Gtk.CellRendererToggle()
         renderer.connect('toggled', self.on_package_toggled)
-        column = gtk.TreeViewColumn(' ', renderer, active = COLUMN_CHECK)
-        column.set_sort_column_id(COLUMN_CHECK)
+        column = Gtk.TreeViewColumn(' ', renderer, active = self.COLUMN_CHECK)
+        column.set_sort_column_id(self.COLUMN_CHECK)
         self.append_column(column)
 
-        self.__column = gtk.TreeViewColumn(_('Package'))
-        self.__column.set_sort_column_id(COLUMN_NAME)
-        self.__column.set_spacing(5)
-        renderer = gtk.CellRendererPixbuf()
-        self.__column.pack_start(renderer, False)
-        self.__column.set_attributes(renderer, pixbuf = COLUMN_ICON)
+        self._column = Gtk.TreeViewColumn(_('Package'))
+        self._column.set_sort_column_id(self.COLUMN_NAME)
+        self._column.set_spacing(5)
+        renderer = Gtk.CellRendererPixbuf()
+        self._column.pack_start(renderer, False)
+        self._column.add_attribute(renderer, 'pixbuf', self.COLUMN_ICON)
 
-        renderer = gtk.CellRendererText()
-        self.__column.pack_start(renderer, True)
-        self.__column.set_attributes(renderer, markup = COLUMN_DISPLAY)
+        renderer = Gtk.CellRendererText()
+        self._column.pack_start(renderer, True)
+        self._column.add_attribute(renderer, 'markup', self.COLUMN_DISPLAY)
 
-        self.append_column(self.__column)
+        self.append_column(self._column)
 
     def get_list(self):
-        return self.__check_list
+        return self._check_list
 
     def update_package_model(self):
         self.set_busy()
@@ -370,22 +360,15 @@ class PackageView(gtk.TreeView):
         pixbuf = icon.get_from_name('deb')
         list = self.PACKAGE_WORKER.list_autoremovable()
         self.total_num = len(list)
-        self.__column.set_title(_('Unneeded Packages'))
+        self._column.set_title(_('Unneeded Packages'))
 
-        while gtk.events_pending():
-            gtk.main_iteration()
+        while Gtk.events_pending():
+            Gtk.main_iteration()
 
         for pkg in list:
             desc = self.PACKAGE_WORKER.get_pkgsummary(pkg)
 
-            iter = model.append()
-            model.set(iter,
-                   COLUMN_CHECK, False,
-                   COLUMN_ICON, pixbuf,
-                   COLUMN_NAME, pkg,
-                   COLUMN_DESC, desc,
-                   COLUMN_DISPLAY, '<b>%s</b>\n%s' % (pkg, desc)
-                )
+            model.append((False, pixbuf, pkg, desc, '<b>%s</b>\n%s' % (pkg, desc)))
 
         self.unset_busy()
 
@@ -398,22 +381,15 @@ class PackageView(gtk.TreeView):
         pixbuf = icon.get_from_name('deb')
         list = self.PACKAGE_WORKER.list_unneeded_kerenl()
         self.total_num = len(list)
-        self.__column.set_title(_('Kernel Packages'))
+        self._column.set_title(_('Kernel Packages'))
 
-        while gtk.events_pending():
-            gtk.main_iteration()
+        while Gtk.events_pending():
+            Gtk.main_iteration()
 
         for pkg in list:
             desc = self.PACKAGE_WORKER.get_pkgsummary(pkg)
 
-            iter = model.append()
-            model.set(iter,
-                   COLUMN_CHECK, False,
-                   COLUMN_ICON, pixbuf,
-                   COLUMN_NAME, pkg,
-                   COLUMN_DESC, desc,
-                   COLUMN_DISPLAY, '<b>%s</b>\n%s' % (pkg, desc)
-                )
+            model.append((False, pixbuf, pkg, desc, '<b>%s</b>\n%s' % (pkg, desc)))
         self.unset_busy()
 
     def update_cache_model(self):
@@ -427,57 +403,36 @@ class PackageView(gtk.TreeView):
         list = map(lambda file: '%s/%s' % (cache_dir, file),
                     filter(lambda x:x.endswith('deb'), os.listdir(cache_dir))) 
         self.total_num = len(list)
-        self.__column.set_title(_('Cached Package Files'))
+        self._column.set_title(_('Cached Package Files'))
 
-        while gtk.events_pending():
-            gtk.main_iteration()
+        while Gtk.events_pending():
+            Gtk.main_iteration()
 
         for pkg in list:
             size = str(os.path.getsize(pkg))
 
-            iter = model.append()
-            model.set(iter,
-                   COLUMN_ICON, pixbuf,
-                   COLUMN_CHECK, False,
-                   COLUMN_NAME, pkg,
-                   COLUMN_DESC, size,
-                   COLUMN_DISPLAY, _('<b>%s</b>\nOccupies %s of disk space') % (os.path.basename(pkg), filesizeformat(size)) 
-
-                )
+            model.append((pixbuf, False, pkg, size,
+                        _('<b>%s</b>\nOccupies %s of disk space') % (os.path.basename(pkg), filesizeformat(size))))
         self.unset_busy()
 
     def update_ppa_model(self):
         self.set_busy()
-        self.__column.set_title('PPA Sources')
+        self._column.set_title('PPA Sources')
         model = self.get_model()
         model.clear()
         self.mode = 'ppa'
 
-        ppa_source_dict = get_ppa_source_dict()
-
         for source in self.get_sourceslist():
             if ppa.is_ppa(source.uri) and source.type == 'deb' and not source.disabled:
-                try:
-                    id = ppa_source_dict[source.uri]
-                    pixbuf = get_source_logo_from_filename(SOURCE_PARSER[id]['logo'])
-                    name = SOURCE_PARSER.get_name(id)
-                    comment = SOURCE_PARSER.get_summary(id)
-                except:
-                    id = source.uri
-                    name = ppa.get_short_name(source.uri)
-                    comment = ppa.get_homepage(source.uri)
-                    pixbuf = get_source_logo_from_filename('')
+                id = source.uri
+                name = ppa.get_short_name(source.uri)
+                comment = ppa.get_homepage(source.uri)
+                pixbuf = icon.get_source_logo_from_filename('')
 
                 self.total_num += 1
-                iter = model.append()
                 log.debug("Found an enalbed PPA: %s" % name)
-                model.set(iter,
-                       COLUMN_ICON, pixbuf,
-                       COLUMN_CHECK, False,
-                       COLUMN_NAME, str(id),
-                       COLUMN_DESC, '',
-                       COLUMN_DISPLAY, '<b>%s</b>\n%s' % (name, comment),
-                    )
+                model.append((pixbuf, False, str(id), '',
+                              '<b>%s</b>\n%s' % (name, comment)))
         self.unset_busy()
 
     def update_config_model(self):
@@ -501,34 +456,28 @@ class PackageView(gtk.TreeView):
                 pass
 
         self.total_num = len(list)
-        self.__column.set_title(_('Package Configuration Files'))
+        self._column.set_title(_('Package Configuration Files'))
 
-        while gtk.events_pending():
-            gtk.main_iteration()
+        while Gtk.events_pending():
+            Gtk.main_iteration()
 
         for pkg in list:
-            iter = model.append()
-            model.set(iter,
-                   COLUMN_CHECK, False,
-                   COLUMN_ICON, pixbuf,
-                   COLUMN_NAME, pkg.name,
-                   COLUMN_DESC, '',
-                   COLUMN_DISPLAY, '<b>%s</b>\n%s' % (pkg.name, pkg.des),
-                )
+            model.append((False, pixbuf, pkg.name, '',
+                          '<b>%s</b>\n%s' % (pkg.name, pkg.des)))
         self.unset_busy()
 
     def on_package_toggled(self, cell, path):
         model = self.get_model()
         iter = model.get_iter(path)
 
-        check = model.get_value(iter, COLUMN_CHECK)
-        model.set(iter, COLUMN_CHECK, not check)
+        check = model.get_value(iter, self.COLUMN_CHECK)
+        model.set(iter, self.COLUMN_CHECK, not check)
         if not check:
-            self.__check_list.append(model.get_value(iter, COLUMN_NAME))
+            self._check_list.append(model.get_value(iter, self.COLUMN_NAME))
         else:
-            self.__check_list.remove(model.get_value(iter, COLUMN_NAME))
+            self._check_list.remove(model.get_value(iter, self.COLUMN_NAME))
 
-        if len(self.__check_list) == self.total_num:
+        if len(self._check_list) == self.total_num:
             self.emit('checked', True)
         else:
             self.emit('checked', False)
@@ -537,43 +486,43 @@ class PackageView(gtk.TreeView):
 
     def set_column_title(self):
         if self.mode == 'package' or self.mode == 'kernel':
-            n = len(self.__check_list)
-            self.__column.set_title(ngettext('%d package selected for removal',
+            n = len(self._check_list)
+            self._column.set_title(ngettext('%d package selected for removal',
                 '%d packages selected for removal', n) % n)
         elif self.mode == 'cache':
             self.compute_cache_size()
-            self.__column.set_title(_('%s of disk space will be freed') % filesizeformat(self.size))
+            self._column.set_title(_('%s of disk space will be freed') % filesizeformat(self.size))
 
     def compute_cache_size(self):
         self.size = 0
 
         model = self.get_model()
-        model.foreach(self.__cache_foreach)
+        model.foreach(self._cache_foreach)
 
-    def __cache_foreach(self, model, path, iter):
-        cache = model.get_value(iter, COLUMN_NAME)
+    def _cache_foreach(self, model, path, iter):
+        cache = model.get_value(iter, self.COLUMN_NAME)
 
-        if cache in self.__check_list:
-            size = model.get_value(iter, COLUMN_DESC)
+        if cache in self._check_list:
+            size = model.get_value(iter, self.COLUMN_DESC)
             self.size = self.size + int(size)
 
     def select_all(self, check = True):
-        self.__check_list = []
+        self._check_list = []
 
         model = self.get_model()
-        model.foreach(self.__select_foreach, check)
+        model.foreach(self._select_foreach, check)
         self.emit('checked', check)
 
         self.set_column_title()
 
-    def __select_foreach(self, model, path, iter, check):
-        model.set(iter, COLUMN_CHECK, check)
+    def _select_foreach(self, model, path, iter, check):
+        model.set_value(iter, self.COLUMN_CHECK, check)
         if check:
-            self.__check_list.append(model.get_value(iter, COLUMN_NAME))
+            self._check_list.append(model.get_value(iter, self.COLUMN_NAME))
 
     def clean_selected_package(self):
         self.set_busy()
-        state = self.PACKAGE_WORKER.perform_action(self.get_toplevel(), [],self.__check_list)
+        state = self.PACKAGE_WORKER.perform_action(self.get_toplevel(), [],self._check_list)
 
         if state == 0:
             self.show_success_dialog()
@@ -585,7 +534,7 @@ class PackageView(gtk.TreeView):
             self.update_package_model()
         else:
             self.update_kernel_model()
-        self.__check_list = []
+        self._check_list = []
         self.emit('cleaned')
         self.unset_busy()
 
@@ -594,7 +543,7 @@ class PackageView(gtk.TreeView):
         model = self.get_model()
 
         dialog = CleanCacheDailog(self.get_toplevel(), self.get_list())
-        if dialog.run() == gtk.RESPONSE_REJECT:
+        if dialog.run() == Gtk.ResponseType.REJECT:
             dialog.destroy()
             dialog.user_action = True
             self.show_usercancel_dialog()
@@ -633,18 +582,13 @@ class PackageView(gtk.TreeView):
         name_list = []
         url_list = []
         for id in self.get_list():
-            #TODO
-            try:
-                name_list.append(SOURCE_PARSER.get_name(int(id)))
-                url_list.append(SOURCE_PARSER.get_url(int(id)))
-            except:
-                name_list.append(ppa.get_short_name(id))
-                url_list.append(id)
+            name_list.append(ppa.get_short_name(id))
+            url_list.append(id)
 
         package_view = DowngradeView()
         package_view.update_model(url_list)
-        sw = gtk.ScrolledWindow()
-        sw.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
+        sw = Gtk.ScrolledWindow()
+        sw.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         select_pkgs = package_view.get_downgrade_packages()
         sw.add(package_view)
 
@@ -668,7 +612,7 @@ class PackageView(gtk.TreeView):
         # 1. Downgrade all the PPA packages to offical packages #TODO Maybe not official? Because anther ppa which is enabled may have newer packages then offical
         # 2. If succeed, disable PPA, or keep it
 
-        if response == gtk.RESPONSE_YES:
+        if response == Gtk.ResponseType.YES:
             self.set_busy()
             log.debug("The select pkgs is: %s", str(select_pkgs))
             dialog = CleanPpaDialog(self.get_toplevel(), select_pkgs, url_list)
@@ -683,7 +627,7 @@ class PackageView(gtk.TreeView):
         else:
             self.update_ppa_model()
         # TODO refresh source?
-        self.__check_list = []
+        self._check_list = []
         self.emit('cleaned')
         self.unset_busy()
 
@@ -699,12 +643,13 @@ class PackageView(gtk.TreeView):
     def set_busy(self):
         window = self.get_toplevel().window
         if window:
-            window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+            window.set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
 
     def unset_busy(self):
         window = self.get_toplevel().window
         if window:
             window.set_cursor(None)
+
 
 class PackageCleaner(TweakModule):
     __title__ = _('Package Cleaner')
@@ -720,15 +665,15 @@ class PackageCleaner(TweakModule):
         self.button_list = []
         self.current_button = 0
 
-        hbox = gtk.HBox(False, 12)
+        hbox = Gtk.HBox(spacing=12)
         self.add_start(hbox, True, True, 0)
 
-        sw = gtk.ScrolledWindow()
-        sw.set_shadow_type(gtk.SHADOW_ETCHED_IN)
-        sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        hbox.pack_start(sw)
+        sw = Gtk.ScrolledWindow()
+        sw.set_shadow_type(Gtk.ShadowType.ETCHED_IN)
+        sw.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
+        hbox.pack_start(sw, True, True, 0)
 
-        vbox = gtk.VBox(False, 6)
+        vbox = Gtk.VBox(spacing=6)
         hbox.pack_start(vbox, False, False, 0)
 
         # create tree view
@@ -740,43 +685,43 @@ class PackageCleaner(TweakModule):
 
         # create the button
         self.pkg_button = self.create_button(_('Clean Packages'),
-                gtk.image_new_from_pixbuf(icon.get_from_name('deb')),
+                Gtk.Image.new_from_pixbuf(icon.get_from_name('deb')),
                 self.treeview.update_package_model)
         vbox.pack_start(self.pkg_button, False, False, 0)
 
         self.cache_button = self.create_button(_('Clean Cache'), 
-                gtk.image_new_from_stock(gtk.STOCK_CLEAR, gtk.ICON_SIZE_BUTTON),
+                Gtk.Image.new_from_stock(Gtk.STOCK_CLEAR, Gtk.IconSize.BUTTON),
                 self.treeview.update_cache_model)
         vbox.pack_start(self.cache_button, False, False, 0)
 
         self.config_button = self.create_button(_('Clean Config'),
-                gtk.image_new_from_stock(gtk.STOCK_PREFERENCES, gtk.ICON_SIZE_BUTTON),
+                Gtk.Image.new_from_stock(Gtk.STOCK_PREFERENCES, Gtk.IconSize.BUTTON),
                 self.treeview.update_config_model)
         vbox.pack_start(self.config_button, False, False, 0)
 
         self.kernel_button = self.create_button(_('Clean Kernels'),
-                gtk.image_new_from_pixbuf(icon.get_from_name('start-here')),
+                Gtk.Image.new_from_pixbuf(icon.get_from_name('start-here')),
                 self.treeview.update_kernel_model)
         vbox.pack_start(self.kernel_button, False, False, 0)
 
         self.ppa_button = self.create_button(_('Purge PPAs'),
-                gtk.image_new_from_pixbuf(icon.get_from_name('start-here')),
+                Gtk.Image.new_from_pixbuf(icon.get_from_name('start-here')),
                 self.treeview.update_ppa_model)
         vbox.pack_start(self.ppa_button, False, False, 0)
 
         # checkbutton
-        self.select_button = gtk.CheckButton(_('Select All'))
+        self.select_button = Gtk.CheckButton(_('Select All'))
         self.select_button.set_sensitive(False)
-        self.__handler_id = self.select_button.connect('toggled', self.on_select_all)
+        self._handler_id = self.select_button.connect('toggled', self.on_select_all)
         self.add_start(self.select_button, False, False, 0)
 
         # button
-        hbuttonbox = gtk.HButtonBox()
+        hbuttonbox = Gtk.HButtonBox()
         hbuttonbox.set_spacing(12)
-        hbuttonbox.set_layout(gtk.BUTTONBOX_END)
+        hbuttonbox.set_layout(Gtk.ButtonBoxStyle.END)
         self.add_end(hbuttonbox, False ,False, 0)
 
-        self.clean_button = gtk.Button(stock=gtk.STOCK_CLEAR)
+        self.clean_button = Gtk.Button(stock=Gtk.STOCK_CLEAR)
         set_label_for_stock_button(self.clean_button, _('_Cleanup'))
         self.clean_button.connect('clicked', self.on_clean_button_clicked)
         self.clean_button.set_sensitive(False)
@@ -789,7 +734,8 @@ class PackageCleaner(TweakModule):
         self.show_all()
 
     def create_button(self, text, image, function):
-        button = gtk.ToggleButton(text)
+        log.debug("Create button: %s with function %s" % (text, function))
+        button = Gtk.ToggleButton(text)
         if len(self.button_list) == 0:
             button.set_active(True)
         self.button_list.append(button)
@@ -811,12 +757,12 @@ class PackageCleaner(TweakModule):
         else:
             self.clean_button.set_sensitive(False)
 
-        self.select_button.handler_block(self.__handler_id)
+        self.select_button.handler_block(self._handler_id)
         if all:
             self.select_button.set_active(True)
         else:
             self.select_button.set_active(False)
-        self.select_button.handler_unblock(self.__handler_id)
+        self.select_button.handler_unblock(self._handler_id)
 
     def on_item_cleaned(self, widget):
         self.select_button.set_active(False)
