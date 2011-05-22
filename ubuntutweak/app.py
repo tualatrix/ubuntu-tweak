@@ -309,12 +309,12 @@ class UbuntuTweakWindow(GuiBuilder):
 
         tweaks_page = TweaksPage()
         clip_page = ClipPage().get_object('hbox1')
-        apps_page = AppsPage()
+#        apps_page = AppsPage()
 
         self.jumper = JumpManager()
 
         self.jumper.overview_index = self.notebook.append_page(clip_page, Gtk.Label())
-        self.jumper.apps_index = self.notebook.append_page(apps_page, Gtk.Label())
+#        self.jumper.apps_index = self.notebook.append_page(apps_page, Gtk.Label())
         self.jumper.tweaks_index = self.notebook.append_page(tweaks_page, Gtk.Label())
         self.jumper.wait_index = self.notebook.append_page(self._crete_wait_page(),
                                                            Gtk.Label())
