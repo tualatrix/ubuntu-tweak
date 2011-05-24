@@ -182,7 +182,7 @@ class GetTextDialog(QuestionDialog):
 
         self.text = text
 
-        vbox = self.get_child()
+        vbox = self.get_content_area()
 
         hbox = Gtk.HBox(spacing=12)
         label = Gtk.Label(label=_('Backup Name:'))
@@ -211,10 +211,14 @@ class BackupProgressDialog(ProcessDialog):
     def __init__(self, parent, name, directory):
         self.file_name = name
         self.directory = directory
-        self.done = False
         self.error = False
 
         super(BackupProgressDialog, self).__init__(parent=parent)
+        self.set_progress_text(_('Backing up...'))
+
+    def run(self):
+        gobject.timeout_add(100, self.process_data)
+        return super(ProcessDialog, self).run()
 
     def process_data(self):
         directory = self.directory
@@ -226,15 +230,20 @@ class BackupProgressDialog(ProcessDialog):
             log.error(stderr)
             #TODO raise error or others
             self.error = True
-            self.done = True
             return
 
         dirlist = stdout.split()
         dirlist.sort()
         totol_backuped = []
 
-        for subdir in dirlist:
+        length = len(dirlist)
+        for index, subdir in enumerate(dirlist):
             self.set_progress_text(_('Backing up...%s') % subdir)
+            self.set_fraction((index + 1.0) / length)
+
+            while Gtk.events_pending():
+                Gtk.main_iteration()
+
             stdout, stderr = do_backup_task(subdir, name)
             if stderr is not None:
                 log.error(stderr)
@@ -249,15 +258,7 @@ class BackupProgressDialog(ProcessDialog):
             sum_file.write('\n'.join(totol_backuped))
             sum_file.close()
 
-        self.done = True
-
-    def on_timeout(self):
-        self.pulse()
-
-        if not self.done:
-            return True
-        else:
-            self.destroy()
+        self.destroy()
 
 
 class DesktopRecovery(TweakModule):
@@ -387,6 +388,7 @@ class DesktopRecovery(TweakModule):
             name = dialog.get_text()
 
             if response == Gtk.ResponseType.YES and name:
+                log.debug("Start BackupProgressDialog")
                 dialog = BackupProgressDialog(self.get_toplevel(), name, directory)
 
                 dialog.run()

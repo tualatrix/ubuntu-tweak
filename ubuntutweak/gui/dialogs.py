@@ -19,7 +19,7 @@
 import thread
 
 import gobject
-from gi.repository import Gtk, Gdk
+from gi.repository import Gtk, Gdk, Pango
 
 
 class BaseDialog(Gtk.MessageDialog):
@@ -50,7 +50,7 @@ class BaseDialog(Gtk.MessageDialog):
 
     def add_option_button(self, button):
         '''Add an option button to the left. It will not grab the default response.'''
-        vbox = self.get_child()
+        vbox = self.get_content_area()
         hbuttonbox = vbox.get_children()[-1]
 
         hbox = Gtk.HBox(spacing=12)
@@ -108,7 +108,7 @@ class BusyDialog(Gtk.Dialog):
 
     def set_busy(self):
         if self.parent_window:
-            self.parent_window.window.set_cursor(Gdk.Cursor.new(Gdk.WATCH))
+            self.parent_window.window.set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
             self.parent_window.set_sensitive(False)
 
     def unset_busy(self):
@@ -126,15 +126,16 @@ class BusyDialog(Gtk.Dialog):
 
 
 class ProcessDialog(BusyDialog):
+
     def __init__(self, parent):
         super(ProcessDialog, self).__init__(parent=parent)
 
-        vbox = Gtk.VBox(spacing=6)
-        self.vbox.add(vbox)
+        vbox = self.get_content_area()
         self.set_border_width(8)
         self.set_title('')
         self.set_has_separator(False)
         self.set_resizable(False)
+        self.set_position(Gtk.WindowPosition.CENTER_ON_PARENT)
 
         self._label = Gtk.Label()
         self._label.set_alignment(0, 0.5)
@@ -145,16 +146,13 @@ class ProcessDialog(BusyDialog):
         self._progressbar.set_size_request(320, -1)
         vbox.pack_start(self._progressbar, False, False, 0)
 
-        self.set_position(Gtk.WindowPosition.CENTER_ON_PARENT)
         self.show_all()
-
-    def run(self):
-        thread.start_new_thread(self.process_data, ())
-        gobject.timeout_add(100, self.on_timeout)
-        super(ProcessDialog, self).run()
 
     def pulse(self):
         self._progressbar.pulse()
+
+    def set_fraction(self, fraction):
+        self._progressbar.set_fraction(fraction)
 
     def set_dialog_lable(self, text):
         self._label.set_markup('<b><big>%s</big></b>' % text)
@@ -163,9 +161,6 @@ class ProcessDialog(BusyDialog):
         self._progressbar.set_text(text)
 
     def process_data(self):
-        return NotImplemented
-
-    def on_timeout(self):
         return NotImplemented
 
 
