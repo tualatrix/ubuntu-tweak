@@ -268,7 +268,10 @@ class JumpManager(object):
         return self._modules_index[index], index
 
     def get_module_from_index(self, index):
-        return self._modules_index[index]
+        if index in self._modules_index:
+            return self._modules_index[index]
+        else:
+            return None
 
     def get_current_module(self):
         return self._modules_index[self.current_module_index]
@@ -460,7 +463,8 @@ class UbuntuTweakWindow(GuiBuilder):
         try:
             module = self.jumper.get_module_from_index(index)
             self.set_current_module(module, index)
-        except KeyError:
+        except KeyError, e:
+            log.error('on_next_button_clicked: %s' % e)
             self.set_current_module(None)
 
         self.update_jump_buttons()
@@ -480,10 +484,13 @@ class UbuntuTweakWindow(GuiBuilder):
                 self.notebook.set_current_page(self.jumper.apps_index)
 
     def on_tweaks_button_toggled(self, widget):
+        log.debug("on_tweaks_button_toggled and widget.active is: %s" % widget.get_active())
         if widget.get_active():
             self.update_jump_buttons()
-            if self.jumper.current_module_index:
-                self.set_current_module(index=self.jumper.current_module_index)
+            index = self.jumper.current_module_index
+            if index:
+                module = self.jumper.get_module_from_index(index)
+                self.set_current_module(module, index)
             else:
                 self.notebook.set_current_page(self.jumper.tweaks_index)
 
