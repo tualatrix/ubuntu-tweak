@@ -32,21 +32,40 @@ class PowerManager(TweakModule):
     def __init__(self):
         TweakModule.__init__(self)
 
+        hibernate_box = WidgetFactory.create('CheckButton',
+                                      label=_('Lock screen on hibernate'),
+                                      enable_reset=True,
+                                      backend=GConf,
+                                      key='/apps/gnome-power-manager/lock/hibernate')
+        suspend_box = WidgetFactory.create('CheckButton',
+                                      label=_('Lock screen on suspend'),
+                                      enable_reset=True,
+                                      backend=GConf,
+                                      key='/apps/gnome-power-manager/lock/suspend')
+        screensaver_box = WidgetFactory.create('CheckButton',
+                                      label=_('Use Screensaver lock settings'),
+                                      enable_reset=True,
+                                      backend=GConf,
+                                      key='/apps/gnome-power-manager/lock/use_screensaver_settings')
+        hibernate_button = hibernate_box.get_data('widget')
+        suspend_button = suspend_box.get_data('widget')
+        screensaver_button = screensaver_box.get_data('widget')
+        screensaver_button.connect('toggled', self.on_screensaver_button_toggled,
+                                   (hibernate_button, suspend_button))
+        self.on_screensaver_button_toggled(screensaver_button, (hibernate_button, suspend_button))
+
         box = TablePack(_('Advanced Power Management Settings'), (
                 WidgetFactory.create('CheckButton',
                                       label=_('Enable "Lock screen" when "Blank Screen" activates'),
                                       enable_reset=True,
                                       backend=GConf,
                                       key='/apps/gnome-power-manager/lock/blank_screen'),
-                WidgetFactory.create('CheckButton',
-                                      label=_('Lock screen on hibernate'),
-                                      enable_reset=True,
-                                      backend=GConf,
-                                      key='/apps/gnome-power-manager/lock/hibernate'),
-                WidgetFactory.create('CheckButton',
-                                      label=_('Lock screen on suspend'),
-                                      enable_reset=True,
-                                      backend=GConf,
-                                      key='/apps/gnome-power-manager/lock/suspend'),
+                screensaver_box, hibernate_box, suspend_box
         ))
         self.add_start(box, False, False, 0)
+
+    def on_screensaver_button_toggled(self, widget, buttons):
+        if widget.get_active():
+            [button.set_sensitive(False) for button in buttons]
+        else:
+            [button.set_sensitive(True) for button in buttons]

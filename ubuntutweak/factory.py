@@ -92,6 +92,8 @@ class WidgetFactory:
                 reset_button.connect('clicked', on_reset_button_clicked, new_widget)
 
                 hbox = Gtk.HBox()
+                hbox.set_data('widget', new_widget)
+                hbox.set_data('reset_button', reset_button)
 
                 hbox.pack_start(new_widget, False, False, 0)
                 hbox.pack_end(reset_button, False, False, 0)
