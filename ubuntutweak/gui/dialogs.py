@@ -73,28 +73,28 @@ class ErrorDialog(BaseDialog):
     def __init__(self, title='', message='', parent=None,
                  type=Gtk.MessageType.ERROR, buttons=Gtk.ButtonsType.OK):
         BaseDialog.__init__(self, title=title, message=message,
-                            parent=parent, type=type, buttons=buttons)
+                            parent=parent, message_type=type, buttons=buttons)
 
 
 class InfoDialog(BaseDialog):
     def __init__(self, title='', message='', parent=None,
                  type=Gtk.MessageType.INFO, buttons=Gtk.ButtonsType.OK):
         BaseDialog.__init__(self, title=title, message=message,
-                            parent=parent, type=type, buttons=buttons)
+                            parent=parent, message_type=type, buttons=buttons)
 
 
 class WarningDialog(BaseDialog):
     def __init__(self, title='', message='', parent=None,
                  type=Gtk.MessageType.WARNING, buttons=Gtk.ButtonsType.OK):
         BaseDialog.__init__(self, title=title, message=message,
-                            parent=parent, type=type, buttons=buttons)
+                            parent=parent, message_type=type, buttons=buttons)
 
 
 class QuestionDialog(BaseDialog):
     def __init__(self, title='', message='', parent=None,
                  type=Gtk.MessageType.QUESTION, buttons=Gtk.ButtonsType.YES_NO):
         BaseDialog.__init__(self, title=title, message=message,
-                            parent=parent, type=type, buttons=buttons)
+                            parent=parent, message_type=type, buttons=buttons)
 
 
 class BusyDialog(Gtk.Dialog):
