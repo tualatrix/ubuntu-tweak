@@ -17,6 +17,8 @@
 # this software; if not, write to the Free Software Foundation, Inc., 59 Temple
 # Place, Suite 330, Boston, MA 02111-1307 USA
 
+import os
+
 from xml.dom import minidom
 from os import getenv, path
 from commands import getoutput
@@ -31,7 +33,12 @@ class UnknownDistribution(Exception):
         return 'Ubuntu-tweak can\'t distinguish your Linux distribution.'
 
 class GnomeVersion:
-    _xmldoc = minidom.parse("/usr/share/gnome-about/gnome-version.xml")
+    if os.path.exists("/usr/share/gnome-about/gnome-version.xml"):
+        _xmldoc = minidom.parse("/usr/share/gnome-about/gnome-version.xml")
+    elif os.path.exists("/usr/share/gnome/gnome-version.xml"):
+        _xmldoc = minidom.parse("/usr/share/gnome/gnome-version.xml")
+    else:
+        raise IOError("Could not found the gnome-version.xml")
 
     platform = _xmldoc.getElementsByTagName("platform")[0].firstChild.data
     minor = _xmldoc.getElementsByTagName("minor")[0].firstChild.data
@@ -39,7 +46,6 @@ class GnomeVersion:
     distributor = _xmldoc.getElementsByTagName("distributor")[0].firstChild.data
     date = _xmldoc.getElementsByTagName("date")[0].firstChild.data
     description = "GNOME %s.%s.%s (%s %s)" % (platform, minor, micro, distributor, date)
-
 
 class WindowManager(object):
     def __init__(self, dist=None):
