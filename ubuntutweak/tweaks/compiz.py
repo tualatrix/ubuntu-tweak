@@ -23,7 +23,8 @@ import gobject
 import compizconfig
 from gi.repository import Gtk, GConf, GdkPixbuf
 
-from ubuntutweak.modules import TweakModule, ccm
+from ubuntutweak.modules import TweakModule
+from ubuntutweak.tweaks import ccm
 from ubuntutweak.common.consts import DATA_DIR
 from ubuntutweak.gui.containers import ListPack, SinglePack
 

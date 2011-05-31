@@ -23,6 +23,7 @@ import gobject
 from gi.repository import Gtk, Unique, Pango, GdkPixbuf
 
 from ubuntutweak import modules
+from ubuntutweak import admins
 from ubuntutweak.gui import GuiBuilder
 from ubuntutweak.utils import icon
 from ubuntutweak.common.consts import VERSION, DATA_DIR
@@ -211,69 +212,6 @@ class FeaturePage(Gtk.ScrolledWindow):
                 last_box = box
 
 
-class JumpManager(object):
-    '''Manage the page and modules, they are all in the notebook'''
-
-    def __init__(self):
-        self.overview_index = None
-        self.app_index = None
-        self.tweaks_index = None
-        self.wait_index = None
-        self._next_module = None
-        self.current_module_index = None
-
-        # the module name and page index: 'Compiz': 2
-        self._loaded_modules = {}
-        # reversed dict: 2: 'CompizClass'
-        self._modules_index = {}
-
-    def get_current_index(self):
-        pass
-
-    def can_backwards(self):
-        return self.current_module_index != None and \
-               self.current_module_index != self.tweaks_index
-
-    def can_forward(self):
-        return self._next_module != None and \
-               self._next_module != self.current_module_index
-
-    def get_backwards_index(self):
-        self._next_module = self.current_module_index
-        self.current_module_index = self.tweaks_index
-        return self.tweaks_index
-
-    def get_forward_index(self):
-        index = self._next_module
-        self._next_module = None
-        self.current_module_index = index
-        return index
-
-    def module_is_loaded(self, name):
-        return name in self._loaded_modules
-
-    def store_current_module(self, name, module, index):
-        log.info('store_current_module: %s, %s, %s' % (name, module, index))
-        self._loaded_modules[name] = index
-        self.current_module_index = index
-        self._modules_index[index] = module
-        self._next_module = index
-
-    def get_module_and_index(self, name):
-        index = self._loaded_modules[name]
-
-        return self._modules_index[index], index
-
-    def get_module_from_index(self, index):
-        if index in self._modules_index:
-            return self._modules_index[index]
-        else:
-            return None
-
-    def get_current_module(self):
-        return self._modules_index[self.current_module_index]
-
-
 class UbuntuTweakApp(Unique.App):
     _window = None
 
@@ -302,43 +240,58 @@ class UbuntuTweakApp(Unique.App):
 
 
 class UbuntuTweakWindow(GuiBuilder):
+    current_feature = 'overview'
+    feature_dict = {}
+    navigation_dict = {'tweaks': [None, None]}
+    # the module name and page index: 'Compiz': 2
+    loaded_modules = {}
+    # reversed dict: 2: 'CompizClass'
+    modules_index = {}
+
     def __init__(self, feature='', module=''):
         GuiBuilder.__init__(self, file_name='mainwindow.ui')
 
         Gtk.rc_parse(os.path.join(DATA_DIR, 'theme/ubuntu-tweak.rc'))
 
-        tweaks_page = FeaturePage(ModuleLoader('modules'))
+        tweaks_page = FeaturePage(ModuleLoader('tweaks'))
+        admins_page = FeaturePage(ModuleLoader('admins'))
         clip_page = ClipPage().get_object('hbox1')
 #        apps_page = AppsPage()
 
-        self.jumper = JumpManager()
-
-        self.jumper.overview_index = self.notebook.append_page(clip_page, Gtk.Label())
-#        self.jumper.apps_index = self.notebook.append_page(apps_page, Gtk.Label())
-        self.jumper.tweaks_index = self.notebook.append_page(tweaks_page, Gtk.Label())
-        self.jumper.wait_index = self.notebook.append_page(self._crete_wait_page(),
+        self.feature_dict['overview'] = self.notebook.append_page(clip_page, Gtk.Label())
+#        self.feature_dict['apps'] = self.notebook.append_page(apps_page, Gtk.Label())
+        self.feature_dict['tweaks'] = self.notebook.append_page(tweaks_page, Gtk.Label())
+        self.feature_dict['admins'] = self.notebook.append_page(admins_page, Gtk.Label())
+        self.feature_dict['wait'] = self.notebook.append_page(self._crete_wait_page(),
                                                            Gtk.Label())
 
         # Always show welcome page at first
         self.mainwindow.connect('realize', self._initialize_ui_states)
         tweaks_page.connect('module_selected', self.on_module_selected)
+        admins_page.connect('module_selected', self.on_module_selected)
 
         self.mainwindow.show_all()
         self.link_button.hide()
 
         if module:
-            self.tweaks_button.set_active(True)
             self.load_module(module)
         elif feature:
             self.select_target_feature(feature)
 
+    def get_module_and_index(self, name):
+        index = self.loaded_modules[name]
+
+        return self.modules_index[index], index
+
     def select_target_feature(self, text):
         toggle_button = getattr(self, '%s_button' % text, None)
+        log.info("select_target_feature: %s" % text)
         if toggle_button:
+            self.current_feature = text
             toggle_button.set_active(True)
 
     def _initialize_ui_states(self, widget):
-        self.notebook.set_current_page(self.jumper.overview_index)
+        self.notebook.set_current_page(self.feature_dict['overview'])
         self.overview_button.set_active(True)
         self.search_entry.grab_focus()
 
@@ -372,12 +325,12 @@ class UbuntuTweakWindow(GuiBuilder):
     def on_module_selected(self, widget, loader, name):
         log.debug('Select module: %s' % name)
 
-        if self.jumper.module_is_loaded(name):
-            module, index = self.jumper.get_module_and_index(name)
-            self.jumper.store_current_module(name, module, index)
+        if name in self.loaded_modules:
+            module, index = self.get_module_and_index(name)
+            self._save_loaded_info(name, module, index)
             self.set_current_module(module, index)
         else:
-            self.notebook.set_current_page(self.jumper.wait_index)
+            self.notebook.set_current_page(self.feature_dict['wait'])
             self._create_module(loader, name)
 
     def set_current_module(self, module=None, index=None):
@@ -403,9 +356,18 @@ class UbuntuTweakWindow(GuiBuilder):
             self.description_label.set_text('')
             self.link_button.hide()
 
+    def _save_loaded_info(self, name, module, index):
+        log.info('_save_loaded_info: %s, %s, %s' % (name, module, index))
+        self.loaded_modules[name] = index
+        self.modules_index[index] = module
+        self.navigation_dict[self.current_feature] = name, None
+
     def load_module(self, name):
-        module = ModuleLoader.search_module_for_name(name)
+        feature, module = ModuleLoader.search_module_for_name(name)
+        log.debug("Module %s under %s is loaded" % (module, feature))
         if module:
+            self.select_target_feature(feature)
+
             try:
                 page = module()
             except Exception, e:
@@ -415,8 +377,9 @@ class UbuntuTweakWindow(GuiBuilder):
 
             page.show_all()
             index = self.notebook.append_page(page, Gtk.Label(label=name))
-            self.set_current_module(module, index)
-            self.jumper.store_current_module(name, module, index)
+
+            self._save_loaded_info(name, module, index)
+            self.navigation_dict[feature] = name, None
             self.update_jump_buttons()
         else:
             dialog = ErrorDialog(title=_('No module named "%s"') % name,
@@ -442,47 +405,33 @@ class UbuntuTweakWindow(GuiBuilder):
         page.show_all()
         index = self.notebook.append_page(page, Gtk.Label(label=name))
         self.set_current_module(module, index)
-        self.jumper.store_current_module(name, module, index)
+        self._save_loaded_info(name, module, index)
         self.update_jump_buttons()
 
     def update_jump_buttons(self, disable=False):
-        #TODO toggle jump and module jump
         if not disable:
-            if self.jumper.can_backwards():
-                self.back_button.set_sensitive(True)
-            else:
-                self.back_button.set_sensitive(False)
-
-            if self.jumper.can_forward():
-                self.next_button.set_sensitive(True)
-            else:
-                self.next_button.set_sensitive(False)
+            back, forward = self.navigation_dict[self.current_feature]
+            self.back_button.set_sensitive(bool(back))
+            self.next_button.set_sensitive(bool(forward))
         else:
             self.back_button.set_sensitive(False)
             self.next_button.set_sensitive(False)
 
     def on_back_button_clicked(self, widget):
-        index = self.jumper.get_backwards_index()
-        log.debug("Try to backwards to: %d" % index)
-        self.notebook.set_current_page(index)
-        try:
-            module = self.jumper.get_module_from_index(index)
-            self.set_current_module(module, index)
-        except KeyError:
-            self.set_current_module(None)
+        self.navigation_dict[self.current_feature] = tuple(reversed(self.navigation_dict[self.current_feature]))
+        self.notebook.set_current_page(self.feature_dict[self.current_feature])
+        self.set_current_module(None)
 
         self.update_jump_buttons()
 
     def on_next_button_clicked(self, widget):
-        index = self.jumper.get_forward_index()
+        back, forward = self.navigation_dict[self.current_feature]
+        self.navigation_dict[self.current_feature] = forward, back
+
+        module, index = self.get_module_and_index(forward)
         log.debug("Try to forward to: %d" % index)
         self.notebook.set_current_page(index)
-        try:
-            module = self.jumper.get_module_from_index(index)
-            self.set_current_module(module, index)
-        except KeyError, e:
-            log.error('on_next_button_clicked: %s' % e)
-            self.set_current_module(None)
+        self.set_current_module(module, index)
 
         self.update_jump_buttons()
 
@@ -490,26 +439,44 @@ class UbuntuTweakWindow(GuiBuilder):
         if widget.get_active():
             self.update_jump_buttons(disable=True)
             self.set_current_module(None)
-            self.notebook.set_current_page(self.jumper.overview_index)
+            self.notebook.set_current_page(self.feature_dict['overview'])
 
     def on_apps_button_toggled(self, widget):
-        if widget.get_active():
-            self.update_jump_buttons()
-            if self.jumper.current_module_index:
-                self.set_current_module(index=self.jumper.current_module_index)
-            else:
-                self.notebook.set_current_page(self.jumper.apps_index)
+        pass
+
+    def on_tweaks_button_clicked(self, widget):
+        self.navigation_dict['tweaks'] = tuple(reversed(self.navigation_dict['tweaks']))
+        self.on_tweaks_button_toggled(widget)
 
     def on_tweaks_button_toggled(self, widget):
-        log.debug("on_tweaks_button_toggled and widget.active is: %s" % widget.get_active())
+        self.on_feature_button_clicked(widget, 'tweaks')
+
+    def on_admins_button_clicked(self, widget):
+        self.navigation_dict['admins'] = tuple(reversed(self.navigation_dict['admins']))
+        self.on_admins_button_toggled(widget)
+
+    def on_admins_button_toggled(self, widget):
+        self.on_feature_button_clicked(widget, 'admins')
+
+    def on_feature_button_clicked(self, widget, feature):
+        log.debug("on_%s_button_toggled and widget.active is: %s" % (feature, widget.get_active()))
+        self.current_feature = feature
+
         if widget.get_active():
-            self.update_jump_buttons()
-            index = self.jumper.current_module_index
-            if index:
-                module = self.jumper.get_module_from_index(index)
-                self.set_current_module(module, index)
+            if feature not in self.navigation_dict:
+                self.navigation_dict[feature] = None, None
+                self.notebook.set_current_page(self.feature_dict[feature])
             else:
-                self.notebook.set_current_page(self.jumper.tweaks_index)
+                back, backwards = self.navigation_dict[feature]
+                if back:
+                    module, index = self.get_module_and_index(back)
+                    self.set_current_module(module, index)
+                    self.notebook.set_current_page(index)
+                else:
+                    self.notebook.set_current_page(self.feature_dict[feature])
+                    self.set_current_module(None)
+
+            self.update_jump_buttons()
 
     def present(self):
         self.mainwindow.present()

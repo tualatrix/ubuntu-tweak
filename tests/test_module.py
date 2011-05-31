@@ -5,7 +5,7 @@ import unittest
 from ubuntutweak.modules import ModuleLoader
 from ubuntutweak.common import consts
 
-class TestPackageFunctions(unittest.TestCase):
+class TestModuleFunctions(unittest.TestCase):
     def setUp(self):
         ModuleLoader.default_features = ('module_test',)
 
@@ -14,18 +14,23 @@ class TestPackageFunctions(unittest.TestCase):
             shutil.rmtree(self.test_folder)
         os.makedirs(self.test_folder)
         os.system('touch %s/__init__.py' % self.test_folder)
-        os.system('cp ubuntutweak/modules/nautilus.py %s/nautilus_test.py' % self.test_folder)
+        os.system('cp ubuntutweak/tweaks/nautilus.py %s/nautilus_test.py' % self.test_folder)
 
         sub_test_folder = os.path.join(self.test_folder, 'desktoprecovery')
         os.makedirs(sub_test_folder)
         os.system('cp ubuntutweak/admins/desktoprecovery.py %s/__init__.py' % sub_test_folder)
 
     def test_package(self):
-        module = ModuleLoader.search_module_for_name('nautilus_test')
+        feature, module = ModuleLoader.search_module_for_name('nautilus_test')
+        self.assertEqual(feature, 'overview')
         self.assertEqual(module, None)
-        module = ModuleLoader.search_module_for_name('Nautilus')
+
+        feature, module = ModuleLoader.search_module_for_name('Nautilus')
+        self.assertEqual(feature, 'module_test')
         self.assertEqual(module.__name__, 'Nautilus')
-        module = ModuleLoader.search_module_for_name('DesktopRecovery')
+
+        feature, module = ModuleLoader.search_module_for_name('DesktopRecovery')
+        self.assertEqual(feature, 'module_test')
         self.assertEqual(module.__name__, 'DesktopRecovery')
 
     def tearDown(self):

@@ -20,7 +20,7 @@ def module_cmp(m1, m2):
 
 
 class ModuleLoader:
-    # the key will like this: 'Compiz': <class 'ubuntutweak.modules.compiz.Compiz'
+    # the key will like this: 'Compiz': <class 'ubuntutweak.tweaks.compiz.Compiz'
     module_table = None
     category_table = None
 
@@ -33,10 +33,10 @@ class ModuleLoader:
         ('system', _('System')),
         )
 
-    default_features = ('modules', 'admins', 'janitors')
+    default_features = ('tweaks', 'admins', 'janitors')
 
     def __init__(self, feature):
-        '''feature choices: modules, admins and janitors'''
+        '''feature choices: tweaks, admins and janitors'''
         self.module_table = {}
         self.category_table = {}
         self.feature = feature
@@ -76,19 +76,21 @@ class ModuleLoader:
             if not os.path.exists(package_identy_file):
                 os.system("touch %s" % package_identy_file)
 
-            log.info("Loading user plugins...")
+            log.info('Loading user plugins for "%s"...' % feature)
             module = cls._get_module_by_name_from_folder(name, user_folder)
 
             if module:
-                return module
+                return feature, module
 
             try:
                 m = __import__('ubuntutweak.%s' % feature, fromlist='ubuntutweak')
                 module = cls._get_module_by_name_from_folder(name, m.__path__[0])
                 if module:
-                    return module
+                    return feature, module
             except ImportError, e:
                 log.error(e)
+
+        return 'overview', None
 
     @classmethod
     def _get_module_by_name_from_folder(cls, name, folder):
