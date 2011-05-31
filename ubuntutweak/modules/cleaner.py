@@ -19,8 +19,10 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import os
+import re
 import gtk
 import json
+import time
 import pango
 import thread
 import gobject
@@ -31,6 +33,7 @@ from dbus.exceptions import DBusException
 from aptsources.sourceslist import SourcesList
 from gettext import ngettext
 
+from ubuntutweak import system
 from ubuntutweak.common.consts import install_ngettext
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.utils import icon, set_label_for_stock_button, ppa
@@ -134,87 +137,119 @@ class CleanCacheDailog(ProcessDialog):
 
 class CleanPpaDialog(TerminalDialog):
     def __init__(self, parent, pkgs, urls):
+        #TODO cancel button, refresh apt
         super(CleanPpaDialog, self).__init__(parent=parent)
         self.pkgs = pkgs
         self.urls = urls
         self.downgrade_done = False
         self.removekey_done = False
-        self.error = False
+        self.error = ''
         self.user_action = False
 
         self.set_dialog_lable(_('Purge PPA and Downgrade Packages'))
         self.set_progress_text(_('Downloading Packages...'))
 
+    def search_for_download_package(self, line):
+        pattern = re.compile('%s(-\w+)?\/\w+\ (?P<package>.*?) ' % system.CODENAME)
+        match = pattern.search(line)
+        if match:
+            return match.group('package')
+        else:
+            return match
+
     def process_data(self):
         if self.pkgs:
+            log.debug("call proxy.install_select_pkgs")
             proxy.install_select_pkgs(self.pkgs)
+            log.debug("done proxy.install_select_pkgs")
         else:
+            log.debug("No pkgs to downloaded, just done")
             self.downgrade_done = True
 
-        ppa_source_dict = get_ppa_source_dict()
+        while True:
+            if not self.downgrade_done:
+                time.sleep(0.2)
+                continue
 
-        # Sort out the unique owner urls, so that the PPAs from same owner will only fetch key fingerprint only once
-        key_fingerprint_dict = {}
-        for url in self.urls:
-            if url in ppa_source_dict:
-                id = ppa_source_dict[url]
-                key_fingerprint = SOURCE_PARSER.get_key_fingerprint(id)
-            else:
-                key_fingerprint = ''
+            ppa_source_dict = get_ppa_source_dict()
 
-            owner, ppa_name = url.split('/')[3:5]
+            # Sort out the unique owner urls, so that the PPAs from same owner will only fetch key fingerprint only once
+            key_fingerprint_dict = {}
+            for url in self.urls:
+                if url in ppa_source_dict:
+                    id = ppa_source_dict[url]
+                    key_fingerprint = SOURCE_PARSER.get_key_fingerprint(id)
+                else:
+                    key_fingerprint = ''
 
-            if owner not in key_fingerprint_dict:
-                key_fingerprint_dict[owner] = key_fingerprint
+                owner, ppa_name = url.split('/')[3:5]
 
-        for url in self.urls:
-            owner, ppa_name = url.split('/')[3:5]
-            key_fingerprint = key_fingerprint_dict[owner]
+                if owner not in key_fingerprint_dict:
+                    key_fingerprint_dict[owner] = key_fingerprint
+            log.debug("Get the key_fingerprint_dict done: %s" % key_fingerprint_dict)
 
-            self.set_progress_text(_('Removing key files...'))
-            if not key_fingerprint:
-                try:
-                    #TODO wrap the LP API or use library
-                    owner, ppa_name = url.split('/')[3:5]
-                    lp_url = 'https://launchpad.net/api/beta/~%s/+archive/%s' % (owner, ppa_name)
-                    req =  Request(lp_url)
-                    req.add_header("Accept","application/json")
-                    lp_page = urlopen(req).read()
-                    data = json.loads(lp_page)
-                    key_fingerprint = data['signing_key_fingerprint']
-                except Exception, e:
-                    log.error(e)
-                    continue
+            for url in self.urls:
+                owner, ppa_name = url.split('/')[3:5]
+                key_fingerprint = key_fingerprint_dict[owner]
 
-            log.debug("Get the key fingerprint: %s", key_fingerprint)
-            result = proxy.purge_source(url, key_fingerprint)
-            log.debug("Set source: %s to %s" % (url, str(result)))
+                self.set_progress_text(_('Removing key files...'))
+                if not key_fingerprint:
+                    try:
+                        #TODO wrap the LP API or use library
+                        owner, ppa_name = url.split('/')[3:5]
+                        lp_url = 'https://launchpad.net/api/beta/~%s/+archive/%s' % (owner, ppa_name)
+                        req =  Request(lp_url)
+                        req.add_header("Accept","application/json")
+                        lp_page = urlopen(req).read()
+                        data = json.loads(lp_page)
+                        key_fingerprint = data['signing_key_fingerprint']
+                    except Exception, e:
+                        log.error(e)
+                        continue
 
-        self.removekey_done = True
+                log.debug("Get the key fingerprint: %s", key_fingerprint)
+                result = proxy.purge_source(url, key_fingerprint)
+                log.debug("Set source: %s to %s" % (url, str(result)))
+
+            self.removekey_done = True
+            log.debug("removekey_done is True")
+            break
 
     def on_timeout(self):
         self.pulse()
         if not self.downgrade_done:
             line, returncode = proxy.get_cmd_pipe()
-            log.debug("Clean PPA result is: %s, returncode is: %s" % (line, returncode))
             if line != '':
+                log.debug("Clean PPA result is: %s, returncode is: %s" % (line, returncode))
                 line = line.rstrip()
+
                 if '.deb' in line:
                     try:
                         package = line.split('.../')[1].split('_')[0]
                         self.set_progress_text(_('Downgrading...%s') % package)
-                    except:
-                        pass
+                    except Exception, e:
+                        log.error(e)
+                else:
+                    package = self.search_for_download_package(line)
+
+                    if package:
+                        self.set_progress_text(_('Downloading...%s') % package)
+
                 if line:
                     self.terminal.insert(line)
                 else:
                     self.terminal.insert('\n')
 
             # TODO if returncode isn't 0?
-            if returncode != 'None':
+            if returncode.isdigit() and int(returncode) > 1:
+                self.error = line
+            elif returncode != 'None':
+                log.debug("downgrade_done, returncode is: %s" % returncode)
                 self.downgrade_done = True
 
-        if not self.removekey_done:
+        if self.error:
+            self.destroy()
+        elif not self.downgrade_done or not self.removekey_done:
             return True
         else:
             self.destroy()
@@ -674,10 +709,10 @@ class PackageView(gtk.TreeView):
             dialog = CleanPpaDialog(self.get_toplevel(), select_pkgs, url_list)
             dialog.run()
             dialog.destroy()
-            if dialog.error == False:
-                self.show_success_dialog()
+            if dialog.error:
+                self.show_failed_dialog(dialog.error)
             else:
-                self.show_failed_dialog()
+                self.show_success_dialog()
             self.update_ppa_model()
             self.unset_busy()
         else:
@@ -693,8 +728,11 @@ class PackageView(gtk.TreeView):
     def show_success_dialog(self):
         InfoDialog(_('Clean up successful!')).launch()
 
-    def show_failed_dialog(self):
-        ErrorDialog(_('Clean up failed!')).launch()
+    def show_failed_dialog(self, error_message=None):
+        if error_message:
+            ErrorDialog(error_message, title=_('Clean up failed!')).launch()
+        else:
+            ErrorDialog(_('Clean up failed!')).launch()
 
     def set_busy(self):
         window = self.get_toplevel().window
