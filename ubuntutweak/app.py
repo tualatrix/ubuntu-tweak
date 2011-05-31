@@ -34,9 +34,6 @@ from ubuntutweak.policykit import proxy
 
 log = logging.getLogger('app')
 
-MODULE_LOADER = ModuleLoader(modules.__path__[0])
-
-
 def show_splash():
     win = Gtk.Window(type=Gtk.WindowType.POPUP)
     win.set_position(Gtk.WindowPosition.CENTER)
@@ -144,31 +141,32 @@ class CategoryBox(Gtk.VBox):
         self.show_all()
 
 
-class TweaksPage(Gtk.ScrolledWindow):
+class FeaturePage(Gtk.ScrolledWindow):
 
     __gsignals__ = {
         'module_selected': (gobject.SIGNAL_RUN_FIRST,
                             gobject.TYPE_NONE,
-                            (gobject.TYPE_STRING,))
+                            (gobject.TYPE_PYOBJECT, gobject.TYPE_STRING))
         }
 
     _categories = None
     _boxes = []
 
-    def __init__(self):
+    def __init__(self, module_loader):
         gobject.GObject.__init__(self,
                                  shadow_type=Gtk.ShadowType.NONE,
                                  hscrollbar_policy=Gtk.PolicyType.NEVER,
                                  vscrollbar_policy=Gtk.PolicyType.AUTOMATIC)
         self.set_border_width(12)
 
+        self._loader = module_loader
         self._categories = {}
         self._boxes = []
 
         self._box = Gtk.VBox(spacing=6)
 
-        for category, category_name in MODULE_LOADER.get_categories():
-            modules = MODULE_LOADER.get_modules_by_category(category)
+        for category, category_name in self._loader.get_categories():
+            modules = self._loader.get_modules_by_category(category)
             if modules:
                 category_box = CategoryBox(modules=modules, category_name=category_name)
                 self._connect_signals(category_box)
@@ -187,8 +185,7 @@ class TweaksPage(Gtk.ScrolledWindow):
     def on_button_clicked(self, widget):
         log.info('Button clicked')
         module = widget.get_module()
-        self.emit('module_selected', module.get_name())
-
+        self.emit('module_selected', self._loader, module.get_name())
 
     def rebuild_boxes(self, widget, request):
         ncols = request.width / 164 # 32 + 120 + 6 + 4
@@ -296,7 +293,7 @@ class UbuntuTweakApp(Unique.App):
             if message.get_text():
                 self._window.select_target_feature(message.get_text())
         elif command == Unique.Command.OPEN:
-            self._window.create_module(message.get_text())
+            self._window.load_module(message.get_text())
 
         return False
 
@@ -310,7 +307,7 @@ class UbuntuTweakWindow(GuiBuilder):
 
         Gtk.rc_parse(os.path.join(DATA_DIR, 'theme/ubuntu-tweak.rc'))
 
-        tweaks_page = TweaksPage()
+        tweaks_page = FeaturePage(ModuleLoader('modules'))
         clip_page = ClipPage().get_object('hbox1')
 #        apps_page = AppsPage()
 
@@ -331,7 +328,7 @@ class UbuntuTweakWindow(GuiBuilder):
 
         if module:
             self.tweaks_button.set_active(True)
-            self.create_module(module)
+            self.load_module(module)
         elif feature:
             self.select_target_feature(feature)
 
@@ -372,7 +369,7 @@ class UbuntuTweakWindow(GuiBuilder):
         self.aboutdialog.run()
         self.aboutdialog.hide()
 
-    def on_module_selected(self, widget, name):
+    def on_module_selected(self, widget, loader, name):
         log.debug('Select module: %s' % name)
 
         if self.jumper.module_is_loaded(name):
@@ -381,7 +378,7 @@ class UbuntuTweakWindow(GuiBuilder):
             self.set_current_module(module, index)
         else:
             self.notebook.set_current_page(self.jumper.wait_index)
-            self.create_module(name)
+            self._create_module(loader, name)
 
     def set_current_module(self, module=None, index=None):
         if index:
@@ -406,10 +403,30 @@ class UbuntuTweakWindow(GuiBuilder):
             self.description_label.set_text('')
             self.link_button.hide()
 
-    def create_module(self, name):
+    def load_module(self, name):
+        module = ModuleLoader.search_module_for_name(name)
+        if module:
+            try:
+                page = module()
+            except Exception, e:
+                log.error(e)
+                module = create_broken_module_class(name)
+                page = module()
+
+            page.show_all()
+            index = self.notebook.append_page(page, Gtk.Label(label=name))
+            self.set_current_module(module, index)
+            self.jumper.store_current_module(name, module, index)
+            self.update_jump_buttons()
+        else:
+            dialog = ErrorDialog(title=_('No module named "%s"') % name,
+                                 message=_('Please ensure you have entered the correct module name.'))
+            dialog.launch()
+
+    def _create_module(self, loader, name):
         log.debug('Create module: %s' % name)
         try:
-            module = MODULE_LOADER.get_module(name)
+            module = loader.get_module(name)
             page = module()
         except KeyError, e:
             dialog = ErrorDialog(title=_('No module named "%s"') % name,

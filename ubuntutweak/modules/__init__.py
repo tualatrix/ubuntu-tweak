@@ -1,4 +1,6 @@
 import os
+import sys
+import glob
 import logging
 import inspect
 import webbrowser
@@ -8,7 +10,7 @@ import gobject
 from gi.repository import Gtk, Pango
 
 from ubuntutweak.utils import icon
-from ubuntutweak.common.consts import DATA_DIR
+from ubuntutweak.common.consts import DATA_DIR, CONFIG_ROOT
 from ubuntutweak.common.debug import run_traceback
 
 log = logging.getLogger('ModuleLoader')
@@ -19,8 +21,8 @@ def module_cmp(m1, m2):
 
 class ModuleLoader:
     # the key will like this: 'Compiz': <class 'ubuntutweak.modules.compiz.Compiz'
-    module_table = {}
-    category_table = {}
+    module_table = None
+    category_table = None
 
     category_names = (
         ('broken', _('Broken Modules')),
@@ -31,39 +33,104 @@ class ModuleLoader:
         ('system', _('System')),
         )
 
-    def __init__(self, path):
+    default_features = ('modules', 'admins', 'janitors')
+
+    def __init__(self, feature):
+        '''feature choices: modules, admins and janitors'''
+        self.module_table = {}
+        self.category_table = {}
+        self.feature = feature
+
         for k, v in self.category_names:
             self.category_table[k] = {}
 
-        if os.path.isdir(path):
-            self.do_package_import(path)
+        # First import system staff
+        try:
+            m = __import__('ubuntutweak.%s' % self.feature, fromlist='ubuntutweak')
+            self.do_folder_import(m.__path__[0])
+        except ImportError, e:
+            log.error(e)
+
+        # Second import user plugins
+        user_folder = os.path.join(CONFIG_ROOT, self.feature)
+        if not os.path.exists(user_folder):
+            os.makedirs(user_folder)
+
+        package_identy_file = os.path.join(user_folder, '__init__.py')
+        if not os.path.exists(package_identy_file):
+            os.system("touch %s" % package_identy_file)
+
+        log.info("Loading user plugins...")
+        self.do_folder_import(user_folder)
+
+    @classmethod
+    def search_module_for_name(cls, name):
+        for feature in cls.default_features:
+            #User's at first
+            user_folder = os.path.join(CONFIG_ROOT, feature)
+
+            if not os.path.exists(user_folder):
+                os.makedirs(user_folder)
+
+            package_identy_file = os.path.join(user_folder, '__init__.py')
+            if not os.path.exists(package_identy_file):
+                os.system("touch %s" % package_identy_file)
+
+            log.info("Loading user plugins...")
+            module = cls._get_module_by_name_from_folder(name, user_folder)
+
+            if module:
+                return module
+
+            try:
+                m = __import__('ubuntutweak.%s' % feature, fromlist='ubuntutweak')
+                module = cls._get_module_by_name_from_folder(name, m.__path__[0])
+                if module:
+                    return module
+            except ImportError, e:
+                log.error(e)
+
+    @classmethod
+    def _get_module_by_name_from_folder(cls, name, folder):
+        for path in glob.glob(os.path.join(folder, '*')):
+            module_name = os.path.splitext(os.path.basename(path))[0]
+            dirname = os.path.dirname(path)
+            if folder not in sys.path:
+                sys.path.insert(0, folder)
+            package = __import__(module_name)
+            for k, v in inspect.getmembers(package):
+                if k == name and k not in ('TweakModule', 'proxy') and \
+                    hasattr(v, '__utmodule__') and v.__utactive__:
+                    return v
+
+    def do_single_import(self, path):
+        module_name = os.path.splitext(os.path.basename(path))[0]
+        try:
+            package = __import__(module_name)
+        except Exception, e:
+            Broken = create_broken_module_class(module_name)
+            self.module_table[Broken.get_name()] = Broken
+            self.category_table['broken'][Broken.get_name()] = Broken
+            log.error("Module import error: %s", str(e))
         else:
-            self.do_module_import(path)
+            for k, v in inspect.getmembers(package):
+                self._insert_moduel(k, v)
 
-    def do_module_import(self, path):
-        module = os.path.splitext(os.path.basename(path))[0]
-        folder = os.path.dirname(path)
-        package = __import__('.'.join([folder, module]))
+    def do_folder_import(self, path):
+        if path not in sys.path:
+            sys.path.insert(0, path)
 
-        for k, v in inspect.getmembers(getattr(package, module)):
-            self._insert_moduel(k, v)
-
-    def do_package_import(self, path):
         for f in os.listdir(path):
-            if f.endswith('.py') and f != '__init__.py':
-                module = os.path.splitext(f)[0]
-                log.debug("Try to load module: %s" % module)
-                try:
-                    package = __import__('.'.join([__name__, module]), fromlist=['modules'])
-                except Exception, e:
-                    Broken = create_broken_module_class(module)
-                    self.module_table[Broken.get_name()] = Broken
-                    self.category_table['broken'][Broken.get_name()] = Broken
-                    log.error("Module import error: %s", str(e))
-                    continue
-                else:
-                    for k, v in inspect.getmembers(package):
-                        self._insert_moduel(k, v)
+            log.debug("Found %s in %s" % (f, path))
+            full_path = os.path.join(path, f)
+
+            if os.path.isdir(full_path) and \
+                    os.path.exists(os.path.join(path, '__init__.py')):
+                self.do_single_import(f)
+            elif f.endswith('.py') and f != '__init__.py':
+                module_name = os.path.splitext(f)[0]
+                log.debug("Try to load module: %s" % module_name)
+                self.do_single_import(f)
 
     def _insert_moduel(self, k, v):
         if k not in ('TweakModule', 'proxy') and hasattr(v, '__utmodule__'):
