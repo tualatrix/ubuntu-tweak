@@ -31,6 +31,7 @@ class ModuleLoader:
         ('desktop', _('Desktop')),
         ('personal', _('Personal')),
         ('system', _('System')),
+        ('other', _('Other')),
         )
 
     default_features = ('tweaks', 'admins', 'janitors')
@@ -138,7 +139,10 @@ class ModuleLoader:
         if k not in ('TweakModule', 'proxy') and hasattr(v, '__utmodule__'):
             if v.__utactive__:
                 self.module_table[v.get_name()] = v
-                self.category_table[v.__category__][v.get_name()] = v
+                if v.__category__ not in dict(self.category_names):
+                    self.category_table['other'][v.get_name()] = v
+                else:
+                    self.category_table[v.__category__][v.get_name()] = v
 
     def get_categories(self):
         for k, v in self.category_names:
