@@ -13,6 +13,7 @@ sys.setdefaultencoding('utf8')
 import os
 import glob
 import fcntl
+import shutil
 import gettext
 import logging
 import tempfile
@@ -498,6 +499,26 @@ class Daemon(PolicyKitService):
                          in_signature='s', out_signature='b')
     def is_exists(self, path):
         return os.path.exists(path)
+
+    @dbus.service.method(INTERFACE,
+                         in_signature='ss', out_signature='')
+    def set_login_logo(self, src, dest):
+        '''This is called by tweaks/loginsettings.py'''
+        if not self.is_exists(os.path.dirname(dest)):
+           os.makedirs(os.path.dirname(dest))
+        self._delete_old_logofile(dest)
+        shutil.copy(src, dest)
+
+    def _delete_old_logofile(self, dest):
+        for old in glob.glob(os.path.splitext(dest)[0] + ".*"):
+            os.remove(old)
+
+    @dbus.service.method(INTERFACE,
+                         in_signature='s', out_signature='')
+    def unset_login_logo(self, dest):
+        '''This is called by tweaks/loginsettings.py'''
+        if dest.startswith(os.path.expanduser('~gdm/.icons')):
+            self._delete_old_logofile(dest)
 
     @dbus.service.method(INTERFACE,
                          in_signature='s', out_signature='b')

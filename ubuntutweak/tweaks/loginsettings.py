@@ -181,11 +181,9 @@ class LoginSettings(TweakModule):
                     ErrorDialog(_("This image size isn't suitable for the logo.\nIt should be 64x64.")).launch()
                     return
                 else:
-                    proxy.exec_command('mkdir -p %s' % os.path.dirname(dest))
-                    proxy.exec_command('rm -rf %s.*' % dest)
                     dest = dest + ext
                     log.debug('Copy %s to %s' % (filename, dest))
-                    proxy.exec_command('cp "%s" "%s"' % (filename, dest))
+                    proxy.set_login_logo(filename, dest)
 
                     if ext == '.svg':
                         pixbuf = pixbuf.scale_simple(64, 64, GdkPixbuf.InterpType.BILINEAR)
@@ -193,7 +191,7 @@ class LoginSettings(TweakModule):
                     self.logo_image.set_from_pixbuf(GdkPixbuf.Pixbuf.new_from_file(filename))
         elif response == Gtk.ResponseType.DELETE_EVENT:
             dialog.destroy()
-            proxy.exec_command('rm -rf %s.*' % dest)
+            proxy.unset_login_logo(dest)
             self._setup_logo_image()
         else:
             dialog.destroy()
@@ -206,7 +204,12 @@ class LoginSettings(TweakModule):
 
     def on_update_preview(self, dialog, preview):
         filename = dialog.get_preview_filename()
-        pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(filename, 128, 128)
+        try:
+            pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(filename, 128, 128)
+        except Exception, e:
+            log.error(e)
+            pixbuf = None
+
         if pixbuf:
             preview.set_from_pixbuf(pixbuf)
 
