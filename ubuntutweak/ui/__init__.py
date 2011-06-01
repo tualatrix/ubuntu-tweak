@@ -1,3 +1,4 @@
+raise DeprecationWarning("Don't use THIS")
 import dialogs
 from widgets import *
 from treeviews import *

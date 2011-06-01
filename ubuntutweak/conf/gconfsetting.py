@@ -10,6 +10,8 @@ from ubuntutweak.policykit import proxy
 
 log = logging.getLogger("gconfsetting")
 
+raise DeprecationWarning("Don't use THIS")
+
 class KeysHandler(ContentHandler):
     #TODO Because not support old version, so this can be easy
     gnome_version = system.DESKTOP_VERSION[1]

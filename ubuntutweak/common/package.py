@@ -40,6 +40,8 @@ p_kernel_package = re.compile('linux-[a-z\-]+')
 
 log = logging.getLogger('PackageWorker')
 
+raise DeprecationWarning("Don't use THIS")
+
 def get_ppa_origin_name(url):
     section = url.split('/')
     # Due to the policy of ppa orgin naming, if an ppa is end with "ppa", so ignore it
