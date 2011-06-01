@@ -291,8 +291,6 @@ class UbuntuTweakWindow(GuiBuilder):
             toggle_button.set_active(True)
 
     def _initialize_ui_states(self, widget):
-        self.notebook.set_current_page(self.feature_dict['overview'])
-        self.overview_button.set_active(True)
         self.search_entry.grab_focus()
 
     def _crete_wait_page(self):
