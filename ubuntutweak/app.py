@@ -315,8 +315,7 @@ class UbuntuTweakWindow(GuiBuilder):
         except Exception, e:
             log.error(e)
 
-    def on_preference_button_clicked(self, widget):
-        #TODO it's show, not preference
+    def on_about_button_clicked(self, widget):
         self.aboutdialog.set_version(VERSION)
         self.aboutdialog.set_transient_for(self.mainwindow)
         self.aboutdialog.run()
