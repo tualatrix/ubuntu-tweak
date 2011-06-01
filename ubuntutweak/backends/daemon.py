@@ -533,14 +533,6 @@ class Daemon(PolicyKitService):
         return True
 
     @dbus.service.method(INTERFACE,
-                         in_signature='s', out_signature='s',
-                         sender_keyword='sender')
-    def exec_command(self, command, sender=None):
-        self._check_permission(sender)
-        cmd = os.popen(command)
-        return cmd.read().strip()
-
-    @dbus.service.method(INTERFACE,
                          in_signature='si', out_signature='s')
     def get_as_tempfile(self, path, uid):
         f = tempfile.NamedTemporaryFile()
