@@ -31,6 +31,7 @@ from ubuntutweak.modules import ModuleLoader, create_broken_module_class
 from ubuntutweak.gui.dialogs import ErrorDialog
 from ubuntutweak.clips import ClipPage
 from ubuntutweak.apps import AppsPage
+from ubuntutweak.janitor import JanitorPage
 from ubuntutweak.policykit import proxy
 
 log = logging.getLogger('app')
@@ -257,11 +258,13 @@ class UbuntuTweakWindow(GuiBuilder):
         admins_page = FeaturePage(ModuleLoader('admins'))
         clip_page = ClipPage().get_object('hbox1')
 #        apps_page = AppsPage()
+        janitor_page = JanitorPage()
 
         self.feature_dict['overview'] = self.notebook.append_page(clip_page, Gtk.Label())
 #        self.feature_dict['apps'] = self.notebook.append_page(apps_page, Gtk.Label())
         self.feature_dict['tweaks'] = self.notebook.append_page(tweaks_page, Gtk.Label())
         self.feature_dict['admins'] = self.notebook.append_page(admins_page, Gtk.Label())
+        self.feature_dict['janitor'] = self.notebook.append_page(janitor_page, Gtk.Label())
         self.feature_dict['wait'] = self.notebook.append_page(self._crete_wait_page(),
                                                            Gtk.Label())
 
@@ -455,6 +458,13 @@ class UbuntuTweakWindow(GuiBuilder):
 
     def on_admins_button_toggled(self, widget):
         self.on_feature_button_clicked(widget, 'admins')
+
+    def on_janitor_button_toggled(self, widget):
+        self.on_feature_button_clicked(widget, 'janitor')
+        self.module_image.set_from_pixbuf(icon.get_from_name('computerjanitor', size=48))
+        self.title_label.set_markup('<b><big>%s</big></b>' % _('Computer Janitor'))
+        self.description_label.set_text(_("Clean up a system so it's more like a freshly installed one"))
+        self.link_button.hide()
 
     def on_feature_button_clicked(self, widget, feature):
         log.debug("on_%s_button_toggled and widget.active is: %s" % (feature, widget.get_active()))

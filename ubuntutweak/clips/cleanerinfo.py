@@ -37,6 +37,9 @@ class CleanerInfo(Clip):
 
             self.set_content(label)
 
-        button = Gtk.Button(label=_('Start Clenaer'))
-        #TODO the action to start cleaner
+        button = Gtk.Button(label=_('Start Janitor'))
+        button.connect('clicked', self.on_button_clicked)
         self.add_action_button(button)
+
+    def on_button_clicked(self, widget):
+        os.system('ubuntu-tweak -f janitor &')
