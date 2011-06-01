@@ -380,6 +380,7 @@ class UbuntuTweakWindow(GuiBuilder):
 
             self._save_loaded_info(name, module, index)
             self.navigation_dict[feature] = name, None
+            self.set_current_module(module, index)
             self.update_jump_buttons()
         else:
             dialog = ErrorDialog(title=_('No module named "%s"') % name,
