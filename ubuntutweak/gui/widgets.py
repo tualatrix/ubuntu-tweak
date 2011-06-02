@@ -2,9 +2,10 @@ import time
 import logging
 
 import gobject
-from gi.repository import Gtk, Gdk, GConf
+from gi.repository import Gtk, Gdk, GConf, Gio
 
 from ubuntutweak.settings.gconfsettings import GconfSetting, UserGconfSetting
+from ubuntutweak.settings.gsettings import GSetting
 
 log = logging.getLogger('widgets')
 
@@ -15,9 +16,8 @@ class CheckButton(Gtk.CheckButton):
         gobject.GObject.__init__(self, label=label)
         if backend == GConf:
             self.setting = GconfSetting(key=key, default=default, type=bool)
-        else:
-            #TODO Gio
-            pass
+        elif backend == Gio:
+            self.setting = GSetting(key=key, default=default, type=bool)
 
         self.set_active(self.setting.get_value())
         if tooltip:
@@ -26,7 +26,7 @@ class CheckButton(Gtk.CheckButton):
         self.setting.connect_notify(self.on_value_changed)
         self.connect('toggled', self.on_button_toggled)
 
-    def on_value_changed(self, client, id, entry, data):
+    def on_value_changed(self, *args):
         self.set_active(self.setting.get_value())
 
     def on_button_toggled(self, widget):
@@ -62,8 +62,7 @@ class ResetButton(Gtk.Button):
         if backend == GConf:
             self.setting = GconfSetting(key=key, type=bool)
         else:
-            #TODO Gio
-            pass
+            self.setting = GSetting(key=key, type=bool)
 
         self.set_property('image', 
                           Gtk.Image.new_from_stock(Gtk.STOCK_REVERT_TO_SAVED, Gtk.IconSize.MENU))
@@ -91,26 +90,25 @@ class Entry(Gtk.Entry):
         if backend == GConf:
             self.setting = GconfSetting(key=key, default=default, type=str)
         else:
-            #TODO Gio
-            pass
+            self.setting = GSetting(key=key, default=default, type=str)
 
         string = self.setting.get_value()
         if string:
-            self.set_text(string)
+            self.set_text(str(string))
         else:
             self.set_text(_("Unset"))
 
+        self.connect('activate', self.on_edit_finished_cb)
+
     def is_changed(self):
         return self.setting.get_value() != self.get_text()
-
-    def connect_activate_signal(self):
-        self.connect('activate', self.on_edit_finished_cb)
 
     def get_gsetting(self):
         return self.setting
 
     def on_edit_finished_cb(self, widget):
         if self.get_text():
+            print self.get_text()
             self.setting.set_value(self.get_text())
         else:
             self.setting.client.unset(self.setting.key)
