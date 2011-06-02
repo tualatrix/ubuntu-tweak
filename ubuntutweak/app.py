@@ -275,6 +275,7 @@ class UbuntuTweakWindow(GuiBuilder):
         tweaks_page.connect('module_selected', self.on_module_selected)
         admins_page.connect('module_selected', self.on_module_selected)
         clip_page.connect('load_module', lambda widget, name: self.load_module(name))
+        clip_page.connect('load_feature', lambda widget, name: self.select_target_feature(name))
         self.mainwindow.show_all()
         self.link_button.hide()
 

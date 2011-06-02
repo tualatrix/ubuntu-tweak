@@ -42,4 +42,4 @@ class CleanerInfo(Clip):
         self.add_action_button(button)
 
     def on_button_clicked(self, widget):
-        os.system('ubuntu-tweak -f janitor &')
+        self.emit('load_feature', 'janitor')

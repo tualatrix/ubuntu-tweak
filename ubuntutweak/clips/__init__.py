@@ -7,6 +7,14 @@ from ubuntutweak.settings.gsettings import GSetting
 from ubuntutweak.modules import ModuleLoader
 
 class Clip(Gtk.VBox):
+    __gsignals__ = {
+        'load_module': (gobject.SIGNAL_RUN_FIRST,
+                            gobject.TYPE_NONE,
+                            (gobject.TYPE_STRING,)),
+        'load_feature': (gobject.SIGNAL_RUN_FIRST,
+                            gobject.TYPE_NONE,
+                            (gobject.TYPE_STRING,))
+    }
 
     def __init__(self):
         gobject.GObject.__init__(self, spacing=12)
@@ -49,6 +57,9 @@ class ClipPage(Gtk.VBox, GuiBuilder):
     __gsignals__ = {
         'load_module': (gobject.SIGNAL_RUN_FIRST,
                             gobject.TYPE_NONE,
+                            (gobject.TYPE_STRING,)),
+        'load_feature': (gobject.SIGNAL_RUN_FIRST,
+                            gobject.TYPE_NONE,
                             (gobject.TYPE_STRING,))
     }
 
@@ -63,9 +74,11 @@ class ClipPage(Gtk.VBox, GuiBuilder):
         from updateinfo import UpdateInfo
         from cleanerinfo import CleanerInfo
 
-        self.clipvbox.pack_start(UpdateInfo(), False, False, 0)
-        self.clipvbox.pack_start(HardwareInfo(), False, False, 0)
-        self.clipvbox.pack_start(CleanerInfo(), True, True, 0)
+        for ClipClass in (HardwareInfo, UpdateInfo, CleanerInfo):
+            clip = ClipClass()
+            clip.connect('load_module', self._on_module_button_clicked)
+            clip.connect('load_feature', self.on_clip_load_feature)
+            self.clipvbox.pack_start(clip, True, True, 0)
 
         self.setup_rencently_used()
         self.rencently_used_settings.connect_notify(self.setup_rencently_used)
@@ -102,3 +115,6 @@ class ClipPage(Gtk.VBox, GuiBuilder):
 
     def _on_module_button_clicked(self, widget, name):
         self.emit('load_module', name)
+
+    def on_clip_load_feature(self, widget, name):
+        self.emit('load_feature', name)
