@@ -1,9 +1,13 @@
+import os
 import gobject
-from gi.repository import Gtk
+from gi.repository import Gtk, Pango
 
 from ubuntutweak.gui import GuiBuilder
+from ubuntutweak.settings.gsettings import GSetting
+from ubuntutweak.modules import ModuleLoader
 
 class Clip(Gtk.VBox):
+
     def __init__(self):
         gobject.GObject.__init__(self, spacing=12)
 
@@ -42,6 +46,8 @@ class Clip(Gtk.VBox):
 
 
 class ClipPage(Gtk.VBox, GuiBuilder):
+    rencently_used_settings = GSetting('com.ubuntu-tweak.tweak.rencently-used')
+
     def __init__(self):
         gobject.GObject.__init__(self)
         GuiBuilder.__init__(self, 'clippage.ui')
@@ -54,3 +60,35 @@ class ClipPage(Gtk.VBox, GuiBuilder):
         self.clipvbox.pack_start(UpdateInfo(), False, False, 0)
         self.clipvbox.pack_start(HardwareInfo(), False, False, 0)
         self.clipvbox.pack_start(CleanerInfo(), True, True, 0)
+
+        self.setup_rencently_used()
+        self.rencently_used_settings.connect_notify(self.setup_rencently_used)
+
+    def setup_rencently_used(self, *args):
+        used_list = self.rencently_used_settings.get_value()
+        for child in self.rencently_used_vbox.get_children():
+            self.rencently_used_vbox.remove(child)
+
+        for name in used_list:
+            feature, module = ModuleLoader.search_module_for_name(name)
+            if module:
+                button = Gtk.Button()
+                button.set_relief(Gtk.ReliefStyle.NONE)
+                hbox = Gtk.HBox(spacing=6)
+                button.add(hbox)
+
+                image = Gtk.Image.new_from_pixbuf(module.get_pixbuf(size=16))
+                hbox.pack_start(image, False, False, 0)
+
+                label = Gtk.Label(module.get_title())
+                label.set_max_width_chars(12)
+                label.set_ellipsize(Pango.EllipsizeMode.END)
+                hbox.pack_start(label, False, False, 0)
+
+                button.connect('clicked', self._on_module_button_clicked, name)
+                button.show_all()
+
+                self.rencently_used_vbox.pack_start(button, False, False, 0)
+
+    def _on_module_button_clicked(self, widget, name):
+        os.system('ubuntu-tweak -m %s name &' % name)

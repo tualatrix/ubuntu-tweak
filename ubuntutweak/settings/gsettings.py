@@ -55,7 +55,10 @@ class GSetting(object):
                 return self.settings.set_string(self.key, str(value))
             elif type_string == 'as':
                 #TODO should check the value is like "['xx']"
-                return self.settings.set_strv(self.key, eval(value))
+                if type(value) == str:
+                    return self.settings.set_strv(self.key, eval(value))
+                else:
+                    return self.settings.set_strv(self.key, value)
 
     def connect_notify(self, func, data=None):
         self.settings.connect("changed::%s" % self.key, func, data)

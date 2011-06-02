@@ -13,6 +13,7 @@ setup(name='ubuntu-tweak',
       data_files=[
           ('../etc/dbus-1/system.d/', ['data/ubuntu-tweak-daemon.conf']),
           ('share/dbus-1/system-services', ['data/com.ubuntu_tweak.daemon.service']),
+          ('share/glib-2.0/schemas', ['data/com.ubuntu-tweak.tweak.gschema.xml']),
           ('share/ubuntu-tweak/ui/', glob.glob('data/ui/*.ui')),
           ('share/ubuntu-tweak/theme/', ['data/theme/ubuntu-tweak.rc']),
           ('share/ubuntu-tweak/theme/img/', glob.glob('data/theme/img/*')),

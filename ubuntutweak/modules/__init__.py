@@ -36,6 +36,8 @@ class ModuleLoader:
 
     default_features = ('tweaks', 'admins', 'janitors')
 
+    search_loaded_table = {}
+
     def __init__(self, feature):
         '''feature choices: tweaks, admins and janitors'''
         self.module_table = {}
@@ -67,6 +69,8 @@ class ModuleLoader:
     @classmethod
     def search_module_for_name(cls, name):
         for feature in cls.default_features:
+            if name in cls.search_loaded_table:
+                return feature, cls.search_loaded_table[name]
             #User's at first
             user_folder = os.path.join(CONFIG_ROOT, feature)
 
@@ -77,16 +81,20 @@ class ModuleLoader:
             if not os.path.exists(package_identy_file):
                 os.system("touch %s" % package_identy_file)
 
-            log.info('Loading user plugins for "%s"...' % feature)
+            log.info('Loading plugins "%s" for "%s"...' % (name, feature))
             module = cls._get_module_by_name_from_folder(name, user_folder)
 
             if module:
+                if name not in cls.search_loaded_table:
+                    cls.search_loaded_table[name] = module
                 return feature, module
 
             try:
                 m = __import__('ubuntutweak.%s' % feature, fromlist='ubuntutweak')
                 module = cls._get_module_by_name_from_folder(name, m.__path__[0])
                 if module:
+                    if name not in cls.search_loaded_table:
+                        cls.search_loaded_table[name] = module
                     return feature, module
             except ImportError, e:
                 log.error(e)

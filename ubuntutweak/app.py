@@ -33,6 +33,7 @@ from ubuntutweak.clips import ClipPage
 from ubuntutweak.apps import AppsPage
 from ubuntutweak.janitor import JanitorPage
 from ubuntutweak.policykit import proxy
+from ubuntutweak.settings.gsettings import GSetting
 
 log = logging.getLogger('app')
 
@@ -248,6 +249,7 @@ class UbuntuTweakWindow(GuiBuilder):
     loaded_modules = {}
     # reversed dict: 2: 'CompizClass'
     modules_index = {}
+    rencently_used_settings = GSetting('com.ubuntu-tweak.tweak.rencently-used')
 
     def __init__(self, feature='', module=''):
         GuiBuilder.__init__(self, file_name='mainwindow.ui')
@@ -348,6 +350,7 @@ class UbuntuTweakWindow(GuiBuilder):
             else:
                 self.link_button.hide()
 
+            self.log_used_module(module.__name__)
             self.update_jump_buttons()
         else:
             # no module, so back to logo
@@ -485,6 +488,16 @@ class UbuntuTweakWindow(GuiBuilder):
                     self.set_current_module(None)
 
             self.update_jump_buttons()
+
+    def log_used_module(self, name):
+        log.debug("Log the %s to Recently Used" % name)
+        used_list = self.rencently_used_settings.get_value()
+
+        if name in used_list:
+            used_list.remove(name)
+
+        used_list.insert(0, name)
+        self.rencently_used_settings.set_value(used_list[:15])
 
     def present(self):
         self.mainwindow.present()
