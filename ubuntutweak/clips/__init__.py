@@ -46,6 +46,12 @@ class Clip(Gtk.VBox):
 
 
 class ClipPage(Gtk.VBox, GuiBuilder):
+    __gsignals__ = {
+        'load_module': (gobject.SIGNAL_RUN_FIRST,
+                            gobject.TYPE_NONE,
+                            (gobject.TYPE_STRING,))
+    }
+
     rencently_used_settings = GSetting('com.ubuntu-tweak.tweak.rencently-used')
 
     def __init__(self):
@@ -63,6 +69,10 @@ class ClipPage(Gtk.VBox, GuiBuilder):
 
         self.setup_rencently_used()
         self.rencently_used_settings.connect_notify(self.setup_rencently_used)
+
+        self.show_all()
+
+        self.pack_start(self.get_object('hbox1'), True, True, 0)
 
     def setup_rencently_used(self, *args):
         used_list = self.rencently_used_settings.get_value()
@@ -91,4 +101,4 @@ class ClipPage(Gtk.VBox, GuiBuilder):
                 self.rencently_used_vbox.pack_start(button, False, False, 0)
 
     def _on_module_button_clicked(self, widget, name):
-        os.system('ubuntu-tweak -m %s name &' % name)
+        self.emit('load_module', name)

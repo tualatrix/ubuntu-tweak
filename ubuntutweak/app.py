@@ -258,7 +258,7 @@ class UbuntuTweakWindow(GuiBuilder):
 
         tweaks_page = FeaturePage(ModuleLoader('tweaks'))
         admins_page = FeaturePage(ModuleLoader('admins'))
-        clip_page = ClipPage().get_object('hbox1')
+        clip_page = ClipPage()
 #        apps_page = AppsPage()
         janitor_page = JanitorPage()
 
@@ -274,7 +274,7 @@ class UbuntuTweakWindow(GuiBuilder):
         self.mainwindow.connect('realize', self._initialize_ui_states)
         tweaks_page.connect('module_selected', self.on_module_selected)
         admins_page.connect('module_selected', self.on_module_selected)
-
+        clip_page.connect('load_module', lambda widget, name: self.load_module(name))
         self.mainwindow.show_all()
         self.link_button.hide()
 
