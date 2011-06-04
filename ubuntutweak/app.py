@@ -351,7 +351,8 @@ class UbuntuTweakWindow(GuiBuilder):
             else:
                 self.link_button.hide()
 
-            self.log_used_module(module.__name__)
+            if not module.__name__.startswith('Broken'):
+                self.log_used_module(module.__name__)
             self.update_jump_buttons()
         else:
             # no module, so back to logo
@@ -368,7 +369,7 @@ class UbuntuTweakWindow(GuiBuilder):
 
     def load_module(self, name):
         feature, module = ModuleLoader.search_module_for_name(name)
-        log.debug("Module %s under %s is loaded" % (module, feature))
+
         if module:
             self.select_target_feature(feature)
 

@@ -68,9 +68,11 @@ class ModuleLoader:
 
     @classmethod
     def search_module_for_name(cls, name):
+        if name in cls.search_loaded_table:
+            log.info('Module "%s" has already loaded.' % name)
+            return cls.search_loaded_table[name]
+
         for feature in cls.default_features:
-            if name in cls.search_loaded_table:
-                return feature, cls.search_loaded_table[name]
             #User's at first
             user_folder = os.path.join(CONFIG_ROOT, feature)
 
@@ -81,20 +83,21 @@ class ModuleLoader:
             if not os.path.exists(package_identy_file):
                 os.system("touch %s" % package_identy_file)
 
-            log.info('Loading plugins "%s" for "%s"...' % (name, feature))
             module = cls._get_module_by_name_from_folder(name, user_folder)
 
             if module:
+                log.info('Loading module "%s" for "%s"...' % (name, feature))
                 if name not in cls.search_loaded_table:
-                    cls.search_loaded_table[name] = module
+                    cls.search_loaded_table[name] = feature, module
                 return feature, module
 
             try:
                 m = __import__('ubuntutweak.%s' % feature, fromlist='ubuntutweak')
                 module = cls._get_module_by_name_from_folder(name, m.__path__[0])
                 if module:
+                    log.info('Loading module "%s" for "%s"...' % (name, feature))
                     if name not in cls.search_loaded_table:
-                        cls.search_loaded_table[name] = module
+                        cls.search_loaded_table[name] = feature, module
                     return feature, module
             except ImportError, e:
                 log.error(e)
