@@ -382,17 +382,6 @@ class Daemon(PolicyKitService):
 #            return False
 
     @dbus.service.method(INTERFACE,
-                         in_signature='s', out_signature='s',
-                         sender_keyword='sender')
-    def delete_file(self, path, sender=None):
-        self._check_permission(sender)
-        os.system('rm "%s"' % path)
-        if os.path.exists(path):
-            return 'error'
-        else:
-            return 'done'
-
-    @dbus.service.method(INTERFACE,
                          in_signature='ss', out_signature='',
                          sender_keyword='sender')
     def link_file(self, src, dst, sender=None):
@@ -416,13 +405,38 @@ class Daemon(PolicyKitService):
         self.liststate = state
 
     @dbus.service.method(INTERFACE,
-                         in_signature='ss', out_signature='',
+                         in_signature='ss', out_signature='s',
                          sender_keyword='sender')
-    def edit_file(self, path, content, sender=None):
+    def edit_source(self, path, content, sender=None):
+        #TODO backup before edit
         self._check_permission(sender)
-        file = open(path, 'w')
-        file.write(content)
-        file.close()
+        if path.startswith(self.SOURCES_LIST):
+            try:
+                file = open(path, 'w')
+                file.write(content)
+                file.close()
+            except Exception, e:
+                log.error(e)
+                return 'error'
+            finally:
+                return 'done'
+        else:
+            return 'error'
+
+    @dbus.service.method(INTERFACE,
+                         in_signature='s', out_signature='s',
+                         sender_keyword='sender')
+    def delete_source(self, path, sender=None):
+        #TODO backup before edit
+        self._check_permission(sender)
+        if path.startswith(self.SOURCES_LIST):
+            os.system('rm "%s"' % path)
+            if os.path.exists(path):
+                return 'error'
+            else:
+                return 'done'
+        else:
+            return 'error'
 
     @dbus.service.method(INTERFACE,
                          in_signature='as', out_signature='',
