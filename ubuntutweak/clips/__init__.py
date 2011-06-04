@@ -64,6 +64,7 @@ class ClipPage(Gtk.VBox, GuiBuilder):
     }
 
     rencently_used_settings = GSetting('com.ubuntu-tweak.tweak.rencently-used')
+    max_recently_used_size = 0
 
     def __init__(self):
         gobject.GObject.__init__(self)
@@ -78,23 +79,34 @@ class ClipPage(Gtk.VBox, GuiBuilder):
             clip = ClipClass()
             clip.connect('load_module', self._on_module_button_clicked)
             clip.connect('load_feature', self.on_clip_load_feature)
-            self.clipvbox.pack_start(clip, True, True, 0)
+            self.clipvbox.pack_start(clip, False, False, 0)
 
         self.setup_rencently_used()
         self.rencently_used_settings.connect_notify(self.setup_rencently_used)
 
+        self.pack_start(self.get_object('hbox1'), True, True, 0)
+        self.connect('size-allocate', self.on_size_allocation)
+
         self.show_all()
 
-        self.pack_start(self.get_object('hbox1'), True, True, 0)
+    def on_size_allocation(self, widget, allocation):
+        frame_width = int(allocation.width / 4.5)
+
+        if frame_width > self.max_recently_used_size:
+            frame_width = self.max_recently_used_size
+        self.rencently_frame.set_size_request(frame_width, -1)
 
     def setup_rencently_used(self, *args):
         used_list = self.rencently_used_settings.get_value()
         for child in self.rencently_used_vbox.get_children():
             self.rencently_used_vbox.remove(child)
 
+        size_list = []
         for name in used_list:
             feature, module = ModuleLoader.search_module_for_name(name)
             if module:
+                size_list.append(Gtk.Label(module.get_title()).get_layout().get_pixel_size()[0])
+
                 button = Gtk.Button()
                 button.set_relief(Gtk.ReliefStyle.NONE)
                 hbox = Gtk.HBox(spacing=6)
@@ -104,14 +116,17 @@ class ClipPage(Gtk.VBox, GuiBuilder):
                 hbox.pack_start(image, False, False, 0)
 
                 label = Gtk.Label(module.get_title())
-                label.set_max_width_chars(12)
                 label.set_ellipsize(Pango.EllipsizeMode.END)
-                hbox.pack_start(label, False, False, 0)
+                label.set_alignment(0, 0.5)
+
+                hbox.pack_start(label, True, True, 0)
 
                 button.connect('clicked', self._on_module_button_clicked, name)
                 button.show_all()
 
                 self.rencently_used_vbox.pack_start(button, False, False, 0)
+
+        self.max_recently_used_size = max(size_list) + 58
 
     def _on_module_button_clicked(self, widget, name):
         self.emit('load_module', name)
