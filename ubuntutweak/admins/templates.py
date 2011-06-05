@@ -1,8 +1,6 @@
-#!/usr/bin/python
-
-# Ubuntu Tweak - PyGTK based desktop configuration tool
+# Ubuntu Tweak - Ubuntu Configuration Tool
 #
-# Copyright (C) 2007-2008 TualatriX <tualatrix@gmail.com>
+# Copyright (C) 2007-2011 Tualatrix Chou <tualatrix@gmail.com>
 #
 # Ubuntu Tweak is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,20 +16,22 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-import pygtk
-pygtk.require("2.0")
 import os
-import gtk
 import shutil
 import logging
+
+from gi.repository import Gtk
+
 from ubuntutweak.modules  import TweakModule
-from ubuntutweak.modules.userdir import UserdirFile
+from ubuntutweak.tweaks.userdir import UserdirFile
 from ubuntutweak.common.consts import DATA_DIR, CONFIG_ROOT
-from ubuntutweak.ui import DirView, FlatView
-from ubuntutweak.ui.dialogs import WarningDialog, ErrorDialog
+from ubuntutweak.gui.treeviews import DirView, FlatView
+from ubuntutweak.gui.dialogs import ErrorDialog, QuestionDialog
 from ubuntutweak.utils import set_label_for_stock_button
 
+
 log = logging.getLogger("Templates")
+
 
 def update_dir():
     system_dir = os.path.join(CONFIG_ROOT, 'templates')
@@ -53,13 +53,16 @@ def update_dir():
 
     return system_dir, user_dir
 
+
 def is_right_path():
     if (os.path.expanduser('~').strip('/') == USER_DIR.strip('/')) or os.path.isfile(USER_DIR):
         return False
     else:
         return True
 
+
 SYSTEM_DIR, USER_DIR = update_dir()
+
 
 class DefaultTemplates:
     """This class use to create the default templates"""
@@ -85,8 +88,8 @@ class DefaultTemplates:
 
     def remove(self):
         if not os.path.exists(SYSTEM_DIR):
-            return 
-        if os.path.isdir(SYSTEM_DIR): 
+            return
+        if os.path.isdir(SYSTEM_DIR):
             for root, dirs, files in os.walk(SYSTEM_DIR, topdown=False):
                 for name in files:
                     os.remove(os.path.join(root, name))
@@ -97,12 +100,14 @@ class DefaultTemplates:
             os.unlink(SYSTEM_DIR)
         return
 
+
 class EnableTemplate(DirView):
     """The treeview to display the enable templates"""
     type = _("Enabled Templates")
 
     def __init__(self):
         DirView.__init__(self, USER_DIR)
+
 
 class DisableTemplate(FlatView):
     """The treeview to display the system template"""
@@ -111,33 +116,32 @@ class DisableTemplate(FlatView):
     def __init__(self):
         FlatView.__init__(self, SYSTEM_DIR, USER_DIR)
 
+
 class Templates(TweakModule):
-    """Freedom added your docmuent templates"""
     __title__ = _('Manage Templates')
     __desc__ = _('Here you can manage your document templates.\n'
                  'You can add files as templates by dragging them into this window.\n'
                  'You can then create new documents based on these templates from the Nautilus right-click menu.')
     __icon__ = 'x-office-document'
     __category__ = 'personal'
-    __desktop__ = ['gnome', 'xfce', 'une']
 
     def __init__(self):
-        TweakModule.__init__(self)
+        TweakModule.__init__(self, 'templates.ui')
 
         if not is_right_path():
-            label = gtk.Label(_('The templates path is incorrect! The current path points to "%s".\nPlease reset it to a location within your Home Folder.') % USER_DIR)
+            label = Gtk.Label(label=_('The templates path is incorrect! The current path points to "%s".\nPlease reset it to a location within your Home Folder.') % USER_DIR)
 
-            hbox = gtk.HBox(False, 0)
+            hbox = Gtk.HBox()
             self.add_start(hbox, False, False, 0)
 
             hbox.pack_start(label, False, False, 0)
 
-            button = gtk.Button(stock = gtk.STOCK_GO_FORWARD)
+            button = Gtk.Button(stock=Gtk.STOCK_GO_FORWARD)
             button.connect('clicked', self.on_go_button_clicked)
             set_label_for_stock_button(button, _('Go And Set'))
             hbox.pack_end(button, False, False, 0)
 
-            button = gtk.Button(stock = gtk.STOCK_EXECUTE)
+            button = Gtk.Button(stock=Gtk.STOCK_EXECUTE)
             button.connect('clicked', self.on_restart_button_clicked)
             set_label_for_stock_button(button, _('Restart This Module'))
             hbox.pack_end(button, False, False, 0)
@@ -145,51 +149,41 @@ class Templates(TweakModule):
             self.create_interface()
 
     def create_interface(self):
-
         self.default = DefaultTemplates()
         self.config_test()
 
-        hbox = gtk.HBox(False, 10)
-        self.add_start(hbox)
-
-        swindow = gtk.ScrolledWindow()
-        swindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        hbox.pack_start(swindow)
+        self.add_start(self.hbox1)
+        self.show_all()
 
         self.enable_templates = EnableTemplate()
-        swindow.add(self.enable_templates)
-
-        swindow = gtk.ScrolledWindow()
-        swindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        hbox.pack_start(swindow)
+        self.sw1.add(self.enable_templates)
 
         self.disable_templates = DisableTemplate()
-        swindow.add(self.disable_templates)
+        self.sw2.add(self.disable_templates)
 
-        hbox = gtk.HBox(False, 0)
+        hbox = Gtk.HBox(spacing=0)
         self.add_start(hbox, False, False, 0)
 
-        button = gtk.Button(_("Rebuild System Templates"))
+#        self.enable_templates.connect('drag_data_received', self.on_enable_drag_data_received)
+#        self.enable_templates.connect('deleted', self.on_enable_deleted)
+#        self.disable_templates.connect('drag_data_received', self.on_disable_drag_data_received)
+
+        button = Gtk.Button(_("Rebuild System Templates"))
         button.connect("clicked", self.on_rebuild_clicked)
         hbox.pack_end(button, False, False, 5)
 
-        self.enable_templates.connect('drag_data_received', self.on_enable_drag_data_received)
-        self.enable_templates.connect('deleted', self.on_enable_deleted)
-        self.disable_templates.connect('drag_data_received', self.on_disable_drag_data_received)
-
-        self.show_all()
-
     def on_go_button_clicked(self, widget):
-        self.emit('call', 'mainwindow', 'select_module', {'name': 'UserDir'})
+        #TODO emit signal to load Userdir
+        pass
 
     def on_restart_button_clicked(self, widget):
-        global SYSTEM_DIR, USER_DIR 
+        global SYSTEM_DIR, USER_DIR
         SYSTEM_DIR, USER_DIR = update_dir()
         if is_right_path():
             self.remove_all_children()
             self.create_interface()
         else:
-            ErrorDialog(_('The templates path is still incorrect, please reset it!')).launch()
+            ErrorDialog(message=_('The templates path is still incorrect, please reset it!')).launch()
 
     def on_enable_deleted(self, widget):
         self.disable_templates.update_model()
@@ -201,9 +195,9 @@ class Templates(TweakModule):
         self.enable_templates.update_model()
 
     def on_rebuild_clicked(self, widget):
-        dialog = WarningDialog(_('This will delete all disabled templates.\n'
+        dialog = QuestionDialog(message=_('This will delete all disabled templates.\n'
                                  'Do you wish to continue?'))
-        if dialog.run() == gtk.RESPONSE_YES:
+        if dialog.run() == Gtk.ResponseType.YES:
             self.default.remove()
             self.default.create()
             self.disable_templates.update_model()

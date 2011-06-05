@@ -1,8 +1,6 @@
-#!/usr/bin/python
-
-# Ubuntu Tweak - PyGTK based desktop configuration tool
+# Ubuntu Tweak - Ubuntu Configuration Tool
 #
-# Copyright (C) 2007-2008 TualatriX <tualatrix@gmail.com>
+# Copyright (C) 2007-2011 Tualatrix Chou <tualatrix@gmail.com>
 #
 # Ubuntu Tweak is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,29 +16,21 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-import pygtk
-pygtk.require('2.0')
-import gtk
 import os
 import stat
 import shutil
-import gobject
-import gettext
 import logging
+
+from gi.repository import Gtk, GObject
+
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.utils import icon
 from ubuntutweak.common.consts import DATA_DIR, CONFIG_ROOT
-from ubuntutweak.ui import DirView, FlatView
-from ubuntutweak.ui.dialogs import WarningDialog
+from ubuntutweak.gui.treeviews import DirView, FlatView
+from ubuntutweak.gui.dialogs import QuestionDialog
 
 log = logging.getLogger('Script')
 
-(
-    COLUMN_ICON,
-    COLUMN_TITLE,
-    COLUMN_PATH,
-    COLUMN_EDITABLE,
-) = range(4)
 
 class AbstractScripts:
     system_dir = os.path.join(CONFIG_ROOT, 'scripts')
@@ -52,6 +42,7 @@ class AbstractScripts:
         shutil.move(old_system_dir, system_dir)
 
     user_dir = os.path.join(os.getenv('HOME'), '.gnome2', 'nautilus-scripts')
+
 
 class DefaultScripts(AbstractScripts):
     '''This class use to create the default scripts'''
@@ -93,7 +84,7 @@ class DefaultScripts(AbstractScripts):
 
     def remove(self):
         if not os.path.exists(self.system_dir):
-            return 
+            return
         if os.path.isdir(self.system_dir):
             for root, dirs, files in os.walk(self.system_dir, topdown=False):
                 for name in files:
@@ -105,9 +96,15 @@ class DefaultScripts(AbstractScripts):
             os.unlink(self.system_dir)
         return
 
+
 class EnableScripts(DirView, AbstractScripts):
     '''The treeview to display the enable scripts'''
     type = _('Enabled Scripts')
+
+    (COLUMN_ICON,
+     COLUMN_TITLE,
+     COLUMN_PATH,
+     COLUMN_EDITABLE) = range(4)
 
     def __init__(self):
         DirView.__init__(self, self.user_dir)
@@ -117,12 +114,9 @@ class EnableScripts(DirView, AbstractScripts):
             fullname = os.path.join(dir, item)
             pixbuf = icon.guess_from_path(fullname)
 
-            child_iter = self.model.append(iter)
-            self.model.set(child_iter,
-                              COLUMN_ICON, pixbuf,
-                              COLUMN_TITLE, os.path.basename(fullname),
-                              COLUMN_PATH, fullname, 
-                              COLUMN_EDITABLE, False)
+            child_iter = self.model.append(iter,
+                                           (pixbuf, os.path.basename(fullname),
+                                            fullname, False))
 
             if os.path.isdir(fullname):
                 self.do_update_model(fullname, child_iter)
@@ -133,12 +127,14 @@ class EnableScripts(DirView, AbstractScripts):
                     except:
                         pass
 
+
 class DisableScripts(FlatView, AbstractScripts):
     '''The treeview to display the system template'''
     type = _('Disabled Scripts')
 
     def __init__(self):
         FlatView.__init__(self, self.system_dir, self.user_dir)
+
 
 class Scripts(TweakModule, AbstractScripts):
     __title__  = _('Manage Scripts')
@@ -150,38 +146,29 @@ class Scripts(TweakModule, AbstractScripts):
     __desktop__ = ['gnome', 'une']
 
     def __init__(self):
-        TweakModule.__init__(self)
+        TweakModule.__init__(self, 'templates.ui')
 
         self.default = DefaultScripts()
         self.config_test()
 
-        hbox = gtk.HBox(False, 10)
-        self.add_start(hbox)
-
-        sw = gtk.ScrolledWindow()
-        sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        hbox.pack_start(sw)
-
         self.enable_scripts = EnableScripts()
-        sw.add(self.enable_scripts)
-
-        sw = gtk.ScrolledWindow()
-        sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        hbox.pack_start(sw)
+        self.sw1.add(self.enable_scripts)
 
         self.disable_scripts = DisableScripts()
-        sw.add(self.disable_scripts)
+        self.sw2.add(self.disable_scripts)
 
-        hbox = gtk.HBox(False, 0)
-        self.add_start(hbox, False, False, 0)
-
-        button = gtk.Button(_('Rebuild System Scripts'))
-        button.connect('clicked', self.on_rebuild_clicked)
-        hbox.pack_end(button, False, False, 5)
-        
         self.enable_scripts.connect('drag_data_received', self.on_enable_drag_data_received)
         self.enable_scripts.connect('deleted', self.on_enable_deleted)
         self.disable_scripts.connect('drag_data_received', self.on_disable_drag_data_received)
+
+        self.add_start(self.hbox1)
+
+        hbox = Gtk.HBox(spacing=0)
+        self.add_start(hbox, False, False, 0)
+
+        button = Gtk.Button(_('Rebuild System Scripts'))
+        button.connect('clicked', self.on_rebuild_clicked)
+        hbox.pack_end(button, False, False, 5)
 
     def on_enable_deleted(self, widget):
         self.disable_scripts.update_model()
@@ -193,8 +180,8 @@ class Scripts(TweakModule, AbstractScripts):
         self.enable_scripts.update_model()
 
     def on_rebuild_clicked(self, widget):
-        dialog = WarningDialog(_('This will delete all disabled scripts.\nDo you wish to continue?'))
-        if dialog.run() == gtk.RESPONSE_YES:
+        dialog = QuestionDialog(message=_('This will delete all disabled scripts.\nDo you wish to continue?'))
+        if dialog.run() == Gtk.ResponseType.YES:
             self.default.remove()
             self.default.create()
             self.disable_scripts.update_model()

@@ -93,7 +93,7 @@ def guess_from_path(filepath, size=DEFAULT_SIZE):
         return get_from_name('folder', size)
 
     try:
-        mime_type = Gio.content_type_guess(filepath, open(filepath).read(10))
+        mime_type, result = Gio.content_type_guess(filepath, open(filepath).read(10))
         return get_from_mime_type(mime_type, size)
     except Exception, e:
         log.error('guess_from_path failed: %s' % e)

@@ -1,57 +1,58 @@
 import os
-import gtk
-import gio
 import shutil
-import gobject
-from dialogs import ErrorDialog
+
+from gi.repository import Gtk, Gdk, Gio, GObject, GdkPixbuf
+
+from ubuntutweak.gui.dialogs import ErrorDialog
 from ubuntutweak.utils import icon
 
-(
-    DIR_ICON,
-    DIR_TITLE,
-    DIR_PATH,
-    DIR_EDITABLE,
-) = range(4)
-
 def get_local_path(url):
-    return gio.file_parse_name(url.strip()).get_path()
+    return Gio.file_parse_name(url.strip()).get_path()
 
-class DirView(gtk.TreeView):
+
+class DirView(Gtk.TreeView):
     TARGETS = [
             ('text/plain', 0, 1),
             ('TEXT', 0, 2),
             ('STRING', 0, 3),
             ]
+
     __gsignals__ = {
-                    'deleted': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, ())
-                    }
+        'deleted': (GObject.SignalFlags.RUN_FIRST, None, ())
+    }
+
+    (DIR_ICON,
+     DIR_TITLE,
+     DIR_PATH,
+     DIR_EDITABLE) = range(4)
+
 
     def __init__(self, dir):
-        gtk.TreeView.__init__(self)
+        GObject.GObject.__init__(self)
+
         self.set_rules_hint(True)
         self.dir = dir
         if not os.path.exists(self.dir):
             os.makedirs(self.dir)
 
-        self.model = self.__create_model()
+        self.model = self._create_model()
         self.set_model(self.model)
 
-        iter = self.__setup_root_model()
+        iter = self._setup_root_model()
         self.do_update_model(self.dir, iter)
 
-        self.__add_columns()
+        self._add_columns()
         self.set_size_request(180, -1)
         self.expand_all()
 
-        self.enable_model_drag_source(gtk.gdk.BUTTON1_MASK, 
-                                        self.TARGETS,
-                                        gtk.gdk.ACTION_DEFAULT| gtk.gdk.ACTION_MOVE)
-        self.enable_model_drag_dest(self.TARGETS, gtk.gdk.ACTION_DEFAULT)
+#        self.enable_model_drag_source(Gdk.EventMask.BUTTON1_MOTION_MASK, self.TARGETS,
+#                                      Gdk.DragAction.DEFAULT| Gdk.DragAction.MOVE)
+#        self.enable_model_drag_dest(self.TARGETS, Gdk.DragAction.DEFAULT)
 
         self.connect('drag_data_get', self.on_drag_data_get)
         self.connect('drag_data_received', self.on_drag_data_received)
 
-        menu = self.__create_popup_menu()
+        menu = self._create_popup_menu()
         menu.show_all()
         self.connect('button_press_event', self.button_press_event, menu)
         self.connect('key-press-event', self.on_key_press_event)
@@ -61,22 +62,22 @@ class DirView(gtk.TreeView):
             self.on_delete_item(widget)
 
     def button_press_event(self, widget, event, menu):
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3:
             menu.popup(None, None, None, event.button, event.time)
         return False
 
-    def __create_popup_menu(self):
-        menu = gtk.Menu()
+    def _create_popup_menu(self):
+        menu = Gtk.Menu()
 
-        change_item = gtk.MenuItem(_('Create folder'))
+        change_item = Gtk.MenuItem(label=_('Create folder'))
         menu.append(change_item)
         change_item.connect('activate', self.on_create_folder)
 
-        change_item = gtk.MenuItem(_('Rename'))
+        change_item = Gtk.MenuItem(label=_('Rename'))
         menu.append(change_item)
         change_item.connect('activate', self.on_rename_item)
 
-        change_item = gtk.MenuItem(_('Delete'))
+        change_item = Gtk.MenuItem(label=_('Delete'))
         menu.append(change_item)
         change_item.connect('activate', self.on_delete_item)
 
@@ -104,24 +105,23 @@ class DirView(gtk.TreeView):
         newdir = os.path.join(self.dir, filename)
         os.mkdir(newdir)
 
-        self.model.set(iter,
-                DIR_ICON, icon.get_from_name('folder', 24),
-                DIR_TITLE, filename,
-                DIR_PATH, newdir,
-                DIR_EDITABLE, True)
+        self.model.set_value(iter, self.DIR_ICON, icon.get_from_name('folder', 24))
+        self.model.set_value(iter, self.DIR_TITLE, filename)
+        self.model.set_value(iter, self.DIR_PATH, newdir)
+        self.model.set_value(iter, self.DIR_EDITABLE, True)
 
-        self.set_cursor(path, focus_column = column, start_editing = True)
+        self.set_cursor(path, focus_column=column, start_editing=True)
 
     def on_rename_item(self, widget):
         model, iter = self.get_selection().get_selected()
-        filepath = model.get_value(iter, DIR_PATH)
+        filepath = model.get_value(iter, self.DIR_PATH)
 
         if filepath != self.dir:
-            model.set_value(iter, DIR_EDITABLE, True)
+            model.set_value(iter, self.DIR_EDITABLE, True)
 
             column = self.get_column(0)
             path = self.model.get_path(iter)
-            self.set_cursor(path, focus_column = column, start_editing = True)
+            self.set_cursor(path, focus_column=column, start_editing=True)
         else:
             ErrorDialog(_("Can't rename the root folder")).launch()
 
@@ -129,7 +129,7 @@ class DirView(gtk.TreeView):
         model, iter = self.get_selection().get_selected()
         if not iter:
             return
-        filepath = model.get_value(iter, DIR_PATH)
+        filepath = model.get_value(iter, self.DIR_PATH)
 
         if filepath != self.dir:
             if os.path.isdir(filepath):
@@ -144,23 +144,22 @@ class DirView(gtk.TreeView):
 
     def on_cellrenderer_edited(self, cellrenderertext, path, new_text):
         iter = self.model.get_iter_from_string(path)
-        filepath = self.model.get_value(iter, DIR_PATH)
-        old_text = self.model.get_value(iter, DIR_TITLE)
+        filepath = self.model.get_value(iter, self.DIR_PATH)
+        old_text = self.model.get_value(iter, self.DIR_TITLE)
 
         if old_text == new_text or new_text not in os.listdir(os.path.dirname(filepath)):
             newpath = os.path.join(os.path.dirname(filepath), new_text)
             os.rename(filepath, newpath)
-            self.model.set(iter,
-                           DIR_TITLE, new_text,
-                           DIR_PATH, newpath,
-                           DIR_EDITABLE, False)
+            self.model.set_value(iter, self.DIR_TITLE, new_text)
+            self.model.set_value(iter, self.DIR_PATH, newpath)
+            self.model.set_value(iter, self.DIR_EDITABLE, False)
         else:
             ErrorDialog(_("Can't rename!\n\nThere are files in it!")).launch()
 
     def on_drag_data_get(self, treeview, context, selection, target_id, etime):
         treeselection = self.get_selection()
         model, iter = treeselection.get_selected()
-        data = model.get_value(iter, DIR_PATH)
+        data = model.get_value(iter, self.DIR_PATH)
 
         if data != self.dir:
             selection.set(selection.target, 8, data)
@@ -179,7 +178,7 @@ class DirView(gtk.TreeView):
                 except:
                     iter = self.model.append(None)
 
-            target = self.model.get_value(iter, DIR_PATH)
+            target = self.model.get_value(iter, self.DIR_PATH)
 
             if context.get_source_widget() is self:
                 file_action = 'move'
@@ -226,29 +225,24 @@ class DirView(gtk.TreeView):
     def update_model(self):
         self.model.clear()
 
-        iter = self.__setup_root_model()
+        iter = self._setup_root_model()
         self.do_update_model(self.dir, iter)
 
         self.expand_all()
 
-    def __create_model(self):
-        model = gtk.TreeStore(
-                        gtk.gdk.Pixbuf,
-                        gobject.TYPE_STRING,
-                        gobject.TYPE_STRING,
-                        gobject.TYPE_BOOLEAN)
+    def _create_model(self):
+        model = Gtk.TreeStore(GdkPixbuf.Pixbuf,
+                              GObject.TYPE_STRING,
+                              GObject.TYPE_STRING,
+                              GObject.TYPE_BOOLEAN)
 
         return model
 
-    def __setup_root_model(self):
-        iter = self.model.append(None)
+    def _setup_root_model(self):
         pixbuf = icon.guess_from_path(self.dir, 24)
 
-        self.model.set(iter,
-                DIR_ICON, pixbuf,
-                DIR_TITLE, os.path.basename(self.dir),
-                DIR_PATH, self.dir,
-                DIR_EDITABLE, False)
+        iter = self.model.append(None, (pixbuf, os.path.basename(self.dir),
+                                 self.dir, False))
 
         return iter
 
@@ -257,71 +251,66 @@ class DirView(gtk.TreeView):
             fullname = os.path.join(dir, item)
             pixbuf = icon.guess_from_path(fullname, 24)
 
-            child_iter = self.model.append(iter)
-            self.model.set(child_iter,
-                              DIR_ICON, pixbuf,
-                              DIR_TITLE, os.path.basename(fullname),
-                              DIR_PATH, fullname, 
-                              DIR_EDITABLE, False)
+            child_iter = self.model.append(iter,
+                                           (pixbuf, os.path.basename(fullname),
+                                            fullname, False))
 
             if os.path.isdir(fullname):
                 self.do_update_model(fullname, child_iter)
 
-    def __add_columns(self):
+    def _add_columns(self):
         try:
             self.type
         except:
-            column = gtk.TreeViewColumn()
+            column = Gtk.TreeViewColumn()
         else:
-            column = gtk.TreeViewColumn(self.type)
+            column = Gtk.TreeViewColumn(self.type)
 
         column.set_spacing(5)
 
-        renderer = gtk.CellRendererPixbuf()
+        renderer = Gtk.CellRendererPixbuf()
         column.pack_start(renderer, False)
-        column.set_attributes(renderer, pixbuf = DIR_ICON)
+        column.add_attribute(renderer, 'pixbuf', self.DIR_ICON)
 
-        renderer = gtk.CellRendererText()
+        renderer = Gtk.CellRendererText()
         renderer.connect('edited', self.on_cellrenderer_edited)
         column.pack_start(renderer, True)
-        column.set_attributes(renderer, text = DIR_TITLE, editable = DIR_EDITABLE)
+        column.add_attribute(renderer, 'text', self.DIR_TITLE)
+        column.add_attribute(renderer, 'editable', self.DIR_EDITABLE)
 
         self.append_column(column)
-        
-(
-    FLAT_ICON,
-    FLAT_TITLE,
-    FLAT_PATH,
-) = range(3)
 
-class FlatView(gtk.TreeView):
+
+class FlatView(Gtk.TreeView):
     TARGETS = [
         ('text/plain', 0, 1),
         ('TEXT', 0, 2),
         ('STRING', 0, 3),
         ]
 
-    def __init__(self, dir, exclude_dir = None):
-        gtk.TreeView.__init__(self)
+    (FLAT_ICON,
+     FLAT_TITLE,
+     FLAT_PATH) = range(3)
+
+    def __init__(self, dir, exclude_dir=None):
+        GObject.GObject.__init__(self)
+
         self.set_rules_hint(True)
         self.dir = dir
         self.exclude_dir = exclude_dir
 
-        self.model = gtk.ListStore(
-                        gtk.gdk.Pixbuf,
-                        gobject.TYPE_STRING,
-                        gobject.TYPE_STRING)
+        self.model = Gtk.ListStore(GdkPixbuf.Pixbuf,
+                                   GObject.TYPE_STRING,
+                                   GObject.TYPE_STRING)
 
         self.set_model(self.model)
         self.update_model()
-        self.__add_columns()
+        self._add_columns()
 
-        self.enable_model_drag_source( gtk.gdk.BUTTON1_MASK,
-                        self.TARGETS,
-                        gtk.gdk.ACTION_DEFAULT|
-                        gtk.gdk.ACTION_MOVE)
-        self.enable_model_drag_dest(self.TARGETS,
-                        gtk.gdk.ACTION_DEFAULT)
+#        self.enable_model_drag_source(Gdk.EventMask.BUTTON1_MOTION_MASK,
+#                                      self.TARGETS,
+#                                      Gdk.DragAction.DEFAULT|Gdk.DragAction.MOVE)
+#        self.enable_model_drag_dest(self.TARGETS, Gdk.DragAction.DEFAULT)
 
         self.connect("drag_data_get", self.on_drag_data_get_data)
         self.connect("drag_data_received", self.on_drag_data_received_data)
@@ -329,7 +318,7 @@ class FlatView(gtk.TreeView):
     def on_drag_data_get_data(self, treeview, context, selection, target_id, etime):
         treeselection = self.get_selection()
         model, iter = treeselection.get_selected()
-        data = model.get_value(iter, FLAT_PATH)
+        data = model.get_value(iter, self.FLAT_PATH)
 
         selection.set(selection.target, 8, data)
 
@@ -391,31 +380,28 @@ class FlatView(gtk.TreeView):
         for item in os.listdir(dir):
             fullname = os.path.join(dir, item)
             title = os.path.basename(fullname)
-            if title in self.exist_lsit: continue
+            if title in self.exist_lsit:
+                continue
             pixbuf = icon.guess_from_path(fullname, 24)
 
-            iter = self.model.append(None)
-            self.model.set(iter,
-                           FLAT_ICON, pixbuf,
-                           FLAT_TITLE, title,
-                           FLAT_PATH, fullname) 
+            self.model.append((pixbuf, title, fullname))
 
-    def __add_columns(self):
+    def _add_columns(self):
         try:
             self.type
         except:
-            column = gtk.TreeViewColumn()
+            column = Gtk.TreeViewColumn()
         else:
-            column = gtk.TreeViewColumn(self.type)
+            column = Gtk.TreeViewColumn(self.type)
 
         column.set_spacing(5)
 
-        renderer = gtk.CellRendererPixbuf()
+        renderer = Gtk.CellRendererPixbuf()
         column.pack_start(renderer, False)
-        column.set_attributes(renderer, pixbuf = FLAT_ICON)
+        column.add_attribute(renderer, 'pixbuf', self.FLAT_ICON)
 
-        renderer = gtk.CellRendererText()
+        renderer = Gtk.CellRendererText()
         column.pack_start(renderer, True)
-        column.set_attributes(renderer, text = FLAT_TITLE)
+        column.add_attribute(renderer, 'text', self.FLAT_TITLE)
 
         self.append_column(column)
