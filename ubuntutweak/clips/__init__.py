@@ -64,7 +64,7 @@ class ClipPage(Gtk.VBox, GuiBuilder):
     }
 
     rencently_used_settings = GSetting('com.ubuntu-tweak.tweak.rencently-used')
-    max_recently_used_size = 0
+    max_recently_used_size = 200
 
     def __init__(self):
         gobject.GObject.__init__(self)
@@ -126,7 +126,8 @@ class ClipPage(Gtk.VBox, GuiBuilder):
 
                 self.rencently_used_vbox.pack_start(button, False, False, 0)
 
-        self.max_recently_used_size = max(size_list) + 58
+        if size_list:
+            self.max_recently_used_size = max(size_list) + 58
 
     def _on_module_button_clicked(self, widget, name):
         self.emit('load_module', name)
