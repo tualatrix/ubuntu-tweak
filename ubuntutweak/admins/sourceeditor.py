@@ -74,7 +74,7 @@ class SourceView(Gtk.TextView):
         for i, line in enumerate(content.split('\n')):
             self.parse_and_insert(buffer, iter, line, i != content.count('\n'))
 
-    def parse_and_insert(self, buffer, iter, line, break_line = False):
+    def parse_and_insert(self, buffer, iter, line, break_line=False):
         try:
             if line.lstrip().startswith('#'):
                 buffer.insert_with_tags_by_name(iter, line, 'full_comment')
@@ -118,12 +118,12 @@ class SourceView(Gtk.TextView):
     def create_tags(self):
         buffer = self.get_buffer()
 
-        buffer.create_tag('full_comment', foreground = "blue")
-        buffer.create_tag('type', weight = Pango.Weight.BOLD)
-        buffer.create_tag('uri', underline = Pango.Underline.SINGLE, foreground = 'blue')
-        buffer.create_tag('distro', weight = Pango.Weight.BOLD)
-        buffer.create_tag('component', foreground = "red")
-        buffer.create_tag('addon_comment', foreground = "blue")
+        buffer.create_tag('full_comment', foreground="blue")
+        buffer.create_tag('type', weight=Pango.Weight.BOLD)
+        buffer.create_tag('uri', underline=Pango.Underline.SINGLE, foreground='blue')
+        buffer.create_tag('distro', weight=Pango.Weight.BOLD)
+        buffer.create_tag('component', foreground="red")
+        buffer.create_tag('addon_comment', foreground="blue")
 
     def insert_blank(self, buffer, iter):
         buffer.insert(iter, ' ')
