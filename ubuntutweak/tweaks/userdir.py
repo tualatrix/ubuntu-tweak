@@ -245,6 +245,7 @@ class UserDir(TweakModule):
         TweakModule.__init__(self)
 
         sw = Gtk.ScrolledWindow()
+        sw = Gtk.ScrolledWindow(shadow_type=Gtk.ShadowType.IN)
         sw.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         self.add_start(sw, True, True, 0)
 

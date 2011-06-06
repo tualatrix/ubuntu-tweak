@@ -189,7 +189,6 @@ class TweakModule(Gtk.VBox):
 
     def __init__(self, path=None, domain='ubuntu-tweak'):
         gobject.GObject.__init__(self)
-        self.set_border_width(6)
 
         self.scrolled_win = Gtk.ScrolledWindow()
         self.scrolled_win.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
