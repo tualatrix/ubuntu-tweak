@@ -2,57 +2,70 @@
 <interface>
   <requires lib="gtk+" version="2.24"/>
   <!-- interface-naming-policy project-wide -->
-  <object class="GtkListStore" id="janitor_model">
+  <object class="GtkTreeStore" id="janitor_model">
+    <columns>
+      <!-- column-name check -->
+      <column type="gboolean"/>
+      <!-- column-name icon -->
+      <column type="GdkPixbuf"/>
+      <!-- column-name name -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkTreeStore" id="result_store">
     <columns>
       <!-- column-name COLUMN_CHECK -->
       <column type="gboolean"/>
-      <!-- column-name COLUMN_CLASS -->
+      <!-- column-name COLUMN_ICON -->
+      <column type="GdkPixbuf"/>
+      <!-- column-name COLUMN_NAME -->
       <column type="gchararray"/>
-      <!-- column-name COLUMN_SNAP -->
-      <column type="gboolean"/>
-      <!-- column-name COLUMN_PULSE -->
-      <column type="guint"/>
     </columns>
   </object>
   <object class="GtkVBox" id="vbox1">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <child>
-      <object class="GtkHPaned" id="hpaned1">
+      <object class="GtkHBox" id="hbox1">
         <property name="visible">True</property>
-        <property name="can_focus">True</property>
+        <property name="can_focus">False</property>
+        <property name="spacing">6</property>
         <child>
-          <object class="GtkScrolledWindow" id="scrolledwindow1">
+          <object class="GtkScrolledWindow" id="scrolledwindow3">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="hscrollbar_policy">never</property>
             <property name="vscrollbar_policy">automatic</property>
+            <property name="shadow_type">in</property>
             <child>
-              <object class="GtkTreeView" id="treeview1">
+              <object class="GtkTreeView" id="janitor_treeview">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="model">janitor_model</property>
                 <property name="headers_visible">False</property>
+                <property name="headers_clickable">False</property>
+                <property name="search_column">0</property>
+                <property name="show_expanders">False</property>
+                <property name="level_indentation">20</property>
                 <child>
-                  <object class="GtkTreeViewColumn" id="treeviewcolumn1">
+                  <object class="GtkTreeViewColumn" id="janitor_column">
                     <property name="title" translatable="yes">column</property>
                     <child>
-                      <object class="GtkCellRendererToggle" id="cellrenderertoggle1"/>
+                      <object class="GtkCellRendererToggle" id="check_renderer"/>
                       <attributes>
                         <attribute name="active">0</attribute>
                       </attributes>
                     </child>
                     <child>
-                      <object class="GtkCellRendererText" id="cellrenderertext1"/>
+                      <object class="GtkCellRendererPixbuf" id="icon_renderer"/>
                       <attributes>
-                        <attribute name="text">1</attribute>
+                        <attribute name="pixbuf">1</attribute>
                       </attributes>
                     </child>
                     <child>
-                      <object class="GtkCellRendererSpinner" id="cellrendererspinner1"/>
+                      <object class="GtkCellRendererText" id="cellrenderertext1"/>
                       <attributes>
-                        <attribute name="active">2</attribute>
-                        <attribute name="pulse">3</attribute>
+                        <attribute name="text">2</attribute>
                       </attributes>
                     </child>
                   </object>
@@ -61,39 +74,64 @@
             </child>
           </object>
           <packing>
-            <property name="resize">False</property>
-            <property name="shrink">True</property>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
           </packing>
         </child>
         <child>
-          <object class="GtkVBox" id="vbox2">
+          <placeholder/>
+        </child>
+        <child>
+          <object class="GtkScrolledWindow" id="scrolledwindow1">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can_focus">True</property>
+            <property name="hscrollbar_policy">never</property>
+            <property name="vscrollbar_policy">automatic</property>
             <child>
-              <object class="GtkButton" id="button1">
-                <property name="label" translatable="yes">button</property>
+              <object class="GtkViewport" id="viewport1">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
-                <signal name="clicked" handler="on_button1_clicked" swapped="no"/>
+                <property name="can_focus">False</property>
+                <child>
+                  <object class="GtkVBox" id="vbox2">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkScrolledWindow" id="scrolledwindow2">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="hscrollbar_policy">automatic</property>
+                        <property name="vscrollbar_policy">automatic</property>
+                        <child>
+                          <object class="GtkTreeView" id="treeview2">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="model">result_store</property>
+                            <property name="search_column">0</property>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                  </object>
+                </child>
               </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
             </child>
           </object>
           <packing>
-            <property name="resize">True</property>
-            <property name="shrink">True</property>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
           </packing>
         </child>
       </object>
