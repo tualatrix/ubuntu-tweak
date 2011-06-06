@@ -142,6 +142,8 @@ class Scripts(TweakModule, AbstractScripts):
                   "You can drag and drop scripts here from File Manager.\n"
                   "'Scripts' will then be added to the context menu.")
     __icon__ = 'text-x-script'
+    #TODO enable when Gtk+3.0
+    __utactive__ = False
     __category__ = 'personal'
     __desktop__ = ['gnome', 'une']
 

@@ -123,6 +123,8 @@ class Templates(TweakModule):
                  'You can add files as templates by dragging them into this window.\n'
                  'You can then create new documents based on these templates from the Nautilus right-click menu.')
     __icon__ = 'x-office-document'
+    #TODO enable when Gtk+3.0
+    __utactive__ = False
     __category__ = 'personal'
 
     def __init__(self):
