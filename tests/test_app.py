@@ -10,7 +10,7 @@ class TestApp(unittest.TestCase):
     def setUp(self):
         self.window = UbuntuTweakWindow()
 
-    def test_package(self):
+    def test_app(self):
         # tweaks
         self.window.select_target_feature('tweaks')
         self.assertEqual(self.window.loaded_modules, {})
@@ -18,12 +18,13 @@ class TestApp(unittest.TestCase):
         self.assertEqual(self.window.feature_dict, {'overview': 0,
                                                     'tweaks': 1,
                                                     'admins': 2,
-                                                    'wait': 3})
+                                                    'janitor': 3,
+                                                    'wait': 4})
         self.assertEqual(self.window.navigation_dict, {'tweaks': (None, None)})
 
         # tweaks->Nautilus
         self.window.load_module('Nautilus')
-        self.assertEqual(self.window.loaded_modules, {'Nautilus': 4})
+        self.assertEqual(self.window.loaded_modules, {'Nautilus': 5})
         self.assertEqual(self.window.current_feature, 'tweaks')
         self.assertEqual(self.window.navigation_dict, {'tweaks': ('Nautilus', None)})
         # Nautilus->tweaks
@@ -55,6 +56,9 @@ class TestApp(unittest.TestCase):
         self.assertEqual(self.window.current_feature, 'tweaks')
         self.assertEqual(self.window.navigation_dict, {'tweaks': ('Compiz', None),
                                                        'admins': (None, 'DesktopRecovery')})
+
+    def tearDown(self):
+        del self.window
 
 if __name__ == '__main__':
     unittest.main()

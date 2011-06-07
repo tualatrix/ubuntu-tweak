@@ -22,8 +22,6 @@ class GuiBuilder(object):
             if issubclass(type(o), Gtk.Buildable):
                 name = Gtk.Buildable.get_name(o)
                 setattr(self, name, o)
-            else:
-                log.warn("WARNING: can not set name for non Buildable object: %s" % o)
 
     def get_object(self, name):
         return self.builder.get_object(name)

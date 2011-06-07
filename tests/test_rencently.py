@@ -6,6 +6,9 @@ from ubuntutweak.settings.gsettings import GSetting
 class TestRencently(unittest.TestCase):
     def setUp(self):
         self.window = UbuntuTweakWindow()
+        self.window.loaded_modules = {}
+        self.window.modules_index = {}
+        self.window.navigation_dict = {'tweaks': [None, None]}
         self.setting = GSetting('com.ubuntu-tweak.tweak.rencently-used')
 
     def test_rencetly(self):
@@ -20,6 +23,7 @@ class TestRencently(unittest.TestCase):
 
     def tearDown(self):
         self.setting.set_value([])
+        del self.window
 
 if __name__ == '__main__':
     unittest.main()
