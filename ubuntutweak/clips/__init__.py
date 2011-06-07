@@ -63,7 +63,6 @@ class ClipPage(Gtk.VBox, GuiBuilder):
                             (gobject.TYPE_STRING,))
     }
 
-    rencently_used_settings = GSetting('com.ubuntu-tweak.tweak.rencently-used')
     max_recently_used_size = 200
 
     def __init__(self):
@@ -74,6 +73,7 @@ class ClipPage(Gtk.VBox, GuiBuilder):
         from hardwareinfo import HardwareInfo
         from updateinfo import UpdateInfo
         from cleanerinfo import CleanerInfo
+        self.rencently_used_settings = GSetting('com.ubuntu-tweak.tweak.rencently-used')
 
         for ClipClass in (HardwareInfo, UpdateInfo, CleanerInfo):
             clip = ClipClass()
@@ -82,10 +82,10 @@ class ClipPage(Gtk.VBox, GuiBuilder):
             self.clipvbox.pack_start(clip, False, False, 0)
 
         self.setup_rencently_used()
-        self.rencently_used_settings.connect_notify(self.setup_rencently_used)
 
         self.pack_start(self.get_object('hbox1'), True, True, 0)
         self.connect('size-allocate', self.on_size_allocation)
+        self.rencently_used_settings.connect_notify(self.setup_rencently_used)
 
         self.show_all()
 
