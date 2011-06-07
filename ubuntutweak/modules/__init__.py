@@ -210,8 +210,6 @@ class TweakModule(Gtk.VBox):
                 if issubclass(type(o), Gtk.Buildable):
                     name = Gtk.Buildable.get_name(o)
                     setattr(self, name, o)
-                else:
-                    log.error("WARNING: can not get name for '%s'" % o)
 
     def add_start(self, child, expand=True, fill=True, padding=0):
         self.inner_vbox.pack_start(child, expand, fill, padding)
