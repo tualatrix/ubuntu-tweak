@@ -33,7 +33,7 @@ from ubuntutweak.clips import ClipPage
 from ubuntutweak.apps import AppsPage
 from ubuntutweak.janitor import JanitorPage
 from ubuntutweak.policykit import proxy
-from ubuntutweak.settings.gsettings import GSetting
+from ubuntutweak.settings import GSetting
 
 log = logging.getLogger('app')
 
@@ -249,7 +249,6 @@ class UbuntuTweakWindow(GuiBuilder):
     loaded_modules = {}
     # reversed dict: 2: 'CompizClass'
     modules_index = {}
-    rencently_used_settings = GSetting('com.ubuntu-tweak.tweak.rencently-used')
 
     def __init__(self, feature='', module=''):
         GuiBuilder.__init__(self, file_name='mainwindow.ui')
@@ -262,6 +261,7 @@ class UbuntuTweakWindow(GuiBuilder):
 #        apps_page = AppsPage()
         janitor_page = JanitorPage()
 
+        self.rencently_used_settings = GSetting('com.ubuntu-tweak.tweak.rencently-used')
         self.feature_dict['overview'] = self.notebook.append_page(clip_page, Gtk.Label())
 #        self.feature_dict['apps'] = self.notebook.append_page(apps_page, Gtk.Label())
         self.feature_dict['tweaks'] = self.notebook.append_page(tweaks_page, Gtk.Label())
