@@ -149,7 +149,7 @@ class FeaturePage(Gtk.ScrolledWindow):
     __gsignals__ = {
         'module_selected': (gobject.SIGNAL_RUN_FIRST,
                             gobject.TYPE_NONE,
-                            (gobject.TYPE_PYOBJECT, gobject.TYPE_STRING))
+                            (gobject.TYPE_STRING,))
         }
 
     _categories = None
@@ -188,7 +188,7 @@ class FeaturePage(Gtk.ScrolledWindow):
     def on_button_clicked(self, widget):
         log.info('Button clicked')
         module = widget.get_module()
-        self.emit('module_selected', self._loader, module.get_name())
+        self.emit('module_selected', module.get_name())
 
     def rebuild_boxes(self, widget, request):
         ncols = request.width / 164 # 32 + 120 + 6 + 4
@@ -325,7 +325,7 @@ class UbuntuTweakWindow(GuiBuilder):
         self.aboutdialog.run()
         self.aboutdialog.hide()
 
-    def on_module_selected(self, widget, loader, name):
+    def on_module_selected(self, widget, name):
         log.debug('Select module: %s' % name)
 
         if name in self.loaded_modules:
@@ -334,7 +334,7 @@ class UbuntuTweakWindow(GuiBuilder):
             self.set_current_module(module, index)
         else:
             self.notebook.set_current_page(self.feature_dict['wait'])
-            self._create_module(loader, name)
+            self.load_module(name)
 
     def set_current_module(self, module=None, index=None):
         if index:
@@ -373,15 +373,18 @@ class UbuntuTweakWindow(GuiBuilder):
         if module:
             self.select_target_feature(feature)
 
-            try:
-                page = module()
-            except Exception, e:
-                log.error(e)
-                module = create_broken_module_class(name)
-                page = module()
+            if name in self.loaded_modules:
+                module, index = self.get_module_and_index(name)
+            else:
+                try:
+                    page = module()
+                except Exception, e:
+                    log.error(e)
+                    module = create_broken_module_class(name)
+                    page = module()
 
-            page.show_all()
-            index = self.notebook.append_page(page, Gtk.Label(label=name))
+                page.show_all()
+                index = self.notebook.append_page(page, Gtk.Label(label=name))
 
             self._save_loaded_info(name, module, index)
             self.navigation_dict[feature] = name, None
@@ -391,28 +394,6 @@ class UbuntuTweakWindow(GuiBuilder):
             dialog = ErrorDialog(title=_('No module named "%s"') % name,
                                  message=_('Please ensure you have entered the correct module name.'))
             dialog.launch()
-
-    def _create_module(self, loader, name):
-        log.debug('Create module: %s' % name)
-        try:
-            module = loader.get_module(name)
-            page = module()
-        except KeyError, e:
-            dialog = ErrorDialog(title=_('No module named "%s"') % name,
-                                 message=_('Please ensure you have entered the correct module name.'))
-            dialog.launch()
-            return False
-        except Exception, e:
-            log.error(e)
-            module = create_broken_module_class(name)
-            page = module()
-
-        #TODO
-        page.show_all()
-        index = self.notebook.append_page(page, Gtk.Label(label=name))
-        self.set_current_module(module, index)
-        self._save_loaded_info(name, module, index)
-        self.update_jump_buttons()
 
     def update_jump_buttons(self, disable=False):
         if not disable:
