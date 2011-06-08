@@ -238,6 +238,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
             log.info('Scan cruft for all plugins')
             #Scan cruft for children
             child_iter = self.janitor_model.iter_children(iter)
+            self.result_model.clear()
             while child_iter:
                 self.do_plugin_scan(child_iter, checked)
                 child_iter = self.janitor_model.iter_next(child_iter)
