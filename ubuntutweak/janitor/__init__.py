@@ -103,12 +103,30 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         self.janitor_column.set_cell_data_func(self.get_object('janitor_icon_renderer'),
                                                self.logo_column_view_func)
 
-        self.result_column.set_cell_data_func(self.get_object('result_icon_renderer'),
-                                              self.logo_column_view_func)
 
+        #add columns
+        result_column = Gtk.TreeViewColumn()
 
-#        self.get_object('result_renderer').set_property('ellipsize',
-#                                                        Pango.EllipsizeMode.END)
+        renderer = Gtk.CellRendererToggle()
+        renderer.connect('toggled', self.on_result_check_renderer_toggled)
+        result_column.pack_start(renderer, False)
+        result_column.add_attribute(renderer, 'active', self.RESULT_CHECK)
+
+        renderer = Gtk.CellRendererPixbuf()
+        result_column.pack_start(renderer, False)
+        result_column.add_attribute(renderer, 'pixbuf', self.RESULT_ICON)
+        result_column.set_cell_data_func(renderer, self.logo_column_view_func)
+
+        renderer = Gtk.CellRendererText()
+        renderer.set_property('ellipsize', Pango.EllipsizeMode.END)
+        result_column.pack_start(renderer, True)
+        result_column.add_attribute(renderer, 'text', self.RESULT_NAME)
+
+        renderer = Gtk.CellRendererText()
+        result_column.pack_start(renderer, False)
+        result_column.add_attribute(renderer, 'text', self.RESULT_DESC)
+
+        self.result_view.append_column(result_column)
 
         auto_scan = self.autoscan_setting.get_value()
         log.info("Auto scan status: %s", auto_scan)

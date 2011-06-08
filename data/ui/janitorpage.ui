@@ -120,38 +120,6 @@
                 <property name="headers_clickable">False</property>
                 <property name="rules_hint">True</property>
                 <property name="search_column">0</property>
-                <child>
-                  <object class="GtkTreeViewColumn" id="result_column">
-                    <property name="title" translatable="yes">column</property>
-                    <property name="expand">True</property>
-                    <child>
-                      <object class="GtkCellRendererToggle" id="result_check_renderer">
-                        <signal name="toggled" handler="on_result_check_renderer_toggled" swapped="no"/>
-                      </object>
-                      <attributes>
-                        <attribute name="active">0</attribute>
-                      </attributes>
-                    </child>
-                    <child>
-                      <object class="GtkCellRendererPixbuf" id="result_icon_renderer"/>
-                      <attributes>
-                        <attribute name="pixbuf">1</attribute>
-                      </attributes>
-                    </child>
-                    <child>
-                      <object class="GtkCellRendererText" id="result_renderer"/>
-                      <attributes>
-                        <attribute name="text">2</attribute>
-                      </attributes>
-                    </child>
-                    <child>
-                      <object class="GtkCellRendererText" id="cellrenderertext2"/>
-                      <attributes>
-                        <attribute name="text">3</attribute>
-                      </attributes>
-                    </child>
-                  </object>
-                </child>
               </object>
             </child>
           </object>
