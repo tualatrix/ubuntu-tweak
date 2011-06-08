@@ -10,9 +10,15 @@
       <column type="GdkPixbuf"/>
       <!-- column-name name -->
       <column type="gchararray"/>
+      <!-- column-name plugin -->
+      <column type="PyObject"/>
+      <!-- column-name spinner_active -->
+      <column type="gboolean"/>
+      <!-- column-name spinner_pulse -->
+      <column type="gint"/>
     </columns>
   </object>
-  <object class="GtkTreeStore" id="result_store">
+  <object class="GtkTreeStore" id="result_model">
     <columns>
       <!-- column-name COLUMN_CHECK -->
       <column type="gboolean"/>
@@ -20,9 +26,13 @@
       <column type="GdkPixbuf"/>
       <!-- column-name COLUMN_NAME -->
       <column type="gchararray"/>
+      <!-- column-name COLUMN_DESC -->
+      <column type="gchararray"/>
     </columns>
   </object>
   <object class="GtkVBox" id="vbox1">
+    <property name="width_request">780</property>
+    <property name="height_request">600</property>
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="spacing">6</property>
@@ -46,6 +56,8 @@
                 <property name="headers_visible">False</property>
                 <property name="headers_clickable">False</property>
                 <property name="search_column">0</property>
+                <property name="show_expanders">False</property>
+                <property name="level_indentation">20</property>
                 <child>
                   <object class="GtkTreeViewColumn" id="check_column">
                     <property name="title" translatable="yes">column</property>
@@ -63,7 +75,7 @@
                   <object class="GtkTreeViewColumn" id="janitor_column">
                     <property name="title" translatable="yes">column</property>
                     <child>
-                      <object class="GtkCellRendererPixbuf" id="icon_renderer"/>
+                      <object class="GtkCellRendererPixbuf" id="janitor_icon_renderer"/>
                       <attributes>
                         <attribute name="pixbuf">1</attribute>
                       </attributes>
@@ -72,6 +84,13 @@
                       <object class="GtkCellRendererText" id="cellrenderertext1"/>
                       <attributes>
                         <attribute name="text">2</attribute>
+                      </attributes>
+                    </child>
+                    <child>
+                      <object class="GtkCellRendererSpinner" id="cellrendererspinner1"/>
+                      <attributes>
+                        <attribute name="active">4</attribute>
+                        <attribute name="pulse">5</attribute>
                       </attributes>
                     </child>
                   </object>
@@ -86,48 +105,50 @@
           </packing>
         </child>
         <child>
-          <placeholder/>
-        </child>
-        <child>
           <object class="GtkScrolledWindow" id="scrolledwindow1">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="hscrollbar_policy">never</property>
+            <property name="hscrollbar_policy">automatic</property>
             <property name="vscrollbar_policy">automatic</property>
+            <property name="shadow_type">in</property>
             <child>
-              <object class="GtkViewport" id="viewport1">
+              <object class="GtkTreeView" id="result_view">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can_focus">True</property>
+                <property name="model">result_model</property>
+                <property name="headers_visible">False</property>
+                <property name="headers_clickable">False</property>
+                <property name="rules_hint">True</property>
+                <property name="search_column">0</property>
                 <child>
-                  <object class="GtkVBox" id="vbox2">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                  <object class="GtkTreeViewColumn" id="result_column">
+                    <property name="title" translatable="yes">column</property>
+                    <property name="expand">True</property>
                     <child>
-                      <object class="GtkScrolledWindow" id="scrolledwindow2">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="hscrollbar_policy">automatic</property>
-                        <property name="vscrollbar_policy">automatic</property>
-                        <child>
-                          <object class="GtkTreeView" id="treeview2">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="model">result_store</property>
-                            <property name="search_column">0</property>
-                          </object>
-                        </child>
+                      <object class="GtkCellRendererToggle" id="result_check_renderer">
+                        <signal name="toggled" handler="on_result_check_renderer_toggled" swapped="no"/>
                       </object>
-                      <packing>
-                        <property name="expand">True</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
+                      <attributes>
+                        <attribute name="active">0</attribute>
+                      </attributes>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="GtkCellRendererPixbuf" id="result_icon_renderer"/>
+                      <attributes>
+                        <attribute name="pixbuf">1</attribute>
+                      </attributes>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="GtkCellRendererText" id="result_renderer"/>
+                      <attributes>
+                        <attribute name="text">2</attribute>
+                      </attributes>
+                    </child>
+                    <child>
+                      <object class="GtkCellRendererText" id="cellrenderertext2"/>
+                      <attributes>
+                        <attribute name="text">3</attribute>
+                      </attributes>
                     </child>
                   </object>
                 </child>
@@ -137,7 +158,7 @@
           <packing>
             <property name="expand">True</property>
             <property name="fill">True</property>
-            <property name="position">2</property>
+            <property name="position">1</property>
           </packing>
         </child>
       </object>
@@ -190,6 +211,7 @@
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="use_action_appearance">False</property>
+            <signal name="clicked" handler="on_clean_button_clicked" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>

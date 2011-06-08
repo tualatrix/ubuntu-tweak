@@ -1,10 +1,7 @@
-import os
-import glob
-
 from ubuntutweak.janitor import JanitorPlugin, CruftObject
 from ubuntutweak.utils import icon, filesizeformat
 
-class CacheObject(CruftObject):
+class PackageObject(CruftObject):
     def __init__(self, name, path, size):
         self.name = name
         self.path = path
@@ -17,15 +14,18 @@ class CacheObject(CruftObject):
         return icon.get_from_name('deb')
 
 
-class AptCachePlugin(JanitorPlugin):
-    __title__ = _('Apt Cache')
+class AutoRemovalPlugin(JanitorPlugin):
+    __title__ = _('Unneeded Packages')
     __category__ = 'system'
 
     def get_cruft(self):
-        for deb in glob.glob('/var/cache/apt/archives/*.deb'):
-            yield CacheObject(os.path.basename(deb), deb, os.path.getsize(deb))
+        cache = self.get_cache()
+        if cache:
+            for pkg in cache.keys():
+                p = self.cache[pkg]
+                if p.isAutoRemovable:
+                    yield PackageObject(p.summary, p.name, p.installedPackageSize)
 
     def clean_cruft(self, cruft):
         print 'clean cruft', cruft
         return True
-
