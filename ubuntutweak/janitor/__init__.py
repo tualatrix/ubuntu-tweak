@@ -71,17 +71,19 @@ class JanitorPlugin(object):
 
 
 class JanitorPage(Gtk.VBox, GuiBuilder):
-    (COLUMN_CHECK,
-     COLUMN_PIXBUF,
-     COLUMN_NAME,
-     COLUMN_PLUGIN,
-     COLUMN_SPINNER_ACTIVE,
-     COLUMN_SPINNER_PULSE) = range(6)
+    (JANITOR_CHECK,
+     JANITOR_ICON,
+     JANITOR_NAME,
+     JANITOR_PLUGIN,
+     JANITOR_SPINNER_ACTIVE,
+     JANITOR_SPINNER_PULSE) = range(6)
 
     (RESULT_CHECK,
      RESULT_ICON,
      RESULT_NAME,
      RESULT_DESC) = range(4)
+
+    max_janitor_view_width = 0
 
     def __init__(self):
         gobject.GObject.__init__(self)
@@ -100,11 +102,39 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         return self.autoscan_button.get_active()
 
     def setup_ui_tasks(self, widget):
-        self.janitor_column.set_cell_data_func(self.get_object('janitor_icon_renderer'),
-                                               self.logo_column_view_func)
+        #add janitor columns
+        janitor_column = Gtk.TreeViewColumn()
 
+        renderer = Gtk.CellRendererToggle()
+        renderer.connect('toggled', self.on_janitor_check_button_toggled)
+        janitor_column.pack_start(renderer, False)
+        janitor_column.add_attribute(renderer, 'active', self.JANITOR_CHECK)
 
-        #add columns
+        self.janitor_view.append_column(janitor_column)
+
+        janitor_column = Gtk.TreeViewColumn()
+
+        renderer = Gtk.CellRendererPixbuf()
+        janitor_column.pack_start(renderer, False)
+        janitor_column.add_attribute(renderer, 'pixbuf', self.JANITOR_ICON)
+        janitor_column.set_cell_data_func(renderer,
+                                          self.icon_column_view_func,
+                                          self.JANITOR_ICON)
+
+        renderer = Gtk.CellRendererText()
+        renderer.set_property('ellipsize', Pango.EllipsizeMode.END)
+        janitor_column.pack_start(renderer, True)
+        janitor_column.add_attribute(renderer, 'text', self.JANITOR_NAME)
+
+        renderer = Gtk.CellRendererSpinner()
+        janitor_column.pack_start(renderer, False)
+        janitor_column.add_attribute(renderer, 'active', self.JANITOR_SPINNER_ACTIVE)
+        janitor_column.add_attribute(renderer, 'pulse', self.JANITOR_SPINNER_PULSE)
+
+        self.janitor_view.append_column(janitor_column)
+        #end janitor columns
+
+        #add result columns
         result_column = Gtk.TreeViewColumn()
 
         renderer = Gtk.CellRendererToggle()
@@ -115,7 +145,9 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         renderer = Gtk.CellRendererPixbuf()
         result_column.pack_start(renderer, False)
         result_column.add_attribute(renderer, 'pixbuf', self.RESULT_ICON)
-        result_column.set_cell_data_func(renderer, self.logo_column_view_func)
+        result_column.set_cell_data_func(renderer,
+                                         self.icon_column_view_func,
+                                         self.RESULT_ICON)
 
         renderer = Gtk.CellRendererText()
         renderer.set_property('ellipsize', Pango.EllipsizeMode.END)
@@ -127,6 +159,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         result_column.add_attribute(renderer, 'text', self.RESULT_DESC)
 
         self.result_view.append_column(result_column)
+        #end result columns
 
         auto_scan = self.autoscan_setting.get_value()
         log.info("Auto scan status: %s", auto_scan)
@@ -135,23 +168,25 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         self.autoscan_button.set_active(auto_scan)
 
         self.update_model()
-        self.janitor_treeview.expand_all()
+        self.janitor_view.expand_all()
+        if self.max_janitor_view_width:
+            self.janitor_view.set_size_request(self.max_janitor_view_width, -1)
 
-    def on_check_renderer_toggled(self, cell, path):
+    def on_janitor_check_button_toggled(self, cell, path):
         iter = self.janitor_model.get_iter(path)
-        checked = self.janitor_model[iter][self.COLUMN_CHECK]
+        checked = self.janitor_model[iter][self.JANITOR_CHECK]
 
         if self.janitor_model.iter_has_child(iter):
             child_iter = self.janitor_model.iter_children(iter)
             while child_iter:
-                self.janitor_model[child_iter][self.COLUMN_CHECK] = not checked
+                self.janitor_model[child_iter][self.JANITOR_CHECK] = not checked
 
                 child_iter = self.janitor_model.iter_next(child_iter)
 
-        self.janitor_model[iter][self.COLUMN_CHECK] = not checked
+        self.janitor_model[iter][self.JANITOR_CHECK] = not checked
 
         self.check_child_is_all_the_same(self.janitor_model, iter,
-                                         self.COLUMN_CHECK, not checked)
+                                         self.JANITOR_CHECK, not checked)
 
         if self.is_auto_scan():
             self.scan_cruft(iter, not checked)
@@ -194,24 +229,24 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         else:
             log.info('Scan cruft for one plugins')
             #Scan cruft for current iter
-            plugin = self.janitor_model[plugin_iter][self.COLUMN_PLUGIN]
+            plugin = self.janitor_model[plugin_iter][self.JANITOR_PLUGIN]
             if checked:
                 iter = self.result_model.append(None, (None,
                                                        None,
                                                        plugin.get_title(),
                                                        None))
 
-                self.janitor_model[plugin_iter][self.COLUMN_SPINNER_ACTIVE] = True
+                self.janitor_model[plugin_iter][self.JANITOR_SPINNER_ACTIVE] = True
                 for i, cruft in enumerate(plugin.get_cruft()):
                     while Gtk.events_pending():
                         Gtk.main_iteration()
 
-                    self.janitor_model[plugin_iter][self.COLUMN_SPINNER_PULSE] = i
+                    self.janitor_model[plugin_iter][self.JANITOR_SPINNER_PULSE] = i
                     self.result_model.append(iter, (False,
                                                     cruft.get_icon(),
                                                     cruft.get_name(),
                                                     cruft.get_size()))
-                self.janitor_model[plugin_iter][self.COLUMN_SPINNER_ACTIVE] = False
+                self.janitor_model[plugin_iter][self.JANITOR_SPINNER_ACTIVE] = False
 
                 self.result_view.expand_all()
             else:
@@ -226,7 +261,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         if iter:
             child_iter = self.result_model.iter_children(iter)
             while child_iter:
-                self.result_model.get_value(child_iter, self.COLUMN_CHECK)
+                self.result_model.get_value(child_iter, self.JANITOR_CHECK)
 
                 child_iter = self.janitor_model.iter_next(child_iter)
 
@@ -238,13 +273,15 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
             self.autoscan_setting.set_value(False)
             self.scan_button.show()
 
-    def logo_column_view_func(self, cell_layout, renderer, model, iter, func):
-        if model[iter][self.COLUMN_PIXBUF] == None:
+    def icon_column_view_func(self, cell_layout, renderer, model, iter, id):
+        if model[iter][id] == None:
             renderer.set_property("visible", False)
         else:
             renderer.set_property("visible", True)
 
     def update_model(self):
+        size_list = []
+
         iter = self.janitor_model.append(None, (None,
                                                 icon.get_from_name('ubuntu-logo', size=32),
                                                 _('System'),
@@ -253,6 +290,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
                                                 None))
 
         for plugin in self.loader.get_modules_by_category('system'):
+            size_list.append(Gtk.Label(plugin.get_title()).get_layout().get_pixel_size()[0])
             self.janitor_model.append(iter, (False,
                                              None,
                                              plugin.get_title(),
@@ -268,9 +306,12 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
                                                 None))
 
         for plugin in self.loader.get_modules_by_category('personal'):
+            size_list.append(Gtk.Label(plugin.get_title()).get_layout().get_pixel_size()[0])
             self.janitor_model.append(iter, (False,
                                              None,
                                              plugin.get_title(),
                                              plugin(),
                                              None,
                                              None))
+        if size_list:
+            self.max_janitor_view_width = max(size_list) + 60
