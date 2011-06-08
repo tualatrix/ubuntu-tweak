@@ -50,7 +50,7 @@ class JanitorPlugin(object):
         return cls.__category__
 
     def get_cruft(self):
-        raise NotImplemented
+        return ()
 
     def get_cache(self):
         try:
@@ -221,39 +221,45 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
             else:
                 model[iter][column_id] = status
 
-    def scan_cruft(self, plugin_iter, checked):
-        if self.janitor_model.iter_has_child(plugin_iter):
+    def scan_cruft(self, iter, checked):
+        if self.janitor_model.iter_has_child(iter):
             log.info('Scan cruft for all plugins')
             #Scan cruft for children
-            pass
+            child_iter = self.janitor_model.iter_children(iter)
+            while child_iter:
+                self.do_plugin_scan(child_iter, checked)
+                child_iter = self.janitor_model.iter_next(child_iter)
         else:
-            log.info('Scan cruft for one plugins')
-            #Scan cruft for current iter
-            plugin = self.janitor_model[plugin_iter][self.JANITOR_PLUGIN]
-            if checked:
-                iter = self.result_model.append(None, (None,
-                                                       None,
-                                                       plugin.get_title(),
-                                                       None))
+            self.do_plugin_scan(iter, checked)
 
-                self.janitor_model[plugin_iter][self.JANITOR_SPINNER_ACTIVE] = True
-                for i, cruft in enumerate(plugin.get_cruft()):
-                    while Gtk.events_pending():
-                        Gtk.main_iteration()
+    def do_plugin_scan(self, plugin_iter, checked):
+        #Scan cruft for current iter
+        plugin = self.janitor_model[plugin_iter][self.JANITOR_PLUGIN]
+        log.info('Scan cruft for plugin: %s' % plugin.get_name())
+        if checked:
+            iter = self.result_model.append(None, (None,
+                                                   None,
+                                                   plugin.get_title(),
+                                                   None))
 
-                    self.janitor_model[plugin_iter][self.JANITOR_SPINNER_PULSE] = i
-                    self.result_model.append(iter, (False,
-                                                    cruft.get_icon(),
-                                                    cruft.get_name(),
-                                                    cruft.get_size()))
-                self.janitor_model[plugin_iter][self.JANITOR_SPINNER_ACTIVE] = False
+            self.janitor_model[plugin_iter][self.JANITOR_SPINNER_ACTIVE] = True
+            for i, cruft in enumerate(plugin.get_cruft()):
+                while Gtk.events_pending():
+                    Gtk.main_iteration()
 
-                self.result_view.expand_all()
-            else:
-                iter = self.result_model.get_iter_first()
-                for row in self.result_model:
-                    if row[self.RESULT_NAME] == plugin.get_title():
-                        self.result_model.remove(iter)
+                self.janitor_model[plugin_iter][self.JANITOR_SPINNER_PULSE] = i
+                self.result_model.append(iter, (False,
+                                                cruft.get_icon(),
+                                                cruft.get_name(),
+                                                cruft.get_size()))
+            self.janitor_model[plugin_iter][self.JANITOR_SPINNER_ACTIVE] = False
+
+            self.result_view.expand_all()
+        else:
+            iter = self.result_model.get_iter_first()
+            for row in self.result_model:
+                if row[self.RESULT_NAME] == plugin.get_title():
+                    self.result_model.remove(iter)
 
     def on_clean_button_clicked(self, widget):
         iter = self.result_model.get_iter_first()
