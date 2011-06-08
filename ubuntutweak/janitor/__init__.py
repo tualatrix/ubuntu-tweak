@@ -14,7 +14,7 @@ from ubuntutweak.settings import GSetting
 log = logging.getLogger('Janitor')
 
 class CruftObject(object):
-    def __init__(self, name, path=None, size=None):
+    def __init__(self, name, path=None, size=0):
         self.name = name
         self.path = path
         self.size = size
@@ -23,7 +23,10 @@ class CruftObject(object):
         return self.name
 
     def get_size(self):
-        return None
+        return int(self.size)
+
+    def get_size_display(self):
+        return ''
 
     def get_icon(self):
         return None
@@ -63,6 +66,9 @@ class JanitorPlugin(object):
         else:
             return self.cache
 
+    def get_sumarry(self, count, size):
+        return self.get_title()
+
     def update_apt_cache(self, init=False):
         '''if init is true, force to update, or it will update only once'''
         if init or not getattr(self, 'cache'):
@@ -81,7 +87,8 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
     (RESULT_CHECK,
      RESULT_ICON,
      RESULT_NAME,
-     RESULT_DESC) = range(4)
+     RESULT_DESC,
+     RESULT_PLUGIN) = range(5)
 
     max_janitor_view_width = 0
 
@@ -106,10 +113,10 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         #add janitor columns
         janitor_column = Gtk.TreeViewColumn()
 
-        renderer = Gtk.CellRendererToggle()
-        renderer.connect('toggled', self.on_janitor_check_button_toggled)
-        janitor_column.pack_start(renderer, False)
-        janitor_column.add_attribute(renderer, 'active', self.JANITOR_CHECK)
+        self.janitor_check_renderer = Gtk.CellRendererToggle()
+        self.janitor_check_renderer.connect('toggled', self.on_janitor_check_button_toggled)
+        janitor_column.pack_start(self.janitor_check_renderer, False)
+        janitor_column.add_attribute(self.janitor_check_renderer, 'active', self.JANITOR_CHECK)
 
         self.janitor_view.append_column(janitor_column)
 
@@ -180,7 +187,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
 
             plugin_iter = self.result_model.get_iter_first()
             for row in self.result_model:
-                if row[self.RESULT_NAME] == plugin.get_title():
+                if row[self.RESULT_PLUGIN] == plugin:
                     self.result_view.get_selection().select_path(row.path)
                     self.result_view.scroll_to_cell(row.path)
 
@@ -249,30 +256,39 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         #Scan cruft for current iter
         plugin = self.janitor_model[plugin_iter][self.JANITOR_PLUGIN]
         log.info('Scan cruft for plugin: %s' % plugin.get_name())
+
         if checked:
             iter = self.result_model.append(None, (None,
                                                    None,
                                                    plugin.get_title(),
-                                                   None))
+                                                   None,
+                                                   plugin))
 
             self.janitor_model[plugin_iter][self.JANITOR_SPINNER_ACTIVE] = True
+
+            total_size = 0
             for i, cruft in enumerate(plugin.get_cruft()):
                 while Gtk.events_pending():
                     Gtk.main_iteration()
 
                 self.janitor_model[plugin_iter][self.JANITOR_SPINNER_PULSE] = i
+
+                total_size += cruft.get_size()
+
                 self.result_model.append(iter, (False,
                                                 cruft.get_icon(),
                                                 cruft.get_name(),
-                                                cruft.get_size()))
+                                                cruft.get_size_display(),
+                                                plugin))
+            count = self.janitor_model[plugin_iter][self.JANITOR_SPINNER_PULSE] + 1
             self.janitor_model[plugin_iter][self.JANITOR_SPINNER_ACTIVE] = False
-
+            self.result_model[iter][self.RESULT_NAME] = plugin.get_sumarry(count, total_size)
             self.result_view.expand_all()
         else:
             iter = self.result_model.get_iter_first()
             for row in self.result_model:
-                if row[self.RESULT_NAME] == plugin.get_title():
-                    self.result_model.remove(iter)
+                if row[self.RESULT_PLUGIN] == plugin:
+                    self.result_model.remove(row.iter)
 
     def on_clean_button_clicked(self, widget):
         iter = self.result_model.get_iter_first()

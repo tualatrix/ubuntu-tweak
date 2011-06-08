@@ -10,7 +10,7 @@ class CacheObject(CruftObject):
         self.path = path
         self.size = size
 
-    def get_size(self):
+    def get_size_display(self):
         return filesizeformat(self.size)
 
     def get_icon(self):
@@ -29,3 +29,5 @@ class AptCachePlugin(JanitorPlugin):
         print 'clean cruft', cruft
         return True
 
+    def get_sumarry(self, count, size):
+        return _('Apt Cache (%d packages to be cleaned, total size: %s') % (count, filesizeformat(size))

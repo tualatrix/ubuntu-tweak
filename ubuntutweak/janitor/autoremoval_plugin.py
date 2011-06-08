@@ -7,7 +7,7 @@ class PackageObject(CruftObject):
         self.path = path
         self.size = size
 
-    def get_size(self):
+    def get_size_display(self):
         return filesizeformat(self.size)
 
     def get_icon(self):
@@ -24,8 +24,11 @@ class AutoRemovalPlugin(JanitorPlugin):
             for pkg in cache.keys():
                 p = self.cache[pkg]
                 if p.isAutoRemovable:
-                    yield PackageObject(p.summary, p.name, p.installedPackageSize)
+                    yield PackageObject(p.summary, p.name, p.installedSize)
 
     def clean_cruft(self, cruft):
         print 'clean cruft', cruft
         return True
+
+    def get_sumarry(self, count, size):
+        return _('Unneeded Packages (%d packages to be removed, total size: %s') % (count, filesizeformat(size))
