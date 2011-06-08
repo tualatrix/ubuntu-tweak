@@ -96,6 +96,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         self.pack_start(self.vbox1, True, True, 0)
 
         self.connect('realize', self.setup_ui_tasks)
+        self.janitor_view.get_selection().connect('changed', self.on_janitor_selection_changed)
         self.show()
 
     def is_auto_scan(self):
@@ -171,6 +172,17 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         self.janitor_view.expand_all()
         if self.max_janitor_view_width:
             self.janitor_view.set_size_request(self.max_janitor_view_width, -1)
+
+    def on_janitor_selection_changed(self, selection):
+        model, iter = selection.get_selected()
+        if iter and not self.janitor_model.iter_has_child(iter):
+            plugin = model[iter][self.JANITOR_PLUGIN]
+
+            plugin_iter = self.result_model.get_iter_first()
+            for row in self.result_model:
+                if row[self.RESULT_NAME] == plugin.get_title():
+                    self.result_view.get_selection().select_path(row.path)
+                    self.result_view.scroll_to_cell(row.path)
 
     def on_janitor_check_button_toggled(self, cell, path):
         iter = self.janitor_model.get_iter(path)
