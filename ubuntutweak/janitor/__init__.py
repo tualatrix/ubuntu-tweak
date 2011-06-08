@@ -357,7 +357,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         size_list = []
 
         iter = self.janitor_model.append(None, (None,
-                                                icon.get_from_name('ubuntu-logo', size=32),
+                                                icon.get_from_name('ubuntu-logo'),
                                                 _('System'),
                                                 None,
                                                 None,
@@ -373,7 +373,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
                                              None))
 
         iter = self.janitor_model.append(None, (None,
-                                                icon.get_from_name('system-users', size=32),
+                                                icon.get_from_name('system-users'),
                                                 _('Personal'),
                                                 None,
                                                 None,
