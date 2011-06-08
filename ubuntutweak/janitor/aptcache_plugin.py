@@ -21,12 +21,14 @@ class AptCachePlugin(JanitorPlugin):
     __title__ = _('Apt Cache')
     __category__ = 'system'
 
+    def __str__(self):
+        return 'AptCachePlugin'
+
     def get_cruft(self):
         for deb in glob.glob('/var/cache/apt/archives/*.deb'):
             yield CacheObject(os.path.basename(deb), deb, os.path.getsize(deb))
 
     def clean_cruft(self, cruft):
-        print 'clean cruft', cruft
         return True
 
     def get_sumarry(self, count, size):

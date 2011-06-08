@@ -4,7 +4,7 @@ import logging
 import apt
 import apt_pkg
 import gobject
-from gi.repository import Gtk, Pango
+from gi.repository import Gtk, Gdk, Pango
 
 from ubuntutweak.gui import GuiBuilder
 from ubuntutweak.utils import icon
@@ -18,6 +18,9 @@ class CruftObject(object):
         self.name = name
         self.path = path
         self.size = size
+
+    def __str__(self):
+        return self.get_name()
 
     def get_name(self):
         return self.name
@@ -75,6 +78,9 @@ class JanitorPlugin(object):
             apt_pkg.init()
             self.cache = apt.Cache()
 
+    def clean_cruft(self, cruft):
+        return True
+
 
 class JanitorPage(Gtk.VBox, GuiBuilder):
     (JANITOR_CHECK,
@@ -88,7 +94,8 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
      RESULT_ICON,
      RESULT_NAME,
      RESULT_DESC,
-     RESULT_PLUGIN) = range(5)
+     RESULT_PLUGIN,
+     RESULT_CRUFT) = range(6)
 
     max_janitor_view_width = 0
 
@@ -180,6 +187,12 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         if self.max_janitor_view_width:
             self.janitor_view.set_size_request(self.max_janitor_view_width, -1)
 
+    def set_busy(self):
+        self.get_toplevel().window.set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
+
+    def unset_busy(self):
+        self.get_toplevel().window.set_cursor(None)
+
     def on_janitor_selection_changed(self, selection):
         model, iter = selection.get_selected()
         if iter and not self.janitor_model.iter_has_child(iter):
@@ -240,7 +253,17 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
             else:
                 model[iter][column_id] = status
 
+    def on_scan_button_clicked(self, widget):
+        self.result_model.clear()
+
+        for row in self.janitor_model:
+            for child_row in row.iterchildren():
+                checked = child_row[self.JANITOR_CHECK]
+
+                self.scan_cruft(child_row.iter, checked)
+
     def scan_cruft(self, iter, checked):
+        self.set_busy()
         if self.janitor_model.iter_has_child(iter):
             log.info('Scan cruft for all plugins')
             #Scan cruft for children
@@ -251,6 +274,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
                 child_iter = self.janitor_model.iter_next(child_iter)
         else:
             self.do_plugin_scan(iter, checked)
+        self.unset_busy()
 
     def do_plugin_scan(self, plugin_iter, checked):
         #Scan cruft for current iter
@@ -262,7 +286,8 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
                                                    None,
                                                    plugin.get_title(),
                                                    None,
-                                                   plugin))
+                                                   plugin,
+                                                   None))
 
             self.janitor_model[plugin_iter][self.JANITOR_SPINNER_ACTIVE] = True
 
@@ -279,7 +304,8 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
                                                 cruft.get_icon(),
                                                 cruft.get_name(),
                                                 cruft.get_size_display(),
-                                                plugin))
+                                                plugin,
+                                                cruft))
             count = self.janitor_model[plugin_iter][self.JANITOR_SPINNER_PULSE] + 1
             self.janitor_model[plugin_iter][self.JANITOR_SPINNER_ACTIVE] = False
             self.result_model[iter][self.RESULT_NAME] = plugin.get_sumarry(count, total_size)
@@ -291,14 +317,27 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
                     self.result_model.remove(row.iter)
 
     def on_clean_button_clicked(self, widget):
-        iter = self.result_model.get_iter_first()
+        self.set_busy()
+        for row in self.result_model:
+            while Gtk.events_pending():
+                Gtk.main_iteration()
 
-        if iter:
-            child_iter = self.result_model.iter_children(iter)
-            while child_iter:
-                self.result_model.get_value(child_iter, self.JANITOR_CHECK)
+            plugin = row[self.RESULT_PLUGIN]
 
-                child_iter = self.janitor_model.iter_next(child_iter)
+            for child_row in row.iterchildren():
+                checked = child_row[self.RESULT_CHECK]
+
+                if checked:
+                    while Gtk.events_pending():
+                        Gtk.main_iteration()
+
+                    cruft = child_row[self.RESULT_CRUFT]
+                    log.debug("Call %s to clean cruft %s" % (plugin, cruft))
+                    cleaned = plugin.clean_cruft(cruft)
+                    if cleaned:
+                        self.result_model.remove(child_row.iter)
+        self.unset_busy()
+        log.debug("All finished!")
 
     def on_autoscan_button_toggled(self, widget):
         if widget.get_active():
