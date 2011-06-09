@@ -315,11 +315,12 @@ Medical-Wei &lt;a790407@hotmail.com&gt; Artwork of 0.1</property>
                         <property name="layout_style">center</property>
                         <child>
                           <object class="GtkRadioButton" id="overview_button">
-                            <property name="label" translatable="yes">Overview</property>
+                            <property name="label" translatable="yes">_Overview</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="use_action_appearance">False</property>
+                            <property name="use_underline">True</property>
                             <property name="active">True</property>
                             <property name="draw_indicator">False</property>
                             <signal name="toggled" handler="on_overview_button_toggled" swapped="no"/>
@@ -335,11 +336,12 @@ Medical-Wei &lt;a790407@hotmail.com&gt; Artwork of 0.1</property>
                         </child>
                         <child>
                           <object class="GtkRadioButton" id="tweaks_button">
-                            <property name="label" translatable="yes">Tweaks</property>
+                            <property name="label" translatable="yes">_Tweaks</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="use_action_appearance">False</property>
+                            <property name="use_underline">True</property>
                             <property name="draw_indicator">False</property>
                             <property name="group">overview_button</property>
                             <signal name="toggled" handler="on_tweaks_button_toggled" swapped="no"/>
@@ -353,11 +355,12 @@ Medical-Wei &lt;a790407@hotmail.com&gt; Artwork of 0.1</property>
                         </child>
                         <child>
                           <object class="GtkRadioButton" id="admins_button">
-                            <property name="label" translatable="yes">Admins</property>
+                            <property name="label" translatable="yes">_Admins</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="use_action_appearance">False</property>
+                            <property name="use_underline">True</property>
                             <property name="draw_indicator">False</property>
                             <property name="group">overview_button</property>
                             <signal name="toggled" handler="on_admins_button_toggled" swapped="no"/>
@@ -371,11 +374,12 @@ Medical-Wei &lt;a790407@hotmail.com&gt; Artwork of 0.1</property>
                         </child>
                         <child>
                           <object class="GtkRadioButton" id="janitor_button">
-                            <property name="label" translatable="yes">Janitor</property>
+                            <property name="label" translatable="yes">_Janitor</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="use_action_appearance">False</property>
+                            <property name="use_underline">True</property>
                             <property name="draw_indicator">False</property>
                             <property name="group">overview_button</property>
                             <signal name="toggled" handler="on_janitor_button_toggled" swapped="no"/>
