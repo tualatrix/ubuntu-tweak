@@ -7,7 +7,7 @@ import webbrowser
 from new import classobj
 
 import gobject
-from gi.repository import Gtk, Pango
+from gi.repository import Gtk, Pango, Gdk
 
 from ubuntutweak.utils import icon
 from ubuntutweak.common.consts import DATA_DIR, CONFIG_ROOT
@@ -277,6 +277,16 @@ class TweakModule(Gtk.VBox):
                 pixbuf = icon.get_from_list(cls.__icon__, size=size)
 
             return pixbuf
+
+    def set_busy(self):
+        if self.get_toplevel():
+            self.get_toplevel().window.set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
+            self.get_toplevel().set_sensitive(False)
+
+    def unset_busy(self):
+        if self.get_toplevel():
+            self.get_toplevel().window.set_cursor(None)
+            self.get_toplevel().set_sensitive(True)
 
 
 def create_broken_module_class(name):

@@ -22,13 +22,14 @@ import thread
 import socket
 import gettext
 
-from gi.repository import Gtk, GObject, Pango
+from gi.repository import Gtk, Gdk, GObject, Pango
 
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.gui import GuiBuilder
 from ubuntutweak.gui.dialogs import ErrorDialog, QuestionDialog
 from ubuntutweak.gui.dialogs import AuthenticateFailDialog, ServerErrorDialog
 from ubuntutweak.policykit import PolkitButton, proxy
+from ubuntutweak.utils.package import AptWorker
 
 
 SOURCES_LIST = '/etc/apt/sources.list'
@@ -216,16 +217,17 @@ class SourceEditor(TweakModule):
             self.textview.set_path(model.get_value(iter, 0))
             self.update_sourceslist()
 
-    def on_refresh_button_clicked(self, widget):
-        #TODO
-        refresh_source(widget.get_toplevel())
+    def on_update_button_clicked(self, widget):
+        self.set_busy()
+        daemon = AptWorker(widget.get_toplevel(), lambda t, s: self.unset_busy())
+        daemon.update_cache()
 
     def update_sourceslist(self):
         self.textview.update_content()
         self.redo_button.set_sensitive(False)
         self.save_button.set_sensitive(False)
 
-    def on_save_button_clicked(self, wiget):
+    def on_save_button_clicked(self, widget):
         text = self.textview.get_text().strip()
         if proxy.edit_source(self.textview.get_path(), text) == 'error':
             ErrorDialog(_('Please check the permission of the sources.list file'),
@@ -233,7 +235,6 @@ class SourceEditor(TweakModule):
         else:
             self.save_button.set_sensitive(False)
             self.redo_button.set_sensitive(False)
-#            self.refresh_button.set_sensitive(True)
 
     def on_redo_button_clicked(self, widget):
         dialog = QuestionDialog(_('The current content will be lost after reloading!\nDo you wish to continue?'))
@@ -274,7 +275,6 @@ class SourceEditor(TweakModule):
         if action:
             if proxy.get_object():
                 self.textview.set_sensitive(True)
-#                self.refresh_button.set_sensitive(True)
                 self.delete_button.set_sensitive(True)
             else:
                 ServerErrorDialog().launch()
