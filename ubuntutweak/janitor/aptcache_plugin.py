@@ -80,10 +80,10 @@ class AptCachePlugin(JanitorPlugin):
         if dialog.run() == Gtk.ResponseType.REJECT:
             dialog.destroy()
 
-        return True
+        self.emit('cleaned', True)
 
-    def get_sumarry(self, count, size):
+    def get_summary(self, count, size):
         if count:
-            return _('Apt Cache (%d packages to be cleaned, total size: %s') % (count, filesizeformat(size))
+            return _('Apt Cache (%d cache to be cleaned, total size: %s') % (count, filesizeformat(size))
         else:
-            return _('Apt Cache (No package to be cleaned)')
+            return _('Apt Cache (No cache to be cleaned)')

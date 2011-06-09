@@ -21,6 +21,8 @@ import thread
 import gobject
 from gi.repository import Gtk, Gdk, Pango
 
+from ubuntutweak.gui.gtk import set_busy, unset_busy
+
 
 class BaseDialog(Gtk.MessageDialog):
     def __init__(self, **kwargs):
@@ -107,14 +109,10 @@ class BusyDialog(Gtk.Dialog):
             self.parent_window = None
 
     def set_busy(self):
-        if self.parent_window:
-            self.parent_window.window.set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
-            self.parent_window.set_sensitive(False)
+        set_busy(self.parent_window)
 
     def unset_busy(self):
-        if self.parent_window:
-            self.parent_window.window.set_cursor(None)
-            self.parent_window.set_sensitive(True)
+        unset_busy(self.parent_window)
 
     def run(self):
         self.set_busy()

@@ -1,5 +1,6 @@
-import time
 import logging
+
+from collections import OrderedDict
 
 import apt
 import apt_pkg
@@ -35,13 +36,17 @@ class CruftObject(object):
         return None
 
 
-class JanitorPlugin(object):
+class JanitorPlugin(gobject.GObject):
     __title__ = ''
     __category__ = ''
     __utmodule__ = ''
     __utactive__ = True
 
     cache = None
+
+    __gsignals__ = {
+        'cleaned': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_BOOLEAN,)),
+    }
 
     @classmethod
     def get_name(cls):
@@ -69,7 +74,7 @@ class JanitorPlugin(object):
         else:
             return self.cache
 
-    def get_sumarry(self, count, size):
+    def get_summary(self, count, size):
         return self.get_title()
 
     def update_apt_cache(self, init=False):
@@ -78,8 +83,16 @@ class JanitorPlugin(object):
             apt_pkg.init()
             self.cache = apt.Cache()
 
-    def clean_cruft(self, parent, cruft):
-        return True
+    def clean_cruft(self, parent, cruft_list):
+        '''Clean all the cruft, you must emit the "cleaned" signal to tell the
+        main thread your task is finished
+
+        :param parent: the toplevel window, use for transient
+        :param cruft_list: a list contains all the cruft objects to be clean
+        :param rescan_handler: the handler to rescan the result, must be called
+            after the clean task is done
+        '''
+        pass
 
 
 class JanitorPage(Gtk.VBox, GuiBuilder):
@@ -324,7 +337,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
                                                 cruft))
             count = self.janitor_model[plugin_iter][self.JANITOR_SPINNER_PULSE]
             self.janitor_model[plugin_iter][self.JANITOR_SPINNER_ACTIVE] = False
-            self.result_model[iter][self.RESULT_NAME] = plugin.get_sumarry(count, total_size)
+            self.result_model[iter][self.RESULT_NAME] = plugin.get_summary(count, total_size)
             self.result_view.expand_all()
         else:
             iter = self.result_model.get_iter_first()
@@ -333,6 +346,8 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
                     self.result_model.remove(row.iter)
 
     def on_clean_button_clicked(self, widget):
+        self.plugin_to_run = 0
+        plugin_dict = OrderedDict()
         for row in self.result_model:
             plugin = row[self.RESULT_PLUGIN]
             cruft_list = []
@@ -345,10 +360,23 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
                     cruft_list.append(cruft)
 
             if cruft_list:
-                log.debug("Call %s to clean cruft" % plugin)
-                plugin.clean_cruft(widget.get_toplevel(), cruft_list)
-        self.on_scan_button_clicked()
+                plugin_dict[plugin] = cruft_list
+
+        self.do_real_clean_task(list(plugin_dict.items()))
         log.debug("All finished!")
+
+    def do_real_clean_task(self, plugin_tasks):
+        plugin, cruft_list = plugin_tasks.pop(0)
+
+        log.debug("Call %s to clean cruft" % plugin)
+        plugin.connect('cleaned', self.on_plugin_cleaned, plugin_tasks)
+        plugin.clean_cruft(self.get_toplevel(), cruft_list)
+
+    def on_plugin_cleaned(self, plugin, cleaned, plugin_tasks):
+        if len(plugin_tasks) == 0:
+            self.on_scan_button_clicked()
+        else:
+            gobject.timeout_add(300, self.do_real_clean_task, plugin_tasks)
 
     def on_autoscan_button_toggled(self, widget):
         if widget.get_active():
