@@ -253,6 +253,11 @@ class UbuntuTweakWindow(GuiBuilder):
     def __init__(self, feature='', module=''):
         GuiBuilder.__init__(self, file_name='mainwindow.ui')
 
+        self.window_size_setting = GSetting('com.ubuntu-tweak.tweak.window-size')
+        width, height = self.window_size_setting.get_value()
+        if width >= 800 and height >= 480:
+            self.mainwindow.set_default_size(width, height)
+
         Gtk.rc_parse(os.path.join(DATA_DIR, 'theme/ubuntu-tweak.rc'))
 
         tweaks_page = FeaturePage(ModuleLoader('tweaks'))
@@ -262,7 +267,7 @@ class UbuntuTweakWindow(GuiBuilder):
         janitor_page = JanitorPage()
 
         self.rencently_used_settings = GSetting('com.ubuntu-tweak.tweak.rencently-used')
-        self.window_size_setting = GSetting('com.ubuntu-tweak.tweak.window-size')
+
         self.feature_dict['overview'] = self.notebook.append_page(clip_page, Gtk.Label())
 #        self.feature_dict['apps'] = self.notebook.append_page(apps_page, Gtk.Label())
         self.feature_dict['tweaks'] = self.notebook.append_page(tweaks_page, Gtk.Label())
@@ -299,10 +304,6 @@ class UbuntuTweakWindow(GuiBuilder):
 
     def _initialize_ui_states(self, widget):
         self.search_entry.grab_focus()
-
-        width, height = self.window_size_setting.get_value()
-        if width >= 800 and height >= 480:
-            widget.set_default_size(width, height)
 
     def _crete_wait_page(self):
         vbox = Gtk.VBox()
