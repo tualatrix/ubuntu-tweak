@@ -84,6 +84,6 @@ class AptCachePlugin(JanitorPlugin):
 
     def get_summary(self, count, size):
         if count:
-            return _('Apt Cache (%d cache to be cleaned, total size: %s') % (count, filesizeformat(size))
+            return _('Apt Cache (%d cache to be cleaned, total size: %s)') % (count, filesizeformat(size))
         else:
             return _('Apt Cache (No cache to be cleaned)')
