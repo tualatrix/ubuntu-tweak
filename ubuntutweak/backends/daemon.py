@@ -501,6 +501,18 @@ class Daemon(PolicyKitService):
         apt_key.rm(key_id)
 
     @dbus.service.method(INTERFACE,
+                         in_signature='s', out_signature='b',
+                         sender_keyword='sender')
+    def delete_apt_cache_file(self, file_name, sender=None):
+        self._check_permission(sender)
+
+        full_path = os.path.join('/var/cache/apt/archives/', file_name)
+        if os.path.exists(full_path):
+            os.remove(full_path)
+
+        return not os.path.exists(full_path)
+
+    @dbus.service.method(INTERFACE,
                          in_signature='ss', out_signature='',
                          sender_keyword='sender')
     def save_to_disk(self, text, filename, sender=None):
