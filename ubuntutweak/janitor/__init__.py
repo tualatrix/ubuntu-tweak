@@ -199,7 +199,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         renderer = Gtk.CellRendererText()
         renderer.set_property('ellipsize', Pango.EllipsizeMode.END)
         result_column.pack_start(renderer, True)
-        result_column.add_attribute(renderer, 'text', self.RESULT_NAME)
+        result_column.add_attribute(renderer, 'markup', self.RESULT_NAME)
 
         renderer = Gtk.CellRendererText()
         result_column.pack_start(renderer, False)
@@ -325,12 +325,17 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         #Scan cruft for current iter
         plugin = self.janitor_model[plugin_iter][self.JANITOR_PLUGIN]
 
+        iter = self.result_model.get_iter_first()
+        for row in self.result_model:
+            if row[self.RESULT_PLUGIN] == plugin:
+                self.result_model.remove(row.iter)
+
         if checked:
             log.info('Scan cruft for plugin: %s' % plugin.get_name())
 
             iter = self.result_model.append(None, (None,
                                                    None,
-                                                   plugin.get_title(),
+                                                   "<b>%s</b>" % plugin.get_title(),
                                                    None,
                                                    plugin,
                                                    None))
@@ -358,12 +363,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
                     self.result_view.expand_row(self.result_model.get_path(iter), True)
             count = self.janitor_model[plugin_iter][self.JANITOR_SPINNER_PULSE]
             self.janitor_model[plugin_iter][self.JANITOR_SPINNER_ACTIVE] = False
-            self.result_model[iter][self.RESULT_NAME] = plugin.get_summary(count, total_size)
-        else:
-            iter = self.result_model.get_iter_first()
-            for row in self.result_model:
-                if row[self.RESULT_PLUGIN] == plugin:
-                    self.result_model.remove(row.iter)
+            self.result_model[iter][self.RESULT_NAME] = "<b>%s</b>" % plugin.get_summary(count, total_size)
 
     def on_clean_button_clicked(self, widget):
         self.plugin_to_run = 0
