@@ -1,25 +1,9 @@
 from gi.repository import Gtk
 
 from ubuntutweak.gui.gtk import set_busy, unset_busy
-from ubuntutweak.janitor import JanitorPlugin, CruftObject
-from ubuntutweak.utils import icon, filesizeformat
+from ubuntutweak.janitor import JanitorPlugin, PackageObject
 from ubuntutweak.utils.package import AptWorker
-
-
-class PackageObject(CruftObject):
-    def __init__(self, name, package_name, size):
-        self.name = name
-        self.package_name = package_name
-        self.size = size
-
-    def get_size_display(self):
-        return filesizeformat(self.size)
-
-    def get_icon(self):
-        return icon.get_from_name('deb')
-
-    def get_package_name(self):
-        return self.package_name
+from ubuntutweak.utils import filesizeformat
 
 
 class AutoRemovalPlugin(JanitorPlugin):
@@ -29,10 +13,9 @@ class AutoRemovalPlugin(JanitorPlugin):
     def get_cruft(self):
         cache = self.get_cache()
         if cache:
-            for pkg in cache.keys():
-                p = self.cache[pkg]
-                if p.isAutoRemovable:
-                    yield PackageObject(p.summary, p.name, p.installedSize)
+            for pkg in cache:
+                if pkg.isAutoRemovable:
+                    yield PackageObject(pkg.summary, pkg.name, pkg.installedSize)
 
     def clean_cruft(self, parent, cruft_list):
         set_busy(parent)

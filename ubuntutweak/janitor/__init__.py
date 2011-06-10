@@ -8,7 +8,7 @@ import gobject
 from gi.repository import Gtk, Gdk, Pango
 
 from ubuntutweak.gui import GuiBuilder
-from ubuntutweak.utils import icon
+from ubuntutweak.utils import icon, filesizeformat
 from ubuntutweak.modules import ModuleLoader
 from ubuntutweak.settings import GSetting
 
@@ -34,6 +34,22 @@ class CruftObject(object):
 
     def get_icon(self):
         return None
+
+
+class PackageObject(CruftObject):
+    def __init__(self, name, package_name, size):
+        self.name = name
+        self.package_name = package_name
+        self.size = size
+
+    def get_size_display(self):
+        return filesizeformat(self.size)
+
+    def get_icon(self):
+        return icon.get_from_name('deb')
+
+    def get_package_name(self):
+        return self.package_name
 
 
 class JanitorPlugin(gobject.GObject):

@@ -1,6 +1,66 @@
-from ubuntutweak.janitor import JanitorPlugin
+import os
+import re
+import logging
+
+from ubuntutweak.gui.gtk import set_busy, unset_busy
+from ubuntutweak.janitor import JanitorPlugin, PackageObject
+from ubuntutweak.utils.package import AptWorker
+from ubuntutweak.utils import filesizeformat
+
+
+log = logging.getLogger('OldKernelPlugin')
 
 
 class OldKernelPlugin(JanitorPlugin):
     __title__ = _('Old Kernel')
     __category__ = 'system'
+
+    def __init__(self):
+        JanitorPlugin.__init__(self)
+        self.current_kernel_version = '-'.join(os.uname()[2].split('-')[:2])
+
+    def get_cruft(self):
+        cache = self.get_cache()
+
+        if cache:
+            for pkg in cache:
+                if pkg.isInstalled and self.is_old_kernel_package(pkg.name):
+                    yield PackageObject(pkg.summary, pkg.name, pkg.installedSize)
+
+    def clean_cruft(self, parent, cruft_list):
+        set_busy(parent)
+        worker = AptWorker(parent, self.on_clean_finished, parent)
+        worker.remove_packages([cruft.get_package_name() for cruft in cruft_list])
+
+    def on_clean_finished(self, transaction, status, parent):
+        unset_busy(parent)
+        self.update_apt_cache(True)
+        self.emit('cleaned', True)
+
+    def is_old_kernel_package(self, pkg):
+        p_kernel_version = re.compile('[.\d]+-\d+')
+        p_kernel_package = re.compile('linux-[a-z\-]+')
+
+        basenames = ['linux-image', 'linux-headers', 'linux-image-debug',
+                      'linux-ubuntu-modules', 'linux-header-lum',
+                      'linux-backport-modules',
+                      'linux-header-lbm', 'linux-restricted-modules']
+
+        if pkg.startswith('linux'):
+            package = p_kernel_package.findall(pkg)
+            if package:
+                package = package[0].rstrip('-')
+            else:
+                return False
+
+            if package in basenames:
+                match = p_kernel_version.findall(pkg)
+                if match and match[0] < self.current_kernel_version:
+                    return True
+        return False
+
+    def get_summary(self, count, size):
+        if count:
+            return _('Old Kernel Packages (%d kernel packages to be removed, total size: %s') % (count, filesizeformat(size))
+        else:
+            return _('Old Kernel Packages (No old kernel package to be removed)')
