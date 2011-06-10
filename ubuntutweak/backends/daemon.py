@@ -167,7 +167,7 @@ class Daemon(PolicyKitService):
 
         return valid, disabled_list
 
-    def __setup_non_block_io(self, io):
+    def _setup_non_block_io(self, io):
         outfd = io.fileno()
         file_flags = fcntl.fcntl(outfd, fcntl.F_GETFL)
         fcntl.fcntl(outfd, fcntl.F_SETFL, file_flags | os.O_NDELAY)
@@ -446,7 +446,7 @@ class Daemon(PolicyKitService):
         cmd = ['sudo', 'dpkg', '--purge']
         cmd.extend(pkgs)
         self.p = subprocess.Popen(cmd, stdout=PIPE)
-        self.__setup_non_block_io(self.p.stdout)
+        self._setup_non_block_io(self.p.stdout)
 
     @dbus.service.method(INTERFACE,
                          in_signature='as', out_signature='',
@@ -457,7 +457,7 @@ class Daemon(PolicyKitService):
         cmd.extend(pkgs)
         log.debug("The install command is %s" % ' '.join(cmd))
         self.p = subprocess.Popen(cmd, stdout=PIPE)
-        self.__setup_non_block_io(self.p.stdout)
+        self._setup_non_block_io(self.p.stdout)
 
     @dbus.service.method(INTERFACE,
                          in_signature='', out_signature='v')

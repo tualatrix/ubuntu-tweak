@@ -19,7 +19,7 @@
 import thread
 
 import gobject
-from gi.repository import Gtk, Gdk, Pango
+from gi.repository import Gtk, Gdk, Pango, Vte
 
 from ubuntutweak.gui.gtk import set_busy, unset_busy
 
@@ -124,16 +124,21 @@ class BusyDialog(Gtk.Dialog):
 
 
 class ProcessDialog(BusyDialog):
+    __gsignals__ = {
+        'error': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_STRING,)),
+    }
 
     def __init__(self, parent):
         super(ProcessDialog, self).__init__(parent=parent)
 
-        vbox = self.get_content_area()
-        self.set_border_width(8)
+        self.set_border_width(6)
         self.set_title('')
         self.set_has_separator(False)
         self.set_resizable(False)
         self.set_position(Gtk.WindowPosition.CENTER_ON_PARENT)
+
+        vbox = self.get_content_area()
+        vbox.set_spacing(6)
 
         self._label = Gtk.Label()
         self._label.set_alignment(0, 0.5)
@@ -160,6 +165,38 @@ class ProcessDialog(BusyDialog):
 
     def process_data(self):
         return NotImplemented
+
+
+class SmartTerminal(Vte.Terminal):
+    def insert(self, string):
+        column_count = self.get_column_count ()
+        column, row = self.get_cursor_position()
+        if column == 0:
+            column = column_count
+        if column != column_count:
+            self.feed(' ' * (column_count - column))
+        space_length = column_count - len(string)
+        string = string + ' ' * space_length
+        self.feed(string)
+
+
+class TerminalDialog(ProcessDialog):
+    def __init__(self, parent):
+        super(TerminalDialog, self).__init__(parent=parent)
+
+        vbox = self.get_content_area()
+
+        self.set_position(Gtk.WindowPosition.CENTER_ALWAYS)
+        self.expendar = Gtk.Expander()
+        self.expendar.set_spacing(6)
+        self.expendar.set_label(_('Details'))
+        vbox.pack_start(self.expendar, False, False, 6)
+
+        self.terminal = SmartTerminal()
+        self.terminal.set_size_request(562, 362)
+        self.expendar.add(self.terminal)
+
+        self.show_all()
 
 
 class AuthenticateFailDialog(ErrorDialog):

@@ -23,9 +23,6 @@ class CacheObject(CruftObject):
 
 
 class CleanCacheDailog(ProcessDialog):
-    __gsignals__ = {
-        'error': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_STRING,)),
-    }
 
     def __init__(self, parent, cruft_list):
         super(CleanCacheDailog, self).__init__(parent=parent)
