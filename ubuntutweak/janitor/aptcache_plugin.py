@@ -27,9 +27,6 @@ class CleanCacheDailog(ProcessDialog):
     def __init__(self, parent, cruft_list):
         super(CleanCacheDailog, self).__init__(parent=parent)
         self.cruft_list = cruft_list
-        self.done = False
-        self.error = False
-        self.user_action = False
 
         self.set_dialog_lable(_('Cleaning Package Cache'))
         self.add_button(Gtk.STOCK_CANCEL, Gtk.ResponseType.REJECT)
