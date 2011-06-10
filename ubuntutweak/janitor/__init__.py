@@ -324,9 +324,10 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
     def do_plugin_scan(self, plugin_iter, checked):
         #Scan cruft for current iter
         plugin = self.janitor_model[plugin_iter][self.JANITOR_PLUGIN]
-        log.info('Scan cruft for plugin: %s' % plugin.get_name())
 
         if checked:
+            log.info('Scan cruft for plugin: %s' % plugin.get_name())
+
             iter = self.result_model.append(None, (None,
                                                    None,
                                                    plugin.get_title(),
@@ -386,11 +387,15 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         plugin, cruft_list = plugin_tasks.pop(0)
 
         log.debug("Call %s to clean cruft" % plugin)
-        plugin.connect('cleaned', self.on_plugin_cleaned, plugin_tasks)
+        self._plugin_handler = plugin.connect('cleaned', self.on_plugin_cleaned, plugin_tasks)
         plugin.clean_cruft(self.get_toplevel(), cruft_list)
 
     def on_plugin_cleaned(self, plugin, cleaned, plugin_tasks):
         #TODO if the clean is not finished
+        if plugin.handler_is_connected(self._plugin_handler):
+            log.debug("Disconnect the cleaned signal, or it will clean many times")
+            plugin.disconnect(self._plugin_handler)
+
         if len(plugin_tasks) == 0:
             self.on_scan_button_clicked()
         else:
