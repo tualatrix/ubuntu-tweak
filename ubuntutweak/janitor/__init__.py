@@ -353,10 +353,12 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
                                                 cruft.get_size_display(),
                                                 plugin,
                                                 cruft))
+
+                if i == 0:
+                    self.result_view.expand_row(self.result_model.get_path(iter), True)
             count = self.janitor_model[plugin_iter][self.JANITOR_SPINNER_PULSE]
             self.janitor_model[plugin_iter][self.JANITOR_SPINNER_ACTIVE] = False
             self.result_model[iter][self.RESULT_NAME] = plugin.get_summary(count, total_size)
-            self.result_view.expand_row(self.result_model.get_path(iter), True)
         else:
             iter = self.result_model.get_iter_first()
             for row in self.result_model:
