@@ -92,6 +92,6 @@ class PackageConfigsPlugin(JanitorPlugin):
 
     def get_summary(self, count, size):
         if count:
-            return _('Pakcages Configs (%d package configs to be removed') % count
+            return _('Pakcages Configs (%d package configs to be removed)') % count
         else:
-            return _('Packages Configs (No package configs to be removed)')
+            return _('Packages Configs (No package config to be removed)')
