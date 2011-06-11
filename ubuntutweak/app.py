@@ -303,7 +303,8 @@ class UbuntuTweakWindow(GuiBuilder):
             toggle_button.set_active(True)
 
     def _initialize_ui_states(self, widget):
-        self.search_entry.grab_focus()
+        #TODO implement the search feature
+        self.search_entry.hide()
 
     def _crete_wait_page(self):
         vbox = Gtk.VBox()
