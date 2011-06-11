@@ -148,7 +148,6 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         return self.autoscan_button.get_active()
 
     def setup_ui_tasks(self, widget):
-        self.result_model.set_sort_column_id(self.RESULT_NAME, Gtk.SortType.ASCENDING)
         self.janitor_model.set_sort_column_id(self.JANITOR_NAME, Gtk.SortType.ASCENDING)
 
         #add janitor columns
@@ -229,10 +228,12 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
 
     def on_janitor_selection_changed(self, selection):
         model, iter = selection.get_selected()
-        if iter and not self.janitor_model.iter_has_child(iter):
+        if iter:
+            if self.janitor_model.iter_has_child(iter):
+                iter = self.janitor_model.iter_children(iter)
+
             plugin = model[iter][self.JANITOR_PLUGIN]
 
-            plugin_iter = self.result_model.get_iter_first()
             for row in self.result_model:
                 if row[self.RESULT_PLUGIN] == plugin:
                     self.result_view.get_selection().select_path(row.path)
@@ -356,13 +357,16 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
 
                 total_size += cruft.get_size()
 
-                self.result_model.append(iter, (False,
+                child_iter = self.result_model.append(iter, (False,
                                                 cruft.get_icon(),
                                                 cruft.get_name(),
                                                 cruft.get_name(),
                                                 cruft.get_size_display(),
                                                 plugin,
                                                 cruft))
+
+                self.result_view.get_selection().select_iter(child_iter)
+                self.result_view.scroll_to_cell(self.result_model.get_path(child_iter))
 
                 if i == 0:
                     self.result_view.expand_row(self.result_model.get_path(iter), True)
@@ -381,7 +385,6 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
                         child_row[self.JANITOR_DISPLAY] = "%s (%d)" % (plugin.get_title(), count)
                     else:
                         child_row[self.JANITOR_DISPLAY] = plugin.get_title()
-
 
     def on_clean_button_clicked(self, widget):
         self.plugin_to_run = 0

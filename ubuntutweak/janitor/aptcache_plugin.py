@@ -61,7 +61,10 @@ class AptCachePlugin(JanitorPlugin):
         return 'AptCachePlugin'
 
     def get_cruft(self):
-        for deb in glob.glob('/var/cache/apt/archives/*.deb'):
+        cruft_list = glob.glob('/var/cache/apt/archives/*.deb')
+        cruft_list.sort()
+
+        for deb in cruft_list:
             yield CacheObject(os.path.basename(deb), deb, os.path.getsize(deb))
 
     def on_dialog_error(self, widget, error_name):
