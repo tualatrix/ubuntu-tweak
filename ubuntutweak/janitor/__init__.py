@@ -115,16 +115,18 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
     (JANITOR_CHECK,
      JANITOR_ICON,
      JANITOR_NAME,
+     JANITOR_DISPLAY,
      JANITOR_PLUGIN,
      JANITOR_SPINNER_ACTIVE,
-     JANITOR_SPINNER_PULSE) = range(6)
+     JANITOR_SPINNER_PULSE) = range(7)
 
     (RESULT_CHECK,
      RESULT_ICON,
      RESULT_NAME,
+     RESULT_DISPLAY,
      RESULT_DESC,
      RESULT_PLUGIN,
-     RESULT_CRUFT) = range(6)
+     RESULT_CRUFT) = range(7)
 
     max_janitor_view_width = 0
 
@@ -147,6 +149,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
 
     def setup_ui_tasks(self, widget):
         self.result_model.set_sort_column_id(self.RESULT_NAME, Gtk.SortType.ASCENDING)
+        self.janitor_model.set_sort_column_id(self.JANITOR_NAME, Gtk.SortType.ASCENDING)
 
         #add janitor columns
         janitor_column = Gtk.TreeViewColumn()
@@ -170,7 +173,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         renderer = Gtk.CellRendererText()
         renderer.set_property('ellipsize', Pango.EllipsizeMode.MIDDLE)
         janitor_column.pack_start(renderer, True)
-        janitor_column.add_attribute(renderer, 'markup', self.JANITOR_NAME)
+        janitor_column.add_attribute(renderer, 'markup', self.JANITOR_DISPLAY)
 
         renderer = Gtk.CellRendererSpinner()
         janitor_column.pack_start(renderer, False)
@@ -182,7 +185,6 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
 
         #add result columns
         result_column = Gtk.TreeViewColumn()
-        result_column.set_sort_column_id(self.RESULT_NAME)
 
         renderer = Gtk.CellRendererToggle()
         renderer.connect('toggled', self.on_result_check_renderer_toggled)
@@ -199,7 +201,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         renderer = Gtk.CellRendererText()
         renderer.set_property('ellipsize', Pango.EllipsizeMode.END)
         result_column.pack_start(renderer, True)
-        result_column.add_attribute(renderer, 'markup', self.RESULT_NAME)
+        result_column.add_attribute(renderer, 'markup', self.RESULT_DISPLAY)
 
         renderer = Gtk.CellRendererText()
         result_column.pack_start(renderer, False)
@@ -336,6 +338,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
 
             iter = self.result_model.append(None, (None,
                                                    None,
+                                                   plugin.get_title(),
                                                    "<b>%s</b>" % plugin.get_title(),
                                                    None,
                                                    plugin,
@@ -356,6 +359,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
                 self.result_model.append(iter, (False,
                                                 cruft.get_icon(),
                                                 cruft.get_name(),
+                                                cruft.get_name(),
                                                 cruft.get_size_display(),
                                                 plugin,
                                                 cruft))
@@ -364,18 +368,20 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
                     self.result_view.expand_row(self.result_model.get_path(iter), True)
             count = self.janitor_model[plugin_iter][self.JANITOR_SPINNER_PULSE]
             self.janitor_model[plugin_iter][self.JANITOR_SPINNER_ACTIVE] = False
-            self.result_model[iter][self.RESULT_NAME] = "<b>%s</b>" % plugin.get_summary(count, total_size)
+            self.result_model[iter][self.RESULT_DISPLAY] = "<b>%s</b>" % plugin.get_summary(count, total_size)
 
         # Update the janitor title
         for row in self.janitor_model:
             for child_row in row.iterchildren():
+
                 if child_row[self.JANITOR_PLUGIN] == plugin:
                     if count and checked:
-                        child_row[self.JANITOR_NAME] = "<b>%s (%d) </b>" % (plugin.get_title(), count)
+                        child_row[self.JANITOR_DISPLAY] = "<b>%s (%d) </b>" % (plugin.get_title(), count)
                     elif checked:
-                        child_row[self.JANITOR_NAME] = "%s (%d)" % (plugin.get_title(), count)
+                        child_row[self.JANITOR_DISPLAY] = "%s (%d)" % (plugin.get_title(), count)
                     else:
-                        child_row[self.JANITOR_NAME] = plugin.get_title()
+                        child_row[self.JANITOR_DISPLAY] = plugin.get_title()
+
 
     def on_clean_button_clicked(self, widget):
         self.plugin_to_run = 0
@@ -432,9 +438,11 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
     def update_model(self):
         size_list = []
 
+        system_text = _('System')
         iter = self.janitor_model.append(None, (None,
                                                 icon.get_from_name('ubuntu-logo'),
-                                                "<b><big>%s</big></b>" % _('System'),
+                                                system_text,
+                                                "<b><big>%s</big></b>" % system_text,
                                                 None,
                                                 None,
                                                 None))
@@ -444,13 +452,17 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
             self.janitor_model.append(iter, (False,
                                              None,
                                              plugin.get_title(),
+                                             plugin.get_title(),
                                              plugin(),
                                              None,
                                              None))
 
+        personal_text = _('Personal')
+
         iter = self.janitor_model.append(None, (None,
                                                 icon.get_from_name('system-users'),
-                                                "<b><big>%s</big></b>" % _('Personal'),
+                                                personal_text,
+                                                "<b><big>%s</big></b>" % personal_text,
                                                 None,
                                                 None,
                                                 None))
@@ -459,6 +471,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
             size_list.append(Gtk.Label(plugin.get_title()).get_layout().get_pixel_size()[0])
             self.janitor_model.append(iter, (False,
                                              None,
+                                             plugin.get_title(),
                                              plugin.get_title(),
                                              plugin(),
                                              None,
