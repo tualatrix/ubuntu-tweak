@@ -23,7 +23,7 @@ import logging
 from gi.repository import Gtk
 
 from ubuntutweak.modules  import TweakModule
-from ubuntutweak.tweaks.userdir import UserdirFile
+from ubuntutweak.admins.userdir import UserdirFile
 from ubuntutweak.common.consts import DATA_DIR, CONFIG_ROOT
 from ubuntutweak.gui.treeviews import DirView, FlatView
 from ubuntutweak.gui.dialogs import ErrorDialog, QuestionDialog
