@@ -179,7 +179,7 @@ class FeaturePage(Gtk.ScrolledWindow):
         viewport = Gtk.Viewport(shadow_type=Gtk.ShadowType.NONE)
         viewport.add(self._box)
         self.add(viewport)
-        self.connect('size-allocate', self.rebuild_boxes)
+        self.connect('expose-event', self.rebuild_boxes)
 
     def _connect_signals(self, category_box):
         for button in category_box.get_buttons():
@@ -190,7 +190,8 @@ class FeaturePage(Gtk.ScrolledWindow):
         module = widget.get_module()
         self.emit('module_selected', module.get_name())
 
-    def rebuild_boxes(self, widget, request):
+    def rebuild_boxes(self, widget, event):
+        request = self.get_allocation()
         ncols = request.width / 164 # 32 + 120 + 6 + 4
         width = ncols * (164 + 2 * 4) + 40
         if width > request.width:
