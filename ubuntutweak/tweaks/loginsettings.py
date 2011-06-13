@@ -25,7 +25,7 @@ from ubuntutweak import system
 from ubuntutweak.factory import WidgetFactory
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.gui.containers import ListPack, TablePack
-from ubuntutweak.gui.dialogs import ErrorDialog, AuthenticateFailDialog, ServerErrorDialog
+from ubuntutweak.gui.dialogs import ErrorDialog, ServerErrorDialog
 from ubuntutweak.policykit import PolkitButton, proxy
 
 from ubuntutweak.settings.gconfsettings import UserGconfSetting
@@ -78,7 +78,7 @@ class LoginSettings(TweakModule):
 
         hbox = Gtk.HBox(spacing=12)
         polkit_button = PolkitButton()
-        polkit_button.connect('changed', self.on_polkit_action)
+        polkit_button.connect('authenticated', self.on_polkit_action)
         hbox.pack_end(polkit_button, False, False, 0)
         self.add_start(hbox, False, False, 0)
 
@@ -129,16 +129,10 @@ class LoginSettings(TweakModule):
         except Exception, e:
             log.error("Loading background failed, message is %s" % e)
 
-    def on_polkit_action(self, widget, action):
-        if action:
-            if proxy.get_object():
-                for item in self.options_box.items:
-                    item.set_sensitive(True)
-                self.vbox1.set_sensitive(True)
-            else:
-                ServerErrorDialog().launch()
-        else:
-            AuthenticateFailDialog().launch()
+    def on_polkit_action(self, widget):
+        for item in self.options_box.items:
+            item.set_sensitive(True)
+        self.vbox1.set_sensitive(True)
 
     def on_logo_button_clicked(self, widget):
         dialog = Gtk.FileChooserDialog(_('Choose a new logo image'),

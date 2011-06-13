@@ -19,50 +19,33 @@
 import dbus
 import gobject
 from gi.repository import Gtk
+from ubuntutweak.gui.gtk import set_busy, unset_busy
 
-from dbusproxy import proxy
+from aptdaemon import policykit1
+from defer import inline_callbacks
 
 class PolkitAction(gobject.GObject):
     """
     PolicyKit action, if changed return 0, means authenticate failed, 
     return 1, means authenticate successfully
     """
-    result = 0
-    session_bus = dbus.SessionBus()
-    __gsignals__ = {
-        'changed': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE,
-                    (gobject.TYPE_INT,)),
-    }
 
-    def __init__(self, widget):
+    def __init__(self):
         gobject.GObject.__init__(self)
 
-        self.widget = widget
-
-    def authenticate(self):
-        self.do_authenticate()
-
-    def get_authenticated(self):
-        return self.result
-
+    @inline_callbacks
     def do_authenticate(self):
-        try:
-            is_auth = proxy.is_authorized()
-        except:
-            return
+        bus = dbus.SystemBus()
+        name = bus.get_unique_name()
+        action = 'com.ubuntu-tweak.daemon'
+        flags = policykit1.CHECK_AUTH_ALLOW_USER_INTERACTION
 
-        self.__class__.result = bool(is_auth)
-
-        if self.__class__.result == 1:
-            self.emit('changed', 1)
-        else:
-            self.emit('changed', 0)
+        yield policykit1.check_authorization_by_name(name, action, flags=flags)
 
 
 class PolkitButton(Gtk.Button):
     __gsignals__ = {
-        'changed': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE,
-                    (gobject.TYPE_INT,)),
+        'authenticated': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, ()),
     }
 
     def __init__(self):
@@ -74,20 +57,25 @@ class PolkitButton(Gtk.Button):
                                          Gtk.IconSize.BUTTON)
         self.set_image(image)
 
-        self.action = PolkitAction(self)
-        self.action.connect('changed', self.on_action_changed)
+        self._action = PolkitAction()
         self.connect('clicked', self.on_button_clicked)
 
+    @inline_callbacks
     def on_button_clicked(self, widget):
-        self.action.authenticate()
+        set_busy(widget.get_toplevel())
+        try:
+            yield self._action.do_authenticate()
+        except Exception, e:
+            import logging
+            logging.getLogger('PolkitButton').debug(e)
+            unset_busy(widget.get_toplevel())
+            return
 
-    def on_action_changed(self, widget, action):
-        if action:
-            self.change_button_state()
+        self.emit('authenticated')
+        self._change_button_state()
+        unset_busy(widget.get_toplevel())
 
-        self.emit('changed', self.action.get_authenticated())
-
-    def change_button_state(self):
+    def _change_button_state(self):
         image = Gtk.Image.new_from_stock(Gtk.STOCK_YES, Gtk.IconSize.BUTTON)
         self.set_image(image)
         self.set_sensitive(False)

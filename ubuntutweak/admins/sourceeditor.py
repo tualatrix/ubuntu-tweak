@@ -27,7 +27,6 @@ from gi.repository import Gtk, Gdk, GObject, Pango
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.gui import GuiBuilder
 from ubuntutweak.gui.dialogs import ErrorDialog, QuestionDialog
-from ubuntutweak.gui.dialogs import AuthenticateFailDialog, ServerErrorDialog
 from ubuntutweak.policykit import PolkitButton, proxy
 from ubuntutweak.utils.package import AptWorker
 
@@ -177,7 +176,7 @@ class SourceEditor(TweakModule):
         self.update_source_combo()
 
         un_lock = PolkitButton()
-        un_lock.connect('changed', self.on_polkit_action)
+        un_lock.connect('authenticated', self.on_polkit_action)
         self.hbuttonbox2.pack_end(un_lock, False, False, 0)
 
         self.reparent(self.main_vbox)
@@ -271,12 +270,6 @@ class SourceEditor(TweakModule):
                 self.source_combo.set_active_iter(iter)
                 self.update_source_combo()
 
-    def on_polkit_action(self, widget, action):
-        if action:
-            if proxy.get_object():
-                self.textview.set_sensitive(True)
-                self.delete_button.set_sensitive(True)
-            else:
-                ServerErrorDialog().launch()
-        else:
-            AuthenticateFailDialog().launch()
+    def on_polkit_action(self, widget):
+        self.textview.set_sensitive(True)
+        self.delete_button.set_sensitive(True)

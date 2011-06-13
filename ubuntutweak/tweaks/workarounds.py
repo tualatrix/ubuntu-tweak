@@ -50,7 +50,7 @@ class Workarounds(TweakModule):
         self.add_end(hbox, False ,False, 0)
 
         un_lock = PolkitButton()
-        un_lock.connect('changed', self.on_polkit_action)
+        un_lock.connect('authenticated', self.on_polkit_action)
         hbox.pack_end(un_lock, False, False, 0)
 
     def on_fix_theme_btn_taggled(self, widget):
@@ -60,11 +60,8 @@ class Workarounds(TweakModule):
         else:
             proxy.unlink_file(self.ROOT_THEMES)
             proxy.unlink_file(self.ROOT_ICONS)
-            if proxy.is_exists(ROOT_THEMES) and proxy.is_exists(self.ROOT_ICONS):
+            if proxy.is_exists(self.ROOT_THEMES) and proxy.is_exists(self.ROOT_ICONS):
                 widget.set_active(True)
 
-    def on_polkit_action(self, widget, action):
-        if action:
-            self.fix_theme_button.set_sensitive(True)
-        else:
-            AuthenticateFailDialog().launch()
+    def on_polkit_action(self, widget):
+        self.fix_theme_button.set_sensitive(True)
