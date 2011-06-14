@@ -136,7 +136,8 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
      RESULT_DISPLAY,
      RESULT_DESC,
      RESULT_PLUGIN,
-     RESULT_CRUFT) = range(7)
+     RESULT_CRUFT,
+     RESULT_COUNT) = range(8)
 
     max_janitor_view_width = 0
 
@@ -203,6 +204,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         renderer.connect('toggled', self.on_result_check_renderer_toggled)
         result_column.pack_start(renderer, False)
         result_column.add_attribute(renderer, 'active', self.RESULT_CHECK)
+        result_column.set_cell_data_func(renderer, self.check_column_view_func)
 
         renderer = Gtk.CellRendererPixbuf()
         result_column.pack_start(renderer, False)
@@ -373,7 +375,8 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
                                                    "<b>%s</b>" % plugin.get_title(),
                                                    None,
                                                    plugin,
-                                                   None))
+                                                   None,
+                                                   0))
 
             self.janitor_model[plugin_iter][self.JANITOR_SPINNER_ACTIVE] = True
             self.janitor_model[plugin_iter][self.JANITOR_SPINNER_PULSE] = 0
@@ -434,7 +437,8 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
                                                cruft.get_name(),
                                                cruft.get_size_display(),
                                                plugin,
-                                               cruft))
+                                               cruft,
+                                               0))
 
         self.result_view.expand_row(self.result_model.get_path(result_iter), True)
 
@@ -442,7 +446,12 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         plugin.disconnect(self._find_handler)
         plugin.disconnect(self._scan_handler)
         plugin.set_data('scan_finished', True)
-        self.result_model[result_iter][self.RESULT_DISPLAY] = "<b>%s</b>" % plugin.get_summary(count, size)
+
+        if count == 0:
+            self.result_model[result_iter][self.RESULT_COUNT] = -1
+            self.result_model[result_iter][self.RESULT_DISPLAY] = "%s" % plugin.get_summary(count, size)
+        else:
+            self.result_model[result_iter][self.RESULT_DISPLAY] = "<b>%s</b>" % plugin.get_summary(count, size)
 
         # Update the janitor title
         for row in self.janitor_model:
@@ -512,6 +521,12 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         else:
             self.autoscan_setting.set_value(False)
             self.scan_button.show()
+
+    def check_column_view_func(self, cell_layout, renderer, model, iter, data=None):
+        if model[iter][self.RESULT_COUNT] == -1:
+            renderer.set_property("visible", False)
+        else:
+            renderer.set_property("visible", True)
 
     def icon_column_view_func(self, cell_layout, renderer, model, iter, id):
         if model[iter][id] == None:
