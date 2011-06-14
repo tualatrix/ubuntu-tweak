@@ -64,7 +64,7 @@ def get_from_mime_type(mime, size=DEFAULT_SIZE):
 
     return pixbuf
 
-def get_from_file(file, size):
+def get_from_file(file, size=DEFAULT_SIZE):
     try:
         return GdkPixbuf.Pixbuf.new_from_file_at_size(file, size, size)
     except Exception, e:

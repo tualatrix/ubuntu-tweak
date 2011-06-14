@@ -25,3 +25,11 @@ def get_homepage(url):
 def get_source_file_name(url):
     section = url.split('/')
     return '%s-%s' % (section[3], section[4])
+
+def get_ppa_origin_name(url):
+    section = url.split('/')
+    # Due to the policy of ppa orgin naming, if an ppa is end with "ppa", so ignore it
+    if section[4] == 'ppa':
+        return 'LP-PPA-%s' % section[3]
+    else:
+        return 'LP-PPA-%s-%s' % (section[3], section[4])
