@@ -169,7 +169,11 @@ class ProcessDialog(BusyDialog):
 
 class SmartTerminal(Vte.Terminal):
     def insert(self, string):
-        column_count = self.get_column_count ()
+        self.feed(string, -1)
+
+    def future_insert(self, string):
+        #TODO use this in Gtk+3.0
+        column_count = self.get_column_count()
         column, row = self.get_cursor_position()
         if column == 0:
             column = column_count

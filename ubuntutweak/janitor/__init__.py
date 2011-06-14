@@ -144,6 +144,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         gobject.GObject.__init__(self)
 
         self.scan_tasks = []
+        self.clean_tasks = []
 
         self.set_border_width(6)
         GuiBuilder.__init__(self, 'janitorpage.ui')
@@ -460,7 +461,9 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
 
     def on_clean_button_clicked(self, widget):
         self.plugin_to_run = 0
+
         plugin_dict = OrderedDict()
+
         for row in self.result_model:
             plugin = row[self.RESULT_PLUGIN]
             cruft_list = []
@@ -475,26 +478,32 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
             if cruft_list:
                 plugin_dict[plugin] = cruft_list
 
-        self.do_real_clean_task(list(plugin_dict.items()))
+        self.clean_tasks = list(plugin_dict.items())
+
+        self.do_real_clean_task()
         log.debug("All finished!")
 
-    def do_real_clean_task(self, clean_tasks):
-        plugin, cruft_list = clean_tasks.pop(0)
+    def do_real_clean_task(self):
+        plugin, cruft_list = self.clean_tasks.pop(0)
 
         log.debug("Call %s to clean cruft" % plugin)
-        self._plugin_handler = plugin.connect('cleaned', self.on_plugin_cleaned, clean_tasks)
+        self._plugin_handler = plugin.connect('cleaned', self.on_plugin_cleaned)
+        self._error_handler = plugin.connect('error', self.on_clean_error)
         plugin.clean_cruft(self.get_toplevel(), cruft_list)
 
-    def on_plugin_cleaned(self, plugin, cleaned, clean_tasks):
-        #TODO if the clean is not finished
-        if plugin.handler_is_connected(self._plugin_handler):
-            log.debug("Disconnect the cleaned signal, or it will clean many times")
-            plugin.disconnect(self._plugin_handler)
+    def on_plugin_cleaned(self, plugin, cleaned):
+        for handler in (self._plugin_handler, self._error_handler):
+            if plugin.handler_is_connected(handler):
+                log.debug("Disconnect the cleaned signal, or it will clean many times")
+                plugin.disconnect(handler)
 
-        if len(clean_tasks) == 0:
+        if len(self.clean_tasks) == 0:
             self.on_scan_button_clicked()
         else:
-            gobject.timeout_add(300, self.do_real_clean_task, clean_tasks)
+            gobject.timeout_add(300, self.do_real_clean_task)
+
+    def on_clean_error(self, plugin, error):
+        self.clean_tasks = []
 
     def on_autoscan_button_toggled(self, widget):
         if widget.get_active():
