@@ -336,6 +336,9 @@ class UbuntuTweakWindow(GuiBuilder):
         self.aboutdialog.run()
         self.aboutdialog.hide()
 
+    def on_preference_button_clicked(self, widget):
+        pass
+
     def on_module_selected(self, widget, name):
         log.debug('Select module: %s' % name)
 
