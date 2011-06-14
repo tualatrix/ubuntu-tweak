@@ -291,6 +291,12 @@ class UbuntuTweakWindow(GuiBuilder):
         elif feature:
             self.select_target_feature(feature)
 
+    def on_header_button_press_event(self, widget, event):
+        self.mainwindow.begin_move_drag(event.button,
+                                        event.x_root,
+                                        event.y_root,
+                                        event.time)
+
     def get_module_and_index(self, name):
         index = self.loaded_modules[name]
 
