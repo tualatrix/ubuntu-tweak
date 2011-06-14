@@ -72,15 +72,21 @@ class PackageConfigsPlugin(JanitorPlugin):
     __category__ = 'system'
 
     def get_cruft(self):
+        count = 0
+
         for line in os.popen('dpkg -l'):
             try:
                 temp_list = line.split()
                 status, pkg = temp_list[0], temp_list[1]
                 if status == 'rc':
                     des = temp_list[3:]
-                    yield PackageConfigObject(pkg)
+                    count += 1
+                    self.emit('find_object',
+                              PackageConfigObject(pkg))
             except:
                 pass
+
+        self.emit('scan_finished', True, count, 0)
 
     def clean_cruft(self, parent, cruft_list):
         set_busy(parent)
@@ -92,6 +98,6 @@ class PackageConfigsPlugin(JanitorPlugin):
 
     def get_summary(self, count, size):
         if count:
-            return _('Pakcages Configs (%d package configs to be removed)') % count
+            return _('Packages Configs (%d package configs to be removed)') % count
         else:
             return _('Packages Configs (No package config to be removed)')

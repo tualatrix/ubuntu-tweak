@@ -9,6 +9,8 @@ from ubuntutweak.utils import icon, filesizeformat
 from ubuntutweak.gui.dialogs import ProcessDialog, ErrorDialog, InfoDialog
 from ubuntutweak.policykit import proxy
 
+from defer import inline_callbacks, return_value
+
 class CacheObject(CruftObject):
     def __init__(self, name, path, size):
         self.name = name
@@ -63,9 +65,16 @@ class AptCachePlugin(JanitorPlugin):
     def get_cruft(self):
         cruft_list = glob.glob('/var/cache/apt/archives/*.deb')
         cruft_list.sort()
+        size = 0
 
         for deb in cruft_list:
-            yield CacheObject(os.path.basename(deb), deb, os.path.getsize(deb))
+            current_size = os.path.getsize(deb)
+            size += current_size
+
+            self.emit('find_object',
+                      CacheObject(os.path.basename(deb), deb, size))
+
+        self.emit('scan_finished', True, len(cruft_list), size)
 
     def on_dialog_error(self, widget, error_name):
         ErrorDialog(message='%s can not be removed').launch()

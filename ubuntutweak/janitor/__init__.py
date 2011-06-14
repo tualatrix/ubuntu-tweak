@@ -1,4 +1,6 @@
+import threading
 import logging
+import traceback
 
 from collections import OrderedDict
 
@@ -11,6 +13,8 @@ from ubuntutweak.gui import GuiBuilder
 from ubuntutweak.utils import icon, filesizeformat
 from ubuntutweak.modules import ModuleLoader
 from ubuntutweak.settings import GSetting
+from ubuntutweak.common.debug import run_traceback
+from ubuntutweak.gui.dialogs import ErrorDialog
 
 log = logging.getLogger('Janitor')
 
@@ -61,7 +65,13 @@ class JanitorPlugin(gobject.GObject):
     cache = None
 
     __gsignals__ = {
+        'find_object': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_PYOBJECT,)),
+        'scan_finished': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE,
+                          (gobject.TYPE_BOOLEAN,
+                           gobject.TYPE_INT,
+                           gobject.TYPE_INT)),
         'cleaned': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_BOOLEAN,)),
+        'error': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_STRING,)),
     }
 
     @classmethod
@@ -132,6 +142,9 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
 
     def __init__(self):
         gobject.GObject.__init__(self)
+
+        self.scan_tasks = []
+
         self.set_border_width(6)
         GuiBuilder.__init__(self, 'janitorpage.ui')
 
@@ -153,10 +166,10 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         #add janitor columns
         janitor_column = Gtk.TreeViewColumn()
 
-        self.janitor_check_renderer = Gtk.CellRendererToggle()
-        self.janitor_check_renderer.connect('toggled', self.on_janitor_check_button_toggled)
-        janitor_column.pack_start(self.janitor_check_renderer, False)
-        janitor_column.add_attribute(self.janitor_check_renderer, 'active', self.JANITOR_CHECK)
+        renderer = Gtk.CellRendererToggle()
+        renderer.connect('toggled', self.on_janitor_check_button_toggled)
+        janitor_column.pack_start(renderer, False)
+        janitor_column.add_attribute(renderer, 'active', self.JANITOR_CHECK)
 
         self.janitor_view.append_column(janitor_column)
 
@@ -241,22 +254,22 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
 
     def on_janitor_check_button_toggled(self, cell, path):
         iter = self.janitor_model.get_iter(path)
-        checked = self.janitor_model[iter][self.JANITOR_CHECK]
+        checked = not self.janitor_model[iter][self.JANITOR_CHECK]
 
         if self.janitor_model.iter_has_child(iter):
             child_iter = self.janitor_model.iter_children(iter)
             while child_iter:
-                self.janitor_model[child_iter][self.JANITOR_CHECK] = not checked
+                self.janitor_model[child_iter][self.JANITOR_CHECK] = checked
 
                 child_iter = self.janitor_model.iter_next(child_iter)
 
-        self.janitor_model[iter][self.JANITOR_CHECK] = not checked
+        self.janitor_model[iter][self.JANITOR_CHECK] = checked
 
-        self.check_child_is_all_the_same(self.janitor_model, iter,
-                                         self.JANITOR_CHECK, not checked)
+        self._check_child_is_all_the_same(self.janitor_model, iter,
+                                         self.JANITOR_CHECK, checked)
 
         if self.is_auto_scan():
-            self.scan_cruft(iter, not checked)
+            self._auto_scan_cruft(iter, checked)
 
     def _update_clean_button_sensitive(self):
         self.clean_button.set_sensitive(False)
@@ -268,7 +281,6 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
                     break
 
     def on_result_check_renderer_toggled(self, cell, path):
-
         iter = self.result_model.get_iter(path)
         checked = self.result_model[iter][self.RESULT_CHECK]
 
@@ -281,12 +293,12 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
 
         self.result_model[iter][self.RESULT_CHECK] = not checked
 
-        self.check_child_is_all_the_same(self.result_model, iter,
+        self._check_child_is_all_the_same(self.result_model, iter,
                                          self.RESULT_CHECK, not checked)
 
         self._update_clean_button_sensitive()
 
-    def check_child_is_all_the_same(self, model, iter, column_id, status):
+    def _check_child_is_all_the_same(self, model, iter, column_id, status):
         iter = model.iter_parent(iter)
 
         if iter:
@@ -304,35 +316,52 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         self.result_model.clear()
         self.clean_button.set_sensitive(False)
 
+        scan_dict = OrderedDict()
+
         for row in self.janitor_model:
             for child_row in row.iterchildren():
                 checked = child_row[self.JANITOR_CHECK]
 
-                self.scan_cruft(child_row.iter, checked)
+                scan_dict[child_row.iter] = checked
 
-    def scan_cruft(self, iter, checked):
         self.set_busy()
+        self.scan_tasks = list(scan_dict.items())
+        self.do_scan_task()
+
+    def _auto_scan_cruft(self, iter, checked):
+        self.set_busy()
+
+        scan_dict = OrderedDict()
+
         if self.janitor_model.iter_has_child(iter):
             log.info('Scan cruft for all plugins')
             #Scan cruft for children
             child_iter = self.janitor_model.iter_children(iter)
 
             while child_iter:
-                self.do_plugin_scan(child_iter, checked)
+                scan_dict[child_iter] = checked
                 child_iter = self.janitor_model.iter_next(child_iter)
         else:
-            self.do_plugin_scan(iter, checked)
-        self.unset_busy()
+            scan_dict[iter] = checked
 
-    def do_plugin_scan(self, plugin_iter, checked):
-        #Scan cruft for current iter
+        self.scan_tasks = list(scan_dict.items())
+
+        for plugin_iter, checked in self.scan_tasks:
+            plugin = self.janitor_model[plugin_iter][self.JANITOR_PLUGIN]
+
+            for row in self.result_model:
+                if row[self.RESULT_PLUGIN] == plugin:
+                    self.result_model.remove(row.iter)
+
+        self.do_scan_task()
+
+    def do_scan_task(self):
+        plugin_iter, checked = self.scan_tasks.pop(0)
+
         plugin = self.janitor_model[plugin_iter][self.JANITOR_PLUGIN]
+        plugin.set_data('scan_finished', False)
 
-        iter = self.result_model.get_iter_first()
-        count = 0
-        for row in self.result_model:
-            if row[self.RESULT_PLUGIN] == plugin:
-                self.result_model.remove(row.iter)
+        log.debug("do_scan_task for %s for status: %s" % (plugin, checked))
 
         if checked:
             log.info('Scan cruft for plugin: %s' % plugin.get_name())
@@ -348,43 +377,86 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
             self.janitor_model[plugin_iter][self.JANITOR_SPINNER_ACTIVE] = True
             self.janitor_model[plugin_iter][self.JANITOR_SPINNER_PULSE] = 0
 
-            total_size = 0
-            for i, cruft in enumerate(plugin.get_cruft()):
-                while Gtk.events_pending():
-                    Gtk.main_iteration()
+            self._find_handler = plugin.connect('find_object', self.on_find_object, iter)
+            self._scan_handler = plugin.connect('scan_finished', self.on_scan_finished, iter)
+            self._error_handler = plugin.connect('error', self.on_scan_error, plugin_iter)
 
-                self.janitor_model[plugin_iter][self.JANITOR_SPINNER_PULSE] = i + 1
+            t = threading.Thread(target=plugin.get_cruft)
+            gobject.timeout_add(50, self._on_spinner_timeout, plugin_iter, t)
 
-                total_size += cruft.get_size()
+            t.start()
+        else:
+            # Update the janitor title
+            for row in self.janitor_model:
+                for child_row in row.iterchildren():
+                    if child_row[self.JANITOR_PLUGIN] == plugin:
+                        child_row[self.JANITOR_DISPLAY] = plugin.get_title()
 
-                child_iter = self.result_model.append(iter, (False,
-                                                cruft.get_icon(),
-                                                cruft.get_name(),
-                                                cruft.get_name(),
-                                                cruft.get_size_display(),
-                                                plugin,
-                                                cruft))
+            if self.scan_tasks:
+                self.do_scan_task()
+            else:
+                self.unset_busy()
 
-                self.result_view.get_selection().select_iter(child_iter)
-                self.result_view.scroll_to_cell(self.result_model.get_path(child_iter))
+    def _on_spinner_timeout(self, plugin_iter, thread):
+        plugin = self.janitor_model[plugin_iter][self.JANITOR_PLUGIN]
+        finished = plugin.get_data('scan_finished')
 
-                if i == 0:
-                    self.result_view.expand_row(self.result_model.get_path(iter), True)
-            count = self.janitor_model[plugin_iter][self.JANITOR_SPINNER_PULSE]
+        self.janitor_model[plugin_iter][self.JANITOR_SPINNER_PULSE] += 1
+
+        if finished:
+            for handler in (self._find_handler, self._scan_handler):
+                if plugin.handler_is_connected(handler):
+                    log.debug("Disconnect the cleaned signal, or it will clean many times")
+                    plugin.disconnect(handler)
+
             self.janitor_model[plugin_iter][self.JANITOR_SPINNER_ACTIVE] = False
-            self.result_model[iter][self.RESULT_DISPLAY] = "<b>%s</b>" % plugin.get_summary(count, total_size)
+
+            for view in (self.janitor_view, self.result_view):
+                view.hide()
+                view.show()
+            thread.join()
+
+            if len(self.scan_tasks) != 0:
+                self.do_scan_task()
+            else:
+                self.unset_busy()
+
+        return not finished
+
+    def on_find_object(self, plugin, cruft, result_iter):
+        while Gtk.events_pending():
+            Gtk.main_iteration()
+
+        self.result_model.append(result_iter, (False,
+                                               cruft.get_icon(),
+                                               cruft.get_name(),
+                                               cruft.get_name(),
+                                               cruft.get_size_display(),
+                                               plugin,
+                                               cruft))
+
+        self.result_view.expand_row(self.result_model.get_path(result_iter), True)
+
+    def on_scan_finished(self, plugin, result, count, size, result_iter):
+        plugin.disconnect(self._find_handler)
+        plugin.disconnect(self._scan_handler)
+        plugin.set_data('scan_finished', True)
+        self.result_model[result_iter][self.RESULT_DISPLAY] = "<b>%s</b>" % plugin.get_summary(count, size)
 
         # Update the janitor title
         for row in self.janitor_model:
             for child_row in row.iterchildren():
-
                 if child_row[self.JANITOR_PLUGIN] == plugin:
-                    if count and checked:
+                    if count:
                         child_row[self.JANITOR_DISPLAY] = "<b>%s (%d) </b>" % (plugin.get_title(), count)
-                    elif checked:
-                        child_row[self.JANITOR_DISPLAY] = "%s (%d)" % (plugin.get_title(), count)
                     else:
-                        child_row[self.JANITOR_DISPLAY] = plugin.get_title()
+                        child_row[self.JANITOR_DISPLAY] = "%s (%d)" % (plugin.get_title(), count)
+
+    def on_scan_error(self, plugin, error, plugin_iter):
+        #TODO deal with the error
+        self.janitor_model[plugin_iter][self.JANITOR_ICON] = icon.get_from_name('error', size=16)
+        plugin.set_data('scan_finished', True)
+        self.scan_tasks = []
 
     def on_clean_button_clicked(self, widget):
         self.plugin_to_run = 0
@@ -406,23 +478,23 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         self.do_real_clean_task(list(plugin_dict.items()))
         log.debug("All finished!")
 
-    def do_real_clean_task(self, plugin_tasks):
-        plugin, cruft_list = plugin_tasks.pop(0)
+    def do_real_clean_task(self, clean_tasks):
+        plugin, cruft_list = clean_tasks.pop(0)
 
         log.debug("Call %s to clean cruft" % plugin)
-        self._plugin_handler = plugin.connect('cleaned', self.on_plugin_cleaned, plugin_tasks)
+        self._plugin_handler = plugin.connect('cleaned', self.on_plugin_cleaned, clean_tasks)
         plugin.clean_cruft(self.get_toplevel(), cruft_list)
 
-    def on_plugin_cleaned(self, plugin, cleaned, plugin_tasks):
+    def on_plugin_cleaned(self, plugin, cleaned, clean_tasks):
         #TODO if the clean is not finished
         if plugin.handler_is_connected(self._plugin_handler):
             log.debug("Disconnect the cleaned signal, or it will clean many times")
             plugin.disconnect(self._plugin_handler)
 
-        if len(plugin_tasks) == 0:
+        if len(clean_tasks) == 0:
             self.on_scan_button_clicked()
         else:
-            gobject.timeout_add(300, self.do_real_clean_task, plugin_tasks)
+            gobject.timeout_add(300, self.do_real_clean_task, clean_tasks)
 
     def on_autoscan_button_toggled(self, widget):
         if widget.get_active():

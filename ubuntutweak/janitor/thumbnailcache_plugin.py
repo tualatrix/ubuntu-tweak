@@ -63,16 +63,26 @@ class ThumbnailCachePlugin(JanitorPlugin):
     __category__ = 'personal'
 
     def get_cruft(self):
-        for root, dirs, files in os.walk(os.path.expanduser('~/.thumbnails')):
-            if files:
-                length = len(files)
+        try:
+            count = 0
+            total_size = 0
+            for root, dirs, files in os.walk(os.path.expanduser('~/.thumbnails')):
+                if files:
+                    length = len(files)
 
-                try:
-                    size = os.popen('du -bs "%s"' % root).read().split()[0]
-                except:
-                    size = 0
+                    try:
+                        size = os.popen('du -bs "%s"' % root).read().split()[0]
+                    except:
+                        size = 0
+                    count += 1
+                    total_size += int(size)
 
-                yield ThumbnailObject(os.path.basename(root), root, length, size)
+                    self.emit('find_object',
+                              ThumbnailObject(os.path.basename(root), root, length, size))
+
+            self.emit('scan_finished', True, count, total_size)
+        except Exception, e:
+            self.emit('error', e)
 
     def clean_cruft(self, parent, cruft_list):
         dialog = CleanThumbnailDailog(parent, cruft_list)

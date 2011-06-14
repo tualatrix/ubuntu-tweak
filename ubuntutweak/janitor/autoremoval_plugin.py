@@ -12,10 +12,17 @@ class AutoRemovalPlugin(JanitorPlugin):
 
     def get_cruft(self):
         cache = self.get_cache()
+        count = 0
+        size = 0
         if cache:
             for pkg in cache:
                 if pkg.isAutoRemovable:
-                    yield PackageObject(pkg.summary, pkg.name, pkg.installedSize)
+                    count += 1
+                    size += pkg.installedSize
+                    self.emit('find_object',
+                              PackageObject(pkg.summary, pkg.name, pkg.installedSize))
+
+        self.emit('scan_finished', True, count, size)
 
     def clean_cruft(self, parent, cruft_list):
         set_busy(parent)
@@ -29,6 +36,6 @@ class AutoRemovalPlugin(JanitorPlugin):
 
     def get_summary(self, count, size):
         if count:
-            return _('Unneeded Packages (%d packages to be removed, total size: %s') % (count, filesizeformat(size))
+            return _('Unneeded Packages (%d packages to be removed, total size: %s)') % (count, filesizeformat(size))
         else:
             return _('Unneeded Packages (No package to be removed)')
