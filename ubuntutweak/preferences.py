@@ -16,9 +16,15 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
+import logging
+
 from ubuntutweak.gui import GuiBuilder
 from ubuntutweak.modules import ModuleLoader
 from ubuntutweak.settings import GSetting
+
+
+log = logging.getLogger('PreferencesDialog')
+
 
 class PreferencesDialog(GuiBuilder):
     (CLIP_CHECK,
@@ -34,8 +40,18 @@ class PreferencesDialog(GuiBuilder):
     def on_clip_toggle_render_toggled(self, cell, path):
         iter = self.clip_model.get_iter(path)
         checked = not self.clip_model[iter][self.CLIP_CHECK]
-
         self.clip_model[iter][self.CLIP_CHECK] = checked
+
+        self._do_update_clip_store()
+
+    def _do_update_clip_store(self):
+        clip_list = []
+        for row in self.clip_model:
+            if row[self.CLIP_CHECK]:
+                clip_list.append(row[self.CLIP_NAME])
+
+        log.debug("on_clip_toggle_render_toggled: %s" % clip_list)
+        self.clips_settings.set_value(clip_list)
 
     def run(self):
         clips = self.clips_settings.get_value()
@@ -72,3 +88,22 @@ class PreferencesDialog(GuiBuilder):
 
     def hide(self):
         return self.preferences_dialog.hide()
+
+    def on_move_up_button_clicked(self, widget):
+        model, iter = self.clip_view.get_selection().get_selected()
+
+        if iter:
+            previous_path = str(int(model.get_string_from_iter(iter)) - 1)
+
+            if int(previous_path) >= 0:
+                previous_iter = model.get_iter_from_string(previous_path)
+                model.move_before(iter, previous_iter)
+                self._do_update_clip_store()
+
+    def on_move_down_button_clicked(self, widget):
+        model, iter = self.clip_view.get_selection().get_selected()
+
+        if iter:
+            next_iter = model.iter_next(iter)
+            model.move_after(iter, next_iter)
+            self._do_update_clip_store()

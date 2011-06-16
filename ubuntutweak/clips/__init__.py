@@ -104,22 +104,16 @@ class ClipPage(Gtk.VBox, GuiBuilder):
         GuiBuilder.__init__(self, 'clippage.ui')
 
         self.rencently_used_settings = GSetting('com.ubuntu-tweak.tweak.rencently-used')
+        self.clips_settings = GSetting('com.ubuntu-tweak.tweak.clips')
+        self.loader = ModuleLoader('clips')
 
-        loader = ModuleLoader('clips')
-
-        for name, ClipClass in loader.module_table.items():
-            log.debug("Load clip: %s" % name)
-            clip = ClipClass()
-            clip.connect('load_module', self._on_module_button_clicked)
-            clip.connect('load_feature', self.on_clip_load_feature)
-            clip.show()
-            self.clipvbox.pack_start(clip, False, False, 0)
-
+        self.load_cips()
         self.setup_rencently_used()
 
         self.pack_start(self.get_object('hbox1'), True, True, 0)
         self.connect('expose-event', self.on_expose_event)
         self.rencently_used_settings.connect_notify(self.setup_rencently_used)
+        self.clips_settings.connect_notify(self.load_cips, True)
 
         self.show()
 
@@ -132,6 +126,27 @@ class ClipPage(Gtk.VBox, GuiBuilder):
         self.rencently_frame.set_size_request(frame_width, -1)
 
         self.slide_clips()
+
+    def load_cips(self, a=None, b=None, do_remove=False):
+        log.debug("Load clips, do_remove: %s" % do_remove)
+
+        if do_remove:
+            for child in self.clipvbox.get_children()[1:-1]:
+                self.clipvbox.remove(child)
+
+        clips = self.clips_settings.get_value()
+
+        if not clips:
+            clips = self.loader.module_table.keys()[:5]
+
+        for name in clips:
+            ClipClass = self.loader.get_module(name)
+            log.debug("Load clip: %s" % name)
+            clip = ClipClass()
+            clip.connect('load_module', self._on_module_button_clicked)
+            clip.connect('load_feature', self.on_clip_load_feature)
+            clip.show()
+            self.clipvbox.pack_start(clip, False, False, 0)
 
     def slide_clips(self, direction=None):
         max_height = self.get_allocation().height
@@ -195,6 +210,8 @@ class ClipPage(Gtk.VBox, GuiBuilder):
             self.clipvbox.get_children()[-1].set_visible(height_sum > max_height)
 
     def setup_rencently_used(self, *args):
+        log.debug("Overview page: setup_rencently_used")
+
         used_list = self.rencently_used_settings.get_value()
         for child in self.rencently_used_vbox.get_children():
             self.rencently_used_vbox.remove(child)

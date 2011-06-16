@@ -106,7 +106,7 @@
                                 <property name="vscrollbar_policy">automatic</property>
                                 <property name="shadow_type">in</property>
                                 <child>
-                                  <object class="GtkTreeView" id="treeview1">
+                                  <object class="GtkTreeView" id="clip_view">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="model">clip_model</property>
@@ -160,12 +160,13 @@
                                 <property name="can_focus">False</property>
                                 <property name="spacing">12</property>
                                 <child>
-                                  <object class="GtkButton" id="button1">
+                                  <object class="GtkButton" id="move_up_button">
                                     <property name="label" translatable="yes">Move Up</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">True</property>
                                     <property name="use_action_appearance">False</property>
+                                    <signal name="clicked" handler="on_move_up_button_clicked" swapped="no"/>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -174,12 +175,13 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkButton" id="button2">
+                                  <object class="GtkButton" id="move_down_button">
                                     <property name="label" translatable="yes">Move Down</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">True</property>
                                     <property name="use_action_appearance">False</property>
+                                    <signal name="clicked" handler="on_move_down_button_clicked" swapped="no"/>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>

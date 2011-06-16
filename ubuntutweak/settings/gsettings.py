@@ -2,8 +2,7 @@ import logging
 
 from gi.repository import Gio
 
-log = logging.getLogger('GioSetting')
-
+log = logging.getLogger('GSetting')
 
 class GSetting(object):
 
