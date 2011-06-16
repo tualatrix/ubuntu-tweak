@@ -63,7 +63,7 @@ class ModuleLoader:
         if not os.path.exists(package_identy_file):
             os.system("touch %s" % package_identy_file)
 
-        log.info("Loading user plugins...")
+        log.info("Loading user plugins for %s..." % feature)
         self.do_folder_import(user_folder)
 
     @classmethod
@@ -119,6 +119,7 @@ class ModuleLoader:
 
     def do_single_import(self, path):
         module_name = os.path.splitext(os.path.basename(path))[0]
+        log.debug("Try to load module: %s" % module_name)
         try:
             package = __import__(module_name)
         except Exception, e:
@@ -135,19 +136,16 @@ class ModuleLoader:
             sys.path.insert(0, path)
 
         for f in os.listdir(path):
-            log.debug("Found %s in %s" % (f, path))
             full_path = os.path.join(path, f)
 
             if os.path.isdir(full_path) and \
                     os.path.exists(os.path.join(path, '__init__.py')):
                 self.do_single_import(f)
             elif f.endswith('.py') and f != '__init__.py':
-                module_name = os.path.splitext(f)[0]
-                log.debug("Try to load module: %s" % module_name)
                 self.do_single_import(f)
 
     def _insert_moduel(self, k, v):
-        if k not in ('TweakModule', 'proxy') and hasattr(v, '__utmodule__'):
+        if k not in ('TweakModule', 'Clip', 'proxy') and hasattr(v, '__utmodule__'):
             if v.__utactive__:
                 self.module_table[v.get_name()] = v
                 if v.get_category() not in dict(self.category_names):

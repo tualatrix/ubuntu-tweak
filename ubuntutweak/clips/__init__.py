@@ -12,6 +12,9 @@ log = logging.getLogger("ClipPage")
 
 
 class Clip(Gtk.VBox):
+    __utmodule__ = ''
+    __utactive__ = True
+
     __gsignals__ = {
         'load_module': (gobject.SIGNAL_RUN_FIRST,
                             gobject.TYPE_NONE,
@@ -34,6 +37,14 @@ class Clip(Gtk.VBox):
 
         self.inner_vbox = Gtk.VBox()
         self.hbox.pack_start(self.inner_vbox, True, True, 0)
+
+    @classmethod
+    def get_name(cls):
+        return cls.__name__
+
+    @classmethod
+    def get_category(cls):
+        return 'clips'
 
     def get_image_pixbuf(self):
         return NotImplemented
@@ -81,14 +92,12 @@ class ClipPage(Gtk.VBox, GuiBuilder):
         gobject.GObject.__init__(self)
         GuiBuilder.__init__(self, 'clippage.ui')
 
-        #TODO
-        from hardwareinfo import HardwareInfo
-        from updateinfo import UpdateInfo
-        from cleanerinfo import CleanerInfo
-        from everydaytips import EverydayTips
         self.rencently_used_settings = GSetting('com.ubuntu-tweak.tweak.rencently-used')
 
-        for ClipClass in (EverydayTips, HardwareInfo, UpdateInfo, CleanerInfo):
+        loader = ModuleLoader('clips')
+
+        for name, ClipClass in loader.module_table.items():
+            log.debug("Load clip: %s" % name)
             clip = ClipClass()
             clip.connect('load_module', self._on_module_button_clicked)
             clip.connect('load_feature', self.on_clip_load_feature)

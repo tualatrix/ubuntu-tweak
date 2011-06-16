@@ -27,4 +27,4 @@ class SystemInfo(Clip):
         self.show_all()
 
     def get_image_pixbuf(self):
-        return icon.get_from_name('ubuntu-logo', size=48))
+        return icon.get_from_name('ubuntu-logo', size=48)

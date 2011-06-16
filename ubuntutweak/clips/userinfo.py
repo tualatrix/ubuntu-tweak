@@ -9,7 +9,6 @@ class UserInfo(Clip):
     def __init__(self):
         Clip.__init__(self)
 
-        self.set_image_from_pixbuf(icon.get_from_name('config-users', size=48))
         self.set_title(_('User Information'))
 
         self.table = EasyTable(items=(
@@ -23,3 +22,8 @@ class UserInfo(Clip):
                          Gtk.Label(label=GLib.getenv('LANG')))),
                         xpadding=12, ypadding=2)
         self.set_content(self.table)
+
+        self.show_all()
+
+    def get_image_pixbuf(self):
+        return icon.get_from_name('config-users', size=48)
