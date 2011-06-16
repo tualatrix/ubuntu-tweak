@@ -1,10 +1,15 @@
 import os
+import logging
 import gobject
 from gi.repository import Gtk, Pango
 
 from ubuntutweak.gui import GuiBuilder
 from ubuntutweak.settings.gsettings import GSetting
 from ubuntutweak.modules import ModuleLoader
+
+
+log = logging.getLogger("ClipPage")
+
 
 class Clip(Gtk.VBox):
     __gsignals__ = {
@@ -47,7 +52,7 @@ class Clip(Gtk.VBox):
 
     def set_content(self, content):
         #TODO rename this API
-        self.inner_vbox.pack_start(content, False, False, 3)
+        self.inner_vbox.pack_start(content, False, False, 6)
 
     def add_action_button(self, button):
         #TODO and #FIXME better API
@@ -69,6 +74,9 @@ class ClipPage(Gtk.VBox, GuiBuilder):
 
     max_recently_used_size = 200
 
+    (DIRECTION_UP, DIRECTION_DOWN) = range(2)
+    direction = None
+
     def __init__(self):
         gobject.GObject.__init__(self)
         GuiBuilder.__init__(self, 'clippage.ui')
@@ -77,9 +85,10 @@ class ClipPage(Gtk.VBox, GuiBuilder):
         from hardwareinfo import HardwareInfo
         from updateinfo import UpdateInfo
         from cleanerinfo import CleanerInfo
+        from everydaytips import EverydayTips
         self.rencently_used_settings = GSetting('com.ubuntu-tweak.tweak.rencently-used')
 
-        for ClipClass in (HardwareInfo, UpdateInfo, CleanerInfo):
+        for ClipClass in (EverydayTips, HardwareInfo, UpdateInfo, CleanerInfo):
             clip = ClipClass()
             clip.connect('load_module', self._on_module_button_clicked)
             clip.connect('load_feature', self.on_clip_load_feature)
@@ -95,26 +104,75 @@ class ClipPage(Gtk.VBox, GuiBuilder):
         self.show()
 
     def on_expose_event(self, widget, event):
-        allocation = self.get_allocation()
-        frame_width = int(allocation.width / 4.5)
+        log.debug('on_expose_event')
+        frame_width = int(self.get_allocation().width / 4.5)
 
         if frame_width > self.max_recently_used_size:
             frame_width = self.max_recently_used_size
         self.rencently_frame.set_size_request(frame_width, -1)
 
-        max_height = allocation.height
+        self.slide_clips()
+
+    def slide_clips(self, direction=None):
+        max_height = self.get_allocation().height
         height_sum = 0
 
-        for clip in self.clipvbox.get_children()[:-1]:
-            height_sum += clip.get_allocation().height
-            height_sum += 32
+        if direction == self.DIRECTION_DOWN:
+            self.clipvbox.set_data('direction', self.DIRECTION_DOWN)
 
-            if height_sum > max_height:
-                clip.hide()
+            for clip in self.clipvbox.get_children()[1:-1]:
+                if clip.get_visible():
+                    log.debug("%s is visible, hide it" % clip)
+                    clip.hide()
+                else:
+                    height_sum += clip.get_allocation().height
+                    height_sum += 32
+
+                    if height_sum < max_height:
+                        log.debug("%s is not visible, show it" % clip)
+                        clip.show()
+
+            self.clipvbox.get_children()[0].set_visible(True)
+            self.clipvbox.get_children()[-1].set_visible(height_sum > max_height)
+        elif direction == self.DIRECTION_UP:
+            self.clipvbox.set_data('direction', self.DIRECTION_UP)
+
+            for clip in self.clipvbox.get_children()[1:-1]:
+                if clip.get_visible():
+                    log.debug("%s is visible, hide it" % clip)
+                    clip.hide()
+                else:
+                    height_sum += clip.get_allocation().height
+                    height_sum += 32
+
+                    if height_sum < max_height:
+                        log.debug("%s is not visible, show it" % clip)
+                        clip.show()
+
+            self.clipvbox.get_children()[0].set_visible(height_sum > max_height)
+            self.clipvbox.get_children()[-1].set_visible(True)
+        else:
+            direction = self.clipvbox.get_data('direction')
+            if direction == self.DIRECTION_DOWN:
+                index = 0
+                for i, clip in enumerate(self.clipvbox.get_children()[1:-1]):
+                    if clip.get_visible():
+                        index = i
+                        break
+                index += 1
             else:
-                clip.show()
+                index = 1
 
-        self.clipvbox.get_children()[-1].set_visible(height_sum > max_height)
+            for clip in self.clipvbox.get_children()[index:-1]:
+                height_sum += clip.get_allocation().height
+                height_sum += 32
+
+                if height_sum > max_height:
+                    clip.hide()
+                else:
+                    clip.show()
+
+            self.clipvbox.get_children()[-1].set_visible(height_sum > max_height)
 
     def setup_rencently_used(self, *args):
         used_list = self.rencently_used_settings.get_value()
@@ -154,3 +212,11 @@ class ClipPage(Gtk.VBox, GuiBuilder):
 
     def on_clip_load_feature(self, widget, name):
         self.emit('load_feature', name)
+
+    def on_up_button_clicked(self, widget):
+        log.debug("on_up_button_clicked")
+        self.slide_clips(self.DIRECTION_UP)
+
+    def on_down_button_clicked(self, widget):
+        log.debug("on_down_button_clicked")
+        self.slide_clips(self.DIRECTION_DOWN)
