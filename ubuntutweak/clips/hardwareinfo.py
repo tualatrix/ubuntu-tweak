@@ -7,6 +7,8 @@ from ubuntutweak.utils import icon
 from ubuntutweak.gui.containers import EasyTable
 
 class HardwareInfo(Clip):
+    __icon__  = 'computer'
+
     def __init__(self):
         Clip.__init__(self)
 
@@ -37,6 +39,3 @@ class HardwareInfo(Clip):
         self.set_content(self.table)
 
         self.show_all()
-
-    def get_image_pixbuf(self):
-        return icon.get_from_name('computer', size=48)

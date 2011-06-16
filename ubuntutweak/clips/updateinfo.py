@@ -9,6 +9,8 @@ from ubuntutweak.clips import Clip
 from ubuntutweak.utils import icon
 
 class UpdateInfo(Clip):
+    __icon__ = 'system-software-update'
+
     NO_UPDATE_WARNING_DAYS = 7
 
     def __init__(self):
@@ -22,9 +24,6 @@ class UpdateInfo(Clip):
         self.set_content(label)
 
         self.show_all()
-
-    def get_image_pixbuf(self):
-        return icon.get_from_name('system-software-update', size=48)
 
     # The following two function are copyed from UpdateManager/UpdateManager.py
     def _get_last_apt_get_update_hours(self):

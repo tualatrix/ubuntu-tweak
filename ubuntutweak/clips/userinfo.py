@@ -6,6 +6,8 @@ from ubuntutweak.utils import icon
 from ubuntutweak.gui.containers import EasyTable
 
 class UserInfo(Clip):
+    __icon__  = 'config-users'
+
     def __init__(self):
         Clip.__init__(self)
 
@@ -24,6 +26,3 @@ class UserInfo(Clip):
         self.set_content(self.table)
 
         self.show_all()
-
-    def get_image_pixbuf(self):
-        return icon.get_from_name('config-users', size=48)

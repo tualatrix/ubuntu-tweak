@@ -7,6 +7,8 @@ from ubuntutweak.clips import Clip
 from ubuntutweak.utils import icon
 
 class EverydayTips(Clip):
+    __icon__  = 'info'
+
     def __init__(self):
         Clip.__init__(self)
 
@@ -18,6 +20,3 @@ class EverydayTips(Clip):
         self.set_content(label)
 
         self.show_all()
-
-    def get_image_pixbuf(self):
-        return icon.get_from_name('info', size=48)

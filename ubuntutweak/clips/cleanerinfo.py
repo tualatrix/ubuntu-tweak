@@ -7,6 +7,8 @@ from ubuntutweak.clips import Clip
 from ubuntutweak.utils import icon
 
 class CleanerInfo(Clip):
+    __icon__  = 'computer-janitor'
+
     def __init__(self):
         Clip.__init__(self)
 
@@ -40,9 +42,6 @@ class CleanerInfo(Clip):
         self.add_action_button(button)
 
         self.show_all()
-
-    def get_image_pixbuf(self):
-        return icon.get_from_name('edit-clear', size=48)
 
     def on_button_clicked(self, widget):
         self.emit('load_feature', 'janitor')

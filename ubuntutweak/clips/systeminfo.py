@@ -7,6 +7,8 @@ from ubuntutweak.utils import icon
 from ubuntutweak.gui.containers import EasyTable
 
 class SystemInfo(Clip):
+    __icon__ = 'ubuntu-logo'
+
     def __init__(self):
         Clip.__init__(self)
 
@@ -25,6 +27,3 @@ class SystemInfo(Clip):
         self.set_content(self.table)
 
         self.show_all()
-
-    def get_image_pixbuf(self):
-        return icon.get_from_name('ubuntu-logo', size=48)

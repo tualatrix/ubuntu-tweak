@@ -6,6 +6,7 @@ from gi.repository import Gtk, Pango
 from ubuntutweak.gui import GuiBuilder
 from ubuntutweak.settings.gsettings import GSetting
 from ubuntutweak.modules import ModuleLoader
+from ubuntutweak.utils import icon
 
 
 log = logging.getLogger("ClipPage")
@@ -13,6 +14,7 @@ log = logging.getLogger("ClipPage")
 
 class Clip(Gtk.VBox):
     __utmodule__ = ''
+    __icon__  = 'info'
     __utactive__ = True
 
     __gsignals__ = {
@@ -31,7 +33,7 @@ class Clip(Gtk.VBox):
         self.pack_start(self.hbox, True, True, 0)
 
         self.image = Gtk.Image()
-        self.image.set_from_pixbuf(self.get_image_pixbuf())
+        self.image.set_from_pixbuf(self.get_pixbuf())
         self.image.set_alignment(0, 0)
         self.hbox.pack_start(self.image, False, False, 12)
 
@@ -46,11 +48,20 @@ class Clip(Gtk.VBox):
     def get_category(cls):
         return 'clips'
 
-    def get_image_pixbuf(self):
-        return NotImplemented
+    @classmethod
+    def get_pixbuf(cls, size=48):
+        '''Return gtk Pixbuf'''
+        if cls.__icon__:
+            if type(cls.__icon__) != list:
+                if cls.__icon__.endswith('.png'):
+                    icon_path = os.path.join(DATA_DIR, 'pixmaps', cls.__icon__)
+                    pixbuf = Gtk.gd.pixbuf_new_from_file(icon_path)
+                else:
+                    pixbuf = icon.get_from_name(cls.__icon__, size=size)
+            else:
+                pixbuf = icon.get_from_list(cls.__icon__, size=size)
 
-    def set_image_from_pixbuf(self, pixbuf):
-        self.image.set_from_pixbuf(pixbuf)
+            return pixbuf
 
     def set_title(self, title):
         label = Gtk.Label()
