@@ -24,6 +24,7 @@ DATA_DIR = '/usr/share/ubuntu-tweak/'
 APP = applize(PACKAGE)
 CONFIG_ROOT = os.path.join(GLib.get_user_config_dir(), 'ubuntu-tweak')
 IS_INSTALLED = True
+IS_TESTING = '+' in VERSION
 
 if not os.path.exists(CONFIG_ROOT):
     os.makedirs(CONFIG_ROOT)

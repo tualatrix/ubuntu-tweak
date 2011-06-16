@@ -32,7 +32,7 @@ dbus.mainloop.glib.threads_init()
 
 from gi.repository import Unique
 
-from ubuntutweak.common.consts import VERSION, IS_INSTALLED
+from ubuntutweak.common.consts import VERSION, IS_INSTALLED, IS_TESTING
 from ubuntutweak.common.debug import enable_debugging
 
 
@@ -48,7 +48,7 @@ if __name__ == "__main__":
                       help="Start feature directly.  [default: %default]")
     options, args = parser.parse_args()
 
-    if options.debug or not IS_INSTALLED:
+    if options.debug or not IS_INSTALLED or IS_TESTING:
         enable_debugging()
 
     from ubuntutweak.app import UbuntuTweakApp, UbuntuTweakWindow, show_splash
