@@ -7,7 +7,7 @@ from ubuntutweak.clips import Clip
 from ubuntutweak.utils import icon
 
 class CleanerInfo(Clip):
-    __icon__  = 'computer-janitor'
+    __icon__  = 'computerjanitor'
 
     def __init__(self):
         Clip.__init__(self)

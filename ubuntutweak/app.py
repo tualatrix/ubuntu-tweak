@@ -34,6 +34,7 @@ from ubuntutweak.apps import AppsPage
 from ubuntutweak.janitor import JanitorPage
 from ubuntutweak.policykit import proxy
 from ubuntutweak.settings import GSetting
+from ubuntutweak.preferences import PreferencesDialog
 
 log = logging.getLogger('app')
 
@@ -270,6 +271,7 @@ class UbuntuTweakWindow(GuiBuilder):
         clip_page = ClipPage()
 #        apps_page = AppsPage()
         janitor_page = JanitorPage()
+        self.preferences_dialog = PreferencesDialog(self.mainwindow)
 
         self.rencently_used_settings = GSetting('com.ubuntu-tweak.tweak.rencently-used')
 
@@ -349,7 +351,8 @@ class UbuntuTweakWindow(GuiBuilder):
         self.aboutdialog.hide()
 
     def on_preference_button_clicked(self, widget):
-        pass
+        self.preferences_dialog.run()
+        self.preferences_dialog.hide()
 
     def on_module_selected(self, widget, name):
         log.debug('Select module: %s' % name)
