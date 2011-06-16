@@ -79,22 +79,38 @@ class ClipPage(Gtk.VBox, GuiBuilder):
             clip = ClipClass()
             clip.connect('load_module', self._on_module_button_clicked)
             clip.connect('load_feature', self.on_clip_load_feature)
+            clip.show()
             self.clipvbox.pack_start(clip, False, False, 0)
 
         self.setup_rencently_used()
 
         self.pack_start(self.get_object('hbox1'), True, True, 0)
-        self.connect('size-allocate', self.on_size_allocation)
+        self.connect('expose-event', self.on_expose_event)
         self.rencently_used_settings.connect_notify(self.setup_rencently_used)
 
-        self.show_all()
+        self.show()
 
-    def on_size_allocation(self, widget, allocation):
+    def on_expose_event(self, widget, event):
+        allocation = self.get_allocation()
         frame_width = int(allocation.width / 4.5)
 
         if frame_width > self.max_recently_used_size:
             frame_width = self.max_recently_used_size
         self.rencently_frame.set_size_request(frame_width, -1)
+
+        max_height = allocation.height
+        height_sum = 0
+
+        for clip in self.clipvbox.get_children()[:-1]:
+            height_sum += clip.get_allocation().height
+            height_sum += 32
+
+            if height_sum > max_height:
+                clip.hide()
+            else:
+                clip.show()
+
+        self.clipvbox.get_children()[-1].set_visible(height_sum > max_height)
 
     def setup_rencently_used(self, *args):
         used_list = self.rencently_used_settings.get_value()

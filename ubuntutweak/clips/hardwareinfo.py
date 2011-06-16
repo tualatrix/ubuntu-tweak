@@ -36,3 +36,5 @@ class HardwareInfo(Clip):
                         ),
                         xpadding=12, ypadding=2)
         self.set_content(self.table)
+
+        self.show_all()

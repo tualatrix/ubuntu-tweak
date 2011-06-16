@@ -41,5 +41,7 @@ class CleanerInfo(Clip):
         button.connect('clicked', self.on_button_clicked)
         self.add_action_button(button)
 
+        self.show_all()
+
     def on_button_clicked(self, widget):
         self.emit('load_feature', 'janitor')

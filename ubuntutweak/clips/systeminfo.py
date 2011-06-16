@@ -24,3 +24,5 @@ class SystemInfo(Clip):
                          Gtk.Label(label=system.DESKTOP_FULLNAME))),
                         xpadding=12, ypadding=2)
         self.set_content(self.table)
+
+        self.show_all()

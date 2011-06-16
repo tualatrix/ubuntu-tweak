@@ -113,6 +113,8 @@ class CategoryBox(Gtk.VBox):
         self.pack_start(header, False, False, 0)
         self.pack_start(self._table, False, False, 0)
 
+        self.show()
+
     def get_modules(self):
         return self._modules
 
@@ -180,6 +182,8 @@ class FeaturePage(Gtk.ScrolledWindow):
         viewport.add(self._box)
         self.add(viewport)
         self.connect('expose-event', self.rebuild_boxes)
+
+        self.show_all()
 
     def _connect_signals(self, category_box):
         for button in category_box.get_buttons():
@@ -283,7 +287,7 @@ class UbuntuTweakWindow(GuiBuilder):
         admins_page.connect('module_selected', self.on_module_selected)
         clip_page.connect('load_module', lambda widget, name: self.load_module(name))
         clip_page.connect('load_feature', lambda widget, name: self.select_target_feature(name))
-        self.mainwindow.show_all()
+        self.mainwindow.show()
         self.link_button.hide()
 
         if module:
@@ -323,6 +327,8 @@ class UbuntuTweakWindow(GuiBuilder):
         vbox.pack_start(label, False, False, 50)
         hbox = Gtk.HBox()
         vbox.pack_start(hbox, False, False, 0)
+
+        vbox.show_all()
 
         return vbox
 

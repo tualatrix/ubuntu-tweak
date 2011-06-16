@@ -23,6 +23,8 @@ class UpdateInfo(Clip):
 
         self.set_content(label)
 
+        self.show_all()
+
     # The following two function are copyed from UpdateManager/UpdateManager.py
     def _get_last_apt_get_update_hours(self):
         """
