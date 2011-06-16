@@ -14,8 +14,6 @@ class UpdateInfo(Clip):
     def __init__(self):
         Clip.__init__(self)
 
-        self.set_image_from_pixbuf(icon.get_from_name('system-software-update',
-                                                      size=48))
         self.set_title(_('Your system is up-to-date'))
 
         label = Gtk.Label(label=self._get_last_apt_get_update_text())
@@ -24,6 +22,9 @@ class UpdateInfo(Clip):
         self.set_content(label)
 
         self.show_all()
+
+    def get_image_pixbuf(self):
+        return icon.get_from_name('system-software-update', size=48)
 
     # The following two function are copyed from UpdateManager/UpdateManager.py
     def _get_last_apt_get_update_hours(self):

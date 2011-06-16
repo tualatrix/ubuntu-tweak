@@ -12,8 +12,6 @@ class CleanerInfo(Clip):
 
         cache_number = len(glob.glob('/var/cache/apt/archives/*.deb'))
 
-        self.set_image_from_pixbuf(icon.get_from_name('edit-clear', size=48))
-
         if cache_number:
             self.set_title(_('Some cache can be cleaned to free your disk space'))
         else:
@@ -42,6 +40,9 @@ class CleanerInfo(Clip):
         self.add_action_button(button)
 
         self.show_all()
+
+    def get_image_pixbuf(self):
+        return icon.get_from_name('edit-clear', size=48)
 
     def on_button_clicked(self, widget):
         self.emit('load_feature', 'janitor')

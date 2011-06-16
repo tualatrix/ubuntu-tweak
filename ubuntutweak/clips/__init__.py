@@ -23,11 +23,15 @@ class Clip(Gtk.VBox):
         self.pack_start(self.hbox, True, True, 0)
 
         self.image = Gtk.Image()
+        self.image.set_from_pixbuf(self.get_image_pixbuf())
         self.image.set_alignment(0, 0)
         self.hbox.pack_start(self.image, False, False, 12)
 
         self.inner_vbox = Gtk.VBox()
         self.hbox.pack_start(self.inner_vbox, True, True, 0)
+
+    def get_image_pixbuf(self):
+        return NotImplemented
 
     def set_image_from_pixbuf(self, pixbuf):
         self.image.set_from_pixbuf(pixbuf)

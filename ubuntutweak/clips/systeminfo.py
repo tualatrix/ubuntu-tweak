@@ -10,7 +10,6 @@ class SystemInfo(Clip):
     def __init__(self):
         Clip.__init__(self)
 
-        self.set_image_from_pixbuf(icon.get_from_name('ubuntu-logo', size=48))
         self.set_title(_('Ubuntu Desktop Information'))
 
         self.table = EasyTable(items=(
@@ -26,3 +25,6 @@ class SystemInfo(Clip):
         self.set_content(self.table)
 
         self.show_all()
+
+    def get_image_pixbuf(self):
+        return icon.get_from_name('ubuntu-logo', size=48))
