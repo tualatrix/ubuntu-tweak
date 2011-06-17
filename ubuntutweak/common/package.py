@@ -19,7 +19,6 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import os
-import re
 import sys
 import time
 import thread
@@ -34,9 +33,6 @@ from xdg.DesktopEntry import DesktopEntry
 
 from ubuntutweak.common.debug import run_traceback
 from ubuntutweak.gui.dialogs import InfoDialog, ErrorDialog
-
-p_kernel_version = re.compile('[.\d]+-\d+')
-p_kernel_package = re.compile('linux-[a-z\-]+')
 
 log = logging.getLogger('PackageWorker')
 
@@ -54,10 +50,6 @@ class NoNeedDowngradeException(Exception):
     pass
 
 class PackageWorker:
-    basenames = ['linux-image', 'linux-headers', 'linux-image-debug',
-                  'linux-ubuntu-modules', 'linux-header-lum',
-                  'linux-backport-modules',
-                  'linux-header-lbm', 'linux-restricted-modules']
 
     def __init__(self):
         # E.G. 2.6.35-24
@@ -98,23 +90,6 @@ class PackageWorker:
         lock.release()
         f.close()
 
-    def list_autoremovable(self):
-        list = []
-        try:
-            for pkg in self.cache.keys():
-                p = self.cache[pkg]
-                try:
-                    need_remove = getattr(p, 'isAutoRemovable')
-                except:
-                    need_remove = p.isInstalled and p._depcache.IsGarbage(p._pkg)
-
-                if need_remove:
-                    list.append(pkg)
-        except Exception, e:
-            log.error(e)
-
-        return list
-
     def get_local_pkg(self):
         #TODO More check
         list = []
@@ -122,32 +97,6 @@ class PackageWorker:
             if pkg.candidateDownloadable == 0:
                 list.append(pkg)
         return list
-
-    def list_unneeded_kerenl(self):
-        list = []
-        try:
-            for pkg in self.cache.keys():
-                if self.cache[pkg].isInstalled and self.is_old_kernel_package(pkg):
-                    list.append(pkg)
-        except Exception, e:
-            log.error(e)
-            run_traceback('error')
-
-        return list
-
-    def is_old_kernel_package(self, pkg):
-        if pkg.startswith('linux'):
-            package = p_kernel_package.findall(pkg)
-            if package:
-                package = package[0].rstrip('-')
-            else:
-                return False
-
-            if package in self.basenames:
-                kernel_match = p_kernel_version.findall(pkg)
-                if kernel_match and kernel_match[0] < self.current_kernel_version:
-                    return True
-        return False
 
     def get_pkgsummary(self, pkg):
         return self.cache[pkg].summary
@@ -239,88 +188,6 @@ class PackageWorker:
         for pkg in self.get_cache():
             if pkg.isUpgradable == 1:
                 yield pkg.name
-
-    def get_downgradeable_pkgs(self, ppa_dict):
-        def is_system_origin(version, urls):
-            origins = [get_ppa_origin_name(url) for url in urls]
-            system_version = 0
-            match = False
-
-            for origin in version.origins:
-                if origin.origin:
-                    if origin.origin not in origins:
-                        log.debug("The origin %s is not in %s, so end the loop" % (origin.origin, str(origins)))
-                        match = True
-                        break
-
-            if match:
-                system_version = version.version
-                log.debug("Found match url, the system_version is %s, now iter to system version" % system_version)
-
-            return system_version
-
-        def is_full_match_ppa_origin(pkg, version, urls):
-            origins = [get_ppa_origin_name(url) for url in urls]
-            ppa_version = 0
-            match = True
-
-            if version == pkg.installed:
-                for origin in version.origins:
-                    if origin.origin:
-                        if origin.origin not in origins:
-                            log.debug("The origin %s is not in %s, so end the loop" % (origin.origin, str(origins)))
-                            match = False
-                            break
-
-                if match:
-                    ppa_version = version.version
-                    log.debug("Found match url, the ppa_version is %s, now iter to system version" % ppa_version)
-
-            return ppa_version
-
-        log.debug("Check downgrade information")
-        downgrade_dict = {}
-        for pkg, urls in ppa_dict.items():
-            log.debug("The package is: %s, PPA URL is: %s" % (pkg, str(urls)))
-
-            if pkg not in self.get_cache():
-                log.debug("    package isn't available, continue next...\n")
-                continue
-
-            pkg = self.get_cache()[pkg]
-            if not pkg.isInstalled:
-                log.debug("    package isn't installed, continue next...\n")
-                continue
-            versions = pkg.versions
-
-            ppa_version = 0
-            system_version = 0
-            FLAG = 'PPA'
-            try:
-                for version in versions:
-                    try:
-                        #FIXME option to remove the package
-                        log.debug("Version uri is %s" % version.uri)
-
-                        # Switch FLAG
-                        if FLAG == 'PPA':
-                            ppa_version = is_full_match_ppa_origin(pkg, version, urls)
-                            FLAG = 'SYSTEM'
-                            if ppa_version == 0:
-                                raise NoNeedDowngradeException
-                        else:
-                            system_version = is_system_origin(version, urls)
-
-                        if ppa_version and system_version:
-                            downgrade_dict[pkg.name] = (ppa_version, system_version)
-                            break
-                    except StopIteration:
-                        pass
-            except NoNeedDowngradeException:
-                log.debug("Catch NoNeedDowngradeException, so pass this package: %s" % pkg)
-                continue
-            log.debug("\n")
-        return downgrade_dict
 
 PACKAGE_WORKER = PackageWorker()
 
