@@ -60,6 +60,9 @@ class NewAptProgressDialog(AptProgressDialog):
 class AptWorker(object):
 
     def __init__(self, parent, finish_handler, data=None):
+        '''
+        finish_handler: must take three parameter
+        '''
         self.parent = parent
         self.data = data
         self.finish_handler = finish_handler

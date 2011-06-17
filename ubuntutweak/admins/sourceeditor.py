@@ -218,7 +218,7 @@ class SourceEditor(TweakModule):
 
     def on_update_button_clicked(self, widget):
         self.set_busy()
-        daemon = AptWorker(widget.get_toplevel(), lambda t, s: self.unset_busy())
+        daemon = AptWorker(widget.get_toplevel(), lambda t, s, d: self.unset_busy())
         daemon.update_cache()
 
     def update_sourceslist(self):
