@@ -351,7 +351,7 @@ class UbuntuTweakWindow(GuiBuilder):
         self.aboutdialog.hide()
 
     def on_preference_button_clicked(self, widget):
-        self.preferences_dialog.run()
+        self.preferences_dialog.run(self.current_feature)
         self.preferences_dialog.hide()
 
     def on_module_selected(self, widget, name):

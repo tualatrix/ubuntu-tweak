@@ -31,6 +31,10 @@ class PreferencesDialog(GuiBuilder):
      CLIP_ICON,
      CLIP_NAME) = range(3)
 
+    page_dict = {'overview': 0,
+                 'tweaks': 1,
+                 'admins': 2}
+
     def __init__(self, parent):
         GuiBuilder.__init__(self, file_name='preferences.ui')
 
@@ -53,7 +57,7 @@ class PreferencesDialog(GuiBuilder):
         log.debug("on_clip_toggle_render_toggled: %s" % clip_list)
         self.clips_settings.set_value(clip_list)
 
-    def run(self):
+    def run(self, feature='overview'):
         clips = self.clips_settings.get_value()
 
         loader = ModuleLoader('clips')
@@ -83,6 +87,9 @@ class PreferencesDialog(GuiBuilder):
                                         ClipClass.get_name()))
 
             self.clips_settings.set_value(clip_list[:5])
+
+        if feature in self.page_dict:
+            self.preference_notebook.set_current_page(self.page_dict[feature])
 
         return self.preferences_dialog.run()
 
