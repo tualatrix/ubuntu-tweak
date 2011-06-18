@@ -18,6 +18,7 @@ class OldKernelPlugin(JanitorPlugin):
     def __init__(self):
         JanitorPlugin.__init__(self)
         self.current_kernel_version = '-'.join(os.uname()[2].split('-')[:2])
+        log.debug("the current_kernel_version is %s" % self.current_kernel_version)
 
     def get_cruft(self):
         cache = self.get_cache()
@@ -27,10 +28,11 @@ class OldKernelPlugin(JanitorPlugin):
         if cache:
             for pkg in cache:
                 if pkg.isInstalled and self.is_old_kernel_package(pkg.name):
+                    log.debug("Find old kernerl: %s" % pkg.name)
                     count += 1
                     size += pkg.installedSize
                     self.emit('find_object',
-                              PackageObject(pkg.summary, pkg.name, pkg.installedSize))
+                              PackageObject(pkg.name, pkg.summary, pkg.installedSize))
         self.emit('scan_finished', True, count, size)
 
     def clean_cruft(self, parent, cruft_list):
@@ -61,9 +63,19 @@ class OldKernelPlugin(JanitorPlugin):
 
             if package in basenames:
                 match = p_kernel_version.findall(pkg)
-                if match and match[0] < self.current_kernel_version:
+                if match and self._compare_kernel_version(match[0]):
                     return True
         return False
+
+    def _compare_kernel_version(self, version):
+        c1, c2 = self.current_kernel_version.split('-')
+        p1, p2 = version.split('-')
+        if c1 > p1:
+            return True
+        elif int(c2) > int(p2):
+            return True
+        else:
+            return False
 
     def get_summary(self, count, size):
         if count:
