@@ -451,12 +451,6 @@ class UbuntuTweakWindow(GuiBuilder):
 
         self.update_jump_buttons()
 
-    def on_overview_button_toggled(self, widget):
-        if widget.get_active():
-            self.update_jump_buttons(disable=True)
-            self.set_current_module(None)
-            self.notebook.set_current_page(self.feature_dict['overview'])
-
     def on_apps_button_toggled(self, widget):
         pass
 
@@ -473,6 +467,9 @@ class UbuntuTweakWindow(GuiBuilder):
 
     def on_admins_button_toggled(self, widget):
         self.on_feature_button_clicked(widget, 'admins')
+
+    def on_overview_button_toggled(self, widget):
+        self.on_feature_button_clicked(widget, 'overview')
 
     def on_janitor_button_toggled(self, widget):
         self.on_feature_button_clicked(widget, 'janitor')
