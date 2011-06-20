@@ -148,12 +148,10 @@ class Shortcuts(TweakModule):
         client.set_string("/apps/metacity/global_keybindings/run_command_%d" % id, "disabled")
 
     def on_got_key(self, widget, key, mods, cell_data):
-        #TODO I don't know it's the right approach, maybe a bug
-        # only when I remove the mode2, it will work
         cell, path = cell_data
 
-        new = Gtk.accelerator_name(key, Gdk.ModifierType(mods - 16))
-        if new in ('BackSpace', 'Delete', 'Escape'):
+        new = Gtk.accelerator_name(key, Gdk.ModifierType(mods))
+        if new in ('BackSpace', 'Delete', 'Escape', ''):
             self.on_clean_clicked(cell, path)
             return True
 
