@@ -255,6 +255,12 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
 
     def on_janitor_check_button_toggled(self, cell, path):
         iter = self.janitor_model.get_iter(path)
+
+        for row in self.janitor_model:
+            for child_row in row.iterchildren():
+                if child_row[self.JANITOR_SPINNER_ACTIVE]:
+                    return
+
         checked = not self.janitor_model[iter][self.JANITOR_CHECK]
 
         if self.janitor_model.iter_has_child(iter):
