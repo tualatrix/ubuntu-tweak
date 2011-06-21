@@ -24,6 +24,8 @@ def get_codename():
             return 'lucid'
         elif codename in ['maverick', 'julia']:
             return 'maverick'
+        elif codename in ['natty', 'katya']:
+            return 'natty'
         return codename
     except:
         pass
