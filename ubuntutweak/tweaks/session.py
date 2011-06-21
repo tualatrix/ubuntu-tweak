@@ -72,18 +72,27 @@ class Session(TweakModule):
 
         self.add_start(table, False, False, 0)
 
-        #TODO add more options from /apps/indicator-session
         box = ListPack(_("Session Options"), (
-                  WidgetFactory.create("CheckButton",
-                      label=_("Automatically save open applications when logging out"),
-                      enable_reset=True,
-                      backend=GConf,
-                      key="/apps/gnome-session/options/auto_save_session"),
                   WidgetFactory.create("CheckButton",
                       label=_("Suppress the logout, restart and shutdown confirmation dialogue box."),
                       enable_reset=True,
                       backend=GConf,
                       key="/apps/indicator-session/suppress_logout_restart_shutdown"),
+                  WidgetFactory.create("CheckButton",
+                      label=_("Remove the Log Out item from the session menu"),
+                      enable_reset=True,
+                      backend=GConf,
+                      key="/apps/indicator-session/suppress_logout_menuitem"),
+                  WidgetFactory.create("CheckButton",
+                      label=_("Remove the Restart item from the session menu"),
+                      enable_reset=True,
+                      backend=GConf,
+                      key="/apps/indicator-session/suppress_restart_menuitem"),
+                  WidgetFactory.create("CheckButton",
+                      label=_("Remove the shutdown item from the session menu"),
+                      enable_reset=True,
+                      backend=GConf,
+                      key="/apps/indicator-session/suppress_shutdown_menuitem"),
                 ))
 
         self.add_start(box, False, False, 0)

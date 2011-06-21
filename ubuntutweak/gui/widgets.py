@@ -11,6 +11,9 @@ log = logging.getLogger('widgets')
 
 
 class CheckButton(Gtk.CheckButton):
+    def __str__(self):
+        return '<CheckButton with key: %s>' % self.setting.key
+
     def __init__(self, label=None, key=None,
                  default=None, tooltip=None, backend=GConf):
         gobject.GObject.__init__(self, label=label)
