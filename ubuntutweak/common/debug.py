@@ -29,7 +29,6 @@ import webbrowser
 from gi.repository import Gtk, Notify
 
 from ubuntutweak import system
-from ubuntutweak.gui import GuiBuilder
 from ubuntutweak.common.consts import CONFIG_ROOT
 
 #The terminal has 8 colors with codes from 0 to 7
@@ -64,6 +63,8 @@ def on_copy_button_clicked(widget, text):
 
 def run_traceback(level, textview_only=False, text_only=False):
     '''Two level: fatal and error'''
+    from ubuntutweak.gui import GuiBuilder
+
     output = StringIO.StringIO()
     exc = traceback.print_exc(file=output)
 
