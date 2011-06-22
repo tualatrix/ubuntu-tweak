@@ -14,7 +14,7 @@ from gi.repository import Gtk, Pango, GObject
 from ubuntutweak import system
 from ubuntutweak.common import consts
 from ubuntutweak.gui.gtk import set_busy, unset_busy
-from ubuntutweak.janitor import JanitorPlugin, CruftObject
+from ubuntutweak.janitors import JanitorPlugin, CruftObject
 from ubuntutweak.utils.package import AptWorker
 from ubuntutweak.utils import icon, filesizeformat, ppa
 from ubuntutweak.gui.dialogs import TerminalDialog, QuestionDialog, ErrorDialog

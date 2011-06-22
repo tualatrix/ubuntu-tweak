@@ -154,7 +154,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         self.set_border_width(6)
         GuiBuilder.__init__(self, 'janitorpage.ui')
 
-        self.loader = ModuleLoader('janitor')
+        self.loader = ModuleLoader('janitors')
         self.autoscan_setting = GSetting('com.ubuntu-tweak.tweak.auto-scan')
 
         self.pack_start(self.vbox1, True, True, 0)

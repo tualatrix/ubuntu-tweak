@@ -23,7 +23,7 @@ from gi.repository import Gtk, GLib
 
 from ubuntutweak.gui import GuiBuilder
 from ubuntutweak.modules import ModuleLoader, TweakModule
-from ubuntutweak.janitor import JanitorPlugin
+from ubuntutweak.janitors import JanitorPlugin
 from ubuntutweak.settings import GSetting
 from ubuntutweak.clips import Clip
 from ubuntutweak.gui.dialogs import ErrorDialog, QuestionDialog

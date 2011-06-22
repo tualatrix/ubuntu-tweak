@@ -5,7 +5,7 @@ import gobject
 from gi.repository import Gtk
 
 from ubuntutweak.gui.gtk import set_busy, unset_busy
-from ubuntutweak.janitor import JanitorPlugin, PackageObject
+from ubuntutweak.janitors import JanitorPlugin, PackageObject
 from ubuntutweak.utils.package import AptWorker
 from ubuntutweak.utils import icon, filesizeformat
 from ubuntutweak.gui.dialogs import TerminalDialog
