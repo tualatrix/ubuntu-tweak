@@ -34,11 +34,11 @@ class ModuleLoader:
         ('other', _('Other')),
         )
 
-    default_features = ('tweaks', 'admins', 'janitor')
+    default_features = ('tweaks', 'admins', 'janitors')
 
     search_loaded_table = {}
 
-    def __init__(self, feature):
+    def __init__(self, feature, user_only=False):
         '''feature choices: tweaks, admins and janitors'''
         self.module_table = {}
         self.category_table = {}
@@ -48,17 +48,19 @@ class ModuleLoader:
             self.category_table[k] = {}
 
         # First import system staff
-        try:
-            m = __import__('ubuntutweak.%s' % self.feature, fromlist='ubuntutweak')
-            self.do_folder_import(m.__path__[0])
-        except ImportError, e:
-            log.error(e)
+        if not user_only:
+            log.info("Loading system modules for %s..." % feature)
+            try:
+                m = __import__('ubuntutweak.%s' % self.feature, fromlist='ubuntutweak')
+                self.do_folder_import(m.__path__[0])
+            except ImportError, e:
+                log.error(e)
 
         # Second import user plugins
         user_folder = self.get_user_extension_dir(self.feature)
 
-        log.info("Loading user plugins for %s..." % feature)
-        self.do_folder_import(user_folder)
+        log.info("Loading user extensions for %s..." % feature)
+        self.do_folder_import(user_folder, mark_user=True)
 
     @classmethod
     def get_user_extension_dir(cls, feature):
@@ -134,14 +136,14 @@ class ModuleLoader:
         package = __import__(module_name)
 
         for k, v in inspect.getmembers(package):
-            if k in ('TweakModule', 'Clip', 'proxy'):
+            if k in ('TweakModule', 'Clip', 'proxy', 'JanitorPlugin'):
                 continue
             if hasattr(v, '__utmodule__'):
                 return issubclass(v, klass)
 
         return False
 
-    def do_single_import(self, path):
+    def do_single_import(self, path, mark_user=False):
         module_name = os.path.splitext(os.path.basename(path))[0]
         log.debug("Try to load module: %s" % module_name)
         if module_name in sys.modules:
@@ -156,9 +158,9 @@ class ModuleLoader:
             log.error("Module import error: %s", str(e))
         else:
             for k, v in inspect.getmembers(package):
-                self._insert_moduel(k, v)
+                self._insert_moduel(k, v, mark_user)
 
-    def do_folder_import(self, path):
+    def do_folder_import(self, path, mark_user=False):
         if path not in sys.path:
             sys.path.insert(0, path)
 
@@ -167,14 +169,19 @@ class ModuleLoader:
 
             if os.path.isdir(full_path) and \
                     os.path.exists(os.path.join(path, '__init__.py')):
-                self.do_single_import(f)
+                self.do_single_import(f, mark_user)
             elif f.endswith('.py') and f != '__init__.py':
-                self.do_single_import(f)
+                self.do_single_import(f, mark_user)
 
-    def _insert_moduel(self, k, v):
-        if k not in ('TweakModule', 'Clip', 'proxy') and hasattr(v, '__utmodule__'):
+    def _insert_moduel(self, k, v, mark_user=False):
+        if k not in ('TweakModule', 'Clip', 'JanitorPlugin', 'proxy') and \
+                hasattr(v, '__utmodule__'):
             if v.__utactive__:
                 self.module_table[v.get_name()] = v
+
+                if mark_user:
+                    v.__user_extension__ = True
+
                 if v.get_category() not in dict(self.category_names):
                     self.category_table['other'][v.get_name()] = v
                 else:
@@ -205,6 +212,7 @@ class TweakModule(Gtk.VBox):
     __utmodule__ = ''
     __utactive__ = True
     __category__ = ''
+    __user_extension__ = False
 
     #update use internal, and call use between modules
     __gsignals__ = {
@@ -302,6 +310,10 @@ class TweakModule(Gtk.VBox):
                 pixbuf = icon.get_from_list(cls.__icon__, size=size)
 
             return pixbuf
+
+    @classmethod
+    def is_user_extension(cls):
+        return cls.__user_extension__
 
     def set_busy(self):
         if self.get_toplevel():

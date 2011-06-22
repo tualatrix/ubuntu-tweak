@@ -86,6 +86,11 @@ class JanitorPlugin(gobject.GObject):
     def get_category(cls):
         return cls.__category__
 
+    @classmethod
+    def get_pixbuf(cls):
+        #TODO
+        return None
+
     def get_cruft(self):
         return ()
 

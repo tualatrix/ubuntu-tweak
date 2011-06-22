@@ -82,6 +82,8 @@ class ModuleButton(Gtk.Button):
         label.set_size_request(120, -1)
         hbox.pack_start(label, False, False, 0)
 
+        self.show_all()
+
     def get_module(self):
         return self._module
 
@@ -153,38 +155,62 @@ class FeaturePage(Gtk.ScrolledWindow):
         'module_selected': (gobject.SIGNAL_RUN_FIRST,
                             gobject.TYPE_NONE,
                             (gobject.TYPE_STRING,))
-        }
+    }
 
     _categories = None
     _boxes = []
 
-    def __init__(self, module_loader):
+    def __init__(self, feature_name):
         gobject.GObject.__init__(self,
                                  shadow_type=Gtk.ShadowType.NONE,
                                  hscrollbar_policy=Gtk.PolicyType.NEVER,
                                  vscrollbar_policy=Gtk.PolicyType.AUTOMATIC)
         self.set_border_width(12)
 
-        self._loader = module_loader
+        self._feature = feature_name
+        self._setting = GSetting('com.ubuntu-tweak.tweak.%s' % feature_name)
         self._categories = {}
         self._boxes = []
 
         self._box = Gtk.VBox(spacing=6)
+        viewport = Gtk.Viewport(shadow_type=Gtk.ShadowType.NONE)
+        viewport.add(self._box)
+        self.add(viewport)
 
-        for category, category_name in self._loader.get_categories():
-            modules = self._loader.get_modules_by_category(category)
+        self.load_modules()
+
+        self.connect('expose-event', self.rebuild_boxes)
+        self._setting.connect_notify(self.load_modules, True)
+
+        self.show_all()
+
+    def load_modules(self, a=None, b=None, remove=False):
+        log.debug("Load modules, remove: %s" % remove)
+
+        loader = ModuleLoader(self._feature)
+
+        if remove:
+            self._boxes = []
+            for child in self._box.get_children():
+                self._box.remove(child)
+
+        for category, category_name in loader.get_categories():
+            modules = loader.get_modules_by_category(category)
             if modules:
+                module_to_loads = self._setting.get_value()
+
+                for module in modules:
+                    if module.is_user_extension() and module.get_name() not in module_to_loads:
+                        modules.remove(module)
+
                 category_box = CategoryBox(modules=modules, category_name=category_name)
+
                 self._connect_signals(category_box)
                 self._boxes.append(category_box)
                 self._box.pack_start(category_box, False, False, 0)
 
-        viewport = Gtk.Viewport(shadow_type=Gtk.ShadowType.NONE)
-        viewport.add(self._box)
-        self.add(viewport)
-        self.connect('expose-event', self.rebuild_boxes)
-
-        self.show_all()
+        if remove:
+            self.rebuild_boxes()
 
     def _connect_signals(self, category_box):
         for button in category_box.get_buttons():
@@ -195,7 +221,7 @@ class FeaturePage(Gtk.ScrolledWindow):
         module = widget.get_module()
         self.emit('module_selected', module.get_name())
 
-    def rebuild_boxes(self, widget, event):
+    def rebuild_boxes(self, widget=None, event=None):
         request = self.get_allocation()
         ncols = request.width / 164 # 32 + 120 + 6 + 4
         width = ncols * (164 + 2 * 4) + 40
@@ -266,8 +292,8 @@ class UbuntuTweakWindow(GuiBuilder):
 
         Gtk.rc_parse(os.path.join(DATA_DIR, 'theme/ubuntu-tweak.rc'))
 
-        tweaks_page = FeaturePage(ModuleLoader('tweaks'))
-        admins_page = FeaturePage(ModuleLoader('admins'))
+        tweaks_page = FeaturePage('tweaks')
+        admins_page = FeaturePage('admins')
         clip_page = ClipPage()
 #        apps_page = AppsPage()
         janitor_page = JanitorPage()

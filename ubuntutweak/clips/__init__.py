@@ -153,8 +153,9 @@ class ClipPage(Gtk.VBox, GuiBuilder):
                     self.clipvbox.pack_start(clip, False, False, 0)
                 except Exception, e:
                     log.error(traceback.print_exc())
-                    new_list = self.clips_settings.get_value().remove(name)
-                    self.clips_settings.set_value(new_list)
+                    if name in self.clips_settings.get_value():
+                        new_list = self.clips_settings.get_value().remove(name)
+                        self.clips_settings.set_value(new_list)
 
     def slide_clips(self, direction=None):
         max_height = self.get_allocation().height
