@@ -55,7 +55,14 @@ class ModuleLoader:
             log.error(e)
 
         # Second import user plugins
-        user_folder = os.path.join(CONFIG_ROOT, self.feature)
+        user_folder = self.get_user_extension_dir(self.feature)
+
+        log.info("Loading user plugins for %s..." % feature)
+        self.do_folder_import(user_folder)
+
+    @classmethod
+    def get_user_extension_dir(cls, feature):
+        user_folder = os.path.join(CONFIG_ROOT, feature)
         if not os.path.exists(user_folder):
             os.makedirs(user_folder)
 
@@ -63,8 +70,7 @@ class ModuleLoader:
         if not os.path.exists(package_identy_file):
             os.system("touch %s" % package_identy_file)
 
-        log.info("Loading user plugins for %s..." % feature)
-        self.do_folder_import(user_folder)
+        return user_folder
 
     @classmethod
     def search_module_for_name(cls, name):
@@ -116,6 +122,22 @@ class ModuleLoader:
                 if k == name and k not in ('TweakModule', 'proxy') and \
                     hasattr(v, '__utmodule__') and v.__utactive__:
                     return v
+
+    @classmethod
+    def is_target_class(cls, path, klass):
+        if os.path.dirname(path) not in sys.path:
+            sys.path.insert(0, os.path.dirname(path))
+
+        module_name = os.path.splitext(os.path.basename(path))[0]
+        package = __import__(module_name)
+
+        for k, v in inspect.getmembers(package):
+            if k in ('TweakModule', 'Clip', 'proxy'):
+                continue
+            if hasattr(v, '__utmodule__'):
+                return issubclass(v, klass)
+
+        return False
 
     def do_single_import(self, path):
         module_name = os.path.splitext(os.path.basename(path))[0]

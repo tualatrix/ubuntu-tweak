@@ -2,7 +2,7 @@ import os
 import logging
 import gobject
 import traceback
-from gi.repository import Gtk, Pango
+from gi.repository import Gtk, Pango, GObject
 
 from ubuntutweak.gui import GuiBuilder
 from ubuntutweak.settings.gsettings import GSetting
@@ -106,7 +106,6 @@ class ClipPage(Gtk.VBox, GuiBuilder):
 
         self.rencently_used_settings = GSetting('com.ubuntu-tweak.tweak.rencently-used')
         self.clips_settings = GSetting('com.ubuntu-tweak.tweak.clips')
-        self.loader = ModuleLoader('clips')
 
         self.load_cips()
         self.setup_rencently_used()
@@ -136,13 +135,14 @@ class ClipPage(Gtk.VBox, GuiBuilder):
                 self.clipvbox.remove(child)
 
         clips = self.clips_settings.get_value()
+        loader = ModuleLoader('clips')
 
         if not clips:
-            clips = self.loader.module_table.keys()[:5]
+            clips = loader.module_table.keys()[:5]
 
         for name in clips:
             try:
-                ClipClass = self.loader.get_module(name)
+                ClipClass = loader.get_module(name)
                 log.debug("Load clip: %s" % name)
                 clip = ClipClass()
                 clip.connect('load_module', self._on_module_button_clicked)

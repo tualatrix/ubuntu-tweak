@@ -16,11 +16,16 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
+import os
+import shutil
 import logging
+from gi.repository import Gtk, GLib
 
 from ubuntutweak.gui import GuiBuilder
 from ubuntutweak.modules import ModuleLoader
 from ubuntutweak.settings import GSetting
+from ubuntutweak.clips import Clip
+from ubuntutweak.gui.dialogs import ErrorDialog
 
 
 log = logging.getLogger('PreferencesDialog')
@@ -40,6 +45,7 @@ class PreferencesDialog(GuiBuilder):
 
         self.preferences_dialog.set_transient_for(parent)
         self.clips_settings = GSetting('com.ubuntu-tweak.tweak.clips')
+        self.clips_location_settings = GSetting('com.ubuntu-tweak.tweak.last-clip-location')
 
     def on_clip_toggle_render_toggled(self, cell, path):
         iter = self.clip_model.get_iter(path)
@@ -58,6 +64,64 @@ class PreferencesDialog(GuiBuilder):
         self.clips_settings.set_value(clip_list)
 
     def run(self, feature='overview'):
+        self._update_clip_model()
+
+        if feature in self.page_dict:
+            self.preference_notebook.set_current_page(self.page_dict[feature])
+
+        return self.preferences_dialog.run()
+
+    def hide(self):
+        return self.preferences_dialog.hide()
+
+    def on_move_up_button_clicked(self, widget):
+        model, iter = self.clip_view.get_selection().get_selected()
+
+        if iter:
+            previous_path = str(int(model.get_string_from_iter(iter)) - 1)
+
+            if int(previous_path) >= 0:
+                previous_iter = model.get_iter_from_string(previous_path)
+                model.move_before(iter, previous_iter)
+                self._do_update_clip_store()
+
+    def on_move_down_button_clicked(self, widget):
+        model, iter = self.clip_view.get_selection().get_selected()
+
+        if iter:
+            next_iter = model.iter_next(iter)
+            model.move_after(iter, next_iter)
+            self._do_update_clip_store()
+
+    def on_clip_install_button_clicked(self, widget):
+        dialog = Gtk.FileChooserDialog(_('Choose a clip extension'),
+                                        action=Gtk.FileChooserAction.OPEN,
+                                        buttons=(Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+                                                 Gtk.STOCK_OPEN, Gtk.ResponseType.ACCEPT))
+        filter = Gtk.FileFilter()
+        filter.set_name(_('Clip Extension (*.py, *.tar.gz)'))
+        filter.add_pattern('*.py')
+        filter.add_pattern('*.tar.gz')
+        dialog.add_filter(filter)
+        dialog.set_current_folder(self.clips_location_settings.get_value() or
+                                  GLib.get_home_dir())
+
+        filename = ''
+
+        if dialog.run() == Gtk.ResponseType.ACCEPT:
+            filename = dialog.get_filename()
+        dialog.destroy()
+
+        if filename:
+            self.clips_location_settings.set_value(os.path.dirname(filename))
+
+            if ModuleLoader.is_target_class(filename, Clip):
+                shutil.copy(filename, ModuleLoader.get_user_extension_dir('clips'))
+                self._update_clip_model()
+            else:
+                ErrorDialog(message=_('"%s" is not a Clip Extension!' % os.path.basename(filename))).launch()
+
+    def _update_clip_model(self):
         clips = self.clips_settings.get_value()
 
         loader = ModuleLoader('clips')
@@ -87,30 +151,3 @@ class PreferencesDialog(GuiBuilder):
                                         ClipClass.get_name()))
 
             self.clips_settings.set_value(clip_list[:5])
-
-        if feature in self.page_dict:
-            self.preference_notebook.set_current_page(self.page_dict[feature])
-
-        return self.preferences_dialog.run()
-
-    def hide(self):
-        return self.preferences_dialog.hide()
-
-    def on_move_up_button_clicked(self, widget):
-        model, iter = self.clip_view.get_selection().get_selected()
-
-        if iter:
-            previous_path = str(int(model.get_string_from_iter(iter)) - 1)
-
-            if int(previous_path) >= 0:
-                previous_iter = model.get_iter_from_string(previous_path)
-                model.move_before(iter, previous_iter)
-                self._do_update_clip_store()
-
-    def on_move_down_button_clicked(self, widget):
-        model, iter = self.clip_view.get_selection().get_selected()
-
-        if iter:
-            next_iter = model.iter_next(iter)
-            model.move_after(iter, next_iter)
-            self._do_update_clip_store()
