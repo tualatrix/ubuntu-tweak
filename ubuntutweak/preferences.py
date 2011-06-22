@@ -112,7 +112,7 @@ class PreferencesDialog(GuiBuilder):
     def run(self, feature='overview'):
         self._update_clip_model()
 
-        for _feature in ('tweaks', 'admins'):
+        for _feature in ('tweaks', 'admins', 'janitors'):
             self._update_feature_model(_feature)
 
         if feature in self.page_dict:

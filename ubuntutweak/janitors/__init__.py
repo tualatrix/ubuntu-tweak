@@ -61,6 +61,7 @@ class JanitorPlugin(gobject.GObject):
     __category__ = ''
     __utmodule__ = ''
     __utactive__ = True
+    __user_extension__ = False
 
     cache = None
 
@@ -85,6 +86,10 @@ class JanitorPlugin(gobject.GObject):
     @classmethod
     def get_category(cls):
         return cls.__category__
+
+    @classmethod
+    def is_user_extension(cls):
+        return cls.__user_extension__
 
     @classmethod
     def get_pixbuf(cls):
@@ -154,13 +159,14 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         self.set_border_width(6)
         GuiBuilder.__init__(self, 'janitorpage.ui')
 
-        self.loader = ModuleLoader('janitors')
         self.autoscan_setting = GSetting('com.ubuntu-tweak.tweak.auto-scan')
+        self.janitors_setting = GSetting('com.ubuntu-tweak.tweak.janitors')
 
         self.pack_start(self.vbox1, True, True, 0)
 
         self.connect('realize', self.setup_ui_tasks)
         self.janitor_view.get_selection().connect('changed', self.on_janitor_selection_changed)
+        self.janitors_setting.connect_notify(self.update_model, True)
         self.show()
 
     def is_auto_scan(self):
@@ -235,6 +241,10 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         self.autoscan_button.set_active(auto_scan)
 
         self.update_model()
+
+        self._expand_janitor_view()
+
+    def _expand_janitor_view(self):
         self.janitor_view.expand_all()
         if self.max_janitor_view_width:
             self.janitor_view.set_size_request(self.max_janitor_view_width, -1)
@@ -544,8 +554,13 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         else:
             renderer.set_property("visible", True)
 
-    def update_model(self):
+    def update_model(self, a=None, b=None, expand=False):
+        self.janitor_model.clear()
+        self.result_model.clear()
         size_list = []
+
+        loader = ModuleLoader('janitors')
+        plugin_to_load = self.janitors_setting.get_value()
 
         system_text = _('System')
         iter = self.janitor_model.append(None, (None,
@@ -556,7 +571,10 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
                                                 None,
                                                 None))
 
-        for plugin in self.loader.get_modules_by_category('system'):
+        for plugin in loader.get_modules_by_category('system'):
+            if plugin.is_user_extension() and plugin.get_name() not in plugin_to_load:
+                log.debug("User extension: %s not in setting to load" % plugin.get_name())
+                continue
             size_list.append(Gtk.Label(plugin.get_title()).get_layout().get_pixel_size()[0])
             self.janitor_model.append(iter, (False,
                                              None,
@@ -576,7 +594,10 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
                                                 None,
                                                 None))
 
-        for plugin in self.loader.get_modules_by_category('personal'):
+        for plugin in loader.get_modules_by_category('personal'):
+            if plugin.is_user_extension() and plugin.get_name() not in plugin_to_load:
+                log.debug("User extension: %s not in setting to load" % plugin.get_name())
+                continue
             size_list.append(Gtk.Label(plugin.get_title()).get_layout().get_pixel_size()[0])
             self.janitor_model.append(iter, (False,
                                              None,
@@ -587,3 +608,6 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
                                              None))
         if size_list:
             self.max_janitor_view_width = max(size_list) + 80
+
+        if expand:
+            self._expand_janitor_view()
