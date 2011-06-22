@@ -21,7 +21,6 @@ import logging
 
 from gi.repository import Gtk, GdkPixbuf
 
-from ubuntutweak import system
 from ubuntutweak.factory import WidgetFactory
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.gui.containers import ListPack, TablePack
@@ -225,10 +224,7 @@ class LoginSettings(TweakModule):
         dialog.add_filter(filter)
         self._set_preview_widget_for_dialog(dialog)
 
-        if system.CODENAME == 'karmic':
-            orignal_background = '/usr/share/images/xsplash/bg_2560x1600.jpg'
-        else:
-            orignal_background = '/usr/share/backgrounds/warty-final-ubuntu.png'
+        orignal_background = '/usr/share/backgrounds/warty-final-ubuntu.png'
 
         revert_button = dialog.get_action_area().get_children()[-1]
 
