@@ -1,6 +1,7 @@
 import os
 import logging
 import gobject
+import traceback
 from gi.repository import Gtk, Pango
 
 from ubuntutweak.gui import GuiBuilder
@@ -140,13 +141,18 @@ class ClipPage(Gtk.VBox, GuiBuilder):
             clips = self.loader.module_table.keys()[:5]
 
         for name in clips:
-            ClipClass = self.loader.get_module(name)
-            log.debug("Load clip: %s" % name)
-            clip = ClipClass()
-            clip.connect('load_module', self._on_module_button_clicked)
-            clip.connect('load_feature', self.on_clip_load_feature)
-            clip.show()
-            self.clipvbox.pack_start(clip, False, False, 0)
+            try:
+                ClipClass = self.loader.get_module(name)
+                log.debug("Load clip: %s" % name)
+                clip = ClipClass()
+                clip.connect('load_module', self._on_module_button_clicked)
+                clip.connect('load_feature', self.on_clip_load_feature)
+                clip.show()
+                self.clipvbox.pack_start(clip, False, False, 0)
+            except Exception, e:
+                log.error(traceback.print_exc())
+                new_list = self.clips_settings.get_value().remove(name)
+                self.clips_settings.set_value(new_list)
 
     def slide_clips(self, direction=None):
         max_height = self.get_allocation().height
