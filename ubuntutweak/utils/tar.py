@@ -10,14 +10,21 @@ class TarFile:
         elif path.endswith('tar.bz2'):
             mode = 'r:bz2'
         try:
-            self.__tarfile = tarfile.open(path, mode)
-            self.__error = ''
+            self._tarfile = tarfile.open(path, mode)
+            self._error = ''
         except Exception, e:
-            self.__error = e
+            self._error = e
             log.error(e)
 
     def is_valid(self):
-        return not bool(self.__error) 
+        return not bool(self._error)
 
     def extract(self, target):
-        self.__tarfile.extractall(target)
+        self._tarfile.extractall(target)
+
+    def get_root_name(self):
+        names = self._tarfile.getnames()
+        for name in names:
+            if '/' not in name:
+                return name
+        return ''

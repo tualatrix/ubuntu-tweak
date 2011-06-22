@@ -25,7 +25,9 @@ from ubuntutweak.gui import GuiBuilder
 from ubuntutweak.modules import ModuleLoader
 from ubuntutweak.settings import GSetting
 from ubuntutweak.clips import Clip
-from ubuntutweak.gui.dialogs import ErrorDialog
+from ubuntutweak.gui.dialogs import ErrorDialog, QuestionDialog
+from ubuntutweak.utils.tar import TarFile
+from ubuntutweak.common.consts import TEMP_ROOT
 
 
 log = logging.getLogger('PreferencesDialog')
@@ -115,9 +117,42 @@ class PreferencesDialog(GuiBuilder):
         if filename:
             self.clips_location_settings.set_value(os.path.dirname(filename))
 
-            if ModuleLoader.is_target_class(filename, Clip):
-                shutil.copy(filename, ModuleLoader.get_user_extension_dir('clips'))
+            log.debug("Start to check the class in %s" % filename)
+            if filename.endswith('.tar.gz'):
+                tar_file = TarFile(filename)
+                if tar_file.is_valid():
+                    tar_file.extract(TEMP_ROOT)
+                    #TODO if multi-root
+                    if tar_file.get_root_name():
+                        temp_dir = os.path.join(TEMP_ROOT, tar_file.get_root_name())
+
+                if ModuleLoader.is_target_class(temp_dir, Clip):
+                    target = os.path.join(ModuleLoader.get_user_extension_dir('clips'), os.path.basename(temp_dir))
+                    copy = True
+                    if os.path.exists(target):
+                        dialog = QuestionDialog(message=_("Would you like to remove it then install again?"),
+                                                title=_('"%s" has already installed' % os.path.basename(target)))
+                        response = dialog.run()
+                        dialog.destroy()
+
+                        if response == Gtk.ResponseType.YES:
+                            shutil.rmtree(target)
+                        else:
+                            copy = False
+
+                    if copy:
+                        log.debug("Now copying tree...")
+                        shutil.move(temp_dir, target)
+                    else:
+                        shutil.rmtree(temp_dir)
+                elif ModuleLoader.is_target_class(filename):
+                    shutil.copy(filename, ModuleLoader.get_user_extension_dir('clips'))
                 self._update_clip_model()
+
+                # To force empty the clips_settings to make load_cips
+                value = self.clips_settings.get_value()
+                self.clips_settings.set_value([''])
+                self.clips_settings.set_value(value)
             else:
                 ErrorDialog(message=_('"%s" is not a Clip Extension!' % os.path.basename(filename))).launch()
 

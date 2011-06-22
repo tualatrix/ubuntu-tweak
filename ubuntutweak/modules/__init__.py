@@ -129,6 +129,8 @@ class ModuleLoader:
             sys.path.insert(0, os.path.dirname(path))
 
         module_name = os.path.splitext(os.path.basename(path))[0]
+        if module_name in sys.modules:
+            del sys.modules[module_name]
         package = __import__(module_name)
 
         for k, v in inspect.getmembers(package):
@@ -142,6 +144,9 @@ class ModuleLoader:
     def do_single_import(self, path):
         module_name = os.path.splitext(os.path.basename(path))[0]
         log.debug("Try to load module: %s" % module_name)
+        if module_name in sys.modules:
+            del sys.modules[module_name]
+
         try:
             package = __import__(module_name)
         except Exception, e:
