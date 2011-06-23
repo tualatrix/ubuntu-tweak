@@ -83,6 +83,7 @@
                     <property name="sensitive">False</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
+                    <property name="tooltip_text" translatable="yes">Save this source</property>
                     <property name="use_action_appearance">False</property>
                     <signal name="clicked" handler="on_save_button_clicked" swapped="no"/>
                     <child>
@@ -105,6 +106,7 @@
                     <property name="sensitive">False</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
+                    <property name="tooltip_text" translatable="yes">Redo this source</property>
                     <property name="use_action_appearance">False</property>
                     <signal name="clicked" handler="on_redo_button_clicked" swapped="no"/>
                     <child>
@@ -133,6 +135,7 @@
                       <object class="GtkImage" id="image3">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">Delete this source</property>
                         <property name="stock">gtk-delete</property>
                       </object>
                     </child>
