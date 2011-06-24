@@ -311,9 +311,14 @@ class SourceEditor(TweakModule):
     def on_save_button_clicked(self, widget):
         text = self.textview.get_text().strip()
 
+        if self.auto_backup_setting.get_value():
+            proxy.backup_source(self.textview.get_path())
+            self.update_backup_model()
+
         if proxy.edit_source(self.textview.get_path(), text) == 'error':
-            ErrorDialog(_('Please check the permission of the sources.list file'),
-                    title=_('Save failed!')).launch()
+            ErrorDialog(message=_('Please check the permission of the '
+                                  'sources.list file'),
+                        title=_('Save failed!')).launch()
         else:
             self.save_button.set_sensitive(False)
             self.redo_button.set_sensitive(False)
