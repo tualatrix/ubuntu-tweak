@@ -248,6 +248,7 @@ class SourceEditor(TweakModule):
             return
 
         files = glob.glob(SOURCE_LIST_D + '/*.list')
+        files.sort()
 
         for file in files:
             if os.path.isdir(file):
