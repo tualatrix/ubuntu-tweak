@@ -440,15 +440,12 @@ class Daemon(PolicyKitService):
             return 'error'
 
     @dbus.service.method(INTERFACE,
-                         in_signature='s', out_signature='b',
+                         in_signature='ss', out_signature='b',
                          sender_keyword='sender')
-    def backup_source(self, path, sender=None):
-        def get_time_stamp():
-            return time.strftime('%Y%m%d%H%M', time.localtime(time.time()))
-
+    def backup_source(self, path, backup_name, sender=None):
         self._check_permission(sender)
         if path.startswith(self.SOURCES_LIST):
-            new_path = path + '.' + get_time_stamp()
+            new_path = path + '.' + backup_name + '.save'
             shutil.copy(path, new_path)
             return os.path.exists(new_path)
         else:

@@ -19,6 +19,7 @@
 import os
 import re
 import glob
+import time
 import thread
 import socket
 import gettext
@@ -273,7 +274,7 @@ class SourceEditor(TweakModule):
                 if os.path.isdir(path):
                     continue
                 self.backup_model.append((path,
-                                          os.path.basename(path).split('.list.')[-1]))
+                    os.path.basename(path).split('.list.')[-1].split('.save')[0]))
 
             if not files:
                 self.backup_model.append((None, _('No backup yet')))
@@ -312,7 +313,7 @@ class SourceEditor(TweakModule):
         text = self.textview.get_text().strip()
 
         if self.auto_backup_setting.get_value():
-            proxy.backup_source(self.textview.get_path())
+            proxy.backup_source(self.textview.get_path(), self.get_time_stamp())
             self.update_backup_model()
 
         if proxy.edit_source(self.textview.get_path(), text) == 'error':
@@ -382,10 +383,23 @@ class SourceEditor(TweakModule):
         if iter:
             path = model[iter][0]
 
-            if proxy.backup_source(path):
-                InfoDialog(message=_('Backup Successful!')).launch()
+            dialog = GetTextDialog(message=_('Please enter the name for your backup:'),
+                                   text=self.get_time_stamp())
+            response = dialog.run()
+            dialog.destroy()
+            backup_name = dialog.get_text()
 
-            self.update_backup_model()
+            if response == Gtk.ResponseType.YES and backup_name:
+                if self.is_valid_backup_name(backup_name):
+                    if proxy.backup_source(path, backup_name):
+                        InfoDialog(message=_('Backup Successful!')).launch()
+                        self.update_backup_model()
+                    else:
+                        ErrorDialog(message=_('Backup Failed!')).launch()
+                else:
+                    ErrorDialog(message=_('Please only use alphanumeric characters'
+                                        ' and "_" and "-".'),
+                                title=_('Backup name is invalid')).launch()
 
     def on_backup_delete_button_clicked(self, widget):
         iter = self.backup_combobox.get_active_iter()
@@ -411,12 +425,14 @@ class SourceEditor(TweakModule):
         dialog.destroy()
         new_name = dialog.get_text()
 
-        if response == Gtk.ResponseType.YES and new_name:
-            if name != new_name and self.is_valid_backup_name(new_name):
+        if response == Gtk.ResponseType.YES and new_name and name != new_name:
+            if self.is_valid_backup_name(new_name):
                 proxy.rename_backup(path, name, new_name)
                 self.update_backup_model()
             else:
-                ErrorDialog(message=_('Backup name is invalid. Please only use words and "-"')).launch()
+                ErrorDialog(message=_('Please only use alphanumeric characters'
+                                    ' and "_" and "-".'),
+                            title=_('Backup name is invalid')).launch()
 
     def on_redo_button_clicked(self, widget):
         dialog = QuestionDialog(message=_('The current content will be lost after reloading!\nDo you wish to continue?'))
@@ -462,7 +478,7 @@ class SourceEditor(TweakModule):
         self.backup_view_button.set_sensitive(True)
 
     def is_valid_backup_name(self, name):
-        pattern = re.compile('\w+')
+        pattern = re.compile('[\w\-]+')
 
         match = pattern.search(name)
 
@@ -470,3 +486,6 @@ class SourceEditor(TweakModule):
 
     def has_backup_value(self, iter):
         return iter and self.backup_model[iter][0]
+
+    def get_time_stamp(self):
+        return time.strftime('%Y-%m-%d-%H-%M', time.localtime(time.time()))
