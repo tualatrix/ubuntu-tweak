@@ -324,7 +324,34 @@ class SourceEditor(TweakModule):
             self.redo_button.set_sensitive(False)
 
     def on_recover_button_clicked(self, widget):
-        print widget
+        model, iter = self.list_selection.get_selected()
+
+        if iter:
+            list_path = model[iter][0]
+            list_name = model[iter][1]
+
+            backup_iter = self.backup_combobox.get_active_iter()
+
+            if backup_iter:
+                backup_path = self.backup_model[backup_iter][0]
+                backup_name = self.backup_model[backup_iter][1]
+
+                dialog = QuestionDialog(message=_('Would you like to recover the '
+                                        'backup "<b>%s</b>" for "<b>%s</b>"?') % (
+                                backup_name, list_name))
+                response = dialog.run()
+                dialog.destroy()
+
+                if response == Gtk.ResponseType.YES:
+                    if proxy.restore_source(backup_path, list_path):
+                        self.infobar.response(Gtk.ResponseType.CLOSE)
+                        InfoDialog(title=_('Recovery Successful!'),
+                                   message=_('You may need to update the apt '
+                                             'cache.')).launch()
+                    else:
+                        ErrorDialog(title=_('Recovery Failed!'),
+                                   message=_('You may need to check the permission '
+                                             'of source list.')).launch()
 
     def on_backup_view_button_clicked(self, widget=None):
         model, iter = self.list_selection.get_selected()
