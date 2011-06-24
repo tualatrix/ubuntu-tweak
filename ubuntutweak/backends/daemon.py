@@ -12,6 +12,7 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 import os
 import glob
+import time
 import fcntl
 import shutil
 import gettext
@@ -437,6 +438,45 @@ class Daemon(PolicyKitService):
                 return 'done'
         else:
             return 'error'
+
+    @dbus.service.method(INTERFACE,
+                         in_signature='s', out_signature='b',
+                         sender_keyword='sender')
+    def backup_source(self, path, sender=None):
+        def get_time_stamp():
+            return time.strftime('%Y%m%d%H%M', time.localtime(time.time()))
+
+        self._check_permission(sender)
+        if path.startswith(self.SOURCES_LIST):
+            new_path = path + '.' + get_time_stamp()
+            shutil.copy(path, new_path)
+            return os.path.exists(new_path)
+        else:
+            return False
+
+    @dbus.service.method(INTERFACE,
+                         in_signature='ss', out_signature='b',
+                         sender_keyword='sender')
+    def restore_source(self, backup_path, restore_path, sender=None):
+        self._check_permission(sender)
+        if restore_path.startswith(self.SOURCES_LIST) and \
+                restore_path in backup_path:
+            shutil.copy(backup_path, restore_path)
+            return True
+        else:
+            return False
+
+    @dbus.service.method(INTERFACE,
+                         in_signature='sss', out_signature='b',
+                         sender_keyword='sender')
+    def rename_backup(self, backup_path, name, new_name, sender=None):
+        self._check_permission(sender)
+
+        if backup_path.startswith(self.SOURCES_LIST) and name and new_name:
+            os.rename(backup_path, backup_path.replace(name, new_name))
+            return True
+        else:
+            return False
 
     @dbus.service.method(INTERFACE,
                          in_signature='as', out_signature='',

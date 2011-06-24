@@ -17,6 +17,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import os
+import re
 import glob
 import thread
 import socket
@@ -26,9 +27,11 @@ from gi.repository import Gtk, Gdk, GObject, Pango
 
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.gui import GuiBuilder
-from ubuntutweak.gui.dialogs import ErrorDialog, QuestionDialog
+from ubuntutweak.gui.dialogs import ErrorDialog, QuestionDialog, InfoDialog
 from ubuntutweak.policykit import PolkitButton, proxy
 from ubuntutweak.utils.package import AptWorker
+from ubuntutweak.admins.desktoprecovery import GetTextDialog
+from ubuntutweak.settings import GSetting
 
 
 SOURCES_LIST = '/etc/apt/sources.list'
@@ -168,51 +171,129 @@ class SourceEditor(TweakModule):
     def __init__(self):
         TweakModule.__init__(self, 'sourceeditor.ui')
 
+        self.auto_backup_setting = GSetting('com.ubuntu-tweak.tweak.auto-backup')
+
         self.textview = SourceView(SOURCES_LIST)
         self.textview.set_sensitive(False)
         self.sw1.add(self.textview)
         self.textview.get_buffer().connect('changed', self.on_buffer_changed)
 
-        self.update_source_combo()
-
         un_lock = PolkitButton()
         un_lock.connect('authenticated', self.on_polkit_action)
+        self._authenticated = False
         self.hbuttonbox2.pack_end(un_lock, False, False, 0)
 
-        self.reparent(self.main_vbox)
+        self.list_selection = self.list_view.get_selection()
+        self.list_selection.connect("changed", self.on_selection_changed)
 
-    def update_source_combo(self):
-        model = self.source_combo.get_model()
-        iter = self.source_combo.get_active_iter()
+        self.infobar = Gtk.InfoBar()
+        self.info_label = Gtk.Label('Current view the list')
+        self.info_label.set_alignment(0, 0.5)
+        self.infobar.get_content_area().add(self.info_label)
+        self.infobar.connect("response", self.on_infobar_response)
+        self.infobar.add_button(Gtk.STOCK_CLOSE, Gtk.ResponseType.CLOSE)
+        self.infobar.hide()
+        self.text_vbox.pack_start(self.infobar, False, False, 0)
+
+        self.connect('realize', self.on_ui_realize)
+        self.add_start(self.hbox1)
+
+    def on_ui_realize(self, widget):
+        self.infobar.hide()
+        self.update_source_model()
+        self.list_selection.select_iter(self.list_model.get_iter_first())
+        self.auto_backup_button.set_active(self.auto_backup_setting.get_value())
+        self.auto_backup_button.connect('toggled', self.on_auto_backup_button_toggled)
+
+    def set_infobar_backup_info(self, name, list_name):
+        self.info_label.set_markup(_('You\'re viewing the backup "<b>%s</b>" for'
+                                   '"<b>%s</b>"') % (name, list_name))
+
+    def on_auto_backup_button_toggled(self, widget):
+        self.auto_backup_setting.set_value(widget.get_active())
+
+    def on_infobar_response(self, widget, response_id):
+        model, iter = self.list_selection.get_selected()
+
         if iter:
-            i = int(model.get_path(iter).to_string())
-        else:
-            i = 0
+            list_path = model[iter][0]
+
+            self.textview.set_path(list_path)
+            self.textview.update_content()
+
+            self.save_button.set_sensitive(False)
+            self.redo_button.set_sensitive(False)
+
+            self.infobar.hide()
+
+    def on_selection_changed(self, selection):
+        model, iter = selection.get_selected()
+
+        if iter:
+            self.textview.set_path(model[iter][0])
+            self.update_sourceslist()
+            self.update_backup_model()
+
+    def update_source_model(self):
+        model = self.list_model
+
         model.clear()
 
         model.append(('/etc/apt/sources.list', 'sources.list'))
 
         SOURCE_LIST_D = '/etc/apt/sources.list.d'
+
         if not os.path.exists(SOURCE_LIST_D):
             self.source_combo.set_active(0)
             return
+
         files = glob.glob(SOURCE_LIST_D + '/*.list')
-        files.sort()
+
         for file in files:
             if os.path.isdir(file):
                 continue
             model.append((file, os.path.basename(file)))
 
-        if i:
-            iter = model.get_iter(i)
-            self.source_combo.set_active_iter(iter)
-        else:
-            self.source_combo.set_active(0)
+    def update_backup_model(self):
+        def file_cmp(f1, f2):
+            return cmp(os.stat(f1).st_ctime, os.stat(f2).st_ctime)
+
+        model, iter = self.list_selection.get_selected()
+
+        if iter:
+            source_list = model[iter][0]
+
+            self.backup_model.clear()
+
+            files = glob.glob(source_list + '.*')
+            files.sort(cmp=file_cmp, reverse=True)
+
+            for path in files:
+                if os.path.isdir(path):
+                    continue
+                self.backup_model.append((path,
+                                          os.path.basename(path).split('.list.')[-1]))
+
+            if not files:
+                self.backup_model.append((None, _('No backup yet')))
+                self.backup_edit_button.set_sensitive(False)
+                self.backup_delete_button.set_sensitive(False)
+                self.recover_button.set_sensitive(False)
+                self.backup_view_button.set_sensitive(False)
+                self.infobar.hide()
+            elif self._authenticated == True:
+                self.backup_edit_button.set_sensitive(True)
+                self.backup_delete_button.set_sensitive(True)
+                self.recover_button.set_sensitive(True)
+                self.backup_view_button.set_sensitive(True)
+
+            self.backup_combobox.set_active(0)
 
     def on_source_combo_changed(self, widget):
         model = widget.get_model()
         iter = widget.get_active_iter()
-        if iter:
+
+        if self.has_backup_value(iter):
             self.textview.set_path(model.get_value(iter, 0))
             self.update_sourceslist()
 
@@ -228,6 +309,7 @@ class SourceEditor(TweakModule):
 
     def on_save_button_clicked(self, widget):
         text = self.textview.get_text().strip()
+
         if proxy.edit_source(self.textview.get_path(), text) == 'error':
             ErrorDialog(_('Please check the permission of the sources.list file'),
                     title=_('Save failed!')).launch()
@@ -235,8 +317,76 @@ class SourceEditor(TweakModule):
             self.save_button.set_sensitive(False)
             self.redo_button.set_sensitive(False)
 
+    def on_recover_button_clicked(self, widget):
+        print widget
+
+    def on_backup_view_button_clicked(self, widget=None):
+        model, iter = self.list_selection.get_selected()
+
+        if iter:
+            list_name = model[iter][1]
+
+            iter = self.backup_combobox.get_active_iter()
+
+            if self.has_backup_value(iter):
+                name = self.backup_model[iter][1]
+                self.set_infobar_backup_info(name, list_name)
+
+                self.textview.set_path(self.backup_model[iter][0])
+                self.textview.update_content()
+                self.save_button.set_sensitive(False)
+                self.redo_button.set_sensitive(False)
+
+                self.infobar.show()
+
+    def on_backup_combobox_changed(self, widget):
+        if self.infobar.get_visible():
+            self.on_backup_view_button_clicked()
+
+    def on_backup_button_clicked(self, widget):
+        model, iter = self.list_selection.get_selected()
+
+        if iter:
+            path = model[iter][0]
+
+            if proxy.backup_source(path):
+                InfoDialog(message=_('Backup Successful!')).launch()
+
+            self.update_backup_model()
+
+    def on_backup_delete_button_clicked(self, widget):
+        iter = self.backup_combobox.get_active_iter()
+        path = self.backup_model[iter][0]
+
+        dialog = QuestionDialog(message=_('Would you like to delete the backup:'
+                                          '<b>%s</b>?') % os.path.basename(path))
+        response = dialog.run()
+        dialog.destroy()
+
+        if response == Gtk.ResponseType.YES:
+            proxy.delete_source(path)
+            self.update_backup_model()
+
+    def on_backup_edit_button_clicked(self, widget):
+        iter = self.backup_combobox.get_active_iter()
+        path = self.backup_model[iter][0]
+        name = self.backup_model[iter][1]
+
+        dialog = GetTextDialog(message=_('Please enter a new name for your backup:'),
+                               text=name)
+        response = dialog.run()
+        dialog.destroy()
+        new_name = dialog.get_text()
+
+        if response == Gtk.ResponseType.YES and new_name:
+            if name != new_name and self.is_valid_backup_name(new_name):
+                proxy.rename_backup(path, name, new_name)
+                self.update_backup_model()
+            else:
+                ErrorDialog(message=_('Backup name is invalid. Please only use words and "-"')).launch()
+
     def on_redo_button_clicked(self, widget):
-        dialog = QuestionDialog(_('The current content will be lost after reloading!\nDo you wish to continue?'))
+        dialog = QuestionDialog(message=_('The current content will be lost after reloading!\nDo you wish to continue?'))
         if dialog.run() == Gtk.ResponseType.YES:
             self.textview.update_content()
             self.save_button.set_sensitive(False)
@@ -256,20 +406,34 @@ class SourceEditor(TweakModule):
         if self.textview.get_path() ==  SOURCES_LIST:
             ErrorDialog(_('You can\'t delete sources.list!')).launch()
         else:
-            dialog = QuestionDialog(_('The "%s" will be deleted!\nDo you wish to continue?') % self.textview.get_path())
+            dialog = QuestionDialog(message=_('The "%s" will be deleted!\nDo you wish to continue?') % self.textview.get_path())
             response = dialog.run()
             dialog.destroy()
             if response == Gtk.ResponseType.YES:
-                model = self.source_combo.get_model()
-                iter = self.source_combo.get_active_iter()
-                i = model.get_path(iter).to_string()
-                proxy.delete_source(model.get_value(iter, 0))
-                model.remove(iter)
+                model, iter = self.list_selection.get_selected()
 
-                iter = model.get_iter(int(i) - 1)
-                self.source_combo.set_active_iter(iter)
-                self.update_source_combo()
+                if iter:
+                    list_path = model[iter][0]
+                    proxy.delete_source(list_path)
+                    self.update_source_model()
+                    self.update_backup_model()
 
     def on_polkit_action(self, widget):
+        self._authenticated = True
         self.textview.set_sensitive(True)
         self.delete_button.set_sensitive(True)
+        self.recover_button.set_sensitive(True)
+        self.backup_button.set_sensitive(True)
+        self.backup_edit_button.set_sensitive(True)
+        self.backup_delete_button.set_sensitive(True)
+        self.backup_view_button.set_sensitive(True)
+
+    def is_valid_backup_name(self, name):
+        pattern = re.compile('\w+')
+
+        match = pattern.search(name)
+
+        return match and name == match.group()
+
+    def has_backup_value(self, iter):
+        return iter and self.backup_model[iter][0]
