@@ -20,7 +20,9 @@ import logging
 
 from gi.repository import Gtk
 
-from ubuntutweak.gui import *
+from ubuntutweak.gui.dialogs import *
+from ubuntutweak.gui.widgets import *
+from ubuntutweak.gui.containers import *
 
 log = logging.getLogger('factory')
 
