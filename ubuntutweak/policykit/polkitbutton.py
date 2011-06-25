@@ -30,17 +30,18 @@ class PolkitAction(gobject.GObject):
     return 1, means authenticate successfully
     """
 
-    def __init__(self):
+    def __init__(self, action):
         gobject.GObject.__init__(self)
+
+        self.action = action
 
     @inline_callbacks
     def do_authenticate(self):
         bus = dbus.SystemBus()
         name = bus.get_unique_name()
-        action = 'com.ubuntu-tweak.daemon'
         flags = policykit1.CHECK_AUTH_ALLOW_USER_INTERACTION
 
-        yield policykit1.check_authorization_by_name(name, action, flags=flags)
+        yield policykit1.check_authorization_by_name(name, self.action, flags=flags)
 
 
 class PolkitButton(Gtk.Button):
@@ -48,7 +49,7 @@ class PolkitButton(Gtk.Button):
         'authenticated': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, ()),
     }
 
-    def __init__(self):
+    def __init__(self, action):
         gobject.GObject.__init__(self)
 
         self.set_label(_('_Unlock'))
@@ -57,7 +58,7 @@ class PolkitButton(Gtk.Button):
                                          Gtk.IconSize.BUTTON)
         self.set_image(image)
 
-        self._action = PolkitAction()
+        self._action = PolkitAction(action)
         self.connect('clicked', self.on_button_clicked)
 
     @inline_callbacks

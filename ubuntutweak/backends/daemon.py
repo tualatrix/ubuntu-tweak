@@ -33,6 +33,7 @@ from aptsources.sourceslist import SourceEntry, SourcesList
 from ubuntutweak import system
 from ubuntutweak.utils import ppa
 from ubuntutweak.backends import PolicyKitService
+from ubuntutweak.policykit import PK_ACTION_TWEAK, PK_ACTION_CLEAN, PK_ACTION_SOURCE
 
 apt_pkg.init()
 
@@ -95,6 +96,7 @@ class AptAuth:
         cmd.append(key)
         p = subprocess.Popen(cmd)
         return (p.wait() == 0)
+
 
 INTERFACE = "com.ubuntu_tweak.daemon"
 PATH = "/com/ubuntu_tweak/daemon"
@@ -177,7 +179,7 @@ class Daemon(PolicyKitService):
                          in_signature='sb', out_signature='b',
                          sender_keyword='sender')
     def set_source_enable(self, url, enable, sender=None):
-        self._check_permission(sender)
+        self._check_permission(sender, PK_ACTION_SOURCE)
         self.list.refresh()
 
         for source in self.list:
@@ -194,7 +196,7 @@ class Daemon(PolicyKitService):
                          in_signature='ss', out_signature='b',
                          sender_keyword='sender')
     def purge_source(self, url, key_fingerprint='', sender=None):
-        self._check_permission(sender)
+        self._check_permission(sender, PK_ACTION_CLEAN)
         self.list.refresh()
         to_remove = []
 
@@ -231,7 +233,7 @@ class Daemon(PolicyKitService):
                          in_signature='ssssb', out_signature='s',
                          sender_keyword='sender')
     def set_entry(self, url, distro, comps, comment, enabled, sender=None):
-        self._check_permission(sender)
+        self._check_permission(sender, PK_ACTION_SOURCE)
         self.list.refresh()
 
         if enabled:
@@ -252,7 +254,7 @@ class Daemon(PolicyKitService):
     def set_separated_entry(self, url, distro,
                             comps, comment, enabled, file,
                             sender=None):
-        self._check_permission(sender)
+        self._check_permission(sender, PK_ACTION_SOURCE)
         self.list.refresh()
 
         partsdir = apt_pkg.Config.FindDir("Dir::Etc::sourceparts")
@@ -276,7 +278,7 @@ class Daemon(PolicyKitService):
                          in_signature='ss', out_signature='',
                          sender_keyword='sender')
     def replace_entry(self, old_url, new_url, sender=None):
-        self._check_permission(sender)
+        self._check_permission(sender, PK_ACTION_SOURCE)
         self.list.refresh()
 
         for entry in self.list:
@@ -365,7 +367,7 @@ class Daemon(PolicyKitService):
                          in_signature='', out_signature='s',
                          sender_keyword='sender')
     def clean_apt_cache(self, sender=None):
-        self._check_permission(sender)
+        self._check_permission(sender, PK_ACTION_CLEAN)
         os.system('apt-get clean')
 
         return 'done'
@@ -386,7 +388,7 @@ class Daemon(PolicyKitService):
                          in_signature='ss', out_signature='',
                          sender_keyword='sender')
     def link_file(self, src, dst, sender=None):
-        self._check_permission(sender)
+        self._check_permission(sender, PK_ACTION_TWEAK)
         if not os.path.exists(dst):
             os.symlink(src, dst)
 
@@ -394,7 +396,7 @@ class Daemon(PolicyKitService):
                          in_signature='s', out_signature='',
                          sender_keyword='sender')
     def unlink_file(self, path, sender=None):
-        self._check_permission(sender)
+        self._check_permission(sender, PK_ACTION_TWEAK)
         if os.path.exists(path) and os.path.islink(path):
             os.unlink(path)
 
@@ -402,15 +404,14 @@ class Daemon(PolicyKitService):
                          in_signature='s', out_signature='',
                          sender_keyword='sender')
     def set_list_state(self, state, sender=None):
-        self._check_permission(sender)
+        self._check_permission(sender, PK_ACTION_SOURCE)
         self.liststate = state
 
     @dbus.service.method(INTERFACE,
                          in_signature='ss', out_signature='s',
                          sender_keyword='sender')
     def edit_source(self, path, content, sender=None):
-        #TODO backup before edit
-        self._check_permission(sender)
+        self._check_permission(sender, PK_ACTION_SOURCE)
         if path.startswith(self.SOURCES_LIST):
             try:
                 file = open(path, 'w')
@@ -428,8 +429,7 @@ class Daemon(PolicyKitService):
                          in_signature='s', out_signature='s',
                          sender_keyword='sender')
     def delete_source(self, path, sender=None):
-        #TODO backup before edit
-        self._check_permission(sender)
+        self._check_permission(sender, PK_ACTION_SOURCE)
         if path.startswith(self.SOURCES_LIST):
             os.system('rm "%s"' % path)
             if os.path.exists(path):
@@ -443,7 +443,7 @@ class Daemon(PolicyKitService):
                          in_signature='ss', out_signature='b',
                          sender_keyword='sender')
     def backup_source(self, path, backup_name, sender=None):
-        self._check_permission(sender)
+        self._check_permission(sender, PK_ACTION_SOURCE)
         if path.startswith(self.SOURCES_LIST):
             new_path = path + '.' + backup_name + '.save'
             shutil.copy(path, new_path)
@@ -455,7 +455,7 @@ class Daemon(PolicyKitService):
                          in_signature='ss', out_signature='b',
                          sender_keyword='sender')
     def restore_source(self, backup_path, restore_path, sender=None):
-        self._check_permission(sender)
+        self._check_permission(sender, PK_ACTION_SOURCE)
         if restore_path.startswith(self.SOURCES_LIST) and \
                 restore_path in backup_path:
             shutil.copy(backup_path, restore_path)
@@ -467,7 +467,7 @@ class Daemon(PolicyKitService):
                          in_signature='sss', out_signature='b',
                          sender_keyword='sender')
     def rename_backup(self, backup_path, name, new_name, sender=None):
-        self._check_permission(sender)
+        self._check_permission(sender, PK_ACTION_SOURCE)
 
         if backup_path.startswith(self.SOURCES_LIST) and name and new_name:
             os.rename(backup_path, backup_path.replace(name, new_name))
@@ -479,7 +479,7 @@ class Daemon(PolicyKitService):
                          in_signature='as', out_signature='',
                          sender_keyword='sender')
     def clean_configs(self, pkgs, sender=None):
-        self._check_permission(sender)
+        self._check_permission(sender, PK_ACTION_CLEAN)
         cmd = ['sudo', 'dpkg', '--purge']
         cmd.extend(pkgs)
         self.p = subprocess.Popen(cmd, stdout=PIPE)
@@ -489,7 +489,7 @@ class Daemon(PolicyKitService):
                          in_signature='as', out_signature='',
                          sender_keyword='sender')
     def install_select_pkgs(self, pkgs, sender=None):
-        self._check_permission(sender)
+        self._check_permission(sender, PK_ACTION_CLEAN)
         cmd = ['sudo', 'apt-get', '-y', '--force-yes', 'install']
         cmd.extend(pkgs)
         log.debug("The install command is %s" % ' '.join(cmd))
@@ -518,7 +518,7 @@ class Daemon(PolicyKitService):
                          sender_keyword='sender')
     def add_apt_key_from_content(self, content, sender=None):
         #TODO leave only one method
-        self._check_permission(sender)
+        self._check_permission(sender, PK_ACTION_SOURCE)
 
         f = tempfile.NamedTemporaryFile()
         f.write(content)
@@ -532,7 +532,7 @@ class Daemon(PolicyKitService):
                          in_signature='s', out_signature='',
                          sender_keyword='sender')
     def rm_apt_key(self, key_id, sender=None):
-        self._check_permission(sender)
+        self._check_permission(sender, PK_ACTION_SOURCE)
 
         apt_key = AptAuth()
         apt_key.rm(key_id)
@@ -541,22 +541,13 @@ class Daemon(PolicyKitService):
                          in_signature='s', out_signature='b',
                          sender_keyword='sender')
     def delete_apt_cache_file(self, file_name, sender=None):
-        self._check_permission(sender)
+        self._check_permission(sender, PK_ACTION_CLEAN)
 
         full_path = os.path.join('/var/cache/apt/archives/', file_name)
         if os.path.exists(full_path):
             os.remove(full_path)
 
         return not os.path.exists(full_path)
-
-    @dbus.service.method(INTERFACE,
-                         in_signature='ss', out_signature='',
-                         sender_keyword='sender')
-    def save_to_disk(self, text, filename, sender=None):
-        self._check_permission(sender)
-        f = file(filename, 'w')
-        f.write(text)
-        f.close()
 
     @dbus.service.method(INTERFACE,
                          in_signature='s', out_signature='b')
@@ -567,6 +558,7 @@ class Daemon(PolicyKitService):
                          in_signature='ss', out_signature='')
     def set_login_logo(self, src, dest):
         '''This is called by tweaks/loginsettings.py'''
+        self._check_permission(sender, PK_ACTION_TWEAK)
         if not self.is_exists(os.path.dirname(dest)):
            os.makedirs(os.path.dirname(dest))
         self._delete_old_logofile(dest)
@@ -580,6 +572,8 @@ class Daemon(PolicyKitService):
                          in_signature='s', out_signature='')
     def unset_login_logo(self, dest):
         '''This is called by tweaks/loginsettings.py'''
+        self._check_permission(sender, PK_ACTION_TWEAK)
+
         if dest.startswith(os.path.expanduser('~gdm/.icons')):
             self._delete_old_logofile(dest)
 
@@ -587,13 +581,6 @@ class Daemon(PolicyKitService):
                          in_signature='s', out_signature='b')
     def is_link(self, path):
         return os.path.islink(path)
-
-    @dbus.service.method(INTERFACE,
-                         in_signature='', out_signature='b',
-                         sender_keyword='sender')
-    def is_authorized(self, sender=None):
-        self._check_permission(sender)
-        return True
 
     @dbus.service.method(INTERFACE,
                          in_signature='si', out_signature='s')
@@ -616,7 +603,7 @@ class Daemon(PolicyKitService):
                          in_signature='sssss', out_signature='s',
                          sender_keyword='sender')
     def set_user_gconf(self, user, key, value, type, list_type='', sender=None):
-        self._check_permission(sender)
+        self._check_permission(sender, PK_ACTION_TWEAK)
         command = 'sudo -u %s gconftool-2 --type %s' % (user, type)
         # Use "" to make sure the value with space will be set correctly
         if list_type == '':
@@ -641,7 +628,7 @@ class Daemon(PolicyKitService):
                          in_signature='ssss', out_signature='s',
                          sender_keyword='sender')
     def set_system_gconf(self, key, value, type, list_type='', sender=None):
-        self._check_permission(sender)
+        self._check_permission(sender, PK_ACTION_TWEAK)
         log.debug('set_system_gconf: %s to %s' % (key, value))
         if list_type == '':
             command = 'gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults --type %s --set %s %s' % (type, key, value)

@@ -25,7 +25,7 @@ from ubuntutweak.factory import WidgetFactory
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.gui.containers import ListPack, TablePack
 from ubuntutweak.gui.dialogs import ErrorDialog, ServerErrorDialog
-from ubuntutweak.policykit import PolkitButton, proxy
+from ubuntutweak.policykit import PolkitButton, proxy, PK_ACTION_TWEAK
 
 from ubuntutweak.settings.gconfsettings import UserGconfSetting
 
@@ -76,7 +76,7 @@ class LoginSettings(TweakModule):
         self.add_start(box, False, False, 0)
 
         hbox = Gtk.HBox(spacing=12)
-        polkit_button = PolkitButton()
+        polkit_button = PolkitButton(PK_ACTION_TWEAK)
         polkit_button.connect('authenticated', self.on_polkit_action)
         hbox.pack_end(polkit_button, False, False, 0)
         self.add_start(hbox, False, False, 0)

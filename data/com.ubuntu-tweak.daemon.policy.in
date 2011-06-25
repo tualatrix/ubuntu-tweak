@@ -3,18 +3,51 @@
  "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
  "http://www.freedesktop.org/standards/PolicyKit/1.0/policyconfig.dtd">
 <policyconfig>
-  
+
   <vendor>Ubuntu Tweak</vendor>
   <vendor_url>http://ubuntu-tweak.com</vendor_url>
   <icon_name>ubuntu-tweak</icon_name>
 
-  <action id="com.ubuntu-tweak.daemon">
-    <_description>Ubuntu Tweak Daemon</_description>
-    <_message>System policy prevents the Ubuntu Tweak from Tweaking</_message>
+  <action id="com.ubuntu-tweak.daemon.tweak">
+    <_description>
+      Tweak all kinds of settings
+    </_description>
+    <_message>
+      To tweak the settings, you need to authenticate.
+    </_message>
     <defaults>
-      <allow_inactive>no</allow_inactive>
+      <allow_any>auth_admin</allow_any>
+      <allow_inactive>auth_admin</allow_inactive>
       <allow_active>auth_admin_keep</allow_active>
     </defaults>
   </action>
-  
+
+  <action id="com.ubuntu-tweak.daemon.clean">
+    <_description>
+      Clean user and system cruft
+    </_description>
+    <_message>
+      To clean the cruft, you need to authenticate.
+    </_message>
+    <defaults>
+      <allow_any>auth_admin</allow_any>
+      <allow_inactive>auth_admin</allow_inactive>
+      <allow_active>auth_admin_keep</allow_active>
+    </defaults>
+  </action>
+
+  <action id="com.ubuntu-tweak.daemon.edit-sources">
+    <_description>
+      Edit the Software Sources lists
+    </_description>
+    <_message>
+      To edit the software sources, you need to authenticate.
+    </_message>
+    <defaults>
+      <allow_any>auth_admin</allow_any>
+      <allow_inactive>auth_admin</allow_inactive>
+      <allow_active>auth_admin_keep</allow_active>
+    </defaults>
+  </action>
+
 </policyconfig>

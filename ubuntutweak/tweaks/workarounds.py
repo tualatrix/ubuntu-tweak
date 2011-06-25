@@ -20,7 +20,7 @@ import os
 from gi.repository import Gtk
 
 from ubuntutweak.modules  import TweakModule
-from ubuntutweak.policykit import PolkitButton, proxy
+from ubuntutweak.policykit import PolkitButton, proxy, PK_ACTION_TWEAK
 from ubuntutweak.gui.containers import ListPack
 from ubuntutweak.gui.dialogs import AuthenticateFailDialog
 from ubuntutweak.factory import WidgetFactory
@@ -49,7 +49,7 @@ class Workarounds(TweakModule):
         hbox = Gtk.HBox(spacing=12)
         self.add_end(hbox, False ,False, 0)
 
-        un_lock = PolkitButton()
+        un_lock = PolkitButton(PK_ACTION_TWEAK)
         un_lock.connect('authenticated', self.on_polkit_action)
         hbox.pack_end(un_lock, False, False, 0)
 

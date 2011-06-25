@@ -29,7 +29,7 @@ from gi.repository import Gtk, Gdk, GObject, Pango
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.gui import GuiBuilder
 from ubuntutweak.gui.dialogs import ErrorDialog, QuestionDialog
-from ubuntutweak.policykit import PolkitButton, proxy
+from ubuntutweak.policykit import PolkitButton, proxy, PK_ACTION_SOURCE
 from ubuntutweak.utils.package import AptWorker
 from ubuntutweak.admins.desktoprecovery import GetTextDialog
 from ubuntutweak.settings import GSetting
@@ -179,7 +179,7 @@ class SourceEditor(TweakModule):
         self.sw1.add(self.textview)
         self.textview.get_buffer().connect('changed', self.on_buffer_changed)
 
-        un_lock = PolkitButton()
+        un_lock = PolkitButton(PK_ACTION_SOURCE)
         un_lock.connect('authenticated', self.on_polkit_action)
         self._authenticated = False
         self.hbuttonbox2.pack_end(un_lock, False, False, 0)
