@@ -25,7 +25,9 @@ from ubuntutweak.factory import WidgetFactory
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.gui.containers import ListPack, TablePack
 from ubuntutweak.gui.dialogs import ErrorDialog, ServerErrorDialog
-from ubuntutweak.policykit import PolkitButton, proxy, PK_ACTION_TWEAK
+from ubuntutweak.policykit import PK_ACTION_TWEAK
+from ubuntutweak.policykit.widgets import PolkitButton
+from ubuntutweak.policykit.dbusproxy import proxy
 
 from ubuntutweak.settings.gconfsettings import UserGconfSetting
 

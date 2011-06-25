@@ -3,6 +3,7 @@ import sys
 import glob
 import logging
 import inspect
+import traceback
 import webbrowser
 from new import classobj
 
@@ -108,7 +109,7 @@ class ModuleLoader:
                         cls.search_loaded_table[name] = feature, module
                     return feature, module
             except ImportError, e:
-                log.error(e)
+                log.error(traceback.print_exc())
 
         return 'overview', None
 

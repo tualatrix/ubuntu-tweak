@@ -32,7 +32,7 @@ from ubuntutweak.gui.dialogs import ErrorDialog
 from ubuntutweak.clips import ClipPage
 from ubuntutweak.apps import AppsPage
 from ubuntutweak.janitors import JanitorPage
-from ubuntutweak.policykit import proxy
+from ubuntutweak.policykit.dbusproxy import proxy
 from ubuntutweak.settings import GSetting
 from ubuntutweak.preferences import PreferencesDialog
 

@@ -18,7 +18,7 @@ from ubuntutweak.janitors import JanitorPlugin, CruftObject
 from ubuntutweak.utils.package import AptWorker
 from ubuntutweak.utils import icon, filesizeformat, ppa
 from ubuntutweak.gui.dialogs import TerminalDialog, QuestionDialog, ErrorDialog
-from ubuntutweak.policykit import proxy
+from ubuntutweak.policykit.dbusproxy import proxy
 
 
 log = logging.getLogger('PPAPlugin')

@@ -20,7 +20,9 @@ import os
 from gi.repository import Gtk
 
 from ubuntutweak.modules  import TweakModule
-from ubuntutweak.policykit import PolkitButton, proxy, PK_ACTION_TWEAK
+from ubuntutweak.policykit import PK_ACTION_TWEAK
+from ubuntutweak.policykit.dbusproxy import proxy
+from ubuntutweak.policykit.widgets import PolkitButton
 from ubuntutweak.gui.containers import ListPack
 from ubuntutweak.gui.dialogs import AuthenticateFailDialog
 from ubuntutweak.factory import WidgetFactory

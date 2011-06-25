@@ -2,7 +2,7 @@ import logging
 
 from gi.repository import GConf
 
-from ubuntutweak.policykit import proxy
+from ubuntutweak.policykit.dbusproxy import proxy
 
 log = logging.getLogger('GconfSetting')
 

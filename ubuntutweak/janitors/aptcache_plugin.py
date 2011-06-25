@@ -7,7 +7,7 @@ from gi.repository import Gtk
 from ubuntutweak.janitors import JanitorPlugin, CruftObject
 from ubuntutweak.utils import icon, filesizeformat
 from ubuntutweak.gui.dialogs import ProcessDialog, ErrorDialog, InfoDialog
-from ubuntutweak.policykit import proxy
+from ubuntutweak.policykit.dbusproxy import proxy
 
 from defer import inline_callbacks, return_value
 

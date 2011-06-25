@@ -44,6 +44,7 @@ class DbusProxy:
         __system_bus = dbus.SystemBus()
         __object = __system_bus.get_object('com.ubuntu_tweak.daemon', '/com/ubuntu_tweak/daemon')
     except Exception, e:
+        log.error(e)
         __object = None
 
     def __getattr__(self, name):

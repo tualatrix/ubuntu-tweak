@@ -29,7 +29,9 @@ from gi.repository import Gtk, Gdk, GObject, Pango
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.gui import GuiBuilder
 from ubuntutweak.gui.dialogs import ErrorDialog, QuestionDialog
-from ubuntutweak.policykit import PolkitButton, proxy, PK_ACTION_SOURCE
+from ubuntutweak.policykit import PK_ACTION_SOURCE
+from ubuntutweak.policykit.widgets import PolkitButton
+from ubuntutweak.policykit.dbusproxy import proxy
 from ubuntutweak.utils.package import AptWorker
 from ubuntutweak.admins.desktoprecovery import GetTextDialog
 from ubuntutweak.settings import GSetting

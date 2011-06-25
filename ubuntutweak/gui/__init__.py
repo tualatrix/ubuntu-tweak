@@ -4,7 +4,6 @@ import logging
 
 from gi.repository import Gtk
 
-from ubuntutweak.gui.widgets import *
 from ubuntutweak.common.consts import DATA_DIR
 
 class GuiBuilder(object):

@@ -9,7 +9,7 @@ from ubuntutweak.janitors import JanitorPlugin, PackageObject
 from ubuntutweak.utils.package import AptWorker
 from ubuntutweak.utils import icon, filesizeformat
 from ubuntutweak.gui.dialogs import TerminalDialog
-from ubuntutweak.policykit import proxy
+from ubuntutweak.policykit.dbusproxy import proxy
 
 
 log = logging.getLogger('PackageConfigsPlugin')
