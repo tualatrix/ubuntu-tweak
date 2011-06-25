@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-06 00:01+0800\n"
+"POT-Creation-Date: 2011-05-07 22:04+0800\n"
 "PO-Revision-Date: 2010-12-19 19:17+0000\n"
 "Last-Translator: Tualatrix Chou <tualatrix@gmail.com>\n"
 "Language-Team: Ubuntu Swedish Translators <ubuntu-l10n-"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2011-01-09 13:17+0000\n"
-"X-Generator: Launchpad (build 12161)\n"
+"X-Launchpad-Export-Date: 2011-05-14 18:52+0000\n"
+"X-Generator: Launchpad (build 13037)\n"
 "X-Poedit-Language: Swedish\n"
 
 #: ../data/script-worker:54
@@ -99,7 +99,7 @@ msgid ""
 "Please choose <i>Report</i> to file a new bug report. Make sure to include "
 "the error message below:"
 msgstr ""
-"Om du vill hjälpa oss att rätta till problemet, \n"
+"Om du vill hjälpa oss att åtgärda problemet, \n"
 "välj då <i>Rapportera</i> för att skicka in en ny felrapport. Se till att "
 "inkludera felmeddelandet nedan:"
 
@@ -111,7 +111,7 @@ msgid ""
 "the error message below:"
 msgstr ""
 "Ubuntu Tweak behöver avslutas.\n"
-"Om du vill hjälpa oss att rätta till problemet, \n"
+"Om du vill hjälpa oss att åtgärda problemet, \n"
 "välj då <i>Rapportera</i> för att skicka in en ny felrapport. Se till att "
 "inkludera felmeddelandet nedan:"
 
@@ -198,7 +198,7 @@ msgstr "Åte_rskapa"
 
 #: ../data/ui/brokenmodule.ui.h:1
 msgid "<big><b>This module encountered an error while loading.</b></big>"
-msgstr ""
+msgstr "<big><b>Denna modul stötte på ett fel vid inläsning.</b></big>"
 
 #: ../data/ui/brokenmodule.ui.h:3
 msgid ""
@@ -206,6 +206,9 @@ msgid ""
 "Please choose <i>Report</i> to file a new bug report. Make sure to include "
 "the error message below:"
 msgstr ""
+"Om du vill hjälpa oss att åtgärda problemet, \n"
+"välj då <i>Rapportera</i> för att skicka in en ny felrapport. Se till att "
+"inkludera felmeddelandet nedan:"
 
 #: ../ubuntutweak/mainwindow.py:82
 msgid "Welcome to"
@@ -245,7 +248,7 @@ msgstr "Välkommen"
 
 #: ../ubuntutweak/mainwindow.py:129
 msgid "Broken Modules"
-msgstr ""
+msgstr "Trasiga moduler"
 
 #: ../ubuntutweak/mainwindow.py:130
 #: ../ubuntutweak/modules/desktoprecovery.py:75
@@ -277,7 +280,7 @@ msgstr "Hämta Ubuntu Tweak %s"
 
 #: ../ubuntutweak/mainwindow.py:161
 msgid "Double click for editing the sources"
-msgstr ""
+msgstr "Dubbelklicka för att redigera källorna"
 
 #: ../ubuntutweak/mainwindow.py:260
 msgid "_Donate"
@@ -293,14 +296,21 @@ msgid ""
 "You can click \"Help\" to see the guide, then edit these sources at Source "
 "Editor."
 msgstr ""
+"För att pakethanteraren fortfarande ska fungera har Ubuntu Tweak inaktiverat "
+"de här trasiga källorna.\n"
+"\n"
+"Om du vill återuppta dessa källor, försök att rätta till det.\n"
+"\n"
+"Du kan klicka på \"Hjälp\" för att se guiden och sedan redigera dessa källor "
+"i Källredigeraren."
 
 #: ../ubuntutweak/mainwindow.py:306
 msgid "The software sources list is broken"
-msgstr ""
+msgstr "Listan över programkällorna är trasig"
 
 #: ../ubuntutweak/mainwindow.py:310
 msgid "_Help"
-msgstr ""
+msgstr "_Hjälp"
 
 #: ../ubuntutweak/mainwindow.py:321
 msgid ""
@@ -319,7 +329,7 @@ msgstr ""
 #: ../ubuntutweak/mainwindow.py:324
 #: ../ubuntutweak/modules/gnomesettings.py:222
 #: ../ubuntutweak/modules/sourcecenter.py:1112
-#: ../ubuntutweak/modules/nautilus.py:143
+#: ../ubuntutweak/modules/nautilus.py:148
 msgid "Warning"
 msgstr "Varning"
 
@@ -356,7 +366,11 @@ msgstr "2009 års bidragsgivare"
 msgid "Contributors of 2010"
 msgstr "2010 års bidragsgivare"
 
-#: ../ubuntutweak/mainwindow.py:559
+#: ../ubuntutweak/mainwindow.py:553
+msgid "Contributors of 2011"
+msgstr ""
+
+#: ../ubuntutweak/mainwindow.py:561
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
@@ -364,7 +378,7 @@ msgstr ""
 "  David Bengtsson https://launchpad.net/~justfaking\n"
 "  Simon Hammarström https://launchpad.net/~fuze"
 
-#: ../ubuntutweak/mainwindow.py:573
+#: ../ubuntutweak/mainwindow.py:575
 #, python-format
 msgid ""
 "A newer version: %s is available online.\n"
@@ -379,54 +393,54 @@ msgstr ""
 "Notera: Om du föredrar att uppdatera från källkoden kan du inaktivera denna "
 "funktion i Inställningarna."
 
-#: ../ubuntutweak/mainwindow.py:574
+#: ../ubuntutweak/mainwindow.py:576
 msgid "Software Update"
 msgstr "Programuppdatering"
 
-#: ../ubuntutweak/widgets/widgets.py:45
+#: ../ubuntutweak/ui/widgets.py:45
 #, python-format
 msgid "Reset setting to default value: %s"
 msgstr "Återställ inställningen till standardvärdet: %s"
 
-#: ../ubuntutweak/widgets/widgets.py:118 ../ubuntutweak/widgets/widgets.py:143
+#: ../ubuntutweak/ui/widgets.py:118 ../ubuntutweak/ui/widgets.py:143
 #: ../ubuntutweak/modules/icons.py:105
 msgid "Unset"
 msgstr "Inte inställt"
 
-#: ../ubuntutweak/widgets/widgets.py:278
+#: ../ubuntutweak/ui/widgets.py:278
 msgid "Please press the new key combination"
 msgstr "Tryck den nya tangentkombinationen"
 
-#: ../ubuntutweak/widgets/widgets.py:327
+#: ../ubuntutweak/ui/widgets.py:327
 msgid "Disabled"
 msgstr "Inaktiverad"
 
-#: ../ubuntutweak/widgets/treeviews.py:71
+#: ../ubuntutweak/ui/treeviews.py:71
 msgid "Create folder"
 msgstr "Skapa mapp"
 
-#: ../ubuntutweak/widgets/treeviews.py:75 ../ubuntutweak/modules/icons.py:33
+#: ../ubuntutweak/ui/treeviews.py:75 ../ubuntutweak/modules/icons.py:33
 #: ../ubuntutweak/modules/icons.py:42 ../ubuntutweak/modules/icons.py:51
 msgid "Rename"
 msgstr "Döp om"
 
-#: ../ubuntutweak/widgets/treeviews.py:79
+#: ../ubuntutweak/ui/treeviews.py:79
 msgid "Delete"
 msgstr "Ta bort"
 
-#: ../ubuntutweak/widgets/treeviews.py:101
+#: ../ubuntutweak/ui/treeviews.py:101
 msgid "Input the dir name"
 msgstr "Ange katalognamn"
 
-#: ../ubuntutweak/widgets/treeviews.py:126
+#: ../ubuntutweak/ui/treeviews.py:126
 msgid "Can't rename the root folder"
 msgstr "Kan inte byta namn på rotmappen"
 
-#: ../ubuntutweak/widgets/treeviews.py:143
+#: ../ubuntutweak/ui/treeviews.py:143
 msgid "Can't delete the root folder"
 msgstr "Kan inte ta bort rotmappen"
 
-#: ../ubuntutweak/widgets/treeviews.py:158
+#: ../ubuntutweak/ui/treeviews.py:158
 msgid ""
 "Can't rename!\n"
 "\n"
@@ -436,24 +450,23 @@ msgstr ""
 "\n"
 "Det finns filer inuti!"
 
-#: ../ubuntutweak/widgets/dialogs.py:176
+#: ../ubuntutweak/ui/dialogs.py:179
 msgid "An unexpected error has occurred."
 msgstr "Ett oväntat fel har uppstått."
 
-#: ../ubuntutweak/widgets/dialogs.py:177
+#: ../ubuntutweak/ui/dialogs.py:180
 msgid "Could not authenticate"
 msgstr "Kunde inte autentisera"
 
-#: ../ubuntutweak/widgets/dialogs.py:182
+#: ../ubuntutweak/ui/dialogs.py:185
 msgid "You need to restart your computer."
 msgstr "Du behöver starta om din dator."
 
-#: ../ubuntutweak/widgets/dialogs.py:183
+#: ../ubuntutweak/ui/dialogs.py:186
 msgid "Service hasn't initialized yet"
 msgstr "Tjänsten har inte initierats än"
 
-#: ../ubuntutweak/widgets/dialogs.py:204
-#: ../ubuntutweak/modules/sourceeditor.py:88
+#: ../ubuntutweak/ui/dialogs.py:207 ../ubuntutweak/modules/sourceeditor.py:88
 #: ../ubuntutweak/modules/sourcecenter.py:945
 msgid "Details"
 msgstr "Detaljer"
@@ -502,73 +515,75 @@ msgstr "Hämtad!"
 msgid "Error happened!"
 msgstr "Ett fel uppstod!"
 
-#: ../ubuntutweak/network/utdata.py:48 ../ubuntutweak/network/utdata.py:81
+#: ../ubuntutweak/network/utdata.py:50 ../ubuntutweak/network/utdata.py:83
 msgid "Never"
 msgstr "Aldrig"
 
-#: ../ubuntutweak/network/utdata.py:72
+#: ../ubuntutweak/network/utdata.py:74
 #, python-format
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
 msgstr[0] "%d vecka sedan"
 msgstr[1] "%d veckor sedan"
 
-#: ../ubuntutweak/network/utdata.py:74
+#: ../ubuntutweak/network/utdata.py:76
 #, python-format
 msgid "%d day ago"
 msgid_plural "%d days ago"
 msgstr[0] "%d dag sedan"
 msgstr[1] "%d dagar sedan"
 
-#: ../ubuntutweak/network/utdata.py:76
+#: ../ubuntutweak/network/utdata.py:78
 #, python-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
 msgstr[0] "%d timme sedan"
 msgstr[1] "%d timmar sedan"
 
-#: ../ubuntutweak/network/utdata.py:78
+#: ../ubuntutweak/network/utdata.py:80
 #, python-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
 msgstr[0] "%d minut sedan"
 msgstr[1] "%d minuter sedan"
 
-#: ../ubuntutweak/network/utdata.py:79
+#: ../ubuntutweak/network/utdata.py:81
 msgid "Just Now"
 msgstr "Nyligen"
 
 #: ../ubuntutweak/common/debug.py:55
 msgid "Error message has been copied"
-msgstr ""
+msgstr "Felmeddelandet har kopierats"
 
 #: ../ubuntutweak/common/debug.py:56
 msgid ""
 "Now click \"Report\" to enter the bug report website. Make sure to attach "
 "the error message in \"Further information\"."
 msgstr ""
+"Klicka nu på \"Rapportera\" för att gå till webbplatsen för felrapportering. "
+"Se till att bifoga felmeddelandet i \"Ytterligare information\"."
 
 #: ../ubuntutweak/common/debug.py:72
 msgid "Copy Error Message"
-msgstr ""
+msgstr "Kopiera felmeddelandet"
 
-#: ../ubuntutweak/common/package.py:196
+#: ../ubuntutweak/common/package.py:206
 #: ../ubuntutweak/modules/appcenter.py:644
-#: ../ubuntutweak/modules/compiz.py:523
+#: ../ubuntutweak/modules/compiz.py:526
 #: ../ubuntutweak/modules/sourcecenter.py:141
-#: ../ubuntutweak/modules/nautilus.py:171
+#: ../ubuntutweak/modules/nautilus.py:176
 msgid "Update Successful!"
 msgstr "Uppdateringen lyckades!"
 
-#: ../ubuntutweak/common/package.py:198
+#: ../ubuntutweak/common/package.py:208
 #: ../ubuntutweak/modules/appcenter.py:646
-#: ../ubuntutweak/modules/compiz.py:525
+#: ../ubuntutweak/modules/compiz.py:528
 #: ../ubuntutweak/modules/sourcecenter.py:143
-#: ../ubuntutweak/modules/nautilus.py:173
+#: ../ubuntutweak/modules/nautilus.py:178
 msgid "Update Failed!"
 msgstr "Uppdateringen misslyckades!"
 
-#: ../ubuntutweak/common/package.py:330
+#: ../ubuntutweak/common/package.py:340
 msgid "(Not available)"
 msgstr "(Inte tillgänglig)"
 
@@ -759,11 +774,11 @@ msgstr "Skal"
 msgid "Language"
 msgstr "Språk"
 
-#: ../ubuntutweak/modules/computer.py:85
+#: ../ubuntutweak/modules/computer.py:86
 msgid "Please enter your new hostname. Blank characters should not be used."
 msgstr "Ange ditt nya värdnamn. Blanksteg ska inte användas."
 
-#: ../ubuntutweak/modules/computer.py:86
+#: ../ubuntutweak/modules/computer.py:87
 msgid "New hostname"
 msgstr "Nytt värdnamn"
 
@@ -1013,11 +1028,11 @@ msgstr ""
 "otillgänglig."
 
 #: ../ubuntutweak/modules/appcenter.py:673
-#: ../ubuntutweak/modules/sourcecenter.py:1167
+#: ../ubuntutweak/modules/sourcecenter.py:1169
 msgid "No update available."
 msgstr "Ingen uppdatering tillgänglig."
 
-#: ../ubuntutweak/modules/appcenter.py:684
+#: ../ubuntutweak/modules/appcenter.py:685
 msgid "An error occurred while downloading the file."
 msgstr "Ett fel uppstod medan filen hämtades."
 
@@ -1277,6 +1292,16 @@ msgid ""
 "\n"
 "Or you can submit the Error Message to the developer for help:"
 msgstr ""
+"Ubuntu Tweak har upptäckt att din apt-konfiguration är trasig.\n"
+"Försök att åtgärda det genom följande steg:\n"
+"\n"
+"\t1. Öppna din terminal\n"
+"\t2. Kör dessa kommandon för åtgärdande:\n"
+"\n"
+"\t\tsudo chmod 644 %(broken_file)s\n"
+"\t\tsudo chown root:root %(broken_file)s\n"
+"\n"
+"Du kan också skicka in felmeddelandet till utvecklarna för hjälp:"
 
 #: ../ubuntutweak/modules/__init__.py:286
 #, python-format
@@ -1293,6 +1318,17 @@ msgid ""
 "\n"
 "Or you can submit the Error Message to the developer for help:"
 msgstr ""
+"Ubuntu Tweak har upptäckt att din apt-lista är trasig.\n"
+"Försök att åtgärda det genom följande steg:\n"
+"\n"
+"\t1. Öppna din terminal\n"
+"\t2. Kör detta kommando för att öppna apt-listfilen:\n"
+"\n"
+"\t\tsudo gedit %s\n"
+"\n"
+"\t3. Redigera listan för att göra den korrekt.\n"
+"\n"
+"Du kan också skicka in felmeddelandet till utvecklarna för hjälp:"
 
 #: ../ubuntutweak/modules/icons.py:32
 msgid "Show \"Computer\" icon on desktop"
@@ -1361,19 +1397,19 @@ msgstr "Aktivera panelanimationer"
 
 #: ../ubuntutweak/modules/gnomesettings.py:68
 msgid "Me Menu Setting"
-msgstr ""
+msgstr "Inställning för Mig-menyn"
 
 #: ../ubuntutweak/modules/gnomesettings.py:70
 msgid "Don't Display"
-msgstr ""
+msgstr "Visa inget namn"
 
 #: ../ubuntutweak/modules/gnomesettings.py:70
 msgid "Display user name"
-msgstr ""
+msgstr "Visa användarnamn"
 
 #: ../ubuntutweak/modules/gnomesettings.py:70
 msgid "Display real name"
-msgstr ""
+msgstr "Visa riktigt namn"
 
 #: ../ubuntutweak/modules/gnomesettings.py:76
 msgid "Menu Settings"
@@ -1457,8 +1493,8 @@ msgid "Power Manager Settings"
 msgstr "Strömhantering"
 
 #: ../ubuntutweak/modules/powermanager.py:29
-msgid "Control your computer's power managerment"
-msgstr "Kontrollera din dators strömhantering"
+msgid "Control your computer's power management"
+msgstr ""
 
 #: ../ubuntutweak/modules/powermanager.py:37
 msgid "Advanced Power Management Settings"
@@ -1500,67 +1536,67 @@ msgstr "Visa skrivbordet"
 msgid "Show Widgets"
 msgstr "Visa widgets"
 
-#: ../ubuntutweak/modules/compiz.py:316
+#: ../ubuntutweak/modules/compiz.py:319
 msgid "Compiz Settings"
 msgstr "Skrivbordseffekter"
 
-#: ../ubuntutweak/modules/compiz.py:317
+#: ../ubuntutweak/modules/compiz.py:320
 msgid "Settings for some amazing desktop eye-candy"
 msgstr "Inställningar för lite fantastiskt ögongodis"
 
-#: ../ubuntutweak/modules/compiz.py:331
+#: ../ubuntutweak/modules/compiz.py:334
 msgid "Install Advanced Desktop Effects Settings Manager"
 msgstr "Installera avancerad inställningshanterare för skrivbordseffekter"
 
-#: ../ubuntutweak/modules/compiz.py:334
+#: ../ubuntutweak/modules/compiz.py:337
 msgid "Install Simple Desktop Effects Settings Manager"
 msgstr "Installera enkel inställningshanterare för skrivbordseffekter"
 
-#: ../ubuntutweak/modules/compiz.py:337
+#: ../ubuntutweak/modules/compiz.py:340
 msgid "Install Screenlets Widget Application"
 msgstr "Installera widgetprogrammet Screenlets"
 
-#: ../ubuntutweak/modules/compiz.py:344
+#: ../ubuntutweak/modules/compiz.py:347
 msgid " Workspace Edge Settings"
 msgstr " Hörninställningar för arbetsytor"
 
-#: ../ubuntutweak/modules/compiz.py:347
+#: ../ubuntutweak/modules/compiz.py:350
 msgid "Enable snapping windows"
 msgstr "Aktivera fästande fönster"
 
-#: ../ubuntutweak/modules/compiz.py:348
+#: ../ubuntutweak/modules/compiz.py:351
 msgid "Enable wobbly windows"
 msgstr "Aktivera geléaktiga fönster"
 
-#: ../ubuntutweak/modules/compiz.py:349
+#: ../ubuntutweak/modules/compiz.py:352
 msgid "Enable workspace switching with mouse wheel"
-msgstr ""
+msgstr "Aktivera arbetsyteväxling med mushjulet"
 
-#: ../ubuntutweak/modules/compiz.py:351
+#: ../ubuntutweak/modules/compiz.py:354
 msgid "Make the launcher hide automatically after some time inactive"
 msgstr ""
 
-#: ../ubuntutweak/modules/compiz.py:355
+#: ../ubuntutweak/modules/compiz.py:358
 msgid "Desktop Effects"
-msgstr ""
+msgstr "Skrivbordseffekter"
 
-#: ../ubuntutweak/modules/compiz.py:361
+#: ../ubuntutweak/modules/compiz.py:364
 msgid "Enable transparent menus"
 msgstr "Aktivera genomskinliga menyer"
 
-#: ../ubuntutweak/modules/compiz.py:362
+#: ../ubuntutweak/modules/compiz.py:365
 msgid "Enable wobbly menus"
 msgstr "Aktivera geléaktiga menyer"
 
-#: ../ubuntutweak/modules/compiz.py:364
+#: ../ubuntutweak/modules/compiz.py:367
 msgid "Menu Effects"
 msgstr "Menyeffekter"
 
-#: ../ubuntutweak/modules/compiz.py:368
+#: ../ubuntutweak/modules/compiz.py:371
 msgid "Useful Extensions"
 msgstr "Användbara tillägg"
 
-#: ../ubuntutweak/modules/compiz.py:383
+#: ../ubuntutweak/modules/compiz.py:386
 msgid "Prerequisite Conditions"
 msgstr "Nödvändiga förutsättningar"
 
@@ -1570,7 +1606,7 @@ msgid ""
 "Or you can install them at Application Center by choosing \"No\"."
 msgstr ""
 "Du kan installera nya program genom att markera dem och välja \"Ja\".\n"
-"Eller kan du installera dem senare i Programcentralen genom att välja "
+"Du kan annars installera dem senare i Programcentralen genom att välja "
 "\"Nej\"."
 
 #: ../ubuntutweak/modules/sourcecenter.py:113
@@ -1737,15 +1773,15 @@ msgstr ""
 "Det är en möjlig säkerhetsrisk att använda paket från tredjepartskällor.\n"
 "Var försiktig och använd endast källor du litar på."
 
-#: ../ubuntutweak/modules/sourcecenter.py:1139
+#: ../ubuntutweak/modules/sourcecenter.py:1141
 msgid "An error occurred whilst downloading the file"
 msgstr "Ett fel uppstod medan filen hämtades"
 
-#: ../ubuntutweak/modules/sourcecenter.py:1154
+#: ../ubuntutweak/modules/sourcecenter.py:1156
 msgid "Update available, Would you like to update?"
 msgstr "Uppdatering tillgänglig, vill du uppdatera?"
 
-#: ../ubuntutweak/modules/sourcecenter.py:1163
+#: ../ubuntutweak/modules/sourcecenter.py:1165
 msgid ""
 "Network Error, Please check your network connection or the remote server is "
 "down."
@@ -2294,52 +2330,56 @@ msgstr "Hantera standardfilhanteraren"
 msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
 msgstr "Visa avancerade rättigheter i Nautilus \"Egenskaper\"-fönster"
 
-#: ../ubuntutweak/modules/nautilus.py:80
+#: ../ubuntutweak/modules/nautilus.py:81
+msgid "Always use the location entry, instead of the pathbar"
+msgstr ""
+
+#: ../ubuntutweak/modules/nautilus.py:85
 msgid "File Browser"
 msgstr "Filbläddrare"
 
-#: ../ubuntutweak/modules/nautilus.py:89
+#: ../ubuntutweak/modules/nautilus.py:94
 msgid "Thumbnail Settings"
 msgstr "Inställningar för miniatyrbilder"
 
-#: ../ubuntutweak/modules/nautilus.py:94
+#: ../ubuntutweak/modules/nautilus.py:99
 msgid "Default thumbnail icon size (pixels)"
 msgstr "Standardstorlek för miniatyrbildsikon (bildpunkter)"
 
-#: ../ubuntutweak/modules/nautilus.py:99
+#: ../ubuntutweak/modules/nautilus.py:104
 msgid "Maximum thumbnail cache size (megabytes)"
 msgstr "Maximal storlek för miniatyrbildscache (megabyte)"
 
-#: ../ubuntutweak/modules/nautilus.py:104
+#: ../ubuntutweak/modules/nautilus.py:109
 msgid "Thumbnail cache time (days)"
 msgstr "Tid att spara miniatyrbildscache (dagar)"
 
-#: ../ubuntutweak/modules/nautilus.py:111
+#: ../ubuntutweak/modules/nautilus.py:116
 msgid "Open folder in terminal"
 msgstr "Öppna mapp i terminal"
 
-#: ../ubuntutweak/modules/nautilus.py:113
+#: ../ubuntutweak/modules/nautilus.py:118
 msgid "Open folder with root privileges"
 msgstr "Öppna mapp med root-behörighet"
 
-#: ../ubuntutweak/modules/nautilus.py:115
+#: ../ubuntutweak/modules/nautilus.py:120
 msgid "Nautilus with wallpaper"
 msgstr "Nautilus med bakgrundsbild"
 
-#: ../ubuntutweak/modules/nautilus.py:117
+#: ../ubuntutweak/modules/nautilus.py:122
 msgid "Nautilus Extensions"
 msgstr "Nautilus-tillägg"
 
-#: ../ubuntutweak/modules/nautilus.py:139
+#: ../ubuntutweak/modules/nautilus.py:144
 #, python-format
 msgid "Delete thumbnail cache (Frees %s of disk space)"
 msgstr "Ta bort miniatyrbildscache (frigör %s diskutrymme)"
 
-#: ../ubuntutweak/modules/nautilus.py:142
+#: ../ubuntutweak/modules/nautilus.py:147
 msgid "The thumbnail cache will be deleted. Do you wish to continue?"
 msgstr "Miniatyrbildscachen kommer att tas bort. Vill du fortsätta?"
 
-#: ../ubuntutweak/modules/nautilus.py:149
+#: ../ubuntutweak/modules/nautilus.py:154
 msgid "Clean up Successful!"
 msgstr "Rensningen lyckades!"
 
@@ -2415,7 +2455,7 @@ msgid ""
 msgstr ""
 "Säkerhetskopiera och återskapa enkelt dina skrivbords- och "
 "programinställningar.\n"
-"Du kan även använda \"Återställ\" för att återställa till systemets "
+"Du kan också använda \"Återställ\" för att återställa till systemets "
 "standardinställningar."
 
 #: ../ubuntutweak/modules/desktoprecovery.py:340
@@ -2653,6 +2693,9 @@ msgstr "Säkerhetskopieringen misslyckades!"
 
 #~ msgid "GIMP (Testing Version)"
 #~ msgstr "GIMP (Testversion)"
+
+#~ msgid "Control your computer's power managerment"
+#~ msgstr "Kontrollera din dators strömhantering"
 
 #~ msgid "Session control"
 #~ msgstr "Sessionskontroll"
