@@ -28,7 +28,7 @@ from gi.repository import Gtk, Gdk, GObject, Pango
 
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.gui import GuiBuilder
-from ubuntutweak.gui.dialogs import ErrorDialog, QuestionDialog, InfoDialog
+from ubuntutweak.gui.dialogs import ErrorDialog, QuestionDialog
 from ubuntutweak.policykit import PolkitButton, proxy
 from ubuntutweak.utils.package import AptWorker
 from ubuntutweak.admins.desktoprecovery import GetTextDialog
@@ -346,9 +346,6 @@ class SourceEditor(TweakModule):
                 if response == Gtk.ResponseType.YES:
                     if proxy.restore_source(backup_path, list_path):
                         self.infobar.response(Gtk.ResponseType.CLOSE)
-                        InfoDialog(title=_('Recovery Successful!'),
-                                   message=_('You may need to update the apt '
-                                             'cache.')).launch()
                     else:
                         ErrorDialog(title=_('Recovery Failed!'),
                                    message=_('You may need to check the permission '
@@ -392,7 +389,6 @@ class SourceEditor(TweakModule):
             if response == Gtk.ResponseType.YES and backup_name:
                 if self.is_valid_backup_name(backup_name):
                     if proxy.backup_source(path, backup_name):
-                        InfoDialog(message=_('Backup Successful!')).launch()
                         self.update_backup_model()
                     else:
                         ErrorDialog(message=_('Backup Failed!')).launch()
