@@ -2,77 +2,105 @@ data/script-worker
 data/ubuntu-tweak.desktop.in
 data/com.ubuntu-tweak.daemon.policy.in
 [type: gettext/glade]data/ui/preferences.ui
-[type: gettext/glade]data/ui/traceback.ui
-[type: gettext/glade]data/ui/appcenter.ui
-[type: gettext/glade]data/ui/metacity.ui
-[type: gettext/glade]data/ui/preferences.ui
+[type: gettext/glade]data/ui/uturl.ui
+[type: gettext/glade]data/ui/templates.ui
+[type: gettext/glade]data/ui/appspage.ui
 [type: gettext/glade]data/ui/sourcecenter.ui
+[type: gettext/glade]data/ui/appcenter.ui
+[type: gettext/glade]data/ui/brokenmodule.ui
+[type: gettext/glade]data/ui/loginsettings.ui
+[type: gettext/glade]data/ui/clippage.ui
+[type: gettext/glade]data/ui/sourceeditor.ui
 [type: gettext/glade]data/ui/updatemanager.ui
 [type: gettext/glade]data/ui/type_edit.ui
-[type: gettext/glade]data/ui/sourceeditor.ui
-[type: gettext/glade]data/ui/loginsettings.ui
+[type: gettext/glade]data/ui/janitorpage.ui
+[type: gettext/glade]data/ui/traceback.ui
+[type: gettext/glade]data/ui/mainwindow.ui
+[type: gettext/glade]data/ui/metacity.ui
 [type: gettext/glade]data/ui/desktoprecovery.ui
-[type: gettext/glade]data/ui/brokenmodule.ui
-ubuntutweak/utils/parser.py
-ubuntutweak/utils/icon.py
-ubuntutweak/utils/ppa.py
-ubuntutweak/utils/__init__.py
-ubuntutweak/conf/__init__.py
-ubuntutweak/conf/gconfsetting.py
-ubuntutweak/__init__.py
-ubuntutweak/mainwindow.py
-ubuntutweak/ui/widgets.py
-ubuntutweak/ui/__init__.py
-ubuntutweak/ui/treeviews.py
-ubuntutweak/ui/containers.py
-ubuntutweak/ui/cellrendererbutton.py
-ubuntutweak/ui/dialogs.py
-ubuntutweak/preferences.py
-ubuntutweak/network/downloadmanager.py
-ubuntutweak/network/__init__.py
+ubuntutweak/factory.py
+ubuntutweak/module/autostart.py
+ubuntutweak/module/taskinstall.py
+ubuntutweak/module/sourcecenter.py
+ubuntutweak/module/appcenter.py
+ubuntutweak/module/__init__.py
+ubuntutweak/module/updatemanager.py
+ubuntutweak/system/distro.py
+ubuntutweak/system/wm.py
+ubuntutweak/system/__init__.py
 ubuntutweak/network/xmlrpc.py
+ubuntutweak/network/downloadmanager.py
 ubuntutweak/network/utdata.py
-ubuntutweak/backends/daemon.py
-ubuntutweak/backends/__init__.py
-ubuntutweak/common/sourcedata.py
+ubuntutweak/network/__init__.py
+ubuntutweak/policykit/dbusproxy.py
+ubuntutweak/policykit/polkitbutton.py
+ubuntutweak/policykit/__init__.py
+ubuntutweak/common/consts.py
+ubuntutweak/common/config.py
 ubuntutweak/common/notify.py
+ubuntutweak/common/inifile.py
+ubuntutweak/common/sourcedata.py
+ubuntutweak/common/download.py
 ubuntutweak/common/debug.py
 ubuntutweak/common/__init__.py
-ubuntutweak/common/gui.py
-ubuntutweak/common/factory.py
-ubuntutweak/common/config.py
-ubuntutweak/common/download.py
-ubuntutweak/common/inifile.py
-ubuntutweak/common/package.py
-ubuntutweak/common/consts.py
-ubuntutweak/common/misc.py
-ubuntutweak/policykit/__init__.py
-ubuntutweak/policykit/polkitbutton.py
-ubuntutweak/policykit/dbusproxy.py
-ubuntutweak/modules/userdir.py
-ubuntutweak/modules/computer.py
-ubuntutweak/modules/lockdown.py
-ubuntutweak/modules/sourceeditor.py
-ubuntutweak/modules/appcenter.py
-ubuntutweak/modules/filetype.py
-ubuntutweak/modules/updatemanager.py
-ubuntutweak/modules/metacity.py
+ubuntutweak/janitors/thumbnailcache_plugin.py
+ubuntutweak/janitors/ppapurge_plugin.py
+ubuntutweak/janitors/autoremoval_plugin.py
+ubuntutweak/janitors/aptcache_plugin.py
+ubuntutweak/janitors/__init__.py
+ubuntutweak/janitors/packageconfigs_plugin.py
+ubuntutweak/janitors/oldkernel_plugin.py
+ubuntutweak/mainwindow.py
+ubuntutweak/settings/gconfsettings.py
+ubuntutweak/settings/gsettings.py
+ubuntutweak/settings/__init__.py
+ubuntutweak/admins/desktoprecovery.py
+ubuntutweak/admins/sourceeditor.py
+ubuntutweak/admins/templates.py
+ubuntutweak/admins/userdir.py
+ubuntutweak/admins/scripts.py
+ubuntutweak/admins/shortcuts.py
+ubuntutweak/admins/filetype.py
+ubuntutweak/admins/__init__.py
 ubuntutweak/modules/__init__.py
-ubuntutweak/modules/icons.py
-ubuntutweak/modules/gnomesettings.py
-ubuntutweak/modules/powermanager.py
-ubuntutweak/modules/compiz.py
-ubuntutweak/modules/sourcecenter.py
-ubuntutweak/modules/scripts.py
-ubuntutweak/modules/templates.py
-ubuntutweak/modules/session.py
-ubuntutweak/modules/cleaner.py
-ubuntutweak/modules/shortcuts.py
-ubuntutweak/modules/autostart.py
-ubuntutweak/modules/nautilus.py
-ubuntutweak/modules/loginsettings.py
-ubuntutweak/modules/desktoprecovery.py
+ubuntutweak/tweaks/gnomesettings.py
+ubuntutweak/tweaks/icons.py
+ubuntutweak/tweaks/nautilus.py
+ubuntutweak/tweaks/session.py
+ubuntutweak/tweaks/ccm/Utils.py
+ubuntutweak/tweaks/ccm/Conflicts.py
+ubuntutweak/tweaks/ccm/__init__.py
+ubuntutweak/tweaks/ccm/Constants.py
+ubuntutweak/tweaks/lockdown.py
+ubuntutweak/tweaks/compiz.py
+ubuntutweak/tweaks/loginsettings.py
+ubuntutweak/tweaks/powermanager.py
+ubuntutweak/tweaks/__init__.py
+ubuntutweak/tweaks/workarounds.py
+ubuntutweak/tweaks/metacity.py
+ubuntutweak/apps/__init__.py
+ubuntutweak/clips/userinfo.py
+ubuntutweak/clips/hardwareinfo.py
+ubuntutweak/clips/systeminfo.py
+ubuntutweak/clips/cleanerinfo.py
+ubuntutweak/clips/__init__.py
+ubuntutweak/clips/updateinfo.py
+ubuntutweak/gui/widgets.py
+ubuntutweak/gui/dialogs.py
+ubuntutweak/gui/cellrenderers.py
+ubuntutweak/gui/gtk.py
+ubuntutweak/gui/containers.py
+ubuntutweak/gui/__init__.py
+ubuntutweak/gui/treeviews.py
 ubuntutweak/run_test.py
-ubuntutweak/system/__init__.py
-ubuntutweak/system/wm.py
-ubuntutweak/system/distro.py
+ubuntutweak/backends/daemon.py
+ubuntutweak/backends/__init__.py
+ubuntutweak/__init__.py
+ubuntutweak/utils/ppa.py
+ubuntutweak/utils/parser.py
+ubuntutweak/utils/icon.py
+ubuntutweak/utils/__init__.py
+ubuntutweak/utils/tar.py
+ubuntutweak/utils/package.py
+ubuntutweak/preferences.py
+ubuntutweak/app.py
