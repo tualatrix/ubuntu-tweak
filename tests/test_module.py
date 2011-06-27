@@ -36,7 +36,7 @@ class TestModuleFunctions(unittest.TestCase):
         self.assertEqual(module.__name__, 'DesktopRecovery')
 
     def tearDown(self):
-#        shutil.rmtree(self.test_folder)
+        shutil.rmtree(self.test_folder)
         ModuleLoader.default_features = ('tweaks', 'admins', 'janitor')
 
 if __name__ == '__main__':
