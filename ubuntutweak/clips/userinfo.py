@@ -7,11 +7,10 @@ from ubuntutweak.gui.containers import EasyTable
 
 class UserInfo(Clip):
     __icon__  = 'config-users'
+    __title__ = _('User Information')
 
     def __init__(self):
         Clip.__init__(self)
-
-        self.set_title(_('User Information'))
 
         self.table = EasyTable(items=(
                         (Gtk.Label(label=_('Current user:')),
@@ -23,6 +22,7 @@ class UserInfo(Clip):
                         (Gtk.Label(label=_('Language:')),
                          Gtk.Label(label=GLib.getenv('LANG')))),
                         xpadding=12, ypadding=2)
-        self.set_content(self.table)
+
+        self.add_content(self.table)
 
         self.show_all()

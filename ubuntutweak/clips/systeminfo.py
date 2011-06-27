@@ -8,11 +8,10 @@ from ubuntutweak.gui.containers import EasyTable
 
 class SystemInfo(Clip):
     __icon__ = 'ubuntu-logo'
+    __title__ = _('Ubuntu Desktop Information')
 
     def __init__(self):
         Clip.__init__(self)
-
-        self.set_title(_('Ubuntu Desktop Information'))
 
         self.table = EasyTable(items=(
                         (Gtk.Label(label=_('Hostname:')),
@@ -24,6 +23,6 @@ class SystemInfo(Clip):
                         (Gtk.Label(label=_('Desktop Environment:')),
                          Gtk.Label(label=system.DESKTOP_FULLNAME))),
                         xpadding=12, ypadding=2)
-        self.set_content(self.table)
+        self.add_content(self.table)
 
         self.show_all()

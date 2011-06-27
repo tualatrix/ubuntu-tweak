@@ -8,6 +8,7 @@ from ubuntutweak.utils import icon
 
 class CleanerInfo(Clip):
     __icon__  = 'computerjanitor'
+    __title__ = _('Your system is clean')
 
     def __init__(self):
         Clip.__init__(self)
@@ -16,13 +17,11 @@ class CleanerInfo(Clip):
 
         if cache_number:
             self.set_title(_('Some cache can be cleaned to free your disk space'))
-        else:
-            self.set_title(_('Your system is clean'))
 
         label = Gtk.Label(label=_('%s cache packages can be cleaned.') % cache_number)
         label.set_alignment(0, 0.5)
 
-        self.set_content(label)
+        self.add_content(label)
 
         try:
             size = int(os.popen('du -bs ~/.thumbnails').read().split()[0])
@@ -35,7 +34,7 @@ class CleanerInfo(Clip):
                     GLib.format_size_for_display(size))
             label.set_alignment(0, 0.5)
 
-            self.set_content(label)
+            self.add_content(label)
 
         button = Gtk.Button(label=_('Start Janitor'))
         button.connect('clicked', self.on_button_clicked)

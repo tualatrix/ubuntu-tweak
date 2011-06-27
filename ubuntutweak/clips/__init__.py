@@ -14,8 +14,15 @@ log = logging.getLogger("ClipPage")
 
 
 class Clip(Gtk.VBox):
-    __utmodule__ = ''
+    '''
+    __icon__: the default icon name of Clip, and you can set the icon by call
+              set_icon
+    __title__: the default title, and you can set the title by call: set_title
+    '''
     __icon__  = 'info'
+    __title__ = ''
+
+    __utmodule__ = ''
     __utactive__ = True
 
     __gsignals__ = {
@@ -30,16 +37,22 @@ class Clip(Gtk.VBox):
     def __init__(self):
         gobject.GObject.__init__(self, spacing=12)
 
-        self.hbox = Gtk.HBox(spacing=12)
-        self.pack_start(self.hbox, True, True, 0)
+        self._hbox = Gtk.HBox(spacing=12)
+        self.pack_start(self._hbox, True, True, 0)
 
-        self.image = Gtk.Image()
-        self.image.set_from_pixbuf(self.get_pixbuf())
-        self.image.set_alignment(0, 0)
-        self.hbox.pack_start(self.image, False, False, 12)
+        self._image = Gtk.Image()
+        self._image.set_alignment(0, 0)
+        self._hbox.pack_start(self._image, False, False, 12)
 
-        self.inner_vbox = Gtk.VBox()
-        self.hbox.pack_start(self.inner_vbox, True, True, 0)
+        self._inner_vbox = Gtk.VBox()
+        self._hbox.pack_start(self._inner_vbox, True, True, 0)
+
+        self._label = Gtk.Label()
+        self._label.set_alignment(0, 0.5)
+        self._inner_vbox.pack_start(self._label, False, False, 0)
+
+        self.set_icon(self.get_pixbuf())
+        self.set_title(self.__title__)
 
     @classmethod
     def get_name(cls):
@@ -65,22 +78,20 @@ class Clip(Gtk.VBox):
             return pixbuf
 
     def set_title(self, title):
-        label = Gtk.Label()
-        label.set_alignment(0, 0.5)
-        label.set_markup('<b>%s</b>' % title)
+        self._label.set_markup('<b>%s</b>' % title)
 
-        self.inner_vbox.pack_start(label, False, False, 0)
-        # Force reorder the title label, because sometime it will be called later
-        self.inner_vbox.reorder_child(label, 0)
+    def set_icon(self, pixbuf):
+        self._image.set_from_pixbuf(pixbuf)
 
-    def set_content(self, content):
-        #TODO rename this API
-        self.inner_vbox.pack_start(content, False, False, 6)
+    def add_content(self, widget):
+        '''Add the widget to inner vbox with proper space'''
+        self._inner_vbox.pack_start(widget, False, False, 6)
 
     def add_action_button(self, button):
-        #TODO and #FIXME better API
+        '''Add an action button if you want to call the other modules or show
+        website'''
         hbox = Gtk.HBox()
-        self.inner_vbox.pack_start(hbox, False, False, 0)
+        self._inner_vbox.pack_start(hbox, False, False, 0)
 
         hbox.pack_end(button, False, False, 0)
 

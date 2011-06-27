@@ -10,18 +10,17 @@ from ubuntutweak.utils import icon
 
 class UpdateInfo(Clip):
     __icon__ = 'system-software-update'
+    __title = _('Your system is up-to-date')
 
     NO_UPDATE_WARNING_DAYS = 7
 
     def __init__(self):
         Clip.__init__(self)
 
-        self.set_title(_('Your system is up-to-date'))
-
         label = Gtk.Label(label=self._get_last_apt_get_update_text())
         label.set_alignment(0, 0.5)
 
-        self.set_content(label)
+        self.add_content(label)
 
         self.show_all()
 

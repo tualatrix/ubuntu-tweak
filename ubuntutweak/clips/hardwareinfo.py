@@ -8,11 +8,10 @@ from ubuntutweak.gui.containers import EasyTable
 
 class HardwareInfo(Clip):
     __icon__  = 'computer'
+    __title__ = _('Hardware Information')
 
     def __init__(self):
         Clip.__init__(self)
-
-        self.set_title(_('Hardware Information'))
 
         cpumodel = _('Unknown')
 
@@ -36,6 +35,6 @@ class HardwareInfo(Clip):
                          Gtk.Label(label=GLib.format_size_for_display(int(raminfo) * 1024))),
                         ),
                         xpadding=12, ypadding=2)
-        self.set_content(self.table)
+        self.add_content(self.table)
 
         self.show_all()
