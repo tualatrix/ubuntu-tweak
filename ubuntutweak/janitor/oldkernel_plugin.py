@@ -3,7 +3,7 @@ import re
 import logging
 
 from ubuntutweak.gui.gtk import set_busy, unset_busy
-from ubuntutweak.janitors import JanitorPlugin, PackageObject
+from ubuntutweak.janitor import JanitorPlugin, PackageObject
 from ubuntutweak.utils.package import AptWorker
 from ubuntutweak.utils import filesizeformat
 

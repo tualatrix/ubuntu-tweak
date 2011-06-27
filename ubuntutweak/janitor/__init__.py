@@ -160,13 +160,13 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         GuiBuilder.__init__(self, 'janitorpage.ui')
 
         self.autoscan_setting = GSetting('com.ubuntu-tweak.tweak.auto-scan')
-        self.janitors_setting = GSetting('com.ubuntu-tweak.tweak.janitors')
+        self.janitor_setting = GSetting('com.ubuntu-tweak.tweak.janitor')
 
         self.pack_start(self.vbox1, True, True, 0)
 
         self.connect('realize', self.setup_ui_tasks)
         self.janitor_view.get_selection().connect('changed', self.on_janitor_selection_changed)
-        self.janitors_setting.connect_notify(self.update_model, True)
+        self.janitor_setting.connect_notify(self.update_model, True)
         self.show()
 
     def is_auto_scan(self):
@@ -559,8 +559,8 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         self.result_model.clear()
         size_list = []
 
-        loader = ModuleLoader('janitors')
-        plugin_to_load = self.janitors_setting.get_value()
+        loader = ModuleLoader('janitor')
+        plugin_to_load = self.janitor_setting.get_value()
 
         system_text = _('System')
         iter = self.janitor_model.append(None, (None,

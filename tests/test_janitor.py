@@ -2,7 +2,7 @@ import os
 import shutil
 import unittest
 
-from ubuntutweak.janitors.oldkernel_plugin import OldKernelPlugin
+from ubuntutweak.janitor.oldkernel_plugin import OldKernelPlugin
 
 class TestJanitorFunctions(unittest.TestCase):
     def setUp(self):

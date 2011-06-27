@@ -5,7 +5,7 @@ import glob
 import gobject
 from gi.repository import Gtk
 
-from ubuntutweak.janitors import JanitorPlugin, CruftObject
+from ubuntutweak.janitor import JanitorPlugin, CruftObject
 from ubuntutweak.utils import icon, filesizeformat
 from ubuntutweak.gui.dialogs import ProcessDialog
 

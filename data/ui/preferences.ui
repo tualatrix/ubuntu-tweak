@@ -22,7 +22,7 @@
       <column type="gchararray"/>
     </columns>
   </object>
-  <object class="GtkListStore" id="janitors_model">
+  <object class="GtkListStore" id="janitor_model">
     <columns>
       <!-- column-name enabled -->
       <column type="gboolean"/>
@@ -606,7 +606,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">&lt;b&gt;Janitors Extensions&lt;/b&gt;</property>
+                    <property name="label" translatable="yes">&lt;b&gt;Janitor Extensions&lt;/b&gt;</property>
                     <property name="use_markup">True</property>
                   </object>
                   <packing>
@@ -654,7 +654,7 @@
                                   <object class="GtkTreeView" id="treeview3">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
-                                    <property name="model">janitors_model</property>
+                                    <property name="model">janitor_model</property>
                                     <property name="headers_visible">False</property>
                                     <property name="rules_hint">True</property>
                                     <child>
@@ -702,13 +702,13 @@
                                   <placeholder/>
                                 </child>
                                 <child>
-                                  <object class="GtkButton" id="janitors_install_button">
+                                  <object class="GtkButton" id="janitor_install_button">
                                     <property name="label" translatable="yes">Install</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">True</property>
                                     <property name="use_action_appearance">False</property>
-                                    <signal name="clicked" handler="on_janitors_install_button_clicked" swapped="no"/>
+                                    <signal name="clicked" handler="on_janitor_install_button_clicked" swapped="no"/>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -749,7 +749,7 @@
               <object class="GtkLabel" id="label10">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Janitors</property>
+                <property name="label" translatable="yes">Janitor</property>
               </object>
               <packing>
                 <property name="position">3</property>

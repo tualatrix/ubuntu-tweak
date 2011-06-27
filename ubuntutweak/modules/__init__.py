@@ -35,12 +35,12 @@ class ModuleLoader:
         ('other', _('Other')),
         )
 
-    default_features = ('tweaks', 'admins', 'janitors')
+    default_features = ('tweaks', 'admins', 'janitor')
 
     search_loaded_table = {}
 
     def __init__(self, feature, user_only=False):
-        '''feature choices: tweaks, admins and janitors'''
+        '''feature choices: tweaks, admins and janitor'''
         self.module_table = {}
         self.category_table = {}
         self.feature = feature

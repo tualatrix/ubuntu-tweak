@@ -4,7 +4,7 @@ import unittest
 
 from ubuntutweak.modules import ModuleLoader
 from ubuntutweak.common import consts
-from ubuntutweak.app import UbuntuTweakWindow
+from ubuntutweak.main import UbuntuTweakWindow
 
 class TestApp(unittest.TestCase):
     def setUp(self):

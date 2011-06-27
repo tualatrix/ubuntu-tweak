@@ -23,7 +23,7 @@ from gi.repository import Gtk, GLib
 
 from ubuntutweak.gui import GuiBuilder
 from ubuntutweak.modules import ModuleLoader, TweakModule
-from ubuntutweak.janitors import JanitorPlugin
+from ubuntutweak.janitor import JanitorPlugin
 from ubuntutweak.settings import GSetting
 from ubuntutweak.clips import Clip
 from ubuntutweak.gui.dialogs import ErrorDialog, QuestionDialog
@@ -43,8 +43,8 @@ class PreferencesDialog(GuiBuilder):
      TWEAKS_ICON,
      TWEAKS_NAME) = range(3)
 
-    (JANITORS_CHECK,
-     JANITORS_NAME) = range(2)
+    (JANITOR_CHECK,
+     JANITOR_NAME) = range(2)
 
     page_dict = {'overview': 0,
                  'tweaks': 1,
@@ -58,7 +58,7 @@ class PreferencesDialog(GuiBuilder):
         self.clips_setting = GSetting('com.ubuntu-tweak.tweak.clips')
         self.tweaks_setting = GSetting('com.ubuntu-tweak.tweak.tweaks')
         self.admins_setting = GSetting('com.ubuntu-tweak.tweak.admins')
-        self.janitors_setting = GSetting('com.ubuntu-tweak.tweak.janitors')
+        self.janitor_setting = GSetting('com.ubuntu-tweak.tweak.janitor')
         self.clips_location_setting = GSetting('com.ubuntu-tweak.tweak.last-clip-location')
 
     def on_clip_toggle_render_toggled(self, cell, path):
@@ -87,11 +87,11 @@ class PreferencesDialog(GuiBuilder):
 
     def on_janitor_cell_renderer_toggled(self, cell, path):
         log.debug("on_admins_toggle_render_toggled")
-        self.on_toggle_renderer_toggled(self.janitors_model,
+        self.on_toggle_renderer_toggled(self.janitor_model,
                                         path,
-                                        self.JANITORS_CHECK,
-                                        self.JANITORS_NAME,
-                                        self.janitors_setting)
+                                        self.JANITOR_CHECK,
+                                        self.JANITOR_NAME,
+                                        self.janitor_setting)
 
     def on_toggle_renderer_toggled(self, model, path, check_id, name_id, setting):
         iter = model.get_iter(path)
@@ -112,7 +112,7 @@ class PreferencesDialog(GuiBuilder):
     def run(self, feature='overview'):
         self._update_clip_model()
 
-        for _feature in ('tweaks', 'admins', 'janitors'):
+        for _feature in ModuleLoader.default_features:
             self._update_feature_model(_feature)
 
         if feature in self.page_dict:
@@ -172,11 +172,11 @@ class PreferencesDialog(GuiBuilder):
                                   self._update_feature_model,
                                   _('"%s" is not a Admins Extension!'))
 
-    def on_janitors_install_button_clicked(self, widget):
+    def on_janitor_install_button_clicked(self, widget):
         self.on_install_extension(_('Choose a Janitor Extension'),
                                   JanitorPlugin,
-                                  'janitors',
-                                  self.janitors_setting,
+                                  'janitor',
+                                  self.janitor_setting,
                                   self._update_feature_model,
                                   _('"%s" is not a Janitor Extension!'))
 

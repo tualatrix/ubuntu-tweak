@@ -1,6 +1,6 @@
 import unittest
 
-from ubuntutweak.app import UbuntuTweakWindow
+from ubuntutweak.main import UbuntuTweakWindow
 from ubuntutweak.settings.gsettings import GSetting
 
 class TestRencently(unittest.TestCase):

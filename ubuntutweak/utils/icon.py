@@ -48,10 +48,7 @@ def get_from_list(list, size=DEFAULT_SIZE):
             log.warning('get_from_list for %s failed, try next' % name)
             continue
 
-    if pixbuf:
-        return pixbuf
-    else:
-        return get_from_name('application-x-executable', size=size)
+    return pixbuf or get_from_name('application-x-executable', size=size)
 
 def get_from_mime_type(mime, size=DEFAULT_SIZE):
     try:

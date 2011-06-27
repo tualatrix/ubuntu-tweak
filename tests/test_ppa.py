@@ -1,6 +1,6 @@
 import unittest
 
-from ubuntutweak.janitors.ppapurge_plugin import CleanPpaDialog
+from ubuntutweak.janitor.ppapurge_plugin import CleanPpaDialog
 
 class TestPPAFunctions(unittest.TestCase):
     def setUp(self):
