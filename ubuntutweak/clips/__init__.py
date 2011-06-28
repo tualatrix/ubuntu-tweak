@@ -148,7 +148,7 @@ class ClipPage(Gtk.VBox, GuiBuilder):
         log.debug("Load clips, do_remove: %s" % do_remove)
 
         if do_remove:
-            for child in self.clipvbox.get_children()[1:-1]:
+            for child in self.clipvbox.get_children():
                 log.debug("Remove clip: %s" % child)
                 self.clipvbox.remove(child)
 
@@ -203,8 +203,8 @@ class ClipPage(Gtk.VBox, GuiBuilder):
                     log.debug("Max height is reached, break")
                     break
 
-            self.clipvbox.get_children()[0].set_visible(True)
-            self.clipvbox.get_children()[-1].set_visible(height_sum > max_height)
+            self.up_button.set_visible(True)
+            self.down_button.set_visible(height_sum > max_height)
         elif direction == self.DIRECTION_UP:
             self.clipvbox.set_data('direction', self.DIRECTION_UP)
 
@@ -227,15 +227,15 @@ class ClipPage(Gtk.VBox, GuiBuilder):
                     log.debug("Max height is reached, break")
                     break
 
-            self.clipvbox.get_children()[0].set_visible(height_sum > max_height)
-            self.clipvbox.get_children()[-1].set_visible(True)
+            self.up_button.set_visible(height_sum > max_height)
+            self.down_button.set_visible(True)
         else:
             if self.clipvbox.get_data('direction'):
                 to_show = self._showed_clips + self._down_clips
                 has_direction = True
             else:
                 has_direction = False
-                to_show = self.clipvbox.get_children()[1:-1]
+                to_show = self.clipvbox.get_children()
 
             for clip in to_show:
                 height_sum += clip.get_allocation().height
@@ -250,8 +250,8 @@ class ClipPage(Gtk.VBox, GuiBuilder):
                         self._showed_clips.append(clip)
                     clip.show()
 
-            self.clipvbox.get_children()[0].set_visible(bool(self._up_clips))
-            self.clipvbox.get_children()[-1].set_visible(height_sum > max_height)
+            self.up_button.set_visible(bool(self._up_clips))
+            self.down_button.set_visible(height_sum > max_height)
 
     def setup_rencently_used(self, *args):
         log.debug("Overview page: setup_rencently_used")
