@@ -260,29 +260,18 @@ class PreferencesDialog(GuiBuilder):
 
         self.clip_model.clear()
 
-        if clips:
-            for clip_name in clips:
-                ClipClass = loader.get_module(clip_name)
+        for clip_name in clips:
+            ClipClass = loader.get_module(clip_name)
 
-                self.clip_model.append((True,
+            self.clip_model.append((True,
+                                    ClipClass.get_pixbuf(),
+                                    ClipClass.get_name()))
+
+        for name, ClipClass in loader.module_table.items():
+            if name not in clips:
+                self.clip_model.append((False,
                                         ClipClass.get_pixbuf(),
                                         ClipClass.get_name()))
-
-            for name, ClipClass in loader.module_table.items():
-                if name not in clips:
-                    self.clip_model.append((False,
-                                            ClipClass.get_pixbuf(),
-                                            ClipClass.get_name()))
-        else:
-            #By default, load 5 clips
-            clip_list = []
-            for i, (name, ClipClass) in enumerate(loader.module_table.items()):
-                clip_list.append(name)
-                self.clip_model.append((i < 5,
-                                        ClipClass.get_pixbuf(),
-                                        ClipClass.get_name()))
-
-            self.clips_setting.set_value(clip_list[:5])
 
     def _update_feature_model(self, feature):
         module_list = getattr(self, '%s_setting' % feature).get_value() or []

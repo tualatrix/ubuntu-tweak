@@ -162,9 +162,6 @@ class ClipPage(Gtk.VBox, GuiBuilder):
             self._down_clips = []
             self.clipvbox.set_data('direction', 0)
 
-            if not clips:
-                clips = loader.module_table.keys()[:5]
-
             for name in clips:
                 try:
                     ClipClass = loader.get_module(name)
