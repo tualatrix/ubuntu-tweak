@@ -54,6 +54,9 @@ class Clip(Gtk.VBox):
         self.set_icon(self.get_pixbuf())
         self.set_title(self.__title__)
 
+    def __str__(self):
+        return '%s' % self.__class__
+
     @classmethod
     def get_name(cls):
         return cls.__name__
@@ -108,7 +111,7 @@ class ClipPage(Gtk.VBox, GuiBuilder):
 
     max_recently_used_size = 200
 
-    (DIRECTION_UP, DIRECTION_DOWN) = range(2)
+    (DIRECTION_UP, DIRECTION_DOWN) = ('UP', 'DOWN')
     direction = None
 
     def __init__(self):
@@ -117,6 +120,10 @@ class ClipPage(Gtk.VBox, GuiBuilder):
 
         self.rencently_used_settings = GSetting('com.ubuntu-tweak.tweak.rencently-used')
         self.clips_settings = GSetting('com.ubuntu-tweak.tweak.clips')
+
+        self._up_clips = []
+        self._showed_clips = []
+        self._down_clips = []
 
         self.load_cips()
         self.setup_rencently_used()
@@ -150,6 +157,11 @@ class ClipPage(Gtk.VBox, GuiBuilder):
         if clips != ['']:
             loader = ModuleLoader('clips')
 
+            self._up_clips = []
+            self._showed_clips = []
+            self._down_clips = []
+            self.clipvbox.set_data('direction', 0)
+
             if not clips:
                 clips = loader.module_table.keys()[:5]
 
@@ -169,64 +181,79 @@ class ClipPage(Gtk.VBox, GuiBuilder):
                         self.clips_settings.set_value(new_list)
 
     def slide_clips(self, direction=None):
-        max_height = self.get_allocation().height
+        log.debug("slide_clips")
+        max_height = self.get_allocation().height - 32
         height_sum = 0
 
         if direction == self.DIRECTION_DOWN:
             self.clipvbox.set_data('direction', self.DIRECTION_DOWN)
 
-            for clip in self.clipvbox.get_children()[1:-1]:
-                if clip.get_visible():
-                    log.debug("%s is visible, hide it" % clip)
-                    clip.hide()
-                else:
-                    height_sum += clip.get_allocation().height
-                    height_sum += 32
+            self._up_clips.extend(self._showed_clips)
+            [clip.hide() for clip in self._up_clips]
+            self._showed_clips = []
 
-                    if height_sum < max_height:
-                        log.debug("%s is not visible, show it" % clip)
-                        clip.show()
+            while self._down_clips:
+                clip = self._down_clips[0]
+
+                height_sum += clip.get_allocation().height
+                height_sum += 32
+
+                if height_sum < max_height:
+                    log.debug("%s is not visible, show it" % clip)
+                    self._showed_clips.append(self._down_clips.pop(0))
+                    clip.show()
+                else:
+                    log.debug("Max height is reached, break")
+                    break
 
             self.clipvbox.get_children()[0].set_visible(True)
             self.clipvbox.get_children()[-1].set_visible(height_sum > max_height)
         elif direction == self.DIRECTION_UP:
             self.clipvbox.set_data('direction', self.DIRECTION_UP)
 
-            for clip in self.clipvbox.get_children()[1:-1]:
-                if clip.get_visible():
-                    log.debug("%s is visible, hide it" % clip)
-                    clip.hide()
-                else:
-                    height_sum += clip.get_allocation().height
-                    height_sum += 32
+            for clip in self._showed_clips:
+                clip.hide()
+                self._down_clips.insert(0, clip)
+            self._showed_clips = []
 
-                    if height_sum < max_height:
-                        log.debug("%s is not visible, show it" % clip)
-                        clip.show()
+            while self._up_clips:
+                clip = self._up_clips[-1]
+
+                height_sum += clip.get_allocation().height
+                height_sum += 32
+
+                if height_sum < max_height:
+                    log.debug("%s is not visible, show it" % clip)
+                    self._showed_clips.insert(0, self._up_clips.pop(-1))
+                    clip.show()
+                else:
+                    log.debug("Max height is reached, break")
+                    break
 
             self.clipvbox.get_children()[0].set_visible(height_sum > max_height)
             self.clipvbox.get_children()[-1].set_visible(True)
         else:
-            direction = self.clipvbox.get_data('direction')
-            if direction == self.DIRECTION_DOWN:
-                index = 0
-                for i, clip in enumerate(self.clipvbox.get_children()[1:-1]):
-                    if clip.get_visible():
-                        index = i
-                        break
-                index += 1
+            if self.clipvbox.get_data('direction'):
+                to_show = self._showed_clips + self._down_clips
+                has_direction = True
             else:
-                index = 1
+                has_direction = False
+                to_show = self.clipvbox.get_children()[1:-1]
 
-            for clip in self.clipvbox.get_children()[index:-1]:
+            for clip in to_show:
                 height_sum += clip.get_allocation().height
                 height_sum += 32
 
                 if height_sum > max_height:
+                    if clip not in self._down_clips and not has_direction:
+                        self._down_clips.append(clip)
                     clip.hide()
                 else:
+                    if clip not in self._showed_clips and not has_direction:
+                        self._showed_clips.append(clip)
                     clip.show()
 
+            self.clipvbox.get_children()[0].set_visible(bool(self._up_clips))
             self.clipvbox.get_children()[-1].set_visible(height_sum > max_height)
 
     def setup_rencently_used(self, *args):
