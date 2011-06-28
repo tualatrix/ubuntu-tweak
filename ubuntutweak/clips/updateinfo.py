@@ -10,7 +10,7 @@ from ubuntutweak.utils import icon
 
 class UpdateInfo(Clip):
     __icon__ = 'system-software-update'
-    __title = _('Your system is up-to-date')
+    __title__ = _('Your system is up-to-date')
 
     NO_UPDATE_WARNING_DAYS = 7
 
