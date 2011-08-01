@@ -79,6 +79,6 @@ class OldKernelPlugin(JanitorPlugin):
 
     def get_summary(self, count, size):
         if count:
-            return _('Old Kernel Packages (%d kernel packages to be removed, total size: %s') % (count, filesizeformat(size))
+            return _('Old Kernel Packages (%d kernel packages to be removed, total size: %s)') % (count, filesizeformat(size))
         else:
             return _('Old Kernel Packages (No old kernel package to be removed)')
