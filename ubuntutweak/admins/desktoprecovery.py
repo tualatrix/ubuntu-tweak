@@ -448,7 +448,7 @@ class DesktopRecovery(TweakModule):
                                       (directory, os.path.basename(path)[:-4]))
         else:
             dialog = QuestionDialog(message=_('Would you like to delete the backup of'
-                                      'all <b>%s</b> settings named <b>%s</b>?') %
+                                      ' all <b>%s</b> settings named <b>%s</b>?') %
                                       (directory, os.path.basename(path)[:-4]))
         response = dialog.run()
         dialog.destroy()
