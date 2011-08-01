@@ -358,7 +358,7 @@ class BrokenModule(TweakModule):
             broken_file = p.findall(self.get_error())[0]
 
             self.message_label.set_text(_("Ubuntu Tweak has detected that your"
-             "apt list file is broken.\nTry to fix by following steps:\n\n\t1."
+             " apt list file is broken.\nTry to fix by following steps:\n\n\t1."
              "Open your terminal\n\t2. Run the command to open apt list file:"
              "\n\n\t\tsudo gedit %s\n\n\t3. Edit the list to make it correctly"
              "\n\nOr you can submit the Error Message to the developer for"
