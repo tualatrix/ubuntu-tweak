@@ -2,8 +2,7 @@ import os
 import shutil
 import glob
 
-import gobject
-from gi.repository import Gtk
+from gi.repository import GObject, Gtk
 
 from ubuntutweak.janitor import JanitorPlugin, CruftObject
 from ubuntutweak.utils import icon, filesizeformat
@@ -41,7 +40,7 @@ class CleanThumbnailDailog(ProcessDialog):
         self.add_button(Gtk.STOCK_CANCEL, Gtk.ResponseType.REJECT)
 
     def run(self):
-        gobject.timeout_add(100, self.process_data)
+        GObject.timeout_add(100, self.process_data)
         return super(CleanThumbnailDailog, self).run()
 
     def process_data(self):

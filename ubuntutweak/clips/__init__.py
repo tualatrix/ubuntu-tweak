@@ -1,7 +1,7 @@
 import os
 import logging
-import gobject
 import traceback
+
 from gi.repository import Gtk, Pango, GObject
 
 from ubuntutweak.gui import GuiBuilder
@@ -26,16 +26,16 @@ class Clip(Gtk.VBox):
     __utactive__ = True
 
     __gsignals__ = {
-        'load_module': (gobject.SIGNAL_RUN_FIRST,
-                            gobject.TYPE_NONE,
-                            (gobject.TYPE_STRING,)),
-        'load_feature': (gobject.SIGNAL_RUN_FIRST,
-                            gobject.TYPE_NONE,
-                            (gobject.TYPE_STRING,))
+        'load_module': (GObject.SignalFlags.RUN_FIRST,
+                        None,
+                        (GObject.TYPE_STRING,)),
+        'load_feature': (GObject.SignalFlags.RUN_FIRST,
+                         None,
+                         (GObject.TYPE_STRING,))
     }
 
     def __init__(self):
-        gobject.GObject.__init__(self, spacing=12)
+        GObject.GObject.__init__(self, spacing=12)
 
         self._hbox = Gtk.HBox(spacing=12)
         self.pack_start(self._hbox, True, True, 0)
@@ -101,12 +101,12 @@ class Clip(Gtk.VBox):
 
 class ClipPage(Gtk.VBox, GuiBuilder):
     __gsignals__ = {
-        'load_module': (gobject.SIGNAL_RUN_FIRST,
-                            gobject.TYPE_NONE,
-                            (gobject.TYPE_STRING,)),
-        'load_feature': (gobject.SIGNAL_RUN_FIRST,
-                            gobject.TYPE_NONE,
-                            (gobject.TYPE_STRING,))
+        'load_module': (GObject.SignalFlags.RUN_FIRST,
+                            None,
+                            (GObject.TYPE_STRING,)),
+        'load_feature': (GObject.SignalFlags.RUN_FIRST,
+                            None,
+                            (GObject.TYPE_STRING,))
     }
 
     max_recently_used_size = 200
@@ -115,7 +115,7 @@ class ClipPage(Gtk.VBox, GuiBuilder):
     direction = None
 
     def __init__(self):
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
         GuiBuilder.__init__(self, 'clippage.ui')
 
         self.rencently_used_settings = GSetting('com.ubuntu-tweak.tweak.rencently-used')
@@ -264,7 +264,7 @@ class ClipPage(Gtk.VBox, GuiBuilder):
         for name in used_list:
             feature, module = ModuleLoader.search_module_for_name(name)
             if module:
-                size_list.append(Gtk.Label(module.get_title()).get_layout().get_pixel_size()[0])
+                size_list.append(Gtk.Label(label=module.get_title()).get_layout().get_pixel_size()[0])
 
                 button = Gtk.Button()
                 button.set_relief(Gtk.ReliefStyle.NONE)
@@ -274,7 +274,7 @@ class ClipPage(Gtk.VBox, GuiBuilder):
                 image = Gtk.Image.new_from_pixbuf(module.get_pixbuf(size=16))
                 hbox.pack_start(image, False, False, 0)
 
-                label = Gtk.Label(module.get_title())
+                label = Gtk.Label(label=module.get_title())
                 label.set_ellipsize(Pango.EllipsizeMode.END)
                 label.set_alignment(0, 0.5)
 

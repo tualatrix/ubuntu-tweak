@@ -16,8 +16,7 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-import gobject
-from gi.repository import Gtk, Gdk, GConf, GdkPixbuf
+from gi.repository import GObject, Gtk, Gdk, GConf, GdkPixbuf
 
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.tweaks.compiz import CompizPlugin
@@ -67,13 +66,13 @@ class Shortcuts(TweakModule):
         return treeview
 
     def _create_model(self):
-        model = Gtk.ListStore(gobject.TYPE_INT,
+        model = Gtk.ListStore(GObject.TYPE_INT,
                               GdkPixbuf.Pixbuf,
-                              gobject.TYPE_STRING,
+                              GObject.TYPE_STRING,
                               GdkPixbuf.Pixbuf,
-                              gobject.TYPE_STRING,
-                              gobject.TYPE_STRING,
-                              gobject.TYPE_BOOLEAN)
+                              GObject.TYPE_STRING,
+                              GObject.TYPE_STRING,
+                              GObject.TYPE_BOOLEAN)
 
         client = GConf.Client.get_default()
         logo = icon.get_from_name('gnome-terminal')

@@ -190,7 +190,7 @@ class SourceEditor(TweakModule):
         self.list_selection.connect("changed", self.on_selection_changed)
 
         self.infobar = Gtk.InfoBar()
-        self.info_label = Gtk.Label('Current view the list')
+        self.info_label = Gtk.Label(label='Current view the list')
         self.info_label.set_alignment(0, 0.5)
         self.infobar.get_content_area().add(self.info_label)
         self.infobar.connect("response", self.on_infobar_response)

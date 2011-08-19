@@ -1,8 +1,7 @@
 import os
 import logging
 
-import gobject
-from gi.repository import Gtk
+from gi.repository import GObject, Gtk
 
 from ubuntutweak.gui.gtk import set_busy, unset_busy
 from ubuntutweak.janitor import JanitorPlugin, PackageObject
@@ -39,7 +38,7 @@ class CleanConfigDialog(TerminalDialog):
 
     def run(self):
         proxy.clean_configs(self.pkgs)
-        gobject.timeout_add(100, self.on_timeout)
+        GObject.timeout_add(100, self.on_timeout)
         return super(CleanConfigDialog, self).run()
 
     def on_timeout(self):

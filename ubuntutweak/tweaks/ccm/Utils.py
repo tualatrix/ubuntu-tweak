@@ -23,8 +23,7 @@
 import os
 import weakref
 
-import gobject
-from gi.repository import Gtk, Gdk, Pango
+from gi.repository import GObject, Gtk, Gdk, Pango
 
 from Constants import *
 from cgi import escape as protect_pango_markup
@@ -66,7 +65,7 @@ class Image (Gtk.Image):
 
     def __init__ (self, name = None, type = ImageNone, size = 32,
                   useMissingImage = False):
-        gobject.GObject.__init__ (self)
+        GObject.GObject.__init__ (self)
 
         if not name:
             return
@@ -84,14 +83,14 @@ class Image (Gtk.Image):
                     name = "plugin-" + name
                     try:
                         pixbuf = IconTheme.load_icon (name, size, 0)
-                    except gobject.GError:
+                    except GObject.GError:
                         pixbuf = IconTheme.load_icon ("plugin-unknown", size, 0)
                 
                 elif type == ImageCategory:
                     name = "plugins-" + name
                     try:
                         pixbuf = IconTheme.load_icon (name, size, 0)
-                    except gobject.GError:
+                    except GObject.GError:
                         pixbuf = IconTheme.load_icon ("plugins-unknown", size, 0)
                 
                 else:
@@ -101,7 +100,7 @@ class Image (Gtk.Image):
             
             elif type == ImageStock:
                 self.set_from_stock (name, size)
-        except gobject.GError as e:
+        except GObject.GError as e:
             self.set_from_stock (Gtk.STOCK_MISSING_IMAGE, Gtk.IconSize.BUTTON)
 
 class ActionImage (Gtk.Alignment):
@@ -114,7 +113,7 @@ class ActionImage (Gtk.Alignment):
           }
 
     def __init__ (self, action):
-        gobject.GObject.__init__ (self, 0, 0.5)
+        GObject.GObject.__init__ (self, 0, 0.5)
         self.set_padding (0, 0, 0, 10)
         if action in self.map: action = self.map[action]
         self.add (Image (name = action, type = ImageThemed, size = 22))
@@ -194,7 +193,7 @@ class PrettyButton (Gtk.Button):
 
 class Label(Gtk.Label):
     def __init__(self, value = "", wrap = 160):
-        gobject.GObject.__init__(self, value)
+        GObject.GObject.__init__(self, value)
         self.props.xalign = 0
         self.props.wrap_mode = Pango.WrapMode.WORD
         self.set_line_wrap(True)
@@ -202,7 +201,7 @@ class Label(Gtk.Label):
 
 class NotFoundBox(Gtk.Alignment):
     def __init__(self, value=""):
-        gobject.GObject.__init__(self, 0.5, 0.5, 0.0, 0.0)
+        GObject.GObject.__init__(self, 0.5, 0.5, 0.0, 0.0)
         
         box = Gtk.HBox()
         self.Warning = Gtk.Label()
@@ -231,16 +230,16 @@ class IdleSettingsParser:
         self.CategoryLoadIconsList = list(range(3, nCategories)) # Skip the first 3
         print('Loading icons...')
 
-        gobject.timeout_add (150, self.Wait)
+        GObject.timeout_add (150, self.Wait)
 
     def Wait(self):
         if not self.PluginList:
             return False
         
         if len (self.CategoryLoadIconsList) == 0: # If we're done loading icons
-            gobject.idle_add (self.ParseSettings)
+            GObject.idle_add (self.ParseSettings)
         else:
-            gobject.idle_add (self.LoadCategoryIcons)
+            GObject.idle_add (self.LoadCategoryIcons)
         
         return False
     
@@ -253,7 +252,7 @@ class IdleSettingsParser:
 
         self.PluginList.remove (self.PluginList[0])
 
-        gobject.timeout_add (200, self.Wait)
+        GObject.timeout_add (200, self.Wait)
 
         return False
 
@@ -271,7 +270,7 @@ class IdleSettingsParser:
 
         self.CategoryLoadIconsList.remove (self.CategoryLoadIconsList[0])
 
-        gobject.timeout_add (150, self.Wait)
+        GObject.timeout_add (150, self.Wait)
 
         return False
 
@@ -286,7 +285,7 @@ class Updater:
     def SetContext (self, context):
         self.Context = context
 
-        gobject.timeout_add (2000, self.Update)
+        GObject.timeout_add (2000, self.Update)
 
     def Append (self, widget):
         reference = weakref.ref(widget)

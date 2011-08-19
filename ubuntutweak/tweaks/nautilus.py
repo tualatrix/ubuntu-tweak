@@ -16,8 +16,7 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-import gobject
-from gi.repository import GConf
+from gi.repository import GObject, GConf
 
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.factory import WidgetFactory

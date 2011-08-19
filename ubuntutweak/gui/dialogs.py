@@ -18,8 +18,7 @@
 
 import thread
 
-import gobject
-from gi.repository import Gtk, Gdk, Pango, Vte
+from gi.repository import GObject, Gtk, Gdk, Pango, Vte
 
 from ubuntutweak.gui.gtk import set_busy, unset_busy
 
@@ -29,7 +28,7 @@ class BaseDialog(Gtk.MessageDialog):
         title = kwargs.pop('title', '')
         message = kwargs.pop('message', '')
 
-        gobject.GObject.__init__(self, **kwargs)
+        GObject.GObject.__init__(self, **kwargs)
 
         if title:
             self.set_title(title)
@@ -101,7 +100,7 @@ class QuestionDialog(BaseDialog):
 
 class BusyDialog(Gtk.Dialog):
     def __init__(self, parent=None):
-        gobject.GObject.__init__(self, parent=parent)
+        GObject.GObject.__init__(self, parent=parent)
 
         if parent:
             self.parent_window = parent
@@ -125,7 +124,7 @@ class BusyDialog(Gtk.Dialog):
 
 class ProcessDialog(BusyDialog):
     __gsignals__ = {
-        'error': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_STRING,)),
+        'error': (GObject.SignalFlags.RUN_FIRST, None, (GObject.TYPE_STRING,)),
     }
 
     def __init__(self, parent):

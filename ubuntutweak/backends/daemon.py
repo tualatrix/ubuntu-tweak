@@ -26,7 +26,7 @@ import apt_pkg
 import dbus
 import dbus.service
 import dbus.mainloop.glib
-import gobject
+from gi.repository import GObject
 
 from aptsources.sourceslist import SourceEntry, SourcesList
 
@@ -645,6 +645,6 @@ class Daemon(PolicyKitService):
 
 if __name__ == '__main__':
     dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
-    mainloop = gobject.MainLoop()
+    mainloop = GObject.MainLoop()
     Daemon(dbus.SystemBus(), mainloop)
     mainloop.run()

@@ -16,23 +16,22 @@ __copyright__= "Copyright (C) 2009 by Mingxi Wu <fengshenx@gmail.com>."
 # TualatriX, make it can accept text data
 
 import cairo
-import gobject
-from gi.repository import Gtk, Pango
+from gi.repository import GObject, Gtk, Pango
 
 class CellRendererButton(Gtk.CellRenderer):
     __gsignals__ = {
-        'clicked': (gobject.SIGNAL_RUN_FIRST,
-                    gobject.TYPE_NONE,
-                    (gobject.TYPE_STRING,))
+        'clicked': (GObject.SignalFlags.RUN_FIRST,
+                    None,
+                    (GObject.TYPE_STRING,))
     }
 
     __gproperties__ = {
-        'text': (gobject.TYPE_STRING, 'Text',
-                 'Text for button', '', gobject.PARAM_READWRITE)
+        'text': (GObject.TYPE_STRING, 'Text',
+                 'Text for button', '', GObject.PARAM_READWRITE)
     }
 
     def __init__(self, text=None):
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
 
         self.text = text
         self._xpad = 6
@@ -78,4 +77,4 @@ class CellRendererButton(Gtk.CellRenderer):
                     background_area, cell_area, flags):
         self.emit('clicked', path)
 
-gobject.type_register(CellRendererButton)
+GObject.type_register(CellRendererButton)

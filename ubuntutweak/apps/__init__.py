@@ -1,7 +1,6 @@
 import logging
 
-import gobject
-from gi.repository import Gtk, Pango
+from gi.repository import GObject, Gtk, Pango
 
 from ubuntutweak.gui import GuiBuilder
 from ubuntutweak.utils import icon
@@ -22,7 +21,7 @@ class AppButton(Gtk.Button):
     _app = None
 
     def __init__(self, app):
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
 
         log.info('Creating AppButton: %s' % app)
 
@@ -53,7 +52,7 @@ class AppCategoryBox(Gtk.VBox):
     _current_apps = 0
 
     def __init__(self, apps=None, category='', category_name=''):
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
 
         self._apps = apps
 
@@ -108,7 +107,7 @@ class AppCategoryBox(Gtk.VBox):
 class AppsView(Gtk.ScrolledWindow):
 
     def __init__(self):
-        gobject.GObject.__init__(self,
+        GObject.GObject.__init__(self,
                                  shadow_type=Gtk.ShadowType.NONE,
                                  hscrollbar_policy=Gtk.PolicyType.NEVER,
                                  vscrollbar_policy=Gtk.PolicyType.AUTOMATIC)
@@ -180,7 +179,7 @@ class AppsView(Gtk.ScrolledWindow):
 
 class AppsPage(Gtk.VBox, GuiBuilder):
     def __init__(self):
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
         GuiBuilder.__init__(self, 'appspage.ui')
 
         self.hpaned1.reparent(self)

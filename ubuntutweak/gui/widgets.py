@@ -1,11 +1,10 @@
 import time
 import logging
 
-import gobject
-from gi.repository import Gtk, Gdk, GConf, Gio
+from gi.repository import GObject, Gtk, Gdk, GConf, Gio
 
-from ubuntutweak.settings.gconfsettings import GconfSetting, UserGconfSetting
 from ubuntutweak.settings.gsettings import GSetting
+from ubuntutweak.settings.gconfsettings import GconfSetting, UserGconfSetting
 
 log = logging.getLogger('widgets')
 
@@ -16,7 +15,7 @@ class CheckButton(Gtk.CheckButton):
 
     def __init__(self, label=None, key=None,
                  default=None, tooltip=None, backend=GConf):
-        gobject.GObject.__init__(self, label=label)
+        GObject.GObject.__init__(self, label=label)
         if backend == GConf:
             self.setting = GconfSetting(key=key, default=default, type=bool)
         elif backend == Gio:
@@ -39,7 +38,7 @@ class CheckButton(Gtk.CheckButton):
 class UserCheckButton(Gtk.CheckButton):
     def __init__(self, user=None, label=None, key=None, default=None,
                  tooltip=None, backend=GConf):
-        gobject.GObject.__init__(self, label=label)
+        GObject.GObject.__init__(self, label=label)
 
         if backend == GConf:
             self.setting = UserGconfSetting(key=key, default=default, type=bool)
@@ -60,7 +59,7 @@ class UserCheckButton(Gtk.CheckButton):
 
 class ResetButton(Gtk.Button):
     def __init__(self, key, backend=GConf):
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
 
         if backend == GConf:
             self.setting = GconfSetting(key=key, type=bool)
@@ -88,7 +87,7 @@ class StringCheckButton(CheckButton):
 
 class Entry(Gtk.Entry):
     def __init__(self, key=None, default=None, backend=GConf):
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
 
         if backend == GConf:
             self.setting = GconfSetting(key=key, default=default, type=str)
@@ -121,7 +120,7 @@ class Entry(Gtk.Entry):
 class ComboBox(Gtk.ComboBox):
     def __init__(self, key=None, texts=None, values=None,
                  type="string", backend=GConf):
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
 
         if backend == GConf:
             self.setting = GconfSetting(key=key, type=str)
@@ -130,9 +129,9 @@ class ComboBox(Gtk.ComboBox):
             pass
 
         if type == 'int':
-            model = Gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_INT)
+            model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_INT)
         else:
-            model = Gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
+            model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_STRING)
         self.set_model(model)
 
         cell = Gtk.CellRendererText()
@@ -159,7 +158,7 @@ class ComboBox(Gtk.ComboBox):
 class Scale(Gtk.HScale):
     def __init__(self, key=None, min=None, max=None, digits=0,
                  reversed=False, backend=GConf):
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
 
         if digits > 0:
             type = float
@@ -203,7 +202,7 @@ class SpinButton(Gtk.SpinButton):
             pass
 
         adjust = Gtk.Adjustment(self.setting.get_value(), min, max, step)
-        gobject.GObject.__init__(self, adjustment=adjust)
+        GObject.GObject.__init__(self, adjustment=adjust)
         self.connect('value-changed', self.on_value_changed)
 
     def on_value_changed(self, widget):
@@ -218,7 +217,7 @@ KeyModifier = ["Shift", "Control", "Mod1", "Mod2", "Mod3", "Mod4",
 class Popup(Gtk.Window):
     def __init__(self, parent, text=None, child=None,
                  decorated=True, mouse=False, modal=True):
-        gobject.GObject.__init__(self, type=Gtk.WindowType.TOPLEVEL)
+        GObject.GObject.__init__(self, type=Gtk.WindowType.TOPLEVEL)
         self.set_type_hint(Gdk.WindowTypeHint.UTILITY)
         self.set_position(mouse and Gtk.WindowPosition.MOUSE or
                           Gtk.WindowPosition.CENTER_ALWAYS)
@@ -232,7 +231,7 @@ class Popup(Gtk.Window):
 
         if text:
             label = Gtk.Label(label=text)
-            align = Gtk.Alignment()
+            align = Gtk.Alignment.new()
             align.set_padding(20, 20, 20, 20)
             align.add(label)
             self.add(align)
@@ -250,10 +249,10 @@ class Popup(Gtk.Window):
 
 class KeyGrabber(Gtk.Button):
     __gsignals__ = {
-        "changed": (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE,
-                    (gobject.TYPE_INT, gobject.TYPE_INT)),
-        "current-changed": (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE,
-                            (gobject.TYPE_INT, Gdk.ModifierType))
+        "changed": (GObject.SignalFlags.RUN_FIRST, None,
+                    (GObject.TYPE_INT, GObject.TYPE_INT)),
+        "current-changed": (GObject.SignalFlags.RUN_FIRST, None,
+                            (GObject.TYPE_INT, Gdk.ModifierType))
     }
 
     key = 0
@@ -265,7 +264,7 @@ class KeyGrabber(Gtk.Button):
 
     def __init__ (self, parent=None, key=0, mods=0, label=None):
         '''Prepare widget'''
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
 
         self.main_window = parent
         self.key = key

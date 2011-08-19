@@ -19,8 +19,7 @@
 import os
 import gettext
 
-import gobject
-from gi.repository import Gtk, Gdk, GdkPixbuf
+from gi.repository import GObject, Gtk, Gdk, GdkPixbuf
 
 from ubuntutweak.modules import TweakModule
 from ubuntutweak.common.inifile import IniFile
@@ -129,7 +128,7 @@ class UserdirView(Gtk.TreeView):
     ) = range(4)
 
     def __init__(self):
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
 
         self.uf = UserdirFile()
 
@@ -189,9 +188,9 @@ class UserdirView(Gtk.TreeView):
 
     def _create_model(self):
         model = Gtk.ListStore(GdkPixbuf.Pixbuf,
-                              gobject.TYPE_STRING,
-                              gobject.TYPE_STRING,
-                              gobject.TYPE_STRING)
+                              GObject.TYPE_STRING,
+                              GObject.TYPE_STRING,
+                              GObject.TYPE_STRING)
 
         for dir, path in self.uf.items():
             pixbuf = self.uf.get_xdg_icon(dir)

@@ -23,8 +23,7 @@ import logging
 from subprocess import Popen, PIPE
 
 import dbus
-import gobject
-from gi.repository import Gtk, Gdk, GdkPixbuf
+from gi.repository import GObject, Gtk, Gdk, GdkPixbuf
 
 from ubuntutweak.modules import TweakModule
 from ubuntutweak.utils import icon
@@ -82,7 +81,7 @@ class CateView(Gtk.TreeView):
     }
 
     def __init__(self):
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
 
         self.set_rules_hint(True)
         self.model = self._create_model()
@@ -97,8 +96,8 @@ class CateView(Gtk.TreeView):
         '''The model is icon, title and the list reference'''
         model = Gtk.ListStore(
                     GdkPixbuf.Pixbuf,
-                    gobject.TYPE_STRING,
-                    gobject.TYPE_STRING)
+                    GObject.TYPE_STRING,
+                    GObject.TYPE_STRING)
 
         return model
 
@@ -129,7 +128,7 @@ class SettingView(Gtk.TreeView):
     ) = range(3)
 
     def __init__(self):
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
 
         self.model = self._create_model()
         self.set_model(self.model)
@@ -138,8 +137,8 @@ class SettingView(Gtk.TreeView):
     def _create_model(self):
         ''' The first is for icon, second is for real path, second is for title (if available)'''
         model = Gtk.ListStore(GdkPixbuf.Pixbuf,
-                              gobject.TYPE_STRING,
-                              gobject.TYPE_STRING)
+                              GObject.TYPE_STRING,
+                              GObject.TYPE_STRING)
 
         return model
 
@@ -217,7 +216,7 @@ class BackupProgressDialog(ProcessDialog):
         self.set_progress_text(_('Backing up...'))
 
     def run(self):
-        gobject.timeout_add(100, self.process_data)
+        GObject.timeout_add(100, self.process_data)
         return super(ProcessDialog, self).run()
 
     def process_data(self):
@@ -306,8 +305,8 @@ class DesktopRecovery(TweakModule):
         self.show_all()
 
     def setup_backup_model(self):
-        model = Gtk.ListStore(gobject.TYPE_STRING,
-                              gobject.TYPE_STRING)
+        model = Gtk.ListStore(GObject.TYPE_STRING,
+                              GObject.TYPE_STRING)
 
         self.backup_combobox.set_model(model)
 

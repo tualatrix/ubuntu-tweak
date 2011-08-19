@@ -1,9 +1,8 @@
-import gobject
-from gi.repository import Gtk
+from gi.repository import GObject, Gtk
 
 class BasePack(Gtk.VBox):
     def __init__(self, label):
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
         self.set_border_width(5)
 
         title = Gtk.MenuItem(label=label)
@@ -51,7 +50,7 @@ class ListPack(BaseListPack):
 
 class EasyTable(Gtk.Table):
     def __init__(self, items=[], xpadding=6, ypadding=6):
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
 
         columns = 1
         for i, item in enumerate(items):

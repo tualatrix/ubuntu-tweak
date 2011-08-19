@@ -49,7 +49,7 @@ class WidgetFactory:
 
     @classmethod
     def do_composite_create(cls, widget, **kwargs):
-        label = Gtk.Label(kwargs.pop('label'))
+        label = Gtk.Label(label=kwargs.pop('label'))
         signal_dict = kwargs.pop('signal_dict', None)
 
         enable_reset = kwargs.has_key('enable_reset')

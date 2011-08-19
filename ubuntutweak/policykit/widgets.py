@@ -17,21 +17,20 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import dbus
-import gobject
-from gi.repository import Gtk
+from gi.repository import GObject, Gtk
 from ubuntutweak.gui.gtk import set_busy, unset_busy
 
 from aptdaemon import policykit1
 from defer import inline_callbacks
 
-class PolkitAction(gobject.GObject):
+class PolkitAction(GObject.GObject):
     """
     PolicyKit action, if changed return 0, means authenticate failed, 
     return 1, means authenticate successfully
     """
 
     def __init__(self, action):
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
 
         self.action = action
 
@@ -46,11 +45,11 @@ class PolkitAction(gobject.GObject):
 
 class PolkitButton(Gtk.Button):
     __gsignals__ = {
-        'authenticated': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, ()),
+        'authenticated': (GObject.SignalFlags.RUN_FIRST, None, ()),
     }
 
     def __init__(self, action):
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
 
         self.set_label(_('_Unlock'))
         self.set_use_underline(True)

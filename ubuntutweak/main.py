@@ -19,8 +19,7 @@
 import os
 import logging
 
-import gobject
-from gi.repository import Gtk, Unique, Pango, GdkPixbuf
+from gi.repository import GObject, Gtk, Unique, Pango, GdkPixbuf
 
 from ubuntutweak import modules
 from ubuntutweak import admins
@@ -62,7 +61,7 @@ class ModuleButton(Gtk.Button):
     _module = None
 
     def __init__(self, module):
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
 
         log.info('Creating ModuleButton: %s' % module)
 
@@ -95,7 +94,7 @@ class CategoryBox(Gtk.VBox):
     _current_modules = 0
 
     def __init__(self, modules=None, category='', category_name=''):
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
 
         self._modules = modules
 
@@ -152,16 +151,16 @@ class CategoryBox(Gtk.VBox):
 class FeaturePage(Gtk.ScrolledWindow):
 
     __gsignals__ = {
-        'module_selected': (gobject.SIGNAL_RUN_FIRST,
-                            gobject.TYPE_NONE,
-                            (gobject.TYPE_STRING,))
+        'module_selected': (GObject.SignalFlags.RUN_FIRST,
+                            None,
+                            (GObject.TYPE_STRING,))
     }
 
     _categories = None
     _boxes = []
 
     def __init__(self, feature_name):
-        gobject.GObject.__init__(self,
+        GObject.GObject.__init__(self,
                                  shadow_type=Gtk.ShadowType.NONE,
                                  hscrollbar_policy=Gtk.PolicyType.NEVER,
                                  vscrollbar_policy=Gtk.PolicyType.AUTOMATIC)

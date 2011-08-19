@@ -6,8 +6,7 @@ from collections import OrderedDict
 
 import apt
 import apt_pkg
-import gobject
-from gi.repository import Gtk, Gdk, Pango
+from gi.repository import GObject, Gtk, Gdk, Pango
 
 from ubuntutweak.gui import GuiBuilder
 from ubuntutweak.utils import icon, filesizeformat
@@ -56,7 +55,7 @@ class PackageObject(CruftObject):
         return self.package_name
 
 
-class JanitorPlugin(gobject.GObject):
+class JanitorPlugin(GObject.GObject):
     __title__ = ''
     __category__ = ''
     __utmodule__ = ''
@@ -66,13 +65,13 @@ class JanitorPlugin(gobject.GObject):
     cache = None
 
     __gsignals__ = {
-        'find_object': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_PYOBJECT,)),
-        'scan_finished': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE,
-                          (gobject.TYPE_BOOLEAN,
-                           gobject.TYPE_INT,
-                           gobject.TYPE_INT)),
-        'cleaned': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_BOOLEAN,)),
-        'error': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_STRING,)),
+        'find_object': (GObject.SignalFlags.RUN_FIRST, None, (GObject.TYPE_PYOBJECT,)),
+        'scan_finished': (GObject.SignalFlags.RUN_FIRST, None,
+                          (GObject.TYPE_BOOLEAN,
+                           GObject.TYPE_INT,
+                           GObject.TYPE_INT)),
+        'cleaned': (GObject.SignalFlags.RUN_FIRST, None, (GObject.TYPE_BOOLEAN,)),
+        'error': (GObject.SignalFlags.RUN_FIRST, None, (GObject.TYPE_STRING,)),
     }
 
     @classmethod
@@ -151,7 +150,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
     max_janitor_view_width = 0
 
     def __init__(self):
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
 
         self.scan_tasks = []
         self.clean_tasks = []
@@ -404,7 +403,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
             self._error_handler = plugin.connect('error', self.on_scan_error, plugin_iter)
 
             t = threading.Thread(target=plugin.get_cruft)
-            gobject.timeout_add(50, self._on_spinner_timeout, plugin_iter, t)
+            GObject.timeout_add(50, self._on_spinner_timeout, plugin_iter, t)
 
             t.start()
         else:
@@ -535,7 +534,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         if len(self.clean_tasks) == 0:
             self.on_scan_button_clicked()
         else:
-            gobject.timeout_add(300, self.do_real_clean_task)
+            GObject.timeout_add(300, self.do_real_clean_task)
 
     def on_clean_error(self, plugin, error):
         self.clean_tasks = []
@@ -575,7 +574,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
             if plugin.is_user_extension() and plugin.get_name() not in plugin_to_load:
                 log.debug("User extension: %s not in setting to load" % plugin.get_name())
                 continue
-            size_list.append(Gtk.Label(plugin.get_title()).get_layout().get_pixel_size()[0])
+            size_list.append(Gtk.Label(label=plugin.get_title()).get_layout().get_pixel_size()[0])
             self.janitor_model.append(iter, (False,
                                              None,
                                              plugin.get_title(),
@@ -598,7 +597,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
             if plugin.is_user_extension() and plugin.get_name() not in plugin_to_load:
                 log.debug("User extension: %s not in setting to load" % plugin.get_name())
                 continue
-            size_list.append(Gtk.Label(plugin.get_title()).get_layout().get_pixel_size()[0])
+            size_list.append(Gtk.Label(label=plugin.get_title()).get_layout().get_pixel_size()[0])
             self.janitor_model.append(iter, (False,
                                              None,
                                              plugin.get_title(),

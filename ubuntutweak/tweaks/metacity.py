@@ -16,8 +16,7 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-import gobject
-from gi.repository import Gtk, GConf
+from gi.repository import GObject, Gtk, GConf
 
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.gui.dialogs import InfoDialog
@@ -43,7 +42,7 @@ class ButtonView(Gtk.IconView):
     config = GconfSetting(key='/apps/metacity/general/button_layout')
 
     def __init__(self):
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
 
         model = self._create_model()
         self.set_model(model)
@@ -55,7 +54,7 @@ class ButtonView(Gtk.IconView):
         self.connect('selection-changed', self.on_selection_changed)
 
     def _create_model(self):
-        model = Gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
+        model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_STRING)
 
         return model
 
@@ -124,7 +123,7 @@ class WindowControlButton(Gtk.CheckButton):
         self._value = value
         self._view = view
 
-        gobject.GObject.__init__(self, label=self._label)
+        GObject.GObject.__init__(self, label=self._label)
         self.set_active(self._view.has_button(self._value))
 
         self._handle_id = self.connect('toggled', self.on_toggled)

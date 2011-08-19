@@ -16,8 +16,7 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-import gobject
-from gi.repository import Gtk, GConf
+from gi.repository import GObject, Gtk, GConf
 
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.factory import WidgetFactory
@@ -47,7 +46,7 @@ desktop_icons = (computer_icon, home_icon, trash_icon)
 
 class DesktopIcon(Gtk.VBox):
     def __init__(self, item):
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
 
         self.show_button = WidgetFactory.create("CheckButton",
                                                 label=item["label"],

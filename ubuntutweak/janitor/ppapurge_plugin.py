@@ -7,7 +7,6 @@ import logging
 
 from urllib2 import urlopen, Request, URLError
 
-import gobject
 from aptsources.sourceslist import SourcesList
 from gi.repository import Gtk, Pango, GObject
 
@@ -72,7 +71,7 @@ class CleanPpaDialog(TerminalDialog):
 
     def run(self):
         thread.start_new_thread(self.process_data, ())
-        gobject.timeout_add(100, self.on_timeout)
+        GObject.timeout_add(100, self.on_timeout)
         super(CleanPpaDialog, self).run()
 
     def process_data(self):
@@ -185,7 +184,7 @@ class DowngradeView(Gtk.TreeView):
      COLUMN_SYSTEM_VERSION) = range(3)
 
     def __init__(self, plugin):
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
 
         model = Gtk.ListStore(GObject.TYPE_STRING,
                               GObject.TYPE_STRING,

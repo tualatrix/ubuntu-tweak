@@ -20,8 +20,7 @@ import os
 import glob
 import logging
 
-import gobject
-from gi.repository import Gtk, GConf, GdkPixbuf
+from gi.repository import GObject, Gtk, GConf, GdkPixbuf
 
 from ubuntutweak.utils import icon
 from ubuntutweak.factory import WidgetFactory

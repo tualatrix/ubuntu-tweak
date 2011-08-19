@@ -20,8 +20,7 @@ import os
 import logging
 from gettext import ngettext
 
-import gobject
-from gi.repository import Gio, GLib, Gtk, Gdk, Pango, GdkPixbuf
+from gi.repository import GObject, Gio, GLib, Gtk, Gdk, Pango, GdkPixbuf
 
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.utils import icon
@@ -46,7 +45,7 @@ class CateView(Gtk.TreeView):
     ]
 
     def __init__(self):
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
 
         self.set_rules_hint(True)
         self.model = self._create_model()
@@ -61,8 +60,8 @@ class CateView(Gtk.TreeView):
     def _create_model(self):
         '''The model is icon, title and the list reference'''
         model = Gtk.ListStore(GdkPixbuf.Pixbuf,
-                              gobject.TYPE_STRING,
-                              gobject.TYPE_STRING)
+                              GObject.TYPE_STRING,
+                              GObject.TYPE_STRING)
 
         return model
 
@@ -96,7 +95,7 @@ class TypeView(Gtk.TreeView):
      TYPE_APP) = range(5)
 
     def __init__(self):
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
 
         self.model = self._create_model()
         self.set_search_column(self.TYPE_DESCRIPTION)
@@ -111,11 +110,11 @@ class TypeView(Gtk.TreeView):
 
     def _create_model(self):
         '''The model is icon, title and the list reference'''
-        model = Gtk.ListStore(gobject.TYPE_STRING,
+        model = Gtk.ListStore(GObject.TYPE_STRING,
                               GdkPixbuf.Pixbuf,
-                              gobject.TYPE_STRING,
+                              GObject.TYPE_STRING,
                               GdkPixbuf.Pixbuf,
-                              gobject.TYPE_STRING)
+                              GObject.TYPE_STRING)
         
         return model
 
@@ -203,11 +202,11 @@ class TypeView(Gtk.TreeView):
                 model.set_value(self.TYPE_APP, _('None'))
 
 
-class AddAppDialog(gobject.GObject):
+class AddAppDialog(GObject.GObject):
     __gsignals__ = {
-        'update': (gobject.SIGNAL_RUN_FIRST,
-                   gobject.TYPE_NONE,
-                   (gobject.TYPE_STRING,))
+        'update': (GObject.SignalFlags.RUN_FIRST,
+                   None,
+                   (GObject.TYPE_STRING,))
     }
 
     (ADD_TYPE_APPINFO,
@@ -282,9 +281,9 @@ class AddAppDialog(gobject.GObject):
         pass
 
     def setup_treeview(self):
-        model = Gtk.ListStore(gobject.GObject,
+        model = Gtk.ListStore(GObject.GObject,
                               GdkPixbuf.Pixbuf,
-                              gobject.TYPE_STRING)
+                              GObject.TYPE_STRING)
 
         self.app_view.set_model(model)
         self.app_view.set_headers_visible(False)
@@ -311,12 +310,12 @@ class AddAppDialog(gobject.GObject):
         return getattr(self.dialog, key)
 
 
-class TypeEditDialog(gobject.GObject):
+class TypeEditDialog(GObject.GObject):
 
     __gsignals__ = {
-        'update': (gobject.SIGNAL_RUN_FIRST,
-                   gobject.TYPE_NONE,
-                   (gobject.TYPE_PYOBJECT,))
+        'update': (GObject.SignalFlags.RUN_FIRST,
+                   None,
+                   (GObject.TYPE_PYOBJECT,))
     }
     (EDIT_TYPE_ENABLE,
      EDIT_TYPE_TYPE,
@@ -402,11 +401,11 @@ class TypeEditDialog(gobject.GObject):
         self.emit('update', type)
 
     def setup_treeview(self):
-        model = Gtk.ListStore(gobject.TYPE_BOOLEAN,
-                              gobject.TYPE_STRING,
-                              gobject.GObject,
+        model = Gtk.ListStore(GObject.TYPE_BOOLEAN,
+                              GObject.TYPE_STRING,
+                              GObject.GObject,
                               GdkPixbuf.Pixbuf,
-                              gobject.TYPE_STRING)
+                              GObject.TYPE_STRING)
 
         self.type_edit_view.set_model(model)
         self.type_edit_view.set_headers_visible(False)

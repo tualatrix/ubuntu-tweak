@@ -7,8 +7,7 @@ import traceback
 import webbrowser
 from new import classobj
 
-import gobject
-from gi.repository import Gtk, Pango, Gdk
+from gi.repository import GObject, Gtk, Pango, Gdk
 
 from ubuntutweak.utils import icon
 from ubuntutweak.common.consts import DATA_DIR, CONFIG_ROOT
@@ -217,12 +216,12 @@ class TweakModule(Gtk.VBox):
 
     #update use internal, and call use between modules
     __gsignals__ = {
-            'update': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_STRING,)),
-            'call': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_STRING, gobject.TYPE_STRING, gobject.TYPE_PYOBJECT)),
+            'update': (GObject.SignalFlags.RUN_FIRST, None, (GObject.TYPE_STRING,)),
+            'call': (GObject.SignalFlags.RUN_FIRST, None, (GObject.TYPE_STRING, GObject.TYPE_STRING, GObject.TYPE_PYOBJECT)),
     }
 
     def __init__(self, path=None, domain='ubuntu-tweak'):
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
 
         self.scrolled_win = Gtk.ScrolledWindow()
         self.scrolled_win.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)

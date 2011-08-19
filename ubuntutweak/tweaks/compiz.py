@@ -19,9 +19,8 @@
 import os
 import logging
 
-import gobject
 import compizconfig
-from gi.repository import Gtk, GConf, GdkPixbuf
+from gi.repository import GObject, Gtk, GConf, GdkPixbuf
 
 from ubuntutweak.modules import TweakModule
 from ubuntutweak.tweaks import ccm
@@ -109,7 +108,7 @@ class OpacityMenu(Gtk.CheckButton):
     menu_match = 'Tooltip | Menu | PopupMenu | DropdownMenu'
 
     def __init__(self, label):
-        gobject.GObject.__init__(self, label=label)
+        GObject.GObject.__init__(self, label=label)
 
         try:
             self.plugin = CompizPlugin('obs')
@@ -138,7 +137,7 @@ class OpacityMenu(Gtk.CheckButton):
 
 class WobblyMenu(Gtk.CheckButton):
     def __init__(self, label, mediator):
-        gobject.GObject.__init__(self, label=label)
+        GObject.GObject.__init__(self, label=label)
 
         self.mediator = mediator
         try:
@@ -174,7 +173,7 @@ class WobblyMenu(Gtk.CheckButton):
 
 class WobblyWindow(Gtk.CheckButton):
     def __init__(self, label, mediator):
-        gobject.GObject.__init__(self, label=label)
+        GObject.GObject.__init__(self, label=label)
 
         self.mediator = mediator
         try:
@@ -207,7 +206,7 @@ class WobblyWindow(Gtk.CheckButton):
 
 class SnapWindow(Gtk.CheckButton):
     def __init__(self, label, mediator):
-        gobject.GObject.__init__(self, label=label)
+        GObject.GObject.__init__(self, label=label)
 
         self.mediator = mediator
         try:
@@ -231,7 +230,7 @@ class SnapWindow(Gtk.CheckButton):
 
 class UnityLauncherAutoHide(Gtk.CheckButton):
     def __init__(self, label):
-        gobject.GObject.__init__(self, label=label)
+        GObject.GObject.__init__(self, label=label)
 
         try:
             self.plugin = CompizPlugin('unityshell')
@@ -257,7 +256,7 @@ class UnityLauncherAutoHide(Gtk.CheckButton):
 
 class ViewpointSwitcher(Gtk.CheckButton):
     def __init__(self, label):
-        gobject.GObject.__init__(self, label=label)
+        GObject.GObject.__init__(self, label=label)
 
         try:
             self.plugin = CompizPlugin('vpswitch')
@@ -299,29 +298,29 @@ class EdgeComboBox(Gtk.ComboBox):
     )
 
     __gsignals__ = {
-        'edge_changed': (gobject.SIGNAL_RUN_FIRST,
-                         gobject.TYPE_NONE,
-                         (gobject.TYPE_STRING,))
+        'edge_changed': (GObject.SignalFlags.RUN_FIRST,
+                         None,
+                         (GObject.TYPE_STRING,))
     }
 
     (COLUMN_PLUGIN,
      COLUMN_KEY,
      COLUMN_TEXT) = range(3)
 
-    edge = gobject.property(type=str, default='')
-    old_plugin = gobject.property(type=str, default='')
-    old_key = gobject.property(type=str, default='')
-    max_index = gobject.property(type=int, default=0)
+    edge = GObject.property(type=str, default='')
+    old_plugin = GObject.property(type=str, default='')
+    old_key = GObject.property(type=str, default='')
+    max_index = GObject.property(type=int, default=0)
 
     def __init__(self, edge):
         '''
         edge will be: TopLeft, BottomLeft
         '''
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
 
-        model = Gtk.ListStore(gobject.TYPE_STRING,
-                              gobject.TYPE_STRING,
-                              gobject.TYPE_STRING)
+        model = Gtk.ListStore(GObject.TYPE_STRING,
+                              GObject.TYPE_STRING,
+                              GObject.TYPE_STRING)
         renderer = Gtk.CellRendererText()
         self.pack_start(renderer, False)
         self.add_attribute(renderer, 'text', self.COLUMN_TEXT)
@@ -362,6 +361,7 @@ class EdgeComboBox(Gtk.ComboBox):
         if self.old_plugin:
             for name, key, text in self.edge_settings:
                 if name == self.old_plugin:
+                    log.debug('%s has to unset (%s)' % (name, key))
                     setting = CompizSetting(CompizPlugin(name), key)
                     setting.set_value('')
                     break
@@ -463,7 +463,7 @@ class Compiz(TweakModule):
         if wallpaper:
             try:
                 pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(wallpaper, 160, 100)
-            except gobject.GError:
+            except GObject.GError:
                 pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(system_wallpaper, 160, 100)
         else:
             pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(system_wallpaper, 160, 100)
