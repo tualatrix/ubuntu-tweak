@@ -1,7 +1,7 @@
 import unittest
 
-from ubuntutweak import modules
-from ubuntutweak.utils import ppa
+from ubuntutweak0 import modules
+from ubuntutweak0.utils import ppa
 
 class TestUtilsFunctions(unittest.TestCase):
     def setUp(self):

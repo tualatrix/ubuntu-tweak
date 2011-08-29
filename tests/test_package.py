@@ -1,6 +1,6 @@
 import unittest
 
-from ubuntutweak.common.package import PACKAGE_WORKER
+from ubuntutweak0.common.package import PACKAGE_WORKER
 
 class TestPackageFunctions(unittest.TestCase):
     def setUp(self):

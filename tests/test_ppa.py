@@ -1,6 +1,6 @@
 import unittest
 
-from ubuntutweak.modules.cleaner import CleanPpaDialog
+from ubuntutweak0.modules.cleaner import CleanPpaDialog
 
 class TestPackageFunctions(unittest.TestCase):
     def setUp(self):
