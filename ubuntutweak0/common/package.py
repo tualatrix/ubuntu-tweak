@@ -142,9 +142,20 @@ class PackageWorker:
 
             if package in self.basenames:
                 kernel_match = p_kernel_version.findall(pkg)
-                if kernel_match and kernel_match[0] < self.current_kernel_version:
+                if kernel_match and self._compare_kernel_version(kernel_match[0]):
                     return True
         return False
+
+    def _compare_kernel_version(self, version):
+        c1, c2 = self.current_kernel_version.split('-')
+        p1, p2 = version.split('-')
+        if c1 == p1:
+            if int(c2) > int(p2):
+                return True
+            else:
+                return False
+        else:
+            return c1 > p1
 
     def get_pkgsummary(self, pkg):
         return self.cache[pkg].summary
