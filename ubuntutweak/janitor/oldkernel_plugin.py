@@ -71,12 +71,13 @@ class OldKernelPlugin(JanitorPlugin):
     def _compare_kernel_version(self, version):
         c1, c2 = self.current_kernel_version.split('-')
         p1, p2 = version.split('-')
-        if c1 > p1:
-            return True
-        elif int(c2) > int(p2):
-            return True
+        if c1 == p1:
+            if int(c2) > int(p2):
+                return True
+            else:
+                return False
         else:
-            return False
+            return c1 > p1
 
     def get_summary(self, count, size):
         if count:
