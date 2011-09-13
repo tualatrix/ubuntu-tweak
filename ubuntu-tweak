@@ -21,16 +21,15 @@
 import os
 import optparse
 
-import gobject
 import dbus
 import dbus.service
 import dbus.mainloop.glib
 
-gobject.threads_init()
+from gi.repository import Unique, GObject
+
+GObject.threads_init()
 dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
 dbus.mainloop.glib.threads_init()
-
-from gi.repository import Unique
 
 from ubuntutweak.common.consts import VERSION, IS_INSTALLED, IS_TESTING
 from ubuntutweak.common.debug import enable_debugging

@@ -4,6 +4,7 @@ import traceback
 
 from gi.repository import Gtk, Pango, GObject
 
+from ubuntutweak import system
 from ubuntutweak.gui import GuiBuilder
 from ubuntutweak.settings.gsettings import GSetting
 from ubuntutweak.modules import ModuleLoader
@@ -129,7 +130,10 @@ class ClipPage(Gtk.VBox, GuiBuilder):
         self.setup_rencently_used()
 
         self.pack_start(self.get_object('hbox1'), True, True, 0)
-        self.connect('expose-event', self.on_expose_event)
+        if system.CODENAME == 'oneiric':
+            self.connect('draw', self.on_expose_event)
+        else:
+            self.connect('expose-event', self.on_expose_event)
         self.rencently_used_settings.connect_notify(self.setup_rencently_used)
         self.clips_settings.connect_notify(self.load_cips, True)
 

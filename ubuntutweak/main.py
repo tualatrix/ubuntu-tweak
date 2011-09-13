@@ -23,6 +23,7 @@ from gi.repository import GObject, Gtk, Unique, Pango, GdkPixbuf
 
 from ubuntutweak import modules
 from ubuntutweak import admins
+from ubuntutweak import system
 from ubuntutweak.gui import GuiBuilder
 from ubuntutweak.utils import icon
 from ubuntutweak.common.consts import VERSION, DATA_DIR
@@ -178,7 +179,10 @@ class FeaturePage(Gtk.ScrolledWindow):
 
         self.load_modules()
 
-        self.connect('expose-event', self.rebuild_boxes)
+        if system.CODENAME == 'oneiric':
+            self.connect('draw', self.rebuild_boxes)
+        else:
+            self.connect('expose-event', self.rebuild_boxes)
         self._setting.connect_notify(self.load_modules, True)
 
         self.show_all()
