@@ -154,7 +154,7 @@ class ClipPage(Gtk.VBox, GuiBuilder):
 
         clips = self.clips_settings.get_value()
 
-        if clips != ['']:
+        if clips and clips != ['']:
             loader = ModuleLoader('clips')
 
             self._up_clips = []
