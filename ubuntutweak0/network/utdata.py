@@ -2,6 +2,7 @@ import os
 import random
 import urllib
 import time
+import logging
 import datetime
 
 from gettext import ngettext
@@ -9,6 +10,8 @@ from urlparse import urljoin
 
 from ubuntutweak0.common.consts import install_ngettext
 from ubuntutweak0.utils.tar import TarFile
+
+log = logging.getLogger("utdata")
 
 install_ngettext()
 
@@ -84,8 +87,12 @@ def get_last_synced(folder):
 
 def check_update_function(url, folder, update_setter, version_setter, auto):
     remote_version = urllib.urlopen(url).read()
+
+    log.debug("check_update_function: remote_version: %s" % remote_version)
+
     if remote_version.isdigit():
         local_version = get_local_timestamp(folder)
+        log.debug("check_update_function: local_version: %s" % local_version)
 
         if remote_version > local_version:
             if auto:

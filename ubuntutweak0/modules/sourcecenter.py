@@ -71,6 +71,9 @@ SOURCE_ROOT = os.path.join(consts.CONFIG_ROOT, 'sourcecenter')
 SOURCE_VERSION_URL = utdata.get_version_url('/sourcecenter_version/')
 UPGRADE_DICT = {}
 
+if not os.path.exists(SOURCE_ROOT):
+    os.mkdir(SOURCE_ROOT)
+
 def get_source_data_url():
     return utdata.get_download_url('/static/utdata/sourcecenter-%s.tar.gz' %
                                    VERSION_SETTING.get_value())
