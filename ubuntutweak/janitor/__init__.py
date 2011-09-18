@@ -59,6 +59,8 @@ class JanitorPlugin(GObject.GObject):
     __title__ = ''
     __category__ = ''
     __utmodule__ = ''
+    __desktop__ = ''
+    __distro__ = ''
     __utactive__ = True
     __user_extension__ = False
 

@@ -9,6 +9,7 @@ from new import classobj
 
 from gi.repository import GObject, Gtk, Pango, Gdk
 
+from ubuntutweak import system
 from ubuntutweak.utils import icon
 from ubuntutweak.common.consts import DATA_DIR, CONFIG_ROOT
 from ubuntutweak.common.debug import run_traceback
@@ -176,7 +177,9 @@ class ModuleLoader:
     def _insert_moduel(self, k, v, mark_user=False):
         if k not in ('TweakModule', 'Clip', 'JanitorPlugin', 'proxy') and \
                 hasattr(v, '__utmodule__'):
-            if v.__utactive__:
+            if self.is_supported_desktop(v.__desktop__) and \
+               self.is_supported_distro(v.__distro__) and \
+               v.__utactive__:
                 self.module_table[v.get_name()] = v
 
                 if mark_user:
@@ -199,6 +202,19 @@ class ModuleLoader:
     def get_module(self, name):
         return self.module_table[name]
 
+    def is_supported_desktop(self, desktop_name):
+        if desktop_name:
+            return system.DESKTOP in desktop_name
+        else:
+            return True
+
+    def is_supported_distro(self, distro):
+        log.debug('is_supported_distro')
+        if distro:
+            return system.CODENAME in distro
+        else:
+            return True
+
 
 class TweakModule(Gtk.VBox):
     __title__ = ''
@@ -206,6 +222,8 @@ class TweakModule(Gtk.VBox):
     __icon__ = ''
     __author__ = ''
     __desc__ = ''
+    __desktop__ = ''
+    __distro__ = ''
     __url__ = ''
     __url_title__ = _('More')
     #Identify whether it is a ubuntu tweak module

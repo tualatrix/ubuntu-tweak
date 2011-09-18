@@ -22,6 +22,8 @@ class Clip(Gtk.VBox):
     '''
     __icon__  = 'info'
     __title__ = ''
+    __desktop__ = ''
+    __distro__ = ''
 
     __utmodule__ = ''
     __utactive__ = True
