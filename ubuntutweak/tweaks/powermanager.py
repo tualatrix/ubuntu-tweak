@@ -28,6 +28,7 @@ class PowerManager(TweakModule):
     __desc__ = _('Control your computer\'s power management')
     __icon__ = 'gnome-power-manager'
     __category__ = 'system'
+    __distro__ = 'natty'
 
     def __init__(self):
         TweakModule.__init__(self)
