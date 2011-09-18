@@ -38,6 +38,7 @@ class LoginSettings(TweakModule):
     __desc__ = _('Control the appearance and behaviour of your login screen')
     __icon__ = 'gdm-setup'
     __category__ = 'startup'
+    __distro__ = 'natty'
 
     def __init__(self):
         TweakModule.__init__(self, 'loginsettings.ui')
