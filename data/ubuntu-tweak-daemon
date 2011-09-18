@@ -5,9 +5,11 @@ import optparse
 
 import dbus
 import dbus.mainloop.glib
-import gobject
+
+from gi.repository import GObject
 
 from ubuntutweak.common.consts import VERSION
+
 
 if __name__ == '__main__':
     parser = optparse.OptionParser(prog="ubuntu-tweak-daemon",
@@ -24,6 +26,6 @@ if __name__ == '__main__':
     #TODO make it exist when timeout
     from ubuntutweak.backends.daemon import Daemon
     dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
-    mainloop = gobject.MainLoop()
+    mainloop = GObject.MainLoop()
     Daemon(dbus.SystemBus(), mainloop)
     mainloop.run()
