@@ -148,6 +148,7 @@ class Metacity(TweakModule):
     __icon__ = 'preferences-system-windows'
     __url__ = 'http://ubuntu-tweak.com'
     __category__ = 'desktop'
+    __distro__ = 'natty'
 
     left_default = 'close,minimize,maximize:'
     right_default = ':minimize,maximize,close'
