@@ -50,7 +50,7 @@ class ButtonView(Gtk.IconView):
 
         self.set_text_column(self.COLUMN_LABEL)
         self.set_reorderable(True)
-        self.set_orientation(Gtk.Orientation.HORIZONTAL)
+        self.set_item_orientation(Gtk.Orientation.HORIZONTAL)
         self.connect('selection-changed', self.on_selection_changed)
 
     def _create_model(self):
