@@ -286,7 +286,10 @@ class UbuntuTweakWindow(GuiBuilder):
     modules_index = {}
 
     def __init__(self, feature='', module=''):
-        GuiBuilder.__init__(self, file_name='mainwindow.ui')
+        if system.CODENAME == 'natty':
+            GuiBuilder.__init__(self, file_name='mainwindow.ui')
+        else:
+            GuiBuilder.__init__(self, file_name='mainwindow-gtk3.ui')
 
         self.window_size_setting = GSetting('com.ubuntu-tweak.tweak.window-size')
         width, height = self.window_size_setting.get_value()
@@ -326,6 +329,7 @@ class UbuntuTweakWindow(GuiBuilder):
         elif feature:
             self.select_target_feature(feature)
 
+    #TODO remove when natty is deprecated
     def on_header_button_press_event(self, widget, event):
         self.mainwindow.begin_move_drag(event.button,
                                         event.x_root,
