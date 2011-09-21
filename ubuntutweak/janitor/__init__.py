@@ -251,10 +251,10 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
             self.janitor_view.set_size_request(self.max_janitor_view_width, -1)
 
     def set_busy(self):
-        self.get_toplevel().window.set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
+        self.get_parent_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
 
     def unset_busy(self):
-        self.get_toplevel().window.set_cursor(None)
+        self.get_parent_window().set_cursor(None)
 
     def on_janitor_selection_changed(self, selection):
         model, iter = selection.get_selected()

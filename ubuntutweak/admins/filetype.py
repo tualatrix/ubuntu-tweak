@@ -151,7 +151,7 @@ class TypeView(Gtk.TreeView):
     def update_model(self, filter=False, all=False):
         self.model.clear()
 
-        mainwindow = self.get_toplevel().window
+        mainwindow = self.get_parent_window()
 
         if mainwindow:
             mainwindow.set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))

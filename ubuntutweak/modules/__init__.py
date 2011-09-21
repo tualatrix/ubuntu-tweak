@@ -334,13 +334,13 @@ class TweakModule(Gtk.VBox):
         return cls.__user_extension__
 
     def set_busy(self):
-        if self.get_toplevel():
-            self.get_toplevel().window.set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
+        if self.get_parent_window():
+            self.get_parent_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
             self.get_toplevel().set_sensitive(False)
 
     def unset_busy(self):
-        if self.get_toplevel():
-            self.get_toplevel().window.set_cursor(None)
+        if self.get_parent_window():
+            self.get_parent_window().set_cursor(None)
             self.get_toplevel().set_sensitive(True)
 
 
