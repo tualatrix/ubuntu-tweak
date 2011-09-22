@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <requires lib="gtk+" version="2.24"/>
-  <!-- interface-naming-policy project-wide -->
   <object class="GtkTreeStore" id="janitor_model">
     <columns>
       <!-- column-name check -->
@@ -39,8 +38,6 @@
     </columns>
   </object>
   <object class="GtkVBox" id="vbox1">
-    <property name="width_request">780</property>
-    <property name="height_request">600</property>
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="spacing">6</property>
@@ -54,7 +51,6 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="hscrollbar_policy">never</property>
-            <property name="vscrollbar_policy">automatic</property>
             <property name="shadow_type">in</property>
             <child>
               <object class="GtkTreeView" id="janitor_view">
@@ -66,6 +62,9 @@
                 <property name="search_column">2</property>
                 <property name="show_expanders">False</property>
                 <property name="level_indentation">20</property>
+                <child internal-child="selection">
+                  <object class="GtkTreeSelection" id="treeview-selection1"/>
+                </child>
               </object>
             </child>
           </object>
@@ -79,8 +78,6 @@
           <object class="GtkScrolledWindow" id="scrolledwindow1">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="hscrollbar_policy">automatic</property>
-            <property name="vscrollbar_policy">automatic</property>
             <property name="shadow_type">in</property>
             <child>
               <object class="GtkTreeView" id="result_view">
@@ -91,6 +88,9 @@
                 <property name="headers_clickable">False</property>
                 <property name="rules_hint">True</property>
                 <property name="search_column">2</property>
+                <child internal-child="selection">
+                  <object class="GtkTreeSelection" id="treeview-selection2"/>
+                </child>
               </object>
             </child>
           </object>

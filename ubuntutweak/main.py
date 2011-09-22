@@ -291,13 +291,6 @@ class UbuntuTweakWindow(GuiBuilder):
         else:
             GuiBuilder.__init__(self, file_name='mainwindow-gtk3.ui')
 
-        self.window_size_setting = GSetting('com.ubuntu-tweak.tweak.window-size')
-        width, height = self.window_size_setting.get_value()
-        if width >= 800 and height >= 480:
-            self.mainwindow.set_default_size(width, height)
-
-        Gtk.rc_parse(os.path.join(DATA_DIR, 'theme/ubuntu-tweak.rc'))
-
         tweaks_page = FeaturePage('tweaks')
         admins_page = FeaturePage('admins')
         clip_page = ClipPage()
@@ -350,6 +343,13 @@ class UbuntuTweakWindow(GuiBuilder):
 
     def _initialize_ui_states(self, widget):
         #TODO implement the search feature
+        self.window_size_setting = GSetting('com.ubuntu-tweak.tweak.window-size')
+        width, height = self.window_size_setting.get_value()
+        if width >= 800 and height >= 480:
+            self.mainwindow.set_default_size(width, height)
+
+        Gtk.rc_parse(os.path.join(DATA_DIR, 'theme/ubuntu-tweak.rc'))
+
         self.search_entry.hide()
 
     def _crete_wait_page(self):
