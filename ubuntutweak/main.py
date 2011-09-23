@@ -288,6 +288,7 @@ class UbuntuTweakWindow(GuiBuilder):
     def __init__(self, feature='', module=''):
         if system.CODENAME == 'natty':
             GuiBuilder.__init__(self, file_name='mainwindow.ui')
+            Gtk.rc_parse(os.path.join(DATA_DIR, 'theme/ubuntu-tweak.rc'))
         else:
             GuiBuilder.__init__(self, file_name='mainwindow-gtk3.ui')
 
@@ -347,8 +348,6 @@ class UbuntuTweakWindow(GuiBuilder):
         width, height = self.window_size_setting.get_value()
         if width >= 800 and height >= 480:
             self.mainwindow.set_default_size(width, height)
-
-        Gtk.rc_parse(os.path.join(DATA_DIR, 'theme/ubuntu-tweak.rc'))
 
         self.search_entry.hide()
 
