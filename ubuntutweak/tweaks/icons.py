@@ -16,33 +16,40 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-from gi.repository import GObject, Gtk, GConf
+from gi.repository import GObject, Gtk, Gio
 
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.factory import WidgetFactory
 
 computer_icon = {
     "label": _('Show "Computer" icon on desktop'),
-    "visible_key": "/apps/nautilus/desktop/computer_icon_visible",
-    "name_key": "/apps/nautilus/desktop/computer_icon_name",
+    "visible_key": "org.gnome.nautilus.desktop.computer-icon-visible",
+    "name_key": "org.gnome.nautilus.desktop.computer-icon-name",
     "icon_name": "gnome-fs-client"
-    }
+}
 
 home_icon = {
     "label": _('Show "Home Folder" icon on desktop'),
-    "visible_key": "/apps/nautilus/desktop/home_icon_visible",
-    "name_key": "/apps/nautilus/desktop/home_icon_name",
+    "visible_key": "org.gnome.nautilus.desktop.home-icon-visible",
+    "name_key": "org.gnome.nautilus.desktop.home-icon-name",
     "icon_name": "gnome-fs-home"
-    }
+}
 
 trash_icon = {
     "label": _('Show "Trash" icon on desktop'),
-    "visible_key": "/apps/nautilus/desktop/trash_icon_visible",
-    "name_key": "/apps/nautilus/desktop/trash_icon_name",
+    "visible_key": "org.gnome.nautilus.desktop.trash-icon-visible",
+    "name_key": "org.gnome.nautilus.desktop.trash-icon-name",
     "icon_name": "gnome-fs-trash-empty"
-    }
+}
 
-desktop_icons = (computer_icon, home_icon, trash_icon)
+network_icon = {
+    "label": _('Show "Network Servers" icon on desktop'),
+    "visible_key": "org.gnome.nautilus.desktop.network-icon-visible",
+    "name_key": "org.gnome.nautilus.desktop.network-icon-name",
+    "icon_name": "network-workgroup"
+}
+
+desktop_icons = (computer_icon, home_icon, trash_icon, network_icon)
 
 class DesktopIcon(Gtk.VBox):
     def __init__(self, item):
@@ -51,7 +58,7 @@ class DesktopIcon(Gtk.VBox):
         self.show_button = WidgetFactory.create("CheckButton",
                                                 label=item["label"],
                                                 key=item["visible_key"],
-                                                backend=GConf)
+                                                backend=Gio)
         self.show_button.connect('toggled', self.on_show_button_changed)
         self.pack_start(self.show_button, False, False, 0)
 
@@ -67,14 +74,14 @@ class DesktopIcon(Gtk.VBox):
         self.rename_button = WidgetFactory.create("StringCheckButton",
                                                   label=_('Rename'),
                                                   key=item["name_key"],
-                                                  backend=GConf)
+                                                  backend=Gio)
         self.rename_button.connect('toggled', self.on_show_button_changed)
         vbox = Gtk.VBox(spacing=6)
         self.show_hbox.pack_start(vbox, False, False, 0)
         vbox.pack_start(self.rename_button, False, False, 0)
 
-        self.entry = WidgetFactory.create("Entry", key=item["name_key"], backend=GConf)
-        self.entry.connect('focus-out-event', self.on_entry_focus_out)
+        self.entry = WidgetFactory.create("Entry", key=item["name_key"], backend=Gio)
+        self.entry.connect('insert-at-cursor', self.on_entry_focus_out)
         if not self.rename_button.get_active():
             self.entry.set_sensitive(False)
         vbox.pack_start(self.entry, False, False, 0)
@@ -92,13 +99,13 @@ class DesktopIcon(Gtk.VBox):
         else:
             self.entry.set_sensitive(False)
             self.entry.setting.unset()
-            self.entry.set_text(_("Unset"))
+            self.entry.set_text('')
 
 
 class Icon(TweakModule):
     __title__ = _('Desktop Icon Settings')
     __desc__ = _("Rename and toggle visibilty of desktop icons")
-    __icon__ = 'user-desktop'
+    __icon__ = 'preferences-desktop-wallpaper'
     __category__ = 'desktop'
 
     def __init__(self):
@@ -106,8 +113,8 @@ class Icon(TweakModule):
 
         self.show_button = WidgetFactory.create("CheckButton",
                                                 label=_("Show desktop icons"),
-                                                key="/apps/nautilus/preferences/show_desktop",
-                                                backend=GConf)
+                                                key="org.gnome.desktop.background.show-desktop-icons",
+                                                backend=Gio)
         self.show_button.connect('toggled', self.on_show_button_changed)
         self.add_start(self.show_button, False, False, 0)
 
@@ -127,21 +134,15 @@ class Icon(TweakModule):
             vbox.pack_start(DesktopIcon(item), False, False, 0)
 
         button = WidgetFactory.create("CheckButton",
-                                      label= _("Show \"Network\" icon on desktop"),
-                                      key="/apps/nautilus/desktop/network_icon_visible",
-                                      backend=GConf)
-        vbox.pack_start(button, False, False, 0)
-
-        button = WidgetFactory.create("CheckButton",
                                       label=_("Show mounted volumes on desktop"),
-                                      key="/apps/nautilus/desktop/volumes_visible",
-                                      backend=GConf)
+                                      key="org.gnome.nautilus.desktop.volumes-visible",
+                                      backend=Gio)
         vbox.pack_start(button, False, False, 0)
 
         button = WidgetFactory.create("CheckButton",
-                                      label=_('Show contents of "Home Folder" on desktop (Logout for changes to take effect)'),
-                                      key="/apps/nautilus/preferences/desktop_is_home_dir",
-                                      backend=GConf)
+                                      label=_('Show contents of "Home Folder" on desktop'),
+                                      key="org.gnome.nautilus.preferences.desktop-is-home-dir",
+                                      backend=Gio)
         vbox.pack_start(button, False, False, 0)
 
     def on_show_button_changed(self, widget):

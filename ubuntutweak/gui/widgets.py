@@ -84,6 +84,9 @@ class StringCheckButton(CheckButton):
         '''rewrite the toggled function, it do nothing with the setting'''
         pass
 
+    def on_value_changed(self, *args):
+        pass
+
 
 class Entry(Gtk.Entry):
     def __init__(self, key=None, default=None, backend=GConf):
@@ -97,8 +100,10 @@ class Entry(Gtk.Entry):
         string = self.setting.get_value()
         if string:
             self.set_text(str(string))
-        else:
-            self.set_text(_("Unset"))
+
+        text_buffer = self.get_buffer()
+        text_buffer.connect('inserted-text', self.on_edit_finished_cb)
+        text_buffer.connect('deleted-text', self.on_edit_finished_cb)
 
         self.connect('activate', self.on_edit_finished_cb)
 
@@ -108,13 +113,9 @@ class Entry(Gtk.Entry):
     def get_gsetting(self):
         return self.setting
 
-    def on_edit_finished_cb(self, widget):
-        if self.get_text():
-            print self.get_text()
-            self.setting.set_value(self.get_text())
-        else:
-            self.setting.client.unset(self.setting.key)
-            self.set_text(_("Unset"))
+    def on_edit_finished_cb(self, widget, *args):
+        log.debug('Entry: on_edit_finished_cb: %s' % self.get_text())
+        self.setting.set_value(self.get_text())
 
 
 class ComboBox(Gtk.ComboBox):
