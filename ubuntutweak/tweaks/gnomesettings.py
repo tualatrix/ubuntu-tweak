@@ -20,7 +20,7 @@ import os
 import glob
 import logging
 
-from gi.repository import GObject, Gtk, GConf, GdkPixbuf
+from gi.repository import GObject, Gtk, GConf, GdkPixbuf, Gio
 
 from ubuntutweak.utils import icon
 from ubuntutweak.factory import WidgetFactory
@@ -37,6 +37,7 @@ class Gnome(TweakModule):
     __desc__ = _('A lot of GNOME settings for panels, menus and other desktop elements')
     __icon__ = ['gnome-desktop-config', 'control-center2']
     __category__ = 'desktop'
+    __distro__ = 'natty'
 
     def __init__(self):
         TweakModule.__init__(self)

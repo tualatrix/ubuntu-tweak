@@ -27,6 +27,7 @@ class LockDown(TweakModule):
     __desc__ = _('Tweak some security settings')
     __icon__ = ['gtk-dialog-authentication', 'stock_keyring']
     __category__ = 'system'
+    __distro__ = 'natty'
 
     """Lock down some function"""
     def __init__(self):

@@ -393,6 +393,7 @@ class Compiz(TweakModule):
     __category__ = 'desktop'
     __url__ = 'http://ubuntu-tweak.com'
     __url_title__ = _('Compiz Page')
+    __distro__ = 'natty'
 
     def __init__(self):
         TweakModule.__init__(self)
