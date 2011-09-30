@@ -77,6 +77,7 @@ class ModuleButton(Gtk.Button):
         hbox.pack_start(image, False, False, 0)
 
         label = Gtk.Label(label=module.get_title())
+        label.set_alignment(0.0, 0.5)
         label.set_line_wrap(True)
         label.set_line_wrap_mode(Pango.WrapMode.WORD)
         label.set_size_request(120, -1)
