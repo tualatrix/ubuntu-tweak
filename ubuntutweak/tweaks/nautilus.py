@@ -66,3 +66,22 @@ class Nautilus(TweakModule):
                                           backend=Gio),
             ))
         self.add_start(box, False, False, 0)
+
+        box = TablePack(_('Automatically Mount Settings'), (
+                    WidgetFactory.create('CheckButton',
+                                         key='org.gnome.desktop.media-handling.automount',
+                                         enable_reset=True,
+                                         label=_('Whether to automatically mount media'),
+                                         backend=Gio),
+                    WidgetFactory.create('CheckButton',
+                                         key='org.gnome.desktop.media-handling.automount-open',
+                                         enable_reset=True,
+                                         label=_('Whether to automatically open a folder for automounted media'),
+                                         backend=Gio),
+                    WidgetFactory.create('CheckButton',
+                                          key='org.gnome.desktop.media-handling.autorun-never',
+                                          enable_reset=True,
+                                          label=_('Never prompt or autorun/autostart programs when media are inserted'),
+                                          backend=Gio),
+            ))
+        self.add_start(box, False, False, 0)
