@@ -64,7 +64,7 @@ class WidgetFactory:
 
         if enable_reset:
             try:
-                reset_button = ResetButton(kwargs['key'])
+                reset_button = ResetButton(kwargs['key'], kwargs['backend'])
                 reset_button.connect('clicked', on_reset_button_clicked, new_widget)
             except Exception, e:
                 log.error(e)
@@ -90,7 +90,7 @@ class WidgetFactory:
 
         if enable_reset:
             try:
-                reset_button = ResetButton(kwargs['key'])
+                reset_button = ResetButton(kwargs['key'], kwargs['backend'])
                 reset_button.connect('clicked', on_reset_button_clicked, new_widget)
 
                 hbox = Gtk.HBox()

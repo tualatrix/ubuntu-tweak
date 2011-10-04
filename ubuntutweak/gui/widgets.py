@@ -199,8 +199,7 @@ class SpinButton(Gtk.SpinButton):
         if backend == GConf:
             self.setting = GconfSetting(key=key, type=int)
         else:
-            #TODO Gio
-            pass
+            self.setting = GSetting(key=key, type=int)
 
         adjust = Gtk.Adjustment(self.setting.get_value(), min, max, step)
         GObject.GObject.__init__(self, adjustment=adjust)

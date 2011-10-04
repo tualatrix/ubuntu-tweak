@@ -16,7 +16,7 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-from gi.repository import GObject, GConf
+from gi.repository import GObject, Gio
 
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.factory import WidgetFactory
@@ -28,7 +28,6 @@ class Nautilus(TweakModule):
     __desc__ = _('Manage the default file manager')
     __icon__ = ['file-manager', 'nautilus']
     __category__ = 'system'
-    __distro__ = 'natty'
 
     def __init__(self):
         TweakModule.__init__(self)
@@ -37,33 +36,33 @@ class Nautilus(TweakModule):
                   WidgetFactory.create("CheckButton",
                                        label=_('Show advanced permissions in the Nautilus "File Properties" window'),
                                        enable_reset=True,
-                                       key="/apps/nautilus/preferences/show_advanced_permissions",
-                                       backend=GConf),
+                                       key="org.gnome.nautilus.preferences.show-advanced-permissions",
+                                       backend=Gio),
                   WidgetFactory.create("CheckButton",
                                        label=_('Always use the location entry, instead of the pathbar'),
                                        enable_reset=True,
-                                       key="/apps/nautilus/preferences/always_use_location_entry",
-                                       backend=GConf)))
+                                       key="org.gnome.nautilus.preferences.always-use-location-entry",
+                                       backend=Gio)))
         self.add_start(box, False, False, 0)
 
         box = TablePack(_('Thumbnail Settings'), (
                     WidgetFactory.create('SpinButton',
-                                         key='/apps/nautilus/icon_view/thumbnail_size',
+                                         key='org.gnome.nautilus.icon-view.thumbnail-size',
                                          enable_reset=True,
                                          min=16, max=512, step=16,
                                          label=_('Default thumbnail icon size (pixels)'),
-                                         backend=GConf),
+                                         backend=Gio),
                     WidgetFactory.create('SpinButton',
-                                         key='/desktop/gnome/thumbnail_cache/maximum_size',
+                                         key='org.gnome.desktop.thumbnail-cache.maximum-size',
                                          enable_reset=True,
                                          min=-1, max=512, step=1,
                                          label=_('Maximum thumbnail cache size (megabytes)'),
-                                         backend=GConf),
+                                         backend=Gio),
                     WidgetFactory.create('SpinButton',
-                                          key='/desktop/gnome/thumbnail_cache/maximum_age',
+                                          key='org.gnome.desktop.thumbnail-cache.maximum-age',
                                           enable_reset=True,
                                           min=-1, max=180, step=1,
                                           label=_('Thumbnail cache time (days)'),
-                                          backend=GConf),
+                                          backend=Gio),
             ))
         self.add_start(box, False, False, 0)
