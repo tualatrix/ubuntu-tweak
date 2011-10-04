@@ -16,7 +16,7 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-from gi.repository import Gtk, GConf
+from gi.repository import Gtk, Gio
 
 from ubuntutweak.gui.containers import ListPack
 from ubuntutweak.modules  import TweakModule
@@ -27,7 +27,6 @@ class LockDown(TweakModule):
     __desc__ = _('Tweak some security settings')
     __icon__ = ['gtk-dialog-authentication', 'stock_keyring']
     __category__ = 'system'
-    __distro__ = 'natty'
 
     """Lock down some function"""
     def __init__(self):
@@ -36,28 +35,28 @@ class LockDown(TweakModule):
         box = ListPack(_("System Security options"), (
                     WidgetFactory.create("CheckButton",
                                          label=_('Disable "Lock Screen"'),
-                                         key="/desktop/gnome/lockdown/disable_lock_screen",
-                                         backend=GConf,
+                                         key="org.gnome.desktop.lockdown.disable-lock-screen",
+                                         backend=Gio,
                                          enable_reset=True),
                     WidgetFactory.create("CheckButton",
                                          label=_("Disable printing"),
-                                         key="/desktop/gnome/lockdown/disable_printing",
-                                         backend=GConf,
+                                         key="org.gnome.desktop.lockdown.disable-printing",
+                                         backend=Gio,
                                          enable_reset=True),
                     WidgetFactory.create("CheckButton",
                                          label=_("Disable printer settings"),
-                                         key="/desktop/gnome/lockdown/disable_print_setup",
-                                         backend=GConf,
+                                         key="org.gnome.desktop.lockdown.disable-print-setup",
+                                         backend=Gio,
                                          enable_reset=True),
                     WidgetFactory.create("CheckButton",
                                          label=_("Disable save to disk"),
-                                         key="/desktop/gnome/lockdown/disable_save_to_disk",
-                                         backend=GConf,
+                                         key="org.gnome.desktop.lockdown.disable-save-to-disk",
+                                         backend=Gio,
                                          enable_reset=True),
                     WidgetFactory.create("CheckButton",
                                          label=_('Disable "Fast User Switching"'),
-                                         key="/desktop/gnome/lockdown/disable_user_switching",
-                                         backend=GConf,
+                                         key="org.gnome.desktop.lockdown.disable-user-switching",
+                                         backend=Gio,
                                          enable_reset=True),
             ), padding=2)
 
