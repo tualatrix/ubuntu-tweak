@@ -231,7 +231,7 @@ class Popup(Gtk.Window):
 
         if text:
             label = Gtk.Label(label=text)
-            align = Gtk.Alignment.new()
+            align = Gtk.Alignment()
             align.set_padding(20, 20, 20, 20)
             align.add(label)
             self.add(align)
@@ -283,7 +283,8 @@ class KeyGrabber(Gtk.Button):
 
         self.handler = self.popup.connect("key-press-event",
                                           self.on_key_press_event)
-        while Gdk.keyboard_grab(self.popup.window,
+
+        while Gdk.keyboard_grab(self.popup.get_parent_window(),
                                 True,
                                 Gtk.get_current_event_time()) != Gdk.GrabStatus.SUCCESS:
             time.sleep (0.1)
