@@ -34,6 +34,7 @@ from ubuntutweak import system
 from ubuntutweak.utils import ppa
 from ubuntutweak.backends import PolicyKitService
 from ubuntutweak.policykit import PK_ACTION_TWEAK, PK_ACTION_CLEAN, PK_ACTION_SOURCE
+from ubuntutweak.settings.configsettings import ConfigSetting
 
 apt_pkg.init()
 
@@ -637,6 +638,17 @@ class Daemon(PolicyKitService):
         cmd = os.popen(command)
         output = cmd.read().strip()
         return output
+
+    @dbus.service.method(INTERFACE,
+                         in_signature='ss', out_signature='b',
+                         sender_keyword='sender')
+    def set_config_setting(self, key, value, sender=None):
+        self._check_permission(sender, PK_ACTION_TWEAK)
+        log.debug('set_config_setting: %s to %s' % (key, value))
+        cs = ConfigSetting(key)
+        cs.set_value(value)
+
+        return value == cs.get_value()
 
     @dbus.service.method(INTERFACE,
                          in_signature='', out_signature='')
