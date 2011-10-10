@@ -136,14 +136,8 @@ class SizedButton (Gtk.Button):
         self.set_size_request (newWidth, newHeight)
 
 class PrettyButton (Gtk.Button):
-    from ubuntutweak import system
-    if system.CODENAME == 'oneiric':
-        signal_name = 'draw'
-    else:
-        signal_name = 'expose-event'
-
     __gsignals__ = {
-        signal_name      : 'override',
+        'draw': 'override',
     }
 
     _old_toplevel = None

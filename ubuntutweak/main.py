@@ -180,10 +180,8 @@ class FeaturePage(Gtk.ScrolledWindow):
 
         self.load_modules()
 
-        if system.CODENAME == 'oneiric':
-            self.connect('draw', self.rebuild_boxes)
-        else:
-            self.connect('expose-event', self.rebuild_boxes)
+        self.connect('draw', self.rebuild_boxes)
+
         self._setting.connect_notify(self.load_modules, True)
 
         self.show_all()
@@ -287,11 +285,7 @@ class UbuntuTweakWindow(GuiBuilder):
     modules_index = {}
 
     def __init__(self, feature='', module=''):
-        if system.CODENAME == 'natty':
-            GuiBuilder.__init__(self, file_name='mainwindow.ui')
-            Gtk.rc_parse(os.path.join(DATA_DIR, 'theme/ubuntu-tweak.rc'))
-        else:
-            GuiBuilder.__init__(self, file_name='mainwindow-gtk3.ui')
+        GuiBuilder.__init__(self, file_name='mainwindow.ui')
 
         tweaks_page = FeaturePage('tweaks')
         admins_page = FeaturePage('admins')

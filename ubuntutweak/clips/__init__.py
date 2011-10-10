@@ -132,16 +132,13 @@ class ClipPage(Gtk.VBox, GuiBuilder):
         self.setup_rencently_used()
 
         self.pack_start(self.get_object('hbox1'), True, True, 0)
-        if system.CODENAME == 'oneiric':
-            self.connect('draw', self.on_expose_event)
-        else:
-            self.connect('expose-event', self.on_expose_event)
+        self.connect('draw', self.on_draw_event)
         self.rencently_used_settings.connect_notify(self.setup_rencently_used)
         self.clips_settings.connect_notify(self.load_cips, True)
 
         self.show()
 
-    def on_expose_event(self, widget, event):
+    def on_draw_event(self, widget, event):
         frame_width = int(self.get_allocation().width / 4.5)
 
         if frame_width > self.max_recently_used_size:
