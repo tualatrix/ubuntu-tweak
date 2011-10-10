@@ -511,8 +511,10 @@ class UbuntuTweakWindow(GuiBuilder):
 
         if widget.get_active():
             if feature not in self.navigation_dict:
+                log.debug("Feature %s is not in self.navigation_dict" % feature)
                 self.navigation_dict[feature] = None, None
                 self.notebook.set_current_page(self.feature_dict[feature])
+                self.set_current_module(None)
             else:
                 back, backwards = self.navigation_dict[feature]
                 if back:
