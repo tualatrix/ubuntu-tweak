@@ -112,8 +112,6 @@ class ClipPage(Gtk.VBox, GuiBuilder):
                             (GObject.TYPE_STRING,))
     }
 
-    max_recently_used_size = 200
-
     (DIRECTION_UP, DIRECTION_DOWN) = ('UP', 'DOWN')
     direction = None
 
@@ -139,12 +137,6 @@ class ClipPage(Gtk.VBox, GuiBuilder):
         self.show()
 
     def on_draw_event(self, widget, event):
-        frame_width = int(self.get_allocated_width() / 4.5)
-
-        if frame_width > self.max_recently_used_size:
-            frame_width = self.max_recently_used_size
-        self.rencently_frame.set_size_request(frame_width, -1)
-
         self.slide_clips()
 
     def load_cips(self, a=None, b=None, do_remove=False):
@@ -244,7 +236,8 @@ class ClipPage(Gtk.VBox, GuiBuilder):
                 height_sum += clip.get_preferred_height()[0]
                 height_sum += 32
 
-                if not has_direction:
+                # This is only happen when first time to attach
+                if not has_direction and not clip.get_parent():
                     self.clipvbox.pack_start(clip, False, False, 0)
 
                 if height_sum > max_height:
@@ -266,12 +259,9 @@ class ClipPage(Gtk.VBox, GuiBuilder):
         for child in self.rencently_used_vbox.get_children():
             self.rencently_used_vbox.remove(child)
 
-        size_list = []
         for name in used_list:
             feature, module = ModuleLoader.search_module_for_name(name)
             if module:
-                size_list.append(Gtk.Label(label=module.get_title()).get_layout().get_pixel_size()[0])
-
                 button = Gtk.Button()
                 button.set_relief(Gtk.ReliefStyle.NONE)
                 hbox = Gtk.HBox(spacing=6)
@@ -290,9 +280,6 @@ class ClipPage(Gtk.VBox, GuiBuilder):
                 button.show_all()
 
                 self.rencently_used_vbox.pack_start(button, False, False, 0)
-
-        if size_list:
-            self.max_recently_used_size = max(size_list) + 58
 
     def _on_module_button_clicked(self, widget, name):
         self.emit('load_module', name)
