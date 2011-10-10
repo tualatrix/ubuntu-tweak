@@ -139,7 +139,7 @@ class ClipPage(Gtk.VBox, GuiBuilder):
         self.show()
 
     def on_draw_event(self, widget, event):
-        frame_width = int(self.get_allocation().width / 4.5)
+        frame_width = int(self.get_allocated_width() / 4.5)
 
         if frame_width > self.max_recently_used_size:
             frame_width = self.max_recently_used_size
@@ -160,6 +160,7 @@ class ClipPage(Gtk.VBox, GuiBuilder):
         if clips and clips != ['']:
             loader = ModuleLoader('clips')
 
+            self._clips = []
             self._up_clips = []
             self._showed_clips = []
             self._down_clips = []
@@ -172,8 +173,7 @@ class ClipPage(Gtk.VBox, GuiBuilder):
                     clip = ClipClass()
                     clip.connect('load_module', self._on_module_button_clicked)
                     clip.connect('load_feature', self.on_clip_load_feature)
-                    clip.show()
-                    self.clipvbox.pack_start(clip, False, False, 0)
+                    self._clips.append(clip)
                 except Exception, e:
                     log.error(traceback.print_exc())
                     if name in self.clips_settings.get_value():
@@ -238,11 +238,14 @@ class ClipPage(Gtk.VBox, GuiBuilder):
                 has_direction = True
             else:
                 has_direction = False
-                to_show = self.clipvbox.get_children()
+                to_show = self._clips
 
             for clip in to_show:
-                height_sum += clip.get_allocation().height
+                height_sum += clip.get_preferred_height()[0]
                 height_sum += 32
+
+                if not has_direction:
+                    self.clipvbox.pack_start(clip, False, False, 0)
 
                 if height_sum > max_height:
                     if clip not in self._down_clips and not has_direction:
