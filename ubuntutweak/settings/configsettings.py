@@ -1,6 +1,7 @@
 import logging
 import ConfigParser
 
+from ubuntutweak.policykit.dbusproxy import proxy
 
 class ConfigSetting(object):
     '''Key: /etc/lightdm/lightdm.conf::UserManager.load-users
@@ -9,13 +10,14 @@ class ConfigSetting(object):
     def __init__(self, key=None, default=None, type=None):
         self.type = type
 
+        self._key = key
         self._path = key.split('::')[0]
         self._section = key.split('::')[1].split('.')[0]
         self._option = key.split('::')[1].split('.')[1]
 
-        self._init_configparser()
+        self.init_configparser()
 
-    def _init_configparser(self):
+    def init_configparser(self):
         self._configparser = ConfigParser.ConfigParser()
         self._configparser.read(self._path)
 
@@ -53,4 +55,14 @@ class ConfigSetting(object):
         with open(self._path, 'wb') as configfile:
             self._configparser.write(configfile)
 
-        self._init_configparser()
+        self.init_configparser()
+
+    def get_key(self):
+        return self._key
+
+
+class SystemConfigSetting(ConfigSetting):
+    def set_value(self, value):
+        proxy.set_config_setting(self.get_key(), value)
+
+        self.init_configparser()

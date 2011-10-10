@@ -4,6 +4,7 @@ import logging
 from gi.repository import GObject, Gtk, Gdk
 
 from ubuntutweak.settings.gsettings import GSetting
+from ubuntutweak.settings.configsettings import ConfigSetting
 from ubuntutweak.settings.gconfsettings import GconfSetting, UserGconfSetting
 
 log = logging.getLogger('widgets')
@@ -125,8 +126,10 @@ class ComboBox(Gtk.ComboBox):
 
         if backend == 'gconf':
             self._setting = GconfSetting(key=key, type=str)
-        else:
+        elif backend == 'gsettings':
             self._setting = GSetting(key=key, type=str)
+        elif backend == 'config':
+            self._setting = ConfigSetting(key=key, type=str)
 
         if type == 'int':
             model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_INT)

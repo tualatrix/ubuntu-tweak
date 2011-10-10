@@ -28,9 +28,8 @@ from ubuntutweak.gui.containers import ListPack, TablePack
 from ubuntutweak.gui.dialogs import ErrorDialog, ServerErrorDialog
 from ubuntutweak.policykit import PK_ACTION_TWEAK
 from ubuntutweak.policykit.widgets import PolkitButton
-from ubuntutweak.policykit.dbusproxy import proxy
 
-from ubuntutweak.settings.configsettings import ConfigSetting
+from ubuntutweak.settings.configsettings import SystemConfigSetting
 
 log = logging.getLogger('LoginSettings')
 
@@ -58,14 +57,14 @@ class LoginSettings(TweakModule):
         self.add_start(hbox, False, False, 0)
 
     def _setup_logo_image(self):
-        _greeter_logo = ConfigSetting('/etc/lightdm/unity-greeter.conf::greeter.logo')
-        logo_path = _greeter_logo.get_value()
+        self._greeter_logo = SystemConfigSetting('/etc/lightdm/unity-greeter.conf::greeter.logo')
+        logo_path = self._greeter_logo.get_value()
 
         self.logo_image.set_from_file(logo_path)
 
     def _setup_background_image(self):
-        _greeter_background = ConfigSetting('/etc/lightdm/unity-greeter.conf::greeter.background')
-        background_path = _greeter_background.get_value()
+        self._greeter_background = SystemConfigSetting('/etc/lightdm/unity-greeter.conf::greeter.background')
+        background_path = self._greeter_background.get_value()
         log.debug("Setup the background file: %s" % background_path)
 
         try:
@@ -101,11 +100,11 @@ class LoginSettings(TweakModule):
             dialog.destroy()
 
             if filename:
-                proxy.set_config_setting('/etc/lightdm/unity-greeter.conf::greeter.logo', filename)
+                self._greeter_logo.set_value(filename)
                 self._setup_logo_image()
         elif response == Gtk.ResponseType.DELETE_EVENT:
             dialog.destroy()
-            proxy.set_config_setting('/etc/lightdm/unity-greeter.conf::greeter.logo', orignal_logo)
+            self._greeter_logo.set_value(orignal_logo)
             self._setup_logo_image()
         else:
             dialog.destroy()
@@ -155,12 +154,12 @@ class LoginSettings(TweakModule):
             dialog.destroy()
 
             if filename:
-                proxy.set_config_setting('/etc/lightdm/unity-greeter.conf::greeter.background', filename)
+                self._greeter_background.set_value(filename)
 
                 self._setup_background_image()
         elif response == Gtk.ResponseType.DELETE_EVENT:
             dialog.destroy()
-            proxy.set_config_setting('/etc/lightdm/unity-greeter.conf::greeter.background', orignal_background)
+            self._greeter_background.set_value(orignal_background)
             self._setup_background_image()
         else:
             dialog.destroy()
