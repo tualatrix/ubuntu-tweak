@@ -36,17 +36,17 @@ class PowerManager(TweakModule):
         hibernate_box = WidgetFactory.create('CheckButton',
                                       label=_('Lock screen on hibernate'),
                                       enable_reset=True,
-                                      backend=GConf,
+                                      backend="gconf",
                                       key='/apps/gnome-power-manager/lock/hibernate')
         suspend_box = WidgetFactory.create('CheckButton',
                                       label=_('Lock screen on suspend'),
                                       enable_reset=True,
-                                      backend=GConf,
+                                      backend="gconf",
                                       key='/apps/gnome-power-manager/lock/suspend')
         screensaver_box = WidgetFactory.create('CheckButton',
                                       label=_('Use Screensaver lock settings'),
                                       enable_reset=True,
-                                      backend=GConf,
+                                      backend="gconf",
                                       key='/apps/gnome-power-manager/lock/use_screensaver_settings')
         hibernate_button = hibernate_box.get_data('widget')
         suspend_button = suspend_box.get_data('widget')
@@ -59,7 +59,7 @@ class PowerManager(TweakModule):
                 WidgetFactory.create('CheckButton',
                                       label=_('Enable "Lock screen" when "Blank Screen" activates'),
                                       enable_reset=True,
-                                      backend=GConf,
+                                      backend="gconf",
                                       key='/apps/gnome-power-manager/lock/blank_screen'),
                 screensaver_box, hibernate_box, suspend_box
         ))

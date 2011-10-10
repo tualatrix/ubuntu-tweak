@@ -16,7 +16,7 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-from gi.repository import GObject, Gtk, GConf
+from gi.repository import GObject, Gtk
 
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.gui.dialogs import InfoDialog
@@ -176,15 +176,16 @@ class Metacity(TweakModule):
                                          label=_('Titlebar mouse wheel action'),
                                          key='/apps/gwd/mouse_wheel_action',
                                          enable_reset=True,
-                                         backend=GConf,
+                                         backend='gconf',
                                          texts=[_('None'), _('Roll up')],
-                                         values=['none', 'shade']),
+                                         values=['none', 'shade']
+                                         ),
                     #TODO the toggle_maximize_horizontally and vertically may not work
                     WidgetFactory.create('ComboBox',
                                          label=_('Titlebar double-click action'),
                                          key='/apps/metacity/general/action_double_click_titlebar',
                                          enable_reset=True,
-                                         backend=GConf,
+                                         backend='gconf',
                                          texts=[_('None'), _('Maximize'), \
                                                  _('Maximize Horizontally'), \
                                                  _('Maximize Vertically'), \
@@ -199,7 +200,7 @@ class Metacity(TweakModule):
                                          label=_('Titlebar middle-click action'),
                                          key='/apps/metacity/general/action_middle_click_titlebar',
                                          enable_reset=True,
-                                         backend=GConf,
+                                         backend="gconf",
                                          texts=[_('None'), _('Maximize'), \
                                                  _('Maximize Horizontally'), \
                                                  _('Maximize Vertically'), \
@@ -214,7 +215,7 @@ class Metacity(TweakModule):
                                          label=_('Titlebar right-click action'),
                                          key='/apps/metacity/general/action_right_click_titlebar',
                                          enable_reset=True,
-                                         backend=GConf,
+                                         backend="gconf",
                                          texts=[_('None'), _('Maximize'), \
                                                  _('Maximize Horizontally'), \
                                                  _('Maximize Vertically'), \
@@ -233,27 +234,27 @@ class Metacity(TweakModule):
                     WidgetFactory.create('CheckButton',
                                           label=_('Use Metacity window theme'),
                                           enable_reset=True,
-                                          backend=GConf,
+                                          backend="gconf",
                                           key='/apps/gwd/use_metacity_theme'),
                     WidgetFactory.create('CheckButton',
                                           label=_('Enable active window transparency'),
-                                          backend=GConf,
+                                          backend="gconf",
                                           enable_reset=True,
                                           key='/apps/gwd/metacity_theme_active_shade_opacity'),
                     WidgetFactory.create('Scale',
                                           label=_('Active window transparency level'),
                                           key='/apps/gwd/metacity_theme_active_opacity',
-                                          backend=GConf,
+                                          backend="gconf",
                                           enable_reset=True,
                                           min=0, max=1, digits=2),
                     WidgetFactory.create('CheckButton',
                                           label=_('Enable inactive window transparency'),
                                           enable_reset=True,
-                                          backend=GConf,
+                                          backend="gconf",
                                           key='/apps/gwd/metacity_theme_shade_opacity'),
                     WidgetFactory.create('Scale',
                                           label=_('Inactive window shade transparency level'),
-                                          backend=GConf,
+                                          backend="gconf",
                                           key='/apps/gwd/metacity_theme_opacity',
                                           enable_reset=True,
                                           min=0, max=1, digits=2),
@@ -263,7 +264,7 @@ class Metacity(TweakModule):
         button = WidgetFactory.create('CheckButton',
                                       label=_("Enable Metacity's compositing feature"),
                                       enable_reset=True,
-                                      backend=GConf,
+                                      backend="gconf",
                                       signal_dict={'toggled': self.on_compositing_button_toggled},
                                       key='/apps/metacity/general/compositing_manager')
         if button:

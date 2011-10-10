@@ -37,12 +37,12 @@ class Nautilus(TweakModule):
                                        label=_('Show advanced permissions in the Nautilus "File Properties" window'),
                                        enable_reset=True,
                                        key="org.gnome.nautilus.preferences.show-advanced-permissions",
-                                       backend=Gio),
+                                       backend="gsettings"),
                   WidgetFactory.create("CheckButton",
                                        label=_('Always use the location entry, instead of the pathbar'),
                                        enable_reset=True,
                                        key="org.gnome.nautilus.preferences.always-use-location-entry",
-                                       backend=Gio)))
+                                       backend="gsettings")))
         self.add_start(box, False, False, 0)
 
         box = TablePack(_('Thumbnail Settings'), (
@@ -51,19 +51,19 @@ class Nautilus(TweakModule):
                                          enable_reset=True,
                                          min=16, max=512, step=16,
                                          label=_('Default thumbnail icon size (pixels)'),
-                                         backend=Gio),
+                                         backend="gsettings"),
                     WidgetFactory.create('SpinButton',
                                          key='org.gnome.desktop.thumbnail-cache.maximum-size',
                                          enable_reset=True,
                                          min=-1, max=512, step=1,
                                          label=_('Maximum thumbnail cache size (megabytes)'),
-                                         backend=Gio),
+                                         backend="gsettings"),
                     WidgetFactory.create('SpinButton',
                                           key='org.gnome.desktop.thumbnail-cache.maximum-age',
                                           enable_reset=True,
                                           min=-1, max=180, step=1,
                                           label=_('Thumbnail cache time (days)'),
-                                          backend=Gio),
+                                          backend="gsettings"),
             ))
         self.add_start(box, False, False, 0)
 
@@ -72,16 +72,16 @@ class Nautilus(TweakModule):
                                          key='org.gnome.desktop.media-handling.automount',
                                          enable_reset=True,
                                          label=_('Whether to automatically mount media'),
-                                         backend=Gio),
+                                         backend="gsettings"),
                     WidgetFactory.create('CheckButton',
                                          key='org.gnome.desktop.media-handling.automount-open',
                                          enable_reset=True,
                                          label=_('Whether to automatically open a folder for automounted media'),
-                                         backend=Gio),
+                                         backend="gsettings"),
                     WidgetFactory.create('CheckButton',
                                           key='org.gnome.desktop.media-handling.autorun-never',
                                           enable_reset=True,
                                           label=_('Never prompt or autorun/autostart programs when media are inserted'),
-                                          backend=Gio),
+                                          backend="gsettings"),
             ))
         self.add_start(box, False, False, 0)

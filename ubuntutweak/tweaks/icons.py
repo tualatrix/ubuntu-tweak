@@ -16,7 +16,7 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-from gi.repository import GObject, Gtk, Gio
+from gi.repository import GObject, Gtk
 
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.factory import WidgetFactory
@@ -58,7 +58,7 @@ class DesktopIcon(Gtk.VBox):
         self.show_button = WidgetFactory.create("CheckButton",
                                                 label=item["label"],
                                                 key=item["visible_key"],
-                                                backend=Gio)
+                                                backend="gsettings")
         self.show_button.connect('toggled', self.on_show_button_changed)
         self.pack_start(self.show_button, False, False, 0)
 
@@ -74,13 +74,13 @@ class DesktopIcon(Gtk.VBox):
         self.rename_button = WidgetFactory.create("StringCheckButton",
                                                   label=_('Rename'),
                                                   key=item["name_key"],
-                                                  backend=Gio)
+                                                  backend="gsettings")
         self.rename_button.connect('toggled', self.on_show_button_changed)
         vbox = Gtk.VBox(spacing=6)
         self.show_hbox.pack_start(vbox, False, False, 0)
         vbox.pack_start(self.rename_button, False, False, 0)
 
-        self.entry = WidgetFactory.create("Entry", key=item["name_key"], backend=Gio)
+        self.entry = WidgetFactory.create("Entry", key=item["name_key"], backend="gsettings")
         self.entry.connect('insert-at-cursor', self.on_entry_focus_out)
         if not self.rename_button.get_active():
             self.entry.set_sensitive(False)
@@ -114,7 +114,7 @@ class Icon(TweakModule):
         self.show_button = WidgetFactory.create("CheckButton",
                                                 label=_("Show desktop icons"),
                                                 key="org.gnome.desktop.background.show-desktop-icons",
-                                                backend=Gio)
+                                                backend="gsettings")
         self.show_button.connect('toggled', self.on_show_button_changed)
         self.add_start(self.show_button, False, False, 0)
 
@@ -136,13 +136,13 @@ class Icon(TweakModule):
         button = WidgetFactory.create("CheckButton",
                                       label=_("Show mounted volumes on desktop"),
                                       key="org.gnome.nautilus.desktop.volumes-visible",
-                                      backend=Gio)
+                                      backend="gsettings")
         vbox.pack_start(button, False, False, 0)
 
         button = WidgetFactory.create("CheckButton",
                                       label=_('Show contents of "Home Folder" on desktop'),
                                       key="org.gnome.nautilus.preferences.desktop-is-home-dir",
-                                      backend=Gio)
+                                      backend="gsettings")
         vbox.pack_start(button, False, False, 0)
 
     def on_show_button_changed(self, widget):

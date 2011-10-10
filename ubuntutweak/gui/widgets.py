@@ -1,7 +1,7 @@
 import time
 import logging
 
-from gi.repository import GObject, Gtk, Gdk, GConf, Gio
+from gi.repository import GObject, Gtk, Gdk
 
 from ubuntutweak.settings.gsettings import GSetting
 from ubuntutweak.settings.gconfsettings import GconfSetting, UserGconfSetting
@@ -11,60 +11,60 @@ log = logging.getLogger('widgets')
 
 class CheckButton(Gtk.CheckButton):
     def __str__(self):
-        return '<CheckButton with key: %s>' % self.setting.key
+        return '<CheckButton with key: %s>' % self._setting.key
 
     def __init__(self, label=None, key=None,
-                 default=None, tooltip=None, backend=GConf):
+                 default=None, tooltip=None, backend='gconf'):
         GObject.GObject.__init__(self, label=label)
-        if backend == GConf:
-            self.setting = GconfSetting(key=key, default=default, type=bool)
-        elif backend == Gio:
-            self.setting = GSetting(key=key, default=default, type=bool)
+        if backend == 'gconf':
+            self._setting = GconfSetting(key=key, default=default, type=bool)
+        elif backend == 'gsettings':
+            self._setting = GSetting(key=key, default=default, type=bool)
 
-        self.set_active(self.setting.get_value())
+        self.set_active(self._setting.get_value())
         if tooltip:
             self.set_tooltip_text(tooltip)
 
-        self.setting.connect_notify(self.on_value_changed)
+        self._setting.connect_notify(self.on_value_changed)
         self.connect('toggled', self.on_button_toggled)
 
     def on_value_changed(self, *args):
-        self.set_active(self.setting.get_value())
+        self.set_active(self._setting.get_value())
 
     def on_button_toggled(self, widget):
-        self.setting.set_value(self.get_active())
+        self._setting.set_value(self.get_active())
 
 
 class UserCheckButton(Gtk.CheckButton):
     def __init__(self, user=None, label=None, key=None, default=None,
-                 tooltip=None, backend=GConf):
+                 tooltip=None, backend='gconf'):
         GObject.GObject.__init__(self, label=label)
 
-        if backend == GConf:
-            self.setting = UserGconfSetting(key=key, default=default, type=bool)
+        if backend == 'gconf':
+            self._setting = UserGconfSetting(key=key, default=default, type=bool)
         else:
-            #TODO Gio
+            #TODO 'gsettings'
             pass
         self.user = user
 
-        self.set_active(bool(self.setting.get_value(self.user)))
+        self.set_active(bool(self._setting.get_value(self.user)))
         if tooltip:
             self.set_tooltip_text(tooltip)
 
         self.connect('toggled', self.button_toggled)
 
     def button_toggled(self, widget):
-        self.setting.set_value(self.user, self.get_active())
+        self._setting.set_value(self.user, self.get_active())
 
 
 class ResetButton(Gtk.Button):
-    def __init__(self, key, backend=GConf):
+    def __init__(self, key, backend='gconf'):
         GObject.GObject.__init__(self)
 
-        if backend == GConf:
-            self.setting = GconfSetting(key=key, type=bool)
+        if backend == 'gconf':
+            self._setting = GconfSetting(key=key, type=bool)
         else:
-            self.setting = GSetting(key=key, type=bool)
+            self._setting = GSetting(key=key, type=bool)
 
         self.set_property('image', 
                           Gtk.Image.new_from_stock(Gtk.STOCK_REVERT_TO_SAVED, Gtk.IconSize.MENU))
@@ -72,7 +72,7 @@ class ResetButton(Gtk.Button):
         self.set_tooltip_text(_('Reset setting to default value: %s') % self.get_default_value())
 
     def get_default_value(self):
-        return self.setting.get_schema_value()
+        return self._setting.get_schema_value()
 
 
 class StringCheckButton(CheckButton):
@@ -89,15 +89,15 @@ class StringCheckButton(CheckButton):
 
 
 class Entry(Gtk.Entry):
-    def __init__(self, key=None, default=None, backend=GConf):
+    def __init__(self, key=None, default=None, backend='gconf'):
         GObject.GObject.__init__(self)
 
-        if backend == GConf:
-            self.setting = GconfSetting(key=key, default=default, type=str)
+        if backend == 'gconf':
+            self._setting = GconfSetting(key=key, default=default, type=str)
         else:
-            self.setting = GSetting(key=key, default=default, type=str)
+            self._setting = GSetting(key=key, default=default, type=str)
 
-        string = self.setting.get_value()
+        string = self._setting.get_value()
         if string:
             self.set_text(str(string))
 
@@ -108,26 +108,25 @@ class Entry(Gtk.Entry):
         self.connect('activate', self.on_edit_finished_cb)
 
     def is_changed(self):
-        return self.setting.get_value() != self.get_text()
+        return self._setting.get_value() != self.get_text()
 
     def get_gsetting(self):
-        return self.setting
+        return self._setting
 
     def on_edit_finished_cb(self, widget, *args):
         log.debug('Entry: on_edit_finished_cb: %s' % self.get_text())
-        self.setting.set_value(self.get_text())
+        self._setting.set_value(self.get_text())
 
 
 class ComboBox(Gtk.ComboBox):
     def __init__(self, key=None, texts=None, values=None,
-                 type="string", backend=GConf):
+                 type="string", backend='gconf'):
         GObject.GObject.__init__(self)
 
-        if backend == GConf:
-            self.setting = GconfSetting(key=key, type=str)
+        if backend == 'gconf':
+            self._setting = GconfSetting(key=key, type=str)
         else:
-            #TODO Gio
-            pass
+            self._setting = GSetting(key=key, type=str)
 
         if type == 'int':
             model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_INT)
@@ -139,7 +138,7 @@ class ComboBox(Gtk.ComboBox):
         self.pack_start(cell, True)
         self.add_attribute(cell, 'text', 0)
 
-        current_value = self.setting.get_value()
+        current_value = self._setting.get_value()
 
         for text, value in dict(zip(texts, values)).items():
             iter = model.append((text, value))
@@ -153,12 +152,12 @@ class ComboBox(Gtk.ComboBox):
         text = self.get_model().get_value(iter, 1)
         log.debug("ComboBox value changed to %s" % text)
 
-        self.setting.set_value(text)
+        self._setting.set_value(text)
 
 
 class Scale(Gtk.HScale):
     def __init__(self, key=None, min=None, max=None, digits=0,
-                 reversed=False, backend=GConf):
+                 reversed=False, backend='gconf'):
         GObject.GObject.__init__(self)
 
         if digits > 0:
@@ -166,10 +165,10 @@ class Scale(Gtk.HScale):
         else:
             type = int
 
-        if backend == GConf:
-            self.setting = GconfSetting(key=key, type=type)
+        if backend == 'gconf':
+            self._setting = GconfSetting(key=key, type=type)
         else:
-            #TODO Gio
+            #TODO 'gsettings'
             pass
 
         if reversed:
@@ -181,32 +180,32 @@ class Scale(Gtk.HScale):
         self.set_digits(digits)
         self.set_value_pos(Gtk.PositionType.RIGHT)
         if self._reversed:
-            self.set_value(max - self.setting.get_value())
+            self.set_value(max - self._setting.get_value())
         else:
-            self.set_value(self.setting.get_value())
+            self.set_value(self._setting.get_value())
 
         self.connect("value-changed", self.on_value_changed)
 
     def on_value_changed(self, widget, data=None):
         if self._reversed:
-            self.setting.set_value(100 - widget.get_value())
+            self._setting.set_value(100 - widget.get_value())
         else:
-            self.setting.set_value(widget.get_value())
+            self._setting.set_value(widget.get_value())
 
 
 class SpinButton(Gtk.SpinButton):
-    def __init__(self, key, min=0, max=0, step=0, backend=GConf):
-        if backend == GConf:
-            self.setting = GconfSetting(key=key, type=int)
+    def __init__(self, key, min=0, max=0, step=0, backend='gconf'):
+        if backend == 'gconf':
+            self._setting = GconfSetting(key=key, type=int)
         else:
-            self.setting = GSetting(key=key, type=int)
+            self._setting = GSetting(key=key, type=int)
 
-        adjust = Gtk.Adjustment(self.setting.get_value(), min, max, step)
+        adjust = Gtk.Adjustment(self._setting.get_value(), min, max, step)
         GObject.GObject.__init__(self, adjustment=adjust)
         self.connect('value-changed', self.on_value_changed)
 
     def on_value_changed(self, widget):
-        self.setting.set_value(widget.get_value())
+        self._setting.set_value(widget.get_value())
 
 
 """Popup and KeyGrabber come from ccsm"""
