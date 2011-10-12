@@ -132,7 +132,6 @@ class ProcessDialog(BusyDialog):
 
         self.set_border_width(6)
         self.set_title('')
-        self.set_has_separator(False)
         self.set_resizable(False)
         self.set_position(Gtk.WindowPosition.CENTER_ON_PARENT)
 
