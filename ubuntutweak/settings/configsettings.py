@@ -1,8 +1,6 @@
 import logging
 import ConfigParser
 
-from ubuntutweak.policykit.dbusproxy import proxy
-
 class ConfigSetting(object):
     '''Key: /etc/lightdm/lightdm.conf::UserManager.load-users
     '''
@@ -63,6 +61,10 @@ class ConfigSetting(object):
 
 class SystemConfigSetting(ConfigSetting):
     def set_value(self, value):
+        # Because backend/daemon will use ConfigSetting , proxy represents the
+        # daemon, so lazy import the proxy here to avoid backend to call proxy
+        from ubuntutweak.policykit.dbusproxy import proxy
+
         proxy.set_config_setting(self.get_key(), value)
 
         self.init_configparser()
