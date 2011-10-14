@@ -53,19 +53,13 @@ def has_right_compiz():
         return 0
 
 def get_desktop():
-    '''gnome, kde, and others'''
-    if os.popen('xprop -root _DT_SAVE_MODE | grep xfce').read() != '':
-        return 'xfce'
-    elif os.getenv('KDE_FULL_SESSION'):
-        return 'kde'
-    elif os.getenv('DESKTOP_SESSION') == 'Lubuntu':
-        return 'lxde'
-    elif os.getenv('GDMSESSION') == 'une':
-        return 'une'
-    elif os.popen('xlsclients | grep -i gnome-session').read() != '':
-        return 'gnome'
-    else:
-        return ''
+    '''
+    ubuntu
+    ubuntu-2d
+    gnome-classic
+    gnome-shell
+    '''
+    return os.getenv('DESKTOP_SESSION')
 
 def get_desktop_version():
     '''Return the desktop version with tuple
@@ -92,3 +86,12 @@ UBUNTU_CODENAMES = ('dapper', 'edgy', 'feisty', 'gutsy', 'hardy', 'intrepid', 'j
 
 def is_supported(codename=CODENAME):
     return codename in ('karmic', 'lucid', 'maverick', 'natty')
+
+
+if __name__ == '__main__':
+    print 'DISTRO: ', DISTRO
+    print 'CODENAME: ', CODENAME
+    print 'DESKTOP: ', DESKTOP
+    print 'DESKTOP_FULLNAME: ', DESKTOP_FULLNAME
+    print 'DESKTOP_VERSION: ', DESKTOP_VERSION
+    print 'APP: ', APP

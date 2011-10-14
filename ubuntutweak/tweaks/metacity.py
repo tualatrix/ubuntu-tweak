@@ -23,6 +23,7 @@ from ubuntutweak.gui.dialogs import InfoDialog
 from ubuntutweak.gui.containers import ListPack, TablePack
 from ubuntutweak.factory import WidgetFactory
 from ubuntutweak.settings.gconfsettings import GconfSetting
+from ubuntutweak import system
 
 
 class ButtonView(Gtk.IconView):
@@ -39,7 +40,10 @@ class ButtonView(Gtk.IconView):
         'spacer': _('Spacer'),
     }
 
-    config = GconfSetting(key='/apps/metacity/general/button_layout')
+    if system.DESKTOP == 'gnome-shell':
+        config = GconfSetting(key='/desktop/gnome/shell/windows/button_layout')
+    else:
+        config = GconfSetting(key='/apps/metacity/general/button_layout')
 
     def __init__(self):
         GObject.GObject.__init__(self)
@@ -146,7 +150,6 @@ class Metacity(TweakModule):
     __title__ = _('Window Manager Settings')
     __desc__ = _('Manage Metacity Window Manager settings')
     __icon__ = 'preferences-system-windows'
-    __url__ = 'http://ubuntu-tweak.com'
     __category__ = 'desktop'
 
     left_default = 'close,minimize,maximize:'
