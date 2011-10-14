@@ -6,6 +6,7 @@ from gi.repository import GObject, Gtk, Gdk
 from ubuntutweak.settings.gsettings import GSetting
 from ubuntutweak.settings.configsettings import ConfigSetting
 from ubuntutweak.settings.gconfsettings import GconfSetting, UserGconfSetting
+from ubuntutweak.settings.compizsettings import CompizSetting
 
 log = logging.getLogger('widgets')
 
@@ -64,6 +65,8 @@ class ResetButton(Gtk.Button):
 
         if backend == 'gconf':
             self._setting = GconfSetting(key=key, type=bool)
+        elif backend == 'compiz':
+            self._setting = CompizSetting(key=key)
         else:
             self._setting = GSetting(key=key, type=bool)
 
@@ -170,9 +173,8 @@ class Scale(Gtk.HScale):
 
         if backend == 'gconf':
             self._setting = GconfSetting(key=key, type=type)
-        else:
-            #TODO 'gsettings'
-            pass
+        elif backend == 'compiz':
+            self._setting = CompizSetting(key=key)
 
         if reversed:
             self._reversed = True

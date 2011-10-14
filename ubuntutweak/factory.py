@@ -27,7 +27,7 @@ from ubuntutweak.gui.containers import *
 log = logging.getLogger('factory')
 
 def on_reset_button_clicked(widget, reset_target):
-    log.debug("Reset value for %s" % reset_target)
+    log.debug("Reset value to %s" % widget.get_default_value())
 
     if issubclass(reset_target.__class__, Gtk.CheckButton):
         reset_target.set_active(widget.get_default_value())

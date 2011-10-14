@@ -7,6 +7,7 @@ from gi.repository import Gtk, Gdk, Gio, GdkPixbuf
 log = logging.getLogger("utils.icon")
 
 icontheme = Gtk.IconTheme.get_default()
+icontheme.append_search_path('/usr/share/ccsm/icons')
 
 DEFAULT_SIZE = 24
 
