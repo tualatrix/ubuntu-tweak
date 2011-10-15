@@ -26,7 +26,7 @@ import StringIO
 import traceback
 import webbrowser
 
-from gi.repository import Gtk, Notify
+from gi.repository import Gtk, Gdk, Notify
 
 from ubuntutweak import system
 from ubuntutweak.common.consts import CONFIG_ROOT
@@ -51,13 +51,16 @@ COLORS = {
 
 
 def on_copy_button_clicked(widget, text):
-    #TODO enable this in the future
-#    Gtk.Clipboard().set_text(text, -1)
-    notify = Notify.Notification(summary=_('Error message has been copied'),
-                                 body=_('Now click "Report" to enter the bug '
-                                'report website. Make sure to attach the '
-                                'error message in "Further information".'))
-    notify.set_hint_string("x-canonical-append", "");
+    atom = Gdk.atom_intern('CLIPBOARD', True)
+    clipboard = Gtk.Clipboard.get_for_display(Gdk.Display.get_default(), atom)
+    clipboard.set_text(text, -1)
+
+    notify = Notify.Notification()
+    notify.update(summary=_('Error message has been copied'),
+                  body=_('Now click "Report" to enter the bug '
+                         'report website. Make sure to attach the '
+                         'error message in "Further information".'),
+                  icon='ubuntu-tweak')
     notify.show()
 
 
@@ -80,9 +83,10 @@ def run_traceback(level, textview_only=False, text_only=False):
 
     textview.add_child_at_anchor(button, anchor)
 
-    error_text = "\nDistribution: %s\nApplication: %s\n\n%s" % (system.DISTRO,
-                                                                system.APP,
-                                                                output.getvalue())
+    error_text = "\nDistribution: %s\nApplication: %s\nDesktop:%s\n\n%s" % (system.DISTRO,
+                                                                            system.APP,
+                                                                            system.DESKTOP,
+                                                                            output.getvalue())
 
     buffer.insert(iter, error_text)
     button.connect('clicked', on_copy_button_clicked, error_text)
