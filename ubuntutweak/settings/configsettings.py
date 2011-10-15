@@ -1,13 +1,18 @@
 import logging
 import ConfigParser
 
+from ubuntutweak.common.debug import run_traceback
+
+log = logging.getLogger('ConfigSetting')
+
 class ConfigSetting(object):
     '''Key: /etc/lightdm/lightdm.conf::UserManager.load-users
     '''
 
     def __init__(self, key=None, default=None, type=None):
-        self.type = type
+        self._type = type
 
+        self._default = default
         self._key = key
         self._path = key.split('::')[0]
         self._section = key.split('::')[1].split('.')[0]
@@ -20,33 +25,35 @@ class ConfigSetting(object):
         self._configparser.read(self._path)
 
     def get_value(self):
-        if self.type:
-            if self.type == int:
-                getfunc = getattr(self._configparser, 'getint')
-            elif self.type == float:
-                getfunc = getattr(self._configparser, 'getfloat')
-            elif self.type == bool:
-                getfunc = getattr(self._configparser, 'getfboolean')
+        try:
+            if self._type:
+                if self._type == int:
+                    getfunc = getattr(self._configparser, 'getint')
+                elif self._type == float:
+                    getfunc = getattr(self._configparser, 'getfloat')
+                elif self._type == bool:
+                    getfunc = getattr(self._configparser, 'getfboolean')
+                else:
+                    getfunc = getattr(self._configparser, 'get')
+
+                value = getfunc(self._section, self._option)
             else:
-                getfunc = getattr(self._configparser, 'get')
+                value = self._configparser.get(self._section, self._option)
+        except Exception, e:
+            log.error(run_traceback('error', text_only=True))
+            value = ''
 
-            value = getfunc(self._section, self._option)
+        if value or self._default:
+            return value or self._default
         else:
-            value = self._configparser.get(self._section, self._option)
-
-        if value:
-            return value
-        else:
-            if self.type == int:
+            if self._type == int:
                 return 0
-            elif self.type == float:
+            elif self._type == float:
                 return 0.0
-            elif self.type == bool:
+            elif self._type == bool:
                 return False
-            elif self.type == str:
-                return ''
             else:
-                return None
+                return ''
 
     def set_value(self, value):
         self._configparser.set(self._section, self._option, value)
