@@ -133,6 +133,8 @@ class ComboBox(Gtk.ComboBox):
             self._setting = GSetting(key=key, type=str)
         elif backend == 'config':
             self._setting = ConfigSetting(key=key, type=str)
+        elif backend == 'compiz':
+            self._setting = CompizSetting(key=key)
 
         if type == 'int':
             model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_INT)
@@ -146,7 +148,7 @@ class ComboBox(Gtk.ComboBox):
 
         current_value = self._setting.get_value()
 
-        for text, value in dict(zip(texts, values)).items():
+        for text, value in zip(texts, values):
             iter = model.append((text, value))
             if current_value == value:
                 self.set_active_iter(iter)
