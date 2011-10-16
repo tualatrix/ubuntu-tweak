@@ -1,8 +1,6 @@
 import logging
 import ConfigParser
 
-from ubuntutweak.common.debug import run_traceback
-
 log = logging.getLogger('ConfigSetting')
 
 class ConfigSetting(object):
@@ -40,7 +38,7 @@ class ConfigSetting(object):
             else:
                 value = self._configparser.get(self._section, self._option)
         except Exception, e:
-            log.error(run_traceback('error', text_only=True))
+            log.error(e)
             value = ''
 
         if value or self._default:
