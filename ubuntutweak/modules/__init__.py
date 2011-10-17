@@ -28,6 +28,7 @@ class ModuleLoader:
     category_names = (
         ('broken', _('Broken Modules')),
         ('application', _('Applications')),
+        ('appearance', _('Appearance')),
         ('startup', _('Startup')),
         ('desktop', _('Desktop')),
         ('personal', _('Personal')),

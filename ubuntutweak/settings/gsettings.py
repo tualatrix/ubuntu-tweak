@@ -39,7 +39,12 @@ class GSetting(object):
 
     def set_value(self, value):
         try:
-            self.settings[self.key] = value
+            if type(value) == str:
+                self.settings.set_string(self.key, value)
+            elif type(value) == float:
+                self.settings.set_double(self.key, value)
+            else:
+                self.settings[self.key] = value
         except KeyError, e:
             log.error(e)
 

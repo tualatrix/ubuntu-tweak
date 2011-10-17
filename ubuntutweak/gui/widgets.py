@@ -163,6 +163,32 @@ class ComboBox(Gtk.ComboBox):
         self._setting.set_value(text)
 
 
+class FontButton(Gtk.FontButton):
+    def __init__(self, key=None, default=None, backend='gconf'):
+        GObject.GObject.__init__(self)
+        self.set_use_font(True)
+        self.set_use_size(True)
+
+        if backend == 'gconf':
+            self._setting = GconfSetting(key=key, default=default, type=str)
+        else:
+            self._setting = GSetting(key=key, default=default, type=str)
+
+        self.on_value_changed()
+
+        self.connect('font-set', self.on_font_set)
+        self._setting.connect_notify(self.on_value_changed)
+
+    def on_font_set(self, widget):
+        self._setting.set_value(self.get_font_name())
+
+    def on_value_changed(self, *args):
+        string = self._setting.get_value()
+
+        if string:
+            self.set_font_name(string)
+
+
 class Scale(Gtk.HScale):
     def __init__(self, key=None, min=None, max=None, digits=0,
                  reversed=False, backend='gconf'):
@@ -175,6 +201,8 @@ class Scale(Gtk.HScale):
 
         if backend == 'gconf':
             self._setting = GconfSetting(key=key, type=type)
+        elif backend == 'gsettings':
+            self._setting = GSetting(key=key, type=type)
         elif backend == 'compiz':
             self._setting = CompizSetting(key=key)
 

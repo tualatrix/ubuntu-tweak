@@ -38,7 +38,7 @@ def on_reset_button_clicked(widget, reset_target):
 
 
 class WidgetFactory:
-    composite_capable = ('SpinButton', 'Entry', 'ComboBox', 'Scale')
+    composite_capable = ('SpinButton', 'Entry', 'ComboBox', 'Scale', 'FontButton')
 
     @classmethod
     def create(cls, widget, **kwargs):
@@ -54,7 +54,7 @@ class WidgetFactory:
 
         enable_reset = kwargs.has_key('enable_reset')
         if enable_reset:
-            kwargs.pop('enable_reset')
+            enable_reset = kwargs.pop('enable_reset')
 
         new_widget = globals().get(widget)(**kwargs)
 

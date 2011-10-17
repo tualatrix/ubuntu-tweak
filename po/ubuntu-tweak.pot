@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-01 09:53+0800\n"
+"POT-Creation-Date: 2011-10-18 00:08+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,21 +43,21 @@ msgstr ""
 msgid "Compiz Settings"
 msgstr ""
 
-#: ../data/ubuntu-tweak.desktop.in.h:2 ../ubuntutweak/tweaks/icons.py:100
+#: ../data/ubuntu-tweak.desktop.in.h:2 ../ubuntutweak/tweaks/icons.py:106
 msgid "Desktop Icon Settings"
 msgstr ""
 
 #: ../data/ubuntu-tweak.desktop.in.h:3
-#: ../ubuntutweak/admins/desktoprecovery.py:265
+#: ../ubuntutweak/admins/desktoprecovery.py:264
 msgid "Desktop Recovery"
 msgstr ""
 
-#: ../data/ubuntu-tweak.desktop.in.h:4 ../ubuntutweak/admins/filetype.py:505
+#: ../data/ubuntu-tweak.desktop.in.h:4 ../ubuntutweak/admins/filetype.py:504
 msgid "File Type Manager"
 msgstr ""
 
 #: ../data/ubuntu-tweak.desktop.in.h:5
-#: ../ubuntutweak/tweaks/gnomesettings.py:37
+#: ../ubuntutweak/tweaks/gnomesettings.py:36
 msgid "GNOME Settings"
 msgstr ""
 
@@ -66,21 +66,19 @@ msgstr ""
 msgid "Login Settings"
 msgstr ""
 
-#: ../data/ubuntu-tweak.desktop.in.h:7 ../ubuntutweak/tweaks/nautilus.py:28
+#: ../data/ubuntu-tweak.desktop.in.h:7 ../ubuntutweak/tweaks/nautilus.py:27
 msgid "Nautilus Settings"
 msgstr ""
 
 #: ../data/ubuntu-tweak.desktop.in.h:8
-#: ../ubuntutweak/tweaks/powermanager.py:27
 msgid "Power Manager Settings"
 msgstr ""
 
 #: ../data/ubuntu-tweak.desktop.in.h:9 ../ubuntutweak/tweaks/session.py:29
-#: ../ubuntutweak/tweaks/session.py:66
 msgid "Session Control"
 msgstr ""
 
-#: ../data/ubuntu-tweak.desktop.in.h:10 ../ubuntutweak/admins/shortcuts.py:30
+#: ../data/ubuntu-tweak.desktop.in.h:10 ../ubuntutweak/admins/shortcuts.py:29
 msgid "Shortcut Commands"
 msgstr ""
 
@@ -88,7 +86,7 @@ msgstr ""
 msgid "Tweak ubuntu to what you like"
 msgstr ""
 
-#: ../data/ubuntu-tweak.desktop.in.h:12 ../ubuntutweak/tweaks/metacity.py:147
+#: ../data/ubuntu-tweak.desktop.in.h:12 ../ubuntutweak/tweaks/metacity.py:150
 msgid "Window Manager Settings"
 msgstr ""
 
@@ -412,6 +410,20 @@ msgstr ""
 msgid "Setting Name:"
 msgstr ""
 
+#: ../ubuntutweak/system/__init__.py:38
+msgid "GNOME Classic"
+msgstr ""
+
+#: ../ubuntutweak/system/__init__.py:48
+#, python-format
+msgid "Unknown (%s)"
+msgstr ""
+
+#: ../ubuntutweak/system/__init__.py:50
+#: ../ubuntutweak/clips/hardwareinfo.py:16
+msgid "Unknown"
+msgstr ""
+
 #: ../ubuntutweak/network/downloadmanager.py:98
 msgid "Connecting to server"
 msgstr ""
@@ -430,6 +442,7 @@ msgid "Error happened!"
 msgstr ""
 
 #: ../ubuntutweak/network/utdata.py:50 ../ubuntutweak/network/utdata.py:83
+#: ../ubuntutweak/tweaks/unity.py:61
 msgid "Never"
 msgstr ""
 
@@ -473,106 +486,104 @@ msgid ""
 "ubuntu-tweak/ubuntu-tweak-daemon</b>\" in a terminal."
 msgstr ""
 
-#: ../ubuntutweak/policykit/widgets.py:55
+#: ../ubuntutweak/policykit/widgets.py:54
 msgid "_Unlock"
 msgstr ""
 
-#. TODO enable this in the future
-#. Gtk.Clipboard().set_text(text, -1)
-#: ../ubuntutweak/common/debug.py:56
+#: ../ubuntutweak/common/debug.py:59
 msgid "Error message has been copied"
 msgstr ""
 
-#: ../ubuntutweak/common/debug.py:57
+#: ../ubuntutweak/common/debug.py:60
 msgid ""
 "Now click \"Report\" to enter the bug report website. Make sure to attach "
 "the error message in \"Further information\"."
 msgstr ""
 
-#: ../ubuntutweak/common/debug.py:78
+#: ../ubuntutweak/common/debug.py:81
 msgid "Copy Error Message"
 msgstr ""
 
-#: ../ubuntutweak/janitor/thumbnailcache_plugin.py:40
+#: ../ubuntutweak/janitor/thumbnailcache_plugin.py:39
 msgid "Cleaning Thumbnail Cache"
 msgstr ""
 
-#: ../ubuntutweak/janitor/thumbnailcache_plugin.py:55
-#: ../ubuntutweak/janitor/aptcache_plugin.py:48
+#: ../ubuntutweak/janitor/thumbnailcache_plugin.py:54
+#: ../ubuntutweak/janitor/aptcache_plugin.py:47
 #, python-format
 msgid "Cleaning...%s"
 msgstr ""
 
-#: ../ubuntutweak/janitor/thumbnailcache_plugin.py:62
+#: ../ubuntutweak/janitor/thumbnailcache_plugin.py:61
 msgid "Thumbnail cache"
 msgstr ""
 
-#: ../ubuntutweak/janitor/thumbnailcache_plugin.py:97
+#: ../ubuntutweak/janitor/thumbnailcache_plugin.py:96
 #, python-format
 msgid "Thumbnail Cache (%d cache to be cleaned, total size: %s)"
 msgstr ""
 
-#: ../ubuntutweak/janitor/thumbnailcache_plugin.py:99
+#: ../ubuntutweak/janitor/thumbnailcache_plugin.py:98
 msgid "Thumbnail Cache (No cache to be cleaned)"
 msgstr ""
 
-#: ../ubuntutweak/janitor/ppapurge_plugin.py:62
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:61
 msgid "Purge PPA and Downgrade Packages"
 msgstr ""
 
-#: ../ubuntutweak/janitor/ppapurge_plugin.py:63
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:62
 msgid "Downloading Packages..."
 msgstr ""
 
-#: ../ubuntutweak/janitor/ppapurge_plugin.py:113
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:112
 msgid "Removing key files..."
 msgstr ""
 
-#: ../ubuntutweak/janitor/ppapurge_plugin.py:147
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:146
 #, python-format
 msgid "Downgrading...%s"
 msgstr ""
 
-#: ../ubuntutweak/janitor/ppapurge_plugin.py:154
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:153
 #, python-format
 msgid "Downloading...%s"
 msgstr ""
 
-#: ../ubuntutweak/janitor/ppapurge_plugin.py:202
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:201
 msgid "Package"
 msgstr ""
 
-#: ../ubuntutweak/janitor/ppapurge_plugin.py:210
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:209
 msgid "Previous Version"
 msgstr ""
 
-#: ../ubuntutweak/janitor/ppapurge_plugin.py:219
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:218
 msgid "System Version"
 msgstr ""
 
-#: ../ubuntutweak/janitor/ppapurge_plugin.py:262
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:261
 msgid "PPA"
 msgstr ""
 
-#: ../ubuntutweak/janitor/ppapurge_plugin.py:297
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:296
 msgid "It's safe to purge the PPA, no packages need to be downgraded."
 msgstr ""
 
-#: ../ubuntutweak/janitor/ppapurge_plugin.py:300
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:299
 msgid "To safely purge the PPA, the following packages must be downgraded."
 msgstr ""
 
-#: ../ubuntutweak/janitor/ppapurge_plugin.py:305
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:304
 #, python-format
 msgid "You're going to purge: %s"
 msgstr ""
 
-#: ../ubuntutweak/janitor/ppapurge_plugin.py:414
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:413
 #, python-format
 msgid "%d PPAs to be removed"
 msgstr ""
 
-#: ../ubuntutweak/janitor/ppapurge_plugin.py:416
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:415
 msgid "No PPA to be removed"
 msgstr ""
 
@@ -589,48 +600,48 @@ msgstr ""
 msgid "Unneeded Packages (No package to be removed)"
 msgstr ""
 
-#: ../ubuntutweak/janitor/aptcache_plugin.py:33
+#: ../ubuntutweak/janitor/aptcache_plugin.py:32
 msgid "Cleaning Package Cache"
 msgstr ""
 
-#: ../ubuntutweak/janitor/aptcache_plugin.py:59
+#: ../ubuntutweak/janitor/aptcache_plugin.py:58
 msgid "Apt Cache"
 msgstr ""
 
-#: ../ubuntutweak/janitor/aptcache_plugin.py:93
+#: ../ubuntutweak/janitor/aptcache_plugin.py:92
 #, python-format
 msgid "Apt Cache (%d cache to be cleaned, total size: %s)"
 msgstr ""
 
-#: ../ubuntutweak/janitor/aptcache_plugin.py:95
+#: ../ubuntutweak/janitor/aptcache_plugin.py:94
 msgid "Apt Cache (No cache to be cleaned)"
 msgstr ""
 
-#: ../ubuntutweak/janitor/__init__.py:565
-#: ../ubuntutweak/admins/desktoprecovery.py:81
-#: ../ubuntutweak/modules/__init__.py:34
+#: ../ubuntutweak/janitor/__init__.py:566
+#: ../ubuntutweak/admins/desktoprecovery.py:80
+#: ../ubuntutweak/modules/__init__.py:35
 msgid "System"
 msgstr ""
 
-#: ../ubuntutweak/janitor/__init__.py:587
-#: ../ubuntutweak/modules/__init__.py:33
+#: ../ubuntutweak/janitor/__init__.py:588
+#: ../ubuntutweak/modules/__init__.py:34
 msgid "Personal"
 msgstr ""
 
-#: ../ubuntutweak/janitor/packageconfigs_plugin.py:38
+#: ../ubuntutweak/janitor/packageconfigs_plugin.py:37
 msgid "Cleaning Configuration Files"
 msgstr ""
 
-#: ../ubuntutweak/janitor/packageconfigs_plugin.py:71
+#: ../ubuntutweak/janitor/packageconfigs_plugin.py:70
 msgid "Package Configs"
 msgstr ""
 
-#: ../ubuntutweak/janitor/packageconfigs_plugin.py:101
+#: ../ubuntutweak/janitor/packageconfigs_plugin.py:100
 #, python-format
 msgid "Packages Configs (%d package configs to be removed)"
 msgstr ""
 
-#: ../ubuntutweak/janitor/packageconfigs_plugin.py:103
+#: ../ubuntutweak/janitor/packageconfigs_plugin.py:102
 msgid "Packages Configs (No package config to be removed)"
 msgstr ""
 
@@ -638,144 +649,144 @@ msgstr ""
 msgid "Old Kernel"
 msgstr ""
 
-#: ../ubuntutweak/janitor/oldkernel_plugin.py:82
+#: ../ubuntutweak/janitor/oldkernel_plugin.py:84
 #, python-format
 msgid "Old Kernel Packages (%d kernel packages to be removed, total size: %s)"
 msgstr ""
 
-#: ../ubuntutweak/janitor/oldkernel_plugin.py:84
+#: ../ubuntutweak/janitor/oldkernel_plugin.py:86
 msgid "Old Kernel Packages (No old kernel package to be removed)"
 msgstr ""
 
-#: ../ubuntutweak/admins/desktoprecovery.py:79
+#: ../ubuntutweak/admins/desktoprecovery.py:78
 #: ../ubuntutweak/modules/__init__.py:30
 msgid "Applications"
 msgstr ""
 
-#: ../ubuntutweak/admins/desktoprecovery.py:80
-#: ../ubuntutweak/admins/userdir.py:35 ../ubuntutweak/modules/__init__.py:32
+#: ../ubuntutweak/admins/desktoprecovery.py:79
+#: ../ubuntutweak/admins/userdir.py:34 ../ubuntutweak/modules/__init__.py:33
 #: ../ubuntutweak/tweaks/ccm/Constants.py:88
 msgid "Desktop"
 msgstr ""
 
-#: ../ubuntutweak/admins/desktoprecovery.py:106
+#: ../ubuntutweak/admins/desktoprecovery.py:105
 msgid "Category"
 msgstr ""
 
-#: ../ubuntutweak/admins/desktoprecovery.py:147
+#: ../ubuntutweak/admins/desktoprecovery.py:146
 msgid "Setting"
 msgstr ""
 
-#: ../ubuntutweak/admins/desktoprecovery.py:188
+#: ../ubuntutweak/admins/desktoprecovery.py:187
 msgid "Backup Name:"
 msgstr ""
 
-#: ../ubuntutweak/admins/desktoprecovery.py:217
+#: ../ubuntutweak/admins/desktoprecovery.py:216
 msgid "Backing up..."
 msgstr ""
 
-#: ../ubuntutweak/admins/desktoprecovery.py:241
+#: ../ubuntutweak/admins/desktoprecovery.py:240
 #, python-format
 msgid "Backing up...%s"
 msgstr ""
 
-#: ../ubuntutweak/admins/desktoprecovery.py:266
+#: ../ubuntutweak/admins/desktoprecovery.py:265
 msgid ""
 "Backup and recover your desktop and application settings with ease.\n"
 "You can also use \"Reset\" to reset to the system default settings."
 msgstr ""
 
-#: ../ubuntutweak/admins/desktoprecovery.py:347
+#: ../ubuntutweak/admins/desktoprecovery.py:346
 msgid "No Backup Yet"
 msgstr ""
 
-#: ../ubuntutweak/admins/desktoprecovery.py:382
+#: ../ubuntutweak/admins/desktoprecovery.py:381
 #, python-format
 msgid ""
 "Backup all settings under: <b>%s</b>\n"
 "Would you like to continue?"
 msgstr ""
 
-#: ../ubuntutweak/admins/desktoprecovery.py:403
+#: ../ubuntutweak/admins/desktoprecovery.py:402
 #, python-format
 msgid ""
 "Backup settings under: <b>%s</b>\n"
 "Would you like to continue?"
 msgstr ""
 
-#: ../ubuntutweak/admins/desktoprecovery.py:446
+#: ../ubuntutweak/admins/desktoprecovery.py:445
 #, python-format
 msgid "Would you like to delete the backup:<b>%s/%s</b>?"
 msgstr ""
 
-#: ../ubuntutweak/admins/desktoprecovery.py:450
+#: ../ubuntutweak/admins/desktoprecovery.py:449
 #, python-format
 msgid ""
 "Would you like to delete the backup of all <b>%s</b> settings named <b>%s</"
 "b>?"
 msgstr ""
 
-#: ../ubuntutweak/admins/desktoprecovery.py:471
+#: ../ubuntutweak/admins/desktoprecovery.py:470
 #, python-format
 msgid "Would you like to recover the backup: <b>%s/%s</b>?"
 msgstr ""
 
-#: ../ubuntutweak/admins/desktoprecovery.py:474
+#: ../ubuntutweak/admins/desktoprecovery.py:473
 #, python-format
 msgid ""
 "Would you like to recover the backup of all<b>%s</b> settings named <b>%s</"
 "b>?"
 msgstr ""
 
-#: ../ubuntutweak/admins/desktoprecovery.py:478
+#: ../ubuntutweak/admins/desktoprecovery.py:477
 msgid ""
 "<b>NOTES</b>: While recovering, your desktop may be unresponsive for a "
 "moment."
 msgstr ""
 
-#: ../ubuntutweak/admins/desktoprecovery.py:495
+#: ../ubuntutweak/admins/desktoprecovery.py:494
 msgid "Recovery Successful!"
 msgstr ""
 
-#: ../ubuntutweak/admins/desktoprecovery.py:496
-#: ../ubuntutweak/admins/desktoprecovery.py:532
+#: ../ubuntutweak/admins/desktoprecovery.py:495
+#: ../ubuntutweak/admins/desktoprecovery.py:531
 msgid "You may need to restart your desktop for changes to take effect"
 msgstr ""
 
-#: ../ubuntutweak/admins/desktoprecovery.py:501
+#: ../ubuntutweak/admins/desktoprecovery.py:500
 msgid "_Logout"
 msgstr ""
 
-#: ../ubuntutweak/admins/desktoprecovery.py:514
+#: ../ubuntutweak/admins/desktoprecovery.py:513
 #, python-format
 msgid "Would you like to reset settings for: <b>%s</b>?"
 msgstr ""
 
-#: ../ubuntutweak/admins/desktoprecovery.py:516
+#: ../ubuntutweak/admins/desktoprecovery.py:515
 #, python-format
 msgid "Would you like to reset all settings under: <b>%s</b>?"
 msgstr ""
 
-#: ../ubuntutweak/admins/desktoprecovery.py:518
+#: ../ubuntutweak/admins/desktoprecovery.py:517
 msgid ""
 "<b>NOTES</b>: Whilst resetting, your desktop may be unresponsive for a "
 "moment."
 msgstr ""
 
-#: ../ubuntutweak/admins/desktoprecovery.py:531
+#: ../ubuntutweak/admins/desktoprecovery.py:530
 msgid "Reset Successful!"
 msgstr ""
 
-#: ../ubuntutweak/admins/desktoprecovery.py:560
+#: ../ubuntutweak/admins/desktoprecovery.py:559
 #: ../ubuntutweak/admins/sourceeditor.py:420
 msgid "Please enter a new name for your backup:"
 msgstr ""
 
-#: ../ubuntutweak/admins/desktoprecovery.py:592
+#: ../ubuntutweak/admins/desktoprecovery.py:591
 msgid "Backup Successful!"
 msgstr ""
 
-#: ../ubuntutweak/admins/desktoprecovery.py:595
+#: ../ubuntutweak/admins/desktoprecovery.py:594
 #: ../ubuntutweak/admins/sourceeditor.py:396
 msgid "Backup Failed!"
 msgstr ""
@@ -942,77 +953,77 @@ msgid ""
 "Do you wish to continue?"
 msgstr ""
 
-#: ../ubuntutweak/admins/userdir.py:36
+#: ../ubuntutweak/admins/userdir.py:35
 msgid "Download"
 msgstr ""
 
-#: ../ubuntutweak/admins/userdir.py:37
+#: ../ubuntutweak/admins/userdir.py:36
 msgid "Templates"
 msgstr ""
 
-#: ../ubuntutweak/admins/userdir.py:38
+#: ../ubuntutweak/admins/userdir.py:37
 msgid "Public"
 msgstr ""
 
-#: ../ubuntutweak/admins/userdir.py:39
+#: ../ubuntutweak/admins/userdir.py:38
 msgid "Document"
 msgstr ""
 
-#: ../ubuntutweak/admins/userdir.py:40
+#: ../ubuntutweak/admins/userdir.py:39
 msgid "Music"
 msgstr ""
 
-#: ../ubuntutweak/admins/userdir.py:41
+#: ../ubuntutweak/admins/userdir.py:40
 msgid "Pictures"
 msgstr ""
 
-#: ../ubuntutweak/admins/userdir.py:42
+#: ../ubuntutweak/admins/userdir.py:41
 msgid "Videos"
 msgstr ""
 
-#: ../ubuntutweak/admins/userdir.py:155
+#: ../ubuntutweak/admins/userdir.py:154
 msgid "Choose a folder"
 msgstr ""
 
-#: ../ubuntutweak/admins/userdir.py:172
+#: ../ubuntutweak/admins/userdir.py:171
 msgid ""
 "Ubuntu Tweak will restore the selected directory to it's default location.\n"
 "However, you must move your files back into place manually.\n"
 "Do you wish to continue?"
 msgstr ""
 
-#: ../ubuntutweak/admins/userdir.py:205
+#: ../ubuntutweak/admins/userdir.py:204
 msgid "Directory"
 msgstr ""
 
-#: ../ubuntutweak/admins/userdir.py:219
+#: ../ubuntutweak/admins/userdir.py:218
 msgid "Path"
 msgstr ""
 
-#: ../ubuntutweak/admins/userdir.py:226
+#: ../ubuntutweak/admins/userdir.py:225
 msgid "Change"
 msgstr ""
 
-#: ../ubuntutweak/admins/userdir.py:230
+#: ../ubuntutweak/admins/userdir.py:229
 msgid "Restore to default"
 msgstr ""
 
-#: ../ubuntutweak/admins/userdir.py:238
+#: ../ubuntutweak/admins/userdir.py:237
 msgid "Default Folder Locations"
 msgstr ""
 
-#: ../ubuntutweak/admins/userdir.py:239
+#: ../ubuntutweak/admins/userdir.py:238
 msgid ""
 "You can change the paths of default folders here.\n"
 "Don't change the location of your desktop folder unless you know what you "
 "are doing."
 msgstr ""
 
-#: ../ubuntutweak/admins/userdir.py:261
+#: ../ubuntutweak/admins/userdir.py:260
 msgid "_Restore"
 msgstr ""
 
-#: ../ubuntutweak/admins/userdir.py:267
+#: ../ubuntutweak/admins/userdir.py:266
 msgid "_Change"
 msgstr ""
 
@@ -1145,7 +1156,7 @@ msgid ""
 "Do you wish to continue?"
 msgstr ""
 
-#: ../ubuntutweak/admins/shortcuts.py:31
+#: ../ubuntutweak/admins/shortcuts.py:30
 msgid ""
 "By configuring keyboard shortcuts, you can access your favourite "
 "applications instantly.\n"
@@ -1153,103 +1164,103 @@ msgid ""
 "combination."
 msgstr ""
 
-#: ../ubuntutweak/admins/shortcuts.py:84
+#: ../ubuntutweak/admins/shortcuts.py:83
 #, python-format
 msgid "Command %d"
 msgstr ""
 
-#: ../ubuntutweak/admins/shortcuts.py:89
-#: ../ubuntutweak/admins/shortcuts.py:201
-#: ../ubuntutweak/admins/filetype.py:176 ../ubuntutweak/admins/filetype.py:203
-#: ../ubuntutweak/tweaks/metacity.py:181 ../ubuntutweak/tweaks/metacity.py:189
-#: ../ubuntutweak/tweaks/metacity.py:204 ../ubuntutweak/tweaks/metacity.py:219
+#: ../ubuntutweak/admins/shortcuts.py:88
+#: ../ubuntutweak/admins/shortcuts.py:200
+#: ../ubuntutweak/admins/filetype.py:175 ../ubuntutweak/admins/filetype.py:202
+#: ../ubuntutweak/tweaks/metacity.py:183 ../ubuntutweak/tweaks/metacity.py:192
+#: ../ubuntutweak/tweaks/metacity.py:207 ../ubuntutweak/tweaks/metacity.py:222
 msgid "None"
 msgstr ""
 
-#: ../ubuntutweak/admins/shortcuts.py:94
-#: ../ubuntutweak/admins/shortcuts.py:146
+#: ../ubuntutweak/admins/shortcuts.py:93
+#: ../ubuntutweak/admins/shortcuts.py:145
 msgid "disabled"
 msgstr ""
 
-#: ../ubuntutweak/admins/shortcuts.py:103
+#: ../ubuntutweak/admins/shortcuts.py:102
 msgid "ID"
 msgstr ""
 
-#: ../ubuntutweak/admins/shortcuts.py:114
+#: ../ubuntutweak/admins/shortcuts.py:113
 msgid "Command"
 msgstr ""
 
-#: ../ubuntutweak/admins/shortcuts.py:127
+#: ../ubuntutweak/admins/shortcuts.py:126
 msgid "Key"
 msgstr ""
 
-#: ../ubuntutweak/admins/filetype.py:40
+#: ../ubuntutweak/admins/filetype.py:39
 msgid "Audio"
 msgstr ""
 
-#: ../ubuntutweak/admins/filetype.py:41
+#: ../ubuntutweak/admins/filetype.py:40
 msgid "Text"
 msgstr ""
 
-#: ../ubuntutweak/admins/filetype.py:42
+#: ../ubuntutweak/admins/filetype.py:41
 msgid "Image"
 msgstr ""
 
-#: ../ubuntutweak/admins/filetype.py:43
+#: ../ubuntutweak/admins/filetype.py:42
 msgid "Video"
 msgstr ""
 
-#: ../ubuntutweak/admins/filetype.py:44
+#: ../ubuntutweak/admins/filetype.py:43
 msgid "Application"
 msgstr ""
 
-#: ../ubuntutweak/admins/filetype.py:45
+#: ../ubuntutweak/admins/filetype.py:44
 #: ../ubuntutweak/tweaks/ccm/Constants.py:94
 msgid "All"
 msgstr ""
 
-#: ../ubuntutweak/admins/filetype.py:70
+#: ../ubuntutweak/admins/filetype.py:69
 msgid "Categories"
 msgstr ""
 
-#: ../ubuntutweak/admins/filetype.py:123
+#: ../ubuntutweak/admins/filetype.py:122
 msgid "File Type"
 msgstr ""
 
-#: ../ubuntutweak/admins/filetype.py:139
+#: ../ubuntutweak/admins/filetype.py:138
 msgid "Associated Application"
 msgstr ""
 
-#: ../ubuntutweak/admins/filetype.py:233
+#: ../ubuntutweak/admins/filetype.py:232
 #, python-format
 msgid "Open files of type \"%s\" with:"
 msgstr ""
 
-#: ../ubuntutweak/admins/filetype.py:257
+#: ../ubuntutweak/admins/filetype.py:256
 msgid "Choose an application"
 msgstr ""
 
-#: ../ubuntutweak/admins/filetype.py:350
+#: ../ubuntutweak/admins/filetype.py:349
 #, python-format
 msgid "Select an application to open files of type: <b>%s</b>"
 msgid_plural "Select an application to open files for these types: <b>%s</b>"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../ubuntutweak/admins/filetype.py:384
+#: ../ubuntutweak/admins/filetype.py:383
 msgid "Could not find application"
 msgstr ""
 
-#: ../ubuntutweak/admins/filetype.py:385
+#: ../ubuntutweak/admins/filetype.py:384
 #, python-format
 msgid "Could not find \"%s\", Please ensure the path is correct."
 msgstr ""
 
-#: ../ubuntutweak/admins/filetype.py:506
+#: ../ubuntutweak/admins/filetype.py:505
 msgid "Manage all registered file types"
 msgstr ""
 
-#: ../ubuntutweak/admins/filetype.py:543
+#: ../ubuntutweak/admins/filetype.py:542
 msgid "Only show filetypes with associated applications"
 msgstr ""
 
@@ -1258,18 +1269,22 @@ msgid "Broken Modules"
 msgstr ""
 
 #: ../ubuntutweak/modules/__init__.py:31
+msgid "Appearance"
+msgstr ""
+
+#: ../ubuntutweak/modules/__init__.py:32
 msgid "Startup"
 msgstr ""
 
-#: ../ubuntutweak/modules/__init__.py:35
+#: ../ubuntutweak/modules/__init__.py:36
 msgid "Other"
 msgstr ""
 
-#: ../ubuntutweak/modules/__init__.py:211
+#: ../ubuntutweak/modules/__init__.py:229
 msgid "More"
 msgstr ""
 
-#: ../ubuntutweak/modules/__init__.py:350
+#: ../ubuntutweak/modules/__init__.py:368
 #, python-format
 msgid ""
 "Ubuntu Tweak has detected that your apt configuration is broken.\n"
@@ -1284,7 +1299,7 @@ msgid ""
 "Or you can submit the Error Message to the developer for help:"
 msgstr ""
 
-#: ../ubuntutweak/modules/__init__.py:360
+#: ../ubuntutweak/modules/__init__.py:378
 #, python-format
 msgid ""
 "Ubuntu Tweak has detected that your apt list file is broken.\n"
@@ -1300,7 +1315,7 @@ msgid ""
 "Or you can submit the Error Message to the developer forhelp:"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/gnomesettings.py:38
+#: ../ubuntutweak/tweaks/gnomesettings.py:37
 msgid "A lot of GNOME settings for panels, menus and other desktop elements"
 msgstr ""
 
@@ -1386,7 +1401,7 @@ msgid "Click this button to change the menu logo image"
 msgstr ""
 
 #: ../ubuntutweak/tweaks/gnomesettings.py:143
-#: ../ubuntutweak/tweaks/loginsettings.py:139
+#: ../ubuntutweak/tweaks/loginsettings.py:81
 msgid "Choose a new logo image"
 msgstr ""
 
@@ -1414,37 +1429,32 @@ msgid ""
 "history feature in VMware Player."
 msgstr ""
 
-#: ../ubuntutweak/tweaks/icons.py:26
+#: ../ubuntutweak/tweaks/icons.py:25
 msgid "Show \"Computer\" icon on desktop"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/icons.py:33
+#: ../ubuntutweak/tweaks/icons.py:32
 msgid "Show \"Home Folder\" icon on desktop"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/icons.py:40
+#: ../ubuntutweak/tweaks/icons.py:39
 msgid "Show \"Trash\" icon on desktop"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/icons.py:69 ../ubuntutweak/gui/treeviews.py:76
+#: ../ubuntutweak/tweaks/icons.py:46
+msgid "Show \"Network Servers\" icon on desktop"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/icons.py:75 ../ubuntutweak/gui/treeviews.py:76
 msgid "Rename"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/icons.py:96 ../ubuntutweak/tweaks/session.py:115
-#: ../ubuntutweak/gui/widgets.py:102 ../ubuntutweak/gui/widgets.py:118
-msgid "Unset"
-msgstr ""
-
-#: ../ubuntutweak/tweaks/icons.py:101
+#: ../ubuntutweak/tweaks/icons.py:107
 msgid "Rename and toggle visibilty of desktop icons"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/icons.py:109
+#: ../ubuntutweak/tweaks/icons.py:115
 msgid "Show desktop icons"
-msgstr ""
-
-#: ../ubuntutweak/tweaks/icons.py:131
-msgid "Show \"Network\" icon on desktop"
 msgstr ""
 
 #: ../ubuntutweak/tweaks/icons.py:137
@@ -1452,89 +1462,206 @@ msgid "Show mounted volumes on desktop"
 msgstr ""
 
 #: ../ubuntutweak/tweaks/icons.py:143
-msgid ""
-"Show contents of \"Home Folder\" on desktop (Logout for changes to take "
-"effect)"
+msgid "Show contents of \"Home Folder\" on desktop"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/nautilus.py:29
+#: ../ubuntutweak/tweaks/nautilus.py:28
 msgid "Manage the default file manager"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/nautilus.py:36
+#: ../ubuntutweak/tweaks/nautilus.py:35
 msgid "File Browser"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/nautilus.py:38
+#: ../ubuntutweak/tweaks/nautilus.py:37
 msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/nautilus.py:43
+#: ../ubuntutweak/tweaks/nautilus.py:42
 msgid "Always use the location entry, instead of the pathbar"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/nautilus.py:49
+#: ../ubuntutweak/tweaks/nautilus.py:48
 msgid "Thumbnail Settings"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/nautilus.py:54
+#: ../ubuntutweak/tweaks/nautilus.py:53
 msgid "Default thumbnail icon size (pixels)"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/nautilus.py:60
+#: ../ubuntutweak/tweaks/nautilus.py:59
 msgid "Maximum thumbnail cache size (megabytes)"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/nautilus.py:66
+#: ../ubuntutweak/tweaks/nautilus.py:65
 msgid "Thumbnail cache time (days)"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/nautilus.py:70
+msgid "Automatically Mount Settings"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/nautilus.py:74
+msgid "Whether to automatically mount media"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/nautilus.py:79
+msgid "Whether to automatically open a folder for automounted media"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/nautilus.py:84
+msgid "Never prompt or autorun/autostart programs when media are inserted"
 msgstr ""
 
 #: ../ubuntutweak/tweaks/session.py:30
 msgid "Control your system session releated features"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/session.py:41
-msgid "File Manager"
+#: ../ubuntutweak/tweaks/session.py:37
+msgid "Session Menu Options"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/session.py:47
-msgid "Panel"
+#: ../ubuntutweak/tweaks/session.py:39
+msgid "Remove the log out item from the session menu"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/session.py:53
-msgid "Window Manager"
+#: ../ubuntutweak/tweaks/session.py:44
+msgid "Remove the restart item from the session menu"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/session.py:75
-msgid "Session Options"
-msgstr ""
-
-#: ../ubuntutweak/tweaks/session.py:77
-msgid "Suppress the logout, restart and shutdown confirmation dialogue box."
-msgstr ""
-
-#: ../ubuntutweak/tweaks/session.py:82
-msgid "Remove the Log Out item from the session menu"
-msgstr ""
-
-#: ../ubuntutweak/tweaks/session.py:87
-msgid "Remove the Restart item from the session menu"
-msgstr ""
-
-#: ../ubuntutweak/tweaks/session.py:92
+#: ../ubuntutweak/tweaks/session.py:49
 msgid "Remove the shutdown item from the session menu"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/session.py:119
-#, python-format
-msgid "\"%s\" is not available."
+#: ../ubuntutweak/tweaks/session.py:54
+msgid "Suppress the dialog to confirm logout, restart and shutdown action"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/session.py:120
-msgid "Please enter a valid application command line."
+#: ../ubuntutweak/tweaks/session.py:62
+msgid "User Menu Options"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/ccm/Utils.py:209
+#: ../ubuntutweak/tweaks/session.py:64
+msgid "Show user menu"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/session.py:69
+msgid "Show user's real name on the panel"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:26
+msgid "Fonts"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:27
+msgid "Fonts Settings"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:39
+msgid "Deskotp fonts"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:41
+msgid "Text scaling factor"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:49
+msgid "Default font"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:54
+msgid "Monospace font"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:59
+msgid "Document font"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:64
+msgid "Window title bar font"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:72
+msgid "Hinting and antialiasing"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:74
+msgid "Hinting"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:77
+msgid "No hinting"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:78
+msgid "Basic"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:79
+msgid "Moderate"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:80
+msgid "Maximum"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:84
+msgid "Antialiasing"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:87
+msgid "No antialiasing"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:88
+msgid "Standard grayscale antialiasing"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:89
+msgid "Subpixel antialiasing (LCD screens only)"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:26
+msgid "Unity Settings"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:27
+msgid "Tweak the powerful Unity desktop"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:35
+msgid "Launcher"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:37
+msgid "Icon size"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:44
+msgid "Launcher opacity"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:52
+msgid "Launcher reveal edge timeout"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:59
+msgid "Launcher hide mode"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:61
+msgid "Auto Hide"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:62
+msgid "Dodge Window"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:62
+msgid "Dodge Active Window"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Utils.py:207
 #, python-format
 msgid ""
 "<span size=\"large\"><b>No matches found.</b> </span><span>\n"
@@ -1766,19 +1893,19 @@ msgstr ""
 msgid "Disable \"Fast User Switching\""
 msgstr ""
 
-#: ../ubuntutweak/tweaks/compiz.py:295
+#: ../ubuntutweak/tweaks/compiz.py:294
 msgid "Show Workspaces"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/compiz.py:296
+#: ../ubuntutweak/tweaks/compiz.py:295
 msgid "Show Windows"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/compiz.py:297
+#: ../ubuntutweak/tweaks/compiz.py:296
 msgid "Show Desktop"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/compiz.py:298
+#: ../ubuntutweak/tweaks/compiz.py:297
 msgid "Show Widgets"
 msgstr ""
 
@@ -1790,39 +1917,39 @@ msgstr ""
 msgid "Compiz Page"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/compiz.py:405
+#: ../ubuntutweak/tweaks/compiz.py:406
 msgid " Workspace Edge Settings"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/compiz.py:408
+#: ../ubuntutweak/tweaks/compiz.py:409
 msgid "Enable snapping windows"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/compiz.py:409
+#: ../ubuntutweak/tweaks/compiz.py:410
 msgid "Enable wobbly windows"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/compiz.py:410
+#: ../ubuntutweak/tweaks/compiz.py:411
 msgid "Enable workspace switching with mouse wheel"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/compiz.py:411
+#: ../ubuntutweak/tweaks/compiz.py:412
 msgid "Make the launcher hide automatically after some time inactive"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/compiz.py:413
+#: ../ubuntutweak/tweaks/compiz.py:414
 msgid "Desktop Effects"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/compiz.py:419
+#: ../ubuntutweak/tweaks/compiz.py:420
 msgid "Enable transparent menus"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/compiz.py:420
+#: ../ubuntutweak/tweaks/compiz.py:421
 msgid "Enable wobbly menus"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/compiz.py:422
+#: ../ubuntutweak/tweaks/compiz.py:423
 msgid "Menu Effects"
 msgstr ""
 
@@ -1830,66 +1957,20 @@ msgstr ""
 msgid "Control the appearance and behaviour of your login screen"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/loginsettings.py:46
-msgid "Login Options"
-msgstr ""
-
-#: ../ubuntutweak/tweaks/loginsettings.py:49
-msgid "Disable user list in GDM"
-msgstr ""
-
-#: ../ubuntutweak/tweaks/loginsettings.py:54
-msgid "Play sound at login"
-msgstr ""
-
-#: ../ubuntutweak/tweaks/loginsettings.py:59
-msgid "Disable showing the restart button"
-msgstr ""
-
-#: ../ubuntutweak/tweaks/loginsettings.py:77
+#: ../ubuntutweak/tweaks/loginsettings.py:50
 msgid "Login Theme"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/loginsettings.py:145
-msgid "PNG images with 64x64 size or SVG images"
+#: ../ubuntutweak/tweaks/loginsettings.py:87
+msgid "All images (*.PNG)"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/loginsettings.py:176
-msgid ""
-"This image size isn't suitable for the logo.\n"
-"It should be 64x64."
-msgstr ""
-
-#: ../ubuntutweak/tweaks/loginsettings.py:216
+#: ../ubuntutweak/tweaks/loginsettings.py:134
 msgid "Choose a new background image"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/loginsettings.py:222
+#: ../ubuntutweak/tweaks/loginsettings.py:140
 msgid "All images"
-msgstr ""
-
-#: ../ubuntutweak/tweaks/powermanager.py:28
-msgid "Control your computer's power management"
-msgstr ""
-
-#: ../ubuntutweak/tweaks/powermanager.py:36
-msgid "Lock screen on hibernate"
-msgstr ""
-
-#: ../ubuntutweak/tweaks/powermanager.py:41
-msgid "Lock screen on suspend"
-msgstr ""
-
-#: ../ubuntutweak/tweaks/powermanager.py:46
-msgid "Use Screensaver lock settings"
-msgstr ""
-
-#: ../ubuntutweak/tweaks/powermanager.py:57
-msgid "Advanced Power Management Settings"
-msgstr ""
-
-#: ../ubuntutweak/tweaks/powermanager.py:59
-msgid "Enable \"Lock screen\" when \"Blank Screen\" activates"
 msgstr ""
 
 #: ../ubuntutweak/tweaks/workarounds.py:31
@@ -1908,8 +1989,8 @@ msgstr ""
 msgid "Miscellaneous Options"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/metacity.py:35 ../ubuntutweak/tweaks/metacity.py:193
-#: ../ubuntutweak/tweaks/metacity.py:208 ../ubuntutweak/tweaks/metacity.py:223
+#: ../ubuntutweak/tweaks/metacity.py:35 ../ubuntutweak/tweaks/metacity.py:196
+#: ../ubuntutweak/tweaks/metacity.py:211 ../ubuntutweak/tweaks/metacity.py:226
 msgid "Menu"
 msgstr ""
 
@@ -1917,13 +1998,13 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/metacity.py:37 ../ubuntutweak/tweaks/metacity.py:189
-#: ../ubuntutweak/tweaks/metacity.py:204 ../ubuntutweak/tweaks/metacity.py:219
+#: ../ubuntutweak/tweaks/metacity.py:37 ../ubuntutweak/tweaks/metacity.py:192
+#: ../ubuntutweak/tweaks/metacity.py:207 ../ubuntutweak/tweaks/metacity.py:222
 msgid "Maximize"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/metacity.py:38 ../ubuntutweak/tweaks/metacity.py:192
-#: ../ubuntutweak/tweaks/metacity.py:207 ../ubuntutweak/tweaks/metacity.py:222
+#: ../ubuntutweak/tweaks/metacity.py:38 ../ubuntutweak/tweaks/metacity.py:195
+#: ../ubuntutweak/tweaks/metacity.py:210 ../ubuntutweak/tweaks/metacity.py:225
 msgid "Minimize"
 msgstr ""
 
@@ -1935,87 +2016,87 @@ msgstr ""
 msgid "Spacer"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/metacity.py:148
+#: ../ubuntutweak/tweaks/metacity.py:151
 msgid "Manage Metacity Window Manager settings"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/metacity.py:170
+#: ../ubuntutweak/tweaks/metacity.py:172
 msgid "Window Titlebar Button Layout"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/metacity.py:175
+#: ../ubuntutweak/tweaks/metacity.py:177
 msgid "Window Titlebar Actions"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/metacity.py:177
+#: ../ubuntutweak/tweaks/metacity.py:179
 msgid "Titlebar mouse wheel action"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/metacity.py:181 ../ubuntutweak/tweaks/metacity.py:192
-#: ../ubuntutweak/tweaks/metacity.py:207 ../ubuntutweak/tweaks/metacity.py:222
+#: ../ubuntutweak/tweaks/metacity.py:183 ../ubuntutweak/tweaks/metacity.py:195
+#: ../ubuntutweak/tweaks/metacity.py:210 ../ubuntutweak/tweaks/metacity.py:225
 msgid "Roll up"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/metacity.py:185
+#: ../ubuntutweak/tweaks/metacity.py:188
 msgid "Titlebar double-click action"
-msgstr ""
-
-#: ../ubuntutweak/tweaks/metacity.py:190 ../ubuntutweak/tweaks/metacity.py:205
-#: ../ubuntutweak/tweaks/metacity.py:220
-msgid "Maximize Horizontally"
-msgstr ""
-
-#: ../ubuntutweak/tweaks/metacity.py:191 ../ubuntutweak/tweaks/metacity.py:206
-#: ../ubuntutweak/tweaks/metacity.py:221
-msgid "Maximize Vertically"
 msgstr ""
 
 #: ../ubuntutweak/tweaks/metacity.py:193 ../ubuntutweak/tweaks/metacity.py:208
 #: ../ubuntutweak/tweaks/metacity.py:223
+msgid "Maximize Horizontally"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/metacity.py:194 ../ubuntutweak/tweaks/metacity.py:209
+#: ../ubuntutweak/tweaks/metacity.py:224
+msgid "Maximize Vertically"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/metacity.py:196 ../ubuntutweak/tweaks/metacity.py:211
+#: ../ubuntutweak/tweaks/metacity.py:226
 msgid "Lower"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/metacity.py:200
+#: ../ubuntutweak/tweaks/metacity.py:203
 msgid "Titlebar middle-click action"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/metacity.py:215
+#: ../ubuntutweak/tweaks/metacity.py:218
 msgid "Titlebar right-click action"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/metacity.py:233
+#: ../ubuntutweak/tweaks/metacity.py:236
 msgid "Window Decoration Effects"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/metacity.py:235
+#: ../ubuntutweak/tweaks/metacity.py:238
 msgid "Use Metacity window theme"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/metacity.py:240
+#: ../ubuntutweak/tweaks/metacity.py:243
 msgid "Enable active window transparency"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/metacity.py:245
+#: ../ubuntutweak/tweaks/metacity.py:248
 msgid "Active window transparency level"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/metacity.py:251
+#: ../ubuntutweak/tweaks/metacity.py:254
 msgid "Enable inactive window transparency"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/metacity.py:256
+#: ../ubuntutweak/tweaks/metacity.py:259
 msgid "Inactive window shade transparency level"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/metacity.py:265
+#: ../ubuntutweak/tweaks/metacity.py:268
 msgid "Enable Metacity's compositing feature"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/metacity.py:271
+#: ../ubuntutweak/tweaks/metacity.py:274
 msgid "Compositing Manager"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/metacity.py:313
+#: ../ubuntutweak/tweaks/metacity.py:316
 msgid ""
 "To enable Metacity's compositing feature, you should manually disable Visual "
 "Effects in \"Appearance\"."
@@ -2043,10 +2124,6 @@ msgstr ""
 
 #: ../ubuntutweak/clips/hardwareinfo.py:11
 msgid "Hardware Information"
-msgstr ""
-
-#: ../ubuntutweak/clips/hardwareinfo.py:16
-msgid "Unknown"
 msgstr ""
 
 #: ../ubuntutweak/clips/hardwareinfo.py:32
@@ -2135,36 +2212,36 @@ msgstr[1] ""
 msgid "The package information was last updated less than one hour ago."
 msgstr ""
 
-#: ../ubuntutweak/gui/widgets.py:73
+#: ../ubuntutweak/gui/widgets.py:76
 #, python-format
 msgid "Reset setting to default value: %s"
 msgstr ""
 
-#: ../ubuntutweak/gui/widgets.py:282
+#: ../ubuntutweak/gui/widgets.py:315
 msgid "Please press the new key combination"
 msgstr ""
 
-#: ../ubuntutweak/gui/widgets.py:333
+#: ../ubuntutweak/gui/widgets.py:367
 msgid "Disabled"
 msgstr ""
 
-#: ../ubuntutweak/gui/dialogs.py:196
+#: ../ubuntutweak/gui/dialogs.py:194
 msgid "Details"
 msgstr ""
 
-#: ../ubuntutweak/gui/dialogs.py:209
+#: ../ubuntutweak/gui/dialogs.py:207
 msgid "Could not authenticate"
 msgstr ""
 
-#: ../ubuntutweak/gui/dialogs.py:210
+#: ../ubuntutweak/gui/dialogs.py:208
 msgid "An unexpected error has occurred."
 msgstr ""
 
-#: ../ubuntutweak/gui/dialogs.py:216
+#: ../ubuntutweak/gui/dialogs.py:214
 msgid "Service hasn't initialized yet"
 msgstr ""
 
-#: ../ubuntutweak/gui/dialogs.py:217
+#: ../ubuntutweak/gui/dialogs.py:215
 msgid "You need to restart your computer."
 msgstr ""
 
@@ -2266,23 +2343,23 @@ msgstr ""
 msgid "\"%s\" has already installed"
 msgstr ""
 
-#: ../ubuntutweak/main.py:353
+#: ../ubuntutweak/main.py:354
 msgid "Please wait a moment..."
 msgstr ""
 
-#: ../ubuntutweak/main.py:449
+#: ../ubuntutweak/main.py:450
 #, python-format
 msgid "No module named \"%s\""
 msgstr ""
 
-#: ../ubuntutweak/main.py:450
+#: ../ubuntutweak/main.py:451
 msgid "Please ensure you have entered the correct module name."
 msgstr ""
 
-#: ../ubuntutweak/main.py:503
+#: ../ubuntutweak/main.py:504
 msgid "Computer Janitor"
 msgstr ""
 
-#: ../ubuntutweak/main.py:504
+#: ../ubuntutweak/main.py:505
 msgid "Clean up a system so it's more like a freshly installed one"
 msgstr ""
