@@ -1,19 +1,11 @@
 import os
 import platform
 
-from ubuntutweak.system.wm import GnomeVersion
 from ubuntutweak.common.consts import APP, VERSION
 
 def get_distro():
     '''It should be "Ubuntu 10.10 maverick"'''
     return ' '.join(platform.dist())
-
-def has_apt():
-    try:
-        import apt_pkg
-        return True
-    except ImportError:
-        return False
 
 def get_codename():
     try:
@@ -31,27 +23,6 @@ def get_codename():
         pass
     return ''
 
-def has_ccm():
-    try:
-        import ccm
-        return True
-    except:
-        return False
-
-def has_right_compiz():
-    '''Return 1 if OK, return 0 if no ccm, return -1 if compiz broken'''
-    try:
-        if has_ccm():
-            import ccm
-            if ccm.Version >= '0.7.4':
-                return 1
-            else:
-                return 0
-        else:
-            return 0
-    except:
-        return 0
-
 def get_desktop():
     '''
     ubuntu
@@ -61,16 +32,22 @@ def get_desktop():
     '''
     return os.getenv('DESKTOP_SESSION')
 
-def get_desktop_version():
-    '''Return the desktop version with tuple
-    >>> get_desktop_version()
-    (2, 32, 0)
-    '''
-    return GnomeVersion.platform, GnomeVersion.minor, GnomeVersion.micro
-
 def get_desktop_fullname():
-    '''GNOME 2.30'''
-    return GnomeVersion.description
+    desktop_dict = {'ubuntu': 'Unity',
+                    'ubuntu-2d': 'Unity 2D',
+                    'gnome-classic': _('GNOME Classic'),
+                    'gnome-shell': 'GNOME Shell',
+                    }
+
+    desktop = get_desktop()
+
+    if desktop in desktop_dict:
+        return desktop_dict[desktop]
+    else:
+        if desktop:
+            return _('Unknown (%s)') % desktop
+        else:
+            return _('Unknown')
 
 def get_app():
     '''Ubuntu Tweak 0.5.x'''
@@ -80,7 +57,6 @@ DISTRO = get_distro()
 CODENAME = get_codename()
 DESKTOP = get_desktop()
 DESKTOP_FULLNAME = get_desktop_fullname()
-DESKTOP_VERSION = get_desktop_version()
 APP = get_app()
 UBUNTU_CODENAMES = ('dapper', 'edgy', 'feisty', 'gutsy', 'hardy', 'intrepid', 'jaunty', 'karmic', 'lucid', 'maverick', 'natty')
 
