@@ -190,7 +190,7 @@ class FontButton(Gtk.FontButton):
 
 
 class Scale(Gtk.HScale):
-    def __init__(self, key=None, min=None, max=None, digits=0,
+    def __init__(self, key=None, min=None, max=None, type=int, digits=0,
                  reversed=False, backend='gconf'):
         GObject.GObject.__init__(self)
 

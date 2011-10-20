@@ -38,10 +38,13 @@ class GSetting(object):
                 return None
 
     def set_value(self, value):
+        log.debug("The the value for type: %s and value: %s" % (self.type, value))
         try:
-            if type(value) == str:
+            if self.type == str:
                 self.settings.set_string(self.key, value)
-            elif type(value) == float:
+            elif self.type == int:
+                self.settings.set_int(self.key, int(value))
+            elif self.type == float:
                 self.settings.set_double(self.key, value)
             else:
                 self.settings[self.key] = value
