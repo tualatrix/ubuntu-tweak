@@ -124,19 +124,19 @@ class Entry(Gtk.Entry):
 
 class ComboBox(Gtk.ComboBox):
     def __init__(self, key=None, texts=None, values=None,
-                 type="string", backend='gconf'):
+                 type=str, backend='gconf'):
         GObject.GObject.__init__(self)
 
         if backend == 'gconf':
             self._setting = GconfSetting(key=key, type=str)
         elif backend == 'gsettings':
-            self._setting = GSetting(key=key, type=str)
+            self._setting = GSetting(key=key, type=type)
         elif backend == 'config':
             self._setting = ConfigSetting(key=key, type=str)
         elif backend == 'compiz':
             self._setting = CompizSetting(key=key)
 
-        if type == 'int':
+        if type == int:
             model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_INT)
         else:
             model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_STRING)

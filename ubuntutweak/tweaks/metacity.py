@@ -264,16 +264,6 @@ class Metacity(TweakModule):
             ))
         self.add_start(box, False, False, 0)
 
-        button = WidgetFactory.create('CheckButton',
-                                      label=_("Enable Metacity's compositing feature"),
-                                      enable_reset=True,
-                                      backend="gconf",
-                                      signal_dict={'toggled': self.on_compositing_button_toggled},
-                                      key='/apps/metacity/general/compositing_manager')
-        if button:
-            box = ListPack(_('Compositing Manager'), (button,))
-            self.add_start(box, False, False, 0)
-
     def init_control_buttons(self):
         if ButtonView.is_value(self.left_default):
             self.left_radio.set_active(True)
@@ -310,8 +300,3 @@ class Metacity(TweakModule):
         for button in self.control_hbox.get_children():
             if type(button) == WindowControlButton:
                 button.update_status()
-
-    def on_compositing_button_toggled(self, widget):
-        if widget.get_active():
-            InfoDialog(message=_('To enable Metacity\'s compositing feature, '
-                       'you should manually disable Visual Effects in "Appearance".')).launch()
