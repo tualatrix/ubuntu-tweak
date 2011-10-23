@@ -36,6 +36,7 @@ class Session(TweakModule):
     __icon__ = 'gnome-session-hibernate'
     __category__ = 'startup'
     __desktop__ = ['gnome', 'une']
+    __utactive__ = False
 
     def __init__(self):
         TweakModule.__init__(self)

@@ -36,6 +36,7 @@ class LockDown(TweakModule):
     __icon__ = ['gtk-dialog-authentication', 'stock_keyring']
     __category__ = 'system'
     __desktop__ = ['gnome', 'une']
+    __utactive__ = False
 
     """Lock down some function"""
     def __init__(self):

@@ -68,6 +68,7 @@ class Nautilus(TweakModule):
     __icon__ = ['file-manager', 'nautilus']
     __category__ = 'system'
     __desktop__ = ['gnome', 'une']
+    __utactive__ = False
 
     def __init__(self):
         TweakModule.__init__(self)

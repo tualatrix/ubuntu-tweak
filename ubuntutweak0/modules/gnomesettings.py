@@ -43,6 +43,7 @@ class Gnome(TweakModule):
     __icon__ = ['gnome-desktop-config', 'control-center2']
     __category__ = 'desktop'
     __desktop__ = ['gnome', 'une']
+    __utactive__ = False
 
     def __init__(self):
         TweakModule.__init__(self)

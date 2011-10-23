@@ -110,6 +110,7 @@ class Icon(TweakModule):
     __icon__ = 'user-desktop'
     __category__ = 'desktop'
     __desktop__ = 'gnome'
+    __utactive__ = False
 
     def __init__(self):
         TweakModule.__init__(self)
