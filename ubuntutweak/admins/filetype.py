@@ -16,6 +16,9 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 import os
 import logging
 from gettext import ngettext
@@ -160,13 +163,13 @@ class TypeView(Gtk.TreeView):
 
         theme = Gtk.IconTheme.get_default()
 
-        for type in Gio.content_types_get_registered():
-            if filter and filter != type.split('/')[0]:
+        for mime_type in Gio.content_types_get_registered():
+            if filter and filter != mime_type.split('/')[0]:
                 continue
 
-            pixbuf = icon.get_from_mime_type(type)
-            description = Gio.content_type_get_description(type)
-            app = Gio.app_info_get_default_for_type(type, False)
+            pixbuf = icon.get_from_mime_type(mime_type)
+            description = Gio.content_type_get_description(mime_type)
+            app = Gio.app_info_get_default_for_type(mime_type, False)
 
             if app:
                 appname = app.get_name()
@@ -177,7 +180,7 @@ class TypeView(Gtk.TreeView):
             else:
                 continue
 
-            self.model.append((type, pixbuf, description, applogo, appname))
+            self.model.append((mime_type, pixbuf, description, applogo, appname))
 
         if mainwindow:
             mainwindow.set_cursor(None)
@@ -299,10 +302,17 @@ class AddAppDialog(GObject.GObject):
         column.set_sort_column_id(self.ADD_TYPE_APPNAME)
         self.app_view.append_column(column)
 
+        app_list = []
         for appinfo in Gio.app_info_get_all():
             if appinfo.supports_files() or appinfo.supports_uris():
-                applogo = icon.get_from_app(appinfo)
                 appname = appinfo.get_name()
+
+                if appname not in app_list:
+                    app_list.append(appname)
+                else:
+                    continue
+
+                applogo = icon.get_from_app(appinfo)
 
                 model.append((appinfo, applogo, appname))
 
@@ -370,10 +380,14 @@ class TypeEditDialog(GObject.GObject):
         if dialog.run() == Gtk.ResponseType.ACCEPT:
             if dialog.get_command_runable():
                 we = dialog.get_command_or_appinfo()
+
+                log.debug("Get get_command_or_appinfo: %s" % we)
                 if type(we) == Gio.DesktopAppInfo:
+                    log.debug("Get DesktopAppInfo: %s" % we)
                     app = we
                 else:
                     app = Gio.AppInfo(we)
+
                 for filetype in self.types:
                     app.set_as_default_for_type(filetype)
 
