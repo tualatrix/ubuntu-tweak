@@ -243,13 +243,21 @@ class AddAppDialog(GObject.GObject):
         self.browse_button.connect('clicked', self.on_browse_button_clicked)
 
     def get_command_or_appinfo(self):
-        command = self.command_entry.get_text()
-        if command:
-            return command
+        model, iter = self.app_selection.get_selected()
+
+        if iter:
+            app_info = model.get_value(iter, self.ADD_TYPE_APPINFO)
+            app_command = app_info.get_executable()
         else:
-            model, iter = self.app_selection.get_selected()
-            if iter:
-                return model.get_value(iter, self.ADD_TYPE_APPINFO)
+            app_info = None
+            app_command = None
+
+        command = self.command_entry.get_text()
+
+        if app_info and command == app_command:
+            return app_info
+        else:
+            return command
 
     def get_command_runable(self):
         command = self.command_entry.get_text()
@@ -404,15 +412,25 @@ class TypeEditDialog(GObject.GObject):
         model, iter = self.type_edit_view.get_selection().get_selected()
 
         if iter:
-            type, appinfo = model.get(iter, self.EDIT_TYPE_TYPE, self.EDIT_TYPE_APPINFO)
-            appinfo.remove_supports_type(type)
+            enabled, mime_type, appinfo = model.get(iter,
+                                                    self.EDIT_TYPE_ENABLE,
+                                                    self.EDIT_TYPE_TYPE,
+                                                    self.EDIT_TYPE_APPINFO)
 
-            #FIXME can't remove the selected item
+            log.debug("remove the type: %s for %s, status: %s" % (mime_type,
+                                                                  appinfo,
+                                                                  enabled))
+
+            # first try to set mime to next app then remove
+            if enabled and model.iter_next(iter):
+                inner_appinfo = model[model.iter_next(iter)][self.EDIT_TYPE_APPINFO]
+                inner_appinfo.set_as_default_for_type(mime_type)
+
+            appinfo.remove_supports_type(mime_type)
+
             self.update_model()
 
-            log.debug("remove the type: %s for %s" % (type, appinfo))
-
-        self.emit('update', type)
+        self.emit('update', [mime_type])
 
     def setup_treeview(self):
         model = Gtk.ListStore(GObject.TYPE_BOOLEAN,
