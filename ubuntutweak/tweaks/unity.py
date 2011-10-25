@@ -63,7 +63,7 @@ class UnitySettings(TweakModule):
                                              texts=(_('Never'), _('Auto Hide'),
                                                     _('Dodge Window'), _('Dodge Active Window')),
                                              values=(0, 1, 2, 3),
-                                             type='int',
+                                             type=int,
                                              backend="compiz",
                                              enable_reset=True),
                 ))
