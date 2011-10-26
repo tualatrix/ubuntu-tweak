@@ -59,7 +59,7 @@ class NewAptProgressDialog(AptProgressDialog):
 
 class AptWorker(object):
 
-    def __init__(self, parent, finish_handler, data=None):
+    def __init__(self, parent, finish_handler=None, data=None):
         '''
         finish_handler: must take three parameter
         '''
@@ -83,7 +83,8 @@ class AptWorker(object):
 
     def _run_transaction(self, transaction):
         dia = NewAptProgressDialog(transaction, parent=self.parent)
-        transaction.connect('finished', self.finish_handler, self.data)
+        if self.finish_handler:
+            transaction.connect('finished', self.finish_handler, self.data)
         dia.run(close_on_finished=True, show_error=True,
                 reply_handler=lambda: True,
                 error_handler=self._on_error)
@@ -107,6 +108,11 @@ class AptWorker(object):
     def update_cache(self, *args):
         return self.ac.update_cache(reply_handler=self._run_transaction,
                                     error_handler=self._on_error)
+
+    def install_packages(self, packages, *args):
+        self.ac.install_packages(packages,
+                                 reply_handler=self._simulate_trans,
+                                 error_handler=self._on_error)
 
     def remove_packages(self, packages, *args):
         self.ac.remove_packages(packages,

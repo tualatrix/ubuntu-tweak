@@ -2,25 +2,23 @@
 # coding: utf-8
 
 import os
-import gtk
 import urllib
 import thread
 import socket
-import gobject
 
-from xmlrpclib import ServerProxy, Error
-from ubuntutweak.ui.dialogs import BusyDialog
+from gi.repository import Gtk
+from gi.repository import GObject
 
+from ubuntutweak.gui.dialogs import BusyDialog
 from ubuntutweak.common import consts
-from ubuntutweak.common.config import TweakSettings
 
 socket.setdefaulttimeout(60)
 
-class Downloader(gobject.GObject):
+class Downloader(GObject.GObject):
     __gsignals__ = {
-      'downloading': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (gobject.TYPE_FLOAT,)),
-      'downloaded': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, ()),
-      'error': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, ()),
+      'downloading': (GObject.SignalFlags.RUN_FIRST, None, (GObject.TYPE_FLOAT,)),
+      'downloaded': (GObject.SignalFlags.RUN_FIRST, None, ()),
+      'error': (GObject.SignalFlags.RUN_FIRST, None, ()),
     }
 
     tempdir = os.path.join(consts.CONFIG_ROOT, 'temp')
@@ -83,20 +81,19 @@ class DownloadDialog(BusyDialog):
         self.set_size_request(320, -1)
         self.set_title('')
         self.set_resizable(False)
-        self.set_has_separator(False)
         self.set_border_width(8)
 
         vbox = self.get_child()
         vbox.set_spacing(6)
 
         if title:
-            label = gtk.Label()
+            label = Gtk.Label()
             label.set_alignment(0, 0.5)
             label.set_markup('<big><b>%s</b></big>' % title)
             vbox.pack_start(label, False, False, 0)
 
         self.wait_text = _('Connecting to server')
-        self.progress_bar = gtk.ProgressBar()
+        self.progress_bar = Gtk.ProgressBar()
         self.progress_bar.set_text(self.wait_text)
         vbox.pack_start(self.progress_bar, True, False, 0)
 
@@ -110,10 +107,10 @@ class DownloadDialog(BusyDialog):
         self.downloader.connect('downloaded', self.on_downloaded)
         self.downloader.connect('error', self.on_error_happen)
 
-        self.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
+        self.add_button(Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL)
         self.show_all()
 
-        gobject.timeout_add(1000, self.on_network_connect)
+        GObject.timeout_add(1000, self.on_network_connect)
 
     def on_network_connect(self):
         if self.time_count != -1:
@@ -146,13 +143,13 @@ class DownloadDialog(BusyDialog):
     def on_downloaded(self, widget):
         self.progress_bar.set_text(_('Downloaded!'))
         self.progress_bar.set_fraction(1)
-        self.response(gtk.RESPONSE_DELETE_EVENT)
+        self.response(Gtk.ResponseType.DELETE_EVENT)
         self.downloaded = True
 
     def on_error_happen(self, widget):
         self.progress_bar.set_text(_('Error happened!'))
         self.progress_bar.set_fraction(1)
-        self.response(gtk.RESPONSE_DELETE_EVENT)
+        self.response(Gtk.ResponseType.DELETE_EVENT)
         self.downloaded = False
         self.error = True
 
@@ -161,21 +158,3 @@ class DownloadDialog(BusyDialog):
 
     def get_downloaded_file(self):
         return self.downloader.get_downloaded_file()
-
-def CheckVersion():
-    server = ServerProxy("http://ubuntu-tweak.appspot.com/xmlrpc")
-    settings = TweakSettings()
-
-    try:
-        version = server.version()
-        url = server.get_url()
-    except Error, e:
-        print "Error:", e
-    except socket.gaierror:
-        print "Bad Network!"
-    else:
-        settings.set_version(version)
-        settings.set_url(url)
-
-if __name__ == "__main__":
-    CheckVersion()

@@ -100,6 +100,7 @@ class JanitorPlugin(GObject.GObject):
     def get_cruft(self):
         return ()
 
+    @classmethod
     def get_cache(self):
         try:
             self.update_apt_cache()
@@ -107,13 +108,13 @@ class JanitorPlugin(GObject.GObject):
             self.is_apt_broken = True
             self.apt_broken_message = e
             log.error("Error happened when get_cache(): %s" % str(e))
-            return None
-        else:
+        finally:
             return self.cache
 
     def get_summary(self, count, size):
         return self.get_title()
 
+    @classmethod
     def update_apt_cache(self, init=False):
         '''if init is true, force to update, or it will update only once'''
         if init or not getattr(self, 'cache'):

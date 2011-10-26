@@ -1,7 +1,6 @@
-
-# Ubuntu Tweak - PyGTK based desktop configuration tool
+# Ubuntu Tweak - Ubuntu Configuration Tool
 #
-# Copyright (C) 2007-2008 TualatriX <tualatrix@gmail.com>
+# Copyright (C) 2007-2011 Tualatrix Chou <tualatrix@gmail.com>
 #
 # Ubuntu Tweak is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,29 +17,31 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import os
-import gtk
 import time
 import json
-import gobject
-import pango
 import thread
 import logging
 
+from gi.repository import Gtk, Gdk, GdkPixbuf
+from gi.repository import GObject
+from gi.repository import Pango
+from xdg.DesktopEntry import DesktopEntry
+
+from ubuntutweak.common.consts import CONFIG_ROOT
 from ubuntutweak.modules  import TweakModule
-from ubuntutweak.ui.dialogs import ErrorDialog, InfoDialog, QuestionDialog
-from ubuntutweak.ui.dialogs import ProcessDialog
+from ubuntutweak.gui.dialogs import ErrorDialog, InfoDialog, QuestionDialog
+from ubuntutweak.gui.dialogs import ProcessDialog
 from ubuntutweak.utils.parser import Parser
 from ubuntutweak.network import utdata
 from ubuntutweak.network.downloadmanager import DownloadDialog
-from ubuntutweak.conf import GconfSetting
+from ubuntutweak.settings.gconfsettings import GconfSetting
 from ubuntutweak.utils import set_label_for_stock_button, icon
-from ubuntutweak.common import consts
-from ubuntutweak.common.config import TweakSettings
-from ubuntutweak.common.package import PACKAGE_WORKER, PackageInfo
+from ubuntutweak.utils.package import AptWorker
+from ubuntutweak.janitor import JanitorPlugin
 
 log = logging.getLogger("AppCenter")
 
-APPCENTER_ROOT = os.path.join(consts.CONFIG_ROOT, 'appcenter')
+APPCENTER_ROOT = os.path.join(CONFIG_ROOT, 'appcenter')
 APP_VERSION_URL = utdata.get_version_url('/appcenter_version/')
 UPDATE_SETTING = GconfSetting(key='/apps/ubuntu-tweak/appcenter_update', type=bool)
 VERSION_SETTING = GconfSetting(key='/apps/ubuntu-tweak/appcenter_version', type=str)
@@ -52,30 +53,59 @@ def get_app_data_url():
 if not os.path.exists(APPCENTER_ROOT):
     os.mkdir(APPCENTER_ROOT)
 
+
+class PackageInfo:
+    DESKTOP_DIR = '/usr/share/app-install/desktop/'
+
+    def __init__(self, name):
+        self.name = name
+        self.pkg = JanitorPlugin.get_cache()[name]
+        self.desktopentry = DesktopEntry(self.DESKTOP_DIR + name + '.desktop')
+
+    def check_installed(self):
+        return self.pkg.isInstalled
+
+    def get_comment(self):
+        return self.desktopentry.getComment()
+
+    def get_name(self):
+        appname = self.desktopentry.getName()
+        if appname == '':
+            return self.name.title()
+
+        return appname
+
+    def get_version(self):
+        try:
+            return self.pkg.versions[0].version
+        except:
+            return ''
+
+
 class StatusProvider(object):
     def __init__(self, name):
-        self.__path = os.path.join(consts.CONFIG_ROOT, name)
-        self.__init = False
+        self._path = os.path.join(CONFIG_ROOT, name)
+        self._is_init = False
 
         try:
-            self.__data = json.loads(open(self.__path).read())
+            self._data = json.loads(open(self._path).read())
         except:
             log.debug('No Status data available, set init to True')
-            self.__data = {'apps': {}, 'cates': {}}
-            self.__init = True
+            self._data = {'apps': {}, 'cates': {}}
+            self._is_init = True
 
     def set_init(self, active):
-        self.__init = active
+        self._is_init = active
 
     def get_init(self):
-        return self.__init
+        return self._is_init
 
     def get_data(self):
-        return self.__data
+        return self._data
 
     def save(self):
-        file = open(self.__path, 'w')
-        file.write(json.dumps(self.__data))
+        file = open(self._path, 'w')
+        file.write(json.dumps(self._data))
         file.close()
 
     def load_objects_from_parser(self, parser):
@@ -84,14 +114,14 @@ class StatusProvider(object):
         for key in parser.keys():
             #FIXME because of source id
             if init:
-                self.__data['apps'][key] = {}
-                self.__data['apps'][key]['read'] = True
-                self.__data['apps'][key]['cate'] = parser.get_category(key)
+                self._data['apps'][key] = {}
+                self._data['apps'][key]['read'] = True
+                self._data['apps'][key]['cate'] = parser.get_category(key)
             else:
-                if key not in self.__data['apps']:
-                    self.__data['apps'][key] = {}
-                    self.__data['apps'][key]['read'] = False
-                    self.__data['apps'][key]['cate'] = parser.get_category(key)
+                if key not in self._data['apps']:
+                    self._data['apps'][key] = {}
+                    self._data['apps'][key]['read'] = False
+                    self._data['apps'][key]['cate'] = parser.get_category(key)
 
         if init and parser.keys():
             self.set_init(False)
@@ -100,37 +130,37 @@ class StatusProvider(object):
 
     def count_unread(self, cate):
         i = 0
-        for key in self.__data['apps']:
-            if self.__data['apps'][key]['cate'] == cate and not self.__data['apps'][key]['read']:
+        for key in self._data['apps']:
+            if self._data['apps'][key]['cate'] == cate and not self._data['apps'][key]['read']:
                 i += 1
         return i
 
     def load_category_from_parser(self, parser):
         for cate in parser.keys():
             id = parser.get_id(cate)
-            if self.__init:
-                self.__data['cates'][id] = 0
+            if self._is_init:
+                self._data['cates'][id] = 0
             else:
-                self.__data['cates'][id] = self.count_unread(id)
+                self._data['cates'][id] = self.count_unread(id)
 
-        self.__init = False
+        self._is_init = False
         self.save()
 
     def get_cate_unread_count(self, id):
         try:
-            return self.__data['cates'].pop(id)
+            return self._data['cates'].pop(id)
         except:
             return 0
 
     def get_read_status(self, key):
         try:
-            return self.__data['apps'][key]['read']
+            return self._data['apps'][key]['read']
         except:
             return True
 
     def set_as_read(self, key):
         try:
-            self.__data['apps'][key]['read'] = True
+            self._data['apps'][key]['read'] = True
         except:
             pass
         self.save()
@@ -161,7 +191,7 @@ class CateParser(Parser):
     def get_id(self, key):
         return self[key]['id']
 
-class CategoryView(gtk.TreeView):
+class CategoryView(Gtk.TreeView):
     (
         CATE_ID,
         CATE_NAME,
@@ -169,7 +199,7 @@ class CategoryView(gtk.TreeView):
     ) = range(3)
 
     def __init__(self, path):
-        gtk.TreeView.__init__(self)
+        GObject.GObject.__init__(self)
 
         self.path = path
         self.__status = None
@@ -182,20 +212,20 @@ class CategoryView(gtk.TreeView):
 
     def __create_model(self):
         '''The model is icon, title and the list reference'''
-        model = gtk.ListStore(
-                    gobject.TYPE_INT,
-                    gobject.TYPE_STRING,
-                    gobject.TYPE_STRING)
+        model = Gtk.ListStore(
+                    GObject.TYPE_INT,
+                    GObject.TYPE_STRING,
+                    GObject.TYPE_STRING)
         
         return model
 
     def __add_columns(self):
-        column = gtk.TreeViewColumn(_('Category'))
+        column = Gtk.TreeViewColumn(_('Category'))
 
-        renderer = gtk.CellRendererText()
+        renderer = Gtk.CellRendererText()
         column.pack_start(renderer, True)
         column.set_sort_column_id(self.CATE_NAME)
-        column.set_attributes(renderer, markup=self.CATE_DISPLAY)
+        column.add_attribute(renderer, 'markup', self.CATE_DISPLAY)
         self.append_column(column)
 
     def set_status_from_view(self, view):
@@ -237,14 +267,14 @@ class CategoryView(gtk.TreeView):
             keys.append(OTHER)
         return keys
 
-class AppView(gtk.TreeView):
+class AppView(Gtk.TreeView):
     __gsignals__ = {
-        'changed': (gobject.SIGNAL_RUN_FIRST,
-                    gobject.TYPE_NONE,
-                    (gobject.TYPE_INT,)),
-        'select': (gobject.SIGNAL_RUN_FIRST,
-                    gobject.TYPE_NONE,
-                    (gobject.TYPE_BOOLEAN,))
+        'changed': (GObject.SignalFlags.RUN_FIRST,
+                    None,
+                    (GObject.TYPE_INT,)),
+        'select': (GObject.SignalFlags.RUN_FIRST,
+                    None,
+                    (GObject.TYPE_BOOLEAN,))
     }
 
     (COLUMN_INSTALLED,
@@ -258,7 +288,7 @@ class AppView(gtk.TreeView):
     ) = range(8)
 
     def __init__(self):
-        gtk.TreeView.__init__(self)
+        GObject.GObject.__init__(self)
 
         self.to_add = []
         self.to_rm = []
@@ -275,43 +305,43 @@ class AppView(gtk.TreeView):
         self.show_all()
 
     def __create_model(self):
-        model = gtk.ListStore(
-                        gobject.TYPE_BOOLEAN,
-                        gtk.gdk.Pixbuf,
-                        gobject.TYPE_STRING,
-                        gobject.TYPE_STRING,
-                        gobject.TYPE_STRING,
-                        gobject.TYPE_STRING,
-                        gobject.TYPE_STRING,
-                        gobject.TYPE_STRING)
+        model = Gtk.ListStore(
+                        GObject.TYPE_BOOLEAN,
+                        GdkPixbuf.Pixbuf,
+                        GObject.TYPE_STRING,
+                        GObject.TYPE_STRING,
+                        GObject.TYPE_STRING,
+                        GObject.TYPE_STRING,
+                        GObject.TYPE_STRING,
+                        GObject.TYPE_STRING)
 
         return model
 
     def sort_model(self):
         model = self.get_model()
-        model.set_sort_column_id(self.COLUMN_NAME, gtk.SORT_ASCENDING)
+        model.set_sort_column_id(self.COLUMN_NAME, Gtk.SortType.ASCENDING)
 
     def __add_columns(self):
-        renderer = gtk.CellRendererToggle()
+        renderer = Gtk.CellRendererToggle()
         renderer.set_property("xpad", 6)
         renderer.connect('toggled', self.on_install_toggled)
 
-        column = gtk.TreeViewColumn('', renderer, active=self.COLUMN_INSTALLED)
+        column = Gtk.TreeViewColumn('', renderer, active=self.COLUMN_INSTALLED)
         column.set_sort_column_id(self.COLUMN_INSTALLED)
         self.append_column(column)
 
-        column = gtk.TreeViewColumn('Applications')
+        column = Gtk.TreeViewColumn('Applications')
         column.set_sort_column_id(self.COLUMN_NAME)
         column.set_spacing(5)
-        renderer = gtk.CellRendererPixbuf()
+        renderer = Gtk.CellRendererPixbuf()
         column.pack_start(renderer, False)
         column.set_cell_data_func(renderer, self.icon_column_view_func)
-        column.set_attributes(renderer, pixbuf=self.COLUMN_ICON)
+        column.add_attribute(renderer, 'pixbuf', self.COLUMN_ICON)
 
-        renderer = gtk.CellRendererText()
+        renderer = Gtk.CellRendererText()
         renderer.set_property("xpad", 6)
         renderer.set_property("ypad", 6)
-        renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
+        renderer.set_property('ellipsize', Pango.EllipsizeMode.END)
         column.pack_start(renderer, True)
         column.add_attribute(renderer, 'markup', self.COLUMN_DISPLAY)
         self.append_column(column)
@@ -324,7 +354,7 @@ class AppView(gtk.TreeView):
             self.__status.set_as_read(package)
             model.set_value(iter, self.COLUMN_DISPLAY, '<b>%s</b>\n%s' % (appname, desc))
 
-    def icon_column_view_func(self, cell_layout, renderer, model, iter):
+    def icon_column_view_func(self, tree_column, renderer, model, iter, data=None):
         pixbuf = model.get_value(iter, self.COLUMN_ICON)
         if pixbuf == None:
             renderer.set_property("visible", False)
@@ -337,11 +367,11 @@ class AppView(gtk.TreeView):
     def append_update(self, status, pkgname, summary):
         model = self.get_model()
 
-        icontheme = gtk.icon_theme_get_default()
+        icontheme = Gtk.IconTheme.get_default()
         for icon_name in ['application-x-deb', 'package-x-generic', 'package']:
             icon_theme = icontheme.lookup_icon(icon_name,
                                                size=32,
-                                               flags=gtk.ICON_LOOKUP_NO_SVG)
+                                               flags=Gtk.IconLookupFlags.NO_SVG)
             if icon_theme:
                 break
 
@@ -390,7 +420,8 @@ class AppView(gtk.TreeView):
                 is_installed = package.check_installed()
                 appname = package.get_name()
                 desc = app_parser.get_summary(pkgname)
-            except:
+            except Exception, e:
+                log.error(e)
                 # Confirm the invalid package isn't in the count
                 # But in the future, Ubuntu Tweak should display the invalid package too
                 if self.__status and not self.__status.get_read_status(pkgname):
@@ -483,12 +514,12 @@ class AppView(gtk.TreeView):
             path = os.path.join(consts.DATA_DIR, 'pixmaps/common-logo.png')
 
         try:
-            pixbuf = gtk.gdk.pixbuf_new_from_file(path)
+            pixbuf = GdkPixbuf.Pixbuf.new_from_file(path)
             if pixbuf.get_width() != 32 or pixbuf.get_height() != 32:
-                pixbuf = pixbuf.scale_simple(32, 32, gtk.gdk.INTERP_BILINEAR)
+                pixbuf = pixbuf.scale_simple(32, 32, GdkPixbuf.InterpType.BILINEAR)
             return pixbuf
         except:
-            return gtk.icon_theme_get_default().load_icon(gtk.STOCK_MISSING_IMAGE, 32, 0)
+            return Gtk.IconTheme.get_default().load_icon(Gtk.STOCK_MISSING_IMAGE, 32, 0)
 
 class CheckUpdateDialog(ProcessDialog):
 
@@ -501,6 +532,11 @@ class CheckUpdateDialog(ProcessDialog):
 
         super(CheckUpdateDialog, self).__init__(parent=parent)
         self.set_dialog_lable(_('Checking update...'))
+
+    def run(self):
+        thread.start_new_thread(self.process_data, ())
+        GObject.timeout_add(100, self.on_timeout)
+        return super(CheckUpdateDialog, self).run()
 
     def process_data(self):
         import time
@@ -551,11 +587,10 @@ class AppCenter(TweakModule):
         self.to_add = []
         self.to_rm = []
 
-        self.package_worker = PACKAGE_WORKER
         self.url = APP_VERSION_URL
 
         self.appview = AppView()
-        self.appview.set_status_active(TweakSettings.get_enable_new_item())
+        self.appview.set_status_active(True)
         self.appview.update_model()
         self.appview.sort_model()
         self.appview.connect('changed', self.on_app_status_changed)
@@ -574,11 +609,10 @@ class AppCenter(TweakModule):
         self.show_all()
 
         UPDATE_SETTING.set_value(False)
-        UPDATE_SETTING.connect_notify(self.on_have_update, data=None)
+#        UPDATE_SETTING.connect_notify(self.on_have_update, data=None)
 
-        if TweakSettings.get_sync_notify():
-            thread.start_new_thread(self.check_update, ())
-        gobject.timeout_add(60000, self.update_timestamp)
+        thread.start_new_thread(self.check_update, ())
+        GObject.timeout_add(60000, self.update_timestamp)
 
         self.reparent(self.main_vbox)
 
@@ -587,12 +621,13 @@ class AppCenter(TweakModule):
         return True
 
     def on_have_update(self, client, id, entry, data):
+        log.debug("on_have_update")
         if entry.get_value().get_bool():
             dialog = QuestionDialog(_('New application data available, would you like to update?'))
             response = dialog.run()
             dialog.destroy()
 
-            if response == gtk.RESPONSE_YES:
+            if response == Gtk.ResponseType.YES:
                 dialog = FetchingDialog(get_app_data_url(), self.get_toplevel())
                 dialog.connect('destroy', self.on_app_data_downloaded)
                 dialog.run()
@@ -604,7 +639,7 @@ class AppCenter(TweakModule):
                                             UPDATE_SETTING, VERSION_SETTING, \
                                             auto=True)
         except Exception, error:
-            print error
+            log.error(error)
 
     def on_app_selection(self, widget, data=None):
         model, iter = widget.get_selected()
@@ -618,8 +653,8 @@ class AppCenter(TweakModule):
         cateview = widget.get_tree_view()
 
         if iter:
-            if model.get_path(iter)[0] != 0:
-                self.appview.set_filter(model.get_value(iter, cateview.CATE_ID))
+            if model.get_path(iter).to_string() != "0":
+                self.appview.set_filter(model[iter][cateview.CATE_ID])
             else:
                 self.appview.set_filter(None)
 
@@ -633,15 +668,27 @@ class AppCenter(TweakModule):
     def on_apply_button_clicked(self, widget, data = None):
         to_rm = self.appview.to_rm
         to_add = self.appview.to_add
-        self.package_worker.perform_action(widget.get_toplevel(), to_add, to_rm)
 
-        self.package_worker.update_apt_cache(True)
+        if to_add:
+            #TODO how to know the package work is done?
+            worker = AptWorker(self.get_toplevel())
+            worker.install_packages(to_add)
+
+        if to_rm:
+            #TODO how to know the package work is done?
+            worker = AptWorker(self.get_toplevel())
+            worker.remove_packages(to_rm)
+
+    #TODO how to know the package work is done?
+    def on_package_work_finished(self, transaction, status, add_and_rm):
+        to_add, to_rm = add_and_rm
+
+        JanitorPlugin.update_apt_cache(init=True)
 
         done = self.package_worker.get_install_status(to_add, to_rm)
 
         if done:
             self.apply_button.set_sensitive(False)
-            InfoDialog(_('Update Successful!')).launch()
         else:
             ErrorDialog(_('Update Failed!')).launch()
 
@@ -660,7 +707,7 @@ class AppCenter(TweakModule):
             dialog = QuestionDialog(_("Update available, would you like to update?"))
             response = dialog.run()
             dialog.destroy()
-            if response == gtk.RESPONSE_YES:
+            if response == Gtk.ResponseType.YES:
                 dialog = FetchingDialog(get_app_data_url(), self.get_toplevel())
                 dialog.connect('destroy', self.on_app_data_downloaded)
                 dialog.run()
@@ -677,7 +724,7 @@ class AppCenter(TweakModule):
         tarfile = utdata.create_tarfile(path)
 
         if tarfile.is_valid():
-            tarfile.extract(consts.CONFIG_ROOT)
+            tarfile.extract(CONFIG_ROOT)
             self.update_app_data()
             utdata.save_synced_timestamp(APPCENTER_ROOT)
             self.update_timestamp()
