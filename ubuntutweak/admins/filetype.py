@@ -21,9 +21,11 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 import os
 import logging
+
 from gettext import ngettext
 
 from gi.repository import GObject, Gio, GLib, Gtk, Gdk, Pango, GdkPixbuf
+from xdg.DesktopEntry import DesktopEntry
 
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.utils import icon
@@ -394,7 +396,8 @@ class TypeEditDialog(GObject.GObject):
                     log.debug("Get DesktopAppInfo: %s" % we)
                     app = we
                 else:
-                    app = Gio.AppInfo(we)
+                    desktop_id = self._create_desktop_file_from_command(we)
+                    app = Gio.DesktopAppInfo.new(desktop_id)
 
                 for filetype in self.types:
                     app.set_as_default_for_type(filetype)
@@ -407,6 +410,22 @@ class TypeEditDialog(GObject.GObject):
                             dialog.get_command_or_appinfo()).launch()
 
         dialog.destroy()
+
+    def _create_desktop_file_from_command(self, command):
+        basename = os.path.basename(command)
+        path = os.path.expanduser('~/.local/share/applications/%s.desktop' % basename)
+
+        desktop = DesktopEntry()
+        desktop.addGroup('Desktop Entry')
+        desktop.set('Type', 'Application')
+        desktop.set('Version', '1.0')
+        desktop.set('Terminal', 'false')
+        desktop.set('Exec', command)
+        desktop.set('Name', basename)
+        desktop.set('X-Ubuntu-Tweak', 'true')
+        desktop.write(path)
+
+        return '%s.desktop' % basename
 
     def on_remove_button_clicked(self, widget):
         model, iter = self.type_edit_view.get_selection().get_selected()
