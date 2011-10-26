@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-20 17:43+0800\n"
+"POT-Creation-Date: 2011-10-26 16:45+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,7 +52,8 @@ msgstr ""
 msgid "Desktop Recovery"
 msgstr ""
 
-#: ../data/ubuntu-tweak.desktop.in.h:4 ../ubuntutweak/admins/filetype.py:504
+#: ../data/ubuntu-tweak.desktop.in.h:4
+#: ../ubuntutweak/admins/filetypemanager.py:555
 msgid "File Type Manager"
 msgstr ""
 
@@ -273,23 +274,23 @@ msgstr ""
 msgid "_Install Update"
 msgstr ""
 
-#: ../data/ui/type_edit.ui.h:1
+#: ../data/ui/filetypemanager.ui.h:1
 msgid "Add Application"
 msgstr ""
 
-#: ../data/ui/type_edit.ui.h:2
+#: ../data/ui/filetypemanager.ui.h:2
 msgid "Edit Type"
 msgstr ""
 
-#: ../data/ui/type_edit.ui.h:3
+#: ../data/ui/filetypemanager.ui.h:3
 msgid "Select an application to view its description."
 msgstr ""
 
-#: ../data/ui/type_edit.ui.h:4
+#: ../data/ui/filetypemanager.ui.h:4
 msgid "_Browse..."
 msgstr ""
 
-#: ../data/ui/type_edit.ui.h:5
+#: ../data/ui/filetypemanager.ui.h:5
 msgid "_Use a custom command"
 msgstr ""
 
@@ -441,7 +442,7 @@ msgid "Error happened!"
 msgstr ""
 
 #: ../ubuntutweak/network/utdata.py:50 ../ubuntutweak/network/utdata.py:83
-#: ../ubuntutweak/tweaks/unity.py:61
+#: ../ubuntutweak/tweaks/unity.py:63 ../ubuntutweak/tweaks/unity.py:94
 msgid "Never"
 msgstr ""
 
@@ -1170,7 +1171,8 @@ msgstr ""
 
 #: ../ubuntutweak/admins/shortcuts.py:88
 #: ../ubuntutweak/admins/shortcuts.py:200
-#: ../ubuntutweak/admins/filetype.py:175 ../ubuntutweak/admins/filetype.py:202
+#: ../ubuntutweak/admins/filetypemanager.py:180
+#: ../ubuntutweak/admins/filetypemanager.py:207
 #: ../ubuntutweak/tweaks/metacity.py:183 ../ubuntutweak/tweaks/metacity.py:192
 #: ../ubuntutweak/tweaks/metacity.py:207 ../ubuntutweak/tweaks/metacity.py:222
 msgid "None"
@@ -1193,73 +1195,77 @@ msgstr ""
 msgid "Key"
 msgstr ""
 
-#: ../ubuntutweak/admins/filetype.py:39
+#: ../ubuntutweak/admins/filetypemanager.py:44
 msgid "Audio"
 msgstr ""
 
-#: ../ubuntutweak/admins/filetype.py:40
+#: ../ubuntutweak/admins/filetypemanager.py:45
 msgid "Text"
 msgstr ""
 
-#: ../ubuntutweak/admins/filetype.py:41
+#: ../ubuntutweak/admins/filetypemanager.py:46
 msgid "Image"
 msgstr ""
 
-#: ../ubuntutweak/admins/filetype.py:42
+#: ../ubuntutweak/admins/filetypemanager.py:47
 msgid "Video"
 msgstr ""
 
-#: ../ubuntutweak/admins/filetype.py:43
+#: ../ubuntutweak/admins/filetypemanager.py:48
 msgid "Application"
 msgstr ""
 
-#: ../ubuntutweak/admins/filetype.py:44
+#: ../ubuntutweak/admins/filetypemanager.py:49
 #: ../ubuntutweak/tweaks/ccm/Constants.py:94
 msgid "All"
 msgstr ""
 
-#: ../ubuntutweak/admins/filetype.py:69
+#: ../ubuntutweak/admins/filetypemanager.py:74
 msgid "Categories"
 msgstr ""
 
-#: ../ubuntutweak/admins/filetype.py:122
+#: ../ubuntutweak/admins/filetypemanager.py:127
 msgid "File Type"
 msgstr ""
 
-#: ../ubuntutweak/admins/filetype.py:138
+#: ../ubuntutweak/admins/filetypemanager.py:143
 msgid "Associated Application"
 msgstr ""
 
-#: ../ubuntutweak/admins/filetype.py:232
+#: ../ubuntutweak/admins/filetypemanager.py:237
 #, python-format
 msgid "Open files of type \"%s\" with:"
 msgstr ""
 
-#: ../ubuntutweak/admins/filetype.py:256
+#: ../ubuntutweak/admins/filetypemanager.py:269
 msgid "Choose an application"
 msgstr ""
 
-#: ../ubuntutweak/admins/filetype.py:349
+#: ../ubuntutweak/admins/filetypemanager.py:369
 #, python-format
 msgid "Select an application to open files of type: <b>%s</b>"
 msgid_plural "Select an application to open files for these types: <b>%s</b>"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../ubuntutweak/admins/filetype.py:383
+#: ../ubuntutweak/admins/filetypemanager.py:408
 msgid "Could not find application"
 msgstr ""
 
-#: ../ubuntutweak/admins/filetype.py:384
+#: ../ubuntutweak/admins/filetypemanager.py:409
 #, python-format
 msgid "Could not find \"%s\", Please ensure the path is correct."
 msgstr ""
 
-#: ../ubuntutweak/admins/filetype.py:505
+#: ../ubuntutweak/admins/filetypemanager.py:556
 msgid "Manage all registered file types"
 msgstr ""
 
-#: ../ubuntutweak/admins/filetype.py:542
+#: ../ubuntutweak/admins/filetypemanager.py:593
+msgid "_Reset"
+msgstr ""
+
+#: ../ubuntutweak/admins/filetypemanager.py:599
 msgid "Only show filetypes with associated applications"
 msgstr ""
 
@@ -1546,44 +1552,64 @@ msgstr ""
 msgid "Desktop theme"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:26
+#: ../ubuntutweak/tweaks/unity.py:27
 msgid "Unity Settings"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:27
+#: ../ubuntutweak/tweaks/unity.py:28
 msgid "Tweak the powerful Unity desktop"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:35
+#: ../ubuntutweak/tweaks/unity.py:37 ../ubuntutweak/tweaks/unity.py:80
 msgid "Launcher"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:37
+#: ../ubuntutweak/tweaks/unity.py:39
 msgid "Icon size"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:44
+#: ../ubuntutweak/tweaks/unity.py:46
 msgid "Launcher opacity"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:52
+#: ../ubuntutweak/tweaks/unity.py:54
 msgid "Launcher reveal edge timeout"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:59
+#: ../ubuntutweak/tweaks/unity.py:61 ../ubuntutweak/tweaks/unity.py:92
 msgid "Launcher hide mode"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:61
+#: ../ubuntutweak/tweaks/unity.py:63 ../ubuntutweak/tweaks/unity.py:94
 msgid "Auto Hide"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:62
+#: ../ubuntutweak/tweaks/unity.py:64
 msgid "Dodge Window"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:62
+#: ../ubuntutweak/tweaks/unity.py:64
 msgid "Dodge Active Window"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:71
+msgid "Compositing Manager"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:73
+msgid "Enable Metacity's compositing feature"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:82
+msgid "Enable the Super key"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:87
+msgid "Reserve launcher area"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:95
+msgid "Intellihide"
 msgstr ""
 
 #: ../ubuntutweak/tweaks/ccm/Utils.py:207
@@ -2015,20 +2041,6 @@ msgstr ""
 
 #: ../ubuntutweak/tweaks/metacity.py:259
 msgid "Inactive window shade transparency level"
-msgstr ""
-
-#: ../ubuntutweak/tweaks/metacity.py:268
-msgid "Enable Metacity's compositing feature"
-msgstr ""
-
-#: ../ubuntutweak/tweaks/metacity.py:274
-msgid "Compositing Manager"
-msgstr ""
-
-#: ../ubuntutweak/tweaks/metacity.py:316
-msgid ""
-"To enable Metacity's compositing feature, you should manually disable Visual "
-"Effects in \"Appearance\"."
 msgstr ""
 
 #: ../ubuntutweak/clips/userinfo.py:10
