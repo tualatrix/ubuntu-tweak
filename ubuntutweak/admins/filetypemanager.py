@@ -445,6 +445,7 @@ class TypeEditDialog(GObject.GObject):
                 inner_appinfo = model[model.iter_next(iter)][self.EDIT_TYPE_APPINFO]
                 inner_appinfo.set_as_default_for_type(mime_type)
 
+            #TODO if there's only one app assoicated, it will fail
             appinfo.remove_supports_type(mime_type)
 
             self.update_model()

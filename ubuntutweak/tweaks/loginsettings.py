@@ -24,12 +24,14 @@ from gi.repository import Gtk, GdkPixbuf
 
 from ubuntutweak.factory import WidgetFactory
 from ubuntutweak.modules  import TweakModule
+from ubuntutweak.gui.treeviews import get_local_path
 from ubuntutweak.gui.containers import ListPack, TablePack
 from ubuntutweak.gui.dialogs import ErrorDialog, ServerErrorDialog
 from ubuntutweak.policykit import PK_ACTION_TWEAK
 from ubuntutweak.policykit.widgets import PolkitButton
 
 from ubuntutweak.settings.configsettings import SystemConfigSetting
+from ubuntutweak.settings.gsettings import GSetting
 
 log = logging.getLogger('LoginSettings')
 
@@ -65,6 +67,7 @@ class LoginSettings(TweakModule):
     def _setup_background_image(self):
         self._greeter_background = SystemConfigSetting('/etc/lightdm/unity-greeter.conf::greeter.background')
         background_path = self._greeter_background.get_value()
+
         log.debug("Setup the background file: %s" % background_path)
 
         try:
@@ -73,6 +76,9 @@ class LoginSettings(TweakModule):
             self.background_image.set_from_pixbuf(pixbuf)
         except Exception, e:
             log.error("Loading background failed, message is %s" % e)
+
+    def _get_desktop_background_path(self):
+        return get_local_path(GSetting('org.gnome.desktop.background.picture-uri').get_value())
 
     def on_polkit_action(self, widget):
         self.vbox1.set_sensitive(True)
@@ -164,3 +170,12 @@ class LoginSettings(TweakModule):
         else:
             dialog.destroy()
             return
+
+    def on_same_background_button_clicked(self, widget):
+        log.debug('on_same_background_button_clicked')
+        background_path = self._get_desktop_background_path()
+
+        if background_path and \
+                background_path != self._greeter_background.get_value():
+            self._greeter_background.set_value(background_path)
+            self._setup_background_image()
