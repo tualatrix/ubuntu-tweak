@@ -86,7 +86,8 @@ def get_source_logo_from_filename(file_name):
     except:
         return Gtk.IconTheme.get_default().load_icon(Gtk.STOCK_MISSING_IMAGE, 32, 0)
 
-def refresh_source(parent):
+#TODO move old refresh source to new
+def old_refresh_source(parent):
     dialog = UpdateCacheDialog(parent)
     dialog.run()
 
@@ -131,7 +132,7 @@ def refresh_source(parent):
         if res == Gtk.ResponseType.YES and to_add:
             PACKAGE_WORKER.perform_action(parent, to_add, to_rm)
 
-            PACKAGE_WORKER.update_apt_cache(True)
+            AptWorker.update_apt_cache(True)
 
             done = PACKAGE_WORKER.get_install_status(to_add, to_rm)
 
@@ -976,7 +977,9 @@ class SourceCenter(TweakModule):
         self.emit('call', 'ubuntutweak.modules.sourceeditor', 'update_source_combo', {})
 
     def on_update_button_clicked(self, widget):
-        refresh_source(widget.get_toplevel())
+        daemon = AptWorker(widget.get_toplevel())
+        daemon.update_cache()
+
         self.emit('call', 'ubuntutweak.modules.appcenter', 'update_app_data', {})
         self.emit('call', 'ubuntutweak.modules.updatemanager', 'update_list', {})
 

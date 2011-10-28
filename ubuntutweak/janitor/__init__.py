@@ -4,8 +4,6 @@ import traceback
 
 from collections import OrderedDict
 
-import apt
-import apt_pkg
 from gi.repository import GObject, Gtk, Gdk, Pango
 
 from ubuntutweak.gui import GuiBuilder
@@ -14,6 +12,7 @@ from ubuntutweak.modules import ModuleLoader
 from ubuntutweak.settings import GSetting
 from ubuntutweak.common.debug import run_traceback
 from ubuntutweak.gui.dialogs import ErrorDialog
+from ubuntutweak.utils.package import AptWorker
 
 log = logging.getLogger('Janitor')
 
@@ -64,8 +63,6 @@ class JanitorPlugin(GObject.GObject):
     __utactive__ = True
     __user_extension__ = False
 
-    cache = None
-
     __gsignals__ = {
         'find_object': (GObject.SignalFlags.RUN_FIRST, None, (GObject.TYPE_PYOBJECT,)),
         'scan_finished': (GObject.SignalFlags.RUN_FIRST, None,
@@ -100,26 +97,8 @@ class JanitorPlugin(GObject.GObject):
     def get_cruft(self):
         return ()
 
-    @classmethod
-    def get_cache(self):
-        try:
-            self.update_apt_cache()
-        except Exception, e:
-            self.is_apt_broken = True
-            self.apt_broken_message = e
-            log.error("Error happened when get_cache(): %s" % str(e))
-        finally:
-            return self.cache
-
     def get_summary(self, count, size):
         return self.get_title()
-
-    @classmethod
-    def update_apt_cache(self, init=False):
-        '''if init is true, force to update, or it will update only once'''
-        if init or not getattr(self, 'cache'):
-            apt_pkg.init()
-            self.cache = apt.Cache()
 
     def clean_cruft(self, parent, cruft_list):
         '''Clean all the cruft, you must emit the "cleaned" signal to tell the

@@ -11,7 +11,7 @@ class AutoRemovalPlugin(JanitorPlugin):
     __category__ = 'system'
 
     def get_cruft(self):
-        cache = self.get_cache()
+        cache = AptWorker.get_cache()
         count = 0
         size = 0
         if cache:
@@ -31,7 +31,7 @@ class AutoRemovalPlugin(JanitorPlugin):
 
     def on_clean_finished(self, transaction, status, parent):
         unset_busy(parent)
-        self.update_apt_cache(True)
+        AptWorker.update_apt_cache(True)
         self.emit('cleaned', True)
 
     def get_summary(self, count, size):

@@ -37,7 +37,6 @@ from ubuntutweak.network.downloadmanager import DownloadDialog
 from ubuntutweak.settings.gsettings import GSetting
 from ubuntutweak.utils import set_label_for_stock_button, icon
 from ubuntutweak.utils.package import AptWorker
-from ubuntutweak.janitor import JanitorPlugin
 
 log = logging.getLogger("AppCenter")
 
@@ -59,7 +58,7 @@ class PackageInfo:
 
     def __init__(self, name):
         self.name = name
-        self.pkg = JanitorPlugin.get_cache()[name]
+        self.pkg = AptWorker.get_cache()[name]
         self.desktopentry = DesktopEntry(self.DESKTOP_DIR + name + '.desktop')
 
     def check_installed(self):
@@ -683,7 +682,7 @@ class AppCenter(TweakModule):
     def on_package_work_finished(self, transaction, status, add_and_rm):
         to_add, to_rm = add_and_rm
 
-        JanitorPlugin.update_apt_cache(init=True)
+        AptWorker.update_apt_cache(init=True)
 
         done = self.package_worker.get_install_status(to_add, to_rm)
 

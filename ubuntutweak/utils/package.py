@@ -1,5 +1,7 @@
 import logging
 
+import apt
+import apt_pkg
 import aptdaemon.client
 import aptdaemon.errors
 
@@ -58,6 +60,7 @@ class NewAptProgressDialog(AptProgressDialog):
 
 
 class AptWorker(object):
+    cache = None
 
     def __init__(self, parent, finish_handler=None, data=None):
         '''
@@ -118,3 +121,21 @@ class AptWorker(object):
         self.ac.remove_packages(packages,
                                 reply_handler=self._simulate_trans,
                                 error_handler=self._on_error)
+
+    @classmethod
+    def get_cache(self):
+        try:
+            self.update_apt_cache()
+        except Exception, e:
+            self.is_apt_broken = True
+            self.apt_broken_message = e
+            log.error("Error happened when get_cache(): %s" % str(e))
+        finally:
+            return self.cache
+
+    @classmethod
+    def update_apt_cache(self, init=False):
+        '''if init is true, force to update, or it will update only once'''
+        if init or not getattr(self, 'cache'):
+            apt_pkg.init()
+            self.cache = apt.Cache()

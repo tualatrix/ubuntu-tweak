@@ -21,7 +21,7 @@ class OldKernelPlugin(JanitorPlugin):
         log.debug("the current_kernel_version is %s" % self.current_kernel_version)
 
     def get_cruft(self):
-        cache = self.get_cache()
+        cache = AptWorker.get_cache()
         count = 0
         size = 0
 
@@ -43,7 +43,7 @@ class OldKernelPlugin(JanitorPlugin):
 
     def on_clean_finished(self, transaction, status, parent):
         unset_busy(parent)
-        self.update_apt_cache(True)
+        AptWorker.update_apt_cache(True)
         self.emit('cleaned', True)
 
     def is_old_kernel_package(self, pkg):
