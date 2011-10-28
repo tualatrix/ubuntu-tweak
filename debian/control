@@ -13,22 +13,17 @@ Homepage: http://ubuntu-tweak.com
 
 Package: ubuntu-tweak
 Architecture: all
-Depends: python,
- python-gtk2,
- python-apt,
+Depends: python-apt,
  python-dbus,
  python-xdg,
  python-aptdaemon,
  python-aptdaemon.gtk3widgets,
- gnome-desktop-data,
  policykit-1-gnome | policykit-1-qt,
- python-notify,
- python-vte,
  python-defer,
  python-compizconfig,
- gir1.2-unique-1.0 | gir1.2-unique-3.0,
- gir1.2-vte-0.0 | gir1.2-vte-2.90,
- gir1.2-gtk-2.0 | gir1.2-gtk-3.0,
+ gir1.2-unique-3.0,
+ gir1.2-vte-2.90,
+ gir1.2-gtk-3.0,
  gir1.2-gconf-2.0,
  gir1.2-notify-0.7,
  ${python:Depends}
