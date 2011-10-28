@@ -570,9 +570,7 @@ class FetchingDialog(DownloadDialog):
 
 class AppCenter(TweakModule):
     __title__ = _('Application Center')
-    __desc__ = _('A simple but efficient way for finding and installing popular applications.\n'
-                 'Data will be synchronized automatically with the remote server.\n'
-                 'You can click the "Sync" button to perform a manual check for updates.')
+    __desc__ = _('A simple but efficient way for finding and installing popular applications.\n')
     __icon__ = 'gnome-app-install'
     __url__ = 'http://ubuntu-tweak.com/app/'
     __urltitle__ = _('Visit Online Application Center')
@@ -665,31 +663,31 @@ class AppCenter(TweakModule):
         self.update_app_data()
 
     def on_apply_button_clicked(self, widget, data = None):
+        def on_clean_finished(transaction, status, add_and_rm):
+            to_add, to_rm = add_and_rm
+            worker = AptWorker(self.get_toplevel(), self.on_package_work_finished, add_and_rm)
+            worker.remove_packages(to_rm)
+
         to_rm = self.appview.to_rm
         to_add = self.appview.to_add
 
-        if to_add:
-            #TODO how to know the package work is done?
-            worker = AptWorker(self.get_toplevel())
-            worker.install_packages(to_add)
+        log.debug("on_apply_button_clicked: to_rm: %s, to_add: %s" % (to_rm, to_add))
 
-        if to_rm:
-            #TODO how to know the package work is done?
-            worker = AptWorker(self.get_toplevel())
-            worker.remove_packages(to_rm)
+        if to_add or to_rm:
+            if to_add:
+                #TODO if user cancel auth
+                if to_rm:
+                    worker = AptWorker(self.get_toplevel(), on_clean_finished, (to_add, to_rm))
+                else:
+                    worker = AptWorker(self.get_toplevel(), self.on_package_work_finished, (to_add, to_rm))
+                worker.install_packages(to_add)
+            elif to_rm:
+                on_clean_finished(None, None, to_rm)
 
-    #TODO how to know the package work is done?
     def on_package_work_finished(self, transaction, status, add_and_rm):
         to_add, to_rm = add_and_rm
 
         AptWorker.update_apt_cache(init=True)
-
-        done = self.package_worker.get_install_status(to_add, to_rm)
-
-        if done:
-            self.apply_button.set_sensitive(False)
-        else:
-            ErrorDialog(_('Update Failed!')).launch()
 
         self.emit('call', 'ubuntutweak.modules.updatemanager', 'update_list', {})
 
