@@ -21,9 +21,11 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 import os
 import logging
+
 from gettext import ngettext
 
 from gi.repository import GObject, Gio, GLib, Gtk, Gdk, Pango, GdkPixbuf
+from xdg.DesktopEntry import DesktopEntry
 
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.utils import icon
@@ -109,7 +111,7 @@ class TypeView(Gtk.TreeView):
                                       Gtk.SortType.ASCENDING)
 
 #        self.set_size_request(200, -1)
-        self.update_model(filter = 'audio')
+        self.update_model(filter='audio')
 
     def _create_model(self):
         '''The model is icon, title and the list reference'''
@@ -219,7 +221,7 @@ class AddAppDialog(GObject.GObject):
     def __init__(self, type, parent):
         super(AddAppDialog, self).__init__()
 
-        worker = GuiBuilder('type_edit.ui')
+        worker = GuiBuilder('filetypemanager.ui')
 
         self.dialog = worker.get_object('add_app_dialog')
         self.dialog.set_modal(True)
@@ -346,7 +348,7 @@ class TypeEditDialog(GObject.GObject):
         self.types = types
 
         type_pixbuf = icon.get_from_mime_type(self.types[0], 64)
-        worker = GuiBuilder('type_edit.ui')
+        worker = GuiBuilder('filetypemanager.ui')
 
         self.dialog = worker.get_object('type_edit_dialog')
         self.dialog.set_transient_for(parent)
@@ -394,7 +396,8 @@ class TypeEditDialog(GObject.GObject):
                     log.debug("Get DesktopAppInfo: %s" % we)
                     app = we
                 else:
-                    app = Gio.AppInfo(we)
+                    desktop_id = self._create_desktop_file_from_command(we)
+                    app = Gio.DesktopAppInfo.new(desktop_id)
 
                 for filetype in self.types:
                     app.set_as_default_for_type(filetype)
@@ -407,6 +410,22 @@ class TypeEditDialog(GObject.GObject):
                             dialog.get_command_or_appinfo()).launch()
 
         dialog.destroy()
+
+    def _create_desktop_file_from_command(self, command):
+        basename = os.path.basename(command)
+        path = os.path.expanduser('~/.local/share/applications/%s.desktop' % basename)
+
+        desktop = DesktopEntry()
+        desktop.addGroup('Desktop Entry')
+        desktop.set('Type', 'Application')
+        desktop.set('Version', '1.0')
+        desktop.set('Terminal', 'false')
+        desktop.set('Exec', command)
+        desktop.set('Name', basename)
+        desktop.set('X-Ubuntu-Tweak', 'true')
+        desktop.write(path)
+
+        return '%s.desktop' % basename
 
     def on_remove_button_clicked(self, widget):
         model, iter = self.type_edit_view.get_selection().get_selected()
@@ -426,6 +445,7 @@ class TypeEditDialog(GObject.GObject):
                 inner_appinfo = model[model.iter_next(iter)][self.EDIT_TYPE_APPINFO]
                 inner_appinfo.set_as_default_for_type(mime_type)
 
+            #TODO if there's only one app assoicated, it will fail
             appinfo.remove_supports_type(mime_type)
 
             self.update_model()
@@ -532,7 +552,7 @@ class TypeEditDialog(GObject.GObject):
     def __getattr__(self, key):
         return getattr(self.dialog, key)
 
-class FileType(TweakModule):
+class FileTypeManager(TweakModule):
     __title__ = _('File Type Manager')
     __desc__ = _('Manage all registered file types')
     __icon__ = 'application-x-theme'
@@ -571,6 +591,12 @@ class FileType(TweakModule):
         self.edit_button.set_sensitive(False)
         hbox.pack_end(self.edit_button, False, False, 0)
 
+        self.reset_button = Gtk.Button(label=_('_Reset'))
+        self.reset_button.set_use_underline(True)
+        self.reset_button.connect('clicked', self.on_reset_clicked)
+        self.reset_button.set_sensitive(False)
+        hbox.pack_end(self.reset_button, False, False, 0)
+
         self.show_have_app = Gtk.CheckButton(_('Only show filetypes with associated applications'))
         self.show_have_app.set_active(True)
         self.show_have_app.connect('toggled', self.on_show_all_toggled)
@@ -598,8 +624,21 @@ class FileType(TweakModule):
         model, rows = widget.get_selected_rows()
         if len(rows) > 0:
             self.edit_button.set_sensitive(True)
+            self.reset_button.set_sensitive(True)
         else:
             self.edit_button.set_sensitive(False)
+            self.reset_button.set_sensitive(False)
+
+    def on_reset_clicked(self, widget):
+        model, rows = self.type_selection.get_selected_rows()
+        if len(rows) > 0:
+            types = []
+            for path in rows:
+                mime_type = model[model.get_iter(path)][TypeView.TYPE_MIME]
+                Gio.AppInfo.reset_type_associations(mime_type)
+                types.append(mime_type)
+
+            self.on_mime_type_update(None, types)
 
     def on_edit_clicked(self, widget):
         model, rows = self.type_selection.get_selected_rows()

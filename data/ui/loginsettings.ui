@@ -85,37 +85,87 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <child>
-                  <object class="GtkHBox" id="hbox2">
+                  <object class="GtkVBox" id="vbox2">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="spacing">6</property>
                     <child>
-                      <placeholder/>
+                      <object class="GtkHBox" id="hbox2">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <child>
+                          <placeholder/>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="background_button">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">True</property>
+                            <property name="use_action_appearance">False</property>
+                            <signal name="clicked" handler="on_background_button_clicked" swapped="no"/>
+                            <child>
+                              <object class="GtkImage" id="background_image">
+                                <property name="width_request">160</property>
+                                <property name="height_request">120</property>
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="stock">gtk-missing-image</property>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">True</property>
+                            <property name="fill">False</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <placeholder/>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
                     </child>
                     <child>
-                      <object class="GtkButton" id="background_button">
+                      <object class="GtkAlignment" id="alignment1">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">True</property>
-                        <property name="use_action_appearance">False</property>
-                        <signal name="clicked" handler="on_background_button_clicked" swapped="no"/>
+                        <property name="can_focus">False</property>
                         <child>
-                          <object class="GtkImage" id="background_image">
-                            <property name="width_request">160</property>
-                            <property name="height_request">120</property>
+                          <object class="GtkHBox" id="hbox3">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="stock">gtk-missing-image</property>
+                            <child>
+                              <placeholder/>
+                            </child>
+                            <child>
+                              <object class="GtkButton" id="same_background_button">
+                                <property name="label" translatable="yes">Set the same background as the current desktop background</property>
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="receives_default">True</property>
+                                <property name="use_action_appearance">False</property>
+                                <signal name="clicked" handler="on_same_background_button_clicked" swapped="no"/>
+                              </object>
+                              <packing>
+                                <property name="expand">True</property>
+                                <property name="fill">False</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <placeholder/>
+                            </child>
                           </object>
                         </child>
                       </object>
                       <packing>
                         <property name="expand">True</property>
-                        <property name="fill">False</property>
+                        <property name="fill">True</property>
                         <property name="position">1</property>
                       </packing>
-                    </child>
-                    <child>
-                      <placeholder/>
                     </child>
                   </object>
                 </child>
