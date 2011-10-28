@@ -390,7 +390,7 @@ class UbuntuTweakWindow(GuiBuilder):
             self.set_current_module(module, index)
         else:
             self.notebook.set_current_page(self.feature_dict['wait'])
-            self.load_module(name)
+            GObject.timeout_add(5, self.load_module, name)
 
     def set_current_module(self, module=None, index=None):
         if index:
