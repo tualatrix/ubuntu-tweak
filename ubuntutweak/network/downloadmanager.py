@@ -2,6 +2,7 @@
 # coding: utf-8
 
 import os
+import logging
 import urllib
 import thread
 import socket
@@ -12,6 +13,7 @@ from gi.repository import GObject
 from ubuntutweak.gui.dialogs import BusyDialog
 from ubuntutweak.common import consts
 
+log = logging.getLogger('downloadmanager')
 socket.setdefaulttimeout(60)
 
 class Downloader(GObject.GObject):
@@ -133,6 +135,7 @@ class DownloadDialog(BusyDialog):
         self.url = url
 
     def on_downloading(self, widget, percentage):
+        log.debug("Downloading: %s" % percentage)
         if self.time_count != -1:
             self.time_count = -1
 
@@ -141,12 +144,14 @@ class DownloadDialog(BusyDialog):
             self.progress_bar.set_fraction(percentage)
 
     def on_downloaded(self, widget):
+        log.debug("Downloaded")
         self.progress_bar.set_text(_('Downloaded!'))
         self.progress_bar.set_fraction(1)
         self.response(Gtk.ResponseType.DELETE_EVENT)
         self.downloaded = True
 
     def on_error_happen(self, widget):
+        log.debug("Error happened")
         self.progress_bar.set_text(_('Error happened!'))
         self.progress_bar.set_fraction(1)
         self.response(Gtk.ResponseType.DELETE_EVENT)

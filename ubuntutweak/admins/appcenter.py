@@ -27,24 +27,24 @@ from gi.repository import GObject
 from gi.repository import Pango
 from xdg.DesktopEntry import DesktopEntry
 
-from ubuntutweak.common.consts import CONFIG_ROOT
+from ubuntutweak.common import consts
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.gui.dialogs import ErrorDialog, InfoDialog, QuestionDialog
 from ubuntutweak.gui.dialogs import ProcessDialog
 from ubuntutweak.utils.parser import Parser
 from ubuntutweak.network import utdata
 from ubuntutweak.network.downloadmanager import DownloadDialog
-from ubuntutweak.settings.gconfsettings import GconfSetting
+from ubuntutweak.settings.gsettings import GSetting
 from ubuntutweak.utils import set_label_for_stock_button, icon
 from ubuntutweak.utils.package import AptWorker
 from ubuntutweak.janitor import JanitorPlugin
 
 log = logging.getLogger("AppCenter")
 
-APPCENTER_ROOT = os.path.join(CONFIG_ROOT, 'appcenter')
+APPCENTER_ROOT = os.path.join(consts.CONFIG_ROOT, 'appcenter')
 APP_VERSION_URL = utdata.get_version_url('/appcenter_version/')
-UPDATE_SETTING = GconfSetting(key='/apps/ubuntu-tweak/appcenter_update', type=bool)
-VERSION_SETTING = GconfSetting(key='/apps/ubuntu-tweak/appcenter_version', type=str)
+UPDATE_SETTING = GSetting(key='com.ubuntu-tweak.tweak.appcenter-has-update', type=bool)
+VERSION_SETTING = GSetting(key='com.ubuntu-tweak.tweak.appcenter-version', type=str)
 
 def get_app_data_url():
     return utdata.get_download_url('/static/utdata/appcenter-%s.tar.gz' %
@@ -84,7 +84,7 @@ class PackageInfo:
 
 class StatusProvider(object):
     def __init__(self, name):
-        self._path = os.path.join(CONFIG_ROOT, name)
+        self._path = os.path.join(consts.CONFIG_ROOT, name)
         self._is_init = False
 
         try:
@@ -421,7 +421,7 @@ class AppView(Gtk.TreeView):
                 appname = package.get_name()
                 desc = app_parser.get_summary(pkgname)
             except Exception, e:
-                log.error(e)
+                log.warning(e)
                 # Confirm the invalid package isn't in the count
                 # But in the future, Ubuntu Tweak should display the invalid package too
                 if self.__status and not self.__status.get_read_status(pkgname):
@@ -609,7 +609,7 @@ class AppCenter(TweakModule):
         self.show_all()
 
         UPDATE_SETTING.set_value(False)
-#        UPDATE_SETTING.connect_notify(self.on_have_update, data=None)
+        UPDATE_SETTING.connect_notify(self.on_have_update, data=None)
 
         thread.start_new_thread(self.check_update, ())
         GObject.timeout_add(60000, self.update_timestamp)
@@ -620,9 +620,9 @@ class AppCenter(TweakModule):
         self.time_label.set_text(_('Last synced:') + ' ' + utdata.get_last_synced(APPCENTER_ROOT))
         return True
 
-    def on_have_update(self, client, id, entry, data):
+    def on_have_update(self, *args):
         log.debug("on_have_update")
-        if entry.get_value().get_bool():
+        if UPDATE_SETTING.get_value():
             dialog = QuestionDialog(_('New application data available, would you like to update?'))
             response = dialog.run()
             dialog.destroy()
@@ -720,11 +720,12 @@ class AppCenter(TweakModule):
             InfoDialog(_("No update available.")).launch()
 
     def on_app_data_downloaded(self, widget):
+        log.debug("on_app_data_downloaded")
         path = widget.get_downloaded_file()
         tarfile = utdata.create_tarfile(path)
 
         if tarfile.is_valid():
-            tarfile.extract(CONFIG_ROOT)
+            tarfile.extract(consts.CONFIG_ROOT)
             self.update_app_data()
             utdata.save_synced_timestamp(APPCENTER_ROOT)
             self.update_timestamp()

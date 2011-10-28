@@ -26,7 +26,6 @@ import thread
 import apt_pkg
 import logging
 import gettext
-import webbrowser
 import subprocess
 
 from gettext import ngettext
@@ -48,7 +47,7 @@ from ubuntutweak.gui.dialogs import QuestionDialog, ErrorDialog, InfoDialog, War
 from ubuntutweak.gui.dialogs import ServerErrorDialog
 from ubuntutweak.utils.parser import Parser
 from ubuntutweak.network import utdata
-from ubuntutweak.settings.gconfsettings import GconfSetting
+from ubuntutweak.settings.gsettings import GSetting
 from ubuntutweak.utils import set_label_for_stock_button
 from ubuntutweak.utils import ppa
 from ubuntutweak.utils.package import AptWorker
@@ -61,10 +60,10 @@ log = logging.getLogger("SourceCenter")
 APP_PARSER = AppParser()
 PPA_MIRROR = []
 UNCONVERT = False
-WARNING_KEY = '/apps/ubuntu-tweak/disable_thirdparty_warning'
-CONFIG = GconfSetting(key=WARNING_KEY)
-UPDATE_SETTING = GconfSetting(key='/apps/ubuntu-tweak/sourcecenter_update', type=bool)
-VERSION_SETTING = GconfSetting(key='/apps/ubuntu-tweak/sourcecenter_version', type=str)
+WARNING_KEY = 'com.ubuntu-tweak.apps.disable-warning'
+CONFIG = GSetting(key=WARNING_KEY)
+UPDATE_SETTING = GSetting(key='com.ubuntu-tweak.apps.sources-can-update', type=bool)
+VERSION_SETTING = GSetting(key='com.ubuntu-tweak.apps.sources-version', type=str)
 
 SOURCE_ROOT = os.path.join(consts.CONFIG_ROOT, 'sourcecenter')
 SOURCE_VERSION_URL = utdata.get_version_url('/sourcecenter_version/')
@@ -786,50 +785,6 @@ class SourcesView(Gtk.TreeView):
             notify.set_hint_string ("x-canonical-append", "")
             notify.show()
 
-class SourceDetail(Gtk.VBox):
-    def __init__(self):
-        GObject.GObject.__init__(self)
-
-        self.table = Gtk.Table(2, 2)
-        self.pack_start(self.table, True, True, 0)
-
-        items = [_('Homepage'), _('Source URL'), _('Description')]
-        for i, text in enumerate(items):
-            label = Gtk.Label()
-            label.set_markup('<b>%s</b>' % text)
-
-            self.table.attach(label, 0, 1,
-                              i, i + 1,
-                              xoptions=Gtk.AttachOptions.FILL, xpadding=10, ypadding=5)
-
-        self.homepage_button = Gtk.LinkButton('http://ubuntu-tweak.com')
-        self.table.attach(self.homepage_button, 1, 2, 0, 1)
-        self.url_button = Gtk.LinkButton('http://ubuntu-tweak.com')
-        self.table.attach(self.url_button, 1, 2, 1, 2)
-        self.description = Gtk.Label(label=_('Description is here'))
-        self.description.set_line_wrap(True)
-        self.table.attach(self.description, 1, 2, 2, 3)
-
-    def click_website(self, widget, link):
-        webbrowser.open(link)
-
-    def set_details(self, homepage = None, url = None, description = None):
-        if homepage:
-            self.homepage_button.destroy()
-            self.homepage_button = Gtk.LinkButton(homepage, homepage)
-            self.homepage_button.show()
-            self.table.attach(self.homepage_button, 1, 2, 0, 1)
-
-        if url:
-            if ppa.is_ppa(url):
-                url = ppa.get_homepage(url)
-            self.url_button.destroy()
-            self.url_button = Gtk.LinkButton(url, url)
-            self.url_button.show()
-            self.table.attach(self.url_button, 1, 2, 1, 2)
-
-        if description:
-            self.description.set_text(description)
 
 class SourceCenter(TweakModule):
     __title__  = _('Source Center')
@@ -864,19 +819,13 @@ class SourceCenter(TweakModule):
         self.cate_selection.connect('changed', self.on_category_changed)
         self.left_sw.add(self.cateview)
 
-        self.expander = Gtk.Expander(label=_('Details'))
-        self.vbox1.pack_start(self.expander, False, False, 0)
-        self.sourcedetail = SourceDetail()
-        self.expander.set_sensitive(False)
-        self.expander.add(self.sourcedetail)
-
         un_lock = PolkitButton(PK_ACTION_SOURCE)
         un_lock.connect('authenticated', self.on_polkit_action)
         self.hbuttonbox1.pack_end(un_lock, False, False, 0)
 
         self.update_timestamp()
         UPDATE_SETTING.set_value(False)
-#        UPDATE_SETTING.connect_notify(self.on_have_update, data=None)
+        UPDATE_SETTING.connect_notify(self.on_have_update, data=None)
 
         log.debug('Start check update')
         thread.start_new_thread(self.check_update, ())
@@ -929,19 +878,18 @@ class SourceCenter(TweakModule):
             self.emit('call', 'ubuntutweak.modules.sourceeditor', 'update_source_combo', {})
             self.update_thirdparty()
 
-    def on_have_update(self, client, id, entry, data):
-        if entry.get_value().get_bool():
-            if self.check_update():
-                dialog = QuestionDialog(_('New source data available, would you like to update?'))
-                response = dialog.run()
-                dialog.destroy()
+    def on_have_update(self, *args):
+        if UPDATE_SETTING.get_value():
+            dialog = QuestionDialog(_('New source data available, would you like to update?'))
+            response = dialog.run()
+            dialog.destroy()
 
-                if response == Gtk.ResponseType.YES:
-                    dialog = FetchingDialog(get_source_data_url(),
-                                            self.get_toplevel())
-                    dialog.connect('destroy', self.on_source_data_downloaded)
-                    dialog.run()
-                    dialog.destroy()
+            if response == Gtk.ResponseType.YES:
+                dialog = FetchingDialog(get_source_data_url(),
+                                        self.get_toplevel())
+                dialog.connect('destroy', self.on_source_data_downloaded)
+                dialog.run()
+                dialog.destroy()
 
     def check_update(self):
         try:
@@ -981,7 +929,25 @@ class SourceCenter(TweakModule):
         url = model.get_value(iter, self.sourceview.COLUMN_URL)
         description = model.get_value(iter, self.sourceview.COLUMN_COMMENT)
 
-        self.sourcedetail.set_details(home, url, description)
+        self.set_details(home, url, description)
+
+    def set_details(self, homepage=None, url=None, description=None):
+        self.homepage_button.set_label(homepage or 'http://ubuntu-tweak.com')
+        self.homepage_button.set_uri(homepage or 'http://ubuntu-tweak.com')
+
+        if url:
+            if ppa.is_ppa(url):
+                url = ppa.get_homepage(url)
+            self.url_button.destroy()
+            self.url_button = Gtk.LinkButton(url, url)
+            self.url_button.show()
+        else:
+            url = 'http://ubuntu-tweak.com'
+
+        self.url_button.set_label(homepage or 'http://ubuntu-tweak.com')
+        self.url_button.set_uri(homepage or 'http://ubuntu-tweak.com')
+
+        self.description_label.set_text(description or _('Description is here'))
 
     def on_polkit_action(self, widget):
         self.sync_button.set_sensitive(True)
@@ -998,7 +964,7 @@ class SourceCenter(TweakModule):
                                        buttons=Gtk.ButtonsType.OK)
                 checkbutton = CheckButton(_('Never show this dialog'),
                                           key=WARNING_KEY,
-                                          backend='gconf')
+                                          backend='gsettings')
                 dialog.add_option_button(checkbutton)
 
                 dialog.run()
