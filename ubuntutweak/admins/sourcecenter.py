@@ -31,7 +31,7 @@ import subprocess
 from gettext import ngettext
 from aptsources.sourceslist import SourcesList
 
-from gi.repository import Gtk, GdkPixbuf
+from gi.repository import Gtk, Gdk, GdkPixbuf
 from gi.repository import Pango
 from gi.repository import GObject
 from gi.repository import Notify
@@ -45,6 +45,7 @@ from ubuntutweak.policykit.dbusproxy import proxy
 from ubuntutweak.gui.widgets import CheckButton
 from ubuntutweak.gui.dialogs import QuestionDialog, ErrorDialog, InfoDialog, WarningDialog
 from ubuntutweak.gui.dialogs import ServerErrorDialog
+from ubuntutweak.gui.gtk import post_ui 
 from ubuntutweak.utils.parser import Parser
 from ubuntutweak.network import utdata
 from ubuntutweak.settings.gsettings import GSetting
@@ -879,6 +880,7 @@ class SourceCenter(TweakModule):
             self.emit('call', 'ubuntutweak.modules.sourceeditor', 'update_source_combo', {})
             self.update_thirdparty()
 
+    @post_ui
     def on_have_update(self, *args):
         if UPDATE_SETTING.get_value():
             dialog = QuestionDialog(_('New source data available, would you like to update?'))
@@ -950,6 +952,7 @@ class SourceCenter(TweakModule):
 
         self.description_label.set_text(description or _('Description is here'))
 
+    @post_ui
     def on_polkit_action(self, widget):
         self.sync_button.set_sensitive(True)
 

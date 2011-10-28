@@ -31,6 +31,7 @@ from ubuntutweak.common import consts
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.gui.dialogs import ErrorDialog, InfoDialog, QuestionDialog
 from ubuntutweak.gui.dialogs import ProcessDialog
+from ubuntutweak.gui.gtk import post_ui
 from ubuntutweak.utils.parser import Parser
 from ubuntutweak.network import utdata
 from ubuntutweak.network.downloadmanager import DownloadDialog
@@ -617,6 +618,7 @@ class AppCenter(TweakModule):
         self.time_label.set_text(_('Last synced:') + ' ' + utdata.get_last_synced(APPCENTER_ROOT))
         return True
 
+    @post_ui
     def on_have_update(self, *args):
         log.debug("on_have_update")
         if UPDATE_SETTING.get_value():

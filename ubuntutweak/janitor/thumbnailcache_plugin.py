@@ -7,6 +7,7 @@ from gi.repository import GObject, Gtk
 from ubuntutweak.janitor import JanitorPlugin, CruftObject
 from ubuntutweak.utils import icon, filesizeformat
 from ubuntutweak.gui.dialogs import ProcessDialog
+from ubuntutweak.gui.gtk import post_ui
 
 
 class ThumbnailObject(CruftObject):
@@ -43,6 +44,7 @@ class CleanThumbnailDailog(ProcessDialog):
         GObject.timeout_add(100, self.process_data)
         return super(CleanThumbnailDailog, self).run()
 
+    @post_ui
     def process_data(self):
         length = len(self.cruft_list)
 

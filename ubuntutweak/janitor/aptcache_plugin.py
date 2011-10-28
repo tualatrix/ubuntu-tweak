@@ -1,11 +1,12 @@
 import os
 import glob
 
-from gi.repository import GObject, Gtk
+from gi.repository import GObject, Gtk, Gdk
 
 from ubuntutweak.janitor import JanitorPlugin, CruftObject
 from ubuntutweak.utils import icon, filesizeformat
 from ubuntutweak.gui.dialogs import ProcessDialog, ErrorDialog, InfoDialog
+from ubuntutweak.gui.gtk import post_ui
 from ubuntutweak.policykit.dbusproxy import proxy
 
 from defer import inline_callbacks, return_value
@@ -36,6 +37,7 @@ class CleanCacheDailog(ProcessDialog):
         GObject.timeout_add(100, self.process_data)
         return super(ProcessDialog, self).run()
 
+    @post_ui
     def process_data(self):
         length = len(self.cruft_list)
 

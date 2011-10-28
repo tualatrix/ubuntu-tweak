@@ -7,6 +7,7 @@ from collections import OrderedDict
 from gi.repository import GObject, Gtk, Gdk, Pango
 
 from ubuntutweak.gui import GuiBuilder
+from ubuntutweak.gui.gtk import post_ui
 from ubuntutweak.utils import icon, filesizeformat
 from ubuntutweak.modules import ModuleLoader
 from ubuntutweak.settings import GSetting
@@ -426,8 +427,8 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
 
         return not finished
 
+    @post_ui
     def on_find_object(self, plugin, cruft, result_iter):
-        Gdk.threads_enter()
         while Gtk.events_pending():
             Gtk.main_iteration()
 
@@ -440,11 +441,9 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
                                                cruft))
 
         self.result_view.expand_row(self.result_model.get_path(result_iter), True)
-        Gdk.threads_leave()
 
+    @post_ui
     def on_scan_finished(self, plugin, result, count, size, result_iter):
-        Gdk.threads_enter()
-
         plugin.disconnect(self._find_handler)
         plugin.disconnect(self._scan_handler)
         plugin.set_data('scan_finished', True)
@@ -463,17 +462,12 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
                     else:
                         child_row[self.JANITOR_DISPLAY] = "%s (%d)" % (plugin.get_title(), count)
 
-        Gdk.threads_leave()
-
+    @post_ui
     def on_scan_error(self, plugin, error, plugin_iter):
-        Gdk.threads_enter()
-
         #TODO deal with the error
         self.janitor_model[plugin_iter][self.JANITOR_ICON] = icon.get_from_name('error', size=16)
         plugin.set_data('scan_finished', True)
         self.scan_tasks = []
-
-        Gdk.threads_leave()
 
     def on_clean_button_clicked(self, widget):
         self.plugin_to_run = 0
