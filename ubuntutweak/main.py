@@ -267,7 +267,7 @@ class UbuntuTweakApp(Unique.App):
             if message.get_text():
                 self._window.select_target_feature(message.get_text())
         elif command == Unique.Command.OPEN:
-            self._window.load_module(message.get_text())
+            self._window.do_load_module(message.get_text())
 
         return False
 
@@ -308,13 +308,13 @@ class UbuntuTweakWindow(GuiBuilder):
         self.mainwindow.connect('realize', self._initialize_ui_states)
         tweaks_page.connect('module_selected', self.on_module_selected)
         admins_page.connect('module_selected', self.on_module_selected)
-        clip_page.connect('load_module', lambda widget, name: self.load_module(name))
+        clip_page.connect('load_module', lambda widget, name: self.do_load_module(name))
         clip_page.connect('load_feature', lambda widget, name: self.select_target_feature(name))
         self.mainwindow.show()
         self.link_button.hide()
 
         if module:
-            self.load_module(module)
+            self.do_load_module(module)
         elif feature:
             self.select_target_feature(feature)
 
@@ -389,8 +389,11 @@ class UbuntuTweakWindow(GuiBuilder):
             self._save_loaded_info(name, module, index)
             self.set_current_module(module, index)
         else:
-            self.notebook.set_current_page(self.feature_dict['wait'])
-            GObject.timeout_add(5, self.load_module, name)
+            self.do_load_module(name)
+
+    def do_load_module(self, name):
+        self.notebook.set_current_page(self.feature_dict['wait'])
+        GObject.timeout_add(5, self._load_module, name)
 
     def set_current_module(self, module=None, index=None):
         if index:
@@ -423,7 +426,7 @@ class UbuntuTweakWindow(GuiBuilder):
         self.modules_index[index] = module
         self.navigation_dict[self.current_feature] = name, None
 
-    def load_module(self, name):
+    def _load_module(self, name):
         feature, module = ModuleLoader.search_module_for_name(name)
 
         if module:
