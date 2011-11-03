@@ -30,6 +30,7 @@ from xdg.DesktopEntry import DesktopEntry
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.utils import icon
 from ubuntutweak.gui import GuiBuilder
+from ubuntutweak.gui.gtk import post_ui
 from ubuntutweak.gui.dialogs import ErrorDialog
 
 log = logging.getLogger('FileType')
@@ -153,6 +154,7 @@ class TypeView(Gtk.TreeView):
 
         self.append_column(column)
 
+    @post_ui
     def update_model(self, filter=False, all=False):
         self.model.clear()
 
