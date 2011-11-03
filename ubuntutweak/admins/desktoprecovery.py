@@ -29,6 +29,7 @@ from ubuntutweak.modules import TweakModule
 from ubuntutweak.utils import icon
 from ubuntutweak.gui.dialogs import InfoDialog, QuestionDialog, ErrorDialog
 from ubuntutweak.gui.dialogs import ProcessDialog
+from ubuntutweak.gui.gtk import post_ui
 from ubuntutweak.common.consts import CONFIG_ROOT
 
 log = logging.getLogger('DesktopRecovery')
@@ -219,6 +220,7 @@ class BackupProgressDialog(ProcessDialog):
         GObject.timeout_add(100, self.process_data)
         return super(ProcessDialog, self).run()
 
+    @post_ui
     def process_data(self):
         directory = self.directory
         name = self.file_name
