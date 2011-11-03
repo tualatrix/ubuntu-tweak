@@ -28,20 +28,6 @@
 			  The third-party admins extension
 			</description>
 		</key>
-		<key name="janitor" type="as">
-			<default>[]</default>
-			<summary>The janitor extension</summary>
-			<description>
-			  The third-party janitor extension
-			</description>
-		</key>
-		<key name="auto-scan" type="b">
-			<default>false</default>
-			<summary>Auto Scan</summary>
-			<description>
-			  Auto Scan the cruft when use select the items
-			</description>
-		</key>
 		<key name="auto-backup" type="b">
 			<default>true</default>
 			<summary>Auto Backup for every sources.list changes</summary>
@@ -112,6 +98,29 @@
 			<summary>The version of online sources data</summary>
 			<description>
               The version of online sources data
+			</description>
+		</key>
+	</schema>
+	<schema id="com.ubuntu-tweak.janitor" path="/apps/ubuntu-tweak/janitor/" gettext-domain="ubuntu-tweak">
+		<key name="plugins" type="as">
+			<default>[]</default>
+			<summary>The janitor extension</summary>
+			<description>
+			  The third-party janitor extension
+			</description>
+		</key>
+		<key name="auto-scan" type="b">
+			<default>true</default>
+			<summary>Auto Scan</summary>
+			<description>
+			  Auto Scan the cruft when use select the items
+			</description>
+		</key>
+		<key name="janitor-view-width" type="i">
+			<default>0</default>
+			<summary>Janitor View Width</summary>
+			<description>
+			  Janitor View Width
 			</description>
 		</key>
 	</schema>

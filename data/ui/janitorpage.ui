@@ -42,10 +42,10 @@
     <property name="can_focus">False</property>
     <property name="spacing">6</property>
     <child>
-      <object class="GtkHBox" id="hbox1">
+      <object class="GtkHPaned" id="hpaned1">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="spacing">12</property>
+        <property name="can_focus">True</property>
+        <signal name="check-resize" handler="on_move_handle" swapped="no"/>
         <child>
           <object class="GtkScrolledWindow" id="scrolledwindow3">
             <property name="visible">True</property>
@@ -69,9 +69,8 @@
             </child>
           </object>
           <packing>
-            <property name="expand">False</property>
-            <property name="fill">False</property>
-            <property name="position">0</property>
+            <property name="resize">False</property>
+            <property name="shrink">True</property>
           </packing>
         </child>
         <child>
@@ -85,7 +84,6 @@
                 <property name="can_focus">True</property>
                 <property name="model">result_model</property>
                 <property name="headers_visible">False</property>
-                <property name="headers_clickable">False</property>
                 <property name="rules_hint">True</property>
                 <property name="search_column">2</property>
                 <child internal-child="selection">
@@ -95,9 +93,8 @@
             </child>
           </object>
           <packing>
-            <property name="expand">True</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
+            <property name="resize">True</property>
+            <property name="shrink">True</property>
           </packing>
         </child>
       </object>

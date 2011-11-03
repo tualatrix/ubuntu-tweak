@@ -141,15 +141,20 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         self.set_border_width(6)
         GuiBuilder.__init__(self, 'janitorpage.ui')
 
-        self.autoscan_setting = GSetting('com.ubuntu-tweak.tweak.auto-scan')
-        self.janitor_setting = GSetting('com.ubuntu-tweak.tweak.janitor')
+        self.autoscan_setting = GSetting('com.ubuntu-tweak.janitor.auto-scan')
+        self.plugins_setting = GSetting('com.ubuntu-tweak.janitor.plugins')
+        self.view_width_setting = GSetting('com.ubuntu-tweak.janitor.janitor-view-width')
 
         self.pack_start(self.vbox1, True, True, 0)
 
         self.connect('realize', self.setup_ui_tasks)
         self.janitor_view.get_selection().connect('changed', self.on_janitor_selection_changed)
-        self.janitor_setting.connect_notify(self.update_model, True)
+        self.plugins_setting.connect_notify(self.update_model, True)
         self.show()
+
+    def on_move_handle(self, widget, gproperty):
+        log.debug("on_move_handle: %d", widget.get_property('position'))
+        self.view_width_setting.set_value(widget.get_property('position'))
 
     def is_auto_scan(self):
         return self.autoscan_button.get_active()
@@ -226,9 +231,17 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
 
         self._expand_janitor_view()
 
+        self.hpaned1.connect('notify::position', self.on_move_handle)
+
     def _expand_janitor_view(self):
         self.janitor_view.expand_all()
-        if self.max_janitor_view_width:
+
+        left_view_width = self.view_width_setting.get_value()
+
+        if left_view_width:
+            log.debug("left_view_width is: %d", left_view_width)
+            self.janitor_view.set_size_request(left_view_width, -1)
+        elif self.max_janitor_view_width:
             self.janitor_view.set_size_request(self.max_janitor_view_width, -1)
 
     def set_busy(self):
@@ -535,7 +548,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         size_list = []
 
         loader = ModuleLoader('janitor')
-        plugin_to_load = self.janitor_setting.get_value()
+        plugin_to_load = self.plugins_setting.get_value()
 
         system_text = _('System')
         iter = self.janitor_model.append(None, (None,

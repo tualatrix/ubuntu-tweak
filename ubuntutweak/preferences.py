@@ -58,7 +58,7 @@ class PreferencesDialog(GuiBuilder):
         self.clips_setting = GSetting('com.ubuntu-tweak.tweak.clips')
         self.tweaks_setting = GSetting('com.ubuntu-tweak.tweak.tweaks')
         self.admins_setting = GSetting('com.ubuntu-tweak.tweak.admins')
-        self.janitor_setting = GSetting('com.ubuntu-tweak.tweak.janitor')
+        self.janitor_setting = GSetting('com.ubuntu-tweak.janitor.plugins')
         self.clips_location_setting = GSetting('com.ubuntu-tweak.tweak.last-clip-location')
 
     def on_clip_toggle_render_toggled(self, cell, path):
