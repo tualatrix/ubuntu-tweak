@@ -24,13 +24,12 @@ import logging
 
 from gettext import ngettext
 
-from gi.repository import GObject, Gio, GLib, Gtk, Gdk, Pango, GdkPixbuf
+from gi.repository import GObject, Gio, GLib, Gtk, Pango, GdkPixbuf
 from xdg.DesktopEntry import DesktopEntry
 
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.utils import icon
 from ubuntutweak.gui import GuiBuilder
-from ubuntutweak.gui.gtk import post_ui
 from ubuntutweak.gui.dialogs import ErrorDialog
 
 log = logging.getLogger('FileType')
@@ -154,22 +153,18 @@ class TypeView(Gtk.TreeView):
 
         self.append_column(column)
 
-    @post_ui
     def update_model(self, filter=False, all=False):
         self.model.clear()
-
-        mainwindow = self.get_parent_window()
-
-        if mainwindow:
-            mainwindow.set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
-        while Gtk.events_pending ():
-            Gtk.main_iteration ()
 
         theme = Gtk.IconTheme.get_default()
 
         for mime_type in Gio.content_types_get_registered():
             if filter and filter != mime_type.split('/')[0]:
                 continue
+
+#           TODO why enabling this will make ui freeze even I try to add @post_ui
+#            while Gtk.events_pending ():
+#                Gtk.main_iteration ()
 
             pixbuf = icon.get_from_mime_type(mime_type)
             description = Gio.content_type_get_description(mime_type)
@@ -185,9 +180,6 @@ class TypeView(Gtk.TreeView):
                 continue
 
             self.model.append((mime_type, pixbuf, description, applogo, appname))
-
-        if mainwindow:
-            mainwindow.set_cursor(None)
 
     def update_for_type(self, type):
         self.model.foreach(self.do_update_for_type, type)
