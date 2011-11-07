@@ -1,9 +1,0 @@
-#!/usr/bin/make -f
-%:
-	dh --with python-central $@
-
-override_dh_auto_clean:
-	rm -rf $(CURDIR)/debian/python-module-stampdir
-	rm -rf $(CURDIR)/debian/stamp-patched
-	rm -rf $(CURDIR)/build
-	rm -rf $(CURDIR)/dist
