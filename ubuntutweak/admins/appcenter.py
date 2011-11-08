@@ -684,9 +684,10 @@ class AppCenter(TweakModule):
                     worker = AptWorker(self.get_toplevel(), self.on_package_work_finished, (to_add, to_rm))
                 worker.install_packages(to_add)
             elif to_rm:
-                on_clean_finished(None, None, to_rm)
+                on_clean_finished(None, None, (to_add, to_rm))
 
     def on_package_work_finished(self, transaction, status, add_and_rm):
+        log.debug('on_package_work_finished: %s' % status)
         to_add, to_rm = add_and_rm
 
         AptWorker.update_apt_cache(init=True)
@@ -697,6 +698,7 @@ class AppCenter(TweakModule):
         self.appview.to_rm = []
         self.appview.clear_model()
         self.appview.update_model()
+        self.apply_button.set_sensitive(False)
 
     def on_sync_button_clicked(self, widget):
         dialog = CheckUpdateDialog(widget.get_toplevel(), self.url)
