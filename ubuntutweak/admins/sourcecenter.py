@@ -934,21 +934,17 @@ class SourceCenter(TweakModule):
 
         self.set_details(home, url, description)
 
-    def set_details(self, homepage=None, url=None, description=None):
-        self.homepage_button.set_label(homepage or 'http://ubuntu-tweak.com')
-        self.homepage_button.set_uri(homepage or 'http://ubuntu-tweak.com')
+    def set_details(self,
+                    homepage='http://ubuntu-tweak.com',
+                    url='http://ubuntu-tweak.com',
+                    description=None):
+        self.homepage_button.set_label(homepage)
+        self.homepage_button.set_uri(homepage)
 
-        if url:
-            if ppa.is_ppa(url):
-                url = ppa.get_homepage(url)
-            self.url_button.destroy()
-            self.url_button = Gtk.LinkButton(url, url)
-            self.url_button.show()
-        else:
-            url = 'http://ubuntu-tweak.com'
-
-        self.url_button.set_label(homepage or 'http://ubuntu-tweak.com')
-        self.url_button.set_uri(homepage or 'http://ubuntu-tweak.com')
+        if ppa.is_ppa(url):
+            url = ppa.get_homepage(url)
+        self.url_button.set_label(url)
+        self.url_button.set_uri(url)
 
         self.description_label.set_text(description or _('Description is here'))
 
