@@ -84,9 +84,9 @@ def run_traceback(level, textview_only=False, text_only=False):
     textview.add_child_at_anchor(button, anchor)
 
     error_text = "\nDistribution: %s\nApplication: %s\nDesktop:%s\n\n%s" % (system.DISTRO,
-                                                                            system.APP,
-                                                                            system.DESKTOP,
-                                                                            output.getvalue())
+                                       system.APP,
+                                       system.DESKTOP,
+                                       output.getvalue())
 
     buffer.insert(iter, error_text)
     button.connect('clicked', on_copy_button_clicked, error_text)

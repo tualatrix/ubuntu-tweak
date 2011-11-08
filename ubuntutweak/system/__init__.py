@@ -1,7 +1,7 @@
 import os
 import platform
 
-from ubuntutweak.common.consts import APP, VERSION
+from ubuntutweak.common.consts import APP, PKG_VERSION
 
 def get_distro():
     '''It should be "Ubuntu 10.10 maverick"'''
@@ -51,7 +51,7 @@ def get_desktop_fullname():
 
 def get_app():
     '''Ubuntu Tweak 0.5.x'''
-    return " ".join([APP, VERSION])
+    return " ".join([APP, PKG_VERSION])
 
 DISTRO = get_distro()
 CODENAME = get_codename()
