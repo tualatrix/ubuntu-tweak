@@ -58,10 +58,14 @@ CODENAME = get_codename()
 DESKTOP = get_desktop()
 DESKTOP_FULLNAME = get_desktop_fullname()
 APP = get_app()
-UBUNTU_CODENAMES = ('dapper', 'edgy', 'feisty', 'gutsy', 'hardy', 'intrepid', 'jaunty', 'karmic', 'lucid', 'maverick', 'natty')
+UBUNTU_CODENAMES = ('dapper', 'edgy', 'feisty',
+                    'gutsy', 'hardy', 'intrepid',
+                    'jaunty', 'karmic', 'lucid',
+                    'maverick', 'natty', 'oneiric',
+                    'precise')
 
 def is_supported(codename=CODENAME):
-    return codename in ('karmic', 'lucid', 'maverick', 'natty')
+    return codename in ('oneiric', 'precise')
 
 
 if __name__ == '__main__':
