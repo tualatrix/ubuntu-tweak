@@ -20,12 +20,14 @@ import os
 import logging
 
 import compizconfig
-from gi.repository import GObject, Gtk, GConf, GdkPixbuf
+from gi.repository import GObject, Gtk, GdkPixbuf
 
 from ubuntutweak.modules import TweakModule
 from ubuntutweak.tweaks import ccm
 from ubuntutweak.common.consts import DATA_DIR
+from ubuntutweak.gui.treeviews import get_local_path
 from ubuntutweak.gui.containers import ListPack, SinglePack
+from ubuntutweak.settings.gsettings import GSetting
 
 log = logging.getLogger('compiz')
 
@@ -426,8 +428,7 @@ class Compiz(TweakModule):
         self.BottomLeft = EdgeComboBox("BottomLeft")
         vbox.pack_end(self.BottomLeft, False, False, 0)
 
-        client = GConf.Client.get_default()
-        wallpaper = client.get_string("/desktop/gnome/background/picture_filename")
+        wallpaper = get_local_path(GSetting('org.gnome.desktop.background.picture-uri').get_value())
 
         system_wallpaper = os.path.join(DATA_DIR, "pixmaps/splash.png")
         if wallpaper:
@@ -451,5 +452,4 @@ class Compiz(TweakModule):
 
         for edge in ('TopLeft', 'TopRight', 'BottomLeft', 'BottomRight'):
             getattr(self, edge).connect('edge_changed', self.on_edge_changed)
-
         return hbox
