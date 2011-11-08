@@ -228,32 +228,6 @@ class SnapWindow(Gtk.CheckButton):
             self.plugin.set_enabled(False)
 
 
-class UnityLauncherAutoHide(Gtk.CheckButton):
-    def __init__(self, label):
-        GObject.GObject.__init__(self, label=label)
-
-        try:
-            self.plugin = CompizPlugin('unityshell')
-        except KeyError, e:
-            log.error(e)
-            self.set_sensitive(False)
-        else:
-            self.autohide_setting = CompizSetting(self.plugin, 'launcher_hide_mode')
-            if self.autohide_setting.get_value()!=0:
-              self.set_active(True)
-            else:
-              self.set_active(False)
-
-            self.connect("toggled", self.on_button_toggled)
-
-    def on_button_toggled(self, widget):
-        if self.get_active():
-            if self.plugin.resolve_conflict():
-                self.autohide_setting.set_value(True)
-        else:
-            self.autohide_setting.set_value(False)
-
-
 class ViewpointSwitcher(Gtk.CheckButton):
     def __init__(self, label):
         GObject.GObject.__init__(self, label=label)
@@ -389,11 +363,8 @@ class EdgeComboBox(Gtk.ComboBox):
 class Compiz(TweakModule):
     __title__ = _('Compiz Settings')
     __desc__ = _('Settings for some amazing desktop eye-candy')
-    __icon__ = ['ccsm', 'compiz', 'wmtweaks']
+    __icon__ = 'ccsm'
     __category__ = 'desktop'
-    __url__ = 'http://ubuntu-tweak.com'
-    __url_title__ = _('Compiz Page')
-    __distro__ = 'natty'
 
     def __init__(self):
         TweakModule.__init__(self)
@@ -409,12 +380,10 @@ class Compiz(TweakModule):
         self.snap = SnapWindow(_("Enable snapping windows"), self)
         self.wobbly_w = WobblyWindow(_("Enable wobbly windows"), self);
         self.viewport = ViewpointSwitcher(_('Enable workspace switching with mouse wheel'))
-        self.launcher_autohide = UnityLauncherAutoHide(_('Make the launcher hide automatically after some time inactive'))
 
         box = ListPack(_("Desktop Effects"), (self.snap,
                                               self.wobbly_w,
-                                              self.viewport,
-                                              self.launcher_autohide))
+                                              self.viewport))
         self.add_start(box, False, False, 0)
 
         button1 = OpacityMenu(_("Enable transparent menus"))
