@@ -13,7 +13,6 @@ from ubuntutweak.modules import ModuleLoader
 from ubuntutweak.settings import GSetting
 from ubuntutweak.common.debug import run_traceback
 from ubuntutweak.gui.dialogs import ErrorDialog
-from ubuntutweak.utils.package import AptWorker
 
 log = logging.getLogger('Janitor')
 
