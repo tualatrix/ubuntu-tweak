@@ -87,75 +87,6 @@ def get_source_logo_from_filename(file_name):
     except:
         return Gtk.IconTheme.get_default().load_icon(Gtk.STOCK_MISSING_IMAGE, 32, 0)
 
-#TODO move old refresh source to new
-def old_refresh_source(parent):
-    dialog = UpdateCacheDialog(parent)
-    dialog.run()
-
-    new_pkg = []
-    for pkg in PACKAGE_WORKER.get_new_package():
-        if pkg in APP_PARSER:
-            new_pkg.append(pkg)
-
-    new_updates = list(PACKAGE_WORKER.get_update_package())
-
-    if new_pkg or new_updates:
-        updateview = UpdateView()
-        updateview.connect('select', on_select_action)
-
-        if new_pkg:
-            updateview.update_model(new_pkg)
-
-        if new_updates:
-            updateview.update_updates(new_updates)
-
-        dialog = QuestionDialog(_('You can install new applications by selecting them and choosing "Yes".\nOr you can install them at Application Center by choosing "No".'),
-                title=_('New applications are available'))
-
-        vbox = dialog.vbox
-        sw = Gtk.ScrolledWindow()
-        sw.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
-        sw.set_size_request(-1, 200)
-        vbox.pack_start(sw, False, False, 0)
-        sw.add(updateview)
-
-        select_button = Gtk.CheckButton(_('Select All'))
-        select_button.connect('clicked', on_select_button_clicked, updateview)
-        vbox.pack_start(select_button, False, False, 0)
-        vbox.show_all()
-
-        res = dialog.run()
-        dialog.destroy()
-
-        to_rm = updateview.to_rm
-        to_add = updateview.to_add
-
-        if res == Gtk.ResponseType.YES and to_add:
-            PACKAGE_WORKER.perform_action(parent, to_add, to_rm)
-
-            AptWorker.update_apt_cache(True)
-
-            done = PACKAGE_WORKER.get_install_status(to_add, to_rm)
-
-            if done:
-                InfoDialog(_('Update Successful!')).launch()
-            else:
-                ErrorDialog(_('Update Failed!')).launch()
-
-        return True
-    else:
-        dialog = InfoDialog(_("Your system is clean and there are no updates yet."),
-                        title=_('Software information is now up-to-date'))
-
-        dialog.launch()
-        return False
-
-def on_select_button_clicked(widget, updateview):
-    updateview.select_all_action(widget.get_active())
-
-def on_select_action(widget, active):
-    widget.select_all_action(active)
-
 class CheckSourceDialog(CheckUpdateDialog):
     def get_updatable(self):
         return utdata.check_update_function(self.url, SOURCE_ROOT, \
@@ -420,44 +351,6 @@ class UpdateView(AppView):
         if pkg and check:
             self.to_add.append(pkg)
 
-class UpdateCacheDialog:
-    """This class is modified from Software-Properties"""
-    def __init__(self, parent):
-        self.parent = parent
-
-    def update_cache(self, window_id, lock):
-        """start synaptic to update the package cache"""
-        try:
-            apt_pkg.PkgSystemUnLock()
-        except SystemError:
-            pass
-        cmd = []
-        if os.getuid() != 0:
-            cmd = ['/usr/bin/gksu',
-                   '--desktop', '/usr/share/applications/synaptic.desktop',
-                   '--']
-        
-        cmd += ['/usr/sbin/synaptic', '--hide-main-window',
-               '--non-interactive',
-               '--parent-window-id', '%s' % (window_id),
-               '--update-at-startup']
-        subprocess.call(cmd)
-        lock.release()
-
-    def run(self):
-        """run the dialog, and if reload was pressed run synaptic"""
-        self.parent.set_sensitive(False)
-        self.parent.window.set_cursor(Gdk.Cursor.new(Gdk.WATCH))
-        lock = thread.allocate_lock()
-        lock.acquire()
-        thread.start_new_thread(self.update_cache,
-                               (self.parent.window.xid, lock))
-        while lock.locked():
-            while Gtk.events_pending():
-                Gtk.main_iteration()
-                time.sleep(0.05)
-        self.parent.set_sensitive(True)
-        self.parent.window.set_cursor(None)
 
 class SourcesView(Gtk.TreeView):
     __gsignals__ = {
