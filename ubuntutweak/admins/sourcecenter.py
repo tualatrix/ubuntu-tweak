@@ -45,7 +45,7 @@ from ubuntutweak.policykit.dbusproxy import proxy
 from ubuntutweak.gui.widgets import CheckButton
 from ubuntutweak.gui.dialogs import QuestionDialog, ErrorDialog, InfoDialog, WarningDialog
 from ubuntutweak.gui.dialogs import ServerErrorDialog
-from ubuntutweak.gui.gtk import post_ui 
+from ubuntutweak.gui.gtk import post_ui, set_busy, unset_busy
 from ubuntutweak.utils.parser import Parser
 from ubuntutweak.network import utdata
 from ubuntutweak.settings.gsettings import GSetting
@@ -869,7 +869,11 @@ class SourceCenter(TweakModule):
         self.emit('call', 'ubuntutweak.modules.sourceeditor', 'update_source_combo', {})
 
     def on_update_button_clicked(self, widget):
-        daemon = AptWorker(widget.get_toplevel())
+        def on_update_finished(transaction, status, parent):
+            unset_busy(parent)
+
+        set_busy(self)
+        daemon = AptWorker(widget.get_toplevel(), on_update_finished, self)
         daemon.update_cache()
 
         self.emit('call', 'ubuntutweak.modules.appcenter', 'update_app_data', {})
