@@ -98,10 +98,23 @@ def run_traceback(level, textview_only=False, text_only=False):
         return textview
     else:
         dialog = worker.get_object('%sDialog' % level.capitalize())
-        if dialog.run() == Gtk.ResponseType.YES:
-            webbrowser.open('https://bugs.launchpad.net/ubuntu-tweak/+filebug')
+
+        to_report = (dialog.run() == Gtk.ResponseType.YES)
+
         dialog.destroy()
         output.close()
+
+        if to_report:
+            open_bug_report()
+
+
+def open_bug_report():
+    if system.is_supported():
+        webbrowser.open('https://bugs.launchpad.net/ubuntu-tweak/+filebug')
+    else:
+        from ubuntutweak.gui.dialogs import ErrorDialog
+        ErrorDialog(title=_("Sorry, your distribution is not supported by Ubuntu Tweak"),
+                    message=_("You can't file bug for this issue. Please only use Ubuntu Tweak on Ubuntu. Or it may kill your cat.")).launch()
 
 
 class ColoredFormatter(logging.Formatter):

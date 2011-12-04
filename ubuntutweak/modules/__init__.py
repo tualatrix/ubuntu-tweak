@@ -4,7 +4,6 @@ import glob
 import logging
 import inspect
 import traceback
-import webbrowser
 from new import classobj
 
 from gi.repository import GObject, Gtk, Pango, Gdk
@@ -12,7 +11,7 @@ from gi.repository import GObject, Gtk, Pango, Gdk
 from ubuntutweak import system
 from ubuntutweak.utils import icon
 from ubuntutweak.common.consts import DATA_DIR, CONFIG_ROOT
-from ubuntutweak.common.debug import run_traceback
+from ubuntutweak.common.debug import run_traceback, open_bug_report
 
 log = logging.getLogger('ModuleLoader')
 
@@ -386,4 +385,4 @@ class BrokenModule(TweakModule):
         self.reparent(self.alignment1)
 
     def on_report_button_clicked(self, widget):
-        webbrowser.open('https://bugs.launchpad.net/ubuntu-tweak/+filebug')
+        open_bug_report()
