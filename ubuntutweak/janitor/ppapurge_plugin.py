@@ -12,7 +12,7 @@ from gi.repository import Gtk, Pango, GObject
 
 from ubuntutweak import system
 from ubuntutweak.common import consts
-from ubuntutweak.gui.gtk import set_busy, unset_busy
+from ubuntutweak.gui.gtk import set_busy, unset_busy, post_ui
 from ubuntutweak.janitor import JanitorPlugin, CruftObject
 from ubuntutweak.utils.package import AptWorker
 from ubuntutweak.utils import icon, filesizeformat, ppa
@@ -48,6 +48,7 @@ class PPAObject(CruftObject):
 
 
 class CleanPpaDialog(TerminalDialog):
+
     def __init__(self, parent, pkgs, urls):
         #TODO cancel button, refresh apt
         super(CleanPpaDialog, self).__init__(parent=parent)
@@ -165,11 +166,11 @@ class CleanPpaDialog(TerminalDialog):
                 self.downgrade_done = True
 
         if self.error:
-            self.destroy()
+            self.emit('error', self.error)
         elif not self.downgrade_done or not self.removekey_done:
             return True
         else:
-            self.destroy()
+            self.emit('done')
 
 
 class DowngradeView(Gtk.TreeView):
@@ -316,15 +317,21 @@ class PPAPlugin(JanitorPlugin):
         if response == Gtk.ResponseType.YES:
             log.debug("The select pkgs is: %s", str(select_pkgs))
             dialog = CleanPpaDialog(parent, select_pkgs, url_list)
+            dialog.connect('error', self.on_dialog_error)
+            dialog.connect('done', self.on_done)
+
             dialog.run()
             dialog.destroy()
-            if dialog.error:
-                log.error("Error: %s" % dialog.error)
-                ErrorDialog(dialog.error).launch()
         # TODO refresh source?
 
         self.emit('cleaned', True)
         unset_busy(parent)
+
+    def on_dialog_error(self, widget, error_name):
+        ErrorDialog(message='%s can not be removed').launch()
+
+    def on_done(self, widget):
+        widget.destroy()
 
     def get_downgradeable_pkgs(self, ppa_dict):
         def is_system_origin(version, urls):

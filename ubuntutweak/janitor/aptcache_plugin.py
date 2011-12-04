@@ -53,7 +53,8 @@ class CleanCacheDailog(ProcessDialog):
                 self.emit('error', cruft.get_name())
                 break
 
-        self.destroy()
+        # never destory the dialog in dialog itself, or it will hang
+        self.emit('done')
 
 
 class AptCachePlugin(JanitorPlugin):
@@ -80,9 +81,13 @@ class AptCachePlugin(JanitorPlugin):
     def on_dialog_error(self, widget, error_name):
         ErrorDialog(message='%s can not be removed').launch()
 
+    def on_done(self, widget):
+        widget.destroy()
+
     def clean_cruft(self, parent, cruft):
         dialog = CleanCacheDailog(parent, cruft)
         dialog.connect('error', self.on_dialog_error)
+        dialog.connect('done', self.on_done)
 
         if dialog.run() == Gtk.ResponseType.REJECT:
             dialog.destroy()
