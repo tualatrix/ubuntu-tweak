@@ -74,7 +74,7 @@ class AptCachePlugin(JanitorPlugin):
             size += current_size
 
             self.emit('find_object',
-                      CacheObject(os.path.basename(deb), deb, size))
+                      CacheObject(os.path.basename(deb), deb, current_size))
 
         self.emit('scan_finished', True, len(cruft_list), size)
 
