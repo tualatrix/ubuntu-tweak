@@ -63,7 +63,8 @@ class CleanConfigDialog(TerminalDialog):
             log.debug("Not done, return True")
             return True
         else:
-            self.destroy()
+            # never destory the dialog in dialog itself, or it will hang
+            self.emit('done')
 
 
 class PackageConfigsPlugin(JanitorPlugin):

@@ -125,6 +125,7 @@ class BusyDialog(Gtk.Dialog):
 class ProcessDialog(BusyDialog):
     __gsignals__ = {
         'error': (GObject.SignalFlags.RUN_FIRST, None, (GObject.TYPE_STRING,)),
+        'done': (GObject.SignalFlags.RUN_FIRST, None, ()),
     }
 
     def __init__(self, parent):
