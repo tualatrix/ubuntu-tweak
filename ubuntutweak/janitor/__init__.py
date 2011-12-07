@@ -551,7 +551,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
 
         system_text = _('System')
         iter = self.janitor_model.append(None, (None,
-                                                icon.get_from_name('ubuntu-logo'),
+                                                icon.get_from_name('distributor-logo'),
                                                 system_text,
                                                 "<b><big>%s</big></b>" % system_text,
                                                 None,
