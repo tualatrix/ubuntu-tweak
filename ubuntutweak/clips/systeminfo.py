@@ -7,7 +7,7 @@ from ubuntutweak.utils import icon
 from ubuntutweak.gui.containers import EasyTable
 
 class SystemInfo(Clip):
-    __icon__ = 'ubuntu-logo'
+    __icon__ = 'distributor-logo'
     __title__ = _('Ubuntu Desktop Information')
 
     def __init__(self):
