@@ -18,6 +18,8 @@ def get_codename():
             return 'maverick'
         elif codename in ['natty', 'katya']:
             return 'natty'
+        elif codename in ['oneiric', 'lisa']:
+            return 'oneiric'
         return codename
     except:
         pass
