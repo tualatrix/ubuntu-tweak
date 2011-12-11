@@ -88,13 +88,29 @@ class PackageConfigsPlugin(JanitorPlugin):
 
         self.emit('scan_finished', True, count, 0)
 
-    def clean_cruft(self, parent, cruft_list):
-        set_busy(parent)
-        dialog = CleanConfigDialog(parent, [cruft.get_name() for cruft in cruft_list])
-        dialog.run()
-        dialog.destroy()
+    def clean_cruft(self, cruft_list=[], parent=None):
+        self.done = False
+        proxy.clean_configs([cruft.get_name() for cruft in cruft_list])
+        GObject.timeout_add(100, self.on_timeout)
         self.emit('cleaned', True)
-        unset_busy(parent)
+
+    def on_timeout(self):
+        line, returncode = proxy.get_cmd_pipe()
+        log.debug("Clean config result is: %s, returncode: %s" % (line, returncode))
+        if line != '':
+            line = line.rstrip()
+            log.debug(line)
+
+        if returncode != 'None':
+            self.done = True
+            if returncode != '0':
+                self.emit('error', returncode)
+
+        if not self.done:
+            log.debug("Not done, return True")
+            return True
+        else:
+            self.emit('all_cleaned', True)
 
     def get_summary(self, count, size):
         if count:
