@@ -1,5 +1,6 @@
 import os
 import glob
+import logging
 
 from gi.repository import GObject, Gtk, Gdk
 
@@ -10,6 +11,8 @@ from ubuntutweak.gui.gtk import post_ui
 from ubuntutweak.policykit.dbusproxy import proxy
 
 from defer import inline_callbacks, return_value
+
+log = logging.getLogger('aptcache_plugin')
 
 class CacheObject(CruftObject):
     def __init__(self, name, path, size):
@@ -84,15 +87,18 @@ class AptCachePlugin(JanitorPlugin):
     def on_done(self, widget):
         widget.destroy()
 
-    def clean_cruft(self, parent, cruft):
-        dialog = CleanCacheDailog(parent, cruft)
-        dialog.connect('error', self.on_dialog_error)
-        dialog.connect('done', self.on_done)
+    def clean_cruft(self, cruft_list=[], parent=None):
+        for index, cruft in enumerate(cruft_list):
+            log.debug('Cleaning...%s' % cruft.get_name())
+            result = proxy.delete_apt_cache_file(cruft.get_name())
 
-        if dialog.run() == Gtk.ResponseType.REJECT:
-            dialog.destroy()
+            if bool(result) == False:
+                self.emit('error', cruft.get_name())
+                break
+            else:
+                self.emit('object_cleaned', cruft)
 
-        self.emit('cleaned', True)
+        self.emit('all_cleaned', True)
 
     def get_summary(self, count, size):
         if count:

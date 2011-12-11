@@ -24,7 +24,7 @@ class AutoRemovalPlugin(JanitorPlugin):
 
         self.emit('scan_finished', True, count, size)
 
-    def clean_cruft(self, parent, cruft_list):
+    def clean_cruft(self, parent=None, cruft_list=None):
         set_busy(parent)
         worker = AptWorker(parent, self.on_clean_finished, parent)
         worker.remove_packages([cruft.get_package_name() for cruft in cruft_list])
@@ -32,7 +32,7 @@ class AutoRemovalPlugin(JanitorPlugin):
     def on_clean_finished(self, transaction, status, parent):
         unset_busy(parent)
         AptWorker.update_apt_cache(True)
-        self.emit('cleaned', True)
+        self.emit('all_cleaned', True)
 
     def get_summary(self, count, size):
         if count:

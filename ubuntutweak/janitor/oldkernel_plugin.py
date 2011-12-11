@@ -36,7 +36,7 @@ class OldKernelPlugin(JanitorPlugin):
 
         self.emit('scan_finished', True, count, size)
 
-    def clean_cruft(self, parent, cruft_list):
+    def clean_cruft(self, cruft_list=[], parent=None):
         set_busy(parent)
         worker = AptWorker(parent, self.on_clean_finished, parent)
         worker.remove_packages([cruft.get_package_name() for cruft in cruft_list])
@@ -44,7 +44,7 @@ class OldKernelPlugin(JanitorPlugin):
     def on_clean_finished(self, transaction, status, parent):
         unset_busy(parent)
         AptWorker.update_apt_cache(True)
-        self.emit('cleaned', True)
+        self.emit('all_cleaned', True)
 
     def is_old_kernel_package(self, pkg):
         p_kernel_version = re.compile('[.\d]+-\d+')

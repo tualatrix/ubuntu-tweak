@@ -1,6 +1,7 @@
 import os
 import shutil
 import glob
+import logging
 
 from gi.repository import GObject, Gtk
 
@@ -9,6 +10,8 @@ from ubuntutweak.utils import icon, filesizeformat
 from ubuntutweak.gui.dialogs import ProcessDialog
 from ubuntutweak.gui.gtk import post_ui
 
+
+log = logging.getLogger('thumbnailcache_plugin')
 
 class ThumbnailObject(CruftObject):
     def __init__(self, name, path, length, size):
@@ -28,36 +31,6 @@ class ThumbnailObject(CruftObject):
 
     def get_size_display(self):
         return filesizeformat(self.size)
-
-
-class CleanThumbnailDailog(ProcessDialog):
-
-    def __init__(self, parent, cruft_list):
-        super(CleanThumbnailDailog, self).__init__(parent=parent)
-
-        self.cruft_list = cruft_list
-
-        self.set_dialog_lable(_('Cleaning Thumbnail Cache'))
-        self.add_button(Gtk.STOCK_CANCEL, Gtk.ResponseType.REJECT)
-
-    def run(self):
-        GObject.timeout_add(100, self.process_data)
-        return super(CleanThumbnailDailog, self).run()
-
-    @post_ui
-    def process_data(self):
-        length = len(self.cruft_list)
-
-        for index, cruft in enumerate(self.cruft_list):
-            while Gtk.events_pending():
-                Gtk.main_iteration()
-
-            self.set_fraction((index + 1.0) / length)
-            self.set_progress_text(_('Cleaning...%s') % cruft.get_name())
-            shutil.rmtree(cruft.get_path())
-
-        self.destroy()
-
 
 class ThumbnailCachePlugin(JanitorPlugin):
     __title__ = _('Thumbnail cache')
@@ -85,13 +58,13 @@ class ThumbnailCachePlugin(JanitorPlugin):
         except Exception, e:
             self.emit('error', e)
 
-    def clean_cruft(self, parent, cruft_list):
-        dialog = CleanThumbnailDailog(parent, cruft_list)
+    def clean_cruft(self, cruft_list=None, parent=None):
+        for index, cruft in enumerate(cruft_list):
+            log.debug('Cleaning...%s' % cruft.get_name())
+            shutil.rmtree(cruft.get_path())
+            self.emit('object_cleaned', cruft)
 
-        if dialog.run() == Gtk.ResponseType.REJECT:
-            dialog.destroy()
-
-        self.emit('cleaned', True)
+        self.emit('all_cleaned', True)
 
     def get_summary(self, count, size):
         if count:

@@ -69,7 +69,8 @@ class JanitorPlugin(GObject.GObject):
                           (GObject.TYPE_BOOLEAN,
                            GObject.TYPE_INT,
                            GObject.TYPE_INT)),
-        'cleaned': (GObject.SignalFlags.RUN_FIRST, None, (GObject.TYPE_BOOLEAN,)),
+        'object_cleaned': (GObject.SignalFlags.RUN_FIRST, None, (GObject.TYPE_PYOBJECT,)),
+        'all_cleaned': (GObject.SignalFlags.RUN_FIRST, None, (GObject.TYPE_BOOLEAN,)),
         'error': (GObject.SignalFlags.RUN_FIRST, None, (GObject.TYPE_STRING,)),
     }
 
@@ -427,6 +428,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
 
             self.janitor_model[plugin_iter][self.JANITOR_SPINNER_ACTIVE] = False
 
+            #TODO I think it can be removed
             for view in (self.janitor_view, self.result_view):
                 view.hide()
                 view.show()
@@ -482,23 +484,25 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         self.scan_tasks = []
 
     def on_clean_button_clicked(self, widget):
+        '''plugin_dict: {plugin: {cruft: iter}}'''
         self.plugin_to_run = 0
 
+        #TODO should update the sensitive of cleanbutton
+        self.set_busy()
         plugin_dict = OrderedDict()
 
         for row in self.result_model:
             plugin = row[self.RESULT_PLUGIN]
-            cruft_list = []
+            cruft_dict = {}
 
             for child_row in row.iterchildren():
                 checked = child_row[self.RESULT_CHECK]
 
                 if checked:
-                    cruft = child_row[self.RESULT_CRUFT]
-                    cruft_list.append(cruft)
+                    cruft_dict[child_row[self.RESULT_CRUFT]] =  child_row.iter
 
-            if cruft_list:
-                plugin_dict[plugin] = cruft_list
+            if cruft_dict:
+                plugin_dict[plugin] = cruft_dict
 
         self.clean_tasks = list(plugin_dict.items())
 
@@ -506,23 +510,78 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         log.debug("All finished!")
 
     def do_real_clean_task(self):
-        plugin, cruft_list = self.clean_tasks.pop(0)
+        if len(self.clean_tasks) != 0:
+            plugin, cruft_dict = self.clean_tasks.pop(0)
+            plugin.set_data('clean_finished', False)
 
-        log.debug("Call %s to clean cruft" % plugin)
-        self._plugin_handler = plugin.connect('cleaned', self.on_plugin_cleaned)
-        self._error_handler = plugin.connect('error', self.on_clean_error)
-        plugin.clean_cruft(self.get_toplevel(), cruft_list)
+            log.debug("Call %s to clean cruft" % plugin)
+            self._object_clean_handler = plugin.connect('object_cleaned',
+                                                        self.on_plugin_object_cleaned,
+                                                        cruft_dict)
+            self._all_clean_handler = plugin.connect('all_cleaned', self.on_plugin_cleaned)
+            self._error_handler = plugin.connect('error', self.on_clean_error)
+
+            t = threading.Thread(target=plugin.clean_cruft,
+                                 kwargs={'cruft_list': cruft_dict.keys(),
+                                         'parent': self.get_toplevel()})
+
+            for row in self.janitor_model:
+                for child_row in row.iterchildren():
+                    if child_row[self.JANITOR_PLUGIN] == plugin:
+                        plugin_iter = child_row.iter
+
+            for row in self.result_model:
+                if row[self.RESULT_PLUGIN] == plugin:
+                    self.result_view.get_selection().select_path(row.path)
+                    self.result_view.scroll_to_cell(row.path)
+
+            self.janitor_model[plugin_iter][self.JANITOR_SPINNER_ACTIVE] = True
+            self.janitor_model[plugin_iter][self.JANITOR_SPINNER_PULSE] = 0
+
+            GObject.timeout_add(50, self._on_clean_spinner_timeout, plugin_iter, t)
+
+            t.start()
+        else:
+            self.on_scan_button_clicked()
+            self.unset_busy()
+
+    def _on_clean_spinner_timeout(self, plugin_iter, thread):
+        plugin = self.janitor_model[plugin_iter][self.JANITOR_PLUGIN]
+        finished = plugin.get_data('clean_finished')
+
+        self.janitor_model[plugin_iter][self.JANITOR_SPINNER_PULSE] += 1
+
+        if finished:
+            log.debug("Disconnect the cleaned signal for %s, or it will clean many times" % plugin)
+            for handler in (self._object_clean_handler,
+                            self._all_clean_handler,
+                            self._error_handler):
+                if plugin.handler_is_connected(handler):
+                    plugin.disconnect(handler)
+
+            self.janitor_model[plugin_iter][self.JANITOR_SPINNER_ACTIVE] = False
+
+            thread.join()
+
+            self.do_real_clean_task()
+
+        return not finished
+
+    @post_ui
+    def on_plugin_object_cleaned(self, plugin, cruft, cruft_dict):
+        while Gtk.events_pending():
+            Gtk.main_iteration()
+
+        self.result_model.remove(cruft_dict[cruft])
 
     def on_plugin_cleaned(self, plugin, cleaned):
-        for handler in (self._plugin_handler, self._error_handler):
-            if plugin.handler_is_connected(handler):
-                log.debug("Disconnect the cleaned signal, or it will clean many times")
-                plugin.disconnect(handler)
+        #TODO should accept the cruft_list
+        plugin.set_data('clean_finished', True)
 
-        if len(self.clean_tasks) == 0:
-            self.on_scan_button_clicked()
-        else:
-            GObject.timeout_add(300, self.do_real_clean_task)
+#        if len(self.clean_tasks) == 0:
+#            self.on_scan_button_clicked()
+#        else:
+#            GObject.timeout_add(300, self.do_real_clean_task)
 
     def on_clean_error(self, plugin, error):
         self.clean_tasks = []

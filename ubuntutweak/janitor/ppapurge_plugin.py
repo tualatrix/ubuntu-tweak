@@ -261,6 +261,7 @@ class DowngradeView(Gtk.TreeView):
 class PPAPlugin(JanitorPlugin):
     __title__ = _('PPA')
     __category__ = 'system'
+    __utactive__ = False
 
     def get_cruft(self):
         count = 0
