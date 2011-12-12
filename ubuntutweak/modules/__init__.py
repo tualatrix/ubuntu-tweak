@@ -115,7 +115,7 @@ class ModuleLoader:
 
     @classmethod
     def _get_module_by_name_from_folder(cls, name, folder):
-        for path in glob.glob(os.path.join(folder, '*')):
+        for path in glob.glob(os.path.join(folder, '*.py')):
             module_name = os.path.splitext(os.path.basename(path))[0]
             dirname = os.path.dirname(path)
             if folder not in sys.path:
