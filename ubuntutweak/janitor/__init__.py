@@ -168,6 +168,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         # cancel the size request, or it will fail to resize
         # TODO why the first scan will make it fail? 
         self.janitor_view.set_size_request(self.max_janitor_view_width, -1)
+
     def is_auto_scan(self):
         return self.autoscan_button.get_active()
 
