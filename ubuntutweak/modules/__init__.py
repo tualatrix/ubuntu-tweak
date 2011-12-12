@@ -382,6 +382,8 @@ class BrokenModule(TweakModule):
              "help:" % broken_file))
 
         self.error_view.reparent(self.scrolled_window)
+        self.ohno_image.set_from_file(os.path.join(DATA_DIR, 'pixmaps/emblem-ohno.png'))
+
         self.reparent(self.alignment1)
 
     def on_report_button_clicked(self, widget):
