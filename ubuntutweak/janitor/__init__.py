@@ -1,5 +1,6 @@
-import threading
+import os
 import logging
+import threading
 import traceback
 
 from defer import inline_callbacks
@@ -13,6 +14,7 @@ from ubuntutweak.utils import icon, filesizeformat
 from ubuntutweak.modules import ModuleLoader
 from ubuntutweak.settings import GSetting
 from ubuntutweak.common.debug import run_traceback
+from ubuntutweak.common.consts import DATA_DIR
 from ubuntutweak.gui.dialogs import ErrorDialog
 from ubuntutweak.policykit import PK_ACTION_CLEAN
 from ubuntutweak.policykit.widgets import PolkitAction
@@ -140,6 +142,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
 
         self.scan_tasks = []
         self.clean_tasks = []
+        self._total_count = 0
 
         self.set_border_width(6)
         GuiBuilder.__init__(self, 'janitorpage.ui')
@@ -153,12 +156,18 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         self.connect('realize', self.setup_ui_tasks)
         self.janitor_view.get_selection().connect('changed', self.on_janitor_selection_changed)
         self.plugins_setting.connect_notify(self.update_model, True)
+
+        self.cool_image.set_from_file(os.path.join(DATA_DIR, 'pixmaps/emblem-cool.png'))
+
         self.show()
 
     def on_move_handle(self, widget, gproperty):
         log.debug("on_move_handle: %d", widget.get_property('position'))
         self.view_width_setting.set_value(widget.get_property('position'))
 
+        # cancel the size request, or it will fail to resize
+        # TODO why the first scan will make it fail? 
+        self.janitor_view.set_size_request(self.max_janitor_view_width, -1)
     def is_auto_scan(self):
         return self.autoscan_button.get_active()
 
@@ -240,9 +249,10 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         self.janitor_view.expand_all()
 
         left_view_width = self.view_width_setting.get_value()
+        log.debug("left_view_width is: %d, max_janitor_view_width is: %d" %
+                  (left_view_width, self.max_janitor_view_width))
 
         if left_view_width:
-            log.debug("left_view_width is: %d", left_view_width)
             self.janitor_view.set_size_request(left_view_width, -1)
         elif self.max_janitor_view_width:
             self.janitor_view.set_size_request(self.max_janitor_view_width, -1)
@@ -266,13 +276,22 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
                     self.result_view.get_selection().select_path(row.path)
                     self.result_view.scroll_to_cell(row.path)
 
-    def on_janitor_check_button_toggled(self, cell, path):
-        iter = self.janitor_model.get_iter(path)
-
+    def _is_scanning_or_cleaning(self):
         for row in self.janitor_model:
             for child_row in row.iterchildren():
                 if child_row[self.JANITOR_SPINNER_ACTIVE]:
-                    return
+                    return True
+        else:
+            return False
+
+    def on_janitor_check_button_toggled(self, cell, path):
+        self.result_view.show()
+        self.happy_box.hide()
+
+        iter = self.janitor_model.get_iter(path)
+
+        if self._is_scanning_or_cleaning():
+            return
 
         checked = not self.janitor_model[iter][self.JANITOR_CHECK]
 
@@ -303,6 +322,9 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
     def on_result_check_renderer_toggled(self, cell, path):
         iter = self.result_model.get_iter(path)
         checked = self.result_model[iter][self.RESULT_CHECK]
+
+        if self._is_scanning_or_cleaning():
+            return
 
         if self.result_model.iter_has_child(iter):
             child_iter = self.result_model.iter_children(iter)
@@ -344,8 +366,12 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
 
                 scan_dict[child_row.iter] = checked
 
-        self.set_busy()
         self.scan_tasks = list(scan_dict.items())
+        self._total_count = 0
+        self.result_view.show()
+        self.happy_box.hide()
+
+        self.set_busy()
         self.do_scan_task()
 
     def _auto_scan_cruft(self, iter, checked):
@@ -389,7 +415,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
             iter = self.result_model.append(None, (None,
                                                    None,
                                                    plugin.get_title(),
-                                                   "<b>%s</b>" % plugin.get_title(),
+                                                   '<b>%s</b>' % _('Scanning cruft for "%s"...') % plugin.get_title(),
                                                    None,
                                                    plugin,
                                                    None))
@@ -436,6 +462,14 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
             if len(self.scan_tasks) != 0:
                 self.do_scan_task()
             else:
+                log.debug("total_count is: %d" % self._total_count)
+                if self._total_count == 0:
+                    self.result_view.hide()
+                    self.happy_box.show()
+                else:
+                    self.result_view.show()
+                    self.happy_box.hide()
+
                 self.unset_busy()
 
         return not finished
@@ -470,8 +504,10 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         for row in self.janitor_model:
             for child_row in row.iterchildren():
                 if child_row[self.JANITOR_PLUGIN] == plugin:
+                    self._total_count += count
                     if count:
                         child_row[self.JANITOR_DISPLAY] = "<b>%s (%d) </b>" % (plugin.get_title(), count)
+                        self.result_view.collapse_row(self.result_model.get_path(result_iter))
                     else:
                         child_row[self.JANITOR_DISPLAY] = "%s (%d)" % (plugin.get_title(), count)
 
@@ -518,7 +554,6 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
 
     def do_real_clean_task(self):
         if len(self.clean_tasks) != 0:
-            self.result_view.set_sensitive(False)
             plugin, cruft_dict = self.clean_tasks.pop(0)
             plugin.set_data('clean_finished', False)
 
@@ -542,6 +577,8 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
                 if row[self.RESULT_PLUGIN] == plugin:
                     self.result_view.get_selection().select_path(row.path)
                     self.result_view.scroll_to_cell(row.path)
+                    row[self.RESULT_DISPLAY] = '<b>%s</b>' % _('Cleaning cruft for "%s"...') % plugin.get_title()
+                    self.result_view.expand_row(self.result_model.get_path(row.iter), True)
 
             self.janitor_model[plugin_iter][self.JANITOR_SPINNER_ACTIVE] = True
             self.janitor_model[plugin_iter][self.JANITOR_SPINNER_PULSE] = 0
@@ -551,7 +588,6 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
             t.start()
         else:
             self.on_scan_button_clicked()
-            self.result_view.set_sensitive(True)
             self.unset_busy()
 
     def _on_clean_spinner_timeout(self, plugin_iter, thread):
