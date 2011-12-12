@@ -104,21 +104,23 @@ class Misc(TweakModule):
         return pointer_ids
 
     def get_natural_scrolling_enabled(self):
-        ids = self.get_pointer_id()
-        value = len(ids)
-        for id in ids:
-            map = os.popen('xinput get-button-map %s' % id).read().strip()
-            if '4 5' in map:
-                value -= 1
-            elif '5 4' in map:
-                continue
+        if not self.get_natural_scrolling_from_file():
+            ids = self.get_pointer_id()
+            value = len(ids)
+            for id in ids:
+                map = os.popen('xinput get-button-map %s' % id).read().strip()
+                if '4 5' in map:
+                    value -= 1
+                elif '5 4' in map:
+                    continue
 
-        if value == 0:
-            return False
-        elif value == len(ids):
-            return True
-        else:
-            return None
+            if value == 0:
+                return False
+            elif value == len(ids):
+                return True
+            else:
+                return None
+        return True
 
     def set_the_natural_status(self):
         enabled = self.get_natural_scrolling_enabled()
@@ -129,17 +131,25 @@ class Misc(TweakModule):
             self.natural_scrolling_button.set_inconsistent(True)
 
     def on_natural_scrolling_toggled(self, widget):
-        for id in self.get_pointer_id():
-            map = os.popen('xinput get-button-map %s' % id).read().strip()
+        log.debug('>>>>> on_natural_scrolling_toggled: %s' % widget.get_active())
 
-            if widget.get_active():
-                map = map.replace('4 5', '5 4')
-            else:
-                map = map.replace('5 4', '4 5')
+        map = '1 2 3 4 5 6 7 8 9 10 11 12'
 
-            log.debug("Set the natural scrolling to: %s" % map)
-            os.system('xinput set-button-map %s %s' %(id, map))
-            self.save_natural_scrolling_to_file(map)
+        if widget.get_active():
+            map = map.replace('4 5', '5 4')
+        else:
+            map = map.replace('5 4', '4 5')
+
+        self.save_natural_scrolling_to_file(map)
+        os.system('xmodmap ~/.Xmodmap')
+
+    def get_natural_scrolling_from_file(self):
+        string = 'pointer = 1 2 3 5 4'
+        xmodmap = os.path.expanduser('~/.Xmodmap')
+        if os.path.exists(xmodmap):
+            return string in open(xmodmap).read()
+        else:
+            return False
 
     def save_natural_scrolling_to_file(self, map):
         xmodmap = os.path.expanduser('~/.Xmodmap')
