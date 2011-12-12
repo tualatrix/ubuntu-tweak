@@ -17,11 +17,15 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import os
+import re
+import logging
 from gi.repository import Gtk, Gio
 
 from ubuntutweak.gui.containers import ListPack, TablePack
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.factory import WidgetFactory
+
+log = logging.getLogger('Misc')
 
 class Misc(TweakModule):
     __title__ = _('Miscellaneous')
@@ -56,7 +60,12 @@ class Misc(TweakModule):
                             ))
         self.add_start(self.theme_box, False, False, 0)
 
+        self.natural_scrolling_button = Gtk.CheckButton(_('Natural Scrolling'))
+        self.set_the_natural_status()
+        self.natural_scrolling_button.connect('toggled', self.on_natural_scrolling_toggled)
+
         self.theme_box = TablePack(_('Miscellaneous'), (
+                            self.natural_scrolling_button,
                             WidgetFactory.create('CheckButton',
                                                  label='Cursor blink',
                                                  key='org.gnome.desktop.interface.cursor-blink',
@@ -79,3 +88,77 @@ class Misc(TweakModule):
                                                  ),
                             ))
         self.add_start(self.theme_box, False, False, 0)
+
+    def get_pointer_id(self):
+        pointer_ids = []
+        id_pattern = re.compile('id=(\d+)')
+        for line in os.popen('xinput list').read().split('\n'):
+            if 'id=' in line and \
+               'pointer' in line and \
+               'slave' in line and \
+               'XTEST' not in line:
+                match = id_pattern.findall(line)
+                if match:
+                    pointer_ids.append(match[0])
+
+        return pointer_ids
+
+    def get_natural_scrolling_enabled(self):
+        ids = self.get_pointer_id()
+        value = len(ids)
+        for id in ids:
+            map = os.popen('xinput get-button-map %s' % id).read().strip()
+            if '4 5' in map:
+                value -= 1
+            elif '5 4' in map:
+                continue
+
+        if value == 0:
+            return False
+        elif value == len(ids):
+            return True
+        else:
+            return None
+
+    def set_the_natural_status(self):
+        enabled = self.get_natural_scrolling_enabled()
+        if enabled is not None:
+            self.natural_scrolling_button.set_inconsistent(False)
+            self.natural_scrolling_button.set_active(enabled)
+        else:
+            self.natural_scrolling_button.set_inconsistent(True)
+
+    def on_natural_scrolling_toggled(self, widget):
+        for id in self.get_pointer_id():
+            map = os.popen('xinput get-button-map %s' % id).read().strip()
+
+            if widget.get_active():
+                map = map.replace('4 5', '5 4')
+            else:
+                map = map.replace('5 4', '4 5')
+
+            log.debug("Set the natural scrolling to: %s" % map)
+            os.system('xinput set-button-map %s %s' %(id, map))
+            self.save_natural_scrolling_to_file(map)
+
+    def save_natural_scrolling_to_file(self, map):
+        xmodmap = os.path.expanduser('~/.Xmodmap')
+        map = map + '\n'
+        string = 'pointer = %s' % map
+
+        if os.path.exists(xmodmap):
+            pattern = re.compile('pointer = ([\d\s]+)')
+            data = open(xmodmap).read()
+            match = pattern.search(data)
+            if match:
+                log.debug("Match in Xmodmap: %s" % match.groups()[0])
+                data = data.replace(match.groups()[0], map)
+            else:
+                data = data + '\n' + string
+        else:
+            data = string
+
+        log.debug('Will write the content to Xmodmap: %s' % data)
+        with open(xmodmap, 'w') as f:
+            f.write(data)
+            f.close()
