@@ -2,6 +2,7 @@ import threading
 import logging
 import traceback
 
+from defer import inline_callbacks
 from collections import OrderedDict
 
 from gi.repository import GObject, Gtk, Gdk, Pango
@@ -13,6 +14,8 @@ from ubuntutweak.modules import ModuleLoader
 from ubuntutweak.settings import GSetting
 from ubuntutweak.common.debug import run_traceback
 from ubuntutweak.gui.dialogs import ErrorDialog
+from ubuntutweak.policykit import PK_ACTION_CLEAN
+from ubuntutweak.policykit.widgets import PolkitAction
 
 log = logging.getLogger('Janitor')
 
@@ -483,8 +486,15 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         plugin.set_data('scan_finished', True)
         self.scan_tasks = []
 
+    @inline_callbacks
     def on_clean_button_clicked(self, widget):
         '''plugin_dict: {plugin: {cruft: iter}}'''
+        try:
+            yield PolkitAction(PK_ACTION_CLEAN).do_authenticate()
+        except Exception, e:
+            log.debug(e)
+            return
+
         self.plugin_to_run = 0
 
         #TODO should update the sensitive of cleanbutton
