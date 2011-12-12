@@ -431,10 +431,6 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
 
             self.janitor_model[plugin_iter][self.JANITOR_SPINNER_ACTIVE] = False
 
-            #TODO I think it can be removed
-            for view in (self.janitor_view, self.result_view):
-                view.hide()
-                view.show()
             thread.join()
 
             if len(self.scan_tasks) != 0:
@@ -497,13 +493,14 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
 
         self.plugin_to_run = 0
 
-        #TODO should update the sensitive of cleanbutton
         self.set_busy()
+        self.clean_button.set_sensitive(False)
+
         plugin_dict = OrderedDict()
 
         for row in self.result_model:
             plugin = row[self.RESULT_PLUGIN]
-            cruft_dict = {}
+            cruft_dict = OrderedDict()
 
             for child_row in row.iterchildren():
                 checked = child_row[self.RESULT_CHECK]
@@ -521,6 +518,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
 
     def do_real_clean_task(self):
         if len(self.clean_tasks) != 0:
+            self.result_view.set_sensitive(False)
             plugin, cruft_dict = self.clean_tasks.pop(0)
             plugin.set_data('clean_finished', False)
 
@@ -553,6 +551,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
             t.start()
         else:
             self.on_scan_button_clicked()
+            self.result_view.set_sensitive(True)
             self.unset_busy()
 
     def _on_clean_spinner_timeout(self, plugin_iter, thread):
@@ -587,11 +586,6 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
     def on_plugin_cleaned(self, plugin, cleaned):
         #TODO should accept the cruft_list
         plugin.set_data('clean_finished', True)
-
-#        if len(self.clean_tasks) == 0:
-#            self.on_scan_button_clicked()
-#        else:
-#            GObject.timeout_add(300, self.do_real_clean_task)
 
     def on_clean_error(self, plugin, error):
         self.clean_tasks = []
