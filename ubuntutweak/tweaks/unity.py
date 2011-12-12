@@ -66,7 +66,54 @@ class UnitySettings(TweakModule):
                                              type=int,
                                              backend="compiz",
                                              enable_reset=True),
+                        WidgetFactory.create("ComboBox",
+                                             label=_('Icon backlight'),
+                                             key="unityshell.backlight_mode",
+                                             texts=(_('Backlight Always On'),
+                                                    _('Backlight Toggles'),
+                                                    _('Backlight Always Off'),
+                                                    _('Edge Illumination Toggles'),
+                                                    _('Backlight and Edge Illumination Toggles')),
+                                             values=(0, 1, 2, 3, 4),
+                                             type=int,
+                                             backend="compiz",
+                                             enable_reset=True),
                 ))
+            self.add_start(box, False, False, 0)
+
+            box = TablePack(_("Dash and Panel"), (
+                        WidgetFactory.create("ComboBox",
+                                             label=_('Dash size'),
+                                             key="com.canonical.Unity.form-factor",
+                                             texts=(_('Automatic'),
+                                                    _('Desktop'),
+                                                    _('Netbook')),
+                                             values=('Automatic',
+                                                     'Desktop',
+                                                     'Netbook'),
+                                             backend="gsettings",
+                                             enable_reset=True),
+                        WidgetFactory.create("ComboBox",
+                                             label=_('Blur'),
+                                             key="unityshell.dash_blur_experimental",
+                                             texts=(_('No blur'),
+                                                    _('Static blur'),
+                                                    _('Active blur')),
+                                             values=(0, 1, 2),
+                                             type=int,
+                                             backend="compiz",
+                                             enable_reset=True),
+                        WidgetFactory.create("Scale",
+                                             label=_('Panel opacity'),
+                                             key="unityshell.panel_opacity",
+                                             min=0,
+                                             max=1,
+                                             digits=2,
+                                             backend="compiz",
+                                             enable_reset=True),
+                ))
+
+            self.add_start(box, False, False, 0)
         else:
             box = ListPack(_('Compositing Manager'), (
                                     WidgetFactory.create('CheckButton',
@@ -99,4 +146,4 @@ class UnitySettings(TweakModule):
                                              enable_reset=True),
                 ))
 
-        self.add_start(box, False, False, 0)
+            self.add_start(box, False, False, 0)
