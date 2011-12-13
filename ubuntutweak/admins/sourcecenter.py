@@ -688,6 +688,7 @@ class SourceCenter(TweakModule):
     __url__ = 'http://ubuntu-tweak.com/source/'
     __urltitle__ = _('Visit online Source Center')
     __category__ = 'application'
+    __utactive__ = False
 
     def __init__(self):
         TweakModule.__init__(self, 'sourcecenter.ui')
