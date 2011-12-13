@@ -5,9 +5,7 @@ from gi.repository import GObject, Gtk
 
 from ubuntutweak.gui.gtk import set_busy, unset_busy
 from ubuntutweak.janitor import JanitorPlugin, PackageObject
-from ubuntutweak.utils.package import AptWorker
 from ubuntutweak.utils import icon, filesizeformat
-from ubuntutweak.gui.dialogs import TerminalDialog
 from ubuntutweak.policykit.dbusproxy import proxy
 
 
@@ -25,46 +23,6 @@ class PackageConfigObject(PackageObject):
 
     def get_size(self):
         return 0
-
-
-class CleanConfigDialog(TerminalDialog):
-    def __init__(self, parent, pkgs):
-        super(CleanConfigDialog, self).__init__(parent=parent)
-        #FIXME the window should not be delete
-        self.pkgs = pkgs
-        self.done = False
-
-        self.set_dialog_lable(_('Cleaning Configuration Files'))
-
-    def run(self):
-        proxy.clean_configs(self.pkgs)
-        GObject.timeout_add(100, self.on_timeout)
-        return super(CleanConfigDialog, self).run()
-
-    def on_timeout(self):
-        self.pulse()
-
-        line, returncode = proxy.get_cmd_pipe()
-        log.debug("Clean config result is: %s, returncode: %s" % (line, returncode))
-        if line != '':
-            line = line.rstrip()
-            if line:
-                self.set_progress_text(line)
-                self.terminal.insert(line)
-            else:
-                self.terminal.insert('\n')
-
-        if returncode != 'None':
-            self.done = True
-            if returncode != '0':
-                self.emit('error', returncode)
-
-        if not self.done:
-            log.debug("Not done, return True")
-            return True
-        else:
-            # never destory the dialog in dialog itself, or it will hang
-            self.emit('done')
 
 
 class PackageConfigsPlugin(JanitorPlugin):
@@ -89,28 +47,12 @@ class PackageConfigsPlugin(JanitorPlugin):
         self.emit('scan_finished', True, count, 0)
 
     def clean_cruft(self, cruft_list=[], parent=None):
-        self.done = False
-        proxy.clean_configs([cruft.get_name() for cruft in cruft_list])
-        GObject.timeout_add(100, self.on_timeout)
-        self.emit('cleaned', True)
+        for cruft in cruft_list:
+            log.debug('Cleaning...%s' % cruft.get_name())
+            proxy.clean_configs([cruft.get_name()])
+            self.emit('object_cleaned', cruft)
 
-    def on_timeout(self):
-        line, returncode = proxy.get_cmd_pipe()
-        log.debug("Clean config result is: %s, returncode: %s" % (line, returncode))
-        if line != '':
-            line = line.rstrip()
-            log.debug(line)
-
-        if returncode != 'None':
-            self.done = True
-            if returncode != '0':
-                self.emit('error', returncode)
-
-        if not self.done:
-            log.debug("Not done, return True")
-            return True
-        else:
-            self.emit('all_cleaned', True)
+        self.emit('all_cleaned', True)
 
     def get_summary(self, count, size):
         if count:
