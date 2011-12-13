@@ -482,7 +482,10 @@ class Daemon(PolicyKitService):
     def clean_configs(self, pkgs, sender=None):
         self._check_permission(sender, PK_ACTION_CLEAN)
         cmd = ['sudo', 'dpkg', '--purge']
-        cmd.extend(pkgs)
+        if type(pkgs) == list:
+            cmd.extend(pkgs)
+        else:
+            cmd.append(pkgs)
         self.p = subprocess.Popen(cmd, stdout=PIPE)
         self._setup_non_block_io(self.p.stdout)
 
