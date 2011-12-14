@@ -76,7 +76,8 @@ class JanitorPlugin(GObject.GObject):
                            GObject.TYPE_INT)),
         'object_cleaned': (GObject.SignalFlags.RUN_FIRST, None, (GObject.TYPE_PYOBJECT,)),
         'all_cleaned': (GObject.SignalFlags.RUN_FIRST, None, (GObject.TYPE_BOOLEAN,)),
-        'error': (GObject.SignalFlags.RUN_FIRST, None, (GObject.TYPE_STRING,)),
+        'scan_error': (GObject.SignalFlags.RUN_FIRST, None, (GObject.TYPE_STRING,)),
+        'clean_error': (GObject.SignalFlags.RUN_FIRST, None, (GObject.TYPE_STRING,)),
     }
 
     @classmethod
@@ -426,7 +427,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
 
             self._find_handler = plugin.connect('find_object', self.on_find_object, iter)
             self._scan_handler = plugin.connect('scan_finished', self.on_scan_finished, iter)
-            self._error_handler = plugin.connect('error', self.on_scan_error, plugin_iter)
+            self._error_handler = plugin.connect('scan_error', self.on_scan_error, plugin_iter)
 
             t = threading.Thread(target=plugin.get_cruft)
             GObject.timeout_add(50, self._on_spinner_timeout, plugin_iter, t)
@@ -558,21 +559,21 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
             plugin, cruft_dict = self.clean_tasks.pop(0)
             plugin.set_data('clean_finished', False)
 
+            for row in self.janitor_model:
+                for child_row in row.iterchildren():
+                    if child_row[self.JANITOR_PLUGIN] == plugin:
+                        plugin_iter = child_row.iter
+
             log.debug("Call %s to clean cruft" % plugin)
             self._object_clean_handler = plugin.connect('object_cleaned',
                                                         self.on_plugin_object_cleaned,
                                                         cruft_dict)
             self._all_clean_handler = plugin.connect('all_cleaned', self.on_plugin_cleaned)
-            self._error_handler = plugin.connect('error', self.on_clean_error)
+            self._error_handler = plugin.connect('clean_error', self.on_clean_error, plugin_iter)
 
             t = threading.Thread(target=plugin.clean_cruft,
                                  kwargs={'cruft_list': cruft_dict.keys(),
                                          'parent': self.get_toplevel()})
-
-            for row in self.janitor_model:
-                for child_row in row.iterchildren():
-                    if child_row[self.JANITOR_PLUGIN] == plugin:
-                        plugin_iter = child_row.iter
 
             for row in self.result_model:
                 if row[self.RESULT_PLUGIN] == plugin:
@@ -596,7 +597,6 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         finished = plugin.get_data('clean_finished')
 
         self.janitor_model[plugin_iter][self.JANITOR_SPINNER_PULSE] += 1
-
         if finished:
             log.debug("Disconnect the cleaned signal for %s, or it will clean many times" % plugin)
             for handler in (self._object_clean_handler,
@@ -624,8 +624,10 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         #TODO should accept the cruft_list
         plugin.set_data('clean_finished', True)
 
-    def on_clean_error(self, plugin, error):
+    def on_clean_error(self, plugin, error, plugin_iter):
+        self.janitor_model[plugin_iter][self.JANITOR_ICON] = icon.get_from_name('error', size=16)
         self.clean_tasks = []
+        plugin.set_data('clean_finished', True)
 
     def on_autoscan_button_toggled(self, widget):
         if widget.get_active():

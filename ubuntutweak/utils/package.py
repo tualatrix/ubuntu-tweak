@@ -12,6 +12,8 @@ from gi.repository import Gtk
 
 from defer import inline_callbacks, return_value
 
+from ubuntutweak.gui.gtk import post_ui
+
 log = logging.getLogger('package')
 
 
@@ -62,14 +64,18 @@ class NewAptProgressDialog(AptProgressDialog):
 class AptWorker(object):
     cache = None
 
-    def __init__(self, parent, finish_handler=None, data=None):
+    def __init__(self, parent,
+                 finish_handler=None, error_handler=None,data=None):
         '''
         finish_handler: must take three parameter
         '''
         self.parent = parent
         self.data = data
         self.finish_handler = finish_handler
+        if error_handler:
+            self._on_error = error_handler
         self.ac = aptdaemon.client.AptClient()
+
 
     def _simulate_trans(self, trans):
         trans.simulate(reply_handler=lambda: self._confirm_deps(trans),
@@ -88,10 +94,12 @@ class AptWorker(object):
         dia = NewAptProgressDialog(transaction, parent=self.parent)
         if self.finish_handler:
             transaction.connect('finished', self.finish_handler, self.data)
+
         dia.run(close_on_finished=True, show_error=True,
                 reply_handler=lambda: True,
                 error_handler=self._on_error)
 
+    @post_ui
     def _on_error(self, error):
         try:
             raise error
@@ -100,8 +108,9 @@ class AptWorker(object):
             # Silently ignore auth failures
             return
         except aptdaemon.errors.TransactionFailed, error:
-            log.error(error)
+            log.error("TransactionFailed: %s" % error)
         except Exception, error:
+            log.error("TransactionFailed with unknown error: %s" % error)
             error = aptdaemon.errors.TransactionFailed(ERROR_UNKNOWN,
                                                        str(error))
         dia = AptErrorDialog(error)
