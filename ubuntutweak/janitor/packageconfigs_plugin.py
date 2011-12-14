@@ -1,4 +1,5 @@
 import os
+import time
 import logging
 
 from gi.repository import GObject, Gtk
@@ -49,8 +50,18 @@ class PackageConfigsPlugin(JanitorPlugin):
     def clean_cruft(self, cruft_list=[], parent=None):
         for cruft in cruft_list:
             log.debug('Cleaning...%s' % cruft.get_name())
-            proxy.clean_configs([cruft.get_name()])
-            self.emit('object_cleaned', cruft)
+            proxy.clean_configs(cruft.get_name())
+            line, returncode = proxy.get_cmd_pipe()
+            while returncode == 'None':
+                log.debug('output: %s, returncode: %s' % (line, returncode))
+                time.sleep(0.2)
+                line, returncode = proxy.get_cmd_pipe()
+
+            if returncode != '0':
+                self.emit('clean_error', returncode)
+                break
+            else:
+                self.emit('object_cleaned', cruft)
 
         self.emit('all_cleaned', True)
 

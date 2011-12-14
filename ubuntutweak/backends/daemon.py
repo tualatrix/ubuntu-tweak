@@ -477,15 +477,12 @@ class Daemon(PolicyKitService):
             return False
 
     @dbus.service.method(INTERFACE,
-                         in_signature='as', out_signature='',
+                         in_signature='s', out_signature='',
                          sender_keyword='sender')
-    def clean_configs(self, pkgs, sender=None):
+    def clean_configs(self, pkg, sender=None):
         self._check_permission(sender, PK_ACTION_CLEAN)
         cmd = ['sudo', 'dpkg', '--purge']
-        if type(pkgs) == list:
-            cmd.extend(pkgs)
-        else:
-            cmd.append(pkgs)
+        cmd.append(pkg)
         self.p = subprocess.Popen(cmd, stdout=PIPE)
         self._setup_non_block_io(self.p.stdout)
 
