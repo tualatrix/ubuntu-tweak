@@ -38,8 +38,15 @@ class OldKernelPlugin(JanitorPlugin):
 
     def clean_cruft(self, cruft_list=[], parent=None):
         set_busy(parent)
-        worker = AptWorker(parent, self.on_clean_finished, parent)
+        worker = AptWorker(parent,
+                           finish_handler=self.on_clean_finished,
+                           error_handler=self.on_error,
+                           data=parent)
         worker.remove_packages([cruft.get_package_name() for cruft in cruft_list])
+
+    def on_error(self, error):
+        log.error('AptWorker error with: %s' % error)
+        self.emit('clean_error', error)
 
     def on_clean_finished(self, transaction, status, parent):
         unset_busy(parent)

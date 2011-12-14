@@ -51,7 +51,7 @@ class AptCachePlugin(JanitorPlugin):
             result = proxy.delete_apt_cache_file(cruft.get_name())
 
             if bool(result) == False:
-                self.emit('error', cruft.get_name())
+                self.emit('clean_error', cruft.get_name())
                 break
             else:
                 self.emit('object_cleaned', cruft)
