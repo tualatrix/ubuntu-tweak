@@ -107,7 +107,7 @@ class ButtonView(Gtk.IconView):
         model = self.get_model()
         for i, row in enumerate(model):
             if row[self.COLUMN_VALUE] == value:
-                del model[i, self.COLUMN_VALUE]
+                model.remove(row.iter)
         self.on_selection_changed(self)
 
     def has_button(self, value):

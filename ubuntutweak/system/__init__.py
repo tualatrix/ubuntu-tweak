@@ -39,6 +39,7 @@ def get_desktop_fullname():
                     'ubuntu-2d': 'Unity 2D',
                     'gnome-classic': _('GNOME Classic'),
                     'gnome-shell': 'GNOME Shell',
+                    'gnome-fallback': _('GNOME Fallback'),
                     }
 
     desktop = get_desktop()
