@@ -17,6 +17,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import os
+import re
 
 from gi.repository import Gtk, Gio
 
@@ -35,9 +36,9 @@ class UnitySettings(TweakModule):
     def __init__(self):
         TweakModule.__init__(self)
 
-        wrong_unity_pkg = 'unityshell-rotated'
+        version_pattern = re.compile('\d.\d+.\d')
 
-        if wrong_unity_pkg in os.popen("dpkg-query -f '${Version}' -W %s" % wrong_unity_pkg).read():
+        if version_pattern.search(os.popen("dpkg-query -f '${Version}' -W unityshell-rotated").read()):
             label = Gtk.Label()
             label.set_markup(_("<big>Sorry! Unity Settings doesn't support unityshell-rotated</big>"))
             self.add_start(label, False, False, 0)
