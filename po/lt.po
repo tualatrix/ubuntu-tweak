@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-07 22:04+0800\n"
-"PO-Revision-Date: 2011-03-02 18:39+0000\n"
+"POT-Creation-Date: 2011-12-13 15:48+0800\n"
+"PO-Revision-Date: 2011-12-12 09:39+0000\n"
 "Last-Translator: Liudas Ališauskas <liudas.alisauskas@gmail.com>\n"
 "Language-Team: Lithuanian <lt@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,13 +18,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "(n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2011-05-14 18:52+0000\n"
-"X-Generator: Launchpad (build 13037)\n"
+"X-Launchpad-Export-Date: 2011-12-19 03:09+0000\n"
+"X-Generator: Launchpad (build 14525)\n"
 
 #: ../data/script-worker:54
 #, c-format
 msgid "You don't have permission to write in %s"
-msgstr "Jūs neturite rašymo į %s teisių"
+msgstr "Jūs neturite teisės rašyti į %s"
 
 #: ../data/script-worker:152 ../data/script-worker:165
 msgid "Enter your password to perform the administrative tasks"
@@ -42,45 +42,308 @@ msgstr "Pasirinkite aplanką"
 msgid "Please select a target (files or folders)."
 msgstr "Prašome pasirinkti paskirties failus ar aplankus."
 
-#: ../data/ubuntu-tweak.desktop.in.h:1
+#: ../data/ubuntu-tweak.desktop.in.h:1 ../ubuntutweak/tweaks/compiz.py:366
+msgid "Compiz Settings"
+msgstr "Compiz nustatymai"
+
+#: ../data/ubuntu-tweak.desktop.in.h:2 ../ubuntutweak/tweaks/icons.py:106
+msgid "Desktop Icon Settings"
+msgstr "Darbastalio piktogramų nustatymai"
+
+#: ../data/ubuntu-tweak.desktop.in.h:3
+#: ../ubuntutweak/admins/desktoprecovery.py:266
+msgid "Desktop Recovery"
+msgstr "Darbastalio atkūrimas"
+
+#: ../data/ubuntu-tweak.desktop.in.h:4
+#: ../ubuntutweak/admins/filetypemanager.py:550
+msgid "File Type Manager"
+msgstr "Failų tipų tvarkyklė"
+
+#: ../data/ubuntu-tweak.desktop.in.h:5
+msgid "GNOME Settings"
+msgstr "GNOME nustatymai"
+
+#: ../data/ubuntu-tweak.desktop.in.h:6
+#: ../ubuntutweak/tweaks/loginsettings.py:39
+msgid "Login Settings"
+msgstr "Prisijungimo nustatymai"
+
+#: ../data/ubuntu-tweak.desktop.in.h:7 ../ubuntutweak/tweaks/nautilus.py:27
+msgid "Nautilus Settings"
+msgstr "Nautilus nustatymai"
+
+#: ../data/ubuntu-tweak.desktop.in.h:8
+msgid "Power Manager Settings"
+msgstr "Energijos tvarkyklės nustatymai"
+
+#: ../data/ubuntu-tweak.desktop.in.h:9 ../ubuntutweak/tweaks/session.py:29
+msgid "Session Control"
+msgstr "Sesijos valdymas"
+
+#: ../data/ubuntu-tweak.desktop.in.h:10 ../ubuntutweak/admins/shortcuts.py:29
+msgid "Shortcut Commands"
+msgstr "Susiejimų komandos"
+
+#: ../data/ubuntu-tweak.desktop.in.h:11
 msgid "Tweak ubuntu to what you like"
 msgstr "Tobulinkite Ubuntu kaip tik norite"
 
+#: ../data/ubuntu-tweak.desktop.in.h:12 ../ubuntutweak/tweaks/metacity.py:150
+msgid "Window Manager Settings"
+msgstr "Langų tvarkyklės nustatymai"
+
 #: ../data/com.ubuntu-tweak.daemon.policy.in.h:1
-msgid "System policy prevents the Ubuntu Tweak from Tweaking"
+msgid "Clean user and system cruft"
 msgstr ""
 
 #: ../data/com.ubuntu-tweak.daemon.policy.in.h:2
-msgid "Ubuntu Tweak Daemon"
-msgstr "Ubuntu Tweak tarnyba"
+msgid "Edit the Software Sources lists"
+msgstr "Redaguoti programinės įrangos saugyklų sąrašus"
+
+#: ../data/com.ubuntu-tweak.daemon.policy.in.h:3
+msgid "To clean the cruft, you need to authenticate."
+msgstr ""
+
+#: ../data/com.ubuntu-tweak.daemon.policy.in.h:4
+msgid "To edit the software sources, you need to authenticate."
+msgstr ""
+"Norint redaguoti programinės įrangos sąrašus, turite patvirtinti tapatybę"
+
+#: ../data/com.ubuntu-tweak.daemon.policy.in.h:5
+msgid "To tweak the settings, you need to authenticate."
+msgstr "Norint keisti nustatymus, turite patvirtinti tapatybę"
+
+#: ../data/com.ubuntu-tweak.daemon.policy.in.h:6
+msgid "Tweak all kinds of settings"
+msgstr "Tobulinkite visokiausius nustatymus"
 
 #: ../data/ui/preferences.ui.h:1
-msgid "<b>Features</b>"
-msgstr "<b>Savybės</b>"
+msgid "<b>Admins Extensions</b>"
+msgstr "<b>Administratoriaus plėtiniai</b>"
 
 #: ../data/ui/preferences.ui.h:2
-msgid "<b>User Interface</b>"
-msgstr "<b>Naudotojo sąsaja</b>"
+msgid "<b>Clip Management</b>"
+msgstr "<b>Iškarpinės tvarkymas</b>"
 
 #: ../data/ui/preferences.ui.h:3
-msgid "Default Launch Function"
-msgstr "Numatytoji paleidimo funkcija"
+msgid "<b>Janitor Extensions</b>"
+msgstr "<b>Valytojo plėtiniai</b>"
 
 #: ../data/ui/preferences.ui.h:4
-msgid "Default Window Height"
-msgstr "Numatytasis lango aukštis"
+msgid "<b>Tweaks Extensions</b>"
+msgstr "<b>Patobulinimų plėtiniai</b>"
 
 #: ../data/ui/preferences.ui.h:5
-msgid "Default Window Width"
-msgstr "Numatytasis lango plotis"
+msgid "Admins"
+msgstr "Administratoriai"
 
 #: ../data/ui/preferences.ui.h:6
-msgid "Left Menubar Width"
-msgstr "Kairiosios meniu juostos plotis"
+msgid "Admins Extensions Management"
+msgstr "Administratoriaus plėtinių tvarkymas"
 
 #: ../data/ui/preferences.ui.h:7
-msgid "Ubuntu Tweak Preferences"
-msgstr "Ubuntu Tweak nustatymai"
+msgid "Install"
+msgstr "Įdiegti"
+
+#: ../data/ui/preferences.ui.h:8
+msgid "Janitor"
+msgstr "„Valytojas“"
+
+#: ../data/ui/preferences.ui.h:9
+msgid "Janitor Extensions Management"
+msgstr "„Valytojo“ plėtinių tvarkymas"
+
+#: ../data/ui/preferences.ui.h:10
+msgid "Manage the clip view in the Overview"
+msgstr "Tvarkyti iškarpinės peržiūrą peržiūros režime"
+
+#: ../data/ui/preferences.ui.h:11
+msgid "Move Down"
+msgstr "Žemyn"
+
+#: ../data/ui/preferences.ui.h:12
+msgid "Move Up"
+msgstr "Aukštyn"
+
+#: ../data/ui/preferences.ui.h:13
+msgid "Overview"
+msgstr "Apžvalga"
+
+#: ../data/ui/preferences.ui.h:14
+msgid "Preferences"
+msgstr "Nustatymai"
+
+#: ../data/ui/preferences.ui.h:15
+msgid "Tweaks"
+msgstr "Patobulinimai"
+
+#: ../data/ui/preferences.ui.h:16
+msgid "Tweaks Extensions Management"
+msgstr "Patobulinimų plėtinių tvarkymas"
+
+#: ../data/ui/preferences.ui.h:17 ../data/ui/appspage.ui.h:1
+#: ../data/ui/sourceeditor.ui.h:9
+msgid "column"
+msgstr "stulpelis"
+
+#: ../data/ui/uturl.ui.h:1
+msgid "Description"
+msgstr "Aprašymas"
+
+#: ../data/ui/uturl.ui.h:2
+msgid "Ubuntu Tweak"
+msgstr "Ubuntu Tweak"
+
+#: ../data/ui/uturl.ui.h:3
+msgid "_Install"
+msgstr "Į_diegti"
+
+#: ../data/ui/sourcecenter.ui.h:1
+msgid "<b>Description</b>"
+msgstr ""
+
+#: ../data/ui/sourcecenter.ui.h:2
+msgid "<b>Homepage</b>"
+msgstr ""
+
+#: ../data/ui/sourcecenter.ui.h:3
+msgid "<b>Source URL</b>"
+msgstr ""
+
+#: ../data/ui/sourcecenter.ui.h:4
+msgid "Description is here"
+msgstr "Aprašymas yra čia"
+
+#: ../data/ui/sourcecenter.ui.h:5 ../ubuntutweak/gui/dialogs.py:195
+msgid "Details"
+msgstr "Detalės"
+
+#: ../data/ui/sourcecenter.ui.h:6
+msgid "http://ubuntu-tweak.com"
+msgstr ""
+
+#: ../data/ui/brokenmodule.ui.h:1
+msgid "<big><b>This module encountered an error while loading.</b></big>"
+msgstr "<big><b>Įkeliant šį modulį įvyko klaida.</b></big>"
+
+#: ../data/ui/brokenmodule.ui.h:2 ../data/ui/traceback.ui.h:3
+msgid "Error Message"
+msgstr "Klaidos pranešimas"
+
+#: ../data/ui/brokenmodule.ui.h:3
+msgid ""
+"If you'd like to help us fix the problem,\n"
+"Please choose <i>Report</i> to file a new bug report. Make sure to include "
+"the error message below:"
+msgstr ""
+"Jei norite padėti mums išspręsti šią bėdą,\n"
+"Pasirinkite <i>Raportuoti</i> ir užpildykite naują pranešimą apie klaidą . "
+"Įsitikinkite jog pridėjote šį klaidos pranešimą:"
+
+#: ../data/ui/brokenmodule.ui.h:5 ../data/ui/traceback.ui.h:9
+msgid "_Report"
+msgstr "_Pranešti"
+
+#: ../data/ui/loginsettings.ui.h:1
+msgid "Click the button to change the login screen background"
+msgstr "Spustelėkite mygtuką prisijungimo lango fono keitimui"
+
+#: ../data/ui/loginsettings.ui.h:2
+msgid "Click the button to change the login screen logo"
+msgstr "Spustelėkite mygtuką prisijungimo lango logotipo keitimui"
+
+#: ../data/ui/loginsettings.ui.h:3
+msgid "Set the same background as the current desktop background"
+msgstr ""
+
+#: ../data/ui/clippage.ui.h:1
+msgid "<b>Recently Used</b>"
+msgstr "<b>Neseniai naudoti</b>"
+
+#: ../data/ui/sourceeditor.ui.h:1
+msgid "Auto Backup"
+msgstr "Automatinis atsarginės kopijos darymas"
+
+#: ../data/ui/sourceeditor.ui.h:2 ../data/ui/desktoprecovery.ui.h:1
+msgid "Backup History:"
+msgstr "Atsarginių kopijų istorija:"
+
+#: ../data/ui/sourceeditor.ui.h:3
+msgid "Delete this source"
+msgstr "Pašalinti šį šaltinį"
+
+#: ../data/ui/sourceeditor.ui.h:4
+msgid "Redo this source"
+msgstr "Atstatyti šį šaltinį"
+
+#: ../data/ui/sourceeditor.ui.h:5
+msgid "Save this source"
+msgstr "Išsaugoti šį šaltinį"
+
+#: ../data/ui/sourceeditor.ui.h:6
+msgid "U_pdate"
+msgstr "Atnau_jinti"
+
+#: ../data/ui/sourceeditor.ui.h:7 ../data/ui/desktoprecovery.ui.h:4
+msgid "_Backup"
+msgstr "_Daryti atsarginę kopiją"
+
+#: ../data/ui/sourceeditor.ui.h:8 ../data/ui/desktoprecovery.ui.h:5
+msgid "_Recover"
+msgstr "_Atkurti"
+
+#: ../data/ui/sourceeditor.ui.h:10
+msgid "toolbutton1"
+msgstr ""
+
+#: ../data/ui/sourceeditor.ui.h:11
+msgid "toolbutton2"
+msgstr ""
+
+#: ../data/ui/sourceeditor.ui.h:12
+msgid "toolbutton3"
+msgstr ""
+
+#: ../data/ui/updatemanager.ui.h:1
+msgid "_Install Update"
+msgstr "_Įdiegti atnaujinimą"
+
+#: ../data/ui/filetypemanager.ui.h:1
+msgid "Add Application"
+msgstr "Pridėti programą"
+
+#: ../data/ui/filetypemanager.ui.h:2
+msgid "Edit Type"
+msgstr "Redaguoti tipą"
+
+#: ../data/ui/filetypemanager.ui.h:3
+msgid "Select an application to view its description."
+msgstr "Pasirinkdami programą jūs pamatysite jos aprašymą."
+
+#: ../data/ui/filetypemanager.ui.h:4
+msgid "_Browse..."
+msgstr "_Naršyti…"
+
+#: ../data/ui/filetypemanager.ui.h:5
+msgid "_Use a custom command"
+msgstr "_Naudoti pasirinktinę komandą"
+
+#: ../data/ui/janitorpage.ui.h:1
+msgid "<big><b>Cool! Your system is clean!</b></big>"
+msgstr ""
+
+#: ../data/ui/janitorpage.ui.h:2
+msgid "Auto Scan"
+msgstr "Automatinis skanavimas"
+
+#: ../data/ui/janitorpage.ui.h:3
+msgid "_Clean"
+msgstr "Išval_yti"
+
+#: ../data/ui/janitorpage.ui.h:4
+msgid "_Scan"
+msgstr "_Skenuoti"
 
 #: ../data/ui/traceback.ui.h:1
 msgid "<big><b>Oops... a fatal error occured</b></big>"
@@ -89,10 +352,6 @@ msgstr "<big><b>Ups... įvyko kritinė klaida</b></big>"
 #: ../data/ui/traceback.ui.h:2
 msgid "<big><b>Oops... an error occured</b></big>"
 msgstr "<big><b>Ups... įvyko klaida</b></big>"
-
-#: ../data/ui/traceback.ui.h:3 ../data/ui/brokenmodule.ui.h:2
-msgid "Error Message"
-msgstr "Klaidos pranešimas"
 
 #: ../data/ui/traceback.ui.h:4
 msgid ""
@@ -116,9 +375,64 @@ msgstr ""
 "pasirinkite <i>Pranešti</i> ir užpildykite klaidos raportą. Būtinai žemiau "
 "įterpkite klaidos pranešimą:"
 
-#: ../data/ui/traceback.ui.h:9 ../data/ui/brokenmodule.ui.h:5
-msgid "_Report"
-msgstr "_Pranešti"
+#: ../data/ui/mainwindow.ui.h:1
+msgid "A_pps"
+msgstr ""
+
+#: ../data/ui/mainwindow.ui.h:2
+msgid "Ubuntu Tweak Website"
+msgstr "Ubuntu Tweak tinklalapis"
+
+#: ../data/ui/mainwindow.ui.h:3
+msgid ""
+"Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
+"system and desktop settings."
+msgstr ""
+"Ubuntu Tweak yra Ubuntu sistemai skirtas įrankis, kuris leidžia lengvai "
+"valdyti sistemos ir darbastalio nustatymus."
+
+#: ../data/ui/mainwindow.ui.h:4
+msgid ""
+"Ubuntu Tweak is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version.\n"
+"Ubuntu Tweak is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+"You should have received a copy of the GNU General Public License along with "
+"Ubuntu Tweak; if not, write to the Free Software Foundation, Inc., 51 "
+"Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA"
+msgstr ""
+
+#: ../data/ui/mainwindow.ui.h:7
+msgid "Visit Homepage"
+msgstr "Aplankyti namų puslapį"
+
+#: ../data/ui/mainwindow.ui.h:8
+msgid "_Admins"
+msgstr "Administrato_riai"
+
+#: ../data/ui/mainwindow.ui.h:9
+msgid "_Janitor"
+msgstr "_Valytojas"
+
+#: ../data/ui/mainwindow.ui.h:10
+msgid "_Overview"
+msgstr "_Apžvalga"
+
+#: ../data/ui/mainwindow.ui.h:11
+msgid "_Tweaks"
+msgstr "Pato_bulinimai"
+
+#: ../data/ui/mainwindow.ui.h:12
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  Algimantas Margevičius https://launchpad.net/~gymka\n"
+"  Mantas Kriaučiūnas https://launchpad.net/~mantas\n"
+"  Mantas Tumas https://launchpad.net/~ozarux"
 
 #: ../data/ui/metacity.ui.h:1
 msgid " "
@@ -133,7 +447,7 @@ msgstr ""
 
 #: ../data/ui/metacity.ui.h:3
 msgid "Enable control:"
-msgstr ""
+msgstr "Įjungti valdymą:"
 
 #: ../data/ui/metacity.ui.h:4
 msgid "Left"
@@ -147,42 +461,6 @@ msgstr "Vieta:"
 msgid "Right"
 msgstr "Dešinėje"
 
-#: ../data/ui/updatemanager.ui.h:1
-msgid "_Install Update"
-msgstr "_Įdiegti atnaujinimą"
-
-#: ../data/ui/type_edit.ui.h:1
-msgid "Add Application"
-msgstr "Pridėti programą"
-
-#: ../data/ui/type_edit.ui.h:2
-msgid "Edit Type"
-msgstr "Redaguoti tipą"
-
-#: ../data/ui/type_edit.ui.h:3
-msgid "Select an application to view its description."
-msgstr "Pasirinkdami programą jūs pamatysite jos aprašymą."
-
-#: ../data/ui/type_edit.ui.h:4 ../ubuntutweak/modules/autostart.py:70
-msgid "_Browse..."
-msgstr "_Naršyti…"
-
-#: ../data/ui/type_edit.ui.h:5
-msgid "_Use a custom command"
-msgstr "_Naudoti pasirinktinę komandą"
-
-#: ../data/ui/loginsettings.ui.h:1
-msgid "Click the button to change the login screen background"
-msgstr "Spustelėkite mygtuką prisijungimo lango fono keitimui"
-
-#: ../data/ui/loginsettings.ui.h:2
-msgid "Click the button to change the login screen logo"
-msgstr "Spustelėkite mygtuką prisijungimo lango logotipo keitimui"
-
-#: ../data/ui/desktoprecovery.ui.h:1
-msgid "Backup History:"
-msgstr "Atsarginių kopijų istorija:"
-
 #: ../data/ui/desktoprecovery.ui.h:2
 msgid "R_eset"
 msgstr "At_statyti į pradinę būseną"
@@ -191,309 +469,21 @@ msgstr "At_statyti į pradinę būseną"
 msgid "Setting Name:"
 msgstr "Nustatymų pavadinimas:"
 
-#: ../data/ui/desktoprecovery.ui.h:4
-msgid "_Backup"
-msgstr "_Daryti atsarginę kopiją"
+#: ../ubuntutweak/system/__init__.py:40
+msgid "GNOME Classic"
+msgstr "GNOME Klasikinis"
 
-#: ../data/ui/desktoprecovery.ui.h:5
-msgid "_Recover"
-msgstr "_Atkurti"
-
-#: ../data/ui/brokenmodule.ui.h:1
-msgid "<big><b>This module encountered an error while loading.</b></big>"
-msgstr ""
-
-#: ../data/ui/brokenmodule.ui.h:3
-msgid ""
-"If you'd like to help us fix the problem,\n"
-"Please choose <i>Report</i> to file a new bug report. Make sure to include "
-"the error message below:"
-msgstr ""
-
-#: ../ubuntutweak/mainwindow.py:82
-msgid "Welcome to"
-msgstr "Sveiki atvykę į"
-
-#: ../ubuntutweak/mainwindow.py:88
-msgid "Tweak otherwise hidden settings."
-msgstr "Tobulinkite kitais atžvilgiais nematomus nustatymus."
-
-#: ../ubuntutweak/mainwindow.py:89
-msgid "Clean up unused packages to free up diskspace."
-msgstr "Išvalykite nenaudojamus paketus taip atlaisvindami diske vietos."
-
-#: ../ubuntutweak/mainwindow.py:90
-msgid "Easily install up-to-date versions of many applications."
-msgstr "Lengvai įdiekite daugelio programų naujausias versijas."
-
-#: ../ubuntutweak/mainwindow.py:91
-msgid ""
-"Configure file templates and shortcut scripts for easy access to common "
-"tasks."
-msgstr ""
-"Nusistatykite failų šablonus ir nuorodų skriptus greitam dažniausiai vykdomų "
-"užduočių atlikimui."
-
-#: ../ubuntutweak/mainwindow.py:92
-msgid "Many more useful features!"
-msgstr "Dar daugiau naudingų savybių!"
-
-#: ../ubuntutweak/mainwindow.py:103
-msgid "Please wait a moment..."
-msgstr "Lukterėkite..."
-
-#: ../ubuntutweak/mainwindow.py:128
-msgid "Welcome"
-msgstr "Apžvalga"
-
-#: ../ubuntutweak/mainwindow.py:129
-msgid "Broken Modules"
-msgstr "Sugadinti moduliai"
-
-#: ../ubuntutweak/mainwindow.py:130
-#: ../ubuntutweak/modules/desktoprecovery.py:75
-msgid "Applications"
-msgstr "Taikomosios programos"
-
-#: ../ubuntutweak/mainwindow.py:131
-msgid "Startup"
-msgstr "Paleidimas"
-
-#: ../ubuntutweak/mainwindow.py:132 ../ubuntutweak/modules/userdir.py:45
-#: ../ubuntutweak/modules/desktoprecovery.py:76
-msgid "Desktop"
-msgstr "Darbastalis"
-
-#: ../ubuntutweak/mainwindow.py:133
-msgid "Personal"
-msgstr "Asmeninė"
-
-#: ../ubuntutweak/mainwindow.py:134
-#: ../ubuntutweak/modules/desktoprecovery.py:77
-msgid "System"
-msgstr "Sistema"
-
-#: ../ubuntutweak/mainwindow.py:142
+#: ../ubuntutweak/system/__init__.py:50
 #, python-format
-msgid "Download Ubuntu Tweak %s"
-msgstr "Atsisiųsti Ubuntu Tweak %s"
+msgid "Unknown (%s)"
+msgstr "Nežinoma (%s)"
 
-#: ../ubuntutweak/mainwindow.py:161
-msgid "Double click for editing the sources"
-msgstr ""
+#: ../ubuntutweak/system/__init__.py:52
+#: ../ubuntutweak/clips/hardwareinfo.py:16
+msgid "Unknown"
+msgstr "Nežinoma"
 
-#: ../ubuntutweak/mainwindow.py:260
-msgid "_Donate"
-msgstr "_Paremti"
-
-#: ../ubuntutweak/mainwindow.py:305
-msgid ""
-"To keep the package manager work, Ubuntu Tweak has disabled these broken "
-"sources.\n"
-"\n"
-"If you want to re-open these sources, Please try to correct it.\n"
-"\n"
-"You can click \"Help\" to see the guide, then edit these sources at Source "
-"Editor."
-msgstr ""
-
-#: ../ubuntutweak/mainwindow.py:306
-msgid "The software sources list is broken"
-msgstr "Programų šaltinių sąrašas yra sugadintas"
-
-#: ../ubuntutweak/mainwindow.py:310
-msgid "_Help"
-msgstr "_Pagalba"
-
-#: ../ubuntutweak/mainwindow.py:321
-msgid ""
-"It is highly recommended that you enable the Ubuntu Tweak stable repository "
-"to get security and maintenance updates.\n"
-"If you don't enable this repository, you will need to update manually.\n"
-"\n"
-"Would you like to enable this repository?"
-msgstr ""
-"Rekomenduojama įgalinti stabilios Ubuntu Tweak versijos saugyklą saugumo ir "
-"priežiūros atnaujinimų gavimui.\n"
-"Jeigu neįgalinsite šios progr. įrangos saugyklos, atnaujinti programą "
-"turėsite rankiniu būdu.\n"
-"\n"
-"Ar norite įgalinti šią saugyklą?"
-
-#: ../ubuntutweak/mainwindow.py:324
-#: ../ubuntutweak/modules/gnomesettings.py:222
-#: ../ubuntutweak/modules/sourcecenter.py:1112
-#: ../ubuntutweak/modules/nautilus.py:148
-msgid "Warning"
-msgstr "Perspėjimas"
-
-#: ../ubuntutweak/mainwindow.py:325
-#: ../ubuntutweak/modules/sourcecenter.py:1113
-msgid "Never show this dialog"
-msgstr "Niekada nerodyti šio dialogo"
-
-#: ../ubuntutweak/mainwindow.py:535
-msgid "Ubuntu Tweak Website"
-msgstr "Ubuntu Tweak tinklalapis"
-
-#: ../ubuntutweak/mainwindow.py:537
-msgid ""
-"Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
-"system and desktop settings."
-msgstr ""
-"Ubuntu Tweak yra Ubuntu sistemai skirtas įrankis, kuris leidžia lengvai "
-"valdyti sistemos ir darbastalio nustatymus."
-
-#: ../ubuntutweak/mainwindow.py:539
-msgid "Contributors of 2007"
-msgstr "2007 m. pagalbininkai"
-
-#: ../ubuntutweak/mainwindow.py:541
-msgid "Contributors of 2008"
-msgstr "2008 m. pagalbininkai"
-
-#: ../ubuntutweak/mainwindow.py:543
-msgid "Contributors of 2009"
-msgstr "2009 m. pagalbininkai"
-
-#: ../ubuntutweak/mainwindow.py:546
-msgid "Contributors of 2010"
-msgstr "2010 m. pagalbininkai"
-
-#: ../ubuntutweak/mainwindow.py:553
-msgid "Contributors of 2011"
-msgstr ""
-
-#: ../ubuntutweak/mainwindow.py:561
-msgid "translator-credits"
-msgstr ""
-"Launchpad Contributions:\n"
-"  Gintaras https://launchpad.net/~gintulis-gmail\n"
-"  Liudas Ališauskas https://launchpad.net/~liudas-alisauskas\n"
-"  Tualatrix Chou https://launchpad.net/~tualatrix\n"
-"  Vytautas Bačiulis https://launchpad.net/~info-infosoft"
-
-#: ../ubuntutweak/mainwindow.py:575
-#, python-format
-msgid ""
-"A newer version: %s is available online.\n"
-"Would you like to update?\n"
-"\n"
-"Note: if you prefer to update from the source code, you can disable this "
-"feature in Preferences."
-msgstr ""
-"Išleista naujesnė versija: %s.\n"
-"Ar norite atnaujinti?\n"
-"\n"
-"Pastaba: jeigu norite atnaujinti programą iš pirminio programos kodo, šią "
-"savybę galite išjungti per Nustatymai."
-
-#: ../ubuntutweak/mainwindow.py:576
-msgid "Software Update"
-msgstr "Programinės įrangos atnaujinimas"
-
-#: ../ubuntutweak/ui/widgets.py:45
-#, python-format
-msgid "Reset setting to default value: %s"
-msgstr "Atstatyti nustatymo numatytąją reikšmę: %s"
-
-#: ../ubuntutweak/ui/widgets.py:118 ../ubuntutweak/ui/widgets.py:143
-#: ../ubuntutweak/modules/icons.py:105
-msgid "Unset"
-msgstr "Nenustatyta"
-
-#: ../ubuntutweak/ui/widgets.py:278
-msgid "Please press the new key combination"
-msgstr "Paspauskite naują mygtukų kombinaciją"
-
-#: ../ubuntutweak/ui/widgets.py:327
-msgid "Disabled"
-msgstr "Išjungtas"
-
-#: ../ubuntutweak/ui/treeviews.py:71
-msgid "Create folder"
-msgstr "Sukurti aplanką"
-
-#: ../ubuntutweak/ui/treeviews.py:75 ../ubuntutweak/modules/icons.py:33
-#: ../ubuntutweak/modules/icons.py:42 ../ubuntutweak/modules/icons.py:51
-msgid "Rename"
-msgstr "Pervadinti"
-
-#: ../ubuntutweak/ui/treeviews.py:79
-msgid "Delete"
-msgstr "Ištrinti"
-
-#: ../ubuntutweak/ui/treeviews.py:101
-msgid "Input the dir name"
-msgstr "Įveskite aplanko pavadinimą"
-
-#: ../ubuntutweak/ui/treeviews.py:126
-msgid "Can't rename the root folder"
-msgstr "Nepavyko pervadinti šakninio aplanko"
-
-#: ../ubuntutweak/ui/treeviews.py:143
-msgid "Can't delete the root folder"
-msgstr "Nepavyko ištrinti šakninio aplanko"
-
-#: ../ubuntutweak/ui/treeviews.py:158
-msgid ""
-"Can't rename!\n"
-"\n"
-"There are files in it!"
-msgstr ""
-"Nepavyko pervadinti!\n"
-"\n"
-"Viduje yra failų!"
-
-#: ../ubuntutweak/ui/dialogs.py:179
-msgid "An unexpected error has occurred."
-msgstr "Įvyko netikėta klaida."
-
-#: ../ubuntutweak/ui/dialogs.py:180
-msgid "Could not authenticate"
-msgstr "Nepavyko autentifikuoti"
-
-#: ../ubuntutweak/ui/dialogs.py:185
-msgid "You need to restart your computer."
-msgstr "Jūs turite paleisti kompiuterį iš naujo."
-
-#: ../ubuntutweak/ui/dialogs.py:186
-msgid "Service hasn't initialized yet"
-msgstr "Tarnyba dar neinicializavosi"
-
-#: ../ubuntutweak/ui/dialogs.py:207 ../ubuntutweak/modules/sourceeditor.py:88
-#: ../ubuntutweak/modules/sourcecenter.py:945
-msgid "Details"
-msgstr "Detalės"
-
-#: ../ubuntutweak/preferences.py:75 ../ubuntutweak/modules/filetype.py:179
-#: ../ubuntutweak/modules/filetype.py:214
-#: ../ubuntutweak/modules/metacity.py:186
-#: ../ubuntutweak/modules/metacity.py:192
-#: ../ubuntutweak/modules/metacity.py:206
-#: ../ubuntutweak/modules/metacity.py:220
-#: ../ubuntutweak/modules/shortcuts.py:99
-#: ../ubuntutweak/modules/shortcuts.py:209
-msgid "None"
-msgstr "Nėra"
-
-#: ../ubuntutweak/preferences.py:104
-msgid "Check for Updates"
-msgstr "Tikrinti, ar yra atnaujinimų"
-
-#: ../ubuntutweak/preferences.py:110
-msgid "Use Separated Sources"
-msgstr "Naudoti atskirus programinės įrangos šaltinius"
-
-#: ../ubuntutweak/preferences.py:116
-msgid "Enable Synchronous notifications"
-msgstr "Įgalinti vienalaikius pranešimus"
-
-#: ../ubuntutweak/preferences.py:122
-msgid "Highlight new items in App and Source Center"
-msgstr "Programų ir šaltinių centre paryškinti naujus elementus"
-
-#: ../ubuntutweak/network/downloadmanager.py:98
+#: ../ubuntutweak/network/downloadmanager.py:97
 msgid "Connecting to server"
 msgstr "Jungiamasi prie serverio"
 
@@ -502,15 +492,16 @@ msgstr "Jungiamasi prie serverio"
 msgid "Downloading...%d"
 msgstr "Siunčiama...%d"
 
-#: ../ubuntutweak/network/downloadmanager.py:147
+#: ../ubuntutweak/network/downloadmanager.py:148
 msgid "Downloaded!"
 msgstr "Atsisiųsta!"
 
-#: ../ubuntutweak/network/downloadmanager.py:153
+#: ../ubuntutweak/network/downloadmanager.py:155
 msgid "Error happened!"
 msgstr "Įvyko klaida!"
 
 #: ../ubuntutweak/network/utdata.py:50 ../ubuntutweak/network/utdata.py:83
+#: ../ubuntutweak/tweaks/unity.py:63 ../ubuntutweak/tweaks/unity.py:141
 msgid "Never"
 msgstr "Niekada"
 
@@ -550,68 +541,7 @@ msgstr[2] "Prieš %d minučių"
 msgid "Just Now"
 msgstr "Ką tik"
 
-#: ../ubuntutweak/common/debug.py:55
-msgid "Error message has been copied"
-msgstr ""
-
-#: ../ubuntutweak/common/debug.py:56
-msgid ""
-"Now click \"Report\" to enter the bug report website. Make sure to attach "
-"the error message in \"Further information\"."
-msgstr ""
-
-#: ../ubuntutweak/common/debug.py:72
-msgid "Copy Error Message"
-msgstr ""
-
-#: ../ubuntutweak/common/package.py:206
-#: ../ubuntutweak/modules/appcenter.py:644
-#: ../ubuntutweak/modules/compiz.py:526
-#: ../ubuntutweak/modules/sourcecenter.py:141
-#: ../ubuntutweak/modules/nautilus.py:176
-msgid "Update Successful!"
-msgstr "Atnaujinimas sėkmingas!"
-
-#: ../ubuntutweak/common/package.py:208
-#: ../ubuntutweak/modules/appcenter.py:646
-#: ../ubuntutweak/modules/compiz.py:528
-#: ../ubuntutweak/modules/sourcecenter.py:143
-#: ../ubuntutweak/modules/nautilus.py:178
-msgid "Update Failed!"
-msgstr "Atnaujinimas nepavyko!"
-
-#: ../ubuntutweak/common/package.py:340
-msgid "(Not available)"
-msgstr "(Neprieinamas)"
-
-#: ../ubuntutweak/common/misc.py:15
-#, python-format
-msgid "%(size)d byte"
-msgid_plural "%(size)d bytes"
-msgstr[0] "%(size)d baitas"
-msgstr[1] "%(size)d baitai"
-msgstr[2] "%(size)d baitų"
-
-#: ../ubuntutweak/common/misc.py:17
-#, python-format
-msgid "%.1f KB"
-msgstr "%.1f KB"
-
-#: ../ubuntutweak/common/misc.py:19
-#, python-format
-msgid "%.1f MB"
-msgstr "%.1f MB"
-
-#: ../ubuntutweak/common/misc.py:20
-#, python-format
-msgid "%.1f GB"
-msgstr "%.1f GB"
-
-#: ../ubuntutweak/policykit/polkitbutton.py:72
-msgid "_Unlock"
-msgstr "_Atrakinti"
-
-#: ../ubuntutweak/policykit/dbusproxy.py:34
+#: ../ubuntutweak/policykit/dbusproxy.py:32
 msgid ""
 "The Ubuntu Tweak daemon didn't start correctly. This means that some "
 "advanced features may not work.\n"
@@ -623,39 +553,545 @@ msgstr ""
 "Jeigu norite padėti aptinkant klaidas, bandykite terminale paleisti "
 "\"<b>sudo /usr/share/ubuntu-tweak/ubuntu-tweak-daemon</b>\"."
 
-#: ../ubuntutweak/modules/userdir.py:46
+#: ../ubuntutweak/policykit/widgets.py:54
+msgid "_Unlock"
+msgstr "_Atrakinti"
+
+#: ../ubuntutweak/common/debug.py:59
+msgid "Error message has been copied"
+msgstr "Klaidos pranešimas buvo nukopijuotas"
+
+#: ../ubuntutweak/common/debug.py:60
+msgid ""
+"Now click \"Report\" to enter the bug report website. Make sure to attach "
+"the error message in \"Further information\"."
+msgstr ""
+"Paspauskite „Raportuoti“, kad patektumėte į klaidų pranešimo svetainę. "
+"Įsitikinkite jog pridėjote klaidos pranešimą esantį „Daugiau informacijos“."
+
+#: ../ubuntutweak/common/debug.py:81
+msgid "Copy Error Message"
+msgstr "Kopijuoti klaidos pranešimą"
+
+#: ../ubuntutweak/common/debug.py:116
+msgid "Sorry, your distribution is not supported by Ubuntu Tweak"
+msgstr ""
+
+#: ../ubuntutweak/common/debug.py:117
+msgid ""
+"You can't file bug for this issue. Please only use Ubuntu Tweak on Ubuntu. "
+"Or it may kill your cat."
+msgstr ""
+
+#: ../ubuntutweak/janitor/thumbnailcache_plugin.py:36
+msgid "Thumbnail cache"
+msgstr "Miniatiūrų podėlis"
+
+#: ../ubuntutweak/janitor/thumbnailcache_plugin.py:71
+#, python-format
+msgid "Thumbnail Cache (%d cache to be cleaned, total size: %s)"
+msgstr "Miniatiūrų podėlis (bus išvalytas %d podėlis, viso dydis: %s)"
+
+#: ../ubuntutweak/janitor/thumbnailcache_plugin.py:73
+msgid "Thumbnail Cache (No cache to be cleaned)"
+msgstr "Miniatiūrų podėlis (joks podėlis nebus išvalytas)"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:62
+msgid "Purge PPA and Downgrade Packages"
+msgstr "Išvalyti PPA ir pasendinti paketus"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:63
+msgid "Downloading Packages..."
+msgstr "Atsisiunčiami paketai..."
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:113
+msgid "Removing key files..."
+msgstr "Šalinami raktų failai..."
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:147
+#, python-format
+msgid "Downgrading...%s"
+msgstr "Sendinama...%s"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:154
+#, python-format
+msgid "Downloading...%s"
+msgstr "Parsiunčiama...%s"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:202
+msgid "Package"
+msgstr "Paketas"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:210
+msgid "Previous Version"
+msgstr "Ankstesnė versija"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:219
+msgid "System Version"
+msgstr "Sistemos versija"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:262
+msgid "PPA"
+msgstr "PPA"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:298
+msgid "It's safe to purge the PPA, no packages need to be downgraded."
+msgstr "Saugu išvalyti PPA, nereikia pasendinti jokio paketo."
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:301
+msgid "To safely purge the PPA, the following packages must be downgraded."
+msgstr "Norint saugiai pašalinti PPA, reikia pasendinti šiuos paketus."
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:306
+#, python-format
+msgid "You're going to purge: %s"
+msgstr "Jūs planuojate sunaikinti: %s"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:421
+#, python-format
+msgid "%d PPAs to be removed"
+msgstr "%d PPA bus pašalinta"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:423
+msgid "No PPA to be removed"
+msgstr "Nei vienas PPA nebus pašalintas"
+
+#: ../ubuntutweak/janitor/autoremoval_plugin.py:10
+msgid "Unneeded Packages"
+msgstr "Nereikalingi paketai"
+
+#: ../ubuntutweak/janitor/autoremoval_plugin.py:39
+#, python-format
+msgid "Unneeded Packages (%d packages to be removed, total size: %s)"
+msgstr "Nereikalingi paketai (%d paketų pašalinti, viso dydis: %s)"
+
+#: ../ubuntutweak/janitor/autoremoval_plugin.py:41
+msgid "Unneeded Packages (No package to be removed)"
+msgstr "Nereikalingi paketai (Nėra paketų šalinimui)"
+
+#: ../ubuntutweak/janitor/aptcache_plugin.py:25
+msgid "Apt Cache"
+msgstr "Apt podėlis"
+
+#: ../ubuntutweak/janitor/aptcache_plugin.py:63
+#, python-format
+msgid "Apt Cache (%d cache to be cleaned, total size: %s)"
+msgstr "Apt podėlis (%d podėliai bus išvalyti, viso dydis: %s)"
+
+#: ../ubuntutweak/janitor/aptcache_plugin.py:65
+msgid "Apt Cache (No cache to be cleaned)"
+msgstr "Apt podėlis (joks podėlis nebus išvalytas)"
+
+#: ../ubuntutweak/janitor/__init__.py:419
+#, python-format
+msgid "Scanning cruft for \"%s\"..."
+msgstr ""
+
+#: ../ubuntutweak/janitor/__init__.py:581
+#, python-format
+msgid "Cleaning cruft for \"%s\"..."
+msgstr ""
+
+#: ../ubuntutweak/janitor/__init__.py:652
+#: ../ubuntutweak/admins/desktoprecovery.py:81
+#: ../ubuntutweak/modules/__init__.py:34
+msgid "System"
+msgstr "Sistema"
+
+#: ../ubuntutweak/janitor/__init__.py:674
+#: ../ubuntutweak/modules/__init__.py:33
+msgid "Personal"
+msgstr "Asmeninė"
+
+#: ../ubuntutweak/janitor/packageconfigs_plugin.py:29
+msgid "Package Configs"
+msgstr "Paketo konfigūracijos failai"
+
+#: ../ubuntutweak/janitor/packageconfigs_plugin.py:59
+#, python-format
+msgid "Packages Configs (%d package configs to be removed)"
+msgstr ""
+"Paketų konfigūracijos failai (bus pašalinti %d  paketų konfigūracijos failai)"
+
+#: ../ubuntutweak/janitor/packageconfigs_plugin.py:61
+msgid "Packages Configs (No package config to be removed)"
+msgstr ""
+"Paketų konfigūracijos failai (nei vienas konfigūracijos failas nebus "
+"pašalintas)"
+
+#: ../ubuntutweak/janitor/oldkernel_plugin.py:15
+msgid "Old Kernel"
+msgstr "Senas branduolys"
+
+#: ../ubuntutweak/janitor/oldkernel_plugin.py:84
+#, python-format
+msgid ""
+"Old Kernel Packages (%d kernel packages to be removed, total size: %s)"
+msgstr ""
+"Seno branduolio paketai (bus pašalinti %d branduolio paketai, viso dydis: %s)"
+
+#: ../ubuntutweak/janitor/oldkernel_plugin.py:86
+msgid "Old Kernel Packages (No old kernel package to be removed)"
+msgstr "Seno branduolio paketai (Nebus pašalinti jokie branduolio paketai)"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:79
+#: ../ubuntutweak/modules/__init__.py:29
+msgid "Applications"
+msgstr "Taikomosios programos"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:80
+#: ../ubuntutweak/admins/userdir.py:34 ../ubuntutweak/modules/__init__.py:32
+#: ../ubuntutweak/tweaks/unity.py:89 ../ubuntutweak/tweaks/ccm/Constants.py:88
+msgid "Desktop"
+msgstr "Darbastalis"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:106
+msgid "Category"
+msgstr "Kategorija"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:147
+msgid "Setting"
+msgstr "Nustatymas"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:188
+msgid "Backup Name:"
+msgstr "Atsarginės kopijos pavadinimas:"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:217
+msgid "Backing up..."
+msgstr "Daroma atsarginė kopija..."
+
+#: ../ubuntutweak/admins/desktoprecovery.py:242
+#, python-format
+msgid "Backing up...%s"
+msgstr "Daroma atsarginė kopija...%s"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:267
+msgid ""
+"Backup and recover your desktop and application settings with ease.\n"
+"You can also use \"Reset\" to reset to the system default settings."
+msgstr ""
+"Darykite atsargines kopijas ir lengvai atkurkite darbastalio ir programų "
+"nustatymus.\n"
+"Jūs taip pat galite naudoti \"Atstatyti\", taip atkurdami sistemos "
+"numatytuosius nustatymus."
+
+#: ../ubuntutweak/admins/desktoprecovery.py:348
+msgid "No Backup Yet"
+msgstr "Nėra atsarginių kopijų"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:383
+#, python-format
+msgid ""
+"Backup all settings under: <b>%s</b>\n"
+"Would you like to continue?"
+msgstr ""
+"Išsaugoti visus nustatymus: <b>%s</b>\n"
+"Ar tęsti?"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:404
+#, python-format
+msgid ""
+"Backup settings under: <b>%s</b>\n"
+"Would you like to continue?"
+msgstr ""
+"Išsaugoti nustatymus: <b>%s</b>\n"
+"Ar tęsti?"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:447
+#, python-format
+msgid "Would you like to delete the backup:<b>%s/%s</b>?"
+msgstr "Ar norite ištrinti atsarginę kopiją: <b>%s/%s</b>?"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:451
+#, python-format
+msgid ""
+"Would you like to delete the backup of all <b>%s</b> settings named "
+"<b>%s</b>?"
+msgstr ""
+"Ar norite ištrinti atsarginę visų <b>%s</b> nustatymų kopiją pavadinimu "
+"<b>%s</b>?"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:472
+#, python-format
+msgid "Would you like to recover the backup: <b>%s/%s</b>?"
+msgstr "Ar norite atkurti atsarginę kopiją: <b>%s/%s</b>?"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:475
+#, python-format
+msgid ""
+"Would you like to recover the backup of all<b>%s</b> settings named "
+"<b>%s</b>?"
+msgstr ""
+"Ar norite atstatyti visas atsargines kopijas <b>%s</b> nustatymai pavadinti "
+"<b>%s</b>?"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:479
+msgid ""
+"<b>NOTES</b>: While recovering, your desktop may be unresponsive for a "
+"moment."
+msgstr ""
+"<b>PASTABOS</b>: Atkūrimo metu darbastalis trumpam gali nereaguoti į jūsų "
+"veiksmus."
+
+#: ../ubuntutweak/admins/desktoprecovery.py:496
+msgid "Recovery Successful!"
+msgstr "Atstatyta sėkmingai!"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:497
+#: ../ubuntutweak/admins/desktoprecovery.py:533
+msgid "You may need to restart your desktop for changes to take effect"
+msgstr ""
+"Norint jog įsigaliotų nustatymai, gali tekti paleisti kompiuterį iš naujo"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:502
+msgid "_Logout"
+msgstr "_Atsijungti"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:515
+#, python-format
+msgid "Would you like to reset settings for: <b>%s</b>?"
+msgstr "Ar norėtumėte atstatyti numatytuosius nustatymus: <b>%s</b>?"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:517
+#, python-format
+msgid "Would you like to reset all settings under: <b>%s</b>?"
+msgstr "Ar norite atstatyti visus nustatymus esančius: <b>%s</b>?"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:519
+msgid ""
+"<b>NOTES</b>: Whilst resetting, your desktop may be unresponsive for a "
+"moment."
+msgstr ""
+"<b>PASTABOS</b>: Numatytųjų nustatymų atstatymo metu darbastalis trumpam "
+"gali nereaguoti į jūsų veiksmus."
+
+#: ../ubuntutweak/admins/desktoprecovery.py:532
+msgid "Reset Successful!"
+msgstr "Atstatyta sėkmingai!"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:561
+#: ../ubuntutweak/admins/sourceeditor.py:420
+msgid "Please enter a new name for your backup:"
+msgstr "Prašome įvesti naują atsarginės kopijos pavadinimą:"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:593
+msgid "Backup Successful!"
+msgstr "Atsarginės kopijos darymas sėkmingas!"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:596
+#: ../ubuntutweak/admins/sourceeditor.py:396
+msgid "Backup Failed!"
+msgstr "Atsarginės kopijos darymas nepavyko!"
+
+#: ../ubuntutweak/admins/sourceeditor.py:169
+msgid "Source Editor"
+msgstr "Saugyklų keitimas"
+
+#: ../ubuntutweak/admins/sourceeditor.py:170
+msgid "Manually edit your software sources to suit your needs."
+msgstr "Savo poreikių pritaikymui redaguokite šaltinius rankiniu būdu."
+
+#: ../ubuntutweak/admins/sourceeditor.py:212
+#, python-format
+msgid "You're viewing the backup \"<b>%s</b>\" for\"<b>%s</b>\""
+msgstr "Jūs peržiūrite „<b>%s</b>“ atsarginę kopiją skirtą „<b>%s</b>“"
+
+#: ../ubuntutweak/admins/sourceeditor.py:282
+msgid "No backup yet"
+msgstr "Kolkas atsarginės kopijos nėra"
+
+#: ../ubuntutweak/admins/sourceeditor.py:322
+msgid "Please check the permission of the sources.list file"
+msgstr "Prašome patikrinti sources.list failo leidimus"
+
+#: ../ubuntutweak/admins/sourceeditor.py:324
+msgid "Save failed!"
+msgstr "Išsaugojimas nepavyko!"
+
+#: ../ubuntutweak/admins/sourceeditor.py:342
+#, python-format
+msgid "Would you like to recover the backup \"<b>%s</b>\" for \"<b>%s</b>\"?"
+msgstr "Ar norite atstatyti atsarginę kopiją „<b>%s</b>“ skirtą „<b>%s</b>“?"
+
+#: ../ubuntutweak/admins/sourceeditor.py:352
+msgid "Recovery Failed!"
+msgstr "Atstatyti nepavyko!"
+
+#: ../ubuntutweak/admins/sourceeditor.py:353
+msgid "You may need to check the permission of source list."
+msgstr "Patikrinkite šaltinių failo leidimus."
+
+#: ../ubuntutweak/admins/sourceeditor.py:385
+msgid "Please enter the name for your backup:"
+msgstr "Įveskite atsarginės kopijos pavadinimą:"
+
+#: ../ubuntutweak/admins/sourceeditor.py:398
+#: ../ubuntutweak/admins/sourceeditor.py:431
+msgid "Please only use alphanumeric characters and \"_\" and \"-\"."
+msgstr "Naudokite tik raides, skaičius, „_“ ir „-“."
+
+#: ../ubuntutweak/admins/sourceeditor.py:400
+#: ../ubuntutweak/admins/sourceeditor.py:433
+msgid "Backup name is invalid"
+msgstr "Atsarginės kopijos pavadinimas netinkamas"
+
+#: ../ubuntutweak/admins/sourceeditor.py:406
+#, python-format
+msgid "Would you like to delete the backup:<b>%s</b>?"
+msgstr "Ar norite ištrinti atsarginę kopiją: <b>%s</b>?"
+
+#: ../ubuntutweak/admins/sourceeditor.py:436
+msgid ""
+"The current content will be lost after reloading!\n"
+"Do you wish to continue?"
+msgstr ""
+"Po atnaujinimo bus prarastas dabartinis turinys!\n"
+"Ar norite tęsti?"
+
+#: ../ubuntutweak/admins/sourceeditor.py:454
+msgid "You can't delete sources.list!"
+msgstr "Jūs negalite ištrinti sources.list!"
+
+#: ../ubuntutweak/admins/sourceeditor.py:456
+#, python-format
+msgid ""
+"The \"%s\" will be deleted!\n"
+"Do you wish to continue?"
+msgstr ""
+"\"%s\" bus ištrintas!\n"
+"Ar norite tęsti?"
+
+#: ../ubuntutweak/admins/templates.py:70
+msgid "HTML document"
+msgstr "HTML dokumentas"
+
+#: ../ubuntutweak/admins/templates.py:71
+msgid "ODB Database"
+msgstr "ODB duomenų bazė"
+
+#: ../ubuntutweak/admins/templates.py:72
+msgid "ODS Spreadsheet"
+msgstr "ODS lentelė"
+
+#: ../ubuntutweak/admins/templates.py:73
+msgid "ODT Document"
+msgstr "ODT dokumentas"
+
+#: ../ubuntutweak/admins/templates.py:74
+msgid "Plain text document"
+msgstr "Grynojo teksto dokumentas"
+
+#: ../ubuntutweak/admins/templates.py:75
+msgid "ODP Presentation"
+msgstr "ODP pateiktis"
+
+#: ../ubuntutweak/admins/templates.py:76
+msgid "Python script"
+msgstr "Python skriptas"
+
+#: ../ubuntutweak/admins/templates.py:77
+msgid "Pygtk Example"
+msgstr "Pygtk pavyzdys"
+
+#: ../ubuntutweak/admins/templates.py:78
+msgid "Shell script"
+msgstr "Komandų interpretatoriaus skriptas"
+
+#: ../ubuntutweak/admins/templates.py:106
+msgid "Enabled Templates"
+msgstr "Įjungti šablonai"
+
+#: ../ubuntutweak/admins/templates.py:114
+msgid "Disabled Templates"
+msgstr "Išjungti šablonai"
+
+#: ../ubuntutweak/admins/templates.py:121
+msgid "Manage Templates"
+msgstr "Tvarkyti šablonus"
+
+#: ../ubuntutweak/admins/templates.py:122
+msgid ""
+"Here you can manage your document templates.\n"
+"You can add files as templates by dragging them into this window.\n"
+"You can then create new documents based on these templates from the Nautilus "
+"right-click menu."
+msgstr ""
+"Čia jūs galite tvarkyti dokumentų šablonus.\n"
+"Jūs galite failus pridėti kaip šablonus nutempdami juos į šį langą.\n"
+"Tada jūs, pasinaudodami šiais šablonais iš Nautilus dešiniojo pelės klavišo "
+"meniu, galite kurti naujus dokumentus."
+
+#: ../ubuntutweak/admins/templates.py:134
+#, python-format
+msgid ""
+"The templates path is incorrect! The current path points to \"%s\".\n"
+"Please reset it to a location within your Home Folder."
+msgstr ""
+"Šablonų kelias yra neteisingas! Nustatytasis kelias yra \"%s\".\n"
+"Prašome jį nustatyti į vietą, esančią jūsų namų aplanke."
+
+#: ../ubuntutweak/admins/templates.py:143
+msgid "Go And Set"
+msgstr "Nustatyti"
+
+#: ../ubuntutweak/admins/templates.py:148
+msgid "Restart This Module"
+msgstr "Paleisti šį modulį iš naujo"
+
+#. self.enable_templates.connect('drag_data_received', self.on_enable_drag_data_received)
+#. self.enable_templates.connect('deleted', self.on_enable_deleted)
+#. self.disable_templates.connect('drag_data_received', self.on_disable_drag_data_received)
+#: ../ubuntutweak/admins/templates.py:173
+msgid "Rebuild System Templates"
+msgstr "Perdaryti sistemos šablonus"
+
+#: ../ubuntutweak/admins/templates.py:188
+msgid "The templates path is still incorrect, please reset it!"
+msgstr ""
+"Šablonų kelias vis dar yra neteisingas. Prašome nustatyti jį iš naujo!"
+
+#: ../ubuntutweak/admins/templates.py:200
+msgid ""
+"This will delete all disabled templates.\n"
+"Do you wish to continue?"
+msgstr ""
+"Tai ištrins visus išjungtus šablonus.\n"
+"Ar norite tęsti?"
+
+#: ../ubuntutweak/admins/userdir.py:35
 msgid "Download"
 msgstr "Atsiuntimai"
 
-#: ../ubuntutweak/modules/userdir.py:47
+#: ../ubuntutweak/admins/userdir.py:36
 msgid "Templates"
 msgstr "Šablonai"
 
-#: ../ubuntutweak/modules/userdir.py:48
+#: ../ubuntutweak/admins/userdir.py:37
 msgid "Public"
 msgstr "Viešas"
 
-#: ../ubuntutweak/modules/userdir.py:49
+#: ../ubuntutweak/admins/userdir.py:38
 msgid "Document"
 msgstr "Dokumentai"
 
-#: ../ubuntutweak/modules/userdir.py:50
+#: ../ubuntutweak/admins/userdir.py:39
 msgid "Music"
 msgstr "Muzika"
 
-#: ../ubuntutweak/modules/userdir.py:51
+#: ../ubuntutweak/admins/userdir.py:40
 msgid "Pictures"
 msgstr "Paveikslėliai"
 
-#: ../ubuntutweak/modules/userdir.py:52
+#: ../ubuntutweak/admins/userdir.py:41
 msgid "Videos"
 msgstr "Video įrašai"
 
-#: ../ubuntutweak/modules/userdir.py:158
+#: ../ubuntutweak/admins/userdir.py:154
 msgid "Choose a folder"
 msgstr "Pasirinkite aplanką"
 
-#: ../ubuntutweak/modules/userdir.py:174
+#: ../ubuntutweak/admins/userdir.py:171
 msgid ""
 "Ubuntu Tweak will restore the selected directory to it's default location.\n"
 "However, you must move your files back into place manually.\n"
@@ -665,27 +1101,27 @@ msgstr ""
 "Tačiau failus privalėsite persikelti rankiniu būdu.\n"
 "Ar norite tęsti?"
 
-#: ../ubuntutweak/modules/userdir.py:208
+#: ../ubuntutweak/admins/userdir.py:204
 msgid "Directory"
 msgstr "Aplankas"
 
-#: ../ubuntutweak/modules/userdir.py:222
+#: ../ubuntutweak/admins/userdir.py:218
 msgid "Path"
 msgstr "Kelias"
 
-#: ../ubuntutweak/modules/userdir.py:229
+#: ../ubuntutweak/admins/userdir.py:225
 msgid "Change"
 msgstr "Keisti"
 
-#: ../ubuntutweak/modules/userdir.py:233
+#: ../ubuntutweak/admins/userdir.py:229
 msgid "Restore to default"
 msgstr "Atkurti numatytąjį nustatymą"
 
-#: ../ubuntutweak/modules/userdir.py:240
+#: ../ubuntutweak/admins/userdir.py:237
 msgid "Default Folder Locations"
 msgstr "Numatytosios aplankų vietos"
 
-#: ../ubuntutweak/modules/userdir.py:241
+#: ../ubuntutweak/admins/userdir.py:238
 msgid ""
 "You can change the paths of default folders here.\n"
 "Don't change the location of your desktop folder unless you know what you "
@@ -694,392 +1130,237 @@ msgstr ""
 "Čia jūs galite keisti numatytuosius aplankų kelius.\n"
 "Nekeiskite darbastalio aplanko vietos, nebent žinote, ką darote."
 
-#: ../ubuntutweak/modules/userdir.py:262
+#: ../ubuntutweak/admins/userdir.py:260
 msgid "_Restore"
 msgstr "_Atkurti"
 
-#: ../ubuntutweak/modules/userdir.py:267
+#: ../ubuntutweak/admins/userdir.py:266
 msgid "_Change"
 msgstr "_Keisti"
 
-#: ../ubuntutweak/modules/computer.py:37
-msgid "Computer Details"
-msgstr "Kompiuterio informacija"
+#: ../ubuntutweak/admins/scripts.py:50
+msgid "Create Launcher ..."
+msgstr "Kurti leistuką..."
 
-#: ../ubuntutweak/modules/computer.py:38
-msgid "Some useful system information"
-msgstr "Kai kuri naudinga sistemos informacija"
+#: ../ubuntutweak/admins/scripts.py:51
+msgid "Copy to ..."
+msgstr "Kopijuoti į ..."
 
-#: ../ubuntutweak/modules/computer.py:45
-msgid "Unknown"
-msgstr "Nežinoma"
+#: ../ubuntutweak/admins/scripts.py:52
+msgid "Copy to Desktop"
+msgstr "Kopijuoti į Darbastalis"
 
-#: ../ubuntutweak/modules/computer.py:61
-msgid "Change Hostname"
-msgstr "Keisti mazgo pavadinimą"
+#: ../ubuntutweak/admins/scripts.py:53
+msgid "Copy to Download"
+msgstr "Kopijuoti į Atsiuntimai"
 
-#: ../ubuntutweak/modules/computer.py:64
-msgid "System information"
-msgstr "Sistemos informacija"
+#: ../ubuntutweak/admins/scripts.py:54
+msgid "Copy to Home"
+msgstr "Kopijuoti į Namų aplankas"
 
-#: ../ubuntutweak/modules/computer.py:65
-msgid "Hostname"
-msgstr "Mazgo pavadinimas"
+#: ../ubuntutweak/admins/scripts.py:55
+msgid "Check md5 sum"
+msgstr "Tikrinti md5 sumą"
 
-#: ../ubuntutweak/modules/computer.py:66
-msgid "Distribution"
-msgstr "Distribucija"
+#: ../ubuntutweak/admins/scripts.py:56
+msgid "Compress PDF"
+msgstr "Suspausti į PDF"
 
-#: ../ubuntutweak/modules/computer.py:67
-msgid "Desktop environment"
-msgstr "Darbastalio aplinka"
+#: ../ubuntutweak/admins/scripts.py:57
+msgid "Move to ..."
+msgstr "Perkelti į ..."
 
-#: ../ubuntutweak/modules/computer.py:68
-msgid "Kernel"
-msgstr "Branduolys"
+#: ../ubuntutweak/admins/scripts.py:58
+msgid "Move to Desktop"
+msgstr "Perkelti į Darbastalis"
 
-#: ../ubuntutweak/modules/computer.py:69
-msgid "Platform"
-msgstr "Platforma"
+#: ../ubuntutweak/admins/scripts.py:59
+msgid "Move to Download"
+msgstr "Perkelti į Atsiuntimai"
 
-#: ../ubuntutweak/modules/computer.py:70
-msgid "CPU"
-msgstr "CPU"
+#: ../ubuntutweak/admins/scripts.py:60
+msgid "Move to Home"
+msgstr "Perkelti į Namų aplankas"
 
-#: ../ubuntutweak/modules/computer.py:71
-msgid "Memory"
-msgstr "Atmintis"
-
-#: ../ubuntutweak/modules/computer.py:75
-msgid "User information"
-msgstr "Naudotojo informacija"
-
-#: ../ubuntutweak/modules/computer.py:76
-msgid "Current user"
-msgstr "Dabartinis naudotojas"
-
-#: ../ubuntutweak/modules/computer.py:77
-msgid "Home directory"
-msgstr "Namų aplankas"
-
-#: ../ubuntutweak/modules/computer.py:78
-msgid "Shell"
-msgstr "Komandų interpretatorius (shell'as)"
-
-#: ../ubuntutweak/modules/computer.py:79
-msgid "Language"
-msgstr "Kalba"
-
-#: ../ubuntutweak/modules/computer.py:86
-msgid "Please enter your new hostname. Blank characters should not be used."
+#: ../ubuntutweak/admins/scripts.py:61
+msgid "Create hardlink to ..."
 msgstr ""
-"Prašome įvesti naują mazgo pavadinimą. Tarpai neturėtų būti naudojami."
 
-#: ../ubuntutweak/modules/computer.py:87
-msgid "New hostname"
-msgstr "Naujas mazgo pavadinimas"
+#: ../ubuntutweak/admins/scripts.py:62
+msgid "Link to ..."
+msgstr "Nuoroda į ..."
 
-#: ../ubuntutweak/modules/lockdown.py:34
-msgid "Security Related"
-msgstr "Susiję su saugumu"
+#: ../ubuntutweak/admins/scripts.py:63
+msgid "Link to Desktop"
+msgstr "Nuoroda į Darbastalis"
 
-#: ../ubuntutweak/modules/lockdown.py:35
-msgid "Tweak some security settings"
-msgstr "Pakeisti kai kuriuos saugumo nustatymus"
+#: ../ubuntutweak/admins/scripts.py:64
+msgid "Link to Download"
+msgstr "Nuoroda į Atsiuntimai"
 
-#: ../ubuntutweak/modules/lockdown.py:44
-msgid "System Security options"
-msgstr "Sistemos saugumo parinktys"
+#: ../ubuntutweak/admins/scripts.py:65
+msgid "Link to Home"
+msgstr "Nuoroda į Namų aplankas"
 
-#: ../ubuntutweak/modules/lockdown.py:46
-msgid "Disable \"Run Application\" dialog (Alt+F2)"
-msgstr "Išjungti \"Paleisti programą\" dialogą (Alt+F2)"
+#: ../ubuntutweak/admins/scripts.py:66
+msgid "Open with your favourite text editor"
+msgstr "Atverti su mėgstamiausiu tekstų redaktoriumi"
 
-#: ../ubuntutweak/modules/lockdown.py:50
-msgid "Disable \"Lock Screen\""
-msgstr "Išjungti \"Užrakinti ekraną\""
+#: ../ubuntutweak/admins/scripts.py:67
+msgid "Open with your favourite text editor (as root)"
+msgstr "Atverti su mėgstamiausiu tekstų redaktoriumi (kaip root)"
 
-#: ../ubuntutweak/modules/lockdown.py:54
-msgid "Disable printing"
-msgstr "Atjungti spausdinimo palaikymą"
+#: ../ubuntutweak/admins/scripts.py:68
+msgid "Browse as root"
+msgstr "Naršyti kaip root"
 
-#: ../ubuntutweak/modules/lockdown.py:58
-msgid "Disable printer settings"
-msgstr "Atjungti spausdintuvo nustatymus"
+#: ../ubuntutweak/admins/scripts.py:69
+msgid "Search in current folder"
+msgstr "Ieškoti šiame aplanke"
 
-#: ../ubuntutweak/modules/lockdown.py:62
-msgid "Disable save to disk"
-msgstr "Atjungti išsaugojimą į diską"
+#: ../ubuntutweak/admins/scripts.py:70
+msgid "Convert image to JPG"
+msgstr "Konvertuoti paveiksliuką į JPG"
 
-#: ../ubuntutweak/modules/lockdown.py:66
-msgid "Disable \"Fast User Switching\""
-msgstr "Išjungti \"Greitą naudotojo keitimą\""
+#: ../ubuntutweak/admins/scripts.py:71
+msgid "Convert image to PNG"
+msgstr "Konvertuoti paveiksliuką į PNG"
 
-#: ../ubuntutweak/modules/lockdown.py:73
-msgid "Fix the appearance of themes when granted root privileges"
-msgstr "Pataisyti temų išvaizdą, kai suteiktos root teisės"
+#: ../ubuntutweak/admins/scripts.py:72
+msgid "Convert image to GIF"
+msgstr "Konvertuoti paveiksliuką į GIF"
 
-#: ../ubuntutweak/modules/lockdown.py:79
-msgid "Miscellaneous Options"
-msgstr "Įvairios parinktys"
+#: ../ubuntutweak/admins/scripts.py:73
+msgid "Set image as wallpaper"
+msgstr "Nustatyti paveiksliuką kaip darbastalio foną"
 
-#: ../ubuntutweak/modules/sourceeditor.py:66
-#: ../ubuntutweak/modules/sourceeditor.py:71
-msgid "Choose the sources"
-msgstr "Pasirinkite šaltinius"
+#: ../ubuntutweak/admins/scripts.py:74
+msgid "Make hard shadow to image"
+msgstr ""
 
-#: ../ubuntutweak/modules/sourceeditor.py:72
+#: ../ubuntutweak/admins/scripts.py:102
+msgid "Enabled Scripts"
+msgstr "Įjungti skriptai"
+
+#: ../ubuntutweak/admins/scripts.py:133
+msgid "Disabled Scripts"
+msgstr "Išjungti skriptai"
+
+#: ../ubuntutweak/admins/scripts.py:140
+msgid "Manage Scripts"
+msgstr "Valdyti skriptus"
+
+#: ../ubuntutweak/admins/scripts.py:141
 msgid ""
-"You can read the title and comment to determine which source is suitable for "
-"you."
+"Scripts can be used to complete all kinds of tasks.\n"
+"You can drag and drop scripts here from File Manager.\n"
+"'Scripts' will then be added to the context menu."
 msgstr ""
-"Skaitydami pavadinimus ir komentarus jūs galite nustatyti sau tinkamus "
-"šaltinius."
+"Skriptai gali būti panaudoti įvairių užduočių atlikimui.\n"
+"Jūs čia galite nutempti ir paleisti skriptus iš Failų naršyklės.\n"
+"Tada į kontekstinį meniu bus pridėta 'Skriptai'."
 
-#: ../ubuntutweak/modules/sourceeditor.py:107
-#: ../ubuntutweak/modules/sourceeditor.py:112
-msgid "Submit your sources"
-msgstr "Pateikti savo šaltinius"
+#: ../ubuntutweak/admins/scripts.py:171
+msgid "Rebuild System Scripts"
+msgstr "Perdaryti sisteminius skriptus"
 
-#: ../ubuntutweak/modules/sourceeditor.py:112
-msgid "You can submit your sources to the server for other people to use."
-msgstr ""
-"Jūs galite pateikti į serverį savo šaltinius, kad jais galėtų pasinaudoti "
-"kiti žmonės."
-
-#: ../ubuntutweak/modules/sourceeditor.py:117
-msgid "_Source Title:"
-msgstr "_Šaltinio pavadinimas:"
-
-#: ../ubuntutweak/modules/sourceeditor.py:120
-msgid "_Locale:"
-msgstr "_Lokalė:"
-
-#: ../ubuntutweak/modules/sourceeditor.py:123
-#: ../ubuntutweak/modules/autostart.py:52
-msgid "Comm_ent:"
-msgstr "Kom_entaras:"
-
-#: ../ubuntutweak/modules/sourceeditor.py:127
-msgid "Enter the title of the source, e.g. \"Ubuntu Official Repostory\""
-msgstr "Įveskite šaltinio pavadinimą. Pvz., \"Ubuntu oficialioji saugykla\""
-
-#: ../ubuntutweak/modules/sourceeditor.py:129
-msgid "If the locale isn't correct you can edit manually"
-msgstr "Jeigu lokalė netinkama, jūs galite ją redaguoti rankiniu būdu"
-
-#: ../ubuntutweak/modules/sourceeditor.py:144
-msgid "Submit"
-msgstr "Pateikti"
-
-#: ../ubuntutweak/modules/sourceeditor.py:192
-msgid "Please check your network connection!"
-msgstr "Prašome patikrinti tinklo ryšį!"
-
-#: ../ubuntutweak/modules/sourceeditor.py:192
-msgid "Network Error"
-msgstr "Tinklo klaida"
-
-#: ../ubuntutweak/modules/sourceeditor.py:199
-msgid "Uploading..."
-msgstr "Įkeliama..."
-
-#: ../ubuntutweak/modules/sourceeditor.py:215
-msgid "Updating..."
-msgstr "Atnaujinama..."
-
-#: ../ubuntutweak/modules/sourceeditor.py:353
-msgid "Source Editor"
-msgstr "Šaltinių redaktorius"
-
-#: ../ubuntutweak/modules/sourceeditor.py:354
-msgid "Manually edit your software sources to suit your needs."
-msgstr "Savo poreikių pritaikymui redaguokite šaltinius rankiniu būdu."
-
-#: ../ubuntutweak/modules/sourceeditor.py:450
-msgid "Please input the correct source information!"
-msgstr "Prašome įvesti teisingą šaltinio informaciją!"
-
-#: ../ubuntutweak/modules/sourceeditor.py:463
+#: ../ubuntutweak/admins/scripts.py:185
 msgid ""
-"You can submit your sources to our server to help expand the sources list, "
-"or you can use the official sources.\n"
-"Do you wish to use the official sources?"
-msgstr ""
-"Jūs galite pateikti į mūsų serverį savo šaltinius ir taip praplėsti šaltinių "
-"sąrašą, arba jūs galite naudotis oficialiais šaltiniais.\n"
-"Ar norite naudoti oficialius šaltinius?"
-
-#: ../ubuntutweak/modules/sourceeditor.py:466
-msgid "No source data available"
-msgstr "Šaltinių duomenys neprieinami"
-
-#: ../ubuntutweak/modules/sourceeditor.py:483
-msgid ""
-"Your sources will be reviewed and made available for others soon.\n"
-"Thank you!"
-msgstr ""
-"Jūsų šaltiniai greitu metu bus patikrinti ir taps prieinami kitiems.\n"
-"Dėkojame Jums!"
-
-#: ../ubuntutweak/modules/sourceeditor.py:484
-msgid "Successfully submitted"
-msgstr "Pateikta sėkmingai"
-
-#: ../ubuntutweak/modules/sourceeditor.py:496
-msgid ""
-"You've edited sources.list without saving changes.\n"
-"Do you want to save changes?"
-msgstr ""
-"Jūs redagavote sources.list neišsaugodami pakeitimų.\n"
-"Ar norite išsaugoti pakeitimus?"
-
-#: ../ubuntutweak/modules/sourceeditor.py:507
-msgid "Please check the permission of the sources.list file"
-msgstr "Prašome patikrinti sources.list failo leidimus"
-
-#: ../ubuntutweak/modules/sourceeditor.py:508
-msgid "Save failed!"
-msgstr "Išsaugojimas nepavyko!"
-
-#: ../ubuntutweak/modules/sourceeditor.py:517
-msgid ""
-"The current content will be lost after reloading!\n"
+"This will delete all disabled scripts.\n"
 "Do you wish to continue?"
 msgstr ""
-"Po atnaujinimo bus prarastas dabartinis turinys!\n"
+"Tai ištrins visus išjungtus skriptus.\n"
 "Ar norite tęsti?"
 
-#: ../ubuntutweak/modules/sourceeditor.py:528
-msgid "You can't delete sources.list!"
-msgstr "Jūs negalite ištrinti sources.list!"
+#: ../ubuntutweak/admins/shortcuts.py:30
+msgid ""
+"By configuring keyboard shortcuts, you can access your favourite "
+"applications instantly.\n"
+"Enter the command to run the application and choose a shortcut key "
+"combination."
+msgstr ""
+"Nustatę klavišų susiejimus jūs galite greičiau pasiekti mėgstamiausias "
+"programas.\n"
+"Įveskite programos paleidimo komandą ir pasirinkite klavišų kombinaciją."
 
-#: ../ubuntutweak/modules/sourceeditor.py:530
+#: ../ubuntutweak/admins/shortcuts.py:83
 #, python-format
-msgid ""
-"The \"%s\" will be deleted!\n"
-"Do you wish to continue?"
-msgstr ""
-"\"%s\" bus ištrintas!\n"
-"Ar norite tęsti?"
+msgid "Command %d"
+msgstr "Komanda %d"
 
-#: ../ubuntutweak/modules/appcenter.py:193
-#: ../ubuntutweak/modules/desktoprecovery.py:102
-msgid "Category"
-msgstr "Kategorija"
+#: ../ubuntutweak/admins/shortcuts.py:88
+#: ../ubuntutweak/admins/shortcuts.py:200
+#: ../ubuntutweak/admins/filetypemanager.py:177
+#: ../ubuntutweak/admins/filetypemanager.py:201
+#: ../ubuntutweak/tweaks/metacity.py:183 ../ubuntutweak/tweaks/metacity.py:192
+#: ../ubuntutweak/tweaks/metacity.py:207 ../ubuntutweak/tweaks/metacity.py:222
+msgid "None"
+msgstr "Nėra"
 
-#: ../ubuntutweak/modules/appcenter.py:212
-msgid "All Categories"
-msgstr "Visos kategorijos"
+#: ../ubuntutweak/admins/shortcuts.py:93
+#: ../ubuntutweak/admins/shortcuts.py:145
+msgid "disabled"
+msgstr "išjungta"
 
-#: ../ubuntutweak/modules/appcenter.py:503
-msgid "Checking update..."
-msgstr "Tikrinami atnaujinimai..."
+#: ../ubuntutweak/admins/shortcuts.py:102
+msgid "ID"
+msgstr "ID"
 
-#: ../ubuntutweak/modules/appcenter.py:533
-msgid "Fetching online data..."
-msgstr "Gaunami duomenys..."
+#: ../ubuntutweak/admins/shortcuts.py:113
+msgid "Command"
+msgstr "Komanda"
 
-#: ../ubuntutweak/modules/appcenter.py:537
-msgid "Application Center"
-msgstr "Programų centras"
+#: ../ubuntutweak/admins/shortcuts.py:126
+msgid "Key"
+msgstr "Raktas"
 
-#: ../ubuntutweak/modules/appcenter.py:538
-msgid ""
-"A simple but efficient way for finding and installing popular applications.\n"
-"Data will be synchronized automatically with the remote server.\n"
-"You can click the \"Sync\" button to perform a manual check for updates."
-msgstr ""
-"Paprastas, bet efektyvus būdas populiarių programų suradimui ir įdiegimui.\n"
-"Duomenys bus automatiškai sinchronizuojami su nuotoliniu serveriu.\n"
-"Norėdami rankiniu būdu tikrinti atnaujinimus, spustelėkite "
-"\"Sinchronizuoti\" mygtuką."
-
-#: ../ubuntutweak/modules/appcenter.py:543
-msgid "Visit Online Application Center"
-msgstr "Aplankyti internete esantį programų centrą"
-
-#: ../ubuntutweak/modules/appcenter.py:549
-#: ../ubuntutweak/modules/sourcecenter.py:924
-msgid "_Sync"
-msgstr "_Sinchronizuoti"
-
-#: ../ubuntutweak/modules/appcenter.py:586
-#: ../ubuntutweak/modules/sourcecenter.py:1005
-msgid "Last synced:"
-msgstr "Paskutinis sinchronizavimas:"
-
-#: ../ubuntutweak/modules/appcenter.py:591
-msgid "New application data available, would you like to update?"
-msgstr "Prieinami nauji programų duomenys. Ar norite atnaujinti?"
-
-#: ../ubuntutweak/modules/appcenter.py:660
-msgid "Update available, would you like to update?"
-msgstr "Prieinamas atnaujinimas. Ar norite atnaujinti?"
-
-#: ../ubuntutweak/modules/appcenter.py:669
-msgid ""
-"Network Error, please check your network connection - or the remote server "
-"may be down."
-msgstr ""
-"Tinklo klaida. Patikrinkite savo tinklo ryšį (arba gali būti užlūžęs "
-"nuotolinis serveris)."
-
-#: ../ubuntutweak/modules/appcenter.py:673
-#: ../ubuntutweak/modules/sourcecenter.py:1169
-msgid "No update available."
-msgstr "Neprieinami jokie atnaujinimai."
-
-#: ../ubuntutweak/modules/appcenter.py:685
-msgid "An error occurred while downloading the file."
-msgstr "Atsiunčiant failą įvyko klaida."
-
-#: ../ubuntutweak/modules/filetype.py:35
+#: ../ubuntutweak/admins/filetypemanager.py:44
 msgid "Audio"
 msgstr "Garsas"
 
-#: ../ubuntutweak/modules/filetype.py:36
+#: ../ubuntutweak/admins/filetypemanager.py:45
 msgid "Text"
 msgstr "Tekstas"
 
-#: ../ubuntutweak/modules/filetype.py:37
+#: ../ubuntutweak/admins/filetypemanager.py:46
 msgid "Image"
 msgstr "Paveikslėlis"
 
-#: ../ubuntutweak/modules/filetype.py:38
+#: ../ubuntutweak/admins/filetypemanager.py:47
 msgid "Video"
 msgstr "Vaizdas"
 
-#: ../ubuntutweak/modules/filetype.py:39
+#: ../ubuntutweak/admins/filetypemanager.py:48
 msgid "Application"
 msgstr "Programa"
 
-#: ../ubuntutweak/modules/filetype.py:40
+#: ../ubuntutweak/admins/filetypemanager.py:49
+#: ../ubuntutweak/tweaks/ccm/Constants.py:94
 msgid "All"
 msgstr "Visi"
 
-#: ../ubuntutweak/modules/filetype.py:73
+#: ../ubuntutweak/admins/filetypemanager.py:74
 msgid "Categories"
 msgstr "Kategorijos"
 
-#: ../ubuntutweak/modules/filetype.py:131
+#: ../ubuntutweak/admins/filetypemanager.py:127
 msgid "File Type"
 msgstr "Failo tipas"
 
-#: ../ubuntutweak/modules/filetype.py:146
+#: ../ubuntutweak/admins/filetypemanager.py:143
 msgid "Associated Application"
 msgstr "Priskirta programa"
 
-#: ../ubuntutweak/modules/filetype.py:244
+#: ../ubuntutweak/admins/filetypemanager.py:231
 #, python-format
 msgid "Open files of type \"%s\" with:"
 msgstr "\"%s\" tipo failus atverti su:"
 
-#: ../ubuntutweak/modules/filetype.py:273
+#: ../ubuntutweak/admins/filetypemanager.py:263
 msgid "Choose an application"
 msgstr "Pasirinkite programą"
 
-#: ../ubuntutweak/modules/filetype.py:368
+#: ../ubuntutweak/admins/filetypemanager.py:363
 #, python-format
 msgid "Select an application to open files of type: <b>%s</b>"
 msgid_plural "Select an application to open files for these types: <b>%s</b>"
@@ -1087,198 +1368,48 @@ msgstr[0] "Pasirinkite programą šio failo tipo atvėrimui: <b>%s</b>"
 msgstr[1] "Pasirinkite programą šių failų tipų atvėrimui: <b>%s</b>"
 msgstr[2] "Pasirinkite programą šių failų tipų atvėrimui: <b>%s</b>"
 
-#: ../ubuntutweak/modules/filetype.py:402
-#, python-format
-msgid "Could not find %s"
-msgstr "Nepavyko rasti \"%s\""
-
-#: ../ubuntutweak/modules/filetype.py:403
+#: ../ubuntutweak/admins/filetypemanager.py:402
 msgid "Could not find application"
 msgstr "Nepavyko rasti programos"
 
-#: ../ubuntutweak/modules/filetype.py:523
-msgid "File Type Manager"
-msgstr "Failų tipų tvarkyklė"
+#: ../ubuntutweak/admins/filetypemanager.py:403
+#, python-format
+msgid "Could not find \"%s\", Please ensure the path is correct."
+msgstr "Nepavyko rasti „%s“, įsitikinkite jos kelias yra teisingas."
 
-#: ../ubuntutweak/modules/filetype.py:524
+#: ../ubuntutweak/admins/filetypemanager.py:551
 msgid "Manage all registered file types"
 msgstr "Tvarkyti visus registruotus failų tipus"
 
-#: ../ubuntutweak/modules/filetype.py:557
+#: ../ubuntutweak/admins/filetypemanager.py:588
+msgid "_Reset"
+msgstr "_Atstatyti"
+
+#: ../ubuntutweak/admins/filetypemanager.py:594
 msgid "Only show filetypes with associated applications"
 msgstr "Rodyti tik programoms priskirtus failų tipus"
 
-#: ../ubuntutweak/modules/updatemanager.py:33
-msgid "Update Manager"
-msgstr "Atnaujinimų tvarkyklė"
+#: ../ubuntutweak/modules/__init__.py:28
+msgid "Broken Modules"
+msgstr "Sugadinti moduliai"
 
-#: ../ubuntutweak/modules/updatemanager.py:34
-msgid "A simple and easy-to-use update manager"
-msgstr "Paprasta ir lengvai naudojama atnaujinimų tvarkyklė"
+#: ../ubuntutweak/modules/__init__.py:30
+msgid "Appearance"
+msgstr "Išvaizda"
 
-#: ../ubuntutweak/modules/updatemanager.py:47
-msgid "Automatically run System Update Manager"
-msgstr "Automatiškai paleisti Sistemos atnaujinimų tvarkyklę"
+#: ../ubuntutweak/modules/__init__.py:31
+msgid "Startup"
+msgstr "Paleidimas"
 
-#: ../ubuntutweak/modules/updatemanager.py:52
-msgid "Temporarily disable third-party PPA sources whilst refreshing"
-msgstr "Atnaujinant trumpam atjungti trečiųjų-šalių PPA šaltinius"
+#: ../ubuntutweak/modules/__init__.py:35
+msgid "Other"
+msgstr "Kita"
 
-#: ../ubuntutweak/modules/updatemanager.py:79
-msgid "Your system is clean and no updates are available."
-msgstr "Jūsų sistema yra švari ir nėra jokių prieinamų atnaujinimų."
-
-#: ../ubuntutweak/modules/updatemanager.py:80
-#: ../ubuntutweak/modules/sourcecenter.py:148
-msgid "Software information is now up-to-date"
-msgstr "Programinės įrangos informacija yra naujausia"
-
-#: ../ubuntutweak/modules/updatemanager.py:93
-msgid "Install Update"
-msgid_plural "Install Updates"
-msgstr[0] "Įdiegti atnaujinimą"
-msgstr[1] "Įdiegti atnaujinimus"
-msgstr[2] "Įdiegti atnaujinimų"
-
-#: ../ubuntutweak/modules/metacity.py:37
-#: ../ubuntutweak/modules/metacity.py:196
-#: ../ubuntutweak/modules/metacity.py:210
-#: ../ubuntutweak/modules/metacity.py:224
-msgid "Menu"
-msgstr "Meniu"
-
-#: ../ubuntutweak/modules/metacity.py:38
-msgid "Title"
-msgstr "Antraštė"
-
-#: ../ubuntutweak/modules/metacity.py:39
-#: ../ubuntutweak/modules/metacity.py:192
-#: ../ubuntutweak/modules/metacity.py:206
-#: ../ubuntutweak/modules/metacity.py:220
-msgid "Maximize"
-msgstr "Išdidinti"
-
-#: ../ubuntutweak/modules/metacity.py:40
-#: ../ubuntutweak/modules/metacity.py:195
-#: ../ubuntutweak/modules/metacity.py:209
-#: ../ubuntutweak/modules/metacity.py:223
-msgid "Minimize"
-msgstr "Sumažinti"
-
-#: ../ubuntutweak/modules/metacity.py:41
-msgid "Close"
-msgstr "Užverti"
-
-#: ../ubuntutweak/modules/metacity.py:42
-msgid "Spacer"
-msgstr "Tarpas"
-
-#: ../ubuntutweak/modules/metacity.py:153
-msgid "Window Manager Settings"
-msgstr "Langų tvarkyklės nustatymai"
-
-#: ../ubuntutweak/modules/metacity.py:154
-msgid "Manage Metacity Window Manager settings"
-msgstr "Valdyti Metacity langų tvarkyklės nustatymus"
-
-#: ../ubuntutweak/modules/metacity.py:177
-msgid "Window Titlebar Button Layout"
-msgstr "Lango antraštinės juostos mygtukų išdėstymas"
-
-#: ../ubuntutweak/modules/metacity.py:181
-msgid "Window Titlebar Actions"
-msgstr "Lango antraštinės juostos veiksmai"
-
-#: ../ubuntutweak/modules/metacity.py:183
-msgid "Titlebar mouse wheel action"
-msgstr "Antraštinės juostos reakcija į pelės ratuką"
-
-#: ../ubuntutweak/modules/metacity.py:186
-#: ../ubuntutweak/modules/metacity.py:195
-#: ../ubuntutweak/modules/metacity.py:209
-#: ../ubuntutweak/modules/metacity.py:223
-msgid "Roll up"
-msgstr "Aukštyn"
-
-#: ../ubuntutweak/modules/metacity.py:189
-msgid "Titlebar double-click action"
-msgstr "Antraštinės juostos reakcija į dvigubą pelės klavišo spustelėjimą"
-
-#: ../ubuntutweak/modules/metacity.py:193
-#: ../ubuntutweak/modules/metacity.py:207
-#: ../ubuntutweak/modules/metacity.py:221
-msgid "Maximize Horizontally"
-msgstr "Išdidinti horizontaliai"
-
-#: ../ubuntutweak/modules/metacity.py:194
-#: ../ubuntutweak/modules/metacity.py:208
-#: ../ubuntutweak/modules/metacity.py:222
-msgid "Maximize Vertically"
-msgstr "Išdidinti vertikaliai"
-
-#: ../ubuntutweak/modules/metacity.py:196
-#: ../ubuntutweak/modules/metacity.py:210
-#: ../ubuntutweak/modules/metacity.py:224
-msgid "Lower"
-msgstr "Žemyn"
-
-#: ../ubuntutweak/modules/metacity.py:203
-msgid "Titlebar middle-click action"
-msgstr "Antraštinės juostos reakcija į vidurinio pelės klavišo spustelėjimą"
-
-#: ../ubuntutweak/modules/metacity.py:217
-msgid "Titlebar right-click action"
-msgstr "Antraštinės juostos reakcija į dešinio pelės klavišo spustelėjimą"
-
-#: ../ubuntutweak/modules/metacity.py:234
-msgid "Window Decoration Effects"
-msgstr "Lango raštų efektai"
-
-#: ../ubuntutweak/modules/metacity.py:236
-msgid "Use Metacity window theme"
-msgstr "Naudoti Metacity langų temą"
-
-#: ../ubuntutweak/modules/metacity.py:240
-msgid "Enable active window transparency"
-msgstr "Įjungti aktyvaus lango permatomumą"
-
-#: ../ubuntutweak/modules/metacity.py:244
-msgid "Active window transparency level"
-msgstr "Aktyvaus lango permatomumo lygis"
-
-#: ../ubuntutweak/modules/metacity.py:249
-msgid "Enable inactive window transparency"
-msgstr "Įjungti neaktyvaus lango permatomumą"
-
-#: ../ubuntutweak/modules/metacity.py:253
-msgid "Inactive window shade transparency level"
-msgstr "Neaktyvaus lango šešėlio permatomumo lygis"
-
-#: ../ubuntutweak/modules/metacity.py:261
-msgid "Enable Metacity's compositing feature"
-msgstr "Įjungti Metacity komponavimo savybę"
-
-#: ../ubuntutweak/modules/metacity.py:266
-msgid "Compositing Manager"
-msgstr "Komponavimo tvarkyklė"
-
-#: ../ubuntutweak/modules/metacity.py:308
-msgid ""
-"To enable Metacity's compositing feature, you should manually disable Visual "
-"Effects in \"Appearance\"."
-msgstr ""
-"Prieš įjungiant Metacity komponavimo savybę, jūs turėtumėte rankiniu būdu "
-"išjungti vizualius efektus lange \"Išvaizda\"."
-
-#: ../ubuntutweak/modules/__init__.py:103
+#: ../ubuntutweak/modules/__init__.py:228
 msgid "More"
 msgstr "Daugiau"
 
-#: ../ubuntutweak/modules/__init__.py:259
-msgid "This module encountered an error while loading."
-msgstr "Įkeliant šį modulį įvyko klaida."
-
-#: ../ubuntutweak/modules/__init__.py:281
+#: ../ubuntutweak/modules/__init__.py:367
 #, python-format
 msgid ""
 "Ubuntu Tweak has detected that your apt configuration is broken.\n"
@@ -1292,1574 +1423,1426 @@ msgid ""
 "\n"
 "Or you can submit the Error Message to the developer for help:"
 msgstr ""
+"Ubuntu Tweak nustatė jog jūsų apt konfigūracija su klaidom.\n"
+"Pabandykite pataisyti, sekdami šiais žingsniais:\n"
+"\t1. Atverkite terminalą\n"
+"\t2. Įvykdykite šias komandas:\n"
+"\n"
+"\t\tsudo chmod 644 %(broken_file)s\n"
+"\t\tsudo chown root:root %(broken_file)s\n"
+"Norėdami gauti pagalbos, taipogi galite kūrėjams išsiųsti klaidos pranešimą:"
 
-#: ../ubuntutweak/modules/__init__.py:286
+#: ../ubuntutweak/modules/__init__.py:377
 #, python-format
 msgid ""
 "Ubuntu Tweak has detected that your apt list file is broken.\n"
 "Try to fix by following steps:\n"
 "\n"
-"\t1. Open your terminal\n"
+"\t1.Open your terminal\n"
 "\t2. Run the command to open apt list file:\n"
 "\n"
 "\t\tsudo gedit %s\n"
 "\n"
 "\t3. Edit the list to make it correctly\n"
 "\n"
-"Or you can submit the Error Message to the developer for help:"
+"Or you can submit the Error Message to the developer forhelp:"
 msgstr ""
+"Ubuntu Tweak nustatė jog jūsų apt sąrašas su klaidom.\n"
+"Pabandykite pataisyti, sekdami šiais žingsniais:\n"
+"\t1. Atverkite terminalą\n"
+"\t2. Įvykdykite šią komandą apt sąrašui atverti:\n"
+"\n"
+"\t\tsudo gedit %s\n"
+"\t3. Ištaisykite sąrašą\n"
+"Norėdami gauti pagalbos, taipogi galite kūrėjams išsiųsti klaidos pranešimą:"
 
-#: ../ubuntutweak/modules/icons.py:32
+#: ../ubuntutweak/tweaks/icons.py:25
 msgid "Show \"Computer\" icon on desktop"
 msgstr "Rodyti darbastalyje piktogramą \"Kompiuteris\""
 
-#: ../ubuntutweak/modules/icons.py:41
+#: ../ubuntutweak/tweaks/icons.py:32
 msgid "Show \"Home Folder\" icon on desktop"
 msgstr "Rodyti darbastalyje piktogramą \"Namų aplankas\""
 
-#: ../ubuntutweak/modules/icons.py:50
+#: ../ubuntutweak/tweaks/icons.py:39
 msgid "Show \"Trash\" icon on desktop"
 msgstr "Rodyti darbastalyje piktogramą \"Šiukšlinė\""
 
-#: ../ubuntutweak/modules/icons.py:108
-msgid "Desktop Icon Settings"
-msgstr "Darbastalio piktogramų nustatymai"
+#: ../ubuntutweak/tweaks/icons.py:46
+msgid "Show \"Network Servers\" icon on desktop"
+msgstr "Darbastalyje rodyti „Tinklo serveriai“ piktogramą"
 
-#: ../ubuntutweak/modules/icons.py:109
+#: ../ubuntutweak/tweaks/icons.py:75 ../ubuntutweak/gui/treeviews.py:76
+msgid "Rename"
+msgstr "Pervadinti"
+
+#: ../ubuntutweak/tweaks/icons.py:107
 msgid "Rename and toggle visibilty of desktop icons"
 msgstr "Pervadinti ir perjungti darbastalio piktogramų matomumą"
 
-#: ../ubuntutweak/modules/icons.py:118
+#: ../ubuntutweak/tweaks/icons.py:115
 msgid "Show desktop icons"
 msgstr "Rodyti darbastalio piktogramas"
 
-#: ../ubuntutweak/modules/icons.py:139
-msgid "Show \"Network\" icon on desktop"
-msgstr "Rodyti darbastalyje piktogramą \"Tinklas\""
-
-#: ../ubuntutweak/modules/icons.py:144
+#: ../ubuntutweak/tweaks/icons.py:137
 msgid "Show mounted volumes on desktop"
 msgstr "Rodyti darbastalyje prijungtus skirsnius"
 
-#: ../ubuntutweak/modules/icons.py:149
-msgid ""
-"Show contents of \"Home Folder\" on desktop (Logout for changes to take "
-"effect)"
-msgstr ""
-"Rodyti darbastalyje \"Namų aplanko\" turinį (pakeitimų įvykdymui turite "
-"atsijungti)"
-
-#: ../ubuntutweak/modules/gnomesettings.py:41
-msgid "GNOME Settings"
-msgstr "GNOME nustatymai"
-
-#: ../ubuntutweak/modules/gnomesettings.py:42
-msgid "A lot of GNOME settings for panels, menus and other desktop elements"
-msgstr ""
-"Daug GNOME nustatymų skydeliams, meniu ir kitiems darbastalio elementams"
-
-#: ../ubuntutweak/modules/gnomesettings.py:54
-msgid "Panel Settings"
-msgstr "Skydelio nustatymai"
-
-#: ../ubuntutweak/modules/gnomesettings.py:56
-msgid "Display warning when removing a panel"
-msgstr "Šalinant skydelį rodyti perspėjimą"
-
-#: ../ubuntutweak/modules/gnomesettings.py:60
-msgid "Complete lockdown of all panels"
-msgstr "Visų skydelių pilnas užrakinimas"
-
-#: ../ubuntutweak/modules/gnomesettings.py:64
-msgid "Enable panel animations"
-msgstr "Įjungti skydelio animacijas"
-
-#: ../ubuntutweak/modules/gnomesettings.py:68
-msgid "Me Menu Setting"
-msgstr ""
-
-#: ../ubuntutweak/modules/gnomesettings.py:70
-msgid "Don't Display"
-msgstr "Nerodyti"
-
-#: ../ubuntutweak/modules/gnomesettings.py:70
-msgid "Display user name"
-msgstr "Rodyti naudotojo vardą"
-
-#: ../ubuntutweak/modules/gnomesettings.py:70
-msgid "Display real name"
-msgstr "Rodyti pilną vardą"
-
-#: ../ubuntutweak/modules/gnomesettings.py:76
-msgid "Menu Settings"
-msgstr "Meniu nustatymai"
-
-#: ../ubuntutweak/modules/gnomesettings.py:78
-msgid "Show Input Method menu in the context menu"
-msgstr "Kontekstiniame meniu rodyti įvesties metodo meniu"
-
-#: ../ubuntutweak/modules/gnomesettings.py:82
-msgid "Show Unicode Control Character menu in the context menu"
-msgstr ""
-
-#: ../ubuntutweak/modules/gnomesettings.py:86
-msgid "Show icons in menus"
-msgstr "Meniu punktuose rodyti piktogramas"
-
-#: ../ubuntutweak/modules/gnomesettings.py:90
-msgid "Show icons on buttons"
-msgstr "Mygtukuose rodyti piktogramas"
-
-#: ../ubuntutweak/modules/gnomesettings.py:97
-msgid "Screensaver"
-msgstr "Ekrano užsklanda"
-
-#: ../ubuntutweak/modules/gnomesettings.py:99
-msgid "Enable user switching whilst screen is locked."
-msgstr "Įjungti naudotojų keitimą, kai yra užrakintas ekranas."
-
-#: ../ubuntutweak/modules/gnomesettings.py:108
-msgid "Terminal"
-msgstr "Terminalas"
-
-#: ../ubuntutweak/modules/gnomesettings.py:110
-msgid "Display menubar when Terminal starts up (for current profile)"
-msgstr "Paleidus Terminalą rodyti meniu juostą (dabartiniam profiliui)"
-
-#: ../ubuntutweak/modules/gnomesettings.py:116
-msgid "Enable system-wide \"Recent Documents\" list"
-msgstr "Įjungti sisteminį \"Paskutinieji dokumentai\" sąrašą"
-
-#: ../ubuntutweak/modules/gnomesettings.py:119
-msgid "History"
-msgstr "Istorija"
-
-#: ../ubuntutweak/modules/gnomesettings.py:126
-msgid "Click this button to change the menu logo image"
-msgstr "Spustelėkite šį mygtuką meniu logotipo pakeitimui"
-
-#: ../ubuntutweak/modules/gnomesettings.py:139
-#: ../ubuntutweak/modules/loginsettings.py:147
-msgid "Choose a new logo image"
-msgstr "Pasirinkite naują logotipo paveikslėlį"
-
-#: ../ubuntutweak/modules/gnomesettings.py:145
-msgid "PNG images with 24x24 size or SVG images"
-msgstr "PNG 24x24 dydžio paveikslėliai ar SVG paveikslėliai"
-
-#: ../ubuntutweak/modules/gnomesettings.py:178
-msgid ""
-"This image size isn't suitable for the panel.\n"
-"It should measure 24x24."
-msgstr ""
-"Šis paveikslėlio dydis netinkamas skydeliui.\n"
-"Jis turėtų būti 24x24."
-
-#: ../ubuntutweak/modules/gnomesettings.py:198
-msgid "Do you want your changes to take effect immediately?"
-msgstr "Ar norite iškart pritaikyti pakeitimus?"
-
-#: ../ubuntutweak/modules/gnomesettings.py:221
-msgid ""
-"Disabling \"Recent Documents\" may break other software, for example the "
-"history feature in VMware Player."
-msgstr ""
-"\"Paskutinieji dokumentai\" išjungimas gali sutrikdyti kitos programinės "
-"įrangos veikimą. Pvz., VMware Player istorijos savybę."
-
-#: ../ubuntutweak/modules/powermanager.py:28
-msgid "Power Manager Settings"
-msgstr "Energijos tvarkyklės nustatymai"
-
-#: ../ubuntutweak/modules/powermanager.py:29
-msgid "Control your computer's power management"
-msgstr ""
-
-#: ../ubuntutweak/modules/powermanager.py:37
-msgid "Advanced Power Management Settings"
-msgstr "Sudėtingesnieji Energijos valdymo nustatymai"
-
-#: ../ubuntutweak/modules/powermanager.py:39
-msgid "Enable \"Lock screen\" when \"Blank Screen\" activates"
-msgstr ""
-
-#: ../ubuntutweak/modules/powermanager.py:43
-msgid "Lock screen on hibernate"
-msgstr "Hibernuojant užrakinti ekraną"
-
-#: ../ubuntutweak/modules/powermanager.py:47
-msgid "Lock screen on suspend"
-msgstr "Užmigdant užrakinti ekraną"
-
-#: ../ubuntutweak/modules/powermanager.py:51
-msgid "LCD brightness when using AC power"
-msgstr "LCD ryškumas, kai naudojama AC srovė"
-
-#: ../ubuntutweak/modules/powermanager.py:56
-msgid "LCD brightness when using battery"
-msgstr "LCD ryškumas, kai naudojama baterijos energija"
-
-#: ../ubuntutweak/modules/compiz.py:54
-msgid "Show Workspaces"
-msgstr "Rodyti darbalaukius"
-
-#: ../ubuntutweak/modules/compiz.py:55
-msgid "Show Windows"
-msgstr "Rodyti langus"
-
-#: ../ubuntutweak/modules/compiz.py:56
-msgid "Show Desktop"
-msgstr "Rodyti darbastalį"
-
-#: ../ubuntutweak/modules/compiz.py:57
-msgid "Show Widgets"
-msgstr "Rodyti valdiklius"
-
-#: ../ubuntutweak/modules/compiz.py:319
-msgid "Compiz Settings"
-msgstr "Compiz nustatymai"
-
-#: ../ubuntutweak/modules/compiz.py:320
-msgid "Settings for some amazing desktop eye-candy"
-msgstr ""
-
-#: ../ubuntutweak/modules/compiz.py:334
-msgid "Install Advanced Desktop Effects Settings Manager"
-msgstr "Įdiegti Advanced Desktop Effects Settings Manager"
-
-#: ../ubuntutweak/modules/compiz.py:337
-msgid "Install Simple Desktop Effects Settings Manager"
-msgstr "Įdiegti Simple Desktop Effects Settings Manager"
-
-#: ../ubuntutweak/modules/compiz.py:340
-msgid "Install Screenlets Widget Application"
-msgstr "Įdiegti Screenlets Widget programą"
-
-#: ../ubuntutweak/modules/compiz.py:347
-msgid " Workspace Edge Settings"
-msgstr " Darbalaukio kraštų nustatymai"
-
-#: ../ubuntutweak/modules/compiz.py:350
-msgid "Enable snapping windows"
-msgstr ""
-
-#: ../ubuntutweak/modules/compiz.py:351
-msgid "Enable wobbly windows"
-msgstr "Įjungti virpančius langus"
-
-#: ../ubuntutweak/modules/compiz.py:352
-msgid "Enable workspace switching with mouse wheel"
-msgstr ""
-
-#: ../ubuntutweak/modules/compiz.py:354
-msgid "Make the launcher hide automatically after some time inactive"
-msgstr ""
-
-#: ../ubuntutweak/modules/compiz.py:358
-msgid "Desktop Effects"
-msgstr ""
-
-#: ../ubuntutweak/modules/compiz.py:364
-msgid "Enable transparent menus"
-msgstr "Įjungti permatomus meniu"
-
-#: ../ubuntutweak/modules/compiz.py:365
-msgid "Enable wobbly menus"
-msgstr "Įjungti virpančius meniu"
-
-#: ../ubuntutweak/modules/compiz.py:367
-msgid "Menu Effects"
-msgstr "Meniu efektai"
-
-#: ../ubuntutweak/modules/compiz.py:371
-msgid "Useful Extensions"
-msgstr "Naudingi plėtiniai"
-
-#: ../ubuntutweak/modules/compiz.py:386
-msgid "Prerequisite Conditions"
-msgstr "Priklausomybės"
-
-#: ../ubuntutweak/modules/sourcecenter.py:112
-msgid ""
-"You can install new applications by selecting them and choosing \"Yes\".\n"
-"Or you can install them at Application Center by choosing \"No\"."
-msgstr ""
-
-#: ../ubuntutweak/modules/sourcecenter.py:113
-msgid "New applications are available"
-msgstr "Prieinamos naujos programos"
-
-#. checkbutton
-#: ../ubuntutweak/modules/sourcecenter.py:122
-#: ../ubuntutweak/modules/cleaner.py:768
-msgid "Select All"
-msgstr "Žymėti visus"
-
-#: ../ubuntutweak/modules/sourcecenter.py:147
-msgid "Your system is clean and there are no updates yet."
-msgstr "Jūsų sistema švari ir kol kas jai nėra atnaujinimų."
-
-#: ../ubuntutweak/modules/sourcecenter.py:355
-#, python-format
-msgid "%d New Application Available"
-msgid_plural "%d New Applications Available"
-msgstr[0] "Prieinama %d nauja programa"
-msgstr[1] "Prieinamos %d naujos programos"
-msgstr[2] "Prieinama %d naujų programų"
-
-#: ../ubuntutweak/modules/sourcecenter.py:373
-#, python-format
-msgid "%d Package Update Available"
-msgid_plural "%d Package Updates Available"
-msgstr[0] "Prieinamas %d atnaujinimas"
-msgstr[1] "Prieinami %d atnaujinimai"
-msgstr[2] "Prieinama %d atnaujinimų"
-
-#: ../ubuntutweak/modules/sourcecenter.py:411
-msgid "No Available Package Updates"
-msgstr "Nėra prieinamų paketų atnaujinimų"
-
-#: ../ubuntutweak/modules/sourcecenter.py:546
-msgid "Third-Party Sources"
-msgstr "Trečiųjų-šalių programinės įrangos šaltiniai"
-
-#: ../ubuntutweak/modules/sourcecenter.py:733
-#, python-format
-msgid ""
-"You can't enable this Source because<b>\"%(SOURCE)s\"</b> conflicts with "
-"it.\n"
-"To continue you need to disable <b>\"%(SOURCE)s\"</b>first."
-msgstr ""
-"Jūs negalite įgalinti šio šaltinio, nes <b>\"%(SOURCE)s\"</b> konfliktuoja "
-"su juo.\n"
-"Norėdami tęsti, pirmiausia atjunkite <b>\"%(SOURCE)s\"</b>."
-
-#: ../ubuntutweak/modules/sourcecenter.py:755
-#, python-format
-msgid ""
-"To enable this Source, You need to enable <b>\"%s\"</b> at first.\n"
-"Do you wish to continue?"
-msgstr ""
-"Kad galėtumėte įgalinti šį šaltinį, pirmiausia turite įgalinti "
-"<b>\"%s\"</b>.\n"
-"Ar norite tęsti?"
-
-#: ../ubuntutweak/modules/sourcecenter.py:757
-msgid "Dependency Notice"
-msgstr "Priklausomybių perspėjimas"
-
-#: ../ubuntutweak/modules/sourcecenter.py:781
-#, python-format
-msgid ""
-"You can't disable this Source because <b>\"%(SOURCE)s\"</b> depends on it.\n"
-"To continue you need to disable <b>\"%(SOURCE)s\"</b> first."
-msgstr ""
-"Jūs negalite atjungti šio šaltinio, nes <b>\"%(SOURCE)s\"</b> priklauso nuo "
-"jo.\n"
-"Norėdami tęsti, pirmiausia turite atjungti <b>\"%(SOURCE)s\"</b>."
-
-#: ../ubuntutweak/modules/sourcecenter.py:856
-msgid "New source has been enabled"
-msgstr "Įgalintas naujas šaltinis"
-
-#: ../ubuntutweak/modules/sourcecenter.py:857
-#, python-format
-msgid ""
-"%s is enabled now, Please click the refresh button to update the application "
-"cache."
-msgstr ""
-"%s dabar įgalintas. Spustelėkite atnaujinimo mygtuką, kad atnaujintumėte "
-"programinės įrangos podėlį."
-
-#: ../ubuntutweak/modules/sourcecenter.py:871
-msgid "Homepage"
-msgstr "Namų puslapis"
-
-#: ../ubuntutweak/modules/sourcecenter.py:871
-msgid "Source URL"
-msgstr "Šaltinio URL"
-
-#: ../ubuntutweak/modules/sourcecenter.py:871
-msgid "Description"
-msgstr "Aprašymas"
-
-#: ../ubuntutweak/modules/sourcecenter.py:884
-msgid "Description is here"
-msgstr "Aprašymas yra čia"
-
-#: ../ubuntutweak/modules/sourcecenter.py:910
-msgid "Source Center"
-msgstr "Šaltinių centras"
-
-#: ../ubuntutweak/modules/sourcecenter.py:911
-msgid ""
-"A collection of software sources to ensure your applications are always up-"
-"to-date.\n"
-"Here you can add applications unavailable in the official repositories.\n"
-"A list of available software sources will be obtained automatically from a "
-"remote server.\n"
-"You can click the \"Sync\" button to manually check for updates"
-msgstr ""
-"Programinės įrangos šaltinių kolekcija, skirta užsitikrinti, kad naudojamos "
-"naujausios versijos.\n"
-"Čia jūs galite pridėti programas, nepasiekiamas iš oficialių šaltinių.\n"
-"Prieinamų šaltinių sąrašas bus automatiškai gautas iš nuotolinio serverio.\n"
-"Norėdami rankiniu būdu patikrinti atnaujinimus, spustelėkite "
-"\"Sinchronizuoti\" mygtuką."
-
-#: ../ubuntutweak/modules/sourcecenter.py:917
-msgid "Visit online Source Center"
-msgstr "Aplankyti internete esantį šaltinių centrą"
-
-#. the "%s" is in front, some is the end, so just return the long one
-#: ../ubuntutweak/modules/sourcecenter.py:1000
-#, python-format
-msgid "disabled on upgrade to %s"
-msgstr "atjungtas naujovinant į %s"
-
-#: ../ubuntutweak/modules/sourcecenter.py:1009
-msgid ""
-"After a successful distribution upgrade, any third-party sources you use "
-"will be disabled by default.\n"
-"Would you like to re-enable any sources disabled by Update Manager?"
-msgstr ""
-"Po sėkmingo distribucijos naujovinimo pagal numatymą atjungiami visi "
-"trečiųjų-šalių šaltiniai.\n"
-"Ar norite iš naujo įgalinti šaltinius, kuriuos atjungė Atnaujinimų tvarkyklė?"
-
-#: ../ubuntutweak/modules/sourcecenter.py:1012
-msgid "Upgrade Third Party Sources"
-msgstr "Naujovinti trečiųjų šalių šaltinius"
-
-#: ../ubuntutweak/modules/sourcecenter.py:1018
-msgid "Upgrade Successful!"
-msgstr "Naujovinimas sėkmingas!"
-
-#: ../ubuntutweak/modules/sourcecenter.py:1020
-msgid "Upgrade Failed!"
-msgstr "Naujovinimas nepavyko!"
-
-#: ../ubuntutweak/modules/sourcecenter.py:1027
-msgid "New source data available, would you like to update?"
-msgstr "Prieinami nauji šaltinių duomenys. Ar norite atnaujinti?"
-
-#: ../ubuntutweak/modules/sourcecenter.py:1109
-msgid ""
-"It is a possible security risk to use packages from Third-Party Sources.\n"
-"Please be careful and use only sources you trust."
-msgstr ""
-"Pavojinga naudotis paketais, gautais iš trečiųjų-šalių šaltinių.\n"
-"Būkite atsargūs ir naudokite tik tuos šaltinius, kuriais pasitikite."
-
-#: ../ubuntutweak/modules/sourcecenter.py:1141
-msgid "An error occurred whilst downloading the file"
-msgstr "Siunčiantis failą įvyko klaida"
-
-#: ../ubuntutweak/modules/sourcecenter.py:1156
-msgid "Update available, Would you like to update?"
-msgstr "Prieinamas atnaujinimas. Ar norite atnaujinti?"
-
-#: ../ubuntutweak/modules/sourcecenter.py:1165
-msgid ""
-"Network Error, Please check your network connection or the remote server is "
-"down."
-msgstr ""
-"Tinklo klaida. Patikrinkite savo tinklo ryšį (arba yra užlūžęs nuotolinis "
-"serveris)."
-
-#: ../ubuntutweak/modules/scripts.py:59
-msgid "Create Launcher ..."
-msgstr "Kurti leistuką..."
-
-#: ../ubuntutweak/modules/scripts.py:60
-msgid "Copy to ..."
-msgstr "Kopijuoti į ..."
-
-#: ../ubuntutweak/modules/scripts.py:61
-msgid "Copy to Desktop"
-msgstr "Kopijuoti į Darbastalis"
-
-#: ../ubuntutweak/modules/scripts.py:62
-msgid "Copy to Download"
-msgstr "Kopijuoti į Atsiuntimai"
-
-#: ../ubuntutweak/modules/scripts.py:63
-msgid "Copy to Home"
-msgstr "Kopijuoti į Namų aplankas"
-
-#: ../ubuntutweak/modules/scripts.py:64
-msgid "Check md5 sum"
-msgstr "Tikrinti md5 sumą"
-
-#: ../ubuntutweak/modules/scripts.py:65
-msgid "Compress PDF"
-msgstr "Suspausti į PDF"
-
-#: ../ubuntutweak/modules/scripts.py:66
-msgid "Move to ..."
-msgstr "Perkelti į ..."
-
-#: ../ubuntutweak/modules/scripts.py:67
-msgid "Move to Desktop"
-msgstr "Perkelti į Darbastalis"
-
-#: ../ubuntutweak/modules/scripts.py:68
-msgid "Move to Download"
-msgstr "Perkelti į Atsiuntimai"
-
-#: ../ubuntutweak/modules/scripts.py:69
-msgid "Move to Home"
-msgstr "Perkelti į Namų aplankas"
-
-#: ../ubuntutweak/modules/scripts.py:70
-msgid "Create hardlink to ..."
-msgstr ""
-
-#: ../ubuntutweak/modules/scripts.py:71
-msgid "Link to ..."
-msgstr "Nuoroda į ..."
-
-#: ../ubuntutweak/modules/scripts.py:72
-msgid "Link to Desktop"
-msgstr "Nuoroda į Darbastalis"
-
-#: ../ubuntutweak/modules/scripts.py:73
-msgid "Link to Download"
-msgstr "Nuoroda į Atsiuntimai"
-
-#: ../ubuntutweak/modules/scripts.py:74
-msgid "Link to Home"
-msgstr "Nuoroda į Namų aplankas"
-
-#: ../ubuntutweak/modules/scripts.py:75
-msgid "Open with your favourite text editor"
-msgstr "Atverti su mėgstamiausiu tekstų redaktoriumi"
-
-#: ../ubuntutweak/modules/scripts.py:76
-msgid "Open with your favourite text editor (as root)"
-msgstr "Atverti su mėgstamiausiu tekstų redaktoriumi (kaip root)"
-
-#: ../ubuntutweak/modules/scripts.py:77
-msgid "Browse as root"
-msgstr "Naršyti kaip root"
-
-#: ../ubuntutweak/modules/scripts.py:78
-msgid "Search in current folder"
-msgstr "Ieškoti šiame aplanke"
-
-#: ../ubuntutweak/modules/scripts.py:79
-msgid "Convert image to JPG"
-msgstr "Konvertuoti paveiksliuką į JPG"
-
-#: ../ubuntutweak/modules/scripts.py:80
-msgid "Convert image to PNG"
-msgstr "Konvertuoti paveiksliuką į PNG"
-
-#: ../ubuntutweak/modules/scripts.py:81
-msgid "Convert image to GIF"
-msgstr "Konvertuoti paveiksliuką į GIF"
-
-#: ../ubuntutweak/modules/scripts.py:82
-msgid "Set image as wallpaper"
-msgstr "Nustatyti paveiksliuką kaip darbastalio foną"
-
-#: ../ubuntutweak/modules/scripts.py:83
-msgid "Make hard shadow to image"
-msgstr ""
-
-#: ../ubuntutweak/modules/scripts.py:110
-msgid "Enabled Scripts"
-msgstr "Įjungti skriptai"
-
-#: ../ubuntutweak/modules/scripts.py:138
-msgid "Disabled Scripts"
-msgstr "Išjungti skriptai"
-
-#: ../ubuntutweak/modules/scripts.py:144
-msgid "Manage Scripts"
-msgstr "Valdyti skriptus"
-
-#: ../ubuntutweak/modules/scripts.py:145
-msgid ""
-"Scripts can be used to complete all kinds of tasks.\n"
-"You can drag and drop scripts here from File Manager.\n"
-"'Scripts' will then be added to the context menu."
-msgstr ""
-"Skriptai gali būti panaudoti įvairių užduočių atlikimui.\n"
-"Jūs čia galite nutempti ir paleisti skriptus iš Failų naršyklės.\n"
-"Tada į kontekstinį meniu bus pridėta 'Skriptai'."
-
-#: ../ubuntutweak/modules/scripts.py:178
-msgid "Rebuild System Scripts"
-msgstr "Perdaryti sisteminius skriptus"
-
-#: ../ubuntutweak/modules/scripts.py:196
-msgid ""
-"This will delete all disabled scripts.\n"
-"Do you wish to continue?"
-msgstr ""
-"Tai ištrins visus išjungtus skriptus.\n"
-"Ar norite tęsti?"
-
-#: ../ubuntutweak/modules/templates.py:67
-msgid "HTML document"
-msgstr "HTML dokumentas"
-
-#: ../ubuntutweak/modules/templates.py:68
-msgid "ODB Database"
-msgstr "ODB duomenų bazė"
-
-#: ../ubuntutweak/modules/templates.py:69
-msgid "ODS Spreadsheet"
-msgstr "ODS lentelė"
-
-#: ../ubuntutweak/modules/templates.py:70
-msgid "ODT Document"
-msgstr "ODT dokumentas"
-
-#: ../ubuntutweak/modules/templates.py:71
-msgid "Plain text document"
-msgstr "Grynojo teksto dokumentas"
-
-#: ../ubuntutweak/modules/templates.py:72
-msgid "ODP Presentation"
-msgstr "ODP pateiktis"
-
-#: ../ubuntutweak/modules/templates.py:73
-msgid "Python script"
-msgstr "Python skriptas"
-
-#: ../ubuntutweak/modules/templates.py:74
-msgid "Pygtk Example"
-msgstr "Pygtk pavyzdys"
-
-#: ../ubuntutweak/modules/templates.py:75
-msgid "Shell script"
-msgstr "Komandų interpretatoriaus skriptas"
-
-#: ../ubuntutweak/modules/templates.py:102
-msgid "Enabled Templates"
-msgstr "Įjungti šablonai"
-
-#: ../ubuntutweak/modules/templates.py:109
-msgid "Disabled Templates"
-msgstr "Išjungti šablonai"
-
-#: ../ubuntutweak/modules/templates.py:116
-msgid "Manage Templates"
-msgstr "Tvarkyti šablonus"
-
-#: ../ubuntutweak/modules/templates.py:117
-msgid ""
-"Here you can manage your document templates.\n"
-"You can add files as templates by dragging them into this window.\n"
-"You can then create new documents based on these templates from the Nautilus "
-"right-click menu."
-msgstr ""
-"Čia jūs galite tvarkyti dokumentų šablonus.\n"
-"Jūs galite failus pridėti kaip šablonus nutempdami juos į šį langą.\n"
-"Tada jūs, pasinaudodami šiais šablonais iš Nautilus dešiniojo pelės klavišo "
-"meniu, galite kurti naujus dokumentus."
-
-#: ../ubuntutweak/modules/templates.py:128
-#, python-format
-msgid ""
-"The templates path is incorrect! The current path points to \"%s\".\n"
-"Please reset it to a location within your Home Folder."
-msgstr ""
-"Šablonų kelias yra neteisingas! Nustatytasis kelias yra \"%s\".\n"
-"Prašome jį nustatyti į vietą, esančią jūsų namų aplanke."
-
-#: ../ubuntutweak/modules/templates.py:137
-msgid "Go And Set"
-msgstr "Nustatyti"
-
-#: ../ubuntutweak/modules/templates.py:142
-msgid "Restart This Module"
-msgstr "Paleisti šį modulį iš naujo"
-
-#: ../ubuntutweak/modules/templates.py:172
-msgid "Rebuild System Templates"
-msgstr "Perdaryti sistemos šablonus"
-
-#: ../ubuntutweak/modules/templates.py:192
-msgid "The templates path is still incorrect, please reset it!"
-msgstr ""
-"Šablonų kelias vis dar yra neteisingas. Prašome nustatyti jį iš naujo!"
-
-#: ../ubuntutweak/modules/templates.py:204
-msgid ""
-"This will delete all disabled templates.\n"
-"Do you wish to continue?"
-msgstr ""
-"Tai ištrins visus išjungtus šablonus.\n"
-"Ar norite tęsti?"
-
-#: ../ubuntutweak/modules/session.py:34 ../ubuntutweak/modules/session.py:69
-msgid "Session Control"
-msgstr "Sesijos valdymas"
-
-#: ../ubuntutweak/modules/session.py:35
-msgid "Control your system session releated features"
-msgstr "Valdykite su sistemos sesija susijusias savybes"
-
-#: ../ubuntutweak/modules/session.py:47
-msgid "File Manager"
-msgstr "Failų tvarkyklė"
-
-#: ../ubuntutweak/modules/session.py:52
-msgid "Panel"
-msgstr "Skydelis"
-
-#: ../ubuntutweak/modules/session.py:57
-msgid "Window Manager"
-msgstr "Langų tvarkyklė"
-
-#: ../ubuntutweak/modules/session.py:78
-msgid "Session Options"
-msgstr "Sesijos parinktys"
-
-#: ../ubuntutweak/modules/session.py:80
-msgid "Automatically save open applications when logging out"
-msgstr "Atsijungiant automatiškai išsaugoti paleistas programas"
-
-#: ../ubuntutweak/modules/session.py:84
-msgid "Suppress the logout, restart and shutdown confirmation dialogue box."
-msgstr ""
-"Nuslėpti atsijungimo, paleidimo iš naujo ir išjungimo patvirtinimo dialogą."
-
-#: ../ubuntutweak/modules/session.py:110
-msgid "Please enter a valid application command line."
-msgstr "Prašome įvesti teisingą programos komandą."
-
-#: ../ubuntutweak/modules/session.py:110
-#, python-format
-msgid "\"%s\" is not available."
-msgstr "\"%s\" nepasiekiama."
-
-#: ../ubuntutweak/modules/cleaner.py:77
-msgid "Cleaning Configuration Files"
-msgstr "Konfigūracijos failų valymas"
-
-#: ../ubuntutweak/modules/cleaner.py:113
-msgid "Cleaning Package Cache"
-msgstr "Paketų podėlio valymas"
-
-#: ../ubuntutweak/modules/cleaner.py:120
-#, python-format
-msgid "Cleaning...%s"
-msgstr "Valoma...%s"
-
-#: ../ubuntutweak/modules/cleaner.py:145
-msgid "Purge PPA and Downgrade Packages"
-msgstr ""
-
-#: ../ubuntutweak/modules/cleaner.py:146
-msgid "Downloading Packages..."
-msgstr "Atsisiunčiami paketai..."
-
-#: ../ubuntutweak/modules/cleaner.py:174
-msgid "Removing key files..."
-msgstr ""
-
-#: ../ubuntutweak/modules/cleaner.py:205
-#, python-format
-msgid "Downgrading...%s"
-msgstr ""
-
-#: ../ubuntutweak/modules/cleaner.py:253 ../ubuntutweak/modules/cleaner.py:348
-msgid "Package"
-msgstr "Paketas"
-
-#: ../ubuntutweak/modules/cleaner.py:259
-msgid "Previous Version"
-msgstr "Ankstesnė versija"
-
-#: ../ubuntutweak/modules/cleaner.py:266
-msgid "System Version"
-msgstr "Sistemos versija"
-
-#: ../ubuntutweak/modules/cleaner.py:373
-msgid "Unneeded Packages"
-msgstr "Nereikalingi paketai"
-
-#: ../ubuntutweak/modules/cleaner.py:401
-msgid "Kernel Packages"
-msgstr "Branduolio paketai"
-
-#: ../ubuntutweak/modules/cleaner.py:430
-msgid "Cached Package Files"
-msgstr "Podėlyje laikomi paketų failai"
-
-#: ../ubuntutweak/modules/cleaner.py:444
-#, python-format
-msgid ""
-"<b>%s</b>\n"
-"Occupies %s of disk space"
-msgstr ""
-"<b>%s</b>\n"
-"Užima %s disko vietos"
-
-#: ../ubuntutweak/modules/cleaner.py:504
-msgid "Package Configuration Files"
-msgstr "Paketų konfigūracijų failai"
-
-#: ../ubuntutweak/modules/cleaner.py:541
-#, python-format
-msgid "%d package selected for removal"
-msgid_plural "%d packages selected for removal"
-msgstr[0] "%d paketas pažymėtas pašalinimui"
-msgstr[1] "%d paketai pažymėti pašalinimui"
-msgstr[2] "%d paketų pažymėta pašalinimui"
-
-#: ../ubuntutweak/modules/cleaner.py:545
-#, python-format
-msgid "%s of disk space will be freed"
-msgstr "Bus atlaisvinta %s disko vietos"
-
-#: ../ubuntutweak/modules/cleaner.py:653
-msgid "It's safe to purge the PPA, no packages need to be downgraded."
-msgstr ""
-
-#: ../ubuntutweak/modules/cleaner.py:656
-msgid "To safely purge the PPA, the following packages must be downgraded."
-msgstr ""
-
-#: ../ubuntutweak/modules/cleaner.py:660
-#, python-format
-msgid "You're going to purge: %s"
-msgstr "Jūs planuojate sunaikinti: %s"
-
-#: ../ubuntutweak/modules/cleaner.py:691
-msgid "Cancelled by user!"
-msgstr "Atšaukta naudotojo!"
-
-#: ../ubuntutweak/modules/cleaner.py:694
-msgid "Clean up successful!"
-msgstr "Valymas sėkmingas!"
-
-#: ../ubuntutweak/modules/cleaner.py:697
-msgid "Clean up failed!"
-msgstr "Valymas nepavyko!"
-
-#: ../ubuntutweak/modules/cleaner.py:710
-msgid "Package Cleaner"
-msgstr "Paketų valyklė"
-
-#: ../ubuntutweak/modules/cleaner.py:711
-msgid ""
-"Free up disk space by removing redundant packages and cleaning package "
-"download cache."
-msgstr ""
-"Atlaisvinkite diske vietos pašalindami perteklinius paketus ir išvalydami "
-"paketų atsisiuntimo podėlį."
-
-#. create the button
-#: ../ubuntutweak/modules/cleaner.py:742
-msgid "Clean Packages"
-msgstr "Valyti paketus"
-
-#: ../ubuntutweak/modules/cleaner.py:747
-msgid "Clean Cache"
-msgstr "Valyti podėlį"
-
-#: ../ubuntutweak/modules/cleaner.py:752
-msgid "Clean Config"
-msgstr "Valyti konfigūracijas"
-
-#: ../ubuntutweak/modules/cleaner.py:757
-msgid "Clean Kernels"
-msgstr "Valyti branduolius"
-
-#: ../ubuntutweak/modules/cleaner.py:762
-msgid "Purge PPAs"
-msgstr "Naikinti PPA saugyklas"
-
-#: ../ubuntutweak/modules/cleaner.py:780
-msgid "_Cleanup"
-msgstr "_Valymas"
-
-#: ../ubuntutweak/modules/shortcuts.py:45
-msgid "Shortcut Commands"
-msgstr "Susiejimų komandos"
-
-#: ../ubuntutweak/modules/shortcuts.py:46
-msgid ""
-"By configuring keyboard shortcuts, you can access your favourite "
-"applications instantly.\n"
-"Enter the command to run the application and choose a shortcut key "
-"combination."
-msgstr ""
-"Nustatę klavišų susiejimus jūs galite greičiau pasiekti mėgstamiausias "
-"programas.\n"
-"Įveskite programos paleidimo komandą ir pasirinkite klavišų kombinaciją."
-
-#: ../ubuntutweak/modules/shortcuts.py:94
-#, python-format
-msgid "Command %d"
-msgstr "Komanda %d"
-
-#: ../ubuntutweak/modules/shortcuts.py:104
-#: ../ubuntutweak/modules/shortcuts.py:160
-msgid "disabled"
-msgstr "išjungta"
-
-#: ../ubuntutweak/modules/shortcuts.py:120
-msgid "ID"
-msgstr "ID"
-
-#: ../ubuntutweak/modules/shortcuts.py:131
-msgid "Command"
-msgstr "Komanda"
-
-#: ../ubuntutweak/modules/shortcuts.py:143
-msgid "Key"
-msgstr "Raktas"
-
-#: ../ubuntutweak/modules/shortcuts.py:153
-msgid "Clean"
-msgstr "Valyti"
-
-#: ../ubuntutweak/modules/autostart.py:46
-msgid "_Name:"
-msgstr "_Pavadinimas:"
-
-#: ../ubuntutweak/modules/autostart.py:49
-msgid "Co_mmand:"
-msgstr "Ko_manda:"
-
-#: ../ubuntutweak/modules/autostart.py:63
-msgid "Edit Startup Program"
-msgstr "Redaguoti automatiškai paleidžiamą programą"
-
-#: ../ubuntutweak/modules/autostart.py:68
-msgid "New Startup Program"
-msgstr "Nauja automatiškai paleidžiama programa"
-
-#: ../ubuntutweak/modules/autostart.py:99
-msgid "Choose a Program"
-msgstr "Pasirinkite programą"
-
-#: ../ubuntutweak/modules/autostart.py:189
-msgid "Delete from Disk"
-msgstr "Ištrinti iš disko"
-
-#: ../ubuntutweak/modules/autostart.py:203
-msgid "Can't delete system item from disk."
-msgstr "Nepavyko ištrinti iš disko sistemos elemento."
-
-#: ../ubuntutweak/modules/autostart.py:255
-msgid "No description"
-msgstr "Nėra aprašymo"
-
-#: ../ubuntutweak/modules/autostart.py:275
-msgid "Program"
-msgstr "Programa"
-
-#: ../ubuntutweak/modules/autostart.py:334
-msgid "Auto Start Programs"
-msgstr "Automatiškai paleidžiamos programos"
-
-#: ../ubuntutweak/modules/autostart.py:335
-msgid ""
-"Here you can manage which programs are run upon login.\n"
-"You can hide items from view by selecting them and clicking \"Remove\"\n"
-"To permanently delete an item, right-click and select \"Delete\"."
-msgstr ""
-"Čia jūs galite tvarkyti prisijungimo metu paleidžiamas programas.\n"
-"Jūs galite paslėpti elementus pasirinkdami \"Pašalinti\".\n"
-"Norėdami visiškai ištrinti elementą, spustelėkite dešinį pelės klavišą ir "
-"pasirinkite \"Ištrinti\"."
-
-#. create the two checkbutton for extra options of auto run list
-#: ../ubuntutweak/modules/autostart.py:349
-msgid "Show comments"
-msgstr "Rodyti komentarus"
-
-#: ../ubuntutweak/modules/autostart.py:351
-msgid "Show all runnable programs"
-msgstr "Rodyti visas paleidžiamas programas"
-
-#: ../ubuntutweak/modules/autostart.py:417
-#: ../ubuntutweak/modules/autostart.py:464
-msgid "The name of the startup program cannot be empty"
-msgstr "Paleidimo komandos pavadinimas negali būti tuščias"
-
-#: ../ubuntutweak/modules/autostart.py:419
-#: ../ubuntutweak/modules/autostart.py:466
-msgid "Text field was empty (or contained only whitespace)"
-msgstr "Teksto laukelis buvo tuščias (arba jame buvo tik tarpas)"
-
-#: ../ubuntutweak/modules/nautilus.py:47
-msgid "Cleaning..."
-msgstr "Valoma..."
-
-#: ../ubuntutweak/modules/nautilus.py:66
-msgid "Nautilus Settings"
-msgstr "Nautilus nustatymai"
-
-#: ../ubuntutweak/modules/nautilus.py:67
+#: ../ubuntutweak/tweaks/icons.py:143
+msgid "Show contents of \"Home Folder\" on desktop"
+msgstr "Darbastalyje rodyti „Namų aplanko“ turinį"
+
+#: ../ubuntutweak/tweaks/nautilus.py:28
 msgid "Manage the default file manager"
 msgstr "Tvarkykite numatytąją failų tvarkyklę"
 
-#: ../ubuntutweak/modules/nautilus.py:76
-msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
-msgstr "Rodyti sudėtingesniuosius failų leidimus Nautilus \"Savybės\" lange"
-
-#: ../ubuntutweak/modules/nautilus.py:81
-msgid "Always use the location entry, instead of the pathbar"
-msgstr ""
-
-#: ../ubuntutweak/modules/nautilus.py:85
+#: ../ubuntutweak/tweaks/nautilus.py:35
 msgid "File Browser"
 msgstr "Failų naršyklė"
 
-#: ../ubuntutweak/modules/nautilus.py:94
+#: ../ubuntutweak/tweaks/nautilus.py:37
+msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
+msgstr "Rodyti sudėtingesniuosius failų leidimus Nautilus \"Savybės\" lange"
+
+#: ../ubuntutweak/tweaks/nautilus.py:42
+msgid "Always use the location entry, instead of the pathbar"
+msgstr "Vietoje kelio juostos, visada naudoti vietos įvesties laukelį"
+
+#: ../ubuntutweak/tweaks/nautilus.py:48
 msgid "Thumbnail Settings"
 msgstr "Miniatiūrų nustatymai"
 
-#: ../ubuntutweak/modules/nautilus.py:99
+#: ../ubuntutweak/tweaks/nautilus.py:53
 msgid "Default thumbnail icon size (pixels)"
 msgstr "Numatytasis miniatiūrų piktogramų dydis (pikseliais)"
 
-#: ../ubuntutweak/modules/nautilus.py:104
+#: ../ubuntutweak/tweaks/nautilus.py:59
 msgid "Maximum thumbnail cache size (megabytes)"
 msgstr "Maksimalus miniatiūrų podėlio dydis (megabaitais)"
 
-#: ../ubuntutweak/modules/nautilus.py:109
+#: ../ubuntutweak/tweaks/nautilus.py:65
 msgid "Thumbnail cache time (days)"
 msgstr "Miniatiūrų podėlio galiojimo laikas (dienomis)"
 
-#: ../ubuntutweak/modules/nautilus.py:116
-msgid "Open folder in terminal"
-msgstr "Atverti aplanką terminale"
+#: ../ubuntutweak/tweaks/nautilus.py:70
+msgid "Automatically Mount Settings"
+msgstr "Automatinio prijungimo nustatymai"
 
-#: ../ubuntutweak/modules/nautilus.py:118
-msgid "Open folder with root privileges"
-msgstr "Atverti aplanką root teisėmis"
+#: ../ubuntutweak/tweaks/nautilus.py:74
+msgid "Whether to automatically mount media"
+msgstr "Ar automatiškai prijungti laikmenas"
 
-#: ../ubuntutweak/modules/nautilus.py:120
-msgid "Nautilus with wallpaper"
-msgstr "Nautilus su darbastalio fonu"
+#: ../ubuntutweak/tweaks/nautilus.py:79
+msgid "Whether to automatically open a folder for automounted media"
+msgstr "Ar atverti aplanką automatiškai prijungtoms laikmenoms"
 
-#: ../ubuntutweak/modules/nautilus.py:122
-msgid "Nautilus Extensions"
-msgstr "Nautilus plėtiniai"
+#: ../ubuntutweak/tweaks/nautilus.py:84
+msgid "Never prompt or autorun/autostart programs when media are inserted"
+msgstr ""
+"Įdėjus laikmeną, niekada automatiškai nepaleisti programų, ir neraginti to "
+"daryti"
 
-#: ../ubuntutweak/modules/nautilus.py:144
+#: ../ubuntutweak/tweaks/session.py:30
+msgid "Control your system session releated features"
+msgstr "Valdykite su sistemos sesija susijusias savybes"
+
+#: ../ubuntutweak/tweaks/session.py:37
+msgid "Session Menu Options"
+msgstr "Sesijos meniu parinktys"
+
+#: ../ubuntutweak/tweaks/session.py:39
+msgid "Remove the log out item from the session menu"
+msgstr "Iš sesijos meniu pašalinti „atsijungti“"
+
+#: ../ubuntutweak/tweaks/session.py:44
+msgid "Remove the restart item from the session menu"
+msgstr "Iš sesijos meniu pašalinti „iš naujo paleisti“"
+
+#: ../ubuntutweak/tweaks/session.py:49
+msgid "Remove the shutdown item from the session menu"
+msgstr "Iš sesijos meniu pašalinti „išjungti“"
+
+#: ../ubuntutweak/tweaks/session.py:54
+msgid "Suppress the dialog to confirm logout, restart and shutdown action"
+msgstr ""
+"Nerodyti patvirtinimo dialogo atsijungiant, paleidžiant iš naujo ar "
+"išjungiant kompiuterį"
+
+#: ../ubuntutweak/tweaks/session.py:62
+msgid "User Menu Options"
+msgstr "Naudotojo meniu parinktys"
+
+#: ../ubuntutweak/tweaks/session.py:64
+msgid "Show user menu"
+msgstr "Rodyti naudotojo meniu"
+
+#: ../ubuntutweak/tweaks/session.py:69
+msgid "Show user's real name on the panel"
+msgstr "Panelėje rodyti tikrą naudotojo vardą"
+
+#: ../ubuntutweak/tweaks/fonts.py:26
+msgid "Fonts"
+msgstr "Šriftai"
+
+#: ../ubuntutweak/tweaks/fonts.py:27
+msgid "Fonts Settings"
+msgstr "Šriftų nustatymai"
+
+#: ../ubuntutweak/tweaks/fonts.py:39
+msgid "Deskotp fonts"
+msgstr "Darbastalio šriftai"
+
+#: ../ubuntutweak/tweaks/fonts.py:41
+msgid "Text scaling factor"
+msgstr "Teksto mastelio keitimo faktorius"
+
+#: ../ubuntutweak/tweaks/fonts.py:49
+msgid "Default font"
+msgstr "Numatytasis šriftas"
+
+#: ../ubuntutweak/tweaks/fonts.py:54
+msgid "Monospace font"
+msgstr "Lygiaplotis šriftas"
+
+#: ../ubuntutweak/tweaks/fonts.py:59
+msgid "Document font"
+msgstr "Dokumento šriftas"
+
+#: ../ubuntutweak/tweaks/fonts.py:64
+msgid "Window title bar font"
+msgstr "Lango antraštės juostos šriftas"
+
+#: ../ubuntutweak/tweaks/fonts.py:72
+msgid "Hinting and antialiasing"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:74
+msgid "Hinting"
+msgstr "Taškinė korekcija"
+
+#: ../ubuntutweak/tweaks/fonts.py:77
+msgid "No hinting"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:78
+msgid "Basic"
+msgstr "Paprasta"
+
+#: ../ubuntutweak/tweaks/fonts.py:79
+msgid "Moderate"
+msgstr "Vidutinis"
+
+#: ../ubuntutweak/tweaks/fonts.py:80
+msgid "Maximum"
+msgstr "Maksimalus"
+
+#: ../ubuntutweak/tweaks/fonts.py:84
+msgid "Antialiasing"
+msgstr "Glotninimas"
+
+#: ../ubuntutweak/tweaks/fonts.py:87
+msgid "No antialiasing"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:88
+msgid "Standard grayscale antialiasing"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:89
+msgid "Subpixel antialiasing (LCD screens only)"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/misc.py:31 ../ubuntutweak/tweaks/misc.py:67
+msgid "Miscellaneous"
+msgstr "Įvairūs"
+
+#: ../ubuntutweak/tweaks/misc.py:32
+msgid "Set the cursor timeout, menus and buttons icons"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/misc.py:39
+msgid "Buttons and Menus"
+msgstr "Mygtukai ir meniu"
+
+#: ../ubuntutweak/tweaks/misc.py:41
+msgid "Buttons have icons"
+msgstr "Mygtukai turi piktogramas"
+
+#: ../ubuntutweak/tweaks/misc.py:46
+msgid "Menus have icons"
+msgstr "Meniu turi piktogramas"
+
+#: ../ubuntutweak/tweaks/misc.py:51
+msgid "Show Input Method menu in the context menu"
+msgstr "Kontekstiniame meniu rodyti įvesties metodo meniu"
+
+#: ../ubuntutweak/tweaks/misc.py:56
+msgid "Show Unicode Control Character menu in the context menu"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/misc.py:63
+msgid "Natural Scrolling"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/theme.py:27
+msgid "Theme"
+msgstr "Tema"
+
+#: ../ubuntutweak/tweaks/theme.py:28
+msgid "Set the gtk theme, icon theme, cursor theme and others"
+msgstr "Nustatykite gtk temą, piktogramų temą, žymeklio temą ir kita"
+
+#: ../ubuntutweak/tweaks/theme.py:41
+msgid "Desktop theme"
+msgstr "Darbastalio tema"
+
+#: ../ubuntutweak/tweaks/unity.py:27
+msgid "Unity Settings"
+msgstr "Unity nustatymai"
+
+#: ../ubuntutweak/tweaks/unity.py:28
+msgid "Tweak the powerful Unity desktop"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:37 ../ubuntutweak/tweaks/unity.py:127
+msgid "Launcher"
+msgstr "Leistukas"
+
+#: ../ubuntutweak/tweaks/unity.py:39
+msgid "Icon size"
+msgstr "Piktogramos dydis"
+
+#: ../ubuntutweak/tweaks/unity.py:46
+msgid "Launcher opacity"
+msgstr "Leistuko matomumas"
+
+#: ../ubuntutweak/tweaks/unity.py:54
+msgid "Launcher reveal edge timeout"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:61 ../ubuntutweak/tweaks/unity.py:139
+msgid "Launcher hide mode"
+msgstr "Leistuko slėpimosi režimas"
+
+#: ../ubuntutweak/tweaks/unity.py:63 ../ubuntutweak/tweaks/unity.py:141
+msgid "Auto Hide"
+msgstr "Automatiškai slėpti"
+
+#: ../ubuntutweak/tweaks/unity.py:64
+msgid "Dodge Window"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:64
+msgid "Dodge Active Window"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:70
+msgid "Icon backlight"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:72
+msgid "Backlight Always On"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:73
+msgid "Backlight Toggles"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:74
+msgid "Backlight Always Off"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:75
+msgid "Edge Illumination Toggles"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:76
+msgid "Backlight and Edge Illumination Toggles"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:84
+msgid "Dash and Panel"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:86
+msgid "Dash size"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:88
+msgid "Automatic"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:90
+msgid "Netbook"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:97
+msgid "Blur"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:99
+msgid "No blur"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:100
+msgid "Static blur"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:101
+msgid "Active blur"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:107
+msgid "Panel opacity"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:118
+msgid "Compositing Manager"
+msgstr "Komponavimo tvarkyklė"
+
+#: ../ubuntutweak/tweaks/unity.py:120
+msgid "Enable Metacity's compositing feature"
+msgstr "Įjungti Metacity komponavimo savybę"
+
+#: ../ubuntutweak/tweaks/unity.py:129
+msgid "Enable the Super key"
+msgstr "Įjungti super klavišą"
+
+#: ../ubuntutweak/tweaks/unity.py:134
+msgid "Reserve launcher area"
+msgstr "Rezervuoti vietos leistukui"
+
+#: ../ubuntutweak/tweaks/unity.py:142
+msgid "Intellihide"
+msgstr "Intelektualus slėpimasis"
+
+#: ../ubuntutweak/tweaks/ccm/Utils.py:207
 #, python-format
-msgid "Delete thumbnail cache (Frees %s of disk space)"
-msgstr "Ištrinti miniatiūrų podėlį (atlaisvins %s disko vietos)"
+msgid ""
+"<span size=\"large\"><b>No matches found.</b> </span><span>\n"
+"\n"
+" Your filter \"<b>%s</b>\" does not match any items.</span>"
+msgstr ""
+"<span size=\"large\"><b>Atitikmenų nerasta.</b> </span><span>\n"
+"\n"
+" Jūsų paiešką „<b>%s</b>“ atitinkančių elementų nerasta.</span>"
 
-#: ../ubuntutweak/modules/nautilus.py:147
-msgid "The thumbnail cache will be deleted. Do you wish to continue?"
-msgstr "Miniatiūrų podėlis bus ištrintas. Ar norite tęsti?"
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:111
+#, python-format
+msgid ""
+"The new value for the %(binding)s binding for the action <b>%(action)s</b> "
+"in plugin <b>%(plugin)s</b> conflicts with the action "
+"<b>%(action_conflict)s</b> of the <b>%(plugin_conflict)s</b> plugin.\n"
+"Do you wish to disable <b>%(action_conflict)s</b> in the "
+"<b>%(plugin_conflict)s</b> plugin?"
+msgstr ""
 
-#: ../ubuntutweak/modules/nautilus.py:154
-msgid "Clean up Successful!"
-msgstr "Valymas įvyko sėkmingai!"
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:123
+#, python-format
+msgid "Disable %(action_conflict)s"
+msgstr "Išjungti %(action_conflict)s"
 
-#: ../ubuntutweak/modules/loginsettings.py:38
-msgid "Login Settings"
-msgstr "Prisijungimo nustatymai"
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:124
+#, python-format
+msgid "Don't set %(action)s"
+msgstr "Nenustatyti %(action)s"
 
-#: ../ubuntutweak/modules/loginsettings.py:39
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:125
+#, python-format
+msgid "Set %(action)s anyway"
+msgstr "Nustatyti %(action)s vistiek"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:132
+msgid "key"
+msgstr "klavišui"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:155
+msgid "button"
+msgstr "mygtukas"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:178
+msgid "edge"
+msgstr "kraštas"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:252
+#, python-format
+msgid ""
+"You are trying to use the feature <b>%(feature)s</b> which is <b>not</b> "
+"provided by any plugin.\n"
+"Do you wish to use this feature anyway?"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:259
+#, python-format
+msgid "Use %(feature)s"
+msgstr "Naudoti %(feature)s"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:260
+#, python-format
+msgid "Don't use %(feature)s"
+msgstr "Nenaudoti %(feature)s"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:267
+#, python-format
+msgid ""
+"You are trying to use the feature <b>%(feature)s</b> which is provided by "
+"<b>%(plugin)s</b>.\n"
+"This plugin is currently disabled.\n"
+"Do you wish to enable <b>%(plugin)s</b> so the feature is available?"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:276
+#, python-format
+msgid "Enable %(plugin)s"
+msgstr "Įjungti %(plugin)s"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:277
+#, python-format
+msgid "Don't enable %(feature)s"
+msgstr "Neįjungti %(feature)s"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:410
+#, python-format
+msgid ""
+"Some %(bindings)s bindings of Plugin <b>%(plugin)s</b> conflict with other "
+"plugins. Do you want to resolve these conflicts?"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:424
+msgid "Resolve conflicts"
+msgstr "Išspręsti nesuderinamumus"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:425
+msgid "Ignore conflicts"
+msgstr "Ignoruoti nesuderinamumus"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:428
+#, python-format
+msgid ""
+"Plugin <b>%(plugin_conflict)s</b> provides feature <b>%(feature)s</b> which "
+"is also provided by <b>%(plugin)s</b>"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:438
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:446
+#, python-format
+msgid "Disable %(plugin_conflict)s"
+msgstr "Išjungti %(plugin_conflict)s"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:439
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:447
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:468
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:479
+#, python-format
+msgid "Don't enable %(plugin)s"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:442
+#, python-format
+msgid "Plugin <b>%(plugin_conflict)s</b> conflicts with <b>%(plugin)s</b>."
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:451
+#, python-format
+msgid ""
+"<b>%(plugin)s</b> requires feature <b>%(feature)s</b> which is provided by "
+"the following plugins:\n"
+"%(plugin_list)s"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:467
+msgid "Enable these plugins"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:471
+#, python-format
+msgid "<b>%(plugin)s</b> requires the plugin <b>%(require)s</b>."
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:478
+#, python-format
+msgid "Enable %(require)s"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:483
+#, python-format
+msgid ""
+"<b>%(plugin)s</b> provides the feature <b>%(feature)s</b> which is required "
+"by the plugins <b>%(plugin_list)s</b>."
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:493
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:506
+msgid "Disable these plugins"
+msgstr "Išjungti šiuos įskiepius"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:494
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:507
+#, python-format
+msgid "Don't disable %(plugin)s"
+msgstr "Neišjungti %(plugin)s"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:498
+#, python-format
+msgid "<b>%(plugin)s</b> is required by the plugins <b>%(plugin_list)s</b>."
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Constants.py:86
+msgid "General"
+msgstr "Pagrindiniai"
+
+#: ../ubuntutweak/tweaks/ccm/Constants.py:87
+msgid "Accessibility"
+msgstr "Prieinamumas"
+
+#: ../ubuntutweak/tweaks/ccm/Constants.py:89
+msgid "Extras"
+msgstr "Ekstra"
+
+#: ../ubuntutweak/tweaks/ccm/Constants.py:90
+msgid "Window Management"
+msgstr "Langų tvarkymas"
+
+#: ../ubuntutweak/tweaks/ccm/Constants.py:91
+msgid "Effects"
+msgstr "Efektai"
+
+#: ../ubuntutweak/tweaks/ccm/Constants.py:92
+msgid "Image Loading"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Constants.py:93
+msgid "Utility"
+msgstr "Įrankis"
+
+#: ../ubuntutweak/tweaks/ccm/Constants.py:95
+msgid "Uncategorized"
+msgstr "Be kategorijos"
+
+#: ../ubuntutweak/tweaks/lockdown.py:26
+msgid "Security Related"
+msgstr "Susiję su saugumu"
+
+#: ../ubuntutweak/tweaks/lockdown.py:27
+msgid "Tweak some security settings"
+msgstr "Pakeisti kai kuriuos saugumo nustatymus"
+
+#: ../ubuntutweak/tweaks/lockdown.py:35
+msgid "System Security options"
+msgstr "Sistemos saugumo parinktys"
+
+#: ../ubuntutweak/tweaks/lockdown.py:37
+msgid "Disable \"Lock Screen\""
+msgstr "Išjungti \"Užrakinti ekraną\""
+
+#: ../ubuntutweak/tweaks/lockdown.py:42
+msgid "Disable printing"
+msgstr "Atjungti spausdinimo palaikymą"
+
+#: ../ubuntutweak/tweaks/lockdown.py:47
+msgid "Disable printer settings"
+msgstr "Atjungti spausdintuvo nustatymus"
+
+#: ../ubuntutweak/tweaks/lockdown.py:52
+msgid "Disable save to disk"
+msgstr "Atjungti išsaugojimą į diską"
+
+#: ../ubuntutweak/tweaks/lockdown.py:57
+msgid "Disable \"Fast User Switching\""
+msgstr "Išjungti \"Greitą naudotojo keitimą\""
+
+#: ../ubuntutweak/tweaks/compiz.py:270
+msgid "Show Workspaces"
+msgstr "Rodyti darbalaukius"
+
+#: ../ubuntutweak/tweaks/compiz.py:271
+msgid "Show Windows"
+msgstr "Rodyti langus"
+
+#: ../ubuntutweak/tweaks/compiz.py:272
+msgid "Show Desktop"
+msgstr "Rodyti darbastalį"
+
+#: ../ubuntutweak/tweaks/compiz.py:273
+msgid "Show Widgets"
+msgstr "Rodyti valdiklius"
+
+#: ../ubuntutweak/tweaks/compiz.py:367
+msgid "Settings for some amazing desktop eye-candy"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/compiz.py:379
+msgid " Workspace Edge Settings"
+msgstr " Darbalaukio kraštų nustatymai"
+
+#: ../ubuntutweak/tweaks/compiz.py:382
+msgid "Enable snapping windows"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/compiz.py:383
+msgid "Enable wobbly windows"
+msgstr "Įjungti virpančius langus"
+
+#: ../ubuntutweak/tweaks/compiz.py:384
+msgid "Enable workspace switching with mouse wheel"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/compiz.py:386
+msgid "Desktop Effects"
+msgstr "Darbastalio efektai"
+
+#: ../ubuntutweak/tweaks/compiz.py:391
+msgid "Enable transparent menus"
+msgstr "Įjungti permatomus meniu"
+
+#: ../ubuntutweak/tweaks/compiz.py:392
+msgid "Enable wobbly menus"
+msgstr "Įjungti virpančius meniu"
+
+#: ../ubuntutweak/tweaks/compiz.py:394
+msgid "Menu Effects"
+msgstr "Meniu efektai"
+
+#: ../ubuntutweak/tweaks/loginsettings.py:40
 msgid "Control the appearance and behaviour of your login screen"
 msgstr "Kontroliuokite prisijungimo lango išvaizdą ir elgseną"
 
-#: ../ubuntutweak/modules/loginsettings.py:48
-msgid "Login Options"
-msgstr "Prisijungimo parinktys"
-
-#: ../ubuntutweak/modules/loginsettings.py:51
-msgid "Disable user list in GDM"
-msgstr "GDM nerodyti naudotojų sąrašo"
-
-#: ../ubuntutweak/modules/loginsettings.py:56
-msgid "Play sound at login"
-msgstr "Prisijungiant groti garsą"
-
-#: ../ubuntutweak/modules/loginsettings.py:61
-msgid "Disable showing the restart button"
-msgstr "Nerodyti paleidimo iš naujo mygtuko"
-
-#: ../ubuntutweak/modules/loginsettings.py:79
+#: ../ubuntutweak/tweaks/loginsettings.py:52
 msgid "Login Theme"
 msgstr "Prisijungimo tema"
 
-#: ../ubuntutweak/modules/loginsettings.py:153
-msgid "PNG images with 64x64 size or SVG images"
-msgstr "PNG 64x64 dydžio paveikslėliai arba SVG paveikslėliai"
+#: ../ubuntutweak/tweaks/loginsettings.py:87
+msgid "Choose a new logo image"
+msgstr "Pasirinkite naują logotipo paveikslėlį"
 
-#: ../ubuntutweak/modules/loginsettings.py:183
-msgid ""
-"This image size isn't suitable for the logo.\n"
-"It should be 64x64."
-msgstr ""
-"Šis paveikslėlio dydis netinkamas logotipui.\n"
-"Jis turėtų būti 64x64."
+#: ../ubuntutweak/tweaks/loginsettings.py:93
+msgid "All images (*.PNG)"
+msgstr "Visi paveikslėliai (*.PNG)"
 
-#: ../ubuntutweak/modules/loginsettings.py:205
+#: ../ubuntutweak/tweaks/loginsettings.py:140
 msgid "Choose a new background image"
 msgstr "Pasirinkite naują fono paveikslėlį"
 
-#: ../ubuntutweak/modules/loginsettings.py:211
+#: ../ubuntutweak/tweaks/loginsettings.py:146
 msgid "All images"
 msgstr "Visi paveikslėliai"
 
-#: ../ubuntutweak/modules/desktoprecovery.py:146
-msgid "Setting"
-msgstr "Nustatymas"
+#: ../ubuntutweak/tweaks/workarounds.py:31
+msgid "Workarounds"
+msgstr ""
 
-#: ../ubuntutweak/modules/desktoprecovery.py:190
-msgid "Backup Name:"
-msgstr "Atsarginės kopijos pavadinimas:"
+#: ../ubuntutweak/tweaks/workarounds.py:32
+msgid "The workarounds to fix some problems"
+msgstr ""
 
-#: ../ubuntutweak/modules/desktoprecovery.py:238
+#: ../ubuntutweak/tweaks/workarounds.py:42
+msgid "Fix the appearance of themes when granted root privileges"
+msgstr "Pataisyti temų išvaizdą, kai suteiktos root teisės"
+
+#: ../ubuntutweak/tweaks/workarounds.py:48
+msgid "Miscellaneous Options"
+msgstr "Kiti nustatymai"
+
+#: ../ubuntutweak/tweaks/metacity.py:35 ../ubuntutweak/tweaks/metacity.py:196
+#: ../ubuntutweak/tweaks/metacity.py:211 ../ubuntutweak/tweaks/metacity.py:226
+msgid "Menu"
+msgstr "Meniu"
+
+#: ../ubuntutweak/tweaks/metacity.py:36
+msgid "Title"
+msgstr "Antraštė"
+
+#: ../ubuntutweak/tweaks/metacity.py:37 ../ubuntutweak/tweaks/metacity.py:192
+#: ../ubuntutweak/tweaks/metacity.py:207 ../ubuntutweak/tweaks/metacity.py:222
+msgid "Maximize"
+msgstr "Išdidinti"
+
+#: ../ubuntutweak/tweaks/metacity.py:38 ../ubuntutweak/tweaks/metacity.py:195
+#: ../ubuntutweak/tweaks/metacity.py:210 ../ubuntutweak/tweaks/metacity.py:225
+msgid "Minimize"
+msgstr "Sumažinti"
+
+#: ../ubuntutweak/tweaks/metacity.py:39
+msgid "Close"
+msgstr "Užverti"
+
+#: ../ubuntutweak/tweaks/metacity.py:40
+msgid "Spacer"
+msgstr "Tarpas"
+
+#: ../ubuntutweak/tweaks/metacity.py:151
+msgid "Manage Metacity Window Manager settings"
+msgstr "Valdyti Metacity langų tvarkyklės nustatymus"
+
+#: ../ubuntutweak/tweaks/metacity.py:172
+msgid "Window Titlebar Button Layout"
+msgstr "Lango antraštinės juostos mygtukų išdėstymas"
+
+#: ../ubuntutweak/tweaks/metacity.py:177
+msgid "Window Titlebar Actions"
+msgstr "Lango antraštinės juostos veiksmai"
+
+#: ../ubuntutweak/tweaks/metacity.py:179
+msgid "Titlebar mouse wheel action"
+msgstr "Antraštinės juostos reakcija į pelės ratuką"
+
+#: ../ubuntutweak/tweaks/metacity.py:183 ../ubuntutweak/tweaks/metacity.py:195
+#: ../ubuntutweak/tweaks/metacity.py:210 ../ubuntutweak/tweaks/metacity.py:225
+msgid "Roll up"
+msgstr "Aukštyn"
+
+#: ../ubuntutweak/tweaks/metacity.py:188
+msgid "Titlebar double-click action"
+msgstr "Antraštinės juostos reakcija į dvigubą pelės klavišo spustelėjimą"
+
+#: ../ubuntutweak/tweaks/metacity.py:193 ../ubuntutweak/tweaks/metacity.py:208
+#: ../ubuntutweak/tweaks/metacity.py:223
+msgid "Maximize Horizontally"
+msgstr "Išdidinti horizontaliai"
+
+#: ../ubuntutweak/tweaks/metacity.py:194 ../ubuntutweak/tweaks/metacity.py:209
+#: ../ubuntutweak/tweaks/metacity.py:224
+msgid "Maximize Vertically"
+msgstr "Išdidinti vertikaliai"
+
+#: ../ubuntutweak/tweaks/metacity.py:196 ../ubuntutweak/tweaks/metacity.py:211
+#: ../ubuntutweak/tweaks/metacity.py:226
+msgid "Lower"
+msgstr "Žemyn"
+
+#: ../ubuntutweak/tweaks/metacity.py:203
+msgid "Titlebar middle-click action"
+msgstr "Antraštinės juostos reakcija į vidurinio pelės klavišo spustelėjimą"
+
+#: ../ubuntutweak/tweaks/metacity.py:218
+msgid "Titlebar right-click action"
+msgstr "Antraštinės juostos reakcija į dešinio pelės klavišo spustelėjimą"
+
+#: ../ubuntutweak/tweaks/metacity.py:236
+msgid "Window Decoration Effects"
+msgstr "Lango raštų efektai"
+
+#: ../ubuntutweak/tweaks/metacity.py:238
+msgid "Use Metacity window theme"
+msgstr "Naudoti Metacity langų temą"
+
+#: ../ubuntutweak/tweaks/metacity.py:243
+msgid "Enable active window transparency"
+msgstr "Įjungti aktyvaus lango permatomumą"
+
+#: ../ubuntutweak/tweaks/metacity.py:248
+msgid "Active window transparency level"
+msgstr "Aktyvaus lango permatomumo lygis"
+
+#: ../ubuntutweak/tweaks/metacity.py:254
+msgid "Enable inactive window transparency"
+msgstr "Įjungti neaktyvaus lango permatomumą"
+
+#: ../ubuntutweak/tweaks/metacity.py:259
+msgid "Inactive window shade transparency level"
+msgstr "Neaktyvaus lango šešėlio permatomumo lygis"
+
+#: ../ubuntutweak/clips/userinfo.py:10
+msgid "User Information"
+msgstr "Naudotojo informacija"
+
+#: ../ubuntutweak/clips/userinfo.py:16
+msgid "Current user:"
+msgstr "Dabartinis naudotojas:"
+
+#: ../ubuntutweak/clips/userinfo.py:18
+msgid "Home directory:"
+msgstr "Namų aplankas:"
+
+#: ../ubuntutweak/clips/userinfo.py:20
+msgid "Shell:"
+msgstr "Apvalkalas:"
+
+#: ../ubuntutweak/clips/userinfo.py:22
+msgid "Language:"
+msgstr "Kalba:"
+
+#: ../ubuntutweak/clips/hardwareinfo.py:11
+msgid "Hardware Information"
+msgstr "Aparatinės įrangos informacija"
+
+#: ../ubuntutweak/clips/hardwareinfo.py:32
+msgid "CPU:"
+msgstr "CPU:"
+
+#: ../ubuntutweak/clips/hardwareinfo.py:34
+msgid "Memory:"
+msgstr "Atmintis:"
+
+#: ../ubuntutweak/clips/systeminfo.py:11
+msgid "Ubuntu Desktop Information"
+msgstr "Ubuntu darbastalio informacija"
+
+#: ../ubuntutweak/clips/systeminfo.py:17
+msgid "Hostname:"
+msgstr "Kompiuterio vardas:"
+
+#: ../ubuntutweak/clips/systeminfo.py:19
+msgid "Platform:"
+msgstr "Platforma:"
+
+#: ../ubuntutweak/clips/systeminfo.py:21
+msgid "Distribution:"
+msgstr "Distributyvas:"
+
+#: ../ubuntutweak/clips/systeminfo.py:23
+msgid "Desktop Environment:"
+msgstr "Darbastalio aplinka:"
+
+#: ../ubuntutweak/clips/cleanerinfo.py:11
+msgid "Your system is clean"
+msgstr "Jūsų sistema švari"
+
+#: ../ubuntutweak/clips/cleanerinfo.py:19
+msgid "Some cache can be cleaned to free your disk space"
+msgstr ""
+
+#: ../ubuntutweak/clips/cleanerinfo.py:21
 #, python-format
-msgid "Backing up...%s"
-msgstr "Daroma atsarginė kopija...%s"
+msgid "%s cache packages can be cleaned."
+msgstr ""
 
-#: ../ubuntutweak/modules/desktoprecovery.py:264
-msgid "Desktop Recovery"
-msgstr "Darbastalio atkūrimas"
+#: ../ubuntutweak/clips/cleanerinfo.py:33
+#, python-format
+msgid "%s thumbnails cache can be cleaned."
+msgstr ""
 
-#: ../ubuntutweak/modules/desktoprecovery.py:265
+#: ../ubuntutweak/clips/cleanerinfo.py:39
+msgid "Start Janitor"
+msgstr ""
+
+#: ../ubuntutweak/clips/updateinfo.py:13
+msgid "Your system is up-to-date"
+msgstr "Jūsų sistema naujausia"
+
+#: ../ubuntutweak/clips/updateinfo.py:49
 msgid ""
-"Backup and recover your desktop and application settings with ease.\n"
-"You can also use \"Reset\" to reset to the system default settings."
+"It is unknown when the package information was updated last. Please try "
+"clicking on the 'Check' button to update the information."
 msgstr ""
-"Darykite atsargines kopijas ir lengvai atkurkite darbastalio ir programų "
-"nustatymus.\n"
-"Jūs taip pat galite naudoti \"Atstatyti\", taip atkurdami sistemos "
-"numatytuosius nustatymus."
+"Nežinoma, kada paketų informacija paskutinį kartą buvo atnaujinta. "
+"Pabandykite atnaujinti šią informaciją spustelėdami mygtuką „Tikrinti“."
 
-#: ../ubuntutweak/modules/desktoprecovery.py:340
-msgid "No Backup Yet"
-msgstr "Nėra atsarginių kopijų"
-
-#: ../ubuntutweak/modules/desktoprecovery.py:375
+#: ../ubuntutweak/clips/updateinfo.py:54
 #, python-format
 msgid ""
-"Backup all settings under: <b>%s</b>\n"
-"Would you like to continue?"
+"The package information was last updated %(days_ago)s days ago.\n"
+"Press the 'Check' button below to check for new software updates."
 msgstr ""
+"Paketų informacija paskutinį kartą atnaujinta prieš %(days_ago)s d.\n"
+"Spauskite žemiau esantį mygtuką „Tikrinti“ naujiems programinės įrangos "
+"atnaujinimams."
 
-#: ../ubuntutweak/modules/desktoprecovery.py:394
+#: ../ubuntutweak/clips/updateinfo.py:59
 #, python-format
+msgid "The package information was last updated %(days_ago)s day ago."
+msgid_plural ""
+"The package information was last updated %(days_ago)s days ago."
+msgstr[0] ""
+"Paketų informacija paskutinį kartą atnaujinta prieš %(days_ago)s dieną."
+msgstr[1] ""
+"Paketų informacija paskutinį kartą atnaujinta prieš %(days_ago)s dienas."
+msgstr[2] ""
+"Paketų informacija paskutinį kartą atnaujinta prieš %(days_ago)s dienų."
+
+#: ../ubuntutweak/clips/updateinfo.py:63
+#, python-format
+msgid "The package information was last updated %(hours_ago)s hour ago."
+msgid_plural ""
+"The package information was last updated %(hours_ago)s hours ago."
+msgstr[0] ""
+"Paketų informacija paskutinį kartą atnaujinta prieš %(hours_ago)s valandą."
+msgstr[1] ""
+"Paketų informacija paskutinį kartą atnaujinta prieš %(hours_ago)s valandas."
+msgstr[2] ""
+"Paketų informacija paskutinį kartą atnaujinta prieš %(hours_ago)s valandų."
+
+#: ../ubuntutweak/clips/updateinfo.py:67
+msgid "The package information was last updated less than one hour ago."
+msgstr ""
+"Paketų informacija paskutinį kartą atnaujinta mažiau nei prieš valandą."
+
+#: ../ubuntutweak/gui/widgets.py:76
+#, python-format
+msgid "Reset setting to default value: %s"
+msgstr "Atstatyti nustatymo numatytąją reikšmę: %s"
+
+#: ../ubuntutweak/gui/widgets.py:315
+msgid "Please press the new key combination"
+msgstr "Paspauskite naują mygtukų kombinaciją"
+
+#: ../ubuntutweak/gui/widgets.py:367
+msgid "Disabled"
+msgstr "Išjungtas"
+
+#: ../ubuntutweak/gui/dialogs.py:208
+msgid "Could not authenticate"
+msgstr "Nepavyko autentifikuoti"
+
+#: ../ubuntutweak/gui/dialogs.py:209
+msgid "An unexpected error has occurred."
+msgstr "Įvyko netikėta klaida."
+
+#: ../ubuntutweak/gui/dialogs.py:215
+msgid "Service hasn't initialized yet"
+msgstr "Tarnyba dar neinicializavosi"
+
+#: ../ubuntutweak/gui/dialogs.py:216
+msgid "You need to restart your computer."
+msgstr "Jūs turite paleisti kompiuterį iš naujo."
+
+#: ../ubuntutweak/gui/treeviews.py:72
+msgid "Create folder"
+msgstr "Sukurti aplanką"
+
+#: ../ubuntutweak/gui/treeviews.py:80
+msgid "Delete"
+msgstr "Ištrinti"
+
+#: ../ubuntutweak/gui/treeviews.py:102
+msgid "Input the dir name"
+msgstr "Įveskite aplanko pavadinimą"
+
+#: ../ubuntutweak/gui/treeviews.py:126
+msgid "Can't rename the root folder"
+msgstr "Nepavyko pervadinti šakninio aplanko"
+
+#: ../ubuntutweak/gui/treeviews.py:143
+msgid "Can't delete the root folder"
+msgstr "Nepavyko ištrinti šakninio aplanko"
+
+#: ../ubuntutweak/gui/treeviews.py:157
 msgid ""
-"Backup settings under: <b>%s</b>\n"
-"Would you like to continue?"
+"Can't rename!\n"
+"\n"
+"There are files in it!"
+msgstr ""
+"Nepavyko pervadinti!\n"
+"\n"
+"Viduje yra failų!"
+
+#: ../ubuntutweak/utils/__init__.py:36
+#, python-format
+msgid "%(size)d byte"
+msgid_plural "%(size)d bytes"
+msgstr[0] "%(size)d baitas"
+msgstr[1] "%(size)d baitai"
+msgstr[2] "%(size)d baitų"
+
+#: ../ubuntutweak/utils/__init__.py:38
+#, python-format
+msgid "%.1f KB"
+msgstr "%.1f KB"
+
+#: ../ubuntutweak/utils/__init__.py:40
+#, python-format
+msgid "%.1f MB"
+msgstr "%.1f MB"
+
+#: ../ubuntutweak/utils/__init__.py:41
+#, python-format
+msgid "%.1f GB"
+msgstr "%.1f GB"
+
+#: ../ubuntutweak/preferences.py:152
+msgid "Choose a clip extension"
 msgstr ""
 
-#: ../ubuntutweak/modules/desktoprecovery.py:435
+#: ../ubuntutweak/preferences.py:157
 #, python-format
-msgid "Would you like to delete the backup: <b>%s/%s</b>?"
-msgstr "Ar norite ištrinti atsarginę kopiją: <b>%s/%s</b>?"
-
-#: ../ubuntutweak/modules/desktoprecovery.py:437
-#, python-format
-msgid ""
-"Would you like to delete the backup of all <b>%s</b> settings named "
-"<b>%s</b>?"
-msgstr ""
-"Ar norite ištrinti atsarginę visų <b>%s</b> nustatymų kopiją pavadinimu "
-"<b>%s</b>?"
-
-#: ../ubuntutweak/modules/desktoprecovery.py:456
-#, python-format
-msgid "Would you like to recover the backup: <b>%s/%s</b>?"
-msgstr "Ar norite atkurti atsarginę kopiją: <b>%s/%s</b>?"
-
-#: ../ubuntutweak/modules/desktoprecovery.py:458
-#, python-format
-msgid ""
-"Would you like to recover the backup of all <b>%s</b> settings named "
-"<b>%s</b>?"
-msgstr ""
-"Ar norite atkurti atsarginę visų <b>%s</b> nustatymų kopiją pavadinimu "
-"<b>%s</b>?"
-
-#: ../ubuntutweak/modules/desktoprecovery.py:460
-msgid ""
-"<b>NOTES</b>: While recovering, your desktop may be unresponsive for a "
-"moment."
-msgstr ""
-"<b>PASTABOS</b>: Atkūrimo metu darbastalis trumpam gali nereaguoti į jūsų "
-"veiksmus."
-
-#: ../ubuntutweak/modules/desktoprecovery.py:477
-msgid ""
-"Recovery Successful!\n"
-"You may need to restart your desktop for changes to take effect"
-msgstr ""
-"Atkūrimas sėkmingas!\n"
-"Darbastalio pakeitimų įsigaliojimui jums vertėtų paleisti kompiuterį iš naujo"
-
-#: ../ubuntutweak/modules/desktoprecovery.py:482
-msgid "_Logout"
-msgstr "_Atsijungti"
-
-#: ../ubuntutweak/modules/desktoprecovery.py:494
-#, python-format
-msgid "Would you like to reset settings for: <b>%s</b>?"
-msgstr "Ar norėtumėte atstatyti numatytuosius nustatymus: <b>%s</b>?"
-
-#: ../ubuntutweak/modules/desktoprecovery.py:496
-#, python-format
-msgid "Would you like to reset all settings under: <b>%s</b>?"
+msgid "\"%s\" is not a Clip Extension!"
 msgstr ""
 
-#: ../ubuntutweak/modules/desktoprecovery.py:498
-msgid ""
-"<b>NOTES</b>: Whilst resetting, your desktop may be unresponsive for a "
-"moment."
+#: ../ubuntutweak/preferences.py:160
+msgid "Choose a Tweaks Extension"
 msgstr ""
-"<b>PASTABOS</b>: Numatytųjų nustatymų atstatymo metu darbastalis trumpam "
-"gali nereaguoti į jūsų veiksmus."
 
-#: ../ubuntutweak/modules/desktoprecovery.py:511
-msgid ""
-"Reset Successful!\n"
-"You may need to restart your desktop for changes to take effect"
+#: ../ubuntutweak/preferences.py:165
+#, python-format
+msgid "\"%s\" is not a Tweaks Extension!"
 msgstr ""
-"Atstatymas sėkmingas!\n"
-"Darbastalio pakeitimų įsigaliojimui jums vertėtų paleisti kompiuterį iš naujo"
 
-#: ../ubuntutweak/modules/desktoprecovery.py:536
-msgid "Please enter a new name for your backup:"
-msgstr "Prašome įvesti naują atsarginės kopijos pavadinimą:"
+#: ../ubuntutweak/preferences.py:168
+msgid "Choose a Admins Extension"
+msgstr ""
 
-#: ../ubuntutweak/modules/desktoprecovery.py:568
-msgid "Backup Successful!"
-msgstr "Atsarginės kopijos darymas sėkmingas!"
+#: ../ubuntutweak/preferences.py:173
+#, python-format
+msgid "\"%s\" is not a Admins Extension!"
+msgstr ""
 
-#: ../ubuntutweak/modules/desktoprecovery.py:571
-msgid "Backup Failed!"
-msgstr "Atsarginės kopijos darymas nepavyko!"
+#: ../ubuntutweak/preferences.py:176
+msgid "Choose a Janitor Extension"
+msgstr ""
 
-#~ msgid "Can't delete the system item from disk."
-#~ msgstr "Negalima ištrinti sistemos elemento iš laikmenos."
+#: ../ubuntutweak/preferences.py:181
+#, python-format
+msgid "\"%s\" is not a Janitor Extension!"
+msgstr ""
 
-#~ msgid "Install Simple Desktop Effects Settings manager"
-#~ msgstr "Įdiegti Simple Desktop Effects Settings manager"
+#: ../ubuntutweak/preferences.py:190
+msgid "Ubuntu Tweak Extension (*.py, *.tar.gz)"
+msgstr ""
 
-#~ msgid "Text was empty (or contained only whitespace)"
-#~ msgstr "Tekstas buvo tuščias (arba turėjo vien tik tarpo simbolius)"
+#: ../ubuntutweak/preferences.py:221
+msgid "Would you like to remove it then install again?"
+msgstr ""
 
-#~ msgid "Expo"
-#~ msgstr "Expo"
+#: ../ubuntutweak/preferences.py:222
+#, python-format
+msgid "\"%s\" has already installed"
+msgstr ""
 
-#~ msgid "Widget"
-#~ msgstr "Valdymo elementas"
+#: ../ubuntutweak/main.py:354
+msgid "Please wait a moment..."
+msgstr "Lukterėkite..."
 
-#~ msgid "Session Programs"
-#~ msgstr "Sesijos Programos"
+#: ../ubuntutweak/main.py:453
+#, python-format
+msgid "No module named \"%s\""
+msgstr ""
 
-#~ msgid "Disable print setup"
-#~ msgstr "Atjungti spausdinimo nustaymus"
+#: ../ubuntutweak/main.py:454
+msgid "Please ensure you have entered the correct module name."
+msgstr ""
 
-#~ msgid "Clean up unneeded packages to free diskspace."
-#~ msgstr "Išvalyti nereikalingus paketus ir atnaujinti vietą diske."
+#: ../ubuntutweak/main.py:511
+msgid "Computer Janitor"
+msgstr "Kompiuterio valytojas"
 
-#~ msgid "And many more useful features!"
-#~ msgstr "Ir dar daugiau naudingų galimybių!"
+#: ../ubuntutweak/main.py:512
+msgid "Clean up a system so it's more like a freshly installed one"
+msgstr "Išvalyti sistemą, kad ji būtų lyg šviežiai įdiegta"
+
+#~ msgid "Co_mmand:"
+#~ msgstr "Ko_manda:"
+
+#~ msgid "_Name:"
+#~ msgstr "_Pavadinimas:"
+
+#~ msgid "Comm_ent:"
+#~ msgstr "Kom_entaras:"
+
+#~ msgid "New Startup Program"
+#~ msgstr "Nauja automatiškai paleidžiama programa"
+
+#~ msgid "Choose a Program"
+#~ msgstr "Pasirinkite programą"
+
+#~ msgid "The name of the startup program cannot be empty"
+#~ msgstr "Paleidimo komandos pavadinimas negali būti tuščias"
+
+#~ msgid "Show all runnable programs"
+#~ msgstr "Rodyti visas paleidžiamas programas"
+
+#~ msgid "Install Advanced Desktop Effects Settings Manager"
+#~ msgstr "Įdiegti Advanced Desktop Effects Settings Manager"
+
+#~ msgid "Program"
+#~ msgstr "Programa"
+
+#~ msgid "Install Screenlets Widget Application"
+#~ msgstr "Įdiegti Screenlets Widget programą"
+
+#~ msgid "Hostname"
+#~ msgstr "Mazgo pavadinimas"
+
+#~ msgid "Memory"
+#~ msgstr "Atmintis"
+
+#~ msgid "Language"
+#~ msgstr "Kalba"
+
+#~ msgid "Kernel"
+#~ msgstr "Branduolys"
+
+#~ msgid "CPU"
+#~ msgstr "Procesorius"
+
+#~ msgid "Platform"
+#~ msgstr "Platforma"
+
+#~ msgid "Show comments"
+#~ msgstr "Rodyti komentarus"
+
+#~ msgid "Update Manager"
+#~ msgstr "Atnaujinimų tvarkyklė"
+
+#~ msgid "All Categories"
+#~ msgstr "Visos kategorijos"
+
+#~ msgid "Welcome to"
+#~ msgstr "Sveiki atvykę į"
+
+#~ msgid "Update Successful!"
+#~ msgstr "Atnaujinimas sėkmingas!"
+
+#~ msgid "Update Failed!"
+#~ msgstr "Atnaujinimas nepavyko!"
+
+#~ msgid "Desktop environment"
+#~ msgstr "Darbastalio aplinka"
+
+#~ msgid "Never show this dialog"
+#~ msgstr "Niekada nerodyti šio dialogo"
+
+#~ msgid "Clean"
+#~ msgstr "Valyti"
+
+#~ msgid "Clean up Successful!"
+#~ msgstr "Valymas įvyko sėkmingai!"
+
+#~ msgid "Select All"
+#~ msgstr "Žymėti visus"
+
+#~ msgid "<b>Features</b>"
+#~ msgstr "<b>Savybės</b>"
+
+#~ msgid "<b>User Interface</b>"
+#~ msgstr "<b>Naudotojo sąsaja</b>"
+
+#~ msgid "Default Launch Function"
+#~ msgstr "Numatytoji paleidimo funkcija"
+
+#~ msgid "Default Window Height"
+#~ msgstr "Numatytasis lango aukštis"
+
+#~ msgid "Default Window Width"
+#~ msgstr "Numatytasis lango plotis"
+
+#~ msgid "Left Menubar Width"
+#~ msgstr "Kairiosios meniu juostos plotis"
+
+#~ msgid "Ubuntu Tweak Preferences"
+#~ msgstr "Ubuntu Tweak nustatymai"
+
+#~ msgid "Easily install up-to-date versions of many applications."
+#~ msgstr "Lengvai įdiekite daugelio programų naujausias versijas."
+
+#~ msgid ""
+#~ "Configure file templates and shortcut scripts for easy access to common "
+#~ "tasks."
+#~ msgstr ""
+#~ "Nusistatykite failų šablonus ir nuorodų skriptus greitam dažniausiai vykdomų "
+#~ "užduočių atlikimui."
+
+#~ msgid "Welcome"
+#~ msgstr "Apžvalga"
+
+#~ msgid "_Donate"
+#~ msgstr "_Paremti"
+
+#~ msgid "Warning"
+#~ msgstr "Perspėjimas"
+
+#~ msgid "Contributors of 2007"
+#~ msgstr "2007 m. pagalbininkai"
+
+#~ msgid "Contributors of 2008"
+#~ msgstr "2008 m. pagalbininkai"
+
+#~ msgid "Contributors of 2009"
+#~ msgstr "2009 m. pagalbininkai"
+
+#~ msgid "System information"
+#~ msgstr "Sistemos informacija"
+
+#~ msgid "User information"
+#~ msgstr "Naudotojo informacija"
+
+#~ msgid "Home directory"
+#~ msgstr "Namų aplankas"
+
+#~ msgid "Disable \"Run Application\" dialog (Alt+F2)"
+#~ msgstr "Išjungti \"Paleisti programą\" dialogą (Alt+F2)"
+
+#~ msgid "_Locale:"
+#~ msgstr "_Lokalė:"
+
+#~ msgid "If the locale isn't correct you can edit manually"
+#~ msgstr "Jeigu lokalė netinkama, jūs galite ją redaguoti rankiniu būdu"
+
+#~ msgid "Submit"
+#~ msgstr "Pateikti"
+
+#~ msgid "Please check your network connection!"
+#~ msgstr "Prašome patikrinti tinklo ryšį!"
+
+#~ msgid "Network Error"
+#~ msgstr "Tinklo klaida"
+
+#~ msgid "Uploading..."
+#~ msgstr "Įkeliama..."
+
+#~ msgid "Updating..."
+#~ msgstr "Atnaujinama..."
+
+#~ msgid "Successfully submitted"
+#~ msgstr "Pateikta sėkmingai"
 
 #, python-format
-#~ msgid "Open the files of type \"%s\" with:"
-#~ msgstr "Atverti \"%s\" tipo failus su:"
+#~ msgid "Could not find %s"
+#~ msgstr "Nepavyko rasti \"%s\""
+
+#~ msgid "Show \"Network\" icon on desktop"
+#~ msgstr "Rodyti darbastalyje piktogramą \"Tinklas\""
+
+#~ msgid "Display warning when removing a panel"
+#~ msgstr "Šalinant skydelį rodyti perspėjimą"
+
+#~ msgid "Enable panel animations"
+#~ msgstr "Įjungti skydelio animacijas"
+
+#~ msgid "Screensaver"
+#~ msgstr "Ekrano užsklanda"
+
+#~ msgid "History"
+#~ msgstr "Istorija"
+
+#~ msgid "Do you want your changes to take effect immediately?"
+#~ msgstr "Ar norite iškart pritaikyti pakeitimus?"
+
+#~ msgid "Useful Extensions"
+#~ msgstr "Naudingi plėtiniai"
+
+#~ msgid "Homepage"
+#~ msgstr "Namų puslapis"
+
+#~ msgid "Source URL"
+#~ msgstr "Šaltinio URL"
+
+#~ msgid "Automatically save open applications when logging out"
+#~ msgstr "Atsijungiant automatiškai išsaugoti paleistas programas"
 
 #, python-format
-#~ msgid "Select an application to open the type <b>%s</b>"
-#~ msgstr "Pasirinkite programą \"%s\" tipo failų atverimui"
+#~ msgid "Cleaning...%s"
+#~ msgstr "Valoma...%s"
 
-#~ msgid "Avant Window Navigator (Unstable Version)"
-#~ msgstr "Avant Window Navigator (Nestabili versija)"
+#~ msgid "Package Cleaner"
+#~ msgstr "Paketų valyklė"
 
-#~ msgid "Banshee (Unstable Version)"
-#~ msgstr "Bankshee (Nestabili versija)"
+#~ msgid "No description"
+#~ msgstr "Nėra aprašymo"
 
-#~ msgid "Banshee (Stable Version)"
-#~ msgstr "Bankshee (Stabili versija)"
+#~ msgid "Nautilus Extensions"
+#~ msgstr "Nautilus plėtiniai"
 
-#~ msgid "Ubuntu Chinese Repository"
-#~ msgstr "Ubuntu Kiniečių repozitorija"
+#~ msgid "Software Update"
+#~ msgstr "Programinės įrangos atnaujinimas"
 
-#~ msgid "Gnome Global Menu"
-#~ msgstr "Gnome globalus meniu"
+#~ msgid "Advanced Power Management Settings"
+#~ msgstr "Sudėtingesnieji Energijos valdymo nustatymai"
 
-#~ msgid "Ubuntu Tweak (Unstable Version)"
-#~ msgstr "Ubuntu Tweak (Nestabili versija)"
+#~ msgid "_Cleanup"
+#~ msgstr "_Valymas"
 
-#~ msgid "Desktop Icon settings"
-#~ msgstr "Darbastalio ikonų nustatymai"
+#~ msgid "Use Separated Sources"
+#~ msgstr "Naudoti atskirus programinės įrangos šaltinius"
 
-#~ msgid "Window Decorate Effect"
-#~ msgstr "Lango dekoravimo efektai"
+#~ msgid "(Not available)"
+#~ msgstr "(Neprieinamas)"
 
-#~ msgid "Window Effects"
-#~ msgstr "Lango efektai"
+#~ msgid "Current user"
+#~ msgstr "Dabartinis naudotojas"
 
-#~ msgid "Packages"
-#~ msgstr "Paketai"
+#~ msgid "Prerequisite Conditions"
+#~ msgstr "Priklausomybės"
 
-#~ msgid "Clean up Failed!"
-#~ msgstr "Valymo klaida!"
+#~ msgid "Third-Party Sources"
+#~ msgstr "Trečiųjų-šalių programinės įrangos šaltiniai"
 
-#~ msgid "Package Config"
-#~ msgstr "Paketo Konfigūracija"
-
-#~ msgid "Clean up unneeded packages to free up diskspace."
-#~ msgstr "Išvalykite nereikalingus paketus (taip atlaisvindami diske vietos)."
+#~ msgid "Dependency Notice"
+#~ msgstr "Priklausomybių perspėjimas"
 
 #~ msgid ""
-#~ "Ubuntu Tweak will restore the chosen directory to the default location.\n"
-#~ "However, you must move your files back into place by yourself.\n"
-#~ "Do you wish to continue?"
+#~ "It is a possible security risk to use packages from Third-Party Sources.\n"
+#~ "Please be careful and use only sources you trust."
 #~ msgstr ""
-#~ "Ubuntu Tweak atstatys pasirinktą aplanką į standartinę vietą.\n"
-#~ "Tačiau savo failus jūs turite perkelti patys.\n"
-#~ "Ar norite tęsti?"
+#~ "Pavojinga naudotis paketais, gautais iš trečiųjų-šalių šaltinių.\n"
+#~ "Būkite atsargūs ir naudokite tik tuos šaltinius, kuriais pasitikite."
 
-#~ msgid "Please input the correct information about sources!"
-#~ msgstr "Prašome įvesti teisingą informaciją apie šaltinius!"
+#~ msgid "Cleaning Package Cache"
+#~ msgstr "Paketų podėlio valymas"
 
-#~ msgid ""
-#~ "You've changed the sources.list without saving it.\n"
-#~ "Do you want to save it?"
-#~ msgstr ""
-#~ "Jūs redagavote, tačiau neišsaugojote sources.list failo.\n"
-#~ "Ar norite jį išsaugoti?"
+#~ msgid "Clean Cache"
+#~ msgstr "Valyti podėlį"
 
-#~ msgid "PNG image (*.png)"
-#~ msgstr "PNG paveikslėlis (*.png)"
+#~ msgid "Tweak otherwise hidden settings."
+#~ msgstr "Tobulinkite kitais atžvilgiais nematomus nustatymus."
 
-#~ msgid ""
-#~ "This image size isn't suitable for the panel.\n"
-#~ "It should be 24x24."
-#~ msgstr ""
-#~ "Šis dydis netinkamas skydeliui.\n"
-#~ "Turėtų būti 24x24."
+#~ msgid "Unset"
+#~ msgstr "Nenustatyta"
 
-#~ msgid ""
-#~ "Scripts can be used to complete all kinds of tasks.\n"
-#~ "You can drag and drop scripts from File Manager.\n"
-#~ "'Scripts' will then be added to the context menu."
-#~ msgstr ""
-#~ "Skriptai gali būti naudojami įvairių užduočių atlikimui.\n"
-#~ "Jūs galite nutempti ir paleisti skriptus iš Failų tvarkyklės.\n"
-#~ "'Skriptai' tada bus pridėti į kontekstinį meniu."
+#~ msgid "Shell"
+#~ msgstr "Komandų interpretatorius (shell'as)"
 
-#~ msgid "Open folder with root priveleges"
-#~ msgstr "Atverti aplanką root teisėmis"
+#~ msgid "Complete lockdown of all panels"
+#~ msgstr "Visų skydelių pilnas užrakinimas"
 
-#~ msgid "Nautilus with Wallpaper"
-#~ msgstr "Nautilus su fonu"
-
-#~ msgid "Disable user list in gdm"
-#~ msgstr "Išjungti gdm naudotojų sąrašą"
-
-#~ msgid "PNG image with 64x64 size (*.png)"
-#~ msgstr "64x64 dydžio PNG paveiksliukas (*.png)"
-
-#~ msgid "Control your computer's power managerment"
-#~ msgstr "Kontroliuokite kompiuterio energijos valdymą"
-
-#~ msgid "Advanced Power Manager Settings"
-#~ msgstr "Sudėtingesnieji Energijos valdyklės nustatymai"
-
-#~ msgid "Session control"
-#~ msgstr "Sesijos kontrolė"
-
-#~ msgid "Suppress the dialog to confirm logout, restart and shutdown action"
-#~ msgstr ""
-#~ "Nerodyti patvirtinimo dialogo atsijungiant, paleidžiant iš naujo ar "
-#~ "išjungiant kompiuterį"
-
-#~ msgid "Development Version of Mozilla Firefox"
-#~ msgstr "Tobulinamoji Mozilla Firefox versija"
-
-#~ msgid "Development version of Compiz"
-#~ msgstr "Tobulinamoji Compiz versija"
-
-#~ msgid "Google's Linux Repository"
-#~ msgstr "Google Linux saugykla"
-
-#~ msgid "Development Version of K Desktop Environment"
-#~ msgstr "Tobulinamoji K Darbastalio Aplinkos (KDE) versija"
-
-#~ msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
-#~ msgstr "Mažai resursų naudojanti X11 Darbastalio Aplinka: GPicView, PCManFM"
-
-#~ msgid ""
-#~ "WebkitGtk+, Liferea (Webkit), Midori and other WebKit related projects."
-#~ msgstr ""
-#~ "WebkitGtk+, Liferea (Webkit), Midori ir kiti su WebKit susiję projektai."
-
-#~ msgid ""
-#~ "It is highly recommend to enable the stable source of Ubuntu Tweak to get "
-#~ "security and normal update.\n"
-#~ "If you don't enable the source, you will need to update manually.\n"
-#~ "\n"
-#~ "Would you like to enable the stable source?"
-#~ msgstr ""
-#~ "Griežtai rekomenduojama įgalinti Ubuntu Tweak stabilios versijos šaltinį, "
-#~ "kad gautumėte saugumo ir standartinius atnaujinimus.\n"
-#~ "Jeigu neįgalinsite saugyklos, atnaujinti programą galėsite tik rankiniu "
-#~ "būdu.\n"
-#~ "\n"
-#~ "Ar norite įgalinti stabilios versijos šaltinį?"
-
-#~ msgid ""
-#~ "Multimedia, Entertainment and Distraction In Ubuntu\n"
-#~ "Medibuntu is a repository of packages that cannot be included into the "
-#~ "Ubuntu distribution for legal reasons (copyright, license, patent, etc)."
-#~ msgstr ""
-#~ "Multimedija ir pramogos Ubuntu sistemoje\n"
-#~ "Medibuntu yra paketų saugykla, kuri negali būti įtraukta į Ubuntu "
-#~ "distribuciją dėl legalumo priežasčių (autorinės teisės, licencija, patentas, "
-#~ "kt.)."
-
-#~ msgid ""
-#~ "Ubuntu repository for Chinese users.\n"
-#~ "Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and "
-#~ "other softwares."
-#~ msgstr ""
-#~ "Ubuntu saugykla naudotojams iš Kinijos.\n"
-#~ "Įtraukta EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 ir "
-#~ "kita programinė įranga."
-
-#~ msgid ""
-#~ "The daemon of Ubuntu Tweak doesn't start correctly, that means some advanced "
-#~ "features may not work.\n"
-#~ "If you want to help developer to debug, try to run \"<b>sudo ubuntu-tweak-"
-#~ "daemon</b>\" under terminal."
-#~ msgstr ""
-#~ "Ubuntu Tweak tarnyba pasileidžia netinkamai, todėl gali neveikti kai kurios "
-#~ "sudėtingesnės savybės.\n"
-#~ "Jeigu norite padėti ištaisyti klaidą, terminale įvykdykite komandą \"<b>sudo "
-#~ "ubuntu-tweak-daemon</b>\"."
-
-#~ msgid ""
-#~ "You can change the paths of the default folders here.\n"
-#~ "Don't change the location of your desktop folder unless you know what you "
-#~ "are doing."
-#~ msgstr ""
-#~ "Čia jūs galite pakeisti numatytųjų aplankų kelius.\n"
-#~ "Nekeiskite darbastalio aplanko vietos, nebent žinote ką darote."
-
-#~ msgid "Freely edit your software sources to suit your needs."
-#~ msgstr "Nevaržomai redaguokite programinės įrangos šaltinius."
-
-#~ msgid ""
-#~ "You can submit your sources to our server to help building the sources list, "
-#~ "or you can use the official sources.\n"
-#~ "Do you wish to use the official sources?"
-#~ msgstr ""
-#~ "Jūs galite pateikti savo šaltinius į mūsų serverį (kad prisidėtumėte prie "
-#~ "šaltinių sąrašo pildymo) arba galite naudotis oficialiais šaltiniais.\n"
-#~ "Ar norite naudoti oficialius šaltinius?"
-
-#~ msgid ""
-#~ "A simple but more efficient way for finding and installing popular "
-#~ "applications.\n"
-#~ "Data will be automatically synchronized with the remote server.\n"
-#~ "You can click the \"Sync\" button to perform a manual check for updates."
-#~ msgstr ""
-#~ "Paprastas, tačiau efektyvesnis populiarių programų suradimo ir įdiegimo "
-#~ "būdas.\n"
-#~ "Duomenys bus automatiškai sinchronizuoti su nuotoliniu serveriu.\n"
-#~ "Norėdami rankiniu būdu patikrinti, ar yra atnaujinimų, spustelėkite "
-#~ "\"Sinchronizuoti\" mygtuką."
-
-#~ msgid "Change the name and toggle visibilty of desktop icons"
-#~ msgstr "Pakeisti darbastalio piktogramų pavadinimą ir perjungti matomumą"
-
-#~ msgid "Enable user switching when screen is locked."
-#~ msgstr "Įgalinti naudotojo keitimą, kai užrakintas ekranas."
-
-#~ msgid ""
-#~ "By disabling the \"Recent Documents\", it may break other software such as "
-#~ "VMware Player's history feature."
-#~ msgstr ""
-#~ "Išjungus \"Paskutinieji dokumentai\" sąrašą, jūs galite sugadinti kai kurių "
-#~ "programų (kaip VMware Player) istorijos savybės palaikymą."
-
-#~ msgid ""
-#~ "A collection of software sources to ensure your applications are always up-"
-#~ "to-date.\n"
-#~ "Here you can also add applications which are unavailable in the offical "
-#~ "repositories.\n"
-#~ "The list of available sources will be obtained automatically from a remote "
-#~ "server.\n"
-#~ "You can click the \"Sync\" button to manually check for updates"
-#~ msgstr ""
-#~ "Programinės įrangos šaltinių kolekcija, skirta užtikrinti, kad jūs naudojate "
-#~ "naujausias programas.\n"
-#~ "Čia jūs taip pat galite pridėti programas, kurios neprieinamos oficialiuose "
-#~ "šaltiniuose.\n"
-#~ "Prieinamų šaltinių sąrašas bus gautas automatiškai iš nuotolinio serverio.\n"
-#~ "Atnaujinimus tikrinti rankiniu būdu galite spustelėję \"Sinchronizuoti\" "
-#~ "mygtuką."
-
-#~ msgid ""
-#~ "Here you can freely manage your document templates.\n"
-#~ "You can add files as templates by dragging them onto this window.\n"
-#~ "You can create new documents based on these templates from the Nautilus "
-#~ "right-click menu."
-#~ msgstr ""
-#~ "Čia jūs galite nevaržomai valdyti šablonų dokumentus.\n"
-#~ "Pridėti failus kaip šablonus galite nutempdami juos ant šio lango.\n"
-#~ "Kurti naujus dokumentus, pasinaudojant šiais šablonais, galite iš Nautilus "
-#~ "dešiniojo pelės klavišo meniu."
+#~ msgid "New source has been enabled"
+#~ msgstr "Įgalintas naujas šaltinis"
 
 #, python-format
 #~ msgid ""
-#~ "Templates path is wrong! The current path is point to \"%s\".\n"
-#~ "Please reset it to a folder under your Home Folder."
+#~ "%s is enabled now, Please click the refresh button to update the application "
+#~ "cache."
 #~ msgstr ""
-#~ "Nurodytas neteisingas šablonų kelias! Nurodytas kelias yra \"%s\".\n"
-#~ "Prašome nustatyti jį į aplanką, esantį jūsų Namų aplanke."
+#~ "%s dabar įgalintas. Spustelėkite atnaujinimo mygtuką, kad atnaujintumėte "
+#~ "programinės įrangos podėlį."
 
-#~ msgid "Templates path is still wrong, Please reset it!"
-#~ msgstr ""
-#~ "Šablonų kelias vis dar yra neteisingas. Prašome nustatyti jį iš naujo!"
+#~ msgid "Cleaning Configuration Files"
+#~ msgstr "Konfigūracijos failų valymas"
 
-#~ msgid "Allow TCP Connections (Remote Desktop Connect)"
-#~ msgstr "Leisti TCP ryšius (Nuotolinio darbastalio prisijungimus)"
+#~ msgid "Clean Config"
+#~ msgstr "Valyti konfigūracijas"
 
-#~ msgid "Package Cache"
-#~ msgstr "Paketų podėlis"
+#~ msgid "Edit Startup Program"
+#~ msgstr "Redaguoti automatiškai paleidžiamą programą"
+
+#~ msgid "Delete from Disk"
+#~ msgstr "Ištrinti iš disko"
+
+#~ msgid "Cleaning..."
+#~ msgstr "Valoma..."
+
+#~ msgid "Distribution"
+#~ msgstr "Distributyvas"
+
+#~ msgid "Choose the sources"
+#~ msgstr "Pasirinkite saugyklas"
 
 #~ msgid ""
-#~ "Free up disk space by removing redundant packages and cleaning the package "
-#~ "download cache."
+#~ "You can read the title and comment to determine which source is suitable for "
+#~ "you."
 #~ msgstr ""
-#~ "Atlaisvinkite diske vietos, pašalindami nebereikalingus paketus ir "
-#~ "išvalydami atsisiųstų paketų podėlį."
+#~ "Skaitydami pavadinimus ir komentarus jūs galite nustatyti sau tinkamas "
+#~ "saugyklas."
+
+#~ msgid "Submit your sources"
+#~ msgstr "Pateikti savo saugyklas"
+
+#~ msgid "_Source Title:"
+#~ msgstr "_Saugyklos pavadinimas:"
+
+#~ msgid "You can submit your sources to the server for other people to use."
+#~ msgstr ""
+#~ "Jūs galite pateikti į viešą serverį savo naudojamų saugyklų adresus, kad "
+#~ "jomis galėtų pasinaudoti kiti žmonės."
+
+#~ msgid "Enter the title of the source, e.g. \"Ubuntu Official Repostory\""
+#~ msgstr "Įveskite saugyklos pavadinimą. Pvz., \"Ubuntu oficialioji saugykla\""
+
+#~ msgid "No source data available"
+#~ msgstr "Saugyklų duomenys neprieinami"
 
 #~ msgid ""
-#~ "By configuring keyboard shortcuts, you can access your favourite "
-#~ "applications instantly.\n"
-#~ "Enter the application's command and set the desired shortcut keys."
+#~ "Your sources will be reviewed and made available for others soon.\n"
+#~ "Thank you!"
 #~ msgstr ""
-#~ "Nustatydami klaviatūros klavišų susiejimus, jūs galite akimirksniu pasiekti "
-#~ "mėgstamiausias programas.\n"
-#~ "Įveskite programos komandą ir nustatykite norimą klavišų kombinaciją."
-
-#~ msgid ""
-#~ "Here you can manage which programs are started upon login.\n"
-#~ "You can hide items from view by selecting and clicking \"Remove\"\n"
-#~ "To permanently delete an item, right-click and press \"Delete\"."
-#~ msgstr ""
-#~ "Čia jūs galite valdyti prisijungimo metu paleidžiamas programas.\n"
-#~ "Paslėpti elementus galite pasirinkdami ir spustelėdami \"Pašalinti\".\n"
-#~ "Norėdami visiškai ištrinti elementą, spustelėkite dešiniu pelės klavišu\n"
-#~ "ant jo ir pasirinkite \"Ištrinti\"."
-
-#, python-format
-#~ msgid "Delete thumbnail cache (will free %s of disk space)"
-#~ msgstr "Išvalyti miniatiūrų podėlį (atlaisvins %s disko vietos)"
-
-#~ msgid "Disable showing the restart buttons"
-#~ msgstr "Išjungti paleidimo iš naujo mygtukų rodymą"
+#~ "Jūsų saugyklos greitu metu bus patikrintos ir taps prieinamos kitiems.\n"
+#~ "Dėkojame Jums!"

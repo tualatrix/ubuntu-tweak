@@ -7,77 +7,339 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-07 22:04+0800\n"
-"PO-Revision-Date: 2011-01-11 00:49+0000\n"
-"Last-Translator: Tualatrix Chou <tualatrix@gmail.com>\n"
+"POT-Creation-Date: 2011-12-13 15:48+0800\n"
+"PO-Revision-Date: 2011-12-12 09:33+0000\n"
+"Last-Translator: Ding Zhou <tualatrix@gmail.com>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2011-05-14 18:52+0000\n"
-"X-Generator: Launchpad (build 13037)\n"
-
-#: ../data/script-worker:152 ../data/script-worker:165
-msgid "Enter your password to perform the administrative tasks"
-msgstr "Insira a sua palavra-passe para executar as tarefas administrativas"
+"X-Launchpad-Export-Date: 2011-12-19 03:09+0000\n"
+"X-Generator: Launchpad (build 14525)\n"
 
 #: ../data/script-worker:54
 #, c-format
 msgid "You don't have permission to write in %s"
-msgstr "Não tem permissão para escrever em %s"
+msgstr "Não tem permissões para escrever em %s"
+
+#: ../data/script-worker:152 ../data/script-worker:165
+msgid "Enter your password to perform the administrative tasks"
+msgstr "Indique a sua senha para executar tarefas administrativas"
 
 #: ../data/script-worker:159
 msgid "Coudn't find any text editor in your system!"
-msgstr "Não encontrámos nenhum editor de texto no seu sistema!"
+msgstr "Não foi encontrado qualquer editor de texto no seu sistema!"
 
 #: ../data/script-worker:187
 msgid "Select a folder"
-msgstr "Seleccione uma pasta"
+msgstr "Selecione uma pasta"
 
 #: ../data/script-worker:217
 msgid "Please select a target (files or folders)."
-msgstr "Por favor selecione um alvo (ficheiros ou pastas)"
+msgstr "Por favor, escolha o destino (ficheiros ou pastas)."
 
-#: ../data/ubuntu-tweak.desktop.in.h:1
+#: ../data/ubuntu-tweak.desktop.in.h:1 ../ubuntutweak/tweaks/compiz.py:366
+msgid "Compiz Settings"
+msgstr "Definições do Compiz"
+
+#: ../data/ubuntu-tweak.desktop.in.h:2 ../ubuntutweak/tweaks/icons.py:106
+msgid "Desktop Icon Settings"
+msgstr "Definições dos ícones do ambiente de trabalho"
+
+#: ../data/ubuntu-tweak.desktop.in.h:3
+#: ../ubuntutweak/admins/desktoprecovery.py:266
+msgid "Desktop Recovery"
+msgstr "Recuperação do ambiente de trabalho"
+
+#: ../data/ubuntu-tweak.desktop.in.h:4
+#: ../ubuntutweak/admins/filetypemanager.py:550
+msgid "File Type Manager"
+msgstr "Gestor de tipos de ficheiro"
+
+#: ../data/ubuntu-tweak.desktop.in.h:5
+msgid "GNOME Settings"
+msgstr "Definições GNOME"
+
+#: ../data/ubuntu-tweak.desktop.in.h:6
+#: ../ubuntutweak/tweaks/loginsettings.py:39
+msgid "Login Settings"
+msgstr "Definições de início de sessão"
+
+#: ../data/ubuntu-tweak.desktop.in.h:7 ../ubuntutweak/tweaks/nautilus.py:27
+msgid "Nautilus Settings"
+msgstr "Definições do Nautilus"
+
+#: ../data/ubuntu-tweak.desktop.in.h:8
+msgid "Power Manager Settings"
+msgstr "Definições da gestão de energia"
+
+#: ../data/ubuntu-tweak.desktop.in.h:9 ../ubuntutweak/tweaks/session.py:29
+msgid "Session Control"
+msgstr "Controlo de sessão"
+
+#: ../data/ubuntu-tweak.desktop.in.h:10 ../ubuntutweak/admins/shortcuts.py:29
+msgid "Shortcut Commands"
+msgstr "Atalhos"
+
+#: ../data/ubuntu-tweak.desktop.in.h:11
 msgid "Tweak ubuntu to what you like"
-msgstr "Ajuste o Ubuntu à sua maneira"
+msgstr "Ajuste o Ubuntu ao seu jeito"
+
+#: ../data/ubuntu-tweak.desktop.in.h:12 ../ubuntutweak/tweaks/metacity.py:150
+msgid "Window Manager Settings"
+msgstr "Definições do gestor de janelas"
 
 #: ../data/com.ubuntu-tweak.daemon.policy.in.h:1
-msgid "System policy prevents the Ubuntu Tweak from Tweaking"
-msgstr "Politica do Sistema impede Alterações do Ubuntu Tweak"
+msgid "Clean user and system cruft"
+msgstr "Apagar dados do utilizador/sistema desatualizados"
 
 #: ../data/com.ubuntu-tweak.daemon.policy.in.h:2
-msgid "Ubuntu Tweak Daemon"
-msgstr "Monitor do Ubuntu Tweak"
+msgid "Edit the Software Sources lists"
+msgstr "Editar as fontes de programas"
+
+#: ../data/com.ubuntu-tweak.daemon.policy.in.h:3
+msgid "To clean the cruft, you need to authenticate."
+msgstr "Para apagar os dados, necessita de se autenticar."
+
+#: ../data/com.ubuntu-tweak.daemon.policy.in.h:4
+msgid "To edit the software sources, you need to authenticate."
+msgstr "Para editar as fontes de programas, necessita de se autenticar."
+
+#: ../data/com.ubuntu-tweak.daemon.policy.in.h:5
+msgid "To tweak the settings, you need to authenticate."
+msgstr "Para ajustar as definições, necessita de se autenticar."
+
+#: ../data/com.ubuntu-tweak.daemon.policy.in.h:6
+msgid "Tweak all kinds of settings"
+msgstr "Ajustar todas as definições"
 
 #: ../data/ui/preferences.ui.h:1
-msgid "<b>Features</b>"
-msgstr "<b>Funcionalidades</b>"
+msgid "<b>Admins Extensions</b>"
+msgstr "<b>Extensões de administração</b>"
 
 #: ../data/ui/preferences.ui.h:2
-msgid "<b>User Interface</b>"
-msgstr "<b>Interface do utilizador</b>"
+msgid "<b>Clip Management</b>"
+msgstr "<b>Gestão</b>"
 
 #: ../data/ui/preferences.ui.h:3
-msgid "Default Launch Function"
-msgstr "Função de início predefinida"
+msgid "<b>Janitor Extensions</b>"
+msgstr "<b>Extensões de limpeza</b>"
 
 #: ../data/ui/preferences.ui.h:4
-msgid "Default Window Height"
-msgstr "Altura predefinida da Janela"
+msgid "<b>Tweaks Extensions</b>"
+msgstr "<b>Extensões de ajustes</b>"
 
 #: ../data/ui/preferences.ui.h:5
-msgid "Default Window Width"
-msgstr "Largura predefinida da Janela"
+msgid "Admins"
+msgstr "Administração"
 
 #: ../data/ui/preferences.ui.h:6
-msgid "Left Menubar Width"
-msgstr "Largura do Menu de Barra esquerdo"
+msgid "Admins Extensions Management"
+msgstr "Gestão de extensões de administração"
 
 #: ../data/ui/preferences.ui.h:7
-msgid "Ubuntu Tweak Preferences"
-msgstr "Perferencias do Ubuntu Tweak"
+msgid "Install"
+msgstr "Instalar"
+
+#: ../data/ui/preferences.ui.h:8
+msgid "Janitor"
+msgstr "Limpeza"
+
+#: ../data/ui/preferences.ui.h:9
+msgid "Janitor Extensions Management"
+msgstr "Gestão de extensões de limpeza"
+
+#: ../data/ui/preferences.ui.h:10
+msgid "Manage the clip view in the Overview"
+msgstr "Gestão dos itens da Visão geral"
+
+#: ../data/ui/preferences.ui.h:11
+msgid "Move Down"
+msgstr "Mover para baixo"
+
+#: ../data/ui/preferences.ui.h:12
+msgid "Move Up"
+msgstr "Mover para cima"
+
+#: ../data/ui/preferences.ui.h:13
+msgid "Overview"
+msgstr "Visão global"
+
+#: ../data/ui/preferences.ui.h:14
+msgid "Preferences"
+msgstr "Preferências"
+
+#: ../data/ui/preferences.ui.h:15
+msgid "Tweaks"
+msgstr "Ajustes"
+
+#: ../data/ui/preferences.ui.h:16
+msgid "Tweaks Extensions Management"
+msgstr "Gestão de extensões de ajustes"
+
+#: ../data/ui/preferences.ui.h:17 ../data/ui/appspage.ui.h:1
+#: ../data/ui/sourceeditor.ui.h:9
+msgid "column"
+msgstr "coluna"
+
+#: ../data/ui/uturl.ui.h:1
+msgid "Description"
+msgstr "Descrição"
+
+#: ../data/ui/uturl.ui.h:2
+msgid "Ubuntu Tweak"
+msgstr "Ubuntu Tweak"
+
+#: ../data/ui/uturl.ui.h:3
+msgid "_Install"
+msgstr "_Instalar"
+
+#: ../data/ui/sourcecenter.ui.h:1
+msgid "<b>Description</b>"
+msgstr ""
+
+#: ../data/ui/sourcecenter.ui.h:2
+msgid "<b>Homepage</b>"
+msgstr ""
+
+#: ../data/ui/sourcecenter.ui.h:3
+msgid "<b>Source URL</b>"
+msgstr ""
+
+#: ../data/ui/sourcecenter.ui.h:4
+msgid "Description is here"
+msgstr "Descrição é aqui"
+
+#: ../data/ui/sourcecenter.ui.h:5 ../ubuntutweak/gui/dialogs.py:195
+msgid "Details"
+msgstr "Detalhes"
+
+#: ../data/ui/sourcecenter.ui.h:6
+msgid "http://ubuntu-tweak.com"
+msgstr ""
+
+#: ../data/ui/brokenmodule.ui.h:1
+msgid "<big><b>This module encountered an error while loading.</b></big>"
+msgstr "<big><b>Ocorreu um erro ao carregar este módulo.</b></big>"
+
+#: ../data/ui/brokenmodule.ui.h:2 ../data/ui/traceback.ui.h:3
+msgid "Error Message"
+msgstr "Mensagem de erro"
+
+#: ../data/ui/brokenmodule.ui.h:3
+msgid ""
+"If you'd like to help us fix the problem,\n"
+"Please choose <i>Report</i> to file a new bug report. Make sure to include "
+"the error message below:"
+msgstr ""
+"Se nos quiser ajudar a corrigir o problema,\n"
+"escolha <i>Reportar</i> e preencha o relatório do erro. Não se esqueça de "
+"enviar a mensagem abaixo:"
+
+#: ../data/ui/brokenmodule.ui.h:5 ../data/ui/traceback.ui.h:9
+msgid "_Report"
+msgstr "_Reportar"
+
+#: ../data/ui/loginsettings.ui.h:1
+msgid "Click the button to change the login screen background"
+msgstr "Clique no botão para alterar o fundo do ecrã de início de sessão"
+
+#: ../data/ui/loginsettings.ui.h:2
+msgid "Click the button to change the login screen logo"
+msgstr "Clique no botão para alterar o logótipo de início de sessão"
+
+#: ../data/ui/loginsettings.ui.h:3
+msgid "Set the same background as the current desktop background"
+msgstr ""
+
+#: ../data/ui/clippage.ui.h:1
+msgid "<b>Recently Used</b>"
+msgstr "<b>Utilizado recentemente</b>"
+
+#: ../data/ui/sourceeditor.ui.h:1
+msgid "Auto Backup"
+msgstr "Cópia de segurança automática"
+
+#: ../data/ui/sourceeditor.ui.h:2 ../data/ui/desktoprecovery.ui.h:1
+msgid "Backup History:"
+msgstr "Histórico de cópias de segurança:"
+
+#: ../data/ui/sourceeditor.ui.h:3
+msgid "Delete this source"
+msgstr "Eliminar esta fonte"
+
+#: ../data/ui/sourceeditor.ui.h:4
+msgid "Redo this source"
+msgstr "Restaurar esta fonte"
+
+#: ../data/ui/sourceeditor.ui.h:5
+msgid "Save this source"
+msgstr "Gravar esta fonte"
+
+#: ../data/ui/sourceeditor.ui.h:6
+msgid "U_pdate"
+msgstr "At_ualizar"
+
+#: ../data/ui/sourceeditor.ui.h:7 ../data/ui/desktoprecovery.ui.h:4
+msgid "_Backup"
+msgstr "Criar _cópia de segurança"
+
+#: ../data/ui/sourceeditor.ui.h:8 ../data/ui/desktoprecovery.ui.h:5
+msgid "_Recover"
+msgstr "_Recuperar"
+
+#: ../data/ui/sourceeditor.ui.h:10
+msgid "toolbutton1"
+msgstr "botão1"
+
+#: ../data/ui/sourceeditor.ui.h:11
+msgid "toolbutton2"
+msgstr "botão2"
+
+#: ../data/ui/sourceeditor.ui.h:12
+msgid "toolbutton3"
+msgstr "botão3"
+
+#: ../data/ui/updatemanager.ui.h:1
+msgid "_Install Update"
+msgstr "_Instalar atualização"
+
+#: ../data/ui/filetypemanager.ui.h:1
+msgid "Add Application"
+msgstr "Adicionar aplicação"
+
+#: ../data/ui/filetypemanager.ui.h:2
+msgid "Edit Type"
+msgstr "Editar tipo"
+
+#: ../data/ui/filetypemanager.ui.h:3
+msgid "Select an application to view its description."
+msgstr "Selecione uma aplicação para ver a sua descrição."
+
+#: ../data/ui/filetypemanager.ui.h:4
+msgid "_Browse..."
+msgstr "_Procurar..."
+
+#: ../data/ui/filetypemanager.ui.h:5
+msgid "_Use a custom command"
+msgstr "_Utilizar um comando personalizado"
+
+#: ../data/ui/janitorpage.ui.h:1
+msgid "<big><b>Cool! Your system is clean!</b></big>"
+msgstr ""
+
+#: ../data/ui/janitorpage.ui.h:2
+msgid "Auto Scan"
+msgstr "Análise automática"
+
+#: ../data/ui/janitorpage.ui.h:3
+msgid "_Clean"
+msgstr "A_pagar"
+
+#: ../data/ui/janitorpage.ui.h:4
+msgid "_Scan"
+msgstr "Anali_sar"
 
 #: ../data/ui/traceback.ui.h:1
 msgid "<big><b>Oops... a fatal error occured</b></big>"
@@ -87,19 +349,15 @@ msgstr "<big><b>Oops... ocorreu um erro fatal</b></big>"
 msgid "<big><b>Oops... an error occured</b></big>"
 msgstr "<big><b>Oops... ocorreu um erro</b></big>"
 
-#: ../data/ui/traceback.ui.h:3 ../data/ui/brokenmodule.ui.h:2
-msgid "Error Message"
-msgstr "Mensagem de erro"
-
 #: ../data/ui/traceback.ui.h:4
 msgid ""
 "If you'd like to help us fix the problem, \n"
 "Please choose <i>Report</i> to file a new bug report. Make sure to include "
 "the error message below:"
 msgstr ""
-"Se gostaria de nos ajudar a resolver o problema, \n"
-"Por favor escolha <i>Reportar</i> para criar um novo relatório de erro. "
-"Certifique-se de que inclui a mensagem de erro seguinte:"
+"Se nos quiser ajudar a corrigir o problema, \n"
+"escolha <i>Reportar</i> para criar um relatório de erro.  Não se esqueça de "
+"enviar a mensagem abaixo:"
 
 #: ../data/ui/traceback.ui.h:6
 msgid ""
@@ -108,14 +366,79 @@ msgid ""
 "Please choose <i>Report</i> to file a new bug report. Make sure to include "
 "the error message below:"
 msgstr ""
-"O Ubuntu Tweak precisa de se desligar.\n"
-"Se nos quiser ajudar a resolver este problema,\n"
-"por favor, escolha <i>Report</i> para enviar um novo relatório de erro. "
-"Certifique-se que inclui a mensagem de erro seguinte:"
+"O Ubuntu Tweak precisa de ser encerrado.\n"
+"Se nos quiser ajudar a corrigir este problema,\n"
+"escolha <i>Reportar</i> para enviar um relatório de erro.  Não se esqueça de "
+"enviar a mensagem abaixo:"
 
-#: ../data/ui/traceback.ui.h:9 ../data/ui/brokenmodule.ui.h:5
-msgid "_Report"
-msgstr "_Relatar"
+#: ../data/ui/mainwindow.ui.h:1
+msgid "A_pps"
+msgstr ""
+
+#: ../data/ui/mainwindow.ui.h:2
+msgid "Ubuntu Tweak Website"
+msgstr "Página do Ubuntu Tweak"
+
+#: ../data/ui/mainwindow.ui.h:3
+msgid ""
+"Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
+"system and desktop settings."
+msgstr ""
+"O Ubuntu Tweak é uma ferramenta para o Ubuntu que permite configurar "
+"facilmente as definições do sistema e do ambiente de trabalho."
+
+#: ../data/ui/mainwindow.ui.h:4
+msgid ""
+"Ubuntu Tweak is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version.\n"
+"Ubuntu Tweak is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+"You should have received a copy of the GNU General Public License along with "
+"Ubuntu Tweak; if not, write to the Free Software Foundation, Inc., 51 "
+"Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA"
+msgstr ""
+"O Ubuntu Tweak é um programa livre; pode distribuí-lo e/ou modificá-lo nos "
+"termos da GNU General Public License conforme publicada pela Free Software "
+"Foundation; tanto na versão 2 ou (por opção) qualquer versão mais recente.\n"
+"O Ubuntu Tweak é disponibilizado na esperança de ser útil. No entanto, não "
+"POSSUI QUALQUER GARANTIA; nem mesmo a garantia implícita de comercialização "
+"ou adequação a um objetivo especifico.  Consulte a GNU General Public "
+"License para mais detalhes.\n"
+"É provável que tenha recebido uma cópia da GNU General Public License com o "
+"Ubuntu Tweak; se tal não aconteceu, escreva para a Free Software Foundation, "
+"Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA"
+
+#: ../data/ui/mainwindow.ui.h:7
+msgid "Visit Homepage"
+msgstr "Visitar página inicial"
+
+#: ../data/ui/mainwindow.ui.h:8
+msgid "_Admins"
+msgstr "_Administração"
+
+#: ../data/ui/mainwindow.ui.h:9
+msgid "_Janitor"
+msgstr "Limpe_za"
+
+#: ../data/ui/mainwindow.ui.h:10
+msgid "_Overview"
+msgstr "Visão gl_obal"
+
+#: ../data/ui/mainwindow.ui.h:11
+msgid "_Tweaks"
+msgstr "Ajus_tes"
+
+#: ../data/ui/mainwindow.ui.h:12
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  Carlos Manuel https://launchpad.net/~crolidge\n"
+"  Sérgio Marques https://launchpad.net/~sergio+marques\n"
+"  Sérgio Marques https://launchpad.net/~smarquespt"
 
 #: ../data/ui/metacity.ui.h:1
 msgid " "
@@ -129,7 +452,7 @@ msgstr ""
 
 #: ../data/ui/metacity.ui.h:3
 msgid "Enable control:"
-msgstr "Activar controlo:"
+msgstr "Ativar controlo:"
 
 #: ../data/ui/metacity.ui.h:4
 msgid "Left"
@@ -143,383 +466,47 @@ msgstr "Local:"
 msgid "Right"
 msgstr "Direita"
 
-#: ../data/ui/updatemanager.ui.h:1
-msgid "_Install Update"
-msgstr "_Instalar Actualização"
-
-#: ../data/ui/type_edit.ui.h:1
-msgid "Add Application"
-msgstr "Adicionar uma Aplicação"
-
-#: ../data/ui/type_edit.ui.h:2
-msgid "Edit Type"
-msgstr "Editar o Tipo"
-
-#: ../data/ui/type_edit.ui.h:3
-msgid "Select an application to view its description."
-msgstr "Seleccione uma aplicação para ver a sua descrição."
-
-#: ../data/ui/type_edit.ui.h:4 ../ubuntutweak/modules/autostart.py:70
-msgid "_Browse..."
-msgstr "_Navegar..."
-
-#: ../data/ui/type_edit.ui.h:5
-msgid "_Use a custom command"
-msgstr "_Utilizar um comando personalizado"
-
-#: ../data/ui/loginsettings.ui.h:1
-msgid "Click the button to change the login screen background"
-msgstr "Clique no botão para alterar o fundo do ecrã de início de sessão"
-
-#: ../data/ui/loginsettings.ui.h:2
-msgid "Click the button to change the login screen logo"
-msgstr "Clique no botão para alterar o logótipo de início de sessão"
-
-#: ../data/ui/desktoprecovery.ui.h:1
-msgid "Backup History:"
-msgstr "Histórico de Cópias de Segurança:"
-
 #: ../data/ui/desktoprecovery.ui.h:2
 msgid "R_eset"
 msgstr "R_epor"
 
 #: ../data/ui/desktoprecovery.ui.h:3
 msgid "Setting Name:"
-msgstr "Nome da Definição:"
+msgstr "Nome da definição:"
 
-#: ../data/ui/desktoprecovery.ui.h:4
-msgid "_Backup"
-msgstr "Criar _cópia de segurança"
-
-#: ../data/ui/desktoprecovery.ui.h:5
-msgid "_Recover"
-msgstr "_Recuperar"
-
-#: ../data/ui/brokenmodule.ui.h:1
-msgid "<big><b>This module encountered an error while loading.</b></big>"
+#: ../ubuntutweak/system/__init__.py:40
+msgid "GNOME Classic"
 msgstr ""
-"<big><b>Este módulo encontrou um erro durante o carregamento.</b></big>"
 
-#: ../data/ui/brokenmodule.ui.h:3
-msgid ""
-"If you'd like to help us fix the problem,\n"
-"Please choose <i>Report</i> to file a new bug report. Make sure to include "
-"the error message below:"
-msgstr ""
-"Se nos quiser ajudar a resolver o problema,\n"
-"escolha <i>Relatório</i> e preencha o relatório do erro. Não se esqueça de "
-"enviar a mensagem abaixo:"
-
-#: ../ubuntutweak/mainwindow.py:82
-msgid "Welcome to"
-msgstr "Bem-Vindo ao"
-
-#: ../ubuntutweak/mainwindow.py:88
-msgid "Tweak otherwise hidden settings."
-msgstr "Altere funcionalidades dissimuladas."
-
-#: ../ubuntutweak/mainwindow.py:89
-msgid "Clean up unused packages to free up diskspace."
-msgstr "Apagar pacotes não usados para libertar espaço em disco."
-
-#: ../ubuntutweak/mainwindow.py:90
-msgid "Easily install up-to-date versions of many applications."
-msgstr "Instale facilmente versões actualizadas de diversas aplicações."
-
-#: ../ubuntutweak/mainwindow.py:91
-msgid ""
-"Configure file templates and shortcut scripts for easy access to common "
-"tasks."
-msgstr ""
-"Configure modelos de ficheiro e scripts de atalho para ter acesso fácil  a "
-"tarefas comuns."
-
-#: ../ubuntutweak/mainwindow.py:92
-msgid "Many more useful features!"
-msgstr "Muitas mais características úteis!"
-
-#: ../ubuntutweak/mainwindow.py:103
-msgid "Please wait a moment..."
-msgstr "Por favor, aguarde um momento..."
-
-#: ../ubuntutweak/mainwindow.py:128
-msgid "Welcome"
-msgstr "Bem-vindo(a)"
-
-#: ../ubuntutweak/mainwindow.py:129
-msgid "Broken Modules"
-msgstr "Módulos Danificados"
-
-#: ../ubuntutweak/mainwindow.py:130
-#: ../ubuntutweak/modules/desktoprecovery.py:75
-msgid "Applications"
-msgstr "Aplicações"
-
-#: ../ubuntutweak/mainwindow.py:131
-msgid "Startup"
-msgstr "Arranque"
-
-#: ../ubuntutweak/mainwindow.py:132 ../ubuntutweak/modules/userdir.py:45
-#: ../ubuntutweak/modules/desktoprecovery.py:76
-msgid "Desktop"
-msgstr "Ambiente de Trabalho"
-
-#: ../ubuntutweak/mainwindow.py:133
-msgid "Personal"
-msgstr "Pessoal"
-
-#: ../ubuntutweak/mainwindow.py:134
-#: ../ubuntutweak/modules/desktoprecovery.py:77
-msgid "System"
-msgstr "Sistema"
-
-#: ../ubuntutweak/mainwindow.py:142
+#: ../ubuntutweak/system/__init__.py:50
 #, python-format
-msgid "Download Ubuntu Tweak %s"
-msgstr "Descarregando Ubuntu Tweak %s"
-
-#: ../ubuntutweak/mainwindow.py:161
-msgid "Double click for editing the sources"
-msgstr "Duplo clique para editar as fontes"
-
-#: ../ubuntutweak/mainwindow.py:260
-msgid "_Donate"
-msgstr "_Doar"
-
-#: ../ubuntutweak/mainwindow.py:305
-msgid ""
-"To keep the package manager work, Ubuntu Tweak has disabled these broken "
-"sources.\n"
-"\n"
-"If you want to re-open these sources, Please try to correct it.\n"
-"\n"
-"You can click \"Help\" to see the guide, then edit these sources at Source "
-"Editor."
-msgstr ""
-"Para que o gestor de pacotes continuasse a funcionar, o Ubuntu Tweak "
-"desactivou as fontes danificadas.\n"
-"\n"
-"Se quiser activar as fontes, deve corrigi-las.\n"
-"\n"
-"Pode clicar em \"Ajuda\" para ver o manual e posteriormente corrigi-las."
-
-#: ../ubuntutweak/mainwindow.py:306
-msgid "The software sources list is broken"
-msgstr "A lista de fontes de programas/aplicações está danificada"
-
-#: ../ubuntutweak/mainwindow.py:310
-msgid "_Help"
-msgstr "Aj_uda"
-
-#: ../ubuntutweak/mainwindow.py:321
-msgid ""
-"It is highly recommended that you enable the Ubuntu Tweak stable repository "
-"to get security and maintenance updates.\n"
-"If you don't enable this repository, you will need to update manually.\n"
-"\n"
-"Would you like to enable this repository?"
-msgstr ""
-"É altamente recomendado que active o repositório estável do Ubuntu Tweak "
-"para obter actualizações de segurança e manutenção.\n"
-"Se não activar este repositório, terá que fazer as actualizações "
-"manualmente.\n"
-"\n"
-"Pretende activar o repositório?"
-
-#: ../ubuntutweak/mainwindow.py:324
-#: ../ubuntutweak/modules/gnomesettings.py:222
-#: ../ubuntutweak/modules/sourcecenter.py:1112
-#: ../ubuntutweak/modules/nautilus.py:148
-msgid "Warning"
-msgstr "Aviso"
-
-#: ../ubuntutweak/mainwindow.py:325
-#: ../ubuntutweak/modules/sourcecenter.py:1113
-msgid "Never show this dialog"
-msgstr "Nunca mostrar este diálogo"
-
-#: ../ubuntutweak/mainwindow.py:535
-msgid "Ubuntu Tweak Website"
-msgstr "Página web do Ubuntu Tweak"
-
-#: ../ubuntutweak/mainwindow.py:537
-msgid ""
-"Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
-"system and desktop settings."
-msgstr ""
-"Ubuntu Tweak é uma ferramenta para o Ubuntu que permite facilmente "
-"configurar as preferências do sistema e da área de trabalho."
-
-#: ../ubuntutweak/mainwindow.py:539
-msgid "Contributors of 2007"
-msgstr "Contribuidores em 2007"
-
-#: ../ubuntutweak/mainwindow.py:541
-msgid "Contributors of 2008"
-msgstr "Contribuidores em 2008"
-
-#: ../ubuntutweak/mainwindow.py:543
-msgid "Contributors of 2009"
-msgstr "Contribuidores em 2009"
-
-#: ../ubuntutweak/mainwindow.py:546
-msgid "Contributors of 2010"
-msgstr "Contribuidores em 2010"
-
-#: ../ubuntutweak/mainwindow.py:553
-msgid "Contributors of 2011"
+msgid "Unknown (%s)"
 msgstr ""
 
-#: ../ubuntutweak/mainwindow.py:561
-msgid "translator-credits"
-msgstr ""
-"Launchpad Contributions:\n"
-"  Almufadado https://launchpad.net/~almufadado\n"
-"  Carlos Manuel https://launchpad.net/~crolidge\n"
-"  Daniel Araújo https://launchpad.net/~joaodanielcaraujo\n"
-"  Sérgio Marques https://launchpad.net/~sergio+marques\n"
-"  Tiago Carrondo https://launchpad.net/~tcarrondo\n"
-"  Walker Pt https://launchpad.net/~walkerpt62\n"
-"  eSkiSo https://launchpad.net/~wise-gdr"
+#: ../ubuntutweak/system/__init__.py:52
+#: ../ubuntutweak/clips/hardwareinfo.py:16
+msgid "Unknown"
+msgstr "Desconhecido"
 
-#: ../ubuntutweak/mainwindow.py:575
-#, python-format
-msgid ""
-"A newer version: %s is available online.\n"
-"Would you like to update?\n"
-"\n"
-"Note: if you prefer to update from the source code, you can disable this "
-"feature in Preferences."
-msgstr ""
-"Nova Versão: %s está disponível.\n"
-"Deseja actualizar?\n"
-"\n"
-"Nota: se preferir actualizar a partir do código-fonte, pode desactivar esta "
-"funcionalidade nas Preferências."
-
-#: ../ubuntutweak/mainwindow.py:576
-msgid "Software Update"
-msgstr "Actualizações de Software"
-
-#: ../ubuntutweak/ui/widgets.py:45
-#, python-format
-msgid "Reset setting to default value: %s"
-msgstr "Repor a definição para os valor por omissão: %s"
-
-#: ../ubuntutweak/ui/widgets.py:118 ../ubuntutweak/ui/widgets.py:143
-#: ../ubuntutweak/modules/icons.py:105
-msgid "Unset"
-msgstr "Não definido"
-
-#: ../ubuntutweak/ui/widgets.py:278
-msgid "Please press the new key combination"
-msgstr "Por favor, pressione a nova combinação de teclas"
-
-#: ../ubuntutweak/ui/widgets.py:327
-msgid "Disabled"
-msgstr "Desactivado"
-
-#: ../ubuntutweak/ui/treeviews.py:71
-msgid "Create folder"
-msgstr "Criar pasta"
-
-#: ../ubuntutweak/ui/treeviews.py:75 ../ubuntutweak/modules/icons.py:33
-#: ../ubuntutweak/modules/icons.py:42 ../ubuntutweak/modules/icons.py:51
-msgid "Rename"
-msgstr "Renomear"
-
-#: ../ubuntutweak/ui/treeviews.py:79
-msgid "Delete"
-msgstr "Apagar"
-
-#: ../ubuntutweak/ui/treeviews.py:101
-msgid "Input the dir name"
-msgstr "Insira o nome do directório"
-
-#: ../ubuntutweak/ui/treeviews.py:126
-msgid "Can't rename the root folder"
-msgstr "Impossível renomear a pasta Root (a raíz)"
-
-#: ../ubuntutweak/ui/treeviews.py:143
-msgid "Can't delete the root folder"
-msgstr "Impossível apagar a pasta Root"
-
-#: ../ubuntutweak/ui/treeviews.py:158
-msgid ""
-"Can't rename!\n"
-"\n"
-"There are files in it!"
-msgstr ""
-"Não é possível renomear!\n"
-"\n"
-"Existem ficheiros lá dentro!"
-
-#: ../ubuntutweak/ui/dialogs.py:179
-msgid "An unexpected error has occurred."
-msgstr "Ocorreu um erro inesperado."
-
-#: ../ubuntutweak/ui/dialogs.py:180
-msgid "Could not authenticate"
-msgstr "Incapaz de autenticar"
-
-#: ../ubuntutweak/ui/dialogs.py:185
-msgid "You need to restart your computer."
-msgstr "Tem de reiniciar o seu computador."
-
-#: ../ubuntutweak/ui/dialogs.py:186
-msgid "Service hasn't initialized yet"
-msgstr "Serviço ainda não foi inicializado."
-
-#: ../ubuntutweak/ui/dialogs.py:207 ../ubuntutweak/modules/sourceeditor.py:88
-#: ../ubuntutweak/modules/sourcecenter.py:945
-msgid "Details"
-msgstr "Detalhes"
-
-#: ../ubuntutweak/preferences.py:75 ../ubuntutweak/modules/filetype.py:179
-#: ../ubuntutweak/modules/filetype.py:214
-#: ../ubuntutweak/modules/metacity.py:186
-#: ../ubuntutweak/modules/metacity.py:192
-#: ../ubuntutweak/modules/metacity.py:206
-#: ../ubuntutweak/modules/metacity.py:220
-#: ../ubuntutweak/modules/shortcuts.py:99
-#: ../ubuntutweak/modules/shortcuts.py:209
-msgid "None"
-msgstr "Nenhum"
-
-#: ../ubuntutweak/preferences.py:104
-msgid "Check for Updates"
-msgstr "Verificar Actualizações"
-
-#: ../ubuntutweak/preferences.py:110
-msgid "Use Separated Sources"
-msgstr "Utilizar Fontes Separadas"
-
-#: ../ubuntutweak/preferences.py:116
-msgid "Enable Synchronous notifications"
-msgstr "Activar notificações Sincronizadas"
-
-#: ../ubuntutweak/preferences.py:122
-msgid "Highlight new items in App and Source Center"
-msgstr "Realçar novos itens em Aplicações e Centro de Fontes"
-
-#: ../ubuntutweak/network/downloadmanager.py:98
+#: ../ubuntutweak/network/downloadmanager.py:97
 msgid "Connecting to server"
 msgstr "A ligar ao servidor"
 
 #: ../ubuntutweak/network/downloadmanager.py:143
 #, python-format
 msgid "Downloading...%d"
-msgstr "Descarregando...%d"
+msgstr "A transferir... %d"
 
-#: ../ubuntutweak/network/downloadmanager.py:147
+#: ../ubuntutweak/network/downloadmanager.py:148
 msgid "Downloaded!"
 msgstr "Transferido!"
 
-#: ../ubuntutweak/network/downloadmanager.py:153
+#: ../ubuntutweak/network/downloadmanager.py:155
 msgid "Error happened!"
-msgstr "Aconteceu um erro!"
+msgstr "Ocorreu um erro!"
 
 #: ../ubuntutweak/network/utdata.py:50 ../ubuntutweak/network/utdata.py:83
+#: ../ubuntutweak/tweaks/unity.py:63 ../ubuntutweak/tweaks/unity.py:141
 msgid "Never"
 msgstr "Nunca"
 
@@ -541,83 +528,21 @@ msgstr[1] "%d dias atrás"
 #, python-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
-msgstr[0] "Há %d hora atrás"
-msgstr[1] "Há %d horas atrás"
+msgstr[0] "%d hora atrás"
+msgstr[1] "%d horas atrás"
 
 #: ../ubuntutweak/network/utdata.py:80
 #, python-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
-msgstr[0] "Há %d minuto atrás"
-msgstr[1] "Há %d minutos atrás"
+msgstr[0] "%d minuto atrás"
+msgstr[1] "%d minutos atrás"
 
 #: ../ubuntutweak/network/utdata.py:81
 msgid "Just Now"
 msgstr "Agora mesmo"
 
-#: ../ubuntutweak/common/debug.py:55
-msgid "Error message has been copied"
-msgstr "A mensagem do erro foi copiada"
-
-#: ../ubuntutweak/common/debug.py:56
-msgid ""
-"Now click \"Report\" to enter the bug report website. Make sure to attach "
-"the error message in \"Further information\"."
-msgstr ""
-"Agora clique em \"Relatório\" para indicar o relatório de erro. Certifique-"
-"se que anexa a mensagem de erro em \"Mais informações\"."
-
-#: ../ubuntutweak/common/debug.py:72
-msgid "Copy Error Message"
-msgstr "Copiar a Mensagem de Erro"
-
-#: ../ubuntutweak/common/package.py:206
-#: ../ubuntutweak/modules/appcenter.py:644
-#: ../ubuntutweak/modules/compiz.py:526
-#: ../ubuntutweak/modules/sourcecenter.py:141
-#: ../ubuntutweak/modules/nautilus.py:176
-msgid "Update Successful!"
-msgstr "Actualização bem sucedida !"
-
-#: ../ubuntutweak/common/package.py:208
-#: ../ubuntutweak/modules/appcenter.py:646
-#: ../ubuntutweak/modules/compiz.py:528
-#: ../ubuntutweak/modules/sourcecenter.py:143
-#: ../ubuntutweak/modules/nautilus.py:178
-msgid "Update Failed!"
-msgstr "A atualização falhou!"
-
-#: ../ubuntutweak/common/package.py:340
-msgid "(Not available)"
-msgstr "(Indisponível)"
-
-#: ../ubuntutweak/common/misc.py:15
-#, python-format
-msgid "%(size)d byte"
-msgid_plural "%(size)d bytes"
-msgstr[0] "%(size)d byte"
-msgstr[1] "%(size)d bytes"
-
-#: ../ubuntutweak/common/misc.py:17
-#, python-format
-msgid "%.1f KB"
-msgstr "%.1f KB"
-
-#: ../ubuntutweak/common/misc.py:19
-#, python-format
-msgid "%.1f MB"
-msgstr "%.1f MB"
-
-#: ../ubuntutweak/common/misc.py:20
-#, python-format
-msgid "%.1f GB"
-msgstr "%.1f GB"
-
-#: ../ubuntutweak/policykit/polkitbutton.py:72
-msgid "_Unlock"
-msgstr "_Desbloquear"
-
-#: ../ubuntutweak/policykit/dbusproxy.py:34
+#: ../ubuntutweak/policykit/dbusproxy.py:32
 msgid ""
 "The Ubuntu Tweak daemon didn't start correctly. This means that some "
 "advanced features may not work.\n"
@@ -626,666 +551,863 @@ msgid ""
 msgstr ""
 "O serviço Ubuntu Tweak não foi iniciado correctamente. Algumas "
 "funcionalidades poderão não trabalhar.\n"
-"Se quiser ajudar os programadores a fazerem a depuração, execute no terminal "
-"este comando \"<b>sudo /usr/share/ubuntu-tweak/ubuntu-tweak-daemon</b>\""
+"Se quiser ajudar os programadores corrigir o problema, execute este comando "
+"no terminal: \"<b>sudo /usr/share/ubuntu-tweak/ubuntu-tweak-daemon</b>\""
 
-#: ../ubuntutweak/modules/userdir.py:46
+#: ../ubuntutweak/policykit/widgets.py:54
+msgid "_Unlock"
+msgstr "Desbloq_uear"
+
+#: ../ubuntutweak/common/debug.py:59
+msgid "Error message has been copied"
+msgstr "A mensagem do erro foi copiada"
+
+#: ../ubuntutweak/common/debug.py:60
+msgid ""
+"Now click \"Report\" to enter the bug report website. Make sure to attach "
+"the error message in \"Further information\"."
+msgstr ""
+"Agora clique em \"Reportar\" para indicar o relatório de erro.  Não se "
+"esqueça de enviar a mensagem em \"Mais informações\"."
+
+#: ../ubuntutweak/common/debug.py:81
+msgid "Copy Error Message"
+msgstr "Copiar mensagem de erro"
+
+#: ../ubuntutweak/common/debug.py:116
+msgid "Sorry, your distribution is not supported by Ubuntu Tweak"
+msgstr ""
+
+#: ../ubuntutweak/common/debug.py:117
+msgid ""
+"You can't file bug for this issue. Please only use Ubuntu Tweak on Ubuntu. "
+"Or it may kill your cat."
+msgstr ""
+
+#: ../ubuntutweak/janitor/thumbnailcache_plugin.py:36
+msgid "Thumbnail cache"
+msgstr "Cache de miniaturas"
+
+#: ../ubuntutweak/janitor/thumbnailcache_plugin.py:71
+#, python-format
+msgid "Thumbnail Cache (%d cache to be cleaned, total size: %s)"
+msgstr "Cache de miniaturas (%d a apagar, tamanho: %s)"
+
+#: ../ubuntutweak/janitor/thumbnailcache_plugin.py:73
+msgid "Thumbnail Cache (No cache to be cleaned)"
+msgstr "Cache de miniaturas (nada a apagar)"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:62
+msgid "Purge PPA and Downgrade Packages"
+msgstr "Eliminar PPA e reverter pacotes"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:63
+msgid "Downloading Packages..."
+msgstr "A transferir pacotes..."
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:113
+msgid "Removing key files..."
+msgstr "A remover ficheiros chave..."
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:147
+#, python-format
+msgid "Downgrading...%s"
+msgstr "A reverter...%s"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:154
+#, python-format
+msgid "Downloading...%s"
+msgstr "A transferir...%s"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:202
+msgid "Package"
+msgstr "Pacote"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:210
+msgid "Previous Version"
+msgstr "Versão anterior"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:219
+msgid "System Version"
+msgstr "Versão do sistema"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:262
+msgid "PPA"
+msgstr "PPA"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:298
+msgid "It's safe to purge the PPA, no packages need to be downgraded."
+msgstr "É seguro eliminar o PPA, nenhum pacote será revertido."
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:301
+msgid "To safely purge the PPA, the following packages must be downgraded."
+msgstr "Se eliminar o PPA, os seguintes pacotes tem de ser revertidos."
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:306
+#, python-format
+msgid "You're going to purge: %s"
+msgstr "Está preste a eliminar: %s"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:421
+#, python-format
+msgid "%d PPAs to be removed"
+msgstr "%d PPAs a remover"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:423
+msgid "No PPA to be removed"
+msgstr "Sem PPAs a remover"
+
+#: ../ubuntutweak/janitor/autoremoval_plugin.py:10
+msgid "Unneeded Packages"
+msgstr "Pacotes dispensáveis"
+
+#: ../ubuntutweak/janitor/autoremoval_plugin.py:39
+#, python-format
+msgid "Unneeded Packages (%d packages to be removed, total size: %s)"
+msgstr "Pacotes dispensáveis (%d pacotes a remover, tamanho: %s)"
+
+#: ../ubuntutweak/janitor/autoremoval_plugin.py:41
+msgid "Unneeded Packages (No package to be removed)"
+msgstr "Pacotes dispensáveis (sem pacotes a remover)"
+
+#: ../ubuntutweak/janitor/aptcache_plugin.py:25
+msgid "Apt Cache"
+msgstr "Cache APT"
+
+#: ../ubuntutweak/janitor/aptcache_plugin.py:63
+#, python-format
+msgid "Apt Cache (%d cache to be cleaned, total size: %s)"
+msgstr "Cache APT (%d a apagar, tamanho: %s)"
+
+#: ../ubuntutweak/janitor/aptcache_plugin.py:65
+msgid "Apt Cache (No cache to be cleaned)"
+msgstr "Cache APT (nada a apagar)"
+
+#: ../ubuntutweak/janitor/__init__.py:419
+#, python-format
+msgid "Scanning cruft for \"%s\"..."
+msgstr ""
+
+#: ../ubuntutweak/janitor/__init__.py:581
+#, python-format
+msgid "Cleaning cruft for \"%s\"..."
+msgstr ""
+
+#: ../ubuntutweak/janitor/__init__.py:652
+#: ../ubuntutweak/admins/desktoprecovery.py:81
+#: ../ubuntutweak/modules/__init__.py:34
+msgid "System"
+msgstr "Sistema"
+
+#: ../ubuntutweak/janitor/__init__.py:674
+#: ../ubuntutweak/modules/__init__.py:33
+msgid "Personal"
+msgstr "Pessoal"
+
+#: ../ubuntutweak/janitor/packageconfigs_plugin.py:29
+msgid "Package Configs"
+msgstr "Configurações de pacotes"
+
+#: ../ubuntutweak/janitor/packageconfigs_plugin.py:59
+#, python-format
+msgid "Packages Configs (%d package configs to be removed)"
+msgstr "Configurações de pacotes (%d configurações a remover)"
+
+#: ../ubuntutweak/janitor/packageconfigs_plugin.py:61
+msgid "Packages Configs (No package config to be removed)"
+msgstr "Configurações de pacotes (sem configurações a remover)"
+
+#: ../ubuntutweak/janitor/oldkernel_plugin.py:15
+msgid "Old Kernel"
+msgstr "Kernel antigo"
+
+#: ../ubuntutweak/janitor/oldkernel_plugin.py:84
+#, python-format
+msgid ""
+"Old Kernel Packages (%d kernel packages to be removed, total size: %s)"
+msgstr "Pacotes de kernel antigos (%d pacotes a remover, tamanho: %s)"
+
+#: ../ubuntutweak/janitor/oldkernel_plugin.py:86
+msgid "Old Kernel Packages (No old kernel package to be removed)"
+msgstr "Pacotes de kernel antigos (sem pacotes a remover)"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:79
+#: ../ubuntutweak/modules/__init__.py:29
+msgid "Applications"
+msgstr "Aplicações"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:80
+#: ../ubuntutweak/admins/userdir.py:34 ../ubuntutweak/modules/__init__.py:32
+#: ../ubuntutweak/tweaks/unity.py:89 ../ubuntutweak/tweaks/ccm/Constants.py:88
+msgid "Desktop"
+msgstr "Ambiente de trabalho"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:106
+msgid "Category"
+msgstr "Categori­a"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:147
+msgid "Setting"
+msgstr "Definição"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:188
+msgid "Backup Name:"
+msgstr "Nome da cópia de segurança:"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:217
+msgid "Backing up..."
+msgstr "A criar cópia de segurança..."
+
+#: ../ubuntutweak/admins/desktoprecovery.py:242
+#, python-format
+msgid "Backing up...%s"
+msgstr "A copiar...%s"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:267
+msgid ""
+"Backup and recover your desktop and application settings with ease.\n"
+"You can also use \"Reset\" to reset to the system default settings."
+msgstr ""
+"Crie e restaure cópias de segurança das suas alicações e ambiente de "
+"trabalho facilmente.\n"
+"Também pode utilizar \"Repor\" para restaurar as definições originais do "
+"sistema."
+
+#: ../ubuntutweak/admins/desktoprecovery.py:348
+msgid "No Backup Yet"
+msgstr "Sem cópias de segurança"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:383
+#, python-format
+msgid ""
+"Backup all settings under: <b>%s</b>\n"
+"Would you like to continue?"
+msgstr ""
+"Criar cópia de todas as definições em: <b>%s</b>\n"
+"Pretende continuar?"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:404
+#, python-format
+msgid ""
+"Backup settings under: <b>%s</b>\n"
+"Would you like to continue?"
+msgstr ""
+"Criar cópia das definições em: <b>%s</b>\n"
+"Pretende continuar?"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:447
+#, python-format
+msgid "Would you like to delete the backup:<b>%s/%s</b>?"
+msgstr "Pretende eliminar a cópia de segurança:<b>%s/%s</b>?"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:451
+#, python-format
+msgid ""
+"Would you like to delete the backup of all <b>%s</b> settings named "
+"<b>%s</b>?"
+msgstr ""
+"Pretende eliminar a cópia de todas as definições de <b>%s</b> com o nome "
+"<b>%s</b>?"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:472
+#, python-format
+msgid "Would you like to recover the backup: <b>%s/%s</b>?"
+msgstr "Pretende restaurar a cópia de segurança: <b>%s/%s</b>?"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:475
+#, python-format
+msgid ""
+"Would you like to recover the backup of all<b>%s</b> settings named "
+"<b>%s</b>?"
+msgstr ""
+"Pretende restaurar a cópia de segurança das <b>%s</b> definições com o nome "
+"<b>%s</b>?"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:479
+msgid ""
+"<b>NOTES</b>: While recovering, your desktop may be unresponsive for a "
+"moment."
+msgstr ""
+"<b>NOTAS</b>: Ao restaurar, o seu sistema pode ficar temporariamente inativo."
+
+#: ../ubuntutweak/admins/desktoprecovery.py:496
+msgid "Recovery Successful!"
+msgstr "Restauro efetuado!"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:497
+#: ../ubuntutweak/admins/desktoprecovery.py:533
+msgid "You may need to restart your desktop for changes to take effect"
+msgstr ""
+"Pode ser necessário reiniciar o ambiente de trabalho para produzir efeito"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:502
+msgid "_Logout"
+msgstr "_Sair"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:515
+#, python-format
+msgid "Would you like to reset settings for: <b>%s</b>?"
+msgstr "Deseja repor as definições de: <b>%s</b>?"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:517
+#, python-format
+msgid "Would you like to reset all settings under: <b>%s</b>?"
+msgstr "Deseja repor todas as definições em: <b>%s</b>?"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:519
+msgid ""
+"<b>NOTES</b>: Whilst resetting, your desktop may be unresponsive for a "
+"moment."
+msgstr ""
+"<b>NOTAS</b>: Ao repor, o seu sistema pode ficar temporariamente inativo."
+
+#: ../ubuntutweak/admins/desktoprecovery.py:532
+msgid "Reset Successful!"
+msgstr "Reposição efetuada!"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:561
+#: ../ubuntutweak/admins/sourceeditor.py:420
+msgid "Please enter a new name for your backup:"
+msgstr "Por favor, indique o nome da cópia de segurança:"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:593
+msgid "Backup Successful!"
+msgstr "Cópia de segurança efetuada!"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:596
+#: ../ubuntutweak/admins/sourceeditor.py:396
+msgid "Backup Failed!"
+msgstr "Falha na cópia de segurança!"
+
+#: ../ubuntutweak/admins/sourceeditor.py:169
+msgid "Source Editor"
+msgstr "Editor de fontes"
+
+#: ../ubuntutweak/admins/sourceeditor.py:170
+msgid "Manually edit your software sources to suit your needs."
+msgstr "Edite manualmente as suas fontes de aplicações."
+
+#: ../ubuntutweak/admins/sourceeditor.py:212
+#, python-format
+msgid "You're viewing the backup \"<b>%s</b>\" for\"<b>%s</b>\""
+msgstr "Esta a visualizar a cópia\"<b>%s</b>\" para\"<b>%s</b>\""
+
+#: ../ubuntutweak/admins/sourceeditor.py:282
+msgid "No backup yet"
+msgstr "Nenhuma cópia de segurança"
+
+#: ../ubuntutweak/admins/sourceeditor.py:322
+msgid "Please check the permission of the sources.list file"
+msgstr "Por favor, verifique as permissões do ficheiro sources.list"
+
+#: ../ubuntutweak/admins/sourceeditor.py:324
+msgid "Save failed!"
+msgstr "Falha ao gravar!"
+
+#: ../ubuntutweak/admins/sourceeditor.py:342
+#, python-format
+msgid "Would you like to recover the backup \"<b>%s</b>\" for \"<b>%s</b>\"?"
+msgstr ""
+"Pretende restaurar a cópia de segurança \"<b>%s</b>\" para \"<b>%s</b>\"?"
+
+#: ../ubuntutweak/admins/sourceeditor.py:352
+msgid "Recovery Failed!"
+msgstr "Falha ao restaurar!"
+
+#: ../ubuntutweak/admins/sourceeditor.py:353
+msgid "You may need to check the permission of source list."
+msgstr "Tem que verificar as permissões da lista de fontes."
+
+#: ../ubuntutweak/admins/sourceeditor.py:385
+msgid "Please enter the name for your backup:"
+msgstr "Indique o nome da cópia de segurança:"
+
+#: ../ubuntutweak/admins/sourceeditor.py:398
+#: ../ubuntutweak/admins/sourceeditor.py:431
+msgid "Please only use alphanumeric characters and \"_\" and \"-\"."
+msgstr "Utilize apenas caracteres alfanuméricos, \"_\" e \"-\"."
+
+#: ../ubuntutweak/admins/sourceeditor.py:400
+#: ../ubuntutweak/admins/sourceeditor.py:433
+msgid "Backup name is invalid"
+msgstr "O nome é inválido"
+
+#: ../ubuntutweak/admins/sourceeditor.py:406
+#, python-format
+msgid "Would you like to delete the backup:<b>%s</b>?"
+msgstr "Pretende eliminar a cópia de segurança: <b>%s</b>?"
+
+#: ../ubuntutweak/admins/sourceeditor.py:436
+msgid ""
+"The current content will be lost after reloading!\n"
+"Do you wish to continue?"
+msgstr ""
+"Se recarregar, o conteúdo atual será perdido!\n"
+"Pretende continuar?"
+
+#: ../ubuntutweak/admins/sourceeditor.py:454
+msgid "You can't delete sources.list!"
+msgstr "Não pode eliminar o ficheiro sources.list!"
+
+#: ../ubuntutweak/admins/sourceeditor.py:456
+#, python-format
+msgid ""
+"The \"%s\" will be deleted!\n"
+"Do you wish to continue?"
+msgstr ""
+"O \"%s\" vai ser eliminado!\n"
+"Pretende continuar?"
+
+#: ../ubuntutweak/admins/templates.py:70
+msgid "HTML document"
+msgstr "Documento HTML"
+
+#: ../ubuntutweak/admins/templates.py:71
+msgid "ODB Database"
+msgstr "Base de dados ODB"
+
+#: ../ubuntutweak/admins/templates.py:72
+msgid "ODS Spreadsheet"
+msgstr "Folha de cálculo ODS"
+
+#: ../ubuntutweak/admins/templates.py:73
+msgid "ODT Document"
+msgstr "Documento ODT"
+
+#: ../ubuntutweak/admins/templates.py:74
+msgid "Plain text document"
+msgstr "Documento de texto simples"
+
+#: ../ubuntutweak/admins/templates.py:75
+msgid "ODP Presentation"
+msgstr "Apresentação ODP"
+
+#: ../ubuntutweak/admins/templates.py:76
+msgid "Python script"
+msgstr "Script Python"
+
+#: ../ubuntutweak/admins/templates.py:77
+msgid "Pygtk Example"
+msgstr "Exemplo Pygtk"
+
+#: ../ubuntutweak/admins/templates.py:78
+msgid "Shell script"
+msgstr "Script de consola"
+
+#: ../ubuntutweak/admins/templates.py:106
+msgid "Enabled Templates"
+msgstr "Modelos ativos"
+
+#: ../ubuntutweak/admins/templates.py:114
+msgid "Disabled Templates"
+msgstr "Modelos inativos"
+
+#: ../ubuntutweak/admins/templates.py:121
+msgid "Manage Templates"
+msgstr "Gerir modelos"
+
+#: ../ubuntutweak/admins/templates.py:122
+msgid ""
+"Here you can manage your document templates.\n"
+"You can add files as templates by dragging them into this window.\n"
+"You can then create new documents based on these templates from the Nautilus "
+"right-click menu."
+msgstr ""
+"Aqui pode fazer a gestão dos seus modelos de documentos.\n"
+"Pode adicionar modelos arrastando-os para esta janela.\n"
+"Assim, através do menu de contexto do Nautilus, pode criar novos documentos "
+"baseados em modelos."
+
+#: ../ubuntutweak/admins/templates.py:134
+#, python-format
+msgid ""
+"The templates path is incorrect! The current path points to \"%s\".\n"
+"Please reset it to a location within your Home Folder."
+msgstr ""
+"O caminho dos modelos está incorreto. O caminho aponta para \"%s\".\n"
+"Por favor, reponha o caminho para a sua pasta pessoal."
+
+#: ../ubuntutweak/admins/templates.py:143
+msgid "Go And Set"
+msgstr "Ir e definir"
+
+#: ../ubuntutweak/admins/templates.py:148
+msgid "Restart This Module"
+msgstr "Reiniciar este módulo"
+
+#. self.enable_templates.connect('drag_data_received', self.on_enable_drag_data_received)
+#. self.enable_templates.connect('deleted', self.on_enable_deleted)
+#. self.disable_templates.connect('drag_data_received', self.on_disable_drag_data_received)
+#: ../ubuntutweak/admins/templates.py:173
+msgid "Rebuild System Templates"
+msgstr "Reconstruir o sistema de modelos"
+
+#: ../ubuntutweak/admins/templates.py:188
+msgid "The templates path is still incorrect, please reset it!"
+msgstr "O caminho dos modelos ainda é inválido, Por favor, corrija-o!"
+
+#: ../ubuntutweak/admins/templates.py:200
+msgid ""
+"This will delete all disabled templates.\n"
+"Do you wish to continue?"
+msgstr ""
+"Vai eliminar todos os modelos inativos.\n"
+"Pretende continuar?"
+
+#: ../ubuntutweak/admins/userdir.py:35
 msgid "Download"
 msgstr "Transferir"
 
-#: ../ubuntutweak/modules/userdir.py:47
+#: ../ubuntutweak/admins/userdir.py:36
 msgid "Templates"
 msgstr "Modelos"
 
-#: ../ubuntutweak/modules/userdir.py:48
+#: ../ubuntutweak/admins/userdir.py:37
 msgid "Public"
 msgstr "Público"
 
-#: ../ubuntutweak/modules/userdir.py:49
+#: ../ubuntutweak/admins/userdir.py:38
 msgid "Document"
 msgstr "Documento"
 
-#: ../ubuntutweak/modules/userdir.py:50
+#: ../ubuntutweak/admins/userdir.py:39
 msgid "Music"
 msgstr "Música"
 
-#: ../ubuntutweak/modules/userdir.py:51
+#: ../ubuntutweak/admins/userdir.py:40
 msgid "Pictures"
 msgstr "Imagens"
 
-#: ../ubuntutweak/modules/userdir.py:52
+#: ../ubuntutweak/admins/userdir.py:41
 msgid "Videos"
 msgstr "Vídeos"
 
-#: ../ubuntutweak/modules/userdir.py:158
+#: ../ubuntutweak/admins/userdir.py:154
 msgid "Choose a folder"
-msgstr "Seleccione uma pasta"
+msgstr "Escolha uma pasta"
 
-#: ../ubuntutweak/modules/userdir.py:174
+#: ../ubuntutweak/admins/userdir.py:171
 msgid ""
 "Ubuntu Tweak will restore the selected directory to it's default location.\n"
 "However, you must move your files back into place manually.\n"
 "Do you wish to continue?"
 msgstr ""
-"O Ubuntu Tweak irá restaurar o directório seleccionado para a sua "
-"localização por omissão.\n"
+"O Ubuntu Tweak vai restaurar o diretório selecionado para o seu local por "
+"omissão.\n"
 "No entanto, você tem que mover os ficheiros manualmente.\n"
 "Pretende continuar?"
 
-#: ../ubuntutweak/modules/userdir.py:208
+#: ../ubuntutweak/admins/userdir.py:204
 msgid "Directory"
-msgstr "Pasta"
+msgstr "Diretório"
 
-#: ../ubuntutweak/modules/userdir.py:222
+#: ../ubuntutweak/admins/userdir.py:218
 msgid "Path"
 msgstr "Caminho"
 
-#: ../ubuntutweak/modules/userdir.py:229
+#: ../ubuntutweak/admins/userdir.py:225
 msgid "Change"
 msgstr "Alterar"
 
-#: ../ubuntutweak/modules/userdir.py:233
+#: ../ubuntutweak/admins/userdir.py:229
 msgid "Restore to default"
-msgstr "Pré-definição"
+msgstr "Restaurar omissões"
 
-#: ../ubuntutweak/modules/userdir.py:240
+#: ../ubuntutweak/admins/userdir.py:237
 msgid "Default Folder Locations"
-msgstr "Localização de pastas pré-definida"
+msgstr "Locais omissos das pastas"
 
-#: ../ubuntutweak/modules/userdir.py:241
+#: ../ubuntutweak/admins/userdir.py:238
 msgid ""
 "You can change the paths of default folders here.\n"
 "Don't change the location of your desktop folder unless you know what you "
 "are doing."
 msgstr ""
 "Aqui, pode alterar os caminhos das pastas.\n"
-"Não altere a localização da pasta do ambiente de trabalho a menos que saiba "
+"Não altere a localização da pasta do ambiente de trabalho, a menos que saiba "
 "o que está a fazer."
 
-#: ../ubuntutweak/modules/userdir.py:262
+#: ../ubuntutweak/admins/userdir.py:260
 msgid "_Restore"
 msgstr "_Restaurar"
 
-#: ../ubuntutweak/modules/userdir.py:267
+#: ../ubuntutweak/admins/userdir.py:266
 msgid "_Change"
 msgstr "_Alterar"
 
-#: ../ubuntutweak/modules/computer.py:37
-msgid "Computer Details"
-msgstr "Detalhes do Computador"
+#: ../ubuntutweak/admins/scripts.py:50
+msgid "Create Launcher ..."
+msgstr "Criar lançador..."
 
-#: ../ubuntutweak/modules/computer.py:38
-msgid "Some useful system information"
-msgstr "Algumas informações do sistema"
+#: ../ubuntutweak/admins/scripts.py:51
+msgid "Copy to ..."
+msgstr "Copiar para..."
 
-#: ../ubuntutweak/modules/computer.py:45
-msgid "Unknown"
-msgstr "Desconhecido(a)"
+#: ../ubuntutweak/admins/scripts.py:52
+msgid "Copy to Desktop"
+msgstr "Copiar para o ambiente de trabalho"
 
-#: ../ubuntutweak/modules/computer.py:61
-msgid "Change Hostname"
-msgstr "Mudar Nome da Máquina"
+#: ../ubuntutweak/admins/scripts.py:53
+msgid "Copy to Download"
+msgstr "Copiar para pasta de transferências"
 
-#: ../ubuntutweak/modules/computer.py:64
-msgid "System information"
-msgstr "Informação do sistema"
+#: ../ubuntutweak/admins/scripts.py:54
+msgid "Copy to Home"
+msgstr "Copiar para a pasta pessoal"
 
-#: ../ubuntutweak/modules/computer.py:65
-msgid "Hostname"
-msgstr "Nome da Máquina"
+#: ../ubuntutweak/admins/scripts.py:55
+msgid "Check md5 sum"
+msgstr "Verificar md5"
 
-#: ../ubuntutweak/modules/computer.py:66
-msgid "Distribution"
-msgstr "Distribuição"
+#: ../ubuntutweak/admins/scripts.py:56
+msgid "Compress PDF"
+msgstr "Comprimir PDF"
 
-#: ../ubuntutweak/modules/computer.py:67
-msgid "Desktop environment"
-msgstr "Ambiente da Área de Trabalho"
+#: ../ubuntutweak/admins/scripts.py:57
+msgid "Move to ..."
+msgstr "Mover para..."
 
-#: ../ubuntutweak/modules/computer.py:68
-msgid "Kernel"
-msgstr "Kernel"
+#: ../ubuntutweak/admins/scripts.py:58
+msgid "Move to Desktop"
+msgstr "Mover para o ambiente de trabalho"
 
-#: ../ubuntutweak/modules/computer.py:69
-msgid "Platform"
-msgstr "Plataforma"
+#: ../ubuntutweak/admins/scripts.py:59
+msgid "Move to Download"
+msgstr "Mover para a pasta de transferências"
 
-#: ../ubuntutweak/modules/computer.py:70
-msgid "CPU"
-msgstr "CPU"
+#: ../ubuntutweak/admins/scripts.py:60
+msgid "Move to Home"
+msgstr "Mover para a pasta pessoal"
 
-#: ../ubuntutweak/modules/computer.py:71
-msgid "Memory"
-msgstr "Memória"
+#: ../ubuntutweak/admins/scripts.py:61
+msgid "Create hardlink to ..."
+msgstr "Criar ligação a..."
 
-#: ../ubuntutweak/modules/computer.py:75
-msgid "User information"
-msgstr "Informações sobre o utilizador"
+#: ../ubuntutweak/admins/scripts.py:62
+msgid "Link to ..."
+msgstr "Ligar a..."
 
-#: ../ubuntutweak/modules/computer.py:76
-msgid "Current user"
-msgstr "Utilizador actual"
+#: ../ubuntutweak/admins/scripts.py:63
+msgid "Link to Desktop"
+msgstr "Ligar ao ambiente de trabalho"
 
-#: ../ubuntutweak/modules/computer.py:77
-msgid "Home directory"
-msgstr "Pasta pessoal"
+#: ../ubuntutweak/admins/scripts.py:64
+msgid "Link to Download"
+msgstr "Ligar à pasta de transferências"
 
-#: ../ubuntutweak/modules/computer.py:78
-msgid "Shell"
-msgstr "Consola"
+#: ../ubuntutweak/admins/scripts.py:65
+msgid "Link to Home"
+msgstr "Ligar à pasta pessoal"
 
-#: ../ubuntutweak/modules/computer.py:79
-msgid "Language"
-msgstr "Idioma"
+#: ../ubuntutweak/admins/scripts.py:66
+msgid "Open with your favourite text editor"
+msgstr "Abrir com o seu editor de texto favorito"
 
-#: ../ubuntutweak/modules/computer.py:86
-msgid "Please enter your new hostname. Blank characters should not be used."
-msgstr "Por favor indique o seu novo hostname. Espaços não devem ser usados."
+#: ../ubuntutweak/admins/scripts.py:67
+msgid "Open with your favourite text editor (as root)"
+msgstr "Abrir com o seu editor de texto favorito (como root)"
 
-#: ../ubuntutweak/modules/computer.py:87
-msgid "New hostname"
-msgstr "Nome novo da máquina"
+#: ../ubuntutweak/admins/scripts.py:68
+msgid "Browse as root"
+msgstr "Explorar como \"root\""
 
-#: ../ubuntutweak/modules/lockdown.py:34
-msgid "Security Related"
-msgstr "Relacionado com Segurança"
+#: ../ubuntutweak/admins/scripts.py:69
+msgid "Search in current folder"
+msgstr "Procurar na pasta atual"
 
-#: ../ubuntutweak/modules/lockdown.py:35
-msgid "Tweak some security settings"
-msgstr "Ajuste de algumas características de segurança"
+#: ../ubuntutweak/admins/scripts.py:70
+msgid "Convert image to JPG"
+msgstr "Converter imagem para JPG"
 
-#: ../ubuntutweak/modules/lockdown.py:44
-msgid "System Security options"
-msgstr "Opções de Segurança do Sistema"
+#: ../ubuntutweak/admins/scripts.py:71
+msgid "Convert image to PNG"
+msgstr "Converter imagem para PNG"
 
-#: ../ubuntutweak/modules/lockdown.py:46
-msgid "Disable \"Run Application\" dialog (Alt+F2)"
-msgstr "Desactivar caixa de diálogo \"Executar Aplicativo\" (Alt + F2)"
+#: ../ubuntutweak/admins/scripts.py:72
+msgid "Convert image to GIF"
+msgstr "Converter imagem para GIF"
 
-#: ../ubuntutweak/modules/lockdown.py:50
-msgid "Disable \"Lock Screen\""
-msgstr "Desactivar \"Trancar Ecrã\""
+#: ../ubuntutweak/admins/scripts.py:73
+msgid "Set image as wallpaper"
+msgstr "Definir imagem como papel de parede"
 
-#: ../ubuntutweak/modules/lockdown.py:54
-msgid "Disable printing"
-msgstr "Desactivar a impressão"
+#: ../ubuntutweak/admins/scripts.py:74
+msgid "Make hard shadow to image"
+msgstr "Criar sombra para imagem"
 
-#: ../ubuntutweak/modules/lockdown.py:58
-msgid "Disable printer settings"
-msgstr "Desactivar definições da impressora"
+#: ../ubuntutweak/admins/scripts.py:102
+msgid "Enabled Scripts"
+msgstr "Scripts ativos"
 
-#: ../ubuntutweak/modules/lockdown.py:62
-msgid "Disable save to disk"
-msgstr "Desactivar salvar dados no disco"
+#: ../ubuntutweak/admins/scripts.py:133
+msgid "Disabled Scripts"
+msgstr "Scripts inativos"
 
-#: ../ubuntutweak/modules/lockdown.py:66
-msgid "Disable \"Fast User Switching\""
-msgstr "Desactivar \"Troca Rápida de Utilizador\""
+#: ../ubuntutweak/admins/scripts.py:140
+msgid "Manage Scripts"
+msgstr "Gerir scripts"
 
-#: ../ubuntutweak/modules/lockdown.py:73
-msgid "Fix the appearance of themes when granted root privileges"
-msgstr "Corrigir a aparência dos temas ao garantir previlégio de root"
-
-#: ../ubuntutweak/modules/lockdown.py:79
-msgid "Miscellaneous Options"
-msgstr "Opções Diversas"
-
-#: ../ubuntutweak/modules/sourceeditor.py:66
-#: ../ubuntutweak/modules/sourceeditor.py:71
-msgid "Choose the sources"
-msgstr "Escolha as fontes"
-
-#: ../ubuntutweak/modules/sourceeditor.py:72
+#: ../ubuntutweak/admins/scripts.py:141
 msgid ""
-"You can read the title and comment to determine which source is suitable for "
-"you."
+"Scripts can be used to complete all kinds of tasks.\n"
+"You can drag and drop scripts here from File Manager.\n"
+"'Scripts' will then be added to the context menu."
 msgstr ""
-"Leia o título e o comentário respectivo para determinar qual a fonte que "
-"mais se adequa à sua situação."
+"Os scripts podem ser utilizados para executar diversas tarefas.\n"
+"Através do gestor de ficheiros, pode arrastar e largar aqui os scripts.\n"
+"Os scripts serão adicionados ao menu de contexto."
 
-#: ../ubuntutweak/modules/sourceeditor.py:107
-#: ../ubuntutweak/modules/sourceeditor.py:112
-msgid "Submit your sources"
-msgstr "Envie as suas fontes"
+#: ../ubuntutweak/admins/scripts.py:171
+msgid "Rebuild System Scripts"
+msgstr "Reconstruir scripts do sistema"
 
-#: ../ubuntutweak/modules/sourceeditor.py:112
-msgid "You can submit your sources to the server for other people to use."
-msgstr ""
-"Pode enviar as suas fontes para o servidor para que outras pessoas possam "
-"utilizar."
-
-#: ../ubuntutweak/modules/sourceeditor.py:117
-msgid "_Source Title:"
-msgstr "_Titulo da Fonte:"
-
-#: ../ubuntutweak/modules/sourceeditor.py:120
-msgid "_Locale:"
-msgstr "_Local:"
-
-#: ../ubuntutweak/modules/sourceeditor.py:123
-#: ../ubuntutweak/modules/autostart.py:52
-msgid "Comm_ent:"
-msgstr "Com_entário:"
-
-#: ../ubuntutweak/modules/sourceeditor.py:127
-msgid "Enter the title of the source, e.g. \"Ubuntu Official Repostory\""
-msgstr "Introduza o título da fonte, p.e. \"Repositório Oficial do Ubuntu\""
-
-#: ../ubuntutweak/modules/sourceeditor.py:129
-msgid "If the locale isn't correct you can edit manually"
-msgstr "Se o local não estiver correcto pode editá-lo manualmente"
-
-#: ../ubuntutweak/modules/sourceeditor.py:144
-msgid "Submit"
-msgstr "Enviar"
-
-#: ../ubuntutweak/modules/sourceeditor.py:192
-msgid "Please check your network connection!"
-msgstr "Por favor verifique a ligação de rede!"
-
-#: ../ubuntutweak/modules/sourceeditor.py:192
-msgid "Network Error"
-msgstr "Erro na ligação de rede"
-
-#: ../ubuntutweak/modules/sourceeditor.py:199
-msgid "Uploading..."
-msgstr "A enviar..."
-
-#: ../ubuntutweak/modules/sourceeditor.py:215
-msgid "Updating..."
-msgstr "A Actualizar..."
-
-#: ../ubuntutweak/modules/sourceeditor.py:353
-msgid "Source Editor"
-msgstr "Editor de Fontes"
-
-#: ../ubuntutweak/modules/sourceeditor.py:354
-msgid "Manually edit your software sources to suit your needs."
-msgstr "Editar manualmente as fontes das aplicações."
-
-#: ../ubuntutweak/modules/sourceeditor.py:450
-msgid "Please input the correct source information!"
-msgstr "Por favor, indique as informações correctas."
-
-#: ../ubuntutweak/modules/sourceeditor.py:463
+#: ../ubuntutweak/admins/scripts.py:185
 msgid ""
-"You can submit your sources to our server to help expand the sources list, "
-"or you can use the official sources.\n"
-"Do you wish to use the official sources?"
-msgstr ""
-"Pode enviar as suas fontes para o nosso servidor, de modo a que possamos "
-"expandir a lista de fontes, ou pode utilizar as fontes oficiais.\n"
-"Pretende utilizar as fontes oficiais?"
-
-#: ../ubuntutweak/modules/sourceeditor.py:466
-msgid "No source data available"
-msgstr "Dados sobre as fontes indisponíveis."
-
-#: ../ubuntutweak/modules/sourceeditor.py:483
-msgid ""
-"Your sources will be reviewed and made available for others soon.\n"
-"Thank you!"
-msgstr ""
-"As suas fontes serão em breve verificadas e disponibilizadas para outros.\n"
-"Obrigado!"
-
-#: ../ubuntutweak/modules/sourceeditor.py:484
-msgid "Successfully submitted"
-msgstr "Enviado com sucesso!"
-
-#: ../ubuntutweak/modules/sourceeditor.py:496
-msgid ""
-"You've edited sources.list without saving changes.\n"
-"Do you want to save changes?"
-msgstr ""
-"Editou o ficheiro sources.list, mas não gravou as alterações.\n"
-"Pretende gravar as alterações?"
-
-#: ../ubuntutweak/modules/sourceeditor.py:507
-msgid "Please check the permission of the sources.list file"
-msgstr "Por favor verifique as permissões do ficheiro sources.list"
-
-#: ../ubuntutweak/modules/sourceeditor.py:508
-msgid "Save failed!"
-msgstr "Falha ao guardar !"
-
-#: ../ubuntutweak/modules/sourceeditor.py:517
-msgid ""
-"The current content will be lost after reloading!\n"
+"This will delete all disabled scripts.\n"
 "Do you wish to continue?"
 msgstr ""
-"O conteúdo actual será perdido após reiniciar!\n"
-"Deseja continuar?"
+"Vai eliminar todos os scripts inativos.\n"
+"Pretende continuar?"
 
-#: ../ubuntutweak/modules/sourceeditor.py:528
-msgid "You can't delete sources.list!"
-msgstr "Não pode eliminar o ficheiro sources.list!"
+#: ../ubuntutweak/admins/shortcuts.py:30
+msgid ""
+"By configuring keyboard shortcuts, you can access your favourite "
+"applications instantly.\n"
+"Enter the command to run the application and choose a shortcut key "
+"combination."
+msgstr ""
+"Ao configurar os atalhos de teclado, pode aceder facilmente às suas "
+"aplicações preferidas.\n"
+"Indique o comando de execução da aplicação e escolha a combinação das teclas "
+"de atalho."
 
-#: ../ubuntutweak/modules/sourceeditor.py:530
+#: ../ubuntutweak/admins/shortcuts.py:83
 #, python-format
-msgid ""
-"The \"%s\" will be deleted!\n"
-"Do you wish to continue?"
-msgstr ""
-"O \"%s\" irá ser eliminado!\n"
-"Deseja continuar?"
+msgid "Command %d"
+msgstr "Comando %d"
 
-#: ../ubuntutweak/modules/appcenter.py:193
-#: ../ubuntutweak/modules/desktoprecovery.py:102
-msgid "Category"
-msgstr "Categori­a"
+#: ../ubuntutweak/admins/shortcuts.py:88
+#: ../ubuntutweak/admins/shortcuts.py:200
+#: ../ubuntutweak/admins/filetypemanager.py:177
+#: ../ubuntutweak/admins/filetypemanager.py:201
+#: ../ubuntutweak/tweaks/metacity.py:183 ../ubuntutweak/tweaks/metacity.py:192
+#: ../ubuntutweak/tweaks/metacity.py:207 ../ubuntutweak/tweaks/metacity.py:222
+msgid "None"
+msgstr "Nenhum"
 
-#: ../ubuntutweak/modules/appcenter.py:212
-msgid "All Categories"
-msgstr "Todas as Categorias"
+#: ../ubuntutweak/admins/shortcuts.py:93
+#: ../ubuntutweak/admins/shortcuts.py:145
+msgid "disabled"
+msgstr "inativo"
 
-#: ../ubuntutweak/modules/appcenter.py:503
-msgid "Checking update..."
-msgstr "Verificando actualizações..."
+#: ../ubuntutweak/admins/shortcuts.py:102
+msgid "ID"
+msgstr "ID"
 
-#: ../ubuntutweak/modules/appcenter.py:533
-msgid "Fetching online data..."
-msgstr "Adquirindo dados on-line..."
+#: ../ubuntutweak/admins/shortcuts.py:113
+msgid "Command"
+msgstr "Comando"
 
-#: ../ubuntutweak/modules/appcenter.py:537
-msgid "Application Center"
-msgstr "Centro da aplicação"
+#: ../ubuntutweak/admins/shortcuts.py:126
+msgid "Key"
+msgstr "Tecla"
 
-#: ../ubuntutweak/modules/appcenter.py:538
-msgid ""
-"A simple but efficient way for finding and installing popular applications.\n"
-"Data will be synchronized automatically with the remote server.\n"
-"You can click the \"Sync\" button to perform a manual check for updates."
-msgstr ""
-"Um método simples e eficiente para encontrar e instalar as aplicações mais "
-"conhecidas.\n"
-"Os dados serão sincronizados com o servidor remoto automaticamente.\n"
-"Pode premir o botão \"Sincronizar\" para executar uma verificação manual das "
-"actualizações."
-
-#: ../ubuntutweak/modules/appcenter.py:543
-msgid "Visit Online Application Center"
-msgstr "Visitar o Centro de Aplicações On-Line"
-
-#: ../ubuntutweak/modules/appcenter.py:549
-#: ../ubuntutweak/modules/sourcecenter.py:924
-msgid "_Sync"
-msgstr "_Sincronizar"
-
-#: ../ubuntutweak/modules/appcenter.py:586
-#: ../ubuntutweak/modules/sourcecenter.py:1005
-msgid "Last synced:"
-msgstr "Ultima Sincronização"
-
-#: ../ubuntutweak/modules/appcenter.py:591
-msgid "New application data available, would you like to update?"
-msgstr "Novos dados de aplicações disponíveis, deseja actualizar?"
-
-#: ../ubuntutweak/modules/appcenter.py:660
-msgid "Update available, would you like to update?"
-msgstr "Actualização disponível, deseja actualizar?"
-
-#: ../ubuntutweak/modules/appcenter.py:669
-msgid ""
-"Network Error, please check your network connection - or the remote server "
-"may be down."
-msgstr ""
-"Erro de Rede, verifique a sua conexão á rede - ou o servidor remoto pode "
-"estar offline."
-
-#: ../ubuntutweak/modules/appcenter.py:673
-#: ../ubuntutweak/modules/sourcecenter.py:1169
-msgid "No update available."
-msgstr "Não há actualizações disponíveis."
-
-#: ../ubuntutweak/modules/appcenter.py:685
-msgid "An error occurred while downloading the file."
-msgstr "Ocorreu um erro ao obter o ficheiro."
-
-#: ../ubuntutweak/modules/filetype.py:35
+#: ../ubuntutweak/admins/filetypemanager.py:44
 msgid "Audio"
 msgstr "Áudio"
 
-#: ../ubuntutweak/modules/filetype.py:36
+#: ../ubuntutweak/admins/filetypemanager.py:45
 msgid "Text"
 msgstr "Texto"
 
-#: ../ubuntutweak/modules/filetype.py:37
+#: ../ubuntutweak/admins/filetypemanager.py:46
 msgid "Image"
 msgstr "Imagem"
 
-#: ../ubuntutweak/modules/filetype.py:38
+#: ../ubuntutweak/admins/filetypemanager.py:47
 msgid "Video"
 msgstr "Vídeo"
 
-#: ../ubuntutweak/modules/filetype.py:39
+#: ../ubuntutweak/admins/filetypemanager.py:48
 msgid "Application"
 msgstr "Aplicação"
 
-#: ../ubuntutweak/modules/filetype.py:40
+#: ../ubuntutweak/admins/filetypemanager.py:49
+#: ../ubuntutweak/tweaks/ccm/Constants.py:94
 msgid "All"
 msgstr "Todos"
 
-#: ../ubuntutweak/modules/filetype.py:73
+#: ../ubuntutweak/admins/filetypemanager.py:74
 msgid "Categories"
 msgstr "Categorias"
 
-#: ../ubuntutweak/modules/filetype.py:131
+#: ../ubuntutweak/admins/filetypemanager.py:127
 msgid "File Type"
-msgstr "Tipo de Ficheiro"
+msgstr "Tipo de ficheiro"
 
-#: ../ubuntutweak/modules/filetype.py:146
+#: ../ubuntutweak/admins/filetypemanager.py:143
 msgid "Associated Application"
 msgstr "Aplicação associada"
 
-#: ../ubuntutweak/modules/filetype.py:244
+#: ../ubuntutweak/admins/filetypemanager.py:231
 #, python-format
 msgid "Open files of type \"%s\" with:"
-msgstr "Abrir ficheiros do tipo \"%s\" com:"
+msgstr "Abrir ficheiros \"%s\" com:"
 
-#: ../ubuntutweak/modules/filetype.py:273
+#: ../ubuntutweak/admins/filetypemanager.py:263
 msgid "Choose an application"
 msgstr "Escolha uma aplicação"
 
-#: ../ubuntutweak/modules/filetype.py:368
+#: ../ubuntutweak/admins/filetypemanager.py:363
 #, python-format
 msgid "Select an application to open files of type: <b>%s</b>"
 msgid_plural "Select an application to open files for these types: <b>%s</b>"
-msgstr[0] "Seleccione uma aplicação para abrir ficheiros do tipo: <b>%s</b>"
+msgstr[0] "Selecione a aplicação para abrir ficheiros do tipo: <b>%s</b>"
 msgstr[1] ""
-"Seleccione uma aplicação para abrir ficheiros destes tipos: <b>%s</b>"
+"Selecione a aplicação para abrir ficheiros destes tipos: <b>%s</b>"
 
-#: ../ubuntutweak/modules/filetype.py:402
-#, python-format
-msgid "Could not find %s"
-msgstr "Incapaz de encontrar %s"
-
-#: ../ubuntutweak/modules/filetype.py:403
+#: ../ubuntutweak/admins/filetypemanager.py:402
 msgid "Could not find application"
 msgstr "Incapaz de encontrar a aplicação"
 
-#: ../ubuntutweak/modules/filetype.py:523
-msgid "File Type Manager"
-msgstr "Gestor de Tipos de Ficheiro"
+#: ../ubuntutweak/admins/filetypemanager.py:403
+#, python-format
+msgid "Could not find \"%s\", Please ensure the path is correct."
+msgstr "Incapaz de encontrar \"%s\". Verifique se o caminho é válido."
 
-#: ../ubuntutweak/modules/filetype.py:524
+#: ../ubuntutweak/admins/filetypemanager.py:551
 msgid "Manage all registered file types"
 msgstr "Gerir todos os tipos de ficheiros registados"
 
-#: ../ubuntutweak/modules/filetype.py:557
+#: ../ubuntutweak/admins/filetypemanager.py:588
+msgid "_Reset"
+msgstr ""
+
+#: ../ubuntutweak/admins/filetypemanager.py:594
 msgid "Only show filetypes with associated applications"
 msgstr "Mostrar apenas ficheiros associados a uma aplicação"
 
-#: ../ubuntutweak/modules/updatemanager.py:33
-msgid "Update Manager"
-msgstr "Gestor de Atualizações"
+#: ../ubuntutweak/modules/__init__.py:28
+msgid "Broken Modules"
+msgstr "Módulos danificados"
 
-#: ../ubuntutweak/modules/updatemanager.py:34
-msgid "A simple and easy-to-use update manager"
-msgstr "Um simples e fácil gestor de actualizações"
-
-#: ../ubuntutweak/modules/updatemanager.py:47
-msgid "Automatically run System Update Manager"
-msgstr "Executar automaticamente o Gestor de Actualizações"
-
-#: ../ubuntutweak/modules/updatemanager.py:52
-msgid "Temporarily disable third-party PPA sources whilst refreshing"
-msgstr "Ao actualizar, desactivar temporariamente as fontes PPA de terceiros"
-
-#: ../ubuntutweak/modules/updatemanager.py:79
-msgid "Your system is clean and no updates are available."
-msgstr "O sistema está limpo e não existem actualizações disponíveis."
-
-#: ../ubuntutweak/modules/updatemanager.py:80
-#: ../ubuntutweak/modules/sourcecenter.py:148
-msgid "Software information is now up-to-date"
-msgstr "A informação dos programas está actualizada"
-
-#: ../ubuntutweak/modules/updatemanager.py:93
-msgid "Install Update"
-msgid_plural "Install Updates"
-msgstr[0] "Instalar Actualização"
-msgstr[1] "Instalar Actualizações"
-
-#: ../ubuntutweak/modules/metacity.py:37
-#: ../ubuntutweak/modules/metacity.py:196
-#: ../ubuntutweak/modules/metacity.py:210
-#: ../ubuntutweak/modules/metacity.py:224
-msgid "Menu"
-msgstr "Menu"
-
-#: ../ubuntutweak/modules/metacity.py:38
-msgid "Title"
-msgstr "Título"
-
-#: ../ubuntutweak/modules/metacity.py:39
-#: ../ubuntutweak/modules/metacity.py:192
-#: ../ubuntutweak/modules/metacity.py:206
-#: ../ubuntutweak/modules/metacity.py:220
-msgid "Maximize"
-msgstr "Maximizar"
-
-#: ../ubuntutweak/modules/metacity.py:40
-#: ../ubuntutweak/modules/metacity.py:195
-#: ../ubuntutweak/modules/metacity.py:209
-#: ../ubuntutweak/modules/metacity.py:223
-msgid "Minimize"
-msgstr "Minimizar"
-
-#: ../ubuntutweak/modules/metacity.py:41
-msgid "Close"
-msgstr "Fechar"
-
-#: ../ubuntutweak/modules/metacity.py:42
-msgid "Spacer"
-msgstr "Separador"
-
-#: ../ubuntutweak/modules/metacity.py:153
-msgid "Window Manager Settings"
-msgstr "Definições do Gestor de Janelas"
-
-#: ../ubuntutweak/modules/metacity.py:154
-msgid "Manage Metacity Window Manager settings"
-msgstr "Gerir Configurações do Gestor de Janelas Metacity"
-
-#: ../ubuntutweak/modules/metacity.py:177
-msgid "Window Titlebar Button Layout"
-msgstr "Disposição dos Botões na Barra de Titulo da Janela"
-
-#: ../ubuntutweak/modules/metacity.py:181
-msgid "Window Titlebar Actions"
-msgstr "Acções na Barra da Janela"
-
-#: ../ubuntutweak/modules/metacity.py:183
-msgid "Titlebar mouse wheel action"
-msgstr "Acção da roda do rato na barra de título"
-
-#: ../ubuntutweak/modules/metacity.py:186
-#: ../ubuntutweak/modules/metacity.py:195
-#: ../ubuntutweak/modules/metacity.py:209
-#: ../ubuntutweak/modules/metacity.py:223
-msgid "Roll up"
-msgstr "Rolar para cima"
-
-#: ../ubuntutweak/modules/metacity.py:189
-msgid "Titlebar double-click action"
-msgstr "Acção do duplo-clique na barra de título"
-
-#: ../ubuntutweak/modules/metacity.py:193
-#: ../ubuntutweak/modules/metacity.py:207
-#: ../ubuntutweak/modules/metacity.py:221
-msgid "Maximize Horizontally"
-msgstr "Maximizar Horizontalmente"
-
-#: ../ubuntutweak/modules/metacity.py:194
-#: ../ubuntutweak/modules/metacity.py:208
-#: ../ubuntutweak/modules/metacity.py:222
-msgid "Maximize Vertically"
-msgstr "Maximizar Verticalmente"
-
-#: ../ubuntutweak/modules/metacity.py:196
-#: ../ubuntutweak/modules/metacity.py:210
-#: ../ubuntutweak/modules/metacity.py:224
-msgid "Lower"
-msgstr "Inferior"
-
-#: ../ubuntutweak/modules/metacity.py:203
-msgid "Titlebar middle-click action"
-msgstr "Acção do botão-do-meio do rato na barra de título"
-
-#: ../ubuntutweak/modules/metacity.py:217
-msgid "Titlebar right-click action"
-msgstr "Acção do botão direito do rato na barra de título"
-
-#: ../ubuntutweak/modules/metacity.py:234
-msgid "Window Decoration Effects"
-msgstr "Efeitos na Decoração da Janela"
-
-#: ../ubuntutweak/modules/metacity.py:236
-msgid "Use Metacity window theme"
-msgstr "Usar o tema de janela Metacity"
-
-#: ../ubuntutweak/modules/metacity.py:240
-msgid "Enable active window transparency"
-msgstr "Activar transparência da janela activa"
-
-#: ../ubuntutweak/modules/metacity.py:244
-msgid "Active window transparency level"
-msgstr "Nível de transparência da janela activa"
-
-#: ../ubuntutweak/modules/metacity.py:249
-msgid "Enable inactive window transparency"
-msgstr "Activar transparência da janela inactiva"
-
-#: ../ubuntutweak/modules/metacity.py:253
-msgid "Inactive window shade transparency level"
-msgstr "Nível de transparência da sombre da janela inactiva"
-
-#: ../ubuntutweak/modules/metacity.py:261
-msgid "Enable Metacity's compositing feature"
-msgstr "Activar recurso de composição do Metacity"
-
-#: ../ubuntutweak/modules/metacity.py:266
-msgid "Compositing Manager"
-msgstr "Gestor de Composições"
-
-#: ../ubuntutweak/modules/metacity.py:308
-msgid ""
-"To enable Metacity's compositing feature, you should manually disable Visual "
-"Effects in \"Appearance\"."
+#: ../ubuntutweak/modules/__init__.py:30
+msgid "Appearance"
 msgstr ""
-"Para activar o recurso de composição, deve desactivar os Efeitos Visuais no "
-"menu \"Sistema > Preferências > Aparência\""
 
-#: ../ubuntutweak/modules/__init__.py:103
+#: ../ubuntutweak/modules/__init__.py:31
+msgid "Startup"
+msgstr "Arranque"
+
+#: ../ubuntutweak/modules/__init__.py:35
+msgid "Other"
+msgstr "Outros"
+
+#: ../ubuntutweak/modules/__init__.py:228
 msgid "More"
 msgstr "Mais"
 
-#: ../ubuntutweak/modules/__init__.py:259
-msgid "This module encountered an error while loading."
-msgstr "Este módulo encontrou um erro enquanto carregava."
-
-#: ../ubuntutweak/modules/__init__.py:281
+#: ../ubuntutweak/modules/__init__.py:367
 #, python-format
 msgid ""
 "Ubuntu Tweak has detected that your apt configuration is broken.\n"
@@ -1299,2049 +1421,1453 @@ msgid ""
 "\n"
 "Or you can submit the Error Message to the developer for help:"
 msgstr ""
-"O Ubuntu Tweak detectou que a sua configuração está danificada.\n"
+"O Ubuntu Tweak detetou que a sua configuração está danificada.\n"
 "Tente corrigi-la com os seguintes processos:\n"
 "\n"
 "\t1. Abrir o terminal\n"
-"\t2. Execute estes comandos:\n"
+"\t2. Executar estes comandos:\n"
 "\n"
 "\t\tsudo chmod 644 %(broken_file)s\n"
 "\t\tsudo chown root:root %(broken_file)s\n"
 "\n"
 "Ou envie a mensagem de erro para o programador:"
 
-#: ../ubuntutweak/modules/__init__.py:286
+#: ../ubuntutweak/modules/__init__.py:377
 #, python-format
 msgid ""
 "Ubuntu Tweak has detected that your apt list file is broken.\n"
 "Try to fix by following steps:\n"
 "\n"
-"\t1. Open your terminal\n"
+"\t1.Open your terminal\n"
 "\t2. Run the command to open apt list file:\n"
 "\n"
 "\t\tsudo gedit %s\n"
 "\n"
 "\t3. Edit the list to make it correctly\n"
 "\n"
-"Or you can submit the Error Message to the developer for help:"
+"Or you can submit the Error Message to the developer forhelp:"
 msgstr ""
-"O Ubuntu Tweak detectou que a sua configuração apt está danificada.\n"
-"Tente corrigi-la com os seguintes processos:\n"
+"O Ubuntu Tweak detetou que o ficheiro de listas apt está danificado.\n"
+"execute estes processos:\n"
 "\n"
 "\t1. Abrir o terminal\n"
-"\t2. Execute este comando:\n"
+"\t2. Executar o comando para abrir o ficheiro de listas apt:\n"
 "\n"
 "\t\tsudo gedit %s\n"
 "\n"
 "\t3. Edite a lista para a corrigir\n"
 "\n"
-"Ou envie a mensagem de erro para o programador:"
+"Ou então, envie uma mensagem de erro aos programadores e solicite ajuda:"
 
-#: ../ubuntutweak/modules/icons.py:32
+#: ../ubuntutweak/tweaks/icons.py:25
 msgid "Show \"Computer\" icon on desktop"
-msgstr "Mostrar o ícone \"Computador\" na Área de Trabalho"
+msgstr "Mostrar o ícone \"Computador\" no ambiente de trabalho"
 
-#: ../ubuntutweak/modules/icons.py:41
+#: ../ubuntutweak/tweaks/icons.py:32
 msgid "Show \"Home Folder\" icon on desktop"
-msgstr "Mostrar o ícone da \"Pasta Pessoal\" na Área de Trabalho"
+msgstr "Mostrar o ícone \"Pasta pessoal\" no ambiente de trabalho"
 
-#: ../ubuntutweak/modules/icons.py:50
+#: ../ubuntutweak/tweaks/icons.py:39
 msgid "Show \"Trash\" icon on desktop"
 msgstr "Mostrar o ícone \"Lixo\" no ambiente de trabalho"
 
-#: ../ubuntutweak/modules/icons.py:108
-msgid "Desktop Icon Settings"
-msgstr "Configurações dos Ícones do Ambiente de Trabalho"
+#: ../ubuntutweak/tweaks/icons.py:46
+msgid "Show \"Network Servers\" icon on desktop"
+msgstr ""
 
-#: ../ubuntutweak/modules/icons.py:109
+#: ../ubuntutweak/tweaks/icons.py:75 ../ubuntutweak/gui/treeviews.py:76
+msgid "Rename"
+msgstr "Mudar nome"
+
+#: ../ubuntutweak/tweaks/icons.py:107
 msgid "Rename and toggle visibilty of desktop icons"
 msgstr ""
-"Renomear e alternar a visibilidade dos ícones do ambiente de trabalho"
+"Mudar nome e alternar a visibilidade dos ícones do ambiente de trabalho"
 
-#: ../ubuntutweak/modules/icons.py:118
+#: ../ubuntutweak/tweaks/icons.py:115
 msgid "Show desktop icons"
 msgstr "Mostrar ícones no ambiente de trabalho"
 
-#: ../ubuntutweak/modules/icons.py:139
-msgid "Show \"Network\" icon on desktop"
-msgstr "Mostar o ícone \"Rede\" na Área de Trabalho"
-
-#: ../ubuntutweak/modules/icons.py:144
+#: ../ubuntutweak/tweaks/icons.py:137
 msgid "Show mounted volumes on desktop"
 msgstr "Mostrar volumes montados no ambiente de trabalho"
 
-#: ../ubuntutweak/modules/icons.py:149
-msgid ""
-"Show contents of \"Home Folder\" on desktop (Logout for changes to take "
-"effect)"
-msgstr ""
-"Mostrar conteúdo do \"Home Folder\" no ambiente de trabalho (Termine a "
-"sessão para as mudanças surtirem efeito)"
-
-#: ../ubuntutweak/modules/gnomesettings.py:41
-msgid "GNOME Settings"
-msgstr "Configurações GNOME"
-
-#: ../ubuntutweak/modules/gnomesettings.py:42
-msgid "A lot of GNOME settings for panels, menus and other desktop elements"
-msgstr ""
-"Uma série de configurações do Gnome para os paineis, menus e outros "
-"elementos do ambiente de trabalho"
-
-#: ../ubuntutweak/modules/gnomesettings.py:54
-msgid "Panel Settings"
-msgstr "Configuração do Painel"
-
-#: ../ubuntutweak/modules/gnomesettings.py:56
-msgid "Display warning when removing a panel"
-msgstr "Mostrar um aviso ao remover um painel"
-
-#: ../ubuntutweak/modules/gnomesettings.py:60
-msgid "Complete lockdown of all panels"
-msgstr "Bloqueio total de todos os painéis"
-
-#: ../ubuntutweak/modules/gnomesettings.py:64
-msgid "Enable panel animations"
-msgstr "Activar animações de painel"
-
-#: ../ubuntutweak/modules/gnomesettings.py:68
-msgid "Me Menu Setting"
-msgstr "Definição do Meu Menu"
-
-#: ../ubuntutweak/modules/gnomesettings.py:70
-msgid "Don't Display"
-msgstr "Não Exibir"
-
-#: ../ubuntutweak/modules/gnomesettings.py:70
-msgid "Display user name"
-msgstr "Exibir nome de utilizador"
-
-#: ../ubuntutweak/modules/gnomesettings.py:70
-msgid "Display real name"
-msgstr "Exibir nome real"
-
-#: ../ubuntutweak/modules/gnomesettings.py:76
-msgid "Menu Settings"
-msgstr "Configurações do Menu"
-
-#: ../ubuntutweak/modules/gnomesettings.py:78
-msgid "Show Input Method menu in the context menu"
-msgstr "Mostrar Método de Entrada no menu de contexto"
-
-#: ../ubuntutweak/modules/gnomesettings.py:82
-msgid "Show Unicode Control Character menu in the context menu"
-msgstr "Mostrar Controle de Caracteres Unicode no menu de contexto"
-
-#: ../ubuntutweak/modules/gnomesettings.py:86
-msgid "Show icons in menus"
-msgstr "Apresentar ícones nos menus"
-
-#: ../ubuntutweak/modules/gnomesettings.py:90
-msgid "Show icons on buttons"
-msgstr "Mostrar ícones nos botoẽs"
-
-#: ../ubuntutweak/modules/gnomesettings.py:97
-msgid "Screensaver"
-msgstr "Protecção de ecrã"
-
-#: ../ubuntutweak/modules/gnomesettings.py:99
-msgid "Enable user switching whilst screen is locked."
-msgstr ""
-"Activar a alteração de utilizador mesmo quando o ecrã está bloqueado."
-
-#: ../ubuntutweak/modules/gnomesettings.py:108
-msgid "Terminal"
-msgstr "Terminal"
-
-#: ../ubuntutweak/modules/gnomesettings.py:110
-msgid "Display menubar when Terminal starts up (for current profile)"
-msgstr "Exibir barra de menu ao iniciar o Terminal (no perfil actual)"
-
-#: ../ubuntutweak/modules/gnomesettings.py:116
-msgid "Enable system-wide \"Recent Documents\" list"
-msgstr "Activar lista de \"Documentos Recentes\" em todo o sistema"
-
-#: ../ubuntutweak/modules/gnomesettings.py:119
-msgid "History"
-msgstr "Histórico"
-
-#: ../ubuntutweak/modules/gnomesettings.py:126
-msgid "Click this button to change the menu logo image"
-msgstr "Clicar neste botão para alterar a imagem do logótipo do menu"
-
-#: ../ubuntutweak/modules/gnomesettings.py:139
-#: ../ubuntutweak/modules/loginsettings.py:147
-msgid "Choose a new logo image"
-msgstr "Escolha uma nova imagem como logotipo."
-
-#: ../ubuntutweak/modules/gnomesettings.py:145
-msgid "PNG images with 24x24 size or SVG images"
-msgstr "Imagens PNG de 24x24 ou imagens SVG"
-
-#: ../ubuntutweak/modules/gnomesettings.py:178
-msgid ""
-"This image size isn't suitable for the panel.\n"
-"It should measure 24x24."
-msgstr ""
-"Esta imagem não é indicada para o painel.\n"
-"O tamanho deve ser de 24x24."
-
-#: ../ubuntutweak/modules/gnomesettings.py:198
-msgid "Do you want your changes to take effect immediately?"
-msgstr "Pretende que as suas alterações sejam efectuadas imediatamente?"
-
-#: ../ubuntutweak/modules/gnomesettings.py:221
-msgid ""
-"Disabling \"Recent Documents\" may break other software, for example the "
-"history feature in VMware Player."
-msgstr ""
-"Se desactivar os \"Documentos Recentes\", pode danificar outros programas. "
-"Ex: histórico no VMWare Player."
-
-#: ../ubuntutweak/modules/powermanager.py:28
-msgid "Power Manager Settings"
-msgstr "Definições do gestor de energia"
-
-#: ../ubuntutweak/modules/powermanager.py:29
-msgid "Control your computer's power management"
+#: ../ubuntutweak/tweaks/icons.py:143
+msgid "Show contents of \"Home Folder\" on desktop"
 msgstr ""
 
-#: ../ubuntutweak/modules/powermanager.py:37
-msgid "Advanced Power Management Settings"
-msgstr "Definições de Gestão de Energia avançada"
-
-#: ../ubuntutweak/modules/powermanager.py:39
-msgid "Enable \"Lock screen\" when \"Blank Screen\" activates"
-msgstr "Activar \"Trancar ecrã\" quando o ecrã desliga"
-
-#: ../ubuntutweak/modules/powermanager.py:43
-msgid "Lock screen on hibernate"
-msgstr "Trancar o ecrã ao hibernar"
-
-#: ../ubuntutweak/modules/powermanager.py:47
-msgid "Lock screen on suspend"
-msgstr "Trancar o ecrã ao suspender"
-
-#: ../ubuntutweak/modules/powermanager.py:51
-msgid "LCD brightness when using AC power"
-msgstr "Brilho do LCD quando usa corrente eléctrica"
-
-#: ../ubuntutweak/modules/powermanager.py:56
-msgid "LCD brightness when using battery"
-msgstr "Brilho do LCD quando usa bateria"
-
-#: ../ubuntutweak/modules/compiz.py:54
-msgid "Show Workspaces"
-msgstr "Mostrar Ambientes de Trabalho"
-
-#: ../ubuntutweak/modules/compiz.py:55
-msgid "Show Windows"
-msgstr "Mostrar Janelas"
-
-#: ../ubuntutweak/modules/compiz.py:56
-msgid "Show Desktop"
-msgstr "Mostrar Área de Trabalho"
-
-#: ../ubuntutweak/modules/compiz.py:57
-msgid "Show Widgets"
-msgstr "Mostrar Widgets"
-
-#: ../ubuntutweak/modules/compiz.py:319
-msgid "Compiz Settings"
-msgstr "Configurações do Compiz"
-
-#: ../ubuntutweak/modules/compiz.py:320
-msgid "Settings for some amazing desktop eye-candy"
-msgstr "Definições para os efeitos do ambiente de trabalho"
-
-#: ../ubuntutweak/modules/compiz.py:334
-msgid "Install Advanced Desktop Effects Settings Manager"
-msgstr "Instalar Advanced Desktop Effects Settings Manager"
-
-#: ../ubuntutweak/modules/compiz.py:337
-msgid "Install Simple Desktop Effects Settings Manager"
-msgstr "Inatalar Gestor de Definições de Efeitos do Ambiente de Trabalho"
-
-#: ../ubuntutweak/modules/compiz.py:340
-msgid "Install Screenlets Widget Application"
-msgstr "Instalar Aplicação de Widgets Screenlets"
-
-#: ../ubuntutweak/modules/compiz.py:347
-msgid " Workspace Edge Settings"
-msgstr " Definições dos Limites da Área de Trabalho"
-
-#: ../ubuntutweak/modules/compiz.py:350
-msgid "Enable snapping windows"
-msgstr "Activar janelas atraídas"
-
-#: ../ubuntutweak/modules/compiz.py:351
-msgid "Enable wobbly windows"
-msgstr "Activar janelas gelatinosas"
-
-#: ../ubuntutweak/modules/compiz.py:352
-msgid "Enable workspace switching with mouse wheel"
-msgstr "Permitir a troca de áreas de trabalho com o rato"
-
-#: ../ubuntutweak/modules/compiz.py:354
-msgid "Make the launcher hide automatically after some time inactive"
-msgstr ""
-"Fazer com que o lançador seja ocultado após algum tempo de inactividade"
-
-#: ../ubuntutweak/modules/compiz.py:358
-msgid "Desktop Effects"
-msgstr "Efeitos do Ambiente de Trabalho"
-
-#: ../ubuntutweak/modules/compiz.py:364
-msgid "Enable transparent menus"
-msgstr "Activar menus transparentes"
-
-#: ../ubuntutweak/modules/compiz.py:365
-msgid "Enable wobbly menus"
-msgstr "Activar menus gelatinosos"
-
-#: ../ubuntutweak/modules/compiz.py:367
-msgid "Menu Effects"
-msgstr "Efeitos de Menu"
-
-#: ../ubuntutweak/modules/compiz.py:371
-msgid "Useful Extensions"
-msgstr "Extensões Úteis"
-
-#: ../ubuntutweak/modules/compiz.py:386
-msgid "Prerequisite Conditions"
-msgstr "Condições Pré-requisitas"
-
-#: ../ubuntutweak/modules/sourcecenter.py:112
-msgid ""
-"You can install new applications by selecting them and choosing \"Yes\".\n"
-"Or you can install them at Application Center by choosing \"No\"."
-msgstr ""
-"Pode instalar novas aplicações seleccionando-as e escolhendo \"Sim\".\n"
-"Ou pode instalá-las a partir do Centro de Aplicações escolhendo \"Não\"."
-
-#: ../ubuntutweak/modules/sourcecenter.py:113
-msgid "New applications are available"
-msgstr "Novas aplicações disponíveis"
-
-#. checkbutton
-#: ../ubuntutweak/modules/sourcecenter.py:122
-#: ../ubuntutweak/modules/cleaner.py:768
-msgid "Select All"
-msgstr "Seleccionar todos"
-
-#: ../ubuntutweak/modules/sourcecenter.py:147
-msgid "Your system is clean and there are no updates yet."
-msgstr "O sistema está limpo e não existem actualizações."
-
-#: ../ubuntutweak/modules/sourcecenter.py:355
-#, python-format
-msgid "%d New Application Available"
-msgid_plural "%d New Applications Available"
-msgstr[0] "%d Nova Aplicação Disponível"
-msgstr[1] "%d Novas Aplicações Disponíveis"
-
-#: ../ubuntutweak/modules/sourcecenter.py:373
-#, python-format
-msgid "%d Package Update Available"
-msgid_plural "%d Package Updates Available"
-msgstr[0] "%d Novo Pacote Disponível"
-msgstr[1] "%d Novos Pacotes Disponíveis"
-
-#: ../ubuntutweak/modules/sourcecenter.py:411
-msgid "No Available Package Updates"
-msgstr "Nenhuma Actualização de Pacotes Disponivel"
-
-#: ../ubuntutweak/modules/sourcecenter.py:546
-msgid "Third-Party Sources"
-msgstr "Fontes de Terceiros"
-
-#: ../ubuntutweak/modules/sourcecenter.py:733
-#, python-format
-msgid ""
-"You can't enable this Source because<b>\"%(SOURCE)s\"</b> conflicts with "
-"it.\n"
-"To continue you need to disable <b>\"%(SOURCE)s\"</b>first."
-msgstr ""
-"Não pode activar esta Fonte porque entra em conflito com "
-"<b>\"%(SOURCE)s\"</b>\n"
-"Para a activar, precisa de desactivar <b>\"%(SOURCE)s\"</b>"
-
-#: ../ubuntutweak/modules/sourcecenter.py:755
-#, python-format
-msgid ""
-"To enable this Source, You need to enable <b>\"%s\"</b> at first.\n"
-"Do you wish to continue?"
-msgstr ""
-"Para activar esta Fonte, precisa activar <b>\"%s\"</b>.\n"
-"Deseja continuar?"
-
-#: ../ubuntutweak/modules/sourcecenter.py:757
-msgid "Dependency Notice"
-msgstr "Aviso de dependência"
-
-#: ../ubuntutweak/modules/sourcecenter.py:781
-#, python-format
-msgid ""
-"You can't disable this Source because <b>\"%(SOURCE)s\"</b> depends on it.\n"
-"To continue you need to disable <b>\"%(SOURCE)s\"</b> first."
-msgstr ""
-"Não pode desactivar esta Fonte pois depende de <b>\"%(SOURCE)s\"</b> \n"
-"Para continuar tem que desactivar <b>\"%(SOURCE)s\"</b>"
-
-#: ../ubuntutweak/modules/sourcecenter.py:856
-msgid "New source has been enabled"
-msgstr "A nova fonte foi activada"
-
-#: ../ubuntutweak/modules/sourcecenter.py:857
-#, python-format
-msgid ""
-"%s is enabled now, Please click the refresh button to update the application "
-"cache."
-msgstr ""
-"%s está activa agora. Por favor clique no botão recarregar para atualizar a "
-"cache das aplicações."
-
-#: ../ubuntutweak/modules/sourcecenter.py:871
-msgid "Homepage"
-msgstr "Página inicial"
-
-#: ../ubuntutweak/modules/sourcecenter.py:871
-msgid "Source URL"
-msgstr "URL de origem"
-
-#: ../ubuntutweak/modules/sourcecenter.py:871
-msgid "Description"
-msgstr "Descrição"
-
-#: ../ubuntutweak/modules/sourcecenter.py:884
-msgid "Description is here"
-msgstr "Descrição é aqui"
-
-#: ../ubuntutweak/modules/sourcecenter.py:910
-msgid "Source Center"
-msgstr "Centro de Fonte"
-
-#: ../ubuntutweak/modules/sourcecenter.py:911
-msgid ""
-"A collection of software sources to ensure your applications are always up-"
-"to-date.\n"
-"Here you can add applications unavailable in the official repositories.\n"
-"A list of available software sources will be obtained automatically from a "
-"remote server.\n"
-"You can click the \"Sync\" button to manually check for updates"
-msgstr ""
-"Uma compilação de fontes de aplicações para assegurar que mantém as "
-"aplicações actualizadas.\n"
-"Será obtida, a partir de um servidor remoto, a lista de fontes disponíveis.\n"
-"Pode premir o botão \"Sincronizar\" para executar uma verificação manual das "
-"actualizações."
-
-#: ../ubuntutweak/modules/sourcecenter.py:917
-msgid "Visit online Source Center"
-msgstr "Visitar Centro de Fontes Online"
-
-#. the "%s" is in front, some is the end, so just return the long one
-#: ../ubuntutweak/modules/sourcecenter.py:1000
-#, python-format
-msgid "disabled on upgrade to %s"
-msgstr "desactivada na ctualização para %s"
-
-#: ../ubuntutweak/modules/sourcecenter.py:1009
-msgid ""
-"After a successful distribution upgrade, any third-party sources you use "
-"will be disabled by default.\n"
-"Would you like to re-enable any sources disabled by Update Manager?"
-msgstr ""
-"Após uma actualização de distribuição bem sucedida, quaisquer fontes de "
-"terceiros serão desactivadas.\n"
-"Deseja reactivar quaisquer fontes desactivadas pelo Gestor de Actualizações?"
-
-#: ../ubuntutweak/modules/sourcecenter.py:1012
-msgid "Upgrade Third Party Sources"
-msgstr "Actualizar Fontes de Terceiros"
-
-#: ../ubuntutweak/modules/sourcecenter.py:1018
-msgid "Upgrade Successful!"
-msgstr "Actualização Com Sucesso!"
-
-#: ../ubuntutweak/modules/sourcecenter.py:1020
-msgid "Upgrade Failed!"
-msgstr "Falha ao Actualizar!"
-
-#: ../ubuntutweak/modules/sourcecenter.py:1027
-msgid "New source data available, would you like to update?"
-msgstr "Novos dados de fonte disponíveis. Deseja actualizar?"
-
-#: ../ubuntutweak/modules/sourcecenter.py:1109
-msgid ""
-"It is a possible security risk to use packages from Third-Party Sources.\n"
-"Please be careful and use only sources you trust."
-msgstr ""
-"Pode existir um risco de segurança ao usar pacotes de fontes de terceiros.\n"
-"Por favor tenha cuidado e use apenas fontes de software em que confia."
-
-#: ../ubuntutweak/modules/sourcecenter.py:1141
-msgid "An error occurred whilst downloading the file"
-msgstr "Ocorreu um erro ao transferir o ficheiro"
-
-#: ../ubuntutweak/modules/sourcecenter.py:1156
-msgid "Update available, Would you like to update?"
-msgstr "Actualização disponível. Pretende actualizar?"
-
-#: ../ubuntutweak/modules/sourcecenter.py:1165
-msgid ""
-"Network Error, Please check your network connection or the remote server is "
-"down."
-msgstr ""
-"Erro de Rede. Por favor, verifique se a ligação de rede ou servidor estão "
-"desligados."
-
-#: ../ubuntutweak/modules/scripts.py:59
-msgid "Create Launcher ..."
-msgstr "Criar lançador..."
-
-#: ../ubuntutweak/modules/scripts.py:60
-msgid "Copy to ..."
-msgstr "Copiar para..."
-
-#: ../ubuntutweak/modules/scripts.py:61
-msgid "Copy to Desktop"
-msgstr "Copiar para a Área de Trabalho"
-
-#: ../ubuntutweak/modules/scripts.py:62
-msgid "Copy to Download"
-msgstr "Copiar para Download"
-
-#: ../ubuntutweak/modules/scripts.py:63
-msgid "Copy to Home"
-msgstr "Copiar para a pasta \"Home\""
-
-#: ../ubuntutweak/modules/scripts.py:64
-msgid "Check md5 sum"
-msgstr "Verificar a soma md5"
-
-#: ../ubuntutweak/modules/scripts.py:65
-msgid "Compress PDF"
-msgstr "Comprimir PDF"
-
-#: ../ubuntutweak/modules/scripts.py:66
-msgid "Move to ..."
-msgstr "Mover para..."
-
-#: ../ubuntutweak/modules/scripts.py:67
-msgid "Move to Desktop"
-msgstr "Mover para a Área de Trabalho"
-
-#: ../ubuntutweak/modules/scripts.py:68
-msgid "Move to Download"
-msgstr "Mover para o directório Download"
-
-#: ../ubuntutweak/modules/scripts.py:69
-msgid "Move to Home"
-msgstr "Mover para o directório Home"
-
-#: ../ubuntutweak/modules/scripts.py:70
-msgid "Create hardlink to ..."
-msgstr "Criar ligação a..."
-
-#: ../ubuntutweak/modules/scripts.py:71
-msgid "Link to ..."
-msgstr "Atalho para ..."
-
-#: ../ubuntutweak/modules/scripts.py:72
-msgid "Link to Desktop"
-msgstr "Ligar ao directório Ambiente de trabalho"
-
-#: ../ubuntutweak/modules/scripts.py:73
-msgid "Link to Download"
-msgstr "Ligar ao directório Download"
-
-#: ../ubuntutweak/modules/scripts.py:74
-msgid "Link to Home"
-msgstr "Ligar ao directório Home"
-
-#: ../ubuntutweak/modules/scripts.py:75
-msgid "Open with your favourite text editor"
-msgstr "Abrir com o seu editor de texto favorito"
-
-#: ../ubuntutweak/modules/scripts.py:76
-msgid "Open with your favourite text editor (as root)"
-msgstr "Abrir com o seu editor de texto favorito (como root)"
-
-#: ../ubuntutweak/modules/scripts.py:77
-msgid "Browse as root"
-msgstr "Explorar como root"
-
-#: ../ubuntutweak/modules/scripts.py:78
-msgid "Search in current folder"
-msgstr "Procurar na pasta actual"
-
-#: ../ubuntutweak/modules/scripts.py:79
-msgid "Convert image to JPG"
-msgstr "Converter imagem para JPG"
-
-#: ../ubuntutweak/modules/scripts.py:80
-msgid "Convert image to PNG"
-msgstr "Converter imagem para PNG"
-
-#: ../ubuntutweak/modules/scripts.py:81
-msgid "Convert image to GIF"
-msgstr "Converter imagem para GIF"
-
-#: ../ubuntutweak/modules/scripts.py:82
-msgid "Set image as wallpaper"
-msgstr "Definir imagem como fundo de ecrã"
-
-#: ../ubuntutweak/modules/scripts.py:83
-msgid "Make hard shadow to image"
-msgstr "Criar sombra-fixa para imagem"
-
-#: ../ubuntutweak/modules/scripts.py:110
-msgid "Enabled Scripts"
-msgstr "Scripts Activos"
-
-#: ../ubuntutweak/modules/scripts.py:138
-msgid "Disabled Scripts"
-msgstr "Scripts Desactivos"
-
-#: ../ubuntutweak/modules/scripts.py:144
-msgid "Manage Scripts"
-msgstr "Gerir scripts"
-
-#: ../ubuntutweak/modules/scripts.py:145
-msgid ""
-"Scripts can be used to complete all kinds of tasks.\n"
-"You can drag and drop scripts here from File Manager.\n"
-"'Scripts' will then be added to the context menu."
-msgstr ""
-"Os 'scripts' podem ser utilizados para executar diversas tarefas.\n"
-"Através do gestor de ficheiros, pode arrastar e largar aqui os 'scripts'.\n"
-"Os 'scripts' serão adicionados ao menu de contexto."
-
-#: ../ubuntutweak/modules/scripts.py:178
-msgid "Rebuild System Scripts"
-msgstr "Reconstruir scripts do sistema"
-
-#: ../ubuntutweak/modules/scripts.py:196
-msgid ""
-"This will delete all disabled scripts.\n"
-"Do you wish to continue?"
-msgstr ""
-"Isto eliminará todos os scripts desactivados.\n"
-"Você deseja continuar?"
-
-#: ../ubuntutweak/modules/templates.py:67
-msgid "HTML document"
-msgstr "Documento HTML"
-
-#: ../ubuntutweak/modules/templates.py:68
-msgid "ODB Database"
-msgstr "Base de Dados ODB"
-
-#: ../ubuntutweak/modules/templates.py:69
-msgid "ODS Spreadsheet"
-msgstr "Folha de Cálculo ODS"
-
-#: ../ubuntutweak/modules/templates.py:70
-msgid "ODT Document"
-msgstr "Documento ODT"
-
-#: ../ubuntutweak/modules/templates.py:71
-msgid "Plain text document"
-msgstr "Documento em texto simples"
-
-#: ../ubuntutweak/modules/templates.py:72
-msgid "ODP Presentation"
-msgstr "Apresentação ODP"
-
-#: ../ubuntutweak/modules/templates.py:73
-msgid "Python script"
-msgstr "Script Python"
-
-#: ../ubuntutweak/modules/templates.py:74
-msgid "Pygtk Example"
-msgstr "Exemplo Pygtk"
-
-#: ../ubuntutweak/modules/templates.py:75
-msgid "Shell script"
-msgstr "Script de consola"
-
-#: ../ubuntutweak/modules/templates.py:102
-msgid "Enabled Templates"
-msgstr "Modelos Activos"
-
-#: ../ubuntutweak/modules/templates.py:109
-msgid "Disabled Templates"
-msgstr "Modelos Desactivos"
-
-#: ../ubuntutweak/modules/templates.py:116
-msgid "Manage Templates"
-msgstr "Gerir os Modelos"
-
-#: ../ubuntutweak/modules/templates.py:117
-msgid ""
-"Here you can manage your document templates.\n"
-"You can add files as templates by dragging them into this window.\n"
-"You can then create new documents based on these templates from the Nautilus "
-"right-click menu."
-msgstr ""
-"Aqui pode fazer a gestão dos seus modelos de documentos.\n"
-"Pode adicionar os modelos arrastando-os para esta janela.\n"
-"Assim, através do menu de contexto do Nautilus, pode criar novos documentos "
-"baseados em modelos."
-
-#: ../ubuntutweak/modules/templates.py:128
-#, python-format
-msgid ""
-"The templates path is incorrect! The current path points to \"%s\".\n"
-"Please reset it to a location within your Home Folder."
-msgstr ""
-"O caminho dos modelos está incorrecto. O caminho aponta para \"%s\".\n"
-"Por favor, reponha o caminho para a sua pasta pessoal."
-
-#: ../ubuntutweak/modules/templates.py:137
-msgid "Go And Set"
-msgstr "Ir e definir"
-
-#: ../ubuntutweak/modules/templates.py:142
-msgid "Restart This Module"
-msgstr "Reiniciar este módulo"
-
-#: ../ubuntutweak/modules/templates.py:172
-msgid "Rebuild System Templates"
-msgstr "Reconstruir o sistema de Modelos"
-
-#: ../ubuntutweak/modules/templates.py:192
-msgid "The templates path is still incorrect, please reset it!"
-msgstr "O caminho dos modelos ainda é inválido, Por favor, corrija-o!"
-
-#: ../ubuntutweak/modules/templates.py:204
-msgid ""
-"This will delete all disabled templates.\n"
-"Do you wish to continue?"
-msgstr ""
-"Isto apaga todos os Modelos desactivados.\n"
-"Quer continuar?"
-
-#: ../ubuntutweak/modules/session.py:34 ../ubuntutweak/modules/session.py:69
-msgid "Session Control"
-msgstr "Controlo de Sessão"
-
-#: ../ubuntutweak/modules/session.py:35
-msgid "Control your system session releated features"
-msgstr "Controle as funcionalidades relacionadas com a sessão"
-
-#: ../ubuntutweak/modules/session.py:47
-msgid "File Manager"
-msgstr "Gestor de Ficheiros"
-
-#: ../ubuntutweak/modules/session.py:52
-msgid "Panel"
-msgstr "Painel"
-
-#: ../ubuntutweak/modules/session.py:57
-msgid "Window Manager"
-msgstr "Gestor de Janelas"
-
-#: ../ubuntutweak/modules/session.py:78
-msgid "Session Options"
-msgstr "Opções de Sessão"
-
-#: ../ubuntutweak/modules/session.py:80
-msgid "Automatically save open applications when logging out"
-msgstr "Automaticamente salvar aplicações abertas quando fecha a sessão"
-
-#: ../ubuntutweak/modules/session.py:84
-msgid "Suppress the logout, restart and shutdown confirmation dialogue box."
-msgstr ""
-"Suprimir a caixa de confirmação para reiniciar, desligar e terminar sessão."
-
-#: ../ubuntutweak/modules/session.py:110
-msgid "Please enter a valid application command line."
-msgstr "Por favor, indique uma linha de comandos válida."
-
-#: ../ubuntutweak/modules/session.py:110
-#, python-format
-msgid "\"%s\" is not available."
-msgstr "\"%s\" não está disponível."
-
-#: ../ubuntutweak/modules/cleaner.py:77
-msgid "Cleaning Configuration Files"
-msgstr "Limpando Ficheiros de Configuração"
-
-#: ../ubuntutweak/modules/cleaner.py:113
-msgid "Cleaning Package Cache"
-msgstr "Limpando a Cache de Pacotes"
-
-#: ../ubuntutweak/modules/cleaner.py:120
-#, python-format
-msgid "Cleaning...%s"
-msgstr "Limpando... %s"
-
-#: ../ubuntutweak/modules/cleaner.py:145
-msgid "Purge PPA and Downgrade Packages"
-msgstr "Eliminar PPA e Reverter Pacotes"
-
-#: ../ubuntutweak/modules/cleaner.py:146
-msgid "Downloading Packages..."
-msgstr "Transferindo Pacotes..."
-
-#: ../ubuntutweak/modules/cleaner.py:174
-msgid "Removing key files..."
-msgstr "A remover os ficheiros chave"
-
-#: ../ubuntutweak/modules/cleaner.py:205
-#, python-format
-msgid "Downgrading...%s"
-msgstr "Revertendo...%s"
-
-#: ../ubuntutweak/modules/cleaner.py:253 ../ubuntutweak/modules/cleaner.py:348
-msgid "Package"
-msgstr "Pacote"
-
-#: ../ubuntutweak/modules/cleaner.py:259
-msgid "Previous Version"
-msgstr "Versão Anterior"
-
-#: ../ubuntutweak/modules/cleaner.py:266
-msgid "System Version"
-msgstr "Versão do Sistema"
-
-#: ../ubuntutweak/modules/cleaner.py:373
-msgid "Unneeded Packages"
-msgstr "Pacotes Dispensáveis"
-
-#: ../ubuntutweak/modules/cleaner.py:401
-msgid "Kernel Packages"
-msgstr "Pacotes de Kernel"
-
-#: ../ubuntutweak/modules/cleaner.py:430
-msgid "Cached Package Files"
-msgstr "Ficheiros dos Pacotes em Cache"
-
-#: ../ubuntutweak/modules/cleaner.py:444
-#, python-format
-msgid ""
-"<b>%s</b>\n"
-"Occupies %s of disk space"
-msgstr ""
-"<b>%s</b>\n"
-"Ocupa %s de espaço em disco"
-
-#: ../ubuntutweak/modules/cleaner.py:504
-msgid "Package Configuration Files"
-msgstr "Ficheiros de Configuração de Pacotes"
-
-#: ../ubuntutweak/modules/cleaner.py:541
-#, python-format
-msgid "%d package selected for removal"
-msgid_plural "%d packages selected for removal"
-msgstr[0] "%d pacote seleccionado para remoção"
-msgstr[1] "%d pacotes seleccionados para remoção"
-
-#: ../ubuntutweak/modules/cleaner.py:545
-#, python-format
-msgid "%s of disk space will be freed"
-msgstr "Irá libertar %s espaço em disco"
-
-#: ../ubuntutweak/modules/cleaner.py:653
-msgid "It's safe to purge the PPA, no packages need to be downgraded."
-msgstr "É seguro eliminar o PPA, nenhum pacote será revertido."
-
-#: ../ubuntutweak/modules/cleaner.py:656
-msgid "To safely purge the PPA, the following packages must be downgraded."
-msgstr "Para eliminar o PPA, os seguintes pacotes tem de ser revertidos."
-
-#: ../ubuntutweak/modules/cleaner.py:660
-#, python-format
-msgid "You're going to purge: %s"
-msgstr "Vai eliminar: %s"
-
-#: ../ubuntutweak/modules/cleaner.py:691
-msgid "Cancelled by user!"
-msgstr "Cancelado pelo utilizador!"
-
-#: ../ubuntutweak/modules/cleaner.py:694
-msgid "Clean up successful!"
-msgstr "Limpeza bem sucedida!"
-
-#: ../ubuntutweak/modules/cleaner.py:697
-msgid "Clean up failed!"
-msgstr "Falha ao limpar!"
-
-#: ../ubuntutweak/modules/cleaner.py:710
-msgid "Package Cleaner"
-msgstr "Limpeza de Pacotes"
-
-#: ../ubuntutweak/modules/cleaner.py:711
-msgid ""
-"Free up disk space by removing redundant packages and cleaning package "
-"download cache."
-msgstr ""
-"Liberte espaço em disco removendo os pacotes redundantes e limpando a cache "
-"de transferências."
-
-#. create the button
-#: ../ubuntutweak/modules/cleaner.py:742
-msgid "Clean Packages"
-msgstr "Limpar Pacotes"
-
-#: ../ubuntutweak/modules/cleaner.py:747
-msgid "Clean Cache"
-msgstr "Limpar a Cache"
-
-#: ../ubuntutweak/modules/cleaner.py:752
-msgid "Clean Config"
-msgstr "Limpar a configuração"
-
-#: ../ubuntutweak/modules/cleaner.py:757
-msgid "Clean Kernels"
-msgstr "Limpar Kernels"
-
-#: ../ubuntutweak/modules/cleaner.py:762
-msgid "Purge PPAs"
-msgstr "Eliminar PPA"
-
-#: ../ubuntutweak/modules/cleaner.py:780
-msgid "_Cleanup"
-msgstr "_Limpar"
-
-#: ../ubuntutweak/modules/shortcuts.py:45
-msgid "Shortcut Commands"
-msgstr "Comandos de atalho"
-
-#: ../ubuntutweak/modules/shortcuts.py:46
-msgid ""
-"By configuring keyboard shortcuts, you can access your favourite "
-"applications instantly.\n"
-"Enter the command to run the application and choose a shortcut key "
-"combination."
-msgstr ""
-"Ao configurar os atalhos de teclado, pode aceder facilmente às suas "
-"aplicações preferidas.\n"
-"Indique o comando de execução da aplicação e escolha a combinação das teclas "
-"de atalho."
-
-#: ../ubuntutweak/modules/shortcuts.py:94
-#, python-format
-msgid "Command %d"
-msgstr "Comando %d"
-
-#: ../ubuntutweak/modules/shortcuts.py:104
-#: ../ubuntutweak/modules/shortcuts.py:160
-msgid "disabled"
-msgstr "desactivado"
-
-#: ../ubuntutweak/modules/shortcuts.py:120
-msgid "ID"
-msgstr "ID"
-
-#: ../ubuntutweak/modules/shortcuts.py:131
-msgid "Command"
-msgstr "Comando"
-
-#: ../ubuntutweak/modules/shortcuts.py:143
-msgid "Key"
-msgstr "Tecla"
-
-#: ../ubuntutweak/modules/shortcuts.py:153
-msgid "Clean"
-msgstr "Limpar"
-
-#: ../ubuntutweak/modules/autostart.py:46
-msgid "_Name:"
-msgstr "_Nome:"
-
-#: ../ubuntutweak/modules/autostart.py:49
-msgid "Co_mmand:"
-msgstr "Co_mando:"
-
-#: ../ubuntutweak/modules/autostart.py:63
-msgid "Edit Startup Program"
-msgstr "Editar Aplicação de Arranque"
-
-#: ../ubuntutweak/modules/autostart.py:68
-msgid "New Startup Program"
-msgstr "Nova Aplicação de Arranque"
-
-#: ../ubuntutweak/modules/autostart.py:99
-msgid "Choose a Program"
-msgstr "Escolha um Programa"
-
-#: ../ubuntutweak/modules/autostart.py:189
-msgid "Delete from Disk"
-msgstr "Apagar do Disco"
-
-#: ../ubuntutweak/modules/autostart.py:203
-msgid "Can't delete system item from disk."
-msgstr "Incapaz de eliminar o item do disco."
-
-#: ../ubuntutweak/modules/autostart.py:255
-msgid "No description"
-msgstr "Sem descrição"
-
-#: ../ubuntutweak/modules/autostart.py:275
-msgid "Program"
-msgstr "Programa"
-
-#: ../ubuntutweak/modules/autostart.py:334
-msgid "Auto Start Programs"
-msgstr "Priogramas de Início Automático"
-
-#: ../ubuntutweak/modules/autostart.py:335
-msgid ""
-"Here you can manage which programs are run upon login.\n"
-"You can hide items from view by selecting them and clicking \"Remove\"\n"
-"To permanently delete an item, right-click and select \"Delete\"."
-msgstr ""
-"Aqui pode fazer a gestão dos programas a iniciar com o arranque da sessão.\n"
-"Pode ocultar os itens da visualização com a selecção e escolhendo "
-"\"Remover\"\n"
-"Para apagar permanentemente um item, clique no botão direito do rato e "
-"escolha \"Apagar\"."
-
-#. create the two checkbutton for extra options of auto run list
-#: ../ubuntutweak/modules/autostart.py:349
-msgid "Show comments"
-msgstr "Mostrar comentários"
-
-#: ../ubuntutweak/modules/autostart.py:351
-msgid "Show all runnable programs"
-msgstr "Mostrar todos os programas executáveis"
-
-#: ../ubuntutweak/modules/autostart.py:417
-#: ../ubuntutweak/modules/autostart.py:464
-msgid "The name of the startup program cannot be empty"
-msgstr "O nome da aplicação de arranque não pode ser vazio"
-
-#: ../ubuntutweak/modules/autostart.py:419
-#: ../ubuntutweak/modules/autostart.py:466
-msgid "Text field was empty (or contained only whitespace)"
-msgstr "O campo de texto estava vazio (ou apenas tinha espaços em branco)"
-
-#: ../ubuntutweak/modules/nautilus.py:47
-msgid "Cleaning..."
-msgstr "Limpando..."
-
-#: ../ubuntutweak/modules/nautilus.py:66
-msgid "Nautilus Settings"
-msgstr "Definições Nautilus"
-
-#: ../ubuntutweak/modules/nautilus.py:67
+#: ../ubuntutweak/tweaks/nautilus.py:28
 msgid "Manage the default file manager"
 msgstr "Fazer a gestão do gestor de ficheiros"
 
-#: ../ubuntutweak/modules/nautilus.py:76
+#: ../ubuntutweak/tweaks/nautilus.py:35
+msgid "File Browser"
+msgstr "Explorador de ficheiros"
+
+#: ../ubuntutweak/tweaks/nautilus.py:37
 msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
 msgstr ""
-"Mostrar permissões avançadas na janela \"Propriedades do Ficheiro\" do "
+"Mostrar permissões avançadas na janela \"Propriedades do ficheiro\" do "
 "Nautilus"
 
-#: ../ubuntutweak/modules/nautilus.py:81
+#: ../ubuntutweak/tweaks/nautilus.py:42
 msgid "Always use the location entry, instead of the pathbar"
-msgstr ""
+msgstr "Utilizar sempre a entrada de localização em vez da barra de caminho"
 
-#: ../ubuntutweak/modules/nautilus.py:85
-msgid "File Browser"
-msgstr "Navegador de Ficheiros"
-
-#: ../ubuntutweak/modules/nautilus.py:94
+#: ../ubuntutweak/tweaks/nautilus.py:48
 msgid "Thumbnail Settings"
-msgstr "Definições de Miniaturas"
+msgstr "Definições de miniaturas"
 
-#: ../ubuntutweak/modules/nautilus.py:99
+#: ../ubuntutweak/tweaks/nautilus.py:53
 msgid "Default thumbnail icon size (pixels)"
-msgstr "Tamanho por defeitos dos ícones de miniatura"
+msgstr "Tamanho omisso para ícones de miniatura (pixeis)"
 
-#: ../ubuntutweak/modules/nautilus.py:104
+#: ../ubuntutweak/tweaks/nautilus.py:59
 msgid "Maximum thumbnail cache size (megabytes)"
 msgstr "Tamanho máximo para miniaturas em cache (megabytes)"
 
-#: ../ubuntutweak/modules/nautilus.py:109
+#: ../ubuntutweak/tweaks/nautilus.py:65
 msgid "Thumbnail cache time (days)"
 msgstr "Duração de miniaturas em cache (dias)"
 
-#: ../ubuntutweak/modules/nautilus.py:116
-msgid "Open folder in terminal"
-msgstr "Abrir pasta no terminal"
+#: ../ubuntutweak/tweaks/nautilus.py:70
+msgid "Automatically Mount Settings"
+msgstr ""
 
-#: ../ubuntutweak/modules/nautilus.py:118
-msgid "Open folder with root privileges"
-msgstr "Abrir pasta com previlégios de \\\"root\\\""
+#: ../ubuntutweak/tweaks/nautilus.py:74
+msgid "Whether to automatically mount media"
+msgstr ""
 
-#: ../ubuntutweak/modules/nautilus.py:120
-msgid "Nautilus with wallpaper"
-msgstr "Nautilus com papel de parede"
+#: ../ubuntutweak/tweaks/nautilus.py:79
+msgid "Whether to automatically open a folder for automounted media"
+msgstr ""
 
-#: ../ubuntutweak/modules/nautilus.py:122
-msgid "Nautilus Extensions"
-msgstr "Extensões do Nautilus"
+#: ../ubuntutweak/tweaks/nautilus.py:84
+msgid "Never prompt or autorun/autostart programs when media are inserted"
+msgstr ""
 
-#: ../ubuntutweak/modules/nautilus.py:144
+#: ../ubuntutweak/tweaks/session.py:30
+msgid "Control your system session releated features"
+msgstr "Controle as funcionalidades relacionadas com a sessão"
+
+#: ../ubuntutweak/tweaks/session.py:37
+msgid "Session Menu Options"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/session.py:39
+msgid "Remove the log out item from the session menu"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/session.py:44
+msgid "Remove the restart item from the session menu"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/session.py:49
+msgid "Remove the shutdown item from the session menu"
+msgstr "Remover a opção \"Encerrar\" do menu de sessão"
+
+#: ../ubuntutweak/tweaks/session.py:54
+msgid "Suppress the dialog to confirm logout, restart and shutdown action"
+msgstr ""
+"Suprimir a caixa de diálogo para confirmar acções de terminar sessão, "
+"reiniciar e encerrar"
+
+#: ../ubuntutweak/tweaks/session.py:62
+msgid "User Menu Options"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/session.py:64
+msgid "Show user menu"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/session.py:69
+msgid "Show user's real name on the panel"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:26
+msgid "Fonts"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:27
+msgid "Fonts Settings"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:39
+msgid "Deskotp fonts"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:41
+msgid "Text scaling factor"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:49
+msgid "Default font"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:54
+msgid "Monospace font"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:59
+msgid "Document font"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:64
+msgid "Window title bar font"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:72
+msgid "Hinting and antialiasing"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:74
+msgid "Hinting"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:77
+msgid "No hinting"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:78
+msgid "Basic"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:79
+msgid "Moderate"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:80
+msgid "Maximum"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:84
+msgid "Antialiasing"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:87
+msgid "No antialiasing"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:88
+msgid "Standard grayscale antialiasing"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:89
+msgid "Subpixel antialiasing (LCD screens only)"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/misc.py:31 ../ubuntutweak/tweaks/misc.py:67
+msgid "Miscellaneous"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/misc.py:32
+msgid "Set the cursor timeout, menus and buttons icons"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/misc.py:39
+msgid "Buttons and Menus"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/misc.py:41
+msgid "Buttons have icons"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/misc.py:46
+msgid "Menus have icons"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/misc.py:51
+msgid "Show Input Method menu in the context menu"
+msgstr "Mostrar método de entrada no menu de contexto"
+
+#: ../ubuntutweak/tweaks/misc.py:56
+msgid "Show Unicode Control Character menu in the context menu"
+msgstr "Mostrar controle de caracteres Unicode no menu de contexto"
+
+#: ../ubuntutweak/tweaks/misc.py:63
+msgid "Natural Scrolling"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/theme.py:27
+msgid "Theme"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/theme.py:28
+msgid "Set the gtk theme, icon theme, cursor theme and others"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/theme.py:41
+msgid "Desktop theme"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:27
+msgid "Unity Settings"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:28
+msgid "Tweak the powerful Unity desktop"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:37 ../ubuntutweak/tweaks/unity.py:127
+msgid "Launcher"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:39
+msgid "Icon size"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:46
+msgid "Launcher opacity"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:54
+msgid "Launcher reveal edge timeout"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:61 ../ubuntutweak/tweaks/unity.py:139
+msgid "Launcher hide mode"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:63 ../ubuntutweak/tweaks/unity.py:141
+msgid "Auto Hide"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:64
+msgid "Dodge Window"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:64
+msgid "Dodge Active Window"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:70
+msgid "Icon backlight"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:72
+msgid "Backlight Always On"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:73
+msgid "Backlight Toggles"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:74
+msgid "Backlight Always Off"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:75
+msgid "Edge Illumination Toggles"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:76
+msgid "Backlight and Edge Illumination Toggles"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:84
+msgid "Dash and Panel"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:86
+msgid "Dash size"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:88
+msgid "Automatic"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:90
+msgid "Netbook"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:97
+msgid "Blur"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:99
+msgid "No blur"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:100
+msgid "Static blur"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:101
+msgid "Active blur"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:107
+msgid "Panel opacity"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:118
+msgid "Compositing Manager"
+msgstr "Gestor de composição"
+
+#: ../ubuntutweak/tweaks/unity.py:120
+msgid "Enable Metacity's compositing feature"
+msgstr "Ativar composição Metacity"
+
+#: ../ubuntutweak/tweaks/unity.py:129
+msgid "Enable the Super key"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:134
+msgid "Reserve launcher area"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:142
+msgid "Intellihide"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Utils.py:207
 #, python-format
-msgid "Delete thumbnail cache (Frees %s of disk space)"
-msgstr "Apagar cache de miniaturas (Liberta %s de espaço em disco)"
+msgid ""
+"<span size=\"large\"><b>No matches found.</b> </span><span>\n"
+"\n"
+" Your filter \"<b>%s</b>\" does not match any items.</span>"
+msgstr ""
+"<span size=\"large\"><b>Nenhuma equivalência encontrada.</b> </span><span>\n"
+"\n"
+" O seu filtro \"<b>%s</b>\" não tem equivalência com nenhum item.</span>"
 
-#: ../ubuntutweak/modules/nautilus.py:147
-msgid "The thumbnail cache will be deleted. Do you wish to continue?"
-msgstr "A cache de miniaturas será apagada. Deseja continuar?"
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:111
+#, python-format
+msgid ""
+"The new value for the %(binding)s binding for the action <b>%(action)s</b> "
+"in plugin <b>%(plugin)s</b> conflicts with the action "
+"<b>%(action_conflict)s</b> of the <b>%(plugin_conflict)s</b> plugin.\n"
+"Do you wish to disable <b>%(action_conflict)s</b> in the "
+"<b>%(plugin_conflict)s</b> plugin?"
+msgstr ""
+"O novo valor da associação %(binding)s para a ação <b>%(action)s</b> do "
+"plugin <b>%(plugin)s</b> entra em conflito com a ação "
+"<b>%(action_conflict)s</b> do plugin <b>%(plugin_conflict)s</b>.\n"
+"Pretende desativar <b>%(action_conflict)s</b> do plugin "
+"<b>%(plugin_conflict)s</b>?"
 
-#: ../ubuntutweak/modules/nautilus.py:154
-msgid "Clean up Successful!"
-msgstr "Limpeza concluída com sucesso!"
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:123
+#, python-format
+msgid "Disable %(action_conflict)s"
+msgstr "Desativar %(action_conflict)s"
 
-#: ../ubuntutweak/modules/loginsettings.py:38
-msgid "Login Settings"
-msgstr "Definições de Início de Sessão"
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:124
+#, python-format
+msgid "Don't set %(action)s"
+msgstr "Não definir %(action)s"
 
-#: ../ubuntutweak/modules/loginsettings.py:39
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:125
+#, python-format
+msgid "Set %(action)s anyway"
+msgstr "Ainda assim, definir %(action)s"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:132
+msgid "key"
+msgstr "tecla"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:155
+msgid "button"
+msgstr "botão"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:178
+msgid "edge"
+msgstr "limite"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:252
+#, python-format
+msgid ""
+"You are trying to use the feature <b>%(feature)s</b> which is <b>not</b> "
+"provided by any plugin.\n"
+"Do you wish to use this feature anyway?"
+msgstr ""
+"Está a tentar utilizar a funcionalidade <b>%(feature)s</b> que <b>não</b> é "
+"disponibilizada por qualquer plugin.\n"
+"Pretende utilizar esta funcionalidade?"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:259
+#, python-format
+msgid "Use %(feature)s"
+msgstr "Utilizar %(feature)s"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:260
+#, python-format
+msgid "Don't use %(feature)s"
+msgstr "Não utilizar %(feature)s"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:267
+#, python-format
+msgid ""
+"You are trying to use the feature <b>%(feature)s</b> which is provided by "
+"<b>%(plugin)s</b>.\n"
+"This plugin is currently disabled.\n"
+"Do you wish to enable <b>%(plugin)s</b> so the feature is available?"
+msgstr ""
+"Está a tentar utilizar a funcionalidade <b>%(feature)s</b> que é "
+"disponibilizada por <b>%(plugin)s</b>.\n"
+"Este plugin está inativo.\n"
+"Pretende ativar <b>%(plugin)s</b> para disponibilizar a funcionalidade?"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:276
+#, python-format
+msgid "Enable %(plugin)s"
+msgstr "Ativar %(plugin)s"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:277
+#, python-format
+msgid "Don't enable %(feature)s"
+msgstr "Não ativar %(feature)s"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:410
+#, python-format
+msgid ""
+"Some %(bindings)s bindings of Plugin <b>%(plugin)s</b> conflict with other "
+"plugins. Do you want to resolve these conflicts?"
+msgstr ""
+"%(bindings)s associações do plugin <b>%(plugin)s</b> entram em conflito com "
+"outros plugins. Solucionar conflitos?"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:424
+msgid "Resolve conflicts"
+msgstr "Resolver conflitos"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:425
+msgid "Ignore conflicts"
+msgstr "Ignorar conflitos"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:428
+#, python-format
+msgid ""
+"Plugin <b>%(plugin_conflict)s</b> provides feature <b>%(feature)s</b> which "
+"is also provided by <b>%(plugin)s</b>"
+msgstr ""
+"O plugin <b>%(plugin_conflict)s</b> disponibiliza a funcionalidade "
+"<b>%(feature)s</b> que também é disponibilizada por <b>%(plugin)s</b>"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:438
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:446
+#, python-format
+msgid "Disable %(plugin_conflict)s"
+msgstr "Inativar %(plugin_conflict)s"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:439
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:447
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:468
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:479
+#, python-format
+msgid "Don't enable %(plugin)s"
+msgstr "Não ativar %(plugin)s"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:442
+#, python-format
+msgid "Plugin <b>%(plugin_conflict)s</b> conflicts with <b>%(plugin)s</b>."
+msgstr ""
+"O plugin <b>%(plugin_conflict)s</b> entra em conflito com <b>%(plugin)s</b>."
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:451
+#, python-format
+msgid ""
+"<b>%(plugin)s</b> requires feature <b>%(feature)s</b> which is provided by "
+"the following plugins:\n"
+"%(plugin_list)s"
+msgstr ""
+"<b>%(plugin)s</b> necessita de <b>%(feature)s</b>, disponibilizada pelos "
+"seguintes plugins:\n"
+"%(plugin_list)s"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:467
+msgid "Enable these plugins"
+msgstr "Ativar estes plugins"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:471
+#, python-format
+msgid "<b>%(plugin)s</b> requires the plugin <b>%(require)s</b>."
+msgstr "<b>%(plugin)s</b> requer o plugin <b>%(require)s</b>."
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:478
+#, python-format
+msgid "Enable %(require)s"
+msgstr "Ativar %(require)s"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:483
+#, python-format
+msgid ""
+"<b>%(plugin)s</b> provides the feature <b>%(feature)s</b> which is required "
+"by the plugins <b>%(plugin_list)s</b>."
+msgstr ""
+"<b>%(plugin)s</b> disponibiliza <b>%(feature)s</b>, que é necessário pelos "
+"seguintes plugins:\r\n"
+"%(plugin_list)s"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:493
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:506
+msgid "Disable these plugins"
+msgstr "Inativar estes plugins"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:494
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:507
+#, python-format
+msgid "Don't disable %(plugin)s"
+msgstr "Não inativar %(plugin)s"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:498
+#, python-format
+msgid "<b>%(plugin)s</b> is required by the plugins <b>%(plugin_list)s</b>."
+msgstr "<b>%(plugin)s</b> é solicitado pelos plugins <b>%(plugin_list)s</b>."
+
+#: ../ubuntutweak/tweaks/ccm/Constants.py:86
+msgid "General"
+msgstr "Geral"
+
+#: ../ubuntutweak/tweaks/ccm/Constants.py:87
+msgid "Accessibility"
+msgstr "Acessibilidade"
+
+#: ../ubuntutweak/tweaks/ccm/Constants.py:89
+msgid "Extras"
+msgstr "Extras"
+
+#: ../ubuntutweak/tweaks/ccm/Constants.py:90
+msgid "Window Management"
+msgstr "Gestão de janelas"
+
+#: ../ubuntutweak/tweaks/ccm/Constants.py:91
+msgid "Effects"
+msgstr "Efeitos"
+
+#: ../ubuntutweak/tweaks/ccm/Constants.py:92
+msgid "Image Loading"
+msgstr "Carregamento de imagens"
+
+#: ../ubuntutweak/tweaks/ccm/Constants.py:93
+msgid "Utility"
+msgstr "Utilitários"
+
+#: ../ubuntutweak/tweaks/ccm/Constants.py:95
+msgid "Uncategorized"
+msgstr "Sem categoria"
+
+#: ../ubuntutweak/tweaks/lockdown.py:26
+msgid "Security Related"
+msgstr "Segurança"
+
+#: ../ubuntutweak/tweaks/lockdown.py:27
+msgid "Tweak some security settings"
+msgstr "Ajuste de algumas definições de segurança"
+
+#: ../ubuntutweak/tweaks/lockdown.py:35
+msgid "System Security options"
+msgstr "Opções de segurança do sistema"
+
+#: ../ubuntutweak/tweaks/lockdown.py:37
+msgid "Disable \"Lock Screen\""
+msgstr "Desativar \"Bloquear ecrã\""
+
+#: ../ubuntutweak/tweaks/lockdown.py:42
+msgid "Disable printing"
+msgstr "Desativar impressão"
+
+#: ../ubuntutweak/tweaks/lockdown.py:47
+msgid "Disable printer settings"
+msgstr "Desativar definições da impressora"
+
+#: ../ubuntutweak/tweaks/lockdown.py:52
+msgid "Disable save to disk"
+msgstr "Desativar gravações no disco"
+
+#: ../ubuntutweak/tweaks/lockdown.py:57
+msgid "Disable \"Fast User Switching\""
+msgstr "Desativar \"Troca rápida de utilizador\""
+
+#: ../ubuntutweak/tweaks/compiz.py:270
+msgid "Show Workspaces"
+msgstr "Mostrar áreas de trabalho"
+
+#: ../ubuntutweak/tweaks/compiz.py:271
+msgid "Show Windows"
+msgstr "Mostrar janelas"
+
+#: ../ubuntutweak/tweaks/compiz.py:272
+msgid "Show Desktop"
+msgstr "Mostrar ambiente de trabalho"
+
+#: ../ubuntutweak/tweaks/compiz.py:273
+msgid "Show Widgets"
+msgstr "Mostrar widgets"
+
+#: ../ubuntutweak/tweaks/compiz.py:367
+msgid "Settings for some amazing desktop eye-candy"
+msgstr "Definições para os efeitos do ambiente de trabalho"
+
+#: ../ubuntutweak/tweaks/compiz.py:379
+msgid " Workspace Edge Settings"
+msgstr " Definições dos limites do ambiente de trabalho"
+
+#: ../ubuntutweak/tweaks/compiz.py:382
+msgid "Enable snapping windows"
+msgstr "Ativar janelas atraídas"
+
+#: ../ubuntutweak/tweaks/compiz.py:383
+msgid "Enable wobbly windows"
+msgstr "Activar janelas gelatinosas"
+
+#: ../ubuntutweak/tweaks/compiz.py:384
+msgid "Enable workspace switching with mouse wheel"
+msgstr "Ativar a troca de áreas de trabalho com o rato"
+
+#: ../ubuntutweak/tweaks/compiz.py:386
+msgid "Desktop Effects"
+msgstr "Efeitos do ambiente de trabalho"
+
+#: ../ubuntutweak/tweaks/compiz.py:391
+msgid "Enable transparent menus"
+msgstr "Ativar menus transparentes"
+
+#: ../ubuntutweak/tweaks/compiz.py:392
+msgid "Enable wobbly menus"
+msgstr "Ativar menus gelatinosos"
+
+#: ../ubuntutweak/tweaks/compiz.py:394
+msgid "Menu Effects"
+msgstr "Efeitos de menu"
+
+#: ../ubuntutweak/tweaks/loginsettings.py:40
 msgid "Control the appearance and behaviour of your login screen"
 msgstr "Controlar a aparência e comportamento do ecrã de início de sessão"
 
-#: ../ubuntutweak/modules/loginsettings.py:48
-msgid "Login Options"
-msgstr "Opções de Início de Sessão"
-
-#: ../ubuntutweak/modules/loginsettings.py:51
-msgid "Disable user list in GDM"
-msgstr "Desactivar lista de utilizadores no GDM"
-
-#: ../ubuntutweak/modules/loginsettings.py:56
-msgid "Play sound at login"
-msgstr "Tocar som ao iniciar sessão"
-
-#: ../ubuntutweak/modules/loginsettings.py:61
-msgid "Disable showing the restart button"
-msgstr "Desactivar a exibição do botão reiniciar"
-
-#: ../ubuntutweak/modules/loginsettings.py:79
+#: ../ubuntutweak/tweaks/loginsettings.py:52
 msgid "Login Theme"
-msgstr "Tema de Início de Sessão"
+msgstr "Tema de início de sessão"
 
-#: ../ubuntutweak/modules/loginsettings.py:153
-msgid "PNG images with 64x64 size or SVG images"
-msgstr "Imagens PNG com 64x64 ou imagens SVG"
+#: ../ubuntutweak/tweaks/loginsettings.py:87
+msgid "Choose a new logo image"
+msgstr "Escolha a nova imagem"
 
-#: ../ubuntutweak/modules/loginsettings.py:183
-msgid ""
-"This image size isn't suitable for the logo.\n"
-"It should be 64x64."
+#: ../ubuntutweak/tweaks/loginsettings.py:93
+msgid "All images (*.PNG)"
 msgstr ""
-"Esta imagem não é viável para o logótipo.\n"
-"A imagem deve ter o tamanho 64x64."
 
-#: ../ubuntutweak/modules/loginsettings.py:205
+#: ../ubuntutweak/tweaks/loginsettings.py:140
 msgid "Choose a new background image"
-msgstr "Escolha a nova imagem de fundo."
+msgstr "Escolha a nova imagem de fundo"
 
-#: ../ubuntutweak/modules/loginsettings.py:211
+#: ../ubuntutweak/tweaks/loginsettings.py:146
 msgid "All images"
 msgstr "Todas as imagens"
 
-#: ../ubuntutweak/modules/desktoprecovery.py:146
-msgid "Setting"
-msgstr "Definição"
+#: ../ubuntutweak/tweaks/workarounds.py:31
+msgid "Workarounds"
+msgstr "Soluções"
 
-#: ../ubuntutweak/modules/desktoprecovery.py:190
-msgid "Backup Name:"
-msgstr "Nome da Cópia de Segurança:"
+#: ../ubuntutweak/tweaks/workarounds.py:32
+msgid "The workarounds to fix some problems"
+msgstr "As soluções para alguns problemas"
 
-#: ../ubuntutweak/modules/desktoprecovery.py:238
+#: ../ubuntutweak/tweaks/workarounds.py:42
+msgid "Fix the appearance of themes when granted root privileges"
+msgstr "Corrigir a aparência dos temas ao garantir previlégio de \"root\""
+
+#: ../ubuntutweak/tweaks/workarounds.py:48
+msgid "Miscellaneous Options"
+msgstr "Opções diversas"
+
+#: ../ubuntutweak/tweaks/metacity.py:35 ../ubuntutweak/tweaks/metacity.py:196
+#: ../ubuntutweak/tweaks/metacity.py:211 ../ubuntutweak/tweaks/metacity.py:226
+msgid "Menu"
+msgstr "Menu"
+
+#: ../ubuntutweak/tweaks/metacity.py:36
+msgid "Title"
+msgstr "Título"
+
+#: ../ubuntutweak/tweaks/metacity.py:37 ../ubuntutweak/tweaks/metacity.py:192
+#: ../ubuntutweak/tweaks/metacity.py:207 ../ubuntutweak/tweaks/metacity.py:222
+msgid "Maximize"
+msgstr "Maximizar"
+
+#: ../ubuntutweak/tweaks/metacity.py:38 ../ubuntutweak/tweaks/metacity.py:195
+#: ../ubuntutweak/tweaks/metacity.py:210 ../ubuntutweak/tweaks/metacity.py:225
+msgid "Minimize"
+msgstr "Minimizar"
+
+#: ../ubuntutweak/tweaks/metacity.py:39
+msgid "Close"
+msgstr "Fechar"
+
+#: ../ubuntutweak/tweaks/metacity.py:40
+msgid "Spacer"
+msgstr "Espaçador"
+
+#: ../ubuntutweak/tweaks/metacity.py:151
+msgid "Manage Metacity Window Manager settings"
+msgstr "Gerir definições do gestor de janelas Metacity"
+
+#: ../ubuntutweak/tweaks/metacity.py:172
+msgid "Window Titlebar Button Layout"
+msgstr "Esquema dos botões na barra de título da janela"
+
+#: ../ubuntutweak/tweaks/metacity.py:177
+msgid "Window Titlebar Actions"
+msgstr "Ações na barra de título da janela"
+
+#: ../ubuntutweak/tweaks/metacity.py:179
+msgid "Titlebar mouse wheel action"
+msgstr "Ação da roda do rato na barra de título"
+
+#: ../ubuntutweak/tweaks/metacity.py:183 ../ubuntutweak/tweaks/metacity.py:195
+#: ../ubuntutweak/tweaks/metacity.py:210 ../ubuntutweak/tweaks/metacity.py:225
+msgid "Roll up"
+msgstr "Enrolar"
+
+#: ../ubuntutweak/tweaks/metacity.py:188
+msgid "Titlebar double-click action"
+msgstr "Ação do duplo clique na barra de título"
+
+#: ../ubuntutweak/tweaks/metacity.py:193 ../ubuntutweak/tweaks/metacity.py:208
+#: ../ubuntutweak/tweaks/metacity.py:223
+msgid "Maximize Horizontally"
+msgstr "Maximizar horizontalmente"
+
+#: ../ubuntutweak/tweaks/metacity.py:194 ../ubuntutweak/tweaks/metacity.py:209
+#: ../ubuntutweak/tweaks/metacity.py:224
+msgid "Maximize Vertically"
+msgstr "Maximizar verticalmente"
+
+#: ../ubuntutweak/tweaks/metacity.py:196 ../ubuntutweak/tweaks/metacity.py:211
+#: ../ubuntutweak/tweaks/metacity.py:226
+msgid "Lower"
+msgstr "Baixar"
+
+#: ../ubuntutweak/tweaks/metacity.py:203
+msgid "Titlebar middle-click action"
+msgstr "Ação do botão do meio do rato na barra de título"
+
+#: ../ubuntutweak/tweaks/metacity.py:218
+msgid "Titlebar right-click action"
+msgstr "Ação do botão direito do rato na barra de título"
+
+#: ../ubuntutweak/tweaks/metacity.py:236
+msgid "Window Decoration Effects"
+msgstr "Efeitos das decoração da janela"
+
+#: ../ubuntutweak/tweaks/metacity.py:238
+msgid "Use Metacity window theme"
+msgstr "Usar o tema de janelas Metacity"
+
+#: ../ubuntutweak/tweaks/metacity.py:243
+msgid "Enable active window transparency"
+msgstr "Ativar transparência da janela ativa"
+
+#: ../ubuntutweak/tweaks/metacity.py:248
+msgid "Active window transparency level"
+msgstr "Nível de transparência da janela ativa"
+
+#: ../ubuntutweak/tweaks/metacity.py:254
+msgid "Enable inactive window transparency"
+msgstr "Ativar transparência da janela inativa"
+
+#: ../ubuntutweak/tweaks/metacity.py:259
+msgid "Inactive window shade transparency level"
+msgstr "Nível de transparência da sombra da janela inativa"
+
+#: ../ubuntutweak/clips/userinfo.py:10
+msgid "User Information"
+msgstr "Informações de utilizador"
+
+#: ../ubuntutweak/clips/userinfo.py:16
+msgid "Current user:"
+msgstr "Utilizador atual:"
+
+#: ../ubuntutweak/clips/userinfo.py:18
+msgid "Home directory:"
+msgstr "Diretório pessoal:"
+
+#: ../ubuntutweak/clips/userinfo.py:20
+msgid "Shell:"
+msgstr "Consola:"
+
+#: ../ubuntutweak/clips/userinfo.py:22
+msgid "Language:"
+msgstr "Idioma:"
+
+#: ../ubuntutweak/clips/hardwareinfo.py:11
+msgid "Hardware Information"
+msgstr "Informações de equipamento"
+
+#: ../ubuntutweak/clips/hardwareinfo.py:32
+msgid "CPU:"
+msgstr "CPU:"
+
+#: ../ubuntutweak/clips/hardwareinfo.py:34
+msgid "Memory:"
+msgstr "Memória:"
+
+#: ../ubuntutweak/clips/systeminfo.py:11
+msgid "Ubuntu Desktop Information"
+msgstr "Informações do Ubuntu"
+
+#: ../ubuntutweak/clips/systeminfo.py:17
+msgid "Hostname:"
+msgstr "Nome de \"host\":"
+
+#: ../ubuntutweak/clips/systeminfo.py:19
+msgid "Platform:"
+msgstr "Plataforma:"
+
+#: ../ubuntutweak/clips/systeminfo.py:21
+msgid "Distribution:"
+msgstr "Distribuição:"
+
+#: ../ubuntutweak/clips/systeminfo.py:23
+msgid "Desktop Environment:"
+msgstr "Ambiente de trabalho:"
+
+#: ../ubuntutweak/clips/cleanerinfo.py:11
+msgid "Your system is clean"
+msgstr "O seu sistema está limpo"
+
+#: ../ubuntutweak/clips/cleanerinfo.py:19
+msgid "Some cache can be cleaned to free your disk space"
+msgstr "Pode apagar alguma cache para libertar espaço em disco"
+
+#: ../ubuntutweak/clips/cleanerinfo.py:21
 #, python-format
-msgid "Backing up...%s"
-msgstr "A copiar...%s"
+msgid "%s cache packages can be cleaned."
+msgstr "%s pacotes em cache a apagar."
 
-#: ../ubuntutweak/modules/desktoprecovery.py:264
-msgid "Desktop Recovery"
-msgstr "Recuperação do Ambiente de Trabalho"
+#: ../ubuntutweak/clips/cleanerinfo.py:33
+#, python-format
+msgid "%s thumbnails cache can be cleaned."
+msgstr "%s miniaturas em cache a apagar."
 
-#: ../ubuntutweak/modules/desktoprecovery.py:265
+#: ../ubuntutweak/clips/cleanerinfo.py:39
+msgid "Start Janitor"
+msgstr "Iniciar limpeza"
+
+#: ../ubuntutweak/clips/updateinfo.py:13
+msgid "Your system is up-to-date"
+msgstr "O sistema está atualizado"
+
+#: ../ubuntutweak/clips/updateinfo.py:49
 msgid ""
-"Backup and recover your desktop and application settings with ease.\n"
-"You can also use \"Reset\" to reset to the system default settings."
+"It is unknown when the package information was updated last. Please try "
+"clicking on the 'Check' button to update the information."
 msgstr ""
-"Crie cópias de segurança e recupere o seu ambiente de trabalho e as "
-"definições das aplicações facilmente.\n"
-"Também pode utilizar \"Repor\" para restaurar as definições originais do "
-"sistema."
+"Não se conhece a última data de atualização da informação dos pacotes. "
+"Clique no botão \"Verificar\" para atualizar a informação."
 
-#: ../ubuntutweak/modules/desktoprecovery.py:340
-msgid "No Backup Yet"
-msgstr "Ainda Não Existem Cópias de Segurança"
-
-#: ../ubuntutweak/modules/desktoprecovery.py:375
+#: ../ubuntutweak/clips/updateinfo.py:54
 #, python-format
 msgid ""
-"Backup all settings under: <b>%s</b>\n"
-"Would you like to continue?"
+"The package information was last updated %(days_ago)s days ago.\n"
+"Press the 'Check' button below to check for new software updates."
 msgstr ""
-"Criar cópia de todas as definições existentes em: <b>%s</b>\n"
-"Pretende continuar?"
+"As informações de pacotes foram atualizadas há %(days_ago)s dias.\n"
+"Clique no botão \"Verificar\" para procurar atualizações."
 
-#: ../ubuntutweak/modules/desktoprecovery.py:394
+#: ../ubuntutweak/clips/updateinfo.py:59
 #, python-format
+msgid "The package information was last updated %(days_ago)s day ago."
+msgid_plural ""
+"The package information was last updated %(days_ago)s days ago."
+msgstr[0] "As informações de pacotes foram atualizadas há %(days_ago)s dia."
+msgstr[1] "As informações de pacotes foram atualizadas há %(days_ago)s dias."
+
+#: ../ubuntutweak/clips/updateinfo.py:63
+#, python-format
+msgid "The package information was last updated %(hours_ago)s hour ago."
+msgid_plural ""
+"The package information was last updated %(hours_ago)s hours ago."
+msgstr[0] ""
+"As informações de pacotes foram atualizadas há %(hours_ago)s hora."
+msgstr[1] ""
+"As informações de pacotes foram atualizadas há %(hours_ago)s horas."
+
+#: ../ubuntutweak/clips/updateinfo.py:67
+msgid "The package information was last updated less than one hour ago."
+msgstr "As informações de pacotes foram atualizadas há menos de 1 hora."
+
+#: ../ubuntutweak/gui/widgets.py:76
+#, python-format
+msgid "Reset setting to default value: %s"
+msgstr "Repor definições para os valores omissos: %s"
+
+#: ../ubuntutweak/gui/widgets.py:315
+msgid "Please press the new key combination"
+msgstr "Por favor, escolha a nova combinação de teclas"
+
+#: ../ubuntutweak/gui/widgets.py:367
+msgid "Disabled"
+msgstr "Inativo"
+
+#: ../ubuntutweak/gui/dialogs.py:208
+msgid "Could not authenticate"
+msgstr "Incapaz de autenticar"
+
+#: ../ubuntutweak/gui/dialogs.py:209
+msgid "An unexpected error has occurred."
+msgstr "Ocorreu um erro inesperado."
+
+#: ../ubuntutweak/gui/dialogs.py:215
+msgid "Service hasn't initialized yet"
+msgstr "O serviço ainda não foi iniciado"
+
+#: ../ubuntutweak/gui/dialogs.py:216
+msgid "You need to restart your computer."
+msgstr "Tem de reiniciar o seu computador."
+
+#: ../ubuntutweak/gui/treeviews.py:72
+msgid "Create folder"
+msgstr "Criar pasta"
+
+#: ../ubuntutweak/gui/treeviews.py:80
+msgid "Delete"
+msgstr "Eliminar"
+
+#: ../ubuntutweak/gui/treeviews.py:102
+msgid "Input the dir name"
+msgstr "Indique o nome do diretório"
+
+#: ../ubuntutweak/gui/treeviews.py:126
+msgid "Can't rename the root folder"
+msgstr "Não pode mudar o nome da pasta \"root\""
+
+#: ../ubuntutweak/gui/treeviews.py:143
+msgid "Can't delete the root folder"
+msgstr "Não pode eliminar a pasta \"root\""
+
+#: ../ubuntutweak/gui/treeviews.py:157
 msgid ""
-"Backup settings under: <b>%s</b>\n"
-"Would you like to continue?"
+"Can't rename!\n"
+"\n"
+"There are files in it!"
 msgstr ""
-"Criar cópia das definições existentes em: <b>%s</b>\n"
-"Pretende continuar?"
+"Não pode mudar o nome!\n"
+"\n"
+"Existem ficheiros lá dentro!"
 
-#: ../ubuntutweak/modules/desktoprecovery.py:435
+#: ../ubuntutweak/utils/__init__.py:36
 #, python-format
-msgid "Would you like to delete the backup: <b>%s/%s</b>?"
-msgstr "Pretende apagar a cópia de segurança: <b>%s/%s</b>?"
+msgid "%(size)d byte"
+msgid_plural "%(size)d bytes"
+msgstr[0] "%(size)d byte"
+msgstr[1] "%(size)d bytes"
 
-#: ../ubuntutweak/modules/desktoprecovery.py:437
+#: ../ubuntutweak/utils/__init__.py:38
 #, python-format
-msgid ""
-"Would you like to delete the backup of all <b>%s</b> settings named "
-"<b>%s</b>?"
-msgstr ""
-"Pretende apagar a cópia de todas as definições de <b>%s</b> com o nome "
-"<b>%s</b>?"
+msgid "%.1f KB"
+msgstr "%.1f KB"
 
-#: ../ubuntutweak/modules/desktoprecovery.py:456
+#: ../ubuntutweak/utils/__init__.py:40
 #, python-format
-msgid "Would you like to recover the backup: <b>%s/%s</b>?"
-msgstr "Pretende restaurar a cópia de segurança: <b>%s/%s</b>?"
+msgid "%.1f MB"
+msgstr "%.1f MB"
 
-#: ../ubuntutweak/modules/desktoprecovery.py:458
+#: ../ubuntutweak/utils/__init__.py:41
 #, python-format
-msgid ""
-"Would you like to recover the backup of all <b>%s</b> settings named "
-"<b>%s</b>?"
-msgstr ""
-"Pretende restaurar a cópia de todas as definições de <b>%s</b> com o nome "
-"<b>%s</b>?"
+msgid "%.1f GB"
+msgstr "%.1f GB"
 
-#: ../ubuntutweak/modules/desktoprecovery.py:460
-msgid ""
-"<b>NOTES</b>: While recovering, your desktop may be unresponsive for a "
-"moment."
-msgstr ""
-"<b>NOTAS</b>: Durante o restauro, o seu sistema pode ficar temporariamente "
-"inactivo para utilização."
+#: ../ubuntutweak/preferences.py:152
+msgid "Choose a clip extension"
+msgstr "Escolha uma extensão"
 
-#: ../ubuntutweak/modules/desktoprecovery.py:477
-msgid ""
-"Recovery Successful!\n"
-"You may need to restart your desktop for changes to take effect"
-msgstr ""
-"Restauro Efectuado Com Sucesso!\n"
-"Pode ser necessário reiniciar o ambiente de trabalho para aplicar as "
-"alterações."
-
-#: ../ubuntutweak/modules/desktoprecovery.py:482
-msgid "_Logout"
-msgstr "_Sair"
-
-#: ../ubuntutweak/modules/desktoprecovery.py:494
+#: ../ubuntutweak/preferences.py:157
 #, python-format
-msgid "Would you like to reset settings for: <b>%s</b>?"
-msgstr "Deseja repor as definições de: <b>%s</b>?"
+msgid "\"%s\" is not a Clip Extension!"
+msgstr "\"%s\" não é uma extensão."
 
-#: ../ubuntutweak/modules/desktoprecovery.py:496
+#: ../ubuntutweak/preferences.py:160
+msgid "Choose a Tweaks Extension"
+msgstr "Escolha uma extensão de ajustes"
+
+#: ../ubuntutweak/preferences.py:165
 #, python-format
-msgid "Would you like to reset all settings under: <b>%s</b>?"
-msgstr "Deseja repor as todas as definições em: <b>%s</b>?"
+msgid "\"%s\" is not a Tweaks Extension!"
+msgstr "\"%s\" não é uma gestão de ajustes!"
 
-#: ../ubuntutweak/modules/desktoprecovery.py:498
-msgid ""
-"<b>NOTES</b>: Whilst resetting, your desktop may be unresponsive for a "
-"moment."
-msgstr ""
-"<b>NOTAS</b>: Durante o reposição, o seu sistema pode ficar temporariamente "
-"inactivo para utilização."
+#: ../ubuntutweak/preferences.py:168
+msgid "Choose a Admins Extension"
+msgstr "Escolha uma extensão de administração"
 
-#: ../ubuntutweak/modules/desktoprecovery.py:511
-msgid ""
-"Reset Successful!\n"
-"You may need to restart your desktop for changes to take effect"
-msgstr ""
-"Reposição Efectuada Com Sucesso!\n"
-"Pode ser necessário reiniciar o ambiente de trabalho para aplicar as "
-"alterações."
+#: ../ubuntutweak/preferences.py:173
+#, python-format
+msgid "\"%s\" is not a Admins Extension!"
+msgstr "\"%s\" não é uma gestão de administração!"
 
-#: ../ubuntutweak/modules/desktoprecovery.py:536
-msgid "Please enter a new name for your backup:"
-msgstr "Por favor, indique o nome para a cópia de segurança:"
+#: ../ubuntutweak/preferences.py:176
+msgid "Choose a Janitor Extension"
+msgstr "Escolha uma extensão de limpeza"
 
-#: ../ubuntutweak/modules/desktoprecovery.py:568
-msgid "Backup Successful!"
-msgstr "Cópia de Segurança Efectuada Com Sucesso!"
+#: ../ubuntutweak/preferences.py:181
+#, python-format
+msgid "\"%s\" is not a Janitor Extension!"
+msgstr "\"%s\" não é uma gestão de limpeza!"
 
-#: ../ubuntutweak/modules/desktoprecovery.py:571
-msgid "Backup Failed!"
-msgstr "Falha ao Efectuar a Cópia de Segurança!"
+#: ../ubuntutweak/preferences.py:190
+msgid "Ubuntu Tweak Extension (*.py, *.tar.gz)"
+msgstr "Extensão Ubuntu Tweak (*.py, *.tar.gz)"
 
-#~ msgid "Expo"
-#~ msgstr "Expo"
+#: ../ubuntutweak/preferences.py:221
+msgid "Would you like to remove it then install again?"
+msgstr "Pretende remover e instalar novamente?"
 
-#~ msgid "PNG image (*.png)"
-#~ msgstr "Imagem PNG (*.png)"
+#: ../ubuntutweak/preferences.py:222
+#, python-format
+msgid "\"%s\" has already installed"
+msgstr "\"%s\" já está instalado"
 
-#~ msgid "Can't delete the system item from disk."
-#~ msgstr "Não é possivel apagar o item do sistema do disco"
+#: ../ubuntutweak/main.py:354
+msgid "Please wait a moment..."
+msgstr "Por favor, aguarde um momento..."
 
-#~ msgid "Text was empty (or contained only whitespace)"
-#~ msgstr "Texto estava vazio (ou apenas continha espaços em branco)"
+#: ../ubuntutweak/main.py:453
+#, python-format
+msgid "No module named \"%s\""
+msgstr "O módulo \"%s\" não existe"
 
-#~ msgid "Widget"
-#~ msgstr "Widget"
+#: ../ubuntutweak/main.py:454
+msgid "Please ensure you have entered the correct module name."
+msgstr "Por favor, certifique-se que indicou o nome correto."
 
-#~ msgid "Nautilus with Wallpaper"
-#~ msgstr "Nautilus com Imagem de Fundo"
+#: ../ubuntutweak/main.py:511
+msgid "Computer Janitor"
+msgstr "Limpeza do computador"
 
-#~ msgid "Nautilus with Open Terminal"
-#~ msgstr "Nautilus com 'Abrir Terminal'"
+#: ../ubuntutweak/main.py:512
+msgid "Clean up a system so it's more like a freshly installed one"
+msgstr "Para limpar o sistema assim, mais vale fazer uma nova instalação"
 
-#~ msgid "Nautilus with Root Privileges"
-#~ msgstr "Nautilus com Privilégios de super utilizador (Root)"
+#~ msgid "Edit Startup Program"
+#~ msgstr "Editar Aplicação de Arranque"
 
-#~ msgid "Install Simple Desktop Effects Settings manager"
-#~ msgstr "Instalar Simple Desktop Effects Settings manager"
+#~ msgid "New Startup Program"
+#~ msgstr "Nova Aplicação de Arranque"
 
-#~ msgid "Window Effects"
-#~ msgstr "Efeitos de Janela"
+#~ msgid "Choose a Program"
+#~ msgstr "Escolha um Programa"
 
-#~ msgid "Desktop Icon settings"
-#~ msgstr "Definições dos Ícones da Área de Trabalho"
+#~ msgid "Program"
+#~ msgstr "Programa"
 
-#~ msgid "Window Decorate Effect"
-#~ msgstr "Efeito de decoração da janela"
+#~ msgid "Memory"
+#~ msgstr "Memória"
 
-#~ msgid "Disable print setup"
-#~ msgstr "Desactivar a configuração de impressora"
+#~ msgid "Distribution"
+#~ msgstr "Distribuição"
 
-#~ msgid "Clean up unneeded packages to free diskspace."
-#~ msgstr "Limpe pacotes desnecessários para libertar espaço de disco."
+#~ msgid "Hostname"
+#~ msgstr "Nome da Máquina"
 
-#~ msgid "And many more useful features!"
-#~ msgstr "E muitas mais características úteis!"
+#~ msgid "Kernel"
+#~ msgstr "Kernel"
 
-#~ msgid "Banshee (Unstable Version)"
-#~ msgstr "Banshee (Versão Instável)"
+#~ msgid "CPU"
+#~ msgstr "CPU"
 
-#~ msgid "Window Titlebar Action"
-#~ msgstr "Acção da barra de título da janela"
+#~ msgid "Platform"
+#~ msgstr "Plataforma"
+
+#~ msgid "Shell"
+#~ msgstr "Consola"
+
+#~ msgid "The name of the startup program cannot be empty"
+#~ msgstr "O nome da aplicação de arranque não pode ser vazio"
+
+#~ msgid "Show all runnable programs"
+#~ msgstr "Mostrar todos os programas executáveis"
+
+#~ msgid "Delete from Disk"
+#~ msgstr "Apagar do Disco"
+
+#~ msgid "Warning"
+#~ msgstr "Aviso"
+
+#~ msgid "Co_mmand:"
+#~ msgstr "Co_mando:"
+
+#~ msgid "Comm_ent:"
+#~ msgstr "Com_entário:"
+
+#~ msgid "_Name:"
+#~ msgstr "_Nome:"
+
+#~ msgid "Install Screenlets Widget Application"
+#~ msgstr "Instalar Aplicação de Widgets Screenlets"
+
+#~ msgid "(Not available)"
+#~ msgstr "(Indisponível)"
+
+#~ msgid "Install Advanced Desktop Effects Settings Manager"
+#~ msgstr "Instalar Advanced Desktop Effects Settings Manager"
+
+#~ msgid "System information"
+#~ msgstr "Informação do sistema"
+
+#~ msgid "User information"
+#~ msgstr "Informações sobre o utilizador"
+
+#~ msgid "History"
+#~ msgstr "Histórico"
+
+#~ msgid "Prerequisite Conditions"
+#~ msgstr "Condições Pré-requisitas"
+
+#~ msgid "All Categories"
+#~ msgstr "Todas as Categorias"
+
+#~ msgid "Current user"
+#~ msgstr "Utilizador actual"
+
+#~ msgid "Home directory"
+#~ msgstr "Pasta pessoal"
+
+#~ msgid "Show comments"
+#~ msgstr "Mostrar comentários"
+
+#~ msgid "Third-Party Sources"
+#~ msgstr "Fontes de Terceiros"
+
+#~ msgid "Welcome to"
+#~ msgstr "Bem-Vindo ao"
+
+#~ msgid "Package Cleaner"
+#~ msgstr "Limpeza de Pacotes"
 
 #, python-format
-#~ msgid "The target \"%s\" already exists!"
-#~ msgstr "O alvo \"%s\" já existe!"
+#~ msgid "Could not find %s"
+#~ msgstr "Incapaz de encontrar %s"
 
-#, python-format
-#~ msgid "The folder \"%s\" already exists!"
-#~ msgstr "A pasta \"%s\" já existe!"
+#~ msgid "Source URL"
+#~ msgstr "URL de origem"
 
-#~ msgid "Session Programs"
-#~ msgstr "Programas de Arranque"
+#~ msgid "Never show this dialog"
+#~ msgstr "Nunca mostrar este diálogo"
 
-#, python-format
-#~ msgid "The file \"%s\" already exists!"
-#~ msgstr "O ficheiro \"%s\" já existe!"
+#~ msgid "No description"
+#~ msgstr "Sem descrição"
+
+#~ msgid "_Donate"
+#~ msgstr "_Doar"
+
+#~ msgid "Software Update"
+#~ msgstr "Actualizações de Software"
+
+#~ msgid "Automatically save open applications when logging out"
+#~ msgstr "Automaticamente salvar aplicações abertas quando fecha a sessão"
+
+#~ msgid "Useful Extensions"
+#~ msgstr "Extensões Úteis"
+
+#~ msgid "Clean"
+#~ msgstr "Limpar"
+
+#~ msgid "Clean up Successful!"
+#~ msgstr "Limpeza concluída com sucesso!"
+
+#~ msgid "Select All"
+#~ msgstr "Seleccionar todos"
+
+#~ msgid "Cleaning..."
+#~ msgstr "Limpando..."
+
+#~ msgid "Nautilus Extensions"
+#~ msgstr "Extensões do Nautilus"
+
+#~ msgid "Desktop environment"
+#~ msgstr "Ambiente da Área de Trabalho"
+
+#~ msgid "Language"
+#~ msgstr "Idioma"
+
+#~ msgid "Choose the sources"
+#~ msgstr "Escolha as fontes"
+
+#~ msgid "Submit your sources"
+#~ msgstr "Envie as suas fontes"
+
+#~ msgid "Enter the title of the source, e.g. \"Ubuntu Official Repostory\""
+#~ msgstr "Introduza o título da fonte, p.e. \"Repositório Oficial do Ubuntu\""
+
+#~ msgid "Uploading..."
+#~ msgstr "A enviar..."
+
+#~ msgid "Submit"
+#~ msgstr "Enviar"
+
+#~ msgid "Updating..."
+#~ msgstr "A Actualizar..."
+
+#~ msgid "Please check your network connection!"
+#~ msgstr "Por favor verifique a ligação de rede!"
+
+#~ msgid "Successfully submitted"
+#~ msgstr "Enviado com sucesso!"
+
+#~ msgid "Dependency Notice"
+#~ msgstr "Aviso de dependência"
+
+#~ msgid "Use Separated Sources"
+#~ msgstr "Utilizar Fontes Separadas"
+
+#~ msgid "Homepage"
+#~ msgstr "Página inicial"
+
+#~ msgid "Welcome"
+#~ msgstr "Bem-vindo(a)"
+
+#~ msgid "Disable \"Run Application\" dialog (Alt+F2)"
+#~ msgstr "Desactivar caixa de diálogo \"Executar Aplicativo\" (Alt + F2)"
+
+#~ msgid "_Locale:"
+#~ msgstr "_Local:"
 
 #~ msgid ""
-#~ "Here you can manage what programs get started when you login.\n"
-#~ "You can hide items from view by selecting and clicking \"Remove\"\n"
-#~ "To permanently delete an item, right-click and press \"Delete\"."
+#~ "You can read the title and comment to determine which source is suitable for "
+#~ "you."
 #~ msgstr ""
-#~ "Aqui pode gerir os programas que começam quando entra na sessão.\n"
-#~ "Pode ocultar items da vista selecionando e clicando em \"Remover\".\n"
-#~ "Para apagar um item permanentemente, clique com o botão direito e pressione "
-#~ "\"Apagar\"."
+#~ "Leia o título e o comentário respectivo para determinar qual a fonte que "
+#~ "mais se adequa à sua situação."
 
-#~ msgid "Avant Window Navigator (Unstable Version)"
-#~ msgstr "Avant Window Navigator (Versão Instável)"
-
-#, python-format
-#~ msgid "Select an application to open the type <b>%s</b>"
-#~ msgstr "Escolha uma aplicação para abrir o tipo <b>%s</b>"
-
-#, python-format
-#~ msgid "Open the files of type \"%s\" with:"
-#~ msgstr "Abrir ficheiros do tipo \"%s\" com:"
-
-#~ msgid "Use \"Home Folder\" as desktop (Logout for changes to take effect)"
+#~ msgid "You can submit your sources to the server for other people to use."
 #~ msgstr ""
-#~ "Use a pasta \"Home\" como ambiente de trabalho (necessário reiniciar a "
-#~ "sessão)"
+#~ "Pode enviar as suas fontes para o servidor para que outras pessoas possam "
+#~ "utilizar."
 
-#~ msgid "Allow TCP Connections (Remote Desktop Connect)"
-#~ msgstr "Permitir ligações TCP (Conecções de Ambiente Remoto)"
+#~ msgid "_Source Title:"
+#~ msgstr "_Titulo da Fonte:"
+
+#~ msgid "If the locale isn't correct you can edit manually"
+#~ msgstr "Se o local não estiver correcto pode editá-lo manualmente"
+
+#~ msgid "Network Error"
+#~ msgstr "Erro na ligação de rede"
+
+#~ msgid "No source data available"
+#~ msgstr "Dados sobre as fontes indisponíveis."
 
 #~ msgid ""
-#~ "By configuring keyboard shortcuts, you can access your favourite "
-#~ "applications instantly.\n"
-#~ "Enter the application's command and set the desired shortcut keys."
+#~ "Your sources will be reviewed and made available for others soon.\n"
+#~ "Thank you!"
 #~ msgstr ""
-#~ "Ao configurar teclas de atalho, você pode aceder às suas aplicações "
-#~ "favoritas instantaneamente.\n"
-#~ "Introduza o comando da aplicação e defina o atalho desejado."
+#~ "As suas fontes serão em breve verificadas e disponibilizadas para outros.\n"
+#~ "Obrigado!"
 
-#~ msgid "Packages"
-#~ msgstr "Pacotes"
+#~ msgid "Update Successful!"
+#~ msgstr "Actualização bem sucedida !"
 
-#~ msgid "Cleaning Package Config"
-#~ msgstr "Limpando a Configuração de pacotes"
+#~ msgid "Update Failed!"
+#~ msgstr "A atualização falhou!"
 
-#~ msgid "Canceled by user!"
-#~ msgstr "Cancelado pelo utilizador"
-
-#, python-format
-#~ msgid "%s of space will be freed"
-#~ msgstr "%s de espaço será libertado"
-
-#~ msgid "Clean up Failed!"
-#~ msgstr "Limpeza falhou!"
-
-#~ msgid "Enable system-wide \"Recently Documents\" list"
-#~ msgstr "Activar \"Documentos Recentes\" para todos os utilizadores"
-
-#~ msgid "Click the button to change the menu logo"
-#~ msgstr "Clique no botão para mudar o logotipo do menu"
-
-#~ msgid "Enable user switching when screen is locked."
-#~ msgstr "Permitir troca de utilizador quando o ecrã está bloqueado."
-
-#~ msgid "Choose a new logo"
-#~ msgstr "Escolha um novo logotipo"
-
-#~ msgid ""
-#~ "The size isn't suitable for the panel.\n"
-#~ "It should be 24x24."
-#~ msgstr ""
-#~ "A resolução não é correcta para o painel.\n"
-#~ "Esta deve ser de 24x24."
-
-#, python-format
-#~ msgid ""
-#~ "<b>%s</b>\n"
-#~ "Take %s of disk space"
-#~ msgstr ""
-#~ "<b>%s</b>\n"
-#~ "Ocupa %s de espaço em disco"
-
-#, python-format
-#~ msgid "%d package selected to remove"
-#~ msgid_plural "%d packages selected to remove"
-#~ msgstr[0] "Pacote %d seleccionado para remover"
-#~ msgstr[1] "Pacotes %d seleccionados para remover"
-
-#~ msgid "Package Config"
-#~ msgstr "Configuração do Pacote"
-
-#~ msgid "Maximum age for the thumbnail in the cache (days)"
-#~ msgstr "Idade máxima das miniaturas na cache (em dias)"
-
-#~ msgid "Maximum size of the thumbnail cache (megabytes)"
-#~ msgstr "Tamanho máximo ocupado pelas miniaturas."
-
-#~ msgid "The thumbnails cache will be cleaned, Do you wish to continue?"
-#~ msgstr "A cache das miniaturas será limpa, deseja continuar?"
-
-#, python-format
-#~ msgid "Clean up the thumbnails cache (will free %s of disk space)"
-#~ msgstr "Limpar a cache das miniaturas (irá libertar %s de espaço em disco)"
-
-#~ msgid "Thumbnails Settings"
-#~ msgstr "Definições das Miniaturas"
-
-#~ msgid "Banshee (Stable Version)"
-#~ msgstr "Banshee (Versão Estável)"
-
-#~ msgid "Update successful!"
-#~ msgstr "Actualização concluída com sucesso!"
-
-#~ msgid ""
-#~ "You can submit your sources to our server to help building the sources list, "
-#~ "or you can use the official sources.\n"
-#~ "Do you wish to use the official sources?"
-#~ msgstr ""
-#~ "Pode enviar suas fontes para nosso servidor para ajudar a construir a lista "
-#~ "de fontes, ou pode utilizar as fontes oficiais.\n"
-#~ "Deseja utilizar as fontes oficiais?"
-
-#, python-format
-#~ msgid ""
-#~ "You can't disable this Source because \"%(SOURCE)s\" depends on it.\n"
-#~ "To continue you need to disable \"%(SOURCE)s\" first."
-#~ msgstr ""
-#~ "Não pode desactivar esta fonte porque \"%(SOURCE)s\" depende dela.\n"
-#~ "Para continuar necessita desactivar \"%(SOURCE)s\" primeiro."
-
-#, python-format
-#~ msgid ""
-#~ "To enable this Source, You need to enable \"%s\" at first.\n"
-#~ "Do you wish to continue?"
-#~ msgstr ""
-#~ "Para activar esta fonte, é necessário activar \"%s\" primeiro.\n"
-#~ "Deseja continuar?"
-
-#~ msgid ""
-#~ "After every release of Ubuntu there comes a feature freeze.\n"
-#~ "This means only applications with bug-fixes get into the repository.\n"
-#~ "By using third-party DEB repositories, you can always keep up-to-date with "
-#~ "the latest version.\n"
-#~ "After adding these repositories, locate and install them using Add/Remove."
-#~ msgstr ""
-#~ "Após todos os lançamentos do Ubuntu há uma pausa na criação de novas "
-#~ "funcionalidades.\n"
-#~ "Isto significa que só correcções de bugs são aceites no repositório.\n"
-#~ "Ao utilizar repositórios DEB de terceiros, pode manter-se sempre actualizado "
-#~ "com a última versão.\n"
-#~ "Após adicionar esses repositórios, procure-os e instale-os usando "
-#~ "Adicionar/Remover."
-
-#~ msgid "This feature isn't currently available in your distribution"
-#~ msgstr "Esta função ainda não está disponível para a sua distribuição"
-
-#~ msgid "This feature is currently only available in GNOME Desktop Environment"
-#~ msgstr "Actualmente, esta função só está disponível para o ambiente GNOME"
-
-#~ msgid "Enable Check Update"
-#~ msgstr "Activar Verificar Actualizações"
-
-#~ msgid "Edge Settings"
-#~ msgstr "Configuração de Margens"
-
-#~ msgid "Fix the theme appearance when grant the root privileges"
-#~ msgstr "Reparar a aparência do tema quando garantir privilégios de root"
+#~ msgid "New source has been enabled"
+#~ msgstr "A nova fonte foi activada"
 
 #, python-format
 #~ msgid ""
-#~ "You can't enable this Source because \"%(SOURCE)s\" conflicts with it.\n"
-#~ "To continue you need to disable \"%(SOURCE)s\" first."
+#~ "%s is enabled now, Please click the refresh button to update the application "
+#~ "cache."
 #~ msgstr ""
-#~ "Você não pode activar esta fonte porque entra em conflito com "
-#~ "\"%(SOURCE)s\".\n"
-#~ "Para continuar, primeiro precisa de desactivar \"%(SOURCE)s\""
-
-#~ msgid "This module is error while loading."
-#~ msgstr "Este modulo encontrou um erro enquanto carregava."
-
-#~ msgid "Show Input Method menu on the context menu"
-#~ msgstr "Mostrar o Input Method menu no context menu"
+#~ "%s está activa agora. Por favor clique no botão recarregar para atualizar a "
+#~ "cache das aplicações."
 
 #~ msgid ""
-#~ "You can do all kinds of tasks with scripts.\n"
-#~ "You can drag and drop from File Manager.\n"
-#~ "'Scripts' will be added to the context menu."
+#~ "It is a possible security risk to use packages from Third-Party Sources.\n"
+#~ "Please be careful and use only sources you trust."
 #~ msgstr ""
-#~ "Você pode executar todo o tipo de tarefas com scripts.\n"
-#~ "Pode arrastar e largar a partir do seu Gestor de Ficheiros.\n"
-#~ "Os 'Scripts' serão adicionados ao menu de contexto."
+#~ "Pode existir um risco de segurança ao usar pacotes de fontes de terceiros.\n"
+#~ "Por favor tenha cuidado e use apenas fontes de software em que confia."
+
+#~ msgid "Update Manager"
+#~ msgstr "Gestor de Atualizações"
+
+#~ msgid "Unset"
+#~ msgstr "Não definido"
+
+#~ msgid "Tweak otherwise hidden settings."
+#~ msgstr "Altere funcionalidades dissimuladas."
+
+#~ msgid "Easily install up-to-date versions of many applications."
+#~ msgstr "Instale facilmente versões actualizadas de diversas aplicações."
 
 #~ msgid ""
-#~ "Free up disk space by removing unneeded packages and cleaning the package "
-#~ "download cache."
+#~ "Configure file templates and shortcut scripts for easy access to common "
+#~ "tasks."
 #~ msgstr ""
-#~ "Liberte espaço no disco rígido removendo aplicações que não precisa e "
-#~ "limpando a cache de transferências."
+#~ "Configure modelos de ficheiro e scripts de atalho para ter acesso fácil  a "
+#~ "tarefas comuns."
 
-#~ msgid ""
-#~ "This is a major failure of your software management system. Please check for "
-#~ "broken packages with synaptic, check the file permissions and correctness of "
-#~ "the file '/etc/apt/sources.list' and reload the software information with: "
-#~ "'sudo apt-get update' and 'sudo apt-get install -f'."
-#~ msgstr ""
-#~ "Esta é uma falha grave do seu sistema de gestão de software. Por favor "
-#~ "procure pacotes quebrados com o synaptic, verifique as permissões e a "
-#~ "validade do ficheiro '/etc/apt/sources.list' e recarregue a informação sobre "
-#~ "software com: 'sudo apt-get update' e 'sudo apt-get install -f'"
+#~ msgid "Contributors of 2007"
+#~ msgstr "Contribuidores em 2007"
 
-#~ msgid ""
-#~ "Ubuntu Tweak will restore the chosen directory to the default location.\n"
-#~ "However, you must move your files back into place by yourself.\n"
-#~ "Do you wish to continue?"
-#~ msgstr ""
-#~ "O Ubuntu Tweak irá restaurar a pasta escolhida para a sua localização "
-#~ "original.\n"
-#~ "No entanto, terá de ser você a mover os seus ficheiros para o novo local..\n"
-#~ "Pretende continuar?"
+#~ msgid "Contributors of 2008"
+#~ msgstr "Contribuidores em 2008"
 
-#~ msgid ""
-#~ "You can change the paths of the default folders here.\n"
-#~ "Don't change the location of your desktop folder unless you know what you "
-#~ "are doing."
-#~ msgstr ""
-#~ "Pode mudar aqui os caminhos das pastas pré-definidas.\n"
-#~ "Não mude a localização da pasta da Área de Trabalho, a menos que saiba o que "
-#~ "está a fazer."
+#~ msgid "Contributors of 2009"
+#~ msgstr "Contribuidores em 2009"
 
-#~ msgid ""
-#~ "Freely edit your software sources to fit your needs.\n"
-#~ "Click \"Update Sources\" if you want to change the sources.\n"
-#~ "Click \"Submit Sources\" if you want to share your sources with other people."
-#~ msgstr ""
-#~ "Edite livremente as fontes de software para as adaptar às suas "
-#~ "necessidades.\n"
-#~ "Clique \"Actualizar fontes\" se quiser modificar as fontes.\n"
-#~ "Clique \"Enviar fontes\" se quiser partilhar as suas fontes com outras "
-#~ "pessoas."
+#~ msgid "Complete lockdown of all panels"
+#~ msgstr "Bloqueio total de todos os painéis"
 
-#~ msgid "Update Sources"
-#~ msgstr "Actualizar fontes"
+#~ msgid "Ubuntu Tweak Preferences"
+#~ msgstr "Perferencias do Ubuntu Tweak"
 
-#~ msgid "Submit Sources"
-#~ msgstr "Enviar fontes"
+#~ msgid "Clean Cache"
+#~ msgstr "Limpar a Cache"
 
-#~ msgid "Please input the correct information about sources!"
-#~ msgstr "Por favor corrija a informação sobre as fontes!"
+#~ msgid "_Cleanup"
+#~ msgstr "_Limpar"
 
-#~ msgid ""
-#~ "You've changed the sources.list without saving it.\n"
-#~ "Do you want to save it?"
-#~ msgstr ""
-#~ "Alterou o ficheiro sources.list sem o gravar.\n"
-#~ "Deseja guardar as alterações?"
+#~ msgid "Clean Config"
+#~ msgstr "Limpar a configuração"
 
-#~ msgid ""
-#~ "You can install the new applications by selecting them and choose \"Yes\".\n"
-#~ "Or you can install them at Add/Remove by choose \"No\"."
-#~ msgstr ""
-#~ "Você pode instalar as novas aplicações seleccionando-as e escolhendo "
-#~ "\"Sim\".\n"
-#~ "Ou pode instala-las através do Adicionar/Remover escolhendo \"Não\"."
+#~ msgid "<b>User Interface</b>"
+#~ msgstr "<b>Interface do utilizador</b>"
 
-#~ msgid "New applications are available to update"
-#~ msgstr "Existem novas aplicações para actualização"
+#~ msgid "<b>Features</b>"
+#~ msgstr "<b>Funcionalidades</b>"
 
-#~ msgid "Your system is clean and there's no update yet."
-#~ msgstr "O seu sistema está limpo e atualizado."
+#~ msgid "Default Window Width"
+#~ msgstr "Largura predefinida da Janela"
 
-#~ msgid "The software information is up-to-date now"
-#~ msgstr "A informação sobre o software está atualizada"
+#~ msgid "Default Window Height"
+#~ msgstr "Altura predefinida da Janela"
 
-#~ msgid "Available Package Updates"
-#~ msgstr "Actualizações de Pacotes disponíveis"
+#~ msgid "Left Menubar Width"
+#~ msgstr "Largura do Menu de Barra esquerdo"
 
-#~ msgid "Available New Applications"
-#~ msgstr "Novas aplicações disponíveis"
-
-#~ msgid ""
-#~ "A simple but more effecient method for finding and installing popular "
-#~ "packages than the default Add/Remove."
-#~ msgstr ""
-#~ "Um método mais simples e eficaz de encontrar e instalar pacotes populares do "
-#~ "que o tradicional Adicionar/Remover Programas."
-
-#~ msgid "Here you can manage which application will open which filetypes."
-#~ msgstr ""
-#~ "Aqui pode gerir qual a aplicação que irá abrir cada tipo de ficheiro."
-
-#~ msgid "Only show filetypes with an associated application"
-#~ msgstr "Apenas mostrar tipos de ficheiro associados a uma aplicação"
-
-#~ msgid "Enable Metacity's Compositing feature"
-#~ msgstr "Activar função de composição da Metacity"
-
-#~ msgid ""
-#~ "To enable the compositing feature of metacity, you should manually disable "
-#~ "Visual Effects in \"Appearance\"."
-#~ msgstr ""
-#~ "Para activar a função de composição da Metacity, tem de desactivar "
-#~ "manualmente os Efeitos visuais na \"Aparência\"."
-
-#~ msgid "Show Unicode Method menu on the context menu"
-#~ msgstr "Mostrar Menu Método Unicode no menu de contexto"
-
-#~ msgid ""
-#~ "Gloobus is an extension of Gnome designed to enable a full screen preview of "
-#~ "any kind of file."
-#~ msgstr ""
-#~ "O Gloobus é uma extensão do GNOME criado para permitir pré-visualizar "
-#~ "qualquer tipo de ficheiro em ecran total."
-
-#~ msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
-#~ msgstr "Ambiente de trabalho Lightweight X11: GPicView, PCManFM"
-
-#~ msgid "Development Version of Mozilla Firefox"
-#~ msgstr "Versão de desenvolvimento do Mozilla Firefox."
-
-#~ msgid "Development version of Compiz"
-#~ msgstr "Versão de desenvolvimento do Compiz."
-
-#~ msgid ""
-#~ "WebkitGtk+, Liferea (Webkit), Midori and other WebKit related projects."
-#~ msgstr ""
-#~ "WebkitGtk+, Liferea (Webkit), Midori e outros projectos relacionados com "
-#~ "WebKit."
-
-#~ msgid "Development Version of K Desktop Environment"
-#~ msgstr "Versão de desenvolvimento do Ambiente de trabalho K."
-
-#~ msgid "Google's Linux Repository"
-#~ msgstr "Repositório Linux do Google."
-
-#~ msgid ""
-#~ "Multimedia, Entertainment and Distraction In Ubuntu\n"
-#~ "Medibuntu is a repository of packages that cannot be included into the "
-#~ "Ubuntu distribution for legal reasons (copyright, license, patent, etc)."
-#~ msgstr ""
-#~ "Multimedia, Entretenimento, e descontracção no Ubuntu.\n"
-#~ "O Medibuntu é um Repositório de pacotes que não podem ser incluídos na "
-#~ "distribuição Ubuntu por razões legais (sujeitos a direitos de autor, "
-#~ "licenças, patentes, etc)."
-
-#~ msgid ""
-#~ "Ubuntu repository for Chinese users.\n"
-#~ "Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and "
-#~ "other softwares."
-#~ msgstr ""
-#~ "Repositório do Ubuntu para utilizadores Chineses.\n"
-#~ "Inclui ElOffice, Ubuntu Tweak, método de introdução IBus, Openoffice.org 3.0 "
-#~ "e outros programas."
-
-#~ msgid "Updated versions of X.org drivers, libraries, etc. for Ubuntu."
-#~ msgstr ""
-#~ "Versões actualizadas dos drivers X.org, bibliotecas, etc. para o Ubuntu."
-
-#~ msgid ""
-#~ "Behind this African word, referring to the notion of imagination, you can "
-#~ "find some themes for GNOME"
-#~ msgstr ""
-#~ "Atrás desta palavra Africana, que se refere à noção de imaginação, pode "
-#~ "encontrar alguns temas para o GNOME."
-
-#~ msgid ""
-#~ "GetDeb extends the existing software options for Ubuntu (and derived) Linux "
-#~ "distributions by providing major updates and software not yet available on "
-#~ "the official Ubuntu repositories."
-#~ msgstr ""
-#~ "GetDev extende as opções de software existentes para  distribuições Ubuntu "
-#~ "Linux (e derivados) ao disponibilizar as principais actualizações e software "
-#~ "ainda não disponível nos repositórios oficiais do Ubuntu."
-
-#~ msgid "Breathe Icon Theme"
-#~ msgstr "Tema de Ícones Breathe"
-
-#~ msgid "IBus 1.2 for intrepid"
-#~ msgstr "IBus 1.2 para Intrepid"
-
-#~ msgid "IBus (Old Version)"
-#~ msgstr "IBus (versão antiga)"
-
-#~ msgid "IBus 1.2 for jaunty"
-#~ msgstr "IBus 1.2 para Jaunty"
-
-#~ msgid "aMule (Stable Version)"
-#~ msgstr "aMule (versão estável)"
-
-#~ msgid "IBus 1.2 for karmic"
-#~ msgstr "IBus 1.2 para Karmic"
-
-#~ msgid "GIMP (Testing Version)"
-#~ msgstr "GIMP (versão de testes)"
-
-#~ msgid "Google Repository"
-#~ msgstr "Repositório da Google"
-
-#~ msgid "Google Testing Repository"
-#~ msgstr "Repositório de testes da Google"
-
-#~ msgid "Chinese Chess"
-#~ msgstr "Xadrez Chinês"
-
-#~ msgid "Gwibber (Daily Version)"
-#~ msgstr "Gwibber (versão diária)"
-
-#~ msgid "Spicebird (Testing Version)"
-#~ msgstr "Spicebird (versão de testes)"
-
-#~ msgid "PiTiVi video editor"
-#~ msgstr "Editor de vídeo PiTiVi"
-
-#~ msgid "VLC media player"
-#~ msgstr "Reprodutor multimédia VLC"
-
-#~ msgid "SMPlayer (Unstable Version)"
-#~ msgstr "SMPlayer (versão instável)"
-
-#~ msgid "Bisigi Theme Project"
-#~ msgstr "Projecto de Temas Bisigi"
-
-#~ msgid "Ubuntu Tweak (Unstable Version)"
-#~ msgstr "Ubuntu Tweak (versão instável)"
-
-#~ msgid "Moblin Desktop for Ubuntu 9.10 Karmic"
-#~ msgstr "Ambiente de Trabalho Moblin para Ubuntu 9.10 Karmic"
-
-#~ msgid "Moblin Desktop for Ubuntu 9.04 Jaunty"
-#~ msgstr "Ambiente de Trabalho Moblin para Ubuntu 9.04 Jaunty"
-
-#~ msgid "OpenShot Video Editor"
-#~ msgstr "Editor de vídeo OpenShot"
-
-#~ msgid "Tomboy (Unstable Version)"
-#~ msgstr "Tomboy (versão instável)"
-
-#~ msgid "Tomboy (Stable Version)"
-#~ msgstr "Tomboy (versão estável)"
-
-#~ msgid "OSD Lyrics"
-#~ msgstr "Letras OSD"
-
-#~ msgid ""
-#~ "Ubuntu Mozilla Security Team provides beta and final stable/security updates "
-#~ "for mozilla software in its PPA"
-#~ msgstr ""
-#~ "A equipa de Segurança do Mozilla para Ubuntu (Ubuntu Mozilla Security Team)  "
-#~ "fornece beta e versões finais/actualizações de segurança para o software "
-#~ "Mozilla no seu PPA."
-
-#~ msgid "A cross-platform application and UI framework"
-#~ msgstr "Uma aplicação de plataforma transversal e uma infra-estrutura UI"
-
-#~ msgid "Mono is a cross platform, open source .NET development framework."
-#~ msgstr ""
-#~ "Mono é uma plataforma transversal e uma infra-estrutura .NET de código-"
-#~ "aberto."
-
-#~ msgid ""
-#~ "Updates for Kubuntu releases which are due to go to Ubuntu Updates. Mostly "
-#~ "KDE point releases."
-#~ msgstr ""
-#~ "Lançamentos de actualizações Kubuntu que irão ser integradas nas "
-#~ "actualizações Ubuntu. Na maioria são lançamentos KDE de ponta."
-
-#~ msgid "VirtualBox (Open Source Edition)"
-#~ msgstr "VirtualBox (Edição Código-livre)"
-
-#~ msgid "Christine Media Player"
-#~ msgstr "Reprodutor multimédia Christine"
-
-#~ msgid "Gnome Global Menu"
-#~ msgstr "Menu Global GNOME"
-
-#~ msgid "Experimental Gnome Games"
-#~ msgstr "Jogos experimentais do GNOME"
-
-#~ msgid "GetDeb.net (Mirror)"
-#~ msgstr "GetDeb.net (Mirror)"
+#~ msgid "Default Launch Function"
+#~ msgstr "Função de início predefinida"
 
 #, python-format
-#~ msgid ""
-#~ "Templates path is wrong! The current path is point to \"%s\".\n"
-#~ "Please reset it to a folder under your Home Folder."
+#~ msgid "Cleaning...%s"
+#~ msgstr "A apagar... %s"
+
+#~ msgid "Cleaning Package Cache"
+#~ msgstr "A apagar cache de pacotes"
+
+#~ msgid "Cleaning Configuration Files"
+#~ msgstr "A apagar ficheiros de configuração"
+
+#~ msgid "Display warning when removing a panel"
+#~ msgstr "Exibir um aviso ao remover um painel"
+
+#~ msgid "Enable panel animations"
+#~ msgstr "Ativar animações de painel"
+
+#~ msgid "Screensaver"
+#~ msgstr "Proteção de ecrã"
+
+#~ msgid "Do you want your changes to take effect immediately?"
+#~ msgstr "Pretende que as suas alterações sejam efetuadas imediatamente?"
+
+#~ msgid "Show \"Network\" icon on desktop"
+#~ msgstr "Mostar o ícone \"Rede\" no ambiente de trabalho"
+
+#~ msgid "Make the launcher hide automatically after some time inactive"
 #~ msgstr ""
-#~ "O caminho para os Modelos está errado! O caminho actual aponta para \"%s\".\n"
-#~ "Por favor redefina-a para uma pasta sob a pasta Home."
+#~ "Fazer com que o lançador seja ocultado após algum tempo de inatividade"
 
-#~ msgid "Package Cache"
-#~ msgstr "Cache de pacotes"
+#~ msgid "Advanced Power Management Settings"
+#~ msgstr "Definições avançadas de gestão de energia"
 
-#~ msgid ""
-#~ "Here you can freely manage your document templates.\n"
-#~ "You can add files as templates by dragging them onto this window.\n"
-#~ "You can create new documents based on these templates from the Nautilus "
-#~ "right-click menu."
-#~ msgstr ""
-#~ "Aqui pode gerir livremente os seus modelos de documentos.\n"
-#~ "Pode adicionar ficheiros como modelos arrastando-os para dentro desta "
-#~ "janela.\n"
-#~ "Pode criar novos documentos baseados nestes modelos a partir do Nautilus com "
-#~ "o menu do clique direito."
-
-#~ msgid "Templates path is still wrong, Please reset it!"
-#~ msgstr "O caminho para os modelos está errado, por favor redefina-o !"
-
-#~ msgid "Clean Kernel"
-#~ msgstr "Limpar o Kernel"
-
-#~ msgid "Clean Package"
-#~ msgstr "Limpar pacotes desnecessários"
-
-#~ msgid ""
-#~ "Clutter is an OpenGL based interactive canvas library, designed for creating "
-#~ "fast, mainly 2D single window applications such as media box UIs, "
-#~ "presentations, kiosk style applications and so on."
-#~ msgstr ""
-#~ "A Clutter é uma livraria de tela interactiva baseada em OpenGL, desenhada "
-#~ "para criar rápidas aplicações 2D de janela única, tais como caixas UI "
-#~ "multimedia, apresentações, aplicações estilo Kiosk e por ai adiante."
-
-#~ msgid "Kubuntu Backports"
-#~ msgstr "Backports do Kubuntu"
-
-#~ msgid "Ubuntu Mozilla Security Team"
-#~ msgstr ""
-#~ "Ubuntu Mozilla Security Team (Equipa de Segurança do Mozilla para Ubuntu)"
-
-#~ msgid "Inkscape (Nightly Version)"
-#~ msgstr "Inkscape (Nightly Version - Versão de teste)"
-
-#~ msgid ""
-#~ "Backports of new versions of KDE for Kubuntu which are not yet tested enough "
-#~ "to go to Ubuntu Backports."
-#~ msgstr ""
-#~ "Backports de novas versões do KDE para Kubuntu que ainda não foram "
-#~ "suficientemente testadas para irem para os  Backports do Ubuntu ."
-
-#~ msgid ""
-#~ "Gnome Games built from Git, with all experimental features and staging games "
-#~ "enabled."
-#~ msgstr ""
-#~ "Jogos Gnome construídos a partir do Git, tendo habilitadas todas as "
-#~ "funcionalidades experimentais e jogos em teste (staging games)."
-
-#~ msgid "Ubuntu Chinese Repository"
-#~ msgstr "Repositório Chinês do Ubuntu"
-
-#~ msgid "Clean up unneeded packages to free up diskspace."
-#~ msgstr "Limpa pacotes desnecessário para libertar espaço em disco"
-
-#~ msgid "Enable the synchronous notification"
-#~ msgstr "Permitir notificações de sincronização"
-
-#~ msgid "Some useful system information)"
-#~ msgstr "Algumas informações úteis do sistema)"
-
-#~ msgid "Arrange the buttons on the titlebar by dragging and dropping"
-#~ msgstr "Ordene os botões da barra de título arrastando e largando"
-
-#~ msgid "Freely edit your software sources to fit your needs."
-#~ msgstr ""
-#~ "Edite livremente as fontes das aplicações conforme as suas necessidades"
-
-#~ msgid ""
-#~ "A simple but more efficient way for finding and installing popular "
-#~ "applications.\n"
-#~ "Data will be automatically synchronized with the remote server.\n"
-#~ "You can click the \"Sync\" button to perform a manual check for updates."
-#~ msgstr ""
-#~ "Uma maneira simples, mas mais eficaz para localizar e instalar aplicações "
-#~ "populares.\n"
-#~ "Os dados serão automaticamente sincronizadas com o servidor remoto.\n"
-#~ "Pode clicar no botão \"Sync\" para executar uma verificação manual de "
-#~ "atualizações."
-
-#~ msgid "Fix the appearance of themes when granted root priveleges"
-#~ msgstr "Ajusta a aparência quando em modo super utilizador (root)"
-
-#~ msgid "Enable the auto launch of System Update Manager"
-#~ msgstr "Activar automaticamente o Gestor de Actualizações"
-
-#~ msgid "Add Spacer"
-#~ msgstr "Adicionar Separador"
-
-#~ msgid "Remove Spacer"
-#~ msgstr "Apaga Separador"
-
-#~ msgid "Change the name and toggle visibilty of desktop icons"
-#~ msgstr "Alterar nome e visibilidade dos ícones no ambiente de trabalho"
-
-#~ msgid "Control your computer's power managerment"
-#~ msgstr "Controla o gestor de energia do computador"
-
-#~ msgid "Advanced Power Manager Settings"
-#~ msgstr "Configurações Avançadas do Gestor de Energia"
-
-#~ msgid ""
-#~ "This image size isn't suitable for the panel.\n"
-#~ "It should be 24x24."
-#~ msgstr ""
-#~ "O tamanho da imagem não é o indicado para o painel.\n"
-#~ "Deve ser 24x24."
-
-#~ msgid "Freely edit your software sources to suit your needs."
-#~ msgstr ""
-#~ "Editar livremente as fontes de programas de acordo com as necessidades."
-
-#~ msgid "Session control"
-#~ msgstr "Controlo de sessão"
-
-#~ msgid "Suppress the dialog to confirm logout, restart and shutdown action"
-#~ msgstr ""
-#~ "Suprimir a caixa de diálogo para confirmar acções de terminar sessão, "
-#~ "reiniciar e encerrar"
-
-#~ msgid "Open folder with root priveleges"
-#~ msgstr "Abrir pasta com previlégios root"
-
-#~ msgid "Disable showing the restart buttons"
-#~ msgstr "Desactivar a apresentação dos botões de reiniciar"
-
-#~ msgid "PNG image with 64x64 size (*.png)"
-#~ msgstr "Imagem PNG 64x64 (*.png)"
-
-#~ msgid ""
-#~ "Free up disk space by removing redundant packages and cleaning the package "
-#~ "download cache."
-#~ msgstr ""
-#~ "Liberte espaço em disco removendo os pacotes redundantes e limpando a cache "
-#~ "de transferência de pacotes."
-
-#~ msgid ""
-#~ "Here you can manage which programs are started upon login.\n"
-#~ "You can hide items from view by selecting and clicking \"Remove\"\n"
-#~ "To permanently delete an item, right-click and press \"Delete\"."
-#~ msgstr ""
-#~ "Aqui pode fazer a gestão do programas iniciados no arranque.\n"
-#~ "Pode ocultar itens da vista seleccionando e premindo \"Remover\"\n"
-#~ "Para apagar permanentemente um item, clique com o botão direito e escolha "
-#~ "\"Apagar\"."
-
-#~ msgid ""
-#~ "A collection of software sources to ensure your applications are always up-"
-#~ "to-date.\n"
-#~ "Here you can also add applications which are unavailable in the offical "
-#~ "repositories.\n"
-#~ "The list of available sources will be obtained automatically from a remote "
-#~ "server.\n"
-#~ "You can click the \"Sync\" button to manually check for updates"
-#~ msgstr ""
-#~ "Uma colecção de fontes de aplicações para se assegurar que as mesmas estão "
-#~ "sempre actualizadas.\n"
-#~ "Pode também adicionar aplicações que não estão disponíveis nos repositórios "
-#~ "oficiais.\n"
-#~ "A lista de fontes disponíveis pode ser obtida automaticamente a partir de um "
-#~ "servidor remoto.\n"
-#~ "Clique no botão \"Sincronizar\" para verificar por actualizações"
-
-#~ msgid ""
-#~ "Scripts can be used to complete all kinds of tasks.\n"
-#~ "You can drag and drop scripts from File Manager.\n"
-#~ "'Scripts' will then be added to the context menu."
-#~ msgstr ""
-#~ "Scripts pode ser usados para completar diversas tarefas.\n"
-#~ "Pode arrastar e largar scripts do Gestor de Ficheiros.\n"
-#~ "Os Scripts serão então adicionados ao menu de contexto."
-
-#, python-format
-#~ msgid "Delete thumbnail cache (will free %s of disk space)"
-#~ msgstr "Apagar cache de miniaturas (libertar %s de espaço em disco)"
-
-#~ msgid "Disable user list in gdm"
-#~ msgstr "Desactivar lista de utilizadores no gdm"
-
-#~ msgid ""
-#~ "The daemon of Ubuntu Tweak doesn't start correctly, that means some advanced "
-#~ "features may not work.\n"
-#~ "If you want to help developer to debug, try to run \"<b>sudo ubuntu-tweak-"
-#~ "daemon</b>\" under terminal."
-#~ msgstr ""
-#~ "O daemon do Ubuntu Tweak não iniciou correctamente e algumas funcionalidades "
-#~ "poderão não funcionar correctamente.\n"
-#~ "Se pretende ajudar o programador a resolver o problema, execute \"<b>sudo "
-#~ "ubuntu-tweak-daemon</b>\" no terminal."
-
-#~ msgid ""
-#~ "It is highly recommend to enable the stable source of Ubuntu Tweak to get "
-#~ "security and normal update.\n"
-#~ "If you don't enable the source, you will need to update manually.\n"
-#~ "\n"
-#~ "Would you like to enable the stable source?"
-#~ msgstr ""
-#~ "É altamente recomendado que active a fonte estável do Ubuntu Tweak para "
-#~ "obter actualizações de segurança.\n"
-#~ "Se não o fizer, a actualização terá que ser feita manualmente.\n"
-#~ "\n"
-#~ "Pretende activar a fonte estável?"
-
-#~ msgid ""
-#~ "Compiz is broken, Please go to \"Package Cleaner\" -> \"Purge PPAs\" to "
-#~ "cleanup the \"Compiz Packagers PPA\" or \"ppa:compiz/ppa\"."
-#~ msgstr ""
-#~ "O Compiz está danificado, vá até \"Limpeza de Pacotes\" -> \"Eliminar PPAs\" "
-#~ "e apague o \"Compiz Packagers PPA\" ou \"ppa:compiz/ppa\"."
+#~ msgid "Enable \"Lock screen\" when \"Blank Screen\" activates"
+#~ msgstr "Ativar \"Bloquear ecrã\" ao desligar o ecrã"
