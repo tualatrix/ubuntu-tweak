@@ -30,7 +30,7 @@ def get_from_name(name='gtk-execute', alter='gtk-execute',
                 pixbuf = icontheme.load_icon(alter, size, 0)
             except Exception, e:
                 log.error(e)
-                icons = icontheme.list_icons()
+                icons = icontheme.list_icons(None)
                 alter = icons[random.randint(0, len(icons) - 1)]
 
     if pixbuf.get_height() != size:
