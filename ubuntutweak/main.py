@@ -25,6 +25,7 @@ from ubuntutweak import modules
 from ubuntutweak import admins
 from ubuntutweak import system
 from ubuntutweak.gui import GuiBuilder
+from ubuntutweak.gui.gtk import post_ui
 from ubuntutweak.utils import icon
 from ubuntutweak.common.consts import VERSION, DATA_DIR
 from ubuntutweak.modules import ModuleLoader, create_broken_module_class
@@ -429,6 +430,7 @@ class UbuntuTweakWindow(GuiBuilder):
         self.modules_index[index] = module
         self.navigation_dict[self.current_feature] = name, None
 
+    @post_ui
     def _load_module(self, name):
         feature, module = ModuleLoader.search_module_for_name(name)
 
@@ -456,6 +458,7 @@ class UbuntuTweakWindow(GuiBuilder):
             dialog = ErrorDialog(title=_('No module named "%s"') % name,
                                  message=_('Please ensure you have entered the correct module name.'))
             dialog.launch()
+            self.notebook.set_current_page(self.feature_dict[self.current_feature])
 
     def update_jump_buttons(self, disable=False):
         if not disable:
