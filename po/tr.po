@@ -8,21 +8,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-07 22:04+0800\n"
-"PO-Revision-Date: 2011-01-22 00:19+0000\n"
-"Last-Translator: Mehmet Altan Pire <Unknown>\n"
+"POT-Creation-Date: 2011-12-13 15:48+0800\n"
+"PO-Revision-Date: 2011-12-12 09:29+0000\n"
+"Last-Translator: Ding Zhou <tualatrix@gmail.com>\n"
 "Language-Team: Turkish <Free (Not in Team)>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2011-05-14 18:52+0000\n"
-"X-Generator: Launchpad (build 13037)\n"
+"X-Launchpad-Export-Date: 2011-12-19 03:09+0000\n"
+"X-Generator: Launchpad (build 14525)\n"
 
 #: ../data/script-worker:54
 #, c-format
 msgid "You don't have permission to write in %s"
-msgstr "%s içine yazma yetkiniz yok"
+msgstr "%s için üzerine yazma yetkiniz yok"
 
 #: ../data/script-worker:152 ../data/script-worker:165
 msgid "Enter your password to perform the administrative tasks"
@@ -34,63 +34,322 @@ msgstr "Sisteminizde herhangi bir metin düzenleyici bulunamadı!"
 
 #: ../data/script-worker:187
 msgid "Select a folder"
-msgstr "Bir klasör seçiniz"
+msgstr "Bir dizin seç"
 
 #: ../data/script-worker:217
 msgid "Please select a target (files or folders)."
-msgstr "Lütfen bir hedef seçiniz (dosyalar ya da dizinler)"
+msgstr "Lütfen bir hedef seçiniz (dosyalar ya da dizinler)."
 
-#: ../data/ubuntu-tweak.desktop.in.h:1
+#: ../data/ubuntu-tweak.desktop.in.h:1 ../ubuntutweak/tweaks/compiz.py:366
+msgid "Compiz Settings"
+msgstr "Compiz Ayarları"
+
+#: ../data/ubuntu-tweak.desktop.in.h:2 ../ubuntutweak/tweaks/icons.py:106
+msgid "Desktop Icon Settings"
+msgstr "Masaüstü Simge Ayarları"
+
+#: ../data/ubuntu-tweak.desktop.in.h:3
+#: ../ubuntutweak/admins/desktoprecovery.py:266
+msgid "Desktop Recovery"
+msgstr "Masaüstü Kurtarma"
+
+#: ../data/ubuntu-tweak.desktop.in.h:4
+#: ../ubuntutweak/admins/filetypemanager.py:550
+msgid "File Type Manager"
+msgstr "Dosya Tipi Yöneticisi"
+
+#: ../data/ubuntu-tweak.desktop.in.h:5
+msgid "GNOME Settings"
+msgstr "GNOME Ayarları"
+
+#: ../data/ubuntu-tweak.desktop.in.h:6
+#: ../ubuntutweak/tweaks/loginsettings.py:39
+msgid "Login Settings"
+msgstr "Giriş Ayarları"
+
+#: ../data/ubuntu-tweak.desktop.in.h:7 ../ubuntutweak/tweaks/nautilus.py:27
+msgid "Nautilus Settings"
+msgstr "Nautilus Ayarları"
+
+#: ../data/ubuntu-tweak.desktop.in.h:8
+msgid "Power Manager Settings"
+msgstr "Güç Yöneticisi Ayarları"
+
+#: ../data/ubuntu-tweak.desktop.in.h:9 ../ubuntutweak/tweaks/session.py:29
+msgid "Session Control"
+msgstr "Oturum Kontrolü"
+
+#: ../data/ubuntu-tweak.desktop.in.h:10 ../ubuntutweak/admins/shortcuts.py:29
+msgid "Shortcut Commands"
+msgstr "Kısayol komutları"
+
+#: ../data/ubuntu-tweak.desktop.in.h:11
 msgid "Tweak ubuntu to what you like"
 msgstr "Ubuntu'yu istediğiniz biçimde özelleştirin"
 
+#: ../data/ubuntu-tweak.desktop.in.h:12 ../ubuntutweak/tweaks/metacity.py:150
+msgid "Window Manager Settings"
+msgstr "Pencere Yöneticisi Ayarları"
+
 #: ../data/com.ubuntu-tweak.daemon.policy.in.h:1
-msgid "System policy prevents the Ubuntu Tweak from Tweaking"
-msgstr "Sistem izinleri, Ubuntu Tweak'in ince ayar çekmesini engelliyor"
+msgid "Clean user and system cruft"
+msgstr ""
 
 #: ../data/com.ubuntu-tweak.daemon.policy.in.h:2
-msgid "Ubuntu Tweak Daemon"
-msgstr "Ubuntu Tweak Hizmeti"
+msgid "Edit the Software Sources lists"
+msgstr "Yazılım Kaynakları listesini düzenle"
+
+#: ../data/com.ubuntu-tweak.daemon.policy.in.h:3
+msgid "To clean the cruft, you need to authenticate."
+msgstr "Gereksiz olan kodları silmek için kimliğinizi doğrulamalısınız."
+
+#: ../data/com.ubuntu-tweak.daemon.policy.in.h:4
+msgid "To edit the software sources, you need to authenticate."
+msgstr ""
+"Yazılım kaynaklarını düzenleyebilmeniz için kimlik doğrulaması gerekiyor."
+
+#: ../data/com.ubuntu-tweak.daemon.policy.in.h:5
+msgid "To tweak the settings, you need to authenticate."
+msgstr "Ayarları düzenlemek için, kimlik doğrulaması gerekiyor."
+
+#: ../data/com.ubuntu-tweak.daemon.policy.in.h:6
+msgid "Tweak all kinds of settings"
+msgstr "Benzer bütün ayarları düzenle"
 
 #: ../data/ui/preferences.ui.h:1
-msgid "<b>Features</b>"
-msgstr "<b>Özellikler</b>"
+msgid "<b>Admins Extensions</b>"
+msgstr ""
 
 #: ../data/ui/preferences.ui.h:2
-msgid "<b>User Interface</b>"
-msgstr "<b>Kullanıcı Arayüzü</b>"
+msgid "<b>Clip Management</b>"
+msgstr "<b>Klip Yönetimi</b>"
 
 #: ../data/ui/preferences.ui.h:3
-msgid "Default Launch Function"
-msgstr "Öntanımlı Çalıştırma İşlevi"
+msgid "<b>Janitor Extensions</b>"
+msgstr ""
 
 #: ../data/ui/preferences.ui.h:4
-msgid "Default Window Height"
-msgstr "Öntanımlı Pencere Yüksekliği"
+msgid "<b>Tweaks Extensions</b>"
+msgstr ""
 
 #: ../data/ui/preferences.ui.h:5
-msgid "Default Window Width"
-msgstr "Öntanımlı Pencere Genişliği"
+msgid "Admins"
+msgstr "Yöneticiler"
 
 #: ../data/ui/preferences.ui.h:6
-msgid "Left Menubar Width"
-msgstr "Sol Menü Çubuğu Genişliği"
+msgid "Admins Extensions Management"
+msgstr ""
 
 #: ../data/ui/preferences.ui.h:7
-msgid "Ubuntu Tweak Preferences"
-msgstr "Ubuntu Tweak Tercihleri"
+msgid "Install"
+msgstr "Kur"
+
+#: ../data/ui/preferences.ui.h:8
+msgid "Janitor"
+msgstr ""
+
+#: ../data/ui/preferences.ui.h:9
+msgid "Janitor Extensions Management"
+msgstr ""
+
+#: ../data/ui/preferences.ui.h:10
+msgid "Manage the clip view in the Overview"
+msgstr ""
+
+#: ../data/ui/preferences.ui.h:11
+msgid "Move Down"
+msgstr "Aşağı Taşı"
+
+#: ../data/ui/preferences.ui.h:12
+msgid "Move Up"
+msgstr "Yukarı Taşı"
+
+#: ../data/ui/preferences.ui.h:13
+msgid "Overview"
+msgstr "Genel Görünüm"
+
+#: ../data/ui/preferences.ui.h:14
+msgid "Preferences"
+msgstr "Tercihler"
+
+#: ../data/ui/preferences.ui.h:15
+msgid "Tweaks"
+msgstr ""
+
+#: ../data/ui/preferences.ui.h:16
+msgid "Tweaks Extensions Management"
+msgstr ""
+
+#: ../data/ui/preferences.ui.h:17 ../data/ui/appspage.ui.h:1
+#: ../data/ui/sourceeditor.ui.h:9
+msgid "column"
+msgstr "sütun"
+
+#: ../data/ui/uturl.ui.h:1
+msgid "Description"
+msgstr "Açıklama"
+
+#: ../data/ui/uturl.ui.h:2
+msgid "Ubuntu Tweak"
+msgstr "Ubuntu Tweak"
+
+#: ../data/ui/uturl.ui.h:3
+msgid "_Install"
+msgstr "_Kur"
+
+#: ../data/ui/sourcecenter.ui.h:1
+msgid "<b>Description</b>"
+msgstr ""
+
+#: ../data/ui/sourcecenter.ui.h:2
+msgid "<b>Homepage</b>"
+msgstr ""
+
+#: ../data/ui/sourcecenter.ui.h:3
+msgid "<b>Source URL</b>"
+msgstr ""
+
+#: ../data/ui/sourcecenter.ui.h:4
+msgid "Description is here"
+msgstr "Açıklaması buradadır"
+
+#: ../data/ui/sourcecenter.ui.h:5 ../ubuntutweak/gui/dialogs.py:195
+msgid "Details"
+msgstr "Ayrıntılar"
+
+#: ../data/ui/sourcecenter.ui.h:6
+msgid "http://ubuntu-tweak.com"
+msgstr ""
+
+#: ../data/ui/brokenmodule.ui.h:1
+msgid "<big><b>This module encountered an error while loading.</b></big>"
+msgstr "<big><b>Bu modül yüklenirken hata ile karşılaştı.</b></big>"
+
+#: ../data/ui/brokenmodule.ui.h:2 ../data/ui/traceback.ui.h:3
+msgid "Error Message"
+msgstr "Hata İletisi"
+
+#: ../data/ui/brokenmodule.ui.h:3
+msgid ""
+"If you'd like to help us fix the problem,\n"
+"Please choose <i>Report</i> to file a new bug report. Make sure to include "
+"the error message below:"
+msgstr ""
+"Eğer bize bir sorunu çözmek için yardım etmek istiyorsanız;\n"
+"Lütfen yeni bir hata bildirisi dosyası için <i>Bildir</i> seçeneğini seçin. "
+"Hata iletisini alta eklediğinizden emin olun:"
+
+#: ../data/ui/brokenmodule.ui.h:5 ../data/ui/traceback.ui.h:9
+msgid "_Report"
+msgstr "_Bildir"
+
+#: ../data/ui/loginsettings.ui.h:1
+msgid "Click the button to change the login screen background"
+msgstr "Giriş ekranı arkaplanını değiştirmek için düğmeye tıklayın"
+
+#: ../data/ui/loginsettings.ui.h:2
+msgid "Click the button to change the login screen logo"
+msgstr "Giriş ekranı logosunu değiştirmek için düğmeye tıklayın"
+
+#: ../data/ui/loginsettings.ui.h:3
+msgid "Set the same background as the current desktop background"
+msgstr ""
+
+#: ../data/ui/clippage.ui.h:1
+msgid "<b>Recently Used</b>"
+msgstr "<b>Son Kullanılanlar</b>"
+
+#: ../data/ui/sourceeditor.ui.h:1
+msgid "Auto Backup"
+msgstr "Otomatik Yedekleme"
+
+#: ../data/ui/sourceeditor.ui.h:2 ../data/ui/desktoprecovery.ui.h:1
+msgid "Backup History:"
+msgstr "Yedekleme Geçmişi:"
+
+#: ../data/ui/sourceeditor.ui.h:3
+msgid "Delete this source"
+msgstr "Bu kaynağı sil"
+
+#: ../data/ui/sourceeditor.ui.h:4
+msgid "Redo this source"
+msgstr ""
+
+#: ../data/ui/sourceeditor.ui.h:5
+msgid "Save this source"
+msgstr "Bu kaynağı kaydet"
+
+#: ../data/ui/sourceeditor.ui.h:6
+msgid "U_pdate"
+msgstr "Gü_ncelleştir"
+
+#: ../data/ui/sourceeditor.ui.h:7 ../data/ui/desktoprecovery.ui.h:4
+msgid "_Backup"
+msgstr "_Yedekle"
+
+#: ../data/ui/sourceeditor.ui.h:8 ../data/ui/desktoprecovery.ui.h:5
+msgid "_Recover"
+msgstr "_Kurtar"
+
+#: ../data/ui/sourceeditor.ui.h:10
+msgid "toolbutton1"
+msgstr ""
+
+#: ../data/ui/sourceeditor.ui.h:11
+msgid "toolbutton2"
+msgstr ""
+
+#: ../data/ui/sourceeditor.ui.h:12
+msgid "toolbutton3"
+msgstr ""
+
+#: ../data/ui/updatemanager.ui.h:1
+msgid "_Install Update"
+msgstr "_Güncelleştirmeyi Yükle"
+
+#: ../data/ui/filetypemanager.ui.h:1
+msgid "Add Application"
+msgstr "Uygulama Ekle"
+
+#: ../data/ui/filetypemanager.ui.h:2
+msgid "Edit Type"
+msgstr "Düzenleme Türü"
+
+#: ../data/ui/filetypemanager.ui.h:3
+msgid "Select an application to view its description."
+msgstr "Açıklamasını görüntülemek için bir uygulama seçin."
+
+#: ../data/ui/filetypemanager.ui.h:4
+msgid "_Browse..."
+msgstr "_Gözat..."
+
+#: ../data/ui/filetypemanager.ui.h:5
+msgid "_Use a custom command"
+msgstr "_Özel bir komut kullan"
+
+#: ../data/ui/janitorpage.ui.h:1
+msgid "<big><b>Cool! Your system is clean!</b></big>"
+msgstr ""
+
+#: ../data/ui/janitorpage.ui.h:2
+msgid "Auto Scan"
+msgstr "Otomatik Tarama"
+
+#: ../data/ui/janitorpage.ui.h:3
+msgid "_Clean"
+msgstr "_Temizle"
+
+#: ../data/ui/janitorpage.ui.h:4
+msgid "_Scan"
+msgstr "_Tara"
 
 #: ../data/ui/traceback.ui.h:1
 msgid "<big><b>Oops... a fatal error occured</b></big>"
-msgstr "<big><b>Eyvah... Kurtarılamaz bir hata oluştu</b></big>"
+msgstr "<big><b>Eyvah... kurtarılamaz bir hata oluştu</b></big>"
 
 #: ../data/ui/traceback.ui.h:2
 msgid "<big><b>Oops... an error occured</b></big>"
 msgstr "<big><b>Eyvah... bir hata oluştu</b></big>"
-
-#: ../data/ui/traceback.ui.h:3 ../data/ui/brokenmodule.ui.h:2
-msgid "Error Message"
-msgstr "Hata İletisi"
 
 #: ../data/ui/traceback.ui.h:4
 msgid ""
@@ -114,9 +373,66 @@ msgstr ""
 "Lütfen yeni bir hata bildirisi dosyası için <i>Bildir</i> seçeneğini seçin. "
 "Hata iletisini alta eklediğinizden emin olun:"
 
-#: ../data/ui/traceback.ui.h:9 ../data/ui/brokenmodule.ui.h:5
-msgid "_Report"
-msgstr "_Bildir"
+#: ../data/ui/mainwindow.ui.h:1
+msgid "A_pps"
+msgstr ""
+
+#: ../data/ui/mainwindow.ui.h:2
+msgid "Ubuntu Tweak Website"
+msgstr "Ubuntu Tweak İnternet Sitesi"
+
+#: ../data/ui/mainwindow.ui.h:3
+msgid ""
+"Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
+"system and desktop settings."
+msgstr ""
+"Ubuntu Tweak, Ubuntu için sisteminizi ve masaüstü ayarlarını "
+"yapılandırmanızı kolaylaştıran bir araçtır."
+
+#: ../data/ui/mainwindow.ui.h:4
+msgid ""
+"Ubuntu Tweak is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version.\n"
+"Ubuntu Tweak is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+"You should have received a copy of the GNU General Public License along with "
+"Ubuntu Tweak; if not, write to the Free Software Foundation, Inc., 51 "
+"Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA"
+msgstr ""
+
+#: ../data/ui/mainwindow.ui.h:7
+msgid "Visit Homepage"
+msgstr "Ana Sayfayı Ziyaret Edin"
+
+#: ../data/ui/mainwindow.ui.h:8
+msgid "_Admins"
+msgstr "_Yöneticiler"
+
+#: ../data/ui/mainwindow.ui.h:9
+msgid "_Janitor"
+msgstr ""
+
+#: ../data/ui/mainwindow.ui.h:10
+msgid "_Overview"
+msgstr "_Genel Görünüm"
+
+#: ../data/ui/mainwindow.ui.h:11
+msgid "_Tweaks"
+msgstr ""
+
+#: ../data/ui/mainwindow.ui.h:12
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  Erkin Batu Altunbaş https://launchpad.net/~erkin\n"
+"  Onur ALTINTAŞI https://launchpad.net/~altintasi\n"
+"  Onur İ. https://launchpad.net/~nsproo\n"
+"  Yigit TUKEL https://launchpad.net/~yigittukel\n"
+"  kulkke https://launchpad.net/~kulkke"
 
 #: ../data/ui/metacity.ui.h:1
 msgid " "
@@ -144,42 +460,6 @@ msgstr "Konum:"
 msgid "Right"
 msgstr "Sağ"
 
-#: ../data/ui/updatemanager.ui.h:1
-msgid "_Install Update"
-msgstr "_Güncelleştirmeyi Yükle"
-
-#: ../data/ui/type_edit.ui.h:1
-msgid "Add Application"
-msgstr "Uygulama Ekle"
-
-#: ../data/ui/type_edit.ui.h:2
-msgid "Edit Type"
-msgstr "Düzenleme Türü"
-
-#: ../data/ui/type_edit.ui.h:3
-msgid "Select an application to view its description."
-msgstr "Açıklamasını görüntülemek için bir uygulama seçin."
-
-#: ../data/ui/type_edit.ui.h:4 ../ubuntutweak/modules/autostart.py:70
-msgid "_Browse..."
-msgstr "_Gözat..."
-
-#: ../data/ui/type_edit.ui.h:5
-msgid "_Use a custom command"
-msgstr "_Özel bir komut kullan"
-
-#: ../data/ui/loginsettings.ui.h:1
-msgid "Click the button to change the login screen background"
-msgstr "Giriş ekranı arkaplanını değiştirmek için düğmeye tıklayın"
-
-#: ../data/ui/loginsettings.ui.h:2
-msgid "Click the button to change the login screen logo"
-msgstr "Giriş ekranı logosunu değiştirmek için düğmeye tıklayın"
-
-#: ../data/ui/desktoprecovery.ui.h:1
-msgid "Backup History:"
-msgstr "Yedekleme Geçmişi:"
-
 #: ../data/ui/desktoprecovery.ui.h:2
 msgid "R_eset"
 msgstr "Sı_fırla"
@@ -188,329 +468,21 @@ msgstr "Sı_fırla"
 msgid "Setting Name:"
 msgstr "Ayar Adı:"
 
-#: ../data/ui/desktoprecovery.ui.h:4
-msgid "_Backup"
-msgstr "_Yedekle"
-
-#: ../data/ui/desktoprecovery.ui.h:5
-msgid "_Recover"
-msgstr "_Kurtar"
-
-#: ../data/ui/brokenmodule.ui.h:1
-msgid "<big><b>This module encountered an error while loading.</b></big>"
-msgstr "<big><b>Bu modül yüklenirken hata ile karşılaştı.</b></big>"
-
-#: ../data/ui/brokenmodule.ui.h:3
-msgid ""
-"If you'd like to help us fix the problem,\n"
-"Please choose <i>Report</i> to file a new bug report. Make sure to include "
-"the error message below:"
+#: ../ubuntutweak/system/__init__.py:40
+msgid "GNOME Classic"
 msgstr ""
-"Eğer bize bir sorunu çözmek için yardım etmek istiyorsanız;\n"
-"Lütfen yeni bir hata bildirisi dosyası için <i>Bildir</i> seçeneğini seçin. "
-"Hata iletisini alta eklediğinizden emin olun:"
 
-#: ../ubuntutweak/mainwindow.py:82
-msgid "Welcome to"
-msgstr "Hoşgeldiniz"
-
-#: ../ubuntutweak/mainwindow.py:88
-msgid "Tweak otherwise hidden settings."
-msgstr "Diğer gizli ayarları değiştir."
-
-#: ../ubuntutweak/mainwindow.py:89
-msgid "Clean up unused packages to free up diskspace."
-msgstr "Disk alanından kazanmak için kullanılmayan paketleri temizleyin"
-
-#: ../ubuntutweak/mainwindow.py:90
-msgid "Easily install up-to-date versions of many applications."
-msgstr "Çok sayıda uygulamanın güncel sürümlerini kolayca kurun."
-
-#: ../ubuntutweak/mainwindow.py:91
-msgid ""
-"Configure file templates and shortcut scripts for easy access to common "
-"tasks."
-msgstr ""
-"Sık kullanılan görevlere kolay erişim için dosya şablonlarını ve kısayol "
-"betiklerini yapılandırın."
-
-#: ../ubuntutweak/mainwindow.py:92
-msgid "Many more useful features!"
-msgstr "Çok daha fazla kullanışlı özellik!"
-
-#: ../ubuntutweak/mainwindow.py:103
-msgid "Please wait a moment..."
-msgstr "Lütfen bir süre bekleyin..."
-
-#: ../ubuntutweak/mainwindow.py:128
-msgid "Welcome"
-msgstr "Hoşgeldiniz"
-
-#: ../ubuntutweak/mainwindow.py:129
-msgid "Broken Modules"
-msgstr "Kırık Modüller"
-
-#: ../ubuntutweak/mainwindow.py:130
-#: ../ubuntutweak/modules/desktoprecovery.py:75
-msgid "Applications"
-msgstr "Uygulamalar"
-
-#: ../ubuntutweak/mainwindow.py:131
-msgid "Startup"
-msgstr "Başlangıç"
-
-#: ../ubuntutweak/mainwindow.py:132 ../ubuntutweak/modules/userdir.py:45
-#: ../ubuntutweak/modules/desktoprecovery.py:76
-msgid "Desktop"
-msgstr "Masaüstü"
-
-#: ../ubuntutweak/mainwindow.py:133
-msgid "Personal"
-msgstr "Kişisel"
-
-#: ../ubuntutweak/mainwindow.py:134
-#: ../ubuntutweak/modules/desktoprecovery.py:77
-msgid "System"
-msgstr "Sistem"
-
-#: ../ubuntutweak/mainwindow.py:142
+#: ../ubuntutweak/system/__init__.py:50
 #, python-format
-msgid "Download Ubuntu Tweak %s"
-msgstr "Ubuntu Tweak %s İndir"
-
-#: ../ubuntutweak/mainwindow.py:161
-msgid "Double click for editing the sources"
-msgstr "Kaynağı düzenlemek için çift tıklayın"
-
-#: ../ubuntutweak/mainwindow.py:260
-msgid "_Donate"
-msgstr "_Bağış Yap"
-
-#: ../ubuntutweak/mainwindow.py:305
-msgid ""
-"To keep the package manager work, Ubuntu Tweak has disabled these broken "
-"sources.\n"
-"\n"
-"If you want to re-open these sources, Please try to correct it.\n"
-"\n"
-"You can click \"Help\" to see the guide, then edit these sources at Source "
-"Editor."
-msgstr ""
-"Paket yöneticisinin çalışması için, Ubuntu Tweak bu bozuk kaynakları "
-"devredışı bırakmıştır.\n"
-"\n"
-"Eğer bu kaynakları tekrar etkinleştirmek istiyorsanız; Lütfen bunu "
-"doğrulayın.\n"
-"\n"
-"Kılavuzu görmek için \"Yardım\"a tıklayabilirsiniz, sonra bu kaynakları "
-"Kaynak Yöneticisi'nde düzenleyin."
-
-#: ../ubuntutweak/mainwindow.py:306
-msgid "The software sources list is broken"
-msgstr "Yazılım kaynak listesi ulaşılamaz"
-
-#: ../ubuntutweak/mainwindow.py:310
-msgid "_Help"
-msgstr "_Yardım"
-
-#: ../ubuntutweak/mainwindow.py:321
-msgid ""
-"It is highly recommended that you enable the Ubuntu Tweak stable repository "
-"to get security and maintenance updates.\n"
-"If you don't enable this repository, you will need to update manually.\n"
-"\n"
-"Would you like to enable this repository?"
-msgstr ""
-"Ubuntu Tweak deposunu etkinleştirmeniz tavsiye edilir.\n"
-"Eğer depoyu etkinleştirmezseniz, elle güncellemeniz gerekecektir.\n"
-"\n"
-"Bu depoyu etkinleştirmek ister misiniz?"
-
-#: ../ubuntutweak/mainwindow.py:324
-#: ../ubuntutweak/modules/gnomesettings.py:222
-#: ../ubuntutweak/modules/sourcecenter.py:1112
-#: ../ubuntutweak/modules/nautilus.py:148
-msgid "Warning"
-msgstr "Uyarı"
-
-#: ../ubuntutweak/mainwindow.py:325
-#: ../ubuntutweak/modules/sourcecenter.py:1113
-msgid "Never show this dialog"
-msgstr "Bu uyarıyı bir daha gösterme"
-
-#: ../ubuntutweak/mainwindow.py:535
-msgid "Ubuntu Tweak Website"
-msgstr "Ubuntu Tweak İnternet Sitesi"
-
-#: ../ubuntutweak/mainwindow.py:537
-msgid ""
-"Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
-"system and desktop settings."
-msgstr ""
-"Ubuntu Tweak, Ubuntu için sisteminizi ve masaüstü ayarlarını "
-"yapılandırmanızı kolaylaştıran bir araçtır."
-
-#: ../ubuntutweak/mainwindow.py:539
-msgid "Contributors of 2007"
-msgstr "2007 Katkıcıları"
-
-#: ../ubuntutweak/mainwindow.py:541
-msgid "Contributors of 2008"
-msgstr "2008 Katkıcıları"
-
-#: ../ubuntutweak/mainwindow.py:543
-msgid "Contributors of 2009"
-msgstr "2009 Katkıcıları"
-
-#: ../ubuntutweak/mainwindow.py:546
-msgid "Contributors of 2010"
-msgstr "2010 Katkıcıları"
-
-#: ../ubuntutweak/mainwindow.py:553
-msgid "Contributors of 2011"
+msgid "Unknown (%s)"
 msgstr ""
 
-#: ../ubuntutweak/mainwindow.py:561
-msgid "translator-credits"
-msgstr ""
-"Launchpad Contributions:\n"
-"  Ahmet SARI https://launchpad.net/~ahmsar04\n"
-"  Ali ARISOY https://launchpad.net/~e166110\n"
-"  Ali BÜLBÜL https://launchpad.net/~ali.bulbul\n"
-"  Burhan Teoman https://launchpad.net/~burhanteoman\n"
-"  Ekrem Kocadere https://launchpad.net/~ekocadere\n"
-"  Engin BAHADIR https://launchpad.net/~enginbah\n"
-"  Erkin Batu Altunbaş https://launchpad.net/~erkin\n"
-"  Mehmet Altan Pire https://launchpad.net/~zippidi\n"
-"  Mesut YETER https://launchpad.net/~mesut-yeter\n"
-"  RecepHasanbaş https://launchpad.net/~swarfh\n"
-"  Selim Sercan Suerkan https://launchpad.net/~mokoko\n"
-"  Serdar KAHYA https://launchpad.net/~kahyainsaat\n"
-"  Tualatrix Chou https://launchpad.net/~tualatrix\n"
-"  Yiğit Ateş https://launchpad.net/~yigitates52\n"
-"  ironic https://launchpad.net/~fatihbostanci"
+#: ../ubuntutweak/system/__init__.py:52
+#: ../ubuntutweak/clips/hardwareinfo.py:16
+msgid "Unknown"
+msgstr "Bilinmeyen"
 
-#: ../ubuntutweak/mainwindow.py:575
-#, python-format
-msgid ""
-"A newer version: %s is available online.\n"
-"Would you like to update?\n"
-"\n"
-"Note: if you prefer to update from the source code, you can disable this "
-"feature in Preferences."
-msgstr ""
-"Yeni bir sürüm: %s şu an kullanılabilir durumda.\n"
-"Güncellemek istiyor musunuz?\n"
-"\n"
-"Not: eğer kaynak koddan güncellemek istiyorsanız, bu özelliği Tercihler "
-"bölümünden devre dışı bırakabilirsiniz."
-
-#: ../ubuntutweak/mainwindow.py:576
-msgid "Software Update"
-msgstr "Yazılım Güncellemesi"
-
-#: ../ubuntutweak/ui/widgets.py:45
-#, python-format
-msgid "Reset setting to default value: %s"
-msgstr "Ayarı varsayılan değere getir: %s"
-
-#: ../ubuntutweak/ui/widgets.py:118 ../ubuntutweak/ui/widgets.py:143
-#: ../ubuntutweak/modules/icons.py:105
-msgid "Unset"
-msgstr "Ayarlanmamış"
-
-#: ../ubuntutweak/ui/widgets.py:278
-msgid "Please press the new key combination"
-msgstr "Lütfen yeni tuş dizilimine basın"
-
-#: ../ubuntutweak/ui/widgets.py:327
-msgid "Disabled"
-msgstr "Devre Dışı"
-
-#: ../ubuntutweak/ui/treeviews.py:71
-msgid "Create folder"
-msgstr "Dizin oluştur"
-
-#: ../ubuntutweak/ui/treeviews.py:75 ../ubuntutweak/modules/icons.py:33
-#: ../ubuntutweak/modules/icons.py:42 ../ubuntutweak/modules/icons.py:51
-msgid "Rename"
-msgstr "Yeniden Adlandır"
-
-#: ../ubuntutweak/ui/treeviews.py:79
-msgid "Delete"
-msgstr "Sil"
-
-#: ../ubuntutweak/ui/treeviews.py:101
-msgid "Input the dir name"
-msgstr "Dizin adı girin"
-
-#: ../ubuntutweak/ui/treeviews.py:126
-msgid "Can't rename the root folder"
-msgstr "Kök dizinin adı değiştirilemez"
-
-#: ../ubuntutweak/ui/treeviews.py:143
-msgid "Can't delete the root folder"
-msgstr "Kök dizin silinemez"
-
-#: ../ubuntutweak/ui/treeviews.py:158
-msgid ""
-"Can't rename!\n"
-"\n"
-"There are files in it!"
-msgstr ""
-"Yeniden adlandırılamıyor!\n"
-"\n"
-"İçerisinde dosyalar var!"
-
-#: ../ubuntutweak/ui/dialogs.py:179
-msgid "An unexpected error has occurred."
-msgstr "Beklenmeyen bir hata oluştu."
-
-#: ../ubuntutweak/ui/dialogs.py:180
-msgid "Could not authenticate"
-msgstr "Kimlik doğrulanamadı"
-
-#: ../ubuntutweak/ui/dialogs.py:185
-msgid "You need to restart your computer."
-msgstr "Bilgisayarınızı yeniden başlatmalısınız."
-
-#: ../ubuntutweak/ui/dialogs.py:186
-msgid "Service hasn't initialized yet"
-msgstr "Hizmet henüz başlatılmadı"
-
-#: ../ubuntutweak/ui/dialogs.py:207 ../ubuntutweak/modules/sourceeditor.py:88
-#: ../ubuntutweak/modules/sourcecenter.py:945
-msgid "Details"
-msgstr "Ayrıntılar"
-
-#: ../ubuntutweak/preferences.py:75 ../ubuntutweak/modules/filetype.py:179
-#: ../ubuntutweak/modules/filetype.py:214
-#: ../ubuntutweak/modules/metacity.py:186
-#: ../ubuntutweak/modules/metacity.py:192
-#: ../ubuntutweak/modules/metacity.py:206
-#: ../ubuntutweak/modules/metacity.py:220
-#: ../ubuntutweak/modules/shortcuts.py:99
-#: ../ubuntutweak/modules/shortcuts.py:209
-msgid "None"
-msgstr "Hiçbiri"
-
-#: ../ubuntutweak/preferences.py:104
-msgid "Check for Updates"
-msgstr "Güncellemeleri Denetle"
-
-#: ../ubuntutweak/preferences.py:110
-msgid "Use Separated Sources"
-msgstr "Ayrılmış Kaynakları Kullan"
-
-#: ../ubuntutweak/preferences.py:116
-msgid "Enable Synchronous notifications"
-msgstr "Eşzamanlı bildirimleri etkinleştir"
-
-#: ../ubuntutweak/preferences.py:122
-msgid "Highlight new items in App and Source Center"
-msgstr "Uygulama ve Kaynak Merkezi'nde yeni öğeleri vurgula"
-
-#: ../ubuntutweak/network/downloadmanager.py:98
+#: ../ubuntutweak/network/downloadmanager.py:97
 msgid "Connecting to server"
 msgstr "Sunucuya bağlanılıyor"
 
@@ -519,15 +491,16 @@ msgstr "Sunucuya bağlanılıyor"
 msgid "Downloading...%d"
 msgstr "İndiriliyor...%d"
 
-#: ../ubuntutweak/network/downloadmanager.py:147
+#: ../ubuntutweak/network/downloadmanager.py:148
 msgid "Downloaded!"
 msgstr "İndirildi!"
 
-#: ../ubuntutweak/network/downloadmanager.py:153
+#: ../ubuntutweak/network/downloadmanager.py:155
 msgid "Error happened!"
 msgstr "Hata oluştu!"
 
 #: ../ubuntutweak/network/utdata.py:50 ../ubuntutweak/network/utdata.py:83
+#: ../ubuntutweak/tweaks/unity.py:63 ../ubuntutweak/tweaks/unity.py:141
 msgid "Never"
 msgstr "Hiçbir zaman"
 
@@ -559,68 +532,7 @@ msgstr[0] "%d dakika önce"
 msgid "Just Now"
 msgstr "Hemen Şimdi"
 
-#: ../ubuntutweak/common/debug.py:55
-msgid "Error message has been copied"
-msgstr "Hata mesajı kopyalandı"
-
-#: ../ubuntutweak/common/debug.py:56
-msgid ""
-"Now click \"Report\" to enter the bug report website. Make sure to attach "
-"the error message in \"Further information\"."
-msgstr ""
-"Şimdi hata bildirisi internet sitesine gitmek için \"Bildir\"e tıklayın. "
-"Hata mesajını \"Ek Bilgi\" kısmına eklediğinizden emin olun."
-
-#: ../ubuntutweak/common/debug.py:72
-msgid "Copy Error Message"
-msgstr "Hata Mesajını Kopyala"
-
-#: ../ubuntutweak/common/package.py:206
-#: ../ubuntutweak/modules/appcenter.py:644
-#: ../ubuntutweak/modules/compiz.py:526
-#: ../ubuntutweak/modules/sourcecenter.py:141
-#: ../ubuntutweak/modules/nautilus.py:176
-msgid "Update Successful!"
-msgstr "Güncelleştirme Başarılı!"
-
-#: ../ubuntutweak/common/package.py:208
-#: ../ubuntutweak/modules/appcenter.py:646
-#: ../ubuntutweak/modules/compiz.py:528
-#: ../ubuntutweak/modules/sourcecenter.py:143
-#: ../ubuntutweak/modules/nautilus.py:178
-msgid "Update Failed!"
-msgstr "Güncelleştirme Başarısız!"
-
-#: ../ubuntutweak/common/package.py:340
-msgid "(Not available)"
-msgstr "(Kullanılabilir değil)"
-
-#: ../ubuntutweak/common/misc.py:15
-#, python-format
-msgid "%(size)d byte"
-msgid_plural "%(size)d bytes"
-msgstr[0] "%(size)d byte"
-
-#: ../ubuntutweak/common/misc.py:17
-#, python-format
-msgid "%.1f KB"
-msgstr "%.1f KB"
-
-#: ../ubuntutweak/common/misc.py:19
-#, python-format
-msgid "%.1f MB"
-msgstr "%.1f MB"
-
-#: ../ubuntutweak/common/misc.py:20
-#, python-format
-msgid "%.1f GB"
-msgstr "%.1f GB"
-
-#: ../ubuntutweak/policykit/polkitbutton.py:72
-msgid "_Unlock"
-msgstr "_Kilidi Aç"
-
-#: ../ubuntutweak/policykit/dbusproxy.py:34
+#: ../ubuntutweak/policykit/dbusproxy.py:32
 msgid ""
 "The Ubuntu Tweak daemon didn't start correctly. This means that some "
 "advanced features may not work.\n"
@@ -633,39 +545,542 @@ msgstr ""
 "uçbirimden \"<b>sudo /usr/share/ubuntu-tweak/ubuntu-tweak-daemon</b>\" "
 "komutunu çalıştırmayı deneyin."
 
-#: ../ubuntutweak/modules/userdir.py:46
+#: ../ubuntutweak/policykit/widgets.py:54
+msgid "_Unlock"
+msgstr "_Kilidi Aç"
+
+#: ../ubuntutweak/common/debug.py:59
+msgid "Error message has been copied"
+msgstr "Hata mesajı kopyalandı"
+
+#: ../ubuntutweak/common/debug.py:60
+msgid ""
+"Now click \"Report\" to enter the bug report website. Make sure to attach "
+"the error message in \"Further information\"."
+msgstr ""
+"Şimdi hata bildirisi internet sitesine gitmek için \"Bildir\"e tıklayın. "
+"Hata mesajını \"Ek Bilgi\" kısmına eklediğinizden emin olun."
+
+#: ../ubuntutweak/common/debug.py:81
+msgid "Copy Error Message"
+msgstr "Hata Mesajını Kopyala"
+
+#: ../ubuntutweak/common/debug.py:116
+msgid "Sorry, your distribution is not supported by Ubuntu Tweak"
+msgstr ""
+
+#: ../ubuntutweak/common/debug.py:117
+msgid ""
+"You can't file bug for this issue. Please only use Ubuntu Tweak on Ubuntu. "
+"Or it may kill your cat."
+msgstr ""
+
+#: ../ubuntutweak/janitor/thumbnailcache_plugin.py:36
+msgid "Thumbnail cache"
+msgstr ""
+
+#: ../ubuntutweak/janitor/thumbnailcache_plugin.py:71
+#, python-format
+msgid "Thumbnail Cache (%d cache to be cleaned, total size: %s)"
+msgstr ""
+
+#: ../ubuntutweak/janitor/thumbnailcache_plugin.py:73
+msgid "Thumbnail Cache (No cache to be cleaned)"
+msgstr ""
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:62
+msgid "Purge PPA and Downgrade Packages"
+msgstr "PPA'ları Temizle ve Paket Sürümlerini Düşür"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:63
+msgid "Downloading Packages..."
+msgstr "Paketler İndiriliyor..."
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:113
+msgid "Removing key files..."
+msgstr "Anahtar  dosyalar siliniyor..."
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:147
+#, python-format
+msgid "Downgrading...%s"
+msgstr "Sürüm Düşürülüyor...%s"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:154
+#, python-format
+msgid "Downloading...%s"
+msgstr "İndiriliyor...%s"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:202
+msgid "Package"
+msgstr "Paket"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:210
+msgid "Previous Version"
+msgstr "Önceki Sürüm"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:219
+msgid "System Version"
+msgstr "Sistem Sürümü"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:262
+msgid "PPA"
+msgstr "PPA"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:298
+msgid "It's safe to purge the PPA, no packages need to be downgraded."
+msgstr "PPA'yı temizlemek güvenli, sürümü düşürülmesi gereken paket yok."
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:301
+msgid "To safely purge the PPA, the following packages must be downgraded."
+msgstr ""
+"PPA'yı güvenli bir şekilde temizlemek için şu paketlerin sürümlerinin "
+"düşürülmesi gerekiyor."
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:306
+#, python-format
+msgid "You're going to purge: %s"
+msgstr "Şunu temizleyeceksiniz: %s"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:421
+#, python-format
+msgid "%d PPAs to be removed"
+msgstr "PPAlar %d oranında kaldırılacak"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:423
+msgid "No PPA to be removed"
+msgstr "Hiçbir PPA kaldırılmayacak"
+
+#: ../ubuntutweak/janitor/autoremoval_plugin.py:10
+msgid "Unneeded Packages"
+msgstr "Gereksiz Paketler"
+
+#: ../ubuntutweak/janitor/autoremoval_plugin.py:39
+#, python-format
+msgid "Unneeded Packages (%d packages to be removed, total size: %s)"
+msgstr ""
+"Gereksiz Paketler (paketler %d oranında kaldırılacak, toplam boyut: %s)"
+
+#: ../ubuntutweak/janitor/autoremoval_plugin.py:41
+msgid "Unneeded Packages (No package to be removed)"
+msgstr "Gereksiz Paketler (Hiçbir paket kaldırılmayacak)"
+
+#: ../ubuntutweak/janitor/aptcache_plugin.py:25
+msgid "Apt Cache"
+msgstr ""
+
+#: ../ubuntutweak/janitor/aptcache_plugin.py:63
+#, python-format
+msgid "Apt Cache (%d cache to be cleaned, total size: %s)"
+msgstr ""
+
+#: ../ubuntutweak/janitor/aptcache_plugin.py:65
+msgid "Apt Cache (No cache to be cleaned)"
+msgstr ""
+
+#: ../ubuntutweak/janitor/__init__.py:419
+#, python-format
+msgid "Scanning cruft for \"%s\"..."
+msgstr ""
+
+#: ../ubuntutweak/janitor/__init__.py:581
+#, python-format
+msgid "Cleaning cruft for \"%s\"..."
+msgstr ""
+
+#: ../ubuntutweak/janitor/__init__.py:652
+#: ../ubuntutweak/admins/desktoprecovery.py:81
+#: ../ubuntutweak/modules/__init__.py:34
+msgid "System"
+msgstr "Sistem"
+
+#: ../ubuntutweak/janitor/__init__.py:674
+#: ../ubuntutweak/modules/__init__.py:33
+msgid "Personal"
+msgstr "Kişisel"
+
+#: ../ubuntutweak/janitor/packageconfigs_plugin.py:29
+msgid "Package Configs"
+msgstr "Paket Yapılandırmaları"
+
+#: ../ubuntutweak/janitor/packageconfigs_plugin.py:59
+#, python-format
+msgid "Packages Configs (%d package configs to be removed)"
+msgstr ""
+"Paket Yapılandırmaları (Paket yapılandırmaları %d oranında kaldırılacak)"
+
+#: ../ubuntutweak/janitor/packageconfigs_plugin.py:61
+msgid "Packages Configs (No package config to be removed)"
+msgstr "Paket Yapılandırmaları (Hiçbir paket yapılandırması kaldırılmayacak)"
+
+#: ../ubuntutweak/janitor/oldkernel_plugin.py:15
+msgid "Old Kernel"
+msgstr "Eski Çekirdek"
+
+#: ../ubuntutweak/janitor/oldkernel_plugin.py:84
+#, python-format
+msgid ""
+"Old Kernel Packages (%d kernel packages to be removed, total size: %s)"
+msgstr ""
+"Eski Çekirdek Paketleri (çekirdek paketleri %d oranında kaldırılacak, toplam "
+"boyut: %s)"
+
+#: ../ubuntutweak/janitor/oldkernel_plugin.py:86
+msgid "Old Kernel Packages (No old kernel package to be removed)"
+msgstr ""
+"Eski Çekirdek Paketleri (Hiçbir eski çekirdek paketi kaldırılmayacak)"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:79
+#: ../ubuntutweak/modules/__init__.py:29
+msgid "Applications"
+msgstr "Uygulamalar"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:80
+#: ../ubuntutweak/admins/userdir.py:34 ../ubuntutweak/modules/__init__.py:32
+#: ../ubuntutweak/tweaks/unity.py:89 ../ubuntutweak/tweaks/ccm/Constants.py:88
+msgid "Desktop"
+msgstr "Masaüstü"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:106
+msgid "Category"
+msgstr "Kategori"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:147
+msgid "Setting"
+msgstr "Ayar"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:188
+msgid "Backup Name:"
+msgstr "Yedek İsmi:"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:217
+msgid "Backing up..."
+msgstr "Yedekleniyor..."
+
+#: ../ubuntutweak/admins/desktoprecovery.py:242
+#, python-format
+msgid "Backing up...%s"
+msgstr "Yedekleniyor...%s"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:267
+msgid ""
+"Backup and recover your desktop and application settings with ease.\n"
+"You can also use \"Reset\" to reset to the system default settings."
+msgstr ""
+"Masaüstünüzü ve uygulama ayarlarını kolaylıkla yedekleyin ve kurtarın.\n"
+"Ayrıca \"Reset\"i kullanarak sistem varsayılan ayarlarına dönebilirsiniz."
+
+#: ../ubuntutweak/admins/desktoprecovery.py:348
+msgid "No Backup Yet"
+msgstr "Henüz Yedek Yok"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:383
+#, python-format
+msgid ""
+"Backup all settings under: <b>%s</b>\n"
+"Would you like to continue?"
+msgstr ""
+"<b>%s</b> diznindeki tüm ayarlar yedeklenecek.\n"
+"Devam etmek istiyor musunuz?"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:404
+#, python-format
+msgid ""
+"Backup settings under: <b>%s</b>\n"
+"Would you like to continue?"
+msgstr ""
+"<b>%s</b> diznindeki ayarlar yedeklenecek.\n"
+"Devam etmek istiyor musunuz?"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:447
+#, python-format
+msgid "Would you like to delete the backup:<b>%s/%s</b>?"
+msgstr ""
+
+#: ../ubuntutweak/admins/desktoprecovery.py:451
+#, python-format
+msgid ""
+"Would you like to delete the backup of all <b>%s</b> settings named "
+"<b>%s</b>?"
+msgstr ""
+"<b>%s</b> isimli tüm <b>%s</b> yedek dosyalarını silmek istiyor musunuz?"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:472
+#, python-format
+msgid "Would you like to recover the backup: <b>%s/%s</b>?"
+msgstr ""
+
+#: ../ubuntutweak/admins/desktoprecovery.py:475
+#, python-format
+msgid ""
+"Would you like to recover the backup of all<b>%s</b> settings named "
+"<b>%s</b>?"
+msgstr ""
+
+#: ../ubuntutweak/admins/desktoprecovery.py:479
+msgid ""
+"<b>NOTES</b>: While recovering, your desktop may be unresponsive for a "
+"moment."
+msgstr ""
+"<b>NOTLAR</b>: Kurtarma sırasında, masaüstünüz bir süreliğine yanıt "
+"vermeyebilir."
+
+#: ../ubuntutweak/admins/desktoprecovery.py:496
+msgid "Recovery Successful!"
+msgstr ""
+
+#: ../ubuntutweak/admins/desktoprecovery.py:497
+#: ../ubuntutweak/admins/desktoprecovery.py:533
+msgid "You may need to restart your desktop for changes to take effect"
+msgstr ""
+"Değişikliklerin etki etmesi için masaüstünüzü yeniden başlatmanız gerekebilir"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:502
+msgid "_Logout"
+msgstr "_Çıkış"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:515
+#, python-format
+msgid "Would you like to reset settings for: <b>%s</b>?"
+msgstr "<b>%s</b> için ayarları sıfırlamak ister misiniz?"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:517
+#, python-format
+msgid "Would you like to reset all settings under: <b>%s</b>?"
+msgstr "<b>%s</b> için tüm ayarları başa almak istediğinize emin misiniz?"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:519
+msgid ""
+"<b>NOTES</b>: Whilst resetting, your desktop may be unresponsive for a "
+"moment."
+msgstr ""
+"<b>NOTLAR</b>: Kurtarma sırasında, masaüstünüz bir süreliğine yanıt "
+"vermeyebilir."
+
+#: ../ubuntutweak/admins/desktoprecovery.py:532
+msgid "Reset Successful!"
+msgstr ""
+
+#: ../ubuntutweak/admins/desktoprecovery.py:561
+#: ../ubuntutweak/admins/sourceeditor.py:420
+msgid "Please enter a new name for your backup:"
+msgstr "Yedeğiniz için lütfen yeni bir isim girin:"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:593
+msgid "Backup Successful!"
+msgstr ""
+
+#: ../ubuntutweak/admins/desktoprecovery.py:596
+#: ../ubuntutweak/admins/sourceeditor.py:396
+msgid "Backup Failed!"
+msgstr "Yedekleme Başarısız Oldu!"
+
+#: ../ubuntutweak/admins/sourceeditor.py:169
+msgid "Source Editor"
+msgstr "Kaynak Düzenleyici"
+
+#: ../ubuntutweak/admins/sourceeditor.py:170
+msgid "Manually edit your software sources to suit your needs."
+msgstr "Yazılım kaynaklarınızı ihtiyaçlarınıza uygun olarak elle düzenleyin."
+
+#: ../ubuntutweak/admins/sourceeditor.py:212
+#, python-format
+msgid "You're viewing the backup \"<b>%s</b>\" for\"<b>%s</b>\""
+msgstr ""
+
+#: ../ubuntutweak/admins/sourceeditor.py:282
+msgid "No backup yet"
+msgstr "Henüz Yedek Yok"
+
+#: ../ubuntutweak/admins/sourceeditor.py:322
+msgid "Please check the permission of the sources.list file"
+msgstr "Lütfen sources.list dosyasının izinlerini kontrol edin"
+
+#: ../ubuntutweak/admins/sourceeditor.py:324
+msgid "Save failed!"
+msgstr "Kaydetme başarısız!"
+
+#: ../ubuntutweak/admins/sourceeditor.py:342
+#, python-format
+msgid "Would you like to recover the backup \"<b>%s</b>\" for \"<b>%s</b>\"?"
+msgstr ""
+
+#: ../ubuntutweak/admins/sourceeditor.py:352
+msgid "Recovery Failed!"
+msgstr ""
+
+#: ../ubuntutweak/admins/sourceeditor.py:353
+msgid "You may need to check the permission of source list."
+msgstr ""
+
+#: ../ubuntutweak/admins/sourceeditor.py:385
+msgid "Please enter the name for your backup:"
+msgstr ""
+
+#: ../ubuntutweak/admins/sourceeditor.py:398
+#: ../ubuntutweak/admins/sourceeditor.py:431
+msgid "Please only use alphanumeric characters and \"_\" and \"-\"."
+msgstr ""
+
+#: ../ubuntutweak/admins/sourceeditor.py:400
+#: ../ubuntutweak/admins/sourceeditor.py:433
+msgid "Backup name is invalid"
+msgstr "Yedek ismi geçersiz"
+
+#: ../ubuntutweak/admins/sourceeditor.py:406
+#, python-format
+msgid "Would you like to delete the backup:<b>%s</b>?"
+msgstr ""
+
+#: ../ubuntutweak/admins/sourceeditor.py:436
+msgid ""
+"The current content will be lost after reloading!\n"
+"Do you wish to continue?"
+msgstr ""
+"Tekrar yüklemeden sonra mevcut içerik kaybolacak!\n"
+"Devam etmek istiyor musunuz?"
+
+#: ../ubuntutweak/admins/sourceeditor.py:454
+msgid "You can't delete sources.list!"
+msgstr "sources.list'i silemezsin!"
+
+#: ../ubuntutweak/admins/sourceeditor.py:456
+#, python-format
+msgid ""
+"The \"%s\" will be deleted!\n"
+"Do you wish to continue?"
+msgstr ""
+"\"%s\" silinecek!\n"
+"Devam etmek istiyon mu?"
+
+#: ../ubuntutweak/admins/templates.py:70
+msgid "HTML document"
+msgstr "HTML belgesi"
+
+#: ../ubuntutweak/admins/templates.py:71
+msgid "ODB Database"
+msgstr "ODB Veritabanı"
+
+#: ../ubuntutweak/admins/templates.py:72
+msgid "ODS Spreadsheet"
+msgstr "ODS Hesap Çizelgesi"
+
+#: ../ubuntutweak/admins/templates.py:73
+msgid "ODT Document"
+msgstr "ODT Belgesi"
+
+#: ../ubuntutweak/admins/templates.py:74
+msgid "Plain text document"
+msgstr "Düz yazı belgesi"
+
+#: ../ubuntutweak/admins/templates.py:75
+msgid "ODP Presentation"
+msgstr "ODP Sunumu"
+
+#: ../ubuntutweak/admins/templates.py:76
+msgid "Python script"
+msgstr "Python betiği"
+
+#: ../ubuntutweak/admins/templates.py:77
+msgid "Pygtk Example"
+msgstr "Pygtk Örneği"
+
+#: ../ubuntutweak/admins/templates.py:78
+msgid "Shell script"
+msgstr "Kabuk betiği"
+
+#: ../ubuntutweak/admins/templates.py:106
+msgid "Enabled Templates"
+msgstr "Etkin Şablonlar"
+
+#: ../ubuntutweak/admins/templates.py:114
+msgid "Disabled Templates"
+msgstr "Devre Dışı Şablonlar"
+
+#: ../ubuntutweak/admins/templates.py:121
+msgid "Manage Templates"
+msgstr "Şablonları Yönet"
+
+#: ../ubuntutweak/admins/templates.py:122
+msgid ""
+"Here you can manage your document templates.\n"
+"You can add files as templates by dragging them into this window.\n"
+"You can then create new documents based on these templates from the Nautilus "
+"right-click menu."
+msgstr ""
+"Burada belge şablonlarınızı yönetebilirsiniz.\n"
+"Dosyaları bu pencereye sürükleyerek şablon olarak ekleyebilirsiniz.\n"
+"Nautilus sağ-tık menüsünden bu şablonları temel alarak yeni belge "
+"yaratabilirsiniz."
+
+#: ../ubuntutweak/admins/templates.py:134
+#, python-format
+msgid ""
+"The templates path is incorrect! The current path points to \"%s\".\n"
+"Please reset it to a location within your Home Folder."
+msgstr ""
+"Şablon yolu yanlış! Mevcut yol \"%s\"ye yönelik.\n"
+"Lütfen Başlangıç Dizniniz içindeki bir konuma ayarlayın."
+
+#: ../ubuntutweak/admins/templates.py:143
+msgid "Go And Set"
+msgstr "Git ve Ayarla"
+
+#: ../ubuntutweak/admins/templates.py:148
+msgid "Restart This Module"
+msgstr "Bu Modülü Yeniden Başlat"
+
+#. self.enable_templates.connect('drag_data_received', self.on_enable_drag_data_received)
+#. self.enable_templates.connect('deleted', self.on_enable_deleted)
+#. self.disable_templates.connect('drag_data_received', self.on_disable_drag_data_received)
+#: ../ubuntutweak/admins/templates.py:173
+msgid "Rebuild System Templates"
+msgstr "Sistem Şablonlarını Yeniden Oluştur"
+
+#: ../ubuntutweak/admins/templates.py:188
+msgid "The templates path is still incorrect, please reset it!"
+msgstr "Şablonlar yolu hala doğru değil, lütfen sıfırlayın!"
+
+#: ../ubuntutweak/admins/templates.py:200
+msgid ""
+"This will delete all disabled templates.\n"
+"Do you wish to continue?"
+msgstr ""
+"Bu komut etkinleştirilmemiş tüm şablonları silinecektir.\n"
+"Devam etmek istiyor musunuz?"
+
+#: ../ubuntutweak/admins/userdir.py:35
 msgid "Download"
 msgstr "İndir"
 
-#: ../ubuntutweak/modules/userdir.py:47
+#: ../ubuntutweak/admins/userdir.py:36
 msgid "Templates"
 msgstr "Şablonlar"
 
-#: ../ubuntutweak/modules/userdir.py:48
+#: ../ubuntutweak/admins/userdir.py:37
 msgid "Public"
 msgstr "Genel"
 
-#: ../ubuntutweak/modules/userdir.py:49
+#: ../ubuntutweak/admins/userdir.py:38
 msgid "Document"
 msgstr "Belge"
 
-#: ../ubuntutweak/modules/userdir.py:50
+#: ../ubuntutweak/admins/userdir.py:39
 msgid "Music"
 msgstr "Müzik"
 
-#: ../ubuntutweak/modules/userdir.py:51
+#: ../ubuntutweak/admins/userdir.py:40
 msgid "Pictures"
 msgstr "Resimler"
 
-#: ../ubuntutweak/modules/userdir.py:52
+#: ../ubuntutweak/admins/userdir.py:41
 msgid "Videos"
 msgstr "Videolar"
 
-#: ../ubuntutweak/modules/userdir.py:158
+#: ../ubuntutweak/admins/userdir.py:154
 msgid "Choose a folder"
 msgstr "Bir dizin seçin"
 
-#: ../ubuntutweak/modules/userdir.py:174
+#: ../ubuntutweak/admins/userdir.py:171
 msgid ""
 "Ubuntu Tweak will restore the selected directory to it's default location.\n"
 "However, you must move your files back into place manually.\n"
@@ -675,27 +1090,27 @@ msgstr ""
 "Fakat, dosyalarınızı eski yerine elle taşımalısınız.\n"
 "Devam etmek istiyor musunuz?"
 
-#: ../ubuntutweak/modules/userdir.py:208
+#: ../ubuntutweak/admins/userdir.py:204
 msgid "Directory"
 msgstr "Dizin"
 
-#: ../ubuntutweak/modules/userdir.py:222
+#: ../ubuntutweak/admins/userdir.py:218
 msgid "Path"
 msgstr "Yol"
 
-#: ../ubuntutweak/modules/userdir.py:229
+#: ../ubuntutweak/admins/userdir.py:225
 msgid "Change"
 msgstr "Değiştir"
 
-#: ../ubuntutweak/modules/userdir.py:233
+#: ../ubuntutweak/admins/userdir.py:229
 msgid "Restore to default"
 msgstr "Varsayılana geri yükle"
 
-#: ../ubuntutweak/modules/userdir.py:240
+#: ../ubuntutweak/admins/userdir.py:237
 msgid "Default Folder Locations"
 msgstr "Varsayılan Dizin Yerleri"
 
-#: ../ubuntutweak/modules/userdir.py:241
+#: ../ubuntutweak/admins/userdir.py:238
 msgid ""
 "You can change the paths of default folders here.\n"
 "Don't change the location of your desktop folder unless you know what you "
@@ -705,586 +1120,285 @@ msgstr ""
 "Eğer ne yaptığınızı bilmiyorsanız, masaüstü dizninizin konumunu "
 "değiştirmeyin."
 
-#: ../ubuntutweak/modules/userdir.py:262
+#: ../ubuntutweak/admins/userdir.py:260
 msgid "_Restore"
 msgstr "_Geri Getir"
 
-#: ../ubuntutweak/modules/userdir.py:267
+#: ../ubuntutweak/admins/userdir.py:266
 msgid "_Change"
 msgstr "_Değiştir"
 
-#: ../ubuntutweak/modules/computer.py:37
-msgid "Computer Details"
-msgstr "Bilgisayar Ayrıntıları"
+#: ../ubuntutweak/admins/scripts.py:50
+msgid "Create Launcher ..."
+msgstr "Başlatıcı Oluşturuluyor ..."
 
-#: ../ubuntutweak/modules/computer.py:38
-msgid "Some useful system information"
-msgstr "Birkaç kullanışlı sistem bilgisi"
+#: ../ubuntutweak/admins/scripts.py:51
+msgid "Copy to ..."
+msgstr "Buraya kopyala ..."
 
-#: ../ubuntutweak/modules/computer.py:45
-msgid "Unknown"
-msgstr "Bilinmeyen"
+#: ../ubuntutweak/admins/scripts.py:52
+msgid "Copy to Desktop"
+msgstr "Masaüstüne Kopyala"
 
-#: ../ubuntutweak/modules/computer.py:61
-msgid "Change Hostname"
-msgstr "Makine Adını Değiştir"
+#: ../ubuntutweak/admins/scripts.py:53
+msgid "Copy to Download"
+msgstr "İndirmelere Kopyala"
 
-#: ../ubuntutweak/modules/computer.py:64
-msgid "System information"
-msgstr "Sistem bilgisi"
+#: ../ubuntutweak/admins/scripts.py:54
+msgid "Copy to Home"
+msgstr "Ev Dizinine Kopyala"
 
-#: ../ubuntutweak/modules/computer.py:65
-msgid "Hostname"
-msgstr "Makine adı"
+#: ../ubuntutweak/admins/scripts.py:55
+msgid "Check md5 sum"
+msgstr "md5 toplamını kontrol edin"
 
-#: ../ubuntutweak/modules/computer.py:66
-msgid "Distribution"
-msgstr "Dağıtım"
+#: ../ubuntutweak/admins/scripts.py:56
+msgid "Compress PDF"
+msgstr "PDF'yi sıkıştır."
 
-#: ../ubuntutweak/modules/computer.py:67
-msgid "Desktop environment"
-msgstr "Masaüstü ortamı"
+#: ../ubuntutweak/admins/scripts.py:57
+msgid "Move to ..."
+msgstr "Buraya taşı ..."
 
-#: ../ubuntutweak/modules/computer.py:68
-msgid "Kernel"
-msgstr "Çekirdek"
+#: ../ubuntutweak/admins/scripts.py:58
+msgid "Move to Desktop"
+msgstr "Masaüstüne Taşı"
 
-#: ../ubuntutweak/modules/computer.py:69
-msgid "Platform"
-msgstr "Ortam"
+#: ../ubuntutweak/admins/scripts.py:59
+msgid "Move to Download"
+msgstr "İndirmelere Taşı"
 
-#: ../ubuntutweak/modules/computer.py:70
-msgid "CPU"
-msgstr "İşlemci"
+#: ../ubuntutweak/admins/scripts.py:60
+msgid "Move to Home"
+msgstr "Ev Dizinine Taşı"
 
-#: ../ubuntutweak/modules/computer.py:71
-msgid "Memory"
-msgstr "Bellek"
+#: ../ubuntutweak/admins/scripts.py:61
+msgid "Create hardlink to ..."
+msgstr "Doğrudan bağlantı yarat ..."
 
-#: ../ubuntutweak/modules/computer.py:75
-msgid "User information"
-msgstr "Kullanıcı bilgisi"
+#: ../ubuntutweak/admins/scripts.py:62
+msgid "Link to ..."
+msgstr "Buraya bağla ..."
 
-#: ../ubuntutweak/modules/computer.py:76
-msgid "Current user"
-msgstr "Mevcut kullanıcı"
+#: ../ubuntutweak/admins/scripts.py:63
+msgid "Link to Desktop"
+msgstr "Masaüstüne Kısayol Oluştur"
 
-#: ../ubuntutweak/modules/computer.py:77
-msgid "Home directory"
-msgstr "Başlangıç dizini"
+#: ../ubuntutweak/admins/scripts.py:64
+msgid "Link to Download"
+msgstr "İndirmelere Kısayol Oluştur"
 
-#: ../ubuntutweak/modules/computer.py:78
-msgid "Shell"
-msgstr "Kabuk"
+#: ../ubuntutweak/admins/scripts.py:65
+msgid "Link to Home"
+msgstr "Ev Dizinine Kısayol Oluştur"
 
-#: ../ubuntutweak/modules/computer.py:79
-msgid "Language"
-msgstr "Dil"
+#: ../ubuntutweak/admins/scripts.py:66
+msgid "Open with your favourite text editor"
+msgstr "Favori metin editörünüzle açın"
 
-#: ../ubuntutweak/modules/computer.py:86
-msgid "Please enter your new hostname. Blank characters should not be used."
-msgstr "Lütfen boşluk kulanmadan yeni host adresinizi giriniz."
+#: ../ubuntutweak/admins/scripts.py:67
+msgid "Open with your favourite text editor (as root)"
+msgstr "Favori metin editörünüzle açın (yönetici olarak)"
 
-#: ../ubuntutweak/modules/computer.py:87
-msgid "New hostname"
-msgstr "Yeni makine adı"
+#: ../ubuntutweak/admins/scripts.py:68
+msgid "Browse as root"
+msgstr "Yönetici olarak göz at"
 
-#: ../ubuntutweak/modules/lockdown.py:34
-msgid "Security Related"
-msgstr "Güvenlikle İlişkili"
+#: ../ubuntutweak/admins/scripts.py:69
+msgid "Search in current folder"
+msgstr "Mevcut klasörde ara"
 
-#: ../ubuntutweak/modules/lockdown.py:35
-msgid "Tweak some security settings"
-msgstr "Bazı güvenlik ayarlarını geliştirin"
+#: ../ubuntutweak/admins/scripts.py:70
+msgid "Convert image to JPG"
+msgstr "Resmi JPG türüne dönüştür"
 
-#: ../ubuntutweak/modules/lockdown.py:44
-msgid "System Security options"
-msgstr "Sistem güvenlik ayarları"
+#: ../ubuntutweak/admins/scripts.py:71
+msgid "Convert image to PNG"
+msgstr "Resmi PNG türüne dönüştür"
 
-#: ../ubuntutweak/modules/lockdown.py:46
-msgid "Disable \"Run Application\" dialog (Alt+F2)"
-msgstr "\"Uygulama Çalıştır\" (Alt+F2) penceresini devre dışı bırak"
+#: ../ubuntutweak/admins/scripts.py:72
+msgid "Convert image to GIF"
+msgstr "Resmi GIF türüne dönüştür"
 
-#: ../ubuntutweak/modules/lockdown.py:50
-msgid "Disable \"Lock Screen\""
-msgstr "\"Ekran Kilitleme\"yi devre dışı bırak"
+#: ../ubuntutweak/admins/scripts.py:73
+msgid "Set image as wallpaper"
+msgstr "Resmi duvar kağıdı olarak ayarla"
 
-#: ../ubuntutweak/modules/lockdown.py:54
-msgid "Disable printing"
-msgstr "Yazdırmayı devre dışı bırak"
+#: ../ubuntutweak/admins/scripts.py:74
+msgid "Make hard shadow to image"
+msgstr "Resme gölgeleme yap"
 
-#: ../ubuntutweak/modules/lockdown.py:58
-msgid "Disable printer settings"
-msgstr "Yazıcı ayarlarını devre dışı bırak"
+#: ../ubuntutweak/admins/scripts.py:102
+msgid "Enabled Scripts"
+msgstr "Etkinleştirilen Betikler"
 
-#: ../ubuntutweak/modules/lockdown.py:62
-msgid "Disable save to disk"
-msgstr "Kaydetmeyi devre dışı bırak"
+#: ../ubuntutweak/admins/scripts.py:133
+msgid "Disabled Scripts"
+msgstr "Devre Dışı Bırakılan Betikler"
 
-#: ../ubuntutweak/modules/lockdown.py:66
-msgid "Disable \"Fast User Switching\""
-msgstr "\"Hızlı Kullanıcı Değiştirme\"yi Kapat"
+#: ../ubuntutweak/admins/scripts.py:140
+msgid "Manage Scripts"
+msgstr "Betikleri Yönet"
 
-#: ../ubuntutweak/modules/lockdown.py:73
-msgid "Fix the appearance of themes when granted root privileges"
-msgstr "Yönetici hakları verildiğinde oluşan tema görünüşlerini düzelt"
-
-#: ../ubuntutweak/modules/lockdown.py:79
-msgid "Miscellaneous Options"
-msgstr "Çeşitli Seçenekler"
-
-#: ../ubuntutweak/modules/sourceeditor.py:66
-#: ../ubuntutweak/modules/sourceeditor.py:71
-msgid "Choose the sources"
-msgstr "Kaynakları seçiniz"
-
-#: ../ubuntutweak/modules/sourceeditor.py:72
+#: ../ubuntutweak/admins/scripts.py:141
 msgid ""
-"You can read the title and comment to determine which source is suitable for "
-"you."
+"Scripts can be used to complete all kinds of tasks.\n"
+"You can drag and drop scripts here from File Manager.\n"
+"'Scripts' will then be added to the context menu."
 msgstr ""
-"Başlığı okuyabilir ve sizin için uygun olan kaynağı belirlemek için yorum "
-"yapabilirsiniz."
+"Scriptler her türlü görevleri yerine getirmekte kullanılabilir.\n"
+"Dosya Yöneticisi'nden scriptleri buraya sürükleyip bırakabilirsiniz.\n"
+"'Scriptler' menüye eklenecektir."
 
-#: ../ubuntutweak/modules/sourceeditor.py:107
-#: ../ubuntutweak/modules/sourceeditor.py:112
-msgid "Submit your sources"
-msgstr "Kaynaklarınızı gönderin"
+#: ../ubuntutweak/admins/scripts.py:171
+msgid "Rebuild System Scripts"
+msgstr "Sistem Betiklerini Tekrar Oluştur"
 
-#: ../ubuntutweak/modules/sourceeditor.py:112
-msgid "You can submit your sources to the server for other people to use."
-msgstr ""
-"Diğer insanların kullanması için kaynaklarınızı sunucuya gönderebilirsiniz."
-
-#: ../ubuntutweak/modules/sourceeditor.py:117
-msgid "_Source Title:"
-msgstr "_Kaynak Başlığı:"
-
-#: ../ubuntutweak/modules/sourceeditor.py:120
-msgid "_Locale:"
-msgstr "_Yerel:"
-
-#: ../ubuntutweak/modules/sourceeditor.py:123
-#: ../ubuntutweak/modules/autostart.py:52
-msgid "Comm_ent:"
-msgstr "Yor_um"
-
-#: ../ubuntutweak/modules/sourceeditor.py:127
-msgid "Enter the title of the source, e.g. \"Ubuntu Official Repostory\""
-msgstr "Kaynağın başlığını girin. Örnek: \"Ubuntu Resmi Deposu\""
-
-#: ../ubuntutweak/modules/sourceeditor.py:129
-msgid "If the locale isn't correct you can edit manually"
-msgstr "Bölge doğru değilse elle düzenleyebilirsiniz"
-
-#: ../ubuntutweak/modules/sourceeditor.py:144
-msgid "Submit"
-msgstr "Gönder"
-
-#: ../ubuntutweak/modules/sourceeditor.py:192
-msgid "Please check your network connection!"
-msgstr "Lütfen ağ bağlantınızı kontrol edin!"
-
-#: ../ubuntutweak/modules/sourceeditor.py:192
-msgid "Network Error"
-msgstr "Ağ Arızası"
-
-#: ../ubuntutweak/modules/sourceeditor.py:199
-msgid "Uploading..."
-msgstr "Gönderiliyor..."
-
-#: ../ubuntutweak/modules/sourceeditor.py:215
-msgid "Updating..."
-msgstr "Güncelleniyor..."
-
-#: ../ubuntutweak/modules/sourceeditor.py:353
-msgid "Source Editor"
-msgstr "Kaynak Düzenleyici"
-
-#: ../ubuntutweak/modules/sourceeditor.py:354
-msgid "Manually edit your software sources to suit your needs."
-msgstr "Yazılım kaynaklarınızı ihtiyaçlarınıza uygun olarak elle düzenleyin."
-
-#: ../ubuntutweak/modules/sourceeditor.py:450
-msgid "Please input the correct source information!"
-msgstr "Lütfen doğru kaynak bilgisini girin!"
-
-#: ../ubuntutweak/modules/sourceeditor.py:463
+#: ../ubuntutweak/admins/scripts.py:185
 msgid ""
-"You can submit your sources to our server to help expand the sources list, "
-"or you can use the official sources.\n"
-"Do you wish to use the official sources?"
-msgstr ""
-"Sunucumuza kaynaklarınızı göndererek kaynak listesinin genişlemesine "
-"yardımcı olabilirsiniz, veya resmi kaynakları kullanabilirsiniz.\n"
-"Resmi kaynakları kullanmak istiyor musunuz?"
-
-#: ../ubuntutweak/modules/sourceeditor.py:466
-msgid "No source data available"
-msgstr "Uygun kaynak verisi yok"
-
-#: ../ubuntutweak/modules/sourceeditor.py:483
-msgid ""
-"Your sources will be reviewed and made available for others soon.\n"
-"Thank you!"
-msgstr ""
-"Kaynaklarınız değerlendirilecek ve yakında başkaları için de kullanılabilir "
-"olacak.\n"
-"Teşekkürler!"
-
-#: ../ubuntutweak/modules/sourceeditor.py:484
-msgid "Successfully submitted"
-msgstr "Başarıyla iletildi"
-
-#: ../ubuntutweak/modules/sourceeditor.py:496
-msgid ""
-"You've edited sources.list without saving changes.\n"
-"Do you want to save changes?"
-msgstr ""
-"sources.list dosyasını değişiklikleri kaydetmeden değiştirdiniz.\n"
-"Değişiklikleri kaydetmek istiyor musunuz?"
-
-#: ../ubuntutweak/modules/sourceeditor.py:507
-msgid "Please check the permission of the sources.list file"
-msgstr "Lütfen sources.list dosyasının izinlerini kontrol edin"
-
-#: ../ubuntutweak/modules/sourceeditor.py:508
-msgid "Save failed!"
-msgstr "Kaydetme başarısız!"
-
-#: ../ubuntutweak/modules/sourceeditor.py:517
-msgid ""
-"The current content will be lost after reloading!\n"
+"This will delete all disabled scripts.\n"
 "Do you wish to continue?"
 msgstr ""
-"Tekrar yüklemeden sonra mevcut içerik kaybolacak!\n"
+"Bu komut bütün etkinleştirilmemiş betikleri silecek.\n"
 "Devam etmek istiyor musunuz?"
 
-#: ../ubuntutweak/modules/sourceeditor.py:528
-msgid "You can't delete sources.list!"
-msgstr "sources.list'i silemezsin!"
+#: ../ubuntutweak/admins/shortcuts.py:30
+msgid ""
+"By configuring keyboard shortcuts, you can access your favourite "
+"applications instantly.\n"
+"Enter the command to run the application and choose a shortcut key "
+"combination."
+msgstr ""
+"Klavye kısayollarını ayarlayarak, en sevdiğiniz uygulamalara anında "
+"erişebilirisiniz.\n"
+"Uygulamayı çalıştırmak için gereken komutu girin ve bir klavye "
+"kombinasyonunu girin."
 
-#: ../ubuntutweak/modules/sourceeditor.py:530
+#: ../ubuntutweak/admins/shortcuts.py:83
 #, python-format
-msgid ""
-"The \"%s\" will be deleted!\n"
-"Do you wish to continue?"
-msgstr ""
-"\"%s\" silinecek!\n"
-"Devam etmek istiyon mu?"
+msgid "Command %d"
+msgstr "Komut %d"
 
-#: ../ubuntutweak/modules/appcenter.py:193
-#: ../ubuntutweak/modules/desktoprecovery.py:102
-msgid "Category"
-msgstr "Kategori"
+#: ../ubuntutweak/admins/shortcuts.py:88
+#: ../ubuntutweak/admins/shortcuts.py:200
+#: ../ubuntutweak/admins/filetypemanager.py:177
+#: ../ubuntutweak/admins/filetypemanager.py:201
+#: ../ubuntutweak/tweaks/metacity.py:183 ../ubuntutweak/tweaks/metacity.py:192
+#: ../ubuntutweak/tweaks/metacity.py:207 ../ubuntutweak/tweaks/metacity.py:222
+msgid "None"
+msgstr "Hiçbiri"
 
-#: ../ubuntutweak/modules/appcenter.py:212
-msgid "All Categories"
-msgstr "Tüm Kategoriler"
+#: ../ubuntutweak/admins/shortcuts.py:93
+#: ../ubuntutweak/admins/shortcuts.py:145
+msgid "disabled"
+msgstr "Devre Dışı"
 
-#: ../ubuntutweak/modules/appcenter.py:503
-msgid "Checking update..."
-msgstr "Güncellemeler kontrol ediliyor..."
+#: ../ubuntutweak/admins/shortcuts.py:102
+msgid "ID"
+msgstr "Kimlik"
 
-#: ../ubuntutweak/modules/appcenter.py:533
-msgid "Fetching online data..."
-msgstr "Çevrimiçi veri getiriliyor..."
+#: ../ubuntutweak/admins/shortcuts.py:113
+msgid "Command"
+msgstr "Komut"
 
-#: ../ubuntutweak/modules/appcenter.py:537
-msgid "Application Center"
-msgstr "Uygulama Merkezi"
+#: ../ubuntutweak/admins/shortcuts.py:126
+msgid "Key"
+msgstr "Tuş"
 
-#: ../ubuntutweak/modules/appcenter.py:538
-msgid ""
-"A simple but efficient way for finding and installing popular applications.\n"
-"Data will be synchronized automatically with the remote server.\n"
-"You can click the \"Sync\" button to perform a manual check for updates."
-msgstr ""
-"Sevilen uygulamaları bulmak ve kurmak için basit ama etkili bir yöntem.\n"
-"Veri, uzak sunucuyla kendiliğinden eşzamanlı kılınacaktır.\n"
-"\"Eşle\" tuşuna tıklayarak güncellemeleri elle kontrol edebilirsiniz."
-
-#: ../ubuntutweak/modules/appcenter.py:543
-msgid "Visit Online Application Center"
-msgstr "Çevrimiçi Uygulama Merkezini Ziyaret Et"
-
-#: ../ubuntutweak/modules/appcenter.py:549
-#: ../ubuntutweak/modules/sourcecenter.py:924
-msgid "_Sync"
-msgstr "_Eşle"
-
-#: ../ubuntutweak/modules/appcenter.py:586
-#: ../ubuntutweak/modules/sourcecenter.py:1005
-msgid "Last synced:"
-msgstr "Son eşlenen:"
-
-#: ../ubuntutweak/modules/appcenter.py:591
-msgid "New application data available, would you like to update?"
-msgstr "Yeni uygulama verileri hazır, güncellemek istiyor musunuz?"
-
-#: ../ubuntutweak/modules/appcenter.py:660
-msgid "Update available, would you like to update?"
-msgstr "Güncelleme var, yüklemek ister misiniz?"
-
-#: ../ubuntutweak/modules/appcenter.py:669
-msgid ""
-"Network Error, please check your network connection - or the remote server "
-"may be down."
-msgstr ""
-"Bağlantı hatası, lütfen ağ bağlantınızı kontrol edin - veya uzak sunucu "
-"yanıt vermiyor olabilir."
-
-#: ../ubuntutweak/modules/appcenter.py:673
-#: ../ubuntutweak/modules/sourcecenter.py:1169
-msgid "No update available."
-msgstr "Mevcut güncelleme yok."
-
-#: ../ubuntutweak/modules/appcenter.py:685
-msgid "An error occurred while downloading the file."
-msgstr "Dosya indirilmeye çalışılırken bir hata oluştu."
-
-#: ../ubuntutweak/modules/filetype.py:35
+#: ../ubuntutweak/admins/filetypemanager.py:44
 msgid "Audio"
 msgstr "Ses"
 
-#: ../ubuntutweak/modules/filetype.py:36
+#: ../ubuntutweak/admins/filetypemanager.py:45
 msgid "Text"
 msgstr "Metin"
 
-#: ../ubuntutweak/modules/filetype.py:37
+#: ../ubuntutweak/admins/filetypemanager.py:46
 msgid "Image"
 msgstr "Resim"
 
-#: ../ubuntutweak/modules/filetype.py:38
+#: ../ubuntutweak/admins/filetypemanager.py:47
 msgid "Video"
 msgstr "Video"
 
-#: ../ubuntutweak/modules/filetype.py:39
+#: ../ubuntutweak/admins/filetypemanager.py:48
 msgid "Application"
 msgstr "Uygulama"
 
-#: ../ubuntutweak/modules/filetype.py:40
+#: ../ubuntutweak/admins/filetypemanager.py:49
+#: ../ubuntutweak/tweaks/ccm/Constants.py:94
 msgid "All"
 msgstr "Tümü"
 
-#: ../ubuntutweak/modules/filetype.py:73
+#: ../ubuntutweak/admins/filetypemanager.py:74
 msgid "Categories"
 msgstr "Kategoriler"
 
-#: ../ubuntutweak/modules/filetype.py:131
+#: ../ubuntutweak/admins/filetypemanager.py:127
 msgid "File Type"
 msgstr "Dosya Tipi"
 
-#: ../ubuntutweak/modules/filetype.py:146
+#: ../ubuntutweak/admins/filetypemanager.py:143
 msgid "Associated Application"
 msgstr "İlgili Uygulama"
 
-#: ../ubuntutweak/modules/filetype.py:244
+#: ../ubuntutweak/admins/filetypemanager.py:231
 #, python-format
 msgid "Open files of type \"%s\" with:"
 msgstr "\"%s\" türündeki dosyaları birlikte aç:"
 
-#: ../ubuntutweak/modules/filetype.py:273
+#: ../ubuntutweak/admins/filetypemanager.py:263
 msgid "Choose an application"
 msgstr "Bir uygulama seçin"
 
-#: ../ubuntutweak/modules/filetype.py:368
+#: ../ubuntutweak/admins/filetypemanager.py:363
 #, python-format
 msgid "Select an application to open files of type: <b>%s</b>"
 msgid_plural "Select an application to open files for these types: <b>%s</b>"
 msgstr[0] "<b>%s</b> türündeki dosyaları açmak için bir uygulama seç:"
 
-#: ../ubuntutweak/modules/filetype.py:402
-#, python-format
-msgid "Could not find %s"
-msgstr "%s bulunamadı"
-
-#: ../ubuntutweak/modules/filetype.py:403
+#: ../ubuntutweak/admins/filetypemanager.py:402
 msgid "Could not find application"
 msgstr "Uygulama bulunamadı"
 
-#: ../ubuntutweak/modules/filetype.py:523
-msgid "File Type Manager"
-msgstr "Dosya Tipi Yöneticisi"
+#: ../ubuntutweak/admins/filetypemanager.py:403
+#, python-format
+msgid "Could not find \"%s\", Please ensure the path is correct."
+msgstr ""
 
-#: ../ubuntutweak/modules/filetype.py:524
+#: ../ubuntutweak/admins/filetypemanager.py:551
 msgid "Manage all registered file types"
 msgstr "Tüm kayıtlı dosya türlerini yönet"
 
-#: ../ubuntutweak/modules/filetype.py:557
+#: ../ubuntutweak/admins/filetypemanager.py:588
+msgid "_Reset"
+msgstr ""
+
+#: ../ubuntutweak/admins/filetypemanager.py:594
 msgid "Only show filetypes with associated applications"
 msgstr "Yalnızca uygulamalarla ilişkilendirilmiş dosya türlerini göster"
 
-#: ../ubuntutweak/modules/updatemanager.py:33
-msgid "Update Manager"
-msgstr "Güncelleştirme Yöneticisi"
+#: ../ubuntutweak/modules/__init__.py:28
+msgid "Broken Modules"
+msgstr "Kırık Modüller"
 
-#: ../ubuntutweak/modules/updatemanager.py:34
-msgid "A simple and easy-to-use update manager"
-msgstr "Basit ve kolay kullanımlı bir güncelleme yöneticisi"
-
-#: ../ubuntutweak/modules/updatemanager.py:47
-msgid "Automatically run System Update Manager"
-msgstr "Sistem Güncelleme Yöneticisi'ni otomatik olarak çalıştır"
-
-#: ../ubuntutweak/modules/updatemanager.py:52
-msgid "Temporarily disable third-party PPA sources whilst refreshing"
+#: ../ubuntutweak/modules/__init__.py:30
+msgid "Appearance"
 msgstr ""
-"Yenilerken, geçici olarak üçüncü parti PPA kaynaklarını devre dışı bırak."
 
-#: ../ubuntutweak/modules/updatemanager.py:79
-msgid "Your system is clean and no updates are available."
-msgstr "Sisteminiz temiz, yeni güncelleme yok."
+#: ../ubuntutweak/modules/__init__.py:31
+msgid "Startup"
+msgstr "Başlangıç"
 
-#: ../ubuntutweak/modules/updatemanager.py:80
-#: ../ubuntutweak/modules/sourcecenter.py:148
-msgid "Software information is now up-to-date"
-msgstr "Yazılım bilgisi şu an güncel"
-
-#: ../ubuntutweak/modules/updatemanager.py:93
-msgid "Install Update"
-msgid_plural "Install Updates"
-msgstr[0] "Güncelleştirmeleri Yükle"
-
-#: ../ubuntutweak/modules/metacity.py:37
-#: ../ubuntutweak/modules/metacity.py:196
-#: ../ubuntutweak/modules/metacity.py:210
-#: ../ubuntutweak/modules/metacity.py:224
-msgid "Menu"
-msgstr "Menü"
-
-#: ../ubuntutweak/modules/metacity.py:38
-msgid "Title"
-msgstr "Başlık"
-
-#: ../ubuntutweak/modules/metacity.py:39
-#: ../ubuntutweak/modules/metacity.py:192
-#: ../ubuntutweak/modules/metacity.py:206
-#: ../ubuntutweak/modules/metacity.py:220
-msgid "Maximize"
-msgstr "Ekranı Kapla"
-
-#: ../ubuntutweak/modules/metacity.py:40
-#: ../ubuntutweak/modules/metacity.py:195
-#: ../ubuntutweak/modules/metacity.py:209
-#: ../ubuntutweak/modules/metacity.py:223
-msgid "Minimize"
-msgstr "Küçült"
-
-#: ../ubuntutweak/modules/metacity.py:41
-msgid "Close"
-msgstr "Kapat"
-
-#: ../ubuntutweak/modules/metacity.py:42
-msgid "Spacer"
-msgstr "Ayırıcı"
-
-#: ../ubuntutweak/modules/metacity.py:153
-msgid "Window Manager Settings"
-msgstr "Pencere Yöneticisi Ayarları"
-
-#: ../ubuntutweak/modules/metacity.py:154
-msgid "Manage Metacity Window Manager settings"
-msgstr "Metacity Pencere Yöneticisi ayarlarını yönetin"
-
-#: ../ubuntutweak/modules/metacity.py:177
-msgid "Window Titlebar Button Layout"
-msgstr "Pencere Başlık Çubuğu Düğme Düzeni"
-
-#: ../ubuntutweak/modules/metacity.py:181
-msgid "Window Titlebar Actions"
-msgstr "Pencere başlık çubuğu eylemleri"
-
-#: ../ubuntutweak/modules/metacity.py:183
-msgid "Titlebar mouse wheel action"
-msgstr "Başlık çubuğunun fare tekerleği eylemi"
-
-#: ../ubuntutweak/modules/metacity.py:186
-#: ../ubuntutweak/modules/metacity.py:195
-#: ../ubuntutweak/modules/metacity.py:209
-#: ../ubuntutweak/modules/metacity.py:223
-msgid "Roll up"
-msgstr "Yukarı kaydır"
-
-#: ../ubuntutweak/modules/metacity.py:189
-msgid "Titlebar double-click action"
-msgstr "Başlık çubuğu çift tıklama eylemi"
-
-#: ../ubuntutweak/modules/metacity.py:193
-#: ../ubuntutweak/modules/metacity.py:207
-#: ../ubuntutweak/modules/metacity.py:221
-msgid "Maximize Horizontally"
-msgstr "Yatay Büyüt"
-
-#: ../ubuntutweak/modules/metacity.py:194
-#: ../ubuntutweak/modules/metacity.py:208
-#: ../ubuntutweak/modules/metacity.py:222
-msgid "Maximize Vertically"
-msgstr "Dikey Büyüt"
-
-#: ../ubuntutweak/modules/metacity.py:196
-#: ../ubuntutweak/modules/metacity.py:210
-#: ../ubuntutweak/modules/metacity.py:224
-msgid "Lower"
-msgstr "Pencereyi arkaya geçir"
-
-#: ../ubuntutweak/modules/metacity.py:203
-msgid "Titlebar middle-click action"
-msgstr "Başlık çubuğu orta tuş eylemi"
-
-#: ../ubuntutweak/modules/metacity.py:217
-msgid "Titlebar right-click action"
-msgstr "Başlık çubuğu sağ tuş eylemi"
-
-#: ../ubuntutweak/modules/metacity.py:234
-msgid "Window Decoration Effects"
-msgstr "Pencere Dekorasyonu Etkileri"
-
-#: ../ubuntutweak/modules/metacity.py:236
-msgid "Use Metacity window theme"
-msgstr "Metacity temasını kullan"
-
-#: ../ubuntutweak/modules/metacity.py:240
-msgid "Enable active window transparency"
-msgstr "Etkin pencere şeffaflığını aktifleştir"
-
-#: ../ubuntutweak/modules/metacity.py:244
-msgid "Active window transparency level"
-msgstr "Etkin pencere şeffaflık seviyesi"
-
-#: ../ubuntutweak/modules/metacity.py:249
-msgid "Enable inactive window transparency"
-msgstr "Etkin olmayan pencere saydamlığını etkinleştir"
-
-#: ../ubuntutweak/modules/metacity.py:253
-msgid "Inactive window shade transparency level"
-msgstr "Etkin olmayan pencere saydamlık seviyesi"
-
-#: ../ubuntutweak/modules/metacity.py:261
-msgid "Enable Metacity's compositing feature"
-msgstr "Metacity'nin birleştirme özelliğini etkinleştir"
-
-#: ../ubuntutweak/modules/metacity.py:266
-msgid "Compositing Manager"
-msgstr "Kompozisyon Yöneticisi"
-
-#: ../ubuntutweak/modules/metacity.py:308
-msgid ""
-"To enable Metacity's compositing feature, you should manually disable Visual "
-"Effects in \"Appearance\"."
+#: ../ubuntutweak/modules/__init__.py:35
+msgid "Other"
 msgstr ""
-"Metacity'nin birleştirme özelliğini etkinleştirmek için, \"Görünüş\"teki "
-"Görsel Efektler'i elle etkisizleştirmelisiniz."
 
-#: ../ubuntutweak/modules/__init__.py:103
+#: ../ubuntutweak/modules/__init__.py:228
 msgid "More"
 msgstr "Daha fazla"
 
-#: ../ubuntutweak/modules/__init__.py:259
-msgid "This module encountered an error while loading."
-msgstr "Bu modül yüklenirken bir hata ile karşılaşıldı."
-
-#: ../ubuntutweak/modules/__init__.py:281
+#: ../ubuntutweak/modules/__init__.py:367
 #, python-format
 msgid ""
 "Ubuntu Tweak has detected that your apt configuration is broken.\n"
@@ -1309,2015 +1423,1396 @@ msgstr ""
 "\n"
 "Ya da geliştiricilere yardım için Hata Bildirisi göndebilirsiniz:"
 
-#: ../ubuntutweak/modules/__init__.py:286
+#: ../ubuntutweak/modules/__init__.py:377
 #, python-format
 msgid ""
 "Ubuntu Tweak has detected that your apt list file is broken.\n"
 "Try to fix by following steps:\n"
 "\n"
-"\t1. Open your terminal\n"
+"\t1.Open your terminal\n"
 "\t2. Run the command to open apt list file:\n"
 "\n"
 "\t\tsudo gedit %s\n"
 "\n"
 "\t3. Edit the list to make it correctly\n"
 "\n"
-"Or you can submit the Error Message to the developer for help:"
+"Or you can submit the Error Message to the developer forhelp:"
 msgstr ""
-"Ubuntu Tweak apt listesi dosyasının bozuk olduğunu algıladı.\n"
-"Bu aşamaları izleyerek onarmayı deneyin:\n"
-"\n"
-"\t1. Uçbirim'inizi açın\n"
-"\t2. apt listesi dosyasını açmak için şu komutları girin:\n"
-"\n"
-"\t\tsudo gedit %s\n"
-"\n"
-"\t3. Düzeltmek için listeyi düzenleyin\n"
-"\n"
-"Ya da geliştiricilere yardım için Hata Bildirisi göndebilirsiniz:"
 
-#: ../ubuntutweak/modules/icons.py:32
+#: ../ubuntutweak/tweaks/icons.py:25
 msgid "Show \"Computer\" icon on desktop"
 msgstr "\"Bilgisayar\" simgesini masaüstünde göster"
 
-#: ../ubuntutweak/modules/icons.py:41
+#: ../ubuntutweak/tweaks/icons.py:32
 msgid "Show \"Home Folder\" icon on desktop"
 msgstr "Ev klasörü simgesini masaüstünde göster"
 
-#: ../ubuntutweak/modules/icons.py:50
+#: ../ubuntutweak/tweaks/icons.py:39
 msgid "Show \"Trash\" icon on desktop"
 msgstr "Masaüstünde \"Çöp Kutusu\" simgesini göster"
 
-#: ../ubuntutweak/modules/icons.py:108
-msgid "Desktop Icon Settings"
-msgstr "Masaüstü Simge Ayarları"
+#: ../ubuntutweak/tweaks/icons.py:46
+msgid "Show \"Network Servers\" icon on desktop"
+msgstr ""
 
-#: ../ubuntutweak/modules/icons.py:109
+#: ../ubuntutweak/tweaks/icons.py:75 ../ubuntutweak/gui/treeviews.py:76
+msgid "Rename"
+msgstr "Yeniden Adlandır"
+
+#: ../ubuntutweak/tweaks/icons.py:107
 msgid "Rename and toggle visibilty of desktop icons"
 msgstr "Masaüstü ikonlarını yeniden adlandır ve görünebilirliklerini ayarla"
 
-#: ../ubuntutweak/modules/icons.py:118
+#: ../ubuntutweak/tweaks/icons.py:115
 msgid "Show desktop icons"
 msgstr "Masaüstü simgelerini göster"
 
-#: ../ubuntutweak/modules/icons.py:139
-msgid "Show \"Network\" icon on desktop"
-msgstr "\"Ağ sunucuları\" simgesini masaüstünde göster"
-
-#: ../ubuntutweak/modules/icons.py:144
+#: ../ubuntutweak/tweaks/icons.py:137
 msgid "Show mounted volumes on desktop"
 msgstr "Bağlanmış diskleri masaüstünde göster"
 
-#: ../ubuntutweak/modules/icons.py:149
-msgid ""
-"Show contents of \"Home Folder\" on desktop (Logout for changes to take "
-"effect)"
-msgstr ""
-"Masaüstünde \"Ev Dizini\" içeriğini göster (Değişikliklerin etkili "
-"olabilmesi için oturumun kapatılıp açılması gereklidir)"
-
-#: ../ubuntutweak/modules/gnomesettings.py:41
-msgid "GNOME Settings"
-msgstr "GNOME Ayarları"
-
-#: ../ubuntutweak/modules/gnomesettings.py:42
-msgid "A lot of GNOME settings for panels, menus and other desktop elements"
-msgstr "Paneller, menüler ve masaüstü elemanları için birçok GNOME ayarı"
-
-#: ../ubuntutweak/modules/gnomesettings.py:54
-msgid "Panel Settings"
-msgstr "Panel Ayarları"
-
-#: ../ubuntutweak/modules/gnomesettings.py:56
-msgid "Display warning when removing a panel"
-msgstr "Bir panel kaldırıldığında uyarı göster"
-
-#: ../ubuntutweak/modules/gnomesettings.py:60
-msgid "Complete lockdown of all panels"
-msgstr "Bütün panelleri tam kilitleme"
-
-#: ../ubuntutweak/modules/gnomesettings.py:64
-msgid "Enable panel animations"
-msgstr "Panel animasyonlarını etkinleştir"
-
-#: ../ubuntutweak/modules/gnomesettings.py:68
-msgid "Me Menu Setting"
-msgstr "Me Menü Ayarları"
-
-#: ../ubuntutweak/modules/gnomesettings.py:70
-msgid "Don't Display"
-msgstr "Gösterme"
-
-#: ../ubuntutweak/modules/gnomesettings.py:70
-msgid "Display user name"
-msgstr "Kullanıcı ismini göster"
-
-#: ../ubuntutweak/modules/gnomesettings.py:70
-msgid "Display real name"
-msgstr "Gerçek ismi göster"
-
-#: ../ubuntutweak/modules/gnomesettings.py:76
-msgid "Menu Settings"
-msgstr "Menü Ayarları"
-
-#: ../ubuntutweak/modules/gnomesettings.py:78
-msgid "Show Input Method menu in the context menu"
-msgstr "İçerik menüsünde Girdi Yöntemi menüsünü göster"
-
-#: ../ubuntutweak/modules/gnomesettings.py:82
-msgid "Show Unicode Control Character menu in the context menu"
-msgstr "Unicode Kontrol Karakter menüsünü içerik menüsünde göster"
-
-#: ../ubuntutweak/modules/gnomesettings.py:86
-msgid "Show icons in menus"
-msgstr "Menülerde simgeleri göster"
-
-#: ../ubuntutweak/modules/gnomesettings.py:90
-msgid "Show icons on buttons"
-msgstr "Düğmelerdeki simgeleri göster"
-
-#: ../ubuntutweak/modules/gnomesettings.py:97
-msgid "Screensaver"
-msgstr "Ekran koruyucu"
-
-#: ../ubuntutweak/modules/gnomesettings.py:99
-msgid "Enable user switching whilst screen is locked."
-msgstr "Ekran kilitliyken kullanıcı değiştirmeyi etkinleştir."
-
-#: ../ubuntutweak/modules/gnomesettings.py:108
-msgid "Terminal"
-msgstr "Uçbirim"
-
-#: ../ubuntutweak/modules/gnomesettings.py:110
-msgid "Display menubar when Terminal starts up (for current profile)"
-msgstr ""
-"Uçbirim başlatıldığında menü çubuğunu görüntüle (geçerli profil için)"
-
-#: ../ubuntutweak/modules/gnomesettings.py:116
-msgid "Enable system-wide \"Recent Documents\" list"
-msgstr "Sistem genelinde \"Açılan Son Belgeler\" listesini etkinleştir"
-
-#: ../ubuntutweak/modules/gnomesettings.py:119
-msgid "History"
-msgstr "Geçmiş"
-
-#: ../ubuntutweak/modules/gnomesettings.py:126
-msgid "Click this button to change the menu logo image"
-msgstr "Menü logo resmini değiştirmek için düğmeye tıklayın"
-
-#: ../ubuntutweak/modules/gnomesettings.py:139
-#: ../ubuntutweak/modules/loginsettings.py:147
-msgid "Choose a new logo image"
-msgstr "Yeni logo resmi seçin"
-
-#: ../ubuntutweak/modules/gnomesettings.py:145
-msgid "PNG images with 24x24 size or SVG images"
-msgstr "24x24 boyundaki PNG resimleri veya SVG resimleri"
-
-#: ../ubuntutweak/modules/gnomesettings.py:178
-msgid ""
-"This image size isn't suitable for the panel.\n"
-"It should measure 24x24."
-msgstr ""
-"Bu resim panel için uygun değil.\n"
-"Genişliği 24x24 olmalı."
-
-#: ../ubuntutweak/modules/gnomesettings.py:198
-msgid "Do you want your changes to take effect immediately?"
-msgstr "Değişikliklerinizin hemen etkili olmasını istiyor musunuz?"
-
-#: ../ubuntutweak/modules/gnomesettings.py:221
-msgid ""
-"Disabling \"Recent Documents\" may break other software, for example the "
-"history feature in VMware Player."
-msgstr ""
-"\"Açılan Son Belgeler\"i etkisizleştirmek diğer yazılımları bozabilir, "
-"mesela VMware Player'ın geçmiş özelliğini."
-
-#: ../ubuntutweak/modules/powermanager.py:28
-msgid "Power Manager Settings"
-msgstr "Güç Yöneticisi Ayarları"
-
-#: ../ubuntutweak/modules/powermanager.py:29
-msgid "Control your computer's power management"
+#: ../ubuntutweak/tweaks/icons.py:143
+msgid "Show contents of \"Home Folder\" on desktop"
 msgstr ""
 
-#: ../ubuntutweak/modules/powermanager.py:37
-msgid "Advanced Power Management Settings"
-msgstr "Gelişmiş Güç Yönetimi Ayarları"
-
-#: ../ubuntutweak/modules/powermanager.py:39
-msgid "Enable \"Lock screen\" when \"Blank Screen\" activates"
-msgstr ""
-"\"Boş Ekran\" aktifleştiğinde \"Ekranı Kilitle\" özelliğini etkinleştir"
-
-#: ../ubuntutweak/modules/powermanager.py:43
-msgid "Lock screen on hibernate"
-msgstr "Hazırda bekletme sırasında ekranı kilitle"
-
-#: ../ubuntutweak/modules/powermanager.py:47
-msgid "Lock screen on suspend"
-msgstr "Askıya alınca ekranı kilitle"
-
-#: ../ubuntutweak/modules/powermanager.py:51
-msgid "LCD brightness when using AC power"
-msgstr "Fişte çalışırken LCD parlaklığı"
-
-#: ../ubuntutweak/modules/powermanager.py:56
-msgid "LCD brightness when using battery"
-msgstr "Pilden çalışırken LCD parlaklığı"
-
-#: ../ubuntutweak/modules/compiz.py:54
-msgid "Show Workspaces"
-msgstr "Çalışma Alanlarını Göster"
-
-#: ../ubuntutweak/modules/compiz.py:55
-msgid "Show Windows"
-msgstr "Pencereleri göster"
-
-#: ../ubuntutweak/modules/compiz.py:56
-msgid "Show Desktop"
-msgstr "Masaüstünü Göster"
-
-#: ../ubuntutweak/modules/compiz.py:57
-msgid "Show Widgets"
-msgstr "Araçları Göster"
-
-#: ../ubuntutweak/modules/compiz.py:319
-msgid "Compiz Settings"
-msgstr "Compiz Ayarları"
-
-#: ../ubuntutweak/modules/compiz.py:320
-msgid "Settings for some amazing desktop eye-candy"
-msgstr "Bazı ilginç masaüstü süslemeleri için ayarlar"
-
-#: ../ubuntutweak/modules/compiz.py:334
-msgid "Install Advanced Desktop Effects Settings Manager"
-msgstr "Gelişmiş Masaüstü Efektleri Yöneticisini Kur"
-
-#: ../ubuntutweak/modules/compiz.py:337
-msgid "Install Simple Desktop Effects Settings Manager"
-msgstr "Temel Masaüstü Etkileri Ayarları Yöneticisi'ni Kur"
-
-#: ../ubuntutweak/modules/compiz.py:340
-msgid "Install Screenlets Widget Application"
-msgstr "Screenlets Widgets Uygulamasını Kur"
-
-#: ../ubuntutweak/modules/compiz.py:347
-msgid " Workspace Edge Settings"
-msgstr " Çalışma Alanı Sınırı Ayarları"
-
-#: ../ubuntutweak/modules/compiz.py:350
-msgid "Enable snapping windows"
-msgstr "Kopan pencereleri etkinleştir"
-
-#: ../ubuntutweak/modules/compiz.py:351
-msgid "Enable wobbly windows"
-msgstr "Sallanan pencereleri etkinleştir"
-
-#: ../ubuntutweak/modules/compiz.py:352
-msgid "Enable workspace switching with mouse wheel"
-msgstr "Çalışma alanını fare ile değiştirmeyi etkinleştir"
-
-#: ../ubuntutweak/modules/compiz.py:354
-msgid "Make the launcher hide automatically after some time inactive"
-msgstr "Başlatıcıyı aktif olmadığında otomatik gizleyin"
-
-#: ../ubuntutweak/modules/compiz.py:358
-msgid "Desktop Effects"
-msgstr "Masaüstü Efektleri"
-
-#: ../ubuntutweak/modules/compiz.py:364
-msgid "Enable transparent menus"
-msgstr "Saydam menüleri etkinleştir"
-
-#: ../ubuntutweak/modules/compiz.py:365
-msgid "Enable wobbly menus"
-msgstr "Sallanan menüleri etkinleştir"
-
-#: ../ubuntutweak/modules/compiz.py:367
-msgid "Menu Effects"
-msgstr "Menü Efektleri"
-
-#: ../ubuntutweak/modules/compiz.py:371
-msgid "Useful Extensions"
-msgstr "Kullanışlı eklentiler"
-
-#: ../ubuntutweak/modules/compiz.py:386
-msgid "Prerequisite Conditions"
-msgstr "Gerekli Durumlar"
-
-#: ../ubuntutweak/modules/sourcecenter.py:112
-msgid ""
-"You can install new applications by selecting them and choosing \"Yes\".\n"
-"Or you can install them at Application Center by choosing \"No\"."
-msgstr ""
-"\"Evet\"i seçerek yeni uygulamaları seçerek kurabilirsiniz.\n"
-"Veya \"Hayır\"ı seçerek, onları Uygulama Merkezi'nden kurabilirsiniz."
-
-#: ../ubuntutweak/modules/sourcecenter.py:113
-msgid "New applications are available"
-msgstr "Yeni uygulamalar mevcut"
-
-#. checkbutton
-#: ../ubuntutweak/modules/sourcecenter.py:122
-#: ../ubuntutweak/modules/cleaner.py:768
-msgid "Select All"
-msgstr "Tümünü Seç"
-
-#: ../ubuntutweak/modules/sourcecenter.py:147
-msgid "Your system is clean and there are no updates yet."
-msgstr "Sisteminiz temiz ve henüz bir güncelleştirme yok."
-
-#: ../ubuntutweak/modules/sourcecenter.py:355
-#, python-format
-msgid "%d New Application Available"
-msgid_plural "%d New Applications Available"
-msgstr[0] "%d Yeni Uygulama Mevcut"
-
-#: ../ubuntutweak/modules/sourcecenter.py:373
-#, python-format
-msgid "%d Package Update Available"
-msgid_plural "%d Package Updates Available"
-msgstr[0] "%d Paket Güncellemesi Mevcut"
-
-#: ../ubuntutweak/modules/sourcecenter.py:411
-msgid "No Available Package Updates"
-msgstr "Paket Güncellemesi Yok"
-
-#: ../ubuntutweak/modules/sourcecenter.py:546
-msgid "Third-Party Sources"
-msgstr "Üçüncü Parti Kaynaklar"
-
-#: ../ubuntutweak/modules/sourcecenter.py:733
-#, python-format
-msgid ""
-"You can't enable this Source because<b>\"%(SOURCE)s\"</b> conflicts with "
-"it.\n"
-"To continue you need to disable <b>\"%(SOURCE)s\"</b>first."
-msgstr ""
-"Bu kaynağı etkinleştiremezsiniz çünkü <b>\"%(SOURCE)s\"</b> onunla "
-"çakışıyor.\n"
-"Devam etmek için öncelikle <b>\"%(SOURCE)s\"</b> etkisizleştirmeniz "
-"gerekiyor."
-
-#: ../ubuntutweak/modules/sourcecenter.py:755
-#, python-format
-msgid ""
-"To enable this Source, You need to enable <b>\"%s\"</b> at first.\n"
-"Do you wish to continue?"
-msgstr ""
-"Bu kaynağı etkinleştirmek için öncelikle <b>\"%s\"</b> "
-"etkinleştirmelisiniz.\n"
-"Devam etmek istiyor musunuz?"
-
-#: ../ubuntutweak/modules/sourcecenter.py:757
-msgid "Dependency Notice"
-msgstr "Bağımlı Uyarı"
-
-#: ../ubuntutweak/modules/sourcecenter.py:781
-#, python-format
-msgid ""
-"You can't disable this Source because <b>\"%(SOURCE)s\"</b> depends on it.\n"
-"To continue you need to disable <b>\"%(SOURCE)s\"</b> first."
-msgstr ""
-"Bu kaynağı etkisizleştiremezsiniz çünkü <b>\"%(SOURCE)s\"</b> ona bağlı.\n"
-"Devam etmek için öncelikle <b>\"%(SOURCE)s\"</b> etkisizleştirmeniz "
-"gerekiyor."
-
-#: ../ubuntutweak/modules/sourcecenter.py:856
-msgid "New source has been enabled"
-msgstr "Yeni kaynak etkinleştirildi"
-
-#: ../ubuntutweak/modules/sourcecenter.py:857
-#, python-format
-msgid ""
-"%s is enabled now, Please click the refresh button to update the application "
-"cache."
-msgstr ""
-"%s etkinleştirildi, uygulama önbelleğini güncelleştirmek için lütfen yenile "
-"düğmesine tıklayın."
-
-#: ../ubuntutweak/modules/sourcecenter.py:871
-msgid "Homepage"
-msgstr "Ana Sayfa"
-
-#: ../ubuntutweak/modules/sourcecenter.py:871
-msgid "Source URL"
-msgstr "Kaynak Adres"
-
-#: ../ubuntutweak/modules/sourcecenter.py:871
-msgid "Description"
-msgstr "Açıklama"
-
-#: ../ubuntutweak/modules/sourcecenter.py:884
-msgid "Description is here"
-msgstr "Açıklaması buradadır"
-
-#: ../ubuntutweak/modules/sourcecenter.py:910
-msgid "Source Center"
-msgstr "Kaynak Merkezi"
-
-#: ../ubuntutweak/modules/sourcecenter.py:911
-msgid ""
-"A collection of software sources to ensure your applications are always up-"
-"to-date.\n"
-"Here you can add applications unavailable in the official repositories.\n"
-"A list of available software sources will be obtained automatically from a "
-"remote server.\n"
-"You can click the \"Sync\" button to manually check for updates"
-msgstr ""
-"Uygulamalarınızın her zaman güncel kalmasını sağlamak için yazılım "
-"kaynaklarının derlemesi.\n"
-"Resmi depolarda bulunmayan uygulamaları burada ekleyebilirsiniz.\n"
-"Uzak bir sunucudan otomatik olarak elde edilecek kullanılabilir yazılım "
-"kaynaklarının listesi.\n"
-"Güncellemeleri el ile kontrol etmek isterseniz \"Eşle\" düğmesini "
-"kullanabilirsiniz"
-
-#: ../ubuntutweak/modules/sourcecenter.py:917
-msgid "Visit online Source Center"
-msgstr "Çevrimiçi Kaynak Merkezi'ni ziyaret edin"
-
-#. the "%s" is in front, some is the end, so just return the long one
-#: ../ubuntutweak/modules/sourcecenter.py:1000
-#, python-format
-msgid "disabled on upgrade to %s"
-msgstr "%s güncelleştirilmesi iptal edildi."
-
-#: ../ubuntutweak/modules/sourcecenter.py:1009
-msgid ""
-"After a successful distribution upgrade, any third-party sources you use "
-"will be disabled by default.\n"
-"Would you like to re-enable any sources disabled by Update Manager?"
-msgstr ""
-"Başarılı bir dağıtım güncelleştirmesinin ardından, kullandığınız tüm üçüncü "
-"parti yazılımlar varsayılan olarak etkisizleştirilecektir.\n"
-"Güncelleme Yöneticisi'nin etkisizleştirdiği kaynakları yeniden "
-"etkinleştirmek istiyor musunuz?"
-
-#: ../ubuntutweak/modules/sourcecenter.py:1012
-msgid "Upgrade Third Party Sources"
-msgstr "Üçüncü Parti Kaynakları Yükselt"
-
-#: ../ubuntutweak/modules/sourcecenter.py:1018
-msgid "Upgrade Successful!"
-msgstr "Yükseltme Başarılı!"
-
-#: ../ubuntutweak/modules/sourcecenter.py:1020
-msgid "Upgrade Failed!"
-msgstr "Yükseltme Başarısız!"
-
-#: ../ubuntutweak/modules/sourcecenter.py:1027
-msgid "New source data available, would you like to update?"
-msgstr "Yeni kaynak verileri mevcut, güncellemek istiyor musunuz?"
-
-#: ../ubuntutweak/modules/sourcecenter.py:1109
-msgid ""
-"It is a possible security risk to use packages from Third-Party Sources.\n"
-"Please be careful and use only sources you trust."
-msgstr ""
-"Üçüncü-Taraf kaynaklardan olan paketleri kullanmak olası bir güvenlik "
-"riskidir."
-
-#: ../ubuntutweak/modules/sourcecenter.py:1141
-msgid "An error occurred whilst downloading the file"
-msgstr "Dosya indirilirken hata oluştu"
-
-#: ../ubuntutweak/modules/sourcecenter.py:1156
-msgid "Update available, Would you like to update?"
-msgstr "Güncelleme hazır, Güncellemek istiyor musunuz?"
-
-#: ../ubuntutweak/modules/sourcecenter.py:1165
-msgid ""
-"Network Error, Please check your network connection or the remote server is "
-"down."
-msgstr ""
-"Ağ Hatası, Lütfen ağ bağlantınızı ve uzak sunucunun durumunu kontrol edin."
-
-#: ../ubuntutweak/modules/scripts.py:59
-msgid "Create Launcher ..."
-msgstr "Başlatıcı Oluşturuluyor ..."
-
-#: ../ubuntutweak/modules/scripts.py:60
-msgid "Copy to ..."
-msgstr "Buraya kopyala ..."
-
-#: ../ubuntutweak/modules/scripts.py:61
-msgid "Copy to Desktop"
-msgstr "Masaüstüne Kopyala"
-
-#: ../ubuntutweak/modules/scripts.py:62
-msgid "Copy to Download"
-msgstr "İndirmelere Kopyala"
-
-#: ../ubuntutweak/modules/scripts.py:63
-msgid "Copy to Home"
-msgstr "Ev Dizinine Kopyala"
-
-#: ../ubuntutweak/modules/scripts.py:64
-msgid "Check md5 sum"
-msgstr "md5 toplamını kontrol edin"
-
-#: ../ubuntutweak/modules/scripts.py:65
-msgid "Compress PDF"
-msgstr "PDF'yi sıkıştır."
-
-#: ../ubuntutweak/modules/scripts.py:66
-msgid "Move to ..."
-msgstr "Buraya taşı ..."
-
-#: ../ubuntutweak/modules/scripts.py:67
-msgid "Move to Desktop"
-msgstr "Masaüstüne Taşı"
-
-#: ../ubuntutweak/modules/scripts.py:68
-msgid "Move to Download"
-msgstr "İndirmelere Taşı"
-
-#: ../ubuntutweak/modules/scripts.py:69
-msgid "Move to Home"
-msgstr "Ev Dizinine Taşı"
-
-#: ../ubuntutweak/modules/scripts.py:70
-msgid "Create hardlink to ..."
-msgstr "Doğrudan bağlantı yarat ..."
-
-#: ../ubuntutweak/modules/scripts.py:71
-msgid "Link to ..."
-msgstr "Buraya bağla ..."
-
-#: ../ubuntutweak/modules/scripts.py:72
-msgid "Link to Desktop"
-msgstr "Masaüstüne Kısayol Oluştur"
-
-#: ../ubuntutweak/modules/scripts.py:73
-msgid "Link to Download"
-msgstr "İndirmelere Kısayol Oluştur"
-
-#: ../ubuntutweak/modules/scripts.py:74
-msgid "Link to Home"
-msgstr "Ev Dizinine Kısayol Oluştur"
-
-#: ../ubuntutweak/modules/scripts.py:75
-msgid "Open with your favourite text editor"
-msgstr "Favori metin editörünüzle açın"
-
-#: ../ubuntutweak/modules/scripts.py:76
-msgid "Open with your favourite text editor (as root)"
-msgstr "Favori metin editörünüzle açın (yönetici olarak)"
-
-#: ../ubuntutweak/modules/scripts.py:77
-msgid "Browse as root"
-msgstr "Yönetici olarak göz at"
-
-#: ../ubuntutweak/modules/scripts.py:78
-msgid "Search in current folder"
-msgstr "Mevcut klasörde ara"
-
-#: ../ubuntutweak/modules/scripts.py:79
-msgid "Convert image to JPG"
-msgstr "Resmi JPG türüne dönüştür"
-
-#: ../ubuntutweak/modules/scripts.py:80
-msgid "Convert image to PNG"
-msgstr "Resmi PNG türüne dönüştür"
-
-#: ../ubuntutweak/modules/scripts.py:81
-msgid "Convert image to GIF"
-msgstr "Resmi GIF türüne dönüştür"
-
-#: ../ubuntutweak/modules/scripts.py:82
-msgid "Set image as wallpaper"
-msgstr "Resmi duvar kağıdı olarak ayarla"
-
-#: ../ubuntutweak/modules/scripts.py:83
-msgid "Make hard shadow to image"
-msgstr "Resme gölgeleme yap"
-
-#: ../ubuntutweak/modules/scripts.py:110
-msgid "Enabled Scripts"
-msgstr "Etkinleştirilen Betikler"
-
-#: ../ubuntutweak/modules/scripts.py:138
-msgid "Disabled Scripts"
-msgstr "Devre Dışı Bırakılan Betikler"
-
-#: ../ubuntutweak/modules/scripts.py:144
-msgid "Manage Scripts"
-msgstr "Betikleri Yönet"
-
-#: ../ubuntutweak/modules/scripts.py:145
-msgid ""
-"Scripts can be used to complete all kinds of tasks.\n"
-"You can drag and drop scripts here from File Manager.\n"
-"'Scripts' will then be added to the context menu."
-msgstr ""
-"Scriptler her türlü görevleri yerine getirmekte kullanılabilir.\n"
-"Dosya Yöneticisi'nden scriptleri buraya sürükleyip bırakabilirsiniz.\n"
-"'Scriptler' menüye eklenecektir."
-
-#: ../ubuntutweak/modules/scripts.py:178
-msgid "Rebuild System Scripts"
-msgstr "Sistem Betiklerini Tekrar Oluştur"
-
-#: ../ubuntutweak/modules/scripts.py:196
-msgid ""
-"This will delete all disabled scripts.\n"
-"Do you wish to continue?"
-msgstr ""
-"Bu komut bütün etkinleştirilmemiş betikleri silecek.\n"
-"Devam etmek istiyor musunuz?"
-
-#: ../ubuntutweak/modules/templates.py:67
-msgid "HTML document"
-msgstr "HTML belgesi"
-
-#: ../ubuntutweak/modules/templates.py:68
-msgid "ODB Database"
-msgstr "ODB Veritabanı"
-
-#: ../ubuntutweak/modules/templates.py:69
-msgid "ODS Spreadsheet"
-msgstr "ODS Hesap Çizelgesi"
-
-#: ../ubuntutweak/modules/templates.py:70
-msgid "ODT Document"
-msgstr "ODT Belgesi"
-
-#: ../ubuntutweak/modules/templates.py:71
-msgid "Plain text document"
-msgstr "Düz yazı belgesi"
-
-#: ../ubuntutweak/modules/templates.py:72
-msgid "ODP Presentation"
-msgstr "ODP Sunumu"
-
-#: ../ubuntutweak/modules/templates.py:73
-msgid "Python script"
-msgstr "Python betiği"
-
-#: ../ubuntutweak/modules/templates.py:74
-msgid "Pygtk Example"
-msgstr "Pygtk Örneği"
-
-#: ../ubuntutweak/modules/templates.py:75
-msgid "Shell script"
-msgstr "Kabuk betiği"
-
-#: ../ubuntutweak/modules/templates.py:102
-msgid "Enabled Templates"
-msgstr "Etkin Şablonlar"
-
-#: ../ubuntutweak/modules/templates.py:109
-msgid "Disabled Templates"
-msgstr "Devre Dışı Şablonlar"
-
-#: ../ubuntutweak/modules/templates.py:116
-msgid "Manage Templates"
-msgstr "Şablonları Yönet"
-
-#: ../ubuntutweak/modules/templates.py:117
-msgid ""
-"Here you can manage your document templates.\n"
-"You can add files as templates by dragging them into this window.\n"
-"You can then create new documents based on these templates from the Nautilus "
-"right-click menu."
-msgstr ""
-"Burada belge şablonlarınızı yönetebilirsiniz.\n"
-"Dosyaları bu pencereye sürükleyerek şablon olarak ekleyebilirsiniz.\n"
-"Nautilus sağ-tık menüsünden bu şablonları temel alarak yeni belge "
-"yaratabilirsiniz."
-
-#: ../ubuntutweak/modules/templates.py:128
-#, python-format
-msgid ""
-"The templates path is incorrect! The current path points to \"%s\".\n"
-"Please reset it to a location within your Home Folder."
-msgstr ""
-"Şablon yolu yanlış! Mevcut yol \"%s\"ye yönelik.\n"
-"Lütfen Başlangıç Dizniniz içindeki bir konuma ayarlayın."
-
-#: ../ubuntutweak/modules/templates.py:137
-msgid "Go And Set"
-msgstr "Git ve Ayarla"
-
-#: ../ubuntutweak/modules/templates.py:142
-msgid "Restart This Module"
-msgstr "Bu Modülü Yeniden Başlat"
-
-#: ../ubuntutweak/modules/templates.py:172
-msgid "Rebuild System Templates"
-msgstr "Sistem Şablonlarını Yeniden Oluştur"
-
-#: ../ubuntutweak/modules/templates.py:192
-msgid "The templates path is still incorrect, please reset it!"
-msgstr "Şablonlar yolu hala doğru değil, lütfen sıfırlayın!"
-
-#: ../ubuntutweak/modules/templates.py:204
-msgid ""
-"This will delete all disabled templates.\n"
-"Do you wish to continue?"
-msgstr ""
-"Bu komut etkinleştirilmemiş tüm şablonları silinecektir.\n"
-"Devam etmek istiyor musunuz?"
-
-#: ../ubuntutweak/modules/session.py:34 ../ubuntutweak/modules/session.py:69
-msgid "Session Control"
-msgstr "Oturum Kontrolü"
-
-#: ../ubuntutweak/modules/session.py:35
-msgid "Control your system session releated features"
-msgstr "Sistem oturumuyla ilişkili özellikleri kontrol edin"
-
-#: ../ubuntutweak/modules/session.py:47
-msgid "File Manager"
-msgstr "Dosya Yöneticisi"
-
-#: ../ubuntutweak/modules/session.py:52
-msgid "Panel"
-msgstr "Panel"
-
-#: ../ubuntutweak/modules/session.py:57
-msgid "Window Manager"
-msgstr "Pencere Yöneticisi"
-
-#: ../ubuntutweak/modules/session.py:78
-msgid "Session Options"
-msgstr "Oturum Seçenekleri"
-
-#: ../ubuntutweak/modules/session.py:80
-msgid "Automatically save open applications when logging out"
-msgstr "Oturumu kapatırken açık olan uygulamaları otomatik kaydet"
-
-#: ../ubuntutweak/modules/session.py:84
-msgid "Suppress the logout, restart and shutdown confirmation dialogue box."
-msgstr ""
-"Oturumu kapatma, yeniden başlatma ve kapatma onaylama pencerelerini kaldır."
-
-#: ../ubuntutweak/modules/session.py:110
-msgid "Please enter a valid application command line."
-msgstr "Lütfen geçerli bir uygulama komut satırı giriniz."
-
-#: ../ubuntutweak/modules/session.py:110
-#, python-format
-msgid "\"%s\" is not available."
-msgstr "\"%s\" bulunamıyor."
-
-#: ../ubuntutweak/modules/cleaner.py:77
-msgid "Cleaning Configuration Files"
-msgstr "Yapılandırma Dosyaları Temizleniyor"
-
-#: ../ubuntutweak/modules/cleaner.py:113
-msgid "Cleaning Package Cache"
-msgstr "Paket Önbelleği Temizleniyor"
-
-#: ../ubuntutweak/modules/cleaner.py:120
-#, python-format
-msgid "Cleaning...%s"
-msgstr "Temizleniyor...%s"
-
-#: ../ubuntutweak/modules/cleaner.py:145
-msgid "Purge PPA and Downgrade Packages"
-msgstr "PPA'ları Temizle ve Paket Sürümlerini Düşür"
-
-#: ../ubuntutweak/modules/cleaner.py:146
-msgid "Downloading Packages..."
-msgstr "Paketler İndiriliyor..."
-
-#: ../ubuntutweak/modules/cleaner.py:174
-msgid "Removing key files..."
-msgstr "Anahtar  dosyalar siliniyor..."
-
-#: ../ubuntutweak/modules/cleaner.py:205
-#, python-format
-msgid "Downgrading...%s"
-msgstr "Sürüm Düşürülüyor...%s"
-
-#: ../ubuntutweak/modules/cleaner.py:253 ../ubuntutweak/modules/cleaner.py:348
-msgid "Package"
-msgstr "Paket"
-
-#: ../ubuntutweak/modules/cleaner.py:259
-msgid "Previous Version"
-msgstr "Önceki Sürüm"
-
-#: ../ubuntutweak/modules/cleaner.py:266
-msgid "System Version"
-msgstr "Sistem Sürümü"
-
-#: ../ubuntutweak/modules/cleaner.py:373
-msgid "Unneeded Packages"
-msgstr "Gereksiz Paketler"
-
-#: ../ubuntutweak/modules/cleaner.py:401
-msgid "Kernel Packages"
-msgstr "Çekirdek Paketleri"
-
-#: ../ubuntutweak/modules/cleaner.py:430
-msgid "Cached Package Files"
-msgstr "Önbellekteki Paket Dosyaları"
-
-#: ../ubuntutweak/modules/cleaner.py:444
-#, python-format
-msgid ""
-"<b>%s</b>\n"
-"Occupies %s of disk space"
-msgstr ""
-"<b>%s</b>\n"
-"Disk alanının %s kadarını kullanıyor"
-
-#: ../ubuntutweak/modules/cleaner.py:504
-msgid "Package Configuration Files"
-msgstr "Paket Yapılandırma Dosyaları"
-
-#: ../ubuntutweak/modules/cleaner.py:541
-#, python-format
-msgid "%d package selected for removal"
-msgid_plural "%d packages selected for removal"
-msgstr[0] "%d paket kaldırılmak için seçildi"
-
-#: ../ubuntutweak/modules/cleaner.py:545
-#, python-format
-msgid "%s of disk space will be freed"
-msgstr "%s disk alanı boşalacak"
-
-#: ../ubuntutweak/modules/cleaner.py:653
-msgid "It's safe to purge the PPA, no packages need to be downgraded."
-msgstr "PPA'yı temizlemek güvenli, sürümü düşürülmesi gereken paket yok."
-
-#: ../ubuntutweak/modules/cleaner.py:656
-msgid "To safely purge the PPA, the following packages must be downgraded."
-msgstr ""
-"PPA'yı güvenli bir şekilde temizlemek için şu paketlerin sürümlerinin "
-"düşürülmesi gerekiyor."
-
-#: ../ubuntutweak/modules/cleaner.py:660
-#, python-format
-msgid "You're going to purge: %s"
-msgstr "Şunu temizleyeceksiniz: %s"
-
-#: ../ubuntutweak/modules/cleaner.py:691
-msgid "Cancelled by user!"
-msgstr "Kullanıcı tarafından iptal edildi!"
-
-#: ../ubuntutweak/modules/cleaner.py:694
-msgid "Clean up successful!"
-msgstr "Temizleme başarılı!"
-
-#: ../ubuntutweak/modules/cleaner.py:697
-msgid "Clean up failed!"
-msgstr "Temizlenemedi!"
-
-#: ../ubuntutweak/modules/cleaner.py:710
-msgid "Package Cleaner"
-msgstr "Paket Temizleyicisi"
-
-#: ../ubuntutweak/modules/cleaner.py:711
-msgid ""
-"Free up disk space by removing redundant packages and cleaning package "
-"download cache."
-msgstr ""
-"Disk alanını, gereksiz paketleri silerek ve indirilen paket önbelleğini "
-"temizleyerek boşaltın."
-
-#. create the button
-#: ../ubuntutweak/modules/cleaner.py:742
-msgid "Clean Packages"
-msgstr "Paketleri Temizle"
-
-#: ../ubuntutweak/modules/cleaner.py:747
-msgid "Clean Cache"
-msgstr "Önbelleği Temizle"
-
-#: ../ubuntutweak/modules/cleaner.py:752
-msgid "Clean Config"
-msgstr "Yapılandırmayı Temizle"
-
-#: ../ubuntutweak/modules/cleaner.py:757
-msgid "Clean Kernels"
-msgstr "Çekirdeği Temizle"
-
-#: ../ubuntutweak/modules/cleaner.py:762
-msgid "Purge PPAs"
-msgstr "PPA'ları Temizle"
-
-#: ../ubuntutweak/modules/cleaner.py:780
-msgid "_Cleanup"
-msgstr "_Temizlik"
-
-#: ../ubuntutweak/modules/shortcuts.py:45
-msgid "Shortcut Commands"
-msgstr "Kısayol komutları"
-
-#: ../ubuntutweak/modules/shortcuts.py:46
-msgid ""
-"By configuring keyboard shortcuts, you can access your favourite "
-"applications instantly.\n"
-"Enter the command to run the application and choose a shortcut key "
-"combination."
-msgstr ""
-"Klavye kısayollarını ayarlayarak, en sevdiğiniz uygulamalara anında "
-"erişebilirisiniz.\n"
-"Uygulamayı çalıştırmak için gereken komutu girin ve bir klavye "
-"kombinasyonunu girin."
-
-#: ../ubuntutweak/modules/shortcuts.py:94
-#, python-format
-msgid "Command %d"
-msgstr "Komut %d"
-
-#: ../ubuntutweak/modules/shortcuts.py:104
-#: ../ubuntutweak/modules/shortcuts.py:160
-msgid "disabled"
-msgstr "Devre Dışı"
-
-#: ../ubuntutweak/modules/shortcuts.py:120
-msgid "ID"
-msgstr "Kimlik"
-
-#: ../ubuntutweak/modules/shortcuts.py:131
-msgid "Command"
-msgstr "Komut"
-
-#: ../ubuntutweak/modules/shortcuts.py:143
-msgid "Key"
-msgstr "Tuş"
-
-#: ../ubuntutweak/modules/shortcuts.py:153
-msgid "Clean"
-msgstr "Temizle"
-
-#: ../ubuntutweak/modules/autostart.py:46
-msgid "_Name:"
-msgstr "_İsim:"
-
-#: ../ubuntutweak/modules/autostart.py:49
-msgid "Co_mmand:"
-msgstr "Ko_mut:"
-
-#: ../ubuntutweak/modules/autostart.py:63
-msgid "Edit Startup Program"
-msgstr "Başlangıç Uygulamalarını Düzenle"
-
-#: ../ubuntutweak/modules/autostart.py:68
-msgid "New Startup Program"
-msgstr "Yeni Başlangıç Programı"
-
-#: ../ubuntutweak/modules/autostart.py:99
-msgid "Choose a Program"
-msgstr "Bir Program Seçiniz"
-
-#: ../ubuntutweak/modules/autostart.py:189
-msgid "Delete from Disk"
-msgstr "Diskten Sil"
-
-#: ../ubuntutweak/modules/autostart.py:203
-msgid "Can't delete system item from disk."
-msgstr "Sistem öğesi diskten silinemez."
-
-#: ../ubuntutweak/modules/autostart.py:255
-msgid "No description"
-msgstr "Açıklama yok"
-
-#: ../ubuntutweak/modules/autostart.py:275
-msgid "Program"
-msgstr "Uygulama"
-
-#: ../ubuntutweak/modules/autostart.py:334
-msgid "Auto Start Programs"
-msgstr "Başlangıç Programları"
-
-#: ../ubuntutweak/modules/autostart.py:335
-msgid ""
-"Here you can manage which programs are run upon login.\n"
-"You can hide items from view by selecting them and clicking \"Remove\"\n"
-"To permanently delete an item, right-click and select \"Delete\"."
-msgstr ""
-"Burada girişte çalıştırılacak programları yönetebilirsiniz.\n"
-"Nesneleri, onlara tıklayıp, \"Kaldır\"a tıklayarak gizleyebilirsiniz.\n"
-"Bir nesneyi, kalıcı olarak silmek için, sağ tıklayın ve \"Sil\"i seçin."
-
-#. create the two checkbutton for extra options of auto run list
-#: ../ubuntutweak/modules/autostart.py:349
-msgid "Show comments"
-msgstr "Ayrıntıları göster"
-
-#: ../ubuntutweak/modules/autostart.py:351
-msgid "Show all runnable programs"
-msgstr "Çalıştırılabilir tüm programları göster"
-
-#: ../ubuntutweak/modules/autostart.py:417
-#: ../ubuntutweak/modules/autostart.py:464
-msgid "The name of the startup program cannot be empty"
-msgstr "Başlangıç programının ismi boş olamaz"
-
-#: ../ubuntutweak/modules/autostart.py:419
-#: ../ubuntutweak/modules/autostart.py:466
-msgid "Text field was empty (or contained only whitespace)"
-msgstr "Metin alanı boş (yada sadece boşluk içeriyor)"
-
-#: ../ubuntutweak/modules/nautilus.py:47
-msgid "Cleaning..."
-msgstr "Temizleniyor..."
-
-#: ../ubuntutweak/modules/nautilus.py:66
-msgid "Nautilus Settings"
-msgstr "Nautilus Ayarları"
-
-#: ../ubuntutweak/modules/nautilus.py:67
+#: ../ubuntutweak/tweaks/nautilus.py:28
 msgid "Manage the default file manager"
 msgstr "Öntanımlı dosya yöneticisini yönet"
 
-#: ../ubuntutweak/modules/nautilus.py:76
-msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
-msgstr "Nautilus \"Dosya Özellikleri\" penceresinde gelişmiş izinleri göster"
-
-#: ../ubuntutweak/modules/nautilus.py:81
-msgid "Always use the location entry, instead of the pathbar"
-msgstr "Yol çubuğu yerine her zaman konum girdisini kullan"
-
-#: ../ubuntutweak/modules/nautilus.py:85
+#: ../ubuntutweak/tweaks/nautilus.py:35
 msgid "File Browser"
 msgstr "Dosya Gezgini"
 
-#: ../ubuntutweak/modules/nautilus.py:94
+#: ../ubuntutweak/tweaks/nautilus.py:37
+msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
+msgstr "Nautilus \"Dosya Özellikleri\" penceresinde gelişmiş izinleri göster"
+
+#: ../ubuntutweak/tweaks/nautilus.py:42
+msgid "Always use the location entry, instead of the pathbar"
+msgstr "Yol çubuğu yerine her zaman konum girdisini kullan"
+
+#: ../ubuntutweak/tweaks/nautilus.py:48
 msgid "Thumbnail Settings"
 msgstr "Önizleme Ayarları"
 
-#: ../ubuntutweak/modules/nautilus.py:99
+#: ../ubuntutweak/tweaks/nautilus.py:53
 msgid "Default thumbnail icon size (pixels)"
 msgstr "Varsayılan küçük resim ikon boyutu (piksel olarak)"
 
-#: ../ubuntutweak/modules/nautilus.py:104
+#: ../ubuntutweak/tweaks/nautilus.py:59
 msgid "Maximum thumbnail cache size (megabytes)"
 msgstr "Azami önizleme önbellek boyutu (mb)"
 
-#: ../ubuntutweak/modules/nautilus.py:109
+#: ../ubuntutweak/tweaks/nautilus.py:65
 msgid "Thumbnail cache time (days)"
 msgstr "Önizleme önbellek süresi (gün)"
 
-#: ../ubuntutweak/modules/nautilus.py:116
-msgid "Open folder in terminal"
-msgstr "Dizini uçbirimde aç"
+#: ../ubuntutweak/tweaks/nautilus.py:70
+msgid "Automatically Mount Settings"
+msgstr ""
 
-#: ../ubuntutweak/modules/nautilus.py:118
-msgid "Open folder with root privileges"
-msgstr "Dizni root öncelikleriyle aç"
+#: ../ubuntutweak/tweaks/nautilus.py:74
+msgid "Whether to automatically mount media"
+msgstr ""
 
-#: ../ubuntutweak/modules/nautilus.py:120
-msgid "Nautilus with wallpaper"
-msgstr "Duvarkağıtlı Nautilus"
+#: ../ubuntutweak/tweaks/nautilus.py:79
+msgid "Whether to automatically open a folder for automounted media"
+msgstr ""
 
-#: ../ubuntutweak/modules/nautilus.py:122
-msgid "Nautilus Extensions"
-msgstr "Nautilus Eklentileri"
+#: ../ubuntutweak/tweaks/nautilus.py:84
+msgid "Never prompt or autorun/autostart programs when media are inserted"
+msgstr ""
 
-#: ../ubuntutweak/modules/nautilus.py:144
+#: ../ubuntutweak/tweaks/session.py:30
+msgid "Control your system session releated features"
+msgstr "Sistem oturumuyla ilişkili özellikleri kontrol edin"
+
+#: ../ubuntutweak/tweaks/session.py:37
+msgid "Session Menu Options"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/session.py:39
+msgid "Remove the log out item from the session menu"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/session.py:44
+msgid "Remove the restart item from the session menu"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/session.py:49
+msgid "Remove the shutdown item from the session menu"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/session.py:54
+msgid "Suppress the dialog to confirm logout, restart and shutdown action"
+msgstr ""
+"Oturum kapama, yeniden başlatma ve sistem kapatma için onay iletişim "
+"kutusunu engelleyin"
+
+#: ../ubuntutweak/tweaks/session.py:62
+msgid "User Menu Options"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/session.py:64
+msgid "Show user menu"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/session.py:69
+msgid "Show user's real name on the panel"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:26
+msgid "Fonts"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:27
+msgid "Fonts Settings"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:39
+msgid "Deskotp fonts"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:41
+msgid "Text scaling factor"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:49
+msgid "Default font"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:54
+msgid "Monospace font"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:59
+msgid "Document font"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:64
+msgid "Window title bar font"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:72
+msgid "Hinting and antialiasing"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:74
+msgid "Hinting"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:77
+msgid "No hinting"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:78
+msgid "Basic"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:79
+msgid "Moderate"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:80
+msgid "Maximum"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:84
+msgid "Antialiasing"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:87
+msgid "No antialiasing"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:88
+msgid "Standard grayscale antialiasing"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:89
+msgid "Subpixel antialiasing (LCD screens only)"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/misc.py:31 ../ubuntutweak/tweaks/misc.py:67
+msgid "Miscellaneous"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/misc.py:32
+msgid "Set the cursor timeout, menus and buttons icons"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/misc.py:39
+msgid "Buttons and Menus"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/misc.py:41
+msgid "Buttons have icons"
+msgstr "Düğmeler simgelere sahip"
+
+#: ../ubuntutweak/tweaks/misc.py:46
+msgid "Menus have icons"
+msgstr "Menüler simgelere sahip"
+
+#: ../ubuntutweak/tweaks/misc.py:51
+msgid "Show Input Method menu in the context menu"
+msgstr "İçerik menüsünde Girdi Yöntemi menüsünü göster"
+
+#: ../ubuntutweak/tweaks/misc.py:56
+msgid "Show Unicode Control Character menu in the context menu"
+msgstr "Unicode Kontrol Karakter menüsünü içerik menüsünde göster"
+
+#: ../ubuntutweak/tweaks/misc.py:63
+msgid "Natural Scrolling"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/theme.py:27
+msgid "Theme"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/theme.py:28
+msgid "Set the gtk theme, icon theme, cursor theme and others"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/theme.py:41
+msgid "Desktop theme"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:27
+msgid "Unity Settings"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:28
+msgid "Tweak the powerful Unity desktop"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:37 ../ubuntutweak/tweaks/unity.py:127
+msgid "Launcher"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:39
+msgid "Icon size"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:46
+msgid "Launcher opacity"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:54
+msgid "Launcher reveal edge timeout"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:61 ../ubuntutweak/tweaks/unity.py:139
+msgid "Launcher hide mode"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:63 ../ubuntutweak/tweaks/unity.py:141
+msgid "Auto Hide"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:64
+msgid "Dodge Window"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:64
+msgid "Dodge Active Window"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:70
+msgid "Icon backlight"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:72
+msgid "Backlight Always On"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:73
+msgid "Backlight Toggles"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:74
+msgid "Backlight Always Off"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:75
+msgid "Edge Illumination Toggles"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:76
+msgid "Backlight and Edge Illumination Toggles"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:84
+msgid "Dash and Panel"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:86
+msgid "Dash size"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:88
+msgid "Automatic"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:90
+msgid "Netbook"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:97
+msgid "Blur"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:99
+msgid "No blur"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:100
+msgid "Static blur"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:101
+msgid "Active blur"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:107
+msgid "Panel opacity"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:118
+msgid "Compositing Manager"
+msgstr "Kompozisyon Yöneticisi"
+
+#: ../ubuntutweak/tweaks/unity.py:120
+msgid "Enable Metacity's compositing feature"
+msgstr "Metacity'nin birleştirme özelliğini etkinleştir"
+
+#: ../ubuntutweak/tweaks/unity.py:129
+msgid "Enable the Super key"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:134
+msgid "Reserve launcher area"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:142
+msgid "Intellihide"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Utils.py:207
 #, python-format
-msgid "Delete thumbnail cache (Frees %s of disk space)"
-msgstr "Küçük resim önbelleğini temize (Disk alanının %s kadarını boşaltır)"
+msgid ""
+"<span size=\"large\"><b>No matches found.</b> </span><span>\n"
+"\n"
+" Your filter \"<b>%s</b>\" does not match any items.</span>"
+msgstr ""
 
-#: ../ubuntutweak/modules/nautilus.py:147
-msgid "The thumbnail cache will be deleted. Do you wish to continue?"
-msgstr "Küçük resim önbelleği silinecek. Devam etmek istermisiniz?"
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:111
+#, python-format
+msgid ""
+"The new value for the %(binding)s binding for the action <b>%(action)s</b> "
+"in plugin <b>%(plugin)s</b> conflicts with the action "
+"<b>%(action_conflict)s</b> of the <b>%(plugin_conflict)s</b> plugin.\n"
+"Do you wish to disable <b>%(action_conflict)s</b> in the "
+"<b>%(plugin_conflict)s</b> plugin?"
+msgstr ""
 
-#: ../ubuntutweak/modules/nautilus.py:154
-msgid "Clean up Successful!"
-msgstr "Temizleme Başarılı!"
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:123
+#, python-format
+msgid "Disable %(action_conflict)s"
+msgstr ""
 
-#: ../ubuntutweak/modules/loginsettings.py:38
-msgid "Login Settings"
-msgstr "Giriş Ayarları"
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:124
+#, python-format
+msgid "Don't set %(action)s"
+msgstr ""
 
-#: ../ubuntutweak/modules/loginsettings.py:39
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:125
+#, python-format
+msgid "Set %(action)s anyway"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:132
+msgid "key"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:155
+msgid "button"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:178
+msgid "edge"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:252
+#, python-format
+msgid ""
+"You are trying to use the feature <b>%(feature)s</b> which is <b>not</b> "
+"provided by any plugin.\n"
+"Do you wish to use this feature anyway?"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:259
+#, python-format
+msgid "Use %(feature)s"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:260
+#, python-format
+msgid "Don't use %(feature)s"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:267
+#, python-format
+msgid ""
+"You are trying to use the feature <b>%(feature)s</b> which is provided by "
+"<b>%(plugin)s</b>.\n"
+"This plugin is currently disabled.\n"
+"Do you wish to enable <b>%(plugin)s</b> so the feature is available?"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:276
+#, python-format
+msgid "Enable %(plugin)s"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:277
+#, python-format
+msgid "Don't enable %(feature)s"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:410
+#, python-format
+msgid ""
+"Some %(bindings)s bindings of Plugin <b>%(plugin)s</b> conflict with other "
+"plugins. Do you want to resolve these conflicts?"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:424
+msgid "Resolve conflicts"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:425
+msgid "Ignore conflicts"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:428
+#, python-format
+msgid ""
+"Plugin <b>%(plugin_conflict)s</b> provides feature <b>%(feature)s</b> which "
+"is also provided by <b>%(plugin)s</b>"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:438
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:446
+#, python-format
+msgid "Disable %(plugin_conflict)s"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:439
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:447
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:468
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:479
+#, python-format
+msgid "Don't enable %(plugin)s"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:442
+#, python-format
+msgid "Plugin <b>%(plugin_conflict)s</b> conflicts with <b>%(plugin)s</b>."
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:451
+#, python-format
+msgid ""
+"<b>%(plugin)s</b> requires feature <b>%(feature)s</b> which is provided by "
+"the following plugins:\n"
+"%(plugin_list)s"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:467
+msgid "Enable these plugins"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:471
+#, python-format
+msgid "<b>%(plugin)s</b> requires the plugin <b>%(require)s</b>."
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:478
+#, python-format
+msgid "Enable %(require)s"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:483
+#, python-format
+msgid ""
+"<b>%(plugin)s</b> provides the feature <b>%(feature)s</b> which is required "
+"by the plugins <b>%(plugin_list)s</b>."
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:493
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:506
+msgid "Disable these plugins"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:494
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:507
+#, python-format
+msgid "Don't disable %(plugin)s"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:498
+#, python-format
+msgid "<b>%(plugin)s</b> is required by the plugins <b>%(plugin_list)s</b>."
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Constants.py:86
+msgid "General"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Constants.py:87
+msgid "Accessibility"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Constants.py:89
+msgid "Extras"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Constants.py:90
+msgid "Window Management"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Constants.py:91
+msgid "Effects"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Constants.py:92
+msgid "Image Loading"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Constants.py:93
+msgid "Utility"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Constants.py:95
+msgid "Uncategorized"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/lockdown.py:26
+msgid "Security Related"
+msgstr "Güvenlikle İlişkili"
+
+#: ../ubuntutweak/tweaks/lockdown.py:27
+msgid "Tweak some security settings"
+msgstr "Bazı güvenlik ayarlarını geliştirin"
+
+#: ../ubuntutweak/tweaks/lockdown.py:35
+msgid "System Security options"
+msgstr "Sistem güvenlik ayarları"
+
+#: ../ubuntutweak/tweaks/lockdown.py:37
+msgid "Disable \"Lock Screen\""
+msgstr "\"Ekran Kilitleme\"yi devre dışı bırak"
+
+#: ../ubuntutweak/tweaks/lockdown.py:42
+msgid "Disable printing"
+msgstr "Yazdırmayı devre dışı bırak"
+
+#: ../ubuntutweak/tweaks/lockdown.py:47
+msgid "Disable printer settings"
+msgstr "Yazıcı ayarlarını devre dışı bırak"
+
+#: ../ubuntutweak/tweaks/lockdown.py:52
+msgid "Disable save to disk"
+msgstr "Kaydetmeyi devre dışı bırak"
+
+#: ../ubuntutweak/tweaks/lockdown.py:57
+msgid "Disable \"Fast User Switching\""
+msgstr "\"Hızlı Kullanıcı Değiştirme\"yi Kapat"
+
+#: ../ubuntutweak/tweaks/compiz.py:270
+msgid "Show Workspaces"
+msgstr "Çalışma Alanlarını Göster"
+
+#: ../ubuntutweak/tweaks/compiz.py:271
+msgid "Show Windows"
+msgstr "Pencereleri göster"
+
+#: ../ubuntutweak/tweaks/compiz.py:272
+msgid "Show Desktop"
+msgstr "Masaüstünü Göster"
+
+#: ../ubuntutweak/tweaks/compiz.py:273
+msgid "Show Widgets"
+msgstr "Araçları Göster"
+
+#: ../ubuntutweak/tweaks/compiz.py:367
+msgid "Settings for some amazing desktop eye-candy"
+msgstr "Bazı ilginç masaüstü süslemeleri için ayarlar"
+
+#: ../ubuntutweak/tweaks/compiz.py:379
+msgid " Workspace Edge Settings"
+msgstr " Çalışma Alanı Sınırı Ayarları"
+
+#: ../ubuntutweak/tweaks/compiz.py:382
+msgid "Enable snapping windows"
+msgstr "Kopan pencereleri etkinleştir"
+
+#: ../ubuntutweak/tweaks/compiz.py:383
+msgid "Enable wobbly windows"
+msgstr "Sallanan pencereleri etkinleştir"
+
+#: ../ubuntutweak/tweaks/compiz.py:384
+msgid "Enable workspace switching with mouse wheel"
+msgstr "Çalışma alanını fare ile değiştirmeyi etkinleştir"
+
+#: ../ubuntutweak/tweaks/compiz.py:386
+msgid "Desktop Effects"
+msgstr "Masaüstü Efektleri"
+
+#: ../ubuntutweak/tweaks/compiz.py:391
+msgid "Enable transparent menus"
+msgstr "Saydam menüleri etkinleştir"
+
+#: ../ubuntutweak/tweaks/compiz.py:392
+msgid "Enable wobbly menus"
+msgstr "Sallanan menüleri etkinleştir"
+
+#: ../ubuntutweak/tweaks/compiz.py:394
+msgid "Menu Effects"
+msgstr "Menü Efektleri"
+
+#: ../ubuntutweak/tweaks/loginsettings.py:40
 msgid "Control the appearance and behaviour of your login screen"
 msgstr "Giriş ekranınızın görünüşünü ve davranışını kontrol edin"
 
-#: ../ubuntutweak/modules/loginsettings.py:48
-msgid "Login Options"
-msgstr "Giriş Seçenekleri"
-
-#: ../ubuntutweak/modules/loginsettings.py:51
-msgid "Disable user list in GDM"
-msgstr "GDM'de kullanıcı listesini etkisizleştir"
-
-#: ../ubuntutweak/modules/loginsettings.py:56
-msgid "Play sound at login"
-msgstr "Girişte ses çal"
-
-#: ../ubuntutweak/modules/loginsettings.py:61
-msgid "Disable showing the restart button"
-msgstr "Yeniden başlat düğmesinin gösterimini etkisizleştir"
-
-#: ../ubuntutweak/modules/loginsettings.py:79
+#: ../ubuntutweak/tweaks/loginsettings.py:52
 msgid "Login Theme"
 msgstr "Giriş Teması"
 
-#: ../ubuntutweak/modules/loginsettings.py:153
-msgid "PNG images with 64x64 size or SVG images"
-msgstr "64x64 boyutundaki PNG dosyaları veya SVG dosyaları"
+#: ../ubuntutweak/tweaks/loginsettings.py:87
+msgid "Choose a new logo image"
+msgstr "Yeni logo resmi seçin"
 
-#: ../ubuntutweak/modules/loginsettings.py:183
-msgid ""
-"This image size isn't suitable for the logo.\n"
-"It should be 64x64."
+#: ../ubuntutweak/tweaks/loginsettings.py:93
+msgid "All images (*.PNG)"
 msgstr ""
-"Bu resim logo için uygun değil.\n"
-"64x64 boyutunda olmalı."
 
-#: ../ubuntutweak/modules/loginsettings.py:205
+#: ../ubuntutweak/tweaks/loginsettings.py:140
 msgid "Choose a new background image"
 msgstr "Yeni arkaplan resmi seç"
 
-#: ../ubuntutweak/modules/loginsettings.py:211
+#: ../ubuntutweak/tweaks/loginsettings.py:146
 msgid "All images"
 msgstr "Tüm görüntüler"
 
-#: ../ubuntutweak/modules/desktoprecovery.py:146
-msgid "Setting"
-msgstr "Ayar"
-
-#: ../ubuntutweak/modules/desktoprecovery.py:190
-msgid "Backup Name:"
-msgstr "Yedek İsmi:"
-
-#: ../ubuntutweak/modules/desktoprecovery.py:238
-#, python-format
-msgid "Backing up...%s"
-msgstr "Yedekleniyor...%s"
-
-#: ../ubuntutweak/modules/desktoprecovery.py:264
-msgid "Desktop Recovery"
-msgstr "Masaüstü Kurtarma"
-
-#: ../ubuntutweak/modules/desktoprecovery.py:265
-msgid ""
-"Backup and recover your desktop and application settings with ease.\n"
-"You can also use \"Reset\" to reset to the system default settings."
+#: ../ubuntutweak/tweaks/workarounds.py:31
+msgid "Workarounds"
 msgstr ""
-"Masaüstünüzü ve uygulama ayarlarını kolaylıkla yedekleyin ve kurtarın.\n"
-"Ayrıca \"Reset\"i kullanarak sistem varsayılan ayarlarına dönebilirsiniz."
 
-#: ../ubuntutweak/modules/desktoprecovery.py:340
-msgid "No Backup Yet"
-msgstr "Henüz Yedek Yok"
+#: ../ubuntutweak/tweaks/workarounds.py:32
+msgid "The workarounds to fix some problems"
+msgstr ""
 
-#: ../ubuntutweak/modules/desktoprecovery.py:375
+#: ../ubuntutweak/tweaks/workarounds.py:42
+msgid "Fix the appearance of themes when granted root privileges"
+msgstr "Yönetici hakları verildiğinde oluşan tema görünüşlerini düzelt"
+
+#: ../ubuntutweak/tweaks/workarounds.py:48
+msgid "Miscellaneous Options"
+msgstr "Çeşitli Seçenekler"
+
+#: ../ubuntutweak/tweaks/metacity.py:35 ../ubuntutweak/tweaks/metacity.py:196
+#: ../ubuntutweak/tweaks/metacity.py:211 ../ubuntutweak/tweaks/metacity.py:226
+msgid "Menu"
+msgstr "Menü"
+
+#: ../ubuntutweak/tweaks/metacity.py:36
+msgid "Title"
+msgstr "Başlık"
+
+#: ../ubuntutweak/tweaks/metacity.py:37 ../ubuntutweak/tweaks/metacity.py:192
+#: ../ubuntutweak/tweaks/metacity.py:207 ../ubuntutweak/tweaks/metacity.py:222
+msgid "Maximize"
+msgstr "Ekranı Kapla"
+
+#: ../ubuntutweak/tweaks/metacity.py:38 ../ubuntutweak/tweaks/metacity.py:195
+#: ../ubuntutweak/tweaks/metacity.py:210 ../ubuntutweak/tweaks/metacity.py:225
+msgid "Minimize"
+msgstr "Küçült"
+
+#: ../ubuntutweak/tweaks/metacity.py:39
+msgid "Close"
+msgstr "Kapat"
+
+#: ../ubuntutweak/tweaks/metacity.py:40
+msgid "Spacer"
+msgstr "Ayırıcı"
+
+#: ../ubuntutweak/tweaks/metacity.py:151
+msgid "Manage Metacity Window Manager settings"
+msgstr "Metacity Pencere Yöneticisi ayarlarını yönetin"
+
+#: ../ubuntutweak/tweaks/metacity.py:172
+msgid "Window Titlebar Button Layout"
+msgstr "Pencere Başlık Çubuğu Düğme Düzeni"
+
+#: ../ubuntutweak/tweaks/metacity.py:177
+msgid "Window Titlebar Actions"
+msgstr "Pencere başlık çubuğu eylemleri"
+
+#: ../ubuntutweak/tweaks/metacity.py:179
+msgid "Titlebar mouse wheel action"
+msgstr "Başlık çubuğunun fare tekerleği eylemi"
+
+#: ../ubuntutweak/tweaks/metacity.py:183 ../ubuntutweak/tweaks/metacity.py:195
+#: ../ubuntutweak/tweaks/metacity.py:210 ../ubuntutweak/tweaks/metacity.py:225
+msgid "Roll up"
+msgstr "Yukarı kaydır"
+
+#: ../ubuntutweak/tweaks/metacity.py:188
+msgid "Titlebar double-click action"
+msgstr "Başlık çubuğu çift tıklama eylemi"
+
+#: ../ubuntutweak/tweaks/metacity.py:193 ../ubuntutweak/tweaks/metacity.py:208
+#: ../ubuntutweak/tweaks/metacity.py:223
+msgid "Maximize Horizontally"
+msgstr "Yatay Büyüt"
+
+#: ../ubuntutweak/tweaks/metacity.py:194 ../ubuntutweak/tweaks/metacity.py:209
+#: ../ubuntutweak/tweaks/metacity.py:224
+msgid "Maximize Vertically"
+msgstr "Dikey Büyüt"
+
+#: ../ubuntutweak/tweaks/metacity.py:196 ../ubuntutweak/tweaks/metacity.py:211
+#: ../ubuntutweak/tweaks/metacity.py:226
+msgid "Lower"
+msgstr "Pencereyi arkaya geçir"
+
+#: ../ubuntutweak/tweaks/metacity.py:203
+msgid "Titlebar middle-click action"
+msgstr "Başlık çubuğu orta tuş eylemi"
+
+#: ../ubuntutweak/tweaks/metacity.py:218
+msgid "Titlebar right-click action"
+msgstr "Başlık çubuğu sağ tuş eylemi"
+
+#: ../ubuntutweak/tweaks/metacity.py:236
+msgid "Window Decoration Effects"
+msgstr "Pencere Dekorasyonu Etkileri"
+
+#: ../ubuntutweak/tweaks/metacity.py:238
+msgid "Use Metacity window theme"
+msgstr "Metacity temasını kullan"
+
+#: ../ubuntutweak/tweaks/metacity.py:243
+msgid "Enable active window transparency"
+msgstr "Etkin pencere şeffaflığını aktifleştir"
+
+#: ../ubuntutweak/tweaks/metacity.py:248
+msgid "Active window transparency level"
+msgstr "Etkin pencere şeffaflık seviyesi"
+
+#: ../ubuntutweak/tweaks/metacity.py:254
+msgid "Enable inactive window transparency"
+msgstr "Etkin olmayan pencere saydamlığını etkinleştir"
+
+#: ../ubuntutweak/tweaks/metacity.py:259
+msgid "Inactive window shade transparency level"
+msgstr "Etkin olmayan pencere saydamlık seviyesi"
+
+#: ../ubuntutweak/clips/userinfo.py:10
+msgid "User Information"
+msgstr ""
+
+#: ../ubuntutweak/clips/userinfo.py:16
+msgid "Current user:"
+msgstr ""
+
+#: ../ubuntutweak/clips/userinfo.py:18
+msgid "Home directory:"
+msgstr ""
+
+#: ../ubuntutweak/clips/userinfo.py:20
+msgid "Shell:"
+msgstr ""
+
+#: ../ubuntutweak/clips/userinfo.py:22
+msgid "Language:"
+msgstr ""
+
+#: ../ubuntutweak/clips/hardwareinfo.py:11
+msgid "Hardware Information"
+msgstr ""
+
+#: ../ubuntutweak/clips/hardwareinfo.py:32
+msgid "CPU:"
+msgstr ""
+
+#: ../ubuntutweak/clips/hardwareinfo.py:34
+msgid "Memory:"
+msgstr ""
+
+#: ../ubuntutweak/clips/systeminfo.py:11
+msgid "Ubuntu Desktop Information"
+msgstr ""
+
+#: ../ubuntutweak/clips/systeminfo.py:17
+msgid "Hostname:"
+msgstr ""
+
+#: ../ubuntutweak/clips/systeminfo.py:19
+msgid "Platform:"
+msgstr ""
+
+#: ../ubuntutweak/clips/systeminfo.py:21
+msgid "Distribution:"
+msgstr ""
+
+#: ../ubuntutweak/clips/systeminfo.py:23
+msgid "Desktop Environment:"
+msgstr ""
+
+#: ../ubuntutweak/clips/cleanerinfo.py:11
+msgid "Your system is clean"
+msgstr ""
+
+#: ../ubuntutweak/clips/cleanerinfo.py:19
+msgid "Some cache can be cleaned to free your disk space"
+msgstr ""
+
+#: ../ubuntutweak/clips/cleanerinfo.py:21
+#, python-format
+msgid "%s cache packages can be cleaned."
+msgstr ""
+
+#: ../ubuntutweak/clips/cleanerinfo.py:33
+#, python-format
+msgid "%s thumbnails cache can be cleaned."
+msgstr ""
+
+#: ../ubuntutweak/clips/cleanerinfo.py:39
+msgid "Start Janitor"
+msgstr ""
+
+#: ../ubuntutweak/clips/updateinfo.py:13
+msgid "Your system is up-to-date"
+msgstr ""
+
+#: ../ubuntutweak/clips/updateinfo.py:49
+msgid ""
+"It is unknown when the package information was updated last. Please try "
+"clicking on the 'Check' button to update the information."
+msgstr ""
+
+#: ../ubuntutweak/clips/updateinfo.py:54
 #, python-format
 msgid ""
-"Backup all settings under: <b>%s</b>\n"
-"Would you like to continue?"
+"The package information was last updated %(days_ago)s days ago.\n"
+"Press the 'Check' button below to check for new software updates."
 msgstr ""
-"<b>%s</b> diznindeki tüm ayarlar yedeklenecek.\n"
-"Devam etmek istiyor musunuz?"
 
-#: ../ubuntutweak/modules/desktoprecovery.py:394
+#: ../ubuntutweak/clips/updateinfo.py:59
 #, python-format
+msgid "The package information was last updated %(days_ago)s day ago."
+msgid_plural ""
+"The package information was last updated %(days_ago)s days ago."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../ubuntutweak/clips/updateinfo.py:63
+#, python-format
+msgid "The package information was last updated %(hours_ago)s hour ago."
+msgid_plural ""
+"The package information was last updated %(hours_ago)s hours ago."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../ubuntutweak/clips/updateinfo.py:67
+msgid "The package information was last updated less than one hour ago."
+msgstr ""
+
+#: ../ubuntutweak/gui/widgets.py:76
+#, python-format
+msgid "Reset setting to default value: %s"
+msgstr "Ayarı varsayılan değere getir: %s"
+
+#: ../ubuntutweak/gui/widgets.py:315
+msgid "Please press the new key combination"
+msgstr "Lütfen yeni tuş dizilimine basın"
+
+#: ../ubuntutweak/gui/widgets.py:367
+msgid "Disabled"
+msgstr "Devre Dışı"
+
+#: ../ubuntutweak/gui/dialogs.py:208
+msgid "Could not authenticate"
+msgstr "Kimlik doğrulanamadı"
+
+#: ../ubuntutweak/gui/dialogs.py:209
+msgid "An unexpected error has occurred."
+msgstr "Beklenmeyen bir hata oluştu."
+
+#: ../ubuntutweak/gui/dialogs.py:215
+msgid "Service hasn't initialized yet"
+msgstr "Hizmet henüz başlatılmadı"
+
+#: ../ubuntutweak/gui/dialogs.py:216
+msgid "You need to restart your computer."
+msgstr "Bilgisayarınızı yeniden başlatmalısınız."
+
+#: ../ubuntutweak/gui/treeviews.py:72
+msgid "Create folder"
+msgstr "Dizin oluştur"
+
+#: ../ubuntutweak/gui/treeviews.py:80
+msgid "Delete"
+msgstr "Sil"
+
+#: ../ubuntutweak/gui/treeviews.py:102
+msgid "Input the dir name"
+msgstr "Dizin adı girin"
+
+#: ../ubuntutweak/gui/treeviews.py:126
+msgid "Can't rename the root folder"
+msgstr "Kök dizinin adı değiştirilemez"
+
+#: ../ubuntutweak/gui/treeviews.py:143
+msgid "Can't delete the root folder"
+msgstr "Kök dizin silinemez"
+
+#: ../ubuntutweak/gui/treeviews.py:157
 msgid ""
-"Backup settings under: <b>%s</b>\n"
-"Would you like to continue?"
+"Can't rename!\n"
+"\n"
+"There are files in it!"
 msgstr ""
-"<b>%s</b> diznindeki ayarlar yedeklenecek.\n"
-"Devam etmek istiyor musunuz?"
+"Yeniden adlandırılamıyor!\n"
+"\n"
+"İçerisinde dosyalar var!"
 
-#: ../ubuntutweak/modules/desktoprecovery.py:435
+#: ../ubuntutweak/utils/__init__.py:36
 #, python-format
-msgid "Would you like to delete the backup: <b>%s/%s</b>?"
-msgstr "<b>%s/%s</b> yedeğini silmek istiyor musunuz?"
+msgid "%(size)d byte"
+msgid_plural "%(size)d bytes"
+msgstr[0] "%(size)d byte"
 
-#: ../ubuntutweak/modules/desktoprecovery.py:437
+#: ../ubuntutweak/utils/__init__.py:38
 #, python-format
-msgid ""
-"Would you like to delete the backup of all <b>%s</b> settings named "
-"<b>%s</b>?"
+msgid "%.1f KB"
+msgstr "%.1f KB"
+
+#: ../ubuntutweak/utils/__init__.py:40
+#, python-format
+msgid "%.1f MB"
+msgstr "%.1f MB"
+
+#: ../ubuntutweak/utils/__init__.py:41
+#, python-format
+msgid "%.1f GB"
+msgstr "%.1f GB"
+
+#: ../ubuntutweak/preferences.py:152
+msgid "Choose a clip extension"
 msgstr ""
-"<b>%s</b> isimli tüm <b>%s</b> yedek dosyalarını silmek istiyor musunuz?"
 
-#: ../ubuntutweak/modules/desktoprecovery.py:456
+#: ../ubuntutweak/preferences.py:157
 #, python-format
-msgid "Would you like to recover the backup: <b>%s/%s</b>?"
-msgstr "<b>%s/%s</b> yedeğini kurtarmak ister misiniz?"
-
-#: ../ubuntutweak/modules/desktoprecovery.py:458
-#, python-format
-msgid ""
-"Would you like to recover the backup of all <b>%s</b> settings named "
-"<b>%s</b>?"
+msgid "\"%s\" is not a Clip Extension!"
 msgstr ""
-"<b>%s</b> Adlı Ayarların <b>%s</b> tüm yedeklerini geri yüklemek ister "
-"misiniz?"
 
-#: ../ubuntutweak/modules/desktoprecovery.py:460
-msgid ""
-"<b>NOTES</b>: While recovering, your desktop may be unresponsive for a "
-"moment."
+#: ../ubuntutweak/preferences.py:160
+msgid "Choose a Tweaks Extension"
 msgstr ""
-"<b>NOTLAR</b>: Kurtarma sırasında, masaüstünüz bir süreliğine yanıt "
-"vermeyebilir."
 
-#: ../ubuntutweak/modules/desktoprecovery.py:477
-msgid ""
-"Recovery Successful!\n"
-"You may need to restart your desktop for changes to take effect"
+#: ../ubuntutweak/preferences.py:165
+#, python-format
+msgid "\"%s\" is not a Tweaks Extension!"
 msgstr ""
-"Kurtarma Başarılı!\n"
-"Değişikliklerin etkili olabilmesi için masaüstünüzü yeniden başlatmanız "
-"gerekebilir."
 
-#: ../ubuntutweak/modules/desktoprecovery.py:482
-msgid "_Logout"
-msgstr "_Çıkış"
-
-#: ../ubuntutweak/modules/desktoprecovery.py:494
-#, python-format
-msgid "Would you like to reset settings for: <b>%s</b>?"
-msgstr "<b>%s</b> için ayarları sıfırlamak ister misiniz?"
-
-#: ../ubuntutweak/modules/desktoprecovery.py:496
-#, python-format
-msgid "Would you like to reset all settings under: <b>%s</b>?"
-msgstr "<b>%s</b> için tüm ayarları başa almak istediğinize emin misiniz?"
-
-#: ../ubuntutweak/modules/desktoprecovery.py:498
-msgid ""
-"<b>NOTES</b>: Whilst resetting, your desktop may be unresponsive for a "
-"moment."
+#: ../ubuntutweak/preferences.py:168
+msgid "Choose a Admins Extension"
 msgstr ""
-"<b>NOTLAR</b>: Kurtarma sırasında, masaüstünüz bir süreliğine yanıt "
-"vermeyebilir."
 
-#: ../ubuntutweak/modules/desktoprecovery.py:511
-msgid ""
-"Reset Successful!\n"
-"You may need to restart your desktop for changes to take effect"
+#: ../ubuntutweak/preferences.py:173
+#, python-format
+msgid "\"%s\" is not a Admins Extension!"
 msgstr ""
-"Ayarlar sıfırlandı!\n"
-"Değişikliklerin geçerli olması için masaüstünüzü yeniden başlatmanız "
-"gerekebilir."
 
-#: ../ubuntutweak/modules/desktoprecovery.py:536
-msgid "Please enter a new name for your backup:"
-msgstr "Yedeğiniz için lütfen yeni bir isim girin:"
+#: ../ubuntutweak/preferences.py:176
+msgid "Choose a Janitor Extension"
+msgstr ""
 
-#: ../ubuntutweak/modules/desktoprecovery.py:568
-msgid "Backup Successful!"
-msgstr "Yedekleme Başarılı!"
-
-#: ../ubuntutweak/modules/desktoprecovery.py:571
-msgid "Backup Failed!"
-msgstr "Yedekleme Başarısız Oldu!"
-
-#~ msgid "Text was empty (or contained only whitespace)"
-#~ msgstr "Metin boştu (veya sadece boşluk içeriyordu)"
-
-#~ msgid "Expo"
-#~ msgstr "Sergi"
-
-#~ msgid "Install Simple Desktop Effects Settings manager"
-#~ msgstr "Basit Masaüstü Efektleri Yöneticisini Kur"
-
-#~ msgid "Window Effects"
-#~ msgstr "Pencere Efektleri"
-
-#~ msgid "Widget"
-#~ msgstr "Yardımcı Programcık"
-
-#~ msgid "Desktop Icon settings"
-#~ msgstr "Masaüstü simge ayarları"
-
-#~ msgid "Window Decorate Effect"
-#~ msgstr "Pencere Dekorasyon Efekti"
-
-#~ msgid "Window Titlebar Action"
-#~ msgstr "Pencere Başlık Çubuğu eylemi"
-
-#~ msgid "Nautilus with Wallpaper"
-#~ msgstr "Duvarkağıtlı Nautilus"
-
-#~ msgid "Nautilus with Root Privileges"
-#~ msgstr "Yönetici Yetkileriyle Nautilus"
-
-#~ msgid "Nautilus with Open Terminal"
-#~ msgstr "Açık terminalle Nautilus"
-
-#~ msgid "PNG image (*.png)"
-#~ msgstr "PNG resmi (*.png)"
-
-#~ msgid "Disable print setup"
-#~ msgstr "Yazıcı yapılandırmasını devre dışı bırak"
-
-#~ msgid "Enable user switching when screen is locked."
-#~ msgstr "Ekran kilitlendiğinde kullanıcı değiştirmeyi etkinleştir"
-
-#~ msgid "Show Input Method menu on the context menu"
-#~ msgstr "Genel menüde giriş metodu menüsünü göster"
-
-#~ msgid "Show Unicode Method menu on the context menu"
-#~ msgstr "Unicode metodu menüsünü genel menüde göster"
-
-#~ msgid "Click the button to change the menu logo"
-#~ msgstr "Menü logosunu değiştirmek için düğmeye tıklayın"
-
-#~ msgid "Choose a new logo"
-#~ msgstr "Yeni bir logo seçin"
-
-#~ msgid "Session Programs"
-#~ msgstr "Oturum Programları"
-
-#~ msgid "Packages"
-#~ msgstr "Paketler"
-
-#~ msgid "Clean Package"
-#~ msgstr "Paket Temizle"
-
-#~ msgid "Submit Sources"
-#~ msgstr "Kaynakları Gönder"
-
-#~ msgid "Update Sources"
-#~ msgstr "Kaynakları Güncelle"
-
-#~ msgid "Banshee (Unstable Version)"
-#~ msgstr "Banshee (Kararsız Sürüm)"
-
-#~ msgid "The software information is up-to-date now"
-#~ msgstr "Yazılım bilgisi şimdi güncel"
-
-#~ msgid "Banshee (Stable Version)"
-#~ msgstr "Banshee (Kararlı Sürüm)"
-
-#~ msgid "Ubuntu Chinese Repository"
-#~ msgstr "Ubuntu Çin Deposu"
-
-#~ msgid "And many more useful features!"
-#~ msgstr "Ve daha birçok özellik!"
-
-#~ msgid "Package Config"
-#~ msgstr "Paket Yapılandırması"
-
-#~ msgid "Enable Metacity's Compositing feature"
-#~ msgstr "Metacity'nin Compositing özelliğini aç"
-
+#: ../ubuntutweak/preferences.py:181
 #, python-format
-#~ msgid "The folder \"%s\" already exists!"
-#~ msgstr "\"%s\" klasörü zaten var!"
+msgid "\"%s\" is not a Janitor Extension!"
+msgstr ""
 
+#: ../ubuntutweak/preferences.py:190
+msgid "Ubuntu Tweak Extension (*.py, *.tar.gz)"
+msgstr ""
+
+#: ../ubuntutweak/preferences.py:221
+msgid "Would you like to remove it then install again?"
+msgstr ""
+
+#: ../ubuntutweak/preferences.py:222
 #, python-format
-#~ msgid "The file \"%s\" already exists!"
-#~ msgstr "\"%s\" dosyası zaten var!"
+msgid "\"%s\" has already installed"
+msgstr ""
 
+#: ../ubuntutweak/main.py:354
+msgid "Please wait a moment..."
+msgstr "Lütfen bir süre bekleyin..."
+
+#: ../ubuntutweak/main.py:453
 #, python-format
-#~ msgid "The target \"%s\" already exists!"
-#~ msgstr "\"%s\" hedefi zaten var!"
-
-#~ msgid ""
-#~ "A simple but more effecient method for finding and installing popular "
-#~ "packages than the default Add/Remove."
-#~ msgstr ""
-#~ "Popüler paketleri bulmak ve kurmak için varsayılan Ekle/Kaldır'dan daha "
-#~ "basit ve etkili bir yöntem."
-
-#~ msgid ""
-#~ "You can change the paths of the default folders here.\n"
-#~ "Don't change the location of your desktop folder unless you know what you "
-#~ "are doing."
-#~ msgstr ""
-#~ "Varsayılan klasörlerin yolunu burada değiştirebilirsiniz.\n"
-#~ "Ne yaptığınızı bilmiyorsanız masaüstü klasörünüzün yolunu değiştirmeyin."
-
-#, python-format
-#~ msgid "Open the files of type \"%s\" with:"
-#~ msgstr "\"%s\" türünde dosyaları bununla aç:"
-
-#~ msgid "Only show filetypes with an associated application"
-#~ msgstr "Sadece bir uygulamayla ilişkilendirilmiş dosya türlerini göster"
-
-#~ msgid "Avant Window Navigator (Unstable Version)"
-#~ msgstr "Avant Window Navigator (Kararsız Sürüm)"
-
-#~ msgid "Gwibber (Daily Version)"
-#~ msgstr "Gwibber (Günlük Sürüm)"
-
-#~ msgid "Here you can manage which application will open which filetypes."
-#~ msgstr ""
-#~ "Hangi uygulamanın hangi dosya türlerini açacağını burada ayarlayabilirsiniz."
-
-#~ msgid "Ubuntu Tweak (Unstable Version)"
-#~ msgstr "Ubuntu Tweak (Kararsız Sürüm)"
-
-#~ msgid ""
-#~ "By configuring keyboard shortcuts, you can access your favourite "
-#~ "applications instantly.\n"
-#~ "Enter the application's command and set the desired shortcut keys."
-#~ msgstr ""
-#~ "Klavye kısayollarını yapılandırarak, favori uygulamalarınıza anında "
-#~ "erişebilirsiniz.\n"
-#~ "Uygulamanın komutunu girin ve istediğiniz kısayol tuşlarını ayarlayın."
-
-#~ msgid "Allow TCP Connections (Remote Desktop Connect)"
-#~ msgstr "TCP Bağlantılarına İzin ver (Uzak Masaüstü Bağlantısı)"
-
-#, python-format
-#~ msgid ""
-#~ "Templates path is wrong! The current path is point to \"%s\".\n"
-#~ "Please reset it to a folder under your Home Folder."
-#~ msgstr ""
-#~ "Şablonlar yolu yanlış! Mevcut yol şurayı gösteriyor. \"%s\" .\n"
-#~ "Lütfen Başlangıç Klasörünüzdeki bir klasöre tekrar ayarlayın."
-
-#, python-format
-#~ msgid ""
-#~ "<b>%s</b>\n"
-#~ "Take %s of disk space"
-#~ msgstr ""
-#~ "<b>%s</b>\n"
-#~ "Disk alanının %s kadarını al."
-
-#~ msgid "Canceled by user!"
-#~ msgstr "Kullanıcı tarafından iptal edildi!"
-
-#~ msgid "Clean up Failed!"
-#~ msgstr "Temizleme Hatalı!"
-
-#~ msgid ""
-#~ "Free up disk space by removing unneeded packages and cleaning the package "
-#~ "download cache."
-#~ msgstr ""
-#~ "Gerek duyulmayan paketleri silerek ve paket indirme önbelleğini temizleyerek "
-#~ "disk alanı açın."
-
-#~ msgid "Cleaning Package Config"
-#~ msgstr "Paket Yapılandırması Temizleniyor"
-
-#~ msgid "Clean Kernel"
-#~ msgstr "Çekirdeği Temizle"
-
-#~ msgid ""
-#~ "You can do all kinds of tasks with scripts.\n"
-#~ "You can drag and drop from File Manager.\n"
-#~ "'Scripts' will be added to the context menu."
-#~ msgstr ""
-#~ "Betiklerle her türlü görevi gerçekleştirebilirsiniz.\n"
-#~ "Dosya Yöneticisinden sürükleyip bırakabilirsiniz.\n"
-#~ "\"Betikler\" sağ tık menüsüne eklenecek."
-
-#~ msgid "Maximum age for the thumbnail in the cache (days)"
-#~ msgstr "Önbellekteki küçük resimler için en uzun ömür (gün olarak)"
-
-#~ msgid "Maximum size of the thumbnail cache (megabytes)"
-#~ msgstr "Küçük resim önbelleğinin en yüksek boyutu (megabyte olarak)"
-
-#~ msgid "Thumbnails Settings"
-#~ msgstr "Küçük Resim Ayarları"
-
-#, python-format
-#~ msgid "Clean up the thumbnails cache (will free %s of disk space)"
-#~ msgstr "Küçük resim önbelleğini temizle (%s miktarda alan boşaltılacak)"
-
-#~ msgid ""
-#~ "You can submit your sources to our server to help building the sources list, "
-#~ "or you can use the official sources.\n"
-#~ "Do you wish to use the official sources?"
-#~ msgstr ""
-#~ "Kaynak listesini oluşturmada bize yardım etmek için kaynaklarınızı "
-#~ "sunucumuza yükleyebilirsiniz ya da resmi kaynakları kullanabilirsiniz.\n"
-#~ "Resmi kaynakları kullanmak istiyor musunuz?"
-
-#~ msgid "Please input the correct information about sources!"
-#~ msgstr "Lütfen kaynaklar hakkında doğru bilgiyi girin!"
-
-#~ msgid "Can't delete the system item from disk."
-#~ msgstr "Diskten sistem öğeleri silinemez."
-
-#~ msgid ""
-#~ "Here you can manage what programs get started when you login.\n"
-#~ "You can hide items from view by selecting and clicking \"Remove\"\n"
-#~ "To permanently delete an item, right-click and press \"Delete\"."
-#~ msgstr ""
-#~ "Burada oturum açtığınızda hangi programların çalışacağını "
-#~ "ayarlayabilirsiniz.\n"
-#~ "Öğeleri görünümden saklamak için seçip \"Sil\" tuşuna tıklayabilirsiniz.\n"
-#~ "Bir öğeyi kalıcı olarak silmek için, sağ tıklayıp \"Sil\" tuşuna basınız."
-
-#~ msgid "Fix the theme appearance when grant the root privileges"
-#~ msgstr "Yönetici hakları verildiğinde tema görünümünü düzelt"
-
-#~ msgid "Clean up unneeded packages to free diskspace."
-#~ msgstr "Diskte yer açmak için gereksiz paketleri silin."
-
-#~ msgid ""
-#~ "This is a major failure of your software management system. Please check for "
-#~ "broken packages with synaptic, check the file permissions and correctness of "
-#~ "the file '/etc/apt/sources.list' and reload the software information with: "
-#~ "'sudo apt-get update' and 'sudo apt-get install -f'."
-#~ msgstr ""
-#~ "Bu dosya düzenleme sisteminizde oluşan önemli bir arızadır. Lütfen Synaptic "
-#~ "Paket Yöneticisi ile kırık paketleri, dosya erişim izinlerini ve "
-#~ "'/etc/apt/sources.list' dosyasının doğruluğunu kontrol edin ve 'sudo apt-get "
-#~ "update' ile 'sudo apt-get install -f' komutuyla yazılım bilgilerini "
-#~ "yenileyin."
-
-#~ msgid ""
-#~ "Ubuntu Tweak will restore the chosen directory to the default location.\n"
-#~ "However, you must move your files back into place by yourself.\n"
-#~ "Do you wish to continue?"
-#~ msgstr ""
-#~ "Ubuntu Tweak seçilen dizini varsayılan yerine geri koyacak.\n"
-#~ "Ancak dosyalarınızı mutlaka kendiniz koymalısınız.\n"
-#~ "Devam etmek istiyor musunuz?"
-
-#~ msgid "Update successful!"
-#~ msgstr "Güncelleştirme başarılı!"
-
-#, python-format
-#~ msgid "Select an application to open the type <b>%s</b>"
-#~ msgstr "<b>%s</b> tipindeki dosyaları açmak için bir uygulama seç"
-
-#~ msgid "Gnome Global Menu"
-#~ msgstr "GNOME Küresel Menü"
-
-#~ msgid "GetDeb.net (Mirror)"
-#~ msgstr "GetDeb.net (Yansı)"
-
-#~ msgid ""
-#~ "After every release of Ubuntu there comes a feature freeze.\n"
-#~ "This means only applications with bug-fixes get into the repository.\n"
-#~ "By using third-party DEB repositories, you can always keep up-to-date with "
-#~ "the latest version.\n"
-#~ "After adding these repositories, locate and install them using Add/Remove."
-#~ msgstr ""
-#~ "Ubuntu'nun her sürümüyle yeni bir özellik gelir.\n"
-#~ "Bu durum sadece hata onarımı yapılmış uygulamaların depoya girdiği anlamına "
-#~ "gelir.\n"
-#~ "Üçüncü parti .deb depolarını kullanarak her zaman son sürümle güncel "
-#~ "kalabilirsiniz.\n"
-#~ "Bu depoları ekledikten sonra, \"Ekle/Kaldır\" özelliğini kullanarak programı "
-#~ "bulun ve kurun."
-
-#~ msgid "Use \"Home Folder\" as desktop (Logout for changes to take effect)"
-#~ msgstr ""
-#~ "Masaüstü olarak \"Başlangıç Klasörü\"nü kullan (Değişikliklerin etkili "
-#~ "olması için oturumu kapatın)"
-
-#~ msgid ""
-#~ "To enable the compositing feature of metacity, you should manually disable "
-#~ "Visual Effects in \"Appearance\"."
-#~ msgstr ""
-#~ "Metacity'nin masaüstü oluşturma özelliğini etkinleştirmek için, "
-#~ "\"Görünüm\"den Görsel Efektleri elle devre dışı bırakmalısınız"
-
-#~ msgid ""
-#~ "Here you can freely manage your document templates.\n"
-#~ "You can add files as templates by dragging them onto this window.\n"
-#~ "You can create new documents based on these templates from the Nautilus "
-#~ "right-click menu."
-#~ msgstr ""
-#~ "Burada belge şablonlarınızı özgürce yönetebilirsiniz.\n"
-#~ "Dosyalarınızı bu pencereye sürükleyerek onları şablon olarak "
-#~ "ekleyebilirsiniz.\n"
-#~ "Nautilus'un sağ tık menüsünden bu şablonları temel alarak yeni dökümanlar "
-#~ "yaratabilirsiniz."
-
-#~ msgid "Templates path is still wrong, Please reset it!"
-#~ msgstr "Şablonlar yolu hala yanlış, lütfen tekrar ayarlayın!"
-
-#~ msgid "Package Cache"
-#~ msgstr "Paket Önbelleği"
-
-#, python-format
-#~ msgid "%d package selected to remove"
-#~ msgid_plural "%d packages selected to remove"
-#~ msgstr[0] "Kaldırılmak için %d paket seçildi"
-
-#, python-format
-#~ msgid "%s of space will be freed"
-#~ msgstr "%s boyutunda alan boşaltılacak"
-
-#~ msgid "Enable system-wide \"Recently Documents\" list"
-#~ msgstr ""
-#~ "Tüm kullanıcılar için ortak \"Son erişilen dökümanlar\" listesini etkinleştir"
-
-#~ msgid ""
-#~ "The size isn't suitable for the panel.\n"
-#~ "It should be 24x24."
-#~ msgstr ""
-#~ "Bu boyut panel için uygun değildir.\n"
-#~ "24x24 piksel olmalıdır."
-
-#~ msgid "The thumbnails cache will be cleaned, Do you wish to continue?"
-#~ msgstr "Küçük resim önbelleği temizlenecek, devam etmek istiyor musunuz?"
-
-#~ msgid "Google's Linux Repository"
-#~ msgstr "Google'ın Linux Deposu"
-
-#~ msgid "Available Package Updates"
-#~ msgstr "Kullanılabilir Yedek Güncellemeler"
-
-#~ msgid ""
-#~ "You can install the new applications by selecting them and choose \"Yes\".\n"
-#~ "Or you can install them at Add/Remove by choose \"No\"."
-#~ msgstr ""
-#~ "Yeni uygulamaları seçerek yüklemek için \"Evet\"i seç veya \"Hayır\"ı "
-#~ "seçerek onları Ekle/Kaldır'dan yükleyebilirsin."
-
-#~ msgid "New applications are available to update"
-#~ msgstr "Güncellemek için kullanılabilir yeni uygulamalar"
-
-#~ msgid "Available New Applications"
-#~ msgstr "Kullanılabilir Yeni Uygulamalar"
-
-#~ msgid "Your system is clean and there's no update yet."
-#~ msgstr "Sistemin temizlendi ve henüz güncelleme bulunamadı"
-
-#~ msgid ""
-#~ "Freely edit your software sources to fit your needs.\n"
-#~ "Click \"Update Sources\" if you want to change the sources.\n"
-#~ "Click \"Submit Sources\" if you want to share your sources with other people."
-#~ msgstr ""
-#~ "İhtiyaçlarına uygun yazılım kaynaklarını serbestçe düzen.\n"
-#~ "Eğer kaynakları değiştirmek istiyorsan \"Kaynakları Düzenle\"ye tıkla.\n"
-#~ "Eğer kaynaklarını diğer kullanıcılar ile paylaşmak istiyorsan \"Kaynakları "
-#~ "Öner\"e tıkla."
-
-#~ msgid ""
-#~ "You've changed the sources.list without saving it.\n"
-#~ "Do you want to save it?"
-#~ msgstr ""
-#~ "sources.list'i kaydetmeden değiştirdin.\n"
-#~ "Kaydetmek istiyor musun?"
-
-#, python-format
-#~ msgid ""
-#~ "To enable this Source, You need to enable \"%s\" at first.\n"
-#~ "Do you wish to continue?"
-#~ msgstr ""
-#~ "Bu kaynağı onaylamak için ilk önce \"%s\" kabul etmen lazım.\n"
-#~ "Devam etmek istiyor musun?"
-
-#~ msgid "This feature isn't currently available in your distribution"
-#~ msgstr "Bu özellik şu anki dağıtımınında kullanılamaz"
-
-#, python-format
-#~ msgid ""
-#~ "You can't disable this Source because \"%(SOURCE)s\" depends on it.\n"
-#~ "To continue you need to disable \"%(SOURCE)s\" first."
-#~ msgstr ""
-#~ "Bu Kaynağı \"%(SOURCE)s\"e bağlı olduğundan dolayı etkisizleştiremezsin.\n"
-#~ "Devam etmek için ilk önce \"%(SOURCE)s\" etkinleştirmelisin."
-
-#~ msgid "This module is error while loading."
-#~ msgstr "Bu modül yüklenirken hata verdi"
-
-#~ msgid "Edge Settings"
-#~ msgstr "Kenar Ayarları"
-
-#~ msgid "This feature is currently only available in GNOME Desktop Environment"
-#~ msgstr "Bu özellik sadece GNOME Masaüstü Ortamında kullanılabilir"
-
-#~ msgid "OpenShot Video Editor"
-#~ msgstr "OpenShot Video Editörü"
-
-#, python-format
-#~ msgid "Download the Ubuntu Tweak %s"
-#~ msgstr "Ubuntu Tweak %s sürümünü yükle"
-
-#, python-format
-#~ msgid ""
-#~ "A newer version: %s is available online.\n"
-#~ "Would you like to update?\n"
-#~ "\n"
-#~ "Note: if you prefer update from the source, you can disable this feature in "
-#~ "Preference."
-#~ msgstr ""
-#~ "Daha yeni sürüm: %s çevirimiçi olarak mevcut.\n"
-#~ "Güncellemek istiyormusunuz?\n"
-#~ "\n"
-#~ "Not: Kaynaktan güncellemeyi tercih ederseniz bu özelliği tercihlerden "
-#~ "etkisizleştirebilirsiniz."
-
-#~ msgid "Development Version of Mozilla Firefox"
-#~ msgstr "Mozilla Firefox'un Geliştirme Sürümü"
-
-#~ msgid ""
-#~ "WebkitGtk+, Liferea (Webkit), Midori and other WebKit related projects."
-#~ msgstr ""
-#~ "WebkitGtk+, Liferea (Webkit), Midori ve diğer Webkit ile ilgili projeler."
-
-#~ msgid "Breathe Icon Theme"
-#~ msgstr "Breathe Simge Teması"
-
-#~ msgid "IBus (Old Version)"
-#~ msgstr "IBus (Eski Sürüm)"
-
-#~ msgid "Google Repository"
-#~ msgstr "Google Yazılım Deposu (Repository)"
-
-#~ msgid "Chinese Chess"
-#~ msgstr "Çin Daması"
-
-#~ msgid ""
-#~ "Gloobus is an extension of Gnome designed to enable a full screen preview of "
-#~ "any kind of file."
-#~ msgstr ""
-#~ "Gloobus, her türlü dosyanın tam ekran önizlemesini sağlamak üzere tasarlanan "
-#~ "bir Gnome eklentisidir."
-
-#~ msgid "A cross-platform application and UI framework"
-#~ msgstr "Çoklu platform bir uygulama ve kullanıcı arayüzü çatısı"
-
-#~ msgid "Mono is a cross platform, open source .NET development framework."
-#~ msgstr "Mono, bir çoklu platform ve açık kaynak .NET geliştirme çatısıdır."
-
-#~ msgid "Some useful information about your computer"
-#~ msgstr "Bilgisayarınız hakkında bazı kullanışlı bilgiler"
-
-#~ msgid "Tweak some security options"
-#~ msgstr "Bazı güvenlik ayarlarını düzenle"
-
-#~ msgid "Freely edit your software sources to fit your needs."
-#~ msgstr ""
-#~ "Kullandığınız yazılımları ihtiyaçlarınız doğrultusunda özgürce değiştirin."
-
-#~ msgid "Manage all of the registered file types"
-#~ msgstr "Seçilen tüm dosya türlerini yönet"
-
-#~ msgid "Some error happened while downloading the file."
-#~ msgstr "Dosya indirilirken bir hata oluştu."
-
-#~ msgid "Arrange the buttons on the titlebar by dragging and dropping"
-#~ msgstr "Başlık çubuğundaki düğmeleri sürükle-bırak yöntemiyle düzenle"
-
-#~ msgid "Add Spacer"
-#~ msgstr "Ayırıcı Ekle"
-
-#~ msgid "Remove Spacer"
-#~ msgstr "Ayırıcıyı Kaldır"
-
-#~ msgid "Some options about Metacity Window Manager"
-#~ msgstr "Metacity Pencere Yöneticisi için bazı ayarlar"
-
-#~ msgid "Enable the auto launch of System Update Manager"
-#~ msgstr "Sistem Güncelleme Yöneticisini otomatik olarak çalıştır"
-
-#~ msgid "Manage the desktop icon's name and visiable"
-#~ msgstr "Masaüstü simgelerinin adlarını ve görünürlüklerini yönet"
-
-#~ msgid "A lot of GNOME settings about panel, menu and others"
-#~ msgstr "Panel, menü ve diğerleri için birçok GNOME ayarları"
-
-#~ msgid "Please enter your new hostname. It should be non-blank characters."
-#~ msgstr "Lütfen yeni makine adınızı girin. Boşluk içermemelidir."
-
-#~ msgid "Buttons have icons"
-#~ msgstr "Düğmeler simgelere sahip"
-
-#~ msgid "Menus have icons"
-#~ msgstr "Menüler simgelere sahip"
-
-#~ msgid "Control your computer's power managerment"
-#~ msgstr "Bilgisayarınızın güç yönetimini kontrol edin"
-
-#~ msgid "Advanced Powermanager Settings"
-#~ msgstr "Gelişmiş Güç Yöneticisi Ayarları"
-
-#~ msgid "No Available Package Update"
-#~ msgstr "Paket Güncellemesi Yok"
-
-#~ msgid "LCD brightness when on AC"
-#~ msgstr "Fiş takılı iken LCD parlaklığı"
-
-#~ msgid "Some error happened while downloading the file"
-#~ msgstr "Dosya indirilirken bir hata oluştu"
-
-#~ msgid "New sources data available, would you like to update?"
-#~ msgstr ""
-#~ "Yeni kaynak verileri kullanılabilir durumda, güncellemek istiyor musunuz?"
-
-#~ msgid "Session control"
-#~ msgstr "Oturum kontrolü"
-
-#~ msgid "Disable user list in gdm"
-#~ msgstr "gdm içerisinde kullanıcı listesini etkisizleştirin"
-
-#~ msgid "Suppress the dialog to confirm logout, restart and shutdown action"
-#~ msgstr ""
-#~ "Oturum kapama, yeniden başlatma ve sistem kapatma için onay iletişim "
-#~ "kutusunu engelleyin"
-
-#~ msgid "Manage your default file manager"
-#~ msgstr "Öntanımlı dosya yöneticinizi yönetin"
-
-#, python-format
-#~ msgid "Available %d New Application"
-#~ msgid_plural "Available %d New Applications"
-#~ msgstr[0] "%d Adet Yeni Uygulama Mevcut"
-
-#, python-format
-#~ msgid "Available %d Package Update"
-#~ msgid_plural "Available %d Package Updates"
-#~ msgstr[0] "%d Adet Paket Güncellemesi Mevcut"
-
-#~ msgid "LCD dimming amount when on battery"
-#~ msgstr "Batarya ile çalışıyorken LCD karartma oranı"
-
-#~ msgid ""
-#~ "Clutter is an OpenGL based interactive canvas library, designed for creating "
-#~ "fast, mainly 2D single window applications such as media box UIs, "
-#~ "presentations, kiosk style applications and so on."
-#~ msgstr ""
-#~ "Clutter, sunumlar ve Kiosk tarzı uygulamalar gibi temelde hızlı, 2 boyutlu, "
-#~ "bir pencereli uygulamalar yaratmak için kullanılan OpenGL tabanlı bir grafik "
-#~ "kütüphanesidir."
-
-#~ msgid ""
-#~ "Backports of new versions of KDE for Kubuntu which are not yet tested enough "
-#~ "to go to Ubuntu Backports."
-#~ msgstr ""
-#~ "Kubuntu için Ubuntu Backport'a kabul edilecek kadar test edilmemiş yeni KDE "
-#~ "versiyonlarının kararsız sürümleri."
-
-#~ msgid ""
-#~ "A simple but more efficient way for finding and installing popular "
-#~ "applications.\n"
-#~ "Data will be automatically synchronized with the remote server.\n"
-#~ "You can click the \"Sync\" button to perform a manual check for updates."
-#~ msgstr ""
-#~ "Uygulama bulmak ve yüklemek için basit ve aynı zamanda daha etkili bir yol.\n"
-#~ "Veriler otomatik olarak uzak sunucu ile eşitlenecektir.\n"
-#~ "Elle güncellemek için \"eşitle\" tuşuna basabilirsiniz."
-
-#~ msgid "Enable new item highlight in App and Source Center"
-#~ msgstr ""
-#~ "Uygulama ve Kaynak Merkezi'ndeki yeni öğeleri vurgulamayı etkinleştir"
-
-#~ msgid "Enable Check Update"
-#~ msgstr "Güncelleştirme Denetimini Etkinleştir"
-
-#~ msgid "Enable the synchronous notification"
-#~ msgstr "Eşzamanlı bildirimi etkinleştir"
-
-#~ msgid "Development version of Compiz"
-#~ msgstr "Compiz'in geliştirme sürümü"
-
-#~ msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
-#~ msgstr "Hafif X11 Masaüstü Ortamı: GPicView, PCManFM"
-
-#~ msgid ""
-#~ "Ubuntu repository for Chinese users.\n"
-#~ "Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and "
-#~ "other softwares."
-#~ msgstr ""
-#~ "Çinli kullanıcılar için Ubuntu deposu.\n"
-#~ "EIOffice, Ubuntu Tweak, ibus girdi yöntemi, OpenOffice.org 3.0 ve diğer "
-#~ "yazılımları içerir."
-
-#~ msgid "Development Version of K Desktop Environment"
-#~ msgstr "K Masaüstü Ortamı Geliştirme Sürümü"
-
-#~ msgid "Advanced Power Manager Settings"
+msgid "No module named \"%s\""
+msgstr ""
+
+#: ../ubuntutweak/main.py:454
+msgid "Please ensure you have entered the correct module name."
+msgstr ""
+
+#: ../ubuntutweak/main.py:511
+msgid "Computer Janitor"
+msgstr ""
+
+#: ../ubuntutweak/main.py:512
+msgid "Clean up a system so it's more like a freshly installed one"
+msgstr ""
+
+#~ msgid "New Startup Program"
+#~ msgstr "Yeni Başlangıç Programı"
+
+#~ msgid "Delete from Disk"
+#~ msgstr "Diskten Sil"
+
+#~ msgid "The name of the startup program cannot be empty"
+#~ msgstr "Başlangıç programının ismi boş olamaz"
+
+#~ msgid "Show all runnable programs"
+#~ msgstr "Çalıştırılabilir tüm programları göster"
+
+#~ msgid "Program"
+#~ msgstr "Uygulama"
+
+#~ msgid "Memory"
+#~ msgstr "Bellek"
+
+#~ msgid "Kernel"
+#~ msgstr "Çekirdek"
+
+#~ msgid "Distribution"
+#~ msgstr "Dağıtım"
+
+#~ msgid "CPU"
+#~ msgstr "İşlemci"
+
+#~ msgid "Platform"
+#~ msgstr "Ortam"
+
+#~ msgid "Shell"
+#~ msgstr "Kabuk"
+
+#~ msgid "Language"
+#~ msgstr "Dil"
+
+#~ msgid "Show \"Network\" icon on desktop"
+#~ msgstr "\"Ağ sunucuları\" simgesini masaüstünde göster"
+
+#~ msgid "Unset"
+#~ msgstr "Ayarlanmamış"
+
+#~ msgid "Comm_ent:"
+#~ msgstr "Yor_um"
+
+#~ msgid "Install Advanced Desktop Effects Settings Manager"
+#~ msgstr "Gelişmiş Masaüstü Efektleri Yöneticisini Kur"
+
+#~ msgid "Install Screenlets Widget Application"
+#~ msgstr "Screenlets Widgets Uygulamasını Kur"
+
+#~ msgid "Prerequisite Conditions"
+#~ msgstr "Gerekli Durumlar"
+
+#~ msgid "Enable panel animations"
+#~ msgstr "Panel animasyonlarını etkinleştir"
+
+#~ msgid "Update Failed!"
+#~ msgstr "Güncelleştirme Başarısız!"
+
+#~ msgid "All Categories"
+#~ msgstr "Tüm Kategoriler"
+
+#~ msgid "Welcome"
+#~ msgstr "Hoşgeldiniz"
+
+#~ msgid "Advanced Power Management Settings"
 #~ msgstr "Gelişmiş Güç Yönetimi Ayarları"
 
+#~ msgid "Nautilus Extensions"
+#~ msgstr "Nautilus Eklentileri"
+
+#~ msgid "Warning"
+#~ msgstr "Uyarı"
+
+#~ msgid "Never show this dialog"
+#~ msgstr "Bu uyarıyı bir daha gösterme"
+
+#~ msgid "Co_mmand:"
+#~ msgstr "Ko_mut:"
+
+#~ msgid "_Name:"
+#~ msgstr "_İsim:"
+
+#~ msgid "System information"
+#~ msgstr "Sistem bilgisi"
+
+#~ msgid "Screensaver"
+#~ msgstr "Ekran koruyucu"
+
+#~ msgid "History"
+#~ msgstr "Geçmiş"
+
+#~ msgid "Current user"
+#~ msgstr "Mevcut kullanıcı"
+
+#~ msgid "Homepage"
+#~ msgstr "Ana Sayfa"
+
+#~ msgid "Disable \"Run Application\" dialog (Alt+F2)"
+#~ msgstr "\"Uygulama Çalıştır\" (Alt+F2) penceresini devre dışı bırak"
+
+#~ msgid "Display warning when removing a panel"
+#~ msgstr "Bir panel kaldırıldığında uyarı göster"
+
+#~ msgid "Desktop environment"
+#~ msgstr "Masaüstü ortamı"
+
+#~ msgid "Complete lockdown of all panels"
+#~ msgstr "Bütün panelleri tam kilitleme"
+
+#~ msgid "Welcome to"
+#~ msgstr "Hoşgeldiniz"
+
+#~ msgid "Select All"
+#~ msgstr "Tümünü Seç"
+
+#~ msgid "Show comments"
+#~ msgstr "Ayrıntıları göster"
+
+#~ msgid "Update Manager"
+#~ msgstr "Güncelleştirme Yöneticisi"
+
+#~ msgid "Useful Extensions"
+#~ msgstr "Kullanışlı eklentiler"
+
+#~ msgid "Hostname"
+#~ msgstr "Makine adı"
+
+#~ msgid "Home directory"
+#~ msgstr "Başlangıç dizini"
+
+#~ msgid "Clean Cache"
+#~ msgstr "Önbelleği Temizle"
+
+#~ msgid "Submit your sources"
+#~ msgstr "Kaynaklarınızı gönderin"
+
+#~ msgid "_Source Title:"
+#~ msgstr "_Kaynak Başlığı:"
+
+#~ msgid "_Locale:"
+#~ msgstr "_Yerel:"
+
+#~ msgid "No source data available"
+#~ msgstr "Uygun kaynak verisi yok"
+
+#~ msgid "Submit"
+#~ msgstr "Gönder"
+
+#~ msgid "Updating..."
+#~ msgstr "Güncelleniyor..."
+
+#~ msgid "Please check your network connection!"
+#~ msgstr "Lütfen ağ bağlantınızı kontrol edin!"
+
+#~ msgid "Network Error"
+#~ msgstr "Ağ Arızası"
+
+#~ msgid "Software Update"
+#~ msgstr "Yazılım Güncellemesi"
+
+#, python-format
+#~ msgid "Cleaning...%s"
+#~ msgstr "Temizleniyor...%s"
+
+#~ msgid "Automatically save open applications when logging out"
+#~ msgstr "Oturumu kapatırken açık olan uygulamaları otomatik kaydet"
+
+#~ msgid "Cleaning..."
+#~ msgstr "Temizleniyor..."
+
+#~ msgid "Tweak otherwise hidden settings."
+#~ msgstr "Diğer gizli ayarları değiştir."
+
+#~ msgid "Update Successful!"
+#~ msgstr "Güncelleştirme Başarılı!"
+
+#~ msgid "_Donate"
+#~ msgstr "_Bağış Yap"
+
+#~ msgid "Cleaning Package Cache"
+#~ msgstr "Paket Önbelleği Temizleniyor"
+
+#~ msgid "Clean"
+#~ msgstr "Temizle"
+
+#~ msgid "Clean up Successful!"
+#~ msgstr "Temizleme Başarılı!"
+
+#~ msgid "Clean Config"
+#~ msgstr "Yapılandırmayı Temizle"
+
+#~ msgid "Do you want your changes to take effect immediately?"
+#~ msgstr "Değişikliklerinizin hemen etkili olmasını istiyor musunuz?"
+
+#~ msgid "You can submit your sources to the server for other people to use."
+#~ msgstr ""
+#~ "Diğer insanların kullanması için kaynaklarınızı sunucuya gönderebilirsiniz."
+
+#~ msgid ""
+#~ "Your sources will be reviewed and made available for others soon.\n"
+#~ "Thank you!"
+#~ msgstr ""
+#~ "Kaynaklarınız değerlendirilecek ve yakında başkaları için de kullanılabilir "
+#~ "olacak.\n"
+#~ "Teşekkürler!"
+
+#~ msgid "If the locale isn't correct you can edit manually"
+#~ msgstr "Bölge doğru değilse elle düzenleyebilirsiniz"
+
+#~ msgid "No description"
+#~ msgstr "Açıklama yok"
+
+#~ msgid "Edit Startup Program"
+#~ msgstr "Başlangıç Uygulamalarını Düzenle"
+
+#~ msgid "Choose a Program"
+#~ msgstr "Bir Program Seçiniz"
+
+#~ msgid ""
+#~ "Configure file templates and shortcut scripts for easy access to common "
+#~ "tasks."
+#~ msgstr ""
+#~ "Sık kullanılan görevlere kolay erişim için dosya şablonlarını ve kısayol "
+#~ "betiklerini yapılandırın."
+
+#~ msgid "Third-Party Sources"
+#~ msgstr "Üçüncü Parti Kaynaklar"
+
+#~ msgid "Package Cleaner"
+#~ msgstr "Paket Temizleyicisi"
+
+#, python-format
+#~ msgid "Could not find %s"
+#~ msgstr "%s bulunamadı"
+
+#~ msgid "User information"
+#~ msgstr "Kullanıcı bilgisi"
+
+#~ msgid "Source URL"
+#~ msgstr "Kaynak Adres"
+
+#~ msgid "Enable \"Lock screen\" when \"Blank Screen\" activates"
+#~ msgstr ""
+#~ "\"Boş Ekran\" aktifleştiğinde \"Ekranı Kilitle\" özelliğini etkinleştir"
+
+#~ msgid "Choose the sources"
+#~ msgstr "Kaynakları seçiniz"
+
+#~ msgid ""
+#~ "You can read the title and comment to determine which source is suitable for "
+#~ "you."
+#~ msgstr ""
+#~ "Başlığı okuyabilir ve sizin için uygun olan kaynağı belirlemek için yorum "
+#~ "yapabilirsiniz."
+
+#~ msgid "Enter the title of the source, e.g. \"Ubuntu Official Repostory\""
+#~ msgstr "Kaynağın başlığını girin. Örnek: \"Ubuntu Resmi Deposu\""
+
+#~ msgid "Uploading..."
+#~ msgstr "Gönderiliyor..."
+
+#~ msgid "Successfully submitted"
+#~ msgstr "Başarıyla iletildi"
+
+#~ msgid "(Not available)"
+#~ msgstr "(Kullanılabilir değil)"
+
+#~ msgid "<b>User Interface</b>"
+#~ msgstr "<b>Kullanıcı Arayüzü</b>"
+
+#~ msgid "Default Window Height"
+#~ msgstr "Öntanımlı Pencere Yüksekliği"
+
+#~ msgid "Default Window Width"
+#~ msgstr "Öntanımlı Pencere Genişliği"
+
+#~ msgid "<b>Features</b>"
+#~ msgstr "<b>Özellikler</b>"
+
+#~ msgid "New source has been enabled"
+#~ msgstr "Yeni kaynak etkinleştirildi"
+
+#~ msgid "_Cleanup"
+#~ msgstr "_Temizlik"
+
+#~ msgid "Contributors of 2007"
+#~ msgstr "2007 Katkıcıları"
+
+#~ msgid "Contributors of 2008"
+#~ msgstr "2008 Katkıcıları"
+
+#~ msgid "Contributors of 2009"
+#~ msgstr "2009 Katkıcıları"
+
+#~ msgid "Left Menubar Width"
+#~ msgstr "Sol Menü Çubuğu Genişliği"
+
+#~ msgid "Easily install up-to-date versions of many applications."
+#~ msgstr "Çok sayıda uygulamanın güncel sürümlerini kolayca kurun."
+
+#~ msgid "Use Separated Sources"
+#~ msgstr "Ayrılmış Kaynakları Kullan"
+
+#~ msgid "Cleaning Configuration Files"
+#~ msgstr "Yapılandırma Dosyaları Temizleniyor"
+
+#~ msgid "Ubuntu Tweak Preferences"
+#~ msgstr "Ubuntu Tweak Tercihleri"
+
+#~ msgid "Default Launch Function"
+#~ msgstr "Öntanımlı Çalıştırma İşlevi"
+
+#~ msgid "Make the launcher hide automatically after some time inactive"
+#~ msgstr "Başlatıcıyı aktif olmadığında otomatik gizleyin"
+
 #, python-format
 #~ msgid ""
-#~ "You can't enable this Source because \"%(SOURCE)s\" conflicts with it.\n"
-#~ "To continue you need to disable \"%(SOURCE)s\" first."
+#~ "%s is enabled now, Please click the refresh button to update the application "
+#~ "cache."
 #~ msgstr ""
-#~ "Bu kaynağı aktifleştiremezsiniz çünkü \"%(SOURCE)s\" ile çakışıyor.\n"
-#~ "Devam edebilmek için \"%(SOURCE)s\" kaynağını pasifleştirmeniz gerek."
+#~ "%s etkinleştirildi, uygulama önbelleğini güncelleştirmek için lütfen yenile "
+#~ "düğmesine tıklayın."
+
+#~ msgid "Dependency Notice"
+#~ msgstr "Bağımlılık Bildirimi"
 
 #~ msgid ""
-#~ "This image size isn't suitable for the panel.\n"
-#~ "It should be 24x24."
+#~ "It is a possible security risk to use packages from Third-Party Sources.\n"
+#~ "Please be careful and use only sources you trust."
 #~ msgstr ""
-#~ "Bu resim panel için uygun değil.\n"
-#~ "24x24 boyutunda olmalı."
-
-#~ msgid "Disable showing the restart buttons"
-#~ msgstr "Yeniden başlatma düğmelerini devre dışı bırak"
-
-#~ msgid "Updated versions of X.org drivers, libraries, etc. for Ubuntu."
-#~ msgstr ""
-#~ "Ubuntu için X.org sürücüleri, kütüphaneler vs.'nin güncellenmiş sürümleri."
-
-#~ msgid ""
-#~ "Gnome Games built from Git, with all experimental features and staging games "
-#~ "enabled."
-#~ msgstr ""
-#~ "Git üzerinden inşa edilmiş, tüm deneysel özellikleri ve derecelendirme "
-#~ "oyunları etkin Gnome Oyunları."
-
-#~ msgid ""
-#~ "Multimedia, Entertainment and Distraction In Ubuntu\n"
-#~ "Medibuntu is a repository of packages that cannot be included into the "
-#~ "Ubuntu distribution for legal reasons (copyright, license, patent, etc)."
-#~ msgstr ""
-#~ "Ubuntu'da Çokluortam ve Eğlence\n"
-#~ "Medibuntu, yasal nedenlerden dolayı (telif hakkı, lisans, patent vb.) Ubuntu "
-#~ "dağıtımında yer alamayan paketleri içeren bir depodur."
-
-#~ msgid ""
-#~ "GetDeb extends the existing software options for Ubuntu (and derived) Linux "
-#~ "distributions by providing major updates and software not yet available on "
-#~ "the official Ubuntu repositories."
-#~ msgstr ""
-#~ "GetDeb, Ubuntu (ve türevi) Linux dağıtımları için henüz resmi Ubuntu "
-#~ "depolarına girmemiş yazılımları ve önemli güncellemeleri sağlayarak yazılım "
-#~ "seçeneklerini genişletir."
-
-#~ msgid ""
-#~ "Ubuntu Mozilla Security Team provides beta and final stable/security updates "
-#~ "for mozilla software in its PPA"
-#~ msgstr ""
-#~ "Ubuntu Mozilla Güvenlik Takımı, kendi depolarında Mozilla yazılımları için "
-#~ "beta ve final kararlı/güvenlik güncellemelerini sağlamaktadır."
-
-#~ msgid "Clean up unneeded packages to free up diskspace."
-#~ msgstr "Boş disk alanını arttırmak için gereksiz paketleri temizleyin."
-
-#~ msgid "Freely edit your software sources to suit your needs."
-#~ msgstr ""
-#~ "Gereksinimlerinizi karşılamak için, yazılım kaynaklarınızı kolayca "
-#~ "düzenleyin."
-
-#, python-format
-#~ msgid "Delete thumbnail cache (will free %s of disk space)"
-#~ msgstr "Küçük resim önbelleğini sil (%s disk alanı boşalacak)"
-
-#~ msgid "PNG image with 64x64 size (*.png)"
-#~ msgstr "PNG resimi 64x64 boyutunda (*.png)"
-
-#~ msgid "Open folder with root priveleges"
-#~ msgstr "Dizini yönetici hakları ile aç"
-
-#~ msgid ""
-#~ "Compiz is broken, Please go to \"Package Cleaner\" -> \"Purge PPAs\" to "
-#~ "cleanup the \"Compiz Packagers PPA\" or \"ppa:compiz/ppa\"."
-#~ msgstr ""
-#~ "Compiz bozuk, Lütfen \"Paket Temizleyicisi\"ne gidin -> \"PPA'ları Temizle\" "
-#~ "ve \"Compiz Packagers PPA\" veya \"ppa:compiz/ppa\"yı kaldırın."
-
-#~ msgid "Spicebird (Testing Version)"
-#~ msgstr "Spicebird (Test Sürümü)"
-
-#~ msgid "Christine Media Player"
-#~ msgstr "Christine Ortam Oynatıcı"
-
-#~ msgid "Ubuntu Mozilla Security Team"
-#~ msgstr "Ubuntu Mozilla Güvenlik Takımı"
-
-#~ msgid "GIMP (Testing Version)"
-#~ msgstr "GIMP (Test Sürümü)"
-
-#~ msgid "aMule (Stable Version)"
-#~ msgstr "aMule (Karalı Sürüm)"
-
-#~ msgid "VirtualBox (Open Source Edition)"
-#~ msgstr "VirtualBox (Açık Kaynak Sürümü)"
-
-#~ msgid "VLC media player"
-#~ msgstr "VLC ortam oynatıcı"
-
-#~ msgid "SMPlayer (Unstable Version)"
-#~ msgstr "SMPlayer (Kararlı Olmayan Sürüm)"
-
-#~ msgid "Tomboy (Unstable Version)"
-#~ msgstr "Tomboy (Kararlı Olmayan Sürüm)"
-
-#~ msgid "Tomboy (Stable Version)"
-#~ msgstr "Tomboy (Kararlı Sürüm)"
-
-#~ msgid "PiTiVi video editor"
-#~ msgstr "PiTiVi video düzenleyici"
-
-#~ msgid "IBus 1.2 for intrepid"
-#~ msgstr "intrepid için IBus 1.2"
-
-#~ msgid "IBus 1.2 for jaunty"
-#~ msgstr "jaunty için IBus 1.2"
-
-#~ msgid "Experimental Gnome Games"
-#~ msgstr "Deneysel Gnome Oyunları"
-
-#~ msgid "Google Testing Repository"
-#~ msgstr "Google Deneme Deposu"
-
-#~ msgid "Inkscape (Nightly Version)"
-#~ msgstr "Inkscape (Gecelik Sürüm)"
-
-#~ msgid "Bisigi Theme Project"
-#~ msgstr "Bisigi Kabuk Tasarısı"
-
-#~ msgid "Moblin Desktop for Ubuntu 9.10 Karmic"
-#~ msgstr "Ubuntu 9.10 Karmic için Moblin Masaüstü"
-
-#~ msgid "IBus 1.2 for karmic"
-#~ msgstr "karmic için IBus 1.2"
-
-#~ msgid "Moblin Desktop for Ubuntu 9.04 Jaunty"
-#~ msgstr "Ubuntu 9.04 Jaunty için Moblin Masaüstü"
-
-#~ msgid "OSD Lyrics"
-#~ msgstr "OSD Sözcükleri"
-
-#~ msgid "Kubuntu Backports"
-#~ msgstr "Kubuntu Bağlantı Noktaları"
+#~ "Üçüncü-Taraf kaynaklardan olan paketleri kullanmak olası bir güvenlik "
+#~ "riskidir.\n"
+#~ "Lütfen dikkatli olun ve sadece güvendiğiniz kaynakları kullanın."

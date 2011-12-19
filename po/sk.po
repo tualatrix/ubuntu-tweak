@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-07 22:04+0800\n"
-"PO-Revision-Date: 2011-01-11 05:18+0000\n"
-"Last-Translator: Tualatrix Chou <tualatrix@gmail.com>\n"
+"POT-Creation-Date: 2011-12-13 15:48+0800\n"
+"PO-Revision-Date: 2011-12-12 09:32+0000\n"
+"Last-Translator: Ding Zhou <tualatrix@gmail.com>\n"
 "Language-Team: Slovak <sk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Launchpad-Export-Date: 2011-05-14 18:52+0000\n"
-"X-Generator: Launchpad (build 13037)\n"
+"X-Launchpad-Export-Date: 2011-12-19 03:09+0000\n"
+"X-Generator: Launchpad (build 14525)\n"
 
 #: ../data/script-worker:54
 #, c-format
@@ -40,45 +40,307 @@ msgstr "Vyberte priečinok"
 msgid "Please select a target (files or folders)."
 msgstr "Prosím, vyberte cieľ (súbory alebo priečinky)."
 
-#: ../data/ubuntu-tweak.desktop.in.h:1
+#: ../data/ubuntu-tweak.desktop.in.h:1 ../ubuntutweak/tweaks/compiz.py:366
+msgid "Compiz Settings"
+msgstr "Nastavenia compiz"
+
+#: ../data/ubuntu-tweak.desktop.in.h:2 ../ubuntutweak/tweaks/icons.py:106
+msgid "Desktop Icon Settings"
+msgstr "Nastavenie ikôn na ploche"
+
+#: ../data/ubuntu-tweak.desktop.in.h:3
+#: ../ubuntutweak/admins/desktoprecovery.py:266
+msgid "Desktop Recovery"
+msgstr "Obnovy počítača"
+
+#: ../data/ubuntu-tweak.desktop.in.h:4
+#: ../ubuntutweak/admins/filetypemanager.py:550
+msgid "File Type Manager"
+msgstr "Správca typov súborov"
+
+#: ../data/ubuntu-tweak.desktop.in.h:5
+msgid "GNOME Settings"
+msgstr "GNOME nastavenia"
+
+#: ../data/ubuntu-tweak.desktop.in.h:6
+#: ../ubuntutweak/tweaks/loginsettings.py:39
+msgid "Login Settings"
+msgstr "Nastavenie prihlásenia"
+
+#: ../data/ubuntu-tweak.desktop.in.h:7 ../ubuntutweak/tweaks/nautilus.py:27
+msgid "Nautilus Settings"
+msgstr "Nautilus nastavenia"
+
+#: ../data/ubuntu-tweak.desktop.in.h:8
+msgid "Power Manager Settings"
+msgstr "Nastavenie Správy Napájania"
+
+#: ../data/ubuntu-tweak.desktop.in.h:9 ../ubuntutweak/tweaks/session.py:29
+msgid "Session Control"
+msgstr "Relácia"
+
+#: ../data/ubuntu-tweak.desktop.in.h:10 ../ubuntutweak/admins/shortcuts.py:29
+msgid "Shortcut Commands"
+msgstr "Klávesové skratky"
+
+#: ../data/ubuntu-tweak.desktop.in.h:11
 msgid "Tweak ubuntu to what you like"
 msgstr "Vylepšiť ubuntu tak, ako sa vám páči"
 
+#: ../data/ubuntu-tweak.desktop.in.h:12 ../ubuntutweak/tweaks/metacity.py:150
+msgid "Window Manager Settings"
+msgstr "Nastavenia Správcu okien"
+
 #: ../data/com.ubuntu-tweak.daemon.policy.in.h:1
-msgid "System policy prevents the Ubuntu Tweak from Tweaking"
-msgstr "Politika systému zabraňuje nástroju Ubuntu Tweak vykonávať úpravy"
+msgid "Clean user and system cruft"
+msgstr "Vyčistiť zbytočnosti v systéme a používateľovi"
 
 #: ../data/com.ubuntu-tweak.daemon.policy.in.h:2
-msgid "Ubuntu Tweak Daemon"
-msgstr "Ubuntu Tweak Démon"
+msgid "Edit the Software Sources lists"
+msgstr "Upraviť zoznam zdrojov softvéru"
+
+#: ../data/com.ubuntu-tweak.daemon.policy.in.h:3
+msgid "To clean the cruft, you need to authenticate."
+msgstr "Pre vyčistenie zbytočností je potrebné overenie."
+
+#: ../data/com.ubuntu-tweak.daemon.policy.in.h:4
+msgid "To edit the software sources, you need to authenticate."
+msgstr "Pre úpravu zdrojov softvéru, potrebujete oprávnenia."
+
+#: ../data/com.ubuntu-tweak.daemon.policy.in.h:5
+msgid "To tweak the settings, you need to authenticate."
+msgstr "Pre vylepšenie nastavení, potrebujete oprávnenia."
+
+#: ../data/com.ubuntu-tweak.daemon.policy.in.h:6
+msgid "Tweak all kinds of settings"
+msgstr "Vylepšiť všetky druhy nastavenia"
 
 #: ../data/ui/preferences.ui.h:1
-msgid "<b>Features</b>"
-msgstr "<b>Funkcie</b>"
+msgid "<b>Admins Extensions</b>"
+msgstr ""
 
 #: ../data/ui/preferences.ui.h:2
-msgid "<b>User Interface</b>"
-msgstr "<b>Používateľské rozhranie</b>"
+msgid "<b>Clip Management</b>"
+msgstr "<b>Správa schránky</b>"
 
 #: ../data/ui/preferences.ui.h:3
-msgid "Default Launch Function"
-msgstr "Predvolená funkcia po spustení"
+msgid "<b>Janitor Extensions</b>"
+msgstr ""
 
 #: ../data/ui/preferences.ui.h:4
-msgid "Default Window Height"
-msgstr "Predvolená výška okna"
+msgid "<b>Tweaks Extensions</b>"
+msgstr ""
 
 #: ../data/ui/preferences.ui.h:5
-msgid "Default Window Width"
-msgstr "Predvolená šírka okna"
+msgid "Admins"
+msgstr "Administrátori"
 
 #: ../data/ui/preferences.ui.h:6
-msgid "Left Menubar Width"
-msgstr "Šírka ľavého panelu menu"
+msgid "Admins Extensions Management"
+msgstr ""
 
 #: ../data/ui/preferences.ui.h:7
-msgid "Ubuntu Tweak Preferences"
-msgstr "Nastavenia Ubuntu Tweak"
+msgid "Install"
+msgstr "Inštalovať"
+
+#: ../data/ui/preferences.ui.h:8
+msgid "Janitor"
+msgstr ""
+
+#: ../data/ui/preferences.ui.h:9
+msgid "Janitor Extensions Management"
+msgstr ""
+
+#: ../data/ui/preferences.ui.h:10
+msgid "Manage the clip view in the Overview"
+msgstr "Spravovať zobrazenie klipu v náhľade"
+
+#: ../data/ui/preferences.ui.h:11
+msgid "Move Down"
+msgstr "Posunúť dole"
+
+#: ../data/ui/preferences.ui.h:12
+msgid "Move Up"
+msgstr "Posunúť hore"
+
+#: ../data/ui/preferences.ui.h:13
+msgid "Overview"
+msgstr "Náhľad"
+
+#: ../data/ui/preferences.ui.h:14
+msgid "Preferences"
+msgstr "Predvoľby"
+
+#: ../data/ui/preferences.ui.h:15
+msgid "Tweaks"
+msgstr "Vylepšenia"
+
+#: ../data/ui/preferences.ui.h:16
+msgid "Tweaks Extensions Management"
+msgstr ""
+
+#: ../data/ui/preferences.ui.h:17 ../data/ui/appspage.ui.h:1
+#: ../data/ui/sourceeditor.ui.h:9
+msgid "column"
+msgstr ""
+
+#: ../data/ui/uturl.ui.h:1
+msgid "Description"
+msgstr "Popis"
+
+#: ../data/ui/uturl.ui.h:2
+msgid "Ubuntu Tweak"
+msgstr "Ubuntu Tweak"
+
+#: ../data/ui/uturl.ui.h:3
+msgid "_Install"
+msgstr "_Nainštalovať"
+
+#: ../data/ui/sourcecenter.ui.h:1
+msgid "<b>Description</b>"
+msgstr ""
+
+#: ../data/ui/sourcecenter.ui.h:2
+msgid "<b>Homepage</b>"
+msgstr ""
+
+#: ../data/ui/sourcecenter.ui.h:3
+msgid "<b>Source URL</b>"
+msgstr ""
+
+#: ../data/ui/sourcecenter.ui.h:4
+msgid "Description is here"
+msgstr "Popis je tu"
+
+#: ../data/ui/sourcecenter.ui.h:5 ../ubuntutweak/gui/dialogs.py:195
+msgid "Details"
+msgstr "Podrobnosti"
+
+#: ../data/ui/sourcecenter.ui.h:6
+msgid "http://ubuntu-tweak.com"
+msgstr ""
+
+#: ../data/ui/brokenmodule.ui.h:1
+msgid "<big><b>This module encountered an error while loading.</b></big>"
+msgstr "<big><b>Pri načítaní tohoto modulu došlo ku chybe.</b></big>"
+
+#: ../data/ui/brokenmodule.ui.h:2 ../data/ui/traceback.ui.h:3
+msgid "Error Message"
+msgstr "Chybová správa"
+
+#: ../data/ui/brokenmodule.ui.h:3
+msgid ""
+"If you'd like to help us fix the problem,\n"
+"Please choose <i>Report</i> to file a new bug report. Make sure to include "
+"the error message below:"
+msgstr ""
+"Ak chcete pomôcť s riešením problému,\n"
+"Prosím vyberte <i>Report</i> podať nové hlásenie o chybe. Uistite sa, že "
+"obsahuje správu o chybe:"
+
+#: ../data/ui/brokenmodule.ui.h:5 ../data/ui/traceback.ui.h:9
+msgid "_Report"
+msgstr "_Ohlásiť"
+
+#: ../data/ui/loginsettings.ui.h:1
+msgid "Click the button to change the login screen background"
+msgstr "Kliknite na tlačítko pre zmenu pozadia obrazovky"
+
+#: ../data/ui/loginsettings.ui.h:2
+msgid "Click the button to change the login screen logo"
+msgstr "Kliknite na tlačítko pre zmenu loga prihlasovacej obrazovky"
+
+#: ../data/ui/loginsettings.ui.h:3
+msgid "Set the same background as the current desktop background"
+msgstr ""
+
+#: ../data/ui/clippage.ui.h:1
+msgid "<b>Recently Used</b>"
+msgstr "<b>Naposledy použité</b>"
+
+#: ../data/ui/sourceeditor.ui.h:1
+msgid "Auto Backup"
+msgstr "Automatické zálohovanie"
+
+#: ../data/ui/sourceeditor.ui.h:2 ../data/ui/desktoprecovery.ui.h:1
+msgid "Backup History:"
+msgstr "História zálohovania:"
+
+#: ../data/ui/sourceeditor.ui.h:3
+msgid "Delete this source"
+msgstr "Odstrániť tento zdroj"
+
+#: ../data/ui/sourceeditor.ui.h:4
+msgid "Redo this source"
+msgstr "Vrátiť tento zdroj"
+
+#: ../data/ui/sourceeditor.ui.h:5
+msgid "Save this source"
+msgstr "Uložiť tento zdroj"
+
+#: ../data/ui/sourceeditor.ui.h:6
+msgid "U_pdate"
+msgstr "_Aktualizovať"
+
+#: ../data/ui/sourceeditor.ui.h:7 ../data/ui/desktoprecovery.ui.h:4
+msgid "_Backup"
+msgstr "_Zálohovanie"
+
+#: ../data/ui/sourceeditor.ui.h:8 ../data/ui/desktoprecovery.ui.h:5
+msgid "_Recover"
+msgstr "_Obnova"
+
+#: ../data/ui/sourceeditor.ui.h:10
+msgid "toolbutton1"
+msgstr "tlačidlo nástroja 1"
+
+#: ../data/ui/sourceeditor.ui.h:11
+msgid "toolbutton2"
+msgstr "tlačidlo nástroja 2"
+
+#: ../data/ui/sourceeditor.ui.h:12
+msgid "toolbutton3"
+msgstr "tlačidlo nástroja 3"
+
+#: ../data/ui/updatemanager.ui.h:1
+msgid "_Install Update"
+msgstr "_Inštalovať aktualizácie"
+
+#: ../data/ui/filetypemanager.ui.h:1
+msgid "Add Application"
+msgstr "Pridať aplikáciu"
+
+#: ../data/ui/filetypemanager.ui.h:2
+msgid "Edit Type"
+msgstr "Upraviť typ"
+
+#: ../data/ui/filetypemanager.ui.h:3
+msgid "Select an application to view its description."
+msgstr "Vyberte aplikáciu ktorej popis chcete zobraziť"
+
+#: ../data/ui/filetypemanager.ui.h:4
+msgid "_Browse..."
+msgstr "_Prehliadať..."
+
+#: ../data/ui/filetypemanager.ui.h:5
+msgid "_Use a custom command"
+msgstr "Po_užiť vlastný príkaz"
+
+#: ../data/ui/janitorpage.ui.h:1
+msgid "<big><b>Cool! Your system is clean!</b></big>"
+msgstr ""
+
+#: ../data/ui/janitorpage.ui.h:2
+msgid "Auto Scan"
+msgstr "Automatické vyhľadávanie"
+
+#: ../data/ui/janitorpage.ui.h:3
+msgid "_Clean"
+msgstr "_Vyčistiť"
+
+#: ../data/ui/janitorpage.ui.h:4
+msgid "_Scan"
+msgstr "_Vyhľadať"
 
 #: ../data/ui/traceback.ui.h:1
 msgid "<big><b>Oops... a fatal error occured</b></big>"
@@ -87,10 +349,6 @@ msgstr "<big><b>Oops... vyskytla sa kritická chyba</b></big>"
 #: ../data/ui/traceback.ui.h:2
 msgid "<big><b>Oops... an error occured</b></big>"
 msgstr "<big><b>Oops... vyskytla sa chyba</b></big>"
-
-#: ../data/ui/traceback.ui.h:3 ../data/ui/brokenmodule.ui.h:2
-msgid "Error Message"
-msgstr "Chybová správa"
 
 #: ../data/ui/traceback.ui.h:4
 msgid ""
@@ -114,9 +372,62 @@ msgstr ""
 "vyberte prosím <i>Ohlásiť</i> a vyplňte nové hlásenie o chybe. Nezabudnite "
 "vložiť nasledovnú chybovú správu:"
 
-#: ../data/ui/traceback.ui.h:9 ../data/ui/brokenmodule.ui.h:5
-msgid "_Report"
-msgstr "_Ohlásiť"
+#: ../data/ui/mainwindow.ui.h:1
+msgid "A_pps"
+msgstr ""
+
+#: ../data/ui/mainwindow.ui.h:2
+msgid "Ubuntu Tweak Website"
+msgstr "Webstránka Ubuntu Tweak"
+
+#: ../data/ui/mainwindow.ui.h:3
+msgid ""
+"Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
+"system and desktop settings."
+msgstr ""
+"Ubuntu Tweak je nástroj pre Ubuntu, ktorý umožňuje jednoducho meniť "
+"nastavenia."
+
+#: ../data/ui/mainwindow.ui.h:4
+msgid ""
+"Ubuntu Tweak is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version.\n"
+"Ubuntu Tweak is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+"You should have received a copy of the GNU General Public License along with "
+"Ubuntu Tweak; if not, write to the Free Software Foundation, Inc., 51 "
+"Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA"
+msgstr ""
+
+#: ../data/ui/mainwindow.ui.h:7
+msgid "Visit Homepage"
+msgstr "Navštíviť domovskú stránku"
+
+#: ../data/ui/mainwindow.ui.h:8
+msgid "_Admins"
+msgstr "_Správca"
+
+#: ../data/ui/mainwindow.ui.h:9
+msgid "_Janitor"
+msgstr ""
+
+#: ../data/ui/mainwindow.ui.h:10
+msgid "_Overview"
+msgstr "_Prehľad"
+
+#: ../data/ui/mainwindow.ui.h:11
+msgid "_Tweaks"
+msgstr "_Vylepšenia"
+
+#: ../data/ui/mainwindow.ui.h:12
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  Prescott_SK https://launchpad.net/~prescott66"
 
 #: ../data/ui/metacity.ui.h:1
 msgid " "
@@ -144,42 +455,6 @@ msgstr "Miesto:"
 msgid "Right"
 msgstr "Vpravo"
 
-#: ../data/ui/updatemanager.ui.h:1
-msgid "_Install Update"
-msgstr "_Inštalovať aktualizácie"
-
-#: ../data/ui/type_edit.ui.h:1
-msgid "Add Application"
-msgstr "Pridať aplikáciu"
-
-#: ../data/ui/type_edit.ui.h:2
-msgid "Edit Type"
-msgstr "Upraviť typ"
-
-#: ../data/ui/type_edit.ui.h:3
-msgid "Select an application to view its description."
-msgstr "Vyberte aplikáciu ktorej popis chcete zobraziť"
-
-#: ../data/ui/type_edit.ui.h:4 ../ubuntutweak/modules/autostart.py:70
-msgid "_Browse..."
-msgstr "_Prehliadať..."
-
-#: ../data/ui/type_edit.ui.h:5
-msgid "_Use a custom command"
-msgstr "Po_užiť vlastný príkaz"
-
-#: ../data/ui/loginsettings.ui.h:1
-msgid "Click the button to change the login screen background"
-msgstr "Kliknite na tlačítko pre zmenu pozadia obrazovky"
-
-#: ../data/ui/loginsettings.ui.h:2
-msgid "Click the button to change the login screen logo"
-msgstr "Kliknite na tlačítko pre zmenu loga prihlasovacej obrazovky"
-
-#: ../data/ui/desktoprecovery.ui.h:1
-msgid "Backup History:"
-msgstr "História zálohovania:"
-
 #: ../data/ui/desktoprecovery.ui.h:2
 msgid "R_eset"
 msgstr "_Vynulovanie"
@@ -188,317 +463,21 @@ msgstr "_Vynulovanie"
 msgid "Setting Name:"
 msgstr "Názov nastavenia:"
 
-#: ../data/ui/desktoprecovery.ui.h:4
-msgid "_Backup"
-msgstr "_Zálohovanie"
-
-#: ../data/ui/desktoprecovery.ui.h:5
-msgid "_Recover"
-msgstr "_Obnova"
-
-#: ../data/ui/brokenmodule.ui.h:1
-msgid "<big><b>This module encountered an error while loading.</b></big>"
-msgstr "<big><b>Pri načítaní tohoto modulu došlo ku chybe.</b></big>"
-
-#: ../data/ui/brokenmodule.ui.h:3
-msgid ""
-"If you'd like to help us fix the problem,\n"
-"Please choose <i>Report</i> to file a new bug report. Make sure to include "
-"the error message below:"
+#: ../ubuntutweak/system/__init__.py:40
+msgid "GNOME Classic"
 msgstr ""
-"Ak chcete pomôcť s riešením problému,\n"
-"Prosím vyberte <i>Report</i> podať nové hlásenie o chybe. Uistite sa, že "
-"obsahuje správu o chybe:"
 
-#: ../ubuntutweak/mainwindow.py:82
-msgid "Welcome to"
-msgstr "Vitajte v"
-
-#: ../ubuntutweak/mainwindow.py:88
-msgid "Tweak otherwise hidden settings."
-msgstr "Vylepšiť inak skryté nastavenia."
-
-#: ../ubuntutweak/mainwindow.py:89
-msgid "Clean up unused packages to free up diskspace."
-msgstr "Odstrániť nepoužívané balíčky, pre uvoľnenie miesta na disku."
-
-#: ../ubuntutweak/mainwindow.py:90
-msgid "Easily install up-to-date versions of many applications."
-msgstr "Jednoducho nainštalovať aktuálne verzie mnohých aplikácií."
-
-#: ../ubuntutweak/mainwindow.py:91
-msgid ""
-"Configure file templates and shortcut scripts for easy access to common "
-"tasks."
-msgstr ""
-"Nakonfigurovať šablóny súborov a skratky skriptov na zjednodušenie prístupu "
-"k bežným úlohám."
-
-#: ../ubuntutweak/mainwindow.py:92
-msgid "Many more useful features!"
-msgstr "Množstvo ďalších užitočných funkcií !"
-
-#: ../ubuntutweak/mainwindow.py:103
-msgid "Please wait a moment..."
-msgstr "Prosím, počkajte chvíľu ..."
-
-#: ../ubuntutweak/mainwindow.py:128
-msgid "Welcome"
-msgstr "Vitajte"
-
-#: ../ubuntutweak/mainwindow.py:129
-msgid "Broken Modules"
-msgstr "Poškodené moduly"
-
-#: ../ubuntutweak/mainwindow.py:130
-#: ../ubuntutweak/modules/desktoprecovery.py:75
-msgid "Applications"
-msgstr "Aplikácie"
-
-#: ../ubuntutweak/mainwindow.py:131
-msgid "Startup"
-msgstr "Spustenie"
-
-#: ../ubuntutweak/mainwindow.py:132 ../ubuntutweak/modules/userdir.py:45
-#: ../ubuntutweak/modules/desktoprecovery.py:76
-msgid "Desktop"
-msgstr "Plocha"
-
-#: ../ubuntutweak/mainwindow.py:133
-msgid "Personal"
-msgstr "Osobné"
-
-#: ../ubuntutweak/mainwindow.py:134
-#: ../ubuntutweak/modules/desktoprecovery.py:77
-msgid "System"
-msgstr "Systém"
-
-#: ../ubuntutweak/mainwindow.py:142
+#: ../ubuntutweak/system/__init__.py:50
 #, python-format
-msgid "Download Ubuntu Tweak %s"
-msgstr "Stiahnuť Ubuntu Tweak %s"
-
-#: ../ubuntutweak/mainwindow.py:161
-msgid "Double click for editing the sources"
-msgstr "Dvojité kliknutie pre editovanie zdrojov"
-
-#: ../ubuntutweak/mainwindow.py:260
-msgid "_Donate"
-msgstr "_Prispejte"
-
-#: ../ubuntutweak/mainwindow.py:305
-msgid ""
-"To keep the package manager work, Ubuntu Tweak has disabled these broken "
-"sources.\n"
-"\n"
-"If you want to re-open these sources, Please try to correct it.\n"
-"\n"
-"You can click \"Help\" to see the guide, then edit these sources at Source "
-"Editor."
+msgid "Unknown (%s)"
 msgstr ""
-"Ak chcete ponechať správcu balíčkov pracovať, Ubuntu Tweak zakáže tieto "
-"poškodené zdroje .\n"
-"\n"
-"Ak chcete znovu otvoriť tieto zdroje skúste ich opraviť.\n"
-"\n"
-"Môžete kliknúť na \"Pomocník\" pre zobrazenie sprievodcu a upravte tieto "
-"zdroje v editorovi zdrojov softvéru."
 
-#: ../ubuntutweak/mainwindow.py:306
-msgid "The software sources list is broken"
-msgstr "Zoznam zdrojov softvéru je poškodený"
+#: ../ubuntutweak/system/__init__.py:52
+#: ../ubuntutweak/clips/hardwareinfo.py:16
+msgid "Unknown"
+msgstr "Neznámy"
 
-#: ../ubuntutweak/mainwindow.py:310
-msgid "_Help"
-msgstr "_Pomocník"
-
-#: ../ubuntutweak/mainwindow.py:321
-msgid ""
-"It is highly recommended that you enable the Ubuntu Tweak stable repository "
-"to get security and maintenance updates.\n"
-"If you don't enable this repository, you will need to update manually.\n"
-"\n"
-"Would you like to enable this repository?"
-msgstr ""
-"Odporúča sa, povoliť stabilné zdroje Ubuntu Tweak pre získanie zabezpečenia "
-"a údržby aktualizácií.\n"
-"Ak nechcete povoliť tieto zdroje softvéru, budete musieť aktualizovať "
-"ručne.\n"
-"\n"
-"Chcete povoliť tieto zdroje softvéru?"
-
-#: ../ubuntutweak/mainwindow.py:324
-#: ../ubuntutweak/modules/gnomesettings.py:222
-#: ../ubuntutweak/modules/sourcecenter.py:1112
-#: ../ubuntutweak/modules/nautilus.py:148
-msgid "Warning"
-msgstr "Upozornenie"
-
-#: ../ubuntutweak/mainwindow.py:325
-#: ../ubuntutweak/modules/sourcecenter.py:1113
-msgid "Never show this dialog"
-msgstr "Nikdy nezobrazovať tento dialóg"
-
-#: ../ubuntutweak/mainwindow.py:535
-msgid "Ubuntu Tweak Website"
-msgstr "Webstránka Ubuntu Tweak"
-
-#: ../ubuntutweak/mainwindow.py:537
-msgid ""
-"Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
-"system and desktop settings."
-msgstr ""
-"Ubuntu Tweak je nástroj pre Ubuntu, ktorý umožňuje jednoducho meniť "
-"nastavenia."
-
-#: ../ubuntutweak/mainwindow.py:539
-msgid "Contributors of 2007"
-msgstr "Prispievatelia roka 2007"
-
-#: ../ubuntutweak/mainwindow.py:541
-msgid "Contributors of 2008"
-msgstr "Prispievatelia roka 2008"
-
-#: ../ubuntutweak/mainwindow.py:543
-msgid "Contributors of 2009"
-msgstr "Prispievatelia roka 2009"
-
-#: ../ubuntutweak/mainwindow.py:546
-msgid "Contributors of 2010"
-msgstr "Prispievatelia roku 2010"
-
-#: ../ubuntutweak/mainwindow.py:553
-msgid "Contributors of 2011"
-msgstr "Prispievatelia roka 2011"
-
-#: ../ubuntutweak/mainwindow.py:561
-msgid "translator-credits"
-msgstr ""
-"Launchpad Contributions:\n"
-"  helix84 https://launchpad.net/~helix84\n"
-"  milboy https://launchpad.net/~milboys"
-
-#: ../ubuntutweak/mainwindow.py:575
-#, python-format
-msgid ""
-"A newer version: %s is available online.\n"
-"Would you like to update?\n"
-"\n"
-"Note: if you prefer to update from the source code, you can disable this "
-"feature in Preferences."
-msgstr ""
-"Novšia verzia: %s je k dispozícii on-line.\n"
-"Chcete aktualizovať?\n"
-"\n"
-"Poznámka: ak chcete aktualizovať zo zdrojového kódu, môžete túto funkciu "
-"vypnúť v nastavení."
-
-#: ../ubuntutweak/mainwindow.py:576
-msgid "Software Update"
-msgstr "Aktualizácia softvéru"
-
-#: ../ubuntutweak/ui/widgets.py:45
-#, python-format
-msgid "Reset setting to default value: %s"
-msgstr "Resetovať nastavenie na predvolenú hodnotu: %s"
-
-#: ../ubuntutweak/ui/widgets.py:118 ../ubuntutweak/ui/widgets.py:143
-#: ../ubuntutweak/modules/icons.py:105
-msgid "Unset"
-msgstr "Nenastavené"
-
-#: ../ubuntutweak/ui/widgets.py:278
-msgid "Please press the new key combination"
-msgstr "Stlačte novú kombináciu kláves"
-
-#: ../ubuntutweak/ui/widgets.py:327
-msgid "Disabled"
-msgstr "Vypnuté"
-
-#: ../ubuntutweak/ui/treeviews.py:71
-msgid "Create folder"
-msgstr "Vytvoriť priečinok"
-
-#: ../ubuntutweak/ui/treeviews.py:75 ../ubuntutweak/modules/icons.py:33
-#: ../ubuntutweak/modules/icons.py:42 ../ubuntutweak/modules/icons.py:51
-msgid "Rename"
-msgstr "Premenovať"
-
-#: ../ubuntutweak/ui/treeviews.py:79
-msgid "Delete"
-msgstr "Odstrániť"
-
-#: ../ubuntutweak/ui/treeviews.py:101
-msgid "Input the dir name"
-msgstr "Zadajte názov adresára"
-
-#: ../ubuntutweak/ui/treeviews.py:126
-msgid "Can't rename the root folder"
-msgstr "Nie je možné premenovať koreňový priečinok"
-
-#: ../ubuntutweak/ui/treeviews.py:143
-msgid "Can't delete the root folder"
-msgstr "Nie je možné zmazať koreňový priečinok"
-
-#: ../ubuntutweak/ui/treeviews.py:158
-msgid ""
-"Can't rename!\n"
-"\n"
-"There are files in it!"
-msgstr ""
-"Nie je možné premenovať!\n"
-"\n"
-"Obsahuje súbory!"
-
-#: ../ubuntutweak/ui/dialogs.py:179
-msgid "An unexpected error has occurred."
-msgstr "Vyskytla sa neočakávaná chyba."
-
-#: ../ubuntutweak/ui/dialogs.py:180
-msgid "Could not authenticate"
-msgstr "Autentifikácia sa neporadila"
-
-#: ../ubuntutweak/ui/dialogs.py:185
-msgid "You need to restart your computer."
-msgstr "Vyžaduje sa reštart počítača."
-
-#: ../ubuntutweak/ui/dialogs.py:186
-msgid "Service hasn't initialized yet"
-msgstr "Služba sa zatiaľ nespustila"
-
-#: ../ubuntutweak/ui/dialogs.py:207 ../ubuntutweak/modules/sourceeditor.py:88
-#: ../ubuntutweak/modules/sourcecenter.py:945
-msgid "Details"
-msgstr "Podrobnosti"
-
-#: ../ubuntutweak/preferences.py:75 ../ubuntutweak/modules/filetype.py:179
-#: ../ubuntutweak/modules/filetype.py:214
-#: ../ubuntutweak/modules/metacity.py:186
-#: ../ubuntutweak/modules/metacity.py:192
-#: ../ubuntutweak/modules/metacity.py:206
-#: ../ubuntutweak/modules/metacity.py:220
-#: ../ubuntutweak/modules/shortcuts.py:99
-#: ../ubuntutweak/modules/shortcuts.py:209
-msgid "None"
-msgstr "Žiadne"
-
-#: ../ubuntutweak/preferences.py:104
-msgid "Check for Updates"
-msgstr "Skontrolovať aktualizácie"
-
-#: ../ubuntutweak/preferences.py:110
-msgid "Use Separated Sources"
-msgstr "Použite oddelené zdroje"
-
-#: ../ubuntutweak/preferences.py:116
-msgid "Enable Synchronous notifications"
-msgstr "Povoliť Synchrónne oznámenia"
-
-#: ../ubuntutweak/preferences.py:122
-msgid "Highlight new items in App and Source Center"
-msgstr "Zvýrazniť nové položky v app a zdrojoch softvéru"
-
-#: ../ubuntutweak/network/downloadmanager.py:98
+#: ../ubuntutweak/network/downloadmanager.py:97
 msgid "Connecting to server"
 msgstr "Pripájanie na server"
 
@@ -507,15 +486,16 @@ msgstr "Pripájanie na server"
 msgid "Downloading...%d"
 msgstr "Sťahuje sa...%d"
 
-#: ../ubuntutweak/network/downloadmanager.py:147
+#: ../ubuntutweak/network/downloadmanager.py:148
 msgid "Downloaded!"
 msgstr "Stiahnuté!"
 
-#: ../ubuntutweak/network/downloadmanager.py:153
+#: ../ubuntutweak/network/downloadmanager.py:155
 msgid "Error happened!"
 msgstr "Vyskytla sa chyba!"
 
 #: ../ubuntutweak/network/utdata.py:50 ../ubuntutweak/network/utdata.py:83
+#: ../ubuntutweak/tweaks/unity.py:63 ../ubuntutweak/tweaks/unity.py:141
 msgid "Never"
 msgstr "Nikdy"
 
@@ -555,71 +535,7 @@ msgstr[2] "pred %d minútami"
 msgid "Just Now"
 msgstr "Práve teraz"
 
-#: ../ubuntutweak/common/debug.py:55
-msgid "Error message has been copied"
-msgstr "Správa o chybe bola skopírovaná"
-
-#: ../ubuntutweak/common/debug.py:56
-msgid ""
-"Now click \"Report\" to enter the bug report website. Make sure to attach "
-"the error message in \"Further information\"."
-msgstr ""
-"Teraz kliknite na tlačítko \"Report\" pre vstup do hlásenia o chybe na "
-"internetovej stránke. Uistite sa, že ste priložili chybové hlásenie v "
-"\"Ďalšie informácie\"."
-
-#: ../ubuntutweak/common/debug.py:72
-msgid "Copy Error Message"
-msgstr "Skopírovať správu o chybe"
-
-#: ../ubuntutweak/common/package.py:206
-#: ../ubuntutweak/modules/appcenter.py:644
-#: ../ubuntutweak/modules/compiz.py:526
-#: ../ubuntutweak/modules/sourcecenter.py:141
-#: ../ubuntutweak/modules/nautilus.py:176
-msgid "Update Successful!"
-msgstr "Aktualizácia prebehla úspešne"
-
-#: ../ubuntutweak/common/package.py:208
-#: ../ubuntutweak/modules/appcenter.py:646
-#: ../ubuntutweak/modules/compiz.py:528
-#: ../ubuntutweak/modules/sourcecenter.py:143
-#: ../ubuntutweak/modules/nautilus.py:178
-msgid "Update Failed!"
-msgstr "Aktualizácia zlyhala!"
-
-#: ../ubuntutweak/common/package.py:340
-msgid "(Not available)"
-msgstr "(nedostupné)"
-
-#: ../ubuntutweak/common/misc.py:15
-#, python-format
-msgid "%(size)d byte"
-msgid_plural "%(size)d bytes"
-msgstr[0] "%(size)d bajt"
-msgstr[1] "%(size)d bajty"
-msgstr[2] "%(size)d bajtov"
-
-#: ../ubuntutweak/common/misc.py:17
-#, python-format
-msgid "%.1f KB"
-msgstr "%.1f KB"
-
-#: ../ubuntutweak/common/misc.py:19
-#, python-format
-msgid "%.1f MB"
-msgstr "%.1f MB"
-
-#: ../ubuntutweak/common/misc.py:20
-#, python-format
-msgid "%.1f GB"
-msgstr "%.1f GB"
-
-#: ../ubuntutweak/policykit/polkitbutton.py:72
-msgid "_Unlock"
-msgstr "_Odomknúť"
-
-#: ../ubuntutweak/policykit/dbusproxy.py:34
+#: ../ubuntutweak/policykit/dbusproxy.py:32
 msgid ""
 "The Ubuntu Tweak daemon didn't start correctly. This means that some "
 "advanced features may not work.\n"
@@ -631,39 +547,536 @@ msgstr ""
 "Ak chcete pomôcť vývojárom vo vyladení, skúste spustiť \"<b>sudo "
 "/usr/share/ubuntu-tweak/ubuntu-tweak-daemon</b>\" v termináli."
 
-#: ../ubuntutweak/modules/userdir.py:46
+#: ../ubuntutweak/policykit/widgets.py:54
+msgid "_Unlock"
+msgstr "_Odomknúť"
+
+#: ../ubuntutweak/common/debug.py:59
+msgid "Error message has been copied"
+msgstr "Správa o chybe bola skopírovaná"
+
+#: ../ubuntutweak/common/debug.py:60
+msgid ""
+"Now click \"Report\" to enter the bug report website. Make sure to attach "
+"the error message in \"Further information\"."
+msgstr ""
+"Teraz kliknite na tlačítko \"Report\" pre vstup do hlásenia o chybe na "
+"internetovej stránke. Uistite sa, že ste priložili chybové hlásenie v "
+"\"Ďalšie informácie\"."
+
+#: ../ubuntutweak/common/debug.py:81
+msgid "Copy Error Message"
+msgstr "Skopírovať správu o chybe"
+
+#: ../ubuntutweak/common/debug.py:116
+msgid "Sorry, your distribution is not supported by Ubuntu Tweak"
+msgstr ""
+
+#: ../ubuntutweak/common/debug.py:117
+msgid ""
+"You can't file bug for this issue. Please only use Ubuntu Tweak on Ubuntu. "
+"Or it may kill your cat."
+msgstr ""
+
+#: ../ubuntutweak/janitor/thumbnailcache_plugin.py:36
+msgid "Thumbnail cache"
+msgstr "Pamäť náhľadu"
+
+#: ../ubuntutweak/janitor/thumbnailcache_plugin.py:71
+#, python-format
+msgid "Thumbnail Cache (%d cache to be cleaned, total size: %s)"
+msgstr ""
+"Pamäť náhľadu (%d vyrovnávacej pamäte vyčistenej, celková veľkosť: %s)"
+
+#: ../ubuntutweak/janitor/thumbnailcache_plugin.py:73
+msgid "Thumbnail Cache (No cache to be cleaned)"
+msgstr "Náhľad pamäte (bez čistenia vyrovnávacej pamäte)"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:62
+msgid "Purge PPA and Downgrade Packages"
+msgstr "Vyčistiť zdroje PPA a Downgrade balíčkov"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:63
+msgid "Downloading Packages..."
+msgstr "Sťahovanie balíčkov..."
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:113
+msgid "Removing key files..."
+msgstr "Odstrániť súbory s kľúčmi..."
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:147
+#, python-format
+msgid "Downgrading...%s"
+msgstr "Prechod na nižšiu verziu...%s"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:154
+#, python-format
+msgid "Downloading...%s"
+msgstr "Sťahovanie...%s"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:202
+msgid "Package"
+msgstr "Balík"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:210
+msgid "Previous Version"
+msgstr "Predchádzajúca verzia"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:219
+msgid "System Version"
+msgstr "Verzia systému"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:262
+msgid "PPA"
+msgstr "Zdroje softvéru"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:298
+msgid "It's safe to purge the PPA, no packages need to be downgraded."
+msgstr ""
+"Je bezpečné očistiť PPA, žiadne balíčky musia byť znížené na nižšiu verziu."
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:301
+msgid "To safely purge the PPA, the following packages must be downgraded."
+msgstr ""
+"Ak chcete bezpečne vyčistiť PPA, tieto balíčky musia byť znížené na nižšiu "
+"verziu."
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:306
+#, python-format
+msgid "You're going to purge: %s"
+msgstr "Chystáte sa čistiť : %s"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:421
+#, python-format
+msgid "%d PPAs to be removed"
+msgstr "%d zdrojov softvéru na odstránenie"
+
+#: ../ubuntutweak/janitor/ppapurge_plugin.py:423
+msgid "No PPA to be removed"
+msgstr "Neboli odstránené žiadne zdroje softvéru"
+
+#: ../ubuntutweak/janitor/autoremoval_plugin.py:10
+msgid "Unneeded Packages"
+msgstr "nepotrebné balíčky"
+
+#: ../ubuntutweak/janitor/autoremoval_plugin.py:39
+#, python-format
+msgid "Unneeded Packages (%d packages to be removed, total size: %s)"
+msgstr "Nepotrebné balíčky (%d balíčkov na odstránenie, celková veľkosť: %s)"
+
+#: ../ubuntutweak/janitor/autoremoval_plugin.py:41
+msgid "Unneeded Packages (No package to be removed)"
+msgstr "Nepotrebné balíčky (Žiadny balík na odstránenie)"
+
+#: ../ubuntutweak/janitor/aptcache_plugin.py:25
+msgid "Apt Cache"
+msgstr "Apt pamäť"
+
+#: ../ubuntutweak/janitor/aptcache_plugin.py:63
+#, python-format
+msgid "Apt Cache (%d cache to be cleaned, total size: %s)"
+msgstr "Apt pamäť (%d pamäte na vyčistenie, celková veľkosť: %s)"
+
+#: ../ubuntutweak/janitor/aptcache_plugin.py:65
+msgid "Apt Cache (No cache to be cleaned)"
+msgstr "Apt pamäť (Žiadna pamäť k vyčisteniu)"
+
+#: ../ubuntutweak/janitor/__init__.py:419
+#, python-format
+msgid "Scanning cruft for \"%s\"..."
+msgstr ""
+
+#: ../ubuntutweak/janitor/__init__.py:581
+#, python-format
+msgid "Cleaning cruft for \"%s\"..."
+msgstr ""
+
+#: ../ubuntutweak/janitor/__init__.py:652
+#: ../ubuntutweak/admins/desktoprecovery.py:81
+#: ../ubuntutweak/modules/__init__.py:34
+msgid "System"
+msgstr "Systém"
+
+#: ../ubuntutweak/janitor/__init__.py:674
+#: ../ubuntutweak/modules/__init__.py:33
+msgid "Personal"
+msgstr "Osobné"
+
+#: ../ubuntutweak/janitor/packageconfigs_plugin.py:29
+msgid "Package Configs"
+msgstr "Konfigurácia balíčkov"
+
+#: ../ubuntutweak/janitor/packageconfigs_plugin.py:59
+#, python-format
+msgid "Packages Configs (%d package configs to be removed)"
+msgstr "Konfigurácia balíčkov (%d kofigurácie balíčkov na odstránenie)"
+
+#: ../ubuntutweak/janitor/packageconfigs_plugin.py:61
+msgid "Packages Configs (No package config to be removed)"
+msgstr "Konfigurácia balíčkov (Žiadne kofigurácie balíčkov na odstránenie)"
+
+#: ../ubuntutweak/janitor/oldkernel_plugin.py:15
+msgid "Old Kernel"
+msgstr "Staré jadro"
+
+#: ../ubuntutweak/janitor/oldkernel_plugin.py:84
+#, python-format
+msgid ""
+"Old Kernel Packages (%d kernel packages to be removed, total size: %s)"
+msgstr ""
+
+#: ../ubuntutweak/janitor/oldkernel_plugin.py:86
+msgid "Old Kernel Packages (No old kernel package to be removed)"
+msgstr "Balíčky starých jadier (Žiaden balíček jadra na odstránenie)"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:79
+#: ../ubuntutweak/modules/__init__.py:29
+msgid "Applications"
+msgstr "Aplikácie"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:80
+#: ../ubuntutweak/admins/userdir.py:34 ../ubuntutweak/modules/__init__.py:32
+#: ../ubuntutweak/tweaks/unity.py:89 ../ubuntutweak/tweaks/ccm/Constants.py:88
+msgid "Desktop"
+msgstr "Plocha"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:106
+msgid "Category"
+msgstr "Kategória"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:147
+msgid "Setting"
+msgstr "Nastavenie"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:188
+msgid "Backup Name:"
+msgstr "Názov zálohy:"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:217
+msgid "Backing up..."
+msgstr "Zálohovanie..."
+
+#: ../ubuntutweak/admins/desktoprecovery.py:242
+#, python-format
+msgid "Backing up...%s"
+msgstr "Zálohovanie ...%s"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:267
+msgid ""
+"Backup and recover your desktop and application settings with ease.\n"
+"You can also use \"Reset\" to reset to the system default settings."
+msgstr ""
+"Zálohovanie a obnova vášho počítača a jednoduchým nastavením aplikácií.\n"
+"Môžete tiež použiť \"Reset\" pre nastavenie predvolených nastavení."
+
+#: ../ubuntutweak/admins/desktoprecovery.py:348
+msgid "No Backup Yet"
+msgstr "Žiadna záloha"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:383
+#, python-format
+msgid ""
+"Backup all settings under: <b>%s</b>\n"
+"Would you like to continue?"
+msgstr ""
+"Zálohovanie všetkých nastavení pod: <b>%s</b>\n"
+"Chcete pokračovať?"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:404
+#, python-format
+msgid ""
+"Backup settings under: <b>%s</b>\n"
+"Would you like to continue?"
+msgstr ""
+"Zálohovanie nastavení pod: <b>%s</b>\n"
+"Chcete pokračovať?"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:447
+#, python-format
+msgid "Would you like to delete the backup:<b>%s/%s</b>?"
+msgstr "Chcete odstrániť zálohu:<b>%s/%s</b>?"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:451
+#, python-format
+msgid ""
+"Would you like to delete the backup of all <b>%s</b> settings named "
+"<b>%s</b>?"
+msgstr ""
+"Chcete zmazať zálohy všetkých <b>%s</b> nastavení s názvom <b>%s</b>?"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:472
+#, python-format
+msgid "Would you like to recover the backup: <b>%s/%s</b>?"
+msgstr "Chcete obnoviť zo zálohy: <b>%s/%s</b>?"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:475
+#, python-format
+msgid ""
+"Would you like to recover the backup of all<b>%s</b> settings named "
+"<b>%s</b>?"
+msgstr "Chcete obnoviť všetky zálohy <b>%s</b> názvy nastavenia <b>%s</b>?"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:479
+msgid ""
+"<b>NOTES</b>: While recovering, your desktop may be unresponsive for a "
+"moment."
+msgstr "<b>NOTES</b>: Počas obnovovania nemusí váš počítač chvíľu reagovať."
+
+#: ../ubuntutweak/admins/desktoprecovery.py:496
+msgid "Recovery Successful!"
+msgstr "Obnovenie bolo úspešné!"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:497
+#: ../ubuntutweak/admins/desktoprecovery.py:533
+msgid "You may need to restart your desktop for changes to take effect"
+msgstr "Je potrebné reštartovať váš počítač, aby sa zmeny prejavili"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:502
+msgid "_Logout"
+msgstr "_Odhlásenie"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:515
+#, python-format
+msgid "Would you like to reset settings for: <b>%s</b>?"
+msgstr "Chcete vynulovať nastavenia pre: <b>%s</b>?"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:517
+#, python-format
+msgid "Would you like to reset all settings under: <b>%s</b>?"
+msgstr "Chcete vynulovať všetky nastavenia pod: <b>%s</b>?"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:519
+msgid ""
+"<b>NOTES</b>: Whilst resetting, your desktop may be unresponsive for a "
+"moment."
+msgstr ""
+"<b>NOTES</b>: Počas vynulovania,  nemusí váš počítač chvíľu reagovať."
+
+#: ../ubuntutweak/admins/desktoprecovery.py:532
+msgid "Reset Successful!"
+msgstr "Reset úspešný!"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:561
+#: ../ubuntutweak/admins/sourceeditor.py:420
+msgid "Please enter a new name for your backup:"
+msgstr "Prosím vložte nový názov pre vašu zálohu:"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:593
+msgid "Backup Successful!"
+msgstr "Zálohovanie úspešné!"
+
+#: ../ubuntutweak/admins/desktoprecovery.py:596
+#: ../ubuntutweak/admins/sourceeditor.py:396
+msgid "Backup Failed!"
+msgstr "Zálohovanie zlyhalo!"
+
+#: ../ubuntutweak/admins/sourceeditor.py:169
+msgid "Source Editor"
+msgstr "Editor zdrojov"
+
+#: ../ubuntutweak/admins/sourceeditor.py:170
+msgid "Manually edit your software sources to suit your needs."
+msgstr "Ručne upraviť svoje zdroje softvéru, aby vyhovovali vašim potrebám."
+
+#: ../ubuntutweak/admins/sourceeditor.py:212
+#, python-format
+msgid "You're viewing the backup \"<b>%s</b>\" for\"<b>%s</b>\""
+msgstr "Pozeráte zálohy \"<b>%s</b>\" pre\"<b>%s</b>\""
+
+#: ../ubuntutweak/admins/sourceeditor.py:282
+msgid "No backup yet"
+msgstr "Záloha nie je k dispozícii"
+
+#: ../ubuntutweak/admins/sourceeditor.py:322
+msgid "Please check the permission of the sources.list file"
+msgstr "Prosím, skontrolujte prístupové práva súboru sources.list."
+
+#: ../ubuntutweak/admins/sourceeditor.py:324
+msgid "Save failed!"
+msgstr "Uloženie zlyhalo"
+
+#: ../ubuntutweak/admins/sourceeditor.py:342
+#, python-format
+msgid "Would you like to recover the backup \"<b>%s</b>\" for \"<b>%s</b>\"?"
+msgstr "Chcete obnoviť zálohu \"<b>%s</b>\" pre \"<b>%s</b>\"?"
+
+#: ../ubuntutweak/admins/sourceeditor.py:352
+msgid "Recovery Failed!"
+msgstr "Obnovenie zlyhalo!"
+
+#: ../ubuntutweak/admins/sourceeditor.py:353
+msgid "You may need to check the permission of source list."
+msgstr "Skontrolujte si oprávnenia v zozname zdrojov."
+
+#: ../ubuntutweak/admins/sourceeditor.py:385
+msgid "Please enter the name for your backup:"
+msgstr "Prosím vložte názov pre zálohu:"
+
+#: ../ubuntutweak/admins/sourceeditor.py:398
+#: ../ubuntutweak/admins/sourceeditor.py:431
+msgid "Please only use alphanumeric characters and \"_\" and \"-\"."
+msgstr "Prosím používajte iba znaky abecedy, čísla a \"_\" a \"-\"."
+
+#: ../ubuntutweak/admins/sourceeditor.py:400
+#: ../ubuntutweak/admins/sourceeditor.py:433
+msgid "Backup name is invalid"
+msgstr "Názov zálohy nie je správny"
+
+#: ../ubuntutweak/admins/sourceeditor.py:406
+#, python-format
+msgid "Would you like to delete the backup:<b>%s</b>?"
+msgstr "Chcete odstrániť zálohu:<b>%s</b>?"
+
+#: ../ubuntutweak/admins/sourceeditor.py:436
+msgid ""
+"The current content will be lost after reloading!\n"
+"Do you wish to continue?"
+msgstr ""
+"Aktuálny obsah sa aktualizáciou stratí!\n"
+"Želáte si pokračovať?"
+
+#: ../ubuntutweak/admins/sourceeditor.py:454
+msgid "You can't delete sources.list!"
+msgstr "Nemôžete odstrániť sources.list"
+
+#: ../ubuntutweak/admins/sourceeditor.py:456
+#, python-format
+msgid ""
+"The \"%s\" will be deleted!\n"
+"Do you wish to continue?"
+msgstr ""
+"\"%s\" bude odstránený!\n"
+"Chcete pokračovať?"
+
+#: ../ubuntutweak/admins/templates.py:70
+msgid "HTML document"
+msgstr "HTML dokument"
+
+#: ../ubuntutweak/admins/templates.py:71
+msgid "ODB Database"
+msgstr "Databáza ODB"
+
+#: ../ubuntutweak/admins/templates.py:72
+msgid "ODS Spreadsheet"
+msgstr "Tabuľka ODS"
+
+#: ../ubuntutweak/admins/templates.py:73
+msgid "ODT Document"
+msgstr "Dokument ODT"
+
+#: ../ubuntutweak/admins/templates.py:74
+msgid "Plain text document"
+msgstr "Textový dokument"
+
+#: ../ubuntutweak/admins/templates.py:75
+msgid "ODP Presentation"
+msgstr "Prezentácia ODP"
+
+#: ../ubuntutweak/admins/templates.py:76
+msgid "Python script"
+msgstr "Python skript"
+
+#: ../ubuntutweak/admins/templates.py:77
+msgid "Pygtk Example"
+msgstr "Príklad Pygtk"
+
+#: ../ubuntutweak/admins/templates.py:78
+msgid "Shell script"
+msgstr "Skript shellu"
+
+#: ../ubuntutweak/admins/templates.py:106
+msgid "Enabled Templates"
+msgstr "Povolené šablóny"
+
+#: ../ubuntutweak/admins/templates.py:114
+msgid "Disabled Templates"
+msgstr "Zakázané šablóny"
+
+#: ../ubuntutweak/admins/templates.py:121
+msgid "Manage Templates"
+msgstr "Spravovať šablóny"
+
+#: ../ubuntutweak/admins/templates.py:122
+msgid ""
+"Here you can manage your document templates.\n"
+"You can add files as templates by dragging them into this window.\n"
+"You can then create new documents based on these templates from the Nautilus "
+"right-click menu."
+msgstr ""
+"Tu môžete spravovať svoje šablóny dokumentov.\n"
+"Môžete pridať súbory, ako šablóny len pretiahnutím do tohto okna.\n"
+"Potom môžete vytvárať nové dokumenty založené na týchto šablónach z Nautilus "
+"v menu pravým-kliknutím."
+
+#: ../ubuntutweak/admins/templates.py:134
+#, python-format
+msgid ""
+"The templates path is incorrect! The current path points to \"%s\".\n"
+"Please reset it to a location within your Home Folder."
+msgstr ""
+"Cesta pre šablóny nie je správna! Súčasná cesta ukazuje na \"%s\".\n"
+"Prosím, nastavte ju na miesto vo vašej domovskej zložke."
+
+#: ../ubuntutweak/admins/templates.py:143
+msgid "Go And Set"
+msgstr "Prejsť a nastaviť"
+
+#: ../ubuntutweak/admins/templates.py:148
+msgid "Restart This Module"
+msgstr "Reštartovať tento modul"
+
+#. self.enable_templates.connect('drag_data_received', self.on_enable_drag_data_received)
+#. self.enable_templates.connect('deleted', self.on_enable_deleted)
+#. self.disable_templates.connect('drag_data_received', self.on_disable_drag_data_received)
+#: ../ubuntutweak/admins/templates.py:173
+msgid "Rebuild System Templates"
+msgstr "Znova zostaviť systémové šablóny"
+
+#: ../ubuntutweak/admins/templates.py:188
+msgid "The templates path is still incorrect, please reset it!"
+msgstr "Cesta pre šablóny nie je správna, prosím nastavte ju!"
+
+#: ../ubuntutweak/admins/templates.py:200
+msgid ""
+"This will delete all disabled templates.\n"
+"Do you wish to continue?"
+msgstr ""
+"Týmto sa odstránia všetky zakázané šablóny.\n"
+"Želáte si pokračovať?"
+
+#: ../ubuntutweak/admins/userdir.py:35
 msgid "Download"
 msgstr "Stiahnuť"
 
-#: ../ubuntutweak/modules/userdir.py:47
+#: ../ubuntutweak/admins/userdir.py:36
 msgid "Templates"
 msgstr "Šablóny"
 
-#: ../ubuntutweak/modules/userdir.py:48
+#: ../ubuntutweak/admins/userdir.py:37
 msgid "Public"
 msgstr "Verejné"
 
-#: ../ubuntutweak/modules/userdir.py:49
+#: ../ubuntutweak/admins/userdir.py:38
 msgid "Document"
 msgstr "Dokument"
 
-#: ../ubuntutweak/modules/userdir.py:50
+#: ../ubuntutweak/admins/userdir.py:39
 msgid "Music"
 msgstr "Hudba"
 
-#: ../ubuntutweak/modules/userdir.py:51
+#: ../ubuntutweak/admins/userdir.py:40
 msgid "Pictures"
 msgstr "Obrázky"
 
-#: ../ubuntutweak/modules/userdir.py:52
+#: ../ubuntutweak/admins/userdir.py:41
 msgid "Videos"
 msgstr "Videá"
 
-#: ../ubuntutweak/modules/userdir.py:158
+#: ../ubuntutweak/admins/userdir.py:154
 msgid "Choose a folder"
 msgstr "Vybrať priečinok"
 
-#: ../ubuntutweak/modules/userdir.py:174
+#: ../ubuntutweak/admins/userdir.py:171
 msgid ""
 "Ubuntu Tweak will restore the selected directory to it's default location.\n"
 "However, you must move your files back into place manually.\n"
@@ -673,27 +1086,27 @@ msgstr ""
 "Súbory však musíte presunúť späť na miesto ručne.\n"
 "Prajete si pokračovať?"
 
-#: ../ubuntutweak/modules/userdir.py:208
+#: ../ubuntutweak/admins/userdir.py:204
 msgid "Directory"
 msgstr "Adresár"
 
-#: ../ubuntutweak/modules/userdir.py:222
+#: ../ubuntutweak/admins/userdir.py:218
 msgid "Path"
 msgstr "Cesta"
 
-#: ../ubuntutweak/modules/userdir.py:229
+#: ../ubuntutweak/admins/userdir.py:225
 msgid "Change"
 msgstr "Zmeniť"
 
-#: ../ubuntutweak/modules/userdir.py:233
+#: ../ubuntutweak/admins/userdir.py:229
 msgid "Restore to default"
 msgstr "Obnoviť na predvolené"
 
-#: ../ubuntutweak/modules/userdir.py:240
+#: ../ubuntutweak/admins/userdir.py:237
 msgid "Default Folder Locations"
 msgstr "Predvolené umiestnenie priečinkov"
 
-#: ../ubuntutweak/modules/userdir.py:241
+#: ../ubuntutweak/admins/userdir.py:238
 msgid ""
 "You can change the paths of default folders here.\n"
 "Don't change the location of your desktop folder unless you know what you "
@@ -702,393 +1115,237 @@ msgstr ""
 "Tu môžete zmeniť cesty ku predvoleným priečinkom.\n"
 "Nemeňte umiestnenie zložiek v počítači, ak neviete čo robíte."
 
-#: ../ubuntutweak/modules/userdir.py:262
+#: ../ubuntutweak/admins/userdir.py:260
 msgid "_Restore"
 msgstr "_Obnoviť"
 
-#: ../ubuntutweak/modules/userdir.py:267
+#: ../ubuntutweak/admins/userdir.py:266
 msgid "_Change"
 msgstr "_Zmeniť"
 
-#: ../ubuntutweak/modules/computer.py:37
-msgid "Computer Details"
-msgstr "Podrobnosti o počítači"
+#: ../ubuntutweak/admins/scripts.py:50
+msgid "Create Launcher ..."
+msgstr "Vytvoriť spúšťač ..."
 
-#: ../ubuntutweak/modules/computer.py:38
-msgid "Some useful system information"
-msgstr "Niektoré užitočné informácie o systéme"
+#: ../ubuntutweak/admins/scripts.py:51
+msgid "Copy to ..."
+msgstr "Kopírovať do ..."
 
-#: ../ubuntutweak/modules/computer.py:45
-msgid "Unknown"
-msgstr "Neznámy"
+#: ../ubuntutweak/admins/scripts.py:52
+msgid "Copy to Desktop"
+msgstr "Kopírovať na plochu"
 
-#: ../ubuntutweak/modules/computer.py:61
-msgid "Change Hostname"
-msgstr "Zmeniť názov počítača"
+#: ../ubuntutweak/admins/scripts.py:53
+msgid "Copy to Download"
+msgstr "Kopírovať do Stiahnuté"
 
-#: ../ubuntutweak/modules/computer.py:64
-msgid "System information"
-msgstr "Systémové informácie"
+#: ../ubuntutweak/admins/scripts.py:54
+msgid "Copy to Home"
+msgstr "Kopírovať do Domovského priečinka"
 
-#: ../ubuntutweak/modules/computer.py:65
-msgid "Hostname"
-msgstr "Názov počítača"
+#: ../ubuntutweak/admins/scripts.py:55
+msgid "Check md5 sum"
+msgstr "Kontrola md5 súčtu"
 
-#: ../ubuntutweak/modules/computer.py:66
-msgid "Distribution"
-msgstr "Distribúcia"
+#: ../ubuntutweak/admins/scripts.py:56
+msgid "Compress PDF"
+msgstr "Stlačené PDF"
 
-#: ../ubuntutweak/modules/computer.py:67
-msgid "Desktop environment"
-msgstr "Pracovné prostredie"
+#: ../ubuntutweak/admins/scripts.py:57
+msgid "Move to ..."
+msgstr "Presunúť do ..."
 
-#: ../ubuntutweak/modules/computer.py:68
-msgid "Kernel"
-msgstr "Jadro"
+#: ../ubuntutweak/admins/scripts.py:58
+msgid "Move to Desktop"
+msgstr "Presunúť na Plochu"
 
-#: ../ubuntutweak/modules/computer.py:69
-msgid "Platform"
-msgstr "Platforma"
+#: ../ubuntutweak/admins/scripts.py:59
+msgid "Move to Download"
+msgstr "Presunúť do Stiahnuté"
 
-#: ../ubuntutweak/modules/computer.py:70
-msgid "CPU"
-msgstr "Procesor"
+#: ../ubuntutweak/admins/scripts.py:60
+msgid "Move to Home"
+msgstr "Presunúť do Domovského priečinka"
 
-#: ../ubuntutweak/modules/computer.py:71
-msgid "Memory"
-msgstr "Pamäť"
+#: ../ubuntutweak/admins/scripts.py:61
+msgid "Create hardlink to ..."
+msgstr "Vytvoriť pevný odkaz na..."
 
-#: ../ubuntutweak/modules/computer.py:75
-msgid "User information"
-msgstr "Informácie o používateľovi"
+#: ../ubuntutweak/admins/scripts.py:62
+msgid "Link to ..."
+msgstr "Odkaz na..."
 
-#: ../ubuntutweak/modules/computer.py:76
-msgid "Current user"
-msgstr "Aktuálny používateľ"
+#: ../ubuntutweak/admins/scripts.py:63
+msgid "Link to Desktop"
+msgstr "Odkaz na Plochu"
 
-#: ../ubuntutweak/modules/computer.py:77
-msgid "Home directory"
-msgstr "Domovský adresár"
+#: ../ubuntutweak/admins/scripts.py:64
+msgid "Link to Download"
+msgstr "Odkaz na Stiahnuté"
 
-#: ../ubuntutweak/modules/computer.py:78
-msgid "Shell"
-msgstr "Shell"
+#: ../ubuntutweak/admins/scripts.py:65
+msgid "Link to Home"
+msgstr "Odkaz na Domovský priečinok"
 
-#: ../ubuntutweak/modules/computer.py:79
-msgid "Language"
-msgstr "Jazyk"
+#: ../ubuntutweak/admins/scripts.py:66
+msgid "Open with your favourite text editor"
+msgstr "Otvoriť v predvolenom textovom editore"
 
-#: ../ubuntutweak/modules/computer.py:86
-msgid "Please enter your new hostname. Blank characters should not be used."
-msgstr ""
-"Prosím, zadajte nový názov počítača. Prázdne znaky by nemali byť používané."
+#: ../ubuntutweak/admins/scripts.py:67
+msgid "Open with your favourite text editor (as root)"
+msgstr "Otvoriť v predvolenom textovom editore (ako root)"
 
-#: ../ubuntutweak/modules/computer.py:87
-msgid "New hostname"
-msgstr "Nový názov počítača"
+#: ../ubuntutweak/admins/scripts.py:68
+msgid "Browse as root"
+msgstr "Prehliadať ako root."
 
-#: ../ubuntutweak/modules/lockdown.py:34
-msgid "Security Related"
-msgstr "Súvisiace s bezpečnosťou"
+#: ../ubuntutweak/admins/scripts.py:69
+msgid "Search in current folder"
+msgstr "Hľadať v aktuálnom priečinku"
 
-#: ../ubuntutweak/modules/lockdown.py:35
-msgid "Tweak some security settings"
-msgstr "Doladiť niektoré bezpečnostné nastavenia"
+#: ../ubuntutweak/admins/scripts.py:70
+msgid "Convert image to JPG"
+msgstr "Previesť obrázok na JPG"
 
-#: ../ubuntutweak/modules/lockdown.py:44
-msgid "System Security options"
-msgstr "Možnosti zabezpečenia systému"
+#: ../ubuntutweak/admins/scripts.py:71
+msgid "Convert image to PNG"
+msgstr "Previesť obrázok na PNG"
 
-#: ../ubuntutweak/modules/lockdown.py:46
-msgid "Disable \"Run Application\" dialog (Alt+F2)"
-msgstr "Zakázať dialóg „Spustiť aplikáciu“ (Alt+F2)"
+#: ../ubuntutweak/admins/scripts.py:72
+msgid "Convert image to GIF"
+msgstr "Previesť obrázok na GIF"
 
-#: ../ubuntutweak/modules/lockdown.py:50
-msgid "Disable \"Lock Screen\""
-msgstr "Zakázať „Uzamknúť obrazovku“"
+#: ../ubuntutweak/admins/scripts.py:73
+msgid "Set image as wallpaper"
+msgstr "Nastaviť obrázok ako pozadie plochy"
 
-#: ../ubuntutweak/modules/lockdown.py:54
-msgid "Disable printing"
-msgstr "Zakázať tlač"
+#: ../ubuntutweak/admins/scripts.py:74
+msgid "Make hard shadow to image"
+msgstr "Urobiť silný tieň na obrázku"
 
-#: ../ubuntutweak/modules/lockdown.py:58
-msgid "Disable printer settings"
-msgstr "Vypnúť nastavenia tlačiarne"
+#: ../ubuntutweak/admins/scripts.py:102
+msgid "Enabled Scripts"
+msgstr "Povolené skripty"
 
-#: ../ubuntutweak/modules/lockdown.py:62
-msgid "Disable save to disk"
-msgstr "Zakázať uložiť na disk"
+#: ../ubuntutweak/admins/scripts.py:133
+msgid "Disabled Scripts"
+msgstr "Zakázané skripty"
 
-#: ../ubuntutweak/modules/lockdown.py:66
-msgid "Disable \"Fast User Switching\""
-msgstr "Zakázať „Rýchle prepínanie používateľov“"
+#: ../ubuntutweak/admins/scripts.py:140
+msgid "Manage Scripts"
+msgstr "Spravovať skripty"
 
-#: ../ubuntutweak/modules/lockdown.py:73
-msgid "Fix the appearance of themes when granted root privileges"
-msgstr "Opraviť vzhľad tém, keď sú udelené oprávnenia používateľa root"
-
-#: ../ubuntutweak/modules/lockdown.py:79
-msgid "Miscellaneous Options"
-msgstr "Rôzne nastavenia"
-
-#: ../ubuntutweak/modules/sourceeditor.py:66
-#: ../ubuntutweak/modules/sourceeditor.py:71
-msgid "Choose the sources"
-msgstr "Vyberte zdroje"
-
-#: ../ubuntutweak/modules/sourceeditor.py:72
+#: ../ubuntutweak/admins/scripts.py:141
 msgid ""
-"You can read the title and comment to determine which source is suitable for "
-"you."
+"Scripts can be used to complete all kinds of tasks.\n"
+"You can drag and drop scripts here from File Manager.\n"
+"'Scripts' will then be added to the context menu."
 msgstr ""
-"Na základe názvu a komentára si môžete vybrať, ktoré zdroje sú pre vás "
-"vhodné."
+"Skripty môžu byť použité na dokončenie všetkých druhov úloh.\n"
+"Môžete vkladať skripty priamo sem zo správcu súborov.\n"
+"'Skripty' budú pridané do kontextového menu."
 
-#: ../ubuntutweak/modules/sourceeditor.py:107
-#: ../ubuntutweak/modules/sourceeditor.py:112
-msgid "Submit your sources"
-msgstr "Odoslať svoje zdroje"
+#: ../ubuntutweak/admins/scripts.py:171
+msgid "Rebuild System Scripts"
+msgstr "Znovu zostaviť systémové skripty"
 
-#: ../ubuntutweak/modules/sourceeditor.py:112
-msgid "You can submit your sources to the server for other people to use."
-msgstr ""
-"Môžete poslať svoj zoznam zdrojov na server, aby ich mohli používať ostatní "
-"ľudia."
-
-#: ../ubuntutweak/modules/sourceeditor.py:117
-msgid "_Source Title:"
-msgstr "_Názov zdroja:"
-
-#: ../ubuntutweak/modules/sourceeditor.py:120
-msgid "_Locale:"
-msgstr "_Locale:"
-
-#: ../ubuntutweak/modules/sourceeditor.py:123
-#: ../ubuntutweak/modules/autostart.py:52
-msgid "Comm_ent:"
-msgstr "Kom_entár"
-
-#: ../ubuntutweak/modules/sourceeditor.py:127
-msgid "Enter the title of the source, e.g. \"Ubuntu Official Repostory\""
-msgstr "Zadajte názov zdroja, napr. „Oficiálne zdroje Ubuntu“"
-
-#: ../ubuntutweak/modules/sourceeditor.py:129
-msgid "If the locale isn't correct you can edit manually"
-msgstr "Ak locale nie je správne, môžete ho upraviť ručne."
-
-#: ../ubuntutweak/modules/sourceeditor.py:144
-msgid "Submit"
-msgstr "Odoslať"
-
-#: ../ubuntutweak/modules/sourceeditor.py:192
-msgid "Please check your network connection!"
-msgstr "Prosím skontrolujte svoje pripojenie k internetu"
-
-#: ../ubuntutweak/modules/sourceeditor.py:192
-msgid "Network Error"
-msgstr "Chyba siete"
-
-#: ../ubuntutweak/modules/sourceeditor.py:199
-msgid "Uploading..."
-msgstr "Uploadovanie..."
-
-#: ../ubuntutweak/modules/sourceeditor.py:215
-msgid "Updating..."
-msgstr "Aktualizácia..."
-
-#: ../ubuntutweak/modules/sourceeditor.py:353
-msgid "Source Editor"
-msgstr "Editor zdrojov"
-
-#: ../ubuntutweak/modules/sourceeditor.py:354
-msgid "Manually edit your software sources to suit your needs."
-msgstr "Ručne upraviť svoje zdroje softvéru, aby vyhovovali vašim potrebám."
-
-#: ../ubuntutweak/modules/sourceeditor.py:450
-msgid "Please input the correct source information!"
-msgstr "Prosím, zadajte správny zdroj informácií!"
-
-#: ../ubuntutweak/modules/sourceeditor.py:463
+#: ../ubuntutweak/admins/scripts.py:185
 msgid ""
-"You can submit your sources to our server to help expand the sources list, "
-"or you can use the official sources.\n"
-"Do you wish to use the official sources?"
-msgstr ""
-"Môžete pridať vami používané zdroje na náš server a tak pomôcť rozšíriť "
-"zoznam zdrojov, alebo môžete použiť oficiálne zdroje.\n"
-"Prajete si využiť oficiálne zdroje?"
-
-#: ../ubuntutweak/modules/sourceeditor.py:466
-msgid "No source data available"
-msgstr "Nie sú dostupné údaje o zdrojoch"
-
-#: ../ubuntutweak/modules/sourceeditor.py:483
-msgid ""
-"Your sources will be reviewed and made available for others soon.\n"
-"Thank you!"
-msgstr ""
-"Vaše zdroje skontrolujeme a čoskoro sprístupníme ostatným.\n"
-"Ďakujeme!"
-
-#: ../ubuntutweak/modules/sourceeditor.py:484
-msgid "Successfully submitted"
-msgstr "Úspešne odoslané"
-
-#: ../ubuntutweak/modules/sourceeditor.py:496
-msgid ""
-"You've edited sources.list without saving changes.\n"
-"Do you want to save changes?"
-msgstr ""
-"Upravovali ste sources.list bez uloženia zmien.\n"
-"Prajete si zmeny uložiť?"
-
-#: ../ubuntutweak/modules/sourceeditor.py:507
-msgid "Please check the permission of the sources.list file"
-msgstr "Prosím, skontrolujte prístupové práva súboru sources.list."
-
-#: ../ubuntutweak/modules/sourceeditor.py:508
-msgid "Save failed!"
-msgstr "Uloženie zlyhalo"
-
-#: ../ubuntutweak/modules/sourceeditor.py:517
-msgid ""
-"The current content will be lost after reloading!\n"
+"This will delete all disabled scripts.\n"
 "Do you wish to continue?"
 msgstr ""
-"Aktuálny obsah sa aktualizáciou stratí!\n"
-"Želáte si pokračovať?"
-
-#: ../ubuntutweak/modules/sourceeditor.py:528
-msgid "You can't delete sources.list!"
-msgstr "Nemôžete odstrániť sources.list"
-
-#: ../ubuntutweak/modules/sourceeditor.py:530
-#, python-format
-msgid ""
-"The \"%s\" will be deleted!\n"
-"Do you wish to continue?"
-msgstr ""
-"\"%s\" bude odstránený!\n"
+"Týmto sa zmažú všetky vypnuté skripty.\n"
 "Chcete pokračovať?"
 
-#: ../ubuntutweak/modules/appcenter.py:193
-#: ../ubuntutweak/modules/desktoprecovery.py:102
-msgid "Category"
-msgstr "Kategória"
-
-#: ../ubuntutweak/modules/appcenter.py:212
-msgid "All Categories"
-msgstr "Všetky kategórie"
-
-#: ../ubuntutweak/modules/appcenter.py:503
-msgid "Checking update..."
-msgstr "Kontrola aktualizácií..."
-
-#: ../ubuntutweak/modules/appcenter.py:533
-msgid "Fetching online data..."
-msgstr "Sťahujem súbory online..."
-
-#: ../ubuntutweak/modules/appcenter.py:537
-msgid "Application Center"
-msgstr "Centrum aplikácií"
-
-#: ../ubuntutweak/modules/appcenter.py:538
+#: ../ubuntutweak/admins/shortcuts.py:30
 msgid ""
-"A simple but efficient way for finding and installing popular applications.\n"
-"Data will be synchronized automatically with the remote server.\n"
-"You can click the \"Sync\" button to perform a manual check for updates."
+"By configuring keyboard shortcuts, you can access your favourite "
+"applications instantly.\n"
+"Enter the command to run the application and choose a shortcut key "
+"combination."
 msgstr ""
-"Jednoduchý, ale účinný spôsob pre nájdenie a inštaláciu populárnych "
-"aplikácií.\n"
-"Údaje sa budú synchronizovať automaticky so vzdialeným serverom.\n"
-"Môžete kliknite na tlačidlo \"Sync\" k vykonaniu manuálnej kontroly "
-"aktualizácií."
+"Podľa konfigurácie klávesových skratiek, môžete mať okamžitý prístup ku "
+"obľúbeným aplikáciám.\n"
+"Zadajte príkaz spustiť aplikáciu a vyberte si klávesovú kombináciu."
 
-#: ../ubuntutweak/modules/appcenter.py:543
-msgid "Visit Online Application Center"
-msgstr "Navštíviť centrum aplikácií online"
+#: ../ubuntutweak/admins/shortcuts.py:83
+#, python-format
+msgid "Command %d"
+msgstr "Príkaz %d"
 
-#: ../ubuntutweak/modules/appcenter.py:549
-#: ../ubuntutweak/modules/sourcecenter.py:924
-msgid "_Sync"
-msgstr "_Sync"
+#: ../ubuntutweak/admins/shortcuts.py:88
+#: ../ubuntutweak/admins/shortcuts.py:200
+#: ../ubuntutweak/admins/filetypemanager.py:177
+#: ../ubuntutweak/admins/filetypemanager.py:201
+#: ../ubuntutweak/tweaks/metacity.py:183 ../ubuntutweak/tweaks/metacity.py:192
+#: ../ubuntutweak/tweaks/metacity.py:207 ../ubuntutweak/tweaks/metacity.py:222
+msgid "None"
+msgstr "Žiadne"
 
-#: ../ubuntutweak/modules/appcenter.py:586
-#: ../ubuntutweak/modules/sourcecenter.py:1005
-msgid "Last synced:"
-msgstr "Posledná synchronizácia:"
+#: ../ubuntutweak/admins/shortcuts.py:93
+#: ../ubuntutweak/admins/shortcuts.py:145
+msgid "disabled"
+msgstr "vypnuté"
 
-#: ../ubuntutweak/modules/appcenter.py:591
-msgid "New application data available, would you like to update?"
-msgstr "Sú dostupné nové údaje, chcete ich aktualizovať?"
+#: ../ubuntutweak/admins/shortcuts.py:102
+msgid "ID"
+msgstr "ID"
 
-#: ../ubuntutweak/modules/appcenter.py:660
-msgid "Update available, would you like to update?"
-msgstr "Aktualizácie sú k dispozícii, chcete ich aktualizovať?"
+#: ../ubuntutweak/admins/shortcuts.py:113
+msgid "Command"
+msgstr "Príkaz"
 
-#: ../ubuntutweak/modules/appcenter.py:669
-msgid ""
-"Network Error, please check your network connection - or the remote server "
-"may be down."
-msgstr ""
-"Chyba siete, prosím skontrolujte vaše sieťové pripojenie - alebo je spadnutý "
-"vzdialený server."
+#: ../ubuntutweak/admins/shortcuts.py:126
+msgid "Key"
+msgstr "Kláves"
 
-#: ../ubuntutweak/modules/appcenter.py:673
-#: ../ubuntutweak/modules/sourcecenter.py:1169
-msgid "No update available."
-msgstr "Nie je k dispozícii žiadna aktualizácia."
-
-#: ../ubuntutweak/modules/appcenter.py:685
-msgid "An error occurred while downloading the file."
-msgstr "Došlo ku chybe pri sťahovaní súboru."
-
-#: ../ubuntutweak/modules/filetype.py:35
+#: ../ubuntutweak/admins/filetypemanager.py:44
 msgid "Audio"
 msgstr "Zvuk"
 
-#: ../ubuntutweak/modules/filetype.py:36
+#: ../ubuntutweak/admins/filetypemanager.py:45
 msgid "Text"
 msgstr "Text"
 
-#: ../ubuntutweak/modules/filetype.py:37
+#: ../ubuntutweak/admins/filetypemanager.py:46
 msgid "Image"
 msgstr "Obrázok"
 
-#: ../ubuntutweak/modules/filetype.py:38
+#: ../ubuntutweak/admins/filetypemanager.py:47
 msgid "Video"
 msgstr "Video"
 
-#: ../ubuntutweak/modules/filetype.py:39
+#: ../ubuntutweak/admins/filetypemanager.py:48
 msgid "Application"
 msgstr "Aplikácia"
 
-#: ../ubuntutweak/modules/filetype.py:40
+#: ../ubuntutweak/admins/filetypemanager.py:49
+#: ../ubuntutweak/tweaks/ccm/Constants.py:94
 msgid "All"
 msgstr "Všetko"
 
-#: ../ubuntutweak/modules/filetype.py:73
+#: ../ubuntutweak/admins/filetypemanager.py:74
 msgid "Categories"
 msgstr "Kategórie"
 
-#: ../ubuntutweak/modules/filetype.py:131
+#: ../ubuntutweak/admins/filetypemanager.py:127
 msgid "File Type"
 msgstr "Typ súboru"
 
-#: ../ubuntutweak/modules/filetype.py:146
+#: ../ubuntutweak/admins/filetypemanager.py:143
 msgid "Associated Application"
 msgstr "Predvolená aplikácia"
 
-#: ../ubuntutweak/modules/filetype.py:244
+#: ../ubuntutweak/admins/filetypemanager.py:231
 #, python-format
 msgid "Open files of type \"%s\" with:"
 msgstr "Otvoriť súbory typu \"%s\" s:"
 
-#: ../ubuntutweak/modules/filetype.py:273
+#: ../ubuntutweak/admins/filetypemanager.py:263
 msgid "Choose an application"
 msgstr "Vyberte aplikáciu"
 
-#: ../ubuntutweak/modules/filetype.py:368
+#: ../ubuntutweak/admins/filetypemanager.py:363
 #, python-format
 msgid "Select an application to open files of type: <b>%s</b>"
 msgid_plural "Select an application to open files for these types: <b>%s</b>"
@@ -1096,198 +1353,48 @@ msgstr[0] "Vyberte aplikáciu pre otvorenie súborov typu: <b>%s</b>"
 msgstr[1] "Vyberte aplikáciu pre otvorenie týchto typov súborov: <b>%s</b>"
 msgstr[2] "Vyberte aplikáciu pre otvorenie týchto typov súborov: <b>%s</b>"
 
-#: ../ubuntutweak/modules/filetype.py:402
-#, python-format
-msgid "Could not find %s"
-msgstr "Nepodarilo sa nájsť %s"
-
-#: ../ubuntutweak/modules/filetype.py:403
+#: ../ubuntutweak/admins/filetypemanager.py:402
 msgid "Could not find application"
 msgstr "Nepodarilo sa nájsť aplikáciu"
 
-#: ../ubuntutweak/modules/filetype.py:523
-msgid "File Type Manager"
-msgstr "Správca typov súborov"
+#: ../ubuntutweak/admins/filetypemanager.py:403
+#, python-format
+msgid "Could not find \"%s\", Please ensure the path is correct."
+msgstr "Nemôžem nájsť \"%s\", skontrolujte správnosť cesty."
 
-#: ../ubuntutweak/modules/filetype.py:524
+#: ../ubuntutweak/admins/filetypemanager.py:551
 msgid "Manage all registered file types"
 msgstr "Spravovať všetky typy registrovaných súborov"
 
-#: ../ubuntutweak/modules/filetype.py:557
+#: ../ubuntutweak/admins/filetypemanager.py:588
+msgid "_Reset"
+msgstr ""
+
+#: ../ubuntutweak/admins/filetypemanager.py:594
 msgid "Only show filetypes with associated applications"
 msgstr "Zobraziť len typy súborov s pridruženými aplikáciami"
 
-#: ../ubuntutweak/modules/updatemanager.py:33
-msgid "Update Manager"
-msgstr "Správca aktualizácií"
+#: ../ubuntutweak/modules/__init__.py:28
+msgid "Broken Modules"
+msgstr "Poškodené moduly"
 
-#: ../ubuntutweak/modules/updatemanager.py:34
-msgid "A simple and easy-to-use update manager"
-msgstr "Jednoduchý a jednoducho použiteľný manažér aktualizácií"
-
-#: ../ubuntutweak/modules/updatemanager.py:47
-msgid "Automatically run System Update Manager"
-msgstr "Automaticky spustiť správcu aktualizácií systému"
-
-#: ../ubuntutweak/modules/updatemanager.py:52
-msgid "Temporarily disable third-party PPA sources whilst refreshing"
-msgstr "Dočasne zakázať zdroje PPA tretej-strany pri obnovovaní"
-
-#: ../ubuntutweak/modules/updatemanager.py:79
-msgid "Your system is clean and no updates are available."
-msgstr "Váš systém je čistý a žiadna aktualizácia nie je k dispozícii."
-
-#: ../ubuntutweak/modules/updatemanager.py:80
-#: ../ubuntutweak/modules/sourcecenter.py:148
-msgid "Software information is now up-to-date"
-msgstr "Informácie o softvéri sú teraz aktuálne"
-
-#: ../ubuntutweak/modules/updatemanager.py:93
-msgid "Install Update"
-msgid_plural "Install Updates"
-msgstr[0] "Inštalovať aktualizáciu"
-msgstr[1] "Inštalovať aktualizácie"
-msgstr[2] "Inštalovať aktualizácií"
-
-#: ../ubuntutweak/modules/metacity.py:37
-#: ../ubuntutweak/modules/metacity.py:196
-#: ../ubuntutweak/modules/metacity.py:210
-#: ../ubuntutweak/modules/metacity.py:224
-msgid "Menu"
-msgstr "Menu"
-
-#: ../ubuntutweak/modules/metacity.py:38
-msgid "Title"
-msgstr "Názov"
-
-#: ../ubuntutweak/modules/metacity.py:39
-#: ../ubuntutweak/modules/metacity.py:192
-#: ../ubuntutweak/modules/metacity.py:206
-#: ../ubuntutweak/modules/metacity.py:220
-msgid "Maximize"
-msgstr "Maximalizovať"
-
-#: ../ubuntutweak/modules/metacity.py:40
-#: ../ubuntutweak/modules/metacity.py:195
-#: ../ubuntutweak/modules/metacity.py:209
-#: ../ubuntutweak/modules/metacity.py:223
-msgid "Minimize"
-msgstr "Minimalizovať"
-
-#: ../ubuntutweak/modules/metacity.py:41
-msgid "Close"
-msgstr "Zatvoriť"
-
-#: ../ubuntutweak/modules/metacity.py:42
-msgid "Spacer"
-msgstr "Medzerník"
-
-#: ../ubuntutweak/modules/metacity.py:153
-msgid "Window Manager Settings"
-msgstr "Nastavenia Správcu okien"
-
-#: ../ubuntutweak/modules/metacity.py:154
-msgid "Manage Metacity Window Manager settings"
-msgstr "Spravovať nastavenia správcu okien Metacity"
-
-#: ../ubuntutweak/modules/metacity.py:177
-msgid "Window Titlebar Button Layout"
-msgstr "Rozloženie tlačidiel na titulke okna"
-
-#: ../ubuntutweak/modules/metacity.py:181
-msgid "Window Titlebar Actions"
-msgstr "Operácie titulného pruhu okna"
-
-#: ../ubuntutweak/modules/metacity.py:183
-msgid "Titlebar mouse wheel action"
-msgstr "Operácia pri otáčaní kolieskom myši na titulku okna"
-
-#: ../ubuntutweak/modules/metacity.py:186
-#: ../ubuntutweak/modules/metacity.py:195
-#: ../ubuntutweak/modules/metacity.py:209
-#: ../ubuntutweak/modules/metacity.py:223
-msgid "Roll up"
-msgstr "Zrolovať hore"
-
-#: ../ubuntutweak/modules/metacity.py:189
-msgid "Titlebar double-click action"
-msgstr "Operácia pri dvojitom kliknutí myši na titulku okna"
-
-#: ../ubuntutweak/modules/metacity.py:193
-#: ../ubuntutweak/modules/metacity.py:207
-#: ../ubuntutweak/modules/metacity.py:221
-msgid "Maximize Horizontally"
-msgstr "Maximalizovať vodorovne"
-
-#: ../ubuntutweak/modules/metacity.py:194
-#: ../ubuntutweak/modules/metacity.py:208
-#: ../ubuntutweak/modules/metacity.py:222
-msgid "Maximize Vertically"
-msgstr "Maximalizovať zvisle"
-
-#: ../ubuntutweak/modules/metacity.py:196
-#: ../ubuntutweak/modules/metacity.py:210
-#: ../ubuntutweak/modules/metacity.py:224
-msgid "Lower"
-msgstr "Presunúť na pozadie"
-
-#: ../ubuntutweak/modules/metacity.py:203
-msgid "Titlebar middle-click action"
-msgstr "Operácia pri kliknutí stredným tlačidlom myši na titulok okna"
-
-#: ../ubuntutweak/modules/metacity.py:217
-msgid "Titlebar right-click action"
-msgstr "Operácia pri kliknutí pravým tlačidlom myši na titulok okna"
-
-#: ../ubuntutweak/modules/metacity.py:234
-msgid "Window Decoration Effects"
-msgstr "Efekty dekorácií okien"
-
-#: ../ubuntutweak/modules/metacity.py:236
-msgid "Use Metacity window theme"
-msgstr "Použiť tému Metacity"
-
-#: ../ubuntutweak/modules/metacity.py:240
-msgid "Enable active window transparency"
-msgstr "Zapnúť priesvitnosť aktívnych okien"
-
-#: ../ubuntutweak/modules/metacity.py:244
-msgid "Active window transparency level"
-msgstr "Aktivovať úroveň priesvitnosti okien"
-
-#: ../ubuntutweak/modules/metacity.py:249
-msgid "Enable inactive window transparency"
-msgstr "Zapnúť priesvitnosť neaktívnych okien"
-
-#: ../ubuntutweak/modules/metacity.py:253
-msgid "Inactive window shade transparency level"
-msgstr "Odtieň úroveň priesvitnosti neaktívnych okien"
-
-#: ../ubuntutweak/modules/metacity.py:261
-msgid "Enable Metacity's compositing feature"
-msgstr "Zapnúť kompozitné možnosti Metacity"
-
-#: ../ubuntutweak/modules/metacity.py:266
-msgid "Compositing Manager"
-msgstr "Správca kompozitných efektov"
-
-#: ../ubuntutweak/modules/metacity.py:308
-msgid ""
-"To enable Metacity's compositing feature, you should manually disable Visual "
-"Effects in \"Appearance\"."
+#: ../ubuntutweak/modules/__init__.py:30
+msgid "Appearance"
 msgstr ""
-"Ak chcete zapnúť kompozitné možnosti Metacity, mali by ste ručne vypnúť "
-"„Vizuálne efekty“ na karte „Vzhľad“."
 
-#: ../ubuntutweak/modules/__init__.py:103
+#: ../ubuntutweak/modules/__init__.py:31
+msgid "Startup"
+msgstr "Spustenie"
+
+#: ../ubuntutweak/modules/__init__.py:35
+msgid "Other"
+msgstr "Iné"
+
+#: ../ubuntutweak/modules/__init__.py:228
 msgid "More"
 msgstr "Viac"
 
-#: ../ubuntutweak/modules/__init__.py:259
-msgid "This module encountered an error while loading."
-msgstr "Došlo ku chybe pri načítaní tohoto modulu."
-
-#: ../ubuntutweak/modules/__init__.py:281
+#: ../ubuntutweak/modules/__init__.py:367
 #, python-format
 msgid ""
 "Ubuntu Tweak has detected that your apt configuration is broken.\n"
@@ -1312,2477 +1419,1430 @@ msgstr ""
 "\n"
 "Alebo môžete odoslať správu o chybe vývojárom:"
 
-#: ../ubuntutweak/modules/__init__.py:286
+#: ../ubuntutweak/modules/__init__.py:377
 #, python-format
 msgid ""
 "Ubuntu Tweak has detected that your apt list file is broken.\n"
 "Try to fix by following steps:\n"
 "\n"
-"\t1. Open your terminal\n"
+"\t1.Open your terminal\n"
 "\t2. Run the command to open apt list file:\n"
 "\n"
 "\t\tsudo gedit %s\n"
 "\n"
 "\t3. Edit the list to make it correctly\n"
 "\n"
-"Or you can submit the Error Message to the developer for help:"
+"Or you can submit the Error Message to the developer forhelp:"
 msgstr ""
-"Ubuntu Tweak zistil, že súbor apt list je poškodený.\n"
-"Skúste opravu neskedujúcimi krokmi:\n"
-"\n"
-"\t1. Otvorte terminál\n"
-"\t2.napíšte tento príkaz pre ootvorenie súboru apt list:\n"
-"\n"
-"\t\tsudo gedit %s\n"
-"\n"
-"\t3. Upravte zoznam\n"
-"\n"
-"Alebo môžete odoslať správu o chybe vývojárom:"
 
-#: ../ubuntutweak/modules/icons.py:32
+#: ../ubuntutweak/tweaks/icons.py:25
 msgid "Show \"Computer\" icon on desktop"
 msgstr "Zobraziť na ploche ikonu „Počítač“"
 
-#: ../ubuntutweak/modules/icons.py:41
+#: ../ubuntutweak/tweaks/icons.py:32
 msgid "Show \"Home Folder\" icon on desktop"
 msgstr "Zobraziť ikonu na ploche „Domovský priečinok“"
 
-#: ../ubuntutweak/modules/icons.py:50
+#: ../ubuntutweak/tweaks/icons.py:39
 msgid "Show \"Trash\" icon on desktop"
 msgstr "Zobraziť na ploche ikonu „Kôš“"
 
-#: ../ubuntutweak/modules/icons.py:108
-msgid "Desktop Icon Settings"
-msgstr "Nastavenie ikôn na ploche"
+#: ../ubuntutweak/tweaks/icons.py:46
+msgid "Show \"Network Servers\" icon on desktop"
+msgstr ""
 
-#: ../ubuntutweak/modules/icons.py:109
+#: ../ubuntutweak/tweaks/icons.py:75 ../ubuntutweak/gui/treeviews.py:76
+msgid "Rename"
+msgstr "Premenovať"
+
+#: ../ubuntutweak/tweaks/icons.py:107
 msgid "Rename and toggle visibilty of desktop icons"
 msgstr "Premenovať a prepínať viditeľnosť ikôn na ploche"
 
-#: ../ubuntutweak/modules/icons.py:118
+#: ../ubuntutweak/tweaks/icons.py:115
 msgid "Show desktop icons"
 msgstr "Zobrazovať na ploche ikony"
 
-#: ../ubuntutweak/modules/icons.py:139
-msgid "Show \"Network\" icon on desktop"
-msgstr "Zobraziť na ploche ikonu „Sieťové servery“"
-
-#: ../ubuntutweak/modules/icons.py:144
+#: ../ubuntutweak/tweaks/icons.py:137
 msgid "Show mounted volumes on desktop"
 msgstr "Zobraziť pripojené jednotky na ploche"
 
-#: ../ubuntutweak/modules/icons.py:149
-msgid ""
-"Show contents of \"Home Folder\" on desktop (Logout for changes to take "
-"effect)"
+#: ../ubuntutweak/tweaks/icons.py:143
+msgid "Show contents of \"Home Folder\" on desktop"
 msgstr ""
-"Zobraziť obsah „Domovského priečinka“ na ploche (zmeny sa prejavia po "
-"odhlásení)"
 
-#: ../ubuntutweak/modules/gnomesettings.py:41
-msgid "GNOME Settings"
-msgstr "GNOME nastavenia"
-
-#: ../ubuntutweak/modules/gnomesettings.py:42
-msgid "A lot of GNOME settings for panels, menus and other desktop elements"
-msgstr "Veľa nastavení GNOME pre panely, menu a ďalšie prvky plochy"
-
-#: ../ubuntutweak/modules/gnomesettings.py:54
-msgid "Panel Settings"
-msgstr "Nastavenia panelu"
-
-#: ../ubuntutweak/modules/gnomesettings.py:56
-msgid "Display warning when removing a panel"
-msgstr "Zobraziť upozornenie pri odstraňovaní panelu"
-
-#: ../ubuntutweak/modules/gnomesettings.py:60
-msgid "Complete lockdown of all panels"
-msgstr "Uzamknúť všetky panely"
-
-#: ../ubuntutweak/modules/gnomesettings.py:64
-msgid "Enable panel animations"
-msgstr "Zapnúť animácie panelov"
-
-#: ../ubuntutweak/modules/gnomesettings.py:68
-msgid "Me Menu Setting"
-msgstr "Nastavenie Me Menu"
-
-#: ../ubuntutweak/modules/gnomesettings.py:70
-msgid "Don't Display"
-msgstr "Nezobrazovať"
-
-#: ../ubuntutweak/modules/gnomesettings.py:70
-msgid "Display user name"
-msgstr "Zobraziť meno používateľa"
-
-#: ../ubuntutweak/modules/gnomesettings.py:70
-msgid "Display real name"
-msgstr "Zobraziť skutočné meno"
-
-#: ../ubuntutweak/modules/gnomesettings.py:76
-msgid "Menu Settings"
-msgstr "Ponuka nastavení"
-
-#: ../ubuntutweak/modules/gnomesettings.py:78
-msgid "Show Input Method menu in the context menu"
-msgstr "Zobraziť menu „Metódy vstupu“ v kontextovej ponuke"
-
-#: ../ubuntutweak/modules/gnomesettings.py:82
-msgid "Show Unicode Control Character menu in the context menu"
-msgstr "Zobraziť menu riadiaceho znaku Unicode v kontextovom menu"
-
-#: ../ubuntutweak/modules/gnomesettings.py:86
-msgid "Show icons in menus"
-msgstr "Zobraziť ikony v ponukách"
-
-#: ../ubuntutweak/modules/gnomesettings.py:90
-msgid "Show icons on buttons"
-msgstr "Zobraziť ikony na tlačítkach"
-
-#: ../ubuntutweak/modules/gnomesettings.py:97
-msgid "Screensaver"
-msgstr "Šetrič obrazovky"
-
-#: ../ubuntutweak/modules/gnomesettings.py:99
-msgid "Enable user switching whilst screen is locked."
-msgstr "Povoliť prepínanie užívateľov, keď je uzamknutá obrazovka."
-
-#: ../ubuntutweak/modules/gnomesettings.py:108
-msgid "Terminal"
-msgstr "Terminál"
-
-#: ../ubuntutweak/modules/gnomesettings.py:110
-msgid "Display menubar when Terminal starts up (for current profile)"
-msgstr "Zobraziť menu pri štarte terminálu (pre aktuálny profil)"
-
-#: ../ubuntutweak/modules/gnomesettings.py:116
-msgid "Enable system-wide \"Recent Documents\" list"
-msgstr "Povoliť systémový zoznam \"Nedávne dokumenty\""
-
-#: ../ubuntutweak/modules/gnomesettings.py:119
-msgid "History"
-msgstr "História"
-
-#: ../ubuntutweak/modules/gnomesettings.py:126
-msgid "Click this button to change the menu logo image"
-msgstr "Kliknutím na toto tlačidlo zmeníte obrázok loga zoznam aplikácií"
-
-#: ../ubuntutweak/modules/gnomesettings.py:139
-#: ../ubuntutweak/modules/loginsettings.py:147
-msgid "Choose a new logo image"
-msgstr "Vyberte nový obrázok pre logo"
-
-#: ../ubuntutweak/modules/gnomesettings.py:145
-msgid "PNG images with 24x24 size or SVG images"
-msgstr "PNG alebo SVG obrázky s veľkosťou 24x24"
-
-#: ../ubuntutweak/modules/gnomesettings.py:178
-msgid ""
-"This image size isn't suitable for the panel.\n"
-"It should measure 24x24."
-msgstr ""
-"Táto veľkosť obrázku nie je vhodná pre panel.\n"
-"Mal by mať 24x24."
-
-#: ../ubuntutweak/modules/gnomesettings.py:198
-msgid "Do you want your changes to take effect immediately?"
-msgstr "Chcete, aby sa zmeny prejavili okamžite?"
-
-#: ../ubuntutweak/modules/gnomesettings.py:221
-msgid ""
-"Disabling \"Recent Documents\" may break other software, for example the "
-"history feature in VMware Player."
-msgstr ""
-"Vypnutie \"Nedávne dokumenty\" môže poškodiť ďalší softvér, napríklad "
-"funkciu história vo VMware Player."
-
-#: ../ubuntutweak/modules/powermanager.py:28
-msgid "Power Manager Settings"
-msgstr "Nastavenie Správy Napájania"
-
-#: ../ubuntutweak/modules/powermanager.py:29
-msgid "Control your computer's power management"
-msgstr "Správa napájania vášho počítača"
-
-#: ../ubuntutweak/modules/powermanager.py:37
-msgid "Advanced Power Management Settings"
-msgstr "Pokročilé nastavenia správy napájania"
-
-#: ../ubuntutweak/modules/powermanager.py:39
-msgid "Enable \"Lock screen\" when \"Blank Screen\" activates"
-msgstr "Povoliť „Zamknutie obrazovky“ ak sa aktivuje „Prázdna obrazovka“"
-
-#: ../ubuntutweak/modules/powermanager.py:43
-msgid "Lock screen on hibernate"
-msgstr "Zamknúť obrazovku pri dlhodobom spánku"
-
-#: ../ubuntutweak/modules/powermanager.py:47
-msgid "Lock screen on suspend"
-msgstr "Zamknúť obrazovku pri úspornom režime"
-
-#: ../ubuntutweak/modules/powermanager.py:51
-msgid "LCD brightness when using AC power"
-msgstr "Jas LCD displeja pri použití napojenia na AC sieť"
-
-#: ../ubuntutweak/modules/powermanager.py:56
-msgid "LCD brightness when using battery"
-msgstr "Jas LCD displeja pri použití napojenia na batériu"
-
-#: ../ubuntutweak/modules/compiz.py:54
-msgid "Show Workspaces"
-msgstr "Zobraziť pracovné plochy"
-
-#: ../ubuntutweak/modules/compiz.py:55
-msgid "Show Windows"
-msgstr "Zobraziť okná"
-
-#: ../ubuntutweak/modules/compiz.py:56
-msgid "Show Desktop"
-msgstr "Zobraziť plochu"
-
-#: ../ubuntutweak/modules/compiz.py:57
-msgid "Show Widgets"
-msgstr "Zobraziť widgety"
-
-#: ../ubuntutweak/modules/compiz.py:319
-msgid "Compiz Settings"
-msgstr "Nastavenia compiz"
-
-#: ../ubuntutweak/modules/compiz.py:320
-msgid "Settings for some amazing desktop eye-candy"
-msgstr "Nastavenia pre niektoré oku lahodiace vylepšenia plochy"
-
-#: ../ubuntutweak/modules/compiz.py:334
-msgid "Install Advanced Desktop Effects Settings Manager"
-msgstr "Nainštalovať Správcu pokročilých efektov plochy"
-
-#: ../ubuntutweak/modules/compiz.py:337
-msgid "Install Simple Desktop Effects Settings Manager"
-msgstr "Inštalovať Jednoduchého Správcu nastavenia efektov"
-
-#: ../ubuntutweak/modules/compiz.py:340
-msgid "Install Screenlets Widget Application"
-msgstr "Nainštalovať aplikáciu screenletov"
-
-#: ../ubuntutweak/modules/compiz.py:347
-msgid " Workspace Edge Settings"
-msgstr " Nastavenie okrajov pracovnej plochy"
-
-#: ../ubuntutweak/modules/compiz.py:350
-msgid "Enable snapping windows"
-msgstr "Povoliť prichytávanie okien"
-
-#: ../ubuntutweak/modules/compiz.py:351
-msgid "Enable wobbly windows"
-msgstr "Povoliť vlniace sa okná"
-
-#: ../ubuntutweak/modules/compiz.py:352
-msgid "Enable workspace switching with mouse wheel"
-msgstr "Umožniť prepínanie pracovných plôch kolieskom myši"
-
-#: ../ubuntutweak/modules/compiz.py:354
-msgid "Make the launcher hide automatically after some time inactive"
-msgstr ""
-"Umožnite skrytie spúšťača aplikácie automaticky po určitej dobe nečinnosti"
-
-#: ../ubuntutweak/modules/compiz.py:358
-msgid "Desktop Effects"
-msgstr "Efekty pracovnej plochy"
-
-#: ../ubuntutweak/modules/compiz.py:364
-msgid "Enable transparent menus"
-msgstr "Povoliť priesvitné ponuky"
-
-#: ../ubuntutweak/modules/compiz.py:365
-msgid "Enable wobbly menus"
-msgstr "Povoliť vlniace sa ponuky"
-
-#: ../ubuntutweak/modules/compiz.py:367
-msgid "Menu Effects"
-msgstr "Efekty ponúk"
-
-#: ../ubuntutweak/modules/compiz.py:371
-msgid "Useful Extensions"
-msgstr "Užitočné rozšírenia"
-
-#: ../ubuntutweak/modules/compiz.py:386
-msgid "Prerequisite Conditions"
-msgstr "Požiadavky"
-
-#: ../ubuntutweak/modules/sourcecenter.py:112
-msgid ""
-"You can install new applications by selecting them and choosing \"Yes\".\n"
-"Or you can install them at Application Center by choosing \"No\"."
-msgstr ""
-"Môžete inštalovať nové aplikácie vybraním voľby \"Áno\".\n"
-"Alebo môžete nainštalovať v Centre aplikácií zvolením \"Nie\"."
-
-#: ../ubuntutweak/modules/sourcecenter.py:113
-msgid "New applications are available"
-msgstr "Sú k dispozícii nové aplikácie"
-
-#. checkbutton
-#: ../ubuntutweak/modules/sourcecenter.py:122
-#: ../ubuntutweak/modules/cleaner.py:768
-msgid "Select All"
-msgstr "Vybrať všetko"
-
-#: ../ubuntutweak/modules/sourcecenter.py:147
-msgid "Your system is clean and there are no updates yet."
-msgstr "Váš systém je čistý a nie sú k dispozícii žiadne aktualizácie."
-
-#: ../ubuntutweak/modules/sourcecenter.py:355
-#, python-format
-msgid "%d New Application Available"
-msgid_plural "%d New Applications Available"
-msgstr[0] "%d nová aplikácia k dispozícii"
-msgstr[1] "%d nové aplikácie k dispozícii"
-msgstr[2] "%d nových aplikácií k dispozícii"
-
-#: ../ubuntutweak/modules/sourcecenter.py:373
-#, python-format
-msgid "%d Package Update Available"
-msgid_plural "%d Package Updates Available"
-msgstr[0] "%d nový aktualizovaný balíček k dispozícii"
-msgstr[1] "%d nové aktualizované balíčky k dispozícii"
-msgstr[2] "%d nových aktualizovaných balíčkov k dispozícii"
-
-#: ../ubuntutweak/modules/sourcecenter.py:411
-msgid "No Available Package Updates"
-msgstr "Nie je k dispozícii žiaden balíček aktualizácií"
-
-#: ../ubuntutweak/modules/sourcecenter.py:546
-msgid "Third-Party Sources"
-msgstr "Zdroje tretích strán"
-
-#: ../ubuntutweak/modules/sourcecenter.py:733
-#, python-format
-msgid ""
-"You can't enable this Source because<b>\"%(SOURCE)s\"</b> conflicts with "
-"it.\n"
-"To continue you need to disable <b>\"%(SOURCE)s\"</b>first."
-msgstr ""
-"Nemôžete povoliť tento zdroj, pretože<b>\"%(SOURCE)s\"</b> je s ním v "
-"konflikte.\n"
-"Pre pokračovanie je potrebné zakázať <b>\"%(SOURCE)s\"</b>ako prvý."
-
-#: ../ubuntutweak/modules/sourcecenter.py:755
-#, python-format
-msgid ""
-"To enable this Source, You need to enable <b>\"%s\"</b> at first.\n"
-"Do you wish to continue?"
-msgstr ""
-"K povoleniu tohoto zdroja, musíte povoliť <b>\"%s\"</b> ako prvé.\n"
-"Chcete pokračovať?"
-
-#: ../ubuntutweak/modules/sourcecenter.py:757
-msgid "Dependency Notice"
-msgstr "Oznámenie závislosti"
-
-#: ../ubuntutweak/modules/sourcecenter.py:781
-#, python-format
-msgid ""
-"You can't disable this Source because <b>\"%(SOURCE)s\"</b> depends on it.\n"
-"To continue you need to disable <b>\"%(SOURCE)s\"</b> first."
-msgstr ""
-"Nemôžete zakázať tento zdroj, pretože<b>\"%(SOURCE)s\"</b> je na nom "
-"závislý.\n"
-"Pre pokračovanie je potrebné zakázať <b>\"%(SOURCE)s\"</b>ako prvý."
-
-#: ../ubuntutweak/modules/sourcecenter.py:856
-msgid "New source has been enabled"
-msgstr "Sú povolené nové zdroje"
-
-#: ../ubuntutweak/modules/sourcecenter.py:857
-#, python-format
-msgid ""
-"%s is enabled now, Please click the refresh button to update the application "
-"cache."
-msgstr ""
-"%s je teraz povolený, Prosím kliknite na tlačitko obnoviť, pre aktualizáciu "
-"pamäte aplikácie."
-
-#: ../ubuntutweak/modules/sourcecenter.py:871
-msgid "Homepage"
-msgstr "Domovská stránka"
-
-#: ../ubuntutweak/modules/sourcecenter.py:871
-msgid "Source URL"
-msgstr "Zdrojový URL"
-
-#: ../ubuntutweak/modules/sourcecenter.py:871
-msgid "Description"
-msgstr "Popis"
-
-#: ../ubuntutweak/modules/sourcecenter.py:884
-msgid "Description is here"
-msgstr "Popis je tu"
-
-#: ../ubuntutweak/modules/sourcecenter.py:910
-msgid "Source Center"
-msgstr "Centrum zdroja"
-
-#: ../ubuntutweak/modules/sourcecenter.py:911
-msgid ""
-"A collection of software sources to ensure your applications are always up-"
-"to-date.\n"
-"Here you can add applications unavailable in the official repositories.\n"
-"A list of available software sources will be obtained automatically from a "
-"remote server.\n"
-"You can click the \"Sync\" button to manually check for updates"
-msgstr ""
-"Kolekcia zdrojov softvéru, aby boli vaše aplikácie vždy aktuálne.\n"
-"Tu môžete pridávať aplikácie ktoré sú k dispozícii v oficiálnych "
-"repozitároch.\n"
-"Zoznam dostupných zdrojov softvéru boli získavané automaticky zo vzdialeného "
-"servera.\n"
-"Môžete kliknúť na tlačidlo \"Sync\" pre ručnú kontrolu aktualizácií"
-
-#: ../ubuntutweak/modules/sourcecenter.py:917
-msgid "Visit online Source Center"
-msgstr "Navštíviť centrum zdroja"
-
-#. the "%s" is in front, some is the end, so just return the long one
-#: ../ubuntutweak/modules/sourcecenter.py:1000
-#, python-format
-msgid "disabled on upgrade to %s"
-msgstr "vypnuté pri aktualizácii na %s"
-
-#: ../ubuntutweak/modules/sourcecenter.py:1009
-msgid ""
-"After a successful distribution upgrade, any third-party sources you use "
-"will be disabled by default.\n"
-"Would you like to re-enable any sources disabled by Update Manager?"
-msgstr ""
-"Po úspešnom upgrade distribúcie, bude využívanie zdrojov tretej strany v "
-"predvolenom nastavení vypnuté.\n"
-"Chcete, znovu aktivovať zdroje zakázané Správcom aktualizácií?"
-
-#: ../ubuntutweak/modules/sourcecenter.py:1012
-msgid "Upgrade Third Party Sources"
-msgstr "Aktualizovať zdroje softvéru tretej strany"
-
-#: ../ubuntutweak/modules/sourcecenter.py:1018
-msgid "Upgrade Successful!"
-msgstr "Aktualizácia úspešná!"
-
-#: ../ubuntutweak/modules/sourcecenter.py:1020
-msgid "Upgrade Failed!"
-msgstr "Aktualizácia zlyhala!"
-
-#: ../ubuntutweak/modules/sourcecenter.py:1027
-msgid "New source data available, would you like to update?"
-msgstr "Sú k dispozícii nové údaje, chcete ich aktualizovať?"
-
-#: ../ubuntutweak/modules/sourcecenter.py:1109
-msgid ""
-"It is a possible security risk to use packages from Third-Party Sources.\n"
-"Please be careful and use only sources you trust."
-msgstr ""
-"Používanie balíkov od tretích strán je predstavuje potenciálne bezpečnostné "
-"riziko.\n"
-"Používajte iba zdroje softvéru, ktorým dôverujete."
-
-#: ../ubuntutweak/modules/sourcecenter.py:1141
-msgid "An error occurred whilst downloading the file"
-msgstr "Došlo ku chybe pri sťahovaní súboru"
-
-#: ../ubuntutweak/modules/sourcecenter.py:1156
-msgid "Update available, Would you like to update?"
-msgstr "Dostupná aktualizácia, chcete aktualizovať?"
-
-#: ../ubuntutweak/modules/sourcecenter.py:1165
-msgid ""
-"Network Error, Please check your network connection or the remote server is "
-"down."
-msgstr ""
-"Chyba siete, prosím skontrolujte vaše sieťové pripojenie, alebo prečo je "
-"prerušené spojenie so vzdialeným serverom."
-
-#: ../ubuntutweak/modules/scripts.py:59
-msgid "Create Launcher ..."
-msgstr "Vytvoriť spúšťač ..."
-
-#: ../ubuntutweak/modules/scripts.py:60
-msgid "Copy to ..."
-msgstr "Kopírovať do ..."
-
-#: ../ubuntutweak/modules/scripts.py:61
-msgid "Copy to Desktop"
-msgstr "Kopírovať na plochu"
-
-#: ../ubuntutweak/modules/scripts.py:62
-msgid "Copy to Download"
-msgstr "Kopírovať do Stiahnuté"
-
-#: ../ubuntutweak/modules/scripts.py:63
-msgid "Copy to Home"
-msgstr "Kopírovať do Domovského priečinka"
-
-#: ../ubuntutweak/modules/scripts.py:64
-msgid "Check md5 sum"
-msgstr "Kontrola md5 súčtu"
-
-#: ../ubuntutweak/modules/scripts.py:65
-msgid "Compress PDF"
-msgstr "Stlačené PDF"
-
-#: ../ubuntutweak/modules/scripts.py:66
-msgid "Move to ..."
-msgstr "Presunúť do ..."
-
-#: ../ubuntutweak/modules/scripts.py:67
-msgid "Move to Desktop"
-msgstr "Presunúť na Plochu"
-
-#: ../ubuntutweak/modules/scripts.py:68
-msgid "Move to Download"
-msgstr "Presunúť do Stiahnuté"
-
-#: ../ubuntutweak/modules/scripts.py:69
-msgid "Move to Home"
-msgstr "Presunúť do Domovského priečinka"
-
-#: ../ubuntutweak/modules/scripts.py:70
-msgid "Create hardlink to ..."
-msgstr "Vytvoriť pevný odkaz na..."
-
-#: ../ubuntutweak/modules/scripts.py:71
-msgid "Link to ..."
-msgstr "Odkaz na..."
-
-#: ../ubuntutweak/modules/scripts.py:72
-msgid "Link to Desktop"
-msgstr "Odkaz na Plochu"
-
-#: ../ubuntutweak/modules/scripts.py:73
-msgid "Link to Download"
-msgstr "Odkaz na Stiahnuté"
-
-#: ../ubuntutweak/modules/scripts.py:74
-msgid "Link to Home"
-msgstr "Odkaz na Domovský priečinok"
-
-#: ../ubuntutweak/modules/scripts.py:75
-msgid "Open with your favourite text editor"
-msgstr "Otvoriť v predvolenom textovom editore"
-
-#: ../ubuntutweak/modules/scripts.py:76
-msgid "Open with your favourite text editor (as root)"
-msgstr "Otvoriť v predvolenom textovom editore (ako root)"
-
-#: ../ubuntutweak/modules/scripts.py:77
-msgid "Browse as root"
-msgstr "Prehliadať ako root."
-
-#: ../ubuntutweak/modules/scripts.py:78
-msgid "Search in current folder"
-msgstr "Hľadať v aktuálnom priečinku"
-
-#: ../ubuntutweak/modules/scripts.py:79
-msgid "Convert image to JPG"
-msgstr "Previesť obrázok na JPG"
-
-#: ../ubuntutweak/modules/scripts.py:80
-msgid "Convert image to PNG"
-msgstr "Previesť obrázok na PNG"
-
-#: ../ubuntutweak/modules/scripts.py:81
-msgid "Convert image to GIF"
-msgstr "Previesť obrázok na GIF"
-
-#: ../ubuntutweak/modules/scripts.py:82
-msgid "Set image as wallpaper"
-msgstr "Nastaviť obrázok ako pozadie plochy"
-
-#: ../ubuntutweak/modules/scripts.py:83
-msgid "Make hard shadow to image"
-msgstr "Urobiť silný tieň na obrázku"
-
-#: ../ubuntutweak/modules/scripts.py:110
-msgid "Enabled Scripts"
-msgstr "Povolené skripty"
-
-#: ../ubuntutweak/modules/scripts.py:138
-msgid "Disabled Scripts"
-msgstr "Zakázané skripty"
-
-#: ../ubuntutweak/modules/scripts.py:144
-msgid "Manage Scripts"
-msgstr "Spravovať skripty"
-
-#: ../ubuntutweak/modules/scripts.py:145
-msgid ""
-"Scripts can be used to complete all kinds of tasks.\n"
-"You can drag and drop scripts here from File Manager.\n"
-"'Scripts' will then be added to the context menu."
-msgstr ""
-"Skripty môžu byť použité na dokončenie všetkých druhov úloh.\n"
-"Môžete vkladať skripty priamo sem zo správcu súborov.\n"
-"'Skripty' budú pridané do kontextového menu."
-
-#: ../ubuntutweak/modules/scripts.py:178
-msgid "Rebuild System Scripts"
-msgstr "Znovu zostaviť systémové skripty"
-
-#: ../ubuntutweak/modules/scripts.py:196
-msgid ""
-"This will delete all disabled scripts.\n"
-"Do you wish to continue?"
-msgstr ""
-"Týmto sa zmažú všetky vypnuté skripty.\n"
-"Chcete pokračovať?"
-
-#: ../ubuntutweak/modules/templates.py:67
-msgid "HTML document"
-msgstr "HTML dokument"
-
-#: ../ubuntutweak/modules/templates.py:68
-msgid "ODB Database"
-msgstr "Databáza ODB"
-
-#: ../ubuntutweak/modules/templates.py:69
-msgid "ODS Spreadsheet"
-msgstr "Tabuľka ODS"
-
-#: ../ubuntutweak/modules/templates.py:70
-msgid "ODT Document"
-msgstr "Dokument ODT"
-
-#: ../ubuntutweak/modules/templates.py:71
-msgid "Plain text document"
-msgstr "Textový dokument"
-
-#: ../ubuntutweak/modules/templates.py:72
-msgid "ODP Presentation"
-msgstr "Prezentácia ODP"
-
-#: ../ubuntutweak/modules/templates.py:73
-msgid "Python script"
-msgstr "Python skript"
-
-#: ../ubuntutweak/modules/templates.py:74
-msgid "Pygtk Example"
-msgstr "Príklad Pygtk"
-
-#: ../ubuntutweak/modules/templates.py:75
-msgid "Shell script"
-msgstr "Skript shellu"
-
-#: ../ubuntutweak/modules/templates.py:102
-msgid "Enabled Templates"
-msgstr "Povolené šablóny"
-
-#: ../ubuntutweak/modules/templates.py:109
-msgid "Disabled Templates"
-msgstr "Zakázané šablóny"
-
-#: ../ubuntutweak/modules/templates.py:116
-msgid "Manage Templates"
-msgstr "Spravovať šablóny"
-
-#: ../ubuntutweak/modules/templates.py:117
-msgid ""
-"Here you can manage your document templates.\n"
-"You can add files as templates by dragging them into this window.\n"
-"You can then create new documents based on these templates from the Nautilus "
-"right-click menu."
-msgstr ""
-"Tu môžete spravovať svoje šablóny dokumentov.\n"
-"Môžete pridať súbory, ako šablóny len pretiahnutím do tohto okna.\n"
-"Potom môžete vytvárať nové dokumenty založené na týchto šablónach z Nautilus "
-"v menu pravým-kliknutím."
-
-#: ../ubuntutweak/modules/templates.py:128
-#, python-format
-msgid ""
-"The templates path is incorrect! The current path points to \"%s\".\n"
-"Please reset it to a location within your Home Folder."
-msgstr ""
-"Cesta pre šablóny nie je správna! Súčasná cesta ukazuje na \"%s\".\n"
-"Prosím, nastavte ju na miesto vo vašej domovskej zložke."
-
-#: ../ubuntutweak/modules/templates.py:137
-msgid "Go And Set"
-msgstr "Prejsť a nastaviť"
-
-#: ../ubuntutweak/modules/templates.py:142
-msgid "Restart This Module"
-msgstr "Reštartovať tento modul"
-
-#: ../ubuntutweak/modules/templates.py:172
-msgid "Rebuild System Templates"
-msgstr "Znova zostaviť systémové šablóny"
-
-#: ../ubuntutweak/modules/templates.py:192
-msgid "The templates path is still incorrect, please reset it!"
-msgstr "Cesta pre šablóny nie je správna, prosím nastavte ju!"
-
-#: ../ubuntutweak/modules/templates.py:204
-msgid ""
-"This will delete all disabled templates.\n"
-"Do you wish to continue?"
-msgstr ""
-"Týmto sa odstránia všetky zakázané šablóny.\n"
-"Želáte si pokračovať?"
-
-#: ../ubuntutweak/modules/session.py:34 ../ubuntutweak/modules/session.py:69
-msgid "Session Control"
-msgstr "Relácia"
-
-#: ../ubuntutweak/modules/session.py:35
-msgid "Control your system session releated features"
-msgstr "Správa vašich sedení novými funkciami"
-
-#: ../ubuntutweak/modules/session.py:47
-msgid "File Manager"
-msgstr "Správca súborov"
-
-#: ../ubuntutweak/modules/session.py:52
-msgid "Panel"
-msgstr "Panel"
-
-#: ../ubuntutweak/modules/session.py:57
-msgid "Window Manager"
-msgstr "Správca okien"
-
-#: ../ubuntutweak/modules/session.py:78
-msgid "Session Options"
-msgstr "Vlastnosti sedenia"
-
-#: ../ubuntutweak/modules/session.py:80
-msgid "Automatically save open applications when logging out"
-msgstr "Automaticky uložiť otvorené aplikácie po odhlásení"
-
-#: ../ubuntutweak/modules/session.py:84
-msgid "Suppress the logout, restart and shutdown confirmation dialogue box."
-msgstr ""
-"Potlačiť potvrdenie dialógového okna pre odhlásenie, reštartovanie a "
-"vypnutie."
-
-#: ../ubuntutweak/modules/session.py:110
-msgid "Please enter a valid application command line."
-msgstr "Prosím, zadajte platnú aplikáciu príkazového riadka."
-
-#: ../ubuntutweak/modules/session.py:110
-#, python-format
-msgid "\"%s\" is not available."
-msgstr "\"%s\" nie je dostupná."
-
-#: ../ubuntutweak/modules/cleaner.py:77
-msgid "Cleaning Configuration Files"
-msgstr "Vyčistiť konfiguračné súbory"
-
-#: ../ubuntutweak/modules/cleaner.py:113
-msgid "Cleaning Package Cache"
-msgstr "Čistí sa vyrovnávacia pamäť balíkov"
-
-#: ../ubuntutweak/modules/cleaner.py:120
-#, python-format
-msgid "Cleaning...%s"
-msgstr "Prebieha čistenie...%s"
-
-#: ../ubuntutweak/modules/cleaner.py:145
-msgid "Purge PPA and Downgrade Packages"
-msgstr "Vyčistiť zdroje PPA a Downgrade balíčkov"
-
-#: ../ubuntutweak/modules/cleaner.py:146
-msgid "Downloading Packages..."
-msgstr "Sťahovanie balíčkov..."
-
-#: ../ubuntutweak/modules/cleaner.py:174
-msgid "Removing key files..."
-msgstr "Odstrániť súbory s kľúčmi..."
-
-#: ../ubuntutweak/modules/cleaner.py:205
-#, python-format
-msgid "Downgrading...%s"
-msgstr "Prechod na nižšiu verziu...%s"
-
-#: ../ubuntutweak/modules/cleaner.py:253 ../ubuntutweak/modules/cleaner.py:348
-msgid "Package"
-msgstr "Balík"
-
-#: ../ubuntutweak/modules/cleaner.py:259
-msgid "Previous Version"
-msgstr "Predchádzajúca verzia"
-
-#: ../ubuntutweak/modules/cleaner.py:266
-msgid "System Version"
-msgstr "Verzia systému"
-
-#: ../ubuntutweak/modules/cleaner.py:373
-msgid "Unneeded Packages"
-msgstr "nepotrebné balíčky"
-
-#: ../ubuntutweak/modules/cleaner.py:401
-msgid "Kernel Packages"
-msgstr "Balíčky jadra"
-
-#: ../ubuntutweak/modules/cleaner.py:430
-msgid "Cached Package Files"
-msgstr "Súbory balíčkov rýchlej pamäte"
-
-#: ../ubuntutweak/modules/cleaner.py:444
-#, python-format
-msgid ""
-"<b>%s</b>\n"
-"Occupies %s of disk space"
-msgstr ""
-"<b>%s</b>\n"
-"Zaberá %s miesta na disku"
-
-#: ../ubuntutweak/modules/cleaner.py:504
-msgid "Package Configuration Files"
-msgstr "Konfiguračné súbory balíka"
-
-#: ../ubuntutweak/modules/cleaner.py:541
-#, python-format
-msgid "%d package selected for removal"
-msgid_plural "%d packages selected for removal"
-msgstr[0] "%d vybraného balíčka pre odstránenie"
-msgstr[1] "%d vybraných balíčkov pre odstránenie"
-msgstr[2] "%d vybraných balíčkov pre odstránenie"
-
-#: ../ubuntutweak/modules/cleaner.py:545
-#, python-format
-msgid "%s of disk space will be freed"
-msgstr "%s miesta na disku bude uvoľneného"
-
-#: ../ubuntutweak/modules/cleaner.py:653
-msgid "It's safe to purge the PPA, no packages need to be downgraded."
-msgstr ""
-"Je bezpečné očistiť PPA, žiadne balíčky musia byť znížené na nižšiu verziu."
-
-#: ../ubuntutweak/modules/cleaner.py:656
-msgid "To safely purge the PPA, the following packages must be downgraded."
-msgstr ""
-"Ak chcete bezpečne vyčistiť PPA, tieto balíčky musia byť znížené na nižšiu "
-"verziu."
-
-#: ../ubuntutweak/modules/cleaner.py:660
-#, python-format
-msgid "You're going to purge: %s"
-msgstr "Chystáte sa čistiť : %s"
-
-#: ../ubuntutweak/modules/cleaner.py:691
-msgid "Cancelled by user!"
-msgstr "Zrušené používateľom!"
-
-#: ../ubuntutweak/modules/cleaner.py:694
-msgid "Clean up successful!"
-msgstr "Vyčistenie bolo úspešné!"
-
-#: ../ubuntutweak/modules/cleaner.py:697
-msgid "Clean up failed!"
-msgstr "Vyčistenie zlyhalo!"
-
-#: ../ubuntutweak/modules/cleaner.py:710
-msgid "Package Cleaner"
-msgstr "Čistienie balíkov"
-
-#: ../ubuntutweak/modules/cleaner.py:711
-msgid ""
-"Free up disk space by removing redundant packages and cleaning package "
-"download cache."
-msgstr ""
-"Uvoľniť miesto na disku odstránením nadbytočných balíčkov a čistenie "
-"balíčkov stiahnutím cache."
-
-#. create the button
-#: ../ubuntutweak/modules/cleaner.py:742
-msgid "Clean Packages"
-msgstr "Čistiť Balíčky"
-
-#: ../ubuntutweak/modules/cleaner.py:747
-msgid "Clean Cache"
-msgstr "Vyčistiť vyrovnávaciu pamäť"
-
-#: ../ubuntutweak/modules/cleaner.py:752
-msgid "Clean Config"
-msgstr "Vyčistiť konfiguráciu"
-
-#: ../ubuntutweak/modules/cleaner.py:757
-msgid "Clean Kernels"
-msgstr "Vyčistiť jadrá"
-
-#: ../ubuntutweak/modules/cleaner.py:762
-msgid "Purge PPAs"
-msgstr "Vyčistiť PPAs"
-
-#: ../ubuntutweak/modules/cleaner.py:780
-msgid "_Cleanup"
-msgstr "_Vyčistenie"
-
-#: ../ubuntutweak/modules/shortcuts.py:45
-msgid "Shortcut Commands"
-msgstr "Klávesové skratky"
-
-#: ../ubuntutweak/modules/shortcuts.py:46
-msgid ""
-"By configuring keyboard shortcuts, you can access your favourite "
-"applications instantly.\n"
-"Enter the command to run the application and choose a shortcut key "
-"combination."
-msgstr ""
-"Podľa konfigurácie klávesových skratiek, môžete mať okamžitý prístup ku "
-"obľúbeným aplikáciám.\n"
-"Zadajte príkaz spustiť aplikáciu a vyberte si klávesovú kombináciu."
-
-#: ../ubuntutweak/modules/shortcuts.py:94
-#, python-format
-msgid "Command %d"
-msgstr "Príkaz %d"
-
-#: ../ubuntutweak/modules/shortcuts.py:104
-#: ../ubuntutweak/modules/shortcuts.py:160
-msgid "disabled"
-msgstr "vypnuté"
-
-#: ../ubuntutweak/modules/shortcuts.py:120
-msgid "ID"
-msgstr "ID"
-
-#: ../ubuntutweak/modules/shortcuts.py:131
-msgid "Command"
-msgstr "Príkaz"
-
-#: ../ubuntutweak/modules/shortcuts.py:143
-msgid "Key"
-msgstr "Kláves"
-
-#: ../ubuntutweak/modules/shortcuts.py:153
-msgid "Clean"
-msgstr "Vyčistiť"
-
-#: ../ubuntutweak/modules/autostart.py:46
-msgid "_Name:"
-msgstr "_Názov:"
-
-#: ../ubuntutweak/modules/autostart.py:49
-msgid "Co_mmand:"
-msgstr "_Príkaz:"
-
-#: ../ubuntutweak/modules/autostart.py:63
-msgid "Edit Startup Program"
-msgstr "Upraviť program po spustení"
-
-#: ../ubuntutweak/modules/autostart.py:68
-msgid "New Startup Program"
-msgstr "Nový program po spustení"
-
-#: ../ubuntutweak/modules/autostart.py:99
-msgid "Choose a Program"
-msgstr "Vybrať program"
-
-#: ../ubuntutweak/modules/autostart.py:189
-msgid "Delete from Disk"
-msgstr "Zmazať z disku"
-
-#: ../ubuntutweak/modules/autostart.py:203
-msgid "Can't delete system item from disk."
-msgstr "Systémovú položku nie je možné zmazať z disku."
-
-#: ../ubuntutweak/modules/autostart.py:255
-msgid "No description"
-msgstr "Bez popisu"
-
-#: ../ubuntutweak/modules/autostart.py:275
-msgid "Program"
-msgstr "Program"
-
-#: ../ubuntutweak/modules/autostart.py:334
-msgid "Auto Start Programs"
-msgstr "Programy pri spustení"
-
-#: ../ubuntutweak/modules/autostart.py:335
-msgid ""
-"Here you can manage which programs are run upon login.\n"
-"You can hide items from view by selecting them and clicking \"Remove\"\n"
-"To permanently delete an item, right-click and select \"Delete\"."
-msgstr ""
-"Tu môžete upravovať, ktoré programy budú spúšťané pri prihlásení.\n"
-"Môžete skryť položky ich vybraním a kliknutím na \"Odobrať\"\n"
-"Ak chcete natrvalo vymazať položku, kliknite pravým tlačítkom a vyberte "
-"\"Odstrániť\"."
-
-#. create the two checkbutton for extra options of auto run list
-#: ../ubuntutweak/modules/autostart.py:349
-msgid "Show comments"
-msgstr "Zobraziť komentáre"
-
-#: ../ubuntutweak/modules/autostart.py:351
-msgid "Show all runnable programs"
-msgstr "Zobraziť všetky spustitelné programy"
-
-#: ../ubuntutweak/modules/autostart.py:417
-#: ../ubuntutweak/modules/autostart.py:464
-msgid "The name of the startup program cannot be empty"
-msgstr "Názov programu, ktorý sa má spustiť pri štarte, nemôže byť prázdny."
-
-#: ../ubuntutweak/modules/autostart.py:419
-#: ../ubuntutweak/modules/autostart.py:466
-msgid "Text field was empty (or contained only whitespace)"
-msgstr "Pole s textom je prázdne (alebo obsahuje iba biele miesto)"
-
-#: ../ubuntutweak/modules/nautilus.py:47
-msgid "Cleaning..."
-msgstr "Prebieha čistenie..."
-
-#: ../ubuntutweak/modules/nautilus.py:66
-msgid "Nautilus Settings"
-msgstr "Nautilus nastavenia"
-
-#: ../ubuntutweak/modules/nautilus.py:67
+#: ../ubuntutweak/tweaks/nautilus.py:28
 msgid "Manage the default file manager"
 msgstr "Spravovať predvoleného správcu súborov"
 
-#: ../ubuntutweak/modules/nautilus.py:76
-msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
-msgstr "Zobraziť pokročilé oprávnenia na karte „Vlastnosti súboru“ Nautilus"
-
-#: ../ubuntutweak/modules/nautilus.py:81
-msgid "Always use the location entry, instead of the pathbar"
-msgstr "Vždy použiť položku umiestnenia, namiesto lišty s cestou"
-
-#: ../ubuntutweak/modules/nautilus.py:85
+#: ../ubuntutweak/tweaks/nautilus.py:35
 msgid "File Browser"
 msgstr "Prehliadač súborov"
 
-#: ../ubuntutweak/modules/nautilus.py:94
+#: ../ubuntutweak/tweaks/nautilus.py:37
+msgid "Show advanced permissions in the Nautilus \"File Properties\" window"
+msgstr "Zobraziť pokročilé oprávnenia na karte „Vlastnosti súboru“ Nautilus"
+
+#: ../ubuntutweak/tweaks/nautilus.py:42
+msgid "Always use the location entry, instead of the pathbar"
+msgstr "Vždy použiť položku umiestnenia, namiesto lišty s cestou"
+
+#: ../ubuntutweak/tweaks/nautilus.py:48
 msgid "Thumbnail Settings"
 msgstr "Nastavenia náhľadu"
 
-#: ../ubuntutweak/modules/nautilus.py:99
+#: ../ubuntutweak/tweaks/nautilus.py:53
 msgid "Default thumbnail icon size (pixels)"
 msgstr "Predvolená veľkosť náhľadov (v pixeloch)"
 
-#: ../ubuntutweak/modules/nautilus.py:104
+#: ../ubuntutweak/tweaks/nautilus.py:59
 msgid "Maximum thumbnail cache size (megabytes)"
 msgstr "Náhľad na maximálnu veľkosť vyrovnávacej pamäte (MB)"
 
-#: ../ubuntutweak/modules/nautilus.py:109
+#: ../ubuntutweak/tweaks/nautilus.py:65
 msgid "Thumbnail cache time (days)"
 msgstr "Náhľad na vyrovnávaciu pamäť času (dní)"
 
-#: ../ubuntutweak/modules/nautilus.py:116
-msgid "Open folder in terminal"
-msgstr "Otvoriť priečinok v termináli"
+#: ../ubuntutweak/tweaks/nautilus.py:70
+msgid "Automatically Mount Settings"
+msgstr ""
 
-#: ../ubuntutweak/modules/nautilus.py:118
-msgid "Open folder with root privileges"
-msgstr "Otvoriť priečinok s oprávneniami správcu"
+#: ../ubuntutweak/tweaks/nautilus.py:74
+msgid "Whether to automatically mount media"
+msgstr ""
 
-#: ../ubuntutweak/modules/nautilus.py:120
-msgid "Nautilus with wallpaper"
-msgstr "Nautilus s tapetou"
+#: ../ubuntutweak/tweaks/nautilus.py:79
+msgid "Whether to automatically open a folder for automounted media"
+msgstr ""
 
-#: ../ubuntutweak/modules/nautilus.py:122
-msgid "Nautilus Extensions"
-msgstr "Rozšírenia Nautilus"
+#: ../ubuntutweak/tweaks/nautilus.py:84
+msgid "Never prompt or autorun/autostart programs when media are inserted"
+msgstr ""
 
-#: ../ubuntutweak/modules/nautilus.py:144
+#: ../ubuntutweak/tweaks/session.py:30
+msgid "Control your system session releated features"
+msgstr "Správa vašich sedení novými funkciami"
+
+#: ../ubuntutweak/tweaks/session.py:37
+msgid "Session Menu Options"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/session.py:39
+msgid "Remove the log out item from the session menu"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/session.py:44
+msgid "Remove the restart item from the session menu"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/session.py:49
+msgid "Remove the shutdown item from the session menu"
+msgstr "Odstrániť položku Vypnúť z ponuky relácie."
+
+#: ../ubuntutweak/tweaks/session.py:54
+msgid "Suppress the dialog to confirm logout, restart and shutdown action"
+msgstr ""
+"Nezobraziť dialóg na potvrdenie akcie odhlásenia, reštartu a vypnutia"
+
+#: ../ubuntutweak/tweaks/session.py:62
+msgid "User Menu Options"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/session.py:64
+msgid "Show user menu"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/session.py:69
+msgid "Show user's real name on the panel"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:26
+msgid "Fonts"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:27
+msgid "Fonts Settings"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:39
+msgid "Deskotp fonts"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:41
+msgid "Text scaling factor"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:49
+msgid "Default font"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:54
+msgid "Monospace font"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:59
+msgid "Document font"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:64
+msgid "Window title bar font"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:72
+msgid "Hinting and antialiasing"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:74
+msgid "Hinting"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:77
+msgid "No hinting"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:78
+msgid "Basic"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:79
+msgid "Moderate"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:80
+msgid "Maximum"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:84
+msgid "Antialiasing"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:87
+msgid "No antialiasing"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:88
+msgid "Standard grayscale antialiasing"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/fonts.py:89
+msgid "Subpixel antialiasing (LCD screens only)"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/misc.py:31 ../ubuntutweak/tweaks/misc.py:67
+msgid "Miscellaneous"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/misc.py:32
+msgid "Set the cursor timeout, menus and buttons icons"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/misc.py:39
+msgid "Buttons and Menus"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/misc.py:41
+msgid "Buttons have icons"
+msgstr "Tlačítka s ikonami"
+
+#: ../ubuntutweak/tweaks/misc.py:46
+msgid "Menus have icons"
+msgstr "Ponuky s ikonami"
+
+#: ../ubuntutweak/tweaks/misc.py:51
+msgid "Show Input Method menu in the context menu"
+msgstr "Zobraziť menu „Metódy vstupu“ v kontextovej ponuke"
+
+#: ../ubuntutweak/tweaks/misc.py:56
+msgid "Show Unicode Control Character menu in the context menu"
+msgstr "Zobraziť menu riadiaceho znaku Unicode v kontextovom menu"
+
+#: ../ubuntutweak/tweaks/misc.py:63
+msgid "Natural Scrolling"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/theme.py:27
+msgid "Theme"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/theme.py:28
+msgid "Set the gtk theme, icon theme, cursor theme and others"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/theme.py:41
+msgid "Desktop theme"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:27
+msgid "Unity Settings"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:28
+msgid "Tweak the powerful Unity desktop"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:37 ../ubuntutweak/tweaks/unity.py:127
+msgid "Launcher"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:39
+msgid "Icon size"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:46
+msgid "Launcher opacity"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:54
+msgid "Launcher reveal edge timeout"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:61 ../ubuntutweak/tweaks/unity.py:139
+msgid "Launcher hide mode"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:63 ../ubuntutweak/tweaks/unity.py:141
+msgid "Auto Hide"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:64
+msgid "Dodge Window"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:64
+msgid "Dodge Active Window"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:70
+msgid "Icon backlight"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:72
+msgid "Backlight Always On"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:73
+msgid "Backlight Toggles"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:74
+msgid "Backlight Always Off"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:75
+msgid "Edge Illumination Toggles"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:76
+msgid "Backlight and Edge Illumination Toggles"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:84
+msgid "Dash and Panel"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:86
+msgid "Dash size"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:88
+msgid "Automatic"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:90
+msgid "Netbook"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:97
+msgid "Blur"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:99
+msgid "No blur"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:100
+msgid "Static blur"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:101
+msgid "Active blur"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:107
+msgid "Panel opacity"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:118
+msgid "Compositing Manager"
+msgstr "Správca kompozitných efektov"
+
+#: ../ubuntutweak/tweaks/unity.py:120
+msgid "Enable Metacity's compositing feature"
+msgstr "Zapnúť kompozitné možnosti Metacity"
+
+#: ../ubuntutweak/tweaks/unity.py:129
+msgid "Enable the Super key"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:134
+msgid "Reserve launcher area"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:142
+msgid "Intellihide"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Utils.py:207
 #, python-format
-msgid "Delete thumbnail cache (Frees %s of disk space)"
-msgstr "Odstrániť náhľady miniatúr (uvoľní %s miesta na disku)"
+msgid ""
+"<span size=\"large\"><b>No matches found.</b> </span><span>\n"
+"\n"
+" Your filter \"<b>%s</b>\" does not match any items.</span>"
+msgstr ""
+"<span size=\"large\"><b>Nenájdené žiadne zhody.</b> </span><span>\n"
+"\n"
+" Váš filter \"<b>%s</b>\" sa nezhoduje so žiadnymi položkami.</span>"
 
-#: ../ubuntutweak/modules/nautilus.py:147
-msgid "The thumbnail cache will be deleted. Do you wish to continue?"
-msgstr "Vyrovnávacia pamäť náhľadov bude odstránená. Chcete pokračovať ?"
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:111
+#, python-format
+msgid ""
+"The new value for the %(binding)s binding for the action <b>%(action)s</b> "
+"in plugin <b>%(plugin)s</b> conflicts with the action "
+"<b>%(action_conflict)s</b> of the <b>%(plugin_conflict)s</b> plugin.\n"
+"Do you wish to disable <b>%(action_conflict)s</b> in the "
+"<b>%(plugin_conflict)s</b> plugin?"
+msgstr ""
 
-#: ../ubuntutweak/modules/nautilus.py:154
-msgid "Clean up Successful!"
-msgstr "Čistenie dokončené!"
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:123
+#, python-format
+msgid "Disable %(action_conflict)s"
+msgstr "Zakázať %(action_conflict)s"
 
-#: ../ubuntutweak/modules/loginsettings.py:38
-msgid "Login Settings"
-msgstr "Nastavenie prihlásenia"
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:124
+#, python-format
+msgid "Don't set %(action)s"
+msgstr "Nenastavovať %(action)s"
 
-#: ../ubuntutweak/modules/loginsettings.py:39
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:125
+#, python-format
+msgid "Set %(action)s anyway"
+msgstr "Nastaviť %(action)s rovnako"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:132
+msgid "key"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:155
+msgid "button"
+msgstr "tlačidlo"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:178
+msgid "edge"
+msgstr "okraj"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:252
+#, python-format
+msgid ""
+"You are trying to use the feature <b>%(feature)s</b> which is <b>not</b> "
+"provided by any plugin.\n"
+"Do you wish to use this feature anyway?"
+msgstr ""
+"Snažíte sa použiť funkciu <b>%(feature)s</b> ktorá <b>nie je</b> poskytovaná "
+"žiadnym rozšírením.\n"
+"Chcete to urobiť aj napriek tomu?"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:259
+#, python-format
+msgid "Use %(feature)s"
+msgstr "Použiť %(feature)s"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:260
+#, python-format
+msgid "Don't use %(feature)s"
+msgstr "Nepoužiť %(feature)s"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:267
+#, python-format
+msgid ""
+"You are trying to use the feature <b>%(feature)s</b> which is provided by "
+"<b>%(plugin)s</b>.\n"
+"This plugin is currently disabled.\n"
+"Do you wish to enable <b>%(plugin)s</b> so the feature is available?"
+msgstr ""
+"Skúšate použiť funkciu <b>%(feature)s</b> poskytnutú <b>%(plugin)s</b>.\n"
+"Toto rozšírenie je momentálne zakázané.\n"
+"Chcete povoliť <b>%(plugin)s</b> túto funkciu?"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:276
+#, python-format
+msgid "Enable %(plugin)s"
+msgstr "Povoliť %(plugin)s"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:277
+#, python-format
+msgid "Don't enable %(feature)s"
+msgstr "Nepovoliť %(feature)s"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:410
+#, python-format
+msgid ""
+"Some %(bindings)s bindings of Plugin <b>%(plugin)s</b> conflict with other "
+"plugins. Do you want to resolve these conflicts?"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:424
+msgid "Resolve conflicts"
+msgstr "Vyriešiť konflikty"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:425
+msgid "Ignore conflicts"
+msgstr "Ignorovať konflikty"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:428
+#, python-format
+msgid ""
+"Plugin <b>%(plugin_conflict)s</b> provides feature <b>%(feature)s</b> which "
+"is also provided by <b>%(plugin)s</b>"
+msgstr ""
+"Rozšírenie <b>%(plugin_conflict)s</b> poskytuje funkciu <b>%(feature)s</b> "
+"ktorú už umožňuje <b>%(plugin)s</b>"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:438
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:446
+#, python-format
+msgid "Disable %(plugin_conflict)s"
+msgstr "Zakázať %(plugin_conflict)s"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:439
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:447
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:468
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:479
+#, python-format
+msgid "Don't enable %(plugin)s"
+msgstr "Nepovoliť %(plugin)s"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:442
+#, python-format
+msgid "Plugin <b>%(plugin_conflict)s</b> conflicts with <b>%(plugin)s</b>."
+msgstr ""
+"Rozšírenie <b>%(plugin_conflict)s</b> v konflikte s <b>%(plugin)s</b>."
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:451
+#, python-format
+msgid ""
+"<b>%(plugin)s</b> requires feature <b>%(feature)s</b> which is provided by "
+"the following plugins:\n"
+"%(plugin_list)s"
+msgstr ""
+"<b>%(plugin)s</b> vyžaduje možnosť <b>%(feature)s</b> poskytovanú týmto "
+"pluginom:\n"
+"%(plugin_list)s"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:467
+msgid "Enable these plugins"
+msgstr "Povoliť tieto rozšírenia"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:471
+#, python-format
+msgid "<b>%(plugin)s</b> requires the plugin <b>%(require)s</b>."
+msgstr "<b>%(plugin)s</b> vyžaduje plugin <b>%(require)s</b>."
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:478
+#, python-format
+msgid "Enable %(require)s"
+msgstr "Povoliť %(require)s"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:483
+#, python-format
+msgid ""
+"<b>%(plugin)s</b> provides the feature <b>%(feature)s</b> which is required "
+"by the plugins <b>%(plugin_list)s</b>."
+msgstr ""
+"<b>%(plugin)s</b> ponúka funkciu <b>%(feature)s</b> ktorá vyžaduje "
+"rozšírenia <b>%(plugin_list)s</b>."
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:493
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:506
+msgid "Disable these plugins"
+msgstr "Zakázať tieto rozšírenia"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:494
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:507
+#, python-format
+msgid "Don't disable %(plugin)s"
+msgstr "Nevypínajte %(plugin)s"
+
+#: ../ubuntutweak/tweaks/ccm/Conflicts.py:498
+#, python-format
+msgid "<b>%(plugin)s</b> is required by the plugins <b>%(plugin_list)s</b>."
+msgstr "<b>%(plugin)s</b> je vyžadovaný rozšírením <b>%(plugin_list)s</b>."
+
+#: ../ubuntutweak/tweaks/ccm/Constants.py:86
+msgid "General"
+msgstr "Hlavné"
+
+#: ../ubuntutweak/tweaks/ccm/Constants.py:87
+msgid "Accessibility"
+msgstr "Sprístupnenie"
+
+#: ../ubuntutweak/tweaks/ccm/Constants.py:89
+msgid "Extras"
+msgstr "Bonusy"
+
+#: ../ubuntutweak/tweaks/ccm/Constants.py:90
+msgid "Window Management"
+msgstr "Správa okien"
+
+#: ../ubuntutweak/tweaks/ccm/Constants.py:91
+msgid "Effects"
+msgstr "Efekty"
+
+#: ../ubuntutweak/tweaks/ccm/Constants.py:92
+msgid "Image Loading"
+msgstr "Načítanie obrázkov"
+
+#: ../ubuntutweak/tweaks/ccm/Constants.py:93
+msgid "Utility"
+msgstr "Nástroje"
+
+#: ../ubuntutweak/tweaks/ccm/Constants.py:95
+msgid "Uncategorized"
+msgstr "Nezaradené"
+
+#: ../ubuntutweak/tweaks/lockdown.py:26
+msgid "Security Related"
+msgstr "Súvisiace s bezpečnosťou"
+
+#: ../ubuntutweak/tweaks/lockdown.py:27
+msgid "Tweak some security settings"
+msgstr "Doladiť niektoré bezpečnostné nastavenia"
+
+#: ../ubuntutweak/tweaks/lockdown.py:35
+msgid "System Security options"
+msgstr "Možnosti zabezpečenia systému"
+
+#: ../ubuntutweak/tweaks/lockdown.py:37
+msgid "Disable \"Lock Screen\""
+msgstr "Zakázať „Uzamknúť obrazovku“"
+
+#: ../ubuntutweak/tweaks/lockdown.py:42
+msgid "Disable printing"
+msgstr "Zakázať tlač"
+
+#: ../ubuntutweak/tweaks/lockdown.py:47
+msgid "Disable printer settings"
+msgstr "Vypnúť nastavenia tlačiarne"
+
+#: ../ubuntutweak/tweaks/lockdown.py:52
+msgid "Disable save to disk"
+msgstr "Zakázať uložiť na disk"
+
+#: ../ubuntutweak/tweaks/lockdown.py:57
+msgid "Disable \"Fast User Switching\""
+msgstr "Zakázať „Rýchle prepínanie používateľov“"
+
+#: ../ubuntutweak/tweaks/compiz.py:270
+msgid "Show Workspaces"
+msgstr "Zobraziť pracovné plochy"
+
+#: ../ubuntutweak/tweaks/compiz.py:271
+msgid "Show Windows"
+msgstr "Zobraziť okná"
+
+#: ../ubuntutweak/tweaks/compiz.py:272
+msgid "Show Desktop"
+msgstr "Zobraziť plochu"
+
+#: ../ubuntutweak/tweaks/compiz.py:273
+msgid "Show Widgets"
+msgstr "Zobraziť widgety"
+
+#: ../ubuntutweak/tweaks/compiz.py:367
+msgid "Settings for some amazing desktop eye-candy"
+msgstr "Nastavenia pre niektoré oku lahodiace vylepšenia plochy"
+
+#: ../ubuntutweak/tweaks/compiz.py:379
+msgid " Workspace Edge Settings"
+msgstr " Nastavenie okrajov pracovnej plochy"
+
+#: ../ubuntutweak/tweaks/compiz.py:382
+msgid "Enable snapping windows"
+msgstr "Povoliť prichytávanie okien"
+
+#: ../ubuntutweak/tweaks/compiz.py:383
+msgid "Enable wobbly windows"
+msgstr "Povoliť vlniace sa okná"
+
+#: ../ubuntutweak/tweaks/compiz.py:384
+msgid "Enable workspace switching with mouse wheel"
+msgstr "Umožniť prepínanie pracovných plôch kolieskom myši"
+
+#: ../ubuntutweak/tweaks/compiz.py:386
+msgid "Desktop Effects"
+msgstr "Efekty pracovnej plochy"
+
+#: ../ubuntutweak/tweaks/compiz.py:391
+msgid "Enable transparent menus"
+msgstr "Povoliť priesvitné ponuky"
+
+#: ../ubuntutweak/tweaks/compiz.py:392
+msgid "Enable wobbly menus"
+msgstr "Povoliť vlniace sa ponuky"
+
+#: ../ubuntutweak/tweaks/compiz.py:394
+msgid "Menu Effects"
+msgstr "Efekty ponúk"
+
+#: ../ubuntutweak/tweaks/loginsettings.py:40
 msgid "Control the appearance and behaviour of your login screen"
 msgstr "Ovládanie vzhľadu a správania svojej prihlasovacej obrazovky"
 
-#: ../ubuntutweak/modules/loginsettings.py:48
-msgid "Login Options"
-msgstr "Predvoľby prihlásenia"
-
-#: ../ubuntutweak/modules/loginsettings.py:51
-msgid "Disable user list in GDM"
-msgstr "Zakázať zoznam používateľov v GDM"
-
-#: ../ubuntutweak/modules/loginsettings.py:56
-msgid "Play sound at login"
-msgstr "Prehrať zvuk pri prihlásení"
-
-#: ../ubuntutweak/modules/loginsettings.py:61
-msgid "Disable showing the restart button"
-msgstr "Zakázať zobrazenie tlačidla pre reštartovanie"
-
-#: ../ubuntutweak/modules/loginsettings.py:79
+#: ../ubuntutweak/tweaks/loginsettings.py:52
 msgid "Login Theme"
 msgstr "Téma prihlásenia"
 
-#: ../ubuntutweak/modules/loginsettings.py:153
-msgid "PNG images with 64x64 size or SVG images"
-msgstr "PNG alebo SVG obrázky s veľkosťou 64x64"
+#: ../ubuntutweak/tweaks/loginsettings.py:87
+msgid "Choose a new logo image"
+msgstr "Vyberte nový obrázok pre logo"
 
-#: ../ubuntutweak/modules/loginsettings.py:183
-msgid ""
-"This image size isn't suitable for the logo.\n"
-"It should be 64x64."
+#: ../ubuntutweak/tweaks/loginsettings.py:93
+msgid "All images (*.PNG)"
 msgstr ""
-"Táto veľkosť obrázku nie je vhodná pre logo.\n"
-"Mala by byť 64x64."
 
-#: ../ubuntutweak/modules/loginsettings.py:205
+#: ../ubuntutweak/tweaks/loginsettings.py:140
 msgid "Choose a new background image"
 msgstr "Vyberte nový obrázok pozadia"
 
-#: ../ubuntutweak/modules/loginsettings.py:211
+#: ../ubuntutweak/tweaks/loginsettings.py:146
 msgid "All images"
 msgstr "Všetky obrázky"
 
-#: ../ubuntutweak/modules/desktoprecovery.py:146
-msgid "Setting"
-msgstr "Nastavenie"
+#: ../ubuntutweak/tweaks/workarounds.py:31
+msgid "Workarounds"
+msgstr "Núdzové riešenia"
 
-#: ../ubuntutweak/modules/desktoprecovery.py:190
-msgid "Backup Name:"
-msgstr "Názov zálohy:"
+#: ../ubuntutweak/tweaks/workarounds.py:32
+msgid "The workarounds to fix some problems"
+msgstr "Núdzové riešenia pre opravu niektorých problémov"
 
-#: ../ubuntutweak/modules/desktoprecovery.py:238
+#: ../ubuntutweak/tweaks/workarounds.py:42
+msgid "Fix the appearance of themes when granted root privileges"
+msgstr "Opraviť vzhľad tém, keď sú udelené oprávnenia používateľa root"
+
+#: ../ubuntutweak/tweaks/workarounds.py:48
+msgid "Miscellaneous Options"
+msgstr "Rôzne nastavenia"
+
+#: ../ubuntutweak/tweaks/metacity.py:35 ../ubuntutweak/tweaks/metacity.py:196
+#: ../ubuntutweak/tweaks/metacity.py:211 ../ubuntutweak/tweaks/metacity.py:226
+msgid "Menu"
+msgstr "Menu"
+
+#: ../ubuntutweak/tweaks/metacity.py:36
+msgid "Title"
+msgstr "Názov"
+
+#: ../ubuntutweak/tweaks/metacity.py:37 ../ubuntutweak/tweaks/metacity.py:192
+#: ../ubuntutweak/tweaks/metacity.py:207 ../ubuntutweak/tweaks/metacity.py:222
+msgid "Maximize"
+msgstr "Maximalizovať"
+
+#: ../ubuntutweak/tweaks/metacity.py:38 ../ubuntutweak/tweaks/metacity.py:195
+#: ../ubuntutweak/tweaks/metacity.py:210 ../ubuntutweak/tweaks/metacity.py:225
+msgid "Minimize"
+msgstr "Minimalizovať"
+
+#: ../ubuntutweak/tweaks/metacity.py:39
+msgid "Close"
+msgstr "Zatvoriť"
+
+#: ../ubuntutweak/tweaks/metacity.py:40
+msgid "Spacer"
+msgstr "Medzerník"
+
+#: ../ubuntutweak/tweaks/metacity.py:151
+msgid "Manage Metacity Window Manager settings"
+msgstr "Spravovať nastavenia správcu okien Metacity"
+
+#: ../ubuntutweak/tweaks/metacity.py:172
+msgid "Window Titlebar Button Layout"
+msgstr "Rozloženie tlačidiel na titulke okna"
+
+#: ../ubuntutweak/tweaks/metacity.py:177
+msgid "Window Titlebar Actions"
+msgstr "Operácie titulného pruhu okna"
+
+#: ../ubuntutweak/tweaks/metacity.py:179
+msgid "Titlebar mouse wheel action"
+msgstr "Operácia pri otáčaní kolieskom myši na titulku okna"
+
+#: ../ubuntutweak/tweaks/metacity.py:183 ../ubuntutweak/tweaks/metacity.py:195
+#: ../ubuntutweak/tweaks/metacity.py:210 ../ubuntutweak/tweaks/metacity.py:225
+msgid "Roll up"
+msgstr "Zrolovať hore"
+
+#: ../ubuntutweak/tweaks/metacity.py:188
+msgid "Titlebar double-click action"
+msgstr "Operácia pri dvojitom kliknutí myši na titulku okna"
+
+#: ../ubuntutweak/tweaks/metacity.py:193 ../ubuntutweak/tweaks/metacity.py:208
+#: ../ubuntutweak/tweaks/metacity.py:223
+msgid "Maximize Horizontally"
+msgstr "Maximalizovať vodorovne"
+
+#: ../ubuntutweak/tweaks/metacity.py:194 ../ubuntutweak/tweaks/metacity.py:209
+#: ../ubuntutweak/tweaks/metacity.py:224
+msgid "Maximize Vertically"
+msgstr "Maximalizovať zvisle"
+
+#: ../ubuntutweak/tweaks/metacity.py:196 ../ubuntutweak/tweaks/metacity.py:211
+#: ../ubuntutweak/tweaks/metacity.py:226
+msgid "Lower"
+msgstr "Presunúť na pozadie"
+
+#: ../ubuntutweak/tweaks/metacity.py:203
+msgid "Titlebar middle-click action"
+msgstr "Operácia pri kliknutí stredným tlačidlom myši na titulok okna"
+
+#: ../ubuntutweak/tweaks/metacity.py:218
+msgid "Titlebar right-click action"
+msgstr "Operácia pri kliknutí pravým tlačidlom myši na titulok okna"
+
+#: ../ubuntutweak/tweaks/metacity.py:236
+msgid "Window Decoration Effects"
+msgstr "Efekty dekorácií okien"
+
+#: ../ubuntutweak/tweaks/metacity.py:238
+msgid "Use Metacity window theme"
+msgstr "Použiť tému Metacity"
+
+#: ../ubuntutweak/tweaks/metacity.py:243
+msgid "Enable active window transparency"
+msgstr "Zapnúť priesvitnosť aktívnych okien"
+
+#: ../ubuntutweak/tweaks/metacity.py:248
+msgid "Active window transparency level"
+msgstr "Aktivovať úroveň priesvitnosti okien"
+
+#: ../ubuntutweak/tweaks/metacity.py:254
+msgid "Enable inactive window transparency"
+msgstr "Zapnúť priesvitnosť neaktívnych okien"
+
+#: ../ubuntutweak/tweaks/metacity.py:259
+msgid "Inactive window shade transparency level"
+msgstr "Odtieň úroveň priesvitnosti neaktívnych okien"
+
+#: ../ubuntutweak/clips/userinfo.py:10
+msgid "User Information"
+msgstr "Informácie o používateľovi"
+
+#: ../ubuntutweak/clips/userinfo.py:16
+msgid "Current user:"
+msgstr "Aktuálny používateľ:"
+
+#: ../ubuntutweak/clips/userinfo.py:18
+msgid "Home directory:"
+msgstr "Domovský adresár:"
+
+#: ../ubuntutweak/clips/userinfo.py:20
+msgid "Shell:"
+msgstr "Shell:"
+
+#: ../ubuntutweak/clips/userinfo.py:22
+msgid "Language:"
+msgstr "Jazyk:"
+
+#: ../ubuntutweak/clips/hardwareinfo.py:11
+msgid "Hardware Information"
+msgstr "Informácie o hardvéri"
+
+#: ../ubuntutweak/clips/hardwareinfo.py:32
+msgid "CPU:"
+msgstr "Procesor:"
+
+#: ../ubuntutweak/clips/hardwareinfo.py:34
+msgid "Memory:"
+msgstr "Pamäť:"
+
+#: ../ubuntutweak/clips/systeminfo.py:11
+msgid "Ubuntu Desktop Information"
+msgstr "Informácie o počítači"
+
+#: ../ubuntutweak/clips/systeminfo.py:17
+msgid "Hostname:"
+msgstr "Názov počítača:"
+
+#: ../ubuntutweak/clips/systeminfo.py:19
+msgid "Platform:"
+msgstr "Platforma:"
+
+#: ../ubuntutweak/clips/systeminfo.py:21
+msgid "Distribution:"
+msgstr "Distribúcia:"
+
+#: ../ubuntutweak/clips/systeminfo.py:23
+msgid "Desktop Environment:"
+msgstr "Pracovné Prostredie:"
+
+#: ../ubuntutweak/clips/cleanerinfo.py:11
+msgid "Your system is clean"
+msgstr "Váš systém je čistý"
+
+#: ../ubuntutweak/clips/cleanerinfo.py:19
+msgid "Some cache can be cleaned to free your disk space"
+msgstr "Vyčistením pamäte uvoľníte miesto na disku"
+
+#: ../ubuntutweak/clips/cleanerinfo.py:21
 #, python-format
-msgid "Backing up...%s"
-msgstr "Zálohovanie ...%s"
+msgid "%s cache packages can be cleaned."
+msgstr "%s pamäte s balíčkami môže byť vyčistenej."
 
-#: ../ubuntutweak/modules/desktoprecovery.py:264
-msgid "Desktop Recovery"
-msgstr "Obnovy počítača"
+#: ../ubuntutweak/clips/cleanerinfo.py:33
+#, python-format
+msgid "%s thumbnails cache can be cleaned."
+msgstr "%s pamäte s náhľadmi môže byť vyčistenej."
 
-#: ../ubuntutweak/modules/desktoprecovery.py:265
+#: ../ubuntutweak/clips/cleanerinfo.py:39
+msgid "Start Janitor"
+msgstr "Spustiť údržbára"
+
+#: ../ubuntutweak/clips/updateinfo.py:13
+msgid "Your system is up-to-date"
+msgstr "Váš systém je aktuálny"
+
+#: ../ubuntutweak/clips/updateinfo.py:49
 msgid ""
-"Backup and recover your desktop and application settings with ease.\n"
-"You can also use \"Reset\" to reset to the system default settings."
+"It is unknown when the package information was updated last. Please try "
+"clicking on the 'Check' button to update the information."
 msgstr ""
-"Zálohovanie a obnova vášho počítača a jednoduchým nastavením aplikácií.\n"
-"Môžete tiež použiť \"Reset\" pre nastavenie predvolených nastavení."
+"Nie je známy čas poslednej aktualizácie informačného balíka. Pokúste sa, "
+"prosím obnoviť informácie kliknutím na tlačidlo 'Skontrolovať'."
 
-#: ../ubuntutweak/modules/desktoprecovery.py:340
-msgid "No Backup Yet"
-msgstr "Žiadna záloha"
-
-#: ../ubuntutweak/modules/desktoprecovery.py:375
+#: ../ubuntutweak/clips/updateinfo.py:54
 #, python-format
 msgid ""
-"Backup all settings under: <b>%s</b>\n"
-"Would you like to continue?"
+"The package information was last updated %(days_ago)s days ago.\n"
+"Press the 'Check' button below to check for new software updates."
 msgstr ""
-"Zálohovanie všetkých nastavení pod: <b>%s</b>\n"
-"Chcete pokračovať?"
+"Informácie o balíkoch boli naposledy aktualizované pred %(days_ago)s dňami.\n"
+"Nové aktualizácie môžete skontrolovať teraz stlačením tlačidla "
+"„Skontrolovať“."
 
-#: ../ubuntutweak/modules/desktoprecovery.py:394
+#: ../ubuntutweak/clips/updateinfo.py:59
 #, python-format
+msgid "The package information was last updated %(days_ago)s day ago."
+msgid_plural ""
+"The package information was last updated %(days_ago)s days ago."
+msgstr[0] ""
+"Informácie o balíkoch boli naposledy aktualizované pred %(days_ago)s dňami."
+msgstr[1] ""
+"Informácie o balíkoch boli naposledy aktualizované pred %(days_ago)s dňom."
+msgstr[2] ""
+"Informácie o balíkoch boli naposledy aktualizované pred %(days_ago)s dňami."
+
+#: ../ubuntutweak/clips/updateinfo.py:63
+#, python-format
+msgid "The package information was last updated %(hours_ago)s hour ago."
+msgid_plural ""
+"The package information was last updated %(hours_ago)s hours ago."
+msgstr[0] ""
+"Informácie o balíkoch boli naposledy aktualizované pred %(hours_ago)s "
+"hodinami."
+msgstr[1] ""
+"Informácie o balíkoch boli naposledy aktualizované pred %(hours_ago)s "
+"hodinou."
+msgstr[2] ""
+"Informácie o balíkoch boli naposledy aktualizované pred %(hours_ago)s "
+"hodinami."
+
+#: ../ubuntutweak/clips/updateinfo.py:67
+msgid "The package information was last updated less than one hour ago."
+msgstr "Informačný balík bol naposledy aktualizovaný pred menej ako hodinou."
+
+#: ../ubuntutweak/gui/widgets.py:76
+#, python-format
+msgid "Reset setting to default value: %s"
+msgstr "Resetovať nastavenie na predvolenú hodnotu: %s"
+
+#: ../ubuntutweak/gui/widgets.py:315
+msgid "Please press the new key combination"
+msgstr "Stlačte novú kombináciu kláves"
+
+#: ../ubuntutweak/gui/widgets.py:367
+msgid "Disabled"
+msgstr "Vypnuté"
+
+#: ../ubuntutweak/gui/dialogs.py:208
+msgid "Could not authenticate"
+msgstr "Autentifikácia sa neporadila"
+
+#: ../ubuntutweak/gui/dialogs.py:209
+msgid "An unexpected error has occurred."
+msgstr "Vyskytla sa neočakávaná chyba."
+
+#: ../ubuntutweak/gui/dialogs.py:215
+msgid "Service hasn't initialized yet"
+msgstr "Služba sa zatiaľ nespustila"
+
+#: ../ubuntutweak/gui/dialogs.py:216
+msgid "You need to restart your computer."
+msgstr "Vyžaduje sa reštart počítača."
+
+#: ../ubuntutweak/gui/treeviews.py:72
+msgid "Create folder"
+msgstr "Vytvoriť priečinok"
+
+#: ../ubuntutweak/gui/treeviews.py:80
+msgid "Delete"
+msgstr "Odstrániť"
+
+#: ../ubuntutweak/gui/treeviews.py:102
+msgid "Input the dir name"
+msgstr "Zadajte názov adresára"
+
+#: ../ubuntutweak/gui/treeviews.py:126
+msgid "Can't rename the root folder"
+msgstr "Nie je možné premenovať koreňový priečinok"
+
+#: ../ubuntutweak/gui/treeviews.py:143
+msgid "Can't delete the root folder"
+msgstr "Nie je možné zmazať koreňový priečinok"
+
+#: ../ubuntutweak/gui/treeviews.py:157
 msgid ""
-"Backup settings under: <b>%s</b>\n"
-"Would you like to continue?"
+"Can't rename!\n"
+"\n"
+"There are files in it!"
 msgstr ""
-"Zálohovanie nastavení pod: <b>%s</b>\n"
-"Chcete pokračovať?"
+"Nie je možné premenovať!\n"
+"\n"
+"Obsahuje súbory!"
 
-#: ../ubuntutweak/modules/desktoprecovery.py:435
+#: ../ubuntutweak/utils/__init__.py:36
 #, python-format
-msgid "Would you like to delete the backup: <b>%s/%s</b>?"
-msgstr "Chcete odstrániť zálohu: <b>%s/%s</b>?"
+msgid "%(size)d byte"
+msgid_plural "%(size)d bytes"
+msgstr[0] "%(size)d bajt"
+msgstr[1] "%(size)d bajty"
+msgstr[2] "%(size)d bajtov"
 
-#: ../ubuntutweak/modules/desktoprecovery.py:437
+#: ../ubuntutweak/utils/__init__.py:38
 #, python-format
-msgid ""
-"Would you like to delete the backup of all <b>%s</b> settings named "
-"<b>%s</b>?"
-msgstr ""
-"Chcete zmazať zálohy všetkých <b>%s</b> nastavení s názvom <b>%s</b>?"
+msgid "%.1f KB"
+msgstr "%.1f KB"
 
-#: ../ubuntutweak/modules/desktoprecovery.py:456
+#: ../ubuntutweak/utils/__init__.py:40
 #, python-format
-msgid "Would you like to recover the backup: <b>%s/%s</b>?"
-msgstr "Chcete obnoviť zo zálohy: <b>%s/%s</b>?"
+msgid "%.1f MB"
+msgstr "%.1f MB"
 
-#: ../ubuntutweak/modules/desktoprecovery.py:458
+#: ../ubuntutweak/utils/__init__.py:41
 #, python-format
-msgid ""
-"Would you like to recover the backup of all <b>%s</b> settings named "
-"<b>%s</b>?"
-msgstr ""
-"Chceli by ste obnoviť zálohu všetkých <b>%s</b> nastavení s názvom <b>%s</b>?"
+msgid "%.1f GB"
+msgstr "%.1f GB"
 
-#: ../ubuntutweak/modules/desktoprecovery.py:460
-msgid ""
-"<b>NOTES</b>: While recovering, your desktop may be unresponsive for a "
-"moment."
-msgstr "<b>NOTES</b>: Počas obnovovania nemusí váš počítač chvíľu reagovať."
+#: ../ubuntutweak/preferences.py:152
+msgid "Choose a clip extension"
+msgstr "Vyberte rozšírenie schránky"
 
-#: ../ubuntutweak/modules/desktoprecovery.py:477
-msgid ""
-"Recovery Successful!\n"
-"You may need to restart your desktop for changes to take effect"
-msgstr ""
-"Obnovenie úspešné!\n"
-"Je potrebný reštart počítača, aby sa zmeny prejavili"
-
-#: ../ubuntutweak/modules/desktoprecovery.py:482
-msgid "_Logout"
-msgstr "_Odhlásenie"
-
-#: ../ubuntutweak/modules/desktoprecovery.py:494
+#: ../ubuntutweak/preferences.py:157
 #, python-format
-msgid "Would you like to reset settings for: <b>%s</b>?"
-msgstr "Chcete vynulovať nastavenia pre: <b>%s</b>?"
+msgid "\"%s\" is not a Clip Extension!"
+msgstr "\"%s\" nie je rozšírenḿ schránky"
 
-#: ../ubuntutweak/modules/desktoprecovery.py:496
+#: ../ubuntutweak/preferences.py:160
+msgid "Choose a Tweaks Extension"
+msgstr "Vyberte rozšírenie pre vylepšenie"
+
+#: ../ubuntutweak/preferences.py:165
 #, python-format
-msgid "Would you like to reset all settings under: <b>%s</b>?"
-msgstr "Chcete vynulovať všetky nastavenia pod: <b>%s</b>?"
+msgid "\"%s\" is not a Tweaks Extension!"
+msgstr "\"%s\" nie je rozšírenie pre vylepšenie!"
 
-#: ../ubuntutweak/modules/desktoprecovery.py:498
-msgid ""
-"<b>NOTES</b>: Whilst resetting, your desktop may be unresponsive for a "
-"moment."
-msgstr ""
-"<b>NOTES</b>: Počas vynulovania,  nemusí váš počítač chvíľu reagovať."
+#: ../ubuntutweak/preferences.py:168
+msgid "Choose a Admins Extension"
+msgstr "Vyberte rozšírenie pre správcu"
 
-#: ../ubuntutweak/modules/desktoprecovery.py:511
-msgid ""
-"Reset Successful!\n"
-"You may need to restart your desktop for changes to take effect"
-msgstr ""
-"Vynulovanie bolo úspešné!\n"
-"Je potrebné  reštartovať váš počítač, aby sa zmeny prejavili"
-
-#: ../ubuntutweak/modules/desktoprecovery.py:536
-msgid "Please enter a new name for your backup:"
-msgstr "Prosím vložte nový názov pre vašu zálohu:"
-
-#: ../ubuntutweak/modules/desktoprecovery.py:568
-msgid "Backup Successful!"
-msgstr "Zálohovanie úspešné!"
-
-#: ../ubuntutweak/modules/desktoprecovery.py:571
-msgid "Backup Failed!"
-msgstr "Zálohovanie zlyhalo!"
-
-#~ msgid "Text was empty (or contained only whitespace)"
-#~ msgstr "Text bol prázdny (alebo obsahoval iba medzery)"
-
-#~ msgid "Expo"
-#~ msgstr "Expo"
-
-#~ msgid "PNG image (*.png)"
-#~ msgstr "Obrázok PNG (*.png)"
-
-#~ msgid "Can't delete the system item from disk."
-#~ msgstr "Nemožno vymazať systémovú položku z disku."
-
-#~ msgid "Install Simple Desktop Effects Settings manager"
-#~ msgstr "Nainštalovať Správcu jednoduchých efektov plochy"
-
-#~ msgid "Window Effects"
-#~ msgstr "Efekty okien"
-
-#~ msgid "Desktop Icon settings"
-#~ msgstr "Nastavenia ikon plochy"
-
-#~ msgid "Window Titlebar Action"
-#~ msgstr "Operácia titulného pruhu okna"
-
-#~ msgid "Window Decorate Effect"
-#~ msgstr "Efekt dekorácie okien"
-
-#~ msgid "Nautilus with Wallpaper"
-#~ msgstr "Nautilus s Pozadím plochy"
-
-#~ msgid "Nautilus with Root Privileges"
-#~ msgstr "Nautilus s oprávneniami správcu"
-
-#~ msgid "Nautilus with Open Terminal"
-#~ msgstr "Nautilus s Otvoriť terminál"
-
-#~ msgid "Widget"
-#~ msgstr "Ovládací prvok"
-
-#~ msgid "And many more useful features!"
-#~ msgstr "A mnoho ďalších užitočných funkcií!"
-
-#~ msgid "Disable print setup"
-#~ msgstr "Zakázať nastavenie tlače"
-
-#~ msgid "Choose a new logo"
-#~ msgstr "Vyberte nové logo"
-
-#~ msgid "Session Programs"
-#~ msgstr "Programy relácie"
-
-#~ msgid ""
-#~ "Here you can manage what programs get started when you login.\n"
-#~ "You can hide items from view by selecting and clicking \"Remove\"\n"
-#~ "To permanently delete an item, right-click and press \"Delete\"."
-#~ msgstr ""
-#~ "Tu môžete spravovať, ktoré programy sa spustia po vašom prihlásení.\n"
-#~ "Môžete skryť položky zo zobrazenia tak, že ich výberiete a kliknete na "
-#~ "„Odstrániť“\n"
-#~ "Ak chcete natrvalo vymazať položku, kliknite pravým tlačidlom a stlačte "
-#~ "„Vymazať“."
-
+#: ../ubuntutweak/preferences.py:173
 #, python-format
-#~ msgid "The target \"%s\" already exists!"
-#~ msgstr "Cieľ „%s“ už existuje!"
+msgid "\"%s\" is not a Admins Extension!"
+msgstr "\"%s\" nie je rozšírením pre správcu!"
 
+#: ../ubuntutweak/preferences.py:176
+msgid "Choose a Janitor Extension"
+msgstr "Vyberte rozšírenie pre údržbu!"
+
+#: ../ubuntutweak/preferences.py:181
 #, python-format
-#~ msgid "The folder \"%s\" already exists!"
-#~ msgstr "Priečinok „%s“ už existuje!"
+msgid "\"%s\" is not a Janitor Extension!"
+msgstr "\"%s\" nie je rozšírením pre údržbu!"
 
+#: ../ubuntutweak/preferences.py:190
+msgid "Ubuntu Tweak Extension (*.py, *.tar.gz)"
+msgstr "Ubuntu Tweak Extension (*.py, *.tar.gz)"
+
+#: ../ubuntutweak/preferences.py:221
+msgid "Would you like to remove it then install again?"
+msgstr "Chcete ho odstrániť a znovu nainštalovať?"
+
+#: ../ubuntutweak/preferences.py:222
 #, python-format
-#~ msgid "The file \"%s\" already exists!"
-#~ msgstr "Súbor „%s“ už existuje!"
+msgid "\"%s\" has already installed"
+msgstr "\"%s\" je už nainštalovaný"
 
-#~ msgid ""
-#~ "You can change the paths of the default folders here.\n"
-#~ "Don't change the location of your desktop folder unless you know what you "
-#~ "are doing."
-#~ msgstr ""
-#~ "Tu môžete zmeniť predvolené umiestnenie priečinkov.\n"
-#~ "Nemeňte umiestnenie priečinku Plocha ak neviete čo robíte."
+#: ../ubuntutweak/main.py:354
+msgid "Please wait a moment..."
+msgstr "Prosím, počkajte chvíľu ..."
 
+#: ../ubuntutweak/main.py:453
 #, python-format
-#~ msgid "Open the files of type \"%s\" with:"
-#~ msgstr "Otvoriť súbory typu „%s“ programom:"
+msgid "No module named \"%s\""
+msgstr "Modul s názvom \"%s\" nenájdený"
 
-#~ msgid "Here you can manage which application will open which filetypes."
-#~ msgstr "Tu môžete spravovať ktorá aplikácia otvára ktorý typ súboru."
+#: ../ubuntutweak/main.py:454
+msgid "Please ensure you have entered the correct module name."
+msgstr "Prosím, aby ste zadali správny názov modulu."
 
-#~ msgid "Only show filetypes with an associated application"
-#~ msgstr "Zobraziť iba typy súborov s asociovanou aplikáciou"
+#: ../ubuntutweak/main.py:511
+msgid "Computer Janitor"
+msgstr "Počítačový údržbár"
 
-#, python-format
-#~ msgid "Select an application to open the type <b>%s</b>"
-#~ msgstr "Vyberte aplikáciu, ktorá otvorí typ <b>%s</b>"
+#: ../ubuntutweak/main.py:512
+msgid "Clean up a system so it's more like a freshly installed one"
+msgstr "Vyčistite systém tak, akoby bol práve nainštalovaný"
 
-#~ msgid "Avant Window Navigator (Unstable Version)"
-#~ msgstr "Avant Window Navigator (nestabilná verzia)"
+#~ msgid "Memory"
+#~ msgstr "Pamäť"
 
-#~ msgid "Banshee (Unstable Version)"
-#~ msgstr "Banshee (nestabilná verzia)"
+#~ msgid "Kernel"
+#~ msgstr "Jadro"
 
-#~ msgid "Banshee (Stable Version)"
-#~ msgstr "Banshee (stabilná verzia)"
+#~ msgid "Distribution"
+#~ msgstr "Distribúcia"
 
-#~ msgid "Ubuntu Chinese Repository"
-#~ msgstr "Čínske zdroje Ubuntu"
+#~ msgid "Platform"
+#~ msgstr "Platforma"
 
-#~ msgid "Gnome Global Menu"
-#~ msgstr "Globálna ponuka Gnome"
+#~ msgid "Language"
+#~ msgstr "Jazyk"
 
-#~ msgid "Ubuntu Tweak (Unstable Version)"
-#~ msgstr "Ubuntu Tweak (nestabilná verzia)"
+#~ msgid "Unset"
+#~ msgstr "Nenastavené"
 
-#~ msgid "The software information is up-to-date now"
-#~ msgstr "Informácie o softvéri sú teraz aktuálne"
+#~ msgid "Welcome"
+#~ msgstr "Vitajte"
 
-#~ msgid "Enable Metacity's Compositing feature"
-#~ msgstr "Povoliť kompozitné efekty Metacity"
+#~ msgid "Choose a Program"
+#~ msgstr "Vybrať program"
 
-#~ msgid "Templates path is still wrong, Please reset it!"
-#~ msgstr "Cesta k šablóne nie je správna. Nastavte ju prosím!"
+#~ msgid "Delete from Disk"
+#~ msgstr "Zmazať z disku"
 
-#~ msgid ""
-#~ "By configuring keyboard shortcuts, you can access your favourite "
-#~ "applications instantly.\n"
-#~ "Enter the application's command and set the desired shortcut keys."
-#~ msgstr ""
-#~ "Po nastavení klávesových skratiek môžete okamžite pristupovať k svojim "
-#~ "obľúbeným aplikáciám.\n"
-#~ "Zadajte príkaz na spustenie aplikácie a požadovanú klávesovú skratku."
+#~ msgid "Program"
+#~ msgstr "Program"
 
-#~ msgid "Packages"
-#~ msgstr "Balíky"
+#~ msgid "Disable \"Run Application\" dialog (Alt+F2)"
+#~ msgstr "Zakázať dialóg „Spustiť aplikáciu“ (Alt+F2)"
 
-#~ msgid "Package Cache"
-#~ msgstr "Vyrovnávacia pamäť balíkov"
+#~ msgid "Show \"Network\" icon on desktop"
+#~ msgstr "Zobraziť na ploche ikonu „Sieťové servery“"
 
-#~ msgid "Clean up Failed!"
-#~ msgstr "Čistenie zlyhalo!"
+#~ msgid "Warning"
+#~ msgstr "Upozornenie"
 
-#~ msgid "Package Config"
-#~ msgstr "Konfigurácia balíkov"
+#~ msgid "Install Screenlets Widget Application"
+#~ msgstr "Nainštalovať aplikáciu screenletov"
 
-#~ msgid "Clean Package"
-#~ msgstr "Vyčistiť balík"
+#~ msgid "Install Advanced Desktop Effects Settings Manager"
+#~ msgstr "Nainštalovať Správcu pokročilých efektov plochy"
 
-#~ msgid ""
-#~ "Free up disk space by removing unneeded packages and cleaning the package "
-#~ "download cache."
-#~ msgstr ""
-#~ "Uvoľniť miesto na disku odstránením nepotrebných balíkov a vyčistením "
-#~ "vyrovnávacej pamäte balíkov."
+#~ msgid "Co_mmand:"
+#~ msgstr "_Príkaz:"
 
-#~ msgid ""
-#~ "You can do all kinds of tasks with scripts.\n"
-#~ "You can drag and drop from File Manager.\n"
-#~ "'Scripts' will be added to the context menu."
-#~ msgstr ""
-#~ "Pomocou skriptov môžete vykonávať rozličné úlohy.\n"
-#~ "Môžete preťahovať myšou objekty zo Správcu súborov.\n"
-#~ "„Skripty“ sa pridajú do kontextovej ponuky."
+#~ msgid "_Name:"
+#~ msgstr "_Názov:"
 
-#~ msgid "Enable system-wide \"Recently Documents\" list"
-#~ msgstr "Povoliť spoločný zoznam „Nedávnych dokumentov“"
+#~ msgid "Comm_ent:"
+#~ msgstr "Kom_entár"
 
-#~ msgid "Enable user switching when screen is locked."
-#~ msgstr "Povoliť prepnutie používateľa pri zamknutej obrazovke"
+#~ msgid "System information"
+#~ msgstr "Systémové informácie"
 
-#~ msgid "Show Input Method menu on the context menu"
-#~ msgstr "Zobraziť v kontextovej ponuke Vstupná metóda"
+#~ msgid "User information"
+#~ msgstr "Informácie o používateľovi"
 
-#~ msgid "Show Unicode Method menu on the context menu"
-#~ msgstr "Zobraziť v kontextovej ponuke Metóda Unicode"
+#~ msgid "Enable panel animations"
+#~ msgstr "Zapnúť animácie panelov"
 
-#~ msgid ""
-#~ "The size isn't suitable for the panel.\n"
-#~ "It should be 24x24."
-#~ msgstr ""
-#~ "Veľkosť nie je vhodná pre panel\n"
-#~ " mala by byť 24x24."
+#~ msgid "Screensaver"
+#~ msgstr "Šetrič obrazovky"
 
-#~ msgid "Enable Check Update"
-#~ msgstr "Povoliť „Skontrolovať aktualizácie“"
+#~ msgid "History"
+#~ msgstr "História"
 
-#~ msgid ""
-#~ "You can submit your sources to our server to help building the sources list, "
-#~ "or you can use the official sources.\n"
-#~ "Do you wish to use the official sources?"
-#~ msgstr ""
-#~ "Môžete svoje zdroje zaslať na náš server, čím pomôžete zostaviť zoznam "
-#~ "zdrojov alebo môžete použiť oficálne zdroje.\n"
-#~ "Želáte si použiť oficiálne zdroje?"
+#~ msgid "Update Failed!"
+#~ msgstr "Aktualizácia zlyhala!"
 
-#~ msgid "Submit Sources"
-#~ msgstr "Odoslať zdroje"
+#~ msgid "All Categories"
+#~ msgstr "Všetky kategórie"
 
-#~ msgid "Update Sources"
-#~ msgstr "Aktualizovať zdroje"
+#~ msgid "(Not available)"
+#~ msgstr "(nedostupné)"
 
-#~ msgid "Lightweight X11 Desktop Environment: GPicView, PCManFM"
-#~ msgstr "Odľahčené pracovné prostredie X11: GPicView, PCManFM"
-
-#~ msgid "Google's Linux Repository"
-#~ msgstr "Linuxové zdroje od Google"
-
-#~ msgid ""
-#~ "Multimedia, Entertainment and Distraction In Ubuntu\n"
-#~ "Medibuntu is a repository of packages that cannot be included into the "
-#~ "Ubuntu distribution for legal reasons (copyright, license, patent, etc)."
-#~ msgstr ""
-#~ "Multimédiá, zábava a rozptýlenie v Ubuntu\n"
-#~ "Medibuntu je zdroj balíkov, ktoré nemôžu byť zahrnuté do distribúcie Ubuntu "
-#~ "z právnych dôvodov (autorské práva, licencie, patenty atď)."
-
-#~ msgid ""
-#~ "Ubuntu repository for Chinese users.\n"
-#~ "Including EIOffice, Ubuntu Tweak, ibus input method, OpenOffice.org 3.0 and "
-#~ "other softwares."
-#~ msgstr ""
-#~ "Zdroje Ubuntu pre čínskych používateľov\n"
-#~ "Obsahuje EIOffice, Ubuntu Tweak, vstupnú metódu ibus, OpenOffice.org 3.0 a "
-#~ "ďalší softvér."
-
-#~ msgid "Click the button to change the menu logo"
-#~ msgstr "Po kliknutí na tlačidlo môžete zmeniť logo ponuky"
-
-#~ msgid "Thumbnails Settings"
-#~ msgstr "Nastavenie náhľadov"
-
-#~ msgid ""
-#~ "Here you can freely manage your document templates.\n"
-#~ "You can add files as templates by dragging them onto this window.\n"
-#~ "You can create new documents based on these templates from the Nautilus "
-#~ "right-click menu."
-#~ msgstr ""
-#~ "Tu môžete spravovať šablóny svojich dokumentov.\n"
-#~ "Súbory a šablony môžete pridávať pretiahnutím do tohto okna.\n"
-#~ "Nové dokumenty založené na týchto šablónach môžete vytvárať z Nautilusu po "
-#~ "kliknutí pravým tlačidlom myši."
-
-#~ msgid "Clean up unneeded packages to free diskspace."
-#~ msgstr "Vyčistiť nepotrebné balíčky aby sa uvoľnilo miesto na disku."
-
-#~ msgid ""
-#~ "A simple but more effecient method for finding and installing popular "
-#~ "packages than the default Add/Remove."
-#~ msgstr ""
-#~ "Jednoduchá, ale efektívnejšia metóda na hľadanie a inštaláciu populárnych "
-#~ "balíčkov ako predvolené Pridať/odstrániť."
-
-#, python-format
-#~ msgid "%d package selected to remove"
-#~ msgid_plural "%d packages selected to remove"
-#~ msgstr[0] "Vybraný %d balík na odstránenie"
-#~ msgstr[1] "Vybrané %d balíky na odstránenie"
-#~ msgstr[2] "Vybraných %d balíkov na odstránenie"
-
-#~ msgid "Update successful!"
-#~ msgstr "Aktualizácia prebehla úspešne!"
-
-#~ msgid ""
-#~ "After every release of Ubuntu there comes a feature freeze.\n"
-#~ "This means only applications with bug-fixes get into the repository.\n"
-#~ "By using third-party DEB repositories, you can always keep up-to-date with "
-#~ "the latest version.\n"
-#~ "After adding these repositories, locate and install them using Add/Remove."
-#~ msgstr ""
-#~ "Po každom vydaní Ubuntu nastáva feature freeze.\n"
-#~ "To znamená, že sa do zdrojov nahrávajú iba opravné aktualizácie balíkov.\n"
-#~ "Použitím zdrojov balíkov tretích strán môžete mať vždy nainštalovanú "
-#~ "najnovšiu verziu.\n"
-#~ "Po pridaní týchto zdrojov nájdete a nainštalujete aplikácie pomocou "
-#~ "Pridať/odobrať."
-
-#~ msgid "Use \"Home Folder\" as desktop (Logout for changes to take effect)"
-#~ msgstr ""
-#~ "Používať „Domovský priečinok“ ako plochu (zmeny sa prejavia keď sa znova "
-#~ "prihlásite)"
-
-#~ msgid ""
-#~ "To enable the compositing feature of metacity, you should manually disable "
-#~ "Visual Effects in \"Appearance\"."
-#~ msgstr ""
-#~ "Ak chcete zapnúť kompozitné efekty metacity, mali by ste manuálne vypnúť "
-#~ "Vizuálne efekty vo „Vzhľad“."
-
-#~ msgid "Allow TCP Connections (Remote Desktop Connect)"
-#~ msgstr "Povoliť TCP spojenia (pripojenie Vzdialenej plochy)"
-
-#~ msgid "Clean Kernel"
-#~ msgstr "Čisté jadro"
-
-#~ msgid "Please input the correct information about sources!"
-#~ msgstr "Prosím, zadajte správne informácie o zdrojoch!"
-
-#~ msgid "Maximum size of the thumbnail cache (megabytes)"
-#~ msgstr "Maximálna veľkosť vyrovnávacej pamäte náhľadov (v megabajtoch)"
-
-#~ msgid "Maximum age for the thumbnail in the cache (days)"
-#~ msgstr "Maximálny vek náhľadu vo vyrovnávacej pamäti (v dňoch)"
-
-#, python-format
-#~ msgid "Clean up the thumbnails cache (will free %s of disk space)"
-#~ msgstr "Vyčistiť vyrovnávaciu pamäť náhľadov (uvoľní %s miesta na disku)"
-
-#~ msgid "The thumbnails cache will be cleaned, Do you wish to continue?"
-#~ msgstr "Vyrovnávacia pamäť náhľadov sa vyčistí. Chcete pokračovať?"
-
-#~ msgid "Fix the theme appearance when grant the root privileges"
-#~ msgstr "Zamknúť tému vzhľadu pri udelení práv používateľa root"
-
-#~ msgid "Gwibber (Daily Version)"
-#~ msgstr "Gwibber (denná verzia)"
-
-#~ msgid "Cleaning Package Config"
-#~ msgstr "Čistí sa konfigurácie balíka"
-
-#, python-format
-#~ msgid ""
-#~ "<b>%s</b>\n"
-#~ "Take %s of disk space"
-#~ msgstr ""
-#~ "<b>%s</b>\n"
-#~ "Zaberie %s miesta na disku"
-
-#, python-format
-#~ msgid "%s of space will be freed"
-#~ msgstr "%s miesta na disku bude uvoľneného"
-
-#~ msgid "Canceled by user!"
-#~ msgstr "Zrušené používateľom!"
-
-#~ msgid ""
-#~ "GetDeb extends the existing software options for Ubuntu (and derived) Linux "
-#~ "distributions by providing major updates and software not yet available on "
-#~ "the official Ubuntu repositories."
-#~ msgstr ""
-#~ "GetDeb rozširuje súčasné možnosti softvéru pre linuxových distribúcií Ubuntu "
-#~ "(a odvodených) tým, že poskytuje hlavné aktualizácie softvéru a softvér, "
-#~ "ktorý zatiaľ nie je k dispozícii z oficiálnych zdrojov softvéru Ubuntu."
-
-#~ msgid ""
-#~ "This is a major failure of your software management system. Please check for "
-#~ "broken packages with synaptic, check the file permissions and correctness of "
-#~ "the file '/etc/apt/sources.list' and reload the software information with: "
-#~ "'sudo apt-get update' and 'sudo apt-get install -f'."
-#~ msgstr ""
-#~ "Toto je zásadná chyba vášho systému na správu softvéru. Skontrolujte pomocou "
-#~ "Synaptic, či nemáte pokazené balíky, skontrolujte oprávnenia súborov a "
-#~ "správnosť súboru „/etc/apt/sources.list“ a znovu načítajte informácie o "
-#~ "softvéri pomocou „sudo apt-get update“ a „sudo apt-get install -f“."
-
-#~ msgid "GetDeb.net (Mirror)"
-#~ msgstr "GetDeb.net (zrkadlo)"
-
-#~ msgid "VLC media player"
-#~ msgstr "Mediálny prehrávač VLC"
-
-#~ msgid "Christine Media Player"
-#~ msgstr "Mediálny prehrávač Christine"
-
-#~ msgid "IBus 1.2 for intrepid"
-#~ msgstr "IBus 1.2 pre intrepid"
-
-#~ msgid "IBus (Old Version)"
-#~ msgstr "IBus (Staršia verzia)"
-
-#~ msgid "Ubuntu Mozilla Security Team"
-#~ msgstr "Ubuntu Mozilla bezpečnostný tím"
-
-#~ msgid "IBus 1.2 for jaunty"
-#~ msgstr "IBus 1.2 pre jaunty"
-
-#~ msgid "Experimental Gnome Games"
-#~ msgstr "Experimentálne Gnome hry"
-
-#~ msgid "Edge Settings"
-#~ msgstr "Edge nastavenia"
-
-#~ msgid ""
-#~ "Ubuntu Mozilla Security Team provides beta and final stable/security updates "
-#~ "for mozilla software in its PPA"
-#~ msgstr ""
-#~ "Ubuntu Mozilla Security Team stanovuje beta a finálne stabilné/aktualizácie "
-#~ "zabezpečenia pre Mozilla softvér vo svojom PPA"
-
-#~ msgid "Updated versions of X.org drivers, libraries, etc. for Ubuntu."
-#~ msgstr "Aktualizovaná verzia X.org ovládačov, knižníc, atď pre Ubuntu."
-
-#~ msgid ""
-#~ "Gnome Games built from Git, with all experimental features and staging games "
-#~ "enabled."
-#~ msgstr ""
-#~ "Gnome Hry postavené na Git, povolené so všetkými experimentálnymi funkciami "
-#~ "hier."
-
-#~ msgid ""
-#~ "WebkitGtk+, Liferea (Webkit), Midori and other WebKit related projects."
-#~ msgstr ""
-#~ "WebkitGtk+, Liferea (Webkit), Midori a daľšie WebKit súvisiace projekty."
-
-#, python-format
-#~ msgid ""
-#~ "You can't enable this Source because \"%(SOURCE)s\" conflicts with it.\n"
-#~ "To continue you need to disable \"%(SOURCE)s\" first."
-#~ msgstr ""
-#~ "Nemôžete zakázať tento zdroj, pretože \"%(SOURCE)s\" je s nimi v konflikte.\n"
-#~ "Ak chcete pokračovať musíte najskôr vypnúť \"%(SOURCE)s\"."
-
-#, python-format
-#~ msgid ""
-#~ "You can't disable this Source because \"%(SOURCE)s\" depends on it.\n"
-#~ "To continue you need to disable \"%(SOURCE)s\" first."
-#~ msgstr ""
-#~ "Nemôžete zakázať tento zdroj, pretože \"%(SOURCE)s\" na ňom závisí.\n"
-#~ "Ak chcete pokračovať musíte najskôr vypnúť \"%(SOURCE)s\"."
-
-#, python-format
-#~ msgid ""
-#~ "To enable this Source, You need to enable \"%s\" at first.\n"
-#~ "Do you wish to continue?"
-#~ msgstr ""
-#~ "K použitiu tohto zdroja, je potrebné ako prvé povoliť \"%s\".\n"
-#~ "Prajete si pokračovať?"
-
-#~ msgid "VirtualBox (Open Source Edition)"
-#~ msgstr "VirtualBox (Open Source Edition)"
-
-#~ msgid "Spicebird (Testing Version)"
-#~ msgstr "Spicebird (Testovacia verzia)"
-
-#~ msgid "Breathe Icon Theme"
-#~ msgstr "Téma ikôn Breathe"
-
-#~ msgid "IBus 1.2 for karmic"
-#~ msgstr "IBus 1.2 pre karmic"
-
-#~ msgid "GIMP (Testing Version)"
-#~ msgstr "GIMP (Testovacia verzia)"
-
-#~ msgid "Google Repository"
-#~ msgstr "Google repozitáre"
-
-#~ msgid "Google Testing Repository"
-#~ msgstr "Google testovacie repozitáre"
-
-#~ msgid "Chinese Chess"
-#~ msgstr "Čínsky šach"
-
-#~ msgid "aMule (Stable Version)"
-#~ msgstr "aMule (Stabilná verzia)"
-
-#~ msgid ""
-#~ "Freely edit your software sources to fit your needs.\n"
-#~ "Click \"Update Sources\" if you want to change the sources.\n"
-#~ "Click \"Submit Sources\" if you want to share your sources with other people."
-#~ msgstr ""
-#~ "Volne upravte vaše zdroje softwéru pre prispôsobenie vašich potrieb.\n"
-#~ "Kliknite na \"Aktualizovať zdroje\", ak chcete zmeniť svoje zdroje.\n"
-#~ "Kliknite na \"Odoslat zdroje\", ak chcete zdielať svoje zdroje s iními ľuďmi."
-
-#~ msgid "SMPlayer (Unstable Version)"
-#~ msgstr "SMPlayer  (Nestabilná verzia)"
-
-#~ msgid ""
-#~ "You can install the new applications by selecting them and choose \"Yes\".\n"
-#~ "Or you can install them at Add/Remove by choose \"No\"."
-#~ msgstr ""
-#~ "Môžete nainštalovať nové aplikácie ich vybraním a zvoľte \"Áno\".\n"
-#~ "Alebo môžete nainštalovať na Pridať/Odstrániť ak zvolíte \"Nie\"."
-
-#~ msgid "New applications are available to update"
-#~ msgstr "Nové aplikácie sú k dispozícii pre aktualizáciu"
-
-#~ msgid "Your system is clean and there's no update yet."
-#~ msgstr "Váš systém je čistý a nie je žiadna aktualizácia."
-
-#~ msgid ""
-#~ "You've changed the sources.list without saving it.\n"
-#~ "Do you want to save it?"
-#~ msgstr ""
-#~ "Zmenili ste sources.list bez uloženia.\n"
-#~ "Chcete ho uložiť?"
-
-#~ msgid "Development Version of K Desktop Environment"
-#~ msgstr "Vývojová verzia K Desktop prostredia"
-
-#~ msgid "Development Version of Mozilla Firefox"
-#~ msgstr "Vývojová verzia Mozilla Firefox"
-
-#~ msgid "Available New Applications"
-#~ msgstr "Dostupné nové aplikácie"
-
-#~ msgid "This feature is currently only available in GNOME Desktop Environment"
-#~ msgstr "Táto funkcia je momentálne dostupná iba v prostredí GNOME"
-
-#~ msgid "This feature isn't currently available in your distribution"
-#~ msgstr "Táto funkcia nie je v súčasnosti dostupné vo vašej distribúcii"
-
-#~ msgid "Available Package Updates"
-#~ msgstr "Dostupné aktualizované balíky"
-
-#~ msgid "Moblin Desktop for Ubuntu 9.10 Karmic"
-#~ msgstr "Pracovná plocha Moblin pre Ubuntu 9.10 Karmic"
-
-#~ msgid "Moblin Desktop for Ubuntu 9.04 Jaunty"
-#~ msgstr "Pracovná plocha Moblin pre Ubuntu 9.04 Jaunty"
-
-#~ msgid "Development version of Compiz"
-#~ msgstr "Vývojová verzia Compiz"
-
-#~ msgid ""
-#~ "Gloobus is an extension of Gnome designed to enable a full screen preview of "
-#~ "any kind of file."
-#~ msgstr ""
-#~ "Gloobus je rozšírenie pre Gnome vytvorené, pre náhľad akéhokoľvek súboru na "
-#~ "celú obrazovku."
-
-#~ msgid "This module is error while loading."
-#~ msgstr "Tento modul zlyhal pri načítaní."
-
-#~ msgid "PiTiVi video editor"
-#~ msgstr "PiTiVi úprava videa"
-
-#~ msgid ""
-#~ "Updates for Kubuntu releases which are due to go to Ubuntu Updates. Mostly "
-#~ "KDE point releases."
-#~ msgstr ""
-#~ "Aktualizácia pre verzie Kubuntu, ktoré pripravené pre Ubuntu aktualizácie. "
-#~ "Väčšinou KDE vydania."
-
-#~ msgid ""
-#~ "Behind this African word, referring to the notion of imagination, you can "
-#~ "find some themes for GNOME"
-#~ msgstr ""
-#~ "Za týmto africkým slovom, s odkazom na pojem imaginácie, môžete nájsť "
-#~ "niekoľko tém pre GNOME"
-
-#~ msgid "Kubuntu Backports"
-#~ msgstr "Kubuntu Backports"
-
-#~ msgid "OSD Lyrics"
-#~ msgstr "OSD texty"
-
-#~ msgid "OpenShot Video Editor"
-#~ msgstr "OpenShot Video Editor"
-
-#~ msgid "Tomboy (Unstable Version)"
-#~ msgstr "Tomboy (nestabilná verzia)"
-
-#~ msgid "Inkscape (Nightly Version)"
-#~ msgstr "Inkscape (Nočná Verzia)"
-
-#~ msgid "Tomboy (Stable Version)"
-#~ msgstr "Tomboy (stabilná verzia)"
-
-#~ msgid "Bisigi Theme Project"
-#~ msgstr "Projekt Bisigi motívu"
-
-#~ msgid ""
-#~ "Backports of new versions of KDE for Kubuntu which are not yet tested enough "
-#~ "to go to Ubuntu Backports."
-#~ msgstr ""
-#~ "Backports nových verzií KDE v Kubuntu, ktoré ešte nie sú dostatočne "
-#~ "testované aby mohli ísť do Ubuntu backports."
-
-#, python-format
-#~ msgid "Download the Ubuntu Tweak %s"
-#~ msgstr "Stiahnuť Ubuntu Tweak %s"
-
-#, python-format
-#~ msgid ""
-#~ "A newer version: %s is available online.\n"
-#~ "Would you like to update?\n"
-#~ "\n"
-#~ "Note: if you prefer update from the source, you can disable this feature in "
-#~ "Preference."
-#~ msgstr ""
-#~ "Nová verzia: %s je je k dispozícii online.\n"
-#~ "Chcete aktualizovať?\n"
-#~ "\n"
-#~ "Poznámka: ak chcete aktualizovať zo zdroja, môžete túto funkciu vypnúť v "
-#~ "Nastaveniach."
-
-#~ msgid ""
-#~ "Clutter is an OpenGL based interactive canvas library, designed for creating "
-#~ "fast, mainly 2D single window applications such as media box UIs, "
-#~ "presentations, kiosk style applications and so on."
-#~ msgstr ""
-#~ "Clutter je interaktívna canvas knižnica založená na OpenGL, určené pre "
-#~ "rýchle vytváranie, hlavne 2D jedno oknenných aplikácií, ako sú užívateľské "
-#~ "rozhranie media box, prezentácie, aplikácie v kiosk štýle  a tak ďalej."
-
-#~ msgid "Please enter your new hostname. It should be non-blank characters."
-#~ msgstr "Prosím vložte nový názov počítača. Nemal by obsahovať prázdne znaky."
-
-#~ msgid "Tweak some security options"
-#~ msgstr "Vyladiť niektoré možnosti zabezpečenia"
-
-#~ msgid "Some useful information about your computer"
-#~ msgstr "Niektoré užitočné informácie o počítači"
-
-#~ msgid "New sources data available, would you like to update?"
-#~ msgstr "Sú k dispozícii nové zdroje údajov, chcete ich aktualizovať?"
-
-#~ msgid "Freely edit your software sources to fit your needs."
-#~ msgstr "Voľne upraviť svoj softvér zdrojov, aby vyhovoval vašim potrebám."
-
-#~ msgid "No Available Package Update"
-#~ msgstr "Nie je dostupná aktualizácia balíčka"
-
-#~ msgid "Some error happened while downloading the file"
-#~ msgstr "Došlo k nejakej chybe pri sťahovaní súboru"
-
-#~ msgid ""
-#~ "A simple but more effecient way for finding and installing popular "
-#~ "applications.\n"
-#~ "Data will be automatically synchronized with the remote side.\n"
-#~ "You can click the \"Sync\" button to check the update manually."
-#~ msgstr ""
-#~ "Jednoduchý, ale účinnejší spôsob pre vyhľadávanie a inštaláciu populárnych "
-#~ "aplikácií.\n"
-#~ "Údaje budú automaticky synchronizované s protistranou .\n"
-#~ "Môžete kliknúť na tlačítko \"Sync\" a skontrolovať aktualizácie manuálne."
-
-#~ msgid "Enable the auto launch of System Update Manager"
-#~ msgstr "Povoliť automatické spustenie systémového manažéra aktualizácií"
-
-#~ msgid "Some options about Metacity Window Manager"
-#~ msgstr "Niektoré nastavenia Metacity Window Manager"
-
-#~ msgid "Buttons have icons"
-#~ msgstr "Tlačítka s ikonami"
-
-#~ msgid "Menus have icons"
-#~ msgstr "Ponuky s ikonami"
-
-#~ msgid "Control your computer's power managerment"
-#~ msgstr "Ovládanie správy napájania vášho počítača"
-
-#~ msgid "Advanced Powermanager Settings"
+#~ msgid "Advanced Power Management Settings"
 #~ msgstr "Pokročilé nastavenia správy napájania"
 
-#~ msgid "A lot of GNOME settings about panel, menu and others"
-#~ msgstr "Množstvo GNOME nastavení panela, menu a ďaľších"
+#~ msgid "Nautilus Extensions"
+#~ msgstr "Rozšírenia Nautilus"
 
-#~ msgid "LCD brightness when on AC"
-#~ msgstr "Jas LCD počas napájania zo siete"
+#~ msgid "Never show this dialog"
+#~ msgstr "Nikdy nezobrazovať tento dialóg"
 
-#~ msgid "Suppress the dialog to confirm logout, restart and shutdown action"
-#~ msgstr ""
-#~ "Nezobraziť dialóg na potvrdenie akcie odhlásenia, reštartu a vypnutia"
+#~ msgid "Current user"
+#~ msgstr "Aktuálny používateľ"
 
-#~ msgid "LCD dimming amount when on battery"
-#~ msgstr "Stmavnutie LCD počas napájania z batérie"
+#~ msgid "Desktop environment"
+#~ msgstr "Pracovné prostredie"
 
-#~ msgid "Session control"
-#~ msgstr "Správa sedenia"
+#~ msgid "Home directory"
+#~ msgstr "Domovský adresár"
 
-#~ msgid "Disable user list in gdm"
-#~ msgstr "Zakázať zoznam používateľov v gdm"
+#~ msgid "Homepage"
+#~ msgstr "Domovská stránka"
 
-#~ msgid "Manage your default file manager"
-#~ msgstr "Spravovať predvoleného správcu súborov"
+#~ msgid "Third-Party Sources"
+#~ msgstr "Zdroje tretích strán"
 
-#~ msgid "Use Remote Data When Available"
-#~ msgstr "Použiť vzialené údaje ak sú k dispozícii"
+#~ msgid "Show comments"
+#~ msgstr "Zobraziť komentáre"
 
-#~ msgid "Some error happened while downloading the file."
-#~ msgstr "Došlo k nejakej chybe pri sťahovaní súboru."
+#~ msgid "Update Manager"
+#~ msgstr "Správca aktualizácií"
 
-#~ msgid "Manage all of the registered file types"
-#~ msgstr "Spravovať všetky registrované typy súborov"
+#~ msgid "Tweak otherwise hidden settings."
+#~ msgstr "Vylepšiť inak skryté nastavenia."
 
-#~ msgid "Combined Eucalyptus cloud and cluster controllers."
-#~ msgstr "Kombinácia eukalyptového závoja a ovládačov klastrov."
+#~ msgid "Software Update"
+#~ msgstr "Aktualizácia softvéru"
 
-#~ msgid "Manage the desktop icon's name and visiable"
-#~ msgstr "Spravovať názvy ikôn plochy a viditeľnosť"
+#~ msgid "<b>Features</b>"
+#~ msgstr "<b>Funkcie</b>"
 
-#~ msgid "Basic Ubuntu server"
-#~ msgstr "Jednoduchý Ubuntu server"
+#~ msgid "Show all runnable programs"
+#~ msgstr "Zobraziť všetky spustitelné programy"
 
-#~ msgid "This task provides the Ubuntu server environment."
-#~ msgstr "Túto úlohu zabezpečuje server prostredia Ubuntu."
+#~ msgid "The name of the startup program cannot be empty"
+#~ msgstr "Názov programu, ktorý sa má spustiť pri štarte, nemôže byť prázdny."
 
-#~ msgid "Mail server"
-#~ msgstr "Poštový server"
+#~ msgid "Update Successful!"
+#~ msgstr "Aktualizácia prebehla úspešne"
 
-#~ msgid ""
-#~ "This task selects a variety of package useful for a general purpose mail "
-#~ "server system."
-#~ msgstr "Táto úloha vyberie rôzne balíky užitočné pre poštový server."
+#~ msgid "Easily install up-to-date versions of many applications."
+#~ msgstr "Jednoducho nainštalovať aktuálne verzie mnohých aplikácií."
 
-#~ msgid "Selects the BIND DNS server and its documentation."
-#~ msgstr "Vyberá BIND DNS servera a jeho dokumentáciu."
+#~ msgid "Welcome to"
+#~ msgstr "Vitajte v"
 
-#~ msgid "DNS server"
-#~ msgstr "DNS server"
+#~ msgid "Package Cleaner"
+#~ msgstr "Čistienie balíkov"
 
-#~ msgid "This task provides the Edubuntu classroom server."
-#~ msgstr "Táta úloha zabezpečuje triedu Edubuntu server."
-
-#~ msgid "Edubuntu server"
-#~ msgstr "Edubuntu server"
-
-#~ msgid "Eucalyptus node controller."
-#~ msgstr "Uzol radiča eukalyptus."
-
-#~ msgid "Selects a ready-made Linux/Apache/MySQL/PHP server."
-#~ msgstr "Vybrať pripravený Linux/Apache/MySQL/PHP server."
-
-#~ msgid "LAMP server"
-#~ msgstr "LAMP server"
-
-#~ msgid "Print server"
-#~ msgstr "Tlačový server"
-
-#~ msgid "This task sets up your system to be a print server."
-#~ msgstr "Táto úloha nastaví váš systém na úlohu tlačového servera."
-
-#~ msgid "OpenSSH server"
-#~ msgstr "OpenSSH server"
-
-#~ msgid "Selects packages needed for an OpenSSH server."
-#~ msgstr "Vybrať balíčky potrebné pre OpenSSH server."
-
-#~ msgid "Samba file server"
-#~ msgstr "Samba súborový server"
-
-#~ msgid "Selects a ready-made Java Application server."
-#~ msgstr "Vybrať pripravený Java Application server"
-
-#~ msgid "Tomcat Java server"
-#~ msgstr "Tomcat Java server"
-
-#~ msgid "Edubuntu desktop"
-#~ msgstr "Edubuntu desktop"
-
-#~ msgid "Edubuntu KDE desktop"
-#~ msgstr "Edubuntu KDE desktop"
-
-#~ msgid "Audio creation and editing suite"
-#~ msgstr "Súprava programov pre vytváranie a úpravy zvuku"
-
-#~ msgid "2D/3D creation and editing suite"
-#~ msgstr "Súprava programov pre 2D/3D vytváranie a úpravy"
-
-#~ msgid "This task provides the Edubuntu desktop environment."
-#~ msgstr "Túto úlohu poskytuje prostredie Edubuntu."
-
-#~ msgid "Edubuntu live DVD"
-#~ msgstr "Edubuntu live DVD"
-
-#~ msgid "Video creation and editing suite"
-#~ msgstr "Programy pre vytváranie a úpravu videa"
-
-#~ msgid "Xubuntu desktop"
-#~ msgstr "Xubuntu desktop"
-
-#~ msgid "This task provides the Ubuntu desktop environment."
-#~ msgstr "Túto úlohu poskytuje prostredie Ubuntu"
-
-#~ msgid "This task provides the Xubuntu desktop environment."
-#~ msgstr "Túto úlohu poskytuje prostredie Xubuntu"
-
-#~ msgid "Ubuntu desktop"
-#~ msgstr "Ubuntu desktop"
-
-#~ msgid "This task provides the Ubuntu MID environment."
-#~ msgstr "Túto úlohu poskytuje prostredie Ubuntu MID"
-
-#~ msgid "Ubuntu MID edition"
-#~ msgstr "Ubuntu MID edícia"
-
-#~ msgid "This task provides the Ubuntu Netbook Remix environment."
-#~ msgstr "Túto úlohu poskytuje prostredie Ubuntu Netbook Remix"
-
-#~ msgid "Ubuntu Netbook Remix"
-#~ msgstr "Ubuntu Netbook Remix"
-
-#~ msgid "Kubuntu live CD"
-#~ msgstr "Kubuntu live CD"
-
-#~ msgid "Ubuntu MID live environment"
-#~ msgstr "Ubuntu MID live prostredie"
-
-#~ msgid "Mythbuntu live CD"
-#~ msgstr "Mythbuntu live CD"
-
-#~ msgid "Kubuntu live DVD"
-#~ msgstr "Kubuntu live DVD"
-
-#~ msgid "Remove"
-#~ msgstr "Odstrániť"
+#~ msgid "_Donate"
+#~ msgstr "_Prispejte"
 
 #, python-format
-#~ msgid "You've installed the <b>\"%s\"</b> task."
-#~ msgstr "Nainštalovanie <b>\"%s\"</b> úlohy."
+#~ msgid "Could not find %s"
+#~ msgstr "Nepodarilo sa nájsť %s"
 
-#~ msgid "Ubuntu live DVD"
-#~ msgstr "Ubuntu live DVD"
+#~ msgid "Shell"
+#~ msgstr "Shell"
 
-#~ msgid "Xubuntu live CD"
-#~ msgstr "Xubuntu live CD"
+#~ msgid "Source URL"
+#~ msgstr "Zdrojový URL"
 
-#~ msgid "Ubuntu live CD"
-#~ msgstr "Ubuntu live CD"
+#~ msgid "Automatically save open applications when logging out"
+#~ msgstr "Automaticky uložiť otvorené aplikácie po odhlásení"
 
-#~ msgid "Ubuntu Netbook Remix live environment"
-#~ msgstr "Ubuntu Netbook Remix live prostredie"
+#~ msgid "Useful Extensions"
+#~ msgstr "Užitočné rozšírenia"
 
-#~ msgid "Packages will be removed"
-#~ msgstr "Balíčky budú odstránené"
+#~ msgid "Prerequisite Conditions"
+#~ msgstr "Požiadavky"
 
-#~ msgid "Dangerous!"
-#~ msgstr "Nebezpečie!"
+#~ msgid "Clean"
+#~ msgstr "Vyčistiť"
 
-#~ msgid "New packages will be installed"
-#~ msgstr "Nové balíčky budú nainštalované"
+#, python-format
+#~ msgid "Cleaning...%s"
+#~ msgstr "Prebieha čistenie...%s"
 
-#~ msgid "Installed"
-#~ msgstr "Nainštalované"
+#~ msgid "Cleaning..."
+#~ msgstr "Prebieha čistenie..."
 
-#~ msgid "Install"
-#~ msgstr "Inštalovať"
+#~ msgid "Clean up Successful!"
+#~ msgstr "Čistenie dokončené!"
 
-#~ msgid "Task Install"
-#~ msgstr "Inštalovať úlohu"
+#~ msgid "Clean Cache"
+#~ msgstr "Vyčistiť vyrovnávaciu pamäť"
+
+#~ msgid "Select All"
+#~ msgstr "Vybrať všetko"
+
+#~ msgid "Clean Config"
+#~ msgstr "Vyčistiť konfiguráciu"
+
+#~ msgid "Enable \"Lock screen\" when \"Blank Screen\" activates"
+#~ msgstr "Povoliť „Zamknutie obrazovky“ ak sa aktivuje „Prázdna obrazovka“"
+
+#~ msgid "Choose the sources"
+#~ msgstr "Vyberte zdroje"
 
 #~ msgid ""
-#~ "This task sets up your system to be a Samba file server, which is  "
-#~ "especially suitable in networks with both Windows and Linux systems."
+#~ "You can read the title and comment to determine which source is suitable for "
+#~ "you."
 #~ msgstr ""
-#~ "Táto úloha nastavuje váš systém ako súborový Samba server, ktorý je vhodný "
-#~ "najmä v sieťach s Windowsom a Linuxom."
+#~ "Na základe názvu a komentára si môžete vybrať, ktoré zdroje sú pre vás "
+#~ "vhodné."
 
-#~ msgid "Kubuntu desktop"
-#~ msgstr "Kubuntu desktop"
+#~ msgid "Submit your sources"
+#~ msgstr "Odoslať svoje zdroje"
 
-#~ msgid "This task provides the Kubuntu desktop environment."
-#~ msgstr "Táto úloha vytvára prostredie Kubuntu."
+#~ msgid "_Source Title:"
+#~ msgstr "_Názov zdroja:"
 
-#~ msgid "Kubuntu netbook"
-#~ msgstr "Kubuntu netbook"
+#~ msgid "_Locale:"
+#~ msgstr "_Locale:"
 
-#~ msgid "LADSPA and DSSI audio plugins"
-#~ msgstr "LADSPA a DSSI audio rozšírenia"
+#~ msgid "Submit"
+#~ msgstr "Odoslať"
+
+#~ msgid "Please check your network connection!"
+#~ msgstr "Prosím skontrolujte svoje pripojenie k internetu"
+
+#~ msgid "Network Error"
+#~ msgstr "Chyba siete"
+
+#~ msgid "No source data available"
+#~ msgstr "Nie sú dostupné údaje o zdrojoch"
+
+#~ msgid "Ubuntu Tweak Preferences"
+#~ msgstr "Nastavenia Ubuntu Tweak"
+
+#~ msgid "<b>User Interface</b>"
+#~ msgstr "<b>Používateľské rozhranie</b>"
+
+#~ msgid "Default Window Width"
+#~ msgstr "Predvolená šírka okna"
+
+#~ msgid "Default Window Height"
+#~ msgstr "Predvolená výška okna"
+
+#~ msgid "Left Menubar Width"
+#~ msgstr "Šírka ľavého panelu menu"
 
 #~ msgid ""
-#~ "This task provides the Kubuntu desktop environment optimized for netbooks."
-#~ msgstr "Táto úloha vytvára prostredie Kubuntu optimalizované pre netbooky."
-
-#~ msgid "Packages necessary to host virtual machines"
-#~ msgstr "Balíky potrebné pre virtuálne počítače"
-
-#~ msgid "Packages included in UEC images."
-#~ msgstr "Balíčky zahrnuté v UEC obrazoch."
-
-#~ msgid "Large selection of font packages"
-#~ msgstr "Veľký výber balíčkov s písmom"
-
-#~ msgid "Mythbuntu additional roles"
-#~ msgstr "Ďalšie úlohy Mythbuntu"
-
-#~ msgid "This task provides Mythbuntu roles for an existing system."
-#~ msgstr "Táto úloha poskytuje Mythbuntu úlohy pre existujúci systém."
-
-#~ msgid "Kubuntu Netbook Edition live CD"
-#~ msgstr "Edícia Kubuntu Netbook live CD"
-
-#~ msgid ""
-#~ "This task provides the extra packages installed on the Kubuntu Netbook live "
-#~ "CD. It is neither useful nor recommended to install this task in other "
-#~ "environments."
+#~ "Configure file templates and shortcut scripts for easy access to common "
+#~ "tasks."
 #~ msgstr ""
-#~ "Táto úloha poskytuje extra balíčky inštalované na Kubuntu Netbook live CD. "
-#~ "Nie je to ani vhodné, ani sa neodporúča inštalovať túto úlohu v iných "
-#~ "prostrediach."
+#~ "Nakonfigurovať šablóny súborov a skratky skriptov na zjednodušenie prístupu "
+#~ "k bežným úlohám."
+
+#~ msgid "Display warning when removing a panel"
+#~ msgstr "Zobraziť upozornenie pri odstraňovaní panelu"
+
+#~ msgid "Complete lockdown of all panels"
+#~ msgstr "Uzamknúť všetky panely"
+
+#~ msgid "Default Launch Function"
+#~ msgstr "Predvolená funkcia po spustení"
+
+#~ msgid ""
+#~ "It is a possible security risk to use packages from Third-Party Sources.\n"
+#~ "Please be careful and use only sources you trust."
+#~ msgstr ""
+#~ "Používanie balíkov od tretích strán je predstavuje potenciálne bezpečnostné "
+#~ "riziko.\n"
+#~ "Používajte iba zdroje softvéru, ktorým dôverujete."
+
+#~ msgid "No description"
+#~ msgstr "Bez popisu"
+
+#~ msgid "Do you want your changes to take effect immediately?"
+#~ msgstr "Chcete, aby sa zmeny prejavili okamžite?"
+
+#~ msgid ""
+#~ "Your sources will be reviewed and made available for others soon.\n"
+#~ "Thank you!"
+#~ msgstr ""
+#~ "Vaše zdroje skontrolujeme a čoskoro sprístupníme ostatným.\n"
+#~ "Ďakujeme!"
+
+#~ msgid "If the locale isn't correct you can edit manually"
+#~ msgstr "Ak locale nie je správne, môžete ho upraviť ručne."
+
+#~ msgid "Enter the title of the source, e.g. \"Ubuntu Official Repostory\""
+#~ msgstr "Zadajte názov zdroja, napr. „Oficiálne zdroje Ubuntu“"
+
+#~ msgid "You can submit your sources to the server for other people to use."
+#~ msgstr ""
+#~ "Môžete poslať svoj zoznam zdrojov na server, aby ich mohli používať ostatní "
+#~ "ľudia."
+
+#~ msgid "Successfully submitted"
+#~ msgstr "Úspešne odoslané"
+
+#~ msgid "Hostname"
+#~ msgstr "Názov počítača"
+
+#~ msgid "Cleaning Package Cache"
+#~ msgstr "Čistí sa vyrovnávacia pamäť balíkov"
+
+#~ msgid "Dependency Notice"
+#~ msgstr "Oznámenie závislosti"
+
+#~ msgid "Use Separated Sources"
+#~ msgstr "Použite oddelené zdroje"
+
+#~ msgid "New source has been enabled"
+#~ msgstr "Sú povolené nové zdroje"
 
 #, python-format
 #~ msgid ""
-#~ "You are going to remove the <b>\"%s\"</b> task.\n"
-#~ "The following packages will be remove."
+#~ "%s is enabled now, Please click the refresh button to update the application "
+#~ "cache."
 #~ msgstr ""
-#~ "Chystáte sa odstrániť <b>\"%s\"</b> úlohu.\n"
-#~ "Nasledujúce balíčky budú odstránené."
+#~ "%s je teraz povolený, Prosím kliknite na tlačitko obnoviť, pre aktualizáciu "
+#~ "pamäte aplikácie."
 
-#~ msgid ""
-#~ "This task provides the extra packages installed on the Ubuntu live CD. It is "
-#~ "neither useful nor recommended to install this task in other environments."
+#~ msgid "_Cleanup"
+#~ msgstr "_Vyčistenie"
+
+#~ msgid "Contributors of 2007"
+#~ msgstr "Prispievatelia roka 2007"
+
+#~ msgid "Contributors of 2008"
+#~ msgstr "Prispievatelia roka 2008"
+
+#~ msgid "Contributors of 2009"
+#~ msgstr "Prispievatelia roka 2009"
+
+#~ msgid "Cleaning Configuration Files"
+#~ msgstr "Vyčistiť konfiguračné súbory"
+
+#~ msgid "CPU"
+#~ msgstr "Procesor"
+
+#~ msgid "Uploading..."
+#~ msgstr "Uploadovanie..."
+
+#~ msgid "Edit Startup Program"
+#~ msgstr "Upraviť program po spustení"
+
+#~ msgid "New Startup Program"
+#~ msgstr "Nový program po spustení"
+
+#~ msgid "Updating..."
+#~ msgstr "Aktualizácia..."
+
+#~ msgid "Make the launcher hide automatically after some time inactive"
 #~ msgstr ""
-#~ "Táto úloha poskytuje extra balíčky inštalované na Ubuntu live CD. Nie je to "
-#~ "ani vhodné, ani sa neodporúča inštalovať túto úlohu v iných prostrediach."
-
-#~ msgid ""
-#~ "This task provides the extra packages installed on the Xubuntu live CD. It "
-#~ "is neither useful nor recommended to install this task in other environments."
-#~ msgstr ""
-#~ "Táto úloha poskytuje extra balíčky inštalované na Xubuntu live CD. Nie je to "
-#~ "ani vhodné, ani sa neodporúča inštalovať túto úlohu v iných prostrediach."
-
-#~ msgid ""
-#~ "It is dangerous to remove a task, it may remove the desktop related "
-#~ "packages.\n"
-#~ "Please only continue when you know what you are doing."
-#~ msgstr ""
-#~ "Je nebezpečné odstrániť úlohu, môže odstrániť plochy okolitých balíkov.\n"
-#~ "Prosím, pokračujte len ak viete, čo robíte."
-
-#~ msgid ""
-#~ "This task provides the extra packages installed in the Ubuntu Netbook Remix "
-#~ "live environment. It is neither useful nor recommended to install this task "
-#~ "in other environments."
-#~ msgstr ""
-#~ "Táto úloha poskytuje extra balíčky inštalované na Ubuntu netbook remix live "
-#~ "prostredí. Nie je to ani vhodné, ani sa neodporúča inštalovať túto úlohu v "
-#~ "iných prostrediach."
-
-#~ msgid ""
-#~ "This task provides the extra packages installed in the Ubuntu MID live "
-#~ "environment. It is neither useful nor recommended to install this task in "
-#~ "other environments."
-#~ msgstr ""
-#~ "Táto úloha poskytuje extra balíčky inštalované v Ubuntu MID live prostredí. "
-#~ "Nie je to ani vhodné, ani sa neodporúča inštalovať túto úlohu v iných "
-#~ "prostrediach."
-
-#~ msgid ""
-#~ "This task provides the extra packages installed on the Mythbuntu live CD. It "
-#~ "is neither useful nor recommended to install this task in other environments."
-#~ msgstr ""
-#~ "Táto úloha poskytuje extra balíčky inštalované na Mythbuntu live CD. Nie je "
-#~ "to ani vhodné, ani sa neodporúča inštalovať túto úlohu v iných prostrediach."
-
-#~ msgid ""
-#~ "This task provides the extra packages installed on the Kubuntu live DVD, "
-#~ "above and beyond those included on the Kubuntu live CD. It is neither useful "
-#~ "nor recommended to install this task in other environments."
-#~ msgstr ""
-#~ "Táto úloha poskytuje extra balíčky inštalované na Kubuntu live DVD,nad rámec "
-#~ "tých, ktoré zahŕňa na Kubuntu Live CD. Nie je to ani vhodné, ani sa "
-#~ "neodporúča inštalovať túto úlohu v iných prostrediach."
-
-#~ msgid ""
-#~ "This task provides the extra packages installed on the Kubuntu live CD. It "
-#~ "is neither useful nor recommended to install this task in other environments."
-#~ msgstr ""
-#~ "Táto úloha poskytuje extra balíčky inštalované na Kubuntu live CD. Nie je to "
-#~ "ani vhodné, ani sa neodporúča inštalovať túto úlohu v iných prostrediach."
-
-#, python-format
-#~ msgid ""
-#~ "You are going to install the <b>\"%s\"</b> task.\n"
-#~ "The following packager will be installed."
-#~ msgstr ""
-#~ "Chystáte sa inštalovať <b>\"%s\"</b> úlohu.\n"
-#~ "Nasledujúce balíčky budú inštalované."
-
-#~ msgid ""
-#~ "Setup a full-function environment with just one-click\n"
-#~ "If you want to remove a task, click the \"Installed\" button"
-#~ msgstr ""
-#~ "Nastavenie plne funkčného prostredia iba jedným kliknutím\n"
-#~ "Ak chcete odstrániť úlohu, kliknite na tlačítko \"Nainštalované\""
-
-#~ msgid "Arrange the buttons on the titlebar by dragging and dropping"
-#~ msgstr "Usporiadať tlačidlá na titulke okna pretiahnutím"
-
-#~ msgid "Enable the synchronous notification"
-#~ msgstr "Povoliť súčasné oznámenia"
-
-#~ msgid "Virtual Machine host"
-#~ msgstr "Virtuálny počítač"
-
-#~ msgid "This task provides the Edubuntu desktop environment (KDE variant)."
-#~ msgstr "Túto úlohu poskytuje prostredie Edubuntu desktop (KDE varianta)."
-
-#~ msgid "Add Spacer"
-#~ msgstr "Pridať medzeru"
-
-#~ msgid "Remove Spacer"
-#~ msgstr "Odstrániť medzerník"
-
-#~ msgid ""
-#~ "This task provides the extra packages installed on the Ubuntu live DVD, "
-#~ "above and beyond those included on the Ubuntu live CD. It is neither useful "
-#~ "nor recommended to install this task in other environments."
-#~ msgstr ""
-#~ "Táto úloha poskytuje ďalšie balíčky inštalované v Ubuntu live DVD, nad rámec "
-#~ "tých, ktoré zahŕňa na Ubuntu live CD. Nie je to ani vhodné, ani sa "
-#~ "neodporúča inštalovať túto úlohu v iných prostrediach."
-
-#~ msgid "Setting with your amazing eye-candy desktop"
-#~ msgstr "Nastavenie s vašim ohromujúcim vzhľadom plochy."
-
-#~ msgid "Clean up unneeded packages to free up diskspace."
-#~ msgstr "Vyčisťiť nepotrebné balíčky, aby sa uvoľnilo miesto na disku."
-
-#~ msgid ""
-#~ "A simple but more efficient way for finding and installing popular "
-#~ "applications.\n"
-#~ "Data will be automatically synchronized with the remote server.\n"
-#~ "You can click the \"Sync\" button to perform a manual check for updates."
-#~ msgstr ""
-#~ "Jednoduchý, ale účinnejší spôsob pre vyhľadávanie a inštaláciu populárnych "
-#~ "aplikácií.\n"
-#~ "Údaje budú automaticky synchronizované so vzdialeným serverom.\n"
-#~ "Môžete kliknúť na tlačidlo \"Sync\" pre vykonanie manuálnej kontroly "
-#~ "aktualizácií."
-
-#~ msgid "Advanced Power Manager Settings"
-#~ msgstr "Pokročilý manažér správy napájania"
-
-#~ msgid "Open with root priveleges option"
-#~ msgstr "Otvoriť s nastavením správcu systému"
-
-#~ msgid "Open in terminal option"
-#~ msgstr "Otvoriť s nastavením terminálu"
-
-#~ msgid "Some useful system information)"
-#~ msgstr "Niektoré užitočné informácie o systéme)"
-
-#~ msgid ""
-#~ "This image size isn't suitable for the panel.\n"
-#~ "It should be 24x24."
-#~ msgstr ""
-#~ "Táto veľkosť obrázku nie je vhodná pre panel.\n"
-#~ "Malo by byť 24x24."
-
-#~ msgid ""
-#~ "Free up disk space by removing redundant packages and cleaning the package "
-#~ "download cache."
-#~ msgstr ""
-#~ "Uvoľnite voľné miesto na disku odstránením nadbytočných balíčkov a vyčistiť "
-#~ "dočasnú pamäť sťahovania."
-
-#~ msgid "A cross-platform application and UI framework"
-#~ msgstr "Portabilná platforma na vývoj aplikácií a používateľského rozhrania"
-
-#~ msgid "Mono is a cross platform, open source .NET development framework."
-#~ msgstr "Mono je portabilná, open source platforma na vývoj v .NET."
-
-#~ msgid "Fix the appearance of themes when granted root priveleges"
-#~ msgstr "Opraviť vzhľad tém po udelení oprávnení správcu"
-
-#, python-format
-#~ msgid "Delete thumbnail cache (will free %s of disk space)"
-#~ msgstr "Zmazať vyrovnávaciu pamäť náhľadov (na disku sa uvoľní %s)"
-
-#~ msgid "Open folder with root priveleges"
-#~ msgstr "Otvoriť priečinok s oprávnením správcu"
-
-#~ msgid ""
-#~ "Scripts can be used to complete all kinds of tasks.\n"
-#~ "You can drag and drop scripts from File Manager.\n"
-#~ "'Scripts' will then be added to the context menu."
-#~ msgstr ""
-#~ "Skripty možno použiť na vykonanie rozličných úloh.\n"
-#~ "Skripty môžete pretiahnuť zo Správcu súborov.\n"
-#~ "V kontextovom menu potom pribudne položka „Skripty“."
-
-#~ msgid "Change the name and toggle visibilty of desktop icons"
-#~ msgstr "Zmeniť názov a prepnúť viditeľnosť ikon na ploche"
-
-#~ msgid "The thumbnail cache will be deleted, Do you wish to continue?"
-#~ msgstr "Vyrovnávacia pamäť náhľadov bude zmazaná. Chcete pokračovať?"
-
-#~ msgid "Enable new item highlight in App and Source Center"
-#~ msgstr "Povoliť zvýraznenie novej položky v Aplikáciach a Centre zdrojov"
-
-#~ msgid ""
-#~ "Ubuntu Tweak will restore the chosen directory to the default location.\n"
-#~ "However, you must move your files back into place by yourself.\n"
-#~ "Do you wish to continue?"
-#~ msgstr ""
-#~ "Ubuntu Tweak obnoví vybraný adresár na predvolené miesto.\n"
-#~ "Svoje súbory však musíte späť na miesto presunúť sami.\n"
-#~ "Chcete pokračovať?"
-
-#, python-format
-#~ msgid "Available %d New Application"
-#~ msgid_plural "Available %d New Applications"
-#~ msgstr[0] "Je dostupná %d nová aplikácia"
-#~ msgstr[1] "Sú dostupné %d nové aplikácie"
-#~ msgstr[2] "Je dostupných %d nových aplikácií"
-
-#, python-format
-#~ msgid "Available %d Package Update"
-#~ msgid_plural "Available %d Package Updates"
-#~ msgstr[0] "Je dostupná %d nová aktualizácia balíčka"
-#~ msgstr[1] "Sú dostupné %d nové aktualizácie balíčkov"
-#~ msgstr[2] "Je dostupných %d nových aktualizácií balíčkov"
-
-#~ msgid ""
-#~ "A source center to keep your applications always up-to-date.\n"
-#~ "You can also get the application which isn't in the official repository.\n"
-#~ "Data will be automatically synchronized with the remote side.\n"
-#~ "You can click the \"Sync\" button to check the update manually."
-#~ msgstr ""
-#~ "Centrum zdroja, aby boli vaše aplikácie vždy aktuálne.\n"
-#~ "Môžete tiež získať aplikáciu, ktorá nie je v oficiálnom repozitári.\n"
-#~ "Údaje budú automaticky synchronizované s protistranou.\n"
-#~ "Môžete kliknúť na tlačidlo \"Sync\" pre kontrolu aktualizácií ručne."
-
-#, python-format
-#~ msgid ""
-#~ "Templates path is wrong! The current path is point to \"%s\".\n"
-#~ "Please reset it to a folder under your Home Folder."
-#~ msgstr ""
-#~ "Priečinok šablón nie je správne nastavený! Aktuálna hodnota odkazuje na "
-#~ "„%s“.\n"
-#~ "Prosím nastavte ho na podadresár svojho Domovského priečinka."
-
-#~ msgid ""
-#~ "Here you can manage which programs are started upon login.\n"
-#~ "You can hide items from view by selecting and clicking \"Remove\"\n"
-#~ "To permanently delete an item, right-click and press \"Delete\"."
-#~ msgstr ""
-#~ "Tu môžete spravovať programy, ktoré sú spustené po prihlásení.\n"
-#~ "Môžete skryť položky vybraním a kliknutím na tlačidlo \"Odstrániť\".\n"
-#~ "Ak chcete natrvalo odstrániť položku, kliknite pravým tlačidlom a stlačte "
-#~ "\"Zmazať z disku\"."
-
-#~ msgid "Some sources can be upgraded"
-#~ msgstr "Niektoré zdroje nemôžu byť aktualizované"
-
-#~ msgid "Temporary disable PPA sources while refreshing"
-#~ msgstr "Dočasne zakázané zdroje PPA počas obnovovania"
-
-#~ msgid ""
-#~ "After a successful distribution upgrade, the third-party sources are still "
-#~ "remain disabled.\n"
-#~ "Would you like to enable the sources which disabled by Update Manager?"
-#~ msgstr ""
-#~ "Po úspešnom upgrade distribúcie, sú zdroje tretej strany vypnuté.\n"
-#~ "Chceli by ste povoliť zdroje, zakázané Správcom Aktualizácií?"
-
-#~ msgid "Click the button to change the Logo in login screen"
-#~ msgstr "Kliknite na tlačidlo pre zmenu loga v prihlasovacej obrazovke"
-
-#~ msgid "Click the button to change the background in login screen"
-#~ msgstr "Kliknite na tlačidlo pre zmenu pozadia v prihlasovacej obrazovke"
-
-#~ msgid "Control your login screen's theme and behavior"
-#~ msgstr "Ovládajte vzhľad témy prihlasovacej obrazovky a správanie"
-
-#~ msgid "PNG image with 64x64 size (*.png)"
-#~ msgstr "PNG obrázok s veľkosťou 64x64 (*.png)"
-
-#~ msgid "Disable showing the restart buttons"
-#~ msgstr "Zakázať zobrazenie tlačidiel reštart"
-
-#~ msgid "Enable auto-start of System Update Manager"
-#~ msgstr "Povoliť auto-štart Správcu aktualizácií systému"
-
-#~ msgid ""
-#~ "A collection of software sources to ensure your applications are always up-"
-#~ "to-date.\n"
-#~ "Here you can also add applications which are unavailable in the offical "
-#~ "repositories.\n"
-#~ "The list of available sources will be obtained automatically from a remote "
-#~ "server.\n"
-#~ "You can click the \"Sync\" button to manually check for updates"
-#~ msgstr ""
-#~ "Zbierka zdrojov softvéru, aby boli vaše aplikácie vždy aktuálne.\n"
-#~ "Tu tiež môžete pridať aplikácie, ktoré sú k dispozícii v oficiálnych "
-#~ "repozitároch.\n"
-#~ "Zoznam dostupných zdrojov bude možné získať automaticky zo vzdialeného "
-#~ "servera.\n"
-#~ "Môžete kliknúť na tlačidlo \"Sync\" pre ručnú kontrolu aktualizácií"
-
-#~ msgid "Freely edit your software sources to suit your needs."
-#~ msgstr "Voľne upraviť svoje zdroje softvéru, aby vyhovovali vašim potrebám."
-
-#~ msgid ""
-#~ "The daemon of Ubuntu Tweak doesn't start correctly, that means some advanced "
-#~ "features may not work.\n"
-#~ "If you want to help developer to debug, try to run \"<b>sudo ubuntu-tweak-"
-#~ "daemon</b>\" under terminal."
-#~ msgstr ""
-#~ "Démon Ubuntu Tweak sa nespustil správne, čo znamená, že niektoré pokročilé "
-#~ "funkcie nemusia fungovať.\n"
-#~ "Ak chcete pomôcť vývojárom v oprave, skúste spustiť v termináli \"<b>sudo "
-#~ "ubuntu-tweak-daemon </b>\"."
-
-#~ msgid ""
-#~ "It is highly recommend to enable the stable source of Ubuntu Tweak to get "
-#~ "security and normal update.\n"
-#~ "If you don't enable the source, you will need to update manually.\n"
-#~ "\n"
-#~ "Would you like to enable the stable source?"
-#~ msgstr ""
-#~ "Je vysoko odporúčané, povoliť stabilný zdroj Ubuntu Tweak pre získanie "
-#~ "bezpečnosti a normálnej aktualizácie.\n"
-#~ "Ak nechcete povoliť zdroj, budete musieť aktualizovať ručne.\n"
-#~ "\n"
-#~ "Chcete povoliť stabilný zdroj?"
-
-#~ msgid ""
-#~ "By disabling the \"Recent Documents\", it may break other software such as "
-#~ "VMware Player's history feature."
-#~ msgstr ""
-#~ "Vypnutie \"Posledných dokumentov\", môže poškodiť ďalší softvér, ako napr. "
-#~ "funkciu história VMware Prehrávača."
-
-#~ msgid "New Backup Name"
-#~ msgstr "Nový názov zálohy"
-
-#~ msgid ""
-#~ "Compiz is broken, Please go to \"Package Cleaner\" -> \"Purge PPAs\" to "
-#~ "cleanup the \"Compiz Packagers PPA\" or \"ppa:compiz/ppa\"."
-#~ msgstr ""
-#~ "Compiz je poškodený, Prosím vojdite do \"Package Cleaner\" -> \"Purge PPAs\" "
-#~ "pre vyčistenie \"Compiz Packagers PPA\" alebo \"ppa:compiz/ppa\"."
+#~ "Umožnite skrytie spúšťača aplikácie automaticky po určitej dobe nečinnosti"
