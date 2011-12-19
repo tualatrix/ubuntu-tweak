@@ -253,6 +253,9 @@ class UbuntuTweakApp(Unique.App):
 
     def __init__(self, name='com.ubuntu-tweak.Tweak', startup_id=''):
         Unique.App.__init__(self, name=name, startup_id=startup_id)
+        log.debug("Distribution: %s\nApplication: %s\nDesktop:%s" % (system.DISTRO,
+                                           system.APP,
+                                           system.DESKTOP))
         self.connect('message-received', self.on_message_received)
 
     def set_window(self, window):
