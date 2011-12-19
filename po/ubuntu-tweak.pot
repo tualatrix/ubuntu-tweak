@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-13 15:48+0800\n"
+"POT-Creation-Date: 2011-12-19 11:48+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -450,12 +450,16 @@ msgstr ""
 msgid "GNOME Classic"
 msgstr ""
 
-#: ../ubuntutweak/system/__init__.py:50
+#: ../ubuntutweak/system/__init__.py:42
+msgid "GNOME Fallback"
+msgstr ""
+
+#: ../ubuntutweak/system/__init__.py:51
 #, python-format
 msgid "Unknown (%s)"
 msgstr ""
 
-#: ../ubuntutweak/system/__init__.py:52
+#: ../ubuntutweak/system/__init__.py:53
 #: ../ubuntutweak/clips/hardwareinfo.py:16
 msgid "Unknown"
 msgstr ""
@@ -478,7 +482,7 @@ msgid "Error happened!"
 msgstr ""
 
 #: ../ubuntutweak/network/utdata.py:50 ../ubuntutweak/network/utdata.py:83
-#: ../ubuntutweak/tweaks/unity.py:63 ../ubuntutweak/tweaks/unity.py:141
+#: ../ubuntutweak/tweaks/unity.py:73 ../ubuntutweak/tweaks/unity.py:151
 msgid "Never"
 msgstr ""
 
@@ -623,16 +627,16 @@ msgstr ""
 msgid "No PPA to be removed"
 msgstr ""
 
-#: ../ubuntutweak/janitor/autoremoval_plugin.py:10
+#: ../ubuntutweak/janitor/autoremoval_plugin.py:14
 msgid "Unneeded Packages"
 msgstr ""
 
-#: ../ubuntutweak/janitor/autoremoval_plugin.py:39
+#: ../ubuntutweak/janitor/autoremoval_plugin.py:50
 #, python-format
 msgid "Unneeded Packages (%d packages to be removed, total size: %s)"
 msgstr ""
 
-#: ../ubuntutweak/janitor/autoremoval_plugin.py:41
+#: ../ubuntutweak/janitor/autoremoval_plugin.py:52
 msgid "Unneeded Packages (No package to be removed)"
 msgstr ""
 
@@ -649,37 +653,37 @@ msgstr ""
 msgid "Apt Cache (No cache to be cleaned)"
 msgstr ""
 
-#: ../ubuntutweak/janitor/__init__.py:419
+#: ../ubuntutweak/janitor/__init__.py:420
 #, python-format
 msgid "Scanning cruft for \"%s\"..."
 msgstr ""
 
-#: ../ubuntutweak/janitor/__init__.py:581
+#: ../ubuntutweak/janitor/__init__.py:582
 #, python-format
 msgid "Cleaning cruft for \"%s\"..."
 msgstr ""
 
-#: ../ubuntutweak/janitor/__init__.py:652
+#: ../ubuntutweak/janitor/__init__.py:654
 #: ../ubuntutweak/admins/desktoprecovery.py:81
 #: ../ubuntutweak/modules/__init__.py:34
 msgid "System"
 msgstr ""
 
-#: ../ubuntutweak/janitor/__init__.py:674
+#: ../ubuntutweak/janitor/__init__.py:676
 #: ../ubuntutweak/modules/__init__.py:33
 msgid "Personal"
 msgstr ""
 
-#: ../ubuntutweak/janitor/packageconfigs_plugin.py:29
+#: ../ubuntutweak/janitor/packageconfigs_plugin.py:30
 msgid "Package Configs"
 msgstr ""
 
-#: ../ubuntutweak/janitor/packageconfigs_plugin.py:59
+#: ../ubuntutweak/janitor/packageconfigs_plugin.py:70
 #, python-format
 msgid "Packages Configs (%d package configs to be removed)"
 msgstr ""
 
-#: ../ubuntutweak/janitor/packageconfigs_plugin.py:61
+#: ../ubuntutweak/janitor/packageconfigs_plugin.py:72
 msgid "Packages Configs (No package config to be removed)"
 msgstr ""
 
@@ -687,12 +691,12 @@ msgstr ""
 msgid "Old Kernel"
 msgstr ""
 
-#: ../ubuntutweak/janitor/oldkernel_plugin.py:84
+#: ../ubuntutweak/janitor/oldkernel_plugin.py:91
 #, python-format
 msgid "Old Kernel Packages (%d kernel packages to be removed, total size: %s)"
 msgstr ""
 
-#: ../ubuntutweak/janitor/oldkernel_plugin.py:86
+#: ../ubuntutweak/janitor/oldkernel_plugin.py:93
 msgid "Old Kernel Packages (No old kernel package to be removed)"
 msgstr ""
 
@@ -703,7 +707,7 @@ msgstr ""
 
 #: ../ubuntutweak/admins/desktoprecovery.py:80
 #: ../ubuntutweak/admins/userdir.py:34 ../ubuntutweak/modules/__init__.py:32
-#: ../ubuntutweak/tweaks/unity.py:89 ../ubuntutweak/tweaks/ccm/Constants.py:88
+#: ../ubuntutweak/tweaks/unity.py:99 ../ubuntutweak/tweaks/ccm/Constants.py:88
 msgid "Desktop"
 msgstr ""
 
@@ -1582,6 +1586,18 @@ msgstr ""
 msgid "Natural Scrolling"
 msgstr ""
 
+#: ../ubuntutweak/tweaks/misc.py:70
+msgid "Cursor blink"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/misc.py:75
+msgid "Cursor blink time"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/misc.py:83
+msgid "Cursor blink timeout"
+msgstr ""
+
 #: ../ubuntutweak/tweaks/theme.py:27
 msgid "Theme"
 msgstr ""
@@ -1594,123 +1610,143 @@ msgstr ""
 msgid "Desktop theme"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:27
+#: ../ubuntutweak/tweaks/theme.py:43
+msgid "Gtk theme"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/theme.py:50
+msgid "Icon theme"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/theme.py:57
+msgid "Cursor theme"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/theme.py:64
+msgid "Window theme"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:30
 msgid "Unity Settings"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:28
+#: ../ubuntutweak/tweaks/unity.py:31
 msgid "Tweak the powerful Unity desktop"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:37 ../ubuntutweak/tweaks/unity.py:127
+#: ../ubuntutweak/tweaks/unity.py:43
+msgid "<big>Sorry! Unity Settings doesn't support unityshell-rotated</big>"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:47 ../ubuntutweak/tweaks/unity.py:137
 msgid "Launcher"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:39
+#: ../ubuntutweak/tweaks/unity.py:49
 msgid "Icon size"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:46
+#: ../ubuntutweak/tweaks/unity.py:56
 msgid "Launcher opacity"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:54
+#: ../ubuntutweak/tweaks/unity.py:64
 msgid "Launcher reveal edge timeout"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:61 ../ubuntutweak/tweaks/unity.py:139
+#: ../ubuntutweak/tweaks/unity.py:71 ../ubuntutweak/tweaks/unity.py:149
 msgid "Launcher hide mode"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:63 ../ubuntutweak/tweaks/unity.py:141
+#: ../ubuntutweak/tweaks/unity.py:73 ../ubuntutweak/tweaks/unity.py:151
 msgid "Auto Hide"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:64
+#: ../ubuntutweak/tweaks/unity.py:74
 msgid "Dodge Window"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:64
+#: ../ubuntutweak/tweaks/unity.py:74
 msgid "Dodge Active Window"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:70
+#: ../ubuntutweak/tweaks/unity.py:80
 msgid "Icon backlight"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:72
+#: ../ubuntutweak/tweaks/unity.py:82
 msgid "Backlight Always On"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:73
+#: ../ubuntutweak/tweaks/unity.py:83
 msgid "Backlight Toggles"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:74
+#: ../ubuntutweak/tweaks/unity.py:84
 msgid "Backlight Always Off"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:75
+#: ../ubuntutweak/tweaks/unity.py:85
 msgid "Edge Illumination Toggles"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:76
+#: ../ubuntutweak/tweaks/unity.py:86
 msgid "Backlight and Edge Illumination Toggles"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:84
+#: ../ubuntutweak/tweaks/unity.py:94
 msgid "Dash and Panel"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:86
+#: ../ubuntutweak/tweaks/unity.py:96
 msgid "Dash size"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:88
+#: ../ubuntutweak/tweaks/unity.py:98
 msgid "Automatic"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:90
+#: ../ubuntutweak/tweaks/unity.py:100
 msgid "Netbook"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:97
+#: ../ubuntutweak/tweaks/unity.py:107
 msgid "Blur"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:99
+#: ../ubuntutweak/tweaks/unity.py:109
 msgid "No blur"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:100
+#: ../ubuntutweak/tweaks/unity.py:110
 msgid "Static blur"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:101
+#: ../ubuntutweak/tweaks/unity.py:111
 msgid "Active blur"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:107
+#: ../ubuntutweak/tweaks/unity.py:117
 msgid "Panel opacity"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:118
+#: ../ubuntutweak/tweaks/unity.py:128
 msgid "Compositing Manager"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:120
+#: ../ubuntutweak/tweaks/unity.py:130
 msgid "Enable Metacity's compositing feature"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:129
+#: ../ubuntutweak/tweaks/unity.py:139
 msgid "Enable the Super key"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:134
+#: ../ubuntutweak/tweaks/unity.py:144
 msgid "Reserve launcher area"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:142
+#: ../ubuntutweak/tweaks/unity.py:152
 msgid "Intellihide"
 msgstr ""
 
@@ -2374,23 +2410,23 @@ msgstr ""
 msgid "\"%s\" has already installed"
 msgstr ""
 
-#: ../ubuntutweak/main.py:354
+#: ../ubuntutweak/main.py:358
 msgid "Please wait a moment..."
 msgstr ""
 
-#: ../ubuntutweak/main.py:453
+#: ../ubuntutweak/main.py:458
 #, python-format
 msgid "No module named \"%s\""
 msgstr ""
 
-#: ../ubuntutweak/main.py:454
+#: ../ubuntutweak/main.py:459
 msgid "Please ensure you have entered the correct module name."
 msgstr ""
 
-#: ../ubuntutweak/main.py:511
+#: ../ubuntutweak/main.py:517
 msgid "Computer Janitor"
 msgstr ""
 
-#: ../ubuntutweak/main.py:512
+#: ../ubuntutweak/main.py:518
 msgid "Clean up a system so it's more like a freshly installed one"
 msgstr ""
