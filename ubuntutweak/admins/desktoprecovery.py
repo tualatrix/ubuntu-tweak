@@ -449,8 +449,9 @@ class DesktopRecovery(TweakModule):
                                       (directory, os.path.basename(path)[:-4]))
         else:
             dialog = QuestionDialog(message=_('Would you like to delete the backup of'
-                                      ' all "<b>%s</b>" settings named "<b>%s</b>"?') %
-                                      (directory, os.path.basename(path)[:-4]))
+                                      ' all "<b>%(setting_name)s</b>" settings named "<b>%(backup_name)s</b>"?') % \
+                                      {'setting_name': directory,
+                                       'backup_name': os.path.basename(path)[:-4]})
         response = dialog.run()
         dialog.destroy()
         if response == Gtk.ResponseType.YES:
@@ -473,8 +474,9 @@ class DesktopRecovery(TweakModule):
                         directory, os.path.basename(path)[:-4])
         else:
             message = _('Would you like to recover the backup of all '
-                        '"<b>%s</b>" settings named "<b>%s</b>"?') % (
-                        directory, os.path.basename(path)[:-4])
+                        '"<b>%(setting_name)s</b>" settings named "<b>%(backup_name)s</b>"?') % \
+                        {'setting_name': directory,
+                         'backup_name': os.path.basename(path)[:-4]}
 
         addon_message = _('<b>NOTES</b>: While recovering, your desktop may be unresponsive for a moment.')
 
