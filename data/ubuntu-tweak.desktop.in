@@ -5,62 +5,28 @@ Exec=ubuntu-tweak
 Icon=ubuntu-tweak
 Terminal=false
 Type=Application
-Categories=GNOME;GTK;System;
+Categories=GNOME;GTK;Settings;X-GNOME-Settings-Panel;
+X-GNOME-Settings-Panel=ubuntu-tweak
 StartupNotify=true
-X-Ayatana-Desktop-Shortcuts=Compiz;Icon;DesktopRecovery;FileType;Gnome;LoginSettings;Shortcuts;Nautilus;Session;Metacity;PowerManager
+X-Ayatana-Desktop-Shortcuts=Overview;Tweaks;Admins;Janitor
 X-Ayatana-Appmenu-Show-Stubs=False
 
-[Compiz Shortcut Group]
-_Name=Compiz Settings
-Exec=ubuntu-tweak -m Compiz
+[Overview Shortcut Group]
+_Name=Overview
+Exec=ubuntu-tweak
 TargetEnvironment=Unity
 
-[Icon Shortcut Group]
-_Name=Desktop Icon Settings
-Exec=ubuntu-tweak -m Icon
+[Tweaks Shortcut Group]
+_Name=Tweaks
+Exec=ubuntu-tweak -f tweaks
 TargetEnvironment=Unity
 
-[DesktopRecovery Shortcut Group]
-_Name=Desktop Recovery
-Exec=ubuntu-tweak -m DesktopRecovery
+[Admins Shortcut Group]
+_Name=Admins
+Exec=ubuntu-tweak -f admins
 TargetEnvironment=Unity
 
-[FileType Shortcut Group]
-_Name=File Type Manager
-Exec=ubuntu-tweak -m FileTypeManager
-TargetEnvironment=Unity
-
-[Gnome Shortcut Group]
-_Name=GNOME Settings
-Exec=ubuntu-tweak -m Gnome
-TargetEnvironment=Unity
-
-[LoginSettings Shortcut Group]
-_Name=Login Settings
-Exec=ubuntu-tweak -m LoginSettings
-TargetEnvironment=Unity
-
-[Shortcuts Shortcut Group]
-_Name=Shortcut Commands
-Exec=ubuntu-tweak -m Shortcuts
-TargetEnvironment=Unity
-
-[Session Shortcut Group]
-_Name=Session Control
-Exec=ubuntu-tweak -m Session
-TargetEnvironment=Unity
-
-[Nautilus Shortcut Group]
-_Name=Nautilus Settings
-Exec=ubuntu-tweak -m Nautilus
-TargetEnvironment=Unity
-
-[Metacity Shortcut Group]
-_Name=Window Manager Settings
-Exec=ubuntu-tweak -m Metacity
-TargetEnvironment=Unity
-
-[PowerManager Shortcut Group]
-_Name=Power Manager Settings
-Exec=ubuntu-tweak -m PowerManager
+[Janitor Shortcut Group]
+_Name=Janitor
+Exec=ubuntu-tweak -f janitor
 TargetEnvironment=Unity
