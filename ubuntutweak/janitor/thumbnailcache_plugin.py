@@ -56,7 +56,7 @@ class ThumbnailCachePlugin(JanitorPlugin):
 
             self.emit('scan_finished', True, count, total_size)
         except Exception, e:
-            self.emit('error', e)
+            self.emit('scan_error', e)
 
     def clean_cruft(self, cruft_list=None, parent=None):
         for index, cruft in enumerate(cruft_list):
