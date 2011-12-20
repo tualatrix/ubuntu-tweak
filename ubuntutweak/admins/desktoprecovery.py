@@ -380,7 +380,7 @@ class DesktopRecovery(TweakModule):
 
         # if 1, then root directory
         if directory.count('/') == 1:
-            dialog = GetTextDialog(message=_('Backup all settings under: <b>%s</b>\n'
+            dialog = GetTextDialog(message=_('Backup all settings under "<b>%s</b>"\n'
                                              'Would you like to continue?') % directory,
                                    text=get_time_stamp())
 
@@ -401,7 +401,7 @@ class DesktopRecovery(TweakModule):
                 else:
                     self.show_backup_failed_dialog()
         else:
-            dialog = GetTextDialog(message=_('Backup settings under: <b>%s</b>\n'
+            dialog = GetTextDialog(message=_('Backup settings under "<b>%s</b>"\n'
                                              'Would you like to continue?') % directory,
                                    text=get_time_stamp())
             response = dialog.run()
@@ -444,12 +444,12 @@ class DesktopRecovery(TweakModule):
 
         path = model.get_value(iter, 1)
         if directory.count('/') == 2:
-            dialog = QuestionDialog(message=_('Would you like to delete the backup:'
-                                      '<b>%s/%s</b>?') %
+            dialog = QuestionDialog(message=_('Would you like to delete the backup '
+                                      '"<b>%s/%s</b>"?') %
                                       (directory, os.path.basename(path)[:-4]))
         else:
             dialog = QuestionDialog(message=_('Would you like to delete the backup of'
-                                      ' all <b>%s</b> settings named <b>%s</b>?') %
+                                      ' all "<b>%s</b>" settings named "<b>%s</b>"?') %
                                       (directory, os.path.basename(path)[:-4]))
         response = dialog.run()
         dialog.destroy()
@@ -469,11 +469,11 @@ class DesktopRecovery(TweakModule):
         path = model.get_value(iter, 1)
 
         if directory.count('/') == 2:
-            message = _('Would you like to recover the backup: <b>%s/%s</b>?') % (
+            message = _('Would you like to recover the backup "<b>%s/%s</b>"?') % (
                         directory, os.path.basename(path)[:-4])
         else:
-            message = _('Would you like to recover the backup of all'
-                        '<b>%s</b> settings named <b>%s</b>?') % (
+            message = _('Would you like to recover the backup of all '
+                        '"<b>%s</b>" settings named "<b>%s</b>"?') % (
                         directory, os.path.basename(path)[:-4])
 
         addon_message = _('<b>NOTES</b>: While recovering, your desktop may be unresponsive for a moment.')
@@ -512,9 +512,9 @@ class DesktopRecovery(TweakModule):
         directory = self.dir_label.get_text()
 
         if directory.count('/') == 2:
-            message = _('Would you like to reset settings for: <b>%s</b>?') % directory
+            message = _('Would you like to reset settings for "<b>%s</b>"?') % directory
         else:
-            message = _('Would you like to reset all settings under: <b>%s</b>?') % directory
+            message = _('Would you like to reset all settings under "<b>%s</b>"?') % directory
 
         addon_message = _('<b>NOTES</b>: Whilst resetting, your desktop may be unresponsive for a moment.')
 
