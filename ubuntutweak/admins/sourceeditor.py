@@ -209,8 +209,9 @@ class SourceEditor(TweakModule):
         self.auto_backup_button.connect('toggled', self.on_auto_backup_button_toggled)
 
     def set_infobar_backup_info(self, name, list_name):
-        self.info_label.set_markup(_('You\'re viewing the backup "<b>%s</b>" for'
-                                   '"<b>%s</b>"') % (name, list_name))
+        self.info_label.set_markup(_('You\'re viewing the backup "<b>%(backup_name)s</b>" for'
+                                     '"<b>%(list_name)s</b>"') % {'backup_name': name,
+                                                                  'list_name': list_name})
 
     def on_auto_backup_button_toggled(self, widget):
         self.auto_backup_setting.set_value(widget.get_active())
