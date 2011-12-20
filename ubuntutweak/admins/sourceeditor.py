@@ -405,8 +405,8 @@ class SourceEditor(TweakModule):
         iter = self.backup_combobox.get_active_iter()
         path = self.backup_model[iter][0]
 
-        dialog = QuestionDialog(message=_('Would you like to delete the backup:'
-                                          '<b>%s</b>?') % os.path.basename(path))
+        dialog = QuestionDialog(message=_('Would you like to delete the backup '
+                                          '"<b>%s</b>"?') % os.path.basename(path))
         response = dialog.run()
         dialog.destroy()
 
