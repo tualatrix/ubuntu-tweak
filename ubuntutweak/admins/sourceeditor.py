@@ -209,7 +209,7 @@ class SourceEditor(TweakModule):
         self.auto_backup_button.connect('toggled', self.on_auto_backup_button_toggled)
 
     def set_infobar_backup_info(self, name, list_name):
-        self.info_label.set_markup(_('You\'re viewing the backup "<b>%(backup_name)s</b>" for'
+        self.info_label.set_markup(_('You\'re viewing the backup "<b>%(backup_name)s</b>" for '
                                      '"<b>%(list_name)s</b>"') % {'backup_name': name,
                                                                   'list_name': list_name})
 
@@ -341,8 +341,9 @@ class SourceEditor(TweakModule):
                 backup_name = self.backup_model[backup_iter][1]
 
                 dialog = QuestionDialog(message=_('Would you like to recover the '
-                                        'backup "<b>%s</b>" for "<b>%s</b>"?') % (
-                                backup_name, list_name))
+                                        'backup "<b>%(backup_name)s</b>" for "<b>%(list_name)s</b>"?') % \
+                                                {'backup_name': backup_name,
+                                                 'list_name': list_name})
                 response = dialog.run()
                 dialog.destroy()
 
