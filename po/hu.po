@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-13 15:48+0800\n"
-"PO-Revision-Date: 2011-12-12 09:49+0000\n"
+"POT-Creation-Date: 2011-12-20 23:27+0800\n"
+"PO-Revision-Date: 2011-12-19 04:57+0000\n"
 "Last-Translator: Ding Zhou <tualatrix@gmail.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2011-12-19 03:09+0000\n"
-"X-Generator: Launchpad (build 14525)\n"
+"X-Launchpad-Export-Date: 2011-12-21 02:09+0000\n"
+"X-Generator: Launchpad (build 14538)\n"
 
 #: ../data/script-worker:54
 #, c-format
@@ -39,56 +39,25 @@ msgstr "Válasszon egy mappát"
 msgid "Please select a target (files or folders)."
 msgstr "Válassza ki a célt (fájlokat vagy mappákat)."
 
-#: ../data/ubuntu-tweak.desktop.in.h:1 ../ubuntutweak/tweaks/compiz.py:366
-msgid "Compiz Settings"
-msgstr "Compiz beállítások"
+#: ../data/ubuntu-tweak.desktop.in.h:1 ../data/ui/preferences.ui.h:5
+msgid "Admins"
+msgstr "Adminisztráció"
 
-#: ../data/ubuntu-tweak.desktop.in.h:2 ../ubuntutweak/tweaks/icons.py:106
-msgid "Desktop Icon Settings"
-msgstr "Asztali ikonok beállításai"
+#: ../data/ubuntu-tweak.desktop.in.h:2 ../data/ui/preferences.ui.h:8
+msgid "Janitor"
+msgstr "Lomtalanító"
 
-#: ../data/ubuntu-tweak.desktop.in.h:3
-#: ../ubuntutweak/admins/desktoprecovery.py:266
-msgid "Desktop Recovery"
-msgstr "Beállítások biztonsági mentése"
+#: ../data/ubuntu-tweak.desktop.in.h:3 ../data/ui/preferences.ui.h:13
+msgid "Overview"
+msgstr "Áttekintés"
 
 #: ../data/ubuntu-tweak.desktop.in.h:4
-#: ../ubuntutweak/admins/filetypemanager.py:550
-msgid "File Type Manager"
-msgstr "Fájltípus kezelő"
-
-#: ../data/ubuntu-tweak.desktop.in.h:5
-msgid "GNOME Settings"
-msgstr "GNOME beállítások"
-
-#: ../data/ubuntu-tweak.desktop.in.h:6
-#: ../ubuntutweak/tweaks/loginsettings.py:39
-msgid "Login Settings"
-msgstr "Bejelentkezési beállítások"
-
-#: ../data/ubuntu-tweak.desktop.in.h:7 ../ubuntutweak/tweaks/nautilus.py:27
-msgid "Nautilus Settings"
-msgstr "Nautilus beállítások"
-
-#: ../data/ubuntu-tweak.desktop.in.h:8
-msgid "Power Manager Settings"
-msgstr "Energiakezelő beállítások"
-
-#: ../data/ubuntu-tweak.desktop.in.h:9 ../ubuntutweak/tweaks/session.py:29
-msgid "Session Control"
-msgstr "Munkamenet vezérlés"
-
-#: ../data/ubuntu-tweak.desktop.in.h:10 ../ubuntutweak/admins/shortcuts.py:29
-msgid "Shortcut Commands"
-msgstr "Billentyűparancsok"
-
-#: ../data/ubuntu-tweak.desktop.in.h:11
 msgid "Tweak ubuntu to what you like"
 msgstr "Az Ubuntu testreszabása"
 
-#: ../data/ubuntu-tweak.desktop.in.h:12 ../ubuntutweak/tweaks/metacity.py:150
-msgid "Window Manager Settings"
-msgstr "Ablakkezelő beállítások"
+#: ../data/ubuntu-tweak.desktop.in.h:5 ../data/ui/preferences.ui.h:15
+msgid "Tweaks"
+msgstr "Finomhangolások"
 
 #: ../data/com.ubuntu-tweak.daemon.policy.in.h:1
 msgid "Clean user and system cruft"
@@ -130,10 +99,6 @@ msgstr "<b>Lomtalanító kiterjesztések</b>"
 msgid "<b>Tweaks Extensions</b>"
 msgstr "<b>Finomhangoló kiterjesztések</b>"
 
-#: ../data/ui/preferences.ui.h:5
-msgid "Admins"
-msgstr "Adminisztráció"
-
 #: ../data/ui/preferences.ui.h:6
 msgid "Admins Extensions Management"
 msgstr "Adminisztratív kiterjesztések kezelése"
@@ -141,10 +106,6 @@ msgstr "Adminisztratív kiterjesztések kezelése"
 #: ../data/ui/preferences.ui.h:7
 msgid "Install"
 msgstr "Telepítés"
-
-#: ../data/ui/preferences.ui.h:8
-msgid "Janitor"
-msgstr "Lomtalanító"
 
 #: ../data/ui/preferences.ui.h:9
 msgid "Janitor Extensions Management"
@@ -162,17 +123,9 @@ msgstr "Lefelé mozgatás"
 msgid "Move Up"
 msgstr "Felfelé mozgatás"
 
-#: ../data/ui/preferences.ui.h:13
-msgid "Overview"
-msgstr "Áttekintés"
-
 #: ../data/ui/preferences.ui.h:14
 msgid "Preferences"
 msgstr "Beállítások"
-
-#: ../data/ui/preferences.ui.h:15
-msgid "Tweaks"
-msgstr "Finomhangolások"
 
 #: ../data/ui/preferences.ui.h:16
 msgid "Tweaks Extensions Management"
@@ -481,12 +434,16 @@ msgstr "Beállítás neve:"
 msgid "GNOME Classic"
 msgstr "Klasszikus GNOME"
 
-#: ../ubuntutweak/system/__init__.py:50
+#: ../ubuntutweak/system/__init__.py:42
+msgid "GNOME Fallback"
+msgstr ""
+
+#: ../ubuntutweak/system/__init__.py:51
 #, python-format
 msgid "Unknown (%s)"
 msgstr "Ismeretlen (%s)"
 
-#: ../ubuntutweak/system/__init__.py:52
+#: ../ubuntutweak/system/__init__.py:53
 #: ../ubuntutweak/clips/hardwareinfo.py:16
 msgid "Unknown"
 msgstr "Ismeretlen"
@@ -509,7 +466,7 @@ msgid "Error happened!"
 msgstr "Hiba történt!"
 
 #: ../ubuntutweak/network/utdata.py:50 ../ubuntutweak/network/utdata.py:83
-#: ../ubuntutweak/tweaks/unity.py:63 ../ubuntutweak/tweaks/unity.py:141
+#: ../ubuntutweak/tweaks/unity.py:73 ../ubuntutweak/tweaks/unity.py:151
 msgid "Never"
 msgstr "Ne rejtse el"
 
@@ -662,16 +619,16 @@ msgstr "%d törlendő PPA"
 msgid "No PPA to be removed"
 msgstr "Nincs törlendő PPA"
 
-#: ../ubuntutweak/janitor/autoremoval_plugin.py:10
+#: ../ubuntutweak/janitor/autoremoval_plugin.py:14
 msgid "Unneeded Packages"
 msgstr "Szükségtelen csomagok"
 
-#: ../ubuntutweak/janitor/autoremoval_plugin.py:39
+#: ../ubuntutweak/janitor/autoremoval_plugin.py:50
 #, python-format
 msgid "Unneeded Packages (%d packages to be removed, total size: %s)"
 msgstr "Szükségtelen csomagok (%d csomag eltávolítása, teljes méret: %s)"
 
-#: ../ubuntutweak/janitor/autoremoval_plugin.py:41
+#: ../ubuntutweak/janitor/autoremoval_plugin.py:52
 msgid "Unneeded Packages (No package to be removed)"
 msgstr "Szükségtelen csomagok (Nincs törlendő csomag)"
 
@@ -688,37 +645,37 @@ msgstr "Apt-gyorsítótár (%d gyorsítótár kiürítése, teljes méret: %s)"
 msgid "Apt Cache (No cache to be cleaned)"
 msgstr "Apt-gyorsítótár (Üres a gyorsítótár)"
 
-#: ../ubuntutweak/janitor/__init__.py:419
+#: ../ubuntutweak/janitor/__init__.py:420
 #, python-format
 msgid "Scanning cruft for \"%s\"..."
 msgstr ""
 
-#: ../ubuntutweak/janitor/__init__.py:581
+#: ../ubuntutweak/janitor/__init__.py:582
 #, python-format
 msgid "Cleaning cruft for \"%s\"..."
 msgstr ""
 
-#: ../ubuntutweak/janitor/__init__.py:652
+#: ../ubuntutweak/janitor/__init__.py:654
 #: ../ubuntutweak/admins/desktoprecovery.py:81
 #: ../ubuntutweak/modules/__init__.py:34
 msgid "System"
 msgstr "Rendszer"
 
-#: ../ubuntutweak/janitor/__init__.py:674
+#: ../ubuntutweak/janitor/__init__.py:676
 #: ../ubuntutweak/modules/__init__.py:33
 msgid "Personal"
 msgstr "Személyes"
 
-#: ../ubuntutweak/janitor/packageconfigs_plugin.py:29
+#: ../ubuntutweak/janitor/packageconfigs_plugin.py:30
 msgid "Package Configs"
 msgstr "Csomagbeállítások"
 
-#: ../ubuntutweak/janitor/packageconfigs_plugin.py:59
+#: ../ubuntutweak/janitor/packageconfigs_plugin.py:70
 #, python-format
 msgid "Packages Configs (%d package configs to be removed)"
 msgstr "Csomagbeállítások (%d törlendő csomagbeállítás)"
 
-#: ../ubuntutweak/janitor/packageconfigs_plugin.py:61
+#: ../ubuntutweak/janitor/packageconfigs_plugin.py:72
 msgid "Packages Configs (No package config to be removed)"
 msgstr "Csomagbeállítások (Nincs törlendő csomagbeállítás)"
 
@@ -726,13 +683,13 @@ msgstr "Csomagbeállítások (Nincs törlendő csomagbeállítás)"
 msgid "Old Kernel"
 msgstr "Régi kernel"
 
-#: ../ubuntutweak/janitor/oldkernel_plugin.py:84
+#: ../ubuntutweak/janitor/oldkernel_plugin.py:91
 #, python-format
 msgid ""
 "Old Kernel Packages (%d kernel packages to be removed, total size: %s)"
 msgstr "Régi kernelcsomagok (%d törlendő kernelcsomag, teljes méret: %s)"
 
-#: ../ubuntutweak/janitor/oldkernel_plugin.py:86
+#: ../ubuntutweak/janitor/oldkernel_plugin.py:93
 msgid "Old Kernel Packages (No old kernel package to be removed)"
 msgstr "Régi kernelcsomagok (Nincs törlendő kernelcsomag)"
 
@@ -743,7 +700,7 @@ msgstr "Alkalmazások"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:80
 #: ../ubuntutweak/admins/userdir.py:34 ../ubuntutweak/modules/__init__.py:32
-#: ../ubuntutweak/tweaks/unity.py:89 ../ubuntutweak/tweaks/ccm/Constants.py:88
+#: ../ubuntutweak/tweaks/unity.py:99 ../ubuntutweak/tweaks/ccm/Constants.py:88
 msgid "Desktop"
 msgstr "Asztal"
 
@@ -768,6 +725,10 @@ msgstr "Biztonsági mentés…"
 msgid "Backing up...%s"
 msgstr "Biztonsági mentés…%s"
 
+#: ../ubuntutweak/admins/desktoprecovery.py:266
+msgid "Desktop Recovery"
+msgstr "Beállítások biztonsági mentése"
+
 #: ../ubuntutweak/admins/desktoprecovery.py:267
 msgid ""
 "Backup and recover your desktop and application settings with ease.\n"
@@ -785,53 +746,42 @@ msgstr "Még nincs biztonsági mentés"
 #: ../ubuntutweak/admins/desktoprecovery.py:383
 #, python-format
 msgid ""
-"Backup all settings under: <b>%s</b>\n"
+"Backup all settings under \"<b>%s</b>\"\n"
 "Would you like to continue?"
 msgstr ""
-"Biztonsági mentés készítése minden, a <b>%s</b> alatt elérhető "
-"beállításról.\n"
-"Kívánja folytatni?"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:404
 #, python-format
 msgid ""
-"Backup settings under: <b>%s</b>\n"
+"Backup settings under \"<b>%s</b>\"\n"
 "Would you like to continue?"
 msgstr ""
-"Biztonsági mentés készítése a <b>%s</b> alatt elérhető beállításokról.\n"
-"Kívánja folytatni?"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:447
 #, python-format
-msgid "Would you like to delete the backup:<b>%s/%s</b>?"
+msgid "Would you like to delete the backup \"<b>%s/%s</b>\"?"
 msgstr ""
-"Biztosan törölni szeretné a következő biztonsági mentést: <b>%s/%s</b>?"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:451
 #, python-format
 msgid ""
-"Would you like to delete the backup of all <b>%s</b> settings named "
-"<b>%s</b>?"
+"Would you like to delete the backup of all \"<b>%(setting_name)s</b>\" "
+"settings named \"<b>%(backup_name)s</b>\"?"
 msgstr ""
-"Biztosan törölni szeretné a <b>%s</b> alatt elérhető <b>%s</b> nevű "
-"biztonsági mentését?"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:472
+#: ../ubuntutweak/admins/desktoprecovery.py:473
 #, python-format
-msgid "Would you like to recover the backup: <b>%s/%s</b>?"
+msgid "Would you like to recover the backup \"<b>%s/%s</b>\"?"
 msgstr ""
-"Szeretné visszaállítani a következő biztonsági mentést: <b>%s/%s</b>?"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:475
+#: ../ubuntutweak/admins/desktoprecovery.py:476
 #, python-format
 msgid ""
-"Would you like to recover the backup of all<b>%s</b> settings named "
-"<b>%s</b>?"
+"Would you like to recover the backup of all \"<b>%(setting_name)s</b>\" "
+"settings named \"<b>%(backup_name)s</b>\"?"
 msgstr ""
-"Szeretné helyreállítani a fájlokat a <b>%s</b> alatti <b>%s</b> biztonsági "
-"mentésből?"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:479
+#: ../ubuntutweak/admins/desktoprecovery.py:481
 msgid ""
 "<b>NOTES</b>: While recovering, your desktop may be unresponsive for a "
 "moment."
@@ -839,30 +789,30 @@ msgstr ""
 "<b>MEGJEGYZÉS</b>: Visszaállítás alatt előfordulhat, hogy az asztal nem "
 "válaszol egy darabig."
 
-#: ../ubuntutweak/admins/desktoprecovery.py:496
+#: ../ubuntutweak/admins/desktoprecovery.py:498
 msgid "Recovery Successful!"
 msgstr "Sikeres visszaállítás!"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:497
-#: ../ubuntutweak/admins/desktoprecovery.py:533
+#: ../ubuntutweak/admins/desktoprecovery.py:499
+#: ../ubuntutweak/admins/desktoprecovery.py:535
 msgid "You may need to restart your desktop for changes to take effect"
 msgstr "A változások csak újraindítás után lépnek érvénybe"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:502
+#: ../ubuntutweak/admins/desktoprecovery.py:504
 msgid "_Logout"
 msgstr "_Kijelentkezés"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:515
-#, python-format
-msgid "Would you like to reset settings for: <b>%s</b>?"
-msgstr "Szeretné visszaállítani a beállításait: <b>%s</b>?"
-
 #: ../ubuntutweak/admins/desktoprecovery.py:517
 #, python-format
-msgid "Would you like to reset all settings under: <b>%s</b>?"
-msgstr "Szeretné visszaállítani minden beállításait ide: <b>%s</b>?"
+msgid "Would you like to reset settings for \"<b>%s</b>\"?"
+msgstr ""
 
 #: ../ubuntutweak/admins/desktoprecovery.py:519
+#, python-format
+msgid "Would you like to reset all settings under \"<b>%s</b>\"?"
+msgstr ""
+
+#: ../ubuntutweak/admins/desktoprecovery.py:521
 msgid ""
 "<b>NOTES</b>: Whilst resetting, your desktop may be unresponsive for a "
 "moment."
@@ -870,21 +820,21 @@ msgstr ""
 "<b>MEGJEGYZÉS</b>: Visszaállítás alatt előfordulhat, hogy az asztal nem "
 "válaszol egy darabig."
 
-#: ../ubuntutweak/admins/desktoprecovery.py:532
+#: ../ubuntutweak/admins/desktoprecovery.py:534
 msgid "Reset Successful!"
 msgstr "Sikeres visszaállítás!"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:561
-#: ../ubuntutweak/admins/sourceeditor.py:420
+#: ../ubuntutweak/admins/desktoprecovery.py:563
+#: ../ubuntutweak/admins/sourceeditor.py:422
 msgid "Please enter a new name for your backup:"
 msgstr "Adja meg a biztonsági mentés nevét:"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:593
+#: ../ubuntutweak/admins/desktoprecovery.py:595
 msgid "Backup Successful!"
 msgstr "Sikeres biztonsági mentés!"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:596
-#: ../ubuntutweak/admins/sourceeditor.py:396
+#: ../ubuntutweak/admins/desktoprecovery.py:598
+#: ../ubuntutweak/admins/sourceeditor.py:398
 msgid "Backup Failed!"
 msgstr "Biztonsági mentés meghiúsult!"
 
@@ -899,55 +849,59 @@ msgstr ""
 
 #: ../ubuntutweak/admins/sourceeditor.py:212
 #, python-format
-msgid "You're viewing the backup \"<b>%s</b>\" for\"<b>%s</b>\""
-msgstr "A következő biztonsági mentést nézi: „<b>%s</b>” ehhez: „<b>%s</b>”"
+msgid ""
+"You're viewing the backup \"<b>%(backup_name)s</b>\" for "
+"\"<b>%(list_name)s</b>\""
+msgstr ""
 
-#: ../ubuntutweak/admins/sourceeditor.py:282
+#: ../ubuntutweak/admins/sourceeditor.py:283
 msgid "No backup yet"
 msgstr "Még nincs biztonsági mentés"
 
-#: ../ubuntutweak/admins/sourceeditor.py:322
+#: ../ubuntutweak/admins/sourceeditor.py:323
 msgid "Please check the permission of the sources.list file"
 msgstr "Kérjük ellenőrizze a sources.list fájl jogosultságait"
 
-#: ../ubuntutweak/admins/sourceeditor.py:324
+#: ../ubuntutweak/admins/sourceeditor.py:325
 msgid "Save failed!"
 msgstr "Mentés sikertelen!"
 
-#: ../ubuntutweak/admins/sourceeditor.py:342
+#: ../ubuntutweak/admins/sourceeditor.py:343
 #, python-format
-msgid "Would you like to recover the backup \"<b>%s</b>\" for \"<b>%s</b>\"?"
-msgstr "Szeretné helyreállítani a(z) „<b>%s</b>” fájlokat ehhez: „<b>%s</b>”"
+msgid ""
+"Would you like to recover the backup \"<b>%(backup_name)s</b>\" for "
+"\"<b>%(list_name)s</b>\"?"
+msgstr ""
 
-#: ../ubuntutweak/admins/sourceeditor.py:352
+#: ../ubuntutweak/admins/sourceeditor.py:354
 msgid "Recovery Failed!"
 msgstr "Helyreállítás sikertelen!"
 
-#: ../ubuntutweak/admins/sourceeditor.py:353
+#: ../ubuntutweak/admins/sourceeditor.py:355
 msgid "You may need to check the permission of source list."
 msgstr "Ellenőrizze a forráslista jogosultságát."
 
-#: ../ubuntutweak/admins/sourceeditor.py:385
+#: ../ubuntutweak/admins/sourceeditor.py:387
 msgid "Please enter the name for your backup:"
 msgstr "Adja meg a biztonsági mentés nevét:"
 
-#: ../ubuntutweak/admins/sourceeditor.py:398
-#: ../ubuntutweak/admins/sourceeditor.py:431
+#: ../ubuntutweak/admins/sourceeditor.py:400
+#: ../ubuntutweak/admins/sourceeditor.py:433
 msgid "Please only use alphanumeric characters and \"_\" and \"-\"."
 msgstr ""
 "Csak alfanumerikus, aláhúzás („_”) és kötőjel („-”) karaktereket használjon."
 
-#: ../ubuntutweak/admins/sourceeditor.py:400
-#: ../ubuntutweak/admins/sourceeditor.py:433
+#: ../ubuntutweak/admins/sourceeditor.py:402
+#: ../ubuntutweak/admins/sourceeditor.py:435
 msgid "Backup name is invalid"
 msgstr "Érvénytelen a biztonsági mentés neve"
 
-#: ../ubuntutweak/admins/sourceeditor.py:406
+#: ../ubuntutweak/admins/sourceeditor.py:408
 #, python-format
-msgid "Would you like to delete the backup:<b>%s</b>?"
-msgstr "Biztosan törölni szeretné a következő biztonsági mentést: <b>%s</b>?"
+msgid "Would you like to delete the backup \"<b>%s</b>\"?"
+msgstr ""
 
-#: ../ubuntutweak/admins/sourceeditor.py:436
+#: ../ubuntutweak/admins/sourceeditor.py:438
 msgid ""
 "The current content will be lost after reloading!\n"
 "Do you wish to continue?"
@@ -955,11 +909,11 @@ msgstr ""
 "A jelenlegi tartalom el fog tűnni az újratöltés után!\n"
 "Biztosan folytatni szeretné?"
 
-#: ../ubuntutweak/admins/sourceeditor.py:454
+#: ../ubuntutweak/admins/sourceeditor.py:456
 msgid "You can't delete sources.list!"
 msgstr "Nem törölheti a sources.list fájlt!"
 
-#: ../ubuntutweak/admins/sourceeditor.py:456
+#: ../ubuntutweak/admins/sourceeditor.py:458
 #, python-format
 msgid ""
 "The \"%s\" will be deleted!\n"
@@ -1277,6 +1231,10 @@ msgstr ""
 "Ez törli az összes letiltott parancsfájlt.\n"
 "Kívánja folytatni?"
 
+#: ../ubuntutweak/admins/shortcuts.py:29
+msgid "Shortcut Commands"
+msgstr "Billentyűparancsok"
+
 #: ../ubuntutweak/admins/shortcuts.py:30
 msgid ""
 "By configuring keyboard shortcuts, you can access your favourite "
@@ -1383,6 +1341,10 @@ msgstr "Az alkalmazás nem található"
 msgid "Could not find \"%s\", Please ensure the path is correct."
 msgstr "„%s” nem található. Győződjön meg róla, hogy az útvonal helyes-e."
 
+#: ../ubuntutweak/admins/filetypemanager.py:550
+msgid "File Type Manager"
+msgstr "Fájltípus kezelő"
+
 #: ../ubuntutweak/admins/filetypemanager.py:551
 msgid "Manage all registered file types"
 msgstr "Ismert fájltípusok kezelése"
@@ -1487,6 +1449,10 @@ msgstr "A „Hálózati kiszolgálók” ikon megjelenítése az asztalon"
 msgid "Rename"
 msgstr "Átnevezés"
 
+#: ../ubuntutweak/tweaks/icons.py:106
+msgid "Desktop Icon Settings"
+msgstr "Asztali ikonok beállításai"
+
 #: ../ubuntutweak/tweaks/icons.py:107
 msgid "Rename and toggle visibilty of desktop icons"
 msgstr "Asztali ikonok átnevezése és láthatóságának állítása"
@@ -1502,6 +1468,10 @@ msgstr "Csatolt kötetek megjelenítése az asztalon"
 #: ../ubuntutweak/tweaks/icons.py:143
 msgid "Show contents of \"Home Folder\" on desktop"
 msgstr "„Saját mappa” tartalmának megjelenítése az asztalon"
+
+#: ../ubuntutweak/tweaks/nautilus.py:27
+msgid "Nautilus Settings"
+msgstr "Nautilus beállítások"
 
 #: ../ubuntutweak/tweaks/nautilus.py:28
 msgid "Manage the default file manager"
@@ -1553,6 +1523,10 @@ msgid "Never prompt or autorun/autostart programs when media are inserted"
 msgstr ""
 "Soha ne kérdezzen rá vagy hajtson végre programot automatikusan adathordozó "
 "behelyezésekor"
+
+#: ../ubuntutweak/tweaks/session.py:29
+msgid "Session Control"
+msgstr "Munkamenet vezérlés"
 
 #: ../ubuntutweak/tweaks/session.py:30
 msgid "Control your system session releated features"
@@ -1697,6 +1671,18 @@ msgstr ""
 msgid "Natural Scrolling"
 msgstr ""
 
+#: ../ubuntutweak/tweaks/misc.py:70
+msgid "Cursor blink"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/misc.py:75
+msgid "Cursor blink time"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/misc.py:83
+msgid "Cursor blink timeout"
+msgstr ""
+
 #: ../ubuntutweak/tweaks/theme.py:27
 msgid "Theme"
 msgstr "Téma"
@@ -1709,123 +1695,143 @@ msgstr "Gtk téma, ikontéma, egértéma és egyebek beállítása"
 msgid "Desktop theme"
 msgstr "Asztali téma"
 
-#: ../ubuntutweak/tweaks/unity.py:27
+#: ../ubuntutweak/tweaks/theme.py:43
+msgid "Gtk theme"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/theme.py:50
+msgid "Icon theme"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/theme.py:57
+msgid "Cursor theme"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/theme.py:64
+msgid "Window theme"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:30
 msgid "Unity Settings"
 msgstr "Unity beállítások"
 
-#: ../ubuntutweak/tweaks/unity.py:28
+#: ../ubuntutweak/tweaks/unity.py:31
 msgid "Tweak the powerful Unity desktop"
 msgstr "A Unity finomhangolása"
 
-#: ../ubuntutweak/tweaks/unity.py:37 ../ubuntutweak/tweaks/unity.py:127
+#: ../ubuntutweak/tweaks/unity.py:43
+msgid "<big>Sorry! Unity Settings doesn't support unityshell-rotated</big>"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:47 ../ubuntutweak/tweaks/unity.py:137
 msgid "Launcher"
 msgstr "Indító"
 
-#: ../ubuntutweak/tweaks/unity.py:39
+#: ../ubuntutweak/tweaks/unity.py:49
 msgid "Icon size"
 msgstr "Ikonméret"
 
-#: ../ubuntutweak/tweaks/unity.py:46
+#: ../ubuntutweak/tweaks/unity.py:56
 msgid "Launcher opacity"
 msgstr "Indító átlátszósága"
 
-#: ../ubuntutweak/tweaks/unity.py:54
+#: ../ubuntutweak/tweaks/unity.py:64
 msgid "Launcher reveal edge timeout"
 msgstr "Indító megjelenésének késleltetése"
 
-#: ../ubuntutweak/tweaks/unity.py:61 ../ubuntutweak/tweaks/unity.py:139
+#: ../ubuntutweak/tweaks/unity.py:71 ../ubuntutweak/tweaks/unity.py:149
 msgid "Launcher hide mode"
 msgstr "Indító elrejtésének módja"
 
-#: ../ubuntutweak/tweaks/unity.py:63 ../ubuntutweak/tweaks/unity.py:141
+#: ../ubuntutweak/tweaks/unity.py:73 ../ubuntutweak/tweaks/unity.py:151
 msgid "Auto Hide"
 msgstr "Automatikus elrejtés"
 
-#: ../ubuntutweak/tweaks/unity.py:64
+#: ../ubuntutweak/tweaks/unity.py:74
 msgid "Dodge Window"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:64
+#: ../ubuntutweak/tweaks/unity.py:74
 msgid "Dodge Active Window"
 msgstr "Aktív ablak elkerülése"
 
-#: ../ubuntutweak/tweaks/unity.py:70
+#: ../ubuntutweak/tweaks/unity.py:80
 msgid "Icon backlight"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:72
+#: ../ubuntutweak/tweaks/unity.py:82
 msgid "Backlight Always On"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:73
+#: ../ubuntutweak/tweaks/unity.py:83
 msgid "Backlight Toggles"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:74
+#: ../ubuntutweak/tweaks/unity.py:84
 msgid "Backlight Always Off"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:75
+#: ../ubuntutweak/tweaks/unity.py:85
 msgid "Edge Illumination Toggles"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:76
+#: ../ubuntutweak/tweaks/unity.py:86
 msgid "Backlight and Edge Illumination Toggles"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:84
+#: ../ubuntutweak/tweaks/unity.py:94
 msgid "Dash and Panel"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:86
+#: ../ubuntutweak/tweaks/unity.py:96
 msgid "Dash size"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:88
+#: ../ubuntutweak/tweaks/unity.py:98
 msgid "Automatic"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:90
+#: ../ubuntutweak/tweaks/unity.py:100
 msgid "Netbook"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:97
+#: ../ubuntutweak/tweaks/unity.py:107
 msgid "Blur"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:99
+#: ../ubuntutweak/tweaks/unity.py:109
 msgid "No blur"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:100
+#: ../ubuntutweak/tweaks/unity.py:110
 msgid "Static blur"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:101
+#: ../ubuntutweak/tweaks/unity.py:111
 msgid "Active blur"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:107
+#: ../ubuntutweak/tweaks/unity.py:117
 msgid "Panel opacity"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:118
+#: ../ubuntutweak/tweaks/unity.py:128
 msgid "Compositing Manager"
 msgstr "Kompozíciókezelő"
 
-#: ../ubuntutweak/tweaks/unity.py:120
+#: ../ubuntutweak/tweaks/unity.py:130
 msgid "Enable Metacity's compositing feature"
 msgstr "Metacity kompozitáló képességének engedélyezése"
 
-#: ../ubuntutweak/tweaks/unity.py:129
+#: ../ubuntutweak/tweaks/unity.py:139
 msgid "Enable the Super key"
 msgstr "Szuperbillentyû engedélyezése"
 
-#: ../ubuntutweak/tweaks/unity.py:134
+#: ../ubuntutweak/tweaks/unity.py:144
 msgid "Reserve launcher area"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:142
+#: ../ubuntutweak/tweaks/unity.py:152
 msgid "Intellihide"
 msgstr "Intelligens elrejtés"
 
@@ -2082,6 +2088,10 @@ msgstr "Asztal megjelenítése"
 msgid "Show Widgets"
 msgstr "Widgetek megjelenítése"
 
+#: ../ubuntutweak/tweaks/compiz.py:366
+msgid "Compiz Settings"
+msgstr "Compiz beállítások"
+
 #: ../ubuntutweak/tweaks/compiz.py:367
 msgid "Settings for some amazing desktop eye-candy"
 msgstr "Néhány szédületes effekt beállítása"
@@ -2117,6 +2127,10 @@ msgstr "Imbolygó menük engedélyezése"
 #: ../ubuntutweak/tweaks/compiz.py:394
 msgid "Menu Effects"
 msgstr "Menü effektek"
+
+#: ../ubuntutweak/tweaks/loginsettings.py:39
+msgid "Login Settings"
+msgstr "Bejelentkezési beállítások"
 
 #: ../ubuntutweak/tweaks/loginsettings.py:40
 msgid "Control the appearance and behaviour of your login screen"
@@ -2185,6 +2199,10 @@ msgstr "Bezárás"
 #: ../ubuntutweak/tweaks/metacity.py:40
 msgid "Spacer"
 msgstr "Elválasztó"
+
+#: ../ubuntutweak/tweaks/metacity.py:150
+msgid "Window Manager Settings"
+msgstr "Ablakkezelő beállítások"
 
 #: ../ubuntutweak/tweaks/metacity.py:151
 msgid "Manage Metacity Window Manager settings"
@@ -2503,24 +2521,24 @@ msgstr "Szeretné eltávolítani, majd megismételni a telepítést?"
 msgid "\"%s\" has already installed"
 msgstr "„%s” már telepítve van"
 
-#: ../ubuntutweak/main.py:354
+#: ../ubuntutweak/main.py:358
 msgid "Please wait a moment..."
 msgstr "Kérem várjon…"
 
-#: ../ubuntutweak/main.py:453
+#: ../ubuntutweak/main.py:458
 #, python-format
 msgid "No module named \"%s\""
 msgstr "Nem található „%s” nevű modul"
 
-#: ../ubuntutweak/main.py:454
+#: ../ubuntutweak/main.py:459
 msgid "Please ensure you have entered the correct module name."
 msgstr "Győződön meg róla, hogy helyes modulnevet adott meg."
 
-#: ../ubuntutweak/main.py:511
+#: ../ubuntutweak/main.py:517
 msgid "Computer Janitor"
 msgstr "Lomtalanító"
 
-#: ../ubuntutweak/main.py:512
+#: ../ubuntutweak/main.py:518
 msgid "Clean up a system so it's more like a freshly installed one"
 msgstr ""
 "A rendszer kitakarítása, hogy jobban hasonlítson egy frissen telepítettre"
@@ -2801,6 +2819,9 @@ msgstr ""
 #~ msgid "Submit your sources"
 #~ msgstr "Saját források közzététele"
 
+#~ msgid "GNOME Settings"
+#~ msgstr "GNOME beállítások"
+
 #~ msgid "If the locale isn't correct you can edit manually"
 #~ msgstr "Amennyiben a hely meghatározása helytelen manuálisan módosíthatja"
 
@@ -2821,6 +2842,9 @@ msgstr ""
 
 #~ msgid "Cleaning Configuration Files"
 #~ msgstr "Beállítófájlok törlése"
+
+#~ msgid "Power Manager Settings"
+#~ msgstr "Energiakezelő beállítások"
 
 #~ msgid "System information"
 #~ msgstr "Rendszer információ"
@@ -2853,8 +2877,46 @@ msgstr ""
 #~ msgstr "Az indító automatikus elrejtése inaktivitás esetén"
 
 #, python-format
+#~ msgid "Would you like to reset settings for: <b>%s</b>?"
+#~ msgstr "Szeretné visszaállítani a beállításait: <b>%s</b>?"
+
+#, python-format
+#~ msgid "Would you like to recover the backup: <b>%s/%s</b>?"
+#~ msgstr ""
+#~ "Szeretné visszaállítani a következő biztonsági mentést: <b>%s/%s</b>?"
+
+#, python-format
 #~ msgid "Cleaning...%s"
 #~ msgstr "Tisztítás…%s"
+
+#, python-format
+#~ msgid "Would you like to reset all settings under: <b>%s</b>?"
+#~ msgstr "Szeretné visszaállítani minden beállításait ide: <b>%s</b>?"
+
+#, python-format
+#~ msgid ""
+#~ "Would you like to delete the backup of all <b>%s</b> settings named "
+#~ "<b>%s</b>?"
+#~ msgstr ""
+#~ "Biztosan törölni szeretné a <b>%s</b> alatt elérhető <b>%s</b> nevű "
+#~ "biztonsági mentését?"
+
+#, python-format
+#~ msgid ""
+#~ "Backup all settings under: <b>%s</b>\n"
+#~ "Would you like to continue?"
+#~ msgstr ""
+#~ "Biztonsági mentés készítése minden, a <b>%s</b> alatt elérhető "
+#~ "beállításról.\n"
+#~ "Kívánja folytatni?"
+
+#, python-format
+#~ msgid ""
+#~ "Backup settings under: <b>%s</b>\n"
+#~ "Would you like to continue?"
+#~ msgstr ""
+#~ "Biztonsági mentés készítése a <b>%s</b> alatt elérhető beállításokról.\n"
+#~ "Kívánja folytatni?"
 
 #~ msgid "Cleaning Package Cache"
 #~ msgstr "Csomaggyorsítótár ürítése"
