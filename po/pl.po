@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-12-20 23:27+0800\n"
-"PO-Revision-Date: 2011-12-19 04:56+0000\n"
-"Last-Translator: Ding Zhou <tualatrix@gmail.com>\n"
+"PO-Revision-Date: 2011-12-22 17:57+0000\n"
+"Last-Translator: Piotr Sokół <Unknown>\n"
 "Language-Team: polski <>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2011-12-21 02:08+0000\n"
-"X-Generator: Launchpad (build 14538)\n"
+"X-Launchpad-Export-Date: 2011-12-23 02:13+0000\n"
+"X-Generator: Launchpad (build 14560)\n"
 
 #: ../data/script-worker:54
 #, c-format
@@ -34,7 +34,7 @@ msgstr "Nie odnaleziono żadnego edytora tekstu!"
 
 #: ../data/script-worker:187
 msgid "Select a folder"
-msgstr "Wybierz katalog"
+msgstr "Wybór katalogu"
 
 #: ../data/script-worker:217
 msgid "Please select a target (files or folders)."
@@ -42,7 +42,7 @@ msgstr "Proszę wskazać katalog lub plik docelowy."
 
 #: ../data/ubuntu-tweak.desktop.in.h:1 ../data/ui/preferences.ui.h:5
 msgid "Admins"
-msgstr "Administratorzy"
+msgstr "Zarządzanie"
 
 #: ../data/ubuntu-tweak.desktop.in.h:2 ../data/ui/preferences.ui.h:8
 msgid "Janitor"
@@ -70,7 +70,7 @@ msgstr "Edycja listy źródeł oprogramowania"
 
 #: ../data/com.ubuntu-tweak.daemon.policy.in.h:3
 msgid "To clean the cruft, you need to authenticate."
-msgstr ""
+msgstr "Aby wyczyścić system, należy uwierzytelnić."
 
 #: ../data/com.ubuntu-tweak.daemon.policy.in.h:4
 msgid "To edit the software sources, you need to authenticate."
@@ -175,7 +175,7 @@ msgstr "http://ubuntu-tweak.com"
 
 #: ../data/ui/brokenmodule.ui.h:1
 msgid "<big><b>This module encountered an error while loading.</b></big>"
-msgstr "<big><b>Ten moduł napotkał błąd podczas ładowania.</b></big>"
+msgstr "<big><b>Ten moduł napotkał błąd podczas wczytywania.</b></big>"
 
 #: ../data/ui/brokenmodule.ui.h:2 ../data/ui/traceback.ui.h:3
 msgid "Error Message"
@@ -213,23 +213,23 @@ msgstr "<b>Ostatnio używane</b>"
 
 #: ../data/ui/sourceeditor.ui.h:1
 msgid "Auto Backup"
-msgstr "Automatyczna kopia zapasowa"
+msgstr "Automatyczne wykonywanie kopii zapasowych"
 
 #: ../data/ui/sourceeditor.ui.h:2 ../data/ui/desktoprecovery.ui.h:1
 msgid "Backup History:"
-msgstr "Historia kopii zapasowych:"
+msgstr "Kopie zapasowe:"
 
 #: ../data/ui/sourceeditor.ui.h:3
 msgid "Delete this source"
-msgstr "Usuń to źródło"
+msgstr "Usuwa źródło"
 
 #: ../data/ui/sourceeditor.ui.h:4
 msgid "Redo this source"
-msgstr "Przywróć to źródło"
+msgstr "Przywraca źródło"
 
 #: ../data/ui/sourceeditor.ui.h:5
 msgid "Save this source"
-msgstr "Zapisz źródło"
+msgstr "Zapisuje źródło"
 
 #: ../data/ui/sourceeditor.ui.h:6
 msgid "U_pdate"
@@ -285,7 +285,7 @@ msgstr ""
 
 #: ../data/ui/janitorpage.ui.h:2
 msgid "Auto Scan"
-msgstr ""
+msgstr "Automatyczne skanowanie"
 
 #: ../data/ui/janitorpage.ui.h:3
 msgid "_Clean"
@@ -293,7 +293,7 @@ msgstr "_Wyczyść"
 
 #: ../data/ui/janitorpage.ui.h:4
 msgid "_Scan"
-msgstr "_Skanuj"
+msgstr "_Przeskanuj"
 
 #: ../data/ui/traceback.ui.h:1
 msgid "<big><b>Oops... a fatal error occured</b></big>"
@@ -331,15 +331,15 @@ msgstr "_Programy"
 
 #: ../data/ui/mainwindow.ui.h:2
 msgid "Ubuntu Tweak Website"
-msgstr "Strona domowa programu Ubuntu Tweak"
+msgstr "Strona główna programu Ubuntu Tweak"
 
 #: ../data/ui/mainwindow.ui.h:3
 msgid ""
 "Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
 "system and desktop settings."
 msgstr ""
-"Ubuntu Tweak umożliwia dopasowanie wyglądu i personalizację systemu Ubuntu "
-"do własnych potrzeb."
+"Umożliwia dopasowanie wyglądu i spersonalizowanie systemu Ubuntu do własnych "
+"potrzeb."
 
 #: ../data/ui/mainwindow.ui.h:4
 msgid ""
@@ -398,12 +398,11 @@ msgstr " "
 #: ../data/ui/metacity.ui.h:2
 msgid ""
 "Custom: (arrange the buttons on the titlebar by dragging and dropping)"
-msgstr ""
-"Użytkownika: (rozmieść przyciski na pasku tytułu przeciągając i upuszczając)"
+msgstr "Własny (proszę rozmieścić przyciski przeciągając i upuszczając je)"
 
 #: ../data/ui/metacity.ui.h:3
 msgid "Enable control:"
-msgstr "Włącz kontrolę:"
+msgstr "Przyciski:"
 
 #: ../data/ui/metacity.ui.h:4
 msgid "Left"
@@ -427,7 +426,7 @@ msgstr "Nazwa ustawienia:"
 
 #: ../ubuntutweak/system/__init__.py:40
 msgid "GNOME Classic"
-msgstr ""
+msgstr "Klasyczny GNOME"
 
 #: ../ubuntutweak/system/__init__.py:42
 msgid "GNOME Fallback"
@@ -552,11 +551,11 @@ msgstr "Pamięć podręczna miniatur"
 #: ../ubuntutweak/janitor/thumbnailcache_plugin.py:71
 #, python-format
 msgid "Thumbnail Cache (%d cache to be cleaned, total size: %s)"
-msgstr "Pamięć podręczna miniatur (%d do usunięcia, łączny rozmiar: %s)"
+msgstr "Pamięć podręczna miniatur (do usunięcia: %d, łączny rozmiar: %s)"
 
 #: ../ubuntutweak/janitor/thumbnailcache_plugin.py:73
 msgid "Thumbnail Cache (No cache to be cleaned)"
-msgstr ""
+msgstr "Pamięć podręczna miniatur (brak elementów do usunięcia)"
 
 #: ../ubuntutweak/janitor/ppapurge_plugin.py:62
 msgid "Purge PPA and Downgrade Packages"
@@ -616,11 +615,11 @@ msgstr "Zamierzasz oczyścić: %s"
 #: ../ubuntutweak/janitor/ppapurge_plugin.py:421
 #, python-format
 msgid "%d PPAs to be removed"
-msgstr ""
+msgstr "%d repozytoriów do usunięcia"
 
 #: ../ubuntutweak/janitor/ppapurge_plugin.py:423
 msgid "No PPA to be removed"
-msgstr ""
+msgstr "Brak repozytoriów do usunięcia"
 
 #: ../ubuntutweak/janitor/autoremoval_plugin.py:14
 msgid "Unneeded Packages"
@@ -629,11 +628,11 @@ msgstr "Niepotrzebne pakiety"
 #: ../ubuntutweak/janitor/autoremoval_plugin.py:50
 #, python-format
 msgid "Unneeded Packages (%d packages to be removed, total size: %s)"
-msgstr "Niepotrzebne pakiety (%d do usunięcia, łączny rozmiar: %s)"
+msgstr "Niepotrzebne pakiety (do usunięcia: %d, łączny rozmiar: %s)"
 
 #: ../ubuntutweak/janitor/autoremoval_plugin.py:52
 msgid "Unneeded Packages (No package to be removed)"
-msgstr "Niepotrzebne pakiety (brak pakietów do usunięcia)"
+msgstr "Niepotrzebne pakiety (brak elementów do usunięcia)"
 
 #: ../ubuntutweak/janitor/aptcache_plugin.py:25
 msgid "Apt Cache"
@@ -643,11 +642,11 @@ msgstr "Pamięć podręczna programu Apt"
 #, python-format
 msgid "Apt Cache (%d cache to be cleaned, total size: %s)"
 msgstr ""
-"Pamięć podręczna programu Apt (%d do wyczyszczenia, łączny rozmiar: %s)"
+"Pamięć podręczna programu Apt (do wyczyszczenia: %d, łączny rozmiar: %s)"
 
 #: ../ubuntutweak/janitor/aptcache_plugin.py:65
 msgid "Apt Cache (No cache to be cleaned)"
-msgstr "Pamięć podręczna programu Apt (brak pakietów do czyszczenia)"
+msgstr "Pamięć podręczna programu Apt (brak elementów do wyczyszczenia)"
 
 #: ../ubuntutweak/janitor/__init__.py:420
 #, python-format
@@ -657,7 +656,7 @@ msgstr ""
 #: ../ubuntutweak/janitor/__init__.py:582
 #, python-format
 msgid "Cleaning cruft for \"%s\"..."
-msgstr ""
+msgstr "Oczyszczanie sekcji „%s”..."
 
 #: ../ubuntutweak/janitor/__init__.py:654
 #: ../ubuntutweak/admins/desktoprecovery.py:81
@@ -677,13 +676,11 @@ msgstr "Pliki konfiguracyjne pakietów"
 #: ../ubuntutweak/janitor/packageconfigs_plugin.py:70
 #, python-format
 msgid "Packages Configs (%d package configs to be removed)"
-msgstr ""
-"Pliki konfiguracyjne pakietów (%d konfiguracji pakietów do usunięcia)"
+msgstr "Pliki konfiguracyjne pakietów (do usunięcia: %d)"
 
 #: ../ubuntutweak/janitor/packageconfigs_plugin.py:72
 msgid "Packages Configs (No package config to be removed)"
-msgstr ""
-"Pliki konfiguracyjne pakietów (brak konfiguracji pakietów do usunięcia)"
+msgstr "Pliki konfiguracyjne pakietów (brak elementów do usunięcia)"
 
 #: ../ubuntutweak/janitor/oldkernel_plugin.py:15
 msgid "Old Kernel"
@@ -693,11 +690,11 @@ msgstr "Przestarzałe jądra"
 #, python-format
 msgid ""
 "Old Kernel Packages (%d kernel packages to be removed, total size: %s)"
-msgstr "Pakiety przestarzałych jąder (%d do usunięcia, łączny rozmiar: %s)"
+msgstr "Pakiety przestarzałych jąder (do usunięcia: %d, łączny rozmiar: %s)"
 
 #: ../ubuntutweak/janitor/oldkernel_plugin.py:93
 msgid "Old Kernel Packages (No old kernel package to be removed)"
-msgstr "Pakiety przestarzałych jąder (brak pakietów do usunięcia)"
+msgstr "Pakiety przestarzałych jąder (brak elementów do usunięcia)"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:79
 #: ../ubuntutweak/modules/__init__.py:29
@@ -741,11 +738,11 @@ msgid ""
 "You can also use \"Reset\" to reset to the system default settings."
 msgstr ""
 "Tworzy i przywraca kopie zapasowe ustawień pulpitu i programów.\n"
-"Przy użyciu przycisku \"Wyczyść\" można przywrócić domyślne ustawienia."
+"Domyślne ustawienia można przywrócić za pomocą przycisku „Wyczyść”."
 
 #: ../ubuntutweak/admins/desktoprecovery.py:348
 msgid "No Backup Yet"
-msgstr "Nie utworzono jeszcze kopii zapasowej"
+msgstr "Jeszcze nie utworzono kopii zapasowej"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:383
 #, python-format
@@ -821,8 +818,8 @@ msgid ""
 "<b>NOTES</b>: Whilst resetting, your desktop may be unresponsive for a "
 "moment."
 msgstr ""
-"<b>UWAGA</b>: Podczas resetowania Twój pulpit może przez chwilę nie "
-"odpowiadać."
+"<b>UWAGA</b>: Podczas przywracania domyślnych ustawień, pulpit może przez "
+"chwilę nie odpowiadać."
 
 #: ../ubuntutweak/admins/desktoprecovery.py:534
 msgid "Reset Successful!"
@@ -861,7 +858,7 @@ msgstr ""
 
 #: ../ubuntutweak/admins/sourceeditor.py:283
 msgid "No backup yet"
-msgstr ""
+msgstr "Jeszcze nie utworzono kopii zapasowej"
 
 #: ../ubuntutweak/admins/sourceeditor.py:323
 msgid "Please check the permission of the sources.list file"
@@ -910,8 +907,8 @@ msgid ""
 "The current content will be lost after reloading!\n"
 "Do you wish to continue?"
 msgstr ""
-"Obecna zawartość zostanie utracona po przeładowaniu!\n"
-"Wykonać?"
+"Obecna zawartość zostanie utracona po ponownym wczytaniu!\n"
+"Kontynuować?"
 
 #: ../ubuntutweak/admins/sourceeditor.py:456
 msgid "You can't delete sources.list!"
@@ -923,7 +920,7 @@ msgid ""
 "The \"%s\" will be deleted!\n"
 "Do you wish to continue?"
 msgstr ""
-"\"%s\" zostanie usunięty!\n"
+"Plik „%s” zostanie usunięty!\n"
 "Kontynuować?"
 
 #: ../ubuntutweak/admins/templates.py:70
@@ -1055,7 +1052,7 @@ msgstr "Wideo"
 
 #: ../ubuntutweak/admins/userdir.py:154
 msgid "Choose a folder"
-msgstr "Wybierz katalog"
+msgstr "Wybór katalogu"
 
 #: ../ubuntutweak/admins/userdir.py:171
 msgid ""
@@ -1085,7 +1082,7 @@ msgstr "Przywróć domyślne"
 
 #: ../ubuntutweak/admins/userdir.py:237
 msgid "Default Folder Locations"
-msgstr "Domyślne położenia katalogów"
+msgstr "Położenia katalogów"
 
 #: ../ubuntutweak/admins/userdir.py:238
 msgid ""
@@ -1093,8 +1090,8 @@ msgid ""
 "Don't change the location of your desktop folder unless you know what you "
 "are doing."
 msgstr ""
-"Możesz tutaj zmienić ścieżki do domyślnych katalogów.\n"
-"Nie zmieniaj lokalizacji swego katalogu pulpitu, chyba że wiesz co robisz."
+"Modyfikuje domyślne ścieżki dostępu do katalogów użytkownika.\n"
+"Proszę nie zmieniać położenia katalogu pulpitu, chyba że jest to niezbędne."
 
 #: ../ubuntutweak/admins/userdir.py:260
 msgid "_Restore"
@@ -2073,15 +2070,15 @@ msgstr "Wyłączenie przełączania użytkowników"
 
 #: ../ubuntutweak/tweaks/compiz.py:270
 msgid "Show Workspaces"
-msgstr "Wyświetlanie obszarów roboczych"
+msgstr "Wyświetlenie obszarów roboczych"
 
 #: ../ubuntutweak/tweaks/compiz.py:271
 msgid "Show Windows"
-msgstr "Pokaż okna"
+msgstr "Wyświetlenie okien"
 
 #: ../ubuntutweak/tweaks/compiz.py:272
 msgid "Show Desktop"
-msgstr "Pokaż pulpit"
+msgstr "Wyświetlenie pulpitu"
 
 #: ../ubuntutweak/tweaks/compiz.py:273
 msgid "Show Widgets"
@@ -2093,7 +2090,7 @@ msgstr "Menedżer kompozycji Compiz"
 
 #: ../ubuntutweak/tweaks/compiz.py:367
 msgid "Settings for some amazing desktop eye-candy"
-msgstr "Ustawienia niektórych fantastycznych dodatków na pulpit"
+msgstr "Konfiguruje wybrane preferencje domyślnego menedżera kompozycji"
 
 #: ../ubuntutweak/tweaks/compiz.py:379
 msgid " Workspace Edge Settings"
@@ -2101,7 +2098,7 @@ msgstr " Krawędzie obszaru roboczego"
 
 #: ../ubuntutweak/tweaks/compiz.py:382
 msgid "Enable snapping windows"
-msgstr "Przyciągające się okna"
+msgstr "Przyleganie okien"
 
 #: ../ubuntutweak/tweaks/compiz.py:383
 msgid "Enable wobbly windows"
@@ -2109,7 +2106,7 @@ msgstr "\"Trzęsące się\" okna"
 
 #: ../ubuntutweak/tweaks/compiz.py:384
 msgid "Enable workspace switching with mouse wheel"
-msgstr "Umożliwij przełączanie pulpitów, przy użyciu kółka myszy"
+msgstr "Przełączanie obszarów roboczyć za pomocą kółka myszy"
 
 #: ../ubuntutweak/tweaks/compiz.py:386
 msgid "Desktop Effects"
@@ -2117,7 +2114,7 @@ msgstr "Efekty pulpitu"
 
 #: ../ubuntutweak/tweaks/compiz.py:391
 msgid "Enable transparent menus"
-msgstr "Przeźroczyste menu"
+msgstr "Przezroczyste menu"
 
 #: ../ubuntutweak/tweaks/compiz.py:392
 msgid "Enable wobbly menus"
@@ -2194,7 +2191,7 @@ msgstr "Zminimalizwanie"
 
 #: ../ubuntutweak/tweaks/metacity.py:39
 msgid "Close"
-msgstr "Zamknij"
+msgstr "Zamknięcie"
 
 #: ../ubuntutweak/tweaks/metacity.py:40
 msgid "Spacer"
@@ -2254,27 +2251,27 @@ msgstr "Kliknięcie prawym przyciskiem myszy"
 
 #: ../ubuntutweak/tweaks/metacity.py:236
 msgid "Window Decoration Effects"
-msgstr "Efekty dekoracyjne okien"
+msgstr "Efekty obramowania okna"
 
 #: ../ubuntutweak/tweaks/metacity.py:238
 msgid "Use Metacity window theme"
-msgstr "Temat okna \"Metacity\""
+msgstr "Użycie stylu menedżera okien Metacity"
 
 #: ../ubuntutweak/tweaks/metacity.py:243
 msgid "Enable active window transparency"
-msgstr "Włącz przeźroczystość aktywnego okna"
+msgstr "Przezroczystość aktywnego okna"
 
 #: ../ubuntutweak/tweaks/metacity.py:248
 msgid "Active window transparency level"
-msgstr "Poziom przeźroczystości aktywnego okna"
+msgstr "Poziom przezroczystości aktywnego okna"
 
 #: ../ubuntutweak/tweaks/metacity.py:254
 msgid "Enable inactive window transparency"
-msgstr "Przeźroczystość nieaktywnego okna"
+msgstr "Przezroczystość nieaktywnego okna"
 
 #: ../ubuntutweak/tweaks/metacity.py:259
 msgid "Inactive window shade transparency level"
-msgstr "Poziom przeźroczystości cienia nieaktywnego okna"
+msgstr "Poziom przezroczystości cienia nieaktywnego okna"
 
 #: ../ubuntutweak/clips/userinfo.py:10
 msgid "User Information"
@@ -2339,7 +2336,7 @@ msgstr "Można wyczyścić pamięć podręczną, aby zwolnić przestrzeń na dys
 #: ../ubuntutweak/clips/cleanerinfo.py:21
 #, python-format
 msgid "%s cache packages can be cleaned."
-msgstr "Można wyczyścić %s pakietów z pamięci podręcznej."
+msgstr "Można usunęć %s pakietów z pamięci podręcznej."
 
 #: ../ubuntutweak/clips/cleanerinfo.py:33
 #, python-format
@@ -2360,7 +2357,7 @@ msgid ""
 "clicking on the 'Check' button to update the information."
 msgstr ""
 "Nie wiadomo kiedy ostatnio uaktualniono informacje o pakietach. Proszę "
-"kliknąć przycisk \"Uaktualnij\", aby pobrać inforamcje o pakietach."
+"kliknąć przycisk „Uaktualnij”, aby pobrać inforamcje o pakietach."
 
 #: ../ubuntutweak/clips/updateinfo.py:54
 #, python-format
@@ -2489,7 +2486,7 @@ msgstr "Wybór pliku"
 #: ../ubuntutweak/preferences.py:157
 #, python-format
 msgid "\"%s\" is not a Clip Extension!"
-msgstr ""
+msgstr "Plik \"%s\" nie jest wtyczką przeglądu!"
 
 #: ../ubuntutweak/preferences.py:160
 msgid "Choose a Tweaks Extension"
@@ -2498,7 +2495,7 @@ msgstr "Wybór pliku"
 #: ../ubuntutweak/preferences.py:165
 #, python-format
 msgid "\"%s\" is not a Tweaks Extension!"
-msgstr ""
+msgstr "Plik „%s” nie jest wtyczką usprawnień!"
 
 #: ../ubuntutweak/preferences.py:168
 msgid "Choose a Admins Extension"
@@ -2507,7 +2504,7 @@ msgstr "Wybór pliku"
 #: ../ubuntutweak/preferences.py:173
 #, python-format
 msgid "\"%s\" is not a Admins Extension!"
-msgstr ""
+msgstr "Plik „%s” nie jest wtyczką zarządzania!"
 
 #: ../ubuntutweak/preferences.py:176
 msgid "Choose a Janitor Extension"
@@ -2516,11 +2513,11 @@ msgstr "Wybór pliku"
 #: ../ubuntutweak/preferences.py:181
 #, python-format
 msgid "\"%s\" is not a Janitor Extension!"
-msgstr ""
+msgstr "Plik „%s” nie jest wtyczką czyszczenia!"
 
 #: ../ubuntutweak/preferences.py:190
 msgid "Ubuntu Tweak Extension (*.py, *.tar.gz)"
-msgstr "Wtyczki programu Usprawnienia Ubuntu (*.py, *.tar.gz)"
+msgstr "Wtyczki programu Ubuntu Tweak (*.py, *.tar.gz)"
 
 #: ../ubuntutweak/preferences.py:221
 msgid "Would you like to remove it then install again?"
@@ -2542,7 +2539,7 @@ msgstr "Brak modułu o nazwie \"%s\""
 
 #: ../ubuntutweak/main.py:459
 msgid "Please ensure you have entered the correct module name."
-msgstr ""
+msgstr "Proszę upewnić się, że wprowadzono poprawną nazwę modułu."
 
 #: ../ubuntutweak/main.py:517
 msgid "Computer Janitor"
@@ -2550,7 +2547,7 @@ msgstr "Czyszczenie systemu"
 
 #: ../ubuntutweak/main.py:518
 msgid "Clean up a system so it's more like a freshly installed one"
-msgstr ""
+msgstr "Usuwa niepotrzebną zawartość systemu"
 
 #~ msgid "Hostname"
 #~ msgstr "Nazwa komputera"
@@ -2891,10 +2888,6 @@ msgstr ""
 #~ msgstr "Czy zmiany mają przynieść natychmiastowy efekt?"
 
 #, python-format
-#~ msgid "Would you like to reset all settings under: <b>%s</b>?"
-#~ msgstr "Czy chcesz zresetować wszystkie ustawienia dla: <b>%s</b>?"
-
-#, python-format
 #~ msgid ""
 #~ "Would you like to delete the backup of all <b>%s</b> settings named "
 #~ "<b>%s</b>?"
@@ -2932,3 +2925,7 @@ msgstr ""
 #, python-format
 #~ msgid "Would you like to reset settings for: <b>%s</b>?"
 #~ msgstr "Przywrócić domyślne ustawienia dla: <b>%s</b>?"
+
+#, python-format
+#~ msgid "Would you like to reset all settings under: <b>%s</b>?"
+#~ msgstr "Przywrócić wszystkie domyślne ustawienia dla: <b>%s</b>?"
