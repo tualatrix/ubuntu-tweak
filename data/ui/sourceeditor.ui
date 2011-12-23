@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk+" version="2.24"/>
-  <!-- interface-naming-policy project-wide -->
+  <!-- interface-requires gtk+ 3.0 -->
   <object class="GtkListStore" id="backup_model">
     <columns>
       <!-- column-name path -->
@@ -10,16 +9,14 @@
       <column type="gchararray"/>
     </columns>
   </object>
-  <object class="GtkHBox" id="hbox1">
+  <object class="GtkHPaned" id="hpaned1">
     <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="spacing">12</property>
+    <property name="can_focus">True</property>
     <child>
       <object class="GtkScrolledWindow" id="scrolledwindow1">
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="hscrollbar_policy">never</property>
-        <property name="vscrollbar_policy">automatic</property>
         <property name="shadow_type">in</property>
         <child>
           <object class="GtkTreeView" id="list_view">
@@ -30,6 +27,9 @@
             <property name="headers_clickable">False</property>
             <property name="rules_hint">True</property>
             <property name="search_column">0</property>
+            <child internal-child="selection">
+              <object class="GtkTreeSelection" id="treeview-selection1"/>
+            </child>
             <child>
               <object class="GtkTreeViewColumn" id="treeviewcolumn1">
                 <property name="title" translatable="yes">column</property>
@@ -45,9 +45,8 @@
         </child>
       </object>
       <packing>
-        <property name="expand">False</property>
-        <property name="fill">False</property>
-        <property name="position">0</property>
+        <property name="resize">False</property>
+        <property name="shrink">True</property>
       </packing>
     </child>
     <child>
@@ -63,8 +62,6 @@
               <object class="GtkScrolledWindow" id="sw1">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="hscrollbar_policy">automatic</property>
-                <property name="vscrollbar_policy">automatic</property>
                 <property name="shadow_type">in</property>
                 <child>
                   <placeholder/>
@@ -94,6 +91,8 @@
                 <property name="visible">True</property>
                 <property name="sensitive">False</property>
                 <property name="can_focus">False</property>
+                <property name="has_tooltip">True</property>
+                <property name="tooltip_markup" translatable="yes">Save this source</property>
                 <property name="tooltip_text" translatable="yes">Save this source</property>
                 <property name="use_action_appearance">False</property>
                 <property name="label" translatable="yes">toolbutton1</property>
@@ -111,6 +110,8 @@
                 <property name="visible">True</property>
                 <property name="sensitive">False</property>
                 <property name="can_focus">False</property>
+                <property name="has_tooltip">True</property>
+                <property name="tooltip_markup" translatable="yes">Redo this source</property>
                 <property name="tooltip_text" translatable="yes">Redo this source</property>
                 <property name="use_action_appearance">False</property>
                 <property name="label" translatable="yes">toolbutton2</property>
@@ -128,6 +129,8 @@
                 <property name="visible">True</property>
                 <property name="sensitive">False</property>
                 <property name="can_focus">False</property>
+                <property name="has_tooltip">True</property>
+                <property name="tooltip_markup" translatable="yes">Delete this source</property>
                 <property name="tooltip_text" translatable="yes">Delete this source</property>
                 <property name="use_action_appearance">False</property>
                 <property name="label" translatable="yes">toolbutton3</property>
@@ -284,6 +287,7 @@
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
                     <property name="use_action_appearance">False</property>
+                    <property name="xalign">0</property>
                     <property name="draw_indicator">True</property>
                   </object>
                   <packing>
@@ -375,9 +379,8 @@
         </child>
       </object>
       <packing>
-        <property name="expand">True</property>
-        <property name="fill">True</property>
-        <property name="position">1</property>
+        <property name="resize">True</property>
+        <property name="shrink">True</property>
       </packing>
     </child>
   </object>
