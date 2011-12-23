@@ -199,7 +199,7 @@ class SourceEditor(TweakModule):
         self.text_vbox.pack_start(self.infobar, False, False, 0)
 
         self.connect('realize', self.on_ui_realize)
-        self.add_start(self.hbox1)
+        self.add_start(self.hpaned1)
 
     def on_ui_realize(self, widget):
         self.infobar.hide()
