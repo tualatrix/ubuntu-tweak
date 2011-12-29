@@ -22,17 +22,16 @@ import sys
 import dbus
 import dbus.service
 import dbus.mainloop.glib
-import gobject
-import pynotify
 
-gobject.threads_init()
+from gi.repository import GObject, Notify
+
+GObject.threads_init()
 dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
 dbus.mainloop.glib.threads_init()
 
-from ubuntutweak.policykit import proxy
-from ubuntutweak.common.notify import notify
-from ubuntutweak.common.gui import GuiWorker
-from ubuntutweak.widgets.dialogs import InfoDialog
+from ubuntutweak.gui import GuiBuilder
+from ubuntutweak.policykit.dbusproxy import proxy
+from ubuntutweak.gui.dialogs import InfoDialog
 
 UTURL_DBUS_IFACE = 'com.ubuntu_tweak.UtUrl'
 UTURL_DBUS_PATH = '/com/ubuntu_tweak/UtUrl'
@@ -44,10 +43,9 @@ class UtUrl(dbus.service.Object):
         bus_name = dbus.service.BusName(UTURL_DBUS_IFACE, bus=session_bus)
         dbus.service.Object.__init__(self, bus_name, UTURL_DBUS_PATH)
 
-        self.window = GuiWorker('uturl.ui')
+        self.window = GuiBuilder('uturl.ui')
         self.window.confirmation_dialog.set_keep_above(True)
         self.window.header_label.set_markup('<big>Install additional software?</big>')
-        self.notify = notify
 
     @dbus.service.method(dbus_interface=UTURL_DBUS_IFACE,
                          in_signature='s', out_signature='')
@@ -58,8 +56,10 @@ class UtUrl(dbus.service.Object):
     @dbus.service.method(dbus_interface=UTURL_DBUS_IFACE,
                          in_signature='s', out_signature='')
     def show_notify(self, message):
-        notify = pynotify.Notification(_('Ubuntu Tweak'), message,
-        'ubuntu-tweak')
+        notify = Notify.Notification()
+        notify.update(summary=_('Ubuntu Tweak'),
+                      body=message,
+                      icon='ubuntu-tweak')
         notify.set_hint_string ("x-canonical-append", "");
         notify.show()
 

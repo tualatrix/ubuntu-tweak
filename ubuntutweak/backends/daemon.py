@@ -22,6 +22,7 @@ import subprocess
 
 from subprocess import PIPE
 
+import apt
 import apt_pkg
 import dbus
 import dbus.service
@@ -106,7 +107,7 @@ class Daemon(PolicyKitService):
     #TODO use signal
     liststate = None
     list = SourcesList()
-#    cache = apt.Cache()
+    cache = None
     stable_url = 'http://ppa.launchpad.net/tualatrix/ppa/ubuntu'
     ppa_list = []
     p = None
@@ -116,6 +117,20 @@ class Daemon(PolicyKitService):
         bus_name = dbus.service.BusName(INTERFACE, bus=bus)
         PolicyKitService.__init__(self, bus_name, PATH)
         self.mainloop = mainloop
+
+    def get_cache(self):
+        try:
+            self.update_apt_cache()
+        except Exception, e:
+            log.error("Error happened when get_cache(): %s" % str(e))
+        finally:
+            return self.cache
+
+    def update_apt_cache(self, init=False):
+        '''if init is true, force to update, or it will update only once'''
+        if init or not getattr(self, 'cache'):
+            apt_pkg.init()
+            self.cache = apt.Cache()
 
     @dbus.service.method(INTERFACE,
                          in_signature='b', out_signature='bv')
@@ -373,17 +388,16 @@ class Daemon(PolicyKitService):
 
         return 'done'
 
-#TODO enable it in the future for UTURL
-#    @dbus.service.method(INTERFACE,
-#                         in_signature='s', out_signature='b')
-#    def get_package_status(self, package):
-#        try:
-#            pkg = self.cache[package]
-#            return pkg.isInstalled
-#        except Exception, e:
-#            print e
-#        else:
-#            return False
+    @dbus.service.method(INTERFACE,
+                         in_signature='s', out_signature='b')
+    def get_package_status(self, package):
+        try:
+            pkg = self.get_cache()[package]
+            return pkg.isInstalled
+        except Exception, e:
+            log.error(e)
+        else:
+            return False
 
     @dbus.service.method(INTERFACE,
                          in_signature='ss', out_signature='',
