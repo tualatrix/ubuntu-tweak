@@ -367,6 +367,7 @@ class Compiz(TweakModule):
     __desc__ = _('Settings for some amazing desktop eye-candy')
     __icon__ = 'ccsm'
     __category__ = 'desktop'
+    __desktop__ = ['ubuntu']
 
     def __init__(self):
         TweakModule.__init__(self)
