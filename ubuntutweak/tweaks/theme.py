@@ -81,6 +81,9 @@ class Theme(TweakModule):
                              valid.append(t)
         except:
             log.critical("Error parsing directories", exc_info=True)
+
+        valid.sort()
+
         return valid
 
     def _get_valid_icon_themes(self):
@@ -90,6 +93,9 @@ class Theme(TweakModule):
         valid = self.walk_directories(dirs, lambda d:
                     os.path.isdir(d) and \
                         not os.path.exists(os.path.join(d, "cursors")))
+
+        valid.sort()
+
         return valid
 
     def _get_valid_themes(self):
@@ -100,6 +106,9 @@ class Theme(TweakModule):
         valid = self.walk_directories(dirs, lambda d:
                     os.path.exists(os.path.join(d, "gtk-2.0")) and \
                         os.path.exists(os.path.join(d, "gtk-3.0")))
+
+        valid.sort()
+
         return valid
 
     def _get_valid_cursor_themes(self):
@@ -108,6 +117,9 @@ class Theme(TweakModule):
         valid = self.walk_directories(dirs, lambda d:
                     os.path.isdir(d) and \
                         os.path.exists(os.path.join(d, "cursors")))
+
+        valid.sort()
+
         return valid
 
     def _get_valid_window_themes(self):
@@ -115,4 +127,7 @@ class Theme(TweakModule):
                  os.path.join(os.path.expanduser("~"), ".themes"))
         valid = self.walk_directories(dirs, lambda d:
                     os.path.exists(os.path.join(d, "metacity-1")))
+
+        valid.sort()
+
         return valid
