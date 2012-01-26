@@ -40,6 +40,7 @@ def get_desktop_fullname():
                     'gnome-classic': _('GNOME Classic'),
                     'gnome-shell': 'GNOME Shell',
                     'gnome-fallback': _('GNOME Fallback'),
+                    'Lubutu': 'LXDE',
                     }
 
     desktop = get_desktop()
