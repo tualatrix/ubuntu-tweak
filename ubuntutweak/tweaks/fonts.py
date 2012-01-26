@@ -36,7 +36,7 @@ class Fonts(TweakModule):
         fb.set_show_size(False)
         fb.set_use_size(13)
 
-        box = TablePack(_("Deskotp fonts"), (
+        box = TablePack(_("Desktop fonts"), (
                     WidgetFactory.create("Scale",
                                          label=_("Text scaling factor"),
                                          key="org.gnome.desktop.interface.text-scaling-factor",
