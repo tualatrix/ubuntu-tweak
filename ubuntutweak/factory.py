@@ -23,6 +23,7 @@ from gi.repository import Gtk
 from ubuntutweak.gui.dialogs import *
 from ubuntutweak.gui.widgets import *
 from ubuntutweak.gui.containers import *
+from ubuntutweak.common.debug import run_traceback
 
 log = logging.getLogger('factory')
 
@@ -35,10 +36,13 @@ def on_reset_button_clicked(widget, reset_target):
         reset_target.set_value(widget.get_default_value())
     elif issubclass(reset_target.__class__, Gtk.Scale):
         reset_target.set_value(widget.get_default_value())
+    elif issubclass(reset_target.__class__, Gtk.ColorButton):
+        reset_target.set_value(widget.get_default_value())
 
 
 class WidgetFactory:
-    composite_capable = ('SpinButton', 'Entry', 'ComboBox', 'Scale', 'FontButton')
+    composite_capable = ('SpinButton', 'Entry', 'ComboBox',
+                         'Scale', 'FontButton', 'ColorButton')
 
     @classmethod
     def create(cls, widget, **kwargs):
@@ -56,7 +60,11 @@ class WidgetFactory:
         if enable_reset:
             enable_reset = kwargs.pop('enable_reset')
 
-        new_widget = globals().get(widget)(**kwargs)
+        try:
+            new_widget = globals().get(widget)(**kwargs)
+        except Exception, e:
+            log.error(run_traceback('error', text_only=True))
+            return [None, None]
 
         if signal_dict:
             for signal, method in signal_dict.items():
