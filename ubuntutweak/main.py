@@ -118,7 +118,7 @@ class CategoryBox(Gtk.VBox):
         self.pack_start(header, False, False, 0)
         self.pack_start(self._table, False, False, 0)
 
-        self.show()
+        self.show_all()
 
     def get_modules(self):
         return self._modules
@@ -126,10 +126,7 @@ class CategoryBox(Gtk.VBox):
     def get_buttons(self):
         return self._buttons
 
-    def rebuild_table (self, ncols, force=False):
-        if (not force and ncols == self._current_cols and
-                len(self._modules) == self._current_modules):
-            return
+    def rebuild_table(self, ncols):
         self._current_cols = ncols
         self._current_modules = len(self._modules)
 
