@@ -183,19 +183,18 @@ class FeaturePage(Gtk.ScrolledWindow):
 
         self.connect('draw', self.rebuild_boxes)
 
-        self._setting.connect_notify(self.load_modules, True)
+        self._setting.connect_notify(self.load_modules)
 
         self.show_all()
 
-    def load_modules(self, a=None, b=None, remove=False):
-        log.debug("Load modules, remove: %s" % remove)
+    def load_modules(self, *args, **kwargs):
+        log.debug("Loading modules...")
 
         loader = ModuleLoader(self._feature)
 
-        if remove:
-            self._boxes = []
-            for child in self._box.get_children():
-                self._box.remove(child)
+        self._boxes = []
+        for child in self._box.get_children():
+            self._box.remove(child)
 
         for category, category_name in loader.get_categories():
             modules = loader.get_modules_by_category(category)
@@ -212,8 +211,7 @@ class FeaturePage(Gtk.ScrolledWindow):
                 self._boxes.append(category_box)
                 self._box.pack_start(category_box, False, False, 0)
 
-        if remove:
-            self.rebuild_boxes()
+        self.rebuild_boxes()
 
     def _connect_signals(self, category_box):
         for button in category_box.get_buttons():
