@@ -22,6 +22,7 @@ import ConfigParser
 
 from gi.repository import Gtk, GdkPixbuf
 
+from ubuntutweak import system
 from ubuntutweak.factory import WidgetFactory
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.gui.treeviews import get_local_path
@@ -57,6 +58,11 @@ class LoginSettings(TweakModule):
         polkit_button.connect('authenticated', self.on_polkit_action)
         hbox.pack_end(polkit_button, False, False, 0)
         self.add_start(hbox, False, False, 0)
+
+        if system.CODENAME == 'precise':
+            self.same_background_button.destroy()
+            self.bg_align.destroy()
+            self.bg_label.destroy()
 
     def _setup_logo_image(self):
         self._greeter_logo = SystemConfigSetting('/etc/lightdm/unity-greeter.conf::greeter.logo')
