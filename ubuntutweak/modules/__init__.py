@@ -330,6 +330,21 @@ class TweakModule(Gtk.VBox):
             return pixbuf
 
     @classmethod
+    def get_icon(cls, size=32):
+        '''Return icon path'''
+        if cls.__icon__:
+            if type(cls.__icon__) != list:
+                if cls.__icon__.endswith('.png'):
+                    icon_path = os.path.join(DATA_DIR, 'pixmaps', cls.__icon__)
+                    pixbuf = Gtk.gd.pixbuf_new_from_file(icon_path)
+                else:
+                    pixbuf = icon.get_from_name(cls.__icon__, size=size, only_path=True)
+            else:
+                pixbuf = icon.get_from_list(cls.__icon__, size=size, only_path=True)
+
+            return pixbuf
+
+    @classmethod
     def is_user_extension(cls):
         return cls.__user_extension__
 

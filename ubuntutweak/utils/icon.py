@@ -11,13 +11,20 @@ icontheme.append_search_path('/usr/share/ccsm/icons')
 
 DEFAULT_SIZE = 24
 
-def get_from_name(name='gtk-execute', alter='gtk-execute',
-                  size=DEFAULT_SIZE, force_reload=False):
+def get_from_name(name='gtk-execute',
+                  alter='gtk-execute',
+                  size=DEFAULT_SIZE,
+                  force_reload=False,
+                  only_path=False):
     pixbuf = None
 
     if force_reload:
         global icontheme
         icontheme = Gtk.IconTheme.get_default()
+
+    if only_path:
+        path = icontheme.lookup_icon(name, size, Gtk.IconLookupFlags.USE_BUILTIN)
+        return path
 
     try:
         pixbuf = icontheme.load_icon(name, size, 0)
@@ -62,12 +69,12 @@ def get_from_mime_type(mime, size=DEFAULT_SIZE):
 
     return pixbuf
 
-def get_from_file(file, size=DEFAULT_SIZE):
+def get_from_file(file, size=DEFAULT_SIZE, only_path=False):
     try:
         return GdkPixbuf.Pixbuf.new_from_file_at_size(file, size, size)
     except Exception, e:
         log.error('get_from_file failed: %s' % e)
-        return get_from_name(size=size)
+        return get_from_name(size=size, only_path=only_path)
 
 def get_from_app(app, size=DEFAULT_SIZE):
     try:
