@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk+" version="2.24"/>
+  <!-- interface-requires gtk+ 3.0 -->
   <object class="GtkTreeStore" id="janitor_model">
     <columns>
       <!-- column-name check -->
@@ -149,12 +149,6 @@
                             <property name="position">0</property>
                           </packing>
                         </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
                       </object>
                       <packing>
                         <property name="expand">True</property>
@@ -187,6 +181,7 @@
         <child>
           <object class="GtkCheckButton" id="autoscan_button">
             <property name="label" translatable="yes">Auto Scan</property>
+            <property name="use_action_appearance">False</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">False</property>
@@ -203,6 +198,7 @@
         <child>
           <object class="GtkButton" id="scan_button">
             <property name="label" translatable="yes">_Scan</property>
+            <property name="use_action_appearance">False</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
@@ -220,6 +216,7 @@
         <child>
           <object class="GtkButton" id="clean_button">
             <property name="label" translatable="yes">_Clean</property>
+            <property name="use_action_appearance">False</property>
             <property name="visible">True</property>
             <property name="sensitive">False</property>
             <property name="can_focus">True</property>

@@ -171,7 +171,7 @@ class Metacity(TweakModule):
 
         box = ListPack(_('Window Titlebar Button Layout'),
                        [child for child in self.main_vbox.get_children()])
-        self.add_start(box, False, False, 0)
+        self.add_start(box)
         self.init_control_buttons()
 
         table = TablePack(_('Window Titlebar Actions'), (
@@ -231,7 +231,7 @@ class Metacity(TweakModule):
                                                  'lower', 'menu']),
                 ))
 
-        self.add_start(table, False, False, 0)
+        self.add_start(table)
 
         box = TablePack(_('Window Decoration Effects'), (
                     WidgetFactory.create('CheckButton',
@@ -262,7 +262,7 @@ class Metacity(TweakModule):
                                           enable_reset=True,
                                           min=0, max=1, digits=2),
             ))
-        self.add_start(box, False, False, 0)
+        self.add_start(box)
 
     def init_control_buttons(self):
         if ButtonView.is_value(self.left_default):

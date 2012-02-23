@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk+" version="2.24"/>
+  <!-- interface-requires gtk+ 3.0 -->
   <object class="GtkAboutDialog" id="aboutdialog">
     <property name="can_focus">False</property>
     <property name="border_width">5</property>
@@ -101,6 +101,7 @@ Jeonkwan Chan &lt;jeonkwan@gmail.com&gt; Mockup Designer of 0.6</property>
             </style>
             <child>
               <object class="GtkToolItem" id="toolbutton1">
+                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="use_action_appearance">False</property>
@@ -164,6 +165,7 @@ Jeonkwan Chan &lt;jeonkwan@gmail.com&gt; Mockup Designer of 0.6</property>
                                     <child>
                                       <object class="GtkLinkButton" id="link_button">
                                         <property name="label" translatable="yes">Visit Homepage</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
                                         <property name="has_tooltip">True</property>
@@ -246,6 +248,7 @@ Jeonkwan Chan &lt;jeonkwan@gmail.com&gt; Mockup Designer of 0.6</property>
                         <property name="can_focus">False</property>
                         <child>
                           <object class="GtkButton" id="about_button">
+                            <property name="use_action_appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
@@ -270,6 +273,7 @@ Jeonkwan Chan &lt;jeonkwan@gmail.com&gt; Mockup Designer of 0.6</property>
                         </child>
                         <child>
                           <object class="GtkButton" id="preference_button">
+                            <property name="use_action_appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
@@ -288,6 +292,7 @@ Jeonkwan Chan &lt;jeonkwan@gmail.com&gt; Mockup Designer of 0.6</property>
                         </child>
                         <child>
                           <object class="GtkButton" id="back_button">
+                            <property name="use_action_appearance">False</property>
                             <property name="visible">True</property>
                             <property name="sensitive">False</property>
                             <property name="can_focus">True</property>
@@ -307,6 +312,7 @@ Jeonkwan Chan &lt;jeonkwan@gmail.com&gt; Mockup Designer of 0.6</property>
                         </child>
                         <child>
                           <object class="GtkButton" id="next_button">
+                            <property name="use_action_appearance">False</property>
                             <property name="visible">True</property>
                             <property name="sensitive">False</property>
                             <property name="can_focus">True</property>
@@ -331,6 +337,7 @@ Jeonkwan Chan &lt;jeonkwan@gmail.com&gt; Mockup Designer of 0.6</property>
                             <child>
                               <object class="GtkRadioButton" id="overview_button">
                                 <property name="label" translatable="yes">_Overview</property>
+                                <property name="use_action_appearance">False</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">False</property>
@@ -347,40 +354,18 @@ Jeonkwan Chan &lt;jeonkwan@gmail.com&gt; Mockup Designer of 0.6</property>
                                 <property name="position">0</property>
                               </packing>
                             </child>
-                            <!--
-                            <child>
-                              <object class="GtkRadioButton" id="apps_button">
-                                <property name="label" translatable="yes">A_pps</property>
-                                <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="receives_default">False</property>
-                                <property name="use_action_appearance">False</property>
-                                <property name="use_underline">True</property>
-                                <property name="active">True</property>
-                                <property name="draw_indicator">False</property>
-                                <property name="xalign">0.5</property>
-                                <property name="group">overview_button</property>
-                                <signal name="toggled" handler="on_apps_button_toggled" swapped="no"/>
-                                <signal name="clicked" handler="on_apps_button_clicked" swapped="no"/>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
-                            -->
                             <child>
                               <object class="GtkRadioButton" id="tweaks_button">
                                 <property name="label" translatable="yes">_Tweaks</property>
+                                <property name="use_action_appearance">False</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">False</property>
                                 <property name="use_action_appearance">False</property>
                                 <property name="use_underline">True</property>
                                 <property name="draw_indicator">False</property>
-                                <property name="xalign">0.5</property>
                                 <property name="group">overview_button</property>
+                                <property name="xalign">0.5</property>
                                 <signal name="toggled" handler="on_tweaks_button_toggled" swapped="no"/>
                                 <signal name="clicked" handler="on_tweaks_button_clicked" swapped="no"/>
                               </object>
@@ -393,14 +378,15 @@ Jeonkwan Chan &lt;jeonkwan@gmail.com&gt; Mockup Designer of 0.6</property>
                             <child>
                               <object class="GtkRadioButton" id="admins_button">
                                 <property name="label" translatable="yes">_Admins</property>
+                                <property name="use_action_appearance">False</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">False</property>
                                 <property name="use_action_appearance">False</property>
                                 <property name="use_underline">True</property>
                                 <property name="draw_indicator">False</property>
-                                <property name="xalign">0.5</property>
                                 <property name="group">overview_button</property>
+                                <property name="xalign">0.5</property>
                                 <signal name="toggled" handler="on_admins_button_toggled" swapped="no"/>
                                 <signal name="clicked" handler="on_admins_button_clicked" swapped="no"/>
                               </object>
@@ -413,14 +399,15 @@ Jeonkwan Chan &lt;jeonkwan@gmail.com&gt; Mockup Designer of 0.6</property>
                             <child>
                               <object class="GtkRadioButton" id="janitor_button">
                                 <property name="label" translatable="yes">_Janitor</property>
+                                <property name="use_action_appearance">False</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">False</property>
                                 <property name="use_action_appearance">False</property>
                                 <property name="use_underline">True</property>
                                 <property name="draw_indicator">False</property>
-                                <property name="xalign">0.5</property>
                                 <property name="group">overview_button</property>
+                                <property name="xalign">0.5</property>
                                 <signal name="toggled" handler="on_janitor_button_toggled" swapped="no"/>
                               </object>
                               <packing>

@@ -730,7 +730,7 @@ class SourceCenter(TweakModule):
         if self.check_source_upgradable() and UPGRADE_DICT:
             GObject.idle_add(self.upgrade_sources)
 
-        self.reparent(self.main_vbox)
+        self.add_start(self.main_vbox)
 
     def check_source_upgradable(self):
         log.debug("The check source string is: \"%s\"" % self.__get_disable_string())

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <!-- interface-requires gtk+ 2.6 -->
+  <!-- interface-requires gtk+ 3.0 -->
   <object class="GtkAction" id="action1"/>
   <object class="GtkDialog" id="confirmation_dialog">
     <property name="can_focus">False</property>
@@ -24,6 +24,7 @@
             <child>
               <object class="GtkButton" id="no_button">
                 <property name="label">gtk-cancel</property>
+                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
@@ -40,6 +41,7 @@
             </child>
             <child>
               <object class="GtkButton" id="yes_button">
+                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>

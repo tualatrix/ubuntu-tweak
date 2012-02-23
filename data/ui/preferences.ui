@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk+" version="2.24"/>
+  <!-- interface-requires gtk+ 3.0 -->
   <object class="GtkListStore" id="admins_model">
     <columns>
       <!-- column-name enabled -->
@@ -56,6 +56,7 @@
             <child>
               <object class="GtkButton" id="button1">
                 <property name="label">gtk-close</property>
+                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -193,6 +194,7 @@
                                 <child>
                                   <object class="GtkButton" id="move_up_button">
                                     <property name="label" translatable="yes">Move Up</property>
+                                    <property name="use_action_appearance">False</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">True</property>
@@ -208,6 +210,7 @@
                                 <child>
                                   <object class="GtkButton" id="move_down_button">
                                     <property name="label" translatable="yes">Move Down</property>
+                                    <property name="use_action_appearance">False</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">True</property>
@@ -223,6 +226,7 @@
                                 <child>
                                   <object class="GtkButton" id="clip_install_button">
                                     <property name="label" translatable="yes">Install</property>
+                                    <property name="use_action_appearance">False</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">True</property>
@@ -387,6 +391,7 @@
                                 <child>
                                   <object class="GtkButton" id="tweaks_install_button">
                                     <property name="label" translatable="yes">Install</property>
+                                    <property name="use_action_appearance">False</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">True</property>
@@ -557,6 +562,7 @@
                                 <child>
                                   <object class="GtkButton" id="admins_install_button">
                                     <property name="label" translatable="yes">Install</property>
+                                    <property name="use_action_appearance">False</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">True</property>
@@ -719,6 +725,7 @@
                                 <child>
                                   <object class="GtkButton" id="janitor_install_button">
                                     <property name="label" translatable="yes">Install</property>
+                                    <property name="use_action_appearance">False</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">True</property>

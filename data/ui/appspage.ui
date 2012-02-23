@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk+" version="2.24"/>
-  <!-- interface-naming-policy project-wide -->
+  <!-- interface-requires gtk+ 3.0 -->
   <object class="GtkTreeStore" id="category_model">
     <columns>
       <!-- column-name ID -->
@@ -22,7 +21,6 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="hscrollbar_policy">never</property>
-            <property name="vscrollbar_policy">automatic</property>
             <property name="shadow_type">in</property>
             <child>
               <object class="GtkTreeView" id="category_view">
@@ -31,6 +29,9 @@
                 <property name="model">category_model</property>
                 <property name="headers_visible">False</property>
                 <property name="headers_clickable">False</property>
+                <child internal-child="selection">
+                  <object class="GtkTreeSelection" id="treeview-selection1"/>
+                </child>
                 <child>
                   <object class="GtkTreeViewColumn" id="treeviewcolumn2">
                     <property name="title" translatable="yes">column</property>

@@ -613,7 +613,7 @@ class AppCenter(TweakModule):
         thread.start_new_thread(self.check_update, ())
         GObject.timeout_add(60000, self.update_timestamp)
 
-        self.reparent(self.main_vbox)
+        self.add_start(self.main_vbox)
 
     def update_timestamp(self):
         self.time_label.set_text(_('Last synced:') + ' ' + utdata.get_last_synced(APPCENTER_ROOT))

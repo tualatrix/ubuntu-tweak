@@ -1,30 +1,32 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <!-- interface-requires gtk+ 2.12 -->
-  <!-- interface-naming-policy project-wide -->
+  <!-- interface-requires gtk+ 3.0 -->
   <object class="GtkWindow" id="window1">
+    <property name="can_focus">False</property>
     <child>
       <object class="GtkVBox" id="main_vbox">
         <property name="visible">True</property>
+        <property name="can_focus">False</property>
         <property name="spacing">6</property>
         <child>
           <object class="GtkScrolledWindow" id="sw1">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="hscrollbar_policy">automatic</property>
-            <property name="vscrollbar_policy">automatic</property>
             <property name="shadow_type">in</property>
             <child>
               <placeholder/>
             </child>
           </object>
           <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
             <property name="position">0</property>
           </packing>
         </child>
         <child>
           <object class="GtkVBox" id="vbox1">
             <property name="visible">True</property>
+            <property name="can_focus">False</property>
             <property name="spacing">6</property>
             <child>
               <placeholder/>
@@ -45,39 +47,44 @@
         <child>
           <object class="GtkHButtonBox" id="hbuttonbox1">
             <property name="visible">True</property>
+            <property name="can_focus">False</property>
             <property name="spacing">12</property>
             <property name="layout_style">end</property>
             <child>
-              <object class="GtkButton" id="refresh_button">
-                <property name="label">gtk-refresh</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
-                <signal name="clicked" handler="on_refresh_button_clicked"/>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
-                <property name="pack_type">end</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-            <child>
               <object class="GtkButton" id="install_button">
                 <property name="label" translatable="yes">_Install Update</property>
+                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="sensitive">False</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="use_action_appearance">False</property>
                 <property name="use_underline">True</property>
-                <signal name="clicked" handler="on_install_button_clicked"/>
+                <signal name="clicked" handler="on_install_button_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">False</property>
                 <property name="pack_type">end</property>
                 <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="refresh_button">
+                <property name="label">gtk-refresh</property>
+                <property name="use_action_appearance">False</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_action_appearance">False</property>
+                <property name="use_stock">True</property>
+                <signal name="clicked" handler="on_refresh_button_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="pack_type">end</property>
+                <property name="position">1</property>
               </packing>
             </child>
           </object>

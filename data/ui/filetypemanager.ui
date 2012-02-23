@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <!-- interface-requires gtk+ 2.12 -->
+  <!-- interface-requires gtk+ 3.0 -->
   <object class="GtkDialog" id="add_app_dialog">
     <property name="can_focus">False</property>
     <property name="border_width">7</property>
@@ -21,6 +21,7 @@
             <child>
               <object class="GtkButton" id="cancel_button">
                 <property name="label">gtk-cancel</property>
+                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -36,6 +37,7 @@
             <child>
               <object class="GtkButton" id="add_button">
                 <property name="label">gtk-add</property>
+                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -132,6 +134,7 @@
                     <child>
                       <object class="GtkButton" id="browse_button">
                         <property name="label" translatable="yes">_Browse...</property>
+                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
@@ -195,6 +198,7 @@
             <child>
               <object class="GtkButton" id="type_edit_add_button">
                 <property name="label">gtk-add</property>
+                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -210,6 +214,7 @@
             <child>
               <object class="GtkButton" id="type_edit_remove_button">
                 <property name="label">gtk-remove</property>
+                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -225,6 +230,7 @@
             <child>
               <object class="GtkButton" id="type_edit_close_button">
                 <property name="label">gtk-close</property>
+                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>

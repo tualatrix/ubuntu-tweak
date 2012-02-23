@@ -47,10 +47,8 @@ class LoginSettings(TweakModule):
 
         self._setup_logo_image()
         self._setup_background_image()
-        self.vbox1.unparent()
-        self.vbox1.set_sensitive(False)
 
-        box = ListPack(_('Login Theme'), (self.vbox1))
+        box = ListPack(_('Login Theme'), (self.main_vbox))
         self.add_start(box, False, False, 0)
 
         hbox = Gtk.HBox(spacing=12)
