@@ -300,7 +300,6 @@ class DesktopRecovery(TweakModule):
         sw.add(self.settingview)
         vpaned.pack1(sw, True, False)
 
-        self.window1.remove(self.recover_box)
         vpaned.pack2(self.recover_box, False, False)
 
         self.on_cateview_changed(self.cate_selection)
