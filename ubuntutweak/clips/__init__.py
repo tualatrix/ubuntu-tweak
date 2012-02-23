@@ -38,10 +38,10 @@ class Clip(Gtk.VBox):
     }
 
     def __init__(self):
-        GObject.GObject.__init__(self, spacing=12)
+        GObject.GObject.__init__(self)
 
         self._hbox = Gtk.HBox(spacing=12)
-        self.pack_start(self._hbox, True, True, 0)
+        self.add(self._hbox)
 
         self._image = Gtk.Image()
         self._image.set_alignment(0, 0)
@@ -112,9 +112,6 @@ class ClipPage(Gtk.VBox, GuiBuilder):
                             (GObject.TYPE_STRING,))
     }
 
-    (DIRECTION_UP, DIRECTION_DOWN) = ('UP', 'DOWN')
-    direction = None
-
     def __init__(self):
         GObject.GObject.__init__(self)
         GuiBuilder.__init__(self, 'clippage.ui')
@@ -122,22 +119,14 @@ class ClipPage(Gtk.VBox, GuiBuilder):
         self.rencently_used_settings = GSetting('com.ubuntu-tweak.tweak.rencently-used')
         self.clips_settings = GSetting('com.ubuntu-tweak.tweak.clips')
 
-        self._up_clips = []
-        self._showed_clips = []
-        self._down_clips = []
-
         self.load_cips()
         self.setup_rencently_used()
 
         self.pack_start(self.get_object('hbox1'), True, True, 0)
-        self.connect('draw', self.on_draw_event)
         self.rencently_used_settings.connect_notify(self.setup_rencently_used)
         self.clips_settings.connect_notify(self.load_cips, True)
 
-        self.show()
-
-    def on_draw_event(self, widget, event):
-        self.slide_clips()
+        self.show_all()
 
     def load_cips(self, a=None, b=None, do_remove=False):
         log.debug("Load clips, do_remove: %s" % do_remove)
@@ -148,15 +137,10 @@ class ClipPage(Gtk.VBox, GuiBuilder):
                 self.clipvbox.remove(child)
 
         clips = self.clips_settings.get_value()
+        log.debug("All clips to load: %s" % clips)
 
         if clips and clips != ['']:
             loader = ModuleLoader('clips')
-
-            self._clips = []
-            self._up_clips = []
-            self._showed_clips = []
-            self._down_clips = []
-            self.clipvbox.set_data('direction', 0)
 
             for name in clips:
                 try:
@@ -165,92 +149,13 @@ class ClipPage(Gtk.VBox, GuiBuilder):
                     clip = ClipClass()
                     clip.connect('load_module', self._on_module_button_clicked)
                     clip.connect('load_feature', self.on_clip_load_feature)
-                    self._clips.append(clip)
+                    clip.show_all()
+                    self.clipvbox.pack_start(clip, False, False, 0)
                 except Exception, e:
                     log.error(traceback.print_exc())
                     if name in self.clips_settings.get_value():
                         new_list = self.clips_settings.get_value().remove(name)
                         self.clips_settings.set_value(new_list)
-
-    def slide_clips(self, direction=None):
-        log.debug("slide_clips")
-        max_height = self.get_allocation().height - 32
-        height_sum = 0
-
-        if direction == self.DIRECTION_DOWN:
-            self.clipvbox.set_data('direction', self.DIRECTION_DOWN)
-
-            self._up_clips.extend(self._showed_clips)
-            [clip.hide() for clip in self._up_clips]
-            self._showed_clips = []
-
-            while self._down_clips:
-                clip = self._down_clips[0]
-
-                height_sum += clip.get_allocation().height
-                height_sum += 32
-
-                if height_sum < max_height:
-                    log.debug("%s is not visible, show it" % clip)
-                    self._showed_clips.append(self._down_clips.pop(0))
-                    clip.show()
-                else:
-                    log.debug("Max height is reached, break")
-                    break
-
-            self.up_button.set_visible(True)
-            self.down_button.set_visible(height_sum > max_height)
-        elif direction == self.DIRECTION_UP:
-            self.clipvbox.set_data('direction', self.DIRECTION_UP)
-
-            for clip in self._showed_clips:
-                clip.hide()
-                self._down_clips.insert(0, clip)
-            self._showed_clips = []
-
-            while self._up_clips:
-                clip = self._up_clips[-1]
-
-                height_sum += clip.get_allocation().height
-                height_sum += 32
-
-                if height_sum < max_height:
-                    log.debug("%s is not visible, show it" % clip)
-                    self._showed_clips.insert(0, self._up_clips.pop(-1))
-                    clip.show()
-                else:
-                    log.debug("Max height is reached, break")
-                    break
-
-            self.up_button.set_visible(height_sum > max_height)
-            self.down_button.set_visible(True)
-        else:
-            if self.clipvbox.get_data('direction'):
-                to_show = self._showed_clips + self._down_clips
-                has_direction = True
-            else:
-                has_direction = False
-                to_show = self._clips
-
-            for clip in to_show:
-                height_sum += clip.get_preferred_height()[0]
-                height_sum += 32
-
-                # This is only happen when first time to attach
-                if not has_direction and not clip.get_parent():
-                    self.clipvbox.pack_start(clip, False, False, 0)
-
-                if height_sum > max_height:
-                    if clip not in self._down_clips and not has_direction:
-                        self._down_clips.append(clip)
-                    clip.hide()
-                else:
-                    if clip not in self._showed_clips and not has_direction:
-                        self._showed_clips.append(clip)
-                    clip.show()
-
-            self.up_button.set_visible(bool(self._up_clips))
-            self.down_button.set_visible(height_sum > max_height)
 
     def setup_rencently_used(self, *args):
         log.debug("Overview page: setup_rencently_used")
@@ -286,11 +191,3 @@ class ClipPage(Gtk.VBox, GuiBuilder):
 
     def on_clip_load_feature(self, widget, name):
         self.emit('load_feature', name)
-
-    def on_up_button_clicked(self, widget):
-        log.debug("on_up_button_clicked")
-        self.slide_clips(self.DIRECTION_UP)
-
-    def on_down_button_clicked(self, widget):
-        log.debug("on_down_button_clicked")
-        self.slide_clips(self.DIRECTION_DOWN)
