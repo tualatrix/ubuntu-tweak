@@ -170,3 +170,11 @@ def disable_logging():
     logging.getLogger().setLevel(logging.CRITICAL + 1)
 
 logging.setLoggerClass(TweakLogger)
+
+def log_func(log):
+    def wrap(func):
+        def func_wrapper(*args, **kwargs):
+            log.debug("%s: \n\targs: %s\n\tkwargs: %s" % (func, args, kwargs))
+            return func(*args, **kwargs)
+        return func_wrapper
+    return wrap
