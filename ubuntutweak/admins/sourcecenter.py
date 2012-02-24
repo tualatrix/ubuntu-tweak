@@ -382,8 +382,8 @@ class SourcesView(Gtk.TreeView):
         self.model.set_sort_column_id(self.COLUMN_NAME, Gtk.SortType.ASCENDING)
         self.set_model(self.model)
 
-        self.modelfilter = self.model.filter_new()
-        self.modelfilter.set_visible_func(self.on_visible_filter, None)
+#        self.modelfilter = self.model.filter_new()
+#        self.modelfilter.set_visible_func(self.on_visible_filter, None)
         self.set_search_column(self.COLUMN_NAME)
 
         self.__add_column()
@@ -412,6 +412,7 @@ class SourcesView(Gtk.TreeView):
         return model
 
     def on_visible_filter(self, model, iter, data=None):
+        log.debug("on_visible_filter: %s" % self.model.get_value(iter, self.COLUMN_NAME))
         category = self.model.get_value(iter, self.COLUMN_CATE)
         if self.filter == None or self.filter == category:
             return True
@@ -454,7 +455,7 @@ class SourcesView(Gtk.TreeView):
     def get_status(self):
         return self._status
 
-    def update_model(self):
+    def update_model(self, find='all'):
         self.model.clear()
         sourceslist = self.get_sourceslist()
         enabled_list = []
@@ -473,6 +474,9 @@ class SourcesView(Gtk.TreeView):
             comps = SOURCE_PARSER.get_comps(id)
             distro = SOURCE_PARSER.get_distro(id)
             category = SOURCE_PARSER.get_category(id)
+            
+            if find != 'all' and category != find:
+                continue
 
             name = SOURCE_PARSER.get_name(id)
             comment = SOURCE_PARSER.get_summary(id)
@@ -654,7 +658,7 @@ class SourcesView(Gtk.TreeView):
         Do the really source enable or disable action by iter
         Only emmit signal when source is changed
         '''
-        model = self.modelfilter.get_model()
+        model = self.get_model()
 
         id = model.get_value(iter, self.COLUMN_ID)
         url = model.get_value(iter, self.COLUMN_URL)
@@ -688,7 +692,7 @@ class SourceCenter(TweakModule):
     __url__ = 'http://ubuntu-tweak.com/source/'
     __urltitle__ = _('Visit online Source Center')
     __category__ = 'application'
-    __utactive__ = False
+    __utactive__ = True
 
     def __init__(self):
         TweakModule.__init__(self, 'sourcecenter.ui')
@@ -696,24 +700,20 @@ class SourceCenter(TweakModule):
         self.url = SOURCE_VERSION_URL
         set_label_for_stock_button(self.sync_button, _('_Sync'))
 
-        self.sourceview = SourcesView()
+        self.cateview = CategoryView(os.path.join(SOURCE_ROOT, 'cates.json'))
+        self.cateview.update_model()
+        self.cateview.get_selection().connect('changed', self.on_category_changed)
+        self.left_sw.add(self.cateview)
 
+        self.sourceview = SourcesView()
         self.sourceview.set_status_active(True)
         self.sourceview.update_model()
         self.sourceview.connect('sourcechanged', self.on_source_changed)
-        self.sourceview.selection.connect('changed', self.on_selection_changed)
+        self.sourceview.get_selection().connect('changed', self.on_source_selection)
         self.sourceview.set_sensitive(False)
         self.sourceview.set_rules_hint(True)
-        self.source_selection = self.sourceview.get_selection()
-        self.source_selection.connect('changed', self.on_source_selection)
         self.right_sw.add(self.sourceview)
-
-        self.cateview = CategoryView(os.path.join(SOURCE_ROOT, 'cates.json'))
         self.cateview.set_status_from_view(self.sourceview)
-        self.cateview.update_model()
-        self.cate_selection = self.cateview.get_selection()
-        self.cate_selection.connect('changed', self.on_category_changed)
-        self.left_sw.add(self.cateview)
 
         un_lock = PolkitButton(PK_ACTION_SOURCE)
         un_lock.connect('authenticated', self.on_polkit_action)
@@ -772,7 +772,7 @@ class SourceCenter(TweakModule):
             else:
                 ErrorDialog(_('Upgrade Failed!')).launch()
             self.emit('call', 'ubuntutweak.modules.sourceeditor', 'update_source_combo', {})
-            self.update_thirdparty()
+            self.update_sourceview()
 
     @post_ui
     def on_have_update(self, *args):
@@ -798,35 +798,31 @@ class SourceCenter(TweakModule):
 
     def on_source_selection(self, widget, data=None):
         model, iter = widget.get_selected()
+
         if iter:
             sourceview = widget.get_tree_view()
             sourceview.set_as_read(iter, model)
-            self.cateview.update_model()
+            self.cateview.update_selected_item()
+
+            home = model.get_value(iter, self.sourceview.COLUMN_HOME)
+            url = model.get_value(iter, self.sourceview.COLUMN_URL)
+            description = model.get_value(iter, self.sourceview.COLUMN_COMMENT)
+
+            self.set_details(home, url, description)
 
     def on_category_changed(self, widget, data=None):
-        model, iter = widget.get_selected()
-        cateview = widget.get_tree_view()
+        self.update_sourceview()
+
+    def update_sourceview(self):
+        self.cateview.set_status_from_view(self.sourceview)
+        model, iter = self.cateview.get_selection().get_selected()
 
         if iter:
-            if model.get_path(iter).to_string() != '0':
-                self.sourceview.filter = model[iter][cateview.CATE_ID]
-            else:
-                self.sourceview.filter = None
-
-            self.sourceview.refilter()
-
-    def update_thirdparty(self):
-        self.sourceview.update_model()
-
-    def on_selection_changed(self, widget):
-        model, iter = widget.get_selected()
-        if iter is None:
-            return
-        home = model.get_value(iter, self.sourceview.COLUMN_HOME)
-        url = model.get_value(iter, self.sourceview.COLUMN_URL)
-        description = model.get_value(iter, self.sourceview.COLUMN_COMMENT)
-
-        self.set_details(home, url, description)
+            find = model[iter][self.cateview.CATE_ID] or 'all'
+        else:
+            find = 'all'
+        log.debug("Filter for %s" % find)
+        self.sourceview.update_model(find=find)
 
     def set_details(self,
                     homepage='http://ubuntu-tweak.com',

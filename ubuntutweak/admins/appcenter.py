@@ -147,10 +147,7 @@ class StatusProvider(object):
         self.save()
 
     def get_cate_unread_count(self, id):
-        try:
-            return self._data['cates'].pop(id)
-        except:
-            return 0
+        return self.count_unread(id)
 
     def get_read_status(self, key):
         try:
@@ -266,6 +263,20 @@ class CategoryView(Gtk.TreeView):
             keys.remove(OTHER)
             keys.append(OTHER)
         return keys
+
+    def update_selected_item(self):
+        model, iter = self.get_selection().get_selected()
+
+        if iter:
+            id = model[iter][self.CATE_ID]
+            name = model[iter][self.CATE_NAME]
+
+            count = self.__status.get_cate_unread_count(id)
+            if count:
+                model[iter][self.CATE_DISPLAY] = '<b>%s (%d)</b>' % (name, count)
+            else:
+                model[iter][self.CATE_DISPLAY] = name
+
 
 class AppView(Gtk.TreeView):
     __gsignals__ = {
@@ -646,7 +657,7 @@ class AppCenter(TweakModule):
         if iter:
             appview = widget.get_tree_view()
             appview.set_as_read(iter, model)
-            self.cateview.update_model()
+            self.cateview.update_selected_item()
 
     def on_category_changed(self, widget, data=None):
         model, iter = widget.get_selected()
