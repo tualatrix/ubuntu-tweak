@@ -230,6 +230,7 @@ class TweakModule(Gtk.VBox):
     __utmodule__ = ''
     __utactive__ = True
     __category__ = ''
+    __policykit__ = ''
     __user_extension__ = False
 
     #update use internal, and call use between modules

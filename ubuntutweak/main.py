@@ -26,6 +26,7 @@ from ubuntutweak import admins
 from ubuntutweak import system
 from ubuntutweak.gui import GuiBuilder
 from ubuntutweak.gui.gtk import post_ui
+from ubuntutweak.policykit.widgets import PolkitButton
 from ubuntutweak.utils import icon
 from ubuntutweak.common.consts import VERSION, DATA_DIR
 from ubuntutweak.modules import ModuleLoader, create_broken_module_class
@@ -310,7 +311,6 @@ class UbuntuTweakWindow(GuiBuilder):
         clip_page.connect('load_module', lambda widget, name: self.do_load_module(name))
         clip_page.connect('load_feature', lambda widget, name: self.select_target_feature(name))
         self.mainwindow.show()
-        self.link_button.hide()
 
         if module:
             self.do_load_module(module)
@@ -398,16 +398,22 @@ class UbuntuTweakWindow(GuiBuilder):
         if index:
             self.notebook.set_current_page(index)
 
-        if module:
+        if module and index:
             self.module_image.set_from_pixbuf(module.get_pixbuf(size=48))
             self.title_label.set_markup('<b><big>%s</big></b>' % module.get_title())
             self.description_label.set_text(module.get_description())
-            if module.get_url():
-                self.link_button.set_uri(module.get_url())
-                self.link_button.set_label(module.get_url_title())
-                self.link_button.show()
-            else:
-                self.link_button.hide()
+            page = self.notebook.get_nth_page(index)
+
+            if page.__policykit__:
+                if hasattr(page, 'un_lock'):
+                    page.un_lock.show()
+                    self._last_unlock = page.un_lock
+                else:
+                    page.un_lock = PolkitButton(page.__policykit__)
+                    page.un_lock.connect('authenticated', page.on_polkit_action)
+                    page.un_lock.show()
+                    self._last_unlock = page.un_lock
+                    self.hbox1.pack_end(page.un_lock, False, False, 0)
 
             if not module.__name__.startswith('Broken'):
                 self.log_used_module(module.__name__)
@@ -417,7 +423,9 @@ class UbuntuTweakWindow(GuiBuilder):
             self.module_image.set_from_pixbuf(icon.get_from_name('ubuntu-tweak', size=48))
             self.title_label.set_markup('')
             self.description_label.set_text('')
-            self.link_button.hide()
+
+            if hasattr(self, '_last_unlock'):
+                self._last_unlock.hide()
 
     def _save_loaded_info(self, name, module, index):
         log.info('_save_loaded_info: %s, %s, %s' % (name, module, index))
@@ -511,7 +519,6 @@ class UbuntuTweakWindow(GuiBuilder):
         self.module_image.set_from_pixbuf(icon.get_from_name('computerjanitor', size=48))
         self.title_label.set_markup('<b><big>%s</big></b>' % _('Computer Janitor'))
         self.description_label.set_text(_("Clean up a system so it's more like a freshly installed one"))
-        self.link_button.hide()
 
     def on_feature_button_clicked(self, widget, feature):
         log.debug("on_%s_button_toggled and widget.active is: %s" % (feature, widget.get_active()))

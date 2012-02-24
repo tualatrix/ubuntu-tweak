@@ -30,7 +30,6 @@ from ubuntutweak.modules  import TweakModule
 from ubuntutweak.gui import GuiBuilder
 from ubuntutweak.gui.dialogs import ErrorDialog, QuestionDialog
 from ubuntutweak.policykit import PK_ACTION_SOURCE
-from ubuntutweak.policykit.widgets import PolkitButton
 from ubuntutweak.policykit.dbusproxy import proxy
 from ubuntutweak.utils.package import AptWorker
 from ubuntutweak.admins.desktoprecovery import GetTextDialog
@@ -169,6 +168,7 @@ class SourceEditor(TweakModule):
     __title__ = _('Source Editor')
     __desc__ = _('Manually edit your software sources to suit your needs.')
     __icon__ = 'system-software-update'
+    __policykit__ = PK_ACTION_SOURCE
     __category__ = 'system'
 
     def __init__(self):
@@ -180,11 +180,6 @@ class SourceEditor(TweakModule):
         self.textview.set_sensitive(False)
         self.sw1.add(self.textview)
         self.textview.get_buffer().connect('changed', self.on_buffer_changed)
-
-        un_lock = PolkitButton(PK_ACTION_SOURCE)
-        un_lock.connect('authenticated', self.on_polkit_action)
-        self._authenticated = False
-        self.hbuttonbox2.pack_end(un_lock, False, False, 0)
 
         self.list_selection = self.list_view.get_selection()
         self.list_selection.connect("changed", self.on_selection_changed)

@@ -17,7 +17,8 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import dbus
-from gi.repository import GObject, Gtk
+
+from gi.repository import GObject, Gtk, Gio
 from ubuntutweak.gui.gtk import set_busy, unset_busy
 
 from aptdaemon import policykit1
@@ -50,15 +51,24 @@ class PolkitButton(Gtk.Button):
 
     def __init__(self, action):
         GObject.GObject.__init__(self)
+        self.icon_unlock = ('changes-allow-symbolic', 'changes-allow')
+        self.icon_lock = ('changes-prevent-symbolic', 'changes-prevent')
 
-        self.set_label(_('_Unlock'))
-        self.set_use_underline(True)
-        image = Gtk.Image.new_from_stock(Gtk.STOCK_DIALOG_AUTHENTICATION,
+        self.hbox = Gtk.HBox(spacing=6)
+        self.add(self.hbox)
+
+        self.image = Gtk.Image.new_from_gicon(Gio.ThemedIcon.new_from_names(self.icon_lock),
                                          Gtk.IconSize.BUTTON)
-        self.set_image(image)
+        self.hbox.pack_start(self.image, False, False, 0)
+
+        self.label = Gtk.Label(_('_Unlock'))
+        self.label.set_use_underline(True)
+        self.hbox.pack_start(self.label, False, False, 0)
 
         self._action = PolkitAction(action)
         self.connect('clicked', self.on_button_clicked)
+
+        self.show_all()
 
     @inline_callbacks
     def on_button_clicked(self, widget):
@@ -76,6 +86,6 @@ class PolkitButton(Gtk.Button):
         unset_busy(widget.get_toplevel())
 
     def _change_button_state(self):
-        image = Gtk.Image.new_from_stock(Gtk.STOCK_YES, Gtk.IconSize.BUTTON)
-        self.set_image(image)
+        self.image.set_from_gicon(Gio.ThemedIcon.new_from_names(self.icon_unlock), Gtk.IconSize.BUTTON)
+
         self.set_sensitive(False)

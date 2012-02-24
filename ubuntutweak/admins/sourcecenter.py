@@ -40,7 +40,6 @@ from ubuntutweak import system
 from ubuntutweak.common import consts
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.policykit import PK_ACTION_SOURCE
-from ubuntutweak.policykit.widgets import PolkitButton
 from ubuntutweak.policykit.dbusproxy import proxy
 from ubuntutweak.gui.widgets import CheckButton
 from ubuntutweak.gui.dialogs import QuestionDialog, ErrorDialog, InfoDialog, WarningDialog
@@ -691,6 +690,7 @@ class SourceCenter(TweakModule):
     __icon__ = 'software-properties'
     __url__ = 'http://ubuntu-tweak.com/source/'
     __urltitle__ = _('Visit online Source Center')
+    __policykit__ = PK_ACTION_SOURCE
     __category__ = 'application'
     __utactive__ = True
 
@@ -714,10 +714,6 @@ class SourceCenter(TweakModule):
         self.sourceview.set_rules_hint(True)
         self.right_sw.add(self.sourceview)
         self.cateview.set_status_from_view(self.sourceview)
-
-        un_lock = PolkitButton(PK_ACTION_SOURCE)
-        un_lock.connect('authenticated', self.on_polkit_action)
-        self.hbuttonbox1.pack_end(un_lock, False, False, 0)
 
         self.update_timestamp()
         UPDATE_SETTING.set_value(False)

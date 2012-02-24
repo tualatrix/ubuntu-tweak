@@ -32,6 +32,7 @@ class Workarounds(TweakModule):
     __desc__ = _('The workarounds to fix some problems')
     __icon__ = 'application-octet-stream'
     __category__ = 'system'
+    __policykit__ = PK_ACTION_TWEAK
 
     ROOT_THEMES = '/root/.themes'
     ROOT_ICONS = '/root/.icons'
@@ -50,10 +51,6 @@ class Workarounds(TweakModule):
 
         hbox = Gtk.HBox(spacing=12)
         self.add_end(hbox, False ,False, 0)
-
-        un_lock = PolkitButton(PK_ACTION_TWEAK)
-        un_lock.connect('authenticated', self.on_polkit_action)
-        hbox.pack_end(un_lock, False, False, 0)
 
     def on_fix_theme_btn_taggled(self, widget):
         if widget.get_active():

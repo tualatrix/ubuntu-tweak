@@ -29,7 +29,6 @@ from ubuntutweak.gui.treeviews import get_local_path
 from ubuntutweak.gui.containers import ListPack, TablePack
 from ubuntutweak.gui.dialogs import ErrorDialog, ServerErrorDialog
 from ubuntutweak.policykit import PK_ACTION_TWEAK
-from ubuntutweak.policykit.widgets import PolkitButton
 
 from ubuntutweak.settings.configsettings import SystemConfigSetting
 from ubuntutweak.settings.gsettings import GSetting
@@ -40,6 +39,7 @@ class LoginSettings(TweakModule):
     __title__ = _('Login Settings')
     __desc__ = _('Control the appearance and behaviour of your login screen')
     __icon__ = 'gdm-setup'
+    __policykit__ = PK_ACTION_TWEAK
     __category__ = 'startup'
 
     def __init__(self):
@@ -50,12 +50,6 @@ class LoginSettings(TweakModule):
 
         box = ListPack(_('Login Theme'), (self.main_vbox))
         self.add_start(box, False, False, 0)
-
-        hbox = Gtk.HBox(spacing=12)
-        polkit_button = PolkitButton(PK_ACTION_TWEAK)
-        polkit_button.connect('authenticated', self.on_polkit_action)
-        hbox.pack_end(polkit_button, False, False, 0)
-        self.add_start(hbox, False, False, 0)
 
         if system.CODENAME == 'precise':
             self.same_background_button.destroy()
@@ -85,7 +79,7 @@ class LoginSettings(TweakModule):
         return get_local_path(GSetting('org.gnome.desktop.background.picture-uri').get_value())
 
     def on_polkit_action(self, widget):
-        self.vbox1.set_sensitive(True)
+        self.main_vbox.set_sensitive(True)
 
     def on_logo_button_clicked(self, widget):
         dialog = Gtk.FileChooserDialog(_('Choose a new logo image'),
