@@ -12,40 +12,51 @@ icontheme.append_search_path('/usr/share/ccsm/icons')
 DEFAULT_SIZE = 24
 
 def get_from_name(name='gtk-execute',
-                  alter='',
+                  alter='gtk-execute',
                   size=DEFAULT_SIZE,
                   force_reload=False,
                   only_path=False):
+    pixbuf = None
+
     if force_reload:
         global icontheme
         icontheme = Gtk.IconTheme.get_default()
 
-    name_list = [name, alter]
-
-    gicon = Gio.ThemedIcon.new_from_names(name_list)
-
     if only_path:
-        icon_info = icontheme.lookup_by_gicon(gicon,
-                                              size,
-                                              Gtk.IconLookupFlags.USE_BUILTIN)
-        return icon_info.get_filename()
+        path = icontheme.lookup_icon(name, size, Gtk.IconLookupFlags.USE_BUILTIN)
+        return path
 
-    icon_info = icontheme.lookup_by_gicon(gicon,
-                                          size,
-                                          Gtk.IconLookupFlags.USE_BUILTIN)
+    try:
+        pixbuf = icontheme.load_icon(name, size, 0)
+    except Exception, e:
+        log.warning(e)
+        # if the alter name isn't here, so use random icon
 
-    return icon_info.load_icon()
+        while not pixbuf:
+            try:
+                pixbuf = icontheme.load_icon(alter, size, 0)
+            except Exception, e:
+                log.error(e)
+                icons = icontheme.list_icons(None)
+                alter = icons[random.randint(0, len(icons) - 1)]
 
-def get_from_list(name_list, size=DEFAULT_SIZE):
-    name_list.append('application-x-executable')
+    if pixbuf.get_height() != size:
+        return pixbuf.scale_simple(size, size, GdkPixbuf.InterpType.BILINEAR)
 
-    gicon = Gio.ThemedIcon.new_from_names(name_list)
+    return pixbuf
 
-    icon_info = icontheme.lookup_by_gicon(gicon,
-                                          size,
-                                          Gtk.IconLookupFlags.USE_BUILTIN)
+def get_from_list(list, size=DEFAULT_SIZE):
+    pixbuf = None
+    for name in list:
+        try:
+            pixbuf = icontheme.load_icon(name,
+                                         size,
+                                         Gtk.IconLookupFlags.USE_BUILTIN)
+        except Exception, e:
+            log.warning('get_from_list for %s failed, try next' % name)
+            continue
 
-    return icon_info.load_icon()
+    return pixbuf or get_from_name('application-x-executable', size=size)
 
 def get_from_mime_type(mime, size=DEFAULT_SIZE):
     try:
