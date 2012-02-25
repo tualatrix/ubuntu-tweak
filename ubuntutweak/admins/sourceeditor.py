@@ -170,6 +170,7 @@ class SourceEditor(TweakModule):
     __icon__ = 'system-software-update'
     __policykit__ = PK_ACTION_SOURCE
     __category__ = 'system'
+    _authenticated = False
 
     def __init__(self):
         TweakModule.__init__(self, 'sourceeditor.ui')
