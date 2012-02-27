@@ -23,7 +23,7 @@ class TestApp(unittest.TestCase):
         self.assertEqual(self.window.navigation_dict, {'tweaks': (None, None)})
 
         # tweaks->Nautilus
-        self.window.load_module('Nautilus')
+        self.window._load_module('Nautilus')
         self.assertEqual(self.window.loaded_modules, {'Nautilus': 5})
         self.assertEqual(self.window.current_feature, 'tweaks')
         self.assertEqual(self.window.navigation_dict, {'tweaks': ('Nautilus', None)})
@@ -32,14 +32,14 @@ class TestApp(unittest.TestCase):
         self.assertEqual(self.window.current_feature, 'tweaks')
         self.assertEqual(self.window.navigation_dict, {'tweaks': (None, 'Nautilus')})
         # tweaks->Compiz
-        self.window.load_module('Compiz')
+        self.window._load_module('Compiz')
         self.assertEqual(self.window.current_feature, 'tweaks')
         self.assertEqual(self.window.navigation_dict, {'tweaks': ('Compiz', None)})
 
     def todo(self):
         #TODO toggled has different behavir
         # admins->DesktopRecovery
-        self.window.load_module('DesktopRecovery')
+        self.window._load_module('DesktopRecovery')
         self.window.admins_button.toggled()
         self.assertEqual(self.window.current_feature, 'admins')
         self.assertEqual(self.window.navigation_dict, {'tweaks': ('Compiz', None),

@@ -3,7 +3,7 @@ import unittest
 from ubuntutweak.main import UbuntuTweakWindow
 from ubuntutweak.settings.gsettings import GSetting
 
-class TestRencently(unittest.TestCase):
+class TestRecently(unittest.TestCase):
     def setUp(self):
         self.window = UbuntuTweakWindow()
         self.window.loaded_modules = {}
@@ -11,14 +11,14 @@ class TestRencently(unittest.TestCase):
         self.window.navigation_dict = {'tweaks': [None, None]}
         self.setting = GSetting('com.ubuntu-tweak.tweak.rencently-used')
 
-    def test_rencetly(self):
+    def test_recently(self):
         self.setting.set_value([])
         self.assertEqual(self.setting.get_value(), [])
 
-        self.window.load_module('Icon')
+        self.window._load_module('Icon')
         self.assertEqual(self.setting.get_value(), ['Icon'])
 
-        self.window.load_module('Nautilus')
+        self.window._load_module('Nautilus')
         self.assertEqual(self.setting.get_value(), ['Nautilus', 'Icon'])
 
     def tearDown(self):
