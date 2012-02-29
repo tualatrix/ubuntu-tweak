@@ -686,7 +686,7 @@ class SourcesView(Gtk.TreeView):
 
 class SourceCenter(TweakModule):
     __title__  = _('Source Center')
-    __desc__ = _('A collection of software sources to ensure your applications are always up-to-date.\n')
+    __desc__ = _('A collection of software sources to ensure your applications are always up-to-date.')
     __icon__ = 'software-properties'
     __url__ = 'http://ubuntu-tweak.com/source/'
     __urltitle__ = _('Visit online Source Center')

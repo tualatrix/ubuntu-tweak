@@ -159,27 +159,6 @@ Jeonkwan Chan &lt;jeonkwan@gmail.com&gt; Mockup Designer of 0.6</property>
                                         <property name="position">0</property>
                                       </packing>
                                     </child>
-                                    <child>
-                                      <placeholder/>
-                                    </child>
-                                    <child>
-                                      <object class="GtkLinkButton" id="link_button">
-                                        <property name="label" translatable="yes">Visit Homepage</property>
-                                        <property name="use_action_appearance">False</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="receives_default">True</property>
-                                        <property name="has_tooltip">True</property>
-                                        <property name="use_action_appearance">False</property>
-                                        <property name="relief">none</property>
-                                        <property name="xalign">0</property>
-                                      </object>
-                                      <packing>
-                                        <property name="expand">False</property>
-                                        <property name="fill">False</property>
-                                        <property name="pack_type">end</property>
-                                        <property name="position">2</property>
-                                      </packing>
-                                    </child>
                                   </object>
                                 </child>
                               </object>
@@ -211,28 +190,31 @@ Jeonkwan Chan &lt;jeonkwan@gmail.com&gt; Mockup Designer of 0.6</property>
                           </packing>
                         </child>
                         <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <object class="GtkEntry" id="search_entry">
+                          <object class="GtkBox" id="right_box">
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="invisible_char">•</property>
-                            <property name="invisible_char_set">True</property>
-                            <property name="secondary_icon_stock">gtk-find</property>
-                            <property name="primary_icon_activatable">False</property>
-                            <property name="secondary_icon_activatable">False</property>
+                            <property name="can_focus">False</property>
+                            <property name="orientation">vertical</property>
+                            <child>
+                              <object class="GtkBox" id="right_top_box">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <child>
+                                  <placeholder/>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
                           </object>
                           <packing>
                             <property name="expand">False</property>
                             <property name="fill">False</property>
-                            <property name="padding">12</property>
                             <property name="pack_type">end</property>
-                            <property name="position">3</property>
+                            <property name="position">2</property>
                           </packing>
-                        </child>
-                        <child>
-                          <placeholder/>
                         </child>
                       </object>
                       <packing>
@@ -248,7 +230,6 @@ Jeonkwan Chan &lt;jeonkwan@gmail.com&gt; Mockup Designer of 0.6</property>
                         <property name="can_focus">False</property>
                         <child>
                           <object class="GtkButton" id="about_button">
-                            <property name="use_action_appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
@@ -273,7 +254,6 @@ Jeonkwan Chan &lt;jeonkwan@gmail.com&gt; Mockup Designer of 0.6</property>
                         </child>
                         <child>
                           <object class="GtkButton" id="preference_button">
-                            <property name="use_action_appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
@@ -292,7 +272,6 @@ Jeonkwan Chan &lt;jeonkwan@gmail.com&gt; Mockup Designer of 0.6</property>
                         </child>
                         <child>
                           <object class="GtkButton" id="back_button">
-                            <property name="use_action_appearance">False</property>
                             <property name="visible">True</property>
                             <property name="sensitive">False</property>
                             <property name="can_focus">True</property>
@@ -312,7 +291,6 @@ Jeonkwan Chan &lt;jeonkwan@gmail.com&gt; Mockup Designer of 0.6</property>
                         </child>
                         <child>
                           <object class="GtkButton" id="next_button">
-                            <property name="use_action_appearance">False</property>
                             <property name="visible">True</property>
                             <property name="sensitive">False</property>
                             <property name="can_focus">True</property>
@@ -337,7 +315,6 @@ Jeonkwan Chan &lt;jeonkwan@gmail.com&gt; Mockup Designer of 0.6</property>
                             <child>
                               <object class="GtkRadioButton" id="overview_button">
                                 <property name="label" translatable="yes">_Overview</property>
-                                <property name="use_action_appearance">False</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">False</property>
@@ -357,7 +334,6 @@ Jeonkwan Chan &lt;jeonkwan@gmail.com&gt; Mockup Designer of 0.6</property>
                             <child>
                               <object class="GtkRadioButton" id="tweaks_button">
                                 <property name="label" translatable="yes">_Tweaks</property>
-                                <property name="use_action_appearance">False</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">False</property>
@@ -378,7 +354,6 @@ Jeonkwan Chan &lt;jeonkwan@gmail.com&gt; Mockup Designer of 0.6</property>
                             <child>
                               <object class="GtkRadioButton" id="admins_button">
                                 <property name="label" translatable="yes">_Admins</property>
-                                <property name="use_action_appearance">False</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">False</property>
@@ -399,7 +374,6 @@ Jeonkwan Chan &lt;jeonkwan@gmail.com&gt; Mockup Designer of 0.6</property>
                             <child>
                               <object class="GtkRadioButton" id="janitor_button">
                                 <property name="label" translatable="yes">_Janitor</property>
-                                <property name="use_action_appearance">False</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">False</property>

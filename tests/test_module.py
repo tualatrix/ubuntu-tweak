@@ -8,6 +8,8 @@ from ubuntutweak.common import consts
 
 class TestModuleFunctions(unittest.TestCase):
     def setUp(self):
+        self.tweaks_loader = ModuleLoader('tweaks')
+
         ModuleLoader.default_features = ('module_test',)
         ModuleLoader.search_loaded_table = {}
 

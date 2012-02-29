@@ -337,13 +337,10 @@ class UbuntuTweakWindow(GuiBuilder):
             toggle_button.set_active(True)
 
     def _initialize_ui_states(self, widget):
-        #TODO implement the search feature
         self.window_size_setting = GSetting('com.ubuntu-tweak.tweak.window-size')
         width, height = self.window_size_setting.get_value()
         if width >= 800 and height >= 480:
             self.mainwindow.set_default_size(width, height)
-
-        self.search_entry.hide()
 
     def _crete_wait_page(self):
         vbox = Gtk.VBox()
@@ -413,7 +410,7 @@ class UbuntuTweakWindow(GuiBuilder):
                     page.un_lock.connect('authenticated', page.on_polkit_action)
                     page.un_lock.show()
                     self._last_unlock = page.un_lock
-                    self.hbox1.pack_end(page.un_lock, False, False, 0)
+                    self.right_top_box.pack_end(page.un_lock, False, False, 6)
 
             if not module.__name__.startswith('Broken'):
                 self.log_used_module(module.__name__)
