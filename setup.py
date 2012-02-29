@@ -9,7 +9,7 @@ setup(name='ubuntu-tweak',
       author_email='tualatrix@gmail.com',
       url='http://ubuntu-tweak.com',
       scripts=['ubuntu-tweak'],
-      packages=find_packages(),
+      packages=find_packages(exclude=['tests']),
       data_files=[
           ('../etc/dbus-1/system.d/', ['data/ubuntu-tweak-daemon.conf']),
           ('share/dbus-1/system-services', ['data/com.ubuntu_tweak.daemon.service']),
