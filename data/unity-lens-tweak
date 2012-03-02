@@ -1,0 +1,39 @@
+#!/usr/bin/python
+
+from gi.repository import GLib, GObject, Gio
+from gi.repository import Unity
+
+BUS_NAME = "com.ubuntu_tweak.lens.tweak"
+
+class Daemon:
+    def __init__(self):
+        self._lens = Unity.Lens.new ("/com/ubuntu_tweak/lens/tweak", "ubuntu-tweak")
+
+        self._lens.props.search_hint = "Search tweaks"
+
+        self._lens.props.visible = True
+
+        self._lens.props.search_in_global = True
+
+        self._lens.export ();
+
+
+if __name__ == "__main__":
+    session_bus_connection = Gio.bus_get_sync (Gio.BusType.SESSION, None)
+    session_bus = Gio.DBusProxy.new_sync (session_bus_connection, 0, None,
+                                          'org.freedesktop.DBus',
+                                          '/org/freedesktop/DBus',
+                                          'org.freedesktop.DBus', None)
+    result = session_bus.call_sync('RequestName',
+                                   GLib.Variant ("(su)", (BUS_NAME, 0x4)),
+                                   0, -1, None)
+                                   
+    # Unpack variant response with signature "(u)". 1 means we got it.
+    result = result.unpack()[0]
+    
+    if result != 1 :
+        print >> sys.stderr, "Failed to own name %s. Bailing out." % BUS_NAME
+        raise SystemExit (1)
+    
+    daemon = Daemon()
+    GObject.MainLoop().run()
