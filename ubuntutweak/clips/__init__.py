@@ -99,7 +99,7 @@ class Clip(Gtk.VBox):
         hbox = Gtk.HBox()
         self._inner_vbox.pack_start(hbox, False, False, 0)
 
-        hbox.pack_end(button, False, False, 0)
+        hbox.pack_end(button, False, False, 6)
 
 
 class ClipPage(Gtk.VBox, GuiBuilder):
