@@ -5,6 +5,7 @@ import traceback
 from gi.repository import Gtk, Pango, GObject
 
 from ubuntutweak import system
+from ubuntutweak.common.debug import log_func
 from ubuntutweak.gui import GuiBuilder
 from ubuntutweak.settings.gsettings import GSetting
 from ubuntutweak.modules import ModuleLoader
@@ -158,9 +159,10 @@ class ClipPage(Gtk.VBox, GuiBuilder):
                         self.clips_settings.set_value(new_list)
 
     def setup_recently_used(self, *args):
-        log.debug("Overview page: setup_recently_used")
-
         used_list = self.recently_used_settings.get_value()
+
+        log.debug("Overview page: setup_recently_used, %d used items found", len(used_list))
+
         for child in self.recently_used_box.get_children():
             self.recently_used_box.remove(child)
 
@@ -182,9 +184,33 @@ class ClipPage(Gtk.VBox, GuiBuilder):
                 hbox.pack_start(label, True, True, 0)
 
                 button.connect('clicked', self._on_module_button_clicked, name)
-                button.show_all()
 
-                self.recently_used_vbox.pack_start(button, False, False, 0)
+                self.recently_used_box.pack_start(button, False, False, 0)
+
+        self.on_recently_scrolled_window_size_allocate()
+
+    def on_recently_scrolled_window_size_allocate(self, *args):
+        allocation = self.recently_scrolled_window.get_allocation()
+
+        if allocation and allocation.height > 1:
+            max_height = allocation.height
+            log.debug("on_recently_scrolled_window_size_allocate, max_height: %s", max_height)
+
+            current_height = 0
+
+            for button in self.recently_used_box.get_children():
+                if 'initial_height' not in locals():
+                    if button.get_allocation().height != 1:
+                        initial_height = button.get_allocation().height + 6
+                    else:
+                        initial_height = 33
+
+                current_height += initial_height
+
+                if current_height < max_height:
+                    button.show_all()
+                else:
+                    button.hide()
 
     def _on_module_button_clicked(self, widget, name):
         self.emit('load_module', name)

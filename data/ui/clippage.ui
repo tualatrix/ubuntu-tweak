@@ -46,10 +46,11 @@
             <property name="left_padding">6</property>
             <property name="right_padding">6</property>
             <child>
-              <object class="GtkScrolledWindow" id="scrolledwindow1">
+              <object class="GtkScrolledWindow" id="recently_scrolled_window">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="hscrollbar_policy">never</property>
+                <signal name="size-allocate" handler="on_recently_scrolled_window_size_allocate" swapped="no"/>
                 <child>
                   <object class="GtkViewport" id="viewport1">
                     <property name="visible">True</property>
