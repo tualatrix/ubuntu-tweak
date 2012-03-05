@@ -19,7 +19,7 @@
 import os
 import logging
 
-from gi.repository import GObject, Gtk, Unique, Pango, GdkPixbuf
+from gi.repository import GObject, Gtk, Unique, Pango
 
 from ubuntutweak import modules
 from ubuntutweak import admins
