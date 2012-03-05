@@ -116,17 +116,17 @@ class ClipPage(Gtk.VBox, GuiBuilder):
         GObject.GObject.__init__(self)
         GuiBuilder.__init__(self, 'clippage.ui')
 
-        self.rencently_used_settings = GSetting('com.ubuntu-tweak.tweak.rencently-used')
+        self.recently_used_settings = GSetting('com.ubuntu-tweak.tweak.recently-used')
         self.clips_settings = GSetting('com.ubuntu-tweak.tweak.clips')
 
         self.load_cips()
-        self.setup_rencently_used()
+        self.setup_recently_used()
 
         self.pack_start(self.get_object('hbox1'), True, True, 0)
-        self.rencently_used_settings.connect_notify(self.setup_rencently_used)
+        self.recently_used_settings.connect_notify(self.setup_recently_used)
         self.clips_settings.connect_notify(self.load_cips, True)
 
-        self.show_all()
+        self.show()
 
     def load_cips(self, a=None, b=None, do_remove=False):
         log.debug("Load clips, do_remove: %s" % do_remove)
@@ -157,12 +157,12 @@ class ClipPage(Gtk.VBox, GuiBuilder):
                         new_list = self.clips_settings.get_value().remove(name)
                         self.clips_settings.set_value(new_list)
 
-    def setup_rencently_used(self, *args):
-        log.debug("Overview page: setup_rencently_used")
+    def setup_recently_used(self, *args):
+        log.debug("Overview page: setup_recently_used")
 
-        used_list = self.rencently_used_settings.get_value()
-        for child in self.rencently_used_vbox.get_children():
-            self.rencently_used_vbox.remove(child)
+        used_list = self.recently_used_settings.get_value()
+        for child in self.recently_used_box.get_children():
+            self.recently_used_box.remove(child)
 
         for name in used_list:
             feature, module = ModuleLoader.search_module_for_name(name)
@@ -184,7 +184,7 @@ class ClipPage(Gtk.VBox, GuiBuilder):
                 button.connect('clicked', self._on_module_button_clicked, name)
                 button.show_all()
 
-                self.rencently_used_vbox.pack_start(button, False, False, 0)
+                self.recently_used_vbox.pack_start(button, False, False, 0)
 
     def _on_module_button_clicked(self, widget, name):
         self.emit('load_module', name)

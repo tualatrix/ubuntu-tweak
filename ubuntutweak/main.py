@@ -294,7 +294,7 @@ class UbuntuTweakWindow(GuiBuilder):
         janitor_page = JanitorPage()
         self.preferences_dialog = PreferencesDialog(self.mainwindow)
 
-        self.rencently_used_settings = GSetting('com.ubuntu-tweak.tweak.rencently-used')
+        self.recently_used_settings = GSetting('com.ubuntu-tweak.tweak.recently-used')
 
         self.feature_dict['overview'] = self.notebook.append_page(clip_page, Gtk.Label())
 #        self.feature_dict['apps'] = self.notebook.append_page(apps_page, Gtk.Label())
@@ -534,13 +534,13 @@ class UbuntuTweakWindow(GuiBuilder):
 
     def log_used_module(self, name):
         log.debug("Log the %s to Recently Used" % name)
-        used_list = self.rencently_used_settings.get_value()
+        used_list = self.recently_used_settings.get_value()
 
         if name in used_list:
             used_list.remove(name)
 
         used_list.insert(0, name)
-        self.rencently_used_settings.set_value(used_list[:15])
+        self.recently_used_settings.set_value(used_list[:15])
 
     def present(self):
         self.mainwindow.present()
