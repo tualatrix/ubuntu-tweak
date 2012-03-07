@@ -29,6 +29,7 @@ from ubuntutweak.gui.gtk import post_ui
 from ubuntutweak.policykit.widgets import PolkitButton
 from ubuntutweak.utils import icon
 from ubuntutweak.common.consts import VERSION, DATA_DIR
+from ubuntutweak.common.debug import log_func
 from ubuntutweak.modules import ModuleLoader, create_broken_module_class
 from ubuntutweak.gui.dialogs import ErrorDialog
 from ubuntutweak.clips import ClipPage
@@ -127,6 +128,7 @@ class CategoryBox(Gtk.VBox):
     def get_buttons(self):
         return self._buttons
 
+    @log_func(log)
     def rebuild_table(self, ncols):
         self._current_cols = ncols
         self._current_modules = len(self._modules)
@@ -179,7 +181,7 @@ class FeaturePage(Gtk.ScrolledWindow):
 
         self.load_modules()
 
-        self.connect('draw', self.rebuild_boxes)
+        self.connect('size-allocate', self.rebuild_boxes)
 
         self._setting.connect_notify(self.load_modules)
 
@@ -220,6 +222,7 @@ class FeaturePage(Gtk.ScrolledWindow):
         module = widget.get_module()
         self.emit('module_selected', module.get_name())
 
+    @log_func(log)
     def rebuild_boxes(self, widget=None, event=None):
         request = self.get_allocation()
         ncols = request.width / 164 # 32 + 120 + 6 + 4
