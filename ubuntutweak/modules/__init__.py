@@ -251,6 +251,10 @@ class TweakModule(Gtk.VBox):
         self.scrolled_win.add_with_viewport(self.inner_vbox)
         viewport = self.scrolled_win.get_child()
 
+#        self.alignment = Gtk.Alignment(xalign=1)
+#        self.alignment.add(self.inner_vbox)
+#        self.pack_start(self.alignment, False, False, 0)
+
         if path:
             path = os.path.join(DATA_DIR, 'ui', path)
 

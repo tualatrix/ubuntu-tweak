@@ -21,7 +21,7 @@ import re
 import logging
 from gi.repository import Gtk, Gio
 
-from ubuntutweak.gui.containers import ListPack, TablePack
+from ubuntutweak.gui.containers import ListPack, GridPack
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.factory import WidgetFactory
 
@@ -36,17 +36,20 @@ class Misc(TweakModule):
     def __init__(self):
         TweakModule.__init__(self)
 
-        self.theme_box = TablePack(_('Buttons and Menus'), (
-                            WidgetFactory.create('CheckButton',
-                                                 label=_('Buttons have icons'),
-                                                 key='org.gnome.desktop.interface.buttons-have-icons',
-                                                 backend='gsettings',
-                                                 ),
+        self.natural_scrolling_button = Gtk.CheckButton(_('Natural Scrolling'))
+        self.set_the_natural_status()
+        self.natural_scrolling_button.connect('toggled', self.on_natural_scrolling_toggled)
+
+        self.theme_box = GridPack(
                             WidgetFactory.create('CheckButton',
                                                  label=_('Menus have icons'),
                                                  key='org.gnome.desktop.interface.menus-have-icons',
                                                  backend='gsettings',
                                                  ),
+                            WidgetFactory.create('CheckButton',
+                                label=_('Buttons have icons'),
+                                key='org.gnome.desktop.interface.buttons-have-icons',
+                                backend='gsettings'),
                             WidgetFactory.create('CheckButton',
                                                  label=_("Show Input Method menu in the context menu"),
                                                  key='org.gnome.desktop.interface.show-input-method-menu',
@@ -57,14 +60,7 @@ class Misc(TweakModule):
                                                  key='org.gnome.desktop.interface.show-unicode-menu',
                                                  backend='gsettings',
                                                  ),
-                            ))
-        self.add_start(self.theme_box, False, False, 0)
-
-        self.natural_scrolling_button = Gtk.CheckButton(_('Natural Scrolling'))
-        self.set_the_natural_status()
-        self.natural_scrolling_button.connect('toggled', self.on_natural_scrolling_toggled)
-
-        self.theme_box = TablePack(_('Miscellaneous'), (
+                            Gtk.Separator(),
                             self.natural_scrolling_button,
                             WidgetFactory.create('CheckButton',
                                                  label=_('Cursor blink'),
@@ -85,8 +81,7 @@ class Misc(TweakModule):
                                                  backend='gsettings',
                                                  min=1,
                                                  max=2147483647,
-                                                 ),
-                            ))
+                                                 ))
         self.add_start(self.theme_box, False, False, 0)
 
     def get_pointer_id(self):

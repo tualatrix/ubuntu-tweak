@@ -19,7 +19,7 @@
 import os
 from gi.repository import Gtk, Gio
 
-from ubuntutweak.gui.containers import ListPack, TablePack
+from ubuntutweak.gui.containers import ListPack, GridPack
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.factory import WidgetFactory
 
@@ -38,37 +38,33 @@ class Theme(TweakModule):
         valid_cursor_themes = self._get_valid_cursor_themes()
         valid_window_themes = self._get_valid_window_themes()
 
-        self.theme_box = TablePack(_('Desktop theme'), (
-                            WidgetFactory.create('ComboBox',
-                                                 label=_('Gtk theme'),
-                                                 key='org.gnome.desktop.interface.gtk-theme',
-                                                 backend='gsettings',
-                                                 texts=valid_themes,
-                                                 values=valid_themes,
-                                                 ),
-                            WidgetFactory.create('ComboBox',
-                                                 label=_('Icon theme'),
-                                                 key='org.gnome.desktop.interface.icon-theme',
-                                                 backend='gsettings',
-                                                 texts=valid_icon_themes,
-                                                 values=valid_icon_themes,
-                                                 ),
-                            WidgetFactory.create('ComboBox',
-                                                 label=_('Cursor theme'),
-                                                 key='org.gnome.desktop.interface.cursor-theme',
-                                                 backend='gsettings',
-                                                 texts=valid_cursor_themes,
-                                                 values=valid_cursor_themes,
-                                                 ),
-                            WidgetFactory.create('ComboBox',
-                                                 label=_('Window theme'),
-                                                 key='/apps/metacity/general/theme',
-                                                 backend='gconf',
-                                                 texts=valid_window_themes,
-                                                 values=valid_window_themes,
-                                                 ),
-                            ))
-        self.add_start(self.theme_box, False, False, 0)
+        theme_box = GridPack(
+                        WidgetFactory.create('ComboBox',
+                            label=_('Gtk theme:'),
+                            key='org.gnome.desktop.interface.gtk-theme',
+                            backend='gsettings',
+                            texts=valid_themes,
+                            values=valid_themes),
+                        WidgetFactory.create('ComboBox',
+                            label=_('Icon theme:'),
+                            key='org.gnome.desktop.interface.icon-theme',
+                            backend='gsettings',
+                            texts=valid_icon_themes,
+                            values=valid_icon_themes),
+                        WidgetFactory.create('ComboBox',
+                            label=_('Cursor theme:'),
+                            key='org.gnome.desktop.interface.cursor-theme',
+                            backend='gsettings',
+                            texts=valid_cursor_themes,
+                            values=valid_cursor_themes),
+                        WidgetFactory.create('ComboBox',
+                            label=_('Window theme:'),
+                            key='/apps/metacity/general/theme',
+                            backend='gconf',
+                            texts=valid_window_themes,
+                            values=valid_window_themes))
+
+        self.add_start(theme_box, False, False, 0)
 
     def walk_directories(self, dirs, filter_func):
         # This function is taken from gnome-tweak-tool

@@ -1,4 +1,8 @@
+import logging
+
 from gi.repository import GObject, Gtk
+
+log = logging.getLogger('gui.containers')
 
 class BasePack(Gtk.VBox):
     def __init__(self, label):
@@ -96,3 +100,49 @@ class TablePack(BaseListPack):
         table = EasyTable(items, xpadding=12)
 
         self.vbox.pack_start(table, True, True, 0)
+
+class GridPack(Gtk.Grid):
+    def __init__(self, *items):
+        GObject.GObject.__init__(self)
+
+        self.set_property('row-spacing', 6)
+        self.set_property('column-spacing', 6)
+        self.set_property('margin-left', 15)
+        self.set_property('margin-right', 15)
+        self.set_property('margin-top', 5)
+
+        for top_attach, item in enumerate(items):
+            if item is not None:
+                if issubclass(item.__class__, Gtk.Widget):
+                    if issubclass(item.__class__, Gtk.Separator):
+                        item.set_size_request(-1, 20)
+                        left = 0
+                        top = top_attach + 1
+                        width = 2
+                        height = 1
+                    elif issubclass(item.__class__, Gtk.CheckButton):
+                        left = 1
+                        top = top_attach + 1
+                        width = 1
+                        height = 1
+
+                    log.debug("Attach item: %s to Grid: 0,%s,2,1" % (str(item), (top_attach + 1)))
+                    self.attach(item, left, top, width, height)
+                else:
+                    for left_attch, widget in enumerate(item):
+                        if widget:
+                            if type(widget) == Gtk.Label:
+                                widget.set_property('halign', Gtk.Align.END)
+                                widget.set_property('hexpand', True)
+                            else:
+                                if issubclass(item.__class__, Gtk.Button):
+                                    widget.set_property('halign', Gtk.Align.START)
+                                else:
+                                    widget.set_size_request(200, -1)
+                                    widget.set_property('halign', Gtk.Align.START)
+                                widget.set_property('hexpand', True)
+
+                            self.attach(widget, 
+                                        left_attch,
+                                        top_attach + 1,
+                                        1, 1)

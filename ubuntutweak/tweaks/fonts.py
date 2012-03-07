@@ -18,7 +18,7 @@
 
 from gi.repository import Gtk, Gio
 
-from ubuntutweak.gui.containers import ListPack, TablePack
+from ubuntutweak.gui.containers import ListPack, TablePack, GridPack
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.factory import WidgetFactory
 
@@ -36,63 +36,60 @@ class Fonts(TweakModule):
         fb.set_show_size(False)
         fb.set_use_size(13)
 
-        box = TablePack(_("Desktop fonts"), (
+        box = GridPack(
                     WidgetFactory.create("Scale",
-                                         label=_("Text scaling factor"),
-                                         key="org.gnome.desktop.interface.text-scaling-factor",
-                                         min=0.5,
-                                         max=3.0,
-                                         digits=1,
-                                         backend="gsettings",
-                                         enable_reset=False),
+                        label=_("Text scaling factor:"),
+                        key="org.gnome.desktop.interface.text-scaling-factor",
+                        min=0.5,
+                        max=3.0,
+                        digits=1,
+                        backend="gsettings",
+                        enable_reset=False),
                     WidgetFactory.create("FontButton",
-                                         label=_("Default font"),
-                                         key="org.gnome.desktop.interface.font-name",
-                                         backend="gsettings",
-                                         enable_reset=False),
+                        label=_("Default font:"),
+                        key="org.gnome.desktop.interface.font-name",
+                        backend="gsettings",
+                        enable_reset=False),
                     WidgetFactory.create("FontButton",
-                                         label=_("Desktop font"),
-                                         key="org.gnome.nautilus.desktop.font",
-                                         backend="gsettings",
-                                         enable_reset=False),
+                        label=_("Desktop font:"),
+                        key="org.gnome.nautilus.desktop.font",
+                        backend="gsettings",
+                        enable_reset=False),
                     WidgetFactory.create("FontButton",
-                                         label=_("Monospace font"),
-                                         key="org.gnome.desktop.interface.monospace-font-name",
-                                         backend="gsettings",
-                                         enable_reset=False),
+                        label=_("Monospace font:"),
+                        key="org.gnome.desktop.interface.monospace-font-name",
+                        backend="gsettings",
+                        enable_reset=False),
                     WidgetFactory.create("FontButton",
-                                         label=_("Document font"),
-                                         key="org.gnome.desktop.interface.document-font-name",
-                                         backend="gsettings",
-                                         enable_reset=False),
+                        label=_("Document font:"),
+                        key="org.gnome.desktop.interface.document-font-name",
+                        backend="gsettings",
+                        enable_reset=False),
                     WidgetFactory.create("FontButton",
-                                         label=_("Window title bar font"),
-                                         key="/apps/metacity/general/titlebar_font",
-                                         backend="gconf",
-                                         enable_reset=False),
-            ))
-
-        self.add_start(box, False, False, 0)
-
-        box = TablePack(_("Hinting and antialiasing"), (
+                        label=_("Window title bar font:"),
+                        key="/apps/metacity/general/titlebar_font",
+                        backend="gconf",
+                        enable_reset=False),
+                    Gtk.Separator(),
                     WidgetFactory.create("ComboBox",
-                                         label=_("Hinting"),
-                                         key="org.gnome.settings-daemon.plugins.xsettings.hinting",
-                                         values=('none', 'slight', 'medium', 'full'),
-                                         texts=(_('No hinting'),
-                                                _('Basic'),
-                                                _('Moderate'),
-                                                _('Maximum')),
-                                         backend="gsettings",
-                                         enable_reset=False),
+                        label=_("Hinting:"),
+                        key="org.gnome.settings-daemon.plugins.xsettings.hinting",
+                        values=('none', 'slight', 'medium', 'full'),
+                        texts=(_('No hinting'),
+                               _('Basic'),
+                               _('Moderate'),
+                               _('Maximum')),
+                        backend="gsettings",
+                        enable_reset=False),
                     WidgetFactory.create("ComboBox",
-                                         label=_("Antialiasing"),
-                                         key="org.gnome.settings-daemon.plugins.xsettings.antialiasing",
-                                         values=('none', 'grayscale', 'rgba'),
-                                         texts=(_('No antialiasing'),
-                                                _('Standard grayscale antialiasing'),
-                                                _('Subpixel antialiasing (LCD screens only)')),
-                                         backend="gsettings",
-                                         enable_reset=False),
-            ))
+                        label=_("Antialiasing:"),
+                        key="org.gnome.settings-daemon.plugins.xsettings.antialiasing",
+                        values=('none', 'grayscale', 'rgba'),
+                        texts=(_('No antialiasing'),
+                               _('Standard grayscale antialiasing'),
+                               _('Subpixel antialiasing (LCD screens only)')), 
+                        backend="gsettings",
+                        enable_reset=False),
+            )
+
         self.add_start(box, False, False, 0)
