@@ -3,6 +3,7 @@ import logging
 
 from gi.repository import GObject, Gtk, Gdk
 
+from ubuntutweak.common.debug import log_func
 from ubuntutweak.settings.gsettings import GSetting
 from ubuntutweak.settings.configsettings import ConfigSetting
 from ubuntutweak.settings.gconfsettings import GconfSetting, UserGconfSetting
@@ -33,11 +34,44 @@ class CheckButton(Gtk.CheckButton):
     def on_value_changed(self, *args):
         self.set_active(self._setting.get_value())
 
+    @log_func(log)
     def on_button_toggled(self, widget):
         self._setting.set_value(self.get_active())
 
 
+class Switch(Gtk.Switch):
+    def __str__(self):
+        return '<Switch with key: %s>' % self._setting.key
+
+    def __init__(self, key=None, default=None,
+                 tooltip=None, backend='gconf'):
+        GObject.GObject.__init__(self)
+
+        if backend == 'gconf':
+            self._setting = GconfSetting(key=key, default=default, type=bool)
+        elif backend == 'gsettings':
+            self._setting = GSetting(key=key, default=default, type=bool)
+
+        self.set_active(self._setting.get_value())
+
+        if tooltip:
+            self.set_tooltip_text(tooltip)
+
+        self._setting.connect_notify(self.on_value_changed)
+        self.connect('notify::active', self.on_switch_activate)
+
+    def on_value_changed(self, *args):
+        self.set_active(self._setting.get_value())
+
+    @log_func(log)
+    def on_switch_activate(self, widget, value):
+        self._setting.set_value(self.get_active())
+
+
 class UserCheckButton(Gtk.CheckButton):
+    def __str__(self):
+        return '<UserCheckButton with key: %s, with user: %s>' % (self._setting.key, self.user)
+
     def __init__(self, user=None, label=None, key=None, default=None,
                  tooltip=None, backend='gconf'):
         GObject.GObject.__init__(self, label=label)
@@ -60,6 +94,9 @@ class UserCheckButton(Gtk.CheckButton):
 
 
 class ResetButton(Gtk.Button):
+    def __str__(self):
+        return '<ResetButton with key: %s>' % self._setting.key
+
     def __init__(self, key, backend='gconf'):
         GObject.GObject.__init__(self)
 
@@ -81,6 +118,9 @@ class ResetButton(Gtk.Button):
 
 class StringCheckButton(CheckButton):
     '''This class use to moniter the key with StringSetting, nothing else'''
+    def __str__(self):
+        return '<StringCheckButton with key: %s>' % self._setting.key
+
     def __init__(self, **kwargs):
         CheckButton.__init__(self, **kwargs)
 
@@ -93,6 +133,9 @@ class StringCheckButton(CheckButton):
 
 
 class Entry(Gtk.Entry):
+    def __str__(self):
+        return '<Entry with key: %s>' % self._setting.key
+
     def __init__(self, key=None, default=None, backend='gconf'):
         GObject.GObject.__init__(self)
 
@@ -123,6 +166,9 @@ class Entry(Gtk.Entry):
 
 
 class ComboBox(Gtk.ComboBox):
+    def __str__(self):
+        return '<ComboBox with key: %s>' % self._setting.key
+
     def __init__(self, key=None, texts=None, values=None,
                  type=str, backend='gconf'):
         GObject.GObject.__init__(self)
@@ -164,6 +210,9 @@ class ComboBox(Gtk.ComboBox):
 
 
 class FontButton(Gtk.FontButton):
+    def __str__(self):
+        return '<FontButton with key: %s>' % self._setting.key
+
     def __init__(self, key=None, default=None, backend='gconf'):
         GObject.GObject.__init__(self)
         self.set_use_font(True)
@@ -190,6 +239,9 @@ class FontButton(Gtk.FontButton):
 
 
 class Scale(Gtk.HScale):
+    def __str__(self):
+        return '<Scale with key: %s>' % self._setting.key
+
     def __init__(self, key=None, min=None, max=None, type=int, digits=0,
                  reversed=False, backend='gconf'):
         GObject.GObject.__init__(self)
@@ -229,6 +281,9 @@ class Scale(Gtk.HScale):
 
 
 class SpinButton(Gtk.SpinButton):
+    def __str__(self):
+        return '<SpinButton with key: %s>' % self._setting.key
+
     def __init__(self, key, min=0, max=0, step=0, backend='gconf'):
         if backend == 'gconf':
             self._setting = GconfSetting(key=key, type=int)
@@ -369,6 +424,9 @@ class KeyGrabber(Gtk.Button):
 
 
 class ColorButton(Gtk.ColorButton):
+    def __str__(self):
+        return '<ColorButton with key: %s>' % self._setting.key
+
     def __init__(self, key=None, default=None, backend='gconf'):
         GObject.GObject.__init__(self)
         self.set_use_alpha(True)

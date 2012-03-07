@@ -112,6 +112,7 @@ class GridPack(Gtk.Grid):
         self.set_property('margin-top', 5)
 
         for top_attach, item in enumerate(items):
+            log.debug("Found item: %s" % str(item))
             if item is not None:
                 if issubclass(item.__class__, Gtk.Widget):
                     if issubclass(item.__class__, Gtk.Separator):
@@ -120,7 +121,8 @@ class GridPack(Gtk.Grid):
                         top = top_attach + 1
                         width = 2
                         height = 1
-                    elif issubclass(item.__class__, Gtk.CheckButton):
+                    elif issubclass(item.__class__, Gtk.CheckButton) or \
+                         issubclass(item.__class__, Gtk.VBox):
                         left = 1
                         top = top_attach + 1
                         width = 1
@@ -135,13 +137,16 @@ class GridPack(Gtk.Grid):
                                 widget.set_property('halign', Gtk.Align.END)
                                 widget.set_property('hexpand', True)
                             else:
-                                if issubclass(item.__class__, Gtk.Button):
+                                if issubclass(widget.__class__, Gtk.Switch):
+                                    log.debug("Set the widget(%s) Align START" % widget)
                                     widget.set_property('halign', Gtk.Align.START)
                                 else:
-                                    widget.set_size_request(200, -1)
+                                    log.debug("Set the widget(%s) width to 200" % widget)
+                                    widget.set_size_request(250, -1)
                                     widget.set_property('halign', Gtk.Align.START)
                                 widget.set_property('hexpand', True)
 
+                            log.debug("Attach widget: %s to Grid: %s,%s,1,1" % (str(widget), left_attch, top_attach + 1))
                             self.attach(widget, 
                                         left_attch,
                                         top_attach + 1,

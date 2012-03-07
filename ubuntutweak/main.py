@@ -64,6 +64,9 @@ class ModuleButton(Gtk.Button):
 
     _module = None
 
+    def __str__(self):
+        return '<ModuleButton: %s>' % self._module.get_title()
+
     def __init__(self, module):
         GObject.GObject.__init__(self)
 
@@ -98,10 +101,15 @@ class CategoryBox(Gtk.VBox):
     _current_cols = 0
     _current_modules = 0
 
+    def __str__(self):
+        return '<CategoryBox with name: %s>' % self._category_name
+
     def __init__(self, modules=None, category='', category_name=''):
         GObject.GObject.__init__(self)
 
         self._modules = modules
+        #TODO is category needed?
+        self._category_name = category_name
 
         self.set_spacing(6)
 
@@ -161,6 +169,9 @@ class FeaturePage(Gtk.ScrolledWindow):
 
     _categories = None
     _boxes = []
+
+    def __str__(self):
+        return '<FeaturePage: %s>' % self._feature
 
     def __init__(self, feature_name):
         GObject.GObject.__init__(self,

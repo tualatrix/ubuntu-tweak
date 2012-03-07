@@ -174,7 +174,11 @@ logging.setLoggerClass(TweakLogger)
 def log_func(log):
     def wrap(func):
         def func_wrapper(*args, **kwargs):
-            log.debug("%s: \n\targs: %s\n\tkwargs: %s" % (func, args, kwargs))
+            log.debug("%s:" % func)
+            for i, arg in enumerate(args):
+                log.debug("\targs-%d: %s" % (i + 1, arg))
+            for k, v in enumerate(kwargs):
+                log.debug("\tdict args: %s: %s" % (k, v))
             return func(*args, **kwargs)
         return func_wrapper
     return wrap

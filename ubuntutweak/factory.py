@@ -42,7 +42,7 @@ def on_reset_button_clicked(widget, reset_target):
 
 class WidgetFactory:
     composite_capable = ('SpinButton', 'Entry', 'ComboBox',
-                         'Scale', 'FontButton', 'ColorButton')
+                         'Scale', 'FontButton', 'ColorButton', 'Switch')
 
     @classmethod
     def create(cls, widget, **kwargs):

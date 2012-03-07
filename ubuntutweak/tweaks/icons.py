@@ -18,6 +18,7 @@
 
 from gi.repository import GObject, Gtk
 
+from ubuntutweak.gui.containers import GridPack
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.factory import WidgetFactory
 
@@ -111,39 +112,33 @@ class Icon(TweakModule):
     def __init__(self):
         TweakModule.__init__(self)
 
-        self.show_button = WidgetFactory.create("CheckButton",
+        show_label, show_switch = WidgetFactory.create("Switch",
                                                 label=_("Show desktop icons"),
                                                 key="org.gnome.desktop.background.show-desktop-icons",
                                                 backend="gsettings")
-        self.show_button.connect('toggled', self.on_show_button_changed)
-        self.add_start(self.show_button, False, False, 0)
 
-        self.show_button_box = Gtk.HBox(spacing=12)
-        self.add_start(self.show_button_box, False, False, 0)
-
-        if not self.show_button.get_active():
-            self.show_button_box.set_sensitive(False)
-
-        label = Gtk.Label(label=" ")
-        self.show_button_box.pack_start(label, False, False, 0)
-
-        vbox = Gtk.VBox(spacing=6)
-        self.show_button_box.pack_start(vbox, False, False, 0)
+        setting_list = []
+        show_switch.connect('notify::active', self.on_show_button_changed, setting_list)
 
         for item in desktop_icons:
-            vbox.pack_start(DesktopIcon(item), False, False, 0)
+            setting_list.append(DesktopIcon(item))
 
-        button = WidgetFactory.create("CheckButton",
+        volumes_button = WidgetFactory.create("CheckButton",
                                       label=_("Show mounted volumes on desktop"),
                                       key="org.gnome.nautilus.desktop.volumes-visible",
                                       backend="gsettings")
-        vbox.pack_start(button, False, False, 0)
+        setting_list.append(volumes_button)
 
-        button = WidgetFactory.create("CheckButton",
+        home_contents_button = WidgetFactory.create("CheckButton",
                                       label=_('Show contents of "Home Folder" on desktop'),
                                       key="org.gnome.nautilus.preferences.desktop-is-home-dir",
                                       backend="gsettings")
-        vbox.pack_start(button, False, False, 0)
+        setting_list.append(home_contents_button)
 
-    def on_show_button_changed(self, widget):
-        self.show_button_box.set_sensitive(self.show_button.get_active())
+        grid_box = GridPack((show_label, show_switch), *setting_list)
+        self.add_start(grid_box)
+        self.on_show_button_changed(show_switch, None, setting_list)
+
+    def on_show_button_changed(self, widget, value, setting_list):
+        for item in setting_list:
+            item.set_sensitive(widget.get_active())
