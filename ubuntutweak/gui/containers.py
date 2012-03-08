@@ -105,6 +105,14 @@ class GridPack(Gtk.Grid):
     def __init__(self, *items):
         GObject.GObject.__init__(self)
 
+        column = 1
+        for i, item in enumerate(items):
+            rows = i + 1
+            if hasattr(item, '__len__') and len(item) > column:
+                column = len(item)
+
+        log.debug("There are totally %d columns" % column)
+
         self.set_property('row-spacing', 6)
         self.set_property('column-spacing', 6)
         self.set_property('margin-left', 15)
@@ -119,10 +127,10 @@ class GridPack(Gtk.Grid):
                         item.set_size_request(-1, 20)
                         left = 0
                         top = top_attach + 1
-                        width = 2
+                        width = column
                         height = 1
                     elif issubclass(item.__class__, Gtk.CheckButton) or \
-                         issubclass(item.__class__, Gtk.VBox):
+                         issubclass(item.__class__, Gtk.Box):
                         left = 1
                         top = top_attach + 1
                         width = 1
@@ -137,14 +145,22 @@ class GridPack(Gtk.Grid):
                                 widget.set_property('halign', Gtk.Align.END)
                                 widget.set_property('hexpand', True)
                             else:
-                                if issubclass(widget.__class__, Gtk.Switch):
+                                if issubclass(widget.__class__, Gtk.Switch) or \
+                                hasattr(widget, 'get_default_value'):
+                                    #so this is reset button
+
                                     log.debug("Set the widget(%s) Align START" % widget)
                                     widget.set_property('halign', Gtk.Align.START)
                                 else:
                                     log.debug("Set the widget(%s) width to 200" % widget)
+                                    #TODO not hardcode the 250 size
                                     widget.set_size_request(250, -1)
-                                    widget.set_property('halign', Gtk.Align.START)
-                                widget.set_property('hexpand', True)
+                                    # If widget is not the last column, so not set the  Align START, just make it fill the space
+                                    if left_attch + 1 == column:
+                                        widget.set_property('halign', Gtk.Align.START)
+                                # If widget is not the last column, so not set the  hexpand to True, so it will not take the same size of column as others
+                                if left_attch + 1 == column:
+                                    widget.set_property('hexpand', True)
 
                             log.debug("Attach widget: %s to Grid: %s,%s,1,1" % (str(widget), left_attch, top_attach + 1))
                             self.attach(widget, 

@@ -21,7 +21,7 @@ import re
 
 from gi.repository import Gtk, Gio
 
-from ubuntutweak.gui.containers import ListPack, TablePack
+from ubuntutweak.gui.containers import ListPack, GridPack, TablePack
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.factory import WidgetFactory
 from ubuntutweak import system
@@ -44,8 +44,8 @@ class UnitySettings(TweakModule):
             self.add_start(label, False, False, 0)
         else:
             if system.DESKTOP == 'ubuntu':
-                box = TablePack(_("Launcher"), (
-                            WidgetFactory.create("Scale",
+                settings_box = []
+                grid_pack = GridPack(WidgetFactory.create("Scale",
                                                  label=_('Icon size'),
                                                  key="unityshell.icon_size",
                                                  min=32,
@@ -88,10 +88,7 @@ class UnitySettings(TweakModule):
                                                  type=int,
                                                  backend="compiz",
                                                  enable_reset=True),
-                    ))
-                self.add_start(box, False, False, 0)
-
-                box = TablePack(_("Dash and Panel"), (
+                            Gtk.Separator(),
                             WidgetFactory.create("ComboBox",
                                                  label=_('Dash size'),
                                                  key="com.canonical.Unity.form-factor",
@@ -126,9 +123,9 @@ class UnitySettings(TweakModule):
                                                  digits=2,
                                                  backend="compiz",
                                                  enable_reset=True),
-                    ))
+                    )
 
-                self.add_start(box, False, False, 0)
+                self.add_start(grid_pack, False, False, 0)
             else:
                 box = ListPack(_('Compositing Manager'), (
                                         WidgetFactory.create('CheckButton',

@@ -61,6 +61,7 @@ class CompizPlugin:
 class CompizSetting(object):
     def __init__(self, key, target=''):
         plugin_name, setting_name = key.split('.')
+        self.key = key
         self._plugin = CompizPlugin(plugin_name)
 
         if not self._plugin.get_enabled():
