@@ -39,3 +39,19 @@ def filesizeformat(bytes):
     if bytes < 1024 * 1024 * 1024:
         return _("%.1f MB") % (bytes / (1024 * 1024))
     return _("%.1f GB") % (bytes / (1024 * 1024 * 1024))
+
+def walk_directories(dirs, filter_func):
+    # This function is taken from gnome-tweak-tool
+    valid = []
+    try:
+        for thdir in dirs:
+            if os.path.isdir(thdir):
+                for t in os.listdir(thdir):
+                    if filter_func(os.path.join(thdir, t)):
+                         valid.append(t)
+    except:
+        log.critical("Error parsing directories", exc_info=True)
+
+    valid.sort()
+
+    return valid

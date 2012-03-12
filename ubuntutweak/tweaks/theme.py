@@ -19,6 +19,7 @@
 import os
 from gi.repository import Gtk, Gio
 
+from ubuntutweak.utils import walk_directories
 from ubuntutweak.gui.containers import ListPack, GridPack
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.factory import WidgetFactory
@@ -66,27 +67,11 @@ class Theme(TweakModule):
 
         self.add_start(theme_box, False, False, 0)
 
-    def walk_directories(self, dirs, filter_func):
-        # This function is taken from gnome-tweak-tool
-        valid = []
-        try:
-            for thdir in dirs:
-                if os.path.isdir(thdir):
-                    for t in os.listdir(thdir):
-                        if filter_func(os.path.join(thdir, t)):
-                             valid.append(t)
-        except:
-            log.critical("Error parsing directories", exc_info=True)
-
-        valid.sort()
-
-        return valid
-
     def _get_valid_icon_themes(self):
         # This function is taken from gnome-tweak-tool
         dirs = ( '/usr/share/icons',
                  os.path.join(os.path.expanduser("~"), ".icons"))
-        valid = self.walk_directories(dirs, lambda d:
+        valid = walk_directories(dirs, lambda d:
                     os.path.isdir(d) and \
                         not os.path.exists(os.path.join(d, "cursors")))
 
@@ -99,7 +84,7 @@ class Theme(TweakModule):
         """ Only shows themes that have variations for gtk+-3 and gtk+-2 """
         dirs = ( '/usr/share/themes',
                  os.path.join(os.path.expanduser("~"), ".themes"))
-        valid = self.walk_directories(dirs, lambda d:
+        valid = walk_directories(dirs, lambda d:
                     os.path.exists(os.path.join(d, "gtk-2.0")) and \
                         os.path.exists(os.path.join(d, "gtk-3.0")))
 
@@ -110,7 +95,7 @@ class Theme(TweakModule):
     def _get_valid_cursor_themes(self):
         dirs = ( '/usr/share/icons',
                  os.path.join(os.path.expanduser("~"), ".icons"))
-        valid = self.walk_directories(dirs, lambda d:
+        valid = walk_directories(dirs, lambda d:
                     os.path.isdir(d) and \
                         os.path.exists(os.path.join(d, "cursors")))
 
@@ -121,7 +106,7 @@ class Theme(TweakModule):
     def _get_valid_window_themes(self):
         dirs = ( '/usr/share/themes',
                  os.path.join(os.path.expanduser("~"), ".themes"))
-        valid = self.walk_directories(dirs, lambda d:
+        valid = walk_directories(dirs, lambda d:
                     os.path.exists(os.path.join(d, "metacity-1")))
 
         valid.sort()
