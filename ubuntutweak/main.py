@@ -41,24 +41,6 @@ from ubuntutweak.preferences import PreferencesDialog
 
 log = logging.getLogger('app')
 
-def show_splash():
-    win = Gtk.Window(type=Gtk.WindowType.POPUP)
-    win.set_position(Gtk.WindowPosition.CENTER)
-
-    vbox = Gtk.VBox()
-    image = Gtk.Image()
-    image.set_from_file(os.path.join(DATA_DIR, 'pixmaps/splash.png'))
-
-    vbox.pack_start(image, True, True, 0)
-    win.add(vbox)
-
-    win.show_all()
-
-    while Gtk.events_pending():
-        Gtk.main_iteration()
-
-    win.destroy()
-
 
 class ModuleButton(Gtk.Button):
 
