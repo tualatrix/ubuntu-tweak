@@ -168,8 +168,14 @@ class GridPack(Gtk.Grid):
                         top = top_attach + 1
                         width = 1
                         height = 1
+                    else:
+                        left = getattr(item, '_ut_left', 0)
+                        top = top_attach + 1
+                        width = self._column
+                        height = 1
 
-                    log.debug("Attach item: %s to Grid: 0,%s,2,1" % (str(item), (top_attach + 1)))
+                    log.debug("Attach item: %s to Grid: %s,%s,%s,%s" % \
+                              (str(item), left, top, width, height))
                     self.attach(item, left, top, width, height)
                 else:
                     for left_attch, widget in enumerate(item):

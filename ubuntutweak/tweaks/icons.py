@@ -135,7 +135,15 @@ class Icon(TweakModule):
                                       backend="gsettings")
         setting_list.append(home_contents_button)
 
-        grid_box = GridPack((show_label, show_switch), *setting_list)
+        notes_label = Gtk.Label()
+        notes_label.set_property('halign', Gtk.Align.START)
+        notes_label.set_markup('<span size="smaller">%s</span>' % \
+                _('Note: switch off this option will make the desktop unclickable'))
+        notes_label._ut_left = 1
+
+        grid_box = GridPack((show_label, show_switch),
+                            notes_label,
+                            *setting_list)
         self.add_start(grid_box)
         self.on_show_button_changed(show_switch, None, setting_list)
 
