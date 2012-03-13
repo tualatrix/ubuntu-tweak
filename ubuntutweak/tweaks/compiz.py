@@ -28,6 +28,7 @@ from ubuntutweak.common.consts import DATA_DIR
 from ubuntutweak.gui.treeviews import get_local_path
 from ubuntutweak.gui.containers import ListPack, SinglePack
 from ubuntutweak.settings.gsettings import GSetting
+from ubuntutweak.utils import icon
 
 log = logging.getLogger('compiz')
 
@@ -431,14 +432,14 @@ class Compiz(TweakModule):
 
         wallpaper = get_local_path(GSetting('org.gnome.desktop.background.picture-uri').get_value())
 
-        system_wallpaper = os.path.join(DATA_DIR, "pixmaps/splash.png")
         if wallpaper:
             try:
                 pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(wallpaper, 160, 100)
             except GObject.GError:
-                pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(system_wallpaper, 160, 100)
+                pixbuf = icon.get_from_name('ubuntu-tweak', size=128)
         else:
-            pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(system_wallpaper, 160, 100)
+            pixbuf = icon.get_from_name('ubuntu-tweak', size=128)
+
         image = Gtk.Image.new_from_pixbuf(pixbuf)
         hbox.pack_start(image, False, False, 0)
 
