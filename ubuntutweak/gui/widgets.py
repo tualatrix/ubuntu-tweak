@@ -51,13 +51,16 @@ class Switch(Gtk.Switch):
             self._setting = GconfSetting(key=key, default=default, type=bool)
         elif backend == 'gsettings':
             self._setting = GSetting(key=key, default=default, type=bool)
+        elif backend == 'compiz':
+            self._setting = CompizSetting(key=key)
 
         self.set_active(self._setting.get_value())
 
         if tooltip:
             self.set_tooltip_text(tooltip)
 
-        self._setting.connect_notify(self.on_value_changed)
+        if hasattr(self._setting, 'connect_notify'):
+            self._setting.connect_notify(self.on_value_changed)
         self.connect('notify::active', self.on_switch_activate)
 
     def on_value_changed(self, *args):

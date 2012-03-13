@@ -45,7 +45,13 @@ class UnitySettings(TweakModule):
         else:
             if system.DESKTOP == 'ubuntu':
                 settings_box = []
-                grid_pack = GridPack(WidgetFactory.create("Scale",
+                grid_pack = GridPack(
+                            WidgetFactory.create("Switch",
+                                                 label=_('Shortcut hits overlay'),
+                                                 key="unityshell.shortcut_overlay",
+                                                 backend="compiz"),
+                            Gtk.Separator(),
+                            WidgetFactory.create("Scale",
                                                  label=_('Icon size'),
                                                  key="unityshell.icon_size",
                                                  min=32,
@@ -87,6 +93,16 @@ class UnitySettings(TweakModule):
                                                  type=int,
                                                  backend="compiz",
                                                  enable_reset=True),
+                            WidgetFactory.create("ComboBox",
+                                                 label=_('Show Devices'),
+                                                 key="unityshell.devices_option",
+                                                 texts=(_('Never'),
+                                                        _('Only Mounted'),
+                                                        _('Always')),
+                                                 values=(0, 1, 2),
+                                                 type=int,
+                                                 backend="compiz",
+                                                 enable_reset=True),
                             Gtk.Separator(),
                             WidgetFactory.create("ComboBox",
                                                  label=_('Dash size'),
@@ -122,6 +138,7 @@ class UnitySettings(TweakModule):
                                                  digits=2,
                                                  backend="compiz",
                                                  enable_reset=True),
+
                     )
 
                 self.add_start(grid_pack, False, False, 0)
