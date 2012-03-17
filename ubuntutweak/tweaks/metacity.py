@@ -233,37 +233,6 @@ class Metacity(TweakModule):
 
         self.add_start(table)
 
-        box = TablePack(_('Window Decoration Effects'), (
-                    WidgetFactory.create('CheckButton',
-                                          label=_('Use Metacity window theme'),
-                                          enable_reset=True,
-                                          backend="gconf",
-                                          key='/apps/gwd/use_metacity_theme'),
-                    WidgetFactory.create('CheckButton',
-                                          label=_('Enable active window transparency'),
-                                          backend="gconf",
-                                          enable_reset=True,
-                                          key='/apps/gwd/metacity_theme_active_shade_opacity'),
-                    WidgetFactory.create('Scale',
-                                          label=_('Active window transparency level'),
-                                          key='/apps/gwd/metacity_theme_active_opacity',
-                                          backend="gconf",
-                                          enable_reset=True,
-                                          min=0, max=1, digits=2),
-                    WidgetFactory.create('CheckButton',
-                                          label=_('Enable inactive window transparency'),
-                                          enable_reset=True,
-                                          backend="gconf",
-                                          key='/apps/gwd/metacity_theme_shade_opacity'),
-                    WidgetFactory.create('Scale',
-                                          label=_('Inactive window shade transparency level'),
-                                          backend="gconf",
-                                          key='/apps/gwd/metacity_theme_opacity',
-                                          enable_reset=True,
-                                          min=0, max=1, digits=2),
-            ))
-        self.add_start(box)
-
     def init_control_buttons(self):
         if ButtonView.is_value(self.left_default):
             self.left_radio.set_active(True)
