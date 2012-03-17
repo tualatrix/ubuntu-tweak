@@ -20,7 +20,7 @@ from gi.repository import GObject, Gtk
 
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.gui.dialogs import InfoDialog
-from ubuntutweak.gui.containers import ListPack, TablePack
+from ubuntutweak.gui.containers import ListPack, GridPack
 from ubuntutweak.factory import WidgetFactory
 from ubuntutweak.settings.gconfsettings import GconfSetting
 from ubuntutweak import system
@@ -146,9 +146,9 @@ class WindowControlButton(Gtk.CheckButton):
         self.handler_unblock(self._handle_id)
 
 
-class Metacity(TweakModule):
-    __title__ = _('Window Manager Settings')
-    __desc__ = _('Manage Metacity Window Manager settings')
+class Window(TweakModule):
+    __title__ = _('Window')
+    __desc__ = _('Manage Window Manager settings')
     __icon__ = 'preferences-system-windows'
     __category__ = 'desktop'
 
@@ -156,7 +156,7 @@ class Metacity(TweakModule):
     right_default = ':minimize,maximize,close'
 
     def __init__(self):
-        TweakModule.__init__(self, 'metacity.ui')
+        TweakModule.__init__(self, 'window.ui')
 
         swindow = Gtk.ScrolledWindow()
         swindow.set_size_request(-1, 54)
@@ -171,67 +171,67 @@ class Metacity(TweakModule):
 
         box = ListPack(_('Window Titlebar Button Layout'),
                        [child for child in self.main_vbox.get_children()])
-        self.add_start(box)
+        self.add_start(box, False, False, 0)
         self.init_control_buttons()
 
-        table = TablePack(_('Window Titlebar Actions'), (
+        box = GridPack(
+                    Gtk.Separator(),
                     WidgetFactory.create('ComboBox',
-                                         label=_('Titlebar mouse wheel action'),
-                                         key='/apps/gwd/mouse_wheel_action',
-                                         enable_reset=True,
-                                         backend='gconf',
-                                         texts=[_('None'), _('Roll up')],
-                                         values=['none', 'shade']
-                                         ),
+                        label=_('Titlebar mouse wheel action:'),
+                        key='/apps/gwd/mouse_wheel_action',
+                        enable_reset=True,
+                        backend='gconf',
+                        texts=[_('None'), _('Roll up')],
+                        values=['none', 'shade']),
                     #TODO the toggle_maximize_horizontally and vertically may not work
                     WidgetFactory.create('ComboBox',
-                                         label=_('Titlebar double-click action'),
-                                         key='/apps/metacity/general/action_double_click_titlebar',
-                                         enable_reset=True,
-                                         backend='gconf',
-                                         texts=[_('None'), _('Maximize'), \
-                                                 _('Maximize Horizontally'), \
-                                                 _('Maximize Vertically'), \
-                                                 _('Minimize'), _('Roll up'), \
-                                                 _('Lower'), _('Menu')],
-                                         values=['none', 'toggle_maximize', \
-                                                 'toggle_maximize_horizontally', \
-                                                 'toggle_maximize_vertically', \
-                                                 'minimize', 'toggle_shade', \
-                                                 'lower', 'menu']),
+                        label=_('Titlebar double-click action:'),
+                        key='/apps/metacity/general/action_double_click_titlebar',
+                        enable_reset=True,
+                        backend='gconf',
+                        texts=[_('None'), _('Maximize'), \
+                                _('Maximize Horizontally'), \
+                                _('Maximize Vertically'), \
+                                _('Minimize'), _('Roll up'), \
+                                _('Lower'), _('Menu')],
+                        values=['none', 'toggle_maximize', \
+                                'toggle_maximize_horizontally', \
+                                'toggle_maximize_vertically', \
+                                'minimize', 'toggle_shade', \
+                                'lower', 'menu']),
                     WidgetFactory.create('ComboBox',
-                                         label=_('Titlebar middle-click action'),
-                                         key='/apps/metacity/general/action_middle_click_titlebar',
-                                         enable_reset=True,
-                                         backend="gconf",
-                                         texts=[_('None'), _('Maximize'), \
-                                                 _('Maximize Horizontally'), \
-                                                 _('Maximize Vertically'), \
-                                                 _('Minimize'), _('Roll up'), \
-                                                 _('Lower'), _('Menu')],
-                                         values=['none', 'toggle_maximize', \
-                                                 'toggle_maximize_horizontally', \
-                                                 'toggle_maximize_vertically', \
-                                                 'minimize', 'toggle_shade', \
-                                                 'lower', 'menu']),
+                        label=_('Titlebar middle-click action:'),
+                        key='/apps/metacity/general/action_middle_click_titlebar',
+                        enable_reset=True,
+                        backend="gconf",
+                        texts=[_('None'), _('Maximize'), \
+                               _('Maximize Horizontally'), \
+                               _('Maximize Vertically'), \
+                               _('Minimize'), _('Roll up'), \
+                               _('Lower'), _('Menu')],
+                               values=['none', 'toggle_maximize', \
+                                       'toggle_maximize_horizontally', \
+                                       'toggle_maximize_vertically', \
+                                       'minimize', 'toggle_shade', \
+                                       'lower', 'menu']),
                     WidgetFactory.create('ComboBox',
-                                         label=_('Titlebar right-click action'),
-                                         key='/apps/metacity/general/action_right_click_titlebar',
-                                         enable_reset=True,
-                                         backend="gconf",
-                                         texts=[_('None'), _('Maximize'), \
-                                                 _('Maximize Horizontally'), \
-                                                 _('Maximize Vertically'), \
-                                                 _('Minimize'), _('Roll up'), \
-                                                 _('Lower'), _('Menu')],
-                                         values=['none', 'toggle_maximize', \
-                                                 'toggle_maximize_horizontally', \
-                                                 'toggle_maximize_vertically', \
-                                                 'minimize', 'toggle_shade', \
-                                                 'lower', 'menu']),
-                ))
+                        label=_('Titlebar right-click action:'),
+                        key='/apps/metacity/general/action_right_click_titlebar',
+                        enable_reset=True,
+                        backend="gconf",
+                        texts=[_('None'), _('Maximize'), \
+                                _('Maximize Horizontally'), \
+                                _('Maximize Vertically'), \
+                                _('Minimize'), _('Roll up'), \
+                                _('Lower'), _('Menu')],
+                        values=['none', 'toggle_maximize', \
+                                'toggle_maximize_horizontally', \
+                                'toggle_maximize_vertically', \
+                                'minimize', 'toggle_shade', \
+                                'lower', 'menu']),
+                )
 
-        self.add_start(table)
+        self.add_start(box)
 
     def init_control_buttons(self):
         if ButtonView.is_value(self.left_default):
