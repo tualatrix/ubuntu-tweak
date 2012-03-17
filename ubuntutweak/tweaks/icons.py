@@ -23,28 +23,28 @@ from ubuntutweak.modules  import TweakModule
 from ubuntutweak.factory import WidgetFactory
 
 computer_icon = {
-    "label": _('Show "Computer" icon on desktop'),
+    "label": _('Show "Computer" icon'),
     "visible_key": "org.gnome.nautilus.desktop.computer-icon-visible",
     "name_key": "org.gnome.nautilus.desktop.computer-icon-name",
     "icon_name": "gnome-fs-client"
 }
 
 home_icon = {
-    "label": _('Show "Home Folder" icon on desktop'),
+    "label": _('Show "Home Folder" icon'),
     "visible_key": "org.gnome.nautilus.desktop.home-icon-visible",
     "name_key": "org.gnome.nautilus.desktop.home-icon-name",
     "icon_name": "gnome-fs-home"
 }
 
 trash_icon = {
-    "label": _('Show "Trash" icon on desktop'),
+    "label": _('Show "Trash" icon'),
     "visible_key": "org.gnome.nautilus.desktop.trash-icon-visible",
     "name_key": "org.gnome.nautilus.desktop.trash-icon-name",
     "icon_name": "gnome-fs-trash-empty"
 }
 
 network_icon = {
-    "label": _('Show "Network Servers" icon on desktop'),
+    "label": _('Show "Network Servers" icon'),
     "visible_key": "org.gnome.nautilus.desktop.network-icon-visible",
     "name_key": "org.gnome.nautilus.desktop.network-icon-name",
     "icon_name": "network-workgroup"
@@ -103,8 +103,8 @@ class DesktopIcon(Gtk.VBox):
             self.entry.set_text('')
 
 
-class Icon(TweakModule):
-    __title__ = _('Desktop Icon Settings')
+class Icons(TweakModule):
+    __title__ = _('Desktop Icons')
     __desc__ = _("Rename and toggle visibilty of desktop icons")
     __icon__ = 'preferences-desktop-wallpaper'
     __category__ = 'desktop'
@@ -113,7 +113,7 @@ class Icon(TweakModule):
         TweakModule.__init__(self)
 
         show_label, show_switch = WidgetFactory.create("Switch",
-                                                label=_("Show desktop icons"),
+                                                label=_("Show desktop icons:"),
                                                 key="org.gnome.desktop.background.show-desktop-icons",
                                                 backend="gsettings")
 
@@ -124,13 +124,13 @@ class Icon(TweakModule):
             setting_list.append(DesktopIcon(item))
 
         volumes_button = WidgetFactory.create("CheckButton",
-                                      label=_("Show mounted volumes on desktop"),
+                                      label=_("Show mounted volumes"),
                                       key="org.gnome.nautilus.desktop.volumes-visible",
                                       backend="gsettings")
         setting_list.append(volumes_button)
 
         home_contents_button = WidgetFactory.create("CheckButton",
-                                      label=_('Show contents of "Home Folder" on desktop'),
+                                      label=_('Show contents of "Home Folder"'),
                                       key="org.gnome.nautilus.preferences.desktop-is-home-dir",
                                       backend="gsettings")
         setting_list.append(home_contents_button)
