@@ -18,6 +18,8 @@ class GconfSetting(object):
         self.key = key
         self.type = type
         self.default = default
+        log.debug("Got the schema_default: %s for key: %s" % \
+                    (self.default, self.key))
 
         if default and self.get_value() is None:
             self.set_value(default)
@@ -79,18 +81,21 @@ class GconfSetting(object):
         self.client.notify_add(self.key, func, data)
 
     def get_schema_value(self):
-        value = self.client.get_default_from_schema(self.key)
-        if value:
-            if value.type == GConf.ValueType.BOOL:
-                return value.get_bool()
-            elif value.type == GConf.ValueType.STRING:
-                return value.get_string()
-            elif value.type == GConf.ValueType.INT:
-                return value.get_int()
-            elif value.type == GConf.ValueType.FLOAT:
-                return value.get_float()
+        if not self.default:
+            value = self.client.get_default_from_schema(self.key)
+            if value:
+                if value.type == GConf.ValueType.BOOL:
+                    return value.get_bool()
+                elif value.type == GConf.ValueType.STRING:
+                    return value.get_string()
+                elif value.type == GConf.ValueType.INT:
+                    return value.get_int()
+                elif value.type == GConf.ValueType.FLOAT:
+                    return value.get_float()
+            else:
+                raise Exception("No schema value for %s" % self.key)
         else:
-            raise Exception("No schema value for %s" % self.key)
+            return self.default
 
 
 class UserGconfSetting(GconfSetting):

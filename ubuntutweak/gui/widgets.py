@@ -11,64 +11,74 @@ from ubuntutweak.settings.compizsettings import CompizSetting
 
 log = logging.getLogger('widgets')
 
+class SettingWidget:
+    def __init__(self, **kwargs):
+        key = kwargs['key']
+        backend = kwargs['backend']
+        default = kwargs['default']
+        type = kwargs['type']
 
-class CheckButton(Gtk.CheckButton):
+        if backend == 'gconf':
+            self._setting = GconfSetting(key=key, default=default, type=type)
+        elif backend == 'gsettings':
+            self._setting = GSetting(key=key, default=default, type=type)
+        elif backend == 'config':
+            self._setting = ConfigSetting(key=key, type=type)
+        elif backend == 'compiz':
+            self._setting = CompizSetting(key=key)
+
+    def get_setting(self):
+        return self._setting
+
+
+class CheckButton(Gtk.CheckButton, SettingWidget):
     def __str__(self):
-        return '<CheckButton with key: %s>' % self._setting.key
+        return '<CheckButton with key: %s>' % self.get_setting().key
 
     def __init__(self, label=None, key=None,
                  default=None, tooltip=None, backend='gconf'):
         GObject.GObject.__init__(self, label=label)
-        if backend == 'gconf':
-            self._setting = GconfSetting(key=key, default=default, type=bool)
-        elif backend == 'gsettings':
-            self._setting = GSetting(key=key, default=default, type=bool)
+        SettingWidget.__init__(self, key=key, default=default, type=bool, backend=backend)
 
-        self.set_active(self._setting.get_value())
+        self.set_active(self.get_setting().get_value())
         if tooltip:
             self.set_tooltip_text(tooltip)
 
-        self._setting.connect_notify(self.on_value_changed)
+        self.get_setting().connect_notify(self.on_value_changed)
         self.connect('toggled', self.on_button_toggled)
 
     def on_value_changed(self, *args):
-        self.set_active(self._setting.get_value())
+        self.set_active(self.get_setting().get_value())
 
     @log_func(log)
     def on_button_toggled(self, widget):
-        self._setting.set_value(self.get_active())
+        self.get_setting().set_value(self.get_active())
 
 
-class Switch(Gtk.Switch):
+class Switch(Gtk.Switch, SettingWidget):
     def __str__(self):
-        return '<Switch with key: %s>' % self._setting.key
+        return '<Switch with key: %s>' % self.get_setting().key
 
     def __init__(self, key=None, default=None,
                  on=True, off=False,
                  tooltip=None, backend='gconf'):
         GObject.GObject.__init__(self)
+        SettingWidget.__init__(self, key=key, default=default, type=bool, backend=backend)
 
         self._on = on
         self._off = off
-
-        if backend == 'gconf':
-            self._setting = GconfSetting(key=key, default=default, type=bool)
-        elif backend == 'gsettings':
-            self._setting = GSetting(key=key, default=default, type=bool)
-        elif backend == 'compiz':
-            self._setting = CompizSetting(key=key)
 
         self._set_on_off()
 
         if tooltip:
             self.set_tooltip_text(tooltip)
 
-        if hasattr(self._setting, 'connect_notify'):
-            self._setting.connect_notify(self.on_value_changed)
+        if hasattr(self.get_setting(), 'connect_notify'):
+            self.get_setting().connect_notify(self.on_value_changed)
         self.connect('notify::active', self.on_switch_activate)
 
     def _set_on_off(self):
-        self.set_active(self._off != self._setting.get_value())
+        self.set_active(self._off != self.get_setting().get_value())
 
     def on_value_changed(self, *args):
         self._set_on_off()
@@ -76,49 +86,40 @@ class Switch(Gtk.Switch):
     @log_func(log)
     def on_switch_activate(self, widget, value):
         if self.get_active():
-            self._setting.set_value(self._on)
+            self.get_setting().set_value(self._on)
         else:
-            self._setting.set_value(self._off)
+            self.get_setting().set_value(self._off)
 
 
-class UserCheckButton(Gtk.CheckButton):
+class UserCheckButton(Gtk.CheckButton, SettingWidget):
     def __str__(self):
-        return '<UserCheckButton with key: %s, with user: %s>' % (self._setting.key, self.user)
+        return '<UserCheckButton with key: %s, with user: %s>' % (self.get_setting().key, self.user)
 
     def __init__(self, user=None, label=None, key=None, default=None,
                  tooltip=None, backend='gconf'):
         GObject.GObject.__init__(self, label=label)
+        SettingWidget.__init__(self, key=key, default=default, type=bool, backend=backend)
 
-        if backend == 'gconf':
-            self._setting = UserGconfSetting(key=key, default=default, type=bool)
-        else:
-            #TODO 'gsettings'
-            pass
         self.user = user
 
-        self.set_active(bool(self._setting.get_value(self.user)))
+        self.set_active(bool(self.get_setting().get_value(self.user)))
         if tooltip:
             self.set_tooltip_text(tooltip)
 
         self.connect('toggled', self.button_toggled)
 
     def button_toggled(self, widget):
-        self._setting.set_value(self.user, self.get_active())
+        self.get_setting().set_value(self.user, self.get_active())
 
 
 class ResetButton(Gtk.Button):
     def __str__(self):
         return '<ResetButton with key: %s>' % self._setting.key
 
-    def __init__(self, key, backend='gconf'):
+    def __init__(self, setting):
         GObject.GObject.__init__(self)
 
-        if backend == 'gconf':
-            self._setting = GconfSetting(key=key, type=bool)
-        elif backend == 'compiz':
-            self._setting = CompizSetting(key=key)
-        else:
-            self._setting = GSetting(key=key, type=bool)
+        self._setting = setting
 
         self.set_property('image', 
                           Gtk.Image.new_from_stock(Gtk.STOCK_REVERT_TO_SAVED, Gtk.IconSize.MENU))
@@ -132,7 +133,7 @@ class ResetButton(Gtk.Button):
 class StringCheckButton(CheckButton):
     '''This class use to moniter the key with StringSetting, nothing else'''
     def __str__(self):
-        return '<StringCheckButton with key: %s>' % self._setting.key
+        return '<StringCheckButton with key: %s>' % self.get_setting().key
 
     def __init__(self, **kwargs):
         CheckButton.__init__(self, **kwargs)
@@ -145,19 +146,15 @@ class StringCheckButton(CheckButton):
         pass
 
 
-class Entry(Gtk.Entry):
+class Entry(Gtk.Entry, SettingWidget):
     def __str__(self):
-        return '<Entry with key: %s>' % self._setting.key
+        return '<Entry with key: %s>' % self.get_setting().key
 
     def __init__(self, key=None, default=None, backend='gconf'):
         GObject.GObject.__init__(self)
+        SettingWidget.__init__(self, key=key, default=default, type=str, backend=backend)
 
-        if backend == 'gconf':
-            self._setting = GconfSetting(key=key, default=default, type=str)
-        else:
-            self._setting = GSetting(key=key, default=default, type=str)
-
-        string = self._setting.get_value()
+        string = self.get_setting().get_value()
         if string:
             self.set_text(str(string))
 
@@ -168,32 +165,27 @@ class Entry(Gtk.Entry):
         self.connect('activate', self.on_edit_finished_cb)
 
     def is_changed(self):
-        return self._setting.get_value() != self.get_text()
+        return self.get_setting().get_value() != self.get_text()
 
     def get_gsetting(self):
-        return self._setting
+        return self.get_setting()
 
     def on_edit_finished_cb(self, widget, *args):
         log.debug('Entry: on_edit_finished_cb: %s' % self.get_text())
-        self._setting.set_value(self.get_text())
+        self.get_setting().set_value(self.get_text())
 
 
-class ComboBox(Gtk.ComboBox):
+class ComboBox(Gtk.ComboBox, SettingWidget):
     def __str__(self):
-        return '<ComboBox with key: %s>' % self._setting.key
+        return '<ComboBox with key: %s>' % self.get_setting().key
 
-    def __init__(self, key=None, texts=None, values=None,
+    def __init__(self, key=None, default=None,
+                 texts=None, values=None,
                  type=str, backend='gconf'):
         GObject.GObject.__init__(self)
-
-        if backend == 'gconf':
-            self._setting = GconfSetting(key=key, type=str)
-        elif backend == 'gsettings':
-            self._setting = GSetting(key=key, type=type)
-        elif backend == 'config':
-            self._setting = ConfigSetting(key=key, type=str)
-        elif backend == 'compiz':
-            self._setting = CompizSetting(key=key)
+        SettingWidget.__init__(self, key=key, default=default, type=str, backend=backend)
+        self._texts = texts
+        self._values = values
 
         if type == int:
             model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_INT)
@@ -205,57 +197,66 @@ class ComboBox(Gtk.ComboBox):
         self.pack_start(cell, True)
         self.add_attribute(cell, 'text', 0)
 
-        current_value = self._setting.get_value()
+        current_value = self.get_setting().get_value()
+        self._set_value(current_value)
 
-        for text, value in zip(texts, values):
+        self.connect("changed", self.value_changed_cb)
+
+    def _set_value(self, current_value):
+        model = self.get_model()
+        model.clear()
+        for text, value in zip(self._texts, self._values):
             iter = model.append((text, value))
             if current_value == value:
                 self.set_active_iter(iter)
 
-        self.connect("changed", self.value_changed_cb)
-
     def value_changed_cb(self, widget):
         iter = widget.get_active_iter()
-        text = self.get_model().get_value(iter, 1)
-        log.debug("ComboBox value changed to %s" % text)
+        if iter:
+            text = self.get_model().get_value(iter, 1)
+            log.debug("ComboBox value changed to %s" % text)
 
-        self._setting.set_value(text)
+            self.get_setting().set_value(text)
+
+    def reset(self):
+        self._set_value(self.get_setting().get_schema_value())
 
 
-class FontButton(Gtk.FontButton):
+class FontButton(Gtk.FontButton, SettingWidget):
     def __str__(self):
-        return '<FontButton with key: %s>' % self._setting.key
+        return '<FontButton with key: %s>' % self.get_setting().key
 
     def __init__(self, key=None, default=None, backend='gconf'):
         GObject.GObject.__init__(self)
+        SettingWidget.__init__(self, key=key, default=default, type=str, backend=backend)
+
         self.set_use_font(True)
         self.set_use_size(True)
-
-        if backend == 'gconf':
-            self._setting = GconfSetting(key=key, default=default, type=str)
-        else:
-            self._setting = GSetting(key=key, default=default, type=str)
 
         self.on_value_changed()
 
         self.connect('font-set', self.on_font_set)
-        self._setting.connect_notify(self.on_value_changed)
+        self.get_setting().connect_notify(self.on_value_changed)
 
-    def on_font_set(self, widget):
-        self._setting.set_value(self.get_font_name())
+    def on_font_set(self, widget=None):
+        self.get_setting().set_value(self.get_font_name())
 
     def on_value_changed(self, *args):
-        string = self._setting.get_value()
+        string = self.get_setting().get_value()
 
         if string:
             self.set_font_name(string)
 
+    def reset(self):
+        self.set_font_name(self.get_setting().get_schema_value())
+        self.get_setting().set_value(self.get_font_name())
 
-class Scale(Gtk.HScale):
+
+class Scale(Gtk.HScale, SettingWidget):
     def __str__(self):
-        return '<Scale with key: %s>' % self._setting.key
+        return '<Scale with key: %s>' % self.get_setting().key
 
-    def __init__(self, key=None, min=None, max=None, type=int, digits=0,
+    def __init__(self, key=None, default=None, min=None, max=None, type=int, digits=0,
                  reversed=False, backend='gconf'):
         GObject.GObject.__init__(self)
 
@@ -264,12 +265,7 @@ class Scale(Gtk.HScale):
         else:
             type = int
 
-        if backend == 'gconf':
-            self._setting = GconfSetting(key=key, type=type)
-        elif backend == 'gsettings':
-            self._setting = GSetting(key=key, type=type)
-        elif backend == 'compiz':
-            self._setting = CompizSetting(key=key)
+        SettingWidget.__init__(self, key=key, default=default, type=type, backend=backend)
 
         if reversed:
             self._reversed = True
@@ -280,35 +276,32 @@ class Scale(Gtk.HScale):
         self.set_digits(digits)
         self.set_value_pos(Gtk.PositionType.RIGHT)
         if self._reversed:
-            self.set_value(max - self._setting.get_value())
+            self.set_value(max - self.get_setting().get_value())
         else:
-            self.set_value(self._setting.get_value())
+            self.set_value(self.get_setting().get_value())
 
         self.connect("value-changed", self.on_value_changed)
 
     def on_value_changed(self, widget, data=None):
         if self._reversed:
-            self._setting.set_value(100 - widget.get_value())
+            self.get_setting().set_value(100 - widget.get_value())
         else:
-            self._setting.set_value(widget.get_value())
+            self.get_setting().set_value(widget.get_value())
 
 
 class SpinButton(Gtk.SpinButton):
     def __str__(self):
-        return '<SpinButton with key: %s>' % self._setting.key
+        return '<SpinButton with key: %s>' % self.get_setting().key
 
-    def __init__(self, key, min=0, max=0, step=0, backend='gconf'):
-        if backend == 'gconf':
-            self._setting = GconfSetting(key=key, type=int)
-        else:
-            self._setting = GSetting(key=key, type=int)
+    def __init__(self, key, default=None, min=0, max=0, step=0, backend='gconf'):
+        SettingWidget.__init__(self, key=key, default=default, type=int, backend=backend)
 
-        adjust = Gtk.Adjustment(self._setting.get_value(), min, max, step)
+        adjust = Gtk.Adjustment(self.get_setting().get_value(), min, max, step)
         GObject.GObject.__init__(self, adjustment=adjust)
         self.connect('value-changed', self.on_value_changed)
 
     def on_value_changed(self, widget):
-        self._setting.set_value(widget.get_value())
+        self.get_setting().set_value(widget.get_value())
 
 
 """Popup and KeyGrabber come from ccsm"""
@@ -436,38 +429,37 @@ class KeyGrabber(Gtk.Button):
         Gtk.Button.set_label(self, label)
 
 
-class ColorButton(Gtk.ColorButton):
+class ColorButton(Gtk.ColorButton, SettingWidget):
     def __str__(self):
-        return '<ColorButton with key: %s>' % self._setting.key
+        return '<ColorButton with key: %s>' % self.get_setting().key
 
     def __init__(self, key=None, default=None, backend='gconf'):
         GObject.GObject.__init__(self)
         self.set_use_alpha(True)
+        SettingWidget.__init__(self, key=key, default=default, type=str, backend=backend)
 
-        if backend == 'gconf':
-            self._setting = GconfSetting(key=key, type=str)
-        elif backend == 'gsettings':
-            self._setting = GSetting(key=key, type=type)
-        elif backend == 'config':
-            self._setting = ConfigSetting(key=key, type=str)
-        elif backend == 'compiz':
-            self._setting = CompizSetting(key=key)
-
-        red, green, blue = self._setting.get_value()[:-1]
-        color = Gdk.RGBA()
-        color.red, color.green, color.blue = red / 65535.0, green / 65535.0, blue / 65535.0
-        color.alpha = self._setting.get_value()[-1] / 65535.0
-        self.set_rgba(color)
+        self._set_gdk_rgba()
 
         self.connect('color-set', self.on_color_set)
 
-    def on_color_set(self, widget):
+    def _set_gdk_rgba(self, new_value=None):
+        color_value = new_value or self.get_setting().get_value()
+        red, green, blue = color_value[:-1]
+        color = Gdk.RGBA()
+        color.red, color.green, color.blue = red / 65535.0, green / 65535.0, blue / 65535.0
+        color.alpha = color_value[-1] / 65535.0
+        self.set_rgba(color)
+
+    def on_color_set(self, widget=None):
         color = widget.get_rgba()
-        self._setting.set_value([color.red * 65535,
+        self.get_setting().set_value([color.red * 65535,
                                  color.green * 65535,
                                  color.blue * 65535,
                                  color.alpha * 65535])
 
     def set_value(self, value):
-        self._setting.set_value(value)
+        self.get_setting().set_value(value)
         self.set_rgba(Gdk.RGBA(0,0,0,0))
+
+    def reset(self):
+        self._set_gdk_rgba(self.get_setting().get_schema_value())

@@ -12,9 +12,10 @@ class Schema(object):
     cached_schema_tree = {}
 
     @classmethod
-    def load_schema(cls, schema_id):
-        if schema_id in cls.cached_schema:
-            return cls.cached_schema[schema_id]
+    def load_schema(cls, schema_id, key):
+        if schema_id in cls.cached_schema and \
+                key in cls.cached_schema[schema_id]:
+            return cls.cached_schema[schema_id][key]
 
         schema_defaults = {}
 
@@ -31,17 +32,15 @@ class Schema(object):
                 if schema_node.attrib.get('id') == schema_id:
                     for key_node in schema_node.findall('key'):
                         if key_node.findall('default'):
-                            log.debug("Find the default value of %s/%s: %s" % \
-                                    (schema_id,
-                                     key_node.attrib['name'],
-                                     key_node.find('default').text))
-
                             schema_defaults[key_node.attrib['name']] = cls.parse_value(key_node)
                 else:
                     continue
 
                 cls.cached_schema[schema_id] = schema_defaults
-        return schema_defaults
+        if key in schema_defaults:
+            return schema_defaults[key]
+        else:
+            return None
 
     @classmethod
     def parse_value(cls, key_node):
@@ -57,8 +56,14 @@ class Schema(object):
                     return True
                 else:
                     return False
+            elif type == 'i':
+                return int(value)
+            elif type == 'd':
+                return float(value)
+            elif type == 'as':
+                return eval(value)
 
-        return value
+        return eval(value)
 
 
 class GSetting(object):
@@ -69,8 +74,9 @@ class GSetting(object):
 
         self.type = type
         self.default = default
-        self.schema_defaults = Schema.load_schema(self.schema_id)
-        log.debug("Got the schema_defaults: %s" % self.schema_defaults)
+        self.schema_default = self.default or Schema.load_schema(self.schema_id, self.key)
+        log.debug("Got the schema_default: %s for key: %s.%s" % \
+                  (self.schema_default, self.schema_id, self.key))
         self.settings = Gio.Settings(self.schema_id)
 
         if self.key not in self.settings.list_keys():
@@ -117,7 +123,7 @@ class GSetting(object):
         self.settings.reset(self.key)
 
     def get_schema_value(self):
-        if self.key in self.schema_defaults:
-            return self.schema_defaults[self.key]
+        if self.schema_default is not None:
+            return self.schema_default
         else:
             raise NotImplemented

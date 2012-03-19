@@ -30,6 +30,10 @@ log = logging.getLogger('factory')
 def on_reset_button_clicked(widget, reset_target):
     log.debug("Reset value to %s" % widget.get_default_value())
 
+    if hasattr(reset_target, 'reset'):
+        log.debug("Reset value for %s" % reset_target)
+        reset_target.reset()
+
     if issubclass(reset_target.__class__, Gtk.CheckButton):
         reset_target.set_active(widget.get_default_value())
     elif issubclass(reset_target.__class__, Gtk.SpinButton):
@@ -72,10 +76,10 @@ class WidgetFactory:
 
         if enable_reset:
             try:
-                reset_button = ResetButton(kwargs['key'], kwargs['backend'])
+                reset_button = ResetButton(new_widget.get_setting())
                 reset_button.connect('clicked', on_reset_button_clicked, new_widget)
             except Exception, e:
-                log.error(e)
+                log.error(run_traceback('error', text_only=True))
                 reset_button = None
             finally:
                 return label, new_widget, reset_button
@@ -98,7 +102,7 @@ class WidgetFactory:
 
         if enable_reset:
             try:
-                reset_button = ResetButton(kwargs['key'], kwargs['backend'])
+                reset_button = ResetButton(new_widget.get_setting())
                 reset_button.connect('clicked', on_reset_button_clicked, new_widget)
 
                 hbox = Gtk.HBox()
@@ -110,6 +114,6 @@ class WidgetFactory:
 
                 return hbox
             except Exception, e:
-                log.error(e)
+                log.error(run_traceback('error', text_only=True))
 
         return new_widget
