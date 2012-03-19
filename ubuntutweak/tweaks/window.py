@@ -158,23 +158,26 @@ class Window(TweakModule):
     def __init__(self):
         TweakModule.__init__(self, 'window.ui')
 
-        swindow = Gtk.ScrolledWindow()
-        swindow.set_size_request(-1, 54)
-        swindow.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
-        self.buttonview = ButtonView()
-        swindow.add(self.buttonview)
-        self.vbox2.pack_start(swindow, False, False, 0)
+        #TODO may clean up
+#        swindow = Gtk.ScrolledWindow()
+#        swindow.set_size_request(-1, 54)
+#        swindow.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
+#        self.buttonview = ButtonView()
+#        swindow.add(self.buttonview)
+#        self.vbox2.pack_start(swindow, False, False, 0)
 
-        for value, label in ButtonView.get_control_items():
-            button = WindowControlButton(label, value, self.buttonview)
-            self.control_hbox.pack_start(button, False, False, 0)
+#        for value, label in ButtonView.get_control_items():
+#            button = WindowControlButton(label, value, self.buttonview)
+#            self.control_hbox.pack_start(button, False, False, 0)
 
-        box = ListPack(_('Window Titlebar Button Layout'),
-                       [child for child in self.main_vbox.get_children()])
-        self.add_start(box, False, False, 0)
-        self.init_control_buttons()
+#        box = ListPack(_('Window Titlebar Button Layout'),
+#                       [child for child in self.main_vbox.get_children()])
+#        self.add_start(box, False, False, 0)
+#        self.init_control_buttons()
 
         box = GridPack(
+                    (Gtk.Label(_('Window control button position')),
+                     self.place_hbox),
                     Gtk.Separator(),
                     WidgetFactory.create('ComboBox',
                         label=_('Titlebar mouse wheel action:'),
@@ -183,20 +186,15 @@ class Window(TweakModule):
                         backend='gconf',
                         texts=[_('None'), _('Roll up')],
                         values=['none', 'shade']),
-                    #TODO the toggle_maximize_horizontally and vertically may not work
                     WidgetFactory.create('ComboBox',
                         label=_('Titlebar double-click action:'),
                         key='/apps/metacity/general/action_double_click_titlebar',
                         enable_reset=True,
                         backend='gconf',
                         texts=[_('None'), _('Maximize'), \
-                                _('Maximize Horizontally'), \
-                                _('Maximize Vertically'), \
                                 _('Minimize'), _('Roll up'), \
                                 _('Lower'), _('Menu')],
                         values=['none', 'toggle_maximize', \
-                                'toggle_maximize_horizontally', \
-                                'toggle_maximize_vertically', \
                                 'minimize', 'toggle_shade', \
                                 'lower', 'menu']),
                     WidgetFactory.create('ComboBox',
