@@ -44,8 +44,12 @@ class Switch(Gtk.Switch):
         return '<Switch with key: %s>' % self._setting.key
 
     def __init__(self, key=None, default=None,
+                 on=True, off=False,
                  tooltip=None, backend='gconf'):
         GObject.GObject.__init__(self)
+
+        self._on = on
+        self._off = off
 
         if backend == 'gconf':
             self._setting = GconfSetting(key=key, default=default, type=bool)
@@ -54,7 +58,7 @@ class Switch(Gtk.Switch):
         elif backend == 'compiz':
             self._setting = CompizSetting(key=key)
 
-        self.set_active(self._setting.get_value())
+        self._set_on_off()
 
         if tooltip:
             self.set_tooltip_text(tooltip)
@@ -63,12 +67,18 @@ class Switch(Gtk.Switch):
             self._setting.connect_notify(self.on_value_changed)
         self.connect('notify::active', self.on_switch_activate)
 
+    def _set_on_off(self):
+        self.set_active(self._off != self._setting.get_value())
+
     def on_value_changed(self, *args):
-        self.set_active(self._setting.get_value())
+        self._set_on_off()
 
     @log_func(log)
     def on_switch_activate(self, widget, value):
-        self._setting.set_value(self.get_active())
+        if self.get_active():
+            self._setting.set_value(self._on)
+        else:
+            self._setting.set_value(self._off)
 
 
 class UserCheckButton(Gtk.CheckButton):

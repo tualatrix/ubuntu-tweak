@@ -47,6 +47,12 @@ class Unity(TweakModule):
                 settings_box = []
                 grid_pack = GridPack(
                             WidgetFactory.create("Switch",
+                                label=_('HUD:'),
+                                key="unityshell.show_hud",
+                                on='<Alt>',
+                                off='Disabled',
+                                backend="compiz"),
+                            WidgetFactory.create("Switch",
                                 label=_('Shortcut hits overlay:'),
                                 key="unityshell.shortcut_overlay",
                                 backend="compiz"),
