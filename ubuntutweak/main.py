@@ -157,9 +157,9 @@ class FeaturePage(Gtk.ScrolledWindow):
 
     def __init__(self, feature_name):
         GObject.GObject.__init__(self,
-                                 shadow_type=Gtk.ShadowType.NONE,
                                  hscrollbar_policy=Gtk.PolicyType.NEVER,
                                  vscrollbar_policy=Gtk.PolicyType.AUTOMATIC)
+        self.set_property('shadow-type', Gtk.ShadowType.NONE)
         self.set_border_width(12)
 
         self._feature = feature_name
@@ -168,7 +168,8 @@ class FeaturePage(Gtk.ScrolledWindow):
         self._boxes = []
 
         self._box = Gtk.VBox(spacing=6)
-        viewport = Gtk.Viewport(shadow_type=Gtk.ShadowType.NONE)
+        viewport = Gtk.Viewport()
+        viewport.set_property('shadow-type', Gtk.ShadowType.NONE)
         viewport.add(self._box)
         self.add(viewport)
 
