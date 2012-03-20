@@ -289,7 +289,7 @@ class Scale(Gtk.HScale, SettingWidget):
             self.get_setting().set_value(widget.get_value())
 
 
-class SpinButton(Gtk.SpinButton):
+class SpinButton(Gtk.SpinButton, SettingWidget):
     def __str__(self):
         return '<SpinButton with key: %s>' % self.get_setting().key
 
