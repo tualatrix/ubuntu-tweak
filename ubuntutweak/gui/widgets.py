@@ -27,6 +27,11 @@ class SettingWidget:
         elif backend == 'compiz':
             self._setting = CompizSetting(key=key)
 
+        if hasattr(self._setting, 'connect_notify') and \
+                hasattr(self, 'on_value_changed'):
+            log.debug("Connect the setting notify to on_value_changed: %s" % key)
+            self.get_setting().connect_notify(self.on_value_changed)
+
     def get_setting(self):
         return self._setting
 
@@ -41,12 +46,13 @@ class CheckButton(Gtk.CheckButton, SettingWidget):
         SettingWidget.__init__(self, key=key, default=default, type=bool, backend=backend)
 
         self.set_active(self.get_setting().get_value())
+
         if tooltip:
             self.set_tooltip_text(tooltip)
 
-        self.get_setting().connect_notify(self.on_value_changed)
         self.connect('toggled', self.on_button_toggled)
 
+    @log_func(log)
     def on_value_changed(self, *args):
         self.set_active(self.get_setting().get_value())
 
@@ -73,15 +79,16 @@ class Switch(Gtk.Switch, SettingWidget):
         if tooltip:
             self.set_tooltip_text(tooltip)
 
-        if hasattr(self.get_setting(), 'connect_notify'):
-            self.get_setting().connect_notify(self.on_value_changed)
         self.connect('notify::active', self.on_switch_activate)
 
     def _set_on_off(self):
         self.set_active(self._off != self.get_setting().get_value())
 
+    @log_func(log)
     def on_value_changed(self, *args):
+        self.handler_block_by_func(self.on_switch_activate)
         self._set_on_off()
+        self.handler_unblock_by_func(self.on_switch_activate)
 
     @log_func(log)
     def on_switch_activate(self, widget, value):
@@ -167,6 +174,12 @@ class Entry(Gtk.Entry, SettingWidget):
     def is_changed(self):
         return self.get_setting().get_value() != self.get_text()
 
+    @log_func(log)
+    def on_value_changed(self, *args):
+        self.handler_block_by_func(self.on_edit_finished_cb)
+        self.set_text(self.get_setting().get_value())
+        self.handler_unblock_by_func(self.on_edit_finished_cb)
+
     def get_gsetting(self):
         return self.get_setting()
 
@@ -184,8 +197,6 @@ class ComboBox(Gtk.ComboBox, SettingWidget):
                  type=str, backend='gconf'):
         GObject.GObject.__init__(self)
         SettingWidget.__init__(self, key=key, default=default, type=str, backend=backend)
-        self._texts = texts
-        self._values = values
 
         if type == int:
             model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_INT)
@@ -197,18 +208,30 @@ class ComboBox(Gtk.ComboBox, SettingWidget):
         self.pack_start(cell, True)
         self.add_attribute(cell, 'text', 0)
 
-        current_value = self.get_setting().get_value()
-        self._set_value(current_value)
+        self.update_texts_values_pair(texts, values)
 
         self.connect("changed", self.value_changed_cb)
+
+    def update_texts_values_pair(self, texts, values):
+        self._texts = texts
+        self._values = values
+
+        self._set_value(self.get_setting().get_value())
 
     def _set_value(self, current_value):
         model = self.get_model()
         model.clear()
+
         for text, value in zip(self._texts, self._values):
             iter = model.append((text, value))
             if current_value == value:
                 self.set_active_iter(iter)
+
+    @log_func(log)
+    def on_value_changed(self, *args):
+        self.handler_block_by_func(self.value_changed_cb)
+        self._set_value(self.get_setting().get_value())
+        self.handler_unblock_by_func(self.value_changed_cb)
 
     def value_changed_cb(self, widget):
         iter = widget.get_active_iter()
@@ -236,11 +259,11 @@ class FontButton(Gtk.FontButton, SettingWidget):
         self.on_value_changed()
 
         self.connect('font-set', self.on_font_set)
-        self.get_setting().connect_notify(self.on_value_changed)
 
     def on_font_set(self, widget=None):
         self.get_setting().set_value(self.get_font_name())
 
+    @log_func(log)
     def on_value_changed(self, *args):
         string = self.get_setting().get_value()
 
@@ -275,14 +298,21 @@ class Scale(Gtk.HScale, SettingWidget):
         self.set_range(min, max)
         self.set_digits(digits)
         self.set_value_pos(Gtk.PositionType.RIGHT)
+
+        self.on_value_changed()
+
+        self.connect("value-changed", self.on_change_value)
+
+    @log_func(log)
+    def on_value_changed(self, *args):
+        self.handler_block_by_func(self.on_change_value)
         if self._reversed:
             self.set_value(max - self.get_setting().get_value())
         else:
             self.set_value(self.get_setting().get_value())
+        self.handler_unblock_by_func(self.on_change_value)
 
-        self.connect("value-changed", self.on_value_changed)
-
-    def on_value_changed(self, widget, data=None):
+    def on_change_value(self, widget):
         if self._reversed:
             self.get_setting().set_value(100 - widget.get_value())
         else:
@@ -298,10 +328,16 @@ class SpinButton(Gtk.SpinButton, SettingWidget):
 
         adjust = Gtk.Adjustment(self.get_setting().get_value(), min, max, step)
         GObject.GObject.__init__(self, adjustment=adjust)
-        self.connect('value-changed', self.on_value_changed)
+        self.connect('value-changed', self.on_change_value)
 
+    def on_change_value(self, *args):
+        self.set_value(self, self.get_setting().get_value())
+
+    @log_func(log)
     def on_value_changed(self, widget):
+        self.handler_block_by_func(self.on_change_value)
         self.get_setting().set_value(widget.get_value())
+        self.handler_unblock_by_func(self.on_change_value)
 
 
 """Popup and KeyGrabber come from ccsm"""
@@ -460,6 +496,12 @@ class ColorButton(Gtk.ColorButton, SettingWidget):
     def set_value(self, value):
         self.get_setting().set_value(value)
         self.set_rgba(Gdk.RGBA(0,0,0,0))
+
+    @log_func(log)
+    def on_value_changed(self, *args):
+        self.handler_block_by_func(self.on_color_set)
+        self._set_gdk_rgba()
+        self.handler_unblock_by_func(self.on_color_set)
 
     def reset(self):
         self._set_gdk_rgba(self.get_setting().get_schema_value())
