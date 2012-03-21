@@ -175,7 +175,8 @@ class FeaturePage(Gtk.ScrolledWindow):
         self._boxes = []
 
         self._box = Gtk.VBox(spacing=6)
-        viewport = Gtk.Viewport(shadow_type=Gtk.ShadowType.NONE)
+        viewport = Gtk.Viewport()
+        viewport.set_property('shadow-type', Gtk.ShadowType.NONE)
         viewport.add(self._box)
         self.add(viewport)
 
