@@ -50,12 +50,13 @@ class Theme(TweakModule):
         theme_choose_button = Gtk.FileChooserButton()
         theme_choose_button.connect('file-set', self.on_file_set)
 
-        icon_label, self.icon_theme = WidgetFactory.create('ComboBox',
+        icon_label, self.icon_theme, icon_reset_button = WidgetFactory.create('ComboBox',
                             label=_('Icon theme:'),
                             key='org.gnome.desktop.interface.icon-theme',
                             backend='gsettings',
                             texts=valid_icon_themes,
-                            values=valid_icon_themes)
+                            values=valid_icon_themes,
+                            enable_reset=True)
 
         theme_box = GridPack(
                         WidgetFactory.create('ComboBox',
@@ -63,20 +64,23 @@ class Theme(TweakModule):
                             key='org.gnome.desktop.interface.gtk-theme',
                             backend='gsettings',
                             texts=valid_themes,
-                            values=valid_themes),
-                        (icon_label, self.icon_theme),
+                            values=valid_themes,
+                            enable_reset=True),
+                        (icon_label, self.icon_theme, icon_reset_button),
                         WidgetFactory.create('ComboBox',
                             label=_('Cursor theme:'),
                             key='org.gnome.desktop.interface.cursor-theme',
                             backend='gsettings',
                             texts=valid_cursor_themes,
-                            values=valid_cursor_themes),
+                            values=valid_cursor_themes,
+                            enable_reset=True),
                         WidgetFactory.create('ComboBox',
                             label=_('Window theme:'),
                             key='/apps/metacity/general/theme',
                             backend='gconf',
                             texts=valid_window_themes,
-                            values=valid_window_themes),
+                            values=valid_window_themes,
+                            enable_reset=True),
                         Gtk.Separator(),
                         (Gtk.Label(_('Install theme:')), theme_choose_button),
                         )

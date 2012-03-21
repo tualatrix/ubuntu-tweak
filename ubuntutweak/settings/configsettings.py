@@ -3,24 +3,50 @@ import ConfigParser
 
 log = logging.getLogger('ConfigSetting')
 
-class ConfigSetting(object):
-    '''Key: /etc/lightdm/lightdm.conf::UserManager.load-users
-    '''
-
-    def __init__(self, key=None, default=None, type=None):
+class RawConfigSetting(object):
+    '''Just pass the file path'''
+    def __init__(self, path):
         self._type = type
 
-        self._default = default
-        self._key = key
-        self._path = key.split('::')[0]
-        self._section = key.split('::')[1].split('.')[0]
-        self._option = key.split('::')[1].split('.')[1]
+        self._path = path
 
         self.init_configparser()
 
     def init_configparser(self):
         self._configparser = ConfigParser.ConfigParser()
         self._configparser.read(self._path)
+
+    def sections(self):
+        return self._configparser.sections()
+
+    def options(self, section):
+        return self._configparser.options(section)
+
+    def get_value(self, section, option):
+        value = self._configparser.get(section, option)
+        #TODO deal with list
+        if value == 'true':
+            return True
+        elif value == 'false':
+            return False
+        else:
+            return eval(value)
+
+
+class ConfigSetting(RawConfigSetting):
+    '''Key: /etc/lightdm/lightdm.conf::UserManager.load-users
+    '''
+
+    def __init__(self, key=None, default=None, type=None):
+        self._path = key.split('::')[0]
+        RawConfigSetting.__init__(self, self._path)
+
+        self._type = type
+
+        self._default = default
+        self._key = key
+        self._section = key.split('::')[1].split('.')[0]
+        self._option = key.split('::')[1].split('.')[1]
 
     def get_value(self):
         try:

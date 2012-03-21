@@ -1,3 +1,4 @@
+import glob
 import logging
 
 from gi.repository import GConf
@@ -13,8 +14,12 @@ class GconfSetting(object):
     """
 
     client = GConf.Client.get_default()
+    schema_override = {}
 
     def __init__(self, key=None, default=None, type=None):
+        if not self.schema_override:
+            self.load_override()
+
         self.key = key
         self.type = type
         self.default = default
@@ -26,6 +31,22 @@ class GconfSetting(object):
 
         if self.get_dir():
             self.client.add_dir(self.get_dir(), GConf.ClientPreloadType.PRELOAD_NONE)
+
+    def load_override(self):
+        for override in glob.glob('/usr/share/gconf/defaults/*'):
+            for line in open(override):
+                splits = line.split()
+                key, value = splits[0], ' '.join(splits[1:])
+
+                if value == 'true':
+                    value = True
+                elif value == 'false':
+                    value = False
+                else:
+                    if value.startswith('"') and value.endswith('"'):
+                        value = eval(value)
+
+                self.schema_override[key] = value
 
     def get_dir(self):
         if self.key:
@@ -82,6 +103,9 @@ class GconfSetting(object):
 
     def get_schema_value(self):
         if not self.default:
+            if self.key in self.schema_override:
+                return self.schema_override[self.key]
+
             value = self.client.get_default_from_schema(self.key)
             if value:
                 if value.type == GConf.ValueType.BOOL:

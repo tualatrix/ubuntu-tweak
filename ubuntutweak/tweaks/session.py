@@ -22,7 +22,7 @@ from gi.repository import Gtk, Gio
 
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.factory import WidgetFactory
-from ubuntutweak.gui.containers import ListPack, TablePack
+from ubuntutweak.gui.containers import ListPack, TablePack, GridPack
 from ubuntutweak.gui.dialogs import ErrorDialog
 
 class Session(TweakModule):
@@ -42,17 +42,12 @@ class Session(TweakModule):
                       backend="gsettings",
                       key="com.canonical.indicator.session.suppress-logout-menuitem"),
                   WidgetFactory.create("CheckButton",
-                      label=_("Remove the restart item from the session menu"),
-                      enable_reset=True,
-                      backend="gsettings",
-                      key="com.canonical.indicator.session.suppress-restart-menuitem"),
-                  WidgetFactory.create("CheckButton",
                       label=_("Remove the shutdown item from the session menu"),
                       enable_reset=True,
                       backend="gsettings",
                       key="com.canonical.indicator.session.suppress-shutdown-menuitem"),
                   WidgetFactory.create("CheckButton",
-                      label=_("Suppress the dialog to confirm logout, restart and shutdown action"),
+                      label=_("Suppress the dialog to confirm logout and shutdown action"),
                       enable_reset=True,
                       backend="gsettings",
                       key="com.canonical.indicator.session.suppress-logout-restart-shutdown"),

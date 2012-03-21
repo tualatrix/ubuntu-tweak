@@ -5,14 +5,33 @@ import logging
 from lxml import etree
 from gi.repository import Gio
 
+from ubuntutweak.settings.configsettings import RawConfigSetting
+
 log = logging.getLogger('GSetting')
 
 class Schema(object):
     cached_schema = {}
     cached_schema_tree = {}
+    cached_override = {}
+
+    @classmethod
+    def load_override(cls):
+        for override in glob.glob('/usr/share/glib-2.0/schemas/*.gschema.override'):
+            cs = RawConfigSetting(override)
+            for section in cs.sections():
+                cls.cached_override[section] = {}
+                for option in cs.options(section):
+                    cls.cached_override[section][option] = cs.get_value(section, option)
 
     @classmethod
     def load_schema(cls, schema_id, key):
+        if not cls.cached_override:
+            cls.load_override()
+
+        if schema_id in cls.cached_override and \
+                key in cls.cached_override[schema_id]:
+            return cls.cached_override[schema_id][key]
+
         if schema_id in cls.cached_schema and \
                 key in cls.cached_schema[schema_id]:
             return cls.cached_schema[schema_id][key]
@@ -21,6 +40,7 @@ class Schema(object):
 
         for schema_path in glob.glob('/usr/share/glib-2.0/schemas/*'):
             if not schema_path.endswith('.gschema.xml') and not schema_path.endswith('.enums.xml'):
+                #TODO deal with enums
                 continue
 
             if schema_path in cls.cached_schema_tree:
