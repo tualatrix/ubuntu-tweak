@@ -299,9 +299,8 @@ class Scale(Gtk.HScale, SettingWidget):
         self.set_digits(digits)
         self.set_value_pos(Gtk.PositionType.RIGHT)
 
-        self.on_value_changed()
-
         self.connect("value-changed", self.on_change_value)
+        self.on_value_changed()
 
     @log_func(log)
     def on_value_changed(self, *args):
