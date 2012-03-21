@@ -17,12 +17,20 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import os
+import logging
 from gi.repository import Gtk, Gio
 
 from ubuntutweak.utils import walk_directories
 from ubuntutweak.gui.containers import ListPack, GridPack
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.factory import WidgetFactory
+from ubuntutweak.utils.tar import ThemeFile
+from ubuntutweak.settings.configsettings import ConfigSetting
+from ubuntutweak.gui.dialogs import QuestionDialog, ErrorDialog
+
+
+log = logging.getLogger('theme')
+
 
 class Theme(TweakModule):
     __title__ = _('Theme')
@@ -39,6 +47,16 @@ class Theme(TweakModule):
         valid_cursor_themes = self._get_valid_cursor_themes()
         valid_window_themes = self._get_valid_window_themes()
 
+        theme_choose_button = Gtk.FileChooserButton()
+        theme_choose_button.connect('file-set', self.on_file_set)
+
+        icon_label, self.icon_theme = WidgetFactory.create('ComboBox',
+                            label=_('Icon theme:'),
+                            key='org.gnome.desktop.interface.icon-theme',
+                            backend='gsettings',
+                            texts=valid_icon_themes,
+                            values=valid_icon_themes)
+
         theme_box = GridPack(
                         WidgetFactory.create('ComboBox',
                             label=_('Gtk theme:'),
@@ -46,12 +64,7 @@ class Theme(TweakModule):
                             backend='gsettings',
                             texts=valid_themes,
                             values=valid_themes),
-                        WidgetFactory.create('ComboBox',
-                            label=_('Icon theme:'),
-                            key='org.gnome.desktop.interface.icon-theme',
-                            backend='gsettings',
-                            texts=valid_icon_themes,
-                            values=valid_icon_themes),
+                        (icon_label, self.icon_theme),
                         WidgetFactory.create('ComboBox',
                             label=_('Cursor theme:'),
                             key='org.gnome.desktop.interface.cursor-theme',
@@ -63,9 +76,29 @@ class Theme(TweakModule):
                             key='/apps/metacity/general/theme',
                             backend='gconf',
                             texts=valid_window_themes,
-                            values=valid_window_themes))
+                            values=valid_window_themes),
+                        Gtk.Separator(),
+                        (Gtk.Label(_('Install theme:')), theme_choose_button),
+                        )
 
         self.add_start(theme_box, False, False, 0)
+
+    def on_file_set(self, widget):
+        try:
+            tf = ThemeFile(widget.get_filename())
+        except Exception, e:
+            log.error(e)
+            ErrorDialog(message=_('Theme file is invalid')).launch()
+        else:
+            if tf.install():
+                log.debug("Theme installed! Now update the combox")
+                valid_icon_themes = self._get_valid_icon_themes()
+                self.icon_theme.update_texts_values_pair(valid_icon_themes, valid_icon_themes)
+                dialog = QuestionDialog(title=_('"%s" installed successfully' % tf.theme_name),
+                               message=_('Would you like to set your icon theme to %s immediatelly?') % tf.theme_name)
+                response = dialog.launch()
+                if response == Gtk.ResponseType.YES:
+                    self.icon_theme.get_setting().set_value(tf.install_name)
 
     def _get_valid_icon_themes(self):
         # This function is taken from gnome-tweak-tool

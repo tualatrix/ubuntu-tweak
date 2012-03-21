@@ -134,7 +134,7 @@ class GridPack(Gtk.Grid):
                         not hasattr(widget, 'get_default_value') and \
                         not issubclass(widget.__class__, Gtk.Switch):
                             width = widget.get_allocation().width
-                            log.debug("Do width calculate for child: %s, %d" % (widget, width))
+#                            log.debug("Do width calculate for child: %s, %d" % (widget, width))
                             size_list.append(width)
 
         if size_list:
@@ -148,7 +148,7 @@ class GridPack(Gtk.Grid):
                             widget.get_property('hexpand') and \
                             not hasattr(widget, 'get_default_value') and \
                             not issubclass(widget.__class__, Gtk.Switch):
-                                log.debug("Set new width for child: %s with: %d" % (widget, max_size))
+#                                log.debug("Set new width for child: %s with: %d" % (widget, max_size))
                                 widget.set_size_request(max_size, -1)
 
     def _insert_items(self):
