@@ -16,11 +16,11 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-from gi.repository import GObject, Gio
+from gi.repository import GObject, Gtk
 
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.factory import WidgetFactory
-from ubuntutweak.gui.containers import ListPack, TablePack
+from ubuntutweak.gui.containers import GridPack
 
 
 class Nautilus(TweakModule):
@@ -32,56 +32,55 @@ class Nautilus(TweakModule):
     def __init__(self):
         TweakModule.__init__(self)
 
-        box = ListPack(_("File Browser"), (
-                  WidgetFactory.create("CheckButton",
-                                       label=_('Show advanced permissions in the Nautilus "File Properties" window'),
+        show_permission_button, show_permission_reset = WidgetFactory.create("CheckButton",
+                                       label=_('Show advanced permissions in "File Properties"'),
                                        enable_reset=True,
                                        key="org.gnome.nautilus.preferences.show-advanced-permissions",
-                                       backend="gsettings"),
-                  WidgetFactory.create("CheckButton",
-                                       label=_('Always use the location entry, instead of the pathbar'),
-                                       enable_reset=True,
-                                       key="org.gnome.nautilus.preferences.always-use-location-entry",
-                                       backend="gsettings")))
-        self.add_start(box, False, False, 0)
+                                       backend="gsettings")
 
-        box = TablePack(_('Thumbnail Settings'), (
-                    WidgetFactory.create('SpinButton',
-                                         key='org.gnome.nautilus.icon-view.thumbnail-size',
-                                         enable_reset=True,
-                                         min=16, max=512, step=16,
-                                         label=_('Default thumbnail icon size (pixels)'),
-                                         backend="gsettings"),
-                    WidgetFactory.create('SpinButton',
-                                         key='org.gnome.desktop.thumbnail-cache.maximum-size',
-                                         enable_reset=True,
-                                         min=-1, max=512, step=1,
-                                         label=_('Maximum thumbnail cache size (megabytes)'),
-                                         backend="gsettings"),
-                    WidgetFactory.create('SpinButton',
-                                          key='org.gnome.desktop.thumbnail-cache.maximum-age',
-                                          enable_reset=True,
-                                          min=-1, max=180, step=1,
-                                          label=_('Thumbnail cache time (days)'),
-                                          backend="gsettings"),
-            ))
-        self.add_start(box, False, False, 0)
-
-        box = TablePack(_('Automatically Mount Settings'), (
-                    WidgetFactory.create('CheckButton',
+        box = GridPack(
+                    (Gtk.Label(_("File browser:")), show_permission_button, show_permission_reset),
+                    WidgetFactory.create("CheckButton",
+                        label=_('Use the location entry instead of the pathbar'),
+                        enable_reset=True,
+                        blank_label=True,
+                        key="org.gnome.nautilus.preferences.always-use-location-entry",
+                        backend="gsettings"),
+                    Gtk.Separator(),
+                    WidgetFactory.create('Switch',
                                          key='org.gnome.desktop.media-handling.automount',
                                          enable_reset=True,
-                                         label=_('Whether to automatically mount media'),
+                                         label=_('Automatically mount media'),
                                          backend="gsettings"),
-                    WidgetFactory.create('CheckButton',
+                    WidgetFactory.create('Switch',
                                          key='org.gnome.desktop.media-handling.automount-open',
                                          enable_reset=True,
-                                         label=_('Whether to automatically open a folder for automounted media'),
+                                         label=_('Automatically open a folder'),
                                          backend="gsettings"),
-                    WidgetFactory.create('CheckButton',
-                                          key='org.gnome.desktop.media-handling.autorun-never',
-                                          enable_reset=True,
-                                          label=_('Never prompt or autorun/autostart programs when media are inserted'),
-                                          backend="gsettings"),
-            ))
+                    WidgetFactory.create('Switch',
+                        key='org.gnome.desktop.media-handling.autorun-never',
+                        enable_reset=True,
+                        reverse=True,
+                        label=_('Prompt or autorun/autostart programs'),
+                        backend="gsettings"),
+                    Gtk.Separator(),
+                    WidgetFactory.create('Scale',
+                        key='org.gnome.nautilus.icon-view.thumbnail-size',
+                        enable_reset=True,
+                        min=16, max=512,
+                        label=_('Thumbnail icon size (pixels)'),
+                        backend="gsettings"),
+                    WidgetFactory.create('Scale',
+                        key='org.gnome.desktop.thumbnail-cache.maximum-age',
+                        enable_reset=True,
+                        min=-1, max=180,
+                        label=_('Thumbnail cache time (days)'),
+                        backend="gsettings"),
+                    WidgetFactory.create('Scale',
+                        key='org.gnome.desktop.thumbnail-cache.maximum-size',
+                        enable_reset=True,
+                        min=-1, max=512,
+                        label=_('Maximum thumbnail cache size (MB)'),
+                        backend="gsettings"),
+        )
         self.add_start(box, False, False, 0)

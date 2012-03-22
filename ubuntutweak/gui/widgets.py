@@ -67,12 +67,15 @@ class Switch(Gtk.Switch, SettingWidget):
 
     def __init__(self, key=None, default=None,
                  on=True, off=False,
-                 tooltip=None, backend='gconf'):
+                 tooltip=None,
+                 reverse=False,
+                 backend='gconf'):
         GObject.GObject.__init__(self)
         SettingWidget.__init__(self, key=key, default=default, type=bool, backend=backend)
 
         self._on = on
         self._off = off
+        self._reverse = reverse
 
         self._set_on_off()
 
@@ -83,6 +86,17 @@ class Switch(Gtk.Switch, SettingWidget):
 
     def _set_on_off(self):
         self.set_active(self._off != self.get_setting().get_value())
+
+    def set_active(self, bool):
+        if self._reverse:
+            bool = not bool
+        super(Switch, self).set_active(bool)
+
+    def get_active(self):
+        if self._reverse:
+            return not super(Switch, self).get_active()
+        else:
+            return super(Switch, self).get_active()
 
     @log_func(log)
     def on_value_changed(self, *args):
