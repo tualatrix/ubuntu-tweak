@@ -89,6 +89,7 @@ class WidgetFactory:
     @classmethod
     def do_create(cls, widget, **kwargs):
         signal_dict = kwargs.pop('signal_dict', None)
+        blank_label = kwargs.pop('blank_label', None)
 
         enable_reset = kwargs.has_key('enable_reset')
         if enable_reset:
@@ -105,15 +106,14 @@ class WidgetFactory:
                 reset_button = ResetButton(new_widget.get_setting())
                 reset_button.connect('clicked', on_reset_button_clicked, new_widget)
 
-                hbox = Gtk.HBox()
-                hbox.set_data('widget', new_widget)
-                hbox.set_data('reset_button', reset_button)
-
-                hbox.pack_start(new_widget, False, False, 0)
-                hbox.pack_end(reset_button, False, False, 0)
-
-                return hbox
+                if blank_label:
+                    return Gtk.Label(), new_widget, reset_button
+                else:
+                    return new_widget, reset_button
             except Exception, e:
                 log.error(run_traceback('error', text_only=True))
 
-        return new_widget
+        if blank_label:
+            return Gtk.Label(), new_widget
+        else:
+            return new_widget

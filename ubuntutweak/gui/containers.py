@@ -185,6 +185,7 @@ class GridPack(Gtk.Grid):
                                 widget.set_property('hexpand', True)
                             else:
                                 if issubclass(widget.__class__, Gtk.Switch) or \
+                                issubclass(widget.__class__, Gtk.CheckButton) or \
                                 hasattr(widget, 'get_default_value'):
                                     #so this is reset button
 
