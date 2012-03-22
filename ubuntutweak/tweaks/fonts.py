@@ -27,6 +27,7 @@ class Fonts(TweakModule):
     __desc__ = _('Fonts Settings')
     __icon__ = 'font-x-generic'
     __category__ = 'appearance'
+    __desktop__ = ['ubuntu', 'ubuntu-2d', 'gnome-classic', 'gnome-shell']
 
     """Lock down some function"""
     def __init__(self):

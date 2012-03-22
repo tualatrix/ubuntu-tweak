@@ -34,11 +34,6 @@ class LockDown(TweakModule):
 
         box = ListPack(_("System Security options"), (
                     WidgetFactory.create("CheckButton",
-                                         label=_('Disable "Lock Screen"'),
-                                         key="org.gnome.desktop.lockdown.disable-lock-screen",
-                                         backend="gsettings",
-                                         enable_reset=True),
-                    WidgetFactory.create("CheckButton",
                                          label=_("Disable printing"),
                                          key="org.gnome.desktop.lockdown.disable-printing",
                                          backend="gsettings",
