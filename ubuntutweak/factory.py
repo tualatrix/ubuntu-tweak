@@ -28,11 +28,12 @@ from ubuntutweak.common.debug import run_traceback
 log = logging.getLogger('factory')
 
 def on_reset_button_clicked(widget, reset_target):
-    log.debug("Reset value to %s" % widget.get_default_value())
-
     if hasattr(reset_target, 'reset'):
-        log.debug("Reset value for %s" % reset_target)
+        log.debug("Reset value to %s by %s" % \
+                  (widget.get_default_value(), reset_target))
         reset_target.reset()
+    else:
+        log.debug("No reset function to call for: %s" % reset_target)
 
 
 class WidgetFactory:

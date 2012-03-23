@@ -315,13 +315,15 @@ class Scale(Gtk.HScale, SettingWidget):
 
         SettingWidget.__init__(self, key=key, default=default, type=type, backend=backend)
 
-        if reverse:
-            self._reverse = True
-        else:
-            self._reverse = False
+        self._reverse = reverse
+        self._max = max
+        self._default = default
 
         self.set_range(min, max)
         self.set_digits(digits)
+        self.add_mark(default or self.get_setting().get_schema_value(),
+                      Gtk.PositionType.BOTTOM,
+                      '')
         self.set_value_pos(Gtk.PositionType.RIGHT)
 
         self.connect("value-changed", self.on_change_value)
@@ -330,17 +332,29 @@ class Scale(Gtk.HScale, SettingWidget):
     @log_func(log)
     def on_value_changed(self, *args):
         self.handler_block_by_func(self.on_change_value)
-        if self._reverse:
-            self.set_value(max - self.get_setting().get_value())
-        else:
-            self.set_value(self.get_setting().get_value())
+        self.set_value(self.get_setting().get_value())
         self.handler_unblock_by_func(self.on_change_value)
+
+    def set_value(self, value):
+        if self._reverse:
+            super(Scale, self).set_value(self._max - value)
+        else:
+            super(Scale, self).set_value(value)
+
+    def get_value(self):
+        if self._reverse:
+            return self._max - super(Scale, self).get_value()
+        else:
+            return super(Scale, self).get_value()
 
     def on_change_value(self, widget):
         if self._reverse:
             self.get_setting().set_value(100 - widget.get_value())
         else:
             self.get_setting().set_value(widget.get_value())
+
+    def reset(self):
+        self.set_value(self._default or self.get_setting().get_schema_value())
 
 
 class SpinButton(Gtk.SpinButton, SettingWidget):
