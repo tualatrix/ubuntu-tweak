@@ -312,6 +312,8 @@ class EdgeComboBox(Gtk.ComboBox):
                 model.append((name, key, text))
 
                 setting = CompizSetting(CompizPlugin(name), key)
+                log.debug("CompizSetting: %s, value: %s, key: %s" % \
+                        (name, setting.get_value(), edge))
 
                 if setting.get_value() == edge:
                     enable = True
@@ -332,9 +334,8 @@ class EdgeComboBox(Gtk.ComboBox):
     def on_changed(self, widget):
         plugin = self.get_current_plugin()
         key = self.get_current_key()
+        log.debug("ComboBox changed: from %s to %s" % (self.old_plugin, plugin))
 
-        self.emit('edge_changed', plugin)
-        log.debug('%s changed to "%s"' % (widget.edge, plugin))
         if self.old_plugin:
             for name, key, text in self.edge_settings:
                 if name == self.old_plugin:
@@ -342,11 +343,16 @@ class EdgeComboBox(Gtk.ComboBox):
                     setting = CompizSetting(CompizPlugin(name), key)
                     setting.set_value('')
                     break
-            self.old_plugin = plugin
-            self.old_key = key
+
+        self.old_plugin = plugin
+        self.old_key = key
+
+        log.debug('%s changed to "%s"' % (widget.edge, plugin))
+        self.emit('edge_changed', plugin)
 
     def set_to_none(self):
         self.handler_block_by_func(self.on_changed)
+        log.debug("on_edge_changed: from %s to none" % self.get_current_plugin())
         self.set_active(self.max_index)
         self.handler_unblock_by_func(self.on_changed)
 
@@ -412,11 +418,6 @@ class Compiz(TweakModule):
             plugin.set_enabled(True)
             setting = CompizSetting(plugin, widget.get_current_key())
             setting.set_value(widget.edge)
-        else:
-            plugin = CompizPlugin(widget.old_plugin)
-            plugin.set_enabled(True)
-            setting = CompizSetting(plugin, widget.old_key)
-            setting.set_value('')
 
     def create_edge_setting(self):
         hbox = Gtk.HBox(spacing=12)
