@@ -89,7 +89,9 @@ class Switch(Gtk.Switch, SettingWidget):
 
     def set_active(self, bool):
         if self._reverse:
+            log.debug("The value is reversed")
             bool = not bool
+        log.debug("Set the swtich to: %s" % bool)
         super(Switch, self).set_active(bool)
 
     def get_active(self):
@@ -110,6 +112,9 @@ class Switch(Gtk.Switch, SettingWidget):
             self.get_setting().set_value(self._on)
         else:
             self.get_setting().set_value(self._off)
+
+    def reset(self):
+        self.set_active(self.get_setting().get_schema_value())
 
 
 class UserCheckButton(Gtk.CheckButton, SettingWidget):
@@ -135,12 +140,14 @@ class UserCheckButton(Gtk.CheckButton, SettingWidget):
 
 class ResetButton(Gtk.Button):
     def __str__(self):
-        return '<ResetButton with key: %s>' % self._setting.key
+        return '<ResetButton with key: %s: reverse: %s>' % \
+                (self._setting.key, self._reverse)
 
-    def __init__(self, setting):
+    def __init__(self, setting, reverse=False):
         GObject.GObject.__init__(self)
 
         self._setting = setting
+        self._reverse = reverse
 
         self.set_property('image', 
                           Gtk.Image.new_from_stock(Gtk.STOCK_REVERT_TO_SAVED, Gtk.IconSize.MENU))
@@ -148,7 +155,11 @@ class ResetButton(Gtk.Button):
         self.set_tooltip_text(_('Reset setting to default value: %s') % self.get_default_value())
 
     def get_default_value(self):
-        return self._setting.get_schema_value()
+        schema_value = self._setting.get_schema_value()
+        if self._reverse and type(schema_value) == bool:
+            return not schema_value
+        else:
+            return schema_value
 
 
 class StringCheckButton(CheckButton):
@@ -294,7 +305,7 @@ class Scale(Gtk.HScale, SettingWidget):
         return '<Scale with key: %s>' % self.get_setting().key
 
     def __init__(self, key=None, default=None, min=None, max=None, type=int, digits=0,
-                 reversed=False, backend='gconf'):
+                 reverse=False, backend='gconf'):
         GObject.GObject.__init__(self)
 
         if digits > 0:
@@ -304,10 +315,10 @@ class Scale(Gtk.HScale, SettingWidget):
 
         SettingWidget.__init__(self, key=key, default=default, type=type, backend=backend)
 
-        if reversed:
-            self._reversed = True
+        if reverse:
+            self._reverse = True
         else:
-            self._reversed = False
+            self._reverse = False
 
         self.set_range(min, max)
         self.set_digits(digits)
@@ -319,14 +330,14 @@ class Scale(Gtk.HScale, SettingWidget):
     @log_func(log)
     def on_value_changed(self, *args):
         self.handler_block_by_func(self.on_change_value)
-        if self._reversed:
+        if self._reverse:
             self.set_value(max - self.get_setting().get_value())
         else:
             self.set_value(self.get_setting().get_value())
         self.handler_unblock_by_func(self.on_change_value)
 
     def on_change_value(self, widget):
-        if self._reversed:
+        if self._reverse:
             self.get_setting().set_value(100 - widget.get_value())
         else:
             self.get_setting().set_value(widget.get_value())

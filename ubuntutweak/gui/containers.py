@@ -174,7 +174,7 @@ class GridPack(Gtk.Grid):
                         width = self._column
                         height = 1
 
-                    log.debug("Attach item: %s to Grid: %s,%s,%s,%s" % \
+                    log.debug("Attach item: %s to Grid: %s,%s,%s,%s\n" % \
                               (str(item), left, top, width, height))
                     self.attach(item, left, top, width, height)
                 else:
@@ -202,7 +202,7 @@ class GridPack(Gtk.Grid):
                                 if left_attch + 1 == self._column:
                                     widget.set_property('hexpand', True)
 
-                            log.debug("Attach widget: %s to Grid: %s,%s,1,1" % (str(widget), left_attch, top_attach + 1))
+                            log.debug("Attach widget: %s to Grid: %s,%s,1,1\n" % (str(widget), left_attch, top_attach + 1))
                             self.attach(widget, 
                                         left_attch,
                                         top_attach + 1,

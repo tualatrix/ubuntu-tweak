@@ -34,15 +34,6 @@ def on_reset_button_clicked(widget, reset_target):
         log.debug("Reset value for %s" % reset_target)
         reset_target.reset()
 
-    if issubclass(reset_target.__class__, Gtk.CheckButton):
-        reset_target.set_active(widget.get_default_value())
-    elif issubclass(reset_target.__class__, Gtk.SpinButton):
-        reset_target.set_value(widget.get_default_value())
-    elif issubclass(reset_target.__class__, Gtk.Scale):
-        reset_target.set_value(widget.get_default_value())
-    elif issubclass(reset_target.__class__, Gtk.ColorButton):
-        reset_target.set_value(widget.get_default_value())
-
 
 class WidgetFactory:
     composite_capable = ('SpinButton', 'Entry', 'ComboBox',
@@ -59,6 +50,7 @@ class WidgetFactory:
     def do_composite_create(cls, widget, **kwargs):
         label = Gtk.Label(label=kwargs.pop('label'))
         signal_dict = kwargs.pop('signal_dict', None)
+        reverse = kwargs.get('reverse', False)
 
         enable_reset = kwargs.has_key('enable_reset')
         if enable_reset:
@@ -76,7 +68,8 @@ class WidgetFactory:
 
         if enable_reset:
             try:
-                reset_button = ResetButton(new_widget.get_setting())
+                reset_button = ResetButton(new_widget.get_setting(),
+                                           reverse=reverse)
                 reset_button.connect('clicked', on_reset_button_clicked, new_widget)
             except Exception, e:
                 log.error(run_traceback('error', text_only=True))
@@ -90,6 +83,7 @@ class WidgetFactory:
     def do_create(cls, widget, **kwargs):
         signal_dict = kwargs.pop('signal_dict', None)
         blank_label = kwargs.pop('blank_label', None)
+        reverse = kwargs.get('reverse', False)
 
         enable_reset = kwargs.has_key('enable_reset')
         if enable_reset:
@@ -103,7 +97,8 @@ class WidgetFactory:
 
         if enable_reset:
             try:
-                reset_button = ResetButton(new_widget.get_setting())
+                reset_button = ResetButton(new_widget.get_setting(),
+                                           reverse=reverse)
                 reset_button.connect('clicked', on_reset_button_clicked, new_widget)
 
                 if blank_label:
