@@ -38,6 +38,7 @@ from gi.repository import Notify
 
 from ubuntutweak import system
 from ubuntutweak.common import consts
+from ubuntutweak.common.debug import log_func
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.policykit import PK_ACTION_SOURCE
 from ubuntutweak.policykit.dbusproxy import proxy
@@ -862,11 +863,15 @@ class SourceCenter(TweakModule):
         self.emit('call', 'ubuntutweak.modules.sourceeditor', 'update_source_combo', {})
 
     def on_update_button_clicked(self, widget):
+        @log_func(log)
         def on_update_finished(transaction, status, parent):
+            log.debug("on_update_finished")
             unset_busy(parent)
 
         set_busy(self)
-        daemon = AptWorker(widget.get_toplevel(), on_update_finished, self)
+        daemon = AptWorker(widget.get_toplevel(),
+                           finish_handler=on_update_finished,
+                           data=self)
         daemon.update_cache()
 
         self.emit('call', 'ubuntutweak.modules.appcenter', 'update_app_data', {})
