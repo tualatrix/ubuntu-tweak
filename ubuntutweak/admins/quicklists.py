@@ -18,18 +18,23 @@
 
 import os
 import logging
+import shutil
 
+from gi.repository import Gtk
 from xdg.DesktopEntry import DesktopEntry
 
 from ubuntutweak.common.debug import log_func
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.settings.gsettings import GSetting
+from ubuntutweak.gui.dialogs import QuestionDialog
 from ubuntutweak.utils import icon
 
 log = logging.getLogger('QuickLists')
 
 class NewDesktopEntry(DesktopEntry):
     shortcuts_key = 'X-Ayatana-Desktop-Shortcuts'
+    user_folder = os.path.expanduser('~/.local/share/applications')
+    system_folder = '/usr/share/applications'
 
     def __init__(self, filename):
         DesktopEntry.__init__(self, filename)
@@ -94,6 +99,32 @@ class NewDesktopEntry(DesktopEntry):
             shortcuts.remove(group)
             self.set(self.shortcuts_key, ";".join(shortcuts))
             self.write()
+
+    def is_user_desktop_file(self):
+        return self.filename.startswith(self.user_folder)
+
+    def _has_system_desktop_file(self):
+        return os.path.exists(os.path.join(self.system_folder, os.path.basename(self.filename)))
+
+    def get_system_desktop_file(self):
+        if self._has_system_desktop_file():
+            return os.path.join(self.system_folder, os.path.basename(self.filename))
+        else:
+            return ''
+
+    def get_user_desktop_file(self):
+        return os.path.join(self.user_folder, os.path.basename(self.filename))
+
+    @log_func(log)
+    def can_reset(self):
+        return self.is_user_desktop_file() and self._has_system_desktop_file()
+
+    @log_func(log)
+    def reset(self):
+        if self.can_reset():
+            shutil.copy(self.get_system_desktop_file(),
+                        self.get_user_desktop_file())
+            self.parse(self.filename)
 
 
 class QuickLists(TweakModule):
@@ -160,6 +191,7 @@ class QuickLists(TweakModule):
             self.remove_shortcut_button.set_sensitive(True)
         else:
             self.remove_shortcut_button.set_sensitive(False)
+            self.redo_shortcut_button.set_sensitive(False)
 
     def on_icon_view_selection_changed(self, widget):
         model, iter = widget.get_selected()
@@ -173,6 +205,9 @@ class QuickLists(TweakModule):
                             entry.get_exec_by_group(group),
                             entry.is_group_visiable(group),
                             entry))
+            self.redo_shortcut_button.set_sensitive(True)
+        else:
+            self.redo_shortcut_button.set_sensitive(False)
 
     def on_remove_shortcut_button_clicked(self, widget):
         model, iter = self.shortcuts_view.get_selection().get_selected()
@@ -193,3 +228,33 @@ class QuickLists(TweakModule):
         is_enalbed = not model[iter][self.SHORTCUTS_ENABLED]
         entry.set_group_enabled(group, is_enalbed)
         model[iter][self.SHORTCUTS_ENABLED] = is_enalbed
+
+    @log_func(log)
+    def on_redo_shortcut_button_clicked(self, widget):
+        model, iter = self.icon_view.get_selection().get_selected()
+        if iter:
+            name = model[iter][self.DESKTOP_NAME]
+
+            dialog = QuestionDialog(title=_("Would you like to reset %s?") % name,
+                                   message=_('If you continue, the shortcuts of %s will be set to default.') % name)
+            response = dialog.run()
+            dialog.destroy()
+
+            if response == Gtk.ResponseType.YES:
+                entry = model[iter][self.DESKTOP_ENTRY]
+                entry.reset()
+                self.on_icon_view_selection_changed(self.icon_view.get_selection())
+
+    @log_func(log)
+    def on_icon_reset_button_clicked(self, widget):
+        dialog = QuestionDialog(title=_("Would you like to reset the launcher items?"),
+                               message=_('If you continue, launcher will be set to default and all your current items will be lost.'))
+        response = dialog.run()
+        dialog.destroy()
+
+        if response == Gtk.ResponseType.YES:
+            self._launcher_setting.set_value(self._launcher_setting.get_schema_value())
+
+    @log_func(log)
+    def on_add_shortcut_button_clicked(self, widget):
+        pass
