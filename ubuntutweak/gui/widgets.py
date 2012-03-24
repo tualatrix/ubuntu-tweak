@@ -524,8 +524,9 @@ class ColorButton(Gtk.ColorButton, SettingWidget):
         color.alpha = color_value[-1] / 65535.0
         self.set_rgba(color)
 
+    @log_func(log)
     def on_color_set(self, widget=None):
-        color = widget.get_rgba()
+        color = self.get_rgba()
         self.get_setting().set_value([color.red * 65535,
                                  color.green * 65535,
                                  color.blue * 65535,
@@ -543,3 +544,4 @@ class ColorButton(Gtk.ColorButton, SettingWidget):
 
     def reset(self):
         self._set_gdk_rgba(self.get_setting().get_schema_value())
+        self.on_color_set()
