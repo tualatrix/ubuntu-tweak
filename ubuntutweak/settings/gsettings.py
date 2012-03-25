@@ -126,7 +126,7 @@ class GSetting(object):
         log.debug("The the value for type: %s and value: %s" % (self.type, value))
         try:
             if self.type == str:
-                self.settings.set_string(self.key, value)
+                self.settings.set_string(self.key, str(value))
             elif self.type == int:
                 self.settings.set_int(self.key, int(value))
             elif self.type == float:

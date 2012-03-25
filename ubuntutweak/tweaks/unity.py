@@ -21,7 +21,7 @@ import re
 
 from gi.repository import Gtk, Gio
 
-from ubuntutweak.gui.containers import ListPack, GridPack, TablePack
+from ubuntutweak.gui.containers import ListPack, GridPack
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.factory import WidgetFactory
 from ubuntutweak import system
@@ -135,23 +135,20 @@ class Unity(TweakModule):
 
                 self.add_start(grid_pack, False, False, 0)
             else:
-                box = ListPack(_('Compositing Manager'), (
-                                        WidgetFactory.create('CheckButton',
-                                                             label=_("Enable Metacity's compositing feature"),
-                                                             enable_reset=True,
-                                                             backend='gconf',
-                                                             key='/apps/metacity/general/compositing_manager'),
-                                ))
-                self.add_start(box, False, False, 0)
-
-                box = TablePack(_("Launcher"), (
-                            WidgetFactory.create("CheckButton",
+                super_key_button, super_key_reset = WidgetFactory.create("CheckButton",
                                                  label=_('Enable the Super key'),
                                                  key="com.canonical.Unity2d.Launcher.super-key-enable",
                                                  backend="gsettings",
+                                                 enable_reset=True)
+                box = GridPack(
+                            WidgetFactory.create("Switch",
+                                                 label=_('Full screen dash'),
+                                                 key="com.canonical.Unity2d.Dash.full-screen",
+                                                 backend="gsettings",
                                                  enable_reset=True),
+                            (Gtk.Label(_("Launcher")), super_key_button, super_key_reset),
                             WidgetFactory.create("CheckButton",
-                                                 label=_('Reserve launcher area'),
+                                                 label=_('Only one launcher when multi-monitor'),
                                                  key="com.canonical.Unity2d.Launcher.use-strut",
                                                  backend="gsettings",
                                                  enable_reset=True),
@@ -164,6 +161,6 @@ class Unity(TweakModule):
                                                  type=int,
                                                  backend="gsettings",
                                                  enable_reset=True),
-                    ))
+                    )
 
                 self.add_start(box, False, False, 0)

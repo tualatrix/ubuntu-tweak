@@ -221,7 +221,7 @@ class ComboBox(Gtk.ComboBox, SettingWidget):
                  texts=None, values=None,
                  type=str, backend='gconf'):
         GObject.GObject.__init__(self)
-        SettingWidget.__init__(self, key=key, default=default, type=str, backend=backend)
+        SettingWidget.__init__(self, key=key, default=default, type=type, backend=backend)
 
         if type == int:
             model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_INT)
