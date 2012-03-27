@@ -19,7 +19,7 @@
 from gi.repository import GObject, Gtk, Gdk, GConf, GdkPixbuf
 
 from ubuntutweak.modules  import TweakModule
-from ubuntutweak.tweaks.compiz import CompizPlugin
+from ubuntutweak.settings.compizsettings import CompizPlugin
 from ubuntutweak.gui.widgets import KeyGrabber, KeyModifier
 from ubuntutweak.gui.cellrenderers import CellRendererButton
 from ubuntutweak.utils import icon
