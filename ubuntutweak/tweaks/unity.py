@@ -23,6 +23,7 @@ import logging
 from gi.repository import GObject, Gtk, Gio, GdkPixbuf
 
 from ubuntutweak import system
+from ubuntutweak.utils import icon
 from ubuntutweak.gui.containers import ListPack, GridPack, SinglePack
 from ubuntutweak.gui.treeviews import get_local_path
 from ubuntutweak.modules  import TweakModule
