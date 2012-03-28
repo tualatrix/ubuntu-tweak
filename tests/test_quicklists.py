@@ -12,8 +12,12 @@ class TestQuicklists(unittest.TestCase):
         self.admin_env = 'Unity'
 
         self.entry2 = NewDesktopEntry(os.path.join(NewDesktopEntry.user_folder, 'gnome-terminal.desktop'))
+        self.entry3 = NewDesktopEntry('/usr/share/applications/empathy.desktop')
 
     def test_quicklists(self):
+        print self.entry3.groups()
+        print self.entry3.get('Actions')
+        print self.entry3.get('X-Ayatana-Desktop-Shortcuts')
         self.assertEqual(5, len(self.entry.groups()))
         self.assertEqual(4, len(self.entry.get_shortcut_groups()))
         self.assertEqual(self.admin_name, self.entry.get('Name', self.admin_gruop))

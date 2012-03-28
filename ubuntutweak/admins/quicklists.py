@@ -17,10 +17,11 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import os
+import time
 import logging
 import shutil
 
-from gi.repository import Gtk
+from gi.repository import GObject, Gtk
 from xdg.DesktopEntry import DesktopEntry
 
 from ubuntutweak.common.debug import log_func
@@ -31,17 +32,55 @@ from ubuntutweak.utils import icon
 
 log = logging.getLogger('QuickLists')
 
+LAUNCHER_SETTING = GSetting('com.canonical.Unity.Launcher.favorites')
+
+
+def save_to_user(func):
+    def func_wrapper(self, *args, **kwargs):
+        is_user_desktop_file = self.is_user_desktop_file()
+        if not is_user_desktop_file:
+            log.debug("Copy %s to user folder, then write it" % self.filename)
+            shutil.copy(self.get_system_desktop_file(),
+                        self.get_user_desktop_file())
+            self.filename = self.get_user_desktop_file()
+            self.parse(self.filename)
+
+        func(self, *args, **kwargs)
+
+        if not is_user_desktop_file:
+            current_list = LAUNCHER_SETTING.get_value()
+            try:
+                index = current_list.index(self.get_system_desktop_file())
+            except Exception, e:
+                log.debug(e)
+                index = current_list.index(os.path.basename(self.get_system_desktop_file()))
+
+            current_list[index] = self.filename
+
+            LAUNCHER_SETTING.set_value(current_list)
+            log.debug("current_list: %s" % current_list)
+            log.debug("Now set the current list")
+
+    return func_wrapper
+
+
 class NewDesktopEntry(DesktopEntry):
     shortcuts_key = 'X-Ayatana-Desktop-Shortcuts'
+    actions_key = 'Actions'
     user_folder = os.path.expanduser('~/.local/share/applications')
     system_folder = '/usr/share/applications'
+    mode = ''
 
     def __init__(self, filename):
         DesktopEntry.__init__(self, filename)
         log.debug('NewDesktopEntry: %s' % filename)
+        if self.get(self.shortcuts_key):
+            self.mode = self.shortcuts_key
+        else:
+            self.mode = self.actions_key
 
     def get_shortcut_groups(self):
-        enabled_shortcuts = self.get(self.shortcuts_key, list=True)
+        enabled_shortcuts = self.get(self.mode, list=True)
 
         groups = self.groups()
         groups.remove(self.defaultGroup)
@@ -54,10 +93,16 @@ class NewDesktopEntry(DesktopEntry):
         return enabled_shortcuts
 
     def get_group_name(self, group):
-        return group.split()[0]
+        if self.mode == self.shortcuts_key:
+            return group.split()[0]
+        else:
+            return group.split()[-1]
 
     def get_group_full_name(self, group):
-        return u'%s Shortcut Group' % group
+        if self.mode == self.shortcuts_key:
+            return u'%s Shortcut Group' % group
+        else:
+            return u'Desktop Action %s' % group
 
     @log_func(log)
     def get_name_by_group(self, group):
@@ -73,31 +118,36 @@ class NewDesktopEntry(DesktopEntry):
 
     @log_func(log)
     def is_group_visiable(self, group):
-        enabled_shortcuts = self.get(self.shortcuts_key, list=True)
+        enabled_shortcuts = self.get(self.mode, list=True)
         log.debug('All visiable shortcuts: %s' % enabled_shortcuts)
         return group in enabled_shortcuts
 
     @log_func(log)
+    @save_to_user
     def remove_group(self, group):
-        shortcuts = self.get(self.shortcuts_key, list=True)
+        shortcuts = self.get(self.mode, list=True)
         log.debug("remove_group %s from %s" % (group, shortcuts))
         #TODO if not local
         if group in shortcuts:
             shortcuts.remove(group)
-            self.set(self.shortcuts_key, ";".join(shortcuts))
+            self.set(self.mode, ";".join(shortcuts))
             self.removeGroup(self.get_group_full_name(group))
             self.write()
 
     @log_func(log)
+    @save_to_user
     def set_group_enabled(self, group, enabled):
-        shortcuts = self.get(self.shortcuts_key, list=True)
+        shortcuts = self.get(self.mode, list=True)
+
         if group not in shortcuts and enabled:
+            log.debug("Group is not in shortcuts and will set it to True")
             shortcuts.append(group)
-            self.set(self.shortcuts_key, ";".join(shortcuts))
+            self.set(self.mode, ";".join(shortcuts))
             self.write()
         elif group in shortcuts and enabled is False:
+            log.debug("Group is in shortcuts and will set it to False")
             shortcuts.remove(group)
-            self.set(self.shortcuts_key, ";".join(shortcuts))
+            self.set(self.mode, ";".join(shortcuts))
             self.write()
 
     def is_user_desktop_file(self):
@@ -132,6 +182,7 @@ class QuickLists(TweakModule):
     __desc__ = _('Unity Launcher QuickLists Editor')
     __icon__ = 'plugin-unityshell'
     __category__ = 'desktop'
+    __desktop__ = ['ubuntu', 'ubuntu-2d']
     __utactive__ = False
 
     (DESKTOP_FILE,
@@ -148,8 +199,7 @@ class QuickLists(TweakModule):
     def __init__(self):
         TweakModule.__init__(self, 'quicklists.ui')
 
-        self._launcher_setting = GSetting('com.canonical.Unity.Launcher.favorites')
-        self._launcher_setting.connect_notify(self.update_launch_icon_model)
+        LAUNCHER_SETTING.connect_notify(self.update_launch_icon_model)
 
         self.shortcuts_view.get_selection().connect('changed', self.on_shortcuts_selection_changed)
         
@@ -157,10 +207,11 @@ class QuickLists(TweakModule):
 
         self.add_start(self.main_paned)
 
+    @log_func(log)
     def update_launch_icon_model(self, *args):
         self.icon_model.clear()
 
-        for desktop_file in self._launcher_setting.get_value():
+        for desktop_file in LAUNCHER_SETTING.get_value():
             if desktop_file.startswith('/') and os.path.exists(desktop_file):
                 path = desktop_file
             else:
@@ -206,6 +257,7 @@ class QuickLists(TweakModule):
                             entry.is_group_visiable(group),
                             entry))
             self.redo_shortcut_button.set_sensitive(True)
+            self.shortcuts_view.columns_autosize()
         else:
             self.redo_shortcut_button.set_sensitive(False)
 
@@ -253,8 +305,22 @@ class QuickLists(TweakModule):
         dialog.destroy()
 
         if response == Gtk.ResponseType.YES:
-            self._launcher_setting.set_value(self._launcher_setting.get_schema_value())
+            LAUNCHER_SETTING.set_value(LAUNCHER_SETTING.get_schema_value())
 
     @log_func(log)
     def on_add_shortcut_button_clicked(self, widget):
         pass
+
+    def on_row_reordered(self, model, path, iter):
+        GObject.idle_add(self._do_real_recorder)
+
+    def _do_real_recorder(self):
+        new_order = []
+        for row in self.icon_model:
+            new_order.append(row[self.DESKTOP_FILE])
+
+        if new_order != LAUNCHER_SETTING.get_value():
+            log.debug("Order changed")
+            LAUNCHER_SETTING.set_value(new_order)
+        else:
+            log.debug("Order is not changed, pass")
