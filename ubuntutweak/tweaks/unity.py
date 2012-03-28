@@ -326,7 +326,6 @@ class Unity(TweakModule):
                     edge_combobox.set_to_none()
                     break
 
-            plugin = CompizPlugin(widget.get_current_plugin())
-            plugin.set_enabled(True)
-            setting = CompizSetting("%s.%s" % (plugin, widget.get_current_key()))
+            setting = CompizSetting("%s.%s" % (widget.get_current_plugin(),
+                widget.get_current_key()))
             setting.set_value(widget.edge)
