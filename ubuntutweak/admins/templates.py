@@ -118,7 +118,7 @@ class Templates(TweakModule):
                  'You can add files as templates by dragging them into this window.\n'
                  'You can then create new documents based on these templates from the Nautilus right-click menu.')
     __icon__ = 'x-office-document'
-    __utactive__ = False
+    __utactive__ = True
     __category__ = 'personal'
 
     def __init__(self):

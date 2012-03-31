@@ -135,7 +135,7 @@ class Scripts(TweakModule, AbstractScripts):
                   "You can drag and drop scripts here from File Manager.\n"
                   "'Scripts' will then be added to the context menu.")
     __icon__ = 'text-x-script'
-    __utactive__ = False
+    __utactive__ = True
     __category__ = 'personal'
 
     def __init__(self):
