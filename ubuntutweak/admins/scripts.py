@@ -1,6 +1,6 @@
 # Ubuntu Tweak - Ubuntu Configuration Tool
 #
-# Copyright (C) 2007-2011 Tualatrix Chou <tualatrix@gmail.com>
+# Copyright (C) 2007-2012 Tualatrix Chou <tualatrix@gmail.com>
 #
 # Ubuntu Tweak is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -34,13 +34,6 @@ log = logging.getLogger('Script')
 
 class AbstractScripts:
     system_dir = os.path.join(CONFIG_ROOT, 'scripts')
-
-    #TODO maybe remove these code in the future
-    old_system_dir = os.path.join(os.path.expanduser('~'), '.ubuntu-tweak/scripts')
-    if os.path.exists(old_system_dir) and not os.path.exists(system_dir):
-        log.debug('Move the old_system_dir to new system_dir')
-        shutil.move(old_system_dir, system_dir)
-
     user_dir = os.path.join(os.getenv('HOME'), '.gnome2', 'nautilus-scripts')
 
 
@@ -142,10 +135,8 @@ class Scripts(TweakModule, AbstractScripts):
                   "You can drag and drop scripts here from File Manager.\n"
                   "'Scripts' will then be added to the context menu.")
     __icon__ = 'text-x-script'
-    #TODO enable when Gtk+3.0
     __utactive__ = False
     __category__ = 'personal'
-    __desktop__ = ['gnome', 'une']
 
     def __init__(self):
         TweakModule.__init__(self, 'templates.ui')

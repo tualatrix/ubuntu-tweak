@@ -1,6 +1,6 @@
 # Ubuntu Tweak - Ubuntu Configuration Tool
 #
-# Copyright (C) 2007-2011 Tualatrix Chou <tualatrix@gmail.com>
+# Copyright (C) 2007-2012 Tualatrix Chou <tualatrix@gmail.com>
 #
 # Ubuntu Tweak is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -36,20 +36,15 @@ log = logging.getLogger("Templates")
 def update_dir():
     system_dir = os.path.join(CONFIG_ROOT, 'templates')
 
-    #TODO maybe remove these code in the future
-    old_system_dir = os.path.expanduser('~/.ubuntu-tweak/templates')
-    if os.path.exists(old_system_dir) and not os.path.exists(system_dir):
-        log.debug('Move the old_system_dir to new system_dir')
-        shutil.move(old_system_dir, system_dir)
 
-    __uf = UserdirFile()
-    __template_dir = __uf['XDG_TEMPLATES_DIR']
-    if not __template_dir:
-        __template_dir = os.path.expanduser('~/Templates')
-        if not os.path.exists(__template_dir):
-            os.mkdir(__template_dir)
-        user_dir = __template_dir
-    user_dir = __template_dir
+    uf = UserdirFile()
+    template_dir = uf['XDG_TEMPLATES_DIR']
+    if not template_dir:
+        template_dir = os.path.expanduser('~/Templates')
+        if not os.path.exists(template_dir):
+            os.mkdir(template_dir)
+        user_dir = template_dir
+    user_dir = template_dir
 
     return system_dir, user_dir
 
@@ -123,7 +118,6 @@ class Templates(TweakModule):
                  'You can add files as templates by dragging them into this window.\n'
                  'You can then create new documents based on these templates from the Nautilus right-click menu.')
     __icon__ = 'x-office-document'
-    #TODO enable when Gtk+3.0
     __utactive__ = False
     __category__ = 'personal'
 
@@ -166,9 +160,9 @@ class Templates(TweakModule):
         hbox = Gtk.HBox(spacing=0)
         self.add_start(hbox, False, False, 0)
 
-#        self.enable_templates.connect('drag_data_received', self.on_enable_drag_data_received)
-#        self.enable_templates.connect('deleted', self.on_enable_deleted)
-#        self.disable_templates.connect('drag_data_received', self.on_disable_drag_data_received)
+        self.enable_templates.connect('drag_data_received', self.on_enable_drag_data_received)
+        self.enable_templates.connect('deleted', self.on_enable_deleted)
+        self.disable_templates.connect('drag_data_received', self.on_disable_drag_data_received)
 
         button = Gtk.Button(_("Rebuild System Templates"))
         button.connect("clicked", self.on_rebuild_clicked)

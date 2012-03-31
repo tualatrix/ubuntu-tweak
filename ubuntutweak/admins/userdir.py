@@ -239,6 +239,7 @@ class UserDir(TweakModule):
                  "Don't change the location of your desktop folder unless you know what you are doing.")
     __icon__ = ['folder-home', 'gnome-fs-home']
     __category__ = 'personal'
+    __utactive__ = True
 
     def __init__(self):
         TweakModule.__init__(self)

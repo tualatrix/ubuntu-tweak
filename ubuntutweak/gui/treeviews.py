@@ -1,4 +1,5 @@
 import os
+import logging
 import shutil
 
 from gi.repository import Gtk, Gdk, Gio, GObject, GdkPixbuf
@@ -6,17 +7,31 @@ from gi.repository import Gtk, Gdk, Gio, GObject, GdkPixbuf
 from ubuntutweak.gui.dialogs import ErrorDialog
 from ubuntutweak.utils import icon
 
+log = logging.getLogger("treeviews")
+
 def get_local_path(url):
     return Gio.file_parse_name(url.strip()).get_path()
 
-
-class DirView(Gtk.TreeView):
+class CommonView(object):
     TARGETS = [
             ('text/plain', 0, 1),
             ('TEXT', 0, 2),
             ('STRING', 0, 3),
             ]
 
+    def enable_drag_and_drop(self):
+        self.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK,
+                                      self.TARGETS,
+                                      Gdk.DragAction.COPY)
+        self.enable_model_drag_dest([], Gdk.DragAction.COPY)
+        self.drag_dest_add_text_targets()
+        self.drag_source_add_text_targets()
+
+    def is_same_object(self, context):
+        return context.get_source_window() is not self.get_window()
+
+
+class DirView(Gtk.TreeView, CommonView):
     __gsignals__ = {
         'deleted': (GObject.SignalFlags.RUN_FIRST, None, ())
     }
@@ -45,9 +60,7 @@ class DirView(Gtk.TreeView):
         self.set_size_request(180, -1)
         self.expand_all()
 
-#        self.enable_model_drag_source(Gdk.EventMask.BUTTON1_MOTION_MASK, self.TARGETS,
-#                                      Gdk.DragAction.DEFAULT| Gdk.DragAction.MOVE)
-#        self.enable_model_drag_dest(self.TARGETS, Gdk.DragAction.DEFAULT)
+        self.enable_drag_and_drop()
 
         self.connect('drag_data_get', self.on_drag_data_get)
         self.connect('drag_data_received', self.on_drag_data_received)
@@ -63,7 +76,7 @@ class DirView(Gtk.TreeView):
 
     def button_press_event(self, widget, event, menu):
         if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3:
-            menu.popup(None, None, None, event.button, event.time)
+            menu.popup(None, None, None, None, event.button, event.time)
         return False
 
     def _create_popup_menu(self):
@@ -110,7 +123,7 @@ class DirView(Gtk.TreeView):
         self.model.set_value(iter, self.DIR_PATH, newdir)
         self.model.set_value(iter, self.DIR_EDITABLE, True)
 
-        self.set_cursor(path, focus_column=column, start_editing=True)
+        self.set_cursor(path, column, True)
 
     def on_rename_item(self, widget):
         model, iter = self.get_selection().get_selected()
@@ -121,7 +134,7 @@ class DirView(Gtk.TreeView):
 
             column = self.get_column(0)
             path = self.model.get_path(iter)
-            self.set_cursor(path, focus_column=column, start_editing=True)
+            self.set_cursor(path, column, True)
         else:
             ErrorDialog(_("Can't rename the root folder")).launch()
 
@@ -160,13 +173,14 @@ class DirView(Gtk.TreeView):
         treeselection = self.get_selection()
         model, iter = treeselection.get_selected()
         data = model.get_value(iter, self.DIR_PATH)
+        log.debug("on_drag_data_get: %s" % data)
 
         if data != self.dir:
-            selection.set(selection.target, 8, data)
+            selection.set(selection.get_target(), 8, data)
 
     def on_drag_data_received(self, treeview, context, x, y, selection, info, etime):
         '''If the source is coming from internal, then move it, or copy it.'''
-        source = selection.data
+        source = selection.get_data()
 
         if source:
             try:
@@ -180,7 +194,7 @@ class DirView(Gtk.TreeView):
 
             target = self.model.get_value(iter, self.DIR_PATH)
 
-            if context.get_source_widget() is self:
+            if self.is_same_object(context):
                 file_action = 'move'
                 dir_action = 'move'
             else:
@@ -196,9 +210,9 @@ class DirView(Gtk.TreeView):
                 self.file_operate(source, dir_action, file_action, target)
 
             self.update_model()
-            context.finish(True, False)
+            context.finish(True, False, etime)
         else:
-            context.finish(False, False)
+            context.finish(False, False, etime)
 
     def file_operate(self, source, dir_action, file_action, target):
         source = get_local_path(source)
@@ -281,13 +295,7 @@ class DirView(Gtk.TreeView):
         self.append_column(column)
 
 
-class FlatView(Gtk.TreeView):
-    TARGETS = [
-        ('text/plain', 0, 1),
-        ('TEXT', 0, 2),
-        ('STRING', 0, 3),
-        ]
-
+class FlatView(Gtk.TreeView, CommonView):
     (FLAT_ICON,
      FLAT_TITLE,
      FLAT_PATH) = range(3)
@@ -307,10 +315,7 @@ class FlatView(Gtk.TreeView):
         self.update_model()
         self._add_columns()
 
-#        self.enable_model_drag_source(Gdk.EventMask.BUTTON1_MOTION_MASK,
-#                                      self.TARGETS,
-#                                      Gdk.DragAction.DEFAULT|Gdk.DragAction.MOVE)
-#        self.enable_model_drag_dest(self.TARGETS, Gdk.DragAction.DEFAULT)
+        self.enable_drag_and_drop()
 
         self.connect("drag_data_get", self.on_drag_data_get_data)
         self.connect("drag_data_received", self.on_drag_data_received_data)
@@ -319,13 +324,13 @@ class FlatView(Gtk.TreeView):
         treeselection = self.get_selection()
         model, iter = treeselection.get_selected()
         data = model.get_value(iter, self.FLAT_PATH)
-
-        selection.set(selection.target, 8, data)
+        log.debug("selection set data to %s with %s" % (selection.get_target(), data))
+        selection.set(selection.get_target(), 8, data)
 
     def on_drag_data_received_data(self, treeview, context, x, y, selection, info, etime):
-        source = selection.data
+        source = selection.get_data()
 
-        if context.get_source_widget() is not self and source:
+        if self.is_same_object(context) and source:
             try:
                 path, position = treeview.get_dest_row_at_pos(x, y)
                 iter = self.model.get_iter(path)
@@ -363,9 +368,9 @@ class FlatView(Gtk.TreeView):
                     getattr(shutil, file_action)(source, target)
 
             self.update_model()
-            context.finish(True, False)
+            context.finish(True, False, etime)
         else:
-            context.finish(False, False)
+            context.finish(False, False, etime)
 
     def update_model(self):
         self.model.clear()
