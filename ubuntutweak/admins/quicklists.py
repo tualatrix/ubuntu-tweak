@@ -79,75 +79,87 @@ class NewDesktopEntry(DesktopEntry):
         else:
             self.mode = self.actions_key
 
-    def get_shortcut_groups(self):
-        enabled_shortcuts = self.get(self.mode, list=True)
+    def get_actions(self):
+        enabled_actions = self.get(self.mode, list=True)
 
-        groups = self.groups()
-        groups.remove(self.defaultGroup)
+        actions = self.groups()
+        actions.remove(self.defaultGroup)
 
-        for group in groups: 
-            group_name = self.get_group_name(group)
-            if group_name not in enabled_shortcuts:
-                enabled_shortcuts.append(group_name)
+        for action in actions: 
+            action_name = self.get_action_name(action)
+            if action_name not in enabled_actions:
+                enabled_actions.append(action_name)
 
-        return enabled_shortcuts
+        return enabled_actions
 
-    def get_group_name(self, group):
+    def get_action_name(self, action):
         if self.mode == self.shortcuts_key:
-            return group.split()[0]
+            return action.split()[0]
         else:
-            return group.split()[-1]
+            return action.split()[-1]
 
-    def get_group_full_name(self, group):
+    def get_action_full_name(self, action):
         if self.mode == self.shortcuts_key:
-            return u'%s Shortcut Group' % group
+            return u'%s Shortcut Group' % action
         else:
-            return u'Desktop Action %s' % group
+            return u'Desktop Action %s' % action
 
     @log_func(log)
-    def get_name_by_group(self, group):
-        return self.get('Name', self.get_group_full_name(group))
+    def get_name_by_action(self, action):
+        return self.get('Name', self.get_action_full_name(action))
 
     @log_func(log)
-    def get_exec_by_group(self, group):
-        return self.get('Exec', self.get_group_full_name(group))
+    def get_exec_by_action(self, action):
+        return self.get('Exec', self.get_action_full_name(action))
 
     @log_func(log)
-    def get_env_by_group(self, group):
-        return self.get('TargetEnvironment', self.get_group_full_name(group))
+    def get_env_by_action(self, action):
+        return self.get('TargetEnvironment', self.get_action_full_name(action))
 
     @log_func(log)
-    def is_group_visiable(self, group):
-        enabled_shortcuts = self.get(self.mode, list=True)
-        log.debug('All visiable shortcuts: %s' % enabled_shortcuts)
-        return group in enabled_shortcuts
+    def is_action_visiable(self, action):
+        enabled_actions = self.get(self.mode, list=True)
+        log.debug('All visiable actions: %s' % enabled_actions)
+        return action in enabled_actions
 
     @log_func(log)
     @save_to_user
-    def remove_group(self, group):
-        shortcuts = self.get(self.mode, list=True)
-        log.debug("remove_group %s from %s" % (group, shortcuts))
+    def remove_action(self, action):
+        actions = self.get(self.mode, list=True)
+        log.debug("remove_action %s from %s" % (action, actions))
         #TODO if not local
-        if group in shortcuts:
-            shortcuts.remove(group)
-            self.set(self.mode, ";".join(shortcuts))
-            self.removeGroup(self.get_group_full_name(group))
+        if action in actions:
+            actions.remove(action)
+            self.set(self.mode, ";".join(actions))
+            self.removeGroup(self.get_action_full_name(action))
             self.write()
 
     @log_func(log)
     @save_to_user
-    def set_group_enabled(self, group, enabled):
-        shortcuts = self.get(self.mode, list=True)
+    def set_action_enabled(self, action, enabled):
+        actions = self.get(self.mode, list=True)
 
-        if group not in shortcuts and enabled:
-            log.debug("Group is not in shortcuts and will set it to True")
-            shortcuts.append(group)
-            self.set(self.mode, ";".join(shortcuts))
+        if action not in actions and enabled:
+            log.debug("Group is not in actions and will set it to True")
+            actions.append(action)
+            self.set(self.mode, ";".join(actions))
             self.write()
-        elif group in shortcuts and enabled is False:
-            log.debug("Group is in shortcuts and will set it to False")
-            shortcuts.remove(group)
-            self.set(self.mode, ";".join(shortcuts))
+        elif action in actions and enabled is False:
+            log.debug("Group is in actions and will set it to False")
+            actions.remove(action)
+            self.set(self.mode, ";".join(actions))
+            self.write()
+
+    @log_func(log)
+    @save_to_user
+    def reorder_actions(self, actions):
+        visiable_actions = []
+        for action in actions:
+            if self.is_action_visiable(action):
+                visiable_actions.append(action)
+
+        if visiable_actions:
+            self.set(self.mode, ";".join(visiable_actions))
             self.write()
 
     def is_user_desktop_file(self):
@@ -190,18 +202,18 @@ class QuickLists(TweakModule):
      DESKTOP_NAME,
      DESKTOP_ENTRY) = range(4)
 
-    (SHORTCUTS_GROUP,
-     SHORTCUTS_NAME,
-     SHORTCUTS_EXEC,
-     SHORTCUTS_ENABLED,
-     SHORTCUTS_ENTRY) = range(5)
+    (ACTION_NAME,
+     ACTION_FULLNAME,
+     ACTION_EXEC,
+     ACTION_ENABLED,
+     ACTION_ENTRY) = range(5)
 
     def __init__(self):
         TweakModule.__init__(self, 'quicklists.ui')
 
         LAUNCHER_SETTING.connect_notify(self.update_launch_icon_model)
 
-        self.shortcuts_view.get_selection().connect('changed', self.on_shortcuts_selection_changed)
+        self.action_view.get_selection().connect('changed', self.on_action_selection_changed)
         
         self.update_launch_icon_model()
 
@@ -227,68 +239,68 @@ class QuickLists(TweakModule):
                                     entry.getName(),
                                     entry))
 
-    def on_shortcuts_selection_changed(self, widget):
+    def on_action_selection_changed(self, widget):
         model, iter = widget.get_selected()
         if iter:
-            group = model[iter][self.SHORTCUTS_GROUP]
-            entry = model[iter][self.SHORTCUTS_ENTRY]
-            log.debug("Select the group: %s\n"
+            action = model[iter][self.ACTION_NAME]
+            entry = model[iter][self.ACTION_ENTRY]
+            log.debug("Select the action: %s\n"
                       "\t\t\tName: %s\n"
                       "\t\t\tExec: %s\n"
-                      "\t\t\tVisiable: %s" % (group,
-                                          entry.get_name_by_group(group),
-                                          entry.get_exec_by_group(group),
-                                          entry.is_group_visiable(group)))
-            self.remove_shortcut_button.set_sensitive(True)
+                      "\t\t\tVisiable: %s" % (action,
+                                          entry.get_name_by_action(action),
+                                          entry.get_exec_by_action(action),
+                                          entry.is_action_visiable(action)))
+            self.remove_action_button.set_sensitive(True)
         else:
-            self.remove_shortcut_button.set_sensitive(False)
-            self.redo_shortcut_button.set_sensitive(False)
+            self.remove_action_button.set_sensitive(False)
+            self.redo_action_button.set_sensitive(False)
 
     def on_icon_view_selection_changed(self, widget):
         model, iter = widget.get_selected()
         if iter:
-            self.shortcuts_model.clear()
+            self.action_model.clear()
 
             entry = model[iter][self.DESKTOP_ENTRY]
-            for group in entry.get_shortcut_groups():
-                self.shortcuts_model.append((group,
-                            entry.get_name_by_group(group),
-                            entry.get_exec_by_group(group),
-                            entry.is_group_visiable(group),
+            for action in entry.get_actions():
+                self.action_model.append((action,
+                            entry.get_name_by_action(action),
+                            entry.get_exec_by_action(action),
+                            entry.is_action_visiable(action),
                             entry))
-            self.redo_shortcut_button.set_sensitive(True)
-            self.shortcuts_view.columns_autosize()
+            self.redo_action_button.set_sensitive(True)
+            self.action_view.columns_autosize()
         else:
-            self.redo_shortcut_button.set_sensitive(False)
+            self.redo_action_button.set_sensitive(False)
 
-    def on_remove_shortcut_button_clicked(self, widget):
-        model, iter = self.shortcuts_view.get_selection().get_selected()
+    def on_remove_action_button_clicked(self, widget):
+        model, iter = self.action_view.get_selection().get_selected()
         if iter:
-            group_name = model[iter][self.SHORTCUTS_GROUP]
-            entry = model[iter][self.SHORTCUTS_ENTRY]
-            log.debug("Try to remove shortcut: %s" % group_name)
-            entry.remove_group(group_name)
-            log.debug('Remove: %s succcessfully' % group_name)
+            action_name = model[iter][self.ACTION_NAME]
+            entry = model[iter][self.ACTION_ENTRY]
+            log.debug("Try to remove action: %s" % action_name)
+            entry.remove_action(action_name)
+            log.debug('Remove: %s succcessfully' % action_name)
             model.remove(iter)
 
     @log_func(log)
-    def on_enable_shortcut_render(self, render, path):
-        model = self.shortcuts_model
+    def on_enable_action_render(self, render, path):
+        model = self.action_model
         iter = model.get_iter(path)
-        entry = model[iter][self.SHORTCUTS_ENTRY]
-        group = model[iter][self.SHORTCUTS_GROUP]
-        is_enalbed = not model[iter][self.SHORTCUTS_ENABLED]
-        entry.set_group_enabled(group, is_enalbed)
-        model[iter][self.SHORTCUTS_ENABLED] = is_enalbed
+        entry = model[iter][self.ACTION_ENTRY]
+        action = model[iter][self.ACTION_NAME]
+        is_enalbed = not model[iter][self.ACTION_ENABLED]
+        entry.set_action_enabled(action, is_enalbed)
+        model[iter][self.ACTION_ENABLED] = is_enalbed
 
     @log_func(log)
-    def on_redo_shortcut_button_clicked(self, widget):
+    def on_redo_action_button_clicked(self, widget):
         model, iter = self.icon_view.get_selection().get_selected()
         if iter:
             name = model[iter][self.DESKTOP_NAME]
 
             dialog = QuestionDialog(title=_("Would you like to reset %s?") % name,
-                                   message=_('If you continue, the shortcuts of %s will be set to default.') % name)
+                                    message=_('If you continue, the actions of %s will be set to default.') % name)
             response = dialog.run()
             dialog.destroy()
 
@@ -300,7 +312,7 @@ class QuickLists(TweakModule):
     @log_func(log)
     def on_icon_reset_button_clicked(self, widget):
         dialog = QuestionDialog(title=_("Would you like to reset the launcher items?"),
-                               message=_('If you continue, launcher will be set to default and all your current items will be lost.'))
+                                message=_('If you continue, launcher will be set to default and all your current items will be lost.'))
         response = dialog.run()
         dialog.destroy()
 
@@ -308,13 +320,16 @@ class QuickLists(TweakModule):
             LAUNCHER_SETTING.set_value(LAUNCHER_SETTING.get_schema_value())
 
     @log_func(log)
-    def on_add_shortcut_button_clicked(self, widget):
+    def on_add_action_button_clicked(self, widget):
         pass
 
-    def on_row_reordered(self, model, path, iter):
-        GObject.idle_add(self._do_real_recorder)
+    def on_icon_reordered(self, model, path, iter):
+        GObject.idle_add(self._do_icon_reorder)
 
-    def _do_real_recorder(self):
+    def on_action_reordered(self, model, path, iter):
+        GObject.idle_add(self._do_action_reorder)
+
+    def _do_icon_reorder(self):
         new_order = []
         for row in self.icon_model:
             new_order.append(row[self.DESKTOP_FILE])
@@ -324,3 +339,15 @@ class QuickLists(TweakModule):
             LAUNCHER_SETTING.set_value(new_order)
         else:
             log.debug("Order is not changed, pass")
+
+    def _do_action_reorder(self):
+        new_order = []
+        for row in self.action_model:
+            new_order.append(row[self.ACTION_NAME])
+            entry = row[self.ACTION_ENTRY]
+
+        if new_order != entry.get_actions():
+            log.debug("Action order changed")
+            entry.reorder_actions(new_order)
+        else:
+            log.debug("Action order is not changed, pass")

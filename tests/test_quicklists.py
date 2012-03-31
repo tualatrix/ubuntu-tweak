@@ -11,7 +11,7 @@ class TestQuicklists(unittest.TestCase):
         self.admin_exec = 'ubuntu-tweak -f admins'
         self.admin_env = 'Unity'
 
-        self.entry2 = NewDesktopEntry(os.path.join(NewDesktopEntry.user_folder, 'gnome-terminal.desktop'))
+        self.entry2 = NewDesktopEntry(os.path.join(NewDesktopEntry.user_folder, 'google-chrome.desktop'))
         self.entry3 = NewDesktopEntry('/usr/share/applications/empathy.desktop')
 
     def test_quicklists(self):
@@ -19,7 +19,7 @@ class TestQuicklists(unittest.TestCase):
         print self.entry3.get('Actions')
         print self.entry3.get('X-Ayatana-Desktop-Shortcuts')
         self.assertEqual(5, len(self.entry.groups()))
-        self.assertEqual(4, len(self.entry.get_shortcut_groups()))
+        self.assertEqual(4, len(self.entry.get_actions()))
         self.assertEqual(self.admin_name, self.entry.get('Name', self.admin_gruop))
         self.assertEqual(self.admin_exec, self.entry.get('Exec', self.admin_gruop))
         self.assertEqual('Unity', self.entry.get('TargetEnvironment', self.admin_gruop))
@@ -28,6 +28,13 @@ class TestQuicklists(unittest.TestCase):
 
         self.assertEqual(True, self.entry2.is_user_desktop_file())
         self.assertEqual(True, self.entry2.can_reset())
+
+        #test reorder
+        current_order = self.entry2.get_actions()
+        new_order = list(reversed(current_order))
+        self.entry2.reorder_actions(new_order)
+        self.assertEqual(new_order, self.entry2.get_actions())
+
 
 if __name__ == '__main__':
     unittest.main()

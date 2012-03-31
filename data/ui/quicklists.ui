@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 3.0 -->
+  <object class="GtkListStore" id="action_model">
+    <columns>
+      <!-- column-name group_name -->
+      <column type="gchararray"/>
+      <!-- column-name action_name -->
+      <column type="gchararray"/>
+      <!-- column-name commandline -->
+      <column type="gchararray"/>
+      <!-- column-name visiable -->
+      <column type="gboolean"/>
+      <!-- column-name desktop_entry -->
+      <column type="PyObject"/>
+    </columns>
+    <signal name="row-changed" handler="on_action_reordered" swapped="no"/>
+  </object>
   <object class="GtkListStore" id="icon_model">
     <columns>
       <!-- column-name desktop_file_path -->
@@ -12,6 +27,7 @@
       <!-- column-name desktop_entry -->
       <column type="PyObject"/>
     </columns>
+    <signal name="row-changed" handler="on_icon_reordered" swapped="no"/>
   </object>
   <object class="GtkPaned" id="main_paned">
     <property name="visible">True</property>
@@ -33,6 +49,7 @@
                 <property name="can_focus">True</property>
                 <property name="model">icon_model</property>
                 <property name="headers_visible">False</property>
+                <property name="reorderable">True</property>
                 <signal name="realize" handler="update_launch_icon_model" swapped="no"/>
                 <child internal-child="selection">
                   <object class="GtkTreeSelection" id="icon_view_selection">
@@ -74,6 +91,7 @@
             <property name="icon_size">1</property>
             <child>
               <object class="GtkToolButton" id="toolbutton1">
+                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="use_action_appearance">False</property>
@@ -88,6 +106,7 @@
             </child>
             <child>
               <object class="GtkToolButton" id="toolbutton2">
+                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="use_action_appearance">False</property>
@@ -102,6 +121,7 @@
             </child>
             <child>
               <object class="GtkToolButton" id="icon_reset_button">
+                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="use_action_appearance">False</property>
@@ -145,10 +165,11 @@
                 <property name="can_focus">True</property>
                 <property name="shadow_type">in</property>
                 <child>
-                  <object class="GtkTreeView" id="shortcuts_view">
+                  <object class="GtkTreeView" id="action_view">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="model">shortcuts_model</property>
+                    <property name="model">action_model</property>
+                    <property name="reorderable">True</property>
                     <child internal-child="selection">
                       <object class="GtkTreeSelection" id="treeview-selection2"/>
                     </child>
@@ -156,8 +177,8 @@
                       <object class="GtkTreeViewColumn" id="treeviewcolumn5">
                         <property name="title" translatable="yes">Enabled</property>
                         <child>
-                          <object class="GtkCellRendererToggle" id="enable_shortcut_render">
-                            <signal name="toggled" handler="on_enable_shortcut_render" swapped="no"/>
+                          <object class="GtkCellRendererToggle" id="enable_action_render">
+                            <signal name="toggled" handler="on_enable_action_render" swapped="no"/>
                           </object>
                           <attributes>
                             <attribute name="active">3</attribute>
@@ -203,7 +224,8 @@
                 <property name="toolbar_style">icons</property>
                 <property name="icon_size">1</property>
                 <child>
-                  <object class="GtkToolButton" id="add_shortcut_button">
+                  <object class="GtkToolButton" id="add_action_button">
+                    <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="use_action_appearance">False</property>
@@ -218,7 +240,8 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkToolButton" id="remove_shortcut_button">
+                  <object class="GtkToolButton" id="remove_action_button">
+                    <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
                     <property name="sensitive">False</property>
                     <property name="can_focus">False</property>
@@ -234,7 +257,8 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkToolButton" id="redo_shortcut_button">
+                  <object class="GtkToolButton" id="redo_action_button">
+                    <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
                     <property name="sensitive">False</property>
                     <property name="can_focus">False</property>
@@ -242,7 +266,7 @@
                     <property name="label" translatable="yes">toolbutton5</property>
                     <property name="use_underline">True</property>
                     <property name="icon_name">edit-redo-symbolic</property>
-                    <signal name="clicked" handler="on_redo_shortcut_button_clicked" swapped="no"/>
+                    <signal name="clicked" handler="on_redo_action_button_clicked" swapped="no"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -264,79 +288,73 @@
           </packing>
         </child>
         <child>
-          <object class="GtkGrid" id="grid1">
+          <object class="GtkAlignment" id="alignment1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="row_spacing">6</property>
-            <property name="column_spacing">12</property>
+            <property name="top_padding">5</property>
+            <property name="bottom_padding">10</property>
+            <property name="left_padding">20</property>
             <child>
-              <object class="GtkLabel" id="label1">
+              <object class="GtkGrid" id="grid1">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="xalign">1</property>
-                <property name="label" translatable="yes">Name:</property>
+                <property name="row_spacing">6</property>
+                <property name="column_spacing">12</property>
+                <child>
+                  <object class="GtkLabel" id="label1">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="xalign">1</property>
+                    <property name="label" translatable="yes">Name:</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">0</property>
+                    <property name="width">1</property>
+                    <property name="height">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label2">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="xalign">1</property>
+                    <property name="label" translatable="yes">Command:</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">1</property>
+                    <property name="width">1</property>
+                    <property name="height">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkEntry" id="entry1">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="invisible_char">•</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">0</property>
+                    <property name="width">1</property>
+                    <property name="height">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkEntry" id="entry2">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="invisible_char">•</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">1</property>
+                    <property name="width">1</property>
+                    <property name="height">1</property>
+                  </packing>
+                </child>
               </object>
-              <packing>
-                <property name="left_attach">0</property>
-                <property name="top_attach">0</property>
-                <property name="width">1</property>
-                <property name="height">1</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="label2">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="xalign">1</property>
-                <property name="label" translatable="yes">Command:</property>
-              </object>
-              <packing>
-                <property name="left_attach">0</property>
-                <property name="top_attach">1</property>
-                <property name="width">1</property>
-                <property name="height">1</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkEntry" id="entry1">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="invisible_char">•</property>
-              </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="top_attach">0</property>
-                <property name="width">1</property>
-                <property name="height">1</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkEntry" id="entry2">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="invisible_char">•</property>
-              </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="top_attach">1</property>
-                <property name="width">1</property>
-                <property name="height">1</property>
-              </packing>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
             </child>
           </object>
           <packing>
@@ -351,19 +369,5 @@
         <property name="shrink">True</property>
       </packing>
     </child>
-  </object>
-  <object class="GtkListStore" id="shortcuts_model">
-    <columns>
-      <!-- column-name group_name -->
-      <column type="gchararray"/>
-      <!-- column-name action_name -->
-      <column type="gchararray"/>
-      <!-- column-name commandline -->
-      <column type="gchararray"/>
-      <!-- column-name visiable -->
-      <column type="gboolean"/>
-      <!-- column-name desktop_entry -->
-      <column type="PyObject"/>
-    </columns>
   </object>
 </interface>
