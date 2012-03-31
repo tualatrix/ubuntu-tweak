@@ -18,16 +18,13 @@
 
 import os
 import logging
-import ConfigParser
 
 from gi.repository import Gtk, GdkPixbuf
 
 from ubuntutweak import system
-from ubuntutweak.factory import WidgetFactory
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.gui.treeviews import get_local_path
-from ubuntutweak.gui.containers import ListPack, TablePack
-from ubuntutweak.gui.dialogs import ErrorDialog, ServerErrorDialog
+from ubuntutweak.gui.containers import ListPack
 from ubuntutweak.policykit import PK_ACTION_TWEAK
 
 from ubuntutweak.settings.configsettings import SystemConfigSetting
@@ -48,7 +45,7 @@ class LoginSettings(TweakModule):
         self._setup_logo_image()
         self._setup_background_image()
 
-        box = ListPack(_('Login Theme'), (self.main_vbox))
+        box = ListPack('', (self.main_vbox))
         self.add_start(box, False, False, 0)
 
         if system.CODENAME == 'precise':

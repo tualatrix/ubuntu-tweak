@@ -9,9 +9,10 @@ class BasePack(Gtk.VBox):
         GObject.GObject.__init__(self)
         self.set_border_width(5)
 
-        title = Gtk.MenuItem(label=label)
-        title.select()
-        self.pack_start(title, False, False, 0)
+        if label:
+            title = Gtk.MenuItem(label=label)
+            title.select()
+            self.pack_start(title, False, False, 0)
 
 
 class BaseListPack(BasePack):
