@@ -28,10 +28,11 @@ from gi.repository import Pango
 from xdg.DesktopEntry import DesktopEntry
 
 from ubuntutweak.common import consts
+from ubuntutweak.common.debug import log_func
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.gui.dialogs import ErrorDialog, InfoDialog, QuestionDialog
 from ubuntutweak.gui.dialogs import ProcessDialog
-from ubuntutweak.gui.gtk import post_ui
+from ubuntutweak.gui.gtk import post_ui, set_busy, unset_busy
 from ubuntutweak.utils.parser import Parser
 from ubuntutweak.network import utdata
 from ubuntutweak.network.downloadmanager import DownloadDialog
@@ -676,10 +677,13 @@ class AppCenter(TweakModule):
         self.package_worker.update_apt_cache(True)
         self.update_app_data()
 
-    def on_apply_button_clicked(self, widget, data = None):
-        def on_clean_finished(transaction, status, add_and_rm):
-            to_add, to_rm = add_and_rm
-            worker = AptWorker(self.get_toplevel(), self.on_package_work_finished, add_and_rm)
+    def on_apply_button_clicked(self, widget, data=None):
+        @log_func(log)
+        def on_clean_finished(transaction, status, kwargs):
+            to_add, to_rm = kwargs['add_and_rm']
+            worker = AptWorker(self.get_toplevel(),
+                               finish_handler=self.on_package_work_finished,
+                               data=kwargs)
             worker.remove_packages(to_rm)
 
         to_rm = self.appview.to_rm
@@ -688,19 +692,28 @@ class AppCenter(TweakModule):
         log.debug("on_apply_button_clicked: to_rm: %s, to_add: %s" % (to_rm, to_add))
 
         if to_add or to_rm:
+            set_busy(self)
+
             if to_add:
                 #TODO if user cancel auth
                 if to_rm:
-                    worker = AptWorker(self.get_toplevel(), on_clean_finished, (to_add, to_rm))
+                    worker = AptWorker(self.get_toplevel(),
+                                       finish_handler=on_clean_finished,
+                                       data={'add_and_rm': (to_add, to_rm),
+                                             'parent': self})
                 else:
-                    worker = AptWorker(self.get_toplevel(), self.on_package_work_finished, (to_add, to_rm))
+                    worker = AptWorker(self.get_toplevel(),
+                                       finish_handler=self.on_package_work_finished,
+                                       data={'add_and_rm': (to_add, to_rm),
+                                             'parent': self})
                 worker.install_packages(to_add)
             elif to_rm:
                 on_clean_finished(None, None, (to_add, to_rm))
 
-    def on_package_work_finished(self, transaction, status, add_and_rm):
-        log.debug('on_package_work_finished: %s' % status)
-        to_add, to_rm = add_and_rm
+    @log_func(log)
+    def on_package_work_finished(self, transaction, status, kwargs):
+        to_add, to_rm = kwargs['add_and_rm']
+        parent = kwargs['parent']
 
         AptWorker.update_apt_cache(init=True)
 
@@ -711,6 +724,7 @@ class AppCenter(TweakModule):
         self.appview.clear_model()
         self.appview.update_model()
         self.apply_button.set_sensitive(False)
+        unset_busy(parent)
 
     def on_sync_button_clicked(self, widget):
         dialog = CheckUpdateDialog(widget.get_toplevel(), self.url)

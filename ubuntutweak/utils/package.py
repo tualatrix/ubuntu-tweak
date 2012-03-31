@@ -81,6 +81,7 @@ class AptWorker(object):
         trans.simulate(reply_handler=lambda: self._confirm_deps(trans),
                        error_handler=self._on_error)
 
+    @post_ui
     def _confirm_deps(self, trans):
         if [pkgs for pkgs in trans.dependencies if pkgs]:
             dia = AptConfirmDialog(trans, parent=self.parent)

@@ -10,7 +10,7 @@ from gi.repository import GObject, Gtk, Pango, Gdk
 
 from ubuntutweak import system
 from ubuntutweak.utils import icon
-from ubuntutweak.common.consts import DATA_DIR, CONFIG_ROOT
+from ubuntutweak.common.consts import DATA_DIR, CONFIG_ROOT, IS_INSTALLED 
 from ubuntutweak.common.debug import run_traceback, open_bug_report
 
 log = logging.getLogger('ModuleLoader')
@@ -123,7 +123,8 @@ class ModuleLoader:
             package = __import__(module_name)
             for k, v in inspect.getmembers(package):
                 if k == name and k not in ('TweakModule', 'proxy') and \
-                    hasattr(v, '__utmodule__') and v.__utactive__:
+                    hasattr(v, '__utmodule__') and \
+                    (not IS_INSTALLED or v.__utactive__):
                     return v
 
     @classmethod
@@ -179,7 +180,7 @@ class ModuleLoader:
                 hasattr(v, '__utmodule__'):
             if self.is_supported_desktop(v.__desktop__) and \
                self.is_supported_distro(v.__distro__) and \
-               v.__utactive__:
+               (not IS_INSTALLED or v.__utactive__):
                 self.module_table[v.get_name()] = v
 
                 if mark_user:
