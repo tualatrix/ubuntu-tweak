@@ -114,8 +114,7 @@ class Switch(Gtk.Switch, SettingWidget):
             self.get_setting().set_value(self._off)
 
     def reset(self):
-        self.set_active(self.get_setting().get_schema_value())
-
+        self.set_active(self._off != self.get_setting().get_schema_value())
 
 class UserCheckButton(Gtk.CheckButton, SettingWidget):
     def __str__(self):
