@@ -53,7 +53,7 @@ from ubuntutweak.utils import set_label_for_stock_button
 from ubuntutweak.utils import ppa
 from ubuntutweak.utils.package import AptWorker
 
-from ubuntutweak.admins.appcenter import AppView, CategoryView, AppParser, StatusProvider
+from ubuntutweak.admins.appcenter import AppView, AppParser, CateParser, StatusProvider
 from ubuntutweak.admins.appcenter import CheckUpdateDialog, FetchingDialog, PackageInfo
 
 log = logging.getLogger("SourceCenter")
@@ -455,7 +455,7 @@ class SourcesView(Gtk.TreeView):
     def get_status(self):
         return self._status
 
-    def update_model(self, find='all'):
+    def update_model(self, find='all', limit=-1, only_enabled=False):
         self.model.clear()
         sourceslist = self.get_sourceslist()
         enabled_list = []
@@ -467,9 +467,16 @@ class SourcesView(Gtk.TreeView):
         if self._status:
             self._status.load_objects_from_parser(SOURCE_PARSER)
 
+        index = 0
         for id in SOURCE_PARSER:
             enabled = False
+            index = index + 1
             url = SOURCE_PARSER.get_url(id)
+            enabled = url in enabled_list
+
+            if only_enabled and not enabled:
+                continue
+
             slug = SOURCE_PARSER.get_slug(id)
             comps = SOURCE_PARSER.get_comps(id)
             distro = SOURCE_PARSER.get_distro(id)
@@ -478,12 +485,15 @@ class SourcesView(Gtk.TreeView):
             if find != 'all' and category != find:
                 continue
 
+            #TODO real top-10
+            if limit > 0 and index >= limit:
+                break
+
             name = SOURCE_PARSER.get_name(id)
             comment = SOURCE_PARSER.get_summary(id)
             pixbuf = get_source_logo_from_filename(SOURCE_PARSER[id]['logo'])
             website = SOURCE_PARSER.get_website(id)
             key = SOURCE_PARSER.get_key(id)
-            enabled = url in enabled_list
 
             if self._status and not self._status.get_read_status(slug):
                 display = '<b>%s <span foreground="#ff0000">(New!!!)</span>\n%s</b>' % (name, comment)
@@ -684,6 +694,106 @@ class SourcesView(Gtk.TreeView):
             notify.set_hint_string ("x-canonical-append", "")
             notify.show()
 
+class CategoryView(Gtk.TreeView):
+    (CATE_ID,
+     CATE_NAME,
+     CATE_DISPLAY) = range(3)
+
+    def __init__(self, path):
+        GObject.GObject.__init__(self)
+
+        self.path = path
+        self._status = None
+        self.parser = None
+
+        self.set_headers_visible(False)
+        self.set_rules_hint(True)
+        self.model = self._create_model()
+        self.set_model(self.model)
+        self._add_columns()
+
+    def _create_model(self):
+        '''The model is icon, title and the list reference'''
+        model = Gtk.TreeStore(GObject.TYPE_INT,
+                              GObject.TYPE_STRING,
+                              GObject.TYPE_STRING)
+
+        return model
+
+    def _add_columns(self):
+        column = Gtk.TreeViewColumn(_('Category'))
+
+        renderer = Gtk.CellRendererText()
+        column.pack_start(renderer, True)
+        column.set_sort_column_id(self.CATE_NAME)
+        column.add_attribute(renderer, 'markup', self.CATE_DISPLAY)
+        self.append_column(column)
+
+    def set_status_from_view(self, view):
+        self._status = view.get_status()
+
+    def update_model(self):
+        self.model.clear()
+        self.parser = CateParser(self.path)
+
+        self.model.append(None, (-3,
+                                 'latest',
+                                 _('Latest')))
+
+        self.model.append(None, (-2,
+                                 'top-10',
+                                 _('Top 10')))
+
+        self.model.append(None, (-1,
+                                 'top-10',
+                                 _('Enabled PPAs')))
+
+        iter = self.model.append(None, (0,
+                                        'all',
+                                        _('All')))
+
+        for slug in self.get_cate_items():
+            child_iter = self.model.append(iter)
+            id = self.parser.get_id(slug)
+            name = self.parser.get_name(slug)
+            display = name
+
+            if self._status:
+                self._status.load_category_from_parser(self.parser)
+                count = self._status.get_cate_unread_count(id)
+                if count:
+                    display = '<b>%s (%d)</b>' % (name, count)
+
+            log.debug("Insert category model: id: %s"
+                    "\tname: %s"
+                    "\tdisplay: %s" % (id, name, display))
+            self.model.set(child_iter, 
+                           self.CATE_ID, id,
+                           self.CATE_NAME, name,
+                           self.CATE_DISPLAY, display)
+
+    def get_cate_items(self):
+        OTHER = u'other'
+        keys = self.parser.keys()
+        keys.sort()
+        if OTHER in keys:
+            keys.remove(OTHER)
+            keys.append(OTHER)
+        return keys
+
+    def update_selected_item(self):
+        model, iter = self.get_selection().get_selected()
+
+        if iter:
+            id = model[iter][self.CATE_ID]
+            name = model[iter][self.CATE_NAME]
+
+            count = self._status.get_cate_unread_count(id)
+            if count:
+                model[iter][self.CATE_DISPLAY] = '<b>%s (%d)</b>' % (name, count)
+            else:
+                model[iter][self.CATE_DISPLAY] = name
+
 
 class SourceCenter(TweakModule):
     __title__  = _('Source Center')
@@ -728,6 +838,12 @@ class SourceCenter(TweakModule):
             GObject.idle_add(self.upgrade_sources)
 
         self.add_start(self.main_vbox)
+
+        self.connect('realize', self.setup_ui_tasks)
+
+    def setup_ui_tasks(self, widget):
+        self.purge_ppa_button.hide()
+        self.cateview.expand_all()
 
     def check_source_upgradable(self):
         log.debug("The check source string is: \"%s\"" % self.__get_disable_string())
@@ -814,12 +930,24 @@ class SourceCenter(TweakModule):
         self.cateview.set_status_from_view(self.sourceview)
         model, iter = self.cateview.get_selection().get_selected()
 
+        limit = -1
+        only_enabled = False
         if iter:
             find = model[iter][self.cateview.CATE_ID] or 'all'
+            if find == -3:
+                find = 'all'
+            elif find == -2:
+                find = 'all'
+                limit = 10
+            elif find == -1:
+                find = 'all'
+                only_enabled = True
         else:
             find = 'all'
         log.debug("Filter for %s" % find)
-        self.sourceview.update_model(find=find)
+        self.sourceview.update_model(find=find,
+                                     limit=limit,
+                                     only_enabled=only_enabled)
 
     def set_details(self,
                     homepage='http://ubuntu-tweak.com',

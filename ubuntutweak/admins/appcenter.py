@@ -200,15 +200,16 @@ class CategoryView(Gtk.TreeView):
         GObject.GObject.__init__(self)
 
         self.path = path
-        self.__status = None
+        self._status = None
         self.parser = None
+
         self.set_headers_visible(False)
         self.set_rules_hint(True)
-        self.model = self.__create_model()
+        self.model = self._create_model()
         self.set_model(self.model)
-        self.__add_columns()
+        self._add_columns()
 
-    def __create_model(self):
+    def _create_model(self):
         '''The model is icon, title and the list reference'''
         model = Gtk.ListStore(
                     GObject.TYPE_INT,
@@ -217,7 +218,7 @@ class CategoryView(Gtk.TreeView):
         
         return model
 
-    def __add_columns(self):
+    def _add_columns(self):
         column = Gtk.TreeViewColumn(_('Category'))
 
         renderer = Gtk.CellRendererText()
@@ -227,7 +228,7 @@ class CategoryView(Gtk.TreeView):
         self.append_column(column)
 
     def set_status_from_view(self, view):
-        self.__status = view.get_status()
+        self._status = view.get_status()
 
     def update_model(self):
         self.model.clear()
@@ -245,12 +246,15 @@ class CategoryView(Gtk.TreeView):
             name = self.parser.get_name(slug)
             display = name
 
-            if self.__status:
-                self.__status.load_category_from_parser(self.parser)
-                count = self.__status.get_cate_unread_count(id)
+            if self._status:
+                self._status.load_category_from_parser(self.parser)
+                count = self._status.get_cate_unread_count(id)
                 if count:
                     display = '<b>%s (%d)</b>' % (name, count)
 
+            log.debug("Insert category model: id: %s"
+                    "\tname: %s"
+                    "\tdisplay: %s" % (id, name, display))
             self.model.set(iter, 
                            self.CATE_ID, id,
                            self.CATE_NAME, name,
@@ -272,7 +276,7 @@ class CategoryView(Gtk.TreeView):
             id = model[iter][self.CATE_ID]
             name = model[iter][self.CATE_NAME]
 
-            count = self.__status.get_cate_unread_count(id)
+            count = self._status.get_cate_unread_count(id)
             if count:
                 model[iter][self.CATE_DISPLAY] = '<b>%s (%d)</b>' % (name, count)
             else:
@@ -305,10 +309,10 @@ class AppView(Gtk.TreeView):
         self.to_add = []
         self.to_rm = []
         self.filter = None
-        self.__status = None
+        self._status = None
 
-        model = self.__create_model()
-        self.__add_columns()
+        model = self._create_model()
+        self._add_columns()
         self.set_model(model)
 
         self.set_rules_hint(True)
@@ -316,7 +320,7 @@ class AppView(Gtk.TreeView):
 
         self.show_all()
 
-    def __create_model(self):
+    def _create_model(self):
         model = Gtk.ListStore(
                         GObject.TYPE_BOOLEAN,
                         GdkPixbuf.Pixbuf,
@@ -333,7 +337,7 @@ class AppView(Gtk.TreeView):
         model = self.get_model()
         model.set_sort_column_id(self.COLUMN_NAME, Gtk.SortType.ASCENDING)
 
-    def __add_columns(self):
+    def _add_columns(self):
         renderer = Gtk.CellRendererToggle()
         renderer.set_property("xpad", 6)
         renderer.connect('toggled', self.on_install_toggled)
@@ -360,10 +364,10 @@ class AppView(Gtk.TreeView):
 
     def set_as_read(self, iter, model):
         package = model.get_value(iter, self.COLUMN_PKG)
-        if self.__status and not self.__status.get_read_status(package):
+        if self._status and not self._status.get_read_status(package):
             appname = model.get_value(iter, self.COLUMN_NAME)
             desc = model.get_value(iter, self.COLUMN_DESC)
-            self.__status.set_as_read(package)
+            self._status.set_as_read(package)
             model.set_value(iter, self.COLUMN_DISPLAY, '<b>%s</b>\n%s' % (appname, desc))
 
     def icon_column_view_func(self, tree_column, renderer, model, iter, data=None):
@@ -404,10 +408,10 @@ class AppView(Gtk.TreeView):
 
     def set_status_active(self, active):
         if active:
-            self.__status = StatusProvider('appstatus.json')
+            self._status = StatusProvider('appstatus.json')
 
     def get_status(self):
-        return self.__status
+        return self._status
 
     def update_model(self, apps=None):
         '''apps is a list to iter pkgname,
@@ -417,8 +421,8 @@ class AppView(Gtk.TreeView):
 
         app_parser = AppParser()
 
-        if self.__status:
-            self.__status.load_objects_from_parser(app_parser)
+        if self._status:
+            self._status.load_objects_from_parser(app_parser)
 
         if not apps:
             apps = app_parser.keys()
@@ -436,8 +440,8 @@ class AppView(Gtk.TreeView):
                 log.warning(e)
                 # Confirm the invalid package isn't in the count
                 # But in the future, Ubuntu Tweak should display the invalid package too
-                if self.__status and not self.__status.get_read_status(pkgname):
-                    self.__status.set_as_read(pkgname)
+                if self._status and not self._status.get_read_status(pkgname):
+                    self._status.set_as_read(pkgname)
                 continue
 
             if self.filter == None or self.filter == category:
@@ -447,7 +451,7 @@ class AppView(Gtk.TreeView):
                     display = self.__fill_changed_display(appname, desc)
                 else:
                     status = is_installed
-                    if self.__status and not self.__status.get_read_status(pkgname):
+                    if self._status and not self._status.get_read_status(pkgname):
                         display = '<b>%s <span foreground="#ff0000">(New!!!)</span>\n%s</b>' % (appname, desc)
                     else:
                         display = '<b>%s</b>\n%s' % (appname, desc)

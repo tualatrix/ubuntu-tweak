@@ -210,6 +210,21 @@
             <property name="spacing">12</property>
             <property name="layout_style">end</property>
             <child>
+              <object class="GtkButton" id="purge_ppa_button">
+                <property name="label" translatable="yes">Purge PPA</property>
+                <property name="use_action_appearance">False</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_action_appearance">False</property>
+                <signal name="clicked" handler="on_purge_ppa_button_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
               <object class="GtkButton" id="sync_button">
                 <property name="label">gtk-refresh</property>
                 <property name="use_action_appearance">False</property>
