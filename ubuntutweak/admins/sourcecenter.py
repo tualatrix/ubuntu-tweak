@@ -20,6 +20,8 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import os
+import re
+import json
 import time
 import urllib
 import thread
@@ -28,6 +30,7 @@ import logging
 import gettext
 import subprocess
 
+from urllib2 import urlopen, Request, URLError
 from gettext import ngettext
 from aptsources.sourceslist import SourcesList
 
@@ -44,7 +47,6 @@ from ubuntutweak.policykit import PK_ACTION_SOURCE
 from ubuntutweak.policykit.dbusproxy import proxy
 from ubuntutweak.gui.widgets import CheckButton
 from ubuntutweak.gui.dialogs import QuestionDialog, ErrorDialog, InfoDialog, WarningDialog
-from ubuntutweak.gui.dialogs import ServerErrorDialog
 from ubuntutweak.gui.gtk import post_ui, set_busy, unset_busy
 from ubuntutweak.utils.parser import Parser
 from ubuntutweak.network import utdata
@@ -265,6 +267,178 @@ class SourceStatus(StatusProvider):
             pass
         self.save()
 
+
+class NoNeedDowngradeException(Exception):
+    pass
+
+
+class DowngradeView(Gtk.TreeView):
+    __gsignals__ = {
+        'checked': (GObject.SignalFlags.RUN_FIRST, None,
+                    (GObject.TYPE_BOOLEAN,)),
+        'cleaned': (GObject.SignalFlags.RUN_FIRST, None, ())
+    }
+
+    (COLUMN_PKG,
+     COLUMN_PPA_VERSION,
+     COLUMN_SYSTEM_VERSION) = range(3)
+
+    def __init__(self, plugin):
+        GObject.GObject.__init__(self)
+
+        model = Gtk.ListStore(GObject.TYPE_STRING,
+                              GObject.TYPE_STRING,
+                              GObject.TYPE_STRING)
+        self.set_model(model)
+        model.set_sort_column_id(self.COLUMN_PKG, Gtk.SortType.ASCENDING)
+
+        self.plugin = plugin
+
+        self._add_column()
+
+    def _add_column(self):
+        renderer = Gtk.CellRendererText()
+        column = Gtk.TreeViewColumn(_('Package'))
+        column.pack_start(renderer, False)
+        column.add_attribute(renderer, 'text', self.COLUMN_PKG)
+        column.set_sort_column_id(self.COLUMN_PKG)
+        self.append_column(column)
+
+        renderer = Gtk.CellRendererText()
+        renderer.set_property('ellipsize', Pango.EllipsizeMode.END)
+        column = Gtk.TreeViewColumn(_('Previous Version'))
+        column.pack_start(renderer, True)
+        column.add_attribute(renderer, 'text', self.COLUMN_PPA_VERSION)
+        column.set_resizable(True)
+        column.set_min_width(180)
+        self.append_column(column)
+
+        renderer = Gtk.CellRendererText()
+        renderer.set_property('ellipsize', Pango.EllipsizeMode.END)
+        column = Gtk.TreeViewColumn(_('System Version'))
+        column.pack_start(renderer, True)
+        column.add_attribute(renderer, 'text', self.COLUMN_SYSTEM_VERSION)
+        column.set_resizable(True)
+        self.append_column(column)
+
+    def update_downgrade_model(self, ppas):
+        model = self.get_model()
+        model.clear()
+        pkg_dict = {}
+        for ppa_url in ppas:
+            path = ppa.get_list_name(ppa_url)
+            log.debug('Find the PPA path name: %s', path)
+            if path:
+                for line in open(path):
+                    if line.startswith('Package:'):
+                        pkg = line.split()[1].strip()
+                        if pkg in pkg_dict:
+                            # Join another ppa info to the pkg dict, so that
+                            # later we can know if more than two ppa provide
+                            # the pkg
+                            pkg_dict[pkg].extend([ppa_url])
+                        else:
+                            pkg_dict[pkg] = [ppa_url]
+
+        pkg_map = self.get_downgradeable_pkgs(pkg_dict)
+
+        if pkg_map:
+            log.debug("Start insert pkg_map to model: %s\n" % str(pkg_map))
+            for pkg, (p_verion, s_verion) in pkg_map.items():
+                model.append((pkg, p_verion, s_verion))
+
+    def get_downgrade_packages(self):
+        model = self.get_model()
+        downgrade_list = []
+        for row in model:
+            pkg, version = row[self.COLUMN_PKG], row[self.COLUMN_SYSTEM_VERSION]
+            downgrade_list.append("%s=%s" % (pkg, version))
+        log.debug("The package to downgrade is %s" % str(downgrade_list))
+        return downgrade_list
+
+    def get_downgradeable_pkgs(self, ppa_dict):
+        def is_system_origin(version, urls):
+            origins = [ppa.get_ppa_origin_name(url) for url in urls]
+            system_version = 0
+            match = False
+
+            for origin in version.origins:
+                if origin.origin:
+                    if origin.origin not in origins:
+                        log.debug("The origin %s is not in %s, so end the loop" % (origin.origin, str(origins)))
+                        match = True
+                        break
+
+            if match:
+                system_version = version.version
+                log.debug("Found match url, the system_version is %s, now iter to system version" % system_version)
+
+            return system_version
+
+        def is_full_match_ppa_origin(pkg, version, urls):
+            origins = [ppa.get_ppa_origin_name(url) for url in urls]
+            ppa_version = 0
+            match = True
+
+            if version == pkg.installed:
+                for origin in version.origins:
+                    if origin.origin:
+                        if origin.origin not in origins:
+                            log.debug("The origin %s is not in %s, so end the loop" % (origin.origin, str(origins)))
+                            match = False
+                            break
+
+                if match:
+                    ppa_version = version.version
+                    log.debug("Found match url, the ppa_version is %s, now iter to system version" % ppa_version)
+
+            return ppa_version
+
+        log.debug("Check downgrade information")
+        downgrade_dict = {}
+        for pkg, urls in ppa_dict.items():
+            log.debug("The package is: %s, PPA URL is: %s" % (pkg, str(urls)))
+
+            if pkg not in AptWorker.get_cache():
+                log.debug("    package isn't available, continue next...\n")
+                continue
+
+            pkg = AptWorker.get_cache()[pkg]
+            if not pkg.isInstalled:
+                log.debug("    package isn't installed, continue next...\n")
+                continue
+            versions = pkg.versions
+
+            ppa_version = 0
+            system_version = 0
+            FLAG = 'PPA'
+            try:
+                for version in versions:
+                    try:
+                        #FIXME option to remove the package
+                        log.debug("Version uri is %s" % version.uri)
+
+                        # Switch FLAG
+                        if FLAG == 'PPA':
+                            ppa_version = is_full_match_ppa_origin(pkg, version, urls)
+                            FLAG = 'SYSTEM'
+                            if ppa_version == 0:
+                                raise NoNeedDowngradeException
+                        else:
+                            system_version = is_system_origin(version, urls)
+
+                        if ppa_version and system_version:
+                            downgrade_dict[pkg.name] = (ppa_version, system_version)
+                            break
+                    except StopIteration:
+                        pass
+            except NoNeedDowngradeException:
+                log.debug("Catch NoNeedDowngradeException, so pass this package: %s" % pkg)
+                continue
+            log.debug("\n")
+        return downgrade_dict
+
+
 class UpdateView(AppView):
     def __init__(self):
         AppView.__init__(self)
@@ -447,7 +621,7 @@ class SourcesView(Gtk.TreeView):
     def get_status(self):
         return self._status
 
-    def update_model(self, find='all', limit=-1, only_enabled=False):
+    def update_source_model(self, find='all', limit=-1, only_enabled=False):
         self.model.clear()
         sourceslist = self.get_sourceslist()
         enabled_list = []
@@ -742,7 +916,7 @@ class CategoryView(Gtk.TreeView):
     def set_status_from_view(self, view):
         self._status = view.get_status()
 
-    def update_model(self):
+    def update_cate_model(self):
         self.model.clear()
         self.parser = CateParser(self.path)
 
@@ -796,6 +970,9 @@ class CategoryView(Gtk.TreeView):
 
         if iter:
             id = model[iter][self.CATE_ID]
+            if id <= 0:
+                return True
+
             name = model[iter][self.CATE_NAME]
 
             count = self._status.get_cate_unread_count(id)
@@ -822,13 +999,13 @@ class SourceCenter(TweakModule):
         set_label_for_stock_button(self.sync_button, _('_Sync'))
 
         self.cateview = CategoryView(os.path.join(SOURCE_ROOT, 'cates.json'))
-        self.cateview.update_model()
+        self.cateview.update_cate_model()
         self.cateview.get_selection().connect('changed', self.on_category_changed)
         self.left_sw.add(self.cateview)
 
         self.sourceview = SourcesView()
         self.sourceview.set_status_active(True)
-        self.sourceview.update_model()
+        self.sourceview.update_source_model()
         self.sourceview.connect('sourcechanged', self.on_source_changed)
         self.sourceview.connect('new_purge', self.on_purge_changed)
         self.sourceview.get_selection().connect('changed', self.on_source_selection)
@@ -956,7 +1133,7 @@ class SourceCenter(TweakModule):
         else:
             find = 'all'
         log.debug("Filter for %s" % find)
-        self.sourceview.update_model(find=find,
+        self.sourceview.update_source_model(find=find,
                                      limit=limit,
                                      only_enabled=only_enabled)
         if only_enabled:
@@ -1004,8 +1181,6 @@ class SourceCenter(TweakModule):
 
                 dialog.run()
                 dialog.destroy()
-        else:
-            ServerErrorDialog().launch()
 
     def on_source_changed(self, widget):
         self.emit('call', 'ubuntutweak.modules.sourceeditor', 'update_source_combo', {})
@@ -1049,8 +1224,8 @@ class SourceCenter(TweakModule):
         SOURCE_PARSER = SourceParser()
 
         self.sourceview.model.clear()
-        self.sourceview.update_model()
-        self.cateview.update_model()
+        self.sourceview.update_source_model()
+        self.cateview.update_cate_model()
 
     def on_sync_button_clicked(self, widget):
         dialog = CheckSourceDialog(widget.get_toplevel(), self.url)
@@ -1071,3 +1246,67 @@ class SourceCenter(TweakModule):
             utdata.save_synced_timestamp(SOURCE_ROOT)
             self.update_timestamp()
             InfoDialog(_("No update available.")).launch()
+
+    @log_func(log)
+    def on_purge_ppa_button_clicked(self, widget):
+        # name_list is to display the name of PPA
+        # url_list is to identify the ppa
+        name_list = []
+        url_list = []
+        for url in self.sourceview.to_purge:
+            name_list.append(ppa.get_short_name(url))
+            url_list.append(url)
+
+        log.debug("PPAs to purge: url_list: %s" % url_list)
+
+        package_view = DowngradeView(self)
+        package_view.update_downgrade_model(url_list)
+        sw = Gtk.ScrolledWindow(shadow_type=Gtk.ShadowType.IN)
+        sw.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+        select_pkgs = package_view.get_downgrade_packages()
+        sw.add(package_view)
+
+        #TODO the logic is a little ugly, need to improve the BaseMessageDialog
+        if not select_pkgs:
+            message = _("It's safe to purge the PPA, no packages need to be downgraded.")
+            sw.hide()
+        else:
+            message = _("To safely purge the PPA, the following packages must be downgraded.")
+            sw.show_all()
+            sw.set_size_request(500, 100)
+
+        dialog = QuestionDialog(message=message,
+                                title=_("You're going to purge \"%s\":") % ', '.join(name_list))
+        dialog.set_resizable(True)
+        dialog.get_content_area().pack_start(sw, True, True, 0)
+        dialog.show_all()
+
+        response = dialog.run()
+        dialog.destroy()
+        # Workflow
+        # 1. Downgrade all the PPA packages to offical packages
+        #TODO Maybe not official? Because anther ppa which is enabled may have newer packages then offical
+        # 2. If succeed, disable PPA, or keep it
+
+        if response == Gtk.ResponseType.YES:
+            log.debug("The select pkgs is: %s", str(select_pkgs))
+            parent = widget.get_toplevel()
+            worker = AptWorker(parent,
+                               finish_handler=self.on_package_work_finished,
+                               data={'parent': parent,
+                                     'url_list': url_list})
+            worker.downgrade_packages(select_pkgs)
+
+        # TODO refresh source?
+
+    @log_func(log)
+    def on_package_work_finished(self, transaction, status, kwargs):
+        parent = kwargs['parent']
+        url_list = kwargs['url_list']
+
+        unset_busy(parent)
+        for url in url_list:
+            #TODO remove vendor key
+            result = proxy.purge_source(url, '')
+            log.debug("Set source: %s to %s" % (url, str(result)))
+        self.update_sourceview()

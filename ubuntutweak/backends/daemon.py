@@ -212,7 +212,7 @@ class Daemon(PolicyKitService):
                          in_signature='ss', out_signature='b',
                          sender_keyword='sender')
     def purge_source(self, url, key_fingerprint='', sender=None):
-        self._check_permission(sender, PK_ACTION_CLEAN)
+        self._check_permission(sender, PK_ACTION_SOURCE)
         self.list.refresh()
         to_remove = []
 
@@ -221,7 +221,10 @@ class Daemon(PolicyKitService):
                 to_remove.extend(glob.glob(source.file))
 
         for file in to_remove:
-            os.remove(file)
+            try:
+                os.remove(file)
+            except Exception, e:
+                log.error(e)
 
         # Must refresh! Because the sources.list.d has been changed
         self.list.refresh()
