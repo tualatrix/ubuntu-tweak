@@ -1226,6 +1226,7 @@ class SourceCenter(TweakModule):
         self.sourceview.model.clear()
         self.sourceview.update_source_model()
         self.cateview.update_cate_model()
+        self.cateview.expand_all()
 
     def on_sync_button_clicked(self, widget):
         dialog = CheckSourceDialog(widget.get_toplevel(), self.url)
