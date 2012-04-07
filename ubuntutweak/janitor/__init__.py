@@ -677,6 +677,29 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
                                              plugin(),
                                              None,
                                              None))
+
+        app_text = _('Apps')
+
+        iter = self.janitor_model.append(None, (None,
+                                                icon.get_from_name('gnome-app-install'),
+                                                app_text,
+                                                "<b><big>%s</big></b>" % app_text,
+                                                None,
+                                                None,
+                                                None))
+
+        for plugin in loader.get_modules_by_category('application'):
+            if plugin.is_user_extension() and plugin.get_name() not in plugin_to_load:
+                log.debug("User extension: %s not in setting to load" % plugin.get_name())
+                continue
+            size_list.append(Gtk.Label(label=plugin.get_title()).get_layout().get_pixel_size()[0])
+            self.janitor_model.append(iter, (False,
+                                             None,
+                                             plugin.get_title(),
+                                             plugin.get_title(),
+                                             plugin(),
+                                             None,
+                                             None))
         if size_list:
             self.max_janitor_view_width = max(size_list) + 80
 
