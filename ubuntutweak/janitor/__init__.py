@@ -1,4 +1,6 @@
 import os
+import glob
+import shutil
 import logging
 import threading
 import traceback
@@ -59,6 +61,25 @@ class PackageObject(CruftObject):
         return self.package_name
 
 
+class CacheObject(CruftObject):
+    def __init__(self, name, path, size):
+        self.name = name
+        self.path = path
+        self.size = size
+
+    def get_path(self):
+        return self.path
+
+    def get_size_display(self):
+        return filesizeformat(self.size)
+
+    def get_icon(self):
+        return icon.guess_from_path(self.get_path())
+
+    def is_dir(self):
+        return os.path.isdir(self.path)
+
+
 class JanitorPlugin(GObject.GObject):
     __title__ = ''
     __category__ = ''
@@ -117,6 +138,98 @@ class JanitorPlugin(GObject.GObject):
             after the clean task is done
         '''
         pass
+
+class JanitorCachePlugin(JanitorPlugin):
+    root_path = ''
+    pattern = '*'
+
+    def __str__(self):
+        try:
+            return self.__module__.split('.')[-1]
+        except Exception, e:
+            return "%s Plugin" % self.__title__
+
+    def get_cruft(self):
+        if self.pattern == '*':
+            self.get_cruft_by_path()
+        else:
+            self.get_cruft_by_glob()
+
+    def clean_cruft(self, cruft_list=[], parent=None):
+        for index, cruft in enumerate(cruft_list):
+            try:
+                log.debug('Cleaning...%s' % cruft.get_name())
+                if cruft.is_dir():
+                    shutil.rmtree(cruft.get_path())
+                else:
+                    os.remove(cruft.get_path())
+                self.emit('object_cleaned', cruft)
+            except Exception, e:
+                log.error(run_traceback(e))
+                self.emit('clean_error', cruft.get_name())
+                break
+
+        self.emit('all_cleaned', True)
+
+    def on_done(self, widget):
+        widget.destroy()
+
+    def get_cruft_by_glob(self):
+        cruft_list = glob.glob('%s/%s' % (self.get_path(), self.pattern))
+        cruft_list.sort()
+        size = 0
+
+        for full_path in cruft_list:
+            current_size = os.path.getsize(full_path)
+            size += current_size
+
+            self.emit('find_object',
+                      CacheObject(os.path.basename(full_path), full_path, current_size))
+
+        self.emit('scan_finished', True, len(cruft_list), size)
+
+    def get_path(self):
+        if self.root_path.startswith('~'):
+            return os.path.expanduser(self.root_path)
+        else:
+            return self.root_path
+
+    def get_cruft_by_path(self):
+        try:
+            count = 0
+            total_size = 0
+            for root, dirs, files in os.walk(self.get_path()):
+                if root == self.get_path() and dirs:
+                    dirs.sort()
+                    files.sort()
+
+                    to_deleted = dirs + files
+
+                    for path in to_deleted:
+                        full_path = os.path.join(self.get_path(), path)
+
+                        try:
+                            size = os.popen('du -bs "%s"' % full_path).read().split()[0]
+                        except:
+                            size = 0
+                        count += 1
+                        total_size += int(size)
+
+                        self.emit('find_object',
+                                  CacheObject(path, full_path, size))
+                else:
+                    continue
+
+            self.emit('scan_finished', True, count, total_size)
+        except Exception, e:
+            log.error(e)
+            self.emit('scan_error', e)
+
+    def get_summary(self, count, size):
+        if count:
+            return _('%s (%d cache to be cleaned, total size: %s)') % (self.__title__, count, filesizeformat(size))
+        else:
+            return _('%s (No cache to be cleaned)') % self.__title__
 
 
 class JanitorPage(Gtk.VBox, GuiBuilder):
@@ -509,10 +622,10 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
                 if child_row[self.JANITOR_PLUGIN] == plugin:
                     self._total_count += count
                     if count:
-                        child_row[self.JANITOR_DISPLAY] = "<b>%s (%d) </b>" % (plugin.get_title(), count)
+                        child_row[self.JANITOR_DISPLAY] = "<b>[%d] %s</b>" % (count, plugin.get_title())
                         self.result_view.collapse_row(self.result_model.get_path(result_iter))
                     else:
-                        child_row[self.JANITOR_DISPLAY] = "%s (%d)" % (plugin.get_title(), count)
+                        child_row[self.JANITOR_DISPLAY] = "[0] %s" % plugin.get_title()
 
     @post_ui
     def on_scan_error(self, plugin, error, plugin_iter):
@@ -626,6 +739,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         plugin.set_data('clean_finished', True)
 
     def on_clean_error(self, plugin, error, plugin_iter):
+        #TODO response to user?
         self.janitor_model[plugin_iter][self.JANITOR_ICON] = icon.get_from_name('error', size=16)
         self.clean_tasks = []
         plugin.set_data('clean_finished', True)
