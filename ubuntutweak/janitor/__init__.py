@@ -196,7 +196,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
                                           self.JANITOR_ICON)
 
         renderer = Gtk.CellRendererText()
-        renderer.set_property('ellipsize', Pango.EllipsizeMode.MIDDLE)
+        renderer.set_property('ellipsize', Pango.EllipsizeMode.END)
         janitor_column.pack_start(renderer, True)
         janitor_column.add_attribute(renderer, 'markup', self.JANITOR_DISPLAY)
 
