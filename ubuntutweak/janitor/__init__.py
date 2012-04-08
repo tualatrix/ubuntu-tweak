@@ -425,6 +425,13 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
             if self.scan_tasks:
                 self.do_scan_task()
             else:
+                if self._total_count == 0:
+                    self.result_view.hide()
+                    self.happy_box.show()
+                else:
+                    self.result_view.show()
+                    self.happy_box.hide()
+
                 self.unset_busy()
 
     def _on_spinner_timeout(self, plugin_iter, thread):
@@ -444,6 +451,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
             thread.join()
 
             if len(self.scan_tasks) != 0:
+                log.debug("Pending scan tasks: %d" % len(self.scan_tasks))
                 self.do_scan_task()
             else:
                 log.debug("total_count is: %d" % self._total_count)
