@@ -14,6 +14,9 @@ class CacheObject(CruftObject):
         self.path = path
         self.size = size
 
+    def get_path(self):
+        return self.path
+
     def get_size_display(self):
         return filesizeformat(self.size)
 

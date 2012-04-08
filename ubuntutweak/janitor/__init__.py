@@ -13,7 +13,7 @@ from ubuntutweak.gui.gtk import post_ui
 from ubuntutweak.utils import icon, filesizeformat
 from ubuntutweak.modules import ModuleLoader
 from ubuntutweak.settings import GSetting
-from ubuntutweak.common.debug import run_traceback
+from ubuntutweak.common.debug import run_traceback, log_func
 from ubuntutweak.common.consts import DATA_DIR
 from ubuntutweak.gui.dialogs import ErrorDialog
 from ubuntutweak.policykit import PK_ACTION_CLEAN
@@ -172,6 +172,17 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
 
     def is_auto_scan(self):
         return self.autoscan_button.get_active()
+
+    @log_func(log)
+    def on_result_view_row_activated(self, treeview, path, column):
+        iter = self.result_model.get_iter(path)
+        cruft = self.result_model[iter][self.RESULT_CRUFT]
+
+        if hasattr(cruft, 'get_path'):
+            path = cruft.get_path()
+            if not os.path.isdir(path):
+                path = os.path.dirname(path)
+            os.system("xdg-open '%s' &" % path)
 
     def setup_ui_tasks(self, widget):
         self.janitor_model.set_sort_column_id(self.JANITOR_NAME, Gtk.SortType.ASCENDING)
