@@ -62,6 +62,10 @@ class Clip(Gtk.VBox):
         return '%s' % self.__class__
 
     @classmethod
+    def is_active(cls):
+        return cls.__utactive__
+
+    @classmethod
     def get_name(cls):
         return cls.__name__
 

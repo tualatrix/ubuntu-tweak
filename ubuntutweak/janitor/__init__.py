@@ -102,6 +102,10 @@ class JanitorPlugin(GObject.GObject):
     }
 
     @classmethod
+    def is_active(cls):
+        return cls.__utactive__
+
+    @classmethod
     def get_name(cls):
         return cls.__name__
 
@@ -149,6 +153,10 @@ class JanitorCachePlugin(JanitorPlugin):
         except Exception, e:
             return "%s Plugin" % self.__title__
 
+    @classmethod
+    def is_active(cls):
+        return cls.__utactive__ and os.path.exists(cls.get_path())
+
     def get_cruft(self):
         if self.pattern == '*':
             self.get_cruft_by_path()
@@ -188,11 +196,12 @@ class JanitorCachePlugin(JanitorPlugin):
 
         self.emit('scan_finished', True, len(cruft_list), size)
 
-    def get_path(self):
-        if self.root_path.startswith('~'):
-            return os.path.expanduser(self.root_path)
+    @classmethod
+    def get_path(cls):
+        if cls.root_path.startswith('~'):
+            return os.path.expanduser(cls.root_path)
         else:
-            return self.root_path
+            return cls.root_path
 
     def get_cruft_by_path(self):
         try:

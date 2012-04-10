@@ -123,8 +123,7 @@ class ModuleLoader:
             package = __import__(module_name)
             for k, v in inspect.getmembers(package):
                 if k == name and k not in ('TweakModule', 'proxy') and \
-                    hasattr(v, '__utmodule__') and \
-                    (not IS_INSTALLED or v.__utactive__):
+                        hasattr(v, '__utmodule__') and v.is_active():
                     return v
 
     @classmethod
@@ -180,7 +179,7 @@ class ModuleLoader:
                 hasattr(v, '__utmodule__'):
             if self.is_supported_desktop(v.__desktop__) and \
                self.is_supported_distro(v.__distro__) and \
-               (not IS_INSTALLED or v.__utactive__):
+               v.is_active():
                 self.module_table[v.get_name()] = v
 
                 if mark_user:
@@ -267,6 +266,10 @@ class TweakModule(Gtk.VBox):
                 if issubclass(type(o), Gtk.Buildable):
                     name = Gtk.Buildable.get_name(o)
                     setattr(self, name, o)
+
+    @classmethod
+    def is_active(cls):
+        return not IS_INSTALLED or cls.__utactive__
 
     def add_start(self, child, expand=True, fill=True, padding=0):
         self.inner_vbox.pack_start(child, expand, fill, padding)
