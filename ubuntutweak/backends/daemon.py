@@ -212,17 +212,21 @@ class Daemon(PolicyKitService):
                          in_signature='ss', out_signature='b',
                          sender_keyword='sender')
     def purge_source(self, url, key_fingerprint='', sender=None):
+        #TODO enable
         self._check_permission(sender, PK_ACTION_SOURCE)
         self.list.refresh()
         to_remove = []
 
+        self.set_source_enable(url, False)
+
         for source in self.list:
             if url in source.str() and source.type == 'deb':
-                to_remove.extend(glob.glob(source.file))
+                to_remove.extend(glob.glob(source.file + "*"))
 
         for file in to_remove:
             try:
-                os.remove(file)
+                if file != self.SOURCES_LIST:
+                    os.remove(file)
             except Exception, e:
                 log.error(e)
 
