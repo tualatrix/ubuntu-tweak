@@ -146,6 +146,7 @@ class JanitorPlugin(GObject.GObject):
 class JanitorCachePlugin(JanitorPlugin):
     root_path = ''
     pattern = '*'
+    targets = []
 
     def __str__(self):
         try:
@@ -159,7 +160,31 @@ class JanitorCachePlugin(JanitorPlugin):
 
     def get_cruft(self):
         if self.pattern == '*':
-            self.get_cruft_by_path()
+            if self.targets:
+                total_size = 0
+                count = 0
+
+                for target in self.targets:
+                    new_root_path = os.path.join(self.get_path(), target)
+
+                    if os.path.exists(new_root_path):
+                        if os.path.isdir(new_root_path):
+                            try:
+                                size = os.popen('du -bs "%s"' % new_root_path).read().split()[0]
+                            except:
+                                size = 0
+                        else:
+                            size = os.path.getsize(new_root_path)
+
+                        total_size += int(size)
+                        count += 1
+
+                        self.emit('find_object',
+                                  CacheObject(os.path.basename(new_root_path), new_root_path, size))
+
+                self.emit('scan_finished', True, count, total_size)
+            else:
+                self.get_cruft_by_path()
         else:
             self.get_cruft_by_glob()
 
@@ -203,19 +228,22 @@ class JanitorCachePlugin(JanitorPlugin):
         else:
             return cls.root_path
 
-    def get_cruft_by_path(self):
+    def get_cruft_by_path(self, root_path=None):
+        if root_path is None:
+            root_path = self.get_path()
+
         try:
             count = 0
             total_size = 0
-            for root, dirs, files in os.walk(self.get_path()):
-                if root == self.get_path() and dirs:
+            for root, dirs, files in os.walk(root_path):
+                if root == root_path and dirs:
                     dirs.sort()
                     files.sort()
 
                     to_deleted = dirs + files
 
                     for path in to_deleted:
-                        full_path = os.path.join(self.get_path(), path)
+                        full_path = os.path.join(root_path, path)
 
                         try:
                             size = os.popen('du -bs "%s"' % full_path).read().split()[0]

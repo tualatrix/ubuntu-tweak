@@ -29,8 +29,10 @@ class RawConfigSetting(object):
             return True
         elif value == 'false':
             return False
-        else:
+        elif value.startswith('"') or value.startswith("'"):
             return eval(value)
+        else:
+            return value
 
 
 class ConfigSetting(RawConfigSetting):
