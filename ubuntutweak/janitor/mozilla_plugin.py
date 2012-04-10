@@ -34,6 +34,7 @@ class FirefoxCachePlugin(MozillaCachePlugin):
 
     app_path = '~/.mozilla/firefox'
 
+
 class ThunderbirdCachePlugin(MozillaCachePlugin):
     __title__ = _('Thunderbird Cache')
 
