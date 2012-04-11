@@ -52,7 +52,7 @@ from ubuntutweak.utils.parser import Parser
 from ubuntutweak.network import utdata
 from ubuntutweak.settings.gsettings import GSetting
 from ubuntutweak.utils import set_label_for_stock_button
-from ubuntutweak.utils import ppa
+from ubuntutweak.utils import ppa, icon
 from ubuntutweak.utils.package import AptWorker
 
 from ubuntutweak.admins.appcenter import AppView, AppParser, CateParser, StatusProvider
@@ -634,11 +634,15 @@ class SourcesView(Gtk.TreeView):
             self._status.load_objects_from_parser(SOURCE_PARSER)
 
         index = 0
+
         for id in SOURCE_PARSER:
             enabled = False
             index = index + 1
             url = SOURCE_PARSER.get_url(id)
             enabled = url in enabled_list
+
+            if enabled:
+                enabled_list.remove(url)
 
             if only_enabled:
                 if not enabled:
@@ -687,6 +691,30 @@ class SourcesView(Gtk.TreeView):
                            self.COLUMN_HOME, website,
                            self.COLUMN_KEY, key,
             )
+
+        path = os.path.join(consts.DATA_DIR, 'pixmaps/ppa-logo.png')
+
+        pixbuf = icon.get_from_file(path, size=32)
+
+        if enabled_list and only_enabled:
+            for url in enabled_list:
+                if ppa.is_ppa(url):
+                    iter = self.model.append()
+                    self.model.set(iter,
+                                   self.COLUMN_ENABLED, False,
+                                   self.COLUMN_ID, 9999,
+                                   self.COLUMN_CATE, -1,
+                                   self.COLUMN_URL, url,
+                                   self.COLUMN_DISTRO, distro,
+                                   self.COLUMN_COMPS, comps,
+                                   self.COLUMN_COMMENT, '',
+                                   self.COLUMN_SLUG, url,
+                                   self.COLUMN_NAME, ppa.get_basename(url),
+                                   self.COLUMN_DISPLAY, ppa.get_long_name(url),
+                                   self.COLUMN_LOGO, pixbuf,
+                                   self.COLUMN_HOME, ppa.get_homepage(url),
+                                   self.COLUMN_KEY, '',
+                    )
 
     def set_as_read(self, iter, model):
         if type(model) == Gtk.TreeModelFilter:
