@@ -16,12 +16,15 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
+import re
+
 from gi.repository import GObject, Gtk
 
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.gui.containers import GridPack
 from ubuntutweak.factory import WidgetFactory
 from ubuntutweak.settings.gconfsettings import GconfSetting
+from ubuntutweak.settings.gsettings import GSetting
 from ubuntutweak import system
 
 
@@ -34,17 +37,29 @@ class Window(TweakModule):
     left_default = 'close,minimize,maximize:'
     right_default = ':minimize,maximize,close'
 
-    if system.DESKTOP == 'gnome-shell':
+    if system.DESKTOP == 'gnome-shell' and system.CODENAME == 'oneiric':
         config = GconfSetting(key='/desktop/gnome/shell/windows/button_layout')
+    elif system.DESKTOP == 'gnome-shell' and system.CODENAME == 'precise':
+        config = GSetting(key='org.gnome.shell.overrides.button-layout')
     else:
         config = GconfSetting(key='/apps/metacity/general/button_layout')
 
     def __init__(self):
         TweakModule.__init__(self, 'window.ui')
 
+        close_pattern = re.compile('\w+')
+
+        only_close_switch = Gtk.Switch()
+        only_close_switch.connect('notify::active', self.on_switch_activate)
+        button_value = self.config.get_value()
+        if len(close_pattern.findall(button_value)) == 1 and 'close' in button_value:
+            only_close_switch.set_active(True)
+        only_close_label = Gtk.Label(_('"Close" button only'))
+
         box = GridPack(
                     (Gtk.Label(_('Window control button position')),
                      self.place_hbox),
+                    (only_close_label, only_close_switch),
                     Gtk.Separator(),
                     WidgetFactory.create('ComboBox',
                         label=_('Titlebar mouse wheel action:'),
@@ -97,6 +112,17 @@ class Window(TweakModule):
                 )
 
         self.add_start(box)
+
+    def on_switch_activate(self, widget, value):
+        if widget.get_active():
+            self.left_default = 'close:'
+            self.right_default = ':close'
+        else:
+            self.left_default = 'close,minimize,maximize:'
+            self.right_default = ':minimize,maximize,close'
+
+        self.on_right_radio_toggled(self.right_radio)
+        self.on_left_radio_toggled(self.left_radio)
 
     def on_right_radio_toggled(self, widget):
         if widget.get_active():
