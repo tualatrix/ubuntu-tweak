@@ -262,9 +262,9 @@ class JanitorCachePlugin(JanitorPlugin):
             log.error(e)
             self.emit('scan_error', e)
 
-    def get_summary(self, count, size):
+    def get_summary(self, count):
         if count:
-            return _('%s (%d cache to be cleaned, total size: %s)') % (self.__title__, count, filesizeformat(size))
+            return _('[%d] %s') % (count, self.__title__)
         else:
             return _('%s (No cache to be cleaned)') % self.__title__
 
@@ -651,7 +651,10 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         if count == 0:
             self.result_model.remove(result_iter)
         else:
-            self.result_model[result_iter][self.RESULT_DISPLAY] = "<b>%s</b>" % plugin.get_summary(count, size)
+            self.result_model[result_iter][self.RESULT_DISPLAY] = "<b>%s</b>" % plugin.get_summary(count)
+            if size != 0:
+                self.result_model[result_iter][self.RESULT_DESC] = "<b>%s</b>" % filesizeformat(size)
+
 
         # Update the janitor title
         for row in self.janitor_model:

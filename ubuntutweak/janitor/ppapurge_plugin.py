@@ -416,7 +416,7 @@ class PPAPlugin(JanitorPlugin):
             log.debug("\n")
         return downgrade_dict
 
-    def get_summary(self, count, size):
+    def get_summary(self, count):
         if count:
             return _('%d PPAs to be removed') % count
         else:

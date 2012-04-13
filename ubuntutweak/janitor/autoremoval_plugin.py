@@ -45,8 +45,8 @@ class AutoRemovalPlugin(JanitorPlugin):
         AptWorker.update_apt_cache(True)
         self.emit('all_cleaned', True)
 
-    def get_summary(self, count, size):
+    def get_summary(self, count):
         if count:
-            return _('Unneeded Packages (%d packages to be removed, total size: %s)') % (count, filesizeformat(size))
+            return _('[%d] Unneeded Packages') % count
         else:
             return _('Unneeded Packages (No package to be removed)')
