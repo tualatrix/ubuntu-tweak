@@ -43,7 +43,6 @@ from ubuntutweak import system
 from ubuntutweak.common import consts
 from ubuntutweak.common.debug import log_func
 from ubuntutweak.modules  import TweakModule
-from ubuntutweak.policykit import PK_ACTION_SOURCE
 from ubuntutweak.policykit.dbusproxy import proxy
 from ubuntutweak.gui.widgets import CheckButton
 from ubuntutweak.gui.dialogs import QuestionDialog, ErrorDialog, InfoDialog, WarningDialog
@@ -1016,7 +1015,6 @@ class SourceCenter(TweakModule):
     __icon__ = 'software-properties'
     __url__ = 'http://ubuntu-tweak.com/source/'
     __urltitle__ = _('Visit online Source Center')
-    __policykit__ = PK_ACTION_SOURCE
     __category__ = 'application'
     __utactive__ = True
 
@@ -1037,7 +1035,6 @@ class SourceCenter(TweakModule):
         self.sourceview.connect('sourcechanged', self.on_source_changed)
         self.sourceview.connect('new_purge', self.on_purge_changed)
         self.sourceview.get_selection().connect('changed', self.on_source_selection)
-        self.sourceview.set_sensitive(False)
         self.sourceview.set_rules_hint(True)
         self.right_sw.add(self.sourceview)
         self.cateview.set_status_from_view(self.sourceview)
@@ -1056,6 +1053,24 @@ class SourceCenter(TweakModule):
         self.add_start(self.main_vbox)
 
         self.connect('realize', self.setup_ui_tasks)
+
+        GObject.idle_add(self.show_warning)
+
+    @post_ui
+    def show_warning(self):
+        if not CONFIG.get_value():
+            dialog = WarningDialog(title=_('Warning'),
+                                   message=_('It is a possible security risk to '
+                'use packages from Third-Party Sources.\n'
+                'Please be careful and use only sources you trust.'),
+                                   buttons=Gtk.ButtonsType.OK)
+            checkbutton = CheckButton(_('Never show this dialog'),
+                                      key=WARNING_KEY,
+                                      backend='gsettings')
+            dialog.add_option_button(checkbutton)
+
+            dialog.run()
+            dialog.destroy()
 
     def setup_ui_tasks(self, widget):
         self.purge_ppa_button.hide()
@@ -1087,6 +1102,7 @@ class SourceCenter(TweakModule):
         self.time_label.set_text(_('Last synced:') + ' ' + utdata.get_last_synced(SOURCE_ROOT))
         return True
 
+    @post_ui
     def upgrade_sources(self):
         dialog = QuestionDialog(_('After a successful distribution upgrade, '
             'any third-party sources you use will be disabled by default.\n'
@@ -1187,28 +1203,6 @@ class SourceCenter(TweakModule):
         self.url_button.set_uri(url)
 
         self.description_label.set_text(description or _('Description is here'))
-
-    @post_ui
-    def on_polkit_action(self, widget):
-        self.sync_button.set_sensitive(True)
-
-        if proxy.get_object():
-            self.sourceview.set_sensitive(True)
-            self.expander.set_sensitive(True)
-
-            if not CONFIG.get_value():
-                dialog = WarningDialog(title=_('Warning'),
-                                       message=_('It is a possible security risk to '
-                    'use packages from Third-Party Sources.\n'
-                    'Please be careful and use only sources you trust.'),
-                                       buttons=Gtk.ButtonsType.OK)
-                checkbutton = CheckButton(_('Never show this dialog'),
-                                          key=WARNING_KEY,
-                                          backend='gsettings')
-                dialog.add_option_button(checkbutton)
-
-                dialog.run()
-                dialog.destroy()
 
     def on_source_changed(self, widget):
         self.emit('call', 'ubuntutweak.modules.sourceeditor', 'update_source_combo', {})
