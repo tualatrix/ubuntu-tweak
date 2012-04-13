@@ -113,7 +113,7 @@ class DisableTemplate(FlatView):
 
 
 class Templates(TweakModule):
-    __title__ = _('Manage Templates')
+    __title__ = _('Templates')
     __desc__ = _('Here you can manage your document templates.\n'
                  'You can add files as templates by dragging them into this window.\n'
                  'You can then create new documents based on these templates from the Nautilus right-click menu.')
