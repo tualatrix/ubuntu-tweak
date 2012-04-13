@@ -234,7 +234,7 @@ class UserdirView(Gtk.TreeView):
 
 
 class UserDir(TweakModule):
-    __title__ = _("Default Folder Locations")
+    __title__ = _("User Folder")
     __desc__ = _("You can change the paths of default folders here.\n"
                  "Don't change the location of your desktop folder unless you know what you are doing.")
     __icon__ = ['folder-home', 'gnome-fs-home']

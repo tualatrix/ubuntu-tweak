@@ -24,8 +24,8 @@ from ubuntutweak.gui.containers import GridPack
 
 
 class Nautilus(TweakModule):
-    __title__ = _('Nautilus Settings')
-    __desc__ = _('Manage the default file manager')
+    __title__ = _('File Manager')
+    __desc__ = _('Manage the Nautilus file manager')
     __icon__ = ['file-manager', 'nautilus']
     __category__ = 'system'
 

@@ -26,7 +26,7 @@ from ubuntutweak.utils import icon
 
 
 class Shortcuts(TweakModule):
-    __title__  = _("Shortcut Commands")
+    __title__  = _("Shortcuts")
     __desc__  = _("By configuring keyboard shortcuts, you can access your favourite applications instantly.\n"
                   "Enter the command to run the application and choose a shortcut key combination.")
     __icon__ = 'preferences-desktop-keyboard-shortcuts'
