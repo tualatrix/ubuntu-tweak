@@ -32,11 +32,11 @@ from ubuntutweak.utils import icon
 
 log = logging.getLogger('QuickLists')
 
-LAUNCHER_SETTING = GSetting('com.canonical.Unity.Launcher.favorites')
 
 
 def save_to_user(func):
     def func_wrapper(self, *args, **kwargs):
+        launcher_setting = GSetting('com.canonical.Unity.Launcher.favorites')
         is_user_desktop_file = self.is_user_desktop_file()
         if not is_user_desktop_file:
             log.debug("Copy %s to user folder, then write it" % self.filename)
@@ -48,7 +48,7 @@ def save_to_user(func):
         func(self, *args, **kwargs)
 
         if not is_user_desktop_file:
-            current_list = LAUNCHER_SETTING.get_value()
+            current_list = launcher_setting.get_value()
             try:
                 index = current_list.index(self.get_system_desktop_file())
             except Exception, e:
@@ -57,7 +57,7 @@ def save_to_user(func):
 
             current_list[index] = self.filename
 
-            LAUNCHER_SETTING.set_value(current_list)
+            launcher_setting.set_value(current_list)
             log.debug("current_list: %s" % current_list)
             log.debug("Now set the current list")
 
@@ -211,7 +211,8 @@ class QuickLists(TweakModule):
     def __init__(self):
         TweakModule.__init__(self, 'quicklists.ui')
 
-        LAUNCHER_SETTING.connect_notify(self.update_launch_icon_model)
+        self.launcher_setting = GSetting('com.canonical.Unity.Launcher.favorites')
+        self.launcher_setting.connect_notify(self.update_launch_icon_model)
 
         self.action_view.get_selection().connect('changed', self.on_action_selection_changed)
         
@@ -223,7 +224,7 @@ class QuickLists(TweakModule):
     def update_launch_icon_model(self, *args):
         self.icon_model.clear()
 
-        for desktop_file in LAUNCHER_SETTING.get_value():
+        for desktop_file in self.launcher_setting.get_value():
             if desktop_file.startswith('/') and os.path.exists(desktop_file):
                 path = desktop_file
             else:
@@ -317,7 +318,7 @@ class QuickLists(TweakModule):
         dialog.destroy()
 
         if response == Gtk.ResponseType.YES:
-            LAUNCHER_SETTING.set_value(LAUNCHER_SETTING.get_schema_value())
+            self.launcher_setting.set_value(self.launcher_setting.get_schema_value())
 
     @log_func(log)
     def on_add_action_button_clicked(self, widget):
@@ -334,9 +335,9 @@ class QuickLists(TweakModule):
         for row in self.icon_model:
             new_order.append(row[self.DESKTOP_FILE])
 
-        if new_order != LAUNCHER_SETTING.get_value():
+        if new_order != self.launcher_setting.get_value():
             log.debug("Order changed")
-            LAUNCHER_SETTING.set_value(new_order)
+            self.launcher_setting.set_value(new_order)
         else:
             log.debug("Order is not changed, pass")
 
