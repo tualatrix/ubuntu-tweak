@@ -2,8 +2,6 @@ import os
 import glob
 import logging
 
-from ubuntutweak.common.debug import log_func
-
 log = logging.getLogger('utils.ppa')
 
 PPA_URL = 'ppa.launchpad.net'
@@ -31,7 +29,6 @@ def get_basename(url):
     section = url.split('/')
     return '%s/%s' % (section[3], section[4])
 
-@log_func(log)
 def get_short_name(url):
     return 'ppa:%s' % get_basename(url)
 
