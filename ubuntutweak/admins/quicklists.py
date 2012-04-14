@@ -98,6 +98,9 @@ class NewDesktopEntry(DesktopEntry):
         else:
             return action.split()[-1]
 
+    def add_action_group(self, action):
+        self.addGroup(self.get_action_full_name(action))
+
     def get_action_full_name(self, action):
         if self.mode == self.shortcuts_key:
             return u'%s Shortcut Group' % action
@@ -140,7 +143,7 @@ class NewDesktopEntry(DesktopEntry):
             actions.remove(action)
             self.set(self.mode, ";".join(actions))
             self.removeGroup(self.get_action_full_name(action))
-            self.write()
+        self.write()
 
     @log_func(log)
     @save_to_user
@@ -248,6 +251,10 @@ class QuickLists(TweakModule):
                                     entry.getName(),
                                     entry))
 
+        first_iter = self.icon_model.get_iter_first()
+        if first_iter:
+            self.icon_view.get_selection().select_iter(first_iter)
+
     def get_current_action_and_entry(self):
         model, iter = self.action_view.get_selection().get_selected()
         if iter:
@@ -308,6 +315,33 @@ class QuickLists(TweakModule):
         else:
             self.redo_action_button.set_sensitive(False)
 
+    @log_func(log)
+    def on_add_action_button_clicked(self, widget):
+        entry = self.get_current_entry()
+        model, icon_iter = self.icon_view.get_selection().get_selected()
+        icon_path = self.icon_model.get_path(icon_iter)
+
+        if entry:
+            # I think 99 is enough, right?
+            action_names = entry.get_actions()
+            for i in range(99):
+                next_name = 'Action%d' % i
+                if next_name in action_names:
+                    continue
+                else:
+                    break
+            entry.add_action_group(next_name)
+            entry.set_action_enabled(next_name, True)
+            # Because it may be not the user desktop file, so need icon_iter to select
+            icon_iter = self.icon_model.get_iter(icon_path)
+            if icon_iter:
+                self.icon_view.get_selection().select_iter(icon_iter)
+
+            action_iter = self.action_model.append((next_name, '', '', True, entry))
+            self.action_view.get_selection().select_iter(action_iter)
+            self.name_entry.grab_focus()
+
+    @log_func(log)
     def on_remove_action_button_clicked(self, widget):
         model, iter = self.action_view.get_selection().get_selected()
         if iter:
@@ -354,10 +388,6 @@ class QuickLists(TweakModule):
         if response == Gtk.ResponseType.YES:
             self.launcher_setting.set_value(self.launcher_setting.get_schema_value())
 
-    @log_func(log)
-    def on_add_action_button_clicked(self, widget):
-        pass
-
     def on_icon_reordered(self, model, path, iter):
         GObject.idle_add(self._do_icon_reorder)
 
@@ -399,13 +429,8 @@ class QuickLists(TweakModule):
     def on_save_button_clicked(self, widget):
         action, entry = self.get_current_action_and_entry()
         if action and entry:
-            is_use_file = entry.is_user_desktop_file()
             entry.set_name_by_action(action, self.name_entry.get_text())
             entry.set_exec_by_action(action, self.cmd_entry.get_text())
             model, iter = self.action_view.get_selection().get_selected()
             path = self.action_model.get_path(iter)
             self.on_icon_view_selection_changed(self.icon_view.get_selection(), path)
-        else:
-            entry = self.get_current_entry()
-            print "new entry", entry
-            print entry.is_user_desktop_file()
