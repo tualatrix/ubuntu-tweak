@@ -113,8 +113,16 @@ class NewDesktopEntry(DesktopEntry):
         return self.get('Exec', self.get_action_full_name(action))
 
     @log_func(log)
-    def get_env_by_action(self, action):
-        return self.get('TargetEnvironment', self.get_action_full_name(action))
+    @save_to_user
+    def set_name_by_action(self, action, name):
+        self.set('Name', name, group=self.get_action_full_name(action))
+        self.write()
+
+    @log_func(log)
+    @save_to_user
+    def set_exec_by_action(self, action, cmd):
+        self.set('Exec', cmd, group=self.get_action_full_name(action))
+        self.write()
 
     @log_func(log)
     def is_action_visiable(self, action):
@@ -240,11 +248,25 @@ class QuickLists(TweakModule):
                                     entry.getName(),
                                     entry))
 
-    def on_action_selection_changed(self, widget):
-        model, iter = widget.get_selected()
+    def get_current_action_and_entry(self):
+        model, iter = self.action_view.get_selection().get_selected()
         if iter:
             action = model[iter][self.ACTION_NAME]
             entry = model[iter][self.ACTION_ENTRY]
+            return action, entry
+        else:
+            return None, None
+
+    def get_current_entry(self):
+        model, iter = self.icon_view.get_selection().get_selected()
+        if iter:
+            return model[iter][self.DESKTOP_ENTRY]
+        else:
+            return None
+
+    def on_action_selection_changed(self, widget):
+        action, entry = self.get_current_action_and_entry()
+        if action and entry:
             log.debug("Select the action: %s\n"
                       "\t\t\tName: %s\n"
                       "\t\t\tExec: %s\n"
@@ -253,11 +275,15 @@ class QuickLists(TweakModule):
                                           entry.get_exec_by_action(action),
                                           entry.is_action_visiable(action)))
             self.remove_action_button.set_sensitive(True)
+            self.name_entry.set_text(entry.get_name_by_action(action))
+            self.cmd_entry.set_text(entry.get_exec_by_action(action))
         else:
             self.remove_action_button.set_sensitive(False)
             self.redo_action_button.set_sensitive(False)
+            self.name_entry.set_text('')
+            self.cmd_entry.set_text('')
 
-    def on_icon_view_selection_changed(self, widget):
+    def on_icon_view_selection_changed(self, widget, path=None):
         model, iter = widget.get_selected()
         if iter:
             self.action_model.clear()
@@ -271,6 +297,14 @@ class QuickLists(TweakModule):
                             entry))
             self.redo_action_button.set_sensitive(True)
             self.action_view.columns_autosize()
+            if not path:
+                first_iter = self.action_model.get_iter_first()
+                if first_iter:
+                    self.action_view.get_selection().select_iter(first_iter)
+            else:
+                iter = self.action_model.get_iter(path)
+                if iter:
+                    self.action_view.get_selection().select_iter(iter)
         else:
             self.redo_action_button.set_sensitive(False)
 
@@ -352,3 +386,26 @@ class QuickLists(TweakModule):
             entry.reorder_actions(new_order)
         else:
             log.debug("Action order is not changed, pass")
+
+    def on_name_and_entry_changed(self, widget):
+        action, entry = self.get_current_action_and_entry()
+
+        if action and entry:
+            self.save_button.set_sensitive(self.name_entry.get_text() != entry.get_name_by_action(action) or \
+                    self.cmd_entry.get_text() != entry.get_exec_by_action(action))
+        else:
+            self.save_button.set_sensitive(self.name_entry.get_text() and self.cmd_entry.get_text())
+
+    def on_save_button_clicked(self, widget):
+        action, entry = self.get_current_action_and_entry()
+        if action and entry:
+            is_use_file = entry.is_user_desktop_file()
+            entry.set_name_by_action(action, self.name_entry.get_text())
+            entry.set_exec_by_action(action, self.cmd_entry.get_text())
+            model, iter = self.action_view.get_selection().get_selected()
+            path = self.action_model.get_path(iter)
+            self.on_icon_view_selection_changed(self.icon_view.get_selection(), path)
+        else:
+            entry = self.get_current_entry()
+            print "new entry", entry
+            print entry.is_user_desktop_file()
