@@ -206,7 +206,7 @@ class QuickLists(TweakModule):
     __icon__ = 'plugin-unityshell'
     __category__ = 'desktop'
     __desktop__ = ['ubuntu', 'ubuntu-2d']
-    __utactive__ = False
+    __utactive__ = True
 
     (DESKTOP_FILE,
      DESKTOP_ICON,

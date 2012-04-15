@@ -89,36 +89,9 @@
             <property name="toolbar_style">icons</property>
             <property name="show_arrow">False</property>
             <property name="icon_size">1</property>
-            <child>
-              <object class="GtkToolButton" id="toolbutton1">
-                <property name="use_action_appearance">False</property>
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="use_action_appearance">False</property>
-                <property name="label" translatable="yes">toolbutton1</property>
-                <property name="use_underline">True</property>
-                <property name="icon_name">list-add-symbolic</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="homogeneous">True</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkToolButton" id="toolbutton2">
-                <property name="use_action_appearance">False</property>
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="use_action_appearance">False</property>
-                <property name="label" translatable="yes">toolbutton2</property>
-                <property name="use_underline">True</property>
-                <property name="icon_name">list-remove-symbolic</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="homogeneous">True</property>
-              </packing>
-            </child>
+            <style>
+                <class name="inline-toolbar"/>
+            </style>
             <child>
               <object class="GtkToolButton" id="icon_reset_button">
                 <property name="use_action_appearance">False</property>
@@ -175,7 +148,7 @@
                     </child>
                     <child>
                       <object class="GtkTreeViewColumn" id="treeviewcolumn5">
-                        <property name="title" translatable="yes">Enabled</property>
+                        <property name="title" translatable="yes">Active</property>
                         <child>
                           <object class="GtkCellRendererToggle" id="enable_action_render">
                             <signal name="toggled" handler="on_enable_action_render" swapped="no"/>
@@ -223,6 +196,9 @@
                 <property name="can_focus">False</property>
                 <property name="toolbar_style">icons</property>
                 <property name="icon_size">1</property>
+                <style>
+                    <class name="inline-toolbar"/>
+                </style>
                 <child>
                   <object class="GtkToolButton" id="add_action_button">
                     <property name="use_action_appearance">False</property>
