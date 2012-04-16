@@ -5,13 +5,14 @@ from ubuntutweak.admins.quicklists import NewDesktopEntry
 
 class TestQuicklists(unittest.TestCase):
     def setUp(self):
+        os.system('cp /usr/share/applications/google-chrome.desktop %s' %os.path.join(NewDesktopEntry.user_folder, 'google-chrome.desktop'))
         self.entry = NewDesktopEntry('/usr/share/applications/ubuntu-tweak.desktop')
         self.admin_gruop = 'Admins Shortcut Group'
         self.admin_name = 'Admins'
         self.admin_exec = 'ubuntu-tweak -f admins'
         self.admin_env = 'Unity'
 
-        self.entry2 = NewDesktopEntry(os.path.join(NewDesktopEntry.user_folder, 'google-chrome.desktop'))
+        self.chrome_entry = NewDesktopEntry(os.path.join(NewDesktopEntry.user_folder, 'google-chrome.desktop'))
         self.entry3 = NewDesktopEntry('/usr/share/applications/empathy.desktop')
 
     def test_quicklists(self):
@@ -26,14 +27,24 @@ class TestQuicklists(unittest.TestCase):
         self.assertEqual(False, self.entry.is_user_desktop_file())
         self.assertEqual(False, self.entry.can_reset())
 
-        self.assertEqual(True, self.entry2.is_user_desktop_file())
-        self.assertEqual(True, self.entry2.can_reset())
+        self.assertEqual(True, self.chrome_entry.is_user_desktop_file())
+        self.assertEqual(True, self.chrome_entry.can_reset())
 
         #test reorder
-        current_order = self.entry2.get_actions()
+        current_order = self.chrome_entry.get_actions()
         new_order = list(reversed(current_order))
-        self.entry2.reorder_actions(new_order)
-        self.assertEqual(new_order, self.entry2.get_actions())
+        self.chrome_entry.reorder_actions(new_order)
+        self.assertEqual(new_order, self.chrome_entry.get_actions())
+
+        #remove action
+        self.chrome_entry.remove_action('NewIncognito')
+        self.assertEqual(['NewWindow'], self.chrome_entry.get_actions())
+        self.chrome_entry.remove_action('NewWindow')
+        self.assertEqual([], self.chrome_entry.get_actions())
+
+        # test reset
+        self.chrome_entry.reset()
+        self.assertEqual(['NewWindow', 'NewIncognito'], self.chrome_entry.get_actions())
 
 
 if __name__ == '__main__':

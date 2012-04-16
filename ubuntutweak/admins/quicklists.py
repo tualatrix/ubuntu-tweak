@@ -142,7 +142,7 @@ class NewDesktopEntry(DesktopEntry):
         if action in actions:
             actions.remove(action)
             self.set(self.mode, ";".join(actions))
-            self.removeGroup(self.get_action_full_name(action))
+        self.removeGroup(self.get_action_full_name(action))
         self.write()
 
     @log_func(log)
@@ -286,7 +286,6 @@ class QuickLists(TweakModule):
             self.cmd_entry.set_text(entry.get_exec_by_action(action))
         else:
             self.remove_action_button.set_sensitive(False)
-            self.redo_action_button.set_sensitive(False)
             self.name_entry.set_text('')
             self.cmd_entry.set_text('')
 
@@ -330,6 +329,7 @@ class QuickLists(TweakModule):
                     continue
                 else:
                     break
+
             entry.add_action_group(next_name)
             entry.set_action_enabled(next_name, True)
             # Because it may be not the user desktop file, so need icon_iter to select
@@ -337,8 +337,7 @@ class QuickLists(TweakModule):
             if icon_iter:
                 self.icon_view.get_selection().select_iter(icon_iter)
 
-            action_iter = self.action_model.append((next_name, '', '', True, entry))
-            self.action_view.get_selection().select_iter(action_iter)
+            self.select_last_action()
             self.name_entry.grab_focus()
 
     @log_func(log)
@@ -351,6 +350,16 @@ class QuickLists(TweakModule):
             entry.remove_action(action_name)
             log.debug('Remove: %s succcessfully' % action_name)
             model.remove(iter)
+            self.select_last_action(remove=True)
+
+    def select_last_action(self, remove=False):
+        if remove:
+            last_path = len(self.action_model) - 1
+        else:
+            last_path = len(self.action_model)
+
+        if last_path >= 0:
+            self.on_icon_view_selection_changed(self.icon_view.get_selection(), path=last_path)
 
     @log_func(log)
     def on_enable_action_render(self, render, path):
@@ -375,7 +384,9 @@ class QuickLists(TweakModule):
 
             if response == Gtk.ResponseType.YES:
                 entry = model[iter][self.DESKTOP_ENTRY]
+#                log.debug("Before reset the actions is: %s" % entry.get_actions())
                 entry.reset()
+                log.debug("After reset the actions is: %s" % entry.get_actions())
                 self.on_icon_view_selection_changed(self.icon_view.get_selection())
 
     @log_func(log)
