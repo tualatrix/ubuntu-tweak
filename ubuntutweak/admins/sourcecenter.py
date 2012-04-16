@@ -947,13 +947,13 @@ class CategoryView(Gtk.TreeView):
         self.model.clear()
         self.parser = CateParser(self.path)
 
-        self.model.append(None, (-3,
-                                 'latest',
-                                 _('Latest')))
+#        self.model.append(None, (-3,
+#                                 'latest',
+#                                 _('Latest')))
 
-        self.model.append(None, (-2,
-                                 'top-10',
-                                 _('Top 10')))
+#        self.model.append(None, (-2,
+#                                 'top-10',
+#                                 _('Top 10')))
 
         self.model.append(None, (-1,
                                  'enabled-ppa',
