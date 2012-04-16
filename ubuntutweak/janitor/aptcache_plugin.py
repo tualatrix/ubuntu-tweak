@@ -22,6 +22,6 @@ class AptCachePlugin(JanitorCachePlugin):
                 self.emit('clean_error', cruft.get_name())
                 break
             else:
-                self.emit('object_cleaned', cruft)
+                self.emit('object_cleaned', cruft, index + 1)
 
         self.emit('all_cleaned', True)

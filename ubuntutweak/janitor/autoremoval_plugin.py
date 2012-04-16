@@ -24,11 +24,12 @@ class AutoRemovalPlugin(JanitorPlugin):
                     count += 1
                     size += pkg.installedSize
                     self.emit('find_object',
-                              PackageObject(pkg.summary, pkg.name, pkg.installedSize))
+                              PackageObject(pkg.summary, pkg.name, pkg.installedSize),
+                              count)
 
         self.emit('scan_finished', True, count, size)
 
-    def clean_cruft(self, parent=None, cruft_list=None):
+    def clean_cruft(self, parent=None, cruft_list=[]):
         set_busy(parent)
         worker = AptWorker(parent,
                            finish_handler=self.on_clean_finished,

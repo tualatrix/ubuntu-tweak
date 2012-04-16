@@ -90,12 +90,12 @@ class JanitorPlugin(GObject.GObject):
     __user_extension__ = False
 
     __gsignals__ = {
-        'find_object': (GObject.SignalFlags.RUN_FIRST, None, (GObject.TYPE_PYOBJECT,)),
+        'find_object': (GObject.SignalFlags.RUN_FIRST, None, (GObject.TYPE_PYOBJECT, GObject.TYPE_INT)),
         'scan_finished': (GObject.SignalFlags.RUN_FIRST, None,
                           (GObject.TYPE_BOOLEAN,
                            GObject.TYPE_INT,
                            GObject.TYPE_INT)),
-        'object_cleaned': (GObject.SignalFlags.RUN_FIRST, None, (GObject.TYPE_PYOBJECT,)),
+        'object_cleaned': (GObject.SignalFlags.RUN_FIRST, None, (GObject.TYPE_PYOBJECT, GObject.TYPE_INT)),
         'all_cleaned': (GObject.SignalFlags.RUN_FIRST, None, (GObject.TYPE_BOOLEAN,)),
         'scan_error': (GObject.SignalFlags.RUN_FIRST, None, (GObject.TYPE_STRING,)),
         'clean_error': (GObject.SignalFlags.RUN_FIRST, None, (GObject.TYPE_STRING,)),
@@ -132,7 +132,7 @@ class JanitorPlugin(GObject.GObject):
     def get_summary(self, count, size):
         return self.get_title()
 
-    def clean_cruft(self, parent, cruft_list):
+    def clean_cruft(self, parent=None, cruft_list=[]):
         '''Clean all the cruft, you must emit the "cleaned" signal to tell the
         main thread your task is finished
 
@@ -180,7 +180,8 @@ class JanitorCachePlugin(JanitorPlugin):
                         count += 1
 
                         self.emit('find_object',
-                                  CacheObject(os.path.basename(new_root_path), new_root_path, size))
+                                  CacheObject(os.path.basename(new_root_path), new_root_path, size),
+                                  count)
 
                 self.emit('scan_finished', True, count, total_size)
             else:
@@ -196,7 +197,7 @@ class JanitorCachePlugin(JanitorPlugin):
                     shutil.rmtree(cruft.get_path())
                 else:
                     os.remove(cruft.get_path())
-                self.emit('object_cleaned', cruft)
+                self.emit('object_cleaned', cruft, index + 1)
             except Exception, e:
                 log.error(run_traceback(e))
                 self.emit('clean_error', cruft.get_name())
@@ -211,13 +212,16 @@ class JanitorCachePlugin(JanitorPlugin):
         cruft_list = glob.glob('%s/%s' % (self.get_path(), self.pattern))
         cruft_list.sort()
         size = 0
+        count = 0
 
         for full_path in cruft_list:
             current_size = os.path.getsize(full_path)
             size += current_size
+            count += 1
 
             self.emit('find_object',
-                      CacheObject(os.path.basename(full_path), full_path, current_size))
+                      CacheObject(os.path.basename(full_path), full_path, current_size),
+                      count)
 
         self.emit('scan_finished', True, len(cruft_list), size)
 
@@ -253,7 +257,8 @@ class JanitorCachePlugin(JanitorPlugin):
                         total_size += int(size)
 
                         self.emit('find_object',
-                                  CacheObject(path, full_path, size))
+                                  CacheObject(path, full_path, size),
+                                  count)
                 else:
                     continue
 
@@ -568,8 +573,8 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
             self.janitor_model[plugin_iter][self.JANITOR_SPINNER_ACTIVE] = True
             self.janitor_model[plugin_iter][self.JANITOR_SPINNER_PULSE] = 0
 
-            self._find_handler = plugin.connect('find_object', self.on_find_object, iter)
-            self._scan_handler = plugin.connect('scan_finished', self.on_scan_finished, iter)
+            self._find_handler = plugin.connect('find_object', self.on_find_object, (plugin_iter, iter))
+            self._scan_handler = plugin.connect('scan_finished', self.on_scan_finished, (plugin_iter, iter))
             self._error_handler = plugin.connect('scan_error', self.on_scan_error, plugin_iter)
 
             t = threading.Thread(target=plugin.get_cruft)
@@ -628,9 +633,11 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         return not finished
 
     @post_ui
-    def on_find_object(self, plugin, cruft, result_iter):
+    def on_find_object(self, plugin, cruft, count, iters):
         while Gtk.events_pending():
             Gtk.main_iteration()
+
+        plugin_iter, result_iter = iters
 
         self.result_model.append(result_iter, (False,
                                                cruft.get_icon(),
@@ -642,11 +649,19 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
 
         self.result_view.expand_row(self.result_model.get_path(result_iter), True)
 
+        # Update the janitor title
+        if count:
+            self.janitor_model[plugin_iter][self.JANITOR_DISPLAY] = "<b>[%d] %s</b>" % (count, plugin.get_title())
+        else:
+            self.janitor_model[plugin_iter][self.JANITOR_DISPLAY] = "[0] %s" % plugin.get_title()
+
     @post_ui
-    def on_scan_finished(self, plugin, result, count, size, result_iter):
+    def on_scan_finished(self, plugin, result, count, size, iters):
         plugin.disconnect(self._find_handler)
         plugin.disconnect(self._scan_handler)
         plugin.set_data('scan_finished', True)
+
+        plugin_iter, result_iter = iters
 
         if count == 0:
             self.result_model.remove(result_iter)
@@ -655,17 +670,14 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
             if size != 0:
                 self.result_model[result_iter][self.RESULT_DESC] = "<b>%s</b>" % filesizeformat(size)
 
-
         # Update the janitor title
-        for row in self.janitor_model:
-            for child_row in row.iterchildren():
-                if child_row[self.JANITOR_PLUGIN] == plugin:
-                    self._total_count += count
-                    if count:
-                        child_row[self.JANITOR_DISPLAY] = "<b>[%d] %s</b>" % (count, plugin.get_title())
-                        self.result_view.collapse_row(self.result_model.get_path(result_iter))
-                    else:
-                        child_row[self.JANITOR_DISPLAY] = "[0] %s" % plugin.get_title()
+        self._total_count += count
+
+        if count:
+            self.janitor_model[plugin_iter][self.JANITOR_DISPLAY] = "<b>[%d] %s</b>" % (count, plugin.get_title())
+            self.result_view.collapse_row(self.result_model.get_path(result_iter))
+        else:
+            self.janitor_model[plugin_iter][self.JANITOR_DISPLAY] = "[0] %s" % plugin.get_title()
 
     @post_ui
     def on_scan_error(self, plugin, error, plugin_iter):
@@ -721,8 +733,8 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
             log.debug("Call %s to clean cruft" % plugin)
             self._object_clean_handler = plugin.connect('object_cleaned',
                                                         self.on_plugin_object_cleaned,
-                                                        cruft_dict)
-            self._all_clean_handler = plugin.connect('all_cleaned', self.on_plugin_cleaned)
+                                                        (plugin_iter, cruft_dict))
+            self._all_clean_handler = plugin.connect('all_cleaned', self.on_plugin_cleaned, plugin_iter)
             self._error_handler = plugin.connect('clean_error', self.on_clean_error, plugin_iter)
 
             t = threading.Thread(target=plugin.clean_cruft,
@@ -768,15 +780,25 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         return not finished
 
     @post_ui
-    def on_plugin_object_cleaned(self, plugin, cruft, cruft_dict):
+    def on_plugin_object_cleaned(self, plugin, cruft, count, user_data):
         while Gtk.events_pending():
             Gtk.main_iteration()
 
+        plugin_iter, cruft_dict = user_data
         self.result_model.remove(cruft_dict[cruft])
 
-    def on_plugin_cleaned(self, plugin, cleaned):
+        self.janitor_model[plugin_iter][self.JANITOR_DISPLAY]
+        remain = len(cruft_dict) - count
+
+        if remain:
+            self.janitor_model[plugin_iter][self.JANITOR_DISPLAY] = "<b>[%d] %s</b>" % (remain, plugin.get_title())
+        else:
+            self.janitor_model[plugin_iter][self.JANITOR_DISPLAY] = "[0] %s" % plugin.get_title()
+
+    def on_plugin_cleaned(self, plugin, cleaned, plugin_iter):
         #TODO should accept the cruft_list
         plugin.set_data('clean_finished', True)
+        self.janitor_model[plugin_iter][self.JANITOR_DISPLAY] = "[0] %s" % plugin.get_title()
 
     def on_clean_error(self, plugin, error, plugin_iter):
         #TODO response to user?

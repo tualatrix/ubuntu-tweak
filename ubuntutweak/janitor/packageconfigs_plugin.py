@@ -41,14 +41,15 @@ class PackageConfigsPlugin(JanitorPlugin):
                     des = temp_list[3:]
                     count += 1
                     self.emit('find_object',
-                              PackageConfigObject(pkg))
+                              PackageConfigObject(pkg),
+                              count)
             except:
                 pass
 
         self.emit('scan_finished', True, count, 0)
 
     def clean_cruft(self, cruft_list=[], parent=None):
-        for cruft in cruft_list:
+        for index, cruft in enumerate(cruft_list):
             log.debug('Cleaning...%s' % cruft.get_name())
             proxy.clean_configs(cruft.get_name())
             line, returncode = proxy.get_cmd_pipe()
@@ -61,7 +62,7 @@ class PackageConfigsPlugin(JanitorPlugin):
                 self.emit('clean_error', returncode)
                 break
             else:
-                self.emit('object_cleaned', cruft)
+                self.emit('object_cleaned', cruft, index + 1)
 
         self.emit('all_cleaned', True)
 

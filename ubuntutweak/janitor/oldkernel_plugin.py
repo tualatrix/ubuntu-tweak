@@ -32,7 +32,8 @@ class OldKernelPlugin(JanitorPlugin):
                     count += 1
                     size += pkg.installedSize
                     self.emit('find_object',
-                              PackageObject(pkg.name, pkg.name, pkg.installedSize))
+                              PackageObject(pkg.name, pkg.name, pkg.installedSize),
+                              count)
 
         self.emit('scan_finished', True, count, size)
 
