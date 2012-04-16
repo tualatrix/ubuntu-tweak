@@ -29,6 +29,8 @@ from ubuntutweak.clips import Clip
 from ubuntutweak.gui.dialogs import ErrorDialog, QuestionDialog
 from ubuntutweak.utils.tar import TarFile
 from ubuntutweak.common.consts import TEMP_ROOT
+from ubuntutweak.factory import WidgetFactory
+from ubuntutweak.gui.containers import GridPack
 
 
 log = logging.getLogger('PreferencesDialog')
@@ -60,6 +62,15 @@ class PreferencesDialog(GuiBuilder):
         self.admins_setting = GSetting('com.ubuntu-tweak.tweak.admins')
         self.janitor_setting = GSetting('com.ubuntu-tweak.janitor.plugins')
         self.clips_location_setting = GSetting('com.ubuntu-tweak.tweak.last-clip-location')
+        
+        auto_scan_label, auto_scan_switch = WidgetFactory.create("Switch",
+                                                label=_("Auto scan:"),
+                                                key='com.ubuntu-tweak.janitor.auto-scan',
+                                                backend="gsettings")
+        pack = GridPack((auto_scan_label, auto_scan_switch))
+        self.generic_alignment.add(pack)
+
+        self.generic_alignment.show_all()
 
     def on_clip_toggle_render_toggled(self, cell, path):
         log.debug("on_clip_toggle_render_toggled")

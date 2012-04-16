@@ -299,6 +299,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         GuiBuilder.__init__(self, 'janitorpage.ui')
 
         self.autoscan_setting = GSetting('com.ubuntu-tweak.janitor.auto-scan')
+        self.autoscan_setting.connect_notify(self.on_autoscan_button_toggled)
         self.plugins_setting = GSetting('com.ubuntu-tweak.janitor.plugins')
         self.view_width_setting = GSetting('com.ubuntu-tweak.janitor.janitor-view-width')
 
@@ -321,7 +322,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         self.janitor_view.set_size_request(self.max_janitor_view_width, -1)
 
     def is_auto_scan(self):
-        return self.autoscan_button.get_active()
+        return self.autoscan_setting.get_value()
 
     @log_func(log)
     def on_result_view_row_activated(self, treeview, path, column):
@@ -382,7 +383,6 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         log.info("Auto scan status: %s", auto_scan)
 
         self.scan_button.set_visible(not auto_scan)
-        self.autoscan_button.set_active(auto_scan)
 
         self.update_model()
 
@@ -784,12 +784,10 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         self.clean_tasks = []
         plugin.set_data('clean_finished', True)
 
-    def on_autoscan_button_toggled(self, widget):
-        if widget.get_active():
-            self.autoscan_setting.set_value(True)
+    def on_autoscan_button_toggled(self, *args):
+        if self.autoscan_setting.get_value():
             self.scan_button.hide()
         else:
-            self.autoscan_setting.set_value(False)
             self.scan_button.show()
 
     def icon_column_view_func(self, cell_layout, renderer, model, iter, id):
