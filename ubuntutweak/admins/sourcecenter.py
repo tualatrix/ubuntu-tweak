@@ -53,8 +53,9 @@ from ubuntutweak.settings.gsettings import GSetting
 from ubuntutweak.utils import set_label_for_stock_button
 from ubuntutweak.utils import ppa, icon
 from ubuntutweak.utils.package import AptWorker
+from ubuntutweak.apps import CategoryView
 
-from ubuntutweak.admins.appcenter import AppView, AppParser, CateParser, StatusProvider
+from ubuntutweak.admins.appcenter import AppView, AppParser, StatusProvider
 from ubuntutweak.admins.appcenter import CheckUpdateDialog, FetchingDialog, PackageInfo
 
 log = logging.getLogger("SourceCenter")
@@ -905,48 +906,8 @@ class SourcesView(Gtk.TreeView):
             notify.set_hint_string ("x-canonical-append", "")
             notify.show()
 
-class CategoryView(Gtk.TreeView):
-    (CATE_ID,
-     CATE_NAME,
-     CATE_DISPLAY) = range(3)
-
-    def __init__(self, path):
-        GObject.GObject.__init__(self)
-
-        self.path = path
-        self._status = None
-        self.parser = None
-
-        self.set_headers_visible(False)
-        self.set_rules_hint(True)
-        self.model = self._create_model()
-        self.set_model(self.model)
-        self._add_columns()
-
-    def _create_model(self):
-        '''The model is icon, title and the list reference'''
-        model = Gtk.TreeStore(GObject.TYPE_INT,
-                              GObject.TYPE_STRING,
-                              GObject.TYPE_STRING)
-
-        return model
-
-    def _add_columns(self):
-        column = Gtk.TreeViewColumn(_('Category'))
-
-        renderer = Gtk.CellRendererText()
-        column.pack_start(renderer, True)
-        column.set_sort_column_id(self.CATE_NAME)
-        column.add_attribute(renderer, 'markup', self.CATE_DISPLAY)
-        self.append_column(column)
-
-    def set_status_from_view(self, view):
-        self._status = view.get_status()
-
-    def update_cate_model(self):
-        self.model.clear()
-        self.parser = CateParser(self.path)
-
+class SourceCategoryView(CategoryView):
+    def pre_update_cate_model(self):
 #        self.model.append(None, (-3,
 #                                 'latest',
 #                                 _('Latest')))
@@ -958,56 +919,6 @@ class CategoryView(Gtk.TreeView):
         self.model.append(None, (-1,
                                  'enabled-ppa',
                                  _('Enabled PPAs')))
-
-        iter = self.model.append(None, (0,
-                                        'all',
-                                        _('All')))
-
-        for slug in self.get_cate_items():
-            child_iter = self.model.append(iter)
-            id = self.parser.get_id(slug)
-            name = self.parser.get_name(slug)
-            display = name
-
-            if self._status:
-                self._status.load_category_from_parser(self.parser)
-                count = self._status.get_cate_unread_count(id)
-                if count:
-                    display = '<b>%s (%d)</b>' % (name, count)
-
-            log.debug("Insert category model: id: %s"
-                    "\tname: %s"
-                    "\tdisplay: %s" % (id, name, display))
-            self.model.set(child_iter, 
-                           self.CATE_ID, id,
-                           self.CATE_NAME, name,
-                           self.CATE_DISPLAY, display)
-
-    def get_cate_items(self):
-        OTHER = u'other'
-        keys = self.parser.keys()
-        keys.sort()
-        if OTHER in keys:
-            keys.remove(OTHER)
-            keys.append(OTHER)
-        return keys
-
-    def update_selected_item(self):
-        model, iter = self.get_selection().get_selected()
-
-        if iter:
-            id = model[iter][self.CATE_ID]
-            if id <= 0:
-                return True
-
-            name = model[iter][self.CATE_NAME]
-
-            count = self._status.get_cate_unread_count(id)
-            if count:
-                model[iter][self.CATE_DISPLAY] = '<b>%s (%d)</b>' % (name, count)
-            else:
-                model[iter][self.CATE_DISPLAY] = name
-
 
 class SourceCenter(TweakModule):
     __title__  = _('Source Center')
@@ -1024,7 +935,7 @@ class SourceCenter(TweakModule):
         self.url = SOURCE_VERSION_URL
         set_label_for_stock_button(self.sync_button, _('_Sync'))
 
-        self.cateview = CategoryView(os.path.join(SOURCE_ROOT, 'cates.json'))
+        self.cateview = SourceCategoryView(os.path.join(SOURCE_ROOT, 'cates.json'))
         self.cateview.update_cate_model()
         self.cateview.get_selection().connect('changed', self.on_category_changed)
         self.left_sw.add(self.cateview)

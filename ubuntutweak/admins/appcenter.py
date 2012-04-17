@@ -39,6 +39,7 @@ from ubuntutweak.network.downloadmanager import DownloadDialog
 from ubuntutweak.settings.gsettings import GSetting
 from ubuntutweak.utils import set_label_for_stock_button, icon
 from ubuntutweak.utils.package import AptWorker
+from ubuntutweak.apps import CategoryView
 
 log = logging.getLogger("AppCenter")
 
@@ -178,109 +179,13 @@ class AppParser(Parser):
     def get_category(self, key):
         return self[key]['category']
 
-class CateParser(Parser):
-    #TODO Maybe move to the common code pakcage
-    def __init__(self, path):
-        Parser.__init__(self, path, 'slug')
 
-    def get_name(self, key):
-        return self.get_by_lang(key, 'name')
+class AppCategoryView(CategoryView):
 
-    def get_id(self, key):
-        return self[key]['id']
-
-class CategoryView(Gtk.TreeView):
-    (
-        CATE_ID,
-        CATE_NAME,
-        CATE_DISPLAY,
-    ) = range(3)
-
-    def __init__(self, path):
-        GObject.GObject.__init__(self)
-
-        self.path = path
-        self._status = None
-        self.parser = None
-
-        self.set_headers_visible(False)
-        self.set_rules_hint(True)
-        self.model = self._create_model()
-        self.set_model(self.model)
-        self._add_columns()
-
-    def _create_model(self):
-        '''The model is icon, title and the list reference'''
-        model = Gtk.ListStore(
-                    GObject.TYPE_INT,
-                    GObject.TYPE_STRING,
-                    GObject.TYPE_STRING)
-        
-        return model
-
-    def _add_columns(self):
-        column = Gtk.TreeViewColumn(_('Category'))
-
-        renderer = Gtk.CellRendererText()
-        column.pack_start(renderer, True)
-        column.set_sort_column_id(self.CATE_NAME)
-        column.add_attribute(renderer, 'markup', self.CATE_DISPLAY)
-        self.append_column(column)
-
-    def set_status_from_view(self, view):
-        self._status = view.get_status()
-
-    def update_model(self):
-        self.model.clear()
-        self.parser = CateParser(self.path)
-
-        iter = self.model.append()
-        self.model.set(iter, 
-                self.CATE_ID, 0,
-                self.CATE_NAME, 'all-category',
-                self.CATE_DISPLAY, _('All Categories'))
-
-        for slug in self.get_cate_items():
-            iter = self.model.append()
-            id = self.parser.get_id(slug)
-            name = self.parser.get_name(slug)
-            display = name
-
-            if self._status:
-                self._status.load_category_from_parser(self.parser)
-                count = self._status.get_cate_unread_count(id)
-                if count:
-                    display = '<b>%s (%d)</b>' % (name, count)
-
-            log.debug("Insert category model: id: %s"
-                    "\tname: %s"
-                    "\tdisplay: %s" % (id, name, display))
-            self.model.set(iter, 
-                           self.CATE_ID, id,
-                           self.CATE_NAME, name,
-                           self.CATE_DISPLAY, display)
-
-    def get_cate_items(self):
-        OTHER = u'other'
-        keys = self.parser.keys()
-        keys.sort()
-        if OTHER in keys:
-            keys.remove(OTHER)
-            keys.append(OTHER)
-        return keys
-
-    def update_selected_item(self):
-        model, iter = self.get_selection().get_selected()
-
-        if iter:
-            id = model[iter][self.CATE_ID]
-            name = model[iter][self.CATE_NAME]
-
-            count = self._status.get_cate_unread_count(id)
-            if count:
-                model[iter][self.CATE_DISPLAY] = '<b>%s (%d)</b>' % (name, count)
-            else:
-                model[iter][self.CATE_DISPLAY] = name
+    def pre_update_cate_model(self):
+        self.model.append(None, (-1,
+                                 'installed-apps',
+                                 _('Installed Apps')))
 
 
 class AppView(Gtk.TreeView):
@@ -377,9 +282,6 @@ class AppView(Gtk.TreeView):
         else:
             renderer.set_property("visible", True)
 
-    def clear_model(self):
-        self.get_model().clear()
-
     def append_update(self, status, pkgname, summary):
         model = self.get_model()
 
@@ -413,7 +315,8 @@ class AppView(Gtk.TreeView):
     def get_status(self):
         return self._status
 
-    def update_model(self, apps=None):
+    @log_func(log)
+    def update_model(self, apps=None, only_installed=False):
         '''apps is a list to iter pkgname,
         '''
         model = self.get_model()
@@ -434,10 +337,11 @@ class AppView(Gtk.TreeView):
             try:
                 package = PackageInfo(pkgname)
                 is_installed = package.check_installed()
+                if not is_installed and only_installed:
+                    continue
                 appname = package.get_name()
                 desc = app_parser.get_summary(pkgname)
             except Exception, e:
-                log.warning(e)
                 # Confirm the invalid package isn't in the count
                 # But in the future, Ubuntu Tweak should display the invalid package too
                 if self._status and not self._status.get_read_status(pkgname):
@@ -521,6 +425,7 @@ class AppView(Gtk.TreeView):
             model.set(iter, self.COLUMN_INSTALLED, not is_installed)
             self.emit('select', not is_installed)
 
+    @log_func(log)
     def set_filter(self, filter):
         self.filter = filter
 
@@ -592,7 +497,7 @@ class AppCenter(TweakModule):
     __url__ = 'http://ubuntu-tweak.com/app/'
     __urltitle__ = _('Visit Online Application Center')
     __category__ = 'application'
-    __utactive__ = False
+    __utactive__ = True
 
     def __init__(self):
         TweakModule.__init__(self, 'appcenter.ui')
@@ -613,9 +518,9 @@ class AppCenter(TweakModule):
         self.app_selection.connect('changed', self.on_app_selection)
         self.right_sw.add(self.appview)
 
-        self.cateview = CategoryView(os.path.join(APPCENTER_ROOT, 'cates.json'))
+        self.cateview = AppCategoryView(os.path.join(APPCENTER_ROOT, 'cates.json'))
         self.cateview.set_status_from_view(self.appview)
-        self.cateview.update_model()
+        self.cateview.update_cate_model()
         self.cate_selection = self.cateview.get_selection()
         self.cate_selection.connect('changed', self.on_category_changed)
         self.left_sw.add(self.cateview)
@@ -630,6 +535,11 @@ class AppCenter(TweakModule):
         GObject.timeout_add(60000, self.update_timestamp)
 
         self.add_start(self.main_vbox)
+
+        self.connect('realize', self.setup_ui_tasks)
+
+    def setup_ui_tasks(self, widget):
+        self.cateview.expand_all()
 
     def update_timestamp(self):
         self.time_label.set_text(_('Last synced:') + ' ' + utdata.get_last_synced(APPCENTER_ROOT))
@@ -664,18 +574,24 @@ class AppCenter(TweakModule):
             appview.set_as_read(iter, model)
             self.cateview.update_selected_item()
 
+    @log_func(log)
     def on_category_changed(self, widget, data=None):
         model, iter = widget.get_selected()
         cateview = widget.get_tree_view()
 
         if iter:
-            if model.get_path(iter).to_string() != "0":
-                self.appview.set_filter(model[iter][cateview.CATE_ID])
-            else:
-                self.appview.set_filter(None)
+            path = model.get_path(iter).to_string()
+            only_installed = False
 
-            self.appview.clear_model()
-            self.appview.update_model()
+            if path == '0':
+                only_installed = True
+                self.appview.set_filter(None)
+            elif path == '1':
+                self.appview.set_filter(None)
+            else:
+                self.appview.set_filter(model[iter][cateview.CATE_ID])
+
+            self.appview.update_model(only_installed=only_installed)
 
     def deep_update(self):
         self.package_worker.update_apt_cache(True)
@@ -683,12 +599,15 @@ class AppCenter(TweakModule):
 
     def on_apply_button_clicked(self, widget, data=None):
         @log_func(log)
-        def on_clean_finished(transaction, status, kwargs):
+        def on_install_finished(transaction, status, kwargs):
             to_add, to_rm = kwargs['add_and_rm']
-            worker = AptWorker(self.get_toplevel(),
-                               finish_handler=self.on_package_work_finished,
-                               data=kwargs)
-            worker.remove_packages(to_rm)
+            if to_rm:
+                worker = AptWorker(self.get_toplevel(),
+                                   finish_handler=self.on_package_work_finished,
+                                   data=kwargs)
+                worker.remove_packages(to_rm)
+            else:
+               self.on_package_work_finished(None, None, kwargs)
 
         to_rm = self.appview.to_rm
         to_add = self.appview.to_add
@@ -699,20 +618,15 @@ class AppCenter(TweakModule):
             set_busy(self)
 
             if to_add:
-                #TODO if user cancel auth
-                if to_rm:
-                    worker = AptWorker(self.get_toplevel(),
-                                       finish_handler=on_clean_finished,
-                                       data={'add_and_rm': (to_add, to_rm),
-                                             'parent': self})
-                else:
-                    worker = AptWorker(self.get_toplevel(),
-                                       finish_handler=self.on_package_work_finished,
-                                       data={'add_and_rm': (to_add, to_rm),
-                                             'parent': self})
+                worker = AptWorker(self.get_toplevel(),
+                                   finish_handler=on_install_finished,
+                                   data={'add_and_rm': (to_add, to_rm),
+                                         'parent': self})
                 worker.install_packages(to_add)
-            elif to_rm:
-                on_clean_finished(None, None, (to_add, to_rm))
+            else:
+                on_install_finished(None, None, 
+                                   {'add_and_rm': (to_add, to_rm),
+                                         'parent': self})
 
     @log_func(log)
     def on_package_work_finished(self, transaction, status, kwargs):
@@ -725,8 +639,7 @@ class AppCenter(TweakModule):
 
         self.appview.to_add = []
         self.appview.to_rm = []
-        self.appview.clear_model()
-        self.appview.update_model()
+        self.on_category_changed(self.cateview.get_selection())
         self.apply_button.set_sensitive(False)
         unset_busy(parent)
 
@@ -765,7 +678,7 @@ class AppCenter(TweakModule):
 
     def update_app_data(self):
         self.appview.update_model()
-        self.cateview.update_model()
+        self.cateview.update_cate_model()
 
     def on_app_status_changed(self, widget, i):
         if i:

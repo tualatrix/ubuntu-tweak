@@ -12,7 +12,8 @@ from gi.repository import Gtk
 
 from defer import inline_callbacks, return_value
 
-from ubuntutweak.gui.gtk import post_ui
+from ubuntutweak.gui.gtk import post_ui, unset_busy
+from ubuntutweak.common.debug import log_func
 
 log = logging.getLogger('package')
 
@@ -64,6 +65,7 @@ class NewAptProgressDialog(AptProgressDialog):
 class AptWorker(object):
     cache = None
 
+    @log_func(log)
     def __init__(self, parent,
                  finish_handler=None, error_handler=None,data=None):
         '''
@@ -94,6 +96,7 @@ class AptWorker(object):
     def _run_transaction(self, transaction):
         dia = NewAptProgressDialog(transaction, parent=self.parent)
         if self.finish_handler:
+            log.debug("Connect to finish_handler...")
             transaction.connect('finished', self.finish_handler, self.data)
 
         dia.run(close_on_finished=True, show_error=True,
@@ -122,11 +125,13 @@ class AptWorker(object):
         return self.ac.update_cache(reply_handler=self._run_transaction,
                                     error_handler=self._on_error)
 
+    @log_func(log)
     def install_packages(self, packages, *args):
         self.ac.install_packages(packages,
                                  reply_handler=self._simulate_trans,
                                  error_handler=self._on_error)
 
+    @log_func(log)
     def remove_packages(self, packages, *args):
         self.ac.remove_packages(packages,
                                 reply_handler=self._simulate_trans,
