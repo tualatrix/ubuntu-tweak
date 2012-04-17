@@ -135,6 +135,12 @@ class Unity(TweakModule):
                              min=0, max=1, digits=2,
                              backend="compiz",
                              enable_reset=True),
+                        WidgetFactory.create("Switch",
+                             label=_('Panel opacity for maximized windows:'),
+                             key="unityshell.panel_opacity_maximized_toggle",
+                             backend="compiz",
+                             reverse=True,
+                             enable_reset=True),
                 )
 
             self.add_start(grid_pack, False, False, 0)
