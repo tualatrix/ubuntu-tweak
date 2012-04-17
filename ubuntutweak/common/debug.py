@@ -178,7 +178,7 @@ def log_func(log):
             for i, arg in enumerate(args):
                 log.debug("\targs-%d: %s" % (i + 1, arg))
             for k, v in enumerate(kwargs):
-                log.debug("\tdict args: %s: %s" % (k, v))
+                log.debug("\tdict args-%d: %s: %s" % (k, v, kwargs[v]))
             return func(*args, **kwargs)
         return func_wrapper
     return wrap
