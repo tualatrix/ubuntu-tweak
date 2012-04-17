@@ -299,13 +299,14 @@ class FontButton(Gtk.FontButton, SettingWidget):
         self.get_setting().set_value(self.get_font_name())
 
 
-class Scale(Gtk.HScale, SettingWidget):
+class Scale(Gtk.Scale, SettingWidget):
     def __str__(self):
         return '<Scale with key: %s>' % self.get_setting().key
 
     def __init__(self, key=None, default=None, min=None, max=None, type=int, digits=0,
-                 reverse=False, backend='gconf'):
-        GObject.GObject.__init__(self)
+                 reverse=False, orientation=Gtk.Orientation.HORIZONTAL, backend='gconf'):
+        GObject.GObject.__init__(self,
+                                 orientation=orientation)
 
         if digits > 0:
             type = float
