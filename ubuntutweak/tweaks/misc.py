@@ -94,6 +94,7 @@ class Misc(TweakModule):
                                                  backend='gsettings',
                                                  min=100,
                                                  max=2500,
+                                                 step=100,
                                                  type=int,
                                                  ),
                             WidgetFactory.create('SpinButton',

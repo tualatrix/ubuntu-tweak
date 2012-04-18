@@ -43,6 +43,7 @@ class Fonts(TweakModule):
                         key="org.gnome.desktop.interface.text-scaling-factor",
                         min=0.5,
                         max=3.0,
+                        step=0.1,
                         digits=1,
                         backend="gsettings",
                         enable_reset=True),

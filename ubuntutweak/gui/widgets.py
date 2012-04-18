@@ -303,7 +303,7 @@ class Scale(Gtk.Scale, SettingWidget):
     def __str__(self):
         return '<Scale with key: %s>' % self.get_setting().key
 
-    def __init__(self, key=None, default=None, min=None, max=None, type=int, digits=0,
+    def __init__(self, key=None, default=None, min=None, max=None, step=None, type=int, digits=0,
                  reverse=False, orientation=Gtk.Orientation.HORIZONTAL, backend='gconf'):
         GObject.GObject.__init__(self,
                                  orientation=orientation)
@@ -312,6 +312,9 @@ class Scale(Gtk.Scale, SettingWidget):
             type = float
         else:
             type = int
+
+        if step:
+            self.set_increments(step, step)
 
         SettingWidget.__init__(self, key=key, default=default, type=type, backend=backend)
 
