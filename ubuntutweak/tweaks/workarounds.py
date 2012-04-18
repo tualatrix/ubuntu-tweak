@@ -1,3 +1,4 @@
+# coding: utf-8
 # Ubuntu Tweak - Ubuntu Configuration Tool
 #
 # Copyright (C) 2007-2012 Tualatrix Chou <tualatrix@gmail.com>
@@ -32,6 +33,9 @@ class Workarounds(TweakModule):
     __category__ = 'system'
     __policykit__ = PK_ACTION_TWEAK
 
+    utext_fix_theme = _('Fix the appearance of themes when granted root privileges')
+    utext_chinese_gedit = _("Auto detect text encoding for Chinese in Gedit")
+
     ROOT_THEMES = '/root/.themes'
     ROOT_ICONS = '/root/.icons'
 
@@ -39,7 +43,7 @@ class Workarounds(TweakModule):
         TweakModule.__init__(self)
 
         self.fix_theme_button = Gtk.Switch()
-        self.fix_theme_label = Gtk.Label(_('Fix the appearance of themes when granted root privileges'))
+        self.fix_theme_label = Gtk.Label(self.utext_fix_theme)
         if proxy.is_exists(self.ROOT_THEMES) and proxy.is_exists(self.ROOT_ICONS):
             self.fix_theme_button.set_active(True)
 
@@ -47,7 +51,7 @@ class Workarounds(TweakModule):
         self.fix_theme_button.set_sensitive(False)
 
         encoding_label, encoding_switch, reset_encoding = WidgetFactory.create("Switch",
-                                                label=_("Auto detect text encoding for Chinese in Gedit"),
+                                                label=self.utext_chinese_gedit,
                                                 key="org.gnome.gedit.preferences.encodings.auto-detected",
                                                 on=['GB18030', 'UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16'],
                                                 off=['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16'],

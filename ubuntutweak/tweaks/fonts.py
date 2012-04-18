@@ -29,6 +29,14 @@ class Fonts(TweakModule):
     __category__ = 'appearance'
     __desktop__ = ['ubuntu', 'ubuntu-2d', 'gnome-classic', 'gnome-shell']
 
+    utext_text_scaling = _("Text scaling factor:")
+    utext_default_font = _("Default font:")
+    utext_monospace_font = _("Monospace font:")
+    utext_document_font = _("Document font:")
+    utext_window_title_font = _("Window title bar font:")
+    utext_hinting = _("Hinting:")
+    utext_antialiasing = _("Antialiasing:")
+
     """Lock down some function"""
     def __init__(self):
         TweakModule.__init__(self)
@@ -39,7 +47,7 @@ class Fonts(TweakModule):
 
         box = GridPack(
                     WidgetFactory.create("Scale",
-                        label=_("Text scaling factor:"),
+                        label=self.utext_text_scaling,
                         key="org.gnome.desktop.interface.text-scaling-factor",
                         min=0.5,
                         max=3.0,
@@ -48,7 +56,7 @@ class Fonts(TweakModule):
                         backend="gsettings",
                         enable_reset=True),
                     WidgetFactory.create("FontButton",
-                        label=_("Default font:"),
+                        label=self.utext_default_font,
                         key="org.gnome.desktop.interface.font-name",
                         backend="gsettings",
                         enable_reset=True),
@@ -59,23 +67,23 @@ class Fonts(TweakModule):
                         default="Ubuntu 11",
                         enable_reset=True),
                     WidgetFactory.create("FontButton",
-                        label=_("Monospace font:"),
+                        label=self.utext_monospace_font,
                         key="org.gnome.desktop.interface.monospace-font-name",
                         backend="gsettings",
                         enable_reset=True),
                     WidgetFactory.create("FontButton",
-                        label=_("Document font:"),
+                        label=self.utext_document_font,
                         key="org.gnome.desktop.interface.document-font-name",
                         backend="gsettings",
                         enable_reset=True),
                     WidgetFactory.create("FontButton",
-                        label=_("Window title bar font:"),
+                        label=self.utext_window_title_font,
                         key="/apps/metacity/general/titlebar_font",
                         backend="gconf",
                         enable_reset=True),
                     Gtk.Separator(),
                     WidgetFactory.create("ComboBox",
-                        label=_("Hinting:"),
+                        label=self.utext_hinting,
                         key="org.gnome.settings-daemon.plugins.xsettings.hinting",
                         values=('none', 'slight', 'medium', 'full'),
                         texts=(_('No hinting'),
@@ -85,7 +93,7 @@ class Fonts(TweakModule):
                         backend="gsettings",
                         enable_reset=True),
                     WidgetFactory.create("ComboBox",
-                        label=_("Antialiasing:"),
+                        label=self.utext_antialiasing,
                         key="org.gnome.settings-daemon.plugins.xsettings.antialiasing",
                         values=('none', 'grayscale', 'rgba'),
                         texts=(_('No antialiasing'),

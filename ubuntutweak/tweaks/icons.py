@@ -109,11 +109,16 @@ class Icons(TweakModule):
     __icon__ = 'preferences-desktop-wallpaper'
     __category__ = 'desktop'
 
+    utext_show_icon = _("Show desktop icons:")
+    utext_mount_volume = _("Show mounted volumes")
+    utext_home_folder = _('Show contents of "Home Folder"')
+
+
     def __init__(self):
         TweakModule.__init__(self)
 
         show_label, show_switch = WidgetFactory.create("Switch",
-                                                label=_("Show desktop icons:"),
+                                                label=self.utext_show_icon,
                                                 key="org.gnome.desktop.background.show-desktop-icons",
                                                 backend="gsettings")
 
@@ -124,13 +129,13 @@ class Icons(TweakModule):
             setting_list.append(DesktopIcon(item))
 
         volumes_button = WidgetFactory.create("CheckButton",
-                                      label=_("Show mounted volumes"),
+                                      label=self.utext_mount_volume,
                                       key="org.gnome.nautilus.desktop.volumes-visible",
                                       backend="gsettings")
         setting_list.append(volumes_button)
 
         home_contents_button = WidgetFactory.create("CheckButton",
-                                      label=_('Show contents of "Home Folder"'),
+                                      label=self.utext_home_folder,
                                       key="org.gnome.nautilus.preferences.desktop-is-home-dir",
                                       backend="gsettings")
         setting_list.append(home_contents_button)

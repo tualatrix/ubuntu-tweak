@@ -38,6 +38,7 @@ class ModuleLoader:
     default_features = ('tweaks', 'admins', 'janitor')
 
     search_loaded_table = {}
+    fuzz_search_table = {}
 
     def __init__(self, feature, user_only=False):
         '''feature choices: tweaks, admins and janitor'''
@@ -62,6 +63,16 @@ class ModuleLoader:
 
         log.info("Loading user extensions for %s..." % feature)
         self.do_folder_import(user_folder, mark_user=True)
+
+    @classmethod
+    def fuzz_search(cls, text):
+        modules = []
+        text = text.lower()
+        for k, v in cls.fuzz_search_table.items():
+            if text in k and v not in modules:
+                modules.append(v)
+
+        return modules
 
     @classmethod
     def get_user_extension_dir(cls, feature):
@@ -189,6 +200,10 @@ class ModuleLoader:
                     self.category_table['other'][v.get_name()] = v
                 else:
                     self.category_table[v.get_category()][v.get_name()] = v
+                if hasattr(v, '__keywords__'):
+                    for attr in ('name', 'title', 'description', 'keywords'):
+                        value = getattr(v, 'get_%s' % attr)()
+                        self.fuzz_search_table[value.lower()] = v
 
     def get_categories(self):
         for k, v in self.category_names:
@@ -232,6 +247,7 @@ class TweakModule(Gtk.VBox):
     __category__ = ''
     __policykit__ = ''
     __user_extension__ = False
+    __keywords__ = ''
 
     #update use internal, and call use between modules
     __gsignals__ = {
@@ -301,6 +317,14 @@ class TweakModule(Gtk.VBox):
         '''Return the module title, it is for human read with i18n support
         '''
         return cls.__title__
+
+    @classmethod
+    def get_keywords(cls):
+        keywords = [cls.__keywords__]
+        for k, v in inspect.getmembers(cls):
+            if k.startswith('utext'):
+                keywords.append(v)
+        return ' '.join(keywords)
 
     @classmethod
     def get_url(cls):

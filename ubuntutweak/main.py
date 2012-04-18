@@ -19,7 +19,7 @@
 import os
 import logging
 
-from gi.repository import GObject, Gtk, Pango
+from gi.repository import GObject, Gtk, Gdk, Pango
 
 from ubuntutweak import modules
 from ubuntutweak import admins
@@ -242,6 +242,47 @@ class FeaturePage(Gtk.ScrolledWindow):
                 last_box = box
 
 
+class SearchPage(FeaturePage):
+    def __str__(self):
+        return '<SearchPage>'
+
+    def __init__(self, no_result_box):
+        GObject.GObject.__init__(self,
+                                 hscrollbar_policy=Gtk.PolicyType.NEVER,
+                                 vscrollbar_policy=Gtk.PolicyType.AUTOMATIC)
+        self.set_property('shadow-type', Gtk.ShadowType.NONE)
+        self.set_border_width(12)
+
+        self._boxes = []
+        self.no_result_box = no_result_box
+
+        self._box = Gtk.VBox(spacing=6)
+        viewport = Gtk.Viewport()
+        viewport.set_property('shadow-type', Gtk.ShadowType.NONE)
+        viewport.add(self._box)
+        self.add(viewport)
+
+        self.connect('size-allocate', self.rebuild_boxes)
+
+        self.show_all()
+
+    def search(self, text):
+        modules = ModuleLoader.fuzz_search(text)
+        self._boxes = []
+        for child in self._box.get_children():
+            self._box.remove(child)
+
+        if modules:
+            category_box = CategoryBox(modules=modules, category_name=_('Results'))
+
+            self._connect_signals(category_box)
+            self._boxes.append(category_box)
+            self._box.pack_start(category_box, False, False, 0)
+
+            self.rebuild_boxes()
+        else:
+            self.no_result_box.label.set_markup(_('Your filter "<b>%s</b>" does not match any items.' % text))
+            self._box.pack_start(self.no_result_box, False, False, 0)
 
 class UbuntuTweakWindow(GuiBuilder):
     current_feature = 'overview'
@@ -257,6 +298,8 @@ class UbuntuTweakWindow(GuiBuilder):
 
         tweaks_page = FeaturePage('tweaks')
         admins_page = FeaturePage('admins')
+        self.no_result_box.label = self.result_text
+        self.search_page = SearchPage(self.no_result_box)
         clip_page = ClipPage()
 #        apps_page = AppsPage()
         janitor_page = JanitorPage()
@@ -264,26 +307,54 @@ class UbuntuTweakWindow(GuiBuilder):
 
         self.recently_used_settings = GSetting('com.ubuntu-tweak.tweak.recently-used')
 
-        self.feature_dict['overview'] = self.notebook.append_page(clip_page, Gtk.Label())
+        self.feature_dict['overview'] = self.notebook.append_page(clip_page, Gtk.Label('overview'))
 #        self.feature_dict['apps'] = self.notebook.append_page(apps_page, Gtk.Label())
-        self.feature_dict['tweaks'] = self.notebook.append_page(tweaks_page, Gtk.Label())
-        self.feature_dict['admins'] = self.notebook.append_page(admins_page, Gtk.Label())
-        self.feature_dict['janitor'] = self.notebook.append_page(janitor_page, Gtk.Label())
+        self.feature_dict['tweaks'] = self.notebook.append_page(tweaks_page, Gtk.Label('tweaks'))
+        self.feature_dict['admins'] = self.notebook.append_page(admins_page, Gtk.Label('admins'))
+        self.feature_dict['janitor'] = self.notebook.append_page(janitor_page, Gtk.Label('janitor'))
         self.feature_dict['wait'] = self.notebook.append_page(self._crete_wait_page(),
-                                                           Gtk.Label())
+                                                           Gtk.Label('wait'))
+        self.feature_dict['search'] = self.notebook.append_page(self.search_page,
+                                                           Gtk.Label('search'))
 
         # Always show welcome page at first
         self.mainwindow.connect('realize', self._initialize_ui_states, splash_window)
         tweaks_page.connect('module_selected', self.on_module_selected)
+        self.search_page.connect('module_selected', self.on_module_selected)
         admins_page.connect('module_selected', self.on_module_selected)
         clip_page.connect('load_module', lambda widget, name: self.do_load_module(name))
         clip_page.connect('load_feature', lambda widget, name: self.select_target_feature(name))
+
         self.mainwindow.show()
 
         if module:
             self.do_load_module(module)
         elif feature:
             self.select_target_feature(feature)
+
+        accel_group = Gtk.AccelGroup()
+        self.search_entry.add_accelerator('activate',
+                                          accel_group,
+                                          Gdk.KEY_f,
+                                          Gdk.ModifierType.CONTROL_MASK,
+                                          Gtk.AccelFlags.VISIBLE)
+        self.mainwindow.add_accel_group(accel_group)
+
+    @log_func(log)
+    def on_search_entry_activate(self, widget):
+        widget.grab_focus()
+        self.on_search_entry_changed(widget)
+
+    @log_func(log)
+    def on_search_entry_changed(self, widget):
+        text = widget.get_text()
+        self.set_current_module(None, None)
+
+        if text:
+            self.notebook.set_current_page(self.feature_dict['search'])
+            self.search_page.search(text)
+        else:
+            self.on_feature_button_clicked(getattr(self, '%s_button' % self.current_feature), self.current_feature)
 
     def get_module_and_index(self, name):
         index = self.loaded_modules[name]
