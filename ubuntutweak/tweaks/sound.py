@@ -30,6 +30,10 @@ class Sound(TweakModule):
     __icon__ = 'sound'
     __category__ = 'appearance'
 
+    utext_event_sounds = _('Event sounds:')
+    utext_input_feedback = _('Input feedback sounds:')
+    utext_sound_theme = _('Sound theme:')
+
     def __init__(self):
         TweakModule.__init__(self)
 
@@ -37,15 +41,15 @@ class Sound(TweakModule):
 
         theme_box = GridPack(
                         WidgetFactory.create('Switch',
-                            label=_('Event sounds:'),
+                            label=self.utext_event_sounds,
                             key='org.gnome.desktop.sound.event-sounds',
                             backend='gsettings'),
                         WidgetFactory.create('Switch',
-                            label=_('Input feedback sounds:'),
+                            label=self.utext_input_feedback,
                             key='org.gnome.desktop.sound.input-feedback-sounds',
                             backend='gsettings'),
                         WidgetFactory.create('ComboBox',
-                            label=_('Sound theme:'),
+                            label=self.utext_sound_theme,
                             key='org.gnome.desktop.sound.theme-name',
                             backend='gsettings',
                             texts=valid_themes,

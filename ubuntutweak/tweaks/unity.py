@@ -41,6 +41,22 @@ class Unity(TweakModule):
     __category__ = 'desktop'
     __desktop__ = ['ubuntu', 'ubuntu-2d']
 
+    utext_hud = _('HUD:')
+    utext_overlay = _('Shortcut hits overlay:')
+    utext_launcher_size = _('Launcher icon size:')
+    utext_launcher_opacity = _('Launcher opacity:')
+    utext_launcher_hide = _('Launcher hide mode:')
+    utext_launcher_backlight = _('Launcher icon backlight:')
+    utext_device = _('Launcher show devices:')
+    utext_dash_size = _('Dash size:')
+    utext_dash_color = _('Dash color:')
+    utext_blur_type = _('Blur type:')
+    utext_panel_opacity = _('Panel opacity:')
+    utext_panel_toggle_max = _('Panel opacity for maximized windows:')
+    utext_super_key = _('Enable the Super key')
+    utext_fullscreen = _('Full screen dash')
+    utext_one_launcher = _('Only one launcher when multi-monitor')
+
     def __init__(self):
         TweakModule.__init__(self)
 
@@ -49,20 +65,20 @@ class Unity(TweakModule):
         if system.DESKTOP == 'ubuntu':
             grid_pack = GridPack(
                         WidgetFactory.create("Switch",
-                            label=_('HUD:'),
+                            label=self.utext_hud,
                             key="unityshell.show_hud",
                             on='<Alt>',
                             off='Disabled',
                             backend="compiz",
                             enable_reset=True),
                         WidgetFactory.create("Switch",
-                            label=_('Shortcut hits overlay:'),
+                            label=self.utext_overlay,
                             key="unityshell.shortcut_overlay",
                             backend="compiz",
                             enable_reset=True),
                         Gtk.Separator(),
                         WidgetFactory.create("Scale",
-                            label=_('Launcher icon size:'),
+                            label=self.utext_launcher_size,
                             key="unityshell.icon_size",
                             min=32,
                             max=64,
@@ -70,7 +86,7 @@ class Unity(TweakModule):
                             backend="compiz",
                             enable_reset=True),
                         WidgetFactory.create("Scale",
-                            label=_('Launcher opacity:'),
+                            label=self.utext_launcher_opacity,
                             key="unityshell.launcher_opacity",
                             min=0,
                             max=1,
@@ -79,7 +95,7 @@ class Unity(TweakModule):
                             backend="compiz",
                             enable_reset=True),
                         WidgetFactory.create("ComboBox",
-                            label=_('Launcher hide mode:'),
+                            label=self.utext_launcher_hide,
                             key="unityshell.launcher_hide_mode",
                             texts=(_('Never'), _('Auto Hide')),
                             values=(0, 1),
@@ -87,7 +103,7 @@ class Unity(TweakModule):
                             backend="compiz",
                             enable_reset=True),
                         WidgetFactory.create("ComboBox",
-                            label=_('Launcher icon backlight:'),
+                            label=self.utext_launcher_backlight,
                             key="unityshell.backlight_mode",
                             texts=(_('Backlight Always On'),
                                  _('Backlight Toggles'),
@@ -99,7 +115,7 @@ class Unity(TweakModule):
                             backend="compiz",
                             enable_reset=True),
                         WidgetFactory.create("ComboBox",
-                            label=_('Launcher show devices:'),
+                            label=self.utext_device,
                             key="unityshell.devices_option",
                             texts=(_('Never'),
                                    _('Only Mounted'),
@@ -110,19 +126,19 @@ class Unity(TweakModule):
                              enable_reset=True),
                         Gtk.Separator(),
                         WidgetFactory.create("ComboBox",
-                             label=_('Dash size:'),
+                             label=self.utext_dash_size,
                              key="com.canonical.Unity.form-factor",
                              texts=(_('Automatic'), _('Desktop'), _('Netbook')),
                              values=('Automatic', 'Desktop', 'Netbook'),
                              backend="gsettings",
                              enable_reset=True),
                         WidgetFactory.create("ColorButton",
-                             label=_('Dash color:'),
+                             label=self.utext_dash_color,
                              key="unityshell.background_color",
                              backend="compiz",
                              enable_reset=True),
                         WidgetFactory.create("ComboBox",
-                             label=_('Blur type:'),
+                             label=self.utext_blur_type,
                              key="unityshell.dash_blur_experimental",
                              texts=(_('No blur'),
                                     _('Static blur'),
@@ -132,13 +148,13 @@ class Unity(TweakModule):
                              backend="compiz",
                              enable_reset=True),
                         WidgetFactory.create("Scale",
-                             label=_('Panel opacity:'),
+                             label=self.utext_panel_opacity,
                              key="unityshell.panel_opacity",
                              min=0, max=1, step=0.1, digits=2,
                              backend="compiz",
                              enable_reset=True),
                         WidgetFactory.create("Switch",
-                             label=_('Panel opacity for maximized windows:'),
+                             label=self.utext_panel_toggle_max,
                              key="unityshell.panel_opacity_maximized_toggle",
                              backend="compiz",
                              reverse=True,
@@ -148,31 +164,31 @@ class Unity(TweakModule):
             self.add_start(grid_pack, False, False, 0)
         else:
             super_key_button, super_key_reset = WidgetFactory.create("CheckButton",
-                                             label=_('Enable the Super key'),
+                                             label=self.utext_super_key,
                                              key="com.canonical.Unity2d.Launcher.super-key-enable",
                                              backend="gsettings",
                                              enable_reset=True)
             box = GridPack(
                         WidgetFactory.create("Switch",
-                            label=_('HUD:'),
+                            label=self.utext_hud,
                             key="unityshell.show_hud",
                             on='<Alt>',
                             off='Disabled',
                             backend="compiz",
                             enable_reset=True),
                         WidgetFactory.create("Switch",
-                                             label=_('Full screen dash'),
+                                             label=self.utext_fullscreen,
                                              key="com.canonical.Unity2d.Dash.full-screen",
                                              backend="gsettings",
                                              enable_reset=True),
                         (Gtk.Label(_("Launcher")), super_key_button, super_key_reset),
                         WidgetFactory.create("CheckButton",
-                                             label=_('Only one launcher when multi-monitor'),
+                                             label=self.utext_one_launcher,
                                              key="com.canonical.Unity2d.Launcher.use-strut",
                                              backend="gsettings",
                                              enable_reset=True),
                         WidgetFactory.create("ComboBox",
-                                             label=_('Launcher hide mode'),
+                                             label=self.utext_launcher_hide,
                                              key="com.canonical.Unity2d.Launcher.hide-mode",
                                              texts=(_('Never'), _('Auto Hide'),
                                                     _('Intellihide')),

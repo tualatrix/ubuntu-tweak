@@ -38,7 +38,11 @@ class Theme(TweakModule):
     __icon__ = 'preferences-desktop-theme'
     __category__ = 'appearance'
 
-    """Lock down some function"""
+    utext_icon_theme = _('Icon theme:')
+    utext_gtk_theme = _('Gtk theme:')
+    utext_cursor_theme = _('Cursor theme:')
+    utext_window_theme = _('Window theme:')
+
     def __init__(self):
         TweakModule.__init__(self)
 
@@ -51,7 +55,7 @@ class Theme(TweakModule):
         theme_choose_button.connect('file-set', self.on_file_set)
 
         icon_label, self.icon_theme, icon_reset_button = WidgetFactory.create('ComboBox',
-                            label=_('Icon theme:'),
+                            label=self.utext_icon_theme,
                             key='org.gnome.desktop.interface.icon-theme',
                             backend='gsettings',
                             texts=valid_icon_themes,
@@ -60,7 +64,7 @@ class Theme(TweakModule):
 
         theme_box = GridPack(
                         WidgetFactory.create('ComboBox',
-                            label=_('Gtk theme:'),
+                            label=self.utext_gtk_theme,
                             key='org.gnome.desktop.interface.gtk-theme',
                             backend='gsettings',
                             texts=valid_themes,
@@ -68,14 +72,14 @@ class Theme(TweakModule):
                             enable_reset=True),
                         (icon_label, self.icon_theme, icon_reset_button),
                         WidgetFactory.create('ComboBox',
-                            label=_('Cursor theme:'),
+                            label=self.utext_cursor_theme,
                             key='org.gnome.desktop.interface.cursor-theme',
                             backend='gsettings',
                             texts=valid_cursor_themes,
                             values=valid_cursor_themes,
                             enable_reset=True),
                         WidgetFactory.create('ComboBox',
-                            label=_('Window theme:'),
+                            label=self.utext_window_theme,
                             key='/apps/metacity/general/theme',
                             backend='gconf',
                             texts=valid_window_themes,

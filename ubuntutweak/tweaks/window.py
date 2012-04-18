@@ -44,6 +44,12 @@ class Window(TweakModule):
     else:
         config = GconfSetting(key='/apps/metacity/general/button_layout')
 
+    utext_window_button = _('Window control button position')
+    utext_titlebar_wheel = _('Titlebar mouse wheel action:')
+    utext_titlebar_double = _('Titlebar double-click action:')
+    utext_titlebar_middle = _('Titlebar middle-click action:')
+    utext_titlebar_right = _('Titlebar right-click action:')
+
     def __init__(self):
         TweakModule.__init__(self, 'window.ui')
 
@@ -57,19 +63,19 @@ class Window(TweakModule):
         only_close_label = Gtk.Label(_('"Close" button only'))
 
         box = GridPack(
-                    (Gtk.Label(_('Window control button position')),
+                    (Gtk.Label(self.utext_window_button),
                      self.place_hbox),
                     (only_close_label, only_close_switch),
                     Gtk.Separator(),
                     WidgetFactory.create('ComboBox',
-                        label=_('Titlebar mouse wheel action:'),
+                        label=self.utext_titlebar_wheel,
                         key='/apps/gwd/mouse_wheel_action',
                         enable_reset=True,
                         backend='gconf',
                         texts=[_('None'), _('Roll up')],
                         values=['none', 'shade']),
                     WidgetFactory.create('ComboBox',
-                        label=_('Titlebar double-click action:'),
+                        label=self.utext_titlebar_double,
                         key='/apps/metacity/general/action_double_click_titlebar',
                         enable_reset=True,
                         backend='gconf',
@@ -80,7 +86,7 @@ class Window(TweakModule):
                                 'minimize', 'toggle_shade', \
                                 'lower', 'menu']),
                     WidgetFactory.create('ComboBox',
-                        label=_('Titlebar middle-click action:'),
+                        label=self.utext_titlebar_middle,
                         key='/apps/metacity/general/action_middle_click_titlebar',
                         enable_reset=True,
                         backend="gconf",
@@ -95,7 +101,7 @@ class Window(TweakModule):
                                        'minimize', 'toggle_shade', \
                                        'lower', 'menu']),
                     WidgetFactory.create('ComboBox',
-                        label=_('Titlebar right-click action:'),
+                        label=self.utext_titlebar_right,
                         key='/apps/metacity/general/action_right_click_titlebar',
                         enable_reset=True,
                         backend="gconf",

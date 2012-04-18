@@ -29,11 +29,20 @@ class Nautilus(TweakModule):
     __icon__ = ['file-manager', 'nautilus']
     __category__ = 'system'
 
+    utext_advanced_properties = _('Show advanced permissions in "File Properties"')
+    utext_pathbar = _('Use the location entry instead of the pathbar')
+    utext_automount = _('Automatically mount media')
+    utext_open = _('Automatically open a folder')
+    utext_prompt = _('Prompt or autorun/autostart programs')
+    utext_thumbnail_icon_size = _('Thumbnail icon size (pixels)')
+    utext_thumbnail_cache_age = _('Thumbnail cache time (days)')
+    utext_thumbnail_cache_size = _('Maximum thumbnail cache size (MB)')
+
     def __init__(self):
         TweakModule.__init__(self)
 
         show_permission_button, show_permission_reset = WidgetFactory.create("CheckButton",
-                                       label=_('Show advanced permissions in "File Properties"'),
+                                       label=self.utext_advanced_properties,
                                        enable_reset=True,
                                        key="org.gnome.nautilus.preferences.show-advanced-permissions",
                                        backend="gsettings")
@@ -41,7 +50,7 @@ class Nautilus(TweakModule):
         box = GridPack(
                     (Gtk.Label(_("File browser:")), show_permission_button, show_permission_reset),
                     WidgetFactory.create("CheckButton",
-                        label=_('Use the location entry instead of the pathbar'),
+                        label=self.utext_pathbar,
                         enable_reset=True,
                         blank_label=True,
                         key="org.gnome.nautilus.preferences.always-use-location-entry",
@@ -50,18 +59,18 @@ class Nautilus(TweakModule):
                     WidgetFactory.create('Switch',
                                          key='org.gnome.desktop.media-handling.automount',
                                          enable_reset=True,
-                                         label=_('Automatically mount media'),
+                                         label=self.utext_automount,
                                          backend="gsettings"),
                     WidgetFactory.create('Switch',
                                          key='org.gnome.desktop.media-handling.automount-open',
                                          enable_reset=True,
-                                         label=_('Automatically open a folder'),
+                                         label=self.utext_open,
                                          backend="gsettings"),
                     WidgetFactory.create('Switch',
                         key='org.gnome.desktop.media-handling.autorun-never',
                         enable_reset=True,
                         reverse=True,
-                        label=_('Prompt or autorun/autostart programs'),
+                        label=self.utext_prompt,
                         backend="gsettings"),
                     Gtk.Separator(),
                     WidgetFactory.create('Scale',
@@ -69,21 +78,21 @@ class Nautilus(TweakModule):
                         enable_reset=True,
                         min=16, max=512,
                         step=16,
-                        label=_('Thumbnail icon size (pixels)'),
+                        label=self.utext_thumbnail_icon_size,
                         backend="gsettings"),
                     WidgetFactory.create('Scale',
                         key='org.gnome.desktop.thumbnail-cache.maximum-age',
                         enable_reset=True,
                         min=-1, max=180,
                         step=1,
-                        label=_('Thumbnail cache time (days)'),
+                        label=self.utext_thumbnail_cache_age,
                         backend="gsettings"),
                     WidgetFactory.create('Scale',
                         key='org.gnome.desktop.thumbnail-cache.maximum-size',
                         enable_reset=True,
                         min=-1, max=512,
                         step=1,
-                        label=_('Maximum thumbnail cache size (MB)'),
+                        label=self.utext_thumbnail_cache_size,
                         backend="gsettings"),
         )
         self.add_start(box, False, False, 0)

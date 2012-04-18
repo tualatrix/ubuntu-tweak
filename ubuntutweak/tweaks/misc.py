@@ -33,63 +33,75 @@ class Misc(TweakModule):
     __icon__ = 'gconf-editor'
     __category__ = 'appearance'
 
+    utext_natural = _('Natural Scrolling')
+    utext_menu_icon = _('Menus have icons')
+    utext_button_icon = _('Buttons have icons')
+    utext_context_menu = _("Show Input Method menu in the context menu")
+    utext_unicode = _("Show Unicode Control Character menu in the context menu")
+    utext_disable_print = _("Disable printing")
+    utext_disable_print_setting = _("Disable printer settings")
+    utext_save = _("Disable save to disk")
+    utext_user_switch = _('Disable "Fast User Switching"')
+    utext_cursor_blink = _('Cursor blink')
+    utext_cursor_blink_time = _('Cursor blink time')
+
     def __init__(self):
         TweakModule.__init__(self)
 
-        self.natural_scrolling_button = Gtk.CheckButton(_('Natural Scrolling'))
+        self.natural_scrolling_button = Gtk.CheckButton(self.utext_natural)
         self.set_the_natural_status()
         self.natural_scrolling_button.connect('toggled', self.on_natural_scrolling_toggled)
 
         self.theme_box = GridPack(
                             WidgetFactory.create('CheckButton',
-                                                 label=_('Menus have icons'),
+                                                 label=self.utext_menu_icon,
                                                  key='org.gnome.desktop.interface.menus-have-icons',
                                                  backend='gsettings',
                                                  ),
                             WidgetFactory.create('CheckButton',
-                                label=_('Buttons have icons'),
+                                label=self.utext_button_icon,
                                 key='org.gnome.desktop.interface.buttons-have-icons',
                                 backend='gsettings'),
                             WidgetFactory.create('CheckButton',
-                                                 label=_("Show Input Method menu in the context menu"),
+                                                 label=self.utext_context_menu,
                                                  key='org.gnome.desktop.interface.show-input-method-menu',
                                                  backend='gsettings',
                                                  ),
                             WidgetFactory.create('CheckButton',
-                                                 label=_("Show Unicode Control Character menu in the context menu"),
+                                                 label=self.utext_unicode,
                                                  key='org.gnome.desktop.interface.show-unicode-menu',
                                                  backend='gsettings',
                                                  ),
                             Gtk.Separator(),
                             WidgetFactory.create("CheckButton",
-                                                 label=_("Disable printing"),
+                                                 label=self.utext_disable_print,
                                                  key="org.gnome.desktop.lockdown.disable-printing",
                                                  backend="gsettings",
                                                  blank_label=True),
                             WidgetFactory.create("CheckButton",
-                                                 label=_("Disable printer settings"),
+                                                 label=self.utext_disable_print_setting,
                                                  key="org.gnome.desktop.lockdown.disable-print-setup",
                                                  backend="gsettings",
                                                  blank_label=True),
                             WidgetFactory.create("CheckButton",
-                                                 label=_("Disable save to disk"),
+                                                 label=self.utext_save,
                                                  key="org.gnome.desktop.lockdown.disable-save-to-disk",
                                                  backend="gsettings",
                                                  blank_label=True),
                             WidgetFactory.create("CheckButton",
-                                                 label=_('Disable "Fast User Switching"'),
+                                                 label=self.utext_user_switch,
                                                  key="org.gnome.desktop.lockdown.disable-user-switching",
                                                  backend="gsettings",
                                                  blank_label=True),
                             Gtk.Separator(),
                             self.natural_scrolling_button,
                             WidgetFactory.create('CheckButton',
-                                                 label=_('Cursor blink'),
+                                                 label=self.utext_cursor_blink,
                                                  key='org.gnome.desktop.interface.cursor-blink',
                                                  backend='gsettings',
                                                  ),
                             WidgetFactory.create('Scale',
-                                                 label=_('Cursor blink time'),
+                                                 label=self.utext_cursor_blink_time,
                                                  key='org.gnome.desktop.interface.cursor-blink-time',
                                                  backend='gsettings',
                                                  min=100,

@@ -141,6 +141,10 @@ class Workspace(TweakModule):
     __category__ = 'desktop'
     __desktop__ = ['ubuntu']
 
+    utext_edge_delay = _('Edge trigger delay (ms):')
+    utext_hsize = _('Horizontal workspace:')
+    utext_vsize = _('Vertical workspace:')
+
     def __init__(self):
         TweakModule.__init__(self)
 
@@ -151,7 +155,7 @@ class Workspace(TweakModule):
         grid_pack = GridPack(
                 Gtk.Separator(),
                 WidgetFactory.create("Scale",
-                             label=_('Edge trigger delay (ms):'),
+                             label=self.utext_edge_delay,
                              key="core.edge_delay",
                              backend="compiz",
                              min=0,
@@ -159,7 +163,7 @@ class Workspace(TweakModule):
                              step=50,
                              enable_reset=True),
                 WidgetFactory.create("Scale",
-                             label=_('Horizontal workspace:'),
+                             label=self.utext_hsize,
                              key="core.hsize",
                              backend="compiz",
                              min=1,
@@ -167,7 +171,7 @@ class Workspace(TweakModule):
                              step=1,
                              enable_reset=True),
                 WidgetFactory.create("Scale",
-                             label=_('Vertical workspace:'),
+                             label=self.utext_vsize,
                              key="core.vsize",
                              backend="compiz",
                              min=1,

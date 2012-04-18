@@ -32,16 +32,23 @@ class Session(TweakModule):
     __category__ = 'startup'
     __desktop__ = ['ubuntu', 'ubuntu-2d']
 
+    utext_user_indicator = _('User indicator')
+    utext_lock_screen = _('Disable "Lock Screen"')
+    utext_real_name = _("Show user's real name on the panel")
+    utext_logout = _("Remove the log out item")
+    utext_shutdown = _("Remove the shutdown item")
+    utext_suppress_logout = _("Suppress the dialog to confirm logout and shutdown action")
+
     def __init__(self):
         TweakModule.__init__(self)
 
         user_indicator_label, user_menu_switch, reset_button = WidgetFactory.create("Switch",
-                                  label=_('User indicator'),
+                                  label=self.utext_user_indicator,
                                   enable_reset=True,
                                   backend="gsettings",
                                   key='com.canonical.indicator.session.user-show-menu')
         lockscreen_button, lockscreen_reset_button = WidgetFactory.create("CheckButton",
-                     label=_('Disable "Lock Screen"'),
+                     label=self.utext_lock_screen,
                      key="org.gnome.desktop.lockdown.disable-lock-screen",
                      backend="gsettings",
                      enable_reset=True)
@@ -49,7 +56,7 @@ class Session(TweakModule):
         box = GridPack(
                 (user_indicator_label, user_menu_switch, reset_button),
                   WidgetFactory.create("CheckButton",
-                                  label=_("Show user's real name on the panel"),
+                                  label=self.utext_real_name,
                                   enable_reset=True,
                                   blank_label=True,
                                   backend="gsettings",
@@ -57,19 +64,19 @@ class Session(TweakModule):
                   Gtk.Separator(),
                   (Gtk.Label(_("Session indicator:")), lockscreen_button, lockscreen_reset_button),
                   WidgetFactory.create("CheckButton",
-                      label=_("Remove the log out item"),
+                      label=self.utext_logout,
                       enable_reset=True,
                       blank_label=True,
                       backend="gsettings",
                       key="com.canonical.indicator.session.suppress-logout-menuitem"),
                   WidgetFactory.create("CheckButton",
-                      label=_("Remove the shutdown item"),
+                      label=self.utext_shutdown,
                       enable_reset=True,
                       blank_label=True,
                       backend="gsettings",
                       key="com.canonical.indicator.session.suppress-shutdown-menuitem"),
                   WidgetFactory.create("CheckButton",
-                      label=_("Suppress the dialog to confirm logout and shutdown action"),
+                      label=self.utext_suppress_logout,
                       enable_reset=True,
                       blank_label=True,
                       backend="gsettings",
