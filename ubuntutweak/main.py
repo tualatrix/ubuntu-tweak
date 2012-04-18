@@ -443,7 +443,8 @@ class UbuntuTweakWindow(GuiBuilder):
                     page.un_lock.connect('authenticated', page.on_polkit_action)
                     page.un_lock.show()
                     self._last_unlock = page.un_lock
-                    self.right_top_box.pack_end(page.un_lock, False, False, 6)
+                    self.right_top_box.pack_start(page.un_lock, False, False, 6)
+                    self.right_top_box.reorder_child(page.un_lock, 0)
 
             if not module.__name__.startswith('Broken'):
                 self.log_used_module(module.__name__)
