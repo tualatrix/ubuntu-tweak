@@ -19,7 +19,7 @@
 import os
 import logging
 
-from gi.repository import GObject, Gtk, Unique, Pango
+from gi.repository import GObject, Gtk, Pango
 
 from ubuntutweak import modules
 from ubuntutweak import admins
@@ -242,35 +242,6 @@ class FeaturePage(Gtk.ScrolledWindow):
                 last_box = box
 
 
-class UbuntuTweakApp(Unique.App):
-    _window = None
-
-    def __init__(self, name='com.ubuntu-tweak.Tweak', startup_id=''):
-        Unique.App.__init__(self, name=name, startup_id=startup_id)
-        log.debug("Distribution: %s\nApplication: %s\nDesktop:%s" % (system.DISTRO,
-                                           system.APP,
-                                           system.DESKTOP))
-        self.connect('message-received', self.on_message_received)
-
-    def set_window(self, window):
-        self._window = window
-        self.watch_window(self._window.mainwindow)
-
-    def on_message_received(self, app, command, message, time):
-        log.debug("on_message_received: command: %s, message: %s, time: %s" % (
-            command, message, time))
-        if command == Unique.Command.ACTIVATE:
-            self._window.present()
-            if message.get_text():
-                self._window.select_target_feature(message.get_text())
-        elif command == Unique.Command.OPEN:
-            self._window.do_load_module(message.get_text())
-
-        return False
-
-    def run(self):
-        Gtk.main()
-
 
 class UbuntuTweakWindow(GuiBuilder):
     current_feature = 'overview'
@@ -281,7 +252,7 @@ class UbuntuTweakWindow(GuiBuilder):
     # reversed dict: 2: 'CompizClass'
     modules_index = {}
 
-    def __init__(self, feature='', module=''):
+    def __init__(self, feature='', module='', splash_window=None):
         GuiBuilder.__init__(self, file_name='mainwindow.ui')
 
         tweaks_page = FeaturePage('tweaks')
@@ -302,7 +273,7 @@ class UbuntuTweakWindow(GuiBuilder):
                                                            Gtk.Label())
 
         # Always show welcome page at first
-        self.mainwindow.connect('realize', self._initialize_ui_states)
+        self.mainwindow.connect('realize', self._initialize_ui_states, splash_window)
         tweaks_page.connect('module_selected', self.on_module_selected)
         admins_page.connect('module_selected', self.on_module_selected)
         clip_page.connect('load_module', lambda widget, name: self.do_load_module(name))
@@ -326,11 +297,12 @@ class UbuntuTweakWindow(GuiBuilder):
             self.current_feature = text
             toggle_button.set_active(True)
 
-    def _initialize_ui_states(self, widget):
+    def _initialize_ui_states(self, widget, splash_window):
         self.window_size_setting = GSetting('com.ubuntu-tweak.tweak.window-size')
         width, height = self.window_size_setting.get_value()
         if width >= 800 and height >= 480:
             self.mainwindow.set_default_size(width, height)
+        splash_window.destroy()
 
     def _crete_wait_page(self):
         vbox = Gtk.VBox()

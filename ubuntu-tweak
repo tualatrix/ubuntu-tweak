@@ -20,21 +20,72 @@
 
 import os
 import optparse
+import logging
 
 import dbus
 import dbus.service
 import dbus.mainloop.glib
 
-from gi.repository import Unique, GObject, Gdk
-
+from gi.repository import Unique, GObject, Gdk, Gtk
 
 Gdk.threads_init()
 GObject.threads_init()
 dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
 dbus.mainloop.glib.threads_init()
 
-from ubuntutweak.common.consts import VERSION, IS_INSTALLED, IS_TESTING
+from ubuntutweak import system
+from ubuntutweak.common.consts import VERSION, IS_INSTALLED, IS_TESTING, DATA_DIR
 from ubuntutweak.common.debug import enable_debugging
+
+
+def show_splash():
+    win = Gtk.Window(type=Gtk.WindowType.POPUP)
+    win.set_position(Gtk.WindowPosition.CENTER)
+
+    vbox = Gtk.VBox()
+    image = Gtk.Image()
+    image.set_from_file(os.path.join(DATA_DIR, 'pixmaps/splash.png'))
+
+    vbox.pack_start(image, True, True, 0)
+    win.add(vbox)
+
+    win.show_all()
+
+    while Gtk.events_pending():
+        Gtk.main_iteration()
+
+    return win
+
+
+class UbuntuTweakApp(Unique.App):
+    _window = None
+    log = logging.getLogger('Launcher')
+
+    def __init__(self, name='com.ubuntu-tweak.Tweak', startup_id=''):
+        Unique.App.__init__(self, name=name, startup_id=startup_id)
+        self.log.debug("Distribution: %s\nApplication: %s\nDesktop:%s" % (system.DISTRO,
+                                           system.APP,
+                                           system.DESKTOP))
+        self.connect('message-received', self.on_message_received)
+
+    def set_window(self, window):
+        self._window = window
+        self.watch_window(self._window.mainwindow)
+
+    def on_message_received(self, app, command, message, time):
+        self.log.debug("on_message_received: command: %s, message: %s, time: %s" % (
+            command, message, time))
+        if command == Unique.Command.ACTIVATE:
+            self._window.present()
+            if message.get_text():
+                self._window.select_target_feature(message.get_text())
+        elif command == Unique.Command.OPEN:
+            self._window.do_load_module(message.get_text())
+
+        return False
+
+    def run(self):
+        Gtk.main()
 
 
 if __name__ == "__main__":
@@ -52,8 +103,6 @@ if __name__ == "__main__":
     if options.debug or not IS_INSTALLED or IS_TESTING:
         enable_debugging()
 
-    from ubuntutweak.main import UbuntuTweakApp, UbuntuTweakWindow
-
     app = UbuntuTweakApp()
 
     if app.is_running():
@@ -68,6 +117,10 @@ if __name__ == "__main__":
             message.set_text(options.module, -1)
             app.send_message(Unique.Command.OPEN, message)
     else:
-        window = UbuntuTweakWindow(feature=options.feature, module=options.module)
+        splash_window = show_splash()
+
+        from ubuntutweak.main import UbuntuTweakWindow
+
+        window = UbuntuTweakWindow(feature=options.feature, module=options.module, splash_window=splash_window)
         app.set_window(window)
         app.run()
