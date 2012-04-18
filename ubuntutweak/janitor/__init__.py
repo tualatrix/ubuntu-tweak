@@ -314,8 +314,6 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         self.janitor_view.get_selection().connect('changed', self.on_janitor_selection_changed)
         self.plugins_setting.connect_notify(self.update_model, True)
 
-        self.cool_image.set_from_file(os.path.join(DATA_DIR, 'pixmaps/emblem-cool.png'))
-
         self.show()
 
     def on_move_handle(self, widget, gproperty):
