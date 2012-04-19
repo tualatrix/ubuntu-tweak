@@ -284,11 +284,16 @@ class QuickLists(TweakModule):
             self.remove_action_button.set_sensitive(True)
             self.name_entry.set_text(entry.get_name_by_action(action))
             self.cmd_entry.set_text(entry.get_exec_by_action(action))
+            self.name_entry.set_sensitive(True)
+            self.cmd_entry.set_sensitive(True)
         else:
             self.remove_action_button.set_sensitive(False)
             self.name_entry.set_text('')
             self.cmd_entry.set_text('')
+            self.name_entry.set_sensitive(False)
+            self.cmd_entry.set_sensitive(False)
 
+    @log_func(log)
     def on_icon_view_selection_changed(self, widget, path=None):
         model, iter = widget.get_selected()
         if iter:
@@ -321,6 +326,7 @@ class QuickLists(TweakModule):
         icon_path = self.icon_model.get_path(icon_iter)
 
         if entry:
+            first = not entry.is_user_desktop_file()
             # I think 99 is enough, right?
             action_names = entry.get_actions()
             for i in range(99):
@@ -337,7 +343,7 @@ class QuickLists(TweakModule):
             if icon_iter:
                 self.icon_view.get_selection().select_iter(icon_iter)
 
-            self.select_last_action()
+            self.select_last_action(first=first)
             self.name_entry.grab_focus()
 
     @log_func(log)
@@ -350,10 +356,10 @@ class QuickLists(TweakModule):
             entry.remove_action(action_name)
             log.debug('Remove: %s succcessfully' % action_name)
             model.remove(iter)
-            self.select_last_action(remove=True)
+            self.select_last_action(first=True)
 
-    def select_last_action(self, remove=False):
-        if remove:
+    def select_last_action(self, first=False):
+        if first:
             last_path = len(self.action_model) - 1
         else:
             last_path = len(self.action_model)
