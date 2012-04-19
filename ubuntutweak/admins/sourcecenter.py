@@ -927,6 +927,7 @@ class SourceCenter(TweakModule):
     __url__ = 'http://ubuntu-tweak.com/source/'
     __urltitle__ = _('Visit online Source Center')
     __category__ = 'application'
+    __keywords__ = 'ppa repository app'
     __utactive__ = True
 
     def __init__(self):
