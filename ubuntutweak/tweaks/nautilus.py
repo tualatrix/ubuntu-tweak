@@ -31,12 +31,12 @@ class Nautilus(TweakModule):
 
     utext_advanced_properties = _('Show advanced permissions in "File Properties"')
     utext_pathbar = _('Use the location entry instead of the pathbar')
-    utext_automount = _('Automatically mount media')
-    utext_open = _('Automatically open a folder')
-    utext_prompt = _('Prompt or autorun/autostart programs')
-    utext_thumbnail_icon_size = _('Thumbnail icon size (pixels)')
-    utext_thumbnail_cache_age = _('Thumbnail cache time (days)')
-    utext_thumbnail_cache_size = _('Maximum thumbnail cache size (MB)')
+    utext_automount = _('Automatically mount media:')
+    utext_open = _('Automatically open a folder:')
+    utext_prompt = _('Prompt or autorun/autostart programs:')
+    utext_thumbnail_icon_size = _('Thumbnail icon size (pixels):')
+    utext_thumbnail_cache_age = _('Thumbnail cache time (days):')
+    utext_thumbnail_cache_size = _('Maximum thumbnail cache size (MB):')
 
     def __init__(self):
         TweakModule.__init__(self)
