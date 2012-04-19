@@ -1232,8 +1232,6 @@ class SourceCenter(TweakModule):
                                      'url_list': url_list})
             worker.downgrade_packages(select_pkgs)
 
-        # TODO refresh source?
-
     @log_func(log)
     def on_package_work_finished(self, transaction, status, kwargs):
         parent = kwargs['parent']
@@ -1245,3 +1243,9 @@ class SourceCenter(TweakModule):
             result = proxy.purge_source(url, '')
             log.debug("Set source: %s to %s" % (url, str(result)))
         self.update_sourceview()
+
+        notify = Notify.Notification(summary=_('PPA has been purged'),
+                                     body=_('It is highly recommend to do a "Refresh" source operation.'))
+        notify.set_icon_from_pixbuf(self.get_pixbuf(size=48))
+        notify.set_hint_string ("x-canonical-append", "")
+        notify.show()
