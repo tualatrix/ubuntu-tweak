@@ -48,6 +48,6 @@ class AutoRemovalPlugin(JanitorPlugin):
 
     def get_summary(self, count):
         if count:
-            return _('[%d] Unneeded Packages') % count
+            return '[%d] %s' % (count, self.__title__)
         else:
             return _('Unneeded Packages (No package to be removed)')

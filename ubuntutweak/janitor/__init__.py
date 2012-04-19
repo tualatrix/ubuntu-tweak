@@ -269,9 +269,9 @@ class JanitorCachePlugin(JanitorPlugin):
 
     def get_summary(self, count):
         if count:
-            return _('[%d] %s') % (count, self.__title__)
+            return '[%d] %s' % (count, self.__title__)
         else:
-            return _('%s (No cache to be cleaned)') % self.__title__
+            return '%s (%s)' % (self.__title__, _('No cache to be cleaned'))
 
 
 class JanitorPage(Gtk.VBox, GuiBuilder):

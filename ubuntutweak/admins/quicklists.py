@@ -383,7 +383,7 @@ class QuickLists(TweakModule):
         if iter:
             name = model[iter][self.DESKTOP_NAME]
 
-            dialog = QuestionDialog(title=_("Would you like to reset %s?") % name,
+            dialog = QuestionDialog(title=_('Would you like to reset "%s"?') % name,
                                     message=_('If you continue, the actions of %s will be set to default.') % name)
             response = dialog.run()
             dialog.destroy()

@@ -103,7 +103,7 @@ class Theme(TweakModule):
                 valid_icon_themes = self._get_valid_icon_themes()
                 self.icon_theme.update_texts_values_pair(valid_icon_themes, valid_icon_themes)
                 dialog = QuestionDialog(title=_('"%s" installed successfully' % tf.theme_name),
-                               message=_('Would you like to set your icon theme to %s immediatelly?') % tf.theme_name)
+                               message=_('Would you like to set your icon theme to "%s" immediatelly?') % tf.theme_name)
                 response = dialog.launch()
                 if response == Gtk.ResponseType.YES:
                     self.icon_theme.get_setting().set_value(tf.install_name)
