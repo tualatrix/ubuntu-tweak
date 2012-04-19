@@ -54,13 +54,13 @@ class LoginSettings(TweakModule):
             self.bg_label.destroy()
 
     def _setup_logo_image(self):
-        self._greeter_logo = SystemConfigSetting('/etc/lightdm/unity-greeter.conf::greeter.logo')
+        self._greeter_logo = SystemConfigSetting('/etc/lightdm/unity-greeter.conf::greeter#logo')
         logo_path = self._greeter_logo.get_value()
 
         self.logo_image.set_from_file(logo_path)
 
     def _setup_background_image(self):
-        self._greeter_background = SystemConfigSetting('/etc/lightdm/unity-greeter.conf::greeter.background')
+        self._greeter_background = SystemConfigSetting('/etc/lightdm/unity-greeter.conf::greeter#background')
         background_path = self._greeter_background.get_value()
 
         log.debug("Setup the background file: %s" % background_path)

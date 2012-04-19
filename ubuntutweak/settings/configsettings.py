@@ -36,7 +36,7 @@ class RawConfigSetting(object):
 
 
 class ConfigSetting(RawConfigSetting):
-    '''Key: /etc/lightdm/lightdm.conf::UserManager.load-users
+    '''Key: /etc/lightdm/lightdm.conf::UserManager#load-users
     '''
 
     def __init__(self, key=None, default=None, type=None):
@@ -46,9 +46,9 @@ class ConfigSetting(RawConfigSetting):
         self._type = type
 
         self._default = default
-        self._key = key
-        self._section = key.split('::')[1].split('.')[0]
-        self._option = key.split('::')[1].split('.')[1]
+        self.key = key
+        self._section = key.split('::')[1].split('#')[0]
+        self._option = key.split('::')[1].split('#')[1]
 
     def get_value(self):
         try:
@@ -82,6 +82,9 @@ class ConfigSetting(RawConfigSetting):
                 return ''
 
     def set_value(self, value):
+        if not self._configparser.has_section(self._section):
+            self._configparser.add_section(self._section)
+
         self._configparser.set(self._section, self._option, value)
         with open(self._path, 'wb') as configfile:
             self._configparser.write(configfile)
@@ -89,7 +92,7 @@ class ConfigSetting(RawConfigSetting):
         self.init_configparser()
 
     def get_key(self):
-        return self._key
+        return self.key
 
 
 class SystemConfigSetting(ConfigSetting):
@@ -97,6 +100,12 @@ class SystemConfigSetting(ConfigSetting):
         # Because backend/daemon will use ConfigSetting , proxy represents the
         # daemon, so lazy import the proxy here to avoid backend to call proxy
         from ubuntutweak.policykit.dbusproxy import proxy
+
+        if type(value) == bool:
+            if value == True:
+                value = 'true'
+            elif value == False:
+                value = 'false'
 
         proxy.set_config_setting(self.get_key(), value)
 

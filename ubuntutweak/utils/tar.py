@@ -68,7 +68,7 @@ class ThemeFile(TarFile):
         if self._index_file:
             log.debug("the index file is; %s" % self._index_file)
             self._tarfile.extract(self._index_file, '/tmp')
-            cs = ConfigSetting('/tmp/%s::Icon Theme.name' % self._index_file)
+            cs = ConfigSetting('/tmp/%s::Icon Theme#name' % self._index_file)
             self.theme_name = cs.get_value()
 
             if '/' in self._index_file and not './' in self._index_file:
