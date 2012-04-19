@@ -669,6 +669,9 @@ class Daemon(PolicyKitService):
         cs = ConfigSetting(key)
         cs.set_value(value)
 
+        if cs.is_override_schema():
+            os.system('glib-compile-schemas /usr/share/glib-2.0/schemas/')
+
         return value == cs.get_value()
 
     @dbus.service.method(INTERFACE,

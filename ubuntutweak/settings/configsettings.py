@@ -34,6 +34,9 @@ class RawConfigSetting(object):
         else:
             return value
 
+    def is_override_schema(self):
+        return self._path.startswith('/usr/share/glib-2.0/schemas/') and self._path.endswith('override')
+
 
 class ConfigSetting(RawConfigSetting):
     '''Key: /etc/lightdm/lightdm.conf::UserManager#load-users
@@ -58,7 +61,7 @@ class ConfigSetting(RawConfigSetting):
                 elif self._type == float:
                     getfunc = getattr(self._configparser, 'getfloat')
                 elif self._type == bool:
-                    getfunc = getattr(self._configparser, 'getfboolean')
+                    getfunc = getattr(self._configparser, 'getboolean')
                 else:
                     getfunc = getattr(self._configparser, 'get')
 

@@ -23,6 +23,7 @@ from ubuntutweak.utils import walk_directories
 from ubuntutweak.gui.containers import ListPack, GridPack
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.factory import WidgetFactory
+from ubuntutweak.settings.configsettings import SystemConfigSetting
 
 class Sound(TweakModule):
     __title__ = _('Sound')
@@ -33,6 +34,7 @@ class Sound(TweakModule):
     utext_event_sounds = _('Event sounds:')
     utext_input_feedback = _('Input feedback sounds:')
     utext_sound_theme = _('Sound theme:')
+    utext_login_sound = _('Play login sound:')
 
     def __init__(self):
         TweakModule.__init__(self)
@@ -44,6 +46,10 @@ class Sound(TweakModule):
                             label=self.utext_event_sounds,
                             key='org.gnome.desktop.sound.event-sounds',
                             backend='gsettings'),
+                        WidgetFactory.create('Switch',
+                            label=self.utext_login_sound,
+                            key='/usr/share/glib-2.0/schemas/50_unity-greeter.gschema.override::com.canonical.unity-greeter#play-ready-sound',
+                            backend='systemconfig'),
                         WidgetFactory.create('Switch',
                             label=self.utext_input_feedback,
                             key='org.gnome.desktop.sound.input-feedback-sounds',

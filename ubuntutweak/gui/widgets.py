@@ -8,6 +8,7 @@ from ubuntutweak.settings.gsettings import GSetting
 from ubuntutweak.settings.configsettings import ConfigSetting
 from ubuntutweak.settings.gconfsettings import GconfSetting, UserGconfSetting
 from ubuntutweak.settings.compizsettings import CompizSetting
+from ubuntutweak.settings.configsettings import SystemConfigSetting
 
 log = logging.getLogger('widgets')
 
@@ -26,6 +27,8 @@ class SettingWidget:
             self._setting = ConfigSetting(key=key, type=type)
         elif backend == 'compiz':
             self._setting = CompizSetting(key=key)
+        elif backend == 'systemconfig':
+            self._setting = SystemConfigSetting(key=key, type=type)
 
         if hasattr(self._setting, 'connect_notify') and \
                 hasattr(self, 'on_value_changed'):
@@ -108,10 +111,14 @@ class Switch(Gtk.Switch, SettingWidget):
 
     @log_func(log)
     def on_switch_activate(self, widget, value):
-        if self.get_active():
-            self.get_setting().set_value(self._on)
-        else:
-            self.get_setting().set_value(self._off)
+        try:
+            if self.get_active():
+                self.get_setting().set_value(self._on)
+            else:
+                self.get_setting().set_value(self._off)
+        except Exception, e:
+            log.error(e)
+            self.on_value_changed(self, None)
 
     def reset(self):
         self.set_active(self._off != self.get_setting().get_schema_value())
