@@ -18,20 +18,22 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import os
+import logging
+
 from gi.repository import Gtk
 
 from ubuntutweak.modules  import TweakModule
-from ubuntutweak.policykit import PK_ACTION_TWEAK
 from ubuntutweak.policykit.dbusproxy import proxy
 from ubuntutweak.gui.containers import GridPack
 from ubuntutweak.factory import WidgetFactory
+
+log = logging.getLogger('Workarounds')
 
 class Workarounds(TweakModule):
     __title__ = _('Workarounds')
     __desc__ = _('The workarounds to fix some problems')
     __icon__ = 'application-octet-stream'
     __category__ = 'system'
-    __policykit__ = PK_ACTION_TWEAK
 
     utext_fix_theme = _('Fix the appearance of themes when granted root privileges')
     utext_chinese_gedit = _("Auto detect text encoding for Chinese in Gedit")
@@ -44,11 +46,9 @@ class Workarounds(TweakModule):
 
         self.fix_theme_button = Gtk.Switch()
         self.fix_theme_label = Gtk.Label(self.utext_fix_theme)
-        if proxy.is_exists(self.ROOT_THEMES) and proxy.is_exists(self.ROOT_ICONS):
-            self.fix_theme_button.set_active(True)
+        self.set_fix_theme_button_status()
 
-        self.fix_theme_button.connect('notify::active', self.on_fix_theme_btn_taggled)
-        self.fix_theme_button.set_sensitive(False)
+        self.fix_theme_button.connect('notify::active', self.on_fix_theme_button_toggled)
 
         encoding_label, encoding_switch, reset_encoding = WidgetFactory.create("Switch",
                                                 label=self.utext_chinese_gedit,
@@ -63,15 +63,19 @@ class Workarounds(TweakModule):
             )
         self.add_start(box)
 
-    def on_fix_theme_btn_taggled(self, widget, *args):
-        if widget.get_active():
-            proxy.link_file(os.path.expanduser('~/.themes'), self.ROOT_THEMES)
-            proxy.link_file(os.path.expanduser('~/.icons'), self.ROOT_ICONS)
-        else:
-            proxy.unlink_file(self.ROOT_THEMES)
-            proxy.unlink_file(self.ROOT_ICONS)
-            if proxy.is_exists(self.ROOT_THEMES) and proxy.is_exists(self.ROOT_ICONS):
-                widget.set_active(True)
+    def on_fix_theme_button_toggled(self, widget, *args):
+        try:
+            if widget.get_active():
+                proxy.link_file(os.path.expanduser('~/.themes'), self.ROOT_THEMES)
+                proxy.link_file(os.path.expanduser('~/.icons'), self.ROOT_ICONS)
+            else:
+                proxy.unlink_file(self.ROOT_THEMES)
+                proxy.unlink_file(self.ROOT_ICONS)
+                if proxy.is_exists(self.ROOT_THEMES) and proxy.is_exists(self.ROOT_ICONS):
+                    widget.set_active(True)
+        except Exception, e:
+            log.error(e)
+            self.set_fix_theme_button_status()
 
-    def on_polkit_action(self, widget):
-        self.fix_theme_button.set_sensitive(True)
+    def set_fix_theme_button_status(self):
+        self.fix_theme_button.set_active(proxy.is_exists(self.ROOT_THEMES) and proxy.is_exists(self.ROOT_ICONS))
