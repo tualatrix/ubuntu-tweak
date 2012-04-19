@@ -422,6 +422,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
             for row in self.result_model:
                 if row[self.RESULT_PLUGIN] == plugin:
                     self.result_view.get_selection().select_path(row.path)
+                    log.debug("scroll_to_cell: %s" % row.path)
                     self.result_view.scroll_to_cell(row.path)
 
     def _is_scanning_or_cleaning(self):
@@ -570,6 +571,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
 
             self.janitor_model[plugin_iter][self.JANITOR_SPINNER_ACTIVE] = True
             self.janitor_model[plugin_iter][self.JANITOR_SPINNER_PULSE] = 0
+            self.janitor_view.scroll_to_cell(self.janitor_model.get_path(plugin_iter))
 
             self._find_handler = plugin.connect('find_object', self.on_find_object, (plugin_iter, iter))
             self._scan_handler = plugin.connect('scan_finished', self.on_scan_finished, (plugin_iter, iter))
@@ -734,6 +736,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
                                                         (plugin_iter, cruft_dict))
             self._all_clean_handler = plugin.connect('all_cleaned', self.on_plugin_cleaned, plugin_iter)
             self._error_handler = plugin.connect('clean_error', self.on_clean_error, plugin_iter)
+            self.janitor_view.scroll_to_cell(self.janitor_model.get_path(plugin_iter))
 
             t = threading.Thread(target=plugin.clean_cruft,
                                  kwargs={'cruft_list': cruft_dict.keys(),
