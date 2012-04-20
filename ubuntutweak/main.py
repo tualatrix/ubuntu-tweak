@@ -281,7 +281,7 @@ class SearchPage(FeaturePage):
 
             self.rebuild_boxes()
         else:
-            self.no_result_box.label.set_markup(_('Your filter "<b>%s</b>" does not match any items.' % text))
+            self.no_result_box.label.set_markup(_('Your filter "<b>%s</b>" does not match any items.') % text)
             self._box.pack_start(self.no_result_box, False, False, 0)
 
     def clean(self):
