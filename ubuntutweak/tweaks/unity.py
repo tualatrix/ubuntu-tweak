@@ -35,13 +35,13 @@ log = logging.getLogger('Unity')
 
 
 class Unity(TweakModule):
-    __title__ = _('Unity')
+    __title__ = 'Unity'
     __desc__ = _('Tweak the powerful Unity desktop')
     __icon__ = 'plugin-unityshell'
     __category__ = 'desktop'
     __desktop__ = ['ubuntu', 'ubuntu-2d']
 
-    utext_hud = _('HUD:')
+    utext_hud = 'HUD:'
     utext_overlay = _('Shortcut hits overlay:')
     utext_launcher_size = _('Launcher icon size:')
     utext_launcher_opacity = _('Launcher opacity:')
