@@ -35,8 +35,8 @@ class Workarounds(TweakModule):
     __icon__ = 'application-octet-stream'
     __category__ = 'system'
 
-    utext_fix_theme = _('Fix the appearance of themes when granted root privileges')
-    utext_chinese_gedit = _("Auto detect text encoding for Chinese in Gedit")
+    utext_fix_theme = _('Fix the appearance of themes when granted root privileges:')
+    utext_chinese_gedit = _("Auto detect text encoding for Chinese in Gedit:")
 
     ROOT_THEMES = '/root/.themes'
     ROOT_ICONS = '/root/.icons'

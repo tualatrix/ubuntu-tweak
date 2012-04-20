@@ -43,7 +43,8 @@ class Misc(TweakModule):
     utext_save = _("Disable save to disk")
     utext_user_switch = _('Disable "Fast User Switching"')
     utext_cursor_blink = _('Cursor blink')
-    utext_cursor_blink_time = _('Cursor blink time')
+    utext_cursor_blink_time = _('Cursor blink time:')
+    utext_cursor_blink_timeout = _('Cursor blink timeout:')
 
     def __init__(self):
         TweakModule.__init__(self)
@@ -110,7 +111,7 @@ class Misc(TweakModule):
                                                  type=int,
                                                  ),
                             WidgetFactory.create('SpinButton',
-                                                 label=_('Cursor blink timeout'),
+                                                 label=self.utext_cursor_blink_timeout,
                                                  key='org.gnome.desktop.interface.cursor-blink-timeout',
                                                  backend='gsettings',
                                                  min=1,

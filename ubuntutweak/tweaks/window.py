@@ -44,7 +44,8 @@ class Window(TweakModule):
     else:
         config = GconfSetting(key='/apps/metacity/general/button_layout')
 
-    utext_window_button = _('Window control button position')
+    utext_window_button = _('Window control button position:')
+    utext_only_close_button = _('"Close" button only')
     utext_titlebar_wheel = _('Titlebar mouse wheel action:')
     utext_titlebar_double = _('Titlebar double-click action:')
     utext_titlebar_middle = _('Titlebar middle-click action:')
@@ -60,7 +61,7 @@ class Window(TweakModule):
         button_value = self.config.get_value()
         if len(close_pattern.findall(button_value)) == 1 and 'close' in button_value:
             only_close_switch.set_active(True)
-        only_close_label = Gtk.Label(_('"Close" button only'))
+        only_close_label = Gtk.Label(self.utext_only_close_button)
 
         box = GridPack(
                     (Gtk.Label(self.utext_window_button),
