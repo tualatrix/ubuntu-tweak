@@ -284,6 +284,12 @@ class SearchPage(FeaturePage):
             self.no_result_box.label.set_markup(_('Your filter "<b>%s</b>" does not match any items.' % text))
             self._box.pack_start(self.no_result_box, False, False, 0)
 
+    def clean(self):
+        self._boxes = []
+
+        for child in self._box.get_children():
+            self._box.remove(child)
+
 class UbuntuTweakWindow(GuiBuilder):
     current_feature = 'overview'
     feature_dict = {}
@@ -353,8 +359,14 @@ class UbuntuTweakWindow(GuiBuilder):
         if text:
             self.notebook.set_current_page(self.feature_dict['search'])
             self.search_page.search(text)
+            self.search_entry.set_property('secondary-icon-name', 'edit-clear')
         else:
             self.on_feature_button_clicked(getattr(self, '%s_button' % self.current_feature), self.current_feature)
+            self.search_page.clean()
+            self.search_entry.set_property('secondary-icon-name', 'stock_search')
+
+    def on_search_entry_icon_press(self, widget, icon_pos, event):
+        widget.set_text('')
 
     def get_module_and_index(self, name):
         index = self.loaded_modules[name]

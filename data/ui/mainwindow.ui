@@ -206,6 +206,7 @@ Jeonkwan Chan &lt;jeonkwan@gmail.com&gt; Mockup Designer of 0.6</property>
                                     <property name="secondary_icon_name">stock_search</property>
                                     <signal name="changed" handler="on_search_entry_changed" swapped="no"/>
                                     <signal name="activate" handler="on_search_entry_activate" swapped="no"/>
+                                    <signal name="icon-press" handler="on_search_entry_icon_press" swapped="no"/>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -479,7 +480,7 @@ Jeonkwan Chan &lt;jeonkwan@gmail.com&gt; Mockup Designer of 0.6</property>
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="top_padding">40</property>
-    <property name="left_padding">200</property>
+    <property name="left_padding">220</property>
     <child>
       <object class="GtkBox" id="no_result_inner">
         <property name="visible">True</property>
