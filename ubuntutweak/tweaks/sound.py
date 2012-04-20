@@ -48,7 +48,7 @@ class Sound(TweakModule):
                             backend='gsettings'),
                         WidgetFactory.create('Switch',
                             label=self.utext_login_sound,
-                            key='/usr/share/glib-2.0/schemas/50_unity-greeter.gschema.override::com.canonical.unity-greeter#play-ready-sound',
+                            key='50_unity-greeter.gschema.override::com.canonical.unity-greeter#play-ready-sound',
                             backend='systemconfig'),
                         WidgetFactory.create('Switch',
                             label=self.utext_input_feedback,

@@ -22,9 +22,10 @@ import logging
 from gi.repository import Gtk, GdkPixbuf
 
 from ubuntutweak import system
+from ubuntutweak.factory import WidgetFactory
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.gui.treeviews import get_local_path
-from ubuntutweak.gui.containers import ListPack
+from ubuntutweak.gui.containers import GridPack
 from ubuntutweak.policykit import PK_ACTION_TWEAK
 
 from ubuntutweak.settings.configsettings import SystemConfigSetting
@@ -39,19 +40,35 @@ class LoginSettings(TweakModule):
     __policykit__ = PK_ACTION_TWEAK
     __category__ = 'startup'
 
+    utext_draw_grid = _('Draw grid:')
+    utext_login_sound = _('Play login sound:')
+
     def __init__(self):
         TweakModule.__init__(self, 'loginsettings.ui')
 
-        self._setup_logo_image()
-        self._setup_background_image()
+        if system.CODENAME == 'oneiric':
+            self._setup_logo_image()
+            self._setup_background_image()
 
-        box = ListPack('', (self.main_vbox))
-        self.add_start(box, False, False, 0)
-
-        if system.CODENAME == 'precise':
+            box = ListPack('', (self.main_vbox))
+            self.add_start(box, False, False, 0)
+        else:
             self.same_background_button.destroy()
             self.bg_align.destroy()
             self.bg_label.destroy()
+
+            login_box = GridPack(
+                            WidgetFactory.create('Switch',
+                                label=self.utext_draw_grid,
+                                key='50_unity-greeter.gschema.override::com.canonical.unity-greeter#draw-grid',
+                                backend='systemconfig'),
+                            WidgetFactory.create('Switch',
+                                label=self.utext_login_sound,
+                                key='50_unity-greeter.gschema.override::com.canonical.unity-greeter#play-ready-sound',
+                                backend='systemconfig'),
+                            )
+
+            self.add_start(login_box, False, False, 0)
 
     def _setup_logo_image(self):
         self._greeter_logo = SystemConfigSetting('/etc/lightdm/unity-greeter.conf::greeter#logo')

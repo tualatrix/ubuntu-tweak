@@ -1,57 +1,33 @@
 import logging
-import ConfigParser
 
 log = logging.getLogger('ConfigSetting')
 
-class RawConfigSetting(object):
-    '''Just pass the file path'''
-    def __init__(self, path):
-        self._type = type
 
-        self._path = path
-
-        self.init_configparser()
-
-    def init_configparser(self):
-        self._configparser = ConfigParser.ConfigParser()
-        self._configparser.read(self._path)
-
-    def sections(self):
-        return self._configparser.sections()
-
-    def options(self, section):
-        return self._configparser.options(section)
-
-    def get_value(self, section, option):
-        value = self._configparser.get(section, option)
-        #TODO deal with list
-        if value == 'true':
-            return True
-        elif value == 'false':
-            return False
-        elif value.startswith('"') or value.startswith("'"):
-            return eval(value)
-        else:
-            return value
-
-    def is_override_schema(self):
-        return self._path.startswith('/usr/share/glib-2.0/schemas/') and self._path.endswith('override')
-
+from ubuntutweak.settings.common import RawConfigSetting, Schema
 
 class ConfigSetting(RawConfigSetting):
     '''Key: /etc/lightdm/lightdm.conf::UserManager#load-users
     '''
 
+    schema_path = '/usr/share/glib-2.0/schemas'
+
     def __init__(self, key=None, default=None, type=None):
         self._path = key.split('::')[0]
-        RawConfigSetting.__init__(self, self._path)
-
         self._type = type
-
         self._default = default
         self.key = key
         self._section = key.split('::')[1].split('#')[0]
         self._option = key.split('::')[1].split('#')[1]
+
+        if self.is_override_schema(self._path):
+            self._path = '%s/%s' % (self.schema_path, self._path)
+            self.key = '%s/%s' % (self.schema_path, self.key)
+            log.debug("is override schema, so update path to %s" % self._path)
+            self.schema_default = default or Schema.load_schema(self._section, self._option)
+            log.debug("schema_default is %s" % self.schema_default)
+
+        RawConfigSetting.__init__(self, self._path)
+
 
     def get_value(self):
         try:
@@ -72,9 +48,16 @@ class ConfigSetting(RawConfigSetting):
             log.error(e)
             value = ''
 
-        if value or self._default:
-            return value or self._default
+        log.debug("ConfigSetting.get_value: %s, %s, %s" % (value, self._default, hasattr(self, 'schema_default')))
+        if value != '' or self._default or hasattr(self, 'schema_default'):
+            if value == 'true':
+                return True
+            elif value == 'false':
+                return False
+            else:
+                return value or self._default or getattr(self, 'schema_default')
         else:
+            log.warning("Fallback mode: no value for value...")
             if self._type == int:
                 return 0
             elif self._type == float:
@@ -96,6 +79,9 @@ class ConfigSetting(RawConfigSetting):
 
     def get_key(self):
         return self.key
+
+    def is_override_schema(self, path):
+        return path.endswith('override')
 
 
 class SystemConfigSetting(ConfigSetting):
