@@ -492,7 +492,7 @@ class FetchingDialog(DownloadDialog):
 
 class AppCenter(TweakModule):
     __title__ = _('Application Center')
-    __desc__ = _('A simple but efficient way for finding and installing popular applications.\n')
+    __desc__ = _('A simple but efficient way for finding and installing popular applications.')
     __icon__ = 'gnome-app-install'
     __url__ = 'http://ubuntu-tweak.com/app/'
     __urltitle__ = _('Visit Online Application Center')

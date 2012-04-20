@@ -40,7 +40,7 @@ def get_desktop_fullname():
                     'gnome-classic': _('GNOME Classic'),
                     'gnome-shell': 'GNOME Shell',
                     'gnome-fallback': _('GNOME Fallback'),
-                    'pantheon': _('elementary OS (Luna)'),
+                    'pantheon': 'elementary OS (Luna)',
                     'Lubutu': 'LXDE',
                     }
 
