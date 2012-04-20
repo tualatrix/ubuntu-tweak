@@ -7,12 +7,7 @@ class MozillaCachePlugin(JanitorCachePlugin):
     __category__ = 'application'
 
     targets = ['Cache',
-               'OfflineCache',
-               'TestPilotErrorLog.log',
-               'downloads.sqlite',
-               'cookies.sqlite',
-               'cookies.sqlite-shm',
-               'cookies.sqlite-wal']
+               'OfflineCache']
     app_path = ''
 
     @classmethod
