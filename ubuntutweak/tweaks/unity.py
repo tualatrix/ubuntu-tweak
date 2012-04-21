@@ -63,6 +63,13 @@ class Unity(TweakModule):
         version_pattern = re.compile('\d.\d+.\d')
 
         if system.DESKTOP == 'ubuntu':
+            if system.CODENAME == 'oneiric':
+                hide_texts = (_('Never'), _('Auto Hide'), _('Dodge Window'), _('Dodge Active Window'))
+                hide_values = (0, 1, 2, 3)
+            else:
+                hide_texts = (_('Never'), _('Auto Hide'))
+                hide_values = (0, 1)
+
             grid_pack = GridPack(
                         WidgetFactory.create("Switch",
                             label=self.utext_hud,
@@ -97,8 +104,8 @@ class Unity(TweakModule):
                         WidgetFactory.create("ComboBox",
                             label=self.utext_launcher_hide,
                             key="unityshell.launcher_hide_mode",
-                            texts=(_('Never'), _('Auto Hide')),
-                            values=(0, 1),
+                            texts=hide_texts,
+                            values=hide_values,
                             type=int,
                             backend="compiz",
                             enable_reset=True),
