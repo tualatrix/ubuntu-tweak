@@ -106,6 +106,8 @@ class GridPack(Gtk.Grid):
     def __init__(self, *items):
         GObject.GObject.__init__(self)
 
+        items = self._pre_deal_items(items)
+
         self._column = 1
         for i, item in enumerate(items):
             rows = i + 1
@@ -124,6 +126,31 @@ class GridPack(Gtk.Grid):
         self._insert_items()
 
         self.connect('size-allocate', self.on_grid_size_allocate)
+
+    def _pre_deal_items(self, items):
+        new_list = []
+        for item in items:
+            if type(item) == list:
+                is_not_none = True
+
+                for sub_item in item:
+                    if sub_item is None:
+                        is_not_none = False
+                        break
+
+                if is_not_none:
+                    new_list.append(item)
+            else:
+                if item:
+                    new_list.append(item)
+
+        if type(new_list[0]) == Gtk.Separator:
+            new_list.pop(0)
+
+        if type(new_list[-1]) == Gtk.Separator:
+            new_list.pop(-1)
+
+        return new_list
 
     def on_grid_size_allocate(self, widget, allocation):
         size_list = []

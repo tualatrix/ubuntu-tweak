@@ -152,8 +152,9 @@ class Workspace(TweakModule):
         hbox.pack_start(self.create_edge_setting(), True, False, 0)
         self.add_start(hbox, False, False, 0)
 
+        self.add_start(Gtk.Separator(), False, False, 6)
+
         grid_pack = GridPack(
-                Gtk.Separator(),
                 WidgetFactory.create("Scale",
                              label=self.utext_edge_delay,
                              key="core.edge_delay",
