@@ -25,7 +25,7 @@ from ubuntutweak import system
 from ubuntutweak.factory import WidgetFactory
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.gui.treeviews import get_local_path
-from ubuntutweak.gui.containers import GridPack
+from ubuntutweak.gui.containers import ListPack, GridPack
 from ubuntutweak.policykit import PK_ACTION_TWEAK
 
 from ubuntutweak.settings.configsettings import SystemConfigSetting
@@ -42,6 +42,7 @@ class LoginSettings(TweakModule):
 
     utext_draw_grid = _('Draw grid:')
     utext_login_sound = _('Play login sound:')
+    utext_gtk_theme = _('Gtk theme:')
 
     def __init__(self):
         TweakModule.__init__(self, 'loginsettings.ui')
