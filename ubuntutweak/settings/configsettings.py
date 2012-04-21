@@ -20,14 +20,19 @@ class ConfigSetting(RawConfigSetting):
         self._option = key.split('::')[1].split('#')[1]
 
         if self.is_override_schema(self._path):
-            self._path = '%s/%s' % (self.schema_path, self._path)
-            self.key = '%s/%s' % (self.schema_path, self.key)
+            self._path = self.build_schema_path(self._path)
+            self.key = self.build_schema_path(self.key)
             log.debug("is override schema, so update path to %s" % self._path)
             self.schema_default = default or Schema.load_schema(self._section, self._option)
             log.debug("schema_default is %s" % self.schema_default)
 
         RawConfigSetting.__init__(self, self._path)
 
+    def build_schema_path(self, path):
+        if not path.startswith(self.schema_path):
+            return '%s/%s' % (self.schema_path, path)
+        else:
+            return path
 
     def get_value(self):
         try:
@@ -80,8 +85,9 @@ class ConfigSetting(RawConfigSetting):
     def get_key(self):
         return self.key
 
-    def is_override_schema(self, path):
-        return path.endswith('override')
+    def is_override_schema(self, path=None):
+        test_path = path or self._path
+        return test_path.endswith('override')
 
 
 class SystemConfigSetting(ConfigSetting):
