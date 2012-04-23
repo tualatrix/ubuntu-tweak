@@ -107,6 +107,8 @@ def run_traceback(level, textview_only=False, text_only=False):
         if to_report:
             open_bug_report()
 
+def log_traceback(log, e):
+    log.error(run_traceback('error', text_only=True))
 
 def open_bug_report():
     if system.is_supported():

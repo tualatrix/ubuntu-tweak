@@ -4,6 +4,7 @@ log = logging.getLogger('ConfigSetting')
 
 
 from ubuntutweak.settings.common import RawConfigSetting, Schema
+from ubuntutweak.common.debug import log_func, log_traceback
 
 class ConfigSetting(RawConfigSetting):
     '''Key: /etc/lightdm/lightdm.conf::UserManager#load-users
@@ -26,7 +27,14 @@ class ConfigSetting(RawConfigSetting):
             self.schema_default = default or Schema.load_schema(self._section, self._option)
             log.debug("schema_default is %s" % self.schema_default)
 
-        RawConfigSetting.__init__(self, self._path)
+        log.debug("Build ConfigSetting for path: %s\n"
+                  "\tkey: %s\n"
+                  "\tdefault: %s, type: %s\n" % (self._path,
+                                                 self.key,
+                                                 self._default, 
+                                                 self._type))
+
+        RawConfigSetting.__init__(self, self._path, type=self._type)
 
     def build_schema_path(self, path):
         if not path.startswith(self.schema_path):
@@ -34,53 +42,30 @@ class ConfigSetting(RawConfigSetting):
         else:
             return path
 
+    def set_value(self, value):
+        super(ConfigSetting, self).set_value(self._section, self._option, value)
+
     def get_value(self):
         try:
-            if self._type:
-                if self._type == int:
-                    getfunc = getattr(self._configparser, 'getint')
-                elif self._type == float:
-                    getfunc = getattr(self._configparser, 'getfloat')
-                elif self._type == bool:
-                    getfunc = getattr(self._configparser, 'getboolean')
-                else:
-                    getfunc = getattr(self._configparser, 'get')
+            value = super(ConfigSetting, self).get_value(self._section, self._option)
 
-                value = getfunc(self._section, self._option)
-            else:
-                value = self._configparser.get(self._section, self._option)
+            log.debug("ConfigSetting.get_value: %s, %s, %s" % (value, self._default, hasattr(self, 'schema_default')))
+            return value
         except Exception, e:
-            log.error(e)
-            value = ''
+            log_traceback(log, e)
 
-        log.debug("ConfigSetting.get_value: %s, %s, %s" % (value, self._default, hasattr(self, 'schema_default')))
-        if value != '' or self._default or hasattr(self, 'schema_default'):
-            if value == 'true':
-                return True
-            elif value == 'false':
-                return False
-            else:
-                return value or self._default or getattr(self, 'schema_default')
-        else:
-            log.warning("Fallback mode: no value for value...")
+            if self._default != None or hasattr(self, 'schema_default'):
+                return self._default or getattr(self, 'schema_default')
             if self._type == int:
                 return 0
             elif self._type == float:
                 return 0.0
             elif self._type == bool:
                 return False
-            else:
+            elif self._type == str:
                 return ''
-
-    def set_value(self, value):
-        if not self._configparser.has_section(self._section):
-            self._configparser.add_section(self._section)
-
-        self._configparser.set(self._section, self._option, value)
-        with open(self._path, 'wb') as configfile:
-            self._configparser.write(configfile)
-
-        self.init_configparser()
+            else:
+                return None
 
     def get_key(self):
         return self.key
@@ -95,12 +80,7 @@ class SystemConfigSetting(ConfigSetting):
         # Because backend/daemon will use ConfigSetting , proxy represents the
         # daemon, so lazy import the proxy here to avoid backend to call proxy
         from ubuntutweak.policykit.dbusproxy import proxy
-
-        if type(value) == bool:
-            if value == True:
-                value = 'true'
-            elif value == False:
-                value = 'false'
+        value = self._type_convert_set(value)
 
         proxy.set_config_setting(self.get_key(), value)
 
