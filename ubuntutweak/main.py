@@ -385,6 +385,13 @@ class UbuntuTweakWindow(GuiBuilder):
         width, height = self.window_size_setting.get_value()
         if width >= 800 and height >= 480:
             self.mainwindow.set_default_size(width, height)
+
+        for feature_button in ('overview_button', 'admins_button', \
+                               'tweaks_button', 'janitor_button'):
+            button = getattr(self, feature_button)
+            label = button.get_child().get_label()
+            button.get_child().set_markup('<b>%s</b>' % label)
+            button.get_child().set_use_underline(True)
         splash_window.destroy()
 
     def _crete_wait_page(self):
