@@ -27,7 +27,7 @@ from ubuntutweak.modules  import TweakModule
 from ubuntutweak.gui.treeviews import get_local_path
 from ubuntutweak.gui.containers import ListPack, GridPack
 from ubuntutweak.policykit import PK_ACTION_TWEAK
-
+from ubuntutweak.utils import theme
 from ubuntutweak.settings.configsettings import SystemConfigSetting
 from ubuntutweak.settings.gsettings import GSetting
 
@@ -43,22 +43,16 @@ class LoginSettings(TweakModule):
     utext_draw_grid = _('Draw grid:')
     utext_login_sound = _('Play login sound:')
     utext_gtk_theme = _('Gtk theme:')
+    utext_icon_theme = _('Icon theme:')
 
     def __init__(self):
         TweakModule.__init__(self, 'loginsettings.ui')
 
-        if system.CODENAME == 'oneiric':
-            self._setup_logo_image()
-            self._setup_background_image()
+        if system.CODENAME != 'oneiric':
+            valid_themes = theme.get_valid_themes()
+            valid_icon_themes = theme.get_valid_icon_themes()
 
-            box = ListPack('', (self.main_vbox))
-            self.add_start(box, False, False, 0)
-        else:
-            self.same_background_button.destroy()
-            self.bg_align.destroy()
-            self.bg_label.destroy()
-
-            login_box = GridPack(
+            self.login_box = GridPack(
                             WidgetFactory.create('Switch',
                                 label=self.utext_draw_grid,
                                 key='50_unity-greeter.gschema.override::com.canonical.unity-greeter#draw-grid',
@@ -67,18 +61,44 @@ class LoginSettings(TweakModule):
                                 label=self.utext_login_sound,
                                 key='50_unity-greeter.gschema.override::com.canonical.unity-greeter#play-ready-sound',
                                 backend='systemconfig'),
+                            WidgetFactory.create('ComboBox',
+                                label=self.utext_gtk_theme,
+                                key='50_unity-greeter.gschema.override::com.canonical.unity-greeter#theme-name',
+                                backend='systemconfig',
+                                texts=valid_themes,
+                                values=valid_themes),
+                            WidgetFactory.create('ComboBox',
+                                label=self.utext_icon_theme,
+                                key='50_unity-greeter.gschema.override::com.canonical.unity-greeter#icon-theme-name',
+                                backend='systemconfig',
+                                texts=valid_icon_themes,
+                                values=valid_icon_themes),
                             )
 
-            self.add_start(login_box, False, False, 0)
+            self.login_box.set_sensitive(False)
+            self.add_start(self.login_box, False, False, 0)
+            self.add_start(Gtk.Separator(), False, False, 6)
+
+        self._setup_logo_image()
+        self._setup_background_image()
+
+        box = ListPack('', (self.main_vbox))
+        self.add_start(box, False, False, 0)
 
     def _setup_logo_image(self):
-        self._greeter_logo = SystemConfigSetting('/etc/lightdm/unity-greeter.conf::greeter#logo')
+        if system.CODENAME == 'oneiric':
+            self._greeter_logo = SystemConfigSetting('/etc/lightdm/unity-greeter.conf::greeter#logo')
+        else:
+            self._greeter_logo = SystemConfigSetting('50_unity-greeter.gschema.override::com.canonical.unity-greeter#logo', type=str)
         logo_path = self._greeter_logo.get_value()
 
         self.logo_image.set_from_file(logo_path)
 
     def _setup_background_image(self):
-        self._greeter_background = SystemConfigSetting('/etc/lightdm/unity-greeter.conf::greeter#background')
+        if system.CODENAME == 'oneiric':
+            self._greeter_background = SystemConfigSetting('/etc/lightdm/unity-greeter.conf::greeter#background')
+        else:
+            self._greeter_background = SystemConfigSetting('50_unity-greeter.gschema.override::com.canonical.unity-greeter#background', type=str)
         background_path = self._greeter_background.get_value()
 
         log.debug("Setup the background file: %s" % background_path)
@@ -95,6 +115,8 @@ class LoginSettings(TweakModule):
 
     def on_polkit_action(self, widget):
         self.main_vbox.set_sensitive(True)
+        if hasattr(self, 'login_box'):
+            self.login_box.set_sensitive(True)
 
     def on_logo_button_clicked(self, widget):
         dialog = Gtk.FileChooserDialog(_('Choose a new logo image'),

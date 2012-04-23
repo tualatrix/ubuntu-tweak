@@ -20,10 +20,10 @@ import os
 import logging
 from gi.repository import Gtk, Gio
 
-from ubuntutweak.utils import walk_directories
 from ubuntutweak.gui.containers import ListPack, GridPack
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.factory import WidgetFactory
+from ubuntutweak.utils import theme
 from ubuntutweak.utils.tar import ThemeFile
 from ubuntutweak.settings.configsettings import ConfigSetting
 from ubuntutweak.gui.dialogs import QuestionDialog, ErrorDialog
@@ -46,10 +46,10 @@ class Theme(TweakModule):
     def __init__(self):
         TweakModule.__init__(self)
 
-        valid_themes = self._get_valid_themes()
-        valid_icon_themes = self._get_valid_icon_themes()
-        valid_cursor_themes = self._get_valid_cursor_themes()
-        valid_window_themes = self._get_valid_window_themes()
+        valid_themes = theme.get_valid_themes()
+        valid_icon_themes = theme.get_valid_icon_themes()
+        valid_cursor_themes = theme.get_valid_cursor_themes()
+        valid_window_themes = theme.get_valid_window_themes()
 
         theme_choose_button = Gtk.FileChooserButton()
         theme_choose_button.connect('file-set', self.on_file_set)
@@ -100,7 +100,7 @@ class Theme(TweakModule):
         else:
             if tf.install():
                 log.debug("Theme installed! Now update the combox")
-                valid_icon_themes = self._get_valid_icon_themes()
+                valid_icon_themes = theme.get_valid_icon_themes()
                 self.icon_theme.update_texts_values_pair(valid_icon_themes, valid_icon_themes)
                 dialog = QuestionDialog(title=_('"%s" installed successfully' % tf.theme_name),
                                message=_('Would you like to set your icon theme to "%s" immediatelly?') % tf.theme_name)
