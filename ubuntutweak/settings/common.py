@@ -4,7 +4,6 @@ import ConfigParser
 
 from lxml import etree
 
-from ubuntutweak.common.debug import log_func, log_traceback
 
 log = logging.getLogger('CommonSetting')
 
@@ -54,7 +53,6 @@ class RawConfigSetting(object):
     def options(self, section):
         return self._configparser.options(section)
 
-    @log_func(log)
     def set_value(self, section, option, value):
         value = self._type_convert_set(value)
 
@@ -67,7 +65,6 @@ class RawConfigSetting(object):
 
         self.init_configparser()
 
-    @log_func(log)
     def get_value(self, section, option):
         if self._type:
             if self._type == int:

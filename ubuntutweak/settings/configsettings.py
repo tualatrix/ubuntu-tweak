@@ -4,7 +4,6 @@ log = logging.getLogger('ConfigSetting')
 
 
 from ubuntutweak.settings.common import RawConfigSetting, Schema
-from ubuntutweak.common.debug import log_func, log_traceback
 
 class ConfigSetting(RawConfigSetting):
     '''Key: /etc/lightdm/lightdm.conf::UserManager#load-users
@@ -52,7 +51,7 @@ class ConfigSetting(RawConfigSetting):
             log.debug("ConfigSetting.get_value: %s, %s, %s" % (value, self._default, hasattr(self, 'schema_default')))
             return value
         except Exception, e:
-            log_traceback(log, e)
+            log.error(e)
 
             if self._default != None or hasattr(self, 'schema_default'):
                 return self._default or getattr(self, 'schema_default')
