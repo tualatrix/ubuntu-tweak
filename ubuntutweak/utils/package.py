@@ -137,6 +137,7 @@ class AptWorker(object):
                                 reply_handler=self._simulate_trans,
                                 error_handler=self._on_error)
 
+    @log_func(log)
     def downgrade_packages(self, packages, *args):
         self.ac.commit_packages([], [], [], [], [], packages,
                                 reply_handler=self._simulate_trans,

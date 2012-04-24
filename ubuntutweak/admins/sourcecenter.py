@@ -552,7 +552,7 @@ class SourcesView(Gtk.TreeView):
         self.filter = None
         self.modelfilter = None
         self._status = None
-        self.mode = 'view'
+        self.view_mode = 'view'
         self.to_purge = []
 
         self.model = self.__create_model()
@@ -736,6 +736,7 @@ class SourcesView(Gtk.TreeView):
                 return not source.disabled
         return False
 
+    @log_func(log)
     def on_enable_toggled(self, cell, path):
         model = self.get_model()
         iter = model.get_iter((int(path),))
@@ -745,7 +746,7 @@ class SourcesView(Gtk.TreeView):
         enabled = model.get_value(iter, self.COLUMN_ENABLED)
         url = model.get_value(iter, self.COLUMN_URL)
 
-        if self.mode == 'view':
+        if self.view_mode == 'view':
             conflicts = SOURCE_PARSER.get_conflicts(id)
             dependencies = SOURCE_PARSER.get_dependencies(id)
 
@@ -1096,11 +1097,11 @@ class SourceCenter(TweakModule):
             self.purge_ppa_button.show()
             self.purge_ppa_button.set_sensitive(False)
             self.sourceview.source_column.set_title(_('All enabled PPAs (Select and click "Purge PPA" can safely downgrade packages)'))
-            self.sourceview.mode = 'purge'
+            self.sourceview.view_mode = 'purge'
         else:
             self.purge_ppa_button.hide()
             self.sourceview.source_column.set_title(_('Third-Party Sources'))
-            self.sourceview.mode = 'view'
+            self.sourceview.view_mode = 'view'
 
     def set_details(self,
                     homepage='http://ubuntu-tweak.com',
@@ -1186,8 +1187,10 @@ class SourceCenter(TweakModule):
     def on_purge_ppa_button_clicked(self, widget):
         # name_list is to display the name of PPA
         # url_list is to identify the ppa
+        set_busy(self)
         name_list = []
         url_list = []
+        log.debug("self.sourceview.to_purge: %s" % self.sourceview.to_purge)
         for url in self.sourceview.to_purge:
             name_list.append(ppa.get_short_name(url))
             url_list.append(url)
@@ -1225,23 +1228,26 @@ class SourceCenter(TweakModule):
 
         if response == Gtk.ResponseType.YES:
             log.debug("The select pkgs is: %s", str(select_pkgs))
-            parent = widget.get_toplevel()
-            worker = AptWorker(parent,
+            worker = AptWorker(widget.get_toplevel(),
                                finish_handler=self.on_package_work_finished,
-                               data={'parent': parent,
+                               data={'parent': self,
                                      'url_list': url_list})
             worker.downgrade_packages(select_pkgs)
+        else:
+            unset_busy(self)
 
     @log_func(log)
     def on_package_work_finished(self, transaction, status, kwargs):
+        unset_busy(self)
+
         parent = kwargs['parent']
         url_list = kwargs['url_list']
 
-        unset_busy(parent)
         for url in url_list:
             #TODO remove vendor key
             result = proxy.purge_source(url, '')
             log.debug("Set source: %s to %s" % (url, str(result)))
+        self.sourceview.to_purge = []
         self.update_sourceview()
 
         notify = Notify.Notification(summary=_('PPA has been purged'),
