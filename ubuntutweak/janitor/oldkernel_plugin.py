@@ -6,6 +6,7 @@ from ubuntutweak.gui.gtk import set_busy, unset_busy
 from ubuntutweak.janitor import JanitorPlugin, PackageObject
 from ubuntutweak.utils.package import AptWorker
 from ubuntutweak.utils import filesizeformat
+from ubuntutweak.common.debug import log_func
 
 
 log = logging.getLogger('OldKernelPlugin')
@@ -64,6 +65,7 @@ class OldKernelPlugin(JanitorPlugin):
                       'linux-header-lbm', 'linux-restricted-modules']
 
         if pkg.startswith('linux'):
+            print pkg
             package = p_kernel_package.findall(pkg)
             if package:
                 package = package[0].rstrip('-')
@@ -76,6 +78,7 @@ class OldKernelPlugin(JanitorPlugin):
                     return True
         return False
 
+    @log_func(log)
     def _compare_kernel_version(self, version):
         c1, c2 = self.current_kernel_version.split('-')
         p1, p2 = version.split('-')
