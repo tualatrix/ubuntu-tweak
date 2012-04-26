@@ -19,7 +19,11 @@ class GSetting(object):
         self.schema_default = self.default or Schema.load_schema(self.schema_id, self.key)
         log.debug("Got the schema_default: %s for key: %s.%s" % \
                   (self.schema_default, self.schema_id, self.key))
-        self.settings = Gio.Settings(self.schema_id)
+
+        if self.schema_id in Gio.Settings.list_schemas():
+            self.settings = Gio.Settings(self.schema_id)
+        else:
+            raise Exception('Oops, Settings schema "%s" is not installed' % self.schema_id)
 
         if self.key not in self.settings.list_keys():
             log.error("No key (%s) for schema %s" % (self.key, self.schema_id))

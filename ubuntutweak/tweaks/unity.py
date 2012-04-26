@@ -53,9 +53,8 @@ class Unity(TweakModule):
     utext_blur_type = _('Blur type:')
     utext_panel_opacity = _('Panel opacity:')
     utext_panel_toggle_max = _('Panel opacity for maximized windows:')
-    utext_super_key = _('Enable the Super key')
-    utext_fullscreen = _('Full screen dash')
-    utext_one_launcher = _('Only one launcher when multi-monitor')
+    utext_super_key = _('Super key:')
+    utext_fullscreen = _('Full screen dash:')
 
     def __init__(self):
         TweakModule.__init__(self)
@@ -170,11 +169,6 @@ class Unity(TweakModule):
 
             self.add_start(grid_pack, False, False, 0)
         else:
-            super_key_button, super_key_reset = WidgetFactory.create("CheckButton",
-                                             label=self.utext_super_key,
-                                             key="com.canonical.Unity2d.Launcher.super-key-enable",
-                                             backend="gsettings",
-                                             enable_reset=True)
             box = GridPack(
                         WidgetFactory.create("Switch",
                             label=self.utext_hud,
@@ -188,10 +182,9 @@ class Unity(TweakModule):
                                              key="com.canonical.Unity2d.Dash.full-screen",
                                              backend="gsettings",
                                              enable_reset=True),
-                        (Gtk.Label(_("Launcher")), super_key_button, super_key_reset),
-                        WidgetFactory.create("CheckButton",
-                                             label=self.utext_one_launcher,
-                                             key="com.canonical.Unity2d.Launcher.use-strut",
+                        WidgetFactory.create("Switch",
+                                             label=self.utext_super_key,
+                                             key="com.canonical.Unity2d.Launcher.super-key-enable",
                                              backend="gsettings",
                                              enable_reset=True),
                         WidgetFactory.create("ComboBox",
