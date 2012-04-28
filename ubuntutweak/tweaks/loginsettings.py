@@ -92,7 +92,8 @@ class LoginSettings(TweakModule):
             self._greeter_logo = SystemConfigSetting('50_unity-greeter.gschema.override::com.canonical.unity-greeter#logo', type=str)
         logo_path = self._greeter_logo.get_value()
 
-        self.logo_image.set_from_file(logo_path)
+        if logo_path:
+            self.logo_image.set_from_file(logo_path)
 
     def _setup_background_image(self):
         if system.CODENAME == 'oneiric':
@@ -103,12 +104,13 @@ class LoginSettings(TweakModule):
 
         log.debug("Setup the background file: %s" % background_path)
 
-        try:
-            pixbuf = GdkPixbuf.Pixbuf.new_from_file(background_path)
-            pixbuf = pixbuf.scale_simple(160, 120, GdkPixbuf.InterpType.NEAREST)
-            self.background_image.set_from_pixbuf(pixbuf)
-        except Exception, e:
-            log.error("Loading background failed, message is %s" % e)
+        if background_path:
+            try:
+                pixbuf = GdkPixbuf.Pixbuf.new_from_file(background_path)
+                pixbuf = pixbuf.scale_simple(160, 120, GdkPixbuf.InterpType.NEAREST)
+                self.background_image.set_from_pixbuf(pixbuf)
+            except Exception, e:
+                log.error("Loading background failed, message is %s" % e)
 
     def _get_desktop_background_path(self):
         return get_local_path(GSetting('org.gnome.desktop.background.picture-uri').get_value())
