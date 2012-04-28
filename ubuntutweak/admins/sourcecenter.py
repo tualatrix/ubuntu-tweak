@@ -788,10 +788,9 @@ class SourcesView(Gtk.TreeView):
                 if depend_list and depend_name_list:
                     full_name = ', '.join(depend_name_list)
 
-                    dialog = QuestionDialog(\
-                                _('To enable this Source, You need to enable <b>"%s"</b> at first.\nDo you wish to continue?') \
-                                % full_name,
-                                title=_('Dependency Notice'))
+                    dialog = QuestionDialog(title=_('Dependency Notice'),
+                                            message= _('To enable this Source, You need to enable <b>"%s"</b> at first.\nDo you wish to continue?') \
+                                % full_name)
                     if dialog.run() == Gtk.ResponseType.YES:
                         for depend_id in depend_list:
                             self.set_source_enabled(depend_id)
@@ -1017,10 +1016,11 @@ class SourceCenter(TweakModule):
 
     @post_ui
     def upgrade_sources(self):
-        dialog = QuestionDialog(_('After a successful distribution upgrade, '
-            'any third-party sources you use will be disabled by default.\n'
-            'Would you like to re-enable any sources disabled by Update Manager?'),
-            title=_('Upgrade Third Party Sources'))
+        dialog = QuestionDialog(title=_('Upgrade Third Party Sources'),
+                                message=_('After a successful distribution upgrade, '
+                                'any third-party sources you use will be disabled by default.\n'
+                                'Would you like to re-enable any sources disabled by Update Manager?'))
+
         response = dialog.run()
         dialog.destroy()
         if response == Gtk.ResponseType.YES:
@@ -1213,8 +1213,8 @@ class SourceCenter(TweakModule):
             sw.show_all()
             sw.set_size_request(500, 100)
 
-        dialog = QuestionDialog(message=message,
-                                title=_("You're going to purge \"%s\":") % ', '.join(name_list))
+        dialog = QuestionDialog(title=_("You're going to purge \"%s\":") % ', '.join(name_list),
+                                message=message)
         dialog.set_resizable(True)
         dialog.get_content_area().pack_start(sw, True, True, 0)
         dialog.show_all()
