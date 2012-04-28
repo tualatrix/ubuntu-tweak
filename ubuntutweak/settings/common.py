@@ -93,11 +93,14 @@ class Schema(object):
     @classmethod
     def load_override(cls):
         for override in glob.glob('/usr/share/glib-2.0/schemas/*.gschema.override'):
-            cs = RawConfigSetting(override)
-            for section in cs.sections():
-                cls.cached_override[section] = {}
-                for option in cs.options(section):
-                    cls.cached_override[section][option] = cs.get_value(section, option)
+            try:
+                cs = RawConfigSetting(override)
+                for section in cs.sections():
+                    cls.cached_override[section] = {}
+                    for option in cs.options(section):
+                        cls.cached_override[section][option] = cs.get_value(section, option)
+            except Exception, e:
+                log.error('Error while parsing override file: %s' % override)
 
     @classmethod
     def load_schema(cls, schema_id, key):
