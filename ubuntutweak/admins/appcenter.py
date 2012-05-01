@@ -679,6 +679,7 @@ class AppCenter(TweakModule):
     def update_app_data(self):
         self.appview.update_model()
         self.cateview.update_cate_model()
+        self.cateview.expand_all()
 
     def on_app_status_changed(self, widget, i):
         if i:
