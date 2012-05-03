@@ -39,6 +39,7 @@ class LoginSettings(TweakModule):
     __icon__ = 'gdm-setup'
     __policykit__ = PK_ACTION_TWEAK
     __category__ = 'startup'
+    __desktop__ = ['ubuntu', 'ubuntu-2d', 'gnome-classic', 'gnome-shell', 'gnome-fallback']
 
     utext_draw_grid = _('Draw grid:')
     utext_login_sound = _('Play login sound:')

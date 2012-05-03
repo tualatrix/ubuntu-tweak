@@ -33,6 +33,7 @@ class Window(TweakModule):
     __desc__ = _('Manage Window Manager settings')
     __icon__ = 'preferences-system-windows'
     __category__ = 'desktop'
+    __desktop__ = ['ubuntu', 'ubuntu-2d', 'gnome-classic', 'gnome-shell', 'gnome-fallback']
 
     left_default = 'close,minimize,maximize:'
     right_default = ':minimize,maximize,close'
