@@ -78,6 +78,9 @@ class GconfSetting(object):
                 return None
 
     def set_value(self, value):
+        if self.type and type(value) != self.type:
+            value = self.type(value)
+
         gconfvalue = GConf.Value()
 
         if type(value) == bool:
@@ -104,7 +107,11 @@ class GconfSetting(object):
     def get_schema_value(self):
         if not self.default:
             if self.key in self.schema_override:
-                return self.schema_override[self.key]
+                value = self.schema_override[self.key]
+                if self.type != type(value):
+                    log.debug("get_schema_value: %s, the type is wrong, so convert force" % value)
+                    return self.type(value)
+                return value
 
             value = self.client.get_default_from_schema(self.key)
             if value:

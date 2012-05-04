@@ -331,9 +331,13 @@ class Scale(Gtk.Scale, SettingWidget):
 
         self.set_range(min, max)
         self.set_digits(digits)
-        self.add_mark(default or self.get_setting().get_schema_value(),
-                      Gtk.PositionType.BOTTOM,
-                      '')
+        try:
+            self.add_mark(default or self.get_setting().get_schema_value(),
+                          Gtk.PositionType.BOTTOM,
+                          '')
+        except Exception, e:
+            log.error(e)
+
         self.set_value_pos(Gtk.PositionType.RIGHT)
 
         self.connect("value-changed", self.on_change_value)

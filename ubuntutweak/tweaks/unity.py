@@ -28,7 +28,7 @@ from ubuntutweak.gui.containers import ListPack, GridPack, SinglePack
 from ubuntutweak.gui.treeviews import get_local_path
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.factory import WidgetFactory
-from ubuntutweak.settings.gsettings import GSetting
+from ubuntutweak.settings.gconfsettings import GconfSetting
 from ubuntutweak.settings.compizsettings import CompizPlugin, CompizSetting
 
 log = logging.getLogger('Unity')
@@ -49,12 +49,13 @@ class Unity(TweakModule):
     utext_launcher_backlight = _('Launcher icon backlight:')
     utext_device = _('Launcher show devices:')
     utext_dash_size = _('Dash size:')
-    utext_dash_color = _('Dash color:')
     utext_blur_type = _('Blur type:')
     utext_panel_opacity = _('Panel opacity:')
     utext_panel_toggle_max = _('Panel opacity for maximized windows:')
     utext_super_key = _('Super key:')
     utext_fullscreen = _('Full screen dash:')
+    utext_compositing_manager = _('Compositing manager:')
+    utext_num_workspaces = _('Number of workspaces:')
 
     def __init__(self):
         TweakModule.__init__(self)
@@ -138,11 +139,6 @@ class Unity(TweakModule):
                              values=('Automatic', 'Desktop', 'Netbook'),
                              backend="gsettings",
                              enable_reset=True),
-                        WidgetFactory.create("ColorButton",
-                             label=self.utext_dash_color,
-                             key="unityshell.background_color",
-                             backend="compiz",
-                             enable_reset=True),
                         WidgetFactory.create("ComboBox",
                              label=self.utext_blur_type,
                              key="unityshell.dash_blur_experimental",
@@ -169,6 +165,12 @@ class Unity(TweakModule):
 
             self.add_start(grid_pack, False, False, 0)
         else:
+            notes_label = Gtk.Label()
+            notes_label.set_property('halign', Gtk.Align.START)
+            notes_label.set_markup('<span size="smaller">%s</span>' % \
+                    _('Note: you may need to log out to take effect'))
+            notes_label._ut_left = 1
+
             box = GridPack(
                         WidgetFactory.create("Switch",
                             label=self.utext_hud,
@@ -196,6 +198,27 @@ class Unity(TweakModule):
                                              type=int,
                                              backend="gsettings",
                                              enable_reset=True),
+                        Gtk.Separator(),
+                        WidgetFactory.create("Switch",
+                                             label=self.utext_compositing_manager,
+                                             key="/apps/metacity/general/compositing_manager",
+                                             backend="gconf",
+                                             signal_dict={'notify::active': self.on_compositing_enabled},
+                                             enable_reset=True),
+                        notes_label,
+                        WidgetFactory.create("Scale",
+                                             label=self.utext_num_workspaces,
+                                             key="/apps/metacity/general/num_workspaces",
+                                             backend="gconf",
+                                             min=1,
+                                             max=36,
+                                             step=1,
+                                             type=int,
+                                             enable_reset=True),
                 )
 
             self.add_start(box, False, False, 0)
+
+    def on_compositing_enabled(self, widget, prop):
+         setting = GconfSetting("/apps/metacity/general/compositor_effects")
+         setting.set_value(widget.get_active())
