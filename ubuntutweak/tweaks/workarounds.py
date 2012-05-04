@@ -50,16 +50,15 @@ class Workarounds(TweakModule):
 
         self.fix_theme_button.connect('notify::active', self.on_fix_theme_button_toggled)
 
-        encoding_label, encoding_switch, reset_encoding = WidgetFactory.create("Switch",
-                                                label=self.utext_chinese_gedit,
-                                                key="org.gnome.gedit.preferences.encodings.auto-detected",
-                                                on=['GB18030', 'UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16'],
-                                                off=['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16'],
-                                                backend="gsettings",
-                                                enable_reset=True)
         box = GridPack(
                 (self.fix_theme_label, self.fix_theme_button),
-                (encoding_label, encoding_switch, reset_encoding),
+                WidgetFactory.create("Switch",
+                                     label=self.utext_chinese_gedit,
+                                     key="org.gnome.gedit.preferences.encodings.auto-detected",
+                                     on=['GB18030', 'UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16'],
+                                     off=['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16'],
+                                     backend="gsettings",
+                                     enable_reset=True)
             )
         self.add_start(box)
 
