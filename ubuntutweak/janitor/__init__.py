@@ -331,8 +331,13 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
     def on_result_view_row_activated(self, treeview, path, column):
         iter = self.result_model.get_iter(path)
         cruft = self.result_model[iter][self.RESULT_CRUFT]
+        display = self.result_model[iter][self.RESULT_DISPLAY]
 
-        if hasattr(cruft, 'get_path'):
+        if 'red' in display:
+            plugin = self.result_model[iter][self.RESULT_PLUGIN]
+            error = plugin.get_data('error')
+            self.result_model[iter][self.RESULT_DISPLAY] = '<span color="red"><b>%s</b></span>' % error
+        elif hasattr(cruft, 'get_path'):
             path = cruft.get_path()
             if not os.path.isdir(path):
                 path = os.path.dirname(path)
@@ -575,7 +580,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
 
             self._find_handler = plugin.connect('find_object', self.on_find_object, (plugin_iter, iter))
             self._scan_handler = plugin.connect('scan_finished', self.on_scan_finished, (plugin_iter, iter))
-            self._error_handler = plugin.connect('scan_error', self.on_scan_error, plugin_iter)
+            self._error_handler = plugin.connect('scan_error', self.on_scan_error, (plugin_iter, iter))
 
             t = threading.Thread(target=plugin.get_cruft)
             GObject.timeout_add(50, self._on_spinner_timeout, plugin_iter, t)
@@ -607,9 +612,11 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         self.janitor_model[plugin_iter][self.JANITOR_SPINNER_PULSE] += 1
 
         if finished:
-            for handler in (self._find_handler, self._scan_handler):
+            for handler in (self._find_handler,
+                            self._scan_handler,
+                            self._error_handler):
                 if plugin.handler_is_connected(handler):
-                    log.debug("Disconnect the cleaned signal, or it will clean many times")
+                    log.debug("Disconnect the cleaned signal, or it will clean many times: %s" % plugin)
                     plugin.disconnect(handler)
 
             self.janitor_model[plugin_iter][self.JANITOR_SPINNER_ACTIVE] = False
@@ -680,11 +687,14 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
             self.janitor_model[plugin_iter][self.JANITOR_DISPLAY] = "[0] %s" % plugin.get_title()
 
     @post_ui
-    def on_scan_error(self, plugin, error, plugin_iter):
-        #TODO deal with the error
+    def on_scan_error(self, plugin, error, iters):
+        plugin_iter, result_iter = iters
+
         self.janitor_model[plugin_iter][self.JANITOR_ICON] = icon.get_from_name('error', size=16)
+        self.result_model[result_iter][self.RESULT_DISPLAY] = '<span color="red"><b>%s</b></span>' % _('Scan error for "%s", double-click to see details') % plugin.get_title()
+
         plugin.set_data('scan_finished', True)
-        self.scan_tasks = []
+        plugin.set_data('error', error)
 
     @inline_callbacks
     def on_clean_button_clicked(self, widget):

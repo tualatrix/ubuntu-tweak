@@ -6,7 +6,7 @@ from ubuntutweak.gui.gtk import set_busy, unset_busy
 from ubuntutweak.janitor import JanitorPlugin, PackageObject
 from ubuntutweak.utils.package import AptWorker
 from ubuntutweak.utils import filesizeformat
-from ubuntutweak.common.debug import log_func
+from ubuntutweak.common.debug import log_func, get_traceback
 
 
 log = logging.getLogger('OldKernelPlugin')
@@ -22,21 +22,26 @@ class OldKernelPlugin(JanitorPlugin):
         log.debug("the current_kernel_version is %s" % self.current_kernel_version)
 
     def get_cruft(self):
-        cache = AptWorker.get_cache()
-        count = 0
-        size = 0
+        try:
+            cache = AptWorker.get_cache()
+            count = 0
+            size = 0
 
-        if cache:
-            for pkg in cache:
-                if pkg.isInstalled and self.is_old_kernel_package(pkg.name):
-                    log.debug("Find old kernerl: %s" % pkg.name)
-                    count += 1
-                    size += pkg.installedSize
-                    self.emit('find_object',
-                              PackageObject(pkg.name, pkg.name, pkg.installedSize),
-                              count)
+            if cache:
+                for pkg in cache:
+                    if pkg.isInstalled and self.is_old_kernel_package(pkg.name):
+                        log.debug("Find old kernerl: %s" % pkg.name)
+                        count += 1
+                        size += pkg.installedSize
+                        self.emit('find_object',
+                                  PackageObject(pkg.name, pkg.name, pkg.installedSize),
+                                  count)
 
-        self.emit('scan_finished', True, count, size)
+            self.emit('scan_finished', True, count, size)
+        except Exception, e:
+            error = get_traceback()
+            log.error(error)
+            self.emit('scan_error', error)
 
     def clean_cruft(self, cruft_list=[], parent=None):
         set_busy(parent)
@@ -65,7 +70,6 @@ class OldKernelPlugin(JanitorPlugin):
                       'linux-header-lbm', 'linux-restricted-modules']
 
         if pkg.startswith('linux'):
-            print pkg
             package = p_kernel_package.findall(pkg)
             if package:
                 package = package[0].rstrip('-')
