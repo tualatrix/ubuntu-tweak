@@ -363,7 +363,7 @@ class UbuntuTweakWindow(GuiBuilder):
         else:
             self.on_feature_button_clicked(getattr(self, '%s_button' % self.current_feature), self.current_feature)
             self.search_page.clean()
-            self.search_entry.set_property('secondary-icon-name', 'stock_search')
+            self.search_entry.set_property('secondary-icon-name', 'edit-find')
 
     def on_search_entry_icon_press(self, widget, icon_pos, event):
         widget.set_text('')
