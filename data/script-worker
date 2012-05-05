@@ -3,7 +3,7 @@
 
 # Ubuntu Tweak - PyGTK based desktop configure tool
 #
-# Copyright (C) 2007-2010 TualatriX <tualatrix@gmail.com>
+# Copyright (C) 2007-2012 TualatriX <tualatrix@gmail.com>
 #
 # Ubuntu Tweak is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,29 +21,32 @@
 
 import os
 import sys
-import gtk
-import gio
-import gobject
 import gettext
 import shutil
 import subprocess
 
+from gi.repository import Gtk, Gio, GObject
+
 from ubuntutweak.common.consts import *
-from ubuntutweak.modules.userdir import UserdirFile
+from ubuntutweak.admins.userdir import UserdirFile
 from ubuntutweak.common.debug import run_traceback
-from ubuntutweak.ui.dialogs import ErrorDialog
+from ubuntutweak.gui.dialogs import ErrorDialog
 from ubuntutweak.utils import get_command_for_type
 
-class FileChooserDialog(gtk.FileChooserDialog):
+
+class FileChooserDialog(Gtk.FileChooserDialog):
     """Show a dialog to select a folder, or to do more thing
     The default operation is select folder"""
-    def __init__(self,
-            title = None,
-            parent = None,
-            action = gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER,
-            buttons = (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, gtk.STOCK_OPEN, gtk.RESPONSE_ACCEPT)
-            ):
-        gtk.FileChooserDialog.__init__(self, title, parent, action, buttons)
+    def __init__(self, title=None, parent=None,
+                 action=Gtk.FileChooserAction.SELECT_FOLDER,
+                 buttons=((Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL),
+                          (Gtk.STOCK_OPEN, Gtk.ResponseType.ACCEPT))
+                 ):
+        GObject.GObject.__init__(self, title=title, parent=parent,
+                                 action=action)
+        for button in buttons:
+            self.add_button(*button)
+
 
 class FileOperation:
     """Do the real operation"""
@@ -173,8 +176,9 @@ class FileOperation:
     @classmethod
     def get_local_path(cls, uri):
         """Convert the URI to local path"""
-        vfs = gio.vfs_get_default()
+        vfs = Gio.Vfs.get_default()
         return vfs.get_file_for_uri(uri).get_path()
+
 
 class Worker:
     """The worker to do the real operation, with getattr to instrospect the operation"""
@@ -186,7 +190,7 @@ class Worker:
             if command in ('copy', 'move', 'link', 'hardlink'):
                 dialog = FileChooserDialog(_("Select a folder"))
                 dialog.set_current_folder(os.path.expanduser('~'))
-                if dialog.run() == gtk.RESPONSE_ACCEPT:
+                if dialog.run() == Gtk.ResponseType.ACCEPT:
                     folder = dialog.get_filename()
 
                     dialog.destroy()
