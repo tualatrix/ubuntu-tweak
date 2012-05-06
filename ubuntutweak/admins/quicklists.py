@@ -24,7 +24,7 @@ import shutil
 from gi.repository import GObject, Gtk
 from xdg.DesktopEntry import DesktopEntry
 
-from ubuntutweak.common.debug import log_func
+from ubuntutweak.common.debug import log_func, log_traceback
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.settings.gsettings import GSetting
 from ubuntutweak.gui.dialogs import QuestionDialog
@@ -226,7 +226,7 @@ class QuickLists(TweakModule):
         self.launcher_setting.connect_notify(self.update_launch_icon_model)
 
         self.action_view.get_selection().connect('changed', self.on_action_selection_changed)
-        
+
         self.update_launch_icon_model()
 
         self.add_start(self.main_paned)
@@ -236,6 +236,7 @@ class QuickLists(TweakModule):
         self.icon_model.clear()
 
         for desktop_file in self.launcher_setting.get_value():
+            log.debug('Processing with "%s"...' % desktop_file)
             if desktop_file.startswith('/') and os.path.exists(desktop_file):
                 path = desktop_file
             else:
@@ -244,7 +245,11 @@ class QuickLists(TweakModule):
                 else:
                     log.debug("No desktop file avaialbe in for %s" % desktop_file)
                     continue
-            entry = NewDesktopEntry(path)
+            try:
+                entry = NewDesktopEntry(path)
+            except Exception, e:
+                log_traceback(log)
+                continue
 
             self.icon_model.append((path,\
                                     icon.get_from_name(entry.getIcon(), size=32),\
@@ -298,6 +303,7 @@ class QuickLists(TweakModule):
         model, iter = widget.get_selected()
         if iter:
             self.action_model.clear()
+            self.add_action_button.set_sensitive(True)
 
             entry = model[iter][self.DESKTOP_ENTRY]
             for action in entry.get_actions():
@@ -317,6 +323,7 @@ class QuickLists(TweakModule):
                 if iter:
                     self.action_view.get_selection().select_iter(iter)
         else:
+            self.add_action_button.set_sensitive(False)
             self.redo_action_button.set_sensitive(False)
 
     @log_func(log)
