@@ -109,16 +109,18 @@ class NewDesktopEntry(DesktopEntry):
 
     @log_func(log)
     def get_name_by_action(self, action):
-        return self.get('Name', self.get_action_full_name(action))
+        return self.get('Name', self.get_action_full_name(action), locale=True)
 
     @log_func(log)
     def get_exec_by_action(self, action):
         return self.get('Exec', self.get_action_full_name(action))
-
     @log_func(log)
     @save_to_user
     def set_name_by_action(self, action, name):
-        self.set('Name', name, group=self.get_action_full_name(action))
+        # First there's must be at least one non-locale value
+        if not self.get('Name', name):
+            self.set('Name', name, group=self.get_action_full_name(action))
+        self.set('Name', name, group=self.get_action_full_name(action), locale=True)
         self.write()
 
     @log_func(log)
@@ -197,6 +199,8 @@ class NewDesktopEntry(DesktopEntry):
         if self.can_reset():
             shutil.copy(self.get_system_desktop_file(),
                         self.get_user_desktop_file())
+            # Parse a file will not destroy the old content, so destroy manually
+            self.content = dict()
             self.parse(self.filename)
 
 
