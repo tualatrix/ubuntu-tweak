@@ -42,16 +42,23 @@ class Misc(TweakModule):
     utext_disable_print_setting = _("Disable printer settings")
     utext_save = _("Disable save to disk")
     utext_user_switch = _('Disable "Fast User Switching"')
-    utext_cursor_blink = _('Cursor blink')
+    utext_cursor_blink = _('Cursor blink:')
+    utext_overlay_scrollbar = _('Overlay scrollbars:')
     utext_cursor_blink_time = _('Cursor blink time:')
     utext_cursor_blink_timeout = _('Cursor blink timeout:')
 
     def __init__(self):
         TweakModule.__init__(self)
 
-        self.natural_scrolling_button = Gtk.CheckButton(self.utext_natural)
+        self.natural_scrolling_switch = Gtk.Switch()
         self.set_the_natural_status()
-        self.natural_scrolling_button.connect('toggled', self.on_natural_scrolling_toggled)
+        self.natural_scrolling_switch.connect('notify::active', self.on_natural_scrolling_changed)
+
+        notes_label = Gtk.Label()
+        notes_label.set_property('halign', Gtk.Align.START)
+        notes_label.set_markup('<span size="smaller">%s</span>' % \
+                _('Note: you may need to log out to take effect'))
+        notes_label._ut_left = 1
 
         self.theme_box = GridPack(
                             WidgetFactory.create('CheckButton',
@@ -95,8 +102,14 @@ class Misc(TweakModule):
                                                  backend="gsettings",
                                                  blank_label=True),
                             Gtk.Separator(),
-                            self.natural_scrolling_button,
-                            WidgetFactory.create('CheckButton',
+                            (Gtk.Label(self.utext_natural), self.natural_scrolling_switch),
+                            notes_label,
+                            WidgetFactory.create('Switch',
+                                                 label=self.utext_overlay_scrollbar,
+                                                 key='org.gnome.desktop.interface.ubuntu-overlay-scrollbars',
+                                                 backend='gsettings',
+                                                 ),
+                            WidgetFactory.create('Switch',
                                                  label=self.utext_cursor_blink,
                                                  key='org.gnome.desktop.interface.cursor-blink',
                                                  backend='gsettings',
@@ -153,15 +166,10 @@ class Misc(TweakModule):
         return True
 
     def set_the_natural_status(self):
-        enabled = self.get_natural_scrolling_enabled()
-        if enabled is not None:
-            self.natural_scrolling_button.set_inconsistent(False)
-            self.natural_scrolling_button.set_active(enabled)
-        else:
-            self.natural_scrolling_button.set_inconsistent(True)
+        self.natural_scrolling_switch.set_active(self.get_natural_scrolling_enabled())
 
-    def on_natural_scrolling_toggled(self, widget):
-        log.debug('>>>>> on_natural_scrolling_toggled: %s' % widget.get_active())
+    def on_natural_scrolling_changed(self, widget, *args):
+        log.debug('>>>>> on_natural_scrolling_changed: %s' % widget.get_active())
 
         map = '1 2 3 4 5 6 7 8 9 10 11 12'
 
