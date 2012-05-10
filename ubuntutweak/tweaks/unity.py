@@ -20,16 +20,14 @@ import os
 import re
 import logging
 
-from gi.repository import GObject, Gtk, Gio, GdkPixbuf
+from gi.repository import Gtk
 
 from ubuntutweak import system
 from ubuntutweak.utils import icon
-from ubuntutweak.gui.containers import ListPack, GridPack, SinglePack
-from ubuntutweak.gui.treeviews import get_local_path
+from ubuntutweak.gui.containers import GridPack
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.factory import WidgetFactory
 from ubuntutweak.settings.gconfsettings import GconfSetting
-from ubuntutweak.settings.compizsettings import CompizPlugin, CompizSetting
 
 log = logging.getLogger('Unity')
 
@@ -48,6 +46,7 @@ class Unity(TweakModule):
     utext_launcher_hide = _('Launcher hide mode:')
     utext_launcher_backlight = _('Launcher icon backlight:')
     utext_device = _('Launcher show devices:')
+    utext_show_desktop_icon = _('"Show desktop" icon:')
     utext_dash_size = _('Dash size:')
     utext_blur_type = _('Blur type:')
     utext_panel_opacity = _('Panel opacity:')
@@ -84,6 +83,11 @@ class Unity(TweakModule):
                             backend="compiz",
                             enable_reset=True),
                         Gtk.Separator(),
+                        WidgetFactory.create("Switch",
+                            label=self.utext_show_desktop_icon,
+                            key="unityshell.show_desktop_icon",
+                            backend="compiz",
+                            enable_reset=True),
                         WidgetFactory.create("Scale",
                             label=self.utext_launcher_size,
                             key="unityshell.icon_size",
