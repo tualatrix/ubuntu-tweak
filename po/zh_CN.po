@@ -2,38 +2,38 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-24 11:47+0800\n"
-"PO-Revision-Date: 2012-04-21 08:55+0000\n"
+"POT-Creation-Date: 2012-05-10 16:49+0800\n"
+"PO-Revision-Date: 2012-05-11 03:29+0000\n"
 "Last-Translator: Ding Zhou <tualatrix@gmail.com>\n"
 "Language-Team: TualatriX <tualatrix@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-04-25 12:13+0000\n"
-"X-Generator: Launchpad (build 15139)\n"
+"X-Launchpad-Export-Date: 2012-05-11 06:33+0000\n"
+"X-Generator: Launchpad (build 15225)\n"
 "X-Poedit-Country: CHINA\n"
 "X-Poedit-Language: Chinese\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: ../data/script-worker:54
+#: ../data/script-worker:57
 #, c-format
 msgid "You don't have permission to write in %s"
 msgstr "你没有写入 %s 的权限"
 
-#: ../data/script-worker:152 ../data/script-worker:165
+#: ../data/script-worker:155 ../data/script-worker:168
 msgid "Enter your password to perform the administrative tasks"
 msgstr "输入你的密码来执行管理权限的任务。"
 
-#: ../data/script-worker:159
+#: ../data/script-worker:162
 msgid "Coudn't find any text editor in your system!"
 msgstr "在你的系统中未找到任何文本编辑器！"
 
-#: ../data/script-worker:187
+#: ../data/script-worker:191
 msgid "Select a folder"
 msgstr "请选择一个文件夹"
 
-#: ../data/script-worker:217
+#: ../data/script-worker:221
 msgid "Please select a target (files or folders)."
 msgstr "请选择一个目标（文件或目录）。"
 
@@ -386,7 +386,9 @@ msgstr ""
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
-"  Ding Zhou https://launchpad.net/~tualatrix"
+"  Ding Zhou https://launchpad.net/~tualatrix\n"
+"  Heling Yao https://launchpad.net/~hyao\n"
+"  Tolbkni Kao https://launchpad.net/~tolbkni"
 
 #: ../data/ui/mainwindow.ui.h:7
 msgid "Search... <Ctrl+F>"
@@ -456,8 +458,8 @@ msgid "Error happened!"
 msgstr "有错误发生！"
 
 #: ../ubuntutweak/network/utdata.py:50 ../ubuntutweak/network/utdata.py:83
-#: ../ubuntutweak/tweaks/unity.py:67 ../ubuntutweak/tweaks/unity.py:70
-#: ../ubuntutweak/tweaks/unity.py:127 ../ubuntutweak/tweaks/unity.py:200
+#: ../ubuntutweak/tweaks/unity.py:66 ../ubuntutweak/tweaks/unity.py:69
+#: ../ubuntutweak/tweaks/unity.py:131 ../ubuntutweak/tweaks/unity.py:199
 msgid "Never"
 msgstr "从不"
 
@@ -518,11 +520,11 @@ msgstr "现在点击“报告”来访问 Bug 报告网站。确保在“Futher 
 msgid "Copy Error Message"
 msgstr "复制错误信息"
 
-#: ../ubuntutweak/common/debug.py:118
+#: ../ubuntutweak/common/debug.py:121
 msgid "Sorry, your distribution is not supported by Ubuntu Tweak"
 msgstr "对不起，Ubuntu Tweak不支持您的发行版。"
 
-#: ../ubuntutweak/common/debug.py:119
+#: ../ubuntutweak/common/debug.py:122
 msgid ""
 "You can't file bug for this issue. Please only use Ubuntu Tweak on Ubuntu. "
 "Or it may kill your cat."
@@ -584,28 +586,33 @@ msgstr "Apt缓存"
 msgid "No cache to be cleaned"
 msgstr "没有需要清理的缓存"
 
-#: ../ubuntutweak/janitor/__init__.py:567
+#: ../ubuntutweak/janitor/__init__.py:572
 #, python-format
 msgid "Scanning cruft for \"%s\"..."
 msgstr "正在扫描\"%s\"..."
 
-#: ../ubuntutweak/janitor/__init__.py:749
+#: ../ubuntutweak/janitor/__init__.py:694
+#, python-format
+msgid "Scan error for \"%s\", double-click to see details"
+msgstr "扫描 \"%s\" 时遇到错误，双击查看详细信息"
+
+#: ../ubuntutweak/janitor/__init__.py:759
 #, python-format
 msgid "Cleaning cruft for \"%s\"..."
 msgstr "正在清理\"%s\"..."
 
-#: ../ubuntutweak/janitor/__init__.py:830
+#: ../ubuntutweak/janitor/__init__.py:840
 #: ../ubuntutweak/admins/desktoprecovery.py:81
 #: ../ubuntutweak/modules/__init__.py:34
 msgid "System"
 msgstr "系统"
 
-#: ../ubuntutweak/janitor/__init__.py:852
+#: ../ubuntutweak/janitor/__init__.py:862
 #: ../ubuntutweak/modules/__init__.py:33
 msgid "Personal"
 msgstr "个人"
 
-#: ../ubuntutweak/janitor/__init__.py:875
+#: ../ubuntutweak/janitor/__init__.py:885
 msgid "Apps"
 msgstr "应用"
 
@@ -617,11 +624,11 @@ msgstr "软件配置文件"
 msgid "Packages Configs (No package config to be removed)"
 msgstr "软件配置文件（没有软件配置可以被移除）"
 
-#: ../ubuntutweak/janitor/oldkernel_plugin.py:15
+#: ../ubuntutweak/janitor/oldkernel_plugin.py:16
 msgid "Old Kernel"
 msgstr "旧内核"
 
-#: ../ubuntutweak/janitor/oldkernel_plugin.py:94
+#: ../ubuntutweak/janitor/oldkernel_plugin.py:101
 msgid "Old Kernel Packages (No old kernel package to be removed)"
 msgstr "旧的内核(没有要移除的旧内核)"
 
@@ -632,7 +639,7 @@ msgstr "应用程序"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:80
 #: ../ubuntutweak/admins/userdir.py:34 ../ubuntutweak/modules/__init__.py:32
-#: ../ubuntutweak/tweaks/unity.py:138
+#: ../ubuntutweak/tweaks/unity.py:142
 msgid "Desktop"
 msgstr "桌面"
 
@@ -814,6 +821,10 @@ msgstr ""
 "你不能启用该源，因为<b>\"%(SOURCE)s\"</b>与其冲突。\n"
 "如果想要继续你需要先禁用<b>\"%(SOURCE)s\"</b>。"
 
+#: ../ubuntutweak/admins/sourcecenter.py:791
+msgid "Dependency Notice"
+msgstr "依赖提醒"
+
 #: ../ubuntutweak/admins/sourcecenter.py:792
 #, python-format
 msgid ""
@@ -823,11 +834,7 @@ msgstr ""
 "启用这个源前你需要先先启用<b>\"%s\"</b>。\n"
 "你想要继续吗？"
 
-#: ../ubuntutweak/admins/sourcecenter.py:794
-msgid "Dependency Notice"
-msgstr "依赖提醒"
-
-#: ../ubuntutweak/admins/sourcecenter.py:818
+#: ../ubuntutweak/admins/sourcecenter.py:817
 #, python-format
 msgid ""
 "You can't disable this Source because <b>\"%(SOURCE)s\"</b> depends on it.\n"
@@ -836,45 +843,45 @@ msgstr ""
 "你不可以禁用该源，因为 <b>\"%(SOURCE)s\"</b> 正依赖它。\n"
 "如果想要继续请先禁用 <b>\"%(SOURCE)s\"</b>。"
 
-#: ../ubuntutweak/admins/sourcecenter.py:904
+#: ../ubuntutweak/admins/sourcecenter.py:903
 msgid "New source has been enabled"
 msgstr "新的源已经被启用"
 
-#: ../ubuntutweak/admins/sourcecenter.py:905
+#: ../ubuntutweak/admins/sourcecenter.py:904
 #, python-format
 msgid ""
 "%s is enabled now, Please click the refresh button to update the application "
 "cache."
 msgstr "%s已经被启用，请点击“刷新”按钮来更新应用程序缓存。"
 
-#: ../ubuntutweak/admins/sourcecenter.py:922
+#: ../ubuntutweak/admins/sourcecenter.py:921
 msgid "Enabled PPAs"
 msgstr "已启用的PPA"
 
-#: ../ubuntutweak/admins/sourcecenter.py:925
+#: ../ubuntutweak/admins/sourcecenter.py:924
 msgid "Source Center"
 msgstr "软件源中心"
 
-#: ../ubuntutweak/admins/sourcecenter.py:926
+#: ../ubuntutweak/admins/sourcecenter.py:925
 msgid ""
 "A collection of software sources to ensure your applications are always up-"
 "to-date."
 msgstr "一些软件源的收集帮助您使应用程序时刻保持最新。"
 
-#: ../ubuntutweak/admins/sourcecenter.py:929
+#: ../ubuntutweak/admins/sourcecenter.py:928
 msgid "Visit online Source Center"
 msgstr "访问在线软件源中心"
 
-#: ../ubuntutweak/admins/sourcecenter.py:938
+#: ../ubuntutweak/admins/sourcecenter.py:937
 #: ../ubuntutweak/admins/appcenter.py:505
 msgid "_Sync"
 msgstr "同步(_S)"
 
-#: ../ubuntutweak/admins/sourcecenter.py:975
+#: ../ubuntutweak/admins/sourcecenter.py:974
 msgid "Warning"
 msgstr "警告"
 
-#: ../ubuntutweak/admins/sourcecenter.py:976
+#: ../ubuntutweak/admins/sourcecenter.py:975
 msgid ""
 "It is a possible security risk to use packages from Third-Party Sources.\n"
 "Please be careful and use only sources you trust."
@@ -882,20 +889,24 @@ msgstr ""
 "使用第三方软件源可能会引起安全方面的问题。\n"
 "请小心谨慎，仅使用信任的软件源。"
 
-#: ../ubuntutweak/admins/sourcecenter.py:980
+#: ../ubuntutweak/admins/sourcecenter.py:979
 msgid "Never show this dialog"
 msgstr "从不显示此对话框"
 
 #. the "%s" is in front, some is the end, so just return the long one
-#: ../ubuntutweak/admins/sourcecenter.py:1010
+#: ../ubuntutweak/admins/sourcecenter.py:1009
 #, python-format
 msgid "disabled on upgrade to %s"
 msgstr "无法升级到%s"
 
-#: ../ubuntutweak/admins/sourcecenter.py:1015
+#: ../ubuntutweak/admins/sourcecenter.py:1014
 #: ../ubuntutweak/admins/appcenter.py:545
 msgid "Last synced:"
 msgstr "最后一次同步："
+
+#: ../ubuntutweak/admins/sourcecenter.py:1019
+msgid "Upgrade Third Party Sources"
+msgstr "升级第三方源"
 
 #: ../ubuntutweak/admins/sourcecenter.py:1020
 msgid ""
@@ -905,10 +916,6 @@ msgid ""
 msgstr ""
 "当一次成功的发行版升级后，所有你使用的第三方源将会默认被禁用。\n"
 "你想要重新启用被更新管理器禁用的第三方源吗？"
-
-#: ../ubuntutweak/admins/sourcecenter.py:1023
-msgid "Upgrade Third Party Sources"
-msgstr "升级第三方源"
 
 #: ../ubuntutweak/admins/sourcecenter.py:1029
 msgid "Upgrade Successful!"
@@ -955,7 +962,7 @@ msgstr "现在您可以安全地清除该 PPA，没有任何软件需要降级�
 msgid "To safely purge the PPA, the following packages must be downgraded."
 msgstr "为了安全地清除该 PPA，下述软件包软件被降级。"
 
-#: ../ubuntutweak/admins/sourcecenter.py:1217
+#: ../ubuntutweak/admins/sourcecenter.py:1216
 #, python-format
 msgid "You're going to purge \"%s\":"
 msgstr "您正准备清除 \"%s\"："
@@ -1260,29 +1267,29 @@ msgstr "还原(_R)"
 msgid "_Change"
 msgstr "更改(_C)"
 
-#: ../ubuntutweak/admins/quicklists.py:204
+#: ../ubuntutweak/admins/quicklists.py:208
 msgid "QuickLists Editor"
 msgstr "QuickLists编辑器"
 
-#: ../ubuntutweak/admins/quicklists.py:205
+#: ../ubuntutweak/admins/quicklists.py:209
 msgid "Unity Launcher QuickLists Editor"
 msgstr "Unity启动器之QuickLists编辑器"
 
-#: ../ubuntutweak/admins/quicklists.py:386
+#: ../ubuntutweak/admins/quicklists.py:397
 #, python-format
 msgid "Would you like to reset \"%s\"?"
 msgstr "您想要重置\"%s\"吗？"
 
-#: ../ubuntutweak/admins/quicklists.py:387
+#: ../ubuntutweak/admins/quicklists.py:398
 #, python-format
 msgid "If you continue, the actions of %s will be set to default."
 msgstr "如果您继续，%s的所有动作将被设置为默认。"
 
-#: ../ubuntutweak/admins/quicklists.py:400
+#: ../ubuntutweak/admins/quicklists.py:411
 msgid "Would you like to reset the launcher items?"
 msgstr "您想要重置启动器的条目吗？"
 
-#: ../ubuntutweak/admins/quicklists.py:401
+#: ../ubuntutweak/admins/quicklists.py:412
 msgid ""
 "If you continue, launcher will be set to default and all your current items "
 "will be lost."
@@ -1445,8 +1452,8 @@ msgstr "命令 %d"
 #: ../ubuntutweak/admins/shortcuts.py:200
 #: ../ubuntutweak/admins/filetypemanager.py:177
 #: ../ubuntutweak/admins/filetypemanager.py:201
-#: ../ubuntutweak/tweaks/window.py:76 ../ubuntutweak/tweaks/window.py:83
-#: ../ubuntutweak/tweaks/window.py:94 ../ubuntutweak/tweaks/window.py:109
+#: ../ubuntutweak/tweaks/window.py:77 ../ubuntutweak/tweaks/window.py:84
+#: ../ubuntutweak/tweaks/window.py:95 ../ubuntutweak/tweaks/window.py:110
 msgid "None"
 msgstr "没有"
 
@@ -1668,11 +1675,11 @@ msgstr "主题"
 msgid "Set the gtk theme, icon theme, cursor theme and others"
 msgstr "设置 GTK 主题、图标主题、指针主题及其它"
 
-#: ../ubuntutweak/tweaks/theme.py:41 ../ubuntutweak/tweaks/loginsettings.py:46
+#: ../ubuntutweak/tweaks/theme.py:41 ../ubuntutweak/tweaks/loginsettings.py:47
 msgid "Icon theme:"
 msgstr "图标主题："
 
-#: ../ubuntutweak/tweaks/theme.py:42 ../ubuntutweak/tweaks/loginsettings.py:45
+#: ../ubuntutweak/tweaks/theme.py:42 ../ubuntutweak/tweaks/loginsettings.py:46
 msgid "Gtk theme:"
 msgstr "GTK主题："
 
@@ -1710,60 +1717,60 @@ msgstr "窗口"
 msgid "Manage Window Manager settings"
 msgstr "管理窗口管理器的设置"
 
-#: ../ubuntutweak/tweaks/window.py:47
+#: ../ubuntutweak/tweaks/window.py:48
 msgid "Window control button position:"
 msgstr "窗口控制按钮位置："
 
-#: ../ubuntutweak/tweaks/window.py:48
+#: ../ubuntutweak/tweaks/window.py:49
 msgid "\"Close\" button only"
 msgstr "仅使用\"关闭\"按钮"
 
-#: ../ubuntutweak/tweaks/window.py:49
+#: ../ubuntutweak/tweaks/window.py:50
 msgid "Titlebar mouse wheel action:"
 msgstr "标题栏鼠标滚轮动作："
 
-#: ../ubuntutweak/tweaks/window.py:50
+#: ../ubuntutweak/tweaks/window.py:51
 msgid "Titlebar double-click action:"
 msgstr "标题栏双击动作："
 
-#: ../ubuntutweak/tweaks/window.py:51
+#: ../ubuntutweak/tweaks/window.py:52
 msgid "Titlebar middle-click action:"
 msgstr "标题栏中键动作："
 
-#: ../ubuntutweak/tweaks/window.py:52
+#: ../ubuntutweak/tweaks/window.py:53
 msgid "Titlebar right-click action:"
 msgstr "标题栏右键动作："
 
-#: ../ubuntutweak/tweaks/window.py:76 ../ubuntutweak/tweaks/window.py:84
-#: ../ubuntutweak/tweaks/window.py:97 ../ubuntutweak/tweaks/window.py:112
+#: ../ubuntutweak/tweaks/window.py:77 ../ubuntutweak/tweaks/window.py:85
+#: ../ubuntutweak/tweaks/window.py:98 ../ubuntutweak/tweaks/window.py:113
 msgid "Roll up"
 msgstr "卷起"
 
-#: ../ubuntutweak/tweaks/window.py:83 ../ubuntutweak/tweaks/window.py:94
-#: ../ubuntutweak/tweaks/window.py:109
+#: ../ubuntutweak/tweaks/window.py:84 ../ubuntutweak/tweaks/window.py:95
+#: ../ubuntutweak/tweaks/window.py:110
 msgid "Maximize"
 msgstr "最大化"
 
-#: ../ubuntutweak/tweaks/window.py:84 ../ubuntutweak/tweaks/window.py:97
-#: ../ubuntutweak/tweaks/window.py:112
+#: ../ubuntutweak/tweaks/window.py:85 ../ubuntutweak/tweaks/window.py:98
+#: ../ubuntutweak/tweaks/window.py:113
 msgid "Minimize"
 msgstr "最小化"
 
-#: ../ubuntutweak/tweaks/window.py:85 ../ubuntutweak/tweaks/window.py:98
-#: ../ubuntutweak/tweaks/window.py:113
+#: ../ubuntutweak/tweaks/window.py:86 ../ubuntutweak/tweaks/window.py:99
+#: ../ubuntutweak/tweaks/window.py:114
 msgid "Lower"
 msgstr "降至最下层"
 
-#: ../ubuntutweak/tweaks/window.py:85 ../ubuntutweak/tweaks/window.py:98
-#: ../ubuntutweak/tweaks/window.py:113
+#: ../ubuntutweak/tweaks/window.py:86 ../ubuntutweak/tweaks/window.py:99
+#: ../ubuntutweak/tweaks/window.py:114
 msgid "Menu"
 msgstr "弹出菜单"
 
-#: ../ubuntutweak/tweaks/window.py:95 ../ubuntutweak/tweaks/window.py:110
+#: ../ubuntutweak/tweaks/window.py:96 ../ubuntutweak/tweaks/window.py:111
 msgid "Maximize Horizontally"
 msgstr "水平方向最大化"
 
-#: ../ubuntutweak/tweaks/window.py:96 ../ubuntutweak/tweaks/window.py:111
+#: ../ubuntutweak/tweaks/window.py:97 ../ubuntutweak/tweaks/window.py:112
 msgid "Maximize Vertically"
 msgstr "垂直方向最大化"
 
@@ -1903,7 +1910,7 @@ msgstr "输入反馈声音："
 msgid "Sound theme:"
 msgstr "声音主题："
 
-#: ../ubuntutweak/tweaks/sound.py:37 ../ubuntutweak/tweaks/loginsettings.py:44
+#: ../ubuntutweak/tweaks/sound.py:37 ../ubuntutweak/tweaks/loginsettings.py:45
 msgid "Play login sound:"
 msgstr "播放登录音："
 
@@ -1952,16 +1959,24 @@ msgid "Disable \"Fast User Switching\""
 msgstr "禁用“快速用户切换”"
 
 #: ../ubuntutweak/tweaks/misc.py:45
-msgid "Cursor blink"
-msgstr "光标闪烁"
+msgid "Cursor blink:"
+msgstr "光标闪烁："
 
 #: ../ubuntutweak/tweaks/misc.py:46
+msgid "Overlay scrollbars:"
+msgstr "即现式滚动条："
+
+#: ../ubuntutweak/tweaks/misc.py:47
 msgid "Cursor blink time:"
 msgstr "光标闪烁时间："
 
-#: ../ubuntutweak/tweaks/misc.py:47
+#: ../ubuntutweak/tweaks/misc.py:48
 msgid "Cursor blink timeout:"
 msgstr "光标闪烁超时："
+
+#: ../ubuntutweak/tweaks/misc.py:60 ../ubuntutweak/tweaks/unity.py:175
+msgid "Note: you may need to log out to take effect"
+msgstr "注意：您可能需要登出以生效"
 
 #: ../ubuntutweak/tweaks/loginsettings.py:37
 msgid "Login Settings"
@@ -1971,23 +1986,23 @@ msgstr "登录设置"
 msgid "Control the appearance and behaviour of your login screen"
 msgstr "控制登录屏幕的外观和行为"
 
-#: ../ubuntutweak/tweaks/loginsettings.py:43
+#: ../ubuntutweak/tweaks/loginsettings.py:44
 msgid "Draw grid:"
 msgstr "绘制点阵："
 
-#: ../ubuntutweak/tweaks/loginsettings.py:122
+#: ../ubuntutweak/tweaks/loginsettings.py:125
 msgid "Choose a new logo image"
 msgstr "选择一张新的Logo图像"
 
-#: ../ubuntutweak/tweaks/loginsettings.py:128
+#: ../ubuntutweak/tweaks/loginsettings.py:131
 msgid "All images (*.PNG)"
 msgstr "所有图片(*.PNG)"
 
-#: ../ubuntutweak/tweaks/loginsettings.py:175
+#: ../ubuntutweak/tweaks/loginsettings.py:178
 msgid "Choose a new background image"
 msgstr "选择一张新的背景图像"
 
-#: ../ubuntutweak/tweaks/loginsettings.py:181
+#: ../ubuntutweak/tweaks/loginsettings.py:184
 msgid "All images"
 msgstr "所有图像"
 
@@ -2059,136 +2074,136 @@ msgstr "标准灰度边缘平滑"
 msgid "Subpixel antialiasing (LCD screens only)"
 msgstr "次像素平滑(仅适用于 LCD)"
 
-#: ../ubuntutweak/tweaks/unity.py:39
+#: ../ubuntutweak/tweaks/unity.py:37
 msgid "Tweak the powerful Unity desktop"
 msgstr "设置您的 Unity 桌面"
 
-#: ../ubuntutweak/tweaks/unity.py:44
+#: ../ubuntutweak/tweaks/unity.py:42
 msgid "HUD:"
 msgstr "HUD："
 
-#: ../ubuntutweak/tweaks/unity.py:45
+#: ../ubuntutweak/tweaks/unity.py:43
 msgid "Shortcut hits overlay:"
 msgstr "快捷键提示层："
 
-#: ../ubuntutweak/tweaks/unity.py:46
+#: ../ubuntutweak/tweaks/unity.py:44
 msgid "Launcher icon size:"
 msgstr "启动器图标尺寸："
 
-#: ../ubuntutweak/tweaks/unity.py:47
+#: ../ubuntutweak/tweaks/unity.py:45
 msgid "Launcher opacity:"
 msgstr "启动器透明度："
 
-#: ../ubuntutweak/tweaks/unity.py:48
+#: ../ubuntutweak/tweaks/unity.py:46
 msgid "Launcher hide mode:"
 msgstr "启动器隐藏模式："
 
-#: ../ubuntutweak/tweaks/unity.py:49
+#: ../ubuntutweak/tweaks/unity.py:47
 msgid "Launcher icon backlight:"
 msgstr "启动器图标背光："
 
-#: ../ubuntutweak/tweaks/unity.py:50
+#: ../ubuntutweak/tweaks/unity.py:48
 msgid "Launcher show devices:"
 msgstr "启动器显示设备："
 
-#: ../ubuntutweak/tweaks/unity.py:51
+#: ../ubuntutweak/tweaks/unity.py:49
+msgid "\"Show desktop\" icon:"
+msgstr "\"显示桌面\"图标"
+
+#: ../ubuntutweak/tweaks/unity.py:50
 msgid "Dash size:"
 msgstr "Dash尺寸："
 
-#: ../ubuntutweak/tweaks/unity.py:52
-msgid "Dash color:"
-msgstr "Dash的颜色："
-
-#: ../ubuntutweak/tweaks/unity.py:53
+#: ../ubuntutweak/tweaks/unity.py:51
 msgid "Blur type:"
 msgstr "模糊类型："
 
-#: ../ubuntutweak/tweaks/unity.py:54
+#: ../ubuntutweak/tweaks/unity.py:52
 msgid "Panel opacity:"
 msgstr "面板透明度："
 
-#: ../ubuntutweak/tweaks/unity.py:55
+#: ../ubuntutweak/tweaks/unity.py:53
 msgid "Panel opacity for maximized windows:"
 msgstr "面板为最大化窗口透明："
 
+#: ../ubuntutweak/tweaks/unity.py:54
+msgid "Super key:"
+msgstr "Super 键："
+
+#: ../ubuntutweak/tweaks/unity.py:55
+msgid "Full screen dash:"
+msgstr "全屏Dash："
+
 #: ../ubuntutweak/tweaks/unity.py:56
-msgid "Enable the Super key"
-msgstr "启用 Super 键"
+msgid "Compositing manager:"
+msgstr "合成窗口管理器："
 
 #: ../ubuntutweak/tweaks/unity.py:57
-msgid "Full screen dash"
-msgstr "全屏幕Dash"
+msgid "Number of workspaces:"
+msgstr "工作区数目："
 
-#: ../ubuntutweak/tweaks/unity.py:58
-msgid "Only one launcher when multi-monitor"
-msgstr "多屏幕时只使用一个启动器"
-
-#: ../ubuntutweak/tweaks/unity.py:67 ../ubuntutweak/tweaks/unity.py:70
-#: ../ubuntutweak/tweaks/unity.py:200
+#: ../ubuntutweak/tweaks/unity.py:66 ../ubuntutweak/tweaks/unity.py:69
+#: ../ubuntutweak/tweaks/unity.py:199
 msgid "Auto Hide"
 msgstr "自动隐藏"
 
-#: ../ubuntutweak/tweaks/unity.py:67
+#: ../ubuntutweak/tweaks/unity.py:66
 msgid "Dodge Window"
 msgstr "避让窗口"
 
-#: ../ubuntutweak/tweaks/unity.py:67
+#: ../ubuntutweak/tweaks/unity.py:66
 msgid "Dodge Active Window"
 msgstr "避让活动窗口"
 
-#: ../ubuntutweak/tweaks/unity.py:115
+#: ../ubuntutweak/tweaks/unity.py:119
 msgid "Backlight Always On"
 msgstr "背光保持打开"
 
-#: ../ubuntutweak/tweaks/unity.py:116
+#: ../ubuntutweak/tweaks/unity.py:120
 msgid "Backlight Toggles"
 msgstr "背光开关"
 
-#: ../ubuntutweak/tweaks/unity.py:117
+#: ../ubuntutweak/tweaks/unity.py:121
 msgid "Backlight Always Off"
 msgstr "背光保持关闭"
 
-#: ../ubuntutweak/tweaks/unity.py:118
+#: ../ubuntutweak/tweaks/unity.py:122
 msgid "Edge Illumination Toggles"
 msgstr "激发边缘光照"
 
-#: ../ubuntutweak/tweaks/unity.py:119
+#: ../ubuntutweak/tweaks/unity.py:123
 msgid "Backlight and Edge Illumination Toggles"
 msgstr "激发背光和边缘光照"
 
-#: ../ubuntutweak/tweaks/unity.py:128
+#: ../ubuntutweak/tweaks/unity.py:132
 msgid "Only Mounted"
 msgstr "仅已挂载的"
 
-#: ../ubuntutweak/tweaks/unity.py:129
+#: ../ubuntutweak/tweaks/unity.py:133
 msgid "Always"
 msgstr "总是显示"
 
-#: ../ubuntutweak/tweaks/unity.py:138
+#: ../ubuntutweak/tweaks/unity.py:142
 msgid "Automatic"
 msgstr "自动"
 
-#: ../ubuntutweak/tweaks/unity.py:138
+#: ../ubuntutweak/tweaks/unity.py:142
 msgid "Netbook"
 msgstr "上网本"
 
-#: ../ubuntutweak/tweaks/unity.py:150
+#: ../ubuntutweak/tweaks/unity.py:149
 msgid "No blur"
 msgstr "无模糊"
 
-#: ../ubuntutweak/tweaks/unity.py:151
+#: ../ubuntutweak/tweaks/unity.py:150
 msgid "Static blur"
 msgstr "静态模糊"
 
-#: ../ubuntutweak/tweaks/unity.py:152
+#: ../ubuntutweak/tweaks/unity.py:151
 msgid "Active blur"
 msgstr "动态模糊"
 
-#: ../ubuntutweak/tweaks/unity.py:191
-msgid "Launcher"
-msgstr "启动器"
-
-#: ../ubuntutweak/tweaks/unity.py:201
+#: ../ubuntutweak/tweaks/unity.py:200
 msgid "Intellihide"
 msgstr "智能隐藏"
 
@@ -2324,11 +2339,11 @@ msgstr "软件包信息已于最近一小时内更新。"
 msgid "Reset setting to default value: %s"
 msgstr "重置设置为默认值：%s"
 
-#: ../ubuntutweak/gui/widgets.py:460
+#: ../ubuntutweak/gui/widgets.py:464
 msgid "Please press the new key combination"
 msgstr "请按下你的新组合键"
 
-#: ../ubuntutweak/gui/widgets.py:512
+#: ../ubuntutweak/gui/widgets.py:516
 msgid "Disabled"
 msgstr "禁用"
 
@@ -2509,6 +2524,12 @@ msgstr "\"%s\" 已经安装"
 #~ msgid "Downloading...%s"
 #~ msgstr "正在下载...%s"
 
+#~ msgid "Launcher"
+#~ msgstr "启动器"
+
+#~ msgid "Enable the Super key"
+#~ msgstr "启用 Super 键"
+
 #~ msgid "No PPA to be removed"
 #~ msgstr "没有要移除的 PPA"
 
@@ -2521,6 +2542,9 @@ msgstr "\"%s\" 已经安装"
 
 #~ msgid "Cursor blink time"
 #~ msgstr "光标闪烁时间"
+
+#~ msgid "Cursor blink"
+#~ msgstr "光标闪烁"
 
 #~ msgid "Cursor blink timeout"
 #~ msgstr "光标闪烁超时"

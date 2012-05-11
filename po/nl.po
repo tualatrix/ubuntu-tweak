@@ -7,41 +7,41 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-24 11:47+0800\n"
-"PO-Revision-Date: 2012-04-24 18:15+0000\n"
+"POT-Creation-Date: 2012-05-10 16:49+0800\n"
+"PO-Revision-Date: 2012-05-10 18:31+0000\n"
 "Last-Translator: rob <linuxned@gmail.com>\n"
 "Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-04-25 12:13+0000\n"
-"X-Generator: Launchpad (build 15139)\n"
+"X-Launchpad-Export-Date: 2012-05-11 06:33+0000\n"
+"X-Generator: Launchpad (build 15225)\n"
 
-#: ../data/script-worker:54
+#: ../data/script-worker:57
 #, c-format
 msgid "You don't have permission to write in %s"
 msgstr "U heeft geen schrijfrechten voor %s"
 
-#: ../data/script-worker:152 ../data/script-worker:165
+#: ../data/script-worker:155 ../data/script-worker:168
 msgid "Enter your password to perform the administrative tasks"
 msgstr "Voer uw wachtwoord in om beheerstaken uit te voeren."
 
-#: ../data/script-worker:159
+#: ../data/script-worker:162
 msgid "Coudn't find any text editor in your system!"
 msgstr "Geen teksteditor gevonden!"
 
-#: ../data/script-worker:187
+#: ../data/script-worker:191
 msgid "Select a folder"
 msgstr "Selecteer een map"
 
-#: ../data/script-worker:217
+#: ../data/script-worker:221
 msgid "Please select a target (files or folders)."
 msgstr "Selecteer een doel (bestanden of mappen)."
 
 #: ../data/ubuntu-tweak.desktop.in.h:1
 msgid "Tweak ubuntu to what you like"
-msgstr "Ubuntu aanpassen zoals u wilt"
+msgstr "Ubuntu aanpassen zoals u dat wilt"
 
 #: ../data/ubuntu-tweak.desktop.in.h:2 ../data/ui/preferences.ui.h:9
 msgid "Overview"
@@ -69,11 +69,11 @@ msgstr "Om de instellingen aan te passen, is autorisatie vereist."
 
 #: ../data/com.ubuntu-tweak.daemon.policy.in.h:3
 msgid "Clean user and system cruft"
-msgstr "Gebruikers- en systeemrommel opruimen"
+msgstr "Overbodige gebruikers- en systeemitems opruimen"
 
 #: ../data/com.ubuntu-tweak.daemon.policy.in.h:4
 msgid "To clean the cruft, you need to authenticate."
-msgstr "Om deze rommel op te ruimen, is autorisatie vereist."
+msgstr "Om deze overbodige items op te ruimen, is autorisatie vereist."
 
 #: ../data/com.ubuntu-tweak.daemon.policy.in.h:5
 msgid "Edit the Software Sources lists"
@@ -310,7 +310,7 @@ msgstr "Te_rugzetten"
 
 #: ../data/ui/sourceeditor.ui.h:11 ../data/ui/desktoprecovery.ui.h:4
 msgid "_Backup"
-msgstr "_Back-up"
+msgstr "_Back-up maken"
 
 #: ../data/ui/sourceeditor.ui.h:12
 msgid "U_pdate"
@@ -464,7 +464,7 @@ msgstr "Verbinden met server"
 #: ../ubuntutweak/network/downloadmanager.py:143
 #, python-format
 msgid "Downloading...%d"
-msgstr "Downloaden…%d"
+msgstr "%d downloaden…"
 
 #: ../ubuntutweak/network/downloadmanager.py:148
 msgid "Downloaded!"
@@ -475,8 +475,8 @@ msgid "Error happened!"
 msgstr "Er is een fout opgetreden!"
 
 #: ../ubuntutweak/network/utdata.py:50 ../ubuntutweak/network/utdata.py:83
-#: ../ubuntutweak/tweaks/unity.py:67 ../ubuntutweak/tweaks/unity.py:70
-#: ../ubuntutweak/tweaks/unity.py:127 ../ubuntutweak/tweaks/unity.py:200
+#: ../ubuntutweak/tweaks/unity.py:66 ../ubuntutweak/tweaks/unity.py:69
+#: ../ubuntutweak/tweaks/unity.py:131 ../ubuntutweak/tweaks/unity.py:199
 msgid "Never"
 msgstr "Nooit"
 
@@ -546,11 +546,11 @@ msgstr ""
 msgid "Copy Error Message"
 msgstr "Foutmelding kopiëren"
 
-#: ../ubuntutweak/common/debug.py:118
+#: ../ubuntutweak/common/debug.py:121
 msgid "Sorry, your distribution is not supported by Ubuntu Tweak"
 msgstr "Sorry, uw distributie wordt niet ondersteund door Ubuntu Tweak"
 
-#: ../ubuntutweak/common/debug.py:119
+#: ../ubuntutweak/common/debug.py:122
 msgid ""
 "You can't file bug for this issue. Please only use Ubuntu Tweak on Ubuntu. "
 "Or it may kill your cat."
@@ -604,7 +604,8 @@ msgstr "Overbodige pakketten"
 
 #: ../ubuntutweak/janitor/autoremoval_plugin.py:53
 msgid "Unneeded Packages (No package to be removed)"
-msgstr "Overbodige pakketten (geen pakketten die verwijderd kunnen worden)"
+msgstr ""
+"Overbodige pakketten (er zijn geen pakketten die verwijderd kunnen worden)"
 
 #: ../ubuntutweak/janitor/aptcache_plugin.py:10
 msgid "Apt Cache"
@@ -614,28 +615,33 @@ msgstr "Apt-buffer"
 msgid "No cache to be cleaned"
 msgstr "Geen buffer die verwijderd kan worden"
 
-#: ../ubuntutweak/janitor/__init__.py:567
+#: ../ubuntutweak/janitor/__init__.py:572
 #, python-format
 msgid "Scanning cruft for \"%s\"..."
-msgstr "Rommel scannen voor \"%s\"…"
+msgstr "\"%s\" scannen voor overbodige items…"
 
-#: ../ubuntutweak/janitor/__init__.py:749
+#: ../ubuntutweak/janitor/__init__.py:694
+#, python-format
+msgid "Scan error for \"%s\", double-click to see details"
+msgstr "Scanfout voor \"%s\", dubbelklik voor meer details"
+
+#: ../ubuntutweak/janitor/__init__.py:759
 #, python-format
 msgid "Cleaning cruft for \"%s\"..."
-msgstr "Rommel wordt opgeruimd voor \"%s\"…"
+msgstr "Overbodige items worden opgeruimd in \"%s\"…"
 
-#: ../ubuntutweak/janitor/__init__.py:830
+#: ../ubuntutweak/janitor/__init__.py:840
 #: ../ubuntutweak/admins/desktoprecovery.py:81
 #: ../ubuntutweak/modules/__init__.py:34
 msgid "System"
 msgstr "Systeem"
 
-#: ../ubuntutweak/janitor/__init__.py:852
+#: ../ubuntutweak/janitor/__init__.py:862
 #: ../ubuntutweak/modules/__init__.py:33
 msgid "Personal"
 msgstr "Persoonlijk"
 
-#: ../ubuntutweak/janitor/__init__.py:875
+#: ../ubuntutweak/janitor/__init__.py:885
 msgid "Apps"
 msgstr "Toepassingen"
 
@@ -646,18 +652,18 @@ msgstr "Pakketconfiguratiebestanden"
 #: ../ubuntutweak/janitor/packageconfigs_plugin.py:73
 msgid "Packages Configs (No package config to be removed)"
 msgstr ""
-"Pakketconfiguratiebestanden (geen pakketconfiguratiebestanden die verwijderd "
-"kunnen worden)"
+"Pakketconfiguratiebestanden (er zijn geen pakketconfiguratiebestanden die "
+"verwijderd kunnen worden)"
 
-#: ../ubuntutweak/janitor/oldkernel_plugin.py:15
+#: ../ubuntutweak/janitor/oldkernel_plugin.py:16
 msgid "Old Kernel"
 msgstr "Oude kernel"
 
-#: ../ubuntutweak/janitor/oldkernel_plugin.py:94
+#: ../ubuntutweak/janitor/oldkernel_plugin.py:101
 msgid "Old Kernel Packages (No old kernel package to be removed)"
 msgstr ""
-"Oude kernel-pakketten (geen oude kernel-pakketten die verwijderd kunnen "
-"worden)"
+"Oude kernel-pakketten (er zijn geen oude kernel-pakketten die verwijderd "
+"kunnen worden)"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:79
 #: ../ubuntutweak/modules/__init__.py:29
@@ -666,7 +672,7 @@ msgstr "Toepassingen"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:80
 #: ../ubuntutweak/admins/userdir.py:34 ../ubuntutweak/modules/__init__.py:32
-#: ../ubuntutweak/tweaks/unity.py:138
+#: ../ubuntutweak/tweaks/unity.py:142
 msgid "Desktop"
 msgstr "Bureaublad"
 
@@ -766,13 +772,12 @@ msgstr ""
 
 #: ../ubuntutweak/admins/desktoprecovery.py:497
 msgid "Recovery Successful!"
-msgstr "Terugzetten is gelukt!"
+msgstr "Terugzetten is geslaagd!"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:498
 #: ../ubuntutweak/admins/desktoprecovery.py:534
 msgid "You may need to restart your desktop for changes to take effect"
-msgstr ""
-"U  dient zich opnieuw aan te melden voordat de wijzigen effect zullen hebben"
+msgstr "U dient zich af te melden voordat de wijzigen effect zullen hebben"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:503
 msgid "_Logout"
@@ -798,7 +803,7 @@ msgstr ""
 
 #: ../ubuntutweak/admins/desktoprecovery.py:533
 msgid "Reset Successful!"
-msgstr "Herstellen gelukt!"
+msgstr "Herstellen is geslaagd!"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:562
 #: ../ubuntutweak/admins/sourceeditor.py:418
@@ -807,7 +812,7 @@ msgstr "Voer een nieuwe naam in voor uw back-up:"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:594
 msgid "Backup Successful!"
-msgstr "Back-up is gelukt!"
+msgstr "Back-up is gemaakt!"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:597
 #: ../ubuntutweak/admins/sourceeditor.py:394
@@ -860,6 +865,10 @@ msgstr ""
 "conflicteert.\n"
 "Om verder te gaan dient u eerst <b>\"%(SOURCE)s\"</b> uit te schakelen."
 
+#: ../ubuntutweak/admins/sourcecenter.py:791
+msgid "Dependency Notice"
+msgstr "Benodigdhedenomschrijving"
+
 #: ../ubuntutweak/admins/sourcecenter.py:792
 #, python-format
 msgid ""
@@ -869,11 +878,7 @@ msgstr ""
 "Om deze bron in te schakelen, dient u eerst <b>\"%s\"</b> in te schakelen.\n"
 "Wilt u doorgaan?"
 
-#: ../ubuntutweak/admins/sourcecenter.py:794
-msgid "Dependency Notice"
-msgstr "Benodigdhedenomschrijving"
-
-#: ../ubuntutweak/admins/sourcecenter.py:818
+#: ../ubuntutweak/admins/sourcecenter.py:817
 #, python-format
 msgid ""
 "You can't disable this Source because <b>\"%(SOURCE)s\"</b> depends on it.\n"
@@ -883,11 +888,11 @@ msgstr ""
 "afhankelijk is.\n"
 "Om door te gaan dient u eerst <b>\"%(SOURCE)s\"</b> uit te schakelen."
 
-#: ../ubuntutweak/admins/sourcecenter.py:904
+#: ../ubuntutweak/admins/sourcecenter.py:903
 msgid "New source has been enabled"
 msgstr "Nieuwe bron is ingeschakeld"
 
-#: ../ubuntutweak/admins/sourcecenter.py:905
+#: ../ubuntutweak/admins/sourcecenter.py:904
 #, python-format
 msgid ""
 "%s is enabled now, Please click the refresh button to update the application "
@@ -896,15 +901,15 @@ msgstr ""
 "%s is nu ingeschakeld, klik a.u.b. op de Verversen-knop om het "
 "buffergeheugen van de toepassing bij te werken."
 
-#: ../ubuntutweak/admins/sourcecenter.py:922
+#: ../ubuntutweak/admins/sourcecenter.py:921
 msgid "Enabled PPAs"
 msgstr "Ingeschakelde PPA's"
 
-#: ../ubuntutweak/admins/sourcecenter.py:925
+#: ../ubuntutweak/admins/sourcecenter.py:924
 msgid "Source Center"
 msgstr "Softwarebronnen"
 
-#: ../ubuntutweak/admins/sourcecenter.py:926
+#: ../ubuntutweak/admins/sourcecenter.py:925
 msgid ""
 "A collection of software sources to ensure your applications are always up-"
 "to-date."
@@ -912,20 +917,20 @@ msgstr ""
 "Een collectie softwarebronnen die ervoor zorgen dat uw toepassingen altijd "
 "up-to-date zijn."
 
-#: ../ubuntutweak/admins/sourcecenter.py:929
+#: ../ubuntutweak/admins/sourcecenter.py:928
 msgid "Visit online Source Center"
 msgstr "Onlinesoftwarebron bezoeken"
 
-#: ../ubuntutweak/admins/sourcecenter.py:938
+#: ../ubuntutweak/admins/sourcecenter.py:937
 #: ../ubuntutweak/admins/appcenter.py:505
 msgid "_Sync"
 msgstr "_Synchroniseren"
 
-#: ../ubuntutweak/admins/sourcecenter.py:975
+#: ../ubuntutweak/admins/sourcecenter.py:974
 msgid "Warning"
 msgstr "Waarschuwing"
 
-#: ../ubuntutweak/admins/sourcecenter.py:976
+#: ../ubuntutweak/admins/sourcecenter.py:975
 msgid ""
 "It is a possible security risk to use packages from Third-Party Sources.\n"
 "Please be careful and use only sources you trust."
@@ -933,20 +938,24 @@ msgstr ""
 "Het kan een beveiligingsrisico zijn om softwarebronnen van derden te "
 "gebruiken. Wees voorzichtig en gebruik alleen bronnen die u vertrouwt."
 
-#: ../ubuntutweak/admins/sourcecenter.py:980
+#: ../ubuntutweak/admins/sourcecenter.py:979
 msgid "Never show this dialog"
 msgstr "Deze dialoog niet meer laten zien"
 
 #. the "%s" is in front, some is the end, so just return the long one
-#: ../ubuntutweak/admins/sourcecenter.py:1010
+#: ../ubuntutweak/admins/sourcecenter.py:1009
 #, python-format
 msgid "disabled on upgrade to %s"
 msgstr "uitgeschakeld bij upgrade naar %s"
 
-#: ../ubuntutweak/admins/sourcecenter.py:1015
+#: ../ubuntutweak/admins/sourcecenter.py:1014
 #: ../ubuntutweak/admins/appcenter.py:545
 msgid "Last synced:"
 msgstr "Laatst gesynchroniseerd:"
+
+#: ../ubuntutweak/admins/sourcecenter.py:1019
+msgid "Upgrade Third Party Sources"
+msgstr "Bronnen van derden upgraden"
 
 #: ../ubuntutweak/admins/sourcecenter.py:1020
 msgid ""
@@ -959,13 +968,9 @@ msgstr ""
 "Wilt u bronnen opnieuw inschakelen die zijn uitgeschakeld door de "
 "updatebeheerder?"
 
-#: ../ubuntutweak/admins/sourcecenter.py:1023
-msgid "Upgrade Third Party Sources"
-msgstr "Bronnen van derden upgraden"
-
 #: ../ubuntutweak/admins/sourcecenter.py:1029
 msgid "Upgrade Successful!"
-msgstr "Upgrade gelukt!"
+msgstr "Upgrade is geslaagd!"
 
 #: ../ubuntutweak/admins/sourcecenter.py:1031
 msgid "Upgrade Failed!"
@@ -1016,7 +1021,7 @@ msgstr ""
 "Om de PPA veilig te kunnen verwijderen, dienen de volgende pakketten "
 "teruggebracht te worden naar de vorige versie."
 
-#: ../ubuntutweak/admins/sourcecenter.py:1217
+#: ../ubuntutweak/admins/sourcecenter.py:1216
 #, python-format
 msgid "You're going to purge \"%s\":"
 msgstr "U gaat \"%s\" verwijderen:"
@@ -1173,7 +1178,7 @@ msgstr ""
 "U kunt bestanden toevoegen als sjablonen door ze te verslepen naar dit "
 "venster.\n"
 "U kunt dan nieuwe documenten, gebaseerd op deze sjablonen, aanmaken met het "
-"Nautilus-rechtermuisknopmenu.."
+"Nautilus-rechtermuisknopmenu."
 
 #: ../ubuntutweak/admins/templates.py:128
 #, python-format
@@ -1250,8 +1255,8 @@ msgid ""
 "Network Error, please check your network connection - or the remote server "
 "may be down."
 msgstr ""
-"Netwerkfout, controleer a.u.b. uw verbinding of controleer of de server op "
-"afstand is gesloten."
+"Netwerkfout, controleer a.u.b. uw netwerkverbinding of controleer de "
+"beschikbaarheid van de server op afstand."
 
 #: ../ubuntutweak/admins/appcenter.py:677
 msgid "An error occurred while downloading the file."
@@ -1291,8 +1296,8 @@ msgid ""
 "However, you must move your files back into place manually.\n"
 "Do you wish to continue?"
 msgstr ""
-"Ubuntu Tweak zal de gekozen map naar de standaardlocatie terugzetten.\n"
-"Echter, u moet uw bestanden zelf terug zetten.\n"
+"Ubuntu Tweak zal de gekozen map op de standaardlocatie terugplaatsen.\n"
+"U dient echter zelf uw bestanden handmatig terug te zetten.\n"
 "Wilt u doorgaan?"
 
 #: ../ubuntutweak/admins/userdir.py:204
@@ -1309,7 +1314,7 @@ msgstr "Wijzigen"
 
 #: ../ubuntutweak/admins/userdir.py:229
 msgid "Restore to default"
-msgstr "Herstel standaardwaarden"
+msgstr "Herstellen naar standaardwaarden"
 
 #: ../ubuntutweak/admins/userdir.py:237
 msgid "User Folder"
@@ -1322,7 +1327,7 @@ msgid ""
 "are doing."
 msgstr ""
 "U kunt hier de paden van de standaardmappen wijzigen.\n"
-"Wijzig de locatie van de bureaubladmap niet, tenzij u weet wat u doet.."
+"Wijzig de locatie van de bureaubladmap niet, tenzij u weet wat u doet."
 
 #: ../ubuntutweak/admins/userdir.py:261
 msgid "_Restore"
@@ -1332,31 +1337,31 @@ msgstr "Te_rugplaatsen"
 msgid "_Change"
 msgstr "_Wijzigen"
 
-#: ../ubuntutweak/admins/quicklists.py:204
+#: ../ubuntutweak/admins/quicklists.py:208
 msgid "QuickLists Editor"
 msgstr "Quicklists editor"
 
-#: ../ubuntutweak/admins/quicklists.py:205
+#: ../ubuntutweak/admins/quicklists.py:209
 msgid "Unity Launcher QuickLists Editor"
 msgstr "Unity-starter quicklists editor"
 
-#: ../ubuntutweak/admins/quicklists.py:386
+#: ../ubuntutweak/admins/quicklists.py:397
 #, python-format
 msgid "Would you like to reset \"%s\"?"
 msgstr "Wilt u \"%s\" herstellen?"
 
-#: ../ubuntutweak/admins/quicklists.py:387
+#: ../ubuntutweak/admins/quicklists.py:398
 #, python-format
 msgid "If you continue, the actions of %s will be set to default."
 msgstr ""
 "Indien u doorgaat, zullen de acties van %s ingesteld worden op hun "
 "standaardwaarden."
 
-#: ../ubuntutweak/admins/quicklists.py:400
+#: ../ubuntutweak/admins/quicklists.py:411
 msgid "Would you like to reset the launcher items?"
 msgstr "Wilt u de starteritems herstellen?"
 
-#: ../ubuntutweak/admins/quicklists.py:401
+#: ../ubuntutweak/admins/quicklists.py:412
 msgid ""
 "If you continue, launcher will be set to default and all your current items "
 "will be lost."
@@ -1511,7 +1516,7 @@ msgid ""
 msgstr ""
 "Door sneltoetsen in te stellen heeft u direct toegang tot uw favoriete "
 "toepassingen.\n"
-"Voer de opdracht voor de toepassing in en stel de gewenste sneltoets in.."
+"Voer de opdracht voor de toepassing in en stel de gewenste sneltoets in."
 
 #: ../ubuntutweak/admins/shortcuts.py:83
 #, python-format
@@ -1522,8 +1527,8 @@ msgstr "Opdracht %d"
 #: ../ubuntutweak/admins/shortcuts.py:200
 #: ../ubuntutweak/admins/filetypemanager.py:177
 #: ../ubuntutweak/admins/filetypemanager.py:201
-#: ../ubuntutweak/tweaks/window.py:76 ../ubuntutweak/tweaks/window.py:83
-#: ../ubuntutweak/tweaks/window.py:94 ../ubuntutweak/tweaks/window.py:109
+#: ../ubuntutweak/tweaks/window.py:77 ../ubuntutweak/tweaks/window.py:84
+#: ../ubuntutweak/tweaks/window.py:95 ../ubuntutweak/tweaks/window.py:110
 msgid "None"
 msgstr "Geen"
 
@@ -1710,7 +1715,7 @@ msgstr "\"Prullenbak\"-pictogram tonen"
 
 #: ../ubuntutweak/tweaks/icons.py:47
 msgid "Show \"Network Servers\" icon"
-msgstr "\"Netwerkservers\" icon"
+msgstr "\"Netwerkservers\"-pictogram tonen"
 
 #: ../ubuntutweak/tweaks/icons.py:76 ../ubuntutweak/gui/treeviews.py:89
 msgid "Rename"
@@ -1750,11 +1755,11 @@ msgstr "Thema"
 msgid "Set the gtk theme, icon theme, cursor theme and others"
 msgstr "Het gtk-thema, pictogramthema, cursorthema en andere instellen"
 
-#: ../ubuntutweak/tweaks/theme.py:41 ../ubuntutweak/tweaks/loginsettings.py:46
+#: ../ubuntutweak/tweaks/theme.py:41 ../ubuntutweak/tweaks/loginsettings.py:47
 msgid "Icon theme:"
 msgstr "Pictogramthema:"
 
-#: ../ubuntutweak/tweaks/theme.py:42 ../ubuntutweak/tweaks/loginsettings.py:45
+#: ../ubuntutweak/tweaks/theme.py:42 ../ubuntutweak/tweaks/loginsettings.py:46
 msgid "Gtk theme:"
 msgstr "Gtk-thema:"
 
@@ -1777,7 +1782,7 @@ msgstr "Themabestand is ongeldig"
 #: ../ubuntutweak/tweaks/theme.py:105
 #, python-format
 msgid "\"%s\" installed successfully"
-msgstr "\"%s\" is geïnstalleerd"
+msgstr "\"%s\" is succesvol geïnstalleerd"
 
 #: ../ubuntutweak/tweaks/theme.py:106
 #, python-format
@@ -1792,60 +1797,60 @@ msgstr "Venster"
 msgid "Manage Window Manager settings"
 msgstr "Vensterbeheerinstellingen"
 
-#: ../ubuntutweak/tweaks/window.py:47
+#: ../ubuntutweak/tweaks/window.py:48
 msgid "Window control button position:"
 msgstr "Vensterknoppositie:"
 
-#: ../ubuntutweak/tweaks/window.py:48
+#: ../ubuntutweak/tweaks/window.py:49
 msgid "\"Close\" button only"
 msgstr "Alleen \"Sluiten\"-knop"
 
-#: ../ubuntutweak/tweaks/window.py:49
+#: ../ubuntutweak/tweaks/window.py:50
 msgid "Titlebar mouse wheel action:"
 msgstr "Titelbalkmuiswielactie:"
 
-#: ../ubuntutweak/tweaks/window.py:50
+#: ../ubuntutweak/tweaks/window.py:51
 msgid "Titlebar double-click action:"
 msgstr "Titelbalkdubbelklikactie:"
 
-#: ../ubuntutweak/tweaks/window.py:51
+#: ../ubuntutweak/tweaks/window.py:52
 msgid "Titlebar middle-click action:"
 msgstr "Titelbalkmiddelklikactie:"
 
-#: ../ubuntutweak/tweaks/window.py:52
+#: ../ubuntutweak/tweaks/window.py:53
 msgid "Titlebar right-click action:"
 msgstr "Titelbalkrechterklikactie:"
 
-#: ../ubuntutweak/tweaks/window.py:76 ../ubuntutweak/tweaks/window.py:84
-#: ../ubuntutweak/tweaks/window.py:97 ../ubuntutweak/tweaks/window.py:112
+#: ../ubuntutweak/tweaks/window.py:77 ../ubuntutweak/tweaks/window.py:85
+#: ../ubuntutweak/tweaks/window.py:98 ../ubuntutweak/tweaks/window.py:113
 msgid "Roll up"
 msgstr "Oprollen"
 
-#: ../ubuntutweak/tweaks/window.py:83 ../ubuntutweak/tweaks/window.py:94
-#: ../ubuntutweak/tweaks/window.py:109
+#: ../ubuntutweak/tweaks/window.py:84 ../ubuntutweak/tweaks/window.py:95
+#: ../ubuntutweak/tweaks/window.py:110
 msgid "Maximize"
 msgstr "Maximaliseren"
 
-#: ../ubuntutweak/tweaks/window.py:84 ../ubuntutweak/tweaks/window.py:97
-#: ../ubuntutweak/tweaks/window.py:112
+#: ../ubuntutweak/tweaks/window.py:85 ../ubuntutweak/tweaks/window.py:98
+#: ../ubuntutweak/tweaks/window.py:113
 msgid "Minimize"
 msgstr "Minimaliseren"
 
-#: ../ubuntutweak/tweaks/window.py:85 ../ubuntutweak/tweaks/window.py:98
-#: ../ubuntutweak/tweaks/window.py:113
+#: ../ubuntutweak/tweaks/window.py:86 ../ubuntutweak/tweaks/window.py:99
+#: ../ubuntutweak/tweaks/window.py:114
 msgid "Lower"
 msgstr "Lager"
 
-#: ../ubuntutweak/tweaks/window.py:85 ../ubuntutweak/tweaks/window.py:98
-#: ../ubuntutweak/tweaks/window.py:113
+#: ../ubuntutweak/tweaks/window.py:86 ../ubuntutweak/tweaks/window.py:99
+#: ../ubuntutweak/tweaks/window.py:114
 msgid "Menu"
 msgstr "Menu"
 
-#: ../ubuntutweak/tweaks/window.py:95 ../ubuntutweak/tweaks/window.py:110
+#: ../ubuntutweak/tweaks/window.py:96 ../ubuntutweak/tweaks/window.py:111
 msgid "Maximize Horizontally"
 msgstr "Horizontaal maximaliseren"
 
-#: ../ubuntutweak/tweaks/window.py:96 ../ubuntutweak/tweaks/window.py:111
+#: ../ubuntutweak/tweaks/window.py:97 ../ubuntutweak/tweaks/window.py:112
 msgid "Maximize Vertically"
 msgstr "Verticaal maximaliseren"
 
@@ -1987,7 +1992,7 @@ msgstr "Actiegeluiden:"
 msgid "Sound theme:"
 msgstr "Geluidsthema:"
 
-#: ../ubuntutweak/tweaks/sound.py:37 ../ubuntutweak/tweaks/loginsettings.py:44
+#: ../ubuntutweak/tweaks/sound.py:37 ../ubuntutweak/tweaks/loginsettings.py:45
 msgid "Play login sound:"
 msgstr "Aanmeldgeluid afspelen:"
 
@@ -2036,16 +2041,26 @@ msgid "Disable \"Fast User Switching\""
 msgstr "\"Snel gebruikers wisselen\" uitschakelen"
 
 #: ../ubuntutweak/tweaks/misc.py:45
-msgid "Cursor blink"
-msgstr "Knipperen cursor"
+msgid "Cursor blink:"
+msgstr "Knipperen cursor:"
 
 #: ../ubuntutweak/tweaks/misc.py:46
+msgid "Overlay scrollbars:"
+msgstr "Opduikschuifbalken:"
+
+#: ../ubuntutweak/tweaks/misc.py:47
 msgid "Cursor blink time:"
 msgstr "Knippertijd cursor:"
 
-#: ../ubuntutweak/tweaks/misc.py:47
+#: ../ubuntutweak/tweaks/misc.py:48
 msgid "Cursor blink timeout:"
 msgstr "Knippertime-out cursor:"
+
+#: ../ubuntutweak/tweaks/misc.py:60 ../ubuntutweak/tweaks/unity.py:175
+msgid "Note: you may need to log out to take effect"
+msgstr ""
+"Let op: u dient zich mogelijk eerst af te melden voordat de wijzigingen "
+"effect zullen hebben"
 
 #: ../ubuntutweak/tweaks/loginsettings.py:37
 msgid "Login Settings"
@@ -2055,23 +2070,23 @@ msgstr "Aanmeldinstellingen"
 msgid "Control the appearance and behaviour of your login screen"
 msgstr "Gedrag en weergave van uw aanmeldscherm beheren"
 
-#: ../ubuntutweak/tweaks/loginsettings.py:43
+#: ../ubuntutweak/tweaks/loginsettings.py:44
 msgid "Draw grid:"
 msgstr "Raster tekenen:"
 
-#: ../ubuntutweak/tweaks/loginsettings.py:122
+#: ../ubuntutweak/tweaks/loginsettings.py:125
 msgid "Choose a new logo image"
 msgstr "Selecteer een nieuw logo"
 
-#: ../ubuntutweak/tweaks/loginsettings.py:128
+#: ../ubuntutweak/tweaks/loginsettings.py:131
 msgid "All images (*.PNG)"
 msgstr "Alle afbeeldingen (*.PNG)"
 
-#: ../ubuntutweak/tweaks/loginsettings.py:175
+#: ../ubuntutweak/tweaks/loginsettings.py:178
 msgid "Choose a new background image"
 msgstr "Selecteer een nieuwe achtergrondafbeelding"
 
-#: ../ubuntutweak/tweaks/loginsettings.py:181
+#: ../ubuntutweak/tweaks/loginsettings.py:184
 msgid "All images"
 msgstr "Alle afbeeldingen"
 
@@ -2143,136 +2158,136 @@ msgstr "Standaardgrijswaarden antialiasing"
 msgid "Subpixel antialiasing (LCD screens only)"
 msgstr "Subpixel-antialiasing (alleen lcd-schermen)"
 
-#: ../ubuntutweak/tweaks/unity.py:39
+#: ../ubuntutweak/tweaks/unity.py:37
 msgid "Tweak the powerful Unity desktop"
 msgstr "Unity-werkomgeving aanpassen"
 
-#: ../ubuntutweak/tweaks/unity.py:44
+#: ../ubuntutweak/tweaks/unity.py:42
 msgid "HUD:"
 msgstr "HUD:"
 
-#: ../ubuntutweak/tweaks/unity.py:45
+#: ../ubuntutweak/tweaks/unity.py:43
 msgid "Shortcut hits overlay:"
 msgstr "Sneltoetstips:"
 
-#: ../ubuntutweak/tweaks/unity.py:46
+#: ../ubuntutweak/tweaks/unity.py:44
 msgid "Launcher icon size:"
 msgstr "Pictogramgrootte van starter:"
 
-#: ../ubuntutweak/tweaks/unity.py:47
+#: ../ubuntutweak/tweaks/unity.py:45
 msgid "Launcher opacity:"
 msgstr "Ondoorzichtigheid van starter:"
 
-#: ../ubuntutweak/tweaks/unity.py:48
+#: ../ubuntutweak/tweaks/unity.py:46
 msgid "Launcher hide mode:"
 msgstr "Starter verbergen-modus:"
 
-#: ../ubuntutweak/tweaks/unity.py:49
+#: ../ubuntutweak/tweaks/unity.py:47
 msgid "Launcher icon backlight:"
 msgstr "Achtergrondverlichting starterpictogram:"
 
-#: ../ubuntutweak/tweaks/unity.py:50
+#: ../ubuntutweak/tweaks/unity.py:48
 msgid "Launcher show devices:"
 msgstr "Starter toont apparaten:"
 
-#: ../ubuntutweak/tweaks/unity.py:51
+#: ../ubuntutweak/tweaks/unity.py:49
+msgid "\"Show desktop\" icon:"
+msgstr "\"Bureaublad\"-pictogram tonen:"
+
+#: ../ubuntutweak/tweaks/unity.py:50
 msgid "Dash size:"
 msgstr "Dash-grootte:"
 
-#: ../ubuntutweak/tweaks/unity.py:52
-msgid "Dash color:"
-msgstr "Dash-kleur:"
-
-#: ../ubuntutweak/tweaks/unity.py:53
+#: ../ubuntutweak/tweaks/unity.py:51
 msgid "Blur type:"
 msgstr "De manier van vervaging:"
 
-#: ../ubuntutweak/tweaks/unity.py:54
+#: ../ubuntutweak/tweaks/unity.py:52
 msgid "Panel opacity:"
 msgstr "Ondoorzichtigheid van paneel:"
 
-#: ../ubuntutweak/tweaks/unity.py:55
+#: ../ubuntutweak/tweaks/unity.py:53
 msgid "Panel opacity for maximized windows:"
 msgstr "Ondoorzichtigheid van paneel voor gemaximaliseerde vensters:"
 
+#: ../ubuntutweak/tweaks/unity.py:54
+msgid "Super key:"
+msgstr "Super-toets:"
+
+#: ../ubuntutweak/tweaks/unity.py:55
+msgid "Full screen dash:"
+msgstr "Dash schermvullend:"
+
 #: ../ubuntutweak/tweaks/unity.py:56
-msgid "Enable the Super key"
-msgstr "Super-toets inschakelen"
+msgid "Compositing manager:"
+msgstr "Composite-beheerder:"
 
 #: ../ubuntutweak/tweaks/unity.py:57
-msgid "Full screen dash"
-msgstr "Dash-schermvullend"
+msgid "Number of workspaces:"
+msgstr "Aantal werkbladen:"
 
-#: ../ubuntutweak/tweaks/unity.py:58
-msgid "Only one launcher when multi-monitor"
-msgstr "Alleen één starter bij meerdere schermen"
-
-#: ../ubuntutweak/tweaks/unity.py:67 ../ubuntutweak/tweaks/unity.py:70
-#: ../ubuntutweak/tweaks/unity.py:200
+#: ../ubuntutweak/tweaks/unity.py:66 ../ubuntutweak/tweaks/unity.py:69
+#: ../ubuntutweak/tweaks/unity.py:199
 msgid "Auto Hide"
 msgstr "Automatisch verbergen"
 
-#: ../ubuntutweak/tweaks/unity.py:67
+#: ../ubuntutweak/tweaks/unity.py:66
 msgid "Dodge Window"
 msgstr "Venster ontwijken"
 
-#: ../ubuntutweak/tweaks/unity.py:67
+#: ../ubuntutweak/tweaks/unity.py:66
 msgid "Dodge Active Window"
 msgstr "Actieve venster ontwijken"
 
-#: ../ubuntutweak/tweaks/unity.py:115
+#: ../ubuntutweak/tweaks/unity.py:119
 msgid "Backlight Always On"
 msgstr "Achtergrondverlichting altijd aan"
 
-#: ../ubuntutweak/tweaks/unity.py:116
+#: ../ubuntutweak/tweaks/unity.py:120
 msgid "Backlight Toggles"
 msgstr "Achtergrondverlichting aan/uit"
 
-#: ../ubuntutweak/tweaks/unity.py:117
+#: ../ubuntutweak/tweaks/unity.py:121
 msgid "Backlight Always Off"
 msgstr "Achtergrondverlichting altijd uit"
 
-#: ../ubuntutweak/tweaks/unity.py:118
+#: ../ubuntutweak/tweaks/unity.py:122
 msgid "Edge Illumination Toggles"
 msgstr "Randverlichting aan/uit"
 
-#: ../ubuntutweak/tweaks/unity.py:119
+#: ../ubuntutweak/tweaks/unity.py:123
 msgid "Backlight and Edge Illumination Toggles"
 msgstr "Achtergrondverlichting en randverlichting aan/uit"
 
-#: ../ubuntutweak/tweaks/unity.py:128
+#: ../ubuntutweak/tweaks/unity.py:132
 msgid "Only Mounted"
 msgstr "Alleen aangekoppeld"
 
-#: ../ubuntutweak/tweaks/unity.py:129
+#: ../ubuntutweak/tweaks/unity.py:133
 msgid "Always"
 msgstr "Altijd"
 
-#: ../ubuntutweak/tweaks/unity.py:138
+#: ../ubuntutweak/tweaks/unity.py:142
 msgid "Automatic"
 msgstr "Automatisch"
 
-#: ../ubuntutweak/tweaks/unity.py:138
+#: ../ubuntutweak/tweaks/unity.py:142
 msgid "Netbook"
 msgstr "Netbook"
 
-#: ../ubuntutweak/tweaks/unity.py:150
+#: ../ubuntutweak/tweaks/unity.py:149
 msgid "No blur"
 msgstr "Geen vervaging"
 
-#: ../ubuntutweak/tweaks/unity.py:151
+#: ../ubuntutweak/tweaks/unity.py:150
 msgid "Static blur"
 msgstr "Statische vervaging"
 
-#: ../ubuntutweak/tweaks/unity.py:152
+#: ../ubuntutweak/tweaks/unity.py:151
 msgid "Active blur"
 msgstr "Actieve vervaging"
 
-#: ../ubuntutweak/tweaks/unity.py:191
-msgid "Launcher"
-msgstr "Starter"
-
-#: ../ubuntutweak/tweaks/unity.py:201
+#: ../ubuntutweak/tweaks/unity.py:200
 msgid "Intellihide"
 msgstr "Intelligent verbergen"
 
@@ -2351,7 +2366,8 @@ msgstr "Uw systeem is schoon"
 #: ../ubuntutweak/clips/cleanerinfo.py:19
 msgid "Some cache can be cleaned to free your disk space"
 msgstr ""
-"Er kunnen items uit de buffer verwijderd worden om schijfruimte vrij te maken"
+"Er kunnen overbodige items uit de buffer verwijderd worden om schijfruimte "
+"vrij te maken"
 
 #: ../ubuntutweak/clips/cleanerinfo.py:21
 #, python-format
@@ -2422,11 +2438,11 @@ msgstr ""
 msgid "Reset setting to default value: %s"
 msgstr "Instelling herstellen naar standaardwaarde: %s"
 
-#: ../ubuntutweak/gui/widgets.py:460
+#: ../ubuntutweak/gui/widgets.py:464
 msgid "Please press the new key combination"
 msgstr "Druk de nieuwe toetsencombinatie in"
 
-#: ../ubuntutweak/gui/widgets.py:512
+#: ../ubuntutweak/gui/widgets.py:516
 msgid "Disabled"
 msgstr "Uitgeschakeld"
 
@@ -2605,8 +2621,17 @@ msgstr "\"%s\" is reeds geïnstalleerd"
 #~ msgid "PPA"
 #~ msgstr "PPA"
 
+#~ msgid "Launcher"
+#~ msgstr "Starter"
+
+#~ msgid "Enable the Super key"
+#~ msgstr "Super-toets inschakelen"
+
 #~ msgid "Cursor blink time"
 #~ msgstr "Tijd knipperen cursor"
+
+#~ msgid "Cursor blink"
+#~ msgstr "Knipperen cursor"
 
 #~ msgid "Cursor blink timeout"
 #~ msgstr "Time-out knipperen cursor"

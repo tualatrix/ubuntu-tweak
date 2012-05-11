@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-24 11:47+0800\n"
+"POT-Creation-Date: 2012-05-10 16:49+0800\n"
 "PO-Revision-Date: 2012-04-21 04:43+0000\n"
 "Last-Translator: Liudas Ališauskas <liudas.alisauskas@gmail.com>\n"
 "Language-Team: Lithuanian <lt@li.org>\n"
@@ -18,27 +18,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "(n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2012-04-25 12:13+0000\n"
-"X-Generator: Launchpad (build 15139)\n"
+"X-Launchpad-Export-Date: 2012-05-11 06:33+0000\n"
+"X-Generator: Launchpad (build 15225)\n"
 
-#: ../data/script-worker:54
+#: ../data/script-worker:57
 #, c-format
 msgid "You don't have permission to write in %s"
 msgstr "Jūs neturite teisės rašyti į %s"
 
-#: ../data/script-worker:152 ../data/script-worker:165
+#: ../data/script-worker:155 ../data/script-worker:168
 msgid "Enter your password to perform the administrative tasks"
 msgstr "Norėdami atlikti administracinius veiksmus, įveskite savo slaptažodį"
 
-#: ../data/script-worker:159
+#: ../data/script-worker:162
 msgid "Coudn't find any text editor in your system!"
 msgstr "Jūsų sistemoje nepavyko rasti jokio tekstų redaktoriaus!"
 
-#: ../data/script-worker:187
+#: ../data/script-worker:191
 msgid "Select a folder"
 msgstr "Pasirinkite aplanką"
 
-#: ../data/script-worker:217
+#: ../data/script-worker:221
 msgid "Please select a target (files or folders)."
 msgstr "Prašome pasirinkti paskirties failus ar aplankus."
 
@@ -468,8 +468,8 @@ msgid "Error happened!"
 msgstr "Įvyko klaida!"
 
 #: ../ubuntutweak/network/utdata.py:50 ../ubuntutweak/network/utdata.py:83
-#: ../ubuntutweak/tweaks/unity.py:67 ../ubuntutweak/tweaks/unity.py:70
-#: ../ubuntutweak/tweaks/unity.py:127 ../ubuntutweak/tweaks/unity.py:200
+#: ../ubuntutweak/tweaks/unity.py:66 ../ubuntutweak/tweaks/unity.py:69
+#: ../ubuntutweak/tweaks/unity.py:131 ../ubuntutweak/tweaks/unity.py:199
 msgid "Never"
 msgstr "Niekada"
 
@@ -541,11 +541,11 @@ msgstr ""
 msgid "Copy Error Message"
 msgstr "Kopijuoti klaidos pranešimą"
 
-#: ../ubuntutweak/common/debug.py:118
+#: ../ubuntutweak/common/debug.py:121
 msgid "Sorry, your distribution is not supported by Ubuntu Tweak"
 msgstr ""
 
-#: ../ubuntutweak/common/debug.py:119
+#: ../ubuntutweak/common/debug.py:122
 msgid ""
 "You can't file bug for this issue. Please only use Ubuntu Tweak on Ubuntu. "
 "Or it may kill your cat."
@@ -607,28 +607,33 @@ msgstr "Apt podėlis"
 msgid "No cache to be cleaned"
 msgstr ""
 
-#: ../ubuntutweak/janitor/__init__.py:567
+#: ../ubuntutweak/janitor/__init__.py:572
 #, python-format
 msgid "Scanning cruft for \"%s\"..."
 msgstr ""
 
-#: ../ubuntutweak/janitor/__init__.py:749
+#: ../ubuntutweak/janitor/__init__.py:694
+#, python-format
+msgid "Scan error for \"%s\", double-click to see details"
+msgstr ""
+
+#: ../ubuntutweak/janitor/__init__.py:759
 #, python-format
 msgid "Cleaning cruft for \"%s\"..."
 msgstr ""
 
-#: ../ubuntutweak/janitor/__init__.py:830
+#: ../ubuntutweak/janitor/__init__.py:840
 #: ../ubuntutweak/admins/desktoprecovery.py:81
 #: ../ubuntutweak/modules/__init__.py:34
 msgid "System"
 msgstr "Sistema"
 
-#: ../ubuntutweak/janitor/__init__.py:852
+#: ../ubuntutweak/janitor/__init__.py:862
 #: ../ubuntutweak/modules/__init__.py:33
 msgid "Personal"
 msgstr "Asmeninė"
 
-#: ../ubuntutweak/janitor/__init__.py:875
+#: ../ubuntutweak/janitor/__init__.py:885
 msgid "Apps"
 msgstr ""
 
@@ -642,11 +647,11 @@ msgstr ""
 "Paketų konfigūracijos failai (nei vienas konfigūracijos failas nebus "
 "pašalintas)"
 
-#: ../ubuntutweak/janitor/oldkernel_plugin.py:15
+#: ../ubuntutweak/janitor/oldkernel_plugin.py:16
 msgid "Old Kernel"
 msgstr "Senas branduolys"
 
-#: ../ubuntutweak/janitor/oldkernel_plugin.py:94
+#: ../ubuntutweak/janitor/oldkernel_plugin.py:101
 msgid "Old Kernel Packages (No old kernel package to be removed)"
 msgstr "Seno branduolio paketai (Nebus pašalinti jokie branduolio paketai)"
 
@@ -657,7 +662,7 @@ msgstr "Taikomosios programos"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:80
 #: ../ubuntutweak/admins/userdir.py:34 ../ubuntutweak/modules/__init__.py:32
-#: ../ubuntutweak/tweaks/unity.py:138
+#: ../ubuntutweak/tweaks/unity.py:142
 msgid "Desktop"
 msgstr "Darbastalis"
 
@@ -845,6 +850,10 @@ msgstr ""
 "su juo.\n"
 "Norėdami tęsti, pirmiausia atjunkite <b>\"%(SOURCE)s\"</b>."
 
+#: ../ubuntutweak/admins/sourcecenter.py:791
+msgid "Dependency Notice"
+msgstr "Priklausomybių perspėjimas"
+
 #: ../ubuntutweak/admins/sourcecenter.py:792
 #, python-format
 msgid ""
@@ -855,11 +864,7 @@ msgstr ""
 "<b>\"%s\"</b>.\n"
 "Ar norite tęsti?"
 
-#: ../ubuntutweak/admins/sourcecenter.py:794
-msgid "Dependency Notice"
-msgstr "Priklausomybių perspėjimas"
-
-#: ../ubuntutweak/admins/sourcecenter.py:818
+#: ../ubuntutweak/admins/sourcecenter.py:817
 #, python-format
 msgid ""
 "You can't disable this Source because <b>\"%(SOURCE)s\"</b> depends on it.\n"
@@ -869,11 +874,11 @@ msgstr ""
 "jo.\n"
 "Norėdami tęsti, pirmiausia turite atjungti <b>\"%(SOURCE)s\"</b>."
 
-#: ../ubuntutweak/admins/sourcecenter.py:904
+#: ../ubuntutweak/admins/sourcecenter.py:903
 msgid "New source has been enabled"
 msgstr "Įgalintas naujas šaltinis"
 
-#: ../ubuntutweak/admins/sourcecenter.py:905
+#: ../ubuntutweak/admins/sourcecenter.py:904
 #, python-format
 msgid ""
 "%s is enabled now, Please click the refresh button to update the application "
@@ -882,34 +887,34 @@ msgstr ""
 "%s dabar įgalintas. Spustelėkite atnaujinimo mygtuką, kad atnaujintumėte "
 "programinės įrangos podėlį."
 
-#: ../ubuntutweak/admins/sourcecenter.py:922
+#: ../ubuntutweak/admins/sourcecenter.py:921
 msgid "Enabled PPAs"
 msgstr ""
 
-#: ../ubuntutweak/admins/sourcecenter.py:925
+#: ../ubuntutweak/admins/sourcecenter.py:924
 msgid "Source Center"
 msgstr "Šaltinių centras"
 
-#: ../ubuntutweak/admins/sourcecenter.py:926
+#: ../ubuntutweak/admins/sourcecenter.py:925
 msgid ""
 "A collection of software sources to ensure your applications are always up-"
 "to-date."
 msgstr ""
 
-#: ../ubuntutweak/admins/sourcecenter.py:929
+#: ../ubuntutweak/admins/sourcecenter.py:928
 msgid "Visit online Source Center"
 msgstr "Aplankyti internete esantį šaltinių centrą"
 
-#: ../ubuntutweak/admins/sourcecenter.py:938
+#: ../ubuntutweak/admins/sourcecenter.py:937
 #: ../ubuntutweak/admins/appcenter.py:505
 msgid "_Sync"
 msgstr "_Sinchronizuoti"
 
-#: ../ubuntutweak/admins/sourcecenter.py:975
+#: ../ubuntutweak/admins/sourcecenter.py:974
 msgid "Warning"
 msgstr "Perspėjimas"
 
-#: ../ubuntutweak/admins/sourcecenter.py:976
+#: ../ubuntutweak/admins/sourcecenter.py:975
 msgid ""
 "It is a possible security risk to use packages from Third-Party Sources.\n"
 "Please be careful and use only sources you trust."
@@ -917,20 +922,24 @@ msgstr ""
 "Pavojinga naudotis paketais, gautais iš trečiųjų-šalių šaltinių.\n"
 "Būkite atsargūs ir naudokite tik tuos šaltinius, kuriais pasitikite."
 
-#: ../ubuntutweak/admins/sourcecenter.py:980
+#: ../ubuntutweak/admins/sourcecenter.py:979
 msgid "Never show this dialog"
 msgstr "Niekada nerodyti šio dialogo"
 
 #. the "%s" is in front, some is the end, so just return the long one
-#: ../ubuntutweak/admins/sourcecenter.py:1010
+#: ../ubuntutweak/admins/sourcecenter.py:1009
 #, python-format
 msgid "disabled on upgrade to %s"
 msgstr "atjungtas naujovinant į %s"
 
-#: ../ubuntutweak/admins/sourcecenter.py:1015
+#: ../ubuntutweak/admins/sourcecenter.py:1014
 #: ../ubuntutweak/admins/appcenter.py:545
 msgid "Last synced:"
 msgstr "Paskutinis sinchronizavimas:"
+
+#: ../ubuntutweak/admins/sourcecenter.py:1019
+msgid "Upgrade Third Party Sources"
+msgstr "Naujovinti trečiųjų šalių šaltinius"
 
 #: ../ubuntutweak/admins/sourcecenter.py:1020
 msgid ""
@@ -941,10 +950,6 @@ msgstr ""
 "Po sėkmingo distribucijos naujovinimo pagal numatymą atjungiami visi "
 "trečiųjų-šalių šaltiniai.\n"
 "Ar norite iš naujo įgalinti šaltinius, kuriuos atjungė Atnaujinimų tvarkyklė?"
-
-#: ../ubuntutweak/admins/sourcecenter.py:1023
-msgid "Upgrade Third Party Sources"
-msgstr "Naujovinti trečiųjų šalių šaltinius"
 
 #: ../ubuntutweak/admins/sourcecenter.py:1029
 msgid "Upgrade Successful!"
@@ -993,7 +998,7 @@ msgstr "Saugu išvalyti PPA, nereikia pasendinti jokio paketo."
 msgid "To safely purge the PPA, the following packages must be downgraded."
 msgstr "Norint saugiai pašalinti PPA, reikia pasendinti šiuos paketus."
 
-#: ../ubuntutweak/admins/sourcecenter.py:1217
+#: ../ubuntutweak/admins/sourcecenter.py:1216
 #, python-format
 msgid "You're going to purge \"%s\":"
 msgstr ""
@@ -1302,29 +1307,29 @@ msgstr "_Atkurti"
 msgid "_Change"
 msgstr "_Keisti"
 
-#: ../ubuntutweak/admins/quicklists.py:204
+#: ../ubuntutweak/admins/quicklists.py:208
 msgid "QuickLists Editor"
 msgstr ""
 
-#: ../ubuntutweak/admins/quicklists.py:205
+#: ../ubuntutweak/admins/quicklists.py:209
 msgid "Unity Launcher QuickLists Editor"
 msgstr ""
 
-#: ../ubuntutweak/admins/quicklists.py:386
+#: ../ubuntutweak/admins/quicklists.py:397
 #, python-format
 msgid "Would you like to reset \"%s\"?"
 msgstr ""
 
-#: ../ubuntutweak/admins/quicklists.py:387
+#: ../ubuntutweak/admins/quicklists.py:398
 #, python-format
 msgid "If you continue, the actions of %s will be set to default."
 msgstr ""
 
-#: ../ubuntutweak/admins/quicklists.py:400
+#: ../ubuntutweak/admins/quicklists.py:411
 msgid "Would you like to reset the launcher items?"
 msgstr ""
 
-#: ../ubuntutweak/admins/quicklists.py:401
+#: ../ubuntutweak/admins/quicklists.py:412
 msgid ""
 "If you continue, launcher will be set to default and all your current items "
 "will be lost."
@@ -1488,8 +1493,8 @@ msgstr "Komanda %d"
 #: ../ubuntutweak/admins/shortcuts.py:200
 #: ../ubuntutweak/admins/filetypemanager.py:177
 #: ../ubuntutweak/admins/filetypemanager.py:201
-#: ../ubuntutweak/tweaks/window.py:76 ../ubuntutweak/tweaks/window.py:83
-#: ../ubuntutweak/tweaks/window.py:94 ../ubuntutweak/tweaks/window.py:109
+#: ../ubuntutweak/tweaks/window.py:77 ../ubuntutweak/tweaks/window.py:84
+#: ../ubuntutweak/tweaks/window.py:95 ../ubuntutweak/tweaks/window.py:110
 msgid "None"
 msgstr "Nėra"
 
@@ -1708,11 +1713,11 @@ msgstr "Tema"
 msgid "Set the gtk theme, icon theme, cursor theme and others"
 msgstr "Nustatykite gtk temą, piktogramų temą, žymeklio temą ir kita"
 
-#: ../ubuntutweak/tweaks/theme.py:41 ../ubuntutweak/tweaks/loginsettings.py:46
+#: ../ubuntutweak/tweaks/theme.py:41 ../ubuntutweak/tweaks/loginsettings.py:47
 msgid "Icon theme:"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/theme.py:42 ../ubuntutweak/tweaks/loginsettings.py:45
+#: ../ubuntutweak/tweaks/theme.py:42 ../ubuntutweak/tweaks/loginsettings.py:46
 msgid "Gtk theme:"
 msgstr ""
 
@@ -1750,60 +1755,60 @@ msgstr ""
 msgid "Manage Window Manager settings"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/window.py:47
+#: ../ubuntutweak/tweaks/window.py:48
 msgid "Window control button position:"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/window.py:48
+#: ../ubuntutweak/tweaks/window.py:49
 msgid "\"Close\" button only"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/window.py:49
+#: ../ubuntutweak/tweaks/window.py:50
 msgid "Titlebar mouse wheel action:"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/window.py:50
+#: ../ubuntutweak/tweaks/window.py:51
 msgid "Titlebar double-click action:"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/window.py:51
+#: ../ubuntutweak/tweaks/window.py:52
 msgid "Titlebar middle-click action:"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/window.py:52
+#: ../ubuntutweak/tweaks/window.py:53
 msgid "Titlebar right-click action:"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/window.py:76 ../ubuntutweak/tweaks/window.py:84
-#: ../ubuntutweak/tweaks/window.py:97 ../ubuntutweak/tweaks/window.py:112
+#: ../ubuntutweak/tweaks/window.py:77 ../ubuntutweak/tweaks/window.py:85
+#: ../ubuntutweak/tweaks/window.py:98 ../ubuntutweak/tweaks/window.py:113
 msgid "Roll up"
 msgstr "Aukštyn"
 
-#: ../ubuntutweak/tweaks/window.py:83 ../ubuntutweak/tweaks/window.py:94
-#: ../ubuntutweak/tweaks/window.py:109
+#: ../ubuntutweak/tweaks/window.py:84 ../ubuntutweak/tweaks/window.py:95
+#: ../ubuntutweak/tweaks/window.py:110
 msgid "Maximize"
 msgstr "Išdidinti"
 
-#: ../ubuntutweak/tweaks/window.py:84 ../ubuntutweak/tweaks/window.py:97
-#: ../ubuntutweak/tweaks/window.py:112
+#: ../ubuntutweak/tweaks/window.py:85 ../ubuntutweak/tweaks/window.py:98
+#: ../ubuntutweak/tweaks/window.py:113
 msgid "Minimize"
 msgstr "Sumažinti"
 
-#: ../ubuntutweak/tweaks/window.py:85 ../ubuntutweak/tweaks/window.py:98
-#: ../ubuntutweak/tweaks/window.py:113
+#: ../ubuntutweak/tweaks/window.py:86 ../ubuntutweak/tweaks/window.py:99
+#: ../ubuntutweak/tweaks/window.py:114
 msgid "Lower"
 msgstr "Žemyn"
 
-#: ../ubuntutweak/tweaks/window.py:85 ../ubuntutweak/tweaks/window.py:98
-#: ../ubuntutweak/tweaks/window.py:113
+#: ../ubuntutweak/tweaks/window.py:86 ../ubuntutweak/tweaks/window.py:99
+#: ../ubuntutweak/tweaks/window.py:114
 msgid "Menu"
 msgstr "Meniu"
 
-#: ../ubuntutweak/tweaks/window.py:95 ../ubuntutweak/tweaks/window.py:110
+#: ../ubuntutweak/tweaks/window.py:96 ../ubuntutweak/tweaks/window.py:111
 msgid "Maximize Horizontally"
 msgstr "Išdidinti horizontaliai"
 
-#: ../ubuntutweak/tweaks/window.py:96 ../ubuntutweak/tweaks/window.py:111
+#: ../ubuntutweak/tweaks/window.py:97 ../ubuntutweak/tweaks/window.py:112
 msgid "Maximize Vertically"
 msgstr "Išdidinti vertikaliai"
 
@@ -1943,7 +1948,7 @@ msgstr ""
 msgid "Sound theme:"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/sound.py:37 ../ubuntutweak/tweaks/loginsettings.py:44
+#: ../ubuntutweak/tweaks/sound.py:37 ../ubuntutweak/tweaks/loginsettings.py:45
 msgid "Play login sound:"
 msgstr ""
 
@@ -1992,15 +1997,23 @@ msgid "Disable \"Fast User Switching\""
 msgstr "Išjungti \"Greitą naudotojo keitimą\""
 
 #: ../ubuntutweak/tweaks/misc.py:45
-msgid "Cursor blink"
+msgid "Cursor blink:"
 msgstr ""
 
 #: ../ubuntutweak/tweaks/misc.py:46
-msgid "Cursor blink time:"
+msgid "Overlay scrollbars:"
 msgstr ""
 
 #: ../ubuntutweak/tweaks/misc.py:47
+msgid "Cursor blink time:"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/misc.py:48
 msgid "Cursor blink timeout:"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/misc.py:60 ../ubuntutweak/tweaks/unity.py:175
+msgid "Note: you may need to log out to take effect"
 msgstr ""
 
 #: ../ubuntutweak/tweaks/loginsettings.py:37
@@ -2011,23 +2024,23 @@ msgstr "Prisijungimo nustatymai"
 msgid "Control the appearance and behaviour of your login screen"
 msgstr "Kontroliuokite prisijungimo lango išvaizdą ir elgseną"
 
-#: ../ubuntutweak/tweaks/loginsettings.py:43
+#: ../ubuntutweak/tweaks/loginsettings.py:44
 msgid "Draw grid:"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/loginsettings.py:122
+#: ../ubuntutweak/tweaks/loginsettings.py:125
 msgid "Choose a new logo image"
 msgstr "Pasirinkite naują logotipo paveikslėlį"
 
-#: ../ubuntutweak/tweaks/loginsettings.py:128
+#: ../ubuntutweak/tweaks/loginsettings.py:131
 msgid "All images (*.PNG)"
 msgstr "Visi paveikslėliai (*.PNG)"
 
-#: ../ubuntutweak/tweaks/loginsettings.py:175
+#: ../ubuntutweak/tweaks/loginsettings.py:178
 msgid "Choose a new background image"
 msgstr "Pasirinkite naują fono paveikslėlį"
 
-#: ../ubuntutweak/tweaks/loginsettings.py:181
+#: ../ubuntutweak/tweaks/loginsettings.py:184
 msgid "All images"
 msgstr "Visi paveikslėliai"
 
@@ -2099,136 +2112,136 @@ msgstr ""
 msgid "Subpixel antialiasing (LCD screens only)"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:39
+#: ../ubuntutweak/tweaks/unity.py:37
 msgid "Tweak the powerful Unity desktop"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:44
+#: ../ubuntutweak/tweaks/unity.py:42
 msgid "HUD:"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:45
+#: ../ubuntutweak/tweaks/unity.py:43
 msgid "Shortcut hits overlay:"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:46
+#: ../ubuntutweak/tweaks/unity.py:44
 msgid "Launcher icon size:"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:47
+#: ../ubuntutweak/tweaks/unity.py:45
 msgid "Launcher opacity:"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:48
+#: ../ubuntutweak/tweaks/unity.py:46
 msgid "Launcher hide mode:"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:49
+#: ../ubuntutweak/tweaks/unity.py:47
 msgid "Launcher icon backlight:"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:50
+#: ../ubuntutweak/tweaks/unity.py:48
 msgid "Launcher show devices:"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:51
+#: ../ubuntutweak/tweaks/unity.py:49
+msgid "\"Show desktop\" icon:"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:50
 msgid "Dash size:"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:52
-msgid "Dash color:"
-msgstr ""
-
-#: ../ubuntutweak/tweaks/unity.py:53
+#: ../ubuntutweak/tweaks/unity.py:51
 msgid "Blur type:"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:54
+#: ../ubuntutweak/tweaks/unity.py:52
 msgid "Panel opacity:"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:55
+#: ../ubuntutweak/tweaks/unity.py:53
 msgid "Panel opacity for maximized windows:"
 msgstr ""
 
+#: ../ubuntutweak/tweaks/unity.py:54
+msgid "Super key:"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:55
+msgid "Full screen dash:"
+msgstr ""
+
 #: ../ubuntutweak/tweaks/unity.py:56
-msgid "Enable the Super key"
-msgstr "Įjungti super klavišą"
+msgid "Compositing manager:"
+msgstr ""
 
 #: ../ubuntutweak/tweaks/unity.py:57
-msgid "Full screen dash"
+msgid "Number of workspaces:"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:58
-msgid "Only one launcher when multi-monitor"
-msgstr ""
-
-#: ../ubuntutweak/tweaks/unity.py:67 ../ubuntutweak/tweaks/unity.py:70
-#: ../ubuntutweak/tweaks/unity.py:200
+#: ../ubuntutweak/tweaks/unity.py:66 ../ubuntutweak/tweaks/unity.py:69
+#: ../ubuntutweak/tweaks/unity.py:199
 msgid "Auto Hide"
 msgstr "Automatiškai slėpti"
 
-#: ../ubuntutweak/tweaks/unity.py:67
+#: ../ubuntutweak/tweaks/unity.py:66
 msgid "Dodge Window"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:67
+#: ../ubuntutweak/tweaks/unity.py:66
 msgid "Dodge Active Window"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:115
+#: ../ubuntutweak/tweaks/unity.py:119
 msgid "Backlight Always On"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:116
+#: ../ubuntutweak/tweaks/unity.py:120
 msgid "Backlight Toggles"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:117
+#: ../ubuntutweak/tweaks/unity.py:121
 msgid "Backlight Always Off"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:118
+#: ../ubuntutweak/tweaks/unity.py:122
 msgid "Edge Illumination Toggles"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:119
+#: ../ubuntutweak/tweaks/unity.py:123
 msgid "Backlight and Edge Illumination Toggles"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:128
+#: ../ubuntutweak/tweaks/unity.py:132
 msgid "Only Mounted"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:129
+#: ../ubuntutweak/tweaks/unity.py:133
 msgid "Always"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:138
+#: ../ubuntutweak/tweaks/unity.py:142
 msgid "Automatic"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:138
+#: ../ubuntutweak/tweaks/unity.py:142
 msgid "Netbook"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:150
+#: ../ubuntutweak/tweaks/unity.py:149
 msgid "No blur"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:151
+#: ../ubuntutweak/tweaks/unity.py:150
 msgid "Static blur"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:152
+#: ../ubuntutweak/tweaks/unity.py:151
 msgid "Active blur"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:191
-msgid "Launcher"
-msgstr "Leistukas"
-
-#: ../ubuntutweak/tweaks/unity.py:201
+#: ../ubuntutweak/tweaks/unity.py:200
 msgid "Intellihide"
 msgstr "Intelektualus slėpimasis"
 
@@ -2378,11 +2391,11 @@ msgstr ""
 msgid "Reset setting to default value: %s"
 msgstr "Atstatyti nustatymo numatytąją reikšmę: %s"
 
-#: ../ubuntutweak/gui/widgets.py:460
+#: ../ubuntutweak/gui/widgets.py:464
 msgid "Please press the new key combination"
 msgstr "Paspauskite naują mygtukų kombinaciją"
 
-#: ../ubuntutweak/gui/widgets.py:512
+#: ../ubuntutweak/gui/widgets.py:516
 msgid "Disabled"
 msgstr "Išjungtas"
 
@@ -2574,3 +2587,9 @@ msgstr ""
 #, python-format
 #~ msgid "%d PPAs to be removed"
 #~ msgstr "%d PPA bus pašalinta"
+
+#~ msgid "Launcher"
+#~ msgstr "Leistukas"
+
+#~ msgid "Enable the Super key"
+#~ msgstr "Įjungti super klavišą"
