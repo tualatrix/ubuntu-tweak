@@ -108,7 +108,7 @@ class GconfSetting(object):
         if not self.default:
             if self.key in self.schema_override:
                 value = self.schema_override[self.key]
-                if self.type != type(value):
+                if self.type and self.type != type(value):
                     log.debug("get_schema_value: %s, the type is wrong, so convert force" % value)
                     return self.type(value)
                 return value

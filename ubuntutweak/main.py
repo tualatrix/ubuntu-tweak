@@ -409,7 +409,7 @@ class UbuntuTweakWindow(GuiBuilder):
 
         return vbox
 
-    def on_mainwindow_destroy(self, widget):
+    def on_mainwindow_destroy(self, widget=None):
         allocation = widget.get_allocation()
         self.window_size_setting.set_value((allocation.width, allocation.height))
 

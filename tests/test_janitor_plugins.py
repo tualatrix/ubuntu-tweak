@@ -1,7 +1,7 @@
 import os
 import unittest
 
-from ubuntutweak.janitor.firefox_plugin import FirefoxCachePlugin
+from ubuntutweak.janitor.mozilla_plugin import FirefoxCachePlugin
 
 class TestJanitorPlugin(unittest.TestCase):
     def setUp(self):

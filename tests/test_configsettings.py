@@ -39,7 +39,7 @@ class TestConfigSettings(unittest.TestCase):
         self.assertEqual('/usr/share/backgrounds/The_Forbidden_City_by_Daniel_Mathis.jpg', background_setting.get_value())
         #try again the fuzz type for str
         background_setting = ConfigSetting(self.get_key('background'))
-        self.assertEqual("'/usr/share/backgrounds/The_Forbidden_City_by_Daniel_Mathis.jpg'", background_setting.get_value())
+        self.assertEqual("/usr/share/backgrounds/The_Forbidden_City_by_Daniel_Mathis.jpg", background_setting.get_value())
 
     def get_key(self, key):
         return "%s::%s#%s" % (self.unity_greeter_override_path, 'com.canonical.unity-greeter', key)

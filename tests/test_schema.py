@@ -13,7 +13,8 @@ class TestSchema(unittest.TestCase):
 
     def test_schema(self):
         self.assertEqual('Ambiance', Schema.load_schema(self.interface_schema, self.gtk_theme_key))
-        self.assertEqual('close,minimize,maximize:', GconfSetting(self.light_theme).get_schema_value())
+        light_theme_setting = GconfSetting(self.light_theme)
+        self.assertEqual('close,minimize,maximize:', light_theme_setting.get_schema_value())
         self.assertEqual('Ubuntu Bold 11', GconfSetting(self.title_font).get_schema_value())
 
 if __name__ == '__main__':

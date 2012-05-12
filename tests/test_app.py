@@ -19,12 +19,13 @@ class TestApp(unittest.TestCase):
                                                     'tweaks': 1,
                                                     'admins': 2,
                                                     'janitor': 3,
+                                                    'search': 5,
                                                     'wait': 4})
         self.assertEqual(self.window.navigation_dict, {'tweaks': (None, None)})
 
         # tweaks->Nautilus
         self.window._load_module('Nautilus')
-        self.assertEqual(self.window.loaded_modules, {'Nautilus': 5})
+        self.assertEqual(self.window.loaded_modules, {'Nautilus': 6})
         self.assertEqual(self.window.current_feature, 'tweaks')
         self.assertEqual(self.window.navigation_dict, {'tweaks': ('Nautilus', None)})
         # Nautilus->tweaks
@@ -32,9 +33,9 @@ class TestApp(unittest.TestCase):
         self.assertEqual(self.window.current_feature, 'tweaks')
         self.assertEqual(self.window.navigation_dict, {'tweaks': (None, 'Nautilus')})
         # tweaks->Compiz
-        self.window._load_module('Compiz')
+        self.window._load_module('Window')
         self.assertEqual(self.window.current_feature, 'tweaks')
-        self.assertEqual(self.window.navigation_dict, {'tweaks': ('Compiz', None)})
+        self.assertEqual(self.window.navigation_dict, {'tweaks': ('Window', None)})
 
     def todo(self):
         #TODO toggled has different behavir

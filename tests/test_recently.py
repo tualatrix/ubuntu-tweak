@@ -9,17 +9,17 @@ class TestRecently(unittest.TestCase):
         self.window.loaded_modules = {}
         self.window.modules_index = {}
         self.window.navigation_dict = {'tweaks': [None, None]}
-        self.setting = GSetting('com.ubuntu-tweak.tweak.rencently-used')
+        self.setting = GSetting('com.ubuntu-tweak.tweak.recently-used')
 
     def test_recently(self):
         self.setting.set_value([])
         self.assertEqual(self.setting.get_value(), [])
 
-        self.window._load_module('Icon')
-        self.assertEqual(self.setting.get_value(), ['Icon'])
+        self.window._load_module('Icons')
+        self.assertEqual(self.setting.get_value(), ['Icons'])
 
         self.window._load_module('Nautilus')
-        self.assertEqual(self.setting.get_value(), ['Nautilus', 'Icon'])
+        self.assertEqual(self.setting.get_value(), ['Nautilus', 'Icons'])
 
     def tearDown(self):
         self.setting.set_value([])

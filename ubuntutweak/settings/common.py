@@ -4,7 +4,6 @@ import ConfigParser
 
 from lxml import etree
 
-
 log = logging.getLogger('CommonSetting')
 
 class RawConfigSetting(object):
@@ -36,7 +35,7 @@ class RawConfigSetting(object):
             value = True
 
         # This is a hard code str type, so return '"xxx"' instead of 'xxx'
-        if self._type == str:
+        if self._type == str or type(value) == str:
             if (value.startswith('"') and value.endswith('"')) or \
                (value.startswith("'") and value.endswith("'")):
                 value = eval(value)
@@ -92,6 +91,7 @@ class Schema(object):
 
     @classmethod
     def load_override(cls):
+        log.debug("\tLoading override")
         for override in glob.glob('/usr/share/glib-2.0/schemas/*.gschema.override'):
             try:
                 cs = RawConfigSetting(override)
@@ -104,6 +104,7 @@ class Schema(object):
 
     @classmethod
     def load_schema(cls, schema_id, key):
+        log.debug("Loading schema value for: %s/%s" % (schema_id, key))
         if not cls.cached_override:
             cls.load_override()
 
