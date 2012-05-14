@@ -94,7 +94,7 @@ class JanitorPlugin(GObject.GObject):
         'scan_finished': (GObject.SignalFlags.RUN_FIRST, None,
                           (GObject.TYPE_BOOLEAN,
                            GObject.TYPE_INT,
-                           GObject.TYPE_INT)),
+                           GObject.TYPE_LONG)),
         'object_cleaned': (GObject.SignalFlags.RUN_FIRST, None, (GObject.TYPE_PYOBJECT, GObject.TYPE_INT)),
         'all_cleaned': (GObject.SignalFlags.RUN_FIRST, None, (GObject.TYPE_BOOLEAN,)),
         'scan_error': (GObject.SignalFlags.RUN_FIRST, None, (GObject.TYPE_STRING,)),
