@@ -161,8 +161,6 @@ class Misc(TweakModule):
                 return False
             elif value == len(ids):
                 return True
-            else:
-                return None
         return True
 
     def set_the_natural_status(self):
