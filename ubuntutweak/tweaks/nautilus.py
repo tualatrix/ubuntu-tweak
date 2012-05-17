@@ -28,6 +28,7 @@ class Nautilus(TweakModule):
     __desc__ = _('Manage the Nautilus file manager')
     __icon__ = ['file-manager', 'nautilus']
     __category__ = 'system'
+    __desktop__ = ['ubuntu', 'ubuntu-2d', 'gnome-classic', 'gnome-shell', 'gnome-fallback']
 
     utext_advanced_properties = _('Show advanced permissions in "File Properties"')
     utext_pathbar = _('Use the location entry instead of the pathbar')
