@@ -133,8 +133,7 @@ class ModuleLoader:
                 sys.path.insert(0, folder)
             package = __import__(module_name)
             for k, v in inspect.getmembers(package):
-                if k == name and k not in ('TweakModule', 'proxy') and \
-                        hasattr(v, '__utmodule__') and v.is_active():
+                if k == name and cls.is_module_active(k, v):
                     return v
 
     @classmethod
@@ -186,24 +185,30 @@ class ModuleLoader:
                 self.do_single_import(f, mark_user)
 
     def _insert_moduel(self, k, v, mark_user=False):
+        if self.is_module_active(k, v):
+            self.module_table[v.get_name()] = v
+
+            if mark_user:
+                v.__user_extension__ = True
+
+            if v.get_category() not in dict(self.category_names):
+                self.category_table['other'][v.get_name()] = v
+            else:
+                self.category_table[v.get_category()][v.get_name()] = v
+            if hasattr(v, '__keywords__'):
+                for attr in ('name', 'title', 'description', 'keywords'):
+                    value = getattr(v, 'get_%s' % attr)()
+                    self.fuzz_search_table[value.lower()] = v
+
+    @classmethod
+    def is_module_active(cls, k, v):
         if k not in ('TweakModule', 'Clip', 'JanitorPlugin', 'proxy') and \
                 hasattr(v, '__utmodule__'):
-            if self.is_supported_desktop(v.__desktop__) and \
-               self.is_supported_distro(v.__distro__) and \
+            if cls.is_supported_desktop(v.__desktop__) and \
+               cls.is_supported_distro(v.__distro__) and \
                v.is_active():
-                self.module_table[v.get_name()] = v
-
-                if mark_user:
-                    v.__user_extension__ = True
-
-                if v.get_category() not in dict(self.category_names):
-                    self.category_table['other'][v.get_name()] = v
-                else:
-                    self.category_table[v.get_category()][v.get_name()] = v
-                if hasattr(v, '__keywords__'):
-                    for attr in ('name', 'title', 'description', 'keywords'):
-                        value = getattr(v, 'get_%s' % attr)()
-                        self.fuzz_search_table[value.lower()] = v
+                   return True
+        return False
 
     def get_categories(self):
         for k, v in self.category_names:
@@ -217,13 +222,15 @@ class ModuleLoader:
     def get_module(self, name):
         return self.module_table[name]
 
-    def is_supported_desktop(self, desktop_name):
+    @classmethod
+    def is_supported_desktop(cls, desktop_name):
         if desktop_name:
             return system.DESKTOP in desktop_name
         else:
             return True
 
-    def is_supported_distro(self, distro):
+    @classmethod
+    def is_supported_distro(cls, distro):
         log.debug('is_supported_distro')
         if distro:
             return system.CODENAME in distro
