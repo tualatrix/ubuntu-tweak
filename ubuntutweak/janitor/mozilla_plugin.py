@@ -1,7 +1,10 @@
 import os
+import logging
 
 from ubuntutweak.janitor import JanitorCachePlugin
 from ubuntutweak.settings.configsettings import RawConfigSetting
+
+log = logging.getLogger('MozillaCachePlugin')
 
 class MozillaCachePlugin(JanitorCachePlugin):
     __category__ = 'application'
@@ -15,12 +18,18 @@ class MozillaCachePlugin(JanitorCachePlugin):
         profiles_path = os.path.expanduser('%s/profiles.ini' % cls.app_path)
         if os.path.exists(profiles_path):
             config = RawConfigSetting(profiles_path)
-            profile_id = config.get_value('General', 'StartWithLastProfile')
-            for section in config.sections():
-                if section.startswith('Profile'):
-                    relative_id = config.get_value(section, 'IsRelative')
-                    if relative_id == profile_id:
-                        return os.path.expanduser('%s/%s' % (cls.app_path, config.get_value(section, 'Path')))
+            try:
+                profile_id = config.get_value('General', 'StartWithLastProfile')
+                for section in config.sections():
+                    if section.startswith('Profile'):
+                        relative_id = config.get_value(section, 'IsRelative')
+                        if relative_id == profile_id:
+                            return os.path.expanduser('%s/%s' % (cls.app_path, config.get_value(section, 'Path')))
+            except Exception, e:
+                log.error(e)
+                path = config.get_value('Profile0', 'Path')
+                if path:
+                    return os.path.expanduser('%s/%s' % (cls.app_path, path))
         return cls.root_path
 
 
