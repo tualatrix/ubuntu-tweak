@@ -11,7 +11,7 @@ from gi.repository import GObject, Gtk, Pango, Gdk
 from ubuntutweak import system
 from ubuntutweak.utils import icon
 from ubuntutweak.common.consts import DATA_DIR, CONFIG_ROOT, IS_INSTALLED 
-from ubuntutweak.common.debug import run_traceback, open_bug_report
+from ubuntutweak.common.debug import run_traceback, log_traceback, open_bug_report
 
 log = logging.getLogger('ModuleLoader')
 
@@ -202,13 +202,17 @@ class ModuleLoader:
 
     @classmethod
     def is_module_active(cls, k, v):
-        if k not in ('TweakModule', 'Clip', 'JanitorPlugin', 'proxy') and \
-                hasattr(v, '__utmodule__'):
-            if cls.is_supported_desktop(v.__desktop__) and \
-               cls.is_supported_distro(v.__distro__) and \
-               v.is_active():
-                   return True
-        return False
+        try:
+            if k not in ('TweakModule', 'Clip', 'JanitorPlugin', 'proxy') and \
+                    hasattr(v, '__utmodule__'):
+                if cls.is_supported_desktop(v.__desktop__) and \
+                   cls.is_supported_distro(v.__distro__) and \
+                   v.is_active():
+                       return True
+            return False
+        except Exception, e:
+            log_traceback(log)
+            return False
 
     def get_categories(self):
         for k, v in self.category_names:
