@@ -61,7 +61,11 @@ class WidgetFactory:
             new_widget = globals().get(widget)(**kwargs)
         except Exception, e:
             log.error(run_traceback('error', text_only=True))
-            return [None, None]
+
+            if enable_reset:
+                return [None, None, None]
+            else:
+                return [None, None]
 
         if signal_dict:
             for signal, method in signal_dict.items():
