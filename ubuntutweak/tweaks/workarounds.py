@@ -70,11 +70,13 @@ class Workarounds(TweakModule):
             else:
                 proxy.unlink_file(self.ROOT_THEMES)
                 proxy.unlink_file(self.ROOT_ICONS)
-                if proxy.is_exists(self.ROOT_THEMES) and proxy.is_exists(self.ROOT_ICONS):
-                    widget.set_active(True)
+                self.set_fix_theme_button_status()
         except Exception, e:
             log.error(e)
             self.set_fix_theme_button_status()
 
     def set_fix_theme_button_status(self):
-        self.fix_theme_button.set_active(proxy.is_exists(self.ROOT_THEMES) and proxy.is_exists(self.ROOT_ICONS))
+        if proxy.is_exists(self.ROOT_THEMES) and proxy.is_exists(self.ROOT_ICONS):
+            self.fix_theme_button.set_active(True)
+        else:
+            self.fix_theme_button.set_active(False)
