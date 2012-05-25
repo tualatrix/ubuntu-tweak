@@ -1,7 +1,11 @@
 import os
+import logging
+
 from gettext import ngettext
 
 from gi.repository import Gio
+
+log = logging.getLogger('utils')
 
 def get_command_for_type(mime):
     try:
