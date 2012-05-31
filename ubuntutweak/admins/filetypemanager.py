@@ -24,13 +24,14 @@ import logging
 
 from gettext import ngettext
 
-from gi.repository import GObject, Gio, GLib, Gtk, Pango, GdkPixbuf
+from gi.repository import GObject, Gio, Gtk, Pango, GdkPixbuf
 from xdg.DesktopEntry import DesktopEntry
 
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.utils import icon
 from ubuntutweak.gui import GuiBuilder
 from ubuntutweak.gui.dialogs import ErrorDialog
+from ubuntutweak.common.debug import log_func
 
 log = logging.getLogger('FileType')
 
@@ -232,7 +233,7 @@ class AddAppDialog(GObject.GObject):
                                    Gio.content_type_get_description(type))
 
         self.add_button = worker.get_object('add_button')
-        self.add_button.connect('clicked', self.on_add_button_clicked)
+        self.add_button.connect('clicked', self.on_add_app_button_clicked)
 
         self.command_entry = worker.get_object('command_entry')
         self.browse_button = worker.get_object('browse_button')
@@ -254,10 +255,6 @@ class AddAppDialog(GObject.GObject):
             return app_info
         else:
             return command
-
-    def get_command_runable(self):
-        command = self.command_entry.get_text()
-        return GLib.find_program_in_path(command)
 
     def on_browse_button_clicked(self, widget):
         dialog = Gtk.FileChooserDialog(_('Choose an application'),
@@ -284,7 +281,8 @@ class AddAppDialog(GObject.GObject):
 
             self.command_entry.set_text(appinfo.get_executable())
 
-    def on_add_button_clicked(self, widget):
+    @log_func(log)
+    def on_add_app_button_clicked(self, widget):
         pass
 
     def setup_treeview(self):
@@ -379,29 +377,25 @@ class TypeEditDialog(GObject.GObject):
         close_button = worker.get_object('type_edit_close_button')
         close_button.connect('clicked', self.on_dialog_destroy)
 
+    @log_func(log)
     def on_add_button_clicked(self, widget):
         dialog = AddAppDialog(self.types[0], widget.get_toplevel())
         if dialog.run() == Gtk.ResponseType.ACCEPT:
-            if dialog.get_command_runable():
-                we = dialog.get_command_or_appinfo()
+            we = dialog.get_command_or_appinfo()
 
-                log.debug("Get get_command_or_appinfo: %s" % we)
-                if type(we) == Gio.DesktopAppInfo:
-                    log.debug("Get DesktopAppInfo: %s" % we)
-                    app = we
-                else:
-                    desktop_id = self._create_desktop_file_from_command(we)
-                    app = Gio.DesktopAppInfo.new(desktop_id)
-
-                for filetype in self.types:
-                    app.set_as_default_for_type(filetype)
-
-                self.update_model()
-                self.emit('update', self.types)
+            log.debug("Get get_command_or_appinfo: %s" % we)
+            if type(we) == Gio.DesktopAppInfo:
+                log.debug("Get DesktopAppInfo: %s" % we)
+                app = we
             else:
-                ErrorDialog(title=_('Could not find application'),
-                            message=_('Could not find "%s", Please ensure the path is correct.') %
-                            dialog.get_command_or_appinfo()).launch()
+                desktop_id = self._create_desktop_file_from_command(we)
+                app = Gio.DesktopAppInfo.new(desktop_id)
+
+            for filetype in self.types:
+                app.set_as_default_for_type(filetype)
+
+            self.update_model()
+            self.emit('update', self.types)
 
         dialog.destroy()
 
