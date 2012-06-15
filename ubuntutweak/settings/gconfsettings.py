@@ -35,18 +35,23 @@ class GconfSetting(object):
     def load_override(self):
         for override in glob.glob('/usr/share/gconf/defaults/*'):
             for line in open(override):
-                splits = line.split()
-                key, value = splits[0], ' '.join(splits[1:])
+                try:
+                    splits = line.split()
+                    key, value = splits[0], ' '.join(splits[1:])
 
-                if value == 'true':
-                    value = True
-                elif value == 'false':
-                    value = False
-                else:
-                    if value.startswith('"') and value.endswith('"'):
-                        value = eval(value)
+                    if value == 'true':
+                        value = True
+                    elif value == 'false':
+                        value = False
+                    else:
+                        if value.startswith('"') and value.endswith('"'):
+                            value = eval(value)
 
-                self.schema_override[key] = value
+                    print aa
+
+                    self.schema_override[key] = value
+                except Exception, e:
+                    log.error('Exception (%s) while processing "%s"' % (e, line))
 
     def get_dir(self):
         if self.key:
