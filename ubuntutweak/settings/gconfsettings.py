@@ -33,9 +33,9 @@ class GconfSetting(object):
             self.client.add_dir(self.get_dir(), GConf.ClientPreloadType.PRELOAD_NONE)
 
     def load_override(self):
-        for override in glob.glob('/usr/share/gconf/defaults/*'):
-            for line in open(override):
-                try:
+        try:
+            for override in glob.glob('/usr/share/gconf/defaults/*'):
+                for line in open(override):
                     splits = line.split()
                     key, value = splits[0], ' '.join(splits[1:])
 
@@ -48,8 +48,8 @@ class GconfSetting(object):
                             value = eval(value)
 
                     self.schema_override[key] = value
-                except Exception, e:
-                    log.error('Exception (%s) while processing "%s"' % (e, line))
+        except Exception, e:
+            log.error('Exception (%s) while processing override' % e)
 
     def get_dir(self):
         if self.key:
