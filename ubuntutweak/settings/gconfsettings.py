@@ -47,8 +47,6 @@ class GconfSetting(object):
                         if value.startswith('"') and value.endswith('"'):
                             value = eval(value)
 
-                    print aa
-
                     self.schema_override[key] = value
                 except Exception, e:
                     log.error('Exception (%s) while processing "%s"' % (e, line))
