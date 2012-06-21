@@ -89,6 +89,10 @@ class JanitorPlugin(GObject.GObject):
     __utactive__ = True
     __user_extension__ = False
 
+    scan_finished = GObject.Property(type=bool, default=False)
+    clean_finished = GObject.Property(type=bool, default=False)
+    error = GObject.Property(type=str, default='')
+
     __gsignals__ = {
         'find_object': (GObject.SignalFlags.RUN_FIRST, None, (GObject.TYPE_PYOBJECT, GObject.TYPE_INT)),
         'scan_finished': (GObject.SignalFlags.RUN_FIRST, None,
@@ -335,7 +339,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
 
         if 'red' in display:
             plugin = self.result_model[iter][self.RESULT_PLUGIN]
-            error = plugin.get_data('error')
+            error = plugin.get_property('error')
             self.result_model[iter][self.RESULT_DISPLAY] = '<span color="red"><b>%s</b></span>' % error
         elif hasattr(cruft, 'get_path'):
             path = cruft.get_path()
@@ -559,7 +563,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         plugin_iter, checked = self.scan_tasks.pop(0)
 
         plugin = self.janitor_model[plugin_iter][self.JANITOR_PLUGIN]
-        plugin.set_data('scan_finished', False)
+        plugin.set_property('scan_finished', False)
 
         log.debug("do_scan_task for %s for status: %s" % (plugin, checked))
 
@@ -607,7 +611,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
 
     def _on_spinner_timeout(self, plugin_iter, thread):
         plugin = self.janitor_model[plugin_iter][self.JANITOR_PLUGIN]
-        finished = plugin.get_data('scan_finished')
+        finished = plugin.get_property('scan_finished')
 
         self.janitor_model[plugin_iter][self.JANITOR_SPINNER_PULSE] += 1
 
@@ -666,7 +670,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
     def on_scan_finished(self, plugin, result, count, size, iters):
         plugin.disconnect(self._find_handler)
         plugin.disconnect(self._scan_handler)
-        plugin.set_data('scan_finished', True)
+        plugin.set_property('scan_finished', True)
 
         plugin_iter, result_iter = iters
 
@@ -693,8 +697,8 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
         self.janitor_model[plugin_iter][self.JANITOR_ICON] = icon.get_from_name('error', size=16)
         self.result_model[result_iter][self.RESULT_DISPLAY] = '<span color="red"><b>%s</b></span>' % _('Scan error for "%s", double-click to see details') % plugin.get_title()
 
-        plugin.set_data('scan_finished', True)
-        plugin.set_data('error', error)
+        plugin.set_property('scan_finished', True)
+        plugin.set_property('error', error)
 
     @inline_callbacks
     def on_clean_button_clicked(self, widget):
@@ -733,7 +737,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
     def do_real_clean_task(self):
         if len(self.clean_tasks) != 0:
             plugin, cruft_dict = self.clean_tasks.pop(0)
-            plugin.set_data('clean_finished', False)
+            plugin.set_property('clean_finished', False)
 
             for row in self.janitor_model:
                 for child_row in row.iterchildren():
@@ -771,7 +775,7 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
 
     def _on_clean_spinner_timeout(self, plugin_iter, thread):
         plugin = self.janitor_model[plugin_iter][self.JANITOR_PLUGIN]
-        finished = plugin.get_data('clean_finished')
+        finished = plugin.get_property('clean_finished')
 
         self.janitor_model[plugin_iter][self.JANITOR_SPINNER_PULSE] += 1
         if finished:
@@ -808,14 +812,14 @@ class JanitorPage(Gtk.VBox, GuiBuilder):
 
     def on_plugin_cleaned(self, plugin, cleaned, plugin_iter):
         #TODO should accept the cruft_list
-        plugin.set_data('clean_finished', True)
+        plugin.set_property('clean_finished', True)
         self.janitor_model[plugin_iter][self.JANITOR_DISPLAY] = "[0] %s" % plugin.get_title()
 
     def on_clean_error(self, plugin, error, plugin_iter):
         #TODO response to user?
         self.janitor_model[plugin_iter][self.JANITOR_ICON] = icon.get_from_name('error', size=16)
         self.clean_tasks = []
-        plugin.set_data('clean_finished', True)
+        plugin.set_property('clean_finished', True)
 
     def on_autoscan_button_toggled(self, *args):
         if self.autoscan_setting.get_value():
