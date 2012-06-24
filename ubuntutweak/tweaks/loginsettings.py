@@ -184,6 +184,8 @@ class LoginSettings(TweakModule):
         filter.set_name(_('All images'))
         filter.add_pattern('*.jpg')
         filter.add_pattern('*.png')
+        filter.add_pattern('*.JPG')
+        filter.add_pattern('*.PNG')
         dialog.set_current_folder('/usr/share/backgrounds')
         dialog.add_filter(filter)
         self._set_preview_widget_for_dialog(dialog)
