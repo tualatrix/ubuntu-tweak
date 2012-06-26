@@ -89,9 +89,9 @@ class JanitorPlugin(GObject.GObject):
     __utactive__ = True
     __user_extension__ = False
 
-    scan_finished = GObject.Property(type=bool, default=False)
-    clean_finished = GObject.Property(type=bool, default=False)
-    error = GObject.Property(type=str, default='')
+    scan_finished = GObject.proterty(type=bool, default=False)
+    clean_finished = GObject.proterty(type=bool, default=False)
+    error = GObject.proterty(type=str, default='')
 
     __gsignals__ = {
         'find_object': (GObject.SignalFlags.RUN_FIRST, None, (GObject.TYPE_PYOBJECT, GObject.TYPE_INT)),
