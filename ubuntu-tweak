@@ -67,7 +67,6 @@ class UbuntuTweakApp(Unique.App):
                                            system.APP,
                                            system.DESKTOP))
         self.connect('message-received', self.on_message_received)
-
     def set_window(self, window):
         self._window = window
         self.watch_window(self._window.mainwindow)
@@ -75,12 +74,15 @@ class UbuntuTweakApp(Unique.App):
     def on_message_received(self, app, command, message, time):
         self.log.debug("on_message_received: command: %s, message: %s, time: %s" % (
             command, message, time))
-        if command == Unique.Command.ACTIVATE:
-            self._window.present()
-            if message.get_text():
-                self._window.select_target_feature(message.get_text())
-        elif command == Unique.Command.OPEN:
-            self._window.do_load_module(message.get_text())
+        try:
+            if command == Unique.Command.ACTIVATE:
+                self._window.present()
+                if message.get_text():
+                    self._window.select_target_feature(message.get_text())
+            elif command == Unique.Command.OPEN:
+                self._window.do_load_module(message.get_text())
+        except Exception, e:
+            self.log.error(e)
 
         return False
 
