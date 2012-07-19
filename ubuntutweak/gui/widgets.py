@@ -366,3 +366,37 @@ class KeyGrabber(Gtk.Button):
         if not len(label):
             label = _("Disabled")
         Gtk.Button.set_label(self, label)
+
+
+class ColorButton(Gtk.ColorButton):
+    def __init__(self, key=None, default=None, backend='gconf'):
+        GObject.GObject.__init__(self)
+        self.set_use_alpha(True)
+
+        if backend == 'gconf':
+            self._setting = GconfSetting(key=key, type=str)
+        elif backend == 'gsettings':
+            self._setting = GSetting(key=key, type=type)
+        elif backend == 'config':
+            self._setting = ConfigSetting(key=key, type=str)
+        elif backend == 'compiz':
+            self._setting = CompizSetting(key=key)
+
+        red, green, blue = self._setting.get_value()[:-1]
+        color = Gdk.RGBA()
+        color.red, color.green, color.blue = red / 65535.0, green / 65535.0, blue / 65535.0
+        color.alpha = self._setting.get_value()[-1] / 65535.0
+        self.set_rgba(color)
+
+        self.connect('color-set', self.on_color_set)
+
+    def on_color_set(self, widget):
+        color = widget.get_rgba()
+        self._setting.set_value([color.red * 65535,
+                                 color.green * 65535,
+                                 color.blue * 65535,
+                                 color.alpha * 65535])
+
+    def set_value(self, value):
+        self._setting.set_value(value)
+        self.set_rgba(Gdk.RGBA(0,0,0,0))
