@@ -1,6 +1,7 @@
 data/script-worker
 data/ubuntu-tweak.desktop.in
 data/com.ubuntu-tweak.daemon.policy.in
+[type: gettext/glade]data/ui/window.ui
 [type: gettext/glade]data/ui/preferences.ui
 [type: gettext/glade]data/ui/uturl.ui
 [type: gettext/glade]data/ui/templates.ui
@@ -9,14 +10,14 @@ data/com.ubuntu-tweak.daemon.policy.in
 [type: gettext/glade]data/ui/appcenter.ui
 [type: gettext/glade]data/ui/brokenmodule.ui
 [type: gettext/glade]data/ui/loginsettings.ui
+[type: gettext/glade]data/ui/quicklists.ui
 [type: gettext/glade]data/ui/clippage.ui
+[type: gettext/glade]data/ui/filetypemanager.ui
 [type: gettext/glade]data/ui/sourceeditor.ui
 [type: gettext/glade]data/ui/updatemanager.ui
-[type: gettext/glade]data/ui/filetypemanager.ui
 [type: gettext/glade]data/ui/janitorpage.ui
 [type: gettext/glade]data/ui/traceback.ui
 [type: gettext/glade]data/ui/mainwindow.ui
-[type: gettext/glade]data/ui/window.ui
 [type: gettext/glade]data/ui/desktoprecovery.ui
 ubuntutweak/factory.py
 ubuntutweak/system/distro.py
@@ -25,8 +26,8 @@ ubuntutweak/network/xmlrpc.py
 ubuntutweak/network/downloadmanager.py
 ubuntutweak/network/utdata.py
 ubuntutweak/network/__init__.py
-ubuntutweak/policykit/dbusproxy.py
 ubuntutweak/policykit/widgets.py
+ubuntutweak/policykit/dbusproxy.py
 ubuntutweak/policykit/__init__.py
 ubuntutweak/common/consts.py
 ubuntutweak/common/config.py
@@ -35,34 +36,50 @@ ubuntutweak/common/sourcedata.py
 ubuntutweak/common/download.py
 ubuntutweak/common/debug.py
 ubuntutweak/common/__init__.py
+ubuntutweak/janitor/gwibber_plugin.py
+ubuntutweak/janitor/opera_plugin.py
+ubuntutweak/janitor/googleearth_plugin.py
+ubuntutweak/janitor/thumbnailcache_plugin.py
+ubuntutweak/janitor/softwarecenter_plugin.py
+ubuntutweak/janitor/mozilla_plugin.py
+ubuntutweak/janitor/chrome_plugin.py
+ubuntutweak/janitor/ppapurge_plugin.py
+ubuntutweak/janitor/empathy_plugin.py
+ubuntutweak/janitor/autoremoval_plugin.py
+ubuntutweak/janitor/aptcache_plugin.py
+ubuntutweak/janitor/__init__.py
+ubuntutweak/janitor/packageconfigs_plugin.py
+ubuntutweak/janitor/oldkernel_plugin.py
 ubuntutweak/settings/gconfsettings.py
 ubuntutweak/settings/gsettings.py
+ubuntutweak/settings/configsettings.py
+ubuntutweak/settings/compizsettings.py
 ubuntutweak/settings/__init__.py
 ubuntutweak/admins/desktoprecovery.py
+ubuntutweak/admins/sourcecenter.py
 ubuntutweak/admins/sourceeditor.py
 ubuntutweak/admins/templates.py
+ubuntutweak/admins/appcenter.py
 ubuntutweak/admins/userdir.py
+ubuntutweak/admins/quicklists.py
 ubuntutweak/admins/scripts.py
 ubuntutweak/admins/shortcuts.py
-ubuntutweak/admins/filetypemanager.py
 ubuntutweak/admins/__init__.py
+ubuntutweak/admins/filetypemanager.py
 ubuntutweak/modules/__init__.py
 ubuntutweak/tweaks/icons.py
+ubuntutweak/tweaks/theme.py
+ubuntutweak/tweaks/window.py
 ubuntutweak/tweaks/nautilus.py
 ubuntutweak/tweaks/session.py
-ubuntutweak/tweaks/fonts.py
-ubuntutweak/tweaks/misc.py
-ubuntutweak/tweaks/theme.py
-ubuntutweak/tweaks/unity.py
 ubuntutweak/tweaks/workspace.py
-ubuntutweak/settings/ccm/Utils.py
-ubuntutweak/settings/ccm/Conflicts.py
-ubuntutweak/settings/ccm/__init__.py
-ubuntutweak/settings/ccm/Constants.py
+ubuntutweak/tweaks/sound.py
+ubuntutweak/tweaks/misc.py
 ubuntutweak/tweaks/loginsettings.py
+ubuntutweak/tweaks/fonts.py
+ubuntutweak/tweaks/unity.py
 ubuntutweak/tweaks/__init__.py
 ubuntutweak/tweaks/workarounds.py
-ubuntutweak/tweaks/window.py
 ubuntutweak/apps/__init__.py
 ubuntutweak/clips/userinfo.py
 ubuntutweak/clips/hardwareinfo.py
@@ -77,6 +94,7 @@ ubuntutweak/gui/gtk.py
 ubuntutweak/gui/containers.py
 ubuntutweak/gui/__init__.py
 ubuntutweak/gui/treeviews.py
+ubuntutweak/main.py
 ubuntutweak/run_test.py
 ubuntutweak/backends/daemon.py
 ubuntutweak/backends/__init__.py
@@ -88,16 +106,3 @@ ubuntutweak/utils/__init__.py
 ubuntutweak/utils/tar.py
 ubuntutweak/utils/package.py
 ubuntutweak/preferences.py
-ubuntutweak/main.py
-ubuntutweak/janitor/gwibber_plugin.py
-ubuntutweak/janitor/opera_plugin.py
-ubuntutweak/janitor/googleearth_plugin.py
-ubuntutweak/janitor/thumbnailcache_plugin.py
-ubuntutweak/janitor/softwarecenter_plugin.py
-ubuntutweak/janitor/chrome_plugin.py
-ubuntutweak/janitor/empathy_plugin.py
-ubuntutweak/janitor/autoremoval_plugin.py
-ubuntutweak/janitor/aptcache_plugin.py
-ubuntutweak/janitor/__init__.py
-ubuntutweak/janitor/packageconfigs_plugin.py
-ubuntutweak/janitor/oldkernel_plugin.py
