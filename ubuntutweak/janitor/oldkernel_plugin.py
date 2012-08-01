@@ -64,10 +64,10 @@ class OldKernelPlugin(JanitorPlugin):
         p_kernel_version = re.compile('[.\d]+-\d+')
         p_kernel_package = re.compile('linux-[a-z\-]+')
 
-        basenames = ['linux-image', 'linux-headers', 'linux-image-debug',
-                      'linux-ubuntu-modules', 'linux-header-lum',
-                      'linux-backport-modules',
-                      'linux-header-lbm', 'linux-restricted-modules']
+        basenames = ['linux-image', 'linux-image-extra', 'linux-headers',
+                     'linux-image-debug', 'linux-ubuntu-modules',
+                     'linux-header-lum', 'linux-backport-modules',
+                     'linux-header-lbm', 'linux-restricted-modules']
 
         if pkg.startswith('linux'):
             package = p_kernel_package.findall(pkg)
