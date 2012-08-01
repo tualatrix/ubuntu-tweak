@@ -41,6 +41,7 @@ class LoginSettings(TweakModule):
     __category__ = 'startup'
     __desktop__ = ['ubuntu', 'ubuntu-2d', 'gnome-classic', 'gnome-shell', 'gnome-fallback']
 
+    utext_allow_guest = _('Guest account:')
     utext_draw_grid = _('Draw grid:')
     utext_login_sound = _('Play login sound:')
     utext_gtk_theme = _('Gtk theme:')
@@ -53,7 +54,18 @@ class LoginSettings(TweakModule):
             valid_themes = theme.get_valid_themes()
             valid_icon_themes = theme.get_valid_icon_themes()
 
+            notes_label = Gtk.Label()
+            notes_label.set_property('halign', Gtk.Align.START)
+            notes_label.set_markup('<span size="smaller">%s</span>' % \
+                    _('Note: you may need to reboot to take effect'))
+            notes_label._ut_left = 1
+
             self.login_box = GridPack(
+                            WidgetFactory.create('Switch',
+                                label=self.utext_allow_guest,
+                                key='/etc/lightdm/lightdm.conf::SeatDefaults#allow-guest',
+                                backend='systemconfig'),
+                            notes_label,
                             WidgetFactory.create('Switch',
                                 label=self.utext_draw_grid,
                                 key='50_unity-greeter.gschema.override::com.canonical.unity-greeter#draw-grid',
