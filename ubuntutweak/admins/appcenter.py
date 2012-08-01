@@ -49,7 +49,7 @@ UPDATE_SETTING = GSetting(key='com.ubuntu-tweak.tweak.appcenter-has-update', typ
 VERSION_SETTING = GSetting(key='com.ubuntu-tweak.tweak.appcenter-version', type=str)
 
 def get_app_data_url():
-    return utdata.get_download_url('/static/utdata/appcenter-%s.tar.gz' %
+    return utdata.get_download_url('/media/utdata/appcenter-%s.tar.gz' %
                                    VERSION_SETTING.get_value())
 
 if not os.path.exists(APPCENTER_ROOT):
@@ -489,6 +489,7 @@ class FetchingDialog(DownloadDialog):
         super(FetchingDialog, self).__init__(url=url,
                                     title=_('Fetching online data...'),
                                     parent=parent)
+        log.debug("Will start to download online data from: %s", url)
 
 class AppCenter(TweakModule):
     __title__ = _('Application Center')

@@ -73,7 +73,7 @@ SOURCE_VERSION_URL = utdata.get_version_url('/sourcecenter_version/')
 UPGRADE_DICT = {}
 
 def get_source_data_url():
-    return utdata.get_download_url('/static/utdata/sourcecenter-%s.tar.gz' %
+    return utdata.get_download_url('/media/utdata/sourcecenter-%s.tar.gz' %
                                    VERSION_SETTING.get_value())
 
 def get_source_logo_from_filename(file_name):
