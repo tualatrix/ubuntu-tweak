@@ -39,13 +39,16 @@ class LoginSettings(TweakModule):
     __icon__ = 'gdm-setup'
     __policykit__ = PK_ACTION_TWEAK
     __category__ = 'startup'
-    __desktop__ = ['ubuntu', 'ubuntu-2d', 'gnome-classic', 'gnome-shell', 'gnome-fallback']
 
     utext_allow_guest = _('Guest account:')
     utext_draw_grid = _('Draw grid:')
     utext_login_sound = _('Play login sound:')
     utext_gtk_theme = _('Gtk theme:')
     utext_icon_theme = _('Icon theme:')
+
+    @classmethod
+    def is_active(cls):
+        return os.path.exists('/usr/sbin/lightdm')
 
     def __init__(self):
         TweakModule.__init__(self, 'loginsettings.ui')
