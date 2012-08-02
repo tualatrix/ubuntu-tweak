@@ -30,7 +30,6 @@ class Session(TweakModule):
     __desc__ = _('Control your system session releated features')
     __icon__ = 'gnome-session-hibernate'
     __category__ = 'startup'
-    __desktop__ = ['ubuntu', 'ubuntu-2d']
 
     utext_user_indicator = _('User indicator')
     utext_lock_screen = _('Disable "Lock Screen"')
@@ -38,6 +37,10 @@ class Session(TweakModule):
     utext_logout = _("Remove the log out item")
     utext_shutdown = _("Remove the shutdown item")
     utext_suppress_logout = _("Suppress the dialog to confirm logout and shutdown action")
+
+    @classmethod
+    def is_active(cls):
+        return os.path.exists('/usr/lib/indicator-session')
 
     def __init__(self):
         TweakModule.__init__(self)
