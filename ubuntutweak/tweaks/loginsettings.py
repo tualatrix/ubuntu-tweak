@@ -67,6 +67,7 @@ class LoginSettings(TweakModule):
                             WidgetFactory.create('Switch',
                                 label=self.utext_allow_guest,
                                 key='/etc/lightdm/lightdm.conf::SeatDefaults#allow-guest',
+                                default=True,
                                 backend='systemconfig'),
                             notes_label,
                             WidgetFactory.create('Switch',

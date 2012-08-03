@@ -28,7 +28,7 @@ class SettingWidget:
         elif backend == 'compiz':
             self._setting = CompizSetting(key=key)
         elif backend == 'systemconfig':
-            self._setting = SystemConfigSetting(key=key, type=type)
+            self._setting = SystemConfigSetting(key=key, default=default, type=type)
 
         if hasattr(self._setting, 'connect_notify') and \
                 hasattr(self, 'on_value_changed'):
