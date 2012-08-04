@@ -65,7 +65,6 @@ class DefaultScripts(AbstractScripts):
             'convert-image-to-gif': _('Convert image to GIF'),
             'set-image-as-wallpaper': _('Set image as wallpaper'),
             'make-hard-shadow-to-image': _('Make hard shadow to image'),
-            'add-to-unity': _('Add to Unity Launcher'),
             }
 
     def create(self):
