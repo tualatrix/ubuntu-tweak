@@ -16,6 +16,7 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
+import os
 import logging
 
 from gi.repository import GObject, Gtk, GdkPixbuf
@@ -148,6 +149,8 @@ class Workspace(TweakModule):
     def __init__(self):
         TweakModule.__init__(self)
 
+        self.is_arabic = os.getenv('LANG').startswith('ar')
+
         hbox = Gtk.HBox(spacing=12)
         hbox.pack_start(self.create_edge_setting(), True, False, 0)
         self.add_start(hbox, False, False, 0)
@@ -186,14 +189,13 @@ class Workspace(TweakModule):
     def create_edge_setting(self):
         hbox = Gtk.HBox(spacing=12)
 
-        vbox = Gtk.VBox(spacing=6)
-        hbox.pack_start(vbox, False, False, 0)
+        left_vbox = Gtk.VBox(spacing=6)
 
         self.TopLeft = EdgeComboBox("TopLeft")
-        vbox.pack_start(self.TopLeft, False, False, 0)
+        left_vbox.pack_start(self.TopLeft, False, False, 0)
 
         self.BottomLeft = EdgeComboBox("BottomLeft")
-        vbox.pack_end(self.BottomLeft, False, False, 0)
+        left_vbox.pack_end(self.BottomLeft, False, False, 0)
 
         wallpaper = get_local_path(GSetting('org.gnome.desktop.background.picture-uri').get_value())
 
@@ -206,16 +208,23 @@ class Workspace(TweakModule):
             pixbuf = icon.get_from_name('ubuntu-tweak', size=128)
 
         image = Gtk.Image.new_from_pixbuf(pixbuf)
-        hbox.pack_start(image, False, False, 0)
 
-        vbox = Gtk.VBox(spacing=6)
-        hbox.pack_start(vbox, False, False, 0)
+        right_vbox = Gtk.VBox(spacing=6)
 
         self.TopRight = EdgeComboBox("TopRight")
-        vbox.pack_start(self.TopRight, False, False, 0)
+        right_vbox.pack_start(self.TopRight, False, False, 0)
 
         self.BottomRight = EdgeComboBox("BottomRight")
-        vbox.pack_end(self.BottomRight, False, False, 0)
+        right_vbox.pack_end(self.BottomRight, False, False, 0)
+
+        if self.is_arabic:
+            hbox.pack_start(right_vbox, False, False, 0)
+            hbox.pack_start(image, False, False, 0)
+            hbox.pack_start(left_vbox, False, False, 0)
+        else:
+            hbox.pack_start(left_vbox, False, False, 0)
+            hbox.pack_start(image, False, False, 0)
+            hbox.pack_start(right_vbox, False, False, 0)
 
         for edge in ('TopLeft', 'TopRight', 'BottomLeft', 'BottomRight'):
             getattr(self, edge).connect('edge_changed', self.on_edge_changed)
