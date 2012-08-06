@@ -244,8 +244,13 @@ class QuickLists(TweakModule):
             if desktop_file.startswith('/') and os.path.exists(desktop_file):
                 path = desktop_file
             else:
-                if os.path.exists('/usr/share/applications/%s' % desktop_file):
-                    path = '/usr/share/applications/%s' % desktop_file
+                user_path = os.path.join(NewDesktopEntry.user_folder, desktop_file)
+                system_path = os.path.join(NewDesktopEntry.system_folder, desktop_file)
+
+                if os.path.exists(user_path):
+                    path = user_path
+                elif os.path.exists(system_path):
+                    path = system_path
                 else:
                     log.debug("No desktop file avaialbe in for %s" % desktop_file)
                     continue
