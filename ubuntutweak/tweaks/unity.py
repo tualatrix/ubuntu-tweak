@@ -40,7 +40,7 @@ class Unity(TweakModule):
     __desktop__ = ['ubuntu', 'ubuntu-2d']
 
     utext_hud = _('HUD:')
-    utext_overlay = _('Shortcut hits overlay:')
+    utext_overlay = _('Shortcut hints overlay:')
     utext_launcher_size = _('Launcher icon size:')
     utext_launcher_opacity = _('Launcher opacity:')
     utext_launcher_hide = _('Launcher hide mode:')
