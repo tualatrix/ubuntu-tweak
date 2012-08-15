@@ -17,6 +17,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import os
+import getpass
 import logging
 
 from gi.repository import GObject, Gtk, Gdk, Pango
@@ -307,14 +308,14 @@ class UbuntuTweakWindow(GuiBuilder):
         self.no_result_box.label = self.result_text
         self.search_page = SearchPage(self.no_result_box)
         clip_page = ClipPage()
-#        apps_page = AppsPage()
+        apps_page = AppsPage()
         janitor_page = JanitorPage()
         self.preferences_dialog = PreferencesDialog(self.mainwindow)
 
         self.recently_used_settings = GSetting('com.ubuntu-tweak.tweak.recently-used')
 
         self.feature_dict['overview'] = self.notebook.append_page(clip_page, Gtk.Label('overview'))
-#        self.feature_dict['apps'] = self.notebook.append_page(apps_page, Gtk.Label())
+        self.feature_dict['apps'] = self.notebook.append_page(apps_page, Gtk.Label())
         self.feature_dict['tweaks'] = self.notebook.append_page(tweaks_page, Gtk.Label('tweaks'))
         self.feature_dict['admins'] = self.notebook.append_page(admins_page, Gtk.Label('admins'))
         self.feature_dict['janitor'] = self.notebook.append_page(janitor_page, Gtk.Label('janitor'))
@@ -386,9 +387,13 @@ class UbuntuTweakWindow(GuiBuilder):
         if width >= 800 and height >= 480:
             self.mainwindow.set_default_size(width, height)
 
-        for feature_button in ('overview_button', 'admins_button', \
+        for feature_button in ('overview_button', 'apps_button', 'admins_button', \
                                'tweaks_button', 'janitor_button'):
             button = getattr(self, feature_button)
+
+            if feature_button == 'apps_button' and getpass.getuser() != 'tualatrix':
+                button.hide()
+
             label = button.get_child().get_label()
             button.get_child().set_markup('<b>%s</b>' % label)
             button.get_child().set_use_underline(True)
