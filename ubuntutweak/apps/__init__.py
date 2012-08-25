@@ -6,13 +6,38 @@ from ubuntutweak.utils.parser import Parser
 
 log = logging.getLogger('apps')
 
-class AppsPage(WebKit.WebView):
+class AppsPage(Gtk.ScrolledWindow):
     def __init__(self):
         GObject.GObject.__init__(self)
 
-        self.load_uri('http://127.0.0.1:8000/')
+        self._webview = AppsWebView()
+        self.add(self._webview)
+
+        self.connect('size-allocate', self.on_size_allocate)
 
         self.show_all()
+
+    def on_size_allocate(self, widget, allocation):
+        log.debug("The page size: %dx%d", widget.get_allocation().width, widget.get_allocation().height)
+        width = widget.get_allocation().width
+        height = widget.get_allocation().height
+
+        real_height = height - 12
+        self._webview.execute_script('$(".sidebar").css("height", "%dpx");' % real_height)
+        self._webview.execute_script('$(".content").css("height", "%dpx");' % real_height)
+
+        self._webview.execute_script('''
+                                    var width = %d - $(".sidebar").width() - 17;
+                                    console.log("the width is: " + width);
+                                    $(".content").width(width);
+                                    ''' % width)
+
+
+class AppsWebView(WebKit.WebView):
+    def __init__(self):
+        GObject.GObject.__init__(self)
+
+        self.load_uri('http://127.0.0.1:8000/utapp/')
 
 
 class CateParser(Parser):

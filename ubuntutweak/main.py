@@ -308,14 +308,14 @@ class UbuntuTweakWindow(GuiBuilder):
         self.no_result_box.label = self.result_text
         self.search_page = SearchPage(self.no_result_box)
         clip_page = ClipPage()
-        apps_page = AppsPage()
+        self.apps_page = AppsPage()
         janitor_page = JanitorPage()
         self.preferences_dialog = PreferencesDialog(self.mainwindow)
 
         self.recently_used_settings = GSetting('com.ubuntu-tweak.tweak.recently-used')
 
         self.feature_dict['overview'] = self.notebook.append_page(clip_page, Gtk.Label('overview'))
-        self.feature_dict['apps'] = self.notebook.append_page(apps_page, Gtk.Label())
+        self.feature_dict['apps'] = self.notebook.append_page(self.apps_page, Gtk.Label())
         self.feature_dict['tweaks'] = self.notebook.append_page(tweaks_page, Gtk.Label('tweaks'))
         self.feature_dict['admins'] = self.notebook.append_page(admins_page, Gtk.Label('admins'))
         self.feature_dict['janitor'] = self.notebook.append_page(janitor_page, Gtk.Label('janitor'))
