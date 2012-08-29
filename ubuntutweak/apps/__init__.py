@@ -10,10 +10,12 @@ class AppsPage(Gtk.ScrolledWindow):
     def __init__(self):
         GObject.GObject.__init__(self)
 
+        self.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.NEVER)
+
         self._webview = AppsWebView()
         self.add(self._webview)
 
-        self.connect('size-allocate', self.on_size_allocate)
+        self._webview.connect('size-allocate', self.on_size_allocate)
 
         self.show_all()
 
@@ -22,15 +24,14 @@ class AppsPage(Gtk.ScrolledWindow):
         width = widget.get_allocation().width
         height = widget.get_allocation().height
 
-        real_height = height - 12
-        self._webview.execute_script('$(".sidebar").css("height", "%dpx");' % real_height)
-        self._webview.execute_script('$(".content").css("height", "%dpx");' % real_height)
+        self._webview.execute_script('$(".container").css("height", "%dpx");' % (height - 16))
+        self._webview.execute_script('$(".sidebar").css("height", "%dpx");' % height)
 
-        self._webview.execute_script('''
-                                    var width = %d - $(".sidebar").width() - 17;
-                                    console.log("the width is: " + width);
-                                    $(".content").width(width);
-                                    ''' % width)
+#        self._webview.execute_script('''
+#                                    var width = %d - $(".sidebar").width() - 17;
+#                                    console.log("the width is: " + width);
+#                                    $(".content").width(width);
+#                                    ''' % width)
 
 
 class AppsWebView(WebKit.WebView):
