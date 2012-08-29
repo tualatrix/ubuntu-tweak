@@ -78,7 +78,7 @@ class AptWorker(object):
             self._on_error = error_handler
         self.ac = aptdaemon.client.AptClient()
 
-
+    @log_func(log)
     def _simulate_trans(self, trans):
         trans.simulate(reply_handler=lambda: self._confirm_deps(trans),
                        error_handler=self._on_error)
@@ -90,9 +90,14 @@ class AptWorker(object):
             res = dia.run()
             dia.hide()
             if res != Gtk.ResponseType.OK:
+                log.debug("Response is: %s" % res)
+                if self.finish_handler:
+                    log.debug("Finish_handler...")
+                    self.finish_handler(trans, 0, self.data)
                 return
         self._run_transaction(trans)
 
+    @log_func(log)
     def _run_transaction(self, transaction):
         dia = NewAptProgressDialog(transaction, parent=self.parent)
         if self.finish_handler:

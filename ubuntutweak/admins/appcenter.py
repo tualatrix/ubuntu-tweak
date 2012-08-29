@@ -25,7 +25,6 @@ import logging
 from gi.repository import Gtk, Gdk, GdkPixbuf
 from gi.repository import GObject
 from gi.repository import Pango
-from xdg.DesktopEntry import DesktopEntry
 
 from ubuntutweak.common import consts
 from ubuntutweak.common.debug import log_func
@@ -39,7 +38,7 @@ from ubuntutweak.network.downloadmanager import DownloadDialog
 from ubuntutweak.settings.gsettings import GSetting
 from ubuntutweak.utils import set_label_for_stock_button, icon
 from ubuntutweak.utils.package import AptWorker
-from ubuntutweak.apps import CategoryView
+from ubuntutweak.apps import CategoryView, PackageInfo
 
 log = logging.getLogger("AppCenter")
 
@@ -54,34 +53,6 @@ def get_app_data_url():
 
 if not os.path.exists(APPCENTER_ROOT):
     os.mkdir(APPCENTER_ROOT)
-
-
-class PackageInfo:
-    DESKTOP_DIR = '/usr/share/app-install/desktop/'
-
-    def __init__(self, name):
-        self.name = name
-        self.pkg = AptWorker.get_cache()[name]
-        self.desktopentry = DesktopEntry(self.DESKTOP_DIR + name + '.desktop')
-
-    def check_installed(self):
-        return self.pkg.isInstalled
-
-    def get_comment(self):
-        return self.desktopentry.getComment()
-
-    def get_name(self):
-        appname = self.desktopentry.getName()
-        if appname == '':
-            return self.name.title()
-
-        return appname
-
-    def get_version(self):
-        try:
-            return self.pkg.versions[0].version
-        except:
-            return ''
 
 
 class StatusProvider(object):

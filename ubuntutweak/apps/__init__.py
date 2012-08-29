@@ -1,10 +1,42 @@
 import logging
 
+from xdg.DesktopEntry import DesktopEntry
 from gi.repository import GObject, Gtk, WebKit
 
+from ubuntutweak.common.debug import log_func
+from ubuntutweak.gui.gtk import post_ui, set_busy, unset_busy
+from ubuntutweak.utils.package import AptWorker
 from ubuntutweak.utils.parser import Parser
 
 log = logging.getLogger('apps')
+
+class PackageInfo:
+    DESKTOP_DIR = '/usr/share/app-install/desktop/'
+
+    def __init__(self, name):
+        self.name = name
+        self.pkg = AptWorker.get_cache()[name]
+        self.desktopentry = DesktopEntry(self.DESKTOP_DIR + name + '.desktop')
+
+    def check_installed(self):
+        return self.pkg.isInstalled
+
+    def get_comment(self):
+        return self.desktopentry.getComment()
+
+    def get_name(self):
+        appname = self.desktopentry.getName()
+        if appname == '':
+            return self.name.title()
+
+        return appname
+
+    def get_version(self):
+        try:
+            return self.pkg.versions[0].version
+        except:
+            return ''
+
 
 class AppsPage(Gtk.ScrolledWindow):
     def __init__(self):
@@ -21,7 +53,6 @@ class AppsPage(Gtk.ScrolledWindow):
 
     def on_size_allocate(self, widget, allocation):
         log.debug("The page size: %dx%d", widget.get_allocation().width, widget.get_allocation().height)
-        width = widget.get_allocation().width
         height = widget.get_allocation().height
 
         self._webview.execute_script('$(".container").css("height", "%dpx");' % (height - 16))
@@ -35,11 +66,63 @@ class AppsPage(Gtk.ScrolledWindow):
 
 
 class AppsWebView(WebKit.WebView):
+    current_app = None
+
     def __init__(self):
         GObject.GObject.__init__(self)
 
         self.load_uri('http://127.0.0.1:8000/utapp/')
 
+        self.connect('notify::title', self.on_title_changed)
+
+    def on_title_changed(self, *args):
+        if ':' in self.get_title():
+            parameters = self.get_title().strip().split(':')
+            getattr(self, parameters[0])(parameters[1])
+
+    @log_func(log)
+    def update_app(self, pkgname):
+        if pkgname != self.current_app:
+            self.current_app = pkgname
+        try:
+            package = PackageInfo(pkgname)
+            is_installed = package.check_installed()
+
+            if is_installed:
+                self._update_install_button(_('Installed'))
+            else:
+                self._update_install_button(_('Install'))
+        except Exception, e:
+            log.error(e)
+            self._update_install_button(_('Not avaiable'), disabled=True)
+
+    @log_func(log)
+    def install_app(self, pkgname):
+        set_busy(self)
+        worker = AptWorker(self.get_toplevel(),
+                           finish_handler=self.on_package_work_finished,
+                           data={'parent': self})
+        worker.install_packages([pkgname])
+
+        self._update_install_button(_('Installing'))
+
+    @log_func(log)
+    def _update_install_button(self, text, disabled=False):
+        self.execute_script('$(".install-button")[0].innerHTML = "%s";' % text);
+        if disabled:
+            self.execute_script('$(".install-button").attr("disabled", "disabled")');
+        else:
+            self.execute_script('$(".install-button").removeAttr("disabled")');
+
+    def reset_install_button(self):
+        self.update_app(self.current_app)
+
+    @log_func(log)
+    def on_package_work_finished(self, transaction, status, kwargs):
+        parent = kwargs['parent']
+        AptWorker.update_apt_cache(init=True)
+        unset_busy(parent)
+        self.reset_install_button()
 
 class CateParser(Parser):
     def __init__(self, path):
