@@ -1,41 +1,14 @@
 import logging
 
-from xdg.DesktopEntry import DesktopEntry
 from gi.repository import GObject, Gtk, WebKit
 
 from ubuntutweak.common.debug import log_func
-from ubuntutweak.gui.gtk import post_ui, set_busy, unset_busy
+from ubuntutweak.gui.gtk import set_busy, unset_busy
 from ubuntutweak.utils.package import AptWorker
 from ubuntutweak.utils.parser import Parser
+from ubuntutweak.policykit.dbusproxy import proxy
 
 log = logging.getLogger('apps')
-
-class PackageInfo:
-    DESKTOP_DIR = '/usr/share/app-install/desktop/'
-
-    def __init__(self, name):
-        self.name = name
-        self.pkg = AptWorker.get_cache()[name]
-        self.desktopentry = DesktopEntry(self.DESKTOP_DIR + name + '.desktop')
-
-    def check_installed(self):
-        return self.pkg.isInstalled
-
-    def get_comment(self):
-        return self.desktopentry.getComment()
-
-    def get_name(self):
-        appname = self.desktopentry.getName()
-        if appname == '':
-            return self.name.title()
-
-        return appname
-
-    def get_version(self):
-        try:
-            return self.pkg.versions[0].version
-        except:
-            return ''
 
 
 class AppsPage(Gtk.ScrolledWindow):
@@ -52,17 +25,18 @@ class AppsPage(Gtk.ScrolledWindow):
         self.show_all()
 
     def on_size_allocate(self, widget, allocation):
-        log.debug("The page size: %dx%d", widget.get_allocation().width, widget.get_allocation().height)
-        height = widget.get_allocation().height
+        if widget.get_property('load-status') == WebKit.LoadStatus.FINISHED:
+            log.debug("The page size: %dx%d", widget.get_allocation().width, widget.get_allocation().height)
+            height = widget.get_allocation().height
 
-        self._webview.execute_script('$(".container").css("height", "%dpx");' % (height - 16))
-        self._webview.execute_script('$(".sidebar").css("height", "%dpx");' % height)
+            self._webview.execute_script('$(".container").css("height", "%dpx");' % (height - 16))
+            self._webview.execute_script('$(".sidebar").css("height", "%dpx");' % height)
 
-#        self._webview.execute_script('''
-#                                    var width = %d - $(".sidebar").width() - 17;
-#                                    console.log("the width is: " + width);
-#                                    $(".content").width(width);
-#                                    ''' % width)
+    #        self._webview.execute_script('''
+    #                                    var width = %d - $(".sidebar").width() - 17;
+    #                                    console.log("the width is: " + width);
+    #                                    $(".content").width(width);
+    #                                    ''' % width)
 
 
 class AppsWebView(WebKit.WebView):
@@ -76,7 +50,7 @@ class AppsWebView(WebKit.WebView):
         self.connect('notify::title', self.on_title_changed)
 
     def on_title_changed(self, *args):
-        if ':' in self.get_title():
+        if self.get_title() and ':' in self.get_title() and self.get_property('load-status') == WebKit.LoadStatus.FINISHED:
             parameters = self.get_title().strip().split(':')
             getattr(self, parameters[0])(parameters[1])
 
@@ -84,16 +58,13 @@ class AppsWebView(WebKit.WebView):
     def update_app(self, pkgname):
         if pkgname != self.current_app:
             self.current_app = pkgname
-        try:
-            package = PackageInfo(pkgname)
-            is_installed = package.check_installed()
 
-            if is_installed:
-                self._update_install_button(_('Installed'))
+        if proxy.is_package_avaiable(pkgname):
+            if proxy.is_package_installed(pkgname):
+                self._update_install_button(_('Uninstall'))
             else:
                 self._update_install_button(_('Install'))
-        except Exception, e:
-            log.error(e)
+        else:
             self._update_install_button(_('Not avaiable'), disabled=True)
 
     @log_func(log)
@@ -120,7 +91,7 @@ class AppsWebView(WebKit.WebView):
     @log_func(log)
     def on_package_work_finished(self, transaction, status, kwargs):
         parent = kwargs['parent']
-        AptWorker.update_apt_cache(init=True)
+        proxy.update_apt_cache(True)
         unset_busy(parent)
         self.reset_install_button()
 
