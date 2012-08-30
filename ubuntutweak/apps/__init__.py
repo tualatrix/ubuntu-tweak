@@ -1,203 +1,99 @@
 import logging
 
-from gi.repository import GObject, Gtk, Pango
+from gi.repository import GObject, Gtk, WebKit
 
-from ubuntutweak.gui import GuiBuilder
-from ubuntutweak.utils import icon
+from ubuntutweak.common.debug import log_func
+from ubuntutweak.gui.gtk import set_busy, unset_busy
+from ubuntutweak.utils.package import AptWorker
 from ubuntutweak.utils.parser import Parser
+from ubuntutweak.policykit.dbusproxy import proxy
 
 log = logging.getLogger('apps')
 
-class AppObject(object):
-    name = ''
-    icon_name = ''
 
-    def __init__(self, name, icon_name):
-        self.name = name
-        self.icon_name = icon_name
-
-
-class AppButton(Gtk.Button):
-
-    _app = None
-
-    def __init__(self, app):
+class AppsPage(Gtk.ScrolledWindow):
+    def __init__(self):
         GObject.GObject.__init__(self)
 
-        log.info('Creating AppButton: %s' % app)
+        self.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.NEVER)
 
-        self.set_relief(Gtk.ReliefStyle.NONE)
+        self._webview = AppsWebView()
+        self.add(self._webview)
 
-        self._app = app
+        self._webview.connect('size-allocate', self.on_size_allocate)
 
-        hbox = Gtk.HBox(spacing=6)
-        self.add(hbox)
-
-        image = Gtk.Image.new_from_pixbuf(icon.get_from_name(app.icon_name, size=48))
-        hbox.pack_start(image, False, False, 0)
-
-        label = Gtk.Label(label=app.name)
-        label.set_alignment(0, 0.5)
-        label.set_line_wrap(True)
-        label.set_line_wrap_mode(Pango.WrapMode.WORD)
-        label.set_size_request(90, -1)
-        hbox.pack_start(label, False, False, 0)
-
-    def get_app(self):
-        return self._app
-
-
-class AppCategoryBox(Gtk.VBox):
-    _apps = None
-    _buttons = None
-    _current_cols = 0
-    _current_apps = 0
-
-    def __init__(self, apps=None, category='', category_name=''):
-        GObject.GObject.__init__(self)
-
-        self._apps = apps
-
-        self.set_spacing(6)
-
-        header = Gtk.HBox()
-        header.set_spacing(12)
-        label = Gtk.Label()
-        label.set_markup("<span color='#aaa' size='x-large' weight='640'>%s</span>" % category_name)
-        header.pack_start(label, False, False, 0)
-
-        self._table = Gtk.Table()
-
-        self._buttons = []
-        for app in self._apps:
-            self._buttons.append(AppButton(app))
-
-        self.pack_start(header, False, False, 0)
-        self.pack_start(self._table, False, False, 0)
-
-    def get_apps(self):
-        return self._apps
-
-    def get_buttons(self):
-        return self._buttons
-
-    def rebuild_table (self, ncols, force=False):
-        if (not force and ncols == self._current_cols and
-                len(self._apps) == self._current_apps):
-            return
-        self._current_cols = ncols
-        self._current_apps = len(self._apps)
-
-        children = self._table.get_children()
-        if children:
-            for child in children:
-                self._table.remove(child)
-
-        row = 0
-        col = 0
-        for button in self._buttons:
-            if button.get_app() in self._apps:
-                self._table.attach(button, col, col + 1, row, row + 1, 0,
-                                   xpadding=4, ypadding=2)
-                col += 1
-                if col == ncols:
-                    col = 0
-                    row += 1
         self.show_all()
 
+    def on_size_allocate(self, widget, allocation):
+        if widget.get_property('load-status') == WebKit.LoadStatus.FINISHED:
+            log.debug("The page size: %dx%d", widget.get_allocation().width, widget.get_allocation().height)
+            height = widget.get_allocation().height
 
-class AppsView(Gtk.ScrolledWindow):
+            self._webview.execute_script('$(".container").css("height", "%dpx");' % (height - 16))
+            self._webview.execute_script('$(".sidebar").css("height", "%dpx");' % height)
+
+    #        self._webview.execute_script('''
+    #                                    var width = %d - $(".sidebar").width() - 17;
+    #                                    console.log("the width is: " + width);
+    #                                    $(".content").width(width);
+    #                                    ''' % width)
+
+
+class AppsWebView(WebKit.WebView):
+    current_app = None
 
     def __init__(self):
-        GObject.GObject.__init__(self,
-                                 shadow_type=Gtk.ShadowType.NONE,
-                                 hscrollbar_policy=Gtk.PolicyType.NEVER,
-                                 vscrollbar_policy=Gtk.PolicyType.AUTOMATIC)
-        self.set_border_width(12)
+        GObject.GObject.__init__(self)
 
-        self._categories = {}
-        self._boxes = []
+        self.load_uri('http://127.0.0.1:8000/utapp/')
 
-        self._box = Gtk.VBox(spacing=6)
+        self.connect('notify::title', self.on_title_changed)
 
-        category_box = AppCategoryBox(apps=(AppObject('Leafpad', 'leafpad'),
-                                            AppObject('Ubuntu Tweak', 'ubuntu-tweak'),
-                                            AppObject('Terminal', 'gnome-terminal'),
-                                            AppObject('Evolution', 'evolution'),
-                                            AppObject('Pagico', 'pagico'),
-                                            ),
-                       category_name='Text')
-        self._connect_signals(category_box)
-        self._boxes.append(category_box)
-        self._box.pack_start(category_box, False, False, 0)
+    def on_title_changed(self, *args):
+        if self.get_title() and ':' in self.get_title() and self.get_property('load-status') == WebKit.LoadStatus.FINISHED:
+            parameters = self.get_title().strip().split(':')
+            getattr(self, parameters[0])(parameters[1])
 
-        category_box = AppCategoryBox(apps=(AppObject('Shutter', 'shutter'),
-                                            AppObject('LibreOffice Writer', 'libreoffice-writer'),
-                                            AppObject('Firefox', 'firefox'),
-                                            ),
-                       category_name='Utils')
-        self._connect_signals(category_box)
-        self._boxes.append(category_box)
-        self._box.pack_start(category_box, False, False, 0)
+    @log_func(log)
+    def update_app(self, pkgname):
+        if pkgname != self.current_app:
+            self.current_app = pkgname
 
-        viewport = Gtk.Viewport(shadow_type=Gtk.ShadowType.NONE)
-        viewport.add(self._box)
-        self.add(viewport)
-        self.connect('size-allocate', self.rebuild_boxes)
-
-    def _connect_signals(self, category_box):
-        for button in category_box.get_buttons():
-            button.connect('clicked', self.on_button_clicked)
-
-    def on_button_clicked(self, widget):
-        log.info('Button clicked')
-        module = widget.get_module()
-        self.emit('module_selected', module.get_name())
-
-
-    def rebuild_boxes(self, widget, request):
-        ncols = request.width / 148 # 48 + 72 + 6 + 4
-        width = ncols * (148 + 2 * 4) + 40
-        if width > request.width:
-            ncols -= 1
-
-        pos = 0
-        last_box = None
-        children = self._box.get_children()
-        for box in self._boxes:
-            modules = box.get_apps()
-            if len (modules) == 0:
-                if box in children:
-                    self._box.remove(box)
+        if proxy.is_package_avaiable(pkgname):
+            if proxy.is_package_installed(pkgname):
+                self._update_install_button(_('Uninstall'))
             else:
-                if box not in children:
-                    self._box.pack_start(box, False, False, 0)
-                    self._box.reorder_child(box, pos)
-                box.rebuild_table(ncols)
-                pos += 1
+                self._update_install_button(_('Install'))
+        else:
+            self._update_install_button(_('Not avaiable'), disabled=True)
 
-                last_box = box
+    @log_func(log)
+    def install_app(self, pkgname):
+        set_busy(self)
+        worker = AptWorker(self.get_toplevel(),
+                           finish_handler=self.on_package_work_finished,
+                           data={'parent': self})
+        worker.install_packages([pkgname])
 
+        self._update_install_button(_('Installing'))
 
-class AppsPage(Gtk.VBox, GuiBuilder):
-    def __init__(self):
-        GObject.GObject.__init__(self)
-        GuiBuilder.__init__(self, 'appspage.ui')
+    @log_func(log)
+    def _update_install_button(self, text, disabled=False):
+        self.execute_script('$(".install-button")[0].innerHTML = "%s";' % text);
+        if disabled:
+            self.execute_script('$(".install-button").attr("disabled", "disabled")');
+        else:
+            self.execute_script('$(".install-button").removeAttr("disabled")');
 
-        self.hpaned1.reparent(self)
-        self.hpaned1.add2(AppsView())
+    def reset_install_button(self):
+        self.update_app(self.current_app)
 
-        self.update_model()
-        self.show_all()
-
-    def update_model(self):
-        self.category_model.append(None, (0, 'Featured'))
-        self.category_model.append(None, (1, 'New Added'))
-        iter = self.category_model.append(None, (2, 'All Apps'))
-        self.category_model.append(iter, (3, 'Desktop'))
-        self.category_model.append(iter, (4, 'Email'))
-        self.category_model.append(None, (1, 'All Installed'))
-
+    @log_func(log)
+    def on_package_work_finished(self, transaction, status, kwargs):
+        parent = kwargs['parent']
+        proxy.update_apt_cache(True)
+        unset_busy(parent)
+        self.reset_install_button()
 
 class CateParser(Parser):
     def __init__(self, path):

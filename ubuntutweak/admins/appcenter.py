@@ -17,12 +17,11 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import os
-import time
 import json
 import thread
 import logging
 
-from gi.repository import Gtk, Gdk, GdkPixbuf
+from gi.repository import Gtk, GdkPixbuf
 from gi.repository import GObject
 from gi.repository import Pango
 from xdg.DesktopEntry import DesktopEntry

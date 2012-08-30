@@ -16,19 +16,17 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-import os
+import thread
+import getpass
 import logging
 
 from gi.repository import GObject, Gtk, Gdk, Pango
 
-from ubuntutweak import modules
-from ubuntutweak import admins
-from ubuntutweak import system
 from ubuntutweak.gui import GuiBuilder
 from ubuntutweak.gui.gtk import post_ui
 from ubuntutweak.policykit.widgets import PolkitButton
 from ubuntutweak.utils import icon
-from ubuntutweak.common.consts import VERSION, DATA_DIR
+from ubuntutweak.common.consts import VERSION
 from ubuntutweak.common.debug import log_func
 from ubuntutweak.modules import ModuleLoader, create_broken_module_class
 from ubuntutweak.gui.dialogs import ErrorDialog
@@ -225,7 +223,6 @@ class FeaturePage(Gtk.ScrolledWindow):
             ncols -= 1
 
         pos = 0
-        last_box = None
         children = self._box.get_children()
         for box in self._boxes:
             modules = box.get_modules()
@@ -238,8 +235,6 @@ class FeaturePage(Gtk.ScrolledWindow):
                     self._box.reorder_child(box, pos)
                 box.rebuild_table(ncols)
                 pos += 1
-
-                last_box = box
 
 
 class SearchPage(FeaturePage):
@@ -307,14 +302,14 @@ class UbuntuTweakWindow(GuiBuilder):
         self.no_result_box.label = self.result_text
         self.search_page = SearchPage(self.no_result_box)
         clip_page = ClipPage()
-#        apps_page = AppsPage()
+        self.apps_page = AppsPage()
         janitor_page = JanitorPage()
         self.preferences_dialog = PreferencesDialog(self.mainwindow)
 
         self.recently_used_settings = GSetting('com.ubuntu-tweak.tweak.recently-used')
 
         self.feature_dict['overview'] = self.notebook.append_page(clip_page, Gtk.Label('overview'))
-#        self.feature_dict['apps'] = self.notebook.append_page(apps_page, Gtk.Label())
+        self.feature_dict['apps'] = self.notebook.append_page(self.apps_page, Gtk.Label())
         self.feature_dict['tweaks'] = self.notebook.append_page(tweaks_page, Gtk.Label('tweaks'))
         self.feature_dict['admins'] = self.notebook.append_page(admins_page, Gtk.Label('admins'))
         self.feature_dict['janitor'] = self.notebook.append_page(janitor_page, Gtk.Label('janitor'))
@@ -345,6 +340,12 @@ class UbuntuTweakWindow(GuiBuilder):
                                           Gdk.ModifierType.CONTROL_MASK,
                                           Gtk.AccelFlags.VISIBLE)
         self.mainwindow.add_accel_group(accel_group)
+        thread.start_new_thread(self.preload_proxy_cache, ())
+
+    @log_func(log)
+    def preload_proxy_cache(self):
+        #This function just called to make sure the cache is loaded as soon as possible
+        proxy.is_package_installed('ubuntu-tweak')
 
     @log_func(log)
     def on_search_entry_activate(self, widget):
@@ -386,9 +387,13 @@ class UbuntuTweakWindow(GuiBuilder):
         if width >= 800 and height >= 480:
             self.mainwindow.set_default_size(width, height)
 
-        for feature_button in ('overview_button', 'admins_button', \
+        for feature_button in ('overview_button', 'apps_button', 'admins_button', \
                                'tweaks_button', 'janitor_button'):
             button = getattr(self, feature_button)
+
+            if feature_button == 'apps_button' and getpass.getuser() != 'tualatrix':
+                button.hide()
+
             label = button.get_child().get_label()
             button.get_child().set_markup('<b>%s</b>' % label)
             button.get_child().set_use_underline(True)

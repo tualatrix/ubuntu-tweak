@@ -12,10 +12,8 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 import os
 import glob
-import time
 import fcntl
 import shutil
-import gettext
 import logging
 import tempfile
 import subprocess
@@ -29,7 +27,7 @@ import dbus.service
 import dbus.mainloop.glib
 from gi.repository import GObject
 
-from aptsources.sourceslist import SourceEntry, SourcesList
+from aptsources.sourceslist import SourcesList
 
 from ubuntutweak import system
 from ubuntutweak.utils import ppa
@@ -126,6 +124,8 @@ class Daemon(PolicyKitService):
         finally:
             return self.cache
 
+    @dbus.service.method(INTERFACE,
+                         in_signature='b', out_signature='b')
     def update_apt_cache(self, init=False):
         '''if init is true, force to update, or it will update only once'''
         if init or not getattr(self, 'cache'):
@@ -397,12 +397,24 @@ class Daemon(PolicyKitService):
 
     @dbus.service.method(INTERFACE,
                          in_signature='s', out_signature='b')
-    def get_package_status(self, package):
+    def is_package_installed(self, package):
         try:
             pkg = self.get_cache()[package]
             return pkg.isInstalled
         except Exception, e:
             log.error(e)
+        else:
+            return False
+
+    @dbus.service.method(INTERFACE,
+                         in_signature='s', out_signature='b')
+    def is_package_avaiable(self, package):
+        try:
+            pkg = self.get_cache()[package]
+            return True
+        except Exception, e:
+            log.error(e)
+            return False
         else:
             return False
 
@@ -577,8 +589,9 @@ class Daemon(PolicyKitService):
         return os.path.exists(path)
 
     @dbus.service.method(INTERFACE,
-                         in_signature='ss', out_signature='')
-    def set_login_logo(self, src, dest):
+                         in_signature='ss', out_signature='',
+                         sender_keyword='sender')
+    def set_login_logo(self, src, dest, sender=None):
         '''This is called by tweaks/loginsettings.py'''
         self._check_permission(sender, PK_ACTION_TWEAK)
         if not self.is_exists(os.path.dirname(dest)):
@@ -591,8 +604,9 @@ class Daemon(PolicyKitService):
             os.remove(old)
 
     @dbus.service.method(INTERFACE,
-                         in_signature='s', out_signature='')
-    def unset_login_logo(self, dest):
+                         in_signature='s', out_signature='',
+                         sender_keyword='sender')
+    def unset_login_logo(self, dest, sender=None):
         '''This is called by tweaks/loginsettings.py'''
         self._check_permission(sender, PK_ACTION_TWEAK)
 
