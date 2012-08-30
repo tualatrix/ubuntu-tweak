@@ -42,6 +42,24 @@ class AppsPage(Gtk.ScrolledWindow):
 class AppsWebView(WebKit.WebView):
     current_app = None
 
+    (INSTALL_ACTION,
+     UNINSTALL_ACTION,
+     UPDATE_ACTION,
+     INSTALLING_ACTION,
+     UNINSTALLING_ACTION,
+     UPDATING_ACTION,
+     NOT_AVAILABLE_ACTION) = range(7)
+
+    action_text_dict = {
+        INSTALL_ACTION: _('Install'),
+        UNINSTALL_ACTION: _('Uninstall'),
+        UPDATE_ACTION: _('Update'),
+        INSTALLING_ACTION: _('Installing'),
+        UNINSTALLING_ACTION: _('Uninstalling'),
+        UPDATING_ACTION: _('Updating'),
+        NOT_AVAILABLE_ACTION: _('Not Available')
+    }
+
     def __init__(self):
         GObject.GObject.__init__(self)
 
@@ -52,35 +70,50 @@ class AppsWebView(WebKit.WebView):
     def on_title_changed(self, *args):
         if self.get_title() and ':' in self.get_title() and self.get_property('load-status') == WebKit.LoadStatus.FINISHED:
             parameters = self.get_title().strip().split(':')
-            getattr(self, parameters[0])(parameters[1])
+            getattr(self, parameters[0])(*parameters[1:])
 
     @log_func(log)
-    def update_app(self, pkgname):
+    def update_app(self, pkgname, *args):
         if pkgname != self.current_app:
             self.current_app = pkgname
 
         if proxy.is_package_avaiable(pkgname):
             if proxy.is_package_installed(pkgname):
-                self._update_install_button(_('Uninstall'))
+                self.update_action_button(self.UNINSTALL_ACTION)
             else:
-                self._update_install_button(_('Install'))
+                self.update_action_button(self.INSTALL_ACTION)
         else:
-            self._update_install_button(_('Not avaiable'), disabled=True)
+            self.update_action_button(self.NOT_AVAILABLE_ACTION)
 
     @log_func(log)
-    def install_app(self, pkgname):
-        set_busy(self)
-        worker = AptWorker(self.get_toplevel(),
-                           finish_handler=self.on_package_work_finished,
-                           data={'parent': self})
-        worker.install_packages([pkgname])
+    def do_action_for_app(self, pkgname, action_id, *args):
+        action_id = int(action_id)
 
-        self._update_install_button(_('Installing'))
+        if action_id == self.INSTALL_ACTION:
+            set_busy(self)
+            worker = AptWorker(self.get_toplevel(),
+                               finish_handler=self.on_package_work_finished,
+                               data={'parent': self})
+            worker.install_packages([pkgname])
+
+            self.update_action_button(self.INSTALLING_ACTION)
+        elif action_id == self.UNINSTALL_ACTION:
+            set_busy(self)
+            worker = AptWorker(self.get_toplevel(),
+                               finish_handler=self.on_package_work_finished,
+                               data={'parent': self})
+            worker.remove_packages([pkgname])
+
+            self.update_action_button(self.UNINSTALLING_ACTION)
 
     @log_func(log)
-    def _update_install_button(self, text, disabled=False):
+    def update_action_button(self, action_id, disabled=False):
+        text = self.action_text_dict[action_id]
+
         self.execute_script('$(".install-button")[0].innerHTML = "%s";' % text);
-        if disabled:
+        self.execute_script('$(".install-button").attr("action-id", "%d")' % action_id);
+
+        if action_id == self.NOT_AVAILABLE_ACTION:
             self.execute_script('$(".install-button").attr("disabled", "disabled")');
         else:
             self.execute_script('$(".install-button").removeAttr("disabled")');
