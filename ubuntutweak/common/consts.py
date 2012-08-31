@@ -26,7 +26,6 @@ APP = applize(PACKAGE)
 CONFIG_ROOT = os.path.join(GLib.get_user_config_dir(), 'ubuntu-tweak')
 TEMP_ROOT = os.path.join(CONFIG_ROOT, 'temp')
 IS_INSTALLED = True
-IS_TESTING = '+' in VERSION
 
 if not os.path.exists(TEMP_ROOT):
     os.makedirs(TEMP_ROOT)
@@ -40,11 +39,14 @@ if not __file__.startswith('/usr'):
     datadir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
     DATA_DIR = os.path.join(datadir, 'data')
     IS_INSTALLED = False
-else:
-    try:
-        PKG_VERSION = os.popen("dpkg-query -f '${Version}' -W %s" % PACKAGE).read()
-    except Exception, e:
-        print(e)
+
+try:
+    PKG_VERSION = os.popen("dpkg-query -f '${Version}' -W %s" % PACKAGE).read()
+    IS_TESTING = '+' in PKG_VERSION
+    if IS_TESTING:
+        VERSION = PKG_VERSION
+except Exception, e:
+    print(e)
 
 def init_locale():
     global INIT
