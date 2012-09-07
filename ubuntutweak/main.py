@@ -302,7 +302,7 @@ class UbuntuTweakWindow(GuiBuilder):
         self.no_result_box.label = self.result_text
         self.search_page = SearchPage(self.no_result_box)
         clip_page = ClipPage()
-        self.apps_page = AppsPage()
+        self.apps_page = AppsPage(self.back_button, self.next_button)
         janitor_page = JanitorPage()
         self.preferences_dialog = PreferencesDialog(self.mainwindow)
 
@@ -320,6 +320,8 @@ class UbuntuTweakWindow(GuiBuilder):
 
         # Always show welcome page at first
         self.mainwindow.connect('realize', self._initialize_ui_states, splash_window)
+        self.back_button.connect('clicked', self.on_back_button_clicked)
+        self.next_button.connect('clicked', self.on_next_button_clicked)
         tweaks_page.connect('module_selected', self.on_module_selected)
         self.search_page.connect('module_selected', self.on_module_selected)
         admins_page.connect('module_selected', self.on_module_selected)
@@ -527,6 +529,7 @@ class UbuntuTweakWindow(GuiBuilder):
             self.back_button.set_sensitive(False)
             self.next_button.set_sensitive(False)
 
+    @log_func(log)
     def on_back_button_clicked(self, widget):
         self.navigation_dict[self.current_feature] = tuple(reversed(self.navigation_dict[self.current_feature]))
         self.notebook.set_current_page(self.feature_dict[self.current_feature])
@@ -534,6 +537,7 @@ class UbuntuTweakWindow(GuiBuilder):
 
         self.update_jump_buttons()
 
+    @log_func(log)
     def on_next_button_clicked(self, widget):
         back, forward = self.navigation_dict[self.current_feature]
         self.navigation_dict[self.current_feature] = forward, back
@@ -595,7 +599,21 @@ class UbuntuTweakWindow(GuiBuilder):
                     self.notebook.set_current_page(self.feature_dict[feature])
                     self.set_current_module(None)
 
-            self.update_jump_buttons()
+            if feature == 'apps':
+                log.debug("handler_block_by_func by apps")
+                self.back_button.handler_block_by_func(self.on_back_button_clicked)
+                self.next_button.handler_block_by_func(self.on_next_button_clicked)
+                self.apps_page.set_web_buttons_active(True)
+                self._back_handle_id = self.back_button.connect('clicked', self.apps_page.on_go_back_clicked)
+                self._next_handle_id = self.next_button.connect('clicked', self.apps_page.on_go_forward_clicked)
+            else:
+                self.update_jump_buttons()
+        else:
+            if feature == 'apps':
+                log.debug("handler_unblock_by_func by apps")
+                self.apps_page.set_web_buttons_active(False)
+                self.back_button.handler_unblock_by_func(self.on_back_button_clicked)
+                self.next_button.handler_unblock_by_func(self.on_next_button_clicked)
 
     def log_used_module(self, name):
         log.debug("Log the %s to Recently Used" % name)

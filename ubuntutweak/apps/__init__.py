@@ -12,17 +12,42 @@ log = logging.getLogger('apps')
 
 
 class AppsPage(Gtk.ScrolledWindow):
-    def __init__(self):
+    def __init__(self, go_back_button, forward_button):
         GObject.GObject.__init__(self)
 
         self.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.NEVER)
 
+        self._go_back_button = go_back_button
+        self._forward_button = forward_button
         self._webview = AppsWebView()
         self.add(self._webview)
 
         self._webview.connect('size-allocate', self.on_size_allocate)
+        self._webview.connect('notify::load-status', self.on_load_status_changed)
 
         self.show_all()
+
+    @log_func(log)
+    def set_web_buttons_active(self, active):
+        if active:
+            self._go_back_handle_id = self._go_back_button.connect('clicked', self.on_go_back_clicked)
+            self._forward_handle_id = self._forward_button.connect('clicked', self.on_go_forward_clicked)
+        else:
+            self._go_back_button.disconnect(self._go_back_handle_id)
+            self._forward_button.disconnect(self._forward_handle_id)
+
+    @log_func(log)
+    def on_load_status_changed(self, widget, *args):
+        self._go_back_button.set_sensitive(widget.can_go_back())
+        self._forward_button.set_sensitive(widget.can_go_forward())
+
+    @log_func(log)
+    def on_go_back_clicked(self, widget):
+        self._webview.go_back()
+
+    @log_func(log)
+    def on_go_forward_clicked(self, widget):
+        self._webview.go_forward()
 
     def on_size_allocate(self, widget, allocation):
         if widget.get_property('load-status') == WebKit.LoadStatus.FINISHED:
