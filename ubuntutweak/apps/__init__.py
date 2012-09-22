@@ -1,6 +1,8 @@
+import json
 import logging
 
 from gi.repository import GObject, Gtk, WebKit
+from gi.repository import Notify
 from aptsources.sourceslist import SourcesList
 
 from ubuntutweak import system
@@ -8,6 +10,7 @@ from ubuntutweak.common.debug import log_func
 from ubuntutweak.gui.gtk import set_busy, unset_busy
 from ubuntutweak.utils.package import AptWorker
 from ubuntutweak.utils.parser import Parser
+from ubuntutweak.utils import ppa
 from ubuntutweak.policykit.dbusproxy import proxy
 
 log = logging.getLogger('apps')
@@ -115,8 +118,36 @@ class AppsWebView(WebKit.WebView):
         self.update_sources();
 
     @log_func(log)
-    def do_source_operation(self, enable_str, url, *args):
-        enable = str(enable_str)
+    def do_source_operation(self, enable_str, source_json, *args):
+        enable = int(enable_str)
+        source = json.loads(source_json)
+        distro = source['distro_value']
+        log.debug("Enable? %s for source: %s for distro: %s" % (enable, source['name'], distro))
+
+        if ppa.is_ppa(source['url']):
+            file_name = '%s-%s' % (ppa.get_source_file_name(source['url']), distro)
+        else:
+            file_name = source['slug']
+
+        if source['key']:
+            proxy.add_apt_key_from_content(source['key'])
+
+        # TODO these kinds of source should never be featured
+        if not source['component'] and distro:
+            distro = distro + '/'
+        elif not source['component'] and not distro:
+            distro = './'
+
+        result = proxy.set_separated_entry(source['url'], distro, source['component'],
+                                           source['summary'], enable, file_name)
+        log.debug("Enable source: %s result: %s" % (source['name'], result))
+
+        if enable:
+            notify = Notify.Notification(summary=_('New source has been enabled'),
+                                         body=_('%s is enabled now, Please click the refresh button to update the application cache.') % source['name'])
+            notify.set_property('icon-name', 'ubuntu-tweak')
+            notify.set_hint_string ("x-canonical-append", "")
+            notify.show()
 
     @log_func(log)
     def do_action_for_app(self, pkgname, action_id, *args):
@@ -158,26 +189,32 @@ class AppsWebView(WebKit.WebView):
                 var system_codename = "%s";
                 var ubuntu_codenames = %s;
                 console.log("Updating source for system: " + system_codename + ', codenames: ' + ubuntu_codenames);
-                $(".source-view").each(function(index) {
+                var appController = Utapp.get('router.appController');
+                appController.currentApp.sources.forEach(function(source) {
                     var distro_value = '';
-                    console.log($(this).attr('urldata') + " is filtering codename for: ");
-                    $(this).attr('distributions').split(' ').forEach(function(codename) {
+                    console.log(source.name + " is filtering codename for: ");
+                    source.distros.forEach(function(distro) {
+                        var codename = distro.codename;
                         console.log('\t' + codename);
                         if (ubuntu_codenames.contains(codename)){
+                            console.log('\t\tThis is ubuntu codename');
                             if (system_codename == codename) {
+                                console.log('\t\tCodename match!');
                                 distro_value = codename;
                                 return false;
                             }
                         } else {
+                            console.log("\t\tThis isn't Ubuntu codename!");
                             distro_value = codename;
                             return false;
                         };
                     });
                     if (distro_value == '') {
-                        $(this).parent().hide();
+                        console.log('Set source: ' + source.name + ' to hide');
+                        source.set('shouldShow', false);
+                    } else {
+                        source.set('distro_value', distro_value);
                     }
-                    $(this).attr('distro', distro_value);
-                    console.log("Done: " + index);
                 });
                 ''' % (system.CODENAME, list(system.UBUNTU_CODENAMES)));
 
