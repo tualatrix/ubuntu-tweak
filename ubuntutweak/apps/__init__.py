@@ -1,7 +1,9 @@
 import logging
 
 from gi.repository import GObject, Gtk, WebKit
+from aptsources.sourceslist import SourcesList
 
+from ubuntutweak import system
 from ubuntutweak.common.debug import log_func
 from ubuntutweak.gui.gtk import set_busy, unset_busy
 from ubuntutweak.utils.package import AptWorker
@@ -93,8 +95,8 @@ class AppsWebView(WebKit.WebView):
         self.connect('notify::title', self.on_title_changed)
 
     def on_title_changed(self, *args):
-        if self.get_title() and ':' in self.get_title() and self.get_property('load-status') == WebKit.LoadStatus.FINISHED:
-            parameters = self.get_title().strip().split(':')
+        if self.get_title() and '::' in self.get_title() and self.get_property('load-status') == WebKit.LoadStatus.FINISHED:
+            parameters = self.get_title().strip().split('::')
             getattr(self, parameters[0])(*parameters[1:])
 
     @log_func(log)
@@ -109,6 +111,12 @@ class AppsWebView(WebKit.WebView):
                 self.update_action_button(self.INSTALL_ACTION)
         else:
             self.update_action_button(self.NOT_AVAILABLE_ACTION)
+
+        self.update_sources();
+
+    @log_func(log)
+    def do_source_operation(self, enable_str, url, *args):
+        enable = str(enable_str)
 
     @log_func(log)
     def do_action_for_app(self, pkgname, action_id, *args):
@@ -142,6 +150,53 @@ class AppsWebView(WebKit.WebView):
             self.execute_script('$(".install-button").attr("disabled", "disabled")');
         else:
             self.execute_script('$(".install-button").removeAttr("disabled")');
+
+    @log_func(log)
+    def update_sources(self):
+        #First hide the item not supported by current distribution
+        self.execute_script('''
+                var system_codename = "%s";
+                var ubuntu_codenames = %s;
+                console.log("Updating source for system: " + system_codename + ', codenames: ' + ubuntu_codenames);
+                $(".source-view").each(function(index) {
+                    var distro_value = '';
+                    console.log($(this).attr('urldata') + " is filtering codename for: ");
+                    $(this).attr('distributions').split(' ').forEach(function(codename) {
+                        console.log('\t' + codename);
+                        if (ubuntu_codenames.contains(codename)){
+                            if (system_codename == codename) {
+                                distro_value = codename;
+                                return false;
+                            }
+                        } else {
+                            distro_value = codename;
+                            return false;
+                        };
+                    });
+                    if (distro_value == '') {
+                        $(this).parent().hide();
+                    }
+                    $(this).attr('distro', distro_value);
+                    console.log("Done: " + index);
+                });
+                ''' % (system.CODENAME, list(system.UBUNTU_CODENAMES)));
+
+        enabled_list = []
+
+        for source in SourcesList().list:
+            if source.type == 'deb' and not source.disabled:
+                enabled_list.append(source.uri)
+
+        self.execute_script('''
+                var enabled_list = %s;
+                $(".source-view").each(function(index) {
+                    if (enabled_list.contains($(this).attr('urldata')))
+                    {
+                        this.checked = true;
+                    }
+                    console.log(index + ': ' + $(this).attr('urldata'));
+                });
+                ''' % enabled_list);
 
     def reset_install_button(self):
         self.update_app(self.current_app)
