@@ -1,5 +1,6 @@
 import json
 import logging
+import webbrowser
 
 from gi.repository import GObject, Gtk, WebKit
 from gi.repository import Notify
@@ -96,6 +97,11 @@ class AppsWebView(WebKit.WebView):
         self.load_uri('http://127.0.0.1:8000/utapp/')
 
         self.connect('notify::title', self.on_title_changed)
+        self.connect('new-window-policy-decision-requested', self.on_window)
+
+    @log_func(log)
+    def on_window(self, webview, frame, request, *args):
+        webbrowser.open_new_tab(request.get_uri())
 
     def on_title_changed(self, *args):
         if self.get_title() and '::' in self.get_title() and self.get_property('load-status') == WebKit.LoadStatus.FINISHED:
@@ -142,12 +148,14 @@ class AppsWebView(WebKit.WebView):
                                            source['summary'], enable, file_name)
         log.debug("Enable source: %s result: %s" % (source['name'], result))
 
-        if enable:
+        if result == 'enabled':
             notify = Notify.Notification(summary=_('New source has been enabled'),
                                          body=_('%s is enabled now, Please click the refresh button to update the application cache.') % source['name'])
             notify.set_property('icon-name', 'ubuntu-tweak')
             notify.set_hint_string ("x-canonical-append", "")
             notify.show()
+
+            self.update_action_button(self.UPDATE_ACTION)
 
     @log_func(log)
     def do_action_for_app(self, pkgname, action_id, *args):
@@ -169,6 +177,13 @@ class AppsWebView(WebKit.WebView):
             worker.remove_packages([pkgname])
 
             self.update_action_button(self.UNINSTALLING_ACTION)
+        elif action_id == self.UPDATE_ACTION:
+            set_busy(self)
+            worker = AptWorker(self.get_toplevel(),
+                               finish_handler=self.on_package_work_finished,
+                               data={'parent': self})
+            worker.update_cache()
+            self.update_action_button(self.UPDATING_ACTION)
 
     @log_func(log)
     def update_action_button(self, action_id, disabled=False):
