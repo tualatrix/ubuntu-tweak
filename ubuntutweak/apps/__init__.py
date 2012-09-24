@@ -135,27 +135,30 @@ class AppsWebView(WebKit.WebView):
         else:
             file_name = source['slug']
 
-        if source['key']:
-            proxy.add_apt_key_from_content(source['key'])
-
         # TODO these kinds of source should never be featured
         if not source['component'] and distro:
             distro = distro + '/'
         elif not source['component'] and not distro:
             distro = './'
 
-        result = proxy.set_separated_entry(source['url'], distro, source['component'],
-                                           source['summary'], enable, file_name)
-        log.debug("Enable source: %s result: %s" % (source['name'], result))
+        try:
+            result = proxy.set_separated_entry(source['url'], distro, source['component'],
+                                               source['summary'], enable, file_name)
+            log.debug("Enable source: %s result: %s" % (source['name'], result))
+            if source['key']:
+                proxy.add_apt_key_from_content(source['key'])
 
-        if result == 'enabled':
-            notify = Notify.Notification(summary=_('New source has been enabled'),
-                                         body=_('%s is enabled now, Please click the refresh button to update the application cache.') % source['name'])
-            notify.set_property('icon-name', 'ubuntu-tweak')
-            notify.set_hint_string ("x-canonical-append", "")
-            notify.show()
+            if result == 'enabled':
+                notify = Notify.Notification(summary=_('New source has been enabled'),
+                                             body=_('"%s" is enabled now, Please click the update button to update %s') % (source['name'], self.current_app))
+                notify.set_property('icon-name', 'ubuntu-tweak')
+                notify.set_hint_string("x-canonical-append", "true")
+                notify.show()
 
-            self.update_action_button(self.UPDATE_ACTION)
+                self.update_action_button(self.UPDATE_ACTION)
+        except Exception, e:
+            log.error(e)
+            self.update_sources()
 
     @log_func(log)
     def do_action_for_app(self, pkgname, action_id, *args):
@@ -180,7 +183,7 @@ class AppsWebView(WebKit.WebView):
         elif action_id == self.UPDATE_ACTION:
             set_busy(self)
             worker = AptWorker(self.get_toplevel(),
-                               finish_handler=self.on_package_work_finished,
+                               finish_handler=self.on_update_work_finished,
                                data={'parent': self})
             worker.update_cache()
             self.update_action_button(self.UPDATING_ACTION)
@@ -252,6 +255,19 @@ class AppsWebView(WebKit.WebView):
 
     def reset_install_button(self):
         self.update_app(self.current_app)
+
+    @log_func(log)
+    def on_update_work_finished(self, transaction, status, kwargs):
+        parent = kwargs['parent']
+        proxy.update_apt_cache(True)
+        if proxy.is_package_upgradable(self.current_app):
+            worker = AptWorker(self.get_toplevel(),
+                               finish_handler=self.on_package_work_finished,
+                               data={'parent': self})
+            worker.install_packages([self.current_app])
+        else:
+            unset_busy(parent)
+            self.reset_install_button()
 
     @log_func(log)
     def on_package_work_finished(self, transaction, status, kwargs):

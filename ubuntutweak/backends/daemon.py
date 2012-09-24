@@ -408,10 +408,20 @@ class Daemon(PolicyKitService):
 
     @dbus.service.method(INTERFACE,
                          in_signature='s', out_signature='b')
-    def is_package_avaiable(self, package):
+    def is_package_upgradable(self, package):
         try:
             pkg = self.get_cache()[package]
-            return True
+            return pkg.isUpgradable
+        except Exception, e:
+            log.error(e)
+        else:
+            return False
+
+    @dbus.service.method(INTERFACE,
+                         in_signature='s', out_signature='b')
+    def is_package_avaiable(self, package):
+        try:
+            return self.get_cache().has_key(package)
         except Exception, e:
             log.error(e)
             return False
