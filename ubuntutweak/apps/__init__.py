@@ -260,7 +260,9 @@ class AppsWebView(WebKit.WebView):
     def on_update_work_finished(self, transaction, status, kwargs):
         parent = kwargs['parent']
         proxy.update_apt_cache(True)
-        if proxy.is_package_upgradable(self.current_app):
+        if proxy.is_package_upgradable(self.current_app) or \
+           (not proxy.is_package_installed(self.current_app) and \
+            proxy.is_package_avaiable(self.current_app)):
             worker = AptWorker(self.get_toplevel(),
                                finish_handler=self.on_package_work_finished,
                                data={'parent': self})
