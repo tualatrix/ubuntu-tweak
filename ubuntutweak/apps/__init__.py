@@ -106,7 +106,8 @@ class AppsWebView(WebKit.WebView):
     def on_title_changed(self, *args):
         if self.get_title() and '::' in self.get_title() and self.get_property('load-status') == WebKit.LoadStatus.FINISHED:
             parameters = self.get_title().strip().split('::')
-            getattr(self, parameters[0])(*parameters[1:])
+            if hasattr(self, parameters[0]):
+                getattr(self, parameters[0])(*parameters[1:])
 
     @log_func(log)
     def update_app(self, pkgname, *args):
