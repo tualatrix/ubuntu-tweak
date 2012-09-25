@@ -30,6 +30,7 @@ class AppsPage(Gtk.ScrolledWindow):
 
         self._webview.connect('size-allocate', self.on_size_allocate)
         self._webview.connect('notify::load-status', self.on_load_status_changed)
+        self._webview.get_settings().set_property('enable-default-context-menu', False)
 
         self.show_all()
 
