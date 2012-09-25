@@ -229,7 +229,7 @@ class AppsWebView(WebKit.WebView):
                     });
                     if (distro_value == '') {
                         console.log('Set source: ' + source.name + ' to hide');
-                        source.set('shouldShow', false);
+                        source.set('is_available', false);
                     } else {
                         source.set('distro_value', distro_value);
                     }
