@@ -10,4 +10,4 @@ def new_name(file):
 files = sys.argv[1:]
 
 for file in files:
-    os.system('convert %s %s' % (file, new_name(file)))
+    os.system('convert "%s" "%s"' % (file, new_name(file)))
