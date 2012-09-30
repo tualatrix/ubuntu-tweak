@@ -68,6 +68,12 @@ class GconfSetting(object):
                 return gconfvalue.get_int()
             if gconfvalue.type == GConf.ValueType.FLOAT:
                 return gconfvalue.get_float()
+            if gconfvalue.type == GConf.ValueType.LIST:
+                final_list = []
+                if gconfvalue.get_list_type() == GConf.ValueType.STRING:
+                    for item in gconfvalue.get_list():
+                        final_list.append(item.get_string())
+                return final_list
         else:
             if self.type == int:
                 return 0

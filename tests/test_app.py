@@ -16,16 +16,17 @@ class TestApp(unittest.TestCase):
         self.assertEqual(self.window.loaded_modules, {})
         self.assertEqual(self.window.current_feature, 'tweaks')
         self.assertEqual(self.window.feature_dict, {'overview': 0,
-                                                    'tweaks': 1,
-                                                    'admins': 2,
-                                                    'janitor': 3,
-                                                    'search': 5,
-                                                    'wait': 4})
+                                                    'apps': 1,
+                                                    'tweaks': 2,
+                                                    'admins': 3,
+                                                    'janitor': 4,
+                                                    'search': 6,
+                                                    'wait': 5})
         self.assertEqual(self.window.navigation_dict, {'tweaks': (None, None)})
 
         # tweaks->Nautilus
         self.window._load_module('Nautilus')
-        self.assertEqual(self.window.loaded_modules, {'Nautilus': 6})
+        self.assertEqual(self.window.loaded_modules, {'Nautilus': 7})
         self.assertEqual(self.window.current_feature, 'tweaks')
         self.assertEqual(self.window.navigation_dict, {'tweaks': ('Nautilus', None)})
         # Nautilus->tweaks
