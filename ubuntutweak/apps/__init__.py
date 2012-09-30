@@ -95,7 +95,7 @@ class AppsWebView(WebKit.WebView):
     def __init__(self):
         GObject.GObject.__init__(self)
 
-        self.load_uri('http://127.0.0.1:8000/utapp/')
+        self.load_uri('http://ubuntu-tweak.com/utapp/')
 
         self.connect('notify::title', self.on_title_changed)
         self.connect('new-window-policy-decision-requested', self.on_window)
