@@ -16,9 +16,12 @@ class OldKernelPlugin(JanitorPlugin):
     __title__ = _('Old Kernel')
     __category__ = 'system'
 
+    p_kernel_version = re.compile('[.\d]+-\d+')
+    p_kernel_package = re.compile('linux-[a-z\-]+')
+
     def __init__(self):
         JanitorPlugin.__init__(self)
-        self.current_kernel_version = '-'.join(os.uname()[2].split('-')[:2])
+        self.current_kernel_version = self.p_kernel_version.findall('-'.join(os.uname()[2].split('-')[:2]))[0]
         log.debug("the current_kernel_version is %s" % self.current_kernel_version)
 
     def get_cruft(self):
@@ -61,23 +64,20 @@ class OldKernelPlugin(JanitorPlugin):
         self.emit('all_cleaned', True)
 
     def is_old_kernel_package(self, pkg):
-        p_kernel_version = re.compile('[.\d]+-\d+')
-        p_kernel_package = re.compile('linux-[a-z\-]+')
-
         basenames = ['linux-image', 'linux-image-extra', 'linux-headers',
                      'linux-image-debug', 'linux-ubuntu-modules',
                      'linux-header-lum', 'linux-backport-modules',
                      'linux-header-lbm', 'linux-restricted-modules']
 
         if pkg.startswith('linux'):
-            package = p_kernel_package.findall(pkg)
+            package = self.p_kernel_package.findall(pkg)
             if package:
                 package = package[0].rstrip('-')
             else:
                 return False
 
             if package in basenames:
-                match = p_kernel_version.findall(pkg)
+                match = self.p_kernel_version.findall(pkg)
                 if match and self._compare_kernel_version(match[0]):
                     return True
         return False
@@ -87,7 +87,7 @@ class OldKernelPlugin(JanitorPlugin):
         c1, c2 = self.current_kernel_version.split('-')
         p1, p2 = version.split('-')
         if c1 == p1:
-            if int(c2[:6]) > int(p2[:6]):
+            if int(c2) > int(p2):
                 return True
             else:
                 return False
