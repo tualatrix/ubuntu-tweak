@@ -1,3 +1,4 @@
+import os
 import json
 import logging
 import webbrowser
@@ -7,6 +8,8 @@ from gi.repository import Notify
 from aptsources.sourceslist import SourcesList
 
 from ubuntutweak import system
+from ubuntutweak import __version__
+from ubuntutweak.common.consts import IS_TESTING
 from ubuntutweak.common.debug import log_func
 from ubuntutweak.gui.gtk import set_busy, unset_busy
 from ubuntutweak.utils.package import AptWorker
@@ -95,10 +98,20 @@ class AppsWebView(WebKit.WebView):
     def __init__(self):
         GObject.GObject.__init__(self)
 
+        self.setup_user_agent()
+
         self.load_uri('http://ubuntu-tweak.com/utapp/')
 
         self.connect('notify::title', self.on_title_changed)
         self.connect('new-window-policy-decision-requested', self.on_window)
+
+    def setup_user_agent(self):
+        user_agent = 'Mozilla/5.0 (X11; Linux %(arch)s) Chrome/%(version)s-%(codename)s' % {'arch': os.uname()[-1],
+                          'version': __version__,
+                          'codename': system.CODENAME}
+        if IS_TESTING:
+            user_agent = user_agent + '-beta'
+        self.get_settings().set_property('user-agent', user_agent)
 
     @log_func(log)
     def on_window(self, webview, frame, request, *args):

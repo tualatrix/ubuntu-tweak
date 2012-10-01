@@ -21,6 +21,7 @@ def applize(package):
 PACKAGE = 'ubuntu-tweak'
 VERSION = __version__
 PKG_VERSION = VERSION
+IS_TESTING = False
 DATA_DIR = '/usr/share/ubuntu-tweak/'
 APP = applize(PACKAGE)
 CONFIG_ROOT = os.path.join(GLib.get_user_config_dir(), 'ubuntu-tweak')
