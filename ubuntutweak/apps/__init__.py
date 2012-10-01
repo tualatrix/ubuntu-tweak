@@ -33,7 +33,6 @@ class AppsPage(Gtk.ScrolledWindow):
 
         self._webview.connect('size-allocate', self.on_size_allocate)
         self._webview.connect('notify::load-status', self.on_load_status_changed)
-        self._webview.get_settings().set_property('enable-default-context-menu', False)
 
         self.show_all()
 
@@ -98,6 +97,8 @@ class AppsWebView(WebKit.WebView):
     def __init__(self):
         GObject.GObject.__init__(self)
 
+        self.get_settings().set_property('enable-default-context-menu', False)
+        self.get_settings().set_property('enable-plugins', False)
         self.setup_user_agent()
 
         self.load_uri('http://ubuntu-tweak.com/utapp/')
