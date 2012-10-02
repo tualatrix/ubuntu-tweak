@@ -44,6 +44,7 @@ class AppsPage(Gtk.ScrolledWindow):
         else:
             self._go_back_button.disconnect(self._go_back_handle_id)
             self._forward_button.disconnect(self._forward_handle_id)
+        self.on_load_status_changed(self._webview)
 
     @log_func(log)
     def on_load_status_changed(self, widget, *args):

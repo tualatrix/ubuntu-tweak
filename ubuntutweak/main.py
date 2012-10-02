@@ -604,8 +604,6 @@ class UbuntuTweakWindow(GuiBuilder):
                 self.back_button.handler_block_by_func(self.on_back_button_clicked)
                 self.next_button.handler_block_by_func(self.on_next_button_clicked)
                 self.apps_page.set_web_buttons_active(True)
-                self._back_handle_id = self.back_button.connect('clicked', self.apps_page.on_go_back_clicked)
-                self._next_handle_id = self.next_button.connect('clicked', self.apps_page.on_go_forward_clicked)
             else:
                 self.update_jump_buttons()
         else:
