@@ -24,8 +24,6 @@ class AppsPage(Gtk.ScrolledWindow):
     def __init__(self, go_back_button, forward_button):
         GObject.GObject.__init__(self)
 
-        self.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.NEVER)
-
         self._go_back_button = go_back_button
         self._forward_button = forward_button
         self._webview = AppsWebView()
@@ -48,8 +46,10 @@ class AppsPage(Gtk.ScrolledWindow):
 
     @log_func(log)
     def on_load_status_changed(self, widget, *args):
-        self._go_back_button.set_sensitive(widget.can_go_back())
-        self._forward_button.set_sensitive(widget.can_go_forward())
+        if widget.get_property('load-status') == WebKit.LoadStatus.FINISHED:
+            self._go_back_button.set_sensitive(widget.can_go_back())
+            self._forward_button.set_sensitive(widget.can_go_forward())
+            self.on_size_allocate(widget)
 
     @log_func(log)
     def on_go_back_clicked(self, widget):
@@ -59,7 +59,7 @@ class AppsPage(Gtk.ScrolledWindow):
     def on_go_forward_clicked(self, widget):
         self._webview.go_forward()
 
-    def on_size_allocate(self, widget, allocation):
+    def on_size_allocate(self, widget, allocation=None):
         if widget.get_property('load-status') == WebKit.LoadStatus.FINISHED:
             log.debug("The page size: %dx%d", widget.get_allocation().width, widget.get_allocation().height)
             height = widget.get_allocation().height
