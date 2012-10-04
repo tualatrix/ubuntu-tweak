@@ -17,7 +17,6 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import thread
-import getpass
 import logging
 
 from gi.repository import GObject, Gtk, Gdk, Pango
@@ -392,9 +391,6 @@ class UbuntuTweakWindow(GuiBuilder):
         for feature_button in ('overview_button', 'apps_button', 'admins_button', \
                                'tweaks_button', 'janitor_button'):
             button = getattr(self, feature_button)
-
-            if feature_button == 'apps_button' and getpass.getuser() != 'tualatrix':
-                button.hide()
 
             label = button.get_child().get_label()
             button.get_child().set_markup('<b>%s</b>' % label)
