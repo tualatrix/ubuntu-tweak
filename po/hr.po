@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-08-04 22:24+0800\n"
-"PO-Revision-Date: 2012-04-19 10:10+0000\n"
+"POT-Creation-Date: 2012-09-07 10:18+0800\n"
+"PO-Revision-Date: 2012-10-02 06:01+0000\n"
 "Last-Translator: Ding Zhou <tualatrix@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2012-08-12 03:17+0000\n"
-"X-Generator: Launchpad (build 15780)\n"
+"X-Launchpad-Export-Date: 2012-10-04 06:28+0000\n"
+"X-Generator: Launchpad (build 16061)\n"
 
 #: ../data/script-worker:57
 #, c-format
@@ -119,7 +119,7 @@ msgstr ""
 msgid "Move Down"
 msgstr ""
 
-#: ../data/ui/preferences.ui.h:8
+#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:54
 msgid "Install"
 msgstr ""
 
@@ -405,18 +405,22 @@ msgid "_Overview"
 msgstr ""
 
 #: ../data/ui/mainwindow.ui.h:9
-msgid "_Tweaks"
+msgid "_Apps"
 msgstr ""
 
 #: ../data/ui/mainwindow.ui.h:10
-msgid "_Admins"
+msgid "_Tweaks"
 msgstr ""
 
 #: ../data/ui/mainwindow.ui.h:11
-msgid "_Janitor"
+msgid "_Admins"
 msgstr ""
 
 #: ../data/ui/mainwindow.ui.h:12
+msgid "_Janitor"
+msgstr ""
+
+#: ../data/ui/mainwindow.ui.h:13
 msgid "<big><b>No matches found</b></big>"
 msgstr ""
 
@@ -655,7 +659,7 @@ msgid "Desktop"
 msgstr "Radna površina"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:106
-#: ../ubuntutweak/apps/__init__.py:240
+#: ../ubuntutweak/apps/__init__.py:169
 msgid "Category"
 msgstr "Kategorija"
 
@@ -884,7 +888,7 @@ msgid "Visit online Source Center"
 msgstr "Posjeti online Centar izvora"
 
 #: ../ubuntutweak/admins/sourcecenter.py:937
-#: ../ubuntutweak/admins/appcenter.py:506
+#: ../ubuntutweak/admins/appcenter.py:505
 msgid "_Sync"
 msgstr "_Sync"
 
@@ -911,7 +915,7 @@ msgid "disabled on upgrade to %s"
 msgstr "onemogućeno kod nadogradnje na %s"
 
 #: ../ubuntutweak/admins/sourcecenter.py:1014
-#: ../ubuntutweak/admins/appcenter.py:546
+#: ../ubuntutweak/admins/appcenter.py:545
 msgid "Last synced:"
 msgstr "Zadnje sinkronizirano:"
 
@@ -964,7 +968,7 @@ msgstr ""
 "poslužitelj nedostupan."
 
 #: ../ubuntutweak/admins/sourcecenter.py:1184
-#: ../ubuntutweak/admins/appcenter.py:665
+#: ../ubuntutweak/admins/appcenter.py:664
 msgid "No update available."
 msgstr "Nema dostupnih ažuriranja."
 
@@ -1158,40 +1162,40 @@ msgstr ""
 "Ovo će obrisati sve onemogućene predloške.\n"
 "Želite li nastaviti?"
 
-#: ../ubuntutweak/admins/appcenter.py:188
+#: ../ubuntutweak/admins/appcenter.py:187
 msgid "Installed Apps"
 msgstr ""
 
-#: ../ubuntutweak/admins/appcenter.py:455
+#: ../ubuntutweak/admins/appcenter.py:454
 msgid "Checking update..."
 msgstr "Provjeravanje nadogradnji..."
 
-#: ../ubuntutweak/admins/appcenter.py:490
+#: ../ubuntutweak/admins/appcenter.py:489
 msgid "Fetching online data..."
 msgstr "Prikupljanje online podataka..."
 
-#: ../ubuntutweak/admins/appcenter.py:495
+#: ../ubuntutweak/admins/appcenter.py:494
 msgid "Application Center"
 msgstr "Centar aplikacija"
 
-#: ../ubuntutweak/admins/appcenter.py:496
+#: ../ubuntutweak/admins/appcenter.py:495
 msgid ""
 "A simple but efficient way for finding and installing popular applications."
 msgstr ""
 
-#: ../ubuntutweak/admins/appcenter.py:499
+#: ../ubuntutweak/admins/appcenter.py:498
 msgid "Visit Online Application Center"
 msgstr "Posjeti Online Centar aplikacija"
 
-#: ../ubuntutweak/admins/appcenter.py:553
+#: ../ubuntutweak/admins/appcenter.py:552
 msgid "New application data available, would you like to update?"
 msgstr "Novi podaci o aplikacijama su dostupni, želite li ažurirati?"
 
-#: ../ubuntutweak/admins/appcenter.py:652
+#: ../ubuntutweak/admins/appcenter.py:651
 msgid "Update available, would you like to update?"
 msgstr "Ažuriranje dostupno, želite li ažurirati?"
 
-#: ../ubuntutweak/admins/appcenter.py:661
+#: ../ubuntutweak/admins/appcenter.py:660
 msgid ""
 "Network Error, please check your network connection - or the remote server "
 "may be down."
@@ -1199,7 +1203,7 @@ msgstr ""
 "Mrežna greška, molimo provjerite svoju mrežnu vezu - ili udaljeni "
 "poslužitelj nije dostupan."
 
-#: ../ubuntutweak/admins/appcenter.py:678
+#: ../ubuntutweak/admins/appcenter.py:677
 msgid "An error occurred while downloading the file."
 msgstr "Dogodila se greška kod skidanja datoteke."
 
@@ -1281,21 +1285,21 @@ msgstr ""
 msgid "Unity Launcher QuickLists Editor"
 msgstr ""
 
-#: ../ubuntutweak/admins/quicklists.py:397
+#: ../ubuntutweak/admins/quicklists.py:402
 #, python-format
 msgid "Would you like to reset \"%s\"?"
 msgstr ""
 
-#: ../ubuntutweak/admins/quicklists.py:398
+#: ../ubuntutweak/admins/quicklists.py:403
 #, python-format
 msgid "If you continue, the actions of %s will be set to default."
 msgstr ""
 
-#: ../ubuntutweak/admins/quicklists.py:411
+#: ../ubuntutweak/admins/quicklists.py:416
 msgid "Would you like to reset the launcher items?"
 msgstr ""
 
-#: ../ubuntutweak/admins/quicklists.py:412
+#: ../ubuntutweak/admins/quicklists.py:417
 msgid ""
 "If you continue, launcher will be set to default and all your current items "
 "will be lost."
@@ -1496,7 +1500,7 @@ msgid "Application"
 msgstr "Aplikacija"
 
 #: ../ubuntutweak/admins/filetypemanager.py:50
-#: ../ubuntutweak/apps/__init__.py:259
+#: ../ubuntutweak/apps/__init__.py:188
 msgid "All"
 msgstr "Sve"
 
@@ -1827,39 +1831,39 @@ msgstr ""
 msgid "Session indicator:"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/workspace.py:36
+#: ../ubuntutweak/tweaks/workspace.py:37
 msgid "Show Workspaces"
 msgstr "Pokaži radne prostore"
 
-#: ../ubuntutweak/tweaks/workspace.py:37
+#: ../ubuntutweak/tweaks/workspace.py:38
 msgid "Show Windows"
 msgstr "Pokaži prozore"
 
-#: ../ubuntutweak/tweaks/workspace.py:38
+#: ../ubuntutweak/tweaks/workspace.py:39
 msgid "Show Desktop"
 msgstr "Pokaži radnu površinu"
 
-#: ../ubuntutweak/tweaks/workspace.py:39
+#: ../ubuntutweak/tweaks/workspace.py:40
 msgid "Show Widgets"
 msgstr "Pokaži Widgete"
 
-#: ../ubuntutweak/tweaks/workspace.py:138
+#: ../ubuntutweak/tweaks/workspace.py:139
 msgid "Workspace"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/workspace.py:139
+#: ../ubuntutweak/tweaks/workspace.py:140
 msgid "Workspace size and screen edge action settings"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/workspace.py:144
+#: ../ubuntutweak/tweaks/workspace.py:145
 msgid "Edge trigger delay (ms):"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/workspace.py:145
+#: ../ubuntutweak/tweaks/workspace.py:146
 msgid "Horizontal workspace:"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/workspace.py:146
+#: ../ubuntutweak/tweaks/workspace.py:147
 msgid "Vertical workspace:"
 msgstr ""
 
@@ -2064,7 +2068,7 @@ msgid "HUD:"
 msgstr ""
 
 #: ../ubuntutweak/tweaks/unity.py:43
-msgid "Shortcut hits overlay:"
+msgid "Shortcut hints overlay:"
 msgstr ""
 
 #: ../ubuntutweak/tweaks/unity.py:44
@@ -2202,6 +2206,30 @@ msgstr ""
 
 #: ../ubuntutweak/tweaks/workarounds.py:39
 msgid "Auto detect text encoding for Chinese in Gedit:"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:55
+msgid "Uninstall"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:56
+msgid "Update"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:57
+msgid "Installing"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:58
+msgid "Uninstalling"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:59
+msgid "Updating"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:60
+msgid "Not Available"
 msgstr ""
 
 #: ../ubuntutweak/clips/userinfo.py:10
@@ -2374,33 +2402,33 @@ msgstr ""
 "\n"
 "Unutar postoje datoteke!"
 
-#: ../ubuntutweak/main.py:276
+#: ../ubuntutweak/main.py:271
 msgid "Results"
 msgstr ""
 
-#: ../ubuntutweak/main.py:284
+#: ../ubuntutweak/main.py:279
 #, python-format
 msgid "Your filter \"<b>%s</b>\" does not match any items."
 msgstr ""
 
-#: ../ubuntutweak/main.py:402
+#: ../ubuntutweak/main.py:407
 msgid "Please wait a moment..."
 msgstr "Molimo pričekajte trenutak..."
 
-#: ../ubuntutweak/main.py:511
+#: ../ubuntutweak/main.py:516
 #, python-format
 msgid "No module named \"%s\""
 msgstr ""
 
-#: ../ubuntutweak/main.py:512
+#: ../ubuntutweak/main.py:517
 msgid "Please ensure you have entered the correct module name."
 msgstr ""
 
-#: ../ubuntutweak/main.py:570
+#: ../ubuntutweak/main.py:575
 msgid "Computer Janitor"
 msgstr ""
 
-#: ../ubuntutweak/main.py:571
+#: ../ubuntutweak/main.py:576
 msgid "Clean up a system so it's more like a freshly installed one"
 msgstr ""
 
@@ -2479,12 +2507,3 @@ msgstr ""
 #, python-format
 msgid "\"%s\" has already installed"
 msgstr ""
-
-#~ msgid "Fix the appearance of themes when granted root privileges"
-#~ msgstr "Popravi izgled tema kada su odobrena administrativna prava"
-
-#~ msgid "Could not find application"
-#~ msgstr "Nije moguće pronaći aplikaciju"
-
-#~ msgid "Thumbnail cache time (days)"
-#~ msgstr "Vrijeme predmemorije sličica (u danima)"

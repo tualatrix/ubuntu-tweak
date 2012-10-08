@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-04 22:24+0800\n"
-"PO-Revision-Date: 2012-06-29 18:34+0000\n"
-"Last-Translator: Trần Đức Nam <Unknown>\n"
+"POT-Creation-Date: 2012-09-07 10:18+0800\n"
+"PO-Revision-Date: 2012-10-02 06:13+0000\n"
+"Last-Translator: Ding Zhou <tualatrix@gmail.com>\n"
 "Language-Team: Vietnamese <vi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-08-12 03:16+0000\n"
-"X-Generator: Launchpad (build 15780)\n"
+"X-Launchpad-Export-Date: 2012-10-04 06:29+0000\n"
+"X-Generator: Launchpad (build 16061)\n"
 
 #: ../data/script-worker:57
 #, c-format
@@ -118,7 +118,7 @@ msgstr "Di chuyển lên"
 msgid "Move Down"
 msgstr "Di chuyển xuống"
 
-#: ../data/ui/preferences.ui.h:8
+#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:54
 msgid "Install"
 msgstr "Cài đặt"
 
@@ -406,8 +406,9 @@ msgstr ""
 "  Bruce Doan https://launchpad.net/~rgv151\n"
 "  Ding Zhou https://launchpad.net/~tualatrix\n"
 "  EsatYuce https://launchpad.net/~esat\n"
+"  Huynh Trong Nghia https://launchpad.net/~nghia-ht\n"
 "  Lê Trường An https://launchpad.net/~truongan\n"
-"  Ngô Chin https://launchpad.net/~ndtrung4419\n"
+"  Ngô Trung https://launchpad.net/~ndtrung4419\n"
 "  Phan Trọng Khanh https://launchpad.net/~khanhpt\n"
 "  Trần Đức Nam https://launchpad.net/~dynamotn\n"
 "  huanctv https://launchpad.net/~huanctv\n"
@@ -422,18 +423,22 @@ msgid "_Overview"
 msgstr "T_oàn cảnh"
 
 #: ../data/ui/mainwindow.ui.h:9
+msgid "_Apps"
+msgstr ""
+
+#: ../data/ui/mainwindow.ui.h:10
 msgid "_Tweaks"
 msgstr "_Vọc"
 
-#: ../data/ui/mainwindow.ui.h:10
+#: ../data/ui/mainwindow.ui.h:11
 msgid "_Admins"
 msgstr "_Quản trị"
 
-#: ../data/ui/mainwindow.ui.h:11
+#: ../data/ui/mainwindow.ui.h:12
 msgid "_Janitor"
 msgstr "_Dọn dẹp"
 
-#: ../data/ui/mainwindow.ui.h:12
+#: ../data/ui/mainwindow.ui.h:13
 msgid "<big><b>No matches found</b></big>"
 msgstr "<big><b>Không tìm được</b><b>"
 
@@ -673,7 +678,7 @@ msgid "Desktop"
 msgstr "Màn hình nền"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:106
-#: ../ubuntutweak/apps/__init__.py:240
+#: ../ubuntutweak/apps/__init__.py:169
 msgid "Category"
 msgstr "Phân mục"
 
@@ -915,7 +920,7 @@ msgid "Visit online Source Center"
 msgstr "Đi đến trang Trung tâm Nguồn trên mạng"
 
 #: ../ubuntutweak/admins/sourcecenter.py:937
-#: ../ubuntutweak/admins/appcenter.py:506
+#: ../ubuntutweak/admins/appcenter.py:505
 msgid "_Sync"
 msgstr "_Đồng bộ"
 
@@ -943,7 +948,7 @@ msgid "disabled on upgrade to %s"
 msgstr "bị hủy khi nâng cấp %s"
 
 #: ../ubuntutweak/admins/sourcecenter.py:1014
-#: ../ubuntutweak/admins/appcenter.py:546
+#: ../ubuntutweak/admins/appcenter.py:545
 msgid "Last synced:"
 msgstr "Lần cuối đồng bộ hóa:"
 
@@ -998,7 +1003,7 @@ msgstr ""
 "ngừng hoạt động."
 
 #: ../ubuntutweak/admins/sourcecenter.py:1184
-#: ../ubuntutweak/admins/appcenter.py:665
+#: ../ubuntutweak/admins/appcenter.py:664
 msgid "No update available."
 msgstr "Không có cập nhật."
 
@@ -1201,49 +1206,49 @@ msgstr ""
 "Nó sẽ xóa toàn bộ mẫu không dùng.\n"
 "Bạn có muốn tiếp tục?"
 
-#: ../ubuntutweak/admins/appcenter.py:188
+#: ../ubuntutweak/admins/appcenter.py:187
 msgid "Installed Apps"
 msgstr "Các ứng dụng đã cài"
 
-#: ../ubuntutweak/admins/appcenter.py:455
+#: ../ubuntutweak/admins/appcenter.py:454
 msgid "Checking update..."
 msgstr "Đang kiểm tra cập nhật..."
 
-#: ../ubuntutweak/admins/appcenter.py:490
+#: ../ubuntutweak/admins/appcenter.py:489
 msgid "Fetching online data..."
 msgstr "Đang tìm dữ liệu trực tuyến..."
 
-#: ../ubuntutweak/admins/appcenter.py:495
+#: ../ubuntutweak/admins/appcenter.py:494
 msgid "Application Center"
 msgstr "Trung tâm Ứng dụng"
 
-#: ../ubuntutweak/admins/appcenter.py:496
+#: ../ubuntutweak/admins/appcenter.py:495
 msgid ""
 "A simple but efficient way for finding and installing popular applications."
 msgstr ""
 "Cách thức dễ dàng nhưng hiệu quả để tìm kiếm và cài đặt các ứng dụng phổ "
 "biến."
 
-#: ../ubuntutweak/admins/appcenter.py:499
+#: ../ubuntutweak/admins/appcenter.py:498
 msgid "Visit Online Application Center"
 msgstr "Xem Trung tâm Ứng dụng trực tuyến"
 
-#: ../ubuntutweak/admins/appcenter.py:553
+#: ../ubuntutweak/admins/appcenter.py:552
 msgid "New application data available, would you like to update?"
 msgstr "Dữ liệu mới của ứng đã sẵn sàng, bạn có muốn cập nhật không?"
 
-#: ../ubuntutweak/admins/appcenter.py:652
+#: ../ubuntutweak/admins/appcenter.py:651
 msgid "Update available, would you like to update?"
 msgstr "Cập nhật sẵn sàng, bạn có muốn cập nhật?"
 
-#: ../ubuntutweak/admins/appcenter.py:661
+#: ../ubuntutweak/admins/appcenter.py:660
 msgid ""
 "Network Error, please check your network connection - or the remote server "
 "may be down."
 msgstr ""
 "Lỗi mạng, vui lòng kiểm tra lại kết nối mạng hoặc do máy chủ có vấn đề."
 
-#: ../ubuntutweak/admins/appcenter.py:678
+#: ../ubuntutweak/admins/appcenter.py:677
 msgid "An error occurred while downloading the file."
 msgstr "Gặp lỗi trong khi tải về tập tin."
 
@@ -1331,21 +1336,21 @@ msgstr "Chỉnh sửa QuickLists"
 msgid "Unity Launcher QuickLists Editor"
 msgstr "Chỉnh sửa các lối tắt trên thanh Unity"
 
-#: ../ubuntutweak/admins/quicklists.py:397
+#: ../ubuntutweak/admins/quicklists.py:402
 #, python-format
 msgid "Would you like to reset \"%s\"?"
 msgstr "Bạn có muốn thiết lập lại \"%s\"?"
 
-#: ../ubuntutweak/admins/quicklists.py:398
+#: ../ubuntutweak/admins/quicklists.py:403
 #, python-format
 msgid "If you continue, the actions of %s will be set to default."
 msgstr "Nếu bạn tiếp tục, các thiết đặt của %s sẽ được đặt về mặc định."
 
-#: ../ubuntutweak/admins/quicklists.py:411
+#: ../ubuntutweak/admins/quicklists.py:416
 msgid "Would you like to reset the launcher items?"
 msgstr "Bạn có muốn thiết lập lại các mục trên thanh?"
 
-#: ../ubuntutweak/admins/quicklists.py:412
+#: ../ubuntutweak/admins/quicklists.py:417
 msgid ""
 "If you continue, launcher will be set to default and all your current items "
 "will be lost."
@@ -1554,7 +1559,7 @@ msgid "Application"
 msgstr "Ứng dụng"
 
 #: ../ubuntutweak/admins/filetypemanager.py:50
-#: ../ubuntutweak/apps/__init__.py:259
+#: ../ubuntutweak/apps/__init__.py:188
 msgid "All"
 msgstr "Tất cả"
 
@@ -1904,39 +1909,39 @@ msgstr "Ngăn các hộp thoại xác nhận hoạt động đăng xuất và t�
 msgid "Session indicator:"
 msgstr "Chỉ thị phiên làm việc:"
 
-#: ../ubuntutweak/tweaks/workspace.py:36
+#: ../ubuntutweak/tweaks/workspace.py:37
 msgid "Show Workspaces"
 msgstr "Hiện khác Vùng làm việc"
 
-#: ../ubuntutweak/tweaks/workspace.py:37
+#: ../ubuntutweak/tweaks/workspace.py:38
 msgid "Show Windows"
 msgstr "Hiện cửa sổ"
 
-#: ../ubuntutweak/tweaks/workspace.py:38
+#: ../ubuntutweak/tweaks/workspace.py:39
 msgid "Show Desktop"
 msgstr "Hiện màn hình nền"
 
-#: ../ubuntutweak/tweaks/workspace.py:39
+#: ../ubuntutweak/tweaks/workspace.py:40
 msgid "Show Widgets"
 msgstr "Hiện các Widget"
 
-#: ../ubuntutweak/tweaks/workspace.py:138
+#: ../ubuntutweak/tweaks/workspace.py:139
 msgid "Workspace"
 msgstr "Vùng làm việc"
 
-#: ../ubuntutweak/tweaks/workspace.py:139
+#: ../ubuntutweak/tweaks/workspace.py:140
 msgid "Workspace size and screen edge action settings"
 msgstr "Cỡ vùng làm việc và thiết đặt các hành động tại góc màn hình"
 
-#: ../ubuntutweak/tweaks/workspace.py:144
+#: ../ubuntutweak/tweaks/workspace.py:145
 msgid "Edge trigger delay (ms):"
 msgstr "Độ trể kích hoạt góc màn hình (ms)"
 
-#: ../ubuntutweak/tweaks/workspace.py:145
+#: ../ubuntutweak/tweaks/workspace.py:146
 msgid "Horizontal workspace:"
 msgstr "Số lượng vùng làm việc chiều ngang"
 
-#: ../ubuntutweak/tweaks/workspace.py:146
+#: ../ubuntutweak/tweaks/workspace.py:147
 msgid "Vertical workspace:"
 msgstr "Số lượng vùng làm việc chiều dọc"
 
@@ -2039,7 +2044,7 @@ msgstr "Điểu khiển giao diện và hành vi của màn hình đăng nhập"
 
 #: ../ubuntutweak/tweaks/loginsettings.py:43
 msgid "Guest account:"
-msgstr ""
+msgstr "Tài khoản Khách:"
 
 #: ../ubuntutweak/tweaks/loginsettings.py:44
 msgid "Draw grid:"
@@ -2047,7 +2052,7 @@ msgstr "Lưới vẽ"
 
 #: ../ubuntutweak/tweaks/loginsettings.py:63
 msgid "Note: you may need to reboot to take effect"
-msgstr ""
+msgstr "Chú ý: khởi động lại để có hiệu lực"
 
 #: ../ubuntutweak/tweaks/loginsettings.py:141
 msgid "Choose a new logo image"
@@ -2142,8 +2147,8 @@ msgid "HUD:"
 msgstr "HUD:"
 
 #: ../ubuntutweak/tweaks/unity.py:43
-msgid "Shortcut hits overlay:"
-msgstr "Đánh lớp phủ lối tắt:"
+msgid "Shortcut hints overlay:"
+msgstr ""
 
 #: ../ubuntutweak/tweaks/unity.py:44
 msgid "Launcher icon size:"
@@ -2281,6 +2286,30 @@ msgstr "Sửa sắc thái diện mạo khi được cấp đặc quyền root:"
 #: ../ubuntutweak/tweaks/workarounds.py:39
 msgid "Auto detect text encoding for Chinese in Gedit:"
 msgstr "Tự động nhận dạng mã hóa văn bản tiếng Trung trong Gedit:"
+
+#: ../ubuntutweak/apps/__init__.py:55
+msgid "Uninstall"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:56
+msgid "Update"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:57
+msgid "Installing"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:58
+msgid "Uninstalling"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:59
+msgid "Updating"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:60
+msgid "Not Available"
+msgstr ""
 
 #: ../ubuntutweak/clips/userinfo.py:10
 msgid "User Information"
@@ -2455,33 +2484,33 @@ msgstr ""
 "\n"
 "Có các tập tin đang tồn tại trong nó!"
 
-#: ../ubuntutweak/main.py:276
+#: ../ubuntutweak/main.py:271
 msgid "Results"
 msgstr "Kết quả"
 
-#: ../ubuntutweak/main.py:284
+#: ../ubuntutweak/main.py:279
 #, python-format
 msgid "Your filter \"<b>%s</b>\" does not match any items."
 msgstr "Bộ lọc \"<b>%s</b>\" không phù hợp với bất kỳ mục nào."
 
-#: ../ubuntutweak/main.py:402
+#: ../ubuntutweak/main.py:407
 msgid "Please wait a moment..."
 msgstr "Vui lòng chờ trong giây lát..."
 
-#: ../ubuntutweak/main.py:511
+#: ../ubuntutweak/main.py:516
 #, python-format
 msgid "No module named \"%s\""
 msgstr "Không có khối nào tên là \"%s\""
 
-#: ../ubuntutweak/main.py:512
+#: ../ubuntutweak/main.py:517
 msgid "Please ensure you have entered the correct module name."
 msgstr "Vui lòng đảm bảo bạn đã nhập đúng tên khối."
 
-#: ../ubuntutweak/main.py:570
+#: ../ubuntutweak/main.py:575
 msgid "Computer Janitor"
 msgstr "Dọn dẹp máy tính"
 
-#: ../ubuntutweak/main.py:571
+#: ../ubuntutweak/main.py:576
 msgid "Clean up a system so it's more like a freshly installed one"
 msgstr "Thu dọn hệ thống và làm nó trở lên như vừa mới được cài"
 
@@ -2558,62 +2587,3 @@ msgstr "Bạn muốn gỡ bỏ nó rồi cài đặt lại?"
 #, python-format
 msgid "\"%s\" has already installed"
 msgstr "\"%s\" vừa được cài đặt"
-
-#~ msgid "Could not find application"
-#~ msgstr "Không tìm thấy ứng dụng"
-
-#~ msgid "Fix the appearance of themes when granted root privileges"
-#~ msgstr "Sửa giao diện của các chủ đề khi được giao quyền quản trị"
-
-#~ msgid "Purge PPA and Downgrade Packages"
-#~ msgstr "Xoá các PPA và hạ cấp các gói tương ứng"
-
-#~ msgid "Downloading Packages..."
-#~ msgstr "Đang tải các gói phần mềm..."
-
-#, python-format
-#~ msgid "Downgrading...%s"
-#~ msgstr "Đang hạ cấp...%s"
-
-#~ msgid "Removing key files..."
-#~ msgstr "Đang xoá các tập tin key..."
-
-#, python-format
-#~ msgid "You're going to purge: %s"
-#~ msgstr "Bạn đang chuẩn bị gỡ hoàn toàn: %s"
-
-#~ msgid "Thumbnail cache time (days)"
-#~ msgstr "Thời hạn lưu bộ nhớ tạm hình thu nhỏ (ngày)"
-
-#, python-format
-#~ msgid "Downloading...%s"
-#~ msgstr "Đang tải... %s"
-
-#~ msgid "No PPA to be removed"
-#~ msgstr "Không PPA nào được gỡ bỏ"
-
-#, python-format
-#~ msgid "Could not find \"%s\", Please ensure the path is correct."
-#~ msgstr "Không thể tìm thấy \"%s\", vui lòng đảm bảo là đường dẫn chính xác."
-
-#~ msgid "Enable the Super key"
-#~ msgstr "Cho phép phím Windows (Super)"
-
-#, python-format
-#~ msgid "%d PPAs to be removed"
-#~ msgstr "%d PPA được gỡ bỏ"
-
-#~ msgid "Cursor blink timeout"
-#~ msgstr "Thời gian trễ nhấp nháy con trỏ"
-
-#~ msgid "Cursor blink time"
-#~ msgstr "Thời gian nhấp nháy con trỏ"
-
-#~ msgid "Cursor blink"
-#~ msgstr "Nhấp nháy con trỏ"
-
-#~ msgid "Launcher"
-#~ msgstr "Thanh khởi chạy"
-
-#~ msgid "PPA"
-#~ msgstr "PPA"

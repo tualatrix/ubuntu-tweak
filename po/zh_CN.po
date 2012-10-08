@@ -2,16 +2,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-30 13:32+0800\n"
-"PO-Revision-Date: 2012-09-07 02:06+0000\n"
+"POT-Creation-Date: 2012-09-07 10:18+0800\n"
+"PO-Revision-Date: 2012-10-02 06:14+0000\n"
 "Last-Translator: Ding Zhou <tualatrix@gmail.com>\n"
 "Language-Team: TualatriX <tualatrix@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-09-07 02:08+0000\n"
-"X-Generator: Launchpad (build 15914)\n"
+"X-Launchpad-Export-Date: 2012-10-04 06:29+0000\n"
+"X-Generator: Launchpad (build 16061)\n"
 "X-Poedit-Country: CHINA\n"
 "X-Poedit-Language: Chinese\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -116,7 +116,7 @@ msgstr "上移"
 msgid "Move Down"
 msgstr "下移"
 
-#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:66
+#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:54
 msgid "Install"
 msgstr "安装"
 
@@ -660,7 +660,7 @@ msgid "Desktop"
 msgstr "桌面"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:106
-#: ../ubuntutweak/apps/__init__.py:136
+#: ../ubuntutweak/apps/__init__.py:169
 msgid "Category"
 msgstr "分类"
 
@@ -1511,7 +1511,7 @@ msgid "Application"
 msgstr "应用程序"
 
 #: ../ubuntutweak/admins/filetypemanager.py:50
-#: ../ubuntutweak/apps/__init__.py:155
+#: ../ubuntutweak/apps/__init__.py:188
 msgid "All"
 msgstr "所有"
 
@@ -2099,7 +2099,7 @@ msgstr "HUD："
 
 #: ../ubuntutweak/tweaks/unity.py:43
 msgid "Shortcut hints overlay:"
-msgstr ""
+msgstr "快捷键提示层"
 
 #: ../ubuntutweak/tweaks/unity.py:44
 msgid "Launcher icon size:"
@@ -2238,17 +2238,29 @@ msgstr "修正取得root权限后的自定义主题问题："
 msgid "Auto detect text encoding for Chinese in Gedit:"
 msgstr "在Gedit（文本编辑器）为中文编码做自动侦测："
 
-#: ../ubuntutweak/apps/__init__.py:64
+#: ../ubuntutweak/apps/__init__.py:55
 msgid "Uninstall"
 msgstr "卸载"
 
-#: ../ubuntutweak/apps/__init__.py:68
-msgid "Not avaiable"
-msgstr "不可用"
+#: ../ubuntutweak/apps/__init__.py:56
+msgid "Update"
+msgstr "更新"
 
-#: ../ubuntutweak/apps/__init__.py:78
+#: ../ubuntutweak/apps/__init__.py:57
 msgid "Installing"
 msgstr "正在安装"
+
+#: ../ubuntutweak/apps/__init__.py:58
+msgid "Uninstalling"
+msgstr "正在卸载"
+
+#: ../ubuntutweak/apps/__init__.py:59
+msgid "Updating"
+msgstr "正在更新"
+
+#: ../ubuntutweak/apps/__init__.py:60
+msgid "Not Available"
+msgstr "不可用"
 
 #: ../ubuntutweak/clips/userinfo.py:10
 msgid "User Information"
@@ -2523,62 +2535,3 @@ msgstr "您想移除它并重新安装吗？"
 #, python-format
 msgid "\"%s\" has already installed"
 msgstr "\"%s\" 已经安装"
-
-#~ msgid "Could not find application"
-#~ msgstr "未找到应用程序"
-
-#~ msgid "Thumbnail cache time (days)"
-#~ msgstr "缩略图缓存时间（天）"
-
-#~ msgid "Fix the appearance of themes when granted root privileges"
-#~ msgstr "修正当获得root权限后的主题问题"
-
-#, python-format
-#~ msgid "Downgrading...%s"
-#~ msgstr "正在降级……%s"
-
-#~ msgid "Purge PPA and Downgrade Packages"
-#~ msgstr "清除PPA并且降级相关软件"
-
-#~ msgid "Downloading Packages..."
-#~ msgstr "正在下载软件包……"
-
-#, python-format
-#~ msgid "You're going to purge: %s"
-#~ msgstr "您正将清除以下PPA：%s"
-
-#~ msgid "Removing key files..."
-#~ msgstr "正在移除密钥文件……"
-
-#, python-format
-#~ msgid "Downloading...%s"
-#~ msgstr "正在下载...%s"
-
-#, python-format
-#~ msgid "Could not find \"%s\", Please ensure the path is correct."
-#~ msgstr "找不到“%s”，请确认路径是正确的。"
-
-#~ msgid "Launcher"
-#~ msgstr "启动器"
-
-#~ msgid "Enable the Super key"
-#~ msgstr "启用 Super 键"
-
-#~ msgid "No PPA to be removed"
-#~ msgstr "没有要移除的 PPA"
-
-#, python-format
-#~ msgid "%d PPAs to be removed"
-#~ msgstr "将移除 %d 个 PPA"
-
-#~ msgid "PPA"
-#~ msgstr "PPA"
-
-#~ msgid "Cursor blink time"
-#~ msgstr "光标闪烁时间"
-
-#~ msgid "Cursor blink"
-#~ msgstr "光标闪烁"
-
-#~ msgid "Cursor blink timeout"
-#~ msgstr "光标闪烁超时"

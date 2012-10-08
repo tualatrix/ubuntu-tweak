@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-04 22:24+0800\n"
-"PO-Revision-Date: 2012-04-21 04:42+0000\n"
+"POT-Creation-Date: 2012-09-07 10:18+0800\n"
+"PO-Revision-Date: 2012-10-02 06:02+0000\n"
 "Last-Translator: Ding Zhou <tualatrix@gmail.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-08-12 03:17+0000\n"
-"X-Generator: Launchpad (build 15780)\n"
+"X-Launchpad-Export-Date: 2012-10-04 06:28+0000\n"
+"X-Generator: Launchpad (build 16061)\n"
 
 #: ../data/script-worker:57
 #, c-format
@@ -53,7 +53,7 @@ msgstr "Finomhangolások"
 
 #: ../data/ubuntu-tweak.desktop.in.h:4 ../data/ui/preferences.ui.h:17
 msgid "Admins"
-msgstr "Adminisztráció"
+msgstr "Adminisztrátorok"
 
 #: ../data/ubuntu-tweak.desktop.in.h:5 ../data/ui/preferences.ui.h:22
 msgid "Janitor"
@@ -118,7 +118,7 @@ msgstr "Felfelé mozgatás"
 msgid "Move Down"
 msgstr "Lefelé mozgatás"
 
-#: ../data/ui/preferences.ui.h:8
+#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:54
 msgid "Install"
 msgstr "Telepítés"
 
@@ -142,7 +142,7 @@ msgstr "Adminisztratív kiterjesztések kezelése"
 
 #: ../data/ui/preferences.ui.h:18
 msgid "<b>Generic</b>"
-msgstr ""
+msgstr "<b>Általános</b>"
 
 #. Please make sure the "<b>xxx</b>" is ok
 #: ../data/ui/preferences.ui.h:20
@@ -191,7 +191,7 @@ msgstr "Részletek"
 
 #: ../data/ui/sourcecenter.ui.h:7
 msgid "Purge PPA"
-msgstr ""
+msgstr "PPa tisztítás"
 
 #: ../data/ui/brokenmodule.ui.h:1
 msgid "<big><b>This module encountered an error while loading.</b></big>"
@@ -231,11 +231,11 @@ msgstr "Jelenlegi háttérkép használata"
 
 #: ../data/ui/quicklists.ui.h:2
 msgid "Active"
-msgstr ""
+msgstr "Aktív"
 
 #: ../data/ui/quicklists.ui.h:3
 msgid "Name"
-msgstr ""
+msgstr "Név"
 
 #: ../data/ui/quicklists.ui.h:4
 msgid "Command line"
@@ -243,11 +243,11 @@ msgstr ""
 
 #: ../data/ui/quicklists.ui.h:5
 msgid "Command:"
-msgstr ""
+msgstr "Parancs:"
 
 #: ../data/ui/quicklists.ui.h:6
 msgid "Name:"
-msgstr ""
+msgstr "Név:"
 
 #: ../data/ui/clippage.ui.h:1
 msgid "<b>Recently Used</b>"
@@ -412,6 +412,7 @@ msgstr ""
 "  Ferenc Karsany https://launchpad.net/~fkarsany\n"
 "  Gabor Kelemen https://launchpad.net/~kelemeng\n"
 "  Gergely Szarka https://launchpad.net/~gszarka\n"
+"  Horváth Zoltán https://launchpad.net/~veszett-kutya76\n"
 "  Jezsoviczki Ádám https://launchpad.net/~jezsoadam\n"
 "  Kőrösi Krisztián https://launchpad.net/~koeroesi86\n"
 "  Muszela Balázs https://launchpad.net/~bazsi86-deactivatedaccount\n"
@@ -427,27 +428,31 @@ msgstr ""
 
 #: ../data/ui/mainwindow.ui.h:7
 msgid "Search... <Ctrl+F>"
-msgstr ""
+msgstr "Keresés... <Ctrl+F>"
 
 #: ../data/ui/mainwindow.ui.h:8
 msgid "_Overview"
 msgstr "_Áttekintés"
 
 #: ../data/ui/mainwindow.ui.h:9
+msgid "_Apps"
+msgstr ""
+
+#: ../data/ui/mainwindow.ui.h:10
 msgid "_Tweaks"
 msgstr "_Finomhangolások"
 
-#: ../data/ui/mainwindow.ui.h:10
+#: ../data/ui/mainwindow.ui.h:11
 msgid "_Admins"
 msgstr "_Adminisztráció"
 
-#: ../data/ui/mainwindow.ui.h:11
+#: ../data/ui/mainwindow.ui.h:12
 msgid "_Janitor"
 msgstr "_Lomtalanító"
 
-#: ../data/ui/mainwindow.ui.h:12
+#: ../data/ui/mainwindow.ui.h:13
 msgid "<big><b>No matches found</b></big>"
-msgstr ""
+msgstr "<big><b>Nincs találat</b></big>"
 
 #: ../data/ui/desktoprecovery.ui.h:1
 msgid "Setting Name:"
@@ -463,7 +468,7 @@ msgstr "Klasszikus GNOME"
 
 #: ../ubuntutweak/system/__init__.py:44
 msgid "GNOME Fallback"
-msgstr ""
+msgstr "GNOME Fallback"
 
 #: ../ubuntutweak/system/__init__.py:55
 #, python-format
@@ -571,18 +576,21 @@ msgid ""
 "You can't file bug for this issue. Please only use Ubuntu Tweak on Ubuntu. "
 "Or it may kill your cat."
 msgstr ""
+"Nem kezelhető hiba. Kérlek, csak Ubuntu Tweak-et használj azUbuntun! "
+"Máskülömben Schrödinger macskája! Vagyis a kígyó a farkába harap, de nem a "
+"macskáéba. Róka fogta csuka."
 
 #: ../ubuntutweak/janitor/gwibber_plugin.py:4
 msgid "Gwibber Cache"
-msgstr ""
+msgstr "Gwibber gyorsítótár"
 
 #: ../ubuntutweak/janitor/opera_plugin.py:4
 msgid "Opera Cache"
-msgstr ""
+msgstr "Opera gyorsítótár"
 
 #: ../ubuntutweak/janitor/googleearth_plugin.py:5
 msgid "Google Earth Cache"
-msgstr ""
+msgstr "Google Föld gyorsítótár"
 
 #: ../ubuntutweak/janitor/thumbnailcache_plugin.py:4
 msgid "Thumbnail cache"
@@ -590,27 +598,27 @@ msgstr "Bélyegkép-gyorsítótár"
 
 #: ../ubuntutweak/janitor/softwarecenter_plugin.py:4
 msgid "Software Center Cache"
-msgstr ""
+msgstr "Ubuntu szoftverközpont gyorsítótár"
 
 #: ../ubuntutweak/janitor/mozilla_plugin.py:37
 msgid "Firefox Cache"
-msgstr ""
+msgstr "Firefox gyorsítótár"
 
 #: ../ubuntutweak/janitor/mozilla_plugin.py:43
 msgid "Thunderbird Cache"
-msgstr ""
+msgstr "Thunderbird gyorsítótár"
 
 #: ../ubuntutweak/janitor/chrome_plugin.py:4
 msgid "Chrome Cache"
-msgstr ""
+msgstr "Chrome gyorsítótár"
 
 #: ../ubuntutweak/janitor/chrome_plugin.py:11
 msgid "Chromium Cache"
-msgstr ""
+msgstr "Chromium gyorsítótár"
 
 #: ../ubuntutweak/janitor/empathy_plugin.py:4
 msgid "Empathy Cache"
-msgstr ""
+msgstr "Empathy gyorsítótár"
 
 #: ../ubuntutweak/janitor/autoremoval_plugin.py:14
 msgid "Unneeded Packages"
@@ -626,22 +634,22 @@ msgstr "Apt-gyorsítótár"
 
 #: ../ubuntutweak/janitor/__init__.py:278
 msgid "No cache to be cleaned"
-msgstr ""
+msgstr "Nem lesz törölve gyorsítótár"
 
 #: ../ubuntutweak/janitor/__init__.py:576
 #, python-format
 msgid "Scanning cruft for \"%s\"..."
-msgstr ""
+msgstr "Adatszemét keresése ebben: \"%s\"..."
 
 #: ../ubuntutweak/janitor/__init__.py:698
 #, python-format
 msgid "Scan error for \"%s\", double-click to see details"
-msgstr ""
+msgstr "Hibakeresés ebben: \"%s\", duplakatt a részletek megtekintéséhez"
 
 #: ../ubuntutweak/janitor/__init__.py:763
 #, python-format
 msgid "Cleaning cruft for \"%s\"..."
-msgstr ""
+msgstr "Adatszemét takarítása ebben: \"%s\"..."
 
 #: ../ubuntutweak/janitor/__init__.py:844
 #: ../ubuntutweak/admins/desktoprecovery.py:81
@@ -656,7 +664,7 @@ msgstr "Személyes"
 
 #: ../ubuntutweak/janitor/__init__.py:889
 msgid "Apps"
-msgstr ""
+msgstr "Alkalmazások"
 
 #: ../ubuntutweak/janitor/packageconfigs_plugin.py:30
 msgid "Package Configs"
@@ -686,7 +694,7 @@ msgid "Desktop"
 msgstr "Asztal"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:106
-#: ../ubuntutweak/apps/__init__.py:240
+#: ../ubuntutweak/apps/__init__.py:169
 msgid "Category"
 msgstr "Kategória"
 
@@ -731,6 +739,8 @@ msgid ""
 "Backup all settings under \"<b>%s</b>\"\n"
 "Would you like to continue?"
 msgstr ""
+"A(z) \"<b>%s</b>\" összes beállításának biztonsági mentése\n"
+"Szeretné folytatni?"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:403
 #, python-format
@@ -738,11 +748,13 @@ msgid ""
 "Backup settings under \"<b>%s</b>\"\n"
 "Would you like to continue?"
 msgstr ""
+"A(z) \"<b>%s</b>\" beállításáóainak biztonsági mentése\n"
+"Szeretné folytatni?"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:446
 #, python-format
 msgid "Would you like to delete the backup \"<b>%s/%s</b>\"?"
-msgstr ""
+msgstr "Szeretné törölni ezt biztonsági mentést: \"<b>%s/%s</b>\"?"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:450
 #, python-format
@@ -750,11 +762,13 @@ msgid ""
 "Would you like to delete the backup of all \"<b>%(setting_name)s</b>\" "
 "settings named \"<b>%(backup_name)s</b>\"?"
 msgstr ""
+"Szeretné törölni a biztonsági mentését az összes  "
+"\"<b>%(setting_name)s</b>\" beállításnak a  \"<b>%(backup_name)s</b>\" néven?"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:472
 #, python-format
 msgid "Would you like to recover the backup \"<b>%s/%s</b>\"?"
-msgstr ""
+msgstr "Vissza szeretné állítani ezt a biztonsági mentést: \"<b>%s/%s</b>\"?"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:475
 #, python-format
@@ -762,6 +776,8 @@ msgid ""
 "Would you like to recover the backup of all \"<b>%(setting_name)s</b>\" "
 "settings named \"<b>%(backup_name)s</b>\"?"
 msgstr ""
+"Szeretné visszaállítani a biztonsági mentését az összes "
+"\"<b>%(setting_name)s</b>\" beállításnak a  \"<b>%(backup_name)s</b>\" néven?"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:480
 msgid ""
@@ -787,12 +803,13 @@ msgstr "_Kijelentkezés"
 #: ../ubuntutweak/admins/desktoprecovery.py:516
 #, python-format
 msgid "Would you like to reset settings for \"<b>%s</b>\"?"
-msgstr ""
+msgstr "Szeretné alaphelyzetbe állítani a \"<b>%s</b>\" beállításait?"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:518
 #, python-format
 msgid "Would you like to reset all settings under \"<b>%s</b>\"?"
 msgstr ""
+"Szeretné alaphelyzetbe állítani az \"<b>%s</b>\"  összes beállítását?"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:520
 msgid ""
@@ -902,7 +919,7 @@ msgstr ""
 
 #: ../ubuntutweak/admins/sourcecenter.py:921
 msgid "Enabled PPAs"
-msgstr ""
+msgstr "Engedélyezett PPA-k"
 
 #: ../ubuntutweak/admins/sourcecenter.py:924
 msgid "Source Center"
@@ -913,13 +930,15 @@ msgid ""
 "A collection of software sources to ensure your applications are always up-"
 "to-date."
 msgstr ""
+"Szoftverforrás-gyűjtemény az alkalmazások folyamatosan naprakészen "
+"tartásának biztosítására."
 
 #: ../ubuntutweak/admins/sourcecenter.py:928
 msgid "Visit online Source Center"
 msgstr "Online forrásközpont meglátogatása"
 
 #: ../ubuntutweak/admins/sourcecenter.py:937
-#: ../ubuntutweak/admins/appcenter.py:506
+#: ../ubuntutweak/admins/appcenter.py:505
 msgid "_Sync"
 msgstr "_Szinkronizálás"
 
@@ -946,7 +965,7 @@ msgid "disabled on upgrade to %s"
 msgstr "letiltva a(z) %s változatra frissítéskor"
 
 #: ../ubuntutweak/admins/sourcecenter.py:1014
-#: ../ubuntutweak/admins/appcenter.py:546
+#: ../ubuntutweak/admins/appcenter.py:545
 msgid "Last synced:"
 msgstr "Legutóbb szinkronizálva:"
 
@@ -982,6 +1001,8 @@ msgid ""
 "All enabled PPAs (Select and click \"Purge PPA\" can safely downgrade "
 "packages)"
 msgstr ""
+"Az összes engedélyezett PPA (A \"PPA Tisztítás\" képes biztonságosan "
+"visszafelé frissíteni csomagokat.)"
 
 #: ../ubuntutweak/admins/sourcecenter.py:1155
 msgid "An error occurred whilst downloading the file"
@@ -999,7 +1020,7 @@ msgstr ""
 "Hálózati hiba. A hálózati kapcsolata, vagy a távoli kiszolgáló nem működik."
 
 #: ../ubuntutweak/admins/sourcecenter.py:1184
-#: ../ubuntutweak/admins/appcenter.py:665
+#: ../ubuntutweak/admins/appcenter.py:664
 msgid "No update available."
 msgstr "Nincs elérhető frissítés."
 
@@ -1016,15 +1037,15 @@ msgstr ""
 #: ../ubuntutweak/admins/sourcecenter.py:1216
 #, python-format
 msgid "You're going to purge \"%s\":"
-msgstr ""
+msgstr "\"%s\" tisztítására készül :"
 
 #: ../ubuntutweak/admins/sourcecenter.py:1253
 msgid "PPA has been purged"
-msgstr ""
+msgstr "PPA megtisztult"
 
 #: ../ubuntutweak/admins/sourcecenter.py:1254
 msgid "It is highly recommend to do a \"Refresh\" source operation."
-msgstr ""
+msgstr "Erősen ajánlott frissíteni."
 
 #: ../ubuntutweak/admins/sourceeditor.py:168
 msgid "Source Editor"
@@ -1087,7 +1108,7 @@ msgstr "Érvénytelen a biztonsági mentés neve"
 #: ../ubuntutweak/admins/sourceeditor.py:404
 #, python-format
 msgid "Would you like to delete the backup \"<b>%s</b>\"?"
-msgstr ""
+msgstr "Szeretnéd törölni a \"<b>%s</b>\" biztonsági mentést?"
 
 #: ../ubuntutweak/admins/sourceeditor.py:434
 msgid ""
@@ -1181,7 +1202,7 @@ msgstr ""
 
 #: ../ubuntutweak/admins/templates.py:137
 msgid "Go And Set"
-msgstr ""
+msgstr "Menj, állísd be!"
 
 #: ../ubuntutweak/admins/templates.py:142
 msgid "Restart This Module"
@@ -1203,40 +1224,41 @@ msgstr ""
 "Ez eltávolít minden letiltott sablont.\n"
 "Kívánja folytatni?"
 
-#: ../ubuntutweak/admins/appcenter.py:188
+#: ../ubuntutweak/admins/appcenter.py:187
 msgid "Installed Apps"
-msgstr ""
+msgstr "Telepített alkalmazások"
 
-#: ../ubuntutweak/admins/appcenter.py:455
+#: ../ubuntutweak/admins/appcenter.py:454
 msgid "Checking update..."
 msgstr "Frissítések ellenőrzése…"
 
-#: ../ubuntutweak/admins/appcenter.py:490
+#: ../ubuntutweak/admins/appcenter.py:489
 msgid "Fetching online data..."
 msgstr "Online információk letöltése…"
 
-#: ../ubuntutweak/admins/appcenter.py:495
+#: ../ubuntutweak/admins/appcenter.py:494
 msgid "Application Center"
 msgstr "Szoftverközpont"
 
-#: ../ubuntutweak/admins/appcenter.py:496
+#: ../ubuntutweak/admins/appcenter.py:495
 msgid ""
 "A simple but efficient way for finding and installing popular applications."
 msgstr ""
+"Egyszerű de hatásos mód népszerű alkalmazások keresésére, telepítésére."
 
-#: ../ubuntutweak/admins/appcenter.py:499
+#: ../ubuntutweak/admins/appcenter.py:498
 msgid "Visit Online Application Center"
 msgstr "Online szoftverközpont meglátogatása"
 
-#: ../ubuntutweak/admins/appcenter.py:553
+#: ../ubuntutweak/admins/appcenter.py:552
 msgid "New application data available, would you like to update?"
 msgstr "Új alkalmazásadatok érhetőek el. Szeretné frissíteni?"
 
-#: ../ubuntutweak/admins/appcenter.py:652
+#: ../ubuntutweak/admins/appcenter.py:651
 msgid "Update available, would you like to update?"
 msgstr "Frissítés érhető el, szeretne frissíteni?"
 
-#: ../ubuntutweak/admins/appcenter.py:661
+#: ../ubuntutweak/admins/appcenter.py:660
 msgid ""
 "Network Error, please check your network connection - or the remote server "
 "may be down."
@@ -1244,7 +1266,7 @@ msgstr ""
 "Hálózati hiba, kérem ellenőrizze a kapcsolatát – vagy a távoli kiszolgáló "
 "leállt."
 
-#: ../ubuntutweak/admins/appcenter.py:678
+#: ../ubuntutweak/admins/appcenter.py:677
 msgid "An error occurred while downloading the file."
 msgstr "Hiba történt a fájl letöltése közben."
 
@@ -1304,7 +1326,7 @@ msgstr "Visszaállítás alapértelmezettre"
 
 #: ../ubuntutweak/admins/userdir.py:237
 msgid "User Folder"
-msgstr ""
+msgstr "Felhasználói mappa"
 
 #: ../ubuntutweak/admins/userdir.py:238
 msgid ""
@@ -1325,27 +1347,27 @@ msgstr "_Módosítás"
 
 #: ../ubuntutweak/admins/quicklists.py:208
 msgid "QuickLists Editor"
-msgstr ""
+msgstr "QuickLists szerkesztő"
 
 #: ../ubuntutweak/admins/quicklists.py:209
 msgid "Unity Launcher QuickLists Editor"
-msgstr ""
+msgstr "Unity Launcher QuickLists szerkesztő"
 
-#: ../ubuntutweak/admins/quicklists.py:397
+#: ../ubuntutweak/admins/quicklists.py:402
 #, python-format
 msgid "Would you like to reset \"%s\"?"
 msgstr ""
 
-#: ../ubuntutweak/admins/quicklists.py:398
+#: ../ubuntutweak/admins/quicklists.py:403
 #, python-format
 msgid "If you continue, the actions of %s will be set to default."
 msgstr ""
 
-#: ../ubuntutweak/admins/quicklists.py:411
+#: ../ubuntutweak/admins/quicklists.py:416
 msgid "Would you like to reset the launcher items?"
 msgstr ""
 
-#: ../ubuntutweak/admins/quicklists.py:412
+#: ../ubuntutweak/admins/quicklists.py:417
 msgid ""
 "If you continue, launcher will be set to default and all your current items "
 "will be lost."
@@ -1552,7 +1574,7 @@ msgid "Application"
 msgstr "Alkalmazás"
 
 #: ../ubuntutweak/admins/filetypemanager.py:50
-#: ../ubuntutweak/apps/__init__.py:259
+#: ../ubuntutweak/apps/__init__.py:188
 msgid "All"
 msgstr "Mind"
 
@@ -1905,39 +1927,39 @@ msgstr ""
 msgid "Session indicator:"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/workspace.py:36
+#: ../ubuntutweak/tweaks/workspace.py:37
 msgid "Show Workspaces"
 msgstr "Munkaterületek megjelenítése"
 
-#: ../ubuntutweak/tweaks/workspace.py:37
+#: ../ubuntutweak/tweaks/workspace.py:38
 msgid "Show Windows"
 msgstr "Ablakok megjelenítése"
 
-#: ../ubuntutweak/tweaks/workspace.py:38
+#: ../ubuntutweak/tweaks/workspace.py:39
 msgid "Show Desktop"
 msgstr "Asztal megjelenítése"
 
-#: ../ubuntutweak/tweaks/workspace.py:39
+#: ../ubuntutweak/tweaks/workspace.py:40
 msgid "Show Widgets"
 msgstr "Widgetek megjelenítése"
 
-#: ../ubuntutweak/tweaks/workspace.py:138
+#: ../ubuntutweak/tweaks/workspace.py:139
 msgid "Workspace"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/workspace.py:139
+#: ../ubuntutweak/tweaks/workspace.py:140
 msgid "Workspace size and screen edge action settings"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/workspace.py:144
+#: ../ubuntutweak/tweaks/workspace.py:145
 msgid "Edge trigger delay (ms):"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/workspace.py:145
+#: ../ubuntutweak/tweaks/workspace.py:146
 msgid "Horizontal workspace:"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/workspace.py:146
+#: ../ubuntutweak/tweaks/workspace.py:147
 msgid "Vertical workspace:"
 msgstr ""
 
@@ -2143,7 +2165,7 @@ msgid "HUD:"
 msgstr ""
 
 #: ../ubuntutweak/tweaks/unity.py:43
-msgid "Shortcut hits overlay:"
+msgid "Shortcut hints overlay:"
 msgstr ""
 
 #: ../ubuntutweak/tweaks/unity.py:44
@@ -2209,7 +2231,7 @@ msgstr "Automatikus elrejtés"
 
 #: ../ubuntutweak/tweaks/unity.py:66
 msgid "Dodge Window"
-msgstr ""
+msgstr "kitérő ablak"
 
 #: ../ubuntutweak/tweaks/unity.py:66
 msgid "Dodge Active Window"
@@ -2281,6 +2303,30 @@ msgstr ""
 
 #: ../ubuntutweak/tweaks/workarounds.py:39
 msgid "Auto detect text encoding for Chinese in Gedit:"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:55
+msgid "Uninstall"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:56
+msgid "Update"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:57
+msgid "Installing"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:58
+msgid "Uninstalling"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:59
+msgid "Updating"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:60
+msgid "Not Available"
 msgstr ""
 
 #: ../ubuntutweak/clips/userinfo.py:10
@@ -2457,33 +2503,33 @@ msgstr ""
 "\n"
 "Fájlokat tartalmaz!"
 
-#: ../ubuntutweak/main.py:276
+#: ../ubuntutweak/main.py:271
 msgid "Results"
 msgstr ""
 
-#: ../ubuntutweak/main.py:284
+#: ../ubuntutweak/main.py:279
 #, python-format
 msgid "Your filter \"<b>%s</b>\" does not match any items."
 msgstr ""
 
-#: ../ubuntutweak/main.py:402
+#: ../ubuntutweak/main.py:407
 msgid "Please wait a moment..."
 msgstr "Kérem várjon…"
 
-#: ../ubuntutweak/main.py:511
+#: ../ubuntutweak/main.py:516
 #, python-format
 msgid "No module named \"%s\""
 msgstr "Nem található „%s” nevű modul"
 
-#: ../ubuntutweak/main.py:512
+#: ../ubuntutweak/main.py:517
 msgid "Please ensure you have entered the correct module name."
 msgstr "Győződön meg róla, hogy helyes modulnevet adott meg."
 
-#: ../ubuntutweak/main.py:570
+#: ../ubuntutweak/main.py:575
 msgid "Computer Janitor"
 msgstr "Lomtalanító"
 
-#: ../ubuntutweak/main.py:571
+#: ../ubuntutweak/main.py:576
 msgid "Clean up a system so it's more like a freshly installed one"
 msgstr ""
 "A rendszer kitakarítása, hogy jobban hasonlítson egy frissen telepítettre"
@@ -2562,54 +2608,3 @@ msgstr "Szeretné eltávolítani, majd megismételni a telepítést?"
 #, python-format
 msgid "\"%s\" has already installed"
 msgstr "„%s” már telepítve van"
-
-#~ msgid "Could not find application"
-#~ msgstr "Az alkalmazás nem található"
-
-#~ msgid "Fix the appearance of themes when granted root privileges"
-#~ msgstr ""
-#~ "Téma megjelenésének javítása adminisztrátori joggal futó alkalmazásoknál"
-
-#, python-format
-#~ msgid "You're going to purge: %s"
-#~ msgstr "A következő eltávolítása: %s"
-
-#~ msgid "Removing key files..."
-#~ msgstr "Kulcs fájlok eltávolítása…"
-
-#~ msgid "PPA"
-#~ msgstr "PPA"
-
-#~ msgid "No PPA to be removed"
-#~ msgstr "Nincs törlendő PPA"
-
-#, python-format
-#~ msgid "%d PPAs to be removed"
-#~ msgstr "%d törlendő PPA"
-
-#~ msgid "Launcher"
-#~ msgstr "Indító"
-
-#~ msgid "Purge PPA and Downgrade Packages"
-#~ msgstr "PPA eltávolítás és csomag visszafejlesztés"
-
-#, python-format
-#~ msgid "Downloading...%s"
-#~ msgstr "Letöltés…%s"
-
-#~ msgid "Downloading Packages..."
-#~ msgstr "Csomagok letöltése…"
-
-#, python-format
-#~ msgid "Downgrading...%s"
-#~ msgstr "Visszafejlesztés… %s"
-
-#, python-format
-#~ msgid "Could not find \"%s\", Please ensure the path is correct."
-#~ msgstr "„%s” nem található. Győződjön meg róla, hogy az útvonal helyes-e."
-
-#~ msgid "Thumbnail cache time (days)"
-#~ msgstr "Bélyegkép-gyorsítótár élettartama (nap)"
-
-#~ msgid "Enable the Super key"
-#~ msgstr "Szuperbillentyû engedélyezése"

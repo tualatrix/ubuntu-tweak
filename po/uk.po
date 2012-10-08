@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-04 22:24+0800\n"
-"PO-Revision-Date: 2012-07-05 11:26+0000\n"
+"POT-Creation-Date: 2012-09-07 10:18+0800\n"
+"PO-Revision-Date: 2012-10-02 06:13+0000\n"
 "Last-Translator: Maxim Nosovets <nosovetz@yandex.ua>\n"
 "Language-Team: Ukrainian <linux@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
@@ -18,8 +18,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2012-08-12 03:16+0000\n"
-"X-Generator: Launchpad (build 15780)\n"
+"X-Launchpad-Export-Date: 2012-10-04 06:29+0000\n"
+"X-Generator: Launchpad (build 16061)\n"
 
 #: ../data/script-worker:57
 #, c-format
@@ -123,7 +123,7 @@ msgstr "Перемістити вгору"
 msgid "Move Down"
 msgstr "Перемістити вниз"
 
-#: ../data/ui/preferences.ui.h:8
+#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:54
 msgid "Install"
 msgstr "Встановити"
 
@@ -196,7 +196,7 @@ msgstr "Подробиці"
 
 #: ../data/ui/sourcecenter.ui.h:7
 msgid "Purge PPA"
-msgstr ""
+msgstr "Очищення РРА"
 
 #: ../data/ui/brokenmodule.ui.h:1
 msgid "<big><b>This module encountered an error while loading.</b></big>"
@@ -414,6 +414,7 @@ msgstr ""
 "  Sergiy Gavrylov https://launchpad.net/~gavro\n"
 "  Tarnawsky Vitaly https://launchpad.net/~lordnightcon\n"
 "  UaHummer https://launchpad.net/~uahummer\n"
+"  VPIP https://launchpad.net/~tymbood\n"
 "  Vitaliy Kosharskiy https://launchpad.net/~kosharskiy\n"
 "  Vlad Golubev https://launchpad.net/~golubev-vld\n"
 "  Volodymyr Volkov https://launchpad.net/~volodymyr-volkov\n"
@@ -422,6 +423,7 @@ msgstr ""
 "  atany https://launchpad.net/~ye-gorshkov\n"
 "  mazai_f_kedah https://launchpad.net/~mazai-f-kedah\n"
 "  mikhalek https://launchpad.net/~mikhalek\n"
+"  Сергій Гордієнко https://launchpad.net/~phrippy2\n"
 "  Сергій Найтінгейл https://launchpad.net/~isoloveyko"
 
 #: ../data/ui/mainwindow.ui.h:7
@@ -433,18 +435,22 @@ msgid "_Overview"
 msgstr "_Огляд"
 
 #: ../data/ui/mainwindow.ui.h:9
+msgid "_Apps"
+msgstr ""
+
+#: ../data/ui/mainwindow.ui.h:10
 msgid "_Tweaks"
 msgstr "_Налаштування"
 
-#: ../data/ui/mainwindow.ui.h:10
+#: ../data/ui/mainwindow.ui.h:11
 msgid "_Admins"
 msgstr "_Адміністрування"
 
-#: ../data/ui/mainwindow.ui.h:11
+#: ../data/ui/mainwindow.ui.h:12
 msgid "_Janitor"
 msgstr "_Очищення системи"
 
-#: ../data/ui/mainwindow.ui.h:12
+#: ../data/ui/mainwindow.ui.h:13
 msgid "<big><b>No matches found</b></big>"
 msgstr "<big><b>Нічого не знайдено</b></big>"
 
@@ -631,7 +637,7 @@ msgstr "Кеш APT"
 
 #: ../ubuntutweak/janitor/__init__.py:278
 msgid "No cache to be cleaned"
-msgstr ""
+msgstr "Не вибрано кеш для очищення"
 
 #: ../ubuntutweak/janitor/__init__.py:576
 #, python-format
@@ -641,7 +647,7 @@ msgstr "Пошук непотрібу у «%s»..."
 #: ../ubuntutweak/janitor/__init__.py:698
 #, python-format
 msgid "Scan error for \"%s\", double-click to see details"
-msgstr ""
+msgstr "Помилка сканування «%s», двічі клацніть мишкою, щоб побачити деталі"
 
 #: ../ubuntutweak/janitor/__init__.py:763
 #, python-format
@@ -691,7 +697,7 @@ msgid "Desktop"
 msgstr "Стільниця"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:106
-#: ../ubuntutweak/apps/__init__.py:240
+#: ../ubuntutweak/apps/__init__.py:169
 msgid "Category"
 msgstr "Категорія"
 
@@ -919,7 +925,7 @@ msgstr ""
 
 #: ../ubuntutweak/admins/sourcecenter.py:921
 msgid "Enabled PPAs"
-msgstr ""
+msgstr "Ввімкнені джерела PPA"
 
 #: ../ubuntutweak/admins/sourcecenter.py:924
 msgid "Source Center"
@@ -929,14 +935,14 @@ msgstr "Центр програмного забезпечення"
 msgid ""
 "A collection of software sources to ensure your applications are always up-"
 "to-date."
-msgstr ""
+msgstr "Колекція джерел програмного забезпечення з актуальними версіями"
 
 #: ../ubuntutweak/admins/sourcecenter.py:928
 msgid "Visit online Source Center"
 msgstr "Відвідайте центр програмного забезпечення в інтернеті"
 
 #: ../ubuntutweak/admins/sourcecenter.py:937
-#: ../ubuntutweak/admins/appcenter.py:506
+#: ../ubuntutweak/admins/appcenter.py:505
 msgid "_Sync"
 msgstr "_Синхронізувати"
 
@@ -963,7 +969,7 @@ msgid "disabled on upgrade to %s"
 msgstr "заблоковано під час оновлення до %s"
 
 #: ../ubuntutweak/admins/sourcecenter.py:1014
-#: ../ubuntutweak/admins/appcenter.py:546
+#: ../ubuntutweak/admins/appcenter.py:545
 msgid "Last synced:"
 msgstr "Остання синхронізація:"
 
@@ -1014,7 +1020,7 @@ msgstr ""
 "Помилка мережі. Перевірте з'єднання з мережею або з віддаленим сервером."
 
 #: ../ubuntutweak/admins/sourcecenter.py:1184
-#: ../ubuntutweak/admins/appcenter.py:665
+#: ../ubuntutweak/admins/appcenter.py:664
 msgid "No update available."
 msgstr "Немає доступних оновлень."
 
@@ -1030,7 +1036,7 @@ msgstr "Щоб безпечно очистити PPA, потрібно пони�
 #: ../ubuntutweak/admins/sourcecenter.py:1216
 #, python-format
 msgid "You're going to purge \"%s\":"
-msgstr ""
+msgstr "Ви збираєтесь очистити \"%s\":"
 
 #: ../ubuntutweak/admins/sourcecenter.py:1253
 msgid "PPA has been purged"
@@ -1038,7 +1044,7 @@ msgstr "PPA очищено"
 
 #: ../ubuntutweak/admins/sourcecenter.py:1254
 msgid "It is highly recommend to do a \"Refresh\" source operation."
-msgstr ""
+msgstr "Настійно рекомендується виконати команду «Оновити»."
 
 #: ../ubuntutweak/admins/sourceeditor.py:168
 msgid "Source Editor"
@@ -1219,40 +1225,41 @@ msgstr ""
 "Всі неактивні шаблони будуть вилучені.\n"
 "Ви хочете продовжити?"
 
-#: ../ubuntutweak/admins/appcenter.py:188
+#: ../ubuntutweak/admins/appcenter.py:187
 msgid "Installed Apps"
-msgstr ""
+msgstr "Встановлені програми"
 
-#: ../ubuntutweak/admins/appcenter.py:455
+#: ../ubuntutweak/admins/appcenter.py:454
 msgid "Checking update..."
 msgstr "Перевірка оновлень..."
 
-#: ../ubuntutweak/admins/appcenter.py:490
+#: ../ubuntutweak/admins/appcenter.py:489
 msgid "Fetching online data..."
 msgstr "Завантаження даних з мережі..."
 
-#: ../ubuntutweak/admins/appcenter.py:495
+#: ../ubuntutweak/admins/appcenter.py:494
 msgid "Application Center"
 msgstr "Центр програм"
 
-#: ../ubuntutweak/admins/appcenter.py:496
+#: ../ubuntutweak/admins/appcenter.py:495
 msgid ""
 "A simple but efficient way for finding and installing popular applications."
 msgstr ""
+"Простий, але ефективний шлях пошуку та встановлення популярних програм."
 
-#: ../ubuntutweak/admins/appcenter.py:499
+#: ../ubuntutweak/admins/appcenter.py:498
 msgid "Visit Online Application Center"
 msgstr "Відвідати центр програм в інтернеті"
 
-#: ../ubuntutweak/admins/appcenter.py:553
+#: ../ubuntutweak/admins/appcenter.py:552
 msgid "New application data available, would you like to update?"
 msgstr "Наявні нові дані програм. Бажаєте оновити?"
 
-#: ../ubuntutweak/admins/appcenter.py:652
+#: ../ubuntutweak/admins/appcenter.py:651
 msgid "Update available, would you like to update?"
 msgstr "Оновлення доступні. Хочете оновити систему?"
 
-#: ../ubuntutweak/admins/appcenter.py:661
+#: ../ubuntutweak/admins/appcenter.py:660
 msgid ""
 "Network Error, please check your network connection - or the remote server "
 "may be down."
@@ -1260,7 +1267,7 @@ msgstr ""
 "Помилка в мережі, перевірте з’єднання — або може бути недоступний віддалений "
 "сервер."
 
-#: ../ubuntutweak/admins/appcenter.py:678
+#: ../ubuntutweak/admins/appcenter.py:677
 msgid "An error occurred while downloading the file."
 msgstr "Виникла помилка під час завантаження файлу."
 
@@ -1341,27 +1348,27 @@ msgstr "_Змінити"
 
 #: ../ubuntutweak/admins/quicklists.py:208
 msgid "QuickLists Editor"
-msgstr ""
+msgstr "Редактор списків дій"
 
 #: ../ubuntutweak/admins/quicklists.py:209
 msgid "Unity Launcher QuickLists Editor"
 msgstr ""
 
-#: ../ubuntutweak/admins/quicklists.py:397
+#: ../ubuntutweak/admins/quicklists.py:402
 #, python-format
 msgid "Would you like to reset \"%s\"?"
-msgstr ""
+msgstr "Скинути «%s»?"
 
-#: ../ubuntutweak/admins/quicklists.py:398
+#: ../ubuntutweak/admins/quicklists.py:403
 #, python-format
 msgid "If you continue, the actions of %s will be set to default."
-msgstr ""
+msgstr "Якщо ви продовжите, значення «%s» скинуться на стандартні."
 
-#: ../ubuntutweak/admins/quicklists.py:411
+#: ../ubuntutweak/admins/quicklists.py:416
 msgid "Would you like to reset the launcher items?"
-msgstr ""
+msgstr "Скинути розміщення значків на панелі запуску?"
 
-#: ../ubuntutweak/admins/quicklists.py:412
+#: ../ubuntutweak/admins/quicklists.py:417
 msgid ""
 "If you continue, launcher will be set to default and all your current items "
 "will be lost."
@@ -1568,7 +1575,7 @@ msgid "Application"
 msgstr "Програма"
 
 #: ../ubuntutweak/admins/filetypemanager.py:50
-#: ../ubuntutweak/apps/__init__.py:259
+#: ../ubuntutweak/apps/__init__.py:188
 msgid "All"
 msgstr "Все"
 
@@ -1690,19 +1697,19 @@ msgstr ""
 
 #: ../ubuntutweak/tweaks/icons.py:26
 msgid "Show \"Computer\" icon"
-msgstr ""
+msgstr "Відображати значок \"Комп’ютер\""
 
 #: ../ubuntutweak/tweaks/icons.py:33
 msgid "Show \"Home Folder\" icon"
-msgstr ""
+msgstr "Відображати значок \"Домашня папка\""
 
 #: ../ubuntutweak/tweaks/icons.py:40
 msgid "Show \"Trash\" icon"
-msgstr ""
+msgstr "Відображати значок \"Кошик\""
 
 #: ../ubuntutweak/tweaks/icons.py:47
 msgid "Show \"Network Servers\" icon"
-msgstr ""
+msgstr "Відображати значок \"Мережеві сервери\""
 
 #: ../ubuntutweak/tweaks/icons.py:76 ../ubuntutweak/gui/treeviews.py:89
 msgid "Rename"
@@ -1710,7 +1717,7 @@ msgstr "Перейменувати"
 
 #: ../ubuntutweak/tweaks/icons.py:107
 msgid "Desktop Icons"
-msgstr ""
+msgstr "Значки на робочому столі"
 
 #: ../ubuntutweak/tweaks/icons.py:108
 msgid "Rename and toggle visibilty of desktop icons"
@@ -1718,19 +1725,21 @@ msgstr "Змінити ім'я та показати піктограми на �
 
 #: ../ubuntutweak/tweaks/icons.py:113
 msgid "Show desktop icons:"
-msgstr ""
+msgstr "Відображати значки на робочому столі:"
 
 #: ../ubuntutweak/tweaks/icons.py:114
 msgid "Show mounted volumes"
-msgstr ""
+msgstr "Відображати значки приєднаних пристроїв"
 
 #: ../ubuntutweak/tweaks/icons.py:115
 msgid "Show contents of \"Home Folder\""
-msgstr ""
+msgstr "Відображати вміст домашньої папки"
 
 #: ../ubuntutweak/tweaks/icons.py:146
 msgid "Note: switch off this option will make the desktop unclickable"
 msgstr ""
+"Примітка: вимикання цієї опції зробить робочий стіл недоступним для "
+"натискань мишею."
 
 #: ../ubuntutweak/tweaks/theme.py:36
 msgid "Theme"
@@ -1742,69 +1751,69 @@ msgstr "Вибрати GTK тему, тему піктограм, тему ку�
 
 #: ../ubuntutweak/tweaks/theme.py:41 ../ubuntutweak/tweaks/loginsettings.py:47
 msgid "Icon theme:"
-msgstr ""
+msgstr "Тема піктограм:"
 
 #: ../ubuntutweak/tweaks/theme.py:42 ../ubuntutweak/tweaks/loginsettings.py:46
 msgid "Gtk theme:"
-msgstr ""
+msgstr "Тема GTK:"
 
 #: ../ubuntutweak/tweaks/theme.py:43
 msgid "Cursor theme:"
-msgstr ""
+msgstr "Тема курсора:"
 
 #: ../ubuntutweak/tweaks/theme.py:44
 msgid "Window theme:"
-msgstr ""
+msgstr "Тема рамки вікна:"
 
 #: ../ubuntutweak/tweaks/theme.py:89
 msgid "Install theme:"
-msgstr ""
+msgstr "Встановити тему:"
 
 #: ../ubuntutweak/tweaks/theme.py:99
 msgid "Theme file is invalid"
-msgstr ""
+msgstr "Недійсний файл теми оформлення"
 
 #: ../ubuntutweak/tweaks/theme.py:105
 #, python-format
 msgid "\"%s\" installed successfully"
-msgstr ""
+msgstr "\"%s\" успішно встановлено"
 
 #: ../ubuntutweak/tweaks/theme.py:106
 #, python-format
 msgid "Would you like to set your icon theme to \"%s\" immediatelly?"
-msgstr ""
+msgstr "Встановити тему значків «%s» негайно?"
 
 #: ../ubuntutweak/tweaks/window.py:32
 msgid "Window"
-msgstr ""
+msgstr "Вікно"
 
 #: ../ubuntutweak/tweaks/window.py:33
 msgid "Manage Window Manager settings"
-msgstr ""
+msgstr "Змінити параметри диспетчера вікон"
 
 #: ../ubuntutweak/tweaks/window.py:48
 msgid "Window control button position:"
-msgstr ""
+msgstr "Розміщення кнопок управління вікном"
 
 #: ../ubuntutweak/tweaks/window.py:49
 msgid "\"Close\" button only"
-msgstr ""
+msgstr "Тільки кнопка \"Зачинити\""
 
 #: ../ubuntutweak/tweaks/window.py:50
 msgid "Titlebar mouse wheel action:"
-msgstr ""
+msgstr "При прокрутці колеса миші над заголовком вікна:"
 
 #: ../ubuntutweak/tweaks/window.py:51
 msgid "Titlebar double-click action:"
-msgstr ""
+msgstr "При подвійному кліку по заголовку вікна"
 
 #: ../ubuntutweak/tweaks/window.py:52
 msgid "Titlebar middle-click action:"
-msgstr ""
+msgstr "При натисненні середньої кнопки миші на заголовку вікна"
 
 #: ../ubuntutweak/tweaks/window.py:53
 msgid "Titlebar right-click action:"
-msgstr ""
+msgstr "При натисненні правої кнопки миші на заголовку вікна"
 
 #: ../ubuntutweak/tweaks/window.py:77 ../ubuntutweak/tweaks/window.py:85
 #: ../ubuntutweak/tweaks/window.py:98 ../ubuntutweak/tweaks/window.py:113
@@ -1845,23 +1854,25 @@ msgstr "Менеджер файлів"
 
 #: ../ubuntutweak/tweaks/nautilus.py:28
 msgid "Manage the Nautilus file manager"
-msgstr ""
+msgstr "Управління файловим менеджером Nautilus"
 
 #: ../ubuntutweak/tweaks/nautilus.py:33
 msgid "Show advanced permissions in \"File Properties\""
 msgstr ""
+"Показувати розширені параметри прав доступу до файлі в діалозі "
+"\"Властивості\""
 
 #: ../ubuntutweak/tweaks/nautilus.py:34
 msgid "Use the location entry instead of the pathbar"
-msgstr ""
+msgstr "Використовувати адресний рядок замість панелі з кнопками"
 
 #: ../ubuntutweak/tweaks/nautilus.py:35
 msgid "Automatically mount media:"
-msgstr ""
+msgstr "Автоматично під’єднувати пристрої:"
 
 #: ../ubuntutweak/tweaks/nautilus.py:36
 msgid "Automatically open a folder:"
-msgstr ""
+msgstr "Автоматично відкривати папку:"
 
 #: ../ubuntutweak/tweaks/nautilus.py:37
 msgid "Prompt or autorun/autostart programs:"
@@ -1869,11 +1880,11 @@ msgstr ""
 
 #: ../ubuntutweak/tweaks/nautilus.py:38
 msgid "Thumbnail icon size (pixels):"
-msgstr ""
+msgstr "Розмір мініатюр (в пікселях):"
 
 #: ../ubuntutweak/tweaks/nautilus.py:39
 msgid "Thumbnail cache time (days):"
-msgstr ""
+msgstr "Час збереження мініатюр (в днях):"
 
 #: ../ubuntutweak/tweaks/nautilus.py:40
 msgid "Maximum thumbnail cache size (MB):"
@@ -1881,11 +1892,11 @@ msgstr ""
 
 #: ../ubuntutweak/tweaks/nautilus.py:52
 msgid "File browser:"
-msgstr ""
+msgstr "Програма перегляду файлів:"
 
 #: ../ubuntutweak/tweaks/session.py:29
 msgid "Session Indicator"
-msgstr ""
+msgstr "Індикатор сеансу"
 
 #: ../ubuntutweak/tweaks/session.py:30
 msgid "Control your system session releated features"
@@ -1893,7 +1904,7 @@ msgstr "Властивості засобів керування сеансом"
 
 #: ../ubuntutweak/tweaks/session.py:34
 msgid "User indicator"
-msgstr ""
+msgstr "Індикатор користувача"
 
 #: ../ubuntutweak/tweaks/session.py:35
 msgid "Disable \"Lock Screen\""
@@ -1905,7 +1916,7 @@ msgstr "Відображати справжнє ім’я користувача
 
 #: ../ubuntutweak/tweaks/session.py:37
 msgid "Remove the log out item"
-msgstr ""
+msgstr "Видалити пункт \"Завершити сеанс…\""
 
 #: ../ubuntutweak/tweaks/session.py:38
 msgid "Remove the shutdown item"
@@ -1917,67 +1928,67 @@ msgstr ""
 
 #: ../ubuntutweak/tweaks/session.py:68
 msgid "Session indicator:"
-msgstr ""
+msgstr "Індикатор сеансу"
 
-#: ../ubuntutweak/tweaks/workspace.py:36
+#: ../ubuntutweak/tweaks/workspace.py:37
 msgid "Show Workspaces"
 msgstr "Показати робочі місця"
 
-#: ../ubuntutweak/tweaks/workspace.py:37
+#: ../ubuntutweak/tweaks/workspace.py:38
 msgid "Show Windows"
 msgstr "Показати вікна"
 
-#: ../ubuntutweak/tweaks/workspace.py:38
+#: ../ubuntutweak/tweaks/workspace.py:39
 msgid "Show Desktop"
 msgstr "Показати стільницю"
 
-#: ../ubuntutweak/tweaks/workspace.py:39
+#: ../ubuntutweak/tweaks/workspace.py:40
 msgid "Show Widgets"
 msgstr "Показати віджети"
 
-#: ../ubuntutweak/tweaks/workspace.py:138
-msgid "Workspace"
-msgstr ""
-
 #: ../ubuntutweak/tweaks/workspace.py:139
+msgid "Workspace"
+msgstr "Робочий простір"
+
+#: ../ubuntutweak/tweaks/workspace.py:140
 msgid "Workspace size and screen edge action settings"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/workspace.py:144
+#: ../ubuntutweak/tweaks/workspace.py:145
 msgid "Edge trigger delay (ms):"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/workspace.py:145
-msgid "Horizontal workspace:"
-msgstr ""
-
 #: ../ubuntutweak/tweaks/workspace.py:146
+msgid "Horizontal workspace:"
+msgstr "Кількість робочих просторів по горизонталі"
+
+#: ../ubuntutweak/tweaks/workspace.py:147
 msgid "Vertical workspace:"
-msgstr ""
+msgstr "Кількість робочих просторів по вертикалі"
 
 #: ../ubuntutweak/tweaks/sound.py:29
 msgid "Sound"
-msgstr ""
+msgstr "Звук"
 
 #: ../ubuntutweak/tweaks/sound.py:30
 msgid "Set the sound theme for Ubuntu"
-msgstr ""
+msgstr "Вибрати звукову схему для Ubuntu"
 
 #: ../ubuntutweak/tweaks/sound.py:34
 msgid "Event sounds:"
-msgstr ""
+msgstr "Звуки подій:"
 
 #: ../ubuntutweak/tweaks/sound.py:35
 msgid "Input feedback sounds:"
-msgstr ""
+msgstr "Звуки підтвердження вводу"
 
 #: ../ubuntutweak/tweaks/sound.py:36
 msgid "Sound theme:"
-msgstr ""
+msgstr "Звукова схема:"
 
 #: ../ubuntutweak/tweaks/sound.py:37 ../ubuntutweak/tweaks/loginsettings.py:45
 msgid "Play login sound:"
-msgstr ""
+msgstr "Відтворювати звук при вході до системи"
 
 #: ../ubuntutweak/tweaks/misc.py:31
 msgid "Miscellaneous"
@@ -2029,19 +2040,20 @@ msgstr ""
 
 #: ../ubuntutweak/tweaks/misc.py:46
 msgid "Overlay scrollbars:"
-msgstr ""
+msgstr "Фірмові смуги прокручування"
 
 #: ../ubuntutweak/tweaks/misc.py:47
 msgid "Cursor blink time:"
-msgstr ""
+msgstr "Час блимання курсору"
 
 #: ../ubuntutweak/tweaks/misc.py:48
 msgid "Cursor blink timeout:"
-msgstr ""
+msgstr "Пауза між блиманням курсору"
 
 #: ../ubuntutweak/tweaks/misc.py:60 ../ubuntutweak/tweaks/unity.py:175
 msgid "Note: you may need to log out to take effect"
 msgstr ""
+"Зауваження: можливо, доведеться завершити сеанс, щоб зміни вступили в силу"
 
 #: ../ubuntutweak/tweaks/loginsettings.py:37
 msgid "Login Settings"
@@ -2053,7 +2065,7 @@ msgstr "Керування виглядом та поведінкою екран
 
 #: ../ubuntutweak/tweaks/loginsettings.py:43
 msgid "Guest account:"
-msgstr ""
+msgstr "Гостьовий обліковий запис"
 
 #: ../ubuntutweak/tweaks/loginsettings.py:44
 msgid "Draw grid:"
@@ -2062,6 +2074,7 @@ msgstr ""
 #: ../ubuntutweak/tweaks/loginsettings.py:63
 msgid "Note: you may need to reboot to take effect"
 msgstr ""
+"Зауваження: можливо, доведеться перезавантажитись, щоб зміни вступили в силу"
 
 #: ../ubuntutweak/tweaks/loginsettings.py:141
 msgid "Choose a new logo image"
@@ -2089,35 +2102,35 @@ msgstr "Налаштування шрифтів"
 
 #: ../ubuntutweak/tweaks/fonts.py:32
 msgid "Text scaling factor:"
-msgstr ""
+msgstr "Масштабування тексту:"
 
 #: ../ubuntutweak/tweaks/fonts.py:33
 msgid "Default font:"
-msgstr ""
+msgstr "Шрифт за замовчуванням"
 
 #: ../ubuntutweak/tweaks/fonts.py:34
 msgid "Monospace font:"
-msgstr ""
+msgstr "Моноширинний шрифт:"
 
 #: ../ubuntutweak/tweaks/fonts.py:35
 msgid "Document font:"
-msgstr ""
+msgstr "Шрифт документу:"
 
 #: ../ubuntutweak/tweaks/fonts.py:36
 msgid "Window title bar font:"
-msgstr ""
+msgstr "Шрифт заголовку вікна"
 
 #: ../ubuntutweak/tweaks/fonts.py:37
 msgid "Hinting:"
-msgstr ""
+msgstr "Уточнення:"
 
 #: ../ubuntutweak/tweaks/fonts.py:38
 msgid "Antialiasing:"
-msgstr ""
+msgstr "Згладжування:"
 
 #: ../ubuntutweak/tweaks/fonts.py:64
 msgid "Desktop font:"
-msgstr ""
+msgstr "Шрифт робочого столу:"
 
 #: ../ubuntutweak/tweaks/fonts.py:89
 msgid "No hinting"
@@ -2156,64 +2169,64 @@ msgid "HUD:"
 msgstr ""
 
 #: ../ubuntutweak/tweaks/unity.py:43
-msgid "Shortcut hits overlay:"
+msgid "Shortcut hints overlay:"
 msgstr ""
 
 #: ../ubuntutweak/tweaks/unity.py:44
 msgid "Launcher icon size:"
-msgstr ""
+msgstr "Розмір значків панелі запуску:"
 
 #: ../ubuntutweak/tweaks/unity.py:45
 msgid "Launcher opacity:"
-msgstr ""
+msgstr "Непрозорість панелі запуску:"
 
 #: ../ubuntutweak/tweaks/unity.py:46
 msgid "Launcher hide mode:"
-msgstr ""
+msgstr "Режим приховування панелі запуску:"
 
 #: ../ubuntutweak/tweaks/unity.py:47
 msgid "Launcher icon backlight:"
-msgstr ""
+msgstr "Підсвічування значків панелі запуску:"
 
 #: ../ubuntutweak/tweaks/unity.py:48
 msgid "Launcher show devices:"
-msgstr ""
+msgstr "Відображення значків пристроїв на панелі запуску:"
 
 #: ../ubuntutweak/tweaks/unity.py:49
 msgid "\"Show desktop\" icon:"
-msgstr ""
+msgstr "Іконка \"Показати робочий стіл\""
 
 #: ../ubuntutweak/tweaks/unity.py:50
 msgid "Dash size:"
-msgstr ""
+msgstr "Розмір головного меню:"
 
 #: ../ubuntutweak/tweaks/unity.py:51
 msgid "Blur type:"
-msgstr ""
+msgstr "Тип розмиття:"
 
 #: ../ubuntutweak/tweaks/unity.py:52
 msgid "Panel opacity:"
-msgstr ""
+msgstr "Непрозорість панелі меню:"
 
 #: ../ubuntutweak/tweaks/unity.py:53
 msgid "Panel opacity for maximized windows:"
-msgstr ""
+msgstr "Непрозорість панелі меню при розгорнутому вікні:"
 
 #: ../ubuntutweak/tweaks/unity.py:54
 msgid "Super key:"
-msgstr ""
+msgstr "Клавіша \"Super\""
 
 #: ../ubuntutweak/tweaks/unity.py:55
 msgid "Full screen dash:"
-msgstr ""
+msgstr "Головне меню на весь екран:"
 
 #: ../ubuntutweak/tweaks/unity.py:56
 msgid "Compositing manager:"
-msgstr ""
+msgstr "Менеджер композиції робочого столу"
 
 #: ../ubuntutweak/tweaks/unity.py:57
 msgid "Number of workspaces:"
-msgstr ""
+msgstr "Кількість робочих областей:"
 
 #: ../ubuntutweak/tweaks/unity.py:66 ../ubuntutweak/tweaks/unity.py:69
 #: ../ubuntutweak/tweaks/unity.py:199
@@ -2250,11 +2263,11 @@ msgstr "Перемикання підсвічування знизу і скра
 
 #: ../ubuntutweak/tweaks/unity.py:132
 msgid "Only Mounted"
-msgstr ""
+msgstr "Тільки підключенні"
 
 #: ../ubuntutweak/tweaks/unity.py:133
 msgid "Always"
-msgstr ""
+msgstr "Завжди"
 
 #: ../ubuntutweak/tweaks/unity.py:142
 msgid "Automatic"
@@ -2294,6 +2307,30 @@ msgstr ""
 
 #: ../ubuntutweak/tweaks/workarounds.py:39
 msgid "Auto detect text encoding for Chinese in Gedit:"
+msgstr "Автоматичне визначення кодування тексту китайською в Gedit"
+
+#: ../ubuntutweak/apps/__init__.py:55
+msgid "Uninstall"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:56
+msgid "Update"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:57
+msgid "Installing"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:58
+msgid "Uninstalling"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:59
+msgid "Updating"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:60
+msgid "Not Available"
 msgstr ""
 
 #: ../ubuntutweak/clips/userinfo.py:10
@@ -2473,33 +2510,33 @@ msgstr ""
 "\n"
 "Там є файли!"
 
-#: ../ubuntutweak/main.py:276
+#: ../ubuntutweak/main.py:271
 msgid "Results"
 msgstr ""
 
-#: ../ubuntutweak/main.py:284
+#: ../ubuntutweak/main.py:279
 #, python-format
 msgid "Your filter \"<b>%s</b>\" does not match any items."
-msgstr ""
+msgstr "Фільтр \"<b>%s</b>\" не відповідає жодному результату"
 
-#: ../ubuntutweak/main.py:402
+#: ../ubuntutweak/main.py:407
 msgid "Please wait a moment..."
 msgstr "Будь ласка, зачекайте..."
 
-#: ../ubuntutweak/main.py:511
+#: ../ubuntutweak/main.py:516
 #, python-format
 msgid "No module named \"%s\""
 msgstr "Модуль з ім’ям \"%s\" не існує"
 
-#: ../ubuntutweak/main.py:512
+#: ../ubuntutweak/main.py:517
 msgid "Please ensure you have entered the correct module name."
 msgstr "Будь-ласка, перевірте чи правильно ви ввели ім’я модуля."
 
-#: ../ubuntutweak/main.py:570
+#: ../ubuntutweak/main.py:575
 msgid "Computer Janitor"
 msgstr "Очищення системи"
 
-#: ../ubuntutweak/main.py:571
+#: ../ubuntutweak/main.py:576
 msgid "Clean up a system so it's more like a freshly installed one"
 msgstr ""
 "Очищення допомагає повернутись до стану, близького до наново встановленої "
@@ -2530,7 +2567,7 @@ msgstr "%.1f ГБ"
 
 #: ../ubuntutweak/preferences.py:67
 msgid "Auto scan:"
-msgstr ""
+msgstr "Авто-сканування"
 
 #: ../ubuntutweak/preferences.py:163
 msgid "Choose a clip extension"
@@ -2580,62 +2617,3 @@ msgstr "Ви бажаєте видалити, а потім встановити
 #, python-format
 msgid "\"%s\" has already installed"
 msgstr "\"%s\" вже встановлено"
-
-#~ msgid "Could not find application"
-#~ msgstr "Не вдалось знайти програму"
-
-#~ msgid "Thumbnail cache time (days)"
-#~ msgstr "Час існування мініатюр в кеші (в днях)"
-
-#~ msgid "Fix the appearance of themes when granted root privileges"
-#~ msgstr "Виправити вигляд тем, користуючись правами адміністратора"
-
-#~ msgid "Purge PPA and Downgrade Packages"
-#~ msgstr "Очищення PPA та пониження версій пакунків"
-
-#, python-format
-#~ msgid "You're going to purge: %s"
-#~ msgstr "Ви збираєтеся очистити: %s"
-
-#~ msgid "Downloading Packages..."
-#~ msgstr "Завантаження пакунків…"
-
-#, python-format
-#~ msgid "Downgrading...%s"
-#~ msgstr "Пониження версії…%s"
-
-#~ msgid "Removing key files..."
-#~ msgstr "Вилучеення файлів ключів…"
-
-#, python-format
-#~ msgid "%d PPAs to be removed"
-#~ msgstr "%d PPA будуть видалені"
-
-#~ msgid "PPA"
-#~ msgstr "PPA"
-
-#, python-format
-#~ msgid "Downloading...%s"
-#~ msgstr "Завантаження...%s"
-
-#~ msgid "No PPA to be removed"
-#~ msgstr "Жоден PPA не буде видалено"
-
-#~ msgid "Enable the Super key"
-#~ msgstr "Ввімкнути клавішу Super"
-
-#, python-format
-#~ msgid "Could not find \"%s\", Please ensure the path is correct."
-#~ msgstr "Не можу знайти \"%s\". Будь-ласка, перевірте чи адреса правильна."
-
-#~ msgid "Launcher"
-#~ msgstr "Панель Unity Launcher"
-
-#~ msgid "Cursor blink timeout"
-#~ msgstr "Затримка блимання покажчика"
-
-#~ msgid "Cursor blink time"
-#~ msgstr "Інтервал блимання покажчика"
-
-#~ msgid "Cursor blink"
-#~ msgstr "Блимання покажчика"

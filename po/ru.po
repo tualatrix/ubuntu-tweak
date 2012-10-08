@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-04 22:24+0800\n"
-"PO-Revision-Date: 2012-08-09 01:07+0000\n"
+"POT-Creation-Date: 2012-09-07 10:18+0800\n"
+"PO-Revision-Date: 2012-10-02 06:12+0000\n"
 "Last-Translator: Антон Лаврёнов <lavrton@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2012-08-12 03:16+0000\n"
-"X-Generator: Launchpad (build 15780)\n"
+"X-Launchpad-Export-Date: 2012-10-04 06:28+0000\n"
+"X-Generator: Launchpad (build 16061)\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 "X-Poedit-Language: Russian\n"
 
@@ -122,7 +122,7 @@ msgstr "Вверх"
 msgid "Move Down"
 msgstr "Вниз"
 
-#: ../data/ui/preferences.ui.h:8
+#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:54
 msgid "Install"
 msgstr "Установить"
 
@@ -466,18 +466,22 @@ msgid "_Overview"
 msgstr "_Обзор"
 
 #: ../data/ui/mainwindow.ui.h:9
+msgid "_Apps"
+msgstr ""
+
+#: ../data/ui/mainwindow.ui.h:10
 msgid "_Tweaks"
 msgstr "_Настройка"
 
-#: ../data/ui/mainwindow.ui.h:10
+#: ../data/ui/mainwindow.ui.h:11
 msgid "_Admins"
 msgstr "_Aдминистрирование"
 
-#: ../data/ui/mainwindow.ui.h:11
+#: ../data/ui/mainwindow.ui.h:12
 msgid "_Janitor"
 msgstr "_Очистка"
 
-#: ../data/ui/mainwindow.ui.h:12
+#: ../data/ui/mainwindow.ui.h:13
 msgid "<big><b>No matches found</b></big>"
 msgstr "<big><b>Совпадений не найдено</b></big>"
 
@@ -726,7 +730,7 @@ msgid "Desktop"
 msgstr "Рабочий стол"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:106
-#: ../ubuntutweak/apps/__init__.py:240
+#: ../ubuntutweak/apps/__init__.py:169
 msgid "Category"
 msgstr "Категория"
 
@@ -972,7 +976,7 @@ msgid "Visit online Source Center"
 msgstr "Посетить Центр источников в интернете"
 
 #: ../ubuntutweak/admins/sourcecenter.py:937
-#: ../ubuntutweak/admins/appcenter.py:506
+#: ../ubuntutweak/admins/appcenter.py:505
 msgid "_Sync"
 msgstr "_Синхронизировать"
 
@@ -999,7 +1003,7 @@ msgid "disabled on upgrade to %s"
 msgstr "заблокировано при обновлении до %s"
 
 #: ../ubuntutweak/admins/sourcecenter.py:1014
-#: ../ubuntutweak/admins/appcenter.py:546
+#: ../ubuntutweak/admins/appcenter.py:545
 msgid "Last synced:"
 msgstr "Последняя синхронизация:"
 
@@ -1055,7 +1059,7 @@ msgstr ""
 "недоступен."
 
 #: ../ubuntutweak/admins/sourcecenter.py:1184
-#: ../ubuntutweak/admins/appcenter.py:665
+#: ../ubuntutweak/admins/appcenter.py:664
 msgid "No update available."
 msgstr "Нет доступных обновлений."
 
@@ -1265,41 +1269,41 @@ msgstr ""
 "Все неактивные шаблоны будут удалены.\n"
 "Вы хотите продолжить?"
 
-#: ../ubuntutweak/admins/appcenter.py:188
+#: ../ubuntutweak/admins/appcenter.py:187
 msgid "Installed Apps"
 msgstr "Установленные приложения"
 
-#: ../ubuntutweak/admins/appcenter.py:455
+#: ../ubuntutweak/admins/appcenter.py:454
 msgid "Checking update..."
 msgstr "Проверка обновлений…"
 
-#: ../ubuntutweak/admins/appcenter.py:490
+#: ../ubuntutweak/admins/appcenter.py:489
 msgid "Fetching online data..."
 msgstr "Загрузка данных из сети…"
 
-#: ../ubuntutweak/admins/appcenter.py:495
+#: ../ubuntutweak/admins/appcenter.py:494
 msgid "Application Center"
 msgstr "Центр приложений"
 
-#: ../ubuntutweak/admins/appcenter.py:496
+#: ../ubuntutweak/admins/appcenter.py:495
 msgid ""
 "A simple but efficient way for finding and installing popular applications."
 msgstr ""
 "Простой, но эффективный способ найти и установить популярные приложения."
 
-#: ../ubuntutweak/admins/appcenter.py:499
+#: ../ubuntutweak/admins/appcenter.py:498
 msgid "Visit Online Application Center"
 msgstr "Посетить Центр приложений в интернете"
 
-#: ../ubuntutweak/admins/appcenter.py:553
+#: ../ubuntutweak/admins/appcenter.py:552
 msgid "New application data available, would you like to update?"
 msgstr "Доступна новая информация о приложениях, хотите обновить?"
 
-#: ../ubuntutweak/admins/appcenter.py:652
+#: ../ubuntutweak/admins/appcenter.py:651
 msgid "Update available, would you like to update?"
 msgstr "Обновления доступны, хотите обновить?"
 
-#: ../ubuntutweak/admins/appcenter.py:661
+#: ../ubuntutweak/admins/appcenter.py:660
 msgid ""
 "Network Error, please check your network connection - or the remote server "
 "may be down."
@@ -1307,7 +1311,7 @@ msgstr ""
 "Ошибка сети. Проверьте ваше подключение, или удалённый сервер может быть "
 "недоступен."
 
-#: ../ubuntutweak/admins/appcenter.py:678
+#: ../ubuntutweak/admins/appcenter.py:677
 msgid "An error occurred while downloading the file."
 msgstr "Произошла ошибка в процессе загрузки файла."
 
@@ -1395,21 +1399,21 @@ msgid "Unity Launcher QuickLists Editor"
 msgstr ""
 "Редактор списков действий для значков приложений на панели запуска Unity"
 
-#: ../ubuntutweak/admins/quicklists.py:397
+#: ../ubuntutweak/admins/quicklists.py:402
 #, python-format
 msgid "Would you like to reset \"%s\"?"
 msgstr "Сбросить «%s»?"
 
-#: ../ubuntutweak/admins/quicklists.py:398
+#: ../ubuntutweak/admins/quicklists.py:403
 #, python-format
 msgid "If you continue, the actions of %s will be set to default."
 msgstr "Продолжение приведет к восстановлению исходных значений «%s»."
 
-#: ../ubuntutweak/admins/quicklists.py:411
+#: ../ubuntutweak/admins/quicklists.py:416
 msgid "Would you like to reset the launcher items?"
 msgstr "Сбросить расположение значков на панели запуска?"
 
-#: ../ubuntutweak/admins/quicklists.py:412
+#: ../ubuntutweak/admins/quicklists.py:417
 msgid ""
 "If you continue, launcher will be set to default and all your current items "
 "will be lost."
@@ -1618,7 +1622,7 @@ msgid "Application"
 msgstr "Приложение"
 
 #: ../ubuntutweak/admins/filetypemanager.py:50
-#: ../ubuntutweak/apps/__init__.py:259
+#: ../ubuntutweak/apps/__init__.py:188
 msgid "All"
 msgstr "Все"
 
@@ -1973,39 +1977,39 @@ msgstr ""
 msgid "Session indicator:"
 msgstr "Индикатор сеанса:"
 
-#: ../ubuntutweak/tweaks/workspace.py:36
+#: ../ubuntutweak/tweaks/workspace.py:37
 msgid "Show Workspaces"
 msgstr "Показать рабочие места"
 
-#: ../ubuntutweak/tweaks/workspace.py:37
+#: ../ubuntutweak/tweaks/workspace.py:38
 msgid "Show Windows"
 msgstr "Показать окна"
 
-#: ../ubuntutweak/tweaks/workspace.py:38
+#: ../ubuntutweak/tweaks/workspace.py:39
 msgid "Show Desktop"
 msgstr "Показать рабочий стол"
 
-#: ../ubuntutweak/tweaks/workspace.py:39
+#: ../ubuntutweak/tweaks/workspace.py:40
 msgid "Show Widgets"
 msgstr "Показать виджеты"
 
-#: ../ubuntutweak/tweaks/workspace.py:138
+#: ../ubuntutweak/tweaks/workspace.py:139
 msgid "Workspace"
 msgstr "Рабочее место"
 
-#: ../ubuntutweak/tweaks/workspace.py:139
+#: ../ubuntutweak/tweaks/workspace.py:140
 msgid "Workspace size and screen edge action settings"
 msgstr "Параметры размера рабочего места и краёв экрана"
 
-#: ../ubuntutweak/tweaks/workspace.py:144
+#: ../ubuntutweak/tweaks/workspace.py:145
 msgid "Edge trigger delay (ms):"
 msgstr "Задержка перед выполнением действия (в миллисекундах):"
 
-#: ../ubuntutweak/tweaks/workspace.py:145
+#: ../ubuntutweak/tweaks/workspace.py:146
 msgid "Horizontal workspace:"
 msgstr "Число рабочих мест по горизонтали:"
 
-#: ../ubuntutweak/tweaks/workspace.py:146
+#: ../ubuntutweak/tweaks/workspace.py:147
 msgid "Vertical workspace:"
 msgstr "Число рабочих мест по вертикали:"
 
@@ -2119,6 +2123,7 @@ msgstr "Показывать сетку:"
 #: ../ubuntutweak/tweaks/loginsettings.py:63
 msgid "Note: you may need to reboot to take effect"
 msgstr ""
+"Замечание: может потребоваться перезагрузка, чтобы изменения вступили в силу"
 
 #: ../ubuntutweak/tweaks/loginsettings.py:141
 msgid "Choose a new logo image"
@@ -2213,8 +2218,8 @@ msgid "HUD:"
 msgstr "Всплывающее меню:"
 
 #: ../ubuntutweak/tweaks/unity.py:43
-msgid "Shortcut hits overlay:"
-msgstr "Приоритет нажатий комбинаций клавиш:"
+msgid "Shortcut hints overlay:"
+msgstr ""
 
 #: ../ubuntutweak/tweaks/unity.py:44
 msgid "Launcher icon size:"
@@ -2354,6 +2359,30 @@ msgstr ""
 msgid "Auto detect text encoding for Chinese in Gedit:"
 msgstr ""
 "Автоматически определять китайскую кодировку в «Текстовом редакторе»:"
+
+#: ../ubuntutweak/apps/__init__.py:55
+msgid "Uninstall"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:56
+msgid "Update"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:57
+msgid "Installing"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:58
+msgid "Uninstalling"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:59
+msgid "Updating"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:60
+msgid "Not Available"
+msgstr ""
 
 #: ../ubuntutweak/clips/userinfo.py:10
 msgid "User Information"
@@ -2533,33 +2562,33 @@ msgstr ""
 "\n"
 "внутри есть файлы."
 
-#: ../ubuntutweak/main.py:276
+#: ../ubuntutweak/main.py:271
 msgid "Results"
 msgstr "Результаты"
 
-#: ../ubuntutweak/main.py:284
+#: ../ubuntutweak/main.py:279
 #, python-format
 msgid "Your filter \"<b>%s</b>\" does not match any items."
 msgstr "Для фильтра «<b>%s</b>» соответствий не найдено."
 
-#: ../ubuntutweak/main.py:402
+#: ../ubuntutweak/main.py:407
 msgid "Please wait a moment..."
 msgstr "Пожалуйста, подождите..."
 
-#: ../ubuntutweak/main.py:511
+#: ../ubuntutweak/main.py:516
 #, python-format
 msgid "No module named \"%s\""
 msgstr "Нет модуля с именем «%s»"
 
-#: ../ubuntutweak/main.py:512
+#: ../ubuntutweak/main.py:517
 msgid "Please ensure you have entered the correct module name."
 msgstr "Убедитесь, что вы ввели правильное имя модуля"
 
-#: ../ubuntutweak/main.py:570
+#: ../ubuntutweak/main.py:575
 msgid "Computer Janitor"
 msgstr "Очистка системы"
 
-#: ../ubuntutweak/main.py:571
+#: ../ubuntutweak/main.py:576
 msgid "Clean up a system so it's more like a freshly installed one"
 msgstr "Очистите систему так, как если бы она была только что установлена"
 
@@ -2638,63 +2667,3 @@ msgstr "Удалить его и установить заново?"
 #, python-format
 msgid "\"%s\" has already installed"
 msgstr "«%s» уже установлено"
-
-#~ msgid "Could not find application"
-#~ msgstr "Не удалось найти приложение"
-
-#~ msgid "Thumbnail cache time (days)"
-#~ msgstr "Срок кэширования эскизов (в днях)"
-
-#~ msgid "Fix the appearance of themes when granted root privileges"
-#~ msgstr ""
-#~ "Исправить внешний вид программ, запущенных с правами суперпользователя"
-
-#~ msgid "Removing key files..."
-#~ msgstr "Удаление файлов ключей..."
-
-#~ msgid "Downloading Packages..."
-#~ msgstr "Загрузка пакетов..."
-
-#, python-format
-#~ msgid "Downgrading...%s"
-#~ msgstr "Откат до предыдущей версии... %s"
-
-#~ msgid "Purge PPA and Downgrade Packages"
-#~ msgstr "Удалить PPA и откатиться до предыдущей версии"
-
-#, python-format
-#~ msgid "You're going to purge: %s"
-#~ msgstr "Будут удалены: %s"
-
-#~ msgid "No PPA to be removed"
-#~ msgstr "Ни один PPA не будет удалён"
-
-#~ msgid "PPA"
-#~ msgstr "Персональный архив пакетов (PPA)"
-
-#, python-format
-#~ msgid "Downloading...%s"
-#~ msgstr "Загрузка...%s"
-
-#, python-format
-#~ msgid "Could not find \"%s\", Please ensure the path is correct."
-#~ msgstr "Не удалось найти \"%s\". Убедитесь, что путь к файлу правильный."
-
-#, python-format
-#~ msgid "%d PPAs to be removed"
-#~ msgstr "%d PPA будут удалены"
-
-#~ msgid "Launcher"
-#~ msgstr "Панель запуска"
-
-#~ msgid "Enable the Super key"
-#~ msgstr "Включить клавишу Super"
-
-#~ msgid "Cursor blink timeout"
-#~ msgstr "Задержка перед миганием указателя"
-
-#~ msgid "Cursor blink time"
-#~ msgstr "Время мигания указателя"
-
-#~ msgid "Cursor blink"
-#~ msgstr "Мигание указателя"

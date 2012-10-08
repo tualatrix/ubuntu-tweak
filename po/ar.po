@@ -9,17 +9,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-04 22:24+0800\n"
-"PO-Revision-Date: 2012-08-08 16:58+0000\n"
-"Last-Translator: wahab hakeem <Unknown>\n"
+"POT-Creation-Date: 2012-09-07 10:18+0800\n"
+"PO-Revision-Date: 2012-10-02 05:46+0000\n"
+"Last-Translator: Ding Zhou <tualatrix@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n % 100 >= "
 "3 && n % 100 <= 10 ? 3 : n % 100 >= 11 && n % 100 <= 99 ? 4 : 5;\n"
-"X-Launchpad-Export-Date: 2012-08-12 03:17+0000\n"
-"X-Generator: Launchpad (build 15780)\n"
+"X-Launchpad-Export-Date: 2012-10-04 06:28+0000\n"
+"X-Generator: Launchpad (build 16061)\n"
 
 #: ../data/script-worker:57
 #, c-format
@@ -88,11 +88,11 @@ msgstr "لتحرير مصادر البرمجيات، تحتاج للاستيثا
 
 #: ../data/ui/window.ui.h:1
 msgid "Left"
-msgstr "يسار"
+msgstr "يمين"
 
 #: ../data/ui/window.ui.h:2
 msgid "Right"
-msgstr "يمين"
+msgstr "يسار"
 
 #: ../data/ui/preferences.ui.h:1
 msgid "Preferences"
@@ -121,7 +121,7 @@ msgstr "انقل لأعلى"
 msgid "Move Down"
 msgstr "انقل لأسفل"
 
-#: ../data/ui/preferences.ui.h:8
+#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:54
 msgid "Install"
 msgstr "ثبّت"
 
@@ -436,18 +436,22 @@ msgid "_Overview"
 msgstr "_عــام"
 
 #: ../data/ui/mainwindow.ui.h:9
+msgid "_Apps"
+msgstr ""
+
+#: ../data/ui/mainwindow.ui.h:10
 msgid "_Tweaks"
 msgstr "ت_ضبيطات"
 
-#: ../data/ui/mainwindow.ui.h:10
+#: ../data/ui/mainwindow.ui.h:11
 msgid "_Admins"
 msgstr "إ_دارة"
 
-#: ../data/ui/mainwindow.ui.h:11
+#: ../data/ui/mainwindow.ui.h:12
 msgid "_Janitor"
 msgstr "ال_منظف"
 
-#: ../data/ui/mainwindow.ui.h:12
+#: ../data/ui/mainwindow.ui.h:13
 msgid "<big><b>No matches found</b></big>"
 msgstr "<big><b>لم يُعثر على أي تطابق</b></big>"
 
@@ -707,7 +711,7 @@ msgid "Desktop"
 msgstr "سطح المكتب"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:106
-#: ../ubuntutweak/apps/__init__.py:240
+#: ../ubuntutweak/apps/__init__.py:169
 msgid "Category"
 msgstr "التصنيف"
 
@@ -806,7 +810,7 @@ msgstr "تمت الاستعادة بنجاح!"
 #: ../ubuntutweak/admins/desktoprecovery.py:498
 #: ../ubuntutweak/admins/desktoprecovery.py:534
 msgid "You may need to restart your desktop for changes to take effect"
-msgstr "قد تحتاج لإعادة تشغيل سطح مكتبك لتصبح التغييرات نافذة المفعول"
+msgstr "قد تحتاج لإعادة تشغيل سطح مكتبك لتصبح التغييرات نافذة المفعول."
 
 #: ../ubuntutweak/admins/desktoprecovery.py:503
 msgid "_Logout"
@@ -954,7 +958,7 @@ msgid "Visit online Source Center"
 msgstr "تفضل بزيارة مركز المصادر"
 
 #: ../ubuntutweak/admins/sourcecenter.py:937
-#: ../ubuntutweak/admins/appcenter.py:506
+#: ../ubuntutweak/admins/appcenter.py:505
 msgid "_Sync"
 msgstr "_زامِن"
 
@@ -981,9 +985,9 @@ msgid "disabled on upgrade to %s"
 msgstr "عُطّل عند الترقية إلى %s"
 
 #: ../ubuntutweak/admins/sourcecenter.py:1014
-#: ../ubuntutweak/admins/appcenter.py:546
+#: ../ubuntutweak/admins/appcenter.py:545
 msgid "Last synced:"
-msgstr "اخر مزامنة:"
+msgstr "آخر مزامنة:"
 
 #: ../ubuntutweak/admins/sourcecenter.py:1019
 msgid "Upgrade Third Party Sources"
@@ -1033,7 +1037,7 @@ msgstr ""
 "خطأ في الشبكة. يرجى التحقق من اتصال الشبكة أو إحتمال بأن الخادم لايعمل الان ."
 
 #: ../ubuntutweak/admins/sourcecenter.py:1184
-#: ../ubuntutweak/admins/appcenter.py:665
+#: ../ubuntutweak/admins/appcenter.py:664
 msgid "No update available."
 msgstr "لا تتوفر أي تحديثات."
 
@@ -1237,47 +1241,47 @@ msgstr ""
 "هذا سيحذف جميع القوالب المعطلة.\n"
 "أترغب بالمتابعة؟"
 
-#: ../ubuntutweak/admins/appcenter.py:188
+#: ../ubuntutweak/admins/appcenter.py:187
 msgid "Installed Apps"
 msgstr "التطبيقات المُثبتة"
 
-#: ../ubuntutweak/admins/appcenter.py:455
+#: ../ubuntutweak/admins/appcenter.py:454
 msgid "Checking update..."
 msgstr "يبحث عن تحديثات..."
 
-#: ../ubuntutweak/admins/appcenter.py:490
+#: ../ubuntutweak/admins/appcenter.py:489
 msgid "Fetching online data..."
 msgstr "يجلب البيانات من اﻹنترنت..."
 
-#: ../ubuntutweak/admins/appcenter.py:495
+#: ../ubuntutweak/admins/appcenter.py:494
 msgid "Application Center"
 msgstr "مركز التطبيقات"
 
-#: ../ubuntutweak/admins/appcenter.py:496
+#: ../ubuntutweak/admins/appcenter.py:495
 msgid ""
 "A simple but efficient way for finding and installing popular applications."
 msgstr "الطريقة البسيطة والأكثر فعالية لإيجاد وتثبيت التطبيقات الأكثر شيوعا."
 
-#: ../ubuntutweak/admins/appcenter.py:499
+#: ../ubuntutweak/admins/appcenter.py:498
 msgid "Visit Online Application Center"
 msgstr "تفضل بزيارة مركز التطبيقات"
 
-#: ../ubuntutweak/admins/appcenter.py:553
+#: ../ubuntutweak/admins/appcenter.py:552
 msgid "New application data available, would you like to update?"
 msgstr "تتوفر بيانات جديدة للتطبيقات. هل ترغب بالتحديث؟"
 
-#: ../ubuntutweak/admins/appcenter.py:652
+#: ../ubuntutweak/admins/appcenter.py:651
 msgid "Update available, would you like to update?"
 msgstr "يتوفر تحديث. هل ترغب بالتحديث؟"
 
-#: ../ubuntutweak/admins/appcenter.py:661
+#: ../ubuntutweak/admins/appcenter.py:660
 msgid ""
 "Network Error, please check your network connection - or the remote server "
 "may be down."
 msgstr ""
 "خطأ في الشبكة. يرجى التحقق من اتصال الشبكة أو إحتمال بأن الخادم لايعمل الان ."
 
-#: ../ubuntutweak/admins/appcenter.py:678
+#: ../ubuntutweak/admins/appcenter.py:677
 msgid "An error occurred while downloading the file."
 msgstr "حدث خطأ أثناء تنزيل الملف."
 
@@ -1346,7 +1350,7 @@ msgid ""
 "are doing."
 msgstr ""
 "يمكنك تغيير مسارات المجلدات الافتراضية هنا.\n"
-"لا تغيير موقع مجلد سطح المكتب الخاص بك إلا إذا كنت تعرف ما تقوم به."
+"لا تغيّر موقع مجلد سطح المكتب إلا إذا كنت تعرف ما تفعله."
 
 #: ../ubuntutweak/admins/userdir.py:261
 msgid "_Restore"
@@ -1358,27 +1362,27 @@ msgstr "تغيير"
 
 #: ../ubuntutweak/admins/quicklists.py:208
 msgid "QuickLists Editor"
-msgstr "محرّر القوائم الفورية"
+msgstr "محرّر القوائم السريعة"
 
 #: ../ubuntutweak/admins/quicklists.py:209
 msgid "Unity Launcher QuickLists Editor"
-msgstr "محرّر القوائم الفورية في شريط يونتي لبدء التطبيقات"
+msgstr "محرّر القوائم السريعة في شريط يونتي لبدء التطبيقات"
 
-#: ../ubuntutweak/admins/quicklists.py:397
+#: ../ubuntutweak/admins/quicklists.py:402
 #, python-format
 msgid "Would you like to reset \"%s\"?"
 msgstr "هل ترغب باستعادة \"%s\"؟"
 
-#: ../ubuntutweak/admins/quicklists.py:398
+#: ../ubuntutweak/admins/quicklists.py:403
 #, python-format
 msgid "If you continue, the actions of %s will be set to default."
 msgstr "إذا تابعت، فإن الإجراءات لـ \"%s\" سوف يتم تعيينها كافتراضية."
 
-#: ../ubuntutweak/admins/quicklists.py:411
+#: ../ubuntutweak/admins/quicklists.py:416
 msgid "Would you like to reset the launcher items?"
 msgstr "هل ترغب في استعادة ضبط عناصر شريط بدء التطبيقات؟"
 
-#: ../ubuntutweak/admins/quicklists.py:412
+#: ../ubuntutweak/admins/quicklists.py:417
 msgid ""
 "If you continue, launcher will be set to default and all your current items "
 "will be lost."
@@ -1585,7 +1589,7 @@ msgid "Application"
 msgstr "تطبيق"
 
 #: ../ubuntutweak/admins/filetypemanager.py:50
-#: ../ubuntutweak/apps/__init__.py:259
+#: ../ubuntutweak/apps/__init__.py:188
 msgid "All"
 msgstr "الجميع"
 
@@ -1725,7 +1729,7 @@ msgstr "إظهار أيقونة \"خواديم الشبكة\""
 
 #: ../ubuntutweak/tweaks/icons.py:76 ../ubuntutweak/gui/treeviews.py:89
 msgid "Rename"
-msgstr "إعادة التسمية"
+msgstr "تغيير التسمية"
 
 #: ../ubuntutweak/tweaks/icons.py:107
 msgid "Desktop Icons"
@@ -1733,7 +1737,7 @@ msgstr "أيقونات سطح المكتب"
 
 #: ../ubuntutweak/tweaks/icons.py:108
 msgid "Rename and toggle visibilty of desktop icons"
-msgstr "إعادة تسمية وتبديل رؤية رموز سطح المكتب"
+msgstr "تغيير تسمية أيقونات سطح المكتب والتحكم في ظهورها"
 
 #: ../ubuntutweak/tweaks/icons.py:113
 msgid "Show desktop icons:"
@@ -1749,7 +1753,7 @@ msgstr "إظهار محتويات \"مجلد المنزل\""
 
 #: ../ubuntutweak/tweaks/icons.py:146
 msgid "Note: switch off this option will make the desktop unclickable"
-msgstr "ملاحظة: إيقاف هذا الخيار سيجعل سطح المكتب غير قابل للنقر"
+msgstr "ملاحظة: إيقاف هذا الخيار سيجعل سطح المكتب غير قابل للنقر."
 
 #: ../ubuntutweak/tweaks/theme.py:36
 msgid "Theme"
@@ -1864,7 +1868,7 @@ msgstr "مدير الملفات"
 
 #: ../ubuntutweak/tweaks/nautilus.py:28
 msgid "Manage the Nautilus file manager"
-msgstr "إدارة مدير الملفات توتلس"
+msgstr "إدارة مدير الملفات نوتلس"
 
 #: ../ubuntutweak/tweaks/nautilus.py:33
 msgid "Show advanced permissions in \"File Properties\""
@@ -1938,39 +1942,39 @@ msgstr "عدم إظهار مربع حوار تأكيد الخروج والإطف
 msgid "Session indicator:"
 msgstr "مؤشر الجلسة:"
 
-#: ../ubuntutweak/tweaks/workspace.py:36
+#: ../ubuntutweak/tweaks/workspace.py:37
 msgid "Show Workspaces"
 msgstr "إظهار مساحات العمل"
 
-#: ../ubuntutweak/tweaks/workspace.py:37
+#: ../ubuntutweak/tweaks/workspace.py:38
 msgid "Show Windows"
 msgstr "إظهار النوافذ"
 
-#: ../ubuntutweak/tweaks/workspace.py:38
+#: ../ubuntutweak/tweaks/workspace.py:39
 msgid "Show Desktop"
 msgstr "إظهار سطح المكتب"
 
-#: ../ubuntutweak/tweaks/workspace.py:39
+#: ../ubuntutweak/tweaks/workspace.py:40
 msgid "Show Widgets"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/workspace.py:138
+#: ../ubuntutweak/tweaks/workspace.py:139
 msgid "Workspace"
 msgstr "مساحة العمل"
 
-#: ../ubuntutweak/tweaks/workspace.py:139
+#: ../ubuntutweak/tweaks/workspace.py:140
 msgid "Workspace size and screen edge action settings"
 msgstr "إعدادات حجم مساحات العمل وإجراءات حواف الشاشة"
 
-#: ../ubuntutweak/tweaks/workspace.py:144
+#: ../ubuntutweak/tweaks/workspace.py:145
 msgid "Edge trigger delay (ms):"
 msgstr "المهلة قبل الإجراء (بالملي ثانية):"
 
-#: ../ubuntutweak/tweaks/workspace.py:145
+#: ../ubuntutweak/tweaks/workspace.py:146
 msgid "Horizontal workspace:"
 msgstr "مساحات العمل الأفقية:"
 
-#: ../ubuntutweak/tweaks/workspace.py:146
+#: ../ubuntutweak/tweaks/workspace.py:147
 msgid "Vertical workspace:"
 msgstr "مساحات العمل الرأسية:"
 
@@ -2044,23 +2048,23 @@ msgstr "تعطيل \"تبديل المستخدمين السريع\""
 
 #: ../ubuntutweak/tweaks/misc.py:45
 msgid "Cursor blink:"
-msgstr ""
+msgstr "وميض مؤشر الكتابة:"
 
 #: ../ubuntutweak/tweaks/misc.py:46
 msgid "Overlay scrollbars:"
-msgstr ""
+msgstr "أشرطة التمرير المتراكبة:"
 
 #: ../ubuntutweak/tweaks/misc.py:47
 msgid "Cursor blink time:"
-msgstr ""
+msgstr "وقت وميض المؤشر:"
 
 #: ../ubuntutweak/tweaks/misc.py:48
 msgid "Cursor blink timeout:"
-msgstr ""
+msgstr "مهلة وميض المؤشر:"
 
 #: ../ubuntutweak/tweaks/misc.py:60 ../ubuntutweak/tweaks/unity.py:175
 msgid "Note: you may need to log out to take effect"
-msgstr "ملاحظة: قد تحتاج للخروج من الجلسة لتصبح التغييرات نافذة المفعول"
+msgstr "ملاحظة: قد تحتاج للخروج من الجلسة لتصبح التغييرات نافذة المفعول."
 
 #: ../ubuntutweak/tweaks/loginsettings.py:37
 msgid "Login Settings"
@@ -2068,11 +2072,11 @@ msgstr "إعدادات الولوج"
 
 #: ../ubuntutweak/tweaks/loginsettings.py:38
 msgid "Control the appearance and behaviour of your login screen"
-msgstr "تحكم في مظهر و سلوك شاشة الدخول"
+msgstr "تحكم في مظهر و سلوك شاشة الولوج"
 
 #: ../ubuntutweak/tweaks/loginsettings.py:43
 msgid "Guest account:"
-msgstr ""
+msgstr "حساب الضيف:"
 
 #: ../ubuntutweak/tweaks/loginsettings.py:44
 msgid "Draw grid:"
@@ -2080,7 +2084,7 @@ msgstr "رسم شبكة:"
 
 #: ../ubuntutweak/tweaks/loginsettings.py:63
 msgid "Note: you may need to reboot to take effect"
-msgstr ""
+msgstr "ملاحظة: قد تحتاج لإعادة تشغيل الحاسوب لتصبح التغييرات نافذة المفعول."
 
 #: ../ubuntutweak/tweaks/loginsettings.py:141
 msgid "Choose a new logo image"
@@ -2116,7 +2120,7 @@ msgstr "الخط المبدئي:"
 
 #: ../ubuntutweak/tweaks/fonts.py:34
 msgid "Monospace font:"
-msgstr "خط ثابت العرض:"
+msgstr "الخط ثابت العرض:"
 
 #: ../ubuntutweak/tweaks/fonts.py:35
 msgid "Document font:"
@@ -2175,7 +2179,7 @@ msgid "HUD:"
 msgstr ""
 
 #: ../ubuntutweak/tweaks/unity.py:43
-msgid "Shortcut hits overlay:"
+msgid "Shortcut hints overlay:"
 msgstr ""
 
 #: ../ubuntutweak/tweaks/unity.py:44
@@ -2314,6 +2318,30 @@ msgstr "إصلاح مظهر السمات عند منح امتيازات الجذ
 #: ../ubuntutweak/tweaks/workarounds.py:39
 msgid "Auto detect text encoding for Chinese in Gedit:"
 msgstr "كشف ترميز النص تلقائيا للكتابة الصينية في محرر النصوص \"Gedit\":"
+
+#: ../ubuntutweak/apps/__init__.py:55
+msgid "Uninstall"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:56
+msgid "Update"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:57
+msgid "Installing"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:58
+msgid "Uninstalling"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:59
+msgid "Updating"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:60
+msgid "Not Available"
+msgstr ""
 
 #: ../ubuntutweak/clips/userinfo.py:10
 msgid "User Information"
@@ -2481,7 +2509,7 @@ msgstr "أدخل اسم الدليل"
 
 #: ../ubuntutweak/gui/treeviews.py:139
 msgid "Can't rename the root folder"
-msgstr "تعذّرت إعادة تسمية مجلد الجذر"
+msgstr "تعذّر تغيير تسمية مجلد الجذر"
 
 #: ../ubuntutweak/gui/treeviews.py:156
 msgid "Can't delete the root folder"
@@ -2493,37 +2521,37 @@ msgid ""
 "\n"
 "There are files in it!"
 msgstr ""
-"تعذّرت إعادة التسمية!\n"
+"تعذّر تغيير التسمية!\n"
 "\n"
 "يوجد ملفات بداخله."
 
-#: ../ubuntutweak/main.py:276
+#: ../ubuntutweak/main.py:271
 msgid "Results"
 msgstr "النتائج"
 
-#: ../ubuntutweak/main.py:284
+#: ../ubuntutweak/main.py:279
 #, python-format
 msgid "Your filter \"<b>%s</b>\" does not match any items."
 msgstr "مرشحك \"<b>%s</b>\" لا يطابق أي عنصر."
 
-#: ../ubuntutweak/main.py:402
+#: ../ubuntutweak/main.py:407
 msgid "Please wait a moment..."
 msgstr "انتظر لحظة من فضلك..."
 
-#: ../ubuntutweak/main.py:511
+#: ../ubuntutweak/main.py:516
 #, python-format
 msgid "No module named \"%s\""
 msgstr ""
 
-#: ../ubuntutweak/main.py:512
+#: ../ubuntutweak/main.py:517
 msgid "Please ensure you have entered the correct module name."
 msgstr ""
 
-#: ../ubuntutweak/main.py:570
+#: ../ubuntutweak/main.py:575
 msgid "Computer Janitor"
 msgstr "منظف الحاسوب"
 
-#: ../ubuntutweak/main.py:571
+#: ../ubuntutweak/main.py:576
 msgid "Clean up a system so it's more like a freshly installed one"
 msgstr "نظّف النظام ليكون أشبه بنظام مثبّت حديثا"
 
@@ -2605,26 +2633,3 @@ msgstr "هل ترغب بإزالته ثم تثبيته مرة أخرى؟"
 #, python-format
 msgid "\"%s\" has already installed"
 msgstr "\"%s\" مثبّت حاليًا بالفعل"
-
-#~ msgid "Could not find application"
-#~ msgstr "تعذّر العثور على التّطبيق"
-
-#~ msgid "Fix the appearance of themes when granted root privileges"
-#~ msgstr "إصلاح مظهر السمات عند إمتلاك صلاحيات الجذر"
-
-#, python-format
-#~ msgid "Downgrading...%s"
-#~ msgstr "التحميل...%s"
-
-#~ msgid "Downloading Packages..."
-#~ msgstr "يتم الان تحميل الحزم..."
-
-#, python-format
-#~ msgid "You're going to purge: %s"
-#~ msgstr "أنت تقوم بتطهير(بإزالة): %s"
-
-#~ msgid "Thumbnail cache time (days)"
-#~ msgstr "وقت ذاكرة التخزين المؤقت للمصغرات (بالأيام)"
-
-#~ msgid "Launcher"
-#~ msgstr "شريط بدء التطبيقات"
