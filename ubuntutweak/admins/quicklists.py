@@ -24,6 +24,7 @@ import shutil
 from gi.repository import GObject, Gtk
 from xdg.DesktopEntry import DesktopEntry
 
+from ubuntutweak import system
 from ubuntutweak.common.debug import log_func, log_traceback
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.settings.gsettings import GSetting
@@ -223,6 +224,12 @@ class QuickLists(TweakModule):
      ACTION_ENABLED,
      ACTION_ENTRY) = range(5)
 
+    QUANTAL_SPECIFIC_ITEMS = {
+        'unity://running-apps': _('Running Apps'),
+        'unity://expo-icon': _('Workspace Switcher'),
+        'unity://devices': _('Devices')
+    }
+
     def __init__(self):
         TweakModule.__init__(self, 'quicklists.ui')
 
@@ -244,6 +251,10 @@ class QuickLists(TweakModule):
             if desktop_file.startswith('/') and os.path.exists(desktop_file):
                 path = desktop_file
             else:
+                if desktop_file.startswith('application://'):
+                    desktop_file = desktop_file.split('application://')[1]
+                    log.debug("Desktop file for quantal: %s" % desktop_file)
+
                 user_path = os.path.join(NewDesktopEntry.user_folder, desktop_file)
                 system_path = os.path.join(NewDesktopEntry.system_folder, desktop_file)
 
@@ -252,18 +263,21 @@ class QuickLists(TweakModule):
                 elif os.path.exists(system_path):
                     path = system_path
                 else:
-                    log.debug("No desktop file avaialbe in for %s" % desktop_file)
-                    continue
+                    path = desktop_file
+
             try:
                 entry = NewDesktopEntry(path)
+
+                self.icon_model.append((path,
+                                        icon.get_from_name(entry.getIcon(), size=32),
+                                        entry.getName(),
+                                        entry))
             except Exception, e:
                 log_traceback(log)
-                continue
-
-            self.icon_model.append((path,\
-                                    icon.get_from_name(entry.getIcon(), size=32),\
-                                    entry.getName(),
-                                    entry))
+                self.icon_model.append((path,
+                                        icon.get_from_name('plugin-unityshell', size=32),
+                                        self.QUANTAL_SPECIFIC_ITEMS[path],
+                                        None))
 
         first_iter = self.icon_model.get_iter_first()
         if first_iter:
@@ -315,22 +329,26 @@ class QuickLists(TweakModule):
             self.add_action_button.set_sensitive(True)
 
             entry = model[iter][self.DESKTOP_ENTRY]
-            for action in entry.get_actions():
-                self.action_model.append((action,
-                            entry.get_name_by_action(action),
-                            entry.get_exec_by_action(action),
-                            entry.is_action_visiable(action),
-                            entry))
-            self.redo_action_button.set_sensitive(True)
-            self.action_view.columns_autosize()
-            if not path:
-                first_iter = self.action_model.get_iter_first()
-                if first_iter:
-                    self.action_view.get_selection().select_iter(first_iter)
+            if entry:
+                for action in entry.get_actions():
+                    self.action_model.append((action,
+                                entry.get_name_by_action(action),
+                                entry.get_exec_by_action(action),
+                                entry.is_action_visiable(action),
+                                entry))
+                self.redo_action_button.set_sensitive(True)
+                self.action_view.columns_autosize()
+                if not path:
+                    first_iter = self.action_model.get_iter_first()
+                    if first_iter:
+                        self.action_view.get_selection().select_iter(first_iter)
+                else:
+                    iter = self.action_model.get_iter(path)
+                    if iter:
+                        self.action_view.get_selection().select_iter(iter)
             else:
-                iter = self.action_model.get_iter(path)
-                if iter:
-                    self.action_view.get_selection().select_iter(iter)
+                self.add_action_button.set_sensitive(False)
+                self.redo_action_button.set_sensitive(False)
         else:
             self.add_action_button.set_sensitive(False)
             self.redo_action_button.set_sensitive(False)
@@ -430,7 +448,13 @@ class QuickLists(TweakModule):
     def _do_icon_reorder(self):
         new_order = []
         for row in self.icon_model:
-            new_order.append(row[self.DESKTOP_FILE])
+            if system.CODENAME == 'quantal':
+                if not row[self.DESKTOP_FILE].startswith('unity://'):
+                    new_order.append('application://%s' % os.path.basename(row[self.DESKTOP_FILE]))
+                else:
+                    new_order.append(row[self.DESKTOP_FILE])
+            else:
+                new_order.append(row[self.DESKTOP_FILE])
 
         if new_order != self.launcher_setting.get_value():
             log.debug("Order changed")
