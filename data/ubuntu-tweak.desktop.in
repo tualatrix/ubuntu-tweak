@@ -8,12 +8,17 @@ Type=Application
 Categories=GNOME;GTK;System;Settings;X-GNOME-Settings-Panel;X-GNOME-PersonalSettings;
 X-GNOME-Settings-Panel=ubuntu-tweak
 StartupNotify=true
-X-Ayatana-Desktop-Shortcuts=Overview;Tweaks;Admins;Janitor
+X-Ayatana-Desktop-Shortcuts=Overview;Apps;Tweaks;Admins;Janitor
 X-Ayatana-Appmenu-Show-Stubs=False
 
 [Overview Shortcut Group]
 _Name=Overview
 Exec=ubuntu-tweak -f overview
+TargetEnvironment=Unity
+
+[Apps Shortcut Group]
+_Name=Apps
+Exec=ubuntu-tweak -f apps
 TargetEnvironment=Unity
 
 [Tweaks Shortcut Group]
