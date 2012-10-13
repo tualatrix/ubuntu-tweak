@@ -209,6 +209,11 @@ class AppsWebView(WebKit.WebView):
     def update_action_button(self, action_id, disabled=False):
         text = self.action_text_dict[action_id]
 
+        if action_id == self.UNINSTALL_ACTION:
+            self.execute_script('$(".status-image").show();');
+        else:
+            self.execute_script('$(".status-image").hide();');
+
         self.execute_script('$(".install-button")[0].innerHTML = "%s";' % text);
         self.execute_script('$(".install-button").attr("action-id", "%d")' % action_id);
 
