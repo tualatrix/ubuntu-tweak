@@ -385,7 +385,7 @@ class UbuntuTweakWindow(GuiBuilder):
     def _initialize_ui_states(self, widget, splash_window):
         self.window_size_setting = GSetting('com.ubuntu-tweak.tweak.window-size')
         width, height = self.window_size_setting.get_value()
-        if width >= 800 and height >= 480:
+        if width >= 900 and height >= 506:
             self.mainwindow.set_default_size(width, height)
 
         for feature_button in ('overview_button', 'apps_button', 'admins_button', \
