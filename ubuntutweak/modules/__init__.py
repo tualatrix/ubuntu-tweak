@@ -6,7 +6,7 @@ import inspect
 import traceback
 from new import classobj
 
-from gi.repository import GObject, Gtk, Pango, Gdk
+from gi.repository import GObject, Gtk, Gdk, GdkPixbuf
 
 from ubuntutweak import system
 from ubuntutweak.utils import icon
@@ -365,7 +365,8 @@ class TweakModule(Gtk.VBox):
             if type(cls.__icon__) != list:
                 if cls.__icon__.endswith('.png'):
                     icon_path = os.path.join(DATA_DIR, 'pixmaps', cls.__icon__)
-                    pixbuf = Gtk.gd.pixbuf_new_from_file(icon_path)
+                    pixbuf = GdkPixbuf.Pixbuf.new_from_file(icon_path)
+                    pixbuf = pixbuf.scale_simple(size, size, GdkPixbuf.InterpType.BILINEAR)
                 else:
                     pixbuf = icon.get_from_name(cls.__icon__, size=size)
             else:
