@@ -3,7 +3,7 @@ import json
 import logging
 import webbrowser
 
-from gi.repository import GObject, Gtk, WebKit
+from gi.repository import GObject, Gtk, WebKit, Soup
 from gi.repository import Notify
 from aptsources.sourceslist import SourcesList
 
@@ -11,6 +11,7 @@ from ubuntutweak import system
 from ubuntutweak import __version__
 from ubuntutweak.common.consts import IS_TESTING
 from ubuntutweak.common.debug import log_func
+from ubuntutweak.common.consts import CONFIG_ROOT
 from ubuntutweak.gui.gtk import set_busy, unset_busy
 from ubuntutweak.utils.package import AptWorker
 from ubuntutweak.utils.parser import Parser
@@ -100,12 +101,19 @@ class AppsWebView(WebKit.WebView):
 
         self.get_settings().set_property('enable-default-context-menu', False)
         self.get_settings().set_property('enable-plugins', False)
+
+        self.setup_features()
         self.setup_user_agent()
 
         self.load_uri('http://ubuntu-tweak.com/utapp/')
 
         self.connect('notify::title', self.on_title_changed)
         self.connect('new-window-policy-decision-requested', self.on_window)
+
+    def setup_features(self):
+        session = WebKit.get_default_session()
+        cookie = Soup.CookieJarText(filename=os.path.join(CONFIG_ROOT, 'cookies'))
+        session.add_feature(cookie)
 
     def setup_user_agent(self):
         user_agent = 'Mozilla/5.0 (X11; Linux %(arch)s) Chrome/%(version)s-%(codename)s' % {'arch': os.uname()[-1],
