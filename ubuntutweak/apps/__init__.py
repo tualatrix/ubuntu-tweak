@@ -1,9 +1,10 @@
 import os
+import md5
 import json
 import logging
 import webbrowser
 
-from gi.repository import GObject, Gtk, WebKit, Soup
+from gi.repository import GObject, Gtk, WebKit, Soup, Gio
 from gi.repository import Notify
 from aptsources.sourceslist import SourcesList
 
@@ -114,6 +115,153 @@ class AppsWebView(WebKit.WebView):
         session = WebKit.get_default_session()
         cookie = Soup.CookieJarText(filename=os.path.join(CONFIG_ROOT, 'cookies'))
         session.add_feature(cookie)
+
+        session.connect('request-queued', self.on_session_request_queued)
+
+    @log_func(log)
+    def on_session_request_queued(self, session, message):
+        uri = message.get_uri().to_string(False)
+        log.debug("Get uri: %s with method: %s" % (uri, message.method))
+        if uri.startswith('http://') and uri.endswith('.png') and message.method == 'GET':
+            file_name = self.get_cached_path(uri)
+            cached_headers = self.get_cached_headers(file_name)
+            log.debug("Got cached_headers: %s" % cached_headers)
+            if cached_headers:
+                etag = cached_headers.get('ETag')
+                last_modified = cached_headers.get('Last-Modified')
+                if etag:
+                    log.debug("\t\tReplacing header...")
+                    message.request_headers.replace(
+                                            'If-None-Match',
+                                            etag)
+                if last_modified:
+                    log.debug("\t\tReplacing If-Modified-Since header: %s" % last_modified)
+                    message.request_headers.replace(
+                                            'If-Modified-Since',
+                                            last_modified)
+
+                iter = Soup.MessageHeadersIter()
+                iter.init(message.response_headers)
+                has_next, name, value = iter.next()
+
+                while (has_next and name and value):
+                    print iter.next()
+                    has_next, name, value = iter.next()
+
+            message._utsession = session
+            message.connect('got-headers', self.on_message_got_headers, file_name)
+
+    @log_func(log)
+    def on_message_got_headers(self, message, file_name):
+        log.debug("Method: %s with status_code: %s" % (message.method, message.status_code))
+
+        iter = Soup.MessageHeadersIter()
+        iter.init(message.response_headers)
+        has_next, name, value = iter.next()
+
+        while (has_next and name and value):
+            has_next, name, value = iter.next()
+
+        if message.status_code == Soup.KnownStatusCode.NOT_MODIFIED:
+            message.disconnect_by_func(self.on_message_got_headers)
+            self.cache_message_rewrite(message, file_name)
+        elif message.status_code == Soup.KnownStatusCode.OK:
+            gfile = Gio.File.new_for_path(file_name + '.tmp')
+            self.cache_save_headers(message, file_name)
+            ostream = gfile.append_to(Gio.FileCreateFlags.PRIVATE|Gio.FileCreateFlags.REPLACE_DESTINATION, None)
+            ostream._utfilename = file_name
+            message.connect('got-chunk', self.on_message_got_chunk, ostream)
+            message.connect('finished', self.on_message_finished, ostream)
+
+    @log_func(log)
+    def cache_message_rewrite(self, message, file_name):
+        cached_headers = self.get_cached_headers(file_name)
+        if cached_headers:
+            message.set_status(Soup.KnownStatusCode.OK)
+            for key, value in cached_headers.items():
+                message.response_headers.replace(key, value)
+            message.emit('got-headers')
+            message._utsession.pause_message(message)
+            gfile = Gio.File.new_for_path(file_name)
+            gfile.load_contents_async(None, self.on_message_rewrite_async, message)
+
+    @log_func(log)
+    def on_message_rewrite_async(self, gfile, result, message):
+        loaded, data, etag = gfile.load_contents_finish(result)
+        if loaded:
+            soup_buffer = Soup.Buffer.new(data)
+
+            content_sniffer = Soup.ContentSniffer()
+            sniffed_type, codec = content_sniffer.sniff(message, soup_buffer)
+            if sniffed_type:
+                log.debug("sniffed_type: %s", sniffed_type)
+                message.emit('content-sniffed', sniffed_type, None)
+            else:
+                content_type = message.response_headers.get_one('Content-Type')
+                log.debug("content_type: %s", content_type)
+                message.emit('content-sniffed', content_type, None)
+
+            message.response_body.append_buffer(soup_buffer)
+
+            message._utsession.unpause_message(message)
+            message.emit('got-chunk', soup_buffer)
+            message.got_body()
+            message.finished()
+
+    def on_message_got_chunk(self, message, chunk, ostream):
+        data = chunk.get_data()
+        if data:
+            ostream.write(data, None)
+
+    @log_func(log)
+    def on_message_finished(self, message, ostream):
+        file_name = ostream._utfilename
+        ostream.close(None)
+
+        if message.status_code == Soup.KnownStatusCode.OK:
+            os.rename(file_name + '.tmp', file_name)
+            os.rename(file_name + '.dsc.tmp', file_name + '.dsc')
+        else:
+            os.remove(file_name + '.tmp')
+            os.remove(file_name + '.dsc.tmp')
+
+    @log_func(log)
+    def cache_save_headers(self, message, file_name):
+        iter = Soup.MessageHeadersIter()
+        iter.init(message.response_headers)
+        has_next, name, value = iter.next()
+        dsc_file = open(file_name + '.dsc.tmp', 'w')
+
+        while (has_next and name and value):
+            has_next, name, value = iter.next()
+            if name and value:
+                dsc_file.write('%s: %s\n' % (name, value))
+
+        dsc_file.close()
+        return True
+
+    @log_func(log)
+    def get_cached_headers(self, file_name):
+        headers = {}
+        if os.path.exists(file_name + '.dsc'):
+            for line in open(file_name + '.dsc'):
+                key, value = line.split(': ')
+                headers[key] = value.strip()
+        return headers
+
+    @log_func(log)
+    def get_cached_path(self, uri):
+        checksum = md5.md5(uri).hexdigest()
+        cached_path = os.path.join(self.get_cache_dir(), checksum)
+        log.debug("The cached path is: %s" % cached_path)
+        return cached_path
+
+    def get_cache_dir(self):
+        cache_dir = os.path.join(CONFIG_ROOT, 'cache')
+        if not os.path.exists(cache_dir):
+            os.makedirs(cache_dir)
+
+        return cache_dir
 
     def setup_user_agent(self):
         user_agent = 'Mozilla/5.0 (X11; Linux %(arch)s) Chrome/%(version)s-%(codename)s' % {'arch': os.uname()[-1],
