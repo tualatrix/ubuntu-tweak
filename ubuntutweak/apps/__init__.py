@@ -51,6 +51,7 @@ class AppsPage(Gtk.ScrolledWindow):
             self._go_back_button.set_sensitive(widget.can_go_back())
             self._forward_button.set_sensitive(widget.can_go_forward())
             self.on_size_allocate(widget)
+            self._webview.save_cache()
 
     @log_func(log)
     def on_go_back_clicked(self, widget):
@@ -111,9 +112,24 @@ class AppsWebView(WebKit.WebView):
         self.connect('new-window-policy-decision-requested', self.on_window)
 
     def setup_features(self):
-        session = WebKit.get_default_session()
-        cookie = Soup.CookieJarText(filename=os.path.join(CONFIG_ROOT, 'cookies'))
-        session.add_feature(cookie)
+        try:
+            session = WebKit.get_default_session()
+            cookie = Soup.CookieJarText(filename=os.path.join(CONFIG_ROOT, 'cookies'))
+            session.add_feature(cookie)
+
+            self._cache = Soup.Cache(cache_dir=os.path.join(CONFIG_ROOT, 'cache'),
+                                     cache_type=Soup.CacheType.SHARED)
+            session.add_feature(self._cache)
+            self._cache.set_max_size(10 * 1024 * 1024)
+            self._cache.load()
+        except Exception, e:
+            log.error("setup_features failed with %s" % e)
+
+    @log_func(log)
+    def save_cache(self):
+        if hasattr(self, '_cache'):
+            self._cache.flush()
+            self._cache.dump()
 
     def setup_user_agent(self):
         user_agent = 'Mozilla/5.0 (X11; Linux %(arch)s) Chrome/%(version)s-%(codename)s' % {'arch': os.uname()[-1],
