@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-07 10:18+0800\n"
+"POT-Creation-Date: 2012-10-12 15:17+0800\n"
 "PO-Revision-Date: 2012-10-02 06:13+0000\n"
 "Last-Translator: Ding Zhou <tualatrix@gmail.com>\n"
 "Language-Team: Thai <th@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-10-04 06:28+0000\n"
-"X-Generator: Launchpad (build 16061)\n"
+"X-Launchpad-Export-Date: 2012-10-21 10:48+0000\n"
+"X-Generator: Launchpad (build 16165)\n"
 
 #: ../data/script-worker:57
 #, c-format
@@ -47,15 +47,19 @@ msgstr "ปรับแต่งอูบุนตูตามที่คุณ
 msgid "Overview"
 msgstr ""
 
-#: ../data/ubuntu-tweak.desktop.in.h:3 ../data/ui/preferences.ui.h:13
+#: ../data/ubuntu-tweak.desktop.in.h:3 ../ubuntutweak/janitor/__init__.py:889
+msgid "Apps"
+msgstr ""
+
+#: ../data/ubuntu-tweak.desktop.in.h:4 ../data/ui/preferences.ui.h:13
 msgid "Tweaks"
 msgstr ""
 
-#: ../data/ubuntu-tweak.desktop.in.h:4 ../data/ui/preferences.ui.h:17
+#: ../data/ubuntu-tweak.desktop.in.h:5 ../data/ui/preferences.ui.h:17
 msgid "Admins"
 msgstr ""
 
-#: ../data/ubuntu-tweak.desktop.in.h:5 ../data/ui/preferences.ui.h:22
+#: ../data/ubuntu-tweak.desktop.in.h:6 ../data/ui/preferences.ui.h:22
 msgid "Janitor"
 msgstr ""
 
@@ -118,7 +122,7 @@ msgstr ""
 msgid "Move Down"
 msgstr ""
 
-#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:54
+#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:89
 msgid "Install"
 msgstr ""
 
@@ -468,8 +472,8 @@ msgid "Error happened!"
 msgstr "มีข้อผิดพลาด!"
 
 #: ../ubuntutweak/network/utdata.py:50 ../ubuntutweak/network/utdata.py:83
-#: ../ubuntutweak/tweaks/unity.py:66 ../ubuntutweak/tweaks/unity.py:69
-#: ../ubuntutweak/tweaks/unity.py:131 ../ubuntutweak/tweaks/unity.py:199
+#: ../ubuntutweak/tweaks/unity.py:67 ../ubuntutweak/tweaks/unity.py:70
+#: ../ubuntutweak/tweaks/unity.py:137 ../ubuntutweak/tweaks/unity.py:205
 msgid "Never"
 msgstr "ไม่ต้อง"
 
@@ -623,10 +627,6 @@ msgstr "ระบบ"
 msgid "Personal"
 msgstr "ส่วนบุคคล"
 
-#: ../ubuntutweak/janitor/__init__.py:889
-msgid "Apps"
-msgstr ""
-
 #: ../ubuntutweak/janitor/packageconfigs_plugin.py:30
 msgid "Package Configs"
 msgstr ""
@@ -650,12 +650,12 @@ msgstr "แอพพลิเคชั่น"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:80
 #: ../ubuntutweak/admins/userdir.py:34 ../ubuntutweak/modules/__init__.py:32
-#: ../ubuntutweak/tweaks/unity.py:142
+#: ../ubuntutweak/tweaks/unity.py:148
 msgid "Desktop"
 msgstr "พื้นโต๊ะ"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:106
-#: ../ubuntutweak/apps/__init__.py:169
+#: ../ubuntutweak/apps/__init__.py:336
 msgid "Category"
 msgstr "หมวดหมู่"
 
@@ -843,6 +843,7 @@ msgid ""
 msgstr ""
 
 #: ../ubuntutweak/admins/sourcecenter.py:903
+#: ../ubuntutweak/apps/__init__.py:169
 msgid "New source has been enabled"
 msgstr ""
 
@@ -1480,7 +1481,7 @@ msgid "Application"
 msgstr "โปรแกรมประยุกต์"
 
 #: ../ubuntutweak/admins/filetypemanager.py:50
-#: ../ubuntutweak/apps/__init__.py:188
+#: ../ubuntutweak/apps/__init__.py:355
 msgid "All"
 msgstr "รวมทั้งหมด"
 
@@ -1929,7 +1930,7 @@ msgstr ""
 msgid "Cursor blink timeout:"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/misc.py:60 ../ubuntutweak/tweaks/unity.py:175
+#: ../ubuntutweak/tweaks/misc.py:60 ../ubuntutweak/tweaks/unity.py:181
 msgid "Note: you may need to log out to take effect"
 msgstr ""
 
@@ -2074,99 +2075,103 @@ msgid "\"Show desktop\" icon:"
 msgstr ""
 
 #: ../ubuntutweak/tweaks/unity.py:50
-msgid "Dash size:"
+msgid "Disable \"Show Desktop\" in the switcher:"
 msgstr ""
 
 #: ../ubuntutweak/tweaks/unity.py:51
-msgid "Blur type:"
+msgid "Dash size:"
 msgstr ""
 
 #: ../ubuntutweak/tweaks/unity.py:52
-msgid "Panel opacity:"
+msgid "Blur type:"
 msgstr ""
 
 #: ../ubuntutweak/tweaks/unity.py:53
-msgid "Panel opacity for maximized windows:"
+msgid "Panel opacity:"
 msgstr ""
 
 #: ../ubuntutweak/tweaks/unity.py:54
-msgid "Super key:"
+msgid "Panel opacity for maximized windows:"
 msgstr ""
 
 #: ../ubuntutweak/tweaks/unity.py:55
-msgid "Full screen dash:"
+msgid "Super key:"
 msgstr ""
 
 #: ../ubuntutweak/tweaks/unity.py:56
-msgid "Compositing manager:"
+msgid "Full screen dash:"
 msgstr ""
 
 #: ../ubuntutweak/tweaks/unity.py:57
+msgid "Compositing manager:"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:58
 msgid "Number of workspaces:"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:66 ../ubuntutweak/tweaks/unity.py:69
-#: ../ubuntutweak/tweaks/unity.py:199
+#: ../ubuntutweak/tweaks/unity.py:67 ../ubuntutweak/tweaks/unity.py:70
+#: ../ubuntutweak/tweaks/unity.py:205
 msgid "Auto Hide"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:66
+#: ../ubuntutweak/tweaks/unity.py:67
 msgid "Dodge Window"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:66
+#: ../ubuntutweak/tweaks/unity.py:67
 msgid "Dodge Active Window"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:119
+#: ../ubuntutweak/tweaks/unity.py:125
 msgid "Backlight Always On"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:120
+#: ../ubuntutweak/tweaks/unity.py:126
 msgid "Backlight Toggles"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:121
+#: ../ubuntutweak/tweaks/unity.py:127
 msgid "Backlight Always Off"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:122
+#: ../ubuntutweak/tweaks/unity.py:128
 msgid "Edge Illumination Toggles"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:123
+#: ../ubuntutweak/tweaks/unity.py:129
 msgid "Backlight and Edge Illumination Toggles"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:132
+#: ../ubuntutweak/tweaks/unity.py:138
 msgid "Only Mounted"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:133
+#: ../ubuntutweak/tweaks/unity.py:139
 msgid "Always"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:142
+#: ../ubuntutweak/tweaks/unity.py:148
 msgid "Automatic"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:142
+#: ../ubuntutweak/tweaks/unity.py:148
 msgid "Netbook"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:149
+#: ../ubuntutweak/tweaks/unity.py:155
 msgid "No blur"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:150
+#: ../ubuntutweak/tweaks/unity.py:156
 msgid "Static blur"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:151
+#: ../ubuntutweak/tweaks/unity.py:157
 msgid "Active blur"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:200
+#: ../ubuntutweak/tweaks/unity.py:206
 msgid "Intellihide"
 msgstr ""
 
@@ -2186,28 +2191,33 @@ msgstr ""
 msgid "Auto detect text encoding for Chinese in Gedit:"
 msgstr ""
 
-#: ../ubuntutweak/apps/__init__.py:55
+#: ../ubuntutweak/apps/__init__.py:90
 msgid "Uninstall"
 msgstr ""
 
-#: ../ubuntutweak/apps/__init__.py:56
+#: ../ubuntutweak/apps/__init__.py:91
 msgid "Update"
 msgstr ""
 
-#: ../ubuntutweak/apps/__init__.py:57
+#: ../ubuntutweak/apps/__init__.py:92
 msgid "Installing"
 msgstr ""
 
-#: ../ubuntutweak/apps/__init__.py:58
+#: ../ubuntutweak/apps/__init__.py:93
 msgid "Uninstalling"
 msgstr ""
 
-#: ../ubuntutweak/apps/__init__.py:59
+#: ../ubuntutweak/apps/__init__.py:94
 msgid "Updating"
 msgstr ""
 
-#: ../ubuntutweak/apps/__init__.py:60
+#: ../ubuntutweak/apps/__init__.py:95
 msgid "Not Available"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:170
+#, python-format
+msgid "\"%s\" is enabled now, Please click the update button to update %s"
 msgstr ""
 
 #: ../ubuntutweak/clips/userinfo.py:10
@@ -2380,25 +2390,25 @@ msgstr ""
 "\n"
 "มีไฟล์อยู่ในนี้!"
 
-#: ../ubuntutweak/main.py:271
+#: ../ubuntutweak/main.py:270
 msgid "Results"
 msgstr ""
 
-#: ../ubuntutweak/main.py:279
+#: ../ubuntutweak/main.py:278
 #, python-format
 msgid "Your filter \"<b>%s</b>\" does not match any items."
 msgstr ""
 
-#: ../ubuntutweak/main.py:407
+#: ../ubuntutweak/main.py:405
 msgid "Please wait a moment..."
 msgstr "โปรดรอสักครู่"
 
-#: ../ubuntutweak/main.py:516
+#: ../ubuntutweak/main.py:514
 #, python-format
 msgid "No module named \"%s\""
 msgstr ""
 
-#: ../ubuntutweak/main.py:517
+#: ../ubuntutweak/main.py:515
 msgid "Please ensure you have entered the correct module name."
 msgstr ""
 

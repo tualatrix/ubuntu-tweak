@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-07 10:18+0800\n"
+"POT-Creation-Date: 2012-10-12 15:17+0800\n"
 "PO-Revision-Date: 2012-10-02 05:58+0000\n"
 "Last-Translator: Ding Zhou <tualatrix@gmail.com>\n"
 "Language-Team: French <fr@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2012-10-04 06:28+0000\n"
-"X-Generator: Launchpad (build 16061)\n"
+"X-Launchpad-Export-Date: 2012-10-21 10:48+0000\n"
+"X-Generator: Launchpad (build 16165)\n"
 
 #: ../data/script-worker:57
 #, c-format
@@ -48,15 +48,19 @@ msgstr "Modifiez Ubuntu comme vous le voulez"
 msgid "Overview"
 msgstr "Vue d'ensemble"
 
-#: ../data/ubuntu-tweak.desktop.in.h:3 ../data/ui/preferences.ui.h:13
+#: ../data/ubuntu-tweak.desktop.in.h:3 ../ubuntutweak/janitor/__init__.py:889
+msgid "Apps"
+msgstr "Applis"
+
+#: ../data/ubuntu-tweak.desktop.in.h:4 ../data/ui/preferences.ui.h:13
 msgid "Tweaks"
 msgstr "Ajustements"
 
-#: ../data/ubuntu-tweak.desktop.in.h:4 ../data/ui/preferences.ui.h:17
+#: ../data/ubuntu-tweak.desktop.in.h:5 ../data/ui/preferences.ui.h:17
 msgid "Admins"
 msgstr "Administration"
 
-#: ../data/ubuntu-tweak.desktop.in.h:5 ../data/ui/preferences.ui.h:22
+#: ../data/ubuntu-tweak.desktop.in.h:6 ../data/ui/preferences.ui.h:22
 msgid "Janitor"
 msgstr "Nettoyage"
 
@@ -121,7 +125,7 @@ msgstr "Monter"
 msgid "Move Down"
 msgstr "Descendre"
 
-#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:54
+#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:89
 msgid "Install"
 msgstr "Installer"
 
@@ -531,8 +535,8 @@ msgid "Error happened!"
 msgstr "Un erreur s'est produite !"
 
 #: ../ubuntutweak/network/utdata.py:50 ../ubuntutweak/network/utdata.py:83
-#: ../ubuntutweak/tweaks/unity.py:66 ../ubuntutweak/tweaks/unity.py:69
-#: ../ubuntutweak/tweaks/unity.py:131 ../ubuntutweak/tweaks/unity.py:199
+#: ../ubuntutweak/tweaks/unity.py:67 ../ubuntutweak/tweaks/unity.py:70
+#: ../ubuntutweak/tweaks/unity.py:137 ../ubuntutweak/tweaks/unity.py:205
 msgid "Never"
 msgstr "Jamais"
 
@@ -697,10 +701,6 @@ msgstr "Système"
 msgid "Personal"
 msgstr "Personnel"
 
-#: ../ubuntutweak/janitor/__init__.py:889
-msgid "Apps"
-msgstr "Applis"
-
 #: ../ubuntutweak/janitor/packageconfigs_plugin.py:30
 msgid "Package Configs"
 msgstr "Configuration des paquets"
@@ -725,12 +725,12 @@ msgstr "Applications"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:80
 #: ../ubuntutweak/admins/userdir.py:34 ../ubuntutweak/modules/__init__.py:32
-#: ../ubuntutweak/tweaks/unity.py:142
+#: ../ubuntutweak/tweaks/unity.py:148
 msgid "Desktop"
 msgstr "Bureau"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:106
-#: ../ubuntutweak/apps/__init__.py:169
+#: ../ubuntutweak/apps/__init__.py:336
 msgid "Category"
 msgstr "Catégorie"
 
@@ -943,6 +943,7 @@ msgstr ""
 "Pour continuer vous devez d'abord désactiver <b>\"%(SOURCE)s\"</b>."
 
 #: ../ubuntutweak/admins/sourcecenter.py:903
+#: ../ubuntutweak/apps/__init__.py:169
 msgid "New source has been enabled"
 msgstr "La nouvelle source a été activée"
 
@@ -1634,7 +1635,7 @@ msgid "Application"
 msgstr "Application"
 
 #: ../ubuntutweak/admins/filetypemanager.py:50
-#: ../ubuntutweak/apps/__init__.py:188
+#: ../ubuntutweak/apps/__init__.py:355
 msgid "All"
 msgstr "Tout"
 
@@ -2115,7 +2116,7 @@ msgstr "Temps de clignotement du curseur :"
 msgid "Cursor blink timeout:"
 msgstr "Délai de clignotement du curseur :"
 
-#: ../ubuntutweak/tweaks/misc.py:60 ../ubuntutweak/tweaks/unity.py:175
+#: ../ubuntutweak/tweaks/misc.py:60 ../ubuntutweak/tweaks/unity.py:181
 msgid "Note: you may need to log out to take effect"
 msgstr "Note : vous devrez vous déconnecter pour appliquer les changements"
 
@@ -2260,99 +2261,103 @@ msgid "\"Show desktop\" icon:"
 msgstr "Icône « Afficher le bureau » :"
 
 #: ../ubuntutweak/tweaks/unity.py:50
+msgid "Disable \"Show Desktop\" in the switcher:"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:51
 msgid "Dash size:"
 msgstr "Taille du tableau de bord :"
 
-#: ../ubuntutweak/tweaks/unity.py:51
+#: ../ubuntutweak/tweaks/unity.py:52
 msgid "Blur type:"
 msgstr "Type de flou :"
 
-#: ../ubuntutweak/tweaks/unity.py:52
+#: ../ubuntutweak/tweaks/unity.py:53
 msgid "Panel opacity:"
 msgstr "Opacité du tableau de bord :"
 
-#: ../ubuntutweak/tweaks/unity.py:53
+#: ../ubuntutweak/tweaks/unity.py:54
 msgid "Panel opacity for maximized windows:"
 msgstr "Opacité du tableau de bord pour les fenêtres agrandies :"
 
-#: ../ubuntutweak/tweaks/unity.py:54
+#: ../ubuntutweak/tweaks/unity.py:55
 msgid "Super key:"
 msgstr "Touche « Super »"
 
-#: ../ubuntutweak/tweaks/unity.py:55
+#: ../ubuntutweak/tweaks/unity.py:56
 msgid "Full screen dash:"
 msgstr "Tableau de bord en plein écran :"
 
-#: ../ubuntutweak/tweaks/unity.py:56
+#: ../ubuntutweak/tweaks/unity.py:57
 msgid "Compositing manager:"
 msgstr "Gestionnaire de composition :"
 
-#: ../ubuntutweak/tweaks/unity.py:57
+#: ../ubuntutweak/tweaks/unity.py:58
 msgid "Number of workspaces:"
 msgstr "Nombre d'espaces de travail :"
 
-#: ../ubuntutweak/tweaks/unity.py:66 ../ubuntutweak/tweaks/unity.py:69
-#: ../ubuntutweak/tweaks/unity.py:199
+#: ../ubuntutweak/tweaks/unity.py:67 ../ubuntutweak/tweaks/unity.py:70
+#: ../ubuntutweak/tweaks/unity.py:205
 msgid "Auto Hide"
 msgstr "Masquage automatique"
 
-#: ../ubuntutweak/tweaks/unity.py:66
+#: ../ubuntutweak/tweaks/unity.py:67
 msgid "Dodge Window"
 msgstr "Esquive des fenêtres"
 
-#: ../ubuntutweak/tweaks/unity.py:66
+#: ../ubuntutweak/tweaks/unity.py:67
 msgid "Dodge Active Window"
 msgstr "Esquive de la fenêtre active"
 
-#: ../ubuntutweak/tweaks/unity.py:119
+#: ../ubuntutweak/tweaks/unity.py:125
 msgid "Backlight Always On"
 msgstr "Rétroéclairage des icônes toujours actif"
 
-#: ../ubuntutweak/tweaks/unity.py:120
+#: ../ubuntutweak/tweaks/unity.py:126
 msgid "Backlight Toggles"
 msgstr "Rétroéclairage des icônes activées"
 
-#: ../ubuntutweak/tweaks/unity.py:121
+#: ../ubuntutweak/tweaks/unity.py:127
 msgid "Backlight Always Off"
 msgstr "Rétroéclairage des icônes toujours inactif"
 
-#: ../ubuntutweak/tweaks/unity.py:122
+#: ../ubuntutweak/tweaks/unity.py:128
 msgid "Edge Illumination Toggles"
 msgstr "Illumination du contour des icônes activées"
 
-#: ../ubuntutweak/tweaks/unity.py:123
+#: ../ubuntutweak/tweaks/unity.py:129
 msgid "Backlight and Edge Illumination Toggles"
 msgstr "Rétroéclairage et illumination du contour des icônes activées"
 
-#: ../ubuntutweak/tweaks/unity.py:132
+#: ../ubuntutweak/tweaks/unity.py:138
 msgid "Only Mounted"
 msgstr "Montés seulement"
 
-#: ../ubuntutweak/tweaks/unity.py:133
+#: ../ubuntutweak/tweaks/unity.py:139
 msgid "Always"
 msgstr "Toujours"
 
-#: ../ubuntutweak/tweaks/unity.py:142
+#: ../ubuntutweak/tweaks/unity.py:148
 msgid "Automatic"
 msgstr "Automatique"
 
-#: ../ubuntutweak/tweaks/unity.py:142
+#: ../ubuntutweak/tweaks/unity.py:148
 msgid "Netbook"
 msgstr "Netbook"
 
-#: ../ubuntutweak/tweaks/unity.py:149
+#: ../ubuntutweak/tweaks/unity.py:155
 msgid "No blur"
 msgstr "Pas de flou"
 
-#: ../ubuntutweak/tweaks/unity.py:150
+#: ../ubuntutweak/tweaks/unity.py:156
 msgid "Static blur"
 msgstr "Flou statique"
 
-#: ../ubuntutweak/tweaks/unity.py:151
+#: ../ubuntutweak/tweaks/unity.py:157
 msgid "Active blur"
 msgstr "Flou dynamique"
 
-#: ../ubuntutweak/tweaks/unity.py:200
+#: ../ubuntutweak/tweaks/unity.py:206
 msgid "Intellihide"
 msgstr "Masquage « intelligent »"
 
@@ -2373,29 +2378,34 @@ msgstr ""
 msgid "Auto detect text encoding for Chinese in Gedit:"
 msgstr "Auto-détection de l'encodage de texte pour le chinois dans Gedit :"
 
-#: ../ubuntutweak/apps/__init__.py:55
+#: ../ubuntutweak/apps/__init__.py:90
 msgid "Uninstall"
 msgstr "Désinstaller"
 
-#: ../ubuntutweak/apps/__init__.py:56
+#: ../ubuntutweak/apps/__init__.py:91
 msgid "Update"
 msgstr "Mise à jour"
 
-#: ../ubuntutweak/apps/__init__.py:57
+#: ../ubuntutweak/apps/__init__.py:92
 msgid "Installing"
 msgstr "Installation en cours"
 
-#: ../ubuntutweak/apps/__init__.py:58
+#: ../ubuntutweak/apps/__init__.py:93
 msgid "Uninstalling"
 msgstr "Désinstallation en cours"
 
-#: ../ubuntutweak/apps/__init__.py:59
+#: ../ubuntutweak/apps/__init__.py:94
 msgid "Updating"
 msgstr "Mise à jour en cours"
 
-#: ../ubuntutweak/apps/__init__.py:60
+#: ../ubuntutweak/apps/__init__.py:95
 msgid "Not Available"
 msgstr "Non disponible"
+
+#: ../ubuntutweak/apps/__init__.py:170
+#, python-format
+msgid "\"%s\" is enabled now, Please click the update button to update %s"
+msgstr ""
 
 #: ../ubuntutweak/clips/userinfo.py:10
 msgid "User Information"
@@ -2528,7 +2538,7 @@ msgstr ""
 #: ../ubuntutweak/gui/widgets.py:161
 #, python-format
 msgid "Reset setting to default value: %s"
-msgstr "Restaurer le paramètre à sa valeur par défaut : %s"
+msgstr "Restaurer le paramètre à sa valeur par défaut : %s"
 
 #: ../ubuntutweak/gui/widgets.py:464
 msgid "Please press the new key combination"
@@ -2584,25 +2594,25 @@ msgstr ""
 "\n"
 "Contient des fichiers !"
 
-#: ../ubuntutweak/main.py:271
+#: ../ubuntutweak/main.py:270
 msgid "Results"
 msgstr "Résultats"
 
-#: ../ubuntutweak/main.py:279
+#: ../ubuntutweak/main.py:278
 #, python-format
 msgid "Your filter \"<b>%s</b>\" does not match any items."
 msgstr "Votre filtre « <b>%s</b> » ne correspond à aucun résultat."
 
-#: ../ubuntutweak/main.py:407
+#: ../ubuntutweak/main.py:405
 msgid "Please wait a moment..."
 msgstr "Veuillez patienter..."
 
-#: ../ubuntutweak/main.py:516
+#: ../ubuntutweak/main.py:514
 #, python-format
 msgid "No module named \"%s\""
 msgstr "Aucun module nommé « %s »"
 
-#: ../ubuntutweak/main.py:517
+#: ../ubuntutweak/main.py:515
 msgid "Please ensure you have entered the correct module name."
 msgstr "Veuillez vous assurer que vous avez entré un nom de module correct."
 

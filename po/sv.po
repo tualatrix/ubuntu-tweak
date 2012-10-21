@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-07 10:18+0800\n"
+"POT-Creation-Date: 2012-10-12 15:17+0800\n"
 "PO-Revision-Date: 2012-10-02 06:13+0000\n"
 "Last-Translator: Ding Zhou <tualatrix@gmail.com>\n"
 "Language-Team: Svenska <>\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-10-04 06:28+0000\n"
-"X-Generator: Launchpad (build 16061)\n"
+"X-Launchpad-Export-Date: 2012-10-21 10:48+0000\n"
+"X-Generator: Launchpad (build 16165)\n"
 "X-Poedit-Language: Swedish\n"
 
 #: ../data/script-worker:57
@@ -49,15 +49,19 @@ msgstr "Justera Ubuntu så som du vill"
 msgid "Overview"
 msgstr "Översikt"
 
-#: ../data/ubuntu-tweak.desktop.in.h:3 ../data/ui/preferences.ui.h:13
+#: ../data/ubuntu-tweak.desktop.in.h:3 ../ubuntutweak/janitor/__init__.py:889
+msgid "Apps"
+msgstr "Program"
+
+#: ../data/ubuntu-tweak.desktop.in.h:4 ../data/ui/preferences.ui.h:13
 msgid "Tweaks"
 msgstr "Justeringar"
 
-#: ../data/ubuntu-tweak.desktop.in.h:4 ../data/ui/preferences.ui.h:17
+#: ../data/ubuntu-tweak.desktop.in.h:5 ../data/ui/preferences.ui.h:17
 msgid "Admins"
 msgstr "Administration"
 
-#: ../data/ubuntu-tweak.desktop.in.h:5 ../data/ui/preferences.ui.h:22
+#: ../data/ubuntu-tweak.desktop.in.h:6 ../data/ui/preferences.ui.h:22
 msgid "Janitor"
 msgstr "Städaren"
 
@@ -120,7 +124,7 @@ msgstr "Flytta upp"
 msgid "Move Down"
 msgstr "Flytta ned"
 
-#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:54
+#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:89
 msgid "Install"
 msgstr "Installera"
 
@@ -500,8 +504,8 @@ msgid "Error happened!"
 msgstr "Ett fel uppstod!"
 
 #: ../ubuntutweak/network/utdata.py:50 ../ubuntutweak/network/utdata.py:83
-#: ../ubuntutweak/tweaks/unity.py:66 ../ubuntutweak/tweaks/unity.py:69
-#: ../ubuntutweak/tweaks/unity.py:131 ../ubuntutweak/tweaks/unity.py:199
+#: ../ubuntutweak/tweaks/unity.py:67 ../ubuntutweak/tweaks/unity.py:70
+#: ../ubuntutweak/tweaks/unity.py:137 ../ubuntutweak/tweaks/unity.py:205
 msgid "Never"
 msgstr "Aldrig"
 
@@ -663,10 +667,6 @@ msgstr "System"
 msgid "Personal"
 msgstr "Personligt"
 
-#: ../ubuntutweak/janitor/__init__.py:889
-msgid "Apps"
-msgstr "Program"
-
 #: ../ubuntutweak/janitor/packageconfigs_plugin.py:30
 msgid "Package Configs"
 msgstr "Paketkonfigurationer"
@@ -690,12 +690,12 @@ msgstr "Program"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:80
 #: ../ubuntutweak/admins/userdir.py:34 ../ubuntutweak/modules/__init__.py:32
-#: ../ubuntutweak/tweaks/unity.py:142
+#: ../ubuntutweak/tweaks/unity.py:148
 msgid "Desktop"
 msgstr "Skrivbord"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:106
-#: ../ubuntutweak/apps/__init__.py:169
+#: ../ubuntutweak/apps/__init__.py:336
 msgid "Category"
 msgstr "Kategori"
 
@@ -907,6 +907,7 @@ msgstr ""
 "För att fortsätta behöver du först inaktivera <b>\"%(SOURCE)s\"</b>."
 
 #: ../ubuntutweak/admins/sourcecenter.py:903
+#: ../ubuntutweak/apps/__init__.py:169
 msgid "New source has been enabled"
 msgstr "Ny källa har aktiverats"
 
@@ -1583,7 +1584,7 @@ msgid "Application"
 msgstr "Program"
 
 #: ../ubuntutweak/admins/filetypemanager.py:50
-#: ../ubuntutweak/apps/__init__.py:188
+#: ../ubuntutweak/apps/__init__.py:355
 msgid "All"
 msgstr "Alla"
 
@@ -2054,7 +2055,7 @@ msgstr "Markörers blinkhastighet:"
 msgid "Cursor blink timeout:"
 msgstr "Markörers blinktid:"
 
-#: ../ubuntutweak/tweaks/misc.py:60 ../ubuntutweak/tweaks/unity.py:175
+#: ../ubuntutweak/tweaks/misc.py:60 ../ubuntutweak/tweaks/unity.py:181
 msgid "Note: you may need to log out to take effect"
 msgstr "Notera: Du kan behöva logga ut innan ändringar får effekt"
 
@@ -2199,99 +2200,103 @@ msgid "\"Show desktop\" icon:"
 msgstr "Ikon för att visa skrivbordet:"
 
 #: ../ubuntutweak/tweaks/unity.py:50
+msgid "Disable \"Show Desktop\" in the switcher:"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:51
 msgid "Dash size:"
 msgstr "Dash-storlek:"
 
-#: ../ubuntutweak/tweaks/unity.py:51
+#: ../ubuntutweak/tweaks/unity.py:52
 msgid "Blur type:"
 msgstr "Typ av oskärpa:"
 
-#: ../ubuntutweak/tweaks/unity.py:52
+#: ../ubuntutweak/tweaks/unity.py:53
 msgid "Panel opacity:"
 msgstr "Panelopacitet:"
 
-#: ../ubuntutweak/tweaks/unity.py:53
+#: ../ubuntutweak/tweaks/unity.py:54
 msgid "Panel opacity for maximized windows:"
 msgstr "Panelopacitet för maximerade fönster:"
 
-#: ../ubuntutweak/tweaks/unity.py:54
+#: ../ubuntutweak/tweaks/unity.py:55
 msgid "Super key:"
 msgstr "Super-tangenten:"
 
-#: ../ubuntutweak/tweaks/unity.py:55
+#: ../ubuntutweak/tweaks/unity.py:56
 msgid "Full screen dash:"
 msgstr "Dash i helskärmsläge:"
 
-#: ../ubuntutweak/tweaks/unity.py:56
+#: ../ubuntutweak/tweaks/unity.py:57
 msgid "Compositing manager:"
 msgstr "Compositing-hanterare:"
 
-#: ../ubuntutweak/tweaks/unity.py:57
+#: ../ubuntutweak/tweaks/unity.py:58
 msgid "Number of workspaces:"
 msgstr "Antal arbetsytor:"
 
-#: ../ubuntutweak/tweaks/unity.py:66 ../ubuntutweak/tweaks/unity.py:69
-#: ../ubuntutweak/tweaks/unity.py:199
+#: ../ubuntutweak/tweaks/unity.py:67 ../ubuntutweak/tweaks/unity.py:70
+#: ../ubuntutweak/tweaks/unity.py:205
 msgid "Auto Hide"
 msgstr "Dölj automatiskt"
 
-#: ../ubuntutweak/tweaks/unity.py:66
+#: ../ubuntutweak/tweaks/unity.py:67
 msgid "Dodge Window"
 msgstr "Undvik fönster"
 
-#: ../ubuntutweak/tweaks/unity.py:66
+#: ../ubuntutweak/tweaks/unity.py:67
 msgid "Dodge Active Window"
 msgstr "Undvik aktivt fönster"
 
-#: ../ubuntutweak/tweaks/unity.py:119
+#: ../ubuntutweak/tweaks/unity.py:125
 msgid "Backlight Always On"
 msgstr "Bakgrundsljus alltid på"
 
-#: ../ubuntutweak/tweaks/unity.py:120
+#: ../ubuntutweak/tweaks/unity.py:126
 msgid "Backlight Toggles"
 msgstr "Bakgrundsljus skiftar"
 
-#: ../ubuntutweak/tweaks/unity.py:121
+#: ../ubuntutweak/tweaks/unity.py:127
 msgid "Backlight Always Off"
 msgstr "Bakgrundsljus alltid av"
 
-#: ../ubuntutweak/tweaks/unity.py:122
+#: ../ubuntutweak/tweaks/unity.py:128
 msgid "Edge Illumination Toggles"
 msgstr "Kantbelysning skiftar"
 
-#: ../ubuntutweak/tweaks/unity.py:123
+#: ../ubuntutweak/tweaks/unity.py:129
 msgid "Backlight and Edge Illumination Toggles"
 msgstr "Bakgrundsljus och kantbelysning skiftar"
 
-#: ../ubuntutweak/tweaks/unity.py:132
+#: ../ubuntutweak/tweaks/unity.py:138
 msgid "Only Mounted"
 msgstr "Endast monterade"
 
-#: ../ubuntutweak/tweaks/unity.py:133
+#: ../ubuntutweak/tweaks/unity.py:139
 msgid "Always"
 msgstr "Alltid"
 
-#: ../ubuntutweak/tweaks/unity.py:142
+#: ../ubuntutweak/tweaks/unity.py:148
 msgid "Automatic"
 msgstr "Automatisk"
 
-#: ../ubuntutweak/tweaks/unity.py:142
+#: ../ubuntutweak/tweaks/unity.py:148
 msgid "Netbook"
 msgstr "Netbook"
 
-#: ../ubuntutweak/tweaks/unity.py:149
+#: ../ubuntutweak/tweaks/unity.py:155
 msgid "No blur"
 msgstr "Ingen oskärpa"
 
-#: ../ubuntutweak/tweaks/unity.py:150
+#: ../ubuntutweak/tweaks/unity.py:156
 msgid "Static blur"
 msgstr "Statisk oskärpa"
 
-#: ../ubuntutweak/tweaks/unity.py:151
+#: ../ubuntutweak/tweaks/unity.py:157
 msgid "Active blur"
 msgstr "Aktiv oskärpa"
 
-#: ../ubuntutweak/tweaks/unity.py:200
+#: ../ubuntutweak/tweaks/unity.py:206
 msgid "Intellihide"
 msgstr "Dölj smart"
 
@@ -2311,28 +2316,33 @@ msgstr "Rätta till temans utseenden när root-behörighet beviljas:"
 msgid "Auto detect text encoding for Chinese in Gedit:"
 msgstr "Automatisk identifiering av kinesisk textkodning i Gedit:"
 
-#: ../ubuntutweak/apps/__init__.py:55
+#: ../ubuntutweak/apps/__init__.py:90
 msgid "Uninstall"
 msgstr ""
 
-#: ../ubuntutweak/apps/__init__.py:56
+#: ../ubuntutweak/apps/__init__.py:91
 msgid "Update"
 msgstr ""
 
-#: ../ubuntutweak/apps/__init__.py:57
+#: ../ubuntutweak/apps/__init__.py:92
 msgid "Installing"
 msgstr ""
 
-#: ../ubuntutweak/apps/__init__.py:58
+#: ../ubuntutweak/apps/__init__.py:93
 msgid "Uninstalling"
 msgstr ""
 
-#: ../ubuntutweak/apps/__init__.py:59
+#: ../ubuntutweak/apps/__init__.py:94
 msgid "Updating"
 msgstr ""
 
-#: ../ubuntutweak/apps/__init__.py:60
+#: ../ubuntutweak/apps/__init__.py:95
 msgid "Not Available"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:170
+#, python-format
+msgid "\"%s\" is enabled now, Please click the update button to update %s"
 msgstr ""
 
 #: ../ubuntutweak/clips/userinfo.py:10
@@ -2509,25 +2519,25 @@ msgstr ""
 "\n"
 "Det finns filer inuti!"
 
-#: ../ubuntutweak/main.py:271
+#: ../ubuntutweak/main.py:270
 msgid "Results"
 msgstr "Resultat"
 
-#: ../ubuntutweak/main.py:279
+#: ../ubuntutweak/main.py:278
 #, python-format
 msgid "Your filter \"<b>%s</b>\" does not match any items."
 msgstr "Filtret \"<b>%s</b>\" överensstämmer inte med några objekt."
 
-#: ../ubuntutweak/main.py:407
+#: ../ubuntutweak/main.py:405
 msgid "Please wait a moment..."
 msgstr "Vänta ett ögonblick..."
 
-#: ../ubuntutweak/main.py:516
+#: ../ubuntutweak/main.py:514
 #, python-format
 msgid "No module named \"%s\""
 msgstr "Det finns ingen modul med namnet \"%s\""
 
-#: ../ubuntutweak/main.py:517
+#: ../ubuntutweak/main.py:515
 msgid "Please ensure you have entered the correct module name."
 msgstr "Försäkra dig om att du angivit det korrekta modulnamnet."
 

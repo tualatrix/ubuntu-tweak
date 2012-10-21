@@ -2,16 +2,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-07 10:18+0800\n"
-"PO-Revision-Date: 2012-10-02 06:14+0000\n"
+"POT-Creation-Date: 2012-10-12 15:17+0800\n"
+"PO-Revision-Date: 2012-10-19 03:49+0000\n"
 "Last-Translator: Ding Zhou <tualatrix@gmail.com>\n"
 "Language-Team: TualatriX <tualatrix@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-10-04 06:29+0000\n"
-"X-Generator: Launchpad (build 16061)\n"
+"X-Launchpad-Export-Date: 2012-10-21 10:48+0000\n"
+"X-Generator: Launchpad (build 16165)\n"
 "X-Poedit-Country: CHINA\n"
 "X-Poedit-Language: Chinese\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -45,15 +45,19 @@ msgstr "把笨兔调节成你的喜欢的样子"
 msgid "Overview"
 msgstr "概览"
 
-#: ../data/ubuntu-tweak.desktop.in.h:3 ../data/ui/preferences.ui.h:13
+#: ../data/ubuntu-tweak.desktop.in.h:3 ../ubuntutweak/janitor/__init__.py:889
+msgid "Apps"
+msgstr "应用"
+
+#: ../data/ubuntu-tweak.desktop.in.h:4 ../data/ui/preferences.ui.h:13
 msgid "Tweaks"
 msgstr "调整"
 
-#: ../data/ubuntu-tweak.desktop.in.h:4 ../data/ui/preferences.ui.h:17
+#: ../data/ubuntu-tweak.desktop.in.h:5 ../data/ui/preferences.ui.h:17
 msgid "Admins"
 msgstr "管理"
 
-#: ../data/ubuntu-tweak.desktop.in.h:5 ../data/ui/preferences.ui.h:22
+#: ../data/ubuntu-tweak.desktop.in.h:6 ../data/ui/preferences.ui.h:22
 msgid "Janitor"
 msgstr "清道夫"
 
@@ -116,7 +120,7 @@ msgstr "上移"
 msgid "Move Down"
 msgstr "下移"
 
-#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:54
+#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:89
 msgid "Install"
 msgstr "安装"
 
@@ -390,7 +394,6 @@ msgstr ""
 "  HeaJO_o https://launchpad.net/~zhejo\n"
 "  Heling Yao https://launchpad.net/~hyao\n"
 "  Jonathan Lumb https://launchpad.net/~jonolumb\n"
-"  Koc(张天鹄) https://launchpad.net/~koc\n"
 "  Mr.Lodar https://launchpad.net/~mr.lodar\n"
 "  Sparanoid https://launchpad.net/~sparanoid\n"
 "  Tolbkni Kao https://launchpad.net/~tolbkni\n"
@@ -400,6 +403,7 @@ msgstr ""
 "  leaeasy https://launchpad.net/~leaeasy\n"
 "  sxdhaoren https://launchpad.net/~hupengnihao\n"
 "  冯超 https://launchpad.net/~rainofchaos\n"
+"  张天鹄 https://launchpad.net/~koc\n"
 "  朱涛 https://launchpad.net/~bill-zt"
 
 #: ../data/ui/mainwindow.ui.h:7
@@ -474,8 +478,8 @@ msgid "Error happened!"
 msgstr "有错误发生！"
 
 #: ../ubuntutweak/network/utdata.py:50 ../ubuntutweak/network/utdata.py:83
-#: ../ubuntutweak/tweaks/unity.py:66 ../ubuntutweak/tweaks/unity.py:69
-#: ../ubuntutweak/tweaks/unity.py:131 ../ubuntutweak/tweaks/unity.py:199
+#: ../ubuntutweak/tweaks/unity.py:67 ../ubuntutweak/tweaks/unity.py:70
+#: ../ubuntutweak/tweaks/unity.py:137 ../ubuntutweak/tweaks/unity.py:205
 msgid "Never"
 msgstr "从不"
 
@@ -628,10 +632,6 @@ msgstr "系统"
 msgid "Personal"
 msgstr "个人"
 
-#: ../ubuntutweak/janitor/__init__.py:889
-msgid "Apps"
-msgstr "应用"
-
 #: ../ubuntutweak/janitor/packageconfigs_plugin.py:30
 msgid "Package Configs"
 msgstr "软件配置文件"
@@ -655,12 +655,12 @@ msgstr "应用程序"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:80
 #: ../ubuntutweak/admins/userdir.py:34 ../ubuntutweak/modules/__init__.py:32
-#: ../ubuntutweak/tweaks/unity.py:142
+#: ../ubuntutweak/tweaks/unity.py:148
 msgid "Desktop"
 msgstr "桌面"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:106
-#: ../ubuntutweak/apps/__init__.py:169
+#: ../ubuntutweak/apps/__init__.py:336
 msgid "Category"
 msgstr "分类"
 
@@ -860,6 +860,7 @@ msgstr ""
 "如果想要继续请先禁用 <b>\"%(SOURCE)s\"</b>。"
 
 #: ../ubuntutweak/admins/sourcecenter.py:903
+#: ../ubuntutweak/apps/__init__.py:169
 msgid "New source has been enabled"
 msgstr "新的源已经被启用"
 
@@ -1511,7 +1512,7 @@ msgid "Application"
 msgstr "应用程序"
 
 #: ../ubuntutweak/admins/filetypemanager.py:50
-#: ../ubuntutweak/apps/__init__.py:188
+#: ../ubuntutweak/apps/__init__.py:355
 msgid "All"
 msgstr "所有"
 
@@ -1981,7 +1982,7 @@ msgstr "光标闪烁时间："
 msgid "Cursor blink timeout:"
 msgstr "光标闪烁超时："
 
-#: ../ubuntutweak/tweaks/misc.py:60 ../ubuntutweak/tweaks/unity.py:175
+#: ../ubuntutweak/tweaks/misc.py:60 ../ubuntutweak/tweaks/unity.py:181
 msgid "Note: you may need to log out to take effect"
 msgstr "注意：您可能需要登出以生效"
 
@@ -2126,99 +2127,103 @@ msgid "\"Show desktop\" icon:"
 msgstr "\"显示桌面\"图标"
 
 #: ../ubuntutweak/tweaks/unity.py:50
+msgid "Disable \"Show Desktop\" in the switcher:"
+msgstr "在任务切换中禁用「显示桌面」："
+
+#: ../ubuntutweak/tweaks/unity.py:51
 msgid "Dash size:"
 msgstr "Dash尺寸："
 
-#: ../ubuntutweak/tweaks/unity.py:51
+#: ../ubuntutweak/tweaks/unity.py:52
 msgid "Blur type:"
 msgstr "模糊类型："
 
-#: ../ubuntutweak/tweaks/unity.py:52
+#: ../ubuntutweak/tweaks/unity.py:53
 msgid "Panel opacity:"
 msgstr "面板透明度："
 
-#: ../ubuntutweak/tweaks/unity.py:53
+#: ../ubuntutweak/tweaks/unity.py:54
 msgid "Panel opacity for maximized windows:"
 msgstr "面板为最大化窗口透明："
 
-#: ../ubuntutweak/tweaks/unity.py:54
+#: ../ubuntutweak/tweaks/unity.py:55
 msgid "Super key:"
 msgstr "Super 键："
 
-#: ../ubuntutweak/tweaks/unity.py:55
+#: ../ubuntutweak/tweaks/unity.py:56
 msgid "Full screen dash:"
 msgstr "全屏Dash："
 
-#: ../ubuntutweak/tweaks/unity.py:56
+#: ../ubuntutweak/tweaks/unity.py:57
 msgid "Compositing manager:"
 msgstr "合成窗口管理器："
 
-#: ../ubuntutweak/tweaks/unity.py:57
+#: ../ubuntutweak/tweaks/unity.py:58
 msgid "Number of workspaces:"
 msgstr "工作区数目："
 
-#: ../ubuntutweak/tweaks/unity.py:66 ../ubuntutweak/tweaks/unity.py:69
-#: ../ubuntutweak/tweaks/unity.py:199
+#: ../ubuntutweak/tweaks/unity.py:67 ../ubuntutweak/tweaks/unity.py:70
+#: ../ubuntutweak/tweaks/unity.py:205
 msgid "Auto Hide"
 msgstr "自动隐藏"
 
-#: ../ubuntutweak/tweaks/unity.py:66
+#: ../ubuntutweak/tweaks/unity.py:67
 msgid "Dodge Window"
 msgstr "避让窗口"
 
-#: ../ubuntutweak/tweaks/unity.py:66
+#: ../ubuntutweak/tweaks/unity.py:67
 msgid "Dodge Active Window"
 msgstr "避让活动窗口"
 
-#: ../ubuntutweak/tweaks/unity.py:119
+#: ../ubuntutweak/tweaks/unity.py:125
 msgid "Backlight Always On"
 msgstr "背光保持打开"
 
-#: ../ubuntutweak/tweaks/unity.py:120
+#: ../ubuntutweak/tweaks/unity.py:126
 msgid "Backlight Toggles"
 msgstr "背光开关"
 
-#: ../ubuntutweak/tweaks/unity.py:121
+#: ../ubuntutweak/tweaks/unity.py:127
 msgid "Backlight Always Off"
 msgstr "背光保持关闭"
 
-#: ../ubuntutweak/tweaks/unity.py:122
+#: ../ubuntutweak/tweaks/unity.py:128
 msgid "Edge Illumination Toggles"
 msgstr "激发边缘光照"
 
-#: ../ubuntutweak/tweaks/unity.py:123
+#: ../ubuntutweak/tweaks/unity.py:129
 msgid "Backlight and Edge Illumination Toggles"
 msgstr "激发背光和边缘光照"
 
-#: ../ubuntutweak/tweaks/unity.py:132
+#: ../ubuntutweak/tweaks/unity.py:138
 msgid "Only Mounted"
 msgstr "仅已挂载的"
 
-#: ../ubuntutweak/tweaks/unity.py:133
+#: ../ubuntutweak/tweaks/unity.py:139
 msgid "Always"
 msgstr "总是显示"
 
-#: ../ubuntutweak/tweaks/unity.py:142
+#: ../ubuntutweak/tweaks/unity.py:148
 msgid "Automatic"
 msgstr "自动"
 
-#: ../ubuntutweak/tweaks/unity.py:142
+#: ../ubuntutweak/tweaks/unity.py:148
 msgid "Netbook"
 msgstr "上网本"
 
-#: ../ubuntutweak/tweaks/unity.py:149
+#: ../ubuntutweak/tweaks/unity.py:155
 msgid "No blur"
 msgstr "无模糊"
 
-#: ../ubuntutweak/tweaks/unity.py:150
+#: ../ubuntutweak/tweaks/unity.py:156
 msgid "Static blur"
 msgstr "静态模糊"
 
-#: ../ubuntutweak/tweaks/unity.py:151
+#: ../ubuntutweak/tweaks/unity.py:157
 msgid "Active blur"
 msgstr "动态模糊"
 
-#: ../ubuntutweak/tweaks/unity.py:200
+#: ../ubuntutweak/tweaks/unity.py:206
 msgid "Intellihide"
 msgstr "智能隐藏"
 
@@ -2238,29 +2243,34 @@ msgstr "修正取得root权限后的自定义主题问题："
 msgid "Auto detect text encoding for Chinese in Gedit:"
 msgstr "在Gedit（文本编辑器）为中文编码做自动侦测："
 
-#: ../ubuntutweak/apps/__init__.py:55
+#: ../ubuntutweak/apps/__init__.py:90
 msgid "Uninstall"
 msgstr "卸载"
 
-#: ../ubuntutweak/apps/__init__.py:56
+#: ../ubuntutweak/apps/__init__.py:91
 msgid "Update"
 msgstr "更新"
 
-#: ../ubuntutweak/apps/__init__.py:57
+#: ../ubuntutweak/apps/__init__.py:92
 msgid "Installing"
 msgstr "正在安装"
 
-#: ../ubuntutweak/apps/__init__.py:58
+#: ../ubuntutweak/apps/__init__.py:93
 msgid "Uninstalling"
 msgstr "正在卸载"
 
-#: ../ubuntutweak/apps/__init__.py:59
+#: ../ubuntutweak/apps/__init__.py:94
 msgid "Updating"
 msgstr "正在更新"
 
-#: ../ubuntutweak/apps/__init__.py:60
+#: ../ubuntutweak/apps/__init__.py:95
 msgid "Not Available"
 msgstr "不可用"
+
+#: ../ubuntutweak/apps/__init__.py:170
+#, python-format
+msgid "\"%s\" is enabled now, Please click the update button to update %s"
+msgstr "\"%s\"已启用，请点击更新按钮以更新%s"
 
 #: ../ubuntutweak/clips/userinfo.py:10
 msgid "User Information"
@@ -2432,25 +2442,25 @@ msgstr ""
 "\n"
 "里面包含文件!"
 
-#: ../ubuntutweak/main.py:271
+#: ../ubuntutweak/main.py:270
 msgid "Results"
 msgstr "结果"
 
-#: ../ubuntutweak/main.py:279
+#: ../ubuntutweak/main.py:278
 #, python-format
 msgid "Your filter \"<b>%s</b>\" does not match any items."
 msgstr "您搜索的\"<b>%s</b>\"没有任何匹配条目。"
 
-#: ../ubuntutweak/main.py:407
+#: ../ubuntutweak/main.py:405
 msgid "Please wait a moment..."
 msgstr "请稍等..."
 
-#: ../ubuntutweak/main.py:516
+#: ../ubuntutweak/main.py:514
 #, python-format
 msgid "No module named \"%s\""
 msgstr "没有名为\"%s\"的模块"
 
-#: ../ubuntutweak/main.py:517
+#: ../ubuntutweak/main.py:515
 msgid "Please ensure you have entered the correct module name."
 msgstr "请确保您输入了正确的模块名"
 

@@ -3,16 +3,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-07 10:18+0800\n"
-"PO-Revision-Date: 2012-10-02 05:53+0000\n"
-"Last-Translator: Ding Zhou <tualatrix@gmail.com>\n"
+"POT-Creation-Date: 2012-10-12 15:17+0800\n"
+"PO-Revision-Date: 2012-10-14 05:34+0000\n"
+"Last-Translator: G. Christ <Unknown>\n"
 "Language-Team: LL <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-10-04 06:28+0000\n"
-"X-Generator: Launchpad (build 16061)\n"
+"X-Launchpad-Export-Date: 2012-10-21 10:48+0000\n"
+"X-Generator: Launchpad (build 16165)\n"
 "X-Poedit-Country: SPANISH\n"
 "X-Poedit-Language: Spanish\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -47,15 +47,19 @@ msgstr "Personalice Ubuntu a su gusto"
 msgid "Overview"
 msgstr "Resumen"
 
-#: ../data/ubuntu-tweak.desktop.in.h:3 ../data/ui/preferences.ui.h:13
+#: ../data/ubuntu-tweak.desktop.in.h:3 ../ubuntutweak/janitor/__init__.py:889
+msgid "Apps"
+msgstr "Aplicaciones"
+
+#: ../data/ubuntu-tweak.desktop.in.h:4 ../data/ui/preferences.ui.h:13
 msgid "Tweaks"
 msgstr "Ajustes"
 
-#: ../data/ubuntu-tweak.desktop.in.h:4 ../data/ui/preferences.ui.h:17
+#: ../data/ubuntu-tweak.desktop.in.h:5 ../data/ui/preferences.ui.h:17
 msgid "Admins"
 msgstr "Administración"
 
-#: ../data/ubuntu-tweak.desktop.in.h:5 ../data/ui/preferences.ui.h:22
+#: ../data/ubuntu-tweak.desktop.in.h:6 ../data/ui/preferences.ui.h:22
 msgid "Janitor"
 msgstr "Limpiador"
 
@@ -118,7 +122,7 @@ msgstr "Subir"
 msgid "Move Down"
 msgstr "Bajar"
 
-#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:54
+#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:89
 msgid "Install"
 msgstr "Instalar"
 
@@ -264,7 +268,7 @@ msgstr "Seleccione una aplicación para ver su descripción."
 
 #: ../data/ui/filetypemanager.ui.h:3
 msgid "_Browse..."
-msgstr "E_xaminar…"
+msgstr "_Examinar…"
 
 #: ../data/ui/filetypemanager.ui.h:4
 msgid "_Use a custom command"
@@ -457,7 +461,7 @@ msgstr ""
 
 #: ../data/ui/mainwindow.ui.h:7
 msgid "Search... <Ctrl+F>"
-msgstr "Buscar... <Ctrl+F>"
+msgstr "Buscar… <Ctrl+F>"
 
 #: ../data/ui/mainwindow.ui.h:8
 msgid "_Overview"
@@ -527,8 +531,8 @@ msgid "Error happened!"
 msgstr "Ocurrió un error"
 
 #: ../ubuntutweak/network/utdata.py:50 ../ubuntutweak/network/utdata.py:83
-#: ../ubuntutweak/tweaks/unity.py:66 ../ubuntutweak/tweaks/unity.py:69
-#: ../ubuntutweak/tweaks/unity.py:131 ../ubuntutweak/tweaks/unity.py:199
+#: ../ubuntutweak/tweaks/unity.py:67 ../ubuntutweak/tweaks/unity.py:70
+#: ../ubuntutweak/tweaks/unity.py:137 ../ubuntutweak/tweaks/unity.py:205
 msgid "Never"
 msgstr "Nunca"
 
@@ -690,10 +694,6 @@ msgstr "Sistema"
 msgid "Personal"
 msgstr "Personal"
 
-#: ../ubuntutweak/janitor/__init__.py:889
-msgid "Apps"
-msgstr "Aplicaciones"
-
 #: ../ubuntutweak/janitor/packageconfigs_plugin.py:30
 msgid "Package Configs"
 msgstr "Configuraciones de paquete"
@@ -717,12 +717,12 @@ msgstr "Aplicaciones"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:80
 #: ../ubuntutweak/admins/userdir.py:34 ../ubuntutweak/modules/__init__.py:32
-#: ../ubuntutweak/tweaks/unity.py:142
+#: ../ubuntutweak/tweaks/unity.py:148
 msgid "Desktop"
 msgstr "Escritorio"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:106
-#: ../ubuntutweak/apps/__init__.py:169
+#: ../ubuntutweak/apps/__init__.py:336
 msgid "Category"
 msgstr "Categoría"
 
@@ -732,7 +732,7 @@ msgstr "Preferencias"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:188
 msgid "Backup Name:"
-msgstr "Nombre de la Copia de Seguridad:"
+msgstr "Nombre de la copia de seguridad:"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:217
 msgid "Backing up..."
@@ -934,6 +934,7 @@ msgstr ""
 "Para continuar debe primero desactivar <b>«%(SOURCE)s»</b>."
 
 #: ../ubuntutweak/admins/sourcecenter.py:903
+#: ../ubuntutweak/apps/__init__.py:169
 msgid "New source has been enabled"
 msgstr "Se activó un nuevo origen"
 
@@ -1332,7 +1333,7 @@ msgstr "Vídeos"
 
 #: ../ubuntutweak/admins/userdir.py:154
 msgid "Choose a folder"
-msgstr "Escoja una carpeta"
+msgstr "Elija una carpeta"
 
 #: ../ubuntutweak/admins/userdir.py:171
 msgid ""
@@ -1550,7 +1551,7 @@ msgstr ""
 
 #: ../ubuntutweak/admins/shortcuts.py:29
 msgid "Shortcuts"
-msgstr "Accesos directos"
+msgstr "Atajos"
 
 #: ../ubuntutweak/admins/shortcuts.py:30
 msgid ""
@@ -1616,7 +1617,7 @@ msgid "Application"
 msgstr "Programa"
 
 #: ../ubuntutweak/admins/filetypemanager.py:50
-#: ../ubuntutweak/apps/__init__.py:188
+#: ../ubuntutweak/apps/__init__.py:355
 msgid "All"
 msgstr "Todos"
 
@@ -2060,7 +2061,7 @@ msgstr "Mostrar menú de control de caracteres Unicode en el menú contextual"
 
 #: ../ubuntutweak/tweaks/misc.py:41
 msgid "Disable printing"
-msgstr "Desactivar impresión"
+msgstr "Desactivar la impresión"
 
 #: ../ubuntutweak/tweaks/misc.py:42
 msgid "Disable printer settings"
@@ -2068,7 +2069,7 @@ msgstr "Desactivar configuración de impresión"
 
 #: ../ubuntutweak/tweaks/misc.py:43
 msgid "Disable save to disk"
-msgstr "Desactivar guardar en el disco"
+msgstr "Desactivar el almacenamiento en disco"
 
 #: ../ubuntutweak/tweaks/misc.py:44
 msgid "Disable \"Fast User Switching\""
@@ -2090,7 +2091,7 @@ msgstr "Tiempo de parpadeo del cursor:"
 msgid "Cursor blink timeout:"
 msgstr "Tiempo limite del parpadeo del cursor:"
 
-#: ../ubuntutweak/tweaks/misc.py:60 ../ubuntutweak/tweaks/unity.py:175
+#: ../ubuntutweak/tweaks/misc.py:60 ../ubuntutweak/tweaks/unity.py:181
 msgid "Note: you may need to log out to take effect"
 msgstr "Nota: es posible que tenga que cerrar sesión para que surta efecto"
 
@@ -2236,99 +2237,103 @@ msgid "\"Show desktop\" icon:"
 msgstr "Icono «Mostrar escritorio»:"
 
 #: ../ubuntutweak/tweaks/unity.py:50
+msgid "Disable \"Show Desktop\" in the switcher:"
+msgstr "Desactivar «Mostrar escritorio» en el conmutador:"
+
+#: ../ubuntutweak/tweaks/unity.py:51
 msgid "Dash size:"
 msgstr "Tamaño del tablero:"
 
-#: ../ubuntutweak/tweaks/unity.py:51
+#: ../ubuntutweak/tweaks/unity.py:52
 msgid "Blur type:"
 msgstr "Tipo de difuminado:"
 
-#: ../ubuntutweak/tweaks/unity.py:52
+#: ../ubuntutweak/tweaks/unity.py:53
 msgid "Panel opacity:"
 msgstr "Opacidad del panel:"
 
-#: ../ubuntutweak/tweaks/unity.py:53
+#: ../ubuntutweak/tweaks/unity.py:54
 msgid "Panel opacity for maximized windows:"
 msgstr "Opacidad del panel para ventanas maximizadas:"
 
-#: ../ubuntutweak/tweaks/unity.py:54
+#: ../ubuntutweak/tweaks/unity.py:55
 msgid "Super key:"
 msgstr "Tecla Super:"
 
-#: ../ubuntutweak/tweaks/unity.py:55
+#: ../ubuntutweak/tweaks/unity.py:56
 msgid "Full screen dash:"
 msgstr "Tablero a pantalla completa:"
 
-#: ../ubuntutweak/tweaks/unity.py:56
+#: ../ubuntutweak/tweaks/unity.py:57
 msgid "Compositing manager:"
 msgstr "Gestor de composición:"
 
-#: ../ubuntutweak/tweaks/unity.py:57
+#: ../ubuntutweak/tweaks/unity.py:58
 msgid "Number of workspaces:"
 msgstr "Número de áreas de trabajo:"
 
-#: ../ubuntutweak/tweaks/unity.py:66 ../ubuntutweak/tweaks/unity.py:69
-#: ../ubuntutweak/tweaks/unity.py:199
+#: ../ubuntutweak/tweaks/unity.py:67 ../ubuntutweak/tweaks/unity.py:70
+#: ../ubuntutweak/tweaks/unity.py:205
 msgid "Auto Hide"
 msgstr "Ocultar automáticamente"
 
-#: ../ubuntutweak/tweaks/unity.py:66
+#: ../ubuntutweak/tweaks/unity.py:67
 msgid "Dodge Window"
 msgstr "Esquivar ventanas"
 
-#: ../ubuntutweak/tweaks/unity.py:66
+#: ../ubuntutweak/tweaks/unity.py:67
 msgid "Dodge Active Window"
 msgstr "Esquivar la ventana activa"
 
-#: ../ubuntutweak/tweaks/unity.py:119
+#: ../ubuntutweak/tweaks/unity.py:125
 msgid "Backlight Always On"
 msgstr "Luz de fondo siempre encendida"
 
-#: ../ubuntutweak/tweaks/unity.py:120
+#: ../ubuntutweak/tweaks/unity.py:126
 msgid "Backlight Toggles"
 msgstr "Retroiluminación según la aplicación está abierta o cerrada"
 
-#: ../ubuntutweak/tweaks/unity.py:121
+#: ../ubuntutweak/tweaks/unity.py:127
 msgid "Backlight Always Off"
 msgstr "Luz de fondo siempre apagada"
 
-#: ../ubuntutweak/tweaks/unity.py:122
+#: ../ubuntutweak/tweaks/unity.py:128
 msgid "Edge Illumination Toggles"
 msgstr "Luz de borde según la aplicación está abierta o cerrada"
 
-#: ../ubuntutweak/tweaks/unity.py:123
+#: ../ubuntutweak/tweaks/unity.py:129
 msgid "Backlight and Edge Illumination Toggles"
 msgstr "Luz de fondo y de borde según la aplicación está abierta o cerrada"
 
-#: ../ubuntutweak/tweaks/unity.py:132
+#: ../ubuntutweak/tweaks/unity.py:138
 msgid "Only Mounted"
 msgstr "Solo montados"
 
-#: ../ubuntutweak/tweaks/unity.py:133
+#: ../ubuntutweak/tweaks/unity.py:139
 msgid "Always"
 msgstr "Siempre"
 
-#: ../ubuntutweak/tweaks/unity.py:142
+#: ../ubuntutweak/tweaks/unity.py:148
 msgid "Automatic"
 msgstr "Automático"
 
-#: ../ubuntutweak/tweaks/unity.py:142
+#: ../ubuntutweak/tweaks/unity.py:148
 msgid "Netbook"
 msgstr "Netbook"
 
-#: ../ubuntutweak/tweaks/unity.py:149
+#: ../ubuntutweak/tweaks/unity.py:155
 msgid "No blur"
 msgstr "No desenfocar"
 
-#: ../ubuntutweak/tweaks/unity.py:150
+#: ../ubuntutweak/tweaks/unity.py:156
 msgid "Static blur"
 msgstr "Desenfoque estático"
 
-#: ../ubuntutweak/tweaks/unity.py:151
+#: ../ubuntutweak/tweaks/unity.py:157
 msgid "Active blur"
 msgstr "Desenfoque activo"
 
-#: ../ubuntutweak/tweaks/unity.py:200
+#: ../ubuntutweak/tweaks/unity.py:206
 msgid "Intellihide"
 msgstr "Ocultamiento inteligente"
 
@@ -2350,29 +2355,34 @@ msgid "Auto detect text encoding for Chinese in Gedit:"
 msgstr ""
 "Detección automática de codificación de texto para el chino en Gedit:"
 
-#: ../ubuntutweak/apps/__init__.py:55
+#: ../ubuntutweak/apps/__init__.py:90
 msgid "Uninstall"
 msgstr "Desinstalar"
 
-#: ../ubuntutweak/apps/__init__.py:56
+#: ../ubuntutweak/apps/__init__.py:91
 msgid "Update"
 msgstr "Actualizar"
 
-#: ../ubuntutweak/apps/__init__.py:57
+#: ../ubuntutweak/apps/__init__.py:92
 msgid "Installing"
 msgstr "Instalar"
 
-#: ../ubuntutweak/apps/__init__.py:58
+#: ../ubuntutweak/apps/__init__.py:93
 msgid "Uninstalling"
 msgstr "Desinstalar"
 
-#: ../ubuntutweak/apps/__init__.py:59
+#: ../ubuntutweak/apps/__init__.py:94
 msgid "Updating"
 msgstr "Actualizar"
 
-#: ../ubuntutweak/apps/__init__.py:60
+#: ../ubuntutweak/apps/__init__.py:95
 msgid "Not Available"
 msgstr "No disponible"
+
+#: ../ubuntutweak/apps/__init__.py:170
+#, python-format
+msgid "\"%s\" is enabled now, Please click the update button to update %s"
+msgstr "«%s» ahora está activado. Pulse en Actualizar para poner al día a %s"
 
 #: ../ubuntutweak/clips/userinfo.py:10
 msgid "User Information"
@@ -2558,25 +2568,25 @@ msgstr ""
 "\n"
 "¡Contiene archivos!"
 
-#: ../ubuntutweak/main.py:271
+#: ../ubuntutweak/main.py:270
 msgid "Results"
 msgstr "Resultados"
 
-#: ../ubuntutweak/main.py:279
+#: ../ubuntutweak/main.py:278
 #, python-format
 msgid "Your filter \"<b>%s</b>\" does not match any items."
 msgstr "Su filtro «<b>%s</b>» no coincide con ningún elemento."
 
-#: ../ubuntutweak/main.py:407
+#: ../ubuntutweak/main.py:405
 msgid "Please wait a moment..."
 msgstr "Espere un momento…"
 
-#: ../ubuntutweak/main.py:516
+#: ../ubuntutweak/main.py:514
 #, python-format
 msgid "No module named \"%s\""
 msgstr "Ningún módulo llamado «%s»"
 
-#: ../ubuntutweak/main.py:517
+#: ../ubuntutweak/main.py:515
 msgid "Please ensure you have entered the correct module name."
 msgstr "Asegúrese de haber introducido el nombre del módulo correctamente."
 

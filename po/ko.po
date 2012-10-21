@@ -7,25 +7,25 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-07 10:18+0800\n"
-"PO-Revision-Date: 2012-10-02 06:06+0000\n"
-"Last-Translator: Ding Zhou <tualatrix@gmail.com>\n"
+"POT-Creation-Date: 2012-10-12 15:17+0800\n"
+"PO-Revision-Date: 2012-10-15 15:03+0000\n"
+"Last-Translator: Kim Boram <boramism@gmail.com>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-10-04 06:28+0000\n"
-"X-Generator: Launchpad (build 16061)\n"
+"X-Launchpad-Export-Date: 2012-10-21 10:48+0000\n"
+"X-Generator: Launchpad (build 16165)\n"
 
 #: ../data/script-worker:57
 #, c-format
 msgid "You don't have permission to write in %s"
-msgstr "%s에 쓰기 권한이 없습니다."
+msgstr "%s에 쓸 수 있는 권한이 없습니다."
 
 #: ../data/script-worker:155 ../data/script-worker:168
 msgid "Enter your password to perform the administrative tasks"
-msgstr "관리 작업을 수행하기 위해 암호를 넣어 주십시오"
+msgstr "관리자 권한이 필요한 작업을 수행하려면 암호를 입력해주십시오"
 
 #: ../data/script-worker:162
 msgid "Coudn't find any text editor in your system!"
@@ -37,51 +37,55 @@ msgstr "폴더 선택"
 
 #: ../data/script-worker:221
 msgid "Please select a target (files or folders)."
-msgstr "대상을 선택하십시오 (파일 혹은 폴더)"
+msgstr "대상을 선택하십시오(파일 혹은 폴더)"
 
 #: ../data/ubuntu-tweak.desktop.in.h:1
 msgid "Tweak ubuntu to what you like"
-msgstr "우분투트윅은 당신처럼"
+msgstr "우분투를 내가 선호하는 형태로 조정합니다"
 
 #: ../data/ubuntu-tweak.desktop.in.h:2 ../data/ui/preferences.ui.h:9
 msgid "Overview"
 msgstr "개요"
 
-#: ../data/ubuntu-tweak.desktop.in.h:3 ../data/ui/preferences.ui.h:13
+#: ../data/ubuntu-tweak.desktop.in.h:3 ../ubuntutweak/janitor/__init__.py:889
+msgid "Apps"
+msgstr "프로그램"
+
+#: ../data/ubuntu-tweak.desktop.in.h:4 ../data/ui/preferences.ui.h:13
 msgid "Tweaks"
 msgstr "트윅"
 
-#: ../data/ubuntu-tweak.desktop.in.h:4 ../data/ui/preferences.ui.h:17
+#: ../data/ubuntu-tweak.desktop.in.h:5 ../data/ui/preferences.ui.h:17
 msgid "Admins"
 msgstr "관리자"
 
-#: ../data/ubuntu-tweak.desktop.in.h:5 ../data/ui/preferences.ui.h:22
+#: ../data/ubuntu-tweak.desktop.in.h:6 ../data/ui/preferences.ui.h:22
 msgid "Janitor"
 msgstr "컴퓨터 정리"
 
 #: ../data/com.ubuntu-tweak.daemon.policy.in.h:1
 msgid "Tweak all kinds of settings"
-msgstr "모든 설정을 트윅합니다."
+msgstr "모든 설정을 조정합니다"
 
 #: ../data/com.ubuntu-tweak.daemon.policy.in.h:2
 msgid "To tweak the settings, you need to authenticate."
-msgstr "설정을 트윅하려면 관리자 권한으로 인증해야 합니다."
+msgstr "설정을 조정하려면 인증이 필요합니다."
 
 #: ../data/com.ubuntu-tweak.daemon.policy.in.h:3
 msgid "Clean user and system cruft"
-msgstr "사용자와 시스템을 정리합니다."
+msgstr "사용자와 시스템의 불필요한 항목 지우기"
 
 #: ../data/com.ubuntu-tweak.daemon.policy.in.h:4
 msgid "To clean the cruft, you need to authenticate."
-msgstr "컴퓨터를 정리하려면, 관리자 권한으로 인증해야 합니다."
+msgstr "불필요한 항목을 제거하려면 인증이 필요합니다."
 
 #: ../data/com.ubuntu-tweak.daemon.policy.in.h:5
 msgid "Edit the Software Sources lists"
-msgstr "소프트웨어 소스를 편집합니다."
+msgstr "소프트웨어 소스 목록 편집"
 
 #: ../data/com.ubuntu-tweak.daemon.policy.in.h:6
 msgid "To edit the software sources, you need to authenticate."
-msgstr "소프트웨어 소스를 편집하려면 관리자 권한으로 인증해야 합니다."
+msgstr "소프트웨어 소스를 편집하려면 인증이 필요합니다."
 
 #: ../data/ui/window.ui.h:1
 msgid "Left"
@@ -93,73 +97,73 @@ msgstr "오른쪽"
 
 #: ../data/ui/preferences.ui.h:1
 msgid "Preferences"
-msgstr ""
+msgstr "기본 설정"
 
 #. Please make sure the "<b>xxx</b>" is ok
 #: ../data/ui/preferences.ui.h:3
 msgid "<b>Clip Management</b>"
-msgstr ""
+msgstr "<b>클립 관리</b>"
 
 #: ../data/ui/preferences.ui.h:4
 msgid "Manage the clip view in the Overview"
-msgstr ""
+msgstr "개요 항목의 클립 보기를 관리"
 
 #: ../data/ui/preferences.ui.h:5 ../data/ui/appspage.ui.h:1
 #: ../data/ui/quicklists.ui.h:1 ../data/ui/sourceeditor.ui.h:1
 #: ../data/ui/janitorpage.ui.h:1
 msgid "column"
-msgstr ""
+msgstr "열"
 
 #: ../data/ui/preferences.ui.h:6
 msgid "Move Up"
-msgstr ""
+msgstr "위로 이동"
 
 #: ../data/ui/preferences.ui.h:7
 msgid "Move Down"
-msgstr ""
+msgstr "아래로 이동"
 
-#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:54
+#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:89
 msgid "Install"
 msgstr "설치"
 
 #. Please make sure the "<b>xxx</b>" is ok
 #: ../data/ui/preferences.ui.h:11
 msgid "<b>Tweaks Extensions</b>"
-msgstr ""
+msgstr "<b>트윅 확장 기능</b>"
 
 #: ../data/ui/preferences.ui.h:12
 msgid "Tweaks Extensions Management"
-msgstr ""
+msgstr "트윅 확장 기능 관리"
 
 #. Please make sure the "<b>xxx</b>" is ok
 #: ../data/ui/preferences.ui.h:15
 msgid "<b>Admins Extensions</b>"
-msgstr ""
+msgstr "<b>관리 확장 기능</b>"
 
 #: ../data/ui/preferences.ui.h:16
 msgid "Admins Extensions Management"
-msgstr ""
+msgstr "관리 확장 기능 관리"
 
 #: ../data/ui/preferences.ui.h:18
 msgid "<b>Generic</b>"
-msgstr ""
+msgstr "<b>일반</b>"
 
 #. Please make sure the "<b>xxx</b>" is ok
 #: ../data/ui/preferences.ui.h:20
 msgid "<b>Janitor Extensions</b>"
-msgstr ""
+msgstr "<b>재니터 확장 기능</b>"
 
 #: ../data/ui/preferences.ui.h:21
 msgid "Janitor Extensions Management"
-msgstr ""
+msgstr "재니터 확장 기능 관리"
 
 #: ../data/ui/uturl.ui.h:1
 msgid "Ubuntu Tweak"
-msgstr ""
+msgstr "우분투 트윅"
 
 #: ../data/ui/uturl.ui.h:2
 msgid "_Install"
-msgstr ""
+msgstr "설치(_I)"
 
 #: ../data/ui/uturl.ui.h:3
 msgid "Description"
@@ -167,19 +171,19 @@ msgstr "설명"
 
 #: ../data/ui/sourcecenter.ui.h:1
 msgid "<b>Homepage</b>"
-msgstr ""
+msgstr "<b>홈페이지</b>"
 
 #: ../data/ui/sourcecenter.ui.h:2
 msgid "<b>Source URL</b>"
-msgstr ""
+msgstr "<b>소스 주소</b>"
 
 #: ../data/ui/sourcecenter.ui.h:3
 msgid "<b>Description</b>"
-msgstr ""
+msgstr "<b>설명</b>"
 
 #: ../data/ui/sourcecenter.ui.h:4
 msgid "http://ubuntu-tweak.com"
-msgstr ""
+msgstr "http://ubuntu-tweak.com"
 
 #: ../data/ui/sourcecenter.ui.h:5 ../ubuntutweak/admins/sourcecenter.py:1118
 msgid "Description is here"
@@ -187,15 +191,15 @@ msgstr "설명은 여기입니다"
 
 #: ../data/ui/sourcecenter.ui.h:6 ../ubuntutweak/gui/dialogs.py:195
 msgid "Details"
-msgstr "자세히"
+msgstr "자세한 내용"
 
 #: ../data/ui/sourcecenter.ui.h:7
 msgid "Purge PPA"
-msgstr ""
+msgstr "PPA 제거"
 
 #: ../data/ui/brokenmodule.ui.h:1
 msgid "<big><b>This module encountered an error while loading.</b></big>"
-msgstr "<big><b>작업중 이 모듈에서 오류 생겼습니다.</b></big>"
+msgstr "<big><b>이 모듈을 불러오는 도중 오류가 발생했습니다.</b></big>"
 
 #: ../data/ui/brokenmodule.ui.h:2
 msgid ""
@@ -203,8 +207,8 @@ msgid ""
 "Please choose <i>Report</i> to file a new bug report. Make sure to include "
 "the error message below:"
 msgstr ""
-"문제 해결을 돕고 싶으시다면,\n"
-" 버그 <i>레포트</i> 보내기를 선택해 주세요. 아래 에러 메세지를 꼭 포함해서 보내주세요:"
+"문제를 해결하는데 도움을 주시려면,\n"
+"새 버그 보고서를 제출하기 위해 <i>보고</i>를 선택해 주십시오. 아래의 오류 메시지를 반드시 포함해주십시오."
 
 #: ../data/ui/brokenmodule.ui.h:4 ../data/ui/traceback.ui.h:5
 msgid "Error Message"
@@ -216,39 +220,39 @@ msgstr "보고(_R)"
 
 #: ../data/ui/loginsettings.ui.h:1
 msgid "Click the button to change the login screen logo"
-msgstr "버튼을 클릭하여 로그인 화면 로고를 변경합니다"
+msgstr "로그인 화면 로고를 바꾸려면 단추를 클릭하십시오."
 
 #: ../data/ui/loginsettings.ui.h:2
 msgid "Click the button to change the login screen background"
-msgstr "버튼을 클릭하여 로그인 배경화면을 변경합니다"
+msgstr "로그인 화면 배경을 바꾸려면 단추를 클릭하십시오."
 
 #: ../data/ui/loginsettings.ui.h:3
 msgid "Set the same background as the current desktop background"
-msgstr ""
+msgstr "현재 데스크톱의 배경과 같은 배경을 설정합니다."
 
 #: ../data/ui/quicklists.ui.h:2
 msgid "Active"
-msgstr ""
+msgstr "사용"
 
 #: ../data/ui/quicklists.ui.h:3
 msgid "Name"
-msgstr ""
+msgstr "이름"
 
 #: ../data/ui/quicklists.ui.h:4
 msgid "Command line"
-msgstr ""
+msgstr "명령 줄"
 
 #: ../data/ui/quicklists.ui.h:5
 msgid "Command:"
-msgstr ""
+msgstr "명령:"
 
 #: ../data/ui/quicklists.ui.h:6
 msgid "Name:"
-msgstr ""
+msgstr "이름:"
 
 #: ../data/ui/clippage.ui.h:1
 msgid "<b>Recently Used</b>"
-msgstr ""
+msgstr "<b>최근 사용한 항목</b>"
 
 #: ../data/ui/filetypemanager.ui.h:1
 msgid "Add Application"
@@ -264,35 +268,35 @@ msgstr "찾아보기(_B)..."
 
 #: ../data/ui/filetypemanager.ui.h:4
 msgid "_Use a custom command"
-msgstr "사용자 지정 명령 사용(_U)"
+msgstr "사용자 설정 명령 사용(_U)"
 
 #: ../data/ui/filetypemanager.ui.h:5
 msgid "Edit Type"
-msgstr "편집 종류"
+msgstr "형식 편집"
 
 #: ../data/ui/sourceeditor.ui.h:2
 msgid "Save this source"
-msgstr ""
+msgstr "이 소스 저장"
 
 #: ../data/ui/sourceeditor.ui.h:3
 msgid "toolbutton1"
-msgstr ""
+msgstr "도구 단추1"
 
 #: ../data/ui/sourceeditor.ui.h:4
 msgid "Redo this source"
-msgstr ""
+msgstr "이 소스 다시 실행"
 
 #: ../data/ui/sourceeditor.ui.h:5
 msgid "toolbutton2"
-msgstr ""
+msgstr "도구 단추2"
 
 #: ../data/ui/sourceeditor.ui.h:6
 msgid "Delete this source"
-msgstr ""
+msgstr "이 소스 삭제"
 
 #: ../data/ui/sourceeditor.ui.h:7
 msgid "toolbutton3"
-msgstr ""
+msgstr "도구 단추3"
 
 #: ../data/ui/sourceeditor.ui.h:8 ../data/ui/desktoprecovery.ui.h:2
 msgid "Backup History:"
@@ -300,7 +304,7 @@ msgstr "백업 기록:"
 
 #: ../data/ui/sourceeditor.ui.h:9
 msgid "Auto Backup"
-msgstr ""
+msgstr "자동 백업"
 
 #: ../data/ui/sourceeditor.ui.h:10 ../data/ui/desktoprecovery.ui.h:3
 msgid "_Recover"
@@ -312,23 +316,23 @@ msgstr "백업(_B)"
 
 #: ../data/ui/sourceeditor.ui.h:12
 msgid "U_pdate"
-msgstr ""
+msgstr "업데이트(_P)"
 
 #: ../data/ui/updatemanager.ui.h:1
 msgid "_Install Update"
-msgstr "설치 업데이트(_I)"
+msgstr "업데이트 설치(_I)"
 
 #: ../data/ui/janitorpage.ui.h:2
 msgid "<big><b>Cool! Your system is clean!</b></big>"
-msgstr ""
+msgstr "<big><b>멋집니다! 시스템이 깨끗합니다!</b></big>"
 
 #: ../data/ui/janitorpage.ui.h:3
 msgid "_Scan"
-msgstr ""
+msgstr "조사(_S)"
 
 #: ../data/ui/janitorpage.ui.h:4
 msgid "_Clean"
-msgstr ""
+msgstr "지우기(_C)"
 
 #: ../data/ui/traceback.ui.h:2
 msgid "<big><b>Oops... an error occured</b></big>"
@@ -340,8 +344,8 @@ msgid ""
 "Please choose <i>Report</i> to file a new bug report. Make sure to include "
 "the error message below:"
 msgstr ""
-"문제 해결을 직접 할 수 없으면,\n"
-"새 버그 보고서를 파일로 <i>제출</i>하십시오. 아래에 에러메시지를 반드시 포함시키십시오:"
+"문제를 해결하는데 도움을 주시려면,\n"
+"새 버그 보고서를 제출하기 위해 <i>보고</i>를 선택해 주십시오. 아래의 오류 메시지를 반드시 포함해주십시오."
 
 #: ../data/ui/traceback.ui.h:6
 msgid "<big><b>Oops... a fatal error occured</b></big>"
@@ -354,19 +358,19 @@ msgid ""
 "Please choose <i>Report</i> to file a new bug report. Make sure to include "
 "the error message below:"
 msgstr ""
-"우분투 트웤을 꺼야합니다.\n"
-"문제 해결을 직접 할 수 없다면,\n"
-"새 버그 보고서를 파일로 <i>제출</i>하십시오. 아래에 에러메시지를 반드시 포함시키십시오."
+"우분투 트윅을 끝내야 합니다.\n"
+"문제를 해결하는데 도움을 주시려면,\n"
+"새 버그 보고서를 제출하기 위해 <i>보고</i>를 선택해 주십시오. 아래의 오류 메시지를 반드시 포함해주십시오."
 
 #: ../data/ui/mainwindow.ui.h:1
 msgid ""
 "Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your "
 "system and desktop settings."
-msgstr "이것은 우분투를 위한 도구로 숨겨진 시스템 설정과 데스크탑 설정을 쉽게 변경할 수 있도록 해줍니다."
+msgstr "우분투 트윅은 우분투 시스템과 데스크톱을 쉽게 설정할 수 있게 도와주는 도구입니다."
 
 #: ../data/ui/mainwindow.ui.h:2
 msgid "Ubuntu Tweak Website"
-msgstr "우분트 트윅 웹사이트"
+msgstr "우분투 트윅 웹사이트"
 
 #: ../data/ui/mainwindow.ui.h:3
 msgid ""
@@ -382,6 +386,17 @@ msgid ""
 "Ubuntu Tweak; if not, write to the Free Software Foundation, Inc., 51 "
 "Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA"
 msgstr ""
+"Ubuntu Tweak is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version.\n"
+"Ubuntu Tweak is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+"You should have received a copy of the GNU General Public License along with "
+"Ubuntu Tweak; if not, write to the Free Software Foundation, Inc., 51 "
+"Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA"
 
 #: ../data/ui/mainwindow.ui.h:6
 msgid "translator-credits"
@@ -395,6 +410,7 @@ msgstr ""
 "  Exsecrabilus https://launchpad.net/~exsecrabilus\n"
 "  Galmaegu https://launchpad.net/~galmaegu\n"
 "  Gi-Jo https://launchpad.net/~autowiz\n"
+"  Kim Boram https://launchpad.net/~boramism\n"
 "  MinSik CHO https://launchpad.net/~mscho527\n"
 "  Namhyung Kim https://launchpad.net/~namhyung\n"
 "  Para https://launchpad.net/~khrhee\n"
@@ -408,52 +424,52 @@ msgstr ""
 
 #: ../data/ui/mainwindow.ui.h:7
 msgid "Search... <Ctrl+F>"
-msgstr ""
+msgstr "검색... <Ctrl+F>"
 
 #: ../data/ui/mainwindow.ui.h:8
 msgid "_Overview"
-msgstr ""
+msgstr "개요(_O)"
 
 #: ../data/ui/mainwindow.ui.h:9
 msgid "_Apps"
-msgstr ""
+msgstr "프로그램(_A)"
 
 #: ../data/ui/mainwindow.ui.h:10
 msgid "_Tweaks"
-msgstr ""
+msgstr "트윅(_T)"
 
 #: ../data/ui/mainwindow.ui.h:11
 msgid "_Admins"
-msgstr ""
+msgstr "관리(_A)"
 
 #: ../data/ui/mainwindow.ui.h:12
 msgid "_Janitor"
-msgstr ""
+msgstr "재니터(_J)"
 
 #: ../data/ui/mainwindow.ui.h:13
 msgid "<big><b>No matches found</b></big>"
-msgstr ""
+msgstr "<big><b>일치하는 항목이 없습니다</b></big>"
 
 #: ../data/ui/desktoprecovery.ui.h:1
 msgid "Setting Name:"
-msgstr "설정 이름"
+msgstr "설정 이름:"
 
 #: ../data/ui/desktoprecovery.ui.h:5
 msgid "R_eset"
-msgstr "초기화(_e)"
+msgstr "초기화(_E)"
 
 #: ../ubuntutweak/system/__init__.py:42
 msgid "GNOME Classic"
-msgstr ""
+msgstr "그놈 고전"
 
 #: ../ubuntutweak/system/__init__.py:44
 msgid "GNOME Fallback"
-msgstr ""
+msgstr "그놈 폴백"
 
 #: ../ubuntutweak/system/__init__.py:55
 #, python-format
 msgid "Unknown (%s)"
-msgstr ""
+msgstr "알 수 없음 (%s)"
 
 #: ../ubuntutweak/system/__init__.py:57
 #: ../ubuntutweak/clips/hardwareinfo.py:16
@@ -462,26 +478,26 @@ msgstr "알 수 없음"
 
 #: ../ubuntutweak/network/downloadmanager.py:97
 msgid "Connecting to server"
-msgstr "서버에 연결중"
+msgstr "서버에 연결 중"
 
 #: ../ubuntutweak/network/downloadmanager.py:143
 #, python-format
 msgid "Downloading...%d"
-msgstr "%d 다운로드 중..,"
+msgstr "다운로드 중...%d"
 
 #: ../ubuntutweak/network/downloadmanager.py:148
 msgid "Downloaded!"
-msgstr "다운로드를 완료했습니다!"
+msgstr "다운로드 완료!"
 
 #: ../ubuntutweak/network/downloadmanager.py:155
 msgid "Error happened!"
-msgstr "에러가 발생했습니다!"
+msgstr "오류 발생!"
 
 #: ../ubuntutweak/network/utdata.py:50 ../ubuntutweak/network/utdata.py:83
-#: ../ubuntutweak/tweaks/unity.py:66 ../ubuntutweak/tweaks/unity.py:69
-#: ../ubuntutweak/tweaks/unity.py:131 ../ubuntutweak/tweaks/unity.py:199
+#: ../ubuntutweak/tweaks/unity.py:67 ../ubuntutweak/tweaks/unity.py:70
+#: ../ubuntutweak/tweaks/unity.py:137 ../ubuntutweak/tweaks/unity.py:205
 msgid "Never"
-msgstr "전혀 안함"
+msgstr "사용 안 함"
 
 #: ../ubuntutweak/network/utdata.py:74
 #, python-format
@@ -499,7 +515,7 @@ msgstr[0] "%d일 전"
 #, python-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
-msgstr[0] "%d 시간 전"
+msgstr[0] "%d시간 전"
 
 #: ../ubuntutweak/network/utdata.py:80
 #, python-format
@@ -509,11 +525,11 @@ msgstr[0] "%d분 전"
 
 #: ../ubuntutweak/network/utdata.py:81
 msgid "Just Now"
-msgstr "지금 당장"
+msgstr "지금 막"
 
 #: ../ubuntutweak/policykit/widgets.py:64
 msgid "_Unlock"
-msgstr "잠금 풀기(_U)"
+msgstr "잠금 해제(_U)"
 
 #: ../ubuntutweak/policykit/dbusproxy.py:32
 msgid ""
@@ -522,19 +538,20 @@ msgid ""
 "If you want to help developers debugging, try to run \"<b>sudo "
 "/usr/share/ubuntu-tweak/ubuntu-tweak-daemon</b>\" in a terminal."
 msgstr ""
-"Ubuntu Tweak의 데몬이 정상적으로 시작하지 않았습니다. 그러므로 고급 기능이 작동하지 않을수가 있습니다.\n"
-"개발자의 프로그램 개선을 도우시고 싶으시다면 터미널에서 \"<b>sudo /usr/share/ubuntu-tweak/ubuntu-"
-"tweak-daemon</b>\"을 실행하십시오."
+"우분투 트윅 데몬이 정상적으로 시작하지 않았습니다. 고급 기능이 작동하지 않을 수 있습니다.\n"
+"개발자의 프로그램 개선을 도우시고 싶으시면 터미널에서 \"<b>sudo /usr/share/ubuntu-tweak/ubuntu-tweak-"
+"daemon</b>\" 명령을 실행하십시오."
 
 #: ../ubuntutweak/common/debug.py:59
 msgid "Error message has been copied"
-msgstr "오류 메시지가 복사됐습니다."
+msgstr "오류 메시지를 복사했습니다."
 
 #: ../ubuntutweak/common/debug.py:60
 msgid ""
 "Now click \"Report\" to enter the bug report website. Make sure to attach "
 "the error message in \"Further information\"."
-msgstr "버그 제출 사이트에 들어가시려면 \"레포트\"버튼을 클릭하세요. 그리고 \"더 보기\" 에 나온 에러메세지를 첨부해주세요."
+msgstr ""
+"이제 웹사이트에 버그 보고서를 제출하기 위해 \"보고\"단추를 눌러주십시오.반드시\"자세한 정보\"에 있는 오류 메시지를 첨부해주세요."
 
 #: ../ubuntutweak/common/debug.py:81
 msgid "Copy Error Message"
@@ -542,84 +559,84 @@ msgstr "오류 메시지 복사"
 
 #: ../ubuntutweak/common/debug.py:121
 msgid "Sorry, your distribution is not supported by Ubuntu Tweak"
-msgstr ""
+msgstr "죄송합니다. 배포판이 우분투 트윅을 지원하지 않습니다."
 
 #: ../ubuntutweak/common/debug.py:122
 msgid ""
 "You can't file bug for this issue. Please only use Ubuntu Tweak on Ubuntu. "
 "Or it may kill your cat."
-msgstr ""
+msgstr "이 문제를 제출할 수 없습니다. 반드시 우분투에서만 우분투 트윅을 사용해주십시오, 그렇지 않으면 매우 위험합니다."
 
 #: ../ubuntutweak/janitor/gwibber_plugin.py:4
 msgid "Gwibber Cache"
-msgstr ""
+msgstr "그위버 캐시"
 
 #: ../ubuntutweak/janitor/opera_plugin.py:4
 msgid "Opera Cache"
-msgstr ""
+msgstr "오페라 캐시"
 
 #: ../ubuntutweak/janitor/googleearth_plugin.py:5
 msgid "Google Earth Cache"
-msgstr ""
+msgstr "구글 어스 캐시"
 
 #: ../ubuntutweak/janitor/thumbnailcache_plugin.py:4
 msgid "Thumbnail cache"
-msgstr "썸네일 캐시"
+msgstr "미리 보기 캐시"
 
 #: ../ubuntutweak/janitor/softwarecenter_plugin.py:4
 msgid "Software Center Cache"
-msgstr ""
+msgstr "소프트웨어 센터 캐시"
 
 #: ../ubuntutweak/janitor/mozilla_plugin.py:37
 msgid "Firefox Cache"
-msgstr ""
+msgstr "파이어폭스 캐시"
 
 #: ../ubuntutweak/janitor/mozilla_plugin.py:43
 msgid "Thunderbird Cache"
-msgstr ""
+msgstr "선더버드 캐시"
 
 #: ../ubuntutweak/janitor/chrome_plugin.py:4
 msgid "Chrome Cache"
-msgstr ""
+msgstr "크롬 캐시"
 
 #: ../ubuntutweak/janitor/chrome_plugin.py:11
 msgid "Chromium Cache"
-msgstr ""
+msgstr "크로미엄 캐시"
 
 #: ../ubuntutweak/janitor/empathy_plugin.py:4
 msgid "Empathy Cache"
-msgstr ""
+msgstr "엠퍼시 캐시"
 
 #: ../ubuntutweak/janitor/autoremoval_plugin.py:14
 msgid "Unneeded Packages"
-msgstr "불필요한 패키지들"
+msgstr "불필요한 패키지"
 
 #: ../ubuntutweak/janitor/autoremoval_plugin.py:53
 msgid "Unneeded Packages (No package to be removed)"
-msgstr ""
+msgstr "필요 없는 패키지(제거할 패키지가 없습니다.)"
 
 #: ../ubuntutweak/janitor/aptcache_plugin.py:10
 msgid "Apt Cache"
-msgstr ""
+msgstr "APT 캐시"
 
 #: ../ubuntutweak/janitor/__init__.py:278
 msgid "No cache to be cleaned"
-msgstr ""
+msgstr "지울 캐시가 없습니다"
 
 #: ../ubuntutweak/janitor/__init__.py:576
 #, python-format
 msgid "Scanning cruft for \"%s\"..."
-msgstr ""
+msgstr "\"%s\"의 불필요한 항목 조사..."
 
 #: ../ubuntutweak/janitor/__init__.py:698
 #, python-format
 msgid "Scan error for \"%s\", double-click to see details"
-msgstr ""
+msgstr "\"%s\"의 오류 확인, 자세한 내용을 보려면 더블 클릭"
 
 #: ../ubuntutweak/janitor/__init__.py:763
 #, python-format
 msgid "Cleaning cruft for \"%s\"..."
-msgstr ""
+msgstr "\"%s\"의 불필요한 항목 정리..."
 
 #: ../ubuntutweak/janitor/__init__.py:844
 #: ../ubuntutweak/admins/desktoprecovery.py:81
@@ -632,25 +649,21 @@ msgstr "시스템"
 msgid "Personal"
 msgstr "개인 설정"
 
-#: ../ubuntutweak/janitor/__init__.py:889
-msgid "Apps"
-msgstr ""
-
 #: ../ubuntutweak/janitor/packageconfigs_plugin.py:30
 msgid "Package Configs"
-msgstr ""
+msgstr "패키지 설정"
 
 #: ../ubuntutweak/janitor/packageconfigs_plugin.py:73
 msgid "Packages Configs (No package config to be removed)"
-msgstr ""
+msgstr "패키지 설정(제거할 패키지 설정이 없습니다)"
 
 #: ../ubuntutweak/janitor/oldkernel_plugin.py:16
 msgid "Old Kernel"
-msgstr ""
+msgstr "오래된 커널"
 
 #: ../ubuntutweak/janitor/oldkernel_plugin.py:101
 msgid "Old Kernel Packages (No old kernel package to be removed)"
-msgstr ""
+msgstr "오래된 커널 패키지(제거할 수 있는 오래된 커널 패키지가 없습니다.)"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:79
 #: ../ubuntutweak/modules/__init__.py:29
@@ -659,12 +672,12 @@ msgstr "프로그램"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:80
 #: ../ubuntutweak/admins/userdir.py:34 ../ubuntutweak/modules/__init__.py:32
-#: ../ubuntutweak/tweaks/unity.py:142
+#: ../ubuntutweak/tweaks/unity.py:148
 msgid "Desktop"
-msgstr "데스크탑 설정"
+msgstr "데스크톱"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:106
-#: ../ubuntutweak/apps/__init__.py:169
+#: ../ubuntutweak/apps/__init__.py:336
 msgid "Category"
 msgstr "분류"
 
@@ -678,28 +691,28 @@ msgstr "백업 이름:"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:217
 msgid "Backing up..."
-msgstr ""
+msgstr "백업 중..."
 
 #: ../ubuntutweak/admins/desktoprecovery.py:242
 #, python-format
 msgid "Backing up...%s"
-msgstr "백업중...%s"
+msgstr "백업 중...%s"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:266
 msgid "Desktop Recovery"
-msgstr "데스크탑 복원"
+msgstr "데스크톱 복원"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:267
 msgid ""
 "Backup and recover your desktop and application settings with ease.\n"
 "You can also use \"Reset\" to reset to the system default settings."
 msgstr ""
-"현재 데스크탑과 응용 프로그램의 설정을 쉽게 백업하고 복원합니다.\n"
-"\"재설정\" 버튼을 누르면 시스템의 기본 설정으로 재설정합니다."
+"현재 데스크톱과 프로그램의 설정을 쉽게 백업하고 복원합니다.\n"
+"\"다시 설정\" 단추를 누르면 시스템의 기본 설정으로 다시 설정합니다."
 
 #: ../ubuntutweak/admins/desktoprecovery.py:347
 msgid "No Backup Yet"
-msgstr "백업한적 없음."
+msgstr "아직 백업이 없음."
 
 #: ../ubuntutweak/admins/desktoprecovery.py:382
 #, python-format
@@ -707,6 +720,8 @@ msgid ""
 "Backup all settings under \"<b>%s</b>\"\n"
 "Would you like to continue?"
 msgstr ""
+"<b>%s</b> 아래의 모든 설정 백업\n"
+"계속하시겠습니까?"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:403
 #, python-format
@@ -714,11 +729,13 @@ msgid ""
 "Backup settings under \"<b>%s</b>\"\n"
 "Would you like to continue?"
 msgstr ""
+"<b>%s</b> 아래의 설정을 백업합니다.\n"
+"계속하시겠습니까?"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:446
 #, python-format
 msgid "Would you like to delete the backup \"<b>%s/%s</b>\"?"
-msgstr ""
+msgstr "백업 <b>%s/%s</b>을(를) 삭제하시겠습니까?"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:450
 #, python-format
@@ -726,11 +743,13 @@ msgid ""
 "Would you like to delete the backup of all \"<b>%(setting_name)s</b>\" "
 "settings named \"<b>%(backup_name)s</b>\"?"
 msgstr ""
+"\"<b>%(backup_name)s</b>\" 이름을 가진 모든 \"<b>%(setting_name)s</b>\"의 설정을 "
+"삭제하시겠습니까?"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:472
 #, python-format
 msgid "Would you like to recover the backup \"<b>%s/%s</b>\"?"
-msgstr ""
+msgstr "백업 \"<b>%s/%s</b>\"을(를) 복구하시겠습니까?"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:475
 #, python-format
@@ -738,21 +757,23 @@ msgid ""
 "Would you like to recover the backup of all \"<b>%(setting_name)s</b>\" "
 "settings named \"<b>%(backup_name)s</b>\"?"
 msgstr ""
+"\"<b>%(backup_name)s</b>\" 이름을 가진 설정 \"<b>%(setting_name)s</b>\"을(를) 모두 "
+"복구하시겠습니까?"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:480
 msgid ""
 "<b>NOTES</b>: While recovering, your desktop may be unresponsive for a "
 "moment."
-msgstr "<b>주의</b>: 복원하는 중에는 데스트탑이 잠시 반응하지 않습니다."
+msgstr "<b>주의</b>: 복원하는 중에는 데스크톱이 잠시 반응하지 않습니다."
 
 #: ../ubuntutweak/admins/desktoprecovery.py:497
 msgid "Recovery Successful!"
-msgstr ""
+msgstr "복구 성공!"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:498
 #: ../ubuntutweak/admins/desktoprecovery.py:534
 msgid "You may need to restart your desktop for changes to take effect"
-msgstr ""
+msgstr "바뀐 내용을 적용하려면 데스크톱을 다시 시작하시겠습니까?"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:503
 msgid "_Logout"
@@ -761,22 +782,22 @@ msgstr "로그아웃(_L)"
 #: ../ubuntutweak/admins/desktoprecovery.py:516
 #, python-format
 msgid "Would you like to reset settings for \"<b>%s</b>\"?"
-msgstr ""
+msgstr "\"<b>%s</b>\" 설정을 초기화하시겠습니까?"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:518
 #, python-format
 msgid "Would you like to reset all settings under \"<b>%s</b>\"?"
-msgstr ""
+msgstr "\"<b>%s</b>\" 아래의 모든 설정을 초기화하시겠습니까?"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:520
 msgid ""
 "<b>NOTES</b>: Whilst resetting, your desktop may be unresponsive for a "
 "moment."
-msgstr "<b>주의</b>: 재설정을 하는 중에는 데스크탑이 잠시동안 반응하지 않습니다."
+msgstr "<b>주의</b>: 다시 설정하는 중에는 데스크톱이 잠시 반응하지 않습니다."
 
 #: ../ubuntutweak/admins/desktoprecovery.py:533
 msgid "Reset Successful!"
-msgstr ""
+msgstr "초기화 성공!"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:562
 #: ../ubuntutweak/admins/sourceeditor.py:418
@@ -808,13 +829,13 @@ msgstr "시스탬 버전"
 #, python-format
 msgid "%d New Application Available"
 msgid_plural "%d New Applications Available"
-msgstr[0] "%d개의 새프로그램을 이용할 수 있습니다"
+msgstr[0] "%d개의 새 프로그램을 사용할 수 있습니다"
 
 #: ../ubuntutweak/admins/sourcecenter.py:475
 #, python-format
 msgid "%d Package Update Available"
 msgid_plural "%d Package Updates Available"
-msgstr[0] "%d개의 패키지 업데이트를 이용할 수 있습니다"
+msgstr[0] "%d개의 패키지 업데이트를 사용할 수 있습니다"
 
 #: ../ubuntutweak/admins/sourcecenter.py:513
 msgid "No Available Package Updates"
@@ -832,8 +853,8 @@ msgid ""
 "it.\n"
 "To continue you need to disable <b>\"%(SOURCE)s\"</b>first."
 msgstr ""
-"<b>\"%(SOURCE)s\"</b> 와 충돌하므로 이 소스를 활성화시킬 수 없습니다.\n"
-"계속하시려면 먼저 <b>\"%(SOURCE)s\"</b> 를 비활성화시켜야 합니다."
+"<b>\"%(SOURCE)s\"</b>와 충돌하므로 이 소스를 사용할 수 없습니다.\n"
+"계속하시려면 우선 <b>\"%(SOURCE)s\"</b>을(를) 사용하지 않도록 설정해야 합니다."
 
 #: ../ubuntutweak/admins/sourcecenter.py:791
 msgid "Dependency Notice"
@@ -845,7 +866,7 @@ msgid ""
 "To enable this Source, You need to enable <b>\"%s\"</b> at first.\n"
 "Do you wish to continue?"
 msgstr ""
-"이 소스를 활성화시키기 위하여, 우선 <b>\"%s\"</b> 를 사용가능케해야 합니다.\n"
+"이 소스를 사용하려면, 우선 <b>\"%s\"</b>을(를) 사용하도록 설정해야 합니다.\n"
 "계속하시겠습니까?"
 
 #: ../ubuntutweak/admins/sourcecenter.py:817
@@ -854,23 +875,24 @@ msgid ""
 "You can't disable this Source because <b>\"%(SOURCE)s\"</b> depends on it.\n"
 "To continue you need to disable <b>\"%(SOURCE)s\"</b> first."
 msgstr ""
-"<b>\"%(SOURCE)s\"</b> 가 의존성에 걸려있어서 이 소스를 비활성화 시킬 수 없습니다.\n"
-"계속하시려면 우선 <b>\"%(SOURCE)s\"</b> 를 비활성화 시키야 합니다."
+"<b>\"%(SOURCE)s\"</b>이(가) 의존성에 걸려있어서 이 소스를 사용할 수 없습니다.\n"
+"계속하시려면 우선 <b>\"%(SOURCE)s\"</b>을(를) 사용하지 않도록 설정해야 합니다."
 
 #: ../ubuntutweak/admins/sourcecenter.py:903
+#: ../ubuntutweak/apps/__init__.py:169
 msgid "New source has been enabled"
-msgstr "새 소스가 적용되었습니다."
+msgstr "새 소스를 사용합니다."
 
 #: ../ubuntutweak/admins/sourcecenter.py:904
 #, python-format
 msgid ""
 "%s is enabled now, Please click the refresh button to update the application "
 "cache."
-msgstr "%s가 지금 적용되었습니다. 캐쉬 업데이트를 위하여 새로 고침 단추를 클릭하십시오."
+msgstr "%s을(를) 사용합니다. 프로그램을 업데이트하시려면 다시 읽기 단추를 눌러주십시오."
 
 #: ../ubuntutweak/admins/sourcecenter.py:921
 msgid "Enabled PPAs"
-msgstr ""
+msgstr "PPA 사용"
 
 #: ../ubuntutweak/admins/sourcecenter.py:924
 msgid "Source Center"
@@ -880,7 +902,7 @@ msgstr "소스 센터"
 msgid ""
 "A collection of software sources to ensure your applications are always up-"
 "to-date."
-msgstr ""
+msgstr "프로그램을 항상 최신 상태로 유지할 수 있는 소프트웨어 소스 모음입니다."
 
 #: ../ubuntutweak/admins/sourcecenter.py:928
 msgid "Visit online Source Center"
@@ -900,18 +922,18 @@ msgid ""
 "It is a possible security risk to use packages from Third-Party Sources.\n"
 "Please be careful and use only sources you trust."
 msgstr ""
-"써드파티 소스로부터 오는 그 패키지는 사용함에 있어 약간의 보안 위험이 있을 수 있습니다.\n"
-"신뢰할 수 있는 소스를 사용하시고 항상 주의하십시오."
+"써드파티 소스가 제공하는 패키지를 사용할 때는 보안 위험이 있을 수 있습니다.\n"
+"신뢰할 수 있는 소스 만을 사용하시고 항상 주의하십시오."
 
 #: ../ubuntutweak/admins/sourcecenter.py:979
 msgid "Never show this dialog"
-msgstr "절대 이 대화 상자 보이지 않기"
+msgstr "이 대화 상자 절대 보이지 않기"
 
 #. the "%s" is in front, some is the end, so just return the long one
 #: ../ubuntutweak/admins/sourcecenter.py:1009
 #, python-format
 msgid "disabled on upgrade to %s"
-msgstr "%s로 업그레이드 하는 것이 비활성화 됨"
+msgstr "%s(으)로 업그레이드 하지 않음"
 
 #: ../ubuntutweak/admins/sourcecenter.py:1014
 #: ../ubuntutweak/admins/appcenter.py:545
@@ -920,7 +942,7 @@ msgstr "마지막 동기화:"
 
 #: ../ubuntutweak/admins/sourcecenter.py:1019
 msgid "Upgrade Third Party Sources"
-msgstr "파트너 회사 소스 업그레이드"
+msgstr "써드 파티 소스 업그레이드"
 
 #: ../ubuntutweak/admins/sourcecenter.py:1020
 msgid ""
@@ -928,8 +950,8 @@ msgid ""
 "will be disabled by default.\n"
 "Would you like to re-enable any sources disabled by Update Manager?"
 msgstr ""
-"버전 업그레이드 후 사용하는 써드파티의 소스는 기본적으로 사용됩니다.\n"
-"업데이트 관리자가에서 비활성화된 소스를 다시 활성화 하시겠습니까?"
+"배포판 업그레이드 후 사용하고 있는 써드 파티의 소스는 기본적으로 사용하지 않도록 합니다.\n"
+"업데이트 관리자가 사용하지 않도록 설정한 소스를 다시 사용하시겠습니까?"
 
 #: ../ubuntutweak/admins/sourcecenter.py:1029
 msgid "Upgrade Successful!"
@@ -947,26 +969,26 @@ msgstr "새 소스 데이터를 사용할 수 있습니다.  업데이트 하시
 msgid ""
 "All enabled PPAs (Select and click \"Purge PPA\" can safely downgrade "
 "packages)"
-msgstr ""
+msgstr "상용 중인 모든 PPA(선택한 후 \"PPA 제거\"를 클릭하면 안전하게 패키지를 다운그레이드할 수 있습니다)"
 
 #: ../ubuntutweak/admins/sourcecenter.py:1155
 msgid "An error occurred whilst downloading the file"
-msgstr "파일을 다운로드하는 동안 오류가 발생했습니다"
+msgstr "파일을 다운로드하던 중 오류가 발생했습니다"
 
 #: ../ubuntutweak/admins/sourcecenter.py:1171
 msgid "Update available, Would you like to update?"
-msgstr "업데이트 가능. 지금 업데이트 하시겠습니까?"
+msgstr "업데이트를 사용할 수 있습니다. 지금 업데이트 하시겠습니까?"
 
 #: ../ubuntutweak/admins/sourcecenter.py:1180
 msgid ""
 "Network Error, Please check your network connection or the remote server is "
 "down."
-msgstr "네트워크 에러. 원격 서버가 다운되었거나 당신의 네트워크 연결에 문제가 있습니다."
+msgstr "네트워크 오류, 네트워크 연결이나 원격 서버 작동 여부를 확인하십시오.다."
 
 #: ../ubuntutweak/admins/sourcecenter.py:1184
 #: ../ubuntutweak/admins/appcenter.py:664
 msgid "No update available."
-msgstr "사용가능한 업데이트 없음."
+msgstr "사용할 수 있는 업데이트 없음."
 
 #: ../ubuntutweak/admins/sourcecenter.py:1209
 msgid "It's safe to purge the PPA, no packages need to be downgraded."
@@ -974,24 +996,24 @@ msgstr "이 PPA를 제거하는 것이 안전합니다. 다운그레이드할 �
 
 #: ../ubuntutweak/admins/sourcecenter.py:1212
 msgid "To safely purge the PPA, the following packages must be downgraded."
-msgstr "이 PPA를 안전하게 제거하려면, 다음의 패키지가 다운그레이드되어야 합니다."
+msgstr "이 PPA를 안전하게 제거하려면, 다음의 패키지를 다운그레이드해야 합니다."
 
 #: ../ubuntutweak/admins/sourcecenter.py:1216
 #, python-format
 msgid "You're going to purge \"%s\":"
-msgstr ""
+msgstr "\"%s\"을(를) 제거합니다:"
 
 #: ../ubuntutweak/admins/sourcecenter.py:1253
 msgid "PPA has been purged"
-msgstr ""
+msgstr "PPA를 제거했습니다"
 
 #: ../ubuntutweak/admins/sourcecenter.py:1254
 msgid "It is highly recommend to do a \"Refresh\" source operation."
-msgstr ""
+msgstr "소스 작업 \"새로 고침\"을 실행할 것을 강력히 추천합니다."
 
 #: ../ubuntutweak/admins/sourceeditor.py:168
 msgid "Source Editor"
-msgstr "소스편집기"
+msgstr "소스 편집기"
 
 #: ../ubuntutweak/admins/sourceeditor.py:169
 msgid "Manually edit your software sources to suit your needs."
@@ -1002,11 +1024,11 @@ msgstr "필요하다면 소프트웨어 소스를 직접 편집할 수 있습니
 msgid ""
 "You're viewing the backup \"<b>%(backup_name)s</b>\" for "
 "\"<b>%(list_name)s</b>\""
-msgstr ""
+msgstr "\"<b>%(list_name)s</b>\"의 백업 \"<b>%(backup_name)s</b>\"을(를) 보고 있습니다."
 
 #: ../ubuntutweak/admins/sourceeditor.py:279
 msgid "No backup yet"
-msgstr ""
+msgstr "백업 없음."
 
 #: ../ubuntutweak/admins/sourceeditor.py:319
 msgid "Please check the permission of the sources.list file"
@@ -1022,45 +1044,46 @@ msgid ""
 "Would you like to recover the backup \"<b>%(backup_name)s</b>\" for "
 "\"<b>%(list_name)s</b>\"?"
 msgstr ""
+"\"<b>%(list_name)s</b>\"의 백업 \"<b>%(backup_name)s</b>\"을(를) 복구하시겠습니까?"
 
 #: ../ubuntutweak/admins/sourceeditor.py:350
 msgid "Recovery Failed!"
-msgstr ""
+msgstr "복구 실패!"
 
 #: ../ubuntutweak/admins/sourceeditor.py:351
 msgid "You may need to check the permission of source list."
-msgstr ""
+msgstr "소스 목록의 권한을 확인하십시오."
 
 #: ../ubuntutweak/admins/sourceeditor.py:383
 msgid "Please enter the name for your backup:"
-msgstr ""
+msgstr "백업의 이름을 입력해주십시오:"
 
 #: ../ubuntutweak/admins/sourceeditor.py:396
 #: ../ubuntutweak/admins/sourceeditor.py:429
 msgid "Please only use alphanumeric characters and \"_\" and \"-\"."
-msgstr ""
+msgstr "\"_\" 그리고 \"-\" 문자와 영숫자를 사용해주십시오."
 
 #: ../ubuntutweak/admins/sourceeditor.py:398
 #: ../ubuntutweak/admins/sourceeditor.py:431
 msgid "Backup name is invalid"
-msgstr ""
+msgstr "올바르지 않은 백업 이름"
 
 #: ../ubuntutweak/admins/sourceeditor.py:404
 #, python-format
 msgid "Would you like to delete the backup \"<b>%s</b>\"?"
-msgstr ""
+msgstr "백업 \"<b>%s</b>\"을(를) 삭제하시겠습니까?"
 
 #: ../ubuntutweak/admins/sourceeditor.py:434
 msgid ""
 "The current content will be lost after reloading!\n"
 "Do you wish to continue?"
 msgstr ""
-"다시 읽어들이면 현재 내용을 잃어버립니다!\n"
+"다시 읽은 후에는 현재 내용을 잃게 됩니다!\n"
 "계속하시겠습니까?"
 
 #: ../ubuntutweak/admins/sourceeditor.py:452
 msgid "You can't delete sources.list!"
-msgstr "sources.list를 지울 수 없습니다!"
+msgstr "sources.list 파일을 삭제할 수 없습니다!"
 
 #: ../ubuntutweak/admins/sourceeditor.py:454
 #, python-format
@@ -1068,7 +1091,7 @@ msgid ""
 "The \"%s\" will be deleted!\n"
 "Do you wish to continue?"
 msgstr ""
-"\"%s\"가 지워집니다!\n"
+"\"%s\"을(를) 삭제합니다!\n"
 "계속하시겠습니까?"
 
 #: ../ubuntutweak/admins/templates.py:65
@@ -1109,15 +1132,15 @@ msgstr "쉘 스크립트"
 
 #: ../ubuntutweak/admins/templates.py:101
 msgid "Enabled Templates"
-msgstr "사용가능한 서식"
+msgstr "사용하는 서식"
 
 #: ../ubuntutweak/admins/templates.py:109
 msgid "Disabled Templates"
-msgstr "사용 불가능한 서식"
+msgstr "사용하지 않는 서식"
 
 #: ../ubuntutweak/admins/templates.py:116 ../ubuntutweak/admins/userdir.py:36
 msgid "Templates"
-msgstr "템플릿"
+msgstr "서식"
 
 #: ../ubuntutweak/admins/templates.py:117
 msgid ""
@@ -1126,9 +1149,9 @@ msgid ""
 "You can then create new documents based on these templates from the Nautilus "
 "right-click menu."
 msgstr ""
-"문서 틀을 여기서 관리할 수 있습니다.\n"
-"이 창으로 파일을 끌어오면 문서틀로 추가할 수 있습니다.\n"
-"그러면 노틸러스 우클릭 메뉴에서 이 문서틀을 기초한 새 문서를 만들 수 있습니다."
+"문서 서식을 여기서 관리할 수 있습니다.\n"
+"이 창으로 파일을 끌어오면 파일을 문서 서식으로 추가할 수 있습니다.\n"
+"노틸러스 오른쪽 단추 메뉴에서 이 문서 서식을 기초한 새 문서를 만들 수 있습니다."
 
 #: ../ubuntutweak/admins/templates.py:128
 #, python-format
@@ -1136,12 +1159,12 @@ msgid ""
 "The templates path is incorrect! The current path points to \"%s\".\n"
 "Please reset it to a location within your Home Folder."
 msgstr ""
-"문서틀의 경로가 올바르지 않습니다! 현재 경로는 \"%s\"입니다.\n"
-"홈 폴더 내의 위치로 재설정하십시오."
+"문서 서식의 경로가 올바르지 않습니다! 현재 경로는 \"%s\"입니다.\n"
+"내 폴더 내의 위치로 다시 설정하십시오."
 
 #: ../ubuntutweak/admins/templates.py:137
 msgid "Go And Set"
-msgstr "가서 설정하십시오"
+msgstr "이동 후 설정"
 
 #: ../ubuntutweak/admins/templates.py:142
 msgid "Restart This Module"
@@ -1149,31 +1172,31 @@ msgstr "이 모듈 다시 시작"
 
 #: ../ubuntutweak/admins/templates.py:167
 msgid "Rebuild System Templates"
-msgstr "시스템 서식 재생성"
+msgstr "시스템 서식 다시 만들기"
 
 #: ../ubuntutweak/admins/templates.py:182
 msgid "The templates path is still incorrect, please reset it!"
-msgstr "문서틀 경로가 여전히 올바르지 않습니다. 재설정하십시오!"
+msgstr "문서 서식 경로가 여전히 올바르지 않습니다. 다시 설정하십시오!"
 
 #: ../ubuntutweak/admins/templates.py:194
 msgid ""
 "This will delete all disabled templates.\n"
 "Do you wish to continue?"
 msgstr ""
-"이것은 모든 사용불가능한 서식들을 삭제할 것입니다.\n"
+"사용하지 않는 모든 서식을 삭제합니다.\n"
 "계속하시겠습니까?"
 
 #: ../ubuntutweak/admins/appcenter.py:187
 msgid "Installed Apps"
-msgstr ""
+msgstr "설치한 프로그램"
 
 #: ../ubuntutweak/admins/appcenter.py:454
 msgid "Checking update..."
-msgstr "업데이트 확인중..."
+msgstr "업데이트 확인 중..."
 
 #: ../ubuntutweak/admins/appcenter.py:489
 msgid "Fetching online data..."
-msgstr "온라인으로 데이터를 가져오는중..."
+msgstr "온라인 데이터를 가져오는 중..."
 
 #: ../ubuntutweak/admins/appcenter.py:494
 msgid "Application Center"
@@ -1182,29 +1205,29 @@ msgstr "프로그램 센터"
 #: ../ubuntutweak/admins/appcenter.py:495
 msgid ""
 "A simple but efficient way for finding and installing popular applications."
-msgstr ""
+msgstr "인기 있는 프로그램을 찾아 설치하는 간단하지만 효율적인 방법입니다."
 
 #: ../ubuntutweak/admins/appcenter.py:498
 msgid "Visit Online Application Center"
-msgstr "온라인 프로그램 센터를 방문하십시오"
+msgstr "온라인 프로그램 센터를 방문"
 
 #: ../ubuntutweak/admins/appcenter.py:552
 msgid "New application data available, would you like to update?"
-msgstr "새 프로그램 데이터가 사용가능합니다. 업데이트 하시겠습니까?"
+msgstr "새 프로그램 데이터를 사용할 수 있습니다. 업데이트 하시겠습니까?"
 
 #: ../ubuntutweak/admins/appcenter.py:651
 msgid "Update available, would you like to update?"
-msgstr "업데이트가 가능합니다, 업데이트 하시겠습니까?"
+msgstr "설치할 수 있는 업데이트가 있습니다. 업데이트하시겠습니까?"
 
 #: ../ubuntutweak/admins/appcenter.py:660
 msgid ""
 "Network Error, please check your network connection - or the remote server "
 "may be down."
-msgstr "네트워크 에러, 이 컴퓨터의 네트워크 연결 상태를 확인하십시오. 원격서버가 켜져 있는지도 확인하십시오."
+msgstr "네트워크 오류, 네트워크 연결 상태나 원격 서버의 동작 여부를 확인하십시오."
 
 #: ../ubuntutweak/admins/appcenter.py:677
 msgid "An error occurred while downloading the file."
-msgstr "파일을 다운로드 하는 중에 문제가 발생 하였습니다."
+msgstr "파일을 다운로드 하는 중에 오류가 발생 하였습니다."
 
 #: ../ubuntutweak/admins/userdir.py:35
 msgid "Download"
@@ -1240,21 +1263,21 @@ msgid ""
 "However, you must move your files back into place manually.\n"
 "Do you wish to continue?"
 msgstr ""
-"Ubuntu Tweak은 선택한 디렉토리를 기본 위치에 복원합니다.\n"
-"하지만 당신은 파일을 수동으로 이동하여야 합니다.\n"
-"계속하기를 원하십니까?"
+"우분투 트윅은 선택한 디렉터리를 기본 위치에 복원합니다.\n"
+"하지만 파일은 기본 위치로 직접 옮겨야 합니다.\n"
+"계속하시겠습니까?"
 
 #: ../ubuntutweak/admins/userdir.py:204
 msgid "Directory"
-msgstr "디렉토리"
+msgstr "디렉터리"
 
 #: ../ubuntutweak/admins/userdir.py:218
 msgid "Path"
-msgstr "경로"
+msgstr "위치"
 
 #: ../ubuntutweak/admins/userdir.py:225
 msgid "Change"
-msgstr "변경"
+msgstr "바꾸기"
 
 #: ../ubuntutweak/admins/userdir.py:229
 msgid "Restore to default"
@@ -1262,14 +1285,16 @@ msgstr "기본값으로 복구"
 
 #: ../ubuntutweak/admins/userdir.py:237
 msgid "User Folder"
-msgstr ""
+msgstr "사용자 폴더"
 
 #: ../ubuntutweak/admins/userdir.py:238
 msgid ""
 "You can change the paths of default folders here.\n"
 "Don't change the location of your desktop folder unless you know what you "
 "are doing."
-msgstr "기본 폴더의 경로를 여기로 바꾸실 수가 있습니다."
+msgstr ""
+"여기서 기본 폴더의 위치를 바꿀 수 있습니다.\n"
+"이 작업에 대한 정확한 지식이 없는 경우 위치를 바꾸지 마십시오."
 
 #: ../ubuntutweak/admins/userdir.py:261
 msgid "_Restore"
@@ -1281,35 +1306,35 @@ msgstr "바꾸기(_C)"
 
 #: ../ubuntutweak/admins/quicklists.py:208
 msgid "QuickLists Editor"
-msgstr ""
+msgstr "빠른 실행 목록 편집기"
 
 #: ../ubuntutweak/admins/quicklists.py:209
 msgid "Unity Launcher QuickLists Editor"
-msgstr ""
+msgstr "유니티 런처 빠른 실행 목록 편집"
 
 #: ../ubuntutweak/admins/quicklists.py:402
 #, python-format
 msgid "Would you like to reset \"%s\"?"
-msgstr ""
+msgstr "\"%s\"을(를) 초기화하시겠습니까?"
 
 #: ../ubuntutweak/admins/quicklists.py:403
 #, python-format
 msgid "If you continue, the actions of %s will be set to default."
-msgstr ""
+msgstr "계속 진행하면 %s 동작을 기본 값으로 설정합니다."
 
 #: ../ubuntutweak/admins/quicklists.py:416
 msgid "Would you like to reset the launcher items?"
-msgstr ""
+msgstr "런처 항목을 초기화하시겠습니까?"
 
 #: ../ubuntutweak/admins/quicklists.py:417
 msgid ""
 "If you continue, launcher will be set to default and all your current items "
 "will be lost."
-msgstr ""
+msgstr "계속 진행하면 런처를 기본 값으로 다시 설정하고 사용자가 설정한 내용은 모두 제거합니다."
 
 #: ../ubuntutweak/admins/scripts.py:43
 msgid "Create Launcher ..."
-msgstr "런처 생성중 ..."
+msgstr "실행 아이콘 만들기 ..."
 
 #: ../ubuntutweak/admins/scripts.py:44
 msgid "Copy to ..."
@@ -1317,7 +1342,7 @@ msgstr "복사..."
 
 #: ../ubuntutweak/admins/scripts.py:45
 msgid "Copy to Desktop"
-msgstr "바탕 화면으로 복사"
+msgstr "데스크톱으로 복사"
 
 #: ../ubuntutweak/admins/scripts.py:46
 msgid "Copy to Download"
@@ -1325,11 +1350,11 @@ msgstr "다운로드 폴더로 복사"
 
 #: ../ubuntutweak/admins/scripts.py:47
 msgid "Copy to Home"
-msgstr "홈 폴더로 복사"
+msgstr "내 폴더로 복사"
 
 #: ../ubuntutweak/admins/scripts.py:48
 msgid "Check md5 sum"
-msgstr "md5 총량을 확인하십시오"
+msgstr "md5 sum 확인"
 
 #: ../ubuntutweak/admins/scripts.py:49
 msgid "Compress PDF"
@@ -1341,51 +1366,51 @@ msgstr "이동..."
 
 #: ../ubuntutweak/admins/scripts.py:51
 msgid "Move to Desktop"
-msgstr "바탕 화면으로 옮기기"
+msgstr "데스크톱으로 이동"
 
 #: ../ubuntutweak/admins/scripts.py:52
 msgid "Move to Download"
-msgstr "다운로드 폴더로 옮기기"
+msgstr "다운로드 폴더로 이동"
 
 #: ../ubuntutweak/admins/scripts.py:53
 msgid "Move to Home"
-msgstr "홈 폴더로 옮기기"
+msgstr "내 폴더로 이동"
 
 #: ../ubuntutweak/admins/scripts.py:54
 msgid "Create hardlink to ..."
-msgstr "하드링크 만들기..."
+msgstr "하드 링크 만들기..."
 
 #: ../ubuntutweak/admins/scripts.py:55
 msgid "Link to ..."
-msgstr "바로 가기..."
+msgstr "연결..."
 
 #: ../ubuntutweak/admins/scripts.py:56
 msgid "Link to Desktop"
-msgstr "바탕 화면으로 링크"
+msgstr "데스크톱으로 연결"
 
 #: ../ubuntutweak/admins/scripts.py:57
 msgid "Link to Download"
-msgstr "다운로드 폴더로 링크"
+msgstr "다운로드 폴더로 연결"
 
 #: ../ubuntutweak/admins/scripts.py:58
 msgid "Link to Home"
-msgstr "홈 폴더로 링크"
+msgstr "내 폴더로 연결"
 
 #: ../ubuntutweak/admins/scripts.py:59
 msgid "Open with your favourite text editor"
-msgstr "가장 좋아하는 텍스트 편집기로 여십시오"
+msgstr "선호하는 텍스트 편집기로 열기"
 
 #: ../ubuntutweak/admins/scripts.py:60
 msgid "Open with your favourite text editor (as root)"
-msgstr "가장 좋아하는 텍스트 편집기로 여십시오 (root 사용자의 권한으로서)"
+msgstr "선호하는 텍스트 편집기로 열기(관리자 권한으로)"
 
 #: ../ubuntutweak/admins/scripts.py:61
 msgid "Browse as root"
-msgstr "Root로열기"
+msgstr "관리자로 찾아보기"
 
 #: ../ubuntutweak/admins/scripts.py:62
 msgid "Search in current folder"
-msgstr "현재 폴더에 찾아보기"
+msgstr "현재 폴더에 검색"
 
 #: ../ubuntutweak/admins/scripts.py:63
 msgid "Convert image to JPG"
@@ -1409,11 +1434,11 @@ msgstr "견고한 투영체를 이미지로 만들기"
 
 #: ../ubuntutweak/admins/scripts.py:95
 msgid "Enabled Scripts"
-msgstr "사용되는 스크립트"
+msgstr "사용 중인 스크립트"
 
 #: ../ubuntutweak/admins/scripts.py:126
 msgid "Disabled Scripts"
-msgstr "사용 안되는 스크립트"
+msgstr "사용하지 않는 스크립트"
 
 #: ../ubuntutweak/admins/scripts.py:133
 msgid "Scripts"
@@ -1426,24 +1451,24 @@ msgid ""
 "'Scripts' will then be added to the context menu."
 msgstr ""
 "스크립트는 모든 종류의 작업을 완료하는데 사용할 수 있습니다.\n"
-"파일 관리자로부터 여기로 스크립트를 끌어놓을 수 있습니다.\n"
-"그러면 '스크립트'를 마우스 우클릭 메뉴에 추가할 것입니다."
+"파일 관리자에서 여기로 스크립트를 끌어 놓을 수 있습니다.\n"
+"'스크립트는 마우스 오른쪽 단추를 누르면 나오는 메뉴에 추가합니다."
 
 #: ../ubuntutweak/admins/scripts.py:162
 msgid "Rebuild System Scripts"
-msgstr "시스템 스크립트 재생성"
+msgstr "시스템 스크립트 다시 만들기"
 
 #: ../ubuntutweak/admins/scripts.py:176
 msgid ""
 "This will delete all disabled scripts.\n"
 "Do you wish to continue?"
 msgstr ""
-"이것은 모든 무능력해진 스크팁트를 삭제할 것입니다.\n"
+"사용하지 않는 모든 스크립트를 삭제합니다.\n"
 "계속하시겠습니까?"
 
 #: ../ubuntutweak/admins/shortcuts.py:29
 msgid "Shortcuts"
-msgstr "단축키"
+msgstr "바로 가기"
 
 #: ../ubuntutweak/admins/shortcuts.py:30
 msgid ""
@@ -1452,13 +1477,13 @@ msgid ""
 "Enter the command to run the application and choose a shortcut key "
 "combination."
 msgstr ""
-"단축키를 설정하면 자주 사용하는 응용 프로그램을 즉시 접근할 수 있습니다.\n"
-"실행할 응용 프로그램의 명령을 입력하고 단축키 조합을 선택하십시오."
+"키보드 바로 가기를 설정하면 자주 사용하는 프로그램에 즉시 접근할 수 있습니다.\n"
+"실행할 프로그램의 명령을 입력하고 키보드 바로 가기 조합을 선택하십시오."
 
 #: ../ubuntutweak/admins/shortcuts.py:83
 #, python-format
 msgid "Command %d"
-msgstr "명령어 %d"
+msgstr "명령 %d"
 
 #: ../ubuntutweak/admins/shortcuts.py:88
 #: ../ubuntutweak/admins/shortcuts.py:200
@@ -1467,12 +1492,12 @@ msgstr "명령어 %d"
 #: ../ubuntutweak/tweaks/window.py:77 ../ubuntutweak/tweaks/window.py:84
 #: ../ubuntutweak/tweaks/window.py:95 ../ubuntutweak/tweaks/window.py:110
 msgid "None"
-msgstr "사용안함"
+msgstr "없음"
 
 #: ../ubuntutweak/admins/shortcuts.py:93
 #: ../ubuntutweak/admins/shortcuts.py:145
 msgid "disabled"
-msgstr "사용 불가능"
+msgstr "사용하지 않음"
 
 #: ../ubuntutweak/admins/shortcuts.py:102
 msgid "ID"
@@ -1507,7 +1532,7 @@ msgid "Application"
 msgstr "프로그램"
 
 #: ../ubuntutweak/admins/filetypemanager.py:50
-#: ../ubuntutweak/apps/__init__.py:188
+#: ../ubuntutweak/apps/__init__.py:355
 msgid "All"
 msgstr "전체"
 
@@ -1521,54 +1546,54 @@ msgstr "파일 종류"
 
 #: ../ubuntutweak/admins/filetypemanager.py:144
 msgid "Associated Application"
-msgstr "관련된 프로그램"
+msgstr "관련 프로그램"
 
 #: ../ubuntutweak/admins/filetypemanager.py:232
 #, python-format
 msgid "Open files of type \"%s\" with:"
-msgstr "\"%s\" 종류의 파일들을 이 프로그램으로 엽니다:"
+msgstr "\"%s\" 형식의 파일을 다음 프로그램으로 엽니다:"
 
 #: ../ubuntutweak/admins/filetypemanager.py:260
 msgid "Choose an application"
-msgstr "프로그램을 선택하세요"
+msgstr "프로그램 선택"
 
 #: ../ubuntutweak/admins/filetypemanager.py:361
 #, python-format
 msgid "Select an application to open files of type: <b>%s</b>"
 msgid_plural "Select an application to open files for these types: <b>%s</b>"
-msgstr[0] "다음 유형의 파일을 열 프로그램을 선택하십시오: <b> % s </ b>"
+msgstr[0] "다음 형식의 파일을 열 프로그램을 선택하십시오: <b>%s</b>"
 
 #: ../ubuntutweak/admins/filetypemanager.py:544
 msgid "File Type Manager"
-msgstr "파일종류 관리자"
+msgstr "파일 형식 관리자"
 
 #: ../ubuntutweak/admins/filetypemanager.py:545
 msgid "Manage all registered file types"
-msgstr "등록된 모든 파일 종류들을 연결"
+msgstr "등록된 모든 형식의 파일 관리"
 
 #: ../ubuntutweak/admins/filetypemanager.py:582
 msgid "_Reset"
-msgstr ""
+msgstr "초기화(_R)"
 
 #: ../ubuntutweak/admins/filetypemanager.py:588
 msgid "Only show filetypes with associated applications"
-msgstr "연결된 응용 프로그램의 파일 형식 만 표시"
+msgstr "관련 있는 프로그램이 있는 파일 형식만 보이기"
 
 #: ../ubuntutweak/modules/__init__.py:28
 msgid "Broken Modules"
-msgstr "깨진 모듈들"
+msgstr "깨진 모듈"
 
 #: ../ubuntutweak/modules/__init__.py:30
 msgid "Appearance"
-msgstr ""
+msgstr "모양"
 
 #: ../ubuntutweak/modules/__init__.py:31
 msgid "Startup"
-msgstr "시작 설정"
+msgstr "시작"
 
 #: ../ubuntutweak/modules/__init__.py:35
 msgid "Other"
-msgstr ""
+msgstr "기타"
 
 #: ../ubuntutweak/modules/__init__.py:254
 msgid "More"
@@ -1588,6 +1613,16 @@ msgid ""
 "\n"
 "Or you can submit the Error Message to the developer for help:"
 msgstr ""
+"우분투 트윅이 apt 설정이 올바르지 않은 것을 발견했습니다.\n"
+"다음 단계를 거쳐 복구해 보십시오:\n"
+"\n"
+"\t1. 터미널을 엽니다\n"
+"\t2. 고칠 명령을 실행합니다:\n"
+"\n"
+"\t\tsudo chmod 644 %(broken_file)s\n"
+"\t\tsudo chown root:root %(broken_file)s\n"
+"\n"
+"이 밖에 에러 메시지를 개발자에게 보내 도움을 요청할 수 있습니다:"
 
 #: ../ubuntutweak/modules/__init__.py:436
 #, python-format
@@ -1604,124 +1639,135 @@ msgid ""
 "\n"
 "Or you can submit the Error Message to the developer forhelp:"
 msgstr ""
+"우분투 트윅이 APT 목록 파일이 올바르지 않은 것을 발견했습니다.\n"
+"다음 단계를 거쳐 복구해 보십시오:\n"
+"\n"
+"\t1. 터미널을 엽니다\n"
+"\t2. APT 목록 파일 열기 명령을 실행합니다:\n"
+"\n"
+"\t\tgksu gedit %s\n"
+"\n"
+"\t3. APT 목록 파일을 올바르게 편집합니다\n"
+"\n"
+"기타 방법으로는 오류 메시지를 개발자에게 보내 도움을 요청할 수 있습니다:"
 
 #: ../ubuntutweak/tweaks/icons.py:26
 msgid "Show \"Computer\" icon"
-msgstr ""
+msgstr "\"컴퓨터\" 아이콘 보이기"
 
 #: ../ubuntutweak/tweaks/icons.py:33
 msgid "Show \"Home Folder\" icon"
-msgstr ""
+msgstr "\"내 폴더\" 아이콘 보이기"
 
 #: ../ubuntutweak/tweaks/icons.py:40
 msgid "Show \"Trash\" icon"
-msgstr ""
+msgstr "\"휴지통\" 아이콘 보이기"
 
 #: ../ubuntutweak/tweaks/icons.py:47
 msgid "Show \"Network Servers\" icon"
-msgstr ""
+msgstr "\"네트워크 서버\" 아이콘 보이기"
 
 #: ../ubuntutweak/tweaks/icons.py:76 ../ubuntutweak/gui/treeviews.py:89
 msgid "Rename"
-msgstr "이름 변경"
+msgstr "이름 바꾸기"
 
 #: ../ubuntutweak/tweaks/icons.py:107
 msgid "Desktop Icons"
-msgstr ""
+msgstr "데스크톱 아이콘"
 
 #: ../ubuntutweak/tweaks/icons.py:108
 msgid "Rename and toggle visibilty of desktop icons"
-msgstr "데스크탑 아이콘을 이름 변경하고 보이거나 안보이게 전환"
+msgstr "데스크톱 아이콘의 이름 변경하고 보이거나 보이지 않게 전환"
 
 #: ../ubuntutweak/tweaks/icons.py:113
 msgid "Show desktop icons:"
-msgstr ""
+msgstr "데스크톱에 아이콘 보이기:"
 
 #: ../ubuntutweak/tweaks/icons.py:114
 msgid "Show mounted volumes"
-msgstr ""
+msgstr "마운트한 볼륨 보이기"
 
 #: ../ubuntutweak/tweaks/icons.py:115
 msgid "Show contents of \"Home Folder\""
-msgstr ""
+msgstr "\"내 폴더\"를 보입니다."
 
 #: ../ubuntutweak/tweaks/icons.py:146
 msgid "Note: switch off this option will make the desktop unclickable"
-msgstr ""
+msgstr "주의: 이 옵션을 끄면 데스크톱을 클릭할 수 없게 됩니다."
 
 #: ../ubuntutweak/tweaks/theme.py:36
 msgid "Theme"
-msgstr ""
+msgstr "테마"
 
 #: ../ubuntutweak/tweaks/theme.py:37
 msgid "Set the gtk theme, icon theme, cursor theme and others"
-msgstr ""
+msgstr "GTK 테마, 아이콘 테마, 커서 테마 등을 설정합니다."
 
 #: ../ubuntutweak/tweaks/theme.py:41 ../ubuntutweak/tweaks/loginsettings.py:47
 msgid "Icon theme:"
-msgstr ""
+msgstr "아이콘 테마:"
 
 #: ../ubuntutweak/tweaks/theme.py:42 ../ubuntutweak/tweaks/loginsettings.py:46
 msgid "Gtk theme:"
-msgstr ""
+msgstr "GTK 테마:"
 
 #: ../ubuntutweak/tweaks/theme.py:43
 msgid "Cursor theme:"
-msgstr ""
+msgstr "커서 테마:"
 
 #: ../ubuntutweak/tweaks/theme.py:44
 msgid "Window theme:"
-msgstr ""
+msgstr "창 테마:"
 
 #: ../ubuntutweak/tweaks/theme.py:89
 msgid "Install theme:"
-msgstr ""
+msgstr "테마 설치:"
 
 #: ../ubuntutweak/tweaks/theme.py:99
 msgid "Theme file is invalid"
-msgstr ""
+msgstr "태마 파일이 올바르지 않습니다"
 
 #: ../ubuntutweak/tweaks/theme.py:105
 #, python-format
 msgid "\"%s\" installed successfully"
-msgstr ""
+msgstr "\"%s\"을(를) 설치했습니다."
 
 #: ../ubuntutweak/tweaks/theme.py:106
 #, python-format
 msgid "Would you like to set your icon theme to \"%s\" immediatelly?"
-msgstr ""
+msgstr "\"%s\"에 아이콘 테마를 즉시 설정하시겠습니까?"
 
 #: ../ubuntutweak/tweaks/window.py:32
 msgid "Window"
-msgstr ""
+msgstr "창"
 
 #: ../ubuntutweak/tweaks/window.py:33
 msgid "Manage Window Manager settings"
-msgstr ""
+msgstr "창 관리자 설정 관리"
 
 #: ../ubuntutweak/tweaks/window.py:48
 msgid "Window control button position:"
-msgstr ""
+msgstr "창 조정 단추 위치:"
 
 #: ../ubuntutweak/tweaks/window.py:49
 msgid "\"Close\" button only"
-msgstr ""
+msgstr "\"닫기\" 단추만"
 
 #: ../ubuntutweak/tweaks/window.py:50
 msgid "Titlebar mouse wheel action:"
-msgstr ""
+msgstr "창 제목 마우스 휠 동작:"
 
 #: ../ubuntutweak/tweaks/window.py:51
 msgid "Titlebar double-click action:"
-msgstr ""
+msgstr "창 제목 더블 클릭 동작:"
 
 #: ../ubuntutweak/tweaks/window.py:52
 msgid "Titlebar middle-click action:"
-msgstr ""
+msgstr "창 제목 가운데 클릭 동작:"
 
 #: ../ubuntutweak/tweaks/window.py:53
 msgid "Titlebar right-click action:"
-msgstr ""
+msgstr "창 제목 오른쪽 클릭 동작:"
 
 #: ../ubuntutweak/tweaks/window.py:77 ../ubuntutweak/tweaks/window.py:85
 #: ../ubuntutweak/tweaks/window.py:98 ../ubuntutweak/tweaks/window.py:113
@@ -1762,83 +1808,83 @@ msgstr "파일 관리자"
 
 #: ../ubuntutweak/tweaks/nautilus.py:28
 msgid "Manage the Nautilus file manager"
-msgstr ""
+msgstr "노틸러스 파일 관리자 관리"
 
 #: ../ubuntutweak/tweaks/nautilus.py:33
 msgid "Show advanced permissions in \"File Properties\""
-msgstr ""
+msgstr "\"파일 속성\" 창에 고급 접근 권한 보이기"
 
 #: ../ubuntutweak/tweaks/nautilus.py:34
 msgid "Use the location entry instead of the pathbar"
-msgstr ""
+msgstr "경로 막대 대신 위치 항목을 사용합니다."
 
 #: ../ubuntutweak/tweaks/nautilus.py:35
 msgid "Automatically mount media:"
-msgstr ""
+msgstr "미디어 자동으로 마운트:"
 
 #: ../ubuntutweak/tweaks/nautilus.py:36
 msgid "Automatically open a folder:"
-msgstr ""
+msgstr "자동으로 폴더 열기:"
 
 #: ../ubuntutweak/tweaks/nautilus.py:37
 msgid "Prompt or autorun/autostart programs:"
-msgstr ""
+msgstr "프로그램을 자동으로 실행하거나 알려줍니다:"
 
 #: ../ubuntutweak/tweaks/nautilus.py:38
 msgid "Thumbnail icon size (pixels):"
-msgstr ""
+msgstr "미리 보기 아이콘 크기(픽셀):"
 
 #: ../ubuntutweak/tweaks/nautilus.py:39
 msgid "Thumbnail cache time (days):"
-msgstr ""
+msgstr "미리 보기 캐시 보존 기간(일):"
 
 #: ../ubuntutweak/tweaks/nautilus.py:40
 msgid "Maximum thumbnail cache size (MB):"
-msgstr ""
+msgstr "최대 큰 미리 보기 캐시 크기(MB):"
 
 #: ../ubuntutweak/tweaks/nautilus.py:52
 msgid "File browser:"
-msgstr ""
+msgstr "파일 관리자:"
 
 #: ../ubuntutweak/tweaks/session.py:29
 msgid "Session Indicator"
-msgstr ""
+msgstr "세션 알리미"
 
 #: ../ubuntutweak/tweaks/session.py:30
 msgid "Control your system session releated features"
-msgstr "관련된 기능들의 시스템 세션을 제어하십시오"
+msgstr "시스템 세션과 관련이 있는 기능을 조정합니다."
 
 #: ../ubuntutweak/tweaks/session.py:34
 msgid "User indicator"
-msgstr ""
+msgstr "사용자 알리미"
 
 #: ../ubuntutweak/tweaks/session.py:35
 msgid "Disable \"Lock Screen\""
-msgstr "\"화면 잠그기\" 못함"
+msgstr "\"화면 잠그기\" 사용하지 않기"
 
 #: ../ubuntutweak/tweaks/session.py:36
 msgid "Show user's real name on the panel"
-msgstr ""
+msgstr "패널에 사용자의 실제 이름을 보입니다."
 
 #: ../ubuntutweak/tweaks/session.py:37
 msgid "Remove the log out item"
-msgstr ""
+msgstr "로그아웃 항목 제거"
 
 #: ../ubuntutweak/tweaks/session.py:38
 msgid "Remove the shutdown item"
-msgstr ""
+msgstr "컴퓨터 끄기 항목 제거"
 
 #: ../ubuntutweak/tweaks/session.py:39
 msgid "Suppress the dialog to confirm logout and shutdown action"
-msgstr ""
+msgstr "로그아웃과 컴퓨터 끄기 동작을 확인하는 대화 상자를 표시하지 않기"
 
 #: ../ubuntutweak/tweaks/session.py:68
 msgid "Session indicator:"
-msgstr ""
+msgstr "세션 알리미:"
 
 #: ../ubuntutweak/tweaks/workspace.py:37
 msgid "Show Workspaces"
-msgstr "작업공간 보기"
+msgstr "작업 공간 보이기"
 
 #: ../ubuntutweak/tweaks/workspace.py:38
 msgid "Show Windows"
@@ -1846,119 +1892,119 @@ msgstr "창 보이기"
 
 #: ../ubuntutweak/tweaks/workspace.py:39
 msgid "Show Desktop"
-msgstr "바탕 화면 보이기"
+msgstr "데스크톱 보이기"
 
 #: ../ubuntutweak/tweaks/workspace.py:40
 msgid "Show Widgets"
-msgstr "위젯 보기"
+msgstr "위젯 보이기"
 
 #: ../ubuntutweak/tweaks/workspace.py:139
 msgid "Workspace"
-msgstr ""
+msgstr "작업 공간"
 
 #: ../ubuntutweak/tweaks/workspace.py:140
 msgid "Workspace size and screen edge action settings"
-msgstr ""
+msgstr "작업 공간 크기와 화면 가장자리 동작 설정"
 
 #: ../ubuntutweak/tweaks/workspace.py:145
 msgid "Edge trigger delay (ms):"
-msgstr ""
+msgstr "모서리 실행 지연 시간(ms):"
 
 #: ../ubuntutweak/tweaks/workspace.py:146
 msgid "Horizontal workspace:"
-msgstr ""
+msgstr "수평 작업 공간:"
 
 #: ../ubuntutweak/tweaks/workspace.py:147
 msgid "Vertical workspace:"
-msgstr ""
+msgstr "수직 작업 공간:"
 
 #: ../ubuntutweak/tweaks/sound.py:29
 msgid "Sound"
-msgstr ""
+msgstr "소리"
 
 #: ../ubuntutweak/tweaks/sound.py:30
 msgid "Set the sound theme for Ubuntu"
-msgstr ""
+msgstr "우분투 소리 테마를 설정합니다."
 
 #: ../ubuntutweak/tweaks/sound.py:34
 msgid "Event sounds:"
-msgstr ""
+msgstr "이벤트 소리:"
 
 #: ../ubuntutweak/tweaks/sound.py:35
 msgid "Input feedback sounds:"
-msgstr ""
+msgstr "입력 반응 소리:"
 
 #: ../ubuntutweak/tweaks/sound.py:36
 msgid "Sound theme:"
-msgstr ""
+msgstr "소리 테마:"
 
 #: ../ubuntutweak/tweaks/sound.py:37 ../ubuntutweak/tweaks/loginsettings.py:45
 msgid "Play login sound:"
-msgstr ""
+msgstr "로그인 소리 재생:"
 
 #: ../ubuntutweak/tweaks/misc.py:31
 msgid "Miscellaneous"
-msgstr ""
+msgstr "기타"
 
 #: ../ubuntutweak/tweaks/misc.py:32
 msgid "Set the cursor timeout, menus and buttons icons"
-msgstr ""
+msgstr "커서 지속 시간을 설정합니다. 메뉴와 단추 아이콘"
 
 #: ../ubuntutweak/tweaks/misc.py:36
 msgid "Natural Scrolling"
-msgstr ""
+msgstr "자연스러운 스크롤"
 
 #: ../ubuntutweak/tweaks/misc.py:37
 msgid "Menus have icons"
-msgstr "Menus는 아이콘들을 가지고 있음"
+msgstr "메뉴에 아이콘 표시"
 
 #: ../ubuntutweak/tweaks/misc.py:38
 msgid "Buttons have icons"
-msgstr "Buttons는 아이콘들을 가지고 있음"
+msgstr "단추에 아이콘 표시"
 
 #: ../ubuntutweak/tweaks/misc.py:39
 msgid "Show Input Method menu in the context menu"
-msgstr "오른마우스 클릭 메뉴 입력방식의 메뉴 표시"
+msgstr "오른쪽 마우스 클릭 메뉴에 입력기 메뉴 보이기"
 
 #: ../ubuntutweak/tweaks/misc.py:40
 msgid "Show Unicode Control Character menu in the context menu"
-msgstr "오른 마우스 클릭 메뉴에서 Unicode 제어 문자 메뉴 보기"
+msgstr "오른쪽 마우스 클릭 메뉴에서 유니코드 제어 문자 메뉴 보이기"
 
 #: ../ubuntutweak/tweaks/misc.py:41
 msgid "Disable printing"
-msgstr "인쇄 못함"
+msgstr "인쇄 사용하지 않기"
 
 #: ../ubuntutweak/tweaks/misc.py:42
 msgid "Disable printer settings"
-msgstr "프린터 설정 사용 불가"
+msgstr "프린터 설정 사용하지 않기"
 
 #: ../ubuntutweak/tweaks/misc.py:43
 msgid "Disable save to disk"
-msgstr "디스크에 파일 저장 못함"
+msgstr "디스크 파일 저장 사용하지 않기"
 
 #: ../ubuntutweak/tweaks/misc.py:44
 msgid "Disable \"Fast User Switching\""
-msgstr "\"빠른 사용자 바꾸기\" 못함"
+msgstr "\"빠른 사용자 바꾸기\" 사용하지 않기"
 
 #: ../ubuntutweak/tweaks/misc.py:45
 msgid "Cursor blink:"
-msgstr ""
+msgstr "커서 깜빡이기:"
 
 #: ../ubuntutweak/tweaks/misc.py:46
 msgid "Overlay scrollbars:"
-msgstr ""
+msgstr "오버레이 스크롤바:"
 
 #: ../ubuntutweak/tweaks/misc.py:47
 msgid "Cursor blink time:"
-msgstr ""
+msgstr "커서 깜빡이기 시간:"
 
 #: ../ubuntutweak/tweaks/misc.py:48
 msgid "Cursor blink timeout:"
-msgstr ""
+msgstr "커서 깜빡이기 지속 시간:"
 
-#: ../ubuntutweak/tweaks/misc.py:60 ../ubuntutweak/tweaks/unity.py:175
+#: ../ubuntutweak/tweaks/misc.py:60 ../ubuntutweak/tweaks/unity.py:181
 msgid "Note: you may need to log out to take effect"
-msgstr ""
+msgstr "주의: 바뀐 내용을 적용하려면 로그아웃해야 합니다."
 
 #: ../ubuntutweak/tweaks/loginsettings.py:37
 msgid "Login Settings"
@@ -1970,23 +2016,23 @@ msgstr "로그인 화면의 모양과 동작을 조정 합니다"
 
 #: ../ubuntutweak/tweaks/loginsettings.py:43
 msgid "Guest account:"
-msgstr ""
+msgstr "손님 계정:"
 
 #: ../ubuntutweak/tweaks/loginsettings.py:44
 msgid "Draw grid:"
-msgstr ""
+msgstr "격자 그리기:"
 
 #: ../ubuntutweak/tweaks/loginsettings.py:63
 msgid "Note: you may need to reboot to take effect"
-msgstr ""
+msgstr "주의: 바뀐 내용을 적용하려면 다시 시작해야 합니다."
 
 #: ../ubuntutweak/tweaks/loginsettings.py:141
 msgid "Choose a new logo image"
-msgstr "새로고 이미지 선택"
+msgstr "새 로고 그림 선택"
 
 #: ../ubuntutweak/tweaks/loginsettings.py:147
 msgid "All images (*.PNG)"
-msgstr ""
+msgstr "모든 이미지 (*.PNG)"
 
 #: ../ubuntutweak/tweaks/loginsettings.py:194
 msgid "Choose a new background image"
@@ -1998,328 +2044,337 @@ msgstr "모든 이미지"
 
 #: ../ubuntutweak/tweaks/fonts.py:26
 msgid "Fonts"
-msgstr ""
+msgstr "글꼴"
 
 #: ../ubuntutweak/tweaks/fonts.py:27
 msgid "Fonts Settings"
-msgstr ""
+msgstr "글꼴 설정"
 
 #: ../ubuntutweak/tweaks/fonts.py:32
 msgid "Text scaling factor:"
-msgstr ""
+msgstr "텍스크 크기 조정 비율:"
 
 #: ../ubuntutweak/tweaks/fonts.py:33
 msgid "Default font:"
-msgstr ""
+msgstr "기본 글꼴:"
 
 #: ../ubuntutweak/tweaks/fonts.py:34
 msgid "Monospace font:"
-msgstr ""
+msgstr "고정폭 글꼴:"
 
 #: ../ubuntutweak/tweaks/fonts.py:35
 msgid "Document font:"
-msgstr ""
+msgstr "문서 글꼴:"
 
 #: ../ubuntutweak/tweaks/fonts.py:36
 msgid "Window title bar font:"
-msgstr ""
+msgstr "창 제목 글꼴:"
 
 #: ../ubuntutweak/tweaks/fonts.py:37
 msgid "Hinting:"
-msgstr ""
+msgstr "힌팅:"
 
 #: ../ubuntutweak/tweaks/fonts.py:38
 msgid "Antialiasing:"
-msgstr ""
+msgstr "에일리어싱 제거:"
 
 #: ../ubuntutweak/tweaks/fonts.py:64
 msgid "Desktop font:"
-msgstr ""
+msgstr "데스크톱 글꼴:"
 
 #: ../ubuntutweak/tweaks/fonts.py:89
 msgid "No hinting"
-msgstr ""
+msgstr "힌팅 없음"
 
 #: ../ubuntutweak/tweaks/fonts.py:90
 msgid "Basic"
-msgstr ""
+msgstr "기본"
 
 #: ../ubuntutweak/tweaks/fonts.py:91
 msgid "Moderate"
-msgstr ""
+msgstr "보통"
 
 #: ../ubuntutweak/tweaks/fonts.py:92
 msgid "Maximum"
-msgstr ""
+msgstr "최대"
 
 #: ../ubuntutweak/tweaks/fonts.py:99
 msgid "No antialiasing"
-msgstr ""
+msgstr "에일리어싱 제거 없음"
 
 #: ../ubuntutweak/tweaks/fonts.py:100
 msgid "Standard grayscale antialiasing"
-msgstr ""
+msgstr "표준 그레이 스케일 에일리어싱 제거"
 
 #: ../ubuntutweak/tweaks/fonts.py:101
 msgid "Subpixel antialiasing (LCD screens only)"
-msgstr ""
+msgstr "서브픽셀 에일리어싱 제거(LCG 화면 전용)"
 
 #: ../ubuntutweak/tweaks/unity.py:37
 msgid "Tweak the powerful Unity desktop"
-msgstr ""
+msgstr "강력한 유니티 데스크톱을 조정합니다."
 
 #: ../ubuntutweak/tweaks/unity.py:42
 msgid "HUD:"
-msgstr ""
+msgstr "허드:"
 
 #: ../ubuntutweak/tweaks/unity.py:43
 msgid "Shortcut hints overlay:"
-msgstr ""
+msgstr "유니티 바로 가기 도움말:"
 
 #: ../ubuntutweak/tweaks/unity.py:44
 msgid "Launcher icon size:"
-msgstr ""
+msgstr "런처 아이콘 크기:"
 
 #: ../ubuntutweak/tweaks/unity.py:45
 msgid "Launcher opacity:"
-msgstr ""
+msgstr "런처 투명도:"
 
 #: ../ubuntutweak/tweaks/unity.py:46
 msgid "Launcher hide mode:"
-msgstr ""
+msgstr "런처 숨기기 모드:"
 
 #: ../ubuntutweak/tweaks/unity.py:47
 msgid "Launcher icon backlight:"
-msgstr ""
+msgstr "런처 아이콘 백라이트:"
 
 #: ../ubuntutweak/tweaks/unity.py:48
 msgid "Launcher show devices:"
-msgstr ""
+msgstr "런처에 표시할 장치:"
 
 #: ../ubuntutweak/tweaks/unity.py:49
 msgid "\"Show desktop\" icon:"
-msgstr ""
+msgstr "\"데스크톱 보이기\" 아이콘:"
 
 #: ../ubuntutweak/tweaks/unity.py:50
-msgid "Dash size:"
-msgstr ""
+msgid "Disable \"Show Desktop\" in the switcher:"
+msgstr "전환 프로그램에서 \"데스크톱 보기\" 감추기:"
 
 #: ../ubuntutweak/tweaks/unity.py:51
-msgid "Blur type:"
-msgstr ""
+msgid "Dash size:"
+msgstr "대시 크기:"
 
 #: ../ubuntutweak/tweaks/unity.py:52
-msgid "Panel opacity:"
-msgstr ""
+msgid "Blur type:"
+msgstr "흐림 효과 형식:"
 
 #: ../ubuntutweak/tweaks/unity.py:53
-msgid "Panel opacity for maximized windows:"
-msgstr ""
+msgid "Panel opacity:"
+msgstr "패널 투명도:"
 
 #: ../ubuntutweak/tweaks/unity.py:54
-msgid "Super key:"
-msgstr ""
+msgid "Panel opacity for maximized windows:"
+msgstr "창을 최대화했을 때의 패널 투명도:"
 
 #: ../ubuntutweak/tweaks/unity.py:55
-msgid "Full screen dash:"
-msgstr ""
+msgid "Super key:"
+msgstr "윈도 키:"
 
 #: ../ubuntutweak/tweaks/unity.py:56
-msgid "Compositing manager:"
-msgstr ""
+msgid "Full screen dash:"
+msgstr "대시 전체 화면:"
 
 #: ../ubuntutweak/tweaks/unity.py:57
+msgid "Compositing manager:"
+msgstr "컴포지트 관리자:"
+
+#: ../ubuntutweak/tweaks/unity.py:58
 msgid "Number of workspaces:"
-msgstr ""
+msgstr "작업 공간 수:"
 
-#: ../ubuntutweak/tweaks/unity.py:66 ../ubuntutweak/tweaks/unity.py:69
-#: ../ubuntutweak/tweaks/unity.py:199
+#: ../ubuntutweak/tweaks/unity.py:67 ../ubuntutweak/tweaks/unity.py:70
+#: ../ubuntutweak/tweaks/unity.py:205
 msgid "Auto Hide"
-msgstr ""
+msgstr "자동 숨기기"
 
-#: ../ubuntutweak/tweaks/unity.py:66
+#: ../ubuntutweak/tweaks/unity.py:67
 msgid "Dodge Window"
-msgstr ""
+msgstr "창 피하기"
 
-#: ../ubuntutweak/tweaks/unity.py:66
+#: ../ubuntutweak/tweaks/unity.py:67
 msgid "Dodge Active Window"
-msgstr ""
+msgstr "사용 중인 창 피하기"
 
-#: ../ubuntutweak/tweaks/unity.py:119
+#: ../ubuntutweak/tweaks/unity.py:125
 msgid "Backlight Always On"
-msgstr ""
+msgstr "배경 조명을 항상 켬"
 
-#: ../ubuntutweak/tweaks/unity.py:120
+#: ../ubuntutweak/tweaks/unity.py:126
 msgid "Backlight Toggles"
-msgstr ""
+msgstr "배경 조명을 켜고 끔"
 
-#: ../ubuntutweak/tweaks/unity.py:121
+#: ../ubuntutweak/tweaks/unity.py:127
 msgid "Backlight Always Off"
-msgstr ""
+msgstr "배경 조명을 항상 끔"
 
-#: ../ubuntutweak/tweaks/unity.py:122
+#: ../ubuntutweak/tweaks/unity.py:128
 msgid "Edge Illumination Toggles"
-msgstr ""
+msgstr "가장자리 조명 켜고 끄기"
 
-#: ../ubuntutweak/tweaks/unity.py:123
+#: ../ubuntutweak/tweaks/unity.py:129
 msgid "Backlight and Edge Illumination Toggles"
-msgstr ""
+msgstr "배경 조명과 가장자리 조명을 켜고 끕니다."
 
-#: ../ubuntutweak/tweaks/unity.py:132
+#: ../ubuntutweak/tweaks/unity.py:138
 msgid "Only Mounted"
-msgstr ""
+msgstr "마운트한 것만"
 
-#: ../ubuntutweak/tweaks/unity.py:133
+#: ../ubuntutweak/tweaks/unity.py:139
 msgid "Always"
-msgstr ""
+msgstr "항상"
 
-#: ../ubuntutweak/tweaks/unity.py:142
+#: ../ubuntutweak/tweaks/unity.py:148
 msgid "Automatic"
-msgstr ""
+msgstr "자동"
 
-#: ../ubuntutweak/tweaks/unity.py:142
+#: ../ubuntutweak/tweaks/unity.py:148
 msgid "Netbook"
-msgstr ""
+msgstr "넷북"
 
-#: ../ubuntutweak/tweaks/unity.py:149
+#: ../ubuntutweak/tweaks/unity.py:155
 msgid "No blur"
-msgstr ""
+msgstr "흐림 효과 없음"
 
-#: ../ubuntutweak/tweaks/unity.py:150
+#: ../ubuntutweak/tweaks/unity.py:156
 msgid "Static blur"
-msgstr ""
+msgstr "정적 흐림 효과"
 
-#: ../ubuntutweak/tweaks/unity.py:151
+#: ../ubuntutweak/tweaks/unity.py:157
 msgid "Active blur"
-msgstr ""
+msgstr "동적 흐림 효과"
 
-#: ../ubuntutweak/tweaks/unity.py:200
+#: ../ubuntutweak/tweaks/unity.py:206
 msgid "Intellihide"
-msgstr ""
+msgstr "똑똑한 숨기기"
 
 #: ../ubuntutweak/tweaks/workarounds.py:33
 msgid "Workarounds"
-msgstr ""
+msgstr "문제 회피"
 
 #: ../ubuntutweak/tweaks/workarounds.py:34
 msgid "The workarounds to fix some problems"
-msgstr ""
+msgstr "일부 문제를 고칠 수 있는 회피 수단입니다."
 
 #: ../ubuntutweak/tweaks/workarounds.py:38
 msgid "Fix the appearance of themes when granted root privileges:"
-msgstr ""
+msgstr "관리자 권한으로 실행한 창에 테마가 적용되지 않는 문제를 해결합니다:"
 
 #: ../ubuntutweak/tweaks/workarounds.py:39
 msgid "Auto detect text encoding for Chinese in Gedit:"
-msgstr ""
+msgstr "지에디트에서 중국어 문자 인코딩을 자동으로 검출합니다:"
 
-#: ../ubuntutweak/apps/__init__.py:55
+#: ../ubuntutweak/apps/__init__.py:90
 msgid "Uninstall"
-msgstr ""
+msgstr "제거"
 
-#: ../ubuntutweak/apps/__init__.py:56
+#: ../ubuntutweak/apps/__init__.py:91
 msgid "Update"
-msgstr ""
+msgstr "업데이트"
 
-#: ../ubuntutweak/apps/__init__.py:57
+#: ../ubuntutweak/apps/__init__.py:92
 msgid "Installing"
-msgstr ""
+msgstr "설치 중"
 
-#: ../ubuntutweak/apps/__init__.py:58
+#: ../ubuntutweak/apps/__init__.py:93
 msgid "Uninstalling"
-msgstr ""
+msgstr "제거 중"
 
-#: ../ubuntutweak/apps/__init__.py:59
+#: ../ubuntutweak/apps/__init__.py:94
 msgid "Updating"
-msgstr ""
+msgstr "업데이트 중"
 
-#: ../ubuntutweak/apps/__init__.py:60
+#: ../ubuntutweak/apps/__init__.py:95
 msgid "Not Available"
-msgstr ""
+msgstr "사용할 수 없음"
+
+#: ../ubuntutweak/apps/__init__.py:170
+#, python-format
+msgid "\"%s\" is enabled now, Please click the update button to update %s"
+msgstr "\"%s\"을(를) 사용합니다. %s을(를) 업데이트하려면 업데이트 단추를 눌러주십시오."
 
 #: ../ubuntutweak/clips/userinfo.py:10
 msgid "User Information"
-msgstr ""
+msgstr "사용자 정보"
 
 #: ../ubuntutweak/clips/userinfo.py:16
 msgid "Current user:"
-msgstr ""
+msgstr "현재 사용자:"
 
 #: ../ubuntutweak/clips/userinfo.py:18
 msgid "Home directory:"
-msgstr ""
+msgstr "홈 디렉터리:"
 
 #: ../ubuntutweak/clips/userinfo.py:20
 msgid "Shell:"
-msgstr ""
+msgstr "쉘:"
 
 #: ../ubuntutweak/clips/userinfo.py:22
 msgid "Language:"
-msgstr ""
+msgstr "언어:"
 
 #: ../ubuntutweak/clips/hardwareinfo.py:11
 msgid "Hardware Information"
-msgstr ""
+msgstr "하드웨어 정보"
 
 #: ../ubuntutweak/clips/hardwareinfo.py:32
 msgid "CPU:"
-msgstr ""
+msgstr "CPU:"
 
 #: ../ubuntutweak/clips/hardwareinfo.py:34
 msgid "Memory:"
-msgstr ""
+msgstr "메모리:"
 
 #: ../ubuntutweak/clips/systeminfo.py:11
 msgid "Ubuntu Desktop Information"
-msgstr ""
+msgstr "우분투 데스크톱 정보"
 
 #: ../ubuntutweak/clips/systeminfo.py:17
 msgid "Hostname:"
-msgstr ""
+msgstr "호스트 이름:"
 
 #: ../ubuntutweak/clips/systeminfo.py:19
 msgid "Platform:"
-msgstr ""
+msgstr "플래폼:"
 
 #: ../ubuntutweak/clips/systeminfo.py:21
 msgid "Distribution:"
-msgstr ""
+msgstr "배포판:"
 
 #: ../ubuntutweak/clips/systeminfo.py:23
 msgid "Desktop Environment:"
-msgstr ""
+msgstr "데스크톱 환경:"
 
 #: ../ubuntutweak/clips/cleanerinfo.py:11
 msgid "Your system is clean"
-msgstr ""
+msgstr "시스템이 깨끗합니다."
 
 #: ../ubuntutweak/clips/cleanerinfo.py:19
 msgid "Some cache can be cleaned to free your disk space"
-msgstr ""
+msgstr "일부 캐시를 지워 디스크 용량을 확보할 수 있습니다."
 
 #: ../ubuntutweak/clips/cleanerinfo.py:21
 #, python-format
 msgid "%s cache packages can be cleaned."
-msgstr ""
+msgstr "패키지 캐시 %s을(를) 지울 수 있습니다."
 
 #: ../ubuntutweak/clips/cleanerinfo.py:33
 #, python-format
 msgid "%s thumbnails cache can be cleaned."
-msgstr ""
+msgstr "미리 보기 캐시 %s을(를) 지울 수 있습니다."
 
 #: ../ubuntutweak/clips/cleanerinfo.py:39
 msgid "Start Janitor"
-msgstr ""
+msgstr "재니터 시작"
 
 #: ../ubuntutweak/clips/updateinfo.py:13
 msgid "Your system is up-to-date"
-msgstr ""
+msgstr "업데이트를 모두 완료했습니다"
 
 #: ../ubuntutweak/clips/updateinfo.py:49
 msgid ""
 "It is unknown when the package information was updated last. Please try "
 "clicking on the 'Check' button to update the information."
-msgstr ""
+msgstr "패키지 정보를 마지막으로 업데이트한 날을 알 수 없습니다. '확인' 단추를 눌러 패키지 정보를 업데이트하십시오."
 
 #: ../ubuntutweak/clips/updateinfo.py:54
 #, python-format
@@ -2327,35 +2382,35 @@ msgid ""
 "The package information was last updated %(days_ago)s days ago.\n"
 "Press the 'Check' button below to check for new software updates."
 msgstr ""
+"%(days_ago)s일 전 마지막으로 패키지 정보를 업데이트했습니다.\n"
+"아래의 '확인' 단추를 눌러 새 소프트웨어 업데이트를 확인하십시오."
 
 #: ../ubuntutweak/clips/updateinfo.py:59
 #, python-format
 msgid "The package information was last updated %(days_ago)s day ago."
 msgid_plural ""
 "The package information was last updated %(days_ago)s days ago."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(days_ago)s일 전 마지막으로 패키지 정보를 업데이트했습니다."
 
 #: ../ubuntutweak/clips/updateinfo.py:63
 #, python-format
 msgid "The package information was last updated %(hours_ago)s hour ago."
 msgid_plural ""
 "The package information was last updated %(hours_ago)s hours ago."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(hours_ago)s시간 전 마지막으로 패키지 정보를 업데이트햇습니다."
 
 #: ../ubuntutweak/clips/updateinfo.py:67
 msgid "The package information was last updated less than one hour ago."
-msgstr ""
+msgstr "마지막으로 패키지 정보를 업데이트한 후 한 시간이 지나지 않았습니다."
 
 #: ../ubuntutweak/gui/widgets.py:161
 #, python-format
 msgid "Reset setting to default value: %s"
-msgstr "설정을 기본값으로 초기화: %s"
+msgstr "설정을 기본 값으로 초기화: %s"
 
 #: ../ubuntutweak/gui/widgets.py:464
 msgid "Please press the new key combination"
-msgstr "다시 새로운 키 조합을 누르십시오"
+msgstr "새로운 키 조합을 누르세요."
 
 #: ../ubuntutweak/gui/widgets.py:516
 msgid "Disabled"
@@ -2363,7 +2418,7 @@ msgstr "사용안함"
 
 #: ../ubuntutweak/gui/dialogs.py:208
 msgid "Could not authenticate"
-msgstr "인증할 수 없었습니다."
+msgstr "인증할 수 없습니다."
 
 #: ../ubuntutweak/gui/dialogs.py:209
 msgid "An unexpected error has occurred."
@@ -2371,7 +2426,7 @@ msgstr "예상치 못한 오류가 발생했습니다."
 
 #: ../ubuntutweak/gui/dialogs.py:215
 msgid "Service hasn't initialized yet"
-msgstr "서비스를 아직 시작하지 않았습니다"
+msgstr "서비스를 아직 초기화하지 않았습니다"
 
 #: ../ubuntutweak/gui/dialogs.py:216
 msgid "You need to restart your computer."
@@ -2379,7 +2434,7 @@ msgstr "컴퓨터를 다시 시작해야 합니다."
 
 #: ../ubuntutweak/gui/treeviews.py:85
 msgid "Create folder"
-msgstr "폴더를 만듭니다"
+msgstr "폴더 만들기"
 
 #: ../ubuntutweak/gui/treeviews.py:93
 msgid "Delete"
@@ -2387,15 +2442,15 @@ msgstr "삭제"
 
 #: ../ubuntutweak/gui/treeviews.py:115
 msgid "Input the dir name"
-msgstr "dir 이름을 입력"
+msgstr "디렉터리 이름 입력"
 
 #: ../ubuntutweak/gui/treeviews.py:139
 msgid "Can't rename the root folder"
-msgstr "Root 폴더의 이름을 번경할 수 없습니다"
+msgstr "루트 폴더의 이름을 바꿀 수 없습니다"
 
 #: ../ubuntutweak/gui/treeviews.py:156
 msgid "Can't delete the root folder"
-msgstr "Root 폴더를 삭제할 수 없습니다."
+msgstr "루트 폴더를 삭제할 수 없습니다"
 
 #: ../ubuntutweak/gui/treeviews.py:170
 msgid ""
@@ -2403,44 +2458,44 @@ msgid ""
 "\n"
 "There are files in it!"
 msgstr ""
-"이름을 변경 할 수 없습니다.\n"
-"같은 이름을 가진 파일이 있습니다."
+"이름을 바꿀 수 없습니다!\n"
+"폴더 안에 파일이 있습니다!"
 
-#: ../ubuntutweak/main.py:271
+#: ../ubuntutweak/main.py:270
 msgid "Results"
-msgstr ""
+msgstr "결과"
 
-#: ../ubuntutweak/main.py:279
+#: ../ubuntutweak/main.py:278
 #, python-format
 msgid "Your filter \"<b>%s</b>\" does not match any items."
-msgstr ""
+msgstr "검색어  \"<b>%s</b>\"와(과) 일치하는 항목이 없습니다."
 
-#: ../ubuntutweak/main.py:407
+#: ../ubuntutweak/main.py:405
 msgid "Please wait a moment..."
-msgstr "잠시만 기다려주십시요..."
+msgstr "잠시만 기다려주십시오..."
 
-#: ../ubuntutweak/main.py:516
+#: ../ubuntutweak/main.py:514
 #, python-format
 msgid "No module named \"%s\""
-msgstr ""
+msgstr "모듈  \"%s\"이(가) 없습니다"
 
-#: ../ubuntutweak/main.py:517
+#: ../ubuntutweak/main.py:515
 msgid "Please ensure you have entered the correct module name."
-msgstr ""
+msgstr "올바른 모듈 이름을 입력했는지 확인해주십시오."
 
 #: ../ubuntutweak/main.py:575
 msgid "Computer Janitor"
-msgstr ""
+msgstr "컴퓨터 재니터"
 
 #: ../ubuntutweak/main.py:576
 msgid "Clean up a system so it's more like a freshly installed one"
-msgstr ""
+msgstr "시스템을 정리해 지금 막 설치한 것과 같이 만듭니다."
 
 #: ../ubuntutweak/utils/__init__.py:40
 #, python-format
 msgid "%(size)d byte"
 msgid_plural "%(size)d bytes"
-msgstr[0] "%(size)d bytes"
+msgstr[0] "%(size)d바이트"
 
 #: ../ubuntutweak/utils/__init__.py:42
 #, python-format
@@ -2459,53 +2514,53 @@ msgstr "%.1f GB"
 
 #: ../ubuntutweak/preferences.py:67
 msgid "Auto scan:"
-msgstr ""
+msgstr "자동 조사:"
 
 #: ../ubuntutweak/preferences.py:163
 msgid "Choose a clip extension"
-msgstr ""
+msgstr "클립 확장 기능 선택"
 
 #: ../ubuntutweak/preferences.py:168
 #, python-format
 msgid "\"%s\" is not a Clip Extension!"
-msgstr ""
+msgstr "\"%s\"은(는) 클립 확장 기능이 아닙니다!"
 
 #: ../ubuntutweak/preferences.py:171
 msgid "Choose a Tweaks Extension"
-msgstr ""
+msgstr "트윅 확장 기능 선택"
 
 #: ../ubuntutweak/preferences.py:176
 #, python-format
 msgid "\"%s\" is not a Tweaks Extension!"
-msgstr ""
+msgstr "\"%s\"은(는) 트윅 확장 기능이 아닙니다!"
 
 #: ../ubuntutweak/preferences.py:179
 msgid "Choose a Admins Extension"
-msgstr ""
+msgstr "관리 확장 기능 선택"
 
 #: ../ubuntutweak/preferences.py:184
 #, python-format
 msgid "\"%s\" is not a Admins Extension!"
-msgstr ""
+msgstr "\"%s\"은(는) 관리 확장 기능이 아닙니다!"
 
 #: ../ubuntutweak/preferences.py:187
 msgid "Choose a Janitor Extension"
-msgstr ""
+msgstr "재니터 확장 기능 선택"
 
 #: ../ubuntutweak/preferences.py:192
 #, python-format
 msgid "\"%s\" is not a Janitor Extension!"
-msgstr ""
+msgstr "\"%s\"은(는) 재니터 확장 기능이 아닙니다!"
 
 #: ../ubuntutweak/preferences.py:201
 msgid "Ubuntu Tweak Extension (*.py, *.tar.gz)"
-msgstr ""
+msgstr "우분투 트윅 확장 기능 (*.py, *.tar.gz)"
 
 #: ../ubuntutweak/preferences.py:232
 msgid "Would you like to remove it then install again?"
-msgstr ""
+msgstr "우선 제거한 후 다시 설치하시겠습니까?"
 
 #: ../ubuntutweak/preferences.py:233
 #, python-format
 msgid "\"%s\" has already installed"
-msgstr ""
+msgstr "\"%s\"을(를) 이미 설치했습니다"
