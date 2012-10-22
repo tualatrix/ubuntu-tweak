@@ -20,6 +20,7 @@ import os
 import logging
 from gi.repository import Gtk, Gio
 
+from ubuntutweak import system
 from ubuntutweak.gui.containers import ListPack, GridPack
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.factory import WidgetFactory
@@ -62,6 +63,24 @@ class Theme(TweakModule):
                             values=valid_icon_themes,
                             enable_reset=True)
 
+        if system.CODENAME == 'quantal':
+            window_theme_label, window_theme_combox, window_theme_reset_button = WidgetFactory.create('ComboBox',
+                            label=self.utext_window_theme,
+                            key='org.gnome.desktop.wm.preferences.theme',
+                            backend='gsettings',
+                            texts=valid_window_themes,
+                            values=valid_window_themes,
+                            enable_reset=True)
+        else:
+            window_theme_label, window_theme_combox, window_theme_reset_button = WidgetFactory.create('ComboBox',
+                            label=self.utext_window_theme,
+                            key='/apps/metacity/general/theme',
+                            backend='gconf',
+                            texts=valid_window_themes,
+                            values=valid_window_themes,
+                            enable_reset=True)
+
+
         theme_box = GridPack(
                         WidgetFactory.create('ComboBox',
                             label=self.utext_gtk_theme,
@@ -78,13 +97,7 @@ class Theme(TweakModule):
                             texts=valid_cursor_themes,
                             values=valid_cursor_themes,
                             enable_reset=True),
-                        WidgetFactory.create('ComboBox',
-                            label=self.utext_window_theme,
-                            key='/apps/metacity/general/theme',
-                            backend='gconf',
-                            texts=valid_window_themes,
-                            values=valid_window_themes,
-                            enable_reset=True),
+                        (window_theme_label, window_theme_combox, window_theme_reset_button),
                         Gtk.Separator(),
                         (Gtk.Label(_('Install theme:')), theme_choose_button),
                         )
