@@ -18,6 +18,7 @@
 
 from gi.repository import Gtk, Gio
 
+from ubuntutweak import system
 from ubuntutweak.gui.containers import ListPack, TablePack, GridPack
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.factory import WidgetFactory
@@ -44,6 +45,19 @@ class Fonts(TweakModule):
         fb.set_font_name('Monospace 24')
         fb.set_show_size(False)
         fb.set_use_size(13)
+
+        if system.CODENAME == 'quantal':
+            window_font_label, window_font_button, window_font_reset_button = WidgetFactory.create("FontButton",
+                       label=self.utext_window_title_font,
+                       key="org.gnome.desktop.wm.preferences.titlebar-font",
+                       backend="gsettings",
+                       enable_reset=True)
+        else:
+            window_font_label, window_font_button, window_font_reset_button = WidgetFactory.create("FontButton",
+                       label=self.utext_window_title_font,
+                       key="/apps/metacity/general/titlebar_font",
+                       backend="gconf",
+                       enable_reset=True)
 
         box = GridPack(
                     WidgetFactory.create("Scale",
@@ -76,11 +90,7 @@ class Fonts(TweakModule):
                         key="org.gnome.desktop.interface.document-font-name",
                         backend="gsettings",
                         enable_reset=True),
-                    WidgetFactory.create("FontButton",
-                        label=self.utext_window_title_font,
-                        key="/apps/metacity/general/titlebar_font",
-                        backend="gconf",
-                        enable_reset=True),
+                    (window_font_label, window_font_button, window_font_reset_button),
                     Gtk.Separator(),
                     WidgetFactory.create("ComboBox",
                         label=self.utext_hinting,
