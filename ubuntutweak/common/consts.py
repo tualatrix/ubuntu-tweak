@@ -7,7 +7,6 @@ __all__ = (
         )
 
 import os
-import sys
 import glob
 import gettext
 

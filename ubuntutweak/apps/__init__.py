@@ -9,7 +9,7 @@ from aptsources.sourceslist import SourcesList
 
 from ubuntutweak import system
 from ubuntutweak import __version__
-from ubuntutweak.common.consts import IS_TESTING
+from ubuntutweak.common.consts import IS_TESTING, LANG
 from ubuntutweak.common.debug import log_func
 from ubuntutweak.common.consts import CONFIG_ROOT
 from ubuntutweak.gui.gtk import set_busy, unset_busy
@@ -114,6 +114,8 @@ class AppsWebView(WebKit.WebView):
     def setup_features(self):
         try:
             session = WebKit.get_default_session()
+            session.connect('request-queued', self.on_session_request_queued)
+
             cookie = Soup.CookieJarText(filename=os.path.join(CONFIG_ROOT, 'cookies'))
             session.add_feature(cookie)
 
@@ -124,6 +126,10 @@ class AppsWebView(WebKit.WebView):
             self._cache.load()
         except Exception, e:
             log.error("setup_features failed with %s" % e)
+
+    @log_func(log)
+    def on_session_request_queued(self, session, message):
+        message.request_headers.replace('Accept-language', LANG)
 
     @log_func(log)
     def save_cache(self):
