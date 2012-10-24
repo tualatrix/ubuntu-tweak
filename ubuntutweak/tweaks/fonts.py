@@ -28,7 +28,7 @@ class Fonts(TweakModule):
     __desc__ = _('Fonts Settings')
     __icon__ = 'font-x-generic'
     __category__ = 'appearance'
-    __desktop__ = ['ubuntu', 'gnome-fallback', 'ubuntu-2d', 'gnome-classic', 'gnome-shell']
+    __desktop__ = ['ubuntu', 'gnome-fallback', 'gnome', 'ubuntu-2d', 'gnome-classic', 'gnome-shell']
 
     utext_text_scaling = _("Text scaling factor:")
     utext_default_font = _("Default font:")
