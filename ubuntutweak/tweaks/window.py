@@ -33,18 +33,18 @@ class Window(TweakModule):
     __desc__ = _('Manage Window Manager settings')
     __icon__ = 'preferences-system-windows'
     __category__ = 'desktop'
-    __desktop__ = ['ubuntu', 'ubuntu-2d', 'gnome-classic', 'gnome-shell', 'gnome-fallback']
-    __distro__ = ['oneiric', 'precise']
+    __desktop__ = ['ubuntu', 'ubuntu-2d', 'gnome', 'gnome-classic', 'gnome-shell', 'gnome-fallback']
 
     left_default = 'close,minimize,maximize:'
     right_default = ':minimize,maximize,close'
 
-    if system.DESKTOP == 'gnome-shell' and system.CODENAME == 'oneiric':
-        config = GconfSetting(key='/desktop/gnome/shell/windows/button_layout')
-    elif system.DESKTOP == 'gnome-shell' and system.CODENAME == 'precise':
+    if system.DESKTOP in ('gnome', 'gnome-shell'):
         config = GSetting(key='org.gnome.shell.overrides.button-layout')
     else:
-        config = GconfSetting(key='/apps/metacity/general/button_layout')
+        if system.CODENAME == 'quantal':
+            config = GSetting(key='org.gnome.desktop.wm.preferences.button-layout')
+        else:
+            config = GconfSetting(key='/apps/metacity/general/button_layout')
 
     utext_window_button = _('Window control button position:')
     utext_only_close_button = _('"Close" button only')
@@ -65,62 +65,112 @@ class Window(TweakModule):
             only_close_switch.set_active(True)
         only_close_label = Gtk.Label(self.utext_only_close_button)
 
-        box = GridPack(
-                    (Gtk.Label(self.utext_window_button),
-                     self.place_hbox),
-                    (only_close_label, only_close_switch),
-                    Gtk.Separator(),
-                    WidgetFactory.create('ComboBox',
-                        label=self.utext_titlebar_wheel,
-                        key='/apps/gwd/mouse_wheel_action',
-                        enable_reset=True,
-                        backend='gconf',
-                        texts=[_('None'), _('Roll up')],
-                        values=['none', 'shade']),
-                    WidgetFactory.create('ComboBox',
-                        label=self.utext_titlebar_double,
-                        key='/apps/metacity/general/action_double_click_titlebar',
-                        enable_reset=True,
-                        backend='gconf',
-                        texts=[_('None'), _('Maximize'), \
-                                _('Minimize'), _('Roll up'), \
-                                _('Lower'), _('Menu')],
-                        values=['none', 'toggle_maximize', \
-                                'minimize', 'toggle_shade', \
-                                'lower', 'menu']),
-                    WidgetFactory.create('ComboBox',
-                        label=self.utext_titlebar_middle,
-                        key='/apps/metacity/general/action_middle_click_titlebar',
-                        enable_reset=True,
-                        backend="gconf",
-                        texts=[_('None'), _('Maximize'), \
-                               _('Maximize Horizontally'), \
-                               _('Maximize Vertically'), \
-                               _('Minimize'), _('Roll up'), \
-                               _('Lower'), _('Menu')],
-                               values=['none', 'toggle_maximize', \
-                                       'toggle_maximize_horizontally', \
-                                       'toggle_maximize_vertically', \
-                                       'minimize', 'toggle_shade', \
-                                       'lower', 'menu']),
-                    WidgetFactory.create('ComboBox',
-                        label=self.utext_titlebar_right,
-                        key='/apps/metacity/general/action_right_click_titlebar',
-                        enable_reset=True,
-                        backend="gconf",
-                        texts=[_('None'), _('Maximize'), \
-                                _('Maximize Horizontally'), \
-                                _('Maximize Vertically'), \
-                                _('Minimize'), _('Roll up'), \
-                                _('Lower'), _('Menu')],
-                        values=['none', 'toggle_maximize', \
-                                'toggle_maximize_horizontally', \
-                                'toggle_maximize_vertically', \
-                                'minimize', 'toggle_shade', \
-                                'lower', 'menu']),
-                )
+        if system.CODENAME == 'quantal' and system.DESKTOP == 'ubuntu':
+            box = GridPack(
+                        (Gtk.Label(self.utext_window_button),
+                         self.place_hbox),
+                        (only_close_label, only_close_switch),
+                        Gtk.Separator(),
+                        WidgetFactory.create('ComboBox',
+                            label=self.utext_titlebar_wheel,
+                            key='org.compiz.gwd.mouse-wheel-action',
+                            enable_reset=True,
+                            backend='gsettings',
+                            texts=[_('None'), _('Roll up')],
+                            values=['none', 'shade']),
+                        WidgetFactory.create('ComboBox',
+                            label=self.utext_titlebar_double,
+                            key='org.gnome.desktop.wm.preferences.action-double-click-titlebar',
+                            enable_reset=True,
+                            backend='gsettings',
+                            texts=[_('None'), _('Maximize'), \
+                                   _('Minimize'), _('Roll up'), \
+                                   _('Lower'), _('Menu')],
+                            values=['none', 'toggle-maximize', \
+                                    'minimize', 'toggle-shade', \
+                                    'lower', 'menu']),
+                        WidgetFactory.create('ComboBox',
+                            label=self.utext_titlebar_middle,
+                            key='org.gnome.desktop.wm.preferences.action-middle-click-titlebar',
+                            enable_reset=True,
+                            backend="gsettings",
+                            texts=[_('None'), _('Maximize'), \
+                                   _('Minimize'), _('Roll up'), \
+                                   _('Lower'), _('Menu')],
+                            values=['none', 'toggle-maximize', \
+                                    'minimize', 'toggle-shade', \
+                                    'lower', 'menu']),
+                        WidgetFactory.create('ComboBox',
+                            label=self.utext_titlebar_right,
+                            key='org.gnome.desktop.wm.preferences.action-right-click-titlebar',
+                            enable_reset=True,
+                            backend="gsettings",
+                            texts=[_('None'), _('Maximize'), \
+                                   _('Minimize'), _('Roll up'), \
+                                   _('Lower'), _('Menu')],
+                            values=['none', 'toggle-maximize', \
+                                    'minimize', 'toggle-shade', \
+                                    'lower', 'menu']),
+                        )
 
-        self.add_start(box)
+            self.add_start(box)
+        else:
+            box = GridPack(
+                        (Gtk.Label(self.utext_window_button),
+                         self.place_hbox),
+                        (only_close_label, only_close_switch),
+                        Gtk.Separator(),
+                        WidgetFactory.create('ComboBox',
+                            label=self.utext_titlebar_wheel,
+                            key='/apps/gwd/mouse_wheel_action',
+                            enable_reset=True,
+                            backend='gconf',
+                            texts=[_('None'), _('Roll up')],
+                            values=['none', 'shade']),
+                        WidgetFactory.create('ComboBox',
+                            label=self.utext_titlebar_double,
+                            key='/apps/metacity/general/action_double_click_titlebar',
+                            enable_reset=True,
+                            backend='gconf',
+                            texts=[_('None'), _('Maximize'), \
+                                    _('Minimize'), _('Roll up'), \
+                                    _('Lower'), _('Menu')],
+                            values=['none', 'toggle_maximize', \
+                                    'minimize', 'toggle_shade', \
+                                    'lower', 'menu']),
+                        WidgetFactory.create('ComboBox',
+                            label=self.utext_titlebar_middle,
+                            key='/apps/metacity/general/action_middle_click_titlebar',
+                            enable_reset=True,
+                            backend="gconf",
+                            texts=[_('None'), _('Maximize'), \
+                                   _('Maximize Horizontally'), \
+                                   _('Maximize Vertically'), \
+                                   _('Minimize'), _('Roll up'), \
+                                   _('Lower'), _('Menu')],
+                                   values=['none', 'toggle_maximize', \
+                                           'toggle_maximize_horizontally', \
+                                           'toggle_maximize_vertically', \
+                                           'minimize', 'toggle_shade', \
+                                           'lower', 'menu']),
+                        WidgetFactory.create('ComboBox',
+                            label=self.utext_titlebar_right,
+                            key='/apps/metacity/general/action_right_click_titlebar',
+                            enable_reset=True,
+                            backend="gconf",
+                            texts=[_('None'), _('Maximize'), \
+                                    _('Maximize Horizontally'), \
+                                    _('Maximize Vertically'), \
+                                    _('Minimize'), _('Roll up'), \
+                                    _('Lower'), _('Menu')],
+                            values=['none', 'toggle_maximize', \
+                                    'toggle_maximize_horizontally', \
+                                    'toggle_maximize_vertically', \
+                                    'minimize', 'toggle_shade', \
+                                    'lower', 'menu']),
+                    )
+
+            self.add_start(box)
 
     def on_switch_activate(self, widget, value):
         if widget.get_active():
