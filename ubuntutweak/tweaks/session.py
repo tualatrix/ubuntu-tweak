@@ -20,6 +20,7 @@ import os
 
 from gi.repository import Gtk, Gio
 
+from ubuntutweak import system
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.factory import WidgetFactory
 from ubuntutweak.gui.containers import ListPack, TablePack, GridPack
@@ -45,11 +46,15 @@ class Session(TweakModule):
     def __init__(self):
         TweakModule.__init__(self)
 
-        user_indicator_label, user_menu_switch, reset_button = WidgetFactory.create("Switch",
-                                  label=self.utext_user_indicator,
-                                  enable_reset=True,
-                                  backend="gsettings",
-                                  key='com.canonical.indicator.session.user-show-menu')
+        if system.CODENAME == 'quantal':
+            user_indicator_label, user_menu_switch, reset_button = None, None, None
+        else:
+            user_indicator_label, user_menu_switch, reset_button = WidgetFactory.create("Switch",
+                                      label=self.utext_user_indicator,
+                                      enable_reset=True,
+                                      backend="gsettings",
+                                      key='com.canonical.indicator.session.user-show-menu')
+
         lockscreen_button, lockscreen_reset_button = WidgetFactory.create("CheckButton",
                      label=self.utext_lock_screen,
                      key="org.gnome.desktop.lockdown.disable-lock-screen",
