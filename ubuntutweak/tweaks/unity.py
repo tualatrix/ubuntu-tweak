@@ -43,6 +43,7 @@ class Unity(TweakModule):
     utext_overlay = _('Shortcut hints overlay:')
     utext_launcher_size = _('Launcher icon size:')
     utext_launcher_opacity = _('Launcher opacity:')
+    utext_web_apps_integration = _('Web Apps integration:')
     utext_launcher_hide = _('Launcher hide mode:')
     utext_launcher_backlight = _('Launcher icon backlight:')
     utext_device = _('Launcher show devices:')
@@ -82,6 +83,11 @@ class Unity(TweakModule):
                             label=self.utext_overlay,
                             key="unityshell.shortcut_overlay",
                             backend="compiz",
+                            enable_reset=True),
+                        WidgetFactory.create("Switch",
+                            label=self.utext_web_apps_integration,
+                            key="com.canonical.unity.webapps.integration-allowed",
+                            backend="gsettings",
                             enable_reset=True),
                         Gtk.Separator(),
                         WidgetFactory.create("Switch",
