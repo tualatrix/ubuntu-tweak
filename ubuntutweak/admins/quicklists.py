@@ -274,10 +274,11 @@ class QuickLists(TweakModule):
                                         entry))
             except Exception, e:
                 log_traceback(log)
-                self.icon_model.append((path,
-                                        icon.get_from_name('plugin-unityshell', size=32),
-                                        self.QUANTAL_SPECIFIC_ITEMS[path],
-                                        None))
+                if path in self.QUANTAL_SPECIFIC_ITEMS.keys():
+                    self.icon_model.append((path,
+                                            icon.get_from_name('plugin-unityshell', size=32),
+                                            self.QUANTAL_SPECIFIC_ITEMS[path],
+                                            None))
 
         first_iter = self.icon_model.get_iter_first()
         if first_iter:
