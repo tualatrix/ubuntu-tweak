@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-12 15:17+0800\n"
+"POT-Creation-Date: 2012-10-30 16:27+0800\n"
 "PO-Revision-Date: 2012-10-09 13:00+0000\n"
 "Last-Translator: Сергій Гордієнко <phrippy2@gmail.com>\n"
 "Language-Team: Ukrainian <linux@linux.org.ua>\n"
@@ -18,8 +18,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2012-10-21 10:48+0000\n"
-"X-Generator: Launchpad (build 16165)\n"
+"X-Launchpad-Export-Date: 2012-11-04 07:41+0000\n"
+"X-Generator: Launchpad (build 16218)\n"
 
 #: ../data/script-worker:57
 #, c-format
@@ -127,7 +127,7 @@ msgstr "Перемістити вгору"
 msgid "Move Down"
 msgstr "Перемістити вниз"
 
-#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:89
+#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:91
 msgid "Install"
 msgstr "Встановити"
 
@@ -466,20 +466,20 @@ msgstr "Налаштування назви:"
 msgid "R_eset"
 msgstr "С_кинути"
 
-#: ../ubuntutweak/system/__init__.py:42
+#: ../ubuntutweak/system/__init__.py:43
 msgid "GNOME Classic"
 msgstr "Класичний GNOME"
 
-#: ../ubuntutweak/system/__init__.py:44
+#: ../ubuntutweak/system/__init__.py:45
 msgid "GNOME Fallback"
 msgstr "GNOME у режимі сумісності"
 
-#: ../ubuntutweak/system/__init__.py:55
+#: ../ubuntutweak/system/__init__.py:56
 #, python-format
 msgid "Unknown (%s)"
 msgstr "Невідома (%s)"
 
-#: ../ubuntutweak/system/__init__.py:57
+#: ../ubuntutweak/system/__init__.py:58
 #: ../ubuntutweak/clips/hardwareinfo.py:16
 msgid "Unknown"
 msgstr "Невідомо"
@@ -502,8 +502,8 @@ msgid "Error happened!"
 msgstr "Виникла помилка!"
 
 #: ../ubuntutweak/network/utdata.py:50 ../ubuntutweak/network/utdata.py:83
-#: ../ubuntutweak/tweaks/unity.py:67 ../ubuntutweak/tweaks/unity.py:70
-#: ../ubuntutweak/tweaks/unity.py:137 ../ubuntutweak/tweaks/unity.py:205
+#: ../ubuntutweak/tweaks/unity.py:68 ../ubuntutweak/tweaks/unity.py:71
+#: ../ubuntutweak/tweaks/unity.py:143 ../ubuntutweak/tweaks/unity.py:211
 msgid "Never"
 msgstr "Ніколи"
 
@@ -692,12 +692,12 @@ msgstr "Програми"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:80
 #: ../ubuntutweak/admins/userdir.py:34 ../ubuntutweak/modules/__init__.py:32
-#: ../ubuntutweak/tweaks/unity.py:148
+#: ../ubuntutweak/tweaks/unity.py:154
 msgid "Desktop"
 msgstr "Стільниця"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:106
-#: ../ubuntutweak/apps/__init__.py:336
+#: ../ubuntutweak/apps/__init__.py:371
 msgid "Category"
 msgstr "Категорія"
 
@@ -911,7 +911,7 @@ msgstr ""
 "Вам потрібно спочатку від’єднати <b>\"%(SOURCE)s\"</b>, щоб продовжити."
 
 #: ../ubuntutweak/admins/sourcecenter.py:903
-#: ../ubuntutweak/apps/__init__.py:169
+#: ../ubuntutweak/apps/__init__.py:199
 msgid "New source has been enabled"
 msgstr "Новий репозиторій був включений"
 
@@ -1347,29 +1347,41 @@ msgstr "_Відновити"
 msgid "_Change"
 msgstr "_Змінити"
 
-#: ../ubuntutweak/admins/quicklists.py:208
+#: ../ubuntutweak/admins/quicklists.py:209
 msgid "QuickLists Editor"
 msgstr "Редактор списків дій"
 
-#: ../ubuntutweak/admins/quicklists.py:209
+#: ../ubuntutweak/admins/quicklists.py:210
 msgid "Unity Launcher QuickLists Editor"
 msgstr ""
 
-#: ../ubuntutweak/admins/quicklists.py:402
+#: ../ubuntutweak/admins/quicklists.py:228
+msgid "Running Apps"
+msgstr ""
+
+#: ../ubuntutweak/admins/quicklists.py:229
+msgid "Workspace Switcher"
+msgstr ""
+
+#: ../ubuntutweak/admins/quicklists.py:230
+msgid "Devices"
+msgstr ""
+
+#: ../ubuntutweak/admins/quicklists.py:421
 #, python-format
 msgid "Would you like to reset \"%s\"?"
 msgstr "Скинути «%s»?"
 
-#: ../ubuntutweak/admins/quicklists.py:403
+#: ../ubuntutweak/admins/quicklists.py:422
 #, python-format
 msgid "If you continue, the actions of %s will be set to default."
 msgstr "Якщо ви продовжите, значення «%s» скинуться на стандартні."
 
-#: ../ubuntutweak/admins/quicklists.py:416
+#: ../ubuntutweak/admins/quicklists.py:435
 msgid "Would you like to reset the launcher items?"
 msgstr "Скинути розміщення значків на панелі запуску?"
 
-#: ../ubuntutweak/admins/quicklists.py:417
+#: ../ubuntutweak/admins/quicklists.py:436
 msgid ""
 "If you continue, launcher will be set to default and all your current items "
 "will be lost."
@@ -1533,8 +1545,10 @@ msgstr "Команда %d"
 #: ../ubuntutweak/admins/shortcuts.py:200
 #: ../ubuntutweak/admins/filetypemanager.py:178
 #: ../ubuntutweak/admins/filetypemanager.py:202
-#: ../ubuntutweak/tweaks/window.py:77 ../ubuntutweak/tweaks/window.py:84
-#: ../ubuntutweak/tweaks/window.py:95 ../ubuntutweak/tweaks/window.py:110
+#: ../ubuntutweak/tweaks/window.py:79 ../ubuntutweak/tweaks/window.py:86
+#: ../ubuntutweak/tweaks/window.py:97 ../ubuntutweak/tweaks/window.py:108
+#: ../ubuntutweak/tweaks/window.py:128 ../ubuntutweak/tweaks/window.py:135
+#: ../ubuntutweak/tweaks/window.py:146 ../ubuntutweak/tweaks/window.py:161
 msgid "None"
 msgstr "Немає"
 
@@ -1576,7 +1590,7 @@ msgid "Application"
 msgstr "Програма"
 
 #: ../ubuntutweak/admins/filetypemanager.py:50
-#: ../ubuntutweak/apps/__init__.py:355
+#: ../ubuntutweak/apps/__init__.py:390
 msgid "All"
 msgstr "Все"
 
@@ -1645,7 +1659,7 @@ msgstr "Інше"
 msgid "More"
 msgstr "Більше"
 
-#: ../ubuntutweak/modules/__init__.py:426
+#: ../ubuntutweak/modules/__init__.py:427
 #, python-format
 msgid ""
 "Ubuntu Tweak has detected that your apt configuration is broken.\n"
@@ -1669,7 +1683,7 @@ msgstr ""
 "\n"
 "А також ви можете надіслати повідомлення про помилку розробнику."
 
-#: ../ubuntutweak/modules/__init__.py:436
+#: ../ubuntutweak/modules/__init__.py:437
 #, python-format
 msgid ""
 "Ubuntu Tweak has detected that your apt list file is broken.\n"
@@ -1742,44 +1756,44 @@ msgstr ""
 "Примітка: вимикання цієї опції зробить робочий стіл недоступним для "
 "натискань мишею."
 
-#: ../ubuntutweak/tweaks/theme.py:36
+#: ../ubuntutweak/tweaks/theme.py:37
 msgid "Theme"
 msgstr "Тема"
 
-#: ../ubuntutweak/tweaks/theme.py:37
+#: ../ubuntutweak/tweaks/theme.py:38
 msgid "Set the gtk theme, icon theme, cursor theme and others"
 msgstr "Вибрати GTK тему, тему піктограм, тему курсора та інше"
 
-#: ../ubuntutweak/tweaks/theme.py:41 ../ubuntutweak/tweaks/loginsettings.py:47
+#: ../ubuntutweak/tweaks/theme.py:42 ../ubuntutweak/tweaks/loginsettings.py:47
 msgid "Icon theme:"
 msgstr "Тема піктограм:"
 
-#: ../ubuntutweak/tweaks/theme.py:42 ../ubuntutweak/tweaks/loginsettings.py:46
+#: ../ubuntutweak/tweaks/theme.py:43 ../ubuntutweak/tweaks/loginsettings.py:46
 msgid "Gtk theme:"
 msgstr "Тема GTK:"
 
-#: ../ubuntutweak/tweaks/theme.py:43
+#: ../ubuntutweak/tweaks/theme.py:44
 msgid "Cursor theme:"
 msgstr "Тема курсора:"
 
-#: ../ubuntutweak/tweaks/theme.py:44
+#: ../ubuntutweak/tweaks/theme.py:45
 msgid "Window theme:"
 msgstr "Тема рамки вікна:"
 
-#: ../ubuntutweak/tweaks/theme.py:89
+#: ../ubuntutweak/tweaks/theme.py:102
 msgid "Install theme:"
 msgstr "Встановити тему:"
 
-#: ../ubuntutweak/tweaks/theme.py:99
+#: ../ubuntutweak/tweaks/theme.py:112
 msgid "Theme file is invalid"
 msgstr "Недійсний файл теми оформлення"
 
-#: ../ubuntutweak/tweaks/theme.py:105
+#: ../ubuntutweak/tweaks/theme.py:118
 #, python-format
 msgid "\"%s\" installed successfully"
 msgstr "\"%s\" успішно встановлено"
 
-#: ../ubuntutweak/tweaks/theme.py:106
+#: ../ubuntutweak/tweaks/theme.py:119
 #, python-format
 msgid "Would you like to set your icon theme to \"%s\" immediatelly?"
 msgstr "Встановити тему значків «%s» негайно?"
@@ -1792,60 +1806,66 @@ msgstr "Вікно"
 msgid "Manage Window Manager settings"
 msgstr "Змінити параметри диспетчера вікон"
 
-#: ../ubuntutweak/tweaks/window.py:48
+#: ../ubuntutweak/tweaks/window.py:49
 msgid "Window control button position:"
 msgstr "Розміщення кнопок управління вікном"
 
-#: ../ubuntutweak/tweaks/window.py:49
+#: ../ubuntutweak/tweaks/window.py:50
 msgid "\"Close\" button only"
 msgstr "Тільки кнопка \"Зачинити\""
 
-#: ../ubuntutweak/tweaks/window.py:50
+#: ../ubuntutweak/tweaks/window.py:51
 msgid "Titlebar mouse wheel action:"
 msgstr "При прокрутці колеса миші над заголовком вікна:"
 
-#: ../ubuntutweak/tweaks/window.py:51
+#: ../ubuntutweak/tweaks/window.py:52
 msgid "Titlebar double-click action:"
 msgstr "При подвійному кліку по заголовку вікна"
 
-#: ../ubuntutweak/tweaks/window.py:52
+#: ../ubuntutweak/tweaks/window.py:53
 msgid "Titlebar middle-click action:"
 msgstr "При натисненні середньої кнопки миші на заголовку вікна"
 
-#: ../ubuntutweak/tweaks/window.py:53
+#: ../ubuntutweak/tweaks/window.py:54
 msgid "Titlebar right-click action:"
 msgstr "При натисненні правої кнопки миші на заголовку вікна"
 
-#: ../ubuntutweak/tweaks/window.py:77 ../ubuntutweak/tweaks/window.py:85
-#: ../ubuntutweak/tweaks/window.py:98 ../ubuntutweak/tweaks/window.py:113
+#: ../ubuntutweak/tweaks/window.py:79 ../ubuntutweak/tweaks/window.py:87
+#: ../ubuntutweak/tweaks/window.py:98 ../ubuntutweak/tweaks/window.py:109
+#: ../ubuntutweak/tweaks/window.py:128 ../ubuntutweak/tweaks/window.py:136
+#: ../ubuntutweak/tweaks/window.py:149 ../ubuntutweak/tweaks/window.py:164
 msgid "Roll up"
 msgstr "Згорнути в заголовок"
 
-#: ../ubuntutweak/tweaks/window.py:84 ../ubuntutweak/tweaks/window.py:95
-#: ../ubuntutweak/tweaks/window.py:110
+#: ../ubuntutweak/tweaks/window.py:86 ../ubuntutweak/tweaks/window.py:97
+#: ../ubuntutweak/tweaks/window.py:108 ../ubuntutweak/tweaks/window.py:135
+#: ../ubuntutweak/tweaks/window.py:146 ../ubuntutweak/tweaks/window.py:161
 msgid "Maximize"
 msgstr "Розгорнути"
 
-#: ../ubuntutweak/tweaks/window.py:85 ../ubuntutweak/tweaks/window.py:98
-#: ../ubuntutweak/tweaks/window.py:113
+#: ../ubuntutweak/tweaks/window.py:87 ../ubuntutweak/tweaks/window.py:98
+#: ../ubuntutweak/tweaks/window.py:109 ../ubuntutweak/tweaks/window.py:136
+#: ../ubuntutweak/tweaks/window.py:149 ../ubuntutweak/tweaks/window.py:164
 msgid "Minimize"
 msgstr "Згорнути"
 
-#: ../ubuntutweak/tweaks/window.py:86 ../ubuntutweak/tweaks/window.py:99
-#: ../ubuntutweak/tweaks/window.py:114
+#: ../ubuntutweak/tweaks/window.py:88 ../ubuntutweak/tweaks/window.py:99
+#: ../ubuntutweak/tweaks/window.py:110 ../ubuntutweak/tweaks/window.py:137
+#: ../ubuntutweak/tweaks/window.py:150 ../ubuntutweak/tweaks/window.py:165
 msgid "Lower"
 msgstr "Знизити"
 
-#: ../ubuntutweak/tweaks/window.py:86 ../ubuntutweak/tweaks/window.py:99
-#: ../ubuntutweak/tweaks/window.py:114
+#: ../ubuntutweak/tweaks/window.py:88 ../ubuntutweak/tweaks/window.py:99
+#: ../ubuntutweak/tweaks/window.py:110 ../ubuntutweak/tweaks/window.py:137
+#: ../ubuntutweak/tweaks/window.py:150 ../ubuntutweak/tweaks/window.py:165
 msgid "Menu"
 msgstr "Меню"
 
-#: ../ubuntutweak/tweaks/window.py:96 ../ubuntutweak/tweaks/window.py:111
+#: ../ubuntutweak/tweaks/window.py:147 ../ubuntutweak/tweaks/window.py:162
 msgid "Maximize Horizontally"
 msgstr "Збільшити по горизонталі"
 
-#: ../ubuntutweak/tweaks/window.py:97 ../ubuntutweak/tweaks/window.py:112
+#: ../ubuntutweak/tweaks/window.py:148 ../ubuntutweak/tweaks/window.py:163
 msgid "Maximize Vertically"
 msgstr "Збільшити по вертикалі"
 
@@ -1895,39 +1915,39 @@ msgstr "Максимальний розмір файлів мініатюр (М�
 msgid "File browser:"
 msgstr "Програма перегляду файлів:"
 
-#: ../ubuntutweak/tweaks/session.py:29
+#: ../ubuntutweak/tweaks/session.py:30
 msgid "Session Indicator"
 msgstr "Індикатор сеансу"
 
-#: ../ubuntutweak/tweaks/session.py:30
+#: ../ubuntutweak/tweaks/session.py:31
 msgid "Control your system session releated features"
 msgstr "Властивості засобів керування сеансом"
 
-#: ../ubuntutweak/tweaks/session.py:34
+#: ../ubuntutweak/tweaks/session.py:35
 msgid "User indicator"
 msgstr "Індикатор користувача"
 
-#: ../ubuntutweak/tweaks/session.py:35
+#: ../ubuntutweak/tweaks/session.py:36
 msgid "Disable \"Lock Screen\""
 msgstr "Вимкнути «Заблокувати екран»"
 
-#: ../ubuntutweak/tweaks/session.py:36
+#: ../ubuntutweak/tweaks/session.py:37
 msgid "Show user's real name on the panel"
 msgstr "Відображати справжнє ім’я користувача на панелі"
 
-#: ../ubuntutweak/tweaks/session.py:37
+#: ../ubuntutweak/tweaks/session.py:38
 msgid "Remove the log out item"
 msgstr "Видалити пункт \"Завершити сеанс…\""
 
-#: ../ubuntutweak/tweaks/session.py:38
+#: ../ubuntutweak/tweaks/session.py:39
 msgid "Remove the shutdown item"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/session.py:39
+#: ../ubuntutweak/tweaks/session.py:40
 msgid "Suppress the dialog to confirm logout and shutdown action"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/session.py:68
+#: ../ubuntutweak/tweaks/session.py:73
 msgid "Session indicator:"
 msgstr "Індикатор сеансу"
 
@@ -2051,7 +2071,7 @@ msgstr "Час блимання курсору"
 msgid "Cursor blink timeout:"
 msgstr "Пауза між блиманням курсору"
 
-#: ../ubuntutweak/tweaks/misc.py:60 ../ubuntutweak/tweaks/unity.py:181
+#: ../ubuntutweak/tweaks/misc.py:60 ../ubuntutweak/tweaks/unity.py:187
 msgid "Note: you may need to log out to take effect"
 msgstr ""
 "Зауваження: можливо, доведеться завершити сеанс, щоб зміни вступили в силу"
@@ -2093,71 +2113,71 @@ msgstr "Вибрати нове зображення фону"
 msgid "All images"
 msgstr "Всі зображення"
 
-#: ../ubuntutweak/tweaks/fonts.py:26
+#: ../ubuntutweak/tweaks/fonts.py:27
 msgid "Fonts"
 msgstr "Шрифти"
 
-#: ../ubuntutweak/tweaks/fonts.py:27
+#: ../ubuntutweak/tweaks/fonts.py:28
 msgid "Fonts Settings"
 msgstr "Налаштування шрифтів"
 
-#: ../ubuntutweak/tweaks/fonts.py:32
+#: ../ubuntutweak/tweaks/fonts.py:33
 msgid "Text scaling factor:"
 msgstr "Масштабування тексту:"
 
-#: ../ubuntutweak/tweaks/fonts.py:33
+#: ../ubuntutweak/tweaks/fonts.py:34
 msgid "Default font:"
 msgstr "Шрифт за замовчуванням"
 
-#: ../ubuntutweak/tweaks/fonts.py:34
+#: ../ubuntutweak/tweaks/fonts.py:35
 msgid "Monospace font:"
 msgstr "Моноширинний шрифт:"
 
-#: ../ubuntutweak/tweaks/fonts.py:35
+#: ../ubuntutweak/tweaks/fonts.py:36
 msgid "Document font:"
 msgstr "Шрифт документу:"
 
-#: ../ubuntutweak/tweaks/fonts.py:36
+#: ../ubuntutweak/tweaks/fonts.py:37
 msgid "Window title bar font:"
 msgstr "Шрифт заголовку вікна"
 
-#: ../ubuntutweak/tweaks/fonts.py:37
+#: ../ubuntutweak/tweaks/fonts.py:38
 msgid "Hinting:"
 msgstr "Уточнення:"
 
-#: ../ubuntutweak/tweaks/fonts.py:38
+#: ../ubuntutweak/tweaks/fonts.py:39
 msgid "Antialiasing:"
 msgstr "Згладжування:"
 
-#: ../ubuntutweak/tweaks/fonts.py:64
+#: ../ubuntutweak/tweaks/fonts.py:78
 msgid "Desktop font:"
 msgstr "Шрифт робочого столу:"
 
-#: ../ubuntutweak/tweaks/fonts.py:89
+#: ../ubuntutweak/tweaks/fonts.py:99
 msgid "No hinting"
 msgstr "Без уточнення"
 
-#: ../ubuntutweak/tweaks/fonts.py:90
+#: ../ubuntutweak/tweaks/fonts.py:100
 msgid "Basic"
 msgstr "Базовий"
 
-#: ../ubuntutweak/tweaks/fonts.py:91
+#: ../ubuntutweak/tweaks/fonts.py:101
 msgid "Moderate"
 msgstr "Помірний"
 
-#: ../ubuntutweak/tweaks/fonts.py:92
+#: ../ubuntutweak/tweaks/fonts.py:102
 msgid "Maximum"
 msgstr "Максимальний"
 
-#: ../ubuntutweak/tweaks/fonts.py:99
+#: ../ubuntutweak/tweaks/fonts.py:109
 msgid "No antialiasing"
 msgstr "Без згладжування"
 
-#: ../ubuntutweak/tweaks/fonts.py:100
+#: ../ubuntutweak/tweaks/fonts.py:110
 msgid "Standard grayscale antialiasing"
 msgstr "Стандартне згладжування сірих тонів"
 
-#: ../ubuntutweak/tweaks/fonts.py:101
+#: ../ubuntutweak/tweaks/fonts.py:111
 msgid "Subpixel antialiasing (LCD screens only)"
 msgstr "Субпіксельне згладжування (тільки на LCD-моніторах)"
 
@@ -2182,119 +2202,123 @@ msgid "Launcher opacity:"
 msgstr "Непрозорість панелі запуску:"
 
 #: ../ubuntutweak/tweaks/unity.py:46
+msgid "Web Apps integration:"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:47
 msgid "Launcher hide mode:"
 msgstr "Режим приховування панелі запуску:"
 
-#: ../ubuntutweak/tweaks/unity.py:47
+#: ../ubuntutweak/tweaks/unity.py:48
 msgid "Launcher icon backlight:"
 msgstr "Підсвічування значків панелі запуску:"
 
-#: ../ubuntutweak/tweaks/unity.py:48
+#: ../ubuntutweak/tweaks/unity.py:49
 msgid "Launcher show devices:"
 msgstr "Відображення значків пристроїв на панелі запуску:"
 
-#: ../ubuntutweak/tweaks/unity.py:49
+#: ../ubuntutweak/tweaks/unity.py:50
 msgid "\"Show desktop\" icon:"
 msgstr "Іконка \"Показати робочий стіл\""
 
-#: ../ubuntutweak/tweaks/unity.py:50
+#: ../ubuntutweak/tweaks/unity.py:51
 msgid "Disable \"Show Desktop\" in the switcher:"
 msgstr ""
 
-#: ../ubuntutweak/tweaks/unity.py:51
+#: ../ubuntutweak/tweaks/unity.py:52
 msgid "Dash size:"
 msgstr "Розмір головного меню:"
 
-#: ../ubuntutweak/tweaks/unity.py:52
+#: ../ubuntutweak/tweaks/unity.py:53
 msgid "Blur type:"
 msgstr "Тип розмиття:"
 
-#: ../ubuntutweak/tweaks/unity.py:53
+#: ../ubuntutweak/tweaks/unity.py:54
 msgid "Panel opacity:"
 msgstr "Непрозорість панелі меню:"
 
-#: ../ubuntutweak/tweaks/unity.py:54
+#: ../ubuntutweak/tweaks/unity.py:55
 msgid "Panel opacity for maximized windows:"
 msgstr "Непрозорість панелі меню при розгорнутому вікні:"
 
-#: ../ubuntutweak/tweaks/unity.py:55
+#: ../ubuntutweak/tweaks/unity.py:56
 msgid "Super key:"
 msgstr "Клавіша \"Super\""
 
-#: ../ubuntutweak/tweaks/unity.py:56
+#: ../ubuntutweak/tweaks/unity.py:57
 msgid "Full screen dash:"
 msgstr "Головне меню на весь екран:"
 
-#: ../ubuntutweak/tweaks/unity.py:57
+#: ../ubuntutweak/tweaks/unity.py:58
 msgid "Compositing manager:"
 msgstr "Менеджер композиції робочого столу"
 
-#: ../ubuntutweak/tweaks/unity.py:58
+#: ../ubuntutweak/tweaks/unity.py:59
 msgid "Number of workspaces:"
 msgstr "Кількість робочих областей:"
 
-#: ../ubuntutweak/tweaks/unity.py:67 ../ubuntutweak/tweaks/unity.py:70
-#: ../ubuntutweak/tweaks/unity.py:205
+#: ../ubuntutweak/tweaks/unity.py:68 ../ubuntutweak/tweaks/unity.py:71
+#: ../ubuntutweak/tweaks/unity.py:211
 msgid "Auto Hide"
 msgstr "Автоматично  приховувати"
 
-#: ../ubuntutweak/tweaks/unity.py:67
+#: ../ubuntutweak/tweaks/unity.py:68
 msgid "Dodge Window"
 msgstr "Перекривання вікнами"
 
-#: ../ubuntutweak/tweaks/unity.py:67
+#: ../ubuntutweak/tweaks/unity.py:68
 msgid "Dodge Active Window"
 msgstr "Перекривати активні вікна"
 
-#: ../ubuntutweak/tweaks/unity.py:125
+#: ../ubuntutweak/tweaks/unity.py:131
 msgid "Backlight Always On"
 msgstr "Підсвічування завжди увімкнено"
 
-#: ../ubuntutweak/tweaks/unity.py:126
+#: ../ubuntutweak/tweaks/unity.py:132
 msgid "Backlight Toggles"
 msgstr "Підсвічування перемикається"
 
-#: ../ubuntutweak/tweaks/unity.py:127
+#: ../ubuntutweak/tweaks/unity.py:133
 msgid "Backlight Always Off"
 msgstr "Підсвічування завжди вимкнено"
 
-#: ../ubuntutweak/tweaks/unity.py:128
+#: ../ubuntutweak/tweaks/unity.py:134
 msgid "Edge Illumination Toggles"
 msgstr "Перемикання підсвічування скраю"
 
-#: ../ubuntutweak/tweaks/unity.py:129
+#: ../ubuntutweak/tweaks/unity.py:135
 msgid "Backlight and Edge Illumination Toggles"
 msgstr "Перемикання підсвічування знизу і скраю"
 
-#: ../ubuntutweak/tweaks/unity.py:138
+#: ../ubuntutweak/tweaks/unity.py:144
 msgid "Only Mounted"
 msgstr "Тільки підключенні"
 
-#: ../ubuntutweak/tweaks/unity.py:139
+#: ../ubuntutweak/tweaks/unity.py:145
 msgid "Always"
 msgstr "Завжди"
 
-#: ../ubuntutweak/tweaks/unity.py:148
+#: ../ubuntutweak/tweaks/unity.py:154
 msgid "Automatic"
 msgstr "Автоматично"
 
-#: ../ubuntutweak/tweaks/unity.py:148
+#: ../ubuntutweak/tweaks/unity.py:154
 msgid "Netbook"
 msgstr "Нетбук"
 
-#: ../ubuntutweak/tweaks/unity.py:155
+#: ../ubuntutweak/tweaks/unity.py:161
 msgid "No blur"
 msgstr "Не розмивати"
 
-#: ../ubuntutweak/tweaks/unity.py:156
+#: ../ubuntutweak/tweaks/unity.py:162
 msgid "Static blur"
 msgstr "Статичне розмиття"
 
-#: ../ubuntutweak/tweaks/unity.py:157
+#: ../ubuntutweak/tweaks/unity.py:163
 msgid "Active blur"
 msgstr "Активне розмиття"
 
-#: ../ubuntutweak/tweaks/unity.py:206
+#: ../ubuntutweak/tweaks/unity.py:212
 msgid "Intellihide"
 msgstr "«Розумне» приховування"
 
@@ -2314,31 +2338,47 @@ msgstr ""
 msgid "Auto detect text encoding for Chinese in Gedit:"
 msgstr "Автоматичне визначення кодування тексту китайською в Gedit"
 
-#: ../ubuntutweak/apps/__init__.py:90
-msgid "Uninstall"
+#: ../ubuntutweak/tweaks/lovewallpaperhd.py:20
+msgid "Love Wallpaper HD"
 msgstr ""
 
-#: ../ubuntutweak/apps/__init__.py:91
-msgid "Update"
+#: ../ubuntutweak/tweaks/lovewallpaperhd.py:21
+msgid "Browse online gallery and find your wallpaper"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/lovewallpaperhd.py:48
+msgid "I'm Feeling Lucky"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/lovewallpaperhd.py:87
+msgid "Downloading Wallpaper"
 msgstr ""
 
 #: ../ubuntutweak/apps/__init__.py:92
-msgid "Installing"
+msgid "Uninstall"
 msgstr ""
 
 #: ../ubuntutweak/apps/__init__.py:93
-msgid "Uninstalling"
+msgid "Update"
 msgstr ""
 
 #: ../ubuntutweak/apps/__init__.py:94
-msgid "Updating"
+msgid "Installing"
 msgstr ""
 
 #: ../ubuntutweak/apps/__init__.py:95
+msgid "Uninstalling"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:96
+msgid "Updating"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:97
 msgid "Not Available"
 msgstr ""
 
-#: ../ubuntutweak/apps/__init__.py:170
+#: ../ubuntutweak/apps/__init__.py:200
 #, python-format
 msgid "\"%s\" is enabled now, Please click the update button to update %s"
 msgstr ""

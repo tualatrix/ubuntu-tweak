@@ -2,16 +2,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-12 15:17+0800\n"
-"PO-Revision-Date: 2012-10-19 03:49+0000\n"
+"POT-Creation-Date: 2012-10-30 16:27+0800\n"
+"PO-Revision-Date: 2012-11-04 07:39+0000\n"
 "Last-Translator: Ding Zhou <tualatrix@gmail.com>\n"
 "Language-Team: TualatriX <tualatrix@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-10-21 10:48+0000\n"
-"X-Generator: Launchpad (build 16165)\n"
+"X-Launchpad-Export-Date: 2012-11-04 07:41+0000\n"
+"X-Generator: Launchpad (build 16218)\n"
 "X-Poedit-Country: CHINA\n"
 "X-Poedit-Language: Chinese\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -120,7 +120,7 @@ msgstr "上移"
 msgid "Move Down"
 msgstr "下移"
 
-#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:89
+#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:91
 msgid "Install"
 msgstr "安装"
 
@@ -442,20 +442,20 @@ msgstr "设置名称："
 msgid "R_eset"
 msgstr "重置(_E)"
 
-#: ../ubuntutweak/system/__init__.py:42
+#: ../ubuntutweak/system/__init__.py:43
 msgid "GNOME Classic"
 msgstr "GNOME经典"
 
-#: ../ubuntutweak/system/__init__.py:44
+#: ../ubuntutweak/system/__init__.py:45
 msgid "GNOME Fallback"
 msgstr "GNOME 备用模式(Fallback)"
 
-#: ../ubuntutweak/system/__init__.py:55
+#: ../ubuntutweak/system/__init__.py:56
 #, python-format
 msgid "Unknown (%s)"
 msgstr "未知 (%s)"
 
-#: ../ubuntutweak/system/__init__.py:57
+#: ../ubuntutweak/system/__init__.py:58
 #: ../ubuntutweak/clips/hardwareinfo.py:16
 msgid "Unknown"
 msgstr "未知"
@@ -478,8 +478,8 @@ msgid "Error happened!"
 msgstr "有错误发生！"
 
 #: ../ubuntutweak/network/utdata.py:50 ../ubuntutweak/network/utdata.py:83
-#: ../ubuntutweak/tweaks/unity.py:67 ../ubuntutweak/tweaks/unity.py:70
-#: ../ubuntutweak/tweaks/unity.py:137 ../ubuntutweak/tweaks/unity.py:205
+#: ../ubuntutweak/tweaks/unity.py:68 ../ubuntutweak/tweaks/unity.py:71
+#: ../ubuntutweak/tweaks/unity.py:143 ../ubuntutweak/tweaks/unity.py:211
 msgid "Never"
 msgstr "从不"
 
@@ -655,12 +655,12 @@ msgstr "应用程序"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:80
 #: ../ubuntutweak/admins/userdir.py:34 ../ubuntutweak/modules/__init__.py:32
-#: ../ubuntutweak/tweaks/unity.py:148
+#: ../ubuntutweak/tweaks/unity.py:154
 msgid "Desktop"
 msgstr "桌面"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:106
-#: ../ubuntutweak/apps/__init__.py:336
+#: ../ubuntutweak/apps/__init__.py:371
 msgid "Category"
 msgstr "分类"
 
@@ -860,7 +860,7 @@ msgstr ""
 "如果想要继续请先禁用 <b>\"%(SOURCE)s\"</b>。"
 
 #: ../ubuntutweak/admins/sourcecenter.py:903
-#: ../ubuntutweak/apps/__init__.py:169
+#: ../ubuntutweak/apps/__init__.py:199
 msgid "New source has been enabled"
 msgstr "新的源已经被启用"
 
@@ -1284,29 +1284,41 @@ msgstr "还原(_R)"
 msgid "_Change"
 msgstr "更改(_C)"
 
-#: ../ubuntutweak/admins/quicklists.py:208
+#: ../ubuntutweak/admins/quicklists.py:209
 msgid "QuickLists Editor"
 msgstr "QuickLists编辑器"
 
-#: ../ubuntutweak/admins/quicklists.py:209
+#: ../ubuntutweak/admins/quicklists.py:210
 msgid "Unity Launcher QuickLists Editor"
 msgstr "Unity启动器之QuickLists编辑器"
 
-#: ../ubuntutweak/admins/quicklists.py:402
+#: ../ubuntutweak/admins/quicklists.py:228
+msgid "Running Apps"
+msgstr "正在运行的Apps"
+
+#: ../ubuntutweak/admins/quicklists.py:229
+msgid "Workspace Switcher"
+msgstr "工作区切换器"
+
+#: ../ubuntutweak/admins/quicklists.py:230
+msgid "Devices"
+msgstr "设备"
+
+#: ../ubuntutweak/admins/quicklists.py:421
 #, python-format
 msgid "Would you like to reset \"%s\"?"
 msgstr "您想要重置\"%s\"吗？"
 
-#: ../ubuntutweak/admins/quicklists.py:403
+#: ../ubuntutweak/admins/quicklists.py:422
 #, python-format
 msgid "If you continue, the actions of %s will be set to default."
 msgstr "如果您继续，%s的所有动作将被设置为默认。"
 
-#: ../ubuntutweak/admins/quicklists.py:416
+#: ../ubuntutweak/admins/quicklists.py:435
 msgid "Would you like to reset the launcher items?"
 msgstr "您想要重置启动器的条目吗？"
 
-#: ../ubuntutweak/admins/quicklists.py:417
+#: ../ubuntutweak/admins/quicklists.py:436
 msgid ""
 "If you continue, launcher will be set to default and all your current items "
 "will be lost."
@@ -1469,8 +1481,10 @@ msgstr "命令 %d"
 #: ../ubuntutweak/admins/shortcuts.py:200
 #: ../ubuntutweak/admins/filetypemanager.py:178
 #: ../ubuntutweak/admins/filetypemanager.py:202
-#: ../ubuntutweak/tweaks/window.py:77 ../ubuntutweak/tweaks/window.py:84
-#: ../ubuntutweak/tweaks/window.py:95 ../ubuntutweak/tweaks/window.py:110
+#: ../ubuntutweak/tweaks/window.py:79 ../ubuntutweak/tweaks/window.py:86
+#: ../ubuntutweak/tweaks/window.py:97 ../ubuntutweak/tweaks/window.py:108
+#: ../ubuntutweak/tweaks/window.py:128 ../ubuntutweak/tweaks/window.py:135
+#: ../ubuntutweak/tweaks/window.py:146 ../ubuntutweak/tweaks/window.py:161
 msgid "None"
 msgstr "没有"
 
@@ -1512,7 +1526,7 @@ msgid "Application"
 msgstr "应用程序"
 
 #: ../ubuntutweak/admins/filetypemanager.py:50
-#: ../ubuntutweak/apps/__init__.py:355
+#: ../ubuntutweak/apps/__init__.py:390
 msgid "All"
 msgstr "所有"
 
@@ -1579,7 +1593,7 @@ msgstr "其它"
 msgid "More"
 msgstr "更多"
 
-#: ../ubuntutweak/modules/__init__.py:426
+#: ../ubuntutweak/modules/__init__.py:427
 #, python-format
 msgid ""
 "Ubuntu Tweak has detected that your apt configuration is broken.\n"
@@ -1604,7 +1618,7 @@ msgstr ""
 "\n"
 "或者您也可以将错误信息提交给开发者以寻求帮助："
 
-#: ../ubuntutweak/modules/__init__.py:436
+#: ../ubuntutweak/modules/__init__.py:437
 #, python-format
 msgid ""
 "Ubuntu Tweak has detected that your apt list file is broken.\n"
@@ -1675,44 +1689,44 @@ msgstr "显示\"主目录\"的内容"
 msgid "Note: switch off this option will make the desktop unclickable"
 msgstr "注意：关闭这个选项将会使桌面无法点击"
 
-#: ../ubuntutweak/tweaks/theme.py:36
+#: ../ubuntutweak/tweaks/theme.py:37
 msgid "Theme"
 msgstr "主题"
 
-#: ../ubuntutweak/tweaks/theme.py:37
+#: ../ubuntutweak/tweaks/theme.py:38
 msgid "Set the gtk theme, icon theme, cursor theme and others"
 msgstr "设置 GTK 主题、图标主题、指针主题及其它"
 
-#: ../ubuntutweak/tweaks/theme.py:41 ../ubuntutweak/tweaks/loginsettings.py:47
+#: ../ubuntutweak/tweaks/theme.py:42 ../ubuntutweak/tweaks/loginsettings.py:47
 msgid "Icon theme:"
 msgstr "图标主题："
 
-#: ../ubuntutweak/tweaks/theme.py:42 ../ubuntutweak/tweaks/loginsettings.py:46
+#: ../ubuntutweak/tweaks/theme.py:43 ../ubuntutweak/tweaks/loginsettings.py:46
 msgid "Gtk theme:"
 msgstr "GTK主题："
 
-#: ../ubuntutweak/tweaks/theme.py:43
+#: ../ubuntutweak/tweaks/theme.py:44
 msgid "Cursor theme:"
 msgstr "光标主题："
 
-#: ../ubuntutweak/tweaks/theme.py:44
+#: ../ubuntutweak/tweaks/theme.py:45
 msgid "Window theme:"
 msgstr "窗口主题："
 
-#: ../ubuntutweak/tweaks/theme.py:89
+#: ../ubuntutweak/tweaks/theme.py:102
 msgid "Install theme:"
 msgstr "安装主题："
 
-#: ../ubuntutweak/tweaks/theme.py:99
+#: ../ubuntutweak/tweaks/theme.py:112
 msgid "Theme file is invalid"
 msgstr "主题文件无效"
 
-#: ../ubuntutweak/tweaks/theme.py:105
+#: ../ubuntutweak/tweaks/theme.py:118
 #, python-format
 msgid "\"%s\" installed successfully"
 msgstr "\"%s\"安装成功"
 
-#: ../ubuntutweak/tweaks/theme.py:106
+#: ../ubuntutweak/tweaks/theme.py:119
 #, python-format
 msgid "Would you like to set your icon theme to \"%s\" immediatelly?"
 msgstr "您想要立即设置图标主题为\"%s\"吗？"
@@ -1725,60 +1739,66 @@ msgstr "窗口"
 msgid "Manage Window Manager settings"
 msgstr "管理窗口管理器的设置"
 
-#: ../ubuntutweak/tweaks/window.py:48
+#: ../ubuntutweak/tweaks/window.py:49
 msgid "Window control button position:"
 msgstr "窗口控制按钮位置："
 
-#: ../ubuntutweak/tweaks/window.py:49
+#: ../ubuntutweak/tweaks/window.py:50
 msgid "\"Close\" button only"
 msgstr "仅使用\"关闭\"按钮"
 
-#: ../ubuntutweak/tweaks/window.py:50
+#: ../ubuntutweak/tweaks/window.py:51
 msgid "Titlebar mouse wheel action:"
 msgstr "标题栏鼠标滚轮动作："
 
-#: ../ubuntutweak/tweaks/window.py:51
+#: ../ubuntutweak/tweaks/window.py:52
 msgid "Titlebar double-click action:"
 msgstr "标题栏双击动作："
 
-#: ../ubuntutweak/tweaks/window.py:52
+#: ../ubuntutweak/tweaks/window.py:53
 msgid "Titlebar middle-click action:"
 msgstr "标题栏中键动作："
 
-#: ../ubuntutweak/tweaks/window.py:53
+#: ../ubuntutweak/tweaks/window.py:54
 msgid "Titlebar right-click action:"
 msgstr "标题栏右键动作："
 
-#: ../ubuntutweak/tweaks/window.py:77 ../ubuntutweak/tweaks/window.py:85
-#: ../ubuntutweak/tweaks/window.py:98 ../ubuntutweak/tweaks/window.py:113
+#: ../ubuntutweak/tweaks/window.py:79 ../ubuntutweak/tweaks/window.py:87
+#: ../ubuntutweak/tweaks/window.py:98 ../ubuntutweak/tweaks/window.py:109
+#: ../ubuntutweak/tweaks/window.py:128 ../ubuntutweak/tweaks/window.py:136
+#: ../ubuntutweak/tweaks/window.py:149 ../ubuntutweak/tweaks/window.py:164
 msgid "Roll up"
 msgstr "卷起"
 
-#: ../ubuntutweak/tweaks/window.py:84 ../ubuntutweak/tweaks/window.py:95
-#: ../ubuntutweak/tweaks/window.py:110
+#: ../ubuntutweak/tweaks/window.py:86 ../ubuntutweak/tweaks/window.py:97
+#: ../ubuntutweak/tweaks/window.py:108 ../ubuntutweak/tweaks/window.py:135
+#: ../ubuntutweak/tweaks/window.py:146 ../ubuntutweak/tweaks/window.py:161
 msgid "Maximize"
 msgstr "最大化"
 
-#: ../ubuntutweak/tweaks/window.py:85 ../ubuntutweak/tweaks/window.py:98
-#: ../ubuntutweak/tweaks/window.py:113
+#: ../ubuntutweak/tweaks/window.py:87 ../ubuntutweak/tweaks/window.py:98
+#: ../ubuntutweak/tweaks/window.py:109 ../ubuntutweak/tweaks/window.py:136
+#: ../ubuntutweak/tweaks/window.py:149 ../ubuntutweak/tweaks/window.py:164
 msgid "Minimize"
 msgstr "最小化"
 
-#: ../ubuntutweak/tweaks/window.py:86 ../ubuntutweak/tweaks/window.py:99
-#: ../ubuntutweak/tweaks/window.py:114
+#: ../ubuntutweak/tweaks/window.py:88 ../ubuntutweak/tweaks/window.py:99
+#: ../ubuntutweak/tweaks/window.py:110 ../ubuntutweak/tweaks/window.py:137
+#: ../ubuntutweak/tweaks/window.py:150 ../ubuntutweak/tweaks/window.py:165
 msgid "Lower"
 msgstr "降至最下层"
 
-#: ../ubuntutweak/tweaks/window.py:86 ../ubuntutweak/tweaks/window.py:99
-#: ../ubuntutweak/tweaks/window.py:114
+#: ../ubuntutweak/tweaks/window.py:88 ../ubuntutweak/tweaks/window.py:99
+#: ../ubuntutweak/tweaks/window.py:110 ../ubuntutweak/tweaks/window.py:137
+#: ../ubuntutweak/tweaks/window.py:150 ../ubuntutweak/tweaks/window.py:165
 msgid "Menu"
 msgstr "弹出菜单"
 
-#: ../ubuntutweak/tweaks/window.py:96 ../ubuntutweak/tweaks/window.py:111
+#: ../ubuntutweak/tweaks/window.py:147 ../ubuntutweak/tweaks/window.py:162
 msgid "Maximize Horizontally"
 msgstr "水平方向最大化"
 
-#: ../ubuntutweak/tweaks/window.py:97 ../ubuntutweak/tweaks/window.py:112
+#: ../ubuntutweak/tweaks/window.py:148 ../ubuntutweak/tweaks/window.py:163
 msgid "Maximize Vertically"
 msgstr "垂直方向最大化"
 
@@ -1826,39 +1846,39 @@ msgstr "最大缩略图缓存尺寸（MB）："
 msgid "File browser:"
 msgstr "文件浏览："
 
-#: ../ubuntutweak/tweaks/session.py:29
+#: ../ubuntutweak/tweaks/session.py:30
 msgid "Session Indicator"
 msgstr "会话指示器"
 
-#: ../ubuntutweak/tweaks/session.py:30
+#: ../ubuntutweak/tweaks/session.py:31
 msgid "Control your system session releated features"
 msgstr "控制系统会话相关的特性"
 
-#: ../ubuntutweak/tweaks/session.py:34
+#: ../ubuntutweak/tweaks/session.py:35
 msgid "User indicator"
 msgstr "用户指示器："
 
-#: ../ubuntutweak/tweaks/session.py:35
+#: ../ubuntutweak/tweaks/session.py:36
 msgid "Disable \"Lock Screen\""
 msgstr "禁用\"锁定屏幕\""
 
-#: ../ubuntutweak/tweaks/session.py:36
+#: ../ubuntutweak/tweaks/session.py:37
 msgid "Show user's real name on the panel"
 msgstr "在面板上显示用户的名字"
 
-#: ../ubuntutweak/tweaks/session.py:37
+#: ../ubuntutweak/tweaks/session.py:38
 msgid "Remove the log out item"
 msgstr "移除登出条目"
 
-#: ../ubuntutweak/tweaks/session.py:38
+#: ../ubuntutweak/tweaks/session.py:39
 msgid "Remove the shutdown item"
 msgstr "移除关机条目"
 
-#: ../ubuntutweak/tweaks/session.py:39
+#: ../ubuntutweak/tweaks/session.py:40
 msgid "Suppress the dialog to confirm logout and shutdown action"
 msgstr "当登出或关机动作时弹出提示对话框"
 
-#: ../ubuntutweak/tweaks/session.py:68
+#: ../ubuntutweak/tweaks/session.py:73
 msgid "Session indicator:"
 msgstr "会话指示器："
 
@@ -1982,7 +2002,7 @@ msgstr "光标闪烁时间："
 msgid "Cursor blink timeout:"
 msgstr "光标闪烁超时："
 
-#: ../ubuntutweak/tweaks/misc.py:60 ../ubuntutweak/tweaks/unity.py:181
+#: ../ubuntutweak/tweaks/misc.py:60 ../ubuntutweak/tweaks/unity.py:187
 msgid "Note: you may need to log out to take effect"
 msgstr "注意：您可能需要登出以生效"
 
@@ -2022,71 +2042,71 @@ msgstr "选择一张新的背景图像"
 msgid "All images"
 msgstr "所有图像"
 
-#: ../ubuntutweak/tweaks/fonts.py:26
+#: ../ubuntutweak/tweaks/fonts.py:27
 msgid "Fonts"
 msgstr "字体"
 
-#: ../ubuntutweak/tweaks/fonts.py:27
+#: ../ubuntutweak/tweaks/fonts.py:28
 msgid "Fonts Settings"
 msgstr "字体设置"
 
-#: ../ubuntutweak/tweaks/fonts.py:32
+#: ../ubuntutweak/tweaks/fonts.py:33
 msgid "Text scaling factor:"
 msgstr "文字缩放比例："
 
-#: ../ubuntutweak/tweaks/fonts.py:33
+#: ../ubuntutweak/tweaks/fonts.py:34
 msgid "Default font:"
 msgstr "默认字体："
 
-#: ../ubuntutweak/tweaks/fonts.py:34
+#: ../ubuntutweak/tweaks/fonts.py:35
 msgid "Monospace font:"
 msgstr "等宽字体："
 
-#: ../ubuntutweak/tweaks/fonts.py:35
+#: ../ubuntutweak/tweaks/fonts.py:36
 msgid "Document font:"
 msgstr "文档字体："
 
-#: ../ubuntutweak/tweaks/fonts.py:36
+#: ../ubuntutweak/tweaks/fonts.py:37
 msgid "Window title bar font:"
 msgstr "窗口标题栏字体："
 
-#: ../ubuntutweak/tweaks/fonts.py:37
+#: ../ubuntutweak/tweaks/fonts.py:38
 msgid "Hinting:"
 msgstr "平滑："
 
-#: ../ubuntutweak/tweaks/fonts.py:38
+#: ../ubuntutweak/tweaks/fonts.py:39
 msgid "Antialiasing:"
 msgstr "反锯齿："
 
-#: ../ubuntutweak/tweaks/fonts.py:64
+#: ../ubuntutweak/tweaks/fonts.py:78
 msgid "Desktop font:"
 msgstr "桌面字体："
 
-#: ../ubuntutweak/tweaks/fonts.py:89
+#: ../ubuntutweak/tweaks/fonts.py:99
 msgid "No hinting"
 msgstr "无微调"
 
-#: ../ubuntutweak/tweaks/fonts.py:90
+#: ../ubuntutweak/tweaks/fonts.py:100
 msgid "Basic"
 msgstr "一般"
 
-#: ../ubuntutweak/tweaks/fonts.py:91
+#: ../ubuntutweak/tweaks/fonts.py:101
 msgid "Moderate"
 msgstr "适中"
 
-#: ../ubuntutweak/tweaks/fonts.py:92
+#: ../ubuntutweak/tweaks/fonts.py:102
 msgid "Maximum"
 msgstr "最大"
 
-#: ../ubuntutweak/tweaks/fonts.py:99
+#: ../ubuntutweak/tweaks/fonts.py:109
 msgid "No antialiasing"
 msgstr "无边缘平滑"
 
-#: ../ubuntutweak/tweaks/fonts.py:100
+#: ../ubuntutweak/tweaks/fonts.py:110
 msgid "Standard grayscale antialiasing"
 msgstr "标准灰度边缘平滑"
 
-#: ../ubuntutweak/tweaks/fonts.py:101
+#: ../ubuntutweak/tweaks/fonts.py:111
 msgid "Subpixel antialiasing (LCD screens only)"
 msgstr "次像素平滑(仅适用于 LCD)"
 
@@ -2111,119 +2131,123 @@ msgid "Launcher opacity:"
 msgstr "启动器透明度："
 
 #: ../ubuntutweak/tweaks/unity.py:46
+msgid "Web Apps integration:"
+msgstr "Web Apps集成："
+
+#: ../ubuntutweak/tweaks/unity.py:47
 msgid "Launcher hide mode:"
 msgstr "启动器隐藏模式："
 
-#: ../ubuntutweak/tweaks/unity.py:47
+#: ../ubuntutweak/tweaks/unity.py:48
 msgid "Launcher icon backlight:"
 msgstr "启动器图标背光："
 
-#: ../ubuntutweak/tweaks/unity.py:48
+#: ../ubuntutweak/tweaks/unity.py:49
 msgid "Launcher show devices:"
 msgstr "启动器显示设备："
 
-#: ../ubuntutweak/tweaks/unity.py:49
+#: ../ubuntutweak/tweaks/unity.py:50
 msgid "\"Show desktop\" icon:"
 msgstr "\"显示桌面\"图标"
 
-#: ../ubuntutweak/tweaks/unity.py:50
+#: ../ubuntutweak/tweaks/unity.py:51
 msgid "Disable \"Show Desktop\" in the switcher:"
 msgstr "在任务切换中禁用「显示桌面」："
 
-#: ../ubuntutweak/tweaks/unity.py:51
+#: ../ubuntutweak/tweaks/unity.py:52
 msgid "Dash size:"
 msgstr "Dash尺寸："
 
-#: ../ubuntutweak/tweaks/unity.py:52
+#: ../ubuntutweak/tweaks/unity.py:53
 msgid "Blur type:"
 msgstr "模糊类型："
 
-#: ../ubuntutweak/tweaks/unity.py:53
+#: ../ubuntutweak/tweaks/unity.py:54
 msgid "Panel opacity:"
 msgstr "面板透明度："
 
-#: ../ubuntutweak/tweaks/unity.py:54
+#: ../ubuntutweak/tweaks/unity.py:55
 msgid "Panel opacity for maximized windows:"
 msgstr "面板为最大化窗口透明："
 
-#: ../ubuntutweak/tweaks/unity.py:55
+#: ../ubuntutweak/tweaks/unity.py:56
 msgid "Super key:"
 msgstr "Super 键："
 
-#: ../ubuntutweak/tweaks/unity.py:56
+#: ../ubuntutweak/tweaks/unity.py:57
 msgid "Full screen dash:"
 msgstr "全屏Dash："
 
-#: ../ubuntutweak/tweaks/unity.py:57
+#: ../ubuntutweak/tweaks/unity.py:58
 msgid "Compositing manager:"
 msgstr "合成窗口管理器："
 
-#: ../ubuntutweak/tweaks/unity.py:58
+#: ../ubuntutweak/tweaks/unity.py:59
 msgid "Number of workspaces:"
 msgstr "工作区数目："
 
-#: ../ubuntutweak/tweaks/unity.py:67 ../ubuntutweak/tweaks/unity.py:70
-#: ../ubuntutweak/tweaks/unity.py:205
+#: ../ubuntutweak/tweaks/unity.py:68 ../ubuntutweak/tweaks/unity.py:71
+#: ../ubuntutweak/tweaks/unity.py:211
 msgid "Auto Hide"
 msgstr "自动隐藏"
 
-#: ../ubuntutweak/tweaks/unity.py:67
+#: ../ubuntutweak/tweaks/unity.py:68
 msgid "Dodge Window"
 msgstr "避让窗口"
 
-#: ../ubuntutweak/tweaks/unity.py:67
+#: ../ubuntutweak/tweaks/unity.py:68
 msgid "Dodge Active Window"
 msgstr "避让活动窗口"
 
-#: ../ubuntutweak/tweaks/unity.py:125
+#: ../ubuntutweak/tweaks/unity.py:131
 msgid "Backlight Always On"
 msgstr "背光保持打开"
 
-#: ../ubuntutweak/tweaks/unity.py:126
+#: ../ubuntutweak/tweaks/unity.py:132
 msgid "Backlight Toggles"
 msgstr "背光开关"
 
-#: ../ubuntutweak/tweaks/unity.py:127
+#: ../ubuntutweak/tweaks/unity.py:133
 msgid "Backlight Always Off"
 msgstr "背光保持关闭"
 
-#: ../ubuntutweak/tweaks/unity.py:128
+#: ../ubuntutweak/tweaks/unity.py:134
 msgid "Edge Illumination Toggles"
 msgstr "激发边缘光照"
 
-#: ../ubuntutweak/tweaks/unity.py:129
+#: ../ubuntutweak/tweaks/unity.py:135
 msgid "Backlight and Edge Illumination Toggles"
 msgstr "激发背光和边缘光照"
 
-#: ../ubuntutweak/tweaks/unity.py:138
+#: ../ubuntutweak/tweaks/unity.py:144
 msgid "Only Mounted"
 msgstr "仅已挂载的"
 
-#: ../ubuntutweak/tweaks/unity.py:139
+#: ../ubuntutweak/tweaks/unity.py:145
 msgid "Always"
 msgstr "总是显示"
 
-#: ../ubuntutweak/tweaks/unity.py:148
+#: ../ubuntutweak/tweaks/unity.py:154
 msgid "Automatic"
 msgstr "自动"
 
-#: ../ubuntutweak/tweaks/unity.py:148
+#: ../ubuntutweak/tweaks/unity.py:154
 msgid "Netbook"
 msgstr "上网本"
 
-#: ../ubuntutweak/tweaks/unity.py:155
+#: ../ubuntutweak/tweaks/unity.py:161
 msgid "No blur"
 msgstr "无模糊"
 
-#: ../ubuntutweak/tweaks/unity.py:156
+#: ../ubuntutweak/tweaks/unity.py:162
 msgid "Static blur"
 msgstr "静态模糊"
 
-#: ../ubuntutweak/tweaks/unity.py:157
+#: ../ubuntutweak/tweaks/unity.py:163
 msgid "Active blur"
 msgstr "动态模糊"
 
-#: ../ubuntutweak/tweaks/unity.py:206
+#: ../ubuntutweak/tweaks/unity.py:212
 msgid "Intellihide"
 msgstr "智能隐藏"
 
@@ -2243,31 +2267,47 @@ msgstr "修正取得root权限后的自定义主题问题："
 msgid "Auto detect text encoding for Chinese in Gedit:"
 msgstr "在Gedit（文本编辑器）为中文编码做自动侦测："
 
-#: ../ubuntutweak/apps/__init__.py:90
+#: ../ubuntutweak/tweaks/lovewallpaperhd.py:20
+msgid "Love Wallpaper HD"
+msgstr "爱壁纸HD"
+
+#: ../ubuntutweak/tweaks/lovewallpaperhd.py:21
+msgid "Browse online gallery and find your wallpaper"
+msgstr "浏览在线的画册并找到你的壁纸"
+
+#: ../ubuntutweak/tweaks/lovewallpaperhd.py:48
+msgid "I'm Feeling Lucky"
+msgstr "手气不错"
+
+#: ../ubuntutweak/tweaks/lovewallpaperhd.py:87
+msgid "Downloading Wallpaper"
+msgstr "正在下载壁纸…"
+
+#: ../ubuntutweak/apps/__init__.py:92
 msgid "Uninstall"
 msgstr "卸载"
 
-#: ../ubuntutweak/apps/__init__.py:91
+#: ../ubuntutweak/apps/__init__.py:93
 msgid "Update"
 msgstr "更新"
 
-#: ../ubuntutweak/apps/__init__.py:92
+#: ../ubuntutweak/apps/__init__.py:94
 msgid "Installing"
 msgstr "正在安装"
 
-#: ../ubuntutweak/apps/__init__.py:93
+#: ../ubuntutweak/apps/__init__.py:95
 msgid "Uninstalling"
 msgstr "正在卸载"
 
-#: ../ubuntutweak/apps/__init__.py:94
+#: ../ubuntutweak/apps/__init__.py:96
 msgid "Updating"
 msgstr "正在更新"
 
-#: ../ubuntutweak/apps/__init__.py:95
+#: ../ubuntutweak/apps/__init__.py:97
 msgid "Not Available"
 msgstr "不可用"
 
-#: ../ubuntutweak/apps/__init__.py:170
+#: ../ubuntutweak/apps/__init__.py:200
 #, python-format
 msgid "\"%s\" is enabled now, Please click the update button to update %s"
 msgstr "\"%s\"已启用，请点击更新按钮以更新%s"

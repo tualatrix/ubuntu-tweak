@@ -8,16 +8,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-12 15:17+0800\n"
-"PO-Revision-Date: 2012-10-05 23:33+0000\n"
-"Last-Translator: Hasan Yılmaz <iletisim@hasanyilmaz.net>\n"
+"POT-Creation-Date: 2012-10-30 16:27+0800\n"
+"PO-Revision-Date: 2012-10-25 21:23+0000\n"
+"Last-Translator: Şâkir Aşçı <Unknown>\n"
 "Language-Team: Turkish <Free (Not in Team)>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-10-21 10:48+0000\n"
-"X-Generator: Launchpad (build 16165)\n"
+"X-Launchpad-Export-Date: 2012-11-04 07:40+0000\n"
+"X-Generator: Launchpad (build 16218)\n"
 
 #: ../data/script-worker:57
 #, c-format
@@ -124,7 +124,7 @@ msgstr "Yukarı Taşı"
 msgid "Move Down"
 msgstr "Aşağı Taşı"
 
-#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:89
+#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:91
 msgid "Install"
 msgstr "Yükle"
 
@@ -478,20 +478,20 @@ msgstr "Ayar Adı:"
 msgid "R_eset"
 msgstr "Sı_fırla"
 
-#: ../ubuntutweak/system/__init__.py:42
+#: ../ubuntutweak/system/__init__.py:43
 msgid "GNOME Classic"
 msgstr "GNOME Klasik"
 
-#: ../ubuntutweak/system/__init__.py:44
+#: ../ubuntutweak/system/__init__.py:45
 msgid "GNOME Fallback"
 msgstr "GNOME Güvenli Oturum"
 
-#: ../ubuntutweak/system/__init__.py:55
+#: ../ubuntutweak/system/__init__.py:56
 #, python-format
 msgid "Unknown (%s)"
 msgstr "Bilinmeyen (%s)"
 
-#: ../ubuntutweak/system/__init__.py:57
+#: ../ubuntutweak/system/__init__.py:58
 #: ../ubuntutweak/clips/hardwareinfo.py:16
 msgid "Unknown"
 msgstr "Bilinmeyen"
@@ -514,8 +514,8 @@ msgid "Error happened!"
 msgstr "Hata oluştu!"
 
 #: ../ubuntutweak/network/utdata.py:50 ../ubuntutweak/network/utdata.py:83
-#: ../ubuntutweak/tweaks/unity.py:67 ../ubuntutweak/tweaks/unity.py:70
-#: ../ubuntutweak/tweaks/unity.py:137 ../ubuntutweak/tweaks/unity.py:205
+#: ../ubuntutweak/tweaks/unity.py:68 ../ubuntutweak/tweaks/unity.py:71
+#: ../ubuntutweak/tweaks/unity.py:143 ../ubuntutweak/tweaks/unity.py:211
 msgid "Never"
 msgstr "Hiçbir zaman"
 
@@ -698,12 +698,12 @@ msgstr "Uygulamalar"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:80
 #: ../ubuntutweak/admins/userdir.py:34 ../ubuntutweak/modules/__init__.py:32
-#: ../ubuntutweak/tweaks/unity.py:148
+#: ../ubuntutweak/tweaks/unity.py:154
 msgid "Desktop"
 msgstr "Masaüstü"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:106
-#: ../ubuntutweak/apps/__init__.py:336
+#: ../ubuntutweak/apps/__init__.py:371
 msgid "Category"
 msgstr "Kategori"
 
@@ -915,7 +915,7 @@ msgstr ""
 "gerekiyor."
 
 #: ../ubuntutweak/admins/sourcecenter.py:903
-#: ../ubuntutweak/apps/__init__.py:169
+#: ../ubuntutweak/apps/__init__.py:199
 msgid "New source has been enabled"
 msgstr "Yeni kaynak etkinleştirildi"
 
@@ -1360,29 +1360,41 @@ msgstr "_Geri Getir"
 msgid "_Change"
 msgstr "_Değiştir"
 
-#: ../ubuntutweak/admins/quicklists.py:208
+#: ../ubuntutweak/admins/quicklists.py:209
 msgid "QuickLists Editor"
 msgstr "Hızlı Liste Düzenleyici"
 
-#: ../ubuntutweak/admins/quicklists.py:209
+#: ../ubuntutweak/admins/quicklists.py:210
 msgid "Unity Launcher QuickLists Editor"
 msgstr "Unity Başlatıcısı Hızlı Liste Düzenleyici"
 
-#: ../ubuntutweak/admins/quicklists.py:402
+#: ../ubuntutweak/admins/quicklists.py:228
+msgid "Running Apps"
+msgstr "Çalışan Uygulamalar"
+
+#: ../ubuntutweak/admins/quicklists.py:229
+msgid "Workspace Switcher"
+msgstr "Çalışma Alanı Değiştirici"
+
+#: ../ubuntutweak/admins/quicklists.py:230
+msgid "Devices"
+msgstr "Aygıtlar"
+
+#: ../ubuntutweak/admins/quicklists.py:421
 #, python-format
 msgid "Would you like to reset \"%s\"?"
 msgstr "\"%s\", sıfırlamak istiyor musunuz?"
 
-#: ../ubuntutweak/admins/quicklists.py:403
+#: ../ubuntutweak/admins/quicklists.py:422
 #, python-format
 msgid "If you continue, the actions of %s will be set to default."
 msgstr "Devam edecekseniz %s eylemleri öntanımlı olarak ayarlanacak."
 
-#: ../ubuntutweak/admins/quicklists.py:416
+#: ../ubuntutweak/admins/quicklists.py:435
 msgid "Would you like to reset the launcher items?"
 msgstr "Başlatıcı öğelerini sıfırlamak istiyor musunuz?"
 
-#: ../ubuntutweak/admins/quicklists.py:417
+#: ../ubuntutweak/admins/quicklists.py:436
 msgid ""
 "If you continue, launcher will be set to default and all your current items "
 "will be lost."
@@ -1549,8 +1561,10 @@ msgstr "Komut %d"
 #: ../ubuntutweak/admins/shortcuts.py:200
 #: ../ubuntutweak/admins/filetypemanager.py:178
 #: ../ubuntutweak/admins/filetypemanager.py:202
-#: ../ubuntutweak/tweaks/window.py:77 ../ubuntutweak/tweaks/window.py:84
-#: ../ubuntutweak/tweaks/window.py:95 ../ubuntutweak/tweaks/window.py:110
+#: ../ubuntutweak/tweaks/window.py:79 ../ubuntutweak/tweaks/window.py:86
+#: ../ubuntutweak/tweaks/window.py:97 ../ubuntutweak/tweaks/window.py:108
+#: ../ubuntutweak/tweaks/window.py:128 ../ubuntutweak/tweaks/window.py:135
+#: ../ubuntutweak/tweaks/window.py:146 ../ubuntutweak/tweaks/window.py:161
 msgid "None"
 msgstr "Hiçbiri"
 
@@ -1592,7 +1606,7 @@ msgid "Application"
 msgstr "Uygulama"
 
 #: ../ubuntutweak/admins/filetypemanager.py:50
-#: ../ubuntutweak/apps/__init__.py:355
+#: ../ubuntutweak/apps/__init__.py:390
 msgid "All"
 msgstr "Tümü"
 
@@ -1659,7 +1673,7 @@ msgstr "Diğer"
 msgid "More"
 msgstr "Daha fazla"
 
-#: ../ubuntutweak/modules/__init__.py:426
+#: ../ubuntutweak/modules/__init__.py:427
 #, python-format
 msgid ""
 "Ubuntu Tweak has detected that your apt configuration is broken.\n"
@@ -1684,7 +1698,7 @@ msgstr ""
 "\n"
 "Ya da geliştiricilere yardım için Hata Bildirisi göndebilirsiniz:"
 
-#: ../ubuntutweak/modules/__init__.py:436
+#: ../ubuntutweak/modules/__init__.py:437
 #, python-format
 msgid ""
 "Ubuntu Tweak has detected that your apt list file is broken.\n"
@@ -1755,44 +1769,44 @@ msgstr "\"Ev Dizini\" içeriğini göster"
 msgid "Note: switch off this option will make the desktop unclickable"
 msgstr "Not: bu seçeneği kapatmak masaüstünü tıklanamaz yapacak"
 
-#: ../ubuntutweak/tweaks/theme.py:36
+#: ../ubuntutweak/tweaks/theme.py:37
 msgid "Theme"
 msgstr "Tema"
 
-#: ../ubuntutweak/tweaks/theme.py:37
+#: ../ubuntutweak/tweaks/theme.py:38
 msgid "Set the gtk theme, icon theme, cursor theme and others"
 msgstr "Simge, imleç, gtk teması ve diğerlerini ayarla"
 
-#: ../ubuntutweak/tweaks/theme.py:41 ../ubuntutweak/tweaks/loginsettings.py:47
+#: ../ubuntutweak/tweaks/theme.py:42 ../ubuntutweak/tweaks/loginsettings.py:47
 msgid "Icon theme:"
 msgstr "Simge teması:"
 
-#: ../ubuntutweak/tweaks/theme.py:42 ../ubuntutweak/tweaks/loginsettings.py:46
+#: ../ubuntutweak/tweaks/theme.py:43 ../ubuntutweak/tweaks/loginsettings.py:46
 msgid "Gtk theme:"
 msgstr "Gtk teması:"
 
-#: ../ubuntutweak/tweaks/theme.py:43
+#: ../ubuntutweak/tweaks/theme.py:44
 msgid "Cursor theme:"
 msgstr "İmleç teması:"
 
-#: ../ubuntutweak/tweaks/theme.py:44
+#: ../ubuntutweak/tweaks/theme.py:45
 msgid "Window theme:"
 msgstr "Pencere teması:"
 
-#: ../ubuntutweak/tweaks/theme.py:89
+#: ../ubuntutweak/tweaks/theme.py:102
 msgid "Install theme:"
 msgstr "Temayı yükle:"
 
-#: ../ubuntutweak/tweaks/theme.py:99
+#: ../ubuntutweak/tweaks/theme.py:112
 msgid "Theme file is invalid"
 msgstr "Tema dosyası geçersiz"
 
-#: ../ubuntutweak/tweaks/theme.py:105
+#: ../ubuntutweak/tweaks/theme.py:118
 #, python-format
 msgid "\"%s\" installed successfully"
 msgstr "\"%s\" başarıyla yüklendi"
 
-#: ../ubuntutweak/tweaks/theme.py:106
+#: ../ubuntutweak/tweaks/theme.py:119
 #, python-format
 msgid "Would you like to set your icon theme to \"%s\" immediatelly?"
 msgstr "Simge temanızı \"%s\" olarak hemen değiştirmek istiyor musunuz?"
@@ -1805,60 +1819,66 @@ msgstr "Pencere"
 msgid "Manage Window Manager settings"
 msgstr "Pencere Yöneticisi ayarlarını yönet"
 
-#: ../ubuntutweak/tweaks/window.py:48
+#: ../ubuntutweak/tweaks/window.py:49
 msgid "Window control button position:"
 msgstr "Pencere denetleme düğmesi konumu:"
 
-#: ../ubuntutweak/tweaks/window.py:49
+#: ../ubuntutweak/tweaks/window.py:50
 msgid "\"Close\" button only"
 msgstr "\"Kapat\" düğmesi yalnızca"
 
-#: ../ubuntutweak/tweaks/window.py:50
+#: ../ubuntutweak/tweaks/window.py:51
 msgid "Titlebar mouse wheel action:"
 msgstr "Başlık çubuğu fare tekerleği eylemi:"
 
-#: ../ubuntutweak/tweaks/window.py:51
+#: ../ubuntutweak/tweaks/window.py:52
 msgid "Titlebar double-click action:"
 msgstr "Başlık çubuğu çift-tıklama eylemi:"
 
-#: ../ubuntutweak/tweaks/window.py:52
+#: ../ubuntutweak/tweaks/window.py:53
 msgid "Titlebar middle-click action:"
 msgstr "Başlık çubuğu orta-tıklama eylemi:"
 
-#: ../ubuntutweak/tweaks/window.py:53
+#: ../ubuntutweak/tweaks/window.py:54
 msgid "Titlebar right-click action:"
 msgstr "Başlık çubuğu sağ-tıklama eylemi:"
 
-#: ../ubuntutweak/tweaks/window.py:77 ../ubuntutweak/tweaks/window.py:85
-#: ../ubuntutweak/tweaks/window.py:98 ../ubuntutweak/tweaks/window.py:113
+#: ../ubuntutweak/tweaks/window.py:79 ../ubuntutweak/tweaks/window.py:87
+#: ../ubuntutweak/tweaks/window.py:98 ../ubuntutweak/tweaks/window.py:109
+#: ../ubuntutweak/tweaks/window.py:128 ../ubuntutweak/tweaks/window.py:136
+#: ../ubuntutweak/tweaks/window.py:149 ../ubuntutweak/tweaks/window.py:164
 msgid "Roll up"
 msgstr "Yukarı kaydır"
 
-#: ../ubuntutweak/tweaks/window.py:84 ../ubuntutweak/tweaks/window.py:95
-#: ../ubuntutweak/tweaks/window.py:110
+#: ../ubuntutweak/tweaks/window.py:86 ../ubuntutweak/tweaks/window.py:97
+#: ../ubuntutweak/tweaks/window.py:108 ../ubuntutweak/tweaks/window.py:135
+#: ../ubuntutweak/tweaks/window.py:146 ../ubuntutweak/tweaks/window.py:161
 msgid "Maximize"
 msgstr "Ekranı Kapla"
 
-#: ../ubuntutweak/tweaks/window.py:85 ../ubuntutweak/tweaks/window.py:98
-#: ../ubuntutweak/tweaks/window.py:113
+#: ../ubuntutweak/tweaks/window.py:87 ../ubuntutweak/tweaks/window.py:98
+#: ../ubuntutweak/tweaks/window.py:109 ../ubuntutweak/tweaks/window.py:136
+#: ../ubuntutweak/tweaks/window.py:149 ../ubuntutweak/tweaks/window.py:164
 msgid "Minimize"
 msgstr "Küçült"
 
-#: ../ubuntutweak/tweaks/window.py:86 ../ubuntutweak/tweaks/window.py:99
-#: ../ubuntutweak/tweaks/window.py:114
+#: ../ubuntutweak/tweaks/window.py:88 ../ubuntutweak/tweaks/window.py:99
+#: ../ubuntutweak/tweaks/window.py:110 ../ubuntutweak/tweaks/window.py:137
+#: ../ubuntutweak/tweaks/window.py:150 ../ubuntutweak/tweaks/window.py:165
 msgid "Lower"
 msgstr "Pencereyi arkaya geçir"
 
-#: ../ubuntutweak/tweaks/window.py:86 ../ubuntutweak/tweaks/window.py:99
-#: ../ubuntutweak/tweaks/window.py:114
+#: ../ubuntutweak/tweaks/window.py:88 ../ubuntutweak/tweaks/window.py:99
+#: ../ubuntutweak/tweaks/window.py:110 ../ubuntutweak/tweaks/window.py:137
+#: ../ubuntutweak/tweaks/window.py:150 ../ubuntutweak/tweaks/window.py:165
 msgid "Menu"
 msgstr "Menü"
 
-#: ../ubuntutweak/tweaks/window.py:96 ../ubuntutweak/tweaks/window.py:111
+#: ../ubuntutweak/tweaks/window.py:147 ../ubuntutweak/tweaks/window.py:162
 msgid "Maximize Horizontally"
 msgstr "Yatay Büyüt"
 
-#: ../ubuntutweak/tweaks/window.py:97 ../ubuntutweak/tweaks/window.py:112
+#: ../ubuntutweak/tweaks/window.py:148 ../ubuntutweak/tweaks/window.py:163
 msgid "Maximize Vertically"
 msgstr "Dikey Büyüt"
 
@@ -1906,40 +1926,40 @@ msgstr "Öngörüntü önbelleği azami boyutu (MB):"
 msgid "File browser:"
 msgstr "Dosya tarayıcı:"
 
-#: ../ubuntutweak/tweaks/session.py:29
+#: ../ubuntutweak/tweaks/session.py:30
 msgid "Session Indicator"
 msgstr "Oturum Göstergesi"
 
-#: ../ubuntutweak/tweaks/session.py:30
+#: ../ubuntutweak/tweaks/session.py:31
 msgid "Control your system session releated features"
 msgstr "Sistem oturumuyla ilişkili özellikleri kontrol edin"
 
-#: ../ubuntutweak/tweaks/session.py:34
+#: ../ubuntutweak/tweaks/session.py:35
 msgid "User indicator"
 msgstr "Kullanıcı göstergesi"
 
-#: ../ubuntutweak/tweaks/session.py:35
+#: ../ubuntutweak/tweaks/session.py:36
 msgid "Disable \"Lock Screen\""
 msgstr "\"Ekran Kilitleme\"yi devre dışı bırak"
 
-#: ../ubuntutweak/tweaks/session.py:36
+#: ../ubuntutweak/tweaks/session.py:37
 msgid "Show user's real name on the panel"
 msgstr "Kullanıcının gerçek adını panelde göster"
 
-#: ../ubuntutweak/tweaks/session.py:37
+#: ../ubuntutweak/tweaks/session.py:38
 msgid "Remove the log out item"
 msgstr "Oturum kapatma öğesini kaldır"
 
-#: ../ubuntutweak/tweaks/session.py:38
+#: ../ubuntutweak/tweaks/session.py:39
 msgid "Remove the shutdown item"
 msgstr "Bilgisayarı kapatma öğesini kaldır"
 
-#: ../ubuntutweak/tweaks/session.py:39
+#: ../ubuntutweak/tweaks/session.py:40
 msgid "Suppress the dialog to confirm logout and shutdown action"
 msgstr ""
 "Oturumu Kapat ve Bilgisayarı Kapat eylemlerinin onay penceresini kaldır"
 
-#: ../ubuntutweak/tweaks/session.py:68
+#: ../ubuntutweak/tweaks/session.py:73
 msgid "Session indicator:"
 msgstr "Oturum göstergesi:"
 
@@ -2063,7 +2083,7 @@ msgstr "İmleç yanıp sönme süresi:"
 msgid "Cursor blink timeout:"
 msgstr "İmleç yanıp sönme zamanaşımı:"
 
-#: ../ubuntutweak/tweaks/misc.py:60 ../ubuntutweak/tweaks/unity.py:181
+#: ../ubuntutweak/tweaks/misc.py:60 ../ubuntutweak/tweaks/unity.py:187
 msgid "Note: you may need to log out to take effect"
 msgstr "Not: geçerli olması için oturumu kapatmanız gerekebilir"
 
@@ -2103,71 +2123,71 @@ msgstr "Yeni arkaplan resmi seç"
 msgid "All images"
 msgstr "Tüm görüntüler"
 
-#: ../ubuntutweak/tweaks/fonts.py:26
+#: ../ubuntutweak/tweaks/fonts.py:27
 msgid "Fonts"
 msgstr "Yazıbiçimleri"
 
-#: ../ubuntutweak/tweaks/fonts.py:27
+#: ../ubuntutweak/tweaks/fonts.py:28
 msgid "Fonts Settings"
 msgstr "Yazıbiçimi Ayarları"
 
-#: ../ubuntutweak/tweaks/fonts.py:32
+#: ../ubuntutweak/tweaks/fonts.py:33
 msgid "Text scaling factor:"
 msgstr "Metin ölçekleme etkisi:"
 
-#: ../ubuntutweak/tweaks/fonts.py:33
+#: ../ubuntutweak/tweaks/fonts.py:34
 msgid "Default font:"
 msgstr "Öntanımlı Yazıtipi:"
 
-#: ../ubuntutweak/tweaks/fonts.py:34
+#: ../ubuntutweak/tweaks/fonts.py:35
 msgid "Monospace font:"
 msgstr "Eş aralıklı yazıtipi:"
 
-#: ../ubuntutweak/tweaks/fonts.py:35
+#: ../ubuntutweak/tweaks/fonts.py:36
 msgid "Document font:"
 msgstr "Belge yazıtipi:"
 
-#: ../ubuntutweak/tweaks/fonts.py:36
+#: ../ubuntutweak/tweaks/fonts.py:37
 msgid "Window title bar font:"
 msgstr "Pencere başlık çubuğu yazıtipi:"
 
-#: ../ubuntutweak/tweaks/fonts.py:37
+#: ../ubuntutweak/tweaks/fonts.py:38
 msgid "Hinting:"
 msgstr "Düzeltme:"
 
-#: ../ubuntutweak/tweaks/fonts.py:38
+#: ../ubuntutweak/tweaks/fonts.py:39
 msgid "Antialiasing:"
 msgstr "Keskinlik yumuşatma:"
 
-#: ../ubuntutweak/tweaks/fonts.py:64
+#: ../ubuntutweak/tweaks/fonts.py:78
 msgid "Desktop font:"
 msgstr "Masaüstü yazıtipi:"
 
-#: ../ubuntutweak/tweaks/fonts.py:89
+#: ../ubuntutweak/tweaks/fonts.py:99
 msgid "No hinting"
 msgstr "Düzeltme yok"
 
-#: ../ubuntutweak/tweaks/fonts.py:90
+#: ../ubuntutweak/tweaks/fonts.py:100
 msgid "Basic"
 msgstr "Temel"
 
-#: ../ubuntutweak/tweaks/fonts.py:91
+#: ../ubuntutweak/tweaks/fonts.py:101
 msgid "Moderate"
 msgstr "Orta"
 
-#: ../ubuntutweak/tweaks/fonts.py:92
+#: ../ubuntutweak/tweaks/fonts.py:102
 msgid "Maximum"
 msgstr "En Yüksek"
 
-#: ../ubuntutweak/tweaks/fonts.py:99
+#: ../ubuntutweak/tweaks/fonts.py:109
 msgid "No antialiasing"
 msgstr "Keskinlik yumuşatma yok"
 
-#: ../ubuntutweak/tweaks/fonts.py:100
+#: ../ubuntutweak/tweaks/fonts.py:110
 msgid "Standard grayscale antialiasing"
 msgstr "Standart gri ölçekte keskinlik yumuşatma"
 
-#: ../ubuntutweak/tweaks/fonts.py:101
+#: ../ubuntutweak/tweaks/fonts.py:111
 msgid "Subpixel antialiasing (LCD screens only)"
 msgstr "Altbenek keskinlik yumuşatma (yalnızca LCD ekranlarda)"
 
@@ -2192,119 +2212,123 @@ msgid "Launcher opacity:"
 msgstr "Başlatıcı donukluğu:"
 
 #: ../ubuntutweak/tweaks/unity.py:46
+msgid "Web Apps integration:"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:47
 msgid "Launcher hide mode:"
 msgstr "Başlatıcı gizleme kipi:"
 
-#: ../ubuntutweak/tweaks/unity.py:47
+#: ../ubuntutweak/tweaks/unity.py:48
 msgid "Launcher icon backlight:"
 msgstr "Başlatıcı simge arka ışığı:"
 
-#: ../ubuntutweak/tweaks/unity.py:48
+#: ../ubuntutweak/tweaks/unity.py:49
 msgid "Launcher show devices:"
 msgstr "Başlatıcı aygıt gösterimi:"
 
-#: ../ubuntutweak/tweaks/unity.py:49
+#: ../ubuntutweak/tweaks/unity.py:50
 msgid "\"Show desktop\" icon:"
 msgstr "\"Masaüstünü göster\" simgesi:"
 
-#: ../ubuntutweak/tweaks/unity.py:50
-msgid "Disable \"Show Desktop\" in the switcher:"
-msgstr ""
-
 #: ../ubuntutweak/tweaks/unity.py:51
+msgid "Disable \"Show Desktop\" in the switcher:"
+msgstr "\"Masaüstünü Göster\" öğesini değiştiricide gizle:"
+
+#: ../ubuntutweak/tweaks/unity.py:52
 msgid "Dash size:"
 msgstr "Ana Seçke boyutu:"
 
-#: ../ubuntutweak/tweaks/unity.py:52
+#: ../ubuntutweak/tweaks/unity.py:53
 msgid "Blur type:"
 msgstr "Bulanıklık türü:"
 
-#: ../ubuntutweak/tweaks/unity.py:53
+#: ../ubuntutweak/tweaks/unity.py:54
 msgid "Panel opacity:"
 msgstr "Panel donukluğu:"
 
-#: ../ubuntutweak/tweaks/unity.py:54
+#: ../ubuntutweak/tweaks/unity.py:55
 msgid "Panel opacity for maximized windows:"
 msgstr "Büyütülmüş pencereler için panel donukluğu:"
 
-#: ../ubuntutweak/tweaks/unity.py:55
+#: ../ubuntutweak/tweaks/unity.py:56
 msgid "Super key:"
 msgstr "Süper tuşu:"
 
-#: ../ubuntutweak/tweaks/unity.py:56
+#: ../ubuntutweak/tweaks/unity.py:57
 msgid "Full screen dash:"
 msgstr "Tam ekran ana seçke:"
 
-#: ../ubuntutweak/tweaks/unity.py:57
+#: ../ubuntutweak/tweaks/unity.py:58
 msgid "Compositing manager:"
 msgstr "Birleştirme yöneticisi:"
 
-#: ../ubuntutweak/tweaks/unity.py:58
+#: ../ubuntutweak/tweaks/unity.py:59
 msgid "Number of workspaces:"
 msgstr "Çalışma alanlarının sayısı:"
 
-#: ../ubuntutweak/tweaks/unity.py:67 ../ubuntutweak/tweaks/unity.py:70
-#: ../ubuntutweak/tweaks/unity.py:205
+#: ../ubuntutweak/tweaks/unity.py:68 ../ubuntutweak/tweaks/unity.py:71
+#: ../ubuntutweak/tweaks/unity.py:211
 msgid "Auto Hide"
 msgstr "Kendiliğinden Gizle"
 
-#: ../ubuntutweak/tweaks/unity.py:67
+#: ../ubuntutweak/tweaks/unity.py:68
 msgid "Dodge Window"
 msgstr "Pencereyi Kaydır"
 
-#: ../ubuntutweak/tweaks/unity.py:67
+#: ../ubuntutweak/tweaks/unity.py:68
 msgid "Dodge Active Window"
 msgstr "Etkin Pencereyi Kaydır"
 
-#: ../ubuntutweak/tweaks/unity.py:125
+#: ../ubuntutweak/tweaks/unity.py:131
 msgid "Backlight Always On"
 msgstr "Arka Işık Her Zaman Açık"
 
-#: ../ubuntutweak/tweaks/unity.py:126
+#: ../ubuntutweak/tweaks/unity.py:132
 msgid "Backlight Toggles"
 msgstr "Arka Işık Geçişi"
 
-#: ../ubuntutweak/tweaks/unity.py:127
+#: ../ubuntutweak/tweaks/unity.py:133
 msgid "Backlight Always Off"
 msgstr "Arka Işık Her Zaman Kapalı"
 
-#: ../ubuntutweak/tweaks/unity.py:128
+#: ../ubuntutweak/tweaks/unity.py:134
 msgid "Edge Illumination Toggles"
 msgstr "Kenar Aydınlatma Geçişi"
 
-#: ../ubuntutweak/tweaks/unity.py:129
+#: ../ubuntutweak/tweaks/unity.py:135
 msgid "Backlight and Edge Illumination Toggles"
 msgstr "Arka Işık ve Kenar Aydınlatma Geçişi"
 
-#: ../ubuntutweak/tweaks/unity.py:138
+#: ../ubuntutweak/tweaks/unity.py:144
 msgid "Only Mounted"
 msgstr "Yalnızca Bağlı Olanlar"
 
-#: ../ubuntutweak/tweaks/unity.py:139
+#: ../ubuntutweak/tweaks/unity.py:145
 msgid "Always"
 msgstr "Her zaman"
 
-#: ../ubuntutweak/tweaks/unity.py:148
+#: ../ubuntutweak/tweaks/unity.py:154
 msgid "Automatic"
 msgstr "Kendiliğinden"
 
-#: ../ubuntutweak/tweaks/unity.py:148
+#: ../ubuntutweak/tweaks/unity.py:154
 msgid "Netbook"
 msgstr "Netbook"
 
-#: ../ubuntutweak/tweaks/unity.py:155
+#: ../ubuntutweak/tweaks/unity.py:161
 msgid "No blur"
 msgstr "Bulanıklık yok"
 
-#: ../ubuntutweak/tweaks/unity.py:156
+#: ../ubuntutweak/tweaks/unity.py:162
 msgid "Static blur"
 msgstr "Bulanıklık sabit"
 
-#: ../ubuntutweak/tweaks/unity.py:157
+#: ../ubuntutweak/tweaks/unity.py:163
 msgid "Active blur"
 msgstr "Bulanıklık etkin"
 
-#: ../ubuntutweak/tweaks/unity.py:206
+#: ../ubuntutweak/tweaks/unity.py:212
 msgid "Intellihide"
 msgstr "Akıllı gizleme"
 
@@ -2324,34 +2348,52 @@ msgstr "Yönetici yetkileri istendiğinde tema görünümünü düzelt:"
 msgid "Auto detect text encoding for Chinese in Gedit:"
 msgstr "Gedit'te Çince metin kodlamasını kendiğinden sapta:"
 
-#: ../ubuntutweak/apps/__init__.py:90
+#: ../ubuntutweak/tweaks/lovewallpaperhd.py:20
+msgid "Love Wallpaper HD"
+msgstr "Duvar Kâğıdı Aşkı"
+
+#: ../ubuntutweak/tweaks/lovewallpaperhd.py:21
+msgid "Browse online gallery and find your wallpaper"
+msgstr "Çevrimiçi görüntülere göz atın ve aradığınız duvar kâğıdını bulun"
+
+#: ../ubuntutweak/tweaks/lovewallpaperhd.py:48
+msgid "I'm Feeling Lucky"
+msgstr "Şanslı Hissediyorum"
+
+#: ../ubuntutweak/tweaks/lovewallpaperhd.py:87
+msgid "Downloading Wallpaper"
+msgstr "Duvar Kâğıdı İndiriliyor"
+
+#: ../ubuntutweak/apps/__init__.py:92
 msgid "Uninstall"
 msgstr "Kaldır"
 
-#: ../ubuntutweak/apps/__init__.py:91
+#: ../ubuntutweak/apps/__init__.py:93
 msgid "Update"
 msgstr "Güncelle"
 
-#: ../ubuntutweak/apps/__init__.py:92
+#: ../ubuntutweak/apps/__init__.py:94
 msgid "Installing"
 msgstr "Yükleniyor"
 
-#: ../ubuntutweak/apps/__init__.py:93
+#: ../ubuntutweak/apps/__init__.py:95
 msgid "Uninstalling"
 msgstr "Kaldırılıyor"
 
-#: ../ubuntutweak/apps/__init__.py:94
+#: ../ubuntutweak/apps/__init__.py:96
 msgid "Updating"
 msgstr "Güncelleniyor"
 
-#: ../ubuntutweak/apps/__init__.py:95
+#: ../ubuntutweak/apps/__init__.py:97
 msgid "Not Available"
 msgstr "Kullanılabilir Değil"
 
-#: ../ubuntutweak/apps/__init__.py:170
+#: ../ubuntutweak/apps/__init__.py:200
 #, python-format
 msgid "\"%s\" is enabled now, Please click the update button to update %s"
 msgstr ""
+"\"%s\" şu anda etkin, %s uygulamasını güncellemek için lütfen güncelle "
+"düğmesine tıklayın"
 
 #: ../ubuntutweak/clips/userinfo.py:10
 msgid "User Information"

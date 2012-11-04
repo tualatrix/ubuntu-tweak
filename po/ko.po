@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-12 15:17+0800\n"
-"PO-Revision-Date: 2012-10-15 15:03+0000\n"
+"POT-Creation-Date: 2012-10-30 16:27+0800\n"
+"PO-Revision-Date: 2012-10-22 03:35+0000\n"
 "Last-Translator: Kim Boram <boramism@gmail.com>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-10-21 10:48+0000\n"
-"X-Generator: Launchpad (build 16165)\n"
+"X-Launchpad-Export-Date: 2012-11-04 07:40+0000\n"
+"X-Generator: Launchpad (build 16218)\n"
 
 #: ../data/script-worker:57
 #, c-format
@@ -122,7 +122,7 @@ msgstr "위로 이동"
 msgid "Move Down"
 msgstr "아래로 이동"
 
-#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:89
+#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:91
 msgid "Install"
 msgstr "설치"
 
@@ -458,20 +458,20 @@ msgstr "설정 이름:"
 msgid "R_eset"
 msgstr "초기화(_E)"
 
-#: ../ubuntutweak/system/__init__.py:42
+#: ../ubuntutweak/system/__init__.py:43
 msgid "GNOME Classic"
 msgstr "그놈 고전"
 
-#: ../ubuntutweak/system/__init__.py:44
+#: ../ubuntutweak/system/__init__.py:45
 msgid "GNOME Fallback"
 msgstr "그놈 폴백"
 
-#: ../ubuntutweak/system/__init__.py:55
+#: ../ubuntutweak/system/__init__.py:56
 #, python-format
 msgid "Unknown (%s)"
 msgstr "알 수 없음 (%s)"
 
-#: ../ubuntutweak/system/__init__.py:57
+#: ../ubuntutweak/system/__init__.py:58
 #: ../ubuntutweak/clips/hardwareinfo.py:16
 msgid "Unknown"
 msgstr "알 수 없음"
@@ -494,8 +494,8 @@ msgid "Error happened!"
 msgstr "오류 발생!"
 
 #: ../ubuntutweak/network/utdata.py:50 ../ubuntutweak/network/utdata.py:83
-#: ../ubuntutweak/tweaks/unity.py:67 ../ubuntutweak/tweaks/unity.py:70
-#: ../ubuntutweak/tweaks/unity.py:137 ../ubuntutweak/tweaks/unity.py:205
+#: ../ubuntutweak/tweaks/unity.py:68 ../ubuntutweak/tweaks/unity.py:71
+#: ../ubuntutweak/tweaks/unity.py:143 ../ubuntutweak/tweaks/unity.py:211
 msgid "Never"
 msgstr "사용 안 함"
 
@@ -672,12 +672,12 @@ msgstr "프로그램"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:80
 #: ../ubuntutweak/admins/userdir.py:34 ../ubuntutweak/modules/__init__.py:32
-#: ../ubuntutweak/tweaks/unity.py:148
+#: ../ubuntutweak/tweaks/unity.py:154
 msgid "Desktop"
 msgstr "데스크톱"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:106
-#: ../ubuntutweak/apps/__init__.py:336
+#: ../ubuntutweak/apps/__init__.py:371
 msgid "Category"
 msgstr "분류"
 
@@ -879,7 +879,7 @@ msgstr ""
 "계속하시려면 우선 <b>\"%(SOURCE)s\"</b>을(를) 사용하지 않도록 설정해야 합니다."
 
 #: ../ubuntutweak/admins/sourcecenter.py:903
-#: ../ubuntutweak/apps/__init__.py:169
+#: ../ubuntutweak/apps/__init__.py:199
 msgid "New source has been enabled"
 msgstr "새 소스를 사용합니다."
 
@@ -1304,29 +1304,41 @@ msgstr "복구(_R)"
 msgid "_Change"
 msgstr "바꾸기(_C)"
 
-#: ../ubuntutweak/admins/quicklists.py:208
+#: ../ubuntutweak/admins/quicklists.py:209
 msgid "QuickLists Editor"
 msgstr "빠른 실행 목록 편집기"
 
-#: ../ubuntutweak/admins/quicklists.py:209
+#: ../ubuntutweak/admins/quicklists.py:210
 msgid "Unity Launcher QuickLists Editor"
 msgstr "유니티 런처 빠른 실행 목록 편집"
 
-#: ../ubuntutweak/admins/quicklists.py:402
+#: ../ubuntutweak/admins/quicklists.py:228
+msgid "Running Apps"
+msgstr ""
+
+#: ../ubuntutweak/admins/quicklists.py:229
+msgid "Workspace Switcher"
+msgstr ""
+
+#: ../ubuntutweak/admins/quicklists.py:230
+msgid "Devices"
+msgstr ""
+
+#: ../ubuntutweak/admins/quicklists.py:421
 #, python-format
 msgid "Would you like to reset \"%s\"?"
 msgstr "\"%s\"을(를) 초기화하시겠습니까?"
 
-#: ../ubuntutweak/admins/quicklists.py:403
+#: ../ubuntutweak/admins/quicklists.py:422
 #, python-format
 msgid "If you continue, the actions of %s will be set to default."
 msgstr "계속 진행하면 %s 동작을 기본 값으로 설정합니다."
 
-#: ../ubuntutweak/admins/quicklists.py:416
+#: ../ubuntutweak/admins/quicklists.py:435
 msgid "Would you like to reset the launcher items?"
 msgstr "런처 항목을 초기화하시겠습니까?"
 
-#: ../ubuntutweak/admins/quicklists.py:417
+#: ../ubuntutweak/admins/quicklists.py:436
 msgid ""
 "If you continue, launcher will be set to default and all your current items "
 "will be lost."
@@ -1489,8 +1501,10 @@ msgstr "명령 %d"
 #: ../ubuntutweak/admins/shortcuts.py:200
 #: ../ubuntutweak/admins/filetypemanager.py:178
 #: ../ubuntutweak/admins/filetypemanager.py:202
-#: ../ubuntutweak/tweaks/window.py:77 ../ubuntutweak/tweaks/window.py:84
-#: ../ubuntutweak/tweaks/window.py:95 ../ubuntutweak/tweaks/window.py:110
+#: ../ubuntutweak/tweaks/window.py:79 ../ubuntutweak/tweaks/window.py:86
+#: ../ubuntutweak/tweaks/window.py:97 ../ubuntutweak/tweaks/window.py:108
+#: ../ubuntutweak/tweaks/window.py:128 ../ubuntutweak/tweaks/window.py:135
+#: ../ubuntutweak/tweaks/window.py:146 ../ubuntutweak/tweaks/window.py:161
 msgid "None"
 msgstr "없음"
 
@@ -1532,7 +1546,7 @@ msgid "Application"
 msgstr "프로그램"
 
 #: ../ubuntutweak/admins/filetypemanager.py:50
-#: ../ubuntutweak/apps/__init__.py:355
+#: ../ubuntutweak/apps/__init__.py:390
 msgid "All"
 msgstr "전체"
 
@@ -1599,7 +1613,7 @@ msgstr "기타"
 msgid "More"
 msgstr "더 보기"
 
-#: ../ubuntutweak/modules/__init__.py:426
+#: ../ubuntutweak/modules/__init__.py:427
 #, python-format
 msgid ""
 "Ubuntu Tweak has detected that your apt configuration is broken.\n"
@@ -1624,7 +1638,7 @@ msgstr ""
 "\n"
 "이 밖에 에러 메시지를 개발자에게 보내 도움을 요청할 수 있습니다:"
 
-#: ../ubuntutweak/modules/__init__.py:436
+#: ../ubuntutweak/modules/__init__.py:437
 #, python-format
 msgid ""
 "Ubuntu Tweak has detected that your apt list file is broken.\n"
@@ -1695,44 +1709,44 @@ msgstr "\"내 폴더\"를 보입니다."
 msgid "Note: switch off this option will make the desktop unclickable"
 msgstr "주의: 이 옵션을 끄면 데스크톱을 클릭할 수 없게 됩니다."
 
-#: ../ubuntutweak/tweaks/theme.py:36
+#: ../ubuntutweak/tweaks/theme.py:37
 msgid "Theme"
 msgstr "테마"
 
-#: ../ubuntutweak/tweaks/theme.py:37
+#: ../ubuntutweak/tweaks/theme.py:38
 msgid "Set the gtk theme, icon theme, cursor theme and others"
 msgstr "GTK 테마, 아이콘 테마, 커서 테마 등을 설정합니다."
 
-#: ../ubuntutweak/tweaks/theme.py:41 ../ubuntutweak/tweaks/loginsettings.py:47
+#: ../ubuntutweak/tweaks/theme.py:42 ../ubuntutweak/tweaks/loginsettings.py:47
 msgid "Icon theme:"
 msgstr "아이콘 테마:"
 
-#: ../ubuntutweak/tweaks/theme.py:42 ../ubuntutweak/tweaks/loginsettings.py:46
+#: ../ubuntutweak/tweaks/theme.py:43 ../ubuntutweak/tweaks/loginsettings.py:46
 msgid "Gtk theme:"
 msgstr "GTK 테마:"
 
-#: ../ubuntutweak/tweaks/theme.py:43
+#: ../ubuntutweak/tweaks/theme.py:44
 msgid "Cursor theme:"
 msgstr "커서 테마:"
 
-#: ../ubuntutweak/tweaks/theme.py:44
+#: ../ubuntutweak/tweaks/theme.py:45
 msgid "Window theme:"
 msgstr "창 테마:"
 
-#: ../ubuntutweak/tweaks/theme.py:89
+#: ../ubuntutweak/tweaks/theme.py:102
 msgid "Install theme:"
 msgstr "테마 설치:"
 
-#: ../ubuntutweak/tweaks/theme.py:99
+#: ../ubuntutweak/tweaks/theme.py:112
 msgid "Theme file is invalid"
 msgstr "태마 파일이 올바르지 않습니다"
 
-#: ../ubuntutweak/tweaks/theme.py:105
+#: ../ubuntutweak/tweaks/theme.py:118
 #, python-format
 msgid "\"%s\" installed successfully"
 msgstr "\"%s\"을(를) 설치했습니다."
 
-#: ../ubuntutweak/tweaks/theme.py:106
+#: ../ubuntutweak/tweaks/theme.py:119
 #, python-format
 msgid "Would you like to set your icon theme to \"%s\" immediatelly?"
 msgstr "\"%s\"에 아이콘 테마를 즉시 설정하시겠습니까?"
@@ -1745,60 +1759,66 @@ msgstr "창"
 msgid "Manage Window Manager settings"
 msgstr "창 관리자 설정 관리"
 
-#: ../ubuntutweak/tweaks/window.py:48
+#: ../ubuntutweak/tweaks/window.py:49
 msgid "Window control button position:"
 msgstr "창 조정 단추 위치:"
 
-#: ../ubuntutweak/tweaks/window.py:49
+#: ../ubuntutweak/tweaks/window.py:50
 msgid "\"Close\" button only"
 msgstr "\"닫기\" 단추만"
 
-#: ../ubuntutweak/tweaks/window.py:50
+#: ../ubuntutweak/tweaks/window.py:51
 msgid "Titlebar mouse wheel action:"
 msgstr "창 제목 마우스 휠 동작:"
 
-#: ../ubuntutweak/tweaks/window.py:51
+#: ../ubuntutweak/tweaks/window.py:52
 msgid "Titlebar double-click action:"
 msgstr "창 제목 더블 클릭 동작:"
 
-#: ../ubuntutweak/tweaks/window.py:52
+#: ../ubuntutweak/tweaks/window.py:53
 msgid "Titlebar middle-click action:"
 msgstr "창 제목 가운데 클릭 동작:"
 
-#: ../ubuntutweak/tweaks/window.py:53
+#: ../ubuntutweak/tweaks/window.py:54
 msgid "Titlebar right-click action:"
 msgstr "창 제목 오른쪽 클릭 동작:"
 
-#: ../ubuntutweak/tweaks/window.py:77 ../ubuntutweak/tweaks/window.py:85
-#: ../ubuntutweak/tweaks/window.py:98 ../ubuntutweak/tweaks/window.py:113
+#: ../ubuntutweak/tweaks/window.py:79 ../ubuntutweak/tweaks/window.py:87
+#: ../ubuntutweak/tweaks/window.py:98 ../ubuntutweak/tweaks/window.py:109
+#: ../ubuntutweak/tweaks/window.py:128 ../ubuntutweak/tweaks/window.py:136
+#: ../ubuntutweak/tweaks/window.py:149 ../ubuntutweak/tweaks/window.py:164
 msgid "Roll up"
 msgstr "말아 올리기"
 
-#: ../ubuntutweak/tweaks/window.py:84 ../ubuntutweak/tweaks/window.py:95
-#: ../ubuntutweak/tweaks/window.py:110
+#: ../ubuntutweak/tweaks/window.py:86 ../ubuntutweak/tweaks/window.py:97
+#: ../ubuntutweak/tweaks/window.py:108 ../ubuntutweak/tweaks/window.py:135
+#: ../ubuntutweak/tweaks/window.py:146 ../ubuntutweak/tweaks/window.py:161
 msgid "Maximize"
 msgstr "최대화"
 
-#: ../ubuntutweak/tweaks/window.py:85 ../ubuntutweak/tweaks/window.py:98
-#: ../ubuntutweak/tweaks/window.py:113
+#: ../ubuntutweak/tweaks/window.py:87 ../ubuntutweak/tweaks/window.py:98
+#: ../ubuntutweak/tweaks/window.py:109 ../ubuntutweak/tweaks/window.py:136
+#: ../ubuntutweak/tweaks/window.py:149 ../ubuntutweak/tweaks/window.py:164
 msgid "Minimize"
 msgstr "최소화"
 
-#: ../ubuntutweak/tweaks/window.py:86 ../ubuntutweak/tweaks/window.py:99
-#: ../ubuntutweak/tweaks/window.py:114
+#: ../ubuntutweak/tweaks/window.py:88 ../ubuntutweak/tweaks/window.py:99
+#: ../ubuntutweak/tweaks/window.py:110 ../ubuntutweak/tweaks/window.py:137
+#: ../ubuntutweak/tweaks/window.py:150 ../ubuntutweak/tweaks/window.py:165
 msgid "Lower"
 msgstr "내리기"
 
-#: ../ubuntutweak/tweaks/window.py:86 ../ubuntutweak/tweaks/window.py:99
-#: ../ubuntutweak/tweaks/window.py:114
+#: ../ubuntutweak/tweaks/window.py:88 ../ubuntutweak/tweaks/window.py:99
+#: ../ubuntutweak/tweaks/window.py:110 ../ubuntutweak/tweaks/window.py:137
+#: ../ubuntutweak/tweaks/window.py:150 ../ubuntutweak/tweaks/window.py:165
 msgid "Menu"
 msgstr "메뉴"
 
-#: ../ubuntutweak/tweaks/window.py:96 ../ubuntutweak/tweaks/window.py:111
+#: ../ubuntutweak/tweaks/window.py:147 ../ubuntutweak/tweaks/window.py:162
 msgid "Maximize Horizontally"
 msgstr "가로 최대화"
 
-#: ../ubuntutweak/tweaks/window.py:97 ../ubuntutweak/tweaks/window.py:112
+#: ../ubuntutweak/tweaks/window.py:148 ../ubuntutweak/tweaks/window.py:163
 msgid "Maximize Vertically"
 msgstr "세로 최대화"
 
@@ -1846,39 +1866,39 @@ msgstr "최대 큰 미리 보기 캐시 크기(MB):"
 msgid "File browser:"
 msgstr "파일 관리자:"
 
-#: ../ubuntutweak/tweaks/session.py:29
+#: ../ubuntutweak/tweaks/session.py:30
 msgid "Session Indicator"
 msgstr "세션 알리미"
 
-#: ../ubuntutweak/tweaks/session.py:30
+#: ../ubuntutweak/tweaks/session.py:31
 msgid "Control your system session releated features"
 msgstr "시스템 세션과 관련이 있는 기능을 조정합니다."
 
-#: ../ubuntutweak/tweaks/session.py:34
+#: ../ubuntutweak/tweaks/session.py:35
 msgid "User indicator"
 msgstr "사용자 알리미"
 
-#: ../ubuntutweak/tweaks/session.py:35
+#: ../ubuntutweak/tweaks/session.py:36
 msgid "Disable \"Lock Screen\""
 msgstr "\"화면 잠그기\" 사용하지 않기"
 
-#: ../ubuntutweak/tweaks/session.py:36
+#: ../ubuntutweak/tweaks/session.py:37
 msgid "Show user's real name on the panel"
 msgstr "패널에 사용자의 실제 이름을 보입니다."
 
-#: ../ubuntutweak/tweaks/session.py:37
+#: ../ubuntutweak/tweaks/session.py:38
 msgid "Remove the log out item"
 msgstr "로그아웃 항목 제거"
 
-#: ../ubuntutweak/tweaks/session.py:38
+#: ../ubuntutweak/tweaks/session.py:39
 msgid "Remove the shutdown item"
 msgstr "컴퓨터 끄기 항목 제거"
 
-#: ../ubuntutweak/tweaks/session.py:39
+#: ../ubuntutweak/tweaks/session.py:40
 msgid "Suppress the dialog to confirm logout and shutdown action"
 msgstr "로그아웃과 컴퓨터 끄기 동작을 확인하는 대화 상자를 표시하지 않기"
 
-#: ../ubuntutweak/tweaks/session.py:68
+#: ../ubuntutweak/tweaks/session.py:73
 msgid "Session indicator:"
 msgstr "세션 알리미:"
 
@@ -2002,7 +2022,7 @@ msgstr "커서 깜빡이기 시간:"
 msgid "Cursor blink timeout:"
 msgstr "커서 깜빡이기 지속 시간:"
 
-#: ../ubuntutweak/tweaks/misc.py:60 ../ubuntutweak/tweaks/unity.py:181
+#: ../ubuntutweak/tweaks/misc.py:60 ../ubuntutweak/tweaks/unity.py:187
 msgid "Note: you may need to log out to take effect"
 msgstr "주의: 바뀐 내용을 적용하려면 로그아웃해야 합니다."
 
@@ -2042,71 +2062,71 @@ msgstr "새로운 배경 이미지 선택"
 msgid "All images"
 msgstr "모든 이미지"
 
-#: ../ubuntutweak/tweaks/fonts.py:26
+#: ../ubuntutweak/tweaks/fonts.py:27
 msgid "Fonts"
 msgstr "글꼴"
 
-#: ../ubuntutweak/tweaks/fonts.py:27
+#: ../ubuntutweak/tweaks/fonts.py:28
 msgid "Fonts Settings"
 msgstr "글꼴 설정"
 
-#: ../ubuntutweak/tweaks/fonts.py:32
+#: ../ubuntutweak/tweaks/fonts.py:33
 msgid "Text scaling factor:"
 msgstr "텍스크 크기 조정 비율:"
 
-#: ../ubuntutweak/tweaks/fonts.py:33
+#: ../ubuntutweak/tweaks/fonts.py:34
 msgid "Default font:"
 msgstr "기본 글꼴:"
 
-#: ../ubuntutweak/tweaks/fonts.py:34
+#: ../ubuntutweak/tweaks/fonts.py:35
 msgid "Monospace font:"
 msgstr "고정폭 글꼴:"
 
-#: ../ubuntutweak/tweaks/fonts.py:35
+#: ../ubuntutweak/tweaks/fonts.py:36
 msgid "Document font:"
 msgstr "문서 글꼴:"
 
-#: ../ubuntutweak/tweaks/fonts.py:36
+#: ../ubuntutweak/tweaks/fonts.py:37
 msgid "Window title bar font:"
 msgstr "창 제목 글꼴:"
 
-#: ../ubuntutweak/tweaks/fonts.py:37
+#: ../ubuntutweak/tweaks/fonts.py:38
 msgid "Hinting:"
 msgstr "힌팅:"
 
-#: ../ubuntutweak/tweaks/fonts.py:38
+#: ../ubuntutweak/tweaks/fonts.py:39
 msgid "Antialiasing:"
 msgstr "에일리어싱 제거:"
 
-#: ../ubuntutweak/tweaks/fonts.py:64
+#: ../ubuntutweak/tweaks/fonts.py:78
 msgid "Desktop font:"
 msgstr "데스크톱 글꼴:"
 
-#: ../ubuntutweak/tweaks/fonts.py:89
+#: ../ubuntutweak/tweaks/fonts.py:99
 msgid "No hinting"
 msgstr "힌팅 없음"
 
-#: ../ubuntutweak/tweaks/fonts.py:90
+#: ../ubuntutweak/tweaks/fonts.py:100
 msgid "Basic"
 msgstr "기본"
 
-#: ../ubuntutweak/tweaks/fonts.py:91
+#: ../ubuntutweak/tweaks/fonts.py:101
 msgid "Moderate"
 msgstr "보통"
 
-#: ../ubuntutweak/tweaks/fonts.py:92
+#: ../ubuntutweak/tweaks/fonts.py:102
 msgid "Maximum"
 msgstr "최대"
 
-#: ../ubuntutweak/tweaks/fonts.py:99
+#: ../ubuntutweak/tweaks/fonts.py:109
 msgid "No antialiasing"
 msgstr "에일리어싱 제거 없음"
 
-#: ../ubuntutweak/tweaks/fonts.py:100
+#: ../ubuntutweak/tweaks/fonts.py:110
 msgid "Standard grayscale antialiasing"
 msgstr "표준 그레이 스케일 에일리어싱 제거"
 
-#: ../ubuntutweak/tweaks/fonts.py:101
+#: ../ubuntutweak/tweaks/fonts.py:111
 msgid "Subpixel antialiasing (LCD screens only)"
 msgstr "서브픽셀 에일리어싱 제거(LCG 화면 전용)"
 
@@ -2131,119 +2151,123 @@ msgid "Launcher opacity:"
 msgstr "런처 투명도:"
 
 #: ../ubuntutweak/tweaks/unity.py:46
+msgid "Web Apps integration:"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/unity.py:47
 msgid "Launcher hide mode:"
 msgstr "런처 숨기기 모드:"
 
-#: ../ubuntutweak/tweaks/unity.py:47
+#: ../ubuntutweak/tweaks/unity.py:48
 msgid "Launcher icon backlight:"
 msgstr "런처 아이콘 백라이트:"
 
-#: ../ubuntutweak/tweaks/unity.py:48
+#: ../ubuntutweak/tweaks/unity.py:49
 msgid "Launcher show devices:"
 msgstr "런처에 표시할 장치:"
 
-#: ../ubuntutweak/tweaks/unity.py:49
+#: ../ubuntutweak/tweaks/unity.py:50
 msgid "\"Show desktop\" icon:"
 msgstr "\"데스크톱 보이기\" 아이콘:"
 
-#: ../ubuntutweak/tweaks/unity.py:50
+#: ../ubuntutweak/tweaks/unity.py:51
 msgid "Disable \"Show Desktop\" in the switcher:"
 msgstr "전환 프로그램에서 \"데스크톱 보기\" 감추기:"
 
-#: ../ubuntutweak/tweaks/unity.py:51
+#: ../ubuntutweak/tweaks/unity.py:52
 msgid "Dash size:"
 msgstr "대시 크기:"
 
-#: ../ubuntutweak/tweaks/unity.py:52
+#: ../ubuntutweak/tweaks/unity.py:53
 msgid "Blur type:"
 msgstr "흐림 효과 형식:"
 
-#: ../ubuntutweak/tweaks/unity.py:53
+#: ../ubuntutweak/tweaks/unity.py:54
 msgid "Panel opacity:"
 msgstr "패널 투명도:"
 
-#: ../ubuntutweak/tweaks/unity.py:54
+#: ../ubuntutweak/tweaks/unity.py:55
 msgid "Panel opacity for maximized windows:"
 msgstr "창을 최대화했을 때의 패널 투명도:"
 
-#: ../ubuntutweak/tweaks/unity.py:55
+#: ../ubuntutweak/tweaks/unity.py:56
 msgid "Super key:"
 msgstr "윈도 키:"
 
-#: ../ubuntutweak/tweaks/unity.py:56
+#: ../ubuntutweak/tweaks/unity.py:57
 msgid "Full screen dash:"
 msgstr "대시 전체 화면:"
 
-#: ../ubuntutweak/tweaks/unity.py:57
+#: ../ubuntutweak/tweaks/unity.py:58
 msgid "Compositing manager:"
 msgstr "컴포지트 관리자:"
 
-#: ../ubuntutweak/tweaks/unity.py:58
+#: ../ubuntutweak/tweaks/unity.py:59
 msgid "Number of workspaces:"
 msgstr "작업 공간 수:"
 
-#: ../ubuntutweak/tweaks/unity.py:67 ../ubuntutweak/tweaks/unity.py:70
-#: ../ubuntutweak/tweaks/unity.py:205
+#: ../ubuntutweak/tweaks/unity.py:68 ../ubuntutweak/tweaks/unity.py:71
+#: ../ubuntutweak/tweaks/unity.py:211
 msgid "Auto Hide"
 msgstr "자동 숨기기"
 
-#: ../ubuntutweak/tweaks/unity.py:67
+#: ../ubuntutweak/tweaks/unity.py:68
 msgid "Dodge Window"
 msgstr "창 피하기"
 
-#: ../ubuntutweak/tweaks/unity.py:67
+#: ../ubuntutweak/tweaks/unity.py:68
 msgid "Dodge Active Window"
 msgstr "사용 중인 창 피하기"
 
-#: ../ubuntutweak/tweaks/unity.py:125
+#: ../ubuntutweak/tweaks/unity.py:131
 msgid "Backlight Always On"
 msgstr "배경 조명을 항상 켬"
 
-#: ../ubuntutweak/tweaks/unity.py:126
+#: ../ubuntutweak/tweaks/unity.py:132
 msgid "Backlight Toggles"
 msgstr "배경 조명을 켜고 끔"
 
-#: ../ubuntutweak/tweaks/unity.py:127
+#: ../ubuntutweak/tweaks/unity.py:133
 msgid "Backlight Always Off"
 msgstr "배경 조명을 항상 끔"
 
-#: ../ubuntutweak/tweaks/unity.py:128
+#: ../ubuntutweak/tweaks/unity.py:134
 msgid "Edge Illumination Toggles"
 msgstr "가장자리 조명 켜고 끄기"
 
-#: ../ubuntutweak/tweaks/unity.py:129
+#: ../ubuntutweak/tweaks/unity.py:135
 msgid "Backlight and Edge Illumination Toggles"
 msgstr "배경 조명과 가장자리 조명을 켜고 끕니다."
 
-#: ../ubuntutweak/tweaks/unity.py:138
+#: ../ubuntutweak/tweaks/unity.py:144
 msgid "Only Mounted"
 msgstr "마운트한 것만"
 
-#: ../ubuntutweak/tweaks/unity.py:139
+#: ../ubuntutweak/tweaks/unity.py:145
 msgid "Always"
 msgstr "항상"
 
-#: ../ubuntutweak/tweaks/unity.py:148
+#: ../ubuntutweak/tweaks/unity.py:154
 msgid "Automatic"
 msgstr "자동"
 
-#: ../ubuntutweak/tweaks/unity.py:148
+#: ../ubuntutweak/tweaks/unity.py:154
 msgid "Netbook"
 msgstr "넷북"
 
-#: ../ubuntutweak/tweaks/unity.py:155
+#: ../ubuntutweak/tweaks/unity.py:161
 msgid "No blur"
 msgstr "흐림 효과 없음"
 
-#: ../ubuntutweak/tweaks/unity.py:156
+#: ../ubuntutweak/tweaks/unity.py:162
 msgid "Static blur"
 msgstr "정적 흐림 효과"
 
-#: ../ubuntutweak/tweaks/unity.py:157
+#: ../ubuntutweak/tweaks/unity.py:163
 msgid "Active blur"
 msgstr "동적 흐림 효과"
 
-#: ../ubuntutweak/tweaks/unity.py:206
+#: ../ubuntutweak/tweaks/unity.py:212
 msgid "Intellihide"
 msgstr "똑똑한 숨기기"
 
@@ -2263,31 +2287,47 @@ msgstr "관리자 권한으로 실행한 창에 테마가 적용되지 않는 �
 msgid "Auto detect text encoding for Chinese in Gedit:"
 msgstr "지에디트에서 중국어 문자 인코딩을 자동으로 검출합니다:"
 
-#: ../ubuntutweak/apps/__init__.py:90
+#: ../ubuntutweak/tweaks/lovewallpaperhd.py:20
+msgid "Love Wallpaper HD"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/lovewallpaperhd.py:21
+msgid "Browse online gallery and find your wallpaper"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/lovewallpaperhd.py:48
+msgid "I'm Feeling Lucky"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/lovewallpaperhd.py:87
+msgid "Downloading Wallpaper"
+msgstr ""
+
+#: ../ubuntutweak/apps/__init__.py:92
 msgid "Uninstall"
 msgstr "제거"
 
-#: ../ubuntutweak/apps/__init__.py:91
+#: ../ubuntutweak/apps/__init__.py:93
 msgid "Update"
 msgstr "업데이트"
 
-#: ../ubuntutweak/apps/__init__.py:92
+#: ../ubuntutweak/apps/__init__.py:94
 msgid "Installing"
 msgstr "설치 중"
 
-#: ../ubuntutweak/apps/__init__.py:93
+#: ../ubuntutweak/apps/__init__.py:95
 msgid "Uninstalling"
 msgstr "제거 중"
 
-#: ../ubuntutweak/apps/__init__.py:94
+#: ../ubuntutweak/apps/__init__.py:96
 msgid "Updating"
 msgstr "업데이트 중"
 
-#: ../ubuntutweak/apps/__init__.py:95
+#: ../ubuntutweak/apps/__init__.py:97
 msgid "Not Available"
 msgstr "사용할 수 없음"
 
-#: ../ubuntutweak/apps/__init__.py:170
+#: ../ubuntutweak/apps/__init__.py:200
 #, python-format
 msgid "\"%s\" is enabled now, Please click the update button to update %s"
 msgstr "\"%s\"을(를) 사용합니다. %s을(를) 업데이트하려면 업데이트 단추를 눌러주십시오."
@@ -2355,7 +2395,7 @@ msgstr "일부 캐시를 지워 디스크 용량을 확보할 수 있습니다."
 #: ../ubuntutweak/clips/cleanerinfo.py:21
 #, python-format
 msgid "%s cache packages can be cleaned."
-msgstr "패키지 캐시 %s을(를) 지울 수 있습니다."
+msgstr "패키지 캐시 %s개를 지울 수 있습니다."
 
 #: ../ubuntutweak/clips/cleanerinfo.py:33
 #, python-format
