@@ -127,7 +127,6 @@ class AppsWebView(WebKit.WebView):
         except Exception, e:
             log.error("setup_features failed with %s" % e)
 
-    @log_func(log)
     def on_session_request_queued(self, session, message):
         message.request_headers.replace('Accept-language', LANG)
 
@@ -156,14 +155,28 @@ class AppsWebView(WebKit.WebView):
                 getattr(self, parameters[0])(*parameters[1:])
 
     @log_func(log)
+    def initialize_apps(self, apps_json, *args):
+        apps = json.loads(apps_json)
+        for package in apps.keys():
+            apps[package] = proxy.is_package_installed(package)
+
+        self.execute_script('''
+                            var apps_dict = %s;
+                            Utapp.get("router.appsController").content.forEach(function(app) {
+                            app.set('isInstalled', apps_dict[app.package]);
+                            });''' % json.dumps(apps))
+
+    @log_func(log)
     def update_app(self, pkgname, *args):
         if pkgname != self.current_app:
             self.current_app = pkgname
 
         if proxy.is_package_avaiable(pkgname):
             if proxy.is_package_installed(pkgname):
+                self.execute_script('Utapp.get("router.appController").currentApp.set("isInstalled", true);');
                 self.update_action_button(self.UNINSTALL_ACTION)
             else:
+                self.execute_script('Utapp.get("router.appController").currentApp.set("isInstalled", false);');
                 self.update_action_button(self.INSTALL_ACTION)
         else:
             self.update_action_button(self.NOT_AVAILABLE_ACTION)
@@ -238,11 +251,6 @@ class AppsWebView(WebKit.WebView):
     @log_func(log)
     def update_action_button(self, action_id, disabled=False):
         text = self.action_text_dict[action_id]
-
-        if action_id == self.UNINSTALL_ACTION:
-            self.execute_script('$(".status-image").show();');
-        else:
-            self.execute_script('$(".status-image").hide();');
 
         self.execute_script('$(".install-button")[0].innerHTML = "%s";' % text);
         self.execute_script('$(".install-button").attr("action-id", "%d")' % action_id);
