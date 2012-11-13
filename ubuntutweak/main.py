@@ -26,7 +26,6 @@ from ubuntutweak.gui.gtk import post_ui
 from ubuntutweak.policykit.widgets import PolkitButton
 from ubuntutweak.utils import icon
 from ubuntutweak.common.consts import VERSION
-from ubuntutweak.common.debug import log_func
 from ubuntutweak.modules import ModuleLoader, create_broken_module_class
 from ubuntutweak.gui.dialogs import ErrorDialog
 from ubuntutweak.clips import ClipPage
@@ -115,7 +114,6 @@ class CategoryBox(Gtk.VBox):
     def get_buttons(self):
         return self._buttons
 
-    @log_func(log)
     def rebuild_table(self, ncols):
         self._current_cols = ncols
         self._current_modules = len(self._modules)
@@ -213,7 +211,6 @@ class FeaturePage(Gtk.ScrolledWindow):
         module = widget.get_module()
         self.emit('module_selected', module.get_name())
 
-    @log_func(log)
     def rebuild_boxes(self, widget=None, event=None):
         request = self.get_allocation()
         ncols = request.width / 164 # 32 + 120 + 6 + 4
@@ -343,17 +340,14 @@ class UbuntuTweakWindow(GuiBuilder):
         self.mainwindow.add_accel_group(accel_group)
         thread.start_new_thread(self.preload_proxy_cache, ())
 
-    @log_func(log)
     def preload_proxy_cache(self):
         #This function just called to make sure the cache is loaded as soon as possible
         proxy.is_package_installed('ubuntu-tweak')
 
-    @log_func(log)
     def on_search_entry_activate(self, widget):
         widget.grab_focus()
         self.on_search_entry_changed(widget)
 
-    @log_func(log)
     def on_search_entry_changed(self, widget):
         text = widget.get_text()
         self.set_current_module(None, None)
@@ -525,7 +519,6 @@ class UbuntuTweakWindow(GuiBuilder):
             self.back_button.set_sensitive(False)
             self.next_button.set_sensitive(False)
 
-    @log_func(log)
     def on_back_button_clicked(self, widget):
         self.navigation_dict[self.current_feature] = tuple(reversed(self.navigation_dict[self.current_feature]))
         self.notebook.set_current_page(self.feature_dict[self.current_feature])
@@ -533,7 +526,6 @@ class UbuntuTweakWindow(GuiBuilder):
 
         self.update_jump_buttons()
 
-    @log_func(log)
     def on_next_button_clicked(self, widget):
         back, forward = self.navigation_dict[self.current_feature]
         self.navigation_dict[self.current_feature] = forward, back
