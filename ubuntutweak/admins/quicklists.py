@@ -17,6 +17,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import os
+import re
 import time
 import logging
 import shutil
@@ -115,6 +116,7 @@ class NewDesktopEntry(DesktopEntry):
     @log_func(log)
     def get_exec_by_action(self, action):
         return self.get('Exec', self.get_action_full_name(action))
+
     @log_func(log)
     @save_to_user
     def set_name_by_action(self, action, name):
@@ -230,6 +232,8 @@ class QuickLists(TweakModule):
         'unity://devices': _('Devices')
     }
 
+    UNITY_WEBAPPS_ACTION_PATTERN = re.compile('^S\d{1}$')
+
     def __init__(self):
         TweakModule.__init__(self, 'quicklists.ui')
 
@@ -332,11 +336,12 @@ class QuickLists(TweakModule):
             entry = model[iter][self.DESKTOP_ENTRY]
             if entry:
                 for action in entry.get_actions():
-                    self.action_model.append((action,
-                                entry.get_name_by_action(action),
-                                entry.get_exec_by_action(action),
-                                entry.is_action_visiable(action),
-                                entry))
+                    if not self.UNITY_WEBAPPS_ACTION_PATTERN.search(action):
+                        self.action_model.append((action,
+                                    entry.get_name_by_action(action),
+                                    entry.get_exec_by_action(action),
+                                    entry.is_action_visiable(action),
+                                    entry))
                 self.redo_action_button.set_sensitive(True)
                 self.action_view.columns_autosize()
                 if not path:
