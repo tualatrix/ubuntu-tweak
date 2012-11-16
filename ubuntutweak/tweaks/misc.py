@@ -21,6 +21,7 @@ import re
 import logging
 from gi.repository import Gtk, Gio
 
+from ubuntutweak import system
 from ubuntutweak.gui.containers import ListPack, GridPack
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.factory import WidgetFactory
@@ -59,6 +60,25 @@ class Misc(TweakModule):
         notes_label.set_markup('<span size="smaller">%s</span>' % \
                 _('Note: you may need to log out to take effect'))
         notes_label._ut_left = 1
+
+        if system.CODENAME == 'quantal':
+          overlay_label, overlay_widget = WidgetFactory.create('ComboBox',
+                                                 label=self.utext_overlay_scrollbar,
+                                                 key='com.canonical.desktop.interface.scrollbar-mode',
+                                                 texts=[_('Normal'),
+                                                        _('Overlay Auto'),
+                                                        _('Overlay Pointer'),
+                                                        _('Overlay Touch')],
+                                                 values=['normal',
+                                                         'overlay-auto',
+                                                         'overlay-pointer',
+                                                         'overlay-touch'],
+                                                 backend='gsettings')
+        else:
+           overlay_label, overlay_widget = WidgetFactory.create('Switch',
+                                                 label=self.utext_overlay_scrollbar,
+                                                 key='org.gnome.desktop.interface.ubuntu-overlay-scrollbars',
+                                                 backend='gsettings')
 
         self.theme_box = GridPack(
                             WidgetFactory.create('CheckButton',
@@ -104,11 +124,7 @@ class Misc(TweakModule):
                             Gtk.Separator(),
                             (Gtk.Label(self.utext_natural), self.natural_scrolling_switch),
                             notes_label,
-                            WidgetFactory.create('Switch',
-                                                 label=self.utext_overlay_scrollbar,
-                                                 key='org.gnome.desktop.interface.ubuntu-overlay-scrollbars',
-                                                 backend='gsettings',
-                                                 ),
+                            (overlay_label, overlay_widget),
                             WidgetFactory.create('Switch',
                                                  label=self.utext_cursor_blink,
                                                  key='org.gnome.desktop.interface.cursor-blink',
