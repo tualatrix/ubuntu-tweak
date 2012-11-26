@@ -51,7 +51,8 @@ class AppsPage(Gtk.ScrolledWindow):
             self._go_back_button.set_sensitive(widget.can_go_back())
             self._forward_button.set_sensitive(widget.can_go_forward())
             self.on_size_allocate(widget)
-            self._webview.save_cache()
+            # TODO enable when it will not crash
+            # self._webview.save_cache()
 
     @log_func(log)
     def on_go_back_clicked(self, widget):
@@ -103,7 +104,8 @@ class AppsWebView(WebKit.WebView):
         self.get_settings().set_property('enable-default-context-menu', False)
         self.get_settings().set_property('enable-plugins', False)
 
-        self.setup_features()
+        # TODO enable when it will not crash
+        # self.setup_features()
         self.setup_user_agent()
 
         self.load_uri('http://ubuntu-tweak.com/utapp/')
