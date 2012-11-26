@@ -1,5 +1,6 @@
 import os
 import json
+import random
 import logging
 import webbrowser
 
@@ -98,6 +99,11 @@ class AppsWebView(WebKit.WebView):
         NOT_AVAILABLE_ACTION: _('Not Available')
     }
 
+    DATA_MIRRORS = [
+        'http://ubuntu-tweak.com/',
+        'http://mirror.ubuntu-tweak.com/',
+    ]
+
     def __init__(self):
         GObject.GObject.__init__(self)
 
@@ -108,7 +114,7 @@ class AppsWebView(WebKit.WebView):
         # self.setup_features()
         self.setup_user_agent()
 
-        self.load_uri('http://ubuntu-tweak.com/utapp/')
+        self.load_uri(self.DATA_MIRRORS[random.randint(0, len(self.DATA_MIRRORS) - 1)] + 'utapp/')
 
         self.connect('notify::title', self.on_title_changed)
         self.connect('new-window-policy-decision-requested', self.on_window)
