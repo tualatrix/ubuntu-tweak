@@ -321,6 +321,7 @@ class UbuntuTweakWindow(GuiBuilder):
         tweaks_page.connect('module_selected', self.on_module_selected)
         self.search_page.connect('module_selected', self.on_module_selected)
         admins_page.connect('module_selected', self.on_module_selected)
+        self.apps_page.connect('loaded', self.show_apps_page)
         clip_page.connect('load_module', lambda widget, name: self.do_load_module(name))
         clip_page.connect('load_feature', lambda widget, name: self.select_target_feature(name))
 
@@ -339,6 +340,9 @@ class UbuntuTweakWindow(GuiBuilder):
                                           Gtk.AccelFlags.VISIBLE)
         self.mainwindow.add_accel_group(accel_group)
         thread.start_new_thread(self.preload_proxy_cache, ())
+
+    def show_apps_page(self, widget):
+        self.notebook.set_current_page(self.feature_dict['apps'])
 
     def preload_proxy_cache(self):
         #This function just called to make sure the cache is loaded as soon as possible
@@ -591,6 +595,9 @@ class UbuntuTweakWindow(GuiBuilder):
                 log.debug("handler_block_by_func by apps")
                 self.back_button.handler_block_by_func(self.on_back_button_clicked)
                 self.next_button.handler_block_by_func(self.on_next_button_clicked)
+                if not self.apps_page.is_loaded:
+                    self.notebook.set_current_page(self.feature_dict['wait'])
+                    self.apps_page.load()
                 self.apps_page.set_web_buttons_active(True)
             else:
                 self.update_jump_buttons()

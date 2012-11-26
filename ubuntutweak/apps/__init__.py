@@ -23,6 +23,18 @@ log = logging.getLogger('apps')
 
 
 class AppsPage(Gtk.ScrolledWindow):
+    is_loaded = False
+
+    DATA_MIRRORS = [
+        'http://ubuntu-tweak.com/',
+        'http://mirror.ubuntu-tweak.com/',
+        'http://mirror2.ubuntu-tweak.com/',
+    ]
+
+    __gsignals__ = {
+        'loaded': (GObject.SignalFlags.RUN_FIRST, None, ()),
+    }
+
     def __init__(self, go_back_button, forward_button):
         GObject.GObject.__init__(self)
 
@@ -54,6 +66,12 @@ class AppsPage(Gtk.ScrolledWindow):
             self.on_size_allocate(widget)
             # TODO enable when it will not crash
             # self._webview.save_cache()
+            if self.is_loaded == False:
+                self.is_loaded = True
+                self.emit('loaded')
+
+    def load(self):
+        self._webview.load_uri(self.DATA_MIRRORS[random.randint(0, len(self.DATA_MIRRORS) - 1)] + 'utapp/')
 
     @log_func(log)
     def on_go_back_clicked(self, widget):
@@ -99,11 +117,6 @@ class AppsWebView(WebKit.WebView):
         NOT_AVAILABLE_ACTION: _('Not Available')
     }
 
-    DATA_MIRRORS = [
-        'http://ubuntu-tweak.com/',
-        'http://mirror.ubuntu-tweak.com/',
-    ]
-
     def __init__(self):
         GObject.GObject.__init__(self)
 
@@ -113,8 +126,6 @@ class AppsWebView(WebKit.WebView):
         # TODO enable when it will not crash
         # self.setup_features()
         self.setup_user_agent()
-
-        self.load_uri(self.DATA_MIRRORS[random.randint(0, len(self.DATA_MIRRORS) - 1)] + 'utapp/')
 
         self.connect('notify::title', self.on_title_changed)
         self.connect('new-window-policy-decision-requested', self.on_window)
