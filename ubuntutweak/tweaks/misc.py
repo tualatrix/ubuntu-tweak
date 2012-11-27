@@ -61,14 +61,14 @@ class Misc(TweakModule):
                 _('Note: you may need to log out to take effect'))
         notes_label._ut_left = 1
 
-        if system.CODENAME == 'quantal':
+        if system.CODENAME == 'quantal' or system.CODENAME == 'raring':
           overlay_label, overlay_widget = WidgetFactory.create('ComboBox',
                                                  label=self.utext_overlay_scrollbar,
                                                  key='com.canonical.desktop.interface.scrollbar-mode',
                                                  texts=[_('Normal'),
-                                                        _('Overlay Auto'),
-                                                        _('Overlay Pointer'),
-                                                        _('Overlay Touch')],
+                                                        _('Auto'),
+                                                        _('Show Overlay'),
+                                                        _('Never Show Overlay')],
                                                  values=['normal',
                                                          'overlay-auto',
                                                          'overlay-pointer',
