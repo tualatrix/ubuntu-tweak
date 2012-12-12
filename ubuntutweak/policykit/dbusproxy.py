@@ -19,10 +19,6 @@
 import dbus
 import logging
 
-from IN import INT_MAX
-
-MAX_DBUS_TIMEOUT = INT_MAX / 1000.0
-
 log = logging.getLogger("DbusProxy")
 
 SHOWED = False
