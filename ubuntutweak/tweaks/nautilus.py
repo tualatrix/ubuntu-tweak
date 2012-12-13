@@ -30,7 +30,6 @@ class Nautilus(TweakModule):
     __category__ = 'system'
     __desktop__ = ['ubuntu', 'ubuntu-2d', 'gnome', 'gnome-classic', 'gnome-shell', 'gnome-fallback']
 
-    utext_advanced_properties = _('Show advanced permissions in "File Properties"')
     utext_pathbar = _('Use the location entry instead of the pathbar')
     utext_automount = _('Automatically mount media:')
     utext_open = _('Automatically open a folder:')
@@ -42,21 +41,12 @@ class Nautilus(TweakModule):
     def __init__(self):
         TweakModule.__init__(self)
 
-        show_permission_button, show_permission_reset = WidgetFactory.create("CheckButton",
-                                       label=self.utext_advanced_properties,
-                                       enable_reset=True,
-                                       key="org.gnome.nautilus.preferences.show-advanced-permissions",
-                                       backend="gsettings")
-
         box = GridPack(
-                    (Gtk.Label(_("File browser:")), show_permission_button, show_permission_reset),
-                    WidgetFactory.create("CheckButton",
-                        label=self.utext_pathbar,
-                        enable_reset=True,
-                        blank_label=True,
-                        key="org.gnome.nautilus.preferences.always-use-location-entry",
-                        backend="gsettings"),
-                    Gtk.Separator(),
+                    WidgetFactory.create("Switch",
+                            label=self.utext_pathbar,
+                            enable_reset=True,
+                            key="org.gnome.nautilus.preferences.always-use-location-entry",
+                            backend="gsettings"),
                     WidgetFactory.create('Switch',
                                          key='org.gnome.desktop.media-handling.automount',
                                          enable_reset=True,
