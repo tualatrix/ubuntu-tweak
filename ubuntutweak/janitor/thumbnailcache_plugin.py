@@ -1,7 +1,11 @@
+from ubuntutweak import system
 from ubuntutweak.janitor import JanitorCachePlugin
 
 class ThumbnailCachePlugin(JanitorCachePlugin):
     __title__ = _('Thumbnail cache')
     __category__ = 'personal'
 
-    root_path = '~/.thumbnails'
+    if system.CODENAME in ['oneiric', 'precise']:
+        root_path = '~/.thumbnails'
+    else:
+        root_path = '~/.cache/thumbnails'

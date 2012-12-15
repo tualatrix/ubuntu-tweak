@@ -24,7 +24,12 @@ class CleanerInfo(Clip):
         self.add_content(label)
 
         try:
-            size = int(os.popen('du -bs ~/.thumbnails').read().split()[0])
+            if system.CODENAME in ['oneiric', 'precise']:
+                root_path = '~/.thumbnails'
+            else:
+                root_path = '~/.cache/thumbnails'
+
+            size = int(os.popen('du -bs %s' % root_path).read().split()[0])
         except:
             size = 0
 
