@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-30 16:27+0800\n"
+"POT-Creation-Date: 2012-12-13 20:34+0800\n"
 "PO-Revision-Date: 2012-10-28 11:09+0000\n"
 "Last-Translator: Ibrahim Saed <ibraheem5000@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
@@ -18,8 +18,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n % 100 >= "
 "3 && n % 100 <= 10 ? 3 : n % 100 >= 11 && n % 100 <= 99 ? 4 : 5;\n"
-"X-Launchpad-Export-Date: 2012-11-04 07:41+0000\n"
-"X-Generator: Launchpad (build 16218)\n"
+"X-Launchpad-Export-Date: 2012-12-20 14:48+0000\n"
+"X-Generator: Launchpad (build 16378)\n"
 
 #: ../data/script-worker:57
 #, c-format
@@ -125,7 +125,7 @@ msgstr "انقل لأعلى"
 msgid "Move Down"
 msgstr "انقل لأسفل"
 
-#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:91
+#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:111
 msgid "Install"
 msgstr "ثبّت"
 
@@ -415,6 +415,7 @@ msgstr ""
 "  Ali AlNoaimi https://launchpad.net/~el7r\n"
 "  Dilmi Fethi https://launchpad.net/~delphiexile\n"
 "  Ding Zhou https://launchpad.net/~tualatrix\n"
+"  Hanine HAMZIOUI https://launchpad.net/~hanynowsky\n"
 "  Ibrahim Saed https://launchpad.net/~ibraheem5000\n"
 "  IdrisZ https://launchpad.net/~idrisz\n"
 "  MaXeR https://launchpad.net/~themaxer\n"
@@ -424,7 +425,6 @@ msgstr ""
 "  blehe https://launchpad.net/~blehe2002\n"
 "  drsaudi https://launchpad.net/~mon7b6\n"
 "  faical117 https://launchpad.net/~faical117\n"
-"  hanynowsky https://launchpad.net/~hanynowsky\n"
 "  midouimd https://launchpad.net/~midou-imd-17\n"
 "  mostafa.sheshtawy https://launchpad.net/~mostafaa-sheshtawy\n"
 "  someone https://launchpad.net/~somehow\n"
@@ -561,7 +561,7 @@ msgstr "منذ لحظات"
 msgid "_Unlock"
 msgstr "_فك القفل"
 
-#: ../ubuntutweak/policykit/dbusproxy.py:32
+#: ../ubuntutweak/policykit/dbusproxy.py:28
 msgid ""
 "The Ubuntu Tweak daemon didn't start correctly. This means that some "
 "advanced features may not work.\n"
@@ -712,7 +712,7 @@ msgid "Desktop"
 msgstr "سطح المكتب"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:106
-#: ../ubuntutweak/apps/__init__.py:371
+#: ../ubuntutweak/apps/__init__.py:398
 msgid "Category"
 msgstr "التصنيف"
 
@@ -747,11 +747,11 @@ msgstr ""
 "يمكنك أيضا استخدام \"إعادة تعيين\" لإعادة تعيين الإعدادات الافتراضية في "
 "النظام."
 
-#: ../ubuntutweak/admins/desktoprecovery.py:347
+#: ../ubuntutweak/admins/desktoprecovery.py:348
 msgid "No Backup Yet"
 msgstr "لا توجد نسخ احتياطية بعد"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:382
+#: ../ubuntutweak/admins/desktoprecovery.py:383
 #, python-format
 msgid ""
 "Backup all settings under \"<b>%s</b>\"\n"
@@ -760,7 +760,7 @@ msgstr ""
 "نسخ احتياطي لجميع الإعدادات تحت \"<b>%s</b>\"\n"
 "هل ترغب بالاستمرار؟"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:403
+#: ../ubuntutweak/admins/desktoprecovery.py:404
 #, python-format
 msgid ""
 "Backup settings under \"<b>%s</b>\"\n"
@@ -769,12 +769,12 @@ msgstr ""
 "نسخ احتياطي للإعدادات تحت \"<b>%s</b>\"\n"
 "هل ترغب بالاستمرار؟"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:446
+#: ../ubuntutweak/admins/desktoprecovery.py:447
 #, python-format
 msgid "Would you like to delete the backup \"<b>%s/%s</b>\"?"
 msgstr "هل ترغب بحذف النسخة الاحتياطية \"<b>%s/%s</b>\"؟"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:450
+#: ../ubuntutweak/admins/desktoprecovery.py:451
 #, python-format
 msgid ""
 "Would you like to delete the backup of all \"<b>%(setting_name)s</b>\" "
@@ -783,12 +783,12 @@ msgstr ""
 "هل ترغب في حذف نسخ الرجوع لكل \"<b>%(setting_name)s</b>\" الإعدادات المسمات "
 "\"<b>%(backup_name)s</b>\"؟"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:472
+#: ../ubuntutweak/admins/desktoprecovery.py:473
 #, python-format
 msgid "Would you like to recover the backup \"<b>%s/%s</b>\"?"
 msgstr "هل ترغب باستعادة النسخة الاحتياطية \"<b>%s/%s</b>\"؟"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:475
+#: ../ubuntutweak/admins/desktoprecovery.py:476
 #, python-format
 msgid ""
 "Would you like to recover the backup of all \"<b>%(setting_name)s</b>\" "
@@ -797,57 +797,57 @@ msgstr ""
 "هل ترغب في إرجاع كل \"<b>%(setting_name)s</b>\" الإعدادات المسمات "
 "\"<b>%(backup_name)s</b>\"؟"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:480
+#: ../ubuntutweak/admins/desktoprecovery.py:481
 msgid ""
 "<b>NOTES</b>: While recovering, your desktop may be unresponsive for a "
 "moment."
 msgstr ""
 "<b>ملاحظة</b>: أثناء عملية الاستعادة، قد لا يستجيب سطح المكتب لبعض الوقت."
 
-#: ../ubuntutweak/admins/desktoprecovery.py:497
+#: ../ubuntutweak/admins/desktoprecovery.py:498
 msgid "Recovery Successful!"
 msgstr "تمت الاستعادة بنجاح!"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:498
-#: ../ubuntutweak/admins/desktoprecovery.py:534
+#: ../ubuntutweak/admins/desktoprecovery.py:499
+#: ../ubuntutweak/admins/desktoprecovery.py:535
 msgid "You may need to restart your desktop for changes to take effect"
 msgstr "قد تحتاج لإعادة تشغيل سطح مكتبك لتصبح التغييرات نافذة المفعول."
 
-#: ../ubuntutweak/admins/desktoprecovery.py:503
+#: ../ubuntutweak/admins/desktoprecovery.py:504
 msgid "_Logout"
 msgstr "_تسجيل الخروج"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:516
+#: ../ubuntutweak/admins/desktoprecovery.py:517
 #, python-format
 msgid "Would you like to reset settings for \"<b>%s</b>\"?"
 msgstr "هل ترغب باستعادة الإعدادات لـ \"<b>%s</b>\"؟"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:518
+#: ../ubuntutweak/admins/desktoprecovery.py:519
 #, python-format
 msgid "Would you like to reset all settings under \"<b>%s</b>\"?"
 msgstr "هل ترغب باستعادة جميع الإعدادات تحت \"<b>%s</b>\"؟"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:520
+#: ../ubuntutweak/admins/desktoprecovery.py:521
 msgid ""
 "<b>NOTES</b>: Whilst resetting, your desktop may be unresponsive for a "
 "moment."
 msgstr ""
 "<b>ملاحظة</b>: أثناء عملية إعادة التعيين، قد لا يستجيب سطح المكتب لبعض الوقت."
 
-#: ../ubuntutweak/admins/desktoprecovery.py:533
+#: ../ubuntutweak/admins/desktoprecovery.py:534
 msgid "Reset Successful!"
 msgstr "تمت أعادة الضبط بنجاح!"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:562
+#: ../ubuntutweak/admins/desktoprecovery.py:563
 #: ../ubuntutweak/admins/sourceeditor.py:418
 msgid "Please enter a new name for your backup:"
 msgstr "من فضلك، اكتب اسما جديدا لنسختك الاحتياطية:"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:594
+#: ../ubuntutweak/admins/desktoprecovery.py:595
 msgid "Backup Successful!"
 msgstr "تم النسخ الاحتياطي بنجاح!"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:597
+#: ../ubuntutweak/admins/desktoprecovery.py:598
 #: ../ubuntutweak/admins/sourceeditor.py:394
 msgid "Backup Failed!"
 msgstr "فشل النسخ الاحتياطي!"
@@ -928,7 +928,7 @@ msgstr ""
 "للمواصلة تحتاج لتعطيل هذا <b>\"%(SOURCE)s\"</b> أولاَ."
 
 #: ../ubuntutweak/admins/sourcecenter.py:903
-#: ../ubuntutweak/apps/__init__.py:199
+#: ../ubuntutweak/apps/__init__.py:231
 msgid "New source has been enabled"
 msgstr "مصدر جديد قد تم تفعيله"
 
@@ -1364,41 +1364,41 @@ msgstr "_إستعادة"
 msgid "_Change"
 msgstr "تغيير"
 
-#: ../ubuntutweak/admins/quicklists.py:209
+#: ../ubuntutweak/admins/quicklists.py:211
 msgid "QuickLists Editor"
 msgstr "محرّر القوائم السريعة"
 
-#: ../ubuntutweak/admins/quicklists.py:210
+#: ../ubuntutweak/admins/quicklists.py:212
 msgid "Unity Launcher QuickLists Editor"
 msgstr "محرّر القوائم السريعة في شريط يونتي لبدء التطبيقات"
 
-#: ../ubuntutweak/admins/quicklists.py:228
+#: ../ubuntutweak/admins/quicklists.py:230
 msgid "Running Apps"
 msgstr "التطبيقات الجارية"
 
-#: ../ubuntutweak/admins/quicklists.py:229
+#: ../ubuntutweak/admins/quicklists.py:231
 msgid "Workspace Switcher"
 msgstr "مبدّل مساحات العمل"
 
-#: ../ubuntutweak/admins/quicklists.py:230
+#: ../ubuntutweak/admins/quicklists.py:232
 msgid "Devices"
 msgstr "الأجهزة"
 
-#: ../ubuntutweak/admins/quicklists.py:421
+#: ../ubuntutweak/admins/quicklists.py:426
 #, python-format
 msgid "Would you like to reset \"%s\"?"
 msgstr "هل ترغب باستعادة \"%s\"؟"
 
-#: ../ubuntutweak/admins/quicklists.py:422
+#: ../ubuntutweak/admins/quicklists.py:427
 #, python-format
 msgid "If you continue, the actions of %s will be set to default."
 msgstr "إذا تابعت، فإن الإجراءات لـ \"%s\" سوف يتم تعيينها كافتراضية."
 
-#: ../ubuntutweak/admins/quicklists.py:435
+#: ../ubuntutweak/admins/quicklists.py:440
 msgid "Would you like to reset the launcher items?"
 msgstr "هل ترغب في استعادة ضبط عناصر شريط بدء التطبيقات؟"
 
-#: ../ubuntutweak/admins/quicklists.py:436
+#: ../ubuntutweak/admins/quicklists.py:441
 msgid ""
 "If you continue, launcher will be set to default and all your current items "
 "will be lost."
@@ -1553,13 +1553,13 @@ msgstr ""
 "بإعداد اختصارات لوحة المفاتيح، يمكنك الوصول إلى تطبيقاتك المفضلة على الفور.\n"
 "أدخِل أمر تشغيل التطبيق ثم اختر تركيبة مفاتيح الاختصار."
 
-#: ../ubuntutweak/admins/shortcuts.py:83
+#: ../ubuntutweak/admins/shortcuts.py:84
 #, python-format
 msgid "Command %d"
 msgstr "الأمر %d"
 
-#: ../ubuntutweak/admins/shortcuts.py:88
-#: ../ubuntutweak/admins/shortcuts.py:200
+#: ../ubuntutweak/admins/shortcuts.py:89
+#: ../ubuntutweak/admins/shortcuts.py:201
 #: ../ubuntutweak/admins/filetypemanager.py:178
 #: ../ubuntutweak/admins/filetypemanager.py:202
 #: ../ubuntutweak/tweaks/window.py:79 ../ubuntutweak/tweaks/window.py:86
@@ -1569,20 +1569,20 @@ msgstr "الأمر %d"
 msgid "None"
 msgstr "لا شيء"
 
-#: ../ubuntutweak/admins/shortcuts.py:93
-#: ../ubuntutweak/admins/shortcuts.py:145
+#: ../ubuntutweak/admins/shortcuts.py:94
+#: ../ubuntutweak/admins/shortcuts.py:146
 msgid "disabled"
 msgstr "معطل"
 
-#: ../ubuntutweak/admins/shortcuts.py:102
+#: ../ubuntutweak/admins/shortcuts.py:103
 msgid "ID"
 msgstr "الهوية"
 
-#: ../ubuntutweak/admins/shortcuts.py:113
+#: ../ubuntutweak/admins/shortcuts.py:114
 msgid "Command"
 msgstr "الأمر"
 
-#: ../ubuntutweak/admins/shortcuts.py:126
+#: ../ubuntutweak/admins/shortcuts.py:127
 msgid "Key"
 msgstr "المفتاح"
 
@@ -1607,7 +1607,7 @@ msgid "Application"
 msgstr "تطبيق"
 
 #: ../ubuntutweak/admins/filetypemanager.py:50
-#: ../ubuntutweak/apps/__init__.py:390
+#: ../ubuntutweak/apps/__init__.py:417
 msgid "All"
 msgstr "الجميع"
 
@@ -2026,69 +2026,85 @@ msgstr "سمة الصوت:"
 msgid "Play login sound:"
 msgstr "صوت الولوج:"
 
-#: ../ubuntutweak/tweaks/misc.py:31
+#: ../ubuntutweak/tweaks/misc.py:32
 msgid "Miscellaneous"
 msgstr "متنوعات"
 
-#: ../ubuntutweak/tweaks/misc.py:32
+#: ../ubuntutweak/tweaks/misc.py:33
 msgid "Set the cursor timeout, menus and buttons icons"
 msgstr "ضبط مُهلة المؤشر، وضبط القوائم وأيقونات الأزرار"
 
-#: ../ubuntutweak/tweaks/misc.py:36
+#: ../ubuntutweak/tweaks/misc.py:37
 msgid "Natural Scrolling"
 msgstr "التمرير الطبيعي"
 
-#: ../ubuntutweak/tweaks/misc.py:37
+#: ../ubuntutweak/tweaks/misc.py:38
 msgid "Menus have icons"
 msgstr "إظهار أيقونات في القوائم"
 
-#: ../ubuntutweak/tweaks/misc.py:38
+#: ../ubuntutweak/tweaks/misc.py:39
 msgid "Buttons have icons"
 msgstr "إظهار أيقونات في الأزرار"
 
-#: ../ubuntutweak/tweaks/misc.py:39
+#: ../ubuntutweak/tweaks/misc.py:40
 msgid "Show Input Method menu in the context menu"
 msgstr "إظهار قائمة \"طرق الإدخال\" في قائمة السياق"
 
-#: ../ubuntutweak/tweaks/misc.py:40
+#: ../ubuntutweak/tweaks/misc.py:41
 msgid "Show Unicode Control Character menu in the context menu"
 msgstr "إظهار قائمة \"محرفات تحكم يونيكود\" في قائمة السياق"
 
-#: ../ubuntutweak/tweaks/misc.py:41
+#: ../ubuntutweak/tweaks/misc.py:42
 msgid "Disable printing"
 msgstr "تعطيل الطباعة"
 
-#: ../ubuntutweak/tweaks/misc.py:42
+#: ../ubuntutweak/tweaks/misc.py:43
 msgid "Disable printer settings"
 msgstr "تعطيل إعدادات الطابعة"
 
-#: ../ubuntutweak/tweaks/misc.py:43
+#: ../ubuntutweak/tweaks/misc.py:44
 msgid "Disable save to disk"
 msgstr "تعطيل الحفظ إلى القرص"
 
-#: ../ubuntutweak/tweaks/misc.py:44
+#: ../ubuntutweak/tweaks/misc.py:45
 msgid "Disable \"Fast User Switching\""
 msgstr "تعطيل \"تبديل المستخدمين السريع\""
 
-#: ../ubuntutweak/tweaks/misc.py:45
+#: ../ubuntutweak/tweaks/misc.py:46
 msgid "Cursor blink:"
 msgstr "وميض مؤشر الكتابة:"
 
-#: ../ubuntutweak/tweaks/misc.py:46
+#: ../ubuntutweak/tweaks/misc.py:47
 msgid "Overlay scrollbars:"
 msgstr "أشرطة التمرير المتراكبة:"
 
-#: ../ubuntutweak/tweaks/misc.py:47
+#: ../ubuntutweak/tweaks/misc.py:48
 msgid "Cursor blink time:"
 msgstr "وقت وميض المؤشر:"
 
-#: ../ubuntutweak/tweaks/misc.py:48
+#: ../ubuntutweak/tweaks/misc.py:49
 msgid "Cursor blink timeout:"
 msgstr "مهلة وميض المؤشر:"
 
-#: ../ubuntutweak/tweaks/misc.py:60 ../ubuntutweak/tweaks/unity.py:187
+#: ../ubuntutweak/tweaks/misc.py:61 ../ubuntutweak/tweaks/unity.py:187
 msgid "Note: you may need to log out to take effect"
 msgstr "ملاحظة: قد تحتاج للخروج من الجلسة لتصبح التغييرات نافذة المفعول."
+
+#: ../ubuntutweak/tweaks/misc.py:68
+msgid "Normal"
+msgstr "عادي"
+
+#: ../ubuntutweak/tweaks/misc.py:69
+msgid "Auto"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/misc.py:70
+msgid "Show Overlay"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/misc.py:71
+msgid "Never Show Overlay"
+msgstr ""
 
 #: ../ubuntutweak/tweaks/loginsettings.py:37
 msgid "Login Settings"
@@ -2348,8 +2364,8 @@ msgid "Fix the appearance of themes when granted root privileges:"
 msgstr "إصلاح مظهر السمات عند منح امتيازات الجذر:"
 
 #: ../ubuntutweak/tweaks/workarounds.py:39
-msgid "Auto detect text encoding for Chinese in Gedit:"
-msgstr "كشف ترميز النص تلقائيا للكتابة الصينية في محرر النصوص \"Gedit\":"
+msgid "Auto detect text encoding for Simplified Chinese in Gedit:"
+msgstr ""
 
 #: ../ubuntutweak/tweaks/lovewallpaperhd.py:20
 msgid "Love Wallpaper HD"
@@ -2367,31 +2383,31 @@ msgstr "أشعر أني محظوظ"
 msgid "Downloading Wallpaper"
 msgstr "تنزيل الخلفية"
 
-#: ../ubuntutweak/apps/__init__.py:92
+#: ../ubuntutweak/apps/__init__.py:112
 msgid "Uninstall"
 msgstr "أزِل التثبيت"
 
-#: ../ubuntutweak/apps/__init__.py:93
+#: ../ubuntutweak/apps/__init__.py:113
 msgid "Update"
 msgstr "حدّث"
 
-#: ../ubuntutweak/apps/__init__.py:94
+#: ../ubuntutweak/apps/__init__.py:114
 msgid "Installing"
 msgstr "يُثبّت"
 
-#: ../ubuntutweak/apps/__init__.py:95
+#: ../ubuntutweak/apps/__init__.py:115
 msgid "Uninstalling"
 msgstr "يزيل التثبيت"
 
-#: ../ubuntutweak/apps/__init__.py:96
+#: ../ubuntutweak/apps/__init__.py:116
 msgid "Updating"
 msgstr "يُحدّث"
 
-#: ../ubuntutweak/apps/__init__.py:97
+#: ../ubuntutweak/apps/__init__.py:117
 msgid "Not Available"
 msgstr "غير متاح"
 
-#: ../ubuntutweak/apps/__init__.py:200
+#: ../ubuntutweak/apps/__init__.py:232
 #, python-format
 msgid "\"%s\" is enabled now, Please click the update button to update %s"
 msgstr "\"%s\" مفعّل الان، اضغط زر التحديث للتحديث %s"
@@ -2578,33 +2594,33 @@ msgstr ""
 "\n"
 "يوجد ملفات بداخله."
 
-#: ../ubuntutweak/main.py:270
+#: ../ubuntutweak/main.py:267
 msgid "Results"
 msgstr "النتائج"
 
-#: ../ubuntutweak/main.py:278
+#: ../ubuntutweak/main.py:275
 #, python-format
 msgid "Your filter \"<b>%s</b>\" does not match any items."
 msgstr "مرشحك \"<b>%s</b>\" لا يطابق أي عنصر."
 
-#: ../ubuntutweak/main.py:405
+#: ../ubuntutweak/main.py:403
 msgid "Please wait a moment..."
 msgstr "انتظر لحظة من فضلك..."
 
-#: ../ubuntutweak/main.py:514
+#: ../ubuntutweak/main.py:512
 #, python-format
 msgid "No module named \"%s\""
 msgstr "لايوجد مسمى للوحدة \"%s\""
 
-#: ../ubuntutweak/main.py:515
+#: ../ubuntutweak/main.py:513
 msgid "Please ensure you have entered the correct module name."
 msgstr "تأكد من إدخال اسم الوحدة الصحيح"
 
-#: ../ubuntutweak/main.py:575
+#: ../ubuntutweak/main.py:571
 msgid "Computer Janitor"
 msgstr "منظف الحاسوب"
 
-#: ../ubuntutweak/main.py:576
+#: ../ubuntutweak/main.py:572
 msgid "Clean up a system so it's more like a freshly installed one"
 msgstr "نظّف النظام ليكون أشبه بنظام مثبّت حديثا"
 
@@ -2686,3 +2702,6 @@ msgstr "هل ترغب بإزالته ثم تثبيته مرة أخرى؟"
 #, python-format
 msgid "\"%s\" has already installed"
 msgstr "\"%s\" مثبّت حاليًا بالفعل"
+
+#~ msgid "Auto detect text encoding for Chinese in Gedit:"
+#~ msgstr "كشف ترميز النص تلقائيا للكتابة الصينية في محرر النصوص \"Gedit\":"

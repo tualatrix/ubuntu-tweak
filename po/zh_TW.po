@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Tweak 0.2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-30 16:27+0800\n"
-"PO-Revision-Date: 2012-10-25 17:30+0000\n"
-"Last-Translator: 林博仁(Henry Lin) <pika1021@gmail.com>\n"
+"POT-Creation-Date: 2012-12-13 20:34+0800\n"
+"PO-Revision-Date: 2012-11-20 12:06+0000\n"
+"Last-Translator: Walter Cheuk <wwycheuk@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-11-04 07:40+0000\n"
-"X-Generator: Launchpad (build 16218)\n"
+"X-Launchpad-Export-Date: 2012-12-20 14:48+0000\n"
+"X-Generator: Launchpad (build 16378)\n"
 "X-Poedit-Country: TAIWAN\n"
 "X-Poedit-Language: Chinese\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -125,7 +125,7 @@ msgstr "向上移"
 msgid "Move Down"
 msgstr "向下移"
 
-#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:91
+#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:111
 msgid "Install"
 msgstr "安裝"
 
@@ -416,7 +416,8 @@ msgstr ""
 "  arisaka https://launchpad.net/~chia0418\n"
 "  samuel-hk https://launchpad.net/~sjacs1339\n"
 "  taijuin lee https://launchpad.net/~taijuin\n"
-"  林博仁(Henry Lin) https://launchpad.net/~pika1021"
+"  林博仁(Henry Lin) https://launchpad.net/~pika1021\n"
+"  蔡查理 https://launchpad.net/~charlie-tsai"
 
 #: ../data/ui/mainwindow.ui.h:7
 msgid "Search... <Ctrl+F>"
@@ -527,7 +528,7 @@ msgstr "剛剛"
 msgid "_Unlock"
 msgstr "解除鎖定(_U)"
 
-#: ../ubuntutweak/policykit/dbusproxy.py:32
+#: ../ubuntutweak/policykit/dbusproxy.py:28
 msgid ""
 "The Ubuntu Tweak daemon didn't start correctly. This means that some "
 "advanced features may not work.\n"
@@ -654,11 +655,11 @@ msgstr "套件設定檔 (沒有套件設定檔會被移除)"
 
 #: ../ubuntutweak/janitor/oldkernel_plugin.py:16
 msgid "Old Kernel"
-msgstr "舊核心"
+msgstr "舊內核"
 
 #: ../ubuntutweak/janitor/oldkernel_plugin.py:101
 msgid "Old Kernel Packages (No old kernel package to be removed)"
-msgstr "舊核心套件 (沒有核心套件會被移除)"
+msgstr "舊內核套件 (不會移除舊內核套件)"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:79
 #: ../ubuntutweak/modules/__init__.py:29
@@ -672,7 +673,7 @@ msgid "Desktop"
 msgstr "桌面"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:106
-#: ../ubuntutweak/apps/__init__.py:371
+#: ../ubuntutweak/apps/__init__.py:398
 msgid "Category"
 msgstr "分類"
 
@@ -705,11 +706,11 @@ msgstr ""
 "輕鬆的備份、還原桌面與應用程式設定值。\n"
 "您也可以點選「重設」以恢復至系統預設值。"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:347
+#: ../ubuntutweak/admins/desktoprecovery.py:348
 msgid "No Backup Yet"
 msgstr "尚無備份"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:382
+#: ../ubuntutweak/admins/desktoprecovery.py:383
 #, python-format
 msgid ""
 "Backup all settings under \"<b>%s</b>\"\n"
@@ -718,7 +719,7 @@ msgstr ""
 "備份「<b>%s</b>」下的所有設定值\n"
 "您是否要繼續？"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:403
+#: ../ubuntutweak/admins/desktoprecovery.py:404
 #, python-format
 msgid ""
 "Backup settings under \"<b>%s</b>\"\n"
@@ -727,79 +728,79 @@ msgstr ""
 "備份「<b>%s</b>」下的設定值\n"
 "您是否要繼續？"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:446
+#: ../ubuntutweak/admins/desktoprecovery.py:447
 #, python-format
 msgid "Would you like to delete the backup \"<b>%s/%s</b>\"?"
 msgstr "您是否要刪除備份「<b>%s/%s</b>」？"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:450
+#: ../ubuntutweak/admins/desktoprecovery.py:451
 #, python-format
 msgid ""
 "Would you like to delete the backup of all \"<b>%(setting_name)s</b>\" "
 "settings named \"<b>%(backup_name)s</b>\"?"
 msgstr "您是否要刪除所有「<b>%(setting_name)s</b>」設定值的「<b>%(backup_name)s</b>」備份？"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:472
+#: ../ubuntutweak/admins/desktoprecovery.py:473
 #, python-format
 msgid "Would you like to recover the backup \"<b>%s/%s</b>\"?"
 msgstr "您是否要還原備份「<b>%s/%s</b>」？"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:475
+#: ../ubuntutweak/admins/desktoprecovery.py:476
 #, python-format
 msgid ""
 "Would you like to recover the backup of all \"<b>%(setting_name)s</b>\" "
 "settings named \"<b>%(backup_name)s</b>\"?"
 msgstr "您是否要還原所有「<b>%(setting_name)s</b>」設定值的「<b>%(backup_name)s</b>」備份？"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:480
+#: ../ubuntutweak/admins/desktoprecovery.py:481
 msgid ""
 "<b>NOTES</b>: While recovering, your desktop may be unresponsive for a "
 "moment."
 msgstr "<b>注意</b>：在還原過程當中，桌面可能會發生短時間內沒有回應的狀況。"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:497
+#: ../ubuntutweak/admins/desktoprecovery.py:498
 msgid "Recovery Successful!"
 msgstr "還原成功！"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:498
-#: ../ubuntutweak/admins/desktoprecovery.py:534
+#: ../ubuntutweak/admins/desktoprecovery.py:499
+#: ../ubuntutweak/admins/desktoprecovery.py:535
 msgid "You may need to restart your desktop for changes to take effect"
 msgstr "可能需要重新啟動桌面才能讓變更生效"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:503
+#: ../ubuntutweak/admins/desktoprecovery.py:504
 msgid "_Logout"
 msgstr "登出(_L)"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:516
+#: ../ubuntutweak/admins/desktoprecovery.py:517
 #, python-format
 msgid "Would you like to reset settings for \"<b>%s</b>\"?"
 msgstr "您是否要重新設定「<b>%s</b>」的設定值？"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:518
+#: ../ubuntutweak/admins/desktoprecovery.py:519
 #, python-format
 msgid "Would you like to reset all settings under \"<b>%s</b>\"?"
 msgstr "您是否要重新設定「<b>%s</b>」下的所有設定值？"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:520
+#: ../ubuntutweak/admins/desktoprecovery.py:521
 msgid ""
 "<b>NOTES</b>: Whilst resetting, your desktop may be unresponsive for a "
 "moment."
 msgstr "<b>注意</b>：在重新設定時，桌面可能會發生短時間內沒有回應的狀況。"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:533
+#: ../ubuntutweak/admins/desktoprecovery.py:534
 msgid "Reset Successful!"
 msgstr "重新設定成功！"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:562
+#: ../ubuntutweak/admins/desktoprecovery.py:563
 #: ../ubuntutweak/admins/sourceeditor.py:418
 msgid "Please enter a new name for your backup:"
 msgstr "請為備份輸入新名稱："
 
-#: ../ubuntutweak/admins/desktoprecovery.py:594
+#: ../ubuntutweak/admins/desktoprecovery.py:595
 msgid "Backup Successful!"
 msgstr "備份成功！"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:597
+#: ../ubuntutweak/admins/desktoprecovery.py:598
 #: ../ubuntutweak/admins/sourceeditor.py:394
 msgid "Backup Failed!"
 msgstr "備份失敗！"
@@ -870,7 +871,7 @@ msgstr ""
 "請先停用「<b>%(SOURCE)s</b>」才可以繼續。"
 
 #: ../ubuntutweak/admins/sourcecenter.py:903
-#: ../ubuntutweak/apps/__init__.py:199
+#: ../ubuntutweak/apps/__init__.py:231
 msgid "New source has been enabled"
 msgstr "已啟用新的來源"
 
@@ -1294,41 +1295,41 @@ msgstr "還原(_R)"
 msgid "_Change"
 msgstr "變更(_C)"
 
-#: ../ubuntutweak/admins/quicklists.py:209
+#: ../ubuntutweak/admins/quicklists.py:211
 msgid "QuickLists Editor"
 msgstr "快捷清單編輯器"
 
-#: ../ubuntutweak/admins/quicklists.py:210
+#: ../ubuntutweak/admins/quicklists.py:212
 msgid "Unity Launcher QuickLists Editor"
 msgstr "Unity 啟動器快捷清單編輯器"
 
-#: ../ubuntutweak/admins/quicklists.py:228
+#: ../ubuntutweak/admins/quicklists.py:230
 msgid "Running Apps"
 msgstr "正在運行的應用程式"
 
-#: ../ubuntutweak/admins/quicklists.py:229
+#: ../ubuntutweak/admins/quicklists.py:231
 msgid "Workspace Switcher"
 msgstr "工作區切換程式"
 
-#: ../ubuntutweak/admins/quicklists.py:230
+#: ../ubuntutweak/admins/quicklists.py:232
 msgid "Devices"
 msgstr "裝置"
 
-#: ../ubuntutweak/admins/quicklists.py:421
+#: ../ubuntutweak/admins/quicklists.py:426
 #, python-format
 msgid "Would you like to reset \"%s\"?"
 msgstr "您是否要重新設定「%s」？"
 
-#: ../ubuntutweak/admins/quicklists.py:422
+#: ../ubuntutweak/admins/quicklists.py:427
 #, python-format
 msgid "If you continue, the actions of %s will be set to default."
 msgstr "如果您繼續的話，「%s」的動作將會被設為預設值。"
 
-#: ../ubuntutweak/admins/quicklists.py:435
+#: ../ubuntutweak/admins/quicklists.py:440
 msgid "Would you like to reset the launcher items?"
 msgstr "您是否要重新設定啟動器項目？"
 
-#: ../ubuntutweak/admins/quicklists.py:436
+#: ../ubuntutweak/admins/quicklists.py:441
 msgid ""
 "If you continue, launcher will be set to default and all your current items "
 "will be lost."
@@ -1482,13 +1483,13 @@ msgstr ""
 "藉由設置快捷鍵，可以快速啟動您喜愛的應用程式。\n"
 "輸入啟動應用程式的命令，並選取一個與之搭配的快捷鍵。"
 
-#: ../ubuntutweak/admins/shortcuts.py:83
+#: ../ubuntutweak/admins/shortcuts.py:84
 #, python-format
 msgid "Command %d"
 msgstr "指令 %d"
 
-#: ../ubuntutweak/admins/shortcuts.py:88
-#: ../ubuntutweak/admins/shortcuts.py:200
+#: ../ubuntutweak/admins/shortcuts.py:89
+#: ../ubuntutweak/admins/shortcuts.py:201
 #: ../ubuntutweak/admins/filetypemanager.py:178
 #: ../ubuntutweak/admins/filetypemanager.py:202
 #: ../ubuntutweak/tweaks/window.py:79 ../ubuntutweak/tweaks/window.py:86
@@ -1498,20 +1499,20 @@ msgstr "指令 %d"
 msgid "None"
 msgstr "無"
 
-#: ../ubuntutweak/admins/shortcuts.py:93
-#: ../ubuntutweak/admins/shortcuts.py:145
+#: ../ubuntutweak/admins/shortcuts.py:94
+#: ../ubuntutweak/admins/shortcuts.py:146
 msgid "disabled"
 msgstr "已停用"
 
-#: ../ubuntutweak/admins/shortcuts.py:102
+#: ../ubuntutweak/admins/shortcuts.py:103
 msgid "ID"
 msgstr "編號"
 
-#: ../ubuntutweak/admins/shortcuts.py:113
+#: ../ubuntutweak/admins/shortcuts.py:114
 msgid "Command"
 msgstr "指令"
 
-#: ../ubuntutweak/admins/shortcuts.py:126
+#: ../ubuntutweak/admins/shortcuts.py:127
 msgid "Key"
 msgstr "按鍵"
 
@@ -1536,7 +1537,7 @@ msgid "Application"
 msgstr "應用程式"
 
 #: ../ubuntutweak/admins/filetypemanager.py:50
-#: ../ubuntutweak/apps/__init__.py:390
+#: ../ubuntutweak/apps/__init__.py:417
 msgid "All"
 msgstr "全部"
 
@@ -1952,69 +1953,85 @@ msgstr "音效主題："
 msgid "Play login sound:"
 msgstr "播放登入音效："
 
-#: ../ubuntutweak/tweaks/misc.py:31
+#: ../ubuntutweak/tweaks/misc.py:32
 msgid "Miscellaneous"
 msgstr "雜項"
 
-#: ../ubuntutweak/tweaks/misc.py:32
+#: ../ubuntutweak/tweaks/misc.py:33
 msgid "Set the cursor timeout, menus and buttons icons"
 msgstr "設定游標逾時、選單和按鈕圖示"
 
-#: ../ubuntutweak/tweaks/misc.py:36
+#: ../ubuntutweak/tweaks/misc.py:37
 msgid "Natural Scrolling"
 msgstr "自然滾動"
 
-#: ../ubuntutweak/tweaks/misc.py:37
+#: ../ubuntutweak/tweaks/misc.py:38
 msgid "Menus have icons"
 msgstr "顯示選單的圖示"
 
-#: ../ubuntutweak/tweaks/misc.py:38
+#: ../ubuntutweak/tweaks/misc.py:39
 msgid "Buttons have icons"
 msgstr "顯示按鈕的圖示"
 
-#: ../ubuntutweak/tweaks/misc.py:39
+#: ../ubuntutweak/tweaks/misc.py:40
 msgid "Show Input Method menu in the context menu"
 msgstr "在右鍵選單顯示「輸入法」選單"
 
-#: ../ubuntutweak/tweaks/misc.py:40
+#: ../ubuntutweak/tweaks/misc.py:41
 msgid "Show Unicode Control Character menu in the context menu"
 msgstr "在右鍵選單顯示「萬國碼控制字元」選單"
 
-#: ../ubuntutweak/tweaks/misc.py:41
+#: ../ubuntutweak/tweaks/misc.py:42
 msgid "Disable printing"
 msgstr "停用列印"
 
-#: ../ubuntutweak/tweaks/misc.py:42
+#: ../ubuntutweak/tweaks/misc.py:43
 msgid "Disable printer settings"
 msgstr "停用印表機設定值"
 
-#: ../ubuntutweak/tweaks/misc.py:43
+#: ../ubuntutweak/tweaks/misc.py:44
 msgid "Disable save to disk"
 msgstr "停用「儲存到硬碟」功能"
 
-#: ../ubuntutweak/tweaks/misc.py:44
+#: ../ubuntutweak/tweaks/misc.py:45
 msgid "Disable \"Fast User Switching\""
 msgstr "停用「使用者快速切換」"
 
-#: ../ubuntutweak/tweaks/misc.py:45
+#: ../ubuntutweak/tweaks/misc.py:46
 msgid "Cursor blink:"
 msgstr "游標閃爍："
 
-#: ../ubuntutweak/tweaks/misc.py:46
+#: ../ubuntutweak/tweaks/misc.py:47
 msgid "Overlay scrollbars:"
 msgstr "疊層式滾動條："
 
-#: ../ubuntutweak/tweaks/misc.py:47
+#: ../ubuntutweak/tweaks/misc.py:48
 msgid "Cursor blink time:"
 msgstr "游標閃爍時間："
 
-#: ../ubuntutweak/tweaks/misc.py:48
+#: ../ubuntutweak/tweaks/misc.py:49
 msgid "Cursor blink timeout:"
 msgstr "游標閃爍逾時時間："
 
-#: ../ubuntutweak/tweaks/misc.py:60 ../ubuntutweak/tweaks/unity.py:187
+#: ../ubuntutweak/tweaks/misc.py:61 ../ubuntutweak/tweaks/unity.py:187
 msgid "Note: you may need to log out to take effect"
 msgstr "注意：您可能需要登出以讓變更生效"
+
+#: ../ubuntutweak/tweaks/misc.py:68
+msgid "Normal"
+msgstr "一般"
+
+#: ../ubuntutweak/tweaks/misc.py:69
+msgid "Auto"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/misc.py:70
+msgid "Show Overlay"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/misc.py:71
+msgid "Never Show Overlay"
+msgstr ""
 
 #: ../ubuntutweak/tweaks/loginsettings.py:37
 msgid "Login Settings"
@@ -2274,8 +2291,8 @@ msgid "Fix the appearance of themes when granted root privileges:"
 msgstr "修正取得 root 權限時的佈景主題外觀："
 
 #: ../ubuntutweak/tweaks/workarounds.py:39
-msgid "Auto detect text encoding for Chinese in Gedit:"
-msgstr "在 Gedit 內自動偵測中文的文字編碼："
+msgid "Auto detect text encoding for Simplified Chinese in Gedit:"
+msgstr ""
 
 #: ../ubuntutweak/tweaks/lovewallpaperhd.py:20
 msgid "Love Wallpaper HD"
@@ -2293,31 +2310,31 @@ msgstr "好手氣"
 msgid "Downloading Wallpaper"
 msgstr "正在下載桌面背景圖案"
 
-#: ../ubuntutweak/apps/__init__.py:92
+#: ../ubuntutweak/apps/__init__.py:112
 msgid "Uninstall"
 msgstr "移除"
 
-#: ../ubuntutweak/apps/__init__.py:93
+#: ../ubuntutweak/apps/__init__.py:113
 msgid "Update"
 msgstr "更新"
 
-#: ../ubuntutweak/apps/__init__.py:94
+#: ../ubuntutweak/apps/__init__.py:114
 msgid "Installing"
 msgstr "正在安裝"
 
-#: ../ubuntutweak/apps/__init__.py:95
+#: ../ubuntutweak/apps/__init__.py:115
 msgid "Uninstalling"
 msgstr "正在移除"
 
-#: ../ubuntutweak/apps/__init__.py:96
+#: ../ubuntutweak/apps/__init__.py:116
 msgid "Updating"
 msgstr "正在更新"
 
-#: ../ubuntutweak/apps/__init__.py:97
+#: ../ubuntutweak/apps/__init__.py:117
 msgid "Not Available"
 msgstr "無法使用"
 
-#: ../ubuntutweak/apps/__init__.py:200
+#: ../ubuntutweak/apps/__init__.py:232
 #, python-format
 msgid "\"%s\" is enabled now, Please click the update button to update %s"
 msgstr "「%s」現在已啟用。要更新 %s，請點擊更新按鈕"
@@ -2492,35 +2509,35 @@ msgstr ""
 "\n"
 "裡面還有檔案！"
 
-#: ../ubuntutweak/main.py:270
+#: ../ubuntutweak/main.py:267
 msgid "Results"
 msgstr "結果"
 
-#: ../ubuntutweak/main.py:278
+#: ../ubuntutweak/main.py:275
 #, python-format
 msgid "Your filter \"<b>%s</b>\" does not match any items."
 msgstr "您的過濾器「<b>%s</b>」未符合任何項目。"
 
-#: ../ubuntutweak/main.py:405
+#: ../ubuntutweak/main.py:403
 msgid "Please wait a moment..."
 msgstr "請稍候..."
 
-#: ../ubuntutweak/main.py:514
+#: ../ubuntutweak/main.py:512
 #, python-format
 msgid "No module named \"%s\""
 msgstr "沒有名為「%s」的模組"
 
-#: ../ubuntutweak/main.py:515
+#: ../ubuntutweak/main.py:513
 msgid "Please ensure you have entered the correct module name."
 msgstr "請確認輸入的模組名稱是正確的。"
 
-#: ../ubuntutweak/main.py:575
+#: ../ubuntutweak/main.py:571
 msgid "Computer Janitor"
 msgstr "電腦清道夫"
 
-#: ../ubuntutweak/main.py:576
+#: ../ubuntutweak/main.py:572
 msgid "Clean up a system so it's more like a freshly installed one"
-msgstr "清理系統，讓它像才剛安裝好一樣"
+msgstr "清理系統，讓其像才剛安裝好一樣"
 
 #: ../ubuntutweak/utils/__init__.py:40
 #, python-format
@@ -2595,3 +2612,6 @@ msgstr "是否移除並再次安裝？"
 #, python-format
 msgid "\"%s\" has already installed"
 msgstr "「%s」已經安裝"
+
+#~ msgid "Auto detect text encoding for Chinese in Gedit:"
+#~ msgstr "在 Gedit 內自動偵測中文的文字編碼："

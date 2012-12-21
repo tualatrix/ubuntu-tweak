@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-30 16:27+0800\n"
-"PO-Revision-Date: 2012-10-22 03:35+0000\n"
+"POT-Creation-Date: 2012-12-13 20:34+0800\n"
+"PO-Revision-Date: 2012-11-06 03:48+0000\n"
 "Last-Translator: Kim Boram <boramism@gmail.com>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-11-04 07:40+0000\n"
-"X-Generator: Launchpad (build 16218)\n"
+"X-Launchpad-Export-Date: 2012-12-20 14:48+0000\n"
+"X-Generator: Launchpad (build 16378)\n"
 
 #: ../data/script-worker:57
 #, c-format
@@ -122,7 +122,7 @@ msgstr "위로 이동"
 msgid "Move Down"
 msgstr "아래로 이동"
 
-#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:91
+#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:111
 msgid "Install"
 msgstr "설치"
 
@@ -240,7 +240,7 @@ msgstr "이름"
 
 #: ../data/ui/quicklists.ui.h:4
 msgid "Command line"
-msgstr "명령 줄"
+msgstr "명령"
 
 #: ../data/ui/quicklists.ui.h:5
 msgid "Command:"
@@ -531,7 +531,7 @@ msgstr "지금 막"
 msgid "_Unlock"
 msgstr "잠금 해제(_U)"
 
-#: ../ubuntutweak/policykit/dbusproxy.py:32
+#: ../ubuntutweak/policykit/dbusproxy.py:28
 msgid ""
 "The Ubuntu Tweak daemon didn't start correctly. This means that some "
 "advanced features may not work.\n"
@@ -677,7 +677,7 @@ msgid "Desktop"
 msgstr "데스크톱"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:106
-#: ../ubuntutweak/apps/__init__.py:371
+#: ../ubuntutweak/apps/__init__.py:398
 msgid "Category"
 msgstr "분류"
 
@@ -710,11 +710,11 @@ msgstr ""
 "현재 데스크톱과 프로그램의 설정을 쉽게 백업하고 복원합니다.\n"
 "\"다시 설정\" 단추를 누르면 시스템의 기본 설정으로 다시 설정합니다."
 
-#: ../ubuntutweak/admins/desktoprecovery.py:347
+#: ../ubuntutweak/admins/desktoprecovery.py:348
 msgid "No Backup Yet"
 msgstr "아직 백업이 없음."
 
-#: ../ubuntutweak/admins/desktoprecovery.py:382
+#: ../ubuntutweak/admins/desktoprecovery.py:383
 #, python-format
 msgid ""
 "Backup all settings under \"<b>%s</b>\"\n"
@@ -723,7 +723,7 @@ msgstr ""
 "<b>%s</b> 아래의 모든 설정 백업\n"
 "계속하시겠습니까?"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:403
+#: ../ubuntutweak/admins/desktoprecovery.py:404
 #, python-format
 msgid ""
 "Backup settings under \"<b>%s</b>\"\n"
@@ -732,12 +732,12 @@ msgstr ""
 "<b>%s</b> 아래의 설정을 백업합니다.\n"
 "계속하시겠습니까?"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:446
+#: ../ubuntutweak/admins/desktoprecovery.py:447
 #, python-format
 msgid "Would you like to delete the backup \"<b>%s/%s</b>\"?"
 msgstr "백업 <b>%s/%s</b>을(를) 삭제하시겠습니까?"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:450
+#: ../ubuntutweak/admins/desktoprecovery.py:451
 #, python-format
 msgid ""
 "Would you like to delete the backup of all \"<b>%(setting_name)s</b>\" "
@@ -746,12 +746,12 @@ msgstr ""
 "\"<b>%(backup_name)s</b>\" 이름을 가진 모든 \"<b>%(setting_name)s</b>\"의 설정을 "
 "삭제하시겠습니까?"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:472
+#: ../ubuntutweak/admins/desktoprecovery.py:473
 #, python-format
 msgid "Would you like to recover the backup \"<b>%s/%s</b>\"?"
 msgstr "백업 \"<b>%s/%s</b>\"을(를) 복구하시겠습니까?"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:475
+#: ../ubuntutweak/admins/desktoprecovery.py:476
 #, python-format
 msgid ""
 "Would you like to recover the backup of all \"<b>%(setting_name)s</b>\" "
@@ -760,55 +760,55 @@ msgstr ""
 "\"<b>%(backup_name)s</b>\" 이름을 가진 설정 \"<b>%(setting_name)s</b>\"을(를) 모두 "
 "복구하시겠습니까?"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:480
+#: ../ubuntutweak/admins/desktoprecovery.py:481
 msgid ""
 "<b>NOTES</b>: While recovering, your desktop may be unresponsive for a "
 "moment."
 msgstr "<b>주의</b>: 복원하는 중에는 데스크톱이 잠시 반응하지 않습니다."
 
-#: ../ubuntutweak/admins/desktoprecovery.py:497
+#: ../ubuntutweak/admins/desktoprecovery.py:498
 msgid "Recovery Successful!"
 msgstr "복구 성공!"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:498
-#: ../ubuntutweak/admins/desktoprecovery.py:534
+#: ../ubuntutweak/admins/desktoprecovery.py:499
+#: ../ubuntutweak/admins/desktoprecovery.py:535
 msgid "You may need to restart your desktop for changes to take effect"
 msgstr "바뀐 내용을 적용하려면 데스크톱을 다시 시작하시겠습니까?"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:503
+#: ../ubuntutweak/admins/desktoprecovery.py:504
 msgid "_Logout"
 msgstr "로그아웃(_L)"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:516
+#: ../ubuntutweak/admins/desktoprecovery.py:517
 #, python-format
 msgid "Would you like to reset settings for \"<b>%s</b>\"?"
 msgstr "\"<b>%s</b>\" 설정을 초기화하시겠습니까?"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:518
+#: ../ubuntutweak/admins/desktoprecovery.py:519
 #, python-format
 msgid "Would you like to reset all settings under \"<b>%s</b>\"?"
 msgstr "\"<b>%s</b>\" 아래의 모든 설정을 초기화하시겠습니까?"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:520
+#: ../ubuntutweak/admins/desktoprecovery.py:521
 msgid ""
 "<b>NOTES</b>: Whilst resetting, your desktop may be unresponsive for a "
 "moment."
 msgstr "<b>주의</b>: 다시 설정하는 중에는 데스크톱이 잠시 반응하지 않습니다."
 
-#: ../ubuntutweak/admins/desktoprecovery.py:533
+#: ../ubuntutweak/admins/desktoprecovery.py:534
 msgid "Reset Successful!"
 msgstr "초기화 성공!"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:562
+#: ../ubuntutweak/admins/desktoprecovery.py:563
 #: ../ubuntutweak/admins/sourceeditor.py:418
 msgid "Please enter a new name for your backup:"
 msgstr "이 백업의 새 이름을 입력해 주십시오.:"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:594
+#: ../ubuntutweak/admins/desktoprecovery.py:595
 msgid "Backup Successful!"
 msgstr "백업 성공!"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:597
+#: ../ubuntutweak/admins/desktoprecovery.py:598
 #: ../ubuntutweak/admins/sourceeditor.py:394
 msgid "Backup Failed!"
 msgstr "백업 실패!"
@@ -879,7 +879,7 @@ msgstr ""
 "계속하시려면 우선 <b>\"%(SOURCE)s\"</b>을(를) 사용하지 않도록 설정해야 합니다."
 
 #: ../ubuntutweak/admins/sourcecenter.py:903
-#: ../ubuntutweak/apps/__init__.py:199
+#: ../ubuntutweak/apps/__init__.py:231
 msgid "New source has been enabled"
 msgstr "새 소스를 사용합니다."
 
@@ -1304,41 +1304,41 @@ msgstr "복구(_R)"
 msgid "_Change"
 msgstr "바꾸기(_C)"
 
-#: ../ubuntutweak/admins/quicklists.py:209
+#: ../ubuntutweak/admins/quicklists.py:211
 msgid "QuickLists Editor"
 msgstr "빠른 실행 목록 편집기"
 
-#: ../ubuntutweak/admins/quicklists.py:210
+#: ../ubuntutweak/admins/quicklists.py:212
 msgid "Unity Launcher QuickLists Editor"
 msgstr "유니티 런처 빠른 실행 목록 편집"
 
-#: ../ubuntutweak/admins/quicklists.py:228
-msgid "Running Apps"
-msgstr ""
-
-#: ../ubuntutweak/admins/quicklists.py:229
-msgid "Workspace Switcher"
-msgstr ""
-
 #: ../ubuntutweak/admins/quicklists.py:230
-msgid "Devices"
-msgstr ""
+msgid "Running Apps"
+msgstr "프로그램 실행"
 
-#: ../ubuntutweak/admins/quicklists.py:421
+#: ../ubuntutweak/admins/quicklists.py:231
+msgid "Workspace Switcher"
+msgstr "작업 공간 바꾸기"
+
+#: ../ubuntutweak/admins/quicklists.py:232
+msgid "Devices"
+msgstr "장치"
+
+#: ../ubuntutweak/admins/quicklists.py:426
 #, python-format
 msgid "Would you like to reset \"%s\"?"
 msgstr "\"%s\"을(를) 초기화하시겠습니까?"
 
-#: ../ubuntutweak/admins/quicklists.py:422
+#: ../ubuntutweak/admins/quicklists.py:427
 #, python-format
 msgid "If you continue, the actions of %s will be set to default."
 msgstr "계속 진행하면 %s 동작을 기본 값으로 설정합니다."
 
-#: ../ubuntutweak/admins/quicklists.py:435
+#: ../ubuntutweak/admins/quicklists.py:440
 msgid "Would you like to reset the launcher items?"
 msgstr "런처 항목을 초기화하시겠습니까?"
 
-#: ../ubuntutweak/admins/quicklists.py:436
+#: ../ubuntutweak/admins/quicklists.py:441
 msgid ""
 "If you continue, launcher will be set to default and all your current items "
 "will be lost."
@@ -1492,13 +1492,13 @@ msgstr ""
 "키보드 바로 가기를 설정하면 자주 사용하는 프로그램에 즉시 접근할 수 있습니다.\n"
 "실행할 프로그램의 명령을 입력하고 키보드 바로 가기 조합을 선택하십시오."
 
-#: ../ubuntutweak/admins/shortcuts.py:83
+#: ../ubuntutweak/admins/shortcuts.py:84
 #, python-format
 msgid "Command %d"
 msgstr "명령 %d"
 
-#: ../ubuntutweak/admins/shortcuts.py:88
-#: ../ubuntutweak/admins/shortcuts.py:200
+#: ../ubuntutweak/admins/shortcuts.py:89
+#: ../ubuntutweak/admins/shortcuts.py:201
 #: ../ubuntutweak/admins/filetypemanager.py:178
 #: ../ubuntutweak/admins/filetypemanager.py:202
 #: ../ubuntutweak/tweaks/window.py:79 ../ubuntutweak/tweaks/window.py:86
@@ -1508,20 +1508,20 @@ msgstr "명령 %d"
 msgid "None"
 msgstr "없음"
 
-#: ../ubuntutweak/admins/shortcuts.py:93
-#: ../ubuntutweak/admins/shortcuts.py:145
+#: ../ubuntutweak/admins/shortcuts.py:94
+#: ../ubuntutweak/admins/shortcuts.py:146
 msgid "disabled"
 msgstr "사용하지 않음"
 
-#: ../ubuntutweak/admins/shortcuts.py:102
+#: ../ubuntutweak/admins/shortcuts.py:103
 msgid "ID"
 msgstr "아이디"
 
-#: ../ubuntutweak/admins/shortcuts.py:113
+#: ../ubuntutweak/admins/shortcuts.py:114
 msgid "Command"
 msgstr "명령"
 
-#: ../ubuntutweak/admins/shortcuts.py:126
+#: ../ubuntutweak/admins/shortcuts.py:127
 msgid "Key"
 msgstr "키"
 
@@ -1546,7 +1546,7 @@ msgid "Application"
 msgstr "프로그램"
 
 #: ../ubuntutweak/admins/filetypemanager.py:50
-#: ../ubuntutweak/apps/__init__.py:390
+#: ../ubuntutweak/apps/__init__.py:417
 msgid "All"
 msgstr "전체"
 
@@ -1962,69 +1962,85 @@ msgstr "소리 테마:"
 msgid "Play login sound:"
 msgstr "로그인 소리 재생:"
 
-#: ../ubuntutweak/tweaks/misc.py:31
+#: ../ubuntutweak/tweaks/misc.py:32
 msgid "Miscellaneous"
 msgstr "기타"
 
-#: ../ubuntutweak/tweaks/misc.py:32
+#: ../ubuntutweak/tweaks/misc.py:33
 msgid "Set the cursor timeout, menus and buttons icons"
 msgstr "커서 지속 시간을 설정합니다. 메뉴와 단추 아이콘"
 
-#: ../ubuntutweak/tweaks/misc.py:36
+#: ../ubuntutweak/tweaks/misc.py:37
 msgid "Natural Scrolling"
 msgstr "자연스러운 스크롤"
 
-#: ../ubuntutweak/tweaks/misc.py:37
+#: ../ubuntutweak/tweaks/misc.py:38
 msgid "Menus have icons"
 msgstr "메뉴에 아이콘 표시"
 
-#: ../ubuntutweak/tweaks/misc.py:38
+#: ../ubuntutweak/tweaks/misc.py:39
 msgid "Buttons have icons"
 msgstr "단추에 아이콘 표시"
 
-#: ../ubuntutweak/tweaks/misc.py:39
+#: ../ubuntutweak/tweaks/misc.py:40
 msgid "Show Input Method menu in the context menu"
 msgstr "오른쪽 마우스 클릭 메뉴에 입력기 메뉴 보이기"
 
-#: ../ubuntutweak/tweaks/misc.py:40
+#: ../ubuntutweak/tweaks/misc.py:41
 msgid "Show Unicode Control Character menu in the context menu"
 msgstr "오른쪽 마우스 클릭 메뉴에서 유니코드 제어 문자 메뉴 보이기"
 
-#: ../ubuntutweak/tweaks/misc.py:41
+#: ../ubuntutweak/tweaks/misc.py:42
 msgid "Disable printing"
 msgstr "인쇄 사용하지 않기"
 
-#: ../ubuntutweak/tweaks/misc.py:42
+#: ../ubuntutweak/tweaks/misc.py:43
 msgid "Disable printer settings"
 msgstr "프린터 설정 사용하지 않기"
 
-#: ../ubuntutweak/tweaks/misc.py:43
+#: ../ubuntutweak/tweaks/misc.py:44
 msgid "Disable save to disk"
 msgstr "디스크 파일 저장 사용하지 않기"
 
-#: ../ubuntutweak/tweaks/misc.py:44
+#: ../ubuntutweak/tweaks/misc.py:45
 msgid "Disable \"Fast User Switching\""
 msgstr "\"빠른 사용자 바꾸기\" 사용하지 않기"
 
-#: ../ubuntutweak/tweaks/misc.py:45
+#: ../ubuntutweak/tweaks/misc.py:46
 msgid "Cursor blink:"
 msgstr "커서 깜빡이기:"
 
-#: ../ubuntutweak/tweaks/misc.py:46
+#: ../ubuntutweak/tweaks/misc.py:47
 msgid "Overlay scrollbars:"
 msgstr "오버레이 스크롤바:"
 
-#: ../ubuntutweak/tweaks/misc.py:47
+#: ../ubuntutweak/tweaks/misc.py:48
 msgid "Cursor blink time:"
 msgstr "커서 깜빡이기 시간:"
 
-#: ../ubuntutweak/tweaks/misc.py:48
+#: ../ubuntutweak/tweaks/misc.py:49
 msgid "Cursor blink timeout:"
 msgstr "커서 깜빡이기 지속 시간:"
 
-#: ../ubuntutweak/tweaks/misc.py:60 ../ubuntutweak/tweaks/unity.py:187
+#: ../ubuntutweak/tweaks/misc.py:61 ../ubuntutweak/tweaks/unity.py:187
 msgid "Note: you may need to log out to take effect"
 msgstr "주의: 바뀐 내용을 적용하려면 로그아웃해야 합니다."
+
+#: ../ubuntutweak/tweaks/misc.py:68
+msgid "Normal"
+msgstr "일반"
+
+#: ../ubuntutweak/tweaks/misc.py:69
+msgid "Auto"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/misc.py:70
+msgid "Show Overlay"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/misc.py:71
+msgid "Never Show Overlay"
+msgstr ""
 
 #: ../ubuntutweak/tweaks/loginsettings.py:37
 msgid "Login Settings"
@@ -2152,7 +2168,7 @@ msgstr "런처 투명도:"
 
 #: ../ubuntutweak/tweaks/unity.py:46
 msgid "Web Apps integration:"
-msgstr ""
+msgstr "웹 앱 통합:"
 
 #: ../ubuntutweak/tweaks/unity.py:47
 msgid "Launcher hide mode:"
@@ -2284,50 +2300,50 @@ msgid "Fix the appearance of themes when granted root privileges:"
 msgstr "관리자 권한으로 실행한 창에 테마가 적용되지 않는 문제를 해결합니다:"
 
 #: ../ubuntutweak/tweaks/workarounds.py:39
-msgid "Auto detect text encoding for Chinese in Gedit:"
-msgstr "지에디트에서 중국어 문자 인코딩을 자동으로 검출합니다:"
+msgid "Auto detect text encoding for Simplified Chinese in Gedit:"
+msgstr ""
 
 #: ../ubuntutweak/tweaks/lovewallpaperhd.py:20
 msgid "Love Wallpaper HD"
-msgstr ""
+msgstr "러브 월페이퍼 HD"
 
 #: ../ubuntutweak/tweaks/lovewallpaperhd.py:21
 msgid "Browse online gallery and find your wallpaper"
-msgstr ""
+msgstr "온라인 겔러리를 둘러보고 배경을 찾습니다."
 
 #: ../ubuntutweak/tweaks/lovewallpaperhd.py:48
 msgid "I'm Feeling Lucky"
-msgstr ""
+msgstr "다른 배경 둘러보기"
 
 #: ../ubuntutweak/tweaks/lovewallpaperhd.py:87
 msgid "Downloading Wallpaper"
-msgstr ""
+msgstr "배경 다운로드"
 
-#: ../ubuntutweak/apps/__init__.py:92
+#: ../ubuntutweak/apps/__init__.py:112
 msgid "Uninstall"
 msgstr "제거"
 
-#: ../ubuntutweak/apps/__init__.py:93
+#: ../ubuntutweak/apps/__init__.py:113
 msgid "Update"
 msgstr "업데이트"
 
-#: ../ubuntutweak/apps/__init__.py:94
+#: ../ubuntutweak/apps/__init__.py:114
 msgid "Installing"
 msgstr "설치 중"
 
-#: ../ubuntutweak/apps/__init__.py:95
+#: ../ubuntutweak/apps/__init__.py:115
 msgid "Uninstalling"
 msgstr "제거 중"
 
-#: ../ubuntutweak/apps/__init__.py:96
+#: ../ubuntutweak/apps/__init__.py:116
 msgid "Updating"
 msgstr "업데이트 중"
 
-#: ../ubuntutweak/apps/__init__.py:97
+#: ../ubuntutweak/apps/__init__.py:117
 msgid "Not Available"
 msgstr "사용할 수 없음"
 
-#: ../ubuntutweak/apps/__init__.py:200
+#: ../ubuntutweak/apps/__init__.py:232
 #, python-format
 msgid "\"%s\" is enabled now, Please click the update button to update %s"
 msgstr "\"%s\"을(를) 사용합니다. %s을(를) 업데이트하려면 업데이트 단추를 눌러주십시오."
@@ -2501,33 +2517,33 @@ msgstr ""
 "이름을 바꿀 수 없습니다!\n"
 "폴더 안에 파일이 있습니다!"
 
-#: ../ubuntutweak/main.py:270
+#: ../ubuntutweak/main.py:267
 msgid "Results"
 msgstr "결과"
 
-#: ../ubuntutweak/main.py:278
+#: ../ubuntutweak/main.py:275
 #, python-format
 msgid "Your filter \"<b>%s</b>\" does not match any items."
 msgstr "검색어  \"<b>%s</b>\"와(과) 일치하는 항목이 없습니다."
 
-#: ../ubuntutweak/main.py:405
+#: ../ubuntutweak/main.py:403
 msgid "Please wait a moment..."
 msgstr "잠시만 기다려주십시오..."
 
-#: ../ubuntutweak/main.py:514
+#: ../ubuntutweak/main.py:512
 #, python-format
 msgid "No module named \"%s\""
 msgstr "모듈  \"%s\"이(가) 없습니다"
 
-#: ../ubuntutweak/main.py:515
+#: ../ubuntutweak/main.py:513
 msgid "Please ensure you have entered the correct module name."
 msgstr "올바른 모듈 이름을 입력했는지 확인해주십시오."
 
-#: ../ubuntutweak/main.py:575
+#: ../ubuntutweak/main.py:571
 msgid "Computer Janitor"
 msgstr "컴퓨터 재니터"
 
-#: ../ubuntutweak/main.py:576
+#: ../ubuntutweak/main.py:572
 msgid "Clean up a system so it's more like a freshly installed one"
 msgstr "시스템을 정리해 지금 막 설치한 것과 같이 만듭니다."
 
@@ -2604,3 +2620,6 @@ msgstr "우선 제거한 후 다시 설치하시겠습니까?"
 #, python-format
 msgid "\"%s\" has already installed"
 msgstr "\"%s\"을(를) 이미 설치했습니다"
+
+#~ msgid "Auto detect text encoding for Chinese in Gedit:"
+#~ msgstr "지에디트에서 중국어 문자 인코딩을 자동으로 검출합니다:"

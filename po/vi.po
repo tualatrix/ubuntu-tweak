@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-30 16:27+0800\n"
+"POT-Creation-Date: 2012-12-13 20:34+0800\n"
 "PO-Revision-Date: 2012-10-02 06:13+0000\n"
 "Last-Translator: Ding Zhou <tualatrix@gmail.com>\n"
 "Language-Team: Vietnamese <vi@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-11-04 07:41+0000\n"
-"X-Generator: Launchpad (build 16218)\n"
+"X-Launchpad-Export-Date: 2012-12-20 14:48+0000\n"
+"X-Generator: Launchpad (build 16378)\n"
 
 #: ../data/script-worker:57
 #, c-format
@@ -122,7 +122,7 @@ msgstr "Di chuyển lên"
 msgid "Move Down"
 msgstr "Di chuyển xuống"
 
-#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:91
+#: ../data/ui/preferences.ui.h:8 ../ubuntutweak/apps/__init__.py:111
 msgid "Install"
 msgstr "Cài đặt"
 
@@ -527,7 +527,7 @@ msgstr "Mới đây"
 msgid "_Unlock"
 msgstr "_Mở khoá"
 
-#: ../ubuntutweak/policykit/dbusproxy.py:32
+#: ../ubuntutweak/policykit/dbusproxy.py:28
 msgid ""
 "The Ubuntu Tweak daemon didn't start correctly. This means that some "
 "advanced features may not work.\n"
@@ -678,7 +678,7 @@ msgid "Desktop"
 msgstr "Màn hình nền"
 
 #: ../ubuntutweak/admins/desktoprecovery.py:106
-#: ../ubuntutweak/apps/__init__.py:371
+#: ../ubuntutweak/apps/__init__.py:398
 msgid "Category"
 msgstr "Phân mục"
 
@@ -713,11 +713,11 @@ msgstr ""
 "Bạn cũng có thể ấn nút \"Cài đặt lại\" để cài đặt lại mọi thứ về giá trị mặc "
 "định của hệ thống."
 
-#: ../ubuntutweak/admins/desktoprecovery.py:347
+#: ../ubuntutweak/admins/desktoprecovery.py:348
 msgid "No Backup Yet"
 msgstr "Chưa có bản sao lưu nào"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:382
+#: ../ubuntutweak/admins/desktoprecovery.py:383
 #, python-format
 msgid ""
 "Backup all settings under \"<b>%s</b>\"\n"
@@ -726,7 +726,7 @@ msgstr ""
 "Sao lưu mọi thiết đặt dưới tệp \"<b>%s</b>\n"
 "Bạn có muốn tiếp tục?"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:403
+#: ../ubuntutweak/admins/desktoprecovery.py:404
 #, python-format
 msgid ""
 "Backup settings under \"<b>%s</b>\"\n"
@@ -735,12 +735,12 @@ msgstr ""
 "Sao lưu thiết đặt dưới tệp \"<b>%s</b>\n"
 "Bạn có muốn tiếp tục?"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:446
+#: ../ubuntutweak/admins/desktoprecovery.py:447
 #, python-format
 msgid "Would you like to delete the backup \"<b>%s/%s</b>\"?"
 msgstr "Bạn có muốn xóa tệp sao lưu \"<b>%s/%s</b>\"?"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:450
+#: ../ubuntutweak/admins/desktoprecovery.py:451
 #, python-format
 msgid ""
 "Would you like to delete the backup of all \"<b>%(setting_name)s</b>\" "
@@ -749,12 +749,12 @@ msgstr ""
 "Bạn có muốn xóa hết sao lưu của \"<b>%(setting_name)s</b>\" settings named "
 "\"<b>%(backup_name)s</b>\"?"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:472
+#: ../ubuntutweak/admins/desktoprecovery.py:473
 #, python-format
 msgid "Would you like to recover the backup \"<b>%s/%s</b>\"?"
 msgstr "Bạn có muốn khôi phục lại sao lưu \"<b>%s/%s</b>\"?"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:475
+#: ../ubuntutweak/admins/desktoprecovery.py:476
 #, python-format
 msgid ""
 "Would you like to recover the backup of all \"<b>%(setting_name)s</b>\" "
@@ -763,7 +763,7 @@ msgstr ""
 "Bạn có muốn khôi phục lại tất cả sao lưu \"<b>%(setting_name)s</b>\" "
 "settings named \"<b>%(backup_name)s</b>\"?"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:480
+#: ../ubuntutweak/admins/desktoprecovery.py:481
 msgid ""
 "<b>NOTES</b>: While recovering, your desktop may be unresponsive for a "
 "moment."
@@ -771,30 +771,30 @@ msgstr ""
 "<b>CHÚ Ý</b>: Khi đang phục hồi, có thể máy sẽ không có phản ứng gì trong "
 "một lúc."
 
-#: ../ubuntutweak/admins/desktoprecovery.py:497
+#: ../ubuntutweak/admins/desktoprecovery.py:498
 msgid "Recovery Successful!"
 msgstr "Khôi phục thành công!"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:498
-#: ../ubuntutweak/admins/desktoprecovery.py:534
+#: ../ubuntutweak/admins/desktoprecovery.py:499
+#: ../ubuntutweak/admins/desktoprecovery.py:535
 msgid "You may need to restart your desktop for changes to take effect"
 msgstr "Bạn cần khởi động lại máy để thay đổi nhằm đạt được hiệu quả"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:503
+#: ../ubuntutweak/admins/desktoprecovery.py:504
 msgid "_Logout"
 msgstr "Đăng _xuất"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:516
+#: ../ubuntutweak/admins/desktoprecovery.py:517
 #, python-format
 msgid "Would you like to reset settings for \"<b>%s</b>\"?"
 msgstr "Bạn có muốn đặt lại thiết đặt về \"<b>%s</b>\"?"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:518
+#: ../ubuntutweak/admins/desktoprecovery.py:519
 #, python-format
 msgid "Would you like to reset all settings under \"<b>%s</b>\"?"
 msgstr "Bạn có muốn đặt lại tất cả thiết đặt dưới \"<b>%s</b>\"?"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:520
+#: ../ubuntutweak/admins/desktoprecovery.py:521
 msgid ""
 "<b>NOTES</b>: Whilst resetting, your desktop may be unresponsive for a "
 "moment."
@@ -802,20 +802,20 @@ msgstr ""
 "<b>CHÚ Ý</b>: Trong khi đặt lại, máy của bạn có thể không hoạt động trong "
 "một lúc."
 
-#: ../ubuntutweak/admins/desktoprecovery.py:533
+#: ../ubuntutweak/admins/desktoprecovery.py:534
 msgid "Reset Successful!"
 msgstr "Đặt lại thành công!"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:562
+#: ../ubuntutweak/admins/desktoprecovery.py:563
 #: ../ubuntutweak/admins/sourceeditor.py:418
 msgid "Please enter a new name for your backup:"
 msgstr "Vui lòng nhập vào một tên mới cho sao lưu của bạn:"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:594
+#: ../ubuntutweak/admins/desktoprecovery.py:595
 msgid "Backup Successful!"
 msgstr "Sao lưu thành công!"
 
-#: ../ubuntutweak/admins/desktoprecovery.py:597
+#: ../ubuntutweak/admins/desktoprecovery.py:598
 #: ../ubuntutweak/admins/sourceeditor.py:394
 msgid "Backup Failed!"
 msgstr "Sao lưu thất bại!"
@@ -888,7 +888,7 @@ msgstr ""
 "Bạn cần tắt nguồn <b>\"%(SOURCE)s\"</b> trước."
 
 #: ../ubuntutweak/admins/sourcecenter.py:903
-#: ../ubuntutweak/apps/__init__.py:199
+#: ../ubuntutweak/apps/__init__.py:231
 msgid "New source has been enabled"
 msgstr "Những nguồn mới đã được thêm vào"
 
@@ -1329,41 +1329,41 @@ msgstr "_Khôi phục"
 msgid "_Change"
 msgstr "Th_ay đổi"
 
-#: ../ubuntutweak/admins/quicklists.py:209
+#: ../ubuntutweak/admins/quicklists.py:211
 msgid "QuickLists Editor"
 msgstr "Chỉnh sửa QuickLists"
 
-#: ../ubuntutweak/admins/quicklists.py:210
+#: ../ubuntutweak/admins/quicklists.py:212
 msgid "Unity Launcher QuickLists Editor"
 msgstr "Chỉnh sửa các lối tắt trên thanh Unity"
 
-#: ../ubuntutweak/admins/quicklists.py:228
+#: ../ubuntutweak/admins/quicklists.py:230
 msgid "Running Apps"
 msgstr ""
 
-#: ../ubuntutweak/admins/quicklists.py:229
+#: ../ubuntutweak/admins/quicklists.py:231
 msgid "Workspace Switcher"
 msgstr ""
 
-#: ../ubuntutweak/admins/quicklists.py:230
+#: ../ubuntutweak/admins/quicklists.py:232
 msgid "Devices"
 msgstr ""
 
-#: ../ubuntutweak/admins/quicklists.py:421
+#: ../ubuntutweak/admins/quicklists.py:426
 #, python-format
 msgid "Would you like to reset \"%s\"?"
 msgstr "Bạn có muốn thiết lập lại \"%s\"?"
 
-#: ../ubuntutweak/admins/quicklists.py:422
+#: ../ubuntutweak/admins/quicklists.py:427
 #, python-format
 msgid "If you continue, the actions of %s will be set to default."
 msgstr "Nếu bạn tiếp tục, các thiết đặt của %s sẽ được đặt về mặc định."
 
-#: ../ubuntutweak/admins/quicklists.py:435
+#: ../ubuntutweak/admins/quicklists.py:440
 msgid "Would you like to reset the launcher items?"
 msgstr "Bạn có muốn thiết lập lại các mục trên thanh?"
 
-#: ../ubuntutweak/admins/quicklists.py:436
+#: ../ubuntutweak/admins/quicklists.py:441
 msgid ""
 "If you continue, launcher will be set to default and all your current items "
 "will be lost."
@@ -1520,13 +1520,13 @@ msgstr ""
 "cách nhanh chóng.\n"
 "Nhập lệnh để chạy ứng dụng và chọn một tổ hợp phím tắt."
 
-#: ../ubuntutweak/admins/shortcuts.py:83
+#: ../ubuntutweak/admins/shortcuts.py:84
 #, python-format
 msgid "Command %d"
 msgstr "Lệnh %d"
 
-#: ../ubuntutweak/admins/shortcuts.py:88
-#: ../ubuntutweak/admins/shortcuts.py:200
+#: ../ubuntutweak/admins/shortcuts.py:89
+#: ../ubuntutweak/admins/shortcuts.py:201
 #: ../ubuntutweak/admins/filetypemanager.py:178
 #: ../ubuntutweak/admins/filetypemanager.py:202
 #: ../ubuntutweak/tweaks/window.py:79 ../ubuntutweak/tweaks/window.py:86
@@ -1536,20 +1536,20 @@ msgstr "Lệnh %d"
 msgid "None"
 msgstr "Không"
 
-#: ../ubuntutweak/admins/shortcuts.py:93
-#: ../ubuntutweak/admins/shortcuts.py:145
+#: ../ubuntutweak/admins/shortcuts.py:94
+#: ../ubuntutweak/admins/shortcuts.py:146
 msgid "disabled"
 msgstr "vô hiệu"
 
-#: ../ubuntutweak/admins/shortcuts.py:102
+#: ../ubuntutweak/admins/shortcuts.py:103
 msgid "ID"
 msgstr "ID"
 
-#: ../ubuntutweak/admins/shortcuts.py:113
+#: ../ubuntutweak/admins/shortcuts.py:114
 msgid "Command"
 msgstr "Lệnh"
 
-#: ../ubuntutweak/admins/shortcuts.py:126
+#: ../ubuntutweak/admins/shortcuts.py:127
 msgid "Key"
 msgstr "Khoá"
 
@@ -1574,7 +1574,7 @@ msgid "Application"
 msgstr "Ứng dụng"
 
 #: ../ubuntutweak/admins/filetypemanager.py:50
-#: ../ubuntutweak/apps/__init__.py:390
+#: ../ubuntutweak/apps/__init__.py:417
 msgid "All"
 msgstr "Tất cả"
 
@@ -1990,70 +1990,86 @@ msgstr "Sắc thái âm thanh"
 msgid "Play login sound:"
 msgstr "Âm thanh đăng nhập"
 
-#: ../ubuntutweak/tweaks/misc.py:31
+#: ../ubuntutweak/tweaks/misc.py:32
 msgid "Miscellaneous"
 msgstr "Linh tinh"
 
-#: ../ubuntutweak/tweaks/misc.py:32
+#: ../ubuntutweak/tweaks/misc.py:33
 msgid "Set the cursor timeout, menus and buttons icons"
 msgstr "Đặt thời gian chờ của con trỏ, biểu tượng của trình đơn và nút bấm"
 
-#: ../ubuntutweak/tweaks/misc.py:36
+#: ../ubuntutweak/tweaks/misc.py:37
 msgid "Natural Scrolling"
 msgstr "Cuộn theo kiểu chạm"
 
-#: ../ubuntutweak/tweaks/misc.py:37
+#: ../ubuntutweak/tweaks/misc.py:38
 msgid "Menus have icons"
 msgstr "Trình đơn có biểu tượng"
 
-#: ../ubuntutweak/tweaks/misc.py:38
+#: ../ubuntutweak/tweaks/misc.py:39
 msgid "Buttons have icons"
 msgstr "Nút bấm có biểu tượng"
 
-#: ../ubuntutweak/tweaks/misc.py:39
+#: ../ubuntutweak/tweaks/misc.py:40
 msgid "Show Input Method menu in the context menu"
 msgstr "Hiện trình đơn Phương pháp nhập liệu trong trình đơn ngữ cảnh"
 
-#: ../ubuntutweak/tweaks/misc.py:40
+#: ../ubuntutweak/tweaks/misc.py:41
 msgid "Show Unicode Control Character menu in the context menu"
 msgstr ""
 "Hiện trình đơn Chèn ký tự điều khiển Unicode trong trình đơn ngữ cảnh"
 
-#: ../ubuntutweak/tweaks/misc.py:41
+#: ../ubuntutweak/tweaks/misc.py:42
 msgid "Disable printing"
 msgstr "Vô hiệu hoá in"
 
-#: ../ubuntutweak/tweaks/misc.py:42
+#: ../ubuntutweak/tweaks/misc.py:43
 msgid "Disable printer settings"
 msgstr "Tắt các thiết lập máy in"
 
-#: ../ubuntutweak/tweaks/misc.py:43
+#: ../ubuntutweak/tweaks/misc.py:44
 msgid "Disable save to disk"
 msgstr "Vô hiệu lưu vào đĩa"
 
-#: ../ubuntutweak/tweaks/misc.py:44
+#: ../ubuntutweak/tweaks/misc.py:45
 msgid "Disable \"Fast User Switching\""
 msgstr "Vô hiệu hóa \"Chuyển người dùng nhanh\""
 
-#: ../ubuntutweak/tweaks/misc.py:45
+#: ../ubuntutweak/tweaks/misc.py:46
 msgid "Cursor blink:"
 msgstr "Nhấp nháy con trỏ"
 
-#: ../ubuntutweak/tweaks/misc.py:46
+#: ../ubuntutweak/tweaks/misc.py:47
 msgid "Overlay scrollbars:"
 msgstr "Lớp phủ thanh trượt:"
 
-#: ../ubuntutweak/tweaks/misc.py:47
+#: ../ubuntutweak/tweaks/misc.py:48
 msgid "Cursor blink time:"
 msgstr "Chu kỳ nhấp nháy con trỏ"
 
-#: ../ubuntutweak/tweaks/misc.py:48
+#: ../ubuntutweak/tweaks/misc.py:49
 msgid "Cursor blink timeout:"
 msgstr "Thời gian hiệu lực nhấp nháy con trỏ"
 
-#: ../ubuntutweak/tweaks/misc.py:60 ../ubuntutweak/tweaks/unity.py:187
+#: ../ubuntutweak/tweaks/misc.py:61 ../ubuntutweak/tweaks/unity.py:187
 msgid "Note: you may need to log out to take effect"
 msgstr "Chú ý: bạn có thể cần phải đăng xuất để thấy được hiệu quả"
+
+#: ../ubuntutweak/tweaks/misc.py:68
+msgid "Normal"
+msgstr "Bình thường"
+
+#: ../ubuntutweak/tweaks/misc.py:69
+msgid "Auto"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/misc.py:70
+msgid "Show Overlay"
+msgstr ""
+
+#: ../ubuntutweak/tweaks/misc.py:71
+msgid "Never Show Overlay"
+msgstr ""
 
 #: ../ubuntutweak/tweaks/loginsettings.py:37
 msgid "Login Settings"
@@ -2313,8 +2329,8 @@ msgid "Fix the appearance of themes when granted root privileges:"
 msgstr "Sửa sắc thái diện mạo khi được cấp đặc quyền root:"
 
 #: ../ubuntutweak/tweaks/workarounds.py:39
-msgid "Auto detect text encoding for Chinese in Gedit:"
-msgstr "Tự động nhận dạng mã hóa văn bản tiếng Trung trong Gedit:"
+msgid "Auto detect text encoding for Simplified Chinese in Gedit:"
+msgstr ""
 
 #: ../ubuntutweak/tweaks/lovewallpaperhd.py:20
 msgid "Love Wallpaper HD"
@@ -2332,31 +2348,31 @@ msgstr ""
 msgid "Downloading Wallpaper"
 msgstr ""
 
-#: ../ubuntutweak/apps/__init__.py:92
+#: ../ubuntutweak/apps/__init__.py:112
 msgid "Uninstall"
 msgstr ""
 
-#: ../ubuntutweak/apps/__init__.py:93
+#: ../ubuntutweak/apps/__init__.py:113
 msgid "Update"
 msgstr ""
 
-#: ../ubuntutweak/apps/__init__.py:94
+#: ../ubuntutweak/apps/__init__.py:114
 msgid "Installing"
 msgstr ""
 
-#: ../ubuntutweak/apps/__init__.py:95
+#: ../ubuntutweak/apps/__init__.py:115
 msgid "Uninstalling"
 msgstr ""
 
-#: ../ubuntutweak/apps/__init__.py:96
+#: ../ubuntutweak/apps/__init__.py:116
 msgid "Updating"
 msgstr ""
 
-#: ../ubuntutweak/apps/__init__.py:97
+#: ../ubuntutweak/apps/__init__.py:117
 msgid "Not Available"
 msgstr ""
 
-#: ../ubuntutweak/apps/__init__.py:200
+#: ../ubuntutweak/apps/__init__.py:232
 #, python-format
 msgid "\"%s\" is enabled now, Please click the update button to update %s"
 msgstr ""
@@ -2534,33 +2550,33 @@ msgstr ""
 "\n"
 "Có các tập tin đang tồn tại trong nó!"
 
-#: ../ubuntutweak/main.py:270
+#: ../ubuntutweak/main.py:267
 msgid "Results"
 msgstr "Kết quả"
 
-#: ../ubuntutweak/main.py:278
+#: ../ubuntutweak/main.py:275
 #, python-format
 msgid "Your filter \"<b>%s</b>\" does not match any items."
 msgstr "Bộ lọc \"<b>%s</b>\" không phù hợp với bất kỳ mục nào."
 
-#: ../ubuntutweak/main.py:405
+#: ../ubuntutweak/main.py:403
 msgid "Please wait a moment..."
 msgstr "Vui lòng chờ trong giây lát..."
 
-#: ../ubuntutweak/main.py:514
+#: ../ubuntutweak/main.py:512
 #, python-format
 msgid "No module named \"%s\""
 msgstr "Không có khối nào tên là \"%s\""
 
-#: ../ubuntutweak/main.py:515
+#: ../ubuntutweak/main.py:513
 msgid "Please ensure you have entered the correct module name."
 msgstr "Vui lòng đảm bảo bạn đã nhập đúng tên khối."
 
-#: ../ubuntutweak/main.py:575
+#: ../ubuntutweak/main.py:571
 msgid "Computer Janitor"
 msgstr "Dọn dẹp máy tính"
 
-#: ../ubuntutweak/main.py:576
+#: ../ubuntutweak/main.py:572
 msgid "Clean up a system so it's more like a freshly installed one"
 msgstr "Thu dọn hệ thống và làm nó trở lên như vừa mới được cài"
 
@@ -2637,3 +2653,6 @@ msgstr "Bạn muốn gỡ bỏ nó rồi cài đặt lại?"
 #, python-format
 msgid "\"%s\" has already installed"
 msgstr "\"%s\" vừa được cài đặt"
+
+#~ msgid "Auto detect text encoding for Chinese in Gedit:"
+#~ msgstr "Tự động nhận dạng mã hóa văn bản tiếng Trung trong Gedit:"
