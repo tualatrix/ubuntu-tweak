@@ -5,7 +5,6 @@ import logging
 from ubuntutweak.gui.gtk import set_busy, unset_busy
 from ubuntutweak.janitor import JanitorPlugin, PackageObject
 from ubuntutweak.utils.package import AptWorker
-from ubuntutweak.utils import filesizeformat
 from ubuntutweak.common.debug import log_func, get_traceback
 
 
@@ -21,8 +20,12 @@ class OldKernelPlugin(JanitorPlugin):
 
     def __init__(self):
         JanitorPlugin.__init__(self)
-        self.current_kernel_version = self.p_kernel_version.findall('-'.join(os.uname()[2].split('-')[:2]))[0]
-        log.debug("the current_kernel_version is %s" % self.current_kernel_version)
+        try:
+            self.current_kernel_version = self.p_kernel_version.findall('-'.join(os.uname()[2].split('-')[:2]))[0]
+            log.debug("the current_kernel_version is %s" % self.current_kernel_version)
+        except Exception, e:
+            log.error(e)
+            self.current_kernel_version = '3.2.0-36'
 
     def get_cruft(self):
         try:
