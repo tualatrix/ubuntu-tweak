@@ -92,11 +92,14 @@ class FileOperation:
     @classmethod
     def do_hard_link(cls, source, dest):
         if cls.permission_test(dest):
-            if not os.path.exists(dest):
-                os.link(source, dest)
+            if os.path.isdir(source):
+                ErrorDialog(title=_('Operation not permitted'),
+                            message=_('Hard link doesn\'t support directory!')).launch()
             else:
-                ErrorDialog(_('The target "%s" already exists!') % dest).launch()
-
+                if not os.path.exists(dest):
+                    os.link(source, dest)
+                else:
+                    ErrorDialog(_('The target "%s" already exists!') % dest).launch()
 
     @classmethod
     def copy(cls, source, dest):

@@ -25,6 +25,7 @@ from gi.repository import Gtk, GObject
 
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.utils import icon
+from ubuntutweak import system
 from ubuntutweak.common.consts import DATA_DIR, CONFIG_ROOT
 from ubuntutweak.gui.treeviews import DirView, FlatView
 from ubuntutweak.gui.dialogs import QuestionDialog
@@ -34,7 +35,11 @@ log = logging.getLogger('Script')
 
 class AbstractScripts:
     system_dir = os.path.join(CONFIG_ROOT, 'scripts')
-    user_dir = os.path.join(os.getenv('HOME'), '.gnome2', 'nautilus-scripts')
+
+    if system.CODENAME == 'raring':
+        user_dir = os.path.expanduser('~/.local/share/nautilus/scripts')
+    else:
+        user_dir = os.path.join(os.getenv('HOME'), '.gnome2', 'nautilus-scripts')
 
 
 class DefaultScripts(AbstractScripts):
