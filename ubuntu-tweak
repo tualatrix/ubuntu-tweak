@@ -22,16 +22,7 @@ import os
 import optparse
 import logging
 
-import dbus
-import dbus.service
-import dbus.mainloop.glib
-
 from gi.repository import Unique, GObject, Gdk, Gtk
-
-Gdk.threads_init()
-GObject.threads_init()
-dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
-dbus.mainloop.glib.threads_init()
 
 from ubuntutweak import system
 from ubuntutweak.common.consts import VERSION, IS_INSTALLED, IS_TESTING, DATA_DIR
@@ -88,7 +79,6 @@ class UbuntuTweakApp(Unique.App):
 
     def run(self):
         Gtk.main()
-
 
 if __name__ == "__main__":
     parser = optparse.OptionParser(prog="ubuntu-tweak",
