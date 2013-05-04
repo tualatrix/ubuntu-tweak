@@ -63,7 +63,7 @@ class Theme(TweakModule):
                             values=valid_icon_themes,
                             enable_reset=True)
 
-        if system.CODENAME == 'quantal':
+        if system.CODENAME == 'quantal' or system.CODENAME == 'raring':
             window_theme_label, window_theme_combox, window_theme_reset_button = WidgetFactory.create('ComboBox',
                             label=self.utext_window_theme,
                             key='org.gnome.desktop.wm.preferences.theme',
