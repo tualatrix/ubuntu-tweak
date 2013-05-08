@@ -88,7 +88,6 @@ class AptWorker(object):
             self._on_error = error_handler
         self.ac = aptdaemon.client.AptClient()
 
-    @post_ui
     @log_func(log)
     def _simulate_trans(self, trans):
         trans.simulate(reply_handler=lambda: self._confirm_deps(trans),
@@ -119,6 +118,7 @@ class AptWorker(object):
                 reply_handler=lambda: True,
                 error_handler=self._on_error)
 
+    @post_ui
     def _on_error(self, error):
         try:
             raise error
