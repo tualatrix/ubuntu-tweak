@@ -454,13 +454,13 @@ class QuickLists(TweakModule):
     def _do_icon_reorder(self):
         new_order = []
         for row in self.icon_model:
-            if system.CODENAME == 'quantal':
+            if system.CODENAME == 'precise':
+                new_order.append(row[self.DESKTOP_FILE])
+            else:
                 if not row[self.DESKTOP_FILE].startswith('unity://'):
                     new_order.append('application://%s' % os.path.basename(row[self.DESKTOP_FILE]))
                 else:
                     new_order.append(row[self.DESKTOP_FILE])
-            else:
-                new_order.append(row[self.DESKTOP_FILE])
 
         if new_order != self.launcher_setting.get_value():
             log.debug("Order changed")

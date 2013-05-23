@@ -63,19 +63,19 @@ class Theme(TweakModule):
                             values=valid_icon_themes,
                             enable_reset=True)
 
-        if system.CODENAME == 'quantal' or system.CODENAME == 'raring':
+        if system.CODENAME == 'precise':
             window_theme_label, window_theme_combox, window_theme_reset_button = WidgetFactory.create('ComboBox',
                             label=self.utext_window_theme,
-                            key='org.gnome.desktop.wm.preferences.theme',
-                            backend='gsettings',
+                            key='/apps/metacity/general/theme',
+                            backend='gconf',
                             texts=valid_window_themes,
                             values=valid_window_themes,
                             enable_reset=True)
         else:
             window_theme_label, window_theme_combox, window_theme_reset_button = WidgetFactory.create('ComboBox',
                             label=self.utext_window_theme,
-                            key='/apps/metacity/general/theme',
-                            backend='gconf',
+                            key='org.gnome.desktop.wm.preferences.theme',
+                            backend='gsettings',
                             texts=valid_window_themes,
                             values=valid_window_themes,
                             enable_reset=True)
