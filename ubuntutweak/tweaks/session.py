@@ -46,14 +46,14 @@ class Session(TweakModule):
     def __init__(self):
         TweakModule.__init__(self)
 
-        if system.CODENAME == 'quantal':
-            user_indicator_label, user_menu_switch, reset_button = None, None, None
-        else:
+        if system.CODENAME == 'precise':
             user_indicator_label, user_menu_switch, reset_button = WidgetFactory.create("Switch",
                                       label=self.utext_user_indicator,
                                       enable_reset=True,
                                       backend="gsettings",
                                       key='com.canonical.indicator.session.user-show-menu')
+        else:
+            user_indicator_label, user_menu_switch, reset_button = None, None, None
 
         lockscreen_button, lockscreen_reset_button = WidgetFactory.create("CheckButton",
                      label=self.utext_lock_screen,

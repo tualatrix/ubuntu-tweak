@@ -61,7 +61,12 @@ class Misc(TweakModule):
                 _('Note: you may need to log out to take effect'))
         notes_label._ut_left = 1
 
-        if system.CODENAME == 'quantal' or system.CODENAME == 'raring':
+        if system.CODENAME == 'precise':
+           overlay_label, overlay_widget = WidgetFactory.create('Switch',
+                                                 label=self.utext_overlay_scrollbar,
+                                                 key='org.gnome.desktop.interface.ubuntu-overlay-scrollbars',
+                                                 backend='gsettings')
+        else:
           overlay_label, overlay_widget = WidgetFactory.create('ComboBox',
                                                  label=self.utext_overlay_scrollbar,
                                                  key='com.canonical.desktop.interface.scrollbar-mode',
@@ -73,11 +78,6 @@ class Misc(TweakModule):
                                                          'overlay-auto',
                                                          'overlay-pointer',
                                                          'overlay-touch'],
-                                                 backend='gsettings')
-        else:
-           overlay_label, overlay_widget = WidgetFactory.create('Switch',
-                                                 label=self.utext_overlay_scrollbar,
-                                                 key='org.gnome.desktop.interface.ubuntu-overlay-scrollbars',
                                                  backend='gsettings')
 
         self.theme_box = GridPack(
