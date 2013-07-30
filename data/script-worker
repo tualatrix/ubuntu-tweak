@@ -66,12 +66,12 @@ class FileOperation:
                 if not os.path.exists(dest):
                     shutil.copy(source, dest)
                 else:
-                    ErrorDialog(_('The file "%s" already exists!') % dest).launch()
+                    ErrorDialog(_('The file "%s" already exists!') % dest.decode('utf-8')).launch()
             elif os.path.isdir(source):
                 if not os.path.exists(dest):
                     shutil.copytree(source, dest)
                 else:
-                    ErrorDialog(_('The folder "%s" already exists!') % dest).launch()
+                    ErrorDialog(_('The folder "%s" already exists!') % dest.decode('utf-8')).launch()
 
     @classmethod
     def do_move(cls, source, dest):
@@ -79,7 +79,7 @@ class FileOperation:
             if not os.path.exists(dest):
                 shutil.move(source, dest)
             else:
-                ErrorDialog(_('The target "%s" already exists!') % dest).launch()
+                ErrorDialog(_('The target "%s" already exists!') % dest.decode('utf-8')).launch()
 
     @classmethod
     def do_link(cls, source, dest):
@@ -87,7 +87,7 @@ class FileOperation:
             if not os.path.exists(dest):
                 os.symlink(source, dest)
             else:
-                ErrorDialog(_('The target "%s" already exists!') % dest).launch()
+                ErrorDialog(_('The target "%s" already exists!') % dest.decode('utf-8')).launch()
 
     @classmethod
     def do_hard_link(cls, source, dest):
@@ -99,7 +99,7 @@ class FileOperation:
                 if not os.path.exists(dest):
                     os.link(source, dest)
                 else:
-                    ErrorDialog(_('The target "%s" already exists!') % dest).launch()
+                    ErrorDialog(_('The target "%s" already exists!') % dest.decode('utf-8')).launch()
 
     @classmethod
     def copy(cls, source, dest):
