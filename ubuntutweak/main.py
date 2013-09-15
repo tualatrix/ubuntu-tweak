@@ -170,8 +170,6 @@ class FeaturePage(Gtk.ScrolledWindow):
 
         self.load_modules()
 
-        self.connect('size-allocate', self.rebuild_boxes)
-
         self._setting.connect_notify(self.load_modules)
 
         self.show_all()
@@ -252,8 +250,6 @@ class SearchPage(FeaturePage):
         viewport.set_property('shadow-type', Gtk.ShadowType.NONE)
         viewport.add(self._box)
         self.add(viewport)
-
-        self.connect('size-allocate', self.rebuild_boxes)
 
         self.show_all()
 
