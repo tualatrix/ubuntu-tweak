@@ -34,7 +34,7 @@ class Window(TweakModule):
     __icon__ = 'preferences-system-windows'
     __category__ = 'desktop'
     __desktop__ = ['ubuntu', 'ubuntu-2d', 'gnome', 'gnome-classic', 'gnome-shell', 'gnome-fallback']
-    __distro__ = ['precise', 'quantal', 'raring']
+    __distro__ = ['precise', 'quantal', 'raring', 'saucy']
 
     left_default = 'close,minimize,maximize:'
     right_default = ':minimize,maximize,close'
