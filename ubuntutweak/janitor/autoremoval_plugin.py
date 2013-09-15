@@ -20,7 +20,7 @@ class AutoRemovalPlugin(JanitorPlugin):
         size = 0
         if cache:
             for pkg in cache:
-                if pkg.isAutoRemovable and not pkg.name.startswith('linux'):
+                if pkg.is_auto_removable and not pkg.name.startswith('linux'):
                     count += 1
                     size += pkg.installedSize
                     self.emit('find_object',
