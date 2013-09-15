@@ -35,12 +35,12 @@ class OldKernelPlugin(JanitorPlugin):
 
             if cache:
                 for pkg in cache:
-                    if pkg.isInstalled and self.is_old_kernel_package(pkg.name):
+                    if pkg.is_installed and self.is_old_kernel_package(pkg.name):
                         log.debug("Find old kernerl: %s" % pkg.name)
                         count += 1
-                        size += pkg.installedSize
+                        size += pkg.installed.size
                         self.emit('find_object',
-                                  PackageObject(pkg.name, pkg.name, pkg.installedSize),
+                                  PackageObject(pkg.name, pkg.name, pkg.installed.size),
                                   count)
 
             self.emit('scan_finished', True, count, size)
