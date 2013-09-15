@@ -29,6 +29,7 @@ import dbus.mainloop.glib
 from gi.repository import Unique, GObject, Gdk, Gtk
 
 Gdk.threads_init()
+GObject.threads_init()
 dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
 dbus.mainloop.glib.threads_init()
 
