@@ -280,7 +280,7 @@ class Daemon(PolicyKitService):
         self._check_permission(sender, PK_ACTION_SOURCE)
         self.list.refresh()
 
-        partsdir = apt_pkg.Config.FindDir("Dir::Etc::sourceparts")
+        partsdir = apt_pkg.config.find_dir("Dir::Etc::Sourceparts")
         if not os.path.exists(partsdir):
             os.mkdir(partsdir)
         file = os.path.join(partsdir, file+'.list')
