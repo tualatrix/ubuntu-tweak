@@ -12,7 +12,7 @@ from ubuntutweak.settings.configsettings import SystemConfigSetting
 
 log = logging.getLogger('widgets')
 
-class SettingWidget:
+class SettingWidget(object):
     def __init__(self, **kwargs):
         key = kwargs['key']
         backend = kwargs['backend']

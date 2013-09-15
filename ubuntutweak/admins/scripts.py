@@ -33,7 +33,7 @@ from ubuntutweak.gui.dialogs import QuestionDialog
 log = logging.getLogger('Script')
 
 
-class AbstractScripts:
+class AbstractScripts(object):
     system_dir = os.path.join(CONFIG_ROOT, 'scripts')
 
     if system.CODENAME == 'raring':
