@@ -19,6 +19,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 import os
+import sys
 import optparse
 import logging
 
@@ -26,7 +27,7 @@ import dbus
 import dbus.service
 import dbus.mainloop.glib
 
-from gi.repository import Unique, GObject, Gdk, Gtk
+from gi.repository import GObject, Gdk, Gtk, Gio
 
 Gdk.threads_init()
 GObject.threads_init()
@@ -56,41 +57,7 @@ def show_splash():
 
     return win
 
-
-class UbuntuTweakApp(Unique.App):
-    _window = None
-    log = logging.getLogger('Launcher')
-
-    def __init__(self, name='com.ubuntu-tweak.Tweak', startup_id=''):
-        Unique.App.__init__(self, name=name, startup_id=startup_id)
-        self.log.debug("Distribution: %s\nApplication: %s\nDesktop:%s" % (system.DISTRO,
-                                           system.APP,
-                                           system.DESKTOP))
-        self.connect('message-received', self.on_message_received)
-    def set_window(self, window):
-        self._window = window
-        self.watch_window(self._window.mainwindow)
-
-    def on_message_received(self, app, command, message, time):
-        self.log.debug("on_message_received: command: %s, message: %s, time: %s" % (
-            command, message, time))
-        try:
-            if command == Unique.Command.ACTIVATE:
-                self._window.present()
-                if message.get_text():
-                    self._window.select_target_feature(message.get_text())
-            elif command == Unique.Command.OPEN:
-                self._window.do_load_module(message.get_text())
-        except Exception, e:
-            self.log.error(e)
-
-        return False
-
-    def run(self):
-        Gtk.main()
-
-
-if __name__ == "__main__":
+def parse_args(argv):
     parser = optparse.OptionParser(prog="ubuntu-tweak",
                                    version="%%prog %s" % VERSION,
                                    description="Ubuntu Tweak is a tool for Ubuntu that makes it easy to configure your system and desktop settings.")
@@ -100,29 +67,57 @@ if __name__ == "__main__":
                       help="Start module directly.  [default: %default]")
     parser.add_option("-f", "--feature", dest="feature", default='',
                       help="Start feature directly.  [default: %default]")
-    options, args = parser.parse_args()
+    return parser.parse_args(argv)
+
+
+class UbuntuTweakApp(Gtk.Application):
+    _window = None
+    log = logging.getLogger('Launcher')
+
+    def __init__(self, application_id='com.ubuntu-tweak.Tweak'):
+        Gtk.Application.__init__(self,
+                                 application_id=application_id,
+                                 flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE)
+
+        self.log.debug("Distribution: %s\nApplication: %s\nDesktop:%s" % (system.DISTRO,
+                                           system.APP,
+                                           system.DESKTOP))
+
+        self.connect('activate', self.on_activated)
+        self.connect('startup', self.on_startup)
+        self.connect('command-line', self.on_command_line)
+
+    def on_startup(self, app):
+        splash_window = show_splash()
+        from ubuntutweak.main import UbuntuTweakWindow
+
+        self._window = UbuntuTweakWindow(feature=options.feature, module=options.module, splash_window=splash_window)
+        self.add_window(self._window.mainwindow)
+
+        Gtk.main()
+
+    def on_activated(self, app):
+        if self.get_windows():
+            self.get_windows()[0].present()
+
+    def on_command_line(self, app, commandline):
+        self.log.debug("on_command_line: %s", commandline.get_arguments())
+
+        options, args = parse_args(commandline.get_arguments())
+
+        self.on_activated(app)
+
+        if options.feature:
+            self._window.select_target_feature(options.feature)
+
+        if options.module:
+            self._window.do_load_module(options.module)
+
+if __name__ == "__main__":
+    options, args = parse_args(sys.argv)
 
     if options.debug or not IS_INSTALLED or IS_TESTING:
         enable_debugging()
 
     app = UbuntuTweakApp()
-
-    if app.is_running():
-        message = Unique.MessageData()
-        if options.feature:
-            message.set_text(options.feature, -1)
-
-        app.send_message(Unique.Command.ACTIVATE, message)
-
-        if options.module:
-            message = Unique.MessageData()
-            message.set_text(options.module, -1)
-            app.send_message(Unique.Command.OPEN, message)
-    else:
-        splash_window = show_splash()
-
-        from ubuntutweak.main import UbuntuTweakWindow
-
-        window = UbuntuTweakWindow(feature=options.feature, module=options.module, splash_window=splash_window)
-        app.set_window(window)
-        app.run()
+    app.run(sys.argv)
