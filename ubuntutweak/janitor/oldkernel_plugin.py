@@ -2,6 +2,7 @@ import os
 import re
 import logging
 
+from distutils.version import LooseVersion
 from ubuntutweak.gui.gtk import set_busy, unset_busy
 from ubuntutweak.janitor import JanitorPlugin, PackageObject
 from ubuntutweak.utils.package import AptWorker
@@ -95,7 +96,7 @@ class OldKernelPlugin(JanitorPlugin):
             else:
                 return False
         else:
-            return c1 > p1
+            return LooseVersion(c1) > LooseVersion(p1)
 
     def get_summary(self, count):
         if count:
