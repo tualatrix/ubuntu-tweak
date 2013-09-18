@@ -170,7 +170,8 @@ class FeaturePage(Gtk.ScrolledWindow):
 
         self.load_modules()
 
-        self._setting.connect_notify(self.load_modules)
+        # TODO this will cause Bug #880663 randomly, as current there's no user extension for features, just disable it
+#        self._setting.connect_notify(self.load_modules)
 
         self.show_all()
 
