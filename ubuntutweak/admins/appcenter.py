@@ -497,7 +497,7 @@ class AppCenter(TweakModule):
     __url__ = 'http://ubuntu-tweak.com/app/'
     __urltitle__ = _('Visit Online Application Center')
     __category__ = 'application'
-    __utactive__ = True
+    __utactive__ = False
 
     def __init__(self):
         TweakModule.__init__(self, 'appcenter.ui')
