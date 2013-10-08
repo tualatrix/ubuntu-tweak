@@ -53,48 +53,47 @@ class LoginSettings(TweakModule):
     def __init__(self):
         TweakModule.__init__(self, 'loginsettings.ui')
 
-        if system.CODENAME != 'oneiric':
-            valid_themes = theme.get_valid_themes()
-            valid_icon_themes = theme.get_valid_icon_themes()
+        valid_themes = theme.get_valid_themes()
+        valid_icon_themes = theme.get_valid_icon_themes()
 
-            notes_label = Gtk.Label()
-            notes_label.set_property('halign', Gtk.Align.START)
-            notes_label.set_markup('<span size="smaller">%s</span>' % \
-                    _('Note: you may need to reboot to take effect'))
-            notes_label._ut_left = 1
+        notes_label = Gtk.Label()
+        notes_label.set_property('halign', Gtk.Align.START)
+        notes_label.set_markup('<span size="smaller">%s</span>' % \
+                _('Note: you may need to reboot to take effect'))
+        notes_label._ut_left = 1
 
-            self.login_box = GridPack(
-                            WidgetFactory.create('Switch',
-                                label=self.utext_allow_guest,
-                                key='/etc/lightdm/lightdm.conf::SeatDefaults#allow-guest',
-                                default=True,
-                                backend='systemconfig'),
-                            notes_label,
-                            WidgetFactory.create('Switch',
-                                label=self.utext_draw_grid,
-                                key='50_unity-greeter.gschema.override::com.canonical.unity-greeter#draw-grid',
-                                backend='systemconfig'),
-                            WidgetFactory.create('Switch',
-                                label=self.utext_login_sound,
-                                key='50_unity-greeter.gschema.override::com.canonical.unity-greeter#play-ready-sound',
-                                backend='systemconfig'),
-                            WidgetFactory.create('ComboBox',
-                                label=self.utext_gtk_theme,
-                                key='50_unity-greeter.gschema.override::com.canonical.unity-greeter#theme-name',
-                                backend='systemconfig',
-                                texts=valid_themes,
-                                values=valid_themes),
-                            WidgetFactory.create('ComboBox',
-                                label=self.utext_icon_theme,
-                                key='50_unity-greeter.gschema.override::com.canonical.unity-greeter#icon-theme-name',
-                                backend='systemconfig',
-                                texts=valid_icon_themes,
-                                values=valid_icon_themes),
-                            )
+        self.login_box = GridPack(
+                        WidgetFactory.create('Switch',
+                            label=self.utext_allow_guest,
+                            key='/etc/lightdm/lightdm.conf::SeatDefaults#allow-guest',
+                            default=True,
+                            backend='systemconfig'),
+                        notes_label,
+                        WidgetFactory.create('Switch',
+                            label=self.utext_draw_grid,
+                            key='50_unity-greeter.gschema.override::com.canonical.unity-greeter#draw-grid',
+                            backend='systemconfig'),
+                        WidgetFactory.create('Switch',
+                            label=self.utext_login_sound,
+                            key='50_unity-greeter.gschema.override::com.canonical.unity-greeter#play-ready-sound',
+                            backend='systemconfig'),
+                        WidgetFactory.create('ComboBox',
+                            label=self.utext_gtk_theme,
+                            key='50_unity-greeter.gschema.override::com.canonical.unity-greeter#theme-name',
+                            backend='systemconfig',
+                            texts=valid_themes,
+                            values=valid_themes),
+                        WidgetFactory.create('ComboBox',
+                            label=self.utext_icon_theme,
+                            key='50_unity-greeter.gschema.override::com.canonical.unity-greeter#icon-theme-name',
+                            backend='systemconfig',
+                            texts=valid_icon_themes,
+                            values=valid_icon_themes),
+                        )
 
-            self.login_box.set_sensitive(False)
-            self.add_start(self.login_box, False, False, 0)
-            self.add_start(Gtk.Separator(), False, False, 6)
+        self.login_box.set_sensitive(False)
+        self.add_start(self.login_box, False, False, 0)
+        self.add_start(Gtk.Separator(), False, False, 6)
 
         self._setup_logo_image()
         self._setup_background_image()
@@ -103,20 +102,14 @@ class LoginSettings(TweakModule):
         self.add_start(box, False, False, 0)
 
     def _setup_logo_image(self):
-        if system.CODENAME == 'oneiric':
-            self._greeter_logo = SystemConfigSetting('/etc/lightdm/unity-greeter.conf::greeter#logo')
-        else:
-            self._greeter_logo = SystemConfigSetting('50_unity-greeter.gschema.override::com.canonical.unity-greeter#logo', type=str)
+        self._greeter_logo = SystemConfigSetting('50_unity-greeter.gschema.override::com.canonical.unity-greeter#logo', type=str)
         logo_path = self._greeter_logo.get_value()
 
         if logo_path:
             self.logo_image.set_from_file(logo_path)
 
     def _setup_background_image(self):
-        if system.CODENAME == 'oneiric':
-            self._greeter_background = SystemConfigSetting('/etc/lightdm/unity-greeter.conf::greeter#background')
-        else:
-            self._greeter_background = SystemConfigSetting('50_unity-greeter.gschema.override::com.canonical.unity-greeter#background', type=str)
+        self._greeter_background = SystemConfigSetting('50_unity-greeter.gschema.override::com.canonical.unity-greeter#background', type=str)
         background_path = self._greeter_background.get_value()
 
         log.debug("Setup the background file: %s" % background_path)

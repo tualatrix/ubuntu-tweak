@@ -70,10 +70,10 @@ UBUNTU_CODENAMES = ('dapper', 'edgy', 'feisty',
                     'gutsy', 'hardy', 'intrepid',
                     'jaunty', 'karmic', 'lucid',
                     'maverick', 'natty', 'oneiric',
-                    'precise', 'quantal', 'raring')
+                    'precise', 'quantal', 'raring', 'saucy')
 
 def is_supported(codename=CODENAME):
-    return codename in ('oneiric', 'precise', 'quantal', 'raring')
+    return codename in ('precise', 'quantal', 'raring', 'saucy')
 
 
 if __name__ == '__main__':

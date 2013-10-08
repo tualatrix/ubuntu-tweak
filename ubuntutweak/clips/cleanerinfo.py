@@ -24,7 +24,7 @@ class CleanerInfo(Clip):
         self.add_content(label)
 
         try:
-            if system.CODENAME in ['oneiric', 'precise']:
+            if system.CODENAME in ['precise']:
                 root_path = '~/.thumbnails'
             else:
                 root_path = '~/.cache/thumbnails'

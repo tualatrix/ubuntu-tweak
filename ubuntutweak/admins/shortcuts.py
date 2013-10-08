@@ -31,7 +31,7 @@ class Shortcuts(TweakModule):
                   "Enter the command to run the application and choose a shortcut key combination.")
     __icon__ = 'preferences-desktop-keyboard-shortcuts'
     __category__ = 'personal'
-    __distro__ = ['oneiric', 'precise']
+    __distro__ = ['precise']
 
     (COLUMN_ID,
      COLUMN_LOGO,

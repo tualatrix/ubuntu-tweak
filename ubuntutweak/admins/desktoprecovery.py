@@ -268,7 +268,7 @@ class DesktopRecovery(TweakModule):
                  'You can also use "Reset" to reset to the system default settings.')
     __icon__ = 'gnome-control-center'
     __category__ = 'desktop'
-    __distro__ = ['oneiric', 'precise']
+    __distro__ = ['precise']
 
     def __init__(self):
         TweakModule.__init__(self, 'desktoprecovery.ui')

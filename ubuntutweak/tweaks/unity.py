@@ -64,12 +64,8 @@ class Unity(TweakModule):
         version_pattern = re.compile('\d.\d+.\d')
 
         if system.DESKTOP == 'ubuntu':
-            if system.CODENAME == 'oneiric':
-                hide_texts = (_('Never'), _('Auto Hide'), _('Dodge Window'), _('Dodge Active Window'))
-                hide_values = (0, 1, 2, 3)
-            else:
-                hide_texts = (_('Never'), _('Auto Hide'))
-                hide_values = (0, 1)
+            hide_texts = (_('Never'), _('Auto Hide'))
+            hide_values = (0, 1)
 
             grid_pack = GridPack(
                         WidgetFactory.create("Switch",
