@@ -49,12 +49,16 @@ class LovewallpaperHD(TweakModule):
         lucky_button.set_property('halign', Gtk.Align.CENTER)
         lucky_button.connect('clicked', self.on_luky_button_clicked)
 
-        self.add_start(self.image_view, False, False, 0)
-        self.add_start(lucky_button, False, False, 0)
-        self.add_start(link_label, False, False, 0)
-
         self.connect('size-allocate', self.on_size_allocate)
-        self.load_imageview()
+
+        try:
+            self.load_imageview()
+            self.add_start(self.image_view, False, False, 0)
+            self.add_start(lucky_button, False, False, 0)
+        except Exception, e:
+            link_label.set_markup('Network issue happened when visiting <a href="http://www.lovebizhi.com/linux">%s</a>. Please check if you can access the website.' % self.__title__)
+        finally:
+            self.add_start(link_label, False, False, 0)
 
     def on_luky_button_clicked(self, widget):
         self.load_imageview()
