@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-tweak\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-12-21 10:57+0800\n"
-"PO-Revision-Date: 2012-11-06 09:12+0000\n"
+"PO-Revision-Date: 2013-06-25 10:37+0000\n"
 "Last-Translator: Mantas Kriaučiūnas <mantas@akl.lt>\n"
 "Language-Team: Lithuanian <lt@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,8 +18,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "(n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2013-06-04 13:01+0000\n"
-"X-Generator: Launchpad (build 16660)\n"
+"X-Launchpad-Export-Date: 2013-10-13 10:48+0000\n"
+"X-Generator: Launchpad (build 16799)\n"
 
 #: ../data/script-worker:57
 #, c-format
@@ -89,7 +89,7 @@ msgstr "Keisti programinės įrangos saugyklų sąrašus"
 #: ../data/com.ubuntu-tweak.daemon.policy.in.h:6
 msgid "To edit the software sources, you need to authenticate."
 msgstr ""
-"Norint redaguoti programinės įrangos sąrašus, turite patvirtinti tapatybę"
+"Programinės įrangos saugyklų sąrašus keisti galima tik patvirtinus tapatybę"
 
 #: ../data/ui/window.ui.h:1
 msgid "Left"
@@ -199,7 +199,7 @@ msgstr "Detalės"
 
 #: ../data/ui/sourcecenter.ui.h:7
 msgid "Purge PPA"
-msgstr ""
+msgstr "Pašalinti ir pasendinti"
 
 #: ../data/ui/brokenmodule.ui.h:1
 msgid "<big><b>This module encountered an error while loading.</b></big>"
@@ -568,15 +568,15 @@ msgstr ""
 
 #: ../ubuntutweak/janitor/gwibber_plugin.py:4
 msgid "Gwibber Cache"
-msgstr ""
+msgstr "Gwibber podėlis"
 
 #: ../ubuntutweak/janitor/opera_plugin.py:4
 msgid "Opera Cache"
-msgstr ""
+msgstr "Opera podėlis"
 
 #: ../ubuntutweak/janitor/googleearth_plugin.py:5
 msgid "Google Earth Cache"
-msgstr ""
+msgstr "Google Earth podėlis"
 
 #: ../ubuntutweak/janitor/thumbnailcache_plugin.py:5
 msgid "Thumbnail cache"
@@ -584,27 +584,27 @@ msgstr "Miniatiūrų podėlis"
 
 #: ../ubuntutweak/janitor/softwarecenter_plugin.py:4
 msgid "Software Center Cache"
-msgstr ""
+msgstr "Programų centro podėlis"
 
 #: ../ubuntutweak/janitor/mozilla_plugin.py:37
 msgid "Firefox Cache"
-msgstr ""
+msgstr "Firefox naršyklės podėlis"
 
 #: ../ubuntutweak/janitor/mozilla_plugin.py:43
 msgid "Thunderbird Cache"
-msgstr ""
+msgstr "Thunderbird podėlis"
 
 #: ../ubuntutweak/janitor/chrome_plugin.py:4
 msgid "Chrome Cache"
-msgstr ""
+msgstr "Chrome naršyklės podėlis"
 
 #: ../ubuntutweak/janitor/chrome_plugin.py:11
 msgid "Chromium Cache"
-msgstr ""
+msgstr "Chromium naršyklės podėlis"
 
 #: ../ubuntutweak/janitor/empathy_plugin.py:4
 msgid "Empathy Cache"
-msgstr ""
+msgstr "Empathy podėlis"
 
 #: ../ubuntutweak/janitor/autoremoval_plugin.py:14
 msgid "Unneeded Packages"
@@ -616,7 +616,7 @@ msgstr "Nereikalingi paketai (Nėra paketų šalinimui)"
 
 #: ../ubuntutweak/janitor/aptcache_plugin.py:10
 msgid "Apt Cache"
-msgstr "Apt podėlis"
+msgstr "Apt (paketų) podėlis"
 
 #: ../ubuntutweak/janitor/__init__.py:278
 msgid "No cache to be cleaned"
@@ -896,12 +896,12 @@ msgid ""
 "%s is enabled now, Please click the refresh button to update the application "
 "cache."
 msgstr ""
-"%s dabar įgalintas. Spustelėkite atnaujinimo mygtuką, kad atnaujintumėte "
-"programinės įrangos podėlį."
+"%s dabar įjungtas. Spustelėkite atnaujinimo mygtuką, kad atnaujintumėte "
+"programų podėlį."
 
 #: ../ubuntutweak/admins/sourcecenter.py:921
 msgid "Enabled PPAs"
-msgstr ""
+msgstr "Įjungtos saugyklos (PPA)"
 
 #: ../ubuntutweak/admins/sourcecenter.py:924
 msgid "Source Center"
@@ -981,6 +981,8 @@ msgid ""
 "All enabled PPAs (Select and click \"Purge PPA\" can safely downgrade "
 "packages)"
 msgstr ""
+"Visos įjungtos PPA saugyklos - programas pasendinsite pažymėję saugyklą ir "
+"paspaudę \"Pašalinti ir pasendinti\""
 
 #: ../ubuntutweak/admins/sourcecenter.py:1155
 msgid "An error occurred whilst downloading the file"
@@ -995,8 +997,8 @@ msgid ""
 "Network Error, Please check your network connection or the remote server is "
 "down."
 msgstr ""
-"Tinklo klaida. Patikrinkite savo tinklo ryšį (arba yra užlūžęs nuotolinis "
-"serveris)."
+"Tinklo klaida. Patikrinkite savo tinklo ryšį (arba nutolęs serveris gali "
+"būti išjungtas)."
 
 #: ../ubuntutweak/admins/sourcecenter.py:1184
 #: ../ubuntutweak/admins/appcenter.py:664
@@ -1005,11 +1007,12 @@ msgstr "Neprieinami jokie atnaujinimai."
 
 #: ../ubuntutweak/admins/sourcecenter.py:1209
 msgid "It's safe to purge the PPA, no packages need to be downgraded."
-msgstr "Saugu išvalyti PPA, nereikia pasendinti jokio paketo."
+msgstr "Saugu pašalinti šią PPA saugyklą, nereikia pasendinti jokio paketo."
 
 #: ../ubuntutweak/admins/sourcecenter.py:1212
 msgid "To safely purge the PPA, the following packages must be downgraded."
-msgstr "Norint saugiai pašalinti PPA, reikia pasendinti šiuos paketus."
+msgstr ""
+"Norint saugiai pašalinti šią PPA saugyklą, reikia pasendinti šiuos paketus."
 
 #: ../ubuntutweak/admins/sourcecenter.py:1216
 #, python-format
@@ -1018,7 +1021,7 @@ msgstr ""
 
 #: ../ubuntutweak/admins/sourcecenter.py:1253
 msgid "PPA has been purged"
-msgstr ""
+msgstr "PPA saugykla buvo pašalinta"
 
 #: ../ubuntutweak/admins/sourcecenter.py:1254
 msgid "It is highly recommend to do a \"Refresh\" source operation."
@@ -1095,7 +1098,7 @@ msgstr ""
 
 #: ../ubuntutweak/admins/sourceeditor.py:452
 msgid "You can't delete sources.list!"
-msgstr "Jūs negalite ištrinti sources.list!"
+msgstr "Jūs negalite ištrinti sources.list failo!"
 
 #: ../ubuntutweak/admins/sourceeditor.py:454
 #, python-format
@@ -1238,8 +1241,8 @@ msgid ""
 "Network Error, please check your network connection - or the remote server "
 "may be down."
 msgstr ""
-"Tinklo klaida. Patikrinkite savo tinklo ryšį (arba gali būti užlūžęs "
-"nuotolinis serveris)."
+"Tinklo klaida, patikrinkite savo interneto ryšį (arba gali būti išjungtas "
+"nutolęs serveris)."
 
 #: ../ubuntutweak/admins/appcenter.py:677
 msgid "An error occurred while downloading the file."
@@ -1301,7 +1304,7 @@ msgstr "Atkurti numatytąjį nustatymą"
 
 #: ../ubuntutweak/admins/userdir.py:237
 msgid "User Folder"
-msgstr ""
+msgstr "Naudotojo aplankai"
 
 #: ../ubuntutweak/admins/userdir.py:238
 msgid ""
@@ -1334,11 +1337,11 @@ msgstr ""
 
 #: ../ubuntutweak/admins/quicklists.py:231
 msgid "Workspace Switcher"
-msgstr ""
+msgstr "Darbalaukių perjungiklis"
 
 #: ../ubuntutweak/admins/quicklists.py:232
 msgid "Devices"
-msgstr ""
+msgstr "Įrenginiai"
 
 #: ../ubuntutweak/admins/quicklists.py:426
 #, python-format
@@ -1681,19 +1684,19 @@ msgstr ""
 
 #: ../ubuntutweak/tweaks/icons.py:26
 msgid "Show \"Computer\" icon"
-msgstr ""
+msgstr "Rodyti leistuką „Kompiuteris“"
 
 #: ../ubuntutweak/tweaks/icons.py:33
 msgid "Show \"Home Folder\" icon"
-msgstr ""
+msgstr "Rodyti leistuką „Asmeninis aplankas“"
 
 #: ../ubuntutweak/tweaks/icons.py:40
 msgid "Show \"Trash\" icon"
-msgstr ""
+msgstr "Rodyti leistuką „Šiukšlinė“"
 
 #: ../ubuntutweak/tweaks/icons.py:47
 msgid "Show \"Network Servers\" icon"
-msgstr ""
+msgstr "Rodyti leistuką „Vietinis Tinklas“"
 
 #: ../ubuntutweak/tweaks/icons.py:76 ../ubuntutweak/gui/treeviews.py:89
 msgid "Rename"
@@ -1701,7 +1704,7 @@ msgstr "Pervadinti"
 
 #: ../ubuntutweak/tweaks/icons.py:107
 msgid "Desktop Icons"
-msgstr ""
+msgstr "Darbastalio leistukai"
 
 #: ../ubuntutweak/tweaks/icons.py:108
 msgid "Rename and toggle visibilty of desktop icons"
@@ -1713,11 +1716,11 @@ msgstr ""
 
 #: ../ubuntutweak/tweaks/icons.py:114
 msgid "Show mounted volumes"
-msgstr ""
+msgstr "Rodyti prijungtas laikmenas"
 
 #: ../ubuntutweak/tweaks/icons.py:115
 msgid "Show contents of \"Home Folder\""
-msgstr ""
+msgstr "Rodyti „Asmeninio aplanko“ turinį"
 
 #: ../ubuntutweak/tweaks/icons.py:146
 msgid "Note: switch off this option will make the desktop unclickable"
@@ -1779,7 +1782,7 @@ msgstr "Lango valdymo mygtukų vieta"
 
 #: ../ubuntutweak/tweaks/window.py:50
 msgid "\"Close\" button only"
-msgstr ""
+msgstr "Tik mygtukas „Užverti“"
 
 #: ../ubuntutweak/tweaks/window.py:51
 msgid "Titlebar mouse wheel action:"
@@ -1850,11 +1853,11 @@ msgstr ""
 
 #: ../ubuntutweak/tweaks/nautilus.py:34
 msgid "Automatically mount media:"
-msgstr ""
+msgstr "Prijungti laikmenas automatiškai:"
 
 #: ../ubuntutweak/tweaks/nautilus.py:35
 msgid "Automatically open a folder:"
-msgstr ""
+msgstr "Atverti prijungtos laikmenos aplanką:"
 
 #: ../ubuntutweak/tweaks/nautilus.py:36
 msgid "Prompt or autorun/autostart programs:"
@@ -2419,15 +2422,16 @@ msgstr ""
 #, python-format
 msgid "%s cache packages can be cleaned."
 msgstr ""
+"%s programinės įrangos paketų įdiegimo failų(-ai) gali būti pašalinti."
 
 #: ../ubuntutweak/clips/cleanerinfo.py:38
 #, python-format
 msgid "%s thumbnails cache can be cleaned."
-msgstr ""
+msgstr "%s paveikslėlių miniatūrų gali būti pašalinti iš podėlio."
 
 #: ../ubuntutweak/clips/cleanerinfo.py:44
 msgid "Start Janitor"
-msgstr ""
+msgstr "Išvalyti"
 
 #: ../ubuntutweak/clips/updateinfo.py:13
 msgid "Your system is up-to-date"
@@ -2643,4 +2647,4 @@ msgstr ""
 #: ../ubuntutweak/preferences.py:233
 #, python-format
 msgid "\"%s\" has already installed"
-msgstr ""
+msgstr "„%s“ jau įdiegta"
