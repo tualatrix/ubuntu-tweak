@@ -20,6 +20,7 @@ import os
 import stat
 import shutil
 import logging
+import platform
 
 from gi.repository import Gtk, GObject
 
@@ -36,7 +37,7 @@ log = logging.getLogger('Script')
 class AbstractScripts(object):
     system_dir = os.path.join(CONFIG_ROOT, 'scripts')
 
-    if system.CODENAME == 'raring':
+    if int(platform.dist()[1][0:2]) >= 13:
         user_dir = os.path.expanduser('~/.local/share/nautilus/scripts')
     else:
         user_dir = os.path.join(os.getenv('HOME'), '.gnome2', 'nautilus-scripts')
