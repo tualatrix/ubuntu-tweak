@@ -21,7 +21,6 @@ import logging
 
 from gi.repository import Gtk, GdkPixbuf
 
-from ubuntutweak import system
 from ubuntutweak.factory import WidgetFactory
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.gui.treeviews import get_local_path

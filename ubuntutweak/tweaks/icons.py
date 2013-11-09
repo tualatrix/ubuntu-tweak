@@ -16,6 +16,7 @@
 # along with Ubuntu Tweak; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
+from ubuntutweak import system
 from gi.repository import GObject, Gtk
 
 from ubuntutweak.gui.containers import GridPack
@@ -50,7 +51,10 @@ network_icon = {
     "icon_name": "network-workgroup"
 }
 
-desktop_icons = (computer_icon, home_icon, trash_icon, network_icon)
+if system.CODENAME == 'saucy':
+    desktop_icons = (home_icon, trash_icon, network_icon)
+else:
+    desktop_icons = (computer_icon, home_icon, trash_icon, network_icon)
 
 class DesktopIcon(Gtk.VBox):
     def __init__(self, item):
@@ -88,7 +92,7 @@ class DesktopIcon(Gtk.VBox):
         vbox.pack_start(self.entry, False, False, 0)
 
     def on_entry_focus_out(self, widget, event):
-        self.entry.setting.set_value(self.entry.get_text())
+        self.entry.get_setting().set_value(self.entry.get_text())
 
     def on_show_button_changed(self, widget):
         self.show_hbox.set_sensitive(self.show_button.get_active())
@@ -99,7 +103,7 @@ class DesktopIcon(Gtk.VBox):
             self.entry.grab_focus()
         else:
             self.entry.set_sensitive(False)
-            self.entry.setting.unset()
+            self.entry.get_setting().unset()
             self.entry.set_text('')
 
 
@@ -134,11 +138,12 @@ class Icons(TweakModule):
                                       backend="gsettings")
         setting_list.append(volumes_button)
 
-        home_contents_button = WidgetFactory.create("CheckButton",
-                                      label=self.utext_home_folder,
-                                      key="org.gnome.nautilus.preferences.desktop-is-home-dir",
-                                      backend="gsettings")
-        setting_list.append(home_contents_button)
+        if system.CODENAME != 'saucy':
+            home_contents_button = WidgetFactory.create("CheckButton",
+                                          label=self.utext_home_folder,
+                                          key="org.gnome.nautilus.preferences.desktop-is-home-dir",
+                                          backend="gsettings")
+            setting_list.append(home_contents_button)
 
         notes_label = Gtk.Label()
         notes_label.set_property('halign', Gtk.Align.START)
