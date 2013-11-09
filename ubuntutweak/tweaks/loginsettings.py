@@ -21,6 +21,7 @@ import logging
 
 from gi.repository import Gtk, GdkPixbuf
 
+from ubuntutweak import system
 from ubuntutweak.factory import WidgetFactory
 from ubuntutweak.modules  import TweakModule
 from ubuntutweak.gui.treeviews import get_local_path
@@ -92,13 +93,15 @@ class LoginSettings(TweakModule):
 
         self.login_box.set_sensitive(False)
         self.add_start(self.login_box, False, False, 0)
-        self.add_start(Gtk.Separator(), False, False, 6)
 
-        self._setup_logo_image()
-        self._setup_background_image()
+        if system.CODENAME != 'saucy':
+            self.add_start(Gtk.Separator(), False, False, 6)
 
-        box = ListPack('', (self.main_vbox))
-        self.add_start(box, False, False, 0)
+            self._setup_logo_image()
+            self._setup_background_image()
+
+            box = ListPack('', (self.main_vbox))
+            self.add_start(box, False, False, 0)
 
     def _setup_logo_image(self):
         self._greeter_logo = SystemConfigSetting('50_unity-greeter.gschema.override::com.canonical.unity-greeter#logo', type=str)
