@@ -74,10 +74,14 @@ class SourceView(Gtk.TextView):
         buffer.delete(buffer.get_start_iter(), buffer.get_end_iter())
         iter = buffer.get_iter_at_offset(0)
         if content is None:
-            content = open(self.path).read()
+            try:
+                content = open(self.path).read()
 
-        for i, line in enumerate(content.split('\n')):
-            self.parse_and_insert(buffer, iter, line, i != content.count('\n'))
+                for i, line in enumerate(content.split('\n')):
+                    self.parse_and_insert(buffer, iter, line, i != content.count('\n'))
+
+            except:
+                pass
 
     def parse_and_insert(self, buffer, iter, line, break_line=False):
         try:
