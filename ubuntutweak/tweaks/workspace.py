@@ -37,7 +37,6 @@ class EdgeComboBox(Gtk.ComboBox):
         ('expo', 'expo_edge', _('Show Workspaces')),
         ('scale', 'initiate_all_edge', _('Show Windows')),
         ('core', 'show_desktop_edge', _('Show Desktop')),
-        ('widget', 'toggle_edge', _('Show Widgets')),
     )
 
     __gsignals__ = {
