@@ -28,7 +28,7 @@ class Nautilus(TweakModule):
     __desc__ = _('Manage the Nautilus file manager')
     __icon__ = ['file-manager', 'nautilus']
     __category__ = 'system'
-    __desktop__ = ['ubuntu', 'ubuntu-2d', 'gnome', 'gnome-classic', 'gnome-shell', 'gnome-fallback']
+    __desktop__ = ['ubuntu', 'ubuntu-2d', 'gnome', 'gnome-classic', 'gnome-shell', 'gnome-fallback', 'gnome-fallback-compiz']
 
     utext_pathbar = _('Use the location entry instead of the pathbar')
     utext_automount = _('Automatically mount media:')

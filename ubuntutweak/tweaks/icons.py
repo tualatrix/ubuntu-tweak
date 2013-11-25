@@ -112,7 +112,7 @@ class Icons(TweakModule):
     __desc__ = _("Rename and toggle visibilty of desktop icons")
     __icon__ = 'preferences-desktop-wallpaper'
     __category__ = 'desktop'
-    __desktop__ = ['ubuntu', 'ubuntu-2d', 'gnome', 'gnome-classic', 'gnome-shell', 'gnome-fallback']
+    __desktop__ = ['ubuntu', 'ubuntu-2d', 'gnome', 'gnome-classic', 'gnome-shell', 'gnome-fallback', 'gnome-fallback-compiz']
 
     utext_show_icon = _("Show desktop icons:")
     utext_mount_volume = _("Show mounted volumes")
