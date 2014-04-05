@@ -48,6 +48,7 @@ class Unity(TweakModule):
     utext_launcher_backlight = _('Launcher icon backlight:')
     utext_device = _('Launcher show devices:')
     utext_show_desktop_icon = _('"Show desktop" icon:')
+    utext_launcher_minimize_window = _('Launcher click to minimize app:')
     utext_disable_show_desktop_switcher = _('Disable "Show Desktop" in the switcher:')
     utext_dash_size = _('Dash size:')
     utext_blur_type = _('Blur type:')
@@ -94,6 +95,11 @@ class Unity(TweakModule):
                         WidgetFactory.create("Switch",
                             label=self.utext_disable_show_desktop_switcher,
                             key="unityshell.disable_show_desktop",
+                            backend="compiz",
+                            enable_reset=True),
+                        WidgetFactory.create("Switch",
+                            label=self.utext_launcher_minimize_window,
+                            key="unityshell.launcher_minimize_window",
                             backend="compiz",
                             enable_reset=True),
                         WidgetFactory.create("Scale",
