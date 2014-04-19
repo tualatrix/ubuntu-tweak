@@ -25,12 +25,6 @@ log = logging.getLogger('apps')
 class AppsPage(Gtk.ScrolledWindow):
     is_loaded = False
 
-    DATA_MIRRORS = [
-        'http://ubuntu-tweak.com/',
-        'http://mirror.ubuntu-tweak.com/',
-        'http://mirror2.ubuntu-tweak.com/',
-    ]
-
     __gsignals__ = {
         'loaded': (GObject.SignalFlags.RUN_FIRST, None, ()),
     }
@@ -71,7 +65,7 @@ class AppsPage(Gtk.ScrolledWindow):
                 self.emit('loaded')
 
     def load(self):
-        self._webview.load_uri(self.DATA_MIRRORS[random.randint(0, len(self.DATA_MIRRORS) - 1)] + 'utapp/')
+        self._webview.load_uri('http://ubuntu-tweak.com/utapp/')
 
     @log_func(log)
     def on_go_back_clicked(self, widget):
