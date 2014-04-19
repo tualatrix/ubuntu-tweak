@@ -31,6 +31,7 @@ class Nautilus(TweakModule):
     __desktop__ = ['ubuntu', 'ubuntu-2d', 'gnome', 'gnome-classic', 'gnome-shell', 'gnome-fallback', 'gnome-fallback-compiz']
 
     utext_pathbar = _('Use the location entry instead of the pathbar')
+    recursive_search = _('Enable Recursive Search')
     utext_automount = _('Automatically mount media:')
     utext_open = _('Automatically open a folder:')
     utext_prompt = _('Prompt or autorun/autostart programs:')
@@ -43,20 +44,26 @@ class Nautilus(TweakModule):
 
         box = GridPack(
                     WidgetFactory.create("Switch",
-                            label=self.utext_pathbar,
-                            enable_reset=True,
-                            key="org.gnome.nautilus.preferences.always-use-location-entry",
-                            backend="gsettings"),
+                        label=self.utext_pathbar,
+                        enable_reset=True,
+                        key="org.gnome.nautilus.preferences.always-use-location-entry",
+                        backend="gsettings"),
                     WidgetFactory.create('Switch',
-                                         key='org.gnome.desktop.media-handling.automount',
-                                         enable_reset=True,
-                                         label=self.utext_automount,
-                                         backend="gsettings"),
+                        key='org.gnome.nautilus.preferences.enable-interactive-search',
+                        enable_reset=True,
+                        reverse=True,
+                        label=self.recursive_search,
+                        backend="gsettings"),
                     WidgetFactory.create('Switch',
-                                         key='org.gnome.desktop.media-handling.automount-open',
-                                         enable_reset=True,
-                                         label=self.utext_open,
-                                         backend="gsettings"),
+                        key='org.gnome.desktop.media-handling.automount',
+                        enable_reset=True,
+                        label=self.utext_automount,
+                        backend="gsettings"),
+                    WidgetFactory.create('Switch',
+                        key='org.gnome.desktop.media-handling.automount-open',
+                        enable_reset=True,
+                        label=self.utext_open,
+                        backend="gsettings"),
                     WidgetFactory.create('Switch',
                         key='org.gnome.desktop.media-handling.autorun-never',
                         enable_reset=True,
