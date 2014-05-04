@@ -13,6 +13,7 @@ class MozillaCachePlugin(JanitorCachePlugin):
                'safebrowsing',
                'startupCache',
                'thumbnails',
+               'cache2',
                'OfflineCache']
     app_path = ''
 
