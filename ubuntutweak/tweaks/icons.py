@@ -51,7 +51,7 @@ network_icon = {
     "icon_name": "network-workgroup"
 }
 
-if system.CODENAME == 'saucy':
+if system.CODENAME != 'precise':
     desktop_icons = (home_icon, trash_icon, network_icon)
 else:
     desktop_icons = (computer_icon, home_icon, trash_icon, network_icon)
@@ -138,7 +138,7 @@ class Icons(TweakModule):
                                       backend="gsettings")
         setting_list.append(volumes_button)
 
-        if system.CODENAME != 'saucy':
+        if system.CODENAME == 'precise':
             home_contents_button = WidgetFactory.create("CheckButton",
                                           label=self.utext_home_folder,
                                           key="org.gnome.nautilus.preferences.desktop-is-home-dir",
