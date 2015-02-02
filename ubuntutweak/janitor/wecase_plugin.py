@@ -1,6 +1,6 @@
 from ubuntutweak.janitor import JanitorCachePlugin
 
-class ChromeCachePlugin(JanitorCachePlugin):
+class WeCaseCachePlugin(JanitorCachePlugin):
     __title__ = _('WeCase')
     __category__ = 'application'
 
